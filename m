@@ -1,37 +1,32 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <romain.perier@collabora.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2138BE00826; Fri, 28 Apr 2017 00:59:47 -0700 (PDT)
+	id 83895E00985; Fri, 28 Apr 2017 06:59:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2882E007B5
-	for <yocto@yoctoproject.org>; Fri, 28 Apr 2017 00:59:44 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Apr 2017 00:59:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.37,387,1488873600"; d="scan'208";a="962077013"
-Received: from mbabyjoh-desk.fi.intel.com (HELO
-	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
-	by orsmga003.jf.intel.com with ESMTP; 28 Apr 2017 00:59:42 -0700
-Date: Fri, 28 Apr 2017 10:59:17 +0300
-From: "Maxin B. John" <maxin.john@intel.com>
-To: Romain Bazile <romain.bazile@ubiant.com>
-Message-ID: <20170428075916.GA11185@mbabyjoh-desk.ger.corp.intel.com>
-References: <20170427185449.26321-1-romain.bazile@ubiant.com>
-MIME-Version: 1.0
-In-Reply-To: <20170427185449.26321-1-romain.bazile@ubiant.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org, Romain Bazile <romain.bazile@uiant.com>
-Subject: Re: [meta-oracle-java][PATCH] Update version to 8u131-b11 for all recipes
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF4E7E00953
+	for <yocto@yoctoproject.org>; Fri, 28 Apr 2017 06:59:10 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: rperier) with ESMTPSA id 63B04269D30
+From: Romain Perier <romain.perier@collabora.com>
+To: Romain Perier <romain.perier@collabora.com>,
+	Trevor Woerner <twoerner@gmail.com>
+Date: Fri, 28 Apr 2017 15:58:57 +0200
+Message-Id: <20170428135857.27341-1-romain.perier@collabora.com>
+X-Mailer: git-send-email 2.11.0
+Cc: yocto@yoctoproject.org
+Subject: [meta-rockchip][PATCH] linux: version bump to 4.11-rc8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,47 +38,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Apr 2017 07:59:47 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 28 Apr 2017 13:59:12 -0000
 
-Hi,
+Linux kernel 4.11 being released soon, bump recipe to 4.11-rc8.
 
-On Thu, Apr 27, 2017 at 08:54:49PM +0200, Romain Bazile wrote:
-> From: Romain Bazile <romain.bazile@uiant.com>
-> 
-> Signed-off-by: Romain Bazile <romain.bazile@ubiant.com>
-> ---
->  .../oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc   | 10 +++++-----
->  .../oracle-jse-ejre-arm-vfp-hflt-client-headless.inc           | 10 +++++-----
->  recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.8.0.bb      | 10 +++++-----
->  recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.8.0.bb    | 10 +++++-----
->  recipes-devtools/oracle-java/oracle-jse-jre-i586.inc           | 10 +++++-----
->  recipes-devtools/oracle-java/oracle-jse-jre-x86-64.inc         | 10 +++++-----
->  6 files changed, 30 insertions(+), 30 deletions(-)
-> 
+Signed-off-by: Romain Perier <romain.perier@collabora.com>
+---
+ recipes-kernel/linux/linux_4.10.bb | 19 -------------------
+ recipes-kernel/linux/linux_4.11.bb | 20 ++++++++++++++++++++
+ 2 files changed, 20 insertions(+), 19 deletions(-)
+ delete mode 100644 recipes-kernel/linux/linux_4.10.bb
+ create mode 100644 recipes-kernel/linux/linux_4.11.bb
 
-Got this error:
+diff --git a/recipes-kernel/linux/linux_4.10.bb b/recipes-kernel/linux/linux_4.10.bb
+deleted file mode 100644
+index e1d0aa4..0000000
+--- a/recipes-kernel/linux/linux_4.10.bb
++++ /dev/null
+@@ -1,19 +0,0 @@
+-# Copyright (C) 2017 Romain Perier
+-# Copyright (C) 2017 Eddie Cai
+-# Released under the MIT license (see COPYING.MIT for the terms)
+-
+-require recipes-kernel/linux/linux-yocto.inc
+-
+-SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+-
+-SRCREV = "7089db84e356562f8ba737c29e472cc42d530dbc"
+-LINUX_VERSION = "4.10"
+-# Override local version in order to use the one generated by linux build system
+-# And not "yocto-standard"
+-LINUX_VERSION_EXTENSION = ""
+-PR = "r1"
+-PV = "${LINUX_VERSION}-rc8"
+-
+-# Include only supported boards for now
+-COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square)"
+-deltask kernel_configme
+diff --git a/recipes-kernel/linux/linux_4.11.bb b/recipes-kernel/linux/linux_4.11.bb
+new file mode 100644
+index 0000000..6058661
+--- /dev/null
++++ b/recipes-kernel/linux/linux_4.11.bb
+@@ -0,0 +1,20 @@
++# Copyright (C) 2017 Romain Perier
++# Copyright (C) 2017 Eddie Cai
++# Released under the MIT license (see COPYING.MIT for the terms)
++
++require recipes-kernel/linux/linux-yocto.inc
++
++SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
++
++SRCREV = "5a7ad1146caa895ad718a534399e38bd2ba721b7"
++LINUX_VERSION = "4.11"
++# Override local version in order to use the one generated by linux build system
++# And not "yocto-standard"
++LINUX_VERSION_EXTENSION = ""
++PR = "r1"
++PV = "${LINUX_VERSION}-rc8"
++
++# Include only supported boards for now
++COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square)"
++deltask kernel_configme
++
+-- 
+1.8.3.1
 
-ERROR: oracle-jse-jdk-x86-64-1.8.0-u131r0 do_populate_lic: QA Issue: oracle-jse-jdk-x86-64: The LIC_FILES_CHKSUM does not match for file://jdk1.8.0_131/THIRDPARTYLICENSEREADME-JAVAFX.txt;md5=ab9db8d553033c0326bd2d38d77f84c1
-oracle-jse-jdk-x86-64: The new md5 checksum is 4f31cd1a5d86744d5f00666d9a57ad2a
-oracle-jse-jdk-x86-64: Here is the selected license text:
-vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-DO NOT TRANSLATE OR LOCALIZE
-
-***************************************************************************
-
-...
-<snip>
-
-Please update the LIC_FILES_CHKSUM.
-
-
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc
-> index 321afee..343004f 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc
-> +++ b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-sflt-client-headless.inc
-
-Best Regards,
-Maxin
 
