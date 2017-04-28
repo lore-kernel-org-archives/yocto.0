@@ -1,34 +1,36 @@
-Return-Path: <romain.perier@collabora.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C13CAE00985; Fri, 28 Apr 2017 07:01:55 -0700 (PDT)
+	id 396D1E009A5; Fri, 28 Apr 2017 08:38:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 124B1E00953
-	for <yocto@yoctoproject.org>; Fri, 28 Apr 2017 07:01:55 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: rperier) with ESMTPSA id 70159269D30
-From: Romain Perier <romain.perier@collabora.com>
-To: Romain Perier <romain.perier@collabora.com>,
-	Trevor Woerner <twoerner@gmail.com>
-Date: Fri, 28 Apr 2017 16:01:26 +0200
-Message-Id: <20170428140126.27654-6-romain.perier@collabora.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20170428140126.27654-1-romain.perier@collabora.com>
-References: <20170428140126.27654-1-romain.perier@collabora.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7037E00992
+	for <yocto@yoctoproject.org>; Fri, 28 Apr 2017 08:38:38 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	28 Apr 2017 08:38:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.37,388,1488873600"; d="scan'208";a="254712348"
+Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.119])
+	by fmsmga004.fm.intel.com with ESMTP; 28 Apr 2017 08:38:16 -0700
+Message-ID: <1493394369.20564.11.camel@linux.intel.com>
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+To: Romain Perier <romain.perier@collabora.com>
+Date: Fri, 28 Apr 2017 10:46:09 -0500
+In-Reply-To: <20170428135857.27341-1-romain.perier@collabora.com>
+References: <20170428135857.27341-1-romain.perier@collabora.com>
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: [meta-rockchip][PATCH 5/5] u-boot-rockchip: add rock2 to compatible machines
+Subject: Re: [meta-rockchip][PATCH] linux: version bump to 4.11-rc8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,30 +42,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Apr 2017 14:01:55 -0000
+X-List-Received-Date: Fri, 28 Apr 2017 15:38:40 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-As this machine is supported by this u-boot, add it to the compatible
-machines.
+for reviewing purposes, it would be nice if you set diff.renames =
+"true" into your .gitconfig file, so git detect renames and just diff
+changes.
 
-Signed-off-by: Romain Perier <romain.perier@collabora.com>
----
- recipes-bsp/u-boot/u-boot-rockchip_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Leo
 
-diff --git a/recipes-bsp/u-boot/u-boot-rockchip_git.bb b/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-index 9363bee..ffb7887 100644
---- a/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-+++ b/recipes-bsp/u-boot/u-boot-rockchip_git.bb
-@@ -6,7 +6,7 @@
- require recipes-bsp/u-boot/u-boot.inc
- 
- DESCRIPTION = "Rockchip next-dev U-Boot"
--COMPATIBLE_MACHINE = "(firefly-rk3288)"
-+COMPATIBLE_MACHINE = "(firefly-rk3288|rock2-square)"
- 
- DEPENDS = "dtc-native bc-native"
- 
--- 
-1.8.3.1
+
+
+On Fri, 2017-04-28 at 15:58 +0200, Romain Perier wrote:
+> Linux kernel 4.11 being released soon, bump recipe to 4.11-rc8.
+> 
+> Signed-off-by: Romain Perier <romain.perier@collabora.com>
+> ---
+>  recipes-kernel/linux/linux_4.10.bb | 19 -------------------
+>  recipes-kernel/linux/linux_4.11.bb | 20 ++++++++++++++++++++
+>  2 files changed, 20 insertions(+), 19 deletions(-)
+>  delete mode 100644 recipes-kernel/linux/linux_4.10.bb
+>  create mode 100644 recipes-kernel/linux/linux_4.11.bb
+> 
+> diff --git a/recipes-kernel/linux/linux_4.10.bb b/recipes-kernel/linux/linux_4.10.bb
+> deleted file mode 100644
+> index e1d0aa4..0000000
+> --- a/recipes-kernel/linux/linux_4.10.bb
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -# Copyright (C) 2017 Romain Perier
+> -# Copyright (C) 2017 Eddie Cai
+> -# Released under the MIT license (see COPYING.MIT for the terms)
+> -
+> -require recipes-kernel/linux/linux-yocto.inc
+> -
+> -SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+> -
+> -SRCREV = "7089db84e356562f8ba737c29e472cc42d530dbc"
+> -LINUX_VERSION = "4.10"
+> -# Override local version in order to use the one generated by linux build system
+> -# And not "yocto-standard"
+> -LINUX_VERSION_EXTENSION = ""
+> -PR = "r1"
+> -PV = "${LINUX_VERSION}-rc8"
+> -
+> -# Include only supported boards for now
+> -COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square)"
+> -deltask kernel_configme
+> diff --git a/recipes-kernel/linux/linux_4.11.bb b/recipes-kernel/linux/linux_4.11.bb
+> new file mode 100644
+> index 0000000..6058661
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux_4.11.bb
+> @@ -0,0 +1,20 @@
+> +# Copyright (C) 2017 Romain Perier
+> +# Copyright (C) 2017 Eddie Cai
+> +# Released under the MIT license (see COPYING.MIT for the terms)
+> +
+> +require recipes-kernel/linux/linux-yocto.inc
+> +
+> +SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+> +
+> +SRCREV = "5a7ad1146caa895ad718a534399e38bd2ba721b7"
+> +LINUX_VERSION = "4.11"
+> +# Override local version in order to use the one generated by linux build system
+> +# And not "yocto-standard"
+> +LINUX_VERSION_EXTENSION = ""
+> +PR = "r1"
+> +PV = "${LINUX_VERSION}-rc8"
+> +
+> +# Include only supported boards for now
+> +COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square)"
+> +deltask kernel_configme
+> +
+> -- 
+> 1.8.3.1
+> 
+
 
 
