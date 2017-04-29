@@ -1,6 +1,6 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D60DE00A48; Fri, 28 Apr 2017 23:11:06 -0700 (PDT)
+	id 73788E00A48; Fri, 28 Apr 2017 23:30:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,53 +17,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.68 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f68.google.com (mail-it0-f68.google.com
-	[209.85.214.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1E52E009AA
-	for <yocto@yoctoproject.org>; Fri, 28 Apr 2017 23:11:03 -0700 (PDT)
-Received: by mail-it0-f68.google.com with SMTP id z67so7919107itb.0
-	for <yocto@yoctoproject.org>; Fri, 28 Apr 2017 23:11:03 -0700 (PDT)
+	*      [209.85.223.194 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.194 listed in list.dnswl.org]
+Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
+	[209.85.223.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 408CAE009AA
+	for <yocto@yoctoproject.org>; Fri, 28 Apr 2017 23:29:58 -0700 (PDT)
+Received: by mail-io0-f194.google.com with SMTP id x86so14927071ioe.3
+	for <yocto@yoctoproject.org>; Fri, 28 Apr 2017 23:29:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=Izb8Zu8fzj9MV5WI3z7KJogcCDYzO6eipEsyeChKmdw=;
-	b=As1QlmuUxHu/RR/yLbfDVgdXJicphtEUo5Sz2Qg1HX4+k/91RlQJDAcTyi6vG43/tZ
-	jxaQUNrGz5KLQwZppG4o7J5fDh6euKj7k3IX8cthBtGOrdpuOSj0/x/FnMxGaT2UvGGo
-	NB+W3j9cpgq+9oicsFiRIWkSoJVk6hjIKnrM04H59btUoRJat+YEpZWiMJSAjFHbDOkB
-	CoWwgUv3i0XiDNeDj0MEddVICP7PiCq9W1Wx0AdXLQjVOZkx1soNg21BIPtaEp5T/7t0
-	YFTOdLW8J/nynAgyhzKnt6FFzgmf7JZfGyAXRel8KX+dhAawIefiMs+lMx5nG6ut4/fQ
-	aGZQ==
+	bh=/8T1WAgIAIm3RI/sujbWU+8/U3pn2SY2X1FAsOzav+g=;
+	b=RkjlPX2ALfeJox6ufyAM82DUtKSXenwdKkYyyK/jr1GO1x2TY82wDvJ+Q3aFFD+jFC
+	Y3GLCj1Ms1sMeMpa4knediNqQv8h9EKQSzMCHYRC6ZENVoqau8JFSBLu6qNxLRZ/DfyI
+	9OYhgM/uWG2NTlSlYI8e7uSTVENNCtbVD9zTq5EZChIjB6HJevHuEgh8F8fU9VHMQaKJ
+	gU2jZBiQKKuuN81NlgBAhCVBZJw0bpEc6KYHKmIlzNR0OfjJzAdehvQlKydgIcMWhjY6
+	Z5ydfxPr9Nc9vd/dwaLyZQvXC95TkVTEZnAt7LoKbPm9j3zcqhCYF7oqwXXn0Xa58rpZ
+	EYsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=Izb8Zu8fzj9MV5WI3z7KJogcCDYzO6eipEsyeChKmdw=;
-	b=KYsZjsFDnjTvlLYXB5rSyPnVGgPIeYEaYJtBt+82DBYN6n3lYmwINNw86MKx0Qfdpj
-	c9gyumAcTWwUwJsQLHIfkXal/LDp3Zd8rycrvvbtwI9N2I3tuB5uerMWpvvlt8/q+uZZ
-	6tITUsESbLC20tB6YMz3p0Fvr6ZCKUZ1I+D//7p1iA4HaxfnLUMDEn+J/zILp8ehzlvz
-	RHxY34SX8O0UuGrKNJUXVH39TqEOjMbM2fjxdLvkVDg9SoIMk4yZu0DaMzcl0TgAGlZ6
-	vsQpiFW9wEosjJuMmtqFGMEIFUW88QML77Nsli70tDl9+sYI45F2xqQUaRmlfw0EisLU
-	7rBQ==
-X-Gm-Message-State: AN3rC/7U3zXeriOzCByhgx1+vL+qAxmAHmWpbrceIx6K1HO+W6Lv2c9Q
-	yQxkfcbpAVPxzfZrsns=
-X-Received: by 10.36.110.132 with SMTP id w126mr15076itc.52.1493446263350;
-	Fri, 28 Apr 2017 23:11:03 -0700 (PDT)
-Received: from linux-uys3 ([206.248.190.95]) by smtp.gmail.com with ESMTPSA id
-	t69sm3466489ioi.54.2017.04.28.23.11.02
+	bh=/8T1WAgIAIm3RI/sujbWU+8/U3pn2SY2X1FAsOzav+g=;
+	b=TvrTf7f+UdZvx0B+qTStSwoEvKU+dteQAJ0pztwZalQcPxAo00pBXUdp8Myu3Mtq/b
+	3Rw9h7b1EKC4TjHBsysU0npLIziZzY8SMixjWBJPW4F4z5RJYzPIkXGTw6D03p1NRBWZ
+	QSjb28R+kZxaRIqdmrY3vhfinwP2VU/Z16Haa5lWJf5CxbYG4u/IJ5Tcov6R8DYAyfI5
+	l5D/ELZCd00qvYt3thWsL2eMSWhVd6Pf2wCFGvppVhS1LT3vpgGi8Y0/D1IdTrOogQs9
+	7X5SiNdq9HYJlG3SEoX2wZcZcAwRwieYe+btQ1Gk6HEXzRuwfkb0gIBqcdTvWThMToeg
+	fOCg==
+X-Gm-Message-State: AN3rC/6YtlX8berNqTdhac0MKraJf7MrCWLFDHXAB86lSB5G18qeZpCx
+	vF8aUBz4RArJvQ==
+X-Received: by 10.107.170.80 with SMTP id t77mr14218199ioe.113.1493447398352; 
+	Fri, 28 Apr 2017 23:29:58 -0700 (PDT)
+Received: from linux-uys3 ([206.248.190.95])
+	by smtp.gmail.com with ESMTPSA id m124sm885495itd.3.2017.04.28.23.29.57
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 28 Apr 2017 23:11:02 -0700 (PDT)
-Date: Sat, 29 Apr 2017 02:11:00 -0400
+	Fri, 28 Apr 2017 23:29:57 -0700 (PDT)
+Date: Sat, 29 Apr 2017 02:29:55 -0400
 From: Trevor Woerner <twoerner@gmail.com>
 To: Romain Perier <romain.perier@collabora.com>
-Message-ID: <20170429061100.GA7543@linux-uys3>
-References: <20170428140126.27654-1-romain.perier@collabora.com>
-	<20170428140126.27654-5-romain.perier@collabora.com>
+Message-ID: <20170429062955.GA14491@linux-uys3>
+References: <20170428135857.27341-1-romain.perier@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <20170428140126.27654-5-romain.perier@collabora.com>
+In-Reply-To: <20170428135857.27341-1-romain.perier@collabora.com>
 User-Agent: Mutt/1.6.0 (2016-04-01)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-rockchip][PATCH 4/5] u-boot-rockchip: remove duplicated variables
+Subject: Re: [meta-rockchip][PATCH] linux: version bump to 4.11-rc8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,47 +77,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Apr 2017 06:11:06 -0000
+X-List-Received-Date: Sat, 29 Apr 2017 06:30:03 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
-This doesn't succeed for me:
+Applied, thanks!
 
-	ERROR: /opt/oe/configs/z/build-master/firefly-rk3288/layers/meta-rockchip/recipes-bsp/u-boot/u-boot-rockchip_git.bb: This recipe does not have the LICENSE field set (u-boot-rockchip)
-	ERROR: Failed to parse recipe: /opt/oe/configs/z/build-master/firefly-rk3288/layers/meta-rockchip/recipes-bsp/u-boot/u-boot-rockchip_git.bb
+It's nice to finally see those "mmc_host mmc2: Bus speed (slot 0) = 50000000Hz
+(slot req 52000000Hz, actual 50000000HZ div = 0)" messages gone :-)
 
-But it does work if I add...
-
-On Fri 2017-04-28 @ 04:01:25 PM, Romain Perier wrote:
->  # Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
->  # Copyright (C) 2017 Trevor Woerner <twoerner@gmail.com>
-> +# Copyright (C) 2017 Romain Perier <romain.perier@collabora.com>
->  # Released under the MIT license (see COPYING.MIT for the terms)
->  
->  require recipes-bsp/u-boot/u-boot.inc
-require recipes-bsp/u-boot/u-boot-common_2017.01.inc
->  
->  DESCRIPTION = "Rockchip next-dev U-Boot"
-> -LICENSE = "GPLv2+"
-> -LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
->  COMPATIBLE_MACHINE = "(firefly-rk3288)"
-...
-
-Does this make sense?
-
-I'm building against openembedded-core
-e584be78f92ee6f08f570c239698d56ac78d05f9
-
-	Build Configuration:
-	BB_VERSION        = "1.34.0"
-	BUILD_SYS         = "x86_64-linux"
-	NATIVELSBSTRING   = "opensuse-42.2"
-	TARGET_SYS        = "arm-oe-linux-gnueabi"
-	MACHINE           = "firefly-rk3288"
-	DISTRO            = "nodistro"
-	DISTRO_VERSION    = "nodistro.0"
-	TUNE_FEATURES     = "arm armv7ve vfp thumb neon callconvention-hard"
-	TARGET_FPU        = "hard"
-	meta-rockchip     = "devs/rperier/20170429:0d89dcc4a5a2827b68d920bbd32e4aece774b5eb"
-	meta              = "master:e584be78f92ee6f08f570c239698d56ac78d05f9"
+On Fri 2017-04-28 @ 03:58:57 PM, Romain Perier wrote:
+> Linux kernel 4.11 being released soon, bump recipe to 4.11-rc8.
+> 
+> Signed-off-by: Romain Perier <romain.perier@collabora.com>
+> ---
+>  recipes-kernel/linux/linux_4.10.bb | 19 -------------------
+>  recipes-kernel/linux/linux_4.11.bb | 20 ++++++++++++++++++++
+>  2 files changed, 20 insertions(+), 19 deletions(-)
+>  delete mode 100644 recipes-kernel/linux/linux_4.10.bb
+>  create mode 100644 recipes-kernel/linux/linux_4.11.bb
+> 
+> diff --git a/recipes-kernel/linux/linux_4.10.bb b/recipes-kernel/linux/linux_4.10.bb
+> deleted file mode 100644
+> index e1d0aa4..0000000
+> --- a/recipes-kernel/linux/linux_4.10.bb
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -# Copyright (C) 2017 Romain Perier
+> -# Copyright (C) 2017 Eddie Cai
+> -# Released under the MIT license (see COPYING.MIT for the terms)
+> -
+> -require recipes-kernel/linux/linux-yocto.inc
+> -
+> -SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+> -
+> -SRCREV = "7089db84e356562f8ba737c29e472cc42d530dbc"
+> -LINUX_VERSION = "4.10"
+> -# Override local version in order to use the one generated by linux build system
+> -# And not "yocto-standard"
+> -LINUX_VERSION_EXTENSION = ""
+> -PR = "r1"
+> -PV = "${LINUX_VERSION}-rc8"
+> -
+> -# Include only supported boards for now
+> -COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square)"
+> -deltask kernel_configme
+> diff --git a/recipes-kernel/linux/linux_4.11.bb b/recipes-kernel/linux/linux_4.11.bb
+> new file mode 100644
+> index 0000000..6058661
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux_4.11.bb
+> @@ -0,0 +1,20 @@
+> +# Copyright (C) 2017 Romain Perier
+> +# Copyright (C) 2017 Eddie Cai
+> +# Released under the MIT license (see COPYING.MIT for the terms)
+> +
+> +require recipes-kernel/linux/linux-yocto.inc
+> +
+> +SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+> +
+> +SRCREV = "5a7ad1146caa895ad718a534399e38bd2ba721b7"
+> +LINUX_VERSION = "4.11"
+> +# Override local version in order to use the one generated by linux build system
+> +# And not "yocto-standard"
+> +LINUX_VERSION_EXTENSION = ""
+> +PR = "r1"
+> +PV = "${LINUX_VERSION}-rc8"
+> +
+> +# Include only supported boards for now
+> +COMPATIBLE_MACHINE = "(radxarock|marsboard-rk3066|firefly-rk3288|rock2-square)"
+> +deltask kernel_configme
+> +
+> -- 
+> 1.8.3.1
+> 
 
