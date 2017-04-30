@@ -1,26 +1,91 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <arunkr24@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1D4BE008C6; Sun, 30 Apr 2017 21:00:31 -0700 (PDT)
+	id 6D9ADE008C6; Sun, 30 Apr 2017 21:27:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FORGED_HOTMAIL_RCVD2,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (arunkr24[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust *      [40.92.5.69 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DEA9E007BA
-	for <yocto@yoctoproject.org>; Sun, 30 Apr 2017 21:00:29 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 0501D87152AA
-	for <yocto@yoctoproject.org>; Mon,  1 May 2017 00:00:29 -0400 (EDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 3660 seconds by postgrey-1.32 at yocto-www;
+	Sun, 30 Apr 2017 21:27:03 PDT
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+	(mail-oln040092005069.outbound.protection.outlook.com [40.92.5.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A000E007BA
+	for <yocto@yoctoproject.org>; Sun, 30 Apr 2017 21:27:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=1ENuI2qambxzVo4q93IpnSi2OzZ2hYuZMyNsXz7xBlc=;
+	b=HYIQAmElX6nfdVeAQ1/8MNPFbgCSfaDtc0rO4AS1fH0lk20Z8mVI0KG9VTCdbYCb6ToB6J75DSvRbCdZwU9snNzmrW2YGuEC3xgmemzVpZ/zWbU7QkO4oH4ILIs//WDvxDLFCqmZSSHqAo2syWlA3plNf9G0zreEnESDkBcTziunjN2mlnekY921Q9+hFSyH73/aI8X0OPqVMM7FPTJQGWMf1pUy3nr5jeWWM146ohP70sPEFznY05q0jMGhZ7BEe6lXkZlZMT+I3P+23YzY4p5lTdALD5iSo3Q4xSuDlF56j2STRgbDzZi03rz3lt5D0vnQjo7+/ujnXQzMvzricA==
+Received: from BL2NAM02FT041.eop-nam02.prod.protection.outlook.com
+	(10.152.76.55) by BL2NAM02HT129.eop-nam02.prod.protection.outlook.com
+	(10.152.76.100) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.1019.14;
+	Sun, 30 Apr 2017 20:52:54 +0000
+Received: from YQXPR01MB0374.CANPRD01.PROD.OUTLOOK.COM (10.152.76.60) by
+	BL2NAM02FT041.mail.protection.outlook.com (10.152.77.122) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.1.1019.14 via Frontend Transport; Sun, 30 Apr 2017 20:52:54 +0000
+Received: from YQXPR01MB0374.CANPRD01.PROD.OUTLOOK.COM ([10.165.138.12]) by
+	YQXPR01MB0374.CANPRD01.PROD.OUTLOOK.COM ([10.165.138.12]) with mapi id
+	15.01.1061.021; Sun, 30 Apr 2017 20:52:54 +0000
+From: Arun Kumar <arunkr24@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: hello world recipe failing at do_patch.
+Thread-Index: AQHSwfO9NnBBUrsKvkmL7FiE+KEAiQ==
+Date: Sun, 30 Apr 2017 20:52:54 +0000
+Message-ID: <YQXPR01MB0374DDC32B81E75C018C9E39D8150@YQXPR01MB0374.CANPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:524F9F9444CD02F21C147805FE9CC42566D89D4926CC32DE29F17541C6A60BA3;
+	UpperCasedChecksum:D7C0D8B1BCDC829C6A76561066DD8464D9F27633DCC2AE75D198A62348068F06;
+	SizeAsReceived:7716; Count:37
+x-ms-exchange-messagesentrepresentingtype: 1
+x-microsoft-exchange-diagnostics: 1; BL2NAM02HT129;
+	5:upUR4Eh6togutHvtUn73iixaF0SoBcfd548dA+kdth8c7+T7M1XU2AHEADGbw6hVx4FYVzby85phT/HbP1DP9t/yN2Z6k2J008wCUiLc5p5z2fC7d6g+/AGKWkVmChC95FglMHCoKdYsaCD4lkr58g==;
+	24:gMJySiQPCxjNHAuMz23qMgiM4IZVrI9JROAIGq0NTyRXLwRHBb5nMDGjqtSPGCVxB8BY2kLGfIJqic2tPefKUU+toeRbjuvSwL6XUKTyK4Q=;
+	7:KpNNmwuXG+Hy0fU5LUzkVt6f7lzmgZa29Y7wN4843l9gLqtBABRTgMCofDxjE3TXJ5MIu3U+q5rPc3xtOLLdgyK2abf8ZYyuNq9cfYVrgpF/vIcdTs+yjihJdXJpYQVsuVilGfSJ+G5g/puTVhVWczOt1wHU1hZPGG5ehDy+WxyqWmDjwFjJleD0d+1rBgXrOsEPxpnsYKH4nYh2A+TQBDiQNL0IuIjRFpDw5tiqGr0x2oxFq581wRKMXmcTYEhOdrlnbCacM2Mzpx0UI0dxRNtht4+bmNHsiZpfkRlwMTXQA/y++n5mIjeGwwM9rw9G
+x-incomingheadercount: 37
+x-eopattributedmessage: 0
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(7070007)(98901004);
+	DIR:OUT; SFP:1901; SCL:1; SRVR:BL2NAM02HT129;
+	H:YQXPR01MB0374.CANPRD01.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: e84768bd-5f72-4c67-e801-08d4900adecf
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322274)(1603101448)(1601125374)(1701031045);
+	SRVR:BL2NAM02HT129; 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:BL2NAM02HT129; BCL:0; PCL:0; RULEID:; SRVR:BL2NAM02HT129; 
+x-forefront-prvs: 0293D40691
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 01 May 2017 04:00:29 -0000
-Message-ID: <20170501040029.24105.1231@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2017 20:52:54.4416 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2NAM02HT129
+Subject: hello world recipe failing at do_patch.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,153 +97,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 May 2017 04:00:32 -0000
+X-List-Received-Date: Mon, 01 May 2017 04:27:07 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-ID: <C31532099E24D1489E3C6DA9D64C5363@CANPRD01.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 
-This mail was sent out by Recipe reporting system.
-
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
-
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
-
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-python3               3.5.2        3.6.1                 Alejandro Hernandez
-python3-native        3.5.2        3.6.1                 Alejandro Hernandez
-gobject-introspec...  1.50.0       1.52.0                Alexander Kanavin
-mobile-broadband-...  20151214     20170310              Alexander Kanavin
-webkitgtk             2.14.5       2.16.0                Alexander Kanavin
-openssl               1.0.2k       1.1.0e                Alexander Kanavin
-gdbm                  1.12         1.13                  Alexander Kanavin
-libpthread-stubs      0.3          0.4                   Alexander Kanavin
-vala                  0.34.4       0.36.1                Alexander Kanavin
-libiconv              1.14         1.15                  Alexander Kanavin
-gnome-desktop3        3.22.2       3.24.0                Alexander Kanavin
-ed                    1.14.1       1.14.2                Alexander Kanavin
-gperf                 3.0.4        3.1                   Alexander Kanavin
-dtc                   1.4.2        1.4.4                 Alexander Kanavin
-btrfs-tools           4.9.1        4.10.2                Alexander Kanavin
-mkelfimage            4.0+gitX     4.5+gitAUTOINC+0b...  Alexander Kanavin    mkelfimage has been removed...
-sysprof               3.22.3       3.24.0                Alexander Kanavin
-mpg123                1.23.8       1.24.0                Alexander Kanavin
-kconfig-frontends     3.12.0.0     4.7.0.0               Alexander Kanavin
-epiphany              3.22.6       3.24.0                Alexander Kanavin
-qemu                  2.8.0        2.8.1                 Aníbal Limón
-apt                   1.2.12       1.4                   Aníbal Limón
-libxml-namespaces...  1.11         1.12                  Aníbal Limón
-libxml-sax-base-perl  1.08         1.09                  Aníbal Limón
-apt-native            1.2.12       1.4                   Aníbal Limón
-dpkg                  1.18.10      1.18.23               Aníbal Limón
-openssh               7.4p1        7.5p1                 Armin Kuster
-busybox               1.25.0+gitX  1.26.2+gitAUTOINC...  Armin Kuster
-lzo                   2.09         2.10                  Armin Kuster
-nspr                  4.13.1       4.14                  Armin Kuster
-libpcre2              10.22        10.23                 Armin Kuster
-gnutls                3.5.9        3.5.10                Armin Kuster
-pinentry              0.9.2        1.0.0                 Armin Kuster
-linux-libc-headers    4.10         4.10.8                Bruce Ashfield
-libunwind             1.1+gitX     1.2+gitAUTOINC+cc...  Bruce Ashfield
-pciutils              3.5.2        3.5.4                 Chen Qi
-kmod-native           23+gitX      24+gitAUTOINC+ef4...  Chen Qi
-dbus                  1.10.14      1.10.16               Chen Qi
-byacc                 20161202     20170201              Chen Qi
-cups                  2.2.2        2.2.3                 Chen Qi
-systemd               232          233                   Chen Qi
-util-linux            2.29.1       2.29.2                Chen Qi
-kmod                  23+gitX      24+gitAUTOINC+ef4...  Chen Qi
-dbus-test             1.10.14      1.10.16               Chen Qi
-sed                   4.2.2        4.4                   Chen Qi
-sysstat               11.5.4       11.5.5                Chen Qi
-systemd-boot          232          233                   Chen Qi
-flex                  2.6.0        2.6.3                 Chen Qi
-coreutils             8.26         8.27                  Chen Qi
-build-appliance-i...  15.0.0       16.0.1                Cristian Iorga
-json-glib             1.2.2        1.2.8                 Dengke Du
-python3-pygobject     3.22.0       3.24.0                Edwin Plauchu
-python3-setuptools    32.1.1       34.3.3                Edwin Plauchu
-python-setuptools     32.1.1       34.3.3                Edwin Plauchu
-gpgme                 1.8.0        1.9.0                 Hongxu Jia
-bash                  4.3.30       4.4                   Hongxu Jia
-ghostscript           9.20         9.21                  Hongxu Jia
-libnewt-python        0.52.19      0.52.20               Hongxu Jia
-man-pages             4.09         4.10                  Hongxu Jia
-libnewt               0.52.19      0.52.20               Hongxu Jia
-libgpg-error          1.26         1.27                  Hongxu Jia
-gnupg                 2.1.18       2.1.20                Hongxu Jia
-python-git            2.1.1        2.1.3                 Jose Lamego
-python3-git           2.1.1        2.1.3                 Jose Lamego
-bc                    1.06         1.07                  Jose Lamego
-pango                 1.40.3       1.40.4                Jussi Kukkonen
-libinput              1.6.1        1.7.0                 Jussi Kukkonen
-gtk-icon-utils-na...  3.22.8       3.90.0                Jussi Kukkonen
-at-spi2-core          2.22.0       2.24.0                Jussi Kukkonen
-atk                   2.22.0       2.24.0                Jussi Kukkonen
-libx11-diet           1.6.4        1.6.5                 Jussi Kukkonen
-libx11                1.6.4        1.6.5                 Jussi Kukkonen
-glib-2.0              2.50.3       2.52.0                Jussi Kukkonen
-xf86-input-libinput   0.24.0       0.25.0                Jussi Kukkonen
-gsettings-desktop...  3.22.0       3.24.0                Jussi Kukkonen
-gnome-themes-stan...  3.22.2       3.22.3                Jussi Kukkonen
-vte                   0.46.1       0.48.1                Jussi Kukkonen
-vulkan                1.0.39.1     20141209              Jussi Kukkonen
-libepoxy              1.4.0        1.4.1                 Jussi Kukkonen
-xserver-xorg          1.19.1       1.19.3                Jussi Kukkonen
-clutter-gst-3.0       3.0.22       3.0.24                Jussi Kukkonen
-gdk-pixbuf            2.36.5       2.36.6                Jussi Kukkonen
-gtk+3                 3.22.8       3.90.0                Jussi Kukkonen
-adwaita-icon-theme    3.22.0       3.24.0                Jussi Kukkonen
-libevent              2.0.22       2.1.8                 Jussi Kukkonen
-at-spi2-atk           2.22.0       2.24.0                Jussi Kukkonen
-ruby                  2.4.0        2.4.1                 Leonardo Sandoval
-nfs-utils             1.3.4        2.1.1                 Leonardo Sandoval
-u-boot-fw-utils       2017.01      2017.03               Marek Vasut
-u-boot-mkimage        2017.01      2017.03               Marek Vasut
-u-boot                2017.01      2017.03               Marek Vasut
-prelink               1.0+gitX     20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0        4.8.0                 Matthew McClintock
-ifupdown              0.8.16       0.8.19                Maxin B. John
-ethtool               4.8          4.10                  Maxin B. John
-sqlite3               3.17.0       3.18.0                Maxin B. John
-mc                    4.8.18       4.8.19                Maxin B. John
-libpng                1.6.28       1.6.29                Maxin B. John
-harfbuzz              1.4.1        1.4.5                 Maxin B. John
-pkgconfig             0.29.1+gitX  0.29.2+gitAUTOINC...  Maxin B. John
-dnf                   2.0.0+gitX   7+gitAUTOINC+f9ec...  No maintainer
-go-bootstrap-native   1.4.3        1.8                   No maintainer
-libdnf                0.2.3+gitX   0.8.1+gitAUTOINC+...  No maintainer
-mesa                  17.0.2       17.0.3                Otavio Salvador
-libarchive            3.2.2        3.3.1                 Otavio Salvador
-libdrm                2.4.75       2.4.76                Otavio Salvador
-mesa-gl               17.0.2       17.0.3                Otavio Salvador
-debianutils           4.8.1        4.8.1.1               Robert Yang
-git                   2.11.1       2.12.2                Robert Yang
-guile                 2.0.14       2.2.0                 Robert Yang
-base-passwd           3.5.29       3.5.43                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.68         9.70                  Ross Burton
-libsndfile1           1.0.27       1.0.28                Tanu Kaskinen
-
-Upgradable count: 111
-Upgradable total count: 113
-
-The based commit is:
-
-commit 4fe59183dae7c556363bc885cfda11a38c0d2d47
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Sat Apr 29 11:17:55 2017 +0100
-
-    build-appliance-image: Update to master head revision
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+SGksDQoNCiAgICAgSSBhbSBzdGFydGluZyBvdXQgd2l0aCB0aGUgeW9jdG8gcHJvamVjdC4gQ3Jl
+YXRlZCBhIG5ldyByZWNpcGUgDQp1c2luZyB0aGUgY29tbWFuZA0KDQogICAgICQgeW9jdG8tbGF5
+ZXIgY3JlYXRlIGhlbGxvd29ybGQNCg0KSSBhZGRlZCB0aGUgZGlyZWN0b3J5IHRvIHRoZSBiYmxh
+eWVycy5jb25mIGZpbGUgaW4gbXkgPGJ1aXVsZF9kaXI+L2NvbmYgDQpkaXJlY3RvcnkuIEFzIHBl
+ciBteSBrbm93bGVkZ2UgYW5kIGFydGljbGUgb24gaW50ZXJuZXQgdGhpcyBzaG91bGQgYmUgYW4g
+DQplYXN5IGJ1aWxkLg0KDQokIGJpdGJha2UgaGVsbG93b3JsZA0KDQpmYWlscyB3aXRoIHRoZSBm
+b2xsb3dpbmcgc2lnbmF0dXJlLg0KDQovLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tDQoNClN1bW1hcnk6IDIgdGFza3MgZmFpbGVkOg0KL2hvbWUvYmVh
+Z2xlL3lvY3RvL3Bva3kvbWV0YS9yZWNpcGVzLWV4dGVuZGVkL3RleGluZm8tZHVtbXktbmF0aXZl
+L3RleGluZm8tZHVtbXktbmF0aXZlLmJiOmRvX3BhdGNoDQp2aXJ0dWFsOm5hdGl2ZTovaG9tZS9i
+ZWFnbGUveW9jdG8vcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvZ251LWNvbmZpZy9nbnUtY29u
+ZmlnX2dpdC5iYjpkb19wYXRjaA0KLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0NCg0KDQpSZWdhcmRzLA0KDQpBcnVuIE0gS3VtYXINCg0KDQo=
 
