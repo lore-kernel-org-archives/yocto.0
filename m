@@ -1,41 +1,45 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98D96E00AE0; Tue,  2 May 2017 06:13:49 -0700 (PDT)
+	id A32C9E00985; Tue,  2 May 2017 08:27:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3276FE00985
-	for <yocto@yoctoproject.org>; Tue,  2 May 2017 06:13:46 -0700 (PDT)
-Received: from svr-orw-fem-03.mgc.mentorg.com ([147.34.97.39])
-	by relay1.mentorg.com with esmtp 
-	id 1d5Xcf-0000W5-Gq from Joe_MacDonald@mentor.com ;
-	Tue, 02 May 2017 06:13:45 -0700
-Received: from burninator (147.34.91.1) by svr-orw-fem-03.mgc.mentorg.com
-	(147.34.97.39) with Microsoft SMTP Server id 14.3.224.2; Tue, 2 May 2017
-	06:13:44 -0700
-Received: by burninator (Postfix, from userid 1000)	id 855DF5800D9; Tue,  2
-	May 2017 09:13:44 -0400 (EDT)
-Date: Tue, 2 May 2017 09:13:44 -0400
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: <jackie.huang@windriver.com>
-Message-ID: <20170502131344.GD10652@mentor.com>
-References: <20170222064446.13162-1-jackie.huang@windriver.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DF7DE00852
+	for <yocto@yoctoproject.org>; Tue,  2 May 2017 08:27:23 -0700 (PDT)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	02 May 2017 08:27:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,405,1491289200"; d="scan'208,217";a="82885155"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by orsmga004.jf.intel.com with ESMTP; 02 May 2017 08:27:22 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.19]) by
+	FMSMSX103.amr.corp.intel.com ([169.254.2.246]) with mapi id
+	14.03.0319.002; Tue, 2 May 2017 08:27:22 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting
+Thread-Index: AdKtWbwMokvHRUUrQnmf8qT10kd6zw==
+Date: Tue, 2 May 2017 15:27:21 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E8EDD5A67@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmRjYjc3YWYtODRjYS00ZTkxLWFhYjAtMGFiZTQ4Mzc5NTIzIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IjI0eVdhZUlKZm5kSXlKRERVM0lCNDZ5bDJLMjVIVFNcLzBqVHFsK2V2MEJzPSJ9
 MIME-Version: 1.0
-In-Reply-To: <20170222064446.13162-1-jackie.huang@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-704 http://www.vim.org
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] systemd: no need to inherit enable-selinux
+Subject: Minutes: Yocto Project Technical Team Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,69 +51,191 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 May 2017 13:13:49 -0000
-X-Groupsio-MsgNum: 35847
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="q9KOos5vDmpwPx9o"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 02 May 2017 15:27:25 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDD5A67fmsmsx111amrcor_"
 
---q9KOos5vDmpwPx9o
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDD5A67fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-[[yocto] [meta-selinux][PATCH] systemd: no need to inherit enable-selinux] =
-On 17.02.22 (Wed 14:44) jackie.huang@windriver.com wrote:
+Attendees: Joshua Watt, David, Stephen, Patrick, Ross, Michael, Bill, Richa=
+rd, Jefro, Brian, Randy, Juan, Joshua Lock, Stephano, Pascal, Jair, Zach, L=
+eo,
 
-> From: Jackie Huang <jackie.huang@windriver.com>
->=20
-> The selinux PACKAGECONFIG is properly handled in
-> the recipe in oe-core, no need to inherit the
-> enable-selinux bbclass.
+Agenda:
 
-That might be true, but other than belt-and-suspenders, what's the
-harm in this being in the recipe?  I don't necessarily think it's an
-invalid change but my quick count shows ~44 instances of 'inherit
-enable-selinux' and 'inherit with-selinux' in meta-selinux, why's this
-one significant?
+* Opens collection - 5 min (Stephen)
+* Yocto Project status - 5 min (Stephen/team)
+YP 2.3 M4 rc4 is in QA - https://wiki.yoctoproject.org/wiki/2.3_QA_Status#S=
+ummary_Report.
 
--J.
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
 
->=20
-> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-> ---
->  recipes-core/systemd/systemd_%.bbappend | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/recipes-core/systemd/systemd_%.bbappend b/recipes-core/syste=
-md/systemd_%.bbappend
-> index 8d9029b..f1bdaf8 100644
-> --- a/recipes-core/systemd/systemd_%.bbappend
-> +++ b/recipes-core/systemd/systemd_%.bbappend
-> @@ -1,2 +1 @@
->  inherit enable-audit
-> -inherit enable-selinux
-> --=20
-> 2.8.3
->=20
---=20
--Joe MacDonald.
-:wq
+YP 2.4 Planning is underway.  Please enter you enhancement requests into Bu=
+gzilla.
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status (Not yet avail=
+able)
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule (Not yet available)
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features
 
---q9KOos5vDmpwPx9o
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+* Opens - 10 min
+Discussed Documentation status for YP 2.3.  It is still in process.
+Discussed YP 2.4 high level tasks.  Currently planning a complete document =
+review, new web site, and high level layer tool for bitbake support.  Theme=
+s might be project public presentation and improved usability of the projec=
+t. They are still under discussion.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
+* Team Sharing - 10 min
+We discussed that we are considering doing an YP 2.1.3 and 2.2.2 soon.   YP=
+ 2.1.3 would be the last release in the 2.1.x series.
+We discussed RSS (Recipe Specific Sysroots) and Gcc 7.x status. Gcc 7.x sho=
+uldn't be a major issue and early in 2.4.
 
-iQEcBAEBAgAGBQJZCIYIAAoJEEn8ffcsOfaWORUIAK4f1LzSTkGR9BEPhA/2RcDx
-OTRt4ppLvVdlXhKQaIA+o5LAd+gYBOIwh9HNHcxB/+LBKwMb2M4cIVfjG8LZELkh
-//lZBGmHDCo5vR2fXIm9cjPNRXuKbpmO4Cu88xSlOhQO5v8E64zKEucKdEUtj2ZI
-JVG8tTQI6xj/LR0jzbXUHTktuGRMGB5JE2dUSv9Tg+kytHQHfuJVvH5h9864otMA
-XRXzao3/V2l7Zpr2Ki42+lFhZnVLcC0AbBD1KcXvSAtYJkP84GYlBNCaHPiNo143
-XR9T2WB1N3vu8OU1zPSowzCH/n7jOiN5orW/P6IVty49mUCM0RvCPWRxb2LI/oE=
-=9/jj
------END PGP SIGNATURE-----
+Thanks,
 
---q9KOos5vDmpwPx9o--
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:     (503) 712-0534
+*    Cell:              (208) 244-4460
+* Email:                stephen.k.jolley@intel.comYP
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDD5A67fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12pt;"><=
+a name=3D"_MailEndCompose"></a>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Att=
+endees: Joshua Watt, David, Stephen, Patrick, Ross, Michael, Bill, Richard,=
+ Jefro, Brian, Randy, Juan, Joshua Lock, Stephano, Pascal, Jair, Zach, Leo,=
+ </span></font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Age=
+nda:</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">&nb=
+sp;</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* O=
+pens collection - 5 min (Stephen)</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* Y=
+octo Project status - 5 min (Stephen/team)</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
+2.3 M4 rc4 is in QA - <a href=3D"https://wiki.yoctoproject.org/wiki/2.3_QA_=
+Status#Summary_Report"><font color=3D"blue"><u>https://wiki.yoctoproject.or=
+g/wiki/2.3_QA_Status#Summary_Report</u></font></a><font color=3D"#1F497D">.
+</font> </span></font></div>
+<div>&nbsp;</div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Statu=
+s"><font face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-si=
+ze:11pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status</=
+u></span></font></a></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule"><fon=
+t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
+;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule</u></span></fon=
+t></a></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features"><fon=
+t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
+;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features</u></span></fon=
+t></a><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+</span></font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
+2.4 Planning is underway.&nbsp; Please enter you enhancement requests into =
+Bugzilla.</span></font></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Statu=
+s"><font face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-si=
+ze:11pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status</=
+u></span></font></a><font face=3D"Consolas" size=3D"2" color=3D"#1F497D"><s=
+pan style=3D"font-size:11pt;">
+(Not yet available)</span></font></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule"><fon=
+t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
+;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule</u></span></fon=
+t></a><font face=3D"Consolas" size=3D"2" color=3D"#1F497D"><span style=3D"f=
+ont-size:11pt;">
+(Not yet available)</span></font></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features"><fon=
+t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
+;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features</u></span></fon=
+t></a></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* O=
+pens - 10 min </span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Dis=
+cussed Documentation status for YP 2.3.&nbsp; It is still in process. </spa=
+n></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Dis=
+cussed YP 2.4 high level tasks.&nbsp; Currently planning a complete documen=
+t review, new web site, and high level layer tool for bitbake support.&nbsp=
+; Themes might be project public presentation and
+improved usability of the project. They are still under discussion.</span><=
+/font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* T=
+eam Sharing - 10 min</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">We =
+discussed that we are considering doing an YP 2.1.3 and 2.2.2 soon.&nbsp;&n=
+bsp; YP 2.1.3 would be the last release in the 2.1.x series. </span></font>=
+</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">We =
+discussed RSS (Recipe Specific Sysroots) and Gcc 7.x status. Gcc 7.x should=
+n&#8217;t be a major issue and early in 2.4.&nbsp;  </span></font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Tha=
+nks,</span></font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font size=3D"4" color=3D"purple"><span style=3D"font-size:16pt;"><b><=
+i>Stephen K. Jolley</i></b></span></font></div>
+<div><font face=3D"Courier New" size=3D"1" color=3D"blue"><span style=3D"fo=
+nt-size:8pt;"><b>Yocto Project Program Manager</b></span></font></div>
+<div><font face=3D"Courier New" size=3D"2" color=3D"fuchsia"><span style=3D=
+"font-size:10pt;"><b>INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, O=
+R 97124 </b></span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;"><font face=3D"Wingdin=
+gs">(</font><font face=3D"MS Sans Serif" color=3D"teal"> </font><font face=
+=3D"MS Sans Serif" size=3D"1" color=3D"teal"><span style=3D"font-size:8pt;"=
+>&nbsp; </span></font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal=
+"><span style=3D"font-size:8pt;"><b>Work
+Telephone</b></span></font><font face=3D"MS Sans Serif" color=3D"teal">:&nb=
+sp;&nbsp;&nbsp;&nbsp; </font><font face=3D"MS Sans Serif" size=3D"2" color=
+=3D"#1F497D"><span style=3D"font-size:9pt;">(503) 712-0534</span></font></s=
+pan></font></div>
+<div><font size=3D"2"><span style=3D"font-size:9pt;"><font face=3D"Wingding=
+s">(</font><font face=3D"MS Sans Serif" color=3D"teal">&nbsp;&nbsp;&nbsp; <=
+/font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal"><span style=3D=
+"font-size:8pt;"><b>Cell</b></span></font><font face=3D"MS Sans Serif" colo=
+r=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+</font><font face=3D"MS Sans Serif" color=3D"#1F497D">(208) 244-4460</font>=
+</span></font></div>
+<div><font size=3D"2" color=3D"#1F497D"><span style=3D"font-size:9pt;"><fon=
+t face=3D"Wingdings">* </font><font face=3D"Comic Sans MS" size=3D"1" color=
+=3D"teal"><span style=3D"font-size:8pt;"><b>Email</b></span></font><font fa=
+ce=3D"MS Sans Serif" color=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font face=3D"MS Sans Serif" color=3D"blue"><u>stephen.k.jolley@inte=
+l.com</u></font><font face=3D"Arial" size=3D"3"><span style=3D"font-size:12=
+pt;">YP</span></font></span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+</span></font>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDD5A67fmsmsx111amrcor_--
