@@ -1,59 +1,41 @@
-Return-Path: <pbarker@toganlabs.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9353EE00985; Tue,  2 May 2017 04:19:48 -0700 (PDT)
+	id 98D96E00AE0; Tue,  2 May 2017 06:13:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f180.google.com (mail-qt0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A52CE00546
-	for <yocto@yoctoproject.org>; Tue,  2 May 2017 04:19:43 -0700 (PDT)
-Received: by mail-qt0-f180.google.com with SMTP id c45so108626969qtb.1
-	for <yocto@yoctoproject.org>; Tue, 02 May 2017 04:19:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to:cc
-	:content-transfer-encoding;
-	bh=V/MLxqNe4BJT3KGWxVmOl2T8niVlIcbNSjosasiKGBU=;
-	b=2TowhwA+ZdgPHRoNedAnS611Xhvrgu92lT8FDrNCkI7Y2I6GUFwzmvbKfhgKWsw4U3
-	x/fI9Xw6ZDXGyhcPXjKXTUGlqoOB3tMh9lKaKAAgUkiCNMsW6wn77sRXL1UgVp4FzpUg
-	deKkVjtM2VW+rSC67g9wvu0OrC2yLHfX3ISOuxGOjjmH/o4b5aC8iZo6M2/z4lbvN7Fo
-	CdzTtA0j9kYDLvDwQjLGfGIcPwXnc9gnd/STyRBLfVYCZhXVbxJRdum7gfwpd9uuCpcw
-	2mOY9NBwU4tzc4RkrWv8N2RMAZxmNacy/wyNNjspWJ1D3Zao62gZsausFGbxHvETVZ1L
-	eHFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
-	:content-transfer-encoding;
-	bh=V/MLxqNe4BJT3KGWxVmOl2T8niVlIcbNSjosasiKGBU=;
-	b=S3a84xrn0ffcyToIhvKk1DcdU19mQ8QyN1bCtI5IO92fcilzKdcDRSQruSszU62NsF
-	QQOtuVM3fZ2Qt4A77lseXvfgsjlOypnK42XiHSybwqogTobUXI74mQhPGuPY5kXYlkN7
-	Vrat3iddY5F96iPg41Aa+rqIiciMiBaXdeBFwai4tAQ7RRV+3FRYqAuxb+Qs3d4y64WW
-	BfOzCAchvNOwdKQDazgf/fC+lAsqBa8Yb0H/MVyAuLTHgnHHGoXGOoLu5hpOt/EV0xdy
-	3VQep2lqNMT8nX1DtNrSDGdVrNFL+ub/Mq7Mvlpe66biZDkyyx0f30+TTlm6HHA+Kdjr
-	4jYA==
-X-Gm-Message-State: AN3rC/5x3IIupqY8bA/49rQZjBg+S84T/y6OYPbmnnryqLyEU6sIAa4p
-	PlpwZq3eLsLdRfioeIqhsSxFGwcC4oqw
-X-Received: by 10.237.44.102 with SMTP id f93mr24199236qtd.199.1493723983102; 
-	Tue, 02 May 2017 04:19:43 -0700 (PDT)
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3276FE00985
+	for <yocto@yoctoproject.org>; Tue,  2 May 2017 06:13:46 -0700 (PDT)
+Received: from svr-orw-fem-03.mgc.mentorg.com ([147.34.97.39])
+	by relay1.mentorg.com with esmtp 
+	id 1d5Xcf-0000W5-Gq from Joe_MacDonald@mentor.com ;
+	Tue, 02 May 2017 06:13:45 -0700
+Received: from burninator (147.34.91.1) by svr-orw-fem-03.mgc.mentorg.com
+	(147.34.97.39) with Microsoft SMTP Server id 14.3.224.2; Tue, 2 May 2017
+	06:13:44 -0700
+Received: by burninator (Postfix, from userid 1000)	id 855DF5800D9; Tue,  2
+	May 2017 09:13:44 -0400 (EDT)
+Date: Tue, 2 May 2017 09:13:44 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: <jackie.huang@windriver.com>
+Message-ID: <20170502131344.GD10652@mentor.com>
+References: <20170222064446.13162-1-jackie.huang@windriver.com>
 MIME-Version: 1.0
-Received: by 10.140.44.116 with HTTP; Tue, 2 May 2017 04:19:42 -0700 (PDT)
-X-Originating-IP: [82.34.23.153]
-From: Paul Barker <pbarker@toganlabs.com>
-Date: Tue, 2 May 2017 12:19:42 +0100
-Message-ID: <CAPyrkgzWJ0fQ_zTJwtKcjJLKmwkL4FfyFxSUGXnb6=_Jx8S_rQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: [meta-raspberrypi] Stable branch plans
+In-Reply-To: <20170222064446.13162-1-jackie.huang@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] systemd: no need to inherit enable-selinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,49 +47,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 May 2017 11:19:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 02 May 2017 13:13:49 -0000
+X-Groupsio-MsgNum: 35847
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="q9KOos5vDmpwPx9o"
+Content-Disposition: inline
+
+--q9KOos5vDmpwPx9o
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+[[yocto] [meta-selinux][PATCH] systemd: no need to inherit enable-selinux] =
+On 17.02.22 (Wed 14:44) jackie.huang@windriver.com wrote:
 
-I've now got a bit of a vested interest in the next meta-raspberrypi
-stable branch as I'm planning to use it as a demo platform for our new
-Oryx distro.
+> From: Jackie Huang <jackie.huang@windriver.com>
+>=20
+> The selinux PACKAGECONFIG is properly handled in
+> the recipe in oe-core, no need to inherit the
+> enable-selinux bbclass.
 
-In the past, the stable branch hasn't been created for a while after
-the corresponding oe-core release. The changes made to the stable
-branch after this haven't always been as conservative as I'd have
-liked as well but that's just one opinion.
+That might be true, but other than belt-and-suspenders, what's the
+harm in this being in the recipe?  I don't necessarily think it's an
+invalid change but my quick count shows ~44 instances of 'inherit
+enable-selinux' and 'inherit with-selinux' in meta-selinux, why's this
+one significant?
 
-I'd like to propose the following for the pyro branch:
+-J.
 
-* We should create the pyro branch within a week or two of the oe-core
-pyro release.
-
-* After the pyro branch is created, changes on the pyro branch should
-roughly follow the oe-core stable branch policy
-(https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance#Policies).
-I don't think we need to be incredibly strict but I do think we should
-avoid making changes which may affect the behaviour of existing
-recipes/bbappends. I would like us to keep doing stable-branch kernel
-updates and adding new MACHINE definitions where possible without
-affecting existing MACHINEs.
-
-This would make the pyro branch perfect for my use case. But obviously
-I'm not the meta-raspberrypi maintainer and I'm not the only person
-with a use case. So I'd like to know what others think of this, is
-this a good plan for meta-raspberrypi stable branches or should we be
-more relaxed?
-
-(I raised similar questions in response to another thread but I think
-that email may have been missed by a few people so I'm starting a new
-thread here in expectation that the oe-core pyro release is imminent)
-
-Thanks,
-
+>=20
+> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+> ---
+>  recipes-core/systemd/systemd_%.bbappend | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/recipes-core/systemd/systemd_%.bbappend b/recipes-core/syste=
+md/systemd_%.bbappend
+> index 8d9029b..f1bdaf8 100644
+> --- a/recipes-core/systemd/systemd_%.bbappend
+> +++ b/recipes-core/systemd/systemd_%.bbappend
+> @@ -1,2 +1 @@
+>  inherit enable-audit
+> -inherit enable-selinux
+> --=20
+> 2.8.3
+>=20
 --=20
-Paul Barker
-Co-Founder & Principal Engineer
-Tog=C3=A1n Labs Ltd
+-Joe MacDonald.
+:wq
 
+--q9KOos5vDmpwPx9o
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJZCIYIAAoJEEn8ffcsOfaWORUIAK4f1LzSTkGR9BEPhA/2RcDx
+OTRt4ppLvVdlXhKQaIA+o5LAd+gYBOIwh9HNHcxB/+LBKwMb2M4cIVfjG8LZELkh
+//lZBGmHDCo5vR2fXIm9cjPNRXuKbpmO4Cu88xSlOhQO5v8E64zKEucKdEUtj2ZI
+JVG8tTQI6xj/LR0jzbXUHTktuGRMGB5JE2dUSv9Tg+kytHQHfuJVvH5h9864otMA
+XRXzao3/V2l7Zpr2Ki42+lFhZnVLcC0AbBD1KcXvSAtYJkP84GYlBNCaHPiNo143
+XR9T2WB1N3vu8OU1zPSowzCH/n7jOiN5orW/P6IVty49mUCM0RvCPWRxb2LI/oE=
+=9/jj
+-----END PGP SIGNATURE-----
+
+--q9KOos5vDmpwPx9o--
