@@ -1,61 +1,45 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6510EE00992; Tue,  2 May 2017 12:17:27 -0700 (PDT)
+	id 5459DE009A0; Tue,  2 May 2017 12:41:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.180 listed in list.dnswl.org]
-Received: from mail-qt0-f180.google.com (mail-qt0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68399E0095F
-	for <yocto@yoctoproject.org>; Tue,  2 May 2017 12:17:24 -0700 (PDT)
-Received: by mail-qt0-f180.google.com with SMTP id m36so120601113qtb.0
-	for <yocto@yoctoproject.org>; Tue, 02 May 2017 12:17:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=bI+Dr6S66lAxEyb3zGd8wcLj5NcGfreHtNw2fdAU4mY=;
-	b=zGGZVPr+T0gypzzBolQBMuB4miRBnQV1P0pC0Z3Y3YNWQsDKFezDa4vVxDTtVOj5Hi
-	6mppmyjUKfTFkreHnlOoGWRHVmf4baWiQ3LuiHoP1foH1eKqcPoNE7BlsJhTAGgf52At
-	EMoVslO2d6nMf5yA20H3y5LFczEPiTJ8OyijBsckD36OxwHTEi8VXpVkXjfk+3+yIRY3
-	UlKv6NzDLCeuolXkr+vYw0N7FX/KxdQ/7MHf+MJpyjN1p4SQhIZ6n/Y0AonRc/F8+vTO
-	cRV/Hr+YhF7krPXgbXG9F7OKkZKOY5w2EcX0k06EDU2n2WPrx6cPNmwt3SozIOLQfEPl
-	aJXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=bI+Dr6S66lAxEyb3zGd8wcLj5NcGfreHtNw2fdAU4mY=;
-	b=lzh4NvxoO8X1fSAMX7oU3SZeRNx1Lpu6WOndVskPRLx+X7q6LLiibqnzksXsKWa6jN
-	tpLeFHrKaKBt+4laFlkNTwMjJss2wDXK1nKnCQaR5inFXkaj2H+36SXZ+xosH79NoZRK
-	63FX56/duaGvp+cgv4pk+zhWJpj9r9spjDFP2L2Mo8YUQButc2rPekAXXbPmeHsTuC/n
-	1ygbzwT0jeK6KqgHaNw/9E/etUugf/NcYZSAx49p09hP7kAu6s0P4Ncpx1gCED9w1TzZ
-	sOyEegMnObxgwp39ZUZ+MGVafSXReP0jseDda09jpR2gN/endUb7Xwqx69vaNWaYjHij
-	TbBg==
-X-Gm-Message-State: AN3rC/5Ki7q62la2Fhe8H8W06+tFAtoyj9AcL7FGNhpoYFzpEXLDwn2J
-	fW6+XqK5MoZNf1nU3f24FWYo5s5kCDBc
-X-Received: by 10.200.34.162 with SMTP id f31mr30023778qta.65.1493752644220;
-	Tue, 02 May 2017 12:17:24 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.34.136 with HTTP; Tue, 2 May 2017 12:17:03 -0700 (PDT)
-In-Reply-To: <854aeaee-8bc2-c329-9978-bb328fe8c254@pingnu.com>
-References: <854aeaee-8bc2-c329-9978-bb328fe8c254@pingnu.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 2 May 2017 20:17:03 +0100
-Message-ID: <CAJTo0Lb3fm9RfXsWhdPHgMuBkspaVwpMUWDvzRTZ--6NDo4crg@mail.gmail.com>
-To: carl.parsons@pingnu.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Project 1.2 - Denzil
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94C40E00972;
+	Tue,  2 May 2017 12:41:02 -0700 (PDT)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by fmsmga105.fm.intel.com with ESMTP; 02 May 2017 12:41:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,280,1491289200"; d="scan'208";a="96794096"
+Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.119])
+	by fmsmga006.fm.intel.com with ESMTP; 02 May 2017 12:41:00 -0700
+Message-ID: <1493754532.1761.5.camel@linux.intel.com>
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+To: Manjukumar Harthikote Matha <manjukumar.harthikote-matha@xilinx.com>
+Date: Tue, 02 May 2017 14:48:52 -0500
+In-Reply-To: <14EB1FFCA0C8D24A8B04EDEC1EA78C2458A8E08C@XSJ-PSEXMBX01.xlnx.xilinx.com>
+References: <CAFL6qn5czUYrKRLPxhZbj7EEAgMu_dFr89WNsDBaYxVWKppM_w@mail.gmail.com>
+	<b383700f-54c5-7ff1-92a7-89916c413f1a@gmail.com>
+	<14EB1FFCA0C8D24A8B04EDEC1EA78C2458A8CB02@XSJ-PSEXMBX01.xlnx.xilinx.com>
+	<CA+aJhH0VpaJsXyBMMN5XYVmOAu0BsUk87ep-WdC8bmiSBJ_A3g@mail.gmail.com>
+	<14EB1FFCA0C8D24A8B04EDEC1EA78C2458A8E08C@XSJ-PSEXMBX01.xlnx.xilinx.com>
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: "meta-virtualization@yoctoproject.org"
+	<meta-virtualization@yoctoproject.org>,
+	Pello Heriz <pello.heriz@alumni.mondragon.edu>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"meta-xilinx@yoctoproject.org" <meta-xilinx@yoctoproject.org>,
+	Jason Wu <jason.wu.misc@gmail.com>, "meta-xilinx-request@yoctoproject.org"
+	<meta-xilinx-request@yoctoproject.org>
+Subject: Re: [meta-xilinx] xen-image-minimal testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,44 +51,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 May 2017 19:17:27 -0000
-Content-Type: multipart/alternative; boundary=001a114027ecbdd034054e8f636d
+X-List-Received-Date: Tue, 02 May 2017 19:41:05 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a114027ecbdd034054e8f636d
-Content-Type: text/plain; charset=UTF-8
+On Tue, 2017-05-02 at 18:28 +0000, Manjukumar Harthikote Matha wrote:
+> 
+> > -----Original Message-----
+> > From: Nathan Rossi [mailto:nathan@nathanrossi.com]
+> > Sent: Tuesday, May 02, 2017 10:23 AM
+> > To: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>
+> > Cc: Jason Wu <jason.wu.misc@gmail.com>; Pello Heriz
+> > <pello.heriz@alumni.mondragon.edu>; meta-xilinx@yoctoproject.org; meta-xilinx-
+> > request@yoctoproject.org; meta-virtualization@yoctoproject.org;
+> > yocto@yoctoproject.org
+> > Subject: Re: [meta-xilinx] xen-image-minimal testing
+> >
+> > On 3 May 2017 at 02:47, Manjukumar Harthikote Matha <manjukumar.harthikote-
+> > matha@xilinx.com> wrote:
+> > >
+> > >
+> > >> -----Original Message-----
+> > >> From: meta-xilinx-bounces@yoctoproject.org [mailto:meta-xilinx-
+> > >> bounces@yoctoproject.org] On Behalf Of Jason Wu
+> > >> Sent: Tuesday, May 02, 2017 2:16 AM
+> > >> To: Pello Heriz <pello.heriz@alumni.mondragon.edu>; meta-
+> > >> xilinx@yoctoproject.org; meta-xilinx-request@yoctoproject.org; meta-
+> > >> virtualization@yoctoproject.org; yocto@yoctoproject.org
+> > >> Subject: Re: [meta-xilinx] xen-image-minimal testing
+> > >>
+> > >>
+> > >>
+> > >> On 2/05/2017 4:33 PM, Pello Heriz wrote:
+> > >> > Hi all,
+> > >> >
+> > >> > I have built an image using "xen-image-minimal" command with Yocto
+> > >> > and I would want to know how can I test if xen functionalities are
+> > >> > correct or not with Zynq MPSoC QEMU. How can I do this?
+> > >> http://www.wiki.xilinx.com/Building+the+Xen+Hypervisor+with+PetaLinux
+> > >> +2016.4+
+> > >> and+newer
+> > >>
+> > >> have look at the "TFTP Booting Xen and Dom0 2016.4" section and hope that
+> > helps.
+> > >>
+> > >> >
+> > >> > Anyway, I have seen that sometimes in the QEMU terminal appears the
+> > >> > next message when the mentioned image is launched by "runqemu zcu102".
+> > >> >
+> > >> > INIT: Id "X0" respawning too fast: disabled for 5 minutes
+> > >> >
+> > >> > What's the meaning of the message? Is it critical?
+> > >> It is not critical if you don't need it. The reason you are getting
+> > >> this error message is because the your inittab trying spawn a console
+> > >> when the device node (e.g. hvc0) for Id "X0" does not exists.
+> > >>
+> > >
+> > > Is there a way to stop inittab from doing this?
+> > > Tried few options for initiab, for ex: using "once" instead of "spawn"
+> > >
+> > > Any other good ideas on how we can disable it? Or what is a better
+> > > approach to resolve this issue during runtime
+> >
+> > Change the sysvinit-inittab bbappend in meta-virtualization use start_getty instead
+> > of just getty, start_getty does a 'test -c' before starting getty on the device. This is
+> > how sysvinit-inittab handles SERIAL_CONSOLES. Alternatively the meta-virtualization
+> > bbappend could just expand SERIAL_CONSOLES.
+> >
+> Something like this?
+> https://github.com/Xilinx/meta-virtualization/commit/610887495c01f0b17db6084e1426cc55a3f806ea
+> 
+> We still see initab looking for console even after this change
 
-On 2 May 2017 at 19:44, Carl Parsons <carl.parsons@pingnu.com> wrote:
+another approach, including the following into your local.conf
 
-> I am trying to use Yocto Project 1.2 - Denzil to build for my old
-> Pandaboard.
-> But on a Ubuntu 14.04 64bit so far I replaced tar, is it practical or
-> should I build on a supported Distro Ubuntu 12.04
-> Or is it possible easy to upgrade the Pandaboard to a newer Yocto
->
+SERIAL_CONSOLES_CHECK = "${SERIAL_CONSOLES}"
 
-1.2 is from 2012 so is five years old now, meta-ti supports most recent
-versions and has a pandaboard machine so you can use that with a modern
-release.
+or if you are using qemu, the following poky commit id can be
+cherry-picked 86d6b790eb7 which avoids the entry on inittab for ttyS1.
 
-Ross
+Leo
 
---001a114027ecbdd034054e8f636d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 2 May 2017 at 19:44, Carl Parsons <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:carl.parsons@pingnu.com" target=3D"_blank">carl.parsons@pingnu.com</a>&gt=
-;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":3y" class=3D"=
-a3s aXjCH m15bca7c04a297078">I am trying to use Yocto Project 1.2 - Denzil =
-to build for my old Pandaboard.<br>
-But on a Ubuntu 14.04 64bit so far I replaced tar, is it practical or shoul=
-d I build on a supported Distro Ubuntu 12.04<br>
-Or is it possible easy to upgrade the Pandaboard to a newer Yocto</div></bl=
-ockquote></div><br>1.2 is from 2012 so is five years old now, meta-ti suppo=
-rts most recent versions and has a pandaboard machine so you can use that w=
-ith a modern release.</div><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra">Ross</div></div>
+> 
+> Thanks
+> Manju
+> 
+> 
+> > Regards,
+> > Nathan
+> 
+> 
+> This email and any attachments are intended for the sole use of the named recipient(s) and contain(s) confidential information that may be proprietary, privileged or copyrighted under applicable law. If you are not the intended recipient, do not read, copy, or forward this email message or any attachments. Delete this email message and any attachments immediately.
+> 
 
---001a114027ecbdd034054e8f636d--
+
+
