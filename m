@@ -1,68 +1,38 @@
-Return-Path: <alan@alanstice.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00A8CE00A30; Tue,  2 May 2017 13:39:23 -0700 (PDT)
+	id 889AAE00A30; Tue,  2 May 2017 14:12:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM,
-	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.44 listed in dnsbl.sorbs.net]
-	*  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
-	*      [136.166.156.64 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.44 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
-	[209.85.214.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9FCEE009A0
-	for <yocto@yoctoproject.org>; Tue,  2 May 2017 13:39:19 -0700 (PDT)
-Received: by mail-it0-f44.google.com with SMTP id o5so22357005ith.1
-	for <yocto@yoctoproject.org>; Tue, 02 May 2017 13:39:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=alanstice-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=QcnuLtdF+vR30v113W/pXG31F8VJUfCm0+8enOdTJ7Q=;
-	b=J4bgq+ptX/k5ZUPmAP2QeZXv+JIniPqvie7HvHyF/SLSwOA9Krhst0LhL3TFfhyd9I
-	7pfW7gKkzysprIk0KsXX8/7v4Fzmx7nxoWUpi91RjtOkYbYVEbsBiei9D+TxDI9lErG5
-	heevCqMKT8zwvE3I1wUSF8/gVb6rLBv3QvQx3HagE3rYhz4tm/29KSuQcVyguiv74Muj
-	P5NXiXPmYrR4D5qUQ9geoSwsFIReKVyxULPgan+4qbalp1bQtIDBl2ITOE7imuzfAP/1
-	4TqLC0IdrteAExEJgFYkRAdN6XCkl97JLOpCs9HP91XunwiQPynweZWCg2JQg3987NW+
-	wvYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=QcnuLtdF+vR30v113W/pXG31F8VJUfCm0+8enOdTJ7Q=;
-	b=pPsuKT+3X7KTox7wmb9vC1MBXwtTvJ2Loa4u5lF2DmgPmc53jXcaDMXP8527S9ExOY
-	fDAThMjYXU8Ya3Cax4w4Qj/j+fJ1OLYnGxIkok0RFbZdTNduNwhosVZdKOKyKg7YwThE
-	NZeI0pau+BKXSDiyCNTBGxSm3bqd2/vgTAkeMXaf0XcKzO3vfG2pHa30P0S+juQGNwW9
-	4ngXnjkaEBQy7WVq91W3OFDkoZQAnFwAXQLJNJbuMMSzWlgfv2wz5iA43MlVD0B0pBJv
-	sL3f4/092bA2hxeXDMMxljUOGyY/aze76zPFKzMyutSL6ssnf5Is/w4WZV5unRtQHTGe
-	hBhA==
-X-Gm-Message-State: AN3rC/7Bppo0PsKfsRAvLQXA0N2sx1/ulq8g0CZ7CC0/AzR7+NNCJliT
-	54aHhkD5kXmUIJYXm0gOxw3O9HXd/WuF
-X-Received: by 10.36.178.88 with SMTP id h24mr279034iti.31.1493757558422; Tue,
-	02 May 2017 13:39:18 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5168FE009A0
+	for <yocto@yoctoproject.org>; Tue,  2 May 2017 14:12:26 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	02 May 2017 14:12:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,281,1491289200"; d="scan'208";a="94761320"
+Received: from veenapra-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.175.9])
+	by orsmga005.jf.intel.com with ESMTP; 02 May 2017 14:12:23 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Arun Kumar <arunkr24@hotmail.com>
+Date: Wed, 03 May 2017 09:12:20 +1200
+Message-ID: <4222472.mEhHa5M7WB@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <YQXPR01MB0374308E0B3C6B566EF2F6D2D8170@YQXPR01MB0374.CANPRD01.PROD.OUTLOOK.COM>
+References: <mailman.64994.1493703364.15860.yocto@yoctoproject.org>
+	<YQXPR01MB0374308E0B3C6B566EF2F6D2D8170@YQXPR01MB0374.CANPRD01.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-Received: by 10.107.138.104 with HTTP; Tue, 2 May 2017 13:39:18 -0700 (PDT)
-X-Originating-IP: [136.166.156.64]
-In-Reply-To: <CAHUNapSSakLfCEm9YmE7XS+Ndkb2ZZZ0kwOJCkZsexqTBsYyNQ@mail.gmail.com>
-References: <CAPyrkgzWJ0fQ_zTJwtKcjJLKmwkL4FfyFxSUGXnb6=_Jx8S_rQ@mail.gmail.com>
-	<CAHUNapSSakLfCEm9YmE7XS+Ndkb2ZZZ0kwOJCkZsexqTBsYyNQ@mail.gmail.com>
-From: Alan Stice <alan@alanstice.com>
-Date: Tue, 2 May 2017 13:39:18 -0700
-Message-ID: <CAPn_zGtm=csBeDyB4kYcsXPEgEzuw7kQrVbVBbyKHZ6ddx=TjA@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Stable branch plans
+Cc: yocto@yoctoproject.org
+Subject: Re: hello world recipe failing at do_patch.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,55 +44,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 May 2017 20:39:24 -0000
-Content-Type: multipart/alternative; boundary=f403045d96f2a6b97a054e9088e6
+X-List-Received-Date: Tue, 02 May 2017 21:12:30 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---f403045d96f2a6b97a054e9088e6
-Content-Type: text/plain; charset=UTF-8
+Hi Arun,
 
-I could also benefit from a quicker stable branch creation and more
-stable-branch kernel updates, so +1 from me as a user
+On Tuesday, 2 May 2017 6:14:28 PM NZST Arun Kumar wrote:
+>       Here is the error log:
+> 
+> 
+//------------------------------------------------------------------------------------------------------------
+> 
+> Loaded 1475 entries from dependency cache.
+> NOTE: Resolving any missing task queue dependencies
+> 
+> Build Configuration:
+> BB_VERSION        = "1.33.4"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "universal"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "beaglebone"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "2.2+snapshot-20170502"
+> TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa8"
+> TARGET_FPU        = "hard"
+> meta
+> meta-poky
+> meta-yocto-bsp    = "master:1fa1a7f174593e41b8bcf6c2f19565d6da44e991"
+> meta-ti           = "master:8e18871135c62add6ebbeb6424c5a72eac0a66d4"
+> meta-helloworld   = "<unknown>:<unknown>"
+> 
+> Initialising tasks: 100% 
+> |
+########################################################################################################################################################################################| 
+> Time: 0:00:01
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> ERROR: texinfo-dummy-native-1.0-r0 do_patch: Error executing a python 
+> function in exec_python_func() autogenerated:
+> 
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>       0001:
+>   *** 0002:extend_recipe_sysroot(d)
+>       0003:
+> File: '/home/beagle/yocto/poky/meta/classes/staging.bbclass', lineno: 
+> 592, function: extend_recipe_sysroot
+>       0588:                    dest = newmanifest[l]
+>       0589:                    if l.endswith("/"):
+>       0590:                        staging_copydir(l, targetdir, dest, 
+> seendirs)
+>       0591:                        continue
+>   *** 0592:                    staging_copyfile(l, targetdir, dest, 
+> postinsts, seendirs)
+>       0593:
+>       0594:    for f in fixme:
+>       0595:        if f == '':
+>       0596:            staging_processfixme(fixme[f], recipesysroot, 
+> recipesysroot, recipesysrootnative, d)
+> File: '/home/beagle/yocto/poky/meta/classes/staging.bbclass', lineno: 
+> 233, function: staging_copyfile
+>       0229:        os.symlink(linkto, dest)
+>       0230:        #bb.warn(c)
+>       0231:    else:
+>       0232:        try:
+>   *** 0233:            os.link(c, dest)
+>       0234:        except OSError as err:
+>       0235:            if err.errno == errno.EXDEV:
+>       0236:                bb.utils.copyfile(c, dest)
+>       0237:            else:
+> Exception: FileExistsError: [Errno 17] File exists: 
+> '/home/beagle/yocto/tmp/sysroots-components/x86_64/quilt-native/etc/quiltrc' 
+> -> 
+> '/home/beagle/yocto/tmp/work/x86_64-linux/texinfo-dummy-native/1.0-r0/
+recipe-sysroot-native/etc/quiltrc'
+> 
+> ERROR: texinfo-dummy-native-1.0-r0 do_patch: Function failed: 
+> extend_recipe_sysroot
+> ERROR: Logfile of failure stored in: 
+> /home/beagle/yocto/tmp/work/x86_64-linux/texinfo-dummy-native/1.0-r0/temp/
+log.do_patch.1026
+> ERROR: Task 
+> (/home/beagle/yocto/poky/meta/recipes-extended/texinfo-dummy-native/texinfo-
+dummy-native.bb:do_patch) 
+> failed with exit code '1'
+> ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_patch: 
+> Error executing a python function in exec_python_func() autogenerated:
+> 
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>       0001:
+>   *** 0002:extend_recipe_sysroot(d)
+>       0003:
+> File: '/home/beagle/yocto/poky/meta/classes/staging.bbclass', lineno: 
+> 592, function: extend_recipe_sysroot
+>       0588:                    dest = newmanifest[l]
+>       0589:                    if l.endswith("/"):
+>       0590:                        staging_copydir(l, targetdir, dest, 
+> seendirs)
+>       0591:                        continue
+>   *** 0592:                    staging_copyfile(l, targetdir, dest, 
+> postinsts, seendirs)
+>       0593:
+>       0594:    for f in fixme:
+>       0595:        if f == '':
+>       0596:            staging_processfixme(fixme[f], recipesysroot, 
+> recipesysroot, recipesysrootnative, d)
+> File: '/home/beagle/yocto/poky/meta/classes/staging.bbclass', lineno: 
+> 233, function: staging_copyfile
+>       0229:        os.symlink(linkto, dest)
+>       0230:        #bb.warn(c)
+>       0231:    else:
+>       0232:        try:
+>   *** 0233:            os.link(c, dest)
+>       0234:        except OSError as err:
+>       0235:            if err.errno == errno.EXDEV:
+>       0236:                bb.utils.copyfile(c, dest)
+>       0237:            else:
+> Exception: FileExistsError: [Errno 17] File exists: 
+> '/home/beagle/yocto/tmp/sysroots-components/x86_64/quilt-native/etc/quiltrc' 
+> -> 
+> '/home/beagle/yocto/tmp/work/x86_64-linux/gnu-config-native/
+20150728+gitAUTOINC+b576fa87c1-r0/recipe-sysroot-native/etc/quiltrc'
 
-On Tue, May 2, 2017 at 11:48 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+Just to work out how this happened, did you interrupt the build previously 
+(e.g. with Ctrl+C) ?
 
-> It is very likely that I too will be trying to base an rpi-based
-> "product" off of pyro and hope that it will be as pain-free as
-> possible :-)
->
-> I don't have any past experience with this, so I can't speak to any past
-> issues.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+In any event you should be able to run the following to clear the issue and 
+then re-run your build command:
 
---f403045d96f2a6b97a054e9088e6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+bitbake -c clean quilt-native gnu-config-native
 
-<div dir=3D"ltr">I could also benefit from a quicker stable branch creation=
- and more stable-branch kernel updates, so +1 from me as a user</div><div c=
-lass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, May 2, 2017 at =
-11:48 AM, Trevor Woerner <span dir=3D"ltr">&lt;<a href=3D"mailto:twoerner@g=
-mail.com" target=3D"_blank">twoerner@gmail.com</a>&gt;</span> wrote:<br><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
-ccc solid;padding-left:1ex">It is very likely that I too will be trying to =
-base an rpi-based<br>
-&quot;product&quot; off of pyro and hope that it will be as pain-free as<br=
->
-possible :-)<br>
-<br>
-I don&#39;t have any past experience with this, so I can&#39;t speak to any=
- past issues.<br>
-<div class=3D"HOEnZb"><div class=3D"h5">--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</div></div></blockquote></div><br></div>
+Richard, do we plan to add some kind of mitigation for this? I thought I'd 
+filed a bug already but I can't seem to find it.
 
---f403045d96f2a6b97a054e9088e6--
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
