@@ -1,58 +1,39 @@
-Return-Path: <pello.heriz@alumni.mondragon.edu>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2796AE00AF0; Wed,  3 May 2017 00:21:25 -0700 (PDT)
+	id C7EDCE00ACD; Wed,  3 May 2017 01:46:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.49 listed in list.dnswl.org]
-Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
-	[209.85.218.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7065E00ACD
-	for <yocto@yoctoproject.org>; Wed,  3 May 2017 00:21:20 -0700 (PDT)
-Received: by mail-oi0-f49.google.com with SMTP id h4so16918542oib.3
-	for <yocto@yoctoproject.org>; Wed, 03 May 2017 00:21:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=alumni.mondragon.edu; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=fdefRkasPPAH5Fbn3oPyD7CXBl2aX+4wrepuepKDcqY=;
-	b=GPbwMNdy7vQc+/+EzZ25KatbvmVN2TjMEIPuUb3WsyruRrB1OtnOkhX0I/wNGrd+H8
-	f8m74vWGFZJhbjxCeiCP4t2Q3KweQvGAoMymg7gSfHaZFrnvnrIQrQQ8SxwSQ/D3eTa2
-	/b5KmkAgWz0jIAcjUIFp23L567gqjQJemozyU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=fdefRkasPPAH5Fbn3oPyD7CXBl2aX+4wrepuepKDcqY=;
-	b=Q1KubpnvrtTuT6QlF0IVsPpYUQqjM9k2wiP6p4Ci4EPXusDFMy6RIC+v0sPVWXb/GA
-	opXbqn037DxbU1c20qhZvsGCPN2vZc9nLF0RzG2tZ+XkHYy8Zb4CQrQ+vONuIjSEQsw5
-	Gy99dqnYg7AJP3W7XTrpGfqhh9j0EYz01N0xOoV9C3vcrUY9oAMqiEUljE1vd4/U6Fat
-	QSTupPAanTyDJG9PRBpGtvoE7nbuLuUweiTVyB6G7wwpmqtyMSCLhog2v4ACxFdx3Q9j
-	Xm2hfzwn/5vVUCldqEWTCbw5Pr+VgkAWmu8QNtu0Iwpm0BscqpX6ejAp7BG6zWGt2DEf
-	36qQ==
-X-Gm-Message-State: AN3rC/4oBCP4kbW648LaXq1WJx3x/8loV3cVL8r7Vo6ykdHa5Is11odT
-	Bcdv5pqCvHUc37ufqVtba2IDopcCxXa0
-X-Received: by 10.157.18.144 with SMTP id g16mr14974210otg.10.1493796080089;
-	Wed, 03 May 2017 00:21:20 -0700 (PDT)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A277CE00A30
+	for <yocto@yoctoproject.org>; Wed,  3 May 2017 01:46:34 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga105.jf.intel.com with ESMTP; 03 May 2017 01:46:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,283,1491289200"; d="scan'208";a="94962956"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by orsmga005.jf.intel.com with ESMTP; 03 May 2017 01:46:32 -0700
+To: "Aravindhlal G.S.S" <aravindhlalgss@embedur.com>
+References: <BLUPR15MB05005784FB3B95086523368AD0160@BLUPR15MB0500.namprd15.prod.outlook.com>
+	<cd07a0e7-c106-470d-9be8-698f1c5c5832@linux.intel.com>
+	<BLUPR15MB0500B226413293138C64D9E2D0160@BLUPR15MB0500.namprd15.prod.outlook.com>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <131fa059-01f3-7f28-984d-82f530ff261c@linux.intel.com>
+Date: Wed, 3 May 2017 11:46:32 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.157.12.181 with HTTP; Wed, 3 May 2017 00:21:19 -0700 (PDT)
-From: Pello Heriz <pello.heriz@alumni.mondragon.edu>
-Date: Wed, 3 May 2017 09:21:19 +0200
-Message-ID: <CAFL6qn7SykziH4rvKmcw2Gd0z5SEafiimTYkkhOAGe13vm+-TA@mail.gmail.com>
-To: meta-xilinx@yoctoproject.org, yocto@yoctoproject.org, 
-	meta-virtualization@yoctoproject.org
-Subject: Redis on Yocto
+In-Reply-To: <BLUPR15MB0500B226413293138C64D9E2D0160@BLUPR15MB0500.namprd15.prod.outlook.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Recipe changes to pull/fetch the source code from local instead of a remote server.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,35 +45,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 May 2017 07:21:25 -0000
-Content-Type: multipart/alternative; boundary=94eb2c03bc6cb8edff054e99803b
+X-List-Received-Date: Wed, 03 May 2017 08:46:38 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---94eb2c03bc6cb8edff054e99803b
-Content-Type: text/plain; charset=UTF-8
+On 05/03/2017 11:29 AM, Aravindhlal G.S.S wrote:
+> SRC_URI =
+> "${RDKB_CCSP_ROOT_GIT}/hal/generic;protocol=${RDK_GIT_PROTOCOL};branch=${CCSP_GIT_BRANCH};name=hal"
 
-Hi,
+Where are these variables defined? What do they say?
 
-I want to implement Redis in an image that I have created with Yocto master
-branch. What I have understood is that there are some recipes into meta-oe
-layer that support to have Redis in the created image. Anyway, what steps
-do I need to do in order to install/start-up/execute Redis in the created
-image on MPSoC QEMU?
+Where do you expect the source code to be pulled from, and where does it 
+actually come from?
 
-Any answer will be welcome,
+Alex
 
-Best regards,
-Pello
 
---94eb2c03bc6cb8edff054e99803b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I want to implement Redis in an ima=
-ge that I have created with Yocto master branch. What I have understood is =
-that there are some recipes into meta-oe layer that support to have Redis i=
-n the created image. Anyway, what steps do I need to do in order to install=
-/start-up/execute Redis in the created image on MPSoC QEMU?</div><div><br><=
-/div><div>Any answer will be welcome,</div><div><br></div><div>Best regards=
-,</div><div>Pello</div></div>
-
---94eb2c03bc6cb8edff054e99803b--
