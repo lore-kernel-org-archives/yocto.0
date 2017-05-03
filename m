@@ -1,6 +1,6 @@
-Return-Path: <windswept321@gmail.com>
+Return-Path: <carlon.luca@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2B91E00ACD; Wed,  3 May 2017 02:58:25 -0700 (PDT)
+	id CDDA5E00ACE; Wed,  3 May 2017 05:26:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,11 +8,11 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (windswept321[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.49 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (carlon.luca[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -22,42 +22,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.42 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E2D9E00A30
-	for <yocto@yoctoproject.org>; Wed,  3 May 2017 02:58:22 -0700 (PDT)
-Received: by mail-wm0-f42.google.com with SMTP id m123so51088982wma.0
-	for <yocto@yoctoproject.org>; Wed, 03 May 2017 02:58:22 -0700 (PDT)
+	*      [209.85.218.49 listed in dnsbl.sorbs.net]
+Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
+	[209.85.218.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3F65E00AA2
+	for <yocto@yoctoproject.org>; Wed,  3 May 2017 05:26:42 -0700 (PDT)
+Received: by mail-oi0-f49.google.com with SMTP id b204so19653147oii.1
+	for <yocto@yoctoproject.org>; Wed, 03 May 2017 05:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=gb6F+ERkezFBxjZ2WpPNxfEL6jompLszR08cR0MDwws=;
-	b=WFWn6a3gs4gVHzUhsCO3BNFpjI06145/yQIl0TIdYwF33PxMtbt5DfefKkfMsa/nk5
-	9APp7kuUB3hXvi+3FTg/o8IOl9SttTKuhDVrqeMjRKPytp8bkJ+j7pC8f3W4D19h6Ltm
-	sugnNZXPBxPrCHAuEBty13E4KdYKsLHj09YPH4m/GzKnhT0oYQxkx880Z1g8MztCqlh+
-	FYFuOtdFG3jaUgmQLGFHiclk3+NU3V9PxJ0KNLgy1jvKSfnX8ZuTfq/keNnpOY+2pDWf
-	xAnp1Qm2VdOa8ZOGUZEsbso1MBJ9b+zzAyfvPm1sqtOU4lhCOM0f07/i0cH95CuPwJAS
-	2wvQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=aNYwgZA5zsEcXx/eXp3E1UYUK3/tAyQlyRhfGIKyE34=;
+	b=M5bUldplV0Czp1AreGr0Qy4zTay/R9eqpS+CAYOjXCp/mR9lcYQab2ybHK3oCeZnb8
+	a5u3QT5gPk58Fy6QsGxZjEdFyDU7JcSJ9XJojwpbGILtb8gQE4wLALtbV4EOeWlUZd5G
+	caJXyKWgdh63C4s+rmAVjeMeQqaYfHum+RSWNHcpQtj0SVUHyMOifXs4Z8iW+YFisuIz
+	Bn6tGGdjMln7OZn0ImhXH5l6K9+F8ynDeWQcBULXaReZbbOCPmb8xwAyMgj1j5f6s63Z
+	glAfugYqmmiQCta0sxRmIQQdrskvWkBG4MKkgNsYhYa+aecQRKgvSpuIxp3K9Uf6Nvu3
+	rN7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=gb6F+ERkezFBxjZ2WpPNxfEL6jompLszR08cR0MDwws=;
-	b=T8ESkpUdeXE7fV+h10HLh4oUdGFHwbdQhBX+SYLGcSMmBurGDeESZ1ZiS0WZQ66wZ8
-	/tatVXU+HFPCk19gaNymabUgRocOZeYG8NaYR+mHj26uzWAt3B+nKGR0J+z4SEP9hdvJ
-	QqCxzIbHGlEiK5rRd5w1xH0DK7fqC1AMFzFH7JuiSyrh5qm3bZhZezfyhawkBDzumFkf
-	4xGrK69kquY9fR9h+T/9tMOIWQ+V3qLPC1Z05bR4ct+l9VcxR4bZuSebmAWRr+zDE3y1
-	xGyJhHNTGh2mvq7WvU+DvXnQvFQqaoYm/WgtpKPTuLS5ijiBfeFxzy4no7dhvih0Eetr
-	TpNA==
-X-Gm-Message-State: AN3rC/56qobB8ASiQLRKPpaURAoF4ysyR0CI2o96TFAhh+f4eBNGS24z
-	ldQesuhbWSWLQS1lI9ENHjvOT8yNR8xG
-X-Received: by 10.25.209.20 with SMTP id i20mr10302036lfg.49.1493805501641;
-	Wed, 03 May 2017 02:58:21 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=aNYwgZA5zsEcXx/eXp3E1UYUK3/tAyQlyRhfGIKyE34=;
+	b=dUDjLFDNYj2Q5321NfQ8dViqWdtWxxOqjv86qV8ckt6Ds204+dkWrkHC2jzHXR3RHn
+	NJ3gUNfg8qyxYQ71i0kCrLUFAOaauytlHrcZfMJlxfADCC1uwdwnR0kh8e0MLsHbmy0u
+	4x9vyLcqr4T1LRGwJSYj9858TTVpmUG3gmstY1aVH/0N8aSCcA586IHAFoiCISWx3lsd
+	zTG8Yo8s21p+9NsBlNCrLtMtrgxsEly3pYu2XjSga9iF/2cFDEODP1OnkAb7YcSc/QMJ
+	VZhlFun/50aFeab8YGFFdB9UXuHBt4DpmyCueeRntY0yyAF30u5QQZHyXYiz1RXZqBAV
+	Rhfg==
+X-Gm-Message-State: AN3rC/4ZT2q9pHf/3IZiNgHzNIlMOB9jYkcSqRiqA50NKpxM1iF9VBS4
+	yXP/ssR4DiB5xt/T5UDMlkqeshG8AQ==
+X-Received: by 10.157.43.116 with SMTP id f49mr12194198otd.216.1493814401609; 
+	Wed, 03 May 2017 05:26:41 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.25.22.201 with HTTP; Wed, 3 May 2017 02:58:21 -0700 (PDT)
-From: windswept321 <windswept321@gmail.com>
-Date: Wed, 3 May 2017 10:58:21 +0100
-Message-ID: <CALBpLHZ4h--81Q6J7c_OfX8tSaO9coSa4H4KRohjFDL42Pq=6A@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Yocto Beginner Issues When Adding Layers / Recipes
+Received: by 10.202.63.197 with HTTP; Wed, 3 May 2017 05:26:41 -0700 (PDT)
+In-Reply-To: <CAC+thW0Lcmkn-zL_AyQXztQNywLxPAW0zFUM2YVCDvE8YcTFfw@mail.gmail.com>
+References: <CAMC=D=s=KwPN8ydYD+u0CXKJ-w4f3OtKu6f_rx-egEomjx37+Q@mail.gmail.com>
+	<CAC+thW08Otvupad2dbuodf9RgUStGrSPxmN536rmV5+E6gcw5w@mail.gmail.com>
+	<CAMC=D=vHGZJA_+pR9GJawU63GuPmsLAvmqg3hi6ttnYhcmN-nA@mail.gmail.com>
+	<CAC+thW3zTubp1by4i6it39bzvqkWMw4SExCHjSmc3OhmXrcwxw@mail.gmail.com>
+	<CAMC=D=vgejGzJggU_DE13_tspbTZfi=4G9JShhXC8Q1XzWnxhg@mail.gmail.com>
+	<CAC+thW0Lcmkn-zL_AyQXztQNywLxPAW0zFUM2YVCDvE8YcTFfw@mail.gmail.com>
+From: Luca Carlon <carlon.luca@gmail.com>
+Date: Wed, 3 May 2017 14:26:41 +0200
+Message-ID: <CAMC=D=ts+93_6zoOgXtv9HkQ4GE897SiwJKHpEJbxt-KeO6J=A@mail.gmail.com>
+To: Andrea Galbusera <gizero@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Building rpi-test-image for Pi3 64 bit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,250 +79,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 May 2017 09:58:25 -0000
-Content-Type: multipart/alternative; boundary=001a114009c849fd65054e9bb207
+X-List-Received-Date: Wed, 03 May 2017 12:26:48 -0000
+Content-Type: multipart/alternative; boundary=001a113b1bccc4b545054e9dc4b6
 
---001a114009c849fd65054e9bb207
+--001a113b1bccc4b545054e9dc4b6
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Hi List,
+Hello,
+thank you for your help. I followed your advice and I'm now able to build
+rpi-test-image for raspberrypi2 and raspberrypi3. When I try
+raspberrypi3-64 instead I'm getting a few errors. I fixed one build error,
+but then I got: https://pastebin.com/pL2mei9s. It seems that those libs
+were not added to the sysroot for some reason. I think those come from the
+userspace package probably. As it seems to work for the other machines I'm
+trying to determine what difference raspberrypi3-64 is introducing but for
+the moment I'm failing. Any idea what is causing this error? Are you able
+to build rpi-test-image? rpi-basic-image seems to work but not
+rpi-test-image, which includes omxplayer and other libs that I need like
+libEGL, libGLESv2, libopenmax etc...
 
-I have been trying to get a build up and running for the past couple of
-days following the latest official quick-start guide with no success
-(Debian 8 =E2=80=94> Debian 7 =E2=80=94> Ubuntu LTS=E2=80=A6)
-I want to have openssh, ntp, iptables, dnsmasq and hostapd added to the
-build. The meta-amd layer was added in case of there being anything useful
-for a GX-412TC Crowned Eagle CPU. It doesn=E2=80=99t seem to have any impac=
-t at the
-moment.
+These are my current conf files:
 
-My bblayers.conf customisations:
+https://pastebin.com/LJnRfDUj
+https://pastebin.com/axt9RLQS
 
-  /home/aaron/poky/meta-amd/common \
-  /home/aaron/poky/meta-openembedded/meta-networking \
-  /home/aaron/poky/meta-openembedded/meta-python \
-  /home/aaron/poky/meta-openembedded/meta-oe \
+Any idea why those libs cannot be found?
+Thank you!
+Regards.
 
-Each of these was added to the poky directory using git clone =E2=80=9Clink=
-=E2=80=9D. Some
-are dependencies for meta-networking.
+Luca
 
-I have added the following to my local.conf:
+On Sat, Apr 29, 2017 at 9:40 AM, Andrea Galbusera <gizero@gmail.com> wrote:
 
-CORE_IMAGE_EXTRA_INSTALL +=3D "openssh ntp iptables dnsmasq hostapd=E2=80=
-=9D
+> On Sat, Apr 29, 2017 at 2:39 AM, Luca Carlon <carlon.luca@gmail.com>
+> wrote:
+>
+>> Hello,
+>> thank you very much for your advice. It seems I can build both a minimal
+>> image and rpi-basic-image. I would like to test to see if the Pi is able to
+>> boot with these images but it seems that the images directory does not
+>> contain any sdimg file. By reading https://github.com/agherzan/me
+>> ta-raspberrypi and https://github.com/Nuand/blade
+>> RF/wiki/Creating-Linux-based-Embedded-System-Images-with-Yocto it seems
+>> I should find a sdimg file to flash to the sdcard. I suppose this image
+>> file contains both the boot and rootfs partitions. But it seems I do not
+>> see this image at all, this is a list of what I can see in
+>> tmp/deploy/images/raspberrypi3-64: https://pastebin.com/8XsRHzUY. I see
+>> the rootfs filesystem that I can extract in a partition, but not the boot
+>> partition the Pi needs. Maybe I'm missing some line in the conf files?
+>>
+>
+> If you are using the local.conf you previously posted, the line:
+>
+> IMAGE_FSTYPES = "tar.xz"
+>
+> is overriding default configuration from rpi-base.inc in meta-raspberrypi
+> which is:
+>
+> IMAGE_FSTYPES ?= "tar.bz2 ext3 rpi-sdimg"
+>
+> You can also consider using wic image format to generate a flashable image
+> (see Yocto documentation on how to do that).
+>
 
-On running bitbake core-image-minimal I get the below error.
-Is there something wrong with my configuration?
-
-*ERROR*: ExpansionError during parsing
-/home/aaron/poky/meta-openembedded/meta-python/recipes-extended/python-pyep=
-hem/
-python-pyephem_3.7.6.0.bb
-Traceback (most recent call last):
-  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 386, in
-DataSmart.expandWithRefs(s=3D' ${PYPI_SRC_URI}', varname=3D'SRC_URI'):
-                 try:
-    >                s =3D __expand_var_regexp__.sub(varparse.var_sub, s)
-                     try:
-  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 111, in
-VariableParse.var_sub(match=3D<_sre.SRE_Match object; span=3D(1, 16),
-match=3D'${PYPI_SRC_URI}'>):
-                 else:
-    >                var =3D self.d.getVarFlag(key, "_content", True)
-                 self.references.add(key)
-  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 737, in
-DataSmart.getVarFlag(var=3D'PYPI_SRC_URI', flag=3D'_content', expand=3DTrue=
-,
-noweakdefault=3DFalse, parsing=3DFalse):
-                     cachename =3D var + "[" + flag + "]"
-    >            value =3D self.expand(value, cachename)
-
-  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 410, in
-DataSmart.expand(s=3D'${@pypi_src_uri(d)}', varname=3D'PYPI_SRC_URI'):
-         def expand(self, s, varname =3D None):
-    >        return self.expandWithRefs(s, varname).value
-
-  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 400, in
-DataSmart.expandWithRefs(s=3D'${@pypi_src_uri(d)}', varname=3D'PYPI_SRC_URI=
-'):
-                 except Exception as exc:
-    >                raise ExpansionError(varname, s, exc) from exc
-
-bb.data_smart.ExpansionError: Failure expanding variable PYPI_SRC_URI,
-expression was ${@pypi_src_uri(d)} which triggered exception TypeError:
-getVar() missing 1 required positional argument: 'expand'
-
-
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-
---001a114009c849fd65054e9bb207
+--001a113b1bccc4b545054e9dc4b6
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">
+<div dir=3D"ltr">Hello,<div>thank you for your help. I followed your advice=
+ and I&#39;m now able to build rpi-test-image for raspberrypi2 and raspberr=
+ypi3. When I try raspberrypi3-64 instead I&#39;m getting a few errors. I fi=
+xed one build error, but then I got:=C2=A0<a href=3D"https://pastebin.com/p=
+L2mei9s">https://pastebin.com/pL2mei9s</a>. It seems that those libs were n=
+ot added to the sysroot for some reason. I think those come from the usersp=
+ace package probably. As it seems to work for the other machines I&#39;m tr=
+ying to determine what difference raspberrypi3-64 is introducing but for th=
+e moment I&#39;m failing. Any idea what is causing this error? Are you able=
+ to build rpi-test-image? rpi-basic-image seems to work but not rpi-test-im=
+age, which includes omxplayer and other libs that I need like libEGL, libGL=
+ESv2, libopenmax etc...</div><div><br></div><div>These are my current conf =
+files:</div><div><br></div><div><a href=3D"https://pastebin.com/LJnRfDUj">h=
+ttps://pastebin.com/LJnRfDUj</a><br></div><div><a href=3D"https://pastebin.=
+com/axt9RLQS">https://pastebin.com/axt9RLQS</a><br></div><div><br></div><di=
+v>Any idea why those libs cannot be found?</div><div>Thank you!</div><div>R=
+egards.</div><div><br></div><div>Luca</div></div><div class=3D"gmail_extra"=
+><br><div class=3D"gmail_quote">On Sat, Apr 29, 2017 at 9:40 AM, Andrea Gal=
+busera <span dir=3D"ltr">&lt;<a href=3D"mailto:gizero@gmail.com" target=3D"=
+_blank">gizero@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
+:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote=
+"><span class=3D"">On Sat, Apr 29, 2017 at 2:39 AM, Luca Carlon <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:carlon.luca@gmail.com" target=3D"_blank">car=
+lon.luca@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex"><div dir=3D"ltr">Hello,<br>thank you very much for your =
+advice. It seems I can build both a minimal image and rpi-basic-image. I wo=
+uld like to test to see if the Pi is able to boot with these images but it =
+seems that the images directory does not contain any sdimg file. By reading=
+ <a href=3D"https://github.com/agherzan/meta-raspberrypi" target=3D"_blank"=
+>https://github.com/agherzan/me<wbr>ta-raspberrypi</a> and <a href=3D"https=
+://github.com/Nuand/bladeRF/wiki/Creating-Linux-based-Embedded-System-Image=
+s-with-Yocto" target=3D"_blank">https://github.com/Nuand/blade<wbr>RF/wiki/=
+Creating-Linux-based-<wbr>Embedded-System-Images-with-<wbr>Yocto</a> it see=
+ms I should find a sdimg file to flash to the sdcard. I suppose this image =
+file contains both the boot and rootfs partitions. But it seems I do not se=
+e this image at all, this is a list of what I can see in tmp/deploy/images/=
+raspberrypi3<wbr>-64: <a href=3D"https://pastebin.com/8XsRHzUY" target=3D"_=
+blank">https://pastebin.com/8XsRHzUY</a>. I see the rootfs filesystem that =
+I can extract in a partition, but not the boot partition the Pi needs. Mayb=
+e I&#39;m missing some line in the conf files?<br></div></blockquote><div><=
+br></div></span><div>If you are using the local.conf you previously posted,=
+ the line:</div><div><br></div><div>IMAGE_FSTYPES =3D &quot;tar.xz&quot;<br=
+></div><div><br></div><div>is overriding default configuration from rpi-bas=
+e.inc in meta-raspberrypi which is:</div><div><br></div><div>IMAGE_FSTYPES =
+?=3D &quot;tar.bz2 ext3 rpi-sdimg&quot;</div><div><br></div><div>You can al=
+so consider using wic image format to generate a flashable image (see Yocto=
+ documentation on how to do that).</div></div></div></div>
+</blockquote></div><br></div>
 
-
-
-
-
-
-
-<p class=3D"gmail-p1"><font face=3D"HelveticaNeue" class=3D"gmail-" style=
-=3D"color:rgb(0,0,0);font-size:14px">Hi List,</font></p><div class=3D"gmail=
--" style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px"><font fa=
-ce=3D"HelveticaNeue" class=3D"gmail-" style=3D"font-size:14px"><br class=3D=
-"gmail-"></font></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-=
-family:helvetica;font-size:12px"><font face=3D"HelveticaNeue" class=3D"gmai=
-l-" style=3D"font-size:14px">I have been trying to get a build up and runni=
-ng for the past couple of days following the latest official quick-start gu=
-ide with no success (Debian 8 =E2=80=94&gt; Debian 7 =E2=80=94&gt; Ubuntu L=
-TS=E2=80=A6)</font></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);fo=
-nt-family:helvetica;font-size:12px"><font face=3D"HelveticaNeue" class=3D"g=
-mail-" style=3D"font-size:14px">I want to have openssh, ntp, iptables, dnsm=
-asq and hostapd added to the build. The meta-amd layer was added in case of=
- there being anything useful for a GX-412TC Crowned Eagle CPU. It doesn=E2=
-=80=99t seem to have any impact at the moment.</font></div><div class=3D"gm=
-ail-" style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px"><font=
- face=3D"HelveticaNeue" class=3D"gmail-" style=3D"font-size:14px"><br class=
-=3D"gmail-"></font></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);fo=
-nt-family:helvetica;font-size:12px"><font face=3D"HelveticaNeue" class=3D"g=
-mail-" style=3D"font-size:14px">My bblayers.conf customisations:</font></di=
-v><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:helvetica;fon=
-t-size:12px"><font face=3D"HelveticaNeue" class=3D"gmail-" style=3D"font-si=
-ze:14px"><br class=3D"gmail-"></font></div><div class=3D"gmail-" style=3D"c=
-olor:rgb(0,0,0);font-family:helvetica;font-size:12px"><div class=3D"gmail-"=
- style=3D"margin:0px;line-height:normal"><span class=3D"gmail-" style=3D"fo=
-nt-variant-ligatures:no-common-ligatures;font-size:14px"><font face=3D"Helv=
-eticaNeue" class=3D"gmail-">=C2=A0=C2=A0/home/aaron/poky/meta-amd/common \<=
-/font></span></div><div class=3D"gmail-" style=3D"margin:0px;line-height:no=
-rmal"><span class=3D"gmail-" style=3D"font-variant-ligatures:no-common-liga=
-tures;font-size:14px"><font face=3D"HelveticaNeue" class=3D"gmail-">=C2=A0 =
-/home/aaron/poky/meta-openembedded/meta-networking \</font></span></div><di=
-v class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"g=
-mail-" style=3D"font-variant-ligatures:no-common-ligatures;font-size:14px">=
-<font face=3D"HelveticaNeue" class=3D"gmail-">=C2=A0 /home/aaron/poky/meta-=
-openembedded/meta-python \</font></span></div><div class=3D"gmail-" style=
-=3D"margin:0px;line-height:normal"><span class=3D"gmail-" style=3D"font-var=
-iant-ligatures:no-common-ligatures;font-size:14px"><font face=3D"HelveticaN=
-eue" class=3D"gmail-">=C2=A0 /home/aaron/poky/meta-openembedded/meta-oe \</=
-font></span></div></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);fon=
-t-family:helvetica;font-size:12px;margin:0px;line-height:normal"><span clas=
-s=3D"gmail-" style=3D"font-variant-ligatures:no-common-ligatures;font-size:=
-14px"><font face=3D"HelveticaNeue" class=3D"gmail-"><br class=3D"gmail-"></=
-font></span></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-fami=
-ly:helvetica;font-size:12px;margin:0px;line-height:normal"><span class=3D"g=
-mail-" style=3D"font-variant-ligatures:no-common-ligatures;font-size:14px">=
-<font face=3D"HelveticaNeue" class=3D"gmail-">Each of these was added to th=
-e poky directory using git clone =E2=80=9Clink=E2=80=9D. Some are dependenc=
-ies for meta-networking.</font></span></div><div class=3D"gmail-" style=3D"=
-color:rgb(0,0,0);font-family:helvetica;font-size:12px"><font face=3D"Helvet=
-icaNeue" class=3D"gmail-" style=3D"font-size:14px"><br class=3D"gmail-"></f=
-ont></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:helve=
-tica;font-size:12px"><font face=3D"HelveticaNeue" class=3D"gmail-" style=3D=
-"font-size:14px">I have added the following to my local.conf:</font></div><=
-div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:helvetica;font-s=
-ize:12px"><font face=3D"HelveticaNeue" class=3D"gmail-" style=3D"font-size:=
-14px"><br class=3D"gmail-"></font></div><div class=3D"gmail-" style=3D"colo=
-r:rgb(0,0,0);font-family:helvetica;font-size:12px"><div class=3D"gmail-" st=
-yle=3D"margin:0px;line-height:normal"><span class=3D"gmail-" style=3D"font-=
-variant-ligatures:no-common-ligatures;font-size:14px"><font face=3D"Helveti=
-caNeue" class=3D"gmail-">CORE_IMAGE_EXTRA_INSTALL +=3D &quot;openssh ntp ip=
-tables dnsmasq hostapd=E2=80=9D</font></span></div></div><div class=3D"gmai=
-l-" style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px;margin:0=
-px;line-height:normal"><span class=3D"gmail-" style=3D"font-variant-ligatur=
-es:no-common-ligatures;font-size:14px"><font face=3D"HelveticaNeue" class=
-=3D"gmail-"><br class=3D"gmail-"></font></span></div><div class=3D"gmail-" =
-style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px;margin:0px;l=
-ine-height:normal"><span class=3D"gmail-" style=3D"font-variant-ligatures:n=
-o-common-ligatures;font-size:14px"><font face=3D"HelveticaNeue" class=3D"gm=
-ail-">On running bitbake core-image-minimal I get the=C2=A0below error.</fo=
-nt></span></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family=
-:helvetica;font-size:12px;margin:0px;line-height:normal"><font face=3D"Helv=
-eticaNeue" class=3D"gmail-" style=3D"font-size:14px">Is there something wro=
-ng with my configuration?</font></div><div class=3D"gmail-" style=3D"color:=
-rgb(0,0,0);font-family:helvetica;margin:0px;font-size:11px;line-height:norm=
-al"><span class=3D"gmail-" style=3D"font-variant-ligatures:no-common-ligatu=
-res"><font face=3D"HelveticaNeue" class=3D"gmail-"><br class=3D"gmail-"></f=
-ont></span></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-famil=
-y:helvetica;margin:0px;font-size:11px;line-height:normal"><span class=3D"gm=
-ail-" style=3D"font-variant-ligatures:no-common-ligatures"><font face=3D"He=
-lveticaNeue" class=3D"gmail-"><div class=3D"gmail-" style=3D"margin:0px;lin=
-e-height:normal;color:rgb(195,55,32)"><span class=3D"gmail-"><b class=3D"gm=
-ail-">ERROR</b></span><span class=3D"gmail-" style=3D"color:rgb(0,0,0)">:=
-=C2=A0</span><span class=3D"gmail-">ExpansionError during parsing /home/aar=
-on/poky/meta-openembedded/meta-python/recipes-extended/python-pyephem/<a hr=
-ef=3D"http://python-pyephem_3.7.6.0.bb">python-pyephem_3.7.6.0.bb</a></span=
-></div><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span =
-class=3D"gmail-">Traceback (most recent call last):</span></div><div class=
-=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=
-=C2=A0 File &quot;/home/aaron/poky/bitbake/lib/bb/data_smart.py&quot;, line=
- 386, in DataSmart.expandWithRefs(s=3D&#39; ${PYPI_SRC_URI}&#39;, varname=
-=3D&#39;SRC_URI&#39;):</span></div><div class=3D"gmail-" style=3D"margin:0p=
-x;line-height:normal"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 try:</span></div><div class=3D"gmail-" styl=
-e=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=A0 =C2=A0 &g=
-t;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 s =3D __expand_va=
-r_regexp__.sub(varparse.var_sub, s)</span></div><div class=3D"gmail-" style=
-=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 try:</span></di=
-v><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=
-=3D"gmail-">=C2=A0 File &quot;/home/aaron/poky/bitbake/lib/bb/data_smart.py=
-&quot;, line 111, in VariableParse.var_sub(match=3D&lt;_sre.SRE_Match objec=
-t; span=3D(1, 16), match=3D&#39;${PYPI_SRC_URI}&#39;&gt;):</span></div><div=
- class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gm=
-ail-">=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:</=
-span></div><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><s=
-pan class=3D"gmail-">=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 var =3D self.d.getVarFlag(key, &quot;_content&quot;, T=
-rue)</span></div><div class=3D"gmail-" style=3D"margin:0px;line-height:norm=
-al"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 self.references.add(key)</span></div><div class=3D"gmail-" st=
-yle=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=A0 File &q=
-uot;/home/aaron/poky/bitbake/lib/bb/data_smart.py&quot;, line 737, in DataS=
-mart.getVarFlag(var=3D&#39;PYPI_SRC_URI&#39;, flag=3D&#39;_content&#39;, ex=
-pand=3DTrue, noweakdefault=3DFalse, parsing=3DFalse):</span></div><div clas=
-s=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gmail-"=
->=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 cachename =3D var + &quot;[&quot; + flag + &quot;]&quot;</span></div><d=
-iv class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"=
-gmail-">=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 value =
-=3D self.expand(value, cachename)</span></div><div class=3D"gmail-" style=
-=3D"margin:0px;line-height:normal;min-height:13px"><span class=3D"gmail-">=
-=C2=A0 =C2=A0 =C2=A0</span><br class=3D"gmail-webkit-block-placeholder"></d=
-iv><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span clas=
-s=3D"gmail-">=C2=A0 File &quot;/home/aaron/poky/bitbake/lib/bb/data_smart.p=
-y&quot;, line 410, in DataSmart.expand(s=3D&#39;${@pypi_src_uri(d)}&#39;, v=
-arname=3D&#39;PYPI_SRC_URI&#39;):</span></div><div class=3D"gmail-" style=
-=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 def expand(self, s, varname =3D None):</span></div><div c=
-lass=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gmai=
-l-">=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.expandWithRef=
-s(s, varname).value</span></div><div class=3D"gmail-" style=3D"margin:0px;l=
-ine-height:normal;min-height:13px"><span class=3D"gmail-">=C2=A0 =C2=A0 =C2=
-=A0</span><br class=3D"gmail-webkit-block-placeholder"></div><div class=3D"=
-gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=
-=A0 File &quot;/home/aaron/poky/bitbake/lib/bb/data_smart.py&quot;, line 40=
-0, in DataSmart.expandWithRefs(s=3D&#39;${@pypi_src_uri(d)}&#39;, varname=
-=3D&#39;PYPI_SRC_URI&#39;):</span></div><div class=3D"gmail-" style=3D"marg=
-in:0px;line-height:normal"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 except Exception as exc:</span></div=
-><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=
-=3D"gmail-">=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 raise ExpansionError(varname, s, exc) from exc</span></div><div =
-class=3D"gmail-" style=3D"margin:0px;line-height:normal;min-height:13px"><s=
-pan class=3D"gmail-">=C2=A0 =C2=A0 =C2=A0</span><br class=3D"gmail-webkit-b=
-lock-placeholder"></div><div class=3D"gmail-" style=3D"margin:0px;line-heig=
-ht:normal"><span class=3D"gmail-">bb.data_smart.ExpansionError: Failure exp=
-anding variable PYPI_SRC_URI, expression was ${@pypi_src_uri(d)} which trig=
-gered exception TypeError: getVar() missing 1 required positional argument:=
- &#39;expand&#39;</span></div><div class=3D"gmail-" style=3D"margin:0px;lin=
-e-height:normal;min-height:13px"><span class=3D"gmail-"></span><br class=3D=
-"gmail-"></div><div class=3D"gmail-" style=3D"margin:0px;line-height:normal=
-;min-height:13px"><span class=3D"gmail-"></span><br class=3D"gmail-"></div>=
-<div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=
-=3D"gmail-">Summary: There was 1 ERROR message shown, returning a non-zero =
-exit code.</span></div></font></span></div></div>
-
---001a114009c849fd65054e9bb207--
+--001a113b1bccc4b545054e9dc4b6--
