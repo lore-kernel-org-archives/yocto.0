@@ -1,34 +1,64 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <joe@deserted.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8F68CE00AA2; Tue,  2 May 2017 14:50:34 -0700 (PDT)
+	id A434AE00ACD; Tue,  2 May 2017 18:23:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.196 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 418BEE009C2
-	for <yocto@yoctoproject.org>; Tue,  2 May 2017 14:50:30 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	02 May 2017 14:50:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.38,281,1491289200"; d="scan'208";a="852182040"
-Received: from jalamego-mobl2.zpn.intel.com ([10.219.128.113])
-	by FMSMGA003.fm.intel.com with ESMTP; 02 May 2017 14:50:28 -0700
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f196.google.com (mail-io0-f196.google.com
+	[209.85.223.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B68F3E00A30
+	for <yocto@yoctoproject.org>; Tue,  2 May 2017 18:23:46 -0700 (PDT)
+Received: by mail-io0-f196.google.com with SMTP id h41so33738687ioi.1
+	for <yocto@yoctoproject.org>; Tue, 02 May 2017 18:23:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=deserted-net.20150623.gappssmtp.com; s=20150623;
+	h=sender:from:to:subject:date:message-id;
+	bh=JtxtTIITmjRVvf9+cynHft7q2kt2CoMOYaByjeAJcD8=;
+	b=e2P5zDWdbI8LmKXh5IYdexsbJ7mgLHdS2oD3F5TRHX4yZau+osjcqKVX/oKlFGYN7w
+	dokXl2AwvK1aAAK+xX2CH9uXHxF2M1t6IAuq3K5HUhkpQLMY1SFRu+uRf1HH/YGX7+wk
+	98og1DNziFjDsAZQzLIW1nhhjqcK1O068Ucx1QIU4HdAgVQ8mCqdoQiloIouCRL+AxMg
+	Ar8szj1937fNc0whQrLu7anBO+NBwtj8cwaj41WCgntGTuz5Z0MjXa/cMPi3cPVeuR+l
+	5m3nFCMavOSrtpK7ICJl7htnVQTC4d9sRWDAYgHYqBvXZ6GE6OJV/hPNvcu5WJ5B6i56
+	wGQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:sender:from:to:subject:date:message-id;
+	bh=JtxtTIITmjRVvf9+cynHft7q2kt2CoMOYaByjeAJcD8=;
+	b=ILPt5afUBrxF1EGv2zEHukCH3rQXXL1b7KPZVF6ZNe4oBgbypihWzuGmxL6oqLPpNZ
+	ST7YmY9JR9rE+eK5lxTMJ5AKWTSg4q+8+Fp16I3Fa3NGkPfSS2HfNln3qnKRnBlMoxVq
+	bdQq0zXjc6i/HqugVFvSp9l7MlucMslp50xhO3qO393M88A6rLXraCFL/keXEBZ7FEN3
+	Ouzv+NURz5+ntTOKPubvVSS7ipcc3llfnj2fA0wNUjX3MXDmqRSZ0kq8Oj9V03+Kw52+
+	J7pXjvZuN7nHLFeiJzSXFO3st+mnlnJ8oqSBvLraytY/z8+tk8C/TAk+llhuu6wbGsLG
+	A+ow==
+X-Gm-Message-State: AN3rC/58l6478lK8QJHY55Gr8FY8RTbcTkThimPy8rcfA+XFqUNgUaN1
+	TRdpKAUcdfQs7lPe
+X-Received: by 10.107.189.198 with SMTP id n189mr31157523iof.179.1493774625436;
+	Tue, 02 May 2017 18:23:45 -0700 (PDT)
+Received: from mir.deserted.net (23-233-24-42.cpe.pppoe.ca. [23.233.24.42])
+	by smtp.gmail.com with ESMTPSA id e97sm759665itd.23.2017.05.02.18.23.44
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 02 May 2017 18:23:44 -0700 (PDT)
+Sender: Joe MacDonald <joe@deserted.net>
+From: Joe MacDonald <joe_macdonald@mentor.com>
 To: yocto@yoctoproject.org
-Date: Tue,  2 May 2017 16:50:06 -0500
-Message-Id: <1493761806-16439-1-git-send-email-jose.a.lamego@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1492457188-18773-1-git-send-email-jose.a.lamego@linux.intel.com>
-References: <1492457188-18773-1-git-send-email-jose.a.lamego@linux.intel.com>
-Subject: [patchwork][PATCH v3] models.py: Improve Series naming when no cover letter is provided
+Date: Tue,  2 May 2017 21:24:07 -0400
+Message-Id: <1493774647-1769-1-git-send-email-joe_macdonald@mentor.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-selinux][PATCH] selinux-image: enable image labelling
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,51 +70,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 May 2017 21:50:34 -0000
+X-List-Received-Date: Wed, 03 May 2017 01:23:47 -0000
 
-The number/order prefix from a patch Subject line
-is inapropriately included when naming a Series where
-a cover letter is not provided and an additional
-prefix is present at the Subject.
+selinux images attempt to label the filesystem image at creation time.
+This depends on a native setfiles, though, which isn't guaranteed to be
+present without the DEPEND addition.
 
-This change improves the substitution regex to omit
-the number/order prefix but include any other prefix
-that may be present.
+If the 'setfiles' call fails, that shouldn't be fatal, though, it can
+always be run at first boot time, as is commonly done with desktop and
+server distros.
 
-[YOCTO #11305]
-
-Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
 ---
+ classes/selinux-image.bbclass | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-Notes:
-    Changes in V3: remove the number/order prefix without
-    changing any other other existing prefix, as this may be
-    required for mapping the patch to additional branches
-    other than master.
-
- patchwork/models.py | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/patchwork/models.py b/patchwork/models.py
-index ddc3254..7944b98 100644
---- a/patchwork/models.py
-+++ b/patchwork/models.py
-@@ -1046,8 +1046,12 @@ def _on_revision_complete(sender, revision, **kwargs):
-     # so we can update the name for series without a cover letter
-     if series.name == SERIES_DEFAULT_NAME:
-         name = series.latest_revision().ordered_patches()[0].name
--        n = re.compile(r'(\[\d+\/\d+\]\s?)')
--        name = n.sub('', name)
-+        n = re.compile(
-+            r'((\[.*\]\s?)*\[.*\w+.*(\W+\d+\/\d+)+\s*\]\s?)|(\[\d+\/\d+\]\s?)')
-+        if n.match(name):
-+            name = re.sub(
-+                r'n.match(name).group(3) or re.escape(n.match(name).group(4)',
-+                name)
-         c = len(series.latest_revision().ordered_patches())
-         # For one-patch series (1/1) without cover letter
-         if c == 1:
+diff --git a/classes/selinux-image.bbclass b/classes/selinux-image.bbclass
+index 9303610..90ead2f 100644
+--- a/classes/selinux-image.bbclass
++++ b/classes/selinux-image.bbclass
+@@ -1,8 +1,15 @@
+ selinux_set_labels () {
+     POL_TYPE=$(sed -n -e "s&^SELINUXTYPE[[:space:]]*=[[:space:]]*\([0-9A-Za-z_]\+\)&\1&p" ${IMAGE_ROOTFS}/${sysconfdir}/selinux/config)
+-    setfiles -r ${IMAGE_ROOTFS} ${IMAGE_ROOTFS}/${sysconfdir}/selinux/${POL_TYPE}/contexts/files/file_contexts ${IMAGE_ROOTFS} || exit 1;
++    if ! setfiles -r ${IMAGE_ROOTFS} ${IMAGE_ROOTFS}/${sysconfdir}/selinux/${POL_TYPE}/contexts/files/file_contexts ${IMAGE_ROOTFS}
++    then
++        echo WARNING: Unable to set filesystem context, setfiles / restorecon must be run on the live image.
++        touch ${IMAGE_ROOTFS}/.autorelabel
++        exit 0
++    fi
+ }
+ 
++DEPENDS += "policycoreutils-native"
++
+ IMAGE_PREPROCESS_COMMAND += "selinux_set_labels ;"
+ 
+ inherit core-image
 -- 
-2.7.4
+1.9.1
 
 
