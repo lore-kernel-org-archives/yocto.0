@@ -1,87 +1,63 @@
-Return-Path: <aravindhlalgss@embedur.com>
+Return-Path: <windswept321@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1F09E00ACD; Wed,  3 May 2017 02:03:30 -0700 (PDT)
+	id C2B91E00ACD; Wed,  3 May 2017 02:58:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.37.47 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (windswept321[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1116 seconds by postgrey-1.32 at yocto-www;
-	Wed, 03 May 2017 02:03:27 PDT
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
-	(mail-cys01nam02on0047.outbound.protection.outlook.com
-	[104.47.37.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED8FFE00A30
-	for <yocto@yoctoproject.org>; Wed,  3 May 2017 02:03:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=embedur.onmicrosoft.com; s=selector1-embedur-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=jNpmZaYysLh7SgkDJ1i9wYfvW9g4FvdIplUN2OnsRXc=;
-	b=kkQ517tq7+9vzE8+rJPLPlkCXMuw+ybCGrZntD//FsTQbQ92z6UShNFkBjY30cMnm3NQhop37W/l35HEXTPQAV/DJGYV6GeXyVAELeY+3CjK3ILrldfBdRVD7R9Eyu/vUrqbNehG34yhTXa/aztFwBV45+BCqLTGnlnDZhlk1+8=
-Received: from BLUPR15MB0500.namprd15.prod.outlook.com (10.163.214.30) by
-	BLUPR15MB0498.namprd15.prod.outlook.com (10.163.214.28) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1047.13; Wed, 3 May 2017 08:29:24 +0000
-Received: from BLUPR15MB0500.namprd15.prod.outlook.com ([10.163.214.30]) by
-	BLUPR15MB0500.namprd15.prod.outlook.com ([10.163.214.30]) with mapi id
-	15.01.1061.021; Wed, 3 May 2017 08:29:24 +0000
-From: Aravindhlal G.S.S <aravindhlalgss@embedur.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Thread-Topic: [yocto] Recipe changes to pull/fetch the source code from local
-	instead of a remote server.
-Thread-Index: AdK+nZeqRgzitEp4Q3KhNXx8GvSpAwFLrpxwAAQOOwAAAplvUA==
-Date: Wed, 3 May 2017 08:29:23 +0000
-Message-ID: <BLUPR15MB0500B226413293138C64D9E2D0160@BLUPR15MB0500.namprd15.prod.outlook.com>
-References: <BLUPR15MB05005784FB3B95086523368AD0160@BLUPR15MB0500.namprd15.prod.outlook.com>
-	<cd07a0e7-c106-470d-9be8-698f1c5c5832@linux.intel.com>
-In-Reply-To: <cd07a0e7-c106-470d-9be8-698f1c5c5832@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux.intel.com; dkim=none (message not signed)
-	header.d=none;linux.intel.com; dmarc=none action=none
-	header.from=embedur.com;
-x-originating-ip: [61.16.140.206]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BLUPR15MB0498;
-	7:8cffz/svfwkCJJPO6GPUszmMtqNMzYtVAsifm7OO2zx77LUKgrWVMnCgKEx8uNnVACR1j4UhUTDc78YnMrw+Y3b2MMt9BwpYDokynY11cw2Q1G+N3Q+y1/q8DcN7wp8JaGB5kcBD9W/j43bSodnTH8VWwbzicYJiWlZMGdN2HdQYj0a/TM3iCIQDjGmhLCUR6WC2/QTqV9vCp5B0EnjZKR5MjgRXi/xEev+YrvFqWtk1BHN3eQ2Gds3SfDro3mLpRIkEETYtUnyBfSmVvnR23AGyXSR4tnUl6Mcyvs0GzhWcsog0mwtgkg11qVAcY52oeXMI3dwa2uw5Zu8lX+T0+g==
-x-ms-office365-filtering-correlation-id: 4c104db2-7e99-4c3b-740b-08d491fe815b
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(2017030254075)(201703131423075);
-	SRVR:BLUPR15MB0498; 
-x-microsoft-antispam-prvs: <BLUPR15MB0498FCD837AD00C11ACF169FD0160@BLUPR15MB0498.namprd15.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(166708455590820)(21748063052155)(228905959029699); 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040450)(601004)(2401047)(8121501046)(5005006)(3002001)(93006095)(93001095)(10201501046)(6041248)(201703131423075)(201702281528075)(201703061421075)(20161123564025)(2016111802025)(20161123562025)(20161123555025)(20161123560025)(6043046)(6072148);
-	SRVR:BLUPR15MB0498; BCL:0; PCL:0; RULEID:; SRVR:BLUPR15MB0498; 
-x-forefront-prvs: 029651C7A1
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(39400400002)(39450400003)(39410400002)(39840400002)(13464003)(24454002)(57704003)(377454003)(18717965001)(76176999)(54356999)(86362001)(6116002)(3280700002)(50986999)(7066003)(99286003)(7906003)(5660300001)(74316002)(53936002)(966004)(229853002)(53376002)(102836003)(55016002)(6306002)(508600001)(54896002)(3846002)(6246003)(236005)(2950100002)(6916009)(7736002)(7696004)(790700001)(81166006)(8676002)(9686003)(189998001)(53546009)(3660700001)(8936002)(2906002)(25786009)(77096006)(6506006)(606005)(33656002)(6436002)(2900100001)(110136004)(122556002)(38730400002)(66066001)(4326008);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR15MB0498;
-	H:BLUPR15MB0500.namprd15.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.42 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E2D9E00A30
+	for <yocto@yoctoproject.org>; Wed,  3 May 2017 02:58:22 -0700 (PDT)
+Received: by mail-wm0-f42.google.com with SMTP id m123so51088982wma.0
+	for <yocto@yoctoproject.org>; Wed, 03 May 2017 02:58:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=gb6F+ERkezFBxjZ2WpPNxfEL6jompLszR08cR0MDwws=;
+	b=WFWn6a3gs4gVHzUhsCO3BNFpjI06145/yQIl0TIdYwF33PxMtbt5DfefKkfMsa/nk5
+	9APp7kuUB3hXvi+3FTg/o8IOl9SttTKuhDVrqeMjRKPytp8bkJ+j7pC8f3W4D19h6Ltm
+	sugnNZXPBxPrCHAuEBty13E4KdYKsLHj09YPH4m/GzKnhT0oYQxkx880Z1g8MztCqlh+
+	FYFuOtdFG3jaUgmQLGFHiclk3+NU3V9PxJ0KNLgy1jvKSfnX8ZuTfq/keNnpOY+2pDWf
+	xAnp1Qm2VdOa8ZOGUZEsbso1MBJ9b+zzAyfvPm1sqtOU4lhCOM0f07/i0cH95CuPwJAS
+	2wvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=gb6F+ERkezFBxjZ2WpPNxfEL6jompLszR08cR0MDwws=;
+	b=T8ESkpUdeXE7fV+h10HLh4oUdGFHwbdQhBX+SYLGcSMmBurGDeESZ1ZiS0WZQ66wZ8
+	/tatVXU+HFPCk19gaNymabUgRocOZeYG8NaYR+mHj26uzWAt3B+nKGR0J+z4SEP9hdvJ
+	QqCxzIbHGlEiK5rRd5w1xH0DK7fqC1AMFzFH7JuiSyrh5qm3bZhZezfyhawkBDzumFkf
+	4xGrK69kquY9fR9h+T/9tMOIWQ+V3qLPC1Z05bR4ct+l9VcxR4bZuSebmAWRr+zDE3y1
+	xGyJhHNTGh2mvq7WvU+DvXnQvFQqaoYm/WgtpKPTuLS5ijiBfeFxzy4no7dhvih0Eetr
+	TpNA==
+X-Gm-Message-State: AN3rC/56qobB8ASiQLRKPpaURAoF4ysyR0CI2o96TFAhh+f4eBNGS24z
+	ldQesuhbWSWLQS1lI9ENHjvOT8yNR8xG
+X-Received: by 10.25.209.20 with SMTP id i20mr10302036lfg.49.1493805501641;
+	Wed, 03 May 2017 02:58:21 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: embedur.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 May 2017 08:29:23.9994 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3e7c9d67-afab-4694-94e1-af28129ed65f
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR15MB0498
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Recipe changes to pull/fetch the source code from local instead of a remote server.
+Received: by 10.25.22.201 with HTTP; Wed, 3 May 2017 02:58:21 -0700 (PDT)
+From: windswept321 <windswept321@gmail.com>
+Date: Wed, 3 May 2017 10:58:21 +0100
+Message-ID: <CALBpLHZ4h--81Q6J7c_OfX8tSaO9coSa4H4KRohjFDL42Pq=6A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto Beginner Issues When Adding Layers / Recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -93,326 +69,250 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 May 2017 09:03:30 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BLUPR15MB0500B226413293138C64D9E2D0160BLUPR15MB0500namp_"
+X-List-Received-Date: Wed, 03 May 2017 09:58:25 -0000
+Content-Type: multipart/alternative; boundary=001a114009c849fd65054e9bb207
 
---_000_BLUPR15MB0500B226413293138C64D9E2D0160BLUPR15MB0500namp_
-Content-Type: text/plain; charset="us-ascii"
+--001a114009c849fd65054e9bb207
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Alex,
-
-
-
-Please see the recipe here.
-
-
-
-SUMMARY =3D "HAL for RDK CCSP components"
-
-HOMEPAGE =3D "http://github.com/belvedere-yocto/hal"
-
-
-
-LICENSE =3D "Apache-2.0"
-
-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D175792518e4ac015ab6696d16c4f607e=
-"
-
-
-
-PROVIDES =3D "virtual/ccsp-hal"
-
-
-
-SRC_URI =3D "${RDKB_CCSP_ROOT_GIT}/hal/generic;protocol=3D${RDK_GIT_PROTOCO=
-L};branch=3D${CCSP_GIT_BRANCH};name=3Dhal"
-
-
-
-SRCREV_hal =3D "${AUTOREV}"
-
-SRCREV_FORMAT =3D "hal"
-
-
-
-PV =3D "${RDK_RELEASE}+git${SRCPV}"
-
-
-
-S =3D "${WORKDIR}/git"
-
-CFLAGS_prepend =3D "-I${S}/include"
-
-
-
-inherit autotools
-
-
-
-I went through the link as well, however I don't see the variables (EXTERNA=
-LSRC<http://www.yoctoproject.org/docs/2.2/ref-manual/ref-manual.html#var-EX=
-TERNALSRC>, EXTERNALSRC_BUILD<http://www.yoctoproject.org/docs/2.2/ref-manu=
-al/ref-manual.html#var-EXTERNALSRC_BUILD>) are defined in the recipes.
-
-
-
-Thanks
-
--Aravindh
-
------Original Message-----
-From: Alexander Kanavin [mailto:alexander.kanavin@linux.intel.com]
-Sent: 03 May 2017 12:42
-To: yocto@yoctoproject.org; Aravindhlal G.S.S
-Subject: Re: [yocto] Recipe changes to pull/fetch the source code from loca=
-l instead of a remote server.
-
-
-
-On 05/03/2017 08:16 AM, Aravindhlal G.S.S wrote:
-
-> I am trying to make changes in the bitbake files(recipes) to
-
-> pull/fetch the source code from the local instead of the remote
-
-> server. The SRC_URI points to the local workspace, however I see that
-
-> while building the source code is pulled from a remote repository.
-
-
-
-Can you copy-paste the recipe here? Or at least what the SRC_URI specifical=
-ly says? You can obfuscate your project name etc, if that is confidential.
-
-
-
-> Do I need to make any specific changes in the recipes or any conf
-
-> files under build directory (auto.conf) ? Could you please let me your
-
-> pointers/suggestions ?
-
-
-
-Maybe this?
-
-http://www.yoctoproject.org/docs/2.2/dev-manual/dev-manual.html#building-so=
-ftware-from-an-external-source
-
-
-
-> [Gentle reminder]
-
-> Can someone help me here, please ?
-
-
-
-It's more difficult to provide help, if you describe the issue in generic t=
-erms, maybe that's why there was no reaction.
-
-
-
-
-
-Alex
-
---_000_BLUPR15MB0500B226413293138C64D9E2D0160BLUPR15MB0500namp_
-Content-Type: text/html; charset="us-ascii"
+Hi List,
+
+I have been trying to get a build up and running for the past couple of
+days following the latest official quick-start guide with no success
+(Debian 8 =E2=80=94> Debian 7 =E2=80=94> Ubuntu LTS=E2=80=A6)
+I want to have openssh, ntp, iptables, dnsmasq and hostapd added to the
+build. The meta-amd layer was added in case of there being anything useful
+for a GX-412TC Crowned Eagle CPU. It doesn=E2=80=99t seem to have any impac=
+t at the
+moment.
+
+My bblayers.conf customisations:
+
+  /home/aaron/poky/meta-amd/common \
+  /home/aaron/poky/meta-openembedded/meta-networking \
+  /home/aaron/poky/meta-openembedded/meta-python \
+  /home/aaron/poky/meta-openembedded/meta-oe \
+
+Each of these was added to the poky directory using git clone =E2=80=9Clink=
+=E2=80=9D. Some
+are dependencies for meta-networking.
+
+I have added the following to my local.conf:
+
+CORE_IMAGE_EXTRA_INSTALL +=3D "openssh ntp iptables dnsmasq hostapd=E2=80=
+=9D
+
+On running bitbake core-image-minimal I get the below error.
+Is there something wrong with my configuration?
+
+*ERROR*: ExpansionError during parsing
+/home/aaron/poky/meta-openembedded/meta-python/recipes-extended/python-pyep=
+hem/
+python-pyephem_3.7.6.0.bb
+Traceback (most recent call last):
+  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 386, in
+DataSmart.expandWithRefs(s=3D' ${PYPI_SRC_URI}', varname=3D'SRC_URI'):
+                 try:
+    >                s =3D __expand_var_regexp__.sub(varparse.var_sub, s)
+                     try:
+  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 111, in
+VariableParse.var_sub(match=3D<_sre.SRE_Match object; span=3D(1, 16),
+match=3D'${PYPI_SRC_URI}'>):
+                 else:
+    >                var =3D self.d.getVarFlag(key, "_content", True)
+                 self.references.add(key)
+  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 737, in
+DataSmart.getVarFlag(var=3D'PYPI_SRC_URI', flag=3D'_content', expand=3DTrue=
+,
+noweakdefault=3DFalse, parsing=3DFalse):
+                     cachename =3D var + "[" + flag + "]"
+    >            value =3D self.expand(value, cachename)
+
+  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 410, in
+DataSmart.expand(s=3D'${@pypi_src_uri(d)}', varname=3D'PYPI_SRC_URI'):
+         def expand(self, s, varname =3D None):
+    >        return self.expandWithRefs(s, varname).value
+
+  File "/home/aaron/poky/bitbake/lib/bb/data_smart.py", line 400, in
+DataSmart.expandWithRefs(s=3D'${@pypi_src_uri(d)}', varname=3D'PYPI_SRC_URI=
+'):
+                 except Exception as exc:
+    >                raise ExpansionError(varname, s, exc) from exc
+
+bb.data_smart.ExpansionError: Failure expanding variable PYPI_SRC_URI,
+expression was ${@pypi_src_uri(d)} which triggered exception TypeError:
+getVar() missing 1 required positional argument: 'expand'
+
+
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+--001a114009c849fd65054e9bb207
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-IN" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">Alex,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Please see the recipe here.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">SUMMARY =3D &quo=
-t;HAL for RDK CCSP components&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">HOMEPAGE =3D &qu=
-ot;http://github.com/belvedere-yocto/hal&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow"><o:p>&nbsp;</o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">LICENSE =3D &quo=
-t;Apache-2.0&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">LIC_FILES_CHKSUM=
- =3D &quot;file://LICENSE;md5=3D175792518e4ac015ab6696d16c4f607e&quot;<o:p>=
-</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow"><o:p>&nbsp;</o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">PROVIDES =3D &qu=
-ot;virtual/ccsp-hal&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow"><o:p>&nbsp;</o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">SRC_URI =3D &quo=
-t;${RDKB_CCSP_ROOT_GIT}/hal/generic;protocol=3D${RDK_GIT_PROTOCOL};branch=
-=3D${CCSP_GIT_BRANCH};name=3Dhal&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow"><o:p>&nbsp;</o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">SRCREV_hal =3D &=
-quot;${AUTOREV}&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">SRCREV_FORMAT =
-=3D &quot;hal&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow"><o:p>&nbsp;</o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">PV =3D &quot;${R=
-DK_RELEASE}&#43;git${SRCPV}&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow"><o:p>&nbsp;</o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">S =3D &quot;${WO=
-RKDIR}/git&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">CFLAGS_prepend =
-=3D &quot;-I${S}/include&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow"><o:p>&nbsp;</o:p=
-></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;;background:yellow;mso-highlight:yellow">inherit autotool=
-s</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;=
-"><o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:10.0pt;font-family:&quot=
-;Courier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText">I went through the link as well, however I don&#8=
-217;t see the variables (<a href=3D"http://www.yoctoproject.org/docs/2.2/re=
-f-manual/ref-manual.html#var-EXTERNALSRC" target=3D"_top">EXTERNALSRC</a>,
-<a href=3D"http://www.yoctoproject.org/docs/2.2/ref-manual/ref-manual.html#=
-var-EXTERNALSRC_BUILD" target=3D"_top">
-EXTERNALSRC_BUILD</a>) are defined in the recipes.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><a name=3D"_MailEndCompose"><o:p>&nbsp;</o:p></a>=
-</p>
-<p class=3D"MsoPlainText">Thanks<o:p></o:p></p>
-<p class=3D"MsoPlainText">-Aravindh<o:p></o:p></p>
-<p class=3D"MsoPlainText"><span lang=3D"EN-US">-----Original Message-----<b=
-r>
-From: Alexander Kanavin [mailto:alexander.kanavin@linux.intel.com] <br>
-Sent: 03 May 2017 12:42<br>
-To: yocto@yoctoproject.org; Aravindhlal G.S.S<br>
-Subject: Re: [yocto] Recipe changes to pull/fetch the source code from loca=
-l instead of a remote server.</span><o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">On 05/03/2017 08:16 AM, Aravindhlal G.S.S wrote:<=
-o:p></o:p></p>
-<p class=3D"MsoPlainText">&gt; I am trying to make changes in the bitbake f=
-iles(recipes) to
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">&gt; pull/fetch the source code from the local in=
-stead of the remote
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">&gt; server. The SRC_URI points to the local work=
-space, however I see that
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">&gt; while building the source code is pulled fro=
-m a remote repository.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Can you copy-paste the recipe here? Or at least w=
-hat the SRC_URI specifically says? You can obfuscate your project name etc,=
- if that is confidential.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">&gt; Do I need to make any specific changes in th=
-e recipes or any conf
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">&gt; files under build directory (auto.conf) ? Co=
-uld you please let me your
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">&gt; pointers/suggestions ?<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Maybe this?<o:p></o:p></p>
-<p class=3D"MsoPlainText"><a href=3D"http://www.yoctoproject.org/docs/2.2/d=
-ev-manual/dev-manual.html#building-software-from-an-external-source"><span =
-style=3D"color:windowtext;text-decoration:none">http://www.yoctoproject.org=
-/docs/2.2/dev-manual/dev-manual.html#building-software-from-an-external-sou=
-rce</span></a><o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">&gt; [Gentle reminder]<o:p></o:p></p>
-<p class=3D"MsoPlainText">&gt; Can someone help me here, please ?<o:p></o:p=
-></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">It's more difficult to provide help, if you descr=
-ibe the issue in generic terms, maybe that's why there was no reaction.<o:p=
-></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Alex<o:p></o:p></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr">
 
---_000_BLUPR15MB0500B226413293138C64D9E2D0160BLUPR15MB0500namp_--
+
+
+
+
+
+
+<p class=3D"gmail-p1"><font face=3D"HelveticaNeue" class=3D"gmail-" style=
+=3D"color:rgb(0,0,0);font-size:14px">Hi List,</font></p><div class=3D"gmail=
+-" style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px"><font fa=
+ce=3D"HelveticaNeue" class=3D"gmail-" style=3D"font-size:14px"><br class=3D=
+"gmail-"></font></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-=
+family:helvetica;font-size:12px"><font face=3D"HelveticaNeue" class=3D"gmai=
+l-" style=3D"font-size:14px">I have been trying to get a build up and runni=
+ng for the past couple of days following the latest official quick-start gu=
+ide with no success (Debian 8 =E2=80=94&gt; Debian 7 =E2=80=94&gt; Ubuntu L=
+TS=E2=80=A6)</font></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);fo=
+nt-family:helvetica;font-size:12px"><font face=3D"HelveticaNeue" class=3D"g=
+mail-" style=3D"font-size:14px">I want to have openssh, ntp, iptables, dnsm=
+asq and hostapd added to the build. The meta-amd layer was added in case of=
+ there being anything useful for a GX-412TC Crowned Eagle CPU. It doesn=E2=
+=80=99t seem to have any impact at the moment.</font></div><div class=3D"gm=
+ail-" style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px"><font=
+ face=3D"HelveticaNeue" class=3D"gmail-" style=3D"font-size:14px"><br class=
+=3D"gmail-"></font></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);fo=
+nt-family:helvetica;font-size:12px"><font face=3D"HelveticaNeue" class=3D"g=
+mail-" style=3D"font-size:14px">My bblayers.conf customisations:</font></di=
+v><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:helvetica;fon=
+t-size:12px"><font face=3D"HelveticaNeue" class=3D"gmail-" style=3D"font-si=
+ze:14px"><br class=3D"gmail-"></font></div><div class=3D"gmail-" style=3D"c=
+olor:rgb(0,0,0);font-family:helvetica;font-size:12px"><div class=3D"gmail-"=
+ style=3D"margin:0px;line-height:normal"><span class=3D"gmail-" style=3D"fo=
+nt-variant-ligatures:no-common-ligatures;font-size:14px"><font face=3D"Helv=
+eticaNeue" class=3D"gmail-">=C2=A0=C2=A0/home/aaron/poky/meta-amd/common \<=
+/font></span></div><div class=3D"gmail-" style=3D"margin:0px;line-height:no=
+rmal"><span class=3D"gmail-" style=3D"font-variant-ligatures:no-common-liga=
+tures;font-size:14px"><font face=3D"HelveticaNeue" class=3D"gmail-">=C2=A0 =
+/home/aaron/poky/meta-openembedded/meta-networking \</font></span></div><di=
+v class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"g=
+mail-" style=3D"font-variant-ligatures:no-common-ligatures;font-size:14px">=
+<font face=3D"HelveticaNeue" class=3D"gmail-">=C2=A0 /home/aaron/poky/meta-=
+openembedded/meta-python \</font></span></div><div class=3D"gmail-" style=
+=3D"margin:0px;line-height:normal"><span class=3D"gmail-" style=3D"font-var=
+iant-ligatures:no-common-ligatures;font-size:14px"><font face=3D"HelveticaN=
+eue" class=3D"gmail-">=C2=A0 /home/aaron/poky/meta-openembedded/meta-oe \</=
+font></span></div></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);fon=
+t-family:helvetica;font-size:12px;margin:0px;line-height:normal"><span clas=
+s=3D"gmail-" style=3D"font-variant-ligatures:no-common-ligatures;font-size:=
+14px"><font face=3D"HelveticaNeue" class=3D"gmail-"><br class=3D"gmail-"></=
+font></span></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-fami=
+ly:helvetica;font-size:12px;margin:0px;line-height:normal"><span class=3D"g=
+mail-" style=3D"font-variant-ligatures:no-common-ligatures;font-size:14px">=
+<font face=3D"HelveticaNeue" class=3D"gmail-">Each of these was added to th=
+e poky directory using git clone =E2=80=9Clink=E2=80=9D. Some are dependenc=
+ies for meta-networking.</font></span></div><div class=3D"gmail-" style=3D"=
+color:rgb(0,0,0);font-family:helvetica;font-size:12px"><font face=3D"Helvet=
+icaNeue" class=3D"gmail-" style=3D"font-size:14px"><br class=3D"gmail-"></f=
+ont></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:helve=
+tica;font-size:12px"><font face=3D"HelveticaNeue" class=3D"gmail-" style=3D=
+"font-size:14px">I have added the following to my local.conf:</font></div><=
+div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family:helvetica;font-s=
+ize:12px"><font face=3D"HelveticaNeue" class=3D"gmail-" style=3D"font-size:=
+14px"><br class=3D"gmail-"></font></div><div class=3D"gmail-" style=3D"colo=
+r:rgb(0,0,0);font-family:helvetica;font-size:12px"><div class=3D"gmail-" st=
+yle=3D"margin:0px;line-height:normal"><span class=3D"gmail-" style=3D"font-=
+variant-ligatures:no-common-ligatures;font-size:14px"><font face=3D"Helveti=
+caNeue" class=3D"gmail-">CORE_IMAGE_EXTRA_INSTALL +=3D &quot;openssh ntp ip=
+tables dnsmasq hostapd=E2=80=9D</font></span></div></div><div class=3D"gmai=
+l-" style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px;margin:0=
+px;line-height:normal"><span class=3D"gmail-" style=3D"font-variant-ligatur=
+es:no-common-ligatures;font-size:14px"><font face=3D"HelveticaNeue" class=
+=3D"gmail-"><br class=3D"gmail-"></font></span></div><div class=3D"gmail-" =
+style=3D"color:rgb(0,0,0);font-family:helvetica;font-size:12px;margin:0px;l=
+ine-height:normal"><span class=3D"gmail-" style=3D"font-variant-ligatures:n=
+o-common-ligatures;font-size:14px"><font face=3D"HelveticaNeue" class=3D"gm=
+ail-">On running bitbake core-image-minimal I get the=C2=A0below error.</fo=
+nt></span></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-family=
+:helvetica;font-size:12px;margin:0px;line-height:normal"><font face=3D"Helv=
+eticaNeue" class=3D"gmail-" style=3D"font-size:14px">Is there something wro=
+ng with my configuration?</font></div><div class=3D"gmail-" style=3D"color:=
+rgb(0,0,0);font-family:helvetica;margin:0px;font-size:11px;line-height:norm=
+al"><span class=3D"gmail-" style=3D"font-variant-ligatures:no-common-ligatu=
+res"><font face=3D"HelveticaNeue" class=3D"gmail-"><br class=3D"gmail-"></f=
+ont></span></div><div class=3D"gmail-" style=3D"color:rgb(0,0,0);font-famil=
+y:helvetica;margin:0px;font-size:11px;line-height:normal"><span class=3D"gm=
+ail-" style=3D"font-variant-ligatures:no-common-ligatures"><font face=3D"He=
+lveticaNeue" class=3D"gmail-"><div class=3D"gmail-" style=3D"margin:0px;lin=
+e-height:normal;color:rgb(195,55,32)"><span class=3D"gmail-"><b class=3D"gm=
+ail-">ERROR</b></span><span class=3D"gmail-" style=3D"color:rgb(0,0,0)">:=
+=C2=A0</span><span class=3D"gmail-">ExpansionError during parsing /home/aar=
+on/poky/meta-openembedded/meta-python/recipes-extended/python-pyephem/<a hr=
+ef=3D"http://python-pyephem_3.7.6.0.bb">python-pyephem_3.7.6.0.bb</a></span=
+></div><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span =
+class=3D"gmail-">Traceback (most recent call last):</span></div><div class=
+=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=
+=C2=A0 File &quot;/home/aaron/poky/bitbake/lib/bb/data_smart.py&quot;, line=
+ 386, in DataSmart.expandWithRefs(s=3D&#39; ${PYPI_SRC_URI}&#39;, varname=
+=3D&#39;SRC_URI&#39;):</span></div><div class=3D"gmail-" style=3D"margin:0p=
+x;line-height:normal"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 try:</span></div><div class=3D"gmail-" styl=
+e=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=A0 =C2=A0 &g=
+t;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 s =3D __expand_va=
+r_regexp__.sub(varparse.var_sub, s)</span></div><div class=3D"gmail-" style=
+=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 try:</span></di=
+v><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=
+=3D"gmail-">=C2=A0 File &quot;/home/aaron/poky/bitbake/lib/bb/data_smart.py=
+&quot;, line 111, in VariableParse.var_sub(match=3D&lt;_sre.SRE_Match objec=
+t; span=3D(1, 16), match=3D&#39;${PYPI_SRC_URI}&#39;&gt;):</span></div><div=
+ class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gm=
+ail-">=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:</=
+span></div><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><s=
+pan class=3D"gmail-">=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 var =3D self.d.getVarFlag(key, &quot;_content&quot;, T=
+rue)</span></div><div class=3D"gmail-" style=3D"margin:0px;line-height:norm=
+al"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 self.references.add(key)</span></div><div class=3D"gmail-" st=
+yle=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=A0 File &q=
+uot;/home/aaron/poky/bitbake/lib/bb/data_smart.py&quot;, line 737, in DataS=
+mart.getVarFlag(var=3D&#39;PYPI_SRC_URI&#39;, flag=3D&#39;_content&#39;, ex=
+pand=3DTrue, noweakdefault=3DFalse, parsing=3DFalse):</span></div><div clas=
+s=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gmail-"=
+>=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 cachename =3D var + &quot;[&quot; + flag + &quot;]&quot;</span></div><d=
+iv class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"=
+gmail-">=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 value =
+=3D self.expand(value, cachename)</span></div><div class=3D"gmail-" style=
+=3D"margin:0px;line-height:normal;min-height:13px"><span class=3D"gmail-">=
+=C2=A0 =C2=A0 =C2=A0</span><br class=3D"gmail-webkit-block-placeholder"></d=
+iv><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span clas=
+s=3D"gmail-">=C2=A0 File &quot;/home/aaron/poky/bitbake/lib/bb/data_smart.p=
+y&quot;, line 410, in DataSmart.expand(s=3D&#39;${@pypi_src_uri(d)}&#39;, v=
+arname=3D&#39;PYPI_SRC_URI&#39;):</span></div><div class=3D"gmail-" style=
+=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 def expand(self, s, varname =3D None):</span></div><div c=
+lass=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gmai=
+l-">=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.expandWithRef=
+s(s, varname).value</span></div><div class=3D"gmail-" style=3D"margin:0px;l=
+ine-height:normal;min-height:13px"><span class=3D"gmail-">=C2=A0 =C2=A0 =C2=
+=A0</span><br class=3D"gmail-webkit-block-placeholder"></div><div class=3D"=
+gmail-" style=3D"margin:0px;line-height:normal"><span class=3D"gmail-">=C2=
+=A0 File &quot;/home/aaron/poky/bitbake/lib/bb/data_smart.py&quot;, line 40=
+0, in DataSmart.expandWithRefs(s=3D&#39;${@pypi_src_uri(d)}&#39;, varname=
+=3D&#39;PYPI_SRC_URI&#39;):</span></div><div class=3D"gmail-" style=3D"marg=
+in:0px;line-height:normal"><span class=3D"gmail-">=C2=A0=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 except Exception as exc:</span></div=
+><div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=
+=3D"gmail-">=C2=A0 =C2=A0 &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 raise ExpansionError(varname, s, exc) from exc</span></div><div =
+class=3D"gmail-" style=3D"margin:0px;line-height:normal;min-height:13px"><s=
+pan class=3D"gmail-">=C2=A0 =C2=A0 =C2=A0</span><br class=3D"gmail-webkit-b=
+lock-placeholder"></div><div class=3D"gmail-" style=3D"margin:0px;line-heig=
+ht:normal"><span class=3D"gmail-">bb.data_smart.ExpansionError: Failure exp=
+anding variable PYPI_SRC_URI, expression was ${@pypi_src_uri(d)} which trig=
+gered exception TypeError: getVar() missing 1 required positional argument:=
+ &#39;expand&#39;</span></div><div class=3D"gmail-" style=3D"margin:0px;lin=
+e-height:normal;min-height:13px"><span class=3D"gmail-"></span><br class=3D=
+"gmail-"></div><div class=3D"gmail-" style=3D"margin:0px;line-height:normal=
+;min-height:13px"><span class=3D"gmail-"></span><br class=3D"gmail-"></div>=
+<div class=3D"gmail-" style=3D"margin:0px;line-height:normal"><span class=
+=3D"gmail-">Summary: There was 1 ERROR message shown, returning a non-zero =
+exit code.</span></div></font></span></div></div>
+
+--001a114009c849fd65054e9bb207--
