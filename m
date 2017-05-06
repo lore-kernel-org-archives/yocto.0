@@ -1,6 +1,6 @@
-Return-Path: <lukasz.zet@gmail.com>
+Return-Path: <romain.perier@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0BBF5E009AA; Fri,  5 May 2017 07:56:50 -0700 (PDT)
+	id ECBCDE00826; Sat,  6 May 2017 04:41:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (lukasz.zet[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.46 listed in list.dnswl.org]
+	mail provider *      (romain.perier[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,42 +17,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f46.google.com (mail-pg0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CFECE00970
-	for <yocto@yoctoproject.org>; Fri,  5 May 2017 07:56:49 -0700 (PDT)
-Received: by mail-pg0-f46.google.com with SMTP id o3so4159926pgn.2
-	for <yocto@yoctoproject.org>; Fri, 05 May 2017 07:56:49 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.193 listed in list.dnswl.org]
+Received: from mail-io0-f193.google.com (mail-io0-f193.google.com
+	[209.85.223.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 853E5E00724
+	for <yocto@yoctoproject.org>; Sat,  6 May 2017 04:41:12 -0700 (PDT)
+Received: by mail-io0-f193.google.com with SMTP id v34so5066849iov.2
+	for <yocto@yoctoproject.org>; Sat, 06 May 2017 04:41:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=de1PSppgIcXY5r2bX2F0uYJBZW7RgeZNajhjSG+b0so=;
-	b=UhPfzCtFJ5DYgYML7p7nm5tYo3q0XWgJ/yNpNcJy1D40ExonEu+GHZx5RTRc/Js+5n
-	omrMVC2M2Iphmd/5Ru5Vx9yLTFh8cFu5Q8Q6vWmF+r2rgHZB5+efGA8v8oRHltR2oJ/R
-	7qNPdcjduEhzoWti9As3yaSQ+FwFDDKcC1rNoxnAhF55gn0p8Vbgq0MRwESoED4x2WLY
-	ZO2RdqYySfb+gri+g+kkfL0fPAUk32kQTguspNah/lQ92F4XBivBdCWfCMBp3H3wM/gk
-	J8AeYmk143KidzWvjcf4Z4DGKsp20XX6fI76sUsk/mR2nOjopW3XjSm8vhH6clomwUHd
-	0lQQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=v7i9Lp6p1b5sYGIUHaaYDo+XAVgCUtbyNdhC7/R/nWU=;
+	b=DsAKFLpe4ukedU9EvJhQ6uypG7Cud0tl+eUGN7CIv7OKJ+bz+J0sjjmBWHextfnmE3
+	2fR6briORJoI12UkJvzQ6U2GyRzRGelp2C+BUZaFJmMlvwHdarcdKIv4zsWuGeVI6myC
+	FHPNf008lvyvE2mDR8yHI/8BLeRKLiKl/qAZAkBnd910oqCLUTFHbncc4IZ3OSEwLvP9
+	h2TpaONVRVru2VMII+rsJp3hQNzabh/NfvbbRO5EsyOjl9rAhHzWSsuwcn4MXeifo+gT
+	zWOdiv9M7SvC/kwI5G7xBr6zerj8pwXzZDfgX4ODAhNy3ExaXlng9oJbq3UgxTNCFnuM
+	5gkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=de1PSppgIcXY5r2bX2F0uYJBZW7RgeZNajhjSG+b0so=;
-	b=P6B8milX1unjn7dx6eO5tlgKZCUxxCk3mZfRwmgf3XhHr8u/CsVCNeMTGLS+Q/rqUi
-	ewRdzqF6+piC3DG4ShNoSg5gcPNWY671gjZko2lpXAfM87b7JOTzyiDR9QLWVxLCql3a
-	OVKoUK5FjBqSMgWh/Vkbuis9y58bj9k4ZLDxWAZa4tHwHojfwxun8UoAXbQEca1b8wHP
-	wmykYSiDp+QprTKiqWW/3YBnpnzoOUObj0K8HyiUpiFUiiufpaZIgmNqMshpvD5pSYUC
-	743tC2iX7WGLaH0wieKoS3k3oN+BXrHyffoX8DrxvmNB8X3s+ITePdTpEkWRmysTRSDD
-	rieg==
-X-Gm-Message-State: AN3rC/6o72r+LlaIK2bEdLoFmy8WdVKY3Y7rLE5XfjKCFHlDtmlCDoj2
-	7ZtO6ynToPcxS78xkMSxw37gFOB6WlBW
-X-Received: by 10.84.213.2 with SMTP id f2mr46162527pli.22.1493996208495; Fri,
-	05 May 2017 07:56:48 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=v7i9Lp6p1b5sYGIUHaaYDo+XAVgCUtbyNdhC7/R/nWU=;
+	b=DMkOEYy5FCg+lnR9LKxm76JfWcGGC9hbQ8oG+GEkcmW5ibr1wigJtoDFG8DzG7Mbvn
+	83XZSJD6mbF864MBvVXUNBReWb+oS5Di8AgVcG07oOMI64rJIDZgsrNi3TR3MnNOGnq3
+	6qTUgrmsrdaLgukjzJ28zuHy/eOO4KE25jTjXHIFIkqCQfsombtgLwOzM1zIaZH5ZaxC
+	ZTTzkn4O3CylAp4aGyX62yY3CQPfZpAP6rMRZaQN0BkucPSzftQOX5ZCwuhPBJklB7kg
+	oF3qqBq3nMeg+EOEokeKTIC9HWiWAeUVN2QGt2/aVFqbdOlsj++C2uL97e4IVrZnDIMF
+	SicA==
+X-Gm-Message-State: AN3rC/4c0VL4vEqM0LgyER5rap5Dl9qH+RX1Hykih6LGpfwNrmRxA2pA
+	ItmESBEZrqEyuFH8QRTXcwg2Ocq8ig==
+X-Received: by 10.107.190.193 with SMTP id o184mr23687658iof.95.1494070871644; 
+	Sat, 06 May 2017 04:41:11 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.100.155.44 with HTTP; Fri, 5 May 2017 07:56:48 -0700 (PDT)
-From: =?UTF-8?B?xYF1a2FzeiBaZW3FgmE=?= <lukasz.zet@gmail.com>
-Date: Fri, 5 May 2017 16:56:48 +0200
-Message-ID: <CAK1aAejWoiumWWROkpQMfYfpQzcwBej=Txx-JCp-psr4R2HCpw@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Sat, 06 May 2017 02:21:08 -0700
-Subject: How to use '&' character in Yocto SRC_URI svn://
+Received: by 10.79.27.145 with HTTP; Sat, 6 May 2017 04:41:11 -0700 (PDT)
+In-Reply-To: <20170430022345.23508-1-twoerner@gmail.com>
+References: <20170430022345.23508-1-twoerner@gmail.com>
+From: Romain Perier <romain.perier@gmail.com>
+Date: Sat, 6 May 2017 13:41:11 +0200
+Message-ID: <CABgxDoKxp6RVb0oXpMr6Lui671ZT1qio1bkvCZLU4PhGuUeF6A@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-rockchip][PATCH] README: remove irrelevant information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,61 +71,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 May 2017 14:56:50 -0000
-Content-Type: multipart/alternative; boundary=f403045d21064da228054ec819a9
+X-List-Received-Date: Sat, 06 May 2017 11:41:19 -0000
+Content-Type: multipart/alternative; boundary=001a114f3b3092e27b054ed97b25
 
---f403045d21064da228054ec819a9
+--001a114f3b3092e27b054ed97b25
 Content-Type: text/plain; charset=UTF-8
 
 Hello,
 
-I have a problem to build recipe containing & character in SVN path.
-SRC_URI =
-"svn://servf7/Valve&Actuator/DVPII/trunk/SOCPACManEnv;module=trunk;rev=100108"
+Even if I agree with the reason of why you want to remove this section. I
+think , it might be a good point to keep a note about this in the README.
+Just explain that this is not up to the bsp layer to do this, but to the
+distro (a short sentence).
 
-It does not work, because SVN fetcher cannot find sources:
-Failed to fetch URL
-svn://servf7/Valve&Actuator/DVPII/trunk/SOCPACManEnv;module=trunk;rev=100108,
-attempting MIRRORS if available.
+What do you think ?
+Romain
 
-Adding escape character \& works better - sources are downloaded, however
-for some reason Yocto adds another \ and cannot find downloaded file (what
-exists:
-/trunk_servf7_.Valve&Actuator.DVPII.trunk.SOCPACManEnv_100108_.tar.gz):
-Exception: FileNotFoundError: [Errno 2] No such file or directory:
-'/downloads/trunk_servf7_.Valve\\&Actuator.DVPII.trunk.SOCPACManEnv_100108_.tar.gz'
 
-I have tried escaping by Valve\0x26Actuator, Valve%26Actuator, but in those
-cases SVN could not locate URL.
+2017-04-30 4:23 GMT+02:00 Trevor Woerner <twoerner@gmail.com>:
 
-Unfortunately I cannot rename SVN folder, because it contains dozens of old
-subprojects.
-Yocto Morty 2.2.1.
+> As of openembedded-core commit 2b3ae58f5eaecc8474761c543ff5347aa0e3c4c8
+> hardfp
+> is enabled by default.
+>
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+>  README | 16 ----------------
+>  1 file changed, 16 deletions(-)
+>
+> diff --git a/README b/README
+> index b2e89f3..7f4a499 100644
+> --- a/README
+> +++ b/README
+> @@ -49,7 +49,6 @@ Table of Contents
+>    I. Configure yocto/oe environment
+>   II. Building a second level bootloader based on kexec
+>  III. Booting your device
+> - IV. Performance
+>
+>  I. Configure yocto/oe environment
+>  ========================================
+> @@ -127,18 +126,3 @@ linux-next from tftp='tftp://192.168.0.5/zImage
+> dtb=tftp://192.168.0.5/<MACHINE>
+>  Then, plug your SDCARD into your Rockchip device and power on the board.
+> If
+>  everything worked fine, Petitboot should be started automatically and
+> list all
+>  entries found in the configuration file.
+> -
+> -IV. Performance
+> -===============
+> -
+> -By default a BSP layer should not be tuning a build, this is a
+> DISTRO-level
+> -decision. As such the default machine settings are meant to be the lowest
+> -common denominator in order to maximize generality. If you are interested
+> in
+> -tweaking your build to maximize performance you can either use a DISTRO
+> that
+> -has these same goals, or you can add settings in your configuration files
+> -(e.g. local.conf) as follows:
+> -
+> -       for rk3288:
+> -               DEFAULTTUNE = "cortexa17hf-neon-vfpv4"
+> -       for rk3066:
+> -               DEFAULTTUNE = "cortexa9-neon"
+> --
+> 2.12.0.rc1.48.g076c053
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Thank you in advance.
-
-Best regards,
- Lukasz
-
---f403045d21064da228054ec819a9
+--001a114f3b3092e27b054ed97b25
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hello,<br><br>I have a problem to build recipe c=
-ontaining &amp; character in SVN path.<br>SRC_URI =3D &quot;svn://servf7/Va=
-lve&amp;Actuator/DVPII/trunk/SOCPACManEnv;module=3Dtrunk;rev=3D100108&quot;=
-<br><br>It does not work, because SVN fetcher cannot find sources:<br>Faile=
-d to fetch URL svn://servf7/Valve&amp;Actuator/DVPII/trunk/SOCPACManEnv;mod=
-ule=3Dtrunk;rev=3D100108, attempting MIRRORS if available.<br><br>Adding es=
-cape character \&amp; works better - sources are downloaded, however for so=
-me reason Yocto adds another \ and cannot find downloaded file (what exists=
-: /trunk_servf7_.Valve&amp;Actuator.DVPII.trunk.SOCPACManEnv_100108_.tar.gz=
-):<br>Exception: FileNotFoundError: [Errno 2] No such file or directory: &#=
-39;/downloads/trunk_servf7_.Valve\\&amp;Actuator.DVPII.trunk.SOCPACManEnv_1=
-00108_.tar.gz&#39;<br><br>I have tried escaping by Valve\0x26Actuator, Valv=
-e%26Actuator, but in those cases SVN could not locate URL.<br><br>Unfortuna=
-tely I cannot rename SVN folder, because it contains dozens of old subproje=
-cts.<br>Yocto Morty 2.2.1.<br><br></div><div>Thank you in advance.<br></div=
-><div><br></div>Best regards,<br></div>=C2=A0Lukasz<br></div>
+<div dir=3D"ltr">Hello,<div><br></div><div>Even if I agree with the reason =
+of why you want to remove this section. I think , it might be a good point =
+to keep a note about this in the README. Just explain that this is not up t=
+o the bsp layer to do this, but to the distro (a short sentence).</div><div=
+><br></div><div>What do you think ?</div><div>Romain</div><div><br></div></=
+div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2017-04-30 4:=
+23 GMT+02:00 Trevor Woerner <span dir=3D"ltr">&lt;<a href=3D"mailto:twoerne=
+r@gmail.com" target=3D"_blank">twoerner@gmail.com</a>&gt;</span>:<br><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex">As of openembedded-core commit 2b3ae58f5eaecc84747=
+61c543ff534<wbr>7aa0e3c4c8 hardfp<br>
+is enabled by default.<br>
+<br>
+Signed-off-by: Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com">two=
+erner@gmail.com</a>&gt;<br>
+---<br>
+=C2=A0README | 16 ----------------<br>
+=C2=A01 file changed, 16 deletions(-)<br>
+<br>
+diff --git a/README b/README<br>
+index b2e89f3..7f4a499 100644<br>
+--- a/README<br>
++++ b/README<br>
+@@ -49,7 +49,6 @@ Table of Contents<br>
+=C2=A0 =C2=A0I. Configure yocto/oe environment<br>
+=C2=A0 II. Building a second level bootloader based on kexec<br>
+=C2=A0III. Booting your device<br>
+- IV. Performance<br>
+<br>
+=C2=A0I. Configure yocto/oe environment<br>
+=C2=A0=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+@@ -127,18 +126,3 @@ linux-next from tftp=3D&#39;tftp://<a href=3D"http://1=
+92.168.0.5/zImage" rel=3D"noreferrer" target=3D"_blank">192.168.0.5/<wbr>zI=
+mage</a> dtb=3Dtftp://<a href=3D"http://192.168.0.5/" rel=3D"noreferrer" ta=
+rget=3D"_blank">192.168.0.5/</a>&lt;<wbr>MACHINE&gt;<br>
+=C2=A0Then, plug your SDCARD into your Rockchip device and power on the boa=
+rd. If<br>
+=C2=A0everything worked fine, Petitboot should be started automatically and=
+ list all<br>
+=C2=A0entries found in the configuration file.<br>
+-<br>
+-IV. Performance<br>
+-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+-<br>
+-By default a BSP layer should not be tuning a build, this is a DISTRO-leve=
+l<br>
+-decision. As such the default machine settings are meant to be the lowest<=
+br>
+-common denominator in order to maximize generality. If you are interested =
+in<br>
+-tweaking your build to maximize performance you can either use a DISTRO th=
+at<br>
+-has these same goals, or you can add settings in your configuration files<=
+br>
+-(e.g. local.conf) as follows:<br>
+-<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0for rk3288:<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DEFAULTTUNE =3D &qu=
+ot;cortexa17hf-neon-vfpv4&quot;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0for rk3066:<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DEFAULTTUNE =3D &qu=
+ot;cortexa9-neon&quot;<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+2.12.0.rc1.48.g076c053<br>
+<br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br></div>
 
---f403045d21064da228054ec819a9--
+--001a114f3b3092e27b054ed97b25--
