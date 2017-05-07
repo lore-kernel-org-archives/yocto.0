@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74A0CE00887; Sat,  6 May 2017 10:15:29 -0700 (PDT)
+	id 4BDE3E009C2; Sun,  7 May 2017 15:44:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,46 +18,54 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
-Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDB04E0050E
-	for <yocto@yoctoproject.org>; Sat,  6 May 2017 10:15:25 -0700 (PDT)
-Received: by mail-wm0-f52.google.com with SMTP id m123so28828133wma.0
-	for <yocto@yoctoproject.org>; Sat, 06 May 2017 10:15:25 -0700 (PDT)
+	*      [209.85.192.193 listed in list.dnswl.org]
+Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
+	[209.85.192.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BFF0E00524
+	for <yocto@yoctoproject.org>; Sun,  7 May 2017 15:44:53 -0700 (PDT)
+Received: by mail-pf0-f193.google.com with SMTP id w69so1751135pfk.1
+	for <yocto@yoctoproject.org>; Sun, 07 May 2017 15:44:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=5tudpFxvoYLCuKxY44jTXkDopDq3GoDMltAqRHNDbPQ=;
-	b=reEcgmNp+UjmaY8jKVQS6vmU8jw/vR0MPR+5vAn9XU8xNhqTfxiwPdcWV8w+aSOQ3d
-	AhwvpDOmiuPMNBXF+Zs+JRCClUilwM0Kn+WXTTf+1ikNxrXAOBsKcU1lb8u3avUMSbLP
-	M5wgAJwh6o76yHOZ47hu7xpWWC4YE8FhBrHSTNXxZkPJE55fusoUd0HmJbMxamU5lhwQ
-	rgXNjqMuHUkpTu6UkqaikU1639dynXJcVIxk7C9BoK3dloW0hDDBdOIVBGc9tZFQDd45
-	hIpSBwV4j5BT+ZQEEywSJ4WzNNy61AOWxNXd1ejWJtoFGH9mPa9UovGwfntneAf3JS/V
-	dXdw==
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding;
+	bh=y+wGWAWGgeIKu+RYtGCBIjj7MPH4eHBDtScS9CaD02s=;
+	b=Gbzh/jK9LlcDB7XYoXxZyPUL7LeKXDssW0r8lTtFz7loduTF1+qNjiSvK35CQ0qFbL
+	7jEqXr714TzYPM+X4uKMdxDfDRmXM/eajO6Mg3qC/2GZGnStp2gflOYag0oich5vjCZw
+	KJcdCDvgDWYM5A02ogbYLDT6hF7hEqAbnKvTzJ4RgrFgMmAEiXWZ0FA1yQ+YsIq2C9bB
+	35idvXgBXvARaua/n8YRDyAX8UfknJiTT+KQzP4VoCpPUxaGqNEUMQoJ9As+sBUdPv3V
+	j/maeCJGGs3VpivpMzwzrpAFnx+FtzqnWcMzg0rMMf4S04mPb5gjATai5pOUuktvl1Fz
+	h01A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=5tudpFxvoYLCuKxY44jTXkDopDq3GoDMltAqRHNDbPQ=;
-	b=e/NXhOoIs3F8hBds7lNJCNlNsxs0o3qD52JSepzyeRjfv72EL9FgUWJBmKoDLaa+0l
-	P/fX4XE4VhLLpUp7s687LE08PIhRzUv6UHaJ3A5/6bEgO/h5FyylLwRAoWOIia+RuHZt
-	he85kXAzkXIM1ZkHgoHJJmPDASUdWs/kqYNytzHOsSvO8MEpWnzVSlYGFy6McuuglrgK
-	erZ6rulg1Wnop3xkaICKS0qaMt7vWGkmw41lMKW4sd/zdb5sd0CQY8zjHJfJleS9Z2HP
-	W8LNLWaaJ3rM5/kDRbX2A4seGLVjp30P1daF4XNctJ+2YupS1B7wYuYbbGJZag+RQgp6
-	d1hg==
-X-Gm-Message-State: AN3rC/6YHyhvmo/UdSwOADtu5D6szDq3m+YIE4LnyvxGsXdO3gK6OJJI
-	jZzs25P9d1yf/XZzYluLtsPcPQNjNw==
-X-Received: by 10.80.147.195 with SMTP id o61mr6551829eda.178.1494090924495;
-	Sat, 06 May 2017 10:15:24 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
+	bh=y+wGWAWGgeIKu+RYtGCBIjj7MPH4eHBDtScS9CaD02s=;
+	b=sf6UvTnASrg4R2uaAbQ6OqiBfJ2HzHj0Y79GlleBVKGjGcqeYLqMIEV0ngW7zqLTwA
+	/bbMmwRu5pGYmos6yLkok7mQpO/w2NZgVMqTiUfBils6EXOQCAnq+YeG7AEo7hCw0xZ8
+	Ot7JfYITZTBShDsyhWwwI8ZCAlDUAGGsqgmucoenIxuQ9oZkgTJzgtpOu+bsg+IY5Z+n
+	Pxo1O5oenpQMqJg7ji1LHohY/y33aa8comNpfhoUV4LdfEhmCBLSKDFuhQn9jpdLI3Ad
+	k6qruJJikOissqneeoOE+y4x77h7QdpJXyrSaXjSqfOa1O6KC8uSlX8V30L7wwEjrdDF
+	nWEA==
+X-Gm-Message-State: AODbwcCtnTq4+qDdsEkI4cLVqZmI5Gv1K1wRo8aR3EA3c9muaT5HFCTf
+	/KQet7KbZ6FT54y5zCU=
+X-Received: by 10.99.181.78 with SMTP id u14mr9508471pgo.102.1494197092840;
+	Sun, 07 May 2017 15:44:52 -0700 (PDT)
+Received: from ?IPv6:2601:202:4001:9ea0:e3df:bf0a:9f90:498e?
+	([2601:202:4001:9ea0:e3df:bf0a:9f90:498e])
+	by smtp.gmail.com with ESMTPSA id
+	x5sm21379790pfd.94.2017.05.07.15.44.51 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 07 May 2017 15:44:52 -0700 (PDT)
+To: yocto@yoctoproject.org
+References: <20170427161431.43429-1-patrick.ohly@intel.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <8e8ba6fb-7ca9-a0f6-43d6-d51b6edb5bcf@gmail.com>
+Date: Sun, 7 May 2017 15:44:50 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.80.180.139 with HTTP; Sat, 6 May 2017 10:14:54 -0700 (PDT)
-In-Reply-To: <CAC+thW1Ehz4_s6pFYmNPPtfbtwoxVQXer-FR5YKEYgFP07KUPA@mail.gmail.com>
-References: <CAC+thW1Ehz4_s6pFYmNPPtfbtwoxVQXer-FR5YKEYgFP07KUPA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 6 May 2017 10:14:54 -0700
-Message-ID: <CAMKF1srwj+dQ-Mwf3L1g7C_osaKUazBezP-fmzknOWJVbOTh+A@mail.gmail.com>
-To: Andrea Galbusera <gizero@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] how to apply custom kernel configuration?
+In-Reply-To: <20170427161431.43429-1-patrick.ohly@intel.com>
+Subject: Re: [meta-security][PATCH 1/1] swtpm-wrappers-native.bb: need netstat
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,51 +77,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 May 2017 17:15:29 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 07 May 2017 22:44:57 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat, May 6, 2017 at 9:45 AM, Andrea Galbusera <gizero@gmail.com> wrote:
-> Hi!
->
-> I was wondering how to apply some extra kernel configuration from a custom
-> layer via a bbappend. I know that with meta-raspberrypi there exist some
-> variables you can define in local.conf that will drive how the kernel is
-> configured: but what about some very specific device driver nobody than me
-> is interest in? To me it seems it doesn't deserve a dedicated global oe
-> variable.
->
-> Some investigation showed this topic already came up on the list from time
-> to time in the past (most recently in [1]). To me it looks like there is
-> some common desire to get rid of the current "magic" carried out by
-> linux-rpi.inc by moving the linux-raspberrypi recipes into the configuration
-> fragments style.
->
-> In the short term, my question are: how do you guys manage to add your
-> custom kernel configurations? Do you rely on full blown static defconfigs?
-> Have you found any reliable way to do "differential" configurations with the
-> current state of metadata?
->
-> In a longer term, I'd really like to help moving towards supporting
-> configuration fragments for linux-raspberrypi, but I suspect it'd be a too
-> much hard task for my current understanding of the whole kernel
-> configuration workflow. Do you know of anyone already working on this or
-> does anyone have a clear idea of what is needed to get the work done? Some
-> times ago I tried to resurrect [2], but with no luck, probably due to some
-> changes that happened in the linux-yocto files in the meanwhile.
->
-> Comments from gurus are welcome! ;-)
 
-I have been hinting at using yocto kernel tooling. Idea is worth a pull request
-care sending one ?
 
+On 04/27/2017 09:14 AM, Patrick Ohly wrote:
+> netstat from net-tools-native is needed for swtpm_setup.sh, which uses
+> it to check whether the swtpm daemon has started. The scripts hangs in
+> a loop during startup when netstat is missing.
 >
-> [1] https://lists.yoctoproject.org/pipermail/yocto/2016-December/033559.html
-> [2] https://lists.yoctoproject.org/pipermail/yocto/2015-October/027034.html
+> Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
+merged
+
+thanks
+> ---
+>   recipes-tpm/swtpm/swtpm-wrappers-native.bb | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> diff --git a/recipes-tpm/swtpm/swtpm-wrappers-native.bb b/recipes-tpm/swtpm/swtpm-wrappers-native.bb
+> index 0af1db6..644f3ac 100644
+> --- a/recipes-tpm/swtpm/swtpm-wrappers-native.bb
+> +++ b/recipes-tpm/swtpm/swtpm-wrappers-native.bb
+> @@ -1,6 +1,6 @@
+>   SUMMARY = "SWTPM - OpenEmbedded wrapper scripts for native swtpm tools"
+>   LICENSE = "MIT"
+> -DEPENDS = "swtpm-native tpm-tools-native"
+> +DEPENDS = "swtpm-native tpm-tools-native net-tools-native"
+>   
+>   inherit native
+>   
+
 
