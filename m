@@ -1,65 +1,38 @@
-Return-Path: <patrick.ohly@intel.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96CF7E00AE4; Mon,  8 May 2017 06:36:24 -0700 (PDT)
+	id D2938E00AFD; Mon,  8 May 2017 08:14:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.53 listed in list.dnswl.org]
-Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FBDFE00A38
-	for <yocto@yoctoproject.org>; Mon,  8 May 2017 06:36:20 -0700 (PDT)
-Received: by mail-it0-f53.google.com with SMTP id e65so38684577ita.1
-	for <yocto@yoctoproject.org>; Mon, 08 May 2017 06:36:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:mime-version:content-transfer-encoding;
-	bh=4vXQ3hbpLcaMZSsVgqCxFgufJyKBAzs+i3l+GLLM6cY=;
-	b=SYKYX7e3yjSqHJM2pgTGlZw2o0RUcK4AJQTDg1WUUn81cLwnG0kscf2+G7ogfRf82n
-	uiRQsm8N6nkG56wkogvWRGP9Y31NhrxCh0sAnPICLQBeWW75KufAK+pe3kTCOP5n0WxA
-	1oVW0VxZCy6qxCIUejKWb6llkD+B8pJ2I7BG5LSpWN5iUlkLYV06y38D7veL1Zh7ZNYy
-	NDwbnvQOh6okp1g6PXR2/itASaIVOKXLQ6p4k+JRQWALAJguT5TVH9OWtWigQiyisBF2
-	ab3FXJGMudiS8LuE7gEt18Jg1fQQ/RjscZm/ba9K45f20ySVV2/ZrqmF8KrJDlg7eTUz
-	diGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:organization:mime-version:content-transfer-encoding;
-	bh=4vXQ3hbpLcaMZSsVgqCxFgufJyKBAzs+i3l+GLLM6cY=;
-	b=iKzTPqMhqFFIErDIY9k1Kzd/fyeR28sTPXN2ZGRnDLqey+XrU/DRRFDqN41HUpx15K
-	K0trZKgsj6l0SdSM24R/9kpSfQ3eJDEjizd6fqPrLHL84NhuKiazCeewoYm1k/ePsHuK
-	pfCkqRb0IbeErwWC1q/HtE++5EQdYgEhUfbdkRfB/mBwZgYwbJTxkiDorM0BjY+0SQYB
-	RNVMG2XB6/sfhzyNGeT+E8+xHBtIB/qL0MP/FWEMyGiBq90idyGWH7C9C/5WB7pt6st8
-	zLQDECiyjsaVhQoH67/IbStlRwWyRFfI70t+eHIrcLN+MzfVWhIMceLmEOxcaFO9UeIJ
-	zztg==
-X-Gm-Message-State: AN3rC/4IlpIo5vpGdaOzLdGKeWLfwlJTxRtzIykaEIsSkj6ypEjEKMs/
-	9oxMemoGnKGCcDgg
-X-Received: by 10.36.32.138 with SMTP id t132mr19603561itt.89.1494250580388;
-	Mon, 08 May 2017 06:36:20 -0700 (PDT)
-Received: from pohly-mobl1 (p5DE8D834.dip0.t-ipconnect.de. [93.232.216.52])
-	by smtp.gmail.com with ESMTPSA id
-	w130sm4516267ita.20.2017.05.08.06.36.17
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 08 May 2017 06:36:18 -0700 (PDT)
-Message-ID: <1494250575.4241.328.camel@intel.com>
-From: Patrick Ohly <patrick.ohly@intel.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
-Date: Mon, 08 May 2017 15:36:15 +0200
-In-Reply-To: <1487625169-22282-1-git-send-email-anibal.limon@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B54DE0080F
+	for <yocto@yoctoproject.org>; Mon,  8 May 2017 08:14:18 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	08 May 2017 08:14:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,309,1491289200"; 
+	d="asc'?scan'208";a="965846510"
+Received: from alimonb-mobl1.zpn.intel.com (HELO [10.219.128.122])
+	([10.219.128.122])
+	by orsmga003.jf.intel.com with ESMTP; 08 May 2017 08:14:17 -0700
+To: Patrick Ohly <patrick.ohly@intel.com>
 References: <1487625169-22282-1-git-send-email-anibal.limon@linux.intel.com>
-Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
+	<1494250575.4241.328.camel@intel.com>
+From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Message-ID: <59108B51.1000507@linux.intel.com>
+Date: Mon, 8 May 2017 10:14:25 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.3.0
+MIME-Version: 1.0
+In-Reply-To: <1494250575.4241.328.camel@intel.com>
 Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
 Subject: Re: [OE-core] [PATCHv2] yocto-compat-layer.py: Add script to YP Compatible Layer validation
 X-BeenThere: yocto@yoctoproject.org
@@ -73,32 +46,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 May 2017 13:36:24 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 08 May 2017 15:14:20 -0000
+X-Groupsio-MsgNum: 35910
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="LQ57mKhPqdcXLHPv1cTjQXT49Ewdlb2js"
 
-On Mon, 2017-02-20 at 15:12 -0600, Aníbal Limón wrote:
-> +    try:
-> +        ldata = bb.parse.handle(lconf, ldata, include=True)
-> +    except BaseException as exc:
-> +        raise LayerError(exc)
-
-Anibal, where is this LayerError class in compatlayer/__init__.py
-supposed to come from? It doesn't get imported, leading to:
-
-  File
-"/fast/work/intel-iot-refkit/openembedded-core/scripts/lib/compatlayer/__init__.py", line 45, in _get_layer_collections
-    raise LayerError(exc)
-NameError: name 'LayerError' is not defined
-
--- 
-Best Regards, Patrick Ohly
-
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
+--LQ57mKhPqdcXLHPv1cTjQXT49Ewdlb2js
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
 
+On 05/08/2017 08:36 AM, Patrick Ohly wrote:
+> On Mon, 2017-02-20 at 15:12 -0600, An=C3=ADbal Lim=C3=B3n wrote:
+>> +    try:
+>> +        ldata =3D bb.parse.handle(lconf, ldata, include=3DTrue)
+>> +    except BaseException as exc:
+>> +        raise LayerError(exc)
+>=20
+> Anibal, where is this LayerError class in compatlayer/__init__.py
+> supposed to come from? It doesn't get imported, leading to:
+>=20
+>   File
+> "/fast/work/intel-iot-refkit/openembedded-core/scripts/lib/compatlayer/=
+__init__.py", line 45, in _get_layer_collections
+>     raise LayerError(exc)
+> NameError: name 'LayerError' is not defined
 
+This code is based on kergoth ones from oe-tests-scripts [1], i forget
+to include the definition sorry for that but only extends exception to
+determine if there is a problem on parsing the layer conf.
+
+	Anibal
+
+
+[1]
+https://github.com/kergoth/oe-test-scripts/blob/726fef692c7464932c2ded0fa=
+b22a875df78a31f/bb-determine-layers#L111
+
+>=20
+
+
+--LQ57mKhPqdcXLHPv1cTjQXT49Ewdlb2js
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBAgAGBQJZEItTAAoJEGJqcE9h3glgnhYP/ijbdOOselc8N6Odi/zRFSzL
+Xdhu9BZybbn2GVTHuAXWy3W2TD7hPUqCdLGbLdwxX9RbRvSRRnKOi/AJcUyQbk8A
+BNDYWuw59KRpmP0UoxRZpuJihwAQoviKGKEKz3PUWezWgNAhM0bxLLoKkyazkmoI
+LYLW1mbbpRPYL9q16Ua2peFrmYYlmx7Qpww6Gn5VOgaOjFht0dI6xlZ5huI2e1IP
+/XPXYYwecBuBKg6kLgVjk9ZVdUA5qvP8Mj2driFZW0vegnIZZSlUeWL2qFvzPucS
+Mm8WiHOT8B8b6N+VTMvMaEtTkSaaWOfeAP2UEWtVjl0/UkEPxTndysA+V48MeWtc
+LRV8nwN4o45ACR3b7qSd1KsVqih9+lmHTxzcqwiDUqhcDjkUm872SigEC9eKDuyn
+W0zD7Sspdlz4+fnVIR+99j8nqc+T4vs9RwWZZUoxbyiK/HM46Hs5j5AZoDqUkY8x
+Rg3xKJe1kN4suPB73B9Ri0MXKHrmqF9p2mZXACzG/vf83Yh605wS7nIrqnjGtAxI
+VwYIfL+pFUkNYdztYnG/WMOq2JqCYy1KuqO2QnsBm0ndwfoXPNZM0OaG0fmOy78A
+HmAiDLCEX2OHOL+Gg4yBapyGZjd2V9epkLgKGzn1Awpk6+Y/UnWe/V4rLggyAC0Z
+dlFtQ8yfnglCpnOQ/9Zo
+=9b3V
+-----END PGP SIGNATURE-----
+
+--LQ57mKhPqdcXLHPv1cTjQXT49Ewdlb2js--
