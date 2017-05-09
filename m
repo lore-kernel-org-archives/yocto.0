@@ -1,46 +1,64 @@
-Return-Path: <ulf.hofemeier@intel.com>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E51FE00B23; Tue,  9 May 2017 11:12:25 -0700 (PDT)
+	id AF6A1E00B28; Tue,  9 May 2017 14:10:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.194 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB543E00AA2
-	for <yocto@yoctoproject.org>; Tue,  9 May 2017 11:12:21 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	09 May 2017 11:12:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.38,315,1491289200"; d="scan'208,217";a="99372348"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga005.fm.intel.com with ESMTP; 09 May 2017 11:12:20 -0700
-Received: from orsmsx115.amr.corp.intel.com ([169.254.4.44]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.4.196]) with mapi id
-	14.03.0319.002; Tue, 9 May 2017 11:12:19 -0700
-From: "Hofemeier, Ulf" <ulf.hofemeier@intel.com>
-To: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] how to activate tpm
-Thread-Index: AQHSyNa5RlOpJGSUtkCBMgDLBQQKWKHsTeOA
-Date: Tue, 9 May 2017 18:12:19 +0000
-Message-ID: <FEEBC157-F91C-4715-93E4-853F140559D5@intel.com>
-References: <c08863c7-b1da-a318-c4a5-02115ededba2@fridu.net>
-In-Reply-To: <c08863c7-b1da-a318-c4a5-02115ededba2@fridu.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/f.21.0.170409
-x-originating-ip: [10.24.9.25]
-MIME-Version: 1.0
-Subject: Re: how to activate tpm
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
+	[209.85.128.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B13E0E00ACD
+	for <yocto@yoctoproject.org>; Tue,  9 May 2017 14:10:21 -0700 (PDT)
+Received: by mail-wr0-f194.google.com with SMTP id v42so3300069wrc.3
+	for <yocto@yoctoproject.org>; Tue, 09 May 2017 14:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=sender:from:to:cc:subject:date:message-id;
+	bh=wHb9bn5K8a4Dd+PE6bcsCZXAg/CV7KX4QuxVBaQ83hA=;
+	b=sOMHeRAi3umvyi5Dwa/tmuuayBISqRekYmliimM3r26zl0UoYUFGb4ZLrkJKjIBeTi
+	TuUB3L4j3gq5BwLlCKPE5d+ry6lcZuafOWkEM+wQwRcz8s+XrrTbR0e6ek5wnRywkwCk
+	Sdj+8NU8fN4GUW2EGlYLt55jrrW0pjlMv/Qy51lKOMzfd3SgtmP2DNP6TpBXuKjRbjT3
+	oczahLQX90Bzn6FNDaN8kzFC/fmI/9+dAkdtaoIo/8NI1pOOJ4VaILnaSKZrZ8zAUO7A
+	+jVJ0aQ8IHAFUzDqMiEqzgZZxSvoi8BHDIQ8y5B9gIxHWxN4oDPR8pXNcphAtKV9zWJP
+	IuwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+	bh=wHb9bn5K8a4Dd+PE6bcsCZXAg/CV7KX4QuxVBaQ83hA=;
+	b=E0lZ0sdbJslDWw1pVaXKzTiHsU81PbPXx7qJo/hM8emQPC2j8wLSRYZURgCJDTI7kg
+	bJbXFPn6rSbhsv9o0wV0p/2r6UxYGcMlnlGmG7BplAb4+eM3/VdIgoALoPxMu9nkyMm7
+	6Al8uggIomAV7kliiAFZ+2YZaKGRy2QwiylTSThYhTiEl/Y1OXKvzQcQt/62j/nHP445
+	WOP6rGsFn1F6ya7TuYMHjlz1oU0fAQ8rVLqA+GWHRpNNJmU/sl3ZEsYwtxIIjvdxaQW2
+	x77VU3EXjtLvM7+8Dzd0y07wikR56t6KmQ6/w9l4/u1mC594F3OjN4dHI/rhKvJXWGRH
+	7PIg==
+X-Gm-Message-State: AODbwcBBvgGXW9OmtBKnok2HxSdiTtSMe2yVecvvwBGZ+2A5TLwanhqD
+	aYs65PCtFudr/Q8m
+X-Received: by 10.28.206.67 with SMTP id e64mr2167377wmg.104.1494364220185;
+	Tue, 09 May 2017 14:10:20 -0700 (PDT)
+Received: from localhost.localdomain (109-230-21-223.static.orange.sk.
+	[109.230.21.223])
+	by smtp.gmail.com with ESMTPSA id v22sm800378wrd.38.2017.05.09.14.10.18
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 09 May 2017 14:10:19 -0700 (PDT)
+Sender: Belisko Marek <marek.belisko@gmail.com>
+From: Marek Belisko <marek.belisko@open-nandra.com>
+To: yocto@yoctoproject.org
+Date: Tue,  9 May 2017 23:10:09 +0200
+Message-Id: <1494364209-17742-1-git-send-email-marek.belisko@open-nandra.com>
+X-Mailer: git-send-email 2.7.4
+Cc: Marek Belisko <marek.belisko@open-nandra.com>
+Subject: [PATCH] recipes-support: Add recipe for libgpiod
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,214 +70,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 May 2017 18:12:25 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_FEEBC157F91C471593E4853F140559D5intelcom_"
+X-List-Received-Date: Tue, 09 May 2017 21:10:23 -0000
 
---_000_FEEBC157F91C471593E4853F140559D5intelcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+libgpiod - C library and tools for interacting with the linux GPIO
+character device
 
-SGkgRG9taW5pbmcsDQoNClBsZWFzZSBjaGVjayBvdXQgdGhpcyBhcnRpY2xlLg0KDQpodHRwczov
-L3Byb3NhdWNlLm9yZy9ibG9nLzIwMTYvMS8xMS9taW5ub3dib2FyZC1tYXgtZW5hYmxlLWFuZC10
-ZXN0LXRoZS1maXJtd2FyZS10eGUtdHBtLTIwDQoNCkFsc28sIHRoZXJlIGhhcyBiZWVuIGEgcGVy
-c29uIGluIHRoZSBNaW5ub3dCb2FyZCBHaXRIdWIgaXNzdWUgdHJhY2tlciB3aG8gc3VjY2Vzc2Z1
-bGx5IGVuYWJsZWQgVFBNMiBmb3IgdGhpcyBwbGF0Zm9ybS4gU2VlIHRoZSB0aHJlYWQgaGVyZToN
-Cmh0dHBzOi8vZ2l0aHViLmNvbS9NaW5ub3dCb2FyZC1vcmcvYnVncy1hbmQtaGVscC9pc3N1ZXMv
-MjkNCg0KVGhhbmtzLA0KVWxmDQoNCkZyb206IDx5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5v
-cmc+IG9uIGJlaGFsZiBvZiBEb21pbmlnIEZvbGwgPGRvbWluaWcuYXJmb2xsQGZyaWR1Lm5ldD4N
-CkRhdGU6IFR1ZXNkYXksIE1heSA5LCAyMDE3IGF0IDg6MTIgQU0NClRvOiAieW9jdG9AeW9jdG9w
-cm9qZWN0Lm9yZyIgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpTdWJqZWN0OiBbeW9jdG9dIGhv
-dyB0byBhY3RpdmF0ZSB0cG0NCg0KSGVsbG8sDQoNCkkgYW0gdHJ5aW5nIHRvIGdldCB0cG0gd29y
-a2luZyBvbiBhIE1pbm5vd2JvYXJkIGFuZCBhIEpvdWxlLg0KSSBoYXZlIGVuYWJsZWQgdHBtIGlu
-IG1ldGEtc2VjdXJpdHkuDQpJIGNhbiBzZWUgdGhhdCB0aGUgS2VybmVsIGNvbmZpZyBsb29rcyBn
-b29kIChzZWUgZXh0cmFjdCBiZWxsb3cpDQp0cG0gaXMgZW5hYmxlIGluIHRoZSBCSU9TIChmYWls
-cyB3aXRoIFRQTT5QVFQgb3IgZFRQTSAyLjApDQpCVVQgaSBzdGlsbCBjYW5ub3Qgc2VlIG15IHRw
-bSBkZXZpY2UgaW4gL3N5cy9jbGFzcy90cG0NCg0KSGFzIGFueW9uZSBzdWNjZWVkZWQgdG8gZW5h
-YmxlIHRwbSB3aXRoIG1ldGEtc2VjdXJpdHkgPw0KSWYgeWVzLCBJIHdvdWxkIGJlIGludGVyZXN0
-ZWQgdG8ga25vdyBob3cgeW91IGhhdmUgZG9uZS4NCg0KDQotLQ0KDQpEb21pbmlnIGFyIEZvbGwN
-Cg0KU2VuaW9yIFNvZnR3YXJlIEFyY2hpdGVjdA0KDQpJbnRlbCBPcGVuIFNvdXJjZSBUZWNobm9s
-b2d5IENlbnRyZQ0KDQoNCg0KLS0tLS0tLSBsb2cgZGV2aWNlIG5vdCB2aXNpYmxlIC0tLS0tLS0t
-LS0NCg0KdGNzZCAtZg0KDQpUQ1NEIFREREwgRVJST1I6IENvdWxkIG5vdCBmaW5kIGEgZGV2aWNl
-IHRvIG9wZW4hDQoNCnJvb3RAaW50ZWwtY29yZWk3LTY0On4jIG1vZHByb2JlIC1EIHRwbQ0KDQpi
-dWlsdGluIHRwbQ0KDQpyb290QGludGVsLWNvcmVpNy02NDp+IyBtb2Rwcm9iZSAtRCB0cG1fdGlz
-DQoNCmJ1aWx0aW4gdHBtX3Rpcw0KDQpyb290QGludGVsLWNvcmVpNy02NDovdG1wIyBscyAvc3lz
-L2NsYXNzL3RwbQ0KDQpyb290QGludGVsLWNvcmVpNy02NDovdG1wIw0KDQoNCg0KLS0tLS0tLS0t
-IGtlcm5lbCBjb25maWcgZXh0cmFjdCAtLS0tLS0tLS0tLS0tLQ0KDQoNCg0KQ09ORklHX0hXX1JB
-TkRPTV9UUE09bQ0KDQojIENPTkZJR19OVlJBTSBpcyBub3Qgc2V0DQoNCiMgQ09ORklHX1IzOTY0
-IGlzIG5vdCBzZXQNCg0KIyBDT05GSUdfQVBQTElDT00gaXMgbm90IHNldA0KDQojIENPTkZJR19N
-V0FWRSBpcyBub3Qgc2V0DQoNCiMgQ09ORklHX1JBV19EUklWRVIgaXMgbm90IHNldA0KDQpDT05G
-SUdfSFBFVD15DQoNCkNPTkZJR19IUEVUX01NQVA9eQ0KDQpDT05GSUdfSFBFVF9NTUFQX0RFRkFV
-TFQ9eQ0KDQojIENPTkZJR19IQU5HQ0hFQ0tfVElNRVIgaXMgbm90IHNldA0KDQpDT05GSUdfVENH
-X1RQTT15DQoNCkNPTkZJR19UQ0dfVElTX0NPUkU9eQ0KDQpDT05GSUdfVENHX1RJUz15DQoNCiMg
-Q09ORklHX1RDR19USVNfU1BJIGlzIG5vdCBzZXQNCg0KIyBDT05GSUdfVENHX1RJU19JMkNfQVRN
-RUwgaXMgbm90IHNldA0KDQojIENPTkZJR19UQ0dfVElTX0kyQ19JTkZJTkVPTiBpcyBub3Qgc2V0
-DQoNCiMgQ09ORklHX1RDR19USVNfSTJDX05VVk9UT04gaXMgbm90IHNldA0KDQojIENPTkZJR19U
-Q0dfTlNDIGlzIG5vdCBzZXQNCg0KIyBDT05GSUdfVENHX0FUTUVMIGlzIG5vdCBzZXQNCg0KIyBD
-T05GSUdfVENHX0lORklORU9OIGlzIG5vdCBzZXQNCg0KQ09ORklHX1RDR19DUkI9eQ0KDQpDT05G
-SUdfVENHX1ZUUE1fUFJPWFk9eQ0KDQojIENPTkZJR19UQ0dfVElTX1NUMzNaUDI0X0kyQyBpcyBu
-b3Qgc2V0DQoNCiMgQ09ORklHX1RDR19USVNfU1QzM1pQMjRfU1BJIGlzIG5vdCBzZXQNCg0KIyBD
-T05GSUdfVEVMQ0xPQ0sgaXMgbm90IHNldA0KDQpDT05GSUdfREVWUE9SVD15DQoNCiMgQ09ORklH
-X1hJTExZQlVTIGlzIG5vdCBzZXQNCg0KDQoNCg0KDQoNCg==
+Since linux 4.8 the GPIO sysfs interface is deprecated.
+User space should use the character device instead.
+This library encapsulates the ioctl calls and data structures behind a
+straightforward API.
 
---_000_FEEBC157F91C471593E4853F140559D5intelcom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <60A382549446CD418C47EDBB9A8D6317@intel.com>
-Content-Transfer-Encoding: base64
+Signed-off-by: Marek Belisko <marek.belisko@open-nandra.com>
+---
+ meta/recipes-support/libgpiod/libgpiod_0.2.bb | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 meta/recipes-support/libgpiod/libgpiod_0.2.bb
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
-dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
-KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
-CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3IjsNCglwYW5vc2UtMToyIDcg
-MyA5IDIgMiA1IDIgNCA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0
-aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQt
-ZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5
-bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3Jt
-YWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEy
-LjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIjt9DQphOmxpbmssIHNwYW4uTXNv
-SHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRl
-eHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0Zv
-bGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQt
-ZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglt
-c28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQgQ2hhciI7DQoJbWFyZ2luOjBpbjsNCglt
-YXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToi
-Q291cmllciBOZXciO30NCnNwYW4uSFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5h
-bWU6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCglt
-c28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OkNvdXJpZXI7
-fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJ
-Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4ubXNvSW5zDQoJ
-e21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCW1zby1zdHlsZS1uYW1lOiIiOw0KCXRleHQt
-ZGVjb3JhdGlvbjp1bmRlcmxpbmU7DQoJY29sb3I6dGVhbDt9DQouTXNvQ2hwRGVmYXVsdA0KCXtt
-c28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdv
-cmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4w
-aW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48
-L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxhbmc9IkVOLVVTIiBsaW5r
-PSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6Q2FsaWJyaSI+SGkgRG9taW5pbmcsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-Q2FsaWJyaSI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+UGxl
-YXNlIGNoZWNrIG91dCB0aGlzIGFydGljbGUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-Q2FsaWJyaSI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+PGEg
-aHJlZj0iaHR0cHM6Ly9wcm9zYXVjZS5vcmcvYmxvZy8yMDE2LzEvMTEvbWlubm93Ym9hcmQtbWF4
-LWVuYWJsZS1hbmQtdGVzdC10aGUtZmlybXdhcmUtdHhlLXRwbS0yMCI+aHR0cHM6Ly9wcm9zYXVj
-ZS5vcmcvYmxvZy8yMDE2LzEvMTEvbWlubm93Ym9hcmQtbWF4LWVuYWJsZS1hbmQtdGVzdC10aGUt
-ZmlybXdhcmUtdHhlLXRwbS0yMDwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxp
-YnJpIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJpIj5BbHNvLCB0
-aGVyZSBoYXMgYmVlbiBhIHBlcnNvbiBpbiB0aGUgTWlubm93Qm9hcmQgR2l0SHViIGlzc3VlIHRy
-YWNrZXIgd2hvIHN1Y2Nlc3NmdWxseSBlbmFibGVkIFRQTTIgZm9yIHRoaXMgcGxhdGZvcm0uIFNl
-ZSB0aGUgdGhyZWFkIGhlcmU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+
-PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL01pbm5vd0JvYXJkLW9yZy9idWdzLWFuZC1oZWxw
-L2lzc3Vlcy8yOSI+aHR0cHM6Ly9naXRodWIuY29tL01pbm5vd0JvYXJkLW9yZy9idWdzLWFuZC1o
-ZWxwL2lzc3Vlcy8yOTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJpIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJpIj5UaGFua3MsPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+VWxmPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6Q2FsaWJyaSI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHls
-ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4w
-cHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZv
-bnQtZmFtaWx5OkNhbGlicmk7Y29sb3I6YmxhY2siPkZyb206IDwvc3Bhbj4NCjwvYj48c3BhbiBz
-dHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaTtjb2xvcjpibGFjayI+Jmx0O3lvY3RvLWJvdW5jZXNA
-eW9jdG9wcm9qZWN0Lm9yZyZndDsgb24gYmVoYWxmIG9mIERvbWluaWcgRm9sbCAmbHQ7ZG9taW5p
-Zy5hcmZvbGxAZnJpZHUubmV0Jmd0Ozxicj4NCjxiPkRhdGU6IDwvYj5UdWVzZGF5LCBNYXkgOSwg
-MjAxNyBhdCA4OjEyIEFNPGJyPg0KPGI+VG86IDwvYj4mcXVvdDt5b2N0b0B5b2N0b3Byb2plY3Qu
-b3JnJnF1b3Q7ICZsdDt5b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0Ozxicj4NCjxiPlN1YmplY3Q6
-IDwvYj5beW9jdG9dIGhvdyB0byBhY3RpdmF0ZSB0cG08bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4w
-cHQiPkhlbGxvLDxicj4NCjxicj4NCkkgYW0gdHJ5aW5nIHRvIGdldCB0cG0gd29ya2luZyBvbiBh
-IE1pbm5vd2JvYXJkIGFuZCBhIEpvdWxlLjxicj4NCkkgaGF2ZSBlbmFibGVkIHRwbSBpbiBtZXRh
-LXNlY3VyaXR5Ljxicj4NCkkgY2FuIHNlZSB0aGF0IHRoZSBLZXJuZWwgY29uZmlnIGxvb2tzIGdv
-b2QgKHNlZSBleHRyYWN0IGJlbGxvdyk8YnI+DQp0cG0gaXMgZW5hYmxlIGluIHRoZSBCSU9TIChm
-YWlscyB3aXRoIFRQTSZndDtQVFQgb3IgZFRQTSAyLjApPGJyPg0KQlVUIGkgc3RpbGwgY2Fubm90
-IHNlZSBteSB0cG0gZGV2aWNlIGluIC9zeXMvY2xhc3MvdHBtPGJyPg0KPGJyPg0KSGFzIGFueW9u
-ZSBzdWNjZWVkZWQgdG8gZW5hYmxlIHRwbSB3aXRoIG1ldGEtc2VjdXJpdHkgPzxicj4NCklmIHll
-cywgSSB3b3VsZCBiZSBpbnRlcmVzdGVkIHRvIGtub3cgaG93IHlvdSBoYXZlIGRvbmUuPGJyPg0K
-PGJyPg0KPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHByZT4tLSA8bzpwPjwvbzpwPjwvcHJlPg0K
-PHByZT5Eb21pbmlnIGFyIEZvbGw8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5TZW5pb3IgU29mdHdh
-cmUgQXJjaGl0ZWN0PG86cD48L286cD48L3ByZT4NCjxwcmU+SW50ZWwgT3BlbiBTb3VyY2UgVGVj
-aG5vbG9neSBDZW50cmU8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwv
-cHJlPg0KPHByZT4tLS0tLS0tIGxvZyBkZXZpY2Ugbm90IHZpc2libGUgLS0tLS0tLS0tLTxvOnA+
-PC9vOnA+PC9wcmU+DQo8cHJlPnRjc2QgLWY8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5UQ1NEIFRE
-REwgRVJST1I6IENvdWxkIG5vdCBmaW5kIGEgZGV2aWNlIHRvIG9wZW4hPG86cD48L286cD48L3By
-ZT4NCjxwcmU+cm9vdEBpbnRlbC1jb3JlaTctNjQ6fiMgbW9kcHJvYmUgLUQgdHBtJm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDxvOnA+
-PC9vOnA+PC9wcmU+DQo8cHJlPmJ1aWx0aW4gdHBtPG86cD48L286cD48L3ByZT4NCjxwcmU+cm9v
-dEBpbnRlbC1jb3JlaTctNjQ6fiMgbW9kcHJvYmUgLUQgdHBtX3RpczxvOnA+PC9vOnA+PC9wcmU+
-DQo8cHJlPmJ1aWx0aW4gdHBtX3RpczxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPnJvb3RAaW50ZWwt
-Y29yZWk3LTY0Oi90bXAjIGxzIC9zeXMvY2xhc3MvdHBtJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7IDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPnJvb3RAaW50ZWwtY29yZWk3LTY0Oi90bXAj
-IDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxvOnA+Jm5ic3A7PC9vOnA+PC9wcmU+DQo8cHJlPi0t
-LS0tLS0tLSBrZXJuZWwgY29uZmlnIGV4dHJhY3QgLS0tLS0tLS0tLS0tLS08bzpwPjwvbzpwPjwv
-cHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT5DT05GSUdfSFdfUkFORE9N
-X1RQTT1tPG86cD48L286cD48L3ByZT4NCjxwcmU+IyBDT05GSUdfTlZSQU0gaXMgbm90IHNldDxv
-OnA+PC9vOnA+PC9wcmU+DQo8cHJlPiMgQ09ORklHX1IzOTY0IGlzIG5vdCBzZXQ8bzpwPjwvbzpw
-PjwvcHJlPg0KPHByZT4jIENPTkZJR19BUFBMSUNPTSBpcyBub3Qgc2V0PG86cD48L286cD48L3By
-ZT4NCjxwcmU+IyBDT05GSUdfTVdBVkUgaXMgbm90IHNldDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJl
-PiMgQ09ORklHX1JBV19EUklWRVIgaXMgbm90IHNldDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPkNP
-TkZJR19IUEVUPXk8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5DT05GSUdfSFBFVF9NTUFQPXk8bzpw
-PjwvbzpwPjwvcHJlPg0KPHByZT5DT05GSUdfSFBFVF9NTUFQX0RFRkFVTFQ9eTxvOnA+PC9vOnA+
-PC9wcmU+DQo8cHJlPiMgQ09ORklHX0hBTkdDSEVDS19USU1FUiBpcyBub3Qgc2V0PG86cD48L286
-cD48L3ByZT4NCjxwcmU+Q09ORklHX1RDR19UUE09eTxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPkNP
-TkZJR19UQ0dfVElTX0NPUkU9eTxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPkNPTkZJR19UQ0dfVElT
-PXk8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19UQ0dfVElTX1NQSSBpcyBub3Qgc2V0
-PG86cD48L286cD48L3ByZT4NCjxwcmU+IyBDT05GSUdfVENHX1RJU19JMkNfQVRNRUwgaXMgbm90
-IHNldDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiMgQ09ORklHX1RDR19USVNfSTJDX0lORklORU9O
-IGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19UQ0dfVElTX0kyQ19O
-VVZPVE9OIGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19UQ0dfTlND
-IGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19UQ0dfQVRNRUwgaXMg
-bm90IHNldDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiMgQ09ORklHX1RDR19JTkZJTkVPTiBpcyBu
-b3Qgc2V0PG86cD48L286cD48L3ByZT4NCjxwcmU+Q09ORklHX1RDR19DUkI9eTxvOnA+PC9vOnA+
-PC9wcmU+DQo8cHJlPkNPTkZJR19UQ0dfVlRQTV9QUk9YWT15PG86cD48L286cD48L3ByZT4NCjxw
-cmU+IyBDT05GSUdfVENHX1RJU19TVDMzWlAyNF9JMkMgaXMgbm90IHNldDxvOnA+PC9vOnA+PC9w
-cmU+DQo8cHJlPiMgQ09ORklHX1RDR19USVNfU1QzM1pQMjRfU1BJIGlzIG5vdCBzZXQ8bzpwPjwv
-bzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19URUxDTE9DSyBpcyBub3Qgc2V0PG86cD48L286cD48
-L3ByZT4NCjxwcmU+Q09ORklHX0RFVlBPUlQ9eTxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiMgQ09O
-RklHX1hJTExZQlVTIGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNw
-OzwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZu
-YnNwOzwvbzpwPjwvcHJlPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+diff --git a/meta/recipes-support/libgpiod/libgpiod_0.2.bb b/meta/recipes-support/libgpiod/libgpiod_0.2.bb
+new file mode 100644
+index 0000000..fe2cd80
+--- /dev/null
++++ b/meta/recipes-support/libgpiod/libgpiod_0.2.bb
+@@ -0,0 +1,25 @@
++SUMMARY = "C library and tools for interacting with the linux GPIO character device"
++HOMEPAGE = "https://github.com/brgl/libgpiod"
++
++LICENSE = "LGPLv2.1+"
++LIC_FILES_CHKSUM = "file://COPYING;md5=2caced0b25dfefd4c601d92bd15116de"
++
++UPSTREAM_CHECK_URI = "https://github.com/brgl/libgpiod/releases"
++
++SRC_URI = "https://github.com/brgl/libgpiod/archive/v${PV}.tar.gz"
++
++SRC_URI[md5sum] = "e3430f35b6efa842693d659c0bfb7ad5"
++SRC_URI[sha256sum] = "de1947f3cb2cc4174364af430309fe6238976658575655bdbd76c60cffa7df92"
++
++inherit autotools pkgconfig
++
++# enable tools
++PACKAGECONFIG ?= "tools"
++
++PACKAGECONFIG[tests] = "--enable-tests,--disable-tests,kmod udev"
++PACKAGECONFIG[tools] = "--enable-tools,--disable-tools,"
++
++PACKAGES += " ${PN}-tools"
++
++FILES_${PN} = "${libdir}/*"
++FILES_${PN}-tools = "${bindir}/*"
+-- 
+2.7.4
 
---_000_FEEBC157F91C471593E4853F140559D5intelcom_--
+
