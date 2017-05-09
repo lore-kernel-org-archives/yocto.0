@@ -1,40 +1,67 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CD79E00B0B; Tue,  9 May 2017 05:16:04 -0700 (PDT)
+	id 8852DE00ACD; Tue,  9 May 2017 07:31:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.220.181 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9CDEE00B02
-	for <yocto@yoctoproject.org>; Tue,  9 May 2017 05:16:03 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v49CFxxq027282
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 9 May 2017 05:16:00 -0700 (PDT)
-Received: from server.local (128.224.21.135) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 9 May 2017 05:15:59 -0700
-To: Andrei Gherzan <andrei@gherzan.ro>, Khem Raj <raj.khem@gmail.com>
-References: <CAC+thW1Ehz4_s6pFYmNPPtfbtwoxVQXer-FR5YKEYgFP07KUPA@mail.gmail.com>
-	<CAMKF1srwj+dQ-Mwf3L1g7C_osaKUazBezP-fmzknOWJVbOTh+A@mail.gmail.com>
-	<CAK18fxGUoXYMkwAzAcXPWbEt1Rq7wPNrXAOwDiURe5KNbnSQ+g@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <f80d89ea-0409-ea27-f98c-9eb242b1d09b@windriver.com>
-Date: Tue, 9 May 2017 08:15:58 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
-	Gecko/20100101 Thunderbird/45.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAK18fxGUoXYMkwAzAcXPWbEt1Rq7wPNrXAOwDiURe5KNbnSQ+g@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] how to apply custom kernel configuration?
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.181 listed in list.dnswl.org]
+Received: from mail-qk0-f181.google.com (mail-qk0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C4A8E00A48
+	for <yocto@yoctoproject.org>; Tue,  9 May 2017 07:31:51 -0700 (PDT)
+Received: by mail-qk0-f181.google.com with SMTP id k74so2355014qke.1
+	for <yocto@yoctoproject.org>; Tue, 09 May 2017 07:31:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=cohb42dKUzIGt0h/2uTbhvbRThksO+gtQo6hM17qmxI=;
+	b=cpZF6oeRDpENWO8/EU8rnHj/+xja1sQXCqREOSe7+S/keDGfTme9bxzYz3Kf36g3wJ
+	DwS5FJ8wSTxEg+7zsArCXviNbYShs3134hx3TACRHJZeWjB87YaE/rhaYe80eZFIeK0t
+	yLnTHM/Drs7fMEra8Hhbty/9xVGEe+Hd14ldhq/JNueFco84sSJgvLWocxkfj+54lycq
+	8b0TzEvU6tD/rCsyeUGQoY38umqfpkOBw4y7J0tNBqTk7BffGmNkN9436YKnig+5iCMr
+	LZNlHWk2TvebKCgZDxyaIe7ASSVZxCUNpCVvMqwFCyuIVZQgO7WO4B9aZfM08EF9nauZ
+	nyvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=cohb42dKUzIGt0h/2uTbhvbRThksO+gtQo6hM17qmxI=;
+	b=BOHgHbvLD+/23sinoTy5q2v3fnrFDZ9qcJmpbyHwIngXKG5USro4RL8y656JMwMA0p
+	vipkJoVx/b6zxqHiF44o3f+XJFwT5tFCqFfhuZJK2BJ31Ae2pbBVG1RjSWvR+oPgo3+R
+	ky+Qk6zRiDOtlxOwqjY1QxMM+J3M4aMA0ObU28rU7lzHaKXPvsUrk3Q/CpuxjzbsJa1N
+	bO0k0gYZUTg5o9iafva+S/QvpR5Rizcliwv3LH3mkyvQSOGn+DeaRYMAwqi9rnIQBpUQ
+	y4Jv8FCLKz/LiQ3LabeWnWHnnRIbe+9pCsXGBfF6VyJfZXU99iXpRQW9vRFyztx/6tqj
+	1/4Q==
+X-Gm-Message-State: AODbwcC57dHHiSeIe8UzWytLGsf3t8AC66NW4vN5vS6Swg6X4rlHrAw+
+	unOgahjs4cRnovvo
+X-Received: by 10.233.237.70 with SMTP id c67mr466579qkg.54.1494340310839;
+	Tue, 09 May 2017 07:31:50 -0700 (PDT)
+Received: from akuster-ThinkPad-X240.mvista.com
+	([2601:202:4001:9ea0:e3df:bf0a:9f90:498e])
+	by smtp.gmail.com with ESMTPSA id z42sm71284qtb.26.2017.05.09.07.31.49
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 09 May 2017 07:31:50 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue,  9 May 2017 07:31:48 -0700
+Message-Id: <1494340308-3816-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][PATCH] clamav: fix new build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,62 +73,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 May 2017 12:16:04 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 09 May 2017 14:31:55 -0000
 
-On 2017-05-08 6:08 PM, Andrei Gherzan wrote:
-> On Sat, May 6, 2017 at 6:14 PM, Khem Raj <raj.khem@gmail.com> wrote:
->> On Sat, May 6, 2017 at 9:45 AM, Andrea Galbusera <gizero@gmail.com> wrote:
->>> Hi!
->>>
->>> I was wondering how to apply some extra kernel configuration from a custom
->>> layer via a bbappend. I know that with meta-raspberrypi there exist some
->>> variables you can define in local.conf that will drive how the kernel is
->>> configured: but what about some very specific device driver nobody than me
->>> is interest in? To me it seems it doesn't deserve a dedicated global oe
->>> variable.
->>>
->>> Some investigation showed this topic already came up on the list from time
->>> to time in the past (most recently in [1]). To me it looks like there is
->>> some common desire to get rid of the current "magic" carried out by
->>> linux-rpi.inc by moving the linux-raspberrypi recipes into the configuration
->>> fragments style.
->>>
->>> In the short term, my question are: how do you guys manage to add your
->>> custom kernel configurations? Do you rely on full blown static defconfigs?
->>> Have you found any reliable way to do "differential" configurations with the
->>> current state of metadata?
->>>
->>> In a longer term, I'd really like to help moving towards supporting
->>> configuration fragments for linux-raspberrypi, but I suspect it'd be a too
->>> much hard task for my current understanding of the whole kernel
->>> configuration workflow. Do you know of anyone already working on this or
->>> does anyone have a clear idea of what is needed to get the work done? Some
->>> times ago I tried to resurrect [2], but with no luck, probably due to some
->>> changes that happened in the linux-yocto files in the meanwhile.
->>>
->>> Comments from gurus are welcome! ;-)
->>
->> I have been hinting at using yocto kernel tooling. Idea is worth a pull request
->> care sending one ?
->
-> I'm not using config fragments myself but I was under the impression
-> that we do support it.
+configure: error: The installed zlib version may contain a security bug. Please upgrade to 1.2.2 or later: http://www.zlib.net. You can omit this check with --disable-zlib-vcheck but DO NOT REPORT any stability issues then!
 
-Also FWIW, I've had a feature around for quite a while that I'll
-complete in the 2.4 release cycle. That feature pulls the core fragment
-processing into the main kernel classes (with auditing, etc, still in
-kernel-yocto).
+bypass check as our zlib is 1.2.11
 
-So doing an inherit of kernel-yocto won't be necessary at that point
-.. which may ease the introduction of some config fragments.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/clamav/clamav_0.99.2.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Bruce
-
->
-> --
-> Andrei Gherzan
->
+diff --git a/recipes-security/clamav/clamav_0.99.2.bb b/recipes-security/clamav/clamav_0.99.2.bb
+index 3e5f36c..c755a64 100644
+--- a/recipes-security/clamav/clamav_0.99.2.bb
++++ b/recipes-security/clamav/clamav_0.99.2.bb
+@@ -51,7 +51,7 @@ PACKAGECONFIG[json] = "--with-libjson=${STAGING_LIBDIR}, --without-libjson, json
+ PACKAGECONFIG[curl] = "--with-libcurl=${STAGING_LIBDIR}, --without-libcurl, curl,"
+ PACKAGECONFIG[ipv6] = "--enable-ipv6, --disable-ipv6"
+ PACKAGECONFIG[openssl] = "--with-openssl=${STAGING_DIR_HOST}/usr, --without-openssl, openssl, openssl"
+-PACKAGECONFIG[zlib] = "--with-zlib=${STAGING_DIR_HOST}/usr, --without-zlib, zlib, "
++PACKAGECONFIG[zlib] = "--with-zlib=${STAGING_DIR_HOST}/usr --disable-zlib-vcheck , --without-zlib, zlib, "
+ PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${STAGING_LIBDIR}/.., --without-libbz2-prefix, "
+ PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${STAGING_LIBDIR}/.., --without-libncurses-prefix, ncurses, "
+ PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_unitdir}/system/, --without-systemdsystemunitdir, "
+-- 
+2.7.4
 
 
