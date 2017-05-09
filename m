@@ -1,67 +1,46 @@
-Return-Path: <dominig.arfoll@fridu.net>
+Return-Path: <ulf.hofemeier@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C586E00ACD; Tue,  9 May 2017 08:12:20 -0700 (PDT)
+	id 3E51FE00B23; Tue,  9 May 2017 11:12:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, MIME_HTML_ONLY,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.173 listed in list.dnswl.org]
-Received: from mail-wr0-f173.google.com (mail-wr0-f173.google.com
-	[209.85.128.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C94C9E00A48
-	for <yocto@yoctoproject.org>; Tue,  9 May 2017 08:12:16 -0700 (PDT)
-Received: by mail-wr0-f173.google.com with SMTP id l9so3219683wre.1
-	for <yocto@yoctoproject.org>; Tue, 09 May 2017 08:12:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fridu.net; s=google;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding;
-	bh=nUUAlMqjeXFyMKbBIuwcqaa5TB7q2XQnokb20zwTZ8I=;
-	b=Jd4AVjKJgT7v59K7Sa9gK55wKoszyk5ucrzqBQY5g4gx6RlvVrEbQB/7EXnFIfcnx6
-	lMHgu0RmAfh3KVBSxg+T+40DYL75mSom51de4JtoyQ7z88dN+046VvFoU9Z+Rm53Ul9Q
-	IHkvoy5PT93Wpzpff8/NcpueqiZLOcwDSzQhA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=nUUAlMqjeXFyMKbBIuwcqaa5TB7q2XQnokb20zwTZ8I=;
-	b=eafsbbFmtlAxKEx+BnH0Wdm6v/6HVJhZzFPAcB4/56WPMjdQNMtx9JpDTxi8QbG3Oa
-	iMj8MCNYE3K0eb9NCETphk+p578Elj6ohoMy5bfvczi9i6IYIIrFnNLFNRYJaa/FZS69
-	hILaRcBi91CKckvYlPzYi4nH/9i83/WnBFWIux+SePDra3L3ScnR8p/HbAzWpR0nQEcD
-	OeDNN958aeduCRvI/Hf8dIvFElGY/477EabM2Xk+0A55t7Z1ppy1rr75Q+0uIo26SCYO
-	T6ODQ9ktbdZbje/yGdcFl41KImotdME2sl8lj8heZsj3HL02FMzDsO6Jz/uHMx4tWFAd
-	KjKA==
-X-Gm-Message-State: AODbwcDLMNHVIz5W1FMiixqk6SbYvexWzM/zbEHKhl/4abbJ73VJOnU6
-	fwtWcB1hqsEXLdU5Vs4=
-X-Received: by 10.28.185.10 with SMTP id j10mr1457398wmf.56.1494342735634;
-	Tue, 09 May 2017 08:12:15 -0700 (PDT)
-Received: from [10.10.61.21] (ARennes-650-1-175-27.w92-135.abo.wanadoo.fr.
-	[92.135.46.27])
-	by smtp.gmail.com with ESMTPSA id t30sm198695wrc.24.2017.05.09.08.12.14
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 09 May 2017 08:12:14 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <c08863c7-b1da-a318-c4a5-02115ededba2@fridu.net>
-Date: Tue, 9 May 2017 17:12:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB543E00AA2
+	for <yocto@yoctoproject.org>; Tue,  9 May 2017 11:12:21 -0700 (PDT)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	09 May 2017 11:12:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,315,1491289200"; d="scan'208,217";a="99372348"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga005.fm.intel.com with ESMTP; 09 May 2017 11:12:20 -0700
+Received: from orsmsx115.amr.corp.intel.com ([169.254.4.44]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.4.196]) with mapi id
+	14.03.0319.002; Tue, 9 May 2017 11:12:19 -0700
+From: "Hofemeier, Ulf" <ulf.hofemeier@intel.com>
+To: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] how to activate tpm
+Thread-Index: AQHSyNa5RlOpJGSUtkCBMgDLBQQKWKHsTeOA
+Date: Tue, 9 May 2017 18:12:19 +0000
+Message-ID: <FEEBC157-F91C-4715-93E4-853F140559D5@intel.com>
+References: <c08863c7-b1da-a318-c4a5-02115ededba2@fridu.net>
+In-Reply-To: <c08863c7-b1da-a318-c4a5-02115ededba2@fridu.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/f.21.0.170409
+x-originating-ip: [10.24.9.25]
 MIME-Version: 1.0
-Subject: how to activate tpm
+Subject: Re: how to activate tpm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,75 +52,214 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 May 2017 15:12:20 -0000
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 09 May 2017 18:12:25 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_FEEBC157F91C471593E4853F140559D5intelcom_"
 
-<html>
-  <head>
+--_000_FEEBC157F91C471593E4853F140559D5intelcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <font size="-1">Hello,<br>
-      <br>
-      I am trying to get tpm working on a Minnowboard and a Joule.<br>
-      I have enabled tpm in meta-security.<br>
-      I can see that the Kernel config looks good (see extract bellow)<br>
-      tpm is enable in the BIOS (fails with TPM&gt;PTT or dTPM 2.0)<br>
-      BUT i still cannot see my tpm device in /sys/class/tpm<br>
-      <br>
-      Has anyone succeeded to enable tpm with meta-security ?<br>
-      If yes, I would be interested to know how you have done.<br>
-    </font>
-    <pre class="moz-signature" cols="72">-- 
-Dominig ar Foll
-Senior Software Architect
-Intel Open Source Technology Centre
+SGkgRG9taW5pbmcsDQoNClBsZWFzZSBjaGVjayBvdXQgdGhpcyBhcnRpY2xlLg0KDQpodHRwczov
+L3Byb3NhdWNlLm9yZy9ibG9nLzIwMTYvMS8xMS9taW5ub3dib2FyZC1tYXgtZW5hYmxlLWFuZC10
+ZXN0LXRoZS1maXJtd2FyZS10eGUtdHBtLTIwDQoNCkFsc28sIHRoZXJlIGhhcyBiZWVuIGEgcGVy
+c29uIGluIHRoZSBNaW5ub3dCb2FyZCBHaXRIdWIgaXNzdWUgdHJhY2tlciB3aG8gc3VjY2Vzc2Z1
+bGx5IGVuYWJsZWQgVFBNMiBmb3IgdGhpcyBwbGF0Zm9ybS4gU2VlIHRoZSB0aHJlYWQgaGVyZToN
+Cmh0dHBzOi8vZ2l0aHViLmNvbS9NaW5ub3dCb2FyZC1vcmcvYnVncy1hbmQtaGVscC9pc3N1ZXMv
+MjkNCg0KVGhhbmtzLA0KVWxmDQoNCkZyb206IDx5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5v
+cmc+IG9uIGJlaGFsZiBvZiBEb21pbmlnIEZvbGwgPGRvbWluaWcuYXJmb2xsQGZyaWR1Lm5ldD4N
+CkRhdGU6IFR1ZXNkYXksIE1heSA5LCAyMDE3IGF0IDg6MTIgQU0NClRvOiAieW9jdG9AeW9jdG9w
+cm9qZWN0Lm9yZyIgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpTdWJqZWN0OiBbeW9jdG9dIGhv
+dyB0byBhY3RpdmF0ZSB0cG0NCg0KSGVsbG8sDQoNCkkgYW0gdHJ5aW5nIHRvIGdldCB0cG0gd29y
+a2luZyBvbiBhIE1pbm5vd2JvYXJkIGFuZCBhIEpvdWxlLg0KSSBoYXZlIGVuYWJsZWQgdHBtIGlu
+IG1ldGEtc2VjdXJpdHkuDQpJIGNhbiBzZWUgdGhhdCB0aGUgS2VybmVsIGNvbmZpZyBsb29rcyBn
+b29kIChzZWUgZXh0cmFjdCBiZWxsb3cpDQp0cG0gaXMgZW5hYmxlIGluIHRoZSBCSU9TIChmYWls
+cyB3aXRoIFRQTT5QVFQgb3IgZFRQTSAyLjApDQpCVVQgaSBzdGlsbCBjYW5ub3Qgc2VlIG15IHRw
+bSBkZXZpY2UgaW4gL3N5cy9jbGFzcy90cG0NCg0KSGFzIGFueW9uZSBzdWNjZWVkZWQgdG8gZW5h
+YmxlIHRwbSB3aXRoIG1ldGEtc2VjdXJpdHkgPw0KSWYgeWVzLCBJIHdvdWxkIGJlIGludGVyZXN0
+ZWQgdG8ga25vdyBob3cgeW91IGhhdmUgZG9uZS4NCg0KDQotLQ0KDQpEb21pbmlnIGFyIEZvbGwN
+Cg0KU2VuaW9yIFNvZnR3YXJlIEFyY2hpdGVjdA0KDQpJbnRlbCBPcGVuIFNvdXJjZSBUZWNobm9s
+b2d5IENlbnRyZQ0KDQoNCg0KLS0tLS0tLSBsb2cgZGV2aWNlIG5vdCB2aXNpYmxlIC0tLS0tLS0t
+LS0NCg0KdGNzZCAtZg0KDQpUQ1NEIFREREwgRVJST1I6IENvdWxkIG5vdCBmaW5kIGEgZGV2aWNl
+IHRvIG9wZW4hDQoNCnJvb3RAaW50ZWwtY29yZWk3LTY0On4jIG1vZHByb2JlIC1EIHRwbQ0KDQpi
+dWlsdGluIHRwbQ0KDQpyb290QGludGVsLWNvcmVpNy02NDp+IyBtb2Rwcm9iZSAtRCB0cG1fdGlz
+DQoNCmJ1aWx0aW4gdHBtX3Rpcw0KDQpyb290QGludGVsLWNvcmVpNy02NDovdG1wIyBscyAvc3lz
+L2NsYXNzL3RwbQ0KDQpyb290QGludGVsLWNvcmVpNy02NDovdG1wIw0KDQoNCg0KLS0tLS0tLS0t
+IGtlcm5lbCBjb25maWcgZXh0cmFjdCAtLS0tLS0tLS0tLS0tLQ0KDQoNCg0KQ09ORklHX0hXX1JB
+TkRPTV9UUE09bQ0KDQojIENPTkZJR19OVlJBTSBpcyBub3Qgc2V0DQoNCiMgQ09ORklHX1IzOTY0
+IGlzIG5vdCBzZXQNCg0KIyBDT05GSUdfQVBQTElDT00gaXMgbm90IHNldA0KDQojIENPTkZJR19N
+V0FWRSBpcyBub3Qgc2V0DQoNCiMgQ09ORklHX1JBV19EUklWRVIgaXMgbm90IHNldA0KDQpDT05G
+SUdfSFBFVD15DQoNCkNPTkZJR19IUEVUX01NQVA9eQ0KDQpDT05GSUdfSFBFVF9NTUFQX0RFRkFV
+TFQ9eQ0KDQojIENPTkZJR19IQU5HQ0hFQ0tfVElNRVIgaXMgbm90IHNldA0KDQpDT05GSUdfVENH
+X1RQTT15DQoNCkNPTkZJR19UQ0dfVElTX0NPUkU9eQ0KDQpDT05GSUdfVENHX1RJUz15DQoNCiMg
+Q09ORklHX1RDR19USVNfU1BJIGlzIG5vdCBzZXQNCg0KIyBDT05GSUdfVENHX1RJU19JMkNfQVRN
+RUwgaXMgbm90IHNldA0KDQojIENPTkZJR19UQ0dfVElTX0kyQ19JTkZJTkVPTiBpcyBub3Qgc2V0
+DQoNCiMgQ09ORklHX1RDR19USVNfSTJDX05VVk9UT04gaXMgbm90IHNldA0KDQojIENPTkZJR19U
+Q0dfTlNDIGlzIG5vdCBzZXQNCg0KIyBDT05GSUdfVENHX0FUTUVMIGlzIG5vdCBzZXQNCg0KIyBD
+T05GSUdfVENHX0lORklORU9OIGlzIG5vdCBzZXQNCg0KQ09ORklHX1RDR19DUkI9eQ0KDQpDT05G
+SUdfVENHX1ZUUE1fUFJPWFk9eQ0KDQojIENPTkZJR19UQ0dfVElTX1NUMzNaUDI0X0kyQyBpcyBu
+b3Qgc2V0DQoNCiMgQ09ORklHX1RDR19USVNfU1QzM1pQMjRfU1BJIGlzIG5vdCBzZXQNCg0KIyBD
+T05GSUdfVEVMQ0xPQ0sgaXMgbm90IHNldA0KDQpDT05GSUdfREVWUE9SVD15DQoNCiMgQ09ORklH
+X1hJTExZQlVTIGlzIG5vdCBzZXQNCg0KDQoNCg0KDQoNCg==
 
-------- log device not visible ----------
-tcsd -f
-TCSD TDDL ERROR: Could not find a device to open!
-root@intel-corei7-64:~# modprobe -D tpm                                                                                                                                                
-builtin tpm
-root@intel-corei7-64:~# modprobe -D tpm_tis
-builtin tpm_tis
-root@intel-corei7-64:/tmp# ls /sys/class/tpm                                                                                                                                           
-root@intel-corei7-64:/tmp# 
+--_000_FEEBC157F91C471593E4853F140559D5intelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <60A382549446CD418C47EDBB9A8D6317@intel.com>
+Content-Transfer-Encoding: base64
 
---------- kernel config extract --------------
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
+dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
+KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
+CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3IjsNCglwYW5vc2UtMToyIDcg
+MyA5IDIgMiA1IDIgNCA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0
+aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQt
+ZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5
+bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3Jt
+YWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEy
+LjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIjt9DQphOmxpbmssIHNwYW4uTXNv
+SHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRl
+eHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0Zv
+bGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQt
+ZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglt
+c28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQgQ2hhciI7DQoJbWFyZ2luOjBpbjsNCglt
+YXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToi
+Q291cmllciBOZXciO30NCnNwYW4uSFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5h
+bWU6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCglt
+c28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OkNvdXJpZXI7
+fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJ
+Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4ubXNvSW5zDQoJ
+e21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCW1zby1zdHlsZS1uYW1lOiIiOw0KCXRleHQt
+ZGVjb3JhdGlvbjp1bmRlcmxpbmU7DQoJY29sb3I6dGVhbDt9DQouTXNvQ2hwRGVmYXVsdA0KCXtt
+c28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdv
+cmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4w
+aW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48
+L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxhbmc9IkVOLVVTIiBsaW5r
+PSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6Q2FsaWJyaSI+SGkgRG9taW5pbmcsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+Q2FsaWJyaSI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+UGxl
+YXNlIGNoZWNrIG91dCB0aGlzIGFydGljbGUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+Q2FsaWJyaSI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+PGEg
+aHJlZj0iaHR0cHM6Ly9wcm9zYXVjZS5vcmcvYmxvZy8yMDE2LzEvMTEvbWlubm93Ym9hcmQtbWF4
+LWVuYWJsZS1hbmQtdGVzdC10aGUtZmlybXdhcmUtdHhlLXRwbS0yMCI+aHR0cHM6Ly9wcm9zYXVj
+ZS5vcmcvYmxvZy8yMDE2LzEvMTEvbWlubm93Ym9hcmQtbWF4LWVuYWJsZS1hbmQtdGVzdC10aGUt
+ZmlybXdhcmUtdHhlLXRwbS0yMDwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxp
+YnJpIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJpIj5BbHNvLCB0
+aGVyZSBoYXMgYmVlbiBhIHBlcnNvbiBpbiB0aGUgTWlubm93Qm9hcmQgR2l0SHViIGlzc3VlIHRy
+YWNrZXIgd2hvIHN1Y2Nlc3NmdWxseSBlbmFibGVkIFRQTTIgZm9yIHRoaXMgcGxhdGZvcm0uIFNl
+ZSB0aGUgdGhyZWFkIGhlcmU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+
+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL01pbm5vd0JvYXJkLW9yZy9idWdzLWFuZC1oZWxw
+L2lzc3Vlcy8yOSI+aHR0cHM6Ly9naXRodWIuY29tL01pbm5vd0JvYXJkLW9yZy9idWdzLWFuZC1o
+ZWxwL2lzc3Vlcy8yOTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJpIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTpDYWxpYnJpIj5UaGFua3MsPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6Q2FsaWJyaSI+VWxmPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6Q2FsaWJyaSI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHls
+ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4w
+cHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZv
+bnQtZmFtaWx5OkNhbGlicmk7Y29sb3I6YmxhY2siPkZyb206IDwvc3Bhbj4NCjwvYj48c3BhbiBz
+dHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaTtjb2xvcjpibGFjayI+Jmx0O3lvY3RvLWJvdW5jZXNA
+eW9jdG9wcm9qZWN0Lm9yZyZndDsgb24gYmVoYWxmIG9mIERvbWluaWcgRm9sbCAmbHQ7ZG9taW5p
+Zy5hcmZvbGxAZnJpZHUubmV0Jmd0Ozxicj4NCjxiPkRhdGU6IDwvYj5UdWVzZGF5LCBNYXkgOSwg
+MjAxNyBhdCA4OjEyIEFNPGJyPg0KPGI+VG86IDwvYj4mcXVvdDt5b2N0b0B5b2N0b3Byb2plY3Qu
+b3JnJnF1b3Q7ICZsdDt5b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0Ozxicj4NCjxiPlN1YmplY3Q6
+IDwvYj5beW9jdG9dIGhvdyB0byBhY3RpdmF0ZSB0cG08bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4w
+cHQiPkhlbGxvLDxicj4NCjxicj4NCkkgYW0gdHJ5aW5nIHRvIGdldCB0cG0gd29ya2luZyBvbiBh
+IE1pbm5vd2JvYXJkIGFuZCBhIEpvdWxlLjxicj4NCkkgaGF2ZSBlbmFibGVkIHRwbSBpbiBtZXRh
+LXNlY3VyaXR5Ljxicj4NCkkgY2FuIHNlZSB0aGF0IHRoZSBLZXJuZWwgY29uZmlnIGxvb2tzIGdv
+b2QgKHNlZSBleHRyYWN0IGJlbGxvdyk8YnI+DQp0cG0gaXMgZW5hYmxlIGluIHRoZSBCSU9TIChm
+YWlscyB3aXRoIFRQTSZndDtQVFQgb3IgZFRQTSAyLjApPGJyPg0KQlVUIGkgc3RpbGwgY2Fubm90
+IHNlZSBteSB0cG0gZGV2aWNlIGluIC9zeXMvY2xhc3MvdHBtPGJyPg0KPGJyPg0KSGFzIGFueW9u
+ZSBzdWNjZWVkZWQgdG8gZW5hYmxlIHRwbSB3aXRoIG1ldGEtc2VjdXJpdHkgPzxicj4NCklmIHll
+cywgSSB3b3VsZCBiZSBpbnRlcmVzdGVkIHRvIGtub3cgaG93IHlvdSBoYXZlIGRvbmUuPGJyPg0K
+PGJyPg0KPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHByZT4tLSA8bzpwPjwvbzpwPjwvcHJlPg0K
+PHByZT5Eb21pbmlnIGFyIEZvbGw8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5TZW5pb3IgU29mdHdh
+cmUgQXJjaGl0ZWN0PG86cD48L286cD48L3ByZT4NCjxwcmU+SW50ZWwgT3BlbiBTb3VyY2UgVGVj
+aG5vbG9neSBDZW50cmU8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwv
+cHJlPg0KPHByZT4tLS0tLS0tIGxvZyBkZXZpY2Ugbm90IHZpc2libGUgLS0tLS0tLS0tLTxvOnA+
+PC9vOnA+PC9wcmU+DQo8cHJlPnRjc2QgLWY8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5UQ1NEIFRE
+REwgRVJST1I6IENvdWxkIG5vdCBmaW5kIGEgZGV2aWNlIHRvIG9wZW4hPG86cD48L286cD48L3By
+ZT4NCjxwcmU+cm9vdEBpbnRlbC1jb3JlaTctNjQ6fiMgbW9kcHJvYmUgLUQgdHBtJm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDxvOnA+
+PC9vOnA+PC9wcmU+DQo8cHJlPmJ1aWx0aW4gdHBtPG86cD48L286cD48L3ByZT4NCjxwcmU+cm9v
+dEBpbnRlbC1jb3JlaTctNjQ6fiMgbW9kcHJvYmUgLUQgdHBtX3RpczxvOnA+PC9vOnA+PC9wcmU+
+DQo8cHJlPmJ1aWx0aW4gdHBtX3RpczxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPnJvb3RAaW50ZWwt
+Y29yZWk3LTY0Oi90bXAjIGxzIC9zeXMvY2xhc3MvdHBtJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7IDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPnJvb3RAaW50ZWwtY29yZWk3LTY0Oi90bXAj
+IDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxvOnA+Jm5ic3A7PC9vOnA+PC9wcmU+DQo8cHJlPi0t
+LS0tLS0tLSBrZXJuZWwgY29uZmlnIGV4dHJhY3QgLS0tLS0tLS0tLS0tLS08bzpwPjwvbzpwPjwv
+cHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT5DT05GSUdfSFdfUkFORE9N
+X1RQTT1tPG86cD48L286cD48L3ByZT4NCjxwcmU+IyBDT05GSUdfTlZSQU0gaXMgbm90IHNldDxv
+OnA+PC9vOnA+PC9wcmU+DQo8cHJlPiMgQ09ORklHX1IzOTY0IGlzIG5vdCBzZXQ8bzpwPjwvbzpw
+PjwvcHJlPg0KPHByZT4jIENPTkZJR19BUFBMSUNPTSBpcyBub3Qgc2V0PG86cD48L286cD48L3By
+ZT4NCjxwcmU+IyBDT05GSUdfTVdBVkUgaXMgbm90IHNldDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJl
+PiMgQ09ORklHX1JBV19EUklWRVIgaXMgbm90IHNldDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPkNP
+TkZJR19IUEVUPXk8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5DT05GSUdfSFBFVF9NTUFQPXk8bzpw
+PjwvbzpwPjwvcHJlPg0KPHByZT5DT05GSUdfSFBFVF9NTUFQX0RFRkFVTFQ9eTxvOnA+PC9vOnA+
+PC9wcmU+DQo8cHJlPiMgQ09ORklHX0hBTkdDSEVDS19USU1FUiBpcyBub3Qgc2V0PG86cD48L286
+cD48L3ByZT4NCjxwcmU+Q09ORklHX1RDR19UUE09eTxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPkNP
+TkZJR19UQ0dfVElTX0NPUkU9eTxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPkNPTkZJR19UQ0dfVElT
+PXk8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19UQ0dfVElTX1NQSSBpcyBub3Qgc2V0
+PG86cD48L286cD48L3ByZT4NCjxwcmU+IyBDT05GSUdfVENHX1RJU19JMkNfQVRNRUwgaXMgbm90
+IHNldDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiMgQ09ORklHX1RDR19USVNfSTJDX0lORklORU9O
+IGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19UQ0dfVElTX0kyQ19O
+VVZPVE9OIGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19UQ0dfTlND
+IGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19UQ0dfQVRNRUwgaXMg
+bm90IHNldDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiMgQ09ORklHX1RDR19JTkZJTkVPTiBpcyBu
+b3Qgc2V0PG86cD48L286cD48L3ByZT4NCjxwcmU+Q09ORklHX1RDR19DUkI9eTxvOnA+PC9vOnA+
+PC9wcmU+DQo8cHJlPkNPTkZJR19UQ0dfVlRQTV9QUk9YWT15PG86cD48L286cD48L3ByZT4NCjxw
+cmU+IyBDT05GSUdfVENHX1RJU19TVDMzWlAyNF9JMkMgaXMgbm90IHNldDxvOnA+PC9vOnA+PC9w
+cmU+DQo8cHJlPiMgQ09ORklHX1RDR19USVNfU1QzM1pQMjRfU1BJIGlzIG5vdCBzZXQ8bzpwPjwv
+bzpwPjwvcHJlPg0KPHByZT4jIENPTkZJR19URUxDTE9DSyBpcyBub3Qgc2V0PG86cD48L286cD48
+L3ByZT4NCjxwcmU+Q09ORklHX0RFVlBPUlQ9eTxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiMgQ09O
+RklHX1hJTExZQlVTIGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNw
+OzwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZu
+YnNwOzwvbzpwPjwvcHJlPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-CONFIG_HW_RANDOM_TPM=m
-# CONFIG_NVRAM is not set
-# CONFIG_R3964 is not set
-# CONFIG_APPLICOM is not set
-# CONFIG_MWAVE is not set
-# CONFIG_RAW_DRIVER is not set
-CONFIG_HPET=y
-CONFIG_HPET_MMAP=y
-CONFIG_HPET_MMAP_DEFAULT=y
-# CONFIG_HANGCHECK_TIMER is not set
-CONFIG_TCG_TPM=y
-CONFIG_TCG_TIS_CORE=y
-CONFIG_TCG_TIS=y
-# CONFIG_TCG_TIS_SPI is not set
-# CONFIG_TCG_TIS_I2C_ATMEL is not set
-# CONFIG_TCG_TIS_I2C_INFINEON is not set
-# CONFIG_TCG_TIS_I2C_NUVOTON is not set
-# CONFIG_TCG_NSC is not set
-# CONFIG_TCG_ATMEL is not set
-# CONFIG_TCG_INFINEON is not set
-CONFIG_TCG_CRB=y
-CONFIG_TCG_VTPM_PROXY=y
-# CONFIG_TCG_TIS_ST33ZP24_I2C is not set
-# CONFIG_TCG_TIS_ST33ZP24_SPI is not set
-# CONFIG_TELCLOCK is not set
-CONFIG_DEVPORT=y
-# CONFIG_XILLYBUS is not set
-
-
-
-</pre>
-  </body>
-</html>
-
+--_000_FEEBC157F91C471593E4853F140559D5intelcom_--
