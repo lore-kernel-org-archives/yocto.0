@@ -1,61 +1,70 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <SRS0=I8GSMr=4Q=glidemtech.com=jaymind@eigbox.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13B7AE00B3E; Wed, 10 May 2017 02:12:23 -0700 (PDT)
+	id 12DA3E00B45; Wed, 10 May 2017 03:44:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.179 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+	*      [66.96.187.4 listed in list.dnswl.org]
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4442]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f179.google.com (mail-wr0-f179.google.com
-	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EBA0E00B31
-	for <yocto@yoctoproject.org>; Wed, 10 May 2017 02:12:21 -0700 (PDT)
-Received: by mail-wr0-f179.google.com with SMTP id l50so34545709wrc.3
-	for <yocto@yoctoproject.org>; Wed, 10 May 2017 02:12:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=G00Pek4secS1JoVAHBPLVT0+SMv4+27G+546Y6jHdmw=;
-	b=xxV9tSeKc6oEDAtBy2YCda0EwO5w7NOVz3S7H2mDsDuBOmlm2eLs7qb2t/LnQC4emN
-	jHR3CcA0xdVO7y097nHGCRbLX1yvY3iUAGCgmLAcQyxVf3xzcxjc8BfHg0xuVnfzRex3
-	/gNTKM7JVwe4kOhYwTnH/HTxPfl+IU6q00Kc60v6zNxEc/7EUf/b+n5ax4lFc4i0XYRo
-	Jp0gL63XI+hBfjBhPYBuENoSW+cCUv92Qx5K29nEcPXP7rCf7Qyy0HlBxm8SYuf68CwT
-	07rPztucDZnl+M79nKFSCUIfkGpLcU+c4gdLqgUzygbQvwtcJtaAi/tinMO2ukCMDSch
-	feLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=G00Pek4secS1JoVAHBPLVT0+SMv4+27G+546Y6jHdmw=;
-	b=c3Oyyoa+mywk91Qgj8ikdPqXhb/5ctbJZLGQsKRDuPIhjVfqQp44bG4ZHnIlecWAIx
-	os+adeulmDV0D6El0JJsf1/1jTmUxEtLcG6pTHHrJU2wAeb9VeM9/+xQP1XeTM4zpEFo
-	xIECy0CqjHGyIURxTmug8Gt9kwvD6WlQTtBtgO5X3gIm+iss/YeE/eCxJjKeVGE5ODGY
-	FLMHGIxkQZKa6Hz8Mym6TRupJ/x1XP1/io1nWDx0ME7vRVrYDdmUWrykB8fKxrTo714F
-	dpx46D2bOf1vHGGv4bLmS6+92SRjIc3Blyk59Vs2Lc60LDXOEUI3+85I4VchszHqsl04
-	G2vg==
-X-Gm-Message-State: AODbwcBbkfOSDb92AUnrX2mRlTEAwAqryOn7ef0ZgbkcccdNQlJDVUYd
-	fz06TvbbmFukTSogjTU=
-X-Received: by 10.223.136.71 with SMTP id e7mr2760634wre.73.1494407540106;
-	Wed, 10 May 2017 02:12:20 -0700 (PDT)
-Received: from flashheart.burtonini.com (home.burtonini.com. [81.2.106.35])
-	by smtp.gmail.com with ESMTPSA id
-	p17sm2988629wmd.11.2017.05.10.02.12.19
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 10 May 2017 02:12:19 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
+X-Greylist: delayed 1820 seconds by postgrey-1.32 at yocto-www;
+	Wed, 10 May 2017 03:44:09 PDT
+Received: from bosmailout04.eigbox.net (bosmailout04.eigbox.net [66.96.187.4])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB54EE00B3D
+	for <yocto@yoctoproject.org>; Wed, 10 May 2017 03:44:09 -0700 (PDT)
+Received: from bosmailscan02.eigbox.net ([10.20.15.2])
+	by bosmailout04.eigbox.net with esmtp (Exim) id 1d8Ocs-00049S-TT
+	for yocto@yoctoproject.org; Wed, 10 May 2017 06:13:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=glidemtech.com; s=dkim;
+	h=Sender:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:To:From:Subject:Date:Message-ID:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=nP1jIW/xwWni1GEf4ZGB1G1+6UKIdliLyulXFh6eq/8=;
+	b=Zam6E/Xxq2fniuiMhDXxPoxwOn
+	uCHUvaL18L1y90Xh0mx0HsKlHQ/Mk/PPQgM+0yDuEfgAvtWJOTXEXAKAwv4rVyCF6+OtQ6dGS1Pha
+	6FgdcN4U+LCk3l1wT17wTUE7et59ZEpkanTN9lG/RwdoPMtoYoz9NVnD6NSJwxdIY/mqrXZcaPj9V
+	rai15v5eRzMfB36L598DzAOKlHsf5QLu9ddewMw08M3axGlrYZ1XuAGK0TkvmLTVnWiK/P1qkZUWd
+	jLmy+eruvTy2rCE7AWLvhBJHkN8i4sTJDOed6lVZbfc2ZuUL9pzwT3zuAmR4iOhJS+iGPGASai4vZ
+	qPyDFiaA==;
+Received: from [10.115.3.32] (helo=bosimpout12)
+	by bosmailscan02.eigbox.net with esmtp (Exim) id 1d8Ocq-0006ib-OE
+	for yocto@yoctoproject.org; Wed, 10 May 2017 06:13:44 -0400
+Received: from boswebmail22.eigbox.net ([10.20.16.22]) by bosimpout12 with 
+	id JaDf1v0010UZg7e01aDkQj; Wed, 10 May 2017 06:13:44 -0400
+X-Authority-Analysis: v=2.2 cv=U6ziNaju c=1 sm=1 tr=0
+	a=/gk9IMqOVko+14773W679Q==:117 a=60MO79bJCu5TkALfye7ouQ==:17
+	a=8nJEP1OIZ-IA:10 a=tJ8p9aeEuA8A:10 a=yAY1xbLwAAAA:8
+	a=uU67mdB0t752Uw7oiNsA:9
+	a=wPNLvfGTeEIA:10 a=yk87ph-orFVm32uD_yCq:22
+Received: from [127.0.0.1] (helo=emailmg.ipower.com)
+	by boswebmail22.eigbox.net with esmtp (Exim) id 1d8Ock-0000cz-Qu
+	for yocto@yoctoproject.org; Wed, 10 May 2017 06:13:38 -0400
+Received: from 103.204.192.202
+	(SquirrelMail authenticated user jaymind@glidemtech.com)
+	by emailmg.ipower.com with HTTP; Wed, 10 May 2017 15:43:38 +0530
+Message-ID: <1e39ba0e26232aa4f6788139982da3a5.squirrel@emailmg.ipower.com>
+Date: Wed, 10 May 2017 15:43:38 +0530
+From: "JAYMIN DABHI" <jaymind@glidemtech.com>
 To: yocto@yoctoproject.org
-Date: Wed, 10 May 2017 10:12:14 +0100
-Message-Id: <1494407534-8428-1-git-send-email-ross.burton@intel.com>
-X-Mailer: git-send-email 2.8.1
-Cc: paul.eggleton@linux.intel.com
-Subject: [PATCH][meta-qt4] qwt: backport a patch from upstream to fix format string warnings
+User-Agent: SquirrelMail/1.4.19
+MIME-Version: 1.0
+X-Priority: 1 (Highest)
+Importance: High
+Sender: "JAYMIN DABHI" <jaymind@glidemtech.com>
+Subject: How to integrate mender to Yocto Jethro (4.1.15-1.2.0) for Pico i.MX6UL Hobbit Board?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,125 +76,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 May 2017 09:12:23 -0000
+X-List-Received-Date: Wed, 10 May 2017 10:44:15 -0000
+Content-Type: text/plain;charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch | 89 +++++++++++++++++++++++
- recipes-qt4/recipes-libs/qwt.inc                  |  3 +-
- 2 files changed, 91 insertions(+), 1 deletion(-)
- create mode 100644 recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch
+Hi All,
 
-diff --git a/recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch b/recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch
-new file mode 100644
-index 0000000..865363a
---- /dev/null
-+++ b/recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch
-@@ -0,0 +1,89 @@
-+Fix format string security warnings.
-+
-+Upstream-Status: Backport (r1502)
-+Signed-off-by: Ross Burton <ross.burton@intel.com>
-+
-+Index: qwt/textengines/mathml/qwt_mml_document.cpp
-+===================================================================
-+--- qwt/textengines/mathml/qwt_mml_document.cpp	(revision 1501)
-++++ qwt/textengines/mathml/qwt_mml_document.cpp	(revision 1502)
-+@@ -3,6 +3,7 @@
-+ #include <QDesktopWidget>
-+ #include <QPainter>
-+ #include <QDomNode>
-++#include <QDebug>
-+ 
-+ #include "qwt_mml_document.h"
-+ 
-+@@ -3122,7 +3123,7 @@
-+ {
-+     if ( node == 0 ) return;
-+ 
-+-    qWarning( ( indent + node->toStr() ).toLatin1().data() );
-++    qWarning() << indent + node->toStr();
-+ 
-+     indent += "  ";
-+     const QwtMmlNode *child = node->firstChild();
-+@@ -3702,7 +3703,7 @@
-+         }
-+         else
-+         {
-+-            qWarning( ( "QwtMmlNode::scriptlevel(): bad value " + expl_sl_str ).toLatin1().data() );
-++            qWarning() << "QwtMmlNode::scriptlevel(): bad value " + expl_sl_str;
-+             return parent_sl;
-+         }
-+     }
-+@@ -3719,7 +3720,7 @@
-+         return parent_sl - 1;
-+     else
-+     {
-+-        qWarning( ( "QwtMmlNode::scriptlevel(): could not parse value: \"" + expl_sl_str + "\"" ).toLatin1().data() );
-++        qWarning() << "QwtMmlNode::scriptlevel(): could not parse value: \"" + expl_sl_str + "\"";
-+         return parent_sl;
-+     }
-+ }
-+@@ -5637,7 +5638,7 @@
-+ 
-+         if ( !literal.startsWith( "&#" ) )
-+         {
-+-            qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
-++            qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
-+             return QString::null;
-+         }
-+ 
-+@@ -5646,7 +5647,7 @@
-+         int i = literal.indexOf( ';' );
-+         if ( i == -1 )
-+         {
-+-            qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
-++            qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
-+             return QString::null;
-+         }
-+ 
-+@@ -5655,7 +5656,7 @@
-+ 
-+         if ( char_code.isEmpty() )
-+         {
-+-            qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
-++            qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
-+             return QString::null;
-+         }
-+ 
-+@@ -5666,7 +5667,7 @@
-+             unsigned c = char_code.toUInt( &ok, 16 );
-+             if ( !ok )
-+             {
-+-                qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
-++                qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
-+                 return QString::null;
-+             }
-+             result += QChar( c );
-+@@ -5677,7 +5678,7 @@
-+             unsigned c = char_code.toUInt( &ok, 10 );
-+             if ( !ok )
-+             {
-+-                qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
-++                qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
-+                 return QString::null;
-+             }
-+             result += QChar( c );
-diff --git a/recipes-qt4/recipes-libs/qwt.inc b/recipes-qt4/recipes-libs/qwt.inc
-index 60f73a6..b84505b 100644
---- a/recipes-qt4/recipes-libs/qwt.inc
-+++ b/recipes-qt4/recipes-libs/qwt.inc
-@@ -7,7 +7,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=dac2743472b0462ff3cfb4af42051c88"
- 
- SRC_URI = "${SOURCEFORGE_MIRROR}/qwt/qwt-${PV}.tar.bz2;name=qwt \
-            file://qwt6.patch \
--           file://qwt6-fix-linking-with-ld-gold.patch"
-+           file://qwt6-fix-linking-with-ld-gold.patch \
-+           file://warnings.patch"
- 
- S = "${WORKDIR}/qwt-${PV}"
- 
+Want to integrate mender with existing Yocto build. My Yocto repo branch
+is Jethro 4.1.15 and poky branch is morty.
+
+Current machine environment detail is as below:
+
+Development board - Pico i.MX6UL Hobbit TechNexion Board.
+DISTRO Version  = 4.1.15-1.2.0
+DISTRO Name = 'fsl-imx-fb'
+
+Bitbake for - core-image-base
+
+What would be the process or steps for integrating mender (meta-mender
+layer) in existing Yocto repo for custom board?
+
+Followed this link :
+https://docs.mender.io/1.0/Artifacts/Building-Mender-Yocto-image, but it
+was unsuccessful.
+
+Any suggestions.
+
+Thanks,
 -- 
-2.8.1
+JAYMIN
 
 
