@@ -1,65 +1,67 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DE09E00B47; Wed, 10 May 2017 06:08:50 -0700 (PDT)
+	id 80E3BE007BA; Wed, 10 May 2017 08:26:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW, RCVD_IN_SORBS_SPAM,
-	WEIRD_PORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.178 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.216.178 listed in dnsbl.sorbs.net]
-Received: from mail-qt0-f178.google.com (mail-qt0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81523E00B3E
-	for <yocto@yoctoproject.org>; Wed, 10 May 2017 06:08:45 -0700 (PDT)
-Received: by mail-qt0-f178.google.com with SMTP id n4so28223347qte.2
-	for <yocto@yoctoproject.org>; Wed, 10 May 2017 06:08:45 -0700 (PDT)
+Received: from mail-pg0-f51.google.com (mail-pg0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB68AE003C1
+	for <yocto@yoctoproject.org>; Wed, 10 May 2017 08:26:51 -0700 (PDT)
+Received: by mail-pg0-f51.google.com with SMTP id o3so18425132pgn.2
+	for <yocto@yoctoproject.org>; Wed, 10 May 2017 08:26:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=HptQMF3ffiIAZ0n53iOW9uCcyRDvkDLEtW2CqMvipTM=;
-	b=Avj21EqB+tgKzzsESsP/kpxuL66IBp3G0Fy2aAtHQJHVTChn6SR6b7l/BtXsla0RPo
-	WCYQpY9S6tYQlHSHli6utokZBBk5ivZpzyp2wLBz9g20/8PHXkdWASZxKJcXGZhFKfWs
-	0gwn2IdCxObhFLFDuAGEcM3glTZ5QWGDwNdIyyPLePkArfsF2+0AhKSNpvRIuthQC/W6
-	t9Zkh3K5O2u7fuZy2/cFmdvlnLTC5da0Tz8wD/gxV1e+f6FQIu9jz3Kqs4tXeAUAiYA5
-	nOaZ5fCTqABSrYyHfHzILNYgzFFFtAx0YNb75tCNIuKf0ePBOTsGRnYyh3BLI2iKe958
-	RcVg==
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to; bh=Xl9UcGbfhaNzMUrpZut8u782WD8/jYv/VE+vd1mhWeM=;
+	b=vcawUQ6KoIVWCy57C2k9URUuMlVog6RCDqKeNEsBWhe07LJ8yZSUB/h3YglSODtYSR
+	erv/Odar0KWvCYySems+9fc1E0RfnhP6AR/AgQ6eghmfs3CS+v3iXKK66h0k/4hnBFjp
+	XaNL3+T/GGRe/zFinWRW2VpGcsUK9s7DgMLkgGvKQ/2PS1il/0e92mDKGFg8AXA69QYr
+	Zz9RCjIwo0xzjpghMNHjX/09gJsJPtGaV7BM0+K04l6z8YSndx2lHyvisj+fXzUfk86q
+	3Mt/sf/xhwLTHrbsih5rus89l6dKQCw1P8GM0Ehit49toajd821C+cnMSToFd96DoF8B
+	qyJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=HptQMF3ffiIAZ0n53iOW9uCcyRDvkDLEtW2CqMvipTM=;
-	b=R69oU2TSvh9Z7zGtm2Tw4/rE6cCDDVBN6F75YdI3yzh1oO23+NIg4G1yz+SM9SGlK9
-	ACxo4Q0zjKIW0cUHprmHqwaSRDpvoVGGkI/8VSIW2+W633fKzJqPjVV6h0D0ULWoQ10P
-	NP30K1MUF0hlf1p9pdUHtL7hWZm/54Ot6PEn/sVqEZbZ/htgugDJuzNuIkAvAwhyoq+w
-	zzf4ecu500SuuSBOoCcUN5Z0Rf5VlQVpXzCGiVfplirTynI0eHt1MVNSH7s0JXvksAeH
-	pA3bTt7hDwek96OhwwbUmQv2f+WFZMpIQsa1Z+06zNtpxKLY3BgGbOynkI9XLy7XV61B
-	mSww==
-X-Gm-Message-State: AODbwcCZouKfSsLJXKPLCgxQi/9KYLFvPifT91nNZLRHBnDwltBNrbCC
-	Fr6O2hFFibqe5m3zkVfdv2oZvjxB+lt+
-X-Received: by 10.200.50.49 with SMTP id x46mr5828193qta.105.1494421725052;
-	Wed, 10 May 2017 06:08:45 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=Xl9UcGbfhaNzMUrpZut8u782WD8/jYv/VE+vd1mhWeM=;
+	b=c0hSYTykyZAeiTturUd4AEPcjGL564wNV0G5X7vmt/4x7aOahTxIUyr2KxlCZHxyWo
+	zUvrZWkN/Q4/1mNhIviq1uFyh1iJhvcDnqeum7FyWvamsnowu9WOC03MVt8Gx4EYpgBZ
+	3AE7uHXnZA6DCh73PR8eDf1t4NFpbQhf1BwdtqS0Uj9PZqz7v6FGeUQSJ/JMGFXvrJZP
+	weuSGe2VhSwHwNjDNqQ3trZc83nTiad8ue8UNeKf3v1d6gmrLg6DBjOcbkjYrnrjUiLf
+	HfbQZMB1fFb1eMvIPOgFjRYy1AdivpZByqBqev9FjFHd1nqjvvwMBSBvFnUFB4wIUm0J
+	9jjg==
+X-Gm-Message-State: AODbwcAe3ALruZ/928ZeDcC8/q/+ih2bBP0B3dWQLhNpS8vT73FnFzSj
+	6WkuDcHF6E4utHkOuxNAYg==
+X-Received: by 10.99.6.2 with SMTP id 2mr7087679pgg.122.1494430010993;
+	Wed, 10 May 2017 08:26:50 -0700 (PDT)
+Received: from ?IPv6:2601:202:4001:9ea0:e3df:bf0a:9f90:498e?
+	([2601:202:4001:9ea0:e3df:bf0a:9f90:498e])
+	by smtp.gmail.com with ESMTPSA id
+	o76sm6501808pfi.119.2017.05.10.08.26.49 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 10 May 2017 08:26:49 -0700 (PDT)
+To: yocto@yoctoproject.org
+References: <1494341221-17621-1-git-send-email-akuster808@gmail.com>
+	<f993b127-3076-e04b-187d-c0f6a8eda4ab@fridu.net>
+From: akuster <akuster@mvista.com>
+Message-ID: <8985266c-2afc-3b77-2ed0-f01c3ba28c04@mvista.com>
+Date: Wed, 10 May 2017 08:26:48 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.140.34.136 with HTTP; Wed, 10 May 2017 06:08:24 -0700 (PDT)
-In-Reply-To: <012f01d2c983$68bea8f0$3a3bfad0$@ln-systems.com>
-References: <012f01d2c983$68bea8f0$3a3bfad0$@ln-systems.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 10 May 2017 14:08:24 +0100
-Message-ID: <CAJTo0LbyY66BKTacRNTB5hu8wq8rrg_3dzCXb-pOiP12ar+YDA@mail.gmail.com>
-To: Colin Helliwell <colin.helliwell@ln-systems.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Configure errors in my recipe
+In-Reply-To: <f993b127-3076-e04b-187d-c0f6a8eda4ab@fridu.net>
+Subject: Re: [meta-security][PATCH 00/10] move tpm into its own layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,37 +73,306 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 May 2017 13:08:50 -0000
-Content-Type: multipart/alternative; boundary=001a113577a21114ff054f2b2cb6
+X-List-Received-Date: Wed, 10 May 2017 15:26:54 -0000
+Content-Type: multipart/alternative;
+	boundary="------------3D562361DCA80D129BB56A18"
 
---001a113577a21114ff054f2b2cb6
-Content-Type: text/plain; charset=UTF-8
+--------------3D562361DCA80D129BB56A18
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 10 May 2017 at 12:48, <colin.helliwell@ln-systems.com> wrote:
 
-> | configure.ac:88: warning: macro 'AM_GLIB_GNU_GETTEXT' not found in
-> library
+
+On 05/10/2017 12:46 AM, Dominig ar Foll (Intel Open Source) wrote:
+> Armin,
+>
+> very interesting move. Could you tell us where is located your git repo ?
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/
+
+currently the changes are in master-next
+
+- armin
+> Regards
+>
+> Dominig
+>
+> Le 09/05/2017 à 16:46, Armin Kuster a écrit :
+>> tpm recipes copied as-is
+>>
+>> This was done to allow inclusion of TPM components independent of the rest of the layer.
+>> minimizes layerdepends
+>>
+>> fixed incorrect use of DISTRO_FEATURES
+>>
+>> Updated tpm kernel configs to newer version
+>>
+>> added a few new packagegroups
+>>
+>> Armin Kuster (10):
+>>    tpm: move to a sub layer
+>>    change tpm from distro to machine feature
+>>    meta-tpm: add base package group as was in meta-security
+>>    packagegroup: remove tpm components
+>>    tpm packagegroups: split into logical units
+>>    tpm-i2c: some systems us i2c TPM
+>>    kernel tpm rework
+>>    tpm-image: used for testing for now.
+>>    linux-stable: fix module selections
+>>    tpm2: package groups fixes
+>>
+>>   meta-tpm/README                                    |  0
+>>   meta-tpm/conf/layer.conf                           | 13 ++++++++++
+>>   meta-tpm/recipes-core/images/security-tpm-image.bb | 19 ++++++++++++++
+>>   .../packagegroup/packagegroup-security-tpm-i2c.bb  | 19 ++++++++++++++
+>>   .../packagegroup/packagegroup-security-tpm.bb      | 29 ++++++++++++++++++++++
+>>   .../packagegroup/packagegroup-security-tpm2.bb     | 18 ++++++++++++++
+>>   .../packagegroup/packagegroup-security-vtpm.bb     | 14 +++++++++++
+>>   meta-tpm/recipes-kernel/linux/linux-yocto/tpm.cfg  |  8 ++++++
+>>   meta-tpm/recipes-kernel/linux/linux-yocto/tpm.scc  |  3 +++
+>>   meta-tpm/recipes-kernel/linux/linux-yocto/tpm2.cfg |  6 +++++
+>>   meta-tpm/recipes-kernel/linux/linux-yocto/tpm2.scc |  3 +++
+>>   .../recipes-kernel/linux/linux-yocto/tpm_i2c.cfg   | 15 +++++++++++
+>>   .../recipes-kernel/linux/linux-yocto/tpm_i2c.scc   |  6 +++++
+>>   .../recipes-kernel/linux/linux-yocto/tpm_x86.cfg   |  4 +++
+>>   meta-tpm/recipes-kernel/linux/linux-yocto/vtpm.cfg |  5 ++++
+>>   meta-tpm/recipes-kernel/linux/linux-yocto/vtpm.scc |  4 +++
+>>   .../recipes-kernel/linux/linux-yocto_4.%.bbappend  | 17 +++++++++++++
+>>   .../Convert-another-vdprintf-to-dprintf.patch      |  0
+>>   .../files/Use-format-s-for-call-to-dprintf.patch   |  0
+>>   .../libtpm/files/fix_signed_issue.patch            |  0
+>>   .../recipes-tpm}/libtpm/libtpm_1.0.bb              |  0
+>>   .../recipes-tpm}/swtpm/files/fix_fcntl_h.patch     |  0
+>>   .../swtpm/files/fix_lib_search_path.patch          |  0
+>>   .../swtpm/files/fix_signed_issue.patch             |  0
+>>   .../recipes-tpm}/swtpm/files/ioctl_h.patch         |  0
+>>   .../recipes-tpm}/swtpm/swtpm-wrappers-native.bb    |  0
+>>   .../recipes-tpm}/swtpm/swtpm_1.0.bb                |  0
+>>   .../tpm-tools/files/tpm-tools-extendpcr.patch      |  0
+>>   .../recipes-tpm}/tpm-tools/tpm-tools_git.bb        |  0
+>>   .../recipes-tpm}/tpm2.0-tools/tpm2.0-tools_git.bb  |  0
+>>   .../tpm2.0-tss/tpm2.0-tss/ax_pthread.m4            |  0
+>>   .../tpm2.0-tss/fix_musl_select_include.patch       |  0
+>>   .../recipes-tpm}/tpm2.0-tss/tpm2.0-tss_git.bb      |  0
+>>   .../tpm2simulator/tpm2simulator-native_116.bb      |  0
+>>   ...path-use-POSIX-getpwent-instead-of-getpwe.patch |  0
+>>   .../recipes-tpm}/trousers/files/tcsd.service       |  0
+>>   .../trousers/files/trousers-udev.rules             |  0
+>>   .../recipes-tpm}/trousers/files/trousers.init.sh   |  0
+>>   .../recipes-tpm}/trousers/trousers_git.bb          |  0
+>>   recipes-kernel/linux/linux-yocto_4.10.bbappend     |  3 ---
+>>   .../packagegroup/packagegroup-core-security.bb     | 18 ++------------
+>>   41 files changed, 185 insertions(+), 19 deletions(-)
+>>   create mode 100644 meta-tpm/README
+>>   create mode 100644 meta-tpm/conf/layer.conf
+>>   create mode 100644 meta-tpm/recipes-core/images/security-tpm-image.bb
+>>   create mode 100644 meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
+>>   create mode 100644 meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
+>>   create mode 100644 meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+>>   create mode 100644 meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm.cfg
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm.scc
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm2.cfg
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm2.scc
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm_i2c.cfg
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm_i2c.scc
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm_x86.cfg
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/vtpm.cfg
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/vtpm.scc
+>>   create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto_4.%.bbappend
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/libtpm/files/Convert-another-vdprintf-to-dprintf.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/libtpm/files/Use-format-s-for-call-to-dprintf.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/libtpm/files/fix_signed_issue.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/libtpm/libtpm_1.0.bb (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/swtpm/files/fix_fcntl_h.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/swtpm/files/fix_lib_search_path.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/swtpm/files/fix_signed_issue.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/swtpm/files/ioctl_h.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/swtpm/swtpm-wrappers-native.bb (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/swtpm/swtpm_1.0.bb (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/tpm-tools/files/tpm-tools-extendpcr.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/tpm-tools/tpm-tools_git.bb (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/tpm2.0-tools/tpm2.0-tools_git.bb (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4 (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/tpm2.0-tss/tpm2.0-tss/fix_musl_select_include.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/tpm2.0-tss/tpm2.0-tss_git.bb (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/tpm2simulator/tpm2simulator-native_116.bb (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/trousers/files/get-user-ps-path-use-POSIX-getpwent-instead-of-getpwe.patch (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/trousers/files/tcsd.service (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/trousers/files/trousers-udev.rules (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/trousers/files/trousers.init.sh (100%)
+>>   rename {recipes-tpm => meta-tpm/recipes-tpm}/trousers/trousers_git.bb (100%)
+>>
+>
+> -- 
+> Dominig ar Foll
+> Senior Software Architect
+> Intel Open Source Technology Centre
+>
 >
 
-That's part of glib, so add glib-2.0 to DEPENDS (and remove gettext-native
-as the inherit will handle that).
 
-Ross
+--------------3D562361DCA80D129BB56A18
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
---001a113577a21114ff054f2b2cb6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 05/10/2017 12:46 AM, Dominig ar Foll
+      (Intel Open Source) wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:f993b127-3076-e04b-187d-c0f6a8eda4ab@fridu.net"
+      type="cite">
+      <meta content="text/html; charset=windows-1252"
+        http-equiv="Content-Type">
+      <font size="-1">Armin,<br>
+        <br>
+        very interesting move. Could you tell us where is located your
+        git repo ?<br>
+      </font></blockquote>
+    <font size="-1"><a class="moz-txt-link-freetext" href="http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/">http://git.yoctoproject.org/cgit/cgit.cgi/meta-security/</a><br>
+      <br>
+      currently the changes are in master-next<br>
+      <br>
+      - armin<br>
+    </font>
+    <blockquote
+      cite="mid:f993b127-3076-e04b-187d-c0f6a8eda4ab@fridu.net"
+      type="cite"><font size="-1"> Regards<br>
+        <br>
+        Dominig<br>
+      </font><br>
+      <div class="moz-cite-prefix">Le 09/05/2017 à 16:46, Armin Kuster a
+        écrit :<br>
+      </div>
+      <blockquote
+        cite="mid:1494341221-17621-1-git-send-email-akuster808@gmail.com"
+        type="cite">
+        <pre wrap="">tpm recipes copied as-is
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 10 May 2017 at 12:48,  <span dir=3D"ltr">&lt;<a href=3D"mailto:colin.hel=
-liwell@ln-systems.com" target=3D"_blank">colin.helliwell@ln-systems.com</a>=
-&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1c8" class=
-=3D"a3s aXjCH m15bf230e2f99bcac">| <a href=3D"http://configure.ac:88" rel=
-=3D"noreferrer" target=3D"_blank">configure.ac:88</a>: warning: macro &#39;=
-AM_GLIB_GNU_GETTEXT&#39; not found in library<br></div></blockquote></div><=
-br>That&#39;s part of glib, so add glib-2.0 to DEPENDS (and remove gettext-=
-native as the inherit will handle that).</div><div class=3D"gmail_extra"><b=
-r></div><div class=3D"gmail_extra">Ross</div></div>
+This was done to allow inclusion of TPM components independent of the rest of the layer.
+minimizes layerdepends
 
---001a113577a21114ff054f2b2cb6--
+fixed incorrect use of DISTRO_FEATURES
+
+Updated tpm kernel configs to newer version
+
+added a few new packagegroups
+
+Armin Kuster (10):
+  tpm: move to a sub layer
+  change tpm from distro to machine feature
+  meta-tpm: add base package group as was in meta-security
+  packagegroup: remove tpm components
+  tpm packagegroups: split into logical units
+  tpm-i2c: some systems us i2c TPM
+  kernel tpm rework
+  tpm-image: used for testing for now.
+  linux-stable: fix module selections
+  tpm2: package groups fixes
+
+ meta-tpm/README                                    |  0
+ meta-tpm/conf/layer.conf                           | 13 ++++++++++
+ meta-tpm/recipes-core/images/security-tpm-image.bb | 19 ++++++++++++++
+ .../packagegroup/packagegroup-security-tpm-i2c.bb  | 19 ++++++++++++++
+ .../packagegroup/packagegroup-security-tpm.bb      | 29 ++++++++++++++++++++++
+ .../packagegroup/packagegroup-security-tpm2.bb     | 18 ++++++++++++++
+ .../packagegroup/packagegroup-security-vtpm.bb     | 14 +++++++++++
+ meta-tpm/recipes-kernel/linux/linux-yocto/tpm.cfg  |  8 ++++++
+ meta-tpm/recipes-kernel/linux/linux-yocto/tpm.scc  |  3 +++
+ meta-tpm/recipes-kernel/linux/linux-yocto/tpm2.cfg |  6 +++++
+ meta-tpm/recipes-kernel/linux/linux-yocto/tpm2.scc |  3 +++
+ .../recipes-kernel/linux/linux-yocto/tpm_i2c.cfg   | 15 +++++++++++
+ .../recipes-kernel/linux/linux-yocto/tpm_i2c.scc   |  6 +++++
+ .../recipes-kernel/linux/linux-yocto/tpm_x86.cfg   |  4 +++
+ meta-tpm/recipes-kernel/linux/linux-yocto/vtpm.cfg |  5 ++++
+ meta-tpm/recipes-kernel/linux/linux-yocto/vtpm.scc |  4 +++
+ .../recipes-kernel/linux/linux-yocto_4.%.bbappend  | 17 +++++++++++++
+ .../Convert-another-vdprintf-to-dprintf.patch      |  0
+ .../files/Use-format-s-for-call-to-dprintf.patch   |  0
+ .../libtpm/files/fix_signed_issue.patch            |  0
+ .../recipes-tpm}/libtpm/libtpm_1.0.bb              |  0
+ .../recipes-tpm}/swtpm/files/fix_fcntl_h.patch     |  0
+ .../swtpm/files/fix_lib_search_path.patch          |  0
+ .../swtpm/files/fix_signed_issue.patch             |  0
+ .../recipes-tpm}/swtpm/files/ioctl_h.patch         |  0
+ .../recipes-tpm}/swtpm/swtpm-wrappers-native.bb    |  0
+ .../recipes-tpm}/swtpm/swtpm_1.0.bb                |  0
+ .../tpm-tools/files/tpm-tools-extendpcr.patch      |  0
+ .../recipes-tpm}/tpm-tools/tpm-tools_git.bb        |  0
+ .../recipes-tpm}/tpm2.0-tools/tpm2.0-tools_git.bb  |  0
+ .../tpm2.0-tss/tpm2.0-tss/ax_pthread.m4            |  0
+ .../tpm2.0-tss/fix_musl_select_include.patch       |  0
+ .../recipes-tpm}/tpm2.0-tss/tpm2.0-tss_git.bb      |  0
+ .../tpm2simulator/tpm2simulator-native_116.bb      |  0
+ ...path-use-POSIX-getpwent-instead-of-getpwe.patch |  0
+ .../recipes-tpm}/trousers/files/tcsd.service       |  0
+ .../trousers/files/trousers-udev.rules             |  0
+ .../recipes-tpm}/trousers/files/trousers.init.sh   |  0
+ .../recipes-tpm}/trousers/trousers_git.bb          |  0
+ recipes-kernel/linux/linux-yocto_4.10.bbappend     |  3 ---
+ .../packagegroup/packagegroup-core-security.bb     | 18 ++------------
+ 41 files changed, 185 insertions(+), 19 deletions(-)
+ create mode 100644 meta-tpm/README
+ create mode 100644 meta-tpm/conf/layer.conf
+ create mode 100644 meta-tpm/recipes-core/images/security-tpm-image.bb
+ create mode 100644 meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
+ create mode 100644 meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
+ create mode 100644 meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+ create mode 100644 meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm.cfg
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm.scc
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm2.cfg
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm2.scc
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm_i2c.cfg
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm_i2c.scc
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/tpm_x86.cfg
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/vtpm.cfg
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto/vtpm.scc
+ create mode 100644 meta-tpm/recipes-kernel/linux/linux-yocto_4.%.bbappend
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/libtpm/files/Convert-another-vdprintf-to-dprintf.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/libtpm/files/Use-format-s-for-call-to-dprintf.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/libtpm/files/fix_signed_issue.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/libtpm/libtpm_1.0.bb (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/swtpm/files/fix_fcntl_h.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/swtpm/files/fix_lib_search_path.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/swtpm/files/fix_signed_issue.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/swtpm/files/ioctl_h.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/swtpm/swtpm-wrappers-native.bb (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/swtpm/swtpm_1.0.bb (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/tpm-tools/files/tpm-tools-extendpcr.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/tpm-tools/tpm-tools_git.bb (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/tpm2.0-tools/tpm2.0-tools_git.bb (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/tpm2.0-tss/tpm2.0-tss/ax_pthread.m4 (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/tpm2.0-tss/tpm2.0-tss/fix_musl_select_include.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/tpm2.0-tss/tpm2.0-tss_git.bb (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/tpm2simulator/tpm2simulator-native_116.bb (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/trousers/files/get-user-ps-path-use-POSIX-getpwent-instead-of-getpwe.patch (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/trousers/files/tcsd.service (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/trousers/files/trousers-udev.rules (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/trousers/files/trousers.init.sh (100%)
+ rename {recipes-tpm =&gt; meta-tpm/recipes-tpm}/trousers/trousers_git.bb (100%)
+
+</pre>
+      </blockquote>
+      <br>
+      <pre class="moz-signature" cols="72">-- 
+Dominig ar Foll
+Senior Software Architect
+Intel Open Source Technology Centre</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------3D562361DCA80D129BB56A18--
