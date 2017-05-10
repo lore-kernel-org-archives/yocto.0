@@ -1,32 +1,65 @@
-Return-Path: <jose.perez.carranza@linux.intel.com>
+Return-Path: <andreapicaro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03E3FE00B87; Tue, 16 May 2017 11:45:02 -0700 (PDT)
+	id 0B917E00B45; Wed, 10 May 2017 03:52:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (andreapicaro[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B42B9E00B7A
-	for <yocto@yoctoproject.org>; Tue, 16 May 2017 11:45:00 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga105.jf.intel.com with ESMTP; 16 May 2017 11:44:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.38,350,1491289200"; d="scan'208";a="1169988200"
-Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
-	by fmsmga002.fm.intel.com with ESMTP; 16 May 2017 11:44:59 -0700
-From: jose.perez.carranza@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Tue, 16 May 2017 13:46:28 -0500
-Message-Id: <20170516184628.31604-1-jose.perez.carranza@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.177 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.161.177 listed in dnsbl.sorbs.net]
+Received: from mail-yw0-f177.google.com (mail-yw0-f177.google.com
+	[209.85.161.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C78A1E00B3D
+	for <yocto@yoctoproject.org>; Wed, 10 May 2017 03:52:47 -0700 (PDT)
+Received: by mail-yw0-f177.google.com with SMTP id b68so13370426ywe.3
+	for <yocto@yoctoproject.org>; Wed, 10 May 2017 03:52:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=tnY9d7DKKdaV5BIzB/ix3aXGG0FZVlAJYIVSDMl52vk=;
+	b=YXHH+mvtKTYGYSLuXovcRai+Z+WGMk6FCvBmYotF3Lmgz89NbpsCtVB4DVbhqizqcX
+	ZVCcdYrXlv5l9wWmE6T4YZbXDfgUwGL1KwHJXfeoB52xLHbmTRZBrR0YLlNeQo5T759X
+	UK7FXS0tkG7pBnH45eovzMryynEJ0vxuHYNj6UqgDppar7xbuckKXtXnD8m6gkfxfuwf
+	Q80n55rJNpxvyPXC8dxLgpcysQcyw1EIqVjwJps2FjWPnWiiX/U2rpgl3Oiub7iZ1mk5
+	pICvyVbc5FQEQK5lpZYMUM4AfY0oIeyb9waoP+P+tly0kUiQsTSJC8MNXQF6fOu+pKRo
+	Hl4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=tnY9d7DKKdaV5BIzB/ix3aXGG0FZVlAJYIVSDMl52vk=;
+	b=FnRLppjWekhGnxo1EkcCYFcZx5zTYyIJ+MS3OXSwYOI5jHXA0HQH3p67AIuNOows30
+	wmrLaotSYRWQMBm3mDlwUP4LLxmF1vKOTrq84TS0GGpd0w22bc41mzHntFp8EtNLn8aj
+	JeMmr8AGrSE5LGkJsJhXrwwtRbgV0+g5CqL66msd2KjytILsWf+2+G1Xd1S75v3p695o
+	LoM0LK8/TvqwGvx0+USg+f822t4PvbdWcoAx7knTXRHdcljPBMgdEI3DrSr5xNDYQ5Jr
+	bLqVboQcWvGZ+8ikpvZj294DeKitonkiM9Mjr6Q96Vz+5LtoK1iI7LUhYzEuyCQhOrAm
+	vQrg==
+X-Gm-Message-State: AODbwcAnQ1hOWyhu0B2Vw1cTxL3jpkJglAMgPHlkenZwfs2oHnjZ+4df
+	Jeke1euoGWSufIjms96tRP5F2Pdlvdsn
+X-Received: by 10.129.172.39 with SMTP id k39mr3890711ywh.249.1494413566388;
+	Wed, 10 May 2017 03:52:46 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [qa-tools][PATCH] Full-test-cycle-wrapper: Add support for point releases
+Received: by 10.129.4.200 with HTTP; Wed, 10 May 2017 03:52:46 -0700 (PDT)
+From: Andrea Picaro <andreapicaro@gmail.com>
+Date: Wed, 10 May 2017 12:52:46 +0200
+Message-ID: <CAA7DeJD4WV=RZ6CCk5aDO9Ex06z3jr6s=0ceKrdJBwwoHY4fUA@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Tue, 16 May 2017 12:05:36 -0700
+Subject: QtWebEngine cannot show google sites due to certificate errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,152 +71,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 May 2017 18:45:02 -0000
+X-List-Received-Date: Wed, 10 May 2017 10:52:51 -0000
+Content-Type: multipart/alternative; boundary=f403045e56acc5b016054f2945bb
+
+--f403045e56acc5b016054f2945bb
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+Hello, i compiled Yocto Morty for an mx6 machine.
+QtWebEngine works fine for all sites (included https by ignoring
+certificate errors) apart
+from google sites.
+I've found other info about this issue googling around but it seemed
+to be solved in latest chromium builds and none of the solutions tested
+gave results.
+All google sites gives ERR_INSECURE_RESPONSE and i see this error in
+console:
+ERROR:cert_verify_proc_openssl.cc(238)] X509 Verification error certificate
+has expired : 10 : 3 : 2
 
-Add support to scenarios were a execution is needed for branch different
-from master, delete lsb-joule environment as is not supported and add
-logic to do the “Testopia connection” modular and reusable by other
-scripts.
+Any hint would much appreciated
+Thanks
 
-Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
----
- scripts/full-test-cycle-wrapper.sh | 16 +++++++++++---
- testopia_update.py                 | 44 ++++++++++++++++++++++++--------------
- 2 files changed, 41 insertions(+), 19 deletions(-)
-
-diff --git a/scripts/full-test-cycle-wrapper.sh b/scripts/full-test-cycle-wrapper.sh
-index 2b3a130..7dcd62e 100755
---- a/scripts/full-test-cycle-wrapper.sh
-+++ b/scripts/full-test-cycle-wrapper.sh
-@@ -51,6 +51,13 @@ create_test_run(){
-       OPT="-o $2"
-    fi
- 
-+#If point release is used then milestone is not asigned
-+   if [[ $MILESTONE == M* ]]; then
-+      BUILD_MILESTONE="$VERSION $MILESTONE"
-+   else
-+      BUILD_MILESTONE="$VERSION$MILESTONE"
-+   fi
-+
-    #echo "############ CREATING TEST RUNS FOR - $1 - #############"
-    for ENV in "${ENVIRONMENTS[@]}"
-    do
-@@ -61,7 +68,7 @@ create_test_run(){
-      do
-         #call the script that creates Test Runs
-         ./testopia_update.py --config $CONFIG_FILE -a $ACTION -p "${1}" -c $EXTP -b $BRANCH \
--        -e "$ENV"  --project-version $VERSION --project-milestone "$VERSION $MILESTONE" \
-+        -e "$ENV"  --project-version $VERSION --project-milestone "$BUILD_MILESTONE" \
-         --project-date $PJDATE --project-revision $RELEASE-$REVISION $OPT $TEST_PLAN --verbose
-      done
-    done
-@@ -119,7 +126,7 @@ create_meta-intel(){
-    create_test_run "${1}" "core-image-sato-sdk_ANYBSP"
- 
-    #BSP Autos LSB
--   ENVIRONMENTS=("core2-32_lsb_MMAX32" "corei7-64_lsb_NUC" "corei7-64_lsb_MMAX64" "corei7-64_lsb_Joule" "corei7-64_lsb_CherryHill")
-+   ENVIRONMENTS=("core2-32_lsb_MMAX32" "corei7-64_lsb_NUC" "corei7-64_lsb_MMAX64" "corei7-64_lsb_CherryHill")
- 
-    EXECUTION_TYPE="AUTO"
-    create_test_run "${1}" "core-image-lsb-sdk_ANYBSP"
-@@ -226,7 +233,9 @@ usage(){
-   echo " -p PROJECT VERSION  {2.2 2.3 2.4}
-                           Version of the project."
-   echo " -m PROJECT MILESTONE {M1 M2 M3 M4}
--                          Milestone of the project."
-+                          Milestone of the project.
-+			  if is point release set milestone with .#
-+		          .1 .2 .3"
-   echo " -r RELEASE COMMIT {XXXXXX}
-                           SCM Revision of the project, commit of branch tested."
-   echo " -c RELEAE CANDIDATE {rc1 rc2 rcX}
-@@ -236,6 +245,7 @@ usage(){
-   exit
- }
- 
-+
- if [[ ( $# == "--help") ||  $# == "-h" || $# -eq 0 ]] ; then
-     usage
-     exit 0
-diff --git a/testopia_update.py b/testopia_update.py
-index 50c3325..0a3f7f5 100755
---- a/testopia_update.py
-+++ b/testopia_update.py
-@@ -14,7 +14,7 @@ DEFAULT_CONFIG_FILE = "testopia_update.config"
- DEFAULT_STORE_LOCATION = "/tmp/testopia_update"
- 
- ACTIONS = ('create', 'update')
--BRANCHES = ('master', 'jethro', 'dizzy', 'daisy', 'noexists')
-+BRANCHES = ('master', 'jethro', 'dizzy', 'daisy', 'noexists', "pyro")
- CATEGORIES = ('AUTO', 'MANUAL')
- 
- 
-@@ -54,6 +54,31 @@ def load_opts(args, opts_list, opts):
-                             'and --results-log if test run was already created')
-             sys.exit(1)
- 
-+
-+def connect_to_testopia():
-+    config = None
-+    opts = Options()
-+
-+    testopia_config = ['url', 'username', 'password', 'store_location']
-+
-+    if not args.config and os.path.exists(DEFAULT_CONFIG_FILE):
-+        args.config = DEFAULT_CONFIG_FILE
-+
-+    if args.config:
-+        config = ConfigParser.SafeConfigParser()
-+        config.read(args.config)
-+
-+        for to in testopia_config:
-+            setattr(opts, to, config.get("Testopia", to))
-+
-+    load_opts(args, testopia_config, opts)
-+
-+    if not os.path.exists(opts.store_location):
-+        os.makedirs(opts.store_location)
-+
-+    return opts, config
-+
-+
- class Options(object):
-     pass
- 
-@@ -132,25 +157,12 @@ if __name__ == '__main__':
-         'project_version', 'project_milestone', 'project_revision',
-         'project_date']
- 
--    config = None
--    if not args.config and os.path.exists(DEFAULT_CONFIG_FILE):
--        args.config = DEFAULT_CONFIG_FILE
--
--    if args.config:
--        config = ConfigParser.SafeConfigParser()
--        config.read(args.config)
--
--        for to in testopia_config:
--            setattr(opts, to, config.get("Testopia", to))
--    load_opts(args, testopia_config, opts)
--
--    if not os.path.exists(opts.store_location):
--        os.makedirs(opts.store_location)
--
-     kwargs = {}
-     if args.plan_name:
-         kwargs['plan_name'] = args.plan_name
- 
-+    opts, config = connect_to_testopia()
-+
-     testopia = Testopia(opts.username, opts.password, opts.url, sslverify=False)
-     products = get_products(testopia, opts, logger, config, **kwargs)
- 
 -- 
-2.11.0
+*Andrea Picaro*
 
+--f403045e56acc5b016054f2945bb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hello, i compiled Yocto Morty for an mx6 machine.<div>QtWe=
+bEngine works fine for all sites (included https by ignoring certificate er=
+rors) apart</div><div>from google sites.=C2=A0</div><div>I&#39;ve found oth=
+er info about this issue googling around but it seemed</div><div>to be solv=
+ed in latest chromium builds and none of the solutions tested gave results.=
+</div><div>All google sites gives ERR_INSECURE_RESPONSE and i see this erro=
+r in console:</div><div>ERROR:cert_verify_proc_openssl.cc(238)] X509 Verifi=
+cation error certificate has expired : 10 : 3 : 2<br><div><div><br></div><d=
+iv>Any hint would much appreciated</div><div>Thanks</div><div><br></div>-- =
+<br><div class=3D"gmail_signature"><div dir=3D"ltr"><font size=3D"2"><i>And=
+rea Picaro</i></font></div></div>
+</div></div></div>
+
+--f403045e56acc5b016054f2945bb--
