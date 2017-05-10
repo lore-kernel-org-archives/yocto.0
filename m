@@ -1,70 +1,61 @@
-Return-Path: <dominig.arfoll@fridu.net>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E49DFE00B3E; Wed, 10 May 2017 02:10:01 -0700 (PDT)
+	id 13B7AE00B3E; Wed, 10 May 2017 02:12:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, MIME_HTML_ONLY,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
 	*      [209.85.128.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wr0-f179.google.com (mail-wr0-f179.google.com
 	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CAA7E00B31
-	for <yocto@yoctoproject.org>; Wed, 10 May 2017 02:09:58 -0700 (PDT)
-Received: by mail-wr0-f179.google.com with SMTP id l50so34457642wrc.3
-	for <yocto@yoctoproject.org>; Wed, 10 May 2017 02:09:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fridu.net; s=google;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding;
-	bh=nM/zOEdw7dvLObmEg7IkkKVEy4xePTNr5cWd81rUFHo=;
-	b=X1n/bQJF5MEaGJVFtFxbMxlHhZ7aJpSg9iCiMh1tZu+tAl5scI9BE0Cyzy4sEM5HbF
-	4/369LvFCOG0nHk5fFZNikywKLaNXmczPN+DglLNIQzj1aCGFxNkOUWtvQfptzooRolv
-	p4QVDB1C1cyaAC0HL1cKNTvDlp8e9amoxb6xo=
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EBA0E00B31
+	for <yocto@yoctoproject.org>; Wed, 10 May 2017 02:12:21 -0700 (PDT)
+Received: by mail-wr0-f179.google.com with SMTP id l50so34545709wrc.3
+	for <yocto@yoctoproject.org>; Wed, 10 May 2017 02:12:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=G00Pek4secS1JoVAHBPLVT0+SMv4+27G+546Y6jHdmw=;
+	b=xxV9tSeKc6oEDAtBy2YCda0EwO5w7NOVz3S7H2mDsDuBOmlm2eLs7qb2t/LnQC4emN
+	jHR3CcA0xdVO7y097nHGCRbLX1yvY3iUAGCgmLAcQyxVf3xzcxjc8BfHg0xuVnfzRex3
+	/gNTKM7JVwe4kOhYwTnH/HTxPfl+IU6q00Kc60v6zNxEc/7EUf/b+n5ax4lFc4i0XYRo
+	Jp0gL63XI+hBfjBhPYBuENoSW+cCUv92Qx5K29nEcPXP7rCf7Qyy0HlBxm8SYuf68CwT
+	07rPztucDZnl+M79nKFSCUIfkGpLcU+c4gdLqgUzygbQvwtcJtaAi/tinMO2ukCMDSch
+	feLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=nM/zOEdw7dvLObmEg7IkkKVEy4xePTNr5cWd81rUFHo=;
-	b=YKHnt3iALXC+pk3pR0nXAHybremNDiYUnXP1VaBdJoAOvbIpRUAN9nprQ+8Z23o/9t
-	kl7viR0zSZL9OivEyJOvmvtoYN3xgIMGz+Y7PvveivFGufQFNPDwxKUAttxibe7TrBT1
-	KC/3QoRMcJtDU5ig/RszQrNE66EAQtdpC4PnlHrU6UYvShx9q3rOr24oNyy940UMwk5V
-	GkC8WzqPtwD7nNNvPr+jrCwogSf580lXZHV4e2YR5rdsrdvqvhIVzmlOSbRqT2rZD5rQ
-	bEqKSi5W07QWfpHWkqgqJAuXEh3c7q3296YVQ9F7yY+pE9JmErFm378SeKfH4wXuMy8X
-	W5eg==
-X-Gm-Message-State: AODbwcCiDBbJrK5svQ35gzhEQvRxFzlZebs2X7P3z3SijL2BRevHANrs
-	uaOufm6LocxGQ06kocQ=
-X-Received: by 10.223.142.50 with SMTP id n47mr3077088wrb.188.1494407397472;
-	Wed, 10 May 2017 02:09:57 -0700 (PDT)
-Received: from [10.10.61.21] (ARennes-650-1-175-27.w92-135.abo.wanadoo.fr.
-	[92.135.46.27]) by smtp.gmail.com with ESMTPSA id
-	o97sm2431691wrc.48.2017.05.10.02.09.56
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 10 May 2017 02:09:56 -0700 (PDT)
-To: "Hofemeier, Ulf" <ulf.hofemeier@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <c08863c7-b1da-a318-c4a5-02115ededba2@fridu.net>
-	<FEEBC157-F91C-4715-93E4-853F140559D5@intel.com>
-From: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>
-X-Enigmail-Draft-Status: N1110
-Message-ID: <2d9f0deb-6287-9b4e-e1ed-f265c45008cd@fridu.net>
-Date: Wed, 10 May 2017 11:09:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
-MIME-Version: 1.0
-In-Reply-To: <FEEBC157-F91C-4715-93E4-853F140559D5@intel.com>
-Subject: Re: how to activate tpm - Minnow BIOS 64 bits
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=G00Pek4secS1JoVAHBPLVT0+SMv4+27G+546Y6jHdmw=;
+	b=c3Oyyoa+mywk91Qgj8ikdPqXhb/5ctbJZLGQsKRDuPIhjVfqQp44bG4ZHnIlecWAIx
+	os+adeulmDV0D6El0JJsf1/1jTmUxEtLcG6pTHHrJU2wAeb9VeM9/+xQP1XeTM4zpEFo
+	xIECy0CqjHGyIURxTmug8Gt9kwvD6WlQTtBtgO5X3gIm+iss/YeE/eCxJjKeVGE5ODGY
+	FLMHGIxkQZKa6Hz8Mym6TRupJ/x1XP1/io1nWDx0ME7vRVrYDdmUWrykB8fKxrTo714F
+	dpx46D2bOf1vHGGv4bLmS6+92SRjIc3Blyk59Vs2Lc60LDXOEUI3+85I4VchszHqsl04
+	G2vg==
+X-Gm-Message-State: AODbwcBbkfOSDb92AUnrX2mRlTEAwAqryOn7ef0ZgbkcccdNQlJDVUYd
+	fz06TvbbmFukTSogjTU=
+X-Received: by 10.223.136.71 with SMTP id e7mr2760634wre.73.1494407540106;
+	Wed, 10 May 2017 02:12:20 -0700 (PDT)
+Received: from flashheart.burtonini.com (home.burtonini.com. [81.2.106.35])
+	by smtp.gmail.com with ESMTPSA id
+	p17sm2988629wmd.11.2017.05.10.02.12.19
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 10 May 2017 02:12:19 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 10 May 2017 10:12:14 +0100
+Message-Id: <1494407534-8428-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 2.8.1
+Cc: paul.eggleton@linux.intel.com
+Subject: [PATCH][meta-qt4] qwt: backport a patch from upstream to fix format string warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,211 +67,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 May 2017 09:10:01 -0000
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 10 May 2017 09:12:23 -0000
 
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <font size="-1">Ulf;<br>
-      <br>
-      Would you know if the latest BIOS (v0.95)  with tpm2 enabled for
-      the Minnowboard Max is available for download somewhere ?<br>
-      The default repo does only provide tpm2 for 32 bits BIOS (what is
-      of no use AGL.<br>
-       - <a class="moz-txt-link-freetext" href="https://firmware.intel.com/projects/minnowboard-max">https://firmware.intel.com/projects/minnowboard-max</a><br>
-      While the provided pointers are very valuable, they do not provide
-      a scalable solution for general users in the Automotive Grade
-      Linux project.<br>
-      Would you know why the Minnowboard does not provide tpm2 enabled
-      for the 64 bits BIOS ?<br>
-      <br>
-      Dominig<br>
-    </font><br>
-    <div class="moz-cite-prefix">Le 09/05/2017 à 20:12, Hofemeier, Ulf a
-      écrit :<br>
-    </div>
-    <blockquote
-      cite="mid:FEEBC157-F91C-4715-93E4-853F140559D5@intel.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <meta name="Title" content="">
-      <meta name="Keywords" content="">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Courier New";
-	panose-1:2 7 3 9 2 2 5 2 4 4;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Courier;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:Calibri;
-	color:windowtext;}
-span.msoIns
-	{mso-style-type:export-only;
-	mso-style-name:"";
-	text-decoration:underline;
-	color:teal;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style>
-      <div class="WordSection1">
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri">Hi Domining,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri">Please check
-            out this article.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri"><a
-              moz-do-not-send="true"
-href="https://prosauce.org/blog/2016/1/11/minnowboard-max-enable-and-test-the-firmware-txe-tpm-20">https://prosauce.org/blog/2016/1/11/minnowboard-max-enable-and-test-the-firmware-txe-tpm-20</a><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri">Also, there has
-            been a person in the MinnowBoard GitHub issue tracker who
-            successfully enabled TPM2 for this platform. See the thread
-            here:<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri"><a
-              moz-do-not-send="true"
-              href="https://github.com/MinnowBoard-org/bugs-and-help/issues/29">https://github.com/MinnowBoard-org/bugs-and-help/issues/29</a><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri">Thanks,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri">Ulf<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="font-size:11.0pt;font-family:Calibri"><o:p> </o:p></span></p>
-        <div style="border:none;border-top:solid #B5C4DF
-          1.0pt;padding:3.0pt 0in 0in 0in">
-          <p class="MsoNormal"><b><span
-                style="font-family:Calibri;color:black">From: </span>
-            </b><span style="font-family:Calibri;color:black"><a class="moz-txt-link-rfc2396E" href="mailto:yocto-bounces@yoctoproject.org">&lt;yocto-bounces@yoctoproject.org&gt;</a>
-              on behalf of Dominig Foll <a class="moz-txt-link-rfc2396E" href="mailto:dominig.arfoll@fridu.net">&lt;dominig.arfoll@fridu.net&gt;</a><br>
-              <b>Date: </b>Tuesday, May 9, 2017 at 8:12 AM<br>
-              <b>To: </b><a class="moz-txt-link-rfc2396E" href="mailto:yocto@yoctoproject.org">"yocto@yoctoproject.org"</a>
-              <a class="moz-txt-link-rfc2396E" href="mailto:yocto@yoctoproject.org">&lt;yocto@yoctoproject.org&gt;</a><br>
-              <b>Subject: </b>[yocto] how to activate tpm<o:p></o:p></span></p>
-        </div>
-        <div>
-          <p class="MsoNormal"><o:p> </o:p></p>
-        </div>
-        <p class="MsoNormal"><span style="font-size:10.0pt">Hello,<br>
-            <br>
-            I am trying to get tpm working on a Minnowboard and a Joule.<br>
-            I have enabled tpm in meta-security.<br>
-            I can see that the Kernel config looks good (see extract
-            bellow)<br>
-            tpm is enable in the BIOS (fails with TPM&gt;PTT or dTPM
-            2.0)<br>
-            BUT i still cannot see my tpm device in /sys/class/tpm<br>
-            <br>
-            Has anyone succeeded to enable tpm with meta-security ?<br>
-            If yes, I would be interested to know how you have done.<br>
-            <br>
-          </span><o:p></o:p></p>
-        <pre>-- <o:p></o:p></pre>
-        <pre>Dominig ar Foll<o:p></o:p></pre>
-        <pre>Senior Software Architect<o:p></o:p></pre>
-        <pre>Intel Open Source Technology Centre<o:p></o:p></pre>
-        <pre><o:p> </o:p></pre>
-        <pre>------- log device not visible ----------<o:p></o:p></pre>
-        <pre>tcsd -f<o:p></o:p></pre>
-        <pre>TCSD TDDL ERROR: Could not find a device to open!<o:p></o:p></pre>
-        <pre>root@intel-corei7-64:~# modprobe -D tpm                                                                                                                                                <o:p></o:p></pre>
-        <pre>builtin tpm<o:p></o:p></pre>
-        <pre>root@intel-corei7-64:~# modprobe -D tpm_tis<o:p></o:p></pre>
-        <pre>builtin tpm_tis<o:p></o:p></pre>
-        <pre>root@intel-corei7-64:/tmp# ls /sys/class/tpm                                                                                                                                           <o:p></o:p></pre>
-        <pre>root@intel-corei7-64:/tmp# <o:p></o:p></pre>
-        <pre><o:p> </o:p></pre>
-        <pre>--------- kernel config extract --------------<o:p></o:p></pre>
-        <pre><o:p> </o:p></pre>
-        <pre>CONFIG_HW_RANDOM_TPM=m<o:p></o:p></pre>
-        <pre># CONFIG_NVRAM is not set<o:p></o:p></pre>
-        <pre># CONFIG_R3964 is not set<o:p></o:p></pre>
-        <pre># CONFIG_APPLICOM is not set<o:p></o:p></pre>
-        <pre># CONFIG_MWAVE is not set<o:p></o:p></pre>
-        <pre># CONFIG_RAW_DRIVER is not set<o:p></o:p></pre>
-        <pre>CONFIG_HPET=y<o:p></o:p></pre>
-        <pre>CONFIG_HPET_MMAP=y<o:p></o:p></pre>
-        <pre>CONFIG_HPET_MMAP_DEFAULT=y<o:p></o:p></pre>
-        <pre># CONFIG_HANGCHECK_TIMER is not set<o:p></o:p></pre>
-        <pre>CONFIG_TCG_TPM=y<o:p></o:p></pre>
-        <pre>CONFIG_TCG_TIS_CORE=y<o:p></o:p></pre>
-        <pre>CONFIG_TCG_TIS=y<o:p></o:p></pre>
-        <pre># CONFIG_TCG_TIS_SPI is not set<o:p></o:p></pre>
-        <pre># CONFIG_TCG_TIS_I2C_ATMEL is not set<o:p></o:p></pre>
-        <pre># CONFIG_TCG_TIS_I2C_INFINEON is not set<o:p></o:p></pre>
-        <pre># CONFIG_TCG_TIS_I2C_NUVOTON is not set<o:p></o:p></pre>
-        <pre># CONFIG_TCG_NSC is not set<o:p></o:p></pre>
-        <pre># CONFIG_TCG_ATMEL is not set<o:p></o:p></pre>
-        <pre># CONFIG_TCG_INFINEON is not set<o:p></o:p></pre>
-        <pre>CONFIG_TCG_CRB=y<o:p></o:p></pre>
-        <pre>CONFIG_TCG_VTPM_PROXY=y<o:p></o:p></pre>
-        <pre># CONFIG_TCG_TIS_ST33ZP24_I2C is not set<o:p></o:p></pre>
-        <pre># CONFIG_TCG_TIS_ST33ZP24_SPI is not set<o:p></o:p></pre>
-        <pre># CONFIG_TELCLOCK is not set<o:p></o:p></pre>
-        <pre>CONFIG_DEVPORT=y<o:p></o:p></pre>
-        <pre># CONFIG_XILLYBUS is not set<o:p></o:p></pre>
-        <pre><o:p> </o:p></pre>
-        <pre><o:p> </o:p></pre>
-        <pre><o:p> </o:p></pre>
-      </div>
-    </blockquote>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-Dominig ar Foll
-Senior Software Architect
-Intel Open Source Technology Centre</pre>
-  </body>
-</html>
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch | 89 +++++++++++++++++++++++
+ recipes-qt4/recipes-libs/qwt.inc                  |  3 +-
+ 2 files changed, 91 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch
+
+diff --git a/recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch b/recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch
+new file mode 100644
+index 0000000..865363a
+--- /dev/null
++++ b/recipes-qt4/recipes-libs/qwt-6.0.1/warnings.patch
+@@ -0,0 +1,89 @@
++Fix format string security warnings.
++
++Upstream-Status: Backport (r1502)
++Signed-off-by: Ross Burton <ross.burton@intel.com>
++
++Index: qwt/textengines/mathml/qwt_mml_document.cpp
++===================================================================
++--- qwt/textengines/mathml/qwt_mml_document.cpp	(revision 1501)
+++++ qwt/textengines/mathml/qwt_mml_document.cpp	(revision 1502)
++@@ -3,6 +3,7 @@
++ #include <QDesktopWidget>
++ #include <QPainter>
++ #include <QDomNode>
+++#include <QDebug>
++ 
++ #include "qwt_mml_document.h"
++ 
++@@ -3122,7 +3123,7 @@
++ {
++     if ( node == 0 ) return;
++ 
++-    qWarning( ( indent + node->toStr() ).toLatin1().data() );
+++    qWarning() << indent + node->toStr();
++ 
++     indent += "  ";
++     const QwtMmlNode *child = node->firstChild();
++@@ -3702,7 +3703,7 @@
++         }
++         else
++         {
++-            qWarning( ( "QwtMmlNode::scriptlevel(): bad value " + expl_sl_str ).toLatin1().data() );
+++            qWarning() << "QwtMmlNode::scriptlevel(): bad value " + expl_sl_str;
++             return parent_sl;
++         }
++     }
++@@ -3719,7 +3720,7 @@
++         return parent_sl - 1;
++     else
++     {
++-        qWarning( ( "QwtMmlNode::scriptlevel(): could not parse value: \"" + expl_sl_str + "\"" ).toLatin1().data() );
+++        qWarning() << "QwtMmlNode::scriptlevel(): could not parse value: \"" + expl_sl_str + "\"";
++         return parent_sl;
++     }
++ }
++@@ -5637,7 +5638,7 @@
++ 
++         if ( !literal.startsWith( "&#" ) )
++         {
++-            qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
+++            qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
++             return QString::null;
++         }
++ 
++@@ -5646,7 +5647,7 @@
++         int i = literal.indexOf( ';' );
++         if ( i == -1 )
++         {
++-            qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
+++            qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
++             return QString::null;
++         }
++ 
++@@ -5655,7 +5656,7 @@
++ 
++         if ( char_code.isEmpty() )
++         {
++-            qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
+++            qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
++             return QString::null;
++         }
++ 
++@@ -5666,7 +5667,7 @@
++             unsigned c = char_code.toUInt( &ok, 16 );
++             if ( !ok )
++             {
++-                qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
+++                qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
++                 return QString::null;
++             }
++             result += QChar( c );
++@@ -5677,7 +5678,7 @@
++             unsigned c = char_code.toUInt( &ok, 10 );
++             if ( !ok )
++             {
++-                qWarning( ( "decodeEntityValue(): bad entity literal: \"" + literal + "\"" ).toLatin1().data() );
+++                qWarning() << "decodeEntityValue(): bad entity literal: \"" + literal + "\"";
++                 return QString::null;
++             }
++             result += QChar( c );
+diff --git a/recipes-qt4/recipes-libs/qwt.inc b/recipes-qt4/recipes-libs/qwt.inc
+index 60f73a6..b84505b 100644
+--- a/recipes-qt4/recipes-libs/qwt.inc
++++ b/recipes-qt4/recipes-libs/qwt.inc
+@@ -7,7 +7,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=dac2743472b0462ff3cfb4af42051c88"
+ 
+ SRC_URI = "${SOURCEFORGE_MIRROR}/qwt/qwt-${PV}.tar.bz2;name=qwt \
+            file://qwt6.patch \
+-           file://qwt6-fix-linking-with-ld-gold.patch"
++           file://qwt6-fix-linking-with-ld-gold.patch \
++           file://warnings.patch"
+ 
+ S = "${WORKDIR}/qwt-${PV}"
+ 
+-- 
+2.8.1
+
 
