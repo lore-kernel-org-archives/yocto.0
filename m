@@ -1,34 +1,41 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88D4AE00B51; Thu, 11 May 2017 05:09:29 -0700 (PDT)
+	id 44D11E00B51; Thu, 11 May 2017 05:53:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A0EBE00AF8
-	for <yocto@yoctoproject.org>; Thu, 11 May 2017 05:09:26 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	11 May 2017 05:09:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.38,324,1491289200"; d="scan'208";a="1128973818"
-Received: from jlock-mobl1.ger.corp.intel.com ([10.252.22.155])
-	by orsmga001.jf.intel.com with ESMTP; 11 May 2017 05:09:24 -0700
-From: Joshua Lock <joshua.g.lock@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 11 May 2017 13:09:18 +0100
-Message-Id: <20170511120918.30574-1-joshua.g.lock@intel.com>
-X-Mailer: git-send-email 2.9.3
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C6E8E00AF8
+	for <yocto@yoctoproject.org>; Thu, 11 May 2017 05:52:56 -0700 (PDT)
+Received: from svr-orw-fem-05.mgc.mentorg.com ([147.34.97.43])
+	by relay1.mentorg.com with esmtp 
+	id 1d8naS-0002P5-1Y from Joe_MacDonald@mentor.com ;
+	Thu, 11 May 2017 05:52:56 -0700
+Received: from burninator (147.34.91.1) by svr-orw-fem-05.mgc.mentorg.com
+	(147.34.97.43) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 11 May 2017 05:52:55 -0700
+Received: by burninator (Postfix, from userid 1000)	id 4CAD458036E; Thu, 11
+	May 2017 08:52:55 -0400 (EDT)
+Date: Thu, 11 May 2017 08:52:55 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: Dengke Du <dengke.du@windriver.com>
+Message-ID: <20170511125254.GC7226@mentor.com>
+References: <1494467319-199585-1-git-send-email-dengke.du@windriver.com>
 MIME-Version: 1.0
-Cc: srifenbark@gmail.com
-Subject: [PATCH] ref-manual: fix typo in 2.3 migration section
+In-Reply-To: <1494467319-199585-1-git-send-email-dengke.du@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH V5] rpm: modify the rpm bbappend file to suitable for rpm4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,31 +47,194 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 May 2017 12:09:29 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 11 May 2017 12:53:00 -0000
+X-Groupsio-MsgNum: 35961
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="xB0nW4MQa6jZONgY"
+Content-Disposition: inline
 
-Fix typo "Post-Installtion" → "Post-Installation"
+--xB0nW4MQa6jZONgY
+Content-Type: multipart/mixed; boundary="R+My9LyyhiUvIEro"
+Content-Disposition: inline
 
-Signed-off-by: Joshua Lock <joshua.g.lock@intel.com>
----
- documentation/ref-manual/migration.xml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--R+My9LyyhiUvIEro
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/documentation/ref-manual/migration.xml b/documentation/ref-manual/migration.xml
-index f91b619..442324f 100644
---- a/documentation/ref-manual/migration.xml
-+++ b/documentation/ref-manual/migration.xml
-@@ -3988,7 +3988,7 @@ $ runqemu qemux86-64 tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.
-                     populated into the sysroot for the recipe.
-                     </para></listitem>
-                 <listitem><para>
--                    <emphasis>Specify Pre-Installation and Post-Installtion
-+                    <emphasis>Specify Pre-Installation and Post-Installation
-                     Native Tool Dependencies:</emphasis>
-                     You must specifically specify any special native tool
-                     dependencies of <filename>pkg_preinst</filename> and
--- 
-2.9.3
+[[meta-selinux][PATCH V5] rpm: modify the rpm bbappend file to suitable for=
+ rpm4] On 17.05.10 (Wed 21:48) Dengke Du wrote:
 
+> Changed in V5:
+> 	Let the subject more clear.
+>=20
+> Changed in V4:
+> 	Make the comments more clear.
+> Changed in V3:
+> 	Rebase the patch on the latest master branch.
+>=20
+> Delete the does not exist files when run task do_package.
+>=20
+> Signed-off-by: Dengke Du <dengke.du@windriver.com>
+> ---
+>  recipes-devtools/rpm/rpm_%.bbappend | 4 ----
+>  1 file changed, 4 deletions(-)
 
+I'll merge this and modify the commit log myself, but please note this
+still isn't what I was asking for in the attached.  All of the "Changed
+in..." lines should be after the --- line in your email.
+
+-J.
+
+>=20
+> diff --git a/recipes-devtools/rpm/rpm_%.bbappend b/recipes-devtools/rpm/r=
+pm_%.bbappend
+> index 199a7e4..9f3ec90 100644
+> --- a/recipes-devtools/rpm/rpm_%.bbappend
+> +++ b/recipes-devtools/rpm/rpm_%.bbappend
+> @@ -1,8 +1,4 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> =20
+> -FILES_${PN} +=3D "${libdir}/rpm/bin/spooktool \
+> -                ${libdir}/rpm/bin/semodule \
+> -               "
+> -
+>  inherit with-selinux
+>  PACKAGECONFIG[selinux] =3D "${WITH_SELINUX},${WITHOUT_SELINUX},libsemana=
+ge,"
+--=20
+-Joe MacDonald.
+:wq
+
+--R+My9LyyhiUvIEro
+Content-Type: message/rfc822
+Content-Disposition: inline
+
+Date: Wed, 10 May 2017 08:22:06 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: Dengke Du <dengke.du@windriver.com>
+CC: <mark.hatle@windriver.com>, <yocto@yoctoproject.org>
+Subject: Re: [yocto] [meta-selinux][PATCH V3] rpm: modify the rpm bbappend
+ file to suitable for rpm4
+Message-ID: <20170510122206.GC24456@mentor.com>
+References: <20170510070330.43118-1-dengke.du@windriver.com>
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
+Content-Disposition: inline
+In-Reply-To: <20170510070330.43118-1-dengke.du@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.23 (2014-03-12)
+MIME-Version: 1.0
+
+--yLVHuoLXiP9kZBkt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+[[yocto] [meta-selinux][PATCH V3] rpm: modify the rpm bbappend file to suit=
+able for rpm4] On 17.05.10 (Wed 03:03) Dengke Du wrote:
+
+> Changed in V3:
+> 	rebase the patch on the latest master branch.
+>=20
+> 1. change the rpm_5.4.16.bbappend to rpm_git.bbappend, this is
+>    because the rpm in oe-core has become rpm4 from rpm5.
+>=20
+> 2. drop the patch for rpm5.
+>=20
+> 3. delete the does not exist files when run task do_package.
+>=20
+> Signed-off-by: Dengke Du <dengke.du@windriver.com>
+> ---
+>  recipes-devtools/rpm/{rpm_%.bbappend =3D> rpm_git.bbappend} | 4 ----
+>  1 file changed, 4 deletions(-)
+>  rename recipes-devtools/rpm/{rpm_%.bbappend =3D> rpm_git.bbappend} (56%)
+
+I think I understand what you're looking to do here, but the comments
+are completely unclear.  A commit log should look something like:
+
+   rpm: move rpm recipe to rpm_git
+
+   <explanation of the problem and how this solves it>
+
+   Signed-off-by: Dengke Du <dengke.du@windriver.com>
+   ---
+   <diffstat, possibly commentary or further explanation that's not
+   important to the commit log itself and explanation of what's changed
+   between different versions of the patch, since this is a v3>
+
+You can accomplish this with the --annotate flag to git-send-email and
+then in your editor just ensure the revision history and additional
+commentary goes after the --- line.
+
+As for the change, deleting package contents that are no longer present
+is fine, but why change % to git in the recipe name?  We moved from a
+specific version number to % so we would be somewhat divorced from the
+changes in oe-core, this change reverses that decision.
+
+-J.
+
+> diff --git a/recipes-devtools/rpm/rpm_%.bbappend b/recipes-devtools/rpm/r=
+pm_git.bbappend
+> similarity index 56%
+> rename from recipes-devtools/rpm/rpm_%.bbappend
+> rename to recipes-devtools/rpm/rpm_git.bbappend
+> index 199a7e4..9f3ec90 100644
+> --- a/recipes-devtools/rpm/rpm_%.bbappend
+> +++ b/recipes-devtools/rpm/rpm_git.bbappend
+> @@ -1,8 +1,4 @@
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> =20
+> -FILES_${PN} +=3D "${libdir}/rpm/bin/spooktool \
+> -                ${libdir}/rpm/bin/semodule \
+> -               "
+> -
+>  inherit with-selinux
+>  PACKAGECONFIG[selinux] =3D "${WITH_SELINUX},${WITHOUT_SELINUX},libsemana=
+ge,"
+> --=20
+> 2.11.0
+>=20
+--=20
+-Joe MacDonald.
+:wq
+
+--yLVHuoLXiP9kZBkt
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJZEwXuAAoJEEn8ffcsOfaWPkUH/A31iCjhjJ5GRCHlL6tweyIi
+aZYEARAEZJPUGl6CLzUR81eqgVCPtXmOdVb6w4GBFaZ3pr4iGP+yL7p6h02k6tRW
+BZwluiTgX4y/ZqHg7jnCtsBpzO/GirsKf83bnHiDzswhbI6/9qBCo+kXUb5IujEy
+lbR3fNRhJy5ZLovWZC8PlRww1SJ5VnI7Z58rb9vdjGsLIXa7psXRqRksmcAf7XVn
+oE77zpFl1CCsHZWQSUv4iA96jNoGeME8/CmihY3TnD1XJq7g+INGBFZWcY2S62kg
+ki51cV+wLg8l/a64ZzWh0vbaWti0Dv4C75TKqwAXnyciAlSAJNohskcOZUVpG7c=
+=fYpf
+-----END PGP SIGNATURE-----
+
+--yLVHuoLXiP9kZBkt--
+
+--R+My9LyyhiUvIEro--
+
+--xB0nW4MQa6jZONgY
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJZFF6mAAoJEEn8ffcsOfaWuowIAIthoHTa/2atsI69hbVDaWgK
+1RbCfavACzKQ80tA0khSvwf+UVmWYvEePRdyVH6jEXmC4rRRBiJpms1LOGPuw8Dc
+0fR3qpvJfH7A7oFwKUbWj1eybObZ+HGZiVrlfxCpwHz+cXWzN0z85avG3r4SWYDh
+W9nFTzHCRadqxCVA1v3weHS4rjydZTPA4R7zethjeA5gheH+dh4yV2eylBRo70o0
+9PTMjU6eQ4NNi9LAYqJjA/wcsqlcV9AE+E7oSN6thpAe1yde+Fm/WuhwoTCJJKV9
+3NKi8NsS5VoNulQ/XyBK/gSCMm7hx9yYQMpPnTTNcvevoraEULraSlsS0bOa92I=
+=hfpB
+-----END PGP SIGNATURE-----
+
+--xB0nW4MQa6jZONgY--
