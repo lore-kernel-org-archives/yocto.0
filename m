@@ -1,6 +1,6 @@
-Return-Path: <andreapicaro@gmail.com>
+Return-Path: <jaymin.linux@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B917E00B45; Wed, 10 May 2017 03:52:51 -0700 (PDT)
+	id 1F72AE00B51; Thu, 11 May 2017 05:55:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,12 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (andreapicaro[at]gmail.com)
+	mail provider *      (jaymin.linux[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.176 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.176 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -18,48 +23,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.177 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.177 listed in dnsbl.sorbs.net]
-Received: from mail-yw0-f177.google.com (mail-yw0-f177.google.com
-	[209.85.161.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C78A1E00B3D
-	for <yocto@yoctoproject.org>; Wed, 10 May 2017 03:52:47 -0700 (PDT)
-Received: by mail-yw0-f177.google.com with SMTP id b68so13370426ywe.3
-	for <yocto@yoctoproject.org>; Wed, 10 May 2017 03:52:47 -0700 (PDT)
+Received: from mail-pf0-f176.google.com (mail-pf0-f176.google.com
+	[209.85.192.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85228E00AF8
+	for <yocto@yoctoproject.org>; Thu, 11 May 2017 05:55:07 -0700 (PDT)
+Received: by mail-pf0-f176.google.com with SMTP id n23so8561891pfb.2
+	for <yocto@yoctoproject.org>; Thu, 11 May 2017 05:55:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=tnY9d7DKKdaV5BIzB/ix3aXGG0FZVlAJYIVSDMl52vk=;
-	b=YXHH+mvtKTYGYSLuXovcRai+Z+WGMk6FCvBmYotF3Lmgz89NbpsCtVB4DVbhqizqcX
-	ZVCcdYrXlv5l9wWmE6T4YZbXDfgUwGL1KwHJXfeoB52xLHbmTRZBrR0YLlNeQo5T759X
-	UK7FXS0tkG7pBnH45eovzMryynEJ0vxuHYNj6UqgDppar7xbuckKXtXnD8m6gkfxfuwf
-	Q80n55rJNpxvyPXC8dxLgpcysQcyw1EIqVjwJps2FjWPnWiiX/U2rpgl3Oiub7iZ1mk5
-	pICvyVbc5FQEQK5lpZYMUM4AfY0oIeyb9waoP+P+tly0kUiQsTSJC8MNXQF6fOu+pKRo
-	Hl4A==
+	bh=shYmWtrVff/jdrjLfNBQA9ZNGZ5gtSkr2ximDOyU/nE=;
+	b=F4ukZRJ/3zOj+PmqYFDLiIz4h8vgah4Ie6FMbvq99OM0eJAbIjQshq82XWZTyq3R1l
+	vGy42eGTsxSPKiA4ls2LhLdUv8yqF2ebmQFc91D/CiWemZwFlxBt9iWMeu0FzEe5230B
+	FvSJbsXjfexmVHuyYy1kr6y0YY4+AWYfSSjdUmNmqEEStdln29fSrWYwFQC0wryBu1fP
+	rlOrjudpGqbVNOcKEafmLK9kaPoZNVYSPvw5xQVBscJA5o+9s3MD5dcUsafp6D47Q1W4
+	r02pXq6lYDRI063zs0uJQ1LGNl0v13IfjB2BGsKcLEPnq3a5jgFHTFUdo6AIxf+eb+ta
+	JkkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=tnY9d7DKKdaV5BIzB/ix3aXGG0FZVlAJYIVSDMl52vk=;
-	b=FnRLppjWekhGnxo1EkcCYFcZx5zTYyIJ+MS3OXSwYOI5jHXA0HQH3p67AIuNOows30
-	wmrLaotSYRWQMBm3mDlwUP4LLxmF1vKOTrq84TS0GGpd0w22bc41mzHntFp8EtNLn8aj
-	JeMmr8AGrSE5LGkJsJhXrwwtRbgV0+g5CqL66msd2KjytILsWf+2+G1Xd1S75v3p695o
-	LoM0LK8/TvqwGvx0+USg+f822t4PvbdWcoAx7knTXRHdcljPBMgdEI3DrSr5xNDYQ5Jr
-	bLqVboQcWvGZ+8ikpvZj294DeKitonkiM9Mjr6Q96Vz+5LtoK1iI7LUhYzEuyCQhOrAm
-	vQrg==
-X-Gm-Message-State: AODbwcAnQ1hOWyhu0B2Vw1cTxL3jpkJglAMgPHlkenZwfs2oHnjZ+4df
-	Jeke1euoGWSufIjms96tRP5F2Pdlvdsn
-X-Received: by 10.129.172.39 with SMTP id k39mr3890711ywh.249.1494413566388;
-	Wed, 10 May 2017 03:52:46 -0700 (PDT)
+	bh=shYmWtrVff/jdrjLfNBQA9ZNGZ5gtSkr2ximDOyU/nE=;
+	b=gorYuNss+5pm5cN2g8oTtKjdO/TKyBiaxRBv/fq9WfH0RJwARecU8pHQvwlfAu5/Nk
+	jmVrEtxiRX+y5HCrLHqnBxbcAJA0ts4i5rTvz4u3/uRHOv2YIIBTJrghfXO2fmFB7Bxr
+	nMMHnPd0DwkUr89bVi/epmFMaiqwS4C/kYxQ30TJla1nNJ+h/FVhVCLlQ6Uka53nDgfm
+	TTnIIGfcnYtz5GBHIlkzxbZ10f9ug/4+YOwWkS3pd1c5dlq45URJlEY078ISHu55s+0n
+	O1ZabXkOnGx6C4pYsushWGuRLKFAdTPm+FfXPYXO0jV4CnKUulfV2sNngaFl+JrIzq76
+	1DdQ==
+X-Gm-Message-State: AODbwcCSEDEZZJ1nVrDo35tuP5pC9F5QxFeNje5H7hXIMMob6+S+XbaY
+	9kcB33lcQlusOAMfv+7GmPjxnt149fQk
+X-Received: by 10.99.155.17 with SMTP id r17mr117563pgd.193.1494507306830;
+	Thu, 11 May 2017 05:55:06 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.129.4.200 with HTTP; Wed, 10 May 2017 03:52:46 -0700 (PDT)
-From: Andrea Picaro <andreapicaro@gmail.com>
-Date: Wed, 10 May 2017 12:52:46 +0200
-Message-ID: <CAA7DeJD4WV=RZ6CCk5aDO9Ex06z3jr6s=0ceKrdJBwwoHY4fUA@mail.gmail.com>
+Received: by 10.100.182.6 with HTTP; Thu, 11 May 2017 05:55:06 -0700 (PDT)
+From: Jaymin D <jaymin.linux@gmail.com>
+Date: Thu, 11 May 2017 18:25:06 +0530
+Message-ID: <CAL02zyt=UufSDO-2v0F3A+_tZGkMiYpUQeGKb9mpebjr0br_dw@mail.gmail.com>
 To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Tue, 16 May 2017 12:05:36 -0700
-Subject: QtWebEngine cannot show google sites due to certificate errors
+Subject: Add 'mongodb' package in Yocto (Jethro branch)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,45 +71,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 May 2017 10:52:51 -0000
-Content-Type: multipart/alternative; boundary=f403045e56acc5b016054f2945bb
+X-List-Received-Date: Thu, 11 May 2017 12:55:08 -0000
+Content-Type: multipart/alternative; boundary="f403045dcf06234fcd054f3f195a"
 
---f403045e56acc5b016054f2945bb
-Content-Type: text/plain; charset=UTF-8
+--f403045dcf06234fcd054f3f195a
+Content-Type: text/plain; charset="UTF-8"
 
-Hello, i compiled Yocto Morty for an mx6 machine.
-QtWebEngine works fine for all sites (included https by ignoring
-certificate errors) apart
-from google sites.
-I've found other info about this issue googling around but it seemed
-to be solved in latest chromium builds and none of the solutions tested
-gave results.
-All google sites gives ERR_INSECURE_RESPONSE and i see this error in
-console:
-ERROR:cert_verify_proc_openssl.cc(238)] X509 Verification error certificate
-has expired : 10 : 3 : 2
+Hi Team,
 
-Any hint would much appreciated
-Thanks
+I want to add 'mongodb' package into my current Yocto (Jethro branch) build.
 
--- 
-*Andrea Picaro*
+I have tried to add in - CORE_IMAGE_EXTRA_INSTALL += " mongodb", also tried
+to add " boost" package too. But, it couldn't compile.
 
---f403045e56acc5b016054f2945bb
-Content-Type: text/html; charset=UTF-8
+The error was:
+
+*ERROR: Required build target 'core-image-base' has no buildable providers.*
+*Missing or unbuildable dependency chain was: ['core-image-base', 'mongo']*
+
+I have also tried this - "
+http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-support/mongodb/mongodb_git.bb?h=master
+"
+
+But, bitbake was failed.
+
+What would be the possible reason of failing the bitbake?
+In which file I have to make changes for adding the 'mongodb' package?
+
+All suggestions are welcomed.
+
+Thank You,
+Jaymin
+
+--f403045dcf06234fcd054f3f195a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello, i compiled Yocto Morty for an mx6 machine.<div>QtWe=
-bEngine works fine for all sites (included https by ignoring certificate er=
-rors) apart</div><div>from google sites.=C2=A0</div><div>I&#39;ve found oth=
-er info about this issue googling around but it seemed</div><div>to be solv=
-ed in latest chromium builds and none of the solutions tested gave results.=
-</div><div>All google sites gives ERR_INSECURE_RESPONSE and i see this erro=
-r in console:</div><div>ERROR:cert_verify_proc_openssl.cc(238)] X509 Verifi=
-cation error certificate has expired : 10 : 3 : 2<br><div><div><br></div><d=
-iv>Any hint would much appreciated</div><div>Thanks</div><div><br></div>-- =
-<br><div class=3D"gmail_signature"><div dir=3D"ltr"><font size=3D"2"><i>And=
-rea Picaro</i></font></div></div>
-</div></div></div>
+<div dir=3D"ltr">Hi Team,<div><br></div><div>I want to add &#39;mongodb&#39=
+; package into my current Yocto (Jethro branch) build.</div><div><br></div>=
+<div>I have tried to add in - CORE_IMAGE_EXTRA_INSTALL +=3D &quot; mongodb&=
+quot;, also tried to add &quot; boost&quot; package too. But, it couldn&#39=
+;t compile.<br><br>The error was:</div><div><i><br></i></div><div><div><i>E=
+RROR: Required build target &#39;core-image-base&#39; has no buildable prov=
+iders.</i></div><div><i>Missing or unbuildable dependency chain was: [&#39;=
+core-image-base&#39;, &#39;mongo&#39;]</i></div></div><div><i><br></i></div=
+><div>I have also tried this - &quot;<a href=3D"http://cgit.openembedded.or=
+g/meta-openembedded/tree/meta-oe/recipes-support/mongodb/mongodb_git.bb?h=
+=3Dmaster">http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/reci=
+pes-support/mongodb/mongodb_git.bb?h=3Dmaster</a>&quot;<br><br>But, bitbake=
+ was failed.<br><br>What would be the possible reason of failing the bitbak=
+e?<br>In which file I have to make changes for adding the &#39;mongodb&#39;=
+ package?<br><br>All suggestions are welcomed.<br><br>Thank You,<br>Jaymin=
+=C2=A0</div></div>
 
---f403045e56acc5b016054f2945bb--
+--f403045dcf06234fcd054f3f195a--
