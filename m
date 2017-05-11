@@ -1,68 +1,32 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <todor.minchev@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5C7FE00B62; Thu, 11 May 2017 14:30:58 -0700 (PDT)
+	id 06E2EE00B62; Thu, 11 May 2017 16:02:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.53 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.53 listed in dnsbl.sorbs.net]
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-oi0-f53.google.com (mail-oi0-f53.google.com
-	[209.85.218.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55E3EE0095F
-	for <yocto@yoctoproject.org>; Thu, 11 May 2017 14:30:54 -0700 (PDT)
-Received: by mail-oi0-f53.google.com with SMTP id l18so45828950oig.2
-	for <yocto@yoctoproject.org>; Thu, 11 May 2017 14:30:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=DYkDfz98E+dwyQPsXp6Y3E4Y/7SScFEXjsIvNe6PGlM=;
-	b=gLS2o9mEwFeBVnP9bx2YSXeifjJYLaSnGX87/ivZmcLbRJtXs95lX0KsIByk+QRRg2
-	k+pHA/lyTJsCCbFZ7y7ogZw5Xuxg5upJiV4O6gD9E1w5DInl3Lh0AzgQxul9t3L0fYaz
-	GEx/m7xp4GTiPPLO9F91tCzfmZfvXQYx8Ngaa4Um2FQkPbpfxohR188dbcoE85OMNceS
-	xP51MeP80tDOuCj9zDzBvupbY4rQS+WgAKrO+6TIuXHYBCAlkTpgqbyFIOBQ8tjPe6O6
-	iHFBZyhLpkJppO91OcgVswXRtm3YgBUM6A7SzOSRoAyRJ38f5jmge9CRWDaaXvNEz7cj
-	5DRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=DYkDfz98E+dwyQPsXp6Y3E4Y/7SScFEXjsIvNe6PGlM=;
-	b=nsgJs4x8aUFM2nQPENGWbLzjiWv1N+m8hKznqlVFbqyE/XCZtQWZg8IkG8eMEn/AC4
-	xRbIg3ATFlSwiwbj8NmzFjSX0TWTkWMSujjB3G48jmsE8zmYDS3KbJhMIn0CX4MHI5Hx
-	AgcV/YPkPTFzNL13NgitNu4VP/g3MUh447zvvQ5G/RshNne/Iareg9i2oI48w6u0aKGT
-	BOv7XTfYpIyRRuMYtpL3x1yPCH051WlBrfbvFFSebFa+K3FSyMkyC8Bc8BkqgMHwAyrs
-	373ziwNZMeLVQVRT2iQH1crEYsJD8B7bktsvDnJWhjeewXzjQFqy4ZFvzR6TX7wRTioU
-	iR2Q==
-X-Gm-Message-State: AODbwcALPEi3L20pz20TIZd/10a+g4kkIrl9PR9vPUh0CL4X8SEK/1H9
-	j8zwhoPs48lfPX574SamW/ad+TxIsw==
-X-Received: by 10.157.43.110 with SMTP id f43mr308101otd.79.1494538254276;
-	Thu, 11 May 2017 14:30:54 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.157.24.107 with HTTP; Thu, 11 May 2017 14:30:53 -0700 (PDT)
-In-Reply-To: <MM1P123MB130599BFE3843E46B61FE899DAEC0@MM1P123MB1305.GBRP123.PROD.OUTLOOK.COM>
-References: <MM1P123MB130599BFE3843E46B61FE899DAEC0@MM1P123MB1305.GBRP123.PROD.OUTLOOK.COM>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Thu, 11 May 2017 23:30:53 +0200
-Message-ID: <CAC+thW0EbwQs-bX0hDCGv8mwck9Mcs0Ff2yiuwoq8MNJswF7dw@mail.gmail.com>
-To: Chris Trobridge <christrobridge@hotmail.com>
-Cc: Yocto List <yocto@yoctoproject.org>
-Subject: Re: BB Equivalent for %config(noreplace)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5E79E0095F
+	for <yocto@yoctoproject.org>; Thu, 11 May 2017 16:02:22 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by fmsmga105.fm.intel.com with ESMTP; 11 May 2017 16:02:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,326,1491289200"; d="scan'208";a="98953428"
+Received: from unknown (HELO speedy.jf.intel.com) ([10.54.74.100])
+	by orsmga005.jf.intel.com with ESMTP; 11 May 2017 16:02:21 -0700
+From: Todor Minchev <todor.minchev@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 11 May 2017 16:02:00 -0700
+Message-Id: <20170511230200.19312-1-todor.minchev@linux.intel.com>
+X-Mailer: git-send-email 2.13.0
+Cc: Todor Minchev <todor.minchev@linux.intel.com>
+Subject: [PATCH] oeqa/sdkext/devtool: replace v4l2loopback with fbtft kernel module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,54 +38,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 May 2017 21:30:59 -0000
-Content-Type: multipart/alternative; boundary="001a11c162bcbfe509054f464d57"
+X-List-Received-Date: Thu, 11 May 2017 23:02:26 -0000
 
---001a11c162bcbfe509054f464d57
-Content-Type: text/plain; charset="UTF-8"
+The v4l2loopback makefile assumes that the module will only be built
+natively and breaks if it is cross-compiled or built in a container.
 
-On Wed, May 10, 2017 at 3:59 PM, Chris Trobridge <christrobridge@hotmail.com
-> wrote:
+Signed-off-by: Todor Minchev <todor.minchev@linux.intel.com>
+---
+ meta/lib/oeqa/sdkext/cases/devtool.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> When applying rpm updates generated by yocto, configuration
-> files/directories are overwritten with files from the rpm.
->
-> My spec file for generating equivalent native packages with rpmbuild
-> specifies these files with %config(noreplace) so that this overwriting does
-> no occur.
->
-> Is it possible to get this information into the rpm files generated by
-> yocto?
->
+diff --git a/meta/lib/oeqa/sdkext/cases/devtool.py b/meta/lib/oeqa/sdkext/cases/devtool.py
+index a01bc0bfe2..6975df68be 100644
+--- a/meta/lib/oeqa/sdkext/cases/devtool.py
++++ b/meta/lib/oeqa/sdkext/cases/devtool.py
+@@ -78,8 +78,8 @@ class DevtoolTest(OESDKExtTestCase):
+     @OETestID(1609)
+     @OETestDepends(['test_devtool_location'])
+     def test_devtool_kernelmodule(self):
+-        docfile = 'https://github.com/umlaeute/v4l2loopback.git'
+-        recipe = 'v4l2loopback-driver'
++        docfile = 'https://github.com/notro/fbtft.git'
++        recipe = 'fbtft-driver'
+         self._run('devtool add %s %s' % (recipe, docfile) )
+         try:
+             self._run('devtool build %s' % recipe)
+-- 
+2.13.0
 
-The usual way is to add the configuration files to the CONFFILES variable
-in your recipe. This does what you want in a package management system
-agnostic way. See [1] for details.
 
-http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-CONFFILES
-
---001a11c162bcbfe509054f464d57
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
-ed, May 10, 2017 at 3:59 PM, Chris Trobridge <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:christrobridge@hotmail.com" target=3D"_blank">christrobridge@hot=
-mail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">When applying rpm updates generated by yocto, configuration file=
-s/directories are overwritten with files from the rpm.<br>
-<br>
-My spec file for generating equivalent native packages with rpmbuild specif=
-ies these files with %config(noreplace) so that this overwriting does no oc=
-cur.<br>
-<br>
-Is it possible to get this information into the rpm files generated by yoct=
-o?<br></blockquote><div><br></div><div>The usual way is to add the configur=
-ation files to the CONFFILES variable in your recipe. This does what you wa=
-nt in a package management system agnostic way. See [1] for details.</div><=
-div><br></div><div><a href=3D"http://www.yoctoproject.org/docs/latest/mega-=
-manual/mega-manual.html#var-CONFFILES">http://www.yoctoproject.org/docs/lat=
-est/mega-manual/mega-manual.html#var-CONFFILES</a></div></div></div></div>
-
---001a11c162bcbfe509054f464d57--
