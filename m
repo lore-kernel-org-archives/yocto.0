@@ -1,41 +1,37 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44D11E00B51; Thu, 11 May 2017 05:53:00 -0700 (PDT)
+	id B0992E007EE; Thu, 11 May 2017 08:12:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C6E8E00AF8
-	for <yocto@yoctoproject.org>; Thu, 11 May 2017 05:52:56 -0700 (PDT)
-Received: from svr-orw-fem-05.mgc.mentorg.com ([147.34.97.43])
-	by relay1.mentorg.com with esmtp 
-	id 1d8naS-0002P5-1Y from Joe_MacDonald@mentor.com ;
-	Thu, 11 May 2017 05:52:56 -0700
-Received: from burninator (147.34.91.1) by svr-orw-fem-05.mgc.mentorg.com
-	(147.34.97.43) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 11 May 2017 05:52:55 -0700
-Received: by burninator (Postfix, from userid 1000)	id 4CAD458036E; Thu, 11
-	May 2017 08:52:55 -0400 (EDT)
-Date: Thu, 11 May 2017 08:52:55 -0400
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: Dengke Du <dengke.du@windriver.com>
-Message-ID: <20170511125254.GC7226@mentor.com>
-References: <1494467319-199585-1-git-send-email-dengke.du@windriver.com>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44096E007EE
+	for <yocto@yoctoproject.org>; Thu, 11 May 2017 08:12:05 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	11 May 2017 08:12:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,324,1491289200"; d="scan'208";a="85622406"
+Received: from mbabyjoh-desk.fi.intel.com (HELO
+	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.71])
+	by orsmga002.jf.intel.com with ESMTP; 11 May 2017 08:12:03 -0700
+Date: Thu, 11 May 2017 18:11:51 +0300
+From: "Maxin B. John" <maxin.john@intel.com>
+To: Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <20170511151151.GA44384@mbabyjoh-desk.ger.corp.intel.com>
+References: <7ffccd7c-3538-57fd-9380-9ba38f5f3c0a@siemens.com>
 MIME-Version: 1.0
-In-Reply-To: <1494467319-199585-1-git-send-email-dengke.du@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-704 http://www.vim.org
+In-Reply-To: <7ffccd7c-3538-57fd-9380-9ba38f5f3c0a@siemens.com>
 User-Agent: Mutt/1.5.23 (2014-03-12)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH V5] rpm: modify the rpm bbappend file to suitable for rpm4
+Subject: Re: [meta-oracle-java][PATCH] Fix binary paths when setting alternatives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,194 +43,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 May 2017 12:53:00 -0000
-X-Groupsio-MsgNum: 35961
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="xB0nW4MQa6jZONgY"
-Content-Disposition: inline
-
---xB0nW4MQa6jZONgY
-Content-Type: multipart/mixed; boundary="R+My9LyyhiUvIEro"
-Content-Disposition: inline
-
---R+My9LyyhiUvIEro
+X-List-Received-Date: Thu, 11 May 2017 15:12:08 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-[[meta-selinux][PATCH V5] rpm: modify the rpm bbappend file to suitable for=
- rpm4] On 17.05.10 (Wed 21:48) Dengke Du wrote:
-
-> Changed in V5:
-> 	Let the subject more clear.
->=20
-> Changed in V4:
-> 	Make the comments more clear.
-> Changed in V3:
-> 	Rebase the patch on the latest master branch.
->=20
-> Delete the does not exist files when run task do_package.
->=20
-> Signed-off-by: Dengke Du <dengke.du@windriver.com>
+On Thu, May 11, 2017 at 07:49:16AM +0200, Jan Kiszka wrote:
+> Neither the JDK nor the JRE puts binaries under $JAVA_HOME/jre anymore.
+> Seen with Java 8, update 131.
+> 
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
 > ---
->  recipes-devtools/rpm/rpm_%.bbappend | 4 ----
->  1 file changed, 4 deletions(-)
+>  recipes-devtools/oracle-java/oracle-jse-jdk.inc | 12 ++++++------
+>  recipes-devtools/oracle-java/oracle-jse.inc     |  4 ++--
+>  2 files changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> index 9fd76e1..935ad9b 100644
+> --- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> @@ -28,14 +28,14 @@ PROVIDES += "virtual/javac virtual/java-initial"
+>  
+>  pkg_postinst_${PN} () {
+>  	update-alternatives --install ${bindir}/jar   jar   ${JDK_HOME}/bin/jar 100
+> -	update-alternatives --install ${bindir}/java  java  ${JDK_HOME}/jre/bin/java 100
+> -	update-alternatives --install ${bindir}/javac javac ${JDK_HOME}/jre/bin/javac 100
+> +	update-alternatives --install ${bindir}/java  java  ${JDK_HOME}/bin/java 100
+> +	update-alternatives --install ${bindir}/javac javac ${JDK_HOME}/bin/javac 100
+>  	update-alternatives --install ${bindir}/javah javah ${JDK_HOME}/bin/javah 100
+>  }
+>  
+>  pkg_prerm_${PN} () {
+> -	update-alternatives --remove jar   ${JDK_HOME}/jre/bin/jar
+> -	update-alternatives --remove java  ${JDK_HOME}/jre/bin/java
+> -	update-alternatives --remove javac ${JDK_HOME}/jre/bin/javac
+> -	update-alternatives --remove javah ${JDK_HOME}/jre/bin/javah
+> +	update-alternatives --remove jar   ${JDK_HOME}/bin/jar
+> +	update-alternatives --remove java  ${JDK_HOME}/bin/java
+> +	update-alternatives --remove javac ${JDK_HOME}/bin/javac
+> +	update-alternatives --remove javah ${JDK_HOME}/bin/javah
+>  }
+> diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
+> index c812cf7..ce8280c 100644
+> --- a/recipes-devtools/oracle-java/oracle-jse.inc
+> +++ b/recipes-devtools/oracle-java/oracle-jse.inc
+> @@ -41,9 +41,9 @@ PROVIDES += "virtual/java"
+>  inherit update-alternatives
+>  
+>  pkg_postinst_${PN} () {
+> -	update-alternatives --install ${bindir}/java java ${JDK_HOME}/jre/bin/java 75
+> +	update-alternatives --install ${bindir}/java java ${JDK_HOME}/bin/java 75
+>  }
+>  
+>  pkg_prerm_${PN} () {
+> -	update-alternatives --remove java ${JDK_HOME}/jre/bin/java
+> +	update-alternatives --remove java ${JDK_HOME}/bin/java
+>  }
+> -- 
 
-I'll merge this and modify the commit log myself, but please note this
-still isn't what I was asking for in the attached.  All of the "Changed
-in..." lines should be after the --- line in your email.
+Pushed, Thanks!
 
--J.
+Warm Regards,
+Maxin
 
->=20
-> diff --git a/recipes-devtools/rpm/rpm_%.bbappend b/recipes-devtools/rpm/r=
-pm_%.bbappend
-> index 199a7e4..9f3ec90 100644
-> --- a/recipes-devtools/rpm/rpm_%.bbappend
-> +++ b/recipes-devtools/rpm/rpm_%.bbappend
-> @@ -1,8 +1,4 @@
->  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> =20
-> -FILES_${PN} +=3D "${libdir}/rpm/bin/spooktool \
-> -                ${libdir}/rpm/bin/semodule \
-> -               "
-> -
->  inherit with-selinux
->  PACKAGECONFIG[selinux] =3D "${WITH_SELINUX},${WITHOUT_SELINUX},libsemana=
-ge,"
---=20
--Joe MacDonald.
-:wq
-
---R+My9LyyhiUvIEro
-Content-Type: message/rfc822
-Content-Disposition: inline
-
-Date: Wed, 10 May 2017 08:22:06 -0400
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: Dengke Du <dengke.du@windriver.com>
-CC: <mark.hatle@windriver.com>, <yocto@yoctoproject.org>
-Subject: Re: [yocto] [meta-selinux][PATCH V3] rpm: modify the rpm bbappend
- file to suitable for rpm4
-Message-ID: <20170510122206.GC24456@mentor.com>
-References: <20170510070330.43118-1-dengke.du@windriver.com>
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
-Content-Disposition: inline
-In-Reply-To: <20170510070330.43118-1-dengke.du@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-704 http://www.vim.org
-User-Agent: Mutt/1.5.23 (2014-03-12)
-MIME-Version: 1.0
-
---yLVHuoLXiP9kZBkt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-[[yocto] [meta-selinux][PATCH V3] rpm: modify the rpm bbappend file to suit=
-able for rpm4] On 17.05.10 (Wed 03:03) Dengke Du wrote:
-
-> Changed in V3:
-> 	rebase the patch on the latest master branch.
->=20
-> 1. change the rpm_5.4.16.bbappend to rpm_git.bbappend, this is
->    because the rpm in oe-core has become rpm4 from rpm5.
->=20
-> 2. drop the patch for rpm5.
->=20
-> 3. delete the does not exist files when run task do_package.
->=20
-> Signed-off-by: Dengke Du <dengke.du@windriver.com>
-> ---
->  recipes-devtools/rpm/{rpm_%.bbappend =3D> rpm_git.bbappend} | 4 ----
->  1 file changed, 4 deletions(-)
->  rename recipes-devtools/rpm/{rpm_%.bbappend =3D> rpm_git.bbappend} (56%)
-
-I think I understand what you're looking to do here, but the comments
-are completely unclear.  A commit log should look something like:
-
-   rpm: move rpm recipe to rpm_git
-
-   <explanation of the problem and how this solves it>
-
-   Signed-off-by: Dengke Du <dengke.du@windriver.com>
-   ---
-   <diffstat, possibly commentary or further explanation that's not
-   important to the commit log itself and explanation of what's changed
-   between different versions of the patch, since this is a v3>
-
-You can accomplish this with the --annotate flag to git-send-email and
-then in your editor just ensure the revision history and additional
-commentary goes after the --- line.
-
-As for the change, deleting package contents that are no longer present
-is fine, but why change % to git in the recipe name?  We moved from a
-specific version number to % so we would be somewhat divorced from the
-changes in oe-core, this change reverses that decision.
-
--J.
-
-> diff --git a/recipes-devtools/rpm/rpm_%.bbappend b/recipes-devtools/rpm/r=
-pm_git.bbappend
-> similarity index 56%
-> rename from recipes-devtools/rpm/rpm_%.bbappend
-> rename to recipes-devtools/rpm/rpm_git.bbappend
-> index 199a7e4..9f3ec90 100644
-> --- a/recipes-devtools/rpm/rpm_%.bbappend
-> +++ b/recipes-devtools/rpm/rpm_git.bbappend
-> @@ -1,8 +1,4 @@
->  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> =20
-> -FILES_${PN} +=3D "${libdir}/rpm/bin/spooktool \
-> -                ${libdir}/rpm/bin/semodule \
-> -               "
-> -
->  inherit with-selinux
->  PACKAGECONFIG[selinux] =3D "${WITH_SELINUX},${WITHOUT_SELINUX},libsemana=
-ge,"
-> --=20
-> 2.11.0
->=20
---=20
--Joe MacDonald.
-:wq
-
---yLVHuoLXiP9kZBkt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQEcBAEBAgAGBQJZEwXuAAoJEEn8ffcsOfaWPkUH/A31iCjhjJ5GRCHlL6tweyIi
-aZYEARAEZJPUGl6CLzUR81eqgVCPtXmOdVb6w4GBFaZ3pr4iGP+yL7p6h02k6tRW
-BZwluiTgX4y/ZqHg7jnCtsBpzO/GirsKf83bnHiDzswhbI6/9qBCo+kXUb5IujEy
-lbR3fNRhJy5ZLovWZC8PlRww1SJ5VnI7Z58rb9vdjGsLIXa7psXRqRksmcAf7XVn
-oE77zpFl1CCsHZWQSUv4iA96jNoGeME8/CmihY3TnD1XJq7g+INGBFZWcY2S62kg
-ki51cV+wLg8l/a64ZzWh0vbaWti0Dv4C75TKqwAXnyciAlSAJNohskcOZUVpG7c=
-=fYpf
------END PGP SIGNATURE-----
-
---yLVHuoLXiP9kZBkt--
-
---R+My9LyyhiUvIEro--
-
---xB0nW4MQa6jZONgY
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQEcBAEBAgAGBQJZFF6mAAoJEEn8ffcsOfaWuowIAIthoHTa/2atsI69hbVDaWgK
-1RbCfavACzKQ80tA0khSvwf+UVmWYvEePRdyVH6jEXmC4rRRBiJpms1LOGPuw8Dc
-0fR3qpvJfH7A7oFwKUbWj1eybObZ+HGZiVrlfxCpwHz+cXWzN0z85avG3r4SWYDh
-W9nFTzHCRadqxCVA1v3weHS4rjydZTPA4R7zethjeA5gheH+dh4yV2eylBRo70o0
-9PTMjU6eQ4NNi9LAYqJjA/wcsqlcV9AE+E7oSN6thpAe1yde+Fm/WuhwoTCJJKV9
-3NKi8NsS5VoNulQ/XyBK/gSCMm7hx9yYQMpPnTTNcvevoraEULraSlsS0bOa92I=
-=hfpB
------END PGP SIGNATURE-----
-
---xB0nW4MQa6jZONgY--
