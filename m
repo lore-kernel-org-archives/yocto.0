@@ -1,17 +1,14 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0272E00852; Fri, 12 May 2017 13:42:05 -0700 (PDT)
+	id 6B37AE00852; Fri, 12 May 2017 14:00:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,50 +16,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.65 listed in dnsbl.sorbs.net]
-Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
-	[209.85.213.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ED29E00812
-	for <yocto@yoctoproject.org>; Fri, 12 May 2017 13:42:03 -0700 (PDT)
-Received: by mail-vk0-f65.google.com with SMTP id p85so413078vkd.3
-	for <yocto@yoctoproject.org>; Fri, 12 May 2017 13:42:03 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.45 listed in list.dnswl.org]
+Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
+	[209.85.213.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F826E00812
+	for <yocto@yoctoproject.org>; Fri, 12 May 2017 14:00:39 -0700 (PDT)
+Received: by mail-vk0-f45.google.com with SMTP id x71so24305828vkd.0
+	for <yocto@yoctoproject.org>; Fri, 12 May 2017 14:00:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=3brYfYvegJ9q9Dt6PhZUUBnMsKwUQJXvwgBEejxlYSw=;
-	b=KL1JqhfTbV2PUKsFnjRG6vn/LKBxdOkCue0F1GLouv4j2Bwfjagg0lfGZmcCJOJVtk
-	Q5QEm03hnZ9Cqdz0nvKbriPTj7xdNmByM7m4zM25BNgtHpsDdZluN3lnUM3J/Fgix9Yu
-	8F/aL7jUoFf8ziVELNjaZ+YdYkCO/UEnxEfsIC3wKYCWMdbuYmTzja3HvD0tVkB8v2bI
-	LesPejQAu/cxW4I0YzPiOdzTEpjolVVp47MU251r4PWV6SxnvCf0Anq6O1lR1F2mNfoU
-	WMrobANfCCSw9K3SmmJiR0ByhLq3JkpTB19APsKQWTsUsNUq87Ce4hVA+brOReMC3s68
-	fl9A==
+	:cc; bh=N1F+/scXgKjq3eqw840K9tVTwBUOsExr6sUnMppXgWg=;
+	b=aPTvlzPC1A/hgmdG6aXzvAQYO6rqGqjBn432gDgd7gFJC5KNx38EUbXUdWfl5YN3aV
+	iSktvb+p1qx2cKaa+RIabJV82E4YlPYDtPdphLl2QaHjfQhdNoMWJTR9+nPorfHxVvSn
+	VL0ISvXJZxA6z22FGybQAaflnLAMtQzQqa8pBjouOd94VNzS19YL0PAcgAADwSI5LeYA
+	NRG4OwGernMQL9BENY6rrjFkfMn7aOIOXgOyj0Psa+1ICZ1c2ZL1QA0v/LVe0KlkUlz3
+	ZjE2aqt+LGf6/LSABvUIrPWC8RI5Qu35osWgtMCKirevCLEqEAzLCJSxD8T8nDlJa/ZX
+	g0Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=3brYfYvegJ9q9Dt6PhZUUBnMsKwUQJXvwgBEejxlYSw=;
-	b=Ym/LL9bIQtN9IdU2dAxdpEfM8YyaFGVuwW1UnzRgM4MWx8/hOOIMF8+umkLkTaOfnR
-	o71LAvLLKHZNzvo0Ie5xCAGtwzpV10Ic2huYwQTFS4xykkb0OtLnil8VzeBZEJuhbutk
-	9hdQ5E7k0dXNTMutEScaVpuww0skhccA1nA9z3ybZJ9w4P/jgwlx4VH/zLG8p9BVWizx
-	OEkbcii6vKJFLubQgZViz1QZrf0i63e0J4q1Cx7RVqIJk/2ANog0C87ejlcWeQJdbtwM
-	taxI63eS1yw/eXiU94B5udpFZYeBVc7IntOMhJByHngY4WvjrzlzpeR701Am230K2ScL
-	o8sg==
-X-Gm-Message-State: AODbwcA/pxvLL3gvmZzwnNNGjXd7cEjV/NAFeHingY4nHiFZczhfBJV2
-	VtbJhgWNNW5KXp8lBJizUDMpGBzeuUhb/8s=
-X-Received: by 10.31.21.143 with SMTP id 137mr2903479vkv.0.1494621722423; Fri,
-	12 May 2017 13:42:02 -0700 (PDT)
+	bh=N1F+/scXgKjq3eqw840K9tVTwBUOsExr6sUnMppXgWg=;
+	b=aJSSJrNuS6Fv8g3K/QXkzzXCcr0dltoGMdV27IBCriZ8Vwq/zBBchVWJ8p740YJcbw
+	KGUjkFlcbly07vfv/xIxGZOgSpDeSXa9IccO8jxY0ueY+Z6lKYV1vBt9yVGQNiRylRZ0
+	DENrCwQCynC5G2ypJlOaz3PXiTepi9XaRz7M7f1QLDwO+Fi2Iy46NQTdRXzaq1Lu3ipq
+	lE1X40E0qxu3n9Pa7G1kjaaZZwcai2YRZV2Lnjft86R9Vdzke3ICy34JaaB+iMYEwqRg
+	u2nb22oVFoTsmI4YXax1hdXp19QKrFiPXDZCt8E3bz/8ur3UxCmHOy3xIrunVK0gfCRu
+	Ugzg==
+X-Gm-Message-State: AODbwcAbTBjQAorTQr2IflleKT9unm/PmjtBWjYGemsEzzUBN+4MWn6q
+	z6sRuujeQlC7efgSpC5VxnT1GQppoA==
+X-Received: by 10.31.50.80 with SMTP id y77mr2537169vky.137.1494622838788;
+	Fri, 12 May 2017 14:00:38 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.103.67.199 with HTTP; Fri, 12 May 2017 13:42:01 -0700 (PDT)
-In-Reply-To: <CAK18fxEWzsEfZKRuof6bSnPx2-ESqee3m6qUGyiD9qxVLxKkeg@mail.gmail.com>
-References: <CAK18fxGut3dLRm+9O5kBc701aHfp_t+jVXDZN6gPVUSrqTMX2w@mail.gmail.com>
-	<CAPyrkgxJUR0mcRHpemP9-h-sxMwLWasmuY-mq_uTdKL6Nx5FRg@mail.gmail.com>
-	<CAK18fxEWzsEfZKRuof6bSnPx2-ESqee3m6qUGyiD9qxVLxKkeg@mail.gmail.com>
+Received: by 10.103.67.199 with HTTP; Fri, 12 May 2017 14:00:38 -0700 (PDT)
+In-Reply-To: <SINPR03MB227019BABCDFF61CF3539FFAD1EC0@SINPR03MB2270.apcprd03.prod.outlook.com>
+References: <SINPR03MB227019BABCDFF61CF3539FFAD1EC0@SINPR03MB2270.apcprd03.prod.outlook.com>
 From: Trevor Woerner <twoerner@gmail.com>
-Date: Fri, 12 May 2017 16:42:01 -0400
-Message-ID: <CAHUNapSgzCBwbnzaSVT49xtx58hwe=LVNe=9KvAWq_Cfr4YB0A@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
+Date: Fri, 12 May 2017 17:00:38 -0400
+Message-ID: <CAHUNapSTVu=hAuSz+hhDd+dbdFHSaN8Oy90OWz-yq6zkck3LCA@mail.gmail.com>
+To: Steve Plant <steove@hotmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Pull requests and jenkins
+Subject: Re: Raspberry pi build with QT5 creator...... failing to compile.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,42 +70,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 May 2017 20:42:06 -0000
+X-List-Received-Date: Fri, 12 May 2017 21:00:42 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, May 12, 2017 at 4:00 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Fri, May 12, 2017 at 7:34 PM, Paul Barker <pbarker@toganlabs.com> wrote:
->> On Fri, May 12, 2017 at 7:05 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->>> Hi all,
->>>
->>> I know I promised long ago but finally I took a Friday to invest into
->>> github pull requests integrated with a jenkins server.
+Hi Steve,
 
-yay!
-+1
+It seems like there's a lot of stuff going on at the same time. So to
+start I'd like to just focus on one thing at a time.
 
-(my inbox has been going nuts today!)
+On Wed, May 10, 2017 at 9:40 AM, Steve Plant <steove@hotmail.com> wrote:
+> I'm currently attempting to build a raspberry pi image, which I can use to
+> develop QT5 code for a beaglebone black.
 
->> I'm doing nightly builds of my setup but that's a bit non-standard
->> (custom distro, musl libc, u-boot enabled, etc). For meta-raspberrypi
->> itself I think you've got it right - test against the appropriate
->> branch of poky without changing the default configuration too much.
+This statement is very confusing to me.
 
-I have a couple nightly builds too for the things that interest me.
+It sounds like you want to build an image for the raspi, boot that
+image on a pi, hookup a keyboard, mouse, monitor to the pi, write qt5
+code on the pi, and compile that code on the pi to run on a
+beaglebone. Is that your goal?
 
->> For the readme, I think we should split off
->> "docs/optional-build-configuration.md", "docs/board-configuration.md"
->> and maybe "docs/contributing.md" files to shorten the top-level file.
->> Does that sound sensible?
->
-> We did touch this subject a little bit in private but in summary this
-> is a topic that I really want to address in the near future:
-> documentation. We start to have a pretty big readme and on the long
-> term that is not feasible.
-
-Maybe (just throwing this out there) the README in the layer could be
-very basic (maintainers, layer dependencies, ...) and then point users
-to a more elaborate documentation wiki setup on github?
-
-https://github.com/agherzan/meta-raspberrypi/wiki
+Best regards,
+    Trevor
 
