@@ -1,61 +1,57 @@
-Return-Path: <balazovic.peter@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E16CAE00B93; Fri, 12 May 2017 09:01:38 -0700 (PDT)
+	id 75628E00812; Fri, 12 May 2017 11:06:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (balazovic.peter[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.218.45 listed in list.dnswl.org]
-Received: from mail-oi0-f45.google.com (mail-oi0-f45.google.com
-	[209.85.218.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B334E00812
-	for <yocto@yoctoproject.org>; Fri, 12 May 2017 09:01:34 -0700 (PDT)
-Received: by mail-oi0-f45.google.com with SMTP id l18so70888240oig.2
-	for <yocto@yoctoproject.org>; Fri, 12 May 2017 09:01:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	*      [209.85.214.49 listed in list.dnswl.org]
+Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
+	[209.85.214.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34753E00812
+	for <yocto@yoctoproject.org>; Fri, 12 May 2017 11:06:28 -0700 (PDT)
+Received: by mail-it0-f49.google.com with SMTP id g126so41609521ith.0
+	for <yocto@yoctoproject.org>; Fri, 12 May 2017 11:06:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=J+OPf8kF1Lx/cjpJWQVL+I/js/6T7ZAPqFQVpYWcqzY=;
-	b=tggW7iaZM450j6eykWL+4cv1q3U8HrfP0PZlloIZ2aPCjewKHYrtb2A2zJnInoDfsB
-	Amr8VrGxEQ8HlrzfBcoZZXDGmnJPliVfj/EbnqX0/sHrT+64T1NhAbIntyQI6fHcn0BD
-	WzmEU0G7UYrTF4euB8mM/8c6vvIm0Eu1GfSyumgJFPfAMjBnr/iJ0VUycu1pVXhSpnLL
-	IqVyDH/tEvNpPVQTJciO5Aif0cuEHC5CC69BPlde2Yj0wkBy4VX2JLCaC46GmYtQwB1B
-	VCH+Ee4rFhTeCgzYsZAZ3E3ttaLpy5L/5xEFbC22WUMhF9gXwH5JCqgXKVeK69yBO+Fb
-	7zzg==
+	bh=+FEdZDVoypJIozYFfOi6nIkGKm16b9Y9KwNvm5opv4s=;
+	b=S1FS8WErKs+TMEeBh/DSCSmJm7GR6LQo0/VJ7V2n1/ZPcxZELqSNrt69/NEZzLVVVI
+	4DlUBduKRIMgnEeNbxnQmt90PnCW4FXPWG7mKMHb8GuhBwpFjoCvWbjZxR/hQOO6Ul49
+	UTucKAww5igePlgqoYFxKSrEcVuQjyTj73bHVVIWQGidFlfr/UGC9ttMblqFVgl7PfA1
+	jcd9V9L+MgR2u2inibvr7je5lqAtMksNOBmwDVcqbLmLKIwr9/lobTKxktlNvExyf6wh
+	aWzzpVE3kguxINDYAWdKB+xmeI47FzXO6C1SLME8qV68MkPnrzTY0CDoNSoJmY1/1fyQ
+	Kgug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=J+OPf8kF1Lx/cjpJWQVL+I/js/6T7ZAPqFQVpYWcqzY=;
-	b=huSkSS382p+yY7MxmV5MuhzHeW7d6I4EjFcZANGOhXNP4eaC2OvDQOLlIOGrKfeX6Y
-	dPvW5QIGJs2Kn3t6zCwih5E5ufErQ7PQoWadFdBYRsjIeDO8xeV2Qoe0+gKg34t0boZd
-	Xaxl1rK4cjWOK6g7WXcFU/vXzPqkxL4yGLK6/nlr8QsWwgWOT3hIcNIKKIp1999369oa
-	5TwMgP9x5jtS5tlZ/baf5lWS4tm2PZhGfumrb7Xk+IENxRBGnR6ZxN6187UniO9/b/qe
-	IQauhbxZO0KynMRgHHuHWeUT4beLZyK5LWik/W6rdcknJg++gx/nB/Ul1WIho/7QyRck
-	3M/A==
-X-Gm-Message-State: AODbwcBLMFlZJKzNd5kYifWEO+oNW6AjJBVwjYS0pI+4oP2/iKtQlDKv
-	j0WBM3GIh8ZJZNPjCt9DQwhvUb7L5YoT
-X-Received: by 10.202.107.80 with SMTP id g77mr2378307oic.14.1494604894183;
-	Fri, 12 May 2017 09:01:34 -0700 (PDT)
+	bh=+FEdZDVoypJIozYFfOi6nIkGKm16b9Y9KwNvm5opv4s=;
+	b=qdiAFk9FhPNhbAnCHri261l+MCOii1QNNX4tCQYBKh6ciHpSumZhuoQeDoTiwhx9tA
+	svzyB72h+LSRo21Uk56c2DgZ1GdFzByjE9sdoeDxmvQuLLLyz3Qphz54bIxvVBYTIk9z
+	y5mA6tDnS3xXcK5dLNnKzxpI8SeZoLEwuDdz+ncaYVEjEhRW7pf9hJd+j6rnutSvAJfH
+	9ukFFxp3QHlsR0mUimd/ovYmMzO34lqkNFjr+x6X6z1o5DkJ7Bzng/fohDyZ9YPKwHQ3
+	fws08JcmYGS7NM8EwckZdeBX8ZZcl5vz/wN1y0Hk8Z8hql97R9UVLU7rJkP8jBhgsPDf
+	F5lA==
+X-Gm-Message-State: AODbwcCY4GM0AWaB9lBp9+SmWLhBjWL5SW6akUu5s6gzecBaCdmCILc6
+	QUWgPAm6xJnxM81VkULRJBjwyeFb1TD/caI=
+X-Received: by 10.36.94.84 with SMTP id h81mr5365507itb.35.1494612387971; Fri,
+	12 May 2017 11:06:27 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.182.22.198 with HTTP; Fri, 12 May 2017 09:01:33 -0700 (PDT)
-From: Peter Balazovic <balazovic.peter@gmail.com>
-Date: Fri, 12 May 2017 18:01:33 +0200
-Message-ID: <CAFq4t4gKvAj=ne_fL4ah6a18rP0_PCveqBvzFvBqX8YwkkOwCg@mail.gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: dhcp eth0 network
+Received: by 10.79.27.207 with HTTP; Fri, 12 May 2017 11:05:47 -0700 (PDT)
+X-Originating-IP: [31.52.113.35]
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Fri, 12 May 2017 19:05:47 +0100
+Message-ID: <CAK18fxGut3dLRm+9O5kBc701aHfp_t+jVXDZN6gPVUSrqTMX2w@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: [meta-raspberrypi] Pull requests and jenkins
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,47 +63,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 May 2017 16:01:38 -0000
-Content-Type: multipart/alternative; boundary="001a114072dccc2b96054f55d14c"
-
---001a114072dccc2b96054f55d14c
+X-List-Received-Date: Fri, 12 May 2017 18:06:39 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Dears,
+Hi all,
 
-I got Yocto image and unfortunatelly network is not somehow enabled &
-proprely configured. After "ifconfig" no eth0 configured.
+I know I promised long ago but finally I took a Friday to invest into
+github pull requests integrated with a jenkins server.
 
+The first PR on which I worked for this integration is
+https://github.com/agherzan/meta-raspberrypi/pull/67 . This PR:
+- migrates Readme to markdown file - any objections about this?
+- adds badges for jenkins builds and gitter room
+- add info about pull requests
 
-> ifconfig
-lo    Link encap:Local Loopback
-       inet addr:127.0.0.1 Mask:255.0.0.0
- ....
+As well I pushed a PR from an external fork for testing -
+https://github.com/agherzan/meta-raspberrypi/pull/68 . This adds a log
+entry in gitignore which won't hurt anyway.
 
+Now, what I propose  is to start using pull requests as main way of
+contributing and mailing list as an additional (optional) way of
+advertising changes. We will keep it though for general discussions
+but keep contributions and issues (bug tracking) in github.
 
+About the jenkins server. The current setup is the following: for each
+PR, jenkins triggers rpi-basic-image for rpi, rpi2 and rpi3 using the
+target branch as the one on which the dependencies will be checked out
+(poky, meta-oe etc). If all three builds succeed then the PR is
+approved. I plan to start to add weekly builds for master and last two
+branches (morty and krogoth at this point) and additional boards. But
+for now I think it's a good start.
 
-> /etc/network
-> ls
-if-down.d if-post-down.d if-pre-up.d  if-up.d
+Thoughts?
 
+--
+Andrei Gherzan
 
-How should I setup "eth0" to get network working properly?
-
-Thanks.
-
---001a114072dccc2b96054f55d14c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Dears,<div><br></div><div>I got Yocto image and unfortunat=
-elly network is not somehow enabled &amp; proprely configured. After &quot;=
-ifconfig&quot; no eth0 configured.</div><div><br></div><div><br></div><div>=
-&gt; ifconfig</div><div>lo =C2=A0 =C2=A0Link encap:Local Loopback</div><div=
->=C2=A0 =C2=A0 =C2=A0 =C2=A0inet addr:127.0.0.1 Mask:255.0.0.0</div><div>=
-=C2=A0....</div><div><br></div><div><br></div><div><br></div><div>&gt; /etc=
-/network<br></div><div>&gt; ls=C2=A0</div><div>if-down.d if-post-down.d if-=
-pre-up.d =C2=A0if-up.d</div><div><br></div><div><br></div><div>How should I=
- setup &quot;eth0&quot; to get network working properly?=C2=A0</div><div><b=
-r></div><div>Thanks.</div><div><br></div><div><br></div></div>
-
---001a114072dccc2b96054f55d14c--
