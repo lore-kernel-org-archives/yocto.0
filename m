@@ -1,6 +1,6 @@
 Return-Path: <romain.perier@collabora.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D43D8E00973; Sat, 13 May 2017 09:16:12 -0700 (PDT)
+	id 056C6E00973; Sat, 13 May 2017 09:20:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,21 +15,21 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
 	lines
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 649E1E007DD
-	for <yocto@yoctoproject.org>; Sat, 13 May 2017 09:16:09 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACEDBE007DD
+	for <yocto@yoctoproject.org>; Sat, 13 May 2017 09:20:44 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: rperier) with ESMTPSA id 5C139260687
+	(Authenticated sender: rperier) with ESMTPSA id CC288260687
 To: yocto@yoctoproject.org
 References: <1492013128-5920-1-git-send-email-ayaka@soulik.info>
-	<1492013128-5920-3-git-send-email-ayaka@soulik.info>
+	<1492013128-5920-4-git-send-email-ayaka@soulik.info>
 From: Romain Perier <romain.perier@collabora.com>
-Message-ID: <a224eda7-602e-8d00-ad0b-305dd1b04af8@collabora.com>
-Date: Sat, 13 May 2017 18:16:06 +0200
+Message-ID: <018a6ea6-38c1-92aa-9a32-6dee2e7d6e6e@collabora.com>
+Date: Sat, 13 May 2017 18:20:35 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <1492013128-5920-3-git-send-email-ayaka@soulik.info>
-Subject: Re: [meta-rockchip] [PATCH v2 2/3] recipes-multimedia: add gstreamer rockchip support
+In-Reply-To: <1492013128-5920-4-git-send-email-ayaka@soulik.info>
+Subject: Re: [meta-rockchip] [PATCH v2 3/3] recipes-multimedia: images: rockchip media image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,7 +41,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 May 2017 16:16:12 -0000
+X-List-Received-Date: Sat, 13 May 2017 16:20:57 -0000
 Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
@@ -49,112 +49,52 @@ Hello,
 
 
 Le 12/04/2017 à 18:05, ayaka a écrit :
-> This Gstreamer plugin provides a encoder and decoder plugin
-> for Gstreamer through the Rockchip MPP library.
+> A image for debugging the hardware video encoder/decoder.
+> I also use this image for developing the Gstreamer.
 >
 > Signed-off-by: ayaka <ayaka@soulik.info>
 > ---
->  .../gstreamer/gstreamer1.0-rockchip.inc            | 40 ++++++++++++++++++++++
->  .../gstreamer/gstreamer1.0-rockchip_20170412.bb    |  9 +++++
->  .../gstreamer/gstreamer1.0-rockchip_git.bb         | 13 +++++++
->  3 files changed, 62 insertions(+)
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-rockchip.inc
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-rockchip_20170412.bb
->  create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-rockchip_git.bb
+>  recipes-multimedia/images/rockchip-media-image.bb | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>  create mode 100644 recipes-multimedia/images/rockchip-media-image.bb
 >
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-rockchip.inc b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip.inc
+> diff --git a/recipes-multimedia/images/rockchip-media-image.bb b/recipes-multimedia/images/rockchip-media-image.bb
 > new file mode 100644
-> index 0000000..0bd70ab
+> index 0000000..ea993c1
 > --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip.inc
-> @@ -0,0 +1,40 @@
-> +# Copyright (C) 2016 - 2017 Randy Li <ayaka@soulik.info>
-> +# Released under the GNU GENERAL PUBLIC LICENSE Version 2
-> +# (see COPYING.GPLv2 for the terms)
+> +++ b/recipes-multimedia/images/rockchip-media-image.bb
+> @@ -0,0 +1,21 @@
+> +# Copyright (C) 2017 Randy Li <ayaka@soulik.info>
+> +# Released under the MIT license (see COPYING.MIT for the terms)
 > +
-> +require recipes-multimedia/gstreamer/gstreamer1.0-plugins.inc
+> +include recipes-core/images/core-image-minimal.bb
 > +
-> +DESCRIPTION = "GStreamer 1.0 plugins for Rockchip platforms"
+> +LICENSE = "MIT"
+> +DESCRIPTION = "Multimedia image for Rockchip devices."
 > +
-> +LICENSE = "GPLv2"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=6d1e4aa87f6192354d3de840cf774d93"
-> +DEPENDS += "gstreamer1.0-plugins-base rockchip-mpp"
-> +
-> +SRC_URI_remove = " \
-> +    file://0001-introspection.m4-prefix-pkgconfig-paths-with-PKG_CON.patch \
-I suggest to add a comment if you remove this patch (explain why)
+> +IMAGE_FEATURES_append = " package-management ssh-server-dropbear"
+> +IMAGE_INSTALL_append = " gdbserver gstreamer1.0-rockchip      \
+> + gstreamer1.0-meta-base gstreamer1.0-meta-video gstreamer1.0-meta-audio \
+> + gstreamer1.0-plugins-good-isomp4 gstreamer1.0-plugins-good-multifile \
+> + gstreamer1.0-plugins-good-imagefreeze \
+> + gstreamer1.0-plugins-bad-autoconvert  gstreamer1.0-plugins-bad-camerabin2 \
+> + gstreamer1.0-plugins-bad-kmssink gstreamer1.0-plugins-bad-rawparse \
+> + gstreamer1.0-plugins-bad-videoparsersbad \
+> + gstreamer1.0-plugins-bad-mpegtsdemux \
+> + gstreamer1.0-meta-debug \
 > +"
 > +
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> +FILESPATH_prepend := "${THISDIR}/${PN}:"
-> +
-> +inherit gettext autotools pkgconfig
+> +TOOLCHAIN_HOST_TASK += "nativesdk-cmake"
+Clearly a NAK here. I don't want yet another image for this, that's a
+bsp meta layer, it is supposed to contain the recipes and rules to
+propose support for Rockchip SocS in in yocto/oe and its reference
+distros. But it is also supposed to be minimal, I don't want "all the
+world"  in meta-rockchip, to be honest :)
 
-autotools and pkgconfig are already inherited by gstreamer1.0-plugins.inc
+I am not fan to have recipes or rules for development...
 
-> +
-> +PACKAGECONFIG ??= " \
-> +    mpp             \
-> +"
-> +PACKAGECONFIG[mpp]    = "--enable-rockchipmpp,--disable-rockchipmpp,rockchip-mpp"
-> +PACKAGECONFIG[vpudec] = "--enable-vpudec,--disable-vpudec,rockchip-vpu"
-> +PACKAGECONFIG[drm]    = "--enable-drmrockchip,--disable-drmrockchip,libdrm-rockchip"
-> +PACKAGECONFIG[egl]    = "--enable-armmali,--disable-armmali,arm-mali"
-> +
-> +EXTRA_OECONF += "    \
-> +    --disable-kms    \
+Trevor, as a co-maintainer, what is your point about this ? (always welcome)
 
-Why do you disable kms ?
-
-> +"
-> +EXTRA_OECONF_remove = "--disable-gtk-doc"
-> +
-> +do_configure[prefuncs] = " delete_pkg_m4_file"
-comments ?
-> +
-> +do_configure() {
-> +    NOCONFIGURE=true ${S}/autogen.sh
-> +    oe_runconf
-> +}
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_20170412.bb b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_20170412.bb
-> new file mode 100644
-> index 0000000..e3fecaf
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_20170412.bb
-> @@ -0,0 +1,9 @@
-> +# Copyright (C) 2016 - 2017 Randy Li <ayaka@soulik.info>
-> +# Released under the GNU GENERAL PUBLIC LICENSE Version 2
-> +# (see COPYING.GPLv2 for the terms)
-> +include gstreamer1.0-rockchip.inc
-> +
-> +TAG = "release_${PV}"
-> +SRC_URI = "git://github.com/rockchip-linux/gstreamer-rockchip.git;tag=${TAG};nobranch=1"
-> +
-> +S = "${WORKDIR}/git"
-> diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_git.bb b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_git.bb
-> new file mode 100644
-> index 0000000..bd20121
-> --- /dev/null
-> +++ b/recipes-multimedia/gstreamer/gstreamer1.0-rockchip_git.bb
-> @@ -0,0 +1,13 @@
-> +# Copyright (C) 2016 - 2017 Randy Li <ayaka@soulik.info>
-> +# Released under the GNU GENERAL PUBLIC LICENSE Version 2
-> +# (see COPYING.GPLv2 for the terms)
-> +
-> +DEFAULT_PREFERENCE = "-1"
-What is this variable ?
-> +
-> +include gstreamer1.0-rockchip.inc
-> +
-> +SRCBRANCH ?= "develop"
-> +SRCREV = "${AUTOREV}"
-> +SRC_URI = "git://github.com/rockchip-linux/gstreamer-rockchip.git;branch=develop"
-> +
-> +S = "${WORKDIR}/git"
-
-That's globally a good work, thanks for this, please send a v2 with
-modifications, and include your real name in all patches.
-
-Thanks,
+Regards,
 Romain
 
