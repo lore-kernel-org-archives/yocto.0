@@ -1,76 +1,51 @@
-Return-Path: <drew@moseleynet.net>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23B64E00B02; Mon, 15 May 2017 07:15:22 -0700 (PDT)
+	id 01FE4E00B02; Mon, 15 May 2017 07:43:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, MIME_QP_LONG_LINE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.173 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.173 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f173.google.com (mail-yw0-f173.google.com
-	[209.85.161.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBE20E00901
-	for <yocto@yoctoproject.org>; Mon, 15 May 2017 07:15:18 -0700 (PDT)
-Received: by mail-yw0-f173.google.com with SMTP id l74so23584254ywe.2
-	for <yocto@yoctoproject.org>; Mon, 15 May 2017 07:15:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=moseleynet.net; s=google;
-	h=from:message-id:mime-version:subject:date:in-reply-to:cc:to
-	:references; bh=zqn94ZYc7Xowppd1AKEjR3NQrgoh7GdP5HvszUOVP7E=;
-	b=k7ACapCJR+UqyWE1vHJQ9N2V6sesMaWeVODjS9DZN+H2zVAH7hS9lkcw/ETXt1MPLb
-	atyMfrs5PYV1K8b/YmiWqhirqdFQrFtJYEh+XU87uLUNJvp4oZvaUIAyXfXb/+yjRGr+
-	a2GHuuVefz5pmhxy+giJQPFe2Pqd8CGCRLOns=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:message-id:mime-version:subject:date
-	:in-reply-to:cc:to:references;
-	bh=zqn94ZYc7Xowppd1AKEjR3NQrgoh7GdP5HvszUOVP7E=;
-	b=INFn3iEtWiwKBn9hWNQ6xtNCTNX19HcjNmFUbMZjoygBpkVR1q5jHI4eslKmMIWslK
-	WF5wH1FJhNWcGpCxLd9keBuoiXTj6TRJU63g3hcwlQJgEhtMEQFb0Ps1dHR8xa7IOv7K
-	rUEw/CaC6RQxZHy9sIEuywGU4nY8ynCXJgzNpRju0i3Mwl2Pe2za0s+W22EuFEXksgrG
-	VCvoYCL2rIMJXFlq527oBsaqCTDBSwy3pr8cnk8MszH2NaA+ORK0JbQ7olM60l76Uyf6
-	7o7y3lfV3VlCkAfwcvjIDskrslavb+i6yWs99ZBfzf46AUgrwJsn5Q+IDQS7+8SwtuVl
-	TH/A==
-X-Gm-Message-State: AODbwcB/08cW+OD6dLbPAQt7hoitlAO6s6BodE2mtXqPTafjxy4BDRdP
-	juwe39mNDqWewi9l1gI=
-X-Received: by 10.129.182.104 with SMTP id h40mr5459580ywk.165.1494857717302; 
-	Mon, 15 May 2017 07:15:17 -0700 (PDT)
-Received: from [192.168.1.33] (65-35-172-144.res.bhn.net. [65.35.172.144])
-	by smtp.gmail.com with ESMTPSA id
-	s129sm5408278ywg.11.2017.05.15.07.15.15
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 15 May 2017 07:15:16 -0700 (PDT)
-From: Drew Moseley <drew@moseleynet.net>
-Message-Id: <17DD2231-08A0-47E4-985C-E65A4CF302FC@moseleynet.net>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Date: Mon, 15 May 2017 10:15:15 -0400
-In-Reply-To: <em2a60633a-0593-4c92-ba65-70d87a500bae@r59400-12>
-To: "gmail.com" <balazovic.peter@gmail.com>
-References: <CAFq4t4gKvAj=ne_fL4ah6a18rP0_PCveqBvzFvBqX8YwkkOwCg@mail.gmail.com>
-	<CAHUNapR8kNs89_RjU7FpLoqnGbuD0xcnP8meU5P-KmBovWFZWA@mail.gmail.com>
-	<em0c047a6c-ad89-4ee5-a271-862399749ce1@r59400-12>
-	<CAHUNapTAuyhpDJ8ATx+arrGaN_JTy1ubs98zdTzJxh97gcxmbw@mail.gmail.com>
-	<CAFq4t4guS_reh=GHja7bwGQTC76krOF1Dfz1iYSJDYfqQ=2BtQ@mail.gmail.com>
-	<1109B552-16B4-4CAB-9EEC-246CC8DDDDE8@moseleynet.net>
-	<em2a60633a-0593-4c92-ba65-70d87a500bae@r59400-12>
-X-Mailer: Apple Mail (2.3273)
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: dhcp eth0 network
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C275E00901
+	for <yocto@yoctoproject.org>; Mon, 15 May 2017 07:43:05 -0700 (PDT)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	15 May 2017 07:43:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,345,1491289200"; 
+	d="scan'208,217";a="101827074"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+	by fmsmga005.fm.intel.com with ESMTP; 15 May 2017 07:43:04 -0700
+Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
+	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 15 May 2017 07:43:04 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.19]) by
+	fmsmsx117.amr.corp.intel.com ([169.254.3.194]) with mapi id
+	14.03.0319.002; Mon, 15 May 2017 07:43:03 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW20=9217?=
+Thread-Index: AdLNiUrRZovWGVEJTbyhm9ocZ5H+lg==
+Date: Mon, 15 May 2017 14:43:03 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E8EDE352A@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjkwYmE0ZGMtMDE0MS00NjZiLWIzNzUtNDczYTY2ODIyY2U2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6Ik5WWWVkc1RrQzBmd1ZjSlN3R0xTZzlVXC8xNTNNcjZwbVwvcVcra2ZcLzluQ2c9In0=
+MIME-Version: 1.0
+Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1cyMOKAmTE3?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,639 +57,491 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 May 2017 14:15:22 -0000
+X-List-Received-Date: Mon, 15 May 2017 14:43:07 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_DF4A3753-B874-4A77-B1DF-9C4E803C4010"
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDE352Afmsmsx111amrcor_"
 
---Apple-Mail=_DF4A3753-B874-4A77-B1DF-9C4E803C4010
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDE352Afmsmsx111amrcor_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
-I think the /etc/network/interfaces file is supported if you are using =
-the busybox udhcpc client but if your configuration uses =
-systemd-networkd or connman, there is a different mechanism.  Without =
-more details on your Yocto configuration it is not possible to give a =
-definitive answer.  Do you have access to the local.conf and build setup =
-that was used to produce this image?
+Current Dev Position: Planning for YP 2.4
 
-Drew
-
-> On May 13, 2017, at 1:59 PM, gmail.com <balazovic.peter@gmail.com> =
-wrote:
->=20
->> after you manually configure with ifconfig, can you actually connect =
-to external devices on the network?
->=20
-> Yes, I can connect - network works fine with external devices...
->=20
->=20
-> BTW usually I do changes of "interfaces" file at /etc/network to =
-switch between DHCP or static IP.=20
->=20
->>> auto lo
->>> iface lo inet loopback
->>>=20
->>> auto eth0
->>> iface eth0 inet dhcp
->>=20
->>>=20
->=20
-> after reset eth0 is not up and I do always
-> =20
->>> ifconfig eth0 10.171.88.8 netmask 255.0.0.0 up
->=20
->=20
-> So for now I can set static IP and network works fine but I want to =
-have DHCP and have that configuration permanent.=20
-> =20
->=20
-> ------ Original Message ------
-> From: "Drew Moseley" <drew@moseleynet.net =
-<mailto:drew@moseleynet.net>>
-> To: "Peter Balazovic" <balazovic.peter@gmail.com =
-<mailto:balazovic.peter@gmail.com>>
-> Cc: "Yocto list discussion" <yocto@yoctoproject.org =
-<mailto:yocto@yoctoproject.org>>
-> Sent: 5/13/2017 7:27:03 PM
-> Subject: Re: [yocto] dhcp eth0 network
->=20
->> Hi Peter,
->>=20
->> First question, after you manually configure with ifconfig, can you =
-actually connect to external devices on the network?  If so that implies =
-that your driver is functioning properly and that you really only need =
-to figure out how to configure DHCP and automatic configuration.  If no =
-connections are possible after the manual configuration then the you =
-likely have a driver issue.
->>=20
->> I played with both sysvinit and systemd based configurations and it =
-seems the automatic DHCP addressing is handled slightly differently in =
-these environments.=20
->>=20
->> In the case of sysvinit, busybox-udhcpc client is installed and =
-_should_ be bringing your interface up automatically. This worked =
-out-of-the-box for me with no extra config changes needed.
->>=20
->> In the case of systemd, there didn=E2=80=99t seem to be a DHCP client =
-configured in the default configuration (for my Beaglebone and Raspberry =
-Pi builds anyway).  I manually included the connman package in my build =
-and the interface was automatically configured. It looks like using the =
-networkd PACKAGECONFIG option for the systemd package may be another =
-solution but I had mixed results with that; it may require extra config =
-files in /etc/systemd/networkd or some such but since connman worked for =
-me I stopped investigating.
->>=20
->> I=E2=80=99m not sure that=E2=80=99s the best answer and I=E2=80=99d =
-love to hear if there is a cleaner solution for getting a DHCP client in =
-a systemd-based configuration but it may work to at least get you up and =
-running.  Of course this solution requires a rebuild of your target =
-image.  If your image truly does not have a DHCP client installed then =
-you may have to rebuild.
->>=20
->> HTH,
->>=20
->> Drew
->>=20
->>> On May 13, 2017, at 5:25 AM, Peter Balazovic =
-<balazovic.peter@gmail.com <mailto:balazovic.peter@gmail.com>> wrote:
->>>=20
->>> Hello,
->>>=20
->>> Unfortunately I have no knowledge about that how image is built :(  =
-I got just that image downloaded which is already built.=20
->>>=20
->>> BUT after applying ifconfig I got network working and connection =
-established... Now I wanna do it permanetly and dhcp instead of static =
-IP.
->>>=20
->>> root@imx6qpsabreauto:~# ifconfig eth0 10.171.88.8 netmask 255.0.0.0 =
-up
->>> root@imx6qpsabreauto:~# ifconfig
->>> eth0      Link encap:Ethernet  HWaddr ee:d2:50:0d:f3:33
->>>           inet addr:10.171.88.8  Bcast:10.255.255.255  =
-Mask:255.0.0.0
->>>           inet6 addr: fe80::ecd2:50ff:fe0d:f333/64 Scope:Link
->>>           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
->>>           RX packets:4447 errors:0 dropped:951 overruns:0 frame:0
->>>           TX packets:254 errors:0 dropped:0 overruns:0 carrier:0
->>>           collisions:0 txqueuelen:1000
->>>           RX bytes:640741 (625.7 KiB)  TX bytes:37067 (36.1 KiB)
->>>=20
->>> lo        Link encap:Local Loopback
->>>           inet addr:127.0.0.1  Mask:255.0.0.0
->>>           inet6 addr: ::1/128 Scope:Host
->>>           UP LOOPBACK RUNNING  MTU:65536  Metric:1
->>>           RX packets:2000 errors:0 dropped:0 overruns:0 frame:0
->>>           TX packets:2000 errors:0 dropped:0 overruns:0 carrier:0
->>>           collisions:0 txqueuelen:0
->>>           RX bytes:152000 (148.4 KiB)  TX bytes:152000 (148.4 KiB)
->>>=20
->>> root@imx6qpsabreauto:~#
->>>=20
->>> within /etc/network directory
->>>=20
->>> root@imx6qpsabreauto:/etc/network# ls
->>> if-down.d  if-post-down.d  if-pre-up.d  if-up.d  interfaces
->>> root@imx6qpsabreauto:/etc/network# vi interfaces
->>>=20
->>> auto lo
->>> iface lo inet loopback
->>>=20
->>> auto eth0
->>> iface eth0 inet dhcp
->>> ~
->>> ~
->>> ~
->>>=20
->>>=20
->>>=20
->>> After reset I need to set network again and static ...
->>>=20
->>> cheers,
->>> Peter
->>>=20
->>>=20
->>>=20
->>> On Fri, May 12, 2017 at 9:55 PM, Trevor Woerner <twoerner@gmail.com =
-<mailto:twoerner@gmail.com>> wrote:
->>> Hi Peter,
->>>=20
->>> There isn't enough information here for me to help you.
->>>=20
->>> Could you please list the commands and steps you used to build the =
-image?
->>> - what repositories are you using?
->>> - what branches of those repositories?
->>> - if you changed any config files, what did you change?
->>> - what command did you run to build your image?
->>> - what did bitbake print as your build configuration?
->>>=20
->>> Which i.mx <http://i.mx/> board are you using? There are dozens of =
-them.
->>>=20
->>> Best regards,
->>>     Trevor
->>>=20
->>>=20
->>> On Fri, May 12, 2017 at 3:34 PM, peter@gmail.com =
-<mailto:peter@gmail.com>
->>> <balazovic.peter@gmail.com <mailto:balazovic.peter@gmail.com>> =
-wrote:
->>> > I build on i.mx <http://i.mx/> (NXP) machine, I want to get =
-configured as dhcp  (no
->>> > static)...
->>> >
->>> >
->>> > ------ Original Message ------
->>> > From: "Trevor Woerner" <twoerner@gmail.com =
-<mailto:twoerner@gmail.com>>
->>> > To: "Peter Balazovic" <balazovic.peter@gmail.com =
-<mailto:balazovic.peter@gmail.com>>
->>> > Cc: "Yocto list discussion" <yocto@yoctoproject.org =
-<mailto:yocto@yoctoproject.org>>
->>> > Sent: 5/12/2017 9:32:17 PM
->>> > Subject: Re: [yocto] dhcp eth0 network
->>> >
->>> >> Hi Peter,
->>> >>
->>> >> For what MACHINE are you building? What's your target hardware? =
-Can
->>> >> you summarize the steps you took to build your image?
->>> >>
->>> >> What do you want eth0 to do? dhcp or static ip?
->>> >>
->>> >> Best regards,
->>> >>     Trevor
->>> >>
->>> >>
->>> >> On Fri, May 12, 2017 at 12:01 PM, Peter Balazovic
->>> >> <balazovic.peter@gmail.com <mailto:balazovic.peter@gmail.com>> =
-wrote:
->>> >>>
->>> >>>  Dears,
->>> >>>
->>> >>>  I got Yocto image and unfortunatelly network is not somehow =
-enabled &
->>> >>>  proprely configured. After "ifconfig" no eth0 configured.
->>> >>>
->>> >>>
->>> >>>>  ifconfig
->>> >>>
->>> >>>  lo    Link encap:Local Loopback
->>> >>>         inet addr:127.0.0.1 Mask:255.0.0.0
->>> >>>   ....
->>> >>>
->>> >>>
->>> >>>
->>> >>>>  /etc/network
->>> >>>>  ls
->>> >>>
->>> >>>  if-down.d if-post-down.d if-pre-up.d  if-up.d
->>> >>>
->>> >>>
->>> >>>  How should I setup "eth0" to get network working properly?
->>> >>>
->>> >>>  Thanks.
->>> >>>
->>> >>>
->>> >>>
->>> >>>  --
->>> >>>  _______________________________________________
->>> >>>  yocto mailing list
->>> >>>  yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>> >>>  https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
->>> >>>
->>> >
->>>=20
->>> --=20
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
->>=20
+Next Deadline: YP 2.1.3 Cut off May 15, 2017 =96 Still TBD
 
 
---Apple-Mail=_DF4A3753-B874-4A77-B1DF-9C4E803C4010
+SWAT team rotation: Ross -> Leo on May 12, 2017.
+
+SWAT team rotation: Leo -> Juro, on May 19, 2017.
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+
+Key Status/Updates:
+
+=B7        YP 2.3 has been released.  See:https://wiki.yoctoproject.org/wik=
+i/WW19_-_2017-05-02_-_Full_Test_Cycle_2.3_rc4 and: https://wiki.yoctoprojec=
+t.org/wiki/Yocto_Project_v2.3_Status#Milestone_4.2FFinal_-_Target_May_5.2C_=
+2017
+
+=B7        There were some issues discovered late in the 2.3 process which =
+mean a fast turnaround on a 2.3.1 release is likely and some fixes were alr=
+eady merged to the 2.3 stable branch.
+
+=B7        The master branch has moved forward and patches are starting to =
+merge for 2.4.
+
+
+Proposed upcoming dot releases:
+
+YP 2.1.3 Cut off May 15, 2017
+
+YP 2.1.3 Release by May 26, 2017
+
+YP 2.2.2 Cut off May 29, 2017
+
+YP 2.2.2 Release by June 9, 2017
+
+
+Key YP 2.4 Dates are still TBD:
+
+We will be finalizing the plans for YP 2.4 released in the next week or so.
+
+
+Tracking Metrics:
+
+            WDD 2641 (last week 2631)
+
+(https://wiki.yoctoproject.org/charts/combo.html)
+
+
+Key Status Links for YP:
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features
+
+[If anyone has suggestions for other information you=92d like to see on thi=
+s weekly status update, let us know!]
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+=95   Work Telephone:        (503) 712-0534
+=95    Cell:               (208) 244-4460
+=95 Email:                            stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDE352Afmsmsx111amrcor_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D"">I think the /etc/network/interfaces file is supported if you =
-are using the busybox udhcpc client but if your configuration uses =
-systemd-networkd or connman, there is a different mechanism. =
-&nbsp;Without more details on your Yocto configuration it is not =
-possible to give a definitive answer. &nbsp;Do you have access to the =
-local.conf and build setup that was used to produce this image?<div =
-class=3D""><br class=3D""></div><div class=3D"">Drew</div><div =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On May 13, 2017, at 1:59 PM, <a href=3D"http://gmail.com" =
-class=3D"">gmail.com</a> &lt;<a href=3D"mailto:balazovic.peter@gmail.com" =
-class=3D"">balazovic.peter@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><!--?xml =
-version=3D"1.0" encoding=3D"utf-16"?--><style type=3D"text/css" =
-class=3D""><![CDATA[#xd364da36520b4f10a10e6ed219d1e0b0 blockquote.cite2{
-	margin-left:5px;
-	margin-right:0px;
-	padding-left:10px;
-	padding-right:0px;
-	border-left-width:1px;
-	border-left-style:solid;
-	border-left-color:#CCC;
-	margin-top:3px;
-	padding-top:0px;
-}
-#xd364da36520b4f10a10e6ed219d1e0b0{
-	font-family:Tahoma;
-	font-size:12pt;
-}#xd4c609225b094d08a73c6aa4e55cf26e blockquote.cite2{
-	margin-left:5px;
-	margin-right:0px;
-	padding-left:10px;
-	padding-right:0px;
-	border-left-width:1px;
-	border-left-style:solid;
-	border-left-color:#CCC;
-	margin-top:3px;
-	padding-top:0px;
-}
-#xd4c609225b094d08a73c6aa4e55cf26e{
-	font-family:Tahoma;
-	font-size:12pt;
-}#x0cc5660ce5eb4306893f9760d39a7cc8 blockquote.cite2{
-	margin-left:5px;
-	margin-right:0px;
-	padding-left:10px;
-	padding-right:0px;
-	border-left-width:1px;
-	border-left-style:solid;
-	border-left-color:#CCC;
-	margin-top:3px;
-	padding-top:0px;
-}
-#x0cc5660ce5eb4306893f9760d39a7cc8{
-	font-family:Tahoma;
-	font-size:12pt;
-}]]><!--blockquote.cite2
-{margin-left: 5px; margin-right: 0px; padding-left: 10px; padding-right: =
-0px; border-left-width: 1px; border-left-style: solid; =
-border-left-color: rgb(204, 204, 204); margin-top: 3px; padding-top: =
-0px;}
-body
-{font-family: Tahoma; font-size: 12pt;}
---></style><div class=3D""><div class=3D""><div =
-id=3D"x0cc5660ce5eb4306893f9760d39a7cc8" class=3D"">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.apple-tab-span
+	{mso-style-name:apple-tab-span;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:255596126;
+	mso-list-template-ids:-1239381040;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:1604998577;
+	mso-list-template-ids:1199359860;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
+on: Planning for YP 2.4</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
+2.1.3 Cut off May 15, 2017 =96 Still TBD</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
+: Ross -&gt; Leo on May 12, 2017.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
+: Leo -&gt; Juro, on May 19, 2017.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
+.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
+/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
+:</span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.3 has been released. &nbsp;S=
+ee:<a href=3D"https://wiki.yoctoproject.org/wiki/WW19_-_2017-05-02_-_Full_T=
+est_Cycle_2.3_rc4"><span style=3D"font-size:12.0pt;font-family:&quot;Times =
+New Roman&quot;,serif;color:#1155CC">https://wiki.yoctoproject.org/wiki/WW1=
+9_-_2017-05-02_-_Full_Test_Cycle_2.3_rc4</span></a>
+ and: <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Stat=
+us#Milestone_4.2FFinal_-_Target_May_5.2C_2017">
+<span style=3D"color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Proj=
+ect_v2.3_Status#Milestone_4.2FFinal_-_Target_May_5.2C_2017</span></a><o:p><=
+/o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">There were some issues discovered=
+ late in the 2.3 process which mean a fast turnaround on a 2.3.1 release is=
+ likely and some fixes were already merged to
+ the 2.3 stable branch.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">The master branch has moved forwa=
+rd and patches are starting to merge for 2.4.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Proposed upcoming =
+dot releases:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.1.3 Cut off M=
+ay 15, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.1.3 Release b=
+y May 26, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.2 Cut off M=
+ay 29, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.2 Release b=
+y June 9, 2017</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.4 Dates a=
+re still TBD:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">We will be finaliz=
+ing the plans for YP 2.4 released in the next week or so.
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
+/span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
+"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;
+</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
+,sans-serif;color:black">WDD 2641 (last week 2631)</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
+=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
+ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
+.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
+octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
+;font-family:Consolas;color:black">)</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
+or YP:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Project_v2.4_Status"><span style=3D"font-size:11.0pt=
+;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
+to_Project_v2.4_Status</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.4_Schedule"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.4_=
+Schedule</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.4_Features"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.4_=
+Features</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><br>
+<span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">[If an=
+yone has suggestions for other information you=92d like to see on this week=
+ly status update, let us know!]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:black">Thanks,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-<div class=3D""><div id=3D"x155280726e10487" style=3D"word-wrap: =
-break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
-after-white-space;" class=3D""><blockquote =
-cite=3D"x-msg://2/1109B552-16B4-4CAB-9EEC-246CC8DDDDE8@moseleynet.net" =
-type=3D"cite" class=3D"cite2"><div class=3D"">after you manually =
-configure with ifconfig, can you actually connect to external devices on =
-the network?</div></blockquote></div></div></div></div><div =
-class=3D"">Yes, I can connect - network works fine with external =
-devices...</div><div class=3D""><br class=3D""></div><div class=3D""><br =
-class=3D""></div><div class=3D"">BTW usually I do changes of =
-"interfaces" file at /etc/network to switch between DHCP or static =
-IP.&nbsp;</div><div class=3D""><br class=3D""></div><div class=3D""><div =
-id=3D"xd4c609225b094d08a73c6aa4e55cf26e" class=3D"">
-
-<div class=3D""><div id=3D"x155280726e10487" style=3D"word-wrap: =
-break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
-after-white-space;" class=3D""><blockquote =
-cite=3D"x-msg://2/1109B552-16B4-4CAB-9EEC-246CC8DDDDE8@moseleynet.net" =
-type=3D"cite" class=3D"cite2"><div class=3D""><div class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div dir=3D"ltr" class=3D""><div =
-class=3D""><div class=3D""><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">auto lo</font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">iface lo inet =
-loopback</font></div><div class=3D""><font face=3D"monospace, monospace" =
-class=3D""><br class=3D""></font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">auto eth0</font></div><div =
-class=3D""><font face=3D"monospace, monospace" class=3D"">iface eth0 =
-inet dhcp</font></div></div></div></div></div></blockquote><font =
-face=3D"monospace, monospace" class=3D""><br class=3D""></font><blockquote=
- type=3D"cite" class=3D""><div class=3D""><div dir=3D"ltr" class=3D""><div=
- class=3D""><div class=3D""><div class=3D""><font face=3D"monospace, =
-monospace" class=3D""><br =
-class=3D""></font></div></div></div></div></div></blockquote></div></div><=
-/blockquote></div></div></div></div><div class=3D"">after reset eth0 is =
-not up and I do always</div><div class=3D"">&nbsp;</div><div =
-class=3D""><div id=3D"xd364da36520b4f10a10e6ed219d1e0b0" class=3D"">
-
-<div class=3D""><div id=3D"x155280726e10487" style=3D"word-wrap: =
-break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
-after-white-space;" class=3D""><blockquote =
-cite=3D"x-msg://2/1109B552-16B4-4CAB-9EEC-246CC8DDDDE8@moseleynet.net" =
-type=3D"cite" class=3D"cite2"><div class=3D""><div class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div dir=3D"ltr" class=3D""><div =
-class=3D""><div class=3D""><div class=3D""><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">ifconfig eth0 10.171.88.8 =
-netmask 255.0.0.0 =
-up</font></div></div></div></div></div></div></blockquote></div></div></bl=
-ockquote></div></div></div></div><div class=3D""><br class=3D""></div><div=
- class=3D"">So for now I can set static IP and network works fine but I =
-want to have DHCP and have that configuration permanent.&nbsp;</div><div =
-class=3D"">&nbsp;</div><div class=3D""><br class=3D""></div>
-<div class=3D"">------ Original Message ------</div>
-<div class=3D"">From: "Drew Moseley" &lt;<a =
-href=3D"mailto:drew@moseleynet.net" =
-class=3D"">drew@moseleynet.net</a>&gt;</div>
-<div class=3D"">To: "Peter Balazovic" &lt;<a =
-href=3D"mailto:balazovic.peter@gmail.com" =
-class=3D"">balazovic.peter@gmail.com</a>&gt;</div>
-<div class=3D"">Cc: "Yocto list discussion" &lt;<a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a>&gt;</div>
-<div class=3D"">Sent: 5/13/2017 7:27:03 PM</div>
-<div class=3D"">Subject: Re: [yocto] dhcp eth0 network</div><div =
-class=3D""><br class=3D""></div>
-<div id=3D"x155280726e10487" style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><blockquote =
-cite=3D"x-msg://2/1109B552-16B4-4CAB-9EEC-246CC8DDDDE8@moseleynet.net" =
-type=3D"cite" class=3D"cite2">
-Hi Peter,<div class=3D""><br class=3D""></div><div class=3D"">First =
-question, after you manually configure with ifconfig, can you actually =
-connect to external devices on the network? &nbsp;If so that implies =
-that your driver is functioning properly and that you really only need =
-to figure out how to configure DHCP and automatic configuration. =
-&nbsp;If no connections are possible after the manual configuration then =
-the you likely have a driver issue.</div><div class=3D""><br =
-class=3D""></div><div class=3D"">I played with both sysvinit and systemd =
-based configurations and it seems the automatic DHCP addressing is =
-handled slightly differently in these environments.&nbsp;</div><div =
-class=3D""><br class=3D""></div><div class=3D"">In the case of sysvinit, =
-busybox-udhcpc client is installed and _should_ be bringing your =
-interface up automatically. This worked out-of-the-box for me with no =
-extra config changes needed.</div><div class=3D""><br =
-class=3D""></div><div class=3D"">In the case of systemd, there didn=E2=80=99=
-t seem to be a DHCP client configured in the default configuration (for =
-my Beaglebone and Raspberry Pi builds anyway). &nbsp;I manually included =
-the connman package in my build and the interface was automatically =
-configured. It looks like using the networkd PACKAGECONFIG option for =
-the systemd package may be another solution but I had mixed results with =
-that; it may require extra config files in /etc/systemd/networkd or some =
-such but since connman worked for me I stopped investigating.</div><div =
-class=3D""><br class=3D""></div><div class=3D"">I=E2=80=99m not sure =
-that=E2=80=99s the best answer and I=E2=80=99d love to hear if there is =
-a cleaner solution for getting a DHCP client in a systemd-based =
-configuration but it may work to at least get you up and running. =
-&nbsp;Of course this solution requires a rebuild of your target image. =
-&nbsp;If your image truly does not have a DHCP client installed then you =
-may have to rebuild.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">HTH,</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Drew</div><div class=3D""><br class=3D""></div><div =
-class=3D""><div class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On May 13, 2017, at 5:25 AM, Peter Balazovic &lt;<a =
-href=3D"mailto:balazovic.peter@gmail.com" =
-class=3D"">balazovic.peter@gmail.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D""><div class=3D"">Hello,</div><div class=3D""><br =
-class=3D""></div>Unfortunately I have no knowledge about that how image =
-is built :( &nbsp;I got just that image downloaded which is already =
-built.&nbsp;<div class=3D""><br class=3D""></div><div class=3D"">BUT =
-after applying <font face=3D"monospace, monospace" =
-class=3D"">ifconfig</font> I got network working and connection =
-established... Now I wanna do it permanetly and dhcp instead of static =
-IP.<div class=3D""><div class=3D""><br class=3D""></div><div =
-class=3D""><div class=3D""><font face=3D"monospace, monospace" =
-class=3D"">root@imx6qpsabreauto:~# ifconfig eth0 10.171.88.8 netmask =
-255.0.0.0 up</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">root@imx6qpsabreauto:~# ifconfig</font></div><div =
-class=3D""><font face=3D"monospace, monospace" class=3D"">eth0 &nbsp; =
-&nbsp; &nbsp;Link encap:Ethernet &nbsp;HWaddr =
-ee:d2:50:0d:f3:33</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inet =
-addr:10.171.88.8 &nbsp;Bcast:10.255.255.255 =
-&nbsp;Mask:255.0.0.0</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inet6 addr: =
-fe80::ecd2:50ff:fe0d:f333/64 Scope:Link</font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; UP BROADCAST RUNNING MULTICAST &nbsp;MTU:1500 =
-&nbsp;Metric:1</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RX packets:4447 =
-errors:0 dropped:951 overruns:0 frame:0</font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; TX packets:254 errors:0 dropped:0 overruns:0 =
-carrier:0</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; collisions:0 =
-txqueuelen:1000</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RX bytes:640741 =
-(625.7 KiB) &nbsp;TX bytes:37067 (36.1 KiB)</font></div><div =
-class=3D""><font face=3D"monospace, monospace" class=3D""><br =
-class=3D""></font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">lo &nbsp; &nbsp; &nbsp; &nbsp;Link encap:Local =
-Loopback</font></div><div class=3D""><font face=3D"monospace, monospace" =
-class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inet addr:127.0.0.1 =
-&nbsp;Mask:255.0.0.0</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inet6 addr: =
-::1/128 Scope:Host</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; UP LOOPBACK =
-RUNNING &nbsp;MTU:65536 &nbsp;Metric:1</font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; RX packets:2000 errors:0 dropped:0 overruns:0 =
-frame:0</font></div><div class=3D""><font face=3D"monospace, monospace" =
-class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TX packets:2000 errors:0 =
-dropped:0 overruns:0 carrier:0</font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; collisions:0 txqueuelen:0</font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; RX bytes:152000 (148.4 KiB) &nbsp;TX bytes:152000 (148.4 =
-KiB)</font></div><div class=3D""><font face=3D"monospace, monospace" =
-class=3D""><br class=3D""></font></div><div class=3D""><font =
-face=3D"monospace, monospace" =
-class=3D"">root@imx6qpsabreauto:~#</font></div></div></div><div =
-class=3D""><br class=3D""></div><div class=3D"">within /etc/network =
-directory</div><div class=3D""><br class=3D""></div><div class=3D""><div =
-class=3D""><font face=3D"monospace, monospace" =
-class=3D"">root@imx6qpsabreauto:/etc/network# ls</font></div><div =
-class=3D""><font face=3D"monospace, monospace" class=3D"">if-down.d =
-&nbsp;if-post-down.d &nbsp;if-pre-up.d &nbsp;if-up.d =
-&nbsp;interfaces</font></div></div><div class=3D""><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">root@</font><span =
-style=3D"font-family:monospace,monospace" class=3D"">imx6qp</span><font =
-face=3D"monospace, monospace" class=3D"">sabreauto:/etc/network# vi =
-interfaces</font></div></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D""><br class=3D""></font></div><div class=3D""><div =
-class=3D""><font face=3D"monospace, monospace" class=3D"">auto =
-lo</font></div><div class=3D""><font face=3D"monospace, monospace" =
-class=3D"">iface lo inet loopback</font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D""><br class=3D""></font></div><div =
-class=3D""><font face=3D"monospace, monospace" class=3D"">auto =
-eth0</font></div><div class=3D""><font face=3D"monospace, monospace" =
-class=3D"">iface eth0 inet dhcp</font></div><div class=3D""><font =
-face=3D"monospace, monospace" class=3D"">~</font></div><div =
-class=3D""><font face=3D"monospace, monospace" =
-class=3D"">~</font></div><div class=3D""><font face=3D"monospace, =
-monospace" class=3D"">~</font></div></div><div class=3D""><br =
-class=3D""></div><div class=3D""><br class=3D""></div><div class=3D""><br =
-class=3D""></div><div class=3D"">After reset I need to set network again =
-and static ...</div><div class=3D""><br class=3D""></div><div =
-class=3D"">cheers,</div><div class=3D"">Peter</div><div class=3D""><br =
-class=3D""></div><div class=3D""><br class=3D""></div></div></div><div =
-class=3D"gmail_extra"><br class=3D""><div class=3D"gmail_quote">On Fri, =
-May 12, 2017 at 9:55 PM, Trevor Woerner <span dir=3D"ltr" =
-class=3D"">&lt;<a href=3D"mailto:twoerner@gmail.com" =
-class=3D"">twoerner@gmail.com</a>&gt;</span> wrote:<br =
-class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Peter,<br class=3D"">=
-
-<br class=3D"">
-There isn't enough information here for me to help you.<br class=3D"">
-<br class=3D"">
-Could you please list the commands and steps you used to build the =
-image?<br class=3D"">
-- what repositories are you using?<br class=3D"">
-- what branches of those repositories?<br class=3D"">
-- if you changed any config files, what did you change?<br class=3D"">
-- what command did you run to build your image?<br class=3D"">
-- what did bitbake print as your build configuration?<br class=3D"">
-<br class=3D"">
-Which <a href=3D"http://i.mx/" rel=3D"noreferrer" class=3D"">i.mx</a> =
-board are you using? There are dozens of them.<br class=3D"">
-<br class=3D"">
-Best regards,<br class=3D"">
-&nbsp; &nbsp; Trevor<br class=3D"">
-<div class=3D"HOEnZb"><div class=3D"h5"><br class=3D"">
-<br class=3D"">
-On Fri, May 12, 2017 at 3:34 PM, <a href=3D"mailto:peter@gmail.com" =
-class=3D"">peter@gmail.com</a><br class=3D"">
-&lt;<a href=3D"mailto:balazovic.peter@gmail.com" =
-class=3D"">balazovic.peter@gmail.com</a>&gt; wrote:<br class=3D"">
-&gt; I build on <a href=3D"http://i.mx/" rel=3D"noreferrer" =
-class=3D"">i.mx</a> (NXP) machine, I want to get configured as =
-dhcp&nbsp; (no<br class=3D"">
-&gt; static)...<br class=3D"">
-&gt;<br class=3D"">
-&gt;<br class=3D"">
-&gt; ------ Original Message ------<br class=3D"">
-&gt; From: "Trevor Woerner" &lt;<a href=3D"mailto:twoerner@gmail.com" =
-class=3D"">twoerner@gmail.com</a>&gt;<br class=3D"">
-&gt; To: "Peter Balazovic" &lt;<a =
-href=3D"mailto:balazovic.peter@gmail.com" =
-class=3D"">balazovic.peter@gmail.com</a>&gt;<br class=3D"">
-&gt; Cc: "Yocto list discussion" &lt;<a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a>&gt;<br class=3D"">
-&gt; Sent: 5/12/2017 9:32:17 PM<br class=3D"">
-&gt; Subject: Re: [yocto] dhcp eth0 network<br class=3D"">
-&gt;<br class=3D"">
-&gt;&gt; Hi Peter,<br class=3D"">
-&gt;&gt;<br class=3D"">
-&gt;&gt; For what MACHINE are you building? What's your target hardware? =
-Can<br class=3D"">
-&gt;&gt; you summarize the steps you took to build your image?<br =
-class=3D"">
-&gt;&gt;<br class=3D"">
-&gt;&gt; What do you want eth0 to do? dhcp or static ip?<br class=3D"">
-&gt;&gt;<br class=3D"">
-&gt;&gt; Best regards,<br class=3D"">
-&gt;&gt;&nbsp; &nbsp; &nbsp;Trevor<br class=3D"">
-&gt;&gt;<br class=3D"">
-&gt;&gt;<br class=3D"">
-&gt;&gt; On Fri, May 12, 2017 at 12:01 PM, Peter Balazovic<br class=3D"">
-&gt;&gt; &lt;<a href=3D"mailto:balazovic.peter@gmail.com" =
-class=3D"">balazovic.peter@gmail.com</a>&gt; wrote:<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&nbsp; Dears,<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&nbsp; I got Yocto image and unfortunatelly network is not =
-somehow enabled &amp;<br class=3D"">
-&gt;&gt;&gt;&nbsp; proprely configured. After "ifconfig" no eth0 =
-configured.<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&gt;&nbsp; ifconfig<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&nbsp; lo&nbsp; &nbsp; Link encap:Local Loopback<br =
-class=3D"">
-&gt;&gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inet addr:127.0.0.1 =
-Mask:255.0.0.0<br class=3D"">
-&gt;&gt;&gt;&nbsp; &nbsp;....<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&gt;&nbsp; /etc/network<br class=3D"">
-&gt;&gt;&gt;&gt;&nbsp; ls<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&nbsp; if-down.d if-post-down.d if-pre-up.d&nbsp; if-up.d<br =
-class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&nbsp; How should I setup "eth0" to get network working =
-properly?<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&nbsp; Thanks.<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;&gt;&gt;&nbsp; --<br class=3D"">
-&gt;&gt;&gt;&nbsp; ______________________________<wbr =
-class=3D"">_________________<br class=3D"">
-&gt;&gt;&gt;&nbsp; yocto mailing list<br class=3D"">
-&gt;&gt;&gt;&nbsp; <a href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br class=3D"">
-&gt;&gt;&gt;&nbsp; <a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer" =
-class=3D"">https://lists.yoctoproject.<wbr =
-class=3D"">org/listinfo/yocto</a><br class=3D"">
-&gt;&gt;&gt;<br class=3D"">
-&gt;<br class=3D"">
-</div></div></blockquote></div><br class=3D""></div>
--- <br class=3D"">_______________________________________________<br =
-class=3D"">yocto mailing list<br class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a><br =
-class=3D""></div></blockquote></div><br =
-class=3D""></div></blockquote></div>
-</div></div></blockquote></div><br class=3D""></div></body></html>=
-
---Apple-Mail=_DF4A3753-B874-4A77-B1DF-9C4E803C4010--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EDE352Afmsmsx111amrcor_--
