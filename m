@@ -1,72 +1,32 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <jose.perez.carranza@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1988E00B72; Tue, 16 May 2017 11:44:26 -0700 (PDT)
+	id 03E3FE00B87; Tue, 16 May 2017 11:45:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.67 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.67 listed in list.dnswl.org]
-Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
-	[209.85.214.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE5E1E00AE4
-	for <yocto@yoctoproject.org>; Tue, 16 May 2017 11:44:25 -0700 (PDT)
-Received: by mail-it0-f67.google.com with SMTP id l145so14975894ita.0
-	for <yocto@yoctoproject.org>; Tue, 16 May 2017 11:44:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=kFPoyA+u1mqJSgZeVDrPtRe3lFAH8dq8BciGDJ7gqG8=;
-	b=i0D02tH8Ju1nkNkoDJIeubkbKef+u2bNfrQ2CaLBM8msbuzH8D8sxNFU+VjfJ1qb5T
-	l3/FZnGTQAu95KeeAyoCwiUYCkWm0RUgwc/w7ZIfsW5c7xf0nElaTlYxmZivlw+Lq4sr
-	3O2OkK8LuIF1nOmQO8zE2aDYVp8dILQ//Z2olq3tSQ0NBffxwtE0fnlHsB/F3I59BGsr
-	loldwuP5aJXUA9CiyFwDxJoDVLOnn5KTCts9uSo/hda4q/Q0/+JJ7X2P3IcSHXZi76Nd
-	OAlgZr0jf6jsuSboWQRoy9nRx+2NAxqmVhjamLFSjn3F59p8QIKg5wR7Zw3s364FDPtx
-	KnTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=kFPoyA+u1mqJSgZeVDrPtRe3lFAH8dq8BciGDJ7gqG8=;
-	b=c7JZc4EzUgSfqSImyNX+/Moy8EzRu4C/3cj49PpBq4DwUebrAvxxrbfkod9vAGdOEL
-	MHOhxJSpVfS+kfT4NZxLo4xHZ+0pEi6A5F+SGlWFXdhaZgfHvlsNQKoeHx8/ILrDM6z7
-	/C8zts7Va0OQpyYhmVFwcb0iApWXRdLPRImXhNC9RFwdPVk2W7kZqDtKNDZnSUnJVVPe
-	/1xd1jPZBETb5BzKJzXB2cVACtaI9S7Jkwes6QOTPR64axet/et31o2mSHUPRAO4F543
-	jZxeFR1/zI7QFx6US/h3jZWhVAl9KpLyC6UzOfrdu+hS31xKabqhl4l1i9yot0nYCTHu
-	MgeQ==
-X-Gm-Message-State: AODbwcAfBiHgIZz8whZlzBI8Aet2H8qgsYNmzRdm2cFX8yJwipBgPUmP
-	K0/FPINwh2Bo0Q==
-X-Received: by 10.36.131.137 with SMTP id d131mr95569ite.113.1494960264951;
-	Tue, 16 May 2017 11:44:24 -0700 (PDT)
-Received: from linux-uys3 ([206.248.190.95])
-	by smtp.gmail.com with ESMTPSA id e21sm38562ioj.15.2017.05.16.11.44.24
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 16 May 2017 11:44:24 -0700 (PDT)
-Date: Tue, 16 May 2017 14:44:22 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: ayaka <ayaka@soulik.info>
-Message-ID: <20170516184422.GA1041@linux-uys3>
-References: <20170516141808.26629-1-ayaka@soulik.info>
-	<20170516141808.26629-2-ayaka@soulik.info>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B42B9E00B7A
+	for <yocto@yoctoproject.org>; Tue, 16 May 2017 11:45:00 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga105.jf.intel.com with ESMTP; 16 May 2017 11:44:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,350,1491289200"; d="scan'208";a="1169988200"
+Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
+	by fmsmga002.fm.intel.com with ESMTP; 16 May 2017 11:44:59 -0700
+From: jose.perez.carranza@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Tue, 16 May 2017 13:46:28 -0500
+Message-Id: <20170516184628.31604-1-jose.perez.carranza@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-In-Reply-To: <20170516141808.26629-2-ayaka@soulik.info>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH v3 1/3] recipes-multimedia: add Rockchip MPP library
+Subject: [qa-tools][PATCH] Full-test-cycle-wrapper: Add support for point releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,23 +38,152 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 May 2017 18:44:27 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Tue, 16 May 2017 18:45:02 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Randy,
+From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
 
-Neither of the issues that were identified in your v2 of this patch were
-addressed in this v3. Namely:
+Add support to scenarios were a execution is needed for branch different
+from master, delete lsb-joule environment as is not supported and add
+logic to do the “Testopia connection” modular and reusable by other
+scripts.
 
-1) please use your real name (first, last) in your signed-off-by line
-2) please don't create a package from this recipe whose name doesn't include
-   the recipe name (i.e. please don't create "rockchip-vpu" from a recipe
-   "rockchip-mpp"), suggestions were provided
+Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+---
+ scripts/full-test-cycle-wrapper.sh | 16 +++++++++++---
+ testopia_update.py                 | 44 ++++++++++++++++++++++++--------------
+ 2 files changed, 41 insertions(+), 19 deletions(-)
 
-Aside from the email headers and the version of git used, this patch is
-identical to the v2 you submitted.
+diff --git a/scripts/full-test-cycle-wrapper.sh b/scripts/full-test-cycle-wrapper.sh
+index 2b3a130..7dcd62e 100755
+--- a/scripts/full-test-cycle-wrapper.sh
++++ b/scripts/full-test-cycle-wrapper.sh
+@@ -51,6 +51,13 @@ create_test_run(){
+       OPT="-o $2"
+    fi
+ 
++#If point release is used then milestone is not asigned
++   if [[ $MILESTONE == M* ]]; then
++      BUILD_MILESTONE="$VERSION $MILESTONE"
++   else
++      BUILD_MILESTONE="$VERSION$MILESTONE"
++   fi
++
+    #echo "############ CREATING TEST RUNS FOR - $1 - #############"
+    for ENV in "${ENVIRONMENTS[@]}"
+    do
+@@ -61,7 +68,7 @@ create_test_run(){
+      do
+         #call the script that creates Test Runs
+         ./testopia_update.py --config $CONFIG_FILE -a $ACTION -p "${1}" -c $EXTP -b $BRANCH \
+-        -e "$ENV"  --project-version $VERSION --project-milestone "$VERSION $MILESTONE" \
++        -e "$ENV"  --project-version $VERSION --project-milestone "$BUILD_MILESTONE" \
+         --project-date $PJDATE --project-revision $RELEASE-$REVISION $OPT $TEST_PLAN --verbose
+      done
+    done
+@@ -119,7 +126,7 @@ create_meta-intel(){
+    create_test_run "${1}" "core-image-sato-sdk_ANYBSP"
+ 
+    #BSP Autos LSB
+-   ENVIRONMENTS=("core2-32_lsb_MMAX32" "corei7-64_lsb_NUC" "corei7-64_lsb_MMAX64" "corei7-64_lsb_Joule" "corei7-64_lsb_CherryHill")
++   ENVIRONMENTS=("core2-32_lsb_MMAX32" "corei7-64_lsb_NUC" "corei7-64_lsb_MMAX64" "corei7-64_lsb_CherryHill")
+ 
+    EXECUTION_TYPE="AUTO"
+    create_test_run "${1}" "core-image-lsb-sdk_ANYBSP"
+@@ -226,7 +233,9 @@ usage(){
+   echo " -p PROJECT VERSION  {2.2 2.3 2.4}
+                           Version of the project."
+   echo " -m PROJECT MILESTONE {M1 M2 M3 M4}
+-                          Milestone of the project."
++                          Milestone of the project.
++			  if is point release set milestone with .#
++		          .1 .2 .3"
+   echo " -r RELEASE COMMIT {XXXXXX}
+                           SCM Revision of the project, commit of branch tested."
+   echo " -c RELEAE CANDIDATE {rc1 rc2 rcX}
+@@ -236,6 +245,7 @@ usage(){
+   exit
+ }
+ 
++
+ if [[ ( $# == "--help") ||  $# == "-h" || $# -eq 0 ]] ; then
+     usage
+     exit 0
+diff --git a/testopia_update.py b/testopia_update.py
+index 50c3325..0a3f7f5 100755
+--- a/testopia_update.py
++++ b/testopia_update.py
+@@ -14,7 +14,7 @@ DEFAULT_CONFIG_FILE = "testopia_update.config"
+ DEFAULT_STORE_LOCATION = "/tmp/testopia_update"
+ 
+ ACTIONS = ('create', 'update')
+-BRANCHES = ('master', 'jethro', 'dizzy', 'daisy', 'noexists')
++BRANCHES = ('master', 'jethro', 'dizzy', 'daisy', 'noexists', "pyro")
+ CATEGORIES = ('AUTO', 'MANUAL')
+ 
+ 
+@@ -54,6 +54,31 @@ def load_opts(args, opts_list, opts):
+                             'and --results-log if test run was already created')
+             sys.exit(1)
+ 
++
++def connect_to_testopia():
++    config = None
++    opts = Options()
++
++    testopia_config = ['url', 'username', 'password', 'store_location']
++
++    if not args.config and os.path.exists(DEFAULT_CONFIG_FILE):
++        args.config = DEFAULT_CONFIG_FILE
++
++    if args.config:
++        config = ConfigParser.SafeConfigParser()
++        config.read(args.config)
++
++        for to in testopia_config:
++            setattr(opts, to, config.get("Testopia", to))
++
++    load_opts(args, testopia_config, opts)
++
++    if not os.path.exists(opts.store_location):
++        os.makedirs(opts.store_location)
++
++    return opts, config
++
++
+ class Options(object):
+     pass
+ 
+@@ -132,25 +157,12 @@ if __name__ == '__main__':
+         'project_version', 'project_milestone', 'project_revision',
+         'project_date']
+ 
+-    config = None
+-    if not args.config and os.path.exists(DEFAULT_CONFIG_FILE):
+-        args.config = DEFAULT_CONFIG_FILE
+-
+-    if args.config:
+-        config = ConfigParser.SafeConfigParser()
+-        config.read(args.config)
+-
+-        for to in testopia_config:
+-            setattr(opts, to, config.get("Testopia", to))
+-    load_opts(args, testopia_config, opts)
+-
+-    if not os.path.exists(opts.store_location):
+-        os.makedirs(opts.store_location)
+-
+     kwargs = {}
+     if args.plan_name:
+         kwargs['plan_name'] = args.plan_name
+ 
++    opts, config = connect_to_testopia()
++
+     testopia = Testopia(opts.username, opts.password, opts.url, sslverify=False)
+     products = get_products(testopia, opts, logger, config, **kwargs)
+ 
+-- 
+2.11.0
 
-Best regards,
-	Trevor
 
