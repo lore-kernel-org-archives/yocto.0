@@ -1,45 +1,38 @@
-Return-Path: <karavolt@broadwave.co.kr>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0563DE00B51; Mon, 15 May 2017 21:41:37 -0700 (PDT)
+	id 8068DE00B51; Tue, 16 May 2017 00:26:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.9 required=5.0 tests=BAYES_50,HTML_IMAGE_ONLY_16,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	T_REMOTE_IMAGE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [125.209.215.141 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-	*      [score: 0.4467]
-	* 1.1 HTML_IMAGE_ONLY_16 BODY: HTML: images with 1200-1600 bytes of
-	words
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
-	Mon, 15 May 2017 21:41:31 PDT
-Received: from cmailsend002.wmail.naver.com (cmailsend002.wmail.naver.com
-	[125.209.215.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96C88E00B05
-	for <yocto@yoctoproject.org.>; Mon, 15 May 2017 21:41:31 -0700 (PDT)
-Received: (qmail 20737 invoked by uid 100); 16 May 2017 04:34:50 -0000
-Received: from 10.112.74.145 (HELO cvweb020.wmail.nhnsystem.com)
-	(10.112.74.145)
-	by cmailsend002.wmail.naver.com with SMTP;16 May 2017 04:34:50 -0000
-Date: Tue, 16 May 2017 13:34:50 +0900 (KST)
-From: =?UTF-8?B?6rmA7J6s7ZmY?= <karavolt@broadwave.co.kr>
-To: yocto@yoctoproject.org
-Message-ID: <cc94c62ce1abb8729b3f7047e11749e5@cvweb020.wmail.nhnsystem.com>
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 252B0E00B05
+	for <yocto@yoctoproject.org>; Tue, 16 May 2017 00:26:53 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v4G7QqOH001677
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 16 May 2017 00:26:52 -0700 (PDT)
+Received: from ala-blade47.wrs.com (147.11.105.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 16 May 2017 00:26:52 -0700
+From: Robert Yang <liezhi.yang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 16 May 2017 00:26:51 -0700
+Message-ID: <20170516072651.2919-1-liezhi.yang@windriver.com>
+X-Mailer: git-send-email 2.10.2
 MIME-Version: 1.0
-Importance: normal
-X-Priority: 3 (Normal)
-X-Naver-CIP: 106.246.190.121
-X-Naver-Sender-Locale: envfrom=karavolt@broadwave.co.kr; locale=ko_kr
-Subject: [meta-raspberrypi] rpi0-w wifi&bluetooth problem
+Cc: paul.eggleton@linux.intel.com
+Subject: [layerindex-web] [PATCH] update.py: update actual branch for layer and bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: =?UTF-8?B?6rmA7J6s7ZmY?= <karavolt@broadwave.co.kr>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,54 +41,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 May 2017 04:41:37 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_130243_1609225278.1494909290551"
+X-List-Received-Date: Tue, 16 May 2017 07:26:56 -0000
+Content-Type: text/plain
 
-------=_Part_130243_1609225278.1494909290551
-Content-Type: text/plain;
-	charset=UTF-8
-Content-Transfer-Encoding: base64
+Add an option "-a" to update actual branch for layer and bitbake, it is
+useful when there are many layers and need update actual branches
+frequantly. We only can update them via website without this patch,
+which is not funny and easy to make mistakes.
 
-SGkuCiAKaSBidWlsZCBjb3JlLWltYWdlLW1pbmltYWwgZm9yIHJwaTAtdy4KaXQgd29ya3Mgbmlj
-ZWx5IGJ1dCBub3Qgd29ya2luZyB3bGFuMCBhbmQgYmx1ZXRvb3RoLgogCnNvIGkgdHJpZWQgdGhp
-cyBwb3N0LiBidXQgc3RpbGwgbm90IHdvcmtpbmcuCiAKdGhlIGVycm9yIHdhcyAKJGlmdXAgd2xh
-bjAKU3VjY2Vzc2Z1bGx5IGluaXRpYWxpemVkIHdwYV9zdXBwbGljYW50CnJma2lsbDogY2Fubm90
-IGdldCB3aXBoeSBpbmZvcm1hdGlvbgpDb3VsZCBub3QgcmVhZCBpbnRlcmZhY2Ugd2xhbjAgZmxh
-Z3M6IE5vIHN1Y2ggZGV2aWNlCldFWFQ6IGNvdWxkIG5vdCBzZXQgaW50ZXJmYWNlICd3bGFuMCcg
-VVAKd2xhbjA6IEZhaWxlZCB0byBpbml0aWFsaXplIGRyaXZlciBpbnRlcmZhY2UKaWZjb25maWc6
-IFNJT0NHSUZGTEFHUyBObyBzdWNoIGRldmljZQogCmFueWJvZHkgc29sdmUgdGhpcyBwcm9ibGVt
-PyAK
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+---
+ layerindex/update.py | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
-------=_Part_130243_1609225278.1494909290551
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+diff --git a/layerindex/update.py b/layerindex/update.py
+index d5c56cd..aa2fb38 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -85,6 +85,51 @@ def prepare_update_layer_command(options, branch, layer, updatedeps=False):
+         cmd += ' -q'
+     return cmd
+ 
++def get_actual_branch_format():
++    return "<layer_name>:<branch>:<actual_branch>"
++
++def update_actual_branches(options):
++    """Update actual branch for layers and bitbake in database"""
++    to_save = set()
++    for opt in options.actual_branches.split(','):
++        opt_list = opt.split(':')
++        if len(opt_list) != 3:
++            logger.error("Bad format: %s, use %s" % (opt, get_actual_branch_format()))
++            sys.exit(1)
++        layer_name = opt_list[0]
++        branch = opt_list[1]
++        actual_branch_new = opt_list[2]
++        if not (layer_name and branch and actual_branch_new):
++            logger.error("Bad format: %s, one of %s is null" % (opt, get_actual_branch_new_format()))
++            sys.exit(1)
++
++        if layer_name == 'bitbake':
++            branchobj = utils.get_branch(branch)
++            if actual_branch_new != branchobj.bitbake_branch:
++                logger.info("bitbake: %s.bitbake_branch: %s -> %s" % (branch, branchobj.bitbake_branch, actual_branch_new))
++                branchobj.bitbake_branch = actual_branch_new
++                to_save.add(branchobj)
++            else:
++                logger.warn("bitbake: %s.bitbake_branch is already %s, so no change" % (branch, actual_branch_new))
++        else:
++            layer = utils.get_layer(layer_name)
++            if not layer:
++                logger.error("Layer name '%s' not found in database" % layer_name)
++                sys.exit(1)
++            layerbranch = layer.get_layerbranch(branch)
++            if not layerbranch:
++                logger.error("Branch '%s' not found in database" % branch)
++                sys.exit(1)
++            if actual_branch_new != layerbranch.actual_branch:
++                logger.info("%s: %s.actual_branch: %s -> %s" % (layer_name, branch, layerbranch.actual_branch, actual_branch_new))
++                layerbranch.actual_branch = actual_branch_new
++                to_save.add(layerbranch)
++            else:
++                logger.warn("%s: %s.actual_branch is already %s, so no change" % (layer_name, branch, actual_branch_new))
++
++        # At last, do the save
++        for s in to_save:
++            s.save()
+ 
+ def main():
+     if LooseVersion(git.__version__) < '0.3.1':
+@@ -102,6 +147,11 @@ def main():
+     parser.add_option("-l", "--layer",
+             help = "Specify layers to update (use commas to separate multiple). Default is all published layers.",
+             action="store", dest="layers")
++    parser.add_option("-a", "--actual-branch",
++            help = "Update actual branch for layer and bitbake, \
++                    the format is: %s (use commas to separate multiple), \
++                    use 'bitbake' as <layer_name> to update bitbake branch" % get_actual_branch_format(),
++            action="store", dest="actual_branches", default='')
+     parser.add_option("-r", "--reload",
+             help = "Reload recipe data instead of updating since last update",
+             action="store_true", dest="reload")
+@@ -187,6 +237,10 @@ def main():
+             logger.error("Layer index lock timeout expired")
+             sys.exit(1)
+         try:
++            if options.actual_branches:
++                update_actual_branches(options)
++                return
++
+             bitbakepath = os.path.join(fetchdir, 'bitbake')
+ 
+             if not options.nofetch:
+-- 
+2.10.2
 
-PGh0bWw+PGhlYWQ+PHN0eWxlPnB7bWFyZ2luLXRvcDowcHg7bWFyZ2luLWJvdHRvbTowcHg7fTwv
-c3R5bGU+PC9oZWFkPjxib2R5PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMHB0OyBmb250LWZhbWls
-eTpHdWxpbTsiPjxwPkhpLjwvcD48cD4mbmJzcDs8L3A+PHA+aSBidWlsZCBjb3JlLWltYWdlLW1p
-bmltYWwgZm9yIHJwaTAtdy48L3A+PHA+aXQgd29ya3MgbmljZWx5IGJ1dCBub3Qgd29ya2luZyB3
-bGFuMCBhbmQgYmx1ZXRvb3RoLjwvcD48cD4mbmJzcDs8L3A+PHA+c28gaSB0cmllZCA8c3BhbiBp
-ZD0iaHVza3lfYm9va21hcmtfc3RhcnRfMTQ5NDkwODc4MTQ1MiI+PC9zcGFuPjxhIGhyZWY9Imh0
-dHBzOi8vcmFzcGludGVyZXN0LndvcmRwcmVzcy5jb20vMjAxNy8wMi8yOC9jb25maWd1cmUtd2xh
-bjAtYW5kLWJsdWV0b290aC1pbi15b2N0by1yYXNwYmVycnktcGktMy8iIHRhcmdldD0iX3NlbGYi
-IHN0eWxlPSJjdXJzb3I6IHBvaW50ZXI7IHdoaXRlLXNwYWNlOiBwcmU7Ij50aGlzIHBvc3Q8L2E+
-LiBidXQgc3RpbGwgbm90IHdvcmtpbmcuPHNwYW4gaWQ9Imh1c2t5X2Jvb2ttYXJrX2VuZF8xNDk0
-OTA4NzgxNDUyIj48L3NwYW4+PC9wPjxwPiZuYnNwOzwvcD48cD50aGUgZXJyb3Igd2FzJm5ic3A7
-PC9wPjxwPiRpZnVwIHdsYW4wPC9wPjxwPlN1Y2Nlc3NmdWxseSBpbml0aWFsaXplZCB3cGFfc3Vw
-cGxpY2FudDwvcD48cD5yZmtpbGw6IGNhbm5vdCBnZXQgd2lwaHkgaW5mb3JtYXRpb248L3A+PHA+
-Q291bGQgbm90IHJlYWQgaW50ZXJmYWNlIHdsYW4wIGZsYWdzOiBObyBzdWNoIGRldmljZTwvcD48
-cD5XRVhUOiBjb3VsZCBub3Qgc2V0IGludGVyZmFjZSAnd2xhbjAnIFVQPC9wPjxwPndsYW4wOiBG
-YWlsZWQgdG8gaW5pdGlhbGl6ZSBkcml2ZXIgaW50ZXJmYWNlPC9wPjxwPmlmY29uZmlnOiZuYnNw
-OzxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEwcHQ7IGxpbmUtaGVpZ2h0OiAxLjU7Ij5TSU9DR0lG
-RkxBR1MgTm8gc3VjaCBkZXZpY2U8L3NwYW4+PC9wPjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-IDEwcHQ7IGxpbmUtaGVpZ2h0OiAxLjU7Ij4mbmJzcDs8L3NwYW4+PC9wPjxwPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6IDEwcHQ7IGxpbmUtaGVpZ2h0OiAxLjU7Ij5hbnlib2R5IHNvbHZlIHRoaXMg
-cHJvYmxlbT8mbmJzcDs8L3NwYW4+PC9wPjwvZGl2PjwvYm9keT48L2h0bWw+Cjx0YWJsZSBzdHls
-ZT0iZGlzcGxheTpub25lIj48dHI+PHRkPjxpbWcgc3JjPSJodHRwczovL2tyMS1tYWlsLndvcmtz
-bW9iaWxlLmNvbS9yZWFkUmVjZWlwdC9ub3RpZnkvP2ltZz1DZUttS0FnbUtBdW1GQUtaYXh0bEtB
-dXNoekZvYXgzb0ZvaW9weEpDTTRVJTJGRnFVbE1vRjRGcWdkRnJFd0t4YmRhNkU5dHpGciUyQnJr
-U0tBVW03TiUyQlJNNjBuNzRsY1dORmxiWDMwV0xsb1dyZFFhWDBUTVgzVHRIMFRNWDNUYkhpVDE0
-a28lMkJWbFRiNGI1LmdpZiIgYm9yZGVyPSIwIj48L3RkPjwvdHI+PC90YWJsZT4=
 
-------=_Part_130243_1609225278.1494909290551--
