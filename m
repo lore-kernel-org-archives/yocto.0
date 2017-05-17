@@ -1,35 +1,31 @@
-Return-Path: <jussi.kukkonen@intel.com>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 97052E00AF8; Wed, 17 May 2017 00:55:01 -0700 (PDT)
+	id 627D6E00BB3; Wed, 17 May 2017 00:56:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7FA5E00B58
-	for <yocto@yoctoproject.org>; Wed, 17 May 2017 00:54:58 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 May 2017 00:54:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.38,353,1491289200"; d="scan'208";a="87816538"
-Received: from heimdall.fi.intel.com ([10.237.68.147])
-	by orsmga002.jf.intel.com with ESMTP; 17 May 2017 00:54:57 -0700
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 17 May 2017 10:54:55 +0300
-Message-Id: <076728ffdd02f78f44e3c792bf1ea6ba159cfdbb.1495007050.git.jussi.kukkonen@intel.com>
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7057E00ACD
+	for <yocto@yoctoproject.org>; Wed, 17 May 2017 00:56:44 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v4H7uhlA031121
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
+	for <yocto@yoctoproject.org>; Wed, 17 May 2017 00:56:43 -0700
+Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.294.0; Wed, 17 May 2017 00:56:42 -0700
+From: <jackie.huang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 17 May 2017 15:56:39 +0800
+Message-ID: <cover.1495007644.git.jackie.huang@windriver.com>
 X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1495007050.git.jussi.kukkonen@intel.com>
-References: <cover.1495007050.git.jussi.kukkonen@intel.com>
 MIME-Version: 1.0
-Subject: [libfakekey][PATCH 2/2] Handle shifted keysyms that are not in keymap
+Subject: [meta-security][PATCH 0/2] add new recipe for ecryptfs-utils and keyutils
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,45 +37,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 May 2017 07:55:01 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 17 May 2017 07:56:55 -0000
+Content-Type: text/plain
 
-This is based on a patch from Finn (at earthling.net):
+From: Jackie Huang <jackie.huang@windriver.com>
 
-"If my keymap is set to US and I use fakekey_press_keysym to send a Ó
-the character isn't already in my keymap so fakekey adds it but then
-sends ó instead. My patch now does the same check if a shift modifier
-is required that's done in the code path for keys that are already in
-the keymap."
-
-Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
 ---
- src/libfakekey.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+The following changes since commit 66d8abf64386f52ac8318399eb62ccd28271940d:
 
-diff --git a/src/libfakekey.c b/src/libfakekey.c
-index df650a4..edf3006 100644
---- a/src/libfakekey.c
-+++ b/src/libfakekey.c
-@@ -357,7 +357,16 @@ fakekey_press_keysym(FakeKey *fk,
-        * 
-        * Probably better to try and grab the mapping notify *here* ?
-        */
--  
-+
-+      if (XKeycodeToKeysym(fk->xdpy, code, 0) != keysym)
-+        {
-+          DBG("does not equal code for index 0, needs shift?\n");
-+          /* TODO: Assumes 1st modifier is shifted  */
-+          if (XKeycodeToKeysym(fk->xdpy, code, 1) == keysym)
-+            flags |= FAKEKEYMOD_SHIFT; 	/* can get at it via shift */
-+          else
-+            DBG("attempted to add keycode to keymap but seem to have failed");
-+        }
-     }
- 
-   if (code != 0) 
+  swtpm: update to latest tip (2017-04-13 13:56:55 -0700)
+
+are available in the git repository at:
+
+  https://github.com/jackiehjm/meta-security.git jhuang0/r_up_ecryptfs_keyutils_170517_0
+  https://github.com//tree/jhuang0/r_up_ecryptfs_keyutils_170517_0
+
+Jackie Huang (2):
+  keyutils: add new recipe
+  ecryptfs-utils: add new recipe
+
+ .../ecryptfs-utils/ecryptfs-utils_111.bb           | 52 +++++++++++++++++
+ .../files/ecryptfs-utils-CVE-2016-6224.patch       | 65 ++++++++++++++++++++++
+ ...ix-error-report-by-adding-default-message.patch | 42 ++++++++++++++
+ .../files/keyutils-test-fix-output-format.patch    | 41 ++++++++++++++
+ .../keyutils-use-relative-path-for-link.patch      | 28 ++++++++++
+ recipes-security/keyutils/files/run-ptest          |  3 +
+ recipes-security/keyutils/keyutils_1.5.10.bb       | 45 +++++++++++++++
+ 7 files changed, 276 insertions(+)
+ create mode 100644 recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+ create mode 100644 recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch
+ create mode 100644 recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
+ create mode 100644 recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
+ create mode 100644 recipes-security/keyutils/files/keyutils-use-relative-path-for-link.patch
+ create mode 100755 recipes-security/keyutils/files/run-ptest
+ create mode 100644 recipes-security/keyutils/keyutils_1.5.10.bb
+
 -- 
 2.11.0
 
