@@ -1,58 +1,68 @@
-Return-Path: <abayiz@yahoo.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44101E00AF8; Wed, 17 May 2017 08:51:55 -0700 (PDT)
+	id 282C1E00AFD; Wed, 17 May 2017 10:59:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_MUA_MOZILLA, FREEMAIL_FROM,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (abayiz[at]yahoo.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.46 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0071]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [66.163.189.110 listed in list.dnswl.org]
-	*  2.3 FORGED_MUA_MOZILLA Forged mail pretending to be from Mozilla
-Received: from sonic306-48.consmr.mail.ne1.yahoo.com
-	(sonic306-48.consmr.mail.ne1.yahoo.com [66.163.189.110])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6926E00ADB
-	for <yocto@yoctoproject.org>; Wed, 17 May 2017 08:51:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1495036311; bh=7uouiwYm4EHB9WK8OQgo8CoYQo2VXz6HrAsGdlqB0yc=;
-	h=Date:From:Reply-To:To:Subject:References:From:Subject;
-	b=FBw6EfJRfOZuH8Tk5WKykdnpTfXomSe5nMBNExf8hvhLoi6k34Guxqef00mTI6F6Y6MN2MVSDtU0Uw4pKhodoZMy6Ei6vElv3ffzy9ACANxZ7OP3TJjN0Nzyfhv7glDRV5GFrWKMoRqjXHeVK6v2+NY399BTetVAh3l8FugUXZ0XFdvO2gjiLeNzSM5h/DzJyxHH+vHdu1JcvwrHZ6AJJdonUt+DmlSm6esFUmaKAI8GoQiXH0tcUn44z0pkJg0vAe1UdaR+oz6bhYJgAkNtRIGrw6k34nfhquVIsEzBVbqAvYNFbCiil1cbGSKvPSjEdyqQ7lAYR0o6tbTDwxQsyg==
-X-YMail-OSG: mmkM8lAVM1m5NxEYBCkGvX_bqQjpALriiO9RqpkFolxRNg8APGAkyVSIg5m6sqa
-	3onyXyxF9YQvgtF27q85GEbhH0uKSyJ_XJBaI3SklnFRoyYoIJeX6dCi_UxeCKnCn4gW3GGbLVth
-	S0dqVIpmlZ1OTTZmTdTTxhxMCfEFu_.zvTpQUJIY1hwy8_xMBY12vxXWdfJbppkF9cacfDZHBFrr
-	sonRFFusrkBg8qbxkzUZCjWxxSxYjZHlQ1XKN95qbG9.Gw0oKKkWzlMRgBwd_G58bUpZSL_S5LqO
-	J0iaPMakCf5LBAib1DZd5VBYjjoN3IlP_ZEzbzpyQnAA71U6i.DPZE8vpt_mVg.9BGcPB6sNSWW3
-	ZulQC4Q_AQLL.yTv4GvQ7hd.MBwMw.ojtgOZBULX5tNfO.OAonUJ1YZ._wTNJAV7elcMxA7zhdv4
-	6Sd_644Yw1YJTl5rP3280VA9au0_TGCTBZFm_GN8r_nZVtNAl74P7_x.bh84X_GL3G6BvStSDY5O
-	vlj3XqC4enfhU2ovLjZF2N7pCpQ--
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic306.consmr.mail.ne1.yahoo.com with HTTP;
-	Wed, 17 May 2017 15:51:51 +0000
-Date: Wed, 17 May 2017 15:47:44 +0000 (UTC)
-From: Abayiz <abayiz@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <913930800.1703704.1495036064370@mail.yahoo.com>
+	*      [209.85.214.46 listed in list.dnswl.org]
+Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
+	[209.85.214.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E09FE00AE4
+	for <yocto@yoctoproject.org>; Wed, 17 May 2017 10:59:49 -0700 (PDT)
+Received: by mail-it0-f46.google.com with SMTP id o5so86214580ith.1
+	for <yocto@yoctoproject.org>; Wed, 17 May 2017 10:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=ZOiZSMXa1J+gbL7lvGOpriWPGb3g5F2acfrtfMOoORY=;
+	b=kkk1RL5z6O0G+tf7Xam60qMTVk5YYfIreeqQVSuAe7EVZdGu0TfTYvpqUYoYTN0AxR
+	t3qsUgUaRaK+bp9UXh5iEn6I2igYAZtp1d+/TrxaCFP85CFORMWRWmaaInGZ8IS4ttCw
+	+JU8o0FXxE5J7W8gbn1xP2ghmj6NMP9oUP6kdS+Ltstle/XJeRaNehl/cOQPhcGAN0ph
+	OPcaowzSfj/3dtyFgJUC8J6ztuW3IYSVOvOwoqA9we1uMZVm3qNkKB2lq25U5SMBM9ms
+	0dAJ4AI2itKOVRtPaQsJ1NiQ7v0HZLUZ9xG+1+1EGVbAqAlDQNqarLlIqk4hxi/Ng+YQ
+	t+Uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=ZOiZSMXa1J+gbL7lvGOpriWPGb3g5F2acfrtfMOoORY=;
+	b=blFhcGxc5JKcBOdGi53tUb+txm40b1knP/yhgHCsYuZGMz+ZIM5fxmLG8hZ8sGCkzq
+	dPbN3FtlprF7yKY8VkqveeD9CvOm8lx43NsWoanGEgmLhRK4EKvI02iWKQmoECTidjTm
+	/VulmGkW/FOpgoVnQ2n6JKvx7l8xoweoRNuQT1up8PtPYNdVkHYDT3KgbXiW7Pekkpdh
+	DD5CqXZY9Lrz0jvXN7goOfV6y/ocVdaLctjcHM1q7YtBOaaYyMkyb8AYCazl42COnNgt
+	TtV7xVVB8GzPk3daJ682l88S5efe3Hksi46tjfCi+Yw3Qn5I0BZ0zAFKQl9d0zaqnq4l
+	fR/A==
+X-Gm-Message-State: AODbwcCnJXGMytpWJCz/BU+bkJcTgOwP8SnWWKsi4O3+c2snXruqHzdg
+	PVuGURGQai90IZmk/R9ISosVfEpIAVVaBQz01g==
+X-Received: by 10.36.87.84 with SMTP id u81mr18395429ita.35.1495043989128;
+	Wed, 17 May 2017 10:59:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <913930800.1703704.1495036064370.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.9552 YahooMailNeo Mozilla/5.0 (X11; Ubuntu;
-	Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0
-Subject: How to install libraries directy to the target during image building?
+Received: by 10.79.27.207 with HTTP; Wed, 17 May 2017 10:59:08 -0700 (PDT)
+X-Originating-IP: [31.52.113.35]
+In-Reply-To: <CAK18fxEQEd6KzNR+W+Afp2y4nMim50psaDosDZ+-6XcavC-KOw@mail.gmail.com>
+References: <CAPyrkgxZjwcX0h9KgWDi-uxRbp2k-bGpox00YP66soQz4mSiAg@mail.gmail.com>
+	<CAK18fxEQEd6KzNR+W+Afp2y4nMim50psaDosDZ+-6XcavC-KOw@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 17 May 2017 18:59:08 +0100
+Message-ID: <CAK18fxEReQdBkUOuVDfdt-Jsbkft_CRMeDm1_4gqLrq6sDtk6w@mail.gmail.com>
+To: Paul Barker <pbarker@toganlabs.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] Pyro branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Abayiz <abayiz@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,46 +71,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 May 2017 15:51:55 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1703703_956244901.1495036064368"
+X-List-Received-Date: Wed, 17 May 2017 17:59:54 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-------=_Part_1703703_956244901.1495036064368
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Hi,
 
-Hello all, 
+On Tue, May 16, 2017 at 11:31 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Mon, May 15, 2017 at 10:14 AM, Paul Barker <pbarker@toganlabs.com> wrote:
+>> Hi all,
+>>
+>> Yocto Project 2.3 has now been released so I think it's time to create
+>> a pyro branch for meta-raspberrypi.
+>>
+>
+> I'm setting up today mirroring jobs in jenkins so we can only work in
+> github and all the other repos will get updated automatically. As well
+> I'll merge whatever is left in github and start a branch as soon as I
+> finish with this.
 
-I'm new to Yocto. On my Ubuntu host machine, I can install my desired package (namely 'dlib') using pip3. For instance in Ubuntu: 
+pyro branch is up.
 
-pip3 install dlib
-Now I want to install this 'dlib' package on the qemux86. I've successfully added pip3 on it. What should I do so that when I build my image, the generated image will contain 'dlib'? Is there any way to directly package the 'dlib' while building the image?
+--
+Andrei Gherzan
 
-Thank you in advance. 
-Abayiz
-
-
-------=_Part_1703703_956244901.1495036064368
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
-ont-family:=E6=A8=99=E6=A5=B7=E9=AB=94, dfkai-sb;font-size:16px"><div id=3D=
-"yui_3_16_0_ym19_1_1495035711409_4245">Hello all, <br></div><div id=3D"yui_=
-3_16_0_ym19_1_1495035711409_4394"><br></div><div id=3D"yui_3_16_0_ym19_1_14=
-95035711409_4411">I'm new to Yocto. On my Ubuntu host machine, I can instal=
-l my desired package (namely 'dlib') using pip3. For instance in Ubuntu: <b=
-r></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1495035711409_4412"><br></=
-div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1495035711409_4413">pip3 insta=
-ll dlib</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1495035711409_4414"><=
-br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1495035711409_4379">Now I=
- want to install this 'dlib' package on the qemux86. I've successfully adde=
-d pip3 on it. What should I do so that when I build my image, the generated=
- image will contain 'dlib'? Is there any way to directly package the 'dlib'=
- while building the image?<br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_=
-1_1495035711409_4376"><br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_14=
-95035711409_4415">Thank you in advance. <br></div><div dir=3D"ltr" id=3D"yu=
-i_3_16_0_ym19_1_1495035711409_4393">Abayiz<br></div><div dir=3D"ltr" id=3D"=
-yui_3_16_0_ym19_1_1495035711409_4375"><br></div></div></body></html>
-
-------=_Part_1703703_956244901.1495036064368--
