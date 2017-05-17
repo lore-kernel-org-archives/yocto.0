@@ -1,51 +1,68 @@
-Return-Path: <me@herrie.org>
+Return-Path: <alistair23@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5839FE00AF0; Wed, 17 May 2017 07:38:23 -0700 (PDT)
+	id 0774AE00AF0; Wed, 17 May 2017 08:17:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [149.210.149.72 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alistair23[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from outbound1.mail.transip.nl (outbound1.mail.transip.nl
-	[149.210.149.72])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4CADE00ADB
-	for <yocto@yoctoproject.org>; Wed, 17 May 2017 07:38:20 -0700 (PDT)
-Received: from submission6.mail.transip.nl (submission6.mail.transip.nl
-	[149.210.149.10])
-	by outbound1.mail.transip.nl (Postfix) with ESMTP id 3wScPQ5JQFzYdmQ;
-	Wed, 17 May 2017 16:38:18 +0200 (CEST)
-Received: from webmail.frontend (web0.mail.transip.nl [149.210.149.95])
-	by submission6.mail.transip.nl (Postfix) with ESMTPA id
-	3wScPM1YwNz12NDK; Wed, 17 May 2017 16:38:12 +0200 (CEST)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.66 listed in list.dnswl.org]
+Received: from mail-oi0-f66.google.com (mail-oi0-f66.google.com
+	[209.85.218.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1CB8E00ADB;
+	Wed, 17 May 2017 08:17:20 -0700 (PDT)
+Received: by mail-oi0-f66.google.com with SMTP id h4so2624522oib.0;
+	Wed, 17 May 2017 08:17:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=DdB6RLTs/OTl0vJ734f0p0NQDu2QG0ogvBYkjR2T6yo=;
+	b=LHyzwwppyBA6tg4ITAzfH+SYg583z3y89QMOp5bv4jgzFSCgs7QLK+nbhRin5v7rZG
+	6oZK3qtw6YlmuRqlaFFG4Ys3XAb7nAFn2JoiB600aQVTkSnGAMzIDqy375gLUShcIwQr
+	DDgEOIdK2uXcjWQFwWTeCSY4h+MTdrYHwJ95QGvMlTXm4NRZK9FYfQmBhRxM4HGF1uek
+	2+Kb23OcFiA16izOrnY08ILO6yNjgQIvzw2tX71VHcIbSwRwyKTo/fw1UhTZ66tFCmJ7
+	rnvydrJoeKpcfGguU3B3CiGp7cqpRacc7Fuxu/K/cnZHYsFw1RQsjSsPsX7HPi8j7ZRZ
+	8K4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=DdB6RLTs/OTl0vJ734f0p0NQDu2QG0ogvBYkjR2T6yo=;
+	b=iXUJMnv0TCdKPIRzSYYBTaDpmUHaPyq4exgGTkBcBorvFzZmjFv0eISHTFS6kb3YKV
+	GpAkYhpE6xKQZzftF42Ljiw3MbfeUMy+c0yyYdFdVHZMcs7ZTvjH1PA7KPpxs76TB0qL
+	W+0R9+WoXKVzPWM1ubte82VKdRj0P1kVxCGLSzmVOvsxqs/X1AYTYuKEPWqd38YLV3mM
+	cnr6QZjqwQUcuC+ZJFgqVAAWc8+mVRX6tLTbA2CpKj1lyXr+l43lbXiKcbEoZ9Dvzrq/
+	txP3VqUG09KEtm6aBBqid6UAo+gDCX27tcQp81EOllFXR9DvGMS0bWA8fHJdNN/9MsIB
+	OthA==
+X-Gm-Message-State: AODbwcBjnuU6Ek9VAByKPEq4C7a2eTkFokUoVp7cZyZR3X4eS5UMr9LG
+	Tk5M8luTwqi+wg7tCmL4ZIqFDgNehw==
+X-Received: by 10.202.80.142 with SMTP id e136mr2428710oib.40.1495034240314;
+	Wed, 17 May 2017 08:17:20 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 17 May 2017 16:38:12 +0200
-From: Herman van Hazendonk <me@herrie.org>
-To: Andrea Picaro <andreapicaro@gmail.com>
-Mail-Reply-To: yoctoproject.org@herrie.org
-In-Reply-To: <CAA7DeJDDeNHquFeQdC=Q7bGPopC2Kp7UuKKk_Tpan5fECXcFcg@mail.gmail.com>
-References: <CAA7DeJAfVXzNtgpmkKFA5P3LRWkURgH0YGBVpk=WxpsJd0LUCw@mail.gmail.com>
-	<CAA7DeJCsunm+DYDRw9d8P5SZVHOEggxkzcPHKq27nbm-WGj=UQ@mail.gmail.com>
-	<CAA7DeJBeA4F7yEF5Our7VJ485xpbBTR5Hr_FAK7hMATPynPVqA@mail.gmail.com>
-	<CAA7DeJAbX0HzAQ-PSfVx-wmLURmVD8Pe_xzrRDe3TK9mc=pcJg@mail.gmail.com>
-	<CAA7DeJDhAGXHTA_rbP98ixkUmz2HSXzpkSjPPYgVbdEa6QipWw@mail.gmail.com>
-	<CAA7DeJAbGF+RP5o+rb-U_2SNcnh406qBLwMd+kK07egs7L8VUA@mail.gmail.com>
-	<CAA7DeJDDeNHquFeQdC=Q7bGPopC2Kp7UuKKk_Tpan5fECXcFcg@mail.gmail.com>
-Message-ID: <e63b5aa092d5b572b487b85495e8865d@herrie.org>
-X-Sender: me@herrie.org
-User-Agent: Webmail
-X-Scanned-By: ClueGetter at submission6.mail.transip.nl
-X-Report-Abuse-To: abuse@transip.nl
-Cc: yocto@yoctoproject.org
-Subject: Re: Enable qt web engine mp4 support in yocto
+Received: by 10.182.16.163 with HTTP; Wed, 17 May 2017 08:16:50 -0700 (PDT)
+In-Reply-To: <CAFL6qn7X7uTeF1xuMMOyoWbGWvmLXpCScHgq7Lq259Uej6xZoQ@mail.gmail.com>
+References: <CAFL6qn7X7uTeF1xuMMOyoWbGWvmLXpCScHgq7Lq259Uej6xZoQ@mail.gmail.com>
+From: Alistair Francis <alistair23@gmail.com>
+Date: Wed, 17 May 2017 08:16:50 -0700
+Message-ID: <CAKmqyKMsM_mZs-R9SkBogZhJaG+KTRVv_Y3DEdTn0sLvYo=rww@mail.gmail.com>
+To: Pello Heriz <pello.heriz@alumni.mondragon.edu>
+Cc: yocto@yoctoproject.org, meta-virtualization@yoctoproject.org,
+	meta-xilinx@yoctoproject.org, meta-xilinx-request@yoctoproject.org
+Subject: Re: [meta-xilinx] Trying to build xen-guest-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: yoctoproject.org@herrie.org
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,24 +71,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 May 2017 14:38:23 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 May 2017 15:17:25 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Andrea,
+On Wed, May 17, 2017 at 12:37 AM, Pello Heriz
+<pello.heriz@alumni.mondragon.edu> wrote:
+> Hi all,
+>
+> I'm trying to build a xen-guest-image-minimal, but I have the next error:
+>
+> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ bitbake
+> xen-guest-image-minimal
+> Loading cache: 100% |############################################| Time:
+> 0:00:01
+> Loaded 2865 entries from dependency cache.
+> Parsing recipes: 100% |##########################################| Time:
+> 0:00:01
+> Parsing of 2097 .bb files complete (2080 cached, 17 parsed). 2881 targets,
+> 198 skipped, 0 masked, 0 errors.
+> WARNING: No recipes available for:
+>
+> /opt/yocto_GE/poky/master/meta-petalinux/recipes-devtools/python/python-smartpm_%.bbappend
+> NOTE: Resolving any missing task queue dependencies
+> ERROR: Nothing RPROVIDES 'xf86-video-vesa' (but
+> /opt/yocto_GE/poky/master/meta-virtualization/recipes-extended/images/xen-guest-image-minimal.bb
+> RDEPENDS on or otherwise requires it)
+> ERROR: xf86-video-vesa was skipped: incompatible with host
+> aarch64-poky-linux (not in COMPATIBLE_HOST)
+> NOTE: Runtime target 'xf86-video-vesa' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['xf86-video-vesa']
+> ERROR: Required build target 'xen-guest-image-minimal' has no buildable
+> providers.
+> Missing or unbuildable dependency chain was: ['xen-guest-image-minimal',
+> 'xf86-video-vesa']
+>
+> Summary: There was 1 WARNING message shown.
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+>
+> As you can see next, this requiring file is in the meta directory so I don't
+> know why I'm getting the issue.
+>
+> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ cd
+> ../meta/recipes-graphics/xorg-driver/
+> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$
+> ls
+> xf86-input-evdev_2.10.5.bb     xf86-video-omap_0.4.5.bb
+> xf86-input-keyboard_1.9.0.bb   xf86-video-omapfb
+> xf86-input-libinput_0.24.0.bb  xf86-video-omapfb_git.bb
+> xf86-input-mouse_1.9.2.bb      xf86-video-vesa_2.3.4.bb
+> xf86-input-synaptics_1.9.0.bb  xf86-video-vmware
+> xf86-input-vmmouse_13.1.0.bb   xf86-video-vmware_13.2.1.bb
+> xf86-video-cirrus_1.5.3.bb     xorg-driver-common.inc
+> xf86-video-fbdev_0.4.4.bb      xorg-driver-input.inc
+> xf86-video-intel               xorg-driver-video.inc
+> xf86-video-intel_git.bb
+> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$
+>
+> Can any body help me with this problem?
 
-It took us some fiddling to get it to work as well:
+It looks like this should fix your problem:
 
-See our implementation at:
+diff --git a/recipes-extended/images/xen-guest-image-minimal.bb
+b/recipes-extended/images/xen-guest-image-minimal.bb
+index ab7e92c..0143867 100644
+--- a/recipes-extended/images/xen-guest-image-minimal.bb
++++ b/recipes-extended/images/xen-guest-image-minimal.bb
+@@ -7,9 +7,6 @@ IMAGE_INSTALL += " \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'acpi',
+'kernel-module-xen-acpi-processor', '', d)} \
+     "
 
-https://github.com/webOS-ports/meta-webos-ports/blob/pyro/meta-luneui/recipes-qt/qt5/qtwebengine_git.bbappend#L4
+-IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
+xf86-video-fbdev', '', d)}"
+-IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
+xf86-video-vesa', '', d)}"
+-
+ LICENSE = "MIT"
 
-Cheers,
-Herman
-On 2017-05-17 16:32, Andrea Picaro wrote:
-> Hello i'd like to enable mp4 video support for QWebengine. I've read
-> many threads regarding WEBENGINE_CONFIG+=proprietary_codecs to be
-> passed to qmake But,  how can i do this through a recipe?
+ # Send console messages to xen console
 
+It's a bug in meta-virtualisation, I just don't know how to fix it
+without just deleting the code.
+
+Thanks,
+
+Alistair
+
+>
+> Any answer will be welcome,
+>
+> Best regards,
+> Pello
+>
+>
+> --
+> _______________________________________________
+> meta-xilinx mailing list
+> meta-xilinx@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/meta-xilinx
+>
 
