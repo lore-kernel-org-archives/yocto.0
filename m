@@ -1,16 +1,17 @@
-Return-Path: <alistair23@gmail.com>
+Return-Path: <abayiz@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0774AE00AF0; Wed, 17 May 2017 08:17:25 -0700 (PDT)
+	id 44101E00AF8; Wed, 17 May 2017 08:51:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_MUA_MOZILLA, FREEMAIL_FROM,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alistair23[at]gmail.com)
+	mail provider *      (abayiz[at]yahoo.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+	*      [score: 0.0071]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -18,51 +19,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.218.66 listed in list.dnswl.org]
-Received: from mail-oi0-f66.google.com (mail-oi0-f66.google.com
-	[209.85.218.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1CB8E00ADB;
-	Wed, 17 May 2017 08:17:20 -0700 (PDT)
-Received: by mail-oi0-f66.google.com with SMTP id h4so2624522oib.0;
-	Wed, 17 May 2017 08:17:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=DdB6RLTs/OTl0vJ734f0p0NQDu2QG0ogvBYkjR2T6yo=;
-	b=LHyzwwppyBA6tg4ITAzfH+SYg583z3y89QMOp5bv4jgzFSCgs7QLK+nbhRin5v7rZG
-	6oZK3qtw6YlmuRqlaFFG4Ys3XAb7nAFn2JoiB600aQVTkSnGAMzIDqy375gLUShcIwQr
-	DDgEOIdK2uXcjWQFwWTeCSY4h+MTdrYHwJ95QGvMlTXm4NRZK9FYfQmBhRxM4HGF1uek
-	2+Kb23OcFiA16izOrnY08ILO6yNjgQIvzw2tX71VHcIbSwRwyKTo/fw1UhTZ66tFCmJ7
-	rnvydrJoeKpcfGguU3B3CiGp7cqpRacc7Fuxu/K/cnZHYsFw1RQsjSsPsX7HPi8j7ZRZ
-	8K4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=DdB6RLTs/OTl0vJ734f0p0NQDu2QG0ogvBYkjR2T6yo=;
-	b=iXUJMnv0TCdKPIRzSYYBTaDpmUHaPyq4exgGTkBcBorvFzZmjFv0eISHTFS6kb3YKV
-	GpAkYhpE6xKQZzftF42Ljiw3MbfeUMy+c0yyYdFdVHZMcs7ZTvjH1PA7KPpxs76TB0qL
-	W+0R9+WoXKVzPWM1ubte82VKdRj0P1kVxCGLSzmVOvsxqs/X1AYTYuKEPWqd38YLV3mM
-	cnr6QZjqwQUcuC+ZJFgqVAAWc8+mVRX6tLTbA2CpKj1lyXr+l43lbXiKcbEoZ9Dvzrq/
-	txP3VqUG09KEtm6aBBqid6UAo+gDCX27tcQp81EOllFXR9DvGMS0bWA8fHJdNN/9MsIB
-	OthA==
-X-Gm-Message-State: AODbwcBjnuU6Ek9VAByKPEq4C7a2eTkFokUoVp7cZyZR3X4eS5UMr9LG
-	Tk5M8luTwqi+wg7tCmL4ZIqFDgNehw==
-X-Received: by 10.202.80.142 with SMTP id e136mr2428710oib.40.1495034240314;
-	Wed, 17 May 2017 08:17:20 -0700 (PDT)
+	*      [66.163.189.110 listed in list.dnswl.org]
+	*  2.3 FORGED_MUA_MOZILLA Forged mail pretending to be from Mozilla
+Received: from sonic306-48.consmr.mail.ne1.yahoo.com
+	(sonic306-48.consmr.mail.ne1.yahoo.com [66.163.189.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6926E00ADB
+	for <yocto@yoctoproject.org>; Wed, 17 May 2017 08:51:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1495036311; bh=7uouiwYm4EHB9WK8OQgo8CoYQo2VXz6HrAsGdlqB0yc=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=FBw6EfJRfOZuH8Tk5WKykdnpTfXomSe5nMBNExf8hvhLoi6k34Guxqef00mTI6F6Y6MN2MVSDtU0Uw4pKhodoZMy6Ei6vElv3ffzy9ACANxZ7OP3TJjN0Nzyfhv7glDRV5GFrWKMoRqjXHeVK6v2+NY399BTetVAh3l8FugUXZ0XFdvO2gjiLeNzSM5h/DzJyxHH+vHdu1JcvwrHZ6AJJdonUt+DmlSm6esFUmaKAI8GoQiXH0tcUn44z0pkJg0vAe1UdaR+oz6bhYJgAkNtRIGrw6k34nfhquVIsEzBVbqAvYNFbCiil1cbGSKvPSjEdyqQ7lAYR0o6tbTDwxQsyg==
+X-YMail-OSG: mmkM8lAVM1m5NxEYBCkGvX_bqQjpALriiO9RqpkFolxRNg8APGAkyVSIg5m6sqa
+	3onyXyxF9YQvgtF27q85GEbhH0uKSyJ_XJBaI3SklnFRoyYoIJeX6dCi_UxeCKnCn4gW3GGbLVth
+	S0dqVIpmlZ1OTTZmTdTTxhxMCfEFu_.zvTpQUJIY1hwy8_xMBY12vxXWdfJbppkF9cacfDZHBFrr
+	sonRFFusrkBg8qbxkzUZCjWxxSxYjZHlQ1XKN95qbG9.Gw0oKKkWzlMRgBwd_G58bUpZSL_S5LqO
+	J0iaPMakCf5LBAib1DZd5VBYjjoN3IlP_ZEzbzpyQnAA71U6i.DPZE8vpt_mVg.9BGcPB6sNSWW3
+	ZulQC4Q_AQLL.yTv4GvQ7hd.MBwMw.ojtgOZBULX5tNfO.OAonUJ1YZ._wTNJAV7elcMxA7zhdv4
+	6Sd_644Yw1YJTl5rP3280VA9au0_TGCTBZFm_GN8r_nZVtNAl74P7_x.bh84X_GL3G6BvStSDY5O
+	vlj3XqC4enfhU2ovLjZF2N7pCpQ--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic306.consmr.mail.ne1.yahoo.com with HTTP;
+	Wed, 17 May 2017 15:51:51 +0000
+Date: Wed, 17 May 2017 15:47:44 +0000 (UTC)
+From: Abayiz <abayiz@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <913930800.1703704.1495036064370@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.182.16.163 with HTTP; Wed, 17 May 2017 08:16:50 -0700 (PDT)
-In-Reply-To: <CAFL6qn7X7uTeF1xuMMOyoWbGWvmLXpCScHgq7Lq259Uej6xZoQ@mail.gmail.com>
-References: <CAFL6qn7X7uTeF1xuMMOyoWbGWvmLXpCScHgq7Lq259Uej6xZoQ@mail.gmail.com>
-From: Alistair Francis <alistair23@gmail.com>
-Date: Wed, 17 May 2017 08:16:50 -0700
-Message-ID: <CAKmqyKMsM_mZs-R9SkBogZhJaG+KTRVv_Y3DEdTn0sLvYo=rww@mail.gmail.com>
-To: Pello Heriz <pello.heriz@alumni.mondragon.edu>
-Cc: yocto@yoctoproject.org, meta-virtualization@yoctoproject.org,
-	meta-xilinx@yoctoproject.org, meta-xilinx-request@yoctoproject.org
-Subject: Re: [meta-xilinx] Trying to build xen-guest-image-minimal
+References: <913930800.1703704.1495036064370.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.9552 YahooMailNeo Mozilla/5.0 (X11; Ubuntu;
+	Linux x86_64; rv:53.0) Gecko/20100101 Firefox/53.0
+Subject: How to install libraries directy to the target during image building?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Abayiz <abayiz@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -71,103 +61,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 May 2017 15:17:25 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 17 May 2017 15:51:55 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1703703_956244901.1495036064368"
 
-On Wed, May 17, 2017 at 12:37 AM, Pello Heriz
-<pello.heriz@alumni.mondragon.edu> wrote:
-> Hi all,
->
-> I'm trying to build a xen-guest-image-minimal, but I have the next error:
->
-> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ bitbake
-> xen-guest-image-minimal
-> Loading cache: 100% |############################################| Time:
-> 0:00:01
-> Loaded 2865 entries from dependency cache.
-> Parsing recipes: 100% |##########################################| Time:
-> 0:00:01
-> Parsing of 2097 .bb files complete (2080 cached, 17 parsed). 2881 targets,
-> 198 skipped, 0 masked, 0 errors.
-> WARNING: No recipes available for:
->
-> /opt/yocto_GE/poky/master/meta-petalinux/recipes-devtools/python/python-smartpm_%.bbappend
-> NOTE: Resolving any missing task queue dependencies
-> ERROR: Nothing RPROVIDES 'xf86-video-vesa' (but
-> /opt/yocto_GE/poky/master/meta-virtualization/recipes-extended/images/xen-guest-image-minimal.bb
-> RDEPENDS on or otherwise requires it)
-> ERROR: xf86-video-vesa was skipped: incompatible with host
-> aarch64-poky-linux (not in COMPATIBLE_HOST)
-> NOTE: Runtime target 'xf86-video-vesa' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['xf86-video-vesa']
-> ERROR: Required build target 'xen-guest-image-minimal' has no buildable
-> providers.
-> Missing or unbuildable dependency chain was: ['xen-guest-image-minimal',
-> 'xf86-video-vesa']
->
-> Summary: There was 1 WARNING message shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
->
-> As you can see next, this requiring file is in the meta directory so I don't
-> know why I'm getting the issue.
->
-> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ cd
-> ../meta/recipes-graphics/xorg-driver/
-> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$
-> ls
-> xf86-input-evdev_2.10.5.bb     xf86-video-omap_0.4.5.bb
-> xf86-input-keyboard_1.9.0.bb   xf86-video-omapfb
-> xf86-input-libinput_0.24.0.bb  xf86-video-omapfb_git.bb
-> xf86-input-mouse_1.9.2.bb      xf86-video-vesa_2.3.4.bb
-> xf86-input-synaptics_1.9.0.bb  xf86-video-vmware
-> xf86-input-vmmouse_13.1.0.bb   xf86-video-vmware_13.2.1.bb
-> xf86-video-cirrus_1.5.3.bb     xorg-driver-common.inc
-> xf86-video-fbdev_0.4.4.bb      xorg-driver-input.inc
-> xf86-video-intel               xorg-driver-video.inc
-> xf86-video-intel_git.bb
-> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$
->
-> Can any body help me with this problem?
+------=_Part_1703703_956244901.1495036064368
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-It looks like this should fix your problem:
+Hello all, 
 
-diff --git a/recipes-extended/images/xen-guest-image-minimal.bb
-b/recipes-extended/images/xen-guest-image-minimal.bb
-index ab7e92c..0143867 100644
---- a/recipes-extended/images/xen-guest-image-minimal.bb
-+++ b/recipes-extended/images/xen-guest-image-minimal.bb
-@@ -7,9 +7,6 @@ IMAGE_INSTALL += " \
-     ${@bb.utils.contains('MACHINE_FEATURES', 'acpi',
-'kernel-module-xen-acpi-processor', '', d)} \
-     "
+I'm new to Yocto. On my Ubuntu host machine, I can install my desired package (namely 'dlib') using pip3. For instance in Ubuntu: 
 
--IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
-xf86-video-fbdev', '', d)}"
--IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
-xf86-video-vesa', '', d)}"
--
- LICENSE = "MIT"
+pip3 install dlib
+Now I want to install this 'dlib' package on the qemux86. I've successfully added pip3 on it. What should I do so that when I build my image, the generated image will contain 'dlib'? Is there any way to directly package the 'dlib' while building the image?
 
- # Send console messages to xen console
+Thank you in advance. 
+Abayiz
 
-It's a bug in meta-virtualisation, I just don't know how to fix it
-without just deleting the code.
 
-Thanks,
+------=_Part_1703703_956244901.1495036064368
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Alistair
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:=E6=A8=99=E6=A5=B7=E9=AB=94, dfkai-sb;font-size:16px"><div id=3D=
+"yui_3_16_0_ym19_1_1495035711409_4245">Hello all, <br></div><div id=3D"yui_=
+3_16_0_ym19_1_1495035711409_4394"><br></div><div id=3D"yui_3_16_0_ym19_1_14=
+95035711409_4411">I'm new to Yocto. On my Ubuntu host machine, I can instal=
+l my desired package (namely 'dlib') using pip3. For instance in Ubuntu: <b=
+r></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1495035711409_4412"><br></=
+div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1495035711409_4413">pip3 insta=
+ll dlib</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1495035711409_4414"><=
+br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1495035711409_4379">Now I=
+ want to install this 'dlib' package on the qemux86. I've successfully adde=
+d pip3 on it. What should I do so that when I build my image, the generated=
+ image will contain 'dlib'? Is there any way to directly package the 'dlib'=
+ while building the image?<br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_=
+1_1495035711409_4376"><br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_14=
+95035711409_4415">Thank you in advance. <br></div><div dir=3D"ltr" id=3D"yu=
+i_3_16_0_ym19_1_1495035711409_4393">Abayiz<br></div><div dir=3D"ltr" id=3D"=
+yui_3_16_0_ym19_1_1495035711409_4375"><br></div></div></body></html>
 
->
-> Any answer will be welcome,
->
-> Best regards,
-> Pello
->
->
-> --
-> _______________________________________________
-> meta-xilinx mailing list
-> meta-xilinx@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-xilinx
->
-
+------=_Part_1703703_956244901.1495036064368--
