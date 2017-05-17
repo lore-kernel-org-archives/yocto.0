@@ -1,63 +1,33 @@
-Return-Path: <pello.heriz@alumni.mondragon.edu>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4FF27E00ACD; Wed, 17 May 2017 00:37:56 -0700 (PDT)
+	id AA814E009C2; Wed, 17 May 2017 00:54:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, HTML_OBFUSCATE_05_10,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML
-	obfuscation
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.68 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.68 listed in list.dnswl.org]
-Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
-	[209.85.218.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E879E009C2
-	for <yocto@yoctoproject.org>; Wed, 17 May 2017 00:37:54 -0700 (PDT)
-Received: by mail-oi0-f68.google.com with SMTP id h4so763983oib.0
-	for <yocto@yoctoproject.org>; Wed, 17 May 2017 00:37:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=alumni.mondragon.edu; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=X7aWYj8l2LlnCSgOlKoTAxbASxz55px5vai28/8zBcs=;
-	b=B40lnmKnh6H3JWovsCrGISjP4EtzalRHcvGxfFkrAnUoXdcXri5TOuBhIu396Yv7ga
-	YRDKXM8W/vcCv93SShHlNr9Zy3qMS/Hi0cck200UBtbn8F/ejCRez5eQsVh9rzmzz4w4
-	SIa6p69mhScekfpvR1VKbIennikYtVYkEsH8k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=X7aWYj8l2LlnCSgOlKoTAxbASxz55px5vai28/8zBcs=;
-	b=IeBaeOY4uR1FJtQpKYWSutvIJ3nHYCHCbLpsa4xEmMTeb1VccwN4YVsZ7+p0CV1YRb
-	lBykmGkRxANYJxOqlTuO1eP6bCUEFyOzuRIls7Z0uqV/e9KQWN7vo4GeOAZCjJjxjhsM
-	VSk16oeeKWhoS0UcDyamCnEJVSMmjYzoLKV8HZ/HCmWZ3QPe5NioSMLx01IiUWfIPnL9
-	GMclSCA3YoMLuktCewJoFH4LJWntTrxJS6J6wCxJPaSB9CPGiqqphfkwhMqcWWEyDPjj
-	vR5AD4ouH8g/uXqhkox7wqb7FE5ncKCDX9/p0HRRV/ak0cmeSJg95mpect5449hhLzfp
-	/Icg==
-X-Gm-Message-State: AODbwcCGeG1WEjJ30NSadDfo28nl3mU5HYOxI6kpjm/eF7E3UtbmTB+h
-	JDNVvgSI/68DZFrmVgQJ34vGNIEh/rUL
-X-Received: by 10.157.53.39 with SMTP id o36mr1184760otc.139.1495006673203;
-	Wed, 17 May 2017 00:37:53 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CC00E00901
+	for <yocto@yoctoproject.org>; Wed, 17 May 2017 00:54:42 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	17 May 2017 00:54:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,353,1491289200"; d="scan'208";a="1148786013"
+Received: from heimdall.fi.intel.com ([10.237.68.147])
+	by fmsmga001.fm.intel.com with ESMTP; 17 May 2017 00:54:40 -0700
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 17 May 2017 10:54:37 +0300
+Message-Id: <cover.1495007050.git.jussi.kukkonen@intel.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Received: by 10.157.12.181 with HTTP; Wed, 17 May 2017 00:37:52 -0700 (PDT)
-From: Pello Heriz <pello.heriz@alumni.mondragon.edu>
-Date: Wed, 17 May 2017 09:37:52 +0200
-Message-ID: <CAFL6qn7X7uTeF1xuMMOyoWbGWvmLXpCScHgq7Lq259Uej6xZoQ@mail.gmail.com>
-To: meta-xilinx@yoctoproject.org, meta-xilinx-request@yoctoproject.org, 
-	meta-virtualization@yoctoproject.org, yocto@yoctoproject.org
-Subject: Trying to build xen-guest-image-minimal
+Subject: [libfakekey][PATCH 0/2] Bug fixes for libfakekey
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,123 +39,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 May 2017 07:37:56 -0000
-Content-Type: multipart/alternative; boundary="001a1145a004b188a2054fb35de0"
+X-List-Received-Date: Wed, 17 May 2017 07:54:43 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---001a1145a004b188a2054fb35de0
-Content-Type: text/plain; charset="UTF-8"
+A (slightly modified) old patch from bugzilla that fixes handling of
+fake shifted keypresses where the character is not in the keymap
+already, and a build script fix.
 
-Hi all,
-
-I'm trying to build a xen-guest-image-minimal, but I have the next error:
-
-generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ bitbake
-xen-guest-image-minimal
-Loading cache: 100% |############################################| Time:
-0:00:01
-Loaded 2865 entries from dependency cache.
-Parsing recipes: 100% |##########################################| Time:
-0:00:01
-Parsing of 2097 .bb files complete (2080 cached, 17 parsed). 2881 targets,
-198 skipped, 0 masked, 0 errors.
-WARNING: No recipes available for:
-
-/opt/yocto_GE/poky/master/meta-petalinux/recipes-devtools/python/python-smartpm_%.bbappend
-NOTE: Resolving any missing task queue dependencies
-ERROR: Nothing RPROVIDES 'xf86-video-vesa' (but
-/opt/yocto_GE/poky/master/meta-virtualization/recipes-extended/images/
-xen-guest-image-minimal.bb RDEPENDS on or otherwise requires it)
-ERROR: xf86-video-vesa was skipped: incompatible with host
-aarch64-poky-linux (not in COMPATIBLE_HOST)
-NOTE: Runtime target 'xf86-video-vesa' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['xf86-video-vesa']
-ERROR: Required build target 'xen-guest-image-minimal' has no buildable
-providers.
-Missing or unbuildable dependency chain was: ['xen-guest-image-minimal',
-'xf86-video-vesa']
-
-Summary: There was 1 WARNING message shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
-As you can see next, this requiring file is in the meta directory so I
-don't know why I'm getting the issue.
-
-generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ cd
-../meta/recipes-graphics/xorg-driver/
-generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$
-ls
-xf86-input-evdev_2.10.5.bb     xf86-video-omap_0.4.5.bb
-xf86-input-keyboard_1.9.0.bb   xf86-video-omapfb
-xf86-input-libinput_0.24.0.bb  xf86-video-omapfb_git.bb
-xf86-input-mouse_1.9.2.bb      xf86-video-vesa_2.3.4.bb
-xf86-input-synaptics_1.9.0.bb  xf86-video-vmware
-xf86-input-vmmouse_13.1.0.bb   xf86-video-vmware_13.2.1.bb
-xf86-video-cirrus_1.5.3.bb     xorg-driver-common.inc
-xf86-video-fbdev_0.4.4.bb      xorg-driver-input.inc
-xf86-video-intel               xorg-driver-video.inc
-xf86-video-intel_git.bb
-generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$
+Thanks, Jussi
 
 
-Can any body help me with this problem?
+The following changes since commit e327ff049b8503af2dadffa84370a0860b9fb682:
 
-Any answer will be welcome,
+  src/Makefile.am: Fix compiles in out of tree build case (2013-03-08 11:52:39 +0000)
 
-Best regards,
-Pello
+are available in the git repository at:
 
---001a1145a004b188a2054fb35de0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  git://github.com/jku/libfakekey shifted-keysym-fix
+  https://github.com/jku/libfakekey/tree/shifted-keysym-fix
 
-<div dir=3D"ltr"><div><div>Hi all, <br><br></div>I&#39;m trying to build a =
-xen-guest-image-minimal, but I have the next error:<br><br>generalelectric@=
-mlan11214m117linux:/opt/yocto_GE/poky/master/build$ bitbake xen-guest-image=
--minimal<br>Loading cache: 100% |##########################################=
-##| Time: 0:00:01<br>Loaded 2865 entries from dependency cache.<br>Parsing =
-recipes: 100% |##########################################| Time: 0:00:01<br=
->Parsing of 2097 .bb files complete (2080 cached, 17 parsed). 2881 targets,=
- 198 skipped, 0 masked, 0 errors.<br>WARNING: No recipes available for:<br>=
-=C2=A0 /opt/yocto_GE/poky/master/meta-petalinux/recipes-devtools/python/pyt=
-hon-smartpm_%.bbappend<br>NOTE: Resolving any missing task queue dependenci=
-es<br>ERROR: Nothing RPROVIDES &#39;xf86-video-vesa&#39; (but /opt/yocto_GE=
-/poky/master/meta-virtualization/recipes-extended/images/<a href=3D"http://=
-xen-guest-image-minimal.bb">xen-guest-image-minimal.bb</a> RDEPENDS on or o=
-therwise requires it)<br>ERROR: xf86-video-vesa was skipped: incompatible w=
-ith host aarch64-poky-linux (not in COMPATIBLE_HOST)<br>NOTE: Runtime targe=
-t &#39;xf86-video-vesa&#39; is unbuildable, removing...<br>Missing or unbui=
-ldable dependency chain was: [&#39;xf86-video-vesa&#39;]<br>ERROR: Required=
- build target &#39;xen-guest-image-minimal&#39; has no buildable providers.=
-<br>Missing or unbuildable dependency chain was: [&#39;xen-guest-image-mini=
-mal&#39;, &#39;xf86-video-vesa&#39;]<br><br>Summary: There was 1 WARNING me=
-ssage shown.<br>Summary: There were 2 ERROR messages shown, returning a non=
--zero exit code.<br><br></div>As you can see next, this requiring file is i=
-n the meta directory so I don&#39;t know why I&#39;m getting the issue.<br>=
-<div><br>generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build=
-$ cd ../meta/recipes-graphics/xorg-driver/<br>generalelectric@mlan11214m117=
-linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$ ls<br><a=
- href=3D"http://xf86-input-evdev_2.10.5.bb">xf86-input-evdev_2.10.5.bb</a>=
-=C2=A0=C2=A0=C2=A0=C2=A0 <a href=3D"http://xf86-video-omap_0.4.5.bb">xf86-v=
-ideo-omap_0.4.5.bb</a><br><a href=3D"http://xf86-input-keyboard_1.9.0.bb">x=
-f86-input-keyboard_1.9.0.bb</a>=C2=A0=C2=A0 xf86-video-omapfb<br><a href=3D=
-"http://xf86-input-libinput_0.24.0.bb">xf86-input-libinput_0.24.0.bb</a>=C2=
-=A0 <a href=3D"http://xf86-video-omapfb_git.bb">xf86-video-omapfb_git.bb</a=
-><br><a href=3D"http://xf86-input-mouse_1.9.2.bb">xf86-input-mouse_1.9.2.bb=
-</a>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a href=3D"http://xf86-video-vesa_2.3.4.=
-bb">xf86-video-vesa_2.3.4.bb</a><br><a href=3D"http://xf86-input-synaptics_=
-1.9.0.bb">xf86-input-synaptics_1.9.0.bb</a>=C2=A0 xf86-video-vmware<br><a h=
-ref=3D"http://xf86-input-vmmouse_13.1.0.bb">xf86-input-vmmouse_13.1.0.bb</a=
->=C2=A0=C2=A0 <a href=3D"http://xf86-video-vmware_13.2.1.bb">xf86-video-vmw=
-are_13.2.1.bb</a><br><a href=3D"http://xf86-video-cirrus_1.5.3.bb">xf86-vid=
-eo-cirrus_1.5.3.bb</a>=C2=A0=C2=A0=C2=A0=C2=A0 xorg-driver-common.inc<br><a=
- href=3D"http://xf86-video-fbdev_0.4.4.bb">xf86-video-fbdev_0.4.4.bb</a>=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 xorg-driver-input.inc<br>xf86-video-intel=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 xorg-driver-video.inc<br><a href=3D"http://xf86-video-intel_git.bb">xf8=
-6-video-intel_git.bb</a><br>generalelectric@mlan11214m117linux:/opt/yocto_G=
-E/poky/master/meta/recipes-graphics/xorg-driver$ <br><br></div><div>Can any=
- body help me with this problem?<br><br></div><div>Any answer will be welco=
-me,<br><br></div><div>Best regards,<br></div><div>Pello<br></div><div><br><=
-/div></div>
+Jussi Kukkonen (2):
+  tests/Makefile.am: Add missing LIBS
+  Handle shifted keysyms that are not in keymap
 
---001a1145a004b188a2054fb35de0--
+ src/libfakekey.c  | 11 ++++++++++-
+ tests/Makefile.am |  2 +-
+ 2 files changed, 11 insertions(+), 2 deletions(-)
+
+-- 
+2.11.0
+
+
