@@ -1,69 +1,94 @@
-Return-Path: <alistair23@gmail.com>
+Return-Path: <yannick.koehler@hpe.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6319E00B8A; Thu, 18 May 2017 15:18:26 -0700 (PDT)
+	id 8EAF3E00B99; Thu, 18 May 2017 15:18:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alistair23[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.67 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f67.google.com (mail-oi0-f67.google.com
-	[209.85.218.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EB23E00BAD;
-	Thu, 18 May 2017 15:18:18 -0700 (PDT)
-Received: by mail-oi0-f67.google.com with SMTP id m17so9674353oik.2;
-	Thu, 18 May 2017 15:18:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=5dWPHwSGbbzmovJG++40FlDO31BtfF0PZbMqtG3/brM=;
-	b=GzWncOpZkh/BsPLp4BoMfya+/zssUu6o81I/8FdRG2gemHlgXw3RSZk7d3c9D169Sh
-	YjoCKwQX0tOiHkYt4GhODceIfzrkg2LBbDbI+aWJoTbkN5ROQ33N8Keb6T+24zTcQWIc
-	jjx8dr5OC8jYAK0Bwmv4b85Jq1A/3a/wU1SkAdqP0lXSu/XxeRuLdraWdkjHzTdlMDVT
-	EYhBhPS+waPPgl56swdmqiRMyI+tCqewqWrKs70VQK6CNCT7H2wRg1Lx5DDjay9ysydy
-	PoP4PALXEROub0iQwtg7aZWUNdK1/rEBV1vlGMv6Gz2j8XVnFQkA+4p5urSLcccDxtT8
-	bXyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=5dWPHwSGbbzmovJG++40FlDO31BtfF0PZbMqtG3/brM=;
-	b=IqymTBuQTtv4gdrrAPqpkIULnO+cmxzWZ0Uqkq8k8jpx/W5Z7/XKQakQZmceMfN/09
-	i7R+3oGQGAnHdRn19nfiZBRgt31Yk1X7t6ugEkEABD1HrSPOgpaQ0quyKMcsXx7noQDB
-	XF6PgtGEIZ4aB+6SY76PVNYL5wJcG1NYT8Wc7nrszaACjfihri+8wdIIgXw7GHbddRfI
-	Ba0lVs4pyQUETDbLFRQGOdXCt0RFhLS3pBXtSe7N0/YH90Gk2z8zCFp9xbxTpT5jtFa3
-	+BoDoNfs+UK3lHAJIaSJGR1F7oX9R23V+QY/NQKj0oZ4w50zrWA+o2+sO80s5ofIbW9N
-	BJAw==
-X-Gm-Message-State: AODbwcDR/7iitL/sh1k4o4YwVXWNBxO7srg2fq5K+HB1E3cosQdqDu9f
-	0pHKxXKOne0F58Z+FsdBf1Y3NVqJ8A==
-X-Received: by 10.202.80.142 with SMTP id e136mr4012150oib.40.1495145897826;
-	Thu, 18 May 2017 15:18:17 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [15.241.32.99 listed in list.dnswl.org]
+X-Greylist: delayed 356 seconds by postgrey-1.32 at yocto-www;
+	Thu, 18 May 2017 15:18:13 PDT
+Received: from g9t1613g.houston.hpe.com (g9t1613g.houston.hpe.com
+	[15.241.32.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0394E00B9D
+	for <yocto@yoctoproject.org>; Thu, 18 May 2017 15:18:13 -0700 (PDT)
+Received: from g2t2354.austin.hpe.com (g2t2354.austin.hpe.com [15.233.44.27])
+	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by g9t1613g.houston.hpe.com (Postfix) with ESMTPS id BB2E96186E
+	for <yocto@yoctoproject.org>; Thu, 18 May 2017 22:12:16 +0000 (UTC)
+Received: from G4W9121.americas.hpqcorp.net (exchangepmrr1.us.hpecorp.net
+	[16.210.21.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by g2t2354.austin.hpe.com (Postfix) with ESMTPS id 4020E63;
+	Thu, 18 May 2017 22:12:15 +0000 (UTC)
+Received: from G4W9122.americas.hpqcorp.net (2002:10d2:1511::10d2:1511) by
+	G4W9121.americas.hpqcorp.net (2002:10d2:1510::10d2:1510) with Microsoft
+	SMTP Server (TLS) id 15.0.1178.4; Thu, 18 May 2017 22:12:15 +0000
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (15.241.52.13) by
+	G4W9122.americas.hpqcorp.net (16.210.21.17) with Microsoft SMTP
+	Server (TLS)
+	id 15.0.1178.4 via Frontend Transport; Thu, 18 May 2017 22:12:14 +0000
+Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.157) by
+	TU4PR84MB0174.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.155) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.1.1084.16; Thu, 18 May 2017 22:12:13 +0000
+Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) by
+	TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) with mapi id
+	15.01.1084.030; Thu, 18 May 2017 22:12:13 +0000
+From: "Koehler, Yannick (HPN Aruba)" <yannick.koehler@hpe.com>
+To: Joshua Watt <jpewhacker@gmail.com>
+Thread-Topic: [yocto] [poky/classes] [PATCH] new alternatesrc.bbclass
+Thread-Index: AdLQAXImgNcpOqd0S3m7Clz1zUvLkAAHYDCAAAE2nMA=
+Date: Thu, 18 May 2017 22:12:13 +0000
+Message-ID: <TU4PR84MB0176E5FD9537006304A34BE0EDE40@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+References: <TU4PR84MB01765722C800C08E3BCD3286EDE40@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>,
+	<CAJdd5Gbe5trB0yjzQoLDzhSO=fYrrh+cR=NiX-QbO7Lac+034A@mail.gmail.com>
+In-Reply-To: <CAJdd5Gbe5trB0yjzQoLDzhSO=fYrrh+cR=NiX-QbO7Lac+034A@mail.gmail.com>
+Accept-Language: en-CA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none; yoctoproject.org;
+	dmarc=none action=none header.from=hpe.com; 
+x-originating-ip: [13.84.226.182]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; TU4PR84MB0174;
+	7://xi2vTk8geyEl9I+MhzZSFov1QyaloZMhkLyEwWn+Jmo4GAbY12Y4S+1PiQOnqUZtY1hYXPqnCVgLCBo1DDyHN4z7m9kCbMndNikR35V74B1HW10jbu7CK2HDyN/kWNtRtbrV6pRqc4JlolJ8i2/eprVlHqOyI3ed4EQ8hV67mQbqci8aXs2PvAlErxLpTk0xn+zs8Hhq5ntYj1rNfS55wqeyOHRS+3q5MZ8XvhSIKjMja0Zr3/LluA1uPcJjoUa4CDk8wQmJbvuyI/F70iMVZrWSQWox8tRCdF1OsbtRRINTE0hD2wAXYJUQEDhdox4j6I4Avh1SDRo80YbN69hQ==
+x-ms-office365-filtering-correlation-id: c8f11812-b156-4c76-5d63-08d49e3af00a
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(2017030254075)(48565401081)(201703131423075)(201703031133081);
+	SRVR:TU4PR84MB0174; 
+x-microsoft-antispam-prvs: <TU4PR84MB0174716D5EB79C214A5F5F8DEDE40@TU4PR84MB0174.NAMPRD84.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-test: UriScan:(227479698468861)(158342451672863)(81439100147899)(17755550239193);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040450)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046)(93006095)(93001095)(6055026)(6041248)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123555025)(20161123560025)(20161123562025)(20161123558100)(20161123564025)(6072148);
+	SRVR:TU4PR84MB0174; BCL:0; PCL:0; RULEID:; SRVR:TU4PR84MB0174; 
+x-forefront-prvs: 0311124FA9
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(39410400002)(39450400003)(39400400002)(39840400002)(39850400002)(39860400002)(377454003)(24454002)(6916009)(39060400002)(478600001)(606005)(53936002)(122556002)(9686003)(236005)(2950100002)(45080400002)(33656002)(25786009)(6436002)(54896002)(2900100001)(38730400002)(6306002)(6246003)(229853002)(6116002)(3846002)(5660300001)(4326008)(53546009)(55016002)(110136004)(68736007)(102836003)(66066001)(189998001)(8936002)(77096006)(74316002)(54356999)(7696004)(50986999)(76176999)(81166006)(86362001)(3660700001)(3280700002)(2906002)(6506006)(7736002)(8676002)(1411001)(7906003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:TU4PR84MB0174;
+	H:TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	MLV:ovrnspm; PTR:InfoNoRecords; LANG:en; 
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.182.16.163 with HTTP; Thu, 18 May 2017 15:17:47 -0700 (PDT)
-In-Reply-To: <CAFL6qn6H5zJpKM9x2JvgJFu_qU4H-wk2szdgxucapE5RASNXpw@mail.gmail.com>
-References: <CAFL6qn7X7uTeF1xuMMOyoWbGWvmLXpCScHgq7Lq259Uej6xZoQ@mail.gmail.com>
-	<CAKmqyKMsM_mZs-R9SkBogZhJaG+KTRVv_Y3DEdTn0sLvYo=rww@mail.gmail.com>
-	<CAFL6qn6H5zJpKM9x2JvgJFu_qU4H-wk2szdgxucapE5RASNXpw@mail.gmail.com>
-From: Alistair Francis <alistair23@gmail.com>
-Date: Thu, 18 May 2017 15:17:47 -0700
-Message-ID: <CAKmqyKNLi0p0aT5TcjA-oZ2UW8EuW8BMYH7Kn0y1Fr7YT3HHfw@mail.gmail.com>
-To: Pello Heriz <pello.heriz@alumni.mondragon.edu>
-Cc: yocto@yoctoproject.org, meta-virtualization@yoctoproject.org,
-	meta-xilinx@yoctoproject.org, meta-xilinx-request@yoctoproject.org
-Subject: Re: [meta-xilinx] Trying to build xen-guest-image-minimal
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 May 2017 22:12:13.7894 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR84MB0174
+X-OriginatorOrg: hpe.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [poky/classes] [PATCH] new alternatesrc.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,170 +100,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 May 2017 22:18:26 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 18 May 2017 22:18:27 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_TU4PR84MB0176E5FD9537006304A34BE0EDE40TU4PR84MB0176NAMP_"
 
-On Thu, May 18, 2017 at 12:48 AM, Pello Heriz
-<pello.heriz@alumni.mondragon.edu> wrote:
-> Hi Alistair,
->
-> I have deleted the two lines that you have told me:
->
-> -IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
-> xf86-video-fbdev', '', d)}"
-> -IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
-> xf86-video-vesa', '', d)}"
->
-> Anyway, now I'm getting another problem:
->
-> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ bitbake
-> xen-guest-image-minimal
-> Loading cache: 100% |############################################| Time:
-> 0:00:00
-> Loaded 2865 entries from dependency cache.
-> Parsing recipes: 100% |##########################################| Time:
-> 0:00:01
-> Parsing of 2097 .bb files complete (2079 cached, 18 parsed). 2881 targets,
-> 198 skipped, 0 masked, 0 errors.
-> WARNING: No recipes available for:
->
-> /opt/yocto_GE/poky/master/meta-petalinux/recipes-devtools/python/python-smartpm_%.bbappend
-> NOTE: Resolving any missing task queue dependencies
-> ERROR: Nothing RPROVIDES 'nativesdk-smartpm' (but
-> /opt/yocto_GE/poky/master/meta/recipes-core/meta/buildtools-tarball.bb
-> RDEPENDS on or otherwise requires it)
-> NOTE: Runtime target 'nativesdk-smartpm' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['nativesdk-smartpm']
-> ERROR: Required build target 'xen-guest-image-minimal' has no buildable
-> providers.
-> Missing or unbuildable dependency chain was: ['xen-guest-image-minimal',
-> 'buildtools-tarball', 'nativesdk-smartpm']
->
-> Summary: There was 1 WARNING message shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-> generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$
->
-> Do you know how can I solve this issue?
+--_000_TU4PR84MB0176E5FD9537006304A34BE0EDE40TU4PR84MB0176NAMP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Strange, I haven't seen this before. Are you sure you have all the
-layers that you need and that the versions match?
+Sounds great, but I have to deal with =E0 team of buildroot beliver, as suc=
+h, askibg dev to setup their own layrr manually is too complexe for them.  =
+With my solution they do not have to do anything on their setup.
 
-Thanks,
+Get Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Joshua Watt <jpewhacker@gmail.com>
+Sent: Thursday, May 18, 2017 5:37:29 PM
+To: Koehler, Yannick (HPN Aruba)
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] [poky/classes] [PATCH] new alternatesrc.bbclass
 
-Alistair
+On Thu, May 18, 2017 at 1:11 PM, Koehler, Yannick (HPN Aruba)
+<yannick.koehler@hpe.com> wrote:
+> In our environment, we have package that are store inside git in their ow=
+n repo.  Using SRC_URI we fetch the code and build it from the git repo its=
+elf and all is fine.  When developer wants to change the content of the pac=
+kage, they had to clone, change, commit, push and only then they were able =
+to test because yocto recipe clone/fetch from the git server only.
+FWIW, our devs keep their own private bitbake layers that they add
+locally to bblayers.conf. In these layers they add .bbappends that
+override the SRC_URI for recipes they are interested in to point at
+local repositories.
 
->
-> Best regards,
-> Pello
->
->
-> 2017-05-17 17:16 GMT+02:00 Alistair Francis <alistair23@gmail.com>:
->>
->> On Wed, May 17, 2017 at 12:37 AM, Pello Heriz
->> <pello.heriz@alumni.mondragon.edu> wrote:
->> > Hi all,
->> >
->> > I'm trying to build a xen-guest-image-minimal, but I have the next
->> > error:
->> >
->> > generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$
->> > bitbake
->> > xen-guest-image-minimal
->> > Loading cache: 100% |############################################| Time:
->> > 0:00:01
->> > Loaded 2865 entries from dependency cache.
->> > Parsing recipes: 100% |##########################################| Time:
->> > 0:00:01
->> > Parsing of 2097 .bb files complete (2080 cached, 17 parsed). 2881
->> > targets,
->> > 198 skipped, 0 masked, 0 errors.
->> > WARNING: No recipes available for:
->> >
->> >
->> > /opt/yocto_GE/poky/master/meta-petalinux/recipes-devtools/python/python-smartpm_%.bbappend
->> > NOTE: Resolving any missing task queue dependencies
->> > ERROR: Nothing RPROVIDES 'xf86-video-vesa' (but
->> >
->> > /opt/yocto_GE/poky/master/meta-virtualization/recipes-extended/images/xen-guest-image-minimal.bb
->> > RDEPENDS on or otherwise requires it)
->> > ERROR: xf86-video-vesa was skipped: incompatible with host
->> > aarch64-poky-linux (not in COMPATIBLE_HOST)
->> > NOTE: Runtime target 'xf86-video-vesa' is unbuildable, removing...
->> > Missing or unbuildable dependency chain was: ['xf86-video-vesa']
->> > ERROR: Required build target 'xen-guest-image-minimal' has no buildable
->> > providers.
->> > Missing or unbuildable dependency chain was: ['xen-guest-image-minimal',
->> > 'xf86-video-vesa']
->> >
->> > Summary: There was 1 WARNING message shown.
->> > Summary: There were 2 ERROR messages shown, returning a non-zero exit
->> > code.
->> >
->> > As you can see next, this requiring file is in the meta directory so I
->> > don't
->> > know why I'm getting the issue.
->> >
->> > generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ cd
->> > ../meta/recipes-graphics/xorg-driver/
->> >
->> > generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$
->> > ls
->> > xf86-input-evdev_2.10.5.bb     xf86-video-omap_0.4.5.bb
->> > xf86-input-keyboard_1.9.0.bb   xf86-video-omapfb
->> > xf86-input-libinput_0.24.0.bb  xf86-video-omapfb_git.bb
->> > xf86-input-mouse_1.9.2.bb      xf86-video-vesa_2.3.4.bb
->> > xf86-input-synaptics_1.9.0.bb  xf86-video-vmware
->> > xf86-input-vmmouse_13.1.0.bb   xf86-video-vmware_13.2.1.bb
->> > xf86-video-cirrus_1.5.3.bb     xorg-driver-common.inc
->> > xf86-video-fbdev_0.4.4.bb      xorg-driver-input.inc
->> > xf86-video-intel               xorg-driver-video.inc
->> > xf86-video-intel_git.bb
->> >
->> > generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/meta/recipes-graphics/xorg-driver$
->> >
->> > Can any body help me with this problem?
->>
->> It looks like this should fix your problem:
->>
->> diff --git a/recipes-extended/images/xen-guest-image-minimal.bb
->> b/recipes-extended/images/xen-guest-image-minimal.bb
->> index ab7e92c..0143867 100644
->> --- a/recipes-extended/images/xen-guest-image-minimal.bb
->> +++ b/recipes-extended/images/xen-guest-image-minimal.bb
->> @@ -7,9 +7,6 @@ IMAGE_INSTALL += " \
->>      ${@bb.utils.contains('MACHINE_FEATURES', 'acpi',
->> 'kernel-module-xen-acpi-processor', '', d)} \
->>      "
->>
->> -IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
->> xf86-video-fbdev', '', d)}"
->> -IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
->> xf86-video-vesa', '', d)}"
->> -
->>  LICENSE = "MIT"
->>
->>  # Send console messages to xen console
->>
->> It's a bug in meta-virtualisation, I just don't know how to fix it
->> without just deleting the code.
->>
->> Thanks,
->>
->> Alistair
->>
->> >
->> > Any answer will be welcome,
->> >
->> > Best regards,
->> > Pello
->> >
->> >
->> > --
->> > _______________________________________________
->> > meta-xilinx mailing list
->> > meta-xilinx@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/meta-xilinx
->> >
->
->
+--_000_TU4PR84MB0176E5FD9537006304A34BE0EDE40TU4PR84MB0176NAMP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<div>
+<div id=3D"x_compose-container" itemscope=3D"" itemtype=3D"https://schema.o=
+rg/EmailMessage" style=3D"direction:ltr">
+<span itemprop=3D"creator" itemscope=3D"" itemtype=3D"https://schema.org/Or=
+ganization"><span itemprop=3D"name"></span></span>
+<div>
+<div style=3D"direction:ltr">Sounds great, but I have to deal with =E0 team=
+ of buildroot beliver, as such, askibg dev to setup their own layrr manuall=
+y is too complexe for them. &nbsp;With my solution they do not have to do a=
+nything on their setup.</div>
+<div><br>
+</div>
+<div class=3D"x_acompli_signature">Get <a href=3D"https://aka.ms/o0ukef">Ou=
+tlook for iOS</a></div>
+</div>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Joshua Watt &lt;jpe=
+whacker@gmail.com&gt;<br>
+<b>Sent:</b> Thursday, May 18, 2017 5:37:29 PM<br>
+<b>To:</b> Koehler, Yannick (HPN Aruba)<br>
+<b>Cc:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] [poky/classes] [PATCH] new alternatesrc.bbclass=
+</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">On Thu, May 18, 2017 at 1:11 PM, Koehler, Yannick =
+(HPN Aruba)<br>
+&lt;yannick.koehler@hpe.com&gt; wrote:<br>
+&gt; In our environment, we have package that are store inside git in their=
+ own repo.&nbsp; Using SRC_URI we fetch the code and build it from the git =
+repo itself and all is fine.&nbsp; When developer wants to change the conte=
+nt of the package, they had to clone, change,
+ commit, push and only then they were able to test because yocto recipe clo=
+ne/fetch from the git server only.<br>
+FWIW, our devs keep their own private bitbake layers that they add<br>
+locally to bblayers.conf. In these layers they add .bbappends that<br>
+override the SRC_URI for recipes they are interested in to point at<br>
+local repositories.<br>
+</div>
+</span></font>
+</body>
+</html>
+
+--_000_TU4PR84MB0176E5FD9537006304A34BE0EDE40TU4PR84MB0176NAMP_--
