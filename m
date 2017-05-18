@@ -1,31 +1,65 @@
-Return-Path: <Kai.Kang@windriver.com>
+Return-Path: <pello.heriz@alumni.mondragon.edu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4C28E00B31; Thu, 18 May 2017 00:27:09 -0700 (PDT)
+	id 3D6C3E00B58; Thu, 18 May 2017 00:48:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F26AE00B28
-	for <yocto@yoctoproject.org>; Thu, 18 May 2017 00:27:06 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v4I7R5T4032609
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Thu, 18 May 2017 00:27:06 -0700
-Received: from pek-hostel-deb02.wrs.com (128.224.153.152) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.294.0; Thu, 18 May 2017 00:27:05 -0700
-From: <kai.kang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 18 May 2017 15:22:36 +0800
-Message-ID: <20170518072237.9271-1-kai.kang@windriver.com>
-X-Mailer: git-send-email 2.10.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.48 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.48 listed in list.dnswl.org]
+Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
+	[209.85.218.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A174CE00B31
+	for <yocto@yoctoproject.org>; Thu, 18 May 2017 00:48:15 -0700 (PDT)
+Received: by mail-oi0-f48.google.com with SMTP id l18so44231351oig.2
+	for <yocto@yoctoproject.org>; Thu, 18 May 2017 00:48:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=alumni.mondragon.edu; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=btZ3CchD98hAKiQLmsijjFkb8N1BJpQ6U+cfPI6wHO0=;
+	b=PJ0knkpD+TbsekvMEfZIcu+mYEXFgcKWO4Id9+ErMK6mNOaTTyNDdTJ8AMFwqfP7lw
+	QJNvNwQMB6T8TxjAK8FRrf57i1TIK6goqukTeXPpDy2Ztw3yi8LxNroVJvvXfewysaMv
+	+N6k/AsTEyC36MxG+QjNsry/SGEpJfA4P6Gsk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=btZ3CchD98hAKiQLmsijjFkb8N1BJpQ6U+cfPI6wHO0=;
+	b=HP4yOWRf2ym5ImxWWrFa0I+jRx5ZKp0WvFQuuKYU8G2C0BD+kckT5BKE2LhM6SPpLz
+	/VufwCKE7lYI263prBeUzh3J/TdDqBOkPXZnBL5mVzKVDOKFYddTiM+LCOK8MNrQEAqa
+	jBZvqG0DbvYJ4SLj+cWsKC+UHddF4pNQhjdL30aAAr2C9quxGjS6g73rFuS+7h6LaMpn
+	sjzJXKWtC0W+Dn0PsV+PbFQfjCy8YlEG71l+D1lTqW02P3xgxif8rrJUkRiA4K33jfdz
+	X5wTQOgQ8lInHRY0RWr67Jdqh45SlRXmo2LGpTGHvAqGo0YvpCPTzf6MWNpPEEh5SOW4
+	Xsvw==
+X-Gm-Message-State: AODbwcB9xgRCXnlvehFJlS4xAcSIJvs6owjU80+c4iDBahu2KktYiCmJ
+	jXu6HpGIMdtYRGY9dVUUMhirRuHspyd3
+X-Received: by 10.202.97.86 with SMTP id v83mr1386555oib.113.1495093695427;
+	Thu, 18 May 2017 00:48:15 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-security][PATCH] Add recipe mtree
+Received: by 10.157.12.181 with HTTP; Thu, 18 May 2017 00:48:15 -0700 (PDT)
+In-Reply-To: <CAKmqyKMsM_mZs-R9SkBogZhJaG+KTRVv_Y3DEdTn0sLvYo=rww@mail.gmail.com>
+References: <CAFL6qn7X7uTeF1xuMMOyoWbGWvmLXpCScHgq7Lq259Uej6xZoQ@mail.gmail.com>
+	<CAKmqyKMsM_mZs-R9SkBogZhJaG+KTRVv_Y3DEdTn0sLvYo=rww@mail.gmail.com>
+From: Pello Heriz <pello.heriz@alumni.mondragon.edu>
+Date: Thu, 18 May 2017 09:48:15 +0200
+Message-ID: <CAFL6qn6H5zJpKM9x2JvgJFu_qU4H-wk2szdgxucapE5RASNXpw@mail.gmail.com>
+To: Alistair Francis <alistair23@gmail.com>
+Cc: yocto@yoctoproject.org, meta-virtualization@yoctoproject.org,
+	meta-xilinx@yoctoproject.org, meta-xilinx-request@yoctoproject.org
+Subject: Re: [meta-xilinx] Trying to build xen-guest-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,25 +71,353 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 May 2017 07:27:09 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 18 May 2017 07:48:21 -0000
+Content-Type: multipart/alternative; boundary="001a113d3fb89f665f054fc7a049"
 
-From: Kai Kang <kai.kang@windriver.com>
+--001a113d3fb89f665f054fc7a049
+Content-Type: text/plain; charset="UTF-8"
 
-Commit at:
-https://github.com/parr0tr1ver/meta-security/commit/2955017982dc733233267e955295ff40b11d61f5
+Hi Alistair,
+
+I have deleted the two lines that you have told me:
+
+-IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
+xf86-video-fbdev', '', d)}"
+-IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
+xf86-video-vesa', '', d)}"
+
+Anyway, now I'm getting another problem:
+
+generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ bitbake
+xen-guest-image-minimal
+Loading cache: 100% |############################################| Time:
+0:00:00
+Loaded 2865 entries from dependency cache.
+Parsing recipes: 100% |##########################################| Time:
+0:00:01
+Parsing of 2097 .bb files complete (2079 cached, 18 parsed). 2881 targets,
+198 skipped, 0 masked, 0 errors.
+WARNING: No recipes available for:
+
+/opt/yocto_GE/poky/master/meta-petalinux/recipes-devtools/python/python-smartpm_%.bbappend
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'nativesdk-smartpm' (but
+/opt/yocto_GE/poky/master/meta/recipes-core/meta/buildtools-tarball.bb
+RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'nativesdk-smartpm' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['nativesdk-smartpm']
+ERROR: Required build target 'xen-guest-image-minimal' has no buildable
+providers.
+Missing or unbuildable dependency chain was: ['xen-guest-image-minimal',
+'buildtools-tarball', 'nativesdk-smartpm']
+
+Summary: There was 1 WARNING message shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$
+
+Do you know how can I solve this issue?
+
+Best regards,
+Pello
 
 
-Kai Kang (1):
-  mtree: add recipe
+2017-05-17 17:16 GMT+02:00 Alistair Francis <alistair23@gmail.com>:
 
- recipes-security/mtree/mtree/mtree-getlogin.patch | 49 +++++++++++++++++++++++
- recipes-security/mtree/mtree_1.0.3.bb             | 22 ++++++++++
- 2 files changed, 71 insertions(+)
- create mode 100644 recipes-security/mtree/mtree/mtree-getlogin.patch
- create mode 100644 recipes-security/mtree/mtree_1.0.3.bb
+> On Wed, May 17, 2017 at 12:37 AM, Pello Heriz
+> <pello.heriz@alumni.mondragon.edu> wrote:
+> > Hi all,
+> >
+> > I'm trying to build a xen-guest-image-minimal, but I have the next error:
+> >
+> > generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$
+> bitbake
+> > xen-guest-image-minimal
+> > Loading cache: 100% |############################################| Time:
+> > 0:00:01
+> > Loaded 2865 entries from dependency cache.
+> > Parsing recipes: 100% |##########################################| Time:
+> > 0:00:01
+> > Parsing of 2097 .bb files complete (2080 cached, 17 parsed). 2881
+> targets,
+> > 198 skipped, 0 masked, 0 errors.
+> > WARNING: No recipes available for:
+> >
+> > /opt/yocto_GE/poky/master/meta-petalinux/recipes-devtools/python/python-
+> smartpm_%.bbappend
+> > NOTE: Resolving any missing task queue dependencies
+> > ERROR: Nothing RPROVIDES 'xf86-video-vesa' (but
+> > /opt/yocto_GE/poky/master/meta-virtualization/recipes-extended/images/
+> xen-guest-image-minimal.bb
+> > RDEPENDS on or otherwise requires it)
+> > ERROR: xf86-video-vesa was skipped: incompatible with host
+> > aarch64-poky-linux (not in COMPATIBLE_HOST)
+> > NOTE: Runtime target 'xf86-video-vesa' is unbuildable, removing...
+> > Missing or unbuildable dependency chain was: ['xf86-video-vesa']
+> > ERROR: Required build target 'xen-guest-image-minimal' has no buildable
+> > providers.
+> > Missing or unbuildable dependency chain was: ['xen-guest-image-minimal',
+> > 'xf86-video-vesa']
+> >
+> > Summary: There was 1 WARNING message shown.
+> > Summary: There were 2 ERROR messages shown, returning a non-zero exit
+> code.
+> >
+> > As you can see next, this requiring file is in the meta directory so I
+> don't
+> > know why I'm getting the issue.
+> >
+> > generalelectric@mlan11214m117linux:/opt/yocto_GE/poky/master/build$ cd
+> > ../meta/recipes-graphics/xorg-driver/
+> > generalelectric@mlan11214m117linux:/opt/yocto_
+> GE/poky/master/meta/recipes-graphics/xorg-driver$
+> > ls
+> > xf86-input-evdev_2.10.5.bb     xf86-video-omap_0.4.5.bb
+> > xf86-input-keyboard_1.9.0.bb   xf86-video-omapfb
+> > xf86-input-libinput_0.24.0.bb  xf86-video-omapfb_git.bb
+> > xf86-input-mouse_1.9.2.bb      xf86-video-vesa_2.3.4.bb
+> > xf86-input-synaptics_1.9.0.bb  xf86-video-vmware
+> > xf86-input-vmmouse_13.1.0.bb   xf86-video-vmware_13.2.1.bb
+> > xf86-video-cirrus_1.5.3.bb     xorg-driver-common.inc
+> > xf86-video-fbdev_0.4.4.bb      xorg-driver-input.inc
+> > xf86-video-intel               xorg-driver-video.inc
+> > xf86-video-intel_git.bb
+> > generalelectric@mlan11214m117linux:/opt/yocto_
+> GE/poky/master/meta/recipes-graphics/xorg-driver$
+> >
+> > Can any body help me with this problem?
+>
+> It looks like this should fix your problem:
+>
+> diff --git a/recipes-extended/images/xen-guest-image-minimal.bb
+> b/recipes-extended/images/xen-guest-image-minimal.bb
+> index ab7e92c..0143867 100644
+> --- a/recipes-extended/images/xen-guest-image-minimal.bb
+> +++ b/recipes-extended/images/xen-guest-image-minimal.bb
+> @@ -7,9 +7,6 @@ IMAGE_INSTALL += " \
+>      ${@bb.utils.contains('MACHINE_FEATURES', 'acpi',
+> 'kernel-module-xen-acpi-processor', '', d)} \
+>      "
+>
+> -IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
+> xf86-video-fbdev', '', d)}"
+> -IMAGE_INSTALL += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '
+> xf86-video-vesa', '', d)}"
+> -
+>  LICENSE = "MIT"
+>
+>  # Send console messages to xen console
+>
+> It's a bug in meta-virtualisation, I just don't know how to fix it
+> without just deleting the code.
+>
+> Thanks,
+>
+> Alistair
+>
+> >
+> > Any answer will be welcome,
+> >
+> > Best regards,
+> > Pello
+> >
+> >
+> > --
+> > _______________________________________________
+> > meta-xilinx mailing list
+> > meta-xilinx@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/meta-xilinx
+> >
+>
 
--- 
-2.10.1
+--001a113d3fb89f665f054fc7a049
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div><div><div>Hi Alistair,<br><br></div>I have =
+deleted the two lines that you have told me:<br><br>-IMAGE_INSTALL +=3D &qu=
+ot;${@bb.utils.contains(&#39;DISTRO_<wbr>FEATURES&#39;, &#39;x11&#39;, &#39=
+;<br>
+xf86-video-fbdev&#39;, &#39;&#39;, d)}&quot;<br>
+-IMAGE_INSTALL +=3D &quot;${@bb.utils.contains(&#39;DISTRO_<wbr>FEATURES&#3=
+9;, &#39;x11&#39;, &#39;<br>
+xf86-video-vesa&#39;, &#39;&#39;, d)}&quot;<br><br></div>Anyway, now I&#39;=
+m getting another problem:<br><br>generalelectric@mlan11214m117linux:/opt/y=
+octo_GE/poky/master/build$ bitbake xen-guest-image-minimal<br>Loading cache=
+: 100% |############################################| Time: 0:00:00<br>Load=
+ed 2865 entries from dependency cache.<br>Parsing recipes: 100% |##########=
+################################| Time: 0:00:01<br>Parsing of 2097 .bb file=
+s complete (2079 cached, 18 parsed). 2881 targets, 198 skipped, 0 masked, 0=
+ errors.<br>WARNING: No recipes available for:<br>=C2=A0 /opt/yocto_GE/poky=
+/master/meta-petalinux/recipes-devtools/python/python-smartpm_%.bbappend<br=
+>NOTE: Resolving any missing task queue dependencies<br>ERROR: Nothing RPRO=
+VIDES &#39;nativesdk-smartpm&#39; (but /opt/yocto_GE/poky/master/meta/recip=
+es-core/meta/<a href=3D"http://buildtools-tarball.bb">buildtools-tarball.bb=
+</a> RDEPENDS on or otherwise requires it)<br>NOTE: Runtime target &#39;nat=
+ivesdk-smartpm&#39; is unbuildable, removing...<br>Missing or unbuildable d=
+ependency chain was: [&#39;nativesdk-smartpm&#39;]<br>ERROR: Required build=
+ target &#39;xen-guest-image-minimal&#39; has no buildable providers.<br>Mi=
+ssing or unbuildable dependency chain was: [&#39;xen-guest-image-minimal&#3=
+9;, &#39;buildtools-tarball&#39;, &#39;nativesdk-smartpm&#39;]<br><br>Summa=
+ry: There was 1 WARNING message shown.<br>Summary: There were 2 ERROR messa=
+ges shown, returning a non-zero exit code.<br>generalelectric@mlan11214m117=
+linux:/opt/yocto_GE/poky/master/build$ <br><br></div>Do you know how can I =
+solve this issue?<br><br></div>Best regards, <br></div>Pello<br><div><div><=
+div><br></div></div></div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">2017-05-17 17:16 GMT+02:00 Alistair Francis <span dir=3D"l=
+tr">&lt;<a href=3D"mailto:alistair23@gmail.com" target=3D"_blank">alistair2=
+3@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D=
+"HOEnZb"><div class=3D"h5">On Wed, May 17, 2017 at 12:37 AM, Pello Heriz<br=
+>
+&lt;<a href=3D"mailto:pello.heriz@alumni.mondragon.edu">pello.heriz@alumni.=
+mondragon.<wbr>edu</a>&gt; wrote:<br>
+&gt; Hi all,<br>
+&gt;<br>
+&gt; I&#39;m trying to build a xen-guest-image-minimal, but I have the next=
+ error:<br>
+&gt;<br>
+&gt; generalelectric@<wbr>mlan11214m117linux:/opt/yocto_<wbr>GE/poky/master=
+/build$ bitbake<br>
+&gt; xen-guest-image-minimal<br>
+&gt; Loading cache: 100% |#############################<wbr>###############=
+| Time:<br>
+&gt; 0:00:01<br>
+&gt; Loaded 2865 entries from dependency cache.<br>
+&gt; Parsing recipes: 100% |#############################<wbr>#############=
+| Time:<br>
+&gt; 0:00:01<br>
+&gt; Parsing of 2097 .bb files complete (2080 cached, 17 parsed). 2881 targ=
+ets,<br>
+&gt; 198 skipped, 0 masked, 0 errors.<br>
+&gt; WARNING: No recipes available for:<br>
+&gt;<br>
+&gt; /opt/yocto_GE/poky/master/<wbr>meta-petalinux/recipes-<wbr>devtools/py=
+thon/python-<wbr>smartpm_%.bbappend<br>
+&gt; NOTE: Resolving any missing task queue dependencies<br>
+&gt; ERROR: Nothing RPROVIDES &#39;xf86-video-vesa&#39; (but<br>
+&gt; /opt/yocto_GE/poky/master/<wbr>meta-virtualization/recipes-<wbr>extend=
+ed/images/<a href=3D"http://xen-guest-image-minimal.bb" rel=3D"noreferrer" =
+target=3D"_blank">xen-guest-<wbr>image-minimal.bb</a><br>
+&gt; RDEPENDS on or otherwise requires it)<br>
+&gt; ERROR: xf86-video-vesa was skipped: incompatible with host<br>
+&gt; aarch64-poky-linux (not in COMPATIBLE_HOST)<br>
+&gt; NOTE: Runtime target &#39;xf86-video-vesa&#39; is unbuildable, removin=
+g...<br>
+&gt; Missing or unbuildable dependency chain was: [&#39;xf86-video-vesa&#39=
+;]<br>
+&gt; ERROR: Required build target &#39;xen-guest-image-minimal&#39; has no =
+buildable<br>
+&gt; providers.<br>
+&gt; Missing or unbuildable dependency chain was: [&#39;xen-guest-image-min=
+imal&#39;,<br>
+&gt; &#39;xf86-video-vesa&#39;]<br>
+&gt;<br>
+&gt; Summary: There was 1 WARNING message shown.<br>
+&gt; Summary: There were 2 ERROR messages shown, returning a non-zero exit =
+code.<br>
+&gt;<br>
+&gt; As you can see next, this requiring file is in the meta directory so I=
+ don&#39;t<br>
+&gt; know why I&#39;m getting the issue.<br>
+&gt;<br>
+&gt; generalelectric@<wbr>mlan11214m117linux:/opt/yocto_<wbr>GE/poky/master=
+/build$ cd<br>
+&gt; ../meta/recipes-graphics/xorg-<wbr>driver/<br>
+&gt; generalelectric@<wbr>mlan11214m117linux:/opt/yocto_<wbr>GE/poky/master=
+/meta/recipes-<wbr>graphics/xorg-driver$<br>
+&gt; ls<br>
+&gt; <a href=3D"http://xf86-input-evdev_2.10.5.bb" rel=3D"noreferrer" targe=
+t=3D"_blank">xf86-input-evdev_2.10.5.bb</a>=C2=A0 =C2=A0 =C2=A0<a href=3D"h=
+ttp://xf86-video-omap_0.4.5.bb" rel=3D"noreferrer" target=3D"_blank">xf86-v=
+ideo-omap_0.4.5.bb</a><br>
+&gt; <a href=3D"http://xf86-input-keyboard_1.9.0.bb" rel=3D"noreferrer" tar=
+get=3D"_blank">xf86-input-keyboard_1.9.0.bb</a>=C2=A0 =C2=A0xf86-video-omap=
+fb<br>
+&gt; <a href=3D"http://xf86-input-libinput_0.24.0.bb" rel=3D"noreferrer" ta=
+rget=3D"_blank">xf86-input-libinput_0.24.0.bb</a>=C2=A0 <a href=3D"http://x=
+f86-video-omapfb_git.bb" rel=3D"noreferrer" target=3D"_blank">xf86-video-om=
+apfb_git.bb</a><br>
+&gt; <a href=3D"http://xf86-input-mouse_1.9.2.bb" rel=3D"noreferrer" target=
+=3D"_blank">xf86-input-mouse_1.9.2.bb</a>=C2=A0 =C2=A0 =C2=A0 <a href=3D"ht=
+tp://xf86-video-vesa_2.3.4.bb" rel=3D"noreferrer" target=3D"_blank">xf86-vi=
+deo-vesa_2.3.4.bb</a><br>
+&gt; <a href=3D"http://xf86-input-synaptics_1.9.0.bb" rel=3D"noreferrer" ta=
+rget=3D"_blank">xf86-input-synaptics_1.9.0.bb</a>=C2=A0 xf86-video-vmware<b=
+r>
+&gt; <a href=3D"http://xf86-input-vmmouse_13.1.0.bb" rel=3D"noreferrer" tar=
+get=3D"_blank">xf86-input-vmmouse_13.1.0.bb</a>=C2=A0 =C2=A0<a href=3D"http=
+://xf86-video-vmware_13.2.1.bb" rel=3D"noreferrer" target=3D"_blank">xf86-v=
+ideo-vmware_13.2.1.bb</a><br>
+&gt; <a href=3D"http://xf86-video-cirrus_1.5.3.bb" rel=3D"noreferrer" targe=
+t=3D"_blank">xf86-video-cirrus_1.5.3.bb</a>=C2=A0 =C2=A0 =C2=A0xorg-driver-=
+common.inc<br>
+&gt; <a href=3D"http://xf86-video-fbdev_0.4.4.bb" rel=3D"noreferrer" target=
+=3D"_blank">xf86-video-fbdev_0.4.4.bb</a>=C2=A0 =C2=A0 =C2=A0 xorg-driver-i=
+nput.inc<br>
+&gt; xf86-video-intel=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0xorg-driver-video.inc<br>
+&gt; <a href=3D"http://xf86-video-intel_git.bb" rel=3D"noreferrer" target=
+=3D"_blank">xf86-video-intel_git.bb</a><br>
+&gt; generalelectric@<wbr>mlan11214m117linux:/opt/yocto_<wbr>GE/poky/master=
+/meta/recipes-<wbr>graphics/xorg-driver$<br>
+&gt;<br>
+&gt; Can any body help me with this problem?<br>
+<br>
+</div></div>It looks like this should fix your problem:<br>
+<br>
+diff --git a/recipes-extended/images/<a href=3D"http://xen-guest-image-mini=
+mal.bb" rel=3D"noreferrer" target=3D"_blank">xen-<wbr>guest-image-minimal.b=
+b</a><br>
+b/recipes-extended/images/<a href=3D"http://xen-guest-image-minimal.bb" rel=
+=3D"noreferrer" target=3D"_blank">xen-<wbr>guest-image-minimal.bb</a><br>
+index ab7e92c..0143867 100644<br>
+--- a/recipes-extended/images/<a href=3D"http://xen-guest-image-minimal.bb"=
+ rel=3D"noreferrer" target=3D"_blank">xen-<wbr>guest-image-minimal.bb</a><b=
+r>
++++ b/recipes-extended/images/<a href=3D"http://xen-guest-image-minimal.bb"=
+ rel=3D"noreferrer" target=3D"_blank">xen-<wbr>guest-image-minimal.bb</a><b=
+r>
+@@ -7,9 +7,6 @@ IMAGE_INSTALL +=3D &quot; \<br>
+=C2=A0 =C2=A0 =C2=A0${@bb.utils.contains(&#39;MACHINE_<wbr>FEATURES&#39;, &=
+#39;acpi&#39;,<br>
+&#39;kernel-module-xen-acpi-<wbr>processor&#39;, &#39;&#39;, d)} \<br>
+=C2=A0 =C2=A0 =C2=A0&quot;<br>
+<br>
+-IMAGE_INSTALL +=3D &quot;${@bb.utils.contains(&#39;DISTRO_<wbr>FEATURES&#3=
+9;, &#39;x11&#39;, &#39;<br>
+xf86-video-fbdev&#39;, &#39;&#39;, d)}&quot;<br>
+-IMAGE_INSTALL +=3D &quot;${@bb.utils.contains(&#39;DISTRO_<wbr>FEATURES&#3=
+9;, &#39;x11&#39;, &#39;<br>
+xf86-video-vesa&#39;, &#39;&#39;, d)}&quot;<br>
+-<br>
+=C2=A0LICENSE =3D &quot;MIT&quot;<br>
+<br>
+=C2=A0# Send console messages to xen console<br>
+<br>
+It&#39;s a bug in meta-virtualisation, I just don&#39;t know how to fix it<=
+br>
+without just deleting the code.<br>
+<br>
+Thanks,<br>
+<br>
+Alistair<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt;<br>
+&gt; Any answer will be welcome,<br>
+&gt;<br>
+&gt; Best regards,<br>
+&gt; Pello<br>
+&gt;<br>
+&gt;<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
+&gt; ______________________________<wbr>_________________<br>
+&gt; meta-xilinx mailing list<br>
+&gt; <a href=3D"mailto:meta-xilinx@yoctoproject.org">meta-xilinx@yoctoproje=
+ct.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/meta-xilinx" rel=3D=
+"noreferrer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo=
+/meta-xilinx</a><br>
+&gt;<br>
+</font></span></blockquote></div><br></div>
 
+--001a113d3fb89f665f054fc7a049--
