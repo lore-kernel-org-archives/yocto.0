@@ -1,36 +1,66 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <jpewhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85CC1E00B58; Thu, 18 May 2017 14:21:43 -0700 (PDT)
+	id BBCFBE00B47; Thu, 18 May 2017 14:37:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jpewhacker[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3468FE00B49
-	for <yocto@yoctoproject.org>; Thu, 18 May 2017 14:21:38 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	18 May 2017 14:21:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.38,360,1491289200"; d="scan'208";a="103906746"
-Received: from alimonb-mobl1.zpn.intel.com ([10.219.128.129])
-	by fmsmga005.fm.intel.com with ESMTP; 18 May 2017 14:21:28 -0700
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 18 May 2017 16:21:43 -0500
-Message-Id: <1495142506-11581-4-git-send-email-anibal.limon@linux.intel.com>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1495142506-11581-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1495142506-11581-1-git-send-email-anibal.limon@linux.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.41 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9F32E00B43
+	for <yocto@yoctoproject.org>; Thu, 18 May 2017 14:37:31 -0700 (PDT)
+Received: by mail-wm0-f41.google.com with SMTP id v15so67095997wmv.1
+	for <yocto@yoctoproject.org>; Thu, 18 May 2017 14:37:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=FrFzMJ/PaOHGjbOteBEsPSYkxG5K7coxhLvu4Sv8HE8=;
+	b=gvM1+SGMF3Jtj2oCemZJFc2++w9UpxD1BwpO4uU3d7BznsQLCKAQSbM4Jkvk3vl9mJ
+	YYbQB0YiqtJSbeON6Lxyc8IR/fGVshPea7uFszcOZgysYx0qvlhZDREs33jZ8zsAQ2BR
+	Lj2bR4e8uB5cBbHzPwDPucb4BcB1deh4fr0rLCgqQWi/71R9xeLNcoznLRmfWzJFh3i6
+	xtquzJdTrYWkC+WsjJlBV+uyP57cHLx3vmMpQqBPzsOgO+ecANwPRSnqP707hcHuPDb5
+	CEWnhvxwxAN7aitVzfo6M7USQ2SQYHrVkJcT1uVt4swnNHLXRaDhqJdn2pVtogJpcmvl
+	EMLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=FrFzMJ/PaOHGjbOteBEsPSYkxG5K7coxhLvu4Sv8HE8=;
+	b=dBj7fPCF3U7bh0a/3mV5FUZcQhtuDJL01/4vgR8Ogey5ahNHOPOPCjuFqS2guQtNf9
+	jgKD31xE08fdybjJVUWX96vFkbTQHw/rAfwiQcqKg/WcagYGuWJFkJ4w29CPO8hReTi4
+	v4P06XbV/NW21O5PXy7wmwB2zSB/1UxjN8oLyAmm26Uy2h4dp27ou6kntjmfzMX3K8Gz
+	kF6aBpphhu/YLcRfE7dt9+1WkobhOyvJvczobHVfb3XajCzQA9JBhgv+872Oaw1yyGkK
+	fpsd6ONbTZlvKWqJkXBi9JTnz+E6zewE8uQaFwgkVsQ62qVoDwwBS1qG3ZZJy7gHTX2U
+	A/wA==
+X-Gm-Message-State: AODbwcDwK6PnR1DfLu7upsV7O5Ni3Ognt18oZzhVGHeAVbw83+Oo7Fe9
+	at/mcm3rj3Ce3AkZXMK08CgVfBYoyQ==
+X-Received: by 10.28.30.145 with SMTP id e139mr15251110wme.129.1495143450345; 
+	Thu, 18 May 2017 14:37:30 -0700 (PDT)
 MIME-Version: 1.0
-Cc: paul.eggleton@linux.intel.com
-Subject: [[AUH][PATCH] 3/6] upgradehelper.py: Add ability to run UniverseUpdater over certain recipes
+Received: by 10.28.128.65 with HTTP; Thu, 18 May 2017 14:37:29 -0700 (PDT)
+In-Reply-To: <TU4PR84MB01765722C800C08E3BCD3286EDE40@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+References: <TU4PR84MB01765722C800C08E3BCD3286EDE40@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+From: Joshua Watt <jpewhacker@gmail.com>
+Date: Thu, 18 May 2017 16:37:29 -0500
+Message-ID: <CAJdd5Gbe5trB0yjzQoLDzhSO=fYrrh+cR=NiX-QbO7Lac+034A@mail.gmail.com>
+To: "Koehler, Yannick (HPN Aruba)" <yannick.koehler@hpe.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [poky/classes] [PATCH] new alternatesrc.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,86 +72,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 May 2017 21:21:43 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 18 May 2017 21:37:32 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-[YOCTO #8962]
-
-Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
----
- upgradehelper.py | 31 +++++++++++++++++++++----------
- 1 file changed, 21 insertions(+), 10 deletions(-)
-
-diff --git a/upgradehelper.py b/upgradehelper.py
-index f7b87c6..6732fb2 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -655,9 +655,12 @@ class Updater(object):
-                 self.send_status_mail(statistics_summary)
- 
- class UniverseUpdater(Updater):
--    def __init__(self):
-+    def __init__(self, recipes=None):
-         Updater.__init__(self, True, True)
- 
-+        # to filter recipes in upgrade
-+        self.recipes = recipes
-+
-         # read history file
-         self.history_file = os.path.join(get_build_dir(), "upgrade-helper", "history.uh")
-         self.history = dict()
-@@ -694,11 +697,16 @@ class UniverseUpdater(Updater):
-             I(" Removing tmp directory ...")
-             shutil.rmtree(os.path.join(get_build_dir(), "tmp"))
- 
--    def _check_upstream_versions(self, packages=[("universe", None, None)]):
-+    def _check_upstream_versions(self):
-         I(" Fetching upstream version(s) ...")
- 
-+        if self.recipes:
-+            recipe = " ".join(self.recipes)
-+        else:
-+            recipe = 'universe'
-+
-         try:
--            self.bb.checkpkg(" ".join([p[0] for p in packages]))
-+            self.bb.checkpkg(recipe)
-         except Error as e:
-             for line in e.stdout.split('\n'):
-                 if line.find("ERROR: Task do_checkpkg does not exist") == 0:
-@@ -876,16 +884,14 @@ if __name__ == "__main__":
-                     level=debug_levels[args.debug_level - 1])
-     settings, maintainer_override = parse_config_file(args.config_file)
- 
--    if args.recipe == "all":
-+    recipes = args.recipe.split()
-+
-+    if len(recipes) == 1 and recipes[0] == "all":
-         updater = UniverseUpdater()
-         updater.run()
--    else:
--        if not args.to_version:
--            E(" For upgrade only one recipe you must specify --to_version\n")
--            exit(1)
--
-+    elif len(recipes) == 1 and args.to_version:
-         if not args.maintainer and args.send_emails:
--            E(" For upgrade only one recipe and send email you must specify --maintainer\n")
-+            E(" For upgrade one recipe and send email you must specify --maintainer\n")
-             exit(1)
- 
-         if not args.maintainer:
-@@ -895,3 +901,8 @@ if __name__ == "__main__":
-         pkg_list = [(args.recipe, args.to_version, args.maintainer)]
-         updater = Updater(args.auto_mode, args.send_emails, args.skip_compilation)
-         updater.run(pkg_list)
-+    else:
-+        updater = UniverseUpdater(recipes)
-+        updater.run()
-+
-+
--- 
-2.1.4
-
+On Thu, May 18, 2017 at 1:11 PM, Koehler, Yannick (HPN Aruba)
+<yannick.koehler@hpe.com> wrote:
+> In our environment, we have package that are store inside git in their ow=
+n repo.  Using SRC_URI we fetch the code and build it from the git repo its=
+elf and all is fine.  When developer wants to change the content of the pac=
+kage, they had to clone, change, commit, push and only then they were able =
+to test because yocto recipe clone/fetch from the git server only.
+FWIW, our devs keep their own private bitbake layers that they add
+locally to bblayers.conf. In these layers they add .bbappends that
+override the SRC_URI for recipes they are interested in to point at
+local repositories.
 
