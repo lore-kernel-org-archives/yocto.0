@@ -1,41 +1,45 @@
-Return-Path: <Kai.Kang@windriver.com>
+Return-Path: <yv@iseg-hv.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1460DE00B58; Thu, 18 May 2017 23:19:23 -0700 (PDT)
+	id D79E3E00B58; Thu, 18 May 2017 23:32:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [213.174.32.96 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB03BE00B47
-	for <yocto@yoctoproject.org>; Thu, 18 May 2017 23:19:19 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v4J6JGP6005406
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 18 May 2017 23:19:16 -0700 (PDT)
-Received: from [128.224.162.185] (128.224.162.185) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 18 May 2017 23:19:16 -0700
-To: Christopher Larson <kergoth@gmail.com>
-References: <20170518072237.9271-1-kai.kang@windriver.com>
-	<20170518072237.9271-2-kai.kang@windriver.com>
-	<CABcZANn+ARi=zuBQ61D7TkLWd++u0f-RVgsFzXz-C6OxGvnKzg@mail.gmail.com>
-From: Kang Kai <Kai.Kang@windriver.com>
-Message-ID: <96b6d7e1-db29-0f80-a15c-070cb68b5003@windriver.com>
-Date: Fri, 19 May 2017 14:16:50 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [213.174.32.96 listed in dnsbl.sorbs.net]
+Received: from mailout01.ims-firmen.de (mailout01.ims-firmen.de
+	[213.174.32.96])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EA92E00B47
+	for <yocto@yoctoproject.org>; Thu, 18 May 2017 23:32:28 -0700 (PDT)
+Received: from mailin01.ims-firmen.de ([192.168.1.141])
+	by mailout01.ims-firmen.de with esmtp (envelope-from <yv@iseg-hv.de>)
+	id 1dBbSc-0002nJ-iG; Fri, 19 May 2017 08:32:26 +0200
+Received: from [87.138.179.153] (helo=post.iseg.site)
+	by mailin01.ims-firmen.de with esmtpsa
+	(TLSv1.2:ADH-AES256-GCM-SHA384:256) (envelope-from <yv@iseg-hv.de>)
+	id 1dBbSc-0004OK-1q; Fri, 19 May 2017 08:32:26 +0200
+Received: from [192.168.25.170] (unknown [192.168.25.170])
+	by post.iseg.site (Postfix) with ESMTP id 1097B514477;
+	Fri, 19 May 2017 08:32:26 +0200 (CEST)
+To: Khem Raj <raj.khem@gmail.com>
+References: <973975c4-73b9-d312-b7cc-493678a53805@iseg-hv.de>
+	<CAMKF1soSDHzsPyDhBrYxu4--7vq-i2uRbACTrHJKYBTX32HBaA@mail.gmail.com>
+From: Yuvarajesh Valleru <yv@iseg-hv.de>
+Message-ID: <1d4f5724-a710-9a33-72a6-e65d6f86b833@iseg-hv.de>
+Date: Fri, 19 May 2017 08:30:50 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <CABcZANn+ARi=zuBQ61D7TkLWd++u0f-RVgsFzXz-C6OxGvnKzg@mail.gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [meta-security] [PATCH] mtree: add recipe
+In-Reply-To: <CAMKF1soSDHzsPyDhBrYxu4--7vq-i2uRbACTrHJKYBTX32HBaA@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Error: when reparsing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,109 +51,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 May 2017 06:19:23 -0000
-Content-Type: multipart/alternative;
-	boundary="------------EE9BCADC1A07D6785526B0BF"
-Content-Language: en-US
+X-List-Received-Date: Fri, 19 May 2017 06:32:33 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---------------EE9BCADC1A07D6785526B0BF
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+Ok. So according to you I can only build one image per day succesfully ?
 
-On 2017年05月18日 23:24, Christopher Larson wrote:
+
+Am 18.05.2017 um 18:00 schrieb Khem Raj:
+> On Thu, May 18, 2017 at 8:14 AM, Yuvarajesh Valleru <yv@iseg-hv.de> wrote:
+>> Hi,
+>>
+>> I was building a custom-linux-image. I succesfully build the image with the
+>> help of bitbake tool.
+>>
+>> When rebuilding the same image again, i was experiencing an error.
+>>
+>> ERROR: When reparsing <filepath>.do_install, the basehash value changed from
+>> 3c2401cc61fce5eb899de19dbf78862f to 558516a74162944aff656a7d01321b12. The
+>> metadata is not deterministic and this needs to be fixed.
+>>
+>> Then i deleted the build/tmp and build/sstate, and again tried to rebuild.
+>> But Now I encountered with an another errors.
+>>
+>> Error:
+>> </home/hutch/yocto_master_wcs_10_4_2013/oe-core/build/tmp/deploy/ipk/all/nativesdk-packagegroup-sdk-host_1.0-r11_all.ipk
+>>     Matched in b manifest-i686-nativesdk-packagegroup-sdk-host.deploy-ipk
+>> Please verify which package should provide the above files.
+>> NOTE: Tasks Summary: Attempted 3172 tasks of which 2449 didn't need to be
+>> rerun and all succeeded.
+>>
+>> I deleted all the files in /deploy/ipk, build/sstate, build/tmp-glibc and
+>> also deploy/sdk/ for building a new image.
+>>
+>> Is there any alternative for rebuilding the image without the above errors
+>> and without deleting the file everytime.
+> if you are using DATE, TIME or combination of these
+> variables in metadata then this could cause
+> such issues.
 >
-> On Thu, May 18, 2017 at 12:22 AM, <kai.kang@windriver.com 
-> <mailto:kai.kang@windriver.com>> wrote:
->
->     From: Kai Kang <kai.kang@windriver.com
->     <mailto:kai.kang@windriver.com>>
->
->     Add recipe mtree port from BSD. Add a patch to handle null return
->     from getlogin.
->
->     Signed-off-by: Kai Kang <kai.kang@windriver.com
->     <mailto:kai.kang@windriver.com>>
->
->
-> Exactly what layer are you aiming for this to go to? The list you sent 
-> it to (yocto) doesn’t imply any particular layer..
-> -- 
-> Christopher Larson
-> kergoth at gmail dot com
-> Founder - BitBake, OpenEmbedded, OpenZaurus
-> Senior Software Engineer, Mentor Graphics
-
-Sorry, only add the layer info in the cover letter. The pacakge is added 
-to  layer meta-security.
-
-Thanks.
-
--- 
-Regards,
-Neil | Kai Kang
+>> Best Regards,
+>> Rajesh
+>>
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 
 
---------------EE9BCADC1A07D6785526B0BF
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">On 2017年05月18日 23:24, Christopher
-      Larson wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CABcZANn+ARi=zuBQ61D7TkLWd++u0f-RVgsFzXz-C6OxGvnKzg@mail.gmail.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <div dir="ltr">
-        <div class="gmail_extra"><br>
-          <div class="gmail_quote">On Thu, May 18, 2017 at 12:22 AM, <span
-              dir="ltr">&lt;<a href="mailto:kai.kang@windriver.com"
-                target="_blank" moz-do-not-send="true">kai.kang@windriver.com</a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div id=":1hg" class="a3s aXjCH m15c1a744903223bb">From:
-                Kai Kang &lt;<a href="mailto:kai.kang@windriver.com"
-                  moz-do-not-send="true">kai.kang@windriver.com</a>&gt;<br>
-                <br>
-                Add recipe mtree port from BSD. Add a patch to handle
-                null return<br>
-                from getlogin.<br>
-                <br>
-                Signed-off-by: Kai Kang &lt;<a
-                  href="mailto:kai.kang@windriver.com"
-                  moz-do-not-send="true">kai.kang@windriver.com</a>&gt;</div>
-            </blockquote>
-          </div>
-          <br>
-          Exactly what layer are you aiming for this to go to? The list
-          you sent it to (yocto) doesn’t imply any particular layer..<br>
-          -- <br>
-          <div class="gmail_signature" data-smartmail="gmail_signature">
-            <div dir="ltr">
-              <div>
-                <div dir="ltr">Christopher Larson<br>
-                  kergoth at gmail dot com<br>
-                  Founder - BitBake, OpenEmbedded, OpenZaurus<br>
-                  Senior Software Engineer, Mentor Graphics</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <p><font size="+1">Sorry, only add the layer info in the cover
-        letter. The pacakge is added to  layer meta-security.</font></p>
-    <p><font size="+1">Thanks.<br>
-      </font></p>
-    <pre class="moz-signature" cols="72">-- 
-Regards,
-Neil | Kai Kang</pre>
-  </body>
-</html>
-
---------------EE9BCADC1A07D6785526B0BF--
