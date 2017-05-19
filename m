@@ -1,71 +1,67 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9135E0094C; Fri, 19 May 2017 07:39:04 -0700 (PDT)
+	id BE18CE0094C; Fri, 19 May 2017 07:45:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31479E00812
-	for <yocto@yoctoproject.org>; Fri, 19 May 2017 07:39:03 -0700 (PDT)
-Received: by mail-pf0-f195.google.com with SMTP id u26so9779037pfd.2
-	for <yocto@yoctoproject.org>; Fri, 19 May 2017 07:39:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.47 listed in list.dnswl.org]
+Received: from mail-pg0-f47.google.com (mail-pg0-f47.google.com [74.125.83.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25443E00812
+	for <yocto@yoctoproject.org>; Fri, 19 May 2017 07:45:50 -0700 (PDT)
+Received: by mail-pg0-f47.google.com with SMTP id q125so39219987pgq.2
+	for <yocto@yoctoproject.org>; Fri, 19 May 2017 07:45:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:references:from:message-id:date:user-agent:mime-version
 	:in-reply-to:content-transfer-encoding;
-	bh=IUiVAxwg0U5frKh/M8j8ROJR00qZLe8hyFMfsnaBxGU=;
-	b=nritvQfihBIWyg4xpDtM4L6aQUcs7b8e4rPRAt7QamL7xiiVZIQEw0Q7R8/v8noCRJ
-	b0Bvu11Bw+TM2gedbUGkmh3xa9E3fIrvmFIMzPbOpzvtEkKaf5S1GFlL6L6Qwnzc5Q4j
-	ovKGRJyx32CUsECm47tyoCh5w0+ofBceomj52SP44V0mAKgmQc/lA6PLAWRNE/XgVkDp
-	XZBqeOKV5w4lUFeks04CIqORwRK9DkUVzbOP51PQU7tpQ1IegMrQjBgW7ov8kFRJHMfj
-	zJbT9vyqYiM4gvxGkTqAkaKdy+M5VwI4orZvC6nhem/rc08SgGIq3CXCZ34u85za/phg
-	f3mg==
+	bh=VSM1La0kkJVVS6MZnZIE55MrW86zfuHQkB5x7ctqNpY=;
+	b=YAvSAeLRYTIrd1MrNbw7FhBElJ04CrOLCGJ/zSXNU3RpS7LxhrLDgLUgKBwTfVRWk3
+	9Aa8MxpRfLqwLzXhaMKEHwd/rJq/U8kt+vKI684DsxcbyJ/3y9kg1rFcqTvD2uEzCU+P
+	kfikgu556AfDaKDadTB8a7nhMHOc/4rmgQpZxTq8zng+FRQeOS/WIEN8druSTbHhLzP4
+	gLSiYOG7WmfILbaRkowi0hBpO+iKzMDCa0/PQk9lkZuQ7ZEZmow0ypOWnfurWOaHtpJb
+	4BXTRaKp5moHU2+g4v7VwsN6aZV1XuKzc5Ee3PJ4nHjI3piaHZznri1DCetdUQJj7IWA
+	AQDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding;
-	bh=IUiVAxwg0U5frKh/M8j8ROJR00qZLe8hyFMfsnaBxGU=;
-	b=iTNzYjEs2kMGIKNrP5NXJXWGqpyvj2G9jhF7kRERhEpYthX0jBbDAn+W/Kqn5gJF9j
-	fMep0BnPjrMno9RXH3j18EjCmFefPlT3QSWLe8jC2pfaOU8kpjkRQgNg49DKweBbMC2D
-	9RmISesi9kFuHiLth9ZjK/HuGohdSJ/BDZNN15Wzl+xPae3cAxu6x0nUiXAekkGCxfw/
-	WJZqfmJm2WYIQzpsdzqCA4Fkmo1TvYtJ7bdN5ObQW8FvWVvLnRxnfzJJ9L+IkJ63pNHp
-	hx6dtWRq/1YHWSndVYSn5vI74+LP7QFWHj5dfpVozmw0SABZur6bg3u2KbY8w68bIydP
-	duMg==
-X-Gm-Message-State: AODbwcDrlC7nijXV8PSkYvFnsWtJDNkLpVurL/GILJQPKT6J60T47yVQ
-	jX2/+7e1uGqWqyZBcDs=
-X-Received: by 10.84.174.67 with SMTP id q61mr12131563plb.97.1495204743352;
-	Fri, 19 May 2017 07:39:03 -0700 (PDT)
+	bh=VSM1La0kkJVVS6MZnZIE55MrW86zfuHQkB5x7ctqNpY=;
+	b=JhrVzvuURdC+hKUmS+o8XfkLQEaoKnfA9T/efNUs5d2mS8q+HFKToubAV61vjFGd0t
+	w5E9wd+fimW8udlMHYF2IuH1nXe5yvOF5p0OMmdh7BV2OaO+ZmBt2v+LXU7OQNQ6KwmE
+	lDAiDmP9zvhxVNII8b7M8x7qTQKGjef9qcAWcMvA/KuJ/UrrZQOuzTCTZnFcUhIFXhAC
+	xL1zMFTGa8cnq44ls2CWaACvMssenSXtkydS5/XacIA9+XORbkGhB4sV2izAmCzek7bU
+	hyuUb1g6s9JYftTmmoenJr8hnVPPK4ptKhYykH0aaE7fqzdX75piLvD8VWsx2dv79pnf
+	6JhQ==
+X-Gm-Message-State: AODbwcCJPMOTXC+hrHsDPhmsMX7wR3SPt55E4fMrgHiB3pXYiHZL+4er
+	xxcWY5wYcAlOEhZK
+X-Received: by 10.98.49.198 with SMTP id x189mr10600111pfx.65.1495205150067;
+	Fri, 19 May 2017 07:45:50 -0700 (PDT)
 Received: from ?IPv6:2601:202:4001:9ea0:556f:b9ba:b26e:7f00?
 	([2601:202:4001:9ea0:556f:b9ba:b26e:7f00])
 	by smtp.gmail.com with ESMTPSA id
-	q24sm17219486pfj.3.2017.05.19.07.39.02
+	z68sm15640496pgz.14.2017.05.19.07.45.47
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 19 May 2017 07:39:02 -0700 (PDT)
-To: Peter Lei <peter.lei@ieee.org>, yocto@yoctoproject.org
-References: <20170519042949.7646-1-peter.lei@ieee.org>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <64e4d6e3-887d-6986-c2d0-ff38d2eb10bf@gmail.com>
-Date: Fri, 19 May 2017 07:39:01 -0700
+	Fri, 19 May 2017 07:45:47 -0700 (PDT)
+To: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>,
+	yocto@yoctoproject.org
+References: <1494593691-14182-1-git-send-email-jkrishnanjanappa@mvista.com>
+From: akuster <akuster@mvista.com>
+Message-ID: <e219871e-c9e1-9b16-1245-dd532618efef@mvista.com>
+Date: Fri, 19 May 2017 07:45:46 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <20170519042949.7646-1-peter.lei@ieee.org>
-Subject: Re: [meta-security][PATCH] packagegroup-security-tpm-i2c: fix syntax
+In-Reply-To: <1494593691-14182-1-git-send-email-jkrishnanjanappa@mvista.com>
+Subject: Re: [meta-security][morty][PATCH] tpm2.0-tss: Fix build issue with tpm2-abrmd recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,36 +73,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 May 2017 14:39:04 -0000
+X-List-Received-Date: Fri, 19 May 2017 14:45:52 -0000
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 05/18/2017 09:29 PM, Peter Lei wrote:
-> Fix "ERROR: ExpansionError during parsing" when building with multilib.
+On 05/12/2017 05:54 AM, Jagadeesh Krishnanjanappa wrote:
+> It solves tpm2-abrmd recipe build failure (as mentioned below) as
+> none of the tpm2.0-tss header files define MAX_LOADED_OBJECTS1 macro.
+> The macro name should be MAX_LOADED_OBJECTS.
+> -- snip --
+> |                  from ../tpm2-abrmd/src/include/tabrmd.h:31,
+> |                  from ../tpm2-abrmd/src/access-broker.c:31:
+> | ../tpm2-abrmd/src/access-broker.c: In function 'access_broker_get_trans_object_count':
+> | ../tpm2-abrmd/src/access-broker.c:549:34: error: 'MAX_LOADED_OBJECTS1' undeclared (first use in this function)
+> -- snip --
 
 merged.
-
-thanks
+Armin
 >
-> Signed-off-by: Peter Lei <peter.lei@ieee.org>
+> Signed-off-by: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
 > ---
->   meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   ...2_types.h-Fix-broken-TRANSIENT_LAST-macro.patch | 29 ++++++++++++++++++++++
+>   recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb           |  3 ++-
+>   2 files changed, 31 insertions(+), 1 deletion(-)
+>   create mode 100644 recipes-tpm/tpm2.0-tss/tpm2.0-tss/0001-tss2_tpm2_types.h-Fix-broken-TRANSIENT_LAST-macro.patch
 >
-> diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
-> index d3d9ebc..2d93aca 100644
-> --- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
-> +++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
-> @@ -10,7 +10,7 @@ PACKAGES = "packagegroup-security-tpm-i2c"
->   SUMMARY_packagegroup-security-tpm-i2c = "Security TPM i2c support"
->   RDEPENDS_packagegroup-security-tpm-i2c = " \
->       ${@bb.utils.contains('MACHINE_FEATURES', 'tpm', 'packagegroup-security-tpm', '', d)} \
-> -    ${@bb.utils.contains('MACHINE_FEATURES', 'tpm2', 'packagegroup-security-tpm2, '', d)} \
-> +    ${@bb.utils.contains('MACHINE_FEATURES', 'tpm2', 'packagegroup-security-tpm2', '', d)} \
->       kernel-module-tpm-i2c-atmel \
->       kernel-module-tpm-i2c-infineon \
->       kernel-module-tpm-i2c-nuvoton \
+> diff --git a/recipes-tpm/tpm2.0-tss/tpm2.0-tss/0001-tss2_tpm2_types.h-Fix-broken-TRANSIENT_LAST-macro.patch b/recipes-tpm/tpm2.0-tss/tpm2.0-tss/0001-tss2_tpm2_types.h-Fix-broken-TRANSIENT_LAST-macro.patch
+> new file mode 100644
+> index 0000000..74f82be
+> --- /dev/null
+> +++ b/recipes-tpm/tpm2.0-tss/tpm2.0-tss/0001-tss2_tpm2_types.h-Fix-broken-TRANSIENT_LAST-macro.patch
+> @@ -0,0 +1,29 @@
+> +From 92a0830306c2eb3081b5ac3329f7504cd58d670b Mon Sep 17 00:00:00 2001
+> +From: Philip Tricca <philip.b.tricca@intel.com>
+> +Date: Thu, 12 Jan 2017 11:55:52 -0800
+> +Subject: [PATCH] tss2_tpm2_types.h: Fix broken TRANSIENT_LAST macro.
+> +
+> +Upstream-Status: Backport
+> +
+> +Signed-off-by: Philip Tricca <philip.b.tricca@intel.com>
+> +Signed-off-by: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
+> +---
+> + include/sapi/tss2_tpm2_types.h | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/include/sapi/tss2_tpm2_types.h b/include/sapi/tss2_tpm2_types.h
+> +index 48cc1dc..aa41c06 100644
+> +--- a/include/sapi/tss2_tpm2_types.h
+> ++++ b/include/sapi/tss2_tpm2_types.h
+> +@@ -452,7 +452,7 @@ typedef	TPM_HANDLE TPM_HC;
+> + #define	TRANSIENT_FIRST	(HR_TRANSIENT + 0 )	 /* first transient object  */
+> + #define	ACTIVE_SESSION_FIRST	(POLICY_SESSION_FIRST )	 /* used in GetCapability  */
+> + #define	ACTIVE_SESSION_LAST	(POLICY_SESSION_LAST )	 /* used in GetCapability  */
+> +-#define	TRANSIENT_LAST	(TRANSIENT_FIRST+MAX_LOADED_OBJECTS1 )	 /* last transient object  */
+> ++#define	TRANSIENT_LAST	(TRANSIENT_FIRST + MAX_LOADED_OBJECTS - 1 )	 /* last transient object  */
+> + #define	PERSISTENT_FIRST	(HR_PERSISTENT + 0 )	 /* first persistent object  */
+> + #define	PERSISTENT_LAST	(PERSISTENT_FIRST + 0x00FFFFFF )	 /* last persistent object  */
+> + #define	PLATFORM_PERSISTENT	(PERSISTENT_FIRST + 0x00800000 )	 /* first platform persistent object  */
+> +--
+> +2.6.4
+> +
+> diff --git a/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb b/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
+> index c4b5c8c..2910741 100644
+> --- a/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
+> +++ b/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
+> @@ -7,7 +7,8 @@ SECTION = "tpm"
+>   SRCREV = "8e25d0cbb287d30c93b2b77e99bc761dc67e31a9"
+>   SRC_URI = " \
+>       git://github.com/01org/TPM2.0-TSS.git;protocol=git;branch=master;name=TPM2.0-TSS;destsuffix=TPM2.0-TSS \
+> -    file://ax_pthread.m4"
+> +    file://ax_pthread.m4 \
+> +    file://0001-tss2_tpm2_types.h-Fix-broken-TRANSIENT_LAST-macro.patch"
+>   
+>   inherit autotools pkgconfig
+>   
 
 
