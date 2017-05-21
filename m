@@ -1,31 +1,31 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C60A3E00B49; Sun, 21 May 2017 23:51:57 -0700 (PDT)
+	id 3D38CE00B49; Mon, 22 May 2017 00:30:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.5 DATE_IN_PAST_06_12 Date: is 6 to 12 hours before
+	Received: date
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69796E00A16
-	for <yocto@yoctoproject.org>; Sun, 21 May 2017 23:51:52 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v4M6ppku021353
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Sun, 21 May 2017 23:51:52 -0700
-Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.294.0; Sun, 21 May 2017 23:51:51 -0700
-From: <jackie.huang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 22 May 2017 14:51:49 +0800
-Message-ID: <20170522065149.27016-1-jackie.huang@windriver.com>
-X-Mailer: git-send-email 2.11.0
-MIME-Version: 1.0
-Subject: [meta-cgl][PATCH] meta-cgl-common: remove dependency on meta-openclovis
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from blaine.gmane.org (unknown [195.159.176.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1BC9E00A16
+	for <yocto@yoctoproject.org>; Mon, 22 May 2017 00:30:12 -0700 (PDT)
+Received: from list by blaine.gmane.org with local (Exim 4.84_2)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1dChn1-0007nf-Fn
+	for yocto@yoctoproject.org; Mon, 22 May 2017 09:30:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Ferry Toth <ftoth@exalondelft.nl>
+Date: Sun, 21 May 2017 21:54:21 +0000 (UTC)
+Message-ID: <oft2ad$2ie$1@blaine.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@blaine.gmane.org
+User-Agent: Pan/0.141 (Tarzan's Death; 168b179 git.gnome.org/pan2)
+Subject: How to build initramfs with modules but without bzImage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,74 +37,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 May 2017 06:51:58 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 22 May 2017 07:30:18 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-From: Jackie Huang <jackie.huang@windriver.com>
+I am building 2 images. One has my rootfs, the other builds a kernel with 
+builtin initramfs.
 
-The dependency was needed because of the usage of
-openhpi and openimpi, now the two recipes are added
-in meta-openembedded/meta-networking and
-meta-openembedded/meta-oe with newer versions,
-and meta-openclovis is not really active in the past
-two years, it's better to remove the dependency on
-meta-openclovis.
+To build the initramfs I did the following:
+In the .../conf directory, I create a file named initramfs.conf and add 
+the following:
+ 
+INITRAMFS_IMAGE = "core-image-minimal-initramfs"
+INITRAMFS_IMAGE_BUNDLE = "1"
+ 
+IMAGE_FSTYPES = "cpio.gz"
+ 
+Then to build the initramfs based on the core-image-base recipe, I 
+execute the following bitbake command:
+ 
+     bitbake -R conf/initramfs.conf core-image-minimal-initramfs
+ 
+When it completes, there is a kernel + initramfs file in the .../tmp/
+deploy/images/..../  directory.
+ 
+This image boots to the init script, but then hangs as the mmc drivers 
+have not been included.
 
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
----
- README                          | 4 ----
- cgl-init-build-env              | 2 +-
- meta-cgl-common/conf/layer.conf | 2 +-
- 3 files changed, 2 insertions(+), 6 deletions(-)
+Now I create a core-image-minimal-initramfs.bbappend file and
+PACKAGE_INSTALL the modules I need (also tried kernel-modules).
 
-diff --git a/README b/README
-index 9f6713c..0117c1e 100644
---- a/README
-+++ b/README
-@@ -21,9 +21,6 @@ This layer depends on:
-   URI: git://git.yoctoproject.org/meta-qt3
-   branch: master
- 
--  URI: https://github.com/joaohf/meta-openclovis
--  branch: master
--
-   URI: git://git.yoctoproject.org/meta-selinux
-   branch: master
- 
-@@ -98,7 +95,6 @@ other layers needed. Adapt the below list to proper format.
-     meta-yocto
-     meta-yocto-bsp
-     meta-virtualization
--    meta-openclovis
-     meta-selinux
-     meta-security
-     meta-cloud-services/meta-openstack
-diff --git a/cgl-init-build-env b/cgl-init-build-env
-index 29dfb38..5e1842e 100755
---- a/cgl-init-build-env
-+++ b/cgl-init-build-env
-@@ -28,7 +28,7 @@ unset OPTION
- 
- NUM_CORES=$(grep -c processor /proc/cpuinfo || echo 2)
- BUILD_PATH="build"
--METALAYERS="meta-cgl/meta-cgl-common,meta-qt3,meta-openclovis,meta-selinux,meta-security,meta-virtualization"
-+METALAYERS="meta-cgl/meta-cgl-common,meta-qt3,meta-selinux,meta-security,meta-virtualization"
- 
- function usage() {
- cat <<EOF
-diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer.conf
-index dfd0d1f..bdf5f3f 100644
---- a/meta-cgl-common/conf/layer.conf
-+++ b/meta-cgl-common/conf/layer.conf
-@@ -11,6 +11,6 @@ BBFILE_COLLECTIONS += "cgl-common"
- BBFILE_PATTERN_cgl-common = "^${LAYERDIR}/"
- BBFILE_PRIORITY_cgl-common = "7"
- 
--LAYERDEPENDS_cgl-common = "core openembedded-layer networking-layer perl-layer filesystems-layer security openclovis selinux"
-+LAYERDEPENDS_cgl-common = "core openembedded-layer networking-layer perl-layer filesystems-layer security selinux"
- 
- require conf/distro/include/cgl_common_security_flags.inc
--- 
-2.11.0
+Unfortunately this also installs the kernel bzImage in the /boot 
+directory, that appears to be a dependancy. This adds another 6MB to my 
+initramfs, which is now to load.
+
+I expect it should be possible to add the modules without adding the 
+kernel, but haven't been able to find a way to do that. Or it should be 
+possible to remove the contents of /boot after do_rootfs.
+
+But I have no clue how to do that.
+
+Or am I just generating the initramfs in the wrong way?
+
+Ferry
 
 
