@@ -1,32 +1,34 @@
 Return-Path: <romain.perier@collabora.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5EAE3E00B76; Mon, 22 May 2017 08:17:35 -0700 (PDT)
+	id B69BEE00B5E; Mon, 22 May 2017 08:17:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
 	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
 	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
 	lines
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10B0EE00B0B
-	for <yocto@yoctoproject.org>; Mon, 22 May 2017 08:17:32 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA2BDE00B57
+	for <yocto@yoctoproject.org>; Mon, 22 May 2017 08:17:34 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: rperier) with ESMTPSA id 4766E26B39F
+	(Authenticated sender: rperier) with ESMTPSA id 3214F260BA3
 From: Romain Perier <romain.perier@collabora.com>
 To: Romain Perier <romain.perier@collabora.com>,
 	Trevor Woerner <twoerner@gmail.com>
-Date: Mon, 22 May 2017 17:17:13 +0200
-Message-Id: <20170522151716.4792-1-romain.perier@collabora.com>
+Date: Mon, 22 May 2017 17:17:14 +0200
+Message-Id: <20170522151716.4792-2-romain.perier@collabora.com>
 X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20170522151716.4792-1-romain.perier@collabora.com>
+References: <20170522151716.4792-1-romain.perier@collabora.com>
 Cc: yocto@yoctoproject.org
-Subject: [meta-rockchip][PATCH 0/3] u-boot: mainline
+Subject: [meta-rockchip][PATCH 1/3] u-boot: Add u-boot-common_2017.05.inc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,23 +42,35 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Mon, 22 May 2017 15:17:35 -0000
 
-This set of patches add a new u-boot-common file for 2017.05, so
-it can be shared between u-boot-rockchip and a u-boot recipe for
-mainline. Then, it add a bbappend to bump u-boot to the last
-v2017.05.
+This adds new common file for u-boot 2017.05, so u-boot mainline recipe
+and u-boot-rockchip can share common information about this version.
 
-Romain Perier (3):
-  u-boot: Add u-boot-common_2017.05.inc
-  u-boot-rockchip: Use u-boot-common_2017.05.inc
-  u-boot: Add bbappend for u-boot mainline
-
+Signed-off-by: Romain Perier <romain.perier@collabora.com>
+---
  recipes-bsp/u-boot/u-boot-common_2017.05.inc | 14 ++++++++++++++
- recipes-bsp/u-boot/u-boot-rockchip_git.bb    |  2 +-
- recipes-bsp/u-boot/u-boot_%.bbappend         |  5 +++++
- 3 files changed, 20 insertions(+), 1 deletion(-)
+ 1 file changed, 14 insertions(+)
  create mode 100644 recipes-bsp/u-boot/u-boot-common_2017.05.inc
- create mode 100644 recipes-bsp/u-boot/u-boot_%.bbappend
 
+diff --git a/recipes-bsp/u-boot/u-boot-common_2017.05.inc b/recipes-bsp/u-boot/u-boot-common_2017.05.inc
+new file mode 100644
+index 0000000..3719aee
+--- /dev/null
++++ b/recipes-bsp/u-boot/u-boot-common_2017.05.inc
+@@ -0,0 +1,14 @@
++HOMEPAGE = "http://www.denx.de/wiki/U-Boot/WebHome"
++SECTION = "bootloaders"
++
++LICENSE = "GPLv2+"
++LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
++PE = "1"
++
++# We use the revision in order to avoid having to fetch it from the
++# repo during parse
++SRCREV = "64c4ffa9fa223f7ae8640f9c8f3044bfa0e3bfda"
++
++SRC_URI = "git://git.denx.de/u-boot.git"
++
++S = "${WORKDIR}/git"
 -- 
 1.8.3.1
 
