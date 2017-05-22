@@ -1,37 +1,34 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40EB7E00B49; Mon, 22 May 2017 06:02:02 -0700 (PDT)
+	id 28F28E00B57; Mon, 22 May 2017 07:53:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,HEXHASH_WORD
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C45FE00A16
-	for <yocto@yoctoproject.org>; Mon, 22 May 2017 06:01:56 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	22 May 2017 06:01:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.38,377,1491289200"; d="scan'208";a="103919947"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga005.jf.intel.com with ESMTP; 22 May 2017 06:01:54 -0700
-To: Russell Peterson <bluehills7@comcast.net>, yocto@yoctoproject.org
-References: <3222F3C5-34FC-4373-B40F-5AA8EF9C904E@comcast.net>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <151909c6-8fb5-e6b7-6695-6a1bfed1b0af@linux.intel.com>
-Date: Mon, 22 May 2017 15:59:56 +0300
+	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5089E00B0B
+	for <yocto@yoctoproject.org>; Mon, 22 May 2017 07:53:48 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id CE18368A019; Mon, 22 May 2017 15:53:46 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 512B368A019;
+	Mon, 22 May 2017 15:53:46 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id EC9B867403CA;
+	Mon, 22 May 2017 16:53:45 +0200 (CEST)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <31a2d863-b928-df06-8e86-78b939469614@mlbassoc.com>
+Date: Mon, 22 May 2017 16:53:45 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
 	Thunderbird/45.8.0
 MIME-Version: 1.0
-In-Reply-To: <3222F3C5-34FC-4373-B40F-5AA8EF9C904E@comcast.net>
-Subject: Re: unmodified binary RPM installed on rootfs?
+Subject: sstate-cache question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,27 +40,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 May 2017 13:02:02 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 22 May 2017 14:53:52 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 05/22/2017 02:43 AM, Russell Peterson wrote:
-> I am fairly new to yocto and I think I’m having trouble installing an
-> RPM on the rootfs. What I am trying to do is install an arm64 binary RPM
-> file straight onto the root file system without a recipe… just use the
-> native rpm tool to put it there.  There are several reasons why I’m
-> experimenting with this.  Seems fairly simple but I have now been
-> messing around for days with little to show for it.  Here is what I’m doing…
+I have a build where I've never manually removed anything from
+the sstate-cache and this same build has been used for hundreds
+of builds over the last 18 months.  I just tried to find out why
+gcc-cross-arm had to be rebuilt (it seems to happen almost every
+time I update my Poky/Yocto tree (master)).  Here's what I got:
 
-Yocto does not currently support installing 3rd party RPMs. Even if it 
-would install, whatever contents it has would very likely not work due 
-to mismatches between the environment where the rpm was built and the 
-environment where you are installing it. And --nodeps would only make 
-the problem worse.
+$ bitbake-diffsigs -t gcc-cross-arm compile
+Hash for dependent task gcc/gcc-cross_6.3.bb.do_configure changed from 208373dd9ae01101a26a9412eb50b110 to 
+d65095d4b9aff89f6990bd17c0ab210b
+Unable to find matching sigdata for /local/poky-cutting-edge/meta/recipes-devtools/gcc/gcc-cross_6.3.bb.do_configure 
+with hashes 208373dd9ae01101a26a9412eb50b110 or d65095d4b9aff89f6990bd17c0ab210b
 
-You have to write a recipe.
+So if I didn't remove those files, where did they go?  Am I doing
+something wrong running this tool?  (running the same command for
+qemu-native seemed to work correctly)
 
+Thanks for any ideas
 
-Alex
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
