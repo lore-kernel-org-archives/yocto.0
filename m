@@ -1,33 +1,61 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <gvandenbosch@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B64B8E00B51; Mon, 22 May 2017 22:30:37 -0700 (PDT)
+	id 790F8E00953; Tue, 23 May 2017 00:04:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gvandenbosch[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2333E009A5
-	for <yocto@yoctoproject.org>; Mon, 22 May 2017 22:30:26 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v4N5UP9M021564
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Mon, 22 May 2017 22:30:25 -0700
-Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.294.0; Mon, 22 May 2017 22:30:24 -0700
-From: <jackie.huang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 23 May 2017 13:30:20 +0800
-Message-ID: <8e6767cb65d32fa715ac54c70e775e072c2b2533.1495517079.git.jackie.huang@windriver.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1495517079.git.jackie.huang@windriver.com>
-References: <cover.1495517079.git.jackie.huang@windriver.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f171.google.com (mail-wr0-f171.google.com
+	[209.85.128.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6627E0080F
+	for <yocto@yoctoproject.org>; Tue, 23 May 2017 00:04:26 -0700 (PDT)
+Received: by mail-wr0-f171.google.com with SMTP id z52so50736507wrc.2
+	for <yocto@yoctoproject.org>; Tue, 23 May 2017 00:04:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=BAG3a7JATCCqmnSoHIlKurS7qUWU721Q4DH/wPXH/lQ=;
+	b=M0EKqfIWj5qBThyWf+RI6/wqfbKOWSAMmXiMNIoOPhVb/FTopv2jIe4c7TVPcUKEI4
+	Lbq2AWXJwMm+0ed/Q4c4cA3SSpKX1iT04wxcwPgNyutvQTva6HrWHzsMdhWbHc3oBcy6
+	YUyF/kXkMjF3c4a+PasAZoiM+tmlWdeTFkzk0o6QdfCIHOpn4Oiu+7ytTC0zwC9AveS4
+	Jgo61SDYEOukMurpek1R7Qo9rAFIXXb8GsMXiIE2DSl1zM1zq/ekJV6MCEQscjxLtx4/
+	+EHyJBTFg+9Mo+6ZyfEuGQc5tq7gEAmgMiZWnmY+IhgllfGETuGnly3lVqtF5n6r11QI
+	kKTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=BAG3a7JATCCqmnSoHIlKurS7qUWU721Q4DH/wPXH/lQ=;
+	b=gTKLCnOpgaVJwrj2nRiQwGogZ1uTC/l1ELcZnj3OdOfpwutkMl/JRpw8KWEoO6BwGt
+	/+76yTzPD/Rd5xFfgDzOa2ta5cqLH7WFPrwMuL4UWRtBf3liLhrghThkgMAfqkNa81D+
+	Q2AVkMWyzk77+M3SzWD+j83bIYeJ1tryK2lnuqOsF+iurOlDGd7zShq9xecBOCg1tuOZ
+	x72AJuOd1tqPzSDRB1Z2wRAWhRbD5ajek8U2+o11r7qG9rCkaZG2BJU3tU/N+4/Azpvl
+	7/IOu4gHmIWvEsOgV4XzS2QcGr1xNILa4ZX8TyppR4ejs5SGjfNPalWuQ96BVRc0qJc4
+	Ldmw==
+X-Gm-Message-State: AODbwcAtyeiAzbCzCHv2nmmtllHkRg4VP3FSKzTL5RvYrkIz6akOEWFc
+	+I3k0F9mFHUW8biiUqv1F2XB3xo6ynp9
+X-Received: by 10.223.166.43 with SMTP id k40mr5553638wrc.187.1495523065390;
+	Tue, 23 May 2017 00:04:25 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-security][PATCH 2/2 v2] ecryptfs-utils: add new recipe
+Received: by 10.28.73.139 with HTTP; Tue, 23 May 2017 00:04:04 -0700 (PDT)
+From: Gerard van den Bosch <gvandenbosch@gmail.com>
+Date: Tue, 23 May 2017 15:04:04 +0800
+Message-ID: <CADqNDzo0VM02knUFp3iNzLVwmOkAW7kq=26YnNEsH9ygVkjP9Q@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: kernel 2.6.20 no rule make target vmlinux.lds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,183 +67,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 May 2017 05:30:37 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 23 May 2017 07:04:28 -0000
+Content-Type: multipart/alternative; boundary="f403045cf0c210eb9c05502b9954"
 
-From: Jackie Huang <jackie.huang@windriver.com>
+--f403045cf0c210eb9c05502b9954
+Content-Type: text/plain; charset="UTF-8"
 
-eCryptfs is a stacked cryptographic filesystem that ships
-in Linux kernel versions 2.6.19 and above. This package
-provides the mount helper and supporting libraries to
-perform key management and mount functions.
+Hello,
 
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
----
- .../ecryptfs-utils/ecryptfs-utils_111.bb           | 64 +++++++++++++++++++++
- .../files/ecryptfs-utils-CVE-2016-6224.patch       | 65 ++++++++++++++++++++++
- .../ecryptfs-utils/files/ecryptfs.service          |  9 +++
- 3 files changed, 138 insertions(+)
- create mode 100644 recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
- create mode 100644 recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch
- create mode 100644 recipes-security/ecryptfs-utils/files/ecryptfs.service
+I am trying to compile a custom kernel from vendor for an arm processor.
+Linux version is 2.6.20.
 
-diff --git a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-new file mode 100644
-index 0000000..160533a
---- /dev/null
-+++ b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-@@ -0,0 +1,64 @@
-+SUMMARY = "The eCryptfs mount helper and support libraries"
-+DESCRIPTION = "eCryptfs is a stacked cryptographic filesystem \
-+    that ships in Linux kernel versions 2.6.19 and above. This \
-+    package provides the mount helper and supporting libraries \
-+    to perform key management and mount functions."
-+HOMEPAGE = "https://launchpad.net/ecryptfs"
-+SECTION = "base"
-+
-+LICENSE = "GPL-2.0"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
-+
-+DEPENDS = "keyutils libgcrypt intltool-native glib-2.0-native"
-+
-+SRC_URI = "\
-+    https://launchpad.net/ecryptfs/trunk/${PV}/+download/${BPN}_${PV}.orig.tar.gz \
-+    file://ecryptfs-utils-CVE-2016-6224.patch \
-+    file://ecryptfs.service \
-+    "
-+
-+SRC_URI[md5sum] = "83513228984f671930752c3518cac6fd"
-+SRC_URI[sha256sum] = "112cb3e37e81a1ecd8e39516725dec0ce55c5f3df6284e0f4cc0f118750a987f"
-+
-+inherit autotools pkgconfig systemd
-+
-+SYSTEMD_PACKAGES = "${PN}"
-+SYSTEMD_SERVICE_${PN} = "ecryptfs.service"
-+
-+EXTRA_OECONF = "\
-+    --libdir=${base_libdir} \
-+    --disable-pywrap \
-+    --disable-nls \
-+    "
-+
-+PACKAGECONFIG ??= "nss \
-+    ${@bb.utils.filter('DISTRO_FEATURES', 'pam', d)} \
-+    "
-+PACKAGECONFIG[nss] = "--enable-nss,--disable-nss,nss,"
-+PACKAGECONFIG[openssl] = "--enable-openssl,--disable-openssl,openssl,"
-+PACKAGECONFIG[pam] = "--enable-pam,--disable-pam,libpam,"
-+
-+do_configure_prepend() {
-+    export NSS_CFLAGS="-I${STAGING_INCDIR}/nspr4 -I${STAGING_INCDIR}/nss3"
-+    export NSS_LIBS="-L${STAGING_BASELIBDIR} -lssl3 -lsmime3 -lnss3 -lsoftokn3 -lnssutil3"
-+    export KEYUTILS_CFLAGS="-I${STAGING_INCDIR}"
-+    export KEYUTILS_LIBS="-L${STAGING_LIBDIR} -lkeyutils"
-+}
-+
-+do_install_append() {
-+    chmod 4755 ${D}${base_sbindir}/mount.ecryptfs_private
-+    mkdir -p ${D}/${libdir}
-+    mv ${D}/${base_libdir}/pkgconfig ${D}/${libdir}
-+    sed -i -e 's:-I${STAGING_INCDIR}::' \
-+           -e 's:-L${STAGING_LIBDIR}::' ${D}/${libdir}/pkgconfig/libecryptfs.pc
-+    sed -i -e "s: ${base_sbindir}/cryptsetup: ${sbindir}/cryptsetup:" ${D}${bindir}/ecryptfs-setup-swap
-+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-+        install -d ${D}${systemd_system_unitdir}
-+        install -m 0644 ${WORKDIR}/ecryptfs.service ${D}${systemd_system_unitdir}
-+    fi
-+}
-+
-+FILES_${PN} += "${base_libdir}/security/* ${base_libdir}/ecryptfs/*"
-+
-+RDEPENDS_${PN} += "cryptsetup"
-+RRECOMMENDS_${PN} = "gettext-runtime"
-diff --git a/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch b/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch
-new file mode 100644
-index 0000000..4252f97
---- /dev/null
-+++ b/recipes-security/ecryptfs-utils/files/ecryptfs-utils-CVE-2016-6224.patch
-@@ -0,0 +1,65 @@
-+From 558a513ba3100ea5190de1a24cf1fed663367765 Mon Sep 17 00:00:00 2001
-+From: Li Zhou <li.zhou@windriver.com>
-+Date: Mon, 5 Sep 2016 10:28:08 +0800
-+Subject: [PATCH] ecryptfs-utils: CVE-2016-6224
-+
-+src/utils/ecryptfs-setup-swap: Prevent unencrypted swap partitions from
-+being automatically enabled by systemd. This bug affected GPT partitioned
-+NVMe/MMC drives and resulted in the swap partition being used without
-+encryption. It also resulted in a usability issue in that users were
-+erroneously prompted to enter a pass-phrase to unlock their swap partition
-+at boot. (LP: #1597154)
-+
-+the patch comes from:
-+https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2016-6224
-+https://bazaar.launchpad.net/~ecryptfs/ecryptfs/trunk/revision/882
-+
-+Upstream-Status: backport
-+
-+Signed-off-by: Li Zhou <li.zhou@windriver.com>
-+---
-+ ChangeLog                     |  9 +++++++++
-+ src/utils/ecryptfs-setup-swap | 10 ++++++++--
-+ 2 files changed, 17 insertions(+), 2 deletions(-)
-+
-+diff --git a/ChangeLog b/ChangeLog
-+index d255a94..2c9c73e 100644
-+--- a/ChangeLog
-++++ b/ChangeLog
-+@@ -1,3 +1,12 @@
-++ecryptfs-utils-112
-++  [ Jason Gerard DeRose ]
-++  * src/utils/ecryptfs-setup-swap: Prevent unencrypted swap partitions from
-++    being automatically enabled by systemd. This bug affected GPT partitioned
-++    NVMe/MMC drives and resulted in the swap partition being used without
-++    encryption. It also resulted in a usability issue in that users were
-++    erroneously prompted to enter a pass-phrase to unlock their swap partition
-++    at boot. (LP: #1597154)
-++
-+ ecryptfs-utils-74
-+   [ Michal Hlavinka ]
-+   * Changes for RH/Fedora release
-+diff --git a/src/utils/ecryptfs-setup-swap b/src/utils/ecryptfs-setup-swap
-+index 41cf18a..e4785d7 100755
-+--- a/src/utils/ecryptfs-setup-swap
-++++ b/src/utils/ecryptfs-setup-swap
-+@@ -166,8 +166,14 @@ for swap in $swaps; do
-+ 	# If this is a GPT partition, mark it as no-auto mounting, to avoid
-+ 	# auto-activating it on boot
-+ 	if [ "$(blkid -p -s PART_ENTRY_SCHEME -o value "$swap")" = "gpt" ]; then
-+-		drive="${swap%[0-9]*}"
-+-		partno="${swap#$drive}"
-++		# Correctly handle NVMe/MMC drives, as well as any similar physical
-++		# block device that follow the "/dev/foo0p1" pattern (LP: #1597154)
-++		if echo "$swap" | grep -qE "^/dev/.+[0-9]+p[0-9]+$"; then
-++			drive=$(echo "$swap" | sed "s:\(.\+[0-9]\)p[0-9]\+:\1:")
-++		else
-++			drive=$(echo "$swap" | sed "s:\(.\+[^0-9]\)[0-9]\+:\1:")
-++		fi
-++		partno=$(echo "$swap" | sed "s:.\+[^0-9]\([0-9]\+\):\1:")
-+ 		if [ -b "$drive" ]; then
-+ 			if printf "x\np\n" | fdisk "$drive" | grep -q "^$swap .* GUID:.*\b63\b"; then
-+ 				echo "$swap is already marked as no-auto"
-+-- 
-+1.9.1
-+
-diff --git a/recipes-security/ecryptfs-utils/files/ecryptfs.service b/recipes-security/ecryptfs-utils/files/ecryptfs.service
-new file mode 100644
-index 0000000..c23a03a
---- /dev/null
-+++ b/recipes-security/ecryptfs-utils/files/ecryptfs.service
-@@ -0,0 +1,9 @@
-+[Unit]
-+Description=A userspace daemon that runs as the user perform file operations under the eCryptfs mount point
-+After=udev.service
-+
-+[Service]
-+ExecStart=/usr/bin/ecryptfsd -f
-+
-+[Install]
-+WantedBy=multi-user.target
--- 
-2.11.0
+However at the moment the build breaks at:
+make[3]: *** No rule to make target 'arch/arm/kernel/vmlinux.lds', needed
+by '__build'.  Stop.
 
+However in the main Makefile in the kernel-source folder it has this target:
+vmlinux-lds  := arch/$(ARCH)/kernel/vmlinux.lds
 
+I have trouble to find why this is going wrong, does anyone have a pointer
+what it could be?
+
+Cheers.
+Gerard
+
+--f403045cf0c210eb9c05502b9954
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<div><br></div><div>I am trying to compile a custom =
+kernel from vendor for an arm processor.</div><div>Linux version is 2.6.20.=
+</div><div><br></div><div>However at the moment the build breaks at:</div><=
+div><div>make[3]: *** No rule to make target &#39;arch/arm/kernel/vmlinux.l=
+ds&#39;, needed by &#39;__build&#39;.=C2=A0 Stop.</div></div><div><br></div=
+><div>However in the main Makefile in the kernel-source folder it has this =
+target:</div><div><div>vmlinux-lds =C2=A0:=3D arch/$(ARCH)/kernel/vmlinux.l=
+ds</div></div><div><br></div><div>I have trouble to find why this is going =
+wrong, does anyone have a pointer what it could be?</div><div><br></div><di=
+v>Cheers.</div><div>Gerard</div></div>
+
+--f403045cf0c210eb9c05502b9954--
