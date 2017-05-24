@@ -1,33 +1,55 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 397ABE00B0B; Wed, 24 May 2017 05:20:20 -0700 (PDT)
+	id 2321CE00B19; Wed, 24 May 2017 05:25:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.180.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AB87E00AF0
-	for <yocto@yoctoproject.org>; Wed, 24 May 2017 05:20:18 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 8E85F68A01C; Wed, 24 May 2017 13:20:17 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 1FAD968A019;
-	Wed, 24 May 2017 13:20:17 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id B40DC67404DC;
-	Wed, 24 May 2017 14:20:16 +0200 (CEST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <201bc784-23ea-c40d-beb4-511901b59157@mlbassoc.com>
-Date: Wed, 24 May 2017 14:20:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+X-Greylist: delayed 261 seconds by postgrey-1.32 at yocto-www;
+	Wed, 24 May 2017 05:25:02 PDT
+Received: from smtp-out10.electric.net (smtp-out10.electric.net
+	[185.38.180.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB4E7E00AF0
+	for <yocto@yoctoproject.org>; Wed, 24 May 2017 05:25:02 -0700 (PDT)
+Received: from 1dDVHL-0003zw-Vk by out10a.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>) id 1dDVHM-00040G-TJ
+	for yocto@yoctoproject.org; Wed, 24 May 2017 05:20:40 -0700
+Received: by emcmailer; Wed, 24 May 2017 05:20:40 -0700
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out10a.electric.net with esmtps (TLSv1:ECDHE-RSA-AES256-SHA:256)
+	(Exim 4.87) (envelope-from <Adrian.Dudau@enea.com>)
+	id 1dDVHL-0003zw-Vk
+	for yocto@yoctoproject.org; Wed, 24 May 2017 05:20:39 -0700
+Received: from sestofb11.enea.se (172.21.3.152) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.3.319.2;
+	Wed, 24 May 2017 14:20:39 +0200
+Received: by sestofb11.enea.se (Postfix, from userid 4451)	id A29F24404CB;
+	Wed, 24 May 2017 14:20:39 +0200 (CEST)
+From: Adrian Dudau <adrian.dudau@enea.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 24 May 2017 14:20:39 +0200
+Message-ID: <1495628439-48206-1-git-send-email-adrian.dudau@enea.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: How to include libraries?
+Received-SPF: None (SESTOEX08.enea.se: adrian.dudau@enea.com does not
+	designate permitted sender hosts)
+X-Outbound-IP: 192.36.1.72
+X-Env-From: Adrian.Dudau@enea.com
+X-Proto: esmtps
+X-Revdns: mx-3.enea.com
+X-HELO: mx-3.enea.com
+X-TLS: TLSv1:ECDHE-RSA-AES256-SHA:256
+X-Authenticated_ID: 
+X-PolicySMART: 6551647
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Subject: [meta-cgl][PATCH] core-image-cgl: Remove ROOTFS_PKGMANAGE_BOOTSTRAP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,29 +61,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 May 2017 12:20:20 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 May 2017 12:25:05 -0000
+Content-Type: text/plain
 
-I have an image which needs to include the libcups2 package from
-the cups recipe.  If I try adding this to my image recipe
-   CORE_IMAGE_EXTRA_INSTALL_append = " libcups2"
-I get this error:
-   ERROR: Required build target 'my-demo-image' has no buildable providers.
-   Missing or unbuildable dependency chain was: ['my-demo-image', 'libcups2']
+run-postinsts is now installed by default in image.bbclass, so no need
+to include it in each image.
 
-However, I can get it to build with this
-   MACHINE_EXTRA_RRECOMMENDS_append = " libcups2"
+Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
+---
+ meta-cgl-common/images/core-image-cgl-initramfs.bb | 2 +-
+ meta-cgl-common/images/core-image-cgl.bb           | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-What's the difference between these two approaches and why doesn't the first
-one work at all?
-
-Thanks
-
+diff --git a/meta-cgl-common/images/core-image-cgl-initramfs.bb b/meta-cgl-common/images/core-image-cgl-initramfs.bb
+index 2ebbdf5..477f069 100644
+--- a/meta-cgl-common/images/core-image-cgl-initramfs.bb
++++ b/meta-cgl-common/images/core-image-cgl-initramfs.bb
+@@ -3,7 +3,7 @@ require core-image-cgl.bb
+ # Recipe is based on core-image-minimal.bb
+ DESCRIPTION = "Initramfs used to mount multipath device as root file system"
+ 
+-PACKAGE_INSTALL = "initramfs-cgl-boot busybox base-passwd udev ${ROOTFS_BOOTSTRAP_INSTALL}"
++PACKAGE_INSTALL = "initramfs-cgl-boot busybox base-passwd udev"
+ 
+ # Do not pollute the initrd image with rootfs features
+ IMAGE_FEATURES = ""
+diff --git a/meta-cgl-common/images/core-image-cgl.bb b/meta-cgl-common/images/core-image-cgl.bb
+index 7117493..86bf7d4 100644
+--- a/meta-cgl-common/images/core-image-cgl.bb
++++ b/meta-cgl-common/images/core-image-cgl.bb
+@@ -10,7 +10,6 @@ VALGRIND_armv7a ?= "valgrind"
+ 
+ # Include modules in rootfs
+ IMAGE_INSTALL += "\
+-    ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
+     packagegroup-core-buildessential \
+     packagegroup-core-selinux \
+     packagegroup-cgl \
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+2.7.4
+
 
