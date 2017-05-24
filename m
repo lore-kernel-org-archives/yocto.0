@@ -1,33 +1,35 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03D30E00B67; Wed, 24 May 2017 07:23:04 -0700 (PDT)
+	id 98A20E00B2E; Wed, 24 May 2017 07:38:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C2F8E00B27
-	for <yocto@yoctoproject.org>; Wed, 24 May 2017 07:23:03 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 71D4C68A01C; Wed, 24 May 2017 15:23:02 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 347B068A019;
-	Wed, 24 May 2017 15:23:02 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id E364967400FD;
-	Wed, 24 May 2017 16:23:01 +0200 (CEST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <1c18599c-5bf5-d382-0bba-fc7cebb4b2ce@mlbassoc.com>
-Date: Wed, 24 May 2017 16:23:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
-MIME-Version: 1.0
-Subject: webkitgtk2 progress bar
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A12BE00B27
+	for <yocto@yoctoproject.org>; Wed, 24 May 2017 07:38:18 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga104.jf.intel.com with ESMTP; 24 May 2017 07:38:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,386,1491289200"; d="scan'208";a="91260596"
+Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.119])
+	by orsmga002.jf.intel.com with ESMTP; 24 May 2017 07:38:16 -0700
+Message-ID: <1495637202.4956.26.camel@linux.intel.com>
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Wed, 24 May 2017 09:46:42 -0500
+In-Reply-To: <1c18599c-5bf5-d382-0bba-fc7cebb4b2ce@mlbassoc.com>
+References: <1c18599c-5bf5-d382-0bba-fc7cebb4b2ce@mlbassoc.com>
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: webkitgtk2 progress bar
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,21 +41,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 May 2017 14:23:04 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+X-List-Received-Date: Wed, 24 May 2017 14:38:20 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-I see that the latest master update has brought a progress bar
-for this (and presumably other 'cmake' based packages) - very nice :-)
+On Wed, 2017-05-24 at 16:23 +0200, Gary Thomas wrote:
+> I see that the latest master update has brought a progress bar
+> for this (and presumably other 'cmake' based packages) - very nice :-)
+> 
+> Now [tongue-in-cheek], can someone do something about the horrendous
+> build times for such packages (webkitgtk2 can take up to 3 hours on
+> my [no so slow] build host!)?
 
-Now [tongue-in-cheek], can someone do something about the horrendous
-build times for such packages (webkitgtk2 can take up to 3 hours on
-my [no so slow] build host!)?
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+this is not easy and from my side what I have done some profiling based
+on the buildstats to figure out the top consumers recipes/tasks. As you
+mentioned, webkitgtk is the winner, at least for utimes!
+
+https://wiki.yoctoproject.org/wiki/MortyBuildstats
+https://wiki.yoctoproject.org/wiki/TipsAndTricks/InvestigatingBuildTime
+
+Leo
+
+
+
+> 
+> -- 
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+
+
 
