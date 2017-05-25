@@ -1,36 +1,59 @@
-Return-Path: <fabien.lahoudere@collabora.co.uk>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4546E00726; Thu, 25 May 2017 03:39:14 -0700 (PDT)
+	id 9EABEE00726; Thu, 25 May 2017 03:42:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.180.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0B73E00349
-	for <yocto@yoctoproject.org>; Thu, 25 May 2017 03:39:11 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: aragua) with ESMTPSA id 8D547260860
-Message-ID: <1495708748.12055.98.camel@collabora.co.uk>
-From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-To: yocto@yoctoproject.org
-Date: Thu, 25 May 2017 12:39:08 +0200
-In-Reply-To: <713d15f8-240b-a20d-9a4a-6c340412a529@mlbassoc.com>
-References: <CAHUNapSYmEfVLLdLE4_Nr8XEJt830R5cvHMrcnsohYF5sXSaVw@mail.gmail.com>
-	<CAHUNapRGHVwA5agFkp26Vv46qQbyDXYdhvR=wxdU-bAYifS0Eg@mail.gmail.com>
-	<CAHUNapR=ucND-LTtiGgPGMCpXc_WRJwWOSFPeJ6LMwC40_zhHQ@mail.gmail.com>
-	<713d15f8-240b-a20d-9a4a-6c340412a529@mlbassoc.com>
-X-Mailer: Evolution 3.22.5-1 
-Mime-Version: 1.0
-Subject: Re: etnaviv image
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from smtp-out10.electric.net (smtp-out10.electric.net
+	[185.38.180.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E94ECE00349
+	for <yocto@yoctoproject.org>; Thu, 25 May 2017 03:42:14 -0700 (PDT)
+Received: from 1dDqDc-0000hE-Va by out10a.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>)
+	id 1dDqDd-0000k3-TF; Thu, 25 May 2017 03:42:13 -0700
+Received: by emcmailer; Thu, 25 May 2017 03:42:13 -0700
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out10a.electric.net with esmtps (TLSv1:ECDHE-RSA-AES256-SHA:256)
+	(Exim 4.87) (envelope-from <Adrian.Dudau@enea.com>)
+	id 1dDqDc-0000hE-Va; Thu, 25 May 2017 03:42:12 -0700
+Received: from SESTOEX09.enea.se ([fe80::94d8:372f:210c:b4da]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0319.002; Thu, 25 May 2017 12:41:51 +0200
+From: Adrian Dudau <Adrian.Dudau@enea.com>
+To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-cgl][PATCH] core-image-cgl: Remove
+	ROOTFS_PKGMANAGE_BOOTSTRAP
+Thread-Index: AQHS1IjhGqV1SUipV0mBI4X4JoqGNaIElykAgABGPXI=
+Date: Thu, 25 May 2017 10:41:50 +0000
+Message-ID: <C35DE6E3665B10419D70F74D9884ABD49F48C335@sestoex09.enea.se>
+References: <1495628439-48206-1-git-send-email-adrian.dudau@enea.com>,
+	<1916506369.2432592.1495700906758@mail.yahoo.com>
+In-Reply-To: <1916506369.2432592.1495700906758@mail.yahoo.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.1.190]
+MIME-Version: 1.0
+X-Outbound-IP: 192.36.1.72
+X-Env-From: Adrian.Dudau@enea.com
+X-Proto: esmtps
+X-Revdns: mx-3.enea.com
+X-HELO: mx-3.enea.com
+X-TLS: TLSv1:ECDHE-RSA-AES256-SHA:256
+X-Authenticated_ID: 
+X-PolicySMART: 6551647
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Subject: Re: [meta-cgl][PATCH] core-image-cgl: Remove	ROOTFS_PKGMANAGE_BOOTSTRAP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,142 +65,248 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 May 2017 10:39:14 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 25 May 2017 10:42:16 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_C35DE6E3665B10419D70F74D9884ABD49F48C335sestoex09enease_"
 
-On Thu, 2017-05-25 at 11:01 +0200, Gary Thomas wrote:
-> On 2017-05-25 10:48, Trevor Woerner wrote:
-> > w00t!!
-> > 
-> > It took a lot of hacking, but I was able to build and run an image for
-> > the wandboard dual that uses etnaviv :-D
-> > 
-> > Patches to follow.
-> > 
-> > I now have 4 dev boards using open-source graphics:
-> > 1) rpi3-32 with vc4
-> > 2) dragonboard-410c with freedreno
-> > 3) minnow (turbot) with Intel's stuff
-> > 4) wandboard with etnaviv
-> 
-> Would you mind sharing your configuration (conf/local.conf, conf/bblayers.conf)?
-> I'm mostly interested in trying this on my RaspberryPi3.
-> 
+--_000_C35DE6E3665B10419D70F74D9884ABD49F48C335sestoex09enease_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I do this on rpi3 and it works fine.
-https://fabienlahouderepro.blogspot.fr/2017/03/building-weston-image-with-yocto-for.html
+It's been merged already:)
 
-> Thanks
-> 
-> > 
-> > glmark2-es2:
-> > 
-> > root@wandboard:~# glmark2-es2; cat /proc/loadavg
-> > =======================================================
-> >      glmark2 2014.03
-> > =======================================================
-> >      OpenGL Information
-> >      GL_VENDOR:     etnaviv
-> >      GL_RENDERER:   Gallium 0.4 on Vivante GC880 rev 5106
-> >      GL_VERSION:    OpenGL ES 2.0 Mesa 17.0.4
-> > =======================================================
-> > [build] use-vbo=false: FPS: 69 FrameTime: 14.493 ms
-> > [build] use-vbo=true: FPS: 80 FrameTime: 12.500 ms
-> > [texture] texture-filter=nearest: FPS: 68 FrameTime: 14.706 ms
-> > [texture] texture-filter=linear: FPS: 68 FrameTime: 14.706 ms
-> > [texture] texture-filter=mipmap: FPS: 66 FrameTime: 15.152 ms
-> > [shading] shading=gouraud: FPS: 70 FrameTime: 14.286 ms
-> > [shading] shading=blinn-phong-inf: FPS: 61 FrameTime: 16.393 ms
-> > [shading] shading=phong: FPS: 47 FrameTime: 21.277 ms
-> > [shading] shading=cel: FPS: 39 FrameTime: 25.641 ms
-> > [bump] bump-render=high-poly: FPS: 52 FrameTime: 19.231 ms
-> > [bump] bump-render=normals: FPS: 67 FrameTime: 14.925 ms
-> > [bump] bump-render=height: FPS: 60 FrameTime: 16.667 ms
-> > libpng warning: iCCP: known incorrect sRGB profile
-> > [effect2d] kernel=0,1,0;1,-4,1;0,1,0;: FPS: 32 FrameTime: 31.250 ms
-> > libpng warning: iCCP: known incorrect sRGB profile
-> > [effect2d] kernel=1,1,1,1,1;1,1,1,1,1;1,1,1,1,1;: FPS: 14 FrameTime: 71.429 ms
-> > [pulsar] light=false:quads=5:texture=false: FPS: 61 FrameTime: 16.393 ms
-> > libpng warning: iCCP: known incorrect sRGB profile
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > [desktop] blur-radius=5:effect=blur:passes=1:separable=true:windows=4:
-> > FPS: 67 FrameTime: 14.925 ms
-> > Error: RenderObject::init: glCheckFramebufferStatus failed (0x8cdd)
-> > libpng warning: iCCP: known incorrect sRGB profile
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > [desktop] effect=shadow:windows=4: FPS: 68 FrameTime: 14.706 ms
-> > [buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction=0.5:update-
-> > method=map:
-> > FPS: 29 FrameTime: 34.483 ms
-> > [buffer] columns=200:interleave=false:update-dispersion=0.9:update-fraction=0.5:update-
-> > method=subdata:
-> > FPS: 29 FrameTime: 34.483 ms
-> > [buffer] columns=200:interleave=true:update-dispersion=0.9:update-fraction=0.5:update-
-> > method=map:
-> > FPS: 31 FrameTime: 32.258 ms
-> > [ideas] speed=duration:[ 2797.051681] etnaviv-gpu 130000.gpu:
-> > hangcheck detected gpu lockup!
-> > [ 2797.059575] etnaviv-gpu 130000.gpu:      completed fence: 50513
-> > [ 2797.065622] etnaviv-gpu 130000.gpu:      active fence: 50514
-> > [ 2797.072346] etnaviv-gpu 130000.gpu: hangcheck recover!
-> > [ 2800.011603] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!
-> > [ 2800.017890] etnaviv-gpu 130000.gpu:      completed fence: 50514
-> > [ 2800.023895] etnaviv-gpu 130000.gpu:      active fence: 50515
-> > [ 2800.029752] etnaviv-gpu 130000.gpu: hangcheck recover!
-> > [ 2803.051591] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!
-> > [ 2803.057899] etnaviv-gpu 130000.gpu:      completed fence: 50516
-> > [ 2803.063874] etnaviv-gpu 130000.gpu:      active fence: 50518
-> > [ 2803.069702] etnaviv-gpu 130000.gpu: hangcheck recover!
-> > [ 2805.531626] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!
-> > [ 2805.537973] etnaviv-gpu 130000.gpu:      completed fence: 50518
-> > [ 2805.544052] etnaviv-gpu 130000.gpu:      active fence: 50520
-> > [ 2805.551826] etnaviv-gpu 130000.gpu: hangcheck recover!
-> >   FPS: 0 FrameTime: inf ms
-> > [jellyfish] <default>: FPS: 28 FrameTime: 35.714 ms
-> > [terrain] <default>: FPS: 2 FrameTime: 500.000 ms
-> > [shadow] <default>: FPS: 30 FrameTime: 33.333 ms
-> > Error: DistanceRenderTarget::setup: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: Failed to set up the render target for the depth pass
-> > [refract] <default>: Set up failed
-> > [conditionals] fragment-steps=0:vertex-steps=0: FPS: 61 FrameTime: 16.393 ms
-> > [conditionals] fragment-steps=5:vertex-steps=0: FPS: 31 FrameTime: 32.258 ms
-> > [conditionals] fragment-steps=0:vertex-steps=5: FPS: 62 FrameTime: 16.129 ms
-> > [function] fragment-complexity=low:fragment-steps=5: FPS: 46
-> > FrameTime: 21.739 ms
-> > [function] fragment-complexity=medium:fragment-steps=5: FPS: 29
-> > FrameTime: 34.483 ms
-> > [loop] fragment-loop=false:fragment-steps=5:vertex-steps=5: FPS: 45
-> > FrameTime: 22.222 ms
-> > [loop] fragment-steps=5:fragment-uniform=false:vertex-steps=5: FPS: 45
-> > FrameTime: 22.222 ms
-> > [loop] fragment-steps=5:fragment-uniform=true:vertex-steps=5: FPS: 29
-> > FrameTime: 34.483 ms
-> > =======================================================
-> >                                    glmark2 Score: 46
-> > =======================================================
-> > 0.46 0.24 0.09 1/98 621
-> > 
-> > 
-> > not the greatest results, a couple crashes, but better than swrast!
-> > 
-> 
-> 
-> -- 
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
+--Adrian
 
+________________________________
+From: Alexandru Vaduva [vaduvajanalexandru@yahoo.com]
+Sent: Thursday, May 25, 2017 10:28 AM
+To: Adrian Dudau; yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-cgl][PATCH] core-image-cgl: Remove ROOTFS_PKGMAN=
+AGE_BOOTSTRAP
+
+Looks good to me ;)
+Can you also please push upstream the following patch: [yocto] [meta-cgl][P=
+ATCH] meta-cgl-common: remove dependency on meta-openclovis
+
+Thanks,
+Alex V.
+
+
+On Wednesday, May 24, 2017, 3:25:34 PM GMT+3, Adrian Dudau <adrian.dudau@en=
+ea.com> wrote:
+run-postinsts is now installed by default in image.bbclass, so no need
+to include it in each image.
+
+Signed-off-by: Adrian Dudau <adrian.dudau@enea.com<mailto:adrian.dudau@enea=
+.com>>
+---
+meta-cgl-common/images/core-image-cgl-initramfs.bb | 2 +-
+meta-cgl-common/images/core-image-cgl.bb          | 1 -
+2 files changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/meta-cgl-common/images/core-image-cgl-initramfs.bb b/meta-cgl-=
+common/images/core-image-cgl-initramfs.bb
+index 2ebbdf5..477f069 100644
+--- a/meta-cgl-common/images/core-image-cgl-initramfs.bb
++++ b/meta-cgl-common/images/core-image-cgl-initramfs.bb
+@@ -3,7 +3,7 @@ require core-image-cgl.bb
+# Recipe is based on core-image-minimal.bb
+DESCRIPTION =3D "Initramfs used to mount multipath device as root file syst=
+em"
+
+-PACKAGE_INSTALL =3D "initramfs-cgl-boot busybox base-passwd udev ${ROOTFS_=
+BOOTSTRAP_INSTALL}"
++PACKAGE_INSTALL =3D "initramfs-cgl-boot busybox base-passwd udev"
+
+# Do not pollute the initrd image with rootfs features
+IMAGE_FEATURES =3D ""
+diff --git a/meta-cgl-common/images/core-image-cgl.bb b/meta-cgl-common/ima=
+ges/core-image-cgl.bb
+index 7117493..86bf7d4 100644
+--- a/meta-cgl-common/images/core-image-cgl.bb
++++ b/meta-cgl-common/images/core-image-cgl.bb
+@@ -10,7 +10,6 @@ VALGRIND_armv7a ?=3D "valgrind"
+
+# Include modules in rootfs
+IMAGE_INSTALL +=3D "\
+-    ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
+    packagegroup-core-buildessential \
+    packagegroup-core-selinux \
+    packagegroup-cgl \
+--
+2.7.4
+
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+https://lists.yoctoproject.org/listinfo/yocto
+
+--_000_C35DE6E3665B10419D70F74D9884ABD49F48C335sestoex09enease_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">It's been merged already:)<br>
+<br>
+--Adrian<br>
+<br>
+<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
+">
+<hr tabindex=3D"-1">
+<div id=3D"divRpF135979" style=3D"direction: ltr;"><font size=3D"2" color=
+=3D"#000000" face=3D"Tahoma"><b>From:</b> Alexandru Vaduva [vaduvajanalexan=
+dru@yahoo.com]<br>
+<b>Sent:</b> Thursday, May 25, 2017 10:28 AM<br>
+<b>To:</b> Adrian Dudau; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] [meta-cgl][PATCH] core-image-cgl: Remove ROOTFS=
+_PKGMANAGE_BOOTSTRAP<br>
+</font><br>
+</div>
+<div></div>
+<div>
+<div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif; font-s=
+ize:small">
+<div style=3D"font-family:Helvetica Neue,Helvetica,Arial,sans-serif; font-s=
+ize:small">
+<div>
+<div>Looks good to me ;)</div>
+<div>Can you also please push upstream the following patch: <span class=3D"=
+ydpa98af8f8en_N ydpa98af8f8i_3mCHE" title=3D"[yocto] [meta-cgl][PATCH] meta=
+-cgl-common: remove dependency on	meta-openclovis">
+<span>[yocto] [meta-cgl][PATCH] meta-cgl-common: remove dependency on meta-=
+openclovis</span></span>
+</div>
+<div><br>
+</div>
+<div>Thanks,</div>
+<div>Alex V.<br>
+</div>
+<div><br>
+</div>
+</div>
+<div><br>
+</div>
+</div>
+<div id=3D"yahoo_quoted_6640925243" class=3D"yahoo_quoted">
+<div>On Wednesday, May 24, 2017, 3:25:34 PM GMT&#43;3, Adrian Dudau &lt;adr=
+ian.dudau@enea.com&gt; wrote:</div>
+<div>
+<div dir=3D"ltr">run-postinsts is now installed by default in image.bbclass=
+, so no need<br>
+</div>
+<div dir=3D"ltr">to include it in each image.<br>
+</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Signed-off-by: Adrian Dudau &lt;<a href=3D"mailto:adrian.d=
+udau@enea.com" target=3D"_blank">adrian.dudau@enea.com</a>&gt;<br>
+</div>
+<div dir=3D"ltr">---<br>
+</div>
+<div dir=3D"ltr">meta-cgl-common/images/core-image-cgl-initramfs.bb | 2 &#4=
+3;-<br>
+</div>
+<div dir=3D"ltr">meta-cgl-common/images/core-image-cgl.bb&nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; | 1 -<br>
+</div>
+<div dir=3D"ltr">2 files changed, 1 insertion(&#43;), 2 deletions(-)<br>
+</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">diff --git a/meta-cgl-common/images/core-image-cgl-initram=
+fs.bb b/meta-cgl-common/images/core-image-cgl-initramfs.bb<br>
+</div>
+<div dir=3D"ltr">index 2ebbdf5..477f069 100644<br>
+</div>
+<div dir=3D"ltr">--- a/meta-cgl-common/images/core-image-cgl-initramfs.bb<b=
+r>
+</div>
+<div dir=3D"ltr">&#43;&#43;&#43; b/meta-cgl-common/images/core-image-cgl-in=
+itramfs.bb<br>
+</div>
+<div dir=3D"ltr">@@ -3,7 &#43;3,7 @@ require core-image-cgl.bb<br>
+</div>
+<div dir=3D"ltr"># Recipe is based on core-image-minimal.bb<br>
+</div>
+<div dir=3D"ltr">DESCRIPTION =3D &quot;Initramfs used to mount multipath de=
+vice as root file system&quot;<br>
+</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">-PACKAGE_INSTALL =3D &quot;initramfs-cgl-boot busybox base=
+-passwd udev ${ROOTFS_BOOTSTRAP_INSTALL}&quot;<br>
+</div>
+<div dir=3D"ltr">&#43;PACKAGE_INSTALL =3D &quot;initramfs-cgl-boot busybox =
+base-passwd udev&quot;<br>
+</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr"># Do not pollute the initrd image with rootfs features<br>
+</div>
+<div dir=3D"ltr">IMAGE_FEATURES =3D &quot;&quot;<br>
+</div>
+<div dir=3D"ltr">diff --git a/meta-cgl-common/images/core-image-cgl.bb b/me=
+ta-cgl-common/images/core-image-cgl.bb<br>
+</div>
+<div dir=3D"ltr">index 7117493..86bf7d4 100644<br>
+</div>
+<div dir=3D"ltr">--- a/meta-cgl-common/images/core-image-cgl.bb<br>
+</div>
+<div dir=3D"ltr">&#43;&#43;&#43; b/meta-cgl-common/images/core-image-cgl.bb=
+<br>
+</div>
+<div dir=3D"ltr">@@ -10,7 &#43;10,6 @@ VALGRIND_armv7a ?=3D &quot;valgrind&=
+quot;<br>
+</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr"># Include modules in rootfs<br>
+</div>
+<div dir=3D"ltr">IMAGE_INSTALL &#43;=3D &quot;\<br>
+</div>
+<div dir=3D"ltr">-&nbsp; &nbsp; ${ROOTFS_PKGMANAGE_BOOTSTRAP} \<br>
+</div>
+<div dir=3D"ltr">&nbsp; &nbsp; packagegroup-core-buildessential \<br>
+</div>
+<div dir=3D"ltr">&nbsp; &nbsp; packagegroup-core-selinux \<br>
+</div>
+<div dir=3D"ltr">&nbsp; &nbsp; packagegroup-cgl \<br>
+</div>
+<div dir=3D"ltr">-- <br>
+</div>
+<div dir=3D"ltr">2.7.4<br>
+</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">-- <br>
+</div>
+<div dir=3D"ltr">_______________________________________________<br>
+</div>
+<div dir=3D"ltr">yocto mailing list<br>
+</div>
+<div dir=3D"ltr"><a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank=
+">yocto@yoctoproject.org</a><br>
+</div>
+<div dir=3D"ltr"><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_C35DE6E3665B10419D70F74D9884ABD49F48C335sestoex09enease_--
