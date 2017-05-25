@@ -1,41 +1,37 @@
-Return-Path: <zhengrq.fnst@cn.fujitsu.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A662EE00524; Wed, 24 May 2017 18:52:15 -0700 (PDT)
+	id 16B4FE00726; Wed, 24 May 2017 20:33:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_00, DATE_IN_FUTURE_06_12,
-	RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.9 DATE_IN_FUTURE_06_12 Date: is 6 to 12 hours after
-	Received: date
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 66 seconds by postgrey-1.32 at yocto-www;
-	Wed, 24 May 2017 18:52:11 PDT
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30F9AE00349
-	for <yocto@yoctoproject.org>; Wed, 24 May 2017 18:52:11 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.22,518,1449504000"; d="scan'208";a="19277170"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 25 May 2017 09:50:51 +0800
-Received: from G08CNEXCHPEKD03.g08.fujitsu.local (unknown [10.167.33.85])
-	by cn.fujitsu.com (Postfix) with ESMTP id E67A047C7C60
-	for <yocto@yoctoproject.org>; Thu, 25 May 2017 09:50:49 +0800 (CST)
-Received: from localhost.localdomain.localdomain (10.167.226.100) by
-	G08CNEXCHPEKD03.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.319.2; Thu, 25 May 2017 09:50:50 +0800
-From: zhengrq <zhengrq.fnst@cn.fujitsu.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 25 May 2017 18:39:22 +0800
-Message-ID: <1495708762-66219-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
-X-Mailer: git-send-email 1.8.3.1
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40128E00524
+	for <yocto@yoctoproject.org>; Wed, 24 May 2017 20:33:16 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 9E27468A01C; Thu, 25 May 2017 04:33:15 +0100 (BST)
+Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
+	by mail.analogue-micro.com (Postfix) with ESMTP id 51CC368A019;
+	Thu, 25 May 2017 04:33:13 +0100 (BST)
+Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
+	by zeus.mlbassoc.com (Postfix) with ESMTP id 043A167403FE;
+	Thu, 25 May 2017 05:33:12 +0200 (CEST)
+To: yocto@yoctoproject.org
+References: <201bc784-23ea-c40d-beb4-511901b59157@mlbassoc.com>
+	<CAJTo0LZaXqxUF=p4m5m6Ch6oWBc=N3+uHni-6ia3PrhDDmrykA@mail.gmail.com>
+	<08842207-1f14-f53b-05d8-12ec4215f44b@mlbassoc.com>
+From: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <0c2bbd43-e811-df76-9cd7-d3a90d88a486@mlbassoc.com>
+Date: Thu, 25 May 2017 05:33:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
 MIME-Version: 1.0
-X-Originating-IP: [10.167.226.100]
-X-yoursite-MailScanner-ID: E67A047C7C60.A8BA5
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: zhengrq.fnst@cn.fujitsu.com
-Subject: [meta-selinux] [PATCH] audit: 2.7.1 -> 2.7.6
+In-Reply-To: <08842207-1f14-f53b-05d8-12ec4215f44b@mlbassoc.com>
+Subject: Re: How to include libraries?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,38 +43,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 May 2017 01:52:15 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 25 May 2017 03:33:19 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Upgrade audit from 2.7.1 to 2.7.6
+On 2017-05-24 15:49, Gary Thomas wrote:
+> On 2017-05-24 15:26, Burton, Ross wrote:
+>>
+>> On 24 May 2017 at 13:20, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+>>
+>>     I have an image which needs to include the libcups2 package from
+>>     the cups recipe.  If I try adding this to my image recipe
+>>        CORE_IMAGE_EXTRA_INSTALL_append = " libcups2"
+>>     I get this error:
+>>        ERROR: Required build target 'my-demo-image' has no buildable providers.
+>>        Missing or unbuildable dependency chain was: ['my-demo-image', 'libcups2']
+>>
+>>     However, I can get it to build with this
+>>        MACHINE_EXTRA_RRECOMMENDS_append = " libcups2"
+>>
+>>     What's the difference between these two approaches and why doesn't the first
+>>     one work at all?
+>>
+>>
+>> Does the latter actually work?  Recommends won't fail if the package doesn't exist, or is getting pulled in via 
+>> another route.
+>>
+>> I've a feeling that you actually want the pre-renaming name here so try cups-lib.
+> 
+> Thanks, I'm rebuilding the image (after a Poky/master pull) and will let you know.
+> 
+> BTW, that would be awfully confusing to require cups-lib when building but my package
+> manager (opkg) only knows about the [renamed] package libcups2.
+> 
 
-Signed-off-by: zhengrq <zhengrq.fnst@cn.fujitsu.com>
----
- recipes-security/audit/{audit_2.7.1.bb => audit_2.7.6.bb} | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename recipes-security/audit/{audit_2.7.1.bb => audit_2.7.6.bb} (96%)
+You were correct, using MACHINE_EXTRA_RRECOMMENDS didn't work, but explicitly
+including cups-lib did.  Not very intuitive :-(
 
-diff --git a/recipes-security/audit/audit_2.7.1.bb b/recipes-security/audit/audit_2.7.6.bb
-similarity index 96%
-rename from recipes-security/audit/audit_2.7.1.bb
-rename to recipes-security/audit/audit_2.7.6.bb
-index 975e6e9..75d4d23 100644
---- a/recipes-security/audit/audit_2.7.1.bb
-+++ b/recipes-security/audit/audit_2.7.6.bb
-@@ -15,8 +15,8 @@ SRC_URI = "http://people.redhat.com/sgrubb/${BPN}/${BPN}-${PV}.tar.gz \
-            file://auditd.service \
-            file://audit-volatile.conf \
- "
--SRC_URI[md5sum] = "b224ea6f000c8281e5deee86903ac5ba"
--SRC_URI[sha256sum] = "0441790794fd9375dbca598fa0ffb46c57ff37b3a24b94ffec0bbee3215cca09"
-+SRC_URI[md5sum] = "55a81bbed973b58a90590c949e71dc3e"
-+SRC_URI[sha256sum] = "fa65289cffdc95a25bfbdba541f43ee1b12c707090a38fd027dcf9354b9014e7"
- 
- inherit autotools pythonnative update-rc.d systemd
- 
 -- 
-2.7.4
-
-
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
