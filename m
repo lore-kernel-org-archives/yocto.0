@@ -1,37 +1,71 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98CB1E0085D; Wed, 24 May 2017 21:37:03 -0700 (PDT)
+	id A4632E0085D; Wed, 24 May 2017 22:38:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.48 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.48 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2558CE00724
-	for <yocto@yoctoproject.org>; Wed, 24 May 2017 21:36:59 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id A510C68A01C; Thu, 25 May 2017 05:36:58 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id E144968A019;
-	Thu, 25 May 2017 05:36:57 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 955156740575;
-	Thu, 25 May 2017 06:36:57 +0200 (CEST)
-To: yocto@yoctoproject.org
-References: <31a2d863-b928-df06-8e86-78b939469614@mlbassoc.com>
-	<1752127.E0fXlp9gfm@peggleto-mobl.ger.corp.intel.com>
-	<df279cbb-6dae-ba57-927f-94fe139693f0@mlbassoc.com>
-From: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <5bab30d1-19cd-e7f8-f01c-b4eb36b59416@mlbassoc.com>
-Date: Thu, 25 May 2017 06:36:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
+	[209.85.218.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 672D5E00724
+	for <yocto@yoctoproject.org>; Wed, 24 May 2017 22:38:40 -0700 (PDT)
+Received: by mail-oi0-f48.google.com with SMTP id l18so268137609oig.2
+	for <yocto@yoctoproject.org>; Wed, 24 May 2017 22:38:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=IYCGaCQxuKIwgrxYUP8rQcEjqaN2rSguX+M7Zt/hpio=;
+	b=Jxh65x/aGqpLawuzUtBTKWQ69t0AcPJ44XmMY8PYhRWAejsikYaCQ+/pL8SMuCnbBU
+	TV9Kbq1bG5eUjgm6B7kuFOcpJMsA/DKPiaVharhf1MLcWOGV9HDo4/yxW5I/LINxTFpT
+	ScBZt7LlyqIjoUDUARHXXXO2vSM+Cdx+SCc4H99NyCELcRoe2Mg+rQmB5n7sXSAb8FE9
+	2OADNlHw40EfYiHJWPOF85CzK6/TmplQoIvt5pTj0P4bgmmCEoreyw+9WAQC0AgRYy1y
+	OxccQXzD+aV/7PaR/5GyH7yFuBPOt0tFxb9XPP0V4JMPZ4TiqGOUbGu/hPeoV1cxfAjb
+	qigA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=IYCGaCQxuKIwgrxYUP8rQcEjqaN2rSguX+M7Zt/hpio=;
+	b=d1NZs5lm8H4IJSUBQFLQ7ZM5hUrdKmcdHOdj37Alw5jR8qMMLxklEG/SEdVIKC9lte
+	oUXdNU1X+rP9+BS1byB1u5vXS4OHRPt+TP8u/iNKM6EvuLxvKuUeey4PCMkN4ybxdwyc
+	Jm4e30fQFxoDSoMpff7hV4i4L2SQbGAetPAwUUhQ7o0Gu1hKk4fASlC98VnP3BLlAJHV
+	ccsJxboMeqPuBSOE3AUTDblOvRiofOaHWZksmRgvDF2PYIRb1amHtUD9zUrXJ0CeN/tn
+	xrdOvoIRY0oCzBWmTuoLByga8skAGTKw5UVBhZ4rVNhG1mkO9EpiBrZjoYC0W2pjyGh8
+	Eu6w==
+X-Gm-Message-State: AODbwcBOuMRXIfCdaVuKpunjgJrfjcyr6KBB5MnVhKFljtC14c7liTF8
+	u5yL+lRWE1Qsf7HjAYCwiM42k/RPCA==
+X-Received: by 10.202.199.69 with SMTP id x66mr16989022oif.215.1495690720440; 
+	Wed, 24 May 2017 22:38:40 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <df279cbb-6dae-ba57-927f-94fe139693f0@mlbassoc.com>
-Subject: Re: sstate-cache question
+Received: by 10.157.24.107 with HTTP; Wed, 24 May 2017 22:38:39 -0700 (PDT)
+Received: by 10.157.24.107 with HTTP; Wed, 24 May 2017 22:38:39 -0700 (PDT)
+In-Reply-To: <CAHUNapQ=Axu8GV4XDBBhOc94u4D+kcw4tZH_gPGrC1Wm=X0nVA@mail.gmail.com>
+References: <TU4PR84MB01764490D3BCFABC79D8BAC8EDFE0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+	<277e529e-2b7f-2aa7-0784-4689ea84c690@mlbassoc.com>
+	<CAHUNapQ=Axu8GV4XDBBhOc94u4D+kcw4tZH_gPGrC1Wm=X0nVA@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Thu, 25 May 2017 07:38:39 +0200
+Message-ID: <CAC+thW3Wo2zBbEB-nwU8QmYz8Fvw1twkoMSC3hm_dyJnavu=Ug@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Can Yocto treat layers like an external package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,121 +77,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 May 2017 04:37:03 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 25 May 2017 05:38:46 -0000
+Content-Type: multipart/alternative; boundary="001a11c1866615f68f055052a202"
 
-On 2017-05-23 07:27, Gary Thomas wrote:
-> On 2017-05-22 22:35, Paul Eggleton wrote:
->> Hi Gary,
->>
->> On Tuesday, 23 May 2017 2:53:45 AM NZST Gary Thomas wrote:
->>> I have a build where I've never manually removed anything from
->>> the sstate-cache and this same build has been used for hundreds
->>> of builds over the last 18 months.  I just tried to find out why
->>> gcc-cross-arm had to be rebuilt (it seems to happen almost every
->>> time I update my Poky/Yocto tree (master)).  Here's what I got:
->>>
->>> $ bitbake-diffsigs -t gcc-cross-arm compile
->>> Hash for dependent task gcc/gcc-cross_6.3.bb.do_configure changed from
->> 208373dd9ae01101a26a9412eb50b110 to
->>> d65095d4b9aff89f6990bd17c0ab210b
->>> Unable to find matching sigdata for /local/poky-cutting-edge/meta/recipes-
->> devtools/gcc/gcc-cross_6.3.bb.do_configure
->>> with hashes 208373dd9ae01101a26a9412eb50b110 or
->> d65095d4b9aff89f6990bd17c0ab210b
->>>
->>> So if I didn't remove those files, where did they go?  Am I doing
->>> something wrong running this tool?  (running the same command for
->>> qemu-native seemed to work correctly)
->>
->> Is this with master, pyro, morty or some other version?
-> 
-> Poky master: 2568e18701fb20d7105eb6e4929f3aff4b9f9c06
-> 
->>
->> If you search for files with those hashes in their name do they show up?
-> 
-> Only .siginfo files:
-> $ find sstate-cache/ -name "*d65095d4b9aff89f6990bd17c0ab210b*"
-> sstate-cache/universal/d6/sstate:gcc-cross-arm:x86_64-amltd-linux-gnueabi:6.3.0:r0:x86_64_arm:3:d65095d4b9aff89f6990bd17c0ab210b_configure.tgz.siginfo 
-> 
-> $ find sstate-cache -name "*208373dd9ae01101a26a9412eb50b110*"
-> sstate-cache/universal/20/sstate:gcc-cross-arm:x86_64-amltd-linux-gnueabi:6.3.0:r0:x86_64_arm:3:208373dd9ae01101a26a9412eb50b110_configure.tgz.siginfo 
-> 
-> 
-> However, I do find some in tmp/stamps:
-> $ ls tmp/stamps/x86_64-linux/gcc-cross-arm
-> 6.3.0-r0.do_build.41aca0d85971087f4675d2f504642ce4
-> 6.3.0-r0.do_compile.b0eae7e91833efd5e7eceaedbc59983e
-> 6.3.0-r0.do_compile.sigdata.9a06aa40225be30babaceb7673cef0a6
-> 6.3.0-r0.do_compile.sigdata.b0eae7e91833efd5e7eceaedbc59983e
-> 6.3.0-r0.do_configure.d65095d4b9aff89f6990bd17c0ab210b
-> 6.3.0-r0.do_configure.sigdata.208373dd9ae01101a26a9412eb50b110
-> 6.3.0-r0.do_configure.sigdata.d65095d4b9aff89f6990bd17c0ab210b
-> 6.3.0-r0.do_fetch.1dd3c87b3e509c20fa4ffe61d6dc3b41
-> 6.3.0-r0.do_gcc_stash_builddir.063822f91220bb40cef0696eb604a568
-> 6.3.0-r0.do_gcc_stash_builddir.sigdata.063822f91220bb40cef0696eb604a568
-> 6.3.0-r0.do_gcc_stash_builddir.sigdata.28144d3c18c0a09f23f3b0c5e80f049d
-> 6.3.0-r0.do_install.0f96c5448dc9360ca3a24d551ad3da89
-> 6.3.0-r0.do_install.sigdata.0f96c5448dc9360ca3a24d551ad3da89
-> 6.3.0-r0.do_install.sigdata.f2e4d12289c5039854081a832dc8bc0e
-> 6.3.0-r0.do_populate_lic_setscene.d2c9226ddb0de5277e2347b69ef84664
-> 6.3.0-r0.do_populate_sysroot.15afc3bb019a6c0c1285cbda46cb32b0
-> 6.3.0-r0.do_populate_sysroot.sigdata.15afc3bb019a6c0c1285cbda46cb32b0
-> 6.3.0-r0.do_populate_sysroot.sigdata.a0c5b715ae9217f02318beff6987d169
-> 6.3.0-r0.do_prepare_recipe_sysroot.150112323551011e0e87f99f47ad79c4
-> 6.3.0-r0.do_prepare_recipe_sysroot.sigdata.150112323551011e0e87f99f47ad79c4
-> 6.3.0-r0.do_prepare_recipe_sysroot.sigdata.4a528becf11832cc3b8f6fa479e98210
-> 
-> I guess the sstate-cache info alone is not sufficient to use 'bitbake diffsigs'?
-> I do occasionally wipe tmp & downloads, so that may explain these errors.
-> 
+--001a11c1866615f68f055052a202
+Content-Type: text/plain; charset="UTF-8"
 
-I just updated my Poky/Yocto master (a3d160f9e5826140cc8d6b2ed1b38bf022443b08) and it happened again.
-I'm still interested in why gcc-cross-arm had to be rebuilt _again_, so I ran:
+Il 25 mag 2017 6:12 AM, "Trevor Woerner" <twoerner@gmail.com> ha scritto:
 
-$ bitbake-diffsigs -t gcc-cross-arm compile
-NOTE: Started PRServer with DBfile: /build/p0382_2016-01-13/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 45466, PID: 7995
-Hash for dependent task gcc/gcc-cross_6.3.bb.do_configure changed from d65095d4b9aff89f6990bd17c0ab210b to 
-1378c7a11d96284c3d53894d6434b590
-Unable to find matching sigdata for /local/poky-cutting-edge/meta/recipes-devtools/gcc/gcc-cross_6.3.bb.do_configure 
-with hashes d65095d4b9aff89f6990bd17c0ab210b or 1378c7a11d96284c3d53894d6434b590
-NOTE: Started PRServer with DBfile: /build/p0382_2016-01-13/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 45466, PID: 7995
-NOTE: Terminating PRServer...
-$ find tmp/stamps -name "*d65095d4b9aff89f6990bd17c0ab210b*" -or -name "*1378c7a11d96284c3d53894d6434b590*"
-tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_configure.sigdata.1378c7a11d96284c3d53894d6434b590
-tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_configure.sigdata.d65095d4b9aff89f6990bd17c0ab210b
-tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_configure.1378c7a11d96284c3d53894d6434b590
+Hi Yannick,
 
-So, a similar error/outcome, but in this case the necessary files
-do seem to be present.  I did notice that the only files with those
-signatures were for do_configure, so I tried:
+This is a feature many people have been wanting for a while, but
+getting there has been slow. So slow, in fact, that many projects have
+simply gone ahead and implemented their own solutions, all of which
+are different from each other, making it all that much harder to get
+everyone back together to support one idea :-(
 
-$ bitbake-diffsigs -t gcc-cross-arm configure
-NOTE: Started PRServer with DBfile: /build/p0382_2016-01-13/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 34530, PID: 8063
-Hash for dependent task gcc/gcc-cross_6.3.bb.do_prepare_recipe_sysroot changed from 150112323551011e0e87f99f47ad79c4 to 
-c45aaef0cb01f463f9a1b30bd815cd28
-Unable to find matching sigdata for 
-/local/poky-cutting-edge/meta/recipes-devtools/gcc/gcc-cross_6.3.bb.do_prepare_recipe_sysroot with hashes 
-150112323551011e0e87f99f47ad79c4 or c45aaef0cb01f463f9a1b30bd815cd28
-NOTE: Started PRServer with DBfile: /build/p0382_2016-01-13/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 34530, PID: 8063
-NOTE: Terminating PRServer...
-$ find tmp/stamps -name "*150112323551011e0e87f99f47ad79c4*" -or -name "*c45aaef0cb01f463f9a1b30bd815cd28*"
-tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_prepare_recipe_sysroot.c45aaef0cb01f463f9a1b30bd815cd28
-tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_prepare_recipe_sysroot.sigdata.c45aaef0cb01f463f9a1b30bd815cd28
-tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_prepare_recipe_sysroot.sigdata.150112323551011e0e87f99f47ad79c4
+As Gary mentions, "repo" is a popular solution. See, for example, how
+the Linaro people have done it with their "rpb" distro and associated
+setup tools/scripts:
 
-Still not working :-(  What am I missing?  How do I track this down
-(both the issues with bitbake-diffsigs as well as why gcc-cross-arm
-is being rebuilt)?
+https://github.com/96boards/oe-rpb-manifest
 
-Thanks
+The freescale project was the first such instance I saw (but I can't
+say whether they were the first or not):
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+https://github.com/Freescale/fsl-community-bsp-platform
+http://freescale.github.io/#download
 
+Mark Hatle (windriver) has been working on and releasing a tool
+they've been using internally for a while:
+
+https://www.openembedded.org/wiki/OEDEM_2016#Windriver_.E2.
+80.98setup.E2.80.99_Demo
+
+I'm sure there are better links for Mark's work, but I can't find them
+at the moment. Hopefully someone jumps in and fills in the blanks :-)
+
+
+https://github.com/Wind-River/wr-lx-setup
+
+
+I'm sure there are other such examples.
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+--001a11c1866615f68f055052a202
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div><br><div class=3D"gmail_extra"><br><div class=3D"gma=
+il_quote">Il 25 mag 2017 6:12 AM, &quot;Trevor Woerner&quot; &lt;<a href=3D=
+"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; ha scritto:<br type=
+=3D"attribution"><blockquote class=3D"quote" style=3D"margin:0 0 0 .8ex;bor=
+der-left:1px #ccc solid;padding-left:1ex">Hi Yannick,<br>
+<br>
+This is a feature many people have been wanting for a while, but<br>
+getting there has been slow. So slow, in fact, that many projects have<br>
+simply gone ahead and implemented their own solutions, all of which<br>
+are different from each other, making it all that much harder to get<br>
+everyone back together to support one idea :-(<br>
+<br>
+As Gary mentions, &quot;repo&quot; is a popular solution. See, for example,=
+ how<br>
+the Linaro people have done it with their &quot;rpb&quot; distro and associ=
+ated<br>
+setup tools/scripts:<br>
+<br>
+<a href=3D"https://github.com/96boards/oe-rpb-manifest" rel=3D"noreferrer" =
+target=3D"_blank">https://github.com/96boards/<wbr>oe-rpb-manifest</a><br>
+<br>
+The freescale project was the first such instance I saw (but I can&#39;t<br=
+>
+say whether they were the first or not):<br>
+<br>
+<a href=3D"https://github.com/Freescale/fsl-community-bsp-platform" rel=3D"=
+noreferrer" target=3D"_blank">https://github.com/Freescale/<wbr>fsl-communi=
+ty-bsp-platform</a><br>
+<a href=3D"http://freescale.github.io/#download" rel=3D"noreferrer" target=
+=3D"_blank">http://freescale.github.io/#<wbr>download</a><br>
+<br>
+Mark Hatle (windriver) has been working on and releasing a tool<br>
+they&#39;ve been using internally for a while:<br>
+<br>
+<a href=3D"https://www.openembedded.org/wiki/OEDEM_2016#Windriver_.E2.80.98=
+setup.E2.80.99_Demo" rel=3D"noreferrer" target=3D"_blank">https://www.opene=
+mbedded.org/<wbr>wiki/OEDEM_2016#Windriver_.E2.<wbr>80.98setup.E2.80.99_Dem=
+o</a><br>
+<br>
+I&#39;m sure there are better links for Mark&#39;s work, but I can&#39;t fi=
+nd them<br>
+at the moment. Hopefully someone jumps in and fills in the blanks :-)<br></=
+blockquote></div></div></div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+<a href=3D"https://github.com/Wind-River/wr-lx-setup">https://github.com/Wi=
+nd-River/wr-lx-setup</a><br></div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote clas=
+s=3D"quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">
+<br>
+I&#39;m sure there are other such examples.<br>
+<div class=3D"elided-text">--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</div></blockquote></div><br></div></div></div>
+
+--001a11c1866615f68f055052a202--
