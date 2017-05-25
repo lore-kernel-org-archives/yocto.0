@@ -1,71 +1,37 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F4A9E00349; Wed, 24 May 2017 14:55:52 -0700 (PDT)
+	id 925FBE00524; Wed, 24 May 2017 17:17:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.67 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.67 listed in list.dnswl.org]
-Received: from mail-vk0-f67.google.com (mail-vk0-f67.google.com
-	[209.85.213.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40D61E00349
-	for <yocto@yoctoproject.org>; Wed, 24 May 2017 14:55:39 -0700 (PDT)
-Received: by mail-vk0-f67.google.com with SMTP id h16so10160523vkd.0
-	for <yocto@yoctoproject.org>; Wed, 24 May 2017 14:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=HutdRREJwnNFq6SyHpzmjlTQayGH2reubnWEcywKYmM=;
-	b=Hf0YAXivpfCQ42h9W4GQe9gfDCDLpE6FiJYl/NQ1JetyXmLJjMm9a0A4uHpg4AGTfy
-	UMnD/pyiv2BQhLROqquuI8T5B+e7nQWvYEVJjfAQsaCnm8pjQSUHZZ+fsNXTYLz28Yh6
-	EBzXfIQoxx4b6c169YbdyeyBptqUz/NZn5uE9HprvXRbNwBIlmA5p5w78nOFzwkoWyE8
-	WKTcUZEdU69WVGlQFLS1Zz6C4djCZVy9zM07QPtz2bNMHUsgm5YAjKBFOjx7hMHbNk9T
-	zeA1pkEOnZeNAjEGjaYXYTNWNPTWIH1cPhaxZvpf8NpRWySargCyI9I42Y+EDFbP5tnG
-	MRsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=HutdRREJwnNFq6SyHpzmjlTQayGH2reubnWEcywKYmM=;
-	b=e6TehvVBDFP872szUT/kKrB5rSCmQu6aFiFwdSQgWl1kqYaUigerU3sv9aL6ZAL6kA
-	+RWP/VLDQQcJ89GgUXA7wLNcvTchxJfXLOVFHdWf03E+JzeT/DEMPZsqkGCyyUCrbujm
-	D7SWW+4/Z3RpEsC950fhKitAmXB3qblTxTQSFrf27bhdj4IeYqchah6Hirsj7JxpdQpb
-	JDBWdZZtJ4z+3Sk6hnY9ymf0sAt9PlSenj0R16pJfFIdBP8pxqVe0DnUFtnmyh7wb5OI
-	Wu8JbgvIc6cwRlkY+Idyo7I3n3JU6x7RQwuKCSkX+Qxo0e4LklGDh2w2ClgroWZNSNxT
-	j8gg==
-X-Gm-Message-State: AODbwcDoWYunGSLaSqRCV2OPwURmsZkca1Ng7x321DlA1vcDeKpbmbx+
-	g0TdYB10tHp1eIVocrkzMC42vswPoQ==
-X-Received: by 10.31.94.7 with SMTP id s7mr15557813vkb.49.1495662938780; Wed,
-	24 May 2017 14:55:38 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7B75E00349
+	for <yocto@yoctoproject.org>; Wed, 24 May 2017 17:17:00 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	24 May 2017 17:16:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,388,1491289200"; d="scan'208";a="266080320"
+Received: from hsharma-mobl1.amr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.176.196])
+	by fmsmga004.fm.intel.com with ESMTP; 24 May 2017 17:16:56 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Jose Lamego <jose.a.lamego@linux.intel.com>
+Date: Thu, 25 May 2017 12:16:54 +1200
+Message-ID: <6834896.yorQbjXbBY@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <1491247889-13977-1-git-send-email-jose.a.lamego@linux.intel.com>
+References: <1491247889-13977-1-git-send-email-jose.a.lamego@linux.intel.com>
 MIME-Version: 1.0
-Received: by 10.103.67.199 with HTTP; Wed, 24 May 2017 14:55:38 -0700 (PDT)
-In-Reply-To: <2d052d0a-b9fc-f9a5-e93d-66f5046c7ee9@balister.org>
-References: <20170522151716.4792-1-romain.perier@collabora.com>
-	<CAHUNapT-bEsYjEd_2HeMUj3th8J2Hupho7TLHROzkHe9D0CVRA@mail.gmail.com>
-	<1d897931-c8fd-756a-0c09-d45647647801@collabora.com>
-	<CAHUNapTmGJPOpFJjXuH718kp40iUB1GCt07ri25OgSnULN9C6A@mail.gmail.com>
-	<b5ff4065-bb87-7aa7-7928-bb48d52ebb62@collabora.com>
-	<2d052d0a-b9fc-f9a5-e93d-66f5046c7ee9@balister.org>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Wed, 24 May 2017 17:55:38 -0400
-Message-ID: <CAHUNapTF2q4e75=dPGNAUUK-+YYJHF9UU2SJF8ko86hkniRM5A@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-rockchip][PATCH 0/3] u-boot: mainline
+Cc: yocto@yoctoproject.org
+Subject: Re: [layerindex-web][PATCH] views: support querying by layer name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,12 +43,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 May 2017 21:55:52 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 25 May 2017 00:17:06 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, May 24, 2017 at 4:12 PM, Philip Balister <philip@balister.org> wrote:
-> I'd check with Marex the u-boot maintainer also. He may have something
-> queued up. It is entirely possible he isn't on this list.
+Hi Jose,
 
-Good point. Marek just posted a 2017.05 update to oecore :-)
+Sorry for the extreme delay reviewing this.
+
+On Tuesday, 4 April 2017 7:31:29 AM NZST Jose Lamego wrote:
+> This change supports querying recipes that belong to a specific layer
+> by using the prefix "layer:" + the desired layer name, for example:
+> "layer: openembedded-core" and this string can be used by itself or
+> combined with other supported options.
+> 
+> [YOCTO #6618]
+> 
+> Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
+> ---
+>  layerindex/views.py | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/layerindex/views.py b/layerindex/views.py
+> index 65a536a..5b66892 100644
+> --- a/layerindex/views.py
+> +++ b/layerindex/views.py
+> @@ -383,13 +383,16 @@ class RecipeSearchView(ListView):
+>          query_string = self.request.GET.get('q', '')
+>          init_qs = 
+Recipe.objects.filter(layerbranch__branch__name=self.kwargs['branch'])
+>  
+> -        # Support slightly crude search on inherits field
+> +        # Support slightly crude search on inherits/layer fields
+>          query_items = query_string.split()
+>          inherits = []
+> +        layers = []
+>          query_terms = []
+>          for item in query_items:
+>              if item.startswith('inherits:'):
+>                  inherits.append(item.split(':')[1])
+> +            elif item.startswith('layer:'):
+> +                layers.append(item.split(':')[1])
+>              else:
+>                  query_terms.append(item)
+>          if inherits:
+> @@ -397,6 +400,14 @@ class RecipeSearchView(ListView):
+>              for inherit in inherits:
+>                  init_qs = init_qs.filter(Q(inherits=inherit) | 
+Q(inherits__startswith=inherit + ' ') | Q(inherits__endswith=' ' + inherit) | 
+Q(inherits__contains=' %s ' % inherit))
+>              query_string = ' '.join(query_terms)
+> +        if layers:
+> +            for layer in layers:
+> +                init_qs = init_qs.filter(
+> +                    Q(layerbranch__layer__name=layer) |
+> +                    Q(layerbranch__layer__name__startswith=layer + ' ') |
+> +                    Q(layerbranch__layer__name__endswith=' ' + layer) |
+> +                    Q(layerbranch__layer__name__contains=' %s ' % layer))
+> +            query_string = ' '.join(query_terms)
+
+Could we instead determine which layers match the query (i.e. the IDs), and 
+then do an layerbranch__layer__in (or layerbranch__layer__id__in, not sure 
+which)? That way we can also return a specific message if no layers match the 
+query. I'm not sure we really need the fuzzy matches either - just exact name 
+match.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
