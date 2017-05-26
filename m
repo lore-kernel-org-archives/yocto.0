@@ -1,85 +1,75 @@
-Return-Path: <richard_allen@keysight.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6E4C7E00C1E; Fri, 26 May 2017 06:13:56 -0700 (PDT)
+	id 0C87DE00C1E; Fri, 26 May 2017 06:34:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.36.127 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.223.173 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.173 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 907 seconds by postgrey-1.32 at yocto-www;
-	Fri, 26 May 2017 06:13:53 PDT
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam02on0127.outbound.protection.outlook.com [104.47.36.127])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E262E00AE4
-	for <yocto@yoctoproject.org>; Fri, 26 May 2017 06:13:53 -0700 (PDT)
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71586E00AE4
+	for <yocto@yoctoproject.org>; Fri, 26 May 2017 06:34:43 -0700 (PDT)
+Received: by mail-io0-f173.google.com with SMTP id f102so9416644ioi.2
+	for <yocto@yoctoproject.org>; Fri, 26 May 2017 06:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=keysighttech.onmicrosoft.com; s=selector1-keysight-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=jQ8d6jfYoJWjxGPUbbGSYkgJcu6B/InE8DD0OcZiIPM=;
-	b=jMJlR6xQbXH+KPSS+sNNIH8xY8X4yDRYQsfNaFkFFC5J6GM8jndwgnKUk8M3KHw1odQYOghEWBPskP2M/dHY9LMjKK+EvcTcTafPldYebLRZiMLnDxCyHsuvYN7mHNZwIGxdBmxa+UDr2M+4EkJu0URZwc6Yg7HSt3V9bIrybME=
-Received: from BL2PR17MB0723.namprd17.prod.outlook.com (10.167.118.25) by
-	BL2PR17MB0721.namprd17.prod.outlook.com (10.167.118.23) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1124.9; Fri, 26 May 2017 12:58:44 +0000
-Received: from BL2PR17MB0723.namprd17.prod.outlook.com
-	([fe80::ad7c:a55a:a1c4:1a14]) by
-	BL2PR17MB0723.namprd17.prod.outlook.com
-	([fe80::ad7c:a55a:a1c4:1a14%14]) with mapi id 15.01.1124.011;
-	Fri, 26 May 2017 12:58:44 +0000
-From: "ALLEN,RICHARD (K-SantaClara,ex1)" <richard_allen@keysight.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: pyro not honoring TOOLCHAIN_TARGET_TASK  in populate_sdk
-Thread-Index: AdLWHsB4O+rDr0wiQHiu+z20luhJeQ==
-Date: Fri, 26 May 2017 12:58:44 +0000
-Message-ID: <BL2PR17MB07231874E7E5333D663C42BEF1FC0@BL2PR17MB0723.namprd17.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=keysight.com;
-x-originating-ip: [206.49.107.132]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BL2PR17MB0721;
-	7:0hpIpVDZYT5T+uC4U9bD1OTzMpAw0n/T1C2oSJBYDnHkTMvUV/pWIO2k6NquS2Ra+9CQmZENR9MwrW5sdFU4/EE0T3fW75n5kgwYBBO1vCgDbZKeTlPXmCE86SJJlk5t7fYWQVG12KVDA8Wzun7JiQyU3oqONdWkbOueYXNyvbfjV2J2pcZOYfX6JUwTDGOygKYrbknPBxrj8Bff7iDOkjpj/irefOxolr7M2BTNGszM6wB9VlorC7oida+jhAa3VHJvxlFTQzofBZ5y1sjpQcX23jKJaDSWh/6+qADEckoXuLqewmDTDbQy09aWvMoOQXMYFhIz+CHpw+ebgBW9yg==
-x-ms-traffictypediagnostic: BL2PR17MB0721:
-x-ms-office365-filtering-correlation-id: cee4f765-1a05-4219-f8f8-08d4a436f0ce
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(2017030254075)(201703131423075)(201703031133081);
-	SRVR:BL2PR17MB0721; 
-x-microsoft-antispam-prvs: <BL2PR17MB07210038DBEEBEBF5E4B8D7FF1FC0@BL2PR17MB0721.namprd17.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700061)(100105000095)(100000701061)(100105300095)(100000702061)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(100000703061)(100105400095)(3002001)(93006095)(93001095)(10201501046)(6041248)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123558100)(20161123562025)(20161123560025)(20161123564025)(20161123555025)(6072148)(100000704061)(100105200095)(100000705061)(100105500095);
-	SRVR:BL2PR17MB0721; BCL:0; PCL:0;
-	RULEID:(100000800061)(100110000095)(100000801061)(100110300095)(100000802061)(100110100095)(100000803061)(100110400095)(100000804061)(100110200095)(100000805054)(100110500095);
-	SRVR:BL2PR17MB0721; 
-x-forefront-prvs: 031996B7EF
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(39850400002)(39410400002)(39450400003)(39840400002)(39400400002)(50986999)(54356999)(6506006)(33656002)(3660700001)(2351001)(99286003)(25786009)(8676002)(81166006)(1730700003)(6436002)(6916009)(110136004)(8936002)(102836003)(55016002)(53936002)(3846002)(6116002)(86362001)(7696004)(38730400002)(5660300001)(305945005)(9686003)(7736002)(5640700003)(478600001)(74316002)(189998001)(3280700002)(66066001)(2900100001)(5250100002)(2906002)(2501003)(14454004);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BL2PR17MB0721;
-	H:BL2PR17MB0723.namprd17.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: keysight.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2017 12:58:44.0266 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 63545f27-3232-4d74-a44d-cdd457063402
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2PR17MB0721
-Subject: pyro not honoring TOOLCHAIN_TARGET_TASK in populate_sdk
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:mime-version:content-transfer-encoding;
+	bh=nfxf833G94vJqL8kI8AykUOe/1zbk4cFZ3xeB/lQ5EM=;
+	b=UGcpR3o+zysNi2QQcxUUeWxOXH0hvoZrfJ6bBb77Ta4QjHhPQ/YCLRd8yNN74wJjZs
+	AGheeAPs1iCC6mCSPRcwycEHAe0DqSLAlETXt3eZj5KPmYQbC8oBo7Cf4uugwqJzYsZ1
+	QISEHk4z74EPbSYvhSU0Ws4r6ZYK0zdGWhRQMFm16yoaKmwzCbYMwQXVamw59nhpJ0gN
+	f1EP8JZ+oNzFEJugKJXifi0d3Mow8y+5yeq7msa/Wwil9CpbU5QOwayBniyHE14JcNsH
+	1Tjg5AiAO5HtGgM/JL6zhZtLWGyfipcaIqFhvb+R7JFntK/O5pK4th+82V2CEf26SMJG
+	Fu5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:organization:mime-version:content-transfer-encoding;
+	bh=nfxf833G94vJqL8kI8AykUOe/1zbk4cFZ3xeB/lQ5EM=;
+	b=BxH7+A66rqtFYQyFHhVgT8nsoazPNTP6GQkco0HuxhRir1WK/bgwxlRd/jWBw0bMuW
+	otTm2gafC9Mdiz7jFo93DhhZhOAN61C5CLnPiFDldp9wYkLIuFpcS2qcxXCsB2/Hz4d/
+	Q+Xs7UHWNEcwG1tNcRlHkdWgIX6jye0o0vx0lEezXilx7ZYpGMP5QiUlC5v5kiXcPCGq
+	Bjzpb2bxGjcf/L3bJt4NygzDZzcJRab3RMXiTCYqzD1cBuONNGoYJYJZUXR25jpamr48
+	Wy5pIILQmwK38Pii4bvRUPvZb7pJNCg4X8HGlUECLuN99zPY214PtUIf1vjAQ0wtQt10
+	8xaw==
+X-Gm-Message-State: AODbwcDYMbj7BM9W7iTlWmHcSZPc78wzZd5Epypsexp6UyYYT/tuDCEy
+	adAiVZeqdPj+CZefaqY=
+X-Received: by 10.107.164.227 with SMTP id d96mr1992361ioj.157.1495805683021; 
+	Fri, 26 May 2017 06:34:43 -0700 (PDT)
+Received: from pohly-mobl1 (p5DE8F704.dip0.t-ipconnect.de. [93.232.247.4])
+	by smtp.gmail.com with ESMTPSA id 6sm293914ioj.0.2017.05.26.06.34.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 26 May 2017 06:34:41 -0700 (PDT)
+Message-ID: <1495805679.16923.117.camel@intel.com>
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: "Koehler, Yannick (HPN Aruba)" <yannick.koehler@hpe.com>
+Date: Fri, 26 May 2017 15:34:39 +0200
+In-Reply-To: <TU4PR84MB0176FDFE3EF004412A28517BEDFF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+References: <TU4PR84MB01764490D3BCFABC79D8BAC8EDFE0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+	<277e529e-2b7f-2aa7-0784-4689ea84c690@mlbassoc.com>
+	<CAHUNapQ=Axu8GV4XDBBhOc94u4D+kcw4tZH_gPGrC1Wm=X0nVA@mail.gmail.com>
+	<CAC+thW3Wo2zBbEB-nwU8QmYz8Fvw1twkoMSC3hm_dyJnavu=Ug@mail.gmail.com>
+	<TU4PR84MB0176C9C56A48F5689036F976EDFF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+	<20170525143941.7vhq3tr5snnvdhky@nyx.americas.hpqcorp.net>
+	<TU4PR84MB0176FDFE3EF004412A28517BEDFF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can Yocto treat layers like an external package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -91,28 +81,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 May 2017 13:13:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 26 May 2017 13:34:47 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-With the pyro drop , when I use an -c populate_sdk,  It appears that TOOLCH=
-AIN_TARGET_TASK  is not being honored.
+On Thu, 2017-05-25 at 16:04 +0000, Koehler, Yannick (HPN Aruba) wrote:
+> This is my opinion, I think we could alter bitbake to retrieve the SRC_URI and S information from the bblayers.conf (instead of having recipes like for package).
+> 
+>     sample 
+>     # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+>     # changes incompatibly
+>     LCONF_VERSION = "6"
+> 
+>     BBPATH = "${TOPDIR}"
+>     BBFILES ?= ""
+> 
+>     BBLAYERS ?= " \
+>       ##OEROOT##/meta \
+>       ##OEROOT##/meta-yocto \
+>       ##OEROOT##/meta-yocto-bsp \
+>       ##OEROOT##/meta-openembedded;SRC_URI="git://git@github.com/openembedded/meta-openembedded;protocol=ssh;branch=master";SRCREV="${AUTOREV}" \
+>       "
+>     BBLAYERS_NON_REMOVABLE ?= " \
+>       ##OEROOT##/meta \
+>       ##OEROOT##/meta-yocto \
+>       "
+> 
+> Bitbake could then fetch/update the layer from the SRC_URI into the location given "##OEROOT##/meta-openembedded" prior to parsing.
 
-I have a=20
-TOOLCHAIN_TARGET_TASK_append =3D " gtest"
+Richard has indeed been thinking about a solution like that for 2.4.
 
-With morty, gtest is included in -c populate_sdk generated sdk
-but with pyro, it is not.
+I agree that it looks attractive at first glance. However, I see a
+chicken-and-egg problem with no (easy?) solution: a developer who wants
+to get started with a distro "foo" first needs to check out the repo
+containing that distro's definition and local.conf.sample, then somehow
+also check out a version of bitbake that works with that distro
+revision, and only then can bitbake download the additional layers.
 
-Is this a known issue with pyro?
-Thanks
+Perhaps we can make it so that bitbake has a separate tool that works
+outside of a build environment and then sets up that environment.
 
+-- 
+Best Regards, Patrick Ohly
 
+The content of this message is my personal opinion only and although
+I am an employee of Intel, the statements I make here in no way
+represent Intel's position on the issue, nor am I authorized to speak
+on behalf of Intel on this matter.
 
-
-Richard C. Allen
-richard_allen@Keysight.com
 
 
 
