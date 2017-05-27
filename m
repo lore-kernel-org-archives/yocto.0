@@ -1,72 +1,26 @@
-Return-Path: <stephen.arnold42@gmail.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 060E0E00C74; Fri, 26 May 2017 16:24:00 -0700 (PDT)
+	id E53FDE00852; Sat, 27 May 2017 12:06:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (stephen.arnold42[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.43 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.43 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f43.google.com (mail-oi0-f43.google.com
-	[209.85.218.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFF52E00C70;
-	Fri, 26 May 2017 16:23:55 -0700 (PDT)
-Received: by mail-oi0-f43.google.com with SMTP id b204so29865028oii.1;
-	Fri, 26 May 2017 16:23:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=kFvSv48wZwTyiBn7DZfdudQ5MLm5VGLLukdqFX+Weks=;
-	b=RjwPmYF+UCIdHpxrTl2PY1mTC6PLKmCcGX0Q8/lpXwqhnHwyk82QGASbe29+bJuDN2
-	Xq+QFaMvqgIGYHdK5J+rIJegdZ3C1KxF4MJ12toXUPXfzI4NzX7k16+rZ17igoviVeua
-	eRfOCx99vFBQ3u/htUBXIqmeSa3anIcVGpYfud/0++Bn4VLsUhXjaY/I3azdDJMJrWxk
-	oDw2ZDLsck31ZbN16gd2QWhe8KI0OXgC+VMCUXcVizahPcrlkMzxRLwKojgkcZ73QOMG
-	hyFwfEqHzyB4dDohv2hHX7l/LsXq8fttJGTHc7iwDRV+bZbTQdAnUZwXbLwaJ17ZlES7
-	oX1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=kFvSv48wZwTyiBn7DZfdudQ5MLm5VGLLukdqFX+Weks=;
-	b=L9OIgbX15s7bNFMJi9oqaysoMixyMDZ4CEZR8r1izYge2eeE2++yBNkxm7a7Iu2ruI
-	7dbgUMl9rSMfkSK9pTNawMpRns/4kpvHyAlyT2ti+SKhia8M0h/qp4QbOjPlHffCr8UM
-	F2VsmUa9PPC6t2uzEOsAibilzYGYbI6qrxFTssfyulrKHhtLgwmuVtvaOpoO9VNcb2AK
-	aVk/LyJW458zxzMfXXPZ2ZxKOriJ7d3KBzL8nvV9gLjlqUusEkaDNdz3ptOCrwSJYVuy
-	5OKq4EvpgHjaAuvya/FVt5X9cLyq65ul7d1W2iDd2ihQgcvSX7oh/Wzl1LPVvXFky2r7
-	1BAA==
-X-Gm-Message-State: AODbwcBDKGId7NzQLyyUDDXupaD/6W9JroIpd1djVgtjhxUoOhqiyNjJ
-	EH7suJbR4ukYt3o/wLyF6x3ZuPP51bzB
-X-Received: by 10.157.68.150 with SMTP id v22mr2015320ote.250.1495841035050;
-	Fri, 26 May 2017 16:23:55 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69F62E00524
+	for <yocto@yoctoproject.org>; Sat, 27 May 2017 12:06:15 -0700 (PDT)
+Received: from auh.yocto.io (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id CAB4544A1C4
+	for <yocto@yoctoproject.org>; Sat, 27 May 2017 12:05:04 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.182.61.82 with HTTP; Fri, 26 May 2017 16:23:54 -0700 (PDT)
-In-Reply-To: <CALbNGRTyPU74ipKJwuZpVP+btn7vcca-QJQxUNun8JLSQ0yMgA@mail.gmail.com>
-References: <CAHUNapSYmEfVLLdLE4_Nr8XEJt830R5cvHMrcnsohYF5sXSaVw@mail.gmail.com>
-	<CAHUNapRGHVwA5agFkp26Vv46qQbyDXYdhvR=wxdU-bAYifS0Eg@mail.gmail.com>
-	<CAHUNapR=ucND-LTtiGgPGMCpXc_WRJwWOSFPeJ6LMwC40_zhHQ@mail.gmail.com>
-	<CALbNGRTyPU74ipKJwuZpVP+btn7vcca-QJQxUNun8JLSQ0yMgA@mail.gmail.com>
-From: Stephen Arnold <stephen.arnold42@gmail.com>
-Date: Fri, 26 May 2017 16:23:54 -0700
-Message-ID: <CAOLEWZU7Jj+gSoh-gdTSDd9fvYC5Kb2VpTKkeDv7h5PccLsTgQ@mail.gmail.com>
-To: meta-freescale <meta-freescale@yoctoproject.org>
-X-Mailman-Approved-At: Sat, 27 May 2017 09:46:50 -0700
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-freescale] etnaviv image
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20170527190504.CAB4544A1C4@auh.yoctoproject.org>
+Date: Sat, 27 May 2017 12:05:04 -0700 (PDT)
+Subject: [AUH] Upgrade status: 2017-05-27
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,416 +32,188 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 May 2017 23:24:00 -0000
-Content-Type: multipart/alternative; boundary="f4030435397c88e63b055075a133"
+X-List-Received-Date: Sat, 27 May 2017 19:06:17 -0000
+Content-Type: multipart/mixed; boundary="===============0153041113508851109=="
 
---f4030435397c88e63b055075a133
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============0153041113508851109==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 
-@Trevor what's your config/setup?  Did you wind up using the
-"use-mainline-bsp" thing?
+QVVIIGZpbmlzaGVkIHVwZ3JhZGUgYmF0Y2ggdGhlIHJlc3VsdCBwYXRjaGVzL2xvZ3MgY2FuIGJl
+IGZvdW5kIGF0OgpodHRwczovL2xvZ3MueW9jdG9wcm9qZWN0Lm9yZy9hdWgvLzIwMTcwNTIzMDkx
+MzI3LCBuZXh0IGFyZSB0aGUgc3RhdGlzdGljczoKClJlY2lwZSB1cGdyYWRlIHN0YXRpc3RpY3M6
+CgogICAgKiBGYWlsZWQob3RoZXIgZXJyb3JzKTogNDYKICAgICAgICBzcWxpdGUzLCAzLjE5LjAs
+IE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGFwdCwgMS40LjQs
+IEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIGd0
+ayszLCAzLjkwLjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAg
+ICAgICAgbnB0aCwgMS40LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50
+ZWwuY29tPgogICAgICAgIGtlcm5lbHNoYXJrLCAyLjYuMSwgQWxleGFuZGVyIEthbmF2aW4gPGFs
+ZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBidXN5Ym94LCAxLjI2LjIsIEFybWlu
+IEt1c3RlciA8YWt1c3RlcjgwOEBnbWFpbC5jb20+CiAgICAgICAgY21ha2UsIDMuOC4xLCBPdGF2
+aW8gU2FsdmFkb3IgPG90YXZpby5zYWx2YWRvckBvc3N5c3RlbXMuY29tLmJyPgogICAgICAgIG9w
+ZW5zc2wsIDEuMS4wZSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVs
+LmNvbT4KICAgICAgICBsb2dyb3RhdGUsIDktMSwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdp
+bmRyaXZlci5jb20+CiAgICAgICAgZGViaWFudXRpbHMsIDQuOC4xLjEsIFJvYmVydCBZYW5nIDxs
+aWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIG1lc2EsIDE3LjEuMCwgT3RhdmlvIFNh
+bHZhZG9yIDxvdGF2aW8uc2FsdmFkb3JAb3NzeXN0ZW1zLmNvbS5icj4KICAgICAgICBjb25ubWFu
+LCAxLjM0LCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBnc3Ry
+ZWFtZXIxLjAtcGx1Z2lucy1iYWQsIDEuMTIuMCwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBp
+bnRlbC5jb20+CiAgICAgICAgY3J5cHRvZGV2LWxpbnV4LCAxLjksIFJvYmVydCBZYW5nIDxsaWV6
+aGkueWFuZ0B3aW5kcml2ZXIuY29tPgogICAgICAgIGRwa2csIDEuMTguMjQsIEFuw61iYWwgTGlt
+w7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIHN5c3RlbWQtYm9vdCwg
+MjMzLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgYWxzYS1saWIsIDEu
+MS40LCBUYW51IEthc2tpbmVuIDx0YW51a0Bpa2kuZmk+CiAgICAgICAgZ2xpYi0yLjAsIDIuNTIu
+MiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBxZW11
+LCAyLjkuMCwgQW7DrWJhbCBMaW3Ds24gPGFuaWJhbC5saW1vbkBsaW51eC5pbnRlbC5jb20+CiAg
+ICAgICAgbHRwLCAyMDE3MDUxNiwgRGVuZ2tlIER1IDxkZW5na2UuZHVAd2luZHJpdmVyLmNvbT4K
+ICAgICAgICBnaG9zdHNjcmlwdCwgOS4yMSwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2
+ZXIuY29tPgogICAgICAgIHByZWxpbmssIDIwMTUxMDMwLitnaXRBVVRPSU5DKzkyNzk3OWJiZDEs
+IE1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT4KICAgICAgICBzZWQsIDQuNCwg
+Q2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGRyb3BiZWFyLCAyMDE3Ljc1
+LCBEZW5na2UgRHUgPGRlbmdrZS5kdUB3aW5kcml2ZXIuY29tPgogICAgICAgIGttb2QsIDI0K2dp
+dEFVVE9JTkMrZWY0MjU3YjU5YywgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAg
+ICAgIGRpZmZ1dGlscywgMy42LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAg
+ICAgZ251dGxzLCAzLjUuMTIsIEFybWluIEt1c3RlciA8YWt1c3RlckBtdmlzdGEuY29tPgogICAg
+ICAgIGd1aWxlLCAyLjIuMiwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+
+CiAgICAgICAgZ3N0cmVhbWVyMS4wLXBsdWdpbnMtYmFzZSwgMS4xMi4wLCBNYXhpbiBCLiBKb2hu
+IDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBmbGV4LCAyLjYuNCwgQ2hlbiBRaSA8UWku
+Q2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIHZ1bGthbiwgMjAxNDEyMDksIEp1c3NpIEt1a2tv
+bmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZ29iamVjdC1pbnRyb3NwZWN0
+aW9uLCAxLjUyLjEsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5j
+b20+CiAgICAgICAgZWxmdXRpbHMsIDAuMTY5LCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRy
+aXZlci5jb20+CiAgICAgICAgbGlibmwsIDMuMy4wLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFu
+ZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGJjLCAxLjA3LjEsIEpvc2UgTGFtZWdvIDxq
+b3NlLmEubGFtZWdvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBkbWlkZWNvZGUsIDMuMSwgQWxl
+eGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBnc3Ry
+ZWFtZXIxLjAtcGx1Z2lucy1nb29kLCAxLjEyLjAsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5A
+aW50ZWwuY29tPgogICAgICAgIHdlYmtpdGd0aywgMi4xNi4yLCBBbGV4YW5kZXIgS2FuYXZpbiA8
+YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIG5zcywgMy4zMC4yLCBBcm1pbiBL
+dXN0ZXIgPGFrdXN0ZXJAbXZpc3RhLmNvbT4KICAgICAgICB0aWZmLCA0LjAuOCwgQWxleGFuZGVy
+IEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBnZGJtLCAxLjEz
+LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAg
+IGJhc2gsIDQuNCwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAg
+IGVwaXBoYW55LCAzLjI0LjIsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBp
+bnRlbC5jb20+CiAgICAgICAgbHNiaW5pdHNjcmlwdHMsIDkuNzAsIFJvc3MgQnVydG9uIDxyb3Nz
+LmJ1cnRvbkBpbnRlbC5jb20+CiAgICAgICAgcHl0aG9uMy1zZXR1cHRvb2xzLCAzNS4wLjIsIEVk
+d2luIFBsYXVjaHUgPGVkd2luLnBsYXVjaHUuY2FtYWNob0BsaW51eC5pbnRlbC5jb20+CiAgICAg
+ICAgZ3N0cmVhbWVyMS4wLCAxLjEyLjAsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwu
+Y29tPgogICAgKiBGYWlsZWQoZG9fcGFja2FnZSk6IDEKICAgICAgICBsaWJyc3ZnLCAyLjQwLjE3
+LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgKiBGYWlsZWQo
+ZG9fY29uZmlndXJlKTogNQogICAgICAgIHBpbmVudHJ5LCAxLjAuMCwgQXJtaW4gS3VzdGVyIDxh
+a3VzdGVyODA4QGdtYWlsLmNvbT4KICAgICAgICB2dGUsIDAuNDguMywgSnVzc2kgS3Vra29uZW4g
+PGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBsem8sIDIuMTAsIEFybWluIEt1c3Rl
+ciA8YWt1c3RlcjgwOEBnbWFpbC5jb20+CiAgICAgICAgZ3N0cmVhbWVyMS4wLXJ0c3Atc2VydmVy
+LCAxLjEyLjAsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGFk
+d2FpdGEtaWNvbi10aGVtZSwgMy4yNC4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5A
+aW50ZWwuY29tPgogICAgKiBGYWlsZWQoZG9fY29tcGlsZSk6IDEyCiAgICAgICAgZ3BnbWUsIDEu
+OS4wLCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgc3Vkbywg
+MS44LjIwLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgbHo0LCAxMzEs
+IEFybWluIEt1c3RlciA8YWt1c3RlcjgwOEBnbWFpbC5jb20+CiAgICAgICAgaGRwYXJtLCA5LjUy
+LCBEZW55cyBEbXl0cml5ZW5rbyA8ZGVuaXNAZGVuaXgub3JnPgogICAgICAgIGxpYnhtbC1uYW1l
+c3BhY2VzdXBwb3J0LXBlcmwsIDEuMTIsIEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGlu
+dXguaW50ZWwuY29tPgogICAgICAgIGljdSwgNTkuMSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhh
+bmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBsaWJ4bWwtc2ltcGxlLXBlcmwsIDIuMjQs
+IEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIGxp
+YnBjcmUyLCAxMC4yMywgQXJtaW4gS3VzdGVyIDxha3VzdGVyQG12aXN0YS5jb20+CiAgICAgICAg
+dHJhY2UtY21kLCAyLjYuMSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGlu
+dGVsLmNvbT4KICAgICAgICBweXRob24tc2V0dXB0b29scywgMzUuMC4yLCBFZHdpbiBQbGF1Y2h1
+IDxlZHdpbi5wbGF1Y2h1LmNhbWFjaG9AbGludXguaW50ZWwuY29tPgogICAgICAgIHBrZ2NvbmZp
+ZywgMC4yOS4yK2dpdEFVVE9JTkMrZWRmOGU2ZjBlYSwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9o
+bkBpbnRlbC5jb20+CiAgICAgICAgc3lzcHJvZiwgMy4yNC4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8
+YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgKiBGYWlsZWQoZG9fZmV0Y2gpOiA1CiAg
+ICAgICAgZ2l0LCAyLjEzLjAsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29t
+PgogICAgICAgIGlmdXBkb3duLCAwLjguMTksIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50
+ZWwuY29tPgogICAgICAgIGtjb25maWctZnJvbnRlbmRzLCA0LjExLjAuMSwgQWxleGFuZGVyIEth
+bmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBjcnlwdG9kZXYtdGVz
+dHMsIDEuOSwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAg
+Y3J5cHRvZGV2LW1vZHVsZSwgMS45LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVy
+LmNvbT4KICAgICogU3VjY2VlZGVkOiA0MQogICAgICAgIGxpYmV2ZGV2LCAxLjUuNywgSnVzc2kg
+S3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBsaWJuZXd0LCAwLjUy
+LjIwLCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgZ251cGcs
+IDIuMS4yMSwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIGN1
+cHMsIDIuMi4zLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgYWxzYS1w
+bHVnaW5zLCAxLjEuNCwgVGFudSBLYXNraW5lbiA8dGFudWtAaWtpLmZpPgogICAgICAgIGF0LXNw
+aTItY29yZSwgMi4yNC4xLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29t
+PgogICAgICAgIG5hc20sIDIuMTMuMDEsIFJpY2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZUBs
+aW51eGZvdW5kYXRpb24ub3JnPgogICAgICAgIHBhbmdvLCAxLjQwLjYsIEp1c3NpIEt1a2tvbmVu
+IDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZWQsIDEuMTQuMiwgQWxleGFuZGVy
+IEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBsaWJzb3VwLTIu
+NCwgMi41OC4xLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAg
+ICAgIHhkZy11dGlscywgMS4xLjIsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRl
+bC5jb20+CiAgICAgICAgcHl0aG9uMy1weWdvYmplY3QsIDMuMjQuMSwgRWR3aW4gUGxhdWNodSA8
+ZWR3aW4ucGxhdWNodS5jYW1hY2hvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBwY2l1dGlscywg
+My41LjQsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJpdmVyLmNvbT4KICAgICAgICB4c2VydmVyLXhv
+cmcsIDEuMTkuMywgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAg
+ICAgICB4Zjg2LWlucHV0LWxpYmlucHV0LCAwLjI1LjEsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5r
+dWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAganNvbi1nbGliLCAxLjIuOCwgRGVuZ2tlIER1IDxk
+ZW5na2UuZHVAd2luZHJpdmVyLmNvbT4KICAgICAgICBtYW4tcGFnZXMsIDQuMTEsIEhvbmd4dSBK
+aWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBldWRldiwgMy4yLjIsIEFsZWph
+bmRybyBIZXJuYW5kZXogPGFsZWphbmRyby5oZXJuYW5kZXpAbGludXguaW50ZWwuY29tPgogICAg
+ICAgIGNsdXR0ZXItZ3N0LTMuMCwgMy4wLjI0LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29u
+ZW5AaW50ZWwuY29tPgogICAgICAgIGxpYmlucHV0LCAxLjcuMiwgSnVzc2kgS3Vra29uZW4gPGp1
+c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBsaWJmYWtla2V5LCAwLjMrZ2l0QVVUT0lO
+Qys3YWQ4ODU5MTJlLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwu
+Y29tPgogICAgICAgIHZhbGEsIDAuMzYuMywgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5r
+YW5hdmluQGludGVsLmNvbT4KICAgICAgICB4a2Jjb21wLCAxLjQuMCwgSnVzc2kgS3Vra29uZW4g
+PGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBncGVyZiwgMy4xLCBBbGV4YW5kZXIg
+S2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGlwcm91dGUyLCA0
+LjExLjAsIEFybWluIEt1c3RlciA8YWt1c3RlckBtdmlzdGEuY29tPgogICAgICAgIGJsdWV6NSwg
+NS40NSwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgbGliZXBv
+eHksIDEuNC4yLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAg
+ICAgIGxpYmNyb2NvLCAwLjYuMTIsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRl
+bC5jb20+CiAgICAgICAgZ25vbWUtdGhlbWVzLXN0YW5kYXJkLCAzLjIyLjMsIEp1c3NpIEt1a2tv
+bmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgYXRrLCAyLjI0LjAsIEp1c3Np
+IEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgbmZzLXV0aWxzLCAy
+LjEuMSwgTGVvbmFyZG8gU2FuZG92YWwgPGxlb25hcmRvLnNhbmRvdmFsLmdvbnphbGV6QGxpbnV4
+LmludGVsLmNvbT4KICAgICAgICB1dGlsLWxpbnV4LCAyLjI5LjIsIENoZW4gUWkgPFFpLkNoZW5A
+d2luZHJpdmVyLmNvbT4KICAgICAgICBmcmVldHlwZSwgMi44LCBKdXNzaSBLdWtrb25lbiA8anVz
+c2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIHN5c3N0YXQsIDExLjUuNiwgQ2hlbiBRaSA8
+UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGF0LXNwaTItYXRrLCAyLjI0LjEsIEp1c3Np
+IEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgbGlieDExLCAxLjYu
+NSwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBjbHV0
+dGVyLTEuMCwgMS4yNi4yLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29t
+PgogICAgICAgIHJ1YnksIDIuNC4xLCBMZW9uYXJkbyBTYW5kb3ZhbCA8bGVvbmFyZG8uc2FuZG92
+YWwuZ29uemFsZXpAbGludXguaW50ZWwuY29tPgogICAgICAgIGJ0cmZzLXRvb2xzLCA0LjExLCBB
+bGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGxp
+YnNuZGZpbGUxLCAxLjAuMjgsIFRhbnUgS2Fza2luZW4gPHRhbnVrQGlraS5maT4KICAgICAgICBn
+c2V0dGluZ3MtZGVza3RvcC1zY2hlbWFzLCAzLjI0LjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5r
+dWtrb25lbkBpbnRlbC5jb20+CiAgICAqIEZhaWxlZChnZXRfZW52KTogMwogICAgICAgIGxpYm5l
+d3QtcHl0aG9uLCAwLjUyLjIwLCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+
+CiAgICAgICAgdS1ib290LW1raW1hZ2UsIDIwMTcuMDUsIE1hcmVrIFZhc3V0IDxtYXJlay52YXN1
+dEBnbWFpbC5jb20+CiAgICAgICAgYWxzYS11dGlscy1zY3JpcHRzLCAxLjEuNCwgVGFudSBLYXNr
+aW5lbiA8dGFudWtAaWtpLmZpPgoKICAgIFRPVEFMOiBhdHRlbXB0ZWQ9MTEzIHN1Y2NlZWRlZD00
+MSgzNi4yOCUpIGZhaWxlZD03Mig2My43MiUpCgpSZWNpcGUgdXBncmFkZSBzdGF0aXN0aWNzIHBl
+ciBNYWludGFpbmVyOgoKICAgIEpvc2UgTGFtZWdvIDxqb3NlLmEubGFtZWdvOiBhdHRlbXB0ZWQ9
+MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIFJvYmVydCBZYW5nIDxs
+aWV6aGkueWFuZzogYXR0ZW1wdGVkPTcgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD03KDEwMC4w
+MCUpCiAgICBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huOiBhdHRlbXB0ZWQ9MTAgc3VjY2VlZGVk
+PTEoMTAuMDAlKSBmYWlsZWQ9OSg5MC4wMCUpCiAgICBNYXJrIEhhdGxlIDxtYXJrLmhhdGxlOiBh
+dHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIEFuw61i
+YWwgTGltw7NuIDxhbmliYWwubGltb246IGF0dGVtcHRlZD01IHN1Y2NlZWRlZD0wKDAuMDAlKSBm
+YWlsZWQ9NSgxMDAuMDAlKQogICAgT3RhdmlvIFNhbHZhZG9yIDxvdGF2aW8uc2FsdmFkb3I6IGF0
+dGVtcHRlZD0yIHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9MigxMDAuMDAlKQogICAgQWxleGFu
+ZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluOiBhdHRlbXB0ZWQ9MTkgc3VjY2VlZGVkPTUo
+MjYuMzIlKSBmYWlsZWQ9MTQoNzMuNjglKQogICAgTWFyZWsgVmFzdXQgPG1hcmVrLnZhc3V0OiBh
+dHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIFRhbnUg
+S2Fza2luZW4gPHRhbnVrOiBhdHRlbXB0ZWQ9NCBzdWNjZWVkZWQ9Mig1MC4wMCUpIGZhaWxlZD0y
+KDUwLjAwJSkKICAgIEFybWluIEt1c3RlciA8YWt1c3RlcjogYXR0ZW1wdGVkPTQgc3VjY2VlZGVk
+PTEoMjUuMDAlKSBmYWlsZWQ9Myg3NS4wMCUpCiAgICBMZW9uYXJkbyBTYW5kb3ZhbCA8bGVvbmFy
+ZG8uc2FuZG92YWwuZ29uemFsZXo6IGF0dGVtcHRlZD0yIHN1Y2NlZWRlZD0yKDEwMC4wMCUpIGZh
+aWxlZD0wKDAuMDAlKQogICAgQXJtaW4gS3VzdGVyIDxha3VzdGVyODA4OiBhdHRlbXB0ZWQ9NCBz
+dWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTQoMTAwLjAwJSkKICAgIEp1c3NpIEt1a2tvbmVuIDxq
+dXNzaS5rdWtrb25lbjogYXR0ZW1wdGVkPTI1IHN1Y2NlZWRlZD0xOSg3Ni4wMCUpIGZhaWxlZD02
+KDI0LjAwJSkKICAgIFJpY2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZTogYXR0ZW1wdGVkPTEg
+c3VjY2VlZGVkPTEoMTAwLjAwJSkgZmFpbGVkPTAoMC4wMCUpCiAgICBEZW55cyBEbXl0cml5ZW5r
+byA8ZGVuaXM6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9MSgxMDAuMDAl
+KQogICAgUm9zcyBCdXJ0b24gPHJvc3MuYnVydG9uOiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgw
+LjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIEVkd2luIFBsYXVjaHUgPGVkd2luLnBsYXVjaHUu
+Y2FtYWNobzogYXR0ZW1wdGVkPTMgc3VjY2VlZGVkPTEoMzMuMzMlKSBmYWlsZWQ9Mig2Ni42NyUp
+CiAgICBEZW5na2UgRHUgPGRlbmdrZS5kdTogYXR0ZW1wdGVkPTMgc3VjY2VlZGVkPTEoMzMuMzMl
+KSBmYWlsZWQ9Mig2Ni42NyUpCiAgICBIb25neHUgSmlhIDxob25neHUuamlhOiBhdHRlbXB0ZWQ9
+OCBzdWNjZWVkZWQ9MygzNy41MCUpIGZhaWxlZD01KDYyLjUwJSkKICAgIEFsZWphbmRybyBIZXJu
+YW5kZXogPGFsZWphbmRyby5oZXJuYW5kZXo6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0xKDEwMC4w
+MCUpIGZhaWxlZD0wKDAuMDAlKQogICAgQ2hlbiBRaSA8UWkuQ2hlbjogYXR0ZW1wdGVkPTEwIHN1
+Y2NlZWRlZD00KDQwLjAwJSkgZmFpbGVkPTYoNjAuMDAlKQo=
 
-I pretty much had to hack up some of the meta-fsl/meta-boundary stuff and
-put everything else in local.conf.  It would be a little easier/cleaner if
-the former had some ?=3D in a few places...
-
-Anyway, I masked the browser stuff so I haven't tested that far yet, but
-all you really need for 3D under X is new kernel/libdrm/mesa for ~110 fps
-with glxgears.  I added recipes for the x11-armada stuff, which seems to
-work for 2D but coughs an error in the xorg log.  I probably tested more
-with oe-core than poky but both should work.
-
-Anyway, my stuff is also on github, with a manifest repo for boundary
-devices/fsl that should point to the hacks in VCT forks:
-
-https://github.com/VCTLabs/vct-boundary-bsp-platform
-
-https://github.com/sarnold/meta-small-arm-extra
-
-Sample boundary conf files are in the second one ^^
-
-Steve
-
-On Thu, May 25, 2017 at 6:17 AM, Andreas M=C3=BCller <
-schnitzeltony@googlemail.com> wrote:
-
-> On Thu, May 25, 2017 at 10:48 AM, Trevor Woerner <twoerner@gmail.com>
-> wrote:
-> > w00t!!
-> >
-> > It took a lot of hacking, but I was able to build and run an image for
-> > the wandboard dual that uses etnaviv :-D
-> >
-> > Patches to follow.
-> >
-> > I now have 4 dev boards using open-source graphics:
-> > 1) rpi3-32 with vc4
-> > 2) dragonboard-410c with freedreno
-> > 3) minnow (turbot) with Intel's stuff
-> > 4) wandboard with etnaviv
-> >
-> > glmark2-es2:
-> >
-> > root@wandboard:~# glmark2-es2; cat /proc/loadavg
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-> >     glmark2 2014.03
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-> >     OpenGL Information
-> >     GL_VENDOR:     etnaviv
-> >     GL_RENDERER:   Gallium 0.4 on Vivante GC880 rev 5106
-> >     GL_VERSION:    OpenGL ES 2.0 Mesa 17.0.4
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-> > [build] use-vbo=3Dfalse: FPS: 69 FrameTime: 14.493 ms
-> > [build] use-vbo=3Dtrue: FPS: 80 FrameTime: 12.500 ms
-> > [texture] texture-filter=3Dnearest: FPS: 68 FrameTime: 14.706 ms
-> > [texture] texture-filter=3Dlinear: FPS: 68 FrameTime: 14.706 ms
-> > [texture] texture-filter=3Dmipmap: FPS: 66 FrameTime: 15.152 ms
-> > [shading] shading=3Dgouraud: FPS: 70 FrameTime: 14.286 ms
-> > [shading] shading=3Dblinn-phong-inf: FPS: 61 FrameTime: 16.393 ms
-> > [shading] shading=3Dphong: FPS: 47 FrameTime: 21.277 ms
-> > [shading] shading=3Dcel: FPS: 39 FrameTime: 25.641 ms
-> > [bump] bump-render=3Dhigh-poly: FPS: 52 FrameTime: 19.231 ms
-> > [bump] bump-render=3Dnormals: FPS: 67 FrameTime: 14.925 ms
-> > [bump] bump-render=3Dheight: FPS: 60 FrameTime: 16.667 ms
-> > libpng warning: iCCP: known incorrect sRGB profile
-> > [effect2d] kernel=3D0,1,0;1,-4,1;0,1,0;: FPS: 32 FrameTime: 31.250 ms
-> > libpng warning: iCCP: known incorrect sRGB profile
-> > [effect2d] kernel=3D1,1,1,1,1;1,1,1,1,1;1,1,1,1,1;: FPS: 14 FrameTime:
-> 71.429 ms
-> > [pulsar] light=3Dfalse:quads=3D5:texture=3Dfalse: FPS: 61 FrameTime: 16=
-.393 ms
-> > libpng warning: iCCP: known incorrect sRGB profile
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > [desktop] blur-radius=3D5:effect=3Dblur:passes=3D1:separable=3Dtrue:win=
-dows=3D4:
-> > FPS: 67 FrameTime: 14.925 ms
-> > Error: RenderObject::init: glCheckFramebufferStatus failed (0x8cdd)
-> > libpng warning: iCCP: known incorrect sRGB profile
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)
-> > [desktop] effect=3Dshadow:windows=3D4: FPS: 68 FrameTime: 14.706 ms
-> > [buffer] columns=3D200:interleave=3Dfalse:update-dispersion=3D0.9:updat=
-e-
-> fraction=3D0.5:update-method=3Dmap:
-> > FPS: 29 FrameTime: 34.483 ms
-> > [buffer] columns=3D200:interleave=3Dfalse:update-dispersion=3D0.9:updat=
-e-
-> fraction=3D0.5:update-method=3Dsubdata:
-> > FPS: 29 FrameTime: 34.483 ms
-> > [buffer] columns=3D200:interleave=3Dtrue:update-dispersion=3D0.9:update=
--
-> fraction=3D0.5:update-method=3Dmap:
-> > FPS: 31 FrameTime: 32.258 ms
-> > [ideas] speed=3Dduration:[ 2797.051681] etnaviv-gpu 130000.gpu:
-> > hangcheck detected gpu lockup!
-> > [ 2797.059575] etnaviv-gpu 130000.gpu:      completed fence: 50513
-> > [ 2797.065622] etnaviv-gpu 130000.gpu:      active fence: 50514
-> > [ 2797.072346] etnaviv-gpu 130000.gpu: hangcheck recover!
-> > [ 2800.011603] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!
-> > [ 2800.017890] etnaviv-gpu 130000.gpu:      completed fence: 50514
-> > [ 2800.023895] etnaviv-gpu 130000.gpu:      active fence: 50515
-> > [ 2800.029752] etnaviv-gpu 130000.gpu: hangcheck recover!
-> > [ 2803.051591] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!
-> > [ 2803.057899] etnaviv-gpu 130000.gpu:      completed fence: 50516
-> > [ 2803.063874] etnaviv-gpu 130000.gpu:      active fence: 50518
-> > [ 2803.069702] etnaviv-gpu 130000.gpu: hangcheck recover!
-> > [ 2805.531626] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!
-> > [ 2805.537973] etnaviv-gpu 130000.gpu:      completed fence: 50518
-> > [ 2805.544052] etnaviv-gpu 130000.gpu:      active fence: 50520
-> > [ 2805.551826] etnaviv-gpu 130000.gpu: hangcheck recover!
-> >  FPS: 0 FrameTime: inf ms
-> > [jellyfish] <default>: FPS: 28 FrameTime: 35.714 ms
-> > [terrain] <default>: FPS: 2 FrameTime: 500.000 ms
-> > [shadow] <default>: FPS: 30 FrameTime: 33.333 ms
-> > Error: DistanceRenderTarget::setup: glCheckFramebufferStatus failed
-> (0x8cdd)
-> > Error: Failed to set up the render target for the depth pass
-> > [refract] <default>: Set up failed
-> > [conditionals] fragment-steps=3D0:vertex-steps=3D0: FPS: 61 FrameTime:
-> 16.393 ms
-> > [conditionals] fragment-steps=3D5:vertex-steps=3D0: FPS: 31 FrameTime:
-> 32.258 ms
-> > [conditionals] fragment-steps=3D0:vertex-steps=3D5: FPS: 62 FrameTime:
-> 16.129 ms
-> > [function] fragment-complexity=3Dlow:fragment-steps=3D5: FPS: 46
-> > FrameTime: 21.739 ms
-> > [function] fragment-complexity=3Dmedium:fragment-steps=3D5: FPS: 29
-> > FrameTime: 34.483 ms
-> > [loop] fragment-loop=3Dfalse:fragment-steps=3D5:vertex-steps=3D5: FPS: =
-45
-> > FrameTime: 22.222 ms
-> > [loop] fragment-steps=3D5:fragment-uniform=3Dfalse:vertex-steps=3D5: FP=
-S: 45
-> > FrameTime: 22.222 ms
-> > [loop] fragment-steps=3D5:fragment-uniform=3Dtrue:vertex-steps=3D5: FPS=
-: 29
-> > FrameTime: 34.483 ms
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-> >                                   glmark2 Score: 46
-> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-> > 0.46 0.24 0.09 1/98 621
-> >
-> >
-> > not the greatest results, a couple crashes, but better than swrast!
-> Very interesting. If I remember correct, there were further
-> enhancements for mesa 17.1.x on etnaviv - so keep going. There was a
-> patch for 17.1.0 on oe-core but that one was rejected (the x.x.0
-> versions are marked as development release)
->
-> Just an information don't want to stop your enthusiasm: With closed
-> source BLOB and X11 the values for glmark-es2 were 250-260 last time I
-> tested in imx6 (variscite board).
->
-> Best regards
->
-> Andreas
-> --
-> _______________________________________________
-> meta-freescale mailing list
-> meta-freescale@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-freescale
->
-
---f4030435397c88e63b055075a133
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div>@Trevor what&#39;s your config/se=
-tup?=C2=A0 Did you wind up using the &quot;use-mainline-bsp&quot; thing?<br=
-><br></div>I pretty much had to hack up some of the meta-fsl/meta-boundary =
-stuff and put everything else in local.conf.=C2=A0 It would be a little eas=
-ier/cleaner if the former had some ?=3D in a few places...<br><br></div>Any=
-way, I masked the browser stuff so I haven&#39;t tested that far yet, but a=
-ll you really need for 3D under X is new kernel/libdrm/mesa for ~110 fps wi=
-th glxgears.=C2=A0 I added recipes for the x11-armada stuff, which seems to=
- work for 2D but coughs an error in the xorg log.=C2=A0 I probably tested m=
-ore with oe-core than poky but both should work.<br><br></div>Anyway, my st=
-uff is also on github, with a manifest repo for boundary devices/fsl that s=
-hould point to the hacks in VCT forks:<br><br><a href=3D"https://github.com=
-/VCTLabs/vct-boundary-bsp-platform">https://github.com/VCTLabs/vct-boundary=
--bsp-platform</a><br><br><a href=3D"https://github.com/sarnold/meta-small-a=
-rm-extra">https://github.com/sarnold/meta-small-arm-extra</a><br><br></div>=
-Sample boundary conf files are in the second one ^^<br><br></div>Steve<br><=
-/div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, May =
-25, 2017 at 6:17 AM, Andreas M=C3=BCller <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:schnitzeltony@googlemail.com" target=3D"_blank">schnitzeltony@googlem=
-ail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D=
-"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=
-=3D"HOEnZb"><div class=3D"h5">On Thu, May 25, 2017 at 10:48 AM, Trevor Woer=
-ner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt; wr=
-ote:<br>
-&gt; w00t!!<br>
-&gt;<br>
-&gt; It took a lot of hacking, but I was able to build and run an image for=
-<br>
-&gt; the wandboard dual that uses etnaviv :-D<br>
-&gt;<br>
-&gt; Patches to follow.<br>
-&gt;<br>
-&gt; I now have 4 dev boards using open-source graphics:<br>
-&gt; 1) rpi3-32 with vc4<br>
-&gt; 2) dragonboard-410c with freedreno<br>
-&gt; 3) minnow (turbot) with Intel&#39;s stuff<br>
-&gt; 4) wandboard with etnaviv<br>
-&gt;<br>
-&gt; glmark2-es2:<br>
-&gt;<br>
-&gt; root@wandboard:~# glmark2-es2; cat /proc/loadavg<br>
-&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-&gt;=C2=A0 =C2=A0 =C2=A0glmark2 2014.03<br>
-&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-&gt;=C2=A0 =C2=A0 =C2=A0OpenGL Information<br>
-&gt;=C2=A0 =C2=A0 =C2=A0GL_VENDOR:=C2=A0 =C2=A0 =C2=A0etnaviv<br>
-&gt;=C2=A0 =C2=A0 =C2=A0GL_RENDERER:=C2=A0 =C2=A0Gallium 0.4 on Vivante GC8=
-80 rev 5106<br>
-&gt;=C2=A0 =C2=A0 =C2=A0GL_VERSION:=C2=A0 =C2=A0 OpenGL ES 2.0 Mesa 17.0.4<=
-br>
-&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-&gt; [build] use-vbo=3Dfalse: FPS: 69 FrameTime: 14.493 ms<br>
-&gt; [build] use-vbo=3Dtrue: FPS: 80 FrameTime: 12.500 ms<br>
-&gt; [texture] texture-filter=3Dnearest: FPS: 68 FrameTime: 14.706 ms<br>
-&gt; [texture] texture-filter=3Dlinear: FPS: 68 FrameTime: 14.706 ms<br>
-&gt; [texture] texture-filter=3Dmipmap: FPS: 66 FrameTime: 15.152 ms<br>
-&gt; [shading] shading=3Dgouraud: FPS: 70 FrameTime: 14.286 ms<br>
-&gt; [shading] shading=3Dblinn-phong-inf: FPS: 61 FrameTime: 16.393 ms<br>
-&gt; [shading] shading=3Dphong: FPS: 47 FrameTime: 21.277 ms<br>
-&gt; [shading] shading=3Dcel: FPS: 39 FrameTime: 25.641 ms<br>
-&gt; [bump] bump-render=3Dhigh-poly: FPS: 52 FrameTime: 19.231 ms<br>
-&gt; [bump] bump-render=3Dnormals: FPS: 67 FrameTime: 14.925 ms<br>
-&gt; [bump] bump-render=3Dheight: FPS: 60 FrameTime: 16.667 ms<br>
-&gt; libpng warning: iCCP: known incorrect sRGB profile<br>
-&gt; [effect2d] kernel=3D0,1,0;1,-4,1;0,1,0;: FPS: 32 FrameTime: 31.250 ms<=
-br>
-&gt; libpng warning: iCCP: known incorrect sRGB profile<br>
-&gt; [effect2d] kernel=3D1,1,1,1,1;1,1,1,1,1;1,<wbr>1,1,1,1;: FPS: 14 Frame=
-Time: 71.429 ms<br>
-&gt; [pulsar] light=3Dfalse:quads=3D5:texture=3D<wbr>false: FPS: 61 FrameTi=
-me: 16.393 ms<br>
-&gt; libpng warning: iCCP: known incorrect sRGB profile<br>
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; [desktop] blur-radius=3D5:effect=3Dblur:<wbr>passes=3D1:separable=3Dtr=
-ue:<wbr>windows=3D4:<br>
-&gt; FPS: 67 FrameTime: 14.925 ms<br>
-&gt; Error: RenderObject::init: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; libpng warning: iCCP: known incorrect sRGB profile<br>
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; Error: RenderObject::size: glCheckFramebufferStatus failed (0x8cdd)<br=
->
-&gt; [desktop] effect=3Dshadow:windows=3D4: FPS: 68 FrameTime: 14.706 ms<br=
->
-&gt; [buffer] columns=3D200:interleave=3Dfalse:<wbr>update-dispersion=3D0.9=
-:update-<wbr>fraction=3D0.5:update-method=3D<wbr>map:<br>
-&gt; FPS: 29 FrameTime: 34.483 ms<br>
-&gt; [buffer] columns=3D200:interleave=3Dfalse:<wbr>update-dispersion=3D0.9=
-:update-<wbr>fraction=3D0.5:update-method=3D<wbr>subdata:<br>
-&gt; FPS: 29 FrameTime: 34.483 ms<br>
-&gt; [buffer] columns=3D200:interleave=3Dtrue:<wbr>update-dispersion=3D0.9:=
-update-<wbr>fraction=3D0.5:update-method=3D<wbr>map:<br>
-&gt; FPS: 31 FrameTime: 32.258 ms<br>
-&gt; [ideas] speed=3Dduration:[ 2797.051681] etnaviv-gpu 130000.gpu:<br>
-&gt; hangcheck detected gpu lockup!<br>
-&gt; [ 2797.059575] etnaviv-gpu 130000.gpu:=C2=A0 =C2=A0 =C2=A0 completed f=
-ence: 50513<br>
-&gt; [ 2797.065622] etnaviv-gpu 130000.gpu:=C2=A0 =C2=A0 =C2=A0 active fenc=
-e: 50514<br>
-&gt; [ 2797.072346] etnaviv-gpu 130000.gpu: hangcheck recover!<br>
-&gt; [ 2800.011603] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!<=
-br>
-&gt; [ 2800.017890] etnaviv-gpu 130000.gpu:=C2=A0 =C2=A0 =C2=A0 completed f=
-ence: 50514<br>
-&gt; [ 2800.023895] etnaviv-gpu 130000.gpu:=C2=A0 =C2=A0 =C2=A0 active fenc=
-e: 50515<br>
-&gt; [ 2800.029752] etnaviv-gpu 130000.gpu: hangcheck recover!<br>
-&gt; [ 2803.051591] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!<=
-br>
-&gt; [ 2803.057899] etnaviv-gpu 130000.gpu:=C2=A0 =C2=A0 =C2=A0 completed f=
-ence: 50516<br>
-&gt; [ 2803.063874] etnaviv-gpu 130000.gpu:=C2=A0 =C2=A0 =C2=A0 active fenc=
-e: 50518<br>
-&gt; [ 2803.069702] etnaviv-gpu 130000.gpu: hangcheck recover!<br>
-&gt; [ 2805.531626] etnaviv-gpu 130000.gpu: hangcheck detected gpu lockup!<=
-br>
-&gt; [ 2805.537973] etnaviv-gpu 130000.gpu:=C2=A0 =C2=A0 =C2=A0 completed f=
-ence: 50518<br>
-&gt; [ 2805.544052] etnaviv-gpu 130000.gpu:=C2=A0 =C2=A0 =C2=A0 active fenc=
-e: 50520<br>
-&gt; [ 2805.551826] etnaviv-gpu 130000.gpu: hangcheck recover!<br>
-&gt;=C2=A0 FPS: 0 FrameTime: inf ms<br>
-&gt; [jellyfish] &lt;default&gt;: FPS: 28 FrameTime: 35.714 ms<br>
-&gt; [terrain] &lt;default&gt;: FPS: 2 FrameTime: 500.000 ms<br>
-&gt; [shadow] &lt;default&gt;: FPS: 30 FrameTime: 33.333 ms<br>
-&gt; Error: DistanceRenderTarget::setup: glCheckFramebufferStatus failed (0=
-x8cdd)<br>
-&gt; Error: Failed to set up the render target for the depth pass<br>
-&gt; [refract] &lt;default&gt;: Set up failed<br>
-&gt; [conditionals] fragment-steps=3D0:vertex-steps=3D<wbr>0: FPS: 61 Frame=
-Time: 16.393 ms<br>
-&gt; [conditionals] fragment-steps=3D5:vertex-steps=3D<wbr>0: FPS: 31 Frame=
-Time: 32.258 ms<br>
-&gt; [conditionals] fragment-steps=3D0:vertex-steps=3D<wbr>5: FPS: 62 Frame=
-Time: 16.129 ms<br>
-&gt; [function] fragment-complexity=3Dlow:<wbr>fragment-steps=3D5: FPS: 46<=
-br>
-&gt; FrameTime: 21.739 ms<br>
-&gt; [function] fragment-complexity=3Dmedium:<wbr>fragment-steps=3D5: FPS: =
-29<br>
-&gt; FrameTime: 34.483 ms<br>
-&gt; [loop] fragment-loop=3Dfalse:fragment-<wbr>steps=3D5:vertex-steps=3D5:=
- FPS: 45<br>
-&gt; FrameTime: 22.222 ms<br>
-&gt; [loop] fragment-steps=3D5:fragment-<wbr>uniform=3Dfalse:vertex-steps=
-=3D5: FPS: 45<br>
-&gt; FrameTime: 22.222 ms<br>
-&gt; [loop] fragment-steps=3D5:fragment-<wbr>uniform=3Dtrue:vertex-steps=3D=
-5: FPS: 29<br>
-&gt; FrameTime: 34.483 ms<br>
-&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0glmark2 Score: 46<br=
->
-&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-&gt; 0.46 0.24 0.09 1/98 621<br>
-&gt;<br>
-&gt;<br>
-&gt; not the greatest results, a couple crashes, but better than swrast!<br=
->
-</div></div>Very interesting. If I remember correct, there were further<br>
-enhancements for mesa 17.1.x on etnaviv - so keep going. There was a<br>
-patch for 17.1.0 on oe-core but that one was rejected (the x.x.0<br>
-versions are marked as development release)<br>
-<br>
-Just an information don&#39;t want to stop your enthusiasm: With closed<br>
-source BLOB and X11 the values for glmark-es2 were 250-260 last time I<br>
-tested in imx6 (variscite board).<br>
-<br>
-Best regards<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Andreas<br>
-</font></span><div class=3D"HOEnZb"><div class=3D"h5">--<br>
-______________________________<wbr>_________________<br>
-meta-freescale mailing list<br>
-<a href=3D"mailto:meta-freescale@yoctoproject.org">meta-freescale@yoctoproj=
-ect.<wbr>org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/meta-freescale" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/m=
-eta-freescale</a><br>
-</div></div></blockquote></div><br></div>
-
---f4030435397c88e63b055075a133--
+--===============0153041113508851109==--
