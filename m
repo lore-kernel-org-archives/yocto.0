@@ -1,37 +1,78 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <gmane@reliableembeddedsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82C3BE00B27; Sat, 27 May 2017 03:16:03 -0700 (PDT)
+	id 8752EE00ACD; Sat, 27 May 2017 07:25:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99BFEE009A0
-	for <yocto@yoctoproject.org>; Sat, 27 May 2017 03:16:02 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v4RAG22O013615
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 27 May 2017 03:16:02 -0700 (PDT)
-Received: from ala-blade47.wrs.com (147.11.105.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Sat, 27 May 2017 03:16:02 -0700
-From: Robert Yang <liezhi.yang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Sat, 27 May 2017 03:15:53 -0700
-Message-ID: <20170527101553.15014-9-liezhi.yang@windriver.com>
-X-Mailer: git-send-email 2.10.2
-In-Reply-To: <20170527101553.15014-1-liezhi.yang@windriver.com>
-References: <20170527101553.15014-1-liezhi.yang@windriver.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-HAM-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4792]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 1320 seconds by postgrey-1.32 at yocto-www;
+	Sat, 27 May 2017 07:24:58 PDT
+Received: from delivery.mailspamprotection.com
+	(delivery.mailspamprotection.com [108.163.220.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CDF3E008F5
+	for <yocto@yoctoproject.org>; Sat, 27 May 2017 07:24:58 -0700 (PDT)
+Received: from ns1.siteground282.com ([184.154.233.8] helo=siteground282.com)
+	by se8.mailspamprotection.com with esmtps
+	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.86)
+	(envelope-from <gmane@reliableembeddedsystems.com>)
+	id 1dEcIy-0005Mb-VE
+	for yocto@yoctoproject.org; Sat, 27 May 2017 09:02:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=reliableembeddedsystems.com; s=dkim;
+	h=Message-ID:Subject:Cc:To:From:Date:
+	Content-Transfer-Encoding:Content-Type:MIME-Version;
+	bh=cdv3fVeVD4dabTxRsNyWrccqHi7vRAQ9tUAXO18JdlY=;
+	b=1Mo/LBrI+eD1z/rn8ARzv71tqF
+	EjCQ1eoP/KCqVEUm0cnm66S+u6wQg4e795B6ev7x8bWg131JhERasUWbmHv3LLgoJ8+RwGt0FAnGR
+	RDfo87loIkAvnFtmN2+yZSw33Kb+L4R5YrLGi8DS2f+s3NX1DCHk+/lvztUpSfXtNlPM=; 
+Received: from [127.0.0.1] (port=54154 helo=secure282.sgcpanel.com)
+	by siteground282.com with esmtpa (Exim 4.86_2)
+	(envelope-from <gmane@reliableembeddedsystems.com>)
+	id 1dEcIy-000326-QM; Sat, 27 May 2017 09:02:56 -0500
 MIME-Version: 1.0
-Cc: Konrad.Scherer@windriver.com, paul.eggleton@linux.intel.com
-Subject: [layerindex-web][8/8] update.py: update actual branch for layer and bitbake
+Date: Sat, 27 May 2017 09:02:55 -0500
+From: gmane@reliableembeddedsystems.com
+To: yocto@yoctoproject.org
+Message-ID: <6c56226c108dc3cd58840e44346907d6@reliableembeddedsystems.com>
+X-Sender: gmane@reliableembeddedsystems.com
+User-Agent: Roundcube Webmail/1.2.4
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - siteground282.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - reliableembeddedsystems.com
+X-Originating-IP: 184.154.233.8
+X-SpamExperts-Domain: siteground282.com
+X-SpamExperts-Username: 184.154.233.8
+Authentication-Results: mailspamprotection.com;
+	auth=pass smtp.auth=184.154.233.8@siteground282.com
+X-SpamExperts-Outgoing-Class: unsure
+X-SpamExperts-Outgoing-Evidence: Combined (0.76)
+X-Recommended-Action: accept
+X-Filter-ID: s0sct1PQhAABKnZB5plbIWEcM0d9a2K3OcfFeaASvaIT05e+4t99MpEggFbXzbnhJWdbsu/PGngF
+	sP6QHv82uiZTaFCDa9A7C/jInU0NPk5o9qUFE8XEupMgL9lQhc5MhXE3Kd6zku9YzkFh73wKYPbj
+	aPZXen3YvWHScRpGw7A40pIiLcKdagK+IDwjGrwSuUnY1027xqL0Fif4+YbzLOfHzJ6mVE7ewsip
+	SVIfs4a4EJFUEiJSkktVxLsAAQ6dYb30GV/LTTOHpImWPCex54onRWlBmDnjzYnePIvOXJvlgTl6
+	fJxyntEfhZCKje4ZpF5GFn0VGJE1yVv3RLa3Fi7/+fOTvqVqTiiM4NskccT/51HuFxEGlQ85t+9R
+	s1HAWpqH02ENgZUUUrBwtgAspuoAEMCxBXuH+MlsW5Hvjb1aa40DxZPJuLUk3zkVKd8p5Y7I2CWT
+	8Blyjv8ff7POYIFMpCokCZqlANSRVNjsUIx9Xvup00ykaCetGbgwh6w19yu3PsN6rObOy/Hw4klu
+	yN2tI4ORboLLJ1/iZb6eaQlxyGe8Oo3j1g27BsRrIsZRZ6VZsjZEXqWgl88PYDZKsoPAgTtUp75u
+	qlx0KezvZHV3PH/TkDbEnSeN2h+hW5QJg5n8VBio8m6UFbwbb/Mty5ZpoZqL7LhAqq7tNGgOI+lP
+	SCPd8HVNGCW5Wc0WGw45FRCRWqAFrubZmsOKYvoqjm7PCg9tvEQRTTceLAjtQPyIsMaTJXc+b701
+	bY/z+ORoPu7uSwthmrG54ls3Q+t2jtEoufPkAYyNg1ifInTyTACksq4nlXm9Ho5TL+gTF2sKo8KF
+	0pLaKamO195iRNb7mrJplnAJKxa1DiBAS6sMnUxIx0yumiLSNy+8AkPznFthC2Ai3yiEdOoiUhtY
+	DNYEHg==
+X-Report-Abuse-To: spam@quarantine1.mailspamprotection.com
+Subject: Re: etnaviv image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,161 +84,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 May 2017 10:16:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 27 May 2017 14:25:01 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add an option "-a" to update actual branch for layer and bitbake, it is
-useful when there are many layers and need update actual branches
-frequantly. We only can update them via website without this patch,
-which is not funny and easy to make mistakes.
+Hi,
 
-For example:
-* It works with "-l", and "-l bitbake" means update bitbake branch.
-* It requires "-b" to work, and only one branch is supported in a run.
+Great that you managed to get to get open-source graphics on those 
+boards!
 
-$ update.py -b master -a branch_20170526
-All the layers which have branch master and actual_branch branch_20170526
-will be updated to branch_20170526.
+I would be very interested in the i.mx6 stuff. In roughly a week I'll 
+fly to a board manufacturer to train some of their customers in Yocto/OE 
+and friends.
 
-$ update.py -b master -l meta-oe -a branch_20170526
-Only meta-oe layer will be updated.
+Maybe I can get them to send you some i.mx6 quad board to try there as 
+well?
 
-$ update.py -b master -l bitbake -a branch_20170526
-The bitbake's bitbake_branch will be updated.
+Would you be interested?
 
-Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
----
- layerindex/update.py | 56 +++++++++++++++++++++++++++++++++++++++++++++++++++-
- layerindex/utils.py  | 11 +++++++++++
- 2 files changed, 66 insertions(+), 1 deletion(-)
+Regards,
 
-diff --git a/layerindex/update.py b/layerindex/update.py
-index 3e543f6..b94bd95 100755
---- a/layerindex/update.py
-+++ b/layerindex/update.py
-@@ -87,6 +87,41 @@ def prepare_update_layer_command(options, branch, layer, updatedeps=False):
-         cmd += ' -q'
-     return cmd
- 
-+def update_actual_branch(layerquery, fetchdir, branch, actual_branch, update_bitbake, bitbakepath):
-+    """Update actual branch for layers and bitbake in database"""
-+    to_save = set()
-+    if update_bitbake:
-+        branchobj = utils.get_branch(branch)
-+        if actual_branch != branchobj.bitbake_branch:
-+            if utils.is_branch_valid(bitbakepath, actual_branch):
-+                logger.info("bitbake: %s.bitbake_branch: %s -> %s" % (branch, branchobj.bitbake_branch, actual_branch))
-+                branchobj.bitbake_branch = actual_branch
-+                to_save.add(branchobj)
-+            else:
-+                logger.info("Skipping update bitbake_branch for bitbake - branch %s doens't exist" % actual_branch)
-+        else:
-+            logger.info("bitbake: %s.bitbake_branch is already %s, so no change" % (branch, actual_branch))
-+
-+    for layer in layerquery:
-+        urldir = layer.get_fetch_dir()
-+        repodir = os.path.join(fetchdir, urldir)
-+        if not utils.is_branch_valid(repodir, actual_branch):
-+            logger.info("Skipping update actual_branch for %s - branch %s doens't exist" % (layer.name, actual_branch))
-+            continue
-+        layerbranch = layer.get_layerbranch(branch)
-+        if not layerbranch:
-+            logger.info("Skipping update actual_branch for %s - layerbranch %s doens't exist" % (layer.name, branch))
-+            continue
-+        if actual_branch != layerbranch.actual_branch:
-+            logger.info("%s: %s.actual_branch: %s -> %s" % (layer.name, branch, layerbranch.actual_branch, actual_branch))
-+            layerbranch.actual_branch = actual_branch
-+            to_save.add(layerbranch)
-+        else:
-+            logger.info("%s: %s.actual_branch is already %s, so no change" % (layer.name, branch, actual_branch))
-+
-+    # At last, do the save
-+    for s in to_save:
-+        s.save()
- 
- def main():
-     if LooseVersion(git.__version__) < '0.3.1':
-@@ -104,6 +139,9 @@ def main():
-     parser.add_option("-l", "--layer",
-             help = "Specify layers to update (use commas to separate multiple). Default is all published layers.",
-             action="store", dest="layers")
-+    parser.add_option("-a", "--actual-branch",
-+            help = "Update actual branch for layer and bitbake",
-+            action="store", dest="actual_branch", default='')
-     parser.add_option("-r", "--reload",
-             help = "Reload recipe data instead of updating since last update",
-             action="store_true", dest="reload")
-@@ -158,8 +196,13 @@ def main():
-         logger.info("No published layers to update")
-         sys.exit(1)
- 
-+    # For -a option to update bitbake branch
-+    update_bitbake = False
-     if options.layers:
-         layers = options.layers.split(',')
-+        if 'bitbake' in layers:
-+            update_bitbake = True
-+            layers.remove('bitbake')
-         for layer in layers:
-             layerquery = LayerItem.objects.filter(classic=False).filter(name=layer)
-             if layerquery.count() == 0:
-@@ -168,6 +211,7 @@ def main():
-         layerquery = LayerItem.objects.filter(classic=False).filter(name__in=layers)
-     else:
-         # We deliberately exclude status == 'X' ("no update") here
-+        update_bitbake = True
-         layerquery = layerquery_all
- 
-     if not os.path.exists(fetchdir):
-@@ -217,7 +261,7 @@ def main():
-                             continue
-                         fetchedrepos.append(layer.vcs_url)
- 
--                if not fetchedrepos:
-+                if not (fetchedrepos or update_bitbake):
-                     logger.error("No repositories could be fetched, exiting")
-                     sys.exit(1)
- 
-@@ -230,6 +274,16 @@ def main():
-             sys.path.insert(0, bitbakepath + '/lib')
-             import bb
- 
-+            if options.actual_branch:
-+                if not options.branch:
-+                    logger.error("-a option requires -b")
-+                    sys.exit(1)
-+                elif len(branches) != 1:
-+                    logger.error("Only one branch should be used with -a")
-+                    sys.exit(1)
-+                update_actual_branch(layerquery, fetchdir, branches[0], options.actual_branch, update_bitbake, bitbakepath)
-+                return
-+
-             # Process and extract data from each layer
-             # We now do this by calling out to a separate script; doing otherwise turned out to be
-             # unreliable due to leaking memory (we're using bitbake internals in a manner in which
-diff --git a/layerindex/utils.py b/layerindex/utils.py
-index 0e648a7..c790d28 100644
---- a/layerindex/utils.py
-+++ b/layerindex/utils.py
-@@ -198,6 +198,17 @@ def is_layer_valid(layerdir):
-         return False
-     return True
- 
-+def is_branch_valid(layerdir, branch):
-+    import git
-+
-+    g = git.cmd.Git(layerdir)
-+    assert g.rev_parse('--is-bare-repository') == 'false'
-+    try:
-+        g.rev_parse('--verify', 'origin/%s' % branch)
-+    except Exception:
-+        return False
-+    return True
-+
- def parse_conf(conf_file, d):
-     if hasattr(bb.parse, "handle"):
-         # Newer BitBake
--- 
-2.10.2
-
+Robert
 
