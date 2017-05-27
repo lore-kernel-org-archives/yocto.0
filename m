@@ -1,61 +1,51 @@
-Return-Path: <pderocco@ix.netcom.com>
+Return-Path: <dl9pf@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A2C4E009A0; Fri, 26 May 2017 20:52:34 -0700 (PDT)
+	id 0E152E0085D; Sat, 27 May 2017 03:07:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.86.89.68 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	PLING_QUERY,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (dl9pf[at]gmx.de)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.86.89.68 listed in list.dnswl.org]
-Received: from elasmtp-masked.atl.sa.earthlink.net
-	(elasmtp-masked.atl.sa.earthlink.net [209.86.89.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D37C9E0082A
-	for <yocto@yoctoproject.org>; Fri, 26 May 2017 20:52:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
-	s=dk12062016; t=1495857151; bh=HCSaiWuWJXxwFG3s8cKnoc+2iv/3vdd3eyx9
-	L9bUiHU=; h=Received:From:To:References:In-Reply-To:Subject:Date:
-	Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=I
-	etlKr0HLEgDivUJGmFdCcb6yk29H/1IPxpFeILCo9gm3Vyk0u4qCXdgiomYhM2ELk9L
-	ELqYN/HCNQ40NN0KtgAgdqJqgrgWd+66T3Cyl6iRW2SGfOw2GKE6LK0PWvEA+W+7gZC
-	fklqtjoDv0NcOGhfbpPM4vG4xQBGgBuXt857Of3jpbG2N+Z20T2yiXCZ2zXYMQakqss
-	suSSYkME1kPJFypWpPUXfGDaXKdDAZiFpm+g1tGT9pzebe09POce1va59NW2t/Ii2xg
-	BCcKuH7Ewcn0kd5wMTj4gZZsmVFZ8aA5HZxGTehfRxE0JE3imQsVkqunUcfJu4kvtex
-	FeGKXA==
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk12062016; d=ix.netcom.com;
-	b=CNsT7rXOAl9bj04c75gDf3Th3RBd/gAUDT8wtl3zTmLA4gtpLfu/EJYUmOpg3kHspLmPYjfJilwnhe0yoSzf68yI54ZT60tz8fwySbUEVIJTRrWhLgWaCdM6+J8lqxT8tkAbY8who4nOzekrMFe7W9TWoLrEvWSnPXWOmWTnzjC1V/XCzPHZqSF/KnIZr1uGP3vKmUa3W87TUGfg7q95rRKEAorkyzWcnvy3iyZCflbueY01gOJfdUipMfi7uFaai1PtMV41O7tojqjKGmHp16vCyKxlRYtBzWsoju2NX5IzkyjGqb9EW8XLiSkvl1zV6ZjBrgmdjqIPiY6cuCTXtQ==;
-	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [45.49.236.199] (helo=PAULD)
-	by elasmtp-masked.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1dESmE-0001xj-6K; Fri, 26 May 2017 23:52:30 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Andrei Gherzan'" <andrei@gherzan.ro>,
-	<yocto@yoctoproject.org>
-References: <2F9B07C5AA344ED6AA5B799671B76F5A@PAULD>
-	<CAK18fxExd7+Sv6HHq+pU2tH4TWcSS37hhju7BDAVwGGHrd+B2Q@mail.gmail.com>
-In-Reply-To: <CAK18fxExd7+Sv6HHq+pU2tH4TWcSS37hhju7BDAVwGGHrd+B2Q@mail.gmail.com>
-Date: Fri, 26 May 2017 20:52:36 -0700
-Message-ID: <C0920525ECD042C49E1C57E1B134148C@PAULD>
+	*      [212.227.15.15 listed in list.dnswl.org]
+	*  1.0 PLING_QUERY Subject has exclamation mark and question mark
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87CF1E0077F
+	for <yocto@yoctoproject.org>; Sat, 27 May 2017 03:07:31 -0700 (PDT)
+Received: from elrond.localnet ([95.89.254.87]) by mail.gmx.com (mrgmx002
+	[212.227.17.190]) with ESMTPSA (Nemesis) id 0MUZG7-1dNau32haF-00RIFv;
+	Sat, 27 May 2017 12:07:20 +0200
+From: Jan-Simon =?ISO-8859-1?Q?M=F6ller?= <dl9pf@gmx.de>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sat, 27 May 2017 12:07:19 +0200
+Message-ID: <2548656.qJddsPhLGk@elrond>
+User-Agent: KMail/4.14.10
+	(Linux/4.11.0-rc6-jsm-cowfix7-20170415-1209-00180-g1bf4b1268e66;
+	KDE/4.14.25; x86_64; ; )
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdLWjBVmoLS7jO7hS+GccPi8BJBi1QAD7Ffw
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.23651
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688bb8f414c2be5b06a02acfbf90c493165350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 45.49.236.199
-Subject: Re: How to replace an arch*.inc file?
+X-Provags-ID: V03:K0:0zlEUrhoIYplME/Utz4DkssCdYJkZ3onN0D/eCkS7gMJzFXxUH9
+	wEdumY72KH661I9pG78VzUF9GwCTaFOmkiUrn8gGN2vWnwUdmiWw0Ej28QZ4b2GYezQJyI/
+	l0X38cq4pbp3TEoOsG+CTIxywx/4/ZmfYesCeIit+9q2YwFLkHW1p0L6PF/KYZJy4SYKjZW
+	y9tG9TJeBp4j2WJ9jkoRg==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:DmfVMpRql4A=:O8BeQLTe1fhXN/n46Ya7Pf
+	BM96CFrT1NQGxGTTIRsHNuw19qo8KkXNpVbd1c0OkwbMWNIbMYk47+GoGoW8xyPF1lvmnvFR6
+	kX6uMsjqRKpVzAUF/RzLH9OHrXMBC0fiFzThmpUdwVfuirydhXBt2KW3XYA5VzsAv8Wn++kI6
+	OnnJyTgKWuBc9rmjPjEQJixDs9+n18iVY8d0xz8tCaFBJIahKAgpsi2pib4o656/WFb6dfpfT
+	c0oPJZSrZ4RIW39OtXAr3JIPbmVd0bH9+pTd7q4vtTTY6wnsShxAos/XoPtF08YCMGe9Kn3tz
+	i3KzXqqUtQKJT0E9YKkrA6YW3dulSINySYeatHfuWZSunDGXpnNeM9YVt3aJaYQ1DG/LvqW/Q
+	0a0wf8xuMY/bWgoS3q5eulILYblr9Lyyo3knGsFQH8FK13xDJoo453TOK00OHw0FiygS9jpF8
+	FI3iN8698krDATYAMkS5Gp7Xex3cJky38i+Y9hzgalOiAa25ORu6Zx8mhQvi7An4Ql7j8CNu7
+	DaGpJ1RQoZw8XTNII0BbeLVJ1sMfMIxAPwnihHdkN/Mfc9XBmPxN/rvm4AavOOvZx2tFWl2cD
+	M89J9Nf8/cwJs3vPx1QMjwCBk4MJckt/NttmZp8VurqP3sUfwM81WYrHyCD1pZvyFKXIoT2g4
+	1HAVSuaaLTz5Er9DSf+AJt0YfMhhlAf7zcn24wmGlJsfodvyIbni+zbtENPExTxwE58e4xGjR
+	Ueye7XO1NihvjLxyvlzGT3Wvjex6o6muZYxx4qoutAffWznbuYHrSVbdW+d54L8Ein5ckjGYh
+	4f8vgxD
+Subject: Dependency change : work-shared: do_preconfigure ?!?! [morty]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,37 +57,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 May 2017 03:52:34 -0000
-Content-Type: text/plain;
-	charset="UTF-8"
+X-List-Received-Date: Sat, 27 May 2017 10:07:40 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-> > On Sat, May 27, 2017 at 2:34 AM, Paul D. DeRocco=20
-> > <pderocco@ix.netcom.com> wrote:
-> >=20
-> > I'd like to try the Linaro version of arch-armv8.inc in=20
-> > an RPi3 project,
-> > because it has an ilp32 tune option. What's the correct=20
-> > way to incorporate this?
+Hi !
 
-> From: Andrei Gherzan [mailto:andrei@gherzan.ro]=20
->=20
-> Probably the easiest way would be to create a new machine=20
-> configuration. Where is this linaro version of arch-armv8?
+I have a morty-based project here which I already built once and I'm no=
+w about to rebuild it without any modifications on the same machine.
 
-It's here:
+I checked with bitbake-whatchanged before starting any build and every =
+time I see this:
+=3D=3D=3D Dependencies changed: (1 tasks)
+  work-shared: do_preconfigure
 
-<http://git.linaro.org/openembedded/meta-linaro.git/tree/meta-ilp32/conf/=
-machine/include/arm64/arch-armv8.inc>
+=3D=3D=3D Summary: (6626 changed, 4 unchanged)
+Newly added: 6625
+PV changed: 0
+PR changed: 0
+Dependencies changed: 1
 
-I'm not clear about how the system finds these include files. Is there a =
-way to store this file, or the same file under a different name, =
-somewhere in my own layer? I normally treat the rest of the metadata as =
-read-only.
+
+
+
+I'd actually expect way less to be 'changed' as to what bitbake-whatcha=
+nged tells me.
+
+
+
+---------------------
+
+bitbake-whatchanged -v  shows this
+
+=3D=3D=3D The verbose changes of work-shared.do_preconfigure:
+runtaskdeps changed from=20
+['autoconfautoconf_2.69.bb.do_populate_sysroot:virtual:native', 'gccgcc=
+-source_6.2.bb.do_patch', 'gnu-configgnu-config_git.bb.do_populate_sysr=
+oot:virtual:native'] to ['autoconfautoconf_2.69.bb.do_populate_sysroot:=
+virtual:native', 'gccgcc-source_6.2.bb.do_patch', 'gnu-configgnu-config=
+_git.bb.do_populate_sysroot:virtual:native']
+
+virtual:native:/home/scratch/build/poky/meta/recipes-devtools/autoconf/=
+autoconf_2.69.bb.do_populate_sysroot with hash 6ed48db009438450fe348243=
+309b85b5
+ changed to
+virtual:native:/home/scratch/build/poky/meta/recipes-devtools/autoconf/=
+autoconf_2.69.bb.do_populate_sysroot with hash d09f612d8b00056740d9cccf=
+723d0cab
+
+virtual:native:/home/scratch/build/poky/meta/recipes-devtools/gnu-confi=
+g/gnu-config_git.bb.do_populate_sysroot with hash 9beadb38a5586266137d1=
+2754a7da0e2
+ changed to
+virtual:native:/home/scratch/build/poky/meta/recipes-devtools/gnu-confi=
+g/gnu-config_git.bb.do_populate_sysroot with hash 2b201b2787194e74f97f2=
+5d9908dfd61
+
+Hash for dependent task gnu-configgnu-config_git.bb.do_populate_sysroot=
+:virtual:native changed from 9beadb38a5586266137d12754a7da0e2 to 2b201b=
+2787194e74f97f25d9908dfd61
+Hash for dependent task autoconfautoconf_2.69.bb.do_populate_sysroot:vi=
+rtual:native changed from 6ed48db009438450fe348243309b85b5 to d09f612d8=
+b00056740d9cccf723d0cab
+
+
+What puzzles me is the double PN in the task names ... e.g.
+'autoconfautoconf' . And of course the change of the hash.
+
+
+
+---------------------
+
+
+
+bitbake-diffsigs /home/dl9pf/sstate/universal-4.8/6e/sstate:autoconf-na=
+tive:x86_64-linux:2.69:r11:x86_64:3:6ed48db009438450fe348243309b85b5_po=
+pulate_sysroot.tgz.siginfo \
+                 /home/dl9pf/sstate/universal-4.8/67/sstate:autoconf-na=
+tive:x86_64-linux:2.69:r11:x86_64:3:67a892e8e82a93b7f1486fa15bd9d73d_po=
+pulate_sysroot.tgz.siginfo
+
+runtaskdeps changed from ['autoconfautoconf_2.69.bb.do_install:virtual:=
+native'] to ['autoconfautoconf_2.69.bb.do_install:virtual:native']
+
+virtual:native:/home/scratch/buildl/poky/meta/recipes-devtools/autoconf=
+/autoconf_2.69.bb.do_install with hash 95e60debb58799b95ee19676069e2b6d=
+
+ changed to
+virtual:native:/home/scratch/build/poky/meta/recipes-devtools/autoconf/=
+autoconf_2.69.bb.do_install with hash 2087736600facfa2fd0553417c7b3723
+
+Dependency on task autoconfautoconf_2.69.bb.do_install:virtual:native w=
+as added with hash 2087736600facfa2fd0553417c7b3723
+Dependency on task autoconfautoconf_2.69.bb.do_install:virtual:native w=
+as removed with hash 95e60debb58799b95ee19676069e2b6d
+
+
+
+gnu-config hash 9beadb is there but there is no 2b201b27,
+
+
+Hints ?=20
 
 --=20
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com
-
+--
+Jan-Simon M=F6ller
+dl9pf@gmx.de
 
