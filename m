@@ -1,17 +1,17 @@
 Return-Path: <winotu.email@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B68B6E0085D; Fri, 26 May 2017 18:56:50 -0700 (PDT)
+	id C2FEBE009A0; Fri, 26 May 2017 19:11:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (winotu.email[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.213.46 listed in list.dnswl.org]
+	*      [209.85.213.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,50 +19,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.46 listed in dnsbl.sorbs.net]
-Received: from mail-vk0-f46.google.com (mail-vk0-f46.google.com
-	[209.85.213.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B92FE0077F
-	for <yocto@yoctoproject.org>; Fri, 26 May 2017 18:56:47 -0700 (PDT)
-Received: by mail-vk0-f46.google.com with SMTP id y190so12551903vkc.1
-	for <yocto@yoctoproject.org>; Fri, 26 May 2017 18:56:47 -0700 (PDT)
+Received: from mail-vk0-f49.google.com (mail-vk0-f49.google.com
+	[209.85.213.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DA3AE0082A
+	for <yocto@yoctoproject.org>; Fri, 26 May 2017 19:11:44 -0700 (PDT)
+Received: by mail-vk0-f49.google.com with SMTP id h16so12550261vkd.2
+	for <yocto@yoctoproject.org>; Fri, 26 May 2017 19:11:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=pIe8qt1ldeT1fzgYhpZhQP69PTYCOJQEtpy8icCMyA0=;
-	b=bIMtSU9uIebVC94LzoXSFhCTWSP2iQ5TAXCJD2odAS+DkkvyTu7yaCeR8vfMeDYh7W
-	ylZ2QDa/lv1iniWDHW1WHwFY4hQeKYnrk9qdGHGSsNqwiTAWTFhhUqjnIr9temyJgY8X
-	n2aq+Sf156W7EZNOqKyFBJT+q5UqV+I1+fMXnNQ9+T4PCMy96+bjhOErZ2KgBQ/RZZ+n
-	YS4j1D+EL6RGL332LIL5pllwkif1dWDHxu3X8jAjRI4iAHVZvPaftR4SgoCvYKlARj3M
-	hwzH7FqGnGRCNSxHQwwePR6KCtisRQWB6PVS/VqyVK+yX/uDesshFQxr11E/QDKEalcV
-	2hMg==
+	:cc; bh=r7gUNc1KNEmA3UlB80bVmN7ggvFpjQLCn7pwHZvSZiM=;
+	b=bxbm7M5dx5+MPtTTGOZjnJNGq4sus+tVNwav7uzeiv8fafVN7dLn6Fd0Bwjf2u//1z
+	4R6lcjisdj5LL3waLnEujJn4WxBX8TAAXstcTqTLsZpvGQCOvEXdzb2vB3wiG8z5JXsy
+	zXMNmXqOeSKQN+SoPUTM6HiCrsbdXoaa6cQSaYSAX3UuTQBUQ12bk/80MTQqwC3zUorr
+	62ImzanUQfUd5ryu/2Vn+DdMvt+DHeM4VRwlKzK0JOdRmn8I/p+3vkzNRH4+wIJHXXHE
+	sqi3BOZmG115LHyTbG9qBcIi8qZXvSAUo+SDRNk5PTehyRPNdoh7JAyT2YhOUZwULYky
+	wAjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=pIe8qt1ldeT1fzgYhpZhQP69PTYCOJQEtpy8icCMyA0=;
-	b=APbpuhwTqIBHUxWAHjXIMfduy1VfAAizgLGwm6NtpFbycO8FvxlIAza3Gq9mtjJaET
-	ML/gcOu557AB63PIP0pUwajs1d8MuwosjLyb5nwKSPZniCZA4n/D8mjBmfRKn2lWBB2r
-	E60j1gu0JzBEXZcMbAixm5+yyM4443zoSMOGFx8iE8vJPfyUm7KZcvXAl26yVW3WYNJT
-	cMJzWKiO5KdbGfo/h4AwaunBJ/iJQ1tjg8irljOU/i4nnVkwBhx9MdDRsj3mmkK0ZIgH
-	uuG/NXQirHCOuQ3UXzg2ltHnldeASJnyAxJRLCuHe3HinJukbwUCxYlYTOrz4oLtEu6V
-	4vrA==
-X-Gm-Message-State: AODbwcBq6n3M9RffpVvyHd50YGpZBM2X67eWemt02rbJA8Kvp7de/p3i
-	3uqM/8UXTxoidy2u5M3k+IfhHu7A+w==
-X-Received: by 10.31.220.68 with SMTP id t65mr2162204vkg.145.1495850207121;
-	Fri, 26 May 2017 18:56:47 -0700 (PDT)
+	bh=r7gUNc1KNEmA3UlB80bVmN7ggvFpjQLCn7pwHZvSZiM=;
+	b=d4gQBTdmBksiffPc92lk6zFAB7pAfnPAN9R8gI3vGQSErjqO5W4YILxG86JPmml73X
+	0egnLxSFKYxQFRVqfS7qaOrqbU5zxCKwoopwVUkjCLgNM8HqQcYyineVBqHmSpehGG6E
+	bm5dZJA3qE1lwjBXiJ/M8FTmvKHzHsq/eRh7V1rShX4cfJTCbViqpo9Cv61aohWsQ9ek
+	MBIUzJuEL/qzskrxQWlAL4ggMzeZWWhMgFXoLQ0+5j4TACL61QKhgo1qsVCVaoAcHesn
+	wvZD+tDFPJVn0hNZo94NWNZhqzxUe6mEB4ubXo9rr3IcK9URvBHRPIr+9dX6R6oN3eZn
+	VR8Q==
+X-Gm-Message-State: AODbwcD+ah2V7IqMEReYjeLoGZnGy1A/LFmNF8mewMndGYaImGUb8xC3
+	eaC+Vyzmu9A4yFEiNhMQsQbAGnxACA65
+X-Received: by 10.31.50.12 with SMTP id y12mr2282974vky.89.1495851103554; Fri,
+	26 May 2017 19:11:43 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.26.13 with HTTP; Fri, 26 May 2017 18:56:46 -0700 (PDT)
-In-Reply-To: <CAK18fxFoxtO_Q+aAJJi-UvwwzGHOEcyGm7BKn0PWSKXSg-Qx2Q@mail.gmail.com>
-References: <CAK18fxHPsQ9XUZq1v3cZ0MymeNA9t+dUhcvtV==XTHF-i6RFnQ@mail.gmail.com>
-	<CAMKF1sreUL-JNJ7jR-1enGtwyNQU0y+W2sCx1JWBs5E7kgT+8Q@mail.gmail.com>
-	<CAK18fxFoxtO_Q+aAJJi-UvwwzGHOEcyGm7BKn0PWSKXSg-Qx2Q@mail.gmail.com>
+Received: by 10.176.26.13 with HTTP; Fri, 26 May 2017 19:11:43 -0700 (PDT)
+In-Reply-To: <5bab30d1-19cd-e7f8-f01c-b4eb36b59416@mlbassoc.com>
+References: <31a2d863-b928-df06-8e86-78b939469614@mlbassoc.com>
+	<1752127.E0fXlp9gfm@peggleto-mobl.ger.corp.intel.com>
+	<df279cbb-6dae-ba57-927f-94fe139693f0@mlbassoc.com>
+	<5bab30d1-19cd-e7f8-f01c-b4eb36b59416@mlbassoc.com>
 From: "Chris Z." <winotu.email@gmail.com>
-Date: Sat, 27 May 2017 03:56:46 +0200
-Message-ID: <CAEjjReL69UPmjxZbhDFV_nikM2PggSp39Ce5+jWfTbUjnz-Upw@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Very strange issue where bitbake hangs at do_rootfs
+Date: Sat, 27 May 2017 04:11:43 +0200
+Message-ID: <CAEjjReLWz6QF8Foey5ewhEExsRCLzU_eMRKXEMGowx_cyBns2g@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: yoctoproject <yocto@yoctoproject.org>
+Subject: Re: sstate-cache question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,101 +73,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 May 2017 01:56:50 -0000
+X-List-Received-Date: Sat, 27 May 2017 02:11:57 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Hi Gary,
 
-Have you tried to find on which syscall it hangs ?  sysdig or strace ?
+Have you tried to check those:
+tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_prepare_recipe_sysroot.sigdata.c45aaef0cb01f463f9a1b30bd815cd28
+tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_prepare_recipe_sysroot.sigdata.150112323551011e0e87f99f47ad79c4
 
-Maybe it's issue with python subprocess, documentation mention that
-subprocess can deadlock or hang with large data and no read from pipe
-is done.
+with bitbake-diffsigs ?  Maybe it's monkey work but last time I had to
+debug such issue I had to recursively check those tasks which differ
+to find root cause.
 
 Br,
 Chris Z
 
-On Fri, May 26, 2017 at 11:35 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Fri, May 26, 2017 at 5:19 PM, Khem Raj <raj.khem@gmail.com> wrote:
+On Thu, May 25, 2017 at 6:36 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+> On 2017-05-23 07:27, Gary Thomas wrote:
 >>
->> On Fri, May 26, 2017 at 5:52 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
->> > Hello all,
->> >
->> > I moved recently on a new arch linux host and everything works fine with
->> > one
->> > exception: when I build a custom distribution based on morty with many
->> > packages including kernel-modules (beaglebone), the build system hangs
->> > without any details. I hooked into package_manager.py RPM install and
->> > streamed output from `process = subprocess.Popen(cmd.split(),
->> > stderr=subprocess.STDOUT, stdout=subprocess.PIPE)` and it seems that it
->> > hangs in different places every time. Output example:
->> >
->> > ---
->> >
->> > Result of kernel-module-industrialio-sw-trigger postinst: 0
->> > debug: Processing
->> > kernel-module-lm8333-4.4.55+git0+903eb64c68-r22b@beaglebone in
->> >
->> > /work/resin/resinos/resin-beaglebone/build/tmp/work/beaglebone-poky-linux-gnueabi/resin-image/1.0-r0/rpms/beaglebone/kernel-module-lm8333-4.4.55+git0+903eb64c68-r22b.beaglebone.rpm
->> > 1428:Installing kernel-module.. ########################################
->> > [
->> > 55%]
->> > Output from kernel-module-lm8333-4.4.55+git0+903eb64c68-r22b@beaglebone:
->> > Executing kernel-module-lm8333 postinst with: /bin/sh
->> >
->> > /work/resin/resinos/resin-beaglebone/build/tmp/work/beaglebone-poky-linux-gnueabi/resin-image/1.0-r0/rootfs///oe_install/tmp/rpm-tmp.76459
->> > 1
->> >
->> > # kernel-module-lm8333 - postinst
->> > #!/bin/sh
->> > if [ -z "$D" ]; then
->> >         depmod -a 4.4.55+
->> > else
->> >         # image.bbclass will call depmodwrapper after everything is
->> > installed,
->> >         # no need to do it here as well
->> >         :
->> > fi
->> > Result of kernel-module-lm8333 postinst: 0
->> > debug: Processing
->> > kernel-module-tca8418-keypad-4.4.55+git0+903eb64c68-r22b@beaglebone in
->> >
->> > /work/resin/resinos/resin-beaglebone/build/tmp/work/beaglebone-poky-linux-gnueabi/resin-image/1.0-r0/rpms/beaglebone/kernel-module-tca8418-keypad-4.4.55+git0+903eb64c68-r22b.beaglebone.rpm
->> > 1429:Installing kernel-module.. ########################################
->> > [
->> > 55%]
->> > Output from
->> > kernel-module-tca8418-keypad-4.4.55+git0+903eb64c68-r22b@beaglebone:
->> > Executing kernel-module-tca8418-keypad postinst with: /bin/sh
->> >
->> > /work/resin/resinos/resin-beaglebone/build/tmp/work/beaglebone-poky-linux-gnueabi/resin-image/1.0-r0/rootfs///oe_install/tmp/rpm-tmp.76459
->> > 1
->> >
->> > ---
->> >
->> > If I don't install kernel-modules build succeeds.
->> >
->> > Any hints on how to debug this further? I can't seem to find anything
->> > relevant in smart output.
->> >
+>> On 2017-05-22 22:35, Paul Eggleton wrote:
+>>>
+>>> Hi Gary,
+>>>
+>>> On Tuesday, 23 May 2017 2:53:45 AM NZST Gary Thomas wrote:
+>>>>
+>>>> I have a build where I've never manually removed anything from
+>>>> the sstate-cache and this same build has been used for hundreds
+>>>> of builds over the last 18 months.  I just tried to find out why
+>>>> gcc-cross-arm had to be rebuilt (it seems to happen almost every
+>>>> time I update my Poky/Yocto tree (master)).  Here's what I got:
+>>>>
+>>>> $ bitbake-diffsigs -t gcc-cross-arm compile
+>>>> Hash for dependent task gcc/gcc-cross_6.3.bb.do_configure changed from
+>>>
+>>> 208373dd9ae01101a26a9412eb50b110 to
+>>>>
+>>>> d65095d4b9aff89f6990bd17c0ab210b
+>>>> Unable to find matching sigdata for
+>>>> /local/poky-cutting-edge/meta/recipes-
+>>>
+>>> devtools/gcc/gcc-cross_6.3.bb.do_configure
+>>>>
+>>>> with hashes 208373dd9ae01101a26a9412eb50b110 or
+>>>
+>>> d65095d4b9aff89f6990bd17c0ab210b
+>>>>
+>>>>
+>>>> So if I didn't remove those files, where did they go?  Am I doing
+>>>> something wrong running this tool?  (running the same command for
+>>>> qemu-native seemed to work correctly)
+>>>
+>>>
+>>> Is this with master, pyro, morty or some other version?
 >>
->> yeah rolling ditros are always intesting when you want to build fixed
->> releases from past.
->> one of things that helped me in past was to pin python3 to 3.5 but a
->> clean reinstall of arch
->> I got that problem solved automagically
+>>
+>> Poky master: 2568e18701fb20d7105eb6e4929f3aff4b9f9c06
+>>
+>>>
+>>> If you search for files with those hashes in their name do they show up?
+>>
+>>
+>> Only .siginfo files:
+>> $ find sstate-cache/ -name "*d65095d4b9aff89f6990bd17c0ab210b*"
+>>
+>> sstate-cache/universal/d6/sstate:gcc-cross-arm:x86_64-amltd-linux-gnueabi:6.3.0:r0:x86_64_arm:3:d65095d4b9aff89f6990bd17c0ab210b_configure.tgz.siginfo
+>> $ find sstate-cache -name "*208373dd9ae01101a26a9412eb50b110*"
+>>
+>> sstate-cache/universal/20/sstate:gcc-cross-arm:x86_64-amltd-linux-gnueabi:6.3.0:r0:x86_64_arm:3:208373dd9ae01101a26a9412eb50b110_configure.tgz.siginfo
+>>
+>> However, I do find some in tmp/stamps:
+>> $ ls tmp/stamps/x86_64-linux/gcc-cross-arm
+>> 6.3.0-r0.do_build.41aca0d85971087f4675d2f504642ce4
+>> 6.3.0-r0.do_compile.b0eae7e91833efd5e7eceaedbc59983e
+>> 6.3.0-r0.do_compile.sigdata.9a06aa40225be30babaceb7673cef0a6
+>> 6.3.0-r0.do_compile.sigdata.b0eae7e91833efd5e7eceaedbc59983e
+>> 6.3.0-r0.do_configure.d65095d4b9aff89f6990bd17c0ab210b
+>> 6.3.0-r0.do_configure.sigdata.208373dd9ae01101a26a9412eb50b110
+>> 6.3.0-r0.do_configure.sigdata.d65095d4b9aff89f6990bd17c0ab210b
+>> 6.3.0-r0.do_fetch.1dd3c87b3e509c20fa4ffe61d6dc3b41
+>> 6.3.0-r0.do_gcc_stash_builddir.063822f91220bb40cef0696eb604a568
+>> 6.3.0-r0.do_gcc_stash_builddir.sigdata.063822f91220bb40cef0696eb604a568
+>> 6.3.0-r0.do_gcc_stash_builddir.sigdata.28144d3c18c0a09f23f3b0c5e80f049d
+>> 6.3.0-r0.do_install.0f96c5448dc9360ca3a24d551ad3da89
+>> 6.3.0-r0.do_install.sigdata.0f96c5448dc9360ca3a24d551ad3da89
+>> 6.3.0-r0.do_install.sigdata.f2e4d12289c5039854081a832dc8bc0e
+>> 6.3.0-r0.do_populate_lic_setscene.d2c9226ddb0de5277e2347b69ef84664
+>> 6.3.0-r0.do_populate_sysroot.15afc3bb019a6c0c1285cbda46cb32b0
+>> 6.3.0-r0.do_populate_sysroot.sigdata.15afc3bb019a6c0c1285cbda46cb32b0
+>> 6.3.0-r0.do_populate_sysroot.sigdata.a0c5b715ae9217f02318beff6987d169
+>> 6.3.0-r0.do_prepare_recipe_sysroot.150112323551011e0e87f99f47ad79c4
+>>
+>> 6.3.0-r0.do_prepare_recipe_sysroot.sigdata.150112323551011e0e87f99f47ad79c4
+>>
+>> 6.3.0-r0.do_prepare_recipe_sysroot.sigdata.4a528becf11832cc3b8f6fa479e98210
+>>
+>> I guess the sstate-cache info alone is not sufficient to use 'bitbake
+>> diffsigs'?
+>> I do occasionally wipe tmp & downloads, so that may explain these errors.
+>>
+>
+> I just updated my Poky/Yocto master
+> (a3d160f9e5826140cc8d6b2ed1b38bf022443b08) and it happened again.
+> I'm still interested in why gcc-cross-arm had to be rebuilt _again_, so I
+> ran:
+>
+> $ bitbake-diffsigs -t gcc-cross-arm compile
+> NOTE: Started PRServer with DBfile:
+> /build/p0382_2016-01-13/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 45466,
+> PID: 7995
+> Hash for dependent task gcc/gcc-cross_6.3.bb.do_configure changed from
+> d65095d4b9aff89f6990bd17c0ab210b to 1378c7a11d96284c3d53894d6434b590
+> Unable to find matching sigdata for
+> /local/poky-cutting-edge/meta/recipes-devtools/gcc/gcc-cross_6.3.bb.do_configure
+> with hashes d65095d4b9aff89f6990bd17c0ab210b or
+> 1378c7a11d96284c3d53894d6434b590
+> NOTE: Started PRServer with DBfile:
+> /build/p0382_2016-01-13/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 45466,
+> PID: 7995
+> NOTE: Terminating PRServer...
+> $ find tmp/stamps -name "*d65095d4b9aff89f6990bd17c0ab210b*" -or -name
+> "*1378c7a11d96284c3d53894d6434b590*"
+> tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_configure.sigdata.1378c7a11d96284c3d53894d6434b590
+> tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_configure.sigdata.d65095d4b9aff89f6990bd17c0ab210b
+> tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_configure.1378c7a11d96284c3d53894d6434b590
+>
+> So, a similar error/outcome, but in this case the necessary files
+> do seem to be present.  I did notice that the only files with those
+> signatures were for do_configure, so I tried:
+>
+> $ bitbake-diffsigs -t gcc-cross-arm configure
+> NOTE: Started PRServer with DBfile:
+> /build/p0382_2016-01-13/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 34530,
+> PID: 8063
+> Hash for dependent task gcc/gcc-cross_6.3.bb.do_prepare_recipe_sysroot
+> changed from 150112323551011e0e87f99f47ad79c4 to
+> c45aaef0cb01f463f9a1b30bd815cd28
+> Unable to find matching sigdata for
+> /local/poky-cutting-edge/meta/recipes-devtools/gcc/gcc-cross_6.3.bb.do_prepare_recipe_sysroot
+> with hashes 150112323551011e0e87f99f47ad79c4 or
+> c45aaef0cb01f463f9a1b30bd815cd28
+> NOTE: Started PRServer with DBfile:
+> /build/p0382_2016-01-13/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 34530,
+> PID: 8063
+> NOTE: Terminating PRServer...
+> $ find tmp/stamps -name "*150112323551011e0e87f99f47ad79c4*" -or -name
+> "*c45aaef0cb01f463f9a1b30bd815cd28*"
+> tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_prepare_recipe_sysroot.c45aaef0cb01f463f9a1b30bd815cd28
+> tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_prepare_recipe_sysroot.sigdata.c45aaef0cb01f463f9a1b30bd815cd28
+> tmp/stamps/x86_64-linux/gcc-cross-arm/6.3.0-r0.do_prepare_recipe_sysroot.sigdata.150112323551011e0e87f99f47ad79c4
+>
+> Still not working :-(  What am I missing?  How do I track this down
+> (both the issues with bitbake-diffsigs as well as why gcc-cross-arm
+> is being rebuilt)?
+>
+> Thanks
 >
 >
-> Downgraded to 3.5 and didn't help sadly.
->
-> Regards,
-> Andrei
->
->
+> --
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
