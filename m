@@ -1,53 +1,65 @@
-Return-Path: <pderocco@ix.netcom.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C9D8CE0085D; Fri, 26 May 2017 18:34:54 -0700 (PDT)
+	id 10950E0085D; Fri, 26 May 2017 18:53:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_40,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.2084]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.182 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.182 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.86.89.64 listed in list.dnswl.org]
-Received: from elasmtp-curtail.atl.sa.earthlink.net
-	(elasmtp-curtail.atl.sa.earthlink.net [209.86.89.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F556E0077F
-	for <yocto@yoctoproject.org>; Fri, 26 May 2017 18:34:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
-	s=dk12062016; t=1495848892; bh=/ZGnqYhDU1Zmun/XHDDq1sZ1+NLMgiuwZDTf
-	gasuNlQ=; h=Received:From:To:Subject:Date:Message-ID:MIME-Version:
-	Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:
-	X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=LirQAWxa5+h0MYyr/bWI9j4
-	iJzKhLGDy/zSPgC0XICWfn0RqA4xk+bkU4OtS//FuPu89hp3O9robNF/yeU5mrFXj5d
-	CByl90mUN4GgS7/+53GcegdOFkDNTXzz0/xfXIdBV00BKPYF7y8SqVBVXW/DsgiB3y6
-	ICE/qOnusjDsKmCV6iOk6ol7M1xbyWmGjo3exthRy2Q1avFbAaoFCQlD3x4COX6EbvG
-	Q7uBNaLY7+WOT0WUFa8gooW+G/Ny0gmv4SsaHFZK2JwkNU8zryxuUHjpXMmzRkQqtnK
-	fB7SpIH7enu8q6j8gSyasQsrng3jLpeLgNn2PTJIfwFZHwBKPtA==
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk12062016; d=ix.netcom.com;
-	b=KDgqGJ6WQYjUvZj6e0Rvt1du19CYlhHSmVNlJfsWbX398rh59eJFOUZfOzuDOlD098P0LWtF2fhFviG9EQeZYskjEMNZup0eJcQ9jQevmRXSkFDhkzhAAZDtQV5o7pEqWxsV40z3rkHqOIVzelsEtWie6GxSqjeID5zv9PL0L1lR2c9kTxpcRMeasLVQNG3HnXRKv6G4AKSX+4YDTkDaMCgeW4jzdAP9W1RkdJTNKc9JkG8ryjKCR/WnnyKSj63utjjsaFKzlBSSbFQy44zTSVnYqfI6uYfRYrjQ2opCe7BjyeZVHSRjJ49YjtJlE4j85ycsHROZSqkVK4xIHKtusw==;
-	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [45.49.236.199] (helo=PAULD)
-	by elasmtp-curtail.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1dEQd0-00083z-Ug
-	for yocto@yoctoproject.org; Fri, 26 May 2017 21:34:51 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 26 May 2017 18:34:57 -0700
-Message-ID: <2F9B07C5AA344ED6AA5B799671B76F5A@PAULD>
+Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8555E0077F
+	for <yocto@yoctoproject.org>; Fri, 26 May 2017 18:53:48 -0700 (PDT)
+Received: by mail-io0-f182.google.com with SMTP id k91so18622647ioi.1
+	for <yocto@yoctoproject.org>; Fri, 26 May 2017 18:53:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=pwZ7p7pi45wXIsCwAYdg1bTJgK/6lAny+sv+HboX6ls=;
+	b=vDCDlOTboiH+zf+Cpz2szXO50d8BfwN+tiVnkeslpmeThYCMnlylksVdOhKl4qmuL2
+	eIsK4NLwiOCTs9ICP4rZjUjyiCG4lEbbzY3+U5PNnbRBFi2lbuAfVJhdwtYoPUHAFh+D
+	LVq1U9wCaHBSgLLE25SHsKEIusi2Fl64WsHYaQ5E4CW0fK+3clJfFMhGJZMG9AETLodX
+	etrhaOAwjTSjnuLehKAoIGyUN7K1iEzw/5q8ZP/Pba/6TJm5Cu2dSJJYtd22gaka4dcz
+	jBH6nZUbg4nXeSHIniSNW9k/vhURn6VOHPpIPZkfiKARoa0o1F2rMf2NSs7Tn/g2ivzg
+	ZPTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=pwZ7p7pi45wXIsCwAYdg1bTJgK/6lAny+sv+HboX6ls=;
+	b=T39GLaftuvfx3PmUfIGEImKQ/VWONVoTNUqh1qUS1v8dNdlXpLjoPuzPb9tkQeEqKy
+	EvCISsTUkobeKWO1NWg5kWKoO2wlsh8jH8uw2lThn2Lds7PM5s4SKV6QM/8lShqlpkR1
+	HepB/cpg/xKaGScZdbZPM6V1BRSB5VcOAPepwh0llHQvY/mgZGK+UOZn1nc2rF8NdnGC
+	t/ZY9cCqZ+xqU1NPYS6CZ6tzXvn3dwRoNOFSjZlCv/2z/YQAi1wyUGNkudMga5yJK3kp
+	E9rsK5pJAgHwlWhDjOtr0Y9MIp7FX+fvWkiKn+1U9RQxAf0k3a3BvMgq/4chiicYl+LV
+	n1bQ==
+X-Gm-Message-State: AODbwcBEic70R1xE1JefhZGZAiil6C/yJsG3ZQw1FZLdR+d56MymWKh6
+	rIf+Qah1yH8nEnCF4xG+gvMVbv0XseHP
+X-Received: by 10.107.167.197 with SMTP id q188mr4567832ioe.110.1495850028106; 
+	Fri, 26 May 2017 18:53:48 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdLWiXKxS3GBKRS9QKSzo6ahsYT9Sg==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.23651
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068834c8188252bcc73593bfce89c9a67f3c350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 45.49.236.199
-Subject: How to replace an arch*.inc file?
+Received: by 10.79.27.207 with HTTP; Fri, 26 May 2017 18:53:07 -0700 (PDT)
+X-Originating-IP: [31.52.113.35]
+In-Reply-To: <2F9B07C5AA344ED6AA5B799671B76F5A@PAULD>
+References: <2F9B07C5AA344ED6AA5B799671B76F5A@PAULD>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Sat, 27 May 2017 02:53:07 +0100
+Message-ID: <CAK18fxExd7+Sv6HHq+pU2tH4TWcSS37hhju7BDAVwGGHrd+B2Q@mail.gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: How to replace an arch*.inc file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,18 +71,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 May 2017 01:34:54 -0000
-Content-Type: text/plain;
-	charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 27 May 2017 01:53:53 -0000
+Content-Type: multipart/alternative; boundary="001a1141ca94901f62055077b94b"
 
-I'd like to try the Linaro version of arch-armv8.inc in an RPi3 project,
-because it has an ilp32 tune option. What's the correct way to incorporate
-this?
+--001a1141ca94901f62055077b94b
+Content-Type: text/plain; charset="UTF-8"
 
--- 
+Hi,
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com
+On Sat, May 27, 2017 at 2:34 AM, Paul D. DeRocco <pderocco@ix.netcom.com>
+wrote:
 
+> I'd like to try the Linaro version of arch-armv8.inc in an RPi3 project,
+> because it has an ilp32 tune option. What's the correct way to incorporate
+> this?
+>
 
+Probably the easiest way would be to create a new machine configuration.
+Where is this linaro version of arch-armv8?
+
+--
+Andrei Gherzan
+
+--001a1141ca94901f62055077b94b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi,<br>
+<br><div class=3D"gmail_quote">On Sat, May 27, 2017 at 2:34 AM, Paul D. DeR=
+occo <span dir=3D"ltr">&lt;<a href=3D"mailto:pderocco@ix.netcom.com" target=
+=3D"_blank">pderocco@ix.netcom.com</a>&gt;</span> wrote:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">I&#39;d like to try the Linaro version o=
+f arch-armv8.inc in an RPi3 project,<br>
+because it has an ilp32 tune option. What&#39;s the correct way to incorpor=
+ate<br>
+this?<br></blockquote><div><br></div><div>Probably the easiest way would be=
+ to create a new machine configuration. Where is this linaro version of arc=
+h-armv8?</div><div><div><br></div><div>--</div><div>Andrei Gherzan</div></d=
+iv></div></div></div>
+
+--001a1141ca94901f62055077b94b--
