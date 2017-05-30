@@ -1,43 +1,68 @@
-Return-Path: <jakob.hasse@smart-home-technology.ch>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB4B7E00B1B; Tue, 30 May 2017 02:53:30 -0700 (PDT)
+	id CBF10E00B1B; Tue, 30 May 2017 02:57:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.65 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [217.26.49.173 listed in list.dnswl.org]
-Received: from mxout013.mail.hostpoint.ch (mxout013.mail.hostpoint.ch
-	[217.26.49.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82D7AE0080F
-	for <yocto@yoctoproject.org>; Tue, 30 May 2017 02:53:26 -0700 (PDT)
-Received: from [10.0.2.45] (helo=asmtp012.mail.hostpoint.ch)
-	by mxout013.mail.hostpoint.ch with esmtp (Exim 4.89 (FreeBSD))
-	(envelope-from <jakob.hasse@smart-home-technology.ch>)
-	id 1dFdq9-000BNa-1B; Tue, 30 May 2017 11:53:25 +0200
-Received: from [2a02:168:68c7:0:6086:587:3a18:e196]
-	by asmtp012.mail.hostpoint.ch with esmtpa (Exim 4.89 (FreeBSD))
-	(envelope-from <jakob.hasse@smart-home-technology.ch>)
-	id 1dFdq8-000CCW-VQ; Tue, 30 May 2017 11:53:24 +0200
-X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
-To: Belisko Marek <marek.belisko@gmail.com>
-References: <275dac4b-2244-aea2-e539-a177855d5169@smart-home-technology.ch>
-	<CAAfyv34p4-0DQRzxHY6_Y_zYVRXHthWjUi-yHLnC0+tj=SMr-A@mail.gmail.com>
-	<cafef6f7-905a-0c03-8d8e-ecaf1d47ef28@smart-home-technology.ch>
-	<CAAfyv36WmwS7=x71p50SGEQ6umxjuB9x5f5nPkbZdDW5q_a4Xw@mail.gmail.com>
-From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
-Message-ID: <0afef265-6e2d-30b5-11b3-324e1b4effca@smart-home-technology.ch>
-Date: Tue, 30 May 2017 11:53:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
-MIME-Version: 1.0
-In-Reply-To: <CAAfyv36WmwS7=x71p50SGEQ6umxjuB9x5f5nPkbZdDW5q_a4Xw@mail.gmail.com>
-Cc: Yocto List <yocto@yoctoproject.org>
-Subject: Re: CMake project not building; building from local git repo possible
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f65.google.com (mail-lf0-f65.google.com
+	[209.85.215.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBF35E0080F
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 30 May 2017 02:57:26 -0700 (PDT)
+Received: by mail-lf0-f65.google.com with SMTP id q24so8374365lfb.1
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 30 May 2017 02:57:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=vt+FwjoeE0D9HvopUJcHvfiA1rgEmvdT2kan+4GaH7c=;
+	b=mG/7WT9BGuA97HH6BfIghpHSRryl5xcsnmT9Kn8fmQcbQIN8TziUlw/PSGzEHxkFY/
+	j/amKqRfcs+dzloYuDPUFBgVLK98oSR6Z4b02Yjx8FpOYXKwwNnJtVRTbON3VUvKL3yn
+	LBbvT+eF1j1fjiYSR0jCn1PAR0WgGQD1DRQYbTuf5sAeDUJkguV52OfUI547zbWPKbl0
+	DjBGgIA6Q+X0iyNxzp6wKAAquXcio3NsFKM2C/a4tq3EepX5bNMM0y5NOZDopGIO9EKp
+	o765bIB48l9Usrb5A0acc19djszfj5gK1dtVRLFb8YnJeZPFrtaifeDJuaHrUt5jAAJr
+	g3Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=vt+FwjoeE0D9HvopUJcHvfiA1rgEmvdT2kan+4GaH7c=;
+	b=PDuTeeA3MTW+C+t8rqXicna53pT59LbSkxoBLkYkNVqWIeuVX8iwnhQwRhJTz9o35A
+	VVgHVc9lRo8Vm4oKBt2yoOmpBczOScxWQQc+jjue/mlxMohI1UaQsqj2D8Ib7uWIOHDP
+	fCsFfPQ2SHjmzOtjDOCwPfcE5+v33KTNpkL0W9EIuArSzS0jjqKaOf3Pt4EDmfAXIX1H
+	22Gp2eba4FzoV/22cdQc8HYxJ1SOuj8c+M4roqMhct6Q/VEA3xXMtyc7i4nrErYYlGSn
+	WyoyKIETFikxkPWVdOAwk5DhpEIP7DKOJb8ytrM+I0geB05xzFqSndYaSLeyebCNTL3e
+	GcaQ==
+X-Gm-Message-State: AODbwcDCxkQCD9HduZJvprEOIXDeBeU0bj57KT777mujGYGFn0jKkUyU
+	R+gnXYqyHITLC+Jd
+X-Received: by 10.223.160.70 with SMTP id l6mr16332511wrl.0.1496138245449;
+	Tue, 30 May 2017 02:57:25 -0700 (PDT)
+Received: from localhost ([217.30.68.212])
+	by smtp.gmail.com with ESMTPSA id d4sm2825686wra.65.2017.05.30.02.57.24
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 30 May 2017 02:57:24 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+To: yocto@lists.yoctoproject.org
+Date: Tue, 30 May 2017 09:57:23 +0200
+Message-Id: <20170530075723.18340-1-Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 2.13.0
+Subject: [PATCH][meta-raspberrypi] linux-raspberrypi_dev: don't use AUTOREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,61 +74,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 May 2017 09:53:30 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: de-DE
+X-List-Received-Date: Tue, 30 May 2017 09:57:28 -0000
 
-Hi Marek,
+* use latest revision in rpi-4.11.y branch
+* using AUTOREV causes bitbake to run git ls-remote on the github.com repository in order
+  to convert AUTOREV to currently latest SRCREV even when you don't use linux-raspberrypi_dev
+  at all, just happen to have meta-raspberrypi layer in your bblayers.conf, that's bad for
+  people who want to be able to build without network access (completely from premirror)
 
-On 30.05.2017 11:37, Belisko Marek wrote:
-> Hi Jakob,
->
-> On Tue, May 30, 2017 at 11:28 AM, Jakob Hasse
-> <jakob.hasse@smart-home-technology.ch> wrote:
->> Hi Marek,
-> please don't top post http://www.idallen.com/topposting.html :)
->> Thanks for your answer!
->> I did use a local repo folder since I find it more convenient to make quick
->> changes that way, as it is the case right now.
-> Source is fetched only once then it's keep in downloads directory so
-> better use then local repo.
->> I applied your changes but I still get the same bitbake errors as before, as
->> shown below. The CMake Error log says:
->> ...
->> error: unrecognized command line option '-Wmissing-variable-declarations'
->> ...
->> error: unrecognized command line option '-Wshorten-64-to-32'
-> Can you give me some more info about poky version, target you're building ...
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+---
+ recipes-kernel/linux/linux-raspberrypi_dev.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Build Configuration:
-BB_VERSION        = "1.32.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal"
-TARGET_SYS        = "arm-dey-linux-gnueabi"
-MACHINE           = "ccimx6ulstarter"
-DISTRO            = "dey"
-DISTRO_VERSION    = "2.2-r1"
-TUNE_FEATURES     = "arm armv7ve vfp thumb neon 
-callconvention-hard       cortexa7"
-TARGET_FPU        = "hard"
-
-We're using the digi embedded yocto here. I think I'll contact their 
-support, too.
-The arm-dey-linux-gnueabi looks like a normal arm-linux-gnueabi-gcc.
-Please tell me if you think you need more info.
-
-Cheers,
-Jakob
-
+diff --git a/recipes-kernel/linux/linux-raspberrypi_dev.bb b/recipes-kernel/linux/linux-raspberrypi_dev.bb
+index 239d630..06771b9 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_dev.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_dev.bb
+@@ -3,7 +3,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-dev:"
+ LINUX_VERSION ?= "4.11"
+ LINUX_RPI_DEV_BRANCH ?= "rpi-4.11.y"
+ 
+-SRCREV = "${AUTOREV}"
++SRCREV = "3b3178eb6c0ddea0a6856f16f52b5d2c21ed9299"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=${LINUX_RPI_DEV_BRANCH} \
+            file://0001-build-arm64-Add-rules-for-.dtbo-files-for-dts-overla.patch \
+ "
 -- 
-Jakob Hasse
-Software Developement
-
-E: jakob.hasse@smart-home-technology.ch
-T: +41 44 552 02 66
-
-Smart Home Technology GmbH
-www.smart-home-technology.ch
+2.13.0
 
 
