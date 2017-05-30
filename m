@@ -1,70 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <alejandro.hernandez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16460E00B3D; Tue, 30 May 2017 10:30:11 -0700 (PDT)
+	id 4A50EE00B3D; Tue, 30 May 2017 11:45:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 128BAE00B19
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 30 May 2017 10:30:08 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id g15so26508316wmc.2
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 30 May 2017 10:30:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=eSbK3fhCqzTK0RLTR5JjyGWIkCWkAekKCNAjyKzduMc=;
-	b=NGP0YjK3oIPVfl65sHnkOnX5i5ciIbvu73T1Zy23lAu/73+rNLGanxvCSKpgjc3eXh
-	iloMMU1PXRf1y0zWbBzmVtACMm2C/6RQNGRdiVKbC4l0ha6fgUGKhWTgCljbg4m4S0CF
-	ahg11oFn0kE8h4ZgfTkvbHnGECuUCggNeFluFwXcpB3dfzaVs6nHf8ZKWkLTGy58Y66I
-	QozIlhJJW2tqzhVqn8D1HbQDvtMV0AfvYoooMEHdg3KXRrH8VoqFJfvAuuQgDtQ2cpjs
-	R6po4J5Ll9EEz+8/uZWPcmXsiNLoiJ+9teuRR6ND+3xRcFiUZmou1iSXSnDiGPumeSnB
-	pNQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=eSbK3fhCqzTK0RLTR5JjyGWIkCWkAekKCNAjyKzduMc=;
-	b=Yi/XxEIY++0Zh9SOaqEl+uOb9VV6uHtvSKAJvLEIThuagiACVYjp7rbYmZIGt3GuXK
-	ZEp4Urd8OShFVDZ2x9OCabBOSVulwbOM8yKDaD97UqAi5gX0n+tI8cWkSTs/KmOc4cWv
-	MWSWwpgZ8HZ5QTIcBHGbGAnH5paE7uMCtme1r89y82QlGMaVugjqQ8SCEEgkpu7occft
-	iKhmRD0OLBUR7jQaARhvp3nxP+SL12eP/wrbn4WNOIUoijiVsShs0p9kHSp5fXl3BMHa
-	Cguxrr7vP/wDy9slTuiIMobeLD/nsgfjtOcaJkyfK+FN+qwUxqaLWvXHjO88iT3bTTYx
-	5wcg==
-X-Gm-Message-State: AODbwcBT1XoWKa4/iT80bqaJc+zHRPgRac3AcWTPIn1uJmJMjXOvzMoS
-	1mgS9LgUkAqghbbG/bWGjYpO3BLc2w==
-X-Received: by 10.80.147.195 with SMTP id o61mr17390123eda.178.1496165407731; 
-	Tue, 30 May 2017 10:30:07 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.80.195.143 with HTTP; Tue, 30 May 2017 10:29:37 -0700 (PDT)
-In-Reply-To: <CAJ86T=XF11yQjPFHXGHHk28MTQF1FQnEz_D+8s=6vk5AO6oFPQ@mail.gmail.com>
-References: <20170530075723.18340-1-Martin.Jansa@gmail.com>
-	<CAMKF1so+EmqtQFL-GbMyEQtpOOevOjRnqHbzXUvs4eb3m04XLw@mail.gmail.com>
-	<CAPyrkgyar=GAr2QkqPe+Tjg=yp=yde_V3MKoXSeKZFb9StCXBw@mail.gmail.com>
-	<CAJ86T=XF11yQjPFHXGHHk28MTQF1FQnEz_D+8s=6vk5AO6oFPQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 30 May 2017 10:29:37 -0700
-Message-ID: <CAMKF1soe0qjKuyASY+sE4rcvOM-uAqzBVdNbJb2=f0c6gOhZ_w@mail.gmail.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [PATCH][meta-raspberrypi] linux-raspberrypi_dev: don't use AUTOREV
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BF32E00B19
+	for <yocto@yoctoproject.org>; Tue, 30 May 2017 11:44:56 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	30 May 2017 11:44:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.38,419,1491289200"; d="scan'208";a="268150324"
+Received: from yctb02.ostc.intel.com (HELO yctb02.otcr.jf.intel.com)
+	([10.54.69.56])
+	by fmsmga004.fm.intel.com with ESMTP; 30 May 2017 11:44:35 -0700
+From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 30 May 2017 11:44:34 -0700
+Message-Id: <20170530184434.35089-1-alejandro.hernandez@linux.intel.com>
+X-Mailer: git-send-email 2.12.0
+Subject: [PATCH] yocto-bsp: Fix QEMUARM based bsps to not offer SMP support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,51 +39,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 May 2017 17:30:11 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 30 May 2017 18:45:00 -0000
 
-On Tue, May 30, 2017 at 10:25 AM, Andre McCurdy <armccurdy@gmail.com> wrote:
-> On Tue, May 30, 2017 at 10:15 AM, Paul Barker <pbarker@toganlabs.com> wrote:
->> On 30 May 2017 5:08 p.m., "Khem Raj" <raj.khem@gmail.com> wrote:
->>
->> On Tue, May 30, 2017 at 12:57 AM, Martin Jansa <martin.jansa@gmail.com>
->> wrote:
->>> * use latest revision in rpi-4.11.y branch
->>> * using AUTOREV causes bitbake to run git ls-remote on the github.com
->>> repository in order
->>>   to convert AUTOREV to currently latest SRCREV even when you don't use
->>> linux-raspberrypi_dev
->>>   at all, just happen to have meta-raspberrypi layer in your
->>> bblayers.conf, that's bad for
->>>   people who want to be able to build without network access (completely
->>> from premirror)
->>>
->>
->> These branches get rebased often so locking SRCREV caused another
->> kind of problem. what we can do is.
->>
->> 1. Let user like you override the SRCREC via a bbappend or conf file.
->> so change the assignment to ?=
->> 2. Delete the recipe completely. We lose some of upstream testing.
->>
->> We should be able to skip the recipe if it isn't selected as the preferred
->> version and/or provider of "virtual/kernel". I'm out at the minute so can't
->> look at it now but will try to take a look later this week.
->
-> The linux-yocto-dev.bb recipe contains an example of doing that.
->
+The SMP kernel config presents issues on qemuarm because:
 
-ah perfect. Thats what we need here
+CONFIG_SMP=y
+Dependencies Missing:
+  - CPU_V6K or CPU_V7:
+    These are selected by setting:
+    CONFIG_ARCH_MULTI_V7=y
+    or
+    CONFIG_ARCH_MULTI_V6=y
 
-http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-kernel/linux/linux-yocto-dev.bb?h=master#n28
+But our QEMU + ARM BSPs are based on armv4/v5 hence they are
+incompatible with CONFIG_SMP.
 
-please rename the recipe to be linux-raspberrypi-dev.bb and add the magic
-above and send a v2
+This patch fixes the script, and avoids offering SMP to the user
+when the created BSP is based on QEMU + ARM.
 
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+[YOCTO #11426]
+
+Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+---
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto-dev.bbappend       | 1 +
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.1.bbappend  | 1 +
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.10.bbappend | 1 +
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.4.bbappend  | 1 +
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.8.bbappend  | 1 +
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto_4.1.bbappend       | 1 +
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto_4.10.bbappend      | 1 +
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto_4.4.bbappend       | 1 +
+ .../target/arch/qemu/recipes-kernel/linux/linux-yocto_4.8.bbappend       | 1 +
+ 9 files changed, 9 insertions(+)
+
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-dev.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-dev.bbappend
+index 7e3ce5ba12d..11105ebcc26 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-dev.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-dev.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Would you like SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.1.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.1.bbappend
+index 81392ce38ac..ad77a662682 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.1.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.1.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Do you need SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.10.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.10.bbappend
+index 29ad17b2009..9b5f8016841 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.10.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.10.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Do you need SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.4.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.4.bbappend
+index a73b1aa132f..2fc992992cf 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.4.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.4.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Do you need SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.8.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.8.bbappend
+index 7d40671fd43..868d12af04b 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.8.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto-tiny_4.8.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Do you need SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.1.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.1.bbappend
+index a9fd9ecff5a..13450f47438 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.1.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.1.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Would you like SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.10.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.10.bbappend
+index 5873da4245c..e1af4976fc4 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.10.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.10.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Would you like SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.4.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.4.bbappend
+index cdee7737983..a2511ba197c 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.4.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.4.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Would you like SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+diff --git a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.8.bbappend b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.8.bbappend
+index 24c28803ee7..fdf66bb4429 100644
+--- a/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.8.bbappend
++++ b/scripts/lib/bsp/substrate/target/arch/qemu/recipes-kernel/linux/linux-yocto_4.8.bbappend
+@@ -45,6 +45,7 @@ COMPATIBLE_MACHINE_{{=machine}} = "{{=machine}}"
+ {{ if need_new_kbranch == "n": }}
+ KBRANCH_{{=machine}}  = "{{=existing_kbranch}}"
+ 
++{{ if qemuarch != "arm": }}
+ {{ input type:"boolean" name:"smp" prio:"30" msg:"Would you like SMP support? (y/n)" default:"y"}}
+ {{ if smp == "y": }}
+ KERNEL_FEATURES_append_{{=machine}} += " cfg/smp.scc"
+-- 
+2.12.0
+
 
