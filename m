@@ -1,69 +1,44 @@
-Return-Path: <andybeg@mail.ru>
+Return-Path: <jakob.hasse@smart-home-technology.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6947E00B1B; Mon, 29 May 2017 23:07:39 -0700 (PDT)
+	id C4091E00953; Tue, 30 May 2017 02:28:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,MISSING_SUBJECT,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (andybeg[at]mail.ru)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [94.100.179.44 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.26.49.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.8 MISSING_SUBJECT Missing Subject: header
-X-Greylist: delayed 2909 seconds by postgrey-1.32 at yocto-www;
-	Mon, 29 May 2017 23:07:35 PDT
-Received: from fallback.mail.ru (fallback14.m.smailru.net [94.100.179.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7104AE00812
-	for <yocto@yoctoproject.org>; Mon, 29 May 2017 23:07:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru;
-	s=mail2; 
-	h=Content-Type:Message-ID:Reply-To:Date:MIME-Version:To:From;
-	bh=QQukpMyf7M9kdiqIVQ+w4WgEOIdCAJz4jksG5Y9kbms=; 
-	b=O28L/3LaVVZtoPgAhVI8QgikVpt3thAmOaUwhaScaXyeqYjeRUU3KJ330bX1wg1SZeCxKDoFvHns9QRGGnd1is+eeJxdRzppweMP+4OryJ7nZydcfYJJ/h43GxmZy5p8NpHxqWbozlMRuiV37t0OgRrSg97m1PWZaClf97AGHxI=;
-Received: from [10.161.63.39] (port=60138 helo=f416.i.mail.ru)
-	by fallback14.m.smailru.net with esmtp (envelope-from
-	<andybeg@mail.ru>) id 1dFZYc-0007Ta-6X
-	for yocto@yoctoproject.org; Tue, 30 May 2017 08:19:02 +0300
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru;
-	s=mail2; 
-	h=Content-Type:Message-ID:Reply-To:Date:MIME-Version:To:From;
-	bh=QQukpMyf7M9kdiqIVQ+w4WgEOIdCAJz4jksG5Y9kbms=; 
-	b=O28L/3LaVVZtoPgAhVI8QgikVpt3thAmOaUwhaScaXyeqYjeRUU3KJ330bX1wg1SZeCxKDoFvHns9QRGGnd1is+eeJxdRzppweMP+4OryJ7nZydcfYJJ/h43GxmZy5p8NpHxqWbozlMRuiV37t0OgRrSg97m1PWZaClf97AGHxI=;
-Received: by f416.i.mail.ru with local (envelope-from <andybeg@mail.ru>)
-	id 1dFZYa-0008G9-2E
-	for yocto@yoctoproject.org; Tue, 30 May 2017 08:19:00 +0300
-Received: by e.mail.ru with HTTP;
-	Tue, 30 May 2017 08:19:00 +0300
-From: =?UTF-8?B?0JDQvdC00YDQtdC5INCa0L7QvdC+0L3QvtCy?= <andybeg@mail.ru>
-To: yocto@yoctoproject.org
+Received: from mxout017.mail.hostpoint.ch (mxout017.mail.hostpoint.ch
+	[217.26.49.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CA1CE0080F
+	for <yocto@yoctoproject.org>; Tue, 30 May 2017 02:28:42 -0700 (PDT)
+Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
+	by mxout017.mail.hostpoint.ch with esmtp (Exim 4.89 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1dFdSC-000CeF-C6; Tue, 30 May 2017 11:28:40 +0200
+Received: from [2a02:168:68c7:0:6086:587:3a18:e196]
+	by asmtp013.mail.hostpoint.ch with esmtpa (Exim 4.89 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1dFdSC-000Mv9-A8; Tue, 30 May 2017 11:28:40 +0200
+X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
+To: Belisko Marek <marek.belisko@gmail.com>
+References: <275dac4b-2244-aea2-e539-a177855d5169@smart-home-technology.ch>
+	<CAAfyv34p4-0DQRzxHY6_Y_zYVRXHthWjUi-yHLnC0+tj=SMr-A@mail.gmail.com>
+From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
+Message-ID: <cafef6f7-905a-0c03-8d8e-ecaf1d47ef28@smart-home-technology.ch>
+Date: Tue, 30 May 2017 11:28:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
 MIME-Version: 1.0
-X-Mailer: Mail.Ru Mailer 1.0
-Date: Tue, 30 May 2017 08:19:00 +0300
-X-Priority: 3 (Normal)
-Message-ID: <1496121539.508008271@f416.i.mail.ru>
-X-7FA49CB5: 0D63561A33F958A517692F0281C311B2ED278411B989632375BC7CBEF7FBA08C725E5C173C3A84C3C10434419A95FA0AE78A6AF53DF0D2D0B344165809136645C4224003CC836476C0CAF46E325F83A50BF2EBBBDD9D6B0FF045C6A0F83C8214574AF45C6390F7469DAA53EE0834AAEE
-X-Mailru-Sender: F1F4F41F944728766D898A0DF844996CCC015BE28A615CA97F60D742C1B53001025E1A199875F8F239DB9A188B79FFCF30F23ECAC1984CFE6283DC06F2610E8A22DF1A08BD40178CDB79C0EE878E65D1E4F66CBA56903E763453F38A29522196
-X-Mras: OK
-X-Spam: undefined
-X-7FA49CB5: 0D63561A33F958A5459E0932D532CA4A58476A67CDBC27411BF79E5782FABA36462275124DF8B9C9806C6499444CB6FBBD9CCCA9EDD067B1EDA766A37F9254B7
-X-Mras: OK
-Subject: (No subject)
+In-Reply-To: <CAAfyv34p4-0DQRzxHY6_Y_zYVRXHthWjUi-yHLnC0+tj=SMr-A@mail.gmail.com>
+Cc: Yocto List <yocto@yoctoproject.org>
+Subject: Re: CMake project not building; building from local git repo possible
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: =?UTF-8?B?0JDQvdC00YDQtdC5INCa0L7QvdC+0L3QvtCy?= <andybeg@mail.ru>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,136 +47,221 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 May 2017 06:07:40 -0000
-Content-Type: multipart/alternative;
-	boundary="--ALT--MdSz92WoN4MnUKKg8RSdtcvKSkI4kBF61496121540"
+X-List-Received-Date: Tue, 30 May 2017 09:28:46 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: de-DE
 
-----ALT--MdSz92WoN4MnUKKg8RSdtcvKSkI4kBF61496121540
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+Hi Marek,
 
-CmknbSB0cnlpbmcgdG8gYnVpbGQKYml0YmFrZSBmc2wtaW1hZ2UtbXVsdGltZWRpYS1mdWxsIC1r
-CnVzaW5nICBweXJvIHJlcG9zaXRvcnkgYW5kIG15IGltYWdlIGluY2x1ZGUgUVQ1IGxpYnJhcnks
-IGJ1dCBnZXQgZXJyb3IuIFRoZSBzYW1lIGNvbmZpZ3VyYXRpb24gb24gIG1vcnR5IGJ1aWxkZWQg
-d2l0aG91dCBlcnJvcnMKUGFyc2luZyByZWNpcGVzOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjfCBUaW1lOiAwOjE5OjM2ClBhcnNpbmcgb2Yg
-MjI1OCAuYmIgZmlsZXMgY29tcGxldGUgKDAgY2FjaGVkLCAyMjU4IHBhcnNlZCkuIDMwNTAgdGFy
-Z2V0cywgNTA2IHNraXBwZWQsIDAgbWFza2VkLCAwIGVycm9ycy4KTk9URTogUmVzb2x2aW5nIGFu
-eSBtaXNzaW5nIHRhc2sgcXVldWUgZGVwZW5kZW5jaWVzCkJ1aWxkIENvbmZpZ3VyYXRpb246CkJC
-X1ZFUlNJT04gPSAiMS4zNC4wIgpCVUlMRF9TWVMgPSAieDg2XzY0LWxpbnV4IgpOQVRJVkVMU0JT
-VFJJTkcgPSAibGludXhtaW50LTE4LjEiClRBUkdFVF9TWVMgPSAiYXJtLXBva3ktbGludXgtZ251
-ZWFiaSIKTUFDSElORSA9ICJpbXg2cXBzYWJyZWF1dG8iCkRJU1RSTyA9ICJwb2t5IgpESVNUUk9f
-VkVSU0lPTiA9ICIyLjMiClRVTkVfRkVBVFVSRVMgPSAiYXJtIGFybXY3YSB2ZnAgdGh1bWIgbmVv
-biBjYWxsY29udmVudGlvbi1oYXJkIGNvcnRleGE5IgpUQVJHRVRfRlBVID0gImhhcmQiCm1ldGEg
-Cm1ldGEtcG9reSA9ICJIRUFEOjMxMzg5ZjhiMDA4OGE4YTgzYWE1ZTUwZjExMzU5YjM5OTM0ZTQ2
-NDAiCm1ldGEtb2UgCm1ldGEtZ25vbWUgCm1ldGEtbXVsdGltZWRpYSA9ICJIRUFEOjVlODI5OTUx
-NDhhMjg0NGM2ZjQ4M2FlNWRkZDE0MzhkODdlYTlmYjciCm1ldGEtZnJlZXNjYWxlID0gIkhFQUQ6
-YTY1ZDEzYzMxNWRiNDQ3YWRkYTY4YjQ3ZmFlYjRjMGFmZDA2NTViOCIKbWV0YS1mcmVlc2NhbGUt
-M3JkcGFydHkgPSAiSEVBRDoxZjM3Njk4YWM2Mjk0NWI2NTMxYTMxNmVjMTIzMmFmMjNjYzZjMDUw
-IgptZXRhLWZyZWVzY2FsZS1kaXN0cm8gPSAiSEVBRDpjZDVjN2EyNTM5ZjQwMDA0Zjc0MTI2ZTlm
-ZGYwODI1NGZkOWE2MzkwIgptZXRhLXF0NSA9ICJtYXN0ZXI6NjYwNWM0OGYzYTkwMGRhMjY0MjVl
-ZjMxZDgzZWIxYzk1ZDU1MTUzMSIKbWV0YS1ydWJ5IAptZXRhLW5ldHdvcmtpbmcgCm1ldGEtcHl0
-aG9uIAptZXRhLWZpbGVzeXN0ZW1zID0gIkhFQUQ6NWU4Mjk5NTE0OGEyODQ0YzZmNDgzYWU1ZGRk
-MTQzOGQ4N2VhOWZiNyIKSW5pdGlhbGlzaW5nIHRhc2tzOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjfCBUaW1lOiAwOjAyOjQwCk5PVEU6IEV4ZWN1
-dGluZyBTZXRTY2VuZSBUYXNrcwpOT1RFOiBFeGVjdXRpbmcgUnVuUXVldWUgVGFza3MKRVJST1I6
-IHF0YmFzZS01LjguMCtnaXRBVVRPSU5DKzQ5ZGM5YWE0MDktcjAgZG9fcGF0Y2g6IENvbW1hbmQg
-RXJyb3I6ICdxdWlsdCAtLXF1aWx0cmMgL21lZGlhL2JhcnN1ay9leHQ0LjcyMC9weXJvL3Jvb3Rm
-cy5zeXN0ZW1kLnFwL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1teDZxZGwtcG9reS1saW51eC1n
-bnVlYWJpL3F0YmFzZS81LjguMCtnaXRBVVRPSU5DKzQ5ZGM5YWE0MDktcjAvcmVjaXBlLXN5c3Jv
-b3QtbmF0aXZlL2V0Yy9xdWlsdHJjIHB1c2gnIGV4aXRlZCB3aXRoIDAgT3V0cHV0OgpBcHBseWlu
-ZyBwYXRjaCAwMDE0LUFkZC1JTVgtR1BVLXN1cHBvcnQucGF0Y2gKcGF0Y2hpbmcgZmlsZSBta3Nw
-ZWNzL2xpbnV4LW9lLWcrKy9xbWFrZS5jb25mCkh1bmsgIzEgRkFJTEVEIGF0IDM5LgoxIG91dCBv
-ZiAxIGh1bmsgRkFJTEVEIC0tIHJlamVjdHMgaW4gZmlsZSBta3NwZWNzL2xpbnV4LW9lLWcrKy9x
-bWFrZS5jb25mClBhdGNoIDAwMTQtQWRkLUlNWC1HUFUtc3VwcG9ydC5wYXRjaCBkb2VzIG5vdCBh
-cHBseSAoZW5mb3JjZSB3aXRoIC1mKQpFUlJPUjogcXRiYXNlLTUuOC4wK2dpdEFVVE9JTkMrNDlk
-YzlhYTQwOS1yMCBkb19wYXRjaDogRnVuY3Rpb24gZmFpbGVkOiBwYXRjaF9kb19wYXRjaApFUlJP
-UjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL21lZGlhL2JhcnN1ay9leHQ0LjcyMC9w
-eXJvL3Jvb3Rmcy5zeXN0ZW1kLnFwL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1teDZxZGwtcG9r
-eS1saW51eC1nbnVlYWJpL3F0YmFzZS81LjguMCtnaXRBVVRPSU5DKzQ5ZGM5YWE0MDktcjAvdGVt
-cC9sb2cuZG9fcGF0Y2guODg5NQpFUlJPUjogVGFzayAoL21lZGlhL2JhcnN1ay9leHQ0LjcyMC9w
-eXJvL3NvdXJjZXMvbWV0YS1xdDUvcmVjaXBlcy1xdC9xdDUvcXRiYXNlX2dpdC5iYjpkb19wYXRj
-aCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJwpXQVJOSU5HOiB0dGYtYXJwaGljLXVtaW5nLTIw
-MDgwMjE2LXI2IGRvX3BvcHVsYXRlX2xpYzogdHRmLWFycGhpYy11bWluZzogTm8gZ2VuZXJpYyBs
-aWNlbnNlIGZpbGUgZXhpc3RzIGZvcjogQXJwaGljLVB1YmxpYy1MaWNlbnNlIGluIGFueSBwcm92
-aWRlcgpOT1RFOiBUYXNrcyBTdW1tYXJ5OiBBdHRlbXB0ZWQgNTExNiB0YXNrcyBvZiB3aGljaCA2
-IGRpZG4ndCBuZWVkIHRvIGJlIHJlcnVuIGFuZCAxIGZhaWxlZC4KU3VtbWFyeTogMSB0YXNrIGZh
-aWxlZDoKL21lZGlhL2JhcnN1ay9leHQ0LjcyMC9weXJvL3NvdXJjZXMvbWV0YS1xdDUvcmVjaXBl
-cy1xdC9xdDUvcXRiYXNlX2dpdC5iYjpkb19wYXRjaApTdW1tYXJ5OiBUaGVyZSB3ZXJlIDIgV0FS
-TklORyBtZXNzYWdlcyBzaG93bi4KU3VtbWFyeTogVGhlcmUgd2VyZSAyIEVSUk9SIG1lc3NhZ2Vz
-IHNob3duLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuCgotLSAK0JDQvdC00YDQtdC5
-INCa0L7QvdC+0L3QvtCy
+Thanks for your answer!
+I did use a local repo folder since I find it more convenient to make 
+quick changes that way, as it is the case right now.
 
-----ALT--MdSz92WoN4MnUKKg8RSdtcvKSkI4kBF61496121540
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+I applied your changes but I still get the same bitbake errors as 
+before, as shown below. The CMake Error log says:
+...
+error: unrecognized command line option '-Wmissing-variable-declarations'
+...
+error: unrecognized command line option '-Wshorten-64-to-32'
+...
 
-CjxIVE1MPjxCT0RZPjxwPmknbSB0cnlpbmcgdG8gYnVpbGQ8YnI+Yml0YmFrZSBmc2wtaW1hZ2Ut
-bXVsdGltZWRpYS1mdWxsIC1rPGJyPnVzaW5nIDxzdHJvbmc+cHlybzwvc3Ryb25nPiByZXBvc2l0
-b3J5IGFuZCBteSBpbWFnZSBpbmNsdWRlIFFUNSBsaWJyYXJ5LCBidXQgZ2V0IGVycm9yLiBUaGUg
-c2FtZSBjb25maWd1cmF0aW9uIG9uIDxzdHJvbmc+bW9ydHk8L3N0cm9uZz4gYnVpbGRlZCB3aXRo
-b3V0IGVycm9yczwvcD48cD5QYXJzaW5nIHJlY2lwZXM6IDEwMCUgfCMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDA6MTk6MzY8YnI+UGFyc2lu
-ZyBvZiAyMjU4IC5iYiBmaWxlcyBjb21wbGV0ZSAoMCBjYWNoZWQsIDIyNTggcGFyc2VkKS4gMzA1
-MCB0YXJnZXRzLCA1MDYgc2tpcHBlZCwgMCBtYXNrZWQsIDAgZXJyb3JzLjxicj5OT1RFOiBSZXNv
-bHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNpZXM8L3A+PHA+QnVpbGQgQ29u
-ZmlndXJhdGlvbjo8YnI+QkJfVkVSU0lPTiA9ICIxLjM0LjAiPGJyPkJVSUxEX1NZUyA9ICJ4ODZf
-NjQtbGludXgiPGJyPk5BVElWRUxTQlNUUklORyA9ICJsaW51eG1pbnQtMTguMSI8YnI+VEFSR0VU
-X1NZUyA9ICJhcm0tcG9reS1saW51eC1nbnVlYWJpIjxicj5NQUNISU5FID0gImlteDZxcHNhYnJl
-YXV0byI8YnI+RElTVFJPID0gInBva3kiPGJyPkRJU1RST19WRVJTSU9OID0gIjIuMyI8YnI+VFVO
-RV9GRUFUVVJFUyA9ICJhcm0gYXJtdjdhIHZmcCB0aHVtYiBuZW9uIGNhbGxjb252ZW50aW9uLWhh
-cmQgY29ydGV4YTkiPGJyPlRBUkdFVF9GUFUgPSAiaGFyZCI8YnI+bWV0YSA8YnI+bWV0YS1wb2t5
-ID0gIkhFQUQ6MzEzODlmOGIwMDg4YThhODNhYTVlNTBmMTEzNTliMzk5MzRlNDY0MCI8YnI+bWV0
-YS1vZSA8YnI+bWV0YS1nbm9tZSA8YnI+bWV0YS1tdWx0aW1lZGlhID0gIkhFQUQ6NWU4Mjk5NTE0
-OGEyODQ0YzZmNDgzYWU1ZGRkMTQzOGQ4N2VhOWZiNyI8YnI+bWV0YS1mcmVlc2NhbGUgPSAiSEVB
-RDphNjVkMTNjMzE1ZGI0NDdhZGRhNjhiNDdmYWViNGMwYWZkMDY1NWI4Ijxicj5tZXRhLWZyZWVz
-Y2FsZS0zcmRwYXJ0eSA9ICJIRUFEOjFmMzc2OThhYzYyOTQ1YjY1MzFhMzE2ZWMxMjMyYWYyM2Nj
-NmMwNTAiPGJyPm1ldGEtZnJlZXNjYWxlLWRpc3RybyA9ICJIRUFEOmNkNWM3YTI1MzlmNDAwMDRm
-NzQxMjZlOWZkZjA4MjU0ZmQ5YTYzOTAiPGJyPm1ldGEtcXQ1ID0gIm1hc3Rlcjo2NjA1YzQ4ZjNh
-OTAwZGEyNjQyNWVmMzFkODNlYjFjOTVkNTUxNTMxIjxicj5tZXRhLXJ1YnkgPGJyPm1ldGEtbmV0
-d29ya2luZyA8YnI+bWV0YS1weXRob24gPGJyPm1ldGEtZmlsZXN5c3RlbXMgPSAiSEVBRDo1ZTgy
-OTk1MTQ4YTI4NDRjNmY0ODNhZTVkZGQxNDM4ZDg3ZWE5ZmI3IjwvcD48cD5Jbml0aWFsaXNpbmcg
-dGFza3M6IDEwMCUgfCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyN8IFRpbWU6IDA6MDI6NDA8YnI+Tk9URTogRXhlY3V0aW5nIFNldFNjZW5lIFRhc2tzPGJyPk5P
-VEU6IEV4ZWN1dGluZyBSdW5RdWV1ZSBUYXNrczxicj5FUlJPUjogcXRiYXNlLTUuOC4wK2dpdEFV
-VE9JTkMrNDlkYzlhYTQwOS1yMCBkb19wYXRjaDogQ29tbWFuZCBFcnJvcjogJ3F1aWx0IC0tcXVp
-bHRyYyAvbWVkaWEvYmFyc3VrL2V4dDQuNzIwL3B5cm8vcm9vdGZzLnN5c3RlbWQucXAvdG1wL3dv
-cmsvY29ydGV4YTloZi1uZW9uLW14NnFkbC1wb2t5LWxpbnV4LWdudWVhYmkvcXRiYXNlLzUuOC4w
-K2dpdEFVVE9JTkMrNDlkYzlhYTQwOS1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvZXRjL3F1aWx0
-cmMgcHVzaCcgZXhpdGVkIHdpdGggMCBPdXRwdXQ6PGJyPkFwcGx5aW5nIHBhdGNoIDAwMTQtQWRk
-LUlNWC1HUFUtc3VwcG9ydC5wYXRjaDxicj5wYXRjaGluZyBmaWxlIG1rc3BlY3MvbGludXgtb2Ut
-ZysrL3FtYWtlLmNvbmY8YnI+SHVuayAjMSBGQUlMRUQgYXQgMzkuPGJyPjEgb3V0IG9mIDEgaHVu
-ayBGQUlMRUQgLS0gcmVqZWN0cyBpbiBmaWxlIG1rc3BlY3MvbGludXgtb2UtZysrL3FtYWtlLmNv
-bmY8YnI+UGF0Y2ggMDAxNC1BZGQtSU1YLUdQVS1zdXBwb3J0LnBhdGNoIGRvZXMgbm90IGFwcGx5
-IChlbmZvcmNlIHdpdGggLWYpPGJyPkVSUk9SOiBxdGJhc2UtNS44LjArZ2l0QVVUT0lOQys0OWRj
-OWFhNDA5LXIwIGRvX3BhdGNoOiBGdW5jdGlvbiBmYWlsZWQ6IHBhdGNoX2RvX3BhdGNoPGJyPkVS
-Uk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvbWVkaWEvYmFyc3VrL2V4dDQuNzIw
-L3B5cm8vcm9vdGZzLnN5c3RlbWQucXAvdG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLW14NnFkbC1w
-b2t5LWxpbnV4LWdudWVhYmkvcXRiYXNlLzUuOC4wK2dpdEFVVE9JTkMrNDlkYzlhYTQwOS1yMC90
-ZW1wL2xvZy5kb19wYXRjaC44ODk1PGJyPkVSUk9SOiBUYXNrICgvbWVkaWEvYmFyc3VrL2V4dDQu
-NzIwL3B5cm8vc291cmNlcy9tZXRhLXF0NS9yZWNpcGVzLXF0L3F0NS9xdGJhc2VfZ2l0LmJiOmRv
-X3BhdGNoKSBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnPGJyPldBUk5JTkc6IHR0Zi1hcnBoaWMt
-dW1pbmctMjAwODAyMTYtcjYgZG9fcG9wdWxhdGVfbGljOiB0dGYtYXJwaGljLXVtaW5nOiBObyBn
-ZW5lcmljIGxpY2Vuc2UgZmlsZSBleGlzdHMgZm9yOiBBcnBoaWMtUHVibGljLUxpY2Vuc2UgaW4g
-YW55IHByb3ZpZGVyPGJyPk5PVEU6IFRhc2tzIFN1bW1hcnk6IEF0dGVtcHRlZCA1MTE2IHRhc2tz
-IG9mIHdoaWNoIDYgZGlkbid0IG5lZWQgdG8gYmUgcmVydW4gYW5kIDEgZmFpbGVkLjwvcD48cD5T
-dW1tYXJ5OiAxIHRhc2sgZmFpbGVkOjxicj4gL21lZGlhL2JhcnN1ay9leHQ0LjcyMC9weXJvL3Nv
-dXJjZXMvbWV0YS1xdDUvcmVjaXBlcy1xdC9xdDUvcXRiYXNlX2dpdC5iYjpkb19wYXRjaDxicj5T
-dW1tYXJ5OiBUaGVyZSB3ZXJlIDIgV0FSTklORyBtZXNzYWdlcyBzaG93bi48YnI+U3VtbWFyeTog
-VGhlcmUgd2VyZSAyIEVSUk9SIG1lc3NhZ2VzIHNob3duLCByZXR1cm5pbmcgYSBub24temVybyBl
-eGl0IGNvZGUuPC9wPjxicj48YnI+LS0gPGJyPtCQ0L3QtNGA0LXQuSDQmtC+0L3QvtC90L7Qsjwv
-Qk9EWT48L0hUTUw+Cg==
+I tried to coment out the addition of the corresponding flags (in 
+cmake/CFlags.cmake) with no improvement.
 
-----ALT--MdSz92WoN4MnUKKg8RSdtcvKSkI4kBF61496121540--
+Now I compiled with another arm-gcc version (digi embedded version of 
+arm-gcc, 6.2.0) and I get a different error -.- :
+| DEBUG: Executing python function sysroot_cleansstate
+| DEBUG: Python function sysroot_cleansstate finished
+| DEBUG: Executing shell function do_configure
+| CMake Error: The source directory 
+"/home/jakob/workspace/newuvalue/tmp/work/cortexa7hf-neon-dey-linux-gnueabi/stlink/0.1-r0/git" 
+does not appear to contain CMakeLists.txt.
+| Specify --help for usage, or press the help button on the CMake GUI.
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_configure (log file is located at 
+/home/jakob/workspace/newuvalue/tmp/work/cortexa7hf-neon-dey-linux-gnueabi/stlink/0.1-r0/temp/log.do_configure.3539)
+
+I have no idea why, but in the original source folder the CMakeLists.txt 
+is there...
+
+Cheers,
+Jakob
+
+On 29.05.2017 21:24, Belisko Marek wrote:
+> Hi Jakob,
+>
+> On Mon, May 29, 2017 at 6:29 PM, Jakob Hasse
+> <jakob.hasse@smart-home-technology.ch> wrote:
+>> Hello,
+>>
+>> I have two issues:
+>>
+>> 1.
+>> I innocently tried to include an open source version of the ST Link tools
+>> (https://github.com/texane/stlink) into my yocto image.
+>> I created a recipe fetching from git and got the error:
+>>
+>> | CMake Error at CMakeLists.txt:105 (install):
+>> |   install TARGETS given unknown argument "/lib".
+>> |
+>> |
+>> | CMake Error at CMakeLists.txt:135 (install):
+>> |   install TARGETS given unknown argument "/lib".
+>> |
+>> |
+>> | CMake Error at usr/lib/pkgconfig/CMakeLists.txt:12 (install):
+>> |   install FILES given unknown argument "/lib/pkgconfig/".
+>> |
+>> |
+>> | CMake Error at include/CMakeLists.txt:9 (install):
+>> |   install FILES given unknown argument "/lib".
+>> |
+>> |
+>> | CMake Error at include/CMakeLists.txt:12 (install):
+>> |   install FILES given unknown argument "/lib/stlink".
+>>
+>> I'm not sure whether it's a CMake problem since the project compiles
+>> absolutely fine on my host machine with native target (the binary also works
+>> fine in my case).
+>> Also, the CMake error log shows me errors about unrecognized CFlags
+>> (-Wmissing-variable-declarations, -Wshorten-64-to-32) which confuse me
+>> somewhat given the errors above.
+>> Then I checked out the source and changed the CMake file to exclude
+>> corresponding flags - with no difference, errors still remain.
+>> My recipe now looks like this:
+>>
+>> # comment
+>> SUMMARY = "ST-Link firmware flasher"
+>> DESCRIPTION = ""
+>> SECTION = "examples"
+>> LICENSE = "MIT"
+>> LIC_FILES_CHKSUM =
+>> "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+>>
+>> DEPENDS = "libusb pkgconfig"
+>>
+>> SRC_URI = "file://stlink.tar.gz"
+> Why don't use git protocol instead of link to fetched sources?
+>> FILES_${PN} += "${bindir}/st-flash"
+>>
+>> S = "${WORKDIR}/git"
+> Here is my updated recipe:
+>
+> # comment
+> SUMMARY = "ST-Link firmware flasher"
+> DESCRIPTION = ""
+> SECTION = "examples"
+> LICENSE = "MIT"
+> LIC_FILES_CHKSUM =
+> "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+>
+> DEPENDS = "libusb pkgconfig"
+>
+> SRCREV = "55c057296ad15fa6de9909206098bd4eed8f6311"
+>
+> PV = "1.3.1+git${SRCPV}"
+>
+> SRC_URI = "git://github.com/texane/stlink.git"
+>
+> SRC_URI[md5sum] = "99fa2b1de041f62b7285a8f1870c891b"
+> SRC_URI[sha256sum] =
+> "8545752efe2be13c6dbadec48c93cd72be448147f38f0fe44050c0416827ca37"
+>
+> S = "${WORKDIR}/git"
+>
+> inherit cmake
+>
+> Also it is necessary to patch a stlink before to pass configuration phase like:
+> diff --git a/CMakeLists.txt b/CMakeLists.txt
+> index afa7fde..4d2db6c 100644
+> --- a/CMakeLists.txt
+> +++ b/CMakeLists.txt
+> @@ -1,9 +1,10 @@
+>   cmake_minimum_required(VERSION 2.8.7)
+>   project(stlink C)
+> +SET(CMAKE_INSTALL_PREFIX /usr/)
+>   set(PROJECT_DESCRIPTION "Open source version of the
+> STMicroelectronics Stlink Tools")
+>   set(STLINK_UDEV_RULES_DIR "/etc/udev/rules.d" CACHE PATH "Udev rules
+> directory")
+>   set(STLINK_MODPROBED_DIR "/etc/modprobe.d" CACHE PATH "modprobe.d directory")
+> -set(STLINK_LIBRARY_PATH "lib/${CMAKE_LIBRARY_PATH}" CACHE PATH
+> "Target lib directory")
+> +set(STLINK_LIBRARY_PATH "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH
+> "Target lib directory")
+>
+>   option(STLINK_GENERATE_MANPAGES "Generate manpages with pandoc" OFF)
+>
+> diff --git a/include/CMakeLists.txt b/include/CMakeLists.txt
+> index 0b5a443..e0851e4 100644
+> --- a/include/CMakeLists.txt
+> +++ b/include/CMakeLists.txt
+> @@ -2,13 +2,16 @@ configure_file(
+>          "${PROJECT_SOURCE_DIR}/include/stlink/version.h.in"
+>          "${CMAKE_BINARY_DIR}/include/stlink/version.h"
+>   )
+> +
+> +SET(CMAKE_INSTALL_PREFIX /usr/)
+> +
+>   file(GLOB STLINK_HEADERS
+>          "stlink/*.h"
+>          "${CMAKE_BINARY_DIR}/include/stlink/*.h"
+>   )
+>   install(FILES ${CMAKE_SOURCE_DIR}/include/stlink.h
+> -       DESTINATION include/${CMAKE_LIBRARY_PATH}
+> +       DESTINATION
+> "${CMAKE_INSTALL_PREFIX}/include/${CMAKE_LIBRARY_PATH}/stlink"
+>   )
+>   install(FILES ${STLINK_HEADERS}
+> -       DESTINATION include/${CMAKE_LIBRARY_PATH}/stlink
+> +       DESTINATION
+> "${CMAKE_INSTALL_PREFIX}/include/${CMAKE_LIBRARY_PATH}/stlink"
+>   )
+>
+> Then it still fails to compile but I tried to compile it for arm so
+> maybe this is the reason. Hope it helps a bit ;).
+>
+>> inherit cmake
+>>
+>> 2.
+>> For the last step I had to repack a tar.gz out of the checked out source
+>> folder, otherwise bitbake complained.
+>> Is it possible to base a yocto package on a local source folder using
+>> autotools or cmake class?. All the examples I found either use remote git
+>> repos + autotools/cmake or a local source folder without autotools/cmake.
+>>
+>> Cheers and many thanks in advance,
+>> Jakob
+>>
+>> --
+>> Jakob Hasse
+>> Software Developement
+>>
+>> E: jakob.hasse@smart-home-technology.ch
+>> T: +41 44 552 02 66
+>>
+>> Smart Home Technology GmbH
+>> www.smart-home-technology.ch
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> BR,
+>
+> marek
+>
+
+-- 
+Jakob Hasse
+Software Developement
+
+E: jakob.hasse@smart-home-technology.ch
+T: +41 44 552 02 66
+
+Smart Home Technology GmbH
+www.smart-home-technology.ch
+
+
