@@ -1,46 +1,61 @@
-Return-Path: <petter@technux.se>
+Return-Path: <dl9pf@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B81D0E00B0B; Tue, 30 May 2017 06:35:28 -0700 (PDT)
+	id E14FFE00B19; Tue, 30 May 2017 06:39:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [195.74.38.229 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	FREEMAIL_REPLY, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (dl9pf[at]gmx.de)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.227.17.21 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [212.227.17.21 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Tue, 30 May 2017 06:35:25 PDT
-Received: from bin-vsp-out-01.atm.binero.net (bin-mail-out-06.binero.net
-	[195.74.38.229])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28051E00953
-	for <yocto@yoctoproject.org>; Tue, 30 May 2017 06:35:24 -0700 (PDT)
-X-Halon-ID: ae123767-453c-11e7-b757-005056917a89
-Authorized-sender: petter@technux.se
-Received: from webmail.binero.se (unknown [195.74.38.9])
-	by bin-vsp-out-01.atm.binero.net (Halon Mail Gateway) with ESMTPA;
-	Tue, 30 May 2017 15:34:17 +0200 (CEST)
+	*      [score: 0.0021]
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
+	Tue, 30 May 2017 06:39:57 PDT
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5372FE00953
+	for <yocto@yoctoproject.org>; Tue, 30 May 2017 06:39:57 -0700 (PDT)
+Received: from samweis.auenland.lan ([122.212.58.43]) by mail.gmx.com
+	(mrgmx103 [212.227.17.168]) with ESMTPSA (Nemesis) id
+	0MPlMc-1dKdF02zkA-00547i; Tue, 30 May 2017 15:34:53 +0200
+From: Jan-Simon =?ISO-8859-1?Q?M=F6ller?= <dl9pf@gmx.de>
+To: yocto@yoctoproject.org
+Date: Tue, 30 May 2017 15:34:48 +0200
+Message-ID: <9141764.5niMDUV06v@samweis.auenland.lan>
+User-Agent: KMail/4.14.10
+	(Linux/4.9.0-rc1-jsm-cowfix-20161020-2241-00145-gf4814e6;
+	KDE/4.14.25; x86_64; ; )
+In-Reply-To: <2588889.vGr6GKFSkr@elrond>
+References: <2588889.vGr6GKFSkr@elrond>
 MIME-Version: 1.0
-Date: Tue, 30 May 2017 15:34:41 +0200
-From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: Yocto <yocto@yoctoproject.org>, <so61pi.re@gmail.com>
-Organization: Technux
-Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <CAGnCEbsv_v=YuW2uiwRhJAkw8Yz9H81OELGAYvmOBdU=W-0ykQ@mail.gmail.com>
-References: <CAGnCEbspYODFnRoTCxfQxzjdHaQEgnkLE2On9DKKq6BJePbPPA@mail.gmail.com>
-	<1496069912.26945.37.camel@linux.intel.com>
-	<CAGnCEbsv_v=YuW2uiwRhJAkw8Yz9H81OELGAYvmOBdU=W-0ykQ@mail.gmail.com>
-Message-ID: <1416da32375ee235be7a29c5d575fab9@technux.se>
-X-Sender: petter@technux.se
-User-Agent: Binero Webmail/0.8.4
-Subject: Re: How to install dbg package and not its dependencies?
+X-Provags-ID: V03:K0:WRn4obsuiB2ahT4Gw+lYixMzdK/WoWV1AdVjn8P8pjH1GMPkxZ5
+	xizcH4VLe0obKwRffZ+RFWK6ACLnqnbj/RABrh7RBPN3RwGw42+i/7Du9guqlYtqNjlpOie
+	UsdP++d0o2MOMlcdh8OWt6rn+Cgrow4BF5dGEdW7mqRvh4w8j3qpKFNTARBs6rw70e2nQen
+	wk6YRLmqxYD8LHYgihZEw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:WdtOYzxfAuI=://U9AsjoBrlhAa9K8zFLVo
+	BcmFemot9untkLe3dNkJmm1BPfbugBBbhQEG9+WkFDLmdDbAVVf99BD6FUQKrrvCF5/xtOpNl
+	w01IJ2oabPQeY2Fpc9eINv2DERP5oOpuqGhgEMs2I+q+uIjdamAqq21mii14h5j7f/33SrNpO
+	QFBselV5U64wnsjZax8kvAQX5iQhflBEJ1f4kJTze0+aw9/2d4AneC3i1J8OVxbdfZofMOVyu
+	Oz83Ymiq6MIV0Z1d13bZ+IJ6VsRwgHFfMF9hoAohQsmaDyzRzb1sIhVMgVUpTcf+OT9KI5ciX
+	/fMzt/wl37Yi5CKnbWs6/rLrqRlzZeTnu3N/rAs7aN6243+c1zptSweK3sbRINR+z14BeXaW8
+	Dx9bI+s8zr2aBbk7NwhSeVN7cQUa2sCAioDu4Qe41Fmc+wlZi1yR4uOchUb0mcQ3uTm/wnC2x
+	299DMGBI+eoe+HiibKQt4vR45URPfxL41waLzivTrIqIqIh5fLOzGkYhjATsXZScWjjAjMkWD
+	M35D+msT435NaWGW1jBHHcd2aCIWVPWmFg58/wO2tlWRUb2clYZt5WSF6ceelpmnJ0NYlDRZI
+	iQp3boTMf6DHuIZEkYb/m7HJyNS92CckCC9FcviYj3Ralyj7s2QQJHuGZMiJeE1ngDNqS3fEf
+	ZtgvX3mOmTRfZgtAPda7QW9Sywerk2Lf6LBidEscNB0x/4cAfAfAx7R8RsUZS+Zq+jPOSX0WZ
+	Kattw1vsny70lnZKRdbrr7k/Y5stejdi9xCkpYPkwOaKzf/YsPcR86c/vwExHbpWvhOu0r2s5
+	1hHzrcq
+Subject: Re: Include meta-qt5 in an eSDK build ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,158 +64,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 May 2017 13:35:28 -0000
-Content-Type: multipart/alternative;
-	boundary="=_7caaf8ce16672b1e5e07ee50a425d30a"
-
---=_7caaf8ce16672b1e5e07ee50a425d30a
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset=UTF-8
-
- 
-
-Hi, 
-
-If the problem is the footprint, then you can add below line
-in the libexample recipe: 
-
-INHIBIT_PACKAGE_DEBUG_SPLIT = "1" 
-
-This
-will prevent the build system from adding any debug info in the
-libexample-dbg package. 
-
-BR Petter 
-
-[1] -
-http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-INHIBIT_PACKAGE_DEBUG_SPLIT
-
-
-Petter Mabäcker
-
-Technux
-<petter@technux.se>
-www.technux.se
-
-2017-05-30 04:17 skrev Ngọc Thi
-Huỳnh: 
-
-> I have both app-example-DBG & app-example in IMAGE_INSTALL
-and the result is app-example-dbg & app-example & libexample-dbg &
-libexample are included in the final image. 
-> 
-> Huỳnh Ngọc Thi
-> 
->
--so61pi 
-> 
-> On Mon, May 29, 2017 at 9:58 PM, Leonardo Sandoval
-<leonardo.sandoval.gonzalez@linux.intel.com> wrote:
-> 
->> On Sun,
-2017-05-28 at 17:23 +0700, Ngọc Thi Huỳnh wrote:
->> > Hi everyone,
->>
->
->> >
->> > Let's say I have app-example package which depends on
-libexample.
->> >
->> > When I add app-example-dbg to IMAGE_INSTALL,
-libexample-dbg package is
->> > automatically included in the final image
-which makes the image size
->> > become bigger.
->> >
->> what about
-installing the non-dbg ones?
->> 
->>> 
->> > In this case, is there a way
-to prevent libexample-dbg from being
->> > installed?
->> >
->> >
->> >
-Thanks,
->> >
->> > Thi Huynh
->> > > --
->> >
-_______________________________________________
->> > yocto mailing
-list
->> > yocto@yoctoproject.org
->> >
-https://lists.yoctoproject.org/listinfo/yocto [1]
- 
-
-Links:
-------
-[1]
-https://lists.yoctoproject.org/listinfo/yocto
-
---=_7caaf8ce16672b1e5e07ee50a425d30a
+X-List-Received-Date: Tue, 30 May 2017 13:40:00 -0000
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
+Content-Type: text/plain; charset="iso-8859-1"
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>Hi,</p>
-<p>If the problem is the footprint, then you can add below line in the libe=
-xample recipe:</p>
-<p>INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"</p>
-<p>This will prevent the build system from adding any debug info in the lib=
-example-dbg package.</p>
-<p>BR Petter</p>
-<p>[1] - http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.htm=
-l#var-INHIBIT_PACKAGE_DEBUG_SPLIT</p>
-<p>&nbsp;</p>
-<pre>Petter Mab&auml;cker
+Any pointers if it is possible to build the eSDK with meta-qt5 ?
 
-Technux &lt;petter@technux.se&gt;
-www.technux.se<br /><br /></pre>
-<p>2017-05-30 04:17 skrev Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh:</p>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
-d --><!-- meta ignored -->
-<div dir=3D"ltr">I have both app-example<strong>-dbg</strong> &amp; app-exa=
-mple in IMAGE_INSTALL and the result is app-example-dbg &amp; app-example &=
-amp; libexample-dbg &amp; libexample are included in the final image.</div>
-<div class=3D"gmail_extra"><br clear=3D"all" />
-<div>
-<div class=3D"gmail_signature">
-<div dir=3D"ltr">Hu=E1=BB=B3nh Ng=E1=BB=8Dc Thi<br />
-<div>-so61pi</div>
-</div>
-</div>
-</div>
-<br />
-<div class=3D"gmail_quote">On Mon, May 29, 2017 at 9:58 PM, Leonardo Sandov=
-al <span>&lt;<a href=3D"mailto:leonardo.sandoval.gonzalez@linux.intel.com">=
-leonardo.sandoval.gonzalez@linux.intel.com</a>&gt;</span> wrote:<br />
-<blockquote class=3D"gmail_quote" style=3D"margin: 0  0  0  .8ex; border-le=
-ft: 1px  #ccc  solid; padding-left: 1ex;"><span>On Sun, 2017-05-28 at 17:23=
- +0700, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh wrote:<br /> &gt; Hi everyone,<br />=
- &gt;<br /> &gt;<br /> &gt; Let's say I have app-example package which depe=
-nds on libexample.<br /> &gt;<br /> &gt; When I add app-example-dbg to IMAG=
-E_INSTALL, libexample-dbg package is<br /> &gt; automatically included in t=
-he final image which makes the image size<br /> &gt; become bigger.<br /> &=
-gt;<br /></span>what about installing the non-dbg ones?<br />
-<div class=3D"HOEnZb">
-<div class=3D"h5">&gt;<br /> &gt; In this case, is there a way to prevent l=
-ibexample-dbg from being<br /> &gt; installed?<br /> &gt;<br /> &gt;<br /> =
-&gt; Thanks,<br /> &gt;<br /> &gt; Thi Huynh<br /> &gt;</div>
-</div>
-<span class=3D"HOEnZb"><span style=3D"color: #888888;">&gt; --<br /> &gt; _=
-______________________________________________<br /> &gt; yocto mailing lis=
-t<br /> &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject=
-=2Eorg</a><br /> &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yo=
-cto">https://lists.yoctoproject.org/listinfo/yocto</a><br /><br /><br /></s=
-pan></span></blockquote>
-</div>
-</div>
-</blockquote>
-</body></html>
+--=20
 
---=_7caaf8ce16672b1e5e07ee50a425d30a--
+Dipl.-Ing.
+Jan-Simon M=F6ller
+
+jansimon.moeller@gmx.de
+On Thursday 25 May 2017 20:27:09 Jan-Simon M=F6ller wrote:
+> Hi !
+> How can I build an eSDK that includes meta-qt5 ?
+>=20
+> The examples I found use the 'traditional' sdk and
+> add the classes from meta-qt5.
+>=20
+> But I have not seen the eSDK being used, yet.
+
+
