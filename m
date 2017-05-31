@@ -1,33 +1,34 @@
 Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2238DE00B57; Tue, 30 May 2017 23:52:24 -0700 (PDT)
+	id 2D988E00B53; Tue, 30 May 2017 23:52:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCFE9E00B47
-	for <yocto@yoctoproject.org>; Tue, 30 May 2017 23:52:21 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E78E6E00B51
+	for <yocto@yoctoproject.org>; Tue, 30 May 2017 23:52:20 -0700 (PDT)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v4V6qKNg026216
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Tue, 30 May 2017 23:52:20 -0700
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v4V6qJi1024746
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 30 May 2017 23:52:19 -0700 (PDT)
 Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
 	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.294.0; Tue, 30 May 2017 23:52:20 -0700
+	14.3.294.0; Tue, 30 May 2017 23:52:19 -0700
 From: <jackie.huang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Wed, 31 May 2017 14:52:11 +0800
-Message-ID: <8df7481e10aec8b8ebb2d4ad4896f891ed3f5085.1496213380.git.jackie.huang@windriver.com>
+Date: Wed, 31 May 2017 14:52:10 +0800
+Message-ID: <cover.1496213380.git.jackie.huang@windriver.com>
 X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1496213380.git.jackie.huang@windriver.com>
-References: <cover.1496213380.git.jackie.huang@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-cgl][PATCH 1/3] cluster-glue: inherit systemd
+Subject: [meta-cgl][PATCH 0/3] cluster-glue: several fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,36 +45,24 @@ Content-Type: text/plain
 
 From: Jackie Huang <jackie.huang@windriver.com>
 
-inherit systemd and add PACKAGECONFIG to add proper
-configure option and dependency when systemd is enabled.
+--
+The following changes since commit c0afa706e9cdb650c0e8bb79f503743632350b00:
 
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
----
- meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+  core-image-cgl: Remove ROOTFS_PKGMANAGE_BOOTSTRAP (2017-05-24 14:19:13 +0200)
 
-diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
-index 9604bca..eed7262 100644
---- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
-+++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
-@@ -20,10 +20,16 @@ SRC_URI[sha256sum] = "feba102fa1e24b6be2005089ebe362b82d6567af60005cf371679b1b44
- 
- LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.GPLv2;md5=751419260aa954499f7abaabaa882bbe"
- 
--inherit autotools useradd pkgconfig
-+inherit autotools useradd pkgconfig systemd
-+
-+SYSTEMD_SERVICE_${PN} = "logd.service"
-+SYSTEMD_AUTO_ENABLE = "disable"
- 
- S = "${WORKDIR}/Reusable-Cluster-Components-glue--glue-${PV}"
- 
-+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
-+PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},--without-systemdsystemunitdir,systemd"
-+
- EXTRA_OECONF = "--with-daemon-user=hacluster --with-daemon-group=haclient --disable-fatal-warnings"
- 
- CACHED_CONFIGUREVARS="ac_cv_path_XML2CONFIG=0"
+are available in the git repository at:
+
+  https://github.com/jackiehjm/meta-cgl.git jhuang0/up_cluster-glue_170531_0
+  https://github.com//tree/jhuang0/up_cluster-glue_170531_0
+
+Jackie Huang (3):
+  cluster-glue: inherit systemd
+  cluster-glue: fix the licenses
+  cluster-glue: update useradd parameters
+
+ .../cluster-glue/cluster-glue_1.0.12.bb            | 28 +++++++++++++++++-----
+ 1 file changed, 22 insertions(+), 6 deletions(-)
+
 -- 
 2.11.0
 
