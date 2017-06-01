@@ -1,33 +1,75 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91E94E00B47; Thu,  1 Jun 2017 00:43:48 -0700 (PDT)
+	id 153AFE00992; Thu,  1 Jun 2017 04:23:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.170 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.170 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04F61E00ADD
-	for <yocto@yoctoproject.org>; Thu,  1 Jun 2017 00:43:47 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id D88D868A01C; Thu,  1 Jun 2017 08:43:45 +0100 (BST)
-Received: from zeus.mlbassoc.com (unknown [10.8.0.2])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 7B1F268A019;
-	Thu,  1 Jun 2017 08:43:45 +0100 (BST)
-Received: from [127.0.0.1] (localhost.localdomain [127.0.0.1])
-	by zeus.mlbassoc.com (Postfix) with ESMTP id 2959167403FE;
-	Thu,  1 Jun 2017 09:43:45 +0200 (CEST)
-From: Gary Thomas <gary@mlbassoc.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <841bb3fb-50d1-bf93-1a14-a507239330e0@mlbassoc.com>
-Date: Thu, 1 Jun 2017 09:43:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f170.google.com (mail-qt0-f170.google.com
+	[209.85.216.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92872E00992
+	for <yocto@lists.yoctoproject.org>;
+	Thu,  1 Jun 2017 04:23:09 -0700 (PDT)
+Received: by mail-qt0-f170.google.com with SMTP id w1so6240704qtg.2
+	for <yocto@lists.yoctoproject.org>;
+	Thu, 01 Jun 2017 04:23:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=LRyxRn50S5GMdhTBS4oHW+FkFDjtKt5/q72Cdlt1osw=;
+	b=jCqS4r3k69a8fYHKxNU9v5YVRPFQfRgwbcpxJbbD41rXff0GQEwZoEZkAhseg5sLLI
+	2ane/M3n/At3/Xkn917TwDkCCBnjAJQrSIhN+IMbKY36VHIC9veIU2AL6/8Hor/PJnC1
+	RG4ipyoZxs6Wbk5Vi0ioa0MIt+6XHJvb1GeeiaqBjopHTEBIL6sUaGactFwuVH3k3r8b
+	GRZuLEMoGdUZgLZamkCZU1becK19gjPZo/5+wNbC88i4GBMQZiTi6MjkIr7Lkv+N0tDh
+	j3fxH0PnLQnDECnnuDwyxqMgw3l4r6GIOnIgVLjqF/wbqoe3+348GsY471ZdoScoHeEm
+	Tw9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=LRyxRn50S5GMdhTBS4oHW+FkFDjtKt5/q72Cdlt1osw=;
+	b=IOPYEx8kU2yLeSLUrzP2Ewpdb6VdPq0uJHxwo2gAfjah2c2BTL5Mu/cmbuSPg/DJ7F
+	NnpS+FZ50vWvHFtfa/c0hDlxscrTn1tCDc1qci9b2PSWSgSqtPDc6wkzVUk++ZiuFKh3
+	VWdsk+UuJ3iMnytg8Lt/qrlXaAHvGhlO78oZMgXVu0qxR8JbWlQ+zGWYv0kLiv7e9r/t
+	oVw6nbIxAHiQ3a6eDUIou42UWbXDhC0iCM0loVvVx7LrsKLhbdCJS9PDmWkg5s2ZqZQt
+	Kd8WfBDxim1+VcImq+gb+Vd8wVW27KNPjDUTa3Crs/uAvQos6AmlY8Y1j3Un6n70PZ4U
+	YK/A==
+X-Gm-Message-State: AODbwcAN22H3IJV7ao/jFH0XiTpG0p21LwmgGVt4Y7jd65lkrJrBGQz4
+	CvW+D6JnHoD/x+4afE0UakC/OZgWsx+d
+X-Received: by 10.237.61.231 with SMTP id j36mr131150qtf.111.1496316188607;
+	Thu, 01 Jun 2017 04:23:08 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Why can't I install eudev-hwdb
+Received: by 10.140.85.167 with HTTP; Thu, 1 Jun 2017 04:23:08 -0700 (PDT)
+In-Reply-To: <CA+chaQcufcNiAh2s5PCtQc1ES4B0uYcsBotV3BG0uqG0NRgw0w@mail.gmail.com>
+References: <20170530075723.18340-1-Martin.Jansa@gmail.com>
+	<CAMKF1so+EmqtQFL-GbMyEQtpOOevOjRnqHbzXUvs4eb3m04XLw@mail.gmail.com>
+	<CAPyrkgyar=GAr2QkqPe+Tjg=yp=yde_V3MKoXSeKZFb9StCXBw@mail.gmail.com>
+	<CAJ86T=XF11yQjPFHXGHHk28MTQF1FQnEz_D+8s=6vk5AO6oFPQ@mail.gmail.com>
+	<CAMKF1soe0qjKuyASY+sE4rcvOM-uAqzBVdNbJb2=f0c6gOhZ_w@mail.gmail.com>
+	<CAK18fxF3uXOdsZkaN9f-DKJaMc+4GVfW28xTVK9a-01x+ktLXA@mail.gmail.com>
+	<CAMKF1sqVEbdMKnqHHwsdWrs6aPDOowreRCZuk2h39J2XQEV8TA@mail.gmail.com>
+	<CAPyrkgwGS+oheJHGudM-SiveTkdefgexcLoYfsbq+mReHXt+HQ@mail.gmail.com>
+	<CA+chaQe2TbD08XjQpEfnLOfgNFcVMQH=f_FRnyAeabPAVsBndg@mail.gmail.com>
+	<CA+chaQcufcNiAh2s5PCtQc1ES4B0uYcsBotV3BG0uqG0NRgw0w@mail.gmail.com>
+From: Paul Barker <pbarker@toganlabs.com>
+Date: Thu, 1 Jun 2017 12:23:08 +0100
+Message-ID: <CAPyrkgwPwe_Fqi0nGna=ud4opuWFVGntUh8=0Kg95OzxTui-9w@mail.gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [PATCH][meta-raspberrypi] linux-raspberrypi_dev: don't use AUTOREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,50 +81,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Jun 2017 07:43:48 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 01 Jun 2017 11:23:11 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-In my local.conf, I have this (to save space in my embedded image):
-   BAD_RECOMMENDATIONS = "udev-rules-imx eudev-hwdb"
+On Thu, Jun 1, 2017 at 8:10 AM, Martin Jansa <martin.jansa@gmail.com> wrote=
+:
+> And it's not clear from the diff you send, but like linux-yocto-dev.bb
+> example above, the recipe needs to be renamed from linux-raspberrypi_dev.=
+bb
+> to linux-raspberrypi-dev.bb to make it different provider.
+>
+> On Thu, Jun 1, 2017 at 9:08 AM, Martin Jansa <martin.jansa@gmail.com> wro=
+te:
+>>
+>> Yes, Paul approach looks good to me, I think it was what was suggested i=
+n
+>> first replies to my SRCREV change and I agree with that, I just haven't =
+had
+>> time to send updated patch.
+>>
+>> Paul if you have the patch ready please send it, thanks!.
+>>
 
-Is there a different way I can trim these packages, e.g. leave them in for some images
-and leave them out for others?
+I've submitted the patch via GitHub as per the new contributing
+instructions for meta-raspberrypi.
 
-Also, today, I wanted to just test/try eudev-hwdb, so on my image I ran:
-   # opkg update
-   Downloading http://192.168.1.12/my-imx6ul-feeds/all/Packages.gz.
-   Updated source 'poky_am-all'.
-   Downloading http://192.168.1.12/my-imx6ul-feeds/cortexa7hf-neon/Packages.gz.
-   Updated source 'poky_am-cortexa7hf-neon'.
-   Downloading http://192.168.1.12/my-imx6ul-feeds/my_imx6ul/Packages.gz.
-   Updated source 'poky_am-my_imx6ul'.
+https://github.com/agherzan/meta-raspberrypi/pull/82
 
-   # opkg install eudev-hwdb
-   No packages installed or removed.
+Cheers,
 
-Note: I had rebuilt the package-index on my build machine for this target before trying this.
-On the build machine, I see this (some fields trimmed):
-$ ls -l tmp/deploy/ipk/cortexa7hf-neon/eudev*
-   431904 May 25 07:09 tmp/deploy/ipk/cortexa7hf-neon/eudev_3.2.1-r0.11_cortexa7hf-neon.ipk
-  1718910 May 25 07:09 tmp/deploy/ipk/cortexa7hf-neon/eudev-dbg_3.2.1-r0.11_cortexa7hf-neon.ipk
-     5354 May 25 07:09 tmp/deploy/ipk/cortexa7hf-neon/eudev-dev_3.2.1-r0.11_cortexa7hf-neon.ipk
-   947704 May 25 07:09 tmp/deploy/ipk/cortexa7hf-neon/eudev-hwdb_3.2.1-r0.11_cortexa7hf-neon.ipk
-
-On my target, I get:
-   # opkg list eudev*
-   eudev - 3.2.1-r0.11 - eudev is a fork of systemd's udev
-   eudev-dbg - 3.2.1-r0.11 - eudev is a fork of systemd's udev - Debugging files
-   eudev-dev - 3.2.1-r0.11 - eudev is a fork of systemd's udev - Development files
-   eudev-hwdb - 3.2.1-r0.11 - eudev is a fork of systemd's udev
-
-However, even when I see the correct list of packages, I still
-get the 'No packages installed' message :-(
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--=20
+Paul Barker
+Co-Founder & Principal Engineer
+Tog=C3=A1n Labs Ltd
 
