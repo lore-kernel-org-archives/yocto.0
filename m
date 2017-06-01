@@ -1,72 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32443E00B01; Wed, 31 May 2017 17:57:47 -0700 (PDT)
+	id C39F2E00B47; Wed, 31 May 2017 20:28:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD933E00992
-	for <yocto@yoctoproject.org>; Wed, 31 May 2017 17:57:44 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id d127so7390035wmf.1
-	for <yocto@yoctoproject.org>; Wed, 31 May 2017 17:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=0p5mf1Kb8EeN+3MEKnsRdr0mabtccSoUzQIUc2efzfI=;
-	b=gvSmhJPuyuW6P3X63P4qVLP7uDs3vnVkvpjRJYC7Ncei0EN6ncPMCHamNM6FZjbpFi
-	4nJKjbMyJ1YF8DvdS2dxvEC0ujh3ygm7LaIX09Dcs0v3c2z32EboLJZpWmXvwHXeflNl
-	cijiBBr8VcYpL2PslyxTDmhJz4ySTxgmony8g6Ikuj7RlQFQMQqxaD9jBErhmD3gpe/G
-	qCZC5yzjY8PfvxqSDuTNXNT7rq7dq6zUjivuLO01WB7uQnPacPhGpD8S6uCKywjV6BHI
-	sjdBXQJdVoiQFXg9GD506cCuf9NEQAOj/XfY7sjLKxe6aHdXOkPQwhPMw0wUnkyzfNAa
-	+p6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=0p5mf1Kb8EeN+3MEKnsRdr0mabtccSoUzQIUc2efzfI=;
-	b=bGSzIpFPX5N4PtX4XRcgiAOUo8FmFhaPq0+eVQlXZXzW4UnI5uwWOF7v6f3Wrmurz3
-	qKu4XBfuhcfW9JtTut2Wr0og/LyFLn+i/NMaPNheabSnG2eeQyfI+CQmy7PQoBT71j7v
-	2Tkdxm9b4fJo/RYfmSx/v/XkAtozF4NqG/2zmUO9JWXltHt4xBNPxXI1mEwJ1fSeutic
-	00qSFada++NxA99T+FQ4A5lp2zQ2YI6wNQ5FbkKnkwURi/D8h1AgB2UeFuQJv0Z6Jn17
-	qeYiXsSl9zw7zh7GKVE4HVk8ZXTxzAqO+QgYgc9nVb+TtwCoE5hW+3iTKD+K1KRNQ+LH
-	LwEQ==
-X-Gm-Message-State: AODbwcBY2ly/hD+ZlasZ6M3oXtjxZNn7vrfkPmpe2p8MQ6YQM0LibFrS
-	vLUWdU/dFaMBdjJmwLK6rd6WxT5BFw==
-X-Received: by 10.80.137.56 with SMTP id e53mr23209270ede.67.1496278663457;
-	Wed, 31 May 2017 17:57:43 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 901DAE00ADD
+	for <yocto@yoctoproject.org>; Wed, 31 May 2017 20:28:35 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	31 May 2017 20:28:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.39,277,1493708400"; d="scan'208";a="1155186443"
+Received: from ysayabal-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.134.117])
+	by fmsmga001.fm.intel.com with ESMTP; 31 May 2017 20:28:32 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Thu, 01 Jun 2017 15:28:30 +1200
+Message-ID: <10690620.1eQvXQkMYH@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <df279cbb-6dae-ba57-927f-94fe139693f0@mlbassoc.com>
+References: <31a2d863-b928-df06-8e86-78b939469614@mlbassoc.com>
+	<1752127.E0fXlp9gfm@peggleto-mobl.ger.corp.intel.com>
+	<df279cbb-6dae-ba57-927f-94fe139693f0@mlbassoc.com>
 MIME-Version: 1.0
-Received: by 10.80.195.143 with HTTP; Wed, 31 May 2017 17:57:12 -0700 (PDT)
-In-Reply-To: <80089ee8-d747-e95c-02f4-72dffc3fd3d2@linux.intel.com>
-References: <20170530184434.35089-1-alejandro.hernandez@linux.intel.com>
-	<1496174354.26945.54.camel@linux.intel.com>
-	<d3161d0d-4452-20fb-c9fa-8b234dc1caa5@linux.intel.com>
-	<CAJ86T=V0UGAjZOwC54bu0T=PoycdkTabZJJQvRf3_gn0Thnhsg@mail.gmail.com>
-	<743ad939-371f-9396-c159-ac5844f9ebda@linux.intel.com>
-	<CADkTA4PERsWGmb+Zq4nu4TVeAUdH-JSE4AvJpsJ0MZRcwfHvSA@mail.gmail.com>
-	<CAMKF1srefrF0jZMm2hPUZ_q7TcfuxmMuRiVXcPVDsZNu51V88Q@mail.gmail.com>
-	<80089ee8-d747-e95c-02f4-72dffc3fd3d2@linux.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 31 May 2017 17:57:12 -0700
-Message-ID: <CAMKF1sq4cA+hT0oJNqVMLpY08hAHv-SfEXGL0bbS5tESyaanEQ@mail.gmail.com>
-To: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [PATCH] yocto-bsp: Fix QEMUARM based bsps to not offer SMP support
+Cc: yocto@yoctoproject.org
+Subject: Re: sstate-cache question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,95 +45,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Jun 2017 00:57:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 01 Jun 2017 03:28:39 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, May 31, 2017 at 5:41 PM, Alejandro Hernandez
-<alejandro.hernandez@linux.intel.com> wrote:
-> On 05/31/2017 01:46 PM, Khem Raj wrote:
->
->
->
-> On Tue, May 30, 2017 at 6:15 PM, Bruce Ashfield <bruce.ashfield@gmail.com>
-> wrote:
->>
->>
->> On Tue, May 30, 2017 at 6:52 PM, Alejandro Hernandez
->> <alejandro.hernandez@linux.intel.com> wrote:
->>>
->>> Hey Andy,
->>>
->>>
->>> On 05/30/2017 05:32 PM, Andre McCurdy wrote:
->>>>
->>>> On Tue, May 30, 2017 at 1:12 PM, Alejandro Hernandez
->>>> <alejandro.hernandez@linux.intel.com> wrote:
->>>>>
->>>>> Hey Leo,
->>>>>
->>>>> Nope, this change only applies to qemuARM, the other ARM based BSPs are
->>>>> based on > ARMv6
->>>>>
->>>>> Alejandro
->>>>>
->>>>>
->>>>> On 05/30/2017 02:59 PM, Leonardo Sandoval wrote:
->>>>>>
->>>>>> Alex,
->>>>>>
->>>>>> is this change only applies to qemu arm? I wonder if the native arm
->>>>>> arch
->>>>>> needs a similar series.
->>>>>>
->>>>>> Leo
->>>>>>
->>>>>> On Tue, 2017-05-30 at 11:44 -0700, Alejandro Hernandez wrote:
->>>>>>>
->>>>>>> The SMP kernel config presents issues on qemuarm because:
->>>>>>>
->>>>>>> CONFIG_SMP=y
->>>>>>> Dependencies Missing:
->>>>>>>     - CPU_V6K or CPU_V7:
->>>>>>>       These are selected by setting:
->>>>>>>       CONFIG_ARCH_MULTI_V7=y
->>>>>>>       or
->>>>>>>       CONFIG_ARCH_MULTI_V6=y
->>>>>>>
->>>>>>> But our QEMU + ARM BSPs are based on armv4/v5 hence they are
->>>>>>> incompatible with CONFIG_SMP.
->>>>
->>>> Maybe time to think (again) about updating OE's qemu ARM builds to
->>>> ARMv7.
->>>
->>> I believe qemu has deep issues with newer ARMs, and thats why it's been
->>> kept like that.
->>
->>
->> Qemu itself should be fine with the newer ARMs .. but we've just targeted
->> a
->> lowest common
->> denominator (and simple) ARM arch for this target. Since the primary goal
->> isn't testing the ISA or arch
->> specifics via qemuarm/qemuarm64 (rather, sanity, base arch support, etc).
->>
->
-> I think it will be more effective if we tested most used configuration
-> instead, it would help a larger community. GCC 7 also dropped armv5 ( the t
-> variants are still supported )
->
-> I would think keep the name qemuarm but use armv7 based machine to emulate
-> would be an option I am sure meta Linaro has some work on this that can be
-> used in oe core
->
->
-> I would also assume they've got some work on this, it'd be nice to contact
-> them and see if this can be done, although I asked on IRC several times to
-> see what people thoughts were on if we should upgrade and I practically got
-> no feedback.
+Hi Gary,
 
-http://git.linaro.org/openembedded/meta-linaro.git/tree/meta-aarch64/conf/machine
+My apologies, I just realised I never sent this reply.
 
-http://git.linaro.org/openembedded/meta-linaro.git/tree/meta-linaro/conf/machine
+On Tuesday, 23 May 2017 5:27:57 PM NZST you wrote:
+> On 2017-05-22 22:35, Paul Eggleton wrote:
+> > On Tuesday, 23 May 2017 2:53:45 AM NZST Gary Thomas wrote:
+> >> I have a build where I've never manually removed anything from
+> >> the sstate-cache and this same build has been used for hundreds
+> >> of builds over the last 18 months.  I just tried to find out why
+> >> gcc-cross-arm had to be rebuilt (it seems to happen almost every
+> >> time I update my Poky/Yocto tree (master)).  Here's what I got:
+> >>
+> >> $ bitbake-diffsigs -t gcc-cross-arm compile
+> >> Hash for dependent task gcc/gcc-cross_6.3.bb.do_configure changed from
+> > 208373dd9ae01101a26a9412eb50b110 to
+> >> d65095d4b9aff89f6990bd17c0ab210b
+> >> Unable to find matching sigdata for /local/poky-cutting-edge/meta/
+> >> recipes-devtools/gcc/gcc-cross_6.3.bb.do_configure
+> >> with hashes 208373dd9ae01101a26a9412eb50b110 or
+> > d65095d4b9aff89f6990bd17c0ab210b
+> >>
+> >> So if I didn't remove those files, where did they go?  Am I doing
+> >> something wrong running this tool?  (running the same command for
+> >> qemu-native seemed to work correctly)
+> >
+> > Is this with master, pyro, morty or some other version?
+> 
+> Poky master: 2568e18701fb20d7105eb6e4929f3aff4b9f9c06
 
-looks at genericarm* conf files.
+OK so this is definitely after my recent fixes then.
+ 
+> > If you search for files with those hashes in their name do they show up?
+> 
+> Only .siginfo files:
+> $ find sstate-cache/ -name "*d65095d4b9aff89f6990bd17c0ab210b*"
+> sstate-cache/universal/d6/sstate:gcc-cross-arm:x86_64-amltd-linux-gnueabi:
+> 6.3.0:r0:x86_64_arm:3:d65095d4b9aff89f6990bd17c0ab210b_configure.tgz.siginfo
+> $ find sstate-cache -name "*208373dd9ae01101a26a9412eb50b110*"
+> sstate-cache/universal/20/sstate:gcc-cross-arm:x86_64-amltd-linux-gnueabi:
+> 6.3.0:r0:x86_64_arm:3:208373dd9ae01101a26a9412eb50b110_configure.tgz.siginfo
+> 
+> However, I do find some in tmp/stamps:
+> $ ls tmp/stamps/x86_64-linux/gcc-cross-arm
+> 6.3.0-r0.do_build.41aca0d85971087f4675d2f504642ce4
+> 6.3.0-r0.do_compile.b0eae7e91833efd5e7eceaedbc59983e
+> 6.3.0-r0.do_compile.sigdata.9a06aa40225be30babaceb7673cef0a6
+> 6.3.0-r0.do_compile.sigdata.b0eae7e91833efd5e7eceaedbc59983e
+> 6.3.0-r0.do_configure.d65095d4b9aff89f6990bd17c0ab210b
+> 6.3.0-r0.do_configure.sigdata.208373dd9ae01101a26a9412eb50b110
+> 6.3.0-r0.do_configure.sigdata.d65095d4b9aff89f6990bd17c0ab210b
+> 6.3.0-r0.do_fetch.1dd3c87b3e509c20fa4ffe61d6dc3b41
+> 6.3.0-r0.do_gcc_stash_builddir.063822f91220bb40cef0696eb604a568
+> 6.3.0-r0.do_gcc_stash_builddir.sigdata.063822f91220bb40cef0696eb604a568
+> 6.3.0-r0.do_gcc_stash_builddir.sigdata.28144d3c18c0a09f23f3b0c5e80f049d
+> 6.3.0-r0.do_install.0f96c5448dc9360ca3a24d551ad3da89
+> 6.3.0-r0.do_install.sigdata.0f96c5448dc9360ca3a24d551ad3da89
+> 6.3.0-r0.do_install.sigdata.f2e4d12289c5039854081a832dc8bc0e
+> 6.3.0-r0.do_populate_lic_setscene.d2c9226ddb0de5277e2347b69ef84664
+> 6.3.0-r0.do_populate_sysroot.15afc3bb019a6c0c1285cbda46cb32b0
+> 6.3.0-r0.do_populate_sysroot.sigdata.15afc3bb019a6c0c1285cbda46cb32b0
+> 6.3.0-r0.do_populate_sysroot.sigdata.a0c5b715ae9217f02318beff6987d169
+> 6.3.0-r0.do_prepare_recipe_sysroot.150112323551011e0e87f99f47ad79c4
+> 6.3.0-r0.do_prepare_recipe_sysroot.sigdata.150112323551011e0e87f99f47ad79c4
+> 6.3.0-r0.do_prepare_recipe_sysroot.sigdata.4a528becf11832cc3b8f6fa479e98210
+> 
+> I guess the sstate-cache info alone is not sufficient to use 'bitbake
+> diffsigs'?
+
+It ought to be. At face value it should be finding the files in either place 
+- we'd need to debug the code to find out why it isn't. Is that something you 
+might be able to help me with?
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
