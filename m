@@ -1,74 +1,72 @@
-Return-Path: <stephen.arnold42@gmail.com>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51151E00B51; Wed, 31 May 2017 22:33:17 -0700 (PDT)
+	id 93F5CE00B47; Wed, 31 May 2017 23:10:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (stephen.arnold42[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.43 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.216.174 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.43 listed in dnsbl.sorbs.net]
+	*      [209.85.216.174 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f43.google.com (mail-oi0-f43.google.com
-	[209.85.218.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1DAAE00ADD
-	for <yocto@yoctoproject.org>; Wed, 31 May 2017 22:33:14 -0700 (PDT)
-Received: by mail-oi0-f43.google.com with SMTP id h4so41452651oib.3
-	for <yocto@yoctoproject.org>; Wed, 31 May 2017 22:33:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-qt0-f174.google.com (mail-qt0-f174.google.com
+	[209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2C91E00ADD
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 31 May 2017 23:10:17 -0700 (PDT)
+Received: by mail-qt0-f174.google.com with SMTP id w1so1834982qtg.2
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 31 May 2017 23:10:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=s7ir3HHTXiEz2EbxTr4kgS9WXA7sEpTWk2C1E+vvIIg=;
-	b=UvwPJ51pl8Hz7oHcG9Qu/d/G9ljap1OIYZxDXmqRqrgzw9vd+YfyE/Nuhr0JwGqtCR
-	us9qZtWz1yL79u9DyiNcPHaeqGOFRTE0jhudUYTw6ni6GFnyUh658dg5YwiAUqxUmyNF
-	qU99eZgFErJnfUpjDXfZIReqc9/SVneLHrSYMUVWxRPCKx270jDgygGQ5BVC9+igVD60
-	4WyktiIkYEri07T4J1IaV/OGIEzHAOn2vRWKjn2szruS+mywMgkssy/xcM9uLVFhl7HF
-	Rce65dLIzab1tHMz+JZkl1sv22RdqgWMVtbXN6JRGMkxrpiDMg8PmAokf4aGEGkWIFNO
-	uEfw==
+	:cc:content-transfer-encoding;
+	bh=FH5gAee3UOKhKubMHbgt1KtZbxFMVNCgc6or1qYB5uk=;
+	b=ORPCec8yVltBMKarYyBNYuXtiFhLC3VKA/NY8FqXRg1kqM07mr+MzSpDoOFQZDDeq0
+	uCR9VoKtDb5xqWPOM0cZxIGuxGbOLRTSNqvezjqfgy25++vkZfYAD/iP43+11U/fECBj
+	eBfQlzCxv9cmLYpq099R6EUu4+9ubovy0vL2jEPvDPVY5qUbS2gcBoJ+vkKVNOlPPDJp
+	TfGx6sHf3YHLWxla04uPhGH5UKMPYhT9TY0Tncravf7SdrF/Gnu9GsZ8aIaNKQz7vYhK
+	7akBj77EHfCWMJRieEXn3Ii4AgquG/vmfPV8IHa2SacRHH6ObShg6s+0xT6CXczZdosu
+	Nqbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=s7ir3HHTXiEz2EbxTr4kgS9WXA7sEpTWk2C1E+vvIIg=;
-	b=AcOZjGQKZ5k5xV801+TNpUU6nPqNoNO5e6GhRaoOipD/zZ3P8qXeXmA5PvH5WCqlHW
-	rnYMF+FmH7nxmbBXaz7XvTA3Zkznx4Xn/pbJcGav5uZa+dMq/xl/VSJCaoKtHipExHHG
-	NmbrUZ5Q7BQ7NwzPpGJFb3BXkORJIpoWRD7z1l+sjGf0mSUJiYn56d6hv0i3KUkhK6+C
-	FchfeuEXgRXfo3KyNhH382QPzMQ9ItlOYJ3dhQIr3wmx0ogwVSGeDDOg+HEiTEsMM0km
-	6pmJV2lDoV25AzmEb7MMQFVuvNcBCBcYQk9Op9FsnvdLqkkmS75dqpm+IRqHxqXk/5D2
-	5cpA==
-X-Gm-Message-State: AODbwcAFr52szp8UXIDf/nF7gdAMeMrYvpUPcQCi8RWxmJNZ5SEcVtoH
-	l/W4sOHi1CkVZCM2ji8tNxeAPJycxg==
-X-Received: by 10.157.80.3 with SMTP id a3mr8909177oth.64.1496295194624; Wed,
-	31 May 2017 22:33:14 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=FH5gAee3UOKhKubMHbgt1KtZbxFMVNCgc6or1qYB5uk=;
+	b=oFYB6Hs98sZq6ngeyOKkxvs0vq70r0jBTkUJJg7YFteEzoQ4UXVNkBWbjodxVsJi0m
+	iBeRp8afW5t6RMd2lEt8vg8BY+HfihmsqynSiwJzhrTAuBd75uQsiZDB4MwmwFiykkAV
+	RENtvL0W223e9CdfY4MIoET2u2+0+fsjww5aD+EU+bey46yul+3Y0cQJ+wz/xFSWGmmp
+	5XBPPtuTK5sjfW0feW8naHwWVe3EmJAghzxMlbDeAsVJ98An2r0kdOyXcVUUa1v/nvsD
+	0vKnrR0kSXDQ8kDrGqticxRwYWsKGE+erh1Rwex1XG+02ypSVSpn7GCKwhs0Km1o3nTF
+	MVNg==
+X-Gm-Message-State: AODbwcA4onEl9wYgk8mzaJKb6Ig6Ju+Zu+M8gViI9dmlF7f5GNUuRhh5
+	8CQm3qMCldv4+g9OeJkizI6EO//S1Zj2pqU=
+X-Received: by 10.200.55.233 with SMTP id e38mr1166930qtc.198.1496297416644;
+	Wed, 31 May 2017 23:10:16 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.182.139.106 with HTTP; Wed, 31 May 2017 22:33:14 -0700 (PDT)
-In-Reply-To: <CAOLEWZWP6zx6Kp=Pox6LHwtzcjk6BWsCckKEqrofMU3A2RnsFA@mail.gmail.com>
-References: <CAHUNapSYmEfVLLdLE4_Nr8XEJt830R5cvHMrcnsohYF5sXSaVw@mail.gmail.com>
-	<CAHUNapRGHVwA5agFkp26Vv46qQbyDXYdhvR=wxdU-bAYifS0Eg@mail.gmail.com>
-	<CAHUNapR=ucND-LTtiGgPGMCpXc_WRJwWOSFPeJ6LMwC40_zhHQ@mail.gmail.com>
-	<CALbNGRTyPU74ipKJwuZpVP+btn7vcca-QJQxUNun8JLSQ0yMgA@mail.gmail.com>
-	<CAOLEWZU7Jj+gSoh-gdTSDd9fvYC5Kb2VpTKkeDv7h5PccLsTgQ@mail.gmail.com>
-	<CAHUNapQnCjZRDtZX4O3T0nHn2YNibX-6+aNQLT3frOQHnAtS0g@mail.gmail.com>
-	<CAOLEWZWP6zx6Kp=Pox6LHwtzcjk6BWsCckKEqrofMU3A2RnsFA@mail.gmail.com>
-From: Stephen Arnold <stephen.arnold42@gmail.com>
-Date: Wed, 31 May 2017 22:33:14 -0700
-Message-ID: <CAOLEWZVXCpJ3PQA=xqeu4P7fLfW1qPFPoMjFLCpzLujF0iHjdA@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-freescale] etnaviv image
+Received: by 10.140.85.167 with HTTP; Wed, 31 May 2017 23:10:16 -0700 (PDT)
+In-Reply-To: <CAMKF1sqVEbdMKnqHHwsdWrs6aPDOowreRCZuk2h39J2XQEV8TA@mail.gmail.com>
+References: <20170530075723.18340-1-Martin.Jansa@gmail.com>
+	<CAMKF1so+EmqtQFL-GbMyEQtpOOevOjRnqHbzXUvs4eb3m04XLw@mail.gmail.com>
+	<CAPyrkgyar=GAr2QkqPe+Tjg=yp=yde_V3MKoXSeKZFb9StCXBw@mail.gmail.com>
+	<CAJ86T=XF11yQjPFHXGHHk28MTQF1FQnEz_D+8s=6vk5AO6oFPQ@mail.gmail.com>
+	<CAMKF1soe0qjKuyASY+sE4rcvOM-uAqzBVdNbJb2=f0c6gOhZ_w@mail.gmail.com>
+	<CAK18fxF3uXOdsZkaN9f-DKJaMc+4GVfW28xTVK9a-01x+ktLXA@mail.gmail.com>
+	<CAMKF1sqVEbdMKnqHHwsdWrs6aPDOowreRCZuk2h39J2XQEV8TA@mail.gmail.com>
+From: Paul Barker <pbarker@toganlabs.com>
+Date: Thu, 1 Jun 2017 07:10:16 +0100
+Message-ID: <CAPyrkgwGS+oheJHGudM-SiveTkdefgexcLoYfsbq+mReHXt+HQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [PATCH][meta-raspberrypi] linux-raspberrypi_dev: don't use AUTOREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,236 +78,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Jun 2017 05:33:17 -0000
-Content-Type: multipart/alternative; boundary="f4030435ab4c8e0b330550df5fa2"
-
---f4030435ab4c8e0b330550df5fa2
+X-List-Received-Date: Thu, 01 Jun 2017 06:10:18 -0000
 Content-Type: text/plain; charset="UTF-8"
-
-Apparently my cma arg was dorking up the gpu initialization; if you get
-this error in dmesg, then adjusting the cmdline memory args is probably a
-good idea:
-
-$ dmesg | grep etnaviv
-
-command buffer outside valid memory window
-
-I had default cma size in kernel config, different (larger) size on the
-command line, so I replaced cma with gpumem.  Kernel seems to like it
-better than cma=foo
-
-Steve
-
-On Wed, May 31, 2017 at 4:29 PM, Stephen Arnold <stephen.arnold42@gmail.com>
-wrote:
-
-> Hmm, I built the same commits from your recipes, and I'm still getting the
-> glx error in my logs :/
->
-> Other than that, things seem to work okay...
->
-> Steve
->
-> On Sat, May 27, 2017 at 9:20 PM, Trevor Woerner <twoerner@gmail.com>
-> wrote:
->
->> Hey Stephen,
->>
->> On Fri, May 26, 2017 at 7:23 PM, Stephen Arnold
->> <stephen.arnold42@gmail.com> wrote:
->> > @Trevor what's your config/setup?  Did you wind up using the
->> > "use-mainline-bsp" thing?
->>
->> Yes.
->>
->> As I mentioned, I was working with a wandboard, on master, therefore
->> my layers are:
->> - openembedded-core
->> - meta-freescale-3rdparty
->> - meta-freescale
->>
->> If I was working on some other board that didn't require
->> meta-freescale-3rdparty I wouldn't have needed that layer.
->> Additionally, I had started by using meta-etnaviv as well. That layer
->> hasn't seen any commits in roughly 10 months. Back then my guess is
->> that "upstream" didn't include very many of the bits required to get
->> this to work, therefore meta-etnaviv had to include recipes/bbappends
->> for mesa, libdrm, xorg-xserver, etc... in addition to the etnaviv drm
->> pieces themselves.
->>
->> I created my own clone of meta-etnaviv
->> [https://github.com/twoerner/meta-etnaviv] and pushed all my
->> commits/updates there with the intention of, eventually, sending a
->> pull request to its author. But by the time I was done removing all
->> the things that are no longer needed (i.e. all the bbappends, since
->> upstream mesa, libdrm, etc... all include the necessary bits) and
->> updating the remaining stuff, I was left with very little. So little,
->> in fact, that I decided to simply fold what was left back into
->> meta-freescale itself, conditional on the "use-mainline-bsp"
->> MACHINEOVERRIDES, and sent those patches to the meta-fsl mailing list.
->>
->> If the maintainers of meta-freescale accept the assumption that
->> use-mainline-bsp could be the flag that indicates interest between the
->> binary vivante drivers and etnaviv, then I hope they like the patches
->> and accept them into meta-freescale itself. Otherwise I could just
->> send that pull request to meta-etanviv's author (or re-work the
->> patches with whatever feedback I get). In any case, for wandboard
->> use-mainline-bsp is needed since the default kernel for wandboard is
->> linux-wandboard which is still stuck at 4.1.15 and is too old for this
->> etnaviv stuff. However using use-mainline-bsp with the wandboard is
->> broken, so I had to send some patches for that (u-boot and kernel) as
->> well (hopefully those patches are accepted as well).
->>
->> Due to the fact so much of etnaviv is already upstream, getting
->> etanviv working doesn't take very much. It just took me a while to
->> reach that point, however :-)
->>
->> > I pretty much had to hack up some of the meta-fsl/meta-boundary stuff
->> and
->> > put everything else in local.conf.  It would be a little easier/cleaner
->> if
->> > the former had some ?= in a few places...
->> >
->> > Anyway, I masked the browser stuff so I haven't tested that far yet,
->> but all
->> > you really need for 3D under X is new kernel/libdrm/mesa for ~110 fps
->> with
->> > glxgears.
->>
->> I like to use mesa-demos and (especially) glmark2 as my programs of
->> choice for testing GL stuff.
->>
->> > I added recipes for the x11-armada stuff, which seems to work for
->> > 2D but coughs an error in the xorg log.
->>
->> I'm curious to know which x11-armada stuff you're using. I couldn't
->> get the stuff that came with meta-etnaviv to compile so I looked
->> around and found Russell King's code which seemed more up-to-date, and
->> compiled. Plus my xorg log doesn't have any errors (see attachment).
->>
->> > I probably tested more with oe-core
->> > than poky but both should work.
->>
->> I just tend to stick with oe-core.
->>
->> I'm hoping to make a couple blog posts with my findings.
->>
->
->
-
---f4030435ab4c8e0b330550df5fa2
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div>Apparently my cma arg was dorking up t=
-he gpu initialization; if you get this error in dmesg, then adjusting the c=
-mdline memory args is probably a good idea:<br><br></div>$ dmesg | grep etn=
-aviv<br><br>command buffer outside valid memory window<br><br></div>I had d=
-efault cma size in kernel config, different (larger) size on the command li=
-ne, so I replaced cma with gpumem.=C2=A0 Kernel seems to like it better tha=
-n cma=3Dfoo<br></div><br></div>Steve<br></div><div class=3D"gmail_extra"><b=
-r><div class=3D"gmail_quote">On Wed, May 31, 2017 at 4:29 PM, Stephen Arnol=
-d <span dir=3D"ltr">&lt;<a href=3D"mailto:stephen.arnold42@gmail.com" targe=
-t=3D"_blank">stephen.arnold42@gmail.com</a>&gt;</span> wrote:<br><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
-id;padding-left:1ex"><div dir=3D"ltr"><div><div>Hmm, I built the same commi=
-ts from your recipes, and I&#39;m still getting the glx error in my logs :/=
-<br><br></div>Other than that, things seem to work okay...<br><br></div>Ste=
-ve<br></div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_ext=
-ra"><br><div class=3D"gmail_quote">On Sat, May 27, 2017 at 9:20 PM, Trevor =
-Woerner <span dir=3D"ltr">&lt;<a href=3D"mailto:twoerner@gmail.com" target=
-=3D"_blank">twoerner@gmail.com</a>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">Hey Stephen,<br>
-<span><br>
-On Fri, May 26, 2017 at 7:23 PM, Stephen Arnold<br>
-&lt;<a href=3D"mailto:stephen.arnold42@gmail.com" target=3D"_blank">stephen=
-.arnold42@gmail.com</a>&gt; wrote:<br>
-&gt; @Trevor what&#39;s your config/setup?=C2=A0 Did you wind up using the<=
-br>
-&gt; &quot;use-mainline-bsp&quot; thing?<br>
-<br>
-</span>Yes.<br>
-<br>
-As I mentioned, I was working with a wandboard, on master, therefore<br>
-my layers are:<br>
-- openembedded-core<br>
-- meta-freescale-3rdparty<br>
-- meta-freescale<br>
-<br>
-If I was working on some other board that didn&#39;t require<br>
-meta-freescale-3rdparty I wouldn&#39;t have needed that layer.<br>
-Additionally, I had started by using meta-etnaviv as well. That layer<br>
-hasn&#39;t seen any commits in roughly 10 months. Back then my guess is<br>
-that &quot;upstream&quot; didn&#39;t include very many of the bits required=
- to get<br>
-this to work, therefore meta-etnaviv had to include recipes/bbappends<br>
-for mesa, libdrm, xorg-xserver, etc... in addition to the etnaviv drm<br>
-pieces themselves.<br>
-<br>
-I created my own clone of meta-etnaviv<br>
-[<a href=3D"https://github.com/twoerner/meta-etnaviv" rel=3D"noreferrer" ta=
-rget=3D"_blank">https://github.com/twoerner/m<wbr>eta-etnaviv</a>] and push=
-ed all my<br>
-commits/updates there with the intention of, eventually, sending a<br>
-pull request to its author. But by the time I was done removing all<br>
-the things that are no longer needed (i.e. all the bbappends, since<br>
-upstream mesa, libdrm, etc... all include the necessary bits) and<br>
-updating the remaining stuff, I was left with very little. So little,<br>
-in fact, that I decided to simply fold what was left back into<br>
-meta-freescale itself, conditional on the &quot;use-mainline-bsp&quot;<br>
-MACHINEOVERRIDES, and sent those patches to the meta-fsl mailing list.<br>
-<br>
-If the maintainers of meta-freescale accept the assumption that<br>
-use-mainline-bsp could be the flag that indicates interest between the<br>
-binary vivante drivers and etnaviv, then I hope they like the patches<br>
-and accept them into meta-freescale itself. Otherwise I could just<br>
-send that pull request to meta-etanviv&#39;s author (or re-work the<br>
-patches with whatever feedback I get). In any case, for wandboard<br>
-use-mainline-bsp is needed since the default kernel for wandboard is<br>
-linux-wandboard which is still stuck at 4.1.15 and is too old for this<br>
-etnaviv stuff. However using use-mainline-bsp with the wandboard is<br>
-broken, so I had to send some patches for that (u-boot and kernel) as<br>
-well (hopefully those patches are accepted as well).<br>
-<br>
-Due to the fact so much of etnaviv is already upstream, getting<br>
-etanviv working doesn&#39;t take very much. It just took me a while to<br>
-reach that point, however :-)<br>
-<span><br>
-&gt; I pretty much had to hack up some of the meta-fsl/meta-boundary stuff =
-and<br>
-&gt; put everything else in local.conf.=C2=A0 It would be a little easier/c=
-leaner if<br>
-&gt; the former had some ?=3D in a few places...<br>
-&gt;<br>
-&gt; Anyway, I masked the browser stuff so I haven&#39;t tested that far ye=
-t, but all<br>
-&gt; you really need for 3D under X is new kernel/libdrm/mesa for ~110 fps =
-with<br>
-&gt; glxgears.<br>
-<br>
-</span>I like to use mesa-demos and (especially) glmark2 as my programs of<=
-br>
-choice for testing GL stuff.<br>
-<span><br>
-&gt; I added recipes for the x11-armada stuff, which seems to work for<br>
-&gt; 2D but coughs an error in the xorg log.<br>
-<br>
-</span>I&#39;m curious to know which x11-armada stuff you&#39;re using. I c=
-ouldn&#39;t<br>
-get the stuff that came with meta-etnaviv to compile so I looked<br>
-around and found Russell King&#39;s code which seemed more up-to-date, and<=
-br>
-compiled. Plus my xorg log doesn&#39;t have any errors (see attachment).<br=
+On Thu, Jun 1, 2017 at 1:17 AM, Khem Raj <raj.khem@gmail.com> wrote:
+> On Wed, May 31, 2017 at 5:00 PM, Andrei Gherzan <andrei@gherzan.ro> wrote=
+:
+>>
+>> On Tue, May 30, 2017 at 6:29 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>>>
+>>> On Tue, May 30, 2017 at 10:25 AM, Andre McCurdy <armccurdy@gmail.com>
+>>> wrote:
+>>> > On Tue, May 30, 2017 at 10:15 AM, Paul Barker <pbarker@toganlabs.com>
+>>> > wrote:
+>>> >> On 30 May 2017 5:08 p.m., "Khem Raj" <raj.khem@gmail.com> wrote:
+>>> >>
+>>> >> On Tue, May 30, 2017 at 12:57 AM, Martin Jansa <martin.jansa@gmail.c=
+om>
+>>> >> wrote:
+>>> >>> * use latest revision in rpi-4.11.y branch
+>>> >>> * using AUTOREV causes bitbake to run git ls-remote on the github.c=
+om
+>>> >>> repository in order
+>>> >>>   to convert AUTOREV to currently latest SRCREV even when you don't
+>>> >>> use
+>>> >>> linux-raspberrypi_dev
+>>> >>>   at all, just happen to have meta-raspberrypi layer in your
+>>> >>> bblayers.conf, that's bad for
+>>> >>>   people who want to be able to build without network access
+>>> >>> (completely
+>>> >>> from premirror)
+>>> >>>
+>>> >>
+>>> >> These branches get rebased often so locking SRCREV caused another
+>>> >> kind of problem. what we can do is.
+>>> >>
+>>> >> 1. Let user like you override the SRCREC via a bbappend or conf file=
+.
+>>> >> so change the assignment to ?=3D
+>>> >> 2. Delete the recipe completely. We lose some of upstream testing.
+>>> >>
+>>> >> We should be able to skip the recipe if it isn't selected as the
+>>> >> preferred
+>>> >> version and/or provider of "virtual/kernel". I'm out at the minute s=
+o
+>>> >> can't
+>>> >> look at it now but will try to take a look later this week.
+>>> >
+>>> > The linux-yocto-dev.bb recipe contains an example of doing that.
+>>> >
+>>>
+>>> ah perfect. Thats what we need here
+>>>
+>>>
+>>> http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-kernel=
+/linux/linux-yocto-dev.bb?h=3Dmaster#n28
+>>>
+>>> please rename the recipe to be linux-raspberrypi-dev.bb and add the mag=
+ic
+>>> above and send a v2
+>>>
+>>
+>> Using the magic above we still hardcode a revision there. So if a user w=
+ants
+>> to compile the recipe without setting the preferred provider it will fai=
+l.
 >
-<span><br>
-&gt; I probably tested more with oe-core<br>
-&gt; than poky but both should work.<br>
-<br>
-</span>I just tend to stick with oe-core.<br>
-<br>
-I&#39;m hoping to make a couple blog posts with my findings.<br>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
+> what will be the usecase ? when you have a different kernel selected but
+> woould like to compile yet another kernel
+>
+> that rev can be a well known rev like branchpoint. Moreover, I think
+> if someone wants to use the dev recipe then its expected that they
+> switch
+> to using AUTOREV or some other local mechanism for pinning if needed.
+>
 
---f4030435ab4c8e0b330550df5fa2--
+I was thinking of a different approach entirerly. We can add the
+following at the top of the recipe file:
+
+python __anonymous() {
+    if "linux-raspberrypi-dev" not in
+d.getVar("PREFERRED_PROVIDER_virtual/kernel"):
+        msg =3D "Skipping linux-raspberrypi-dev as it is not the preferred =
+" + \
+              "provider of virtual/kernel."
+        raise bb.parse.SkipRecipe(msg)
+}
+
+(Hopefully gmail won't mangle that too much)
+
+I've just tested it and it works fine as long as it's before the use
+of ${AUTOREV}. If there's no objections to this approach I'll submit a
+patch.
+
+Cheers,
+
+--=20
+Paul Barker
+Co-Founder & Principal Engineer
+Tog=C3=A1n Labs Ltd
+
