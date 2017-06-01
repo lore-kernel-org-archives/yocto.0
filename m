@@ -1,32 +1,37 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76482E00B5C; Wed, 31 May 2017 20:34:36 -0700 (PDT)
+	id 0D53EE00B5C; Wed, 31 May 2017 20:34:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F662E00ADD
-	for <yocto@yoctoproject.org>; Wed, 31 May 2017 20:34:34 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C17DE00B01
+	for <yocto@yoctoproject.org>; Wed, 31 May 2017 20:34:35 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v513YWbC024916
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Wed, 31 May 2017 20:34:33 -0700
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v513YYhN008581
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 31 May 2017 20:34:34 -0700 (PDT)
 Received: from ala-blade47.wrs.com (147.11.105.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 31 May 2017 20:34:31 -0700
+	Wed, 31 May 2017 20:34:33 -0700
 From: Robert Yang <liezhi.yang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Wed, 31 May 2017 20:34:23 -0700
-Message-ID: <cover.1496287756.git.liezhi.yang@windriver.com>
+Date: Wed, 31 May 2017 20:34:24 -0700
+Message-ID: <5d0cb50c17624a3ccb1fb78f58e7b9c73ca52a56.1496287756.git.liezhi.yang@windriver.com>
 X-Mailer: git-send-email 2.10.2
+In-Reply-To: <cover.1496287756.git.liezhi.yang@windriver.com>
+References: <cover.1496287756.git.liezhi.yang@windriver.com>
 MIME-Version: 1.0
 Cc: Konrad.Scherer@windriver.com, paul.eggleton@linux.intel.com
-Subject: [layerindex-web][PATCH V2 0/8] Several fixes for layerindex
+Subject: [PATCH V2 1/8] layerconfparse.py: remove unused layerbranch from parse_layer()
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,56 +43,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Jun 2017 03:34:36 -0000
+X-List-Received-Date: Thu, 01 Jun 2017 03:34:37 -0000
 Content-Type: text/plain
 
-* V2:
-Remove "import bb" from update.py to avoid causing confusions when switch branches.
+The layerbranch is not used in parse_layer(), so remove it.
 
-* V1:
-The "-a ACTUAL_BRANCH" is a litle different from what we had talked, now it
-respects "-l" and "-b", we can use -l to specify layers or default to all,
-and it requires "-b" to work, only one branch is supported in a run, for example:
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+---
+ layerindex/layerconfparse.py     | 2 +-
+ layerindex/tools/import_layer.py | 2 +-
+ layerindex/update_layer.py       | 4 ++--
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-$ update.py -b master -a branch_20170526
-All the layers which have branch master and actual_branch branch_20170526
-will be updated to branch_20170526.
-
-$ update.py -b master -l meta-oe -a branch_20170526
-Only meta-oe layer will be updated.
-
-$ update.py -b master -l bitbake -a branch_20170526
-The bitbake's bitbake_branch will be updated.
-
-// Robert
-
-The following changes since commit 8dfe44ed5e618d517d4acb4a3107cb3907e773c8:
-
-  TODO: drop implemented items (2017-03-22 14:21:22 +1300)
-
-are available in the git repository at:
-
-  git://git.pokylinux.org/poky-contrib rbt/layerindex-8fixes
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=rbt/layerindex-8fixes
-
-Robert Yang (8):
-  layerconfparse.py: remove unused layerbranch from parse_layer()
-  utils.py: remove obsolete dependencies
-  update_layer.py: set layerbranch's collection before add_dependencies
-  update.py: add -p to git fetch
-  update.py: fix -l option
-  recipeparse.py: restore cwd when the parsing is done
-  update.py: update layers orderly
-  update.py: update actual branch for layer and bitbake
-
- layerindex/layerconfparse.py     |   2 +-
- layerindex/recipeparse.py        |   3 +
- layerindex/tools/import_layer.py |   2 +-
- layerindex/update.py             | 185 +++++++++++++++++++++++++++++++--------
- layerindex/update_layer.py       |   6 +-
- layerindex/utils.py              |  59 ++++++++++++-
- 6 files changed, 215 insertions(+), 42 deletions(-)
-
+diff --git a/layerindex/layerconfparse.py b/layerindex/layerconfparse.py
+index d599ed5..526d2c2 100644
+--- a/layerindex/layerconfparse.py
++++ b/layerindex/layerconfparse.py
+@@ -32,7 +32,7 @@ class LayerConfParse:
+ 
+         self.config_data_copy = bb.data.createCopy(self.tinfoil.config_data)
+ 
+-    def parse_layer(self, layerbranch, layerdir):
++    def parse_layer(self, layerdir):
+ 
+         # This is not a valid layer, parsing will cause exception.
+         if not utils.is_layer_valid(layerdir):
+diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
+index ad16e40..a806dd1 100755
+--- a/layerindex/tools/import_layer.py
++++ b/layerindex/tools/import_layer.py
+@@ -377,7 +377,7 @@ def main():
+                         layerdep.save()
+                     layerconfparser = LayerConfParse(logger=logger)
+                     try:
+-                        config_data = layerconfparser.parse_layer(layerbranch, layerdir)
++                        config_data = layerconfparser.parse_layer(layerdir)
+                         if config_data:
+                             utils.add_dependencies(layerbranch, config_data, logger=logger)
+                             utils.add_recommends(layerbranch, config_data, logger=logger)
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index 9fe96fb..05ab3e7 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -267,7 +267,7 @@ def main():
+                     sys.exit(0)
+ 
+                 layerconfparser = layerconfparse.LayerConfParse(logger=logger, bitbakepath=bitbakepath, tinfoil=tinfoil)
+-                config_data = layerconfparser.parse_layer(layerbranch, layerdir)
++                config_data = layerconfparser.parse_layer(layerdir)
+                 if not config_data:
+                     logger.debug("Layer %s does not appear to be valid for branch %s" % (layer.name, branchdesc))
+                     sys.exit(0)
+@@ -355,7 +355,7 @@ def main():
+                 logger.info("Collecting data for layer %s on branch %s" % (layer.name, branchdesc))
+ 
+                 layerconfparser = layerconfparse.LayerConfParse(logger=logger, tinfoil=tinfoil)
+-                layer_config_data = layerconfparser.parse_layer(layerbranch, layerdir)
++                layer_config_data = layerconfparser.parse_layer(layerdir)
+                 if not layer_config_data:
+                     logger.info("Skipping update of layer %s for branch %s - conf/layer.conf may have parse issues" % (layer.name, branchdesc))
+                     layerconfparser.shutdown()
 -- 
 2.10.2
 
