@@ -1,37 +1,34 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 02028E00BAD; Thu,  1 Jun 2017 23:28:58 -0700 (PDT)
+	id 65351E00BAB; Thu,  1 Jun 2017 23:28:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC97EE00B77
-	for <yocto@yoctoproject.org>; Thu,  1 Jun 2017 23:28:56 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6802E00B9E
+	for <yocto@yoctoproject.org>; Thu,  1 Jun 2017 23:28:57 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v526Suck020452
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 1 Jun 2017 23:28:56 -0700 (PDT)
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v526SvGe031313
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Thu, 1 Jun 2017 23:28:57 -0700
 Received: from ala-blade47.wrs.com (147.11.105.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 1 Jun 2017 23:28:55 -0700
+	Thu, 1 Jun 2017 23:28:56 -0700
 From: Robert Yang <liezhi.yang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Thu, 1 Jun 2017 23:28:44 -0700
-Message-ID: <a70a0381efd39e882b0a18841cf735e1ca771f6e.1496384657.git.liezhi.yang@windriver.com>
+Date: Thu, 1 Jun 2017 23:28:45 -0700
+Message-ID: <edafef644fb7dd1b0f4db00433a3e2f05e43bd3b.1496384657.git.liezhi.yang@windriver.com>
 X-Mailer: git-send-email 2.10.2
 In-Reply-To: <cover.1496384657.git.liezhi.yang@windriver.com>
 References: <cover.1496384657.git.liezhi.yang@windriver.com>
 MIME-Version: 1.0
 Cc: Konrad.Scherer@windriver.com, paul.eggleton@linux.intel.com
-Subject: [PATCH V3 07/11] update_layer.py: remove --update-dependencies
+Subject: [PATCH V3 08/11] update.py: add option -a to update actual branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,81 +43,163 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 X-List-Received-Date: Fri, 02 Jun 2017 06:28:58 -0000
 Content-Type: text/plain
 
-It never works since it is in the middle of transaction.atomic() block, and
-update.py doesn't need it any more, so remove it.
+Add an option "-a" to update actual branch for layer and bitbake, it is
+useful when there are many layers and need update actual branches
+frequantly. We only can update them via website without this patch,
+which is not funny and easy to make mistakes.
+
+* It works with "-l", and "-l bitbake" means update bitbake branch.
+* It requires "-b" to work, and only one branch is supported in a run.
+
+For example:
+$ update.py -b master -a branch_20170526
+All the layers which have branch master and actual_branch branch_20170526
+will be updated to branch_20170526.
+
+$ update.py -b master -l meta-oe -a branch_20170526
+Only meta-oe layer will be updated.
+
+$ update.py -b master -l bitbake -a branch_20170526
+The bitbake's bitbake_branch will be updated.
 
 Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
 ---
- layerindex/update.py       |  4 +---
- layerindex/update_layer.py | 27 ---------------------------
- 2 files changed, 1 insertion(+), 30 deletions(-)
+ layerindex/update.py | 60 +++++++++++++++++++++++++++++++++++++++++++++++++++-
+ layerindex/utils.py  | 11 ++++++++++
+ 2 files changed, 70 insertions(+), 1 deletion(-)
 
 diff --git a/layerindex/update.py b/layerindex/update.py
-index 45dcb86..42dd22b 100755
+index 42dd22b..f781d33 100755
 --- a/layerindex/update.py
 +++ b/layerindex/update.py
-@@ -64,15 +64,13 @@ def run_command_interruptible(cmd):
-     return process.returncode, buf
+@@ -85,6 +85,43 @@ def prepare_update_layer_command(options, branch, layer):
+         cmd += ' -q'
+     return cmd
  
++def update_actual_branch(layerquery, fetchdir, branch, options, update_bitbake, bitbakepath):
++    """Update actual branch for layers and bitbake in database"""
++    to_save = set()
++    actual_branch = options.actual_branch
++    if update_bitbake:
++        branchobj = utils.get_branch(branch)
++        if actual_branch != branchobj.bitbake_branch:
++            if utils.is_branch_valid(bitbakepath, actual_branch):
++                logger.info("bitbake: %s.bitbake_branch: %s -> %s" % (branch, branchobj.bitbake_branch, actual_branch))
++                branchobj.bitbake_branch = actual_branch
++                to_save.add(branchobj)
++            else:
++                logger.info("Skipping update bitbake_branch for bitbake - branch %s doens't exist" % actual_branch)
++        else:
++            logger.info("bitbake: %s.bitbake_branch is already %s, so no change" % (branch, actual_branch))
++
++    for layer in layerquery:
++        urldir = layer.get_fetch_dir()
++        repodir = os.path.join(fetchdir, urldir)
++        if not utils.is_branch_valid(repodir, actual_branch):
++            logger.info("Skipping update actual_branch for %s - branch %s doens't exist" % (layer.name, actual_branch))
++            continue
++        layerbranch = layer.get_layerbranch(branch)
++        if not layerbranch:
++            logger.info("Skipping update actual_branch for %s - layerbranch %s doens't exist" % (layer.name, branch))
++            continue
++        if actual_branch != layerbranch.actual_branch:
++            logger.info("%s: %s.actual_branch: %s -> %s" % (layer.name, branch, layerbranch.actual_branch, actual_branch))
++            layerbranch.actual_branch = actual_branch
++            to_save.add(layerbranch)
++        else:
++            logger.info("%s: %s.actual_branch is already %s, so no change" % (layer.name, branch, actual_branch))
++
++    # At last, do the save
++    if not options.dryrun:
++        for s in to_save:
++            s.save()
  
--def prepare_update_layer_command(options, branch, layer, updatedeps=False):
-+def prepare_update_layer_command(options, branch, layer):
-     """Prepare the update_layer.py command line"""
-     if branch.update_environment:
-         cmdprefix = branch.update_environment.get_command()
+ def main():
+     if LooseVersion(git.__version__) < '0.3.1':
+@@ -102,6 +139,9 @@ def main():
+     parser.add_option("-l", "--layer",
+             help = "Specify layers to update (use commas to separate multiple). Default is all published layers.",
+             action="store", dest="layers")
++    parser.add_option("-a", "--actual-branch",
++            help = "Update actual branch for layer and bitbake",
++            action="store", dest="actual_branch", default='')
+     parser.add_option("-r", "--reload",
+             help = "Reload recipe data instead of updating since last update",
+             action="store_true", dest="reload")
+@@ -156,8 +196,13 @@ def main():
+         logger.info("No published layers to update")
+         sys.exit(1)
+ 
++    # For -a option to update bitbake branch
++    update_bitbake = False
+     if options.layers:
+         layers = options.layers.split(',')
++        if 'bitbake' in layers:
++            update_bitbake = True
++            layers.remove('bitbake')
+         for layer in layers:
+             layerquery = LayerItem.objects.filter(classic=False).filter(name=layer)
+             if layerquery.count() == 0:
+@@ -166,8 +211,17 @@ def main():
+         layerquery = LayerItem.objects.filter(classic=False).filter(name__in=layers)
      else:
-         cmdprefix = 'python3'
-     cmd = '%s update_layer.py -l %s -b %s' % (cmdprefix, layer.name, branch.name)
--    if updatedeps:
--        cmd += ' --update-dependencies'
-     if options.reload:
-         cmd += ' --reload'
-     if options.fullreload:
-diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-index 0373109..20c27be 100644
---- a/layerindex/update_layer.py
-+++ b/layerindex/update_layer.py
-@@ -182,9 +182,6 @@ def main():
-     parser.add_option("-n", "--dry-run",
-             help = "Don't write any data back to the database",
-             action="store_true", dest="dryrun")
--    parser.add_option("", "--update-dependencies",
--            help = "Update layer dependencies only",
--            action="store_true", dest="updatedeps")
-     parser.add_option("", "--nocheckout",
-             help = "Don't check out branches",
-             action="store_true", dest="nocheckout")
-@@ -253,30 +250,6 @@ def main():
-                     branchname = layerbranch.actual_branch
-                     branchdesc = "%s (%s)" % (options.branch, branchname)
+         # We deliberately exclude status == 'X' ("no update") here
++        update_bitbake = True
+         layerquery = layerquery_all
  
--            if options.updatedeps:
--                # Update layer dependencies only
--                if not layerbranch:
--                    logger.debug('Skipping dependency update for layer %s on branch %s - no layerbranch record' % (layer, branchdesc))
--                    sys.exit(0)
--                if not options.nocheckout:
--                    utils.checkout_layer_branch(layerbranch, repodir, logger=logger)
--                layerdir = os.path.join(repodir, layerbranch.vcs_subdir)
--                if not os.path.exists(layerdir):
--                    # If this happens it was already flagged during the main update, so ignore it
--                    logger.debug('Skipping dependency update for layer %s on branch %s - layer directory not found' % (layer, branchdesc))
--                    sys.exit(0)
--
--                layerconfparser = layerconfparse.LayerConfParse(logger=logger, bitbakepath=bitbakepath, tinfoil=tinfoil)
--                config_data = layerconfparser.parse_layer(layerdir)
--                if not config_data:
--                    logger.debug("Layer %s does not appear to be valid for branch %s" % (layer.name, branchdesc))
--                    sys.exit(0)
--
--                utils.add_dependencies(layerbranch, config_data, logger=logger)
--                utils.add_recommends(layerbranch, config_data, logger=logger)
--
--                sys.exit(0)
--
-             # Collect repo info
-             repo = git.Repo(repodir)
-             assert repo.bare == False
++    if options.actual_branch:
++        if not options.branch:
++            logger.error("-a option requires -b")
++            sys.exit(1)
++        elif len(branches) != 1:
++            logger.error("Only one branch should be used with -a")
++            sys.exit(1)
++
+     if not os.path.exists(fetchdir):
+         os.makedirs(fetchdir)
+     fetchedrepos = []
+@@ -215,7 +269,7 @@ def main():
+                             continue
+                         fetchedrepos.append(layer.vcs_url)
+ 
+-                if not fetchedrepos:
++                if not (fetchedrepos or update_bitbake):
+                     logger.error("No repositories could be fetched, exiting")
+                     sys.exit(1)
+ 
+@@ -225,6 +279,10 @@ def main():
+                 else:
+                     out = utils.runcmd("git fetch", bitbakepath, logger=logger)
+ 
++            if options.actual_branch:
++                update_actual_branch(layerquery, fetchdir, branches[0], options, update_bitbake, bitbakepath)
++                return
++
+             # Process and extract data from each layer
+             # We now do this by calling out to a separate script; doing otherwise turned out to be
+             # unreliable due to leaking memory (we're using bitbake internals in a manner in which
+diff --git a/layerindex/utils.py b/layerindex/utils.py
+index 7887bae..4bceae0 100644
+--- a/layerindex/utils.py
++++ b/layerindex/utils.py
+@@ -210,6 +210,17 @@ def is_layer_valid(layerdir):
+         return False
+     return True
+ 
++def is_branch_valid(layerdir, branch):
++    import git
++
++    g = git.cmd.Git(layerdir)
++    assert g.rev_parse('--is-bare-repository') == 'false'
++    try:
++        g.rev_parse('--verify', 'origin/%s' % branch)
++    except Exception:
++        return False
++    return True
++
+ def parse_conf(conf_file, d):
+     if hasattr(bb.parse, "handle"):
+         # Newer BitBake
 -- 
 2.10.2
 
