@@ -1,15 +1,15 @@
-Return-Path: <bluehills7@comcast.net>
+Return-Path: <ayoub.zaki@embexus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2334AE009A0; Fri,  2 Jun 2017 15:26:39 -0700 (PDT)
+	id 48458E009A0; Fri,  2 Jun 2017 15:34:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	HTML_OBFUSCATE_05_10, 
-	RCVD_IN_DNSWL_LOW,RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bluehills7[at]comcast.net)
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, HTML_OBFUSCATE_05_10,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.30.212.12 listed in list.dnswl.org]
 	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -19,41 +19,32 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [69.252.207.36 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [69.252.207.36 listed in dnsbl.sorbs.net]
-Received: from resqmta-ch2-04v.sys.comcast.net
-	(resqmta-ch2-04v.sys.comcast.net [69.252.207.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7DF2E0082A
-	for <yocto@yoctoproject.org>; Fri,  2 Jun 2017 15:26:34 -0700 (PDT)
-Received: from resomta-ch2-20v.sys.comcast.net ([69.252.207.116])
-	by resqmta-ch2-04v.sys.comcast.net with SMTP
-	id Gv1edp4TkscBPGv1edjOf3; Fri, 02 Jun 2017 22:26:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=q20161114; t=1496442394;
-	bh=+waO7W7lL+5r4JIUF1U/CKfKPMtj9FzyAT+K73I7Lrw=;
-	h=Received:Received:From:Content-Type:Mime-Version:Subject:
-	Message-Id:Date:To;
-	b=hrs2KE2S4hjUZQ/r9mRFnfjmyyT0LPIjx5bxJLVC1MsLuBbaQ89sT633Qw9sbuf33
-	PGGoJ+cUc5GvfdZ5oNyjNU/uAcM9XFeEBq2dIgkD6p0k3rM0LTa0vFmdqk6RMYOYyY
-	36N6TXcTHPo+KsBsmj5yYyU65tpCtNoKh6wunOP09qUWdOUMDCB2tYNTkSX76rNVoa
-	M3OW3A+3vJUPuYPXt+7n8bHpC16AYoEcIPqw1vAI42hOb3TmmVh3gKkeq75vYsCfxo
-	P9JUQ/hJbeGpoVGN+XEV8q4/jha7oIfj9e0Xnbbrc/ISRJqAJrDg28YQzKpowpHMj7
-	dqhIxfDXaRlTQ==
-Received: from [IPv6:2601:18f:800:acc1::cc14] ([IPv6:2601:18f:800:acc1::cc14])
-	by resomta-ch2-20v.sys.comcast.net with SMTP
-	id Gv1ddJZqDNOhWGv1dd4CYW; Fri, 02 Jun 2017 22:26:34 +0000
-From: Russell Peterson <bluehills7@comcast.net>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Message-Id: <7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net>
-Date: Fri, 2 Jun 2017 18:26:33 -0400
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3273)
-X-CMAE-Envelope: MS4wfDqryxKawkWqyA4B977AA7vJj3/NCJ6lSav8MQzwc8C4NVXv0wZ1gHYwDKgeQGg1UOsCue67cTqScUlE49CEcOMaC+2KiX+SgDvIN8vqlj8+ZSStpvFK
-	5GTMRLdIF9IFkFnyKIrAi0ErYYA4kJKCGhB+/lPuMfhYawtg3pX1AOT/rT0WrZr+Kn+ScQuUnPQJ/A==
-Subject: SRCPV and SRC_URI
+Received: from mailrelay3-3.pub.mailoutpod1-cph3.one.com
+	(mailrelay3-3.pub.mailoutpod1-cph3.one.com [46.30.212.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95C83E0082A
+	for <yocto@yoctoproject.org>; Fri,  2 Jun 2017 15:34:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=embexus.com; s=20140924;
+	h=from:subject:date:message-id:to:mime-version:content-type:in-reply-to:
+	references; bh=bF67GHBzKRy+DN/8uVS5mGaenROPRoGJ59/DwhTmY/s=;
+	b=J8CCgB4dkLo2SAY0+W3COkCEPIkwzBfrpvAJo8ZHLlMkxmjacm5ZOCK9SFq3riohFN9GIJ42nEWKD
+	HSuwVSEeSMYVpiokuBl+reKFD85yIFsV1IVgTQR5N2wKgDSfOrJYJU1Wm2tHngYi0/anMIbvbHyzNa
+	umtfoMNXHaD34p84=
+X-HalOne-Cookie: 0cc896bc611c7f21b71b57aacd5a87e431201450
+X-HalOne-ID: 986cdaeb-47e3-11e7-be78-b82a72d06996
+Received: from [192.168.1.10] (unknown [77.2.214.207])
+	by smtpfilter3.public.one.com (Halon) with ESMTPSA
+	id 986cdaeb-47e3-11e7-be78-b82a72d06996;
+	Fri, 02 Jun 2017 22:34:10 +0000 (UTC)
+To: yocto@yoctoproject.org, Russell Peterson <bluehills7@comcast.net>
+References: <7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net>
+From: Ayoub Zaki <ayoub.zaki@embexus.com>
+Message-ID: <98ca5758-608b-6eb0-3c67-2d944b3a454d@embexus.com>
+Date: Sat, 3 Jun 2017 00:34:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
+MIME-Version: 1.0
+In-Reply-To: <7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net>
+Subject: Re: SRCPV and SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,68 +56,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Jun 2017 22:26:39 -0000
+X-List-Received-Date: Fri, 02 Jun 2017 22:34:16 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_112C1495-30C9-4A3E-973D-0E96021BB26D"
+	boundary="------------FCB832A501208AA90D61FFE5"
+Content-Language: en-US
 
---Apple-Mail=_112C1495-30C9-4A3E-973D-0E96021BB26D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-Hello,
-
-I=E2=80=99m writing a new recipe and doing something I think should be =
-simple but instead causes an exception when expanding SRCPV.
-
-SRCREV =3D =E2=80=9Cxxxxxxxxxxxx=E2=80=9D
-SRC_URI =3D =E2=80=9Cgit://abc.com/xyz.git <git://abc.com/xyz.git>=E2=80=9D=
-
-PV =3D =E2=80=9C1.2+git${SRCPV}
-
-The above works fine.  Problem is, when I add a patch I get an exception =
-when expanding SRCPV!?
-
-SRC_URI_append =3D =E2=80=9Cfile://myfile.patch =
-<file:///myfile.patch>=E2=80=9D
-
-Adding that simple append line breaks my recipe.
-
-Any clues?  Seems simple but no.  I see countless other recipes that do =
-this.
-
-Regards,
-
-Russell
+--------------FCB832A501208AA90D61FFE5
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
---Apple-Mail=_112C1495-30C9-4A3E-973D-0E96021BB26D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D"">Hello,<div class=3D""><br class=3D""></div><div =
-class=3D"">I=E2=80=99m writing a new recipe and doing something I think =
-should be simple but instead causes an exception when expanding =
-SRCPV.</div><div class=3D""><br class=3D""></div><div class=3D"">SRCREV =
-=3D =E2=80=9Cxxxxxxxxxxxx=E2=80=9D</div><div class=3D"">SRC_URI =3D =
-=E2=80=9C<a href=3D"git://abc.com/xyz.git" =
-class=3D"">git://abc.com/xyz.git</a>=E2=80=9D</div><div class=3D"">PV =3D =
-=E2=80=9C1.2+git${SRCPV}</div><div class=3D""><br class=3D""></div><div =
-class=3D"">The above works fine. &nbsp;Problem is, when I add a patch I =
-get an exception when expanding SRCPV!?</div><div class=3D""><br =
-class=3D""></div><div class=3D"">SRC_URI_append =3D =E2=80=9C<a =
-href=3D"file:///myfile.patch" =
-class=3D"">file://myfile.patch</a>=E2=80=9D</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Adding that simple append line breaks =
-my recipe.</div><div class=3D""><br class=3D""></div><div class=3D"">Any =
-clues? &nbsp;Seems simple but no. &nbsp;I see countless other recipes =
-that do this.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Regards,</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Russell</div><div class=3D""><br =
-class=3D""></div></body></html>=
+On 03.06.2017 00:26, Russell Peterson wrote:
+> Hello,
+>
+> I’m writing a new recipe and doing something I think should be simple 
+> but instead causes an exception when expanding SRCPV.
+>
+> SRCREV = “xxxxxxxxxxxx”
+> SRC_URI = “git://abc.com/xyz.git”
+> PV = “1.2+git${SRCPV}
+>
+> The above works fine.  Problem is, when I add a patch I get an 
+> exception when expanding SRCPV!?
+>
+> SRC_URI_append = “file://myfile.patch <file:///myfile.patch>”
 
---Apple-Mail=_112C1495-30C9-4A3E-973D-0E96021BB26D--
+Try with a space right after the first double quote :
+SRC_URI_append = “file://myfile.patch”
+>
+> Adding that simple append line breaks my recipe.
+>
+> Any clues?  Seems simple but no.  I see countless other recipes that 
+> do this.
+>
+> Regards,
+>
+> Russell
+>
+>
+>
+
+-- 
+
+Ayoub Zaki
+
+ayoub.zaki@embexus.com
+Mobile: +49(0)176-62901545
+https://embexus.com
+
+
+--------------FCB832A501208AA90D61FFE5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 03.06.2017 00:26, Russell Peterson
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      Hello,
+      <div class=""><br class="">
+      </div>
+      <div class="">I’m writing a new recipe and doing something I think
+        should be simple but instead causes an exception when expanding
+        SRCPV.</div>
+      <div class=""><br class="">
+      </div>
+      <div class="">SRCREV = “xxxxxxxxxxxx”</div>
+      <div class="">SRC_URI = “<a href="git://abc.com/xyz.git" class=""
+          moz-do-not-send="true">git://abc.com/xyz.git</a>”</div>
+      <div class="">PV = “1.2+git${SRCPV}</div>
+      <div class=""><br class="">
+      </div>
+      <div class="">The above works fine.  Problem is, when I add a
+        patch I get an exception when expanding SRCPV!?</div>
+      <div class=""><br class="">
+      </div>
+      <div class="">SRC_URI_append = “<a href="file:///myfile.patch"
+          class="" moz-do-not-send="true">file://myfile.patch</a>”</div>
+    </blockquote>
+    <br>
+    Try with a space right after the first double quote :<br>
+    SRC_URI_append = “<a class=""> file://myfile.patch</a>”<br>
+    <blockquote type="cite"
+      cite="mid:7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net">
+      <div class=""><br class="">
+      </div>
+      <div class="">Adding that simple append line breaks my recipe.</div>
+      <div class=""><br class="">
+      </div>
+      <div class="">Any clues?  Seems simple but no.  I see countless
+        other recipes that do this.</div>
+      <div class=""><br class="">
+      </div>
+      <div class="">Regards,</div>
+      <div class=""><br class="">
+      </div>
+      <div class="">Russell</div>
+      <div class=""><br class="">
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+
+Ayoub Zaki
+
+<a class="moz-txt-link-abbreviated" href="mailto:ayoub.zaki@embexus.com">ayoub.zaki@embexus.com</a>
+Mobile: +49(0)176-62901545
+<a class="moz-txt-link-freetext" href="https://embexus.com">https://embexus.com</a></pre>
+  </body>
+</html>
+
+--------------FCB832A501208AA90D61FFE5--
