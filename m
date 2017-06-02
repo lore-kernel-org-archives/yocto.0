@@ -1,50 +1,65 @@
-Return-Path: <ayoub.zaki@embexus.com>
+Return-Path: <ian_welch@trimble.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48458E009A0; Fri,  2 Jun 2017 15:34:16 -0700 (PDT)
+	id AEF35E009A0; Fri,  2 Jun 2017 15:52:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, HTML_OBFUSCATE_05_10,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.30.212.12 listed in list.dnswl.org]
-	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.54 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mailrelay3-3.pub.mailoutpod1-cph3.one.com
-	(mailrelay3-3.pub.mailoutpod1-cph3.one.com [46.30.212.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95C83E0082A
-	for <yocto@yoctoproject.org>; Fri,  2 Jun 2017 15:34:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=embexus.com; s=20140924;
-	h=from:subject:date:message-id:to:mime-version:content-type:in-reply-to:
-	references; bh=bF67GHBzKRy+DN/8uVS5mGaenROPRoGJ59/DwhTmY/s=;
-	b=J8CCgB4dkLo2SAY0+W3COkCEPIkwzBfrpvAJo8ZHLlMkxmjacm5ZOCK9SFq3riohFN9GIJ42nEWKD
-	HSuwVSEeSMYVpiokuBl+reKFD85yIFsV1IVgTQR5N2wKgDSfOrJYJU1Wm2tHngYi0/anMIbvbHyzNa
-	umtfoMNXHaD34p84=
-X-HalOne-Cookie: 0cc896bc611c7f21b71b57aacd5a87e431201450
-X-HalOne-ID: 986cdaeb-47e3-11e7-be78-b82a72d06996
-Received: from [192.168.1.10] (unknown [77.2.214.207])
-	by smtpfilter3.public.one.com (Halon) with ESMTPSA
-	id 986cdaeb-47e3-11e7-be78-b82a72d06996;
-	Fri, 02 Jun 2017 22:34:10 +0000 (UTC)
-To: yocto@yoctoproject.org, Russell Peterson <bluehills7@comcast.net>
-References: <7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net>
-From: Ayoub Zaki <ayoub.zaki@embexus.com>
-Message-ID: <98ca5758-608b-6eb0-3c67-2d944b3a454d@embexus.com>
-Date: Sat, 3 Jun 2017 00:34:09 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
+	[209.85.218.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90FE3E0082A
+	for <yocto@yoctoproject.org>; Fri,  2 Jun 2017 15:52:26 -0700 (PDT)
+Received: by mail-oi0-f54.google.com with SMTP id h4so108410423oib.3
+	for <yocto@yoctoproject.org>; Fri, 02 Jun 2017 15:52:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=trimble-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=dY4zh+uzdiJrCA/dMJUSskcDSvI25JGgGD3oAVxw91Q=;
+	b=Vi9iFN+HDkucBir9bZ1WrdiTXaekaZVZ2A1+/wc1Ll1OHhQXVkT+tyhlyko2BUolrN
+	oWWk6z9SBfSiZV5ecj4ucllp7yblrJftepyOGBf0c6tVAidIflfZgw+Wf+IWwlZl9rZx
+	Kgi37xqb4HU8ciyrwT4JTl5/x+3TCBmCoOThOb8w7+swK7LpZx/+1XPXq6SXf6nKvX4e
+	w8dQb18PHKeVgHwYAYI8//uyhv6NxwGM3k2f75jlq+kj5UNPij6FQLMnc2FbsZQMvwrw
+	fZnEVb5/hY3DoPOpkSP1rB5tKTRl63Jt7AlRFK0/+Ez+GfS+V/Z+HnQeUBWJ0hWKLX9+
+	hA7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=dY4zh+uzdiJrCA/dMJUSskcDSvI25JGgGD3oAVxw91Q=;
+	b=DeW7WCpSWbpx137lxNArlzW081FxoH0rDESBhDfnxHn/Zn9fTMp8ZIWrfUaN2S2xgM
+	EchyKFKf9rjXwBMISsdINTt8nd5Hj5Q7RhuLjyOujJyx2Ow7Pl3EwCMJgpM0flnpZeay
+	weLy0GYylENqr6M8twGyl2C81ZuzmhV6/vktM7OINk4ZuHJkDlnt3/5A9Vm/jJ4Wafb5
+	/pPN0KPppsV3NzHIH3I3MHXUVE0aoiQZZcG25JHVMIbdGoqdsqsYtlB1NCZ9TVwUAIDT
+	PrroQLZrKnyeLLAIzBWRcHF4piQWyl+CwO+0P2LghkeSGDVhDp3GTEwfh0lg8I0eNLW5
+	+//w==
+X-Gm-Message-State: AODbwcBa/wttkZ7cm4yBm8GcfhyXam/DAjuTP+T/5VUciFLtcKP3WkFw
+	W5r3T3bEad/bzf3l+z5XJStVRCMjyHax
+X-Received: by 10.157.82.88 with SMTP id q24mr5470393otg.52.1496443946008;
+	Fri, 02 Jun 2017 15:52:26 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net>
-Subject: Re: SRCPV and SRC_URI
+Received: by 10.202.91.84 with HTTP; Fri, 2 Jun 2017 15:52:05 -0700 (PDT)
+In-Reply-To: <CAMKF1sq-LT+R6HhjjaRdjkpkqsc9+7RVaz9VO7khDahH0Pzf1Q@mail.gmail.com>
+References: <CACgq_DpBjavUgXrG9XazuGT8a7td2EyaosQCaqjcwXxkdh5pLw@mail.gmail.com>
+	<CAMKF1sq-LT+R6HhjjaRdjkpkqsc9+7RVaz9VO7khDahH0Pzf1Q@mail.gmail.com>
+From: Ian Welch <ian_welch@trimble.com>
+Date: Fri, 2 Jun 2017 16:52:05 -0600
+Message-ID: <CACgq_DoUx-xTF9-cM9Qcv3igeC=TnxQE7PWqJe=HK=CVdDpdjw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: File permissions on package_ipk.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,128 +71,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Jun 2017 22:34:16 -0000
-Content-Type: multipart/alternative;
-	boundary="------------FCB832A501208AA90D61FFE5"
-Content-Language: en-US
+X-List-Received-Date: Fri, 02 Jun 2017 22:52:30 -0000
+Content-Type: multipart/alternative; boundary="f4030435bc18d477b3055102014b"
 
---------------FCB832A501208AA90D61FFE5
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--f4030435bc18d477b3055102014b
+Content-Type: text/plain; charset="UTF-8"
+
+Thanks Raj.
+
+We are looking at using `sudo` but this may have a ripple effect in our
+other build scripts. I was hoping there was a more elegant way to handle
+this.
+
+We are using version Yocto v1.7
+
+~Ian
+
+On Fri, Jun 2, 2017 at 3:14 PM, Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Fri, Jun 2, 2017 at 1:57 PM, Ian Welch <ian_welch@trimble.com> wrote:
+> > Hello,
+> >      We are using the package_ipk.bbclass to create packages for opkg
+> that
+> > will be installed on our embedded hardware (target). We are also using
+> > Jenkins as a CI server to run bitbake. We have discovered that when we
+> > install packages built on Jenkins we get all kinds of file permissions
+> > errors after installing the ipks on our target system. I have tracked the
+> > issue down to bitbake being run by a user called "jenkins" on our Jenkins
+> > system. The permissions of the files are all "jenkins:jenkins" prior to
+> the
+> > do_package task running which results in these permissions getting
+> packaged
+> > into the .ipk files.
+> >
+> > Is there a way to change the ownership of the files prior to being
+> packaged?
+> > I'm thinking of something like a package_ipk.bbappend file or environment
+> > variable?
+> >
+>
+> pseudo should have taken care of this.
+> what release are you on ?
+>
+> > Cheers,
+> >
+> > --
+> >
+> > Ian Welch
+> > Trimble Navigation
+> > 10368 Westmoor Drive | Westminster, CO 80021
+> >
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
 
 
-
-On 03.06.2017 00:26, Russell Peterson wrote:
-> Hello,
->
-> I’m writing a new recipe and doing something I think should be simple 
-> but instead causes an exception when expanding SRCPV.
->
-> SRCREV = “xxxxxxxxxxxx”
-> SRC_URI = “git://abc.com/xyz.git”
-> PV = “1.2+git${SRCPV}
->
-> The above works fine.  Problem is, when I add a patch I get an 
-> exception when expanding SRCPV!?
->
-> SRC_URI_append = “file://myfile.patch <file:///myfile.patch>”
-
-Try with a space right after the first double quote :
-SRC_URI_append = “file://myfile.patch”
->
-> Adding that simple append line breaks my recipe.
->
-> Any clues?  Seems simple but no.  I see countless other recipes that 
-> do this.
->
-> Regards,
->
-> Russell
->
->
->
 
 -- 
 
-Ayoub Zaki
+Ian Welch
+Engineering Manager, Civil Engineering & Construction
+10368 Westmoor Drive | Westminster, CO 80021
++1-303-635-8750 Direct | +1-720-320-5181 Mobile
 
-ayoub.zaki@embexus.com
-Mobile: +49(0)176-62901545
-https://embexus.com
+--f4030435bc18d477b3055102014b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Thanks Raj.<div><br></div><div>We are looking at using `su=
+do` but this may have a ripple effect in our other build scripts. I was hop=
+ing there was a more elegant way to handle this.=C2=A0</div><div><br></div>=
+<div>We are using version Yocto v1.7</div><div><br></div><div>~Ian</div></d=
+iv><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fri, Jun 2,=
+ 2017 at 3:14 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem=
+@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><=
+blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
+ #ccc solid;padding-left:1ex"><span class=3D"">On Fri, Jun 2, 2017 at 1:57 =
+PM, Ian Welch &lt;<a href=3D"mailto:ian_welch@trimble.com">ian_welch@trimbl=
+e.com</a>&gt; wrote:<br>
+&gt; Hello,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 We are using the package_ipk.bbclass to create pac=
+kages for opkg that<br>
+&gt; will be installed on our embedded hardware (target). We are also using=
+<br>
+&gt; Jenkins as a CI server to run bitbake. We have discovered that when we=
+<br>
+&gt; install packages built on Jenkins we get all kinds of file permissions=
+<br>
+&gt; errors after installing the ipks on our target system. I have tracked =
+the<br>
+&gt; issue down to bitbake being run by a user called &quot;jenkins&quot; o=
+n our Jenkins<br>
+&gt; system. The permissions of the files are all &quot;jenkins:jenkins&quo=
+t; prior to the<br>
+&gt; do_package task running which results in these permissions getting pac=
+kaged<br>
+&gt; into the .ipk files.<br>
+&gt;<br>
+&gt; Is there a way to change the ownership of the files prior to being pac=
+kaged?<br>
+&gt; I&#39;m thinking of something like a package_ipk.bbappend file or envi=
+ronment<br>
+&gt; variable?<br>
+&gt;<br>
+<br>
+</span>pseudo should have taken care of this.<br>
+what release are you on ?<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt; Cheers,<br>
+&gt;<br>
+&gt; --<br>
+&gt;<br>
+&gt; Ian Welch<br>
+&gt; Trimble Navigation<br>
+&gt; 10368 Westmoor Drive | Westminster, CO 80021<br>
+&gt;<br>
+&gt;<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
+&gt; ______________________________<wbr>_________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
+</a><br>
+&gt;<br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div di=
+r=3D"ltr"><img src=3D"http://trl.trimble.com/docushare/dsweb/Get/Document-8=
+07363/trimbletagline.png"><br><span style=3D"font-family:sans-serif;font-si=
+ze:13px;line-height:18.5714px;font-weight:bold;color:rgb(54,53,69)">Ian Wel=
+ch<br></span><span style=3D"font-family:sans-serif;font-size:13px;line-heig=
+ht:18.5714px;color:rgb(54,53,69)">Engineering Manager, Civil Engineering &a=
+mp; Construction<br></span><span style=3D"font-family:sans-serif;font-size:=
+13px;line-height:18.5714px;color:rgb(54,53,69)">10368 Westmoor Drive=C2=A0|=
+=C2=A0</span><span style=3D"font-family:sans-serif;font-size:13px;line-heig=
+ht:18.5714px;color:rgb(54,53,69)">Westminster, CO 80021<br></span><span sty=
+le=3D"font-family:sans-serif;font-size:13px;line-height:18.5714px;color:rgb=
+(54,53,69)">+1-303-635-8750 Direct |=C2=A0</span><span style=3D"font-family=
+:sans-serif;font-size:13px;line-height:18.5714px;color:rgb(54,53,69)">+1-72=
+0-320-5181 Mobile=C2=A0</span><br></div></div>
+</div>
 
---------------FCB832A501208AA90D61FFE5
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 03.06.2017 00:26, Russell Peterson
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      Hello,
-      <div class=""><br class="">
-      </div>
-      <div class="">I’m writing a new recipe and doing something I think
-        should be simple but instead causes an exception when expanding
-        SRCPV.</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">SRCREV = “xxxxxxxxxxxx”</div>
-      <div class="">SRC_URI = “<a href="git://abc.com/xyz.git" class=""
-          moz-do-not-send="true">git://abc.com/xyz.git</a>”</div>
-      <div class="">PV = “1.2+git${SRCPV}</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">The above works fine.  Problem is, when I add a
-        patch I get an exception when expanding SRCPV!?</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">SRC_URI_append = “<a href="file:///myfile.patch"
-          class="" moz-do-not-send="true">file://myfile.patch</a>”</div>
-    </blockquote>
-    <br>
-    Try with a space right after the first double quote :<br>
-    SRC_URI_append = “<a class=""> file://myfile.patch</a>”<br>
-    <blockquote type="cite"
-      cite="mid:7F0D1533-4933-4618-B5E8-E953E64061D1@comcast.net">
-      <div class=""><br class="">
-      </div>
-      <div class="">Adding that simple append line breaks my recipe.</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">Any clues?  Seems simple but no.  I see countless
-        other recipes that do this.</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">Regards,</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">Russell</div>
-      <div class=""><br class="">
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-
-Ayoub Zaki
-
-<a class="moz-txt-link-abbreviated" href="mailto:ayoub.zaki@embexus.com">ayoub.zaki@embexus.com</a>
-Mobile: +49(0)176-62901545
-<a class="moz-txt-link-freetext" href="https://embexus.com">https://embexus.com</a></pre>
-  </body>
-</html>
-
---------------FCB832A501208AA90D61FFE5--
+--f4030435bc18d477b3055102014b--
