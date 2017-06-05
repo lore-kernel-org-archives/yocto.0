@@ -1,94 +1,49 @@
-Return-Path: <kzertsekel@mrv.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 15D0DE00BA2; Mon,  5 Jun 2017 10:38:37 -0700 (PDT)
+	id 91ACBE00BA3; Mon,  5 Jun 2017 10:43:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, NORMAL_HTTP_TO_IP, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS, T_REMOTE_IMAGE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [40.107.2.93 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* 0.0 NORMAL_HTTP_TO_IP URI: URI host has a public dotted-decimal IPv4
-	*      address
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-X-Greylist: delayed 7133 seconds by postgrey-1.32 at yocto-www;
-	Mon, 05 Jun 2017 10:38:33 PDT
-Received: from EUR02-VE1-obe.outbound.protection.outlook.com
-	(mail-eopbgr20093.outbound.protection.outlook.com [40.107.2.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A00E9E00B21
-	for <yocto@yoctoproject.org>; Mon,  5 Jun 2017 10:38:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mrvil.onmicrosoft.com; 
-	s=selector1-mrv-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=DDyIhyeR+alEWYAM0QjLSod7SYRH9rXEbd7a5JqqQjs=;
-	b=TmYBZ5K2E8IYAkMsm32vj1hlGxrQH0cjcRRT2qfmsY66EFhJu8D3Bmx5btrEZjjlgO+6aqZDgYXQ5oz1TwemKvKPrl0basIydaYbsukjXJ2NrCVNUVYHt+DKcuvXG7jr2elkzt/iynaAT1CuVIyml2NxOLLOrq4D6onIxSD1Yt0=
-Received: from AM4PR0301MB2129.eurprd03.prod.outlook.com (10.165.39.142) by
-	HE1PR03MB3033.eurprd03.prod.outlook.com (10.160.49.10) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1143.10; Mon, 5 Jun 2017 13:06:29 +0000
-Received: from AM4PR0301MB2129.eurprd03.prod.outlook.com
-	([fe80::b5d2:dd74:5bd:c49b]) by
-	AM4PR0301MB2129.eurprd03.prod.outlook.com
-	([fe80::b5d2:dd74:5bd:c49b%14]) with mapi id 15.01.1143.018;
-	Mon, 5 Jun 2017 13:06:28 +0000
-From: "Kosta  Zertsekel" <kzertsekel@mrv.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Yocto for NFS/SDN networking product
-Thread-Index: AQHRXCGPRLGQAM1iZU+g/woRY0EIe58Vx7MAgwN3CKQ=
-Date: Mon, 5 Jun 2017 13:06:28 +0000
-Message-ID: <AM4PR0301MB2129EF29B593C97E075ADFF9DACA0@AM4PR0301MB2129.eurprd03.prod.outlook.com>
-References: <VI1PR03MB15676A1DE3EB2E80783D2D79DADD0@VI1PR03MB1567.eurprd03.prod.outlook.com>,
-	<CAMKF1srExY59jqjN5LNxsiHsH7P+wuuGKSVp8D+hQoMqmupJbw@mail.gmail.com>
-In-Reply-To: <CAMKF1srExY59jqjN5LNxsiHsH7P+wuuGKSVp8D+hQoMqmupJbw@mail.gmail.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23406E00B21
+	for <yocto@yoctoproject.org>; Mon,  5 Jun 2017 10:43:10 -0700 (PDT)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by fmsmga105.fm.intel.com with ESMTP; 05 Jun 2017 10:43:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.39,302,1493708400"; 
+	d="scan'208,217";a="111130543"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by fmsmga006.fm.intel.com with ESMTP; 05 Jun 2017 10:43:10 -0700
+Received: from fmsmsx124.amr.corp.intel.com (10.18.125.39) by
+	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 5 Jun 2017 10:43:10 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.2]) by
+	fmsmsx124.amr.corp.intel.com ([169.254.8.147]) with mapi id
+	14.03.0319.002; Mon, 5 Jun 2017 10:43:09 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, June
+	6, 2017 8:00 AM US Pacific Time
+Thread-Index: AdLeIzCJTAUBrEd/TL+oXodWFjHtTQ==
+Date: Mon, 5 Jun 2017 17:43:09 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E8EE1E15E@fmsmsx111.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none; yoctoproject.org;
-	dmarc=none action=none header.from=mrv.com; 
-x-originating-ip: [2603:10a6:206:14:cafe::be]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; HE1PR03MB3033;
-	7:07MSkqe4GzkOsrnaEd3ng9iH66w8fuUigBYnFxUtPPLJtvESvGTch+1+RTqBYF2ciVDkHXQnCB8cwBGSECRT6WlvJaHFnYqINAzwkE2RqHMoN+20Tw6CgvFURks8fN4u5gD7vZYqJmgKd566RPEYZ/IMBkprT85zVxtPLKCXysqfkMoVjCx5lqYteM3ey+K+BaaXn4vWP1Yp405XFIpIItKT/g+GObOS6llEBMqMoSFQQ5VC7VP8zucw8uL6xVkulY74p/pCP4hmrqwRc6gv0gwZ3KYxPKnnpgnMGQ7gA4eFmN+nsF3JznGl1vXn1s59CpukYUc4Zfos1P2NCILUMQ==
-x-ms-traffictypediagnostic: HE1PR03MB3033:
-x-ms-office365-filtering-correlation-id: 9beeb531-2367-4aa3-ab07-08d4ac13adf3
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(2017030254075)(201703131423075)(201703031133081);
-	SRVR:HE1PR03MB3033; 
-x-microsoft-antispam-prvs: <HE1PR03MB30331846CAF7D37F11DDED60DACA0@HE1PR03MB3033.eurprd03.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(203790808753936)(266611908612381)(67741619275850); 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(100000703101)(100105400095)(3002001)(10201501046)(93006095)(93001095)(6041248)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123560025)(20161123564025)(20161123558100)(20161123555025)(6072148)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:HE1PR03MB3033; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:HE1PR03MB3033; 
-x-forefront-prvs: 0329B15C8A
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6019001)(39410400002)(39400400002)(39830400002)(39450400003)(269900001)(174874002)(13624006)(24454002)(377454003)(6606003)(33656002)(25786009)(53546009)(5250100002)(4326008)(102836003)(6116002)(5890100001)(54896002)(9686003)(236005)(2906002)(19618635001)(39060400002)(189998001)(86362001)(54906002)(6306002)(38730400002)(53386004)(110136004)(478600001)(6246003)(8936002)(53936002)(2900100001)(5660300001)(11609785009)(7066003)(606005)(733005)(8676002)(6436002)(81166006)(6506006)(7906003)(74316002)(3660700001)(7736002)(3280700002)(55016002)(99286003)(2950100002)(229853002)(6916009)(14454004)(7696004)(966005)(50986999)(76176999)(19627405001)(54356999)(10721665003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1PR03MB3033;
-	H:AM4PR0301MB2129.eurprd03.prod.outlook.com; FPR:; SPF:None;
-	MLV:ovrnspm; PTR:InfoNoRecords; LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiM2IwM2VhNTEtZTI4My00ZDQwLWE1ZjMtYjdkMjIwOGQxMjg0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImxrNFA4N0VlS1dIRVwvcWN5VzRZK2lYN2VGaTd3OGJFK0RteTUzSmIxMXY0PSJ9
 MIME-Version: 1.0
-X-OriginatorOrg: mrv.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2017 13:06:28.7928 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3324ef19-dd38-46a1-8379-2a2bdaace805
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR03MB3033
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Ran Wainstein <rwainstein@mrv.com>
-Subject: Re: Yocto for NFS/SDN networking product
+Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, June 6, 2017 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -100,423 +55,278 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Jun 2017 17:38:37 -0000
+X-List-Received-Date: Mon, 05 Jun 2017 17:43:13 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_AM4PR0301MB2129EF29B593C97E075ADFF9DACA0AM4PR0301MB2129_"
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EE1E15Efmsmsx111amrcor_"
 
---_000_AM4PR0301MB2129EF29B593C97E075ADFF9DACA0AM4PR0301MB2129_
-Content-Type: text/plain; charset="Windows-1252"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EE1E15Efmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Khem,
+Tuesday, June 6, 2017 8:00 AM US Pacific Time
 
 
-Fully agree that Yocto has is good, 'cause it supports cross-build, has a w=
-ide
 
-industry support and actually it has **the version** (meaning, all the pack=
-ages
-
-are taken with specific git commit id unlike debian/ubuntu binaries).
+Agenda:
 
 
-But then, I'm confused in the other respect...
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.3_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features
+
+* Opens - 10 min
+
+* Team Sharing - 10 min
 
 
-I'm looking at the OpenSwitch build system (part of Open Compute project
 
-under Linux Foundation) and I see that is uses yocto as a subsystem. It's r=
-eally
-
-confusing because yocto is supposed to have "meta-XYZ" for OpenSwitch
-
-support.
+We encourage people attending the meeting to logon the Yocto Project IRC ch=
+annel during the meeting (optional):
 
 
-So, when choosing a build system for OpenSwitch-based products - do one
 
-still has to use yocto or just go with the build system provided by OpenSwi=
-tch?
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+
+
+Conference Details:
+Company:           WIND RIVER SYS
+
+- dial into: 1-800-262-0778/404-397-1527
+
+- enter the bridge number: 88748961#
+
+
+For International numbers see: https://www.yoctoproject.org/tools-resources=
+/community/monthly-technical-call
 
 
 Thanks,
 
---- KostaZ
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:        (503) 712-0534
+*    Cell:                              (208) 244-4460
+* Email:                            stephen.k.jolley@intel.com<mailto:steph=
+en.k.jolley@intel.com>
 
-________________________________
-From: Khem Raj <raj.khem@gmail.com>
-Sent: Sunday, January 31, 2016 5:56 PM
-To: Kosta Zertsekel
-Cc: yocto@yoctoproject.org; Ran Wainstein
-Subject: Re: [yocto] Yocto for NFS/SDN networking product
-
-Kosta
-
-Yocto project is developed by many volunteers and people sponsored by corpo=
-rations,
-all development happens in opensource. The community supports the project. =
-There
-are also lot of commercial OS vendors which use Yocto project to build thei=
-r products,
-so you can always go to them if you are looking for commercial support.
-
-For advantages, it can build a small footprint since it builds bottom up. S=
-o you can really get only needed
-packages for your custom image. It will create a source based distribution =
-for you where you have control
-over every part of the OSS stack. You can really tailor your solution to yo=
-ur needs.
-
-It builds in cross-build environment, supports many CPU architectures and m=
-achines
-
-The community is very welcoming and helpful. You can easily contribute to t=
-he project
-and fulfill your needs by doing so. The learning curve might be a bit steep=
-er. But then
-you do have trainings available offerred by professionals.
-
-Thanks
--Khem
-On Sun, Jan 31, 2016 at 4:22 AM, Kosta Zertsekel <kzertsekel@mrv.com<mailto=
-:kzertsekel@mrv.com>> wrote:
-
-Hi dear Yocto community,
-
-
-I'm trying to evaluate Yocto as the candidate to create Linux distro
-
-for NFS/SDN networking product. Through Google I get an impression
-
-that there is a race between Yocto, CentOS (RedHat) and 6WIND
-
-Linux distributions to get most of NFV/SDN Linux distro market.
-
-
-Can you please help to find cons and pros of using Yocto for
-
-NFV/SDN networking product?
-
-
-I google over NFV/SDN part of www.etsi.org<http://www.etsi.org> but couldn'=
-t make up
-
-my mind what specific distro got the traction.
-
-
-I see that Yocto has NFV/SDN layers (reference<http://events.linuxfoundatio=
-n.org/sites/events/files/slides/YP_and_OpenStack_LinuxCon2014.pdf>):
-
-```
-git clone git://git.yoctoproject.org/meta-cloud-services<http://git.yoctopr=
-oject.org/meta-cloud-services>
-git clone git://git.openembedded.org/meta-openembedded<http://git.openembed=
-ded.org/meta-openembedded>
-git clone --branch icehouse git://git.yoctoproject.org/meta-virtualization<=
-http://git.yoctoproject.org/meta-virtualization>
-git clone git://git.openembedded.org/openembedded-core<http://git.openembed=
-ded.org/openembedded-core> oe-core
-```
-
-
-Are these layers officially supported by Intel?
-
-Does Intel provide the NFV/SDN support?
-
-
-Thanks,
-
---- KostaZ
-
-[E-Banner]<http://www.mrv.com/blog>
-
-
-MRV Communications is a global supplier of packet and optical solutions tha=
-t power the world=92s largest networks. Our products combine innovative har=
-dware with intelligent software to make networks smarter, faster and more e=
-fficient.
-
-
-
-The contents of this message, together with any attachments, are intended o=
-nly for the use of the person(s) to whom they are addressed and may contain=
- confidential and/or privileged information. If you are not the intended re=
-cipient, immediately advise the sender, delete this message and any attachm=
-ents and note that any distribution, or copying of this message, or any att=
-achment, is prohibited.
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
-[http://50.57.127.206/images/Banner.jpg]<https://goo.gl/0NNSWr>
-
-
-MRV Communications is a global supplier of packet and optical solutions tha=
-t power the world=92s largest networks. Our products combine innovative har=
-dware with intelligent software to make networks smarter, faster and more e=
-fficient.
-
-
-
-The contents of this message, together with any attachments, are intended o=
-nly for the use of the person(s) to whom they are addressed and may contain=
- confidential and/or privileged information. If you are not the intended re=
-cipient, immediately advise the sender, delete this message and any attachm=
-ents and note that any distribution, or copying of this message, or any att=
-achment, is prohibited.
-
---_000_AM4PR0301MB2129EF29B593C97E075ADFF9DACA0AM4PR0301MB2129_
-Content-Type: text/html; charset="Windows-1252"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EE1E15Efmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size: 12pt; color: rgb(0, 0,=
- 0); font-family: Calibri, Arial, Helvetica, sans-serif, EmojiFont, &quot;A=
-pple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;S=
-egoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols, EmojiFont, &=
-quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &=
-quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;" dir=
-=3D"ltr">
-<p>Khem, </p>
-<p><br>
-</p>
-<p>Fully agree that Yocto has is good, 'cause it supports cross-build, has =
-a wide</p>
-<p>industry support and actually it has **the version** (meaning, all the p=
-ackages</p>
-<p>are taken with specific git commit id unlike debian/ubuntu binaries).</p=
->
-<p><br>
-</p>
-<p>But then, I'm confused in the other respect...</p>
-<p><br>
-</p>
-<p>I'm looking at the OpenSwitch build system (part of Open Compute project=
-</p>
-<p>under Linux Foundation)&nbsp;and I see that is uses yocto as a subsystem=
-. It's really</p>
-<p>confusing because yocto is supposed to have &quot;meta-XYZ&quot; for Ope=
-nSwitch</p>
-<p>support.</p>
-<p><br>
-</p>
-<p>So, when choosing a build system for OpenSwitch-based products - do one<=
-/p>
-<p>still has to use yocto or just go with the build system provided by&nbsp=
-;OpenSwitch?</p>
-<p><br>
-</p>
-<p>Thanks,</p>
-<p>--- KostaZ</p>
-<br>
-<div style=3D"color: rgb(0, 0, 0);">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Khem Raj &lt;raj.khem=
-@gmail.com&gt;<br>
-<b>Sent:</b> Sunday, January 31, 2016 5:56 PM<br>
-<b>To:</b> Kosta Zertsekel<br>
-<b>Cc:</b> yocto@yoctoproject.org; Ran Wainstein<br>
-<b>Subject:</b> Re: [yocto] Yocto for NFS/SDN networking product</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">Kosta</div=
->
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">Yocto proj=
-ect is developed by many volunteers and people sponsored by corporations,</=
-div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">all develo=
-pment happens in opensource. The community supports the project. There</div=
->
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">are also l=
-ot of commercial OS vendors&nbsp;<span style=3D"font-size: 12pt;">which use=
- Yocto project to build their products,</span></div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif"><span styl=
-e=3D"font-size: 12pt;">so you can always go to them if you are looking for =
-commercial support.&nbsp;</span></div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">For advant=
-ages, it can build a small footprint since it builds bottom up. So you can =
-really get only needed</div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">packages f=
-or your custom image. It will create a source based distribution for you wh=
-ere you have control</div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">over every=
- part of the OSS stack. You can really tailor your solution to your needs.<=
-/div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">It builds =
-in cross-build environment, supports many CPU architectures and machines</d=
-iv>
-<div class=3D"gmail_extra"><br>
-</div>
-<div class=3D"gmail_extra">
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">The commun=
-ity is very welcoming and helpful. You can easily contribute to the project=
-</div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">and fulfil=
-l your needs by doing so.&nbsp;<span style=3D"font-size: 12pt;">The learnin=
-g curve might be a bit steeper. But then</span></div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif"><span styl=
-e=3D"font-size: 12pt;">you do have trainings available offerred by professi=
-onals.</span></div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">Thanks</di=
-v>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif">-Khem &nbs=
-p;</div>
-<div class=3D"gmail_default" style=3D"font-family:georgia,serif"></div>
-</div>
-<div class=3D"gmail_extra">
-<div class=3D"gmail_quote">On Sun, Jan 31, 2016 at 4:22 AM, Kosta Zertsekel=
- <span dir=3D"ltr">
-&lt;<a href=3D"mailto:kzertsekel@mrv.com" target=3D"_blank">kzertsekel@mrv.=
-com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex; border-left:1=
-px #ccc solid; padding-left:1ex">
-<div dir=3D"ltr">
-<div style=3D"font-size:12pt; color:#000000; background-color:#ffffff; font=
--family:Calibri,Arial,Helvetica,sans-serif">
-<p>Hi dear Yocto community,</p>
-<p><br>
-</p>
-<p>I'm trying to evaluate Yocto as the candidate to create&nbsp;Linux distr=
-o</p>
-<p>for NFS/SDN networking product. Through Google I get an impression</p>
-<p>that there is a race between Yocto, CentOS (RedHat) and 6WIND</p>
-<p>Linux distributions&nbsp;<span style=3D"font-size:12pt">to get most of N=
-FV/SDN Linux distro&nbsp;market.</span></p>
-<p><br>
-</p>
-<p>Can you please help to find cons and pros of using Yocto for</p>
-<p>NFV/SDN networking product?</p>
-<p><br>
-</p>
-<p>I google over NFV/SDN part of&nbsp;<a href=3D"http://www.etsi.org" title=
-=3D"http://www.etsi.org=0A=
-Ctrl&#43;Click or tap to follow the link" target=3D"_blank">www.etsi.org</a=
->&nbsp;but couldn't make up</p>
-<p>my mind what specific&nbsp;distro got the&nbsp;traction.</p>
-<p><br>
-</p>
-<p>I see that Yocto has NFV/SDN layers (<a href=3D"http://events.linuxfound=
-ation.org/sites/events/files/slides/YP_and_OpenStack_LinuxCon2014.pdf" titl=
-e=3D"http://events.linuxfoundation.org/sites/events/files/slides/YP_and_Ope=
-nStack_LinuxCon2014.pdf=0A=
-Ctrl&#43;Click or tap to follow the link" target=3D"_blank">reference</a>):=
-</p>
-<p></p>
-<div>```<br>
-</div>
-<div>git clone git://<a href=3D"http://git.yoctoproject.org/meta-cloud-serv=
-ices" target=3D"_blank">git.yoctoproject.org/meta-cloud-services</a><br>
-</div>
-<div>git clone git://<a href=3D"http://git.openembedded.org/meta-openembedd=
-ed" target=3D"_blank">git.openembedded.org/meta-openembedded</a></div>
-<div>git clone --branch icehouse git://<a href=3D"http://git.yoctoproject.o=
-rg/meta-virtualization" target=3D"_blank">git.yoctoproject.org/meta-virtual=
-ization</a><br>
-</div>
-<div>git clone git://<a href=3D"http://git.openembedded.org/openembedded-co=
-re" target=3D"_blank">git.openembedded.org/openembedded-core</a> oe-core<br=
->
-</div>
-<div>```<br>
-</div>
-<br>
-<p></p>
-<p>Are these layers officially supported by Intel?<br>
-</p>
-<p>Does Intel provide the NFV/SDN support?<br>
-</p>
-<p><br>
-</p>
-<p>Thanks,</p>
-<p>--- KostaZ</p>
-</div>
-<a href=3D"http://www.mrv.com/blog" target=3D"_blank"><img alt=3D"E-Banner"=
- style=3D"user-select: none;" src=3D"https://outlook.office.com/owa/?realm=
-=3Dmrv.com&amp;exch=3D1&amp;path=3D/mail/search"></a><br>
-&nbsp;<br>
-<div style=3D"background-color:#ffffff; padding:.8em">
-<p style=3D"font-size:10pt; color:#b8b9c8; line-height:8pt; font-family:'ar=
-ial','times roman',serif">
-MRV Communications is a global supplier of packet and optical solutions tha=
-t power the world=92s largest networks. Our products combine innovative har=
-dware with intelligent software to make networks smarter, faster and more e=
-fficient.</p>
-</div>
-&nbsp;<br>
-<div style=3D"background-color:#ffffff; padding:.8em">
-<p style=3D"font-size:8pt; color:#b8b9c8; line-height:8pt; font-family:'ari=
-al','times roman',serif">
-The contents of this message, together with any attachments, are intended o=
-nly for the use of the person(s) to whom they are addressed and may contain=
- confidential and/or privileged information. If you are not the intended re=
-cipient, immediately advise the
- sender, delete this message and any attachments and note that any distribu=
-tion, or copying of this message, or any attachment, is prohibited.</p>
-</div>
-</div>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br>
-</blockquote>
-</div>
-<br>
-</div>
-</div>
-</div>
-</div>
-</div>
-<a href=3D"https://goo.gl/0NNSWr"><img src=3D"http://50.57.127.206/images/B=
-anner.jpg" at=3D"E-Banner"></a><br>
-&nbsp;<br>
-<div style=3D"background-color:#FFFFFF; padding:.8em; ">
-<p style=3D"font-size:10pt;color:#b8b9c8; line-height:8pt; font-family:  =
-=0A=
-'arial','times roman',serif;">
-MRV Communications is a global supplier of packet and optical solutions tha=
-t power the world=92s largest networks. Our products combine innovative har=
-dware with intelligent software to make networks smarter, faster and more e=
-fficient.</p>
-</div>
-&nbsp;<br>
-<div style=3D"background-color:#FFFFFF; padding:.8em; ">
-<p style=3D"font-size:8pt;color:#b8b9c8; line-height:8pt; font-family:  =0A=
-'arial','times roman',serif;">
-The contents of this message, together with any attachments, are intended o=
-nly for the use of the person(s) to whom they are addressed and may contain=
- confidential and/or privileged information. If you are not the intended re=
-cipient, immediately advise the
- sender, delete this message and any attachments and note that any distribu=
-tion, or copying of this message, or any attachment, is prohibited.</p>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Tuesday, June 6, 2017 8:00 AM US Pacific Time<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v2.3_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
+3_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.3_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_2.3_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.3_Features</a>
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
+n the Yocto Project IRC channel during the meeting (optional):<o:p></o:p></=
+p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
+/?channels=3D#yocto">
+http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
+<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
+rchelp/irctutorial.html">
+http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:10.0pt">Conference Details:</span><span style=3D"font-size:12.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:10.0pt">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; WIND RIVER SYS</span><span style=3D"font-size:12.0pt;font-family:&quot=
+;Arial&quot;,sans-serif"><o:p></o:p></span></p>
+<p class=3D"MsoPlainText">- dial into: 1-800-262-0778/404-397-1527<o:p></o:=
+p></p>
+<p class=3D"MsoPlainText">- enter the bridge number: 88748961#<o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
+/www.yoctoproject.org/tools-resources/community/monthly-technical-call">
+https://www.yoctoproject.org/tools-resources/community/monthly-technical-ca=
+ll</a><o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;
+<u><span style=3D"color:blue"><a href=3D"mailto:stephen.k.jolley@intel.com"=
+>stephen.k.jolley@intel.com</a></span></u></span><span lang=3D"FR" style=3D=
+"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></sp=
+an></p>
 </div>
 </body>
 </html>
 
---_000_AM4PR0301MB2129EF29B593C97E075ADFF9DACA0AM4PR0301MB2129_--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E8EE1E15Efmsmsx111amrcor_--
