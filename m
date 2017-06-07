@@ -1,60 +1,38 @@
-Return-Path: <dev@codyps.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62AB9E00BD0; Tue,  6 Jun 2017 21:19:10 -0700 (PDT)
+	id 61DDFE00BD6; Tue,  6 Jun 2017 21:32:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f178.google.com (mail-qt0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D62DE00BC1
-	for <yocto@yoctoproject.org>; Tue,  6 Jun 2017 21:19:07 -0700 (PDT)
-Received: by mail-qt0-f178.google.com with SMTP id w1so1044564qtg.2
-	for <yocto@yoctoproject.org>; Tue, 06 Jun 2017 21:19:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codyps.com; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=Swr0iiTGCjsptMShN6+Sp+Gj/Ye8wgVxiuCWAvR3GmU=;
-	b=AkEZI9vftKum4yxrAZDvCxIKPBbSV+DpTfNVYdKxefNOQkStu/7N87/3bU17hVcLwS
-	8fOxJutLiRnMBYltJuwvnDegt6djPM9Yo+F22f5HOByCwg/T6YLaJ3C4Ntjti0q09ZfV
-	k8kx7VhXh/Ymh1k+5ATPj4I0GB46rdO4wWYzk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=Swr0iiTGCjsptMShN6+Sp+Gj/Ye8wgVxiuCWAvR3GmU=;
-	b=dWwdBilXyeBvwe8ZitGQfMYlSjkBXUHXpyI0DwcuN6PnNQD92CdgLinR7LZNapm15f
-	g1xFpB1ad8AXYIWdRLs/ir98kgARTAHcnjJVd7U8YzwPdAtV74l46GnaD0o39NMU1mjQ
-	CG2cMzgcgQL0HEhJuB/Yzkn9yDzJtNOMA7spGmeI/QUS3OFIedoHyDyg2OK66m7zQkM6
-	brIuRXzaW6QsA/I1kX2KhuLU+dzi3fsfHBodB7lrwDmVSsff9o76sLs/SLxvFa/RvdFD
-	Mk0kr7CLObOfYWIncW9FpPBk8n//YyP8dFEZFBWKqiwt6qqKM7+tJeL/tciU9kSkWft/
-	LLMg==
-X-Gm-Message-State: AODbwcCKkZoAuuepcBhCKVgK76YZmIu5rWkGSd03SgwoCu4pLUyTOTm3
-	F9qXhrkR8NkaG+UZpKY=
-X-Received: by 10.237.63.182 with SMTP id s51mr23463414qth.61.1496809147211;
-	Tue, 06 Jun 2017 21:19:07 -0700 (PDT)
-Received: from localhost (c-73-167-252-82.hsd1.ma.comcast.net. [73.167.252.82])
-	by smtp.gmail.com with ESMTPSA id w68sm357049qkb.1.2017.06.06.21.19.06
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 06 Jun 2017 21:19:06 -0700 (PDT)
-From: Cody P Schafer <dev@codyps.com>
-To: yocto@yoctoproject.org
-Date: Wed,  7 Jun 2017 00:19:04 -0400
-Message-Id: <20170607041904.29447-1-dev@codyps.com>
-X-Mailer: git-send-email 2.13.0
+Received: from remote.innerrange.com (vpn.innerrange.com.au [203.122.143.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6366E00BC1
+	for <yocto@yoctoproject.org>; Tue,  6 Jun 2017 21:32:08 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
+	mapi; Wed, 7 Jun 2017 14:32:03 +1000
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: ravikiran j <ravikiran.j@mistralsolutions.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Wed, 7 Jun 2017 14:32:01 +1000
+Thread-Topic: [yocto] arm-poky-linux-gnueabi-gcc: Command not found
+Thread-Index: AdKdWjTnWvlfgRjKTP+Gw1ktwMg1dhB6yLXA
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A40295F079EDE1@IR-CENTRAL.corp.innerrange.com>
+References: <CALDHXtdN0uoeBFwiKy6GgwyhvfEXS+N_SjFORA9A2_r8QqK17A@mail.gmail.com>
+In-Reply-To: <CALDHXtdN0uoeBFwiKy6GgwyhvfEXS+N_SjFORA9A2_r8QqK17A@mail.gmail.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1278-8.100.1062-23116.004
+x-tm-as-result: No--10.343300-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-Subject: [PATCH] qt4-native: depend on icu-native to fix build on systems with icu >=59
+Subject: Re: arm-poky-linux-gnueabi-gcc: Command not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,41 +44,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jun 2017 04:19:10 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 07 Jun 2017 04:32:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Previously, qt4-native would use the system icu to build.
-
-Trying to build against a system ICU 59, however, fails with this root
-error:
-
-| In file included from /usr/include/unicode/uversion.h:30:0,
-|                  from tools/qlocale_icu.cpp:46:
-| /usr/include/unicode/umachine.h:347:13: error: ‘char16_t’ does not name a type; did you mean ‘wchar_t’?
-|      typedef char16_t UChar;
-|              ^~~~~~~~
-|              wchar_t
-
-May have to do with our use of `-std=gnu98++`.
-
-Signed-off-by: Cody P Schafer <dev@codyps.com>
----
- recipes-qt4/qt4/qt4-native.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/recipes-qt4/qt4/qt4-native.inc b/recipes-qt4/qt4/qt4-native.inc
-index 5a873de..a14a647 100644
---- a/recipes-qt4/qt4/qt4-native.inc
-+++ b/recipes-qt4/qt4/qt4-native.inc
-@@ -1,5 +1,5 @@
- SUMMARY = "Qt version 4 tools and support files for the build host"
--DEPENDS = "zlib-native dbus-native"
-+DEPENDS = "zlib-native dbus-native icu-native"
- SECTION = "libs"
- HOMEPAGE = "http://qt-project.org/"
- PROVIDES = "qt4-tools-native"
--- 
-2.13.0
-
+cmF2aWtpcmFuIGogd3JvdGU6DQo+IA0KPiBJIGFtIHRyeWluZyB0byBidWlsZCB0aGUgbGludXgg
+a2VybmVsIGZvciBvZG9yaWQteHUzIGJvYXJkIGJ1dCBpIGFtIGdldHRpbmcgZm9sbG93aW5nIGVy
+cm9ycyBmb3INCj4gYml0YmFrZSBsaW51eC1zdGFibGUNCj4gDQo+IA0KPiBERUJVRzogRXhlY3V0
+aW5nIHNoZWxsIGZ1bmN0aW9uIGRvX2NvbXBpbGUNCj4gTk9URTogbWFrZSAtaiA0IEhPU1RDQz1n
+Y2MgIEhPU1RDUFA9Z2NjICAtRSB6SW1hZ2UgQ0M9YXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2Mg
+ICAtZnVzZS1sZD1iZmQgTEQ9YXJtLXBva3ktbGludXgtZ251ZWFiaS1sZC5iZmQNCj4gRVJST1I6
+IG9lX3J1bm1ha2UgZmFpbGVkDQo+IC9ob21lL21pc3RyYWwveW9jdG8xL3Bva3kvYnVpbGQteGZj
+ZS90bXAvd29yay1zaGFyZWQvb2Ryb2lkLXh1My9rZXJuZWwtc291cmNlL3NjcmlwdHMvZ2NjLXZl
+cnNpb24uc2g6IGxpbmUgMjU6IGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjOiBjb21tYW5kIG5v
+dCBmb3VuZA0KPiAvaG9tZS9taXN0cmFsL3lvY3RvMS9wb2t5L2J1aWxkLXhmY2UvdG1wL3dvcmst
+c2hhcmVkL29kcm9pZC14dTMva2VybmVsLXNvdXJjZS9zY3JpcHRzL2djYy12ZXJzaW9uLnNoOiBs
+aW5lIDI2OiBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYzogY29tbWFuZCBub3QgZm91bmQNCj4g
+bWFrZVsyXTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2M6IENvbW1hbmQgbm90IGZvdW5kDQo+
+IG1ha2VbMl06IGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjOiBDb21tYW5kIG5vdCBmb3VuZA0K
+PiAgIEdFTiAgICAgLi9NYWtlZmlsZQ0KPiBzY3JpcHRzL2tjb25maWcvY29uZiAgLS1zaWxlbnRv
+bGRjb25maWcgS2NvbmZpZw0KPiAvaG9tZS9taXN0cmFsL3lvY3RvMS9wb2t5L2J1aWxkLXhmY2Uv
+dG1wL3dvcmstc2hhcmVkL29kcm9pZC14dTMva2VybmVsLXNvdXJjZS9zY3JpcHRzL2djYy12ZXJz
+aW9uLnNoOiBsaW5lIDI1OiBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYzogY29tbWFuZCBub3Qg
+Zm91bmQNCj4gL2hvbWUvbWlzdHJhbC95b2N0bzEvcG9reS9idWlsZC14ZmNlL3RtcC93b3JrLXNo
+YXJlZC9vZHJvaWQteHUzL2tlcm5lbC1zb3VyY2Uvc2NyaXB0cy9nY2MtdmVyc2lvbi5zaDogbGlu
+ZSAyNjogYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2M6IGNvbW1hbmQgbm90IGZvdW5kDQo+IG1h
+a2VbMl06IGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjOiBDb21tYW5kIG5vdCBmb3VuZA0KPiBt
+YWtlWzJdOiBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYzogQ29tbWFuZCBub3QgZm91bmQNCj4g
+ICBDSEsgICAgIGluY2x1ZGUvY29uZmlnL2tlcm5lbC5yZWxlYXNlDQo+IG1ha2VbMl06IGFybS1w
+b2t5LWxpbnV4LWdudWVhYmktZ2NjOiBDb21tYW5kIG5vdCBmb3VuZA0KPiBtYWtlWzJdOiBhcm0t
+cG9reS1saW51eC1nbnVlYWJpLWdjYzogQ29tbWFuZCBub3QgZm91bmQNCj4gICBHRU4gICAgIC4v
+TWFrZWZpbGUNCj4gDQo+IA0KPiAgVXNpbmcgL2hvbWUvbWlzdHJhbC95b2N0bzEvcG9reS9idWls
+ZC14ZmNlL3RtcC93b3JrLXNoYXJlZC9vZHJvaWQteHUzL2tlcm5lbC1zb3VyY2UgYXMgc291cmNl
+IGZvciBrZXJuZWwNCj4gbWFrZVsyXTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2M6IENvbW1h
+bmQgbm90IGZvdW5kDQo+IG1ha2VbMl06IGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjOiBDb21t
+YW5kIG5vdCBmb3VuZA0KPiAgIEhPU1RDQyAgc2NyaXB0cy9wbm10b2xvZ28NCj4gICBIT1NUQ0Mg
+IHNjcmlwdHMva2FsbHN5bXMNCj4gICBDQyAgICAgIHNjcmlwdHMvbW9kL2VtcHR5Lm8NCj4gL2Jp
+bi9zaDogMTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2M6IG5vdCBmb3VuZA0KPiAvaG9tZS9t
+aXN0cmFsL3lvY3RvMS9wb2t5L2J1aWxkLXhmY2UvdG1wL3dvcmstc2hhcmVkL29kcm9pZC14dTMv
+a2VybmVsLXNvdXJjZS9zY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjI5MzogcmVjaXBlIGZvciB0YXJn
+ZXQgJ3NjcmlwdHMvbW9kL2VtcHR5Lm8nIGZhaWxlZA0KPiBtYWtlWzRdOiAqKiogW3NjcmlwdHMv
+bW9kL2VtcHR5Lm9dIEVycm9yIDEyNw0KPiAvaG9tZS9taXN0cmFsL3lvY3RvMS9wb2t5L2J1aWxk
+LXhmY2UvdG1wL3dvcmstc2hhcmVkL29kcm9pZC14dTMva2VybmVsLXNvdXJjZS9zY3JpcHRzL01h
+a2VmaWxlLmJ1aWxkOjU0NDogcmVjaXBlIGZvciB0YXJnZXQgJ3NjcmlwdHMvbW9kJyBmYWlsZWQN
+Cj4gbWFrZVszXTogKioqIFtzY3JpcHRzL21vZF0gRXJyb3IgMg0KPiBtYWtlWzNdOiAqKiogV2Fp
+dGluZyBmb3IgdW5maW5pc2hlZCBqb2JzLi4uLg0KPiAgIEhPU1RDQyAgc2NyaXB0cy9kdGMvZHRj
+Lm8NCj4gICBIT1NUQ0MgIHNjcmlwdHMvZHRjL2ZsYXR0cmVlLm8NCj4gICBIT1NUQ0MgIHNjcmlw
+dHMvZHRjL2ZzdHJlZS5vDQo+ICAgSE9TVENDICBzY3JpcHRzL2R0Yy9kYXRhLm8NCj4gICBIT1NU
+Q0MgIHNjcmlwdHMvZHRjL2xpdmV0cmVlLm8NCj4gICBIT1NUQ0MgIHNjcmlwdHMvZHRjL3RyZWVz
+b3VyY2Uubw0KPiAgIEhPU1RDQyAgc2NyaXB0cy9kdGMvc3JjcG9zLm8NCj4gICBIT1NUQ0MgIHNj
+cmlwdHMvZHRjL2NoZWNrcy5vDQo+ICAgSE9TVENDICBzY3JpcHRzL2R0Yy91dGlsLm8NCj4gICBT
+SElQUEVEIHNjcmlwdHMvZHRjL2R0Yy1sZXhlci5sZXguYw0KPiAgIFNISVBQRUQgc2NyaXB0cy9k
+dGMvZHRjLXBhcnNlci50YWIuaA0KPiAgIFNISVBQRUQgc2NyaXB0cy9kdGMvZHRjLXBhcnNlci50
+YWIuYw0KPiAgIEhPU1RDQyAgc2NyaXB0cy9kdGMvZHRjLWxleGVyLmxleC5vDQo+ICAgSE9TVEND
+ICBzY3JpcHRzL2R0Yy9kdGMtcGFyc2VyLnRhYi5vDQo+ICAgSE9TVExEICBzY3JpcHRzL2R0Yy9k
+dGMNCj4gL2hvbWUvbWlzdHJhbC95b2N0bzEvcG9reS9idWlsZC14ZmNlL3RtcC93b3JrLXNoYXJl
+ZC9vZHJvaWQteHUzL2tlcm5lbC1zb3VyY2UvTWFrZWZpbGU6NTYwOiByZWNpcGUgZm9yIHRhcmdl
+dCAnc2NyaXB0cycgZmFpbGVkDQo+IG1ha2VbMl06ICoqKiBbc2NyaXB0c10gRXJyb3IgMg0KPiBN
+YWtlZmlsZToxNTA6IHJlY2lwZSBmb3IgdGFyZ2V0ICdzdWItbWFrZScgZmFpbGVkDQo+IG1ha2Vb
+MV06ICoqKiBbc3ViLW1ha2VdIEVycm9yIDINCj4gTWFrZWZpbGU6MjQ6IHJlY2lwZSBmb3IgdGFy
+Z2V0ICdfX3N1Yi1tYWtlJyBmYWlsZWQNCj4gbWFrZTogKioqIFtfX3N1Yi1tYWtlXSBFcnJvciAy
+DQo+IFdBUk5JTkc6IGV4aXQgY29kZSAxIGZyb20gYSBzaGVsbCBjb21tYW5kLg0KPiBFUlJPUjog
+RnVuY3Rpb24gZmFpbGVkOiBkb19jb21waWxlIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21l
+L21pc3RyYWwveW9jdG8xL3Bva3kvYnVpbGQteGZjZS90bXAvd29yay9vZHJvaWRfeHUzLXBva3kt
+bGludXgtZ251ZWFiaS9saW51eC1zdGFibGUvNC45LjEzK2dpdEFVVE9JTkMrZjMzMjllZmI3Zi1y
+MC90ZW1wL2xvZy5kb19jb21waWxlLjE1NTc3KQ0KPiB3aGF0IGlzIHRoZSBwcm9ibGVtIGFuZCBo
+b3cgdG8gc29sdmUgdGhpcyBwcm9ibGVtID8NCg0KSSBoYWQgYSBzaW1pbGFyIHByb2JsZW0uIEkg
+d2FzIGJ1aWxkaW5nIGEga2VybmVsIGZvciBCZWFnbGVCb25lIEJsYWNrLCB1c2luZyBtZXRhLXRp
+IGZvciBrZXJuZWwuIEknbSBjdXJyZW50bHkgdXNpbmcgWW9jdG8gcG9reSBtb3J0eSBicmFuY2gu
+DQoNCkluIG15IGNhc2UsIHRoZSBwcm9ibGVtIHdhcyB0aGF0IEkgaGFkIGEgLmJiYXBwZW5kIGZp
+bGUgZm9yIHRoZSBrZXJuZWwsIGFuZCBpbiB0aGUgLmJiYXBwZW5kIGZpbGUgd2FzIG1pc3Rha2Vu
+bHkgb3ZlcndyaXRpbmcgREVQRU5EUy4gSXQgaGFkIGEgbGluZSBzdWNoIGFzOg0KDQpERVBFTkRT
+X2JlYWdsZWJvbmUgKz0gIm15LWluaXRyYW1mcy1pbWFnZSINCg0KQnV0IHRoYXQgaXMgYW4gaW5j
+b3JyZWN0IHdheSB0byBhcHBlbmQgdG8gREVQRU5EUyBmb3IgdGhlIHNwZWNpZmljIG1hY2hpbmUu
+IFVzaW5nIERFUEVORFNfbWFjaGluZW5hbWUgKz0gIi4uLiIgaXMgdGhlIHdyb25nIHdheSB0byBk
+byBpdCwgYmVjYXVzZSB0aGUgKz0gb3BlcmF0aW9uIGRvZXNuJ3QgcHVsbCBpbiB0aGUgZXhpc3Rp
+bmcgREVQRU5EUyB2YWx1ZXMsIGJ1dCBhbiBlbXB0eSBERVBFTkRTX21hY2hpbmVuYW1lIHZhbHVl
+LiBUaGVuIGFmdGVyIHRoYXQsIHRoZSBERVBFTkRTX21hY2hpbmVuYW1lIG92ZXJyaWRlcyB0aGUg
+a2VybmVsIHJlY2lwZSdzIHBsYWluIERFUEVORFMsIHNvIHRoZSBrZXJuZWwgREVQRU5EUyBlbmRz
+IHVwIG1pc3NpbmcgYWxsIHRoZSBidWlsZCBkZXBlbmRlbmNpZXMuDQoNCkl0IHNob3VsZCBpbnN0
+ZWFkIGJlIG9uZSBvZjoNCg0KREVQRU5EUyArPSAibXktaW5pdHJhbWZzLWltYWdlIg0KT3I6DQpE
+RVBFTkRTX2FwcGVuZF9iZWFnbGVib25lID0gIiBteS1pbml0cmFtZnMtaW1hZ2UiDQoNCkkgZG9u
+J3Qga25vdyBpZiB5b3VyIHByb2JsZW0gaGFzIHRoZSBzYW1lIGNhdXNlLCBidXQgSSB0aG91Z2h0
+IEkgc2hvdWxkIGRlc2NyaWJlIG15IHByb2JsZW0gaW4gY2FzZSBpdCdzIHJlbGF0ZWQuDQoNCllv
+dSBjYW4gY2hlY2sgdGhlIERFUEVORFMgZGVmaW5pdGlvbiB0aGF0IGJpdGJha2UgaXMgdXNpbmcg
+YnkgcnVubmluZyBiaXRiYWtlIG9uIHlvdXIga2VybmVsIHJlY2lwZSB3aXRoIHRoZSAtZSBvcHRp
+b24uDQoNCi0tIA0KQ3JhaWcgTWNRdWVlbg0KDQo=
 
