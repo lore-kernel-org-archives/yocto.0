@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C1A0E00B01; Wed,  7 Jun 2017 10:12:49 -0700 (PDT)
+	id 15E61E00B3D; Wed,  7 Jun 2017 10:17:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,44 +18,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
-Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B301E00B01
-	for <yocto@yoctoproject.org>; Wed,  7 Jun 2017 10:12:45 -0700 (PDT)
-Received: by mail-wm0-f41.google.com with SMTP id n195so15653864wmg.1
-	for <yocto@yoctoproject.org>; Wed, 07 Jun 2017 10:12:45 -0700 (PDT)
+	*      [74.125.82.67 listed in list.dnswl.org]
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA0FFE00B01
+	for <yocto@yoctoproject.org>; Wed,  7 Jun 2017 10:17:27 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id k15so3528822wmh.3
+	for <yocto@yoctoproject.org>; Wed, 07 Jun 2017 10:17:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=8mub2AsLO5cYwVa64J//OJF8M4YgwhCYAxwiwjPZMeU=;
-	b=ikauqJt1mn8sy5ViLG1Ener3IB0dFh7NEBo9beNtLARuhobPebzZ0YezJYDXjTxdz7
-	3Gu0tFHbKYBjxVm9dL7t28slgjKkRxO+Yx7Dm4CBWvs20+Xm58o7knzqSRLlHzFDtlkw
-	yehdd4Us90/VY+EuDL8CSPGSoxqVCErc7CST+/3+9ZKz9Wu3Bjx9uIukO4L1B9NnEIwa
-	JXqXhtiUzuWQs+i3+kP5TQ189v4xsZqdQBWlDDk5T+rPgnhGTh8LmC7XhORud7mI38ke
-	oY6B/d983aE8k2t8auaxpMnhAIzXAr6CDhv5vhYyE5xrvlD7xO3IOYncAPyyN8aRZXcL
-	POOw==
+	:cc; bh=sKj+7TOWWOnc+tiXKk+dxYEBOWO59IHjMRZKnnzE25I=;
+	b=Uei/0FU0ptF1w/s4DSDlAnarX2sIctldN4kNuKLZp72jfK7NVuRW6rtSlfy9Zm0j6d
+	E1p1aElmV8OJI+gCUNUd0135dqatHiWPp9Ckd0hz7vefb5Gn5BFqw8P/mwXiUW7L1d0l
+	ZB380//dbHJw2yTOBp3dYtvkhxwMZpv4O/krPUKghkYt6LfdZq4kwkdcpl6OKhi4S9c3
+	BYx2dcVT/yPpjkJtDlNGhEMucqDuZSEa4Um7ucm4aT+m2QuQ/WPu4WjAo82sI4l21nd0
+	o/+CcDCBGPTXmYxVd819IfFYloK4K5zv6dvSHmdTHOHD98YQR02D3aYCtmTrPdk/3Kur
+	ZafQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=8mub2AsLO5cYwVa64J//OJF8M4YgwhCYAxwiwjPZMeU=;
-	b=O0j+bOFSDQAGKf1kNOxkTIspZZk983lmEmNbx6ivctlC4nj7GljnQP7dEQ4F34YlrL
-	MCnXPyVn/7qQOjSs95PlQbOF0Cw1/F2UavwX5zspKgc09MWgLbc1jHqdwSH0t23MoyT+
-	RZDDJ2qEvrx3ZMYodc8DgWpLuaNXl0nIPsqS/4ntVcyxZBKd+Bh/6Ek8h6m9DB3/5Vxx
-	QK6zqjIjM1+a49j8t0QYeiwrUD/8E7xc++tDqAsgSXDjze4Ro7YPikV6+YYdnYURgQt9
-	RJQe0nHQFYa9vxNDKNUL1W9ohyAYljGBYU1DN6kGSE4YvVubqBibAMZB3EG7Njhiez0w
-	YlJQ==
-X-Gm-Message-State: AODbwcAnK5701yYI+azoEVVgpyoCLiObbFz7aupEOXYv3z/MJ1uQyZH2
-	TKqInzpptMRvZDd0QpsNrBDImI3fvQ==
-X-Received: by 10.80.137.36 with SMTP id e33mr11916680ede.67.1496855564810;
-	Wed, 07 Jun 2017 10:12:44 -0700 (PDT)
+	bh=sKj+7TOWWOnc+tiXKk+dxYEBOWO59IHjMRZKnnzE25I=;
+	b=aQ72IVlR3ipmmn1qpM7dL6au1Hzwd9R+pYhNGTxHKwuNpXxbmEfH5azPuXR+/2jEhG
+	5V6ccMQSwgiHm4+Ma8mk9brh4O8/3080gZnHPoX3Z8C0Z4XvVWJ1wiGnDz87AepZAd1+
+	8k9RUO2JUh0Xxm7EWBsXotwJgZd4QXpFszSSwfv7I1JiC75rkQrMEWoiV/AY4hfJGvXj
+	4f70hWKMMcO+a0K1W4Gqatvj9Re0iqCaf1LVWcRgpedIaSBpRS0zzYOdb1L/qOm2yAEL
+	kD+ckdF3QY8O5ltrp9pWKj1bv84kDEjyugTKSQ26ILGuQQXQkBL0z9OgGPx/WGHpMooO
+	VrfA==
+X-Gm-Message-State: AODbwcAiDxQzwYphJ7/6DJb99WsN5FqSG+/WDhrb2t3koIYUHpUD4/pt
+	fDzxJLKWvnRr4+pGxOQozb5yx9t+rA==
+X-Received: by 10.80.143.227 with SMTP id y90mr26174010edy.131.1496855846477; 
+	Wed, 07 Jun 2017 10:17:26 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.80.153.222 with HTTP; Wed, 7 Jun 2017 10:12:14 -0700 (PDT)
-In-Reply-To: <165f01d2dfac$6b374940$41a5dbc0$@ln-systems.com>
+Received: by 10.80.153.222 with HTTP; Wed, 7 Jun 2017 10:16:55 -0700 (PDT)
+In-Reply-To: <873555290.245809.1496855698348@email.1and1.co.uk>
 References: <165f01d2dfac$6b374940$41a5dbc0$@ln-systems.com>
+	<CAMKF1srvA65ghO9g2dVW-xqfCVO=KtONaEQiEyVqgKCJ8zMLbg@mail.gmail.com>
+	<873555290.245809.1496855698348@email.1and1.co.uk>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 7 Jun 2017 10:12:14 -0700
-Message-ID: <CAMKF1srvA65ghO9g2dVW-xqfCVO=KtONaEQiEyVqgKCJ8zMLbg@mail.gmail.com>
-To: colin.helliwell@ln-systems.com
+Date: Wed, 7 Jun 2017 10:16:55 -0700
+Message-ID: <CAMKF1sqFkrx-Yr3qEUxwp9_U6WvQ01wOkgUbLaCCogSZJERUkQ@mail.gmail.com>
+To: Colin Helliwell <colin.helliwell@ln-systems.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Getting linker -l into a bbappend
 X-BeenThere: yocto@yoctoproject.org
@@ -69,44 +71,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jun 2017 17:12:49 -0000
+X-List-Received-Date: Wed, 07 Jun 2017 17:17:29 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jun 7, 2017 at 9:37 AM,  <colin.helliwell@ln-systems.com> wrote:
-> I have an autotools (C++) app which builds fine with my default recipe. But
-> for a particular platform an additional (C) library is needed, so I have a
-> bbappend.
-> I can add in the additional compiler flag here, but I'm struggling to
-> specify the additional library linkage - I think it's because the ordering
-> on the linker command line is wrong.
+On Wed, Jun 7, 2017 at 10:14 AM, Colin Helliwell
+<colin.helliwell@ln-systems.com> wrote:
 >
-> If I add '-lfoo' to the base Makefile.am then it builds fine (though
-> strangely, "-lfoo" isn't anywhere in the linker command line?).
-> But I'm trying to put this into just the 'append' rather than altering the
-> base [non-platform-specific] Makefile.
+>> On 07 June 2017 at 18:12 Khem Raj <raj.khem@gmail.com> wrote:
+>>
+>> On Wed, Jun 7, 2017 at 9:37 AM, <colin.helliwell@ln-systems.com> wrote:
+>>
+>> > I have an autotools (C++) app which builds fine with my default recipe. But
+>> > for a particular platform an additional (C) library is needed, so I have a
+>> > bbappend.
+>> > I can add in the additional compiler flag here, but I'm struggling to
+>> > specify the additional library linkage - I think it's because the ordering
+>> > on the linker command line is wrong.
+>> >
+>> > If I add '-lfoo' to the base Makefile.am then it builds fine (though
+>> > strangely, "-lfoo" isn't anywhere in the linker command line?).
+>> > But I'm trying to put this into just the 'append' rather than altering the
+>> > base [non-platform-specific] Makefile.
+>> >
+>> > I've tried
+>> >  EXTRA_OEMAKE += " LDFLAGS+="-lfoo" "
+>> > and
+>> >  LDFLAGS+="-lrfctrl"
+>> > but these don't seem to construct the correct linkage order (functions from
+>> > the library are undefined references)
+>> >
+>> > Is there a way to append this in the right way?
+>>
+>> it depends on components build systems some are more accommodating of
+>> the env passed to them some are not. So in many
+>> cases you have to patch the make system of the component to
+>> allow it to accept changes to variables passed from bitbake env
+>> from what you explain it seems you might have to look into
+>> component's build system to accommodate it.
+>>
 >
-> I've tried
->     EXTRA_OEMAKE += " LDFLAGS+="-lfoo" "
-> and
->     LDFLAGS+="-lrfctrl"
-> but these don't seem to construct the correct linkage order (functions from
-> the library are undefined references)
->
-> Is there a way to append this in the right way?
+> Thanks Khem. I *could* patch the Makefile.am, if there's no other way
 
-it depends on components build systems some are more accommodating of
-the env passed to them some are not. So in many
-cases you have to patch the make system of the component to
-allow it to accept changes to variables passed from bitbake env
-from what you explain it seems you might have to look into
-component's build system to accommodate it.
-
-> Thanks
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+the components makefiles have to accept it, bitbake can only delegate
 
