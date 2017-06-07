@@ -1,38 +1,35 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61DDFE00BD6; Tue,  6 Jun 2017 21:32:10 -0700 (PDT)
+	id A190FE00BD5; Tue,  6 Jun 2017 23:10:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from remote.innerrange.com (vpn.innerrange.com.au [203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6366E00BC1
-	for <yocto@yoctoproject.org>; Tue,  6 Jun 2017 21:32:08 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
-	mapi; Wed, 7 Jun 2017 14:32:03 +1000
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: ravikiran j <ravikiran.j@mistralsolutions.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Wed, 7 Jun 2017 14:32:01 +1000
-Thread-Topic: [yocto] arm-poky-linux-gnueabi-gcc: Command not found
-Thread-Index: AdKdWjTnWvlfgRjKTP+Gw1ktwMg1dhB6yLXA
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A40295F079EDE1@IR-CENTRAL.corp.innerrange.com>
-References: <CALDHXtdN0uoeBFwiKy6GgwyhvfEXS+N_SjFORA9A2_r8QqK17A@mail.gmail.com>
-In-Reply-To: <CALDHXtdN0uoeBFwiKy6GgwyhvfEXS+N_SjFORA9A2_r8QqK17A@mail.gmail.com>
-Accept-Language: en-US, en-AU
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1278-8.100.1062-23116.004
-x-tm-as-result: No--10.343300-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04B83E00BC1
+	for <yocto@yoctoproject.org>; Tue,  6 Jun 2017 23:10:20 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v576AJfk014055
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 6 Jun 2017 23:10:19 -0700 (PDT)
+Received: from localhost (128.224.162.198) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.294.0;
+	Tue, 6 Jun 2017 23:10:18 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 7 Jun 2017 14:10:16 +0800
+Message-ID: <1496815816-25600-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: Re: arm-poky-linux-gnueabi-gcc: Command not found
+X-Originating-IP: [128.224.162.198]
+Subject: [meta-cgl][PATCH] ucarp: add new recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,91 +41,464 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jun 2017 04:32:10 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 07 Jun 2017 06:10:22 -0000
+Content-Type: text/plain
 
-cmF2aWtpcmFuIGogd3JvdGU6DQo+IA0KPiBJIGFtIHRyeWluZyB0byBidWlsZCB0aGUgbGludXgg
-a2VybmVsIGZvciBvZG9yaWQteHUzIGJvYXJkIGJ1dCBpIGFtIGdldHRpbmcgZm9sbG93aW5nIGVy
-cm9ycyBmb3INCj4gYml0YmFrZSBsaW51eC1zdGFibGUNCj4gDQo+IA0KPiBERUJVRzogRXhlY3V0
-aW5nIHNoZWxsIGZ1bmN0aW9uIGRvX2NvbXBpbGUNCj4gTk9URTogbWFrZSAtaiA0IEhPU1RDQz1n
-Y2MgIEhPU1RDUFA9Z2NjICAtRSB6SW1hZ2UgQ0M9YXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2Mg
-ICAtZnVzZS1sZD1iZmQgTEQ9YXJtLXBva3ktbGludXgtZ251ZWFiaS1sZC5iZmQNCj4gRVJST1I6
-IG9lX3J1bm1ha2UgZmFpbGVkDQo+IC9ob21lL21pc3RyYWwveW9jdG8xL3Bva3kvYnVpbGQteGZj
-ZS90bXAvd29yay1zaGFyZWQvb2Ryb2lkLXh1My9rZXJuZWwtc291cmNlL3NjcmlwdHMvZ2NjLXZl
-cnNpb24uc2g6IGxpbmUgMjU6IGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjOiBjb21tYW5kIG5v
-dCBmb3VuZA0KPiAvaG9tZS9taXN0cmFsL3lvY3RvMS9wb2t5L2J1aWxkLXhmY2UvdG1wL3dvcmst
-c2hhcmVkL29kcm9pZC14dTMva2VybmVsLXNvdXJjZS9zY3JpcHRzL2djYy12ZXJzaW9uLnNoOiBs
-aW5lIDI2OiBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYzogY29tbWFuZCBub3QgZm91bmQNCj4g
-bWFrZVsyXTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2M6IENvbW1hbmQgbm90IGZvdW5kDQo+
-IG1ha2VbMl06IGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjOiBDb21tYW5kIG5vdCBmb3VuZA0K
-PiAgIEdFTiAgICAgLi9NYWtlZmlsZQ0KPiBzY3JpcHRzL2tjb25maWcvY29uZiAgLS1zaWxlbnRv
-bGRjb25maWcgS2NvbmZpZw0KPiAvaG9tZS9taXN0cmFsL3lvY3RvMS9wb2t5L2J1aWxkLXhmY2Uv
-dG1wL3dvcmstc2hhcmVkL29kcm9pZC14dTMva2VybmVsLXNvdXJjZS9zY3JpcHRzL2djYy12ZXJz
-aW9uLnNoOiBsaW5lIDI1OiBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYzogY29tbWFuZCBub3Qg
-Zm91bmQNCj4gL2hvbWUvbWlzdHJhbC95b2N0bzEvcG9reS9idWlsZC14ZmNlL3RtcC93b3JrLXNo
-YXJlZC9vZHJvaWQteHUzL2tlcm5lbC1zb3VyY2Uvc2NyaXB0cy9nY2MtdmVyc2lvbi5zaDogbGlu
-ZSAyNjogYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2M6IGNvbW1hbmQgbm90IGZvdW5kDQo+IG1h
-a2VbMl06IGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjOiBDb21tYW5kIG5vdCBmb3VuZA0KPiBt
-YWtlWzJdOiBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYzogQ29tbWFuZCBub3QgZm91bmQNCj4g
-ICBDSEsgICAgIGluY2x1ZGUvY29uZmlnL2tlcm5lbC5yZWxlYXNlDQo+IG1ha2VbMl06IGFybS1w
-b2t5LWxpbnV4LWdudWVhYmktZ2NjOiBDb21tYW5kIG5vdCBmb3VuZA0KPiBtYWtlWzJdOiBhcm0t
-cG9reS1saW51eC1nbnVlYWJpLWdjYzogQ29tbWFuZCBub3QgZm91bmQNCj4gICBHRU4gICAgIC4v
-TWFrZWZpbGUNCj4gDQo+IA0KPiAgVXNpbmcgL2hvbWUvbWlzdHJhbC95b2N0bzEvcG9reS9idWls
-ZC14ZmNlL3RtcC93b3JrLXNoYXJlZC9vZHJvaWQteHUzL2tlcm5lbC1zb3VyY2UgYXMgc291cmNl
-IGZvciBrZXJuZWwNCj4gbWFrZVsyXTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2M6IENvbW1h
-bmQgbm90IGZvdW5kDQo+IG1ha2VbMl06IGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjOiBDb21t
-YW5kIG5vdCBmb3VuZA0KPiAgIEhPU1RDQyAgc2NyaXB0cy9wbm10b2xvZ28NCj4gICBIT1NUQ0Mg
-IHNjcmlwdHMva2FsbHN5bXMNCj4gICBDQyAgICAgIHNjcmlwdHMvbW9kL2VtcHR5Lm8NCj4gL2Jp
-bi9zaDogMTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2M6IG5vdCBmb3VuZA0KPiAvaG9tZS9t
-aXN0cmFsL3lvY3RvMS9wb2t5L2J1aWxkLXhmY2UvdG1wL3dvcmstc2hhcmVkL29kcm9pZC14dTMv
-a2VybmVsLXNvdXJjZS9zY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjI5MzogcmVjaXBlIGZvciB0YXJn
-ZXQgJ3NjcmlwdHMvbW9kL2VtcHR5Lm8nIGZhaWxlZA0KPiBtYWtlWzRdOiAqKiogW3NjcmlwdHMv
-bW9kL2VtcHR5Lm9dIEVycm9yIDEyNw0KPiAvaG9tZS9taXN0cmFsL3lvY3RvMS9wb2t5L2J1aWxk
-LXhmY2UvdG1wL3dvcmstc2hhcmVkL29kcm9pZC14dTMva2VybmVsLXNvdXJjZS9zY3JpcHRzL01h
-a2VmaWxlLmJ1aWxkOjU0NDogcmVjaXBlIGZvciB0YXJnZXQgJ3NjcmlwdHMvbW9kJyBmYWlsZWQN
-Cj4gbWFrZVszXTogKioqIFtzY3JpcHRzL21vZF0gRXJyb3IgMg0KPiBtYWtlWzNdOiAqKiogV2Fp
-dGluZyBmb3IgdW5maW5pc2hlZCBqb2JzLi4uLg0KPiAgIEhPU1RDQyAgc2NyaXB0cy9kdGMvZHRj
-Lm8NCj4gICBIT1NUQ0MgIHNjcmlwdHMvZHRjL2ZsYXR0cmVlLm8NCj4gICBIT1NUQ0MgIHNjcmlw
-dHMvZHRjL2ZzdHJlZS5vDQo+ICAgSE9TVENDICBzY3JpcHRzL2R0Yy9kYXRhLm8NCj4gICBIT1NU
-Q0MgIHNjcmlwdHMvZHRjL2xpdmV0cmVlLm8NCj4gICBIT1NUQ0MgIHNjcmlwdHMvZHRjL3RyZWVz
-b3VyY2Uubw0KPiAgIEhPU1RDQyAgc2NyaXB0cy9kdGMvc3JjcG9zLm8NCj4gICBIT1NUQ0MgIHNj
-cmlwdHMvZHRjL2NoZWNrcy5vDQo+ICAgSE9TVENDICBzY3JpcHRzL2R0Yy91dGlsLm8NCj4gICBT
-SElQUEVEIHNjcmlwdHMvZHRjL2R0Yy1sZXhlci5sZXguYw0KPiAgIFNISVBQRUQgc2NyaXB0cy9k
-dGMvZHRjLXBhcnNlci50YWIuaA0KPiAgIFNISVBQRUQgc2NyaXB0cy9kdGMvZHRjLXBhcnNlci50
-YWIuYw0KPiAgIEhPU1RDQyAgc2NyaXB0cy9kdGMvZHRjLWxleGVyLmxleC5vDQo+ICAgSE9TVEND
-ICBzY3JpcHRzL2R0Yy9kdGMtcGFyc2VyLnRhYi5vDQo+ICAgSE9TVExEICBzY3JpcHRzL2R0Yy9k
-dGMNCj4gL2hvbWUvbWlzdHJhbC95b2N0bzEvcG9reS9idWlsZC14ZmNlL3RtcC93b3JrLXNoYXJl
-ZC9vZHJvaWQteHUzL2tlcm5lbC1zb3VyY2UvTWFrZWZpbGU6NTYwOiByZWNpcGUgZm9yIHRhcmdl
-dCAnc2NyaXB0cycgZmFpbGVkDQo+IG1ha2VbMl06ICoqKiBbc2NyaXB0c10gRXJyb3IgMg0KPiBN
-YWtlZmlsZToxNTA6IHJlY2lwZSBmb3IgdGFyZ2V0ICdzdWItbWFrZScgZmFpbGVkDQo+IG1ha2Vb
-MV06ICoqKiBbc3ViLW1ha2VdIEVycm9yIDINCj4gTWFrZWZpbGU6MjQ6IHJlY2lwZSBmb3IgdGFy
-Z2V0ICdfX3N1Yi1tYWtlJyBmYWlsZWQNCj4gbWFrZTogKioqIFtfX3N1Yi1tYWtlXSBFcnJvciAy
-DQo+IFdBUk5JTkc6IGV4aXQgY29kZSAxIGZyb20gYSBzaGVsbCBjb21tYW5kLg0KPiBFUlJPUjog
-RnVuY3Rpb24gZmFpbGVkOiBkb19jb21waWxlIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21l
-L21pc3RyYWwveW9jdG8xL3Bva3kvYnVpbGQteGZjZS90bXAvd29yay9vZHJvaWRfeHUzLXBva3kt
-bGludXgtZ251ZWFiaS9saW51eC1zdGFibGUvNC45LjEzK2dpdEFVVE9JTkMrZjMzMjllZmI3Zi1y
-MC90ZW1wL2xvZy5kb19jb21waWxlLjE1NTc3KQ0KPiB3aGF0IGlzIHRoZSBwcm9ibGVtIGFuZCBo
-b3cgdG8gc29sdmUgdGhpcyBwcm9ibGVtID8NCg0KSSBoYWQgYSBzaW1pbGFyIHByb2JsZW0uIEkg
-d2FzIGJ1aWxkaW5nIGEga2VybmVsIGZvciBCZWFnbGVCb25lIEJsYWNrLCB1c2luZyBtZXRhLXRp
-IGZvciBrZXJuZWwuIEknbSBjdXJyZW50bHkgdXNpbmcgWW9jdG8gcG9reSBtb3J0eSBicmFuY2gu
-DQoNCkluIG15IGNhc2UsIHRoZSBwcm9ibGVtIHdhcyB0aGF0IEkgaGFkIGEgLmJiYXBwZW5kIGZp
-bGUgZm9yIHRoZSBrZXJuZWwsIGFuZCBpbiB0aGUgLmJiYXBwZW5kIGZpbGUgd2FzIG1pc3Rha2Vu
-bHkgb3ZlcndyaXRpbmcgREVQRU5EUy4gSXQgaGFkIGEgbGluZSBzdWNoIGFzOg0KDQpERVBFTkRT
-X2JlYWdsZWJvbmUgKz0gIm15LWluaXRyYW1mcy1pbWFnZSINCg0KQnV0IHRoYXQgaXMgYW4gaW5j
-b3JyZWN0IHdheSB0byBhcHBlbmQgdG8gREVQRU5EUyBmb3IgdGhlIHNwZWNpZmljIG1hY2hpbmUu
-IFVzaW5nIERFUEVORFNfbWFjaGluZW5hbWUgKz0gIi4uLiIgaXMgdGhlIHdyb25nIHdheSB0byBk
-byBpdCwgYmVjYXVzZSB0aGUgKz0gb3BlcmF0aW9uIGRvZXNuJ3QgcHVsbCBpbiB0aGUgZXhpc3Rp
-bmcgREVQRU5EUyB2YWx1ZXMsIGJ1dCBhbiBlbXB0eSBERVBFTkRTX21hY2hpbmVuYW1lIHZhbHVl
-LiBUaGVuIGFmdGVyIHRoYXQsIHRoZSBERVBFTkRTX21hY2hpbmVuYW1lIG92ZXJyaWRlcyB0aGUg
-a2VybmVsIHJlY2lwZSdzIHBsYWluIERFUEVORFMsIHNvIHRoZSBrZXJuZWwgREVQRU5EUyBlbmRz
-IHVwIG1pc3NpbmcgYWxsIHRoZSBidWlsZCBkZXBlbmRlbmNpZXMuDQoNCkl0IHNob3VsZCBpbnN0
-ZWFkIGJlIG9uZSBvZjoNCg0KREVQRU5EUyArPSAibXktaW5pdHJhbWZzLWltYWdlIg0KT3I6DQpE
-RVBFTkRTX2FwcGVuZF9iZWFnbGVib25lID0gIiBteS1pbml0cmFtZnMtaW1hZ2UiDQoNCkkgZG9u
-J3Qga25vdyBpZiB5b3VyIHByb2JsZW0gaGFzIHRoZSBzYW1lIGNhdXNlLCBidXQgSSB0aG91Z2h0
-IEkgc2hvdWxkIGRlc2NyaWJlIG15IHByb2JsZW0gaW4gY2FzZSBpdCdzIHJlbGF0ZWQuDQoNCllv
-dSBjYW4gY2hlY2sgdGhlIERFUEVORFMgZGVmaW5pdGlvbiB0aGF0IGJpdGJha2UgaXMgdXNpbmcg
-YnkgcnVubmluZyBiaXRiYWtlIG9uIHlvdXIga2VybmVsIHJlY2lwZSB3aXRoIHRoZSAtZSBvcHRp
-b24uDQoNCi0tIA0KQ3JhaWcgTWNRdWVlbg0KDQo=
+UCARP allows a couple of hosts to share common virtual IP addresses in
+order to provide automatic failover. It is a portable userland
+implementation of the secure and patent-free Common Address Redundancy
+Protocol (CARP).
+
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ .../ucarp/ucarp/ucarp-configure-sha1.patch         |  47 ++++++
+ .../ucarp/ucarp/ucarp-configure-snprintf.patch     |  55 +++++++
+ meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.init | 162 +++++++++++++++++++++
+ .../recipes-cgl/ucarp/ucarp/ucarp.service          |  11 ++
+ .../recipes-cgl/ucarp/ucarp/vip-001.conf.example   |  11 ++
+ .../recipes-cgl/ucarp/ucarp/vip-common.conf        |   8 +
+ .../recipes-cgl/ucarp/ucarp/vip-down.sh            |   7 +
+ meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh  |   7 +
+ meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb   |  65 +++++++++
+ 9 files changed, 373 insertions(+)
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp-configure-sha1.patch
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp-configure-snprintf.patch
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.init
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.service
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-001.conf.example
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-common.conf
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
+ create mode 100644 meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
+
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp-configure-sha1.patch b/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp-configure-sha1.patch
+new file mode 100644
+index 0000000..01167d4
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp-configure-sha1.patch
+@@ -0,0 +1,47 @@
++Configure SHA1 option properly
++
++Work around a cross-compiling configuration problem by
++defaulting the USE_SYSTEM_CRYPT_SHA1 option.
++
++Upstream-Status: Inappropriate [embedded specific]
++
++Signed-off-by: Greff Moffatt <gregg.moffatt@windriver.com>
++Signed-off-by: Aws Ismail <aws.ismail@windriver.com>
++
++diff --git a/configure.ac b/configure.ac
++index fa6300f..3978c43 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -232,32 +232,6 @@ else
++                      [return value of an overflowed snprintf])
++ fi
++ 
++-AC_MSG_CHECKING(whether you already have a standard SHA1 implementation)
++-AC_RUN_IFELSE([AC_LANG_SOURCE([[
++-#include <stdio.h>
++-#include <string.h>
++-#include <sys/types.h>
++-#include <sha1.h>
++-
++-int main(void)
++-{
++-    SHA1_CTX ctx;
++-    char b[41];
++-    
++-    SHA1Init(&ctx);
++-    SHA1Update(&ctx, (const unsigned char *) "test", 4U);
++-    SHA1End(&ctx, b);
++-    b[40] = 0;
++-    
++-    return strcasecmp(b, "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3");
++-}
++-]])],[
++-AC_MSG_RESULT(yes)
++-AC_DEFINE(USE_SYSTEM_CRYPT_SHA1,,[Define if you already have standard
++-SHA1 functions])
++-],[AC_MSG_RESULT(no)
++-],[])
++-
++ AC_MSG_CHECKING([whether syslog names are available])
++ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
++ #define SYSLOG_NAMES 1
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp-configure-snprintf.patch b/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp-configure-snprintf.patch
+new file mode 100644
+index 0000000..adcdf64
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp-configure-snprintf.patch
+@@ -0,0 +1,55 @@
++Configure snprintf option properly
++
++Work around a cross-compiling configuration problem by
++defaulting the CONF_SNPRINTF_TYPE option in the top-level
++Makefile, as opposed through configure.
++
++Upstream-Status: Inappropriate [embedded specific]
++
++Signed-off-by: Greff Moffatt <gregg.moffatt@windriver.com>
++Signed-off-by: Aws Ismail <aws.ismail@windriver.com>
++
++diff --git a/configure.ac b/configure.ac
++index 3978c43..da18a62 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -199,39 +199,6 @@ if test -r /dev/random; then
++   AC_DEFINE(HAVE_DEV_RANDOM,,[Define if you have /dev/random])
++ fi
++ 
++-AC_MSG_CHECKING(whether snprintf is C99 conformant)
++-AC_RUN_IFELSE([AC_LANG_SOURCE([[
++-#include <stdio.h>
++-#ifdef STDC_HEADERS
++-# include <stdlib.h>
++-# include <stddef.h>
++-#else
++-# if HAVE_STDLIB_H
++-#  include <stdlib.h>
++-# endif
++-#endif
++-#ifdef HAVE_UNISTD_H
++-# include <unistd.h>
++-#endif
++-
++-int main(void)
++-{
++-    char buf[4];
++-    
++-    (void) fprintf(fopen("conftestval", "w"), "%d\n",
++-        (int) snprintf(buf, sizeof buf, "12345678"));
++-    return 0;
++-}
++-]])],[CONF_SNPRINTF_TYPE=`cat conftestval`
++-],[],[])
++-AC_MSG_RESULT(done)
++-if test "x$CONF_SNPRINTF_TYPE" = "x" ; then
++-  AC_MSG_WARN(your operating system doesn't implement snprintf)
++-else
++-  AC_DEFINE_UNQUOTED(CONF_SNPRINTF_TYPE, $CONF_SNPRINTF_TYPE,
++-                     [return value of an overflowed snprintf])
++-fi
++-
++ AC_MSG_CHECKING([whether syslog names are available])
++ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
++ #define SYSLOG_NAMES 1
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.init b/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.init
+new file mode 100644
+index 0000000..c18d029
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.init
+@@ -0,0 +1,162 @@
++#!/bin/sh
++# $Id$
++#
++# chkconfig: - 91 09
++# description: Starts and stops the common address redundancy protocol daemon
++
++### BEGIN INIT INFO
++# Provides: lsb-ucarp
++# Required-Start: $local_fs $network $remote_fs
++# Required-Stop: $local_fs $network $remote_fs
++# Default-Start:
++# Default-Stop: 0 1 6
++# Short-Description: start and stop ucarp
++# Description: Common Address Redundancy Protocol (CARP) for Unix
++### END INIT INFO
++
++# Source function library.
++. /etc/init.d/functions
++
++# Source networking configuration.
++#. /etc/sysconfig/network
++
++# Check that networking is up.
++#[ ${NETWORKING} = "no" ] && exit 0
++
++get_files() {
++    FILES=`find ${CONFDIR} -maxdepth 1 -type f -name 'vip-*.conf' \
++        -printf "%f\n" | egrep '^vip-[[:digit:]]+\.conf$' | LC_COLLATE="C" sort`
++}
++
++prog="common address redundancy protocol daemon"
++LOGGER="/usr/bin/logger -p daemon.notice -t ucarp"
++CONFDIR=/etc/ucarp
++UPSCRIPT=/usr/libexec/ucarp/vip-up.sh
++DOWNSCRIPT=/usr/libexec/ucarp/vip-down.sh
++PROGRAM=/usr/sbin/ucarp
++
++start() {
++    RETVAL=-1
++    VIP_RETVAL=0
++
++    echo -n "Starting ${prog}: "
++
++    get_files
++
++    if [ -z "${FILES}" ]; then
++        ${LOGGER} "no virtual addresses are configured in ${CONFDIR}"
++        #failure
++        RETVAL=1
++    else
++        for FILE in ${FILES}; do
++            # Check that the file name gives us an ID between 1 and 255
++            ID=`echo ${FILE}| sed 's/^vip-\(.*\).conf/\1/'`
++            if [ ${ID} -lt 1 -o ${ID} -gt 255 ]; then
++                ${LOGGER} "ID out of range (1-255) for ${FILE}, skipped VIP ID ${ID}"
++                continue
++            fi
++
++            unset PASSWORD BIND_INTERFACE SOURCE_ADDRESS VIP_ADDRESS OPTIONS
++            # Source ucarp settings
++            . ${CONFDIR}/vip-common.conf
++            . ${CONFDIR}/${FILE}
++            TMP_RETVAL=0
++
++            if [ -z "${PASSWORD}" ]; then
++                ${LOGGER} "no PASSWORD found for ${FILE}, skipped VIP ID ${ID}"
++                TMP_RETVAL=1
++            fi
++            if [ -z "${BIND_INTERFACE}" ]; then
++                ${LOGGER} "no BIND_INTERFACE found for ${FILE}, skipped VIP ID ${ID}"
++                TMP_RETVAL=1
++            fi
++            if [ -z "${SOURCE_ADDRESS}" ]; then
++                ${LOGGER} "no SOURCE_ADDRESS found for ${FILE}, skipped VIP ID ${ID}"
++                TMP_RETVAL=1
++            fi
++            if [ -z "${VIP_ADDRESS}" ]; then
++                ${LOGGER} "no VIP_ADDRESS found for ${FILE}, skipped VIP ID ${ID}"
++                TMP_RETVAL=1
++            fi
++
++            # If one of more of the above failed, skip the daemon launch
++            if [ ${TMP_RETVAL} -ne 0 ]; then
++                VIP_RETVAL=1
++                continue
++            fi
++
++            [ ${RETVAL} -eq -1 ] && RETVAL=0
++            ${PROGRAM} --daemonize --interface=${BIND_INTERFACE} --pass=${PASSWORD} --srcip=${SOURCE_ADDRESS} --vhid=${ID} --addr=${VIP_ADDRESS} ${OPTIONS} --upscript=$UPSCRIPT --downscript=$DOWNSCRIPT >/dev/null
++            LAUNCH_RETVAL=$?
++            [ ${LAUNCH_RETVAL} -ne 0 ] && RETVAL=1
++        done
++
++        # failure/success or warning if launch worked with some vip errors
++        if [ ${RETVAL} -eq 0 -a ${VIP_RETVAL} -eq 0 ]; then
++            ${LOGGER} "all ucarp configurations were applied successfully"
++            #success
++            touch /var/lock/subsys/ucarp
++        elif [ ${RETVAL} -eq 0 -a ${VIP_RETVAL} -eq 1 ]; then
++            ${LOGGER} "error in one or more of the ucarp configurations"
++            #warning
++        else
++           ${LOGGER} "error running one or more of the ucarp daemon instances"
++            #failure
++        fi
++    fi
++    echo
++}
++
++stop() {
++    echo -n "Stopping $prog: "
++    killproc ${PROGRAM} >/dev/null
++    RETVAL=$?
++
++    # With "--shutdown" in the default OPTIONS, the down script is called
++    # when ucarp is stopped, so IP addresses are released, no "leftovers".
++
++    # failure/success (no warning, too complicated to handle properly)
++    if [ ${RETVAL} -eq 1 ]; then
++        ${LOGGER} "it seems like no ucarp daemon were running"
++        #failure
++    else
++        ${LOGGER} "all ucarp daemons stopped and IP addresses unassigned"
++        #success
++        rm -f /var/lock/subsys/ucarp
++    fi
++    echo
++}
++
++# See how we were called.
++case "$1" in
++    start)
++        start
++        ;;
++    stop)
++        stop
++        ;;
++    restart)
++        stop
++        start
++        ;;
++    condrestart)
++        if [ -f /var/lock/subsys/ucarp ]; then
++            stop
++            start
++        fi
++        ;;
++    status)
++        if pidof -o %PPID ${PROGRAM} > /dev/null; then
++            echo "Running"
++            RETVAL=0
++        else
++            echo "Not running"
++            RETVAL=1
++        fi
++        ;;
++    *)
++        echo "Usage: $0 {start|stop|restart|condrestart|status}"
++        exit 1
++esac
++exit $RETVAL
++
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.service b/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.service
+new file mode 100644
+index 0000000..015837e
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/ucarp.service
+@@ -0,0 +1,11 @@
++[Unit]
++Description=Common address redundancy protocol daemon
++After=syslog.target network.target
++
++[Service]
++PrivateTmp=true
++Type=forking
++ExecStart=@LIBEXECDIR@/ucarp start
++
++[Install]
++WantedBy=multi-user.target
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-001.conf.example b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-001.conf.example
+new file mode 100644
+index 0000000..2342522
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-001.conf.example
+@@ -0,0 +1,11 @@
++# Virtual IP configuration file for UCARP
++# The number (from 001 to 255) in the name of the file is the identifier
++
++# In the simple scenario, you want a single virtual IP address from the _same_
++# network to be taken over by one of the routers.
++SOURCE_ADDRESS="192.168.1.20"
++VIP_ADDRESS="192.168.1.252"
++
++# In more complex scenarios, check the "vip-common" file for values to override
++# and how to add options.
++
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-common.conf b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-common.conf
+new file mode 100644
+index 0000000..6325346
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-common.conf
+@@ -0,0 +1,8 @@
++# Common VIP settings which can be overridden in individual vip-<nnnn>.conf
++PASSWORD="vip"
++BIND_INTERFACE="eth0"
++SOURCE_ADDRESS=""
++
++# If you have extra options to add, see "ucarp --help" output
++OPTIONS="--shutdown --preempt"
++
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
+new file mode 100644
+index 0000000..a431c32
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-down.sh
+@@ -0,0 +1,7 @@
++#! /bin/sh
++exec 2> /dev/null
++
++#/sbin/ip addr del "$2"/24 dev "$1"
++
++# or alternatively:
++/sbin/ifconfig "$1":254 down
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
+new file mode 100644
+index 0000000..c1b8a4f
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp/vip-up.sh
+@@ -0,0 +1,7 @@
++#! /bin/sh
++exec 2> /dev/null
++
++#/sbin/ip addr add "$2"/24 dev "$1"
++
++# or alternatively:
++/sbin/ifconfig "$1":254 "$2" netmask 255.255.255.0 
+diff --git a/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb b/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
+new file mode 100644
+index 0000000..6f30bf7
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/ucarp/ucarp_1.5.2.bb
+@@ -0,0 +1,65 @@
++SUMMARY = "Common Address Redundancy Protocol for Unix"
++DESCRIPTION = "UCARP allows a couple of hosts to share common \
++virtual IP addresses in order to provide automatic failover. \
++It is a portable userland implementation of the secure and \
++patent-free Common Address Redundancy Protocol (CARP, OpenBSD's \
++alternative to the patents-bloated VRRP. \
++Strong points of the CARP protocol are: very low overhead, \
++cryptographically signed messages, interoperability between \
++different operating systems and no need for any dedicated extra \
++network link between redundant hosts."
++
++HOMEPAGE = "http://www.ucarp.org"
++
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://COPYING;md5=278a886e91f2f6c983ffdf040130cdc6"
++
++SRC_URI = "http://download.pureftpd.org/pub/ucarp/${BPN}-${PV}.tar.gz \
++           file://ucarp-configure-sha1.patch \
++           file://ucarp-configure-snprintf.patch \
++           file://ucarp.init \
++           file://vip-001.conf.example \
++           file://vip-common.conf \
++           file://vip-up.sh \
++           file://vip-down.sh \
++           file://ucarp.service \
++          "
++
++SRC_URI[md5sum] = "e3caa733316a32c09e5d3817617e9145"
++SRC_URI[sha256sum] = "f3cc77e28481fd04f62bb3d4bc03104a97dd316c80c0ed04ad7be24b544112f3"
++
++inherit autotools gettext systemd
++
++DEPENDS = "libpcap"
++
++SYSTEMD_SERVICE_${PN} = "ucarp.service"
++SYSTEMD_AUTO_ENABLE = "disable"
++
++EXTRA_OECONF += "--sysconfdir=${sysconfdir}/${BPN}"
++
++# fix the perms for config.rpath
++do_configure_prepend() {
++    chmod 755 ${S}/config.rpath
++}
++
++do_install_append() {
++    sed -i -e 's#\(UPSCRIPT=\).*#\1${libexecdir}/vip-up.sh#' \
++           -e 's#\(DOWNSCRIPT=\).*#\1${libexecdir}/vip-down.sh#' ${WORKDIR}/ucarp.init
++
++    install -D -m 0755 ${WORKDIR}/ucarp.init ${D}${sysconfdir}/init.d/ucarp
++
++    # For systemd
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
++        install -D -m 0755 ${WORKDIR}/ucarp.init ${D}${libexecdir}/ucarp
++        install -D -m 0644 ${WORKDIR}/ucarp.service ${D}${systemd_system_unitdir}/ucarp.service
++        sed -i -e 's,@LIBEXECDIR@,${libexecdir},g' ${D}${systemd_system_unitdir}/ucarp.service
++    fi
++
++    install -m 0755 -d ${D}${sysconfdir}/ucarp
++    install -m 0600 ${WORKDIR}/vip-001.conf.example ${D}${sysconfdir}/ucarp/vip-001.conf.example
++    install -m 0600 ${WORKDIR}/vip-common.conf ${D}${sysconfdir}/ucarp/vip-common.conf
++
++    install -m 0755 -d ${D}${libexecdir}
++    install -m 0700 ${WORKDIR}/vip-up.sh ${D}${libexecdir}/vip-up.sh
++    install -m 0700 ${WORKDIR}/vip-down.sh ${D}${libexecdir}/vip-down.sh
++}
+-- 
+2.7.4
+
 
