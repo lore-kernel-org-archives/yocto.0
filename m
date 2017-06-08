@@ -1,64 +1,32 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41425E00BF6; Thu,  8 Jun 2017 10:59:52 -0700 (PDT)
+	id BA350E00BF6; Thu,  8 Jun 2017 11:45:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAA2DE00B18
-	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 10:59:49 -0700 (PDT)
-Received: by mail-wm0-f43.google.com with SMTP id d64so15314849wmf.1
-	for <yocto@yoctoproject.org>; Thu, 08 Jun 2017 10:59:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=v+MCn9rg3kmg6Hh4tWS/XwQmWYg0ba2iJH46toKSYwg=;
-	b=suTp/gj0gl/GsWIO0OnO/m8EomH63QAea3YPq7WCEYPowdqNF4WRMPeTJXC3NVRbUl
-	kQoHDzv/WYTeunpBVNdSi3SokUPxA9d/yXKsuLh3ximiSizx7OttJ67plvM0JZilx5Fz
-	DNjwoV/AyFU+8n2EtGbEHsEKKQ/H8NCyTNrQ62DHM8b7H1oUr1Hu96MGjEWQa89aTXWM
-	/4Wl9axncFZ5feG9V6v6M31utfy0R19y/Q71JdvGMi+3Ilu9h0nh24F8AKhJObuoZIyX
-	D7ZRDgS8RfJJOPHJPDgn56y/7QEnXQAWeUYhNm+TFl4FtPSFmcdUbsRA5qYlHdQkKKYH
-	hd2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=v+MCn9rg3kmg6Hh4tWS/XwQmWYg0ba2iJH46toKSYwg=;
-	b=sUQlpBh1uQLbbB7/VygPWZVuk4so6/1zVEG81SAF9s+hcMzxJAycnl2wSX4vruRKyX
-	2ChxVyoHjUN5Qv/Cg/kYBrfZ/4uZwUhH9FN96PvjLI+PJj6C1D2miizzVnB0BHuOKOWD
-	qpItUpqhVX6alWy9OCG4QyCZuD5d1Y0h3jEwCwUFHamtMZU0t/8aOolddeMdcdzYNRJI
-	DJm/LsGYV9Sg5272LHnaWdqhnw3FQ2ctCWm4Yb3tNmVdh3JuiZ+7ty3Pef2efN/6OPdu
-	C7TxK56/DG+DdJK21E59i03Od/O/vJzcVUm39wktzUC6iHiKuCr22zXTZeUnlUwM/etp
-	A34w==
-X-Gm-Message-State: AODbwcBpc2QZ0+xM5mkis2N+R+EAay8xEiaxvbcImGXTPt/c2HPpztrC
-	O0da2SyjxZCkRHrZoiAYYv4b77CXsA==
-X-Received: by 10.80.143.227 with SMTP id y90mr30517551edy.131.1496944788127; 
-	Thu, 08 Jun 2017 10:59:48 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88B9BE00B18
+	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 11:45:18 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v58IjF9a025623
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Thu, 8 Jun 2017 11:45:15 -0700
+Received: from yow-bashfiel-d4.wrs.com (128.224.56.94) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.294.0; Thu, 8 Jun 2017 11:45:15 -0700
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+To: <richard.purdie@linuxfoundation.org>
+Date: Thu, 8 Jun 2017 14:45:14 -0400
+Message-ID: <1496947514-11876-1-git-send-email-bruce.ashfield@windriver.com>
+X-Mailer: git-send-email 2.5.0
 MIME-Version: 1.0
-Received: by 10.80.153.222 with HTTP; Thu, 8 Jun 2017 10:59:17 -0700 (PDT)
-In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A40295F079EEFC@IR-CENTRAL.corp.innerrange.com>
-References: <5500469A22567C4BAF673A6E86AFA3A40295F079EEFC@IR-CENTRAL.corp.innerrange.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 8 Jun 2017 10:59:17 -0700
-Message-ID: <CAMKF1so5x15BOtVDiMaQw0muDPBMVs_FM--iQmHzbuRU5Y6cXA@mail.gmail.com>
-To: Craig McQueen <craig.mcqueen@innerrange.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: dllmap config for a Mono app
+Cc: yocto@yoctoproject.org
+Subject: [PATCH] yocto-bsp: update reference BSPs to 4.1 latest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,53 +38,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Jun 2017 17:59:52 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 08 Jun 2017 18:45:21 -0000
+Content-Type: text/plain
 
-On Wed, Jun 7, 2017 at 11:41 PM, Craig McQueen
-<craig.mcqueen@innerrange.com> wrote:
-> I have a Mono app that uses DllImport to load some functions from librari=
-es. The app can't find the libraries unless I create a Mono config file con=
-taining dllmap lines to map the library's plain "DLL" name (e.g. "foo") to =
-the real name of the .so file (e.g. "libfoo.so.4").
->
-> * What would be a good way in the .bb recipe to automatically create the =
-required Mono config file? It would need to find the "real" names of the li=
-brary files from the library(s) build output. So it would DEPENDS on the li=
-brary(s).
->
+The reference BSPs are lagging on their 4.1 SRCREVs, which means
+-stable updates, and gcc-7 build fixes are missing.
 
-mono.bbclass.
+Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+---
+ meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.1.bbappend | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> * Is it better to create a local config file, or write it into /etc/mono/=
-config? (My Mono app has the DllImports in a compiled DLL, and so far I've =
-found that I need to create a local MyDll.dll.config file; making a MyApp.e=
-xe.config file doesn't work.)
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.1.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.1.bbappend
+index b308c8dfa1cc..afb04c28f4d1 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.1.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.1.bbappend
+@@ -9,9 +9,9 @@ KMACHINE_genericx86-64 ?= "common-pc-64"
+ 
+ SRCREV_machine_genericx86    ?= "398d1785c6bde0085b99f00f346e199a15fbdcef"
+ SRCREV_machine_genericx86-64 ?= "398d1785c6bde0085b99f00f346e199a15fbdcef"
+-SRCREV_machine_edgerouter ?= "2ce56d130ddff67f43ec857cc51cd347666a0078"
+-SRCREV_machine_beaglebone ?= "235de25be3f143b91dcc69479b770722c508889e"
+-SRCREV_machine_mpc8315e-rdb ?= "2ce56d130ddff67f43ec857cc51cd347666a0078"
++SRCREV_machine_edgerouter ?= "398d1785c6bde0085b99f00f346e199a15fbdcef"
++SRCREV_machine_beaglebone ?= "79414e2b0e0b7f5b86e358a907f841486f428079"
++SRCREV_machine_mpc8315e-rdb ?= "398d1785c6bde0085b99f00f346e199a15fbdcef"
+ 
+ COMPATIBLE_MACHINE_genericx86 = "genericx86"
+ COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
+-- 
+2.5.0
 
-as long as it stays unique in rootfs you should be fine.
-
->
-> * Alternatively, the Mono app can find the libraries if plain libfoo.so s=
-ymbolic link to libfoo.so.4 exists in the rootfs. But this symbolic link no=
-rmally is only in the libfoo-dev package, not the libfoo package. Is there =
-some reasonable way to create and install the libfoo.so symbolic links on t=
-he rootfs?
->
-
-.so are considered used for development so its usually a symlink to real
-versioned .so or its a linker script in some projects. The default packagin=
-g
-rules therefore considers it so as well. This is as I said most common case
-but then there are packages where they use .so ( unversioned name) usually
-dlopen/ cases ( e.g. gstreamer plugins )
-
-> --
-> Craig McQueen
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
