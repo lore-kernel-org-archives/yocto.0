@@ -1,61 +1,59 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82247E00BDF; Thu,  8 Jun 2017 04:53:06 -0700 (PDT)
+	id 0658BE00BE6; Thu,  8 Jun 2017 05:05:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.216.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.38.181.40 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f173.google.com (mail-qt0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1031EE00B27
-	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 04:53:04 -0700 (PDT)
-Received: by mail-qt0-f173.google.com with SMTP id u19so37930322qta.3
-	for <yocto@yoctoproject.org>; Thu, 08 Jun 2017 04:53:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=2YJ1XO+rF+bfCeQmsgGSq8yw0LZ9a5YvjlnCzb9chDM=;
-	b=jzK/Ae+JGbedjCjvofWDpkAknmcTSH/CxFhQko8pVsMW1IqT5/fCA2hI+bOxO4olmQ
-	1TSUqfJlzhkj3ALofWYUUmPUzQdyb+qiF60EFckC026c3ymqZ50NI6MKeAuIWujbJ3L9
-	E+qsZJqwoXp8hgUOjX6E4bAVd9q6sllz6KFXHhtiyfZefdbtMF2DvedkP1g4/RxbF2tJ
-	krg1w6lSOBs4yw7i98gDKn9hDfQIH93M2HjAdCaAGseUD3ery8KGc6vRpi0Np7Ux9ssZ
-	V6ui5o5PSPd89K8ci91nH1FEC+eZeBcDi039/lrM2et29GL3GqRSwCB/9yG+shOJL19w
-	pNpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=2YJ1XO+rF+bfCeQmsgGSq8yw0LZ9a5YvjlnCzb9chDM=;
-	b=AOInAb47h9xfOAlM2Dq+aiEzv1MOG/Xgz2Z2Ckk3dmD18f0rrouejnRej9hMvVg5B3
-	D4e8QvSBXQI+ZoAAPkCityQn68RxdzqPZVQ0mpeIMOoV9LJrdYnV4OyQqMC9/FnmdVO8
-	MkIlYe4xZUYgF/3/vEyETDwsmTtqQeDfkL+UHxXxmLwDxFalHoVyuJIoGQfCmjjXK4z0
-	eGCv4RmgwtD9erWbsFpv65GOsu6GQQizsv+OQVziu+kD0Ue8TOw3TeOA8O1pvvxKClmI
-	VFsIQkyGSBAl34fEBKry9Bq1WYHdKKCmUceDdF/tbDFvWawcUMUNwUziOBlUpMKEkR4y
-	vWJg==
-X-Gm-Message-State: AODbwcDL3P2Rl8VjQyacRY1KhxXw/OaNekHfgZvB3MBG1YlxdrxQTc2U
-	S0ZZ9vulfCMpu7RTPP1vn9pAYmnI5snW
-X-Received: by 10.237.49.8 with SMTP id 8mr34454881qtg.161.1496922783868; Thu,
-	08 Jun 2017 04:53:03 -0700 (PDT)
+X-Greylist: delayed 240 seconds by postgrey-1.32 at yocto-www;
+	Thu, 08 Jun 2017 05:05:03 PDT
+Received: from smtp-out11.electric.net (smtp-out11.electric.net
+	[185.38.181.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FFD0E00B27
+	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 05:05:03 -0700 (PDT)
+Received: from 1dIw7Z-00048l-Vb by out11c.electric.net with emc1-ok (Exim 4.87)
+	(envelope-from <Adrian.Dudau@enea.com>)
+	id 1dIw7Z-00049s-WA; Thu, 08 Jun 2017 05:01:01 -0700
+Received: by emcmailer; Thu, 08 Jun 2017 05:01:01 -0700
+Received: from [192.36.1.72] (helo=mx-3.enea.com)
+	by out11c.electric.net with esmtps (TLSv1:ECDHE-RSA-AES256-SHA:256)
+	(Exim 4.87) (envelope-from <Adrian.Dudau@enea.com>)
+	id 1dIw7Z-00048l-Vb; Thu, 08 Jun 2017 05:01:01 -0700
+Received: from SESTOEX09.enea.se ([fe80::94d8:372f:210c:b4da]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0319.002; Thu, 8 Jun 2017 14:01:01 +0200
+From: Adrian Dudau <Adrian.Dudau@enea.com>
+To: "jackie.huang@windriver.com" <jackie.huang@windriver.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-cgl][PATCH] poky-cgl: avoid installing multiple
+	syslogs
+Thread-Index: AQHS4E7lPzMbnJ+CmUOt4DiL9NQR+A==
+Date: Thu, 8 Jun 2017 12:01:01 +0000
+Message-ID: <1496923261.1730.5.camel@enea.com>
+References: <20170602075946.31648-1-jackie.huang@windriver.com>
+In-Reply-To: <20170602075946.31648-1-jackie.huang@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.140.45]
 MIME-Version: 1.0
-Received: by 10.140.35.103 with HTTP; Thu, 8 Jun 2017 04:52:43 -0700 (PDT)
-In-Reply-To: <395f03fe-7c6c-820b-5562-f98388cae49a@mlbassoc.com>
-References: <395f03fe-7c6c-820b-5562-f98388cae49a@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 8 Jun 2017 12:52:43 +0100
-Message-ID: <CAJTo0LZysn_2MJO9ffhKBrweHC6i+cDnYn0unSqRB_P549D0cg@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: What's up with python3
+X-Outbound-IP: 192.36.1.72
+X-Env-From: Adrian.Dudau@enea.com
+X-Proto: esmtps
+X-Revdns: mx-3.enea.com
+X-HELO: mx-3.enea.com
+X-TLS: TLSv1:ECDHE-RSA-AES256-SHA:256
+X-Authenticated_ID: 
+X-PolicySMART: 6551647
+X-Virus-Status: Scanned by VirusSMART (c)
+X-Virus-Status: Scanned by VirusSMART (s)
+Subject: Re: [meta-cgl][PATCH] poky-cgl: avoid installing multiple syslogs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,46 +65,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Jun 2017 11:53:06 -0000
-Content-Type: multipart/alternative; boundary="94eb2c0c9b1cca1d520551717e7b"
+X-List-Received-Date: Thu, 08 Jun 2017 12:05:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7D16FEF0A64B30449E553C22AF1B6097@enea.com>
+Content-Transfer-Encoding: base64
 
---94eb2c0c9b1cca1d520551717e7b
-Content-Type: text/plain; charset="UTF-8"
+T24gZnJlLCAyMDE3LTA2LTAyIGF0IDE1OjU5ICswODAwLCBqYWNraWUuaHVhbmdAd2luZHJpdmVy
+LmNvbSB3cm90ZToNCj4gRnJvbTogSmFja2llIEh1YW5nIDxqYWNraWUuaHVhbmdAd2luZHJpdmVy
+LmNvbT4NCj4gDQo+IGRvX3Jvb3RmcyBmYWlscyBpZiBtdWx0aXBsZSBzeXNsb2dzIGFyZSBpbnN0
+YWxsZWQ6DQo+ID4gDQo+ID4gRXJyb3I6IHBhY2thZ2Ugc3lzbG9nLW5nLTMuOC4xLXIwLmk1ODYg
+Y29uZmxpY3RzIHdpdGggc3lza2xvZ2QNCj4gPiBwcm92aWRlZA0KPiDCoCBieSBzeXNrbG9nZC0x
+LjUuMS1yMC5pNTg2DQo+IA0KPiBjb3JlLWltYWdlLWNnbCByZXF1aXJlcyBwYWNrYWdlZ3JvdXAt
+Y29yZS1mdWxsLWNtZGxpbmUgd2hpY2ggZGVwZW5kcw0KPiBvbiBWSVJUVUFMLVJVTlRJTUVfc3lz
+bG9nIChkZWZhdWx0IHRvIHN5c2tsb2dkKSwgc28gc2V0IHRoZQ0KPiBWSVJUVUFMLVJVTlRJTUVf
+c3lzbG9nIGluIGRpc3RybyBjb25mIGFuZCBubyBuZWVkIHRvIGRlcGVuZHMNCj4gb24gYW55IHN5
+c2xvZyBpbiBwYWNrYWdlZ3JvdXAtY2dsLWFwcGxpY2F0aW9ucywgdGhlbiB3ZSBlbnN1cmUNCj4g
+dGhhdCBvbmx5IG9uZSBzeXNsb2cgaXMgaW5zdGFsbGVkIHRvIGF2b2lkIGNvbmZsaWN0cy4NCj4g
+DQo+IFNpZ25lZC1vZmYtYnk6IEphY2tpZSBIdWFuZyA8amFja2llLmh1YW5nQHdpbmRyaXZlci5j
+b20+DQo+IC0tLQ0KPiDCoG1ldGEtY2dsLWNvbW1vbi9jb25mL2Rpc3Ryby9wb2t5LWNnbC5jb25m
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB8IDQNCj4gKysrKw0K
+PiDCoG1ldGEtY2dsLWNvbW1vbi9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jZ2wtYXBwbGlj
+YXRpb25zLmJiIHwgMg0KPiAtLQ0KPiDCoDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCsp
+LCAyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL21ldGEtY2dsLWNvbW1vbi9jb25m
+L2Rpc3Ryby9wb2t5LWNnbC5jb25mIGIvbWV0YS1jZ2wtDQo+IGNvbW1vbi9jb25mL2Rpc3Ryby9w
+b2t5LWNnbC5jb25mDQo+IGluZGV4IDkwY2M4MmIuLjY5ZjYyMDAgMTAwNjQ0DQo+IC0tLSBhL21l
+dGEtY2dsLWNvbW1vbi9jb25mL2Rpc3Ryby9wb2t5LWNnbC5jb25mDQo+ICsrKyBiL21ldGEtY2ds
+LWNvbW1vbi9jb25mL2Rpc3Ryby9wb2t5LWNnbC5jb25mDQo+IEBAIC01LDMgKzUsNyBAQCBESVNU
+Uk8gPSAicG9reS1jZ2wiDQo+IMKgDQo+IMKgSU1BR0VfQ0xBU1NFUyArPSAiaW1hZ2VfdHlwZXNf
+dWJvb3QiDQo+IMKgUFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwvcmVmcG9saWN5PSJyZWZwb2xp
+Y3ktdGFyZ2V0ZWQiDQo+ICsNCj4gKyMgd2Ugd2FudCB0byB1c2UgcnN5c2xvZyBhcyB0aGUgZGVm
+YXVsdCBzeXNsb2csIGJ1dCBpdCdzIEdQTHYzLCBzbw0KPiBuZWVkIHRoaXMNCj4gKyMgY2hlY2sg
+dG8gc3dpdGNoIHRvIHN5c2xvZy1uZyBpZiBHTFB2MyBpcyBibGFja2xpc3RlZC4NCj4gK1ZJUlRV
+QUwtUlVOVElNRV9zeXNsb2cgPz0gIiR7QGJiLnV0aWxzLmNvbnRhaW5zKCdJTkNPTVBBVElCTEVf
+TElDRU5TDQo+IEUnLCAnR1BMdjMnLCAnc3lzbG9nLW5nJywgJ3JzeXNsb2cnLCBkKX0iDQo+IGRp
+ZmYgLS1naXQgYS9tZXRhLWNnbC1jb21tb24vcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY2ds
+LQ0KPiBhcHBsaWNhdGlvbnMuYmIgYi9tZXRhLWNnbC1jb21tb24vcGFja2FnZWdyb3Vwcy9wYWNr
+YWdlZ3JvdXAtY2dsLQ0KPiBhcHBsaWNhdGlvbnMuYmINCj4gaW5kZXggYjU2NmUyZC4uYmUzNjA3
+NSAxMDA2NDQNCj4gLS0tIGEvbWV0YS1jZ2wtY29tbW9uL3BhY2thZ2Vncm91cHMvcGFja2FnZWdy
+b3VwLWNnbC1hcHBsaWNhdGlvbnMuYmINCj4gKysrIGIvbWV0YS1jZ2wtY29tbW9uL3BhY2thZ2Vn
+cm91cHMvcGFja2FnZWdyb3VwLWNnbC1hcHBsaWNhdGlvbnMuYmINCj4gQEAgLTQwLDcgKzQwLDYg
+QEAgUkRFUEVORFNfJHtQTn0gPSAiIFwNCj4gwqDCoMKgwqDCoHF1b3RhIFwNCj4gwqDCoMKgwqDC
+oHNtYXJ0bW9udG9vbHMgXA0KPiDCoMKgwqDCoMKgbW9uaXQgXA0KPiAtwqDCoMKgwqBzeXNsb2ct
+bmcgXA0KPiDCoMKgwqDCoMKgb2NmczItdG9vbHMgXA0KPiDCoMKgwqDCoMKgbG9nY2hlY2sgXA0K
+PiDCoMKgwqDCoMKgc2FtaGFpbi1jbGllbnQgXA0KPiBAQCAtNDgsNyArNDcsNiBAQCBSREVQRU5E
+U18ke1BOfSA9ICIgXA0KPiDCoMKgwqDCoMKgYXVkaXQgXA0KPiDCoMKgwqDCoMKgcGFtLXBhc3N3
+ZHFjIFwNCj4gwqDCoMKgwqDCoGxpYnBhbSBcDQo+IC3CoMKgwqDCoHJzeXNsb2cgXA0KPiDCoMKg
+wqDCoMKgbWFrZWR1bXBmaWxlIFwNCj4gwqDCoMKgwqDCoCINCj4gwqANCj4gLS3CoA0KPiAyLjEx
+LjANCj4gDQoNClBhdGNoIMKgIGdvb2QgYnV0IGRvZXNuJ3QgYXBwbHkuIFBsZWFzZSByZWJhc2Ug
+b24gb3JpZ2luL21hc3RlciBhbmQgc2VuZA0KYWdhaW4uDQoNCmJlc3QgcmVnYXJkcw0KLS1BZHJp
+YW4=
 
-On 8 June 2017 at 08:28, Gary Thomas <gary@mlbassoc.com> wrote:
-
-> I've listed all the recipes used in my build (from bitbake -g =>
-> recipe-depends.dot)
-> and sucked out the ones that claim to depend on python3.  I don't see why,
-> for
-> example, python(2) depends on python3?
->
-
-I'm 90% sure that this all comes through opkg-utils being the provider for
-update-alternatives.
-
-You could verify this by disabling the python PACKAGECONFIG in opkg-utils.
-
-Ross
-
---94eb2c0c9b1cca1d520551717e7b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 8 June 2017 at 08:28, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><div id=3D":7c" class=3D"a3s aXjCH m1=
-5c869b9f43a41a9">I&#39;ve listed all the recipes used in my build (from bit=
-bake -g =3D&gt; recipe-depends.dot)<br>
-and sucked out the ones that claim to depend on python3.=C2=A0 I don&#39;t =
-see why, for<br>
-example, python(2) depends on python3?<br></div></blockquote></div><br>I&#3=
-9;m 90% sure that this all comes through opkg-utils being the provider for =
-update-alternatives.</div><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra">You could verify this by disabling the python PACKAGECONFI=
-G in opkg-utils.</div><div class=3D"gmail_extra"><br></div><div class=3D"gm=
-ail_extra">Ross</div></div>
-
---94eb2c0c9b1cca1d520551717e7b--
