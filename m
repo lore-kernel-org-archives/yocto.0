@@ -1,6 +1,6 @@
 Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 64697E00B87; Thu,  8 Jun 2017 18:10:09 -0700 (PDT)
+	id D37A1E00B57; Thu,  8 Jun 2017 18:10:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,27 +8,29 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C90E8E00B53
-	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 18:10:07 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 916A2E00B57
+	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 18:10:08 -0700 (PDT)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v591A6fi015557
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v591A7aR007535
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 8 Jun 2017 18:10:06 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Thu, 8 Jun 2017 18:10:08 -0700 (PDT)
 Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
 	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.294.0; Thu, 8 Jun 2017 18:10:06 -0700
+	14.3.294.0; Thu, 8 Jun 2017 18:10:07 -0700
 From: <jackie.huang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Fri, 9 Jun 2017 09:10:00 +0800
-Message-ID: <cover.1496970398.git.jackie.huang@windriver.com>
+Date: Fri, 9 Jun 2017 09:10:01 +0800
+Message-ID: <0b3ed8caaebdb5b2eec02b450228fd0d95dc37ed.1496970398.git.jackie.huang@windriver.com>
 X-Mailer: git-send-email 2.11.0
+In-Reply-To: <cover.1496970398.git.jackie.huang@windriver.com>
+References: <cover.1496970398.git.jackie.huang@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-cgl][PATCH 0/4 v2] resource-agents: update to 1.1.16 and several fixes
+Subject: [meta-cgl][PATCH 1/4 v2] resource-agents: fix dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,38 +42,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Jun 2017 01:10:09 -0000
+X-List-Received-Date: Fri, 09 Jun 2017 01:10:10 -0000
 Content-Type: text/plain
 
 From: Jackie Huang <jackie.huang@windriver.com>
 
-v2 comments:
-rebased and fixed the conflicts.
+* Add missing runtime dependencies for:
+  - many tools and scripts need bash and perl.
+  - lvm.sh requires: lvm2
+  - ip.sh requires: ethtool iproute2 iputils-arping
+  - fs.sh requires: e2fsprogs-e2fsck util-linux quota
+  - netfs.sh requires: procps util-linux nfs-utils
 
---
-The following changes since commit 0296ce6a32e9b130af347267850940b189b78675:
+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+---
+ .../cluster-resource-agents/resource-agents_3.9.7.bb         | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-  cluster-glue: update useradd parameters (2017-06-08 15:10:31 +0200)
-
-are available in the git repository at:
-
-  https://github.com/jackiehjm/meta-cgl.git jhuang0/up_resource-agents-v2_170609_0
-  https://github.com//tree/jhuang0/up_resource-agents-v2_170609_0
-
-Jackie Huang (4):
-  resource-agents: fix dependencies
-  resource-agents: fix install-sh not found
-  resource-agents: fix builds error when S != B
-  resource-agents: update to version 4.0.1
-
- .../resource-agents/fix-install-sh-not-found.patch | 60 ++++++++++++++++++++++
- ...uilds-when-srcdir-and-builddir-are-sepera.patch | 39 ++++++++++++++
- ...ce-agents_3.9.7.bb => resource-agents_4.0.1.bb} | 18 +++++--
- 3 files changed, 114 insertions(+), 3 deletions(-)
- create mode 100644 meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/fix-install-sh-not-found.patch
- create mode 100644 meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents/fs.sh-fix-builds-when-srcdir-and-builddir-are-sepera.patch
- rename meta-cgl-common/recipes-cgl/cluster-resource-agents/{resource-agents_3.9.7.bb => resource-agents_4.0.1.bb} (83%)
-
+diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_3.9.7.bb b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_3.9.7.bb
+index e6f127b..2e8b8f1 100644
+--- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_3.9.7.bb
++++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_3.9.7.bb
+@@ -28,7 +28,17 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe \
+                     file://COPYING.GPLv3;md5=d32239bcb673463ab874e80d47fae504"
+ 
+ DEPENDS = "cluster-glue"
+-RDEPENDS_${PN} += "bash"
++
++# There are many tools and scripts that need bash and perl.
++# lvm.sh requires: lvm2
++# ip.sh requires: ethtool iproute2 iputils-arping
++# fs.sh requires: e2fsprogs-e2fsck util-linux quota
++# netfs.sh requires: procps util-linux nfs-utils
++RDEPENDS_${PN} += "bash perl lvm2 \
++    ethtool iproute2 iputils-arping \
++    e2fsprogs-e2fsck util-linux quota \
++    procps nfs-utils \
++"
+ 
+ inherit autotools systemd pkgconfig
+ 
 -- 
 2.11.0
 
