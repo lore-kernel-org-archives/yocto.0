@@ -1,66 +1,44 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04A3EE00BBF; Thu,  8 Jun 2017 17:52:06 -0700 (PDT)
+	id 94B1DE00C06; Thu,  8 Jun 2017 17:54:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kratsg[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f172.google.com (mail-ua0-f172.google.com
-	[209.85.217.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B31EE00B57
-	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 17:52:03 -0700 (PDT)
-Received: by mail-ua0-f172.google.com with SMTP id 68so9773184uas.0
-	for <yocto@yoctoproject.org>; Thu, 08 Jun 2017 17:52:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=AZ/wmuhZqd7YSJ7UA2J0DYp6jD4GSsHeEhaLdT9Qvks=;
-	b=ol/pEVMxdeEVly1vdEBf4jv725TvNSHzs/0/oU/KCI0EtCIPV14l2ieFBaQC/cAcWR
-	AC66VZvU8Snzc0LzwRdS1WL4pFhJVRtcnHVENHZPtrRzMGepT5JoV6L5sYWD5wiaBpAz
-	ECvW4q/sscWMAki1KO8uR1ixcQ1No1K+s6ugKOh82qQoJc6+lrRczkh103vRH1z+/PlV
-	UoFzNrCBWii1sXwboWqC3o53t2cBDZleYjCeS8vmQU+R+bo5GiBc0msxDlOEf0fD+69d
-	G9E6nHv8czCpgO1u7zKHaOYWjqIZUi4X6ySC8fp7lI6zQMvn7fXNi4J1WLCb/YHMN8SR
-	xQ8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=AZ/wmuhZqd7YSJ7UA2J0DYp6jD4GSsHeEhaLdT9Qvks=;
-	b=cmwhLvZBObiEUM/GxTIam0+0cZd/gmID6pyQRPOQ3fv88F2IVwKAHqk2W2YpDKbrRW
-	VIL9Ra1LS2wktRG7WXsEgiyVMdI7HUf6/R4hGBFd+pwVrdhDPsh8c8/y7fyI9SWSD4ub
-	CW1SRJHSSuJg1/iBfoczF+RIF4D9jjmKYlvf2IIQTT2iQxws4/0aElQ4rSqqi1yfnGy6
-	mspq6iwF78tzzmv06uF+MY/ChyCj8Cd3Fv/NZQaiU0/NPgiss292lnthG3xGPoC4v+70
-	c4ZEz9GPNxTeUJNwivqD/2EFCsrFOQ80a+XKYhY5lK4BK1TPZqWBcYy66HHfQ9BE4Tah
-	B8Dw==
-X-Gm-Message-State: AODbwcBwFRL2VaFMY+Frg0k2SuBwOUAoPSmsfapEyQPh9PN6ze5uz0LI
-	T2Q5PY4PdZdHZcS3xwcEclyP2fgydw==
-X-Received: by 10.176.2.79 with SMTP id 73mr14746355uas.111.1496969523347;
-	Thu, 08 Jun 2017 17:52:03 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2601E00B53
+	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 17:54:33 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v590sMUq007197
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 8 Jun 2017 17:54:23 -0700 (PDT)
+Received: from ALA-MBD.corp.ad.wrs.com ([fe80::d894:a649:cd4c:89b7]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0294.000;
+	Thu, 8 Jun 2017 17:54:22 -0700
+From: "Huang, Jie (Jackie)" <Jackie.Huang@windriver.com>
+To: Adrian Dudau <Adrian.Dudau@enea.com>
+Thread-Topic: [yocto] [meta-cgl][PATCH] poky-cgl: avoid installing multiple
+	syslogs
+Thread-Index: AQHS4E7lPzMbnJ+CmUOt4DiL9NQR+KIbtJig
+Date: Fri, 9 Jun 2017 00:54:21 +0000
+Message-ID: <1B858668EC6A94408DCA5225FDFA85AA014B7E262E@ALA-MBD.corp.ad.wrs.com>
+References: <20170602075946.31648-1-jackie.huang@windriver.com>
+	<1496923261.1730.5.camel@enea.com>
+In-Reply-To: <1496923261.1730.5.camel@enea.com>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.224.176.230]
 MIME-Version: 1.0
-References: <CAFzUWG=m-UeJjFA2O3CEqHkjmNYOY2Gf2pHUfGJH4KU=YDFOHQ@mail.gmail.com>
-	<CAMKF1sqUz+-FTn85nHmhqDorUf_xH-3WDLF+ZVsMZgygmemw1w@mail.gmail.com>
-	<CAFzUWGkGyAUKkhknhFsHESdwvYPrSEM0LG1Y3wOAsqid+FjvMw@mail.gmail.com>
-In-Reply-To: <CAFzUWGkGyAUKkhknhFsHESdwvYPrSEM0LG1Y3wOAsqid+FjvMw@mail.gmail.com>
-From: Giordon Stark <kratsg@gmail.com>
-Date: Fri, 09 Jun 2017 00:51:52 +0000
-Message-ID: <CAFzUWGmGe4N4e47BJ4Dy5kEZHj2X9sdq0Q5CqikEmV6_xdvZYw@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: LLVM linking for custom recipe
+Subject: Re: [meta-cgl][PATCH] poky-cgl: avoid installing multiple syslogs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,273 +50,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Jun 2017 00:52:06 -0000
-Content-Type: multipart/alternative; boundary="001a113d143cadc3e105517c6046"
+X-List-Received-Date: Fri, 09 Jun 2017 00:54:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---001a113d143cadc3e105517c6046
-Content-Type: text/plain; charset="UTF-8"
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQWRyaWFuIER1ZGF1IFtt
+YWlsdG86QWRyaWFuLkR1ZGF1QGVuZWEuY29tXQ0KPiBTZW50OiBUaHVyc2RheSwgSnVuZSAwOCwg
+MjAxNyAyMDowMQ0KPiBUbzogSHVhbmcsIEppZSAoSmFja2llKTsgeW9jdG9AeW9jdG9wcm9qZWN0
+Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBbbWV0YS1jZ2xdW1BBVENIXSBwb2t5LWNnbDog
+YXZvaWQgaW5zdGFsbGluZyBtdWx0aXBsZQ0KPiBzeXNsb2dzDQo+IA0KPiBPbiBmcmUsIDIwMTct
+MDYtMDIgYXQgMTU6NTkgKzA4MDAsIGphY2tpZS5odWFuZ0B3aW5kcml2ZXIuY29tIHdyb3RlOg0K
+PiA+IEZyb206IEphY2tpZSBIdWFuZyA8amFja2llLmh1YW5nQHdpbmRyaXZlci5jb20+DQo+ID4N
+Cj4gPiBkb19yb290ZnMgZmFpbHMgaWYgbXVsdGlwbGUgc3lzbG9ncyBhcmUgaW5zdGFsbGVkOg0K
+PiA+ID4NCj4gPiA+IEVycm9yOiBwYWNrYWdlIHN5c2xvZy1uZy0zLjguMS1yMC5pNTg2IGNvbmZs
+aWN0cyB3aXRoIHN5c2tsb2dkDQo+ID4gPiBwcm92aWRlZA0KPiA+IMKgIGJ5IHN5c2tsb2dkLTEu
+NS4xLXIwLmk1ODYNCj4gPg0KPiA+IGNvcmUtaW1hZ2UtY2dsIHJlcXVpcmVzIHBhY2thZ2Vncm91
+cC1jb3JlLWZ1bGwtY21kbGluZSB3aGljaCBkZXBlbmRzDQo+ID4gb24gVklSVFVBTC1SVU5USU1F
+X3N5c2xvZyAoZGVmYXVsdCB0byBzeXNrbG9nZCksIHNvIHNldCB0aGUNCj4gPiBWSVJUVUFMLVJV
+TlRJTUVfc3lzbG9nIGluIGRpc3RybyBjb25mIGFuZCBubyBuZWVkIHRvIGRlcGVuZHMNCj4gPiBv
+biBhbnkgc3lzbG9nIGluIHBhY2thZ2Vncm91cC1jZ2wtYXBwbGljYXRpb25zLCB0aGVuIHdlIGVu
+c3VyZQ0KPiA+IHRoYXQgb25seSBvbmUgc3lzbG9nIGlzIGluc3RhbGxlZCB0byBhdm9pZCBjb25m
+bGljdHMuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBKYWNraWUgSHVhbmcgPGphY2tpZS5odWFu
+Z0B3aW5kcml2ZXIuY29tPg0KPiA+IC0tLQ0KPiA+IMKgbWV0YS1jZ2wtY29tbW9uL2NvbmYvZGlz
+dHJvL3Bva3ktY2dsLmNvbmbCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoHwgNA0KPiA+ICsrKysNCj4gPiDCoG1ldGEtY2dsLWNvbW1vbi9wYWNrYWdlZ3JvdXBzL3Bh
+Y2thZ2Vncm91cC1jZ2wtYXBwbGljYXRpb25zLmJiIHwgMg0KPiA+IC0tDQo+ID4gwqAyIGZpbGVz
+IGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gPg0KPiA+IGRpZmYg
+LS1naXQgYS9tZXRhLWNnbC1jb21tb24vY29uZi9kaXN0cm8vcG9reS1jZ2wuY29uZiBiL21ldGEt
+Y2dsLQ0KPiA+IGNvbW1vbi9jb25mL2Rpc3Ryby9wb2t5LWNnbC5jb25mDQo+ID4gaW5kZXggOTBj
+YzgyYi4uNjlmNjIwMCAxMDA2NDQNCj4gPiAtLS0gYS9tZXRhLWNnbC1jb21tb24vY29uZi9kaXN0
+cm8vcG9reS1jZ2wuY29uZg0KPiA+ICsrKyBiL21ldGEtY2dsLWNvbW1vbi9jb25mL2Rpc3Ryby9w
+b2t5LWNnbC5jb25mDQo+ID4gQEAgLTUsMyArNSw3IEBAIERJU1RSTyA9ICJwb2t5LWNnbCINCj4g
+Pg0KPiA+IMKgSU1BR0VfQ0xBU1NFUyArPSAiaW1hZ2VfdHlwZXNfdWJvb3QiDQo+ID4gwqBQUkVG
+RVJSRURfUFJPVklERVJfdmlydHVhbC9yZWZwb2xpY3k9InJlZnBvbGljeS10YXJnZXRlZCINCj4g
+PiArDQo+ID4gKyMgd2Ugd2FudCB0byB1c2UgcnN5c2xvZyBhcyB0aGUgZGVmYXVsdCBzeXNsb2cs
+IGJ1dCBpdCdzIEdQTHYzLCBzbw0KPiA+IG5lZWQgdGhpcw0KPiA+ICsjIGNoZWNrIHRvIHN3aXRj
+aCB0byBzeXNsb2ctbmcgaWYgR0xQdjMgaXMgYmxhY2tsaXN0ZWQuDQo+ID4gK1ZJUlRVQUwtUlVO
+VElNRV9zeXNsb2cgPz0gIiR7QGJiLnV0aWxzLmNvbnRhaW5zKCdJTkNPTVBBVElCTEVfTElDRU5T
+DQo+ID4gRScsICdHUEx2MycsICdzeXNsb2ctbmcnLCAncnN5c2xvZycsIGQpfSINCj4gPiBkaWZm
+IC0tZ2l0IGEvbWV0YS1jZ2wtY29tbW9uL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWNnbC0N
+Cj4gPiBhcHBsaWNhdGlvbnMuYmIgYi9tZXRhLWNnbC1jb21tb24vcGFja2FnZWdyb3Vwcy9wYWNr
+YWdlZ3JvdXAtY2dsLQ0KPiA+IGFwcGxpY2F0aW9ucy5iYg0KPiA+IGluZGV4IGI1NjZlMmQuLmJl
+MzYwNzUgMTAwNjQ0DQo+ID4gLS0tIGEvbWV0YS1jZ2wtY29tbW9uL3BhY2thZ2Vncm91cHMvcGFj
+a2FnZWdyb3VwLWNnbC1hcHBsaWNhdGlvbnMuYmINCj4gPiArKysgYi9tZXRhLWNnbC1jb21tb24v
+cGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY2dsLWFwcGxpY2F0aW9ucy5iYg0KPiA+IEBAIC00
+MCw3ICs0MCw2IEBAIFJERVBFTkRTXyR7UE59ID0gIiBcDQo+ID4gwqDCoMKgwqDCoHF1b3RhIFwN
+Cj4gPiDCoMKgwqDCoMKgc21hcnRtb250b29scyBcDQo+ID4gwqDCoMKgwqDCoG1vbml0IFwNCj4g
+PiAtwqDCoMKgwqBzeXNsb2ctbmcgXA0KPiA+IMKgwqDCoMKgwqBvY2ZzMi10b29scyBcDQo+ID4g
+wqDCoMKgwqDCoGxvZ2NoZWNrIFwNCj4gPiDCoMKgwqDCoMKgc2FtaGFpbi1jbGllbnQgXA0KPiA+
+IEBAIC00OCw3ICs0Nyw2IEBAIFJERVBFTkRTXyR7UE59ID0gIiBcDQo+ID4gwqDCoMKgwqDCoGF1
+ZGl0IFwNCj4gPiDCoMKgwqDCoMKgcGFtLXBhc3N3ZHFjIFwNCj4gPiDCoMKgwqDCoMKgbGlicGFt
+IFwNCj4gPiAtwqDCoMKgwqByc3lzbG9nIFwNCj4gPiDCoMKgwqDCoMKgbWFrZWR1bXBmaWxlIFwN
+Cj4gPiDCoMKgwqDCoMKgIg0KPiA+DQo+ID4gLS0NCj4gPiAyLjExLjANCj4gPg0KPiANCj4gUGF0
+Y2ggwqAgZ29vZCBidXQgZG9lc24ndCBhcHBseS4gUGxlYXNlIHJlYmFzZSBvbiBvcmlnaW4vbWFz
+dGVyIGFuZCBzZW5kDQo+IGFnYWluLg0KDQpSZWJhc2VkIGFuZCByZS1zZW50IGFzIHYyLg0KDQpU
+aGFua3MsDQpKYWNraWUNCg0KPiANCj4gYmVzdCByZWdhcmRzDQo+IC0tQWRyaWFuDQo=
 
-Looking into more details, I don't know or where bitbake tries to look for
-things as things get compiled (flags, environment, etc)... but the error
-message does say ROOT is looking for
-
-LLVMConfig.cmake
-llvm-config.cmake
-
-However, I see
-
-tmp/work/aarch64-poky-linux/llvm3.3/3.3-r0/llvm-3.3.src/cmake/modules/LLVM-Config.cmake
-
-which is perhaps why it can't find it. I assume the output name here isn't
-100% compatible, and I'm using meta-oe's llvm3.3. I'm just mostly stuck on
-CMake's default behavior here, I think.
-
-Giordon
-
-On Thu, Jun 8, 2017 at 4:37 PM Giordon Stark <kratsg@gmail.com> wrote:
-
-> Hi Khem,
->
-> Which recipe? My problem is that ROOT's CMake is unable to find the
-> cross-compiled LLVM, and I'm not sure how to get it to find it.
->
-> Giordon
->
-> On Thu, Jun 8, 2017 at 3:47 PM Khem Raj <raj.khem@gmail.com> wrote:
->
->> On Thu, Jun 8, 2017 at 1:42 PM, Giordon Stark <kratsg@gmail.com> wrote:
->> > Hi,
->> >
->> > I have the following error message when trying to get LLVM linked up.
->> The
->> > problem is that I'm using a widely used science software called ROOT
->> > (https://root.cern.ch/) with the following minimal recipe at the moment
->> > (
->> https://github.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb
->> )
->> > however I get the following error...
->> >
->> > Any ideas?
->>
->> Look into meta-clang there are patches for cross compiling clang/llvm
->> https://github.com/kraj/meta-clang
->>
->> >
->> > Giordon
->> >
->> > | CMake Error at cmake/modules/SearchInstalledSoftware.cmake:662
->> > (find_package):
->> > |   By not providing "FindLLVM.cmake" in CMAKE_MODULE_PATH this project
->> has
->> > |   asked CMake to find a package configuration file provided by
->> "LLVM", but
->> > |   CMake did not find one.
->> > |
->> > |   Could not find a package configuration file provided by "LLVM" with
->> any
->> > of
->> > |   the following names:
->> > |
->> > |     LLVMConfig.cmake
->> > |     llvm-config.cmake
->> > |
->> > |   Add the installation prefix of "LLVM" to CMAKE_PREFIX_PATH or set
->> > |   "LLVM_DIR" to a directory containing one of the above files.  If
->> "LLVM"
->> > |   provides a separate development package or SDK, be sure it has been
->> > |   installed.
->> > | Call Stack (most recent call first):
->> > |   CMakeLists.txt:58 (include)
->> > |
->> > |
->> > | -- Configuring incomplete, errors occurred!
->> > | See also
->> >
->> "/local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/build/CMakeFiles/CMakeOutput.log".
->> > | See also
->> >
->> "/local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/build/CMakeFiles/CMakeError.log".
->> > | WARNING:
->> >
->> /local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/temp/run.do_configure.16761:1
->> > exit 1 from 'cmake ${OECMAKE_SITEFILE}
->> >
->> /local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/root-6.04.12
->> > -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_INSTALL_BINDIR:PATH=bin
->> > -DCMAKE_INSTALL_SBINDIR:PATH=sbin
->> -DCMAKE_INSTALL_LIBEXECDIR:PATH=libexec
->> > -DCMAKE_INSTALL_SYSCONFDIR:PATH=/etc
->> > -DCMAKE_INSTALL_SHAREDSTATEDIR:PATH=../com
->> > -DCMAKE_INSTALL_LOCALSTATEDIR:PATH=/var -DCMAKE_INSTALL_LIBDIR:PATH=lib
->> > -DCMAKE_INSTALL_INCLUDEDIR:PATH=include
->> > -DCMAKE_INSTALL_DATAROOTDIR:PATH=share -DCMAKE_INSTALL_SO_NO_EXE=0
->> >
->> -DCMAKE_TOOLCHAIN_FILE=/local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/toolchain.cmake
->> > -DCMAKE_VERBOSE_MAKEFILE=1 -DCMAKE_NO_SYSTEM_FROM_IMPORTED=1
->> -Drootfit=ON
->> > -Dminuit2=ON -Dpython=ON -Dssl=ON -Dxrootd=ON -Dbuiltin_freetype=ON
->> > -Dbuiltin_llvm=OFF ${PACKAGECONFIG_CONFARGS} -Wno-dev'
->> > | ERROR: Function failed: do_configure (log file is located at
->> >
->> /local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/temp/log.do_configure.16761)
->> > ERROR: Task
->> > (/local/d4/meta-l1calo/recipes-core/root/root_6.04.12.bb:do_configure)
->> > failed with exit code '1'
->> > NOTE: Tasks Summary: Attempted 1027 tasks of which 1024 didn't need to
->> be
->> > rerun and 1 failed.
->> >
->> > Summary: 1 task failed:
->> >   /local/d4/meta-l1calo/recipes-core/root/root_6.04.12.bb:do_configure
->> > Summary: There was 1 ERROR message shown, returning a non-zero exit
->> code.
->> >
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->> >
->>
->
-
---001a113d143cadc3e105517c6046
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Looking into more details, I don&#39;t know or where bitba=
-ke tries to look for things as things get compiled (flags, environment, etc=
-)... but the error message does say ROOT is looking for=C2=A0<br><br>LLVMCo=
-nfig.cmake<div>llvm-config.cmake<br><br>However, I see=C2=A0</div><div><br>=
-</div><div>tmp/work/aarch64-poky-linux/llvm3.3/3.3-r0/llvm-3.3.src/cmake/mo=
-dules/LLVM-Config.cmake<br></div><div><br></div><div>which is perhaps why i=
-t can&#39;t find it. I assume the output name here isn&#39;t 100% compatibl=
-e, and I&#39;m using meta-oe&#39;s llvm3.3. I&#39;m just mostly stuck on CM=
-ake&#39;s default behavior here, I think.</div><div><br></div><div>Giordon<=
-/div><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Thu, Jun 8, 2017 at=
- 4:37 PM Giordon Stark &lt;<a href=3D"mailto:kratsg@gmail.com" target=3D"_b=
-lank">kratsg@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
-x"><div dir=3D"ltr">Hi Khem,<div><br></div><div>Which recipe? My problem is=
- that ROOT&#39;s CMake is unable to find the cross-compiled LLVM, and I&#39=
-;m not sure how to get it to find it.</div></div><div dir=3D"ltr"><div><br>=
-</div><div>Giordon</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r">On Thu, Jun 8, 2017 at 3:47 PM Khem Raj &lt;<a href=3D"mailto:raj.khem@g=
-mail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
-cc solid;padding-left:1ex">On Thu, Jun 8, 2017 at 1:42 PM, Giordon Stark &l=
-t;<a href=3D"mailto:kratsg@gmail.com" target=3D"_blank">kratsg@gmail.com</a=
->&gt; wrote:<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I have the following error message when trying to get LLVM linked up. =
-The<br>
-&gt; problem is that I&#39;m using a widely used science software called RO=
-OT<br>
-&gt; (<a href=3D"https://root.cern.ch/" rel=3D"noreferrer" target=3D"_blank=
-">https://root.cern.ch/</a>) with the following minimal recipe at the momen=
-t<br>
-&gt; (<a href=3D"https://github.com/kratsg/meta-l1calo/blob/master/recipes-=
-core/root/root_6.04.12.bb" rel=3D"noreferrer" target=3D"_blank">https://git=
-hub.com/kratsg/meta-l1calo/blob/master/recipes-core/root/root_6.04.12.bb</a=
->)<br>
-&gt; however I get the following error...<br>
-&gt;<br>
-&gt; Any ideas?<br>
-<br>
-Look into meta-clang there are patches for cross compiling clang/llvm<br>
-<a href=3D"https://github.com/kraj/meta-clang" rel=3D"noreferrer" target=3D=
-"_blank">https://github.com/kraj/meta-clang</a><br>
-<br>
-&gt;<br>
-&gt; Giordon<br>
-&gt;<br>
-&gt; | CMake Error at cmake/modules/SearchInstalledSoftware.cmake:662<br>
-&gt; (find_package):<br>
-&gt; |=C2=A0 =C2=A0By not providing &quot;FindLLVM.cmake&quot; in CMAKE_MOD=
-ULE_PATH this project has<br>
-&gt; |=C2=A0 =C2=A0asked CMake to find a package configuration file provide=
-d by &quot;LLVM&quot;, but<br>
-&gt; |=C2=A0 =C2=A0CMake did not find one.<br>
-&gt; |<br>
-&gt; |=C2=A0 =C2=A0Could not find a package configuration file provided by =
-&quot;LLVM&quot; with any<br>
-&gt; of<br>
-&gt; |=C2=A0 =C2=A0the following names:<br>
-&gt; |<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0LLVMConfig.cmake<br>
-&gt; |=C2=A0 =C2=A0 =C2=A0llvm-config.cmake<br>
-&gt; |<br>
-&gt; |=C2=A0 =C2=A0Add the installation prefix of &quot;LLVM&quot; to CMAKE=
-_PREFIX_PATH or set<br>
-&gt; |=C2=A0 =C2=A0&quot;LLVM_DIR&quot; to a directory containing one of th=
-e above files.=C2=A0 If &quot;LLVM&quot;<br>
-&gt; |=C2=A0 =C2=A0provides a separate development package or SDK, be sure =
-it has been<br>
-&gt; |=C2=A0 =C2=A0installed.<br>
-&gt; | Call Stack (most recent call first):<br>
-&gt; |=C2=A0 =C2=A0CMakeLists.txt:58 (include)<br>
-&gt; |<br>
-&gt; |<br>
-&gt; | -- Configuring incomplete, errors occurred!<br>
-&gt; | See also<br>
-&gt; &quot;/local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0=
-/build/CMakeFiles/CMakeOutput.log&quot;.<br>
-&gt; | See also<br>
-&gt; &quot;/local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0=
-/build/CMakeFiles/CMakeError.log&quot;.<br>
-&gt; | WARNING:<br>
-&gt; /local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/temp/=
-run.do_configure.16761:1<br>
-&gt; exit 1 from &#39;cmake ${OECMAKE_SITEFILE}<br>
-&gt; /local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/root-=
-6.04.12<br>
-&gt; -DCMAKE_INSTALL_PREFIX:PATH=3D/usr -DCMAKE_INSTALL_BINDIR:PATH=3Dbin<b=
-r>
-&gt; -DCMAKE_INSTALL_SBINDIR:PATH=3Dsbin -DCMAKE_INSTALL_LIBEXECDIR:PATH=3D=
-libexec<br>
-&gt; -DCMAKE_INSTALL_SYSCONFDIR:PATH=3D/etc<br>
-&gt; -DCMAKE_INSTALL_SHAREDSTATEDIR:PATH=3D../com<br>
-&gt; -DCMAKE_INSTALL_LOCALSTATEDIR:PATH=3D/var -DCMAKE_INSTALL_LIBDIR:PATH=
-=3Dlib<br>
-&gt; -DCMAKE_INSTALL_INCLUDEDIR:PATH=3Dinclude<br>
-&gt; -DCMAKE_INSTALL_DATAROOTDIR:PATH=3Dshare -DCMAKE_INSTALL_SO_NO_EXE=3D0=
-<br>
-&gt; -DCMAKE_TOOLCHAIN_FILE=3D/local/d4/poky/build/tmp/work/aarch64-poky-li=
-nux/root/6.04.12-r0/toolchain.cmake<br>
-&gt; -DCMAKE_VERBOSE_MAKEFILE=3D1 -DCMAKE_NO_SYSTEM_FROM_IMPORTED=3D1 -Droo=
-tfit=3DON<br>
-&gt; -Dminuit2=3DON -Dpython=3DON -Dssl=3DON -Dxrootd=3DON -Dbuiltin_freety=
-pe=3DON<br>
-&gt; -Dbuiltin_llvm=3DOFF ${PACKAGECONFIG_CONFARGS} -Wno-dev&#39;<br>
-&gt; | ERROR: Function failed: do_configure (log file is located at<br>
-&gt; /local/d4/poky/build/tmp/work/aarch64-poky-linux/root/6.04.12-r0/temp/=
-log.do_configure.16761)<br>
-&gt; ERROR: Task<br>
-&gt; (/local/d4/meta-l1calo/recipes-core/root/root_6.04.12.bb:do_configure)=
-<br>
-&gt; failed with exit code &#39;1&#39;<br>
-&gt; NOTE: Tasks Summary: Attempted 1027 tasks of which 1024 didn&#39;t nee=
-d to be<br>
-&gt; rerun and 1 failed.<br>
-&gt;<br>
-&gt; Summary: 1 task failed:<br>
-&gt;=C2=A0 =C2=A0/local/d4/meta-l1calo/recipes-core/root/root_6.04.12.bb:do=
-_configure<br>
-&gt; Summary: There was 1 ERROR message shown, returning a non-zero exit co=
-de.<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-&gt;<br>
-</blockquote></div></blockquote></div></div>
-
---001a113d143cadc3e105517c6046--
