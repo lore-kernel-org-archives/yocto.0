@@ -1,6 +1,6 @@
 Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D02CCE00BBF; Thu,  8 Jun 2017 19:59:28 -0700 (PDT)
+	id 97B13E00B77; Thu,  8 Jun 2017 20:05:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,27 +8,27 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A903E00B77
-	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 19:59:25 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v592xOD6024217
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38992E00B77
+	for <yocto@yoctoproject.org>; Thu,  8 Jun 2017 20:04:59 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v5934wPq008120
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 8 Jun 2017 19:59:24 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Thu, 8 Jun 2017 20:04:58 -0700 (PDT)
 Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.294.0; Thu, 8 Jun 2017 19:59:23 -0700
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.294.0; Thu, 8 Jun 2017 20:04:57 -0700
 From: <jackie.huang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Fri, 9 Jun 2017 10:59:22 +0800
-Message-ID: <20170609025922.21564-1-jackie.huang@windriver.com>
+Date: Fri, 9 Jun 2017 11:04:56 +0800
+Message-ID: <20170609030456.21840-1-jackie.huang@windriver.com>
 X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Subject: [meta-cgl][PATCH] pacemaker: update to 1.1.16
+Subject: [meta-cgl][PATCH] crmsh: add new recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,119 +40,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Jun 2017 02:59:28 -0000
+X-List-Received-Date: Fri, 09 Jun 2017 03:05:02 -0000
 Content-Type: text/plain
 
 From: Jackie Huang <jackie.huang@windriver.com>
 
-* update the licenses and checksum
-* fix PN -> BPN for multilib builds
-* add PACKAGECONFIG for systemd and libsmtp
-* add fix for libgnutls
+crm shell, a Pacemaker command line interface for
+management and configuration.
 
 Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
 ---
- ...006-pacemaker-do-not-use-libgnutls-config.patch | 29 ++++++++++++++++++++++
- .../{pacemaker_1.1.15.bb => pacemaker_1.1.16.bb}   | 22 +++++++++-------
- 2 files changed, 42 insertions(+), 9 deletions(-)
- create mode 100755 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0006-pacemaker-do-not-use-libgnutls-config.patch
- rename meta-cgl-common/recipes-cgl/pacemaker/{pacemaker_1.1.15.bb => pacemaker_1.1.16.bb} (84%)
+ .../recipes-cgl/crmsh/crmsh/tweaks_for_build.patch | 31 +++++++++++++++++++++
+ meta-cgl-common/recipes-cgl/crmsh/crmsh_2.3.2.bb   | 32 ++++++++++++++++++++++
+ 2 files changed, 63 insertions(+)
+ create mode 100644 meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch
+ create mode 100644 meta-cgl-common/recipes-cgl/crmsh/crmsh_2.3.2.bb
 
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0006-pacemaker-do-not-use-libgnutls-config.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0006-pacemaker-do-not-use-libgnutls-config.patch
-new file mode 100755
-index 0000000..46e45df
+diff --git a/meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch b/meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch
+new file mode 100644
+index 0000000..6e1a291
 --- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0006-pacemaker-do-not-use-libgnutls-config.patch
-@@ -0,0 +1,29 @@
-+commit bb26b7c290473af988aa9d4132ef55ca907091e6
-+Author: Joe Slater <jslater@windriver.com>
-+Date:   Mon Mar 11 15:47:54 2013 -0700
++++ b/meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch
+@@ -0,0 +1,31 @@
++Upstream-Status: Inappropriate [embedded specific]
 +
-+    pacemaker: do not use libgnutls-config
++Pass option '--catalogs' to xsltproc via a2x to avoid network access.
++And disble xmllint check by option '-L'.
 +
-+    Do not try to use libgnutls-config when configuring.
-+    It has been deprecated and we do not supply it.  If a
-+    host version is found, bad things can happen.
++Add option '--install-lib' of python setup.py to install python libraries to
++right place.
 +
-+Signed-off-by: Joe Slater <jslater@windriver.com>
-+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-+
-+
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -1427,9 +1427,9 @@ dnl ====================================
-+ AC_CHECK_HEADERS(gnutls/gnutls.h)
-+ AC_CHECK_HEADERS(security/pam_appl.h pam/pam_appl.h)
++Signed-off-by: Kai Kang <kai.kang@windriver.com>
++---
++diff --git a/Makefile.am b/Makefile.am
++index d89affb..0f2361f 100644
++--- a/Makefile.am
+++++ b/Makefile.am
++@@ -47,7 +47,7 @@ endif
++ 	$(ASCIIDOC) --unsafe --backend=xhtml11 $<
 + 
-+-dnl GNUTLS library: Attempt to determine by 'libgnutls-config' program.
-+-dnl If no 'libgnutls-config', try traditional autoconf means.
-+-AC_PATH_PROGS(LIBGNUTLS_CONFIG, libgnutls-config)
-++dnl libgnutls-config has been deprecated, so we use pkg-config
-++
-++LIBGNUTLS_CONFIG="pkg-config gnutls"
++ %.8: %.8.adoc
++-	a2x -f manpage $<
+++	a2x --xsltproc-opts=--catalogs -L -f manpage $<
 + 
-+ if test -n "$LIBGNUTLS_CONFIG"; then
-+ 	AC_MSG_CHECKING(for gnutls header flags)
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.15.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.16.bb
-similarity index 84%
-rename from meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.15.bb
-rename to meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.16.bb
-index 7dfbc26..cc1dd3d 100755
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.15.bb
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.16.bb
-@@ -8,29 +8,33 @@ when related resources fail and can be configured to periodically \
- check resource health."
- HOMEPAGE = "http://www.clusterlabs.org"
- 
--LICENSE = "GPLv2+ & LGPLv2+"
--LIC_FILES_CHKSUM = "file://COPYING;md5=6adca3b36477cc77e04376f9a40df32c \
--                    file://COPYING.LIB;md5=243b725d71bb5df4a1e5920b344b86ad \
--                   "
-+LICENSE = "GPLv2+ & LGPLv2.1+"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=19a64afd3a35d044a80579d7aafc30ff"
++ # Shared data files
++ install-data-hook:
++@@ -79,6 +79,7 @@ install-exec-local:
++ 	-mkdir -p $(DESTDIR)$(pkgpythondir)
++ 	$(PYTHON) $(srcdir)/setup.py install \
++ 		$(python_prefix) \
+++		--install-lib $(pythondir) \
++ 		--record $(DESTDIR)$(pkgpythondir)/install_files.txt \
++ 		--verbose
++ 	$(INSTALL) -d -m 770 $(DESTDIR)/$(CRM_CACHE_DIR)
+diff --git a/meta-cgl-common/recipes-cgl/crmsh/crmsh_2.3.2.bb b/meta-cgl-common/recipes-cgl/crmsh/crmsh_2.3.2.bb
+new file mode 100644
+index 0000000..709fbff
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/crmsh/crmsh_2.3.2.bb
+@@ -0,0 +1,32 @@
++SUMMARY = "Pacemaker command line interface for management and configuration"
++DESCRIPTION = "crm shell, a Pacemaker command line interface for management and configuration"
 +
- DEPENDS = "corosync libxslt openais libxml2 gnutls resource-agents libqb python-native"
- 
--SRC_URI = "https://github.com/ClusterLabs/${PN}/archive/Pacemaker-${PV}.zip \
-+SRC_URI = "https://github.com/ClusterLabs/${BPN}/archive/Pacemaker-${PV}.zip \
-            file://0001-pacemaker-fix-xml-config.patch \
-            file://0002-pacemaker-search-header-from-STAGING_INCDIR-to-walka.patch \
-            file://0003-pacemaker-fix-header-defs-lookup.patch \
-            file://0004-pacemaker-do-not-build-help.patch \
-            file://0005-pacemaker-do-not-execute-target-program-while-cross-.patch \
-+           file://0006-pacemaker-do-not-use-libgnutls-config.patch \
-            file://fix_missing_qb_array.patch \
-            file://volatiles \
-            file://tmpfiles \
-           "
--SRC_URI[md5sum] = "def7902672872a6f43581b694eb34a4b"
--SRC_URI[sha256sum] = "0191037508b73a364c157892258bab72184384ebb854ff5233e84941fe014f5e"
-+SRC_URI[md5sum] = "6f60f733823d31acbef4556fb749c457"
-+SRC_URI[sha256sum] = "2642264b27c584eff5747a2a34c7f2bff13d52741e4e5cc70f14b2b6cd1fe7d5"
- 
- inherit autotools-brokensep pkgconfig systemd python-dir useradd
- 
- S="${WORKDIR}/pacemaker-Pacemaker-${PV}"
- 
-+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
-+PACKAGECONFIG[systemd] = "--enable-systemd,--disable-systemd,systemd"
-+PACKAGECONFIG[libesmtp] = "--with-esmtp=yes,--with-esmtp=no,libesmtp"
++HOMEPAGE = "https://crmsh.github.io"
 +
- EXTRA_OECONF += "STAGING_INCDIR=${STAGING_INCDIR} \
-                  --disable-fatal-warnings \
-                  --with-ais \
-@@ -41,9 +45,9 @@ EXTRA_OECONF += "STAGING_INCDIR=${STAGING_INCDIR} \
- do_install_append() {
-     install -d ${D}${sysconfdir}/default
-     install -d ${D}${sysconfdir}/default/volatiles
--    install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/06_${PN}
-+    install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/06_${BPN}
-     install -d ${D}${sysconfdir}/tmpfiles.d
--    install -m 0644 ${WORKDIR}/tmpfiles ${D}${sysconfdir}/tmpfiles.d/${PN}.conf
-+    install -m 0644 ${WORKDIR}/tmpfiles ${D}${sysconfdir}/tmpfiles.d/${BPN}.conf
- 
-     # Don't package some files
-     find ${D} -name "*.pyo" -exec rm {} \;
++LICENSE = "GPLv2+"
++LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
++
++DEPENDS = "asciidoc-native \
++           docbook-xsl-stylesheets-native \
++           libxslt-native \
++           python-setuptools-native \
++           "
++RDEPENDS_${PN} = "pacemaker python-lxml gawk"
++
++SRC_URI = "https://github.com/ClusterLabs/crmsh/archive/${PV}.tar.gz;downloadfilename=${BP}.tar.gz \
++           file://tweaks_for_build.patch \
++          "
++
++SRC_URI[md5sum] = "0a475d3c56a158dc991de61a26450eb5"
++SRC_URI[sha256sum] = "ac78b7786f6a52cc3d86b3d80b2d8627e84873330cd4846d5ea48869189ad864"
++
++inherit autotools-brokensep distutils-base
++
++export HOST_SYS
++export BUILD_SYS
++
++# Allow to process DocBook documentations without requiring
++# network accesses for the dtd and stylesheets
++export SGML_CATALOG_FILES = "${STAGING_DATADIR_NATIVE}/xml/docbook/xsl-stylesheets/catalog.xml"
++
++FILES_${PN} += "${PYTHON_SITEPACKAGES_DIR}/${BPN}"
 -- 
 2.11.0
 
