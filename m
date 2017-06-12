@@ -1,79 +1,32 @@
-Return-Path: <idealsim@laposte.net>
+Return-Path: <jose.perez.carranza@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A677E00B67; Mon, 12 Jun 2017 12:51:24 -0700 (PDT)
+	id 17AA3E00A38; Mon, 12 Jun 2017 13:07:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (idealsim[at]laposte.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [178.22.154.199 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1224 seconds by postgrey-1.32 at yocto-www;
-	Mon, 12 Jun 2017 12:51:21 PDT
-Received: from smtpoutz2.laposte.net (smtpoutz299.laposte.net [178.22.154.199])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 936D2E00A38
-	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 12:51:21 -0700 (PDT)
-Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout011 (Postfix) with ESMTP id 13F2252BBC0
-	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
-	t=1497295856; bh=CQewxLqdlb14Be3faA1iYvK0mkVFNNv1XKbNKN/TKJY=;
-	h=To:From:Subject:Date;
-	b=Hnw9R7YvAjYTB2NcLhtV//4nDY9Nb77CRoZaqtIKE3VFu4m+vuaALEBvtwSPCll5z
-	1IkJgvRez/wGNUY2T5P158ZF1ij3i4k9/WFWLA0pievMBqXTdlBfmjeUVsdfeKrNix
-	lqFezNiRj+SCOKV+pwBbl49GONQ3Y8Eec6ljXLUc/UVUb2e9+5SfH3j52wyGF6v+f4
-	/J8Tfl4CNwsKmouURmgUrPtjuF1pjc7Uki9xnwbsSTMfteXy6RVZqdMb+nnlgalfpo
-	htcFlPfDcdSK3o6SxX+fJ7+EMFKQqkbjZJr5pC3jagt7S9JIKo9+7qnSQGhZTD9+Qf
-	VmBx1AsgKqDWQ==
-Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout011 (Postfix) with ESMTP id 062B552BD3F
-	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:56 +0200 (CEST)
-Received: from lpn-prd-vrin003 (lpn-prd-vrin003.prosodie [10.128.63.4])
-	by lpn-prd-vrout011 (Postfix) with ESMTP id 01C4852BBC0
-	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:56 +0200 (CEST)
-Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
-	by lpn-prd-vrin003 (Postfix) with ESMTP id E7445493362
-	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:55 +0200 (CEST)
-Received: from [192.168.1.19] (ARennes-654-1-194-199.w86-214.abo.wanadoo.fr
-	[86.214.185.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by lpn-prd-vrin003 (Postfix) with ESMTPSA id BC168493305
-	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:55 +0200 (CEST)
-To: Yocto list discussion <yocto@yoctoproject.org>
-From: idealsim <idealsim@laposte.net>
-Message-ID: <9c70fe71-0365-fcae-2e37-721005c6cf7d@laposte.net>
-Date: Mon, 12 Jun 2017 21:30:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
-MIME-Version: 1.0
-X-VR-SrcIP: 86.214.185.199
-X-VR-FullState: 0
-X-VR-Score: -100
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeeljedrjedugddugedtucetufdoteggodetrfdotffvucfrrhho
-X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
-X-VR-Cause-3: shculddquddttddmnecujfgurhepvffhuffkffgfgggtsegrtderredtfeejnecuhfhrohhmpehiuggv
-X-VR-Cause-4: rghlshhimhcuoehiuggvrghlshhimheslhgrphhoshhtvgdrnhgvtheqnecukfhppeekiedrvddugedr
-X-VR-Cause-5: udekhedrudelleenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopegludelvddrudei
-X-VR-Cause-6: kedruddrudelngdpihhnvghtpeekiedrvddugedrudekhedrudelledpmhgrihhlfhhrohhmpehiuggv
-X-VR-Cause-7: rghlshhimheslhgrphhoshhtvgdrnhgvthdprhgtphhtthhopeihohgtthhoseihohgtthhophhrohhj
-X-VR-Cause-8: vggtthdrohhrgh
-X-VR-AvState: No
-X-VR-State: 0
-X-VR-State: 0
-Subject: samba create user with password
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6AE8E00A38
+	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 13:07:22 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	12 Jun 2017 13:07:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.39,334,1493708400"; d="scan'208";a="867169019"
+Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
+	by FMSMGA003.fm.intel.com with ESMTP; 12 Jun 2017 13:07:21 -0700
+From: jose.perez.carranza@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Mon, 12 Jun 2017 15:09:34 -0500
+Message-Id: <20170612200934.4640-1-jose.perez.carranza@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [qa-tools][PATCH] testopia_update: Add functionality to list templates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -85,76 +38,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Jun 2017 19:51:24 -0000
-Content-Type: multipart/alternative;
-	boundary="------------5655EA52E30522B0475CBD94"
+X-List-Received-Date: Mon, 12 Jun 2017 20:07:26 -0000
 
---------------5655EA52E30522B0475CBD94
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
 
-Hi, i'm trying to configure a samba server from yocto for my card. I 
-have a working server (add samba in local.conf), but i would like to add 
-the user with password to samba at yocto build step. For this i add this 
-recipe (samba_%.bbappend)
+Add support to list available templates per specific releases
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+---
+ testopia_update.py                  | 18 ++++++++++++++++--
+ testopia_update/product/__init__.py |  9 +++++++--
+ 2 files changed, 23 insertions(+), 4 deletions(-)
 
-# Replace default smb.conf file to /etc/samba with my custom
-SRC_URI += "file://22-samba-conf.patch"
+diff --git a/testopia_update.py b/testopia_update.py
+index fa8d10c..b438cff 100755
+--- a/testopia_update.py
++++ b/testopia_update.py
+@@ -109,6 +109,8 @@ def get_args():
+ 
+     parser.add_argument('--list-products', required=False, action="store_true",
+         dest="list_products", default=False, help='List available products.')
++    parser.add_argument('--list-templates', required=False, action="store_true",
++        dest="list_templates", default=False, help='List available templates.')
+ 
+     parser.add_argument('-a', '--action', required=False, dest='action',
+         choices=ACTIONS,
+@@ -148,8 +150,8 @@ def get_args():
+         dest="old_project_version", help='Version of the project to clone from')
+ 
+     parser.add_argument('--clone-templates', required=False,
+-        dest="clone_templates", help='clone templates from one brnach to \
+-                                      another or same branch (only avaibale) \
++        dest="clone_templates", help='clone templates from one branch to \
++                                      another or same branch (only available) \
+                                       with setup action', const='Y', nargs='?')
+     parser.add_argument('--new-branch', required=False,
+         dest="new_branch", help='New branch to clone the Templates')
+@@ -195,6 +197,18 @@ if __name__ == '__main__':
+             print("%s\n" % p.name)
+         sys.exit(0)
+ 
++    if args.list_templates:
++        if not args.project_version:
++            logger.error("--project-version should be specified")
++        else:
++            args.product_name = 'Dummy'
++            product = get_product_class(args.product_name, products)
++            summary = 'TRTEMP_' +  args.project_version
++            templates = product.get_test_run_list(None, summary)
++            for t in templates:
++                print ("%s - %s " % (t['run_id'], t['summary']))
++        sys.exit(0)
++
+     if args.action == 'setup':
+         setup_opts = ['clone_templates', 'project_version','branch_name',
+                       'old_project_version', 'product_name']
+diff --git a/testopia_update/product/__init__.py b/testopia_update/product/__init__.py
+index ba34d02..a24196a 100644
+--- a/testopia_update/product/__init__.py
++++ b/testopia_update/product/__init__.py
+@@ -216,8 +216,13 @@ class Product(object):
+         return tr_id
+ 
+     def get_test_run_list(self, test_plan, temp_summary):
+-        list_test_runs = self.testopia.testrun_list(plan_id=test_plan['plan_id'],
+-                                               summary=temp_summary)
++        try:
++            plan_id = test_plan['plan_id']
++        except:
++            plan_id = test_plan
++
++        list_test_runs = self.testopia.testrun_list(plan_id,
++                                                    summary=temp_summary)
+ 
+         return list_test_runs
+ 
+-- 
+2.11.0
 
-pkg_postinst_${PN} () {
-     smbpasswd -a sambaUser -s
-     echo Password
-     echo Password
-     echo
-}
 
-For that i use pkg_postinst () but i don't know if i use it correctly 
-(for the moment this won't work) ! At first boot time i need to execute 
-/#smbpasswd/ in shell to activate the user in Samba. If someone can help 
-to configure it in yocto recipe ?
-
-regards
-
-Mickael
-
-
---------------5655EA52E30522B0475CBD94
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>Hi, i'm trying to configure a samba server from yocto for my
-      card. I have a working server (add samba in local.conf), but i
-      would like to add the user with password to samba at yocto build
-      step. For this i add this recipe (samba_%.bbappend)</p>
-    <pre>FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-
-# Replace default smb.conf file to /etc/samba with my custom
-SRC_URI += <a class="moz-txt-link-rfc2396E" href="file://22-samba-conf.patch">"file://22-samba-conf.patch"</a>
-
-pkg_postinst_${PN} () {
-    smbpasswd -a sambaUser -s
-    echo Password
-    echo Password
-    echo
-}
-
-</pre>
-    <p>For that i use pkg_postinst () but i don't know if i use it
-      correctly (for the moment this won't work) ! At first boot time i
-      need to execute <i>#smbpasswd</i> in shell to activate the user
-      in Samba. If someone can help to configure it in yocto recipe ?</p>
-    <p>regards</p>
-    <p>Mickael<br>
-    </p>
-  </body>
-</html>
-
---------------5655EA52E30522B0475CBD94--
