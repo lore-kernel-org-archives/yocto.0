@@ -1,64 +1,79 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <idealsim@laposte.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 530A8E00B67; Mon, 12 Jun 2017 12:14:03 -0700 (PDT)
+	id 3A677E00B67; Mon, 12 Jun 2017 12:51:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (idealsim[at]laposte.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [178.22.154.199 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.173 listed in list.dnswl.org]
-Received: from mail-qt0-f173.google.com (mail-qt0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17D76E00A38
-	for <yocto@lists.yoctoproject.org>;
-	Mon, 12 Jun 2017 12:13:59 -0700 (PDT)
-Received: by mail-qt0-f173.google.com with SMTP id u19so139067801qta.3
-	for <yocto@lists.yoctoproject.org>;
-	Mon, 12 Jun 2017 12:13:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=rjkT5gGkoZxmt0+8Ap4GgQenjvkD4wcENICt2Ajv7aw=;
-	b=s7f/vqKYkBu/FzN9kWaZ2TZdtVctwN5+hGWAojsVJC6P1IaT/3/FuYQsK8HbAtXO7e
-	2SILTEKmEXGE9/2f7o3yavp2FUo83JuNic9fOnBoqYAybLAmf+c2y018qbPoCW47Kinu
-	f/+wMSw4IfeJCaPeEKk+RNLWKjgNcoE1lD9CfNGXbuGj0cuc9MpAKrpYOlwlGSIqCJPR
-	rAYndPowS47GD6ZYAj5TdVYlMpzeJt/uuCvOV1u6n+POTnvmkjxetkTJPjnDCm5qlk+Q
-	F3qS0mPRCcsERLmGjP/XCKYjOOvgx3aNjIEbYjtNNhekbLM1Nxr/OS301BB8Z+GF2joi
-	1IYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=rjkT5gGkoZxmt0+8Ap4GgQenjvkD4wcENICt2Ajv7aw=;
-	b=ox1WmXdFYcq9g5h/i8o2GojyGqbR8vUNVRd1Lz6PaPC2xsHVsPkWp46P4YvPDvGPHY
-	kFgVTuphdZoqt1yH/ZXHQD9/M/rPVAD+opCL24vqC3L4FAMNku7gXkyyG8ZC8fkrX0zH
-	cQt1UaAgRHL0DIHs1r4iF2bceTaQkWYAiEWA9PJRN3Q3jqujGmLAC7kTM18wQa4WIY05
-	6NKORhIanF3IyVkIHUEWE0To4EFgejapxgwFnKTp0Cf5V+3sEiqQa6z5UA7t64UG7d1C
-	Ok8SpUaA8vJCj6DPaNfd4/NKxY3X4rRcThd9P+Y0vIeojJMQHvaM3hhfgldZNMJNddTy
-	YKKQ==
-X-Gm-Message-State: AODbwcDSU3/fUwdst3uf0dp7dKkP+xn+HRLsldQJGyte89ZWKyGipKU5
-	lEupM0zeQCdrukgTboUpk4MWRARFBLyr
-X-Received: by 10.200.43.99 with SMTP id 32mr71700436qtv.6.1497294838982; Mon,
-	12 Jun 2017 12:13:58 -0700 (PDT)
+X-Greylist: delayed 1224 seconds by postgrey-1.32 at yocto-www;
+	Mon, 12 Jun 2017 12:51:21 PDT
+Received: from smtpoutz2.laposte.net (smtpoutz299.laposte.net [178.22.154.199])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 936D2E00A38
+	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 12:51:21 -0700 (PDT)
+Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id 13F2252BBC0
+	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1497295856; bh=CQewxLqdlb14Be3faA1iYvK0mkVFNNv1XKbNKN/TKJY=;
+	h=To:From:Subject:Date;
+	b=Hnw9R7YvAjYTB2NcLhtV//4nDY9Nb77CRoZaqtIKE3VFu4m+vuaALEBvtwSPCll5z
+	1IkJgvRez/wGNUY2T5P158ZF1ij3i4k9/WFWLA0pievMBqXTdlBfmjeUVsdfeKrNix
+	lqFezNiRj+SCOKV+pwBbl49GONQ3Y8Eec6ljXLUc/UVUb2e9+5SfH3j52wyGF6v+f4
+	/J8Tfl4CNwsKmouURmgUrPtjuF1pjc7Uki9xnwbsSTMfteXy6RVZqdMb+nnlgalfpo
+	htcFlPfDcdSK3o6SxX+fJ7+EMFKQqkbjZJr5pC3jagt7S9JIKo9+7qnSQGhZTD9+Qf
+	VmBx1AsgKqDWQ==
+Received: from smtpoutz2.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id 062B552BD3F
+	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:56 +0200 (CEST)
+Received: from lpn-prd-vrin003 (lpn-prd-vrin003.prosodie [10.128.63.4])
+	by lpn-prd-vrout011 (Postfix) with ESMTP id 01C4852BBC0
+	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:56 +0200 (CEST)
+Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
+	by lpn-prd-vrin003 (Postfix) with ESMTP id E7445493362
+	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:55 +0200 (CEST)
+Received: from [192.168.1.19] (ARennes-654-1-194-199.w86-214.abo.wanadoo.fr
+	[86.214.185.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lpn-prd-vrin003 (Postfix) with ESMTPSA id BC168493305
+	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 21:30:55 +0200 (CEST)
+To: Yocto list discussion <yocto@yoctoproject.org>
+From: idealsim <idealsim@laposte.net>
+Message-ID: <9c70fe71-0365-fcae-2e37-721005c6cf7d@laposte.net>
+Date: Mon, 12 Jun 2017 21:30:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.8.0
 MIME-Version: 1.0
-Received: by 10.140.35.103 with HTTP; Mon, 12 Jun 2017 12:13:38 -0700 (PDT)
-In-Reply-To: <CAJ86T=ULdJSPwcCzRGpLPAR0rzEPsFcx8YxFmBHqGO-XB4130g@mail.gmail.com>
-References: <20170612162218.11449-1-Martin.Jansa@gmail.com>
-	<CAJ86T=ULdJSPwcCzRGpLPAR0rzEPsFcx8YxFmBHqGO-XB4130g@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 12 Jun 2017 20:13:38 +0100
-Message-ID: <CAJTo0LbD0BZ=kEKfGTqY+Ae=HsmDdVZj_4NJKhe8eW+NHrrVag@mail.gmail.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [PATCH][meta-gplv2] gnutls: add use-pkg-config-to-locate-zlib.patch
+X-VR-SrcIP: 86.214.185.199
+X-VR-FullState: 0
+X-VR-Score: -100
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeeljedrjedugddugedtucetufdoteggodetrfdotffvucfrrhho
+X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
+X-VR-Cause-3: shculddquddttddmnecujfgurhepvffhuffkffgfgggtsegrtderredtfeejnecuhfhrohhmpehiuggv
+X-VR-Cause-4: rghlshhimhcuoehiuggvrghlshhimheslhgrphhoshhtvgdrnhgvtheqnecukfhppeekiedrvddugedr
+X-VR-Cause-5: udekhedrudelleenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopegludelvddrudei
+X-VR-Cause-6: kedruddrudelngdpihhnvghtpeekiedrvddugedrudekhedrudelledpmhgrihhlfhhrohhmpehiuggv
+X-VR-Cause-7: rghlshhimheslhgrphhoshhtvgdrnhgvthdprhgtphhtthhopeihohgtthhoseihohgtthhophhrohhj
+X-VR-Cause-8: vggtthdrohhrgh
+X-VR-AvState: No
+X-VR-State: 0
+X-VR-State: 0
+Subject: samba create user with password
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,36 +85,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Jun 2017 19:14:03 -0000
-Content-Type: multipart/alternative; boundary="001a1146fb46007eb40551c81fb1"
+X-List-Received-Date: Mon, 12 Jun 2017 19:51:24 -0000
+Content-Type: multipart/alternative;
+	boundary="------------5655EA52E30522B0475CBD94"
 
---001a1146fb46007eb40551c81fb1
-Content-Type: text/plain; charset="UTF-8"
+--------------5655EA52E30522B0475CBD94
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 12 June 2017 at 20:04, Andre McCurdy <armccurdy@gmail.com> wrote:
+Hi, i'm trying to configure a samba server from yocto for my card. I 
+have a working server (add samba in local.conf), but i would like to add 
+the user with password to samba at yocto build step. For this i add this 
+recipe (samba_%.bbappend)
 
-> Would it be better to just make the meta-gplv2 gnutls recipe self
-> contained and stop trying to share a .inc file and patches with
-> oe-core?
->
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-Yes.
+# Replace default smb.conf file to /etc/samba with my custom
+SRC_URI += "file://22-samba-conf.patch"
 
-Ross
+pkg_postinst_${PN} () {
+     smbpasswd -a sambaUser -s
+     echo Password
+     echo Password
+     echo
+}
 
---001a1146fb46007eb40551c81fb1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+For that i use pkg_postinst () but i don't know if i use it correctly 
+(for the moment this won't work) ! At first boot time i need to execute 
+/#smbpasswd/ in shell to activate the user in Samba. If someone can help 
+to configure it in yocto recipe ?
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 12 June 2017 at 20:04, Andre McCurdy <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:armccurdy@gmail.com" target=3D"_blank">armccurdy@gmail.com</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><div id=3D":209" class=3D"a3s =
-aXjCH m15c9db3ee673e7ac">Would it be better to just make the meta-gplv2 gnu=
-tls recipe self<br>
-contained and stop trying to share a .inc file and patches with<br>
-oe-core?<br></div></blockquote><div><br></div><div>Yes.</div><div><br></div=
-><div>Ross=C2=A0<br></div></div><br></div></div>
+regards
 
---001a1146fb46007eb40551c81fb1--
+Mickael
+
+
+--------------5655EA52E30522B0475CBD94
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Hi, i'm trying to configure a samba server from yocto for my
+      card. I have a working server (add samba in local.conf), but i
+      would like to add the user with password to samba at yocto build
+      step. For this i add this recipe (samba_%.bbappend)</p>
+    <pre>FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+
+# Replace default smb.conf file to /etc/samba with my custom
+SRC_URI += <a class="moz-txt-link-rfc2396E" href="file://22-samba-conf.patch">"file://22-samba-conf.patch"</a>
+
+pkg_postinst_${PN} () {
+    smbpasswd -a sambaUser -s
+    echo Password
+    echo Password
+    echo
+}
+
+</pre>
+    <p>For that i use pkg_postinst () but i don't know if i use it
+      correctly (for the moment this won't work) ! At first boot time i
+      need to execute <i>#smbpasswd</i> in shell to activate the user
+      in Samba. If someone can help to configure it in yocto recipe ?</p>
+    <p>regards</p>
+    <p>Mickael<br>
+    </p>
+  </body>
+</html>
+
+--------------5655EA52E30522B0475CBD94--
