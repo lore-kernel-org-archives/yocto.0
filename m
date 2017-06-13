@@ -1,6 +1,6 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9EFA8E00BDF; Mon, 12 Jun 2017 19:36:58 -0700 (PDT)
+	id 67F62E00BE2; Mon, 12 Jun 2017 19:36:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,26 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 758C6E00B93
-	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 19:36:55 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF323E00BC0
+	for <yocto@yoctoproject.org>; Mon, 12 Jun 2017 19:36:57 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v5D2asKs010681
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v5D2avmp010686
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 12 Jun 2017 19:36:54 -0700 (PDT)
+	Mon, 12 Jun 2017 19:36:57 -0700 (PDT)
 Received: from ala-blade47.wrs.com (147.11.105.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 12 Jun 2017 19:36:54 -0700
+	Mon, 12 Jun 2017 19:36:56 -0700
 From: Robert Yang <liezhi.yang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Mon, 12 Jun 2017 19:36:44 -0700
-Message-ID: <d29ba1f3abdcaad87fa53853261af4d98228c519.1497320961.git.liezhi.yang@windriver.com>
+Date: Mon, 12 Jun 2017 19:36:47 -0700
+Message-ID: <a3470785147e280b6a618e30ac594e38d53a24f7.1497320961.git.liezhi.yang@windriver.com>
 X-Mailer: git-send-email 2.10.2
 In-Reply-To: <cover.1497320961.git.liezhi.yang@windriver.com>
 References: <cover.1497320961.git.liezhi.yang@windriver.com>
 MIME-Version: 1.0
 Cc: Konrad.Scherer@windriver.com, paul.eggleton@linux.intel.com
-Subject: [PATCH V4 03/10] utils.py: remove obsolete dependencies
+Subject: [PATCH V4 06/10] update.py: update layers orderly
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,67 +43,322 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Jun 2017 02:36:58 -0000
+X-List-Received-Date: Tue, 13 Jun 2017 02:36:59 -0000
 Content-Type: text/plain
 
-Fixed:
-  - set LAYERDEPENDS_openembedded-layer = "core"
-  - $ "update.py -l meta-oe -b master"
-    Check from web, its dependency is "openembedded-core"
-  - Change LAYERDEPENDS_openembedded-layer = "foo"
-  - Run "update.py -l meta-oe -b master"
-    Check from web, its dependency is "openembedded-core and foo", this is
-    wrong, it should be "foo" only, this patch can fix the problem.
+* Problems
+The update.py couldn't handle new (not only new branch, in fact, but also
+existing branches, see below for more info) branch well, for example, there are
+3 layers: layer_A, layer_B and layer_C, and create new branch "branch_1" for
+them, and they have depends:
 
-And also the existing checking should filter(required=required),
-otherwise it can't work well when a layer is in both depends and
-recommends, this can't happen in a normal case, but it would surprise the
-user when this happens.
+layer_A -> layer_B -> layer_C
+
+The "->" means depends on.
+
+Then run "update.py -b branch_1", there would be errors like:
+
+ERROR: Dependency layer_B of layer_A does not have branch record for branch branch_1
+
+Though update.py runs "update_layer.py" twice, but it didn't help since
+layerbranch was None when it was failed to create in the first run.
+
+The reason is if update.py updates layer_A firstly, it would fail since it
+can't find layer_B:branch_1 in database (not added to database yet), similarly,
+if add layer_B before layer_C, it would also fail. Only layer_C can be added
+(assume it has no dependencies). So we have to re-run update.py again and again
+to make it work, here we may have to run update.py 3 times, and more runs are
+needed if the dependency chain is longer.
+
+* Solutions:
+Make update.py pass layers orderly to update_layer.py according to dependencies
+can fix the problem, we can get intial dependencies from tinfoil, add an option
+"-i, --initial" to update_layer.py to get them.
+
+Not only new branch, but also existing branches may have the problem, because
+collections and dependencies maybe changed in the coming update, so we can't
+trust database when the layer is going to be updated, for example, if there are
+10 layers in database, and 3 of them will be updated (-l layer1,layer2,layer3),
+then we can not use the 3 layers' collections data from database, we need get
+them from tinfoil.
+
+* Performance improvement:
+  It should be the same as before in theory, I have tested it with 97 layers:
+  - Before: 11m6.472s, but only 75 layers were added, 22 ones were failed, I
+    have to re-run update.py again and again (maybe 4 times to make all of
+    them added). So:
+    (11 * 60 + 6)/75*97/60 = 14m35s
+
+  - Now 12m10.350s, all the layers are added in the first run.
+
+   So about 2 minutes are saved.
 
 Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
 ---
- layerindex/utils.py | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ layerindex/update.py       | 101 +++++++++++++++++++++++++++++++--------------
+ layerindex/update_layer.py |  16 +++++--
+ layerindex/utils.py        |  38 +++++++++++++++++
+ 3 files changed, 121 insertions(+), 34 deletions(-)
 
+diff --git a/layerindex/update.py b/layerindex/update.py
+index 7d2e367..0046f38 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -18,6 +18,7 @@ import signal
+ from datetime import datetime, timedelta
+ from distutils.version import LooseVersion
+ import utils
++import operator
+ 
+ import warnings
+ warnings.filterwarnings("ignore", category=DeprecationWarning)
+@@ -62,15 +63,13 @@ def run_command_interruptible(cmd):
+     return process.returncode, buf
+ 
+ 
+-def prepare_update_layer_command(options, branch, layer, updatedeps=False):
++def prepare_update_layer_command(options, branch, layer, initial=False):
+     """Prepare the update_layer.py command line"""
+     if branch.update_environment:
+         cmdprefix = branch.update_environment.get_command()
+     else:
+         cmdprefix = 'python3'
+     cmd = '%s update_layer.py -l %s -b %s' % (cmdprefix, layer.name, branch.name)
+-    if updatedeps:
+-        cmd += ' --update-dependencies'
+     if options.reload:
+         cmd += ' --reload'
+     if options.fullreload:
+@@ -79,6 +78,8 @@ def prepare_update_layer_command(options, branch, layer, updatedeps=False):
+         cmd += ' --nocheckout'
+     if options.dryrun:
+         cmd += ' -n'
++    if initial:
++        cmd += ' -i'
+     if options.loglevel == logging.DEBUG:
+         cmd += ' -d'
+     elif options.loglevel == logging.ERROR:
+@@ -288,8 +289,74 @@ def main():
+             # they never get used during normal operation).
+             last_rev = {}
+             for branch in branches:
++                # If layer_A depends(or recommends) on layer_B, add layer_B before layer_A
++                deps_dict_all = {}
++                layerquery_sorted = []
++                collections_done = set()
+                 branchobj = utils.get_branch(branch)
++                for layer in layerquery_all:
++                    # Get all collections from database, but we can't trust the
++                    # one which will be updated since its collections maybe
++                    # changed (different from database).
++                    if layer in layerquery:
++                        continue
++                    layerbranch = layer.get_layerbranch(branch)
++                    if layerbranch:
++                        collections_done.add((layerbranch.collection, layerbranch.version))
++
+                 for layer in layerquery:
++                    cmd = prepare_update_layer_command(options, branchobj, layer, initial=True)
++                    logger.debug('Running layer update command: %s' % cmd)
++                    ret, output = run_command_interruptible(cmd)
++                    key_string = "Initial layer values: "
++                    if not key_string in output:
++                        continue
++                    initial_values = output.split(key_string)[1].split(',')
++                    logger.debug('Initial layer values: %s' % initial_values)
++                    col = (initial_values[0] or '').strip()
++                    ver = initial_values[1] or ''
++                    deps = initial_values[2] or ''
++                    recs = (initial_values[3] or '').rstrip('\n')
++
++                    deps_dict = utils.explode_dep_versions2(bitbakepath, deps + ' ' + recs)
++                    if len(deps_dict) == 0:
++                        # No depends, add it firstly
++                        layerquery_sorted.append(layer)
++                        collections_done.add((col, ver))
++                        continue
++                    deps_dict_all[layer] = {'requires': deps_dict, 'collection': col, 'version': ver}
++
++                # Move deps_dict_all to layerquery_sorted orderly
++                logger.info("Sorting layers for branch %s" % branch)
++                while True:
++                    deps_dict_all_copy = deps_dict_all.copy()
++                    for layer, value in deps_dict_all_copy.items():
++                        for req_col, req_ver_list in value['requires'].copy().items():
++                            matched = False
++                            if req_ver_list:
++                                req_ver = req_ver_list[0]
++                            else:
++                                req_ver = None
++                            if utils.is_deps_satisfied(req_col, req_ver, collections_done):
++                                del(value['requires'][req_col])
++                        if not value['requires']:
++                            # All the depends are in collections_done:
++                            del(deps_dict_all[layer])
++                            layerquery_sorted.append(layer)
++                            collections_done.add((value['collection'], value['version']))
++
++                    if not len(deps_dict_all):
++                        break
++
++                    # Something is wrong if nothing changed after a run
++                    if operator.eq(deps_dict_all_copy, deps_dict_all):
++                        logger.error("Cannot find required collections on branch %s:" % branch)
++                        for layer, value in deps_dict_all.items():
++                            logger.error('%s: %s' % (layer.name, value['requires']))
++                        logger.error("Known collections: %s" % collections_done)
++                        sys.exit(1)
++
++                for layer in layerquery_sorted:
+                     layerupdate = LayerUpdate()
+                     layerupdate.update = update
+ 
+@@ -306,9 +373,6 @@ def main():
+                                 layerupdate.save()
+                         continue
+ 
+-                    urldir = layer.get_fetch_dir()
+-                    repodir = os.path.join(fetchdir, urldir)
+-
+                     cmd = prepare_update_layer_command(options, branchobj, layer)
+                     logger.debug('Running layer update command: %s' % cmd)
+                     layerupdate.started = datetime.now()
+@@ -329,31 +393,6 @@ def main():
+                     if ret == 254:
+                         # Interrupted by user, break out of loop
+                         break
+-
+-            # Since update_layer may not be called in the correct order to have the
+-            # dependencies created before trying to link them, we now have to loop
+-            # back through all the branches and layers and try to link in the
+-            # dependencies that may have been missed.  Note that creating the
+-            # dependencies is a best-effort and continues if they are not found.
+-            for branch in branches:
+-                branchobj = utils.get_branch(branch)
+-                for layer in layerquery:
+-                    layerbranch = layer.get_layerbranch(branch)
+-                    if layerbranch:
+-                        if not (options.reload or options.fullreload):
+-                            # Skip layers that did not change.
+-                            layer_last_rev = last_rev.get(layerbranch, None)
+-                            if layer_last_rev is None or layer_last_rev == layerbranch.vcs_last_rev:
+-                                continue
+-
+-                        logger.info('Updating layer dependencies for %s on branch %s' % (layer.name, branch))
+-                        cmd = prepare_update_layer_command(options, branchobj, layer, updatedeps=True)
+-                        logger.debug('Running update dependencies command: %s' % cmd)
+-                        ret, output = run_command_interruptible(cmd)
+-                        if ret == 254:
+-                            # Interrupted by user, break out of loop
+-                            break
+-
+         finally:
+             utils.unlock_file(lockfile)
+ 
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index bcf7056..93da3c4 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -188,6 +188,9 @@ def main():
+     parser.add_option("", "--nocheckout",
+             help = "Don't check out branches",
+             action="store_true", dest="nocheckout")
++    parser.add_option("-i", "--initial",
++            help = "Print initial layer value",
++            action="store_true")
+     parser.add_option("-d", "--debug",
+             help = "Enable debug output",
+             action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
+@@ -336,7 +339,7 @@ def main():
+             layerdistros = Distro.objects.filter(layerbranch=layerbranch)
+             layerappends = BBAppend.objects.filter(layerbranch=layerbranch)
+             layerclasses = BBClass.objects.filter(layerbranch=layerbranch)
+-            if layerbranch.vcs_last_rev != topcommit.hexsha or options.reload:
++            if layerbranch.vcs_last_rev != topcommit.hexsha or options.reload or options.initial:
+                 # Check out appropriate branch
+                 if not options.nocheckout:
+                     utils.checkout_layer_branch(layerbranch, repodir, logger=logger)
+@@ -361,6 +364,14 @@ def main():
+                     layerconfparser.shutdown()
+                     sys.exit(1)
+                 utils.set_layerbranch_collection_version(layerbranch, layer_config_data, logger=logger)
++                if options.initial:
++                    # Use print() rather than logger.info() since "-q" makes it print nothing.
++                    print('Initial layer values: %s,%s,%s,%s' % (
++                        utils.get_layer_var(layer_config_data, 'BBFILE_COLLECTIONS'), \
++                        utils.get_layer_var(layer_config_data, 'LAYERVERSION'), \
++                        utils.get_layer_var(layer_config_data, 'LAYERDEPENDS'), \
++                        utils.get_layer_var(layer_config_data, 'LAYERRECOMMENDS')))
++                    sys.exit(0)
+                 utils.add_dependencies(layerbranch, layer_config_data, logger=logger)
+                 utils.add_recommends(layerbranch, layer_config_data, logger=logger)
+                 layerbranch.save()
+@@ -716,8 +727,7 @@ def main():
+         import traceback
+         traceback.print_exc()
+     finally:
+-        if LooseVersion(bb.__version__) > LooseVersion("1.27"):
+-            tinfoil.shutdown()
++        utils.shutdown_tinfoil(tinfoil)
+ 
+     shutil.rmtree(tempdir)
+     sys.exit(0)
 diff --git a/layerindex/utils.py b/layerindex/utils.py
-index 442b121..b7165d0 100644
+index b7165d0..01a6200 100644
 --- a/layerindex/utils.py
 +++ b/layerindex/utils.py
-@@ -88,6 +88,7 @@ def _add_dependency(var, name, layerbranch, config_data, logger=None, required=T
-         logger.debug('Error parsing %s_%s for %s\n%s' % (var, var_name, layer_name, str(vse)))
-         return
+@@ -27,6 +27,33 @@ def get_layer(layername):
+         return res[0]
+     return None
  
-+    need_delete = None
-     for dep, ver_list in list(dep_dict.items()):
-         ver_str = None
-         if ver_list:
-@@ -106,8 +107,14 @@ def _add_dependency(var, name, layerbranch, config_data, logger=None, required=T
-                 logger.error('Cannot resolve %s %s (version %s) for %s' % (name, dep, ver_str, layer_name))
-                 continue
- 
-+        # Preparing to remove obsolete ones
-+        if not need_delete:
-+            need_delete = LayerDependency.objects.filter(layerbranch=layerbranch).filter(required=required).exclude(dependency=dep_layer)
-+        else:
-+            need_delete = need_delete.exclude(dependency=dep_layer)
++def get_layer_var(config_data, var):
++    collection = config_data.getVar('BBFILE_COLLECTIONS', True)
++    if collection:
++        collection = collection.strip()
++    value = config_data.getVar('%s_%s' % (var, collection), True)
++    if not value:
++        value = config_data.getVar(var, True)
++    return value or ''
 +
-         # Skip existing entries.
--        existing = list(LayerDependency.objects.filter(layerbranch=layerbranch).filter(dependency=dep_layer))
-+        existing = list(LayerDependency.objects.filter(layerbranch=layerbranch).filter(required=required).filter(dependency=dep_layer))
-         if existing:
-             logger.debug('Skipping %s - already a dependency for %s' % (dep, layer_name))
-             continue
-@@ -121,6 +128,10 @@ def _add_dependency(var, name, layerbranch, config_data, logger=None, required=T
-         layerdep.required = required
-         layerdep.save()
- 
-+    if need_delete:
-+        logger.debug("Removing obsolete dependencies: %s" % need_delete)
-+        need_delete.delete()
++def is_deps_satisfied(req_col, req_ver, collections):
++    """ Check whether required collection and version are in collections"""
++    for existed_col, existed_ver in collections:
++        if req_col == existed_col:
++            # If there is no version constraint, return True when collection matches
++            if not req_ver:
++                return True
++            else:
++                # If there is no version in the found layer, then don't use this layer.
++                if not existed_ver:
++                    continue
++                (op, dep_version) = req_ver.split()
++                success = bb.utils.vercmp_string_op(existed_ver, dep_version, op)
++                if success:
++                    return True
++    # Return False when not found
++    return False
 +
- def set_layerbranch_collection_version(layerbranch, config_data, logger=None):
-     layerbranch.collection = config_data.getVar('BBFILE_COLLECTIONS', True)
-     ver_str = "LAYERVERSION_"
+ def get_dependency_layer(depname, version_str=None, logger=None):
+     from layerindex.models import LayerItem, LayerBranch
+ 
+@@ -156,6 +183,17 @@ def setup_tinfoil(bitbakepath, enable_tracking):
+ 
+     return tinfoil
+ 
++def shutdown_tinfoil(tinfoil):
++    if tinfoil and hasattr(tinfoil, 'shutdown'):
++        tinfoil.shutdown()
++
++def explode_dep_versions2(bitbakepath, deps):
++    bblib = bitbakepath + '/lib'
++    if not bblib in sys.path:
++        sys.path.insert(0, bblib)
++    import bb.utils
++    return bb.utils.explode_dep_versions2(deps)
++
+ def checkout_layer_branch(layerbranch, repodir, logger=None):
+ 
+     branchname = layerbranch.branch.name
 -- 
 2.10.2
 
