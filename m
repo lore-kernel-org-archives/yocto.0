@@ -1,60 +1,32 @@
-Return-Path: <afenkart@gmail.com>
+Return-Path: <jose.perez.carranza@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E5E9E00BD5; Tue, 13 Jun 2017 05:18:39 -0700 (PDT)
+	id 85011E00BD5; Tue, 13 Jun 2017 08:45:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (afenkart[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.169 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f169.google.com (mail-ot0-f169.google.com
-	[74.125.82.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C34DE00BD5
-	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 05:18:16 -0700 (PDT)
-Received: by mail-ot0-f169.google.com with SMTP id i31so86267158ota.3
-	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 05:18:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=l31Tz4/Z5TsnYNifKiunkE9PcDwYD/Db0uLR0WwFkl0=;
-	b=nVGkHRYAwP5UXLjEuYbRHhLW0Bx+NZLupryhG9jtLG/1cOM34Hn5pqw7j9x1A/PoCh
-	WdSczLYBpeqfImG0vNFyPU2qre1boh4TKRhLGLgNu5fOIAMRwVBaPSJagMCkMvh9kPxn
-	5j48B/YiOn+du8GkigGowv+aMe6t4KM2Bdettb7GRyWCcJEkv5nN0ToOPoQpbgNXiSg+
-	DVwvsJQg01dXh0zT2WJPZHm4lKKsKTEQHvDUmrnQ7fBMNQwYS0ml10neYSkyd3cVa88T
-	52XO0Oxex+TxDBCEyy8oOJ5z8afZQeW0RmC3k7n0WbYmMo2CgaNMguOcoIjgloXb+yMb
-	+83g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=l31Tz4/Z5TsnYNifKiunkE9PcDwYD/Db0uLR0WwFkl0=;
-	b=pmiItyIn87z43+kuCQdl6RSX60nYwgZj+JYMy7KefHefaf6N2k7BVn4nMeaVHMqbfS
-	IYooZo1rtBjotMLE97ERKHbYzOfckMnWnpQ1Gq1gaWNNKB2Pph1OUiJ5SnbkUS+9brpb
-	bSvTj2sQ7ozvPGxZacJiwOdAqJH7o5Njazd3n8NMxLT5Ag/JM0EstRAfXjok5kif9fSj
-	Ds9oSb4FhgRcGmQFrZlkvysSuJVBS6621PNRVo1Im5MSThK0lY/yAAi1fSm0pRj8R9Dv
-	dKTk/f5pW00sUlij7j+NPnLtYlbBg6bXB6Rx8XYsD5UPfe65RWM20Zdhl/WK9O2Lek7Y
-	OcwA==
-X-Gm-Message-State: AODbwcCCbOWTsqlliNv6heH3w9V3UEvU3dqj7UiprM9Vq3fB8YsHoy/D
-	V5xfrh9XxEKtuVGyCs7PlxwrCSBJ1uof
-X-Received: by 10.157.24.51 with SMTP id b48mr25533875ote.143.1497356295871;
-	Tue, 13 Jun 2017 05:18:15 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.157.14.241 with HTTP; Tue, 13 Jun 2017 05:18:15 -0700 (PDT)
-From: Andreas Fenkart <afenkart@gmail.com>
-Date: Tue, 13 Jun 2017 14:18:15 +0200
-Message-ID: <CALtMJEDs_oFkifuHe8gahxS25UEqP-gKCLfkH3HbZqsB8T8DPQ@mail.gmail.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00AACE00B51
+	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 08:45:16 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	13 Jun 2017 08:45:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.39,338,1493708400"; d="scan'208";a="980308262"
+Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
+	by orsmga003.jf.intel.com with ESMTP; 13 Jun 2017 08:45:14 -0700
+From: jose.perez.carranza@linux.intel.com
 To: yocto@yoctoproject.org
-Subject: swupate.bblcass dependencies not triggering rebuild
+Date: Tue, 13 Jun 2017 10:47:25 -0500
+Message-Id: <20170613154728.19002-1-jose.perez.carranza@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [qa-tools][PATCH 1/4] external/testopia: Modify commands to get Product and Environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,69 +38,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Jun 2017 12:18:39 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 13 Jun 2017 15:45:18 -0000
 
-Hi list,
+From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
 
-I want to create a swupdate file, which is a cpio file with rootfs and
-some metadata to control software update. My problem is, that it is not
-rebuilt everytime the rootfs changes. I checked in the cooker log.
+Modify commands to get Product and Environment name providing
+the ID.
 
-NOTE: recipe swupdate-image-1.0-r4: task do_populate_sysroot_setscene: Succeeded
-NOTE: Running noexec task 5475 of 5478 (ID: 27,
-meta-devel/recipes-core/images/swupdate-image.bb, do_build)
+Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+---
+ external/testopia.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I generated the dot files with bitbake -g swupdate, and while do_swuimage
-has to run before do_build, do_build does not depend directly on do_swuimage:
+diff --git a/external/testopia.py b/external/testopia.py
+index f2f2d45..a82b32e 100755
+--- a/external/testopia.py
++++ b/external/testopia.py
+@@ -627,7 +627,7 @@ class Testopia(object):
+ 
+         Result: The product name for the respective id or empty string if an error occurs.
+         """
+-        return self.do_command("Product.lookup_name_by_id", [self._number_noop(id)])
++        return self.do_command("TestopiaProduct.get", [self._number_noop(id)])
+ 
+ 
+     def product_get_milestones(self, product_id):
+@@ -1629,7 +1629,7 @@ class Testopia(object):
+ 
+         Result: The TestRun environment name for the respective id or empty string if an error occurs.
+         """
+-        return self.do_command("TestRun.lookup_environment_name_by_id", [self._number_noop(id)])
++        return self.do_command("Environment.get", [self._number_noop(id)])
+ 
+ 
+     ############################## TestCaseRun ##################################
+-- 
+2.11.0
 
-swupdate-image.do_createlink -> swupdate-image.do_swuimage
-swupdate-image.do_install -> swupdate-image.do_createlink
-swupdate-image.do_populate_sysroot -> swupdate-image.do_install
-swupdate-image.do_build" -> swupdate-image.do_populate_sysroot
-
-$ bitbake-diffsigs -t swupdate-image do_build
-ERROR: No sigdata files found matching swupdate-image do_build
-
-$ bitbake-diffsigs -t swupdate-image do_populate_sysroot
-Unable to find matching sigdata for ....
-recipes-core/images/swupdate-image.bb.do_install with hashes
-c0bc8039e8dbe8d70939dd3db2ceb922 or e9d7b242613f323d4d6adff3d6d4881b
-
-$ bitbake-diffsigs -t swupdate-image do_install
-ERROR: No sigdata files found matching swupdate-image do_install
-
-$ bitbake-diffsigs -t swupdate-image do_createlink
-Hash for dependent task imagesswupdate-image.bb.do_swuimage changed
-from cec64d7e21b0375ff641427d5d631254 to
-45510576a402839f4c4d4ac9b9eff578
-  Hash for dependent task imagesrootfs.bb.do_build changed from
-876eb436b444f84efd355c0294b871bf to fabbabdd000427cdf5e721b59784d5c4
-  Unable to find matching sigdata for
-meta-devel/recipes-core/images/rootfs.bb.do_build with hashes
-876eb436b444f84efd355c0294b871bf or fabbabdd000427cdf5e721b59784d5c4
-
-The dependency on rootfs is added here:
-https://github.com/sbabic/meta-swupdate/blob/master/classes/swupdate.bbclass#L64
-with IMAGE_DEPENDS="rootfs"
-
-Is it correct to 'depend' on :do_build? It seems rather uncommon.
-
-I checked the latest swupdate-image.do_populate siginfo in sstate, which is
-pretty large, so adding just the task-dependencies:
-..
-Tasks this task depends on:
-['..-devel/recipes-core/images/swupdate-image.bb.do_install']
-This task depends on the checksums of files: []
-Hash for dependent task
-./meta-devel/recipes-core/images/swupdate-image.bb.do_install is
-e9d7b242613f323d4d6adff3d6d4881b
-Computed Hash is d8b1d389351c25e0c4a519fb8fe9ddda
-..
-
-Which makes me wonder, since bitbake-diffsig said do_install has no sigdata
-
-I must admit that I feel pretty lost here.
-
-/Andreas
 
