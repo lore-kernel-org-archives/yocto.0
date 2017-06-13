@@ -1,6 +1,6 @@
 Return-Path: <jose.perez.carranza@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85011E00BD5; Tue, 13 Jun 2017 08:45:18 -0700 (PDT)
+	id 9352CE00B99; Tue, 13 Jun 2017 08:45:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,21 +12,23 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00AACE00B51
-	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 08:45:16 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0202CE00B8D
+	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 08:45:17 -0700 (PDT)
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
 	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	13 Jun 2017 08:45:14 -0700
+	13 Jun 2017 08:45:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.39,338,1493708400"; d="scan'208";a="980308262"
+X-IronPort-AV: E=Sophos;i="5.39,338,1493708400"; d="scan'208";a="980308274"
 Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
-	by orsmga003.jf.intel.com with ESMTP; 13 Jun 2017 08:45:14 -0700
+	by orsmga003.jf.intel.com with ESMTP; 13 Jun 2017 08:45:17 -0700
 From: jose.perez.carranza@linux.intel.com
 To: yocto@yoctoproject.org
-Date: Tue, 13 Jun 2017 10:47:25 -0500
-Message-Id: <20170613154728.19002-1-jose.perez.carranza@linux.intel.com>
+Date: Tue, 13 Jun 2017 10:47:26 -0500
+Message-Id: <20170613154728.19002-2-jose.perez.carranza@linux.intel.com>
 X-Mailer: git-send-email 2.11.0
-Subject: [qa-tools][PATCH 1/4] external/testopia: Modify commands to get Product and Environment
+In-Reply-To: <20170613154728.19002-1-jose.perez.carranza@linux.intel.com>
+References: <20170613154728.19002-1-jose.perez.carranza@linux.intel.com>
+Subject: [qa-tools][PATCH 2/4] poduct/init: Add functions to get product and environment names
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,36 +44,51 @@ X-List-Received-Date: Tue, 13 Jun 2017 15:45:18 -0000
 
 From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
 
-Modify commands to get Product and Environment name providing
-the ID.
+Add functions as follows:
+- get_test_plan_by_id : Get test plan providing the plan ID
+- get_product_name: Get product name providing the product ID
+- get_environment_by_id: Get environment providing the environment ID
 
 Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
 ---
- external/testopia.py | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ testopia_update/product/__init__.py | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/external/testopia.py b/external/testopia.py
-index f2f2d45..a82b32e 100755
---- a/external/testopia.py
-+++ b/external/testopia.py
-@@ -627,7 +627,7 @@ class Testopia(object):
+diff --git a/testopia_update/product/__init__.py b/testopia_update/product/__init__.py
+index a24196a..8d31a1e 100644
+--- a/testopia_update/product/__init__.py
++++ b/testopia_update/product/__init__.py
+@@ -32,6 +32,17 @@ class Product(object):
  
-         Result: The product name for the respective id or empty string if an error occurs.
-         """
--        return self.do_command("Product.lookup_name_by_id", [self._number_noop(id)])
-+        return self.do_command("TestopiaProduct.get", [self._number_noop(id)])
+         return tp
  
++    def get_test_plan_by_id(self, plan_id):
++        tp = self.testopia.testplan_get(plan_id)
++
++        return tp
++
++    def get_product_name(self, product_id):
++        prod_name = self.testopia.product_lookup_name_by_id(product_id)
++
++        return prod_name
++
++
+     def get_environment(self, tp, env_name):
+         tp_envs = self.testopia.product_get_environments(tp['product_id'])
+         for tp_env in tp_envs:
+@@ -47,6 +58,12 @@ class Product(object):
+         tp_envs = self.testopia.product_get_environments(tp['product_id'])
+         return [tp_env['name'] for tp_env in tp_envs]
  
-     def product_get_milestones(self, product_id):
-@@ -1629,7 +1629,7 @@ class Testopia(object):
++    def get_environment_by_id(self, env_id):
++        environment_id = self.testopia.testrun_lookup_environment_name_by_id(env_id)
++
++        return environment_id
++
++
+     def _format_build_name(self, project_version, project_revision):
+         return "%s: %s" % (project_version, project_revision)
  
-         Result: The TestRun environment name for the respective id or empty string if an error occurs.
-         """
--        return self.do_command("TestRun.lookup_environment_name_by_id", [self._number_noop(id)])
-+        return self.do_command("Environment.get", [self._number_noop(id)])
- 
- 
-     ############################## TestCaseRun ##################################
 -- 
 2.11.0
 
