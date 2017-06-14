@@ -1,47 +1,69 @@
-Return-Path: <tom.rini@gmail.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A3ED8E00B47; Tue, 13 Jun 2017 19:18:27 -0700 (PDT)
+	id 1A83FE00B53; Tue, 13 Jun 2017 21:10:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (antonius.riko[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-yb0-f172.google.com (mail-yb0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28A77E009A5
-	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 19:18:25 -0700 (PDT)
-Received: by mail-yb0-f172.google.com with SMTP id 4so40874443ybl.1
-	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 19:18:25 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.174 listed in list.dnswl.org]
+Received: from mail-pf0-f174.google.com (mail-pf0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD6F7E00B18
+	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 21:10:10 -0700 (PDT)
+Received: by mail-pf0-f174.google.com with SMTP id l89so77615923pfi.2
+	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 21:10:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-language;
+	bh=43f9fLQJw1ByM6BUOAARJnipMY5PXaQRo9VOdkcU9x0=;
+	b=cmhNa3E5kC+nWjYRTOzXYf2P6lHcWcVkpqD6CyV62ND6dm7moWDo0ulrxJjxfaZBAH
+	VA+v3YDyTVXSLrhdfhH4NZ9zwF794ZTiwui/m8+MGNMs7Ujg0yf29nLzl5QHxzMJl+Fm
+	k+JmDyAsG7YcuYMzhMVF3exrKWWoLVSpu+mpl7/UJ8jQRsk2o51bTLrieJ9jHQcFoQWv
+	KyrjAzkRBDh1AroAIBfYEHn/KNZqOHFlqlMnrm9yp7rW/eoHto5bZHhmjiu6178C4Ly3
+	YA5s4QThtvT2KW2EwlJxSVZcWKAMcgaigFhqg5+1isZv+QExU1DMQINiDqV2LJPf8dcT
+	hkbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=xos+HFXHSwTNxiSVewr/7JqamB2f95mZ0TXG4cQYeDk=;
-	b=sd2WpilDjbzjVPBAgTWxe8hTZ9BbtSW02FIC012XCpuPNxBr97OjM2snXdV25qlHSj
-	Yg+h7KEXPa6UFW3hjlqv2qHWWfZBLrvhlhNVKUEzoDJ7lFLQHBFVA7VHk0YQKinsS8qe
-	jHFiBZJB8xwAGNNhOPNs3a/6MAt5zrhqfSuuDhVk+mJt1CcIZt+/SlM2oVzwIxnpxQkm
-	YAa+WZ4zcxyt64Z3I9QJOhKglf2mamg9O50NG7gkZih3tW8Dxubh1UXpY13E2Nty8pe1
-	YIxUmNjEb+C4lnkxsITGpvkEt48ho+rxwzY1mI8m9+LkuzdjeC5945IEND+fuESwsVVZ
-	meXA==
-X-Gm-Message-State: AKS2vOy9KCnCgot3eSp9wO6vDMkt+LWtzyFCjoQqmTbt9heLH+Wuv49Q
-	m6SuIPRieA6lbqFV
-X-Received: by 10.37.202.140 with SMTP id a134mr5699131ybg.182.1497406704756; 
-	Tue, 13 Jun 2017 19:18:24 -0700 (PDT)
-Received: from localhost.localdomain (cpe-75-180-228-133.ec.res.rr.com.
-	[75.180.228.133]) by smtp.gmail.com with ESMTPSA id
-	q20sm5761740ywa.20.2017.06.13.19.18.23 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 13 Jun 2017 19:18:24 -0700 (PDT)
-From: Tom Rini <trini@konsulko.com>
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-language;
+	bh=43f9fLQJw1ByM6BUOAARJnipMY5PXaQRo9VOdkcU9x0=;
+	b=lyvk7VJHnMWCg5EsLQW9s1O34VKzfKA5BeufCq9zjmhHHUSAT78pMq0qwcvI8ilOdx
+	q0AjgWS8LBIQTyeNQO5xdoibLtD87kD4CPkAhX4zhzqzx9h9sYAdp/cTr8ia2VNvNkGK
+	LttSd8q1pEhF+rEFXtc0NgtWLe6PJXcMUOBFllDOWM+ZY5FUqxLLHQUo+Gv8nUx+nrFu
+	ozWh7s1JvZHKfh5qejQJ6W5EBBXLP0ECN8ru9mPhtzZhiUvXvXjKWIFOTr3bhNInpvDs
+	CpgdM9YXzKPadFEjihhE94K3NBMQ0lq6C9iGoWSPI1mZZ8G/0opJR2aEEiJuNqTan0IJ
+	OHig==
+X-Gm-Message-State: AKS2vOwdbRuauA9yis1YRsO5qqmgtsKQycVa87MVZR5S9asfRAHMqYbo
+	tgWTlc5j56ttN+tv
+X-Received: by 10.84.133.226 with SMTP id f89mr2901736plf.55.1497413409490;
+	Tue, 13 Jun 2017 21:10:09 -0700 (PDT)
+Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
+	[124.178.9.113]) by smtp.gmail.com with ESMTPSA id
+	r85sm21512778pfd.100.2017.06.13.21.10.07 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 13 Jun 2017 21:10:08 -0700 (PDT)
 To: yocto@yoctoproject.org
-Date: Tue, 13 Jun 2017 22:18:45 -0400
-Message-Id: <1497406725-20467-1-git-send-email-trini@konsulko.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] apparmor: Rework such that the utilities are functional by default
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <ed57e154-cbd7-176a-02fb-496c6f730d2a@gmail.com>
+Date: Wed, 14 Jun 2017 12:10:05 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
+MIME-Version: 1.0
+Subject: bitbake core-image-web-kiosk question ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,145 +75,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jun 2017 02:18:27 -0000
+X-List-Received-Date: Wed, 14 Jun 2017 04:10:14 -0000
+Content-Type: multipart/alternative;
+	boundary="------------11D335DF5D265EB35C7B9EC4"
+Content-Language: en-US
 
-This introduces a number of changes:
-- Fix the python PACKAGECONFIG knob
-  - The included python support is python3-based, so use those classes.
-  - When set, make sure to RDEPEND on the python modules the tools use.
-- Fix the perl PACKAGECONFIG knob
-  - Add two patches so that configure will find perl and then compile
-    will cross-compile the library correctly.
-  - So that we place perl modules in the correct location we need cpan
-    to be inherited.
-  - When disabled, remove the RDEPENDS on perl as the RDEPENDS comes in
-    via inherit.
-- Default to enabling the python and perl PACKAGECONFIG knobs as the
-  majority of the userspace tools are python3 based, and the few that
-  aren't that nor C based are perl based.
-- Because of the above we must drop the -python package because it's
-  required for the utilities in the main package.
+--------------11D335DF5D265EB35C7B9EC4
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Tom Rini <trini@konsulko.com>
----
-This has been tested with some brief poking in qemux86 with the apparmor
-DISTRO_FEATURE added and apparmor included in core-image-minimal.  This
-is also a handy way of seeing how much doesn't work in the package
-without this change.
----
- recipes-security/AppArmor/apparmor_2.11.0.bb       | 17 +++++++++------
- .../files/crosscompile_perl_bindings.patch         | 25 ++++++++++++++++++++++
- .../AppArmor/files/disable_perl_h_check.patch      | 19 ++++++++++++++++
- 3 files changed, 54 insertions(+), 7 deletions(-)
- create mode 100644 recipes-security/AppArmor/files/crosscompile_perl_bindings.patch
- create mode 100644 recipes-security/AppArmor/files/disable_perl_h_check.patch
+Hello Everyone,
 
-diff --git a/recipes-security/AppArmor/apparmor_2.11.0.bb b/recipes-security/AppArmor/apparmor_2.11.0.bb
-index 591a673d8ec7..647ab124f115 100644
---- a/recipes-security/AppArmor/apparmor_2.11.0.bb
-+++ b/recipes-security/AppArmor/apparmor_2.11.0.bb
-@@ -15,6 +15,8 @@ DEPENDS = "bison-native apr apache2 gettext-native coreutils-native"
- 
- SRC_URI = " \
- 	http://archive.ubuntu.com/ubuntu/pool/main/a/${BPN}/${BPN}_${PV}.orig.tar.gz \
-+	file://disable_perl_h_check.patch \
-+	file://crosscompile_perl_bindings.patch \
- 	file://apparmor.rc \
- 	file://functions \
- 	file://apparmor \
-@@ -27,15 +29,15 @@ SRC_URI[sha256sum] = "b1c489ea11e7771b8e6b181532cafbf9ebe6603e3cb00e2558f21b7a5b
- 
- PARALLEL_MAKE = ""
- 
--inherit pkgconfig autotools-brokensep update-rc.d python-dir perlnative ptest
-+inherit pkgconfig autotools-brokensep update-rc.d python3native perlnative ptest cpan
- inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
- 
- S = "${WORKDIR}/apparmor-${PV}"
- 
--PACKAGECONFIG ?="man"
-+PACKAGECONFIG ?="man python perl"
- PACKAGECONFIG[man] = "--enable-man-pages, --disable-man-pages"
--PACKAGECONFIG[python] = "--with-python, --without-python, python swig-native"
--PACKAGECONFIG[perl] = "--with-perl, --without-perl, perl perl-native"
-+PACKAGECONFIG[python] = "--with-python, --without-python, python3 swig-native"
-+PACKAGECONFIG[perl] = "--with-perl, --without-perl, perl perl-native swig-native"
- 
- PAMLIB="${@bb.utils.contains('DISTRO_FEATURES', 'pam', '1', '0', d)}"
- 
-@@ -116,11 +118,12 @@ SYSTEMD_PACKAGES = "${PN}"
- SYSTEMD_SERVICE_${PN} = "apparmor.service"
- SYSTEMD_AUTO_ENABLE = "disable"
- 
--PACKAGES += "python-${PN} mod-${PN}"
-+PACKAGES += "mod-${PN}"
- 
--FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor"
-+FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}"
- FILES_mod-${PN} = "${libdir}/apache2/modules/*"
--FILES_python-${PN} = "${PYTHON_SITEPACKAGES_DIR}"
- 
- RDEPENDS_${PN} += "bash lsb"
-+RDEPENDS_${PN} += "${@bb.utils.contains('PACKAGECONFIG','python','python3 python3-argparse python3-json','', d)}"
-+RDEPENDS_${PN}_remove += "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
- RDEPENDS_${PN}-ptest += "coreutils dbus-lib"
-diff --git a/recipes-security/AppArmor/files/crosscompile_perl_bindings.patch b/recipes-security/AppArmor/files/crosscompile_perl_bindings.patch
-new file mode 100644
-index 000000000000..ef55de717e18
---- /dev/null
-+++ b/recipes-security/AppArmor/files/crosscompile_perl_bindings.patch
-@@ -0,0 +1,25 @@
-+Upstream-Status: Inappropriate [configuration]
-+
-+As we're cross-compiling here we need to override CC/LD that MakeMaker has
-+stuck in the generated Makefile with our cross tools.  In this case, linking is
-+done via the compiler rather than the linker directly so pass in CC not LD
-+here.
-+
-+Signed-Off-By: Tom Rini <trini@konsulko.com>
-+
-+--- a/libraries/libapparmor/swig/perl/Makefile.am.orig	2017-06-13 19:04:43.296676212 -0400
-++++ b/libraries/libapparmor/swig/perl/Makefile.am	2017-06-13 19:05:03.488676693 -0400
-+@@ -16,11 +16,11 @@
-+ 
-+ LibAppArmor.so: libapparmor_wrap.c Makefile.perl
-+ 	if test ! -f libapparmor_wrap.c; then cp $(srcdir)/libapparmor_wrap.c . ; fi
-+-	$(MAKE) -fMakefile.perl
-++	$(MAKE) -fMakefile.perl CC='$(CC)' LD='$(CC)'
-+ 	if test $(top_srcdir) != $(top_builddir) ; then rm -f libapparmor_wrap.c ; fi
-+ 
-+ install-exec-local: Makefile.perl
-+-	$(MAKE) -fMakefile.perl install_vendor
-++	$(MAKE) -fMakefile.perl install_vendor CC='$(CC)' LD='$(CC)'
-+ 
-+ # sadly there is no make uninstall for perl
-+ #uninstall-local: Makefile.perl
-diff --git a/recipes-security/AppArmor/files/disable_perl_h_check.patch b/recipes-security/AppArmor/files/disable_perl_h_check.patch
-new file mode 100644
-index 000000000000..cf2640fce2be
---- /dev/null
-+++ b/recipes-security/AppArmor/files/disable_perl_h_check.patch
-@@ -0,0 +1,19 @@
-+Upstream-Status: Inappropriate [configuration]
-+
-+Remove file check for $perl_includedir/perl.h.  AC_CHECK_FILE will fail on
-+cross compilation.  Rather than try and get a compile check to work here,
-+we know that we have what's required via our metadata so remove only this
-+check.
-+
-+Signed-Off-By: Tom Rini <trini@konsulko.com>
-+
-+--- a/libraries/libapparmor/configure.ac.orig	2017-06-13 16:41:38.668471495 -0400
-++++ b/libraries/libapparmor/configure.ac	2017-06-13 16:41:40.708471543 -0400
-+@@ -58,7 +58,6 @@
-+    AC_PATH_PROG(PERL, perl)
-+    test -z "$PERL" && AC_MSG_ERROR([perl is required when enabling perl bindings])
-+    perl_includedir="`$PERL -e 'use Config; print $Config{archlib}'`/CORE"
-+-   AC_CHECK_FILE($perl_includedir/perl.h, enable_perl=yes, enable_perl=no)
-+ fi
-+ 
-+ 
+I tried doing "bitbake core-image-web-kiosk"
+
+And I got this :
+
+====================
+
+Loading cache: 100% 
+|#####################################################################################################################################| 
+Time: 0:00:00
+Loaded 1310 entries from dependency cache.
+ERROR: ExpansionError during parsing 
+/home/bianchi77/poky/meta-web-kiosk/recipes-browser/vala/vala_0.16.0.bb 
+| ETA:  --:--:--
+Traceback (most recent call last):
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 412, 
+in 
+DataSmart.expandWithRefs(s='http://ftp.gnome.org/pub/GNOME/sources/${BPN}/${SHRT_VER}/${BP}.tar.xz 
+http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz', 
+varname='SRC_URI'):
+                  try:
+     >                s = __expand_var_regexp__.sub(varparse.var_sub, s)
+                      try:
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 111, 
+in VariableParse.var_sub(match=<_sre.SRE_Match object; span=(46, 57), 
+match='${SHRT_VER}'>):
+                  else:
+     >                var = self.d.getVarFlag(key, "_content")
+                  self.references.add(key)
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 794, 
+in DataSmart.getVarFlag(var='SHRT_VER', flag='_content', expand=True, 
+noweakdefault=False, parsing=False):
+                      cachename = var + "[" + flag + "]"
+     >            value = self.expand(value, cachename)
+
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 436, 
+in 
+DataSmart.expand(s="${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}", 
+varname='SHRT_VER'):
+          def expand(self, s, varname = None):
+     >        return self.expandWithRefs(s, varname).value
+
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 426, 
+in 
+DataSmart.expandWithRefs(s="${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}", 
+varname='SHRT_VER'):
+                  except Exception as exc:
+     >                raise ExpansionError(varname, s, exc) from exc
+
+bb.data_smart.ExpansionError: Failure expanding variable SHRT_VER, 
+expression was 
+${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]} 
+which triggered exception AttributeError: module 'bb.data' has no 
+attribute 'getVar'
+
+
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+===============
+
+Does anyone know how to fix it ?
+
+I used poky with pyro release,
+
+Thanks
+
 -- 
-1.9.1
+*
 
+/*******/
+Sent by Ubuntu LTS 16.04,
+谢谢,
+Regards,
+Riko Ho
+/*******/
 
+*
+
+--------------11D335DF5D265EB35C7B9EC4
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Hello Everyone,</p>
+    <p>I tried doing "bitbake core-image-web-kiosk"</p>
+    <p>And I got this :</p>
+    <p>====================</p>
+    <p>Loading cache: 100%
+|#####################################################################################################################################|
+      Time: 0:00:00<br>
+      Loaded 1310 entries from dependency cache.<br>
+      ERROR: ExpansionError during parsing
+/home/bianchi77/poky/meta-web-kiosk/recipes-browser/vala/vala_0.16.0.bb                                            
+      | ETA:  --:--:--<br>
+      Traceback (most recent call last):<br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      412, in
+DataSmart.expandWithRefs(s='<a class="moz-txt-link-freetext" href="http://ftp.gnome.org/pub/GNOME/sources/$">http://ftp.gnome.org/pub/GNOME/sources/$</a>{BPN}/${SHRT_VER}/${BP}.tar.xz 
+<a class="moz-txt-link-freetext" href="http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz">http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz</a>',
+      varname='SRC_URI'):<br>
+                       try:<br>
+          &gt;                s =
+      __expand_var_regexp__.sub(varparse.var_sub, s)<br>
+                           try:<br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      111, in VariableParse.var_sub(match=&lt;_sre.SRE_Match object;
+      span=(46, 57), match='${SHRT_VER}'&gt;):<br>
+                       else:<br>
+          &gt;                var = self.d.getVarFlag(key, "_content")<br>
+                       self.references.add(key)<br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      794, in DataSmart.getVarFlag(var='SHRT_VER', flag='_content',
+      expand=True, noweakdefault=False, parsing=False):<br>
+                           cachename = var + "[" + flag + "]"<br>
+          &gt;            value = self.expand(value, cachename)<br>
+           <br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      436, in
+DataSmart.expand(s=<a class="moz-txt-link-rfc2396E" href="mailto:${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}">"${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}"</a>,
+      varname='SHRT_VER'):<br>
+               def expand(self, s, varname = None):<br>
+          &gt;        return self.expandWithRefs(s, varname).value<br>
+           <br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      426, in
+DataSmart.expandWithRefs(s=<a class="moz-txt-link-rfc2396E" href="mailto:${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}">"${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}"</a>,
+      varname='SHRT_VER'):<br>
+                       except Exception as exc:<br>
+          &gt;                raise ExpansionError(varname, s, exc) from
+      exc<br>
+           <br>
+      bb.data_smart.ExpansionError: Failure expanding variable SHRT_VER,
+      expression was
+${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}
+      which triggered exception AttributeError: module 'bb.data' has no
+      attribute 'getVar'<br>
+      <br>
+      <br>
+      Summary: There was 1 ERROR message shown, returning a non-zero
+      exit code.<br>
+    </p>
+    <p>===============</p>
+    <p>Does anyone know how to fix it ?</p>
+    <p>I used poky with pyro release, <br>
+    </p>
+    <p>Thanks<br>
+    </p>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          谢谢,<br>
+          Regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
+  </body>
+</html>
+
+--------------11D335DF5D265EB35C7B9EC4--
