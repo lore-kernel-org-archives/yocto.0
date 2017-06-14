@@ -1,74 +1,61 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <jjosburn@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 679A5E00B47; Wed, 14 Jun 2017 02:21:12 -0700 (PDT)
+	id 9CB2FE00B53; Wed, 14 Jun 2017 03:43:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.215.48 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jjosburn[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+	*      [score: 0.0019]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19B30E00888
-	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 02:21:02 -0700 (PDT)
-Received: by mail-lf0-f48.google.com with SMTP id v20so87560947lfa.1
-	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 02:21:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-disposition:in-reply-to:organization
-	:user-agent; bh=NNZaHBYG6xj7Qk6XpJjvjNln9cOC3Yq/SKqWnzuQ/0Y=;
-	b=0GN1YSdV1YwcAvT2LwKwC0HQEiPWq0jonGzBqnx1VpY94971nzN8eAsK2bS68NVm5h
-	T9scUJV68/StlML9GSS99Om0xbMeW9ue0jZHG9q0pV59AFyS3yLEf1RkRvEkWmwLCWVE
-	U3oOSjMc8iMzDRk7WV9hDE4GvAGkNneQEt523YAKS/YWPKyiA0f6py6U+5aaKcPQ116o
-	1xepruTmzsBLj1HVVVzhnev903X98F8QK8bda+jdWbtd8T6a113kYbmrjZwEdrUduam4
-	85nUk6j03Y2TmN2a/4wpCV5Z3CghtXUrhnf+gtR3v9xAwYWnHaEe0Rxmj+J7lJKHdzID
-	83Ag==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.177 listed in list.dnswl.org]
+Received: from mail-ot0-f177.google.com (mail-ot0-f177.google.com
+	[74.125.82.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D250E00888
+	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 03:43:26 -0700 (PDT)
+Received: by mail-ot0-f177.google.com with SMTP id a2so107148788oth.2
+	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 03:43:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Hw+fot9Q/S2/FrQg+lIutsxl27TL95o5svlxwt5/maI=;
+	b=DcA/nDk8cxue0NH6KnASqJJKiLs/Q49Us2ekZjFUkhU5z1SMKuNRzPnmeiVEVW1yCs
+	SZfERb1I0s91aYq1YwCKzScAY0BlK38G+g+uLCobfJGZDuXTeKDYvlgkX43c9TMFdzYC
+	LOnY/AGzrtABih+COpxYNTLm2yhqNtNw75Jk7khmMX9BP6xOeZr8sMFHmh36lM1P7NyP
+	5lM72gKq8ZzhV7mgd9xl6DLP4ZcUch8+e+F13PI04a2DcTKPE2+tCUIlTPhxS8MbjZWf
+	xurLay+1B8SuW+B25silsOu92HFXJ1B3RAvmWcTq8m3nrBeVu4fp2QMXf3ItAR7jJse6
+	A6gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
-	:references:mime-version:content-disposition:in-reply-to
-	:organization:user-agent;
-	bh=NNZaHBYG6xj7Qk6XpJjvjNln9cOC3Yq/SKqWnzuQ/0Y=;
-	b=gJHy9Y5riyvOmGprHWc4SHqmH41kAOXvMKWb+FQZtNyxdnHRCVPBPEyx315bstXxA6
-	d1tZyXN8Jix2xoWW0mkyYUCWaFXv5ASfCtmWgJYR/dqNYs5J0p8W/VCRrf4LhsrZ/RyN
-	BPFiQrKeEDx66f+bqyfMRMeIkERVPYdsmeRdtRW5roGUubODL++iEcnylGsqKDbx3uPH
-	7KaQWWEXmX06C2h4lasJIDGeZh+ad/GJdFBjQ1cwxchhuXJL8EkjPhsxQnDUG0lubsyF
-	MiOpPB0Cy22/OIesy0Tj3Nnk7zTPszXIiyACZu7qtogKDNwBwMP8Nslr1YabmUy5dOcp
-	6goQ==
-X-Gm-Message-State: AKS2vOyKIH71Rq027u4jPVPRKonUqU1C1rol2alfhdzVWU9hDZdwjyEy
-	4dRJq5SEzAaL09sHlyYQLQ==
-X-Received: by 10.46.14.1 with SMTP id 1mr1272140ljo.40.1497432061050;
-	Wed, 14 Jun 2017 02:21:01 -0700 (PDT)
-Received: from ad.chargestorm.se (194-237-220-218.customer.telia.com.
-	[194.237.220.218])
-	by smtp.gmail.com with ESMTPSA id b17sm121632lfg.32.2017.06.14.02.21.00
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Wed, 14 Jun 2017 02:21:00 -0700 (PDT)
-Date: Wed, 14 Jun 2017 11:20:57 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: yocto@yoctoproject.org
-Message-ID: <20170614092057.amc6kambns3nvcoq@ad.chargestorm.se>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <BFC5B361F1B24D4CBD6CB3483A12B103@PAULD>
-	<20170614082258.GA36175@mbabyjoh-desk.ger.corp.intel.com>
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Hw+fot9Q/S2/FrQg+lIutsxl27TL95o5svlxwt5/maI=;
+	b=VLVkwC6SSoBMFbOKZbTk/xv/8U4XcLncm4P8OquA/pOM9xBfzg7/vZjpniAfP+OUME
+	v4mjguSQ2GuAnj1t1rf9k47gW9XKyTg01CrP45+Kxeoj8IYT2oA0MKmd7rHPNM7nR0Fm
+	NkB/Jpupho5jzoU9c02QUso8tlgQys4LEw7JXfuVQ/D01T5QYkSDWoCNrdXYXPBZrdMF
+	+b+N8Zsn9vtIlIPQxNbSIDg8CNxKe3ISJ0gSyxzUTCsyTO/ntsZuKkxq9+Etne1AzMAt
+	7WHqrrUyqOHT0YPuJHUybsAkKtKGyeRrguaTx70AZGOqjrTRpdpnFfpcwn9ALGCZ8L0c
+	gU2w==
+X-Gm-Message-State: AKS2vOw2Xmm9dk37yN/Ogzz/GPJQwTwAIuhiBYA4ik3lDcMLx5763rQl
+	DykiJhrWYMSKa9W056wJ5B6wGiEmfQ==
+X-Received: by 10.157.12.171 with SMTP id b40mr428883otb.98.1497437005279;
+	Wed, 14 Jun 2017 03:43:25 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20170614082258.GA36175@mbabyjoh-desk.ger.corp.intel.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: NeoMutt/20170306 (1.8.0)
-Subject: Re: Image lacks libraries needed by SDK
+Received: by 10.202.230.5 with HTTP; Wed, 14 Jun 2017 03:43:24 -0700 (PDT)
+From: "blackthirt33n ." <jjosburn@gmail.com>
+Date: Wed, 14 Jun 2017 06:43:24 -0400
+Message-ID: <CA+z1-f-KrzwFjRTgmiH0dj-mYavLa1sJSmG=30AiAMdwQ6TMBA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: is there a guide to making a recipe for bitbake with the morty/pyro branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,43 +67,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jun 2017 09:21:12 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 14 Jun 2017 10:43:27 -0000
+Content-Type: multipart/alternative; boundary="001a1141df16c5fa2d0551e93883"
 
-* Maxin B. John <maxin.john@intel.com> [170614 10:24]:
+--001a1141df16c5fa2d0551e93883
+Content-Type: text/plain; charset="UTF-8"
 
-> Hi Paul,
+is there a guide to making a recipe for bitbake with the more recent
+branches.
+I have found a guide but those are dated 2015 and there descriptions
+are now dated.
+James
 
-> On Tue, Jun 13, 2017 at 04:24:38PM -0700, Paul D. DeRocco wrote:
-> > In order to try out the much more recent compiler in the Yocto SDK (and to
-> > prepare for converting to a different architecture in the future), I built
-> > a standard SDK by using do_populate_sdk on my image. I managed to modify
-> > my project to use the toolchain and libraries in the sysroot in the SDK,
-> > and it successfully produces an executable. But when I copy this into my
-> > system, it barfs because there is no libstdc++.o (and perhaps other
-> > libraries) on my system. And there is no libstdc++.a in the SDK.
+--001a1141df16c5fa2d0551e93883
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Had a similar experience with respect to the availability of static libraries
-> in the SDK.
+<div dir=3D"ltr">is there a guide to making a recipe for bitbake with the m=
+ore recent branches.<div>I have found a guide but those are dated 2015 and =
+there descriptions=C2=A0</div><div>are now dated.</div><div>James</div></di=
+v>
 
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=5347
-
-> One way to fix this will be to include required static libraries in the image
-> before building SDK - eg: for glibc static development libraries:
-
-> IMAGE_INSTALL_append = " glibc-staticdev"
-
-Why install it to the image? 
-
-TOOLCHAIN_TARGET_TASK_append = " glibc-staticdev"
-
-would be better, as it'll only add this package to the SDK.
-
-Cheers,
-Anders
-
--- 
-Anders Darander, Senior System Architect
-ChargeStorm AB / eStorm AB
-
+--001a1141df16c5fa2d0551e93883--
