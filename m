@@ -1,14 +1,16 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <nicolas.adell@actia.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B590DE00B87; Wed, 14 Jun 2017 10:57:46 -0700 (PDT)
+	id AC42AE00B8F; Wed, 14 Jun 2017 13:26:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.65 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,49 +18,68 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.193 listed in list.dnswl.org]
-Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
-	[209.85.128.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D56CE00B43
-	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 10:57:43 -0700 (PDT)
-Received: by mail-wr0-f193.google.com with SMTP id x23so1495468wrb.0
-	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 10:57:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=WCmhEJJau1hzOpwijcY7F8Yqn7rCrrcN61RWug9LY0o=;
-	b=LugjgTejuUMhfGwgfomQ64ppT0jFKUV/Xq27GccFsb7vfOdJvrLbnnIR9jDroQL2N7
-	zp+VX/sA+Qu3lxLM1wYLS7zqLb7viTln3V90kf7LuPMpF3pJRypufpKIaCK5mOtolo83
-	+6hWn5a8FvTuapqXq27DaEKGuT5AhGJsn8K5bYlZ66g0mjdOF4juy5WO+QOgweMjosHN
-	gAa/UeRFqp+R9Ne0BCWNhrc0H4ajNcdNpGFutv9rOuC6U8d9LSjenHJoPKjjqkJBjLCi
-	Bz+I0fP2PWEg6YYiZmDx/Mhh1ghf2yy/VRER16tu+STcw1XQ9EnRHH+xxpDYZoI4Cpgi
-	nxZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=WCmhEJJau1hzOpwijcY7F8Yqn7rCrrcN61RWug9LY0o=;
-	b=ZnbwemrZ9k716XMb6fe3xVVrbrTsGdenVMiBjoC6SPmiwC+45TvSl3+VVZzC70TAtl
-	C5Yu4n8ZTTk7NDKHPwsd76JzYBpsBbNkekA+7uVOCcVkX4Me478/6QYyApLz10bVNlVI
-	EQVYZtriVH6vbJM5X3tMu5qaiUpNUfI3m3hmJRRsgBMKUfn/ZfQyKcKPoSHPqz4hhsG9
-	qjFr3ZqhIflWY6NKi9pX0lE/psaudBX/J4yby+5w6RCuYBYwr5nNbLcocIby5Dul8hnu
-	w22J6N2hIxqRM4yDPg91iUSCIT8pQVCx+HyNEdsM13sAGTsygLd4PR9Wh+OwZqz+G3qI
-	i6kg==
-X-Gm-Message-State: AKS2vOxariG2mHZFB3xeVS1ekQlf5s24+f4clGf1i/ZPHV725+1H9z7i
-	td/aTv5TbI2vo+rN9/LBnMHaOy/oQQ==
-X-Received: by 10.28.41.193 with SMTP id p184mr851193wmp.86.1497463062539;
-	Wed, 14 Jun 2017 10:57:42 -0700 (PDT)
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0065.outbound.protection.outlook.com [104.47.2.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CECE7E00B77
+	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 13:25:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=actia.fr; s=selector1; 
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=e6cIXaCfIZPkENy/xYm+m8v3uwDhm9gzoqbrUsZIJ0o=;
+	b=draB0jWYe1n8d8VqhQKcufH8uk2Gxzm604voHole5+PgMXt7oDURHVj5/Epyf2IXLeNnz5dK4/NrWbdgvphK2aVvf/YAZsMWXy3VrPWSnJKz/Ib1AZKzqfNjWQoGIjRGnqPfw5YoFNgFkiG4XMa7Jhp6pLNr4fMDto39TEygO0g=
+Received: from DB6PR0101MB2517.eurprd01.prod.exchangelabs.com (10.169.221.150)
+	by DB6PR0101MB2519.eurprd01.prod.exchangelabs.com (10.169.222.7) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1178.14;
+	Wed, 14 Jun 2017 06:51:55 +0000
+Received: from DB6PR0101MB2517.eurprd01.prod.exchangelabs.com
+	([fe80::eca7:e2e:68ab:5d74]) by
+	DB6PR0101MB2517.eurprd01.prod.exchangelabs.com
+	([fe80::eca7:e2e:68ab:5d74%17]) with mapi id 15.01.1178.013;
+	Wed, 14 Jun 2017 06:51:55 +0000
+From: Nicolas ADELL <nicolas.adell@actia.fr>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] How to package the signed kernel modules into the
+	filesystem ?
+Thread-Index: AQHS5NnzdW03CrNyQUyTx43JEVoKcg==
+Date: Wed, 14 Jun 2017 06:51:55 +0000
+Message-ID: <DB6PR0101MB2517CD981E48E94ABA6B5F9D85C30@DB6PR0101MB2517.eurprd01.prod.exchangelabs.com>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none; yoctoproject.org;
+	dmarc=none action=none header.from=actia.fr; 
+x-originating-ip: [2a01:111:e400:5366:cafe::dc]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DB6PR0101MB2519;
+	7:dkcMZPRmEagx7fpWH7yQOoduWa1JB9urzzmcj1HN+JcJKACjJ7yqqF5hg//e459fGp9Gi1El8ZiB72uMeJ0gVumOzuybYUgyoUqeF1w1wTMq1v43W1gpPCDxqj9sG+Jh5GmJQEmijDqHHS3U0p5ZAE+JEz3VKRhksAeHrlrtdf1sdptvIn+e07uxUOMieU0AloMXKgR862V4FFhrgsxy5IVfxzU0Txx09KSXmFNVmRPIKwGeHBDZi7v6AmUtA9eQkvX+dx6YagkJ/VZJPy9bvgkaZE14wL8Dh1Ciidfp9zzj3HYpujFudlzfyikb7aIUESAjQTGt3bR0J/Rw0RCPHLzqa18GL+XyAX2muV0JsdTojHh4iP59J3cC7dmYnJMjXraLTSkADHwRy0BrB/10CM1BUU12cWo9Z+qG4Jb6IoKMvD6dyPNiTVhRpee5JQ9k1B0qfVhRdWOdWwcWfwfwVgJssAQ6sF00fOCitIDIT6NHFG8tW5HUmFSP3KSKbyYAEdbqIL3wbG8SS/EmR2YQLfcjp6Y23ajeDDQAdEFqr7KX5q9O6qn0XUITnLNFZ2Bicfr0NdLs3Lcp7/EDQ8i/VjlyNmMDR+N6EbZOctQqv1sowC6bnOQe24Hj4fw7/gDryysYumkVdS+vXDu0tOKGv8jfj3wPcMQRPLK58WRtpZ/Vbs8JDb2FThVsy2Xo6wd3EUChHDxtAFFB2/zSi7zenW3G8CfiuZpDLp4Rl1hocfYxPE7THTzfsSDjDmlpRAW3vUEWkcRYDAE/iM/HGH1jGYuqo/t0xOoTlkG/6PV9/Xc=
+x-ms-office365-filtering-correlation-id: 37abaaf3-9a45-4631-ce15-08d4b2f1d8b0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(2017030254075)(201703131423075)(201703031133081);
+	SRVR:DB6PR0101MB2519; 
+x-ms-traffictypediagnostic: DB6PR0101MB2519:
+x-microsoft-antispam-prvs: <DB6PR0101MB25198B45180254814C4C589485C30@DB6PR0101MB2519.eurprd01.prod.exchangelabs.com>
+x-exchange-antispam-report-test: UriScan:(17755550239193);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(93006095)(93001095)(100000703101)(100105400095)(10201501046)(3002001)(6041248)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123558100)(20161123560025)(20161123555025)(20161123562025)(20161123564025)(6072148)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:DB6PR0101MB2519; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:DB6PR0101MB2519; 
+x-forefront-prvs: 033857D0BD
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(39830400002)(39450400003)(39410400002)(39400400002)(110136004)(5250100002)(33656002)(2501003)(38730400002)(8676002)(8936002)(2351001)(14454004)(478600001)(53936002)(7696004)(6916009)(189998001)(2900100001)(2906002)(5660300001)(74316002)(6506006)(99286003)(7736002)(3280700002)(50986999)(6436002)(9686003)(74482002)(54356999)(3660700001)(1730700003)(6116002)(81166006)(86362001)(55016002)(305945005)(25786009)(102836003)(5640700003);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:DB6PR0101MB2519;
+	H:DB6PR0101MB2517.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.223.176.170 with HTTP; Wed, 14 Jun 2017 10:57:41 -0700 (PDT)
-In-Reply-To: <1497442376-42554-1-git-send-email-maxin.john@intel.com>
-References: <1497442376-42554-1-git-send-email-maxin.john@intel.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Wed, 14 Jun 2017 10:57:41 -0700
-Message-ID: <CAJ86T=XU8Shd6LuQXBQbiLDPJqTU45crQH3pYA3F7QVwZRrYvQ@mail.gmail.com>
-To: "Maxin B. John" <maxin.john@intel.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>, srifenbark@gmail.com
-Subject: Re: [PATCH] documentation: updates to static library support in SDK
+X-OriginatorOrg: actia.fr
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jun 2017 06:51:55.4587 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 86314f06-03e8-4460-82f3-a44f992a19c7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0101MB2519
+Subject: How to package the signed kernel modules into the filesystem ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,83 +91,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jun 2017 17:57:46 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 14 Jun 2017 20:26:02 -0000
+Content-Language: fr-FR
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 14, 2017 at 5:12 AM, Maxin B. John <maxin.john@intel.com> wrote:
-> For development purposes, static libraries need to be
-> present only in the SDK. We do not need those static
-> libraries in the image for most scenarios. So, replace
-> IMAGE_INSTALL with TOOLCHAIN_TARGET_TASK in the documentation.
->
-> Suggested-by: Anders Darander <anders@chargestorm.se>
-> Signed-off-by: Maxin B. John <maxin.john@intel.com>
-> ---
->  documentation/adt-manual/adt-prepare.xml         | 8 ++++----
->  documentation/sdk-manual/sdk-appendix-obtain.xml | 8 ++++----
->  2 files changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/documentation/adt-manual/adt-prepare.xml b/documentation/adt-manual/adt-prepare.xml
-> index 65df1d0..7587305 100644
-> --- a/documentation/adt-manual/adt-prepare.xml
-> +++ b/documentation/adt-manual/adt-prepare.xml
-> @@ -684,16 +684,16 @@
->          <note>
->              By default, this toolchain does not build static binaries.
->              If you want to use the toolchain to build these types of libraries,
-> -            you need to be sure your image has the appropriate static
-> +            you need to be sure your SDK has the appropriate static
->              development libraries.
->              Use the
-> -            <ulink url='&YOCTO_DOCS_REF_URL;#var-IMAGE_INSTALL'><filename>IMAGE_INSTALL</filename></ulink>
-> +            <ulink url='&YOCTO_DOCS_REF_URL;#var-TOOLCHAIN_TARGET_TASK'><filename>TOOLCHAIN_TARGET_TASK</filename></ulink>
->              variable inside your <filename>local.conf</filename> file to
-> -            install the appropriate library packages.
-> +            include the appropriate library packages in SDK.
->              Following is an example using <filename>glibc</filename> static
->              development libraries:
->              <literallayout class='monospaced'>
-> -     IMAGE_INSTALL_append = " glibc-staticdev"
-> +     TOOLCHAIN_TARGET_TASK_append = " glibc-staticdev"
+Hi,
 
-That should perhaps be "libc-staticdev" so the same instructions work
-for musl (although it looks like currently musl doesn't rprovide
-libc-staticdev so that would need to be fixed too).
+I am working with kernel 3.10.17 and poky daisy.
 
->              </literallayout>
->          </note>
->      </para>
-> diff --git a/documentation/sdk-manual/sdk-appendix-obtain.xml b/documentation/sdk-manual/sdk-appendix-obtain.xml
-> index 3156f77..86e0eff 100644
-> --- a/documentation/sdk-manual/sdk-appendix-obtain.xml
-> +++ b/documentation/sdk-manual/sdk-appendix-obtain.xml
-> @@ -96,16 +96,16 @@
->                  <listitem><para>
->                      By default, this toolchain does not build static binaries.
->                      If you want to use the toolchain to build these types of
-> -                    libraries, you need to be sure your image has the
-> +                    libraries, you need to be sure your SDK has the
->                      appropriate static development libraries.
->                      Use the
-> -                    <ulink url='&YOCTO_DOCS_REF_URL;#var-IMAGE_INSTALL'><filename>IMAGE_INSTALL</filename></ulink>
-> +                    <ulink url='&YOCTO_DOCS_REF_URL;#var-TOOLCHAIN_TARGET_TASK'><filename>TOOLCHAIN_TARGET_TASK</filename></ulink>
->                      variable inside your <filename>local.conf</filename> file
-> -                    to install the appropriate library packages.
-> +                    to install the appropriate library packages in SDK.
->                      Following is an example using <filename>glibc</filename>
->                      static development libraries:
->                      <literallayout class='monospaced'>
-> -     IMAGE_INSTALL_append = " glibc-staticdev"
-> +     TOOLCHAIN_TARGET_TASK_append = " glibc-staticdev"
->                      </literallayout>
->                      </para></listitem>
->                  <listitem><para>
-> --
-> 2.4.0
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+The kernel was patched to support certificates list & trusted keyring.
+
+I managed to build the kernel both with an own keypair (signature done manu=
+ally post-build) and with the CONFIG_MODULE_SIG_ALL option enabled.
+
+In the second case, I noticed that signed modules are not included in the /=
+lib/modules directory of the filesystem image, although the variable MACHIN=
+E_EXTRA_RRECOMMENDS contains "kernel-modules" into the machine configuratio=
+n.
+
+All modules integrated inside the filesystem remained unsigned. They do not=
+ include the digital signature normally appended at their end.
+
+Once flashed with the rootfs, the proper certificate is loaded on the devic=
+e, but 'lsmod' command returns an empty list of loaded modules.
+
+However, signed modules are packaged into the modules.tgz file. That's why =
+modules are loaded as expected if I untar the archive's content on the devi=
+ce.
+
+It might be possible to run a custom command by overloading the ROOTFS_POST=
+PROCESS_COMMAND variable but is there a more appropriate way to proceed ?
+
+Best regards,
+
+Nicolas=
 
