@@ -1,6 +1,6 @@
-Return-Path: <jdamon@gmail.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 54796E00B9E; Thu, 15 Jun 2017 13:30:37 -0700 (PDT)
+	id AB9ECE00B47; Tue, 13 Jun 2017 21:04:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jdamon[at]gmail.com)
+	mail provider *      (antonius.riko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.179 listed in list.dnswl.org]
+	*      [74.125.83.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,54 +20,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f179.google.com (mail-pf0-f179.google.com
-	[209.85.192.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 019A9E00B99
-	for <yocto@yoctoproject.org>; Thu, 15 Jun 2017 13:30:35 -0700 (PDT)
-Received: by mail-pf0-f179.google.com with SMTP id l89so12385169pfi.2
-	for <yocto@yoctoproject.org>; Thu, 15 Jun 2017 13:30:35 -0700 (PDT)
+Received: from mail-pg0-f52.google.com (mail-pg0-f52.google.com [74.125.83.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 660B8E009A5
+	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 21:04:49 -0700 (PDT)
+Received: by mail-pg0-f52.google.com with SMTP id f185so69583169pgc.0
+	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 21:04:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:subject:to:cc:references:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language;
-	bh=udVjkyvEAeBldFWF9r+PUJeiaLgd5MUxxJY+A4DR7EY=;
-	b=je3ziPBSlPQ5W5bbgUtPOrxsVJ6DEw3CzMmGUUPnFFO6i2ba7oe/JR5c7GO8kDkpGN
-	Agv/mafYe2J7dDZa2uQgd9BASgeIQRu+KRAm3146zLgJOv5LvUUC3+9ZRdoAV94sZuTL
-	wo+kzqXP0oj/GeK8Pv+SP+2b9ZPEvKcd6N3RBLovLiJLfXv1gOPnqNlHWiWgrPeaTj1B
-	YbfRbhe7ioTe367BVJOL5ejiNhZJH9jroGjrnKkSQSyudtjzexmLqSsa7mVyBfkAhlsA
-	ZPKuM5xKPtzDDdVpBiyrmO3nvJ+h4FqSk+xwnk7OiB4vYYO2Fuhg5iVh1jCAsppHOa9P
-	+ggQ==
+	h=to:references:subject:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language;
+	bh=+XbYhiG9YAbtBpkARoqwhbXTR9L45N28uGmE1JY1uTY=;
+	b=aLA/VRpmo+OLgwR3JmlLKHU5koEjTIusZihCb0nv7x1dCFwivIP4SndMQ85Rx4Gb2Q
+	/06V7dIlecpFTusCPVMX68Q2+f6ET6qmH+LQe739cb3ofPK3EoYNobAh9eChZPRe2Jal
+	67s56vEBGJz4DfG+0TJlHU0gC7XhrQi81uegQKPdWxiB5/Q1FV6V0iO333sK79RrlvVh
+	bld0zhd+o9RG51cDUNNoAYgX0dPOAAbFBHKmzbStSpttWlhXJm+UuWoPsYjnAxdiZReZ
+	OsISHU6Fl7xhPogTU+3p7USjpgiSsitXGS0Rptf3z6ZwtJvDgdd4coG+cMYv9xu9hjVo
+	WBLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:subject:to:cc:references:message-id:date
+	h=x-gm-message-state:to:references:subject:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language;
-	bh=udVjkyvEAeBldFWF9r+PUJeiaLgd5MUxxJY+A4DR7EY=;
-	b=bFVe+zlDniFbKReXUP78IfhySGtew3bptQpMysdeoVl7h+Fe6ss8JY/8/E/A+Yz2rC
-	76UFuAlIEQdheQcoeaDGZg9FqSnb6qL5IAN3zQu+xXihr28JE1/rAO+veSEe6rvptdEa
-	IWKxjzDi+EtYnaBuIFmAl7rq8VGg3R+sLiD6AdPvCoFdVPNrTO3/tr8GxzJaedRjAX4t
-	qUcWNYc/gBykbclpTyersasqw42ZI25zMDk8AxztKvAXxWKcIEQFQ0guMyLYKE0nYlJv
-	4J0r2EgA2o4k96itlchn/sVBf5FJI/oQr14He8Hd2cbFBVU8B1pAQJlpcFZViDWsgymN
-	c1Bw==
-X-Gm-Message-State: AKS2vOyaTjj7NAqyISmEprncF/f06hI8LQAX9WF1HURr3ntjIHhVrTrA
-	u+ENZlwmui0890OLKMk=
-X-Received: by 10.84.167.2 with SMTP id c2mr8322792plb.155.1497558634771;
-	Thu, 15 Jun 2017 13:30:34 -0700 (PDT)
-Received: from [10.0.0.98] ([216.84.176.126]) by smtp.gmail.com with ESMTPSA id
-	g78sm225828pfb.122.2017.06.15.13.30.31
+	bh=+XbYhiG9YAbtBpkARoqwhbXTR9L45N28uGmE1JY1uTY=;
+	b=K/25DbK5z08c8f47kvsuyloCI/S4HwerND3wqrPZFnJCHQr8ZZw857hrL0Q9Qxta4y
+	3xRG9na+U34zYkaskzZlfa3A+QLNkXHNTcFaN+8zYaUh3X2td0xKY8Cs+CwMTMprAeNj
+	QKnRTDxD9aGD8CINAWO/+A1q/RZ5zkwixrMUrpz/e2l3lYfpdg8EyN5FimcfYX155eYD
+	dcctrx9dba2Ly76NrdjvowuEKeerIMbG8xddFL0MMc9LomYNxVqT6uh5rvj3WGNEZwRk
+	6e0kEnhvVGHnMJ/kMJpjRX0kmWJ+68O/2TFMJnFLdJrqh9Vwtxy1sDv0613lyflvpmoV
+	z+AQ==
+X-Gm-Message-State: AKS2vOwWDygOTSJCnvynWZDp3bjHCfiErQDYRG/VBIdElzh/d9M8AOdK
+	ryG78Zjy+UdL3PkY
+X-Received: by 10.101.91.7 with SMTP id y7mr2422070pgq.226.1497413088377;
+	Tue, 13 Jun 2017 21:04:48 -0700 (PDT)
+Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
+	[124.178.9.113]) by smtp.gmail.com with ESMTPSA id
+	a84sm3646171pfe.19.2017.06.13.21.04.46 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 15 Jun 2017 13:30:33 -0700 (PDT)
-From: Jimi Damon <jdamon@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <bff03cd3-258c-95fd-63de-548168f363d0@gmail.com>
-	<9cd8d4c6-cad7-3b26-6894-62aa0fd9f77f@mlbassoc.com>
-	<1721976.Tat4yvfF10@peggleto-mobl.ger.corp.intel.com>
-Message-ID: <ceb5a2e1-11ef-c560-f2f3-3158c0a13337@gmail.com>
-Date: Thu, 15 Jun 2017 13:30:25 -0700
+	Tue, 13 Jun 2017 21:04:47 -0700 (PDT)
+To: yocto@yoctoproject.org
+References: <CAJTo0LbtvKV3V5sKTbZ5j9GDu5xFfLgVicd6o74aW2NT0OArKw@mail.gmail.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <00c09c00-5d24-7dc4-da27-2d2e67884454@gmail.com>
+Date: Wed, 14 Jun 2017 12:04:44 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.1.1
 MIME-Version: 1.0
-In-Reply-To: <1721976.Tat4yvfF10@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
-Subject: Re: devshell not working for Qt or Boundary Devices based yocto
+In-Reply-To: <CAJTo0LbtvKV3V5sKTbZ5j9GDu5xFfLgVicd6o74aW2NT0OArKw@mail.gmail.com>
+X-Mailman-Approved-At: Thu, 15 Jun 2017 14:35:35 -0700
+Subject: Meta-web-kiosk Layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,293 +77,163 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Jun 2017 20:30:37 -0000
+X-List-Received-Date: Wed, 14 Jun 2017 04:04:53 -0000
 Content-Type: multipart/alternative;
-	boundary="------------083CDF9954F8346102463942"
+	boundary="------------E6DF321D5BEBEF72572A4873"
 Content-Language: en-US
 
---------------083CDF9954F8346102463942
+--------------E6DF321D5BEBEF72572A4873
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Hello Everyone,
 
-I am not getting a separate terminal or even a different shell ( I would 
-assume that Control-D or exit would get me back to the original shell ). 
-Note that *bitbake -c pydevshell <anyrec**ipe>* also fails in that no 
-python shell is started.
+I tried doing bitbake core-image-web-kiosk and got some errors, does 
+anyone know how to fix it ? thanks,
 
+Loading cache: 100% 
+|#####################################################################################################################################| 
+Time: 0:00:00
+Loaded 1310 entries from dependency cache.
+ERROR: ExpansionError during parsing 
+/home/bianchi77/poky/meta-web-kiosk/recipes-browser/vala/vala_0.16.0.bb 
+| ETA:  --:--:--
+Traceback (most recent call last):
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 412, 
+in 
+DataSmart.expandWithRefs(s='http://ftp.gnome.org/pub/GNOME/sources/${BPN}/${SHRT_VER}/${BP}.tar.xz 
+http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz', 
+varname='SRC_URI'):
+                  try:
+     >                s = __expand_var_regexp__.sub(varparse.var_sub, s)
+                      try:
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 111, 
+in VariableParse.var_sub(match=<_sre.SRE_Match object; span=(46, 57), 
+match='${SHRT_VER}'>):
+                  else:
+     >                var = self.d.getVarFlag(key, "_content")
+                  self.references.add(key)
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 794, 
+in DataSmart.getVarFlag(var='SHRT_VER', flag='_content', expand=True, 
+noweakdefault=False, parsing=False):
+                      cachename = var + "[" + flag + "]"
+     >            value = self.expand(value, cachename)
 
-In fact, I've deduced that something is set in my Environment in my Bash 
-shell that is causing this corruption.
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 436, 
+in 
+DataSmart.expand(s="${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}", 
+varname='SHRT_VER'):
+          def expand(self, s, varname = None):
+     >        return self.expandWithRefs(s, varname).value
 
+   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 426, 
+in 
+DataSmart.expandWithRefs(s="${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}", 
+varname='SHRT_VER'):
+                  except Exception as exc:
+     >                raise ExpansionError(varname, s, exc) from exc
 
-For example, I created a brand new user called "testperson" with shell 
-Zsh ( different than my bash )
-
-
-Using the exact same poky distribution that was setup as follows
-
-> git clone git://git.yoctoproject.org/poky.git
->
-> cd poky
->
-> git clone git://git.yoctoproject.org/meta-raspberrypi
->
-> MACHINE=raspberrypi3 . ./oe-init-build-env mybuild
->
-> bitbake  -c devshell gettext
->
-, this part worked for the testuser with zsh .
-
-
-However, with my bash environment I get  :
-
-
-bitbake -D -c devshell gettext
-
-> ...
->
-> DEBUG: Inheriting /media/build/poky/meta/classes/autotools.bbclass 
-> (from /media/build/poky/meta/recipes-core/gettext/gettext_0.19.8.1.bb:29)
-> DEBUG: Inheriting /media/build/poky/meta/classes/siteinfo.bbclass 
-> (from /media/build/poky/meta/classes/autotools.bbclass:24)
-> DEBUG: Inheriting /media/build/poky/meta/classes/siteconfig.bbclass 
-> (from /media/build/poky/meta/classes/autotools.bbclass:251)
-> DEBUG: Inheriting /media/build/poky/meta/classes/texinfo.bbclass (from 
-> /media/build/poky/meta/recipes-core/gettext/gettext_0.19.8.1.bb:29)
-> DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 'arm-32', 
-> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 
-> 'common']
-> DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 'arm-32', 
-> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 
-> 'common']
-> DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 'arm-32', 
-> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 
-> 'common']
-> DEBUG: Executing task do_devshell
-> DEBUG: gettext-0.19.8.1-r0 do_devshell: Attempting to spawn terminal 
-> "xterm"
-> DEBUG: Teardown for bitbake-worker
->
-
-The teardown comes immediately after the "Attemping to spawn terminal..."
+bb.data_smart.ExpansionError: Failure expanding variable SHRT_VER, 
+expression was 
+${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]} 
+which triggered exception AttributeError: module 'bb.data' has no 
+attribute 'getVar'
 
 
-Compared to
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
-> ...
-> DEBUG: Inheriting /media/build/poky/meta/classes/siteconfig.bbclass 
-> (from /media/build/poky/meta/classes/autotools.bbclass:251)
-> DEBUG: Inheriting /media/build/poky/meta/classes/texinfo.bbclass (from 
-> /media/build/poky/meta/recipes-core/gettext/gettext_0.19.8.1.bb:29)
-> DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common', 
-> 'common-linux', 'common-glibc', 'i586-linux', 'common']
-> DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common', 
-> 'common-linux', 'common-glibc', 'i586-linux', 'common']
-> DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common', 
-> 'common-linux', 'common-glibc', 'i586-linux', 'common']
-> DEBUG: Executing task do_devshell
-> DEBUG: gettext-0.19.8.1-r0 do_devshell: Attempting to spawn terminal 
-> "xterm"
-> Currently  1 running tasks (281 of 281)  99% 
-> |##################################################################################################### 
-> |
+-- 
+*
 
-in the testuser.
+/*******/
+Sent by Ubuntu LTS 16.04,
+谢谢,
+Regards,
+Riko Ho
+/*******/
 
+*
 
-On a side note, how can I produce more debugging output besides "-D" for 
-the bitbake so that I can find out more about
-where the do_devshell task is failing ?
-
-Thanks,
-
--Jimi
-
-
-
-On 06/15/2017 01:47 AM, Paul Eggleton wrote:
-> On Thursday, 15 June 2017 5:12:19 AM CEST Gary Thomas wrote:
->> On 2017-06-15 01:58, Jimi Damon wrote:
->>> I'm trying out two different yocto distributions and in each one the
->>> devshell doens't work. Instead it just gets to the
->>> Summary line and returns to my normal shell ( bash ) .
->> What are you expecting to happen?  'devshell' is just that - a shell
->> environment (e.g. bash) where you are set up to "develop" (tinker, explore,
->> etc) the given recipe.
-> I think Jimi is saying that it doesn't appear to be launching a separate
-> terminal / shell. Right?
->
-> Assuming that's what's happening, the devshell code is supposed to print out
-> an error when it can't launch a suitable terminal, but if the terminal isn't
-> doing what it should then that might leave you in this situation. Does
-> log.do_devshell for the recipe indicate anything?
->
-> Cheers,
-> Paul
->
-
-
---------------083CDF9954F8346102463942
+--------------E6DF321D5BEBEF72572A4873
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    <p><font face="Monaco">Hi,</font></p>
-    <p><font face="Monaco">I am not getting a separate terminal or even
-        a different shell ( I would assume that Control-D or exit would
-        get me back to the original shell ). </font><font face="Monaco">Note
-        that <b>bitbake -c pydevshell &lt;anyrec</b><b>ipe&gt;</b> 
-        also fails in that no python shell is started.</font></p>
-    <p><font face="Monaco"><br>
-      </font></p>
-    <p><font face="Monaco">In fact, I've deduced that something is set
-        in my Environment in my Bash shell that is causing this
-        corruption.</font></p>
-    <p><font face="Monaco"><br>
-      </font></p>
-    <p><font face="Monaco">For example, I created a brand new user
-        called "testperson" with shell Zsh ( different than my bash ) <br>
-      </font></p>
-    <p><font face="Monaco"><br>
-      </font></p>
-    <p><font face="Monaco">Using the exact same poky distribution that
-        was setup as follows <br>
-      </font></p>
-    <p><font face="Monaco">
-        <blockquote type="cite">
-          <p><font face="Monaco">git clone
-              git://git.yoctoproject.org/poky.git<br>
-            </font></p>
-          <p><font face="Monaco">cd poky</font></p>
-          <p><font face="Monaco">git clone
-              git://git.yoctoproject.org/meta-raspberrypi<br>
-            </font></p>
-          <p><font face="Monaco">MACHINE=raspberrypi3 .
-              ./oe-init-build-env mybuild <br>
-            </font></p>
-          <p><font face="Monaco">bitbake  -c devshell gettext<br>
-            </font></p>
-        </blockquote>
-        , this part worked for the testuser with zsh .</font></p>
-    <p><font face="Monaco"><br>
-      </font></p>
-    <p><font face="Monaco">However, with my bash environment I get  :</font></p>
-    <p><font face="Monaco"><br>
-      </font></p>
-    <p><font face="Monaco">bitbake -D -c devshell gettext<br>
-      </font></p>
-    <blockquote type="cite">
-      <p><font face="Monaco">...</font></p>
-      <p><font face="Monaco">DEBUG: Inheriting
-          /media/build/poky/meta/classes/autotools.bbclass (from
-          /media/build/poky/meta/recipes-core/gettext/gettext_0.19.8.1.bb:29)<br>
-          DEBUG: Inheriting
-          /media/build/poky/meta/classes/siteinfo.bbclass (from
-          /media/build/poky/meta/classes/autotools.bbclass:24)<br>
-          DEBUG: Inheriting
-          /media/build/poky/meta/classes/siteconfig.bbclass (from
-          /media/build/poky/meta/classes/autotools.bbclass:251)<br>
-          DEBUG: Inheriting
-          /media/build/poky/meta/classes/texinfo.bbclass (from
-          /media/build/poky/meta/recipes-core/gettext/gettext_0.19.8.1.bb:29)<br>
-          DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
-          'arm-32', 'common-linux', 'common-glibc', 'arm-linux',
-          'arm-linux-gnueabi', 'common']<br>
-          DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
-          'arm-32', 'common-linux', 'common-glibc', 'arm-linux',
-          'arm-linux-gnueabi', 'common']<br>
-          DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
-          'arm-32', 'common-linux', 'common-glibc', 'arm-linux',
-          'arm-linux-gnueabi', 'common']<br>
-          DEBUG: Executing task do_devshell<br>
-          DEBUG: gettext-0.19.8.1-r0 do_devshell: Attempting to spawn
-          terminal "xterm"<br>
-          DEBUG: Teardown for bitbake-worker</font><font face="Monaco"><br>
-        </font></p>
-    </blockquote>
-    <br>
-    The teardown comes immediately after the "Attemping to spawn
-    terminal..."<br>
-    <br>
-    <br>
-    Compared to <br>
-    <br>
-    <blockquote type="cite">...<br>
-      DEBUG: Inheriting
-      /media/build/poky/meta/classes/siteconfig.bbclass (from
-      /media/build/poky/meta/classes/autotools.bbclass:251)<br>
-      DEBUG: Inheriting /media/build/poky/meta/classes/texinfo.bbclass
-      (from
-      /media/build/poky/meta/recipes-core/gettext/gettext_0.19.8.1.bb:29)<br>
-      DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common',
-      'common-linux', 'common-glibc', 'i586-linux', 'common']<br>
-      DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common',
-      'common-linux', 'common-glibc', 'i586-linux', 'common']<br>
-      DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common',
-      'common-linux', 'common-glibc', 'i586-linux', 'common']<br>
-      DEBUG: Executing task do_devshell<br>
-      DEBUG: gettext-0.19.8.1-r0 do_devshell: Attempting to spawn
-      terminal "xterm"<br>
-      Currently  1 running tasks (281 of 281)  99%
-|#####################################################################################################
-      |<br>
-    </blockquote>
-    <br>
-    in the testuser.<br>
-    <br>
-    <br>
-    On a side note, how can I produce more debugging output besides "-D"
-    for the bitbake so that I can find out more about<br>
-    where the do_devshell task is failing ? <br>
-    <br>
-    Thanks,<br>
-    <br>
-    -Jimi<br>
-    <br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 06/15/2017 01:47 AM, Paul Eggleton
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:1721976.Tat4yvfF10@peggleto-mobl.ger.corp.intel.com">
-      <pre wrap="">On Thursday, 15 June 2017 5:12:19 AM CEST Gary Thomas wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">On 2017-06-15 01:58, Jimi Damon wrote:
-</pre>
-        <blockquote type="cite">
-          <pre wrap="">I'm trying out two different yocto distributions and in each one the
-devshell doens't work. Instead it just gets to the 
-Summary line and returns to my normal shell ( bash ) .
-</pre>
-        </blockquote>
-        <pre wrap="">What are you expecting to happen?  'devshell' is just that - a shell
-environment (e.g. bash) where you are set up to "develop" (tinker, explore,
-etc) the given recipe.
-</pre>
-      </blockquote>
-      <pre wrap="">I think Jimi is saying that it doesn't appear to be launching a separate 
-terminal / shell. Right?
-
-Assuming that's what's happening, the devshell code is supposed to print out 
-an error when it can't launch a suitable terminal, but if the terminal isn't 
-doing what it should then that might leave you in this situation. Does 
-log.do_devshell for the recipe indicate anything?
-
-Cheers,
-Paul
-
-</pre>
-    </blockquote>
-    <br>
+    <p>Hello Everyone, <br>
+    </p>
+    <p>I tried doing bitbake core-image-web-kiosk and got some errors,
+      does anyone know how to fix it ? thanks,</p>
+    <p>Loading cache: 100%
+|#####################################################################################################################################|
+      Time: 0:00:00<br>
+      Loaded 1310 entries from dependency cache.<br>
+      ERROR: ExpansionError during parsing
+/home/bianchi77/poky/meta-web-kiosk/recipes-browser/vala/vala_0.16.0.bb                                            
+      | ETA:  --:--:--<br>
+      Traceback (most recent call last):<br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      412, in
+DataSmart.expandWithRefs(s='<a class="moz-txt-link-freetext" href="http://ftp.gnome.org/pub/GNOME/sources/$">http://ftp.gnome.org/pub/GNOME/sources/$</a>{BPN}/${SHRT_VER}/${BP}.tar.xz 
+<a class="moz-txt-link-freetext" href="http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz">http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz</a>',
+      varname='SRC_URI'):<br>
+                       try:<br>
+          &gt;                s =
+      __expand_var_regexp__.sub(varparse.var_sub, s)<br>
+                           try:<br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      111, in VariableParse.var_sub(match=&lt;_sre.SRE_Match object;
+      span=(46, 57), match='${SHRT_VER}'&gt;):<br>
+                       else:<br>
+          &gt;                var = self.d.getVarFlag(key, "_content")<br>
+                       self.references.add(key)<br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      794, in DataSmart.getVarFlag(var='SHRT_VER', flag='_content',
+      expand=True, noweakdefault=False, parsing=False):<br>
+                           cachename = var + "[" + flag + "]"<br>
+          &gt;            value = self.expand(value, cachename)<br>
+           <br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      436, in
+DataSmart.expand(s=<a class="moz-txt-link-rfc2396E" href="mailto:${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}">"${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}"</a>,
+      varname='SHRT_VER'):<br>
+               def expand(self, s, varname = None):<br>
+          &gt;        return self.expandWithRefs(s, varname).value<br>
+           <br>
+        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
+      426, in
+DataSmart.expandWithRefs(s=<a class="moz-txt-link-rfc2396E" href="mailto:${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}">"${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}"</a>,
+      varname='SHRT_VER'):<br>
+                       except Exception as exc:<br>
+          &gt;                raise ExpansionError(varname, s, exc) from
+      exc<br>
+           <br>
+      bb.data_smart.ExpansionError: Failure expanding variable SHRT_VER,
+      expression was
+${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}
+      which triggered exception AttributeError: module 'bb.data' has no
+      attribute 'getVar'<br>
+      <br>
+      <br>
+      Summary: There was 1 ERROR message shown, returning a non-zero
+      exit code.<br>
+      <br>
+    </p>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          谢谢,<br>
+          Regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
   </body>
 </html>
 
---------------083CDF9954F8346102463942--
+--------------E6DF321D5BEBEF72572A4873--
