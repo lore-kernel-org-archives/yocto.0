@@ -1,46 +1,68 @@
-Return-Path: <libertad.cruz@intel.com>
+Return-Path: <jdamon@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66766E00B8F; Wed, 14 Jun 2017 14:16:09 -0700 (PDT)
+	id 27DD2E00B8F; Wed, 14 Jun 2017 16:58:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jdamon[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80D78E00B77
-	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 14:16:06 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	14 Jun 2017 14:16:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.39,341,1493708400"; d="scan'208";a="980932322"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
-	by orsmga003.jf.intel.com with ESMTP; 14 Jun 2017 14:16:05 -0700
-Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
-	FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Wed, 14 Jun 2017 14:16:04 -0700
-Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.237]) by
-	FMSMSX125.amr.corp.intel.com ([169.254.2.234]) with mapi id
-	14.03.0319.002; Wed, 14 Jun 2017 14:16:04 -0700
-From: "Cruz, Libertad" <libertad.cruz@intel.com>
-To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "Purdie, Richard" <richard.purdie@intel.com>
-Thread-Topic: QA cycle report for 2.1.3 rc1
-Thread-Index: AQHS5VMvN1BLCnJQg0Sfl4/tbVEsTA==
-Date: Wed, 14 Jun 2017 21:16:02 +0000
-Message-ID: <58D9E2E50A021A45AD740492365FCDC531EAEABF@fmsmsx107.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.3.86.139]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.182 listed in list.dnswl.org]
+Received: from mail-pf0-f182.google.com (mail-pf0-f182.google.com
+	[209.85.192.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7206CE00B77
+	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 16:58:16 -0700 (PDT)
+Received: by mail-pf0-f182.google.com with SMTP id l89so7732874pfi.2
+	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 16:58:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-language;
+	bh=oKERNe5XpXJJBOaSiPW7L/vb44jYN/8z3cVbVugWf6o=;
+	b=jeKML0YRy5sa8WlR3vhhYoWKJIa5rtB1sD76s0/ODShNsO3zKVPkeQrFkT/FetfPIk
+	FmN99EcFhPrwjBvS7Hys0KIo9snn3RREYlZjQSLHY7Mop9nbyxm9zGsVXNwuQwaVBEO4
+	SZUNQn0EbVTHbqjgcfrgegBblVvhhgTC2h2fLti4TGp0yoY30B8QmwUVLbbfjPA7bdX2
+	+oehpZHN8mhOubq6wT7+t9uXZB/rNMcNiE5Ul6sZPiShmgv252OMha9VB049qt/paB4f
+	mjIFD1AY7uxJE48qg1VDh2JkLmLrMG0aIrfO2smroaokPtm5BieJ9992FpYcilBwdpGc
+	s7Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-language;
+	bh=oKERNe5XpXJJBOaSiPW7L/vb44jYN/8z3cVbVugWf6o=;
+	b=Kq8Z3cwnOZQ01S/Wz9lyFTUiyMA0qtv4N3LLiwsTHtJ08oHo+9cBWmVSnFw5QHt1WM
+	n7LC1J1fb98g5EcAI4zlN1Vw1w5Yy/XioqjH1h0oMSZfJZhRxWGhewdE/XIueEKPTNYF
+	Sjtq6uOiyc1aLpZ4fU/JVosWbaQFswzgYuZN+W4MfS+8V86cJUUWOxc10577upWN3KGe
+	xNSz1GAODQgCHeax3mMskZpzLxgAvn7Ef2oi4wb+nJal8sfcoR1w9Sz4/dz9N5kwnmuQ
+	eMT/IM0/4tQ/N/GU2+Mo5Yr94KDBtaHVfyEiflMd/eJaNsrEaNUuN0soZ64st3Pdb3zp
+	dZKQ==
+X-Gm-Message-State: AKS2vOyocW1e5++jOQDzRPYu4B1/0Ox2IO8aormsew/gZ7dEpIAiIBH+
+	hF76BCMUI6GfCbGQz7Y=
+X-Received: by 10.99.100.65 with SMTP id y62mr2405679pgb.217.1497484696135;
+	Wed, 14 Jun 2017 16:58:16 -0700 (PDT)
+Received: from [10.0.0.98] ([216.84.176.126]) by smtp.gmail.com with ESMTPSA id
+	z13sm1948841pfk.99.2017.06.14.16.58.14 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 14 Jun 2017 16:58:14 -0700 (PDT)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Jimi Damon <jdamon@gmail.com>
+Message-ID: <bff03cd3-258c-95fd-63de-548168f363d0@gmail.com>
+Date: Wed, 14 Jun 2017 16:58:28 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
 MIME-Version: 1.0
-Cc: "Cobbley, David A" <david.a.cobbley@intel.com>
-Subject: QA cycle report for 2.1.3 rc1
+Subject: devshell not working for Qt or Boundary Devices based yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,165 +74,225 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jun 2017 21:16:09 -0000
+X-List-Received-Date: Wed, 14 Jun 2017 23:58:18 -0000
+Content-Type: multipart/alternative;
+	boundary="------------46C11853C8E7ADA1CA779045"
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-
-Hello All,
-
-
-
-Here is the report for the 2.1.3 rc1 full point release test cycle.
-
-
-
-Full Report : https://wiki.yoctoproject.org/wiki/WW24_-_2017-14-06_-_Full_P=
-ass_2.1.3_rc1
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-
-
-
-The QA cycle for release 2.1.3 rc1 is complete, there were 4 new issues rel=
-ated to the configuration of the new autobuilder server that provided the i=
-mages.
-
-
-
-Performance measurements showed a regression of 20% on Ubuntu and 11% on Fe=
-dora compared with 2.1.2, 11655[3] bug was raised.
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D Details =3D=3D=3D=3D=3D=3D=3D=3D
-
-
-
-QA Hints
-
-
-
-The 2.1.3 QA test cycle had difficulties with the new autobuilder server, b=
-ecause it was the first time this server provided images it was missing con=
-figurations therefore some images were not created bugs 11644[2] and 11637[=
-1]. There will be a 2.1.3 rc2 where we will test the integrity of the image=
-s and the test cases that were blocked or failed.
-
-
-
-Bugs
-
-       * New
-
-            - 11637 [krogoth] No WIC images present in autobuilder[1]
-
-            - 11644 [Yocto 2.1.3] missing toolchian sdk for armv5e[2]
-
-            - 11655 [krogoth] build-perf:time for build "rootfs" is increas=
-ed on 2.1.3 compared to 2.1.2[3]
-
-            - 11646 [krogoth] WIC image does not load in graphical environm=
-ent[5]
-
-            - 11654 [krogoth] ERROR: setUpClass (oeqa.selftest.signing.Sign=
-ing) [4]
-
-            - 11658 [krogoth] testimage multiple errors and skipped test pr=
-esent in WIC image (Minnowmax64/NUC) [6]
-
-            - 11659 [krogoth] genericx86 fails to boot after install from U=
-SB on MMAX32[7]
-
-
-
-
-
-
-
-Full Bug Report : https://wiki.yoctoproject.org/wiki/WW24_-_2017-14-06_-_Fu=
-ll_Pass_2.1.3_rc1#Bugs_Found_during_QA_Test
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D Performance =3D=3D=3D=3D=3D=3D
-
-
-
-Performance measurements showed a regression compared with 2.1.2 when build=
-ing rootfs of 20% (around 20 seconds) on Ubuntu machine and 11% (around 15 =
-seconds) on Fedora, all other measurements are on the same levels without s=
-howing any important change.
-
-
-
-Ubuntu    Test    2.1.2_rc1    2.1.3_rc1    %
-
-          sato    0:56:22      0:55:57      -0.74
-
-          rootfs  1:59         2:26         22.69
-
-          rmwork  0:55:10      0:55:43      1.00
-
-          kernel  4:18         4:26         3.10
-
-          eSDK    2:36         2:28         -5.13
-
-
-
-
-
-Fedora    Test    2.1.2_rc1    2.1.3_rc1    %
-
-          sato    0:55:48      0:55:59      0.33
-
-          rootfs  2:01         2:15         11.57
-
-          rmwork  0:55:23      0:56:18      1.66
-
-          kernel  4:41         4:41         0.00
-
-          eSDK    2:35         2:41         3.87
-
-
-
-Performance Charts :  https://wiki.yoctoproject.org/charts/perf_milestone_G=
-DC/performance_test.html
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-
-
-    1.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11637
-
-    2.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11644
-
-    3.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11655
-
-    4.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11654
-
-    5.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11646
-
-    6.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11658
-
-    7.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11659
-
-
-
-
-
-Regards
-
-Libertad G.
-
+--------------46C11853C8E7ADA1CA779045
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi ,
+
+
+I'm trying out two different yocto distributions and in each one the 
+devshell doens't work. Instead it just gets to the Summary line and 
+returns to my normal shell ( bash ) .
+
+
+I'm invoking it with
+
+bitbake -c devshell core-image-minimal
+
+
+bitbake --version = 1.32.0
+
+
+I'm getting my distribution from
+
+
+|repo init -u 
+http:||//github||.com||/boundarydevices/boundary-bsp-platform||-b morty|
+
+|or from Qt's boot2qt system using "b2qt-init-build-env init --device 
+nitrogen6x|
+
+||
+
+Any ideas what is going wrong ?
+
+
+Thanks,
+
+
+
+--------------46C11853C8E7ADA1CA779045
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+CiAgPGhlYWQ+CgogICAgPG1ldGEgaHR0cC1lcXVpdj0iY29udGVudC10eXBlIiBj
+b250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPgogIDwvaGVhZD4KICA8Ym9keSB0
+ZXh0PSIjMDAwMDAwIiBiZ2NvbG9yPSIjRkZGRkZGIj4KICAgIDxwPjxmb250IGZhY2U9Ik1v
+bmFjbyI+SGkgLDwvZm9udD48L3A+CiAgICA8cD48Zm9udCBmYWNlPSJNb25hY28iPjxicj4K
+ICAgICAgPC9mb250PjwvcD4KICAgIDxwPjxmb250IGZhY2U9Ik1vbmFjbyI+SSdtIHRyeWlu
+ZyBvdXQgdHdvIGRpZmZlcmVudCB5b2N0bwogICAgICAgIGRpc3RyaWJ1dGlvbnMgYW5kIGlu
+IGVhY2ggb25lIHRoZSBkZXZzaGVsbCBkb2Vucyd0IHdvcmsuIEluc3RlYWQKICAgICAgICBp
+dCBqdXN0IGdldHMgdG8gdGhlIFN1bW1hcnkgbGluZSBhbmQgcmV0dXJucyB0byBteSBub3Jt
+YWwgc2hlbGwKICAgICAgICAoIGJhc2ggKSAuPC9mb250PjwvcD4KICAgIDxwPjxmb250IGZh
+Y2U9Ik1vbmFjbyI+PGJyPgogICAgICA8L2ZvbnQ+PC9wPgogICAgPHA+PGZvbnQgZmFjZT0i
+TW9uYWNvIj5JJ20gaW52b2tpbmcgaXQgd2l0aCA8YnI+CiAgICAgIDwvZm9udD48L3A+CiAg
+ICA8cD48Zm9udCBmYWNlPSJNb25hY28iPmJpdGJha2UgLWMgZGV2c2hlbGwgY29yZS1pbWFn
+ZS1taW5pbWFsPC9mb250PjwvcD4KICAgIDxwPjxmb250IGZhY2U9Ik1vbmFjbyI+PGJyPgog
+ICAgICA8L2ZvbnQ+PC9wPgogICAgPHA+PGZvbnQgZmFjZT0iTW9uYWNvIj5iaXRiYWtlIC0t
+dmVyc2lvbiA9IDEuMzIuMDwvZm9udD48L3A+CiAgICA8cD48Zm9udCBmYWNlPSJNb25hY28i
+Pjxicj4KICAgICAgICBJJ20gZ2V0dGluZyBteSBkaXN0cmlidXRpb24gZnJvbSA8YnI+CiAg
+ICAgIDwvZm9udD48L3A+CiAgICA8cD48YnI+CiAgICAgIDxjb2RlIGNsYXNzPSJzaGVsbCBw
+bGFpbiIgc3R5bGU9ImJveC1zaXppbmc6IGNvbnRlbnQtYm94ICFpbXBvcnRhbnQ7IGZvbnQt
+ZmFtaWx5OiBDb25zb2xhcywgJnF1b3Q7Qml0c3RyZWFtIFZlcmEgU2FucyBNb25vJnF1b3Q7
+LCAmcXVvdDtDb3VyaWVyIE5ldyZxdW90OywgQ291cmllciwgbW9ub3NwYWNlICFpbXBvcnRh
+bnQ7IGZvbnQtc2l6ZTogMTZweDsgcGFkZGluZzogMHB4ICFpbXBvcnRhbnQ7IGNvbG9yOiBi
+bGFjayAhaW1wb3J0YW50OyBiYWNrZ3JvdW5kOiBub25lICFpbXBvcnRhbnQ7IGJvcmRlci1y
+YWRpdXM6IDBweCAhaW1wb3J0YW50OyBib3JkZXI6IDBweCAhaW1wb3J0YW50OyBib3R0b206
+IGF1dG8gIWltcG9ydGFudDsgZmxvYXQ6IG5vbmUgIWltcG9ydGFudDsgaGVpZ2h0OiBhdXRv
+ICFpbXBvcnRhbnQ7IGxlZnQ6IGF1dG8gIWltcG9ydGFudDsgbGluZS1oZWlnaHQ6IDEuMWVt
+ICFpbXBvcnRhbnQ7IG1hcmdpbjogMHB4ICFpbXBvcnRhbnQ7IG91dGxpbmU6IDBweCAhaW1w
+b3J0YW50OyBvdmVyZmxvdzogdmlzaWJsZSAhaW1wb3J0YW50OyBwb3NpdGlvbjogc3RhdGlj
+ICFpbXBvcnRhbnQ7IHJpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7IHRleHQtYWxpZ246IGxlZnQ7
+IHRvcDogYXV0byAhaW1wb3J0YW50OyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmUgIWltcG9y
+dGFudDsgd2lkdGg6IGF1dG8gIWltcG9ydGFudDsgZm9udC13ZWlnaHQ6IG5vcm1hbDsgZm9u
+dC1zdHlsZTogbm9ybWFsOyBtaW4taGVpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7IGZvbnQtdmFy
+aWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWNhcHM6IG5vcm1hbDsgbGV0
+dGVyLXNwYWNpbmc6IG5vcm1hbDsgb3JwaGFuczogMjsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4
+dC10cmFuc2Zvcm06IG5vbmU7IHdoaXRlLXNwYWNlOiBwcmU7IHdpZG93czogMjsgd29yZC1z
+cGFjaW5nOiAwcHg7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgdGV4dC1kZWNv
+cmF0aW9uLXN0eWxlOiBpbml0aWFsOyB0ZXh0LWRlY29yYXRpb24tY29sb3I6IGluaXRpYWw7
+Ij5yZXBvIGluaXQgLXUgaHR0cDo8L2NvZGU+PGNvZGUgY2xhc3M9InNoZWxsIHBsYWluIiBz
+dHlsZT0iYm94LXNpemluZzogY29udGVudC1ib3ggIWltcG9ydGFudDsgZm9udC1mYW1pbHk6
+IENvbnNvbGFzLCAmcXVvdDtCaXRzdHJlYW0gVmVyYSBTYW5zIE1vbm8mcXVvdDssICZxdW90
+O0NvdXJpZXIgTmV3JnF1b3Q7LCBDb3VyaWVyLCBtb25vc3BhY2UgIWltcG9ydGFudDsgZm9u
+dC1zaXplOiAxNnB4OyBwYWRkaW5nOiAwcHggIWltcG9ydGFudDsgY29sb3I6IGJsYWNrICFp
+bXBvcnRhbnQ7IGJhY2tncm91bmQ6IG5vbmUgIWltcG9ydGFudDsgYm9yZGVyLXJhZGl1czog
+MHB4ICFpbXBvcnRhbnQ7IGJvcmRlcjogMHB4ICFpbXBvcnRhbnQ7IGJvdHRvbTogYXV0byAh
+aW1wb3J0YW50OyBmbG9hdDogbm9uZSAhaW1wb3J0YW50OyBoZWlnaHQ6IGF1dG8gIWltcG9y
+dGFudDsgbGVmdDogYXV0byAhaW1wb3J0YW50OyBsaW5lLWhlaWdodDogMS4xZW0gIWltcG9y
+dGFudDsgbWFyZ2luOiAwcHggIWltcG9ydGFudDsgb3V0bGluZTogMHB4ICFpbXBvcnRhbnQ7
+IG92ZXJmbG93OiB2aXNpYmxlICFpbXBvcnRhbnQ7IHBvc2l0aW9uOiBzdGF0aWMgIWltcG9y
+dGFudDsgcmlnaHQ6IGF1dG8gIWltcG9ydGFudDsgdGV4dC1hbGlnbjogbGVmdDsgdG9wOiBh
+dXRvICFpbXBvcnRhbnQ7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZSAhaW1wb3J0YW50OyB3
+aWR0aDogYXV0byAhaW1wb3J0YW50OyBmb250LXdlaWdodDogbm9ybWFsOyBmb250LXN0eWxl
+OiBub3JtYWw7IG1pbi1oZWlnaHQ6IGF1dG8gIWltcG9ydGFudDsgZm9udC12YXJpYW50LWxp
+Z2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsOyBsZXR0ZXItc3Bh
+Y2luZzogbm9ybWFsOyBvcnBoYW5zOiAyOyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRyYW5z
+Zm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IHByZTsgd2lkb3dzOiAyOyB3b3JkLXNwYWNpbmc6
+IDBweDsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyB0ZXh0LWRlY29yYXRpb24t
+c3R5bGU6IGluaXRpYWw7IHRleHQtZGVjb3JhdGlvbi1jb2xvcjogaW5pdGlhbDsiPi8vZ2l0
+aHViPC9jb2RlPjxjb2RlIGNsYXNzPSJzaGVsbCBwbGFpbiIgc3R5bGU9ImJveC1zaXppbmc6
+IGNvbnRlbnQtYm94ICFpbXBvcnRhbnQ7IGZvbnQtZmFtaWx5OiBDb25zb2xhcywgJnF1b3Q7
+Qml0c3RyZWFtIFZlcmEgU2FucyBNb25vJnF1b3Q7LCAmcXVvdDtDb3VyaWVyIE5ldyZxdW90
+OywgQ291cmllciwgbW9ub3NwYWNlICFpbXBvcnRhbnQ7IGZvbnQtc2l6ZTogMTZweDsgcGFk
+ZGluZzogMHB4ICFpbXBvcnRhbnQ7IGNvbG9yOiBibGFjayAhaW1wb3J0YW50OyBiYWNrZ3Jv
+dW5kOiBub25lICFpbXBvcnRhbnQ7IGJvcmRlci1yYWRpdXM6IDBweCAhaW1wb3J0YW50OyBi
+b3JkZXI6IDBweCAhaW1wb3J0YW50OyBib3R0b206IGF1dG8gIWltcG9ydGFudDsgZmxvYXQ6
+IG5vbmUgIWltcG9ydGFudDsgaGVpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7IGxlZnQ6IGF1dG8g
+IWltcG9ydGFudDsgbGluZS1oZWlnaHQ6IDEuMWVtICFpbXBvcnRhbnQ7IG1hcmdpbjogMHB4
+ICFpbXBvcnRhbnQ7IG91dGxpbmU6IDBweCAhaW1wb3J0YW50OyBvdmVyZmxvdzogdmlzaWJs
+ZSAhaW1wb3J0YW50OyBwb3NpdGlvbjogc3RhdGljICFpbXBvcnRhbnQ7IHJpZ2h0OiBhdXRv
+ICFpbXBvcnRhbnQ7IHRleHQtYWxpZ246IGxlZnQ7IHRvcDogYXV0byAhaW1wb3J0YW50OyB2
+ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmUgIWltcG9ydGFudDsgd2lkdGg6IGF1dG8gIWltcG9y
+dGFudDsgZm9udC13ZWlnaHQ6IG5vcm1hbDsgZm9udC1zdHlsZTogbm9ybWFsOyBtaW4taGVp
+Z2h0OiBhdXRvICFpbXBvcnRhbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsg
+Zm9udC12YXJpYW50LWNhcHM6IG5vcm1hbDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgb3Jw
+aGFuczogMjsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06IG5vbmU7IHdoaXRl
+LXNwYWNlOiBwcmU7IHdpZG93czogMjsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGV4
+dC1zdHJva2Utd2lkdGg6IDBweDsgdGV4dC1kZWNvcmF0aW9uLXN0eWxlOiBpbml0aWFsOyB0
+ZXh0LWRlY29yYXRpb24tY29sb3I6IGluaXRpYWw7Ij4uY29tPC9jb2RlPjxjb2RlIGNsYXNz
+PSJzaGVsbCBwbGFpbiIgc3R5bGU9ImJveC1zaXppbmc6IGNvbnRlbnQtYm94ICFpbXBvcnRh
+bnQ7IGZvbnQtZmFtaWx5OiBDb25zb2xhcywgJnF1b3Q7Qml0c3RyZWFtIFZlcmEgU2FucyBN
+b25vJnF1b3Q7LCAmcXVvdDtDb3VyaWVyIE5ldyZxdW90OywgQ291cmllciwgbW9ub3NwYWNl
+ICFpbXBvcnRhbnQ7IGZvbnQtc2l6ZTogMTZweDsgcGFkZGluZzogMHB4ICFpbXBvcnRhbnQ7
+IGNvbG9yOiBibGFjayAhaW1wb3J0YW50OyBiYWNrZ3JvdW5kOiBub25lICFpbXBvcnRhbnQ7
+IGJvcmRlci1yYWRpdXM6IDBweCAhaW1wb3J0YW50OyBib3JkZXI6IDBweCAhaW1wb3J0YW50
+OyBib3R0b206IGF1dG8gIWltcG9ydGFudDsgZmxvYXQ6IG5vbmUgIWltcG9ydGFudDsgaGVp
+Z2h0OiBhdXRvICFpbXBvcnRhbnQ7IGxlZnQ6IGF1dG8gIWltcG9ydGFudDsgbGluZS1oZWln
+aHQ6IDEuMWVtICFpbXBvcnRhbnQ7IG1hcmdpbjogMHB4ICFpbXBvcnRhbnQ7IG91dGxpbmU6
+IDBweCAhaW1wb3J0YW50OyBvdmVyZmxvdzogdmlzaWJsZSAhaW1wb3J0YW50OyBwb3NpdGlv
+bjogc3RhdGljICFpbXBvcnRhbnQ7IHJpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7IHRleHQtYWxp
+Z246IGxlZnQ7IHRvcDogYXV0byAhaW1wb3J0YW50OyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxp
+bmUgIWltcG9ydGFudDsgd2lkdGg6IGF1dG8gIWltcG9ydGFudDsgZm9udC13ZWlnaHQ6IG5v
+cm1hbDsgZm9udC1zdHlsZTogbm9ybWFsOyBtaW4taGVpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7
+IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWNhcHM6IG5v
+cm1hbDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgb3JwaGFuczogMjsgdGV4dC1pbmRlbnQ6
+IDBweDsgdGV4dC10cmFuc2Zvcm06IG5vbmU7IHdoaXRlLXNwYWNlOiBwcmU7IHdpZG93czog
+Mjsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsg
+dGV4dC1kZWNvcmF0aW9uLXN0eWxlOiBpbml0aWFsOyB0ZXh0LWRlY29yYXRpb24tY29sb3I6
+IGluaXRpYWw7Ij4vYm91bmRhcnlkZXZpY2VzL2JvdW5kYXJ5LWJzcC1wbGF0Zm9ybTwvY29k
+ZT48c3BhbiBzdHlsZT0iY29sb3I6IHJnYigxMjAsIDEyMCwgMTIwKTsgZm9udC1mYW1pbHk6
+IENvbnNvbGFzLCAmcXVvdDtCaXRzdHJlYW0gVmVyYSBTYW5zIE1vbm8mcXVvdDssICZxdW90
+O0NvdXJpZXIgTmV3JnF1b3Q7LCBDb3VyaWVyLCBtb25vc3BhY2U7IGZvbnQtc2l6ZTogMTZw
+eDsgZm9udC1zdHlsZTogbm9ybWFsOyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7
+IGZvbnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IGZvbnQtd2VpZ2h0OiBub3JtYWw7IGxldHRl
+ci1zcGFjaW5nOiBub3JtYWw7IG9ycGhhbnM6IDI7IHRleHQtYWxpZ246IGxlZnQ7IHRleHQt
+aW5kZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1zcGFjZTogcHJlOyB3
+aWRvd3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRo
+OiAwcHg7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNDgsIDI0OCwgMjQ4KTsgdGV4dC1kZWNv
+cmF0aW9uLXN0eWxlOiBpbml0aWFsOyB0ZXh0LWRlY29yYXRpb24tY29sb3I6IGluaXRpYWw7
+IGRpc3BsYXk6IGlubGluZSAhaW1wb3J0YW50OyBmbG9hdDogbm9uZTsiPiA8L3NwYW4+PGNv
+ZGUgY2xhc3M9InNoZWxsIHBsYWluIiBzdHlsZT0iYm94LXNpemluZzogY29udGVudC1ib3gg
+IWltcG9ydGFudDsgZm9udC1mYW1pbHk6IENvbnNvbGFzLCAmcXVvdDtCaXRzdHJlYW0gVmVy
+YSBTYW5zIE1vbm8mcXVvdDssICZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7LCBDb3VyaWVyLCBt
+b25vc3BhY2UgIWltcG9ydGFudDsgZm9udC1zaXplOiAxNnB4OyBwYWRkaW5nOiAwcHggIWlt
+cG9ydGFudDsgY29sb3I6IGJsYWNrICFpbXBvcnRhbnQ7IGJhY2tncm91bmQ6IG5vbmUgIWlt
+cG9ydGFudDsgYm9yZGVyLXJhZGl1czogMHB4ICFpbXBvcnRhbnQ7IGJvcmRlcjogMHB4ICFp
+bXBvcnRhbnQ7IGJvdHRvbTogYXV0byAhaW1wb3J0YW50OyBmbG9hdDogbm9uZSAhaW1wb3J0
+YW50OyBoZWlnaHQ6IGF1dG8gIWltcG9ydGFudDsgbGVmdDogYXV0byAhaW1wb3J0YW50OyBs
+aW5lLWhlaWdodDogMS4xZW0gIWltcG9ydGFudDsgbWFyZ2luOiAwcHggIWltcG9ydGFudDsg
+b3V0bGluZTogMHB4ICFpbXBvcnRhbnQ7IG92ZXJmbG93OiB2aXNpYmxlICFpbXBvcnRhbnQ7
+IHBvc2l0aW9uOiBzdGF0aWMgIWltcG9ydGFudDsgcmlnaHQ6IGF1dG8gIWltcG9ydGFudDsg
+dGV4dC1hbGlnbjogbGVmdDsgdG9wOiBhdXRvICFpbXBvcnRhbnQ7IHZlcnRpY2FsLWFsaWdu
+OiBiYXNlbGluZSAhaW1wb3J0YW50OyB3aWR0aDogYXV0byAhaW1wb3J0YW50OyBmb250LXdl
+aWdodDogbm9ybWFsOyBmb250LXN0eWxlOiBub3JtYWw7IG1pbi1oZWlnaHQ6IGF1dG8gIWlt
+cG9ydGFudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQt
+Y2Fwczogbm9ybWFsOyBsZXR0ZXItc3BhY2luZzogbm9ybWFsOyBvcnBoYW5zOiAyOyB0ZXh0
+LWluZGVudDogMHB4OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IHByZTsg
+d2lkb3dzOiAyOyB3b3JkLXNwYWNpbmc6IDBweDsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0
+aDogMHB4OyB0ZXh0LWRlY29yYXRpb24tc3R5bGU6IGluaXRpYWw7IHRleHQtZGVjb3JhdGlv
+bi1jb2xvcjogaW5pdGlhbDsiPi1iIG1vcnR5PC9jb2RlPjwvcD4KICAgIDxwPjxjb2RlIGNs
+YXNzPSJzaGVsbCBwbGFpbiIgc3R5bGU9ImJveC1zaXppbmc6IGNvbnRlbnQtYm94ICFpbXBv
+cnRhbnQ7IGZvbnQtZmFtaWx5OiBDb25zb2xhcywgJnF1b3Q7Qml0c3RyZWFtIFZlcmEgU2Fu
+cyBNb25vJnF1b3Q7LCAmcXVvdDtDb3VyaWVyIE5ldyZxdW90OywgQ291cmllciwgbW9ub3Nw
+YWNlICFpbXBvcnRhbnQ7IGZvbnQtc2l6ZTogMTZweDsgcGFkZGluZzogMHB4ICFpbXBvcnRh
+bnQ7IGNvbG9yOiBibGFjayAhaW1wb3J0YW50OyBiYWNrZ3JvdW5kOiBub25lICFpbXBvcnRh
+bnQ7IGJvcmRlci1yYWRpdXM6IDBweCAhaW1wb3J0YW50OyBib3JkZXI6IDBweCAhaW1wb3J0
+YW50OyBib3R0b206IGF1dG8gIWltcG9ydGFudDsgZmxvYXQ6IG5vbmUgIWltcG9ydGFudDsg
+aGVpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7IGxlZnQ6IGF1dG8gIWltcG9ydGFudDsgbGluZS1o
+ZWlnaHQ6IDEuMWVtICFpbXBvcnRhbnQ7IG1hcmdpbjogMHB4ICFpbXBvcnRhbnQ7IG91dGxp
+bmU6IDBweCAhaW1wb3J0YW50OyBvdmVyZmxvdzogdmlzaWJsZSAhaW1wb3J0YW50OyBwb3Np
+dGlvbjogc3RhdGljICFpbXBvcnRhbnQ7IHJpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7IHRleHQt
+YWxpZ246IGxlZnQ7IHRvcDogYXV0byAhaW1wb3J0YW50OyB2ZXJ0aWNhbC1hbGlnbjogYmFz
+ZWxpbmUgIWltcG9ydGFudDsgd2lkdGg6IGF1dG8gIWltcG9ydGFudDsgZm9udC13ZWlnaHQ6
+IG5vcm1hbDsgZm9udC1zdHlsZTogbm9ybWFsOyBtaW4taGVpZ2h0OiBhdXRvICFpbXBvcnRh
+bnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWNhcHM6
+IG5vcm1hbDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgb3JwaGFuczogMjsgdGV4dC1pbmRl
+bnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06IG5vbmU7IHdoaXRlLXNwYWNlOiBwcmU7IHdpZG93
+czogMjsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBw
+eDsgdGV4dC1kZWNvcmF0aW9uLXN0eWxlOiBpbml0aWFsOyB0ZXh0LWRlY29yYXRpb24tY29s
+b3I6IGluaXRpYWw7Ij5vciBmcm9tIFF0J3MgYm9vdDJxdCBzeXN0ZW0gdXNpbmcgImIycXQt
+aW5pdC1idWlsZC1lbnYgaW5pdCAtLWRldmljZSBuaXRyb2dlbjZ4PC9jb2RlPjwvcD4KICAg
+IDxwPjxjb2RlIGNsYXNzPSJzaGVsbCBwbGFpbiIgc3R5bGU9ImJveC1zaXppbmc6IGNvbnRl
+bnQtYm94ICFpbXBvcnRhbnQ7IGZvbnQtZmFtaWx5OiBDb25zb2xhcywgJnF1b3Q7Qml0c3Ry
+ZWFtIFZlcmEgU2FucyBNb25vJnF1b3Q7LCAmcXVvdDtDb3VyaWVyIE5ldyZxdW90OywgQ291
+cmllciwgbW9ub3NwYWNlICFpbXBvcnRhbnQ7IGZvbnQtc2l6ZTogMTZweDsgcGFkZGluZzog
+MHB4ICFpbXBvcnRhbnQ7IGNvbG9yOiBibGFjayAhaW1wb3J0YW50OyBiYWNrZ3JvdW5kOiBu
+b25lICFpbXBvcnRhbnQ7IGJvcmRlci1yYWRpdXM6IDBweCAhaW1wb3J0YW50OyBib3JkZXI6
+IDBweCAhaW1wb3J0YW50OyBib3R0b206IGF1dG8gIWltcG9ydGFudDsgZmxvYXQ6IG5vbmUg
+IWltcG9ydGFudDsgaGVpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7IGxlZnQ6IGF1dG8gIWltcG9y
+dGFudDsgbGluZS1oZWlnaHQ6IDEuMWVtICFpbXBvcnRhbnQ7IG1hcmdpbjogMHB4ICFpbXBv
+cnRhbnQ7IG91dGxpbmU6IDBweCAhaW1wb3J0YW50OyBvdmVyZmxvdzogdmlzaWJsZSAhaW1w
+b3J0YW50OyBwb3NpdGlvbjogc3RhdGljICFpbXBvcnRhbnQ7IHJpZ2h0OiBhdXRvICFpbXBv
+cnRhbnQ7IHRleHQtYWxpZ246IGxlZnQ7IHRvcDogYXV0byAhaW1wb3J0YW50OyB2ZXJ0aWNh
+bC1hbGlnbjogYmFzZWxpbmUgIWltcG9ydGFudDsgd2lkdGg6IGF1dG8gIWltcG9ydGFudDsg
+Zm9udC13ZWlnaHQ6IG5vcm1hbDsgZm9udC1zdHlsZTogbm9ybWFsOyBtaW4taGVpZ2h0OiBh
+dXRvICFpbXBvcnRhbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12
+YXJpYW50LWNhcHM6IG5vcm1hbDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgb3JwaGFuczog
+MjsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06IG5vbmU7IHdoaXRlLXNwYWNl
+OiBwcmU7IHdpZG93czogMjsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGV4dC1zdHJv
+a2Utd2lkdGg6IDBweDsgdGV4dC1kZWNvcmF0aW9uLXN0eWxlOiBpbml0aWFsOyB0ZXh0LWRl
+Y29yYXRpb24tY29sb3I6IGluaXRpYWw7Ij4KPC9jb2RlPjwvcD4KICAgIDxwPjxmb250IGZh
+Y2U9Ik1vbmFjbyI+QW55IGlkZWFzIHdoYXQgaXMgZ29pbmcgd3JvbmcgPyA8YnI+CiAgICAg
+IDwvZm9udD48L3A+CiAgICA8cD48Zm9udCBmYWNlPSJNb25hY28iPjxicj4KICAgICAgPC9m
+b250PjwvcD4KICAgIDxwPjxmb250IGZhY2U9Ik1vbmFjbyI+VGhhbmtzLDwvZm9udD48L3A+
+CiAgICA8cD48Zm9udCBmYWNlPSJNb25hY28iPjxicj4KICAgICAgPC9mb250PjwvcD4KICA8
+L2JvZHk+CjwvaHRtbD4K
+
+--------------46C11853C8E7ADA1CA779045--
