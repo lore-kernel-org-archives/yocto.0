@@ -1,75 +1,38 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96EB3E00B97; Thu, 15 Jun 2017 00:16:24 -0700 (PDT)
+	id 39052E00B97; Thu, 15 Jun 2017 01:13:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.196 listed in list.dnswl.org]
-Received: from mail-io0-f196.google.com (mail-io0-f196.google.com
-	[209.85.223.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56029E00B77
-	for <yocto@yoctoproject.org>; Thu, 15 Jun 2017 00:16:20 -0700 (PDT)
-Received: by mail-io0-f196.google.com with SMTP id i93so972482iod.3
-	for <yocto@yoctoproject.org>; Thu, 15 Jun 2017 00:16:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language;
-	bh=NFL8C1aX2/oncmxxi6sDA+G9tKjr+th7E0AcdUpsnLY=;
-	b=Ds8bdwHb7Of776VIt0ZXeVCg8Rn/k5EWOIA1xldNpa1XHldsTBqBMDjfNvUJsRUvMx
-	uHXcqf/lk/eeZ/GH+G0gd6vpAUoSOEwi6iQQgv7XsZod99bM6SeUM8p+dFGqtdX63sIf
-	iMGepKibFa7jt+qoo5dFB46T/wjSWNrDie+7/guFaJTYN5jecAMQC4069UI4XBKY9Y1A
-	Lmu+asdIu5+BL6Vgmfz8PA5VJS4oGoYa3DZi9AoClClOK/JDFtAImF9zy3zN8ttjMeri
-	vqsHYa4ptLvC25inrtclP3woDhXqk43+3jGy6gQ/2FGpC4TnSR/FXw6k774okHoaYKQe
-	n3eQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=NFL8C1aX2/oncmxxi6sDA+G9tKjr+th7E0AcdUpsnLY=;
-	b=sYI9cx3q2isc19ewhxsA/L4PPpk//7H1dlY8eZADiygVDjmccoIDa2O9XTsNalNF/o
-	jbtIDh8qMMbhPx8rpDSJCDibzn9lG495GYBk5TO+FVzD/EUIOpUeOOsQN0FFazDwK3Nu
-	TvPHMnrapNk05JiqBMhgIXLhrRIGVokwZ7P04xvMqPwc2jo2J59yEMzVyl+QMEFWH2tY
-	0RpFAVEynZ3WsL/ZvS/ufi+6Z+NQuMxdWxEEDNO/UuQjbyA2d9SfIodw9Fr/j3mokIJ/
-	8LHRrxkfG2PIQ6SDX1FVkw2ZKMcuiVRT0sIwKSCbpv2kNBbWepilpclYQ3mWDAZotTfL
-	eLXQ==
-X-Gm-Message-State: AKS2vOx9lep/aVYgRAfZ4YwJh87YfFIPsPeuSInaIYQCb24ttFs3qJY7
-	o+v0Tcg1dVr+Ng/F
-X-Received: by 10.107.156.140 with SMTP id f134mr3976916ioe.9.1497510980083;
-	Thu, 15 Jun 2017 00:16:20 -0700 (PDT)
-Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
-	[124.178.9.113]) by smtp.gmail.com with ESMTPSA id
-	l12sm1286969ioi.42.2017.06.15.00.16.17
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 15 Jun 2017 00:16:19 -0700 (PDT)
-To: Belisko Marek <marek.belisko@gmail.com>
-References: <ed57e154-cbd7-176a-02fb-496c6f730d2a@gmail.com>
-	<CAMKF1sp9ESKxDiarsNTu89BXLpk8nBNZXefwYs-6dYHpVnBMFg@mail.gmail.com>
-	<1bfe90cd-590a-47e6-95d1-3ad77ec3a46b@gmail.com>
-	<CAAfyv348RhuesS-suUGnVgquxVX0Gv2625Qd1Lw5NJH6FMXMQQ@mail.gmail.com>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <76df90fd-64ea-9dd3-80f5-b90da3871397@gmail.com>
-Date: Thu, 15 Jun 2017 15:16:14 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67CBDE00B77
+	for <yocto@yoctoproject.org>; Thu, 15 Jun 2017 01:13:02 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	15 Jun 2017 01:12:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.39,342,1493708400"; d="scan'208";a="99743811"
+Received: from mbabyjoh-desk.fi.intel.com (HELO
+	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.84])
+	by orsmga002.jf.intel.com with ESMTP; 15 Jun 2017 01:12:53 -0700
+Date: Thu, 15 Jun 2017 11:12:14 +0300
+From: "Maxin B. John" <maxin.john@intel.com>
+To: Andre McCurdy <armccurdy@gmail.com>
+Message-ID: <20170615081213.GA19437@mbabyjoh-desk.ger.corp.intel.com>
+References: <1497442376-42554-1-git-send-email-maxin.john@intel.com>
+	<CAJ86T=XU8Shd6LuQXBQbiLDPJqTU45crQH3pYA3F7QVwZRrYvQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAAfyv348RhuesS-suUGnVgquxVX0Gv2625Qd1Lw5NJH6FMXMQQ@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: FriendlyArm Mini6410 ?
+In-Reply-To: <CAJ86T=XU8Shd6LuQXBQbiLDPJqTU45crQH3pYA3F7QVwZRrYvQ@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: Yocto discussion list <yocto@yoctoproject.org>, srifenbark@gmail.com
+Subject: Re: [PATCH] documentation: updates to static library support in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,126 +44,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Jun 2017 07:16:24 -0000
-Content-Type: multipart/alternative;
-	boundary="------------F91F6A716D516CD06AFDE521"
-Content-Language: en-US
+X-List-Received-Date: Thu, 15 Jun 2017 08:13:04 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---------------F91F6A716D516CD06AFDE521
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Hi Andre,
 
-Hi Everyone,
+On Wed, Jun 14, 2017 at 10:57:41AM -0700, Andre McCurdy wrote:
+> On Wed, Jun 14, 2017 at 5:12 AM, Maxin B. John <maxin.john@intel.com> wrote:
+> > For development purposes, static libraries need to be
+> > present only in the SDK. We do not need those static
+> > libraries in the image for most scenarios. So, replace
+> > IMAGE_INSTALL with TOOLCHAIN_TARGET_TASK in the documentation.
+> >
+> > Suggested-by: Anders Darander <anders@chargestorm.se>
+> > Signed-off-by: Maxin B. John <maxin.john@intel.com>
+> > ---
+> >  documentation/adt-manual/adt-prepare.xml         | 8 ++++----
+> >  documentation/sdk-manual/sdk-appendix-obtain.xml | 8 ++++----
+> >  2 files changed, 8 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/documentation/adt-manual/adt-prepare.xml b/documentation/adt-manual/adt-prepare.xml
+> > index 65df1d0..7587305 100644
+> > --- a/documentation/adt-manual/adt-prepare.xml
+> > +++ b/documentation/adt-manual/adt-prepare.xml
+> > @@ -684,16 +684,16 @@
+> >          <note>
+> >              By default, this toolchain does not build static binaries.
+> >              If you want to use the toolchain to build these types of libraries,
+> > -            you need to be sure your image has the appropriate static
+> > +            you need to be sure your SDK has the appropriate static
+> >              development libraries.
+> >              Use the
+> > -            <ulink url='&YOCTO_DOCS_REF_URL;#var-IMAGE_INSTALL'><filename>IMAGE_INSTALL</filename></ulink>
+> > +            <ulink url='&YOCTO_DOCS_REF_URL;#var-TOOLCHAIN_TARGET_TASK'><filename>TOOLCHAIN_TARGET_TASK</filename></ulink>
+> >              variable inside your <filename>local.conf</filename> file to
+> > -            install the appropriate library packages.
+> > +            include the appropriate library packages in SDK.
+> >              Following is an example using <filename>glibc</filename> static
+> >              development libraries:
+> >              <literallayout class='monospaced'>
+> > -     IMAGE_INSTALL_append = " glibc-staticdev"
+> > +     TOOLCHAIN_TARGET_TASK_append = " glibc-staticdev"
+> 
+> That should perhaps be "libc-staticdev" so the same instructions work
+> for musl (although it looks like currently musl doesn't rprovide
+> libc-staticdev so that would need to be fixed too).
 
-Is it possible that I only change the kernel config to support this CPU
+I agree with your suggestion that examples in documentation shouldn't be
+specific for a particular libc implementation.
 
-S3C6410 ? or I'm gonna need something else ?
+Filed a bug for musl libc-staticdev support:
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=11669
 
-bitbake linux-yocto -c menuconfig ?
+> >              </literallayout>
+> >          </note>
+> >      </para>
+> > diff --git a/documentation/sdk-manual/sdk-appendix-obtain.xml b/documentation/sdk-manual/sdk-appendix-obtain.xml
+> > index 3156f77..86e0eff 100644
+> > --- a/documentation/sdk-manual/sdk-appendix-obtain.xml
+> > +++ b/documentation/sdk-manual/sdk-appendix-obtain.xml
+> > @@ -96,16 +96,16 @@
+> >                  <listitem><para>
+> >                      By default, this toolchain does not build static binaries.
+> >                      If you want to use the toolchain to build these types of
+> > -                    libraries, you need to be sure your image has the
+> > +                    libraries, you need to be sure your SDK has the
+> >                      appropriate static development libraries.
+> >                      Use the
+> > -                    <ulink url='&YOCTO_DOCS_REF_URL;#var-IMAGE_INSTALL'><filename>IMAGE_INSTALL</filename></ulink>
+> > +                    <ulink url='&YOCTO_DOCS_REF_URL;#var-TOOLCHAIN_TARGET_TASK'><filename>TOOLCHAIN_TARGET_TASK</filename></ulink>
+> >                      variable inside your <filename>local.conf</filename> file
+> > -                    to install the appropriate library packages.
+> > +                    to install the appropriate library packages in SDK.
+> >                      Following is an example using <filename>glibc</filename>
+> >                      static development libraries:
+> >                      <literallayout class='monospaced'>
+> > -     IMAGE_INSTALL_append = " glibc-staticdev"
+> > +     TOOLCHAIN_TARGET_TASK_append = " glibc-staticdev"
+> >                      </literallayout>
+> >                      </para></listitem>
 
-It's ARM1176JZF-S based CPU
+Best Regards,
+Maxin
 
-Thanks
-
-
-On 15/06/17 14:05, Belisko Marek wrote:
-> Hi Riko,
->
-> On Thu, Jun 15, 2017 at 7:53 AM, Riko Ho <antonius.riko@gmail.com> wrote:
->> Hello Everyone,
->>
->> I want to use Yocto for my FriendlyArm Mini6410,
->> Where should I begin to start ?
-> Please read following thread:
-> https://lists.yoctoproject.org/pipermail/yocto/2014-June/020009.html
->> Thanks
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> BR,
->
-> marek
->
-
--- 
-*
-
-/*******/
-Sent by Ubuntu LTS 16.04,
-谢谢,
-Regards,
-Riko Ho
-/*******/
-
-*
-
---------------F91F6A716D516CD06AFDE521
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hi Everyone,</p>
-    <p>Is it possible that I only change the kernel config to support
-      this CPU</p>
-    <p>S3C6410 ? or I'm gonna need something else ?</p>
-    <p>bitbake linux-yocto -c menuconfig ?</p>
-    <p>It's ARM1176JZF-S based CPU</p>
-    <p>Thanks<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 15/06/17 14:05, Belisko Marek wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAAfyv348RhuesS-suUGnVgquxVX0Gv2625Qd1Lw5NJH6FMXMQQ@mail.gmail.com">
-      <pre wrap="">Hi Riko,
-
-On Thu, Jun 15, 2017 at 7:53 AM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">Hello Everyone,
-
-I want to use Yocto for my FriendlyArm Mini6410,
-Where should I begin to start ?
-</pre>
-      </blockquote>
-      <pre wrap="">Please read following thread:
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/pipermail/yocto/2014-June/020009.html">https://lists.yoctoproject.org/pipermail/yocto/2014-June/020009.html</a>
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">
-Thanks
---
-_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-      </blockquote>
-      <pre wrap="">
-BR,
-
-marek
-
-</pre>
-    </blockquote>
-    <br>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          谢谢,<br>
-          Regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
-  </body>
-</html>
-
---------------F91F6A716D516CD06AFDE521--
