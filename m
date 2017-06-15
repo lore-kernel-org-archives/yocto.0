@@ -1,43 +1,26 @@
-Return-Path: <zhengrq.fnst@cn.fujitsu.com>
+Return-Path: <pokybuild@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08962E00B97; Wed, 14 Jun 2017 21:03:45 -0700 (PDT)
+	id 2898AE00BAB; Wed, 14 Jun 2017 21:18:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 435D3E00B77
-	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 21:03:41 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.22,518,1449504000"; d="scan'208";a="20056597"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 15 Jun 2017 12:03:35 +0800
-Received: from G08CNEXCHPEKD03.g08.fujitsu.local (unknown [10.167.33.85])
-	by cn.fujitsu.com (Postfix) with ESMTP id 2567F46B5403
-	for <yocto@yoctoproject.org>; Thu, 15 Jun 2017 12:03:35 +0800 (CST)
-Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
-	G08CNEXCHPEKD03.g08.fujitsu.local ([10.167.33.85]) with mapi id
-	14.03.0319.002; Thu, 15 Jun 2017 12:03:36 +0800
-From: "Zheng, Ruoqin" <zhengrq.fnst@cn.fujitsu.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-selinux] [PATCH] audit: 2.7.1 -> 2.7.6 
-Thread-Index: AQHS1PlW2WI6Ciu8FUaIHsTmtqQ4jaIlbrng
-Date: Thu, 15 Jun 2017 04:03:33 +0000
-Message-ID: <33D4DBCAC5F2D74E96B07F6E7632BF7324596A70@G08CNEXMBPEKD01.g08.fujitsu.local>
-References: <1495708762-66219-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
-In-Reply-To: <1495708762-66219-1-git-send-email-zhengrq.fnst@cn.fujitsu.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.100]
-MIME-Version: 1.0
-X-yoursite-MailScanner-ID: 2567F46B5403.A95B4
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: zhengrq.fnst@cn.fujitsu.com
-Subject: Re: [meta-selinux] [PATCH] audit: 2.7.1 -> 2.7.6
+Received: from debian8.osl.yoctoproject.org (debian8.osl.yoctoproject.org
+	[10.0.10.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08A4AE00B8F;
+	Wed, 14 Jun 2017 21:18:30 -0700 (PDT)
+Received: by debian8.osl.yoctoproject.org (Postfix, from userid 1006)
+	id D9990380205; Thu, 15 Jun 2017 04:18:29 +0000 (UTC)
+To: yocto@yoctoproject.org
+Message-Id: <20170615041829.D9990380205@debian8.osl.yoctoproject.org>
+Date: Thu, 15 Jun 2017 04:18:29 +0000 (UTC)
+From: pokybuild@yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br, joshua.g.lock@intel.com
+Subject: Release Candidate Build for yocto-2.4_M1.rc1 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,45 +32,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Jun 2017 04:03:45 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 15 Jun 2017 04:18:31 -0000
 
-UGluZw0KDQpaaGVuZyBSdW9xaW4NCk5hbmppbmcgRnVqaXRzdSBOYW5kYSBT
-b2Z0d2FyZSBUZWNoLiBDby4sIEx0ZC4oRk5TVCkNCkFERFIuOiBOby42IFdl
-bnpodSBSb2FkLCBTb2Z0d2FyZSBBdmVudWUsDQogICAgICAgTmFuamluZywg
-MjEwMDEyLCBDaGluYQ0KTUFJTCA6IHpoZW5ncnEuZm5zdEBjbi5mdWppc3R1
-LmNvbQ0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBa
-aGVuZywgUnVvcWluL9ajIMj0x9UgDQpTZW50OiBUaHVyc2RheSwgTWF5IDI1
-LCAyMDE3IDY6MzkgUE0NClRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpD
-YzogWmhlbmcsIFJ1b3Fpbi/WoyDI9MfVIDx6aGVuZ3JxLmZuc3RAY24uZnVq
-aXRzdS5jb20+DQpTdWJqZWN0OiBbeW9jdG9dIFttZXRhLXNlbGludXhdIFtQ
-QVRDSF0gYXVkaXQ6IDIuNy4xIC0+IDIuNy42IA0KDQpVcGdyYWRlIGF1ZGl0
-IGZyb20gMi43LjEgdG8gMi43LjYNCg0KU2lnbmVkLW9mZi1ieTogemhlbmdy
-cSA8emhlbmdycS5mbnN0QGNuLmZ1aml0c3UuY29tPg0KLS0tDQogcmVjaXBl
-cy1zZWN1cml0eS9hdWRpdC97YXVkaXRfMi43LjEuYmIgPT4gYXVkaXRfMi43
-LjYuYmJ9IHwgNCArKy0tDQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9u
-cygrKSwgMiBkZWxldGlvbnMoLSkgIHJlbmFtZSByZWNpcGVzLXNlY3VyaXR5
-L2F1ZGl0L3thdWRpdF8yLjcuMS5iYiA9PiBhdWRpdF8yLjcuNi5iYn0gKDk2
-JSkNCg0KZGlmZiAtLWdpdCBhL3JlY2lwZXMtc2VjdXJpdHkvYXVkaXQvYXVk
-aXRfMi43LjEuYmIgYi9yZWNpcGVzLXNlY3VyaXR5L2F1ZGl0L2F1ZGl0XzIu
-Ny42LmJiDQpzaW1pbGFyaXR5IGluZGV4IDk2JQ0KcmVuYW1lIGZyb20gcmVj
-aXBlcy1zZWN1cml0eS9hdWRpdC9hdWRpdF8yLjcuMS5iYg0KcmVuYW1lIHRv
-IHJlY2lwZXMtc2VjdXJpdHkvYXVkaXQvYXVkaXRfMi43LjYuYmINCmluZGV4
-IDk3NWU2ZTkuLjc1ZDRkMjMgMTAwNjQ0DQotLS0gYS9yZWNpcGVzLXNlY3Vy
-aXR5L2F1ZGl0L2F1ZGl0XzIuNy4xLmJiDQorKysgYi9yZWNpcGVzLXNlY3Vy
-aXR5L2F1ZGl0L2F1ZGl0XzIuNy42LmJiDQpAQCAtMTUsOCArMTUsOCBAQCBT
-UkNfVVJJID0gImh0dHA6Ly9wZW9wbGUucmVkaGF0LmNvbS9zZ3J1YmIvJHtC
-UE59LyR7QlBOfS0ke1BWfS50YXIuZ3ogXA0KICAgICAgICAgICAgZmlsZTov
-L2F1ZGl0ZC5zZXJ2aWNlIFwNCiAgICAgICAgICAgIGZpbGU6Ly9hdWRpdC12
-b2xhdGlsZS5jb25mIFwgICINCi1TUkNfVVJJW21kNXN1bV0gPSAiYjIyNGVh
-NmYwMDBjODI4MWU1ZGVlZTg2OTAzYWM1YmEiDQotU1JDX1VSSVtzaGEyNTZz
-dW1dID0gIjA0NDE3OTA3OTRmZDkzNzVkYmNhNTk4ZmEwZmZiNDZjNTdmZjM3
-YjNhMjRiOTRmZmVjMGJiZWUzMjE1Y2NhMDkiDQorU1JDX1VSSVttZDVzdW1d
-ID0gIjU1YTgxYmJlZDk3M2I1OGE5MDU5MGM5NDllNzFkYzNlIg0KK1NSQ19V
-Uklbc2hhMjU2c3VtXSA9ICJmYTY1Mjg5Y2ZmZGM5NWEyNWJmYmRiYTU0MWY0
-M2VlMWIxMmM3MDcwOTBhMzhmZDAyN2RjZjkzNTRiOTAxNGU3Ig0KIA0KIGlu
-aGVyaXQgYXV0b3Rvb2xzIHB5dGhvbm5hdGl2ZSB1cGRhdGUtcmMuZCBzeXN0
-ZW1kDQogDQotLQ0KMi43LjQNCg0KCgo=
+
+A release candidate build for yocto-2.4_M1.rc1 is now available at:
+
+
+    http://autobuilder.yoctoproject.org/pub/releases/yocto-2.4_M1.rc1
+
+
+Please begin QA on this build as soon as possible.
+
+
+Build hash information: 
+meta-intel : 86c55b1296a1c0b1fab6a3fd339bed0aafc92c07 
+meta-qt4 : 033509ebc1eb0d13290a7a3f0c2772ed58712c34 
+refkit : 9b31868d82db68567d835c85be61c68a23c28f36 
+meta-mingw : 032c9ef231be4a00fb36f74cb51a6ee6e76c13c0 
+meta-qt3 : f33b73a9563f2dfdfd0ee37b61d65d90197a456f 
+meta-gplv2 : d1ab8b5b8d106d380f27e9157c94ec8ae2c6da30 
+poky : 6964efddd31c479386d1643c1025bc102710392f 
+
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: joshua.g.lock@intel.com 
 
