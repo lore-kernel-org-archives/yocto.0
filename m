@@ -1,6 +1,6 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <jdamon@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB9ECE00B47; Tue, 13 Jun 2017 21:04:53 -0700 (PDT)
+	id 96214E00A5C; Thu, 15 Jun 2017 15:46:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
+	mail provider *      (jdamon[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.52 listed in list.dnswl.org]
+	*      [209.85.192.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,52 +20,54 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f52.google.com (mail-pg0-f52.google.com [74.125.83.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 660B8E009A5
-	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 21:04:49 -0700 (PDT)
-Received: by mail-pg0-f52.google.com with SMTP id f185so69583169pgc.0
-	for <yocto@yoctoproject.org>; Tue, 13 Jun 2017 21:04:49 -0700 (PDT)
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 415EDE009A5
+	for <yocto@yoctoproject.org>; Thu, 15 Jun 2017 15:46:54 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id s66so3140205pfs.2
+	for <yocto@yoctoproject.org>; Thu, 15 Jun 2017 15:46:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:references:subject:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language;
-	bh=+XbYhiG9YAbtBpkARoqwhbXTR9L45N28uGmE1JY1uTY=;
-	b=aLA/VRpmo+OLgwR3JmlLKHU5koEjTIusZihCb0nv7x1dCFwivIP4SndMQ85Rx4Gb2Q
-	/06V7dIlecpFTusCPVMX68Q2+f6ET6qmH+LQe739cb3ofPK3EoYNobAh9eChZPRe2Jal
-	67s56vEBGJz4DfG+0TJlHU0gC7XhrQi81uegQKPdWxiB5/Q1FV6V0iO333sK79RrlvVh
-	bld0zhd+o9RG51cDUNNoAYgX0dPOAAbFBHKmzbStSpttWlhXJm+UuWoPsYjnAxdiZReZ
-	OsISHU6Fl7xhPogTU+3p7USjpgiSsitXGS0Rptf3z6ZwtJvDgdd4coG+cMYv9xu9hjVo
-	WBLQ==
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=wHFRDdM7obS4STj+eH+XaTk4FbLd9UQsL06wEwxC15k=;
+	b=QJUWZN+pLTuiLW3R0J5EXOB4DvkAhOzYZqZj5T07vRg12Y53kRxA+PWtrejW+bTHHV
+	FA1W6FXJeQjvmKBgYKGyy7wq+gf0YFrp4StFZl/LMJ+BjJIRLc8EnA2AaGgd1tEpWf/u
+	RguUCfevcdjAxfB9i5RSFKpVFxWAo7h+oE8R03P+/YUuG4t3ktYH2GT4LvkIE23HsIhp
+	rMoGoXsYTzm62JqtE0VfywFll/wQtX1AJUnlq859BYKLOfm9C/FCA4x1mQ3r/MGxku2l
+	o3RBAV5XZfwrE5Si4gleQtdEgeWmiAZrOniWTsd0qUNTjGJpfwwZf2so5HSRzj0Gz24P
+	0V7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:references:subject:from:message-id:date
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language;
-	bh=+XbYhiG9YAbtBpkARoqwhbXTR9L45N28uGmE1JY1uTY=;
-	b=K/25DbK5z08c8f47kvsuyloCI/S4HwerND3wqrPZFnJCHQr8ZZw857hrL0Q9Qxta4y
-	3xRG9na+U34zYkaskzZlfa3A+QLNkXHNTcFaN+8zYaUh3X2td0xKY8Cs+CwMTMprAeNj
-	QKnRTDxD9aGD8CINAWO/+A1q/RZ5zkwixrMUrpz/e2l3lYfpdg8EyN5FimcfYX155eYD
-	dcctrx9dba2Ly76NrdjvowuEKeerIMbG8xddFL0MMc9LomYNxVqT6uh5rvj3WGNEZwRk
-	6e0kEnhvVGHnMJ/kMJpjRX0kmWJ+68O/2TFMJnFLdJrqh9Vwtxy1sDv0613lyflvpmoV
-	z+AQ==
-X-Gm-Message-State: AKS2vOwWDygOTSJCnvynWZDp3bjHCfiErQDYRG/VBIdElzh/d9M8AOdK
-	ryG78Zjy+UdL3PkY
-X-Received: by 10.101.91.7 with SMTP id y7mr2422070pgq.226.1497413088377;
-	Tue, 13 Jun 2017 21:04:48 -0700 (PDT)
-Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
-	[124.178.9.113]) by smtp.gmail.com with ESMTPSA id
-	a84sm3646171pfe.19.2017.06.13.21.04.46 for <yocto@yoctoproject.org>
+	bh=wHFRDdM7obS4STj+eH+XaTk4FbLd9UQsL06wEwxC15k=;
+	b=sN/CbwVdWWxo+UzAiJ5kgxhKhgqSXK4WRZKyHEJ9fnLzwl6yvnRdCOwkDBZqVecPpB
+	Uaa8+tCnnhKpc0NfICEoLg4wH6TBZarRolhr1Ll5LY52b7OytLHycTCJc60vfaSZ4Hoi
+	xUyiOixDhLFNqHWiiaprXF1DQ01MulPFWHJyLNtT6oW8gETvV9qzzOzaGRhepeT6fuug
+	a5p7SIQ4F0WWKm5hRl+ztj+38sZS1P7PHxY4nsOTuj1r/+z7kkLKaMM3+rnlUIp8gv2L
+	2Azm1sK/Su4fk4bg22gi8RBm+Fj/W2cvjCiT6Q4fLp27Zxd+1JWb3JSMZFWtcFT6Vl+/
+	Kmmw==
+X-Gm-Message-State: AKS2vOzVrQ3bfbv6yfvk7wcGGW5oMXH1uv62cXgIGREuSQB24kK8wHyH
+	T0yBfAbvfLGrSkO0uSQ=
+X-Received: by 10.99.49.20 with SMTP id x20mr7721794pgx.181.1497566814398;
+	Thu, 15 Jun 2017 15:46:54 -0700 (PDT)
+Received: from [10.0.0.98] ([216.84.176.126]) by smtp.gmail.com with ESMTPSA id
+	x27sm539174pfe.113.2017.06.15.15.46.52
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 13 Jun 2017 21:04:47 -0700 (PDT)
-To: yocto@yoctoproject.org
-References: <CAJTo0LbtvKV3V5sKTbZ5j9GDu5xFfLgVicd6o74aW2NT0OArKw@mail.gmail.com>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <00c09c00-5d24-7dc4-da27-2d2e67884454@gmail.com>
-Date: Wed, 14 Jun 2017 12:04:44 +0800
+	Thu, 15 Jun 2017 15:46:53 -0700 (PDT)
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <bff03cd3-258c-95fd-63de-548168f363d0@gmail.com>
+	<9cd8d4c6-cad7-3b26-6894-62aa0fd9f77f@mlbassoc.com>
+	<1721976.Tat4yvfF10@peggleto-mobl.ger.corp.intel.com>
+From: Jimi Damon <jdamon@gmail.com>
+Message-ID: <737f1314-826c-79e7-6be9-fada7d4ad687@gmail.com>
+Date: Thu, 15 Jun 2017 15:46:45 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.1.1
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LbtvKV3V5sKTbZ5j9GDu5xFfLgVicd6o74aW2NT0OArKw@mail.gmail.com>
-X-Mailman-Approved-At: Thu, 15 Jun 2017 14:35:35 -0700
-Subject: Meta-web-kiosk Layer
+In-Reply-To: <1721976.Tat4yvfF10@peggleto-mobl.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: devshell not working for Qt or Boundary Devices based yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,163 +79,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jun 2017 04:04:53 -0000
+X-List-Received-Date: Thu, 15 Jun 2017 22:46:56 -0000
 Content-Type: multipart/alternative;
-	boundary="------------E6DF321D5BEBEF72572A4873"
+	boundary="------------C93908B321D89BD3984E015A"
 Content-Language: en-US
 
---------------E6DF321D5BEBEF72572A4873
+--------------C93908B321D89BD3984E015A
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hello Everyone,
+Hi,
 
-I tried doing bitbake core-image-web-kiosk and got some errors, does 
-anyone know how to fix it ? thanks,
+I created a yocto group and user for performing these builds.
 
-Loading cache: 100% 
-|#####################################################################################################################################| 
-Time: 0:00:00
-Loaded 1310 entries from dependency cache.
-ERROR: ExpansionError during parsing 
-/home/bianchi77/poky/meta-web-kiosk/recipes-browser/vala/vala_0.16.0.bb 
-| ETA:  --:--:--
-Traceback (most recent call last):
-   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 412, 
-in 
-DataSmart.expandWithRefs(s='http://ftp.gnome.org/pub/GNOME/sources/${BPN}/${SHRT_VER}/${BP}.tar.xz 
-http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz', 
-varname='SRC_URI'):
-                  try:
-     >                s = __expand_var_regexp__.sub(varparse.var_sub, s)
-                      try:
-   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 111, 
-in VariableParse.var_sub(match=<_sre.SRE_Match object; span=(46, 57), 
-match='${SHRT_VER}'>):
-                  else:
-     >                var = self.d.getVarFlag(key, "_content")
-                  self.references.add(key)
-   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 794, 
-in DataSmart.getVarFlag(var='SHRT_VER', flag='_content', expand=True, 
-noweakdefault=False, parsing=False):
-                      cachename = var + "[" + flag + "]"
-     >            value = self.expand(value, cachename)
-
-   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 436, 
-in 
-DataSmart.expand(s="${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}", 
-varname='SHRT_VER'):
-          def expand(self, s, varname = None):
-     >        return self.expandWithRefs(s, varname).value
-
-   File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line 426, 
-in 
-DataSmart.expandWithRefs(s="${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}", 
-varname='SHRT_VER'):
-                  except Exception as exc:
-     >                raise ExpansionError(varname, s, exc) from exc
-
-bb.data_smart.ExpansionError: Failure expanding variable SHRT_VER, 
-expression was 
-${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]} 
-which triggered exception AttributeError: module 'bb.data' has no 
-attribute 'getVar'
+The yocto user has the basic Ubuntu default account ( comes from a 
+simple useradd ... )
 
 
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+I verified that this user is able to perform the exact same bitbake -c 
+devshell gettext that fails for other username ( same exact location on 
+the filesystem after a sudo chgrp -R yocto $directory && sudo chmod -R 
+g+rw  $directory ).
 
--- 
-*
+I'm guessing something is going wrong with the fakeroot command as I'm 
+now seeing the terminal show up for just a second and then close when I 
+try running this devshell as my original username.
 
-/*******/
-Sent by Ubuntu LTS 16.04,
-谢谢,
-Regards,
-Riko Ho
-/*******/
+I'm not sure which setting in my bash shell is causing this error so I'm 
+all ears for any suggestions.
 
-*
 
---------------E6DF321D5BEBEF72572A4873
+-Jimi
+
+On 06/15/2017 01:47 AM, Paul Eggleton wrote:
+> On Thursday, 15 June 2017 5:12:19 AM CEST Gary Thomas wrote:
+>> On 2017-06-15 01:58, Jimi Damon wrote:
+>>> I'm trying out two different yocto distributions and in each one the
+>>> devshell doens't work. Instead it just gets to the
+>>> Summary line and returns to my normal shell ( bash ) .
+>> What are you expecting to happen?  'devshell' is just that - a shell
+>> environment (e.g. bash) where you are set up to "develop" (tinker, explore,
+>> etc) the given recipe.
+> I think Jimi is saying that it doesn't appear to be launching a separate
+> terminal / shell. Right?
+>
+> Assuming that's what's happening, the devshell code is supposed to print out
+> an error when it can't launch a suitable terminal, but if the terminal isn't
+> doing what it should then that might leave you in this situation. Does
+> log.do_devshell for the recipe indicate anything?
+>
+> Cheers,
+> Paul
+>
+
+
+--------------C93908B321D89BD3984E015A
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
 <html>
   <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hello Everyone, <br>
-    </p>
-    <p>I tried doing bitbake core-image-web-kiosk and got some errors,
-      does anyone know how to fix it ? thanks,</p>
-    <p>Loading cache: 100%
-|#####################################################################################################################################|
-      Time: 0:00:00<br>
-      Loaded 1310 entries from dependency cache.<br>
-      ERROR: ExpansionError during parsing
-/home/bianchi77/poky/meta-web-kiosk/recipes-browser/vala/vala_0.16.0.bb                                            
-      | ETA:  --:--:--<br>
-      Traceback (most recent call last):<br>
-        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
-      412, in
-DataSmart.expandWithRefs(s='<a class="moz-txt-link-freetext" href="http://ftp.gnome.org/pub/GNOME/sources/$">http://ftp.gnome.org/pub/GNOME/sources/$</a>{BPN}/${SHRT_VER}/${BP}.tar.xz 
-<a class="moz-txt-link-freetext" href="http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz">http://ftp.gnome.org/pub/GNOME/sources/vala/0.36/vala-0.36.0.tar.xz</a>',
-      varname='SRC_URI'):<br>
-                       try:<br>
-          &gt;                s =
-      __expand_var_regexp__.sub(varparse.var_sub, s)<br>
-                           try:<br>
-        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
-      111, in VariableParse.var_sub(match=&lt;_sre.SRE_Match object;
-      span=(46, 57), match='${SHRT_VER}'&gt;):<br>
-                       else:<br>
-          &gt;                var = self.d.getVarFlag(key, "_content")<br>
-                       self.references.add(key)<br>
-        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
-      794, in DataSmart.getVarFlag(var='SHRT_VER', flag='_content',
-      expand=True, noweakdefault=False, parsing=False):<br>
-                           cachename = var + "[" + flag + "]"<br>
-          &gt;            value = self.expand(value, cachename)<br>
-           <br>
-        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
-      436, in
-DataSmart.expand(s=<a class="moz-txt-link-rfc2396E" href="mailto:${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}">"${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}"</a>,
-      varname='SHRT_VER'):<br>
-               def expand(self, s, varname = None):<br>
-          &gt;        return self.expandWithRefs(s, varname).value<br>
-           <br>
-        File "/home/bianchi77/poky/bitbake/lib/bb/data_smart.py", line
-      426, in
-DataSmart.expandWithRefs(s=<a class="moz-txt-link-rfc2396E" href="mailto:${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}">"${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}"</a>,
-      varname='SHRT_VER'):<br>
-                       except Exception as exc:<br>
-          &gt;                raise ExpansionError(varname, s, exc) from
-      exc<br>
-           <br>
-      bb.data_smart.ExpansionError: Failure expanding variable SHRT_VER,
-      expression was
-${@bb.data.getVar('PV',d,1).split('.')[0]}.${@bb.data.getVar('PV',d,1).split('.')[1]}
-      which triggered exception AttributeError: module 'bb.data' has no
-      attribute 'getVar'<br>
+    <p><font face="Monaco">Hi,</font></p>
+    <font face="Monaco">I created a yocto group and user for performing
+      these builds.<br>
+      <br>
+      The yocto user has the basic Ubuntu default account ( comes from a
+      simple useradd ... )<br>
       <br>
       <br>
-      Summary: There was 1 ERROR message shown, returning a non-zero
-      exit code.<br>
+      I verified that this user is able to perform the exact same
+      bitbake -c devshell gettext that fails for other username ( same
+      exact location on the filesystem after a sudo chgrp -R yocto
+      $directory &amp;&amp; sudo chmod -R g+rw  $directory ).<br>
       <br>
-    </p>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          谢谢,<br>
-          Regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
+      I'm guessing something is going wrong with the fakeroot command 
+      as I'm now seeing the terminal show up for just a second and then
+      close when I try running this devshell as my original username.<br>
+      <br>
+      I'm not sure which setting in my bash shell is causing this error
+      so I'm all ears for any suggestions.<br>
+      <br>
+      <br>
+      -Jimi<br>
+      <br>
+    </font>
+    <div class="moz-cite-prefix">On 06/15/2017 01:47 AM, Paul Eggleton
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:1721976.Tat4yvfF10@peggleto-mobl.ger.corp.intel.com">
+      <pre wrap="">On Thursday, 15 June 2017 5:12:19 AM CEST Gary Thomas wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">On 2017-06-15 01:58, Jimi Damon wrote:
+</pre>
+        <blockquote type="cite">
+          <pre wrap="">I'm trying out two different yocto distributions and in each one the
+devshell doens't work. Instead it just gets to the 
+Summary line and returns to my normal shell ( bash ) .
+</pre>
+        </blockquote>
+        <pre wrap="">
+What are you expecting to happen?  'devshell' is just that - a shell
+environment (e.g. bash) where you are set up to "develop" (tinker, explore,
+etc) the given recipe.
+</pre>
+      </blockquote>
+      <pre wrap="">
+I think Jimi is saying that it doesn't appear to be launching a separate 
+terminal / shell. Right?
+
+Assuming that's what's happening, the devshell code is supposed to print out 
+an error when it can't launch a suitable terminal, but if the terminal isn't 
+doing what it should then that might leave you in this situation. Does 
+log.do_devshell for the recipe indicate anything?
+
+Cheers,
+Paul
+
+</pre>
+    </blockquote>
+    <br>
   </body>
 </html>
 
---------------E6DF321D5BEBEF72572A4873--
+--------------C93908B321D89BD3984E015A--
