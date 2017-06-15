@@ -1,14 +1,17 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8B5AFE00B97; Wed, 14 Jun 2017 22:53:39 -0700 (PDT)
+	id AB607E00B9F; Wed, 14 Jun 2017 23:05:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
+	mail provider *      (marek.belisko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,58 +19,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.50 listed in list.dnswl.org]
-Received: from mail-it0-f50.google.com (mail-it0-f50.google.com
-	[209.85.214.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E0C3E00B77
-	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 22:53:34 -0700 (PDT)
-Received: by mail-it0-f50.google.com with SMTP id m47so12175838iti.1
-	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 22:53:34 -0700 (PDT)
+Received: from mail-lf0-f54.google.com (mail-lf0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0F22E00B77
+	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 23:05:08 -0700 (PDT)
+Received: by mail-lf0-f54.google.com with SMTP id m77so2364733lfe.0
+	for <yocto@yoctoproject.org>; Wed, 14 Jun 2017 23:05:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding:content-language;
-	bh=DmJEEIYxrxRaWSXNcDNvnpeTOodUc9yfFbFeXkCWdrY=;
-	b=VjMg5SGJpFICshA20nQSr0KjCpWrJViwrQhseA5j9pUs/P33uFAOZxK2pmbrj4PTlc
-	wuocVH984gSemwYgfBRSrhh7yviB08JMMuAOsp/HnpxEDe8XI8c3hrCYSghKJyH1YWJw
-	nGDP5/UIxKuU74tdkZRmdo4NuUFKDEjIVSle2CQebdEtqwZxbVktB+XnFBDnlZO1AYmS
-	JMqn6J4N2l7+c7Y7xKc24K0PNC05dUUkFpWvHBf3ZoOu+RbYs3nM0KrkMy+yWJpDxJL+
-	YE5NDTq1fTCs8kestqrCG7mrWv4cpZA62gR9rfk4G0+e0AX7GSVGkhVempcevG3elm2S
-	2gkA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=whH4YiMOXbcKYpmcaTkAVH9J4d7mv4l3/WqSRXqD4AA=;
+	b=NVvO6iAmRyjdARyOzS8Eh1SEYHDpXYDQHEQcQpB3zb3aYIu7pGE9GdiTQM96GOQhxp
+	lM4yq6wcLzTEoj4/8An8lTG8GwFdmwujnnzHVbNwR+T//ePAeAmxm/mLuzuO/Km3vemM
+	fGruk7Eks8iEmyT033/lXwenmjUDQQnTL+c+ymiI7a7m4pCvoYMUqkwMGxO6SEDlA8tl
+	Ei/r3yTAJ++//zgw3kDWaYCf9EZjbVr4dxtGBWg5kbZBJp3bzarHIltkn0B7V7bAPvds
+	h9UCXvmAp8/t3YXx2WguW5u6BRBUDnCnEAOmgn4ebR3AOXEfo3xC47qpBhLwEid/oC9X
+	rVIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=DmJEEIYxrxRaWSXNcDNvnpeTOodUc9yfFbFeXkCWdrY=;
-	b=rB5BdyJ3xAfTh5qWX5x67W+mW1ViZWQgEMJD1dxMRiZbP6Wfp6y0L0S/4zDfwqVxjW
-	+7f3IMSs/FqOYgcCCg5qGIeop4V6Li+jDfUOI0DCeCwDVWeEhaEH0dhzx6uc2ojBVzWb
-	fKRmZLqzCPKNAIoBkFhY9DcHNnK4v9a1kyiQjd/X2Z2BoMF7ZSbbeJlkgcxaEvuoRerv
-	WLPMz8mcXQJHgm3gMye36W6CrDG2e8C/E/NZC+fnjErVxYTVGJ3QHvk+ZU5nRqftX1Mn
-	1j4pSKGmKgE9DHMYohurWKJjQtMAWAMCKlPviQ72CZzG8ksKJ4i41PYu6aWN0s//tx/c
-	mEBA==
-X-Gm-Message-State: AKS2vOyIZZijbD3L7emNVjPPdqNO2Kb5EcVN7o8Wl8NGbs+w3PcXkpzb
-	5167ife5GWQee67e
-X-Received: by 10.36.173.69 with SMTP id a5mr3499424itj.41.1497506014484;
-	Wed, 14 Jun 2017 22:53:34 -0700 (PDT)
-Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
-	[124.178.9.113])
-	by smtp.gmail.com with ESMTPSA id 11sm1162676itk.27.2017.06.14.22.53.32
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 14 Jun 2017 22:53:34 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=whH4YiMOXbcKYpmcaTkAVH9J4d7mv4l3/WqSRXqD4AA=;
+	b=mvsZKFn2JPdu13Tycw8PPZMQDTS9JZRGfgaRY5/hqdha60XeYSA6bFQX0/kP/7z0Jp
+	pKl2sX/zN8FSOIEldKGtMv+806ujnDJNPXxMnLx3GYhTKORKL8x+gdJlBD8qArcJUBQs
+	SKRFvdF6baVN8fYO9Dxw40sidEeYxcmUqErO6iVp6ydNMic9fTvRo0dcWG/Yi+qHa589
+	RDkG1ToVHJSd6d8O4Ap5UNTE6Q59b3DKXl3wHFRIET5lgTSORgv6HYYF4FiU9CwCB7sC
+	OgV2S/Ym1G3xpSAEyVfy00DZqwORzsNu98LW6SWUMO4jpbqEF97LJBXcGFcmMj2b2gXM
+	FJHQ==
+X-Gm-Message-State: AKS2vOxXP0K0kUGEz24lgy8ETj4G/N2w3G2zY2P4+wWy60XHnVUyfEHE
+	sfxaTrPc/AASPFnjju66NnOLotKv+Q==
+X-Received: by 10.25.198.73 with SMTP id w70mr1215846lff.118.1497506707316;
+	Wed, 14 Jun 2017 23:05:07 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.25.17.96 with HTTP; Wed, 14 Jun 2017 23:05:06 -0700 (PDT)
+In-Reply-To: <1bfe90cd-590a-47e6-95d1-3ad77ec3a46b@gmail.com>
 References: <ed57e154-cbd7-176a-02fb-496c6f730d2a@gmail.com>
 	<CAMKF1sp9ESKxDiarsNTu89BXLpk8nBNZXefwYs-6dYHpVnBMFg@mail.gmail.com>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <1bfe90cd-590a-47e6-95d1-3ad77ec3a46b@gmail.com>
-Date: Thu, 15 Jun 2017 13:53:29 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
-MIME-Version: 1.0
-In-Reply-To: <CAMKF1sp9ESKxDiarsNTu89BXLpk8nBNZXefwYs-6dYHpVnBMFg@mail.gmail.com>
-Subject: FriendlyArm Mini6410 ?
+	<1bfe90cd-590a-47e6-95d1-3ad77ec3a46b@gmail.com>
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Thu, 15 Jun 2017 08:05:06 +0200
+Message-ID: <CAAfyv348RhuesS-suUGnVgquxVX0Gv2625Qd1Lw5NJH6FMXMQQ@mail.gmail.com>
+To: Riko Ho <antonius.riko@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: FriendlyArm Mini6410 ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,15 +72,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Jun 2017 05:53:39 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 15 Jun 2017 06:05:10 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hello Everyone,
+Hi Riko,
 
-I want to use Yocto for my FriendlyArm Mini6410,
-Where should I begin to start ?
+On Thu, Jun 15, 2017 at 7:53 AM, Riko Ho <antonius.riko@gmail.com> wrote:
+> Hello Everyone,
+>
+> I want to use Yocto for my FriendlyArm Mini6410,
+> Where should I begin to start ?
+Please read following thread:
+https://lists.yoctoproject.org/pipermail/yocto/2014-June/020009.html
+>
+> Thanks
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Thanks
+BR,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
