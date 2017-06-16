@@ -1,48 +1,73 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4E99E00B18; Fri, 16 Jun 2017 09:11:36 -0700 (PDT)
+	id 6942AE00B18; Fri, 16 Jun 2017 11:01:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.192.179 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A461BE009A0
-	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 09:11:34 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	16 Jun 2017 09:11:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.39,347,1493708400"; 
-	d="scan'208,217";a="114070873"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by orsmga005.jf.intel.com with ESMTP; 16 Jun 2017 09:11:32 -0700
-Received: from fmsmsx101.amr.corp.intel.com (10.18.124.199) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Fri, 16 Jun 2017 09:11:32 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.2]) by
-	fmsmsx101.amr.corp.intel.com ([169.254.1.71]) with mapi id
-	14.03.0319.002; Fri, 16 Jun 2017 09:11:32 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Retire YP 1.8.3 and 2.0.4
-Thread-Index: AdLmuysi62lKsqssSBCrQPVLuyV27w==
-Date: Fri, 16 Jun 2017 16:11:31 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E981EE6F0@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMGMzNDIwMjYtNzhlMi00ZjM0LWI0MDgtNTA3OGVhYjI5YjkzIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IkR0RVwvWkFYMGNzbVMrTlVIajVmdllaeGtIMlwvc0ZCN1padGlLYkFCK1d2Yz0ifQ==
-x-originating-ip: [10.1.200.108]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f179.google.com (mail-pf0-f179.google.com
+	[209.85.192.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3725BE009A0
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 11:00:55 -0700 (PDT)
+Received: by mail-pf0-f179.google.com with SMTP id 83so25644819pfr.0
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 11:00:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to; bh=kQUqTp3TEze3s8Ew0BebkUy+J89E8g+AHHpS26dEFBE=;
+	b=VN08GSiNoB6XvlLfrZX9Bg7qirp1o7KXYBGyiSnhh1OQg/NTsjIntF9refrqK/lq0g
+	7F0GowKN3xROx+rOmKx/RJRKJ64wP+0hesoHEamorPAx0TJ9XN9jAgx4nNmVuXGgjA6Q
+	94lVhf8lE+Xanz3JQoZ8hIg66FlD7B+HAYJ694DsZLe8lEH+2XfvdXqMXQuuc3tLXCnF
+	/T2UpuraA+CVvJOcveBg171pvqvipPodTsACOc0yF10Pjl91qFJmIuF61E4stg0KNrBp
+	DPOzlMqtkHrmWp6nGflJcwFr3u5doDV59ITfuY7wrArzX8bjYfTXOpaGRp/Tr1QwdKxg
+	jFJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=kQUqTp3TEze3s8Ew0BebkUy+J89E8g+AHHpS26dEFBE=;
+	b=BjEVve6SCILOxQGLx7ieEkGcaItsmosicn9m5BOT0puhnSarp/68ebXSHJ0vyQSAWK
+	jOHpb47rfV1P7ZXKPxZJ6/U7XTH6ODy1t2ShQtpYjA0+bdbspf4eXatRMXzCZiXrNPb1
+	asSdC6+xAPegWyl5DDWHjZRl2ixqnDCeEEQhXADXAHipAHA878wWU4g4I3fYIBdRxzIu
+	JdPfEztYbCmZix6BNuJvD4VpsvpIFgH2AVySKKWX+MyuhE2appx+s3aGa+KJO4cskoI0
+	j2kwgBI3eNBjew4YTIoIz661grx16M9MepEz6ttC2QASrEZPjrt+5ZZEKb+JAJ1V8ysL
+	iV3A==
+X-Gm-Message-State: AKS2vOyMz7Tuvw4ME0y2ry0pIXZRHPokw8yvJP28IjU2en7Ouki0kQPG
+	odOWY/CRBmD1fwDY6EA=
+X-Received: by 10.84.173.129 with SMTP id p1mr736632plb.143.1497636054897;
+	Fri, 16 Jun 2017 11:00:54 -0700 (PDT)
+Received: from ?IPv6:2601:646:8882:b8c:745f:c6ab:d92d:5f3f?
+	([2601:646:8882:b8c:745f:c6ab:d92d:5f3f])
+	by smtp.gmail.com with ESMTPSA id j6sm7628361pgc.1.2017.06.16.11.00.53
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 16 Jun 2017 11:00:53 -0700 (PDT)
+To: yocto@yoctoproject.org
+References: <75eaa4ef-ddd4-198e-4299-a5cad9ed570c@Net2Edge.com>
+	<CAJTo0LZjhRyL4gzOyK4OKUpTpCarUPmv8TjVQ5485hG-6R=1qw@mail.gmail.com>
+	<DB6PR0701MB1879F68989431486E48F7FF6D3C10@DB6PR0701MB1879.eurprd07.prod.outlook.com>
+	<1497618884.2549.1.camel@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Message-ID: <fde71ccf-4363-2b33-56d3-6826e72d87de@gmail.com>
+Date: Fri, 16 Jun 2017 11:00:52 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:54.0)
+	Gecko/20100101 Thunderbird/54.0
 MIME-Version: 1.0
-Subject: Retire YP 1.8.3 and 2.0.4
+In-Reply-To: <1497618884.2549.1.camel@gmail.com>
+Subject: Re: Using A Proprietary Closed License Inside A Layer & Its Recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,154 +79,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jun 2017 16:11:36 -0000
+X-List-Received-Date: Fri, 16 Jun 2017 18:01:06 -0000
+X-Groupsio-MsgNum: 36621
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="xLaDRM1tlJsTbXtTI8njmgQj6nDC9P3dg"
+
+--xLaDRM1tlJsTbXtTI8njmgQj6nDC9P3dg
+Content-Type: multipart/mixed; boundary="GCrEbPBfFlX9SuKR62fjo8Ss0icHaQimN";
+ protected-headers="v1"
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Message-ID: <fde71ccf-4363-2b33-56d3-6826e72d87de@gmail.com>
+Subject: Re: [yocto] Using A Proprietary Closed License Inside A Layer & Its
+ Recipes
+References: <75eaa4ef-ddd4-198e-4299-a5cad9ed570c@Net2Edge.com>
+ <CAJTo0LZjhRyL4gzOyK4OKUpTpCarUPmv8TjVQ5485hG-6R=1qw@mail.gmail.com>
+ <DB6PR0701MB1879F68989431486E48F7FF6D3C10@DB6PR0701MB1879.eurprd07.prod.outlook.com>
+ <1497618884.2549.1.camel@gmail.com>
+In-Reply-To: <1497618884.2549.1.camel@gmail.com>
+
+--GCrEbPBfFlX9SuKR62fjo8Ss0icHaQimN
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E981EE6F0fmsmsx111amrcor_"
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E981EE6F0fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-All,
+On 6/16/17 6:14 AM, Joshua Watt wrote:
+> On Fri, 2017-06-16 at 09:12 +0000, Thomas Thorne wrote:
+>>>> Is it only possible to use the special
+>>>> LICENSE =3D "CLOSED"
+>>>> license for licenses not already placed in the main license
+>> directory?
+>>>
+>>> Yes, there's special-case logic for 'CLOSED'.  Can you not just use
+>> that for your internal pieces?  It's special-cased in a few places.
+>> =20
+>> I can use CLOSED.  I just wanted to ensure I was following the
+>> recommended or best practice.=20
+>> =20
+>> As this is an internal thing it should be OK for now.  I was
+>> wondering what would happen if a closed licenses was updated, as
+>> nothing would currently note the md5 change.=20
+>=20
+> FWIW: We created a proprietary license file called files/common-
+> licenses/company.txt in our proprietary layer, then added the following=
 
-Just a heads up that we will no longer be tracking or updating bugs logged =
-against YP 1.8.3 or YP 2.0.4 since these project have moved to community su=
-pport.  Support will still existing in the community branch, but we will no=
- longer accept nor will triage bugs against these versions.
+> to layer.conf:
+>=20
+>  COMPANY_COMMON_LICENSES :=3D '${@os.path.normpath("${LAYERDIR}/files/c=
+om
+> mon-licenses")}'
+>  BB_HASHBASE_WHITELIST_append =3D " COMPANY_COMMON_LICENSES"
+>=20
+> Then a recipe can get the "standard" proprietary license by doing:
+>=20
+>  LIC_FILES_CHKSUM =3D
+> "file://${COMPANY_COMMON_LICENSES}/company.txt;md5=3D9b1139fa1fcb869069=
+db
+> eecca44350a5"
+>=20
+> It works pretty well and also make it clear what license the recipe is
+> under. I believe that the BB_HASHBASE_WHITELIST was necessary at the
+> time to prevent changes in the project working path from causing a full=
 
-Thanks,
+> rebuild of the all proprietary packages and so that the sstate
+> signatures would match regardless, but I might be wrong about it being
+> necessary.
 
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:               (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com
+is this still the case with latest master ?
 
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E981EE6F0fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--GCrEbPBfFlX9SuKR62fjo8Ss0icHaQimN--
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Just a heads up that we will no longer be tracking o=
-r updating bugs logged against YP 1.8.3 or YP 2.0.4 since these project hav=
-e moved to community support.&nbsp; Support will still existing in the comm=
-unity branch, but we will no longer accept
- nor will triage bugs against these versions.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
-ns-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+--xLaDRM1tlJsTbXtTI8njmgQj6nDC9P3dg
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E981EE6F0fmsmsx111amrcor_--
+-----BEGIN PGP SIGNATURE-----
+
+iEYEARECAAYFAllEHNQACgkQuwUzVZGdMxTBfACfTQWkSkSmpMQM8scyER9Fp2Qr
+MMwAn3kVywkPP9f8zKsehfv5oWOqMJP4
+=0THC
+-----END PGP SIGNATURE-----
+
+--xLaDRM1tlJsTbXtTI8njmgQj6nDC9P3dg--
