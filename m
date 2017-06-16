@@ -1,73 +1,63 @@
-Return-Path: <Alok.Pawar3@harman.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC252E00B63; Fri, 16 Jun 2017 03:33:39 -0700 (PDT)
+	id 29129E00B58; Fri, 16 Jun 2017 03:36:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [216.82.251.8 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.216.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
-	[216.82.251.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3A0DE00BB5
-	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 03:33:23 -0700 (PDT)
-Received: from [216.82.250.99] by server-8.bemta-12.messagelabs.com id
-	EE/B6-02196-C52B3495; Fri, 16 Jun 2017 10:26:36 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMKsWRWlGSWpSXmKPExsVySpdNUzd6k3O
-	kwbN3+hbzdthbTHq5hs2ByWPxnpdMHu0n+tgCmKJYM/OS8isSWDMuv37FXjC5tmL2pjnsDYzb
-	qrsYuTiEBLYySpxbMoEVwtnCKLFj209mCGcvo8Tfn6eZuhg5OdgEdCQef7jDCmKLCGhJnH39m
-	BnEZhYwlZg8owXMFhawlFh8+yQjRI2VRGP/bxYY+8q2fUBzODhYBFQlrm/lAwnzCrhLvH18mh
-	FiVy+jxI+DCxhBajgFAiXetFmD1DAKiEl8P7WGCWKVuMStJ/PBbAkBAYkle84zQ9iiEi8f/2O
-	FsA0kti7dxwJhK0is7G5gg7CtJfbPW8oKMSdHYuWv76wQNwhKnJz5BKxeSEBZYs+jBsYJjOKz
-	kKybhaRlFpKWWUCXMgtoSqzfpQ9RoigxpfshO4StIdE6Zy47svgCRvZVjBrFqUVlqUW6RkZ6S
-	UWZ6RkluYmZObqGhkZ6uanFxYnpqTmJScV6yfm5mxiBkVvPwMC4g3FOo9chRkkOJiVRXn45p0
-	ghvqT8lMqMxOKM+KLSnNTiQ4wyHBxKErynNjpHCgkWpaanVqRl5gBTCExagoNHSYT302KgNG9
-	xQWJucWY6ROoUo6KUOO99kD4BkERGaR5cGyxtXWKUlRLmZWRgYBDiKUgtys0sQZV/xSjOwagk
-	zJu5AWgKT2ZeCdz0V0CLmYAWB11wAFlckoiQkmpgXG7XuO/1av172Z2XPhaqZcbMv7e8+9Ga9
-	7bmTmtjrZQE5j+y2nZunuX8s413uLidIi52mpyZ+kY0Sbfm33txJ9+uVlX/r1snLlWZfdl2aV
-	CI//qz65xcHBOXeR2vWyRruqNwdv+hsom/pmcq/b4w/8azR3LMoofnPlTZemDLAx+vt0289zo
-	ErZRYijMSDbWYi4oTAXArtwlWAwAA
-X-Env-Sender: Alok.Pawar3@harman.com
-X-Msg-Ref: server-12.tower-126.messagelabs.com!1497608792!79459432!1
-X-Originating-IP: [202.45.6.41]
-X-StarScan-Received: 
-X-StarScan-Version: 9.4.19; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 28671 invoked from network); 16 Jun 2017 10:26:35 -0000
-Received: from unknown (HELO HIBDWSMB10.ad.harman.com) (202.45.6.41)
-	by server-12.tower-126.messagelabs.com with DHE-RSA-AES256-GCM-SHA384
-	encrypted SMTP; 16 Jun 2017 10:26:35 -0000
-Received: from HIBDWSMB04.ad.harman.com (10.99.236.94) by
-	HIBDWSMB10.ad.harman.com (10.99.236.101) with Microsoft SMTP Server
-	(TLS) id 15.0.1263.5; Fri, 16 Jun 2017 15:56:32 +0530
-Received: from HIBDWSMB03.ad.harman.com (10.99.236.93) by
-	HIBDWSMB04.ad.harman.com (10.99.236.94) with Microsoft SMTP Server
-	(TLS) id 15.0.1263.5; Fri, 16 Jun 2017 15:56:31 +0530
-Received: from HIBDWSMB03.ad.harman.com ([fe80::c93:57c:9471:3348]) by
-	HIBDWSMB03.ad.harman.com ([fe80::c93:57c:9471:3348%13]) with mapi id
-	15.00.1263.000; Fri, 16 Jun 2017 15:56:31 +0530
-From: "Pawar, Alok" <Alok.Pawar3@harman.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [EXTERNAL] Re: [yocto] Yocto VLC compilation
-Thread-Index: AdLmhPUG2KFFomz/RkiRsUYFxe2uQ///rcaA//+h8IA=
-Date: Fri, 16 Jun 2017 10:26:30 +0000
-Message-ID: <35df41582d4b4f16a9bddd6a77e186c5@HIBDWSMB03.ad.harman.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f169.google.com (mail-qt0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC3E7E009A5
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 03:36:51 -0700 (PDT)
+Received: by mail-qt0-f169.google.com with SMTP id u19so57234161qta.3
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 03:36:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=+tX3EZDbMX6h1PojareO2C4znP1/ijtRZvyEvRbJLr4=;
+	b=jAg15SdJixFi+YQrmIMaMU/95IeYwgxqojiwkBTobM81B2DdR2LMy7qBIzY/Tc3JtZ
+	VFvMPG0+K+E3n42urzsiP8CYLzD1DJDrL1mzuGCFxCXGvacMja44YHUyDmNE1xgHJfqZ
+	+NwZncwyKHGm+5koIDHPSta1O3Vmr0mqg1WOveeTH9lrH1ga5mNTi+xLRujhZr2X7+4b
+	sXOeK3nzb1GCCGjCpkJg3pLW4QoVAkS9N8PWoPY8fHY3fGMIv7PKgxRysNTBSkzvfwui
+	HMPvUfIyIuyg1+i3QQoUFAfbDuDpTAZ0Y/J6R21boZmonUzEeH755MdumlRi7WlLYMKv
+	GnpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=+tX3EZDbMX6h1PojareO2C4znP1/ijtRZvyEvRbJLr4=;
+	b=IugB51rdQGfbeHqcnBd6UGnf1vMK+x6OT0C4LJZxqv1lXWnQF4+jDsiADB56xIS4us
+	cN53Ij9HayhIrJ7nQmSGcwBz60dfIEMHRIAUyU3cAwFU3Shn3Sp8EQJjEqTIweo2KL8D
+	Pl/u9oiSmjlmzx5EaQCT43kcAnK4ORW/aHwFKilb3e0NgEbLYr0OuWDrdQBlJmMJPQO+
+	+XfCtV2+448d/FLXWr0csB+XvpHFdLMwS88Zjclr9lh3XjDzA5QkmkrKRND86S+Bcx1b
+	jRGLV5tLyzMRS7qGWjFgaTIkAzbuUD8P2UdHgjHMH6A/q0NdHHWi4JIo26OgnyyuSoEU
+	unOw==
+X-Gm-Message-State: AKS2vOwXW2oo2f+552pSHXgKlXFwRjQ4iSW0wEP2QgLcPQtJJTqFkYI/
+	HIZ8vxjRorC120ydUTg+T9AbVxIa+meM
+X-Received: by 10.55.120.1 with SMTP id t1mr11293496qkc.171.1497609410555;
+	Fri, 16 Jun 2017 03:36:50 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.35.103 with HTTP; Fri, 16 Jun 2017 03:36:30 -0700 (PDT)
+In-Reply-To: <f0387fca00764b658bc7d3fa61dfb0b6@HIBDWSMB03.ad.harman.com>
 References: <b052b8f70c6d46c8b9c8aa54abab4c17@HIBDWSMB03.ad.harman.com>
 	<CAJTo0LYAK3yiAgfWOF3q9y2rNeBs1EXaf3sRZ0bCoXqj50zSuw@mail.gmail.com>
-In-Reply-To: <CAJTo0LYAK3yiAgfWOF3q9y2rNeBs1EXaf3sRZ0bCoXqj50zSuw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.99.236.43]
-x-exclaimer-md-config: 4a26c407-9f7b-4db1-94e4-bcbc87a799a8
-MIME-Version: 1.0
+	<35df41582d4b4f16a9bddd6a77e186c5@HIBDWSMB03.ad.harman.com>
+	<CAJTo0LbKP5dLppYKTMEJg=4dg3wgq0wyN_+=1ruFrqanxh89PA@mail.gmail.com>
+	<f0387fca00764b658bc7d3fa61dfb0b6@HIBDWSMB03.ad.harman.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 16 Jun 2017 11:36:30 +0100
+Message-ID: <CAJTo0LZ3Yr9OKfgH=+AWfs-ajjUgSht6=-AGe+Oy2-h9NQy04Q@mail.gmail.com>
+To: "Pawar, Alok" <Alok.Pawar3@harman.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [EXTERNAL] Re: Yocto VLC compilation
 X-BeenThere: yocto@yoctoproject.org
@@ -81,223 +71,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jun 2017 10:33:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_35df41582d4b4f16a9bddd6a77e186c5HIBDWSMB03adharmancom_"
+X-List-Received-Date: Fri, 16 Jun 2017 10:36:55 -0000
+Content-Type: multipart/alternative; boundary="94eb2c06686aedc5ad0552115c57"
 
---_000_35df41582d4b4f16a9bddd6a77e186c5HIBDWSMB03adharmancom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--94eb2c06686aedc5ad0552115c57
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmtzIGZvciB0aGUgcmVwbHksICBGb2xsb3dpbmcgaXMgdGhlIGVycm9yIDoNCg0KRVJST1I6
-IE5vdGhpbmcgUFJPVklERVMgJ2ZmbXBlZycgKGJ1dCAvaG9tZS9oYXJtYW4vRGVza3RvcC9hbWl0
-X2tyL2lvdC1zb2xvL1BsYXRmb3JtL3NyYy9hcmNoL2FybS9pbXg2c2wvWU9DVE8vc291cmNlcy9t
-ZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW11bHRpbWVkaWEvcmVjaXBlcy1tdWx0aW1lZGlhL3ZsYy92
-bGNfMi4yLjIuYmIgREVQRU5EUyBvbiBvciBvdGhlcndpc2UgcmVxdWlyZXMgaXQpDQpFUlJPUjog
-ZmZtcGVnIHdhcyBza2lwcGVkOiBiZWNhdXNlIGl0IGhhcyBhIHJlc3RyaWN0ZWQgbGljZW5zZSBu
-b3Qgd2hpdGVsaXN0ZWQgaW4gTElDRU5TRV9GTEFHU19XSElURUxJU1QNCkVSUk9SOiBSZXF1aXJl
-ZCBidWlsZCB0YXJnZXQgJ3ZsYycgaGFzIG5vIGJ1aWxkYWJsZSBwcm92aWRlcnMuDQpNaXNzaW5n
-IG9yIHVuYnVpbGRhYmxlIGRlcGVuZGVuY3kgY2hhaW4gd2FzOiBbJ3ZsYycsICdmZm1wZWcnXQ0K
-DQpJIG5lZWQgdG8gc2V0IGZvbGxvd2luZyBmbGFnIGluIGxvY2FsLmNvbmYsIGluIGJ1aWxkIGRp
-cmVjdG9yeS4NCg0KQmVzdCBSZWdhcmRzDQpBbG9rIFBhd2FyDQpTci4gRW5naW5lZXIgUHJvZHVj
-dCBEZXZlbG9wbWVudA0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBp
-bnRlbC5jb21dDQpTZW50OiBGcmlkYXksIEp1bmUgMTYsIDIwMTcgMzo0OSBQTQ0KVG86IFBhd2Fy
-LCBBbG9rIDxBbG9rLlBhd2FyM0BoYXJtYW4uY29tPg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5v
-cmcNClN1YmplY3Q6IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gWW9jdG8gVkxDIGNvbXBpbGF0aW9u
-DQoNCldpdGhvdXQga25vd2luZyB0aGUgZXJyb3IgbWVzc2FnZSBpdCdzIGhhcmQgdG8gaGVscCwg
-YnV0IHlvdSdyZSBwcm9iYWJseSBoaXR0aW5nIHRoZSBjb21tZXJjaWFsIGxpY2Vuc2UgZmxhZ3Mu
-DQoNCk9uY2UgeW91J3ZlIHJlYWQgdGhlIHJlbGV2YW50IGxpY2Vuc2luZyB0ZXJtcyBhbmQgaGF2
-ZSBhZ3JlZWQgdG8gdGhlbSwgYWRkaW5nIHNvbWV0aGluZyBsaWtlIHRoaXMgdG8geW91ciBsb2Nh
-bC9kaXN0cm8gY29uZmlndXJhdGlvbiB3aWxsIGFsbG93IHRoZSBidWlsZCB0byBjb250aW51ZToN
-Cg0KTElDRU5TRV9GTEFHU19XSElURUxJU1QgKz0gImNvbW1lcmNpYWxfdmxjIg0KDQood2hlcmUg
-Y29tbWVyY2lhbCBpcyB0aGUgbGljZW5zZSBmbGFnIHRoYXQgdGhlIHJlY2lwZSB1c2VkLCBhbmQg
-dmxjIGlzIHRoZSByZWNpcGUgbmFtZSB0aGF0IHNldHMgdGhlIGZsYWcpDQoNClJvc3MNCg0KT24g
-MTYgSnVuZSAyMDE3IGF0IDEwOjQ3LCBQYXdhciwgQWxvayA8QWxvay5QYXdhcjNAaGFybWFuLmNv
-bTxtYWlsdG86QWxvay5QYXdhcjNAaGFybWFuLmNvbT4+IHdyb3RlOg0KSGksDQoNCkkgYW0gdXNp
-bmcgeW9jdG8gMi4xLjIga3JvZ290aCB2ZXJzaW9uLg0KSSB0cmllZCBjb21waWxpbmcgVkxDIGlu
-IGl0LCBidXQgSSBmaWFsZWQuIEl0IGlzIGdpdmluZyBvdGhlciBkZXBlbmRlbmN5IHBhY2thZ2Ug
-bmFtZSB3aGljaCBjb250YWlucyDigJxyZXN0cmljdGVkIGxpY2VuY2XigJ0uDQoNClBsZWFzZSBo
-ZWxwIG1lIG91dCwgaG93IEkgY2FuIGNvbXBpbGUgYW5kIHRlc3QgVkxDIHVzaW5nIHlvY3RvIGZv
-ciBBUk0uDQoNCkJlc3QgUmVnYXJkcw0KQWxvayBQYXdhcg0KU3IuIEVuZ2luZWVyIFByb2R1Y3Qg
-RGV2ZWxvcG1lbnQNCkhhcm1hbiBDb25uZWN0ZWQgU2VydmljZXMNCg0KDQoNCi0tDQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KeW9jdG8gbWFpbGluZyBs
-aXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
-Pg0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPGh0dHBzOi8v
-Y2xpY2t0aW1lLnN5bWFudGVjLmNvbS9hLzEvb3U0cFMxV2lqTDFodnowbW5EQXlLSWcwRVF6QjRD
-ZDhEbmJVZzlFb2xidz0/ZD1GZVR4emFEUlZsWTFseVZnVDE0QzRyNGR2NHMxWE9NYlF6YlhUMTEz
-UmgzSXdKX2pldzZrSXlKV014OE9kS09fcnhmcW9nVG4tNXcwNHN5WnJFVmVTWmtoZjZOS09GaGpE
-ZFBuVDF3T0llYUU1Q2FRUUNKOXdRaVZVZ1h0LThBb2psVTlUSlc2Ykc4VGJ5TzQ3d1oxWXhSNU1r
-QzFLVWpUSGFIY1ZPdEw1UHZ1dUtvZkZPc2tDWnBWWXp6OFV4bGI2U0VLdndSMzQ1MTZyVWxpTFdm
-aVp6ZWFBbjZkdWNwM1FkS2FjVzQ1QkRmRmM0aldyOXZiZkdwNS1rSGJONG53VXdQRnk1U0JqZEY5
-TTRxWTFhVHczLWQ4LVBBb2YwS2I2YkJEMlliUkNJTDFmWDBGemJlNTJCTmNsa0tNdTRfZkFKNW01
-ODMzWlRULXMzNXVsdXBNczR4Y1JIbjJuWWtTNC05VjFabzFxN2ZPVEhpU05NNkFPLTZkdjR5N2dD
-TUVkYllmUkswUWhPTXU1V1B4ZlB3dzRnJTNEJTNEJnU9aHR0cHMlM0ElMkYlMkZsaXN0cy55b2N0
-b3Byb2plY3Qub3JnJTJGbGlzdGluZm8lMkZ5b2N0bz4NCg0K
+On 16 June 2017 at 11:32, Pawar, Alok <Alok.Pawar3@harman.com> wrote:
 
---_000_35df41582d4b4f16a9bddd6a77e186c5HIBDWSMB03adharmancom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> Ffmpeg contains =E2=80=98 LICENSE_FLAGS =3D =E2=80=9CCommercial=E2=80=9D =
+=E2=80=99. Whenever I will hit this
+> type of problem, then I need to update each bb file manually?
+>
+>
+You'll need to agree to the license terms for each recipe that has
+non-trivial licensing.  This won't be many recipes.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiR2lsbCBTYW5zIE1UIjsNCglwYW5vc2Ut
-MToyIDExIDUgMiAyIDEgNCAyIDIgMzt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29O
-b3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdp
-bi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1l
-cyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGlu
-ZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30N
-CnAubXNvbm9ybWFsMCwgbGkubXNvbm9ybWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxl
-LW5hbWU6bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdo
-dDowaW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0K
-CWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7
-fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJ
-Zm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNv
-Q2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToi
-Q2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAx
-MS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlv
-bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8
-L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0
-IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNo
-YXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMi
-IGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGFu
-a3MgZm9yIHRoZSByZXBseSwgJm5ic3A7Rm9sbG93aW5nIGlzIHRoZSBlcnJvciA6PG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5FUlJPUjogTm90aGluZyBQUk9WSURF
-UyAnZmZtcGVnJyAoYnV0IC9ob21lL2hhcm1hbi9EZXNrdG9wL2FtaXRfa3IvaW90LXNvbG8vUGxh
-dGZvcm0vc3JjL2FyY2gvYXJtL2lteDZzbC9ZT0NUTy9zb3VyY2VzL21ldGEtb3BlbmVtYmVkZGVk
-L21ldGEtbXVsdGltZWRpYS9yZWNpcGVzLW11bHRpbWVkaWEvdmxjL3ZsY18yLjIuMi5iYg0KIERF
-UEVORFMgb24gb3Igb3RoZXJ3aXNlIHJlcXVpcmVzIGl0KTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5FUlJP
-UjogZmZtcGVnIHdhcyBza2lwcGVkOiBiZWNhdXNlIGl0IGhhcyBhIHJlc3RyaWN0ZWQgbGljZW5z
-ZSBub3Qgd2hpdGVsaXN0ZWQgaW4gTElDRU5TRV9GTEFHU19XSElURUxJU1Q8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
-NDk3RCI+RVJST1I6IFJlcXVpcmVkIGJ1aWxkIHRhcmdldCAndmxjJyBoYXMgbm8gYnVpbGRhYmxl
-IHByb3ZpZGVycy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+TWlzc2luZyBvciB1bmJ1aWxkYWJsZSBkZXBl
-bmRlbmN5IGNoYWluIHdhczogWyd2bGMnLCAnZmZtcGVnJ108bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86
-cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkkgbmVlZCB0byBzZXQgZm9sbG93aW5nIGZsYWcgaW4gbG9j
-YWwuY29uZiwgaW4gYnVpbGQgZGlyZWN0b3J5LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjguMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0dpbGwgU2FucyBNVCZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOiMxRjQ5N0QiPkJlc3QgUmVnYXJkczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OC4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7R2lsbCBTYW5zIE1UJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
-QWxvayBQYXdhcjxvOnA+PC9vOnA+PC9zcGFuPjwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjguMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0dpbGwgU2Fu
-cyBNVCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlNyLiBFbmdpbmVlciBQcm9kdWN0
-IERldmVsb3BtZW50PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+
-PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZiI+IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGlu
-dGVsLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBGcmlkYXksIEp1bmUgMTYsIDIwMTcgMzo0OSBQ
-TTxicj4NCjxiPlRvOjwvYj4gUGF3YXIsIEFsb2sgJmx0O0Fsb2suUGF3YXIzQGhhcm1hbi5jb20m
-Z3Q7PGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVj
-dDo8L2I+IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gWW9jdG8gVkxDIGNvbXBpbGF0aW9uPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
-L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2l0aG91dCBrbm93aW5nIHRoZSBlcnJv
-ciBtZXNzYWdlIGl0J3MgaGFyZCB0byBoZWxwLCBidXQgeW91J3JlIHByb2JhYmx5IGhpdHRpbmcg
-dGhlIGNvbW1lcmNpYWwgbGljZW5zZSBmbGFncy48bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPk9uY2UgeW91J3ZlIHJlYWQgdGhlIHJlbGV2YW50IGxpY2Vuc2lu
-ZyB0ZXJtcyBhbmQgaGF2ZSBhZ3JlZWQgdG8gdGhlbSwgYWRkaW5nIHNvbWV0aGluZyBsaWtlIHRo
-aXMgdG8geW91ciBsb2NhbC9kaXN0cm8gY29uZmlndXJhdGlvbiB3aWxsIGFsbG93IHRoZSBidWls
-ZCB0byBjb250aW51ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5MSUNFTlNFX0ZMQUdTX1dISVRFTElTVCAmIzQzOz0gJnF1b3Q7Y29tbWVyY2lhbF92bGMm
-cXVvdDsgPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4od2hl
-cmUgY29tbWVyY2lhbCBpcyB0aGUgbGljZW5zZSBmbGFnIHRoYXQgdGhlIHJlY2lwZSB1c2VkLCBh
-bmQgdmxjIGlzIHRoZSByZWNpcGUgbmFtZSB0aGF0IHNldHMgdGhlIGZsYWcpPG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlJvc3M8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMTYgSnVuZSAy
-MDE3IGF0IDEwOjQ3LCBQYXdhciwgQWxvayAmbHQ7PGEgaHJlZj0ibWFpbHRvOkFsb2suUGF3YXIz
-QGhhcm1hbi5jb20iIHRhcmdldD0iX2JsYW5rIj5BbG9rLlBhd2FyM0BoYXJtYW4uY29tPC9hPiZn
-dDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7
-Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0
-O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0KPGRpdj4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdp
-bi1ib3R0b20tYWx0OmF1dG8iPkhpLA0KPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
-OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
-Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5JIGFt
-IHVzaW5nIHlvY3RvIDIuMS4yIGtyb2dvdGggdmVyc2lvbi48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
-LWJvdHRvbS1hbHQ6YXV0byI+SSB0cmllZCBjb21waWxpbmcgVkxDIGluIGl0LCBidXQgSSBmaWFs
-ZWQuIEl0IGlzIGdpdmluZyBvdGhlciBkZXBlbmRlbmN5IHBhY2thZ2UgbmFtZSB3aGljaCBjb250
-YWlucyDigJxyZXN0cmljdGVkIGxpY2VuY2XigJ0uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
-b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
-c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
-Ij5QbGVhc2UgaGVscCBtZSBvdXQsIGhvdyBJIGNhbiBjb21waWxlIGFuZCB0ZXN0IFZMQyB1c2lu
-ZyB5b2N0byBmb3IgQVJNLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
-bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4m
-bmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
-Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZTo4LjBwdDtmb250LWZhbWlseTomcXVvdDtHaWxsIFNhbnMgTVQmcXVvdDssc2Fu
-cy1zZXJpZiI+QmVzdCBSZWdhcmRzPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
-LWFsdDphdXRvIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjguMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0dpbGwgU2FucyBNVCZxdW90OyxzYW5zLXNlcmlmIj5BbG9rIFBhd2FyPC9zcGFuPjwvYj48
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
-cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZTo4LjBwdDtmb250LWZhbWlseTomcXVvdDtHaWxsIFNhbnMgTVQmcXVvdDssc2Fucy1zZXJp
-ZiI+U3IuIEVuZ2luZWVyIFByb2R1Y3QgRGV2ZWxvcG1lbnQ8L3NwYW4+PG86cD48L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
-LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OC4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7R2lsbCBTYW5zIE1UJnF1b3Q7LHNhbnMtc2VyaWYiPkhhcm1hbiBDb25u
-ZWN0ZWQgU2VydmljZXM8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7R2lsbCBT
-YW5zIE1UJnF1b3Q7LHNhbnMtc2VyaWYiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFy
-Z2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48YnI+
-DQotLTxicj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-PGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KPGEgaHJlZj0iaHR0
-cHM6Ly9jbGlja3RpbWUuc3ltYW50ZWMuY29tL2EvMS9vdTRwUzFXaWpMMWh2ejBtbkRBeUtJZzBF
-UXpCNENkOERuYlVnOUVvbGJ3PT9kPUZlVHh6YURSVmxZMWx5VmdUMTRDNHI0ZHY0czFYT01iUXpi
-WFQxMTNSaDNJd0pfamV3NmtJeUpXTXg4T2RLT19yeGZxb2dUbi01dzA0c3lackVWZVNaa2hmNk5L
-T0ZoakRkUG5UMXdPSWVhRTVDYVFRQ0o5d1FpVlVnWHQtOEFvamxVOVRKVzZiRzhUYnlPNDd3WjFZ
-eFI1TWtDMUtValRIYUhjVk90TDVQdnV1S29mRk9za0NacFZZeno4VXhsYjZTRUt2d1IzNDUxNnJV
-bGlMV2ZpWnplYUFuNmR1Y3AzUWRLYWNXNDVCRGZGYzRqV3I5dmJmR3A1LWtIYk40bndVd1BGeTVT
-QmpkRjlNNHFZMWFUdzMtZDgtUEFvZjBLYjZiQkQyWWJSQ0lMMWZYMEZ6YmU1MkJOY2xrS011NF9m
-QUo1bTU4MzNaVFQtczM1dWx1cE1zNHhjUkhuMm5Za1M0LTlWMVpvMXE3Zk9USGlTTk02QU8tNmR2
-NHk3Z0NNRWRiWWZSSzBRaE9NdTVXUHhmUHd3NGclM0QlM0QmYW1wO3U9aHR0cHMlM0ElMkYlMkZs
-aXN0cy55b2N0b3Byb2plY3Qub3JnJTJGbGlzdGluZm8lMkZ5b2N0byIgdGFyZ2V0PSJfYmxhbmsi
-Pmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bzwvYT48bzpwPjwv
-bzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+You could just set the whitelist to "commercial" without any recipe
+specifiers, but if you're intending on releasing product at some point this
+would be a foolish thing to do.
 
---_000_35df41582d4b4f16a9bddd6a77e186c5HIBDWSMB03adharmancom_--
+Ross
+
+--94eb2c06686aedc5ad0552115c57
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 16 June 2017 at 11:32, Pawar, Alok <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:Alok.Pawar3@harman.com" target=3D"_blank">Alok.Pawar3@harman.com</a>&gt;=
+</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal"><sp=
+an style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;col=
+or:#1f497d">Ffmpeg contains =E2=80=98 LICENSE_FLAGS =3D =E2=80=9CCommercial=
+=E2=80=9D =E2=80=99. Whenever I will hit this type of problem, then I need =
+to update each bb file manually?<u></u><u></u></span></p><span class=3D"">
+<p class=3D"MsoNormal"></p></span></blockquote></div><br>You&#39;ll need to=
+ agree to the license terms for each recipe that has non-trivial licensing.=
+=C2=A0 This won&#39;t be many recipes.</div><div class=3D"gmail_extra"><br>=
+</div><div class=3D"gmail_extra">You could just set the whitelist to &quot;=
+commercial&quot; without any recipe specifiers, but if you&#39;re intending=
+ on releasing product at some point this would be a foolish thing to do.</d=
+iv><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</di=
+v></div>
+
+--94eb2c06686aedc5ad0552115c57--
