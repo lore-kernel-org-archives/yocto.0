@@ -1,60 +1,33 @@
-Return-Path: <msm-oss@mcclintock.net>
+Return-Path: <drew.moseley@mender.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C69F3E00B18; Fri, 16 Jun 2017 12:12:22 -0700 (PDT)
+	id 476C2E00A9C; Fri, 16 Jun 2017 14:17:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [107.14.166.231 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.193 listed in list.dnswl.org]
-Received: from mail-ot0-f193.google.com (mail-ot0-f193.google.com
-	[74.125.82.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 314C9E009A0
-	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 12:12:19 -0700 (PDT)
-Received: by mail-ot0-f193.google.com with SMTP id r67so5411386ota.3
-	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 12:12:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mcclintock.net; s=google;
-	h=from:to:cc:subject:date:message-id;
-	bh=/zVTLd+4/muPTNgN7Afpi8Y26yE2iSPGF5Vy+XQXfzQ=;
-	b=eByONyTpthbs2DQUftwHDY+cpKfylc+F7xzdYhI0ojlsBYRGRAtwHQCKPqUdGWz52J
-	9TXyAZ1jXL4VGD4f7OF/ccVDqnsNqjdSfhV4o9Frb9AMZPLkl7Wh8kdU16rlm9U7I+z4
-	MFw3235IuS97cu6yQ2Aht5gVFGmX7heQ/Xvg8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=/zVTLd+4/muPTNgN7Afpi8Y26yE2iSPGF5Vy+XQXfzQ=;
-	b=EacbLoaWtCQyLPUSv61K1YyxQANSfymYtaZ/m0OqFrhe9sTacAxbKui3Ec3FQEFp3Z
-	mqeGXtXp2BCbsL9J6JwZTK93qcFlfCb+ALtHpJmU9Bl2DIHRzSMx/+a9nZ9pqMUPDHut
-	lZmQT8kRNRO5DrrNaYvpaWuxf3zfEquj4O63eYSP4xYsi5cX96t5OzQ0cYXMOvk+9STH
-	g5xr/EKmqnDnRb0SeQA2AGprn32BSiA6vKrICUQvtglqGQ9Hj2zqeHGcky85iI5qBjmn
-	3sGrHtQ6q9k0oyOu0gQhm7ZjAftPBr87Y3ogdtICTiNnGGVJwUcLWqaoLLaG5Mp7CaLF
-	qEjw==
-X-Gm-Message-State: AKS2vOwgUZWcojJ5msLc7qyD3A5dRo5+Zwymm2IWa9izogYFvEh0hv9M
-	jZyjqDdDCMcoxrpJhJ4=
-X-Received: by 10.157.20.42 with SMTP id h39mr7311796oth.35.1497640338479;
-	Fri, 16 Jun 2017 12:12:18 -0700 (PDT)
-Received: from pandora.lan (cpe-72-182-106-201.austin.res.rr.com.
-	[72.182.106.201]) by smtp.gmail.com with ESMTPSA id
-	x190sm1422116oix.8.2017.06.16.12.12.17
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 16 Jun 2017 12:12:17 -0700 (PDT)
-From: Matthew McClintock <msm-oss@mcclintock.net>
+Received: from cdptpa-oedge-vip.email.rr.com
+	(cdptpa-outbound-snat.email.rr.com [107.14.166.231])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2211E009A0
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 14:17:50 -0700 (PDT)
+Received: from [65.35.172.144] ([65.35.172.144:41307]
+	helo=tobago.home.moseleynet.net)
+	by cdptpa-omsmta01 (envelope-from <drew.moseley@mender.io>)
+	(ecelerity 3.6.9.48312 r(Core:3.6.9.0)) with ESMTP
+	id AA/33-10880-DFA44495; Fri, 16 Jun 2017 21:17:49 +0000
+From: drew.moseley@mender.io
 To: yocto@yoctoproject.org
-Date: Fri, 16 Jun 2017 14:12:13 -0500
-Message-Id: <20170616191213.26849-1-msm-oss@mcclintock.net>
-X-Mailer: git-send-email 2.13.1
-Subject: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: deploy vfat partition
+Date: Fri, 16 Jun 2017 17:15:25 -0400
+Message-Id: <cover.1497646644.git.drew.moseley@mender.io>
+X-Mailer: git-send-email 2.7.4
+X-RR-Connecting-IP: 107.14.168.6:25
+Cc: Drew Moseley <drew.moseley@mender.io>
+Subject: [meta-chip][RFC PATCH 0/3] Initial attempt at flashing instructions.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,70 +39,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jun 2017 19:12:22 -0000
+X-List-Received-Date: Fri, 16 Jun 2017 21:17:54 -0000
 
-This is useful to update the bootloader/vfat partition from u-boot when
-you don't want to update everything:
+From: Drew Moseley <drew.moseley@mender.io>
 
-U-Boot> tftpboot 0x1000000 tmp/0VXje
-Waiting for Ethernet connection... done.
-Using sms0 device
-TFTP from server 192.168.0.1; our IP address is 192.168.0.26
-Filename 'image.vfat'.
-Load address: 0x1000000
-Loading: ##################################################  40 MiB
-	 2.1 MiB/s
-done
-Bytes transferred = 41943040 (2800000 hex)
-U-Boot> mmc part
+This set of patches adds the native tools and target components needed to
+reflash the CHIP boards.  Additionally a shell script is added to the deploy
+directory showing how to kick off a flash update. It's not ideal as I've
+hardcoded a max size for the UBI image into the script and didn't see much
+of an alternative. It does function though.
 
-Partition Map for MMC device 0  --   Partition Type: DOS
+Drew
 
-Part	Start Sector	Num Sectors	UUID		Type
-  1	8192      	81920     	a63a4fbc-01	0c Boot
-  2	90112     	163840    	a63a4fbc-02	83
-U-Boot> mmc erase 0x2000 0x14000
+The following changes since commit 0079e6ac10fc371d6f527270c23b887561f717aa:
 
-MMC erase: dev # 0, block # 8192, count 81920 ... 81920 blocks erased:
-OK
-U-Boot> mmc write 0x1000000 0x2000 0x14000
+  chip: Append to MACHINE_EXTRA_RRECOMMENDS rather than overwriting (2017-06-15 13:37:19 +0100)
 
-MMC write: dev # 0, block # 8192, count 81920 ... 81920 blocks written:
-OK
-U-Boot>
+are available in the git repository at:
 
-Signed-off-by: Matthew McClintock <msm-oss@mcclintock.net>
----
- classes/sdcard_image-rpi.bbclass | 8 ++++++++
- 1 file changed, 8 insertions(+)
+  git@github.com:drewmoseley/meta-chip.git flashing-instructions
 
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index af3e807..27a0dfc 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -72,6 +72,10 @@ SDIMG = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.rpi-sdimg"
- # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
- FATPAYLOAD ?= ""
- 
-+# SD card vfat partition image name
-+SDIMG_VFAT = "${IMGDEPLOYDIR}/${IMAGE_NAME}.vfat"
-+SDIMG_LINK_VFAT = "${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.vfat"
-+
- IMAGE_CMD_rpi-sdimg () {
- 
- 	# Align partitions
-@@ -145,6 +149,10 @@ IMAGE_CMD_rpi-sdimg () {
- 	echo "${IMAGE_NAME}" > ${WORKDIR}/image-version-info
- 	mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}/image-version-info ::
- 
-+        # Deploy vfat partition
-+        cp ${WORKDIR}/boot.img ${SDIMG_VFAT}
-+        ln -sf ${SDIMG_VFAT} ${SDIMG_LINK_VFAT}
-+
- 	# Burn Partitions
- 	dd if=${WORKDIR}/boot.img of=${SDIMG} conv=notrunc seek=1 bs=$(expr ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
- 	# If SDIMG_ROOTFS_TYPE is a .xz file use xzcat
+for you to fetch changes up to 195a92fc1faa49495d1a2b6cda0134f07ce72189:
+
+  chip: Add chip-u-boot-scr recipe and flash script (2017-06-15 11:27:06 -0400)
+
+----------------------------------------------------------------
+Drew Moseley (3):
+      u-boot-chip: Deploy the sunxi-spl-with-ecc.bin file.
+      chip: Build sunxi-tools-native.
+      chip: Add chip-u-boot-scr recipe and flash script
+
+ README                                          | 26 ++++++++-
+ conf/layer.conf                                 |  3 ++
+ conf/machine/chip.conf                          |  3 +-
+ recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb  | 70 +++++++++++++++++++++++++
+ recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++++
+ recipes-bsp/chip-u-boot-scr/files/boot.cmd.in   | 43 +++++++++++++++
+ recipes-bsp/u-boot/u-boot-chip_git.bb           |  7 +++
+ 7 files changed, 182 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
+ create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
+ create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
+
+Drew Moseley (3):
+  u-boot-chip: Deploy the sunxi-spl-with-ecc.bin file.
+  chip: Build sunxi-tools-native.
+  chip: Add chip-u-boot-scr recipe and flash script
+
+ README                                          | 26 ++++++++-
+ conf/layer.conf                                 |  3 ++
+ conf/machine/chip.conf                          |  3 +-
+ recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb  | 70 +++++++++++++++++++++++++
+ recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++++
+ recipes-bsp/chip-u-boot-scr/files/boot.cmd.in   | 43 +++++++++++++++
+ recipes-bsp/u-boot/u-boot-chip_git.bb           |  7 +++
+ 7 files changed, 182 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
+ create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
+ create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
+
 -- 
-2.13.1
+2.7.4
 
 
