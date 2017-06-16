@@ -1,72 +1,61 @@
-Return-Path: <Alok.Pawar3@harman.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58B1AE00B18; Fri, 16 Jun 2017 02:53:49 -0700 (PDT)
+	id 4C92DE00B58; Fri, 16 Jun 2017 03:19:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [216.82.243.207 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.216.170 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0383]
-X-Greylist: delayed 378 seconds by postgrey-1.32 at yocto-www;
-	Fri, 16 Jun 2017 02:53:45 PDT
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.207])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17483E009A5
-	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 02:53:45 -0700 (PDT)
-Received: from [216.82.242.34] by server-15.bemta-8.messagelabs.com id
-	44/B7-14717-E29A3495; Fri, 16 Jun 2017 09:47:26 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprCKsWRWlGSWpSXmKPExsVySpdNU1dvpXO
-	kwfTV3BaTXq5hc2D0aD/RxxbAGMWamZeUX5HAmrHrfUrBH5mKm//tGhg3SHUxcnIICWxllJi6
-	Kb6LkQvI3sIosXvLSlYIZy+jxOrzy5lBqtgEdCQef7jDCmKLCJhKvDj2ha2LkYNDWEBOYs48d
-	oiwssSpzQdYIGw9iSfnz7OB2CwCqhK9bTPBxvAKuEsc6foAZjMKiEl8P7WGCcRmFhCXuPVkPp
-	gtISAgsWTPeWYIW1Ti5eN/rBC2gcTWpftYIGwFiZXdDWwQtrXE/nlLWSHm5Eh0n+pkhNglKHF
-	y5hMWiCeVJfY8amCcwCgyC8m6WUhaZiFpgYjrSCzY/YkNwtaWWLbwNTOMfebAYyZk8QWM7KsY
-	NYpTi8pSi3QNjfSSijLTM0pyEzNzdA0NLPRyU4uLE9NTcxKTivWS83M3MQJjiwEIdjBOmOV8i
-	FGSg0lJlJdfzilSiC8pP6UyI7E4I76oNCe1+BCjDAeHkgRv7XLnSCHBotT01Iq0zBxglMOkJT
-	h4lER4Py0GSvMWFyTmFmemQ6ROMSpKifOeAekTAElklObBtcESyyVGWSlhXkagQ4R4ClKLcjN
-	LUOVfMYpzMCoJ89qCTOHJzCuBm/4KaDET0OKgCw4gi0sSEVJSDYw50u8MpO9UPsldY9Pn0ii7
-	62eR0I06ta3qP58L/N8awSO/8tP/VSfDC77OUuiz+Nj/piySw/icSfi9QpH3IZcMtmsU2j+Rd
-	uTR4dyZ81ktnMWpufHSRZeotZlXP7Fc1GWL/L3+h/LpC91p/7u39962rjwpabomqzB/uSd3X8
-	kMc9+ZD58XtiqxFGckGmoxFxUnAgCsTp4tJwMAAA==
-X-Env-Sender: Alok.Pawar3@harman.com
-X-Msg-Ref: server-10.tower-73.messagelabs.com!1497606443!89652970!2
-X-Originating-IP: [202.45.6.41]
-X-StarScan-Received: 
-X-StarScan-Version: 9.4.19; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 103358 invoked from network); 16 Jun 2017 09:47:25 -0000
-Received: from unknown (HELO HIBDWSMB09.ad.harman.com) (202.45.6.41)
-	by server-10.tower-73.messagelabs.com with DHE-RSA-AES256-GCM-SHA384
-	encrypted SMTP; 16 Jun 2017 09:47:25 -0000
-Received: from HIBDWSMB03.ad.harman.com (10.99.236.93) by
-	HIBDWSMB09.ad.harman.com (10.99.236.103) with Microsoft SMTP Server
-	(TLS) id 15.0.1263.5; Fri, 16 Jun 2017 15:17:23 +0530
-Received: from HIBDWSMB03.ad.harman.com (10.99.236.93) by
-	HIBDWSMB03.ad.harman.com (10.99.236.93) with Microsoft SMTP Server
-	(TLS) id 15.0.1263.5; Fri, 16 Jun 2017 15:17:23 +0530
-Received: from HIBDWSMB03.ad.harman.com ([fe80::c93:57c:9471:3348]) by
-	HIBDWSMB03.ad.harman.com ([fe80::c93:57c:9471:3348%13]) with mapi id
-	15.00.1263.000; Fri, 16 Jun 2017 15:17:23 +0530
-From: "Pawar, Alok" <Alok.Pawar3@harman.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto VLC compilation
-Thread-Index: AdLmhPUG2KFFomz/RkiRsUYFxe2uQw==
-Date: Fri, 16 Jun 2017 09:47:22 +0000
-Message-ID: <b052b8f70c6d46c8b9c8aa54abab4c17@HIBDWSMB03.ad.harman.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.99.236.43]
-x-exclaimer-md-config: 4a26c407-9f7b-4db1-94e4-bcbc87a799a8
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f170.google.com (mail-qt0-f170.google.com
+	[209.85.216.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47975E009A5
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 03:19:10 -0700 (PDT)
+Received: by mail-qt0-f170.google.com with SMTP id u19so56739900qta.3
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 03:19:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=sLZzgohU4dGYLgiOTDwGOIy/Me7kwmhsX1ip6ahyves=;
+	b=0PT29XnsM4/pphIGTIOhjtFYzj0oNDlkDZ3p8eu2GmBu26YXnhic/Qz3nRSaXwLpKg
+	geJPnFb0rwv65BuLcbjgKRVKA86Nxz6MvjJYrY4XUrbwyoPbFTcFHJ3Ae/TIJS2FEvWy
+	o9VFDfs5a53DntIigNAw0YxDCojSVzjFwZ7he7Ul4xKq90ZzQBZTXoC7lwKLZOezmA4i
+	jtkQvx31uemLN2VpSccd7JLQlqRe1Vj8jD0TfI6hVIMmZDc1U/TBVgtkmZ75kfKjZRGS
+	RT2bOV+ep9z6HfR3pSWx5rLfwpfVwT0MYlJbfqoroYyui5R3VyfVPCkPlMqoMoaJLdOI
+	IkKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=sLZzgohU4dGYLgiOTDwGOIy/Me7kwmhsX1ip6ahyves=;
+	b=k7vIMBbh+Jj7QQQbG91bQTdPXL81WkJ+xeNJGYhpRc45Hv+XlhWvsFVBYhH8OFqM40
+	CCARP+H66AXyqA33nHWW0S6eM/43jYguD5KBSr5ZUHAyKnxK+UpukD5lWYgE7N/6kcMm
+	x+udHndAREvF91t6gtoYO9MhY9onlVg/ovKzjEmIWB1QKlJnUxVtrA1zvw8sqtfL1WNc
+	2eqNpJzoJFoo657vhkT6+bOp4JzqP9z9BWkZc4UNeslta9YFw6+CVrz0/yHnc+LGMahW
+	Sg2oGHxkG1mad7vkBXZ0uV9iWrG9guWqzryOnLXrxGEitiisY1lqnN7FLkqt3gjJ+Am7
+	EEmQ==
+X-Gm-Message-State: AKS2vOwdX0+PGyKks7UXQvYqO/TFxvQj6ifluE4UCIv6/GB/jn34f69+
+	52xE9JOI5zyrKcmqsNeKgvjUmANIgc9X
+X-Received: by 10.55.102.214 with SMTP id a205mr11511285qkc.154.1497608350261; 
+	Fri, 16 Jun 2017 03:19:10 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Yocto VLC compilation
+Received: by 10.140.35.103 with HTTP; Fri, 16 Jun 2017 03:18:49 -0700 (PDT)
+In-Reply-To: <b052b8f70c6d46c8b9c8aa54abab4c17@HIBDWSMB03.ad.harman.com>
+References: <b052b8f70c6d46c8b9c8aa54abab4c17@HIBDWSMB03.ad.harman.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 16 Jun 2017 11:18:49 +0100
+Message-ID: <CAJTo0LYAK3yiAgfWOF3q9y2rNeBs1EXaf3sRZ0bCoXqj50zSuw@mail.gmail.com>
+To: "Pawar, Alok" <Alok.Pawar3@harman.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto VLC compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,113 +67,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jun 2017 09:53:49 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_b052b8f70c6d46c8b9c8aa54abab4c17HIBDWSMB03adharmancom_"
+X-List-Received-Date: Fri, 16 Jun 2017 10:19:12 -0000
+Content-Type: multipart/alternative; boundary="94eb2c0580a8bafa200552111d31"
 
---_000_b052b8f70c6d46c8b9c8aa54abab4c17HIBDWSMB03adharmancom_
-Content-Type: text/plain; charset="us-ascii"
+--94eb2c0580a8bafa200552111d31
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Without knowing the error message it's hard to help, but you're probably
+hitting the commercial license flags.
 
-I am using yocto 2.1.2 krogoth version.
-I tried compiling VLC in it, but I fialed. It is giving other dependency pa=
-ckage name which contains "restricted licence".
+Once you've read the relevant licensing terms and have agreed to them,
+adding something like this to your local/distro configuration will allow
+the build to continue:
 
-Please help me out, how I can compile and test VLC using yocto for ARM.
+LICENSE_FLAGS_WHITELIST +=3D "commercial_vlc"
 
-Best Regards
-Alok Pawar
-Sr. Engineer Product Development
-Harman Connected Services
+(where commercial is the license flag that the recipe used, and vlc is the
+recipe name that sets the flag)
 
+Ross
 
+On 16 June 2017 at 10:47, Pawar, Alok <Alok.Pawar3@harman.com> wrote:
 
---_000_b052b8f70c6d46c8b9c8aa54abab4c17HIBDWSMB03adharmancom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hi,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Gill Sans MT";
-	panose-1:2 11 5 2 2 1 4 2 2 3;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi, <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am using yocto 2.1.2 krogoth version.<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">I tried compiling VLC in it, but I fialed. It is giv=
-ing other dependency package name which contains &#8220;restricted licence&=
-#8221;.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Please help me out, how I can compile and test VLC u=
-sing yocto for ARM.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:&quot;Gil=
-l Sans MT&quot;,sans-serif">Best Regards<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Gill Sans MT&quot;,sans-serif">Alok Pawar<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:&quot;Gil=
-l Sans MT&quot;,sans-serif">Sr. Engineer Product Development<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:&quot;Gil=
-l Sans MT&quot;,sans-serif">Harman Connected Services<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:&quot;Gil=
-l Sans MT&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+>
+>
+> I am using yocto 2.1.2 krogoth version.
+>
+> I tried compiling VLC in it, but I fialed. It is giving other dependency
+> package name which contains =E2=80=9Crestricted licence=E2=80=9D.
+>
+>
+>
+> Please help me out, how I can compile and test VLC using yocto for ARM.
+>
+>
+>
+> Best Regards
+>
+> *Alok Pawar*
+>
+> Sr. Engineer Product Development
+>
+> Harman Connected Services
+>
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
---_000_b052b8f70c6d46c8b9c8aa54abab4c17HIBDWSMB03adharmancom_--
+--94eb2c0580a8bafa200552111d31
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Without knowing the error message it&#39;s hard to help, b=
+ut you&#39;re probably hitting the commercial license flags.<div><br></div>=
+<div>Once you&#39;ve read the relevant licensing terms and have agreed to t=
+hem, adding something like this to your local/distro configuration will all=
+ow the build to continue:</div><div><br></div>LICENSE_FLAGS_WHITELIST +=3D =
+&quot;commercial_vlc&quot; <div><br></div><div>(where commercial is the lic=
+ense flag that the recipe used, and vlc is the recipe name that sets the fl=
+ag)</div><div><br></div><div>Ross</div></div><div class=3D"gmail_extra"><br=
+><div class=3D"gmail_quote">On 16 June 2017 at 10:47, Pawar, Alok <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:Alok.Pawar3@harman.com" target=3D"_blank">Al=
+ok.Pawar3@harman.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"m_5184538743172974506WordSection1">
+<p class=3D"MsoNormal">Hi, <u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I am using yocto 2.1.2 krogoth version.<u></u><u></u=
+></p>
+<p class=3D"MsoNormal">I tried compiling VLC in it, but I fialed. It is giv=
+ing other dependency package name which contains =E2=80=9Crestricted licenc=
+e=E2=80=9D.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Please help me out, how I can compile and test VLC u=
+sing yocto for ARM.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:&quot;Gil=
+l Sans MT&quot;,sans-serif">Best Regards<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Gill Sans MT&quot;,sans-serif">Alok Pawar<u></u><u></u></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:&quot;Gil=
+l Sans MT&quot;,sans-serif">Sr. Engineer Product Development<u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:&quot;Gil=
+l Sans MT&quot;,sans-serif">Harman Connected Services<u></u><u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.0pt;font-family:&quot;Gil=
+l Sans MT&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
+
+--94eb2c0580a8bafa200552111d31--
