@@ -1,35 +1,63 @@
-Return-Path: <drew.moseley@mender.io>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B109E00B9E; Fri, 16 Jun 2017 14:17:58 -0700 (PDT)
+	id 29913E00B18; Fri, 16 Jun 2017 18:05:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,LOTS_OF_MONEY,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [107.14.166.228 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 LOTS_OF_MONEY Huge... sums of money
-Received: from cdptpa-oedge-vip.email.rr.com
-	(cdptpa-outbound-snat.email.rr.com [107.14.166.228])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C41DAE00A9C
-	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 14:17:56 -0700 (PDT)
-Received: from [65.35.172.144] ([65.35.172.144:35629]
-	helo=tobago.home.moseleynet.net)
-	by cdptpa-omsmta03 (envelope-from <drew.moseley@mender.io>)
-	(ecelerity 3.6.9.48312 r(Core:3.6.9.0)) with ESMTP
-	id B0/E8-00833-30B44495; Fri, 16 Jun 2017 21:17:55 +0000
-From: drew.moseley@mender.io
-To: yocto@yoctoproject.org
-Date: Fri, 16 Jun 2017 17:15:40 -0400
-Message-Id: <195a92fc1faa49495d1a2b6cda0134f07ce72189.1497646644.git.drew.moseley@mender.io>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1497646644.git.drew.moseley@mender.io>
-References: <cover.1497646644.git.drew.moseley@mender.io>
-X-RR-Connecting-IP: 107.14.168.88:25
-Subject: [meta-chip][RFC PATCH 3/3] chip: Add chip-u-boot-scr recipe and flash script
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48870E00A16
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 18:05:38 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id d64so7580889wmf.2
+	for <yocto@yoctoproject.org>; Fri, 16 Jun 2017 18:05:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=2Coof55WMWt7PMv/2XGZmNPYGX3pMR/950rly+kSbfY=;
+	b=USuuU7srFY/kD3VYm2IT4CM1/E0lYdVF5serTkUszLfmKw7So9yLQgYTnOSRroawrp
+	zXLj0zj9o4YxuGiUxPs6vBujM/wDBE9Ouzd4QF8Tuc8a/dDz4p0RwKKTystEVCF4rZzr
+	+GPMznreC6kdyjfVcWVpHOGPEwBPXYMgqxmNFHVKVlpzZpU/TlGmEcNuXJVnLRcoAc6K
+	q7ILJhj4QnltxtMul82ZMjisGV1bglaZcS06f4N6nh+pQLmZnTLwWDHRdmkR2v/KM6ub
+	FscKSGqB01FxJitiXldONhdVlM7RimULSLoVrbrf56KMeMDg94Qn1D5vQRruQ23G3WjF
+	4Ulw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=2Coof55WMWt7PMv/2XGZmNPYGX3pMR/950rly+kSbfY=;
+	b=SdhF3Phy6X8dt7EimJUBU7vZMtqTelrwWlFuOU0nk1YeDJJH8dNcQ+jukaV2eLOXPf
+	moq99PSz4Pe9wXKz/I4g5F6hWDKRMAhR5t5blqQP0jzEGG/FmkzIyusek5JavuoI5jiB
+	GS0yMfM4tQtTQbJ5KwtnvhrEbN0P6NUkJvIApyJQ4Hi7Wu0NSNZDErlMme4dUFmnTQ0r
+	LYon0iFdzT35/wgFWJszU1jQcDH66Wh/D2F4IBNh7Ee083uwDW3Auok6MFF/d3B8GwQg
+	GUrL0UrrmMQ1S24rDf1QpczBNbXdx4+CnHd+GDztk9YZsXYuefUQGOLvW154A4ga4+Jr
+	0WFg==
+X-Gm-Message-State: AKS2vOz8edHn1lx+W14JDau3wvKjkoJeTxgt/SKrXrohpG7kN3ElBGaO
+	87f/NgOM4tr+zUI/TMTu1A1NCbopaA==
+X-Received: by 10.80.171.197 with SMTP id u63mr8777065edc.127.1497661537556;
+	Fri, 16 Jun 2017 18:05:37 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.80.153.222 with HTTP; Fri, 16 Jun 2017 18:05:07 -0700 (PDT)
+In-Reply-To: <20170616191213.26849-1-msm-oss@mcclintock.net>
+References: <20170616191213.26849-1-msm-oss@mcclintock.net>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 16 Jun 2017 18:05:07 -0700
+Message-ID: <CAMKF1spDNLxLAKFa8Cet8v=N_ejPFhQCHOVbmS93b30Sxg585Q@mail.gmail.com>
+To: Matthew McClintock <msm-oss@mcclintock.net>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: deploy vfat partition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,237 +69,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jun 2017 21:17:58 -0000
+X-List-Received-Date: Sat, 17 Jun 2017 01:05:43 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-From: Drew Moseley <drew.moseley@mender.io>
+On Fri, Jun 16, 2017 at 12:12 PM, Matthew McClintock
+<msm-oss@mcclintock.net> wrote:
+> This is useful to update the bootloader/vfat partition from u-boot when
+> you don't want to update everything:
+>
+> U-Boot> tftpboot 0x1000000 tmp/0VXje
+> Waiting for Ethernet connection... done.
+> Using sms0 device
+> TFTP from server 192.168.0.1; our IP address is 192.168.0.26
+> Filename 'image.vfat'.
+> Load address: 0x1000000
+> Loading: ##################################################  40 MiB
+>          2.1 MiB/s
+> done
+> Bytes transferred = 41943040 (2800000 hex)
+> U-Boot> mmc part
+>
+> Partition Map for MMC device 0  --   Partition Type: DOS
+>
+> Part    Start Sector    Num Sectors     UUID            Type
+>   1     8192            81920           a63a4fbc-01     0c Boot
+>   2     90112           163840          a63a4fbc-02     83
+> U-Boot> mmc erase 0x2000 0x14000
+>
+> MMC erase: dev # 0, block # 8192, count 81920 ... 81920 blocks erased:
+> OK
+> U-Boot> mmc write 0x1000000 0x2000 0x14000
+>
+> MMC write: dev # 0, block # 8192, count 81920 ... 81920 blocks written:
+> OK
+> U-Boot>
+>
+> Signed-off-by: Matthew McClintock <msm-oss@mcclintock.net>
+> ---
+>  classes/sdcard_image-rpi.bbclass | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+> index af3e807..27a0dfc 100644
+> --- a/classes/sdcard_image-rpi.bbclass
+> +++ b/classes/sdcard_image-rpi.bbclass
+> @@ -72,6 +72,10 @@ SDIMG = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.rpi-sdimg"
+>  # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
+>  FATPAYLOAD ?= ""
+>
+> +# SD card vfat partition image name
+> +SDIMG_VFAT = "${IMGDEPLOYDIR}/${IMAGE_NAME}.vfat"
+> +SDIMG_LINK_VFAT = "${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.vfat"
+> +
+>  IMAGE_CMD_rpi-sdimg () {
+>
+>         # Align partitions
+> @@ -145,6 +149,10 @@ IMAGE_CMD_rpi-sdimg () {
+>         echo "${IMAGE_NAME}" > ${WORKDIR}/image-version-info
+>         mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}/image-version-info ::
+>
+> +        # Deploy vfat partition
+> +        cp ${WORKDIR}/boot.img ${SDIMG_VFAT}
+> +        ln -sf ${SDIMG_VFAT} ${SDIMG_LINK_VFAT}
+> +
 
-Add a U-Boot script to handle flashing the SPL, U-Boot
-and UBI root filesystem images into the onboard flash.
-Also generate a script showing how to execute the flash
-steps.
+it is of use if I am not using u-boot ? is there any penalty ?
 
-Signed-off-by: Drew Moseley <drew.moseley@mender.io>
----
- README                                          | 26 ++++++++-
- recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb  | 70 +++++++++++++++++++++++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.in   | 43 +++++++++++++++
- recipes-bsp/u-boot/u-boot-chip_git.bb           |  1 +
- 5 files changed, 171 insertions(+), 1 deletion(-)
- create mode 100644 recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-
-diff --git a/README b/README
-index cccf59e..cf52e05 100644
---- a/README
-+++ b/README
-@@ -59,4 +59,28 @@ To build a machine supported by this BSP layer follow the next steps:
- II. Flashing a C.H.I.P. board
- ========================================
- 
--<TODO>
-+As part of the build including this BSP layer, a U-Boot script and a shell script
-+are created to assist in flashing your images to the CHIP board.  Note that this
-+script assumes a maximum size for your UBI image of 0x0A000000 bytes.  If your UBI
-+image exceeds that, then you will need to adapt this to your environment.
-+
-+To successfully run this script you will first need to set your board into FEL mode.
-+chip. https://docs.getchip.com/chip.html#flash-chip-with-an-os
-+Insert a wire into the U14 header between pin 7 (FEL) and GND.  Then connect the
-+board with a USB cable to your build system.
-+
-+You need to specify the base filename of your UBI image using the UBI_IMAGE shell
-+variable before invoking the generated script as follows:
-+
-+$ UBI_IMAGE=core-image-full-cmdline-chip.ubi ./tmp/deploy/images/chip/flash_CHIP_board.sh
-+
-+This script will take some time to execute.  If you have a serial console connected to
-+your board, you will see the progress and a message on the console will indicate when
-+the flashing is completed. Additionally, once the image is properly flashed, the status
-+LED on the CHIP board will flash 30 times per second indicating that it is safe to power
-+down your board and disable FEL mode.
-+
-+WARNING: This will erase the entire contents of your CHIP board.
-+
-+NOTE: This setup is still compatible with the CHIP flashing utility available
-+at http://flash.getchip.com if you choose to reinstall the stock images.
-diff --git a/recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb b/recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
-new file mode 100644
-index 0000000..726fca3
---- /dev/null
-+++ b/recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
-@@ -0,0 +1,70 @@
-+SUMMARY = "U-boot boot scripts for CHIP boards"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+COMPATIBLE_MACHINE = "chip"
-+
-+inherit deploy
-+
-+DEPENDS = "u-boot-mkimage-native"
-+
-+SRC_URI = "file://boot.cmd.in"
-+
-+NAND_FLASH_START_ADDR = "0x00000000"
-+SPL_MEMIMG_ADDR = "0x44000000"
-+UBOOT_MEMIMG_ADDR = "0x4a000000"
-+SPL_FLASH_UPPER_ADDR = "0x400000"
-+LED_I2C_CHIP = "0x34"
-+LED_I2C_ADDR = "0x93"
-+UBOOT_FLASH_ADDR = "0x800000"
-+UBI_MEMIMG_ADDR = "0x4b000000"
-+UBI_FLASH_ADDR = "0x1000000"
-+PAGE_SIZE = "16384"
-+OOB_SIZE = "1664"
-+SCRIPTADDR = "0x43100000"
-+
-+do_compile[depends] += "u-boot-chip:do_deploy"
-+do_compile() {
-+    PADDED_SPL_SIZE_BLOCKS=$(stat --dereference --printf="%s" "${DEPLOY_DIR_IMAGE}/${SPL_ECC_BINARY}")
-+    PADDED_SPL_SIZE_BLOCKS=$(expr $PADDED_SPL_SIZE_BLOCKS / \( ${PAGE_SIZE} + ${OOB_SIZE} \))
-+    PADDED_SPL_SIZE_BLOCKS=$(echo $PADDED_SPL_SIZE_BLOCKS | xargs printf "0x%08x")
-+    PADDED_UBOOT_SIZE=$(stat --dereference  --printf="%s" "${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY}" | xargs printf "0x%08x")
-+    UBI_SIZE="0x0A000000"
-+
-+    sed -e "s,@NAND_FLASH_START_ADDR@,${NAND_FLASH_START_ADDR},g" \
-+        -e "s,@SPL_MEMIMG_ADDR@,${SPL_MEMIMG_ADDR},g" \
-+        -e "s,@UBOOT_MEMIMG_ADDR@,${UBOOT_MEMIMG_ADDR},g" \
-+        -e "s,@SPL_FLASH_UPPER_ADDR@,${SPL_FLASH_UPPER_ADDR},g" \
-+        -e "s,@LED_I2C_CHIP@,${LED_I2C_CHIP},g" \
-+        -e "s,@LED_I2C_ADDR@,${LED_I2C_ADDR},g" \
-+        -e "s,@PADDED_SPL_SIZE_BLOCKS@,${PADDED_SPL_SIZE_BLOCKS},g" \
-+        -e "s,@PADDED_UBOOT_SIZE@,${PADDED_UBOOT_SIZE},g" \
-+        -e "s,@UBOOT_FLASH_ADDR@,${UBOOT_FLASH_ADDR},g" \
-+        -e "s,@UBI_FLASH_ADDR@,${UBI_FLASH_ADDR},g" \
-+        -e "s,@UBI_MEMIMG_ADDR@,${UBI_MEMIMG_ADDR},g" \
-+        -e "s,@UBI_SIZE@,${UBI_SIZE},g" \
-+        < "${WORKDIR}/boot.cmd.in" > "${WORKDIR}/boot.cmd"
-+    mkimage -A arm -T script -C none -n "Boot script" -d "${WORKDIR}/boot.cmd" "${WORKDIR}/boot.scr"
-+}
-+
-+do_deploy() {
-+    install -d ${DEPLOYDIR}
-+    install -m 0644 ${WORKDIR}/boot.scr ${DEPLOYDIR}/boot.scr-${PV}-${PR}
-+    ln -sf boot.scr-${PV}-${PR} ${DEPLOYDIR}/boot.scr
-+
-+    cat > ${DEPLOYDIR}/flash_CHIP_board.sh-${PV}-${PR} <<-EOF
-+	#!/bin/sh
-+	#
-+	
-+	${COMPONENTS_DIR}/x86_64/sunxi-tools-native/usr/bin/sunxi-fel spl ${DEPLOY_DIR_IMAGE}/${SPL_BINARY}
-+	${COMPONENTS_DIR}/x86_64/sunxi-tools-native/usr/bin/sunxi-fel --progress write ${SPL_MEMIMG_ADDR} ${DEPLOY_DIR_IMAGE}/${SPL_ECC_BINARY}
-+	${COMPONENTS_DIR}/x86_64/sunxi-tools-native/usr/bin/sunxi-fel --progress write ${UBOOT_MEMIMG_ADDR} ${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY}
-+	${COMPONENTS_DIR}/x86_64/sunxi-tools-native/usr/bin/sunxi-fel --progress write ${SCRIPTADDR} ${DEPLOY_DIR_IMAGE}/boot.scr
-+	${COMPONENTS_DIR}/x86_64/sunxi-tools-native/usr/bin/sunxi-fel --progress write ${UBI_MEMIMG_ADDR} ${DEPLOY_DIR_IMAGE}/\${UBI_IMAGE}
-+	${COMPONENTS_DIR}/x86_64/sunxi-tools-native/usr/bin/sunxi-fel exe ${UBOOT_MEMIMG_ADDR}
-+	EOF
-+    chmod +x ${DEPLOYDIR}/flash_CHIP_board.sh-${PV}-${PR}
-+
-+    ln -sf flash_CHIP_board.sh-${PV}-${PR} ${DEPLOYDIR}/flash_CHIP_board.sh
-+}
-+
-+addtask do_deploy after do_compile before do_build
-diff --git a/recipes-bsp/chip-u-boot-scr/files/boot.cmd.full b/recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
-new file mode 100644
-index 0000000..9589c87
---- /dev/null
-+++ b/recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
-@@ -0,0 +1,32 @@
-+echo Scrubbing NAND
-+nand scrub -y 0x0 0x200000000
-+echo Writing SPL (with ECC) to NAND address 0x0
-+nand write.raw.noverify $SPL_MEM_ADDR 0x0 $PADDED_SPL_SIZE
-+echo Writing SPL (with ECC) to NAND address 0x400000
-+nand write.raw.noverify $SPL_MEM_ADDR 0x400000 $PADDED_SPL_SIZE
-+echo Writing UBoot image to address 0x800000
-+nand write $UBOOT_MEM_ADDR 0x800000 $PADDED_UBOOT_SIZE
-+
-+# Setup the default environment
-+setenv bootargs root=ubi0:rootfs rootfstype=ubifs rw earlyprintk ubi.mtd=4
-+setenv bootcmd 'mtdparts; ubi part UBI; ubifsmount ubi0:rootfs; ubifsload \$fdt_addr_r /boot/sun5i-r8-chip.dtb; ubifsload \$kernel_addr_r /boot/zImage; bootz \$kernel_addr_r - \$fdt_addr_r'
-+setenv fel_booted 0
-+
-+echo Enabling Splash
-+setenv stdout serial
-+setenv stderr serial
-+setenv splashpos m,m
-+
-+echo Setting Video Mode
-+setenv video-mode sunxi:640x480-24@60,monitor=composite-ntsc,overscan_x=40,overscan_y=20
-+
-+echo Saving default environment
-+saveenv
-+
-+echo Writing UBI rootfs to NAND address 0x1000000
-+nand write.slc-mode.trimffs $UBI_MEM_ADDR 0x1000000 $UBI_SIZE
-+
-+echo ===========================================================
-+echo Flashing Complete.  Please power down and disable FEL mode.
-+echo ===========================================================
-+
-diff --git a/recipes-bsp/chip-u-boot-scr/files/boot.cmd.in b/recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-new file mode 100644
-index 0000000..dc060be
---- /dev/null
-+++ b/recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-@@ -0,0 +1,43 @@
-+echo Erasing NAND
-+nand erase.chip
-+echo Writing SPL (with ECC) to NAND address @NAND_FLASH_START_ADDR@
-+nand write.raw.noverify @SPL_MEMIMG_ADDR@ @NAND_FLASH_START_ADDR@ @PADDED_SPL_SIZE_BLOCKS@
-+echo Writing SPL (with ECC) to NAND address @SPL_FLASH_UPPER_ADDR@
-+nand write.raw.noverify @SPL_MEMIMG_ADDR@ @SPL_FLASH_UPPER_ADDR@ @PADDED_SPL_SIZE_BLOCKS@
-+echo Writing UBoot image to address 0x800000
-+nand write @UBOOT_MEMIMG_ADDR@ @UBOOT_FLASH_ADDR@ @PADDED_UBOOT_SIZE@
-+
-+# Setup the default environment
-+setenv bootargs root=ubi0:rootfs rootfstype=ubifs rw earlyprintk ubi.mtd=4
-+setenv bootcmd_ubi 'mtdparts; ubi part UBI; ubifsmount ubi0:rootfs; ubifsload \$fdt_addr_r /boot/sun5i-r8-chip.dtb; ubifsload \$kernel_addr_r /boot/zImage; bootz \$kernel_addr_r - \$fdt_addr_r'
-+setenv boot_targets fel ubi usb0 pxe dhcp 
-+setenv fel_booted 0
-+
-+echo Enabling Splash
-+setenv stdout serial
-+setenv stderr serial
-+setenv splashpos m,m
-+
-+echo Setting Video Mode
-+setenv video-mode sunxi:640x480-24@60,monitor=composite-ntsc,overscan_x=40,overscan_y=20
-+
-+echo Saving default environment
-+saveenv
-+
-+echo Writing UBI rootfs to NAND address 0x1000000
-+nand write.slc-mode.trimffs @UBI_MEMIMG_ADDR@ @UBI_FLASH_ADDR@ @UBI_SIZE@
-+
-+
-+echo ===========================================================
-+echo Flashing Complete.  Please power down and disable FEL mode.
-+echo ===========================================================
-+
-+# Loop continually flashing the status LED
-+while true ; do
-+    mw.l @SPL_MEMIMG_ADDR@ 0x00000000 1
-+    i2c write @SPL_MEMIMG_ADDR@ @LED_I2C_CHIP@ @LED_I2C_ADDR@ 4
-+    sleep 1
-+    mw.l @SPL_MEMIMG_ADDR@ 0xffffffff 1
-+    i2c write @SPL_MEMIMG_ADDR@ @LED_I2C_CHIP@ @LED_I2C_ADDR@ 4
-+    sleep 1
-+done
-diff --git a/recipes-bsp/u-boot/u-boot-chip_git.bb b/recipes-bsp/u-boot/u-boot-chip_git.bb
-index f12fae6..008f346 100644
---- a/recipes-bsp/u-boot/u-boot-chip_git.bb
-+++ b/recipes-bsp/u-boot/u-boot-chip_git.bb
-@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://Licenses/README;md5=0507cd7da8e7ad6d6701926ec9b84c95"
- 
- DEPENDS += "dtc-native"
- PROVIDES += "u-boot"
-+RDEPENDS_${PN}_append_chip = " chip-u-boot-scr"
- 
- UBOOT_VERSION ?= "2016.01"
- PV = "${UBOOT_VERSION}+git${SRCPV}"
--- 
-2.7.4
-
+>         # Burn Partitions
+>         dd if=${WORKDIR}/boot.img of=${SDIMG} conv=notrunc seek=1 bs=$(expr ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
+>         # If SDIMG_ROOTFS_TYPE is a .xz file use xzcat
+> --
+> 2.13.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
