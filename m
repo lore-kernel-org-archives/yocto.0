@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C038DE00A93; Sat, 17 Jun 2017 09:42:27 -0700 (PDT)
+	id 4F2B9E00A93; Sat, 17 Jun 2017 15:29:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
+	*      [209.85.223.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,47 +19,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74ACBE0076C
-	for <yocto@yoctoproject.org>; Sat, 17 Jun 2017 09:42:23 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id 70so9985139wme.1
-	for <yocto@yoctoproject.org>; Sat, 17 Jun 2017 09:42:23 -0700 (PDT)
+Received: from mail-io0-f193.google.com (mail-io0-f193.google.com
+	[209.85.223.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D045DE0076C
+	for <yocto@yoctoproject.org>; Sat, 17 Jun 2017 15:29:10 -0700 (PDT)
+Received: by mail-io0-f193.google.com with SMTP id j200so8025954ioe.0
+	for <yocto@yoctoproject.org>; Sat, 17 Jun 2017 15:29:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Ld0qjUCvMMZuz7gYuuz6cop0Tw7yT9sC4BOo3nS1T5E=;
-	b=dGVQq3AFcXz7aQGFIU1qAHtsZD49w48JGew/Ee7HpcaCnaoSupFdBxLR1k4Yv94sHw
-	xqieYeJzu7xJ2SHGG+qvgd4gKR2TVUYQ54aodoNBSvR1YJEh9AYMVSLjib0Y1IwjL7wC
-	xgQsJuwUL6iSFuysaq1v49nM/7zfsW9fvAnJrXSk+VTl1Qr0FRPX/oQ/XQxE4yVHg0jL
-	arZCQ1ziYfXqFgll5xazmOqtEFwxjIyZbHRMHSR/BYC4VMDC2hcDxdBAX4Pf0+twJafJ
-	kMm6g4HjC6YNtLmCdA8O/Ym1+javfi+UdWv9+M2ey/GqJmk9JMBJF0JVVJ4RDMgDWCLH
-	s7CQ==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=7d07wo6RIiAZnIVYpgTTVrqPchhzGQe/qKYu83gawms=;
+	b=XkxFF/cV92D22eIqBoXcTeY9CYCCHTZlQgfyOCDTTB/sEWjx5NwI7Yxz6Tmjdn1cnE
+	d3lGAVAQgdjhtVBJZIMa/VHmQ83yichU4XKLlS0ukC7Zc5J4W8FRnyIVAcnIjawlvQmi
+	UWxYT00pUUpNC6pK+k0txkho1nVrECRa9k5L4Hbh+xzM4yZwr54j0A1c2nFBctt3NA3i
+	U5x6hodbaa8pMdvgbaejv0SkCPZwyM7n9GofCtHvkq9GnlYYL1vXZHpUsflu8ONwMa3f
+	s7J8ZAMcUPOGOcbCE+Dj6V2yvcnugatynMCxlQ4hqghsNOqTDzqD2eZkPTAliEHhAGzj
+	ryjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Ld0qjUCvMMZuz7gYuuz6cop0Tw7yT9sC4BOo3nS1T5E=;
-	b=loiyPWIzAAkW5OYwZRdS7B88k6U4Htt+1fWxD/C/EIKQNucduzmcxe97W0w9DGGOjt
-	yzMkREs84GHCJA99XGJzHa0GH3tmLKY/Ltk96oVh3J59qiIpSjygF9iPYqpOSvMpDg2n
-	iM731JvM2oY5FiYlrLJz8a82syJE8C5gmhPJA2ulHl/e4kdxOVJfgTrjlQPUFMJ/Em6g
-	Xg/AbuGvQ/wP1NdkuKIml9cBES+Nc7UI4WRGlaLSRqg4jF7fd1LVjWDt8fejRHJkIJsC
-	k3Ba6E4fZTXhFF5IrPDzVSzCI5uZd11MFZ2Jz+hy7v8Z8vGfYQoIi1l/S12wul/Cqa80
-	PDRA==
-X-Gm-Message-State: AKS2vOyNRbyrQOkid2BBnuHslmaABobotr/T37AUd/WFDDbw1mIzEFXo
-	1W5X2I6QA8MyxjH9tSYBs8H2srBcKg==
-X-Received: by 10.80.151.37 with SMTP id c34mr11428443edb.30.1497717742657;
-	Sat, 17 Jun 2017 09:42:22 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=7d07wo6RIiAZnIVYpgTTVrqPchhzGQe/qKYu83gawms=;
+	b=WL2Ju5vB9peeodRfoNmbV0PUPJHtWNJ3mWH6tTyUe7qRNEDCooKm7eXYgb6bNdYWae
+	TWUskiAvN5hotpvTYOmTWDAdkwL2sE9/lJW2A+iCIeDYMdsI+MajeMPa0983VtYqxwLb
+	swp/s5PgA3uey3j58upLR8RPNC7Rpep49sd7Ulmjs1q78xlrPvc7t8TXVIPXdbK59rAe
+	D73aPI5+I1krvi2oTbkjCRazkYNwWhVhVSdlWb3UTeB9SN3TeXCJ8FqfL5ngkW/Hgcu8
+	FPriFVtrP5iCiHLCqFlEvQIw+xG8+scQAHxuDwOnkP2YSxfpz2pNuRopsuE5w4+oT6ys
+	ZJbw==
+X-Gm-Message-State: AKS2vOywcSSnaBHBxTq1W4A7wU9g0aZI43BmPuEuu6Y0q5sv4zb4y7zK
+	KK9kWCIv0I4a5lIGzvg=
+X-Received: by 10.107.163.198 with SMTP id m189mr12225709ioe.227.1497738549398;
+	Sat, 17 Jun 2017 15:29:09 -0700 (PDT)
+Received: from linux-uys3 ([206.248.190.95]) by smtp.gmail.com with ESMTPSA id
+	r77sm3407902ioe.16.2017.06.17.15.29.08
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 17 Jun 2017 15:29:08 -0700 (PDT)
+Date: Sat, 17 Jun 2017 18:29:06 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+To: Romain Perier <romain.perier@collabora.com>
+Message-ID: <20170617222906.GA20416@linux-uys3>
+References: <20170616134740.25372-1-romain.perier@collabora.com>
+	<20170616134740.25372-3-romain.perier@collabora.com>
 MIME-Version: 1.0
-Received: by 10.80.153.222 with HTTP; Sat, 17 Jun 2017 09:41:52 -0700 (PDT)
-In-Reply-To: <20170617152051.GO10782@bill-the-cat>
-References: <20170616191213.26849-1-msm-oss@mcclintock.net>
-	<CAMKF1spDNLxLAKFa8Cet8v=N_ejPFhQCHOVbmS93b30Sxg585Q@mail.gmail.com>
-	<20170617152051.GO10782@bill-the-cat>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 17 Jun 2017 09:41:52 -0700
-Message-ID: <CAMKF1sqna8Q7myyv=qaB8jUjjDycxeFT4kC2cQmQA7RJhD4BKw@mail.gmail.com>
-To: Tom Rini <trini@konsulko.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: deploy vfat partition
+In-Reply-To: <20170616134740.25372-3-romain.perier@collabora.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-rockchip][PATCH 2/2] u-boot: Backport upstream fix for gmac_rockchip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,80 +76,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Jun 2017 16:42:27 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sat, 17 Jun 2017 22:29:12 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-On Sat, Jun 17, 2017 at 8:20 AM, Tom Rini <trini@konsulko.com> wrote:
-> On Fri, Jun 16, 2017 at 06:05:07PM -0700, Khem Raj wrote:
->> On Fri, Jun 16, 2017 at 12:12 PM, Matthew McClintock
->> <msm-oss@mcclintock.net> wrote:
->> > This is useful to update the bootloader/vfat partition from u-boot when
->> > you don't want to update everything:
->> >
->> > U-Boot> tftpboot 0x1000000 tmp/0VXje
->> > Waiting for Ethernet connection... done.
->> > Using sms0 device
->> > TFTP from server 192.168.0.1; our IP address is 192.168.0.26
->> > Filename 'image.vfat'.
->> > Load address: 0x1000000
->> > Loading: ##################################################  40 MiB
->> >          2.1 MiB/s
->> > done
->> > Bytes transferred = 41943040 (2800000 hex)
->> > U-Boot> mmc part
->> >
->> > Partition Map for MMC device 0  --   Partition Type: DOS
->> >
->> > Part    Start Sector    Num Sectors     UUID            Type
->> >   1     8192            81920           a63a4fbc-01     0c Boot
->> >   2     90112           163840          a63a4fbc-02     83
->> > U-Boot> mmc erase 0x2000 0x14000
->> >
->> > MMC erase: dev # 0, block # 8192, count 81920 ... 81920 blocks erased:
->> > OK
->> > U-Boot> mmc write 0x1000000 0x2000 0x14000
->> >
->> > MMC write: dev # 0, block # 8192, count 81920 ... 81920 blocks written:
->> > OK
->> > U-Boot>
->> >
->> > Signed-off-by: Matthew McClintock <msm-oss@mcclintock.net>
->> > ---
->> >  classes/sdcard_image-rpi.bbclass | 8 ++++++++
->> >  1 file changed, 8 insertions(+)
->> >
->> > diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
->> > index af3e807..27a0dfc 100644
->> > --- a/classes/sdcard_image-rpi.bbclass
->> > +++ b/classes/sdcard_image-rpi.bbclass
->> > @@ -72,6 +72,10 @@ SDIMG = "${IMGDEPLOYDIR}/${IMAGE_NAME}.rootfs.rpi-sdimg"
->> >  # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
->> >  FATPAYLOAD ?= ""
->> >
->> > +# SD card vfat partition image name
->> > +SDIMG_VFAT = "${IMGDEPLOYDIR}/${IMAGE_NAME}.vfat"
->> > +SDIMG_LINK_VFAT = "${IMGDEPLOYDIR}/${IMAGE_LINK_NAME}.vfat"
->> > +
->> >  IMAGE_CMD_rpi-sdimg () {
->> >
->> >         # Align partitions
->> > @@ -145,6 +149,10 @@ IMAGE_CMD_rpi-sdimg () {
->> >         echo "${IMAGE_NAME}" > ${WORKDIR}/image-version-info
->> >         mcopy -i ${WORKDIR}/boot.img -v ${WORKDIR}/image-version-info ::
->> >
->> > +        # Deploy vfat partition
->> > +        cp ${WORKDIR}/boot.img ${SDIMG_VFAT}
->> > +        ln -sf ${SDIMG_VFAT} ${SDIMG_LINK_VFAT}
->> > +
->>
->> it is of use if I am not using u-boot ? is there any penalty ?
->
-> The stock firmware also uses a vfat partition, so this could just as
-> easily hold those contents.
+Hi Romain,
 
-yes it does, can it do the same operations like u-boot ?
+I assume this patch is meant to fix an ethernet issue in u-boot? How does
+someone test that ethernet is working from u-boot?
 
->
-> --
-> Tom
+Here is my firefly booting with these patches:
+
+
+	U-Boot SPL 2017.05 (Jun 17 2017 - 17:12:20)
+	Returning to boot ROM...
+
+	U-Boot 2017.05 (Jun 17 2017 - 17:12:20 -0400)
+
+	Model: Firefly-RK3288
+	DRAM:  1.7 GiB
+	MMC:   dwmmc@ff0c0000: 1, dwmmc@ff0f0000: 0
+	*** Warning - bad CRC, using default environment
+
+	In:    serial
+	Out:   serial
+	Err:   serial
+	Net:   
+	Warning: ethernet@ff290000 (eth0) using random MAC address - 5a:40:1a:28:0e:43
+	eth0: ethernet@ff290000
+	Hit any key to stop autoboot:  0 
+
+Here is me configuring the networking stuff in u-boot:
+
+	=> setenv ipaddr 192.168.142.20
+	=> setenv netmask 255.255.255.0
+	=> setenv serverip 192.168.142.1
+
+Then I try pinging my server:
+
+	=> ping 192.168.142.1
+	ethernet@ff290000 Waiting for PHY auto negotiation to complete... done
+	Speed: 100, full duplex
+	Using ethernet@ff290000 device
+
+The next thing I know my firefly is rebooting:
+
+	data abort
+	pc : [<6ada703a>]          lr : [<6ada7dbb>]
+	reloc pc : [<0003303a>]    lr : [<00033dbb>]
+	sp : 68d67e48  ip : 00000000     fp : 00000002
+	r10: 68d77e60  r9 : 68d71ee8     r8 : 00000000
+	r7 : 00000001  r6 : 00000000     r5 : 0000002a  r4 : 6adfd04e
+	r3 : 14000045  r2 : 148ea8c0     r1 : 018ea8c0  r0 : 6adfd04e
+	Flags: nzcv  IRQs off  FIQs off  Mode SVC_32
+	Resetting CPU ...
+
+
+	U-Boot SPL 2017.05 (Jun 17 2017 - 17:12:20)
+	Returning to boot ROM...
 
