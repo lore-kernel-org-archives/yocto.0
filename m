@@ -1,6 +1,6 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2CCFAE00B21; Sun, 18 Jun 2017 00:50:00 -0700 (PDT)
+	id 3482EE00B99; Sun, 18 Jun 2017 00:52:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
+	mail provider *      (antonius.riko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.161.173 listed in list.dnswl.org]
+	*      [209.85.192.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,48 +20,56 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f173.google.com (mail-yw0-f173.google.com
-	[209.85.161.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80E81E00A93
-	for <yocto@yoctoproject.org>; Sun, 18 Jun 2017 00:49:58 -0700 (PDT)
-Received: by mail-yw0-f173.google.com with SMTP id e142so31793006ywa.1
-	for <yocto@yoctoproject.org>; Sun, 18 Jun 2017 00:49:58 -0700 (PDT)
+Received: from mail-pf0-f178.google.com (mail-pf0-f178.google.com
+	[209.85.192.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC843E00B21
+	for <yocto@yoctoproject.org>; Sun, 18 Jun 2017 00:52:24 -0700 (PDT)
+Received: by mail-pf0-f178.google.com with SMTP id 83so40542624pfr.0
+	for <yocto@yoctoproject.org>; Sun, 18 Jun 2017 00:52:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=GKZjyYEQRsVpGo4063GeGcpi31nN6lA03moLl0qTNUE=;
-	b=XWRSyObYPXSsWtWRnx7l8KmW1Rxcr6Tw4QsYLpDhdt6oKDTZElxQNJKw4jYEoPpkFK
-	i5yj8OreJTJX/eIDm9IMHfUVPscEMhr6JX18igEnAsjVQaoYgGmtGuBK8Yqb/+M+gUZA
-	695st6t/K6WErviwcgDw1uq9oee6gIfaRmxcyCnCRTAmcJDA4CzMu5O8bfohKkSprkHM
-	iwSiN2aXWR/3E2Bpo0SFhhvPyCGvzNtsu83ATqoONj0P9IS0sGci3VzbGVno6Yr044pt
-	wVTLej+/+Ob/sB6brfZZGiQCLPyWDuIS9mpl0h1egkF6hrZ0cQJKIm5nucTy3enRd0IP
-	fBPQ==
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=tKPkrBBZDTcL6OAwOjCqnVngOAhTAsdTgYODURMqhNA=;
+	b=tu3DRHrHcMOekdp6ZW+J/lSsQoLmD41QPOVClEntOrS85aR2bcYczkx5yh6Nmjgsus
+	YAEq5AGYAiW/WeQ/y03wf6f7hUT7e3mDJjETUTqN6V1HiNI1xut0hfELgY3trVuyIWwc
+	6DPpkT4ynfcPCcFsZ4xVUl6Phs9b2catnckLHc7KRTSr8aGCKM7cmK2G//8tT9/sRpMt
+	u4OU1vaWWX4T7bnyGfNptRoITyM/+vKOiAwFsUZhqhDnYjQdEta5Qej8GY+dSKT13Vhi
+	9EjKTMxiHjR9iqnp0/37KP34VZmTlsUELxPOBtpF/Pz9m+3KeBmjhAOxm8Dx2ttk7JuE
+	vcog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=GKZjyYEQRsVpGo4063GeGcpi31nN6lA03moLl0qTNUE=;
-	b=IVOXiadQJke/AfKGAZ82qWVvb+qAz1fAs7ze+vm1bB0YbU3L3xh+PZEwyVO9m6e3Yj
-	T6iDZ0/mFwMHaaGGyrnwku9cZgzVKfWOMiDArvdby0RjsjgCmh+pc165i0Y8XEj/G42I
-	JpIH21Z70rLUpZjSV0Chv0F5BeuFoV4nW8sBmvL4m9HUnPMTXYUKbZselMbHCWvfJbMl
-	T1RN+ukIZ0VOUDfQUZoAJMhCj5yc+BEvsEd/ZsSILM+a4u+oPCtP1khc0w4T9GovYnkm
-	IO+NVuNS6VXL8rTK5z4jArxx9nBvrerGAgRSBBIVfnoGUHGOrFlxwMJyyrENcbKzXWDM
-	0Ylg==
-X-Gm-Message-State: AKS2vOyIuadIrTbGJdj89t9t2cdCxz0vHwsingjdBltm7BPEqkZsf8QJ
-	zwoKctWyXu5eyW2qS5Q+8FamHQLC1w==
-X-Received: by 10.129.0.198 with SMTP id 189mr14061624ywa.193.1497772198156;
-	Sun, 18 Jun 2017 00:49:58 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.37.181.204 with HTTP; Sun, 18 Jun 2017 00:49:57 -0700 (PDT)
-In-Reply-To: <c0c0b79d-12c0-27b3-1ef9-f3798c95e02e@gmail.com>
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=tKPkrBBZDTcL6OAwOjCqnVngOAhTAsdTgYODURMqhNA=;
+	b=lCk150ZQxGt4ubCARNZkm6xFa4CO2Euq3/tdGzKnIBVXRHsmKtJU+IDryXHIKD3oA1
+	I59IHHcDrxH+wD39xGkjEyByjOm+f4RVDvqLmoszkKDEpnp/ulZ/LBZIOHbuv9cHHYhF
+	YWh3f6GfDrmnSh1kfj+rt/R4RqQa8bVNRInuUoIvhEKu1OLhW9mv0Sp5nk1wy6jMKuTa
+	dzHTp02C4ik4f0a0GjbXRdvtEmgVpHr+fEkK7/ygjJULUl4lgfgJS8bTR/5LPfmPwoER
+	XlHh53DnzWGBGeivomaMH7d5UjjWz9Eoc5QsdtSdG9gVKwZ99goWMaF6cXs4V3T+zz2K
+	MWVQ==
+X-Gm-Message-State: AKS2vOymBhWP5wlRtW2Cp0zMdwuy9MGmdmauvUgA82lIW2fKjptz+r1Y
+	51Z6MjT/7glt6sHw
+X-Received: by 10.99.54.11 with SMTP id d11mr20014603pga.59.1497772343870;
+	Sun, 18 Jun 2017 00:52:23 -0700 (PDT)
+Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
+	[124.178.9.113]) by smtp.gmail.com with ESMTPSA id
+	r83sm13825105pfk.57.2017.06.18.00.52.21
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 18 Jun 2017 00:52:23 -0700 (PDT)
+To: Martin Jansa <martin.jansa@gmail.com>
 References: <ed57e154-cbd7-176a-02fb-496c6f730d2a@gmail.com>
 	<CAMKF1sp9ESKxDiarsNTu89BXLpk8nBNZXefwYs-6dYHpVnBMFg@mail.gmail.com>
 	<1bfe90cd-590a-47e6-95d1-3ad77ec3a46b@gmail.com>
 	<CAAfyv348RhuesS-suUGnVgquxVX0Gv2625Qd1Lw5NJH6FMXMQQ@mail.gmail.com>
 	<c0c0b79d-12c0-27b3-1ef9-f3798c95e02e@gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-Date: Sun, 18 Jun 2017 09:49:57 +0200
-Message-ID: <CA+chaQcwEW7=Wmrk0LYN0ubfvwxTNZQnCDh=wwWRWmSaXgWJdg@mail.gmail.com>
-To: Riko Ho <antonius.riko@gmail.com>
+	<CA+chaQcwEW7=Wmrk0LYN0ubfvwxTNZQnCDh=wwWRWmSaXgWJdg@mail.gmail.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <104e49b0-c604-4cba-0a26-da256e2fb180@gmail.com>
+Date: Sun, 18 Jun 2017 15:52:19 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
+MIME-Version: 1.0
+In-Reply-To: <CA+chaQcwEW7=Wmrk0LYN0ubfvwxTNZQnCDh=wwWRWmSaXgWJdg@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Compiling meta-browser ==>chromium ? cleaning ?
 X-BeenThere: yocto@yoctoproject.org
@@ -75,81 +83,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Jun 2017 07:50:00 -0000
-Content-Type: multipart/alternative; boundary="001a11405446d367840552374337"
+X-List-Received-Date: Sun, 18 Jun 2017 07:52:26 -0000
+Content-Type: multipart/alternative;
+	boundary="------------3492F8778D810820C267DE94"
+Content-Language: en-US
 
---001a11405446d367840552374337
-Content-Type: text/plain; charset="UTF-8"
+--------------3492F8778D810820C267DE94
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-You didn't say which versions you're using.
+What version are you talking about ? how can I know that ?
 
-If you're using latest oe-core with gcc7 then you will need v3 version of
-this change:
-http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html
-I'll send it later today.
+Thanks
 
-> And how can I clean after building it ? It took about 70Gb of my drive
 
-Like any other recipe:
-bitbake -c clean foo
-
-On Sun, Jun 18, 2017 at 1:41 AM, Riko Ho <antonius.riko@gmail.com> wrote:
-
-> Hello Everyone,
+On 18/06/17 15:49, Martin Jansa wrote:
+> You didn't say which versions you're using.
 >
-> I tried to compile chromium but never succeeded, took me already 12 hours
-> and stopped on 99%,
-> I used bitbake for doing it,
+> If you're using latest oe-core with gcc7 then you will need v3 version 
+> of this change:
+> http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html
+> I'll send it later today.
 >
-> Is chromium not compatible with arm CPU ? it was working with X86_64
-> before.
-> And how can I clean after building it ? It took about 70Gb of my drive
+> > And how can I clean after building it ? It took about 70Gb of my drive
 >
-> Thanks
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Like any other recipe:
+> bitbake -c clean foo
+>
+> On Sun, Jun 18, 2017 at 1:41 AM, Riko Ho <antonius.riko@gmail.com 
+> <mailto:antonius.riko@gmail.com>> wrote:
+>
+>     Hello Everyone,
+>
+>     I tried to compile chromium but never succeeded, took me already
+>     12 hours and stopped on 99%,
+>     I used bitbake for doing it,
+>
+>     Is chromium not compatible with arm CPU ? it was working with
+>     X86_64 before.
+>     And how can I clean after building it ? It took about 70Gb of my drive
+>
+>     Thanks
+>     -- 
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>     <https://lists.yoctoproject.org/listinfo/yocto>
+>
 >
 
---001a11405446d367840552374337
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+-- 
+*
 
-<div dir=3D"ltr">You didn&#39;t say which versions you&#39;re using.<div><b=
-r></div><div>If you&#39;re using latest oe-core with gcc7 then you will nee=
-d v3 version of this change:</div><div><a href=3D"http://lists.openembedded=
-.org/pipermail/openembedded-devel/2017-June/113247.html">http://lists.opene=
-mbedded.org/pipermail/openembedded-devel/2017-June/113247.html</a><br></div=
-><div>I&#39;ll send it later today.</div><div><br></div><div><span style=3D=
-"font-size:12.8px">&gt; And how can I clean after building it ? It took abo=
-ut 70Gb of my drive</span><br></div><div><span style=3D"font-size:12.8px"><=
-br></span></div><div><span style=3D"font-size:12.8px">Like any other recipe=
-:</span></div><div><span style=3D"font-size:12.8px">bitbake -c clean foo</s=
-pan></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">O=
-n Sun, Jun 18, 2017 at 1:41 AM, Riko Ho <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:antonius.riko@gmail.com" target=3D"_blank">antonius.riko@gmail.com</a>=
-&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello Everyone,<br>
-<br>
-I tried to compile chromium but never succeeded, took me already 12 hours a=
-nd stopped on 99%,<br>
-I used bitbake for doing it,<br>
-<br>
-Is chromium not compatible with arm CPU ? it was working with X86_64 before=
-.<br>
-And how can I clean after building it ? It took about 70Gb of my drive<br>
-<br>
-Thanks<span class=3D"HOEnZb"><font color=3D"#888888"><br>
--- <br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br></div>
+/*******/
+Sent by Ubuntu LTS 16.04,
+谢谢,
+Regards,
+Riko Ho
+/*******/
 
---001a11405446d367840552374337--
+*
+
+--------------3492F8778D810820C267DE94
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>What version are you talking about ? how can I know that ?</p>
+    <p>Thanks<br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 18/06/17 15:49, Martin Jansa wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CA+chaQcwEW7=Wmrk0LYN0ubfvwxTNZQnCDh=wwWRWmSaXgWJdg@mail.gmail.com">
+      <div dir="ltr">You didn't say which versions you're using.
+        <div><br>
+        </div>
+        <div>If you're using latest oe-core with gcc7 then you will need
+          v3 version of this change:</div>
+        <div><a
+href="http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html"
+            moz-do-not-send="true">http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html</a><br>
+        </div>
+        <div>I'll send it later today.</div>
+        <div><br>
+        </div>
+        <div><span style="font-size:12.8px">&gt; And how can I clean
+            after building it ? It took about 70Gb of my drive</span><br>
+        </div>
+        <div><span style="font-size:12.8px"><br>
+          </span></div>
+        <div><span style="font-size:12.8px">Like any other recipe:</span></div>
+        <div><span style="font-size:12.8px">bitbake -c clean foo</span></div>
+      </div>
+      <div class="gmail_extra"><br>
+        <div class="gmail_quote">On Sun, Jun 18, 2017 at 1:41 AM, Riko
+          Ho <span dir="ltr">&lt;<a
+              href="mailto:antonius.riko@gmail.com" target="_blank"
+              moz-do-not-send="true">antonius.riko@gmail.com</a>&gt;</span>
+          wrote:<br>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello
+            Everyone,<br>
+            <br>
+            I tried to compile chromium but never succeeded, took me
+            already 12 hours and stopped on 99%,<br>
+            I used bitbake for doing it,<br>
+            <br>
+            Is chromium not compatible with arm CPU ? it was working
+            with X86_64 before.<br>
+            And how can I clean after building it ? It took about 70Gb
+            of my drive<br>
+            <br>
+            Thanks<span class="HOEnZb"><font color="#888888"><br>
+                -- <br>
+                ______________________________<wbr>_________________<br>
+                yocto mailing list<br>
+                <a href="mailto:yocto@yoctoproject.org" target="_blank"
+                  moz-do-not-send="true">yocto@yoctoproject.org</a><br>
+                <a href="https://lists.yoctoproject.org/listinfo/yocto"
+                  rel="noreferrer" target="_blank"
+                  moz-do-not-send="true">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><br>
+              </font></span></blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          谢谢,<br>
+          Regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
+  </body>
+</html>
+
+--------------3492F8778D810820C267DE94--
