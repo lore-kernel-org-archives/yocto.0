@@ -1,6 +1,6 @@
 Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9A39E00B63; Sun, 18 Jun 2017 22:19:05 -0700 (PDT)
+	id DCBBAE00B63; Sun, 18 Jun 2017 22:48:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +16,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
-	[209.85.214.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47734E00AF0
-	for <yocto@yoctoproject.org>; Sun, 18 Jun 2017 22:19:04 -0700 (PDT)
-Received: by mail-it0-f48.google.com with SMTP id m62so59923737itc.0
-	for <yocto@yoctoproject.org>; Sun, 18 Jun 2017 22:19:03 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.41 listed in list.dnswl.org]
+Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
+	[209.85.214.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 773DBE00AF0
+	for <yocto@yoctoproject.org>; Sun, 18 Jun 2017 22:48:35 -0700 (PDT)
+Received: by mail-it0-f41.google.com with SMTP id m47so51159466iti.0
+	for <yocto@yoctoproject.org>; Sun, 18 Jun 2017 22:48:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-disposition:in-reply-to:user-agent;
-	bh=FXHszqYFZjWXuPMQT6TXdZ5Kh8pj0NjKzuY1wwEpHxU=;
-	b=ooT1yQyf2kRPG9NiwTH5p/Z2wLpP8RweGJ28ZtMjQnFBKiCTlj0Ngq9v0cc0z6UcRo
-	IkY5DuE9CdgK/ehtTAtx1aVl4rjjF0lnxM+CzsQia6NjF4tZCbd9+Wg2skfIk3PMLupo
-	qumbe7yYUMtVIEB5qRQGQMmsLHit1NDOfh4RdBdoOTxpqwzanLB3NJ2l4ehBpAUxSl4U
-	8ihR646y0hCZWEo0JTrBAP7t1aPfLQhxa788kxq1kNZeM5yQIijx7AxzMpz4YfIF9xZY
-	gRpK8VpkXtkdSeAPuSovOxJr75EBT+dilnWxciV/GFEFPyVNWGBTMaWiN2VWApJWkPej
-	fmRQ==
+	bh=FTjwCDptIpMRAie+8ayZ7GUbZGVlc/KYz9byAAoaRJY=;
+	b=r4lxo6cH2+7JsNziUc4vWrUcGvY6DJ0xkkAVuQRCGonmNeNjVFVc1t878qbFHz6UgY
+	044zheMPuh+pRbGg62V9AWf1EJrlZXxg9aU3IBgUUzYjVK/vBNxWgu7HdkMfj7j/tNy7
+	koxjahjwQf2O1JyNPVgg3HOJ87hYWct/lwLuC9If0Mh9sz7LyNxSCM8glk9q/enGFCpm
+	oZ5u5kMNc3kum0J3QqJvmuqi9IxddLithRsJOWjnMCbeDzUPxcJd8vsdXMQJbu7Qs/8m
+	Ji8SjEOxuAVtz2SVa6hTaKFmO3ubfuVhaWleABaYy0Pae11kKKeADT8NaNFNxD7weHvu
+	w3Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=FXHszqYFZjWXuPMQT6TXdZ5Kh8pj0NjKzuY1wwEpHxU=;
-	b=nUxkfhBHR2PgVVGEkD0Xq1A3cbTvzXkkfXQBHqdViOL6Tnzl29kmY+8RVcowhb5uFq
-	ma3jxcUKbY1JfvxvED+Kc+xeZOMi1tY+mgmQWQWIeez/ZJK56rT/mrYHxqWDI8X3r0P9
-	Ij/n5SpCnGtxdDgxPeA5VfHVrmSy4/WLJwZK3nazob/9iA/ie4jAQFYb70fYXVlpkS8t
-	1OwoswxjZZAl7k9/G3hO8WgXa/hCy+3a+s1FKjV38UXTmsufQBAjeM8dg3UiLt6tO2Li
-	4J5gx4U8X6Qee4YkyRIvprqOz1GoZxBeffcDwQHkbeXl3xOIUMZlNlN41kZzCWEVqH+A
-	kHJA==
-X-Gm-Message-State: AKS2vOzKDFM0kjE0cW+YARj3UoklCtvUS8vRwWCxgtyVZrSnNkVlmC0r
-	GWMKkL2UHe4xkw==
-X-Received: by 10.36.73.131 with SMTP id e3mr20972332itd.0.1497849543592;
-	Sun, 18 Jun 2017 22:19:03 -0700 (PDT)
-Received: from linux-uys3 ([206.248.190.95])
-	by smtp.gmail.com with ESMTPSA id x83sm5717781ita.5.2017.06.18.22.19.02
+	bh=FTjwCDptIpMRAie+8ayZ7GUbZGVlc/KYz9byAAoaRJY=;
+	b=c7pKnwW5O9hFY293A63dVCw5C4S11k3ZPDbOiL0vUIglrvFZOmP6YS+rZTO/BHP3Yl
+	aaSjozMDyHIj4TN5ZRrC1RekO4UBrO0HfD/wku5+++792IYiK88Vb7PpaSkqbA1ZIG0A
+	EezX0OzxCgpmsdWjWaTylFu1D6dwpWjnkZnSxYg9gcchu6cjUiAQZoL0Hu+8IPu3SPUH
+	Q+Mj1Q2q3Qq5S3Cz2XHTGDIEMn+1hJ01IPvB9E2rKqHfxwE1rZC4s4HOi3MZku50wpfk
+	UXOE1iadkOx/G9jT7UeOt2WDjuJ//BJFCg3E8Tv8pUjNMIn/nU4N7x2pWxwLO80tJUzo
+	51Dg==
+X-Gm-Message-State: AKS2vOzs0qQh48NYROOqK8rCFHiLD+CocV0jU8w5kHiN4pFwUR63Pgj0
+	YERTf2e0TpEN+A==
+X-Received: by 10.36.98.206 with SMTP id d197mr20777887itc.50.1497851315017;
+	Sun, 18 Jun 2017 22:48:35 -0700 (PDT)
+Received: from linux-uys3 ([206.248.190.95]) by smtp.gmail.com with ESMTPSA id
+	q191sm3381156itb.18.2017.06.18.22.48.34
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 18 Jun 2017 22:19:02 -0700 (PDT)
-Date: Mon, 19 Jun 2017 01:19:00 -0400
+	Sun, 18 Jun 2017 22:48:34 -0700 (PDT)
+Date: Mon, 19 Jun 2017 01:48:32 -0400
 From: Trevor Woerner <twoerner@gmail.com>
 To: drew.moseley@mender.io
-Message-ID: <20170619051900.GA9243@linux-uys3>
+Message-ID: <20170619054832.GA7840@linux-uys3>
 References: <cover.1497646644.git.drew.moseley@mender.io>
 	<195a92fc1faa49495d1a2b6cda0134f07ce72189.1497646644.git.drew.moseley@mender.io>
 MIME-Version: 1.0
@@ -76,50 +76,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Jun 2017 05:19:05 -0000
+X-List-Received-Date: Mon, 19 Jun 2017 05:48:37 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
 On Fri 2017-06-16 @ 05:15:40 PM, drew.moseley@mender.io wrote:
-> diff --git a/README b/README
-> index cccf59e..cf52e05 100644
-> --- a/README
-> +++ b/README
-> @@ -59,4 +59,28 @@ To build a machine supported by this BSP layer follow the next steps:
+> +This script will take some time to execute.
 
-Please wrap the additions to the README to 80 columns.
+true
 
->  II. Flashing a C.H.I.P. board
->  ========================================
->  
-> -<TODO>
-> +As part of the build including this BSP layer, a U-Boot script and a shell script
-> +are created to assist in flashing your images to the CHIP board.  Note that this
-> +script assumes a maximum size for your UBI image of 0x0A000000 bytes.  If your UBI
-> +image exceeds that, then you will need to adapt this to your environment.
-> +
-> +To successfully run this script you will first need to set your board into FEL mode.
-> +chip. https://docs.getchip.com/chip.html#flash-chip-with-an-os
-> +Insert a wire into the U14 header between pin 7 (FEL) and GND.  Then connect the
-> +board with a USB cable to your build system.
-> +
-> +You need to specify the base filename of your UBI image using the UBI_IMAGE shell
-> +variable before invoking the generated script as follows:
-> +
-> +$ UBI_IMAGE=core-image-full-cmdline-chip.ubi ./tmp/deploy/images/chip/flash_CHIP_board.sh
-
-Outside of a udev tweak, this script needs to be run as root. It's traditional
-to indicate commands run as root by prefixing them with a PS1 of '#'.
-
-> +
-> +This script will take some time to execute.  If you have a serial console connected to
+> If you have a serial console connected to
 > +your board, you will see the progress and a message on the console will indicate when
-> +the flashing is completed. Additionally, once the image is properly flashed, the status
+> +the flashing is completed.
+
+hmmm, never saw this. I have a console connected, the moment the script
+started, on the console I got:
+
+	U-Boot SPL 2016.01 (Jun 19 2017 - 00:32:19)
+	DRAM: 512 MiB
+	CPU: 1008000000Hz, AXI/AHB/APB: 3/2/2
+	Trying to boot from
+
+which looks right, the date+time are good.
+
+Where I started the script I get:
+
+	# UBI_IMAGE=core-image-full-cmdline-chip.ubi
+	# tmp-glibc/deploy/images/chip/flash_CHIP_board.sh
+	100% [================================================]  3537 kB,  557.5 kB/s 
+	100% [================================================]   616 kB,  823.9 kB/s 
+	100% [================================================]     2 kB,  733.9 kB/s
+	100% [================================================] 654311 kB,  771.4 kB/s
+
+> Additionally, once the image is properly flashed, the status
 > +LED on the CHIP board will flash 30 times per second indicating that it is safe to power
 > +down your board and disable FEL mode.
-> +
-> +WARNING: This will erase the entire contents of your CHIP board.
-> +
-> +NOTE: This setup is still compatible with the CHIP flashing utility available
-> +at http://flash.getchip.com if you choose to reinstall the stock images.
+
+I don't get any LED flashing, and nothing other than what I've pasted above on
+the console.
+
+Rebooting the board after flashing outside of FEL mode simply boots the
+previous u-boot and image.
+
+Any thoughts?
 
