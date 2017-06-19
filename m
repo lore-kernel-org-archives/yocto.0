@@ -1,63 +1,64 @@
-Return-Path: <garbados@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C0EBE009A0; Mon, 19 Jun 2017 11:17:06 -0700 (PDT)
+	id 15EDDE009A0; Mon, 19 Jun 2017 12:47:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (garbados[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.46 listed in list.dnswl.org]
+	*      [74.125.82.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f46.google.com (mail-pg0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF76FE0084A
-	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 11:17:02 -0700 (PDT)
-Received: by mail-pg0-f46.google.com with SMTP id 132so17948667pgb.2
-	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 11:17:02 -0700 (PDT)
+Received: from mail-wm0-f45.google.com (mail-wm0-f45.google.com [74.125.82.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FBCDE0084A
+	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 12:47:15 -0700 (PDT)
+Received: by mail-wm0-f45.google.com with SMTP id u195so2491676wmd.1
+	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 12:47:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=isu2VwgfTR4ClD9XC4KN7ztc+o4j/cUBCr9pIwCbLBY=;
-	b=raB/q3cmKuOO0ri9auNxzHb3rJ3JWm+ScLZdFvRiOA/TgfiaPKIhFn82JKA2ZO6kqf
-	02ShnqMNwFFTqAh7W5V2BBzPt4o6DND9lVHg3ZTD0El04wNvN4dZrVeK4exHyWk6JWnx
-	jckSz+fjy6y3SFA5rdWxqDuNj8Ak+yWbHc8x7eKlFXYhPew7Zjrn3uVAaQjOE5sjbh1W
-	TBUPk9+8McOQ8uUl6t/ewJW0wRB61cd3FN5wKQYj4+uHs3j2T3v19XEA6U4LZmh3DV0V
-	KWSBwj+96GUtaDDlYMjqBFIv4RONVpR5lHIsf6ogEKVIM769fAYGUPEFSHZNn0wCO9we
-	7EdA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=pMJ/vsHZ3eTYASolS9FiGE2B4X33DXxle9R+nhEWEWw=;
+	b=tdo63BgTURYE0B3jIm8fe39HS691pRj54BkuHgqqXfBhTsy9ru7wJ68nKoyXlbkgoP
+	5Wj+UOvQU1YcEEBEjNVbIJ/iLcvlqpdQkFinjZuwTBSJp7YwXaelRj+xEGZrzHumPxjj
+	ZHTeYfGUoz9MN65+ciXvXAVJZtJiJIwMO7ItqMa+ptNNyp55m/o4aXLMRB/vBCjDt0y4
+	knCnGhmbUQvzMk5rdqxwcQFY0i+Y9rTfghm93ZM51jgmQ3mYnr5SMlhRWis/sLQiWAxr
+	oYKldvAWto3iSyE4A97rGb8Dzjubii317iIl6jTjr616nEKgBApXFLo+cljB4NmpONN2
+	ofNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=isu2VwgfTR4ClD9XC4KN7ztc+o4j/cUBCr9pIwCbLBY=;
-	b=a2X+DLt+NANI9ja2cVGL1OH8zOI59cYnMl/xzBMAUuZh0y7VkdPd50BR161x9K7Xxj
-	YuIhXWCh0/HICHWqHkgm56aGzR0MUNhpU86zpEY/9D4SuiZAweYb1xL0UveUcV6B9Rtn
-	1DQclh2Rq9GuHx0Pl7bX/mhL0Sh09Bo6cmFdgJub2fBNSNtP4tXj7ruxy3Thn9CDY7wu
-	JsdTJV/n97S23D/NEHc55h9JI7p6WO6gKz845Ads7vEauXGVahwlE8xuodVGxQOaDayt
-	Ekre9zoxdjT+Ee+aBbT3wR81MVYb2Rm2ZvQNk2+msK9XV4HnoCo1Rtk/Bn9gMUrN9onK
-	wTtw==
-X-Gm-Message-State: AKS2vOzPJmk8+qnQv6lgzaGQx28dva0U2buJeYNAAbx2je9UlvrVDMAH
-	2wI7tOjQfrP+a+HC
-X-Received: by 10.84.228.194 with SMTP id y2mr5081456pli.102.1497896221067;
-	Mon, 19 Jun 2017 11:17:01 -0700 (PDT)
-Received: from deus.apple.sh.pie ([2601:1c2:303:6b0:14fa:265:e25b:a63b])
-	by smtp.gmail.com with ESMTPSA id
-	l22sm22498844pfb.55.2017.06.19.11.16.59
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 19 Jun 2017 11:17:00 -0700 (PDT)
-From: Diana Thayer <garbados@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon, 19 Jun 2017 11:16:31 -0700
-Message-Id: <1497896191-8299-1-git-send-email-garbados@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [layerindex-web][PATCH] WIP solution to bug-11197: adding asynchronous task execution with celery and rabbitmq
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=pMJ/vsHZ3eTYASolS9FiGE2B4X33DXxle9R+nhEWEWw=;
+	b=lnjevZWCQeJHB421wmJkask92gmXviuzvFv5y3e0awB/pQkBAD5O0hFFVaPRpuhhjE
+	INSov7pnyi5yEnjtvnFEhuoCEWitrtiXolRQ+0l9dMHB3XAveN9F+hCGpxpoJgQZ/jQX
+	BZmDXylCJfE+n/LK52qIdwJZ3YH7CqMAlaDLeKGLGrpp/s/LmZ0jVPf+zRKeJa2MbpNh
+	ZAYioiLvPrXQtmZwmHlFpK5r7wv5Ryb80MaRfI4XyV7qIdgyGlZ6vXVku8IaCPVpDHVm
+	M9qTC3r7jJpZmhqZ5wS0lxzeBwyOvxqvmgB9kh+wo7xirjhZOtDFGCbwLCZHRm+DAWlX
+	zLSQ==
+X-Gm-Message-State: AKS2vOxhzdO52oAZGlPVsffvGQovyLfQIx5tlG9Hb8yG4gsfGYT0VY/m
+	n951s9WhbeqhWmxu2ha+VOBsxnE98w==
+X-Received: by 10.80.180.188 with SMTP id w57mr18511694edd.42.1497901634204;
+	Mon, 19 Jun 2017 12:47:14 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.80.153.222 with HTTP; Mon, 19 Jun 2017 12:46:43 -0700 (PDT)
+In-Reply-To: <DB6PR0701MB1879D229F084DD8D85A55A22D3C40@DB6PR0701MB1879.eurprd07.prod.outlook.com>
+References: <DB6PR0701MB1879D229F084DD8D85A55A22D3C40@DB6PR0701MB1879.eurprd07.prod.outlook.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 19 Jun 2017 12:46:43 -0700
+Message-ID: <CAMKF1srsX4shLQ5pz1Yj69GzbJiSRyPZ3Bc5DOabosJHg=4T5w@mail.gmail.com>
+To: Thomas Thorne <Thomas.Thorne@net2edge.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Configure eth0 to come up with Link-Local IPv6 address only
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,392 +70,525 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Jun 2017 18:17:06 -0000
+X-List-Received-Date: Mon, 19 Jun 2017 19:47:23 -0000
+X-Groupsio-MsgNum: 36661
+Content-Type: multipart/related; boundary="94eb2c0edf74d143680552556638"
 
-Hello!
+--94eb2c0edf74d143680552556638
+Content-Type: multipart/alternative; boundary="94eb2c0edf74d143650552556637"
 
-This is a work-in-progress solution to issue 11197 within layerindex-web: adding asynchronous task execution.
-I used RabbitMQ and Celery. I'm still working with Paul Eggleton on adding install instructions for RabbitMQ to
-the site's Dockerfile.
+--94eb2c0edf74d143650552556637
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Previously, when a user submitted a layer, Django would synchronously send emails to users able to publish layers,
-such that if an email bounced or otherwise failed, the user submitting the layer would see an error.
-This patch sends those emails as asynchronous tasks, so any sending errors don't reach the user submitting a layer.
+On Mon, Jun 19, 2017 at 4:15 AM, Thomas Thorne <Thomas.Thorne@net2edge.com>
+wrote:
 
-Thanks for reviewing this! Here's a brief changelog:
+> Good afternoon,
+>
+>
+>
+> I am trying to generate an image for a Raspberry Pi 3 that includes a
+> `/etc/network/interfaces` file which causes the Pi to start with an =E2=
+=80=9Cup=E2=80=9D
+> eth0 connection with only an IPv6 link local address.
+>
 
-- updated readme to include RabbitMQ as a dependency
-- updated settings.py to include RABBIT_BROKER and RABBIT_BACKEND
-- added celery to requirements.txt
-- defined celery tasks in layerindex/tasks.py
-- separated layerindex/update#main into two functions: main (which parses sys.argv) and do_update (which accepts options as keyword arguments)
-- updated layerindex/views.py to use the send_email task to asynchronously message anyone able to publish layers when a new layer is submitted
----
- README               |   5 +-
- layerindex/tasks.py  |  31 +++++++++++
- layerindex/update.py | 143 +++++++++++++++++++++++++++------------------------
- layerindex/views.py  |   7 ++-
- requirements.txt     |   1 +
- settings.py          |   4 ++
- 6 files changed, 120 insertions(+), 71 deletions(-)
- create mode 100644 layerindex/tasks.py
+=E2=80=8BI get IPV4 address assigned automatically on my
+image (core-image-full-cmdline)=E2=80=8B
 
-diff --git a/README b/README
-index 62f739d..cfcc37f 100644
---- a/README
-+++ b/README
-@@ -14,6 +14,7 @@ In order to make use of this application you will need:
- * Python 3.4+
- * Django 1.8.x - tested with 1.8.17; newer versions may work, but
-   the application has not been tested with 1.9 or newer.
-+* RabbitMQ 3.6.x - tested with 3.6.10.
- * For production usage, a web server set up to host Django applications
-   (not needed for local-only testing)
- * A database supported by Django (SQLite, MySQL, etc.). Django takes
-@@ -41,7 +42,9 @@ Setup instructions:
- 1. Edit settings.py to specify a database, EMAIL_HOST, SECRET_KEY and
-    other settings specific to your installation. Ensure you set
-    LAYER_FETCH_DIR to an absolute path to a location with sufficient
--   space for fetching layer repositories.
-+   space for fetching layer repositories. Modify RABBIT_BROKER
-+   and RABBIT_BACKEND to reflect the settings used by your RabbitMQ
-+   server.
- 
- 2. Run the following commands within the layerindex-web directory to
-    initialise the database:
-diff --git a/layerindex/tasks.py b/layerindex/tasks.py
-new file mode 100644
-index 0000000..9bb4701
---- /dev/null
-+++ b/layerindex/tasks.py
-@@ -0,0 +1,31 @@
-+from celery import Celery
-+from django.core.mail import EmailMessage
-+import os
-+import time
-+
-+try:
-+  from update import do_update
-+except ImportError:
-+  from .update import do_update
-+
-+try:
-+  import settings
-+except ImportError:
-+  # not in a full django env, so settings is inaccessible.
-+  # setup django to access settings.
-+  from utils import setup_django
-+  setup_django()
-+  import settings
-+
-+tasks = Celery('layerindex',
-+    broker=settings.RABBIT_BROKER,
-+    backend=settings.RABBIT_BACKEND)
-+
-+@tasks.task
-+def update(**options):
-+  return do_update(**options)
-+
-+@tasks.task
-+def send_email(subject, text_content, from_email=settings.DEFAULT_FROM_EMAIL, to_emails=[]):
-+  msg = EmailMessage(subject, text_content, from_email, to_emails)
-+  msg.send()
-diff --git a/layerindex/update.py b/layerindex/update.py
-index d5c56cd..f1c5039 100755
---- a/layerindex/update.py
-+++ b/layerindex/update.py
-@@ -17,7 +17,11 @@ import subprocess
- import signal
- from datetime import datetime, timedelta
- from distutils.version import LooseVersion
--import utils
-+
-+try:
-+    import utils
-+except ImportError:
-+    from . import utils
- 
- import warnings
- warnings.filterwarnings("ignore", category=DeprecationWarning)
-@@ -71,73 +75,32 @@ def prepare_update_layer_command(options, branch, layer, updatedeps=False):
-     cmd = '%s update_layer.py -l %s -b %s' % (cmdprefix, layer.name, branch.name)
-     if updatedeps:
-         cmd += ' --update-dependencies'
--    if options.reload:
-+    if options.get('reload'):
-         cmd += ' --reload'
--    if options.fullreload:
-+    if options.get('fullreload'):
-         cmd += ' --fullreload'
--    if options.nocheckout:
-+    if options.get('nocheckout'):
-         cmd += ' --nocheckout'
--    if options.dryrun:
-+    if options.get('dryrun'):
-         cmd += ' -n'
--    if options.loglevel == logging.DEBUG:
-+    if options.get('loglevel') == logging.DEBUG:
-         cmd += ' -d'
--    elif options.loglevel == logging.ERROR:
-+    elif options.get('loglevel') == logging.ERROR:
-         cmd += ' -q'
-     return cmd
- 
--
--def main():
--    if LooseVersion(git.__version__) < '0.3.1':
--        logger.error("Version of GitPython is too old, please install GitPython (python-git) 0.3.1 or later in order to use this script")
--        sys.exit(1)
--
--
--    parser = optparse.OptionParser(
--        usage = """
--    %prog [options]""")
--
--    parser.add_option("-b", "--branch",
--            help = "Specify branch(es) to update (use commas to separate multiple). Default is all enabled branches.",
--            action="store", dest="branch", default='')
--    parser.add_option("-l", "--layer",
--            help = "Specify layers to update (use commas to separate multiple). Default is all published layers.",
--            action="store", dest="layers")
--    parser.add_option("-r", "--reload",
--            help = "Reload recipe data instead of updating since last update",
--            action="store_true", dest="reload")
--    parser.add_option("", "--fullreload",
--            help = "Discard existing recipe data and fetch it from scratch",
--            action="store_true", dest="fullreload")
--    parser.add_option("-n", "--dry-run",
--            help = "Don't write any data back to the database",
--            action="store_true", dest="dryrun")
--    parser.add_option("-x", "--nofetch",
--            help = "Don't fetch repositories",
--            action="store_true", dest="nofetch")
--    parser.add_option("", "--nocheckout",
--            help = "Don't check out branches",
--            action="store_true", dest="nocheckout")
--    parser.add_option("-d", "--debug",
--            help = "Enable debug output",
--            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
--    parser.add_option("-q", "--quiet",
--            help = "Hide all output except error messages",
--            action="store_const", const=logging.ERROR, dest="loglevel")
--
--    options, args = parser.parse_args(sys.argv)
--    if len(args) > 1:
--        logger.error('unexpected argument "%s"' % args[1])
--        parser.print_help()
--        sys.exit(1)
--
-+def do_update(**options):
-+    """
-+    Download layers and branches based on given metadata.
-+    """
-     utils.setup_django()
-     import settings
-     from layerindex.models import Branch, LayerItem, Update, LayerUpdate
- 
--    logger.setLevel(options.loglevel)
-+    logger.setLevel(options.get('loglevel', logging.INFO))
- 
--    if options.branch:
--        branches = options.branch.split(',')
-+    if options.get('branch'):
-+        branches = options['branch'].split(',')
-         for branch in branches:
-             if not utils.get_branch(branch):
-                 logger.error("Specified branch %s is not valid" % branch)
-@@ -151,10 +114,10 @@ def main():
-         logger.error("Please set LAYER_FETCH_DIR in settings.py")
-         sys.exit(1)
- 
--    if options.layers:
--        layerquery = LayerItem.objects.filter(classic=False).filter(name__in=options.layers.split(','))
-+    if options.get('layers'):
-+        layerquery = LayerItem.objects.filter(classic=False).filter(name__in=options['layers'].split(','))
-         if layerquery.count() == 0:
--            logger.error('No layers matching specified query "%s"' % options.layers)
-+            logger.error('No layers matching specified query "%s"' % options['layers'])
-             sys.exit(1)
-     else:
-         # We deliberately exclude status == 'X' ("no update") here
-@@ -174,11 +137,11 @@ def main():
- 
-     update = Update()
-     update.started = datetime.now()
--    if options.fullreload or options.reload:
-+    if options.get('fullreload') or options.get('reload'):
-         update.reload = True
-     else:
-         update.reload = False
--    if not options.dryrun:
-+    if not options.get('dryrun'):
-         update.save()
-     try:
-         lockfn = os.path.join(fetchdir, "layerindex.lock")
-@@ -189,7 +152,7 @@ def main():
-         try:
-             bitbakepath = os.path.join(fetchdir, 'bitbake')
- 
--            if not options.nofetch:
-+            if not options.get('nofetch'):
-                 # Fetch latest metadata from repositories
-                 for layer in layerquery:
-                     # Handle multiple layers in a single repo
-@@ -239,7 +202,7 @@ def main():
-                             layerupdate.started = datetime.now()
-                             layerupdate.finished = datetime.now()
-                             layerupdate.log = 'ERROR: fetch failed: %s' % errmsg
--                            if not options.dryrun:
-+                            if not options.get('dryrun'):
-                                 layerupdate.save()
-                         continue
- 
-@@ -260,7 +223,7 @@ def main():
-                         last_rev[layerbranch] = layerbranch.vcs_last_rev
-                         layerupdate.layerbranch = layerbranch
-                         layerupdate.log = output
--                        if not options.dryrun:
-+                        if not options.get('dryrun'):
-                             layerupdate.save()
- 
-                     if ret == 254:
-@@ -277,7 +240,7 @@ def main():
-                 for layer in layerquery:
-                     layerbranch = layer.get_layerbranch(branch)
-                     if layerbranch:
--                        if not (options.reload or options.fullreload):
-+                        if not (options.get('reload') or options.get('fullreload')):
-                             # Skip layers that did not change.
-                             layer_last_rev = last_rev.get(layerbranch, None)
-                             if layer_last_rev is None or layer_last_rev == layerbranch.vcs_last_rev:
-@@ -297,10 +260,10 @@ def main():
-     finally:
-         update.log = ''.join(listhandler.read())
-         update.finished = datetime.now()
--        if not options.dryrun:
-+        if not options.get('dryrun'):
-             update.save()
- 
--    if not options.dryrun:
-+    if not options.get('dryrun'):
-         # Purge old update records
-         update_purge_days = getattr(settings, 'UPDATE_PURGE_DAYS', 30)
-         Update.objects.filter(started__lte=datetime.now()-timedelta(days=update_purge_days)).delete()
-@@ -308,5 +271,53 @@ def main():
-     sys.exit(0)
- 
- 
-+def main():
-+    if LooseVersion(git.__version__) < '0.3.1':
-+        logger.error("Version of GitPython is too old, please install GitPython (python-git) 0.3.1 or later in order to use this script")
-+        sys.exit(1)
-+
-+
-+    parser = optparse.OptionParser(
-+        usage = """
-+    %prog [options]""")
-+
-+    parser.add_option("-b", "--branch",
-+            help = "Specify branch(es) to update (use commas to separate multiple). Default is all enabled branches.",
-+            action="store", dest="branch", default='')
-+    parser.add_option("-l", "--layer",
-+            help = "Specify layers to update (use commas to separate multiple). Default is all published layers.",
-+            action="store", dest="layers")
-+    parser.add_option("-r", "--reload",
-+            help = "Reload recipe data instead of updating since last update",
-+            action="store_true", dest="reload")
-+    parser.add_option("", "--fullreload",
-+            help = "Discard existing recipe data and fetch it from scratch",
-+            action="store_true", dest="fullreload")
-+    parser.add_option("-n", "--dry-run",
-+            help = "Don't write any data back to the database",
-+            action="store_true", dest="dryrun")
-+    parser.add_option("-x", "--nofetch",
-+            help = "Don't fetch repositories",
-+            action="store_true", dest="nofetch")
-+    parser.add_option("", "--nocheckout",
-+            help = "Don't check out branches",
-+            action="store_true", dest="nocheckout")
-+    parser.add_option("-d", "--debug",
-+            help = "Enable debug output",
-+            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
-+    parser.add_option("-q", "--quiet",
-+            help = "Hide all output except error messages",
-+            action="store_const", const=logging.ERROR, dest="loglevel")
-+
-+    options, args = parser.parse_args(sys.argv)
-+    if len(args) > 1:
-+        logger.error('unexpected argument "%s"' % args[1])
-+        parser.print_help()
-+        sys.exit(1)
-+
-+    options_dict = vars(options)
-+    do_update(**options_dict)
-+
-+
- if __name__ == "__main__":
-     main()
-diff --git a/layerindex/views.py b/layerindex/views.py
-index 65a536a..c7c20b8 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -19,7 +19,6 @@ from layerindex.forms import EditLayerForm, LayerMaintainerFormSet, EditNoteForm
- from django.db import transaction
- from django.contrib.auth.models import User, Permission
- from django.db.models import Q, Count, Sum
--from django.core.mail import EmailMessage
- from django.template.loader import get_template
- from django.template import Context
- from django.utils.decorators import method_decorator
-@@ -28,6 +27,7 @@ from django.contrib import messages
- from reversion.models import Revision
- from . import utils
- from . import simplesearch
-+from . import tasks
- import settings
- from django.dispatch import receiver
- import reversion
-@@ -163,7 +163,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
-                     # Send email
-                     plaintext = get_template('layerindex/submitemail.txt')
-                     perm = Permission.objects.get(codename='publish_layer')
--                    users = User.objects.filter(Q(groups__permissions=perm) | Q(user_permissions=perm) ).distinct()
-+                    users = User.objects.filter(Q(groups__permissions=perm) | Q(user_permissions=perm) | Q(is_superuser=True) ).distinct()
-                     for user in users:
-                         if user.first_name:
-                             user_name = user.first_name
-@@ -178,8 +178,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
-                         from_email = settings.SUBMIT_EMAIL_FROM
-                         to_email = user.email
-                         text_content = plaintext.render(d)
--                        msg = EmailMessage(subject, text_content, from_email, [to_email])
--                        msg.send()
-+                        tasks.send_email(subject, text_content, from_email, [to_email])
-                     return HttpResponseRedirect(reverse('submit_layer_thanks'))
-             messages.success(request, 'Layer %s saved successfully.' % layeritem.name)
-             if return_url:
-diff --git a/requirements.txt b/requirements.txt
-index f80e5d4..7cd741b 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -1,3 +1,4 @@
-+celery==3.1.25
- Django==1.8.17
- django-cors-headers==1.1.0
- django-nvd3==0.9.7
-diff --git a/settings.py b/settings.py
-index 0ecf90b..94d698b 100644
---- a/settings.py
-+++ b/settings.py
-@@ -217,3 +217,7 @@ UPDATE_PURGE_DAYS = 30
- # Settings for layer submission feature
- SUBMIT_EMAIL_FROM = 'noreply@example.com'
- SUBMIT_EMAIL_SUBJECT = 'OE Layerindex layer submission'
-+
-+# RabbitMQ settings
-+RABBIT_BROKER = 'amqp://'
-+RABBIT_BACKEND = 'rpc://'
--- 
-2.7.4
+=E2=80=8Btry with
+
+iface eth0 inet auto
+ =E2=80=8B
+
+>
+>
+> The Pi will be connected to an active switch on boot so the copper
+> ethernet interface will by electrically up.  So far I have found that
+> unless I set a static IPv4 address or connect to a network that uses DHCP
+> to handout IPv4 addresses by eth0 interface does not come up on boot.
+> Based on reading the interfaces man page I have attempted the following
+> variations I in the interfaces file:
+>
+>
+>
+> auto lo
+>
+> iface lo inet loopback
+>
+>
+>
+> auto eth0
+>
+> iface eth0 inet manual
+>
+> iface eth0 inet6 manual
+>
+>
+>
+>
+>
+> auto lo
+>
+> iface lo inet loopback
+>
+>
+>
+> auto eth0
+>
+> iface eth0 inet6 manual
+>
+>
+>
+>
+>
+> auto lo
+>
+> iface lo inet loopback
+>
+>
+>
+> auto eth0
+>
+> iface eth0 inet6 static
+>
+>
+>
+>
+>
+>
+>
+> auto lo
+>
+> iface lo inet loopback
+>
+>
+>
+> auto eth0
+>
+> iface eth0 inet6 manual
+>
+>                 autoconf 1
+>
+>
+>
+>
+>
+> auto lo
+>
+> iface lo inet loopback
+>
+>
+>
+> auto eth0
+>
+> iface eth0 inet manual
+>
+> iface eth0 inet6 manual
+>
+>                 autoconf 1
+>
+>
+>
+>
+>
+> auto lo
+>
+> iface lo inet loopback
+>
+>
+>
+> auto eth0
+>
+> iface eth0 inet manual
+>
+> iface eth0 inet6 auto
+>
+>
+>
+>
+>
+> auto lo
+>
+> iface lo inet loopback
+>
+>
+>
+> auto eth0
+>
+> #iface eth0 inet manual
+>
+> iface eth0 inet6 auto
+>
+>
+>
+>
+>
+>
+>
+> This could well be a more general problem with my understanding of how to
+> write IPv6 interface files than something specific to the Raspberry Pi
+> running a Yocto build.  It is much easier for me to send this email
+> question now though, before I start trying to mess around with the same
+> settings on my Ubunut PC to see if I can get the behaviour I want out of
+> that.
+>
+>
+>
+> Any advice or suggestions would be greatfully received.
+>
+>
+>
+> Regards,
+>
+>
+>
+> Thomas A. F. Thorne MEng. AUS MIET
+>
+> *Software Engineer*
+>
+>
+>
+> *Tel:* *+44 3450 130 030 <+44-3450-130-030>*
+>
+> *Email:* *Thomas.Thorne@Net2Edge.com <Thomas.Thorne@Net2Edge.com>*
+>
+> *Web:* *http://www.Net2Edge.com/ <http://www.net2edge.com/>*
+>
+>
+>
+> [image: Net2Edge Logo]
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--94eb2c0edf74d143650552556637
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
+e,monospace"><br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_q=
+uote">On Mon, Jun 19, 2017 at 4:15 AM, Thomas Thorne <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:Thomas.Thorne@net2edge.com" target=3D"_blank">Thomas.Thor=
+ne@net2edge.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex">
 
 
+
+
+
+<div lang=3D"EN-GB">
+<div class=3D"gmail-m_4349613782464571202WordSection1">
+<p class=3D"MsoNormal">Good afternoon,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I am trying to generate an image for a Raspberry Pi =
+3 that includes a `/etc/network/interfaces` file which causes the Pi to sta=
+rt with an =E2=80=9Cup=E2=80=9D eth0 connection with only an IPv6 link loca=
+l address.=C2=A0</p></div></div></blockquote><div><br></div><div><div class=
+=3D"gmail_default" style=3D"font-family:monospace,monospace">=E2=80=8BI get=
+ IPV4 address assigned automatically on my</div><div class=3D"gmail_default=
+" style=3D"font-family:monospace,monospace">image (core-image-full-cmdline)=
+=E2=80=8B</div><br></div><div class=3D"gmail_default" style=3D"font-family:=
+monospace,monospace">=E2=80=8Btry with</div><div class=3D"gmail_default" st=
+yle=3D"font-family:monospace,monospace"><br></div><div class=3D"gmail_defau=
+lt" style=3D"font-family:monospace,monospace"><span style=3D"font-size:12.8=
+px;font-family:arial,sans-serif">iface eth0 inet auto</span></div><div clas=
+s=3D"gmail_default" style=3D"font-family:monospace,monospace"><span style=
+=3D"font-size:12.8px;font-family:arial,sans-serif">=C2=A0</span>=E2=80=8B<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-G=
+B"><div class=3D"gmail-m_4349613782464571202WordSection1"><p class=3D"MsoNo=
+rmal">
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">The Pi will be connected to an active switch on boot=
+ so the copper ethernet interface will by electrically up.=C2=A0 So far I h=
+ave found that unless I set a static IPv4 address or connect to a network t=
+hat uses DHCP to handout IPv4 addresses
+ by eth0 interface does not come up on boot.=C2=A0 Based on reading the int=
+erfaces man page I have attempted the following variations I in the interfa=
+ces file:<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto lo <u></u><u></u></p>
+<p class=3D"MsoNormal">iface lo inet loopback<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto eth0<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet manual<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet6 manual<u></u><u></u></p>
+<div style=3D"border-top:none;border-right:none;border-left:none;border-bot=
+tom:1pt solid windowtext;padding:0cm 0cm 1pt">
+<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><u></u>=C2=A0<u></=
+u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto lo <u></u><u></u></p>
+<p class=3D"MsoNormal">iface lo inet loopback<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto eth0<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet6 manual<u></u><u></u></p>
+<div style=3D"border-top:none;border-right:none;border-left:none;border-bot=
+tom:1pt solid windowtext;padding:0cm 0cm 1pt">
+<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><u></u>=C2=A0<u></=
+u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto lo <u></u><u></u></p>
+<p class=3D"MsoNormal">iface lo inet loopback<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto eth0<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet6 static<u></u><u></u></p>
+<div style=3D"border-top:none;border-right:none;border-left:none;border-bot=
+tom:1pt solid windowtext;padding:0cm 0cm 1pt">
+<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><u></u>=C2=A0<u></=
+u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto lo <u></u><u></u></p>
+<p class=3D"MsoNormal">iface lo inet loopback<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto eth0<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet6 manual<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 autoconf 1<u></u><u></u></p>
+<div style=3D"border-top:none;border-right:none;border-left:none;border-bot=
+tom:1pt solid windowtext;padding:0cm 0cm 1pt">
+<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><u></u>=C2=A0<u></=
+u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto lo <u></u><u></u></p>
+<p class=3D"MsoNormal">iface lo inet loopback<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto eth0<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet manual<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet6 manual<u></u><u></u></p>
+<div style=3D"border-top:none;border-right:none;border-left:none;border-bot=
+tom:1pt solid windowtext;padding:0cm 0cm 1pt">
+<p class=3D"MsoNormal" style=3D"border:none;padding:0cm">=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 au=
+toconf 1<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><u></u>=C2=A0<u></=
+u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto lo <u></u><u></u></p>
+<p class=3D"MsoNormal">iface lo inet loopback<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto eth0<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet manual<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet6 auto<u></u><u></u></p>
+<div style=3D"border-top:none;border-right:none;border-left:none;border-bot=
+tom:1pt solid windowtext;padding:0cm 0cm 1pt">
+<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><u></u>=C2=A0<u></=
+u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto lo <u></u><u></u></p>
+<p class=3D"MsoNormal">iface lo inet loopback<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">auto eth0<u></u><u></u></p>
+<p class=3D"MsoNormal">#iface eth0 inet manual<u></u><u></u></p>
+<p class=3D"MsoNormal">iface eth0 inet6 auto<u></u><u></u></p>
+<div style=3D"border-top:none;border-right:none;border-left:none;border-bot=
+tom:1pt solid windowtext;padding:0cm 0cm 1pt">
+<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><u></u>=C2=A0<u></=
+u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">This could well be a more general problem with my un=
+derstanding of how to write IPv6 interface files than something specific to=
+ the Raspberry Pi running a Yocto build.=C2=A0 It is much easier for me to =
+send this email question now though, before
+ I start trying to mess around with the same settings on my Ubunut PC to se=
+e if I can get the behaviour I want out of that.=C2=A0
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Any advice or suggestions would be greatfully receiv=
+ed.=C2=A0 <u></u>
+<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Regards, <u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:rg=
+b(67,66,68)">Thomas A. F. Thorne MEng. AUS MIET<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:Arial,sans-serif;color=
+:rgb(67,66,68)">Software Engineer<u></u><u></u></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:rg=
+b(67,66,68)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:Arial,sans-serif;color=
+:rgb(67,66,68)">Tel:</span></b><span style=3D"font-family:Arial,sans-serif;=
+color:black">
+</span><b><span style=3D"font-family:Arial,sans-serif;color:rgb(32,140,166)=
+"><a href=3D"tel:+44-3450-130-030" target=3D"_blank"><span style=3D"color:r=
+gb(32,140,166);text-decoration:none">+44 3450 130 030</span></a><u></u><u><=
+/u></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:Arial,sans-serif;color=
+:rgb(67,66,68)">Email:</span></b><span style=3D"font-family:Arial,sans-seri=
+f;color:rgb(67,66,68)">
+</span><b><span style=3D"font-family:Arial,sans-serif;color:rgb(32,140,166)=
+"><a href=3D"mailto:Thomas.Thorne@Net2Edge.com" target=3D"_blank"><span sty=
+le=3D"color:rgb(32,140,166);text-decoration:none">Thomas.Thorne@Net2Edge.co=
+m</span></a></span></b><span style=3D"color:rgb(32,140,166)"><u></u><u></u>=
+</span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:Arial,sans-serif;color=
+:rgb(67,66,68)">Web:</span></b><span style=3D"font-family:Arial,sans-serif;=
+color:rgb(67,66,68)">
+</span><b><span style=3D"font-family:Arial,sans-serif;color:rgb(32,140,166)=
+"><a href=3D"http://www.net2edge.com/" target=3D"_blank"><span style=3D"col=
+or:rgb(32,140,166);text-decoration:none">http://www.Net2Edge.com/</span></a=
+></span></b><span><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:bl=
+ack"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><span style=3D"font-siz=
+e:7.5pt;font-family:Arial,sans-serif;color:rgb(34,22,43)"><img border=3D"0"=
+ width=3D"189" height=3D"51" style=3D"width: 1.9687in; height: 0.5312in;" i=
+d=3D"gmail-m_4349613782464571202Picture_x0020_1" src=3D"cid:image001.png@01=
+D2E8F3.D1EB2030" alt=3D"Net2Edge Logo"></span><span style=3D"color:rgb(67,6=
+6,68)"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div></div>
+
+--94eb2c0edf74d143650552556637--
+
+--94eb2c0edf74d143680552556638
+Content-Type: image/png; name="image001.png"
+Content-Disposition: inline; filename="image001.png"
+Content-Transfer-Encoding: base64
+Content-ID: <image001.png@01D2E8F3.D1EB2030>
+X-Attachment-Id: 148e532b8249c380_0.0.1
+
+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
+tnP/D6swSSaEGOOdAAAAAElFTkSuQmCC
+
+--94eb2c0edf74d143680552556638--
