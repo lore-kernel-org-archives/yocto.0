@@ -1,6 +1,6 @@
 Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0BDFFE00BC4; Mon, 19 Jun 2017 20:35:31 -0700 (PDT)
+	id 7CC27E00BC4; Mon, 19 Jun 2017 20:46:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,43 +19,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91B79E00B05
-	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 20:35:28 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id s66so20580536pfs.2
-	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 20:35:28 -0700 (PDT)
+	*      [209.85.192.174 listed in list.dnswl.org]
+Received: from mail-pf0-f174.google.com (mail-pf0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49BABE00B05
+	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 20:46:45 -0700 (PDT)
+Received: by mail-pf0-f174.google.com with SMTP id s66so63328095pfs.1
+	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 20:46:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language;
-	bh=GocCQOs2QD4+iHq4eHhqjDyXLMN7/2QpjQQxnAkcTKQ=;
-	b=rusCScHRq3yB+zUnQBzaDQNAnfrPrafhuwbHiY2U1joPrpjKZ/ec8d/evBlyHbRzuc
-	73ywBeLvdLm9ZzUfKMLQdIKfizUi2zZwXlFJMVgsJLjmddC157rHd/8VnhsfNAvkIF1u
-	dJ7t6VTfZhIBt96Ns4vpM4C+SRunWlLOS91jwr/BBe6bZF6xv08F3RijGRLCrJAUQ+8E
-	EeFuEn0uqM1QJHRd/RcY2ugSVT6m64R/tapCZaEMkqTWGVv0abbjw1tMdrsUXMGzaLUn
-	RHOie4dPGD7NU416VBXpLcYExp+uV8047xsisjMVuIXr1HwG9EkJjsiHvu3LYl3m2bDX
-	6xiQ==
+	bh=2vSLT+oz9wm3vgUWgbK+xgKPqIhIXqxMC1Cy62jEeC0=;
+	b=DZdlwy5YCfgR4x+X5dQWIIlQNCd0mTistDC5xKcEAoOtqTIcOPLwdFWjPFep8jSgU0
+	rbZFooKCAGFilI+pWNb9jszQIv+j7NZfxMiQ0bpsY6l5CxkMkU0sEldyHgwDi3fabFZk
+	Ka1S0LWMahrkp5JChy7lkSlJRNdczSoG0S1N3Kb3VPd9aDipPz6fHslC/N7JuM6uNN9M
+	W48elxrvoxaa8y12hr5NNBe0J9BtjexfLgjJIPl+6ITXbV23q+fAClblZ75Vd+j97sBq
+	yOKUnHjZp5jL5zEpxvlQbUIRrw8NqcZ/eK8H4cN3pbkCnNB9fP+Ho8s1TCuV7RmNLZ48
+	ilSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language;
-	bh=GocCQOs2QD4+iHq4eHhqjDyXLMN7/2QpjQQxnAkcTKQ=;
-	b=Zi53WtjAhrMYWqRCATCGr0cOa9DKwUy8cXAy4L0zW3/DhX+SQqo+zyL7Z65+pTqi6+
-	dBundVYbEIkYilfdDrq8WUs27PXRPv8Qum91cK9fIYbl0FrUh746JWb8XMY5ON0hU9yf
-	PAX7nasuLCsUG0Bo7W13Qm/c7fP1ks3ucItCHlWUeFu6CGqMRJxPNbXf6fpgLl0RexjB
-	rNOajtJu8SPklv61qEY6BQ6p9kMpQjQ9607fasddzSWuJ5j7IgP0Qd9pEgKesefsX2Rc
-	AnZa/WDOTxjy3iB6NauZM7IfO7g5LlN2aY2Fuxn3dGFT5ibjjSEcsNSIJGDoOhd7RErD
-	Nadw==
-X-Gm-Message-State: AKS2vOwaAXCh9M9+AcwOx94nzbzXrFAm5IVvmf6CXyyxaoKV+WpW+B7b
-	OMuDx8VrkNthmXbh
-X-Received: by 10.99.109.69 with SMTP id i66mr20457326pgc.187.1497929727554;
-	Mon, 19 Jun 2017 20:35:27 -0700 (PDT)
+	bh=2vSLT+oz9wm3vgUWgbK+xgKPqIhIXqxMC1Cy62jEeC0=;
+	b=U30KEPvv9aJY/NSx8HFR5b6iTUsDfa/0/3avyz3QhkYfmCWKG2uKvfontUUFoMrptZ
+	eY5KCPsOMQXmxV8R+zXiA5MVlhhCzqxKhUUdwvZfxMgsPtU1/w+el09LQHnBKu3r1oa+
+	f3CbuQJp7zh8HiFPHG+V8hVfZQwvnlp9Nwm9OlueTW2JJfVNpePf0oJqspL6hM5nj1tl
+	fhO/G6WiByYtfB5xV5t0y0SkvabOyffyirjCz6HwPnnXpf1nQrq6wnNWfrNriRc24jFt
+	nHRuSc1O2Q1/KBHqU+uUhq5x+0KMildGeipfirclunzMlnqJZ8OoNz1UUBxXOWcmnb/G
+	+Itg==
+X-Gm-Message-State: AKS2vOzPENW8msLdyJfK/tze0ikbhTvJWyxoz8AUd2tcxVksymPZtVjt
+	GbMxm548EZsj0WWF
+X-Received: by 10.99.6.145 with SMTP id 139mr14605670pgg.157.1497930405043;
+	Mon, 19 Jun 2017 20:46:45 -0700 (PDT)
 Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
 	[124.178.9.113]) by smtp.gmail.com with ESMTPSA id
-	17sm21019687pfn.84.2017.06.19.20.35.25
+	j27sm10815745pgn.63.2017.06.19.20.46.42
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 19 Jun 2017 20:35:27 -0700 (PDT)
+	Mon, 19 Jun 2017 20:46:44 -0700 (PDT)
 To: Khem Raj <raj.khem@gmail.com>
 References: <ed57e154-cbd7-176a-02fb-496c6f730d2a@gmail.com>
 	<CAMKF1sp9ESKxDiarsNTu89BXLpk8nBNZXefwYs-6dYHpVnBMFg@mail.gmail.com>
@@ -66,8 +66,8 @@ References: <ed57e154-cbd7-176a-02fb-496c6f730d2a@gmail.com>
 	<08efb082-02a8-7ff9-c5be-e6b4b09edea2@gmail.com>
 	<CAMKF1spe4TmYe5uE4ddcObCnMbk1usXhNg+=fZ1XrERduP0MAA@mail.gmail.com>
 From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <7b20702e-06e9-d468-dc6a-79d7357ac1e7@gmail.com>
-Date: Tue, 20 Jun 2017 11:35:23 +0800
+Message-ID: <10259d92-4277-21d6-e0e0-ca4949eb419e@gmail.com>
+Date: Tue, 20 Jun 2017 11:46:41 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.1.1
 MIME-Version: 1.0
@@ -85,22 +85,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jun 2017 03:35:31 -0000
+X-List-Received-Date: Tue, 20 Jun 2017 03:46:49 -0000
 Content-Type: multipart/alternative;
-	boundary="------------26168DCF8C691F42AA92017A"
+	boundary="------------AAEF250A545FC00ACEB45A4E"
 Content-Language: en-US
 
---------------26168DCF8C691F42AA92017A
+--------------AAEF250A545FC00ACEB45A4E
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-I've put meta == > linux-firmware, but stil doesn't work, probably a 
-hardware issue ?
+I got all the files needed, but now I get no response from the dongle 
+when I plug it,
 
-I'll post my debug log later on,
+Here's the files on the board :
+root@beaglebone:/lib/firmware/rtlwifi# ls
+rtl8188efw.bin           rtl8192eu_ap_wowlan.bin rtl8723bs_bt.bin
+rtl8188eufw.bin    rtl8192eu_nic.bin rtl8723bs_nic.bin
+rtl8192cfw.bin           rtl8192eu_wowlan.bin rtl8723bs_wowlan.bin
+rtl8192cfwU.bin          rtl8192sefw.bin rtl8723bu_ap_wowlan.bin
+rtl8192cfwU_B.bin        rtl8712u.bin rtl8723bu_nic.bin
+rtl8192cufw.bin          rtl8723aufw_A.bin rtl8723bu_wowlan.bin
+rtl8192cufw_A.bin        rtl8723aufw_B.bin rtl8723fw.bin
+rtl8192cufw_B.bin        rtl8723aufw_B_NoBT.bin rtl8723fw_B.bin
+rtl8192cufw_TMSC.bin     rtl8723befw.bin rtl8821aefw.bin
+rtl8192defw.bin          rtl8723befw_36.bin rtl8821aefw_29.bin
+rtl8192eefw.bin          rtl8723bs_ap_wowlan.bin rtl8821aefw_wowlan.bin
 
-I've checked that it can read *.bin on /lib/firmware, but still can not 
-initialize properly, don't know why yet.
 
 On 20/06/17 03:57, Khem Raj wrote:
 > On Sun, Jun 18, 2017 at 8:00 PM, Riko Ho <antonius.riko@gmail.com> wrote:
@@ -190,7 +200,7 @@ Riko Ho
 
 *
 
---------------26168DCF8C691F42AA92017A
+--------------AAEF250A545FC00ACEB45A4E
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -199,11 +209,34 @@ Content-Transfer-Encoding: 8bit
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    <p>I've put meta == &gt; linux-firmware, but stil doesn't work,
-      probably a hardware issue ?</p>
-    <p>I'll post my debug log later on,</p>
-    I've checked that it can read *.bin on /lib/firmware, but still can
-    not initialize properly, don't know why yet.<br>
+    <p>I got all the files needed, but now I get no response from the
+      dongle when I plug it, <br>
+      <br>
+      Here's the files on the board :<br>
+      root@beaglebone:/lib/firmware/rtlwifi#
+      ls                                       <br>
+      rtl8188efw.bin           rtl8192eu_ap_wowlan.bin 
+      rtl8723bs_bt.bin              <br>
+      rtl8188eufw.bin       <font size="+2">   rtl8192eu_nic.bin  </font>     
+      rtl8723bs_nic.bin             <br>
+      rtl8192cfw.bin           rtl8192eu_wowlan.bin    
+      rtl8723bs_wowlan.bin          <br>
+      rtl8192cfwU.bin          rtl8192sefw.bin         
+      rtl8723bu_ap_wowlan.bin       <br>
+      rtl8192cfwU_B.bin        rtl8712u.bin            
+      rtl8723bu_nic.bin             <br>
+      rtl8192cufw.bin          rtl8723aufw_A.bin       
+      rtl8723bu_wowlan.bin          <br>
+      rtl8192cufw_A.bin        rtl8723aufw_B.bin       
+      rtl8723fw.bin                 <br>
+      rtl8192cufw_B.bin        rtl8723aufw_B_NoBT.bin  
+      rtl8723fw_B.bin               <br>
+      rtl8192cufw_TMSC.bin     rtl8723befw.bin         
+      rtl8821aefw.bin               <br>
+      rtl8192defw.bin          rtl8723befw_36.bin      
+      rtl8821aefw_29.bin            <br>
+      rtl8192eefw.bin          rtl8723bs_ap_wowlan.bin 
+      rtl8821aefw_wowlan.bin  </p>
     <br>
     <div class="moz-cite-prefix">On 20/06/17 03:57, Khem Raj wrote:<br>
     </div>
@@ -318,4 +351,4 @@ yocto mailing list
   </body>
 </html>
 
---------------26168DCF8C691F42AA92017A--
+--------------AAEF250A545FC00ACEB45A4E--
