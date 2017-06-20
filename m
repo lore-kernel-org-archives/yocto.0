@@ -1,6 +1,6 @@
 Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B136E00BB6; Mon, 19 Jun 2017 20:32:44 -0700 (PDT)
+	id 0BDFFE00BC4; Mon, 19 Jun 2017 20:35:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (antonius.riko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,57 +17,63 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAFBEE00B05
-	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 20:32:40 -0700 (PDT)
-Received: by mail-pg0-f49.google.com with SMTP id u62so37708992pgb.3
-	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 20:32:40 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91B79E00B05
+	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 20:35:28 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id s66so20580536pfs.2
+	for <yocto@yoctoproject.org>; Mon, 19 Jun 2017 20:35:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language;
-	bh=TdTWdihd6RBk7+1u6NwB6i/VKQnC+8UyIZ7CR0HOJ5g=;
-	b=eC6G/bTtegS6bRRW2AKnY3Xs6w5NyeRUhn2SgYL5/zZSItzVTbvCSkCD8iFvqqVnjA
-	lZ0pe3SNIRM4t1kC+zGQYvNawNqMVvJjgQDdSa3r/XvHJ43Gy9SYv3kr7jDk7Qzk6Eeg
-	XIL5Z17upma3owpV9Qogsy0DC5RmcZwmYcPlKa1DZFsV9reFJGvzeVzH0f5bmRzlRytD
-	F696MIXlBuSWHHxdckmt6yPmATF1lQxfS6yo+/QS0b4xCbh4l5owlqJLG+H6vWSM8nw9
-	tYqiOjMoNUanCvs8HperGZScOix9cQEXALIrzIbM8X4ZbW7MyYsLKs9ryyFzXdicfdLd
-	peUQ==
+	bh=GocCQOs2QD4+iHq4eHhqjDyXLMN7/2QpjQQxnAkcTKQ=;
+	b=rusCScHRq3yB+zUnQBzaDQNAnfrPrafhuwbHiY2U1joPrpjKZ/ec8d/evBlyHbRzuc
+	73ywBeLvdLm9ZzUfKMLQdIKfizUi2zZwXlFJMVgsJLjmddC157rHd/8VnhsfNAvkIF1u
+	dJ7t6VTfZhIBt96Ns4vpM4C+SRunWlLOS91jwr/BBe6bZF6xv08F3RijGRLCrJAUQ+8E
+	EeFuEn0uqM1QJHRd/RcY2ugSVT6m64R/tapCZaEMkqTWGVv0abbjw1tMdrsUXMGzaLUn
+	RHOie4dPGD7NU416VBXpLcYExp+uV8047xsisjMVuIXr1HwG9EkJjsiHvu3LYl3m2bDX
+	6xiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language;
-	bh=TdTWdihd6RBk7+1u6NwB6i/VKQnC+8UyIZ7CR0HOJ5g=;
-	b=I3pHjad7TWPNac0K/P4bNYpCvDTAFta4SaaZ5z3edHxIcXo6FNnL9MbQylxIp4ky1C
-	H5W4HILtOXNa3qqGfBPCXglNq+qJWi4Xs1Zoi3lmm0CCgc4CRgQelCPlAHKtlSJCygnQ
-	iGQHYAAaB7/0q6LL4rt6Aw11PJpmDn3XBhlrtwcL+Ib6JmrzfXITIb4EEhS+SsFVnH+V
-	bdmww+c3p39ALz0sIqvGDS82i49ub7WD8wHw+TwAcUb427uHug6pPwQIjVrZ6AtH+Rz3
-	0C5bL6JhnDev1HM2IHTZlWm8syGQtRa4X6yGGWxaNobDI+evW/fbBoOtjgBvAMUnLnLu
-	N/NQ==
-X-Gm-Message-State: AKS2vOwumlZrcSQkiprE7WQ2txm8cjXFGiMOF0iJw6EZr2EMVKT2Mq7F
-	aWhxz8GEk/XFpkdz
-X-Received: by 10.99.165.17 with SMTP id n17mr27864856pgf.163.1497929560338;
-	Mon, 19 Jun 2017 20:32:40 -0700 (PDT)
+	bh=GocCQOs2QD4+iHq4eHhqjDyXLMN7/2QpjQQxnAkcTKQ=;
+	b=Zi53WtjAhrMYWqRCATCGr0cOa9DKwUy8cXAy4L0zW3/DhX+SQqo+zyL7Z65+pTqi6+
+	dBundVYbEIkYilfdDrq8WUs27PXRPv8Qum91cK9fIYbl0FrUh746JWb8XMY5ON0hU9yf
+	PAX7nasuLCsUG0Bo7W13Qm/c7fP1ks3ucItCHlWUeFu6CGqMRJxPNbXf6fpgLl0RexjB
+	rNOajtJu8SPklv61qEY6BQ6p9kMpQjQ9607fasddzSWuJ5j7IgP0Qd9pEgKesefsX2Rc
+	AnZa/WDOTxjy3iB6NauZM7IfO7g5LlN2aY2Fuxn3dGFT5ibjjSEcsNSIJGDoOhd7RErD
+	Nadw==
+X-Gm-Message-State: AKS2vOwaAXCh9M9+AcwOx94nzbzXrFAm5IVvmf6CXyyxaoKV+WpW+B7b
+	OMuDx8VrkNthmXbh
+X-Received: by 10.99.109.69 with SMTP id i66mr20457326pgc.187.1497929727554;
+	Mon, 19 Jun 2017 20:35:27 -0700 (PDT)
 Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
 	[124.178.9.113]) by smtp.gmail.com with ESMTPSA id
-	i14sm23516732pgn.14.2017.06.19.20.32.36
+	17sm21019687pfn.84.2017.06.19.20.35.25
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 19 Jun 2017 20:32:39 -0700 (PDT)
-To: Khem Raj <raj.khem@gmail.com>,
-	=?UTF-8?Q?Jacobo_Aragunde_P=c3=a9rez?= <jaragunde@igalia.com>
-References: <mailman.66247.1497786545.15860.yocto@yoctoproject.org>
-	<1497809434.2788.77.camel@genivi.org>
-	<7ee7dd60-a45d-350d-b213-0917fe6e32cb@igalia.com>
-	<CAMKF1sr-5mxP2_WCXtvnfzMt4OgUAf_V2ZhLQFgQAqGMbPDovQ@mail.gmail.com>
+	Mon, 19 Jun 2017 20:35:27 -0700 (PDT)
+To: Khem Raj <raj.khem@gmail.com>
+References: <ed57e154-cbd7-176a-02fb-496c6f730d2a@gmail.com>
+	<CAMKF1sp9ESKxDiarsNTu89BXLpk8nBNZXefwYs-6dYHpVnBMFg@mail.gmail.com>
+	<1bfe90cd-590a-47e6-95d1-3ad77ec3a46b@gmail.com>
+	<CAAfyv348RhuesS-suUGnVgquxVX0Gv2625Qd1Lw5NJH6FMXMQQ@mail.gmail.com>
+	<c0c0b79d-12c0-27b3-1ef9-f3798c95e02e@gmail.com>
+	<CA+chaQcwEW7=Wmrk0LYN0ubfvwxTNZQnCDh=wwWRWmSaXgWJdg@mail.gmail.com>
+	<08efb082-02a8-7ff9-c5be-e6b4b09edea2@gmail.com>
+	<CAMKF1spe4TmYe5uE4ddcObCnMbk1usXhNg+=fZ1XrERduP0MAA@mail.gmail.com>
 From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <dd9e6cf6-dcd3-9e90-2275-323b5c9fd0b6@gmail.com>
-Date: Tue, 20 Jun 2017 11:32:34 +0800
+Message-ID: <7b20702e-06e9-d468-dc6a-79d7357ac1e7@gmail.com>
+Date: Tue, 20 Jun 2017 11:35:23 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.1.1
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1sr-5mxP2_WCXtvnfzMt4OgUAf_V2ZhLQFgQAqGMbPDovQ@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gunnar Andersson <gandersson@genivi.org>
-Subject: Re: Compiling meta-browser ==>chromium ? cleaning ?
+In-Reply-To: <CAMKF1spe4TmYe5uE4ddcObCnMbk1usXhNg+=fZ1XrERduP0MAA@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RTL8192EU rev B (SMIC) ==> rtl8192eu_nic.bin ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,55 +85,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jun 2017 03:32:44 -0000
+X-List-Received-Date: Tue, 20 Jun 2017 03:35:31 -0000
 Content-Type: multipart/alternative;
-	boundary="------------7EFBD40B915741BE9C28AB45"
+	boundary="------------26168DCF8C691F42AA92017A"
 Content-Language: en-US
 
---------------7EFBD40B915741BE9C28AB45
+--------------26168DCF8C691F42AA92017A
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-My memory is 8Gb and swap 8Gb, 8 cores i7, may be a homemade cluster can 
-help ?
+I've put meta == > linux-firmware, but stil doesn't work, probably a 
+hardware issue ?
 
-I compiled firefox and it worked well, but still wondering why chromium 
-didn't work.
+I'll post my debug log later on,
 
+I've checked that it can read *.bin on /lib/firmware, but still can not 
+initialize properly, don't know why yet.
 
-On 20/06/17 04:01, Khem Raj wrote:
-> On Mon, Jun 19, 2017 at 7:21 AM, Jacobo Aragunde Pérez
-> <jaragunde@igalia.com> wrote:
->> On 18/06/17 20:10, Gunnar Andersson wrote:
->>> Riko Ho <antonius.riko@gmail.com> wrote:
->>>
->>>> Hello Everyone,
->>>>
->>>> I tried to compile chromium but never succeeded, took me already 12
->>>> hours and stopped on 99%, I used bitbake for doing it,
->>> Not sure what would cause it to just stop and it could have been some
->>> temporary glitch?   Maybe you want to provide some logs of your build if
->>> Martin's reference does not help.
->>>
->> Just a heads-up, if it stopped at 99% it probably was in the linking
->> phase (you can check the logs under
->> tmp/work/$arch/chromium-wayland/$version/temp/log.do_compile to be
->> certain). This phase has a very high RAM demand, you could even need to
->> temporarily increase your swap space to go past that point.
+On 20/06/17 03:57, Khem Raj wrote:
+> On Sun, Jun 18, 2017 at 8:00 PM, Riko Ho <antonius.riko@gmail.com> wrote:
+>> Hello Everyone,
 >>
-> linker takes a whole lot of memory here, if you have < 8G of RAM
-> its likely to fail with out of memory errors. Can you check your dmesg
-> and see if there were such errors in there
+>> How can I obtain : rtl8192eu_nic.bin?
+>>
+>> I got this message :
+>>
+>> RTL8192EU rev B (SMIC) 2T2R, TX queues 3, WiFi=1, BT=0, GPS=0, HI PA=0
+>> usb 1-1: RTL8192EU MAC: 00:0b:81:a2:a5:60
+>> usb 1-1: rtl8xxxu: Loading firmware rtlwifi/rtl8192eu_nic.bin
+>> usb 1-1: Direct firmware load for rtlwifi/rtl8192eu_nic.bin failed with
+>> error -2
+>> usb 1-1: request_firmware(rtlwifi/rtl8192eu_nic.bin) failed
+>>
+> you probably need to add the nonfree firmware bits something like this
 >
->> Best,
+> https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+>
+> and
+>
+> https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/rtl8192cu/rtl8192cu_4.0.2_9000.bb
+>
+> might help
+>
+>> Thanks,
+>>
+>> On 18/06/17 15:49, Martin Jansa wrote:
+>>
+>> You didn't say which versions you're using.
+>>
+>> If you're using latest oe-core with gcc7 then you will need v3 version of
+>> this change:
+>> http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html
+>> I'll send it later today.
+>>
+>>> And how can I clean after building it ? It took about 70Gb of my drive
+>> Like any other recipe:
+>> bitbake -c clean foo
+>>
+>> On Sun, Jun 18, 2017 at 1:41 AM, Riko Ho <antonius.riko@gmail.com> wrote:
+>>> Hello Everyone,
+>>>
+>>> I tried to compile chromium but never succeeded, took me already 12 hours
+>>> and stopped on 99%,
+>>> I used bitbake for doing it,
+>>>
+>>> Is chromium not compatible with arm CPU ? it was working with X86_64
+>>> before.
+>>> And how can I clean after building it ? It took about 70Gb of my drive
+>>>
+>>> Thanks
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
 >> --
->> Jacobo Aragunde
->> Software Engineer at Igalia
+>>
+>> /*******/
+>> Sent by Ubuntu LTS 16.04,
+>> 谢谢,
+>> Regards,
+>> Riko Ho
+>> /*******/
+>>
+>>
 >> --
 >> _______________________________________________
 >> yocto mailing list
 >> yocto@yoctoproject.org
 >> https://lists.yoctoproject.org/listinfo/yocto
+>>
 
 -- 
 *
@@ -144,7 +190,7 @@ Riko Ho
 
 *
 
---------------7EFBD40B915741BE9C28AB45
+--------------26168DCF8C691F42AA92017A
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -153,66 +199,108 @@ Content-Transfer-Encoding: 8bit
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    <p>My memory is 8Gb and swap 8Gb, 8 cores i7, may be a homemade
-      cluster can help ?</p>
-    <p>I compiled firefox and it worked well, but still wondering why
-      chromium didn't work.<br>
-    </p>
+    <p>I've put meta == &gt; linux-firmware, but stil doesn't work,
+      probably a hardware issue ?</p>
+    <p>I'll post my debug log later on,</p>
+    I've checked that it can read *.bin on /lib/firmware, but still can
+    not initialize properly, don't know why yet.<br>
     <br>
-    <div class="moz-cite-prefix">On 20/06/17 04:01, Khem Raj wrote:<br>
+    <div class="moz-cite-prefix">On 20/06/17 03:57, Khem Raj wrote:<br>
     </div>
     <blockquote type="cite"
-cite="mid:CAMKF1sr-5mxP2_WCXtvnfzMt4OgUAf_V2ZhLQFgQAqGMbPDovQ@mail.gmail.com">
-      <pre wrap="">On Mon, Jun 19, 2017 at 7:21 AM, Jacobo Aragunde Pérez
-<a class="moz-txt-link-rfc2396E" href="mailto:jaragunde@igalia.com">&lt;jaragunde@igalia.com&gt;</a> wrote:
+cite="mid:CAMKF1spe4TmYe5uE4ddcObCnMbk1usXhNg+=fZ1XrERduP0MAA@mail.gmail.com">
+      <pre wrap="">On Sun, Jun 18, 2017 at 8:00 PM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
 </pre>
       <blockquote type="cite">
-        <pre wrap="">On 18/06/17 20:10, Gunnar Andersson wrote:
-</pre>
-        <blockquote type="cite">
-          <pre wrap="">
-Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+        <pre wrap="">Hello Everyone,
 
-</pre>
-          <blockquote type="cite">
-            <pre wrap="">Hello Everyone,
+How can I obtain : rtl8192eu_nic.bin?
 
-I tried to compile chromium but never succeeded, took me already 12
-hours and stopped on 99%, I used bitbake for doing it,
-</pre>
-          </blockquote>
-          <pre wrap="">
-Not sure what would cause it to just stop and it could have been some
-temporary glitch?   Maybe you want to provide some logs of your build if
-Martin's reference does not help.
+I got this message :
 
-</pre>
-        </blockquote>
-        <pre wrap="">
-Just a heads-up, if it stopped at 99% it probably was in the linking
-phase (you can check the logs under
-tmp/work/$arch/chromium-wayland/$version/temp/log.do_compile to be
-certain). This phase has a very high RAM demand, you could even need to
-temporarily increase your swap space to go past that point.
+RTL8192EU rev B (SMIC) 2T2R, TX queues 3, WiFi=1, BT=0, GPS=0, HI PA=0
+usb 1-1: RTL8192EU MAC: 00:0b:81:a2:a5:60
+usb 1-1: rtl8xxxu: Loading firmware rtlwifi/rtl8192eu_nic.bin
+usb 1-1: Direct firmware load for rtlwifi/rtl8192eu_nic.bin failed with
+error -2
+usb 1-1: request_firmware(rtlwifi/rtl8192eu_nic.bin) failed
 
 </pre>
       </blockquote>
       <pre wrap="">
-linker takes a whole lot of memory here, if you have &lt; 8G of RAM
-its likely to fail with out of memory errors. Can you check your dmesg
-and see if there were such errors in there
+you probably need to add the nonfree firmware bits something like this
+
+<a class="moz-txt-link-freetext" href="https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend">https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend</a>
+
+and
+
+<a class="moz-txt-link-freetext" href="https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/rtl8192cu/rtl8192cu_4.0.2_9000.bb">https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/rtl8192cu/rtl8192cu_4.0.2_9000.bb</a>
+
+might help
 
 </pre>
       <blockquote type="cite">
-        <pre wrap="">Best,
---
-Jacobo Aragunde
-Software Engineer at Igalia
+        <pre wrap="">Thanks,
+
+On 18/06/17 15:49, Martin Jansa wrote:
+
+You didn't say which versions you're using.
+
+If you're using latest oe-core with gcc7 then you will need v3 version of
+this change:
+<a class="moz-txt-link-freetext" href="http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html">http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html</a>
+I'll send it later today.
+
+</pre>
+        <blockquote type="cite">
+          <pre wrap="">And how can I clean after building it ? It took about 70Gb of my drive
+</pre>
+        </blockquote>
+        <pre wrap="">
+Like any other recipe:
+bitbake -c clean foo
+
+On Sun, Jun 18, 2017 at 1:41 AM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+</pre>
+        <blockquote type="cite">
+          <pre wrap="">
+Hello Everyone,
+
+I tried to compile chromium but never succeeded, took me already 12 hours
+and stopped on 99%,
+I used bitbake for doing it,
+
+Is chromium not compatible with arm CPU ? it was working with X86_64
+before.
+And how can I clean after building it ? It took about 70Gb of my drive
+
+Thanks
 --
 _______________________________________________
 yocto mailing list
 <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
 <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+        </blockquote>
+        <pre wrap="">
+
+
+--
+
+/*******/
+Sent by Ubuntu LTS 16.04,
+谢谢,
+Regards,
+Riko Ho
+/*******/
+
+
+--
+_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+
 </pre>
       </blockquote>
     </blockquote>
@@ -230,4 +318,4 @@ yocto mailing list
   </body>
 </html>
 
---------------7EFBD40B915741BE9C28AB45--
+--------------26168DCF8C691F42AA92017A--
