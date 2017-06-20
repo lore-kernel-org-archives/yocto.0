@@ -1,57 +1,64 @@
-Return-Path: <charmi.suchak@volansystech.com>
+Return-Path: <nathan@nathanrossi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9169BE00B05; Tue, 20 Jun 2017 03:51:13 -0700 (PDT)
+	id 537EEE00B76; Tue, 20 Jun 2017 05:08:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.213.193 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.43 listed in list.dnswl.org]
-Received: from mail-it0-f43.google.com (mail-it0-f43.google.com
-	[209.85.214.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E986FE009A0
-	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 03:51:10 -0700 (PDT)
-Received: by mail-it0-f43.google.com with SMTP id g184so16927733ita.0
-	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 03:51:10 -0700 (PDT)
+Received: from mail-yb0-f193.google.com (mail-yb0-f193.google.com
+	[209.85.213.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D50BEE009A0
+	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 05:08:11 -0700 (PDT)
+Received: by mail-yb0-f193.google.com with SMTP id j65so6168868ybj.3
+	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 05:08:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=volansystech-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=oc+fJCp0g6oXHeeEnY9pJagBCfq7HDLYCYdIjTvS6q4=;
-	b=e5j/aulVSn23nwfLwLv2G4A822Bvucz8SCBrFEPl1eaHmcylLSX6xbH66Xrrcs670t
-	NDfm5AxOaJjzRcJaLZ0jaxb2O/OQsdjPc8FiMx4AOTKARvZKZHDdweco+WRV1nXzRr5M
-	vouWVbYRNzcA+5UWdq7AIypqtYzyiza3u+Sdpmawn/jmKFLBIXtlxBQ9VAF/fjYUPMHQ
-	iU4ODCdS+x2CNDblHSp2E+0dwGSwqMw8t+THN1SH7mbqN5GotpjNx1OmFwYFItEPZpkR
-	n70tb+jGhwbauW5Z0TeukKSeaTAgByqu3TidFvBdNma+Ypy8rk7Vr42c8Z/DmVtxrQNV
-	ZX6g==
+	d=nathanrossi.com; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=OJbW2qOgwl2Hm7xdBO3JZM6takrT+Oyb4pVR1B7n0U0=;
+	b=IA/wBaaMv9tWR9wtqgSXBxX5qLGAxDAS66rcmtc9FJvxd0SKJOX81A11a0hhZ8EgVH
+	klsWdoEM8+KvVpb/USxJEnhHhHsxj1G3K1q3+NEialciJLQR4Gx2X1Pi24nuDQWibbr9
+	F7GjZk0g34lE8xqhd1l+gw5grQmUPT+KIZ4tDRBC8A+457CRqO94RsHlqiNB/jxZSKsl
+	1iUDseS3WA9y3YoZv+f/8BrVhXX2pit9laaQZieJVGLpwyLY/1pcOs0KIlHhGtRDidwu
+	yIG2XbngsEnAZnzbPnBpwG8HSlXEZw2QAwnfs3fMoZNLkR3t18BhVxuvsz+MbhASuMME
+	itFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=oc+fJCp0g6oXHeeEnY9pJagBCfq7HDLYCYdIjTvS6q4=;
-	b=m9lY3DeiCg26xU+cWA3y1rJ+liMtuKpy6YS+aot0GGdVV+UVSkbYqxM8HogWt3nyxT
-	e18SLjdhHfOhLzdyjhd0r1o05IBqXdCntvczHletNzHn6+W6Hk7ce9i+a28i6T3oUO2K
-	7lS2YxhCb+xn8YRrSMSpkk3KbBr2SSVuZQQktRaSJJQ9v43SwGi7B2Oc9elM9GUSvJ17
-	MbrS5eSBl3A3srBs95/hVM5JIaL0k6NSMVeTF2UDsvAYyXknENDOryAg4pm7xlwpoAww
-	P9PoCf1crnVWDYs9C01nOt+2bU2i//xcdZdBMxQIXMIk3UXOV0qG5lHq7XWshRdsqaYT
-	ongA==
-X-Gm-Message-State: AKS2vOzcZRLoxYHuMdY/hO8zPHKKr7afODDTOGIm8zJ7xy+Q9hIwoOfI
-	bnwRvLA2sbx3NgAAfR8pjaTGlrAnOMxK6TA=
-X-Received: by 10.36.46.210 with SMTP id i201mr2849971ita.77.1497955869053;
-	Tue, 20 Jun 2017 03:51:09 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=OJbW2qOgwl2Hm7xdBO3JZM6takrT+Oyb4pVR1B7n0U0=;
+	b=kbK2UIY+0iqR3RkFBGUQAD7Vf9cXnquQ9gx7IL2wn7SYVx4MQCXl6d24pQAeXGvHoo
+	6mgzjKv0+VvUf9Ww38poNp8qTOLc2gEO8/+DGlD9UTLrg7hQFUjNDHZngb56ylSJ03P3
+	R7xeh4xnONAHsKsBQLkbG/54O/i3PGi7OOLuUYovNgx4v0CVVxfOqTzix+bSKxhuTpgZ
+	Nh5T0P2CcsK/LytOvS10m6P49xKDlPzTau4IBv6wNpouFOXJpLmO/UBs5hy/A39LxZCr
+	wBFnZ/Wababsj4biqqzTH2ZSY+4m6c9xOJ3GA4C+pYSTEHr76CFRwZd79J58JjnWnKT4
+	z7/A==
+X-Gm-Message-State: AKS2vOxvx4rJtITVswm9LARl+0NRGPK6tGX0tq6we4ERrTjzkfmtyYfx
+	O3UJlYAWvj/7Y/3F/XPY4oaN84yJT2yv
+X-Received: by 10.37.163.166 with SMTP id e35mr22498462ybi.74.1497960491050;
+	Tue, 20 Jun 2017 05:08:11 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.79.124.76 with HTTP; Tue, 20 Jun 2017 03:51:08 -0700 (PDT)
-From: Charmi Suchak <charmi.suchak@volansystech.com>
-Date: Tue, 20 Jun 2017 16:21:08 +0530
-Message-ID: <CAAGWnH2PSjSAVwF4EeREG482T-fU136VSdPjeNP5j-g01zZdkQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Errors while building imx6qsabresd using fsl-community-bsp repo
+Received: by 10.37.204.196 with HTTP; Tue, 20 Jun 2017 05:08:10 -0700 (PDT)
+In-Reply-To: <617def0d-4e2a-0fdf-27f7-8cfc52b899a8@windriver.com>
+References: <20170619134545.16674-1-nathan@nathanrossi.com>
+	<617def0d-4e2a-0fdf-27f7-8cfc52b899a8@windriver.com>
+From: Nathan Rossi <nathan@nathanrossi.com>
+Date: Tue, 20 Jun 2017 22:08:10 +1000
+Message-ID: <CA+aJhH0MS_qp+HRwy0H4B_2FpkXSnBVuPZFfh7=cDhWneQjuWg@mail.gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [prelink-cross][PATCH] src/rtld: Add MicroBlaze support based on glibc-2.24
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,278 +70,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jun 2017 10:51:13 -0000
-Content-Type: multipart/alternative; boundary="001a114a9b087728e7055262071e"
-
---001a114a9b087728e7055262071e
+X-List-Received-Date: Tue, 20 Jun 2017 12:08:14 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On 20 June 2017 at 00:20, Mark Hatle <mark.hatle@windriver.com> wrote:
+> I've merged this to the cross_prelink_staging (and master_staging, even though
+> it's a no-op there).  The change seems fairly obvious to me.
+>
+> Can you verify it is working properly as merged into cross_prelink_staging, then
+> I'll move it to the full cross_prelink and master.
 
-I am new to yocto training and I am trying to build a linux for imx series
-target from NXP. I got the bsp layer along with poky using the following:
+Tested the cross_prelink_staging branch and verified that it behaves
+as expected.
 
-repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b
-daisy
-repo sync
+Sorry I forgot to add the ChangeLog entry. However when you added it
+you used 2016 for the year.
 
-Now when I try to build core-image-minimal I get the following errors:
+On a side note, once merged into the cross_prelink branch do you see
+any issues with updating the SRCREV in oe-core?
 
-Parsing recipes: 100%
-|##########################################################################=
-##############################|
-Time: 00:01:23
-Parsing of 1398 .bb files complete (0 cached, 1398 parsed). 1826 targets,
-101 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
+Thanks,
+Nathan
 
-Build Configuration:
-BB_VERSION        =3D "1.22.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "Ubuntu-14.04"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "imx6qsabresd"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.6.3"
-TUNE_FEATURES     =3D "armv7a vfp neon callconvention-hard cortexa9"
-TARGET_FPU        =3D "vfp-neon"
-meta
-meta-yocto        =3D "(nobranch):39ec0738d4bdc566eca2724dc35c557955042242"
-meta-oe           =3D "(nobranch):d3d14d3fcca7fcde362cf0b31411dc4eea6d20aa"
-meta-fsl-arm      =3D "(nobranch):0c4de80867c3ab4e9682dd7802d3fd907d1e1a23"
-meta-fsl-arm-extra =3D "(nobranch):c95f3f8b5b347f1b3e77d2d11063207ddb7dc5ec=
-"
-meta-fsl-demos    =3D "(nobranch):f141c7d1158b8addbd6f1ed047a1b47c2ed85f8f"
+>
+> --Mark
+>
+> On 6/19/17 8:45 AM, Nathan Rossi wrote:
+>> Add definitions/config to support MicroBlaze, using glibc-2.24 as
+>> reference.
+>>
+>> Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+>> ---
+>>  src/rtld/dl-tls.c |  5 +++++
+>>  src/rtld/rtld.c   | 12 ++++++++++++
+>>  2 files changed, 17 insertions(+)
+>>
+>> diff --git a/src/rtld/dl-tls.c b/src/rtld/dl-tls.c
+>> index 8b972ff126..2da6bc5c66 100644
+>> --- a/src/rtld/dl-tls.c
+>> +++ b/src/rtld/dl-tls.c
+>> @@ -133,6 +133,11 @@ rtld_determine_tlsoffsets (int e_machine, struct r_scope_elem *search_list)
+>>        tls_tcb_size = 0;
+>>        break;
+>>
+>> +    case EM_MICROBLAZE:
+>> +      tls_dtv_at_tp = 1;
+>> +      tls_tcb_size = 8;
+>> +      break;
+>> +
+>>      default:
+>>        /* Hope there's no TLS!  */
+>>        for (i = 0; i < search_list->r_nlist; i++)
+>> diff --git a/src/rtld/rtld.c b/src/rtld/rtld.c
+>> index 8d7d760a57..3196981247 100644
+>> --- a/src/rtld/rtld.c
+>> +++ b/src/rtld/rtld.c
+>> @@ -215,6 +215,15 @@ parse_opt (int key, char *arg, struct argp_state *state)
+>>     | (((type) == R_NIOS2_COPY) * ELF_RTYPE_CLASS_COPY)          \
+>>     | (((type) == R_NIOS2_GLOB_DAT) * ELF_RTYPE_CLASS_EXTERN_PROTECTED_DATA(EM_ALTERA_NIOS2)))
+>>
+>> +/* From glibc-2.24: sysdeps/microblaze/dl-machine.h */
+>> +# define microblaze_elf_machine_type_class(type) \
+>> +  (((type) == R_MICROBLAZE_JUMP_SLOT || \
+>> +    (type) == R_MICROBLAZE_TLSDTPREL32 || \
+>> +    (type) == R_MICROBLAZE_TLSDTPMOD32 || \
+>> +    (type) == R_MICROBLAZE_TLSTPREL32) \
+>> +    * ELF_RTYPE_CLASS_PLT \
+>> +   | ((type) == R_MICROBLAZE_COPY) * ELF_RTYPE_CLASS_COPY)
+>> +
+>>  int
+>>  elf_machine_type_class (int type, int machine)
+>>  {
+>> @@ -243,6 +252,8 @@ elf_machine_type_class (int type, int machine)
+>>       return sparc64_elf_machine_type_class(type);
+>>      case EM_ALTERA_NIOS2:
+>>       return nios2_elf_machine_type_class(type);
+>> +    case EM_MICROBLAZE:
+>> +     return microblaze_elf_machine_type_class(type);
+>>
+>>      default:
+>>        printf ("Unknown architecture!\n");
+>> @@ -284,6 +295,7 @@ machine_no_rela (int machine)
+>>      case EM_SPARC32PLUS:
+>>      case EM_SPARCV9:
+>>      case EM_ALTERA_NIOS2:
+>> +    case EM_MICROBLAZE:
+>>        return 0;
+>>      default:
+>>        return 1;
+>>
+>
 
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-WARNING: Checksum failure encountered with download of
-http://downloads.yoctoproject.org/releases/gnu-config/gnu-config-20120814.t=
-ar.bz2
-- will attempt other sources if available
-WARNING: Renaming
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-gnu-config-20120814.tar.bz2
-to
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-gnu-config-20120814.tar.bz2_bad-checksum_550a1f90200546416f8d12b878edfb50
-WARNING: Checksum failure encountered with download of
-http://download.savannah.gnu.org/releases/quilt/quilt-0.61.tar.gz - will
-attempt other sources if available
-WARNING: Renaming
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-quilt-0.61.tar.gz
-to
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-quilt-0.61.tar.gz_bad-checksum_edff525cc95ce8932e66c2e2bfeabdbf
-WARNING: Checksum failure encountered with download of
-ftp://ftp.gnu.org/gnu/automake/automake-1.14.tar.gz - will attempt other
-sources if available
-WARNING: Renaming
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-automake-1.14.tar.gz
-to
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-automake-1.14.tar.gz_bad-checksum_1ada9887dbde94d6fbda52bd91543738
-WARNING: Checksum failure encountered with download of
-ftp://ftp.gnu.org/gnu/libtool/libtool-2.4.2.tar.gz - will attempt other
-sources if available
-WARNING: Renaming
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-libtool-2.4.2.tar.gz
-to
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-libtool-2.4.2.tar.gz_bad-checksum_9546fcbc4c15aada3464891bfe3f484b
-WARNING: Failed to fetch URL
-http://download.gna.org/cryptodev-linux/cryptodev-linux-1.6.tar.gz,
-attempting MIRRORS if available
-WARNING: Failed to fetch URL
-http://gnome-build-stage-1.googlecode.com/files/uuid-1.6.2.tar.gz,
-attempting MIRRORS if available
-WARNING: Checksum failure encountered with download of
-http://download.oracle.com/berkeley-db/db-5.3.21.tar.gz - will attempt
-other sources if available
-WARNING: Renaming
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-db-5.3.21.tar.gz
-to
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/=
-db-5.3.21.tar.gz_bad-checksum_49429d4ac8880348db65209c82fd2549
-WARNING: Failed to fetch URL http://zlib.net/pigz/pigz-2.3.1.tar.gz,
-attempting MIRRORS if available
-WARNING: Failed to fetch URL
-http://downloads.sourceforge.net/libusb/libusb-1.0.9.tar.bz2, attempting
-MIRRORS if available
-WARNING: Failed to fetch URL git://
-git.freescale.com/imx/linux-2.6-imx.git;branch=3Dimx_3.10.17_1.0.1_ga,
-attempting MIRRORS if available
-
-
-*ERROR: Fetcher failure: Fetch command failed with exit code 128,
-output:fatal: Not a git repository (or any of the parent directories): .git=
-*
-
-
-*ERROR: Function failed: Fetcher failure for URL:
-'git://git.freescale.com/imx/linux-2.6-imx.git;branch=3Dimx_3.10.17_1.0.1_g=
-a
-<http://git.freescale.com/imx/linux-2.6-imx.git;branch=3Dimx_3.10.17_1.0.1_=
-ga>'.
-Unable to fetch URL from any source.ERROR: Logfile of failure stored in:
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/build/tmp/=
-work/imx6qsabresd-poky-linux-gnueabi/linux-imx/3.10.17-r0/temp/log.do_fetch=
-.17316ERROR:
-Task 70
-(/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/sources/m=
-eta-fsl-arm/recipes-kernel/linux/linux-imx_3.10.17.bb
-<http://linux-imx_3.10.17.bb>, do_fetch) failed with exit code '1'*
-NOTE: Tasks Summary: Attempted 624 tasks of which 13 didn't need to be
-rerun and 1 failed.
-Waiting for 0 running tasks to finish:
-
-Summary: 1 task failed:
-
-/home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/sources/me=
-ta-fsl-arm/recipes-kernel/linux/
-linux-imx_3.10.17.bb, do_fetch
-Summary: There were 15 WARNING messages shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
-
-Can anyone please help me resolve this?
---=20
-
-Regards
-*Charmi Suchak*
-*Associate Engineer*
-=E1=90=A7
-=E1=90=A7
-
---001a114a9b087728e7055262071e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Hi,<br><br></div>I am new to yocto training and =
-I am trying to build a linux for imx series target from NXP. I got the bsp =
-layer along with poky using the following:<br><br>repo init -u <a href=3D"h=
-ttps://github.com/Freescale/fsl-community-bsp-platform">https://github.com/=
-Freescale/fsl-community-bsp-platform</a> -b daisy<br>repo sync<br><br></div=
->Now when I try to build core-image-minimal I get the following errors:<br>=
-<br>Parsing recipes: 100% |################################################=
-########################################################| Time: 00:01:23<br=
->Parsing of 1398 .bb files complete (0 cached, 1398 parsed). 1826 targets, =
-101 skipped, 0 masked, 0 errors.<br>NOTE: Resolving any missing task queue =
-dependencies<br><br>Build Configuration:<br>BB_VERSION=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.22.0&quot;<br>BUILD_SYS=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quot;<br>NATIVELSBSTR=
-ING=C2=A0=C2=A0 =3D &quot;Ubuntu-14.04&quot;<br>TARGET_SYS=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHI=
-NE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;im=
-x6qsabresd&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=C2=A0=C2=A0=C2=A0=
- =3D &quot;1.6.3&quot;<br>TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;a=
-rmv7a vfp neon callconvention-hard cortexa9&quot;<br>TARGET_FPU=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;vfp-neon&quot;<br>meta=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta=
--yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;(nobranch):39ec0=
-738d4bdc566eca2724dc35c557955042242&quot;<br>meta-oe=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;(nobranch):d3d14d3fcca7fc=
-de362cf0b31411dc4eea6d20aa&quot;<br>meta-fsl-arm=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 =3D &quot;(nobranch):0c4de80867c3ab4e9682dd7802d3fd907d1e1a23&quot;<br>=
-meta-fsl-arm-extra =3D &quot;(nobranch):c95f3f8b5b347f1b3e77d2d11063207ddb7=
-dc5ec&quot;<br>meta-fsl-demos=C2=A0=C2=A0=C2=A0 =3D &quot;(nobranch):f141c7=
-d1158b8addbd6f1ed047a1b47c2ed85f8f&quot;<br><br>NOTE: Preparing runqueue<br=
->NOTE: Executing SetScene Tasks<br>NOTE: Executing RunQueue Tasks<br>WARNIN=
-G: Checksum failure encountered with download of <a href=3D"http://download=
-s.yoctoproject.org/releases/gnu-config/gnu-config-20120814.tar.bz2">http://=
-downloads.yoctoproject.org/releases/gnu-config/gnu-config-20120814.tar.bz2<=
-/a> - will attempt other sources if available<br>WARNING: Renaming /home/ch=
-armi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/gnu-conf=
-ig-20120814.tar.bz2 to /home/charmi/charmi/charmi/Training/yocto/imx6/fsl-c=
-ommunity-bsp/downloads/gnu-config-20120814.tar.bz2_bad-checksum_550a1f90200=
-546416f8d12b878edfb50<br>WARNING: Checksum failure encountered with downloa=
-d of <a href=3D"http://download.savannah.gnu.org/releases/quilt/quilt-0.61.=
-tar.gz">http://download.savannah.gnu.org/releases/quilt/quilt-0.61.tar.gz</=
-a> - will attempt other sources if available<br>WARNING: Renaming /home/cha=
-rmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/quilt-0.6=
-1.tar.gz to /home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bs=
-p/downloads/quilt-0.61.tar.gz_bad-checksum_edff525cc95ce8932e66c2e2bfeabdbf=
-<br>WARNING: Checksum failure encountered with download of <a href=3D"ftp:/=
-/ftp.gnu.org/gnu/automake/automake-1.14.tar.gz">ftp://ftp.gnu.org/gnu/autom=
-ake/automake-1.14.tar.gz</a> - will attempt other sources if available<br>W=
-ARNING: Renaming /home/charmi/charmi/charmi/Training/yocto/imx6/fsl-communi=
-ty-bsp/downloads/automake-1.14.tar.gz to /home/charmi/charmi/charmi/Trainin=
-g/yocto/imx6/fsl-community-bsp/downloads/automake-1.14.tar.gz_bad-checksum_=
-1ada9887dbde94d6fbda52bd91543738<br>WARNING: Checksum failure encountered w=
-ith download of <a href=3D"ftp://ftp.gnu.org/gnu/libtool/libtool-2.4.2.tar.=
-gz">ftp://ftp.gnu.org/gnu/libtool/libtool-2.4.2.tar.gz</a> - will attempt o=
-ther sources if available<br>WARNING: Renaming /home/charmi/charmi/charmi/T=
-raining/yocto/imx6/fsl-community-bsp/downloads/libtool-2.4.2.tar.gz to /hom=
-e/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/libt=
-ool-2.4.2.tar.gz_bad-checksum_9546fcbc4c15aada3464891bfe3f484b<br>WARNING: =
-Failed to fetch URL <a href=3D"http://download.gna.org/cryptodev-linux/cryp=
-todev-linux-1.6.tar.gz">http://download.gna.org/cryptodev-linux/cryptodev-l=
-inux-1.6.tar.gz</a>, attempting MIRRORS if available<br>WARNING: Failed to =
-fetch URL <a href=3D"http://gnome-build-stage-1.googlecode.com/files/uuid-1=
-.6.2.tar.gz">http://gnome-build-stage-1.googlecode.com/files/uuid-1.6.2.tar=
-.gz</a>, attempting MIRRORS if available<br>WARNING: Checksum failure encou=
-ntered with download of <a href=3D"http://download.oracle.com/berkeley-db/d=
-b-5.3.21.tar.gz">http://download.oracle.com/berkeley-db/db-5.3.21.tar.gz</a=
-> - will attempt other sources if available<br>WARNING: Renaming /home/char=
-mi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/downloads/db-5.3.21.=
-tar.gz to /home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/=
-downloads/db-5.3.21.tar.gz_bad-checksum_49429d4ac8880348db65209c82fd2549<br=
->WARNING: Failed to fetch URL <a href=3D"http://zlib.net/pigz/pigz-2.3.1.ta=
-r.gz">http://zlib.net/pigz/pigz-2.3.1.tar.gz</a>, attempting MIRRORS if ava=
-ilable<br>WARNING: Failed to fetch URL <a href=3D"http://downloads.sourcefo=
-rge.net/libusb/libusb-1.0.9.tar.bz2">http://downloads.sourceforge.net/libus=
-b/libusb-1.0.9.tar.bz2</a>, attempting MIRRORS if available<br>WARNING: Fai=
-led to fetch URL git://<a href=3D"http://git.freescale.com/imx/linux-2.6-im=
-x.git;branch=3Dimx_3.10.17_1.0.1_ga">git.freescale.com/imx/linux-2.6-imx.gi=
-t;branch=3Dimx_3.10.17_1.0.1_ga</a>, attempting MIRRORS if available<br><b>=
-ERROR: Fetcher failure: Fetch command failed with exit code 128, output:<br=
->fatal: Not a git repository (or any of the parent directories): .git<br></=
-b><br><b>ERROR: Function failed: Fetcher failure for URL: &#39;git://<a hre=
-f=3D"http://git.freescale.com/imx/linux-2.6-imx.git;branch=3Dimx_3.10.17_1.=
-0.1_ga">git.freescale.com/imx/linux-2.6-imx.git;branch=3Dimx_3.10.17_1.0.1_=
-ga</a>&#39;. Unable to fetch URL from any source.<br>ERROR: Logfile of fail=
-ure stored in: /home/charmi/charmi/charmi/Training/yocto/imx6/fsl-community=
--bsp/build/tmp/work/imx6qsabresd-poky-linux-gnueabi/linux-imx/3.10.17-r0/te=
-mp/log.do_fetch.17316<br>ERROR: Task 70 (/home/charmi/charmi/charmi/Trainin=
-g/yocto/imx6/fsl-community-bsp/sources/meta-fsl-arm/recipes-kernel/linux/<a=
- href=3D"http://linux-imx_3.10.17.bb">linux-imx_3.10.17.bb</a>, do_fetch) f=
-ailed with exit code &#39;1&#39;</b><br>NOTE: Tasks Summary: Attempted 624 =
-tasks of which 13 didn&#39;t need to be rerun and 1 failed.<br>Waiting for =
-0 running tasks to finish:<br><br>Summary: 1 task failed:<br>=C2=A0 /home/c=
-harmi/charmi/charmi/Training/yocto/imx6/fsl-community-bsp/sources/meta-fsl-=
-arm/recipes-kernel/linux/<a href=3D"http://linux-imx_3.10.17.bb">linux-imx_=
-3.10.17.bb</a>, do_fetch<br>Summary: There were 15 WARNING messages shown.<=
-br>Summary: There were 2 ERROR messages shown, returning a non-zero exit co=
-de.<br><br clear=3D"all"><div><div><div><br></div><div>Can anyone please he=
-lp me resolve this?<br></div><div>-- <br><div class=3D"gmail_signature"><di=
-v dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr">=
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span><=
-div style=3D"color:rgb(136,136,136)"><font color=3D"#0b5394" face=3D"verdan=
-a, sans-serif"><br><span style=3D"color:rgb(61,133,198)">Regards</span></fo=
-nt></div><div><div style=3D"color:rgb(100,100,100);font-size:14px;backgroun=
-d-color:rgb(254,254,254)"><font face=3D"arial, helvetica, sans-serif"><b>Ch=
-armi Suchak</b></font></div><div style=3D"font-size:13px;padding:5px 0px;ba=
-ckground-color:rgb(254,254,254)"><font color=3D"#6fa8dc" face=3D"arial, hel=
-vetica, sans-serif"><b>Associate Engineer</b></font></div>
-<div hspace=3D"streak-pt-mark" style=3D"color:rgb(136,136,136);max-height:1=
-px"><img style=3D"width: 0px; max-height: 0px; overflow: hidden;" src=3D"ht=
-tps://mailfoogae.appspot.com/t?sender=3DaYW5raXQuZ3VwdGFAdm9sYW5zeXN0ZWNoLm=
-NvbQ%3D%3D&amp;type=3Dzerocontent&amp;guid=3D1118fde9-681a-416b-943d-cf03f7=
-614c79"><font color=3D"#ffffff" size=3D"1">=E1=90=A7</font></div></div></sp=
-an><span><font color=3D"#888888">
-<div hspace=3D"streak-pt-mark" style=3D"max-height:1px"><img style=3D"width=
-: 0px; max-height: 0px;" src=3D"https://mailfoogae.appspot.com/t?sender=3Da=
-YXNoaXNoLmFncmF2YWxAdm9sYW5zeXN0ZWNoLmNvbQ%3D%3D&amp;type=3Dzerocontent&amp=
-;guid=3Daed9b798-700c-4d52-93bc-d92be133ec96"><font color=3D"#ffffff" size=
-=3D"1">=E1=90=A7</font></div></font></span></div></div></div></div></div></=
-div></div></div></div></div></div>
-</div></div></div></div>
-
---001a114a9b087728e7055262071e--
