@@ -1,37 +1,26 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23A83E00BC4; Wed, 21 Jun 2017 02:27:28 -0700 (PDT)
+	id E3FD6E00BC2; Wed, 21 Jun 2017 03:59:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3269E00B2E
-	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 02:27:25 -0700 (PDT)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Jun 2017 02:27:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.39,368,1493708400"; d="scan'208";a="100055296"
-Received: from pkoeberl-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.42.40])
-	by orsmga004.jf.intel.com with ESMTP; 21 Jun 2017 02:27:21 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Aaron_Wright@selinc.com
-Date: Wed, 21 Jun 2017 11:27:20 +0200
-Message-ID: <5720328.AT7l5fZ327@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <OFAC33F033.6C57D957-ON88258145.007322E1-88258145.0073CEEA@selinc.com>
-References: <OFAC33F033.6C57D957-ON88258145.007322E1-88258145.0073CEEA@selinc.com>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB4DFE00AF0
+	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 03:59:00 -0700 (PDT)
+Received: from auh.yocto.io (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id B28B644D270
+	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 03:58:02 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto eSDK, Editing/Adding Recipes, and VCS
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20170621105802.B28B644D270@auh.yoctoproject.org>
+Date: Wed, 21 Jun 2017 03:58:02 -0700 (PDT)
+Subject: [AUH] Upgrade status: 2017-06-21
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,57 +32,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jun 2017 09:27:28 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 21 Jun 2017 10:59:02 -0000
+Content-Type: multipart/mixed; boundary="===============7650717447156557644=="
 
-Hi Aaron,
+--===============7650717447156557644==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 
-On Tuesday, 20 June 2017 11:04:56 PM CEST Aaron_Wright@selinc.com wrote:
-> I've been trying to document some workflows for my developers using the 
-> Yocto eSDK for our image, but I am coming up empty when it comes to 
-> editing or adding recipes. I can use devtool to edit a recipe like so:
-> 
-> devtool edit-recipe -a my-recipe
-> 
-> But any changes I make are hidden away in the 
-> esdk/layers/poky/meta-mylayer directory, which isn't managed by a VCS (git 
-> in this instance). So there's this modified file in a directory--great. 
-> What is the developer supposed to do with it? Copy it over to a VCS 
-> managed directory of meta-mylayer, commit, and push?
-> 
-> I feel like I'm missing something with the devtool workflow. Can anyone 
-> point me in the right direction?
+QVVIIGZpbmlzaGVkIHVwZ3JhZGUgYmF0Y2ggdGhlIHJlc3VsdCBwYXRjaGVzL2xvZ3MgY2FuIGJl
+IGZvdW5kIGF0OgpodHRwczovL2xvZ3MueW9jdG9wcm9qZWN0Lm9yZy9hdWgvLzIwMTcwNjE5MDgx
+NTIzLCBuZXh0IGFyZSB0aGUgc3RhdGlzdGljczoKClJlY2lwZSB1cGdyYWRlIHN0YXRpc3RpY3M6
+CgogICAgKiBGYWlsZWQoZG9fY29uZmlndXJlKTogNAogICAgICAgIGxpYmlucHV0LCAxLjcuOTAx
+LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGdzdHJl
+YW1lcjEuMC1ydHNwLXNlcnZlciwgMS4xMi4wLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGlu
+dGVsLmNvbT4KICAgICAgICBwaW5lbnRyeSwgMS4wLjAsIEFybWluIEt1c3RlciA8YWt1c3Rlcjgw
+OEBnbWFpbC5jb20+CiAgICAgICAgbnNwciwgNC4xNSwgQXJtaW4gS3VzdGVyIDxha3VzdGVyQG12
+aXN0YS5jb20+CiAgICAqIEZhaWxlZChvdGhlciBlcnJvcnMpOiA0NAogICAgICAgIGZvbnRjb25m
+aWcsIDIuMTIuMywgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAg
+ICAgICBsaWJ1bndpbmQsIDEuMi4xLCBCcnVjZSBBc2hmaWVsZCA8YnJ1Y2UuYXNoZmllbGRAd2lu
+ZHJpdmVyLmNvbT4KICAgICAgICBnc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQsIDEuMTIuMCwgTWF4
+aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgYXB0LCAxLjQuNiwgQW7D
+rWJhbCBMaW3Ds24gPGFuaWJhbC5saW1vbkBsaW51eC5pbnRlbC5jb20+CiAgICAgICAgZ2hvc3Rz
+Y3JpcHQsIDkuMjEsIEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAg
+ICBwc21pc2MsIDIzLjEsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRl
+bC5jb20+CiAgICAgICAgZ3VpbGUsIDIuMi4yLCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2lu
+ZHJpdmVyLmNvbT4KICAgICAgICBwZXJsLCA1LjI2LjAsIEFuw61iYWwgTGltw7NuIDxhbmliYWwu
+bGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIG9wa2csIDAuMy41LCBBbGVqYW5kcm8gZGVs
+IENhc3RpbGxvIDxhbGVqYW5kcm8uZGVsY2FzdGlsbG9AbmkuY29tPgogICAgICAgIGtlcm5lbHNo
+YXJrLCAyLjYuMSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNv
+bT4KICAgICAgICBrZXhlYy10b29scywgMi4wLjE1LCBBcm1pbiBLdXN0ZXIgPGFrdXN0ZXJAbXZp
+c3RhLmNvbT4KICAgICAgICBndGsrMywgMy45MC4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vr
+a29uZW5AaW50ZWwuY29tPgogICAgICAgIGVwaXBoYW55LCAzLjI0LjIsIEFsZXhhbmRlciBLYW5h
+dmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgbWVzYSwgMTcuMS4zLCBP
+dGF2aW8gU2FsdmFkb3IgPG90YXZpby5zYWx2YWRvckBvc3N5c3RlbXMuY29tLmJyPgogICAgICAg
+IG9wa2ctdXRpbHMsIDAuMy41K2dpdEFVVE9JTkMrMWE3MDhmZDczZCwgQWxlamFuZHJvIGRlbCBD
+YXN0aWxsbyA8YWxlamFuZHJvLmRlbGNhc3RpbGxvQG5pLmNvbT4KICAgICAgICBweXRob24zLXNl
+dHVwdG9vbHMsIDM2LjAuMSwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXguaW50ZWwu
+Y29tPgogICAgICAgIHN5c3RlbWQtYm9vdCwgMjMzLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZl
+ci5jb20+CiAgICAgICAgb3Byb2ZpbGUsIDEuMi4wcmMxLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxl
+eGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGJhc2gsIDQuNCwgSG9uZ3h1IEppYSA8
+aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIGJjLCAxLjA3LjEsIEpvc2UgTGFtZWdv
+IDxqb3NlLmEubGFtZWdvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICB2YWxncmluZCwgMy4xMy4w
+LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAg
+IGxvZ3JvdGF0ZSwgOS0xLCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4K
+ICAgICAgICB3ZWJraXRndGssIDIuMTYuMywgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5r
+YW5hdmluQGludGVsLmNvbT4KICAgICAgICBnc3RyZWFtZXIxLjAsIDEuMTIuMCwgTWF4aW4gQi4g
+Sm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgZmlsZSwgNS4zMSwgUm9iZXJ0IFlh
+bmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAgdXRpbC1saW51eCwgMi4zMCwg
+Q2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGFwci11dGlsLCAxLjYuMCwg
+SG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIGdzdHJlYW1lcjEu
+MC1wbHVnaW5zLWdvb2QsIDEuMTIuMCwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5j
+b20+CiAgICAgICAgZWxmdXRpbHMsIDAuMTY5LCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRy
+aXZlci5jb20+CiAgICAgICAgZGlmZnV0aWxzLCAzLjYsIENoZW4gUWkgPFFpLkNoZW5Ad2luZHJp
+dmVyLmNvbT4KICAgICAgICBsaWJ1cmN1LCAwLjEwLjAsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4
+YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgcWVtdSwgMi45LjAsIEFuw61iYWwgTGlt
+w7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIGZsZXgsIDIuNi40LCBD
+aGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgcHJlbGluaywgMjAxNTEwMzAu
+K2dpdEFVVE9JTkMrOTI3OTc5YmJkMSwgTWFyayBIYXRsZSA8bWFyay5oYXRsZUB3aW5kcml2ZXIu
+Y29tPgogICAgICAgIHNlZCwgNC40LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAg
+ICAgICAgYnVzeWJveCwgMS4yNi4yLCBBcm1pbiBLdXN0ZXIgPGFrdXN0ZXI4MDhAZ21haWwuY29t
+PgogICAgICAgIG5wdGgsIDEuNSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmlu
+QGludGVsLmNvbT4KICAgICAgICBnc3RyZWFtZXIxLjAtcGx1Z2lucy1iYXNlLCAxLjEyLjAsIE1h
+eGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGRtaWRlY29kZSwgMy4x
+LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAg
+IGRlYmlhbnV0aWxzLCA0LjguMS4xLCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVy
+LmNvbT4KICAgICAgICBsaWJubCwgMy4zLjAsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIu
+a2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgb3BlbnNzbCwgMS4xLjBmLCBBbGV4YW5kZXIgS2Fu
+YXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGRwa2csIDEuMTguMjQs
+IEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIGdv
+YmplY3QtaW50cm9zcGVjdGlvbiwgMS41Mi4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVy
+LmthbmF2aW5AaW50ZWwuY29tPgogICAgKiBGYWlsZWQoZG9fZmV0Y2gpOiA4CiAgICAgICAgcHl0
+aG9uMy1naXQsIDIuMS41LCBKb3NlIExhbWVnbyA8am9zZS5hLmxhbWVnb0BsaW51eC5pbnRlbC5j
+b20+CiAgICAgICAga2NvbmZpZy1mcm9udGVuZHMsIDQuMTEuMC4xLCBBbGV4YW5kZXIgS2FuYXZp
+biA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGdpdCwgMi4xMy4xLCBSb2Jl
+cnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAgICB2dWxrYW4sIDEuMC41
+MS4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGlm
+dXBkb3duLCAwLjguMTksIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAg
+ICAgIGNyeXB0b2Rldi1saW51eCwgMS45LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJp
+dmVyLmNvbT4KICAgICAgICBjcnlwdG9kZXYtdGVzdHMsIDEuOSwgUm9iZXJ0IFlhbmcgPGxpZXpo
+aS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAgY3J5cHRvZGV2LW1vZHVsZSwgMS45LCBSb2Jl
+cnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICogRmFpbGVkKGdldF9lbnYp
+OiAxCiAgICAgICAgbGlibmV3dC1weXRob24sIDAuNTIuMjAsIEhvbmd4dSBKaWEgPGhvbmd4dS5q
+aWFAd2luZHJpdmVyLmNvbT4KICAgICogU3VjY2VlZGVkOiAyMwogICAgICAgIHN0cmFjZSwgNC4x
+NywgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAgdmFsYSwg
+MC4zNi4zLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgog
+ICAgICAgIGFwciwgMS42LjIsIEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4K
+ICAgICAgICBsaWJnY3J5cHQsIDEuNy43LCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZl
+ci5jb20+CiAgICAgICAgbGliZmFrZWtleSwgMC4zK2dpdEFVVE9JTkMrN2FkODg1OTEyZSwgQWxl
+eGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBncGVy
+ZiwgMy4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgog
+ICAgICAgIHN5c3N0YXQsIDExLjUuNiwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgog
+ICAgICAgIGN1cmwsIDcuNTQuMSwgQXJtaW4gS3VzdGVyIDxha3VzdGVyQG12aXN0YS5jb20+CiAg
+ICAgICAgZXVkZXYsIDMuMi4yLCBBbGVqYW5kcm8gSGVybmFuZGV6IDxhbGVqYW5kcm8uaGVybmFu
+ZGV6QGxpbnV4LmludGVsLmNvbT4KICAgICAgICBsdHRuZy10b29scywgMi45LjUsIFJpY2hhcmQg
+UHVyZGllIDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPgogICAgICAgIHhkZy11
+dGlscywgMS4xLjIsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAg
+ICAgICAgbGlibmV3dCwgMC41Mi4yMCwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIu
+Y29tPgogICAgICAgIGx0dG5nLXVzdCwgMi45LjEsIFJpY2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1
+cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPgogICAgICAgIGJ0cmZzLXRvb2xzLCA0LjExLCBBbGV4
+YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGNhaXJv
+LCAxLjE0LjEwLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAg
+ICAgIHB5dGhvbjMtcHlnb2JqZWN0LCAzLjI0LjEsIEpvc2UgTGFtZWdvIDxqb3NlLmEubGFtZWdv
+QGxpbnV4LmludGVsLmNvbT4KICAgICAgICB3YXlsYW5kLXByb3RvY29scywgMS44LCBEZW55cyBE
+bXl0cml5ZW5rbyA8ZGVuaXNAZGVuaXgub3JnPgogICAgICAgIGxpYmVwb3h5LCAxLjQuMywgSnVz
+c2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBsaWJjcm9jbywg
+MC42LjEyLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAg
+IGx0dG5nLW1vZHVsZXMsIDIuOS4zLCBSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5wdXJkaWVAbGlu
+dXhmb3VuZGF0aW9uLm9yZz4KICAgICAgICBnc2V0dGluZ3MtZGVza3RvcC1zY2hlbWFzLCAzLjI0
+LjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgc3Fs
+aXRlMywgMy4xOS4zLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAg
+ICBnbnVwZywgMi4xLjIxLCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAg
+ICAqIEZhaWxlZChkb19jb21waWxlKTogMTEKICAgICAgICBzdWRvLCAxLjguMjBwMiwgQ2hlbiBR
+aSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIHRyYWNlLWNtZCwgMi42LjEsIEFsZXhh
+bmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgbGliYnNk
+LCAwLjguNCwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAgICAg
+cHl0aG9uLWdpdCwgMi4xLjUsIEpvc2UgTGFtZWdvIDxqb3NlLmEubGFtZWdvQGxpbnV4LmludGVs
+LmNvbT4KICAgICAgICBweXRob24tc2V0dXB0b29scywgMzYuMC4xLCBKb3NlIExhbWVnbyA8am9z
+ZS5hLmxhbWVnb0BsaW51eC5pbnRlbC5jb20+CiAgICAgICAgbHo0LCAxMzEsIEFybWluIEt1c3Rl
+ciA8YWt1c3RlcjgwOEBnbWFpbC5jb20+CiAgICAgICAgcHl0aG9uMy1kb2N1dGlscywgMC4xNHJj
+MSwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXguaW50ZWwuY29tPgogICAgICAgIGxp
+YnBjcmUyLCAxMC4yMywgQXJtaW4gS3VzdGVyIDxha3VzdGVyQG12aXN0YS5jb20+CiAgICAgICAg
+aWN1LCA1OS4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29t
+PgogICAgICAgIGdwZ21lLCAxLjkuMCwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIu
+Y29tPgogICAgICAgIGV4cGF0LCAyLjIuMSwgRGVuZ2tlIER1IDxkZW5na2UuZHVAd2luZHJpdmVy
+LmNvbT4KCiAgICBUT1RBTDogYXR0ZW1wdGVkPTkxIHN1Y2NlZWRlZD0yMygyNS4yNyUpIGZhaWxl
+ZD02OCg3NC43MyUpCgpSZWNpcGUgdXBncmFkZSBzdGF0aXN0aWNzIHBlciBNYWludGFpbmVyOgoK
+ICAgIEFybWluIEt1c3RlciA8YWt1c3RlcjogYXR0ZW1wdGVkPTQgc3VjY2VlZGVkPTEoMjUuMDAl
+KSBmYWlsZWQ9Myg3NS4wMCUpCiAgICBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW46IGF0
+dGVtcHRlZD05IHN1Y2NlZWRlZD01KDU1LjU2JSkgZmFpbGVkPTQoNDQuNDQlKQogICAgRGVuZ2tl
+IER1IDxkZW5na2UuZHU6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9MSgx
+MDAuMDAlKQogICAgT3RhdmlvIFNhbHZhZG9yIDxvdGF2aW8uc2FsdmFkb3I6IGF0dGVtcHRlZD0x
+IHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9MSgxMDAuMDAlKQogICAgUmljaGFyZCBQdXJkaWUg
+PHJpY2hhcmQucHVyZGllOiBhdHRlbXB0ZWQ9MyBzdWNjZWVkZWQ9MygxMDAuMDAlKSBmYWlsZWQ9
+MCgwLjAwJSkKICAgIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZzogYXR0ZW1wdGVkPTEwIHN1Y2Nl
+ZWRlZD0xKDEwLjAwJSkgZmFpbGVkPTkoOTAuMDAlKQogICAgSG9uZ3h1IEppYSA8aG9uZ3h1Lmpp
+YTogYXR0ZW1wdGVkPTEwIHN1Y2NlZWRlZD00KDQwLjAwJSkgZmFpbGVkPTYoNjAuMDAlKQogICAg
+TWFyayBIYXRsZSA8bWFyay5oYXRsZTogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZh
+aWxlZD0xKDEwMC4wMCUpCiAgICBBbGVqYW5kcm8gSGVybmFuZGV6IDxhbGVqYW5kcm8uaGVybmFu
+ZGV6OiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MSgxMDAuMDAlKSBmYWlsZWQ9MCgwLjAwJSkKICAg
+IEFsZWphbmRybyBkZWwgQ2FzdGlsbG8gPGFsZWphbmRyby5kZWxjYXN0aWxsbzogYXR0ZW1wdGVk
+PTIgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0yKDEwMC4wMCUpCiAgICBEZW55cyBEbXl0cml5
+ZW5rbyA8ZGVuaXM6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0xKDEwMC4wMCUpIGZhaWxlZD0wKDAu
+MDAlKQogICAgQXJtaW4gS3VzdGVyIDxha3VzdGVyODA4OiBhdHRlbXB0ZWQ9MyBzdWNjZWVkZWQ9
+MCgwLjAwJSkgZmFpbGVkPTMoMTAwLjAwJSkKICAgIEJydWNlIEFzaGZpZWxkIDxicnVjZS5hc2hm
+aWVsZDogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEwMC4wMCUpCiAg
+ICBBbsOtYmFsIExpbcOzbiA8YW5pYmFsLmxpbW9uOiBhdHRlbXB0ZWQ9NCBzdWNjZWVkZWQ9MCgw
+LjAwJSkgZmFpbGVkPTQoMTAwLjAwJSkKICAgIENoZW4gUWkgPFFpLkNoZW46IGF0dGVtcHRlZD03
+IHN1Y2NlZWRlZD0xKDE0LjI5JSkgZmFpbGVkPTYoODUuNzElKQogICAgQWxleGFuZGVyIEthbmF2
+aW4gPGFsZXhhbmRlci5rYW5hdmluOiBhdHRlbXB0ZWQ9MTkgc3VjY2VlZGVkPTQoMjEuMDUlKSBm
+YWlsZWQ9MTUoNzguOTUlKQogICAgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9objogYXR0ZW1wdGVk
+PTcgc3VjY2VlZGVkPTEoMTQuMjklKSBmYWlsZWQ9Nig4NS43MSUpCiAgICBKb3NlIExhbWVnbyA8
+am9zZS5hLmxhbWVnbzogYXR0ZW1wdGVkPTcgc3VjY2VlZGVkPTEoMTQuMjklKSBmYWlsZWQ9Nig4
+NS43MSUpCg==
 
-So making changes to existing recipes isn't a very well developed area of the
-eSDK at the moment, you're not missing anything. There is a bug open to deal
-with this:
-
-  https://bugzilla.yoctoproject.org/show_bug.cgi?id=10505
-
-Thinking off the top of my head, a relatively simple workaround would be
-to do something like this (in your image recipe or a class inherited from
-it):
-
-sdk_ext_postinst_append() {
-	cd $target_sdk_dir/layers/<layerpath>
-	git init
-	git add -A .
-	git commit -m "Initial commit"
-	cd $target_sdk_dir
-}
-
-This will be executed at the end of installation and would at least let you track
-changes, although as you rightly point out they will be a bit buried inside the
-SDK structure.
-
-Cheers,
-Paul
-
-
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--===============7650717447156557644==--
