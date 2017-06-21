@@ -1,6 +1,6 @@
-Return-Path: <changhyeok.bae@gmail.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6224EE00B31; Tue, 20 Jun 2017 18:24:54 -0700 (PDT)
+	id EE8DDE00B31; Tue, 20 Jun 2017 18:52:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (changhyeok.bae[at]gmail.com)
+	mail provider *      (antonius.riko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,53 +20,61 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.196 listed in list.dnswl.org]
-Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 845CFE00B2E
-	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 18:24:52 -0700 (PDT)
-Received: by mail-wr0-f196.google.com with SMTP id y25so19978646wrd.1
-	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 18:24:52 -0700 (PDT)
+Received: from mail-pg0-f44.google.com (mail-pg0-f44.google.com [74.125.83.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2D9FE00B2E
+	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 18:52:44 -0700 (PDT)
+Received: by mail-pg0-f44.google.com with SMTP id 132so36885773pgb.2
+	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 18:52:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=AXDPdzAaR7eWjnWyu4Ik5rXSSGKGcCnI0KShVjCPae8=;
-	b=azfaWdfBWqdn0JeDq98Pg6LUsswlGeoeH1m4zeoO//hcHkPkEbiD3dCIfeYp2dF/W4
-	h5ts6sXXsEOXid0dvGwe0Y3EBRRxmFkOVpu8njAgn8uqMImAFixg7J4MUaTC2cbBZ/sJ
-	4BnJg61nYusxIJCTxmeKPlkoLHi4fjkkxVwr1kWQVIyms9xD6XJi/H2jlrrz+dGYCox5
-	SBv1K1yON9T+vKQe3Ac/J3wyTMN22O/tWGh+nQjUnZnXW8Zljh8cYrswW9+whX9rnDAN
-	wxU/+gXAMIYHsAVS9PH5Xk6eOm4e9fhVqocsMyUfui0mqA/MPmr8WgpaUiIOshHClMDe
-	seJA==
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=v70aj2UeJXuagi+HNJx5LH7Wf5+P1RzCMlj5Hik4Ac8=;
+	b=aNe11FjLECG4+pLT1jk2p+oXLfXlFZjMrWAIAF3fvCkCnZmRtN+5Z4leV0w7SJVFNK
+	n0rZKbLMBAEloiwqMjnYgzLTFA/g6G3+979LO9WLRs2I6jHKt1TncoPWt+F2i/kpC4T7
+	EtFsmOvZvDNFePh4bT2+loBoZbsMAmwLq3uWADzeywANG/8YMIcNtO91Houf+IKKgr1h
+	TUrsVIRTALMerL4caa9tMqwZOpAl0lkQO/LBIUqE3xXbqQFoUykg/QZLlXS7rrZ5jz0t
+	IRNJaxE1OKXNMcYAl0yEWUOSCRfGroJfJ7fgGeuEzgpxVbLsUzwI6fjOynxW1oB65YBQ
+	XbDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=AXDPdzAaR7eWjnWyu4Ik5rXSSGKGcCnI0KShVjCPae8=;
-	b=FQbq3xQPRUKbzYmuZBBvcaOyKSqOH3zcaA2+WW0gGS6kle/ZmCqoo2inRrhRYNOwEX
-	uc4ULp0T5eq0Q4GfbFIpq9/8mG4bDTDKfE1DiSrW8ZGHml+HQHMSV1Hn+MnO7cOqYUlj
-	ENX6RG/WcANIyN4yhPqAi6yhBwTGICZhCSV6E0g/EInnodohtuqXlg9KLRQULKperFoL
-	SpUPbDRregZ2mSwfrsU1FROAmlocMXiLIyUP+dgX3itJlETq3nVlQ119yD4HhbBvB2Ro
-	xxHb4CHICY54eKSVA0qttSLoXI65xVz2oLQaJ3K0Vch0lFmnhAeO91n8Lx528+PcFf5C
-	MBJg==
-X-Gm-Message-State: AKS2vOzcyXP9B7MH5qRASQyEkgZUSA+c2hfQ6XHujhD/LOjqMrsLZbWd
-	VNsZGr/rJbaTISt6mSBFBxLEnit5Gg==
-X-Received: by 10.80.183.4 with SMTP id g4mr23489824ede.138.1498008291372;
-	Tue, 20 Jun 2017 18:24:51 -0700 (PDT)
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=v70aj2UeJXuagi+HNJx5LH7Wf5+P1RzCMlj5Hik4Ac8=;
+	b=IUNeDbg8wjxNRgwC+mRC0nXrmNnTuWd6QsXD2n7dV1xDOVIOTU0TD4xAbzAnSm+no+
+	KFpoJWwAANoOxtjYErjeGqt9MKu0xzKBvvH85rMx7+giRkkelv3Ei97kgV0tADFnRwF8
+	RfqXVGE+rlaCWvI6JD4qJmRs5ihBwl8+w0xx2x5HLK7QgAvUfaSfke5rNxALnx7edqc1
+	SefKS2SJALm5AGqgcNdk6wAy6uKGOIF2mkVXGXDsdZEQMkPKgH4YP/5yA+kCpCWc7UQP
+	cpUDocZV5mJXz8IxYUD8BUGJjvQWyyJT/qeYa2D1lgOQZ1slA3ryiaGq60iPd9fX05Ny
+	jREA==
+X-Gm-Message-State: AKS2vOxuNHW+GmqnHodG+3q63xwvpSS3Iwevt7beohhSkzjhQv7GMg2q
+	9WJs4R6fVKO2ZuQ4
+X-Received: by 10.84.232.5 with SMTP id h5mr13023599plk.261.1498009963711;
+	Tue, 20 Jun 2017 18:52:43 -0700 (PDT)
+Received: from [10.0.0.2] (CPE-124-178-9-113.lns1.pie.bigpond.net.au.
+	[124.178.9.113]) by smtp.gmail.com with ESMTPSA id
+	o66sm31009782pga.64.2017.06.20.18.52.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 20 Jun 2017 18:52:42 -0700 (PDT)
+To: Khem Raj <raj.khem@gmail.com>
+References: <ed57e154-cbd7-176a-02fb-496c6f730d2a@gmail.com>
+	<CAMKF1sp9ESKxDiarsNTu89BXLpk8nBNZXefwYs-6dYHpVnBMFg@mail.gmail.com>
+	<1bfe90cd-590a-47e6-95d1-3ad77ec3a46b@gmail.com>
+	<CAAfyv348RhuesS-suUGnVgquxVX0Gv2625Qd1Lw5NJH6FMXMQQ@mail.gmail.com>
+	<c0c0b79d-12c0-27b3-1ef9-f3798c95e02e@gmail.com>
+	<CA+chaQcwEW7=Wmrk0LYN0ubfvwxTNZQnCDh=wwWRWmSaXgWJdg@mail.gmail.com>
+	<08efb082-02a8-7ff9-c5be-e6b4b09edea2@gmail.com>
+	<CAMKF1spe4TmYe5uE4ddcObCnMbk1usXhNg+=fZ1XrERduP0MAA@mail.gmail.com>
+	<10259d92-4277-21d6-e0e0-ca4949eb419e@gmail.com>
+	<CAMKF1spo=pDw1XDhwwbPoQTMjkY-fXmvSgvLrNh5Tum5tn_-wA@mail.gmail.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <cc299730-167a-9ba2-fae2-ef0d130649fb@gmail.com>
+Date: Wed, 21 Jun 2017 09:52:38 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
 MIME-Version: 1.0
-Received: by 10.80.161.135 with HTTP; Tue, 20 Jun 2017 18:24:50 -0700 (PDT)
-In-Reply-To: <CAMf=WoUmcDxWZHsk8zror7Ah3p0XbueSxPaJ+rx7V+iGd-ewMw@mail.gmail.com>
-References: <1497240475-2957-1-git-send-email-changhyeok.bae@gmail.com>
-	<CACrLJgCVG=mkKukYnG_cTXmS3y-XDQvi7RNCG+R8yE7GTsRQ5Q@mail.gmail.com>
-	<CACrLJgC6jT5SUPF=HrTDc6FOJo18gJPvyHMHnSe2N5s3wXO3dQ@mail.gmail.com>
-	<CAMf=WoUmcDxWZHsk8zror7Ah3p0XbueSxPaJ+rx7V+iGd-ewMw@mail.gmail.com>
-From: Changhyeok Bae <changhyeok.bae@gmail.com>
-Date: Wed, 21 Jun 2017 10:24:50 +0900
-Message-ID: <CACrLJgCEqaPtHJr=dH=dWpXKpnrGeUbu+Svhy8Fw=MJdWNGXmA@mail.gmail.com>
-To: Kristi Rifenbark <kristi.rifenbark@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Scott Rifenbark <srifenbark@gmail.com>
-Subject: Re: [yocto-docs][PATCH v2] ref-manual: Replace uclibc to musl
+In-Reply-To: <CAMKF1spo=pDw1XDhwwbPoQTMjkY-fXmvSgvLrNh5Tum5tn_-wA@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RTL8192EU rev B (SMIC) ==> rtl8192eu_nic.bin ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,346 +86,297 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jun 2017 01:24:54 -0000
-Content-Type: multipart/alternative; boundary="94eb2c196cf413f3a805526e3c52"
+X-List-Received-Date: Wed, 21 Jun 2017 01:52:48 -0000
+Content-Type: multipart/alternative;
+	boundary="------------8E288A9B2B6ED5886A8832F0"
+Content-Language: en-US
 
---94eb2c196cf413f3a805526e3c52
-Content-Type: text/plain; charset="UTF-8"
+--------------8E288A9B2B6ED5886A8832F0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Thanks. I confirmed it.
+How can I obtain that "udev" ? and where can I find the log ? "dmesg" | 
+"grep" ?
 
-Changhyeok
-
-2017-06-21 9:24 GMT+09:00 Kristi Rifenbark <kristi.rifenbark@gmail.com>:
-
-> Changhyeok,
+Two days ago, I saw activity on UART when the dongle was inserted, but 
+it's gone now, I can't see the activity..
+Any clues ?
+Thanks
+On 20/06/17 12:51, Khem Raj wrote:
+> On Mon, Jun 19, 2017 at 8:46 PM, Riko Ho <antonius.riko@gmail.com> wrote:
+>> I got all the files needed, but now I get no response from the dongle when I
+>> plug it,
+> you might want to check logs and see if there are udev events generated
+> on insertion.
 >
-> Fix is backported to morty (2.2.2) - http://git.yoctoproject.org/
-> cgit/cgit.cgi/yocto-docs/commit/?h=morty&id=e131c26ee1ab268679f7762dbe2676
-> 0bd859e0e5
->
-> Fix is backported to pyro (2.3.1) - http://git.yoctoproject.org/
-> cgit/cgit.cgi/yocto-docs/commit/?h=pyro&id=859549a1dbc0b63bc04310a121600e
-> a622509256
->
-> Fix is the current master branch (2.4) - http://git.yoctoproject.org/
-> cgit/cgit.cgi/yocto-docs/commit/?id=ed7e62f5937576d7878eb955fda12c
-> 18e787db18
->
-> If you want to see these changes in the manual see the published
-> ref-manual for 2.2.2, 2.3.1, and 2.4.
->
-> Thanks,
-> Kristi
->
-> On Tue, Jun 20, 2017 at 9:44 AM, Changhyeok Bae <changhyeok.bae@gmail.com>
-> wrote:
->
->> Hi Scott, Kristi
+>> Here's the files on the board :
+>> root@beaglebone:/lib/firmware/rtlwifi# ls
+>> rtl8188efw.bin           rtl8192eu_ap_wowlan.bin  rtl8723bs_bt.bin
+>> rtl8188eufw.bin          rtl8192eu_nic.bin        rtl8723bs_nic.bin
+>> rtl8192cfw.bin           rtl8192eu_wowlan.bin     rtl8723bs_wowlan.bin
+>> rtl8192cfwU.bin          rtl8192sefw.bin          rtl8723bu_ap_wowlan.bin
+>> rtl8192cfwU_B.bin        rtl8712u.bin             rtl8723bu_nic.bin
+>> rtl8192cufw.bin          rtl8723aufw_A.bin        rtl8723bu_wowlan.bin
+>> rtl8192cufw_A.bin        rtl8723aufw_B.bin        rtl8723fw.bin
+>> rtl8192cufw_B.bin        rtl8723aufw_B_NoBT.bin   rtl8723fw_B.bin
+>> rtl8192cufw_TMSC.bin     rtl8723befw.bin          rtl8821aefw.bin
+>> rtl8192defw.bin          rtl8723befw_36.bin       rtl8821aefw_29.bin
+>> rtl8192eefw.bin          rtl8723bs_ap_wowlan.bin  rtl8821aefw_wowlan.bin
 >>
->> Could review my changes?
+>>
+>> On 20/06/17 03:57, Khem Raj wrote:
+>>
+>> On Sun, Jun 18, 2017 at 8:00 PM, Riko Ho <antonius.riko@gmail.com> wrote:
+>>
+>> Hello Everyone,
+>>
+>> How can I obtain : rtl8192eu_nic.bin?
+>>
+>> I got this message :
+>>
+>> RTL8192EU rev B (SMIC) 2T2R, TX queues 3, WiFi=1, BT=0, GPS=0, HI PA=0
+>> usb 1-1: RTL8192EU MAC: 00:0b:81:a2:a5:60
+>> usb 1-1: rtl8xxxu: Loading firmware rtlwifi/rtl8192eu_nic.bin
+>> usb 1-1: Direct firmware load for rtlwifi/rtl8192eu_nic.bin failed with
+>> error -2
+>> usb 1-1: request_firmware(rtlwifi/rtl8192eu_nic.bin) failed
+>>
+>> you probably need to add the nonfree firmware bits something like this
+>>
+>> https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend
+>>
+>> and
+>>
+>> https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/rtl8192cu/rtl8192cu_4.0.2_9000.bb
+>>
+>> might help
+>>
+>> Thanks,
+>>
+>> On 18/06/17 15:49, Martin Jansa wrote:
+>>
+>> You didn't say which versions you're using.
+>>
+>> If you're using latest oe-core with gcc7 then you will need v3 version of
+>> this change:
+>> http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html
+>> I'll send it later today.
+>>
+>> And how can I clean after building it ? It took about 70Gb of my drive
+>>
+>> Like any other recipe:
+>> bitbake -c clean foo
+>>
+>> On Sun, Jun 18, 2017 at 1:41 AM, Riko Ho <antonius.riko@gmail.com> wrote:
+>>
+>> Hello Everyone,
+>>
+>> I tried to compile chromium but never succeeded, took me already 12 hours
+>> and stopped on 99%,
+>> I used bitbake for doing it,
+>>
+>> Is chromium not compatible with arm CPU ? it was working with X86_64
+>> before.
+>> And how can I clean after building it ? It took about 70Gb of my drive
 >>
 >> Thanks
->> Changhyeok
->>
->> 2017-06-12 14:52 GMT+09:00 Changhyeok Bae <changhyeok.bae@gmail.com>:
->>
->>> This patch should be merged in morty (2.2), pryo (2.3), and master
->>> branch.
->>>
->>> Thanks
->>> Changhyeok
->>>
->>> 2017-06-12 13:07 GMT+09:00 Changhyeok Bae <changhyeok.bae@gmail.com>:
->>>
->>>> uClibc Replaced by musl from Yocto 2.2
->>>>
->>>> Signed-off-by: Changhyeok Bae <changhyeok.bae@gmail.com>
->>>> ---
->>>>  documentation/ref-manual/ref-variables.xml | 14 +++++++-------
->>>>  1 file changed, 7 insertions(+), 7 deletions(-)
->>>>
->>>> diff --git a/documentation/ref-manual/ref-variables.xml
->>>> b/documentation/ref-manual/ref-variables.xml
->>>> index bd9e517..0967e40 100644
->>>> --- a/documentation/ref-manual/ref-variables.xml
->>>> +++ b/documentation/ref-manual/ref-variables.xml
->>>> @@ -5131,9 +5131,9 @@
->>>>                      is normally the same as the
->>>>                      <link linkend='var-TARGET_OS'><filen
->>>> ame>TARGET_OS</filename></link>.
->>>>                      The variable can be set to "linux" for
->>>> <filename>glibc</filename>-based systems and
->>>> -                    to "linux-uclibc" for <filename>uclibc</filename>.
->>>> +                    to "linux-musl" for <filename>musl</filename>.
->>>>                      For ARM/EABI targets, there are also
->>>> "linux-gnueabi" and
->>>> -                    "linux-uclibc-gnueabi" values possible.
->>>> +                    "linux-musleabi" values possible.
->>>>                  </para>
->>>>              </glossdef>
->>>>          </glossentry>
->>>> @@ -14152,9 +14152,9 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR
->>>> = "${INC_PR}.3"
->>>>  <!--                <para role="glossdeffirst"><imagedata
->>>> fileref="figures/define-generic.png" /> -->
->>>>                      Specifies the target's operating system.
->>>>                      The variable can be set to "linux" for
->>>> <filename>glibc</filename>-based systems and
->>>> -                    to "linux-uclibc" for <filename>uclibc</filename>.
->>>> +                    to "linux-musl" for <filename>musl</filename>.
->>>>                      For ARM/EABI targets, there are also
->>>> "linux-gnueabi" and
->>>> -                    "linux-uclibc-gnueabi" values possible.
->>>> +                    "linux-musleabi" values possible.
->>>>                  </para>
->>>>              </glossdef>
->>>>          </glossentry>
->>>> @@ -14283,7 +14283,7 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR
->>>> = "${INC_PR}.3"
->>>>
->>>>          <glossentry id='var-TCLIBC'><glossterm>TCLIBC</glossterm>
->>>>              <info>
->>>> -                TCLIBC[doc] = "Specifies GNU standard C library (libc)
->>>> variant to use during the build process. You can select 'glibc' or
->>>> 'uclibc'."
->>>> +                TCLIBC[doc] = "Specifies GNU standard C library (libc)
->>>> variant to use during the build process. You can select 'glibc' or 'musl'."
->>>>              </info>
->>>>              <glossdef>
->>>>                  <para role="glossdeffirst">
->>>> @@ -14295,7 +14295,7 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR
->>>> = "${INC_PR}.3"
->>>>                  </para>
->>>>
->>>>                  <para>
->>>> -                    You can select "glibc" or "uclibc".
->>>> +                    You can select "glibc" or "musl".
->>>>                  </para>
->>>>              </glossdef>
->>>>          </glossentry>
->>>> @@ -14334,7 +14334,7 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR
->>>> = "${INC_PR}.3"
->>>>                      <link linkend='var-TCLIBC'><filename
->>>> >TCLIBC</filename></link>,
->>>>                      which controls the variant of the GNU standard C
->>>> library
->>>>                      (<filename>libc</filename>) used during the build
->>>> process:
->>>> -                    <filename>glibc</filename> or
->>>> <filename>uclibc</filename>.
->>>> +                    <filename>glibc</filename> or
->>>> <filename>musl</filename>.
->>>>                  </para>
->>>>
->>>>                  <para>
->>>> --
->>>> 2.7.4
->>>>
->>>>
->>>
->>>
->>> --
->>> Thanks
->>> Changhyeok
->>>
->>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >>
 >>
 >> --
->> Thanks
->> Changhyeok
 >>
->
->
-
+>> /*******/
+>> Sent by Ubuntu LTS 16.04,
+>> 谢谢,
+>> Regards,
+>> Riko Ho
+>> /*******/
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>> --
+>>
+>> /*******/
+>> Sent by Ubuntu LTS 16.04,
+>> 谢谢,
+>> Regards,
+>> Riko Ho
+>> /*******/
 
 -- 
+*
+
+/*******/
+Sent by Ubuntu LTS 16.04,
+谢谢,
+Regards,
+Riko Ho
+/*******/
+
+*
+
+--------------8E288A9B2B6ED5886A8832F0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>How can I obtain that "udev" ? and where can I find the log ?
+      "dmesg" | "grep" ?<br>
+    </p>
+    Two days ago, I saw activity on UART when the dongle was inserted,
+    but it's gone now, I can't see the activity..<br>
+    Any clues ?<br>
+    Thanks<br>
+    <div class="moz-cite-prefix">On 20/06/17 12:51, Khem Raj wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAMKF1spo=pDw1XDhwwbPoQTMjkY-fXmvSgvLrNh5Tum5tn_-wA@mail.gmail.com">
+      <pre wrap="">On Mon, Jun 19, 2017 at 8:46 PM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">I got all the files needed, but now I get no response from the dongle when I
+plug it,
+</pre>
+      </blockquote>
+      <pre wrap="">
+you might want to check logs and see if there are udev events generated
+on insertion.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">
+Here's the files on the board :
+root@beaglebone:/lib/firmware/rtlwifi# ls
+rtl8188efw.bin           rtl8192eu_ap_wowlan.bin  rtl8723bs_bt.bin
+rtl8188eufw.bin          rtl8192eu_nic.bin        rtl8723bs_nic.bin
+rtl8192cfw.bin           rtl8192eu_wowlan.bin     rtl8723bs_wowlan.bin
+rtl8192cfwU.bin          rtl8192sefw.bin          rtl8723bu_ap_wowlan.bin
+rtl8192cfwU_B.bin        rtl8712u.bin             rtl8723bu_nic.bin
+rtl8192cufw.bin          rtl8723aufw_A.bin        rtl8723bu_wowlan.bin
+rtl8192cufw_A.bin        rtl8723aufw_B.bin        rtl8723fw.bin
+rtl8192cufw_B.bin        rtl8723aufw_B_NoBT.bin   rtl8723fw_B.bin
+rtl8192cufw_TMSC.bin     rtl8723befw.bin          rtl8821aefw.bin
+rtl8192defw.bin          rtl8723befw_36.bin       rtl8821aefw_29.bin
+rtl8192eefw.bin          rtl8723bs_ap_wowlan.bin  rtl8821aefw_wowlan.bin
+
+
+On 20/06/17 03:57, Khem Raj wrote:
+
+On Sun, Jun 18, 2017 at 8:00 PM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+
+Hello Everyone,
+
+How can I obtain : rtl8192eu_nic.bin?
+
+I got this message :
+
+RTL8192EU rev B (SMIC) 2T2R, TX queues 3, WiFi=1, BT=0, GPS=0, HI PA=0
+usb 1-1: RTL8192EU MAC: 00:0b:81:a2:a5:60
+usb 1-1: rtl8xxxu: Loading firmware rtlwifi/rtl8192eu_nic.bin
+usb 1-1: Direct firmware load for rtlwifi/rtl8192eu_nic.bin failed with
+error -2
+usb 1-1: request_firmware(rtlwifi/rtl8192eu_nic.bin) failed
+
+you probably need to add the nonfree firmware bits something like this
+
+<a class="moz-txt-link-freetext" href="https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend">https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/linux-firmware/linux-firmware_git.bbappend</a>
+
+and
+
+<a class="moz-txt-link-freetext" href="https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/rtl8192cu/rtl8192cu_4.0.2_9000.bb">https://github.com/resin-os/meta-resin/blob/master/meta-resin-common/recipes-kernel/rtl8192cu/rtl8192cu_4.0.2_9000.bb</a>
+
+might help
+
+Thanks,
+
+On 18/06/17 15:49, Martin Jansa wrote:
+
+You didn't say which versions you're using.
+
+If you're using latest oe-core with gcc7 then you will need v3 version of
+this change:
+<a class="moz-txt-link-freetext" href="http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html">http://lists.openembedded.org/pipermail/openembedded-devel/2017-June/113247.html</a>
+I'll send it later today.
+
+And how can I clean after building it ? It took about 70Gb of my drive
+
+Like any other recipe:
+bitbake -c clean foo
+
+On Sun, Jun 18, 2017 at 1:41 AM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+
+Hello Everyone,
+
+I tried to compile chromium but never succeeded, took me already 12 hours
+and stopped on 99%,
+I used bitbake for doing it,
+
+Is chromium not compatible with arm CPU ? it was working with X86_64
+before.
+And how can I clean after building it ? It took about 70Gb of my drive
+
 Thanks
-Changhyeok
+--
+_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
 
---94eb2c196cf413f3a805526e3c52
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks. I confirmed it.<div><br></div><div>Changhyeok</div=
-></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2017-06-21=
- 9:24 GMT+09:00 Kristi Rifenbark <span dir=3D"ltr">&lt;<a href=3D"mailto:kr=
-isti.rifenbark@gmail.com" target=3D"_blank">kristi.rifenbark@gmail.com</a>&=
-gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div><d=
-iv><div><div><div>Changhyeok, <br><br></div>Fix is backported to morty (2.2=
-.2) - <a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/commi=
-t/?h=3Dmorty&amp;id=3De131c26ee1ab268679f7762dbe26760bd859e0e5" target=3D"_=
-blank">http://git.yoctoproject.org/<wbr>cgit/cgit.cgi/yocto-docs/<wbr>commi=
-t/?h=3Dmorty&amp;id=3D<wbr>e131c26ee1ab268679f7762dbe2676<wbr>0bd859e0e5</a=
-><br><br></div>Fix is backported to pyro (2.3.1) - <a href=3D"http://git.yo=
-ctoproject.org/cgit/cgit.cgi/yocto-docs/commit/?h=3Dpyro&amp;id=3D859549a1d=
-bc0b63bc04310a121600ea622509256" target=3D"_blank">http://git.yoctoproject.=
-org/<wbr>cgit/cgit.cgi/yocto-docs/<wbr>commit/?h=3Dpyro&amp;id=3D<wbr>85954=
-9a1dbc0b63bc04310a121600e<wbr>a622509256</a><br><br></div>Fix is the curren=
-t master branch (2.4) - <a href=3D"http://git.yoctoproject.org/cgit/cgit.cg=
-i/yocto-docs/commit/?id=3Ded7e62f5937576d7878eb955fda12c18e787db18" target=
-=3D"_blank">http://git.yoctoproject.org/<wbr>cgit/cgit.cgi/yocto-docs/<wbr>=
-commit/?id=3D<wbr>ed7e62f5937576d7878eb955fda12c<wbr>18e787db18</a><br><br>=
-</div>If you want to see these changes in the manual see the published ref-=
-manual for 2.2.2, 2.3.1, and 2.4.<br><br></div>Thanks, <br></div>Kristi<br>=
-</div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><b=
-r><div class=3D"gmail_quote">On Tue, Jun 20, 2017 at 9:44 AM, Changhyeok Ba=
-e <span dir=3D"ltr">&lt;<a href=3D"mailto:changhyeok.bae@gmail.com" target=
-=3D"_blank">changhyeok.bae@gmail.com</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex"><div dir=3D"ltr">Hi Scott, Kristi<div><br></div><div>Coul=
-d review my changes?</div><div><br></div><div>Thanks</div><div>Changhyeok</=
-div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2017-06-12 14=
-:52 GMT+09:00 Changhyeok Bae <span dir=3D"ltr">&lt;<a href=3D"mailto:changh=
-yeok.bae@gmail.com" target=3D"_blank">changhyeok.bae@gmail.com</a>&gt;</spa=
-n>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">This patch should be=
- merged in morty (2.2), pryo (2.3), and master branch.<div><br></div><div>T=
-hanks</div><div>Changhyeok</div></div><div class=3D"gmail_extra"><div><div =
-class=3D"m_3500498550774540357m_-4339762172169817172h5"><br><div class=3D"g=
-mail_quote">2017-06-12 13:07 GMT+09:00 Changhyeok Bae <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:changhyeok.bae@gmail.com" target=3D"_blank">changhyeok.b=
-ae@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span>uClibc=
- Replaced by musl from Yocto 2.2<br>
-<br>
-Signed-off-by: Changhyeok Bae &lt;<a href=3D"mailto:changhyeok.bae@gmail.co=
-m" target=3D"_blank">changhyeok.bae@gmail.com</a>&gt;<br>
----<br>
-=C2=A0documentation/ref-manual/ref-<wbr>variables.xml | 14 +++++++-------<b=
-r>
-=C2=A01 file changed, 7 insertions(+), 7 deletions(-)<br>
-<br>
-diff --git a/documentation/ref-manual/ref<wbr>-variables.xml b/documentatio=
-n/ref-manual/ref<wbr>-variables.xml<br>
-</span>index bd9e517..0967e40 100644<br>
-<span>--- a/documentation/ref-manual/ref<wbr>-variables.xml<br>
-+++ b/documentation/ref-manual/ref<wbr>-variables.xml<br>
-@@ -5131,9 +5131,9 @@<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0is normally the same as the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0&lt;link linkend=3D&#39;var-TARGET_OS&#39;&gt;&lt;filen<wbr>ame&gt;TARGE=
-T_OS&lt;/filename&gt;&lt;/link<wbr>&gt;.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0The variable can be set to &quot;linux&quot; for &lt;filename&gt;glibc&l=
-t;/filename&gt;-bas<wbr>ed systems and<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 to &=
-quot;linux-uclibc&quot; for &lt;filename&gt;uclibc&lt;/filename&gt;.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 to &=
-quot;linux-musl&quot; for &lt;filename&gt;musl&lt;/filename&gt;.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0For ARM/EABI targets, there are also &quot;linux-gnueabi&quot; and<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quo=
-t;linux-uclibc-gnueabi&quot; values possible.<br>
-</span>+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 &quot;linux-musleabi&quot; values possible.<br>
-<span>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/pa=
-ra&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/glossdef&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/glossentry&gt;<br>
-@@ -14152,9 +14152,9 @@ recipes-graphics/xorg-font/fon<wbr>t-alias_1.0.3.bb=
-:PR =3D &quot;${INC_PR}.3&quot;<br>
-=C2=A0&lt;!--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;pa=
-ra role=3D&quot;glossdeffirst&quot;&gt;&lt;imagedat<wbr>a fileref=3D&quot;f=
-igures/define-generi<wbr>c.png&quot; /&gt; --&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0Specifies the target&#39;s operating system.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0The variable can be set to &quot;linux&quot; for &lt;filename&gt;glibc&l=
-t;/filename&gt;-bas<wbr>ed systems and<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 to &=
-quot;linux-uclibc&quot; for &lt;filename&gt;uclibc&lt;/filename&gt;.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 to &=
-quot;linux-musl&quot; for &lt;filename&gt;musl&lt;/filename&gt;.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0For ARM/EABI targets, there are also &quot;linux-gnueabi&quot; and<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quo=
-t;linux-uclibc-gnueabi&quot; values possible.<br>
-</span>+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 &quot;linux-musleabi&quot; values possible.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;=
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/glossdef&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/glossentry&gt;<br>
-<div class=3D"m_3500498550774540357m_-4339762172169817172m_-919994439535715=
-5871HOEnZb"><div class=3D"m_3500498550774540357m_-4339762172169817172m_-919=
-9944395357155871h5">@@ -14283,7 +14283,7 @@ recipes-graphics/xorg-font/fon<=
-wbr>t-alias_1.0.3.bb:PR =3D &quot;${INC_PR}.3&quot;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;glossentry id=3D&#39;var-TCLIBC&#39;&=
-gt;&lt;glossterm&gt;TCL<wbr>IBC&lt;/glossterm&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;info&gt;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 TCLIBC[doc] =3D &q=
-uot;Specifies GNU standard C library (libc) variant to use during the build=
- process. You can select &#39;glibc&#39; or &#39;uclibc&#39;.&quot;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 TCLIBC[doc] =3D &q=
-uot;Specifies GNU standard C library (libc) variant to use during the build=
- process. You can select &#39;glibc&#39; or &#39;musl&#39;.&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/info&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;glossdef&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;para role=
-=3D&quot;glossdeffirst&quot;&gt;<br>
-@@ -14295,7 +14295,7 @@ recipes-graphics/xorg-font/fon<wbr>t-alias_1.0.3.bb=
-:PR =3D &quot;${INC_PR}.3&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;=
-<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;para&gt;<=
-br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 You =
-can select &quot;glibc&quot; or &quot;uclibc&quot;.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 You =
-can select &quot;glibc&quot; or &quot;musl&quot;.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;=
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/glossdef&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/glossentry&gt;<br>
-@@ -14334,7 +14334,7 @@ recipes-graphics/xorg-font/fon<wbr>t-alias_1.0.3.bb=
-:PR =3D &quot;${INC_PR}.3&quot;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0&lt;link linkend=3D&#39;var-TCLIBC&#39;&gt;&lt;filename<wbr>&gt;TCLIBC&l=
-t;/filename&gt;&lt;/link&gt;,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0which controls the variant of the GNU standard C library<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0(&lt;filename&gt;libc&lt;/filename&gt;) used during the build process:<b=
-r>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;=
-filename&gt;glibc&lt;/filename&gt; or &lt;filename&gt;uclibc&lt;/filename&g=
-t;.<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;=
-filename&gt;glibc&lt;/filename&gt; or &lt;filename&gt;musl&lt;/filename&gt;=
-.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;/para&gt;=
-<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;para&gt;<=
-br>
---<br>
-2.7.4<br>
-<br>
-</div></div></blockquote></div><br><br clear=3D"all"><span class=3D"m_35004=
-98550774540357HOEnZb"><font color=3D"#888888"><div><br></div></font></span>=
-</div></div><span class=3D"m_3500498550774540357HOEnZb"><font color=3D"#888=
-888"><span class=3D"m_3500498550774540357m_-4339762172169817172HOEnZb"><fon=
-t color=3D"#888888">-- <br><div class=3D"m_3500498550774540357m_-4339762172=
-169817172m_-9199944395357155871gmail_signature" data-smartmail=3D"gmail_sig=
-nature"><div dir=3D"ltr">Thanks<div>Changhyeok</div></div></div>
-</font></span></font></span></div><span class=3D"m_3500498550774540357HOEnZ=
-b"><font color=3D"#888888">
-</font></span></blockquote></div><span class=3D"m_3500498550774540357HOEnZb=
-"><font color=3D"#888888"><br><br clear=3D"all"><div><br></div>-- <br><div =
-class=3D"m_3500498550774540357m_-4339762172169817172gmail_signature" data-s=
-martmail=3D"gmail_signature"><div dir=3D"ltr">Thanks<div>Changhyeok</div></=
-div></div>
-</font></span></div></div>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
-<div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=
-=3D"ltr">Thanks<div>Changhyeok</div></div></div>
-</div>
+--
 
---94eb2c196cf413f3a805526e3c52--
+/*******/
+Sent by Ubuntu LTS 16.04,
+谢谢,
+Regards,
+Riko Ho
+/*******/
+
+
+--
+_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+
+
+--
+
+/*******/
+Sent by Ubuntu LTS 16.04,
+谢谢,
+Regards,
+Riko Ho
+/*******/
+</pre>
+      </blockquote>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          谢谢,<br>
+          Regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
+  </body>
+</html>
+
+--------------8E288A9B2B6ED5886A8832F0--
