@@ -1,67 +1,64 @@
-Return-Path: <dominig.arfoll@fridu.net>
+Return-Path: <trini@konsulko.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6121DE00B83; Wed, 21 Jun 2017 07:39:39 -0700 (PDT)
+	id E8A23E00B83; Wed, 21 Jun 2017 07:45:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, MIME_HTML_ONLY,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.172 listed in list.dnswl.org]
+	*      [209.85.161.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f172.google.com (mail-wr0-f172.google.com
-	[209.85.128.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C621E00B19
-	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 07:39:36 -0700 (PDT)
-Received: by mail-wr0-f172.google.com with SMTP id 77so137852091wrb.1
-	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 07:39:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fridu.net; s=google;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=RVzuyRvC894zTcVo9OLWfgBkqrPwxgeeS2wWQkOdn9g=;
-	b=TgOgraY9qJKfBAVVlH2x+E37vx+psr+q35fDzp7LEVFQ0LXgRuyVE8UALwB9rwKfhC
-	D3b9AZtcIoTzlaV77WoQp3V+tn7eVX4Oj//XD6di6a9U9dTx7urbhST8dsmj1oQHh4zg
-	Z53DCpXc8AY/2dXkgfGzAw8/5w986B8n5h5HQ=
+Received: from mail-yw0-f171.google.com (mail-yw0-f171.google.com
+	[209.85.161.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7D3EE00B19
+	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 07:45:52 -0700 (PDT)
+Received: by mail-yw0-f171.google.com with SMTP id l75so65287413ywc.3
+	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 07:45:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=auRfN1A5RwnK7kbblSN1CfeG4k/NpbytURQwpcUrito=;
+	b=mVYrvengoHq7xHptsbm5CAgOjDuOWIi5kbt5ypANMzDigcgiHQRbduD/c13ficy6bo
+	L4t5zGGj6F0IFH1d0Mvw3JiUogMLottqGLhGiZnaI6nUAv2XHHWNLeS74DSe1yPzRaW2
+	PxeHlYTNVP9j23IiZw5QfvOkX0ST4Gpydst34=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=RVzuyRvC894zTcVo9OLWfgBkqrPwxgeeS2wWQkOdn9g=;
-	b=YcKjMx7II0zzsYdv0uXb7ukvncMnfKBIqJJEo60sxeMp8ymkVJsyJKgWmRXmM0n8Li
-	al9lckaWu1huhRzCPlpBfGygwoM2B1RT3HT9V1R10Z2ky7Xpd555XCoH1go+vNeRjIhQ
-	DGpCx+w+L709pwuB+vOSRBxb9i6oS7XphGgUTMSr4OO3ltlS0NSfKNh0vvcHhy4jc7Se
-	xyvju/aXtEI+1wQ79zpYxec5cFcJZ4pY6ahQRzQv1ayIDdc/KznkqAVTjK0Fykb0/Jq5
-	gmiepA3tXiu1IGlU814vTjO7BfANiJYUTxC678/zZT/Qm6qFsVyj32BsTu3l/EYRduB/
-	1d2w==
-X-Gm-Message-State: AKS2vOyH3MmP/VrIyUF/H6RahIeQioHlLrZjFpiYL741NuiWlPUdnDXY
-	GByiAyjgxpGCizrJIx6Z9Q==
-X-Received: by 10.223.169.51 with SMTP id u48mr16331179wrc.176.1498055975960; 
-	Wed, 21 Jun 2017 07:39:35 -0700 (PDT)
-Received: from [10.10.61.21] (ARennes-650-1-220-227.w92-135.abo.wanadoo.fr.
-	[92.135.179.227]) by smtp.gmail.com with ESMTPSA id
-	z75sm13728529wmz.8.2017.06.21.07.39.34 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 21 Jun 2017 07:39:35 -0700 (PDT)
-To: yocto@yoctoproject.org
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=auRfN1A5RwnK7kbblSN1CfeG4k/NpbytURQwpcUrito=;
+	b=QAr0JQW1v+byseEIiQDsTGvMhe4Kl4ZP4Lel18J0Sl6ngJqREB4AUfQfvS8aTVNBE+
+	j3e4GrtprcfWytEQ3yNzT7e3XGwFv1V7AOpfvM9E4oJcEahair7fKBCwbcDRvo9WGhGN
+	pPuyXaJqy1hmlcWR3qyw85eDnZC5e5bt4n6iNmHkfI7OGCla8Ilq4848Px0w6v0/uEIS
+	9eMBn6aUzyKeLX83wf2UBH3zLn1+OswP/tCBcItD48kmHgcbY0bVu9b7V8FSdU/LAuAs
+	kA5Gjk+zXIwrvGFOk+Pn7HOCOZSC4IDhVhW2PV3vNJ7iI74QSP9w8N14pcimXz5lGWij
+	K8rg==
+X-Gm-Message-State: AKS2vOyQcYkxmnfhWKa2ffFhTa3iNDPqzsXkHanID891iXkeM88NXUHA
+	3LjPk58Hb4Z1ySCWZhM0XA==
+X-Received: by 10.129.166.201 with SMTP id d192mr30306041ywh.108.1498056351700;
+	Wed, 21 Jun 2017 07:45:51 -0700 (PDT)
+Received: from bill-the-cat (cpe-75-180-228-133.ec.res.rr.com.
+	[75.180.228.133]) by smtp.gmail.com with ESMTPSA id
+	j16sm6705267ywg.31.2017.06.21.07.45.50
+	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
+	Wed, 21 Jun 2017 07:45:51 -0700 (PDT)
+Date: Wed, 21 Jun 2017 10:46:23 -0400
+From: Tom Rini <trini@konsulko.com>
+To: Anders Montonen <Anders.Montonen@iki.fi>
+Message-ID: <20170621144623.GH27196@bill-the-cat>
 References: <alpine.DEB.2.11.1706201553410.27988@lakka.kapsi.fi>
-From: "Dominig ar Foll (Intel Open Source)" <dominig.arfoll@fridu.net>
-Message-ID: <23602da2-746d-06cd-81d8-38372ff17e74@fridu.net>
-Date: Wed, 21 Jun 2017 16:39:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.0
 MIME-Version: 1.0
 In-Reply-To: <alpine.DEB.2.11.1706201553410.27988@lakka.kapsi.fi>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
 Subject: Re: AppArmor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -74,57 +71,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jun 2017 14:39:39 -0000
-Content-Type: text/html; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 21 Jun 2017 14:45:54 -0000
+X-Groupsio-MsgNum: 36712
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="YrlhzR9YrZtruaFS"
+Content-Disposition: inline
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <font size="-1">Anders,<br>
-      <br>
-      in the Automotive Grade Linux (AGL) we are using Smack + Cynara
-      and that has required quite a bit of side work to make it
-      operational.<br>
-       - <a class="moz-txt-link-freetext" href="http://docs.automotivelinux.org/">http://docs.automotivelinux.org/</a><br>
-      I have been presenting AGL  Smack based security model in quite a
-      few conferences over the world and not many people have come to me
-      to talk about their "solution" working either on SE Linux or
-      AppArmor. So far I have the impression that AGL is quite unique in
-      its full integration of an LSM module in an embedded project.<br>
-      <br>
-       One of the member of Genivi Alliance (I believe it was Bosh with
-      its product called at the time eCore) told (about 3 years ago)
-      that they would put their security framework which was based on
-      AppAmor, in the Open, but I have never eared about it since that
-      time.<br>
-      <br>
-      Initialisation and update/upgrade are where the LSM provides most
-      of the pain. they rarely work out of the box once that LSM is
-      active.<br>
-    </font>--
-    <pre class="moz-signature" cols="72">Dominig ar Foll
-Senior Software Architect
-Intel Open Source Technology Centre</pre>
-    <div class="moz-cite-prefix">Le 20/06/2017 à 15:19, Anders Montonen
-      a écrit :<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:alpine.DEB.2.11.1706201553410.27988@lakka.kapsi.fi">Hi,
-      <br>
-      <br>
-      Has anyone tried using AppArmor with Yocto? The recipe in the
-      meta-security layer is broken, and when fixed so it actually
-      builds, it turns out the installed init script relies on functions
-      not found in Yocto's version of LSB.
-      <br>
-      <br>
-      Regards,
-      <br>
-      Anders </blockquote>
-  </body>
-</html>
+--YrlhzR9YrZtruaFS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jun 20, 2017 at 04:19:24PM +0300, Anders Montonen wrote:
+
+> Hi,
+>=20
+> Has anyone tried using AppArmor with Yocto? The recipe in the
+> meta-security layer is broken, and when fixed so it actually builds,
+> it turns out the installed init script relies on functions not found
+> in Yocto's version of LSB.
+
+The biggest problem I've found thus far with AppArmor was needing to do
+some tweaks (which I've posted) so that the utilities have all of the
+required python/perl bindings.  I do need to poke things harder however.
+
+--=20
+Tom
+
+--YrlhzR9YrZtruaFS
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQIcBAEBAgAGBQJZSoa/AAoJEIf59jXTHXZSj0gP/RXsuwzIYWSUlzJY0A04LuOG
+oHlzXZlTlS/jtE1K+glpCb/1BcKFumpRy4ZoH0iVLdwL9eXS04p0gvrB2jeuXlYa
+X4rdWPQfIh0FFh8TBDKaP3ZeSaF+EByJwfOmZyF9bnHaCcvbVG0EVrECW02IG8Hp
+ZH1L3ReplqCuxu6FejI6Y4Sr0h387d12k3Ci5+KVTcwsm+vxNLS+jCF1zgK3ewpF
+2CfsCtHJzrxRLEasDAEKhdFixkWw8xvwj/dcuD296ITdjDx0Ct+o3WvedpzeygY2
+085NJ8umcSM15U20wXnuhKYdtpG0Y7E1u/7vCC0uQWDCCmR7ua8hX9zPWYDlQLUK
+FChNrV3ej1E6FTAnz/Wq4PQreupVVkEws1wPKAh3He5nlZSkS80wPjsBCjylQE9B
+N0xDx+UceW0nZvWpX9jmHyFeCaBf1Tx+wayLhTScYskSYFPTxxt8BJwERd+vEh/9
+nLdIhXIFR90jpld0rrnX4SMPOirxo6vXLl1Uxl0yasuJD3NmQ3PUjWturpOtxZhy
+kyupMs3eESioizN8sm+yviL4QGomkSKns5AsUuPPGC00gvLt+8Zd5FBe0Ri/Tzxm
+jAP9w3152e2/xSRUiYyNV5kZaWyp+DPWWHncqG7UcZKAYJfXDLfBCEdVik42DxbK
+y8l5AdjE5zElycgYt1Tn
+=pYar
+-----END PGP SIGNATURE-----
+
+--YrlhzR9YrZtruaFS--
