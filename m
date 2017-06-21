@@ -1,6 +1,6 @@
 Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6D331E00BC2; Tue, 20 Jun 2017 21:38:56 -0700 (PDT)
+	id 7DF60E00B76; Tue, 20 Jun 2017 21:43:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (antonius.riko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,45 +20,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.179 listed in list.dnswl.org]
-Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
-	[209.85.223.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E8A5E00B76
-	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 21:38:52 -0700 (PDT)
-Received: by mail-io0-f179.google.com with SMTP id c201so847419ioe.1
-	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 21:38:52 -0700 (PDT)
+Received: from mail-io0-f171.google.com (mail-io0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7DCBE00B76
+	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 21:43:03 -0700 (PDT)
+Received: by mail-io0-f171.google.com with SMTP id c201so884352ioe.1
+	for <yocto@yoctoproject.org>; Tue, 20 Jun 2017 21:43:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language;
-	bh=+KR+Yah2H5eghL454WYQPaukXH0/TF1LXZ6bOcX3Qds=;
-	b=ApWjmq3tg/gcMZTqLfP9VvAN6jN707HiCY4iPNkVJSDvmkM0rC1mGFc2dYEbFuXgV7
-	4rW7KdUGACp3w+R6lShjdmokkFfoHz+sB2NqzEJbgMFbeCxjoy6/WZXRNj4DdgjYNpVs
-	OgllqxWWOMD1BMbqQ0EzZUnRA/UPFJgKT7N1JHCvMEJOpA27DXI46VG36xXuW6R5EI2E
-	+RBLG8bPT1KaRK4Ob01SJOEfLWBlJYP+38B3cojs8OyIYeWYfVLC+Mct2GdogIV0/2nQ
-	oXWg05+XqiJq2lFe90tFdEpZ9j33fNzp/RpUHJuv8zZgbH73GL6WXGdqCHiKojW5oKFg
-	JAPg==
+	bh=iaTA42k4WFmUg3nNGEoPt0a4vDI9JftRaGTjKG7AxVQ=;
+	b=MDU8XrJjSZAzzS3LxCQ0mT7rjt3F/iOyO1v43y7LZfhvHW++wK6KYfNg1Z8QgQrWV7
+	PowM1BC9V0Qs0LRWZxGNEcN42Q7TzdTqCvvZI9JxZJ6KoQpPMtMink5P1eXRmS75m0Id
+	oto2Zyt/TbrHT7X5m+jjG0HY9JnZ6H1ymN9phzKkWmXNyoojMRZGx3F+2K946n0xTEVj
+	mSIdWhmVup6vOuqBXjFRZkfaaezqfcgO2Po1uGoZ+fc6RSNhDvq9Eok5du4oyKo13+83
+	xrpt6QDS3cxNbMRuNbiTm/TPD9Vx4R3TIfUQX3WM2KFMkyRJ9xRwvHuaFeGET6eamm+B
+	vB3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language;
-	bh=+KR+Yah2H5eghL454WYQPaukXH0/TF1LXZ6bOcX3Qds=;
-	b=KtvpcQQi0rXxktSZOUIIDmsVcI9iJNk3v4EADR31YBhOVt23MvzfxqTd/RH6ZwF7Ry
-	G8ysNbqRvm5BWT2XIK9IgQz1LpgzrkcAUx3WVZH+29SON97LqcASk/mkrHRak9k4l0Vo
-	BXUb7Jq+idMbmYyfsL30ibcOnUBcSlluQcBDfSubk6R+hayCPPrXNYVH1NIO6o2PWolr
-	Gy9clYtTs5x1x0ybVe34Riiff9I5eNUhzFrG0f6Gy17RFvyIMTKhh0lM5VSv3DS81WWQ
-	MCfBNOd2wJ2Wbiu/2Nc9H2LG1Q7+Li8K8bbqlPkH6ruTyr+LCIZ5wXSPBxiasMIPAwpZ
-	JpAQ==
-X-Gm-Message-State: AKS2vOyLVeL76WPEwkZ/S5dzLcFKkJnK636S51SxUC4KUnATPqsd56H9
-	xKzQgawU+qPVdgIB
-X-Received: by 10.107.128.84 with SMTP id b81mr28342347iod.26.1498019931948;
-	Tue, 20 Jun 2017 21:38:51 -0700 (PDT)
+	bh=iaTA42k4WFmUg3nNGEoPt0a4vDI9JftRaGTjKG7AxVQ=;
+	b=SA6ryRD4pF8q+iYSvRql0Ek0BdQj5dA/qWrpn0LTaxPKPUUuXt5v/RHVTZFYLUS6Tg
+	WuJRUT8w1KHAO+xwMC/rDJYYi5B+Zl1Rtsz44iopjTTpVLZ74uXIgpk9rFvpTbS9qoPl
+	C/U1CD8ZrFtPARsr6vdczJLm0vNdhBBbeGfZCe54gRQtrRyJxFt2EZoyKN+YXGk2u2JV
+	2PoT6Ec4V17qrmRFE77WBJtbfablGvEQamyeYi5sMfj1Tkclm2p5JFSvBVo9BNWavBuZ
+	zYTEB4ThEU7Yq9MXCXIVejJh+079Nw08CrttKlQFe7DIFQC6Sgkf823PnCYWyFnyWdP1
+	F+SA==
+X-Gm-Message-State: AKS2vOyrBRwDO4vB2rsZeePj+IzVzGepSUPqJ304F7RqKQkk+rCtjWFo
+	UR9Pu7Dg7N7FSFS8
+X-Received: by 10.107.16.41 with SMTP id y41mr31314055ioi.98.1498020182998;
+	Tue, 20 Jun 2017 21:43:02 -0700 (PDT)
 Received: from [10.0.0.1] (CPE-121-215-19-19.lnse1.pie.bigpond.net.au.
 	[121.215.19.19]) by smtp.gmail.com with ESMTPSA id
-	v13sm7081897ita.28.2017.06.20.21.38.47
+	y98sm9549294ita.17.2017.06.20.21.43.00
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 20 Jun 2017 21:38:50 -0700 (PDT)
+	Tue, 20 Jun 2017 21:43:02 -0700 (PDT)
 To: Khem Raj <raj.khem@gmail.com>
 References: <mailman.66247.1497786545.15860.yocto@yoctoproject.org>
 	<1497809434.2788.77.camel@genivi.org>
@@ -66,8 +66,8 @@ References: <mailman.66247.1497786545.15860.yocto@yoctoproject.org>
 	<61e45e0b-1fda-ecf5-51eb-437284c94d02@gmail.com>
 	<CAMKF1soeiztrJEjDzLJ5k3t3QzyuK7qqJ-orW+1SPBR1b-oswg@mail.gmail.com>
 From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <159e6257-d4ad-3459-d674-766a2bf1202c@gmail.com>
-Date: Wed, 21 Jun 2017 12:38:44 +0800
+Message-ID: <8525501f-954a-8799-957c-f68efc4d7d5b@gmail.com>
+Date: Wed, 21 Jun 2017 12:42:58 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.1.1
 MIME-Version: 1.0
@@ -86,31 +86,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jun 2017 04:38:56 -0000
+X-List-Received-Date: Wed, 21 Jun 2017 04:43:05 -0000
 Content-Type: multipart/alternative;
-	boundary="------------0E200163EAC0B94C4EA820A3"
+	boundary="------------7A9BF8F2BB78D595B203CBA1"
 Content-Language: en-US
 
---------------0E200163EAC0B94C4EA820A3
+--------------7A9BF8F2BB78D595B203CBA1
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-drwxrwxr-x 5 bianchi77 bianchi77 4.0K Jun 14 14:31 .
-drwxrwxr-x 3 bianchi77 bianchi77 4.0K Jun 12 15:50 ..
-drwxrwxr-x 2 bianchi77 bianchi77 4.0K Jun 12 15:50 cef3
--rw-rw-r-- 1 bianchi77 bianchi77 2.7K Jun 12 15:50 cef3_280796.bb
-drwxrwxr-x 4 bianchi77 bianchi77 4.0K Jun 12 15:50 chromium
-*-rw-rw-r-- 1 bianchi77 bianchi77 1.2K Jun 12 15:50 chromium_54.0.2810.2.bb*
--rw-rw-r-- 1 bianchi77 bianchi77  11K Jun 12 15:50 chromium-browser.inc
--rw-rw-r-- 1 bianchi77 bianchi77 4.6K Jun 12 15:50 chromium.inc
--rw-rw-r-- 1 bianchi77 bianchi77 2.2K Jun 12 15:50 
-chromium-wayland_53.0.2785.143.bb
-drwxrwxr-x 8 bianchi77 bianchi77 4.0K Jun 12 15:50 files
+did I put it wrongly ?
 
-is this one ? *chromium_54.0.2810.2.bb ?
+=======
 
-Thanks
-*
+Loading cache: 100% 
+|#####################################################################################################################################| 
+Time: 0:00:01
+Loaded 2794 entries from dependency cache.
+ERROR: ParseError at 
+/home/bianchi77/poky/meta-browser/recipes-browser/chromium/chromium_54.0.2810.2.bb:7: 
+unparsed line: 'EXTRA_OEGYP_prepend = " -Dcomponent=shared_library
+
+
 On 21/06/17 10:28, Khem Raj wrote:
 > add it to chromium recipe itself if you dont have a bbappend for it.
 >
@@ -207,7 +204,7 @@ Riko Ho
 
 *
 
---------------0E200163EAC0B94C4EA820A3
+--------------7A9BF8F2BB78D595B203CBA1
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -216,25 +213,18 @@ Content-Transfer-Encoding: 8bit
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    <p>drwxrwxr-x 5 bianchi77 bianchi77 4.0K Jun 14 14:31 .<br>
-      drwxrwxr-x 3 bianchi77 bianchi77 4.0K Jun 12 15:50 ..<br>
-      drwxrwxr-x 2 bianchi77 bianchi77 4.0K Jun 12 15:50 cef3<br>
-      -rw-rw-r-- 1 bianchi77 bianchi77 2.7K Jun 12 15:50 cef3_280796.bb<br>
-      drwxrwxr-x 4 bianchi77 bianchi77 4.0K Jun 12 15:50 chromium<br>
-      <b>-rw-rw-r-- 1 bianchi77 bianchi77 1.2K Jun 12 15:50
-        chromium_54.0.2810.2.bb</b><br>
-      -rw-rw-r-- 1 bianchi77 bianchi77  11K Jun 12 15:50
-      chromium-browser.inc<br>
-      -rw-rw-r-- 1 bianchi77 bianchi77 4.6K Jun 12 15:50 chromium.inc<br>
-      -rw-rw-r-- 1 bianchi77 bianchi77 2.2K Jun 12 15:50
-      chromium-wayland_53.0.2785.143.bb<br>
-      drwxrwxr-x 8 bianchi77 bianchi77 4.0K Jun 12 15:50 files<br>
-      <br>
+    <p>did I put it wrongly ?</p>
+    <p>=======<br>
     </p>
-    is this one ? <b> chromium_54.0.2810.2.bb ?<br>
-      <br>
-      Thanks<br>
-    </b>
+    <p>Loading cache: 100%
+|#####################################################################################################################################|
+      Time: 0:00:01<br>
+      Loaded 2794 entries from dependency cache.<br>
+      ERROR: ParseError at
+/home/bianchi77/poky/meta-browser/recipes-browser/chromium/chromium_54.0.2810.2.bb:7:
+      unparsed line: 'EXTRA_OEGYP_prepend = " -Dcomponent=shared_library<br>
+    </p>
+    <br>
     <div class="moz-cite-prefix">On 21/06/17 10:28, Khem Raj wrote:<br>
     </div>
     <blockquote type="cite"
@@ -340,4 +330,4 @@ Riko Ho
   </body>
 </html>
 
---------------0E200163EAC0B94C4EA820A3--
+--------------7A9BF8F2BB78D595B203CBA1--
