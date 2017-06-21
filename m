@@ -1,6 +1,6 @@
 Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DCA1BE00BC4; Wed, 21 Jun 2017 01:18:55 -0700 (PDT)
+	id 5A71EE00BBF; Wed, 21 Jun 2017 01:24:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,43 +19,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.68 listed in list.dnswl.org]
-Received: from mail-it0-f68.google.com (mail-it0-f68.google.com
-	[209.85.214.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 871F5E00BBF
-	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 01:18:53 -0700 (PDT)
-Received: by mail-it0-f68.google.com with SMTP id 185so18301699itv.3
-	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 01:18:53 -0700 (PDT)
+	*      [209.85.214.66 listed in list.dnswl.org]
+Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
+	[209.85.214.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EE1AE00BBF
+	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 01:24:47 -0700 (PDT)
+Received: by mail-it0-f66.google.com with SMTP id y134so5802267itc.1
+	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 01:24:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language;
-	bh=891NatrlUwiXldYC6Em7/8Yd6Xn4TUflP6iXE+cZ4og=;
-	b=GVeG5YOYqvwv/k52mkoOuomr3Hr6DRrteA1IsjyvBMBrRxiU3pC9KEMPXKHl/iZMYF
-	uOm7ICTlUeuoZ+Pd3OD4+lDIGllBI7icsbt4P/K6vcTlWk7r7TJaz4lrlirkmannQBzx
-	HtcupJ5QeYEaGYRFj7HWIGTCz382AuqGic4alU6l3FNfSFsbI9UuajgRiL6VCoHXSA4x
-	sf6tR+yuFho4LD/7ZWWZzp/n2yy/tDx/ckusqbROTT2QxSsstk1zbRbaFH6epcvGVh++
-	nyJtxp0QU/GXqeL/2TItSwgKTqkJJ0XIE7HnYulhefITkKwHysWgFR25kZHy1QQSozDl
-	8cNA==
+	bh=HAQvVEI9g0wUg6sc+XI/D5ahn8XSP04HFGDLorlRxLE=;
+	b=PrllJBU8MLdUSwA2YQ5b5NQBZov345NZLoQBepr6q/m8L3XNlip0ejUuvhQvTOpsJ/
+	SZF+J8cN6nGAC1ueUQTm2uqDIdU5JSVfTDem8FrncCtvEYOLqYqg0gPJOonxpGsKLAwO
+	7QOMWFwkqClb9M3lyBviMry6LunV04jBZLnx0mHHfZykHi/TVj6cmd/sxug05j10AsGg
+	dIOyOWor1Jihf+3H5kWIVKsh9ujHasKZicGl4adS5wkT29iNKWWr+zDh09lnKIpHYL5i
+	t6PC+YLPv7VWtEXGSzFjK2i/PhQW2vkkyLwg8abKhI/OryN4hWFP8rXZQFRr3NOl2TDY
+	UESw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language;
-	bh=891NatrlUwiXldYC6Em7/8Yd6Xn4TUflP6iXE+cZ4og=;
-	b=ZOMN6clIi3+XqmOhJ6qlWS7w8ic4cr0aDpZJgHTYiicwqywE37KBEqyPh+9dGhjOsT
-	yboeeOeGFEEa4BW3n0EydWRP6JwhiZTY1JndNdOiLaiYRJpsZBz3mmnrbmWMzt94V/+k
-	pmtg4oMm3EHeEH2nXOveym+IBPhEf2U6z3czyG3yJniaAHOdi5zcHsrYrHsDI4ODwm4m
-	mQhiQIjzBhfFEK4p2q3MC051hB+Tau/YUOTeVtt+Ycj+qy5c6oQfg6xuYGr4oTonKnk0
-	zUB30wIfmJaJLiD3bb+lMZkbr8XiqhDKhcSvzTRZqKE8wSr3dzTuN2r8bhfwPYf/RZep
-	/J3Q==
-X-Gm-Message-State: AKS2vOxc2Xq8V2Tmm1SczPhH4TBwSzzN56vkFyS5V+WTLkfvyCkRu6sc
-	iZrjHpckQQ/mbltFi2c=
-X-Received: by 10.36.4.4 with SMTP id 4mr7738488itb.73.1498033132509;
-	Wed, 21 Jun 2017 01:18:52 -0700 (PDT)
+	bh=HAQvVEI9g0wUg6sc+XI/D5ahn8XSP04HFGDLorlRxLE=;
+	b=BV+eZYZVlOak5oycrPtX9awJ9+9rA325WItPDXwPWovTWFFAcqHI3DyuK88TOJLkZ7
+	oy0vaNALq+kWNBBvLBjFapvi3DDC7KzTrTE8LvUJtxEPS+B6xEQdN0Jc1laOHvvfP5qc
+	NKawzp9JaJX/MwDwxciB6hhPVTC7OzHEG2z7/ea2fLDTyIzrH3qEDSlUZnAiQYz5rVpP
+	B6aXPI/5rCSewdNQtIVsnKixIWy1ZHo1BiaocY6ssgYmrmBdUiTPoV6cRGYi14sstGCP
+	OMUW1XwRbl1gBxX9o9Un/Q9gKxuiOX1eHpBILwcmA5qTM1GuRAT2MY5g95RcjyLy4+mT
+	e60Q==
+X-Gm-Message-State: AKS2vOwLvdLIiegHh3r+vlv/ww0/RUXedVaHheaAK0hdr8c7dPNqyzaJ
+	3FaKcQdWDcu6ILIo
+X-Received: by 10.36.107.77 with SMTP id v74mr7360348itc.1.1498033486496;
+	Wed, 21 Jun 2017 01:24:46 -0700 (PDT)
 Received: from [10.0.0.1] (CPE-121-215-21-157.lnse1.pie.bigpond.net.au.
-	[121.215.21.157])
-	by smtp.gmail.com with ESMTPSA id f19sm791657ioe.58.2017.06.21.01.18.47
+	[121.215.21.157]) by smtp.gmail.com with ESMTPSA id
+	h187sm2245923itb.13.2017.06.21.01.24.35
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 21 Jun 2017 01:18:51 -0700 (PDT)
+	Wed, 21 Jun 2017 01:24:45 -0700 (PDT)
 To: Gunnar Andersson <gandersson@genivi.org>, Khem Raj <raj.khem@gmail.com>
 References: <mailman.66247.1497786545.15860.yocto@yoctoproject.org>
 	<1497809434.2788.77.camel@genivi.org>
@@ -68,8 +68,8 @@ References: <mailman.66247.1497786545.15860.yocto@yoctoproject.org>
 	<8525501f-954a-8799-957c-f68efc4d7d5b@gmail.com>
 	<1498030640.8095.27.camel@genivi.org>
 From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <6d961b59-b823-82f9-90ee-c0ae99f16bec@gmail.com>
-Date: Wed, 21 Jun 2017 16:18:44 +0800
+Message-ID: <833f5a45-38fa-81d3-5bbd-97e933d5cdba@gmail.com>
+Date: Wed, 21 Jun 2017 16:24:27 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.1.1
 MIME-Version: 1.0
@@ -87,19 +87,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jun 2017 08:18:55 -0000
+X-List-Received-Date: Wed, 21 Jun 2017 08:24:49 -0000
 Content-Type: multipart/alternative;
-	boundary="------------1075AFFD7719DE2A399C56F0"
+	boundary="------------27A9E61EC71B18B566231EC7"
 Content-Language: en-US
 
---------------1075AFFD7719DE2A399C56F0
+--------------27A9E61EC71B18B566231EC7
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Like this ?
+It's compiling now, I cross my finger, thanks Guys,
 
-EXTRA_OEGYP_prepend = "\ -Dcomponent=shared_library
--Dremove_webcore_debug_symbols=1 -Dfastbuild=1 \"
+EXTRA_OEGYP_prepend = "\
+-Dcomponent=shared_library \
+-Dremove_webcore_debug_symbols=1 -Dfastbuild=1 \
+"
+
 
 
 On 21/06/17 15:37, Gunnar Andersson wrote:
@@ -139,7 +142,7 @@ Riko Ho
 
 *
 
---------------1075AFFD7719DE2A399C56F0
+--------------27A9E61EC71B18B566231EC7
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -148,10 +151,13 @@ Content-Transfer-Encoding: 8bit
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    <p>Like this ?</p>
-    <p>EXTRA_OEGYP_prepend = "\ -Dcomponent=shared_library<br>
-      -Dremove_webcore_debug_symbols=1 -Dfastbuild=1 \"<br>
-      <br>
+    <p>It's compiling now, I cross my finger, thanks Guys,<br>
+    </p>
+    <p>EXTRA_OEGYP_prepend = "\ <br>
+      -Dcomponent=shared_library \<br>
+      -Dremove_webcore_debug_symbols=1 -Dfastbuild=1 \<br>
+      "</p>
+    <p><br>
     </p>
     <br>
     <div class="moz-cite-prefix">On 21/06/17 15:37, Gunnar Andersson
@@ -207,4 +213,4 @@ GENIVI Alliance
   </body>
 </html>
 
---------------1075AFFD7719DE2A399C56F0--
+--------------27A9E61EC71B18B566231EC7--
