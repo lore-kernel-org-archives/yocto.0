@@ -1,47 +1,43 @@
-Return-Path: <petter@technux.se>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9211EE00BD6; Wed, 21 Jun 2017 21:23:02 -0700 (PDT)
+	id B3632E00B9F; Thu, 22 Jun 2017 03:47:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [195.74.38.228 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from bin-vsp-out-01.atm.binero.net (bin-mail-out-05.binero.net
-	[195.74.38.228])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D12C1E00BBD
-	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 21:23:00 -0700 (PDT)
-X-Halon-ID: 7832bcee-5702-11e7-9ab8-005056917a89
-Authorized-sender: petter@technux.se
-Received: from webmail.binero.se (unknown [195.74.38.9])
-	by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
-	id 7832bcee-5702-11e7-9ab8-005056917a89;
-	Thu, 22 Jun 2017 06:22:57 +0200 (CEST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B63C2E00B8B
+	for <yocto@yoctoproject.org>; Thu, 22 Jun 2017 03:47:35 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v5MAlX5x008832
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 22 Jun 2017 03:47:33 -0700 (PDT)
+Received: from [128.224.162.160] (128.224.162.160) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 22 Jun 2017 03:47:32 -0700
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <cover.1497320961.git.liezhi.yang@windriver.com>
+	<d29ba1f3abdcaad87fa53853261af4d98228c519.1497320961.git.liezhi.yang@windriver.com>
+	<27239647.GeoKIh8NCA@peggleto-mobl.ger.corp.intel.com>
+From: Robert Yang <liezhi.yang@windriver.com>
+Message-ID: <d81b63c1-cd74-0c1c-eed5-443ba3e9e4de@windriver.com>
+Date: Thu, 22 Jun 2017 18:47:31 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.2.0
 MIME-Version: 1.0
-Date: Thu, 22 Jun 2017 06:22:56 +0200
-From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: <yocto@yoctoproject.org>, Drew moseley <drew.moseley@mender.io>
-Organization: Technux
-Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <CAHUNapTWt21mhdcVJEUh+8xVZYbSjejnhykD8qszcAoJrM97Rw@mail.gmail.com>
-References: <cover.1497646644.git.drew.moseley@mender.io>
-	<195a92fc1faa49495d1a2b6cda0134f07ce72189.1497646644.git.drew.moseley@mender.io>
-	<20170619054832.GA7840@linux-uys3>
-	<826973B0-DCFF-435C-87F0-44FD8B82817C@mender.io>
-	<CAHUNapTWt21mhdcVJEUh+8xVZYbSjejnhykD8qszcAoJrM97Rw@mail.gmail.com>
-Message-ID: <c74cfb7b27f71ae5573c5b776fda7c99@technux.se>
-X-Sender: petter@technux.se
-User-Agent: Binero Webmail/0.8.4
-Subject: Re: [meta-chip][RFC PATCH 3/3] chip: Add chip-u-boot-scr recipe and flash script
+In-Reply-To: <27239647.GeoKIh8NCA@peggleto-mobl.ger.corp.intel.com>
+Cc: Konrad.Scherer@windriver.com, yocto@yoctoproject.org
+Subject: Re: [PATCH V4 03/10] utils.py: remove obsolete dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -50,123 +46,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Jun 2017 04:23:02 -0000
-Content-Type: multipart/alternative;
-	boundary="=_6d6dfd618ae83de68c00da55ebbe3ac4"
+X-List-Received-Date: Thu, 22 Jun 2017 10:47:36 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---=_6d6dfd618ae83de68c00da55ebbe3ac4
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset=UTF-8
 
- 
 
-2017-06-19 16:40 skrev Trevor Woerner: 
+On 06/21/2017 05:06 PM, Paul Eggleton wrote:
+> On Tuesday, 13 June 2017 4:36:44 AM CEST Robert Yang wrote:
+>> Fixed:
+>>   - set LAYERDEPENDS_openembedded-layer = "core"
+>>   - $ "update.py -l meta-oe -b master"
+>>     Check from web, its dependency is "openembedded-core"
+>>   - Change LAYERDEPENDS_openembedded-layer = "foo"
+>>   - Run "update.py -l meta-oe -b master"
+>>     Check from web, its dependency is "openembedded-core and foo", this is
+>>     wrong, it should be "foo" only, this patch can fix the problem.
+>>
+>> And also the existing checking should filter(required=required),
+>> otherwise it can't work well when a layer is in both depends and
+>> recommends, this can't happen in a normal case, but it would surprise the
+>> user when this happens.
+>>
+>> Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+>> ---
+>>  layerindex/utils.py | 13 ++++++++++++-
+>>  1 file changed, 12 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/layerindex/utils.py b/layerindex/utils.py
+>> index 442b121..b7165d0 100644
+>> --- a/layerindex/utils.py
+>> +++ b/layerindex/utils.py
+>> @@ -88,6 +88,7 @@ def _add_dependency(var, name, layerbranch, config_data,
+> logger=None, required=T
+>>          logger.debug('Error parsing %s_%s for %s\n%s' % (var, var_name,
+> layer_name, str(vse)))
+>>          return
+>>
+>> +    need_delete = None
+>>      for dep, ver_list in list(dep_dict.items()):
+>>          ver_str = None
+>>          if ver_list:
+>> @@ -106,8 +107,14 @@ def _add_dependency(var, name, layerbranch,
+> config_data, logger=None, required=T
+>>                  logger.error('Cannot resolve %s %s (version %s) for %s' %
+> (name, dep, ver_str, layer_name))
+>>                  continue
+>>
+>> +        # Preparing to remove obsolete ones
+>> +        if not need_delete:
+>> +            need_delete =
+> LayerDependency.objects.filter(layerbranch=layerbranch).filter(required=required).exclude(dependency=dep_layer)
+>> +        else:
+>> +            need_delete = need_delete.exclude(dependency=dep_layer)
+>> +
+>>          # Skip existing entries.
+>> -        existing =
+> list(LayerDependency.objects.filter(layerbranch=layerbranch).filter(dependency=dep_layer))
+>> +        existing =
+> list(LayerDependency.objects.filter(layerbranch=layerbranch).filter(required=required).filter(dependency=dep_layer))
+>>          if existing:
+>>              logger.debug('Skipping %s - already a dependency for %s' %
+> (dep, layer_name))
+>>              continue
+>> @@ -121,6 +128,10 @@ def _add_dependency(var, name, layerbranch,
+> config_data, logger=None, required=T
+>>          layerdep.required = required
+>>          layerdep.save()
+>>
+>> +    if need_delete:
+>> +        logger.debug("Removing obsolete dependencies: %s" % need_delete)
+>> +        need_delete.delete()
+>> +
+>>  def set_layerbranch_collection_version(layerbranch, config_data,
+> logger=None):
+>>      layerbranch.collection = config_data.getVar('BBFILE_COLLECTIONS', True)
+>>      ver_str = "LAYERVERSION_"
+>
+> So I do see the need to clear out old dependency values when your list of
+> dependencies is coming entirely from LAYERDEPENDS, however if you have only
+> manually added dependencies and LAYERDEPENDS is not complete (as is often the
+> case in the OE layer index), will this automatically remove those? If so I
 
-> On Mon, Jun 19, 2017 at
-7:22 AM, Drew Moseley <drew.moseley@mender.io> wrote:
-> 
->>> On Jun 19,
-2017, at 1:48 AM, Trevor Woerner <twoerner@gmail.com> wrote: 
->>> 
->>>>
-If you have a serial console connected to +your board, you will see the
-progress and a message on the console will indicate when +the flashing
-is completed.
->>> hmmm, never saw this. I have a console connected, the
-moment the script started, on the console I got: U-Boot SPL 2016.01 (Jun
-19 2017 - 00:32:19) DRAM: 512 MiB CPU: 1008000000Hz, AXI/AHB/APB: 3/2/2
-Trying to boot from which looks right, the date+time are good.
->> Did
-you see the proper serial output after using a smaller image?
-> 
-> Yes.
-With a smaller image (~90MB) the flash update worked. Maybe
-> another
-improvement for a v2 would be for the script to look at the
-> size of
-/full/path/to/UBI_IMAGE and issue a warning/error if it's too
-> big?
+The dependencies will be removed if it is not in conf/layer.conf.
+
+> think we're going to have to come up with some mechanism to avoid that.
+> Probably the easiest one would be to avoid touching the dependencies unless
+> LAYERDEPENDS actually changes. Of course if that means we're going to store
+> the previous LAYERDEPENDS value somewhere to compare to, we'd need to avoid it
+> triggering initially when none of those values are set.
+
+Why not fix conf/layer.conf rather than fix it from database ? If
+conf/layer.conf is wrong, we would meet problems elsewhere. The database
+should obey local.conf when mismatches, otherwise, this would confuse
+users a lot when they want to update LAYERDEPENDS.
+
+I'm glad to fix oe-classic's LAYERDEPENDS issues if they are wrong.
+
+// Robert
+
+>
+> Cheers,
+> Paul
 >
 
-> I think the wording of what to expect on the host and over the
-serial
-> console could use some updating. Not to mention you say: "the
-status
-> LED on the CHIP board will flash 30 times per second..." which
-doesn't
-> seem to be the case, it looks more like the LED is toggled
-every 2
-> seconds (??), in any case, it's a lot slower than 30/sec.
-
-I
-also had the same experience as Trevor, that the led seems to flash
-every 2 seconds. Also the code indicate that 2 x 1 sec sleep is used in
-this area, so please go through the above description when it comes to
-led experience during flashing. Another minor comment is that I believe
-you should update the UBI_IMAGE example in README to use the "default"
-meta-chip hwup image (chip-hwup-image-chip.ubi). 
-
-BR Petter 
-
-Petter
-Mabäcker
-
-Technux <petter@technux.se>
-www.technux.se
- 
-
---=_6d6dfd618ae83de68c00da55ebbe3ac4
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>2017-06-19 16:40 skrev Trevor Woerner:</p>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
-d --><!-- meta ignored -->
-<pre>On Mon, Jun 19, 2017 at 7:22 AM, Drew Moseley &lt;<a href=3D"mailto:dr=
-ew.moseley@mender.io">drew.moseley@mender.io</a>&gt; wrote:</pre>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%">
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%">On Jun 19, 2017, at 1:48 AM, Trevor W=
-oerner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt;=
- wrote:
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%">If you have a serial console connecte=
-d to +your board, you will see the progress and a message on the console wi=
-ll indicate when +the flashing is completed.</blockquote>
-hmmm, never saw this. I have a console connected, the moment the script sta=
-rted, on the console I got: U-Boot SPL 2016.01 (Jun 19 2017 - 00:32:19) DRA=
-M: 512 MiB CPU: 1008000000Hz, AXI/AHB/APB: 3/2/2 Trying to boot from which =
-looks right, the date+time are good.</blockquote>
-Did you see the proper serial output after using a smaller image?</blockquo=
-te>
-<pre>Yes. With a smaller image (~90MB) the flash update worked. Maybe
-another improvement for a v2 would be for the script to look at the
-size of /full/path/to/UBI_IMAGE and issue a warning/error if it's too
-big?
-
-I think the wording of what to expect on the host and over the serial
-console could use some updating. Not to mention you say: "the status
-LED on the CHIP board will flash 30 times per second..." which doesn't
-seem to be the case, it looks more like the LED is toggled every 2
-seconds (??), in any case, it's a lot slower than 30/sec.</pre>
-</blockquote>
-<p>I also had the same experience as Trevor, that the led seems to flash ev=
-ery 2 seconds. Also the code indicate that 2 x 1 sec sleep is used in this =
-area, so please go through the above description when it comes to led exper=
-ience during flashing. Another minor comment is that I believe you should u=
-pdate the UBI_IMAGE example in README to use the "default" meta-chip hwup i=
-mage (chip-hwup-image-chip.ubi).</p>
-<p>BR Petter</p>
-<div>
-<pre>Petter Mab&auml;cker
-
-Technux &lt;petter@technux.se&gt;
-www.technux.se</pre>
-</div>
-</body></html>
-
---=_6d6dfd618ae83de68c00da55ebbe3ac4--
