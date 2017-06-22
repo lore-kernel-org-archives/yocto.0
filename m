@@ -1,6 +1,6 @@
 Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5089AE00BD6; Wed, 21 Jun 2017 21:16:25 -0700 (PDT)
+	id 9211EE00BD6; Wed, 21 Jun 2017 21:23:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,33 +8,36 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [195.74.38.229 listed in list.dnswl.org]
+	*      [195.74.38.228 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from bin-vsp-out-01.atm.binero.net (bin-mail-out-06.binero.net
-	[195.74.38.229])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95247E00BBD
-	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 21:16:21 -0700 (PDT)
-X-Halon-ID: 8a15d6e4-5701-11e7-9ab8-005056917a89
+Received: from bin-vsp-out-01.atm.binero.net (bin-mail-out-05.binero.net
+	[195.74.38.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D12C1E00BBD
+	for <yocto@yoctoproject.org>; Wed, 21 Jun 2017 21:23:00 -0700 (PDT)
+X-Halon-ID: 7832bcee-5702-11e7-9ab8-005056917a89
 Authorized-sender: petter@technux.se
 Received: from webmail.binero.se (unknown [195.74.38.9])
 	by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
-	id 8a15d6e4-5701-11e7-9ab8-005056917a89;
-	Thu, 22 Jun 2017 06:16:18 +0200 (CEST)
+	id 7832bcee-5702-11e7-9ab8-005056917a89;
+	Thu, 22 Jun 2017 06:22:57 +0200 (CEST)
 MIME-Version: 1.0
-Date: Thu, 22 Jun 2017 06:16:17 +0200
+Date: Thu, 22 Jun 2017 06:22:56 +0200
 From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: <yocto@yoctoproject.org>, <drew.moseley@mender.io>, Andrei Gherzan
-	<andrei@gherzan.ro>
+To: <yocto@yoctoproject.org>, Drew moseley <drew.moseley@mender.io>
 Organization: Technux
 Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <cover.1497646644.git.drew.moseley@mender.io>
+In-Reply-To: <CAHUNapTWt21mhdcVJEUh+8xVZYbSjejnhykD8qszcAoJrM97Rw@mail.gmail.com>
 References: <cover.1497646644.git.drew.moseley@mender.io>
-Message-ID: <a0a2fd2893681ae7193690b1421ec5f3@technux.se>
+	<195a92fc1faa49495d1a2b6cda0134f07ce72189.1497646644.git.drew.moseley@mender.io>
+	<20170619054832.GA7840@linux-uys3>
+	<826973B0-DCFF-435C-87F0-44FD8B82817C@mender.io>
+	<CAHUNapTWt21mhdcVJEUh+8xVZYbSjejnhykD8qszcAoJrM97Rw@mail.gmail.com>
+Message-ID: <c74cfb7b27f71ae5573c5b776fda7c99@technux.se>
 X-Sender: petter@technux.se
 User-Agent: Binero Webmail/0.8.4
-Subject: Re: [meta-chip][RFC PATCH 0/3] Initial attempt at flashing instructions.
+Subject: Re: [meta-chip][RFC PATCH 3/3] chip: Add chip-u-boot-scr recipe and flash script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,223 +50,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Jun 2017 04:16:25 -0000
+X-List-Received-Date: Thu, 22 Jun 2017 04:23:02 -0000
 Content-Type: multipart/alternative;
-	boundary="=_bd4025a94f144d2d4aa85c84f65e57c6"
+	boundary="=_6d6dfd618ae83de68c00da55ebbe3ac4"
 
---=_bd4025a94f144d2d4aa85c84f65e57c6
+--=_6d6dfd618ae83de68c00da55ebbe3ac4
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset=UTF-8
 
  
 
-2017-06-16 23:15 skrev drew.moseley@mender.io: 
+2017-06-19 16:40 skrev Trevor Woerner: 
 
-> From: Drew
-Moseley <drew.moseley@mender.io>
+> On Mon, Jun 19, 2017 at
+7:22 AM, Drew Moseley <drew.moseley@mender.io> wrote:
 > 
-> This set of patches adds the
-native tools and target components needed to
-> reflash the CHIP boards.
-Additionally a shell script is added to the deploy
-> directory showing
-how to kick off a flash update. It's not ideal as I've
-> hardcoded a max
-size for the UBI image into the script and didn't see much
-> of an
-alternative. It does function though.
+>>> On Jun 19,
+2017, at 1:48 AM, Trevor Woerner <twoerner@gmail.com> wrote: 
+>>> 
+>>>>
+If you have a serial console connected to +your board, you will see the
+progress and a message on the console will indicate when +the flashing
+is completed.
+>>> hmmm, never saw this. I have a console connected, the
+moment the script started, on the console I got: U-Boot SPL 2016.01 (Jun
+19 2017 - 00:32:19) DRAM: 512 MiB CPU: 1008000000Hz, AXI/AHB/APB: 3/2/2
+Trying to boot from which looks right, the date+time are good.
+>> Did
+you see the proper serial output after using a smaller image?
 > 
-> Drew
-> 
-> The following
-changes since commit 0079e6ac10fc371d6f527270c23b887561f717aa:
-> 
+> Yes.
+With a smaller image (~90MB) the flash update worked. Maybe
+> another
+improvement for a v2 would be for the script to look at the
+> size of
+/full/path/to/UBI_IMAGE and issue a warning/error if it's too
+> big?
 >
-chip: Append to MACHINE_EXTRA_RRECOMMENDS rather than overwriting
-(2017-06-15 13:37:19 +0100)
-> 
-> are available in the git repository
-at:
-> 
-> git@github.com:drewmoseley/meta-chip.git
-flashing-instructions
-> 
-> for you to fetch changes up to
-195a92fc1faa49495d1a2b6cda0134f07ce72189:
-> 
-> chip: Add chip-u-boot-scr
-recipe and flash script (2017-06-15 11:27:06 -0400)
-> 
->
-----------------------------------------------------------------
-> Drew
-Moseley (3):
-> u-boot-chip: Deploy the sunxi-spl-with-ecc.bin file.
->
-chip: Build sunxi-tools-native.
-> chip: Add chip-u-boot-scr recipe and
-flash script
-> 
-> README | 26 ++++++++-
-> conf/layer.conf | 3 ++
->
-conf/machine/chip.conf | 3 +-
->
-recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb | 70
-+++++++++++++++++++++++++
->
-recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++++
->
-recipes-bsp/chip-u-boot-scr/files/boot.cmd.in | 43 +++++++++++++++
->
-recipes-bsp/u-boot/u-boot-chip_git.bb | 7 +++
-> 7 files changed, 182
-insertions(+), 2 deletions(-)
-> create mode 100644
-recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
-> create mode 100644
-recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
-> create mode 100644
-recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-> 
-> Drew Moseley (3):
->
-u-boot-chip: Deploy the sunxi-spl-with-ecc.bin file.
-> chip: Build
-sunxi-tools-native.
-> chip: Add chip-u-boot-scr recipe and flash
-script
-> 
-> README | 26 ++++++++-
-> conf/layer.conf | 3 ++
->
-conf/machine/chip.conf | 3 +-
->
-recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb | 70
-+++++++++++++++++++++++++
->
-recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++++
->
-recipes-bsp/chip-u-boot-scr/files/boot.cmd.in | 43 +++++++++++++++
->
-recipes-bsp/u-boot/u-boot-chip_git.bb | 7 +++
-> 7 files changed, 182
-insertions(+), 2 deletions(-)
-> create mode 100644
-recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
-> create mode 100644
-recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
-> create mode 100644
-recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-> 
-> -- 
-> 2.7.4
 
-Hi Drew,
+> I think the wording of what to expect on the host and over the
+serial
+> console could use some updating. Not to mention you say: "the
+status
+> LED on the CHIP board will flash 30 times per second..." which
+doesn't
+> seem to be the case, it looks more like the LED is toggled
+every 2
+> seconds (??), in any case, it's a lot slower than 30/sec.
 
+I
+also had the same experience as Trevor, that the led seems to flash
+every 2 seconds. Also the code indicate that 2 x 1 sec sleep is used in
+this area, so please go through the above description when it comes to
+led experience during flashing. Another minor comment is that I believe
+you should update the UBI_IMAGE example in README to use the "default"
+meta-chip hwup image (chip-hwup-image-chip.ubi). 
 
-First of all, great work. The flashing mechanism have been sort of a
-headache for many. Even if like you say there are some limitations etc
-with this proposal, it works and it's easy to use. Also since no other
-major concern have been provided by other reviewers, I think you should
-fix the comments received and then send it as non-RFC patch. Also check
-with Andrei if he want to have this as a PR in github as well. 
+BR Petter 
 
-BR
-Petter 
-
-Petter Mabäcker
+Petter
+Mabäcker
 
 Technux <petter@technux.se>
 www.technux.se
  
 
---=_bd4025a94f144d2d4aa85c84f65e57c6
+--=_6d6dfd618ae83de68c00da55ebbe3ac4
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/html; charset=UTF-8
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
 <html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>2017-06-16 23:15 skrev drew.moseley@mender.io:</p>
+<p>2017-06-19 16:40 skrev Trevor Woerner:</p>
 <blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
 x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
 d --><!-- meta ignored -->
-<pre>From: Drew Moseley &lt;<a href=3D"mailto:drew.moseley@mender.io">drew=
-=2Emoseley@mender.io</a>&gt;
+<pre>On Mon, Jun 19, 2017 at 7:22 AM, Drew Moseley &lt;<a href=3D"mailto:dr=
+ew.moseley@mender.io">drew.moseley@mender.io</a>&gt; wrote:</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">On Jun 19, 2017, at 1:48 AM, Trevor W=
+oerner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.com</a>&gt;=
+ wrote:
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%">If you have a serial console connecte=
+d to +your board, you will see the progress and a message on the console wi=
+ll indicate when +the flashing is completed.</blockquote>
+hmmm, never saw this. I have a console connected, the moment the script sta=
+rted, on the console I got: U-Boot SPL 2016.01 (Jun 19 2017 - 00:32:19) DRA=
+M: 512 MiB CPU: 1008000000Hz, AXI/AHB/APB: 3/2/2 Trying to boot from which =
+looks right, the date+time are good.</blockquote>
+Did you see the proper serial output after using a smaller image?</blockquo=
+te>
+<pre>Yes. With a smaller image (~90MB) the flash update worked. Maybe
+another improvement for a v2 would be for the script to look at the
+size of /full/path/to/UBI_IMAGE and issue a warning/error if it's too
+big?
 
-This set of patches adds the native tools and target components needed to
-reflash the CHIP boards.  Additionally a shell script is added to the deplo=
-y
-directory showing how to kick off a flash update. It's not ideal as I've
-hardcoded a max size for the UBI image into the script and didn't see much
-of an alternative. It does function though.
-
-Drew
-
-The following changes since commit 0079e6ac10fc371d6f527270c23b887561f717aa=
-:
-
-  chip: Append to MACHINE_EXTRA_RRECOMMENDS rather than overwriting (2017-0=
-6-15 13:37:19 +0100)
-
-are available in the git repository at:
-
-  <a href=3D"mailto:git@github.com:drewmoseley">git@github.com:drewmoseley<=
-/a>/meta-chip.git flashing-instructions
-
-for you to fetch changes up to 195a92fc1faa49495d1a2b6cda0134f07ce72189:
-
-  chip: Add chip-u-boot-scr recipe and flash script (2017-06-15 11:27:06 -0=
-400)
-
-----------------------------------------------------------------
-Drew Moseley (3):
-      u-boot-chip: Deploy the sunxi-spl-with-ecc.bin file.
-      chip: Build sunxi-tools-native.
-      chip: Add chip-u-boot-scr recipe and flash script
-
- README                                          | 26 ++++++++-
- conf/layer.conf                                 |  3 ++
- conf/machine/chip.conf                          |  3 +-
- recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb  | 70 +++++++++++++++++++++=
-++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.in   | 43 +++++++++++++++
- recipes-bsp/u-boot/u-boot-chip_git.bb           |  7 +++
- 7 files changed, 182 insertions(+), 2 deletions(-)
- create mode 100644 recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-
-Drew Moseley (3):
-  u-boot-chip: Deploy the sunxi-spl-with-ecc.bin file.
-  chip: Build sunxi-tools-native.
-  chip: Add chip-u-boot-scr recipe and flash script
-
- README                                          | 26 ++++++++-
- conf/layer.conf                                 |  3 ++
- conf/machine/chip.conf                          |  3 +-
- recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb  | 70 +++++++++++++++++++++=
-++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.in   | 43 +++++++++++++++
- recipes-bsp/u-boot/u-boot-chip_git.bb           |  7 +++
- 7 files changed, 182 insertions(+), 2 deletions(-)
- create mode 100644 recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-
-<span class=3D"sig">--=20
-2.7.4
-</span></pre>
+I think the wording of what to expect on the host and over the serial
+console could use some updating. Not to mention you say: "the status
+LED on the CHIP board will flash 30 times per second..." which doesn't
+seem to be the case, it looks more like the LED is toggled every 2
+seconds (??), in any case, it's a lot slower than 30/sec.</pre>
 </blockquote>
-<p>Hi Drew,</p>
-<p>First of all, great work. The flashing mechanism have been sort of a hea=
-dache for many. Even if like you say there are some limitations etc with th=
-is proposal, it works and it's easy to use. Also since no other major conce=
-rn have been provided by other reviewers, I think you should fix the commen=
-ts received and then send it as non-RFC patch. Also check with Andrei if he=
- want to have this as a PR in github as well.</p>
+<p>I also had the same experience as Trevor, that the led seems to flash ev=
+ery 2 seconds. Also the code indicate that 2 x 1 sec sleep is used in this =
+area, so please go through the above description when it comes to led exper=
+ience during flashing. Another minor comment is that I believe you should u=
+pdate the UBI_IMAGE example in README to use the "default" meta-chip hwup i=
+mage (chip-hwup-image-chip.ubi).</p>
 <p>BR Petter</p>
 <div>
 <pre>Petter Mab&auml;cker
@@ -273,4 +169,4 @@ www.technux.se</pre>
 </div>
 </body></html>
 
---=_bd4025a94f144d2d4aa85c84f65e57c6--
+--=_6d6dfd618ae83de68c00da55ebbe3ac4--
