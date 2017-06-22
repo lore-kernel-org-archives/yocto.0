@@ -1,35 +1,37 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17D47E00BBD; Thu, 22 Jun 2017 04:04:30 -0700 (PDT)
+	id 2748DE00BC0; Thu, 22 Jun 2017 04:33:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D5C7E00B8B
-	for <yocto@yoctoproject.org>; Thu, 22 Jun 2017 04:04:26 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v5MB4PSe021567
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Thu, 22 Jun 2017 04:04:25 -0700
-Received: from [128.224.162.160] (128.224.162.160) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 22 Jun 2017 04:04:24 -0700
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEE13E00B8B
+	for <yocto@yoctoproject.org>; Thu, 22 Jun 2017 04:33:51 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	22 Jun 2017 04:33:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.39,373,1493708400"; d="scan'208";a="102401422"
+Received: from wbosek-mobl3.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.63.90])
+	by orsmga002.jf.intel.com with ESMTP; 22 Jun 2017 04:33:49 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Robert Yang <liezhi.yang@windriver.com>
+Date: Thu, 22 Jun 2017 13:33:48 +0200
+Message-ID: <3824633.FRioWf2P8i@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <a25f9998-b0d8-058b-ca2f-302d1cf47022@windriver.com>
 References: <cover.1497320961.git.liezhi.yang@windriver.com>
-	<a3470785147e280b6a618e30ac594e38d53a24f7.1497320961.git.liezhi.yang@windriver.com>
 	<2010745.Jk45bzNWZ4@peggleto-mobl.ger.corp.intel.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <a25f9998-b0d8-058b-ca2f-302d1cf47022@windriver.com>
-Date: Thu, 22 Jun 2017 19:04:23 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+	<a25f9998-b0d8-058b-ca2f-302d1cf47022@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <2010745.Jk45bzNWZ4@peggleto-mobl.ger.corp.intel.com>
 Cc: Konrad.Scherer@windriver.com, yocto@yoctoproject.org
 Subject: Re: [PATCH V4 06/10] update.py: update layers orderly
 X-BeenThere: yocto@yoctoproject.org
@@ -43,67 +45,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Jun 2017 11:04:30 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 22 Jun 2017 11:33:54 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Paul,
+Hi Robert,
 
-Thanks for the review, I've fixed all your comments except the following ones.
+On Thursday, 22 June 2017 1:04:23 PM CEST Robert Yang wrote:
+> On 06/21/2017 10:21 PM, Paul Eggleton wrote:
+> > On Tuesday, 13 June 2017 4:36:47 AM CEST Robert Yang wrote:
+> >> --- a/layerindex/update_layer.py
+> >> +++ b/layerindex/update_layer.py
+> ...
+> >> +def get_layer_var(config_data, var):
+> >> +    collection = config_data.getVar('BBFILE_COLLECTIONS', True)
+> >
+> > This makes the assumption that the layer.conf only adds one collection
+> > to BBFILE_COLLECTIONS. Probably a valid assumption 99.9% of the time these
+> > days, but it is worth noting.
+> 
+> Should we check all BBFILE_COLLECTIONS, please ?
 
-On 06/21/2017 10:21 PM, Paul Eggleton wrote:
-> Hi Robert,
->
-> Thanks for solving this long-standing bug! Just a few notes below.
->
-> On Tuesday, 13 June 2017 4:36:47 AM CEST Robert Yang wrote:
->> --- a/layerindex/update_layer.py
->> +++ b/layerindex/update_layer.py
-...
->> +def get_layer_var(config_data, var):
->> +    collection = config_data.getVar('BBFILE_COLLECTIONS', True)
->
-> This makes the assumption that the layer.conf only adds one collection
-> to BBFILE_COLLECTIONS. Probably a valid assumption 99.9% of the time these
-> days, but it is worth noting.
+I would say let's split the value and use the first one, but if there is more 
+than one then warn e.g. "Multiple collections found, handling first one (%s) 
+only" but otherwise continue processing. That way at least we'll know if this 
+situation occurs.
 
-Should we check all BBFILE_COLLECTIONS, please ?
+> >> +def explode_dep_versions2(bitbakepath, deps):
+> >> +    bblib = bitbakepath + '/lib'
+> >> +    if not bblib in sys.path:
+> >> +        sys.path.insert(0, bblib)
+> >> +    import bb.utils
+> >> +    return bb.utils.explode_dep_versions2(deps)
+> >
+> > I'm not particularly happy with this (the wrapper nor calling bitbake code
+> 
+> update.py needs explode_dep_versions2 to get dependencies and then calculate
+> them, I had tried to move the code into update_layer.py, and let
+> update_layer.py print explode_dep_versions2() to update.py, but it is a
+> OderedDic, and not easy to process it manually, so I leave the code in
+> update.py.
 
->
->
->> +    if collection:
->> +        collection = collection.strip()
->> +    value = config_data.getVar('%s_%s' % (var, collection), True)
->> +    if not value:
->> +        value = config_data.getVar(var, True)
->> +    return value or ''
->> +
-...
->
->
->> +def explode_dep_versions2(bitbakepath, deps):
->> +    bblib = bitbakepath + '/lib'
->> +    if not bblib in sys.path:
->> +        sys.path.insert(0, bblib)
->> +    import bb.utils
->> +    return bb.utils.explode_dep_versions2(deps)
->
-> I'm not particularly happy with this (the wrapper nor calling bitbake code
+Right, I understand the limitations and I don't really have a better 
+alternative unfortunately, so we'll go with your current implementation. We 
+may need to re-evaluate this in future at least structure-wise if we find the 
+need to call other bitbake code in a similar way.
 
-update.py needs explode_dep_versions2 to get dependencies and then calculate
-them, I had tried to move the code into update_layer.py, and let
-update_layer.py print explode_dep_versions2() to update.py, but it is a
-OderedDic, and not easy to process it manually, so I leave the code in
-update.py.
+Cheers,
+Paul
 
-I will send a V5 after we've made agreements.
 
-// Robert
+-- 
 
-> from update.py) but I suppose it's marginally better than duplicating
-> explode_dep_versions2().
->
-> Cheers,
-> Paul
->
+Paul Eggleton
+Intel Open Source Technology Centre
 
