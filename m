@@ -1,69 +1,38 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5877BE00B9D; Thu, 22 Jun 2017 21:57:05 -0700 (PDT)
+	id A1FADE00BAF; Fri, 23 Jun 2017 00:38:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.47 listed in list.dnswl.org]
-Received: from mail-it0-f47.google.com (mail-it0-f47.google.com
-	[209.85.214.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAEC7E00B57
-	for <yocto@yoctoproject.org>; Thu, 22 Jun 2017 21:57:02 -0700 (PDT)
-Received: by mail-it0-f47.google.com with SMTP id m47so2393134iti.0
-	for <yocto@yoctoproject.org>; Thu, 22 Jun 2017 21:57:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-language;
-	bh=mTfdD4eVCNy0iXeq9T9Cej+d4sTRgxp4KmrUPworV88=;
-	b=QGw4pO7xqlI8XV2uiYRvr2yY+eqEyFk3UlnOevmb6XXV429jyIHIR0jdjLnhZwCwDk
-	RUVU2yttnLewcY9mRfh9a4JAzyoJV5SaQVDOcN+l6poIJGzxTsHAZBbVXFlvBcn8HM3M
-	xHPrrtdc2pY3DW3FbvS9je+BoviW3lkFrUQlByGylsEm4G85Q4Xbdbanu7slpUhbcAd+
-	SsT+7EzoaxmQTH+brfmqyX2ovHd817LMZC/ot49PF/aD+EwiuEknohrktG045f8S8Q2h
-	9ue6EkNSFoZ1XqUZ5Y+KTX7D6fNGlws8kc4UYzlrbBKn/5eQc8SVLssR+TAq7UKwTh5f
-	4gCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language;
-	bh=mTfdD4eVCNy0iXeq9T9Cej+d4sTRgxp4KmrUPworV88=;
-	b=py7i/Ffst5+3TQYhOy2CjFIAWWrB4AyW7Ih4FQB93jojr7xeSSBBmF5KwVdKc7MJh0
-	g9HUllTRE8Xh+s44kQeXTWYWbDwfopnNnfJKjGSE2Go1qwocxnjj7OMmIA28OkbjOyq8
-	ZjGSy2BZreerFWsb4HBZGWUA/vhi0dGd99jW4zkR7BGcoqMUFoaELo4r2lx3AbAAqKf9
-	5LT16OZdRwAfIQrWWjcPabWv2aRJYhydb8gSZBw9VXCnbZIwfObd4vzWEfm1ggdmdRDM
-	uTp2p+x61xsWAsiRX9BEZaLNX1fauFZhCx2DaG7JhbP8tBMIpEg8kLc4HpmMqvzanIis
-	GXhA==
-X-Gm-Message-State: AKS2vOyx9fQBwo0MrhtxHFTGTjHZa2P2AH7us/pB34qP4CebVCYTDW6J
-	/uBt20dNdViJtnGl
-X-Received: by 10.36.178.75 with SMTP id h11mr381192iti.61.1498193821477;
-	Thu, 22 Jun 2017 21:57:01 -0700 (PDT)
-Received: from [10.0.0.1] (CPE-1-122-193-77.wwl9.wel.bigpond.net.au.
-	[1.122.193.77]) by smtp.gmail.com with ESMTPSA id
-	v10sm2180888iov.59.2017.06.22.21.56.58 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 22 Jun 2017 21:57:00 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <42cd4cc2-3406-462d-a748-853f75e604bd@gmail.com>
-Date: Fri, 23 Jun 2017 12:56:56 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74E1AE00B58
+	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 00:38:28 -0700 (PDT)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga105.fm.intel.com with ESMTP; 23 Jun 2017 00:38:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.39,376,1493708400"; d="scan'208";a="117925140"
+Received: from lmmelle-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.49.63])
+	by fmsmga005.fm.intel.com with ESMTP; 23 Jun 2017 00:38:27 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Robert Yang <liezhi.yang@windriver.com>
+Date: Fri, 23 Jun 2017 09:38:26 +0200
+Message-ID: <2019040.A3vqNy3AOs@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <2c1bc9f3-b4bd-d61d-62db-3a4347dd6e51@windriver.com>
+References: <cover.1497320961.git.liezhi.yang@windriver.com>
+	<b03dc586-1a36-291a-2d12-0298a886c7c5@windriver.com>
+	<2c1bc9f3-b4bd-d61d-62db-3a4347dd6e51@windriver.com>
 MIME-Version: 1.0
-Subject: wlan0: link is not ready ?
+Cc: Konrad.Scherer@windriver.com, yocto@yoctoproject.org
+Subject: Re: [PATCH V4 03/10] utils.py: remove obsolete dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,82 +44,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Jun 2017 04:57:05 -0000
-Content-Type: multipart/alternative;
-	boundary="------------A5127853B7BFEBD6367298CD"
-Content-Language: en-US
+X-List-Received-Date: Fri, 23 Jun 2017 07:38:34 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---------------A5127853B7BFEBD6367298CD
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+On Friday, 23 June 2017 5:22:35 AM CEST Robert Yang wrote:
+> On 06/23/2017 11:03 AM, Robert Yang wrote:
+> > On 06/22/2017 07:54 PM, Paul Eggleton wrote:
+> >> How about this - could we start with a setting in the configuration that
+> >> specifies that dependencies should be updated automatically, and if not
+> >> set just gives a warning if the dependencies are not the same? We can
+> >> then decide how to handle it when we see the warnings we're getting in
+> >> the OE index.
+> >
+> > Sounds good to me, I will fix it in V5.
+> 
+> After more thinking, I will use:
+> # Remove layer dependencies if it is not in conf/layer.conf
+> REMOVE_LAYER_DEPENDENCIES = False
+> 
+> Currently it does can add dependencies from conf/layer.conf, but no remove,
+> so use REMOVE_LAYER_DEPENDENCIES makes it more clear.
 
-Hello everyone,
+Sounds good to me.
 
-The board can see the dongle but it can not obtain IP, how to fix it ?
-
-====
-
-ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading firmware file 
-'rt2870.bin'
-ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware detected - 
-version: 0.36
-IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
-udhcpc (v1.24.1) started
-Sending discover...
-Sending discover...
-Sending discover...
-No lease, forking to background
+Cheers,
+Paul
 
 -- 
-*
 
-/*******/
-Sent by Ubuntu LTS 16.04,
-谢谢,
-Regards,
-Riko Ho
-/*******/
+Paul Eggleton
+Intel Open Source Technology Centre
 
-*
-
---------------A5127853B7BFEBD6367298CD
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hello everyone,</p>
-    <p>The board can see the dongle but it can not obtain IP, how to fix
-      it ?</p>
-    <p>====<br>
-    </p>
-    <p>ieee80211 phy0: rt2x00lib_request_firmware: Info - Loading
-      firmware file 'rt2870.bin'<br>
-      ieee80211 phy0: rt2x00lib_request_firmware: Info - Firmware
-      detected - version: 0.36<br>
-      IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br>
-      udhcpc (v1.24.1) started<br>
-      Sending discover...<br>
-      Sending discover...<br>
-      Sending discover...<br>
-      No lease, forking to background<br>
-      <br>
-    </p>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          谢谢,<br>
-          Regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
-  </body>
-</html>
-
---------------A5127853B7BFEBD6367298CD--
