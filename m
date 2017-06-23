@@ -1,6 +1,6 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5E08E00BBF; Fri, 23 Jun 2017 01:18:35 -0700 (PDT)
+	id C4374E00BAF; Fri, 23 Jun 2017 02:25:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
+	mail provider *      (martin.jansa[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -19,51 +19,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.49 listed in list.dnswl.org]
-Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
-	[209.85.214.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2004BE00B9D
-	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 01:18:32 -0700 (PDT)
-Received: by mail-it0-f49.google.com with SMTP id m47so4554023iti.0
-	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 01:18:32 -0700 (PDT)
+	*      [209.85.161.194 listed in list.dnswl.org]
+Received: from mail-yw0-f194.google.com (mail-yw0-f194.google.com
+	[209.85.161.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF57AE00B53
+	for <yocto@lists.yoctoproject.org>;
+	Fri, 23 Jun 2017 02:25:17 -0700 (PDT)
+Received: by mail-yw0-f194.google.com with SMTP id t76so966594ywc.1
+	for <yocto@lists.yoctoproject.org>;
+	Fri, 23 Jun 2017 02:25:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-language;
-	bh=PSsv8/4tS/WjiJCpZp1iCc7LTetasvI8B9K0JSa0asU=;
-	b=hMJK6RAlyqglVIHmzgNMA0OSmpn4J70SB7JSfyqkw8cOlu/I0jGFLTyolqnifabz0G
-	M6557Y34AjaMSMLsQdzNqYG/kDuVxcuzDrfIG0ZhgzfvzRM8z7hrpfa23X39tjTObsSL
-	6wGuBIVML7uAzOQWaKYAN++L+S6YwEypOMfO8Lw1Job+SHhQhKNqyJo6qu1die0rsIkL
-	FA6W850urkI3Q1Vp6P6TDHFO2v0T/vfJSjs+RQFV28Eq/L8KEVVXbGYF5rPpWlRs/0mo
-	6urgiMzMd6w2mR212XqsHySVzyPuL/oeQoXaMMg+braii5loDg3OUppYX9lSv0oZeWhq
-	tGJA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=AxeNjaRYvB7igSNizdjP2s/OSXSjiXxFXgMk9Vzk86k=;
+	b=i/VkJ/imVyhaIW4QS+2hfRcQEsNNHXAlDGtTjmzHHTJWyV8M507RdMq2SY8F4qJuDE
+	QX347OlxYB+FPP3Q9MQs6RbUFNXyd2SN6qSqZEX20itR8vHxj9kOnfc4ZNJ3GEAAH6cK
+	svG72onLBLbvDSAQDrBzlJsdLzOjLwgDT5B217WC2JvZ0OaXfZrEdAAs51rhAomYWkda
+	eH0CThgs+zh3bzh2qRLdPHXQkWqDWk1Sf4XRdW9kr+gj3/yixQKY0YacwOf478t2jaXX
+	ZbtccoESt8+2K4gEioUmc0fofO5obh6gY2dx45nAVQneQ0cntAM5+2Prv7L42wEFpIUd
+	1ZOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language;
-	bh=PSsv8/4tS/WjiJCpZp1iCc7LTetasvI8B9K0JSa0asU=;
-	b=d1TAS/J4Jp7R0OhbsjY+gvgjjnKC+AOYPtpMPGVdJ38rbOJX3PqthjS2KLw8/eKls0
-	NluPdT/9nLmlp5C6BSX3B9KMEW4YlzJVWRVm/dX955ho9EH6FUA9kVOFcHA0ZVIOH1yy
-	PxcHnqyTGFkHu3xaavU6GG4KAJaIiauZLZ13PJscJH8/J1NusksXYHdvC0C34HwEs30r
-	n3kipZ95YcTIVXwEAdGbfSkqg8dRDjd1VUxO2fG13xrarmH6g4Cp+XhjEU72SWXa6nFS
-	+UUqneQptHQq9Lk9ryYW3aPiFgPdMTKcnagDzlQjz4cUi9RP9aibXUqX7CZeN+nLt4A4
-	r9iw==
-X-Gm-Message-State: AKS2vOyn3jjoFBNCNTgI9129IRUBYipxA+WXR77emYcTnwW6Wt81qbCj
-	zmijJqFIM5P/nLv/
-X-Received: by 10.36.249.74 with SMTP id l71mr6125574ith.13.1498205911252;
-	Fri, 23 Jun 2017 01:18:31 -0700 (PDT)
-Received: from [10.0.0.1] (CPE-1-122-193-77.wwl9.wel.bigpond.net.au.
-	[1.122.193.77]) by smtp.gmail.com with ESMTPSA id
-	g98sm2580543ioj.45.2017.06.23.01.18.29 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 23 Jun 2017 01:18:30 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <fe34f976-648e-7fbc-c190-a5fb0829552f@gmail.com>
-Date: Fri, 23 Jun 2017 16:18:26 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=AxeNjaRYvB7igSNizdjP2s/OSXSjiXxFXgMk9Vzk86k=;
+	b=E+bCNChM8Y4oa8za7E5XPHyR+SVuh0rSx9o5Tv1xljLrNrh+JzELtXkDuXen3yfknp
+	Z/J0X13sV5W6mUPp3M8C55Rc0dT3jvXJzE4CrvORlUlLUtGuj1KujtP6Lz8SFDPfVXBT
+	UYZfTOobxmFpMzqkyJp6Wnr3IBp3O9q6r6Czbe8N/RhY0lUx1IqisTKrympJPUUfLMA7
+	r5tv/fiFr2Tqhz/IDUsWGUJPHcOocgVOOggz2Bbk0JLFx8OwrnItycJuR/ZDH/7h0ylG
+	UipTEvhz/ZdaS7V1ZLZf9rV/VPu84ydnPfbgQ7dNMh/JHWdkWnbe5MSiCZzq/AL9KDld
+	ZDbw==
+X-Gm-Message-State: AKS2vOzpl3xBBzxw/QnBKibCbGD4q9bNWtW3+p3+rHeRMXmrR/v1Sb2t
+	8gnJsBddFGGsUyFYOZ/3mkMA2zdCig==
+X-Received: by 10.129.114.137 with SMTP id n131mr930791ywc.193.1498209917020; 
+	Fri, 23 Jun 2017 02:25:17 -0700 (PDT)
 MIME-Version: 1.0
-Subject: internet radio
+Received: by 10.37.181.204 with HTTP; Fri, 23 Jun 2017 02:25:16 -0700 (PDT)
+In-Reply-To: <CAJTo0LbD0BZ=kEKfGTqY+Ae=HsmDdVZj_4NJKhe8eW+NHrrVag@mail.gmail.com>
+References: <20170612162218.11449-1-Martin.Jansa@gmail.com>
+	<CAJ86T=ULdJSPwcCzRGpLPAR0rzEPsFcx8YxFmBHqGO-XB4130g@mail.gmail.com>
+	<CAJTo0LbD0BZ=kEKfGTqY+Ae=HsmDdVZj_4NJKhe8eW+NHrrVag@mail.gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Fri, 23 Jun 2017 11:25:16 +0200
+Message-ID: <CA+chaQcV+xdNvGxpuB+p9adLiRBH+84DsBLf4G3jC4aRE_RaSw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [PATCH][meta-gplv2] gnutls: add use-pkg-config-to-locate-zlib.patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,60 +75,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Jun 2017 08:18:36 -0000
-Content-Type: multipart/alternative;
-	boundary="------------ADCB672FB4DB2CFB0BFEAFE0"
-Content-Language: en-US
+X-List-Received-Date: Fri, 23 Jun 2017 09:25:19 -0000
+Content-Type: multipart/alternative; boundary="001a11492ba4e7325705529d2d4c"
 
---------------ADCB672FB4DB2CFB0BFEAFE0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--001a11492ba4e7325705529d2d4c
+Content-Type: text/plain; charset="UTF-8"
 
-Hello everyone,
+Probably yes as it got broken again yesterday:
 
-What do you suggest me using for internet radio / playing multimedia on 
-GUI ? Which recipe is suitable for it ?
 
-Thanks
+On Mon, Jun 12, 2017 at 9:13 PM, Burton, Ross <ross.burton@intel.com> wrote:
 
--- 
-*
+>
+> On 12 June 2017 at 20:04, Andre McCurdy <armccurdy@gmail.com> wrote:
+>
+>> Would it be better to just make the meta-gplv2 gnutls recipe self
+>> contained and stop trying to share a .inc file and patches with
+>> oe-core?
+>>
+>
+> Yes.
+>
+> Ross
+>
+>
 
-/*******/
-Sent by Ubuntu LTS 16.04,
-谢谢,
-Regards,
-Riko Ho
-/*******/
+--001a11492ba4e7325705529d2d4c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-*
+<div dir=3D"ltr">Probably yes as it got broken again yesterday:<div><br></d=
+iv></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, =
+Jun 12, 2017 at 9:13 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</=
+span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
+x;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=
+=3D"gmail_extra"><br><div class=3D"gmail_quote"><span class=3D"">On 12 June=
+ 2017 at 20:04, Andre McCurdy <span dir=3D"ltr">&lt;<a href=3D"mailto:armcc=
+urdy@gmail.com" target=3D"_blank">armccurdy@gmail.com</a>&gt;</span> wrote:=
+<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex"><div id=3D"m_-3601567112722856484:209" c=
+lass=3D"m_-3601567112722856484a3s m_-3601567112722856484aXjCH m_-3601567112=
+722856484m15c9db3ee673e7ac">Would it be better to just make the meta-gplv2 =
+gnutls recipe self<br>
+contained and stop trying to share a .inc file and patches with<br>
+oe-core?<br></div></blockquote><div><br></div></span><div>Yes.</div><span c=
+lass=3D"HOEnZb"><font color=3D"#888888"><div><br></div><div>Ross=C2=A0<br><=
+/div></font></span></div><br></div></div>
+</blockquote></div><br></div>
 
---------------ADCB672FB4DB2CFB0BFEAFE0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hello everyone,</p>
-    <p>What do you suggest me using for internet radio / playing
-      multimedia on GUI ? Which recipe is suitable for it ?</p>
-    <p>Thanks<br>
-    </p>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          谢谢,<br>
-          Regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
-  </body>
-</html>
-
---------------ADCB672FB4DB2CFB0BFEAFE0--
+--001a11492ba4e7325705529d2d4c--
