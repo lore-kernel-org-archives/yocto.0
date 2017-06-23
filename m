@@ -1,42 +1,81 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47930E00B9D; Thu, 22 Jun 2017 20:22:40 -0700 (PDT)
+	id C08DAE00B9D; Thu, 22 Jun 2017 20:40:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (antonius.riko[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BC6DE00B57
-	for <yocto@yoctoproject.org>; Thu, 22 Jun 2017 20:22:38 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v5N3Mbwa009097
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 22 Jun 2017 20:22:38 -0700 (PDT)
-Received: from [128.224.162.160] (128.224.162.160) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 22 Jun 2017 20:22:37 -0700
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <cover.1497320961.git.liezhi.yang@windriver.com>
-	<27239647.GeoKIh8NCA@peggleto-mobl.ger.corp.intel.com>
-	<d81b63c1-cd74-0c1c-eed5-443ba3e9e4de@windriver.com>
-	<2617411.3bLWJbXsiM@peggleto-mobl.ger.corp.intel.com>
-	<b03dc586-1a36-291a-2d12-0298a886c7c5@windriver.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <2c1bc9f3-b4bd-d61d-62db-3a4347dd6e51@windriver.com>
-Date: Fri, 23 Jun 2017 11:22:35 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.2.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.196 listed in list.dnswl.org]
+Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
+	[209.85.192.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9016BE00B57
+	for <yocto@yoctoproject.org>; Thu, 22 Jun 2017 20:40:44 -0700 (PDT)
+Received: by mail-pf0-f196.google.com with SMTP id w12so5685943pfk.0
+	for <yocto@yoctoproject.org>; Thu, 22 Jun 2017 20:40:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding:content-language;
+	bh=vZBCJlBV+XOHXv4gT/L6xL1ZxtU6IdQJ68UIQu7h59o=;
+	b=V+/Q4y8ViIMhjs37rd92IDWi5bqo6HLbOkcjdPgV1AnmLazpirm6wsDx+Se+8SfT0O
+	/fl390ttECwkxzU+cUxQN3+KHNnXNdRE+7lupYBGJNs6XkqHykd1JMc8q6W9+AQzG48B
+	tjPm6DEecsdRFjjYJtD8a70p4JYLgRT5iO7K5W5YpZtiqpw1ZiNgAtB9jRoqSIJlD1OL
+	PytZKYG5B9lFMgt9RM5aF8RM+FnvEHe+C6fuCenU7wJAnzWtw9ej4fGMtMsvnBb70OMr
+	l8ru0o7JrfXCKnJ2Tnl8UbBQHDNcfRQ0ZceD6Hhz+M5IovB6y0QvBsGWyigZsgmDt5CY
+	KqdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=vZBCJlBV+XOHXv4gT/L6xL1ZxtU6IdQJ68UIQu7h59o=;
+	b=pEviaY/4nQy8P0GIxKruVFBqDH2nwQNfRZEoKLigrkeyze9uwahsszpBtevyCgQTe+
+	9OcC28xNkatmT15+v71baSiQ/Ta6ypua+jj5WrYUQPAX/ocllUUOtHZj2p0BFeHRa87F
+	ptqZ64mEygTKBZNDVLMZISj1bIFFKOSXZsB4DGLduAQWfpz/zdKg46c5VCkXb3n/NkI8
+	DPgAumXYfgMMtDTIPLPPpfXNtSKCmIoC7kMecQz7fEdNpCvI447DvfOSzCF5naS4mMfh
+	6p43vFSJ/vL5TvkfHI1vOsfyTYZFJqC2D8uKZb1W9vDQ4tT73XlAXDiXkHYBA1+kmUPa
+	4Prw==
+X-Gm-Message-State: AKS2vOwDoFPf+sytGxqmC/GJy4jlO7Addf/nUGRb+lMXfNKHIOo9yZGQ
+	r8y+jFvYj0+1K3WJ
+X-Received: by 10.98.155.18 with SMTP id r18mr6078176pfd.198.1498189243538;
+	Thu, 22 Jun 2017 20:40:43 -0700 (PDT)
+Received: from [10.0.0.1] (CPE-1-122-193-77.wwl9.wel.bigpond.net.au.
+	[1.122.193.77])
+	by smtp.gmail.com with ESMTPSA id d2sm3416266pfb.49.2017.06.22.20.40.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 22 Jun 2017 20:40:43 -0700 (PDT)
+To: Gunnar Andersson <gandersson@genivi.org>, Khem Raj <raj.khem@gmail.com>
+References: <mailman.66247.1497786545.15860.yocto@yoctoproject.org>
+	<1497809434.2788.77.camel@genivi.org>
+	<7ee7dd60-a45d-350d-b213-0917fe6e32cb@igalia.com>
+	<CAMKF1sr-5mxP2_WCXtvnfzMt4OgUAf_V2ZhLQFgQAqGMbPDovQ@mail.gmail.com>
+	<dd9e6cf6-dcd3-9e90-2275-323b5c9fd0b6@gmail.com>
+	<CAMKF1sp_5+1N_+okGXxZMREir62snRDk+BtbwDMz+t5SUYo5pg@mail.gmail.com>
+	<61e45e0b-1fda-ecf5-51eb-437284c94d02@gmail.com>
+	<CAMKF1soeiztrJEjDzLJ5k3t3QzyuK7qqJ-orW+1SPBR1b-oswg@mail.gmail.com>
+	<8525501f-954a-8799-957c-f68efc4d7d5b@gmail.com>
+	<1498030640.8095.27.camel@genivi.org>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <7ad17b0d-8b72-c2da-9f40-d0325e573bfd@gmail.com>
+Date: Fri, 23 Jun 2017 11:40:39 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
 MIME-Version: 1.0
-In-Reply-To: <b03dc586-1a36-291a-2d12-0298a886c7c5@windriver.com>
-Cc: Konrad.Scherer@windriver.com, yocto@yoctoproject.org
-Subject: Re: [PATCH V4 03/10] utils.py: remove obsolete dependencies
+In-Reply-To: <1498030640.8095.27.camel@genivi.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: 47401300.usb-phy supply vcc not found, using dummy regulator
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,81 +87,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Jun 2017 03:22:40 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Fri, 23 Jun 2017 03:40:46 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Hi Paul,
+Hi Everyone,
 
-On 06/23/2017 11:03 AM, Robert Yang wrote:
->
->
-> On 06/22/2017 07:54 PM, Paul Eggleton wrote:
->> On Thursday, 22 June 2017 12:47:31 PM CEST Robert Yang wrote:
->>> On 06/21/2017 05:06 PM, Paul Eggleton wrote:
->>>> So I do see the need to clear out old dependency values when your list of
->>>> dependencies is coming entirely from LAYERDEPENDS, however if you have only
->>>> manually added dependencies and LAYERDEPENDS is not complete (as is often the
->>>> case in the OE layer index), will this automatically remove those? If so I
->>>
->>> The dependencies will be removed if it is not in conf/layer.conf.
->>>
->>>> think we're going to have to come up with some mechanism to avoid that.
->>>> Probably the easiest one would be to avoid touching the dependencies unless
->>>> LAYERDEPENDS actually changes. Of course if that means we're going to store
->>>> the previous LAYERDEPENDS value somewhere to compare to, we'd need to avoid it
->>>> triggering initially when none of those values are set.
->>>
->>> Why not fix conf/layer.conf rather than fix it from database ? If
->>> conf/layer.conf is wrong, we would meet problems elsewhere.
->>
->> Up until now it hasn't caused any issues other than not getting an error
->> up front from bitbake when a dependencies are missing, so it can easily go
->> unnoticed (particularly when users follow manual instructions or use existing
->> configurations rather than an automated tool that pays attention to
->> LAYERDEPENDS).
->>
->>> The database
->>> should obey local.conf when mismatches, otherwise, this would confuse
->>> users a lot when they want to update LAYERDEPENDS.
->>
->> As I indicated, I agree that if LAYERDEPENDS gets updated then the
->> dependencies in the database should get updated. My concern is updating
->> them if LAYERDEPENDS has not changed and it simply happens to have
->> a difference to what is in the database (most importantly if it has less
->> dependencies specified).
->>
->>> I'm glad to fix oe-classic's LAYERDEPENDS issues if they are wrong.
->>
->> Well, it's not so much OE-Classic as every single layer in the index,
->> maintained by a number of different maintainers. I agree in the long term we
->> do want people to fix their dependencies. The trouble is we don't
->> even know the size of the problem at the moment, and if it's widespread
->> then we'll end up dropping dependencies potentially leading to errors during
->> parsing.
->>
->> How about this - could we start with a setting in the configuration that
->> specifies that dependencies should be updated automatically, and if not
->> set just gives a warning if the dependencies are not the same? We can
->> then decide how to handle it when we see the warnings we're getting in
->> the OE index.
->
-> Sounds good to me, I will fix it in V5.
+Is my beagleboard usb regulator broken ?
 
-After more thinking, I will use:
-# Remove layer dependencies if it is not in conf/layer.conf
-REMOVE_LAYER_DEPENDENCIES = False
+Here's the message I got :
 
-Currently it does can add dependencies from conf/layer.conf, but no remove,
-so use REMOVE_LAYER_DEPENDENCIES makes it more clear.
+====
 
-// Robert
+usbcore: registered new interface driver usb-storage
+47401300.usb-phy supply vcc not found, using dummy regulator
+musb-hdrc musb-hdrc.0.auto: Failed to request rx1.
+47401b00.usb-phy supply vcc not found, using dummy regulator
 
->
-> // Robert
->
->>
->> Cheers,
->> Paul
->>
 
