@@ -1,17 +1,17 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9440CE00BD6; Fri, 23 Jun 2017 19:46:16 -0700 (PDT)
+	id E917BE00BD6; Fri, 23 Jun 2017 21:42:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.173 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (antonius.riko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,49 +19,55 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f173.google.com (mail-wr0-f173.google.com
-	[209.85.128.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11CABE00B28
-	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 19:46:11 -0700 (PDT)
-Received: by mail-wr0-f173.google.com with SMTP id 77so87009287wrb.1
-	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 19:46:11 -0700 (PDT)
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-pf0-f170.google.com (mail-pf0-f170.google.com
+	[209.85.192.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3159E00B28
+	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 21:42:30 -0700 (PDT)
+Received: by mail-pf0-f170.google.com with SMTP id s66so31772271pfs.1
+	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 21:42:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=yD5MrfXnRHGenr9mwRZdNq8MJ8u+B811p1/94Ess1eQ=;
-	b=hnWyT0dTCj8cFoya8uqtofTjYx3uADqhJY6k8wtIUfGpDFQSYFPAyBh1wdbIQsHXTR
-	NW6FO+hKXxrN7B8NnaSm2wgxYa+uJx/6wgZC1Arl5OPnkJYKDFH2lpZozE7p4Tq2Y0Fx
-	vLgk4mH9SxZO0Z0VpW4RjuIJeCBKEW0+bP+ZVsoSu6YR5yz4K8e7iRcksdULTLpbYR39
-	laiQjF8DEua6wVd/0MGr2lMng6g8tC7jS6OIhLFiFSPRmu7UVqB877tfPC2Hnde6AsPp
-	oM+FiwN5SrvRjJ24wA3Xb8PfLsLm2SHC+tvVXoZFzh0yp2CXkHnIZ6SvDLlz1RE5eKhy
-	Xfpw==
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding:content-language;
+	bh=dhf0Kb6PwBOjyyuSfOfSP1veVjGG83xP+U9b701Idgc=;
+	b=eWGo8iinkLHDWcC8xyLuoe/IIyNvL3+foDA75wSHrSgMLHgymBBwTRW3WZ05gf20Zi
+	mWM7VeGzGASQMpwQ90TUmmcfby9Jk0qL1DA/n9QO9YeTBG5GwSpPCcMbuLz8SLEt8k2N
+	xBqNWvkY1QCfnW8jTeADp4fmIBw6B3aa5+CumnSNQAIT+FVpR8jAlhWA+Ohpc+6gbE3R
+	tyEbSpqSNWVSMcGokX65XxTqGbfsBBs8wCeUipLEkTXv71c7f+TDLc59tfrQ0BnJhRWb
+	mPdD63L29RFzgtTFAivtY2PyXBgUSXu45LPmx4SA5aDfUszKppM6Co73/AmDq+9BH0KW
+	6n0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=yD5MrfXnRHGenr9mwRZdNq8MJ8u+B811p1/94Ess1eQ=;
-	b=lqqvdV9Wa4skP3r3JcwN/m08ElUa/EcEAOe4anLodhSUIeeGNGn0ppnlRLJUucZUyo
-	i9AXCuW6E4BYxu3XtyiqheAgYw6GmsD0IuzX7o6NemOqbdr2pkUZ/ZaGOKStnLmoPua0
-	mLTn99NcfexoiLVz87Gq2n77RTuVekyMOJ6ulvwSCjHJdAjzWSeoT6D7cMC1IWqO9HI0
-	wZ2Nyns5BJGEJaeHpggDcmZrzCEwB/wdK9KIWPvOUiiYMxOXsP5trq0VFYBbjKD4P58i
-	ar3vZ4q7UYDRDFYD9WJPKaO44xnnO0Om7UF8TvuOGec8888ydBOoZ5M7Ie3CQKzMq7/F
-	2Ubw==
-X-Gm-Message-State: AKS2vOykeDDtDlqDnSK4zKskRSRM2cGw0BYaI46IULjOIOWH10wQZZ/N
-	W2R7gCWuBVdt0vlzNlBB2TkKLFVqBA==
-X-Received: by 10.80.131.6 with SMTP id 6mr8276028edh.178.1498272371216; Fri,
-	23 Jun 2017 19:46:11 -0700 (PDT)
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=dhf0Kb6PwBOjyyuSfOfSP1veVjGG83xP+U9b701Idgc=;
+	b=hFG43m96DjDsB/BiNEVI9qyTtM06OGRQ2MmcMunif1iSia6y5JPa5z5KLBmcA+USQG
+	CdE6ghZhs4K1k3h4WbMmrfNwMGD21VpujmDgT+ZrlxO6ap8HjG7PXO2mjb/bk2OirGkT
+	nv3Ppym6MAMnBZwyn8IFUTc2bVIq3iGRUF5MQfQ/MJ11LBvrD2YFjtkdxQuqUJ/sBPyf
+	Fh8nTB2Aauvoe4I6H3dKwlxN2b3aUuKxm1Lf/covfEQC8kAXmjxtMwdETSlGMKfH5DN6
+	qFA3gKm/LTvQT3hV3zVq07TLbiABfyeSfS5PEt9HmJSCVCb4AIA1TZbOrNNIvuk6Q3y2
+	mFAA==
+X-Gm-Message-State: AKS2vOw6IbWL5LTwiktbs+2Bc7XivxkX43LfQDM+OPSHDeTcEBDkBuzi
+	e1MfH5ykfPS1Hg==
+X-Received: by 10.84.225.4 with SMTP id t4mr13018476plj.274.1498279350384;
+	Fri, 23 Jun 2017 21:42:30 -0700 (PDT)
+Received: from [10.0.0.1] (CPE-1-122-193-77.wwl9.wel.bigpond.net.au.
+	[1.122.193.77])
+	by smtp.gmail.com with ESMTPSA id v6sm11768165pfl.2.2017.06.23.21.42.27
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 23 Jun 2017 21:42:29 -0700 (PDT)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <fe34f976-648e-7fbc-c190-a5fb0829552f@gmail.com>
+	<CAMKF1sq0XX0ahRiG34oi9LwiDCZL83Oxf4sbkwmd5XL1n66jWw@mail.gmail.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <a964869d-2f6e-e02a-8971-ce75c70af8db@gmail.com>
+Date: Sat, 24 Jun 2017 12:42:25 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
 MIME-Version: 1.0
-Received: by 10.80.165.198 with HTTP; Fri, 23 Jun 2017 19:45:40 -0700 (PDT)
-In-Reply-To: <20170624015504.GA21604@linux-uys3>
-References: <CAHUNapRZG_qxTXd7JLNwp7918Y_Vasr8nS60EatyjP2QGhbZ-A@mail.gmail.com>
-	<CAMKF1sopiKLcmpD7pCn69mW0jhR0QFYWwNpBfztdQba5GJzwHw@mail.gmail.com>
-	<20170624015504.GA21604@linux-uys3>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 23 Jun 2017 19:45:40 -0700
-Message-ID: <CAMKF1sotOE_qKdV-_2oKu8AvvbnZ3z2UD6TwWhaXpYf08=2usQ@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: using clang for one recipe
+In-Reply-To: <CAMKF1sq0XX0ahRiG34oi9LwiDCZL83Oxf4sbkwmd5XL1n66jWw@mail.gmail.com>
+Subject: RTL8192EU question ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,99 +79,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Jun 2017 02:46:16 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 24 Jun 2017 04:42:35 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-On Fri, Jun 23, 2017 at 6:55 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-> On Fri 2017-06-23 @ 03:57:06 PM, Khem Raj wrote:
->> On Fri, Jun 23, 2017 at 3:39 PM, Trevor Woerner <twoerner@gmail.com> wro=
-te:
->> > Adding that line, and adding meta-clang to bblayers.conf, did get the
->> > llvm/clang compiler built and installed to recipe-sysroot-native. But
->> > the moment it starts to build the package, it fails immediately with:
->> >
->> >     | fatal error: 'string' file not found
->> >     | #include <string>
->> >     |          ^~~~~~~~
->> >
->> > Did I miss a step? That seems like a pretty basic thing that would be
->> > needed for using a toolchain. If feels like I'm missing something;
->> > like I need to add something else to my local.conf. Thoughts?
->> > Suggestions?
->>
->> which package is it ? it seems its missing proper -I paths.?
->
-> I'm investigating moving chromium to a newer version, specifically someth=
-ing
-> much closer to the current Linux stable (59.0.3071.109). My understanding=
- is
-> the chromium developers use clang, which would explain why it's always so=
- much
-> work to get it to compile with gcc. If I can get chromium to build with c=
-lang,
-> I think it would make future maintenance much easier. Switching from gyp =
-to gn
-> was easy, but getting this newer version to build with gcc7 is a challeng=
-e.
->
-> When I go to the recipe-sysroot-native, I find clang in usr/bin. But from=
- that
-> base location if I do a
->
->         $ find . -name "*string*" -print
->
-> I don't find any such include files. Should they not be installed to the
-> native sysroot alongside clang itself?
->
-> Here's one example of a failing compile:
->
-> | [16/25529] CXX obj/base/allocator/tcmalloc/sysinfo.o
-> | FAILED: obj/base/allocator/tcmalloc/sysinfo.o
-> | ../../../recipe-sysroot-native/usr/bin/clang++ -MMD -MF obj/base/alloca=
-tor/tcmalloc/sysinfo.o.d -DNO_HEAP_CHECK -DV8_DEPRECATION_WARNINGS -DUSE_UD=
-EV -DUSE_AURA=3D1 -DUSE_PANGO=3D1 -DUSE_CAIRO=3D1 -DUSE_GLIB=3D1 -DUSE_NSS_=
-CERTS=3D1 -DUSE_X11=3D1 -DDISABLE_NACL -DFULL_SAFE_BROWSING -DSAFE_BROWSING=
-_CSD -DSAFE_BROWSING_DB_LOCAL -DCHROMIUM_BUILD -DENABLE_MEDIA_ROUTER=3D1 -D=
-FIELDTRIAL_TESTING_ENABLED -DCR_CLANG_REVISION=3D\"299960-1\" -D_FILE_OFFSE=
-T_BITS=3D64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DCOMPONENT_BUILD -D_=
-DEBUG -DDYNAMIC_ANNOTATIONS_ENABLED=3D1 -DWTF_USE_DYNAMIC_ANNOTATIONS=3D1 -=
-DTCMALLOC_FOR_DEBUGALLOCATION -DTCMALLOC_DONT_REPLACE_SYSTEM_ALLOC -I../../=
-base/allocator -I../../third_party/tcmalloc/chromium/src/base -I../../third=
-_party/tcmalloc/chromium/src -I../.. -Igen -fno-strict-aliasing --param=3Ds=
-sp-buffer-size=3D4 -fstack-protector -Wno-builtin-macro-redefined -D__DATE_=
-_=3D -D__TIME__=3D -D__TIMESTAMP__=3D -funwind-tables -fPIC -pipe -fcolor-d=
-iagnostics --target=3Darm-linux-gnueabihf -march=3Darmv7-a -mfloat-abi=3Dha=
-rd -mtune=3Dgeneric-armv7-a -pthread -mfpu=3Dneon -O0 -fno-omit-frame-point=
-er -g2 --sysroot=3D../../build/linux/debian_jessie_arm-sysroot -fvisibility=
-=3Dhidden -Wheader-hygiene -Wstring-conversion -Wtautological-overlap-compa=
-re -Wall -Wno-unused-variable -Wno-missing-field-initializers -Wno-unused-p=
-arameter -Wno-c++11-narrowing -Wno-covered-switch-default -Wno-unneeded-int=
-ernal-declaration -Wno-inconsistent-missing-override -Wno-undefined-var-tem=
-plate -Wno-nonportable-include-path -Wno-address-of-packed-member -Wno-unus=
-ed-lambda-capture -Wno-user-defined-warnings -Wno-reorder -Wno-unused-funct=
-ion -Wno-unused-local-typedefs -Wno-unused-private-field -Wno-sign-compare =
--Wno-unused-result -fvisibility-inlines-hidden -Wno-undefined-bool-conversi=
-on -Wno-tautological-undefined-compare -std=3Dgnu++11 -fno-rtti -fno-except=
-ions -Wno-deprecated -c ../../third_party/tcmalloc/chromium/src/base/sysinf=
-o.cc -o obj/base/allocator/tcmalloc/sysinfo.o
-> | In file included from ../../third_party/tcmalloc/chromium/src/base/sysi=
-nfo.cc:62:
-> | In file included from ../../third_party/tcmalloc/chromium/src/base/sysi=
-nfo.h:49:
-> | In file included from ../../third_party/tcmalloc/chromium/src/base/logg=
-ing.h:49:
-> | ../../third_party/tcmalloc/chromium/src/base/commandlineflags.h:52:10: =
-fatal error: 'string' file not found
-> | #include <string>
-> |          ^~~~~~~~
-> | 1 error generated.
->
->
-> I can send you the non-working, partial recipe if you're interested too.
+Hello Everyone,
+
+I tried to connect  rev B
+
+But I got this message below repeating,
+
+usb 1-1.1: This Realtek USB WiFi dongle (0x0bda:0x818b) is untested!
+usb 1-1.1: Please report results to Jes.Sorensen@gmail.com
+usb 1-1.1: Vendor: Realtek
+usb 1-1.1: Product: 802.11n NIC
+usb 1-1.1: Serial: �����������
+usb 1-1.1: rtl8192eu_parse_efuse: dumping efuse (0x200 bytes):
+usb 1-1.1: 00: 29 81 00 7c 01 40 03 00
+usb 1-1.1: 08: 40 74 04 50 14 00 00 00
+usb 1-1.1: 10: 2e 2e 2e 2e 2e 2e 2e 2e
+usb 1-1.1: 18: 2e 2e 2e 02 ef ef ff ff
+usb 1-1.1: 20: ff ff ff ff ff ff ff ff
+usb 1-1.1: 28: ff ff ff ff ff ff ff ff
+usb 1-1.1: 30: ff ff ff ff ff ff ff ff
+usb 1-1.1: 38: ff ff 29 29 29 29 29 29
+usb 1-1.1: 40: 2e 2e 2e 2e 2e 02 ef ef
+usb 1-1.1: 48: ff ff ff ff ff ff ff ff
+usb 1-1.1: 50: ff ff ff ff ff ff ff ff
+usb 1-1.1: 58: ff ff ff ff ff ff ff ff
+usb 1-1.1: 60: ff ff ff ff ff ff ff ff
+usb 1-1.1: 68: ff ff ff ff ff ff ff ff
+usb 1-1.1: 70: ff ff ff ff ff ff ff ff
+usb 1-1.1: 78: ff ff ff ff ff ff ff ff
+usb 1-1.1: 80: ff ff ff ff ff ff ff ff
+usb 1-1.1: 88: ff ff ff ff ff ff ff ff
+usb 1-1.1: 90: ff ff ff ff ff ff ff ff
+usb 1-1.1: 98: ff ff ff ff ff ff ff ff
+usb 1-1.1: a0: ff ff ff ff ff ff ff ff
+usb 1-1.1: a8: ff ff ff ff ff ff ff ff
+usb 1-1.1: b0: ff ff ff ff ff ff ff ff
+usb 1-1.1: b8: 20 20 1a 00 00 00 ff ff
+usb 1-1.1: c0: ff 01 00 10 00 00 00 ff
+usb 1-1.1: c8: 00 00 ff ff ff ff ff ff
+usb 1-1.1: d0: da 0b 8b 81 e6 47 02 00
+usb 1-1.1: d8: 0b 81 a2 a5 60 09 03 52
+usb 1-1.1: e0: 65 61 6c 74 65 6b 0d 03
+usb 1-1.1: e8: 38 30 32 2e 31 31 6e 20
+usb 1-1.1: f0: 4e 49 43 00 ff ff ff ff
+usb 1-1.1: f8: ff ff ff ff ff ff ff ff
+usb 1-1.1: 100: ff ff ff ff ff ff ff ff
+usb 1-1.1: 108: ff ff ff ff ff ff ff ff
+usb 1-1.1: 110: ff ff ff ff ff ff ff 0d
+usb 1-1.1: 118: 03 00 05 00 30 00 00 00
+usb 1-1.1: 120: 00 93 ff ff ff ff ff ff
+usb 1-1.1: 128: ff ff ff ff ff ff ff ff
+usb 1-1.1: 130: f6 a8 98 2d 03 92 98 00
+usb 1-1.1: 138: fc 8c 00 11 9b 44 02 0a
+usb 1-1.1: 140: ff ff ff ff ff ff ff ff
+usb 1-1.1: 148: ff ff ff ff ff ff ff ff
+usb 1-1.1: 150: ff ff ff ff ff ff ff ff
+usb 1-1.1: 158: ff ff ff ff ff ff ff ff
+usb 1-1.1: 160: ff ff ff ff ff ff ff ff
+usb 1-1.1: 168: ff ff ff ff ff ff ff ff
+usb 1-1.1: 170: ff ff ff ff ff ff ff ff
+usb 1-1.1: 178: ff ff ff ff ff ff ff ff
+usb 1-1.1: 180: ff ff ff ff ff ff ff ff
+usb 1-1.1: 188: ff ff ff ff ff ff ff ff
+usb 1-1.1: 190: ff ff ff ff ff ff ff ff
+usb 1-1.1: 198: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1a0: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1a8: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1b0: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1b8: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1c0: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1c8: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1d0: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1d8: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1e0: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1e8: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1f0: ff ff ff ff ff ff ff ff
+usb 1-1.1: 1f8: ff ff ff ff ff ff ff ff
+usb 1-1.1: RTL8192EU rev B (SMIC) 2T2R, TX queues 3, WiFi=1, BT=0, 
+GPS=0, HI PA=0
+usb 1-1.1: RTL8192EU MAC: 00:0b:81:a2:a5:60
+usb 1-1.1: rtl8xxxu: Loading firmware rtlwifi/rtl8192eu_nic.bin
+usb 1-1.1: Firmware revision 19.0 (signature 0x92e1)
 
 
-Yes chrome uses clang primarily. I think whats missing it dependency
-on C++ runtime. default is libstdc++ so I guess you have to add a
-dependency on gcc-runtime
+what issue do I get here?
+
+Thanks
 
