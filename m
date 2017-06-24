@@ -1,73 +1,80 @@
 Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E917BE00BD6; Fri, 23 Jun 2017 21:42:34 -0700 (PDT)
+	id 43A86E00BD6; Fri, 23 Jun 2017 21:52:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (antonius.riko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-pf0-f170.google.com (mail-pf0-f170.google.com
-	[209.85.192.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3159E00B28
-	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 21:42:30 -0700 (PDT)
-Received: by mail-pf0-f170.google.com with SMTP id s66so31772271pfs.1
-	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 21:42:30 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.53 listed in list.dnswl.org]
+Received: from mail-pg0-f53.google.com (mail-pg0-f53.google.com [74.125.83.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0519AE00B28
+	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 21:52:46 -0700 (PDT)
+Received: by mail-pg0-f53.google.com with SMTP id e187so28676692pgc.1
+	for <yocto@yoctoproject.org>; Fri, 23 Jun 2017 21:52:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding:content-language;
-	bh=dhf0Kb6PwBOjyyuSfOfSP1veVjGG83xP+U9b701Idgc=;
-	b=eWGo8iinkLHDWcC8xyLuoe/IIyNvL3+foDA75wSHrSgMLHgymBBwTRW3WZ05gf20Zi
-	mWM7VeGzGASQMpwQ90TUmmcfby9Jk0qL1DA/n9QO9YeTBG5GwSpPCcMbuLz8SLEt8k2N
-	xBqNWvkY1QCfnW8jTeADp4fmIBw6B3aa5+CumnSNQAIT+FVpR8jAlhWA+Ohpc+6gbE3R
-	tyEbSpqSNWVSMcGokX65XxTqGbfsBBs8wCeUipLEkTXv71c7f+TDLc59tfrQ0BnJhRWb
-	mPdD63L29RFzgtTFAivtY2PyXBgUSXu45LPmx4SA5aDfUszKppM6Co73/AmDq+9BH0KW
-	6n0w==
+	:mime-version:in-reply-to:content-language;
+	bh=kCe1FJLEBUBcEFiD3nNNVhSYUmKyT0H9HFZv9mDcMJY=;
+	b=tGnqfQms0bf9X11X4tbDmlJAfy8MNriDhucywGIQCMpW51aYBK/AqXmVF6F7I+l0+z
+	dFJpa42L5eLSQN55pmUQrNB/ssgco6LPsO3znV+CZ+PWwLRANvXId6liqjoJxcp8j3wg
+	P/FUcbbTkHjU4cYnCZod82P319jrfl5/g7M1cUaVkm8EN+EW9I+0vYLNTn5Q5vM+wEBN
+	86AsqnuFVCEFt2mIUwlUAb0A7wRIgwcq8AAsHH2cIMO874gdlYdFXQcBbi3BQ4/uAawb
+	SMsSky7f7KsLbcs8zFhYNR+n8cfqbHzeDU/Xia6YuAZMxBz1JEqcNjD9rlk9/tMw3Rv/
+	5oYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=dhf0Kb6PwBOjyyuSfOfSP1veVjGG83xP+U9b701Idgc=;
-	b=hFG43m96DjDsB/BiNEVI9qyTtM06OGRQ2MmcMunif1iSia6y5JPa5z5KLBmcA+USQG
-	CdE6ghZhs4K1k3h4WbMmrfNwMGD21VpujmDgT+ZrlxO6ap8HjG7PXO2mjb/bk2OirGkT
-	nv3Ppym6MAMnBZwyn8IFUTc2bVIq3iGRUF5MQfQ/MJ11LBvrD2YFjtkdxQuqUJ/sBPyf
-	Fh8nTB2Aauvoe4I6H3dKwlxN2b3aUuKxm1Lf/covfEQC8kAXmjxtMwdETSlGMKfH5DN6
-	qFA3gKm/LTvQT3hV3zVq07TLbiABfyeSfS5PEt9HmJSCVCb4AIA1TZbOrNNIvuk6Q3y2
-	mFAA==
-X-Gm-Message-State: AKS2vOw6IbWL5LTwiktbs+2Bc7XivxkX43LfQDM+OPSHDeTcEBDkBuzi
-	e1MfH5ykfPS1Hg==
-X-Received: by 10.84.225.4 with SMTP id t4mr13018476plj.274.1498279350384;
-	Fri, 23 Jun 2017 21:42:30 -0700 (PDT)
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=kCe1FJLEBUBcEFiD3nNNVhSYUmKyT0H9HFZv9mDcMJY=;
+	b=guVGdDXYNC9gvr+D7X5vVHj2O+eh1bLwjKiSkuI6s+ubnCdtgxTPGbrTm+pMiJhG6I
+	HNO4hNdCNOFAP/0q+gg6Bd31zVfXNoKVed/NrkNxoLzwKc5NishQszgsLFwo+Ud3hAvp
+	s6+7ZvlNfCZBRkuKwwTisIuOEshsNq7S7fa9/8visCtpKRpQCxNVO3z5NPvfTRkjqnMY
+	PFcd1En5RWah2A86j8TQMTrb9c8kLg+W5zkdLtnQSDK5pqHZqdmmbgnWZ1XzlkkDyh2M
+	aX2CGXWEG9JClib0CUONZERjsF9oJnk9PbKVSFEkA8tGEjjjnkoQpmLTqnLSh28XvnLx
+	G0nA==
+X-Gm-Message-State: AKS2vOzg7X+gUnZ8yFDCPmYwDKOiD7xn8hoR2t68bj56YCz75XPQyqzn
+	gP6C6QveiBo/rU+x
+X-Received: by 10.98.178.19 with SMTP id x19mr11581963pfe.74.1498279966104;
+	Fri, 23 Jun 2017 21:52:46 -0700 (PDT)
 Received: from [10.0.0.1] (CPE-1-122-193-77.wwl9.wel.bigpond.net.au.
-	[1.122.193.77])
-	by smtp.gmail.com with ESMTPSA id v6sm11768165pfl.2.2017.06.23.21.42.27
+	[1.122.193.77]) by smtp.gmail.com with ESMTPSA id
+	c10sm11419082pfl.81.2017.06.23.21.52.43
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 23 Jun 2017 21:42:29 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <fe34f976-648e-7fbc-c190-a5fb0829552f@gmail.com>
-	<CAMKF1sq0XX0ahRiG34oi9LwiDCZL83Oxf4sbkwmd5XL1n66jWw@mail.gmail.com>
+	Fri, 23 Jun 2017 21:52:45 -0700 (PDT)
+To: Gunnar Andersson <gandersson@genivi.org>, Khem Raj <raj.khem@gmail.com>
+References: <mailman.66247.1497786545.15860.yocto@yoctoproject.org>
+	<1497809434.2788.77.camel@genivi.org>
+	<7ee7dd60-a45d-350d-b213-0917fe6e32cb@igalia.com>
+	<CAMKF1sr-5mxP2_WCXtvnfzMt4OgUAf_V2ZhLQFgQAqGMbPDovQ@mail.gmail.com>
+	<dd9e6cf6-dcd3-9e90-2275-323b5c9fd0b6@gmail.com>
+	<CAMKF1sp_5+1N_+okGXxZMREir62snRDk+BtbwDMz+t5SUYo5pg@mail.gmail.com>
+	<61e45e0b-1fda-ecf5-51eb-437284c94d02@gmail.com>
+	<CAMKF1soeiztrJEjDzLJ5k3t3QzyuK7qqJ-orW+1SPBR1b-oswg@mail.gmail.com>
+	<8525501f-954a-8799-957c-f68efc4d7d5b@gmail.com>
+	<1498030640.8095.27.camel@genivi.org>
 From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <a964869d-2f6e-e02a-8971-ce75c70af8db@gmail.com>
-Date: Sat, 24 Jun 2017 12:42:25 +0800
+Message-ID: <3f92769b-a9c2-1f75-5e16-14fc97499dcc@gmail.com>
+Date: Sat, 24 Jun 2017 12:52:41 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.1.1
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1sq0XX0ahRiG34oi9LwiDCZL83Oxf4sbkwmd5XL1n66jWw@mail.gmail.com>
-Subject: RTL8192EU question ?
+In-Reply-To: <1498030640.8095.27.camel@genivi.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Compiling meta-browser ==>chromium ? cleaning ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,95 +86,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Jun 2017 04:42:35 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 24 Jun 2017 04:52:50 -0000
+Content-Type: multipart/alternative;
+	boundary="------------E94EFE178CF65E84DCB9C5EA"
 Content-Language: en-US
 
-Hello Everyone,
+--------------E94EFE178CF65E84DCB9C5EA
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I tried to connect  rev B
+it can be compiled and image can be written to the board but chromium 
+got error :
 
-But I got this message below repeating,
+/usr/bin/chromium/chrome: error while loading shared libraries: 
+libaccessibility.so: cannot open shared object file: No such file or 
+directory
 
-usb 1-1.1: This Realtek USB WiFi dongle (0x0bda:0x818b) is untested!
-usb 1-1.1: Please report results to Jes.Sorensen@gmail.com
-usb 1-1.1: Vendor: Realtek
-usb 1-1.1: Product: 802.11n NIC
-usb 1-1.1: Serial: �����������
-usb 1-1.1: rtl8192eu_parse_efuse: dumping efuse (0x200 bytes):
-usb 1-1.1: 00: 29 81 00 7c 01 40 03 00
-usb 1-1.1: 08: 40 74 04 50 14 00 00 00
-usb 1-1.1: 10: 2e 2e 2e 2e 2e 2e 2e 2e
-usb 1-1.1: 18: 2e 2e 2e 02 ef ef ff ff
-usb 1-1.1: 20: ff ff ff ff ff ff ff ff
-usb 1-1.1: 28: ff ff ff ff ff ff ff ff
-usb 1-1.1: 30: ff ff ff ff ff ff ff ff
-usb 1-1.1: 38: ff ff 29 29 29 29 29 29
-usb 1-1.1: 40: 2e 2e 2e 2e 2e 02 ef ef
-usb 1-1.1: 48: ff ff ff ff ff ff ff ff
-usb 1-1.1: 50: ff ff ff ff ff ff ff ff
-usb 1-1.1: 58: ff ff ff ff ff ff ff ff
-usb 1-1.1: 60: ff ff ff ff ff ff ff ff
-usb 1-1.1: 68: ff ff ff ff ff ff ff ff
-usb 1-1.1: 70: ff ff ff ff ff ff ff ff
-usb 1-1.1: 78: ff ff ff ff ff ff ff ff
-usb 1-1.1: 80: ff ff ff ff ff ff ff ff
-usb 1-1.1: 88: ff ff ff ff ff ff ff ff
-usb 1-1.1: 90: ff ff ff ff ff ff ff ff
-usb 1-1.1: 98: ff ff ff ff ff ff ff ff
-usb 1-1.1: a0: ff ff ff ff ff ff ff ff
-usb 1-1.1: a8: ff ff ff ff ff ff ff ff
-usb 1-1.1: b0: ff ff ff ff ff ff ff ff
-usb 1-1.1: b8: 20 20 1a 00 00 00 ff ff
-usb 1-1.1: c0: ff 01 00 10 00 00 00 ff
-usb 1-1.1: c8: 00 00 ff ff ff ff ff ff
-usb 1-1.1: d0: da 0b 8b 81 e6 47 02 00
-usb 1-1.1: d8: 0b 81 a2 a5 60 09 03 52
-usb 1-1.1: e0: 65 61 6c 74 65 6b 0d 03
-usb 1-1.1: e8: 38 30 32 2e 31 31 6e 20
-usb 1-1.1: f0: 4e 49 43 00 ff ff ff ff
-usb 1-1.1: f8: ff ff ff ff ff ff ff ff
-usb 1-1.1: 100: ff ff ff ff ff ff ff ff
-usb 1-1.1: 108: ff ff ff ff ff ff ff ff
-usb 1-1.1: 110: ff ff ff ff ff ff ff 0d
-usb 1-1.1: 118: 03 00 05 00 30 00 00 00
-usb 1-1.1: 120: 00 93 ff ff ff ff ff ff
-usb 1-1.1: 128: ff ff ff ff ff ff ff ff
-usb 1-1.1: 130: f6 a8 98 2d 03 92 98 00
-usb 1-1.1: 138: fc 8c 00 11 9b 44 02 0a
-usb 1-1.1: 140: ff ff ff ff ff ff ff ff
-usb 1-1.1: 148: ff ff ff ff ff ff ff ff
-usb 1-1.1: 150: ff ff ff ff ff ff ff ff
-usb 1-1.1: 158: ff ff ff ff ff ff ff ff
-usb 1-1.1: 160: ff ff ff ff ff ff ff ff
-usb 1-1.1: 168: ff ff ff ff ff ff ff ff
-usb 1-1.1: 170: ff ff ff ff ff ff ff ff
-usb 1-1.1: 178: ff ff ff ff ff ff ff ff
-usb 1-1.1: 180: ff ff ff ff ff ff ff ff
-usb 1-1.1: 188: ff ff ff ff ff ff ff ff
-usb 1-1.1: 190: ff ff ff ff ff ff ff ff
-usb 1-1.1: 198: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1a0: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1a8: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1b0: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1b8: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1c0: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1c8: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1d0: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1d8: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1e0: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1e8: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1f0: ff ff ff ff ff ff ff ff
-usb 1-1.1: 1f8: ff ff ff ff ff ff ff ff
-usb 1-1.1: RTL8192EU rev B (SMIC) 2T2R, TX queues 3, WiFi=1, BT=0, 
-GPS=0, HI PA=0
-usb 1-1.1: RTL8192EU MAC: 00:0b:81:a2:a5:60
-usb 1-1.1: rtl8xxxu: Loading firmware rtlwifi/rtl8192eu_nic.bin
-usb 1-1.1: Firmware revision 19.0 (signature 0x92e1)
+What do I miss here on compiling ? could it be a not complete library on 
+my configuration ? any clues ?
+
+thanks
 
 
-what issue do I get here?
+On 21/06/17 15:37, Gunnar Andersson wrote:
+> On Wed, 2017-06-21 at 12:42 +0800, Riko Ho wrote:
+>> did I put it wrongly ?
+> ...
+>> browser/chromium/chromium_54.0.2810.2.bb:7: unparsed line:
+>> 'EXTRA_OEGYP_prepend = " -Dcomponent=shared_library
+> Maybe your line break did not use a backslash?  It was lost, or just
+> assumed, in Khem's example.
+>
+> See recipe syntax in Yocto manual [1].  Look for the item "Line
+> continuation".
+>
+> HTH
+> - Gunnar
+>
+> [1] http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#un
+> derstanding-recipe-syntax
+>
+> -- 
+> Gunnar Andersson <gandersson@genivi.org>
+> Development Lead
+> GENIVI Alliance
+>
+>
 
-Thanks
+-- 
+*
 
+/*******/
+Sent by Ubuntu LTS 16.04,
+谢谢,
+Regards,
+Riko Ho
+/*******/
+
+*
+
+--------------E94EFE178CF65E84DCB9C5EA
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>it can be compiled and image can be written to the board but
+      chromium got error :</p>
+    <p>/usr/bin/chromium/chrome: error while loading shared libraries:
+      libaccessibility.so: cannot open shared object file: No such file
+      or directory<br>
+      <br>
+      What do I miss here on compiling ? could it be a not complete
+      library on my configuration ? any clues ?</p>
+    <p>thanks<br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 21/06/17 15:37, Gunnar Andersson
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:1498030640.8095.27.camel@genivi.org">
+      <pre wrap="">On Wed, 2017-06-21 at 12:42 +0800, Riko Ho wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">did I put it wrongly ?
+</pre>
+      </blockquote>
+      <pre wrap="">...
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">browser/chromium/chromium_54.0.2810.2.bb:7: unparsed line:
+'EXTRA_OEGYP_prepend = " -Dcomponent=shared_library
+</pre>
+      </blockquote>
+      <pre wrap="">
+Maybe your line break did not use a backslash?  It was lost, or just
+assumed, in Khem's example.   
+
+See recipe syntax in Yocto manual [1].  Look for the item "Line
+continuation".
+
+HTH
+- Gunnar
+
+[1] <a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#un">http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#un</a>
+derstanding-recipe-syntax
+
+-- 
+Gunnar Andersson <a class="moz-txt-link-rfc2396E" href="mailto:gandersson@genivi.org">&lt;gandersson@genivi.org&gt;</a>
+Development Lead
+GENIVI Alliance
+
+
+</pre>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          谢谢,<br>
+          Regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
+  </body>
+</html>
+
+--------------E94EFE178CF65E84DCB9C5EA--
