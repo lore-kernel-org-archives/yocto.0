@@ -1,32 +1,34 @@
 Return-Path: <drew.moseley@mender.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B613BE00B8D; Sun, 25 Jun 2017 12:58:37 -0700 (PDT)
+	id 33D75E0094C; Sun, 25 Jun 2017 12:58:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
 	*      [107.14.166.228 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 Received: from cdptpa-oedge-vip.email.rr.com
 	(cdptpa-outbound-snat.email.rr.com [107.14.166.228])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5201BE00524
-	for <yocto@yoctoproject.org>; Sun, 25 Jun 2017 12:58:33 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EBE8E00B63
+	for <yocto@yoctoproject.org>; Sun, 25 Jun 2017 12:58:34 -0700 (PDT)
 Received: from [65.32.40.152] ([65.32.40.152:46011]
 	helo=tobago.home.moseleynet.net)
 	by cdptpa-omsmta01 (envelope-from <drew.moseley@mender.io>)
 	(ecelerity 3.6.9.48312 r(Core:3.6.9.0)) with ESMTP
-	id 24/86-10880-8E510595; Sun, 25 Jun 2017 19:58:32 +0000
+	id 96/86-10880-8E510595; Sun, 25 Jun 2017 19:58:33 +0000
 From: drew.moseley@mender.io
 To: yocto@yoctoproject.org
-Date: Sun, 25 Jun 2017 15:55:43 -0400
-Message-Id: <cover.1498420110.git.drew.moseley@mender.io>
+Date: Sun, 25 Jun 2017 15:55:45 -0400
+Message-Id: <cc067a3eae2ea57cd7935283428ac759d3e6a898.1498420110.git.drew.moseley@mender.io>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <cover.1498420110.git.drew.moseley@mender.io>
+References: <cover.1498420110.git.drew.moseley@mender.io>
 X-RR-Connecting-IP: 107.14.168.6:25
-Subject: [meta-chip][PATCH V2 0/3] Initial attempt at flashing instructions.
+Subject: [meta-chip][PATCH V2 2/3] chip: Build sunxi-tools-native.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,73 +40,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Jun 2017 19:58:37 -0000
+X-List-Received-Date: Sun, 25 Jun 2017 19:58:38 -0000
 
 From: Drew Moseley <drew.moseley@mender.io>
 
-* V2:
+Add LAYERDEPENDS on meta-sunxi and add the sunxi-tools-native
+pacakage to EXTRA_IMAGEDEPENDS.
 
-Updated README and layer dependencies.
+Signed-off-by: Drew Moseley <drew.moseley@mender.io>
+---
+ README                 | 3 +++
+ conf/layer.conf        | 3 +++
+ conf/machine/chip.conf | 2 +-
+ 3 files changed, 7 insertions(+), 1 deletion(-)
 
-Added error checking to flashing script
-
-* V1:
-
-This set of patches adds the native tools and target components needed to
-reflash the CHIP boards.  Additionally a shell script is added to the deploy
-directory showing how to kick off a flash update. It's not ideal as I've
-hardcoded a max size for the UBI image into the script and didn't see much
-of an alternative. It does function though.
-
-Drew
-
-The following changes since commit 0079e6ac10fc371d6f527270c23b887561f717aa:
-
-  chip: Append to MACHINE_EXTRA_RRECOMMENDS rather than overwriting (2017-06-15 13:37:19 +0100)
-
-are available in the git repository at:
-
-  git@github.com:drewmoseley/meta-chip.git flashing-instructions-v2
-
-for you to fetch changes up to ddbfd00d73ea022aaa02005393a326d8802dd64a:
-
-  chip: Add chip-u-boot-scr recipe and flash script (2017-06-25 15:28:54 -0400)
-
-----------------------------------------------------------------
-Drew Moseley (3):
-      u-boot-chip: Deploy the sunxi-spl-with-ecc.bin file.
-      chip: Build sunxi-tools-native.
-      chip: Add chip-u-boot-scr recipe and flash script
-
- README                                          | 94 ++++++++++++++++++++++++-
- conf/layer.conf                                 |  3 +
- conf/machine/chip.conf                          |  3 +-
- recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb  | 89 +++++++++++++++++++++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.in   | 43 +++++++++++
- recipes-bsp/u-boot/u-boot-chip_git.bb           |  7 ++
- 7 files changed, 269 insertions(+), 2 deletions(-)
- create mode 100644 recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-
-Drew Moseley (3):
-  u-boot-chip: Deploy the sunxi-spl-with-ecc.bin file.
-  chip: Build sunxi-tools-native.
-  chip: Add chip-u-boot-scr recipe and flash script
-
- README                                          | 94 ++++++++++++++++++++++++-
- conf/layer.conf                                 |  3 +
- conf/machine/chip.conf                          |  3 +-
- recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb  | 89 +++++++++++++++++++++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.full | 32 +++++++++
- recipes-bsp/chip-u-boot-scr/files/boot.cmd.in   | 43 +++++++++++
- recipes-bsp/u-boot/u-boot-chip_git.bb           |  7 ++
- 7 files changed, 269 insertions(+), 2 deletions(-)
- create mode 100644 recipes-bsp/chip-u-boot-scr/chip-u-boot-scr.bb
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.full
- create mode 100644 recipes-bsp/chip-u-boot-scr/files/boot.cmd.in
-
+diff --git a/README b/README
+index cccf59e..32f70b2 100644
+--- a/README
++++ b/README
+@@ -14,6 +14,9 @@ This layer depends on:
+   layers: meta
+   branch: master
+ 
++  URI: git://github.com/linux-sunxi/meta-sunxi.git
++  branch: master
++
+ 
+ Patches
+ =======
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 5dad66e..3324908 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -8,3 +8,6 @@ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ BBFILE_COLLECTIONS += "meta-chip"
+ BBFILE_PATTERN_meta-chip = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-chip = "6"
++
++# Add this to get access to sunxi-tools recipe
++LAYERDEPENDS_meta-chip = "meta-sunxi"
+\ No newline at end of file
+diff --git a/conf/machine/chip.conf b/conf/machine/chip.conf
+index 8f54067..ae166f9 100644
+--- a/conf/machine/chip.conf
++++ b/conf/machine/chip.conf
+@@ -5,7 +5,7 @@
+ MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
+ MACHINE_ESSENTIAL_EXTRA_RDEPENDS = " kernel-image kernel-devicetree"
+ 
+-EXTRA_IMAGEDEPENDS += "u-boot"
++EXTRA_IMAGEDEPENDS += "u-boot sunxi-tools-native"
+ 
+ DEFAULTTUNE ?= "cortexa8t-neon"
+ include conf/machine/include/tune-cortexa8.inc
 -- 
 2.7.4
 
