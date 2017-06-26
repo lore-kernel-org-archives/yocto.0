@@ -1,89 +1,64 @@
-Return-Path: <yannick.koehler@hpe.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D91D3E009A0; Mon, 26 Jun 2017 09:16:14 -0700 (PDT)
+	id 426C6E0084A; Mon, 26 Jun 2017 10:26:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [15.233.16.89 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from g2t1383g.austin.hpe.com (g2t1383g.austin.hpe.com [15.233.16.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CBB9E00718
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 09:16:13 -0700 (PDT)
-Received: from g2t2352.austin.hpe.com (g2t2352.austin.hpe.com [15.233.44.25])
-	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by g2t1383g.austin.hpe.com (Postfix) with ESMTPS id 96DCF14B2
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 16:16:13 +0000 (UTC)
-Received: from G2W6309.americas.hpqcorp.net (g2w6309.austin.hp.com
-	[16.197.64.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by g2t2352.austin.hpe.com (Postfix) with ESMTPS id 4F827E1
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 16:16:12 +0000 (UTC)
-Received: from G9W8454.americas.hpqcorp.net (2002:10d8:a104::10d8:a104) by
-	G2W6309.americas.hpqcorp.net (2002:10c5:4033::10c5:4033) with Microsoft
-	SMTP Server (TLS) id 15.0.1178.4; Mon, 26 Jun 2017 16:16:12 +0000
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (15.241.52.11) by
-	G9W8454.americas.hpqcorp.net (16.216.161.4) with Microsoft SMTP
-	Server (TLS)
-	id 15.0.1178.4 via Frontend Transport; Mon, 26 Jun 2017 16:16:12 +0000
-Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.157) by
-	TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.157) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1199.15; Mon, 26 Jun 2017 16:16:11 +0000
-Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) by
-	TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) with mapi id
-	15.01.1199.017; Mon, 26 Jun 2017 16:16:11 +0000
-From: "Koehler, Yannick" <yannick.koehler@hpe.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: question regarding share state cache and task dependencies.
-Thread-Index: AdLul301opk+7PAxRVWpAp+uMRLM4g==
-Date: Mon, 26 Jun 2017 16:16:10 +0000
-Message-ID: <TU4PR84MB0176F6A52E3E3970EB57C1FAEDDF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none; yoctoproject.org;
-	dmarc=none action=none header.from=hpe.com; 
-x-originating-ip: [15.219.163.10]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; TU4PR84MB0176;
-	7:4T9icCQR3fgRJixTtWLbkFtj3jtTJ0LYvauoYB4Cllb93nr1barySycoDrlIgkfLCDz+1KzUnuSRLlK4Q6hEVTOoFhbizeTnJws6smWoAzhYrAw6maRcSsV2oZV6w9ALYp/Qedr552mfbaM86wKG67rmaMectNZYDI5ugrBv8mGGNwVtRgAudGHbkNhAgoDDAmHR4AGj5C1wkM00pHAVduJ7NiOUpcclOhfz0ba3pI2JbQFRahbpb4w2nqM7slfxUiZFWtfZ4B4ln83TkgR4fB7eC8AWRhesz/jq6887QnjFFBoHAFBHZqkY7oIrGcBrsmtZ66QQ+HDNRlNSgMEcYvAV9KflVMZOyOQec77jRSv2mO2c4+vZdxJcobbIinZcRprHfTIL3vwXG+7k25oRpYWkG3aIM4lbxa0Mvsi1A21TuRBjIjL9ywuTy2j1zBvPeW8UZOnCJEqfnolGBASp5wQjHEX0Y8tW1/KDEPTQuxDE2AvYbC56hBbwccwTa5x+gGXWHDv7+RLsiN6/aFfuS8fTeXJRmH/NiX97EaC9C0tZAsmdDn6DsggXe+CI5eK7TbiFlTKHaq9bMPgYsBlmkGyAwYnxlZK8o7ezjb6pp0Xam93SfeR8Tqvqx3YnHAUFwByy9DIuAJrIYaFdlV09lJW4vkbO0x3fZM5YLOkjw6r9esf4lVi+5CSQklMzCOt8wWfvPa4oYulsDesG/SHpsLwHkAr+WdnzfbcI0/0fzU8z7hqqodRKPMGA+tCYgrp7BVCoRgm6mhQSvItDBS2aS9oi2vU6Y7EgyYJGlAqa5pc=
-x-ms-office365-filtering-correlation-id: edcdc70a-ac35-4a85-09d4-08d4bcaea8ea
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254075)(48565401081)(300000503095)(300135400095)(201703131423075)(201703031133081)(300000504095)(300135200095)(300000505095)(300135600095);
-	SRVR:TU4PR84MB0176; 
-x-ms-traffictypediagnostic: TU4PR84MB0176:
-x-microsoft-antispam-prvs: <TU4PR84MB01767CACEE87421810D629F3EDDF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:(236129657087228);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(5005006)(8121501046)(100000703101)(100105400095)(10201501046)(93006095)(93001095)(3002001)(6055026)(6041248)(20161123558100)(20161123560025)(20161123555025)(20161123564025)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(6072148)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:TU4PR84MB0176; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:TU4PR84MB0176; 
-x-forefront-prvs: 0350D7A55D
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(39840400002)(39400400002)(39850400002)(39410400002)(39860400002)(39450400003)(77096006)(122556002)(5640700003)(54356999)(50986999)(305945005)(33656002)(2900100001)(6916009)(3280700002)(86362001)(74316002)(2351001)(5660300001)(3660700001)(7736002)(81166006)(8936002)(1730700003)(66066001)(8676002)(14454004)(478600001)(2501003)(6436002)(102836003)(6116002)(6506006)(2906002)(7696004)(189998001)(53936002)(55016002)(3846002)(25786009)(110136004)(38730400002)(9686003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:TU4PR84MB0176;
-	H:TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.50 listed in list.dnswl.org]
+Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84F21E0048B
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 10:26:20 -0700 (PDT)
+Received: by mail-wm0-f50.google.com with SMTP id b184so4008466wme.1
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 10:26:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=LWepNCVmhiXxKtF0e11HEUsoF7w4JgFpyDjL3i7On18=;
+	b=libisawRUrrt0AWf3iMpIN7zcxVZmvprpbxtsAyI4cDdmrT9L60Kg0BTSpaguCwBd0
+	WYlsFi4EW/wMfaemd/XLTVLpFIX7CMGWqP3WTytHX4Ur0nbGuEaSBSgrASls58CnRZt4
+	HScU03/QlYYHLnMPz1YXFFEfG2kbbJ1lAf8Npvqm3bkoRn870d9pTlMkqJo8Us2baluJ
+	oYds6SrU2UWEcOUklhE2SBaCTD96FD1nWO0kqY1W3kzNjqq22LmIOx0JppEQCpXc9osl
+	OcnvcRFZyDfNvEO4bo8p39Feqhob5F44BBKDyXTRyVHP6NsdCs927AqL/M74eKC4Sf3r
+	85Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=LWepNCVmhiXxKtF0e11HEUsoF7w4JgFpyDjL3i7On18=;
+	b=slerr1PzXHCFtAPRh4kc3xElZDHKTgXuBp8VYmkRisQrDuq0SjxAs5v4L1l7AOr0V1
+	z+0SsT0gyxJ7Yf2gqV4KWheO6+gQfojcArmizyIJcrEaOVfCV1VbOJa7EEjY7I6ixqWU
+	PTFEc4Z09javQytwnram/f5rtovR3nCjL30kB4baXNO6I0A5TQC15OQO34pmGUA5oFNP
+	3NWcewgSKntC/MryqJFcIAx5HcWHa2Jl4QfmO58ewfgYCGuMbEe3Hfhu5wj6ynFfsPoI
+	B708fs1q5V1oUR0yn7qTnRmoWVjK+E+wdJzTaOdbiof7U8IwWkd9OuYrN3VTrDm+6ric
+	raLA==
+X-Gm-Message-State: AKS2vOySMWWag2hoM5+TkNr9kVQjonP0Et5QixTKn3sSCiSB0kEjx2Xg
+	iHz7CI8TNWKq7fffgVcrw46zdfZUfw==
+X-Received: by 10.80.151.49 with SMTP id c46mr874208edb.30.1498497979377; Mon,
+	26 Jun 2017 10:26:19 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2017 16:16:10.9323 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR84MB0176
-X-OriginatorOrg: hpe.com
-Subject: question regarding share state cache and task dependencies.
+Received: by 10.80.165.198 with HTTP; Mon, 26 Jun 2017 10:25:48 -0700 (PDT)
+In-Reply-To: <TU4PR84MB0176F6A52E3E3970EB57C1FAEDDF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+References: <TU4PR84MB0176F6A52E3E3970EB57C1FAEDDF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 26 Jun 2017 10:25:48 -0700
+Message-ID: <CAMKF1spqY7MOTt7d1AO0KfKc9XFm1X01r65EWhMDC=93J_5tbw@mail.gmail.com>
+To: "Koehler, Yannick" <yannick.koehler@hpe.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: question regarding share state cache and task dependencies.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -95,22 +70,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jun 2017 16:16:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 26 Jun 2017 17:26:22 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I was wondering, reading about the shared state cache system, why are the t=
-ask / recipe dependencies being honored when executing a setscene task?  Si=
-nce there is a "sanity" check that no two package write to the same output =
-files, then could we just run the setscene task without honoring the depend=
-encies and get all the files in place at maximum speed ?  Right now, the sy=
-stem seems to install each package dependencies in the same order it was bu=
-ilt, but since this is pre-built, I failed to see why the order mater anymo=
-re, given the sanity check above.  The dependency should be used to determi=
-ne what setscene to execute, but then they should just pump out as fast as =
-possible in any given order.
+On Mon, Jun 26, 2017 at 9:16 AM, Koehler, Yannick
+<yannick.koehler@hpe.com> wrote:
+> I was wondering, reading about the shared state cache system, why are the=
+ task / recipe dependencies being honored when executing a setscene task?  =
+Since there is a "sanity" check that no two package write to the same outpu=
+t files, then could we just run the setscene task without honoring the depe=
+ndencies and get all the files in place at maximum speed ?  Right now, the =
+system seems to install each package dependencies in the same order it was =
+built, but since this is pre-built, I failed to see why the order mater any=
+more, given the sanity check above.  The dependency should be used to deter=
+mine what setscene to execute, but then they should just pump out as fast a=
+s possible in any given order.
 
---
-Yannick Koehler
+there are quite a few resources available for you.
+
+http://www.yoctoproject.org/docs/2.3/bitbake-user-manual/bitbake-user-manua=
+l.html#setscene
+
+http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#shared=
+-state-cache
+
+Then there are couple of books also talking about the concept.
+
+>
+> --
+> Yannick Koehler
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
