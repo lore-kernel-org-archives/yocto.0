@@ -1,66 +1,89 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <yannick.koehler@hpe.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A600AE009A0; Mon, 26 Jun 2017 09:12:49 -0700 (PDT)
+	id D91D3E009A0; Mon, 26 Jun 2017 09:16:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [15.233.16.89 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.44 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
-	[209.85.214.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 696CFE00718
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 09:12:46 -0700 (PDT)
-Received: by mail-it0-f44.google.com with SMTP id m84so1338489ita.0
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 09:12:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=MXrnQC3fQI5SQ/n4qWTT2iOaBbBrm1rAZUdxX/xVE4I=;
-	b=gkeq6nzHfy/vcAISgIDjd+szVAKWaBZpXVvmnHgNVvxgpnFb/Ggw9NkxwVa0aqpFml
-	KpzFZsXMl8AyP70gHShzgEm7zTBPO+RqB72CcUah9iHdXvQfso7uDq2ujGuZgDHWR0mC
-	Ilp0LAMEJUKCL3UiEy6EI08tZLB4abKgTSPIAx6GsUC/6smZJ2PNlRsddSX9BCTLk/ET
-	JqwlQr+fBlNkOqLAKjFQxZ2qKdpwXwPgfSXItuw7jUP/f7aG9YQmlJjx1goWylgKbd37
-	DM/61Ju1HPndaKh8tDlVGEnmL/RTRRfwFw4B2F0pEbcDjnepUs/MvnnwMVdRtJRjcAvR
-	y0yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=MXrnQC3fQI5SQ/n4qWTT2iOaBbBrm1rAZUdxX/xVE4I=;
-	b=QxT66RMUlbf/u7VL6DuNAyCejJjPDoO/ZhYUmDQjT+m7SpzmuNdFeCEWyBFb/qykSV
-	kEP0ZKSrhfI+eso/C0DDJrxYYetPqeyQaTiL94mqjvRBVedRt0z4tpQEZ8gGRuH7qYj9
-	xaawhEA/xrEXTAtNy/3sx0HlHAM97906NRENbCdOFNMyf9h2A0zNZGb2nebxXhoxM+DY
-	rfCvCJf/Z44Yx0anwyo51ex4igQbek+bLPSydTWGqr9uPUKZ4PBOwaAqYtsqcr3oyEyt
-	7FGJ7Pw/Frd6XA+9tymXi0WPI3wsBtKkrP1l8DGBz1k12YOqPwCIHSqzOv18ohhTM3AI
-	Z/9A==
-X-Gm-Message-State: AKS2vOwz39LKNN/vkQErqkJ3gU/tSntNXDtxlRzAY+tdMUBf+3zjYQI+
-	aLlwn5s2hmN0kvMHoOh7/uH3gCqFvuyLI2qilQ==
-X-Received: by 10.36.88.135 with SMTP id f129mr474481itb.22.1498493566235;
-	Mon, 26 Jun 2017 09:12:46 -0700 (PDT)
+Received: from g2t1383g.austin.hpe.com (g2t1383g.austin.hpe.com [15.233.16.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CBB9E00718
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 09:16:13 -0700 (PDT)
+Received: from g2t2352.austin.hpe.com (g2t2352.austin.hpe.com [15.233.44.25])
+	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by g2t1383g.austin.hpe.com (Postfix) with ESMTPS id 96DCF14B2
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 16:16:13 +0000 (UTC)
+Received: from G2W6309.americas.hpqcorp.net (g2w6309.austin.hp.com
+	[16.197.64.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by g2t2352.austin.hpe.com (Postfix) with ESMTPS id 4F827E1
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 16:16:12 +0000 (UTC)
+Received: from G9W8454.americas.hpqcorp.net (2002:10d8:a104::10d8:a104) by
+	G2W6309.americas.hpqcorp.net (2002:10c5:4033::10c5:4033) with Microsoft
+	SMTP Server (TLS) id 15.0.1178.4; Mon, 26 Jun 2017 16:16:12 +0000
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com (15.241.52.11) by
+	G9W8454.americas.hpqcorp.net (16.216.161.4) with Microsoft SMTP
+	Server (TLS)
+	id 15.0.1178.4 via Frontend Transport; Mon, 26 Jun 2017 16:16:12 +0000
+Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.157) by
+	TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.157) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.1.1199.15; Mon, 26 Jun 2017 16:16:11 +0000
+Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) by
+	TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) with mapi id
+	15.01.1199.017; Mon, 26 Jun 2017 16:16:11 +0000
+From: "Koehler, Yannick" <yannick.koehler@hpe.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: question regarding share state cache and task dependencies.
+Thread-Index: AdLul301opk+7PAxRVWpAp+uMRLM4g==
+Date: Mon, 26 Jun 2017 16:16:10 +0000
+Message-ID: <TU4PR84MB0176F6A52E3E3970EB57C1FAEDDF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+Accept-Language: en-CA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none; yoctoproject.org;
+	dmarc=none action=none header.from=hpe.com; 
+x-originating-ip: [15.219.163.10]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; TU4PR84MB0176;
+	7:4T9icCQR3fgRJixTtWLbkFtj3jtTJ0LYvauoYB4Cllb93nr1barySycoDrlIgkfLCDz+1KzUnuSRLlK4Q6hEVTOoFhbizeTnJws6smWoAzhYrAw6maRcSsV2oZV6w9ALYp/Qedr552mfbaM86wKG67rmaMectNZYDI5ugrBv8mGGNwVtRgAudGHbkNhAgoDDAmHR4AGj5C1wkM00pHAVduJ7NiOUpcclOhfz0ba3pI2JbQFRahbpb4w2nqM7slfxUiZFWtfZ4B4ln83TkgR4fB7eC8AWRhesz/jq6887QnjFFBoHAFBHZqkY7oIrGcBrsmtZ66QQ+HDNRlNSgMEcYvAV9KflVMZOyOQec77jRSv2mO2c4+vZdxJcobbIinZcRprHfTIL3vwXG+7k25oRpYWkG3aIM4lbxa0Mvsi1A21TuRBjIjL9ywuTy2j1zBvPeW8UZOnCJEqfnolGBASp5wQjHEX0Y8tW1/KDEPTQuxDE2AvYbC56hBbwccwTa5x+gGXWHDv7+RLsiN6/aFfuS8fTeXJRmH/NiX97EaC9C0tZAsmdDn6DsggXe+CI5eK7TbiFlTKHaq9bMPgYsBlmkGyAwYnxlZK8o7ezjb6pp0Xam93SfeR8Tqvqx3YnHAUFwByy9DIuAJrIYaFdlV09lJW4vkbO0x3fZM5YLOkjw6r9esf4lVi+5CSQklMzCOt8wWfvPa4oYulsDesG/SHpsLwHkAr+WdnzfbcI0/0fzU8z7hqqodRKPMGA+tCYgrp7BVCoRgm6mhQSvItDBS2aS9oi2vU6Y7EgyYJGlAqa5pc=
+x-ms-office365-filtering-correlation-id: edcdc70a-ac35-4a85-09d4-08d4bcaea8ea
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254075)(48565401081)(300000503095)(300135400095)(201703131423075)(201703031133081)(300000504095)(300135200095)(300000505095)(300135600095);
+	SRVR:TU4PR84MB0176; 
+x-ms-traffictypediagnostic: TU4PR84MB0176:
+x-microsoft-antispam-prvs: <TU4PR84MB01767CACEE87421810D629F3EDDF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-test: UriScan:(236129657087228);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(5005006)(8121501046)(100000703101)(100105400095)(10201501046)(93006095)(93001095)(3002001)(6055026)(6041248)(20161123558100)(20161123560025)(20161123555025)(20161123564025)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(6072148)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:TU4PR84MB0176; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:TU4PR84MB0176; 
+x-forefront-prvs: 0350D7A55D
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(39840400002)(39400400002)(39850400002)(39410400002)(39860400002)(39450400003)(77096006)(122556002)(5640700003)(54356999)(50986999)(305945005)(33656002)(2900100001)(6916009)(3280700002)(86362001)(74316002)(2351001)(5660300001)(3660700001)(7736002)(81166006)(8936002)(1730700003)(66066001)(8676002)(14454004)(478600001)(2501003)(6436002)(102836003)(6116002)(6506006)(2906002)(7696004)(189998001)(53936002)(55016002)(3846002)(25786009)(110136004)(38730400002)(9686003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:TU4PR84MB0176;
+	H:TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.79.13.5 with HTTP; Mon, 26 Jun 2017 09:12:05 -0700 (PDT)
-X-Originating-IP: [86.141.163.120]
-In-Reply-To: <CAHUNapSrkQSNUA9hRmw+wH0rN3zNcxSdQmoP-=WG-pegFW9qnA@mail.gmail.com>
-References: <CAK18fxFB+SXZeTSpmZvT5wsOLtvsPRqTnmfx21z=vRvFtQ9mZw@mail.gmail.com>
-	<CAHUNapSrkQSNUA9hRmw+wH0rN3zNcxSdQmoP-=WG-pegFW9qnA@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 26 Jun 2017 17:12:05 +0100
-Message-ID: <CAK18fxFB7oLwTQ93wYQXV6JZZ0OZ6jaNNfgKzSBeqdFc6qGfLQ@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-chip] Jenkins, reviews and mailing list
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2017 16:16:10.9323 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR84MB0176
+X-OriginatorOrg: hpe.com
+Subject: question regarding share state cache and task dependencies.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,58 +95,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jun 2017 16:12:49 -0000
-Content-Type: multipart/alternative; boundary="001a113bbf3cb730db0552df3885"
-
---001a113bbf3cb730db0552df3885
-Content-Type: text/plain; charset="UTF-8"
-
-On Mon, Jun 26, 2017 at 2:29 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-
-> On Mon, Jun 26, 2017 at 9:21 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> > We've been testing a setup with meta-raspberrypi which seems to work
-> fine:
-> > PR to github integrated with a jenkins server and use mailing list for
-> > discussions.
-> >
-> > I propose to copy the same setup to meta-chip too.
->
-> That's all fine. As the maintainer (thank you!) you're welcome to use
-> whatever workflow with which you're the happiest... as long as you
-> update the "Contributing" section of the README :-)
->
-
-Sure. That makes sense.
-
---
-Andrei Gherzan
-
---001a113bbf3cb730db0552df3885
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Mon, 26 Jun 2017 16:16:14 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On M=
-on, Jun 26, 2017 at 2:29 PM, Trevor Woerner <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:twoerner@gmail.com" target=3D"_blank">twoerner@gmail.com</a>&gt;=
-</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><span c=
-lass=3D"gmail-">On Mon, Jun 26, 2017 at 9:21 AM, Andrei Gherzan &lt;<a href=
-=3D"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt; wrote:<br>
-&gt; We&#39;ve been testing a setup with meta-raspberrypi which seems to wo=
-rk fine:<br>
-&gt; PR to github integrated with a jenkins server and use mailing list for=
-<br>
-&gt; discussions.<br>
-&gt;<br>
-</span><span class=3D"gmail-">&gt; I propose to copy the same setup to meta=
--chip too.<br>
-<br>
-</span>That&#39;s all fine. As the maintainer (thank you!) you&#39;re welco=
-me to use<br>
-whatever workflow with which you&#39;re the happiest... as long as you<br>
-update the &quot;Contributing&quot; section of the README :-)<br>
-</blockquote></div><div><br></div><div>Sure. That makes sense.</div><div><b=
-r class=3D"gmail-Apple-interchange-newline">--</div>Andrei Gherzan<br></div=
-></div>
+I was wondering, reading about the shared state cache system, why are the t=
+ask / recipe dependencies being honored when executing a setscene task?  Si=
+nce there is a "sanity" check that no two package write to the same output =
+files, then could we just run the setscene task without honoring the depend=
+encies and get all the files in place at maximum speed ?  Right now, the sy=
+stem seems to install each package dependencies in the same order it was bu=
+ilt, but since this is pre-built, I failed to see why the order mater anymo=
+re, given the sanity check above.  The dependency should be used to determi=
+ne what setscene to execute, but then they should just pump out as fast as =
+possible in any given order.
 
---001a113bbf3cb730db0552df3885--
+--
+Yannick Koehler
+
