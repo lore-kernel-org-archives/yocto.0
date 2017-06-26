@@ -1,56 +1,64 @@
-Return-Path: <kenny@understoryweather.com>
+Return-Path: <garbados@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9CA38E009C2; Mon, 26 Jun 2017 16:35:24 -0700 (PDT)
+	id 33AC0E0084A; Mon, 26 Jun 2017 17:00:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (garbados[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.44 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.44 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f54.google.com (mail-vk0-f54.google.com
-	[209.85.213.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E33E5E00524
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 16:35:23 -0700 (PDT)
-Received: by mail-vk0-f54.google.com with SMTP id r125so8472238vkf.1
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 16:35:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=understoryweather-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=2FNcfpLqNob6/M1OiGZBbzqGdJz7wnDcFQSm7myG3jY=;
-	b=YD5xEjHhak06vaz7OuiokG+yD22xRjqfOzDnLDLgZlp0+iYC9mQ164mBbXkuHpKJKK
-	M9LIrcs2fRWa+C8xrbWfQxSd7O3d1r3zi1wISGiAW/sQqpPErk9YEbuVX1m6zjOLJq3A
-	ncDJNbe0I1fNxS5mkc1B/RAF/30gehTDwTb7ftCjrNbZholYw4F/84BBRefy1vzB/JYZ
-	ZLmBT9xAQTkiv3oSvAlohOs6K1o/0A+YQJOe3gAfR4iheIkG6EZ0rDoL8wuYFE6Jrx5z
-	GyhB81yFHgZahmTqb0hpKGdc1MVg6FbqJ9Ra2GBgdZX1wybHQs5vKU0OdxWpty9ILscz
-	Gb6Q==
+Received: from mail-pg0-f44.google.com (mail-pg0-f44.google.com [74.125.83.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F6ADE00524
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 17:00:16 -0700 (PDT)
+Received: by mail-pg0-f44.google.com with SMTP id j186so7190294pge.2
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 17:00:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=isu2VwgfTR4ClD9XC4KN7ztc+o4j/cUBCr9pIwCbLBY=;
+	b=qugCVaegxDUVWdtP9J58Vm2XHLEfg0DBHp8rGOt5+aU07fd9T3x2pAa9E+aWuOcH+p
+	wCCzie0ECH+b+eq3SOlMcVfd/df1VghWcjzRKsW3LYMhw4V2LPKuCBNf7fd6ZmF+AqMi
+	/k8Ii5ZMhvHd5CojaaqcQfsaY1CZ8y9FAMYpiKxq1Y4YXYFMzyrZB+JkTD5Su/mn3Kdx
+	uMG021APEOjTFZ5PcmoNRvQLGnHlWzeTkHJbIhvGT4MCrU5E8GTu+BniCrz3XnXS5iOo
+	C5DQPjBgqrLljNbijr7mddpKBZGiczG+QNwjcHONuVynxxQAI+/yvWdJGaWeF17w3V6C
+	JIpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=2FNcfpLqNob6/M1OiGZBbzqGdJz7wnDcFQSm7myG3jY=;
-	b=Inr92gZhbx2rhQiHf82X0XEA5wq0uM04zFSeQgfJnNAIKVnZ9RKjzcEuR31mp/PdXF
-	/yhjJFf48h3/UHr8HsvLwvQeDy4SK2VHpacPjsUvtriFGXwoMF5mptXpZB6EesUvsIRs
-	XmjJQFNeS6KZGK7WUzC9RlfGrBSPYD21F/26YIF7P8GPZYYN9K3DdJiibrsJTDd2rmkW
-	ClgRi3v1z3B9dbwDQ015o5LcsbT4Gj/8jKz1V79BYCDVvsZxTPLFixF8yLs6skDKd/6V
-	1UJTscGKs/284/raBraLW/sYXOYYTkX9wHz8PTsKyWRFVQRKbn7J9rB20Ew4ai91/F/U
-	lGNw==
-X-Gm-Message-State: AKS2vOw1dq3qfj+MGbylcavgslZIPy3oyrVRpkVscACvsSkymiv7lHlE
-	R6GD2Eh5Lnj9/IaLKASpV6C820hJ6kTVEB8=
-X-Received: by 10.31.10.198 with SMTP id 189mr1426679vkk.36.1498520122222;
-	Mon, 26 Jun 2017 16:35:22 -0700 (PDT)
-MIME-Version: 1.0
-From: Kenny Koller <kenny@understoryweather.com>
-Date: Mon, 26 Jun 2017 23:35:11 +0000
-Message-ID: <CAPtqgUzbiQXyvU7qVy95ibN_xpYU7=NyxvjnRUHqRSPOo3Eo4Q@mail.gmail.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=isu2VwgfTR4ClD9XC4KN7ztc+o4j/cUBCr9pIwCbLBY=;
+	b=S7fxJcPqQpogjMF1eE90wfbL3vtRDf7k0gifdssZnM9l7ovrEozTWVEnLy6hjvz6SQ
+	UhJ23UIDvkhyi0Hqww5m7qkDPX3C3xsOfEa6ENIwUcLJJh0DZLVNrnmpuNysNxnsSg3p
+	aimi215nhXdWb6rlgVAVkV+U/3OTO+ti/+nQW5fbKbVGAanJJu9kKf5oA18kjwHLiC3Z
+	5uLF12yBJnCN10Nb9uKzo2IMwWiy1PTFmy1W26LFva8IxuoAy4EWaC8n5nXLazjdZe9Y
+	xKOT+wjmMaLKAJ+1LGg29N6myPynnWIIEmefLFWDFZv2HZ5c5Mv6cxA+ljaxPxaOdbYD
+	z5eQ==
+X-Gm-Message-State: AKS2vOzqZ/5qkLK7mnk4Zd1iZgDS6O2a6nZA9tevdN84FhoNMXBLnWtV
+	C98wdlch4zshTYF5
+X-Received: by 10.99.63.140 with SMTP id m134mr2557811pga.170.1498521614316;
+	Mon, 26 Jun 2017 17:00:14 -0700 (PDT)
+Received: from deus.apple.sh.pie ([2601:1c2:303:6b0:38b1:b188:ab6f:4ec4])
+	by smtp.gmail.com with ESMTPSA id 73sm2196321pgf.41.2017.06.26.17.00.12
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 26 Jun 2017 17:00:12 -0700 (PDT)
+From: Diana Thayer <garbados@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Determining the correct layers for a Beaglebone build.
+Date: Mon, 26 Jun 2017 16:59:23 -0700
+Message-Id: <1498521563-26590-1-git-send-email-garbados@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [layerindex-web][PATCH] layerindex-web : adding asynchronous task execution
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,46 +70,392 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jun 2017 23:35:24 -0000
-Content-Type: multipart/alternative; boundary="001a1144132292ff120552e56771"
+X-List-Received-Date: Tue, 27 Jun 2017 00:00:18 -0000
 
---001a1144132292ff120552e56771
-Content-Type: text/plain; charset="UTF-8"
+Hello!
 
-I'm trying to figure out which set of meta layers I need to build a distro
-and images for a Beaglebone Black.
+This is a work-in-progress solution to issue 11197 within layerindex-web: adding asynchronous task execution.
+I used RabbitMQ and Celery. I'm still working with Paul Eggleton on adding install instructions for RabbitMQ to
+the site's Dockerfile.
 
-I cloned poky and within I see meta-yocto and meta-yocto-bsp. The latter
-has recipes for the Beaglebone.
+Previously, when a user submitted a layer, Django would synchronously send emails to users able to publish layers,
+such that if an email bounced or otherwise failed, the user submitting the layer would see an error.
+This patch sends those emails as asynchronous tasks, so any sending errors don't reach the user submitting a layer.
 
-I also found this page which suggests cloning meta-yocto:
+Thanks for reviewing this! Here's a brief changelog:
 
-https://www.yoctoproject.org/downloads/bsps/pyro23/beaglebone
+- updated readme to include RabbitMQ as a dependency
+- updated settings.py to include RABBIT_BROKER and RABBIT_BACKEND
+- added celery to requirements.txt
+- defined celery tasks in layerindex/tasks.py
+- separated layerindex/update#main into two functions: main (which parses sys.argv) and do_update (which accepts options as keyword arguments)
+- updated layerindex/views.py to use the send_email task to asynchronously message anyone able to publish layers when a new layer is submitted
+---
+ README               |   5 +-
+ layerindex/tasks.py  |  31 +++++++++++
+ layerindex/update.py | 143 +++++++++++++++++++++++++++------------------------
+ layerindex/views.py  |   7 ++-
+ requirements.txt     |   1 +
+ settings.py          |   4 ++
+ 6 files changed, 120 insertions(+), 71 deletions(-)
+ create mode 100644 layerindex/tasks.py
 
-Then there is meta-ti. Where does this fit in?
+diff --git a/README b/README
+index 62f739d..cfcc37f 100644
+--- a/README
++++ b/README
+@@ -14,6 +14,7 @@ In order to make use of this application you will need:
+ * Python 3.4+
+ * Django 1.8.x - tested with 1.8.17; newer versions may work, but
+   the application has not been tested with 1.9 or newer.
++* RabbitMQ 3.6.x - tested with 3.6.10.
+ * For production usage, a web server set up to host Django applications
+   (not needed for local-only testing)
+ * A database supported by Django (SQLite, MySQL, etc.). Django takes
+@@ -41,7 +42,9 @@ Setup instructions:
+ 1. Edit settings.py to specify a database, EMAIL_HOST, SECRET_KEY and
+    other settings specific to your installation. Ensure you set
+    LAYER_FETCH_DIR to an absolute path to a location with sufficient
+-   space for fetching layer repositories.
++   space for fetching layer repositories. Modify RABBIT_BROKER
++   and RABBIT_BACKEND to reflect the settings used by your RabbitMQ
++   server.
+ 
+ 2. Run the following commands within the layerindex-web directory to
+    initialise the database:
+diff --git a/layerindex/tasks.py b/layerindex/tasks.py
+new file mode 100644
+index 0000000..9bb4701
+--- /dev/null
++++ b/layerindex/tasks.py
+@@ -0,0 +1,31 @@
++from celery import Celery
++from django.core.mail import EmailMessage
++import os
++import time
++
++try:
++  from update import do_update
++except ImportError:
++  from .update import do_update
++
++try:
++  import settings
++except ImportError:
++  # not in a full django env, so settings is inaccessible.
++  # setup django to access settings.
++  from utils import setup_django
++  setup_django()
++  import settings
++
++tasks = Celery('layerindex',
++    broker=settings.RABBIT_BROKER,
++    backend=settings.RABBIT_BACKEND)
++
++@tasks.task
++def update(**options):
++  return do_update(**options)
++
++@tasks.task
++def send_email(subject, text_content, from_email=settings.DEFAULT_FROM_EMAIL, to_emails=[]):
++  msg = EmailMessage(subject, text_content, from_email, to_emails)
++  msg.send()
+diff --git a/layerindex/update.py b/layerindex/update.py
+index d5c56cd..f1c5039 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -17,7 +17,11 @@ import subprocess
+ import signal
+ from datetime import datetime, timedelta
+ from distutils.version import LooseVersion
+-import utils
++
++try:
++    import utils
++except ImportError:
++    from . import utils
+ 
+ import warnings
+ warnings.filterwarnings("ignore", category=DeprecationWarning)
+@@ -71,73 +75,32 @@ def prepare_update_layer_command(options, branch, layer, updatedeps=False):
+     cmd = '%s update_layer.py -l %s -b %s' % (cmdprefix, layer.name, branch.name)
+     if updatedeps:
+         cmd += ' --update-dependencies'
+-    if options.reload:
++    if options.get('reload'):
+         cmd += ' --reload'
+-    if options.fullreload:
++    if options.get('fullreload'):
+         cmd += ' --fullreload'
+-    if options.nocheckout:
++    if options.get('nocheckout'):
+         cmd += ' --nocheckout'
+-    if options.dryrun:
++    if options.get('dryrun'):
+         cmd += ' -n'
+-    if options.loglevel == logging.DEBUG:
++    if options.get('loglevel') == logging.DEBUG:
+         cmd += ' -d'
+-    elif options.loglevel == logging.ERROR:
++    elif options.get('loglevel') == logging.ERROR:
+         cmd += ' -q'
+     return cmd
+ 
+-
+-def main():
+-    if LooseVersion(git.__version__) < '0.3.1':
+-        logger.error("Version of GitPython is too old, please install GitPython (python-git) 0.3.1 or later in order to use this script")
+-        sys.exit(1)
+-
+-
+-    parser = optparse.OptionParser(
+-        usage = """
+-    %prog [options]""")
+-
+-    parser.add_option("-b", "--branch",
+-            help = "Specify branch(es) to update (use commas to separate multiple). Default is all enabled branches.",
+-            action="store", dest="branch", default='')
+-    parser.add_option("-l", "--layer",
+-            help = "Specify layers to update (use commas to separate multiple). Default is all published layers.",
+-            action="store", dest="layers")
+-    parser.add_option("-r", "--reload",
+-            help = "Reload recipe data instead of updating since last update",
+-            action="store_true", dest="reload")
+-    parser.add_option("", "--fullreload",
+-            help = "Discard existing recipe data and fetch it from scratch",
+-            action="store_true", dest="fullreload")
+-    parser.add_option("-n", "--dry-run",
+-            help = "Don't write any data back to the database",
+-            action="store_true", dest="dryrun")
+-    parser.add_option("-x", "--nofetch",
+-            help = "Don't fetch repositories",
+-            action="store_true", dest="nofetch")
+-    parser.add_option("", "--nocheckout",
+-            help = "Don't check out branches",
+-            action="store_true", dest="nocheckout")
+-    parser.add_option("-d", "--debug",
+-            help = "Enable debug output",
+-            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
+-    parser.add_option("-q", "--quiet",
+-            help = "Hide all output except error messages",
+-            action="store_const", const=logging.ERROR, dest="loglevel")
+-
+-    options, args = parser.parse_args(sys.argv)
+-    if len(args) > 1:
+-        logger.error('unexpected argument "%s"' % args[1])
+-        parser.print_help()
+-        sys.exit(1)
+-
++def do_update(**options):
++    """
++    Download layers and branches based on given metadata.
++    """
+     utils.setup_django()
+     import settings
+     from layerindex.models import Branch, LayerItem, Update, LayerUpdate
+ 
+-    logger.setLevel(options.loglevel)
++    logger.setLevel(options.get('loglevel', logging.INFO))
+ 
+-    if options.branch:
+-        branches = options.branch.split(',')
++    if options.get('branch'):
++        branches = options['branch'].split(',')
+         for branch in branches:
+             if not utils.get_branch(branch):
+                 logger.error("Specified branch %s is not valid" % branch)
+@@ -151,10 +114,10 @@ def main():
+         logger.error("Please set LAYER_FETCH_DIR in settings.py")
+         sys.exit(1)
+ 
+-    if options.layers:
+-        layerquery = LayerItem.objects.filter(classic=False).filter(name__in=options.layers.split(','))
++    if options.get('layers'):
++        layerquery = LayerItem.objects.filter(classic=False).filter(name__in=options['layers'].split(','))
+         if layerquery.count() == 0:
+-            logger.error('No layers matching specified query "%s"' % options.layers)
++            logger.error('No layers matching specified query "%s"' % options['layers'])
+             sys.exit(1)
+     else:
+         # We deliberately exclude status == 'X' ("no update") here
+@@ -174,11 +137,11 @@ def main():
+ 
+     update = Update()
+     update.started = datetime.now()
+-    if options.fullreload or options.reload:
++    if options.get('fullreload') or options.get('reload'):
+         update.reload = True
+     else:
+         update.reload = False
+-    if not options.dryrun:
++    if not options.get('dryrun'):
+         update.save()
+     try:
+         lockfn = os.path.join(fetchdir, "layerindex.lock")
+@@ -189,7 +152,7 @@ def main():
+         try:
+             bitbakepath = os.path.join(fetchdir, 'bitbake')
+ 
+-            if not options.nofetch:
++            if not options.get('nofetch'):
+                 # Fetch latest metadata from repositories
+                 for layer in layerquery:
+                     # Handle multiple layers in a single repo
+@@ -239,7 +202,7 @@ def main():
+                             layerupdate.started = datetime.now()
+                             layerupdate.finished = datetime.now()
+                             layerupdate.log = 'ERROR: fetch failed: %s' % errmsg
+-                            if not options.dryrun:
++                            if not options.get('dryrun'):
+                                 layerupdate.save()
+                         continue
+ 
+@@ -260,7 +223,7 @@ def main():
+                         last_rev[layerbranch] = layerbranch.vcs_last_rev
+                         layerupdate.layerbranch = layerbranch
+                         layerupdate.log = output
+-                        if not options.dryrun:
++                        if not options.get('dryrun'):
+                             layerupdate.save()
+ 
+                     if ret == 254:
+@@ -277,7 +240,7 @@ def main():
+                 for layer in layerquery:
+                     layerbranch = layer.get_layerbranch(branch)
+                     if layerbranch:
+-                        if not (options.reload or options.fullreload):
++                        if not (options.get('reload') or options.get('fullreload')):
+                             # Skip layers that did not change.
+                             layer_last_rev = last_rev.get(layerbranch, None)
+                             if layer_last_rev is None or layer_last_rev == layerbranch.vcs_last_rev:
+@@ -297,10 +260,10 @@ def main():
+     finally:
+         update.log = ''.join(listhandler.read())
+         update.finished = datetime.now()
+-        if not options.dryrun:
++        if not options.get('dryrun'):
+             update.save()
+ 
+-    if not options.dryrun:
++    if not options.get('dryrun'):
+         # Purge old update records
+         update_purge_days = getattr(settings, 'UPDATE_PURGE_DAYS', 30)
+         Update.objects.filter(started__lte=datetime.now()-timedelta(days=update_purge_days)).delete()
+@@ -308,5 +271,53 @@ def main():
+     sys.exit(0)
+ 
+ 
++def main():
++    if LooseVersion(git.__version__) < '0.3.1':
++        logger.error("Version of GitPython is too old, please install GitPython (python-git) 0.3.1 or later in order to use this script")
++        sys.exit(1)
++
++
++    parser = optparse.OptionParser(
++        usage = """
++    %prog [options]""")
++
++    parser.add_option("-b", "--branch",
++            help = "Specify branch(es) to update (use commas to separate multiple). Default is all enabled branches.",
++            action="store", dest="branch", default='')
++    parser.add_option("-l", "--layer",
++            help = "Specify layers to update (use commas to separate multiple). Default is all published layers.",
++            action="store", dest="layers")
++    parser.add_option("-r", "--reload",
++            help = "Reload recipe data instead of updating since last update",
++            action="store_true", dest="reload")
++    parser.add_option("", "--fullreload",
++            help = "Discard existing recipe data and fetch it from scratch",
++            action="store_true", dest="fullreload")
++    parser.add_option("-n", "--dry-run",
++            help = "Don't write any data back to the database",
++            action="store_true", dest="dryrun")
++    parser.add_option("-x", "--nofetch",
++            help = "Don't fetch repositories",
++            action="store_true", dest="nofetch")
++    parser.add_option("", "--nocheckout",
++            help = "Don't check out branches",
++            action="store_true", dest="nocheckout")
++    parser.add_option("-d", "--debug",
++            help = "Enable debug output",
++            action="store_const", const=logging.DEBUG, dest="loglevel", default=logging.INFO)
++    parser.add_option("-q", "--quiet",
++            help = "Hide all output except error messages",
++            action="store_const", const=logging.ERROR, dest="loglevel")
++
++    options, args = parser.parse_args(sys.argv)
++    if len(args) > 1:
++        logger.error('unexpected argument "%s"' % args[1])
++        parser.print_help()
++        sys.exit(1)
++
++    options_dict = vars(options)
++    do_update(**options_dict)
++
++
+ if __name__ == "__main__":
+     main()
+diff --git a/layerindex/views.py b/layerindex/views.py
+index 65a536a..c7c20b8 100644
+--- a/layerindex/views.py
++++ b/layerindex/views.py
+@@ -19,7 +19,6 @@ from layerindex.forms import EditLayerForm, LayerMaintainerFormSet, EditNoteForm
+ from django.db import transaction
+ from django.contrib.auth.models import User, Permission
+ from django.db.models import Q, Count, Sum
+-from django.core.mail import EmailMessage
+ from django.template.loader import get_template
+ from django.template import Context
+ from django.utils.decorators import method_decorator
+@@ -28,6 +27,7 @@ from django.contrib import messages
+ from reversion.models import Revision
+ from . import utils
+ from . import simplesearch
++from . import tasks
+ import settings
+ from django.dispatch import receiver
+ import reversion
+@@ -163,7 +163,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
+                     # Send email
+                     plaintext = get_template('layerindex/submitemail.txt')
+                     perm = Permission.objects.get(codename='publish_layer')
+-                    users = User.objects.filter(Q(groups__permissions=perm) | Q(user_permissions=perm) ).distinct()
++                    users = User.objects.filter(Q(groups__permissions=perm) | Q(user_permissions=perm) | Q(is_superuser=True) ).distinct()
+                     for user in users:
+                         if user.first_name:
+                             user_name = user.first_name
+@@ -178,8 +178,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
+                         from_email = settings.SUBMIT_EMAIL_FROM
+                         to_email = user.email
+                         text_content = plaintext.render(d)
+-                        msg = EmailMessage(subject, text_content, from_email, [to_email])
+-                        msg.send()
++                        tasks.send_email(subject, text_content, from_email, [to_email])
+                     return HttpResponseRedirect(reverse('submit_layer_thanks'))
+             messages.success(request, 'Layer %s saved successfully.' % layeritem.name)
+             if return_url:
+diff --git a/requirements.txt b/requirements.txt
+index f80e5d4..7cd741b 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,3 +1,4 @@
++celery==3.1.25
+ Django==1.8.17
+ django-cors-headers==1.1.0
+ django-nvd3==0.9.7
+diff --git a/settings.py b/settings.py
+index 0ecf90b..94d698b 100644
+--- a/settings.py
++++ b/settings.py
+@@ -217,3 +217,7 @@ UPDATE_PURGE_DAYS = 30
+ # Settings for layer submission feature
+ SUBMIT_EMAIL_FROM = 'noreply@example.com'
+ SUBMIT_EMAIL_SUBJECT = 'OE Layerindex layer submission'
++
++# RabbitMQ settings
++RABBIT_BROKER = 'amqp://'
++RABBIT_BACKEND = 'rpc://'
+-- 
+2.7.4
 
-Also when I clone say poky should I checkout the branch or a specific tag?
 
-It's not clear to me the best way start with a piece of hardware then
-determine the correct layers.
-
-Thanks.
-
---001a1144132292ff120552e56771
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I&#39;m trying to figure out which set of meta layers=
- I need to build a distro and images for a Beaglebone Black.</div><div><br>=
-</div><div>I cloned poky and within I see meta-yocto and meta-yocto-bsp. Th=
-e latter has recipes for the Beaglebone.</div><div><br></div><div>I also fo=
-und this page which suggests cloning meta-yocto:</div><div><br></div><div><=
-a href=3D"https://www.yoctoproject.org/downloads/bsps/pyro23/beaglebone">ht=
-tps://www.yoctoproject.org/downloads/bsps/pyro23/beaglebone</a><br></div><d=
-iv><br></div><div>Then there is meta-ti. Where does this fit in?</div><div>=
-<br></div><div>Also when I clone say poky should I checkout the branch or a=
- specific tag?</div><div><br></div><div>It&#39;s not clear to me the best w=
-ay start with a piece of hardware then determine the correct layers.</div><=
-div><br></div><div>Thanks.</div><div><br></div></div>
-
---001a1144132292ff120552e56771--
