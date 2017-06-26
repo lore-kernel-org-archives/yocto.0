@@ -1,64 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Andrei.Ehrlich@corpuls.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 426C6E0084A; Mon, 26 Jun 2017 10:26:22 -0700 (PDT)
+	id 56683E0084A; Mon, 26 Jun 2017 11:47:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.50 listed in list.dnswl.org]
-Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84F21E0048B
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 10:26:20 -0700 (PDT)
-Received: by mail-wm0-f50.google.com with SMTP id b184so4008466wme.1
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 10:26:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=LWepNCVmhiXxKtF0e11HEUsoF7w4JgFpyDjL3i7On18=;
-	b=libisawRUrrt0AWf3iMpIN7zcxVZmvprpbxtsAyI4cDdmrT9L60Kg0BTSpaguCwBd0
-	WYlsFi4EW/wMfaemd/XLTVLpFIX7CMGWqP3WTytHX4Ur0nbGuEaSBSgrASls58CnRZt4
-	HScU03/QlYYHLnMPz1YXFFEfG2kbbJ1lAf8Npvqm3bkoRn870d9pTlMkqJo8Us2baluJ
-	oYds6SrU2UWEcOUklhE2SBaCTD96FD1nWO0kqY1W3kzNjqq22LmIOx0JppEQCpXc9osl
-	OcnvcRFZyDfNvEO4bo8p39Feqhob5F44BBKDyXTRyVHP6NsdCs927AqL/M74eKC4Sf3r
-	85Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=LWepNCVmhiXxKtF0e11HEUsoF7w4JgFpyDjL3i7On18=;
-	b=slerr1PzXHCFtAPRh4kc3xElZDHKTgXuBp8VYmkRisQrDuq0SjxAs5v4L1l7AOr0V1
-	z+0SsT0gyxJ7Yf2gqV4KWheO6+gQfojcArmizyIJcrEaOVfCV1VbOJa7EEjY7I6ixqWU
-	PTFEc4Z09javQytwnram/f5rtovR3nCjL30kB4baXNO6I0A5TQC15OQO34pmGUA5oFNP
-	3NWcewgSKntC/MryqJFcIAx5HcWHa2Jl4QfmO58ewfgYCGuMbEe3Hfhu5wj6ynFfsPoI
-	B708fs1q5V1oUR0yn7qTnRmoWVjK+E+wdJzTaOdbiof7U8IwWkd9OuYrN3VTrDm+6ric
-	raLA==
-X-Gm-Message-State: AKS2vOySMWWag2hoM5+TkNr9kVQjonP0Et5QixTKn3sSCiSB0kEjx2Xg
-	iHz7CI8TNWKq7fffgVcrw46zdfZUfw==
-X-Received: by 10.80.151.49 with SMTP id c46mr874208edb.30.1498497979377; Mon,
-	26 Jun 2017 10:26:19 -0700 (PDT)
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [62.245.201.242 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0217]
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Mon, 26 Jun 2017 11:47:04 PDT
+Received: from mail.corpuls.com (mail.corpuls.com [62.245.201.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57B44E0048B
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 11:47:04 -0700 (PDT)
+Received: from EX02.corpuls.local ([::1]) by EX02.corpuls.local ([::1]) with
+	mapi id 14.03.0352.000; Mon, 26 Jun 2017 20:46:00 +0200
+From: Ehrlich Andrei <Andrei.Ehrlich@corpuls.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto]: cmake and create_symlink using cmake 3.5 and yocto 2.2.2
+Thread-Index: AdLurGb4RXeDWFs9SQCh/500urN7kA==
+Date: Mon, 26 Jun 2017 18:46:00 +0000
+Message-ID: <613B01769C90A14993AA13B38ECD4B858BB6D872@EX02.corpuls.local>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.31.140.98]
 MIME-Version: 1.0
-Received: by 10.80.165.198 with HTTP; Mon, 26 Jun 2017 10:25:48 -0700 (PDT)
-In-Reply-To: <TU4PR84MB0176F6A52E3E3970EB57C1FAEDDF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
-References: <TU4PR84MB0176F6A52E3E3970EB57C1FAEDDF0@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 26 Jun 2017 10:25:48 -0700
-Message-ID: <CAMKF1spqY7MOTt7d1AO0KfKc9XFm1X01r65EWhMDC=93J_5tbw@mail.gmail.com>
-To: "Koehler, Yannick" <yannick.koehler@hpe.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: question regarding share state cache and task dependencies.
+Subject: : cmake and create_symlink using cmake 3.5 and yocto 2.2.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,39 +42,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jun 2017 17:26:22 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 26 Jun 2017 18:47:08 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_613B01769C90A14993AA13B38ECD4B858BB6D872EX02corpulsloca_"
+
+--_000_613B01769C90A14993AA13B38ECD4B858BB6D872EX02corpulsloca_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 26, 2017 at 9:16 AM, Koehler, Yannick
-<yannick.koehler@hpe.com> wrote:
-> I was wondering, reading about the shared state cache system, why are the=
- task / recipe dependencies being honored when executing a setscene task?  =
-Since there is a "sanity" check that no two package write to the same outpu=
-t files, then could we just run the setscene task without honoring the depe=
-ndencies and get all the files in place at maximum speed ?  Right now, the =
-system seems to install each package dependencies in the same order it was =
-built, but since this is pre-built, I failed to see why the order mater any=
-more, given the sanity check above.  The dependency should be used to deter=
-mine what setscene to execute, but then they should just pump out as fast a=
-s possible in any given order.
+Hello everybody,
 
-there are quite a few resources available for you.
+Please excuse the newbie question I want to ask, but I started with yocto a=
+nd cmake 3 month ago and now I have a couple of recipes based on cmake. One=
+ of that cmake files installs links using following code:
 
-http://www.yoctoproject.org/docs/2.3/bitbake-user-manual/bitbake-user-manua=
-l.html#setscene
+install(
+            CODE "execute_process( \
+                COMMAND ${CMAKE_COMMAND} -E create_symlink \
+                __tool \
+                ${CMAKE_INSTALL_PREFIX}/bin/tool_${DST_NAME} \
+            )"
 
-http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#shared=
--state-cache
+When the code is executed in yocto  the do_install task fails with followin=
+g error:
+failed to create symbolic link '/usr/bin/tool_intf': Permission denied
 
-Then there are couple of books also talking about the concept.
+The cmake code attempts to install the links to the root_fs of my developme=
+nt host. The code I write recipes for is currently under development and cm=
+ake files are provided by developers. Therefore I would like to use develop=
+ers cmake files and avoid permanently updating do_install task in my recipe=
+. Unfortunately I can't find any possibility to force the cmake recipe to i=
+nstall the links to target root_fs. I would be glad to know if somebody has=
+ already faced a similar problem and probably has a solution for it.
 
+Best regards
+Andrei Ehrlich
+
+--_000_613B01769C90A14993AA13B38ECD4B858BB6D872EX02corpulsloca_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> --
-> Yannick Koehler
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello everybody,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Please excuse the newbie question I want to ask, but=
+ I started with yocto and cmake 3 month ago and now I have a couple of reci=
+pes based on cmake. One of that cmake files installs links using following =
+code:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b>install(<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; CODE &quot;execute_process( \<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COMMAND ${CMAKE_COMMAND} -E creat=
+e_symlink \<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><b>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__tool \<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${CMAKE_INSTALL_PREFIX}/bin/tool_=
+${DST_NAME} \<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp; )&quot;<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">When the code is executed in yocto &nbsp;the do_inst=
+all task fails with following error:<o:p></o:p></p>
+<p class=3D"MsoNormal"><b>failed to create symbolic link '/usr/bin/tool_int=
+f': Permission denied<o:p></o:p></b></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The cmake code attempts to install the links to the =
+root_fs of my development host. The code I write recipes for is currently u=
+nder development and cmake files are provided by developers. Therefore I wo=
+uld like to use developers cmake files
+ and avoid permanently updating do_install task in my recipe. Unfortunately=
+ I can&#8217;t find any possibility to force the cmake recipe to install th=
+e links to target root_fs. I would be glad to know if somebody has already =
+faced a similar problem and probably has
+ a solution for it.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Andrei Ehrlich<o:p></o:p></p>
+</div>
+</body>
+</html>
 
+--_000_613B01769C90A14993AA13B38ECD4B858BB6D872EX02corpulsloca_--
