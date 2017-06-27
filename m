@@ -1,61 +1,70 @@
-Return-Path: <kenny@understoryweather.com>
+Return-Path: <prasoonkumar1295@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C235DE009C2; Mon, 26 Jun 2017 21:45:40 -0700 (PDT)
+	id C47A1E0084A; Mon, 26 Jun 2017 23:09:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (prasoonkumar1295[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f44.google.com (mail-vk0-f44.google.com
-	[209.85.213.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DB0CE00718
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 21:45:36 -0700 (PDT)
-Received: by mail-vk0-f44.google.com with SMTP id 191so10459324vko.2
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 21:45:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=understoryweather-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=QPIqM7u9JILCUXebmWx2jwcHJN2d9VpQmbDqt2p7pxc=;
-	b=Z88xZnWebs3W89b7xQiLVOWhjgfr8JJgdpsMtaGzlTKdwBlT16RlfdXvlWDFfZ6s8z
-	C44TNMD+/erAi8wxa3LcM9nT58QbzjMwNr0OHLFbOij/gr2ZpYRK45sqEcuJLHu0SvKt
-	Qkmy886xPoyOw5+i/o50paKJXME/qOJXbKvxuUh+0q+6DaCVQ9LNINi8mkD6GQTpDp1M
-	OTsyVe0tuQc/zAaa81Vfd4Qemr40SPgOjpYRLR3W3aR8QH1XEePKwkgZpuepyVxgYFQT
-	Dy0MNHRTTgTNGG5G5Lq5DXhBbsc9YZiB+PWCXgt1rFmNhdgNINaOWs+JLwJtl2NU8jxv
-	dzxg==
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.48 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.48 listed in list.dnswl.org]
+Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4995BE00524
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 23:09:55 -0700 (PDT)
+Received: by mail-it0-f48.google.com with SMTP id m84so10346351ita.0
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 23:09:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=P2zlaGQwLPSpv/jU/rp/HfZjGr9Nyvs0UEwoptpLXE4=;
+	b=p4ZJXH/YpCCu6PDmor4uf07wTTZDgmzkQWIbYe/TVrH6KQ6PUUKCPV8LQtNQFTLnyv
+	WTpVns/4VTxoy+Lz/htHXh0IMnETf52FaVieCA1re+dastqYX0+SuUwao5rNyXH4gCQW
+	glsBU1QqXuSHEGCR22Sb5HYjb8JNdTslyRQJ3cHScu9uE0RadtpW8ZOzAsvCb1O+WEV4
+	96vM+dJ7V+3ApMKmcHqAvLAjp2sgxfaRbR87Xd4vJ3OffTjq2U+LgW04YCi3EOEfnVQq
+	gxuZMlfHTOg6XxsRbXKpBMWFE2uDwvEH9b+ky36Sd0SlxcSkd/rhl8Yx0+0wTJTEULTU
+	6V+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=QPIqM7u9JILCUXebmWx2jwcHJN2d9VpQmbDqt2p7pxc=;
-	b=USvnCF+XSlitibhdPPzothZTSje+Mq6C4dS9O94LboJX/6ZiDDoX78vxRcSpENg7mW
-	0Swi2P9syTAPxPu2kcEu1EsmiQb9ayrrMy6D9TJqGhLlP5NSnr3m96PJTXOLpXtQHTly
-	tI8wEdfASE5e5c3lUzQ6g4cybji3qrYhZVq2GFA9zZ+mFY5vA/d2E1tm8s9/Yucjb5GS
-	Wm+OklcMxUPBvZGZp2tjdIXK9eMdo4rSk+H/gjdzWBWLUwvLoj+6T+Z4YgazB88HrXln
-	lJcZcjLQEJL5vzuOSMdCfGfJntj0kB6mMJQ47KbE/RAvSL45IDhsyl07x20c8w/cM11Z
-	0vjA==
-X-Gm-Message-State: AKS2vOxxBCK2q8po8wEksxjay+i5hI6S+zEvPVASbpb1XahZrTYr+usb
-	YbGhiYfTVleijdBPBK6VPXEsqupx58Nw
-X-Received: by 10.31.16.22 with SMTP id g22mr1561866vki.94.1498538735671; Mon,
-	26 Jun 2017 21:45:35 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=P2zlaGQwLPSpv/jU/rp/HfZjGr9Nyvs0UEwoptpLXE4=;
+	b=LiyJYgruwNoqiyQGbKnn572+pAvYLmlsfqSk9oO2hEh2fqt/aR7k5AN7Y/rG2hih0O
+	nJDPoZ1X0fCePIEb2+jczhd6k6Ri5O3/MIIxfjQjhxdZt1vm9uakb/WlCFXHrXKuYEpX
+	tN+RITaA/pTG/TGLDWvrUqtyQSAikyOWQ/YmLJMnILudkbfo4GvuTJSP+wbwbtUWGKuQ
+	C1kRMuML23xEROS9GUWZZ7OmwvMmiM1HWN4u+7GJ0Nwr4JytQLEBCzKsw2y7uPgr6P0b
+	q6dYuo9KNJYx1LdBMz5mxOSmJWDwd2c83c22G9ltV012eAnZUE1vT2WTN5yfg+ifjkV9
+	NL1A==
+X-Gm-Message-State: AKS2vOzn9YdjYxdcgGprZO4F98To8rSesjitoKWgJuiHzXiTYrNegpZm
+	Zi3HQ8K2778IyPcUHa4tdHy7pxD+oQ==
+X-Received: by 10.36.245.129 with SMTP id k123mr1165496ith.1.1498543794915;
+	Mon, 26 Jun 2017 23:09:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAPtqgUzbiQXyvU7qVy95ibN_xpYU7=NyxvjnRUHqRSPOo3Eo4Q@mail.gmail.com>
-	<CAMKF1spCGQ_caUvCM8BBXhbdqqZ_WPzc45QpJWohAKkYDDa-aQ@mail.gmail.com>
-In-Reply-To: <CAMKF1spCGQ_caUvCM8BBXhbdqqZ_WPzc45QpJWohAKkYDDa-aQ@mail.gmail.com>
-From: Kenny Koller <kenny@understoryweather.com>
-Date: Tue, 27 Jun 2017 04:45:25 +0000
-Message-ID: <CAPtqgUz4WxWWut8ZHd8t-FfRp=y5hXk8j4yGsMGP9FngsLKdeQ@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Determining the correct layers for a Beaglebone build.
+Received: by 10.79.122.133 with HTTP; Mon, 26 Jun 2017 23:09:54 -0700 (PDT)
+Received: by 10.79.122.133 with HTTP; Mon, 26 Jun 2017 23:09:54 -0700 (PDT)
+In-Reply-To: <CAGAEfx7sAmi03pQWBuzLkVQ+nDeRvHxzwR+F7WZ5Zx_Dv-NZKw@mail.gmail.com>
+References: <CAGAEfx6hh-KRRJXKUdgaOpFXcwHTR5FC2TienxRfCBKQadtuvw@mail.gmail.com>
+	<CAGAEfx5V=MUNswTy7UoqtZT49AnwxdPqyBUje6i1N8+FYUcrPQ@mail.gmail.com>
+	<CAGAEfx7sAmi03pQWBuzLkVQ+nDeRvHxzwR+F7WZ5Zx_Dv-NZKw@mail.gmail.com>
+From: Prasoon Kumar <prasoonkumar1295@gmail.com>
+Date: Tue, 27 Jun 2017 11:39:54 +0530
+Message-ID: <CAGAEfx7M2V2SkMU5tYaiSEEpBe9a0z16JoXBv0GVit8LxgDncQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto Optimization query
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,216 +76,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jun 2017 04:45:40 -0000
-Content-Type: multipart/alternative; boundary="001a1143621805acef0552e9bd43"
+X-List-Received-Date: Tue, 27 Jun 2017 06:09:56 -0000
+Content-Type: multipart/alternative; boundary="94eb2c04bcea9391050552eaea6f"
 
---001a1143621805acef0552e9bd43
+--94eb2c04bcea9391050552eaea6f
 Content-Type: text/plain; charset="UTF-8"
 
-Thanks Khem,
+Hi,
 
-At the moment I simply want to build a headless minimal install for a
-Beaglebone Black. Once I achieve this I plan to customize the distro for my
-device. Here is what I am finding confusing:
+I am trying to optimise the boot time in yocto. I need some suggestions on
+how to optimise the boot time and different ways of doing it.
 
-This link <https://www.yoctoproject.org/downloads/bsps/pyro23/beaglebone>
-looks to be the place to start. It is the "download" page for the
-Beaglebone. It lists, as a build system, Poky 2.3. It lists as a download
-"git://git.yoctoproject.org/meta-yocto -b pyro" which in turn contains, as
-subdirectories, meta-poky, meta-yocto, and meta-yocto-bsp. But these three
-directories already exist when I check out poky. If I ignore this for the
-moment the layer index suggests that a dependency is openembedded-core. Has
-this been merged in to Poky or must I clone this as well?
+Thanks
+Prasoon
 
-meta-ti isn't mentioned. If I search for meta-ti I find this BSP
-<https://www.yoctoproject.org/product/meta-ti-bsp-layer> which makes me
-think that perhaps this work has been merged in to meta-yocto-bsp as no
-recent version of Poky is supported.
-
-Regarding the tags: If I check out the pyro branch of poky am I getting
-something that is stable and has been tested? I thought perhaps the tags
-with `pyro-17.0.0` would point to stable tested commit.
-
-The reason I'm trying to sort all of this out is that when I ran a `bitbake
-core-image-minimal` with Poky Pyro it failed. It was missing u-image. All I
-did was clone Poky/Pyro and set the MACHINE to beaglebone. It got pretty
-far though. It seems to have built the kernel and the device tree binaries.
-No signs of the root filesystem or the bootloader (u-image):
-
-core-image-base-beaglebone-20170621162619.testdata.json
-core-image-base-beaglebone.testdata.json
-core-image-minimal-beaglebone-20170624014756.testdata.json
-core-image-minimal-beaglebone.testdata.json
-modules--4.10.9+git0+ad2e885015_fe0fb8da3d-r0-beaglebone-20170621162619.tgz
-modules-beaglebone.tgz
-zImage
-zImage--4.10.9+git0+ad2e885015_fe0fb8da3d-r0-am335x-bone-20170621162619.dtb
-zImage--4.10.9+git0+ad2e885015_fe0fb8da3d-r0-am335x-boneblack-20170621162619.dtb
-zImage--4.10.9+git0+ad2e885015_fe0fb8da3d-r0-beaglebone-20170621162619.bin
-zImage-am335x-boneblack.dtb
-zImage-am335x-bone.dtb
-zImage-beaglebone.bin
-
-
-On Mon, Jun 26, 2017 at 5:18 PM Khem Raj <raj.khem@gmail.com> wrote:
-
-> On Mon, Jun 26, 2017 at 4:35 PM, Kenny Koller
-> <kenny@understoryweather.com> wrote:
-> > I'm trying to figure out which set of meta layers I need to build a
-> distro
-> > and images for a Beaglebone Black.
-> >
-> > I cloned poky and within I see meta-yocto and meta-yocto-bsp. The latter
-> has
-> > recipes for the Beaglebone.
-> >
-> > I also found this page which suggests cloning meta-yocto:
-> >
-> > https://www.yoctoproject.org/downloads/bsps/pyro23/beaglebone
-> >
-> > Then there is meta-ti. Where does this fit in?
->
-> yocto project used beaglebone black as one of its reference boards
-> so you can find a default reference yocto BSP for it.
->
-> Secondly, meta-ti is TI BSP layer which also supports beaglebone black
-> since the board is from TI
->
->
-> >
-> > Also when I clone say poky should I checkout the branch or a specific
-> tag?
-> >
->
-> you can use git clone git://git.yoctoproject.org/poky -b pyro
-> for getting latest stable release.
->
-> > It's not clear to me the best way start with a piece of hardware then
-> > determine the correct layers.
->
-> I would suggest to do a bit more investigation as to what you need.
-> meanwhile you can build yocto reference BSP and play with it. There
-> are many packages that meta-ti would have that you might need depending
-> upon what you plan to do.
->
-> >
-> > Thanks.
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
-
---001a1143621805acef0552e9bd43
+--94eb2c04bcea9391050552eaea6f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks Khem,<div><br></div><div>At the moment I simply wan=
-t to build a headless minimal install for a Beaglebone Black. Once I achiev=
-e this I plan to customize the distro for my device. Here is what I am find=
-ing confusing:</div><div><br></div><div><a href=3D"https://www.yoctoproject=
-.org/downloads/bsps/pyro23/beaglebone">This link</a> looks to be the place =
-to start. It is the &quot;download&quot; page for the Beaglebone. It lists,=
- as a build system, Poky 2.3. It lists as a download &quot;git://<a href=3D=
-"http://git.yoctoproject.org/meta-yocto">git.yoctoproject.org/meta-yocto</a=
-> -b pyro&quot; which in turn contains, as subdirectories, meta-poky, meta-=
-yocto, and meta-yocto-bsp. But these three directories already exist when I=
- check out poky. If I ignore this for the moment the layer index suggests t=
-hat a dependency is openembedded-core. Has this been merged in to Poky or m=
-ust I clone this as well?</div><div><br></div><div>meta-ti isn&#39;t mentio=
-ned. If I search for meta-ti <a href=3D"https://www.yoctoproject.org/produc=
-t/meta-ti-bsp-layer">I find this BSP</a> which makes me think that perhaps =
-this work has been merged in to meta-yocto-bsp as no recent version of Poky=
- is supported.</div><div><br></div><div>Regarding the tags: If I check out =
-the pyro branch of poky am I getting something that is stable and has been =
-tested? I thought perhaps the tags with `pyro-17.0.0` would point to stable=
- tested commit.</div><div><br></div><div>The reason I&#39;m trying to sort =
-all of this out is that when I ran a `bitbake core-image-minimal` with Poky=
- Pyro it failed. It was missing u-image. All I did was clone Poky/Pyro and =
-set the MACHINE to beaglebone. It got pretty far though. It seems to have b=
-uilt the kernel and the device tree binaries. No signs of the root filesyst=
-em or the bootloader (u-image):</div><div><br></div><div><div><font face=3D=
-"monospace">core-image-base-beaglebone-20170621162619.testdata.json</font><=
-/div><div><font face=3D"monospace">core-image-base-beaglebone.testdata.json=
-</font></div><div><font face=3D"monospace">core-image-minimal-beaglebone-20=
-170624014756.testdata.json</font></div><div><font face=3D"monospace">core-i=
-mage-minimal-beaglebone.testdata.json</font></div><div><font face=3D"monosp=
-ace">modules--4.10.9+git0+ad2e885015_fe0fb8da3d-r0-beaglebone-2017062116261=
-9.tgz</font></div><div><font face=3D"monospace">modules-beaglebone.tgz</fon=
-t></div><div><font face=3D"monospace">zImage</font></div><div><font face=3D=
-"monospace">zImage--4.10.9+git0+ad2e885015_fe0fb8da3d-r0-am335x-bone-201706=
-21162619.dtb</font></div><div><font face=3D"monospace">zImage--4.10.9+git0+=
-ad2e885015_fe0fb8da3d-r0-am335x-boneblack-20170621162619.dtb</font></div><d=
-iv><font face=3D"monospace">zImage--4.10.9+git0+ad2e885015_fe0fb8da3d-r0-be=
-aglebone-20170621162619.bin</font></div><div><font face=3D"monospace">zImag=
-e-am335x-boneblack.dtb</font></div><div><font face=3D"monospace">zImage-am3=
-35x-bone.dtb</font></div><div><font face=3D"monospace">zImage-beaglebone.bi=
-n</font></div></div><div><br></div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr">On Mon, Jun 26, 2017 at 5:18 PM Khem Raj &lt;<a href=3D"mailt=
-o:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
-id;padding-left:1ex">On Mon, Jun 26, 2017 at 4:35 PM, Kenny Koller<br>
-&lt;<a href=3D"mailto:kenny@understoryweather.com" target=3D"_blank">kenny@=
-understoryweather.com</a>&gt; wrote:<br>
-&gt; I&#39;m trying to figure out which set of meta layers I need to build =
-a distro<br>
-&gt; and images for a Beaglebone Black.<br>
-&gt;<br>
-&gt; I cloned poky and within I see meta-yocto and meta-yocto-bsp. The latt=
-er has<br>
-&gt; recipes for the Beaglebone.<br>
-&gt;<br>
-&gt; I also found this page which suggests cloning meta-yocto:<br>
-&gt;<br>
-&gt; <a href=3D"https://www.yoctoproject.org/downloads/bsps/pyro23/beaglebo=
-ne" rel=3D"noreferrer" target=3D"_blank">https://www.yoctoproject.org/downl=
-oads/bsps/pyro23/beaglebone</a><br>
-&gt;<br>
-&gt; Then there is meta-ti. Where does this fit in?<br>
-<br>
-yocto project used beaglebone black as one of its reference boards<br>
-so you can find a default reference yocto BSP for it.<br>
-<br>
-Secondly, meta-ti is TI BSP layer which also supports beaglebone black<br>
-since the board is from TI<br>
-<br>
-<br>
-&gt;<br>
-&gt; Also when I clone say poky should I checkout the branch or a specific =
-tag?<br>
-&gt;<br>
-<br>
-you can use git clone git://<a href=3D"http://git.yoctoproject.org/poky" re=
-l=3D"noreferrer" target=3D"_blank">git.yoctoproject.org/poky</a> -b pyro<br=
->
-for getting latest stable release.<br>
-<br>
-&gt; It&#39;s not clear to me the best way start with a piece of hardware t=
-hen<br>
-&gt; determine the correct layers.<br>
-<br>
-I would suggest to do a bit more investigation as to what you need.<br>
-meanwhile you can build yocto reference BSP and play with it. There<br>
-are many packages that meta-ti would have that you might need depending<br>
-upon what you plan to do.<br>
-<br>
-&gt;<br>
-&gt; Thanks.<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-&gt;<br>
-</blockquote></div>
+<div dir=3D"auto">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I am try=
+ing to optimise the boot time in yocto. I need some suggestions on how to o=
+ptimise the boot time and different ways of doing it.</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto">Thanks</div><div dir=3D"auto">Prasoon</div></=
+div>
 
---001a1143621805acef0552e9bd43--
+--94eb2c04bcea9391050552eaea6f--
