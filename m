@@ -1,56 +1,69 @@
-Return-Path: <pderocco@ix.netcom.com>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65A0DE00B83; Tue, 27 Jun 2017 12:08:12 -0700 (PDT)
+	id 3E940E00B8D; Tue, 27 Jun 2017 12:29:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.173 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.86.89.64 listed in list.dnswl.org]
-Received: from elasmtp-curtail.atl.sa.earthlink.net
-	(elasmtp-curtail.atl.sa.earthlink.net [209.86.89.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 247B5E00B76
-	for <yocto@yoctoproject.org>; Tue, 27 Jun 2017 12:08:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
-	s=dk12062016; t=1498590489; bh=EjuO9p8XAgK6Yiqc20WKodHigr+oJk2FWOw8
-	h6UWiGw=; h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:
-	Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=S
-	AqtzA8onKkBpAHRGjRCmubVWuHzNaZCAprQ8PT6nIfzzIeoXfRjr7cCx91iMNsYxm3z
-	UfkHGgoHNQSsnsAGgp9v3p0iFDXD688s879tFvaXpdX3uq1Xtq01QshA0aS+qTH4D42
-	iokEh4waso9Bz2RKTm6GgSAofh+c83Z5lgUI1arJMuXX6nlbrHJfMJsPgB94VnDNc/U
-	OXmH8Sk7uDBjokoC9ljOvah9t7KWjy1Xs40Lz6yjCciOaMLwdVWAvNkC9fgZAFnt9eN
-	1/KdoF4dy5taSBpgldtATmQixaBgVxu3q9heJ7PYBTfW6Z1zwdqaBArzI6ouY4sadEU
-	dA6sSg==
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk12062016; d=ix.netcom.com;
-	b=Usek6A42zK/2EmFpswc9o2jMgB4ao0+SMwP6s6GrNLtDk9fUFG3jbT/h1QBXG/wUwShd5NpJ2XKAU31915+mr0Vb+6kZUSUrWK+Q4+vkQ1CIzWpqsKhPWCh1PzVJo0NdnOXZktCgrPhLkYYqTnRlk2wp/6mHXGD+Kn0ltRQYdWGmHYX9B4+uX9MFMdpcavKFwifA5tbETT6PlApyD7Gp47e/zehfiQTiRF18fvNdG66VF5tdByNsIsVoRs6tZkM7M7Ajbd+0W6wKTVb0jiJR59jfrq/1op1ULreyOjleB+cYCYC3v6TTGb9+/u8PA5vHrAMOuV0X5QOa1jWH7/K7uw==;
-	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [45.49.236.199] (helo=PAULD)
-	by elasmtp-curtail.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1dPvqH-000Ck0-Fe; Tue, 27 Jun 2017 15:08:05 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Patrick Ohly'" <patrick.ohly@intel.com>
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 867D5E00B77
+	for <yocto@yoctoproject.org>; Tue, 27 Jun 2017 12:29:01 -0700 (PDT)
+Received: by mail-io0-f173.google.com with SMTP id r36so23724130ioi.1
+	for <yocto@yoctoproject.org>; Tue, 27 Jun 2017 12:29:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:mime-version:content-transfer-encoding;
+	bh=/gZK0ytMAU47JtpFxgHqrQtVZuemlv5FOKVA+iQPPsk=;
+	b=nrkHJjIlYfn/IDhaVSVyicMj9a43/ec8QNp3fEOMXBlktKs5vQARvr8/zB1jIAHB7+
+	O5i6A+Hhuo0NTC9iuJd7c5f41TGtO6JFABvG6QDDkim5YibfCmOcFQixnVC0veCLKGgX
+	hssVN5xGqp0bsTZEvlSVfTei9PStbJjrcmbvdyaH6HKGZb+vPdMUUzPxsYN2BKFKqsf0
+	vofwLhTg+cTvrcJdpNuSWWy/ij5IZD5N974lr5ys8opqbi3quk/+AocBRbDU3uu2hbED
+	+G7ECtxBZF7+DZvAaMJm1+ugvqxzuLtImefdukxfoGA267C8o2HpB+XhujQFw71c8CQ7
+	qOGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:organization:mime-version:content-transfer-encoding;
+	bh=/gZK0ytMAU47JtpFxgHqrQtVZuemlv5FOKVA+iQPPsk=;
+	b=gRixvkN1KrpqvWANHXmcn1i/pe3qRuZr5J8K4ZwmuRwryXDXAoXDVu1gAgA4LIe386
+	HptLXBiYPlTgC0sva9UezqNQV/T6GZi92ZvbFSForYKhPkz+Axwrkl62MNLXZUhp1/vV
+	4Rd0VtCoPMGD/yW6UR9djOcVvYt4c+w9Za/7pezriDrPFZ9B5EE/uGh8wBHTkemrHzE5
+	dmlAzBpxdDZcYGkp0yZsXyMSC6UowBof8JYgKHXDGosuFvlDrcCxgXUrFUsIC+3+cXhV
+	jCuFa0cSSnVFSGE41CmO1auv9HEHafLRyPyMsTtfAVGYbjZ/WdN1sw5U/1DTAtOrwrea
+	bLFQ==
+X-Gm-Message-State: AKS2vOz9eWt5/Icwu4Di3MjEugHpp3U2zvHAXwozoiW+tqBL6kI+I0y8
+	JoA/EghqPK+6NUuw
+X-Received: by 10.107.165.148 with SMTP id o142mr3622809ioe.179.1498591740502; 
+	Tue, 27 Jun 2017 12:29:00 -0700 (PDT)
+Received: from pohly-mobl1 (p5DE8FB9F.dip0.t-ipconnect.de. [93.232.251.159])
+	by smtp.gmail.com with ESMTPSA id 86sm51759ioj.8.2017.06.27.12.28.58
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 27 Jun 2017 12:28:59 -0700 (PDT)
+Message-ID: <1498591737.7464.71.camel@intel.com>
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Date: Tue, 27 Jun 2017 21:28:57 +0200
+In-Reply-To: <76B86AF8C15644E6B45FF1D6E4D85B60@PAULD>
 References: <E68186D16557413C961C4DA89EF49E84@PAULD>
 	<1498550334.7464.21.camel@intel.com>
-In-Reply-To: <1498550334.7464.21.camel@intel.com>
-Date: Tue, 27 Jun 2017 12:08:04 -0700
-Message-ID: <76B86AF8C15644E6B45FF1D6E4D85B60@PAULD>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdLvG0njMC/QRGkkSo2+X1gPODooIwAXI9FQ
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.23651
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606880fc1148b7e704421f2238daf3e8f3183350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 45.49.236.199
+	<76B86AF8C15644E6B45FF1D6E4D85B60@PAULD>
+Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: How do you remove an IMAGEFS?
 X-BeenThere: yocto@yoctoproject.org
@@ -64,51 +77,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jun 2017 19:08:12 -0000
-Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 27 Jun 2017 19:29:02 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-> From: Patrick Ohly [mailto:patrick.ohly@intel.com]=20
->=20
-> On Fri, 2017-06-23 at 16:21 -0700, Paul D. DeRocco wrote:
-> > x86-base.inc adds "live" to IMAGE_FSTYPES. I have no need for a live
-> > image, or an iso, so I thought adding IMAGE_FSTYPES_remove=20
-> > =3D "live iso" to
-> > my image recipe might work, but it complained in do_bootimg=20
-> > that my recipe
-> > "depends upon non-existent task do_image_ext4". On a hunch,=20
-> > I movved the
-> > IMAGE_FSTYPES_remove to before inheriting core-image,
->=20
-> That's the only feasible approach at the moment. IMAGE_FSTYPES gets
-> checked while inheriting the class and then triggers inheriting
-> image-live.bbclass even when the "live" type gets removed later one.
->=20
-> There's a patch for x86-base.inc which removes this unconditional
-> extension of IMAGE_FSTYPES, see "[OE-core] [PATCH] x86-base.inc: Don't
-> add live to IMAGE_FSTYPES, default instead".
->=20
-> >  and then it didn't
-> > complain, but it didn't build ANY images.
->=20
-> You still need to set some kind of IMAGE_FSTYPES, for example "wic".
+On Tue, 2017-06-27 at 12:08 -0700, Paul D. DeRocco wrote:
+> However, when I explicitly added "hddimg", I found that Syslinux was
+> still configured for live image, with "boot" and "install" menu
+> options. I found some code in image.bbclass that looks like it forces
+> "image-live" if either "iso" or "hddimg" is included. I can of course
+> hide that by setting various Syslinux options, but how do I get a
+> plain hddimg that just boots up and runs, without any support for an
+> "install" option in the kernel? Is that normally done with "wic" and a
+> minimal .wks script?
 
-Yes, that's what I ended up doing, so it's nice to know I'm on the right =
-track.
+I don't know that much about how boot loader menus get generated (we
+don't use a boot loader in refkit). But yes, wic is the mechanism of
+choice for creating images these days.
 
-However, when I explicitly added "hddimg", I found that Syslinux was =
-still configured for live image, with "boot" and "install" menu options. =
-I found some code in image.bbclass that looks like it forces =
-"image-live" if either "iso" or "hddimg" is included. I can of course =
-hide that by setting various Syslinux options, but how do I get a plain =
-hddimg that just boots up and runs, without any support for an "install" =
-option in the kernel? Is that normally done with "wic" and a minimal =
-.wks script?
+-- 
+Best Regards, Patrick Ohly
 
---=20
+The content of this message is my personal opinion only and although
+I am an employee of Intel, the statements I make here in no way
+represent Intel's position on the issue, nor am I authorized to speak
+on behalf of Intel on this matter.
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com
+
 
 
