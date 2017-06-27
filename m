@@ -1,63 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8364AE0084A; Mon, 26 Jun 2017 17:18:04 -0700 (PDT)
+	id B0000E0084A; Mon, 26 Jun 2017 21:18:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [195.74.38.228 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.50 listed in list.dnswl.org]
-Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11349E00524
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 17:18:00 -0700 (PDT)
-Received: by mail-wm0-f50.google.com with SMTP id 62so10832893wmw.1
-	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 17:18:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=tABHshp2Ps21VQDYqA8n5namo0FOQqsyYi54uLcKys0=;
-	b=WaLoo0TrB50tdijT39CQfU+FNuxlvXitMXZp64raTzpFpehL1SamICsUKS6zKWYZPh
-	Kqwo9WydfES20m4L6TTXUSHtJMoKHCbgqvtSr3U46cuyDMakxUb//uPCRrGaa7ATIiNY
-	1FB4L7B7Ppk+GArnMtolUOvCrBdbFLveqSEalBZllFc2otFTpHTi8fmrgZbfI/eCLw/X
-	cPSjJYdRKiprtLi1nfnguWLP0GbjbAWFJDJsfdhUqZz702GuaDDa3dye8E9IloD+i3QD
-	nfH5DHB+d3d9DBcrX0hZlVphV9hkz9ZILbURoRAqMiP3GK006hryOPexLn+AIrgDcfLR
-	nD8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=tABHshp2Ps21VQDYqA8n5namo0FOQqsyYi54uLcKys0=;
-	b=eyaxnBkx0BCloyJjPVgTvJZEnKzDm4wUmLZE4xOmrCFmX4C92jX78RIFh7DD7oH87T
-	7p2++snfzTLSAOgACdW4LW1t+9sCqcNSr877Ihy07n6fuuFkWKtWkgY6XgMdex0KCkTW
-	gPQrlxLVwub2PEUDIAyD4zzjatCQtJNmMxUK529Bf5btoSHH0MS8iZx4LVJltu0pUg7l
-	xs/l8flzyxZ8Vpk+G5BG88gCFvQxGv4BPIF8oM7Pc/FLuZwEmJaCqzAlTU7pGsYQjZxC
-	y++cZWk8F/jisgAtrBMJV/w5BVvHKvshgV3PBUy2yC/JAGlaKvppv6NRHZg6kvJOO0eZ
-	49RQ==
-X-Gm-Message-State: AKS2vOwpET9kKFWvpooFV2W0/MtjZXgAgPFhQgGCF2c3ZFuEwvrSNvby
-	2+Smng/hCJ34iY7bzBY9jtOQ2Fo/Kg==
-X-Received: by 10.80.139.229 with SMTP id n34mr1700485edn.127.1498522679852;
-	Mon, 26 Jun 2017 17:17:59 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.80.165.198 with HTTP; Mon, 26 Jun 2017 17:17:29 -0700 (PDT)
-In-Reply-To: <CAPtqgUzbiQXyvU7qVy95ibN_xpYU7=NyxvjnRUHqRSPOo3Eo4Q@mail.gmail.com>
-References: <CAPtqgUzbiQXyvU7qVy95ibN_xpYU7=NyxvjnRUHqRSPOo3Eo4Q@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 26 Jun 2017 17:17:29 -0700
-Message-ID: <CAMKF1spCGQ_caUvCM8BBXhbdqqZ_WPzc45QpJWohAKkYDDa-aQ@mail.gmail.com>
-To: Kenny Koller <kenny@understoryweather.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from bin-vsp-out-01.atm.binero.net (bin-mail-out-05.binero.net
+	[195.74.38.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F1F9E00524
+	for <yocto@yoctoproject.org>; Mon, 26 Jun 2017 21:18:22 -0700 (PDT)
+X-Halon-ID: a60353ae-5aef-11e7-b24c-005056917a89
+Authorized-sender: petter@technux.se
+Received: from petterarch (unknown [78.78.81.189])
+	by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
+	id a60353ae-5aef-11e7-b24c-005056917a89;
+	Tue, 27 Jun 2017 06:18:19 +0200 (CEST)
+Message-ID: <1498537093.5949.5.camel@technux.se>
+From: Petter Mabacker <petter@technux.se>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Date: Tue, 27 Jun 2017 06:18:13 +0200
+In-Reply-To: <CAK18fxFB7oLwTQ93wYQXV6JZZ0OZ6jaNNfgKzSBeqdFc6qGfLQ@mail.gmail.com>
+References: <CAK18fxFB+SXZeTSpmZvT5wsOLtvsPRqTnmfx21z=vRvFtQ9mZw@mail.gmail.com>
+	<CAHUNapSrkQSNUA9hRmw+wH0rN3zNcxSdQmoP-=WG-pegFW9qnA@mail.gmail.com>
+	<CAK18fxFB7oLwTQ93wYQXV6JZZ0OZ6jaNNfgKzSBeqdFc6qGfLQ@mail.gmail.com>
+X-Mailer: Evolution 3.24.3 
+Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Determining the correct layers for a Beaglebone build.
+Subject: Re: [meta-chip] Jenkins, reviews and mailing list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,53 +45,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jun 2017 00:18:04 -0000
+X-List-Received-Date: Tue, 27 Jun 2017 04:18:25 -0000
+Content-Type: multipart/alternative; boundary="=-5C+QzSndO38VrJuk7J0z"
+
+--=-5C+QzSndO38VrJuk7J0z
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 26, 2017 at 4:35 PM, Kenny Koller
-<kenny@understoryweather.com> wrote:
-> I'm trying to figure out which set of meta layers I need to build a distro
-> and images for a Beaglebone Black.
->
-> I cloned poky and within I see meta-yocto and meta-yocto-bsp. The latter has
-> recipes for the Beaglebone.
->
-> I also found this page which suggests cloning meta-yocto:
->
-> https://www.yoctoproject.org/downloads/bsps/pyro23/beaglebone
->
-> Then there is meta-ti. Where does this fit in?
+On Mon, 2017-06-26 at 17:12 +0100, Andrei Gherzan wrote:
+> On Mon, Jun 26, 2017 at 2:29 PM, Trevor Woerner <twoerner@gmail.com>
+> wrote:
+> > On Mon, Jun 26, 2017 at 9:21 AM, Andrei Gherzan <andrei@gherzan.ro>
+> > wrote:
+> > 
+> > > We've been testing a setup with meta-raspberrypi which seems to
+> > work fine:
+> > 
+> > > PR to github integrated with a jenkins server and use mailing
+> > list for
+> > 
+> > > discussions.
+> > 
+> > >
+> > 
+> > > I propose to copy the same setup to meta-chip too.
+> > 
+> > 
+> > 
+> > That's all fine. As the maintainer (thank you!) you're welcome to
+> > use
+> > 
+> > whatever workflow with which you're the happiest... as long as you
+> > 
+> > update the "Contributing" section of the README :-)
+> > 
+> 
+> Sure. That makes sense.
 
-yocto project used beaglebone black as one of its reference boards
-so you can find a default reference yocto BSP for it.
+Hi Andrei,
+I fully agree with Trevor, just update the README and lets rock! :) But
+like you say I also believe it's good if people can take the time to
+also send the patches to mailing list, so we don't risk losing those
+valuable discussions that often is initated through the mailing list
+(since more people will track the changes that way). My opinion is that
+this have work good for meta-raspberrypi, so cannot see any reasons why
+it should work great for meta-chip as well.
+Let us know when jenkins is up-and-running!
+Cheers Petter
+> --Andrei Gherzan
+> 
 
-Secondly, meta-ti is TI BSP layer which also supports beaglebone black
-since the board is from TI
+--=-5C+QzSndO38VrJuk7J0z
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 
+<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><div>On Mon, 2017-06-26 at 17:12 +0100, Andrei Gherzan wrote:</div><blockquote type="cite" style="margin:0 0 0 .8ex; border-left:2px #729fcf solid;padding-left:1ex"><div dir="ltr"><div class="gmail_extra"><div class="gmail_quote">On Mon, Jun 26, 2017 at 2:29 PM, Trevor Woerner <span dir="ltr">&lt;<a href="mailto:twoerner@gmail.com" target="_blank">twoerner@gmail.com</a>&gt;</span> wrote:<br><blockquote type="cite" style="margin:0 0 0 .8ex; border-left:2px #729fcf solid;padding-left:1ex"><span class="gmail-">On Mon, Jun 26, 2017 at 9:21 AM, Andrei Gherzan &lt;<a href="mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt; wrote:<br>
+&gt; We've been testing a setup with meta-raspberrypi which seems to work fine:<br>
+&gt; PR to github integrated with a jenkins server and use mailing list for<br>
+&gt; discussions.<br>
+&gt;<br>
+</span><span class="gmail-">&gt; I propose to copy the same setup to meta-chip too.<br>
+<br>
+</span>That's all fine. As the maintainer (thank you!) you're welcome to use<br>
+whatever workflow with which you're the happiest... as long as you<br>
+update the "Contributing" section of the README :-)<br>
+</blockquote></div><div><br></div><div>Sure. That makes sense.</div></div></div></blockquote><div><br></div><div>Hi Andrei,</div><div><br></div><div>I fully agree with Trevor, just update the README and lets rock! :) But like you say I also believe it's good if people can take the time to also send the patches to mailing list, so we don't risk losing those valuable discussions that often is initated through the mailing list (since more people will track the changes that way). My opinion is that this have work good for meta-raspberrypi, so cannot see any reasons why it should work great for meta-chip as well.</div><div><br></div><div>Let us know when jenkins is up-and-running!</div><div><br></div><div>Cheers Petter</div><div><br></div><blockquote type="cite" style="margin:0 0 0 .8ex; border-left:2px #729fcf solid;padding-left:1ex"><div dir="ltr"><div class="gmail_extra"><div><br class="gmail-Apple-interchange-newline">--</div>Andrei Gherzan<br></div></div>
+</blockquote></body></html>
 
->
-> Also when I clone say poky should I checkout the branch or a specific tag?
->
-
-you can use git clone git://git.yoctoproject.org/poky -b pyro
-for getting latest stable release.
-
-> It's not clear to me the best way start with a piece of hardware then
-> determine the correct layers.
-
-I would suggest to do a bit more investigation as to what you need.
-meanwhile you can build yocto reference BSP and play with it. There
-are many packages that meta-ti would have that you might need depending
-upon what you plan to do.
-
->
-> Thanks.
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
+--=-5C+QzSndO38VrJuk7J0z--
