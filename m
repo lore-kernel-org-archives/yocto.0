@@ -1,60 +1,39 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <Andrei.Ehrlich@corpuls.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4C8AE00BB1; Wed, 28 Jun 2017 01:41:57 -0700 (PDT)
+	id 2271DE00BD0; Wed, 28 Jun 2017 02:04:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [62.245.201.242 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
-Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77EA5E00B83
-	for <yocto@yoctoproject.org>; Wed, 28 Jun 2017 01:41:53 -0700 (PDT)
-Received: by mail-lf0-f42.google.com with SMTP id h22so30737455lfk.3
-	for <yocto@yoctoproject.org>; Wed, 28 Jun 2017 01:41:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=5+3aWqDWeQUdvdPp1j7ALPlCNOal5e38stVG9tS6El4=;
-	b=lKqzjT+j23w/eUGrdJicb54D2AXCC0XfydE3Bju0MM6hg2yNblurtfDTJd5/T6iHMG
-	SKp1ert8sEDAkSjl0nQnReb+OxjW7jWhNcPCwOBptyETjKjpj7e1UIK7GKozvcXkQKff
-	vJxbdb9j3owH8xLuj6V7d8fgylPTb53bxUsMakmom12mbzV3CvlJgDpjj6J0XlJ4vDZY
-	1wGmShLjYXya/etS+uLWC2pDYWks+K9Dv05XwupQJ9fdmjiSvLcdWXo2SnrmIRb50W3J
-	3xPlohSI51EEy5fArDxYySI2oJuCWkKk3qUri0c+zrss0/RFVG0DXsu4V/F4K2djAcrt
-	Sn2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=5+3aWqDWeQUdvdPp1j7ALPlCNOal5e38stVG9tS6El4=;
-	b=YU+TQmY3efjiuWt/fNN7+KQeVm0oZPkMA4jd1U851qVeJcrJ17XK4Mb7x+g7Cc0UPm
-	6T1hBspe9Ep4yDomK5RuCjdRehxm2VVFbr/9QPqs0o39zHRIVwt/CZz2Gdaw72p0kbEL
-	u0+tYjQSeiqW6MpoIqTie0Tz4NqUeefsfq3pWlPbEd1c9/7ECDcB8hRvrLmKzmNVqhSK
-	ISUH2pmsDPWN5CqjSWbijffwIAwhr8sNEMwg3DonVYRKf1UdcM6syyN/8sxZsAJq8Ls0
-	0WQBvRg0YyBX174xa7FIBTcbFBcjBEctC5UhykL/0XqNpbZkWSFh5gOHTtYDAPOgOdUm
-	MgVQ==
-X-Gm-Message-State: AKS2vOymgvCXR2g2Xmj1jDckInWLC+h6ISos7+aycuqbbCMyrqyY2Evx
-	FPCe1VBUGxTUsi0d06o7LO2EgymzrJpgZvU=
-X-Received: by 10.25.229.13 with SMTP id c13mr3753371lfh.102.1498639312495;
-	Wed, 28 Jun 2017 01:41:52 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.corpuls.com (mail.corpuls.com [62.245.201.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D161E00B83
+	for <yocto@yoctoproject.org>; Wed, 28 Jun 2017 02:04:14 -0700 (PDT)
+Received: from EX02.corpuls.local ([::1]) by EX02.corpuls.local ([::1]) with
+	mapi id 14.03.0352.000; Wed, 28 Jun 2017 11:04:12 +0200
+From: Ehrlich Andrei <Andrei.Ehrlich@corpuls.com>
+To: Jussi Kukkonen <jussi.kukkonen@intel.com>
+Thread-Topic: [yocto] : cmake and create_symlink using cmake 3.5 and yocto
+	2.2.2
+Thread-Index: AQHS7yHBpwQ7QlOPukKAR5Jb2VM856I5/IQA
+Date: Wed, 28 Jun 2017 09:04:11 +0000
+Message-ID: <613B01769C90A14993AA13B38ECD4B858BB6DC40@EX02.corpuls.local>
+References: <613B01769C90A14993AA13B38ECD4B858BB6D872@EX02.corpuls.local>
+	<CAHiDW_G-NBegQBV9106u+SRFvUxEGz5+EA7RddA0MLqGbaF0hA@mail.gmail.com>
+In-Reply-To: <CAHiDW_G-NBegQBV9106u+SRFvUxEGz5+EA7RddA0MLqGbaF0hA@mail.gmail.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.129.16]
 MIME-Version: 1.0
-Received: by 10.25.196.17 with HTTP; Wed, 28 Jun 2017 01:41:52 -0700 (PDT)
-From: Martin Townsend <mtownsend1973@gmail.com>
-Date: Wed, 28 Jun 2017 09:41:52 +0100
-Message-ID: <CABatt_x4FiEHw=qKuy+2VBy6svGccTnLRRFb9w42Sf2cfGkOmQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: RNDIS Broken in linux-yocto 4.1.39, working in 4.1.37
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: : cmake and create_symlink using cmake 3.5 and yocto 2.2.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,101 +45,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jun 2017 08:41:57 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 28 Jun 2017 09:04:17 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_613B01769C90A14993AA13B38ECD4B858BB6DC40EX02corpulsloca_"
 
-Hi,
+--_000_613B01769C90A14993AA13B38ECD4B858BB6DC40EX02corpulsloca_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I recently upgraded to 4.1.39 linux-yocto and Ethernet Gadget stopped
-working with Windows hosts, here's the output from the Journal:
+VGhhbmtzIGEgbG90IQ0KDQpUaGlzIHByb3Bvc2FsIHNvbHZlZCBteSBwcm9ibGVtIOKYug0KDQpC
+Ug0KQW5kcmVpDQoNClZvbjogSnVzc2kgS3Vra29uZW4gW21haWx0bzpqdXNzaS5rdWtrb25lbkBp
+bnRlbC5jb21dDQpHZXNlbmRldDogRGllbnN0YWcsIDI3LiBKdW5pIDIwMTcgMTA6NDUNCkFuOiBF
+aHJsaWNoIEFuZHJlaQ0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCkJldHJlZmY6IFJlOiBb
+eW9jdG9dIDogY21ha2UgYW5kIGNyZWF0ZV9zeW1saW5rIHVzaW5nIGNtYWtlIDMuNSBhbmQgeW9j
+dG8gMi4yLjINCg0KT24gMjYgSnVuZSAyMDE3IGF0IDIxOjQ2LCBFaHJsaWNoIEFuZHJlaSA8QW5k
+cmVpLkVocmxpY2hAY29ycHVscy5jb208bWFpbHRvOkFuZHJlaS5FaHJsaWNoQGNvcnB1bHMuY29t
+Pj4gd3JvdGU6DQo+IFBsZWFzZSBleGN1c2UgdGhlIG5ld2JpZSBxdWVzdGlvbiBJIHdhbnQgdG8g
+YXNrLCBidXQgSSBzdGFydGVkIHdpdGggeW9jdG8gYW5kIGNtYWtlIDMgbW9udGggYWdvIGFuZCBu
+b3cgSSBoYXZlIGEgY291cGxlIG9mIHJlY2lwZXMgYmFzZWQgb24gY21ha2UuIE9uZSBvZiB0aGF0
+IGNtYWtlIGZpbGVzIGluc3RhbGxzIGxpbmtzIHVzaW5nIGZvbGxvd2luZyBjb2RlOg0KPg0KPiBp
+bnN0YWxsKA0KPiAgICAgICAgICAgICBDT0RFICJleGVjdXRlX3Byb2Nlc3MoIFwNCj4gICAgICAg
+ICAgICAgICAgIENPTU1BTkQgJHtDTUFLRV9DT01NQU5EfSAtRSBjcmVhdGVfc3ltbGluayBcDQo+
+ICAgICAgICAgICAgICAgICBfX3Rvb2wgXA0KPiAgICAgICAgICAgICAgICAgJHtDTUFLRV9JTlNU
+QUxMX1BSRUZJWH0vYmluL3Rvb2xfJHtEU1RfTkFNRX0gXA0KPiAgICAgICAgICAgICApIg0KPg0K
+PiBXaGVuIHRoZSBjb2RlIGlzIGV4ZWN1dGVkIGluIHlvY3RvICB0aGUgZG9faW5zdGFsbCB0YXNr
+IGZhaWxzIHdpdGggZm9sbG93aW5nIGVycm9yOg0KPiBmYWlsZWQgdG8gY3JlYXRlIHN5bWJvbGlj
+IGxpbmsgJy91c3IvYmluL3Rvb2xfaW50Zic6IFBlcm1pc3Npb24gZGVuaWVkDQoNClRoZSBjb2Rl
+IHNob3VsZCBhY2NvdW50IGZvciBERVNURElSIEkgdGhpbms6IG1heWJlIHNvbWV0aGluZyBsaWtl
+ICIkRU5We0RFU1RESVJ9LyR7Q01BS0VfSU5TVEFMTF9QUkVGSVh9L2Jpbi90b29sXyR7RFNUX05B
+TUV9IiBhcyB0aGUgdGFyZ2V0DQoNCkhUSCwNCiAgSnVzc2kNCg==
 
-Jun 22 20:31:37 varsomam43-bb5eda kernel: g_ether gadget: rndis
-reqa1.01 v0000 i0000 l4096
-Jun 22 20:31:37 varsomam43-bb5eda kernel: g_ether gadget: rndis
-req21.00 v0000 i0000 l28
-Jun 22 20:31:37 varsomam43-bb5eda kernel: gen_ndis_query_resp:
-RNDIS_OID_GEN_SUPPORTED_LIST
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.457796] IPv6:
-ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.481614] g_ether
-gadget: rndis req21.00 v0000 i0000 l24
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.481946]
-rndis_msg_parser: RNDIS_MSG_INIT
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.528733] g_ether
-gadget: rndis reqa1.01 v0000 i0000 l4096
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.530206] g_ether
-gadget: rndis req21.00 v0000 i0000 l28
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.530322]
-gen_ndis_query_resp: RNDIS_OID_GEN_SUPPORTED_LIST
-Jun 22 20:31:37 varsomam43-bb5eda kernel: g_ether gadget: rndis
-reqa1.01 v0000 i0000 l4096
-Jun 22 20:31:37 varsomam43-bb5eda kernel: g_ether gadget: rndis
-req21.00 v0000 i0000 l32
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser: unknown
-RNDIS message 0x80000004 len 136
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000000: 04
-00 00 80 88 00 00 00 03 00 00 00 00 00 00 00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000010: 70
-00 00 00 10 00 00 00 01 01 01 00 02 01 01 00  p...............
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000020: 03
-01 01 00 04 01 01 00 06 01 01 00 07 01 01 00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000030: 0a
-01 01 00 0b 01 01 00 0c 01 01 00 0d 01 01 00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000040: 16
-01 01 00 0e 01 01 00 11 01 01 00 14 01 01 00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000050: 02
-02 01 00 01 01 02 00 02 01 02 00 03 01 02 00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000060: 04
-01 02 00 05 01 02 00 01 01 01 01 02 01 01 01  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000070: 03
-01 01 01 05 01 01 01 04 01 01 01 01 01 02 01  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000080: 02
-01 02 01 03 01 02 01                          ........
-Jun 22 20:31:37 varsomam43-bb5eda kernel: RNDIS command error -524, 32/32
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.592722] g_ether
-gadget: rndis reqa1.01 v0000 i0000 l4096
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.594360] g_ether
-gadget: rndis req21.00 v0000 i0000 l32
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.594699]
-rndis_msg_parser: unknown RNDIS message 0x80000004 len 136
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601671]
-rndis_msg_parser00000000: 04 00 00 80 88 00 00 00 03 00 00 00 00 00 00
-00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601697]
-rndis_msg_parser00000010: 70 00 00 00 10 00 00 00 01 01 01 00 02 01 01
-00  p...............
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601718]
-rndis_msg_parser00000020: 03 01 01 00 04 01 01 00 06 01 01 00 07 01 01
-00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601739]
-rndis_msg_parser00000030: 0a 01 01 00 0b 01 01 00 0c 01 01 00 0d 01 01
-00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601759]
-rndis_msg_parser00000040: 16 01 01 00 0e 01 01 00 11 01 01 00 14 01 01
-00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601779]
-rndis_msg_parser00000050: 02 02 01 00 01 01 02 00 02 01 02 00 03 01 02
-00  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601800]
-rndis_msg_parser00000060: 04 01 02 00 05 01 02 00 01 01 01 01 02 01 01
-01  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601820]
-rndis_msg_parser00000070: 03 01 01 01 05 01 01 01 04 01 01 01 01 01 02
-01  ................
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601839]
-rndis_msg_parser00000080: 02 01 02 01 03 01 02 01
-    ........
-Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601858] RNDIS
-command error -524, 32/32
+--_000_613B01769C90A14993AA13B38ECD4B858BB6DC40EX02corpulsloca_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Not only has it stopped working but it often locks up the Windows host
-when you try things like re-installing the Windows RNDIS driver, or
-enabling the RNDIS/Ethernet Gadget Network adapter.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
+CXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFub3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAgMDt9
+DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIg
+MiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3Nl
+LTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNv
+Tm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJn
+aW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGlt
+ZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNv
+LXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVy
+bGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxl
+LXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5l
+O30NCnNwYW4uRS1NYWlsRm9ybWF0dm9ybGFnZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFs
+LXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFG
+NDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglm
+b250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
+CXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDIuMGNtIDcw
+Ljg1cHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0
+eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRp
+dCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5
+XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVk
+aXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hl
+YWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2
+IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
+YW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyBhIGxvdCE8bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
+dDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlRo
+aXMgcHJvcG9zYWwgc29sdmVkIG15IHByb2JsZW0NCjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTpXaW5nZGluZ3M7Y29sb3I6IzFGNDk3RCI+Sjwvc3Bhbj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5CUjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
+cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5BbmRyZWk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
+IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PGI+PHNwYW4gbGFuZz0iREUiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Wb246PC9zcGFuPjwv
+Yj48c3BhbiBsYW5nPSJERSIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBKdXNzaSBLdWtrb25lbiBb
+bWFpbHRvOmp1c3NpLmt1a2tvbmVuQGludGVsLmNvbV0NCjxicj4NCjxiPkdlc2VuZGV0OjwvYj4g
+RGllbnN0YWcsIDI3LiBKdW5pIDIwMTcgMTA6NDU8YnI+DQo8Yj5Bbjo8L2I+IEVocmxpY2ggQW5k
+cmVpPGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+QmV0cmVm
+Zjo8L2I+IFJlOiBbeW9jdG9dIDogY21ha2UgYW5kIGNyZWF0ZV9zeW1saW5rIHVzaW5nIGNtYWtl
+IDMuNSBhbmQgeW9jdG8gMi4yLjI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5PbiAyNiBKdW5lIDIwMTcgYXQgMjE6NDYsIEVocmxpY2ggQW5kcmVpICZsdDs8YSBocmVmPSJt
+YWlsdG86QW5kcmVpLkVocmxpY2hAY29ycHVscy5jb20iPkFuZHJlaS5FaHJsaWNoQGNvcnB1bHMu
+Y29tPC9hPiZndDsgd3JvdGU6PGJyPg0KJmd0OyBQbGVhc2UgZXhjdXNlIHRoZSBuZXdiaWUgcXVl
+c3Rpb24gSSB3YW50IHRvIGFzaywgYnV0IEkgc3RhcnRlZCB3aXRoIHlvY3RvIGFuZCBjbWFrZSAz
+IG1vbnRoIGFnbyBhbmQgbm93IEkgaGF2ZSBhIGNvdXBsZSBvZiByZWNpcGVzIGJhc2VkIG9uIGNt
+YWtlLiBPbmUgb2YgdGhhdCBjbWFrZSBmaWxlcyBpbnN0YWxscyBsaW5rcyB1c2luZyBmb2xsb3dp
+bmcgY29kZTo8YnI+DQomZ3Q7PGJyPg0KJmd0OyBpbnN0YWxsKDxicj4NCiZndDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgQ09ERSAmcXVvdDtleGVjdXRlX3Byb2Nl
+c3MoIFw8YnI+DQomZ3Q7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgQ09NTUFORCAke0NNQUtFX0NPTU1BTkR9IC1FIGNyZWF0ZV9zeW1saW5r
+IFw8YnI+DQomZ3Q7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgX190b29sIFw8YnI+DQomZ3Q7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJHtDTUFLRV9JTlNUQUxMX1BSRUZJWH0vYmlu
+L3Rvb2xfJHtEU1RfTkFNRX0gXDxicj4NCiZndDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgKSZxdW90Ozxicj4NCiZndDs8YnI+DQomZ3Q7IFdoZW4gdGhlIGNvZGUg
+aXMgZXhlY3V0ZWQgaW4geW9jdG8gJm5ic3A7dGhlIGRvX2luc3RhbGwgdGFzayBmYWlscyB3aXRo
+IGZvbGxvd2luZyBlcnJvcjo8YnI+DQomZ3Q7IGZhaWxlZCB0byBjcmVhdGUgc3ltYm9saWMgbGlu
+ayAnL3Vzci9iaW4vdG9vbF9pbnRmJzogUGVybWlzc2lvbiBkZW5pZWQ8YnI+DQo8YnI+DQpUaGUg
+Y29kZSBzaG91bGQgYWNjb3VudCBmb3IgREVTVERJUiBJIHRoaW5rOiBtYXliZSBzb21ldGhpbmcg
+bGlrZSAmcXVvdDskRU5We0RFU1RESVJ9LyR7Q01BS0VfSU5TVEFMTF9QUkVGSVh9L2Jpbi90b29s
+XyR7RFNUX05BTUV9JnF1b3Q7IGFzIHRoZSB0YXJnZXQ8YnI+DQo8YnI+DQpIVEgsPGJyPg0KJm5i
+c3A7IEp1c3NpPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1s
+Pg0K
 
-I reverted back to 4.1.37 and everything is fine again.  I'm using a
-TI AM4378 based board.  Has anyone else seen this problem?
-
-Many Thanks,
-
-Martin.
-
+--_000_613B01769C90A14993AA13B38ECD4B858BB6DC40EX02corpulsloca_--
