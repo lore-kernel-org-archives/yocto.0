@@ -1,39 +1,66 @@
-Return-Path: <Andrei.Ehrlich@corpuls.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2271DE00BD0; Wed, 28 Jun 2017 02:04:17 -0700 (PDT)
+	id 38A22E00BB1; Wed, 28 Jun 2017 06:03:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [62.245.201.242 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.corpuls.com (mail.corpuls.com [62.245.201.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D161E00B83
-	for <yocto@yoctoproject.org>; Wed, 28 Jun 2017 02:04:14 -0700 (PDT)
-Received: from EX02.corpuls.local ([::1]) by EX02.corpuls.local ([::1]) with
-	mapi id 14.03.0352.000; Wed, 28 Jun 2017 11:04:12 +0200
-From: Ehrlich Andrei <Andrei.Ehrlich@corpuls.com>
-To: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Thread-Topic: [yocto] : cmake and create_symlink using cmake 3.5 and yocto
-	2.2.2
-Thread-Index: AQHS7yHBpwQ7QlOPukKAR5Jb2VM856I5/IQA
-Date: Wed, 28 Jun 2017 09:04:11 +0000
-Message-ID: <613B01769C90A14993AA13B38ECD4B858BB6DC40@EX02.corpuls.local>
-References: <613B01769C90A14993AA13B38ECD4B858BB6D872@EX02.corpuls.local>
-	<CAHiDW_G-NBegQBV9106u+SRFvUxEGz5+EA7RddA0MLqGbaF0hA@mail.gmail.com>
-In-Reply-To: <CAHiDW_G-NBegQBV9106u+SRFvUxEGz5+EA7RddA0MLqGbaF0hA@mail.gmail.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.129.16]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.47 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.47 listed in dnsbl.sorbs.net]
+Received: from mail-vk0-f47.google.com (mail-vk0-f47.google.com
+	[209.85.213.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C55EEE00B83
+	for <yocto@yoctoproject.org>; Wed, 28 Jun 2017 06:03:19 -0700 (PDT)
+Received: by mail-vk0-f47.google.com with SMTP id 191so32196171vko.2
+	for <yocto@yoctoproject.org>; Wed, 28 Jun 2017 06:03:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=lqlmqcjyruJGwNnZ2mJWiTmalVVxqlxZZH7HrDt0Q1I=;
+	b=Fjf3UJehyiZkAG6FSxZnQ1jVMM5Qw2COQ9DutdMnLTE4OCCbNjBqyPLK4OvLRa1KoE
+	3UNjXGgJAAZQIgcMjLTFGlALDkGJ5uy7wP1/N+L6Y2bFnRgixHXMU+WjADkLyiqVUXlL
+	kdrAFdpVL8xcp6pssLErWUanl599HqomVUEhA/sWdaS06HM301QtIwNcVfLHv+99BBeV
+	nq0Qt6QSow2jdAiylpZW5l8RIBhcFI+2u1AZzkn8Ei5qluzCKQVX6fvq0o+KJ9qHGQy6
+	4DFEjq3FBS7VFojcFvDqOBcYZa7O4YkJ4d5QNIksUHyuBgXhMKcpONV1naGoN/Pjghxb
+	c1xQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=lqlmqcjyruJGwNnZ2mJWiTmalVVxqlxZZH7HrDt0Q1I=;
+	b=a4Izh8FrrRwHEwx4BiskyEFp06Js4vXGvES0QG1mNbTfYnJfJGBIC56ADq3+6rdwt2
+	Utm5SvdQP9qlNr6/3xSe4gMs/MaUbyixDUyil1GFkZOMaCPfv7/C8wqWLj9+s/ZhG5i6
+	a/ekFFU9lDoefUU6wHWGaafm0k/nzPPhqGdHwU6mMNFLVIgBs7xW6aHxifwVT2v1VdQx
+	kxS/ggPlOFzEaAFbev06K+jRPPHMFhil1fNA9UL5o7gXZaTEaNDQfkvzhc4BENVbVWQC
+	c+k0BQhazQyqxShbOKAPB8V0CUypuTxBSrDpv5MpqrjDnQ3ba+I8zyxw00dvCGxGZ1ac
+	0lag==
+X-Gm-Message-State: AKS2vOwNeRPb9ayNzcoiieI5y1829lxPzkGWLyCWQ6gPQjXys2o+Sjg4
+	4sXI1eaK2DROBOoPpAowzCYgXyRu2qK4
+X-Received: by 10.31.224.4 with SMTP id x4mr5682975vkg.49.1498654997867; Wed,
+	28 Jun 2017 06:03:17 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.103.84.198 with HTTP; Wed, 28 Jun 2017 06:03:17 -0700 (PDT)
+In-Reply-To: <cover.1498420110.git.drew.moseley@mender.io>
+References: <cover.1498420110.git.drew.moseley@mender.io>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Wed, 28 Jun 2017 09:03:17 -0400
+Message-ID: <CAHUNapTuMqopnqPcaLLym7XsVfKpAVtqdMGqQ4BytrqSPdtk5A@mail.gmail.com>
+To: Drew Moseley <drew.moseley@mender.io>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: : cmake and create_symlink using cmake 3.5 and yocto 2.2.2
+Subject: Re: [meta-chip][PATCH V2 0/3] Initial attempt at flashing instructions.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,126 +72,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jun 2017 09:04:17 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_613B01769C90A14993AA13B38ECD4B858BB6DC40EX02corpulsloca_"
+X-List-Received-Date: Wed, 28 Jun 2017 13:03:22 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_613B01769C90A14993AA13B38ECD4B858BB6DC40EX02corpulsloca_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Sun, Jun 25, 2017 at 3:55 PM,  <drew.moseley@mender.io> wrote:
+> From: Drew Moseley <drew.moseley@mender.io>
+>
+> * V2:
+>
+> Updated README and layer dependencies.
+>
+> Added error checking to flashing script
+>
+> * V1:
+>
+> This set of patches adds the native tools and target components needed to
+> reflash the CHIP boards.  Additionally a shell script is added to the deploy
+> directory showing how to kick off a flash update. It's not ideal as I've
+> hardcoded a max size for the UBI image into the script and didn't see much
+> of an alternative. It does function though.
 
-VGhhbmtzIGEgbG90IQ0KDQpUaGlzIHByb3Bvc2FsIHNvbHZlZCBteSBwcm9ibGVtIOKYug0KDQpC
-Ug0KQW5kcmVpDQoNClZvbjogSnVzc2kgS3Vra29uZW4gW21haWx0bzpqdXNzaS5rdWtrb25lbkBp
-bnRlbC5jb21dDQpHZXNlbmRldDogRGllbnN0YWcsIDI3LiBKdW5pIDIwMTcgMTA6NDUNCkFuOiBF
-aHJsaWNoIEFuZHJlaQ0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCkJldHJlZmY6IFJlOiBb
-eW9jdG9dIDogY21ha2UgYW5kIGNyZWF0ZV9zeW1saW5rIHVzaW5nIGNtYWtlIDMuNSBhbmQgeW9j
-dG8gMi4yLjINCg0KT24gMjYgSnVuZSAyMDE3IGF0IDIxOjQ2LCBFaHJsaWNoIEFuZHJlaSA8QW5k
-cmVpLkVocmxpY2hAY29ycHVscy5jb208bWFpbHRvOkFuZHJlaS5FaHJsaWNoQGNvcnB1bHMuY29t
-Pj4gd3JvdGU6DQo+IFBsZWFzZSBleGN1c2UgdGhlIG5ld2JpZSBxdWVzdGlvbiBJIHdhbnQgdG8g
-YXNrLCBidXQgSSBzdGFydGVkIHdpdGggeW9jdG8gYW5kIGNtYWtlIDMgbW9udGggYWdvIGFuZCBu
-b3cgSSBoYXZlIGEgY291cGxlIG9mIHJlY2lwZXMgYmFzZWQgb24gY21ha2UuIE9uZSBvZiB0aGF0
-IGNtYWtlIGZpbGVzIGluc3RhbGxzIGxpbmtzIHVzaW5nIGZvbGxvd2luZyBjb2RlOg0KPg0KPiBp
-bnN0YWxsKA0KPiAgICAgICAgICAgICBDT0RFICJleGVjdXRlX3Byb2Nlc3MoIFwNCj4gICAgICAg
-ICAgICAgICAgIENPTU1BTkQgJHtDTUFLRV9DT01NQU5EfSAtRSBjcmVhdGVfc3ltbGluayBcDQo+
-ICAgICAgICAgICAgICAgICBfX3Rvb2wgXA0KPiAgICAgICAgICAgICAgICAgJHtDTUFLRV9JTlNU
-QUxMX1BSRUZJWH0vYmluL3Rvb2xfJHtEU1RfTkFNRX0gXA0KPiAgICAgICAgICAgICApIg0KPg0K
-PiBXaGVuIHRoZSBjb2RlIGlzIGV4ZWN1dGVkIGluIHlvY3RvICB0aGUgZG9faW5zdGFsbCB0YXNr
-IGZhaWxzIHdpdGggZm9sbG93aW5nIGVycm9yOg0KPiBmYWlsZWQgdG8gY3JlYXRlIHN5bWJvbGlj
-IGxpbmsgJy91c3IvYmluL3Rvb2xfaW50Zic6IFBlcm1pc3Npb24gZGVuaWVkDQoNClRoZSBjb2Rl
-IHNob3VsZCBhY2NvdW50IGZvciBERVNURElSIEkgdGhpbms6IG1heWJlIHNvbWV0aGluZyBsaWtl
-ICIkRU5We0RFU1RESVJ9LyR7Q01BS0VfSU5TVEFMTF9QUkVGSVh9L2Jpbi90b29sXyR7RFNUX05B
-TUV9IiBhcyB0aGUgdGFyZ2V0DQoNCkhUSCwNCiAgSnVzc2kNCg==
 
---_000_613B01769C90A14993AA13B38ECD4B858BB6DC40EX02corpulsloca_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Looks and works great! Thanks for investigating and getting this working :-)
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFub3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAgMDt9
-DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIg
-MiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3Nl
-LTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNv
-Tm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJn
-aW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGlt
-ZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNv
-LXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVy
-bGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxl
-LXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5l
-O30NCnNwYW4uRS1NYWlsRm9ybWF0dm9ybGFnZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFs
-LXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFG
-NDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglm
-b250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
-CXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDIuMGNtIDcw
-Ljg1cHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0
-eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRp
-dCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5
-XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVk
-aXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hl
-YWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2
-IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
-YW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlRoYW5rcyBhIGxvdCE8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
-dDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlRo
-aXMgcHJvcG9zYWwgc29sdmVkIG15IHByb2JsZW0NCjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTpXaW5nZGluZ3M7Y29sb3I6IzFGNDk3RCI+Sjwvc3Bhbj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
-O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5CUjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5BbmRyZWk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
-IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PGI+PHNwYW4gbGFuZz0iREUiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Wb246PC9zcGFuPjwv
-Yj48c3BhbiBsYW5nPSJERSIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBKdXNzaSBLdWtrb25lbiBb
-bWFpbHRvOmp1c3NpLmt1a2tvbmVuQGludGVsLmNvbV0NCjxicj4NCjxiPkdlc2VuZGV0OjwvYj4g
-RGllbnN0YWcsIDI3LiBKdW5pIDIwMTcgMTA6NDU8YnI+DQo8Yj5Bbjo8L2I+IEVocmxpY2ggQW5k
-cmVpPGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+QmV0cmVm
-Zjo8L2I+IFJlOiBbeW9jdG9dIDogY21ha2UgYW5kIGNyZWF0ZV9zeW1saW5rIHVzaW5nIGNtYWtl
-IDMuNSBhbmQgeW9jdG8gMi4yLjI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5PbiAyNiBKdW5lIDIwMTcgYXQgMjE6NDYsIEVocmxpY2ggQW5kcmVpICZsdDs8YSBocmVmPSJt
-YWlsdG86QW5kcmVpLkVocmxpY2hAY29ycHVscy5jb20iPkFuZHJlaS5FaHJsaWNoQGNvcnB1bHMu
-Y29tPC9hPiZndDsgd3JvdGU6PGJyPg0KJmd0OyBQbGVhc2UgZXhjdXNlIHRoZSBuZXdiaWUgcXVl
-c3Rpb24gSSB3YW50IHRvIGFzaywgYnV0IEkgc3RhcnRlZCB3aXRoIHlvY3RvIGFuZCBjbWFrZSAz
-IG1vbnRoIGFnbyBhbmQgbm93IEkgaGF2ZSBhIGNvdXBsZSBvZiByZWNpcGVzIGJhc2VkIG9uIGNt
-YWtlLiBPbmUgb2YgdGhhdCBjbWFrZSBmaWxlcyBpbnN0YWxscyBsaW5rcyB1c2luZyBmb2xsb3dp
-bmcgY29kZTo8YnI+DQomZ3Q7PGJyPg0KJmd0OyBpbnN0YWxsKDxicj4NCiZndDsgJm5ic3A7ICZu
-YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgQ09ERSAmcXVvdDtleGVjdXRlX3Byb2Nl
-c3MoIFw8YnI+DQomZ3Q7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOyAmbmJzcDsgQ09NTUFORCAke0NNQUtFX0NPTU1BTkR9IC1FIGNyZWF0ZV9zeW1saW5r
-IFw8YnI+DQomZ3Q7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
-YnNwOyAmbmJzcDsgX190b29sIFw8YnI+DQomZ3Q7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
-OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJHtDTUFLRV9JTlNUQUxMX1BSRUZJWH0vYmlu
-L3Rvb2xfJHtEU1RfTkFNRX0gXDxicj4NCiZndDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOyAmbmJzcDsgKSZxdW90Ozxicj4NCiZndDs8YnI+DQomZ3Q7IFdoZW4gdGhlIGNvZGUg
-aXMgZXhlY3V0ZWQgaW4geW9jdG8gJm5ic3A7dGhlIGRvX2luc3RhbGwgdGFzayBmYWlscyB3aXRo
-IGZvbGxvd2luZyBlcnJvcjo8YnI+DQomZ3Q7IGZhaWxlZCB0byBjcmVhdGUgc3ltYm9saWMgbGlu
-ayAnL3Vzci9iaW4vdG9vbF9pbnRmJzogUGVybWlzc2lvbiBkZW5pZWQ8YnI+DQo8YnI+DQpUaGUg
-Y29kZSBzaG91bGQgYWNjb3VudCBmb3IgREVTVERJUiBJIHRoaW5rOiBtYXliZSBzb21ldGhpbmcg
-bGlrZSAmcXVvdDskRU5We0RFU1RESVJ9LyR7Q01BS0VfSU5TVEFMTF9QUkVGSVh9L2Jpbi90b29s
-XyR7RFNUX05BTUV9JnF1b3Q7IGFzIHRoZSB0YXJnZXQ8YnI+DQo8YnI+DQpIVEgsPGJyPg0KJm5i
-c3A7IEp1c3NpPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1s
-Pg0K
+Tested-by: Trevor Woerner <twoerner@gmail.com>
 
---_000_613B01769C90A14993AA13B38ECD4B858BB6DC40EX02corpulsloca_--
