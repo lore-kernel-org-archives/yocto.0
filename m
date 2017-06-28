@@ -1,17 +1,16 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <mtownsend1973@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61C38E00BB1; Tue, 27 Jun 2017 20:11:23 -0700 (PDT)
+	id C4C8AE00BB1; Wed, 28 Jun 2017 01:41:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
+	mail provider *      (mtownsend1973[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -19,54 +18,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.50 listed in list.dnswl.org]
-Received: from mail-pg0-f50.google.com (mail-pg0-f50.google.com [74.125.83.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21070E00B97
-	for <yocto@yoctoproject.org>; Tue, 27 Jun 2017 20:11:20 -0700 (PDT)
-Received: by mail-pg0-f50.google.com with SMTP id t186so24923600pgb.1
-	for <yocto@yoctoproject.org>; Tue, 27 Jun 2017 20:11:20 -0700 (PDT)
+	*      [209.85.215.42 listed in list.dnswl.org]
+Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com
+	[209.85.215.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77EA5E00B83
+	for <yocto@yoctoproject.org>; Wed, 28 Jun 2017 01:41:53 -0700 (PDT)
+Received: by mail-lf0-f42.google.com with SMTP id h22so30737455lfk.3
+	for <yocto@yoctoproject.org>; Wed, 28 Jun 2017 01:41:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language;
-	bh=dB1inDpBe1YDrU5Lu6i9VMtTJsW3TQcK1FzdCSAr39s=;
-	b=E7axHi3hYQKXAiNH9gnfSPx3IL0XcvL/pTbrIqCnityVpXNzRXxnMxEmVyMBONoeT7
-	6cTxv3xDSRRO1em5dj7zkxe0hpNRpIGQeRD6Whwew5tvCgtA7jiF81lwcEDUJK/9stAe
-	nfyk2VMDMRYN6Rn7EwRRUmWyh+0Oouwlq8EqIuZYOk6xc6EXta3VJOOad8/0eDLGAZ66
-	x/cMEG0exSMi2c86z/tzK8Y+mn1RjkCZOjVGUtE114xREkR2OYFR8I390b0wNuvyU+kI
-	X7lV1SGcdwgGqhiOUcQA/Rd94GnHBwK9bs2CueDjibPkAqIFSBYbASvR0r2jC3pwdx7C
-	82/w==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=5+3aWqDWeQUdvdPp1j7ALPlCNOal5e38stVG9tS6El4=;
+	b=lKqzjT+j23w/eUGrdJicb54D2AXCC0XfydE3Bju0MM6hg2yNblurtfDTJd5/T6iHMG
+	SKp1ert8sEDAkSjl0nQnReb+OxjW7jWhNcPCwOBptyETjKjpj7e1UIK7GKozvcXkQKff
+	vJxbdb9j3owH8xLuj6V7d8fgylPTb53bxUsMakmom12mbzV3CvlJgDpjj6J0XlJ4vDZY
+	1wGmShLjYXya/etS+uLWC2pDYWks+K9Dv05XwupQJ9fdmjiSvLcdWXo2SnrmIRb50W3J
+	3xPlohSI51EEy5fArDxYySI2oJuCWkKk3qUri0c+zrss0/RFVG0DXsu4V/F4K2djAcrt
+	Sn2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=dB1inDpBe1YDrU5Lu6i9VMtTJsW3TQcK1FzdCSAr39s=;
-	b=W1GUnBzLnzQn/RCUC90ZvK6j89kjBSBns6rBTxXa3CGmlFTc3z+DZsV89kk0jcewVo
-	oOljhDhFxDqCkdygZO9WEqgiDnjngOQy9u5zSMYwv19YdM/pDmQ5e2jv8nuPrm3A2D56
-	ni2Ipy9AGbGPZDeHsnYtb+RdXh04zirPoO6hScTYMo2IfioQRpAAdIZS2Th1NEU7wokP
-	xMiA7YKQ6Z6G98vF2PPTkXx/p/OY7GkQvxIQ5iAtN4Ls6TFQG1uz31ECbCRY6bZ5l0Jo
-	9L7mXbEhFtz0sms6+nz6au64oeyhasgLfWw/W57J0w0qWJmIYdiGj4gw7nYLDoiLwJzf
-	794g==
-X-Gm-Message-State: AKS2vOw6lnYxncYOTf+hAj8gsO/Sb0AUkJMXdbECMdQPK8UjWWTixTPM
-	1QysEFx78zmpd0D9
-X-Received: by 10.98.152.25 with SMTP id q25mr8314484pfd.47.1498619479934;
-	Tue, 27 Jun 2017 20:11:19 -0700 (PDT)
-Received: from [10.0.0.1] (CPE-120-145-134-12.lnse2.pie.bigpond.net.au.
-	[120.145.134.12]) by smtp.gmail.com with ESMTPSA id
-	e124sm1164506pfc.76.2017.06.27.20.11.17
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 27 Jun 2017 20:11:18 -0700 (PDT)
-To: Khem Raj <raj.khem@gmail.com>
-References: <fe34f976-648e-7fbc-c190-a5fb0829552f@gmail.com>
-	<CAMKF1sq0XX0ahRiG34oi9LwiDCZL83Oxf4sbkwmd5XL1n66jWw@mail.gmail.com>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <9d831060-faec-8a75-a42c-382fff4d257c@gmail.com>
-Date: Wed, 28 Jun 2017 11:11:14 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=5+3aWqDWeQUdvdPp1j7ALPlCNOal5e38stVG9tS6El4=;
+	b=YU+TQmY3efjiuWt/fNN7+KQeVm0oZPkMA4jd1U851qVeJcrJ17XK4Mb7x+g7Cc0UPm
+	6T1hBspe9Ep4yDomK5RuCjdRehxm2VVFbr/9QPqs0o39zHRIVwt/CZz2Gdaw72p0kbEL
+	u0+tYjQSeiqW6MpoIqTie0Tz4NqUeefsfq3pWlPbEd1c9/7ECDcB8hRvrLmKzmNVqhSK
+	ISUH2pmsDPWN5CqjSWbijffwIAwhr8sNEMwg3DonVYRKf1UdcM6syyN/8sxZsAJq8Ls0
+	0WQBvRg0YyBX174xa7FIBTcbFBcjBEctC5UhykL/0XqNpbZkWSFh5gOHTtYDAPOgOdUm
+	MgVQ==
+X-Gm-Message-State: AKS2vOymgvCXR2g2Xmj1jDckInWLC+h6ISos7+aycuqbbCMyrqyY2Evx
+	FPCe1VBUGxTUsi0d06o7LO2EgymzrJpgZvU=
+X-Received: by 10.25.229.13 with SMTP id c13mr3753371lfh.102.1498639312495;
+	Wed, 28 Jun 2017 01:41:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1sq0XX0ahRiG34oi9LwiDCZL83Oxf4sbkwmd5XL1n66jWw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: internet radio
+Received: by 10.25.196.17 with HTTP; Wed, 28 Jun 2017 01:41:52 -0700 (PDT)
+From: Martin Townsend <mtownsend1973@gmail.com>
+Date: Wed, 28 Jun 2017 09:41:52 +0100
+Message-ID: <CABatt_x4FiEHw=qKuy+2VBy6svGccTnLRRFb9w42Sf2cfGkOmQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: RNDIS Broken in linux-yocto 4.1.39, working in 4.1.37
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,120 +66,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jun 2017 03:11:23 -0000
-Content-Type: multipart/alternative;
-	boundary="------------FB0EC4CDD02FB92477FB22EF"
-Content-Language: en-US
+X-List-Received-Date: Wed, 28 Jun 2017 08:41:57 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---------------FB0EC4CDD02FB92477FB22EF
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Hi,
 
-How to install mplayer on xfce ? I got no luck until now.
+I recently upgraded to 4.1.39 linux-yocto and Ethernet Gadget stopped
+working with Windows hosts, here's the output from the Journal:
 
+Jun 22 20:31:37 varsomam43-bb5eda kernel: g_ether gadget: rndis
+reqa1.01 v0000 i0000 l4096
+Jun 22 20:31:37 varsomam43-bb5eda kernel: g_ether gadget: rndis
+req21.00 v0000 i0000 l28
+Jun 22 20:31:37 varsomam43-bb5eda kernel: gen_ndis_query_resp:
+RNDIS_OID_GEN_SUPPORTED_LIST
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.457796] IPv6:
+ADDRCONF(NETDEV_CHANGE): usb0: link becomes ready
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.481614] g_ether
+gadget: rndis req21.00 v0000 i0000 l24
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.481946]
+rndis_msg_parser: RNDIS_MSG_INIT
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.528733] g_ether
+gadget: rndis reqa1.01 v0000 i0000 l4096
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.530206] g_ether
+gadget: rndis req21.00 v0000 i0000 l28
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.530322]
+gen_ndis_query_resp: RNDIS_OID_GEN_SUPPORTED_LIST
+Jun 22 20:31:37 varsomam43-bb5eda kernel: g_ether gadget: rndis
+reqa1.01 v0000 i0000 l4096
+Jun 22 20:31:37 varsomam43-bb5eda kernel: g_ether gadget: rndis
+req21.00 v0000 i0000 l32
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser: unknown
+RNDIS message 0x80000004 len 136
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000000: 04
+00 00 80 88 00 00 00 03 00 00 00 00 00 00 00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000010: 70
+00 00 00 10 00 00 00 01 01 01 00 02 01 01 00  p...............
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000020: 03
+01 01 00 04 01 01 00 06 01 01 00 07 01 01 00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000030: 0a
+01 01 00 0b 01 01 00 0c 01 01 00 0d 01 01 00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000040: 16
+01 01 00 0e 01 01 00 11 01 01 00 14 01 01 00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000050: 02
+02 01 00 01 01 02 00 02 01 02 00 03 01 02 00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000060: 04
+01 02 00 05 01 02 00 01 01 01 01 02 01 01 01  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000070: 03
+01 01 01 05 01 01 01 04 01 01 01 01 01 02 01  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel: rndis_msg_parser00000080: 02
+01 02 01 03 01 02 01                          ........
+Jun 22 20:31:37 varsomam43-bb5eda kernel: RNDIS command error -524, 32/32
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.592722] g_ether
+gadget: rndis reqa1.01 v0000 i0000 l4096
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.594360] g_ether
+gadget: rndis req21.00 v0000 i0000 l32
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.594699]
+rndis_msg_parser: unknown RNDIS message 0x80000004 len 136
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601671]
+rndis_msg_parser00000000: 04 00 00 80 88 00 00 00 03 00 00 00 00 00 00
+00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601697]
+rndis_msg_parser00000010: 70 00 00 00 10 00 00 00 01 01 01 00 02 01 01
+00  p...............
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601718]
+rndis_msg_parser00000020: 03 01 01 00 04 01 01 00 06 01 01 00 07 01 01
+00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601739]
+rndis_msg_parser00000030: 0a 01 01 00 0b 01 01 00 0c 01 01 00 0d 01 01
+00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601759]
+rndis_msg_parser00000040: 16 01 01 00 0e 01 01 00 11 01 01 00 14 01 01
+00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601779]
+rndis_msg_parser00000050: 02 02 01 00 01 01 02 00 02 01 02 00 03 01 02
+00  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601800]
+rndis_msg_parser00000060: 04 01 02 00 05 01 02 00 01 01 01 01 02 01 01
+01  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601820]
+rndis_msg_parser00000070: 03 01 01 01 05 01 01 01 04 01 01 01 01 01 02
+01  ................
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601839]
+rndis_msg_parser00000080: 02 01 02 01 03 01 02 01
+    ........
+Jun 22 20:31:37 varsomam43-bb5eda kernel[242]: [ 7459.601858] RNDIS
+command error -524, 32/32
 
-On 23/06/17 21:42, Khem Raj wrote:
-> On Fri, Jun 23, 2017 at 1:18 AM, Riko Ho <antonius.riko@gmail.com> wrote:
->> Hello everyone,
->>
->> What do you suggest me using for internet radio / playing multimedia on GUI
->> ? Which recipe is suitable for it ?
->>
-> may be you could use mplayer or kodi
->
->> Thanks
->>
->> --
->>
->> /*******/
->> Sent by Ubuntu LTS 16.04,
->> 谢谢,
->> Regards,
->> Riko Ho
->> /*******/
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+Not only has it stopped working but it often locks up the Windows host
+when you try things like re-installing the Windows RNDIS driver, or
+enabling the RNDIS/Ethernet Gadget Network adapter.
 
--- 
-*
+I reverted back to 4.1.37 and everything is fine again.  I'm using a
+TI AM4378 based board.  Has anyone else seen this problem?
 
-/*******/
-Sent by Ubuntu LTS 16.04,
-Kind regards,
-Riko Ho
-/*******/
+Many Thanks,
 
-*
+Martin.
 
---------------FB0EC4CDD02FB92477FB22EF
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>How to install mplayer on xfce ? I got no luck until now.<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 23/06/17 21:42, Khem Raj wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAMKF1sq0XX0ahRiG34oi9LwiDCZL83Oxf4sbkwmd5XL1n66jWw@mail.gmail.com">
-      <pre wrap="">On Fri, Jun 23, 2017 at 1:18 AM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">Hello everyone,
-
-What do you suggest me using for internet radio / playing multimedia on GUI
-? Which recipe is suitable for it ?
-
-</pre>
-      </blockquote>
-      <pre wrap="">
-may be you could use mplayer or kodi
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">Thanks
-
---
-
-/*******/
-Sent by Ubuntu LTS 16.04,
-谢谢,
-Regards,
-Riko Ho
-/*******/
-
-
---
-_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-
-</pre>
-      </blockquote>
-    </blockquote>
-    <br>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          Kind regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
-  </body>
-</html>
-
---------------FB0EC4CDD02FB92477FB22EF--
