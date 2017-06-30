@@ -1,86 +1,44 @@
-Return-Path: <dwatkins@sierrawireless.com>
+Return-Path: <michael.ho@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49EA7E00BB1; Fri, 30 Jun 2017 14:33:49 -0700 (PDT)
+	id D4FC1E00BB1; Fri, 30 Jun 2017 15:44:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.34.56 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 7190 seconds by postgrey-1.32 at yocto-www;
-	Fri, 30 Jun 2017 14:33:45 PDT
-Received: from NAM01-BY2-obe.outbound.protection.outlook.com
-	(mail-by2nam01on0056.outbound.protection.outlook.com [104.47.34.56])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C232AE00B9F
-	for <yocto@yoctoproject.org>; Fri, 30 Jun 2017 14:33:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=SierraWirelessInc.onmicrosoft.com; s=selector1-sierrawireless-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=CB2a4pQ5LQV0zA8259Q6bDM/kkR1YNfq4elnCOqonP8=;
-	b=GCF+Moev73huFgQ9N0s3A2qUUnoBm5rXd1gvvSdjsi4i0x6iTQVcwRFJR1HSTnrtPK/JDxTLPNZkmG7x65A4zZu0t+CXPMNGUQcvcY34sJCU5wx1s0H2PgKd3Px9MggW9qe6moQffaa5yfeznTP/dONMRWnGUS5Gr8r4x1TCZV0=
-Received: from SN1PR0201MB1790.namprd02.prod.outlook.com (10.162.228.20) by
-	SN1PR0201MB1789.namprd02.prod.outlook.com (10.162.228.19) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1199.15; Fri, 30 Jun 2017 15:01:12 +0000
-Received: from SN1PR0201MB1790.namprd02.prod.outlook.com ([10.162.228.20]) by
-	SN1PR0201MB1790.namprd02.prod.outlook.com ([10.162.228.20]) with
-	mapi id 15.01.1199.022; Fri, 30 Jun 2017 15:01:12 +0000
-From: Darcy Watkins <dwatkins@sierrawireless.com>
-To: Michael Ho <Michael.Ho@bmw-carit.de>
+Received: from cit-hm8-gw01.bmw-carit.de (cit-hm8-mail01.bmw-carit.de
+	[212.118.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B959E00B9F
+	for <yocto@yoctoproject.org>; Fri, 30 Jun 2017 15:44:51 -0700 (PDT)
+Received: from [10.40.100.13] (port=8465 helo=cit-hm8-mail01.bmw-carit.de)
+	by cit-hm8-gw01.bmw-carit.de with esmtps (TLSv1.2:AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Michael.Ho@bmw-carit.de>)
+	id 1dR4ee-0000u6-15; Sat, 01 Jul 2017 00:44:48 +0200
+Received: from CIT-HM8-EX01.bmw-carit.intra (10.40.100.13) by
+	CIT-HM8-EX01.bmw-carit.intra (10.40.100.13) with Microsoft SMTP Server
+	(TLS) id 15.0.1178.4; Sat, 1 Jul 2017 00:44:48 +0200
+Received: from CIT-HM8-EX01.bmw-carit.intra ([fe80::dd00:8c64:6c76:7244]) by
+	CIT-HM8-EX01.bmw-carit.intra ([fe80::dd00:8c64:6c76:7244%12]) with mapi
+	id 15.00.1178.000; Sat, 1 Jul 2017 00:44:48 +0200
+X-CTCH-RefID: str=0001.0A0C0202.5956D460.004A, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+From: Michael Ho <Michael.Ho@bmw-carit.de>
+To: Darcy Watkins <dwatkins@sierrawireless.com>
 Thread-Topic: [yocto] RFC: Backwards compatibility checking sstate-cache
-Thread-Index: AQHS8YVx0AkhV90UzU6NiV6x+tgB0aI9gGLP
-Date: Fri, 30 Jun 2017 15:01:12 +0000
-Message-ID: <5C0B55E2-E247-4B7D-8042-30F4E94F3650@sierrawireless.com>
-References: <1498816090789.97105@bmw-carit.de>
-In-Reply-To: <1498816090789.97105@bmw-carit.de>
-Accept-Language: en-US
+Thread-Index: AQHS8YVx0AkhV90UzU6NiV6x+tgB0aI9gGLPgAB4MCo=
+Date: Fri, 30 Jun 2017 22:44:47 +0000
+Message-ID: <1498862686964.87543@bmw-carit.de>
+References: <1498816090789.97105@bmw-carit.de>,
+	<5C0B55E2-E247-4B7D-8042-30F4E94F3650@sierrawireless.com>
+In-Reply-To: <5C0B55E2-E247-4B7D-8042-30F4E94F3650@sierrawireless.com>
+Accept-Language: en-GB, de-DE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: sierrawireless.com; dkim=none (message not signed)
-	header.d=none;sierrawireless.com; dmarc=none action=none
-	header.from=sierrawireless.com;
-x-originating-ip: [2001:569:74df:5400:c5e3:a2cd:9d5b:a67b]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; SN1PR0201MB1789;
-	7:Zdr+Xrs1eimTLZTOUcH/iAuqi1wCf0D+LylrUFNWhWPFkngh5ggR7K0Pu40dpaaKUC35ucYWMRRfmex4SOfOj6PubNv7oOyBcWjlnmK7a/0DVX1WcsgdrgvKEWrMlnWUmCUexFQCSSj+VP1Fdw8WnGmLZN2K6o2RTuLkNq4Eh0Q8CN8uIPS4WTXEFc5atUx346A2Q/fmsinJVafVzlWz9hsbbkBY1rekcbfexP8f08hveQk9Zky1bCGGskoM2ARAXCsTQkVgG0Mxqras4YnZUHpCzJBpQTYdzPvFX1TOIU/A/53kYWLS6+9KunHU3kq4r9G2Mqvd9FgHLAnj/yPOoiUz4iAFzpOT877juypSMpMvlZMRkUHoHcHGtUg6+4uuPXt6ZwxUbhhlTF/eLHKy3l6GVNxREqQecQvVIrwKuNht1mcCRezo/6F9qImFQP815YzMDTXMb2Ebfmjff/GKvBPAe9Q4Vqaz/xAiDLLBoSzVoIQ83609qQMEABabV+bGpZZX5kbj9ugGh1Z32rg4azypGO29bCfp4fUy9QhOJ/RzFECc/AI9IMeBgGOe2hNrIsrd5lTgETQK+1P3uGc+bM+FRYaDsCiZ3RSnXXWUbXyHHC8O0F7AtOpGaliRZ6LvxUDExx8GQEGTYakHWNPt4fGf9NbSQF3Df4dW6u3h79iY9/S8U0qf9vU7BXuxeG+CgC0VPV3nswpoDJwyFKJ2YeeJXNLm6rDpfIC/9tXu3WYzQydnezKa40TZjCmgeOGkzq7mj6nbNjtnFh4rLAHxSG96P87QDv3co//VPwX2BA8=
-x-ms-office365-filtering-correlation-id: 176b8689-91a0-49ca-caed-08d4bfc8d969
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254075)(48565401081)(300000503095)(300135400095)(2017052603031)(201703131423075)(201703031133081)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
-	SRVR:SN1PR0201MB1789; 
-x-ms-traffictypediagnostic: SN1PR0201MB1789:
-x-microsoft-antispam-prvs: <SN1PR0201MB1789B1535417E0A107320CF1B2D30@SN1PR0201MB1789.namprd02.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(133145235818549)(236129657087228)(219636747203745)(90097320859284)(148717330147763)(50300203121483)(247924648384137);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(10201501046)(100000703101)(100105400095)(3002001)(93006095)(93001095)(6055026)(6041248)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123560025)(20161123555025)(20161123564025)(20161123558100)(20161123562025)(6072148)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:SN1PR0201MB1789; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:SN1PR0201MB1789; 
-x-forefront-prvs: 0354B4BED2
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(39400400002)(39850400002)(39410400002)(39840400002)(39450400003)(377454003)(24454002)(236005)(83716003)(86362001)(99286003)(53936002)(3280700002)(6506006)(6916009)(6436002)(54896002)(6306002)(6486002)(2950100002)(54356999)(82746002)(50986999)(6512007)(76176999)(38730400002)(110136004)(36756003)(229853002)(2906002)(77096006)(1680700002)(8676002)(81166006)(8936002)(2900100001)(6116002)(53546010)(102836003)(53386004)(7736002)(5660300001)(606006)(478600001)(966005)(14454004)(4326008)(25786009)(3660700001)(33656002)(189998001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:SN1PR0201MB1789;
-	H:SN1PR0201MB1790.namprd02.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.242.6.3]
 MIME-Version: 1.0
-X-OriginatorOrg: sierrawireless.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2017 15:01:12.6942 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR0201MB1789
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: RFC: Backwards compatibility checking sstate-cache
 X-BeenThere: yocto@yoctoproject.org
@@ -94,301 +52,282 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Jun 2017 21:33:49 -0000
-Content-Language: en-CA
-Content-Type: multipart/alternative;
-	boundary="_000_5C0B55E2E2474B7D804230F4E94F3650sierrawirelesscom_"
+X-List-Received-Date: Fri, 30 Jun 2017 22:44:53 -0000
+Content-Language: en-GB
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
---_000_5C0B55E2E2474B7D804230F4E94F3650sierrawirelesscom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi Darcy,=0A=
+=0A=
+Thank you for the feedback. Actually, depending on what exactly you mean by=
+ user=0A=
+supplied script, this patch set for the concept already supports that.=0A=
+=0A=
+I'm not sure if my attachments got skewered by the mailing list or not but =
+if=0A=
+you can see my patch "0009-recipes-cdepends-test-example-recipe-framework-f=
+or-u.patch",=0A=
+you can see an example implementation and what needs to be done to introduc=
+e a=0A=
+custom compatibility checker.=0A=
+=0A=
+This patch set provides the hooks for Bitbake and recipes to communicate ab=
+out=0A=
+the compatible dependency checker it needs to use. In essence, the recipes =
+point=0A=
+Bitbake to a python module that it can load from any meta-layer lib folder =
+and=0A=
+run a predefined function, passing the directories of the compatibility rep=
+orts=0A=
+(the latest from the freshly built recipe, and the older from the sstate ca=
+che=0A=
+of the child recipe) which are also defined by the recipes. This python fun=
+ction=0A=
+can then do whatever it wants with the compatibility data it has access to =
+(i.e.=0A=
+call a custom user script to look at the report information) and return=0A=
+"incompatible" or "compatible" to control the RunQueue. Bitbake will rebuil=
+d if=0A=
+incompatible is returned, and not rebuild if compatible is returned. It can=
+ also=0A=
+return a different value which Bitbake will interpret as a compatibility er=
+ror=0A=
+(e.g. binary delivery recipe that will be incompatible so you want to crash=
+ the=0A=
+build instead of detecting the error at runtime).=0A=
+=0A=
+Therefore, the recipes themselves define all the compatibility report=0A=
+information and how to do the comparison, allowing for "user supplied hook=
+=0A=
+scripts" which can be defined at any meta-layer level.=0A=
+=0A=
+In the case you're hinting towards, you would need to implement the followi=
+ng=0A=
+which can already hook into these patches:=0A=
+1. a report generation function for the kernel recipe to output the data yo=
+u=0A=
+   need to compare - i.e. a compatibility report (a directory of files) tha=
+t=0A=
+   consists of the file checksums of the kernel headers stored in a text fi=
+le=0A=
+   and the PV of the recipe stored in another text file - to do so the kern=
+el=0A=
+   recipe merely needs to inherit compatible-depends-report and add a funct=
+ion=0A=
+   that outputs these report files and add this function to the prefuncs of=
+ the=0A=
+   task do_compatibility_report.=0A=
+2. A python function to compare the different versions of the report format=
+=0A=
+   suggested in (1).=0A=
+3. Modifying the child recipes to add the kernel to CDEPENDS and point Bitb=
+ake=0A=
+   to the python function by setting the variable CDEPENDS_TOOL_xxx for the=
+=0A=
+   kernel provider.=0A=
+=0A=
+If you look at the patch 0009, you'll see the example is fairly simple but=
+=0A=
+similar to what I explained above. The python function added to the lib fol=
+der=0A=
+is the actual compatibility comparison function and more can be easily=0A=
+introduced in any meta-layer to match the compatibility checking situation.=
+ (If=0A=
+interested, I can share another example compatibility checker that uses the=
+ PV=0A=
+of a recipe to do rebuild decisions).=0A=
+=0A=
+Happy to answer in more detail if you require, just let me know.=0A=
+=0A=
+Thank you.=0A=
+=0A=
+Kind regards,=0A=
+Michael Ho=0A=
+=0A=
+--=0A=
+BMW Car IT GmbH=0A=
+Michael Ho=0A=
+Spezialist Entwicklung - Linux Software Integration=0A=
+Lise-Meitner-Str. 14=0A=
+89081 Ulm=0A=
+=0A=
+Tel.: +49 731 3780 4071=0A=
+Mobil: +49 152 5498 0471=0A=
+Fax: +49-731-37804-001=0A=
+Mail: michael.ho@bmw-carit.de=0A=
+Web: http://www.bmw-carit.de=0A=
+--------------------------------------------------------=0A=
+BMW Car IT GmbH=0A=
+Gech=E4ftsf=FChrer: Kai-Uwe Balszuweit und Alexis Trolin=0A=
+Sitz und Registergericht: M=FCnchen HRB 134810=0A=
+--------------------------------------------------------    =0A=
+=0A=
+From: Darcy Watkins <dwatkins@sierrawireless.com>=0A=
+Sent: 30 June 2017 17:01=0A=
+To: Michael Ho=0A=
+Cc: yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] RFC: Backwards compatibility checking sstate-cache=0A=
+=A0 =0A=
+=0A=
+Hi,=0A=
+=0A=
+=0A=
+It would also be nice to add some sort of hook script support where user su=
+pplied hook script performs a check and returns either a "yes it's OK" or a=
+ "no have to rebuild it" status.=0A=
+=A0And then tie that into the dependency logic.=0A=
+=0A=
+=0A=
+I have unusual use case where I need to have a dependency on changes to the=
+ kernel version, but not necessarily something triggered after every kernel=
+ rebuild. =A0 The package I'm building will trigger OpenSSL and a whole wha=
+ck of  stuff each time it rebuilds.=0A=
+=0A=
+=0A=
+It depends on the kernel version and the headers, but shouldn't need to dep=
+end on every patch or kconfig change that happens.=0A=
+=0A=
+=0A=
+=0A=
+___=0A=
+=0A=
+=0A=
+=0A=
+Regards,=0A=
+=A0=0A=
+Darcy=0A=
+=A0=0A=
+Darcy Watkins :: =A0Senior Staff Engineer, Firmware=0A=
+=A0=0A=
+SIERRA WIRELESS=0A=
+Direct=A0=A0+1 604 233 7989=A0 =A0::=A0=A0Fax=A0=A0+1 604 231 1109=A0 ::=A0=
+=A0Main=A0=A0+1  604 231 1100=0A=
+13811 Wireless Way=A0 ::=A0Richmond, BC Canada V6V 3A4=0A=
+[M4]=0A=
+dwatkins@sierrawireless.com=A0::=A0www.sierrawireless.com=A0::=A0www.inmoti=
+ontechnology.com=0A=
+=A0=0A=
+  =0A=
+=0A=
+On Jun 30, 2017, at 2:53 AM, Michael Ho <Michael.Ho@bmw-carit.de> wrote:=0A=
+=0A=
+ =0A=
+Hi, at BMW Car IT we are working on an experimental feature to improve ssta=
+te=0A=
+cache hits and we are looking for comments on the approach who might have s=
+ome=0A=
+insights to the problem and seeing if anyone is interested in the feature f=
+or=0A=
+mainline.=0A=
+=0A=
+The sstate-cache of a recipe is tied closely to its build dependencies, as =
+the=0A=
+signature generated for a task includes all parent task's signatures as par=
+t of=0A=
+the signature information. This means that when changes occur in the parent=
+=0A=
+recipes, even if insignificant, all children recipes that have valid sstate=
+=0A=
+cache must invalidate their sstate cache objects.=0A=
+=0A=
+What this patchset does is propose to add another optional variable to reci=
+pes,=0A=
+CDEPENDS, which acts like DEPENDS for all RunQueue purposes but for signatu=
+re=0A=
+generation it excludes any parent tasks that come from dependencies listed =
+in=0A=
+it. This is to break the signature change domino effect.=0A=
+=0A=
+This patchset also proposes modifying RunQueue to then be able to run a=0A=
+compatibility checker during task execution phase for recipes and tasks tha=
+t use=0A=
+CDEPENDS and allow for deciding to re-execute a task despite being covered =
+by=0A=
+sstate-cache.=0A=
+=0A=
+The patchset is based on the jethro branch for the poky repository, as this=
+ is=0A=
+the branch that we are using. =A0If the general idea sounds good, we can co=
+nsider=0A=
+porting it to master.=0A=
+=0A=
+Included is an patch that adds an example recipe and compatibility checker,=
+=0A=
+where compatibility is based on the file checksums of the parent recipes=0A=
+packages. An example recipe, cdepends-test1, generates a compatibility repo=
+rt=0A=
+containing the file checksums of all files that it packages and which file =
+paths=0A=
+they are at. Another recipe, cdepends-test2, can then strip this compatibil=
+ity=0A=
+report to the minimal files it needs to be consistent and can compare the l=
+atest=0A=
+checksums it used to configure/compile/install with and if they have change=
+d,=0A=
+trigger a rebuild. If not, the previous version restored from sstate-cache =
+is=0A=
+used.=0A=
+=0A=
+We are still experimenting with the usages of this, including the use of ha=
+ving=0A=
+abi-compliance-checker to compare the ABI of shared libraries as a compatib=
+ility=0A=
+checker during RunQueue and using the results to avoid rebuilding child rec=
+ipes=0A=
+when the .so files they depend on are still compatible. Example use cases o=
+f=0A=
+this are allowing recipes which provide multiple shared libraries to change=
+ a=0A=
+single .so file without rebuilding all its children that depend on the othe=
+r=0A=
+shared libraries but not the one that changed.=0A=
+=0A=
+We're aware of the SIGGEN_EXCLUDERECIPES_ABISAFE feature but feel it didn't=
+ meet=0A=
+the feature requirements of what this compatibility checker callback is doi=
+ng,=0A=
+although maybe when porting to master we could refactor to make better use =
+of=0A=
+the work already done there. The current implementation is a bit hacky but=
+=0A=
+comments would be appreciated in regards to if the concept is feasible and =
+if=0A=
+people are interested in making use of it and their use cases.=0A=
+=0A=
+Kind regards,=0A=
+Michael Ho=0A=
+=0A=
+--=0A=
+BMW Car IT GmbH=0A=
+Michael Ho=0A=
+Spezialist Entwicklung - Linux Software Integration=0A=
+Lise-Meitner-Str. 14=0A=
+89081 Ulm=0A=
+=0A=
+Tel.: +49 731 3780 4071=0A=
+Mobil: +49 152 5498 0471=0A=
+Fax: +49-731-37804-001=0A=
+Mail: michael.ho@bmw-carit.de=0A=
+Web: http://www.bmw-carit.de=0A=
+--------------------------------------------------------=0A=
+BMW Car IT GmbH=0A=
+Gech=E4ftsf=FChrer: Kai-Uwe Balszuweit und Alexis Trolin=0A=
+Sitz und Registergericht: M=FCnchen HRB 134810=0A=
+--------------------------------------------------------=0A=
+  =0A=
+<0001-cache.py-add-support-for-CDEPENDS.patch>  =0A=
+<0002-siggen.py-add-support-for-CDEPENDS.patch>  =0A=
+<0003-runqueue.py-add-support-for-CDEPENDS.patch>  =0A=
+<0004-taskdata.py-add-support-for-CDEPENDS.patch>  =0A=
+<0005-rm_work.bbclass-add-exception-for-do_cache_compatibi.patch>  =0A=
+<0006-native.bbclass-add-support-for-CDEPENDS.patch>  =0A=
+<0007-nativesdk.bbclass-add-support-for-CDEPENDS.patch>  =0A=
+<0008-classes-add-bbclasses-compatible-depends-and-compati.patch>  =0A=
+<0009-recipes-cdepends-test-example-recipe-framework-for-u.patch>  =0A=
+-- =0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
+     =
 
-SGksDQoNCkl0IHdvdWxkIGFsc28gYmUgbmljZSB0byBhZGQgc29tZSBzb3J0IG9mIGhvb2sgc2Ny
-aXB0IHN1cHBvcnQgd2hlcmUgdXNlciBzdXBwbGllZCBob29rIHNjcmlwdCBwZXJmb3JtcyBhIGNo
-ZWNrIGFuZCByZXR1cm5zIGVpdGhlciBhICJ5ZXMgaXQncyBPSyIgb3IgYSAibm8gaGF2ZSB0byBy
-ZWJ1aWxkIGl0IiBzdGF0dXMuDQogQW5kIHRoZW4gdGllIHRoYXQgaW50byB0aGUgZGVwZW5kZW5j
-eSBsb2dpYy4NCg0KSSBoYXZlIHVudXN1YWwgdXNlIGNhc2Ugd2hlcmUgSSBuZWVkIHRvIGhhdmUg
-YSBkZXBlbmRlbmN5IG9uIGNoYW5nZXMgdG8gdGhlIGtlcm5lbCB2ZXJzaW9uLCBidXQgbm90IG5l
-Y2Vzc2FyaWx5IHNvbWV0aGluZyB0cmlnZ2VyZWQgYWZ0ZXIgZXZlcnkga2VybmVsIHJlYnVpbGQu
-ICAgVGhlIHBhY2thZ2UgSSdtIGJ1aWxkaW5nIHdpbGwgdHJpZ2dlciBPcGVuU1NMIGFuZCBhIHdo
-b2xlIHdoYWNrIG9mIHN0dWZmIGVhY2ggdGltZSBpdCByZWJ1aWxkcy4NCg0KSXQgZGVwZW5kcyBv
-biB0aGUga2VybmVsIHZlcnNpb24gYW5kIHRoZSBoZWFkZXJzLCBidXQgc2hvdWxkbid0IG5lZWQg
-dG8gZGVwZW5kIG9uIGV2ZXJ5IHBhdGNoIG9yIGtjb25maWcgY2hhbmdlIHRoYXQgaGFwcGVucy4N
-Cg0KDQpfX18NCg0KUmVnYXJkcywNCg0KRGFyY3kNCg0KRGFyY3kgV2F0a2lucyA6OiAgU2VuaW9y
-IFN0YWZmIEVuZ2luZWVyLCBGaXJtd2FyZQ0KDQpTSUVSUkEgV0lSRUxFU1MNCkRpcmVjdCAgKzEg
-NjA0IDIzMyA3OTg5PHRlbDorMSUyMDYwNCUyMDIzMyUyMDc5ODk+ICAgOjogIEZheCAgKzEgNjA0
-IDIzMSAxMTA5PHRlbDorMSUyMDYwNCUyMDIzMSUyMDExMDk+ICA6OiAgTWFpbiAgKzEgNjA0IDIz
-MSAxMTAwPHRlbDorMSUyMDYwNCUyMDIzMSUyMDExMDA+DQoxMzgxMSBXaXJlbGVzcyBXYXkgIDo6
-IFJpY2htb25kLCBCQyBDYW5hZGEgVjZWIDNBNDx4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzOi8vMy8x
-Pg0KW000XQ0KZHdhdGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPG1haWx0bzpkd2F0a2luc0BzaWVy
-cmF3aXJlbGVzcy5jb20+IDo6IHd3dy5zaWVycmF3aXJlbGVzcy5jb208aHR0cDovL3d3dy5zaWVy
-cmF3aXJlbGVzcy5jb20vPiA6OiB3d3cuaW5tb3Rpb250ZWNobm9sb2d5LmNvbTxodHRwOi8vd3d3
-LmlubW90aW9udGVjaG5vbG9neS5jb20vPg0KDQoNCk9uIEp1biAzMCwgMjAxNywgYXQgMjo1MyBB
-TSwgTWljaGFlbCBIbyA8TWljaGFlbC5Ib0BibXctY2FyaXQuZGU8bWFpbHRvOk1pY2hhZWwuSG9A
-Ym13LWNhcml0LmRlPj4gd3JvdGU6DQoNCkhpLCBhdCBCTVcgQ2FyIElUIHdlIGFyZSB3b3JraW5n
-IG9uIGFuIGV4cGVyaW1lbnRhbCBmZWF0dXJlIHRvIGltcHJvdmUgc3N0YXRlDQpjYWNoZSBoaXRz
-IGFuZCB3ZSBhcmUgbG9va2luZyBmb3IgY29tbWVudHMgb24gdGhlIGFwcHJvYWNoIHdobyBtaWdo
-dCBoYXZlIHNvbWUNCmluc2lnaHRzIHRvIHRoZSBwcm9ibGVtIGFuZCBzZWVpbmcgaWYgYW55b25l
-IGlzIGludGVyZXN0ZWQgaW4gdGhlIGZlYXR1cmUgZm9yDQptYWlubGluZS4NCg0KVGhlIHNzdGF0
-ZS1jYWNoZSBvZiBhIHJlY2lwZSBpcyB0aWVkIGNsb3NlbHkgdG8gaXRzIGJ1aWxkIGRlcGVuZGVu
-Y2llcywgYXMgdGhlDQpzaWduYXR1cmUgZ2VuZXJhdGVkIGZvciBhIHRhc2sgaW5jbHVkZXMgYWxs
-IHBhcmVudCB0YXNrJ3Mgc2lnbmF0dXJlcyBhcyBwYXJ0IG9mDQp0aGUgc2lnbmF0dXJlIGluZm9y
-bWF0aW9uLiBUaGlzIG1lYW5zIHRoYXQgd2hlbiBjaGFuZ2VzIG9jY3VyIGluIHRoZSBwYXJlbnQN
-CnJlY2lwZXMsIGV2ZW4gaWYgaW5zaWduaWZpY2FudCwgYWxsIGNoaWxkcmVuIHJlY2lwZXMgdGhh
-dCBoYXZlIHZhbGlkIHNzdGF0ZQ0KY2FjaGUgbXVzdCBpbnZhbGlkYXRlIHRoZWlyIHNzdGF0ZSBj
-YWNoZSBvYmplY3RzLg0KDQpXaGF0IHRoaXMgcGF0Y2hzZXQgZG9lcyBpcyBwcm9wb3NlIHRvIGFk
-ZCBhbm90aGVyIG9wdGlvbmFsIHZhcmlhYmxlIHRvIHJlY2lwZXMsDQpDREVQRU5EUywgd2hpY2gg
-YWN0cyBsaWtlIERFUEVORFMgZm9yIGFsbCBSdW5RdWV1ZSBwdXJwb3NlcyBidXQgZm9yIHNpZ25h
-dHVyZQ0KZ2VuZXJhdGlvbiBpdCBleGNsdWRlcyBhbnkgcGFyZW50IHRhc2tzIHRoYXQgY29tZSBm
-cm9tIGRlcGVuZGVuY2llcyBsaXN0ZWQgaW4NCml0LiBUaGlzIGlzIHRvIGJyZWFrIHRoZSBzaWdu
-YXR1cmUgY2hhbmdlIGRvbWlubyBlZmZlY3QuDQoNClRoaXMgcGF0Y2hzZXQgYWxzbyBwcm9wb3Nl
-cyBtb2RpZnlpbmcgUnVuUXVldWUgdG8gdGhlbiBiZSBhYmxlIHRvIHJ1biBhDQpjb21wYXRpYmls
-aXR5IGNoZWNrZXIgZHVyaW5nIHRhc2sgZXhlY3V0aW9uIHBoYXNlIGZvciByZWNpcGVzIGFuZCB0
-YXNrcyB0aGF0IHVzZQ0KQ0RFUEVORFMgYW5kIGFsbG93IGZvciBkZWNpZGluZyB0byByZS1leGVj
-dXRlIGEgdGFzayBkZXNwaXRlIGJlaW5nIGNvdmVyZWQgYnkNCnNzdGF0ZS1jYWNoZS4NCg0KVGhl
-IHBhdGNoc2V0IGlzIGJhc2VkIG9uIHRoZSBqZXRocm8gYnJhbmNoIGZvciB0aGUgcG9reSByZXBv
-c2l0b3J5LCBhcyB0aGlzIGlzDQp0aGUgYnJhbmNoIHRoYXQgd2UgYXJlIHVzaW5nLiAgSWYgdGhl
-IGdlbmVyYWwgaWRlYSBzb3VuZHMgZ29vZCwgd2UgY2FuIGNvbnNpZGVyDQpwb3J0aW5nIGl0IHRv
-IG1hc3Rlci4NCg0KSW5jbHVkZWQgaXMgYW4gcGF0Y2ggdGhhdCBhZGRzIGFuIGV4YW1wbGUgcmVj
-aXBlIGFuZCBjb21wYXRpYmlsaXR5IGNoZWNrZXIsDQp3aGVyZSBjb21wYXRpYmlsaXR5IGlzIGJh
-c2VkIG9uIHRoZSBmaWxlIGNoZWNrc3VtcyBvZiB0aGUgcGFyZW50IHJlY2lwZXMNCnBhY2thZ2Vz
-LiBBbiBleGFtcGxlIHJlY2lwZSwgY2RlcGVuZHMtdGVzdDEsIGdlbmVyYXRlcyBhIGNvbXBhdGli
-aWxpdHkgcmVwb3J0DQpjb250YWluaW5nIHRoZSBmaWxlIGNoZWNrc3VtcyBvZiBhbGwgZmlsZXMg
-dGhhdCBpdCBwYWNrYWdlcyBhbmQgd2hpY2ggZmlsZSBwYXRocw0KdGhleSBhcmUgYXQuIEFub3Ro
-ZXIgcmVjaXBlLCBjZGVwZW5kcy10ZXN0MiwgY2FuIHRoZW4gc3RyaXAgdGhpcyBjb21wYXRpYmls
-aXR5DQpyZXBvcnQgdG8gdGhlIG1pbmltYWwgZmlsZXMgaXQgbmVlZHMgdG8gYmUgY29uc2lzdGVu
-dCBhbmQgY2FuIGNvbXBhcmUgdGhlIGxhdGVzdA0KY2hlY2tzdW1zIGl0IHVzZWQgdG8gY29uZmln
-dXJlL2NvbXBpbGUvaW5zdGFsbCB3aXRoIGFuZCBpZiB0aGV5IGhhdmUgY2hhbmdlZCwNCnRyaWdn
-ZXIgYSByZWJ1aWxkLiBJZiBub3QsIHRoZSBwcmV2aW91cyB2ZXJzaW9uIHJlc3RvcmVkIGZyb20g
-c3N0YXRlLWNhY2hlIGlzDQp1c2VkLg0KDQpXZSBhcmUgc3RpbGwgZXhwZXJpbWVudGluZyB3aXRo
-IHRoZSB1c2FnZXMgb2YgdGhpcywgaW5jbHVkaW5nIHRoZSB1c2Ugb2YgaGF2aW5nDQphYmktY29t
-cGxpYW5jZS1jaGVja2VyIHRvIGNvbXBhcmUgdGhlIEFCSSBvZiBzaGFyZWQgbGlicmFyaWVzIGFz
-IGEgY29tcGF0aWJpbGl0eQ0KY2hlY2tlciBkdXJpbmcgUnVuUXVldWUgYW5kIHVzaW5nIHRoZSBy
-ZXN1bHRzIHRvIGF2b2lkIHJlYnVpbGRpbmcgY2hpbGQgcmVjaXBlcw0Kd2hlbiB0aGUgLnNvIGZp
-bGVzIHRoZXkgZGVwZW5kIG9uIGFyZSBzdGlsbCBjb21wYXRpYmxlLiBFeGFtcGxlIHVzZSBjYXNl
-cyBvZg0KdGhpcyBhcmUgYWxsb3dpbmcgcmVjaXBlcyB3aGljaCBwcm92aWRlIG11bHRpcGxlIHNo
-YXJlZCBsaWJyYXJpZXMgdG8gY2hhbmdlIGENCnNpbmdsZSAuc28gZmlsZSB3aXRob3V0IHJlYnVp
-bGRpbmcgYWxsIGl0cyBjaGlsZHJlbiB0aGF0IGRlcGVuZCBvbiB0aGUgb3RoZXINCnNoYXJlZCBs
-aWJyYXJpZXMgYnV0IG5vdCB0aGUgb25lIHRoYXQgY2hhbmdlZC4NCg0KV2UncmUgYXdhcmUgb2Yg
-dGhlIFNJR0dFTl9FWENMVURFUkVDSVBFU19BQklTQUZFIGZlYXR1cmUgYnV0IGZlZWwgaXQgZGlk
-bid0IG1lZXQNCnRoZSBmZWF0dXJlIHJlcXVpcmVtZW50cyBvZiB3aGF0IHRoaXMgY29tcGF0aWJp
-bGl0eSBjaGVja2VyIGNhbGxiYWNrIGlzIGRvaW5nLA0KYWx0aG91Z2ggbWF5YmUgd2hlbiBwb3J0
-aW5nIHRvIG1hc3RlciB3ZSBjb3VsZCByZWZhY3RvciB0byBtYWtlIGJldHRlciB1c2Ugb2YNCnRo
-ZSB3b3JrIGFscmVhZHkgZG9uZSB0aGVyZS4gVGhlIGN1cnJlbnQgaW1wbGVtZW50YXRpb24gaXMg
-YSBiaXQgaGFja3kgYnV0DQpjb21tZW50cyB3b3VsZCBiZSBhcHByZWNpYXRlZCBpbiByZWdhcmRz
-IHRvIGlmIHRoZSBjb25jZXB0IGlzIGZlYXNpYmxlIGFuZCBpZg0KcGVvcGxlIGFyZSBpbnRlcmVz
-dGVkIGluIG1ha2luZyB1c2Ugb2YgaXQgYW5kIHRoZWlyIHVzZSBjYXNlcy4NCg0KS2luZCByZWdh
-cmRzLA0KTWljaGFlbCBIbw0KDQotLQ0KQk1XIENhciBJVCBHbWJIDQpNaWNoYWVsIEhvDQpTcGV6
-aWFsaXN0IEVudHdpY2tsdW5nIC0gTGludXggU29mdHdhcmUgSW50ZWdyYXRpb24NCkxpc2UtTWVp
-dG5lci1TdHIuIDE0DQo4OTA4MSBVbG0NCg0KVGVsLjogKzQ5IDczMSAzNzgwIDQwNzENCk1vYmls
-OiArNDkgMTUyIDU0OTggMDQ3MQ0KRmF4OiArNDktNzMxLTM3ODA0LTAwMQ0KTWFpbDogbWljaGFl
-bC5ob0BibXctY2FyaXQuZGU8bWFpbHRvOm1pY2hhZWwuaG9AYm13LWNhcml0LmRlPg0KV2ViOiBo
-dHRwOi8vd3d3LmJtdy1jYXJpdC5kZQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkJNVyBDYXIgSVQgR21iSA0KR2VjaMOkZnRzZsO8aHJl
-cjogS2FpLVV3ZSBCYWxzenV3ZWl0IHVuZCBBbGV4aXMgVHJvbGluDQpTaXR6IHVuZCBSZWdpc3Rl
-cmdlcmljaHQ6IE3DvG5jaGVuIEhSQiAxMzQ4MTANCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo8MDAwMS1jYWNoZS5weS1hZGQtc3VwcG9y
-dC1mb3ItQ0RFUEVORFMucGF0Y2g+DQo8MDAwMi1zaWdnZW4ucHktYWRkLXN1cHBvcnQtZm9yLUNE
-RVBFTkRTLnBhdGNoPg0KPDAwMDMtcnVucXVldWUucHktYWRkLXN1cHBvcnQtZm9yLUNERVBFTkRT
-LnBhdGNoPg0KPDAwMDQtdGFza2RhdGEucHktYWRkLXN1cHBvcnQtZm9yLUNERVBFTkRTLnBhdGNo
-Pg0KPDAwMDUtcm1fd29yay5iYmNsYXNzLWFkZC1leGNlcHRpb24tZm9yLWRvX2NhY2hlX2NvbXBh
-dGliaS5wYXRjaD4NCjwwMDA2LW5hdGl2ZS5iYmNsYXNzLWFkZC1zdXBwb3J0LWZvci1DREVQRU5E
-Uy5wYXRjaD4NCjwwMDA3LW5hdGl2ZXNkay5iYmNsYXNzLWFkZC1zdXBwb3J0LWZvci1DREVQRU5E
-Uy5wYXRjaD4NCjwwMDA4LWNsYXNzZXMtYWRkLWJiY2xhc3Nlcy1jb21wYXRpYmxlLWRlcGVuZHMt
-YW5kLWNvbXBhdGkucGF0Y2g+DQo8MDAwOS1yZWNpcGVzLWNkZXBlbmRzLXRlc3QtZXhhbXBsZS1y
-ZWNpcGUtZnJhbWV3b3JrLWZvci11LnBhdGNoPg0KLS0NCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRwczovL2xpc3Rz
-LnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg==
-
---_000_5C0B55E2E2474B7D804230F4E94F3650sierrawirelesscom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQo8
-ZGl2PkhpLDwvZGl2Pg0KPGRpdiBpZD0iQXBwbGVNYWlsU2lnbmF0dXJlIj48YnI+DQo8L2Rpdj4N
-CjxkaXYgaWQ9IkFwcGxlTWFpbFNpZ25hdHVyZSI+SXQgd291bGQgYWxzbyBiZSBuaWNlIHRvIGFk
-ZCBzb21lIHNvcnQgb2YgaG9vayBzY3JpcHQgc3VwcG9ydCB3aGVyZSB1c2VyIHN1cHBsaWVkIGhv
-b2sgc2NyaXB0IHBlcmZvcm1zIGEgY2hlY2sgYW5kIHJldHVybnMgZWl0aGVyIGEgJnF1b3Q7eWVz
-IGl0J3MgT0smcXVvdDsgb3IgYSAmcXVvdDtubyBoYXZlIHRvIHJlYnVpbGQgaXQmcXVvdDsgc3Rh
-dHVzLjwvZGl2Pg0KPGRpdiBpZD0iQXBwbGVNYWlsU2lnbmF0dXJlIj4mbmJzcDtBbmQgdGhlbiB0
-aWUgdGhhdCBpbnRvIHRoZSBkZXBlbmRlbmN5IGxvZ2ljLjwvZGl2Pg0KPGRpdiBpZD0iQXBwbGVN
-YWlsU2lnbmF0dXJlIj48YnI+DQo8L2Rpdj4NCjxkaXYgaWQ9IkFwcGxlTWFpbFNpZ25hdHVyZSI+
-SSBoYXZlIHVudXN1YWwgdXNlIGNhc2Ugd2hlcmUgSSBuZWVkIHRvIGhhdmUgYSBkZXBlbmRlbmN5
-IG9uIGNoYW5nZXMgdG8gdGhlIGtlcm5lbCB2ZXJzaW9uLCBidXQgbm90IG5lY2Vzc2FyaWx5IHNv
-bWV0aGluZyB0cmlnZ2VyZWQgYWZ0ZXIgZXZlcnkga2VybmVsIHJlYnVpbGQuICZuYnNwOyBUaGUg
-cGFja2FnZSBJJ20gYnVpbGRpbmcgd2lsbCB0cmlnZ2VyIE9wZW5TU0wgYW5kIGEgd2hvbGUgd2hh
-Y2sgb2YNCiBzdHVmZiBlYWNoIHRpbWUgaXQgcmVidWlsZHMuPC9kaXY+DQo8ZGl2IGlkPSJBcHBs
-ZU1haWxTaWduYXR1cmUiPjxicj4NCjwvZGl2Pg0KPGRpdiBpZD0iQXBwbGVNYWlsU2lnbmF0dXJl
-Ij5JdCBkZXBlbmRzIG9uIHRoZSBrZXJuZWwgdmVyc2lvbiBhbmQgdGhlIGhlYWRlcnMsIGJ1dCBz
-aG91bGRuJ3QgbmVlZCB0byBkZXBlbmQgb24gZXZlcnkgcGF0Y2ggb3Iga2NvbmZpZyBjaGFuZ2Ug
-dGhhdCBoYXBwZW5zLjwvZGl2Pg0KPGRpdiBpZD0iQXBwbGVNYWlsU2lnbmF0dXJlIj48YnI+DQo8
-L2Rpdj4NCjxkaXYgaWQ9IkFwcGxlTWFpbFNpZ25hdHVyZSI+PGJyPg0KX19fPGJyPg0KPGRpdj48
-YnI+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAw
-Y20gMGNtIDAuMDAwMXB0OyI+PGIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAy
-NTUsIDI1NSwgMCk7Ij5SZWdhcmRzLDxvOnA+PC9vOnA+PC9iPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7Ij48YiBzdHlsZT0iYmFja2dy
-b3VuZC1jb2xvcjogcmdiYSgyNTUsIDI1NSwgMjU1LCAwKTsiPiZuYnNwOzwvYj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyI+PGIgc3R5
-bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMCk7Ij5EYXJjeTxvOnA+
-PC9vOnA+PC9iPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAw
-Y20gMC4wMDAxcHQ7Ij48YiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDI1NSwg
-MjU1LCAwKTsiPiZuYnNwOzwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFy
-Z2luOiAwY20gMGNtIDAuMDAwMXB0OyI+PGIgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEo
-MjU1LCAyNTUsIDI1NSwgMCk7Ij5EYXJjeSBXYXRraW5zIDo6ICZuYnNwO1NlbmlvciBTdGFmZiBF
-bmdpbmVlciwgRmlybXdhcmU8bzpwPjwvbzpwPjwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyI+PGIgc3R5bGU9ImJhY2tncm91bmQt
-Y29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMCk7Ij4mbmJzcDs8L2I+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsiPjxiIHN0eWxlPSJi
-YWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDApOyI+U0lFUlJBIFdJUkVMRVNT
-PG86cD48L286cD48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjog
-MGNtIDBjbSAwLjAwMDFwdDsiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1
-NSwgMjU1LCAyNTUsIDApOyI+RGlyZWN0Jm5ic3A7Jm5ic3A7PGEgaHJlZj0idGVsOiYjNDM7MSUy
-MDYwNCUyMDIzMyUyMDc5ODkiIGRpcj0ibHRyIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzPSJ0cnVl
-IiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzLXR5cGU9InRlbGVwaG9uZSIgeC1hcHBsZS1kYXRhLWRl
-dGVjdG9ycy1yZXN1bHQ9IjEiPiYjNDM7MQ0KIDYwNCAyMzMgNzk4OTwvYT4mbmJzcDsgJm5ic3A7
-OjombmJzcDsmbmJzcDtGYXgmbmJzcDsmbmJzcDs8YSBocmVmPSJ0ZWw6JiM0MzsxJTIwNjA0JTIw
-MjMxJTIwMTEwOSIgZGlyPSJsdHIiIHgtYXBwbGUtZGF0YS1kZXRlY3RvcnM9InRydWUiIHgtYXBw
-bGUtZGF0YS1kZXRlY3RvcnMtdHlwZT0idGVsZXBob25lIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3Jz
-LXJlc3VsdD0iMiI+JiM0MzsxIDYwNCAyMzEgMTEwOTwvYT4mbmJzcDsgOjombmJzcDsmbmJzcDtN
-YWluJm5ic3A7Jm5ic3A7PGEgaHJlZj0idGVsOiYjNDM7MSUyMDYwNCUyMDIzMSUyMDExMDAiIGRp
-cj0ibHRyIiB4LWFwcGxlLWRhdGEtZGV0ZWN0b3JzPSJ0cnVlIiB4LWFwcGxlLWRhdGEtZGV0ZWN0
-b3JzLXR5cGU9InRlbGVwaG9uZSIgeC1hcHBsZS1kYXRhLWRldGVjdG9ycy1yZXN1bHQ9IjMvMCIg
-c3R5bGU9Ii13ZWJraXQtdGV4dC1kZWNvcmF0aW9uLWNvbG9yOiByZ2JhKDEwMSwgMTAxLCAxMDEs
-IDAuMjU4ODI0KTsiPiYjNDM7MQ0KIDYwNCAyMzEgMTEwMDwvYT48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0
-OyI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMCk7
-Ij4xMzgxMSBXaXJlbGVzcyBXYXkmbmJzcDsgOjombmJzcDs8YSBocmVmPSJ4LWFwcGxlLWRhdGEt
-ZGV0ZWN0b3JzOi8vMy8xIiBkaXI9Imx0ciIgeC1hcHBsZS1kYXRhLWRldGVjdG9ycz0idHJ1ZSIg
-eC1hcHBsZS1kYXRhLWRldGVjdG9ycy10eXBlPSJhZGRyZXNzIiB4LWFwcGxlLWRhdGEtZGV0ZWN0
-b3JzLXJlc3VsdD0iMy8xIiBzdHlsZT0iLXdlYmtpdC10ZXh0LWRlY29yYXRpb24tY29sb3I6IHJn
-YmEoMTAxLCAxMDEsIDEwMSwgMC4yNTg4MjQpOyI+UmljaG1vbmQsDQogQkMgQ2FuYWRhIFY2ViAz
-QTQ8L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
-Im1hcmdpbjogMGNtIDBjbSAwLjAwMDFwdDsiPjxzcGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9y
-OiByZ2JhKDI1NSwgMjU1LCAyNTUsIDApOyI+W000XTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46IDBjbSAwY20gMC4wMDAxcHQ7Ij48c3Bh
-biBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiYSgyNTUsIDI1NSwgMjU1LCAwKTsiPjx1Pjxh
-IGhyZWY9Im1haWx0bzpkd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb20iPmR3YXRraW5zQHNpZXJy
-YXdpcmVsZXNzLmNvbTwvYT48L3U+Jm5ic3A7OjombmJzcDs8YSBocmVmPSJodHRwOi8vd3d3LnNp
-ZXJyYXdpcmVsZXNzLmNvbS8iPnd3dy5zaWVycmF3aXJlbGVzcy5jb208L2E+Jm5ic3A7OjombmJz
-cDs8YSBocmVmPSJodHRwOi8vd3d3LmlubW90aW9udGVjaG5vbG9neS5jb20vIj53d3cuaW5tb3Rp
-b250ZWNobm9sb2d5LmNvbTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0ibWFyZ2luOiAwY20gMGNtIDAuMDAwMXB0OyI+PHNwYW4gbGFuZz0iRU4t
-Q0EiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDApOyI+Jm5i
-c3A7PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pjxicj4NCk9uIEp1biAzMCwgMjAx
-NywgYXQgMjo1MyBBTSwgTWljaGFlbCBIbyAmbHQ7PGEgaHJlZj0ibWFpbHRvOk1pY2hhZWwuSG9A
-Ym13LWNhcml0LmRlIj5NaWNoYWVsLkhvQGJtdy1jYXJpdC5kZTwvYT4mZ3Q7IHdyb3RlOjxicj4N
-Cjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2PjxzcGFuPkhpLCBh
-dCBCTVcgQ2FyIElUIHdlIGFyZSB3b3JraW5nIG9uIGFuIGV4cGVyaW1lbnRhbCBmZWF0dXJlIHRv
-IGltcHJvdmUgc3N0YXRlPC9zcGFuPjxicj4NCjxzcGFuPmNhY2hlIGhpdHMgYW5kIHdlIGFyZSBs
-b29raW5nIGZvciBjb21tZW50cyBvbiB0aGUgYXBwcm9hY2ggd2hvIG1pZ2h0IGhhdmUgc29tZTwv
-c3Bhbj48YnI+DQo8c3Bhbj5pbnNpZ2h0cyB0byB0aGUgcHJvYmxlbSBhbmQgc2VlaW5nIGlmIGFu
-eW9uZSBpcyBpbnRlcmVzdGVkIGluIHRoZSBmZWF0dXJlIGZvcjwvc3Bhbj48YnI+DQo8c3Bhbj5t
-YWlubGluZS48L3NwYW4+PGJyPg0KPHNwYW4+PC9zcGFuPjxicj4NCjxzcGFuPlRoZSBzc3RhdGUt
-Y2FjaGUgb2YgYSByZWNpcGUgaXMgdGllZCBjbG9zZWx5IHRvIGl0cyBidWlsZCBkZXBlbmRlbmNp
-ZXMsIGFzIHRoZTwvc3Bhbj48YnI+DQo8c3Bhbj5zaWduYXR1cmUgZ2VuZXJhdGVkIGZvciBhIHRh
-c2sgaW5jbHVkZXMgYWxsIHBhcmVudCB0YXNrJ3Mgc2lnbmF0dXJlcyBhcyBwYXJ0IG9mPC9zcGFu
-Pjxicj4NCjxzcGFuPnRoZSBzaWduYXR1cmUgaW5mb3JtYXRpb24uIFRoaXMgbWVhbnMgdGhhdCB3
-aGVuIGNoYW5nZXMgb2NjdXIgaW4gdGhlIHBhcmVudDwvc3Bhbj48YnI+DQo8c3Bhbj5yZWNpcGVz
-LCBldmVuIGlmIGluc2lnbmlmaWNhbnQsIGFsbCBjaGlsZHJlbiByZWNpcGVzIHRoYXQgaGF2ZSB2
-YWxpZCBzc3RhdGU8L3NwYW4+PGJyPg0KPHNwYW4+Y2FjaGUgbXVzdCBpbnZhbGlkYXRlIHRoZWly
-IHNzdGF0ZSBjYWNoZSBvYmplY3RzLjwvc3Bhbj48YnI+DQo8c3Bhbj48L3NwYW4+PGJyPg0KPHNw
-YW4+V2hhdCB0aGlzIHBhdGNoc2V0IGRvZXMgaXMgcHJvcG9zZSB0byBhZGQgYW5vdGhlciBvcHRp
-b25hbCB2YXJpYWJsZSB0byByZWNpcGVzLDwvc3Bhbj48YnI+DQo8c3Bhbj5DREVQRU5EUywgd2hp
-Y2ggYWN0cyBsaWtlIERFUEVORFMgZm9yIGFsbCBSdW5RdWV1ZSBwdXJwb3NlcyBidXQgZm9yIHNp
-Z25hdHVyZTwvc3Bhbj48YnI+DQo8c3Bhbj5nZW5lcmF0aW9uIGl0IGV4Y2x1ZGVzIGFueSBwYXJl
-bnQgdGFza3MgdGhhdCBjb21lIGZyb20gZGVwZW5kZW5jaWVzIGxpc3RlZCBpbjwvc3Bhbj48YnI+
-DQo8c3Bhbj5pdC4gVGhpcyBpcyB0byBicmVhayB0aGUgc2lnbmF0dXJlIGNoYW5nZSBkb21pbm8g
-ZWZmZWN0Ljwvc3Bhbj48YnI+DQo8c3Bhbj48L3NwYW4+PGJyPg0KPHNwYW4+VGhpcyBwYXRjaHNl
-dCBhbHNvIHByb3Bvc2VzIG1vZGlmeWluZyBSdW5RdWV1ZSB0byB0aGVuIGJlIGFibGUgdG8gcnVu
-IGE8L3NwYW4+PGJyPg0KPHNwYW4+Y29tcGF0aWJpbGl0eSBjaGVja2VyIGR1cmluZyB0YXNrIGV4
-ZWN1dGlvbiBwaGFzZSBmb3IgcmVjaXBlcyBhbmQgdGFza3MgdGhhdCB1c2U8L3NwYW4+PGJyPg0K
-PHNwYW4+Q0RFUEVORFMgYW5kIGFsbG93IGZvciBkZWNpZGluZyB0byByZS1leGVjdXRlIGEgdGFz
-ayBkZXNwaXRlIGJlaW5nIGNvdmVyZWQgYnk8L3NwYW4+PGJyPg0KPHNwYW4+c3N0YXRlLWNhY2hl
-Ljwvc3Bhbj48YnI+DQo8c3Bhbj48L3NwYW4+PGJyPg0KPHNwYW4+VGhlIHBhdGNoc2V0IGlzIGJh
-c2VkIG9uIHRoZSBqZXRocm8gYnJhbmNoIGZvciB0aGUgcG9reSByZXBvc2l0b3J5LCBhcyB0aGlz
-IGlzPC9zcGFuPjxicj4NCjxzcGFuPnRoZSBicmFuY2ggdGhhdCB3ZSBhcmUgdXNpbmcuICZuYnNw
-O0lmIHRoZSBnZW5lcmFsIGlkZWEgc291bmRzIGdvb2QsIHdlIGNhbiBjb25zaWRlcjwvc3Bhbj48
-YnI+DQo8c3Bhbj5wb3J0aW5nIGl0IHRvIG1hc3Rlci48L3NwYW4+PGJyPg0KPHNwYW4+PC9zcGFu
-Pjxicj4NCjxzcGFuPkluY2x1ZGVkIGlzIGFuIHBhdGNoIHRoYXQgYWRkcyBhbiBleGFtcGxlIHJl
-Y2lwZSBhbmQgY29tcGF0aWJpbGl0eSBjaGVja2VyLDwvc3Bhbj48YnI+DQo8c3Bhbj53aGVyZSBj
-b21wYXRpYmlsaXR5IGlzIGJhc2VkIG9uIHRoZSBmaWxlIGNoZWNrc3VtcyBvZiB0aGUgcGFyZW50
-IHJlY2lwZXM8L3NwYW4+PGJyPg0KPHNwYW4+cGFja2FnZXMuIEFuIGV4YW1wbGUgcmVjaXBlLCBj
-ZGVwZW5kcy10ZXN0MSwgZ2VuZXJhdGVzIGEgY29tcGF0aWJpbGl0eSByZXBvcnQ8L3NwYW4+PGJy
-Pg0KPHNwYW4+Y29udGFpbmluZyB0aGUgZmlsZSBjaGVja3N1bXMgb2YgYWxsIGZpbGVzIHRoYXQg
-aXQgcGFja2FnZXMgYW5kIHdoaWNoIGZpbGUgcGF0aHM8L3NwYW4+PGJyPg0KPHNwYW4+dGhleSBh
-cmUgYXQuIEFub3RoZXIgcmVjaXBlLCBjZGVwZW5kcy10ZXN0MiwgY2FuIHRoZW4gc3RyaXAgdGhp
-cyBjb21wYXRpYmlsaXR5PC9zcGFuPjxicj4NCjxzcGFuPnJlcG9ydCB0byB0aGUgbWluaW1hbCBm
-aWxlcyBpdCBuZWVkcyB0byBiZSBjb25zaXN0ZW50IGFuZCBjYW4gY29tcGFyZSB0aGUgbGF0ZXN0
-PC9zcGFuPjxicj4NCjxzcGFuPmNoZWNrc3VtcyBpdCB1c2VkIHRvIGNvbmZpZ3VyZS9jb21waWxl
-L2luc3RhbGwgd2l0aCBhbmQgaWYgdGhleSBoYXZlIGNoYW5nZWQsPC9zcGFuPjxicj4NCjxzcGFu
-PnRyaWdnZXIgYSByZWJ1aWxkLiBJZiBub3QsIHRoZSBwcmV2aW91cyB2ZXJzaW9uIHJlc3RvcmVk
-IGZyb20gc3N0YXRlLWNhY2hlIGlzPC9zcGFuPjxicj4NCjxzcGFuPnVzZWQuPC9zcGFuPjxicj4N
-CjxzcGFuPjwvc3Bhbj48YnI+DQo8c3Bhbj5XZSBhcmUgc3RpbGwgZXhwZXJpbWVudGluZyB3aXRo
-IHRoZSB1c2FnZXMgb2YgdGhpcywgaW5jbHVkaW5nIHRoZSB1c2Ugb2YgaGF2aW5nPC9zcGFuPjxi
-cj4NCjxzcGFuPmFiaS1jb21wbGlhbmNlLWNoZWNrZXIgdG8gY29tcGFyZSB0aGUgQUJJIG9mIHNo
-YXJlZCBsaWJyYXJpZXMgYXMgYSBjb21wYXRpYmlsaXR5PC9zcGFuPjxicj4NCjxzcGFuPmNoZWNr
-ZXIgZHVyaW5nIFJ1blF1ZXVlIGFuZCB1c2luZyB0aGUgcmVzdWx0cyB0byBhdm9pZCByZWJ1aWxk
-aW5nIGNoaWxkIHJlY2lwZXM8L3NwYW4+PGJyPg0KPHNwYW4+d2hlbiB0aGUgLnNvIGZpbGVzIHRo
-ZXkgZGVwZW5kIG9uIGFyZSBzdGlsbCBjb21wYXRpYmxlLiBFeGFtcGxlIHVzZSBjYXNlcyBvZjwv
-c3Bhbj48YnI+DQo8c3Bhbj50aGlzIGFyZSBhbGxvd2luZyByZWNpcGVzIHdoaWNoIHByb3ZpZGUg
-bXVsdGlwbGUgc2hhcmVkIGxpYnJhcmllcyB0byBjaGFuZ2UgYTwvc3Bhbj48YnI+DQo8c3Bhbj5z
-aW5nbGUgLnNvIGZpbGUgd2l0aG91dCByZWJ1aWxkaW5nIGFsbCBpdHMgY2hpbGRyZW4gdGhhdCBk
-ZXBlbmQgb24gdGhlIG90aGVyPC9zcGFuPjxicj4NCjxzcGFuPnNoYXJlZCBsaWJyYXJpZXMgYnV0
-IG5vdCB0aGUgb25lIHRoYXQgY2hhbmdlZC48L3NwYW4+PGJyPg0KPHNwYW4+PC9zcGFuPjxicj4N
-CjxzcGFuPldlJ3JlIGF3YXJlIG9mIHRoZSBTSUdHRU5fRVhDTFVERVJFQ0lQRVNfQUJJU0FGRSBm
-ZWF0dXJlIGJ1dCBmZWVsIGl0IGRpZG4ndCBtZWV0PC9zcGFuPjxicj4NCjxzcGFuPnRoZSBmZWF0
-dXJlIHJlcXVpcmVtZW50cyBvZiB3aGF0IHRoaXMgY29tcGF0aWJpbGl0eSBjaGVja2VyIGNhbGxi
-YWNrIGlzIGRvaW5nLDwvc3Bhbj48YnI+DQo8c3Bhbj5hbHRob3VnaCBtYXliZSB3aGVuIHBvcnRp
-bmcgdG8gbWFzdGVyIHdlIGNvdWxkIHJlZmFjdG9yIHRvIG1ha2UgYmV0dGVyIHVzZSBvZjwvc3Bh
-bj48YnI+DQo8c3Bhbj50aGUgd29yayBhbHJlYWR5IGRvbmUgdGhlcmUuIFRoZSBjdXJyZW50IGlt
-cGxlbWVudGF0aW9uIGlzIGEgYml0IGhhY2t5IGJ1dDwvc3Bhbj48YnI+DQo8c3Bhbj5jb21tZW50
-cyB3b3VsZCBiZSBhcHByZWNpYXRlZCBpbiByZWdhcmRzIHRvIGlmIHRoZSBjb25jZXB0IGlzIGZl
-YXNpYmxlIGFuZCBpZjwvc3Bhbj48YnI+DQo8c3Bhbj5wZW9wbGUgYXJlIGludGVyZXN0ZWQgaW4g
-bWFraW5nIHVzZSBvZiBpdCBhbmQgdGhlaXIgdXNlIGNhc2VzLjwvc3Bhbj48YnI+DQo8c3Bhbj48
-L3NwYW4+PGJyPg0KPHNwYW4+S2luZCByZWdhcmRzLDwvc3Bhbj48YnI+DQo8c3Bhbj5NaWNoYWVs
-IEhvPC9zcGFuPjxicj4NCjxzcGFuPjwvc3Bhbj48YnI+DQo8c3Bhbj4tLTwvc3Bhbj48YnI+DQo8
-c3Bhbj5CTVcgQ2FyIElUIEdtYkg8L3NwYW4+PGJyPg0KPHNwYW4+TWljaGFlbCBIbzwvc3Bhbj48
-YnI+DQo8c3Bhbj5TcGV6aWFsaXN0IEVudHdpY2tsdW5nIC0gTGludXggU29mdHdhcmUgSW50ZWdy
-YXRpb248L3NwYW4+PGJyPg0KPHNwYW4+TGlzZS1NZWl0bmVyLVN0ci4gMTQ8L3NwYW4+PGJyPg0K
-PHNwYW4+ODkwODEgVWxtPC9zcGFuPjxicj4NCjxzcGFuPjwvc3Bhbj48YnI+DQo8c3Bhbj5UZWwu
-OiAmIzQzOzQ5IDczMSAzNzgwIDQwNzE8L3NwYW4+PGJyPg0KPHNwYW4+TW9iaWw6ICYjNDM7NDkg
-MTUyIDU0OTggMDQ3MTwvc3Bhbj48YnI+DQo8c3Bhbj5GYXg6ICYjNDM7NDktNzMxLTM3ODA0LTAw
-MTwvc3Bhbj48YnI+DQo8c3Bhbj5NYWlsOiA8YSBocmVmPSJtYWlsdG86bWljaGFlbC5ob0BibXct
-Y2FyaXQuZGUiPm1pY2hhZWwuaG9AYm13LWNhcml0LmRlPC9hPjwvc3Bhbj48YnI+DQo8c3Bhbj5X
-ZWI6IDxhIGhyZWY9Imh0dHA6Ly93d3cuYm13LWNhcml0LmRlIj5odHRwOi8vd3d3LmJtdy1jYXJp
-dC5kZTwvYT48L3NwYW4+PGJyPg0KPHNwYW4+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS08L3NwYW4+PGJyPg0KPHNwYW4+Qk1XIENhciBJVCBH
-bWJIPC9zcGFuPjxicj4NCjxzcGFuPkdlY2jDpGZ0c2bDvGhyZXI6IEthaS1Vd2UgQmFsc3p1d2Vp
-dCB1bmQgQWxleGlzIFRyb2xpbjwvc3Bhbj48YnI+DQo8c3Bhbj5TaXR6IHVuZCBSZWdpc3Rlcmdl
-cmljaHQ6IE3DvG5jaGVuIEhSQiAxMzQ4MTA8L3NwYW4+PGJyPg0KPHNwYW4+LS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS08L3NwYW4+PGJyPg0K
-PC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxkaXY+Jmx0
-OzAwMDEtY2FjaGUucHktYWRkLXN1cHBvcnQtZm9yLUNERVBFTkRTLnBhdGNoJmd0OzwvZGl2Pg0K
-PC9ibG9ja3F1b3RlPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2PiZsdDswMDAyLXNp
-Z2dlbi5weS1hZGQtc3VwcG9ydC1mb3ItQ0RFUEVORFMucGF0Y2gmZ3Q7PC9kaXY+DQo8L2Jsb2Nr
-cXVvdGU+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxkaXY+Jmx0OzAwMDMtcnVucXVldWUu
-cHktYWRkLXN1cHBvcnQtZm9yLUNERVBFTkRTLnBhdGNoJmd0OzwvZGl2Pg0KPC9ibG9ja3F1b3Rl
-Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2PiZsdDswMDA0LXRhc2tkYXRhLnB5LWFk
-ZC1zdXBwb3J0LWZvci1DREVQRU5EUy5wYXRjaCZndDs8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxi
-bG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdj4mbHQ7MDAwNS1ybV93b3JrLmJiY2xhc3MtYWRk
-LWV4Y2VwdGlvbi1mb3ItZG9fY2FjaGVfY29tcGF0aWJpLnBhdGNoJmd0OzwvZGl2Pg0KPC9ibG9j
-a3F1b3RlPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2PiZsdDswMDA2LW5hdGl2ZS5i
-YmNsYXNzLWFkZC1zdXBwb3J0LWZvci1DREVQRU5EUy5wYXRjaCZndDs8L2Rpdj4NCjwvYmxvY2tx
-dW90ZT4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdj4mbHQ7MDAwNy1uYXRpdmVzZGsu
-YmJjbGFzcy1hZGQtc3VwcG9ydC1mb3ItQ0RFUEVORFMucGF0Y2gmZ3Q7PC9kaXY+DQo8L2Jsb2Nr
-cXVvdGU+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxkaXY+Jmx0OzAwMDgtY2xhc3Nlcy1h
-ZGQtYmJjbGFzc2VzLWNvbXBhdGlibGUtZGVwZW5kcy1hbmQtY29tcGF0aS5wYXRjaCZndDs8L2Rp
-dj4NCjwvYmxvY2txdW90ZT4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdj4mbHQ7MDAw
-OS1yZWNpcGVzLWNkZXBlbmRzLXRlc3QtZXhhbXBsZS1yZWNpcGUtZnJhbWV3b3JrLWZvci11LnBh
-dGNoJmd0OzwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8
-ZGl2PjxzcGFuPi0tIDwvc3Bhbj48YnI+DQo8c3Bhbj5fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3Bhbj55b2N0byBtYWlsaW5nIGxp
-c3Q8L3NwYW4+PGJyPg0KPHNwYW4+PGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5v
-cmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PC9zcGFuPjxicj4NCjxzcGFuPjxhIGhyZWY9
-Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0byI+aHR0cHM6Ly9s
-aXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjwvc3Bhbj48YnI+DQo8L2Rp
-dj4NCjwvYmxvY2txdW90ZT4NCjwvYm9keT4NCjwvaHRtbD4NCg==
-
---_000_5C0B55E2E2474B7D804230F4E94F3650sierrawirelesscom_--
