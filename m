@@ -1,71 +1,31 @@
-Return-Path: <trini@konsulko.com>
+Return-Path: <Zhe.He@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58D75E00B2F; Thu, 29 Jun 2017 18:34:27 -0700 (PDT)
+	id 406B0E00B53; Thu, 29 Jun 2017 19:37:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.172 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.172 listed in dnsbl.sorbs.net]
-Received: from mail-yw0-f172.google.com (mail-yw0-f172.google.com
-	[209.85.161.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39E36E00B18
-	for <yocto@yoctoproject.org>; Thu, 29 Jun 2017 18:34:23 -0700 (PDT)
-Received: by mail-yw0-f172.google.com with SMTP id l21so35342363ywb.1
-	for <yocto@yoctoproject.org>; Thu, 29 Jun 2017 18:34:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=PTFYjZcZBkM8U3aAIwqUjdqdGmJGohdgHcdm2eyepYg=;
-	b=aGM8+WERrMspGFrqcDivlBZJNiIaWDAqhA+41v9CDyyIr3QdEqgv9ij9XTlohOqA48
-	J70bGP69OPsa1ghwJ1+HZWBJamtrXXSt1suuPQ97uwEhsbYRbBUXJcISWorVsPl4GVKI
-	4ZmoX9S4bE0+gGuNEhFiIfjP8zDSO9RTlf1bo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=PTFYjZcZBkM8U3aAIwqUjdqdGmJGohdgHcdm2eyepYg=;
-	b=TkRubtpG7O0bv2T4nGwJra1vsP9OhuQsanvhqEiJSKMkBQMj0PhFhnN9ccnXVm+ftN
-	R2kmgWy7dSI3SJobtpafOfsMN+Acgg5bSiI0mltyA5lnX93mXwqQg20VHLsULLvZOhDP
-	gMdZ7Z2BqYA5fHT4ufzrsqVZOGFrJP3NHzinR+gRvYvVvS227yD64NL9ODQUq54Es958
-	ZUApNV3nZYuXOwjoHltklRnV3BsI5FD8eRr48IF84vjrQBS7vJQ0WP+pTHy4i8uRPtWJ
-	5Yvr5j+GGhGYODJM8qRftAzMdkY5D180ACNoXz+PymhmiCElfzlM7Isxf9QpuIoB2LZV
-	V4Kw==
-X-Gm-Message-State: AKS2vOweq+VpOx8RD7bH6tyd3UotIRJJ5aDWUdJkUA0Z/SrJEeKIezs4
-	V9MLABPEOUygI6th
-X-Received: by 10.129.200.75 with SMTP id k11mr8043643ywl.253.1498786463079;
-	Thu, 29 Jun 2017 18:34:23 -0700 (PDT)
-Received: from bill-the-cat (cpe-75-180-228-133.ec.res.rr.com.
-	[75.180.228.133]) by smtp.gmail.com with ESMTPSA id
-	m206sm2423789ywm.25.2017.06.29.18.34.22
-	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
-	Thu, 29 Jun 2017 18:34:22 -0700 (PDT)
-Date: Thu, 29 Jun 2017 21:35:06 -0400
-From: Tom Rini <trini@konsulko.com>
-To: Anders Montonen <Anders.Montonen@iki.fi>
-Message-ID: <20170630013506.GI9889@bill-the-cat>
-References: <alpine.DEB.2.11.1706201553410.27988@lakka.kapsi.fi>
-	<CAMKF1spmLmRv8z2vBvSLUh2VrWVa9=Ov-W7QzK7LDYSnwd=HjQ@mail.gmail.com>
-	<AD70DBFD-84A9-44DF-8DCB-1C25BBF0F351@iki.fi>
-	<20170622120832.GS27196@bill-the-cat>
-	<alpine.DEB.2.11.1706291347560.1790@lakka.kapsi.fi>
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 191CDE00B1B
+	for <yocto@yoctoproject.org>; Thu, 29 Jun 2017 19:37:02 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v5U2b1Gg011736
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
+	for <yocto@yoctoproject.org>; Thu, 29 Jun 2017 19:37:01 -0700
+Received: from pek-hostel-deb02.wrs.com (128.224.153.152) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.294.0; Thu, 29 Jun 2017 19:37:00 -0700
+From: <zhe.he@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 30 Jun 2017 10:29:44 +0800
+Message-ID: <1498789784-22418-1-git-send-email-zhe.he@windriver.com>
+X-Mailer: git-send-email 2.8.1
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.11.1706291347560.1790@lakka.kapsi.fi>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: AppArmor
+Subject: [meta-realtime][PATCH] schedtool-dl: Fix SCHED_DEADLINE value out of range
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,56 +37,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Jun 2017 01:34:27 -0000
-X-Groupsio-MsgNum: 36845
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="7GFA+bvAY1vP//DC"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 30 Jun 2017 02:37:05 -0000
+Content-Type: text/plain
 
---7GFA+bvAY1vP//DC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+From: He Zhe <zhe.he@windriver.com>
 
-On Thu, Jun 29, 2017 at 01:56:22PM +0300, Anders Montonen wrote:
-> Hi Tom,
->=20
-> On Thu, 22 Jun 2017, Tom Rini wrote:
-> >
-> >I did fix the latter of these (along with the perl problem), but I'm
-> >using sysvinit and needed apache2 in my project anyhow.
->=20
-> Your commit fixes most of the problems, but /usr/bin/aa-easyprof
-> still gets installed with a shebang referring to the host python3
-> interpreter. The script is processed and installed by
-> utils/python-tools-setup.py, which captures whatever $PYTHON is set
-> to at the time.
+The upstream commit 3ffb479929c31cbae09de08f94f58b8f0f061d91
+tries to fix this issue but it's not complete.
 
-Oh thanks!  I'll v2 things shortly with that fixed up.
+This patch adds flags at the last necessary place.
 
---=20
-Tom
+Signed-off-by: He Zhe <zhe.he@windriver.com>
+---
+ recipes-tools/schedtool-dl/schedtool-dl.bb         |  6 ++-
+ ...-add-flags-to-parameters-of-sched_setattr.patch | 56 ++++++++++++++++++++++
+ 2 files changed, 61 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-tools/schedtool-dl/schedtool-dl/0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch
 
---7GFA+bvAY1vP//DC
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+diff --git a/recipes-tools/schedtool-dl/schedtool-dl.bb b/recipes-tools/schedtool-dl/schedtool-dl.bb
+index 578e5df..20c8919 100644
+--- a/recipes-tools/schedtool-dl/schedtool-dl.bb
++++ b/recipes-tools/schedtool-dl/schedtool-dl.bb
+@@ -3,13 +3,17 @@ SECTION = "devel"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=dc1f51f7ca94aebffb9b3663d82873ec"
+ 
+-SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git"
++SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git \
++           file://0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch \
++          "
+ SRCREV = "3ffb479929c31cbae09de08f94f58b8f0f061d91"
+ 
+ S = "${WORKDIR}/git"
+ 
+ EXTRA_OEMAKE = "'CC=${CC}'"
+ 
++TARGET_CC_ARCH += "${LDFLAGS}"
++
+ do_compile() {
+ 	oe_runmake
+ }
+diff --git a/recipes-tools/schedtool-dl/schedtool-dl/0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch b/recipes-tools/schedtool-dl/schedtool-dl/0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch
+new file mode 100644
+index 0000000..65d5059
+--- /dev/null
++++ b/recipes-tools/schedtool-dl/schedtool-dl/0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch
+@@ -0,0 +1,56 @@
++From c75ae0f6ac2bb9eb893cce82e93144e1b3c36389 Mon Sep 17 00:00:00 2001
++From: Qi Hou <qi.hou@windriver.com>
++Date: Wed, 16 Mar 2016 05:44:40 +0000
++Subject: [PATCH] schedtool-dl: add flags to parameters of sched_setattr
++
++git://github.com/jlelli/schedtool-dl.git;protocol=git
++commit 3ffb479929c31cbae09de08f94f58b8f0f061d91
++
++The commit numbered as 3ffb479 has adapted to the very last changes to the ABI,except for the
++syscall of sched_setattr.
++
++While executing schedtool,there was an error,like below:
++
++root@128:/opt/wr-test/testcases/kts/edf# schedtool -E -t 8000:10000 -e yes
++ERROR: could not set PID 1731 to E: SCHED_DEADLINE - value out of range / policy not implemented
++
++The cause of this case is that the syscall of sched_setattr is declared with 3 parameters,but in
++the use of it in schedtool,there was only two parameters.So to adapt this declaration,we should
++add one more parameter,flags,when calling sched_setattr.
++
++In kernel source file kernel/sched/core.c,the declaration of the syscall of sched_setattr like below:
++/**
++ * sys_sched_setattr - same as above, but with extended sched_attr
++ * @pid: the pid in question.
++ * @uattr: structure containing the extended parameters.
++ * @flags: for future extension.
++ */
++ SYSCALL_DEFINE3(sched_setattr, pid_t, pid, struct sched_attr __user *, uattr,
++                                unsigned int, flags)
++ {
++	...
++ }
++
++In schedtool-dl source file syscall_magic.h,the use of sched_setattr like below:
++        syscall(__NR_sched_setattr, pid, attr)
++
++Upstream-Status: Backport
++
++Signed-off-by: Qi Hou <qi.hou@windriver.com>
++---
++ syscall_magic.h | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/syscall_magic.h b/syscall_magic.h
++index 7dcb967..2735dfb 100644
++--- a/syscall_magic.h
+++++ b/syscall_magic.h
++@@ -76,4 +76,4 @@ struct sched_attr {
++ 	syscall(__NR_sched_getattr, pid, attr, size, flags)
++ 
++ #define sched_setattr(pid, attr, flags) \
++-	syscall(__NR_sched_setattr, pid, attr)
+++	syscall(__NR_sched_setattr, pid, attr,flags)
++-- 
++1.9.1
++
+-- 
+2.8.1
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
 
-iQIcBAEBAgAGBQJZVarJAAoJEIf59jXTHXZS5vEQAL5kmnzXHuulSVwtPUsPF5ud
-sherckLJEaqsD4viiJA2GOeBbcx67GBNB6TcND3RuTValN6qmoOcV46mFNnTx+hO
-LatY+L/qkR9sbnvElNLC3ssuhJ0DCM708fOzHdomFlqfOI28ldhSdQjtREpUz+d4
-d26kqcWOsECGIDxodToG8NyrA3wdbiNZBXOK8Tte4hiTIGVXkmMcyL4zJwKy5D7q
-j+NF66cmh8L/HQPqDbdQelOGfsy7beQFEl/REVZD9rn3ZFH8pBQnSXLboVjc4joH
-1BtpKEcdPTz3fo07zv4FOymE/UqOD7IMw3sA4LUQSIcm5rUEuv77iAde1fsbN2e6
-WVHYLyRskVSaMuuRErRlTxbGk8OLQb6rL7h5G35IRLvbvv8U3j70wm7m9N650/tB
-aGRdMtLybq1wk5phC6h1DdDcAMv1UZRSq3TH8lLuU05y14OAFASUuAV4qorMCNKt
-/4q8d+5/04yIB8XYfMDoWG4+C7C3/S7+yO7eKMygXast9NSyCIcDL35BBOZe/vcP
-eF858ziAGPz4glloLKgp47/6MXGFcJ4o6zi5J4T71t7HBZ5n//n7LzFsoXNMyHa6
-AA3upjwm9caDcqFm4p7gqGGMNbWNm6ENLwyQIdWKnuHILGDo/WsABUxC42GTXyNB
-3bfJpE2CikPjRSxgzvBh
-=N+SS
------END PGP SIGNATURE-----
-
---7GFA+bvAY1vP//DC--
