@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C225E00BB5; Sat,  1 Jul 2017 07:53:34 -0700 (PDT)
+	id EA399E00AD5; Sat,  1 Jul 2017 08:08:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,52 +18,54 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.66 listed in list.dnswl.org]
-Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0019CE00857
-	for <yocto@yoctoproject.org>; Sat,  1 Jul 2017 07:53:32 -0700 (PDT)
-Received: by mail-pg0-f66.google.com with SMTP id d193so82332pgc.2
-	for <yocto@yoctoproject.org>; Sat, 01 Jul 2017 07:53:32 -0700 (PDT)
+	*      [209.85.192.178 listed in list.dnswl.org]
+Received: from mail-pf0-f178.google.com (mail-pf0-f178.google.com
+	[209.85.192.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33BB4E00857
+	for <yocto@yoctoproject.org>; Sat,  1 Jul 2017 08:08:50 -0700 (PDT)
+Received: by mail-pf0-f178.google.com with SMTP id q86so80416685pfl.3
+	for <yocto@yoctoproject.org>; Sat, 01 Jul 2017 08:08:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to; bh=r4LwC3nMW51KN8I6MRxJj57f0NmEizXvIsPjcupeI7Y=;
-	b=c6U0OC6SVqWaI3Scd6NJ21L8N0sEYoS//fgNCb8Rgrieqc/0R+XTIkWbs6vxgJueys
-	Keg/RO9o35KU1WeyJ4zfKC+XnuC9t5Vnk94gdMVoKFTy4GrzNxtvviCa9uWlGE/Erp/a
-	x6H+GZxg0KGgKCbTmQn7UWSSyiVSQXNHIhTbdcKGjKw2Kk3R/D+O+4pJECz6XUC2V6VP
-	pFCpfwsNMH68rrpLv9yiohLLRuGPhlvfOtpaGJgZDjckwiuNZEYiLYOgpaft0jzGDql7
-	5com5E8xob8Ru+Lj597SPCC60xxUUFmTY+giydYWSF6lRM2d19gXejKHnvgc/WDdTUq0
-	BLwA==
+	:in-reply-to; bh=+j+lUS2wYI6kPZQZvjh52hhJ7tz2bAkLDqDYu2yMXpw=;
+	b=DH4gC7wxn9k6s7bi4zkf5Jx3gLbrf2hkhZu8F4SjjInaK9elRMLBLIYlrIm0qQwCVM
+	ypswQPsmYHdB6sUJKtAlhHcon2Vl1pq7lY0ZOBamI8kSBFFCPz3h++YpIcsrs7IxTKqi
+	EFqnwUSoR6xl7IH0zHAHWC6ln5Q+FAKQWDP0m802O7x3g+OwHlGOde5wYFxmJF3g7dcz
+	mhxYIA8SLxTmZ5vxVT+bgdGa6u9udx13dmzwvhKtaf4HxC9QvdwFMF0QcKy3YOc+U2ED
+	HaNE7awIiCYU6hqcahY22Y5JeOT6rfaYqI3mqfMaqYNO6Prb7CX7kM5uVL9uW3h7a2iD
+	ZRZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to;
-	bh=r4LwC3nMW51KN8I6MRxJj57f0NmEizXvIsPjcupeI7Y=;
-	b=uF7epTVDXLqGc5xgTrMjq8leJOG5V0rRGgtLCZFOYUFqbZQh03cf7k8wYJnpxF+uN6
-	ak/dMWD7NJ8NiE6I43pTBtz5eLBgeLDj8nTEolVbkiUm7ZwQcIbyLk41/vXvStGwUZNp
-	EsY2jXKMq4oXZkkml+QXmFkb+rJ3ebk5mMXUR72UUlsuHYy9y/gUGEPScewoPGy87ugM
-	9iSqp7N+M8zfjakIK+o9UYGvOVCH4GFmbbevm0WvPlkPIE/bKtqnSbEh5u+fLf6KIPEo
-	+HU9r0c58ClNbW1wdbGid8XZO7+b5Xt0tbCxcALPZkNCrMKbHiJBEl//YZqClv465Hgz
-	F6qQ==
-X-Gm-Message-State: AIVw111zFF8aFARgtjjPCO4Vp2C9nnQkYuTnrM32ovB+soPZJVMdmDkO
-	h8QDogyQpxpjnNgGElI=
-X-Received: by 10.99.168.71 with SMTP id i7mr1140547pgp.279.1498920811780;
-	Sat, 01 Jul 2017 07:53:31 -0700 (PDT)
+	bh=+j+lUS2wYI6kPZQZvjh52hhJ7tz2bAkLDqDYu2yMXpw=;
+	b=p7NCWReVpYhQ8R/qaYLE49gfIDWN4tqEcFn2Cyvve29VdBCngHHq+LwFAySGYJ2ot3
+	yuRuO6ibnYifCRZsfTj6HpgZpY7YJ0rLxjEonTbEazofzJ0JErDLi7nA5oYEJCEcmCyY
+	uOI6TRiygMCSy78gcR2TirUbuKGlQ+bVQVtU9KahsOT5kQcjxLTYAWZt7Wy0kfgwTan6
+	SY8wXdz6cgPB4UhV7eaLDnuwcSZMzUBxsToi0acEocy5X37L+JOqrhZG/HC3bEqsX7qV
+	QeCZwpUKAS8FqfdQR5dc+LbM7Tf3SPhZR2mcw1m9do9Zr1vjN5U1VKtW1Oc1UGDYJ/C1
+	+DRA==
+X-Gm-Message-State: AIVw113viUDx6mXl/e+xcwDdIHt0enOYXC9nq8nFE3+fb6B4a8s7LzXG
+	HysXithUJ7TnGvDWx+M=
+X-Received: by 10.84.198.36 with SMTP id o33mr1143549pld.79.1498921729938;
+	Sat, 01 Jul 2017 08:08:49 -0700 (PDT)
 Received: from ?IPv6:2601:646:8882:b8c:5159:4118:3c4b:f59c?
 	([2601:646:8882:b8c:5159:4118:3c4b:f59c])
 	by smtp.gmail.com with ESMTPSA id
-	g73sm13657061pfk.19.2017.07.01.07.53.29
+	r62sm27859603pfb.39.2017.07.01.08.08.48
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 01 Jul 2017 07:53:30 -0700 (PDT)
-To: Pierre FICHEUX <pierre.ficheux@smile.fr>, yocto@yoctoproject.org
-References: <1498895529-24192-1-git-send-email-pierre.ficheux@smile.fr>
+	Sat, 01 Jul 2017 08:08:48 -0700 (PDT)
+To: =?UTF-8?Q?Juan_Jos=c3=a9_Casafranca?= <juan.casafranca@kdab.com>,
+	yocto@yoctoproject.org
+References: <8fd08db1-eebb-f7ce-b258-cafa45891113@kdab.com>
 From: Khem Raj <raj.khem@gmail.com>
-Message-ID: <031b6952-b6af-125b-fbf4-414d6f76e1bc@gmail.com>
-Date: Sat, 1 Jul 2017 07:53:21 -0700
+Message-ID: <053b4021-6d15-ccdb-ee77-13d244a99801@gmail.com>
+Date: Sat, 1 Jul 2017 08:08:42 -0700
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:54.0)
 	Gecko/20100101 Thunderbird/54.0
 MIME-Version: 1.0
-In-Reply-To: <1498895529-24192-1-git-send-email-pierre.ficheux@smile.fr>
-Subject: Re: [PATCH] Added missing LDFLAGS in sample recipe for morty branch
+In-Reply-To: <8fd08db1-eebb-f7ce-b258-cafa45891113@kdab.com>
+Subject: Re: Raspberrypi3 with Kodi (as an exercise)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,83 +77,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Jul 2017 14:53:34 -0000
-X-Groupsio-MsgNum: 36863
+X-List-Received-Date: Sat, 01 Jul 2017 15:08:54 -0000
+X-Groupsio-MsgNum: 36864
 Content-Type: multipart/signed; micalg=pgp-sha1;
 	protocol="application/pgp-signature";
-	boundary="rXGHGnHEDtm9FtHC6wmAFTapI3SLOKp32"
+	boundary="MTlUf2n3OOuqs1j0jDofxMG9NNS3FWajN"
 
---rXGHGnHEDtm9FtHC6wmAFTapI3SLOKp32
-Content-Type: multipart/mixed; boundary="lCxXDNKEU7U0OR2HL6eQABd8EcbioCgVT";
+--MTlUf2n3OOuqs1j0jDofxMG9NNS3FWajN
+Content-Type: multipart/mixed; boundary="2oARbqhwgxsw5dfLvDVtTBaasJw0vD9A3";
  protected-headers="v1"
 From: Khem Raj <raj.khem@gmail.com>
-To: Pierre FICHEUX <pierre.ficheux@smile.fr>, yocto@yoctoproject.org
-Message-ID: <031b6952-b6af-125b-fbf4-414d6f76e1bc@gmail.com>
-Subject: Re: [yocto] [PATCH] Added missing LDFLAGS in sample recipe for morty
- branch
-References: <1498895529-24192-1-git-send-email-pierre.ficheux@smile.fr>
-In-Reply-To: <1498895529-24192-1-git-send-email-pierre.ficheux@smile.fr>
+To: =?UTF-8?Q?Juan_Jos=c3=a9_Casafranca?= <juan.casafranca@kdab.com>,
+ yocto@yoctoproject.org
+Message-ID: <053b4021-6d15-ccdb-ee77-13d244a99801@gmail.com>
+Subject: Re: [yocto] Raspberrypi3 with Kodi (as an exercise)
+References: <8fd08db1-eebb-f7ce-b258-cafa45891113@kdab.com>
+In-Reply-To: <8fd08db1-eebb-f7ce-b258-cafa45891113@kdab.com>
 
---lCxXDNKEU7U0OR2HL6eQABd8EcbioCgVT
+--2oARbqhwgxsw5dfLvDVtTBaasJw0vD9A3
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-On 7/1/17 12:52 AM, Pierre FICHEUX wrote:
-> This problem causes the following error :
+On 7/1/17 4:10 AM, Juan Jos=C3=A9 Casafranca wrote:
+> Hi everybody,
 >=20
-> ERROR: example-0.1-r0 do_package_qa: QA Issue: No GNU_HASH in the elf b=
-inary
+> I'm completely new to the Yocto project, just started playing with it
+> and my rpi3 two days ago.
 >=20
-> Signed-off-by: Pierre FICHEUX <pierre.ficheux@smile.fr>
-> ---
->  .../target/arch/layer/recipes-example/example/example-recipe-0.1.bb   =
-  | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> As an exercise to learn how Yocto works, I'm trying to build a rpi imag=
+e
+> which can launch kodi.
 >=20
-> diff --git a/scripts/lib/bsp/substrate/target/arch/layer/recipes-exampl=
-e/example/example-recipe-0.1.bb b/scripts/lib/bsp/substrate/target/arch/l=
-ayer/recipes-example/example/example-recipe-0.1.bb
-> index 5fbf594..e534d36 100644
-> --- a/scripts/lib/bsp/substrate/target/arch/layer/recipes-example/examp=
-le/example-recipe-0.1.bb
-> +++ b/scripts/lib/bsp/substrate/target/arch/layer/recipes-example/examp=
-le/example-recipe-0.1.bb
-> @@ -14,7 +14,7 @@ SRC_URI =3D "file://helloworld.c"
->  S =3D "${WORKDIR}"
-> =20
->  do_compile() {
-> -	     ${CC} helloworld.c -o helloworld
-> +	     ${CC} ${LDFLAGS} helloworld.c -o helloworld
-
-perhaps doing compile and link in two steps where CFLAGS and LDFLAGS are
-used would be clearer
-
-something like
-
-${CC} ${CFLAGS} -c helloworld.c -o helloworld.o
-${LD} ${LDFLAGS} helloworld.o -o helloworld
-
-
->  }
-> =20
->  do_install() {
+> Right now I'm able of building an image which contains kodi,but when I
+> try to launch it, it fails. It says that it cannot create the GUI. (I
+> have tried kodi, kodi --standalone and kodi-standadlone, same result)
 >=20
 
+do you have x11 and opengl in your DISTRO_FEATURES ? you can check it
+with bitbake -e kodi | grep -e "^DISTRO_FEATURES=3D"
 
 
---lCxXDNKEU7U0OR2HL6eQABd8EcbioCgVT--
+> In order to build the image, I had to add
+>=20
+> MACHINE_FEATURES +=3D "vc4graphics" so it gets mesa as egl, gl and open=
+gl
+> provider.
+>
 
---rXGHGnHEDtm9FtHC6wmAFTapI3SLOKp32
+it should work with both userland and vc4graphics.
+
+
+> If I dont add that feature, kodi complains about not finding egl during=
+
+> configuration. I dont understand why it complains, since userland (the
+> default) its a egl provider (as it says in the recipe at least, probabl=
+y
+> I am understanding something incorrectly).
+>=20
+> Could you please guide me a little bit with this? As I said, it's my
+> first time playing with embedded devices and with yocto, so some
+> explanations would be nice :-)
+
+This is good section to work on in OE in general.
+
+>=20
+>=20
+> Thanks!
+>=20
+
+
+
+--2oARbqhwgxsw5dfLvDVtTBaasJw0vD9A3--
+
+--MTlUf2n3OOuqs1j0jDofxMG9NNS3FWajN
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iEYEARECAAYFAllXt2gACgkQuwUzVZGdMxT/cQCfTmfHOU80CEQQFM0yMBT8Tot8
-HhQAn3XThqDr782zp8NwSy7/UI1HFSs+
-=zAz9
+iEYEARECAAYFAllXuv8ACgkQuwUzVZGdMxQIZACfZnBeGXP17zaNDWU2VRNgF3YC
+OksAniu9B6uUi0z9YKko/QRvrrpZ8iD4
+=PZiC
 -----END PGP SIGNATURE-----
 
---rXGHGnHEDtm9FtHC6wmAFTapI3SLOKp32--
+--MTlUf2n3OOuqs1j0jDofxMG9NNS3FWajN--
