@@ -1,39 +1,29 @@
-Return-Path: <pierre.ficheux@smile.fr>
+Return-Path: <juan.casafranca@kdab.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47EB3E00BBC; Sat,  1 Jul 2017 01:00:34 -0700 (PDT)
+	id 859CFE00BBC; Sat,  1 Jul 2017 04:16:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_40,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [91.216.209.19 listed in list.dnswl.org]
-X-Greylist: delayed 484 seconds by postgrey-1.32 at yocto-www;
-	Sat, 01 Jul 2017 01:00:30 PDT
-Received: from idris.smile.fr (idris.smile.fr [91.216.209.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FEBBE00BB3
-	for <yocto@yoctoproject.org>; Sat,  1 Jul 2017 01:00:30 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by idris.smile.fr (Postfix) with ESMTP id 9D0AF1EE3839;
-	Sat,  1 Jul 2017 09:52:25 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at smile.fr
-Received: from idris.smile.fr ([127.0.0.1])
-	by localhost (bluemind-mta.prod.vitry.intranet [127.0.0.1])
-	(amavisd-new, port 10024)
-	with ESMTP id PCldv4KMmTiR; Sat,  1 Jul 2017 09:52:25 +0200 (CEST)
-Received: from pierre-N24-25JU.home (LFbn-1-1016-11.w86-247.abo.wanadoo.fr
-	[86.247.60.11])
-	by idris.smile.fr (Postfix) with ESMTPSA id 79EEE1EE37FF;
-	Sat,  1 Jul 2017 09:52:25 +0200 (CEST)
-From: Pierre FICHEUX <pierre.ficheux@smile.fr>
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [176.9.126.58 listed in list.dnswl.org]
+	* -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.3019]
+X-Greylist: delayed 362 seconds by postgrey-1.32 at yocto-www;
+	Sat, 01 Jul 2017 04:16:18 PDT
+Received: from mail.kdab.com (mail.kdab.com [176.9.126.58])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4FE8E00BB3
+	for <yocto@yoctoproject.org>; Sat,  1 Jul 2017 04:16:18 -0700 (PDT)
+X-Virus-Scanned: amavisd-new at kdab.com
+Sender: juan.casafranca@yoctoproject.org
 To: yocto@yoctoproject.org
-Date: Sat,  1 Jul 2017 09:52:09 +0200
-Message-Id: <1498895529-24192-1-git-send-email-pierre.ficheux@smile.fr>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] Added missing LDFLAGS in sample recipe for morty branch
+From: =?UTF-8?Q?Juan_Jos=c3=a9_Casafranca?= <juan.casafranca@kdab.com>
+Message-ID: <8fd08db1-eebb-f7ce-b258-cafa45891113@kdab.com>
+Date: Sat, 1 Jul 2017 13:10:34 +0200
+MIME-Version: 1.0
+Subject: Raspberrypi3 with Kodi (as an exercise)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,31 +35,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Jul 2017 08:00:34 -0000
+X-List-Received-Date: Sat, 01 Jul 2017 11:16:22 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-This problem causes the following error :
+Hi everybody,
 
-ERROR: example-0.1-r0 do_package_qa: QA Issue: No GNU_HASH in the elf binary
+I'm completely new to the Yocto project, just started playing with it 
+and my rpi3 two days ago.
 
-Signed-off-by: Pierre FICHEUX <pierre.ficheux@smile.fr>
----
- .../target/arch/layer/recipes-example/example/example-recipe-0.1.bb     | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+As an exercise to learn how Yocto works, I'm trying to build a rpi image 
+which can launch kodi.
 
-diff --git a/scripts/lib/bsp/substrate/target/arch/layer/recipes-example/example/example-recipe-0.1.bb b/scripts/lib/bsp/substrate/target/arch/layer/recipes-example/example/example-recipe-0.1.bb
-index 5fbf594..e534d36 100644
---- a/scripts/lib/bsp/substrate/target/arch/layer/recipes-example/example/example-recipe-0.1.bb
-+++ b/scripts/lib/bsp/substrate/target/arch/layer/recipes-example/example/example-recipe-0.1.bb
-@@ -14,7 +14,7 @@ SRC_URI = "file://helloworld.c"
- S = "${WORKDIR}"
- 
- do_compile() {
--	     ${CC} helloworld.c -o helloworld
-+	     ${CC} ${LDFLAGS} helloworld.c -o helloworld
- }
- 
- do_install() {
--- 
-2.7.4
+Right now I'm able of building an image which contains kodi,but when I 
+try to launch it, it fails. It says that it cannot create the GUI. (I 
+have tried kodi, kodi --standalone and kodi-standadlone, same result)
+
+In order to build the image, I had to add
+
+MACHINE_FEATURES += "vc4graphics" so it gets mesa as egl, gl and opengl 
+provider.
+
+If I dont add that feature, kodi complains about not finding egl during 
+configuration. I dont understand why it complains, since userland (the 
+default) its a egl provider (as it says in the recipe at least, probably 
+I am understanding something incorrectly).
+
+Could you please guide me a little bit with this? As I said, it's my 
+first time playing with embedded devices and with yocto, so some 
+explanations would be nice :-)
+
+
+Thanks!
 
 
