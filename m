@@ -1,77 +1,54 @@
-Return-Path: <prasoonkumar1295@gmail.com>
+Return-Path: <alexandre.osorio@eldorado.org.br>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9830E00A5C; Mon,  3 Jul 2017 07:33:39 -0700 (PDT)
+	id 61EAEE00BE8; Mon,  3 Jul 2017 08:16:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (prasoonkumar1295[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.170 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
-Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 707D0E009C2
-	for <yocto@yoctoproject.org>; Mon,  3 Jul 2017 07:33:36 -0700 (PDT)
-Received: by mail-io0-f170.google.com with SMTP id h64so57600708iod.0
-	for <yocto@yoctoproject.org>; Mon, 03 Jul 2017 07:33:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=G2ysuG+a1CwGwisXNqLzbo1/v6Vhb72KqITNKhp/4Bw=;
-	b=cEgPE1i1N1VaW/brV3YE8BD08UbyKxHCRm87hhlPJZlLwz2ZFkuLcY5TtFoAhNKbAk
-	RUh1TOtVkZRT3lGt8x+XHAeF+SWXcUSy/nTBJDGuQdD+/c7haL7LcPfvPft+pGjmjP3r
-	Tqn5Kp4qM5WW3Ql/EfGLEc9MEJevIFRjXzzpSBXqkMbHXhYRX5huCk9n96rgLtaIlJhU
-	RmZRxyIGvR09sr7Ox7WgUXzzDJZoJij8y7wb9MWFEnyoaJNxGp3isMdHofPSfmer5+5T
-	CGG1Y1j1dfGnovh1zTHWOZ+JBd1pyR9otcWU2SPMMdkuZLCAuP2L2SPTwyhT8/GzOyCa
-	3uWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=G2ysuG+a1CwGwisXNqLzbo1/v6Vhb72KqITNKhp/4Bw=;
-	b=kcN1mt7lmx+jXmXKNXbFxDxNOBwwSZqiFQ1v6MB/+SZlnIQEu6YbuLmMEYkFKFwL8P
-	shwuho80aq4pvU3FLhgKOxDKlsEz7fxAyDMfdkpPmQus1gB23E+IUDtNjdmlDe7F8N2J
-	yyCYy3NpeW9fvrgEueT01HTW3cUGyb3DKNr6m3IomCZiRidypKOrXrPTvxkvOUZJDxLM
-	lKQMxP3iTpGhNXwwVPmhh2BeKRp52Kt3TO00UAjqlTdNvYW6OYhIb4yJLcvEODqfskb2
-	G4o+rL84bXA6I3HNij6HLnMy7BJJTAdAgQ5rPrnMK+w9+puOX9j+5avuer6NkjgAiUtc
-	dQDA==
-X-Gm-Message-State: AIVw111wJBZxeHp+Rulg2iS2CxSGK9UG/qbLqDBGXCEVg/EtBqBtJR64
-	poj0fh1Cm3gD+zXhorPGlkWe14uE/w==
-X-Received: by 10.107.158.83 with SMTP id h80mr9337088ioe.98.1499092415113;
-	Mon, 03 Jul 2017 07:33:35 -0700 (PDT)
+X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
+	Mon, 03 Jul 2017 08:16:50 PDT
+Received: from smtp1.eldorado.org.br (smtp1.eldorado.org.br [200.148.226.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88456E00A38
+	for <yocto@yoctoproject.org>; Mon,  3 Jul 2017 08:16:49 -0700 (PDT)
+X-AuditID: ac10c815-585ff70000006be1-b9-595a5c558e42
+Received: from serv030.corp.eldorado.org.br (Unknown_Domain [192.168.4.30])
+	(using TLS with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(Client did not present a certificate)
+	by smtp1.eldorado.org.br (ELDORADO_SMTP) with SMTP id
+	EA.D9.27617.55C5A595; Mon,  3 Jul 2017 12:01:44 -0300 (BRT)
+Received: from serv031.corp.eldorado.org.br (192.168.4.31) by
+	serv030.corp.eldorado.org.br (192.168.4.30) with Microsoft SMTP Server
+	(TLS) id 15.0.775.38; Mon, 3 Jul 2017 12:01:28 -0300
+Received: from serv031.corp.eldorado.org.br ([fe80::c032:7018:83d3:b1e3]) by
+	serv031.corp.eldorado.org.br ([fe80::c032:7018:83d3:b1e3%14]) with mapi
+	id 15.00.0775.031; Mon, 3 Jul 2017 12:01:28 -0300
+From: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ERROR: Could not invoke dnf
+Thread-Index: AdL0DP06aGBtlP8WTrOYAZIlrWlSCA==
+Date: Mon, 3 Jul 2017 15:01:27 +0000
+Message-ID: <0a34e1cf6b7b474b901e97bd3e08da92@serv031.corp.eldorado.org.br>
+Accept-Language: pt-BR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.10.1.155]
 MIME-Version: 1.0
-Received: by 10.79.122.133 with HTTP; Mon, 3 Jul 2017 07:33:34 -0700 (PDT)
-Received: by 10.79.122.133 with HTTP; Mon, 3 Jul 2017 07:33:34 -0700 (PDT)
-In-Reply-To: <CAGAEfx6MQLgWx=_ztMLMDos9uydADYNwJMBQocG6v8Qdu=0Xmg@mail.gmail.com>
-References: <CAGAEfx7w9M+pdtMJO75yo1bssGcM-HFmh=+iN4zs3u2ycDJhHA@mail.gmail.com>
-	<CAGAEfx7M8oFxJ=xPFTbTFw9zWmOVaQjOEBL_eRoJKVp5Hmq2qQ@mail.gmail.com>
-	<CAGAEfx7NuzmNw5DNmUOtZwdSk9Wdq6Bx53pO7oAZ4hYKEH18EA@mail.gmail.com>
-	<CAGAEfx4hdcEvvqP8yEouESG0sWv3f6N=OK6Jrcm6BdZGNWpV=Q@mail.gmail.com>
-	<CAGAEfx5t9=0VFkg0J-zSpOUVE6t4ZOd8=PJbxzw-ANusAir3cw@mail.gmail.com>
-	<CAGAEfx48ZAG4TDS2T+uE1_VoJfqL5SskG5r6cTAd-=GHFa-j_w@mail.gmail.com>
-	<CAGAEfx5o3w1i_p4+Xf9Dqvsh-WM18=JhyadeLcM4V0pkQOmHgw@mail.gmail.com>
-	<CAGAEfx5S8bz-F+eJTD6esHg3FV17vOcufM-42Q5__LpDyKg4qA@mail.gmail.com>
-	<CAGAEfx7aw2ZHLvKAg7RN0EnTXz_BoQB-bB-S3bsRi_vH+AtW-g@mail.gmail.com>
-	<CAGAEfx6MQLgWx=_ztMLMDos9uydADYNwJMBQocG6v8Qdu=0Xmg@mail.gmail.com>
-From: Prasoon Kumar <prasoonkumar1295@gmail.com>
-Date: Mon, 3 Jul 2017 20:03:34 +0530
-Message-ID: <CAGAEfx6ncs54q2ZFBUd_9PVZZsaxt5921SsesG0J9-RAWSvTnA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: File system optimization in yocto
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMLMWRmVeSWpSXmKPExsVyYAWLnG5ETFSkwbazyhaTXq5hc2D0aD/R
+	xxbAGMVlk5Kak1mWWqRvl8CV0XPxI0vBROWKj6uOMTYwLpHvYuTgkBAwkdjbJdXFyMUhJLCM
+	SeLRtFZmCGcvo8T3xadYIZxTjBJru/oYuxg5OdgEPCWuv21jBrFFBEwlXhz7wgZiCwuoSMzp
+	ms8CEdeU+LloBiOErScxY+5bsBoWoJr3t7ezgti8At4SUz93gNmMArISc//sZQexmQXEJW49
+	mc8EYksICEgs2XOeGcIWlXj5+B8rhC0v8XXDQWaI+nyJ02/Xs0PMFJQ4OfMJywRGoVlIRs1C
+	UjYLSRlEXEdiwe5PbBC2tsSyha+ZYewzBx4zIYsvYGRfxShanFtSYKiXmpOSX5SYkq+XX5Su
+	l1S0iREYFWsETojuYHz+w+sQowAHoxIP7wPfqEgh1sSy4srcQ4wSHMxKIrxPIoFCvCmJlVWp
+	RfnxRaU5qcWHGKU5WJTEeQuW/o8QEkhPLEnNTk0tSC2CyTJxcEo1MCr05d2vfJb7LPTzgfXC
+	RS0bhF3/viqKb5kWt/f0aukKYY81zLe35HpI3OqbwmxyaOrZbs6Q/447nPOyTiwx1Q6PjYpX
+	WmZjLjhzVc6cyT4dX3qUqpt8zr5JYs3SnfPvlrSGTSbnt7zw44ZVJl3lU441rHGf0V1eFMIY
+	Pn3jIiPtzM0cj3caKbEUZyQaajEXFScCAP9RG7iGAgAA
+Subject: ERROR: Could not invoke dnf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,41 +60,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jul 2017 14:33:39 -0000
-Content-Type: multipart/alternative; boundary="001a1140b72ee36eca05536aa60e"
+X-List-Received-Date: Mon, 03 Jul 2017 15:16:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_0a34e1cf6b7b474b901e97bd3e08da92serv031corpeldoradoorgb_"
 
---001a1140b72ee36eca05536aa60e
-Content-Type: text/plain; charset="UTF-8"
+--_000_0a34e1cf6b7b474b901e97bd3e08da92serv031corpeldoradoorgb_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-I am trying to optimise the file system. I have removed the packages which
-are not required using PACKAGE_EXCLUDE. It still take around 8 seconds to
-load the file system.
-
-How can I optimization so that my file system loading take less time. Is
-there any way to load files in a multi-threaded way so that loading is
-faster.
-
-Any suggestions on optimising the file system in terms of size or time will
-be helpful.
+I'm trying to upgrade my build from Morty to Pyro, without success. Maintai=
+ning the same recipe for the image generation, the following errors happen =
+in do_rootfs (these errors don't occur using Morty).
 
 
--Prasoon
+ERROR: my-image-1.0-r0 do_rootfs: Could not invoke dnf.
 
---001a1140b72ee36eca05536aa60e
-Content-Type: text/html; charset="UTF-8"
+Error: Transaction check error:
+  file /etc/init.d/networking conflicts between attempted installs of init-=
+ifupdown and initscripts
+  file /usr/bin/zipdetails conflicts between attempted installs of io-compr=
+ess-perl and perl-misc
+
+
+Please anyone could help?
+
+
+Thanks.
+
+Alexandre
+
+--_000_0a34e1cf6b7b474b901e97bd3e08da92serv031corpeldoradoorgb_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I am try=
-ing to optimise the file system. I have removed the packages which are not =
-required using PACKAGE_EXCLUDE. It still take around 8 seconds to load the =
-file system.</div><div dir=3D"auto"><br></div><div dir=3D"auto">How can I o=
-ptimization so that my file system loading take less time. Is there any way=
- to load files in a multi-threaded way so that loading is faster.</div><div=
- dir=3D"auto"><br></div><div dir=3D"auto">Any suggestions on optimising the=
- file system in terms of size or time will be helpful.</div><div dir=3D"aut=
-o"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto">-Prasoon</div></=
-div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"PT-BR" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;m trying to upgrade my =
+build from Morty to Pyro, without success. Maintaining the same recipe for =
+the image generation, the following errors happen in do_rootfs (these error=
+s don&#8217;t occur using Morty).
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">ERROR: my-image-1.0-r0 do_rootf=
+s: Could not invoke dnf.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Error: Transaction check error:=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp; file /etc/init.d/network=
+ing conflicts between attempted installs of init-ifupdown and initscripts<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp; file /usr/bin/zipdetails=
+ conflicts between attempted installs of io-compress-perl and perl-misc<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Please anyone could help?<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Alexandre<o:p></o:p></span></p>
+</div>
+</body>
+</html>
 
---001a1140b72ee36eca05536aa60e--
+--_000_0a34e1cf6b7b474b901e97bd3e08da92serv031corpeldoradoorgb_--
