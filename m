@@ -1,37 +1,65 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <lakshmikanthr36@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DE56E00BB1; Mon,  3 Jul 2017 20:09:05 -0700 (PDT)
+	id CF79BE00C32; Mon,  3 Jul 2017 21:48:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (lakshmikanthr36[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.43 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1291E00AE4
-	for <yocto@yoctoproject.org>; Mon,  3 Jul 2017 20:09:03 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v64393YO005728
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 3 Jul 2017 20:09:03 -0700 (PDT)
-Received: from server.local (128.224.23.69) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 3 Jul 2017 20:09:02 -0700
-To: <zhe.he@windriver.com>, <yocto@yoctoproject.org>
-References: <1498789784-22418-1-git-send-email-zhe.he@windriver.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <b1af99e3-0f95-b076-20a7-ca73a5ea6283@windriver.com>
-Date: Mon, 3 Jul 2017 23:09:02 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.2.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.43 listed in list.dnswl.org]
+Received: from mail-lf0-f43.google.com (mail-lf0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBD51E00C30
+	for <yocto@yoctoproject.org>; Mon,  3 Jul 2017 21:48:34 -0700 (PDT)
+Received: by mail-lf0-f43.google.com with SMTP id b207so112003897lfg.2
+	for <yocto@yoctoproject.org>; Mon, 03 Jul 2017 21:48:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=i7JVwRkEmk1+GmUqB99bmX9ZV9KmSLdhvay81hcmMWQ=;
+	b=QtamGypE6LyfMq29rlv189DJZIh0MhY+S9qEaKfqxW09kW8fZsvYvn+9m4nHfWaPUe
+	RCC6j6U3q58FRhohVzYdx5npWOC2GKjO3RMmaR/pnRAAAwL5//6vbLLiWjBxkWYsdpJh
+	XtkjoANkuRLxZgDvUhnUKJhqsmW7NYYERB6PrjBl+bOJdkl2RnKXjus5evjsPbKW070v
+	YO4aeJV+GtlHduvS+WIta9k4wjSGtTDmULzGPyY80PaI6v5n+ZBFKacZ8tRGVeGMu6fl
+	Gb0fdFa3UL6cGUkhaSidsV404tD3/oeNhj28GVhE+fv+nrtuZgLAOOETtBolEjXq99pl
+	S6bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=i7JVwRkEmk1+GmUqB99bmX9ZV9KmSLdhvay81hcmMWQ=;
+	b=tWGAanPi6Am0EqJXYNwU3XTgqxWappbpMqbg1+S96vGmy6hujUwJtsEJWKyxpKDfzj
+	XfYa6CjDma08OFGl0ICXtfoSPzcW9mkX63XnlYaIxxCrIcollPhe+A28rR2QIlH09/eE
+	0y4xkdZ1juOYOWazG6T3AiU84S6jBac0VXhpXKRMs3fdsWi4XgHX+YQbMVa7lYqySmAK
+	vXfxG0ezFFug3TR6LwCZknPaolEEwPPCHP3H8KS85FuSq4QqTK/2sYGLiWcsB2qnejdq
+	exVBJNj3W+Di7uS8j96NS/4udLNRFTgdAh16vlLoZc73TjpvbYMIu9MmfTbQRWGFDC+I
+	GTpw==
+X-Gm-Message-State: AIVw110MDvGSZTwRyN71ASPr8rtRM8NBBkWEldWodbcZJOQnHswG7dYS
+	apqJQL0IeOI/z7p5YOTeZ2JtpWsiY75B
+X-Received: by 10.46.70.9 with SMTP id t9mr3878352lja.40.1499143713018; Mon,
+	03 Jul 2017 21:48:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1498789784-22418-1-git-send-email-zhe.he@windriver.com>
-Subject: Re: [meta-realtime][PATCH] schedtool-dl: Fix SCHED_DEADLINE value out of range
+Received: by 10.46.71.67 with HTTP; Mon, 3 Jul 2017 21:48:32 -0700 (PDT)
+Received: by 10.46.71.67 with HTTP; Mon, 3 Jul 2017 21:48:32 -0700 (PDT)
+From: lakshmikanth r <lakshmikanthr36@gmail.com>
+Date: Tue, 4 Jul 2017 10:18:32 +0530
+Message-ID: <CAKc9Xff_afmPZ2YgahWyMkQxOij5PQkapNKW4vQp7CUiHxUuNw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Got error while building boundary-eval-image ( adding Qt plug in )
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,115 +71,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jul 2017 03:09:05 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Jul 2017 04:48:36 -0000
+Content-Type: multipart/alternative; boundary="f403045f798c7b56cd055376983d"
 
-merged.
+--f403045f798c7b56cd055376983d
+Content-Type: text/plain; charset="UTF-8"
 
-Bruce
+Hi,
 
-On 2017-06-29 10:29 PM, zhe.he@windriver.com wrote:
-> From: He Zhe <zhe.he@windriver.com>
-> 
-> The upstream commit 3ffb479929c31cbae09de08f94f58b8f0f061d91
-> tries to fix this issue but it's not complete.
-> 
-> This patch adds flags at the last necessary place.
-> 
-> Signed-off-by: He Zhe <zhe.he@windriver.com>
-> ---
->   recipes-tools/schedtool-dl/schedtool-dl.bb         |  6 ++-
->   ...-add-flags-to-parameters-of-sched_setattr.patch | 56 ++++++++++++++++++++++
->   2 files changed, 61 insertions(+), 1 deletion(-)
->   create mode 100644 recipes-tools/schedtool-dl/schedtool-dl/0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch
-> 
-> diff --git a/recipes-tools/schedtool-dl/schedtool-dl.bb b/recipes-tools/schedtool-dl/schedtool-dl.bb
-> index 578e5df..20c8919 100644
-> --- a/recipes-tools/schedtool-dl/schedtool-dl.bb
-> +++ b/recipes-tools/schedtool-dl/schedtool-dl.bb
-> @@ -3,13 +3,17 @@ SECTION = "devel"
->   LICENSE = "GPLv2"
->   LIC_FILES_CHKSUM = "file://LICENSE;md5=dc1f51f7ca94aebffb9b3663d82873ec"
->   
-> -SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git"
-> +SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git \
-> +           file://0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch \
-> +          "
->   SRCREV = "3ffb479929c31cbae09de08f94f58b8f0f061d91"
->   
->   S = "${WORKDIR}/git"
->   
->   EXTRA_OEMAKE = "'CC=${CC}'"
->   
-> +TARGET_CC_ARCH += "${LDFLAGS}"
-> +
->   do_compile() {
->   	oe_runmake
->   }
-> diff --git a/recipes-tools/schedtool-dl/schedtool-dl/0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch b/recipes-tools/schedtool-dl/schedtool-dl/0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch
-> new file mode 100644
-> index 0000000..65d5059
-> --- /dev/null
-> +++ b/recipes-tools/schedtool-dl/schedtool-dl/0001-schedtool-dl-add-flags-to-parameters-of-sched_setattr.patch
-> @@ -0,0 +1,56 @@
-> +From c75ae0f6ac2bb9eb893cce82e93144e1b3c36389 Mon Sep 17 00:00:00 2001
-> +From: Qi Hou <qi.hou@windriver.com>
-> +Date: Wed, 16 Mar 2016 05:44:40 +0000
-> +Subject: [PATCH] schedtool-dl: add flags to parameters of sched_setattr
-> +
-> +git://github.com/jlelli/schedtool-dl.git;protocol=git
-> +commit 3ffb479929c31cbae09de08f94f58b8f0f061d91
-> +
-> +The commit numbered as 3ffb479 has adapted to the very last changes to the ABI,except for the
-> +syscall of sched_setattr.
-> +
-> +While executing schedtool,there was an error,like below:
-> +
-> +root@128:/opt/wr-test/testcases/kts/edf# schedtool -E -t 8000:10000 -e yes
-> +ERROR: could not set PID 1731 to E: SCHED_DEADLINE - value out of range / policy not implemented
-> +
-> +The cause of this case is that the syscall of sched_setattr is declared with 3 parameters,but in
-> +the use of it in schedtool,there was only two parameters.So to adapt this declaration,we should
-> +add one more parameter,flags,when calling sched_setattr.
-> +
-> +In kernel source file kernel/sched/core.c,the declaration of the syscall of sched_setattr like below:
-> +/**
-> + * sys_sched_setattr - same as above, but with extended sched_attr
-> + * @pid: the pid in question.
-> + * @uattr: structure containing the extended parameters.
-> + * @flags: for future extension.
-> + */
-> + SYSCALL_DEFINE3(sched_setattr, pid_t, pid, struct sched_attr __user *, uattr,
-> +                                unsigned int, flags)
-> + {
-> +	...
-> + }
-> +
-> +In schedtool-dl source file syscall_magic.h,the use of sched_setattr like below:
-> +        syscall(__NR_sched_setattr, pid, attr)
-> +
-> +Upstream-Status: Backport
-> +
-> +Signed-off-by: Qi Hou <qi.hou@windriver.com>
-> +---
-> + syscall_magic.h | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/syscall_magic.h b/syscall_magic.h
-> +index 7dcb967..2735dfb 100644
-> +--- a/syscall_magic.h
-> ++++ b/syscall_magic.h
-> +@@ -76,4 +76,4 @@ struct sched_attr {
-> + 	syscall(__NR_sched_getattr, pid, attr, size, flags)
-> +
-> + #define sched_setattr(pid, attr, flags) \
-> +-	syscall(__NR_sched_setattr, pid, attr)
-> ++	syscall(__NR_sched_setattr, pid, attr,flags)
-> +--
-> +1.9.1
-> +
-> 
+I 'm trying to do bitbake using Morty branch with respective boundary image.
+
+I was got error keeps appearing like this
+
+Firmware-imx- 1_5.4-r0 do_fetch error.
+
+Unable to fetch the firmware. I'm looking forward for your response.
 
 
+Thanks & Regards ,
+Lakshmikanth R
+
+--f403045f798c7b56cd055376983d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I &#39;m=
+ trying to do bitbake using Morty branch with respective boundary image.</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">I was got error keeps appe=
+aring like this=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Fi=
+rmware-imx- 1_5.4-r0 do_fetch error.=C2=A0</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">Unable to fetch the firmware. I&#39;m looking forward fo=
+r your response.</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">Thanks &amp; Regards ,</div><div dir=3D"auto">Lakshmik=
+anth R</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div></div>
+
+--f403045f798c7b56cd055376983d--
