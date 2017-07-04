@@ -1,20 +1,14 @@
-Return-Path: <prasoonkumar1295@gmail.com>
+Return-Path: <trini@konsulko.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0D1AE00BB6; Tue,  4 Jul 2017 04:50:19 -0700 (PDT)
+	id 91FB7E00B8D; Tue,  4 Jul 2017 09:03:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (prasoonkumar1295[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.67 listed in dnsbl.sorbs.net]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -22,53 +16,57 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.67 listed in list.dnswl.org]
-Received: from mail-it0-f67.google.com (mail-it0-f67.google.com
-	[209.85.214.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9114E00AE4
-	for <yocto@yoctoproject.org>; Tue,  4 Jul 2017 04:50:16 -0700 (PDT)
-Received: by mail-it0-f67.google.com with SMTP id k3so10490066ita.3
-	for <yocto@yoctoproject.org>; Tue, 04 Jul 2017 04:50:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=yHrfQB+dzxgzE9saMiLxfci34/NsxaITAw5OGywLa9I=;
-	b=jyysbey6vdHngg4CjAwOif1nY2v+7W0/OaPVlYBYsFxYF8k8/MjRVnzt3tA6n3k6TA
-	1zrkjxl/7y7O6Eg0Mc3IyBYmYuusYhMEGg/x7pQO4JL0vAXdB5rhXfOuixHbKNcoiGAR
-	Wx0rV0y/lyiBZMUB+vi89rFDRi/pexC1yS6EEGatlHSKr7/4BAFErQ6k0CA8zmMh5L8f
-	JDyO5ivLedjJ+HRBYNpLGQ5vkT9jNtG7K5Vny/85ZlytDaGT4E/gDQLGu8y78gDBKRqq
-	n4Daqvulb+17277QfNDo/1R6hv7yD/onyEYKXI0Kjjv5mr9nn0WNbTdEF4KqIRL38Dyz
-	nISg==
+	*      [209.85.213.174 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.174 listed in dnsbl.sorbs.net]
+Received: from mail-yb0-f174.google.com (mail-yb0-f174.google.com
+	[209.85.213.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FBB0E00B3D
+	for <yocto@yoctoproject.org>; Tue,  4 Jul 2017 09:03:10 -0700 (PDT)
+Received: by mail-yb0-f174.google.com with SMTP id e201so65229769ybb.1
+	for <yocto@yoctoproject.org>; Tue, 04 Jul 2017 09:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=d4FlQ6XFEP/fv/I0sV6F9DPg5ODgBZmr+7yx4ND0rl8=;
+	b=DvsPQBOjy8ym+fQQsvSkOal2YA762UyJuxQwsG/2IT7zwRS6orpp2REJERUufbwVVM
+	4nEf/zuSOZAmRYuWYzoRknYy3UIq9ssxMQEwFsfr5t9hLwTLG9G5VZnsHEaY94hZJNJa
+	8TUIEh6h8VFWDr0Wzf/zFNSQIqQy9uZCbB64U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=yHrfQB+dzxgzE9saMiLxfci34/NsxaITAw5OGywLa9I=;
-	b=ZdfJv2mVuP63FUO9ltlpSed34qhPYWr5jFzJcnwWvNPobGRw+Z4Zu9AhQk5JXckWBU
-	2QFoWRFiWpZmq3xybdke7h4s+vOjhmOA/eEaZlaKGAntROzFz1cPjESz2GfZCQ4YAcaF
-	9XLyQGSoSunfpiKjEXgTqSYXbQnO6rVuW5OdnhykBguUIXbEs9ZzNCEt9qhj/Qe14qqF
-	gX2/xF3rVnGmJOIkOow+vQz4/s6hiGWFp7rfT9FZ5SeJYX645kIC9cxn+EJccRsMK3iQ
-	6qlsl0HV7LSXk89ojlaC768UtvQGoMSE9dWWjwmBVrjoquP1xA40yV26ATf5pkrKdxHX
-	FcIw==
-X-Gm-Message-State: AKS2vOzCgV1HkPeVHszToi+VI0Yvl03yh4NfJevK92B+wQVLgdm/WnmZ
-	mG8/rA9u87bz3lr5aGyWpu/WRcvAJw==
-X-Received: by 10.36.65.234 with SMTP id b103mr5911341itd.0.1499169015983;
-	Tue, 04 Jul 2017 04:50:15 -0700 (PDT)
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=d4FlQ6XFEP/fv/I0sV6F9DPg5ODgBZmr+7yx4ND0rl8=;
+	b=E/ksAwnMfhv7vHYOhFX2geyLo4fF1c1is0OU2Upzj1SXuHjrciIroyleyQZ6X8LxWx
+	wGvJ1cA6rxPOVth4EYNWMug9P+h+SMfQ0eSLkLcg8D9+UI5gXmnCEPqUfVHzxLl3dIBc
+	cz7L9GpaRFIWRVGrUKGZYbJAMSkfVwKBCzh1kzh3P516J4pQy1wz7ShEa+zVzLITheTL
+	3uk7MS4Vcv3F3tVxHAUNVQXLAAniyCmARTs4L47lPADwZ5DCvqnnpAP3ON+ncnF3S52C
+	uUy5j7UkaT48oAV+xPP6WbMEw5GQQ2OOJnN8VmCHS9xQf8fIkEuqy1zCTiHFrNKQIz+3
+	HPNg==
+X-Gm-Message-State: AKS2vOwPqoya0nIibD/zO5bJJ8yKt7gPLP9+Ez1BloZHrX/CdjMUFGoA
+	fszLxBqIzUB1StZPRJET/g==
+X-Received: by 10.37.4.208 with SMTP id 199mr33304863ybe.133.1499184189885;
+	Tue, 04 Jul 2017 09:03:09 -0700 (PDT)
+Received: from bill-the-cat (cpe-75-180-228-133.ec.res.rr.com.
+	[75.180.228.133]) by smtp.gmail.com with ESMTPSA id
+	b188sm8046671ywe.50.2017.07.04.09.03.09
+	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
+	Tue, 04 Jul 2017 09:03:09 -0700 (PDT)
+Date: Tue, 4 Jul 2017 12:03:58 -0400
+From: Tom Rini <trini@konsulko.com>
+To: Anders Montonen <Anders.Montonen@iki.fi>
+Message-ID: <20170704160358.GJ9889@bill-the-cat>
+References: <alpine.DEB.2.11.1706201553410.27988@lakka.kapsi.fi>
+	<CAMKF1spmLmRv8z2vBvSLUh2VrWVa9=Ov-W7QzK7LDYSnwd=HjQ@mail.gmail.com>
+	<AD70DBFD-84A9-44DF-8DCB-1C25BBF0F351@iki.fi>
+	<20170622120832.GS27196@bill-the-cat>
+	<alpine.DEB.2.11.1706291347560.1790@lakka.kapsi.fi>
+	<20170630013506.GI9889@bill-the-cat>
 MIME-Version: 1.0
-Received: by 10.79.122.133 with HTTP; Tue, 4 Jul 2017 04:50:15 -0700 (PDT)
-Received: by 10.79.122.133 with HTTP; Tue, 4 Jul 2017 04:50:15 -0700 (PDT)
-In-Reply-To: <cc436872-9b62-ae76-a119-f3627beed148@gmail.com>
-References: <CAGAEfx5_j17h=PGTKC4WT_qi+gUEqQU9E_w_7vzRE_0OPasuow@mail.gmail.com>
-	<CAGAEfx4B_sEGMb-ie+Ti9JZzQ_COf8VF+9FdptsKNwvzLqscxQ@mail.gmail.com>
-	<CAGAEfx7gZt_JSdmTwWi7H5C8_9Lu8y3MvHaFdW163VRveqdfZw@mail.gmail.com>
-	<CAGAEfx5M6tzcfFxhHy-gY52Bm-eu6=ExTc-h=b1D_epTD45Ozw@mail.gmail.com>
-	<CAGAEfx4=OdQr5cKcYS=pDBbmAYuFO+7FOCs8yOZrPfw2npbKaQ@mail.gmail.com>
-	<cc436872-9b62-ae76-a119-f3627beed148@gmail.com>
-From: Prasoon Kumar <prasoonkumar1295@gmail.com>
-Date: Tue, 4 Jul 2017 17:20:15 +0530
-Message-ID: <CAGAEfx4AsGmxkZ=ZHorpJNYyaPCCzWowqf2d1MCc7xw=VnX3kw@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <20170630013506.GI9889@bill-the-cat>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
-Subject: Re: How to make changes and build u-boot source code in yocto
+Subject: Re: AppArmor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,99 +78,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jul 2017 11:50:20 -0000
-Content-Type: multipart/alternative; boundary="001a11c146a6a8008e05537c7ca2"
+X-List-Received-Date: Tue, 04 Jul 2017 16:03:12 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---001a11c146a6a8008e05537c7ca2
-Content-Type: text/plain; charset="UTF-8"
+On Thu, Jun 29, 2017 at 09:35:06PM -0400, Tom Rini wrote:
+> On Thu, Jun 29, 2017 at 01:56:22PM +0300, Anders Montonen wrote:
+> > Hi Tom,
+> > 
+> > On Thu, 22 Jun 2017, Tom Rini wrote:
+> > >
+> > >I did fix the latter of these (along with the perl problem), but I'm
+> > >using sysvinit and needed apache2 in my project anyhow.
+> > 
+> > Your commit fixes most of the problems, but /usr/bin/aa-easyprof
+> > still gets installed with a shebang referring to the host python3
+> > interpreter. The script is processed and installed by
+> > utils/python-tools-setup.py, which captures whatever $PYTHON is set
+> > to at the time.
+> 
+> Oh thanks!  I'll v2 things shortly with that fixed up.
 
-It worked with devtool .
+So, FYI all, here's where I'm at.  Fixing up aa-easyprof for the shebang
+part is easy as there's a few other cases around of "manually correct a
+shebang".  But this exposes another problem of needing to basically
+RDEPEND on python3-modules as not only does apparmor depend on a few
+different core modules but the core modules themselves do not have
+correct interdependencies.  As it stand today for perl this is handled
+by some very fragile looking shell expressions that get re-run per perl
+upgrade.  I don't think I can come up with the equivalent for python.
+So my local version also has this just saying we need all of
+python3-modules to be installed, and then it works.
 
-Thanks for the help.
+I've also fixed up some minor logging issues in the sysvinit script
+(which I know isn't a concern for Anders as he's using systemd, but just
+being complete).  I will post another version in a few days just so
+others can have functioning apparmor if they want it, at least until
+Armin speaks up.
 
-On 04-Jul-2017 1:43 AM, "Khem Raj" <raj.khem@gmail.com> wrote:
+-- 
+Tom
 
->
->
-> On 7/2/17 11:26 PM, Prasoon Kumar wrote:
->
-> Hi,
->
-> I am trying to make some changes in u-boot code and using bitbake u-boot
-> to build. But it doesn't build.
-> I also tried bitbake u-boot -c compile and bitbake u-boot deploy. This
-> also didn't work.
->
-> Can I Get some help on how to change and build u-boot.
->
->
-> you should share more information about errors for someone to effectively
-> help you.
->
->
-> Thanks,
-> Prasoon
->
->
->
->
-
---001a11c146a6a8008e05537c7ca2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">It worked with devtool .=C2=A0<div dir=3D"auto"><br></div=
-><div dir=3D"auto">Thanks for the help.</div></div><div class=3D"gmail_extr=
-a"><br><div class=3D"gmail_quote">On 04-Jul-2017 1:43 AM, &quot;Khem Raj&qu=
-ot; &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wr=
-ote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p><br>
-    </p>
-    <br>
-    <div class=3D"m_2199126870683967542moz-cite-prefix">On 7/2/17 11:26 PM,=
- Prasoon Kumar
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"auto">Hi,
-        <div dir=3D"auto"><br>
-        </div>
-        <div dir=3D"auto">I am trying to make some changes in u-boot code
-          and using bitbake u-boot to build. But it doesn&#39;t build.</div=
->
-        <div dir=3D"auto">I also tried bitbake u-boot -c compile and
-          bitbake u-boot deploy. This also didn&#39;t work.</div>
-        <div dir=3D"auto"><br>
-        </div>
-        <div dir=3D"auto">Can I Get some help on how to change and build
-          u-boot. <br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    you should share more information about errors for someone to
-    effectively help you.<br>
-    <br>
-    <blockquote type=3D"cite">
-      <div dir=3D"auto">
-        <div dir=3D"auto"><br>
-        </div>
-        <div dir=3D"auto">Thanks,</div>
-        <div dir=3D"auto">Prasoon</div>
-      </div>
-      <br>
-      <fieldset class=3D"m_2199126870683967542mimeAttachmentHeader"></field=
-set>
-      <br>
-    </blockquote>
-    <br>
-  </div>
-
-</blockquote></div></div>
-
---001a11c146a6a8008e05537c7ca2--
