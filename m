@@ -1,14 +1,20 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <so61pi.re@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F9C0E00BE0; Tue,  4 Jul 2017 19:07:56 -0700 (PDT)
+	id 17161E00BE8; Tue,  4 Jul 2017 19:09:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
+	mail provider *      (so61pi.re[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.48 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,53 +23,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.49 listed in list.dnswl.org]
-Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E166DE00BD0
-	for <yocto@yoctoproject.org>; Tue,  4 Jul 2017 19:07:52 -0700 (PDT)
-Received: by mail-pg0-f49.google.com with SMTP id t186so117139852pgb.1
-	for <yocto@yoctoproject.org>; Tue, 04 Jul 2017 19:07:52 -0700 (PDT)
+Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A37C1E00BD0
+	for <yocto@yoctoproject.org>; Tue,  4 Jul 2017 19:09:45 -0700 (PDT)
+Received: by mail-lf0-f48.google.com with SMTP id b207so126092398lfg.2
+	for <yocto@yoctoproject.org>; Tue, 04 Jul 2017 19:09:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-language;
-	bh=EHzprqpfSbEITPXqYqfPDVxmjcQflbSOaGXASzrBSGU=;
-	b=EXHJdXHspRFxISmz6EtggtxUOnUE9acvF01GY+RhhdBW+tXIb/nZgACpzv+p6GCOe5
-	GFz0UxMEyO0yavf5owlObZ0ozuaWMnzBOt06RAzWqA05wyy/FucDAGg57XIbGlbrIvVT
-	6qZRodlmAZ3NwJeMJ0Ma4pzXyk+CRYC0gcTqAx9/MU3JFQIHDIdFczuiAMxPADx+OCW6
-	tP0jrXgktqG9e08khg14MDHdD9rJGbZUcVxfJW38qjHbyuUj1T3qO7315EtuiA7UsjHa
-	PMYwW6oM9urb4epShNLTfqCToUgfp4vdVOH0YFM4WP6RoGPg31GExGFF3kaNt3YXmCwi
-	6vSg==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=EP5o+4nVAco40Jl9jZrdtFSwB8c4T3Z5QqyMiobcUaY=;
+	b=dXfHue2HUGMfOgQgY0F8EjBB2+OPHo/s/w+77IIQM1ZLmC1RrDl/JTFqjTkQzyyYXR
+	zTCVM9cqR6jsvc7hti33TN31TiJppULVUtpWJ1lSgXHFkpGazyVS5vuGiaU7/ZBGFA25
+	RNXtyM9rcAnPu7aLo37v6wKUUcIeBHmoWFlrWYFp+xomf/Z1x9gW9Zeq++vP+z/HOf7L
+	bkiX9tPouhPBpqMy6UNUKqrXXXt48nA5+McNVLmRKSFl+DCXzYNgKqXBb3yPF0LUFTje
+	eHBhykceAjQ7bpffjbvS1jo4bAVh8pvpjFT2f2jFUB1ck3QrHGvE84J9VOhucD6rG2Ec
+	Cjkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language;
-	bh=EHzprqpfSbEITPXqYqfPDVxmjcQflbSOaGXASzrBSGU=;
-	b=nIsOQxy/wNd754sz3cCLc/XbrULUelbaXJfkxeNIyOXOHi/5lt+YId0VD8wluurOcZ
-	nYaJU8hSnj8NNQtS1gCldiZ0Mz2abvG0JNwzLZWrwtRFF8M52zu2dcGFaliqbBHLYsvA
-	+6RB/MAp7o3JmiKV6EI4YPIH0OHYZeAEx7CEvfQwjGjuiNcdRnxP95yOewjyqpd6KzjT
-	l5LxcthNTsu7ncJW8XbuMKMZrO5KlmoWsl1cG+2o6sGG8VTTEKARpk3gB04i1zyxtpKo
-	CNAimHCYZYbGRr50lD1LNUWK2OIHUJ33vlT5PlWxMD7WTWnsD2LdoHc38J+ye0ZL34tJ
-	41sQ==
-X-Gm-Message-State: AIVw112y0M5xXS+4YQA8+gw5g7QqYwzf6On1N34faQk9Q1dvPHw/MsSr
-	uhDKFfriT0GrnwN0
-X-Received: by 10.98.13.219 with SMTP id 88mr18288344pfn.191.1499220471971;
-	Tue, 04 Jul 2017 19:07:51 -0700 (PDT)
-Received: from ?IPv6:2001:8003:804a:b500:8c94:2d3e:fbf5:a0d8?
-	([2001:8003:804a:b500:8c94:2d3e:fbf5:a0d8])
-	by smtp.gmail.com with ESMTPSA id
-	u73sm43974690pfi.105.2017.07.04.19.07.49 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 04 Jul 2017 19:07:51 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <e4afdd98-d641-c111-914c-7d2b94e88c53@gmail.com>
-Date: Wed, 5 Jul 2017 10:07:48 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=EP5o+4nVAco40Jl9jZrdtFSwB8c4T3Z5QqyMiobcUaY=;
+	b=aPhCRaa/lVVUdrpyJg9+Ih6ctghv0L9SjpT1IaKGAdt6B5yZf3bdlHbBBT0MkxfVi5
+	Kp/7jdIWGbVyBYiKwJhVvnjq4+bFdF8SLvW1mx8RK5PILL0MUrj+kf2QHwor3pZ0+sCT
+	9sXPxYwq1e96nCmkQ8rKPAFL78D/iYBV7iSOnlD8Ag7RnfstfREHBfSDOI5SarVYKiWm
+	z5a9EGwJYjNVKyfXKXDCk+Kz1TtU4CtfWoatn7LSBt/r7+EHWw54/oB0v9TL0AMepmkn
+	Z6zQML701Yd0/ox3AxNMHWzM57yJAyrX5wccfDmTUTfrmqjhQk1ZOhTvHjAv/gWb2tIT
+	BUxw==
+X-Gm-Message-State: AKS2vOx2jMbP1jEBxpxBukluAv27bpCv2YluLrJ9zAHoxu1vXLR9oCKK
+	rabH+5wzqy9VOqefYlWFtj0Fa7ZUq6Alhbk=
+X-Received: by 10.46.9.140 with SMTP id 134mr10039360ljj.42.1499220584464;
+	Tue, 04 Jul 2017 19:09:44 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Kernel image and dts
+Received: by 10.25.199.203 with HTTP; Tue, 4 Jul 2017 19:09:43 -0700 (PDT)
+In-Reply-To: <ad7604a1-743e-89f3-b810-b80beeb3f5cc@denx.de>
+References: <CAGnCEbuE7OVy=RrbD91WMtSiZ2nJ90eUONMEJ=ZrMfx2FC6LhA@mail.gmail.com>
+	<ad7604a1-743e-89f3-b810-b80beeb3f5cc@denx.de>
+From: =?UTF-8?B?Tmfhu41jIFRoaSBIdeG7s25o?= <so61pi.re@gmail.com>
+Date: Wed, 5 Jul 2017 09:09:43 +0700
+Message-ID: <CAGnCEbuAG01bPk0WR5HvTcPwAxqUPU_OA_JipRjmANwCyumAkQ@mail.gmail.com>
+To: Stefano Babic <sbabic@denx.de>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: Update SRCREV doesn't work?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,73 +75,184 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jul 2017 02:07:56 -0000
-Content-Type: multipart/alternative;
-	boundary="------------EE8CBD40C04276478A277D97"
-Content-Language: en-US
+X-List-Received-Date: Wed, 05 Jul 2017 02:09:49 -0000
+Content-Type: multipart/alternative; boundary="001a114b0a7660866e0553887e84"
 
---------------EE8CBD40C04276478A277D97
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a114b0a7660866e0553887e84
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Yocto Team Member,
+Hi,
 
-I have a question related with *.dtbo,
+I guess I'll remove build/tmp directory and rebuild everything from scratch=
+.
+I'll post the result later then.
 
-Can I use *.dtbo for beaglebone directly with linux yocto kernel, 
-without using ti mainline kernel ?
+BTW, thank you so much for writing swupdate.
 
-I want to use SPI port.
+Best Regards,
+Thi Huynh
 
-One example I can read : arch/arm/boot/dts/sun7i-a20-pcduino3.dts, where 
-can I find those source files on yocto ? ==> build/tmp/ .....??
+Hu=E1=BB=B3nh Ng=E1=BB=8Dc Thi
+-so61pi
 
-Thanks
+On Wed, Jul 5, 2017 at 12:08 AM, Stefano Babic <sbabic@denx.de> wrote:
 
+> Hi,
+>
+> On 04/07/2017 18:13, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh wrote:
+> > Hi everyone,
+> >
+> > I'm using poky pyro to build a beaglebone image with swupdate.
+> >
+> > First time I built swupdate (by bitbake swupdate), it used the latest
+> > git version and I encountered an make error which related to swupdate
+> only.
+> >
+> > Then I changed swupdate version to 2017.04 (by using
+> > PREFERRED_VERSION_swupdate =3D "2017.04") but the bitbake still used th=
+e
+> > latest git version and I had the make error again.
+> >
+>
+> I cannot confirm this. I have built a custom board and setting
+> PREFERRED_VERSION_swupdate works without issues.
+>
+> > But when I used devshell and changed the git revision to 2017.04 then
+> > do_configure and do_compile, everything went fine.
+> >
+> > My question is, is there a simple way to solve this problem?
+> >
+> > /Note:/
+> > The swupdate recipes for beaglebone that I'm using are from
+> > https://github.com/sbabic/meta-swupdate
+> >
+> > Content of swupdate_2017.04.bb <http://swupdate_2017.04.bb>:
+> >
+> >     require swupdate.inc
+> >
+> >     SRCREV =3D "d344ec10b71293d2aaf96816266d4e6ed1d3bf6a"
+> >
+> >
+> > Content of swupdate_git.bb <http://swupdate_git.bb>
+> >
+> >     require swupdate.inc
+> >
+> >     DEFAULT_PREFERENCE =3D "-1"
+> >
+> >
+> > A snippet of swupdate.inc
+> >
+> >     SRCREV =3D "${AUTOREV}"
+> >
+> >
+>
+> Best regards,
+> Stefano Babic
+>
+>
+> --
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+> Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
 
--- 
-*
+--001a114b0a7660866e0553887e84
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-/*******/
-Sent by Ubuntu LTS 16.04,
-Kind regards,
-Riko Ho
-/*******/
+<div dir=3D"ltr"><div><div><div><div><div>Hi,<br><br></div>I guess I&#39;ll=
+ remove build/tmp directory and rebuild everything from scratch.<br></div>I=
+&#39;ll post the result later then.<br><br></div>BTW, thank you so much for=
+ writing swupdate.<br><br></div>Best Regards,<br></div>Thi Huynh<br></div><=
+div class=3D"gmail_extra"><br clear=3D"all"><div><div class=3D"gmail_signat=
+ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">Hu=E1=BB=B3nh Ng=
+=E1=BB=8Dc Thi<br><div>-so61pi<br></div></div></div></div>
+<br><div class=3D"gmail_quote">On Wed, Jul 5, 2017 at 12:08 AM, Stefano Bab=
+ic <span dir=3D"ltr">&lt;<a href=3D"mailto:sbabic@denx.de" target=3D"_blank=
+">sbabic@denx.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi=
+,<br>
+<span class=3D""><br>
+On 04/07/2017 18:13, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh wrote:<br>
+&gt; Hi everyone,<br>
+&gt;<br>
+&gt; I&#39;m using poky pyro to build a beaglebone image with swupdate.<br>
+&gt;<br>
+&gt; First time I built swupdate (by bitbake swupdate), it used the latest<=
+br>
+&gt; git version and I encountered an make error which related to swupdate =
+only.<br>
+&gt;<br>
+&gt; Then I changed swupdate version to 2017.04 (by using<br>
+&gt; PREFERRED_VERSION_swupdate =3D &quot;2017.04&quot;) but the bitbake st=
+ill used the<br>
+&gt; latest git version and I had the make error again.<br>
+&gt;<br>
+<br>
+</span>I cannot confirm this. I have built a custom board and setting<br>
+PREFERRED_VERSION_swupdate works without issues.<br>
+<span class=3D""><br>
+&gt; But when I used devshell and changed the git revision to 2017.04 then<=
+br>
+&gt; do_configure and do_compile, everything went fine.<br>
+&gt;<br>
+&gt; My question is, is there a simple way to solve this problem?<br>
+&gt;<br>
+</span>&gt; /Note:/<br>
+<span class=3D"">&gt; The swupdate recipes for beaglebone that I&#39;m usin=
+g are from<br>
+&gt; <a href=3D"https://github.com/sbabic/meta-swupdate" rel=3D"noreferrer"=
+ target=3D"_blank">https://github.com/sbabic/<wbr>meta-swupdate</a><br>
+&gt;<br>
+</span>&gt; Content of <a href=3D"http://swupdate_2017.04.bb" rel=3D"norefe=
+rrer" target=3D"_blank">swupdate_2017.04.bb</a> &lt;<a href=3D"http://swupd=
+ate_2017.04.bb" rel=3D"noreferrer" target=3D"_blank">http://swupdate_2017.0=
+4.bb</a>&gt;:<br>
+<span class=3D"">&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0require swupdate.inc<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0SRCREV =3D &quot;<wbr>d344ec10b71293d2aaf96816266d4=
+e<wbr>6ed1d3bf6a&quot;<br>
+&gt;<br>
+&gt;<br>
+</span>&gt; Content of <a href=3D"http://swupdate_git.bb" rel=3D"noreferrer=
+" target=3D"_blank">swupdate_git.bb</a> &lt;<a href=3D"http://swupdate_git.=
+bb" rel=3D"noreferrer" target=3D"_blank">http://swupdate_git.bb</a>&gt;<br>
+<span class=3D"">&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0require swupdate.inc<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0DEFAULT_PREFERENCE =3D &quot;-1&quot;<br>
+&gt;<br>
+&gt;<br>
+&gt; A snippet of swupdate.inc<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0SRCREV =3D &quot;${AUTOREV}&quot;<br>
+&gt;<br>
+&gt;<br>
+<br>
+</span>Best regards,<br>
+Stefano Babic<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+<br>
+--<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0 Managing Director: Wolf=
+gang Denk<br>
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany<br>
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: <a href=3D"mailto:sb=
+abic@denx.de">sbabic@denx.de</a><br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+</font></span></blockquote></div><br></div>
 
-*
-
---------------EE8CBD40C04276478A277D97
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hello Yocto Team Member,</p>
-    <p>I have a question related with *.dtbo,</p>
-    <p>Can I use *.dtbo for beaglebone directly with linux yocto kernel,
-      without using ti mainline kernel ?</p>
-    <p>I want to use SPI port.</p>
-    <p>One example I can read :
-      arch/arm/boot/dts/sun7i-a20-pcduino3.dts, where can I find those
-      source files on yocto ? ==&gt; build/tmp/ .....??</p>
-    <p>Thanks<br>
-    </p>
-    <p><br>
-    </p>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          Kind regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
-  </body>
-</html>
-
---------------EE8CBD40C04276478A277D97--
+--001a114b0a7660866e0553887e84--
