@@ -1,20 +1,17 @@
-Return-Path: <so61pi.re@gmail.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17161E00BE8; Tue,  4 Jul 2017 19:09:49 -0700 (PDT)
+	id 8102DE00BE0; Tue,  4 Jul 2017 19:15:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (so61pi.re[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.215.48 listed in dnsbl.sorbs.net]
+	mail provider *      (antonius.riko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.48 listed in list.dnswl.org]
+	*      [74.125.83.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -23,47 +20,65 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A37C1E00BD0
-	for <yocto@yoctoproject.org>; Tue,  4 Jul 2017 19:09:45 -0700 (PDT)
-Received: by mail-lf0-f48.google.com with SMTP id b207so126092398lfg.2
-	for <yocto@yoctoproject.org>; Tue, 04 Jul 2017 19:09:45 -0700 (PDT)
+Received: from mail-pg0-f52.google.com (mail-pg0-f52.google.com [74.125.83.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1514EE00BD0
+	for <yocto@yoctoproject.org>; Tue,  4 Jul 2017 19:15:31 -0700 (PDT)
+Received: by mail-pg0-f52.google.com with SMTP id j186so116640700pge.2
+	for <yocto@yoctoproject.org>; Tue, 04 Jul 2017 19:15:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=EP5o+4nVAco40Jl9jZrdtFSwB8c4T3Z5QqyMiobcUaY=;
-	b=dXfHue2HUGMfOgQgY0F8EjBB2+OPHo/s/w+77IIQM1ZLmC1RrDl/JTFqjTkQzyyYXR
-	zTCVM9cqR6jsvc7hti33TN31TiJppULVUtpWJ1lSgXHFkpGazyVS5vuGiaU7/ZBGFA25
-	RNXtyM9rcAnPu7aLo37v6wKUUcIeBHmoWFlrWYFp+xomf/Z1x9gW9Zeq++vP+z/HOf7L
-	bkiX9tPouhPBpqMy6UNUKqrXXXt48nA5+McNVLmRKSFl+DCXzYNgKqXBb3yPF0LUFTje
-	eHBhykceAjQ7bpffjbvS1jo4bAVh8pvpjFT2f2jFUB1ck3QrHGvE84J9VOhucD6rG2Ec
-	Cjkw==
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language;
+	bh=NZgP/E0GV7GTh+jbIgyYmJ/QO8DDNVUajjzllxhhsv0=;
+	b=Gt/pMDlb58dowi4CR/yMmuYSS0Q0mTWLdJ6aMriTpdHm5sc1HjskD1OS8FxmTfoPt2
+	9AoZwA6gjXoSgaxO9GKG/PEkOb/Uu/Lpjg1O9O8De+nsDCMkIwrHgPPMWbzYjhPUPu/T
+	iCKiYDb+OnmqEqQi7/4jXJBorO8tntsf3xWzoPWXj/9BJMcEUS20Rt37UUWCATdAr/Ab
+	b8FinnJ1ehHYRLrsQc9cQhVETiFwDN7mwEYWfInQw5NkN1iiIOr6ktXkSbY9Sm9paevV
+	E3lAbcSobLcVgO3WxZO2Av+7JOUZFbDeBt1ltTIJu9KcxZ8cxUer2FvVXxXk8h6IaF3V
+	PX7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=EP5o+4nVAco40Jl9jZrdtFSwB8c4T3Z5QqyMiobcUaY=;
-	b=aPhCRaa/lVVUdrpyJg9+Ih6ctghv0L9SjpT1IaKGAdt6B5yZf3bdlHbBBT0MkxfVi5
-	Kp/7jdIWGbVyBYiKwJhVvnjq4+bFdF8SLvW1mx8RK5PILL0MUrj+kf2QHwor3pZ0+sCT
-	9sXPxYwq1e96nCmkQ8rKPAFL78D/iYBV7iSOnlD8Ag7RnfstfREHBfSDOI5SarVYKiWm
-	z5a9EGwJYjNVKyfXKXDCk+Kz1TtU4CtfWoatn7LSBt/r7+EHWw54/oB0v9TL0AMepmkn
-	Z6zQML701Yd0/ox3AxNMHWzM57yJAyrX5wccfDmTUTfrmqjhQk1ZOhTvHjAv/gWb2tIT
-	BUxw==
-X-Gm-Message-State: AKS2vOx2jMbP1jEBxpxBukluAv27bpCv2YluLrJ9zAHoxu1vXLR9oCKK
-	rabH+5wzqy9VOqefYlWFtj0Fa7ZUq6Alhbk=
-X-Received: by 10.46.9.140 with SMTP id 134mr10039360ljj.42.1499220584464;
-	Tue, 04 Jul 2017 19:09:44 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=NZgP/E0GV7GTh+jbIgyYmJ/QO8DDNVUajjzllxhhsv0=;
+	b=C3bDP5C3QtUEGuJRxht2CVw3lMVzg1BiVQeqcpmo6z3sxbPkSqxlt9z1TwvFhHP3l5
+	fYrqX0/e4ztwwugqTTkC6gt0KOdfcWbxAv03s1PyIgc0aeGPeTG2GYCf8ELc6CPRuReg
+	taXfR4dm6mS3qsjdMuHSBCNtNKdqkU9YBf4AmxPZUJSF/YkeZfudYTMdgbIgas+TC+7P
+	/88+vPgEh1WmWcwBV7FJ5yS04Q6BYAMExa3j9ndECnnlTLn7qwlpnufplRe1xoXawvLf
+	BLc6xsa/fMtwvP4XS5Tt+42ofN+WoK5IUJRBOwRU5tljfVOyx5JrESM35Zy4JrRB8upX
+	+rcg==
+X-Gm-Message-State: AIVw110uOvrmGpmcTrH6iL8koy6wZxCQl9E4ubrycS9waDrxJEiROci2
+	sDyNO5Z35GbXK9o3
+X-Received: by 10.99.143.94 with SMTP id r30mr18338499pgn.102.1499220930894;
+	Tue, 04 Jul 2017 19:15:30 -0700 (PDT)
+Received: from ?IPv6:2001:8003:804a:b500:8c94:2d3e:fbf5:a0d8?
+	([2001:8003:804a:b500:8c94:2d3e:fbf5:a0d8])
+	by smtp.gmail.com with ESMTPSA id
+	b8sm46809150pfd.65.2017.07.04.19.15.28
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 04 Jul 2017 19:15:30 -0700 (PDT)
+To: Takuro Ashie <ashie@clear-code.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <fe34f976-648e-7fbc-c190-a5fb0829552f@gmail.com>
+	<CAMKF1sq0XX0ahRiG34oi9LwiDCZL83Oxf4sbkwmd5XL1n66jWw@mail.gmail.com>
+	<b5171c1c-e2f7-0f76-2b5d-e518b7ca927a@gmail.com>
+	<d1fc68c9-0a41-ac45-161d-68d34f1f2e18@clear-code.com>
+	<8692e969-0575-1a75-b0a7-1567bcb51786@gmail.com>
+	<7eeeafd6-f38a-a056-1d74-b5fcd507612e@clear-code.com>
+	<73d209dc-6d41-3f70-78d0-a360410a7695@gmail.com>
+	<2b0c40c5-27be-f3a0-20f5-c0bdff57cb44@clear-code.com>
+	<dfd204c9-c53d-97c8-684a-22fdead61856@clear-code.com>
+	<cd7d4b6a-0a7b-ee28-a925-024eedd6fef9@gmail.com>
+	<df37e2d1-14d8-f517-82d3-7b152b1d8014@clear-code.com>
+	<06d4e1b4-f24a-55b9-f5d6-cd6eff16a672@gmail.com>
+	<9902bdc2-a077-31c9-ab5a-86c581c19de8@clear-code.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <59037a7d-6048-28dd-1d1f-2e955d6b4c67@gmail.com>
+Date: Wed, 5 Jul 2017 10:15:26 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
 MIME-Version: 1.0
-Received: by 10.25.199.203 with HTTP; Tue, 4 Jul 2017 19:09:43 -0700 (PDT)
-In-Reply-To: <ad7604a1-743e-89f3-b810-b80beeb3f5cc@denx.de>
-References: <CAGnCEbuE7OVy=RrbD91WMtSiZ2nJ90eUONMEJ=ZrMfx2FC6LhA@mail.gmail.com>
-	<ad7604a1-743e-89f3-b810-b80beeb3f5cc@denx.de>
-From: =?UTF-8?B?Tmfhu41jIFRoaSBIdeG7s25o?= <so61pi.re@gmail.com>
-Date: Wed, 5 Jul 2017 09:09:43 +0700
-Message-ID: <CAGnCEbuAG01bPk0WR5HvTcPwAxqUPU_OA_JipRjmANwCyumAkQ@mail.gmail.com>
-To: Stefano Babic <sbabic@denx.de>
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Update SRCREV doesn't work?
+In-Reply-To: <9902bdc2-a077-31c9-ab5a-86c581c19de8@clear-code.com>
+Subject: Re: /poky/meta-browser/recipes-mozilla/firefox/firefox_45.9.0esr.bb =>how to update the newest version ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,184 +90,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jul 2017 02:09:49 -0000
-Content-Type: multipart/alternative; boundary="001a114b0a7660866e0553887e84"
+X-List-Received-Date: Wed, 05 Jul 2017 02:15:33 -0000
+Content-Type: multipart/alternative;
+	boundary="------------2D8619E8BF56B6CCE596EFD3"
+Content-Language: en-US
 
---001a114b0a7660866e0553887e84
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------2D8619E8BF56B6CCE596EFD3
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+When I upgrade poky, will it delete all the configuration I had done?
 
-I guess I'll remove build/tmp directory and rebuild everything from scratch=
-.
-I'll post the result later then.
 
-BTW, thank you so much for writing swupdate.
-
-Best Regards,
-Thi Huynh
-
-Hu=E1=BB=B3nh Ng=E1=BB=8Dc Thi
--so61pi
-
-On Wed, Jul 5, 2017 at 12:08 AM, Stefano Babic <sbabic@denx.de> wrote:
-
-> Hi,
+On 04/07/17 17:51, Takuro Ashie wrote:
 >
-> On 04/07/2017 18:13, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh wrote:
-> > Hi everyone,
-> >
-> > I'm using poky pyro to build a beaglebone image with swupdate.
-> >
-> > First time I built swupdate (by bitbake swupdate), it used the latest
-> > git version and I encountered an make error which related to swupdate
-> only.
-> >
-> > Then I changed swupdate version to 2017.04 (by using
-> > PREFERRED_VERSION_swupdate =3D "2017.04") but the bitbake still used th=
-e
-> > latest git version and I had the make error again.
-> >
+> On 2017年07月04日 17:06, Riko Ho wrote:
+>>
+>> Still in error :
+>>
+>> | 
+>> /home/bianchi77/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/firefox/52.1.2esr-r0/firefox-52.1.2esr/firefox-build-dir/dist/system_wrappers/pk11pub.h:3:26: 
+>> fatal error: pk11pub.h: No such file or directory
+>> |  #include_next <pk11pub.h>
+>> |                           ^
+>> | compilation terminated.
+>>
 >
-> I cannot confirm this. I have built a custom board and setting
-> PREFERRED_VERSION_swupdate works without issues.
+> I confirmed it.
+> Hmm, there are some issues which prevent using built-in nss & nspr.
+> I can't resolve it soon.
 >
-> > But when I used devshell and changed the git revision to 2017.04 then
-> > do_configure and do_compile, everything went fine.
-> >
-> > My question is, is there a simple way to solve this problem?
-> >
-> > /Note:/
-> > The swupdate recipes for beaglebone that I'm using are from
-> > https://github.com/sbabic/meta-swupdate
-> >
-> > Content of swupdate_2017.04.bb <http://swupdate_2017.04.bb>:
-> >
-> >     require swupdate.inc
-> >
-> >     SRCREV =3D "d344ec10b71293d2aaf96816266d4e6ed1d3bf6a"
-> >
-> >
-> > Content of swupdate_git.bb <http://swupdate_git.bb>
-> >
-> >     require swupdate.inc
-> >
-> >     DEFAULT_PREFERENCE =3D "-1"
-> >
-> >
-> > A snippet of swupdate.inc
-> >
-> >     SRCREV =3D "${AUTOREV}"
-> >
-> >
->
-> Best regards,
-> Stefano Babic
->
->
-> --
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> It seems that upgrading poky is a easier way to build firefox if it's 
+> acceptable for you.
 >
 
---001a114b0a7660866e0553887e84
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+-- 
+*
 
-<div dir=3D"ltr"><div><div><div><div><div>Hi,<br><br></div>I guess I&#39;ll=
- remove build/tmp directory and rebuild everything from scratch.<br></div>I=
-&#39;ll post the result later then.<br><br></div>BTW, thank you so much for=
- writing swupdate.<br><br></div>Best Regards,<br></div>Thi Huynh<br></div><=
-div class=3D"gmail_extra"><br clear=3D"all"><div><div class=3D"gmail_signat=
-ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">Hu=E1=BB=B3nh Ng=
-=E1=BB=8Dc Thi<br><div>-so61pi<br></div></div></div></div>
-<br><div class=3D"gmail_quote">On Wed, Jul 5, 2017 at 12:08 AM, Stefano Bab=
-ic <span dir=3D"ltr">&lt;<a href=3D"mailto:sbabic@denx.de" target=3D"_blank=
-">sbabic@denx.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi=
-,<br>
-<span class=3D""><br>
-On 04/07/2017 18:13, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh wrote:<br>
-&gt; Hi everyone,<br>
-&gt;<br>
-&gt; I&#39;m using poky pyro to build a beaglebone image with swupdate.<br>
-&gt;<br>
-&gt; First time I built swupdate (by bitbake swupdate), it used the latest<=
-br>
-&gt; git version and I encountered an make error which related to swupdate =
-only.<br>
-&gt;<br>
-&gt; Then I changed swupdate version to 2017.04 (by using<br>
-&gt; PREFERRED_VERSION_swupdate =3D &quot;2017.04&quot;) but the bitbake st=
-ill used the<br>
-&gt; latest git version and I had the make error again.<br>
-&gt;<br>
-<br>
-</span>I cannot confirm this. I have built a custom board and setting<br>
-PREFERRED_VERSION_swupdate works without issues.<br>
-<span class=3D""><br>
-&gt; But when I used devshell and changed the git revision to 2017.04 then<=
-br>
-&gt; do_configure and do_compile, everything went fine.<br>
-&gt;<br>
-&gt; My question is, is there a simple way to solve this problem?<br>
-&gt;<br>
-</span>&gt; /Note:/<br>
-<span class=3D"">&gt; The swupdate recipes for beaglebone that I&#39;m usin=
-g are from<br>
-&gt; <a href=3D"https://github.com/sbabic/meta-swupdate" rel=3D"noreferrer"=
- target=3D"_blank">https://github.com/sbabic/<wbr>meta-swupdate</a><br>
-&gt;<br>
-</span>&gt; Content of <a href=3D"http://swupdate_2017.04.bb" rel=3D"norefe=
-rrer" target=3D"_blank">swupdate_2017.04.bb</a> &lt;<a href=3D"http://swupd=
-ate_2017.04.bb" rel=3D"noreferrer" target=3D"_blank">http://swupdate_2017.0=
-4.bb</a>&gt;:<br>
-<span class=3D"">&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0require swupdate.inc<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0SRCREV =3D &quot;<wbr>d344ec10b71293d2aaf96816266d4=
-e<wbr>6ed1d3bf6a&quot;<br>
-&gt;<br>
-&gt;<br>
-</span>&gt; Content of <a href=3D"http://swupdate_git.bb" rel=3D"noreferrer=
-" target=3D"_blank">swupdate_git.bb</a> &lt;<a href=3D"http://swupdate_git.=
-bb" rel=3D"noreferrer" target=3D"_blank">http://swupdate_git.bb</a>&gt;<br>
-<span class=3D"">&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0require swupdate.inc<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0DEFAULT_PREFERENCE =3D &quot;-1&quot;<br>
-&gt;<br>
-&gt;<br>
-&gt; A snippet of swupdate.inc<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0SRCREV =3D &quot;${AUTOREV}&quot;<br>
-&gt;<br>
-&gt;<br>
-<br>
-</span>Best regards,<br>
-Stefano Babic<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-<br>
---<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0 Managing Director: Wolf=
-gang Denk<br>
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany<br>
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: <a href=3D"mailto:sb=
-abic@denx.de">sbabic@denx.de</a><br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-</font></span></blockquote></div><br></div>
+/*******/
+Sent by Ubuntu LTS 16.04,
+Kind regards,
+Riko Ho
+/*******/
 
---001a114b0a7660866e0553887e84--
+*
+
+--------------2D8619E8BF56B6CCE596EFD3
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>When I upgrade poky, will it delete all the configuration I had
+      done?<br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 04/07/17 17:51, Takuro Ashie wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:9902bdc2-a077-31c9-ab5a-86c581c19de8@clear-code.com">
+      <br>
+      On 2017年07月04日 17:06, Riko Ho wrote:
+      <br>
+      <blockquote type="cite">
+        <br>
+        Still in error :
+        <br>
+        <br>
+        |
+/home/bianchi77/poky/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/firefox/52.1.2esr-r0/firefox-52.1.2esr/firefox-build-dir/dist/system_wrappers/pk11pub.h:3:26:
+        fatal error: pk11pub.h: No such file or directory
+        <br>
+        |  #include_next &lt;pk11pub.h&gt;
+        <br>
+        |                           ^
+        <br>
+        | compilation terminated.
+        <br>
+        <br>
+      </blockquote>
+      <br>
+      I confirmed it.
+      <br>
+      Hmm, there are some issues which prevent using built-in nss &amp;
+      nspr.
+      <br>
+      I can't resolve it soon.
+      <br>
+      <br>
+      It seems that upgrading poky is a easier way to build firefox if
+      it's acceptable for you.
+      <br>
+      <br>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          Kind regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
+  </body>
+</html>
+
+--------------2D8619E8BF56B6CCE596EFD3--
