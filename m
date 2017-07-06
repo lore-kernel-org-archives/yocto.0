@@ -1,64 +1,51 @@
-Return-Path: <jussi.kukkonen@intel.com>
+Return-Path: <andrey.babushkin@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 813F0E00B28; Thu,  6 Jul 2017 01:30:33 -0700 (PDT)
+	id 65062E00AE6; Thu,  6 Jul 2017 03:29:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.51 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.51 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f51.google.com (mail-it0-f51.google.com
-	[209.85.214.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D6FCE00AE4
-	for <yocto@yoctoproject.org>; Thu,  6 Jul 2017 01:30:32 -0700 (PDT)
-Received: by mail-it0-f51.google.com with SMTP id m84so110751148ita.0
-	for <yocto@yoctoproject.org>; Thu, 06 Jul 2017 01:30:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=d/XClgXyVbAarAtRVtTRDynLZhJRmkKS0iBvJAVhiv4=;
-	b=FztXwC5YYJU6LgOiQkVlaj6CsMMIvsjQA6gtigAe1lEbp4q6b08fA25C01WKWOE/V8
-	C5KNDWtSWsUtJzQuRIa/j4gGK3nIc0Dzc6QUs2m8dU/LPIY3CCjhvy/bqnfT1K6HHYia
-	cEvEoRjmKi3vaFjOZLBZv0FzhsLWFtL+SutciPSO0sDB/B+7+AEEVn2FF/jrFJ5E/t9f
-	XqmRYg2T8egwsjr+zMKOE9DxD2XNFcZkQPcYKc3pzWyexoD3ZVKRTecgnczfGzDrCIrq
-	LUl+hNk3YsL3EOe6DsHNHxiDYPNhOteLpVWoj98dLMaoEb6pmnOxW8zfKt1S17NukBiJ
-	LfwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=d/XClgXyVbAarAtRVtTRDynLZhJRmkKS0iBvJAVhiv4=;
-	b=nEce3oxkDuRGhJMr/bXTR5GHfylQMlVlh4fXRAk0suLNh2KdkmHJsH2YM5EQc6L2Tp
-	NaS6W7ynDZazsqeEL3bifHiqRX1eQPpBHmBO6iTKnhy8tK+KZ089oh2UTz6I9CCBEkby
-	T5tmD7LT5nad4Yl3w1m5auFOLTuwsm0EryfSLVlw+HHT6pjzy9H/GyEA/+2QjRK1to/I
-	rR2ANaFu5qZRUJAi/NcZVZB1cCVfyx+XRFpEQpiqGXkEvLX9vB/RoGz8I4uMU7KlZKig
-	Lb//IH0Ugn8gKX9grMOLCL1KxdtFSZirs+6KyEAUejNfji0ZAk7B3w5+0ty6H6+qR+Pr
-	RXvw==
-X-Gm-Message-State: AKS2vOwttstseQzgdJXhlCKyhZvGI8WqoUCs4mBrek80iV1TX0j3ub1g
-	uFQv7FBr7WkLxF0shUGl/f7CbCdPjw1H
-X-Received: by 10.107.9.139 with SMTP id 11mr45714986ioj.38.1499329831484;
-	Thu, 06 Jul 2017 01:30:31 -0700 (PDT)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1211E00718
+	for <yocto@yoctoproject.org>; Thu,  6 Jul 2017 03:29:38 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Jul 2017 03:29:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.40,316,1496127600"; 
+	d="scan'208,217";a="1148366302"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+	by orsmga001.jf.intel.com with ESMTP; 06 Jul 2017 03:29:36 -0700
+Received: from cdsmsx151.ccr.corp.intel.com (172.17.4.38) by
+	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Thu, 6 Jul 2017 03:29:35 -0700
+Received: from cdsmsx102.ccr.corp.intel.com ([169.254.2.40]) by
+	CDSMSX151.ccr.corp.intel.com ([169.254.3.232]) with mapi id
+	14.03.0319.002; Thu, 6 Jul 2017 18:29:33 +0800
+From: "Babushkin, Andrey" <andrey.babushkin@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: 403 error when trying to download toolchain
+Thread-Index: AdL2QogGfwm0QxEUQxu3O/CNGoIsLA==
+Date: Thu, 6 Jul 2017 10:29:33 +0000
+Message-ID: <8E55CBA2716D2147B62DE7FE3353059E22A9B57A@CDSMSX102.ccr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmQ0NmY4OWUtOWNiNS00OGEzLWFlNDYtNWY2MGU1ZDc2MzBjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6Ing5TGhqaEpVOWpJckQ1TGNBeGY1anVNc2FaeVk0Y3lYTWx5YTJJTTY2d1E9In0=
+dlp-product: dlpe-windows
+dlp-version: 10.0.102.7
+dlp-reaction: no-action
+x-originating-ip: [172.17.6.105]
 MIME-Version: 1.0
-Received: by 10.107.44.87 with HTTP; Thu, 6 Jul 2017 01:30:00 -0700 (PDT)
-In-Reply-To: <CABaDK3VRdK9jYdD0gzoDGwtOV2HOOr_+y5KibWUBYzKE6XhM7g@mail.gmail.com>
-References: <CABaDK3VRdK9jYdD0gzoDGwtOV2HOOr_+y5KibWUBYzKE6XhM7g@mail.gmail.com>
-From: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date: Thu, 6 Jul 2017 11:30:00 +0300
-Message-ID: <CAHiDW_EKjJqXUfxHJwwcwnGiBd0GzBtJGafxJV_D0Yy=8c1H4Q@mail.gmail.com>
-To: Joseph Ngigi <jngigiw@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: xorg-xserver and gtk+3 do_configure fail in poky-pyro
+Subject: 403 error when trying to download toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,73 +57,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jul 2017 08:30:33 -0000
-Content-Type: multipart/alternative; boundary="001a113fb58a01f8af0553a1ee25"
+X-List-Received-Date: Thu, 06 Jul 2017 10:29:41 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_8E55CBA2716D2147B62DE7FE3353059E22A9B57ACDSMSX102ccrcor_"
 
---001a113fb58a01f8af0553a1ee25
-Content-Type: text/plain; charset="UTF-8"
-
-On 5 July 2017 at 17:10, Joseph Ngigi <jngigiw@gmail.com> wrote:
-> | checking for GDK_DEP... no
-> | configure: error: Package requirements (pango pangocairo gdk-pixbuf-2.0
->= 2.30.0 cairo >= 1.14.0 cairo-gobject >= 1.14.0 gio-unix-2.0 >= 2.49.4
-fontconfig x11 xext xi xrandr xcursor xfixes xcomposite xdamage
-wayland-client >= 1.9.91 wayland-protocols >= 1.7 xkbcommon >= 0.2.0
-wayland-cursor >= 1.9.91 wayland-egl   cairo-xlib cairo epoxy >= 1.0) were
-not met:
-> |
-> | No package 'wayland-egl' found
-
-This could be a bug in gtk+3 recipe when using something else than mesa:
-The wayland packageconfig depends on "virtual/mesa" when it maybe needs
-"virtual-egl" instead -- what it's really looking for wayland-egl.pc (which
-is normally provided by mesa but I guess on your system it's something
-else).
-
-As an aside I have to admit the definitions of our various
-virtual-whatevers are not clear to me at all... Is this something we could
-reasonably document better ?
-
-
-> | checking for GLAMOR... yes
-> | checking for GBM... no
-> | configure: error: Glamor for Xorg requires gbm >= 10.2.0
-
-Here the glamor packageconfig seems to be missing a dependency on something
-that provides libgbm (again we probably don't normally notice this because
-the provider is mesa). My guess is that "virtual/libgl" _usually_ provides
-libgbm, so adding that to glamor packageconfig dependencies might be a fix.
-
-
-HTH,
- Jussi
-
---001a113fb58a01f8af0553a1ee25
-Content-Type: text/html; charset="UTF-8"
+--_000_8E55CBA2716D2147B62DE7FE3353059E22A9B57ACDSMSX102ccrcor_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On 5 July 2017 at 17:10, Joseph Ngigi &lt;<a href=3D"mailt=
-o:jngigiw@gmail.com">jngigiw@gmail.com</a>&gt; wrote:<br>&gt; | checking fo=
-r GDK_DEP... no<br>&gt; | configure: error: Package requirements (pango pan=
-gocairo gdk-pixbuf-2.0 &gt;=3D 2.30.0 cairo &gt;=3D 1.14.0 cairo-gobject &g=
-t;=3D 1.14.0 gio-unix-2.0 &gt;=3D 2.49.4 fontconfig x11 xext xi xrandr xcur=
-sor xfixes xcomposite xdamage wayland-client &gt;=3D 1.9.91 wayland-protoco=
-ls &gt;=3D 1.7 xkbcommon &gt;=3D 0.2.0 wayland-cursor &gt;=3D 1.9.91 waylan=
-d-egl =C2=A0 cairo-xlib cairo epoxy &gt;=3D 1.0) were not met:<br>&gt; |<br=
->&gt; | No package &#39;wayland-egl&#39; found<br><br>This could be a bug i=
-n gtk+3 recipe when using something else than mesa: The wayland packageconf=
-ig depends on &quot;virtual/mesa&quot; when it maybe needs &quot;virtual-eg=
-l&quot; instead -- what it&#39;s really looking for wayland-egl.pc (which i=
-s normally provided by mesa but I guess on your system it&#39;s something e=
-lse).<br><br>As an aside I have to admit the definitions of our various vir=
-tual-whatevers are not clear to me at all... Is this something we could rea=
-sonably document better ?<br><br><br>&gt; | checking for GLAMOR... yes<br>&=
-gt; | checking for GBM... no<br>&gt; | configure: error: Glamor for Xorg re=
-quires gbm &gt;=3D 10.2.0<br><br><div>Here the glamor packageconfig seems t=
-o be missing a dependency on something that provides libgbm (again we proba=
-bly don&#39;t normally notice this because the provider is mesa). My guess =
-is that &quot;virtual/libgl&quot; _usually_ provides libgbm, so adding that=
- to glamor packageconfig dependencies might be a fix.</div><div><br></div><=
-div><br></div><div>HTH,=C2=A0</div><div>=C2=A0Jussi</div></div>
+Hi all!
+I am trying to download toolchain for Yocto 2.0.3 here http://downloads.yoc=
+toproject.org/releases/yocto/yocto-2.0.3/toolchain/ , but I get 403 Forbidd=
+en error. Is there any other places to download toolchain for Yocto 2.0.3?
 
---001a113fb58a01f8af0553a1ee25--
+-------------------
+Best regards,
+Andrey Babushkin
+
+
+--------------------------------------------------------------------
+Joint Stock Company Intel A/O
+Registered legal address: Krylatsky Hills Business Park,
+17 Krylatskaya Str., Bldg 4, Moscow 121614,
+Russian Federation
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
+--_000_8E55CBA2716D2147B62DE7FE3353059E22A9B57ACDSMSX102ccrcor_
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:56.7pt 42.5pt 56.7pt 85.05pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi all!<o:p></o:p></p>
+<p class=3D"MsoNormal">I am trying to download toolchain for Yocto 2.0.3 he=
+re <a href=3D"http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/=
+toolchain/">
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/toolchain/</a>=
+ , but I get 403 Forbidden error. Is there any other places to download too=
+lchain for Yocto 2.0.3?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">-------------------<o:p></o:p></p>
+<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Andrey Babushkin<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<p><br>--------------------------------------------------------------------=
+<br>Joint Stock Company Intel A/O<br>Registered legal address: Krylatsky Hi=
+lls Business Park, <br>17 Krylatskaya Str., Bldg 4, Moscow 121614, <br>Russ=
+ian Federation</p><p>This e-mail and any attachments may contain confidenti=
+al material for<br>the sole use of the intended recipient(s). Any review or=
+ distribution<br>by others is strictly prohibited. If you are not the inten=
+ded<br>recipient, please contact the sender and delete all copies.</p>
+</body>
+</html>
+
+--_000_8E55CBA2716D2147B62DE7FE3353059E22A9B57ACDSMSX102ccrcor_--
