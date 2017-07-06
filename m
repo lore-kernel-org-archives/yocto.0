@@ -1,34 +1,64 @@
-Return-Path: <stephano.cetola@linux.intel.com>
+Return-Path: <droid.baner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1E27CE00718; Wed,  5 Jul 2017 14:28:38 -0700 (PDT)
+	id 3F8DDE00B28; Wed,  5 Jul 2017 20:28:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	HTML_OBFUSCATE_20_30, 
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (droid.baner[at]gmail.com)
+	* 2.0 HTML_OBFUSCATE_20_30 BODY: Message is 20% to 30% HTML obfuscation
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6B2FE0048B
-	for <yocto@yoctoproject.org>; Wed,  5 Jul 2017 14:28:35 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	05 Jul 2017 14:28:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,313,1496127600"; d="scan'208";a="282558725"
-Received: from pequod.jf.intel.com ([10.54.74.4])
-	by fmsmga004.fm.intel.com with ESMTP; 05 Jul 2017 14:28:31 -0700
-From: Stephano Cetola <stephano.cetola@linux.intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.180 listed in list.dnswl.org]
+Received: from mail-yw0-f180.google.com (mail-yw0-f180.google.com
+	[209.85.161.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08347E00ACF
+	for <yocto@yoctoproject.org>; Wed,  5 Jul 2017 20:28:15 -0700 (PDT)
+Received: by mail-yw0-f180.google.com with SMTP id v193so2925186ywg.2
+	for <yocto@yoctoproject.org>; Wed, 05 Jul 2017 20:28:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Nq4bXW3hay0nOMh9w2mx9g+xica53znRJD6+p/DlMHo=;
+	b=qb7aXZHmchqqeEaat22gDQpuauYmwgfexo5ux/Q/BGE6qu5diQhM24rJi1Bnk0mhse
+	Mgz5xMDMkHFrr7RqPKiWYvvUZ0QuPoHRkp6I0mAsrbS/kQLPgZCUers5zsbo1tgUU21w
+	NrqFMcBG4r6XPiLoacP8PZb8ggNZxZ/B92NZypZga+UYR2drIp/PjeeaztJPiFcmJNba
+	1MWp404AC2PTTKTUcf5L4dj2cw0TzPcN7QqC094+KBIBjrpiTH9QsWp0YF3Scf5Vk4hb
+	l93vztq4tdPnPbye2gnxOye0OmfQEJg6ZRRXdOuUroq+d7sTcg4kyXlq716fzsxh+TWM
+	g5+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Nq4bXW3hay0nOMh9w2mx9g+xica53znRJD6+p/DlMHo=;
+	b=GWFH5BhdxL00Uw7KQ7ixD1Mgp8mbPo3LHCmGBBxu098d8IohohdlHSBtKPkkcYrUH8
+	f9FR/kfT1UUWW0ZaInqVbmihnpkGDJED+/YAT/TpoeH0CxAVRz2DCxF9YsNmA4NPr9hN
+	EV6rA98BdwujC82nDlRa8bsYrR1neivc/W9kVATmPxCDgsz1nPQRD3K7nPMPyHaghTpa
+	gSD8kzzFb92j/wLKfqy/DlkwH4GOFxy87r/0D/mupu8sf/PxzgGmGnsILTRNmQ2LDDuY
+	AEsWXtSF1MZ8R01YqaDlXRIEWqdKvLfrYnCAO8THWjK04cmmdHET/qsLnAKeb4IeKznZ
+	240w==
+X-Gm-Message-State: AKS2vOxUfnCvpXef+r1vvHTESro76B1qS5UgHlgvyLTlF/+3mvFV9LGw
+	AzKu7Q922bPNi7Gm7ZRZlyYUCGfvfg==
+X-Received: by 10.13.199.195 with SMTP id j186mr36535436ywd.118.1499311694630; 
+	Wed, 05 Jul 2017 20:28:14 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.129.78.145 with HTTP; Wed, 5 Jul 2017 20:28:14 -0700 (PDT)
+Received: by 10.129.78.145 with HTTP; Wed, 5 Jul 2017 20:28:14 -0700 (PDT)
+From: sourabh banerjee <droid.baner@gmail.com>
+Date: Thu, 6 Jul 2017 08:58:14 +0530
+Message-ID: <CANmFEgtrdWTZYa1=pU0gBCiD1AP+gGNvviYkj1DmELJAkwUnWg@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Wed,  5 Jul 2017 14:27:50 -0700
-Message-Id: <20170705212750.49420-2-stephano.cetola@linux.intel.com>
-X-Mailer: git-send-email 2.13.2
-In-Reply-To: <20170705212750.49420-1-stephano.cetola@linux.intel.com>
-References: <20170705212750.49420-1-stephano.cetola@linux.intel.com>
-Subject: [yocto-autobuilder][PATCH V4 1/1] ScrapeTargets.py: improve target search algorithm
+Subject: setting groups and users other than root
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,51 +70,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jul 2017 21:28:38 -0000
+X-List-Received-Date: Thu, 06 Jul 2017 03:28:19 -0000
+Content-Type: multipart/alternative; boundary="001a114e61aef754a405539db433"
 
-When scraping the build targets from refkit-ci.inc, grep would only
-return the first line of the search result. By replacing grep with
-awk, we are now searching for multi-line variables, and should now
-scrape build targets even if they have line breaks between them.
+--001a114e61aef754a405539db433
+Content-Type: text/plain; charset="UTF-8"
 
-[YOCTO #11720]
+I have observed that the group and user default to root for unless I do
+explicit chown and chgrp in the do_install step for a given recipe.
 
-Signed-off-by: Stephano Cetola <stephano.cetola@linux.intel.com>
----
- .../site-packages/autobuilder/buildsteps/ScrapeTargets.py    | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+I have few recipes for which the group and user are to be set to something
+other than root. Is there a way to achieve this? Such that the user and
+group default to something else for these given recipes?
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ScrapeTargets.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ScrapeTargets.py
-index 80153fe85..07e2fdcf4 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/ScrapeTargets.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ScrapeTargets.py
-@@ -41,7 +41,9 @@ class ScrapeTargets(ShellCommand):
-         workerdir = os.path.join(os.path.join(YOCTO_ABBASE, "yocto-worker"))
-         buildername = self.getProperty("buildername")
-         src = os.path.join(workerdir, buildername, "build", self.source)
--        self.command = "cat " + src + " | grep " + self.targetsvar
-+        # find targetsvar then return lines up to a quote
-+        self.command = ["awk",
-+                '/%s/{flag=1;print;next}/"/{flag=0}flag' % self.targetsvar, src]
-         ShellCommand.start(self)
- 
-     def commandComplete(self, cmd):
-@@ -49,10 +51,10 @@ class ScrapeTargets(ShellCommand):
-             return
- 
-         result = cmd.logs['stdio'].getText()
--        targets = result.replace(self.targetsvar, "")
--        targets = targets.strip()
--        targets = targets.replace('=', '')
--        targets = targets.strip('"')
-+        targets = result.strip()
-+        targets = targets.replace('%s="' % self.targetsvar, '')
-+        targets = targets.replace('\\', '')
-+        targets = targets.replace('\n', '')
-         self.setProperty("scraped_targets",
-                          targets,
-                          'Targets "%s" scraped from %s' % (targets,
--- 
-2.13.2
+--001a114e61aef754a405539db433
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"auto"><p style=3D"margin:0px 0px 0.8em;padding:0px;border:0px;f=
+ont-size:15px;line-height:inherit;font-family:&quot;helvetica neue&quot;,he=
+lvetica,arial,sans-serif;vertical-align:baseline;color:rgb(12,13,14);backgr=
+ound-color:rgb(255,255,255)">I have observed that the group and user defaul=
+t to=C2=A0<code style=3D"margin:0px;padding:0px;border:0px;font-style:inher=
+it;font-variant:inherit;font-weight:inherit;font-size:13px;line-height:inhe=
+rit;font-family:&#39;consolas&#39;,&#39;menlo&#39;,&#39;monaco&#39;,&#39;lu=
+cida console&#39;,&#39;liberation mono&#39;,&#39;dejavu sans mono&#39;,&#39=
+;bitstream vera sans mono&#39;,&#39;courier new&#39;,monospace;vertical-ali=
+gn:baseline;background-color:rgb(240,240,240);max-height:300px">root</code>=
+=C2=A0for unless I do explicit=C2=A0<code style=3D"margin:0px;padding:0px;b=
+order:0px;font-style:inherit;font-variant:inherit;font-weight:inherit;font-=
+size:13px;line-height:inherit;font-family:&#39;consolas&#39;,&#39;menlo&#39=
+;,&#39;monaco&#39;,&#39;lucida console&#39;,&#39;liberation mono&#39;,&#39;=
+dejavu sans mono&#39;,&#39;bitstream vera sans mono&#39;,&#39;courier new&#=
+39;,monospace;vertical-align:baseline;background-color:rgb(240,240,240);max=
+-height:300px">chown</code>=C2=A0and=C2=A0<code style=3D"margin:0px;padding=
+:0px;border:0px;font-style:inherit;font-variant:inherit;font-weight:inherit=
+;font-size:13px;line-height:inherit;font-family:&#39;consolas&#39;,&#39;men=
+lo&#39;,&#39;monaco&#39;,&#39;lucida console&#39;,&#39;liberation mono&#39;=
+,&#39;dejavu sans mono&#39;,&#39;bitstream vera sans mono&#39;,&#39;courier=
+ new&#39;,monospace;vertical-align:baseline;background-color:rgb(240,240,24=
+0);max-height:300px">chgrp</code>=C2=A0in the=C2=A0<code style=3D"margin:0p=
+x;padding:0px;border:0px;font-style:inherit;font-variant:inherit;font-weigh=
+t:inherit;font-size:13px;line-height:inherit;font-family:&#39;consolas&#39;=
+,&#39;menlo&#39;,&#39;monaco&#39;,&#39;lucida console&#39;,&#39;liberation =
+mono&#39;,&#39;dejavu sans mono&#39;,&#39;bitstream vera sans mono&#39;,&#3=
+9;courier new&#39;,monospace;vertical-align:baseline;background-color:rgb(2=
+40,240,240);max-height:300px">do_install</code>=C2=A0step for a given recip=
+e.</p><p style=3D"margin:0px;padding:0px;border:0px;font-size:15px;line-hei=
+ght:inherit;font-family:&quot;helvetica neue&quot;,helvetica,arial,sans-ser=
+if;vertical-align:baseline;color:rgb(12,13,14);background-color:rgb(255,255=
+,255)">I have few recipes for which the group and user are to be set to som=
+ething other than=C2=A0<code style=3D"margin:0px;padding:0px;border:0px;fon=
+t-style:inherit;font-variant:inherit;font-weight:inherit;font-size:13px;lin=
+e-height:inherit;font-family:&#39;consolas&#39;,&#39;menlo&#39;,&#39;monaco=
+&#39;,&#39;lucida console&#39;,&#39;liberation mono&#39;,&#39;dejavu sans m=
+ono&#39;,&#39;bitstream vera sans mono&#39;,&#39;courier new&#39;,monospace=
+;vertical-align:baseline;background-color:rgb(240,240,240);max-height:300px=
+">root</code>. Is there a way to achieve this? Such that the=C2=A0<code sty=
+le=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-variant:inh=
+erit;font-weight:inherit;font-size:13px;line-height:inherit;font-family:&#3=
+9;consolas&#39;,&#39;menlo&#39;,&#39;monaco&#39;,&#39;lucida console&#39;,&=
+#39;liberation mono&#39;,&#39;dejavu sans mono&#39;,&#39;bitstream vera san=
+s mono&#39;,&#39;courier new&#39;,monospace;vertical-align:baseline;backgro=
+und-color:rgb(240,240,240);max-height:300px">user</code>=C2=A0and=C2=A0<cod=
+e style=3D"margin:0px;padding:0px;border:0px;font-style:inherit;font-varian=
+t:inherit;font-weight:inherit;font-size:13px;line-height:inherit;font-famil=
+y:&#39;consolas&#39;,&#39;menlo&#39;,&#39;monaco&#39;,&#39;lucida console&#=
+39;,&#39;liberation mono&#39;,&#39;dejavu sans mono&#39;,&#39;bitstream ver=
+a sans mono&#39;,&#39;courier new&#39;,monospace;vertical-align:baseline;ba=
+ckground-color:rgb(240,240,240);max-height:300px">group=C2=A0</code>default=
+ to something else for these given recipes?</p></div>
 
+--001a114e61aef754a405539db433--
