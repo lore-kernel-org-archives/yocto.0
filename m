@@ -1,51 +1,37 @@
-Return-Path: <andrey.babushkin@intel.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65062E00AE6; Thu,  6 Jul 2017 03:29:41 -0700 (PDT)
+	id 6202BE00AE6; Thu,  6 Jul 2017 03:47:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [192.55.52.43 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1211E00718
-	for <yocto@yoctoproject.org>; Thu,  6 Jul 2017 03:29:38 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	06 Jul 2017 03:29:36 -0700
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D8BAE00718
+	for <yocto@yoctoproject.org>; Thu,  6 Jul 2017 03:47:23 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga105.fm.intel.com with ESMTP; 06 Jul 2017 03:47:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,316,1496127600"; 
-	d="scan'208,217";a="1148366302"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
-	by orsmga001.jf.intel.com with ESMTP; 06 Jul 2017 03:29:36 -0700
-Received: from cdsmsx151.ccr.corp.intel.com (172.17.4.38) by
-	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 6 Jul 2017 03:29:35 -0700
-Received: from cdsmsx102.ccr.corp.intel.com ([169.254.2.40]) by
-	CDSMSX151.ccr.corp.intel.com ([169.254.3.232]) with mapi id
-	14.03.0319.002; Thu, 6 Jul 2017 18:29:33 +0800
-From: "Babushkin, Andrey" <andrey.babushkin@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: 403 error when trying to download toolchain
-Thread-Index: AdL2QogGfwm0QxEUQxu3O/CNGoIsLA==
-Date: Thu, 6 Jul 2017 10:29:33 +0000
-Message-ID: <8E55CBA2716D2147B62DE7FE3353059E22A9B57A@CDSMSX102.ccr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNmQ0NmY4OWUtOWNiNS00OGEzLWFlNDYtNWY2MGU1ZDc2MzBjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6Ing5TGhqaEpVOWpJckQ1TGNBeGY1anVNc2FaeVk0Y3lYTWx5YTJJTTY2d1E9In0=
-dlp-product: dlpe-windows
-dlp-version: 10.0.102.7
-dlp-reaction: no-action
-x-originating-ip: [172.17.6.105]
-MIME-Version: 1.0
-Subject: 403 error when trying to download toolchain
+X-IronPort-AV: E=Sophos;i="5.40,316,1496127600"; d="scan'208";a="107768519"
+Received: from jlock-mobl1.ger.corp.intel.com ([10.252.30.5])
+	by orsmga002.jf.intel.com with ESMTP; 06 Jul 2017 03:47:21 -0700
+Message-ID: <1499338040.32379.7.camel@linux.intel.com>
+From: Joshua Lock <joshua.g.lock@linux.intel.com>
+To: Stephano Cetola <stephano.cetola@linux.intel.com>, yocto@yoctoproject.org
+Date: Thu, 06 Jul 2017 11:47:20 +0100
+In-Reply-To: <20170705212750.49420-2-stephano.cetola@linux.intel.com>
+References: <20170705212750.49420-1-stephano.cetola@linux.intel.com>
+	<20170705212750.49420-2-stephano.cetola@linux.intel.com>
+X-Mailer: Evolution 3.22.6 (3.22.6-2.fc25) 
+Mime-Version: 1.0
+Subject: Re: [yocto-autobuilder][PATCH V4 1/1] ScrapeTargets.py: improve target search algorithm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,112 +43,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jul 2017 10:29:41 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_8E55CBA2716D2147B62DE7FE3353059E22A9B57ACDSMSX102ccrcor_"
+X-List-Received-Date: Thu, 06 Jul 2017 10:47:25 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---_000_8E55CBA2716D2147B62DE7FE3353059E22A9B57ACDSMSX102ccrcor_
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+On Wed, 2017-07-05 at 14:27 -0700, Stephano Cetola wrote:
+> When scraping the build targets from refkit-ci.inc, grep would only
+> return the first line of the search result. By replacing grep with
+> awk, we are now searching for multi-line variables, and should now
+> scrape build targets even if they have line breaks between them.
+> 
+> [YOCTO #11720]
 
-Hi all!
-I am trying to download toolchain for Yocto 2.0.3 here http://downloads.yoc=
-toproject.org/releases/yocto/yocto-2.0.3/toolchain/ , but I get 403 Forbidd=
-en error. Is there any other places to download toolchain for Yocto 2.0.3?
+Thanks, I've merged and pushed this. Please see my comment below.
 
--------------------
-Best regards,
-Andrey Babushkin
+> 
+> Signed-off-by: Stephano Cetola <stephano.cetola@linux.intel.com>
+> ---
+>  .../site-packages/autobuilder/buildsteps/ScrapeTargets.py    | 12
+> +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
+> 
+> diff --git a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/ScrapeTargets.py
+> b/lib/python2.7/site-packages/autobuilder/buildsteps/ScrapeTargets.py
+> index 80153fe85..07e2fdcf4 100644
+> --- a/lib/python2.7/site-
+> packages/autobuilder/buildsteps/ScrapeTargets.py
+> +++ b/lib/python2.7/site-
+> packages/autobuilder/buildsteps/ScrapeTargets.py
+> @@ -41,7 +41,9 @@ class ScrapeTargets(ShellCommand):
+>          workerdir = os.path.join(os.path.join(YOCTO_ABBASE, "yocto-
+> worker"))
+>          buildername = self.getProperty("buildername")
+>          src = os.path.join(workerdir, buildername, "build",
+> self.source)
+> -        self.command = "cat " + src + " | grep " + self.targetsvar
+> +        # find targetsvar then return lines up to a quote
+> +        self.command = ["awk",
+> +                '/%s/{flag=1;print;next}/"/{flag=0}flag' %
+> self.targetsvar, src]
+>          ShellCommand.start(self)
+>  
+>      def commandComplete(self, cmd):
+> @@ -49,10 +51,10 @@ class ScrapeTargets(ShellCommand):
+>              return
+>  
+>          result = cmd.logs['stdio'].getText()
+> -        targets = result.replace(self.targetsvar, "")
+> -        targets = targets.strip()
+> -        targets = targets.replace('=', '')
+> -        targets = targets.strip('"')
+> +        targets = result.strip()
+> +        targets = targets.replace('%s="' % self.targetsvar, '')
 
+This still leaves us a bit brittle. What if someone adds whitespace
+around the assignment operator? Could you create a follow-on patch for
+that?
 
---------------------------------------------------------------------
-Joint Stock Company Intel A/O
-Registered legal address: Krylatsky Hills Business Park,
-17 Krylatskaya Str., Bldg 4, Moscow 121614,
-Russian Federation
+Thanks!
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+> +        targets = targets.replace('\\', '')
+> +        targets = targets.replace('\n', '')
+>          self.setProperty("scraped_targets",
+>                           targets,
+>                           'Targets "%s" scraped from %s' % (targets,
+> -- 
+> 2.13.2
+> 
 
---_000_8E55CBA2716D2147B62DE7FE3353059E22A9B57ACDSMSX102ccrcor_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:56.7pt 42.5pt 56.7pt 85.05pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all!<o:p></o:p></p>
-<p class=3D"MsoNormal">I am trying to download toolchain for Yocto 2.0.3 he=
-re <a href=3D"http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/=
-toolchain/">
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.0.3/toolchain/</a>=
- , but I get 403 Forbidden error. Is there any other places to download too=
-lchain for Yocto 2.0.3?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">-------------------<o:p></o:p></p>
-<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Andrey Babushkin<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<p><br>--------------------------------------------------------------------=
-<br>Joint Stock Company Intel A/O<br>Registered legal address: Krylatsky Hi=
-lls Business Park, <br>17 Krylatskaya Str., Bldg 4, Moscow 121614, <br>Russ=
-ian Federation</p><p>This e-mail and any attachments may contain confidenti=
-al material for<br>the sole use of the intended recipient(s). Any review or=
- distribution<br>by others is strictly prohibited. If you are not the inten=
-ded<br>recipient, please contact the sender and delete all copies.</p>
-</body>
-</html>
-
---_000_8E55CBA2716D2147B62DE7FE3353059E22A9B57ACDSMSX102ccrcor_--
