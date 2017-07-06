@@ -1,6 +1,6 @@
-Return-Path: <stephano.cetola@linux.intel.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 344EAE00B53; Thu,  6 Jul 2017 08:09:05 -0700 (PDT)
+	id 5B938E00B57; Thu,  6 Jul 2017 08:28:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,29 +8,29 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBECFE00B1B
-	for <yocto@yoctoproject.org>; Thu,  6 Jul 2017 08:09:03 -0700 (PDT)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga105.jf.intel.com with ESMTP; 06 Jul 2017 08:09:01 -0700
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35772E00B2F
+	for <yocto@yoctoproject.org>; Thu,  6 Jul 2017 08:28:01 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga104.jf.intel.com with ESMTP; 06 Jul 2017 08:28:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,317,1496127600"; d="scan'208";a="123651267"
-Received: from scetola-mac01.jf.intel.com (HELO scetola-mac01.local)
-	([10.54.74.129])
-	by fmsmga006.fm.intel.com with ESMTP; 06 Jul 2017 08:09:01 -0700
-Date: Thu, 6 Jul 2017 08:09:04 -0700
-From: Stephano Cetola <stephano.cetola@linux.intel.com>
-To: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <20170706150904.GA11164@scetola-mac01.local>
+X-IronPort-AV: E=Sophos;i="5.40,317,1496127600"; d="scan'208";a="107906004"
+Received: from jlock-mobl1.ger.corp.intel.com ([10.252.30.5])
+	by orsmga002.jf.intel.com with ESMTP; 06 Jul 2017 08:27:59 -0700
+Message-ID: <1499354878.32379.12.camel@linux.intel.com>
+From: Joshua Lock <joshua.g.lock@linux.intel.com>
+To: Stephano Cetola <stephano.cetola@linux.intel.com>
+Date: Thu, 06 Jul 2017 16:27:58 +0100
+In-Reply-To: <20170706150904.GA11164@scetola-mac01.local>
 References: <20170705212750.49420-1-stephano.cetola@linux.intel.com>
 	<20170705212750.49420-2-stephano.cetola@linux.intel.com>
 	<1499338040.32379.7.camel@linux.intel.com>
-MIME-Version: 1.0
-In-Reply-To: <1499338040.32379.7.camel@linux.intel.com>
-User-Agent: Mutt/1.8.3 (2017-05-23)
+	<20170706150904.GA11164@scetola-mac01.local>
+X-Mailer: Evolution 3.22.6 (3.22.6-2.fc25) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: [yocto-autobuilder][PATCH V4 1/1] ScrapeTargets.py: improve target search algorithm
 X-BeenThere: yocto@yoctoproject.org
@@ -44,25 +44,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jul 2017 15:09:05 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 06 Jul 2017 15:28:08 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 07/06, Joshua Lock wrote:
-> This still leaves us a bit brittle. What if someone adds whitespace
-> around the assignment operator? Could you create a follow-on patch for
-> that?
+On Thu, 2017-07-06 at 08:09 -0700, Stephano Cetola wrote:
+> On 07/06, Joshua Lock wrote:
+> > This still leaves us a bit brittle. What if someone adds whitespace
+> > around the assignment operator? Could you create a follow-on patch
+> > for
+> > that?
+> > 
+> > Thanks!
 > 
-> Thanks!
-Actually, since the awk command just searches for self.targetsvar now
-instead of ``self.targetsvar="``, it will match even if there are
-spaces between the equal.
+> Actually, since the awk command just searches for self.targetsvar now
+> instead of ``self.targetsvar="``, it will match even if there are
+> spaces between the equal.
 
-I did just realize that if the variable is NOT multi-line, e.g.
-REFKIT_CI_POSTBUILD_SELFTESTS, this search will fail because of the
-"next" command.
+Context is important. It's not the awk command, it's the str.replace()
 
-I'll puzzle over this a bit.
+> +        targets = targets.replace('%s="' % self.targetsvar, '')
 
--S
+we're going replace 'SOMEVARIABLE="' with '', but what if we get
+'SOMEVARIABLE = "' ?
+
+> I did just realize that if the variable is NOT multi-line, e.g.
+> REFKIT_CI_POSTBUILD_SELFTESTS, this search will fail because of the
+> "next" command.
+
+Ah, yes. That could cause some surprises.
+
+> I'll puzzle over this a bit.
+
+Thanks!
+
+Joshua
 
