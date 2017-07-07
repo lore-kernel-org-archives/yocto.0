@@ -1,46 +1,84 @@
-Return-Path: <umamahesh.y@hcl.com>
+Return-Path: <aravindhlalgss@embedur.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C62FCE00AD0; Fri,  7 Jul 2017 03:32:19 -0700 (PDT)
+	id A57F5E009C2; Fri,  7 Jul 2017 05:31:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_HTML_ONLY,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [192.8.186.131 listed in list.dnswl.org]
+	*      [104.47.41.43 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7568E00BF8
-	for <yocto@yoctoproject.org>; Fri,  7 Jul 2017 03:32:15 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.40,322,1496082600"; d="scan'208,217";a="67315134"
-Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
-	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 07 Jul 2017 16:02:13 +0530
-Received: from CHN-HCLT-CSHT06.HCLT.CORP.HCL.IN (10.150.12.31) by
-	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
-	(TLS) id 14.3.339.0; Fri, 7 Jul 2017 16:02:12 +0530
-Received: from CHN-HCLT-MBS02.HCLT.CORP.HCL.IN ([fe80::45e7:d7f7:b243:fdd9])
-	by CHN-HCLT-CSHT06.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0339.000;
-	Fri, 7 Jul 2017 16:02:12 +0530
-From: Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>
-To: Ayoub Zaki <ayoub.zaki@embexus.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Wifi on wandboard with Yoct0 Morty
-Thread-Index: AdL29weARh2ivtCESiyf/rbwmNIfeP//pXEAgACEmbM=
-Date: Fri, 7 Jul 2017 10:32:12 +0000
-Message-ID: <7238EEDF8C36444C95B21A966F50FB8851DB3150@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>
-References: <7238EEDF8C36444C95B21A966F50FB8851DB30BD@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>,
-	<bce3d4ba-1a3f-1c94-07c2-ed1fc42fea9d@embexus.com>
-In-Reply-To: <bce3d4ba-1a3f-1c94-07c2-ed1fc42fea9d@embexus.com>
-Accept-Language: en-GB, en-US
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 14365 seconds by postgrey-1.32 at yocto-www;
+	Fri, 07 Jul 2017 05:31:32 PDT
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+	(mail-dm3nam03on0043.outbound.protection.outlook.com [104.47.41.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 441FFE00718
+	for <yocto@yoctoproject.org>; Fri,  7 Jul 2017 05:31:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=embedur.onmicrosoft.com; s=selector1-embedur-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=sbsXFMrS1iPEw8TKeJl11Qx7q6CJ3szWopsSceo9+oc=;
+	b=snLQlAj6dX8TN+d15VsAdU061gW1uxnlaP4OMK76yeEGz4Zg4Ij4FFNaIrd6lpNTYp1kZiCb1Bcr38RSjHVdVlRxPRqA02y21bD2j5ttL5jP5fPWuz7Ep7elS+hGX799m1irBH5kgSYF12vG3U12bRDG4+A95jchtGX4mYafFe8=
+Received: from BLUPR15MB0500.namprd15.prod.outlook.com (10.163.214.30) by
+	BLUPR15MB0499.namprd15.prod.outlook.com (10.163.214.29) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.1.1240.13; Fri, 7 Jul 2017 06:59:32 +0000
+Received: from BLUPR15MB0500.namprd15.prod.outlook.com ([10.163.214.30]) by
+	BLUPR15MB0500.namprd15.prod.outlook.com ([10.163.214.30]) with mapi id
+	15.01.1240.013; Fri, 7 Jul 2017 06:59:32 +0000
+From: Aravindhlal G.S.S <aravindhlalgss@embedur.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Uninstall the installed files using bbappend file
+Thread-Index: AdL27pTjjx3eLcL6ShyXWTa9yXGmlQ==
+Date: Fri, 7 Jul 2017 06:59:32 +0000
+Message-ID: <BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0@BLUPR15MB0500.namprd15.prod.outlook.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.150.5.113]
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=embedur.com;
+x-originating-ip: [202.71.146.8]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BLUPR15MB0499;
+	7:UuaZVo5C/RQN0WdXVXnfcFG+fYSHq36htXwxaW/XBDG3wabgCGUzzbhSflyCop6scOEactfLQtaJBkNpfdRIDXpstI3ogWX7IqkYDH9/oNyDn9o4d58faiM9d6hFLk8gIsG6q51nT4CuK+du0rCwXNxVLeMtuGu+DmyP7frW1TH8aAshNxy5WuY7jLEBL94oiHsmzPztB7X1OUgkzI8SASJvcYF622el6V6UDWnMmpzPYfvxpgV9YFtzcFkGzpjVFITeliciAav6hez0JmhBUF/mFim9V7xf3++6MN6HhLi+dGt7OT9xj6+jR/69bvg2iLPM91LlGnD5RxaLrJ52a8zgOq/fSF97g9Iuu/LnLQPwNcO4IuzeiPgXUaTYtdWtvmETHc24jYwdEIKXaxqt00ycwzgZ4jXygJ1NRcOmDEXHQ8AXDxlM8LyVW3uBDataYBI3fSF6N1ynp/efkLqQf+97ybgusN61NpvTp8hXboL0UvoS2LQ2rs+dopcmnpsuFLgraOo0IzCtcu+ISf8Il2CZ3xcyizrCPTb1FDe+oSAsrN+tORXtqLXRqyVy3apxvam+9bN3t65EWRHsFVPo0cwWUtoHoI1F763KdZ7bSVUCseVs5qNgmGr5UDejS33fIcZWs5wxfaQy89hJ97pCgj3Sz3WFn7Zs+LmBuU8mX/+dJ2do8XBIoDri6P9O/KGHCf23/O4oG7XOiwQ5ftK8VWeBLogTvrD5VK+u5oPuhMJW2DoxWqlEw3tnksoTHujAc+vmj1Ua88Unoe0YK7EkoBUzjVfDO20Dsgmy5mttNuQ=
+x-ms-office365-filtering-correlation-id: c8616776-fcbe-4700-45b3-08d4c505b86b
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254075)(300000503095)(300135400095)(2017052603031)(201703131423075)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:BLUPR15MB0499; 
+x-ms-traffictypediagnostic: BLUPR15MB0499:
+x-microsoft-antispam-prvs: <BLUPR15MB049931C48F69A57BA88E3C77D0AA0@BLUPR15MB0499.namprd15.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(151999592597050)(26388249023172)(236129657087228)(48057245064654)(148574349560750)(21748063052155)(247924648384137);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(5005006)(8121501046)(2017060910059)(93006095)(93001095)(100000703101)(100105400095)(3002001)(10201501046)(6041248)(20161123562025)(20161123560025)(20161123555025)(20161123558100)(20161123564025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(2016111802025)(6072148)(6043046)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:BLUPR15MB0499; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:BLUPR15MB0499; 
+x-forefront-prvs: 0361212EA8
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(39830400002)(39400400002)(39410400002)(39450400003)(6506006)(9686003)(66066001)(99286003)(55016002)(54356999)(50986999)(54896002)(6306002)(25786009)(53936002)(38730400002)(189998001)(110136004)(18717965001)(2900100001)(33656002)(5640700003)(6436002)(2351001)(14454004)(3660700001)(3280700002)(478600001)(7736002)(77096006)(2906002)(86362001)(74316002)(8936002)(8676002)(1730700003)(81166006)(5660300001)(102836003)(9326002)(68736007)(790700001)(6116002)(3846002)(7696004)(5630700001)(2501003)(6916009);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR15MB0499;
+	H:BLUPR15MB0500.namprd15.prod.outlook.com; FPR:; SPF:None;
+	MLV:ovrnspm; PTR:InfoNoRecords; LANG:en; 
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Subject: Re: Wifi on wandboard with Yoct0 Morty
+X-OriginatorOrg: embedur.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2017 06:59:32.4691 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3e7c9d67-afab-4694-94e1-af28129ed65f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR15MB0499
+Subject: Uninstall the installed files using bbappend file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,145 +90,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jul 2017 10:32:19 -0000
-Content-Language: en-GB
-Content-Type: text/html; charset="koi8-r"
+X-List-Received-Date: Fri, 07 Jul 2017 12:31:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0BLUPR15MB0500namp_"
+
+--_000_BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0BLUPR15MB0500namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html dir=3D"ltr">
+Hi,
+
+One of the configuration files is installed in the recipe which is present =
+in the generic layer. I cannot directly remove the install in the recipe pr=
+esent in generic layer as it would affect the other platforms. I would like=
+ to define a new bbappend file, which should be uninstalling that particula=
+r configuration file which building it for particular target.
+
+Is it possible to do this ? If yes, could you please share how to do this ?=
+ Appreciate your help !
+
+Thanks
+-Aravindh
+
+--_000_BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0BLUPR15MB0500namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dkoi8-r">
-</head>
-<body fpstyle=3D"1" ocsi=3D"0" bgcolor=3D"#FFFFFF">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">Please check the dmesg log posted, how to overcome the issue. Do you=
- have procedure how to compile for meta-freescale and meta-freescale-3rdpar=
-ty layers.<br>
-<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
-">
-<hr tabindex=3D"-1">
-<div id=3D"divRpF332173" style=3D"direction: ltr;"><font color=3D"#000000" =
-size=3D"2" face=3D"Tahoma"><b>From:</b> yocto-bounces@yoctoproject.org [yoc=
-to-bounces@yoctoproject.org] on behalf of Ayoub Zaki [ayoub.zaki@embexus.co=
-m]<br>
-<b>Sent:</b> 07 July 2017 13:35<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Wifi on wandboard with Yoct0 Morty<br>
-</font><br>
-</div>
-<div></div>
-<div>
-<p>Fo wandboard I use meta-freescale and meta-freescale-3rdparty layers.</p=
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<p>Wifi works out of the box <span class=3D"moz-smiley-s1"><span>:-)</span>=
-</span><br>
-</p>
-<br>
-<div class=3D"moz-cite-prefix">On 07.07.2017 09:59, Umamahesh Yelchuruvenka=
-ta wrote:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" id=3D"owaParaStyle">=0A=
-<!--=0A=
-p=0A=
-	{margin-top:0;=0A=
-	margin-bottom:0}=0A=
--->=0A=
-BODY {direction: ltr;font-family: Tahoma;color: #000000;font-size: 10pt;}P =
-{margin-top:0;margin-bottom:0;}</style>
-<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
-0pt">Hi <br>
-I am trying to bring up Wifi on wandboard Rev C1 and using Yocto Morty vers=
-ion(2.2.2) , I downloaded the firmware bin files from following
-<br>
-<br>
-wget -c <a class=3D"postlink" href=3D"https://git.kernel.org/cgit/linux/ker=
-nel/git/firmware/linux-firmware.git/plain/brcm/brcmfmac4330-sdio.bin" targe=
-t=3D"_blank">
-https://git.kernel.org/cgit/linux/kerne ... 0-sdio.bin</a><br>
-wget -c <a class=3D"postlink" href=3D"https://rcn-ee.com/repos/git/meta-fsl=
--arm-extra/recipes-bsp/broadcom-nvram-config/files/wandboard/brcmfmac4330-s=
-dio.txt" target=3D"_blank">
-https://rcn-ee.com/repos/git/meta-fsl-a ... 0-sdio.txt</a><br>
-<br>
-Created a folder firmware/brcm under tmp/work/wandboard-fslc-linux-gnueabi/=
-core-image-minimal/1.0-r0/rootfs/lib<br>
-<br>
-Enabled the drivers,<br>
-<br>
-&lt;*&gt; Broadcom FullMAC wireless cards support =81 =81 <br>
-=81 =81 [*] SDIO bus interface support <br>
-<br>
-At the target getting following errors,<br>
-<br>
-root@wandboard:~# dmesg | grep brcm<br>
-[ 1.739333] brcmfmac_sdio mmc1:0001:1: Direct firmware load for brcm/brcmfm=
-ac4330-sdio.bin failed with error -2<br>
-[ 1.748200] brcmfmac_sdio mmc1:0001:1: Falling back to user helper<br>
-[ 62.783879] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
- 0x50<br>
-[ 63.793963] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
- 0x50<br>
-root@wandboard:~# <br>
-<br>
-<br>
-Please suggest</div>
-<span style=3D"font-family:'Arial','sans-serif'; color:gray; font-size:7.5p=
-t">
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><br>
-<br>
-<font style=3D"font-family:'Arial','sans-serif'; color:gray; font-size:9px"=
->::DISCLAIMER::<br>
----------------------------------------------------------------------------=
--------------------------------------------------------------------------</=
-font></p>
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><font style=3D"font-fam=
-ily:'Arial','sans-serif'; color:gray; font-size:11px">The contents of this =
-e-mail and any attachment(s) are confidential and intended for the named re=
-cipient(s) only.<br>
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-<br>
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-<br>
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-<br>
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-<br>
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-<br>
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-<br>
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-<br>
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.</font></p>
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><font style=3D"font-fam=
-ily:'Arial','sans-serif'; color:gray; font-size:11px">---------------------=
----------------------------------------------------------------------------=
-----------------------------------------------------</font></p>
-<br>
-<fieldset class=3D"mimeAttachmentHeader" target=3D"_blank"></fieldset> <br>
-</span></blockquote>
-<br>
-<pre class=3D"moz-signature" cols=3D"72">-- =0A=
-=0A=
-Ayoub Zaki=0A=
-=0A=
-<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:ayoub.zaki@embexus.com=
-" target=3D"_blank">ayoub.zaki@embexus.com</a>=0A=
-Mobile: &#43;49(0)176-62901545=0A=
-Skype: ayoub.zaki_2=0A=
-<a class=3D"moz-txt-link-freetext" href=3D"https://embexus.com" target=3D"_=
-blank">https://embexus.com</a></pre>
-</div>
-</div>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-IN" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">One of the configuration files is installed in the r=
+ecipe which is present in the generic layer. I cannot directly remove the i=
+nstall in the recipe present in generic layer as it would affect the other =
+platforms. I would like to define
+ a new bbappend file, which should be uninstalling that particular configur=
+ation file which building it for particular target.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is it possible to do this ? If yes, could you please=
+ share how to do this ? Appreciate your help !<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+<p class=3D"MsoNormal">-Aravindh<o:p></o:p></p>
 </div>
 </body>
 </html>
 
+--_000_BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0BLUPR15MB0500namp_--
