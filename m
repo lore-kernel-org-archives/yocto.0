@@ -1,84 +1,71 @@
-Return-Path: <aravindhlalgss@embedur.com>
+Return-Path: <so61pi.re@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A57F5E009C2; Fri,  7 Jul 2017 05:31:36 -0700 (PDT)
+	id 55D30E00B67; Sat,  8 Jul 2017 08:12:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.41.43 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (so61pi.re[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.52 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 14365 seconds by postgrey-1.32 at yocto-www;
-	Fri, 07 Jul 2017 05:31:32 PDT
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com
-	(mail-dm3nam03on0043.outbound.protection.outlook.com [104.47.41.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 441FFE00718
-	for <yocto@yoctoproject.org>; Fri,  7 Jul 2017 05:31:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=embedur.onmicrosoft.com; s=selector1-embedur-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=sbsXFMrS1iPEw8TKeJl11Qx7q6CJ3szWopsSceo9+oc=;
-	b=snLQlAj6dX8TN+d15VsAdU061gW1uxnlaP4OMK76yeEGz4Zg4Ij4FFNaIrd6lpNTYp1kZiCb1Bcr38RSjHVdVlRxPRqA02y21bD2j5ttL5jP5fPWuz7Ep7elS+hGX799m1irBH5kgSYF12vG3U12bRDG4+A95jchtGX4mYafFe8=
-Received: from BLUPR15MB0500.namprd15.prod.outlook.com (10.163.214.30) by
-	BLUPR15MB0499.namprd15.prod.outlook.com (10.163.214.29) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1240.13; Fri, 7 Jul 2017 06:59:32 +0000
-Received: from BLUPR15MB0500.namprd15.prod.outlook.com ([10.163.214.30]) by
-	BLUPR15MB0500.namprd15.prod.outlook.com ([10.163.214.30]) with mapi id
-	15.01.1240.013; Fri, 7 Jul 2017 06:59:32 +0000
-From: Aravindhlal G.S.S <aravindhlalgss@embedur.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Uninstall the installed files using bbappend file
-Thread-Index: AdL27pTjjx3eLcL6ShyXWTa9yXGmlQ==
-Date: Fri, 7 Jul 2017 06:59:32 +0000
-Message-ID: <BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0@BLUPR15MB0500.namprd15.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=embedur.com;
-x-originating-ip: [202.71.146.8]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BLUPR15MB0499;
-	7:UuaZVo5C/RQN0WdXVXnfcFG+fYSHq36htXwxaW/XBDG3wabgCGUzzbhSflyCop6scOEactfLQtaJBkNpfdRIDXpstI3ogWX7IqkYDH9/oNyDn9o4d58faiM9d6hFLk8gIsG6q51nT4CuK+du0rCwXNxVLeMtuGu+DmyP7frW1TH8aAshNxy5WuY7jLEBL94oiHsmzPztB7X1OUgkzI8SASJvcYF622el6V6UDWnMmpzPYfvxpgV9YFtzcFkGzpjVFITeliciAav6hez0JmhBUF/mFim9V7xf3++6MN6HhLi+dGt7OT9xj6+jR/69bvg2iLPM91LlGnD5RxaLrJ52a8zgOq/fSF97g9Iuu/LnLQPwNcO4IuzeiPgXUaTYtdWtvmETHc24jYwdEIKXaxqt00ycwzgZ4jXygJ1NRcOmDEXHQ8AXDxlM8LyVW3uBDataYBI3fSF6N1ynp/efkLqQf+97ybgusN61NpvTp8hXboL0UvoS2LQ2rs+dopcmnpsuFLgraOo0IzCtcu+ISf8Il2CZ3xcyizrCPTb1FDe+oSAsrN+tORXtqLXRqyVy3apxvam+9bN3t65EWRHsFVPo0cwWUtoHoI1F763KdZ7bSVUCseVs5qNgmGr5UDejS33fIcZWs5wxfaQy89hJ97pCgj3Sz3WFn7Zs+LmBuU8mX/+dJ2do8XBIoDri6P9O/KGHCf23/O4oG7XOiwQ5ftK8VWeBLogTvrD5VK+u5oPuhMJW2DoxWqlEw3tnksoTHujAc+vmj1Ua88Unoe0YK7EkoBUzjVfDO20Dsgmy5mttNuQ=
-x-ms-office365-filtering-correlation-id: c8616776-fcbe-4700-45b3-08d4c505b86b
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254075)(300000503095)(300135400095)(2017052603031)(201703131423075)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
-	SRVR:BLUPR15MB0499; 
-x-ms-traffictypediagnostic: BLUPR15MB0499:
-x-microsoft-antispam-prvs: <BLUPR15MB049931C48F69A57BA88E3C77D0AA0@BLUPR15MB0499.namprd15.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(151999592597050)(26388249023172)(236129657087228)(48057245064654)(148574349560750)(21748063052155)(247924648384137);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(5005006)(8121501046)(2017060910059)(93006095)(93001095)(100000703101)(100105400095)(3002001)(10201501046)(6041248)(20161123562025)(20161123560025)(20161123555025)(20161123558100)(20161123564025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(2016111802025)(6072148)(6043046)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:BLUPR15MB0499; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:BLUPR15MB0499; 
-x-forefront-prvs: 0361212EA8
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(39830400002)(39400400002)(39410400002)(39450400003)(6506006)(9686003)(66066001)(99286003)(55016002)(54356999)(50986999)(54896002)(6306002)(25786009)(53936002)(38730400002)(189998001)(110136004)(18717965001)(2900100001)(33656002)(5640700003)(6436002)(2351001)(14454004)(3660700001)(3280700002)(478600001)(7736002)(77096006)(2906002)(86362001)(74316002)(8936002)(8676002)(1730700003)(81166006)(5660300001)(102836003)(9326002)(68736007)(790700001)(6116002)(3846002)(7696004)(5630700001)(2501003)(6916009);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR15MB0499;
-	H:BLUPR15MB0500.namprd15.prod.outlook.com; FPR:; SPF:None;
-	MLV:ovrnspm; PTR:InfoNoRecords; LANG:en; 
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-lf0-f52.google.com (mail-lf0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1115EE0070F
+	for <yocto@yoctoproject.org>; Sat,  8 Jul 2017 08:12:50 -0700 (PDT)
+Received: by mail-lf0-f52.google.com with SMTP id b207so38737062lfg.2
+	for <yocto@yoctoproject.org>; Sat, 08 Jul 2017 08:12:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=xJ33j170qOj888r2mA/guA0WVcM0TiMwIQnf2EaYJB4=;
+	b=tndt8m6dhF8hprYwAEIMOeCwhkbObZ9vHZHiRPyETkiwHPZS7QxxyNXGf6JM42Ug7k
+	7hmghAO84OSCmKTo4pgEhJBG9bYcsZ3mtZzkv9iWdZLl+tvKZBJD2O9ASy0L1mn377e5
+	Rq5SY3gfYprP+xYrBPUUPGn1Ax22GZGcZiJpp+C2/YKkxYC4KhtsbeZlwient5xhxbz7
+	FOwuaUCi93M+3eayKn73l9z1/I028La/xyHQUyfDUvlkQ9i+aXrrX93GA+ZCdE7+E2hD
+	+HxPhFujEDz2y0aP0TWV7hpAu0ARHnYSsPduzONHzisRI+ZpC4hZPL0Wk0MrmKBgR0yt
+	qc9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=xJ33j170qOj888r2mA/guA0WVcM0TiMwIQnf2EaYJB4=;
+	b=YpFteqvtOPSxXAjaivb7vwKiUMMGM9DBu15EsyZ6x2Iil0w/d0qRf7+UeiQJbNVw98
+	shu29wvTeeQGuUanicc4z/XF3eFMEl/0ojUtmrn/koG7Qs2CChWmthzwQ0Wz1NypF2y5
+	HyDmRNeomFT6vOSmi7Ina8BT3HRh2nV+Zz86g1NH+7UFw+gsewQ62nytA6880f4Xcg2B
+	jBStpLtPqhyDxNtqBJ1gJk6CvugCUFbUq5sSZuC6eAidSg+a4WaRxGZpqDRHSiHqiY7j
+	GfFaAMTNKZ19CRGY5gZvTcGUTNrfqlDKnavhliWIQ7HjcddM9pxhfGfBpiHSVlgz3vxA
+	Iajw==
+X-Gm-Message-State: AKS2vOzyQ+se+4vtKcthtlOlpgBIenM2sdYw7f5fTVU7iuy7AKchG/81
+	8YwN7WJpPatqqBcp1hHUmlQLenz+XBb757o=
+X-Received: by 10.25.225.8 with SMTP id y8mr20681036lfg.34.1499526769645; Sat,
+	08 Jul 2017 08:12:49 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: embedur.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2017 06:59:32.4691 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3e7c9d67-afab-4694-94e1-af28129ed65f
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR15MB0499
-Subject: Uninstall the installed files using bbappend file
+Received: by 10.25.199.203 with HTTP; Sat, 8 Jul 2017 08:12:48 -0700 (PDT)
+In-Reply-To: <e9196c4d-7dc8-3ad4-b7cd-57aa7b3a4f4f@denx.de>
+References: <CAGnCEbuE7OVy=RrbD91WMtSiZ2nJ90eUONMEJ=ZrMfx2FC6LhA@mail.gmail.com>
+	<ad7604a1-743e-89f3-b810-b80beeb3f5cc@denx.de>
+	<CAGnCEbuAG01bPk0WR5HvTcPwAxqUPU_OA_JipRjmANwCyumAkQ@mail.gmail.com>
+	<e9196c4d-7dc8-3ad4-b7cd-57aa7b3a4f4f@denx.de>
+From: =?UTF-8?B?Tmfhu41jIFRoaSBIdeG7s25o?= <so61pi.re@gmail.com>
+Date: Sat, 8 Jul 2017 22:12:48 +0700
+Message-ID: <CAGnCEbuOBM8rxhHv_nFNjZwQf+TVjc2hBjA5vjZL2cBZNAc5KA@mail.gmail.com>
+To: Stefano Babic <sbabic@denx.de>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: Update SRCREV doesn't work?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,99 +77,309 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jul 2017 12:31:36 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0BLUPR15MB0500namp_"
+X-List-Received-Date: Sat, 08 Jul 2017 15:12:54 -0000
+Content-Type: multipart/alternative; boundary="001a113c3bd06f9d130553cfc859"
 
---_000_BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0BLUPR15MB0500namp_
-Content-Type: text/plain; charset="us-ascii"
+--001a113c3bd06f9d130553cfc859
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Babic,
 
-One of the configuration files is installed in the recipe which is present =
-in the generic layer. I cannot directly remove the install in the recipe pr=
-esent in generic layer as it would affect the other platforms. I would like=
- to define a new bbappend file, which should be uninstalling that particula=
-r configuration file which building it for particular target.
+I think the problem is from
 
-Is it possible to do this ? If yes, could you please share how to do this ?=
- Appreciate your help !
-
-Thanks
--Aravindh
-
---_000_BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0BLUPR15MB0500namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> meta-swupdate-boards/recipes-support/swupdate/swupdate_%.bbappend
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-IN" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">One of the configuration files is installed in the r=
-ecipe which is present in the generic layer. I cannot directly remove the i=
-nstall in the recipe present in generic layer as it would affect the other =
-platforms. I would like to define
- a new bbappend file, which should be uninstalling that particular configur=
-ation file which building it for particular target.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is it possible to do this ? If yes, could you please=
- share how to do this ? Appreciate your help !<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
-<p class=3D"MsoNormal">-Aravindh<o:p></o:p></p>
-</div>
-</body>
-</html>
 
---_000_BLUPR15MB0500773E0DAC70C6A52CC5FAD0AA0BLUPR15MB0500namp_--
+The file contains
+
+> SRCREV =3D "${AUTOREV}"
+>
+
+which overwrites SRCREV in
+
+> meta-swupdate/recipes-support/swupdate/swupdate_2017.04.bb
+>
+
+After removing that line, everything is fine now.
+
+Best Regards,
+Thi Huynh
+
+Hu=E1=BB=B3nh Ng=E1=BB=8Dc Thi
+-so61pi
+
+On Wed, Jul 5, 2017 at 1:43 PM, Stefano Babic <sbabic@denx.de> wrote:
+
+> Hi Huynh,
+>
+> On 05/07/2017 04:09, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh wrote:
+> > Hi,
+> >
+> > I guess I'll remove build/tmp directory and rebuild everything from
+> scratch.
+> > I'll post the result later then.
+> >
+>
+> The recipe for beaglebone was dropped from meta-swupdate. I moved the
+> examples for bbb and raspi into a separate layer (meta-swupdate-boards,
+> -master).
+>
+> > BTW, thank you so much for writing swupdate.
+>
+> You're welcome.
+>
+> >
+> Best regards,
+> Stefano Babic
+>
+> > Best Regards,
+> > Thi Huynh
+> >
+> > Hu=E1=BB=B3nh Ng=E1=BB=8Dc Thi
+> > -so61pi
+> >
+> > On Wed, Jul 5, 2017 at 12:08 AM, Stefano Babic <sbabic@denx.de
+> > <mailto:sbabic@denx.de>> wrote:
+> >
+> >     Hi,
+> >
+> >     On 04/07/2017 18:13, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh wrote:
+> >     > Hi everyone,
+> >     >
+> >     > I'm using poky pyro to build a beaglebone image with swupdate.
+> >     >
+> >     > First time I built swupdate (by bitbake swupdate), it used the
+> latest
+> >     > git version and I encountered an make error which related to
+> swupdate only.
+> >     >
+> >     > Then I changed swupdate version to 2017.04 (by using
+> >     > PREFERRED_VERSION_swupdate =3D "2017.04") but the bitbake still u=
+sed
+> the
+> >     > latest git version and I had the make error again.
+> >     >
+> >
+> >     I cannot confirm this. I have built a custom board and setting
+> >     PREFERRED_VERSION_swupdate works without issues.
+> >
+> >     > But when I used devshell and changed the git revision to 2017.04
+> then
+> >     > do_configure and do_compile, everything went fine.
+> >     >
+> >     > My question is, is there a simple way to solve this problem?
+> >     >
+> >     > /Note:/
+> >     > The swupdate recipes for beaglebone that I'm using are from
+> >     > https://github.com/sbabic/meta-swupdate
+> >     <https://github.com/sbabic/meta-swupdate>
+> >     >
+> >     > Content of swupdate_2017.04.bb <http://swupdate_2017.04.bb>
+> >     <http://swupdate_2017.04.bb>:
+> >     >
+> >     >     require swupdate.inc
+> >     >
+> >     >     SRCREV =3D "d344ec10b71293d2aaf96816266d4e6ed1d3bf6a"
+> >     >
+> >     >
+> >     > Content of swupdate_git.bb <http://swupdate_git.bb>
+> >     <http://swupdate_git.bb>
+> >     >
+> >     >     require swupdate.inc
+> >     >
+> >     >     DEFAULT_PREFERENCE =3D "-1"
+> >     >
+> >     >
+> >     > A snippet of swupdate.inc
+> >     >
+> >     >     SRCREV =3D "${AUTOREV}"
+> >     >
+> >     >
+> >
+> >     Best regards,
+> >     Stefano Babic
+> >
+> >
+> >     --
+> >     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >     DENX Software Engineering GmbH,      Managing Director: Wolfgang De=
+nk
+> >     HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germa=
+ny
+> >     Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email:
+> >     sbabic@denx.de <mailto:sbabic@denx.de>
+> >     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> >
+>
+
+--001a113c3bd06f9d130553cfc859
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div>Hi Babic,<br><br></div>I think th=
+e problem is from<br><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">meta=
+-swupdate-boards/recipes-support/swupdate/swupdate_%.bbappend<br></blockquo=
+te></div><br>The file contains<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">SRCREV =3D &quot;${AUTOREV}&quot;<br></blockquote><br></div>whic=
+h overwrites SRCREV in<br><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>meta-swupdate/recipes-support/swupdate/<a href=3D"http://swupdate_2017.04.=
+bb">swupdate_2017.04.bb</a><br></blockquote><br></div><div>After removing t=
+hat line, everything is fine now.<br></div><div><br></div>Best Regards,<br>=
+</div>Thi Huynh<br></div><div class=3D"gmail_extra"><br clear=3D"all"><div>=
+<div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=
+=3D"ltr">Hu=E1=BB=B3nh Ng=E1=BB=8Dc Thi<br><div>-so61pi<br></div></div></di=
+v></div>
+<br><div class=3D"gmail_quote">On Wed, Jul 5, 2017 at 1:43 PM, Stefano Babi=
+c <span dir=3D"ltr">&lt;<a href=3D"mailto:sbabic@denx.de" target=3D"_blank"=
+>sbabic@denx.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi =
+Huynh,<br>
+<span class=3D""><br>
+On 05/07/2017 04:09, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I guess I&#39;ll remove build/tmp directory and rebuild everything fro=
+m scratch.<br>
+&gt; I&#39;ll post the result later then.<br>
+&gt;<br>
+<br>
+</span>The recipe for beaglebone was dropped from meta-swupdate. I moved th=
+e<br>
+examples for bbb and raspi into a separate layer (meta-swupdate-boards,<br>
+-master).<br>
+<span class=3D""><br>
+&gt; BTW, thank you so much for writing swupdate.<br>
+<br>
+</span>You&#39;re welcome.<br>
+<br>
+&gt;<br>
+Best regards,<br>
+Stefano Babic<br>
+<span class=3D""><br>
+&gt; Best Regards,<br>
+&gt; Thi Huynh<br>
+&gt;<br>
+&gt; Hu=E1=BB=B3nh Ng=E1=BB=8Dc Thi<br>
+&gt; -so61pi<br>
+&gt;<br>
+&gt; On Wed, Jul 5, 2017 at 12:08 AM, Stefano Babic &lt;<a href=3D"mailto:s=
+babic@denx.de">sbabic@denx.de</a><br>
+</span><div><div class=3D"h5">&gt; &lt;mailto:<a href=3D"mailto:sbabic@denx=
+.de">sbabic@denx.de</a>&gt;&gt; wrote:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Hi,<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0On 04/07/2017 18:13, Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh=
+ wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Hi everyone,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; I&#39;m using poky pyro to build a beaglebone =
+image with swupdate.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; First time I built swupdate (by bitbake swupda=
+te), it used the latest<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; git version and I encountered an make error wh=
+ich related to swupdate only.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Then I changed swupdate version to 2017.04 (by=
+ using<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; PREFERRED_VERSION_swupdate =3D &quot;2017.04&q=
+uot;) but the bitbake still used the<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; latest git version and I had the make error ag=
+ain.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0I cannot confirm this. I have built a custom board =
+and setting<br>
+&gt;=C2=A0 =C2=A0 =C2=A0PREFERRED_VERSION_swupdate works without issues.<br=
+>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; But when I used devshell and changed the git r=
+evision to 2017.04 then<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; do_configure and do_compile, everything went f=
+ine.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; My question is, is there a simple way to solve=
+ this problem?<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; /Note:/<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; The swupdate recipes for beaglebone that I&#39=
+;m using are from<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; <a href=3D"https://github.com/sbabic/meta-swup=
+date" rel=3D"noreferrer" target=3D"_blank">https://github.com/sbabic/<wbr>m=
+eta-swupdate</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"https://github.com/sbabic/meta-swupd=
+ate" rel=3D"noreferrer" target=3D"_blank">https://github.com/sbabic/<wbr>me=
+ta-swupdate</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Content of <a href=3D"http://swupdate_2017.04.=
+bb" rel=3D"noreferrer" target=3D"_blank">swupdate_2017.04.bb</a> &lt;<a hre=
+f=3D"http://swupdate_2017.04.bb" rel=3D"noreferrer" target=3D"_blank">http:=
+//swupdate_2017.04.bb</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"http://swupdate_2017.04.bb" rel=3D"n=
+oreferrer" target=3D"_blank">http://swupdate_2017.04.bb</a>&gt;:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0require swupdate.inc<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0SRCREV =3D &quot;<wbr>d344e=
+c10b71293d2aaf96816266d4e<wbr>6ed1d3bf6a&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; Content of <a href=3D"http://swupdate_git.bb" =
+rel=3D"noreferrer" target=3D"_blank">swupdate_git.bb</a> &lt;<a href=3D"htt=
+p://swupdate_git.bb" rel=3D"noreferrer" target=3D"_blank">http://swupdate_g=
+it.bb</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"http://swupdate_git.bb" rel=3D"noref=
+errer" target=3D"_blank">http://swupdate_git.bb</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0require swupdate.inc<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0DEFAULT_PREFERENCE =3D &quo=
+t;-1&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt; A snippet of swupdate.inc<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0SRCREV =3D &quot;${AUTOREV}=
+&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Best regards,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Stefano Babic<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0--<br>
+&gt;=C2=A0 =C2=A0 =C2=A0=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D<br>
+&gt;=C2=A0 =C2=A0 =C2=A0DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0=
+ Managing Director: Wolfgang Denk<br>
+&gt;=C2=A0 =C2=A0 =C2=A0HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Gr=
+oebenzell, Germany<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Ema=
+il:<br>
+</div></div>&gt;=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:sbabic@denx.de">sbabi=
+c@denx.de</a> &lt;mailto:<a href=3D"mailto:sbabic@denx.de">sbabic@denx.de</=
+a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D<br>
+&gt;<br>
+&gt;<br>
+</blockquote></div><br></div>
+
+--001a113c3bd06f9d130553cfc859--
