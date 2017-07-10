@@ -1,50 +1,31 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <Matthias.Schoepfer@ithinx.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC99EE00BB6; Mon, 10 Jul 2017 09:16:21 -0700 (PDT)
+	id D0CB8E00BB6; Mon, 10 Jul 2017 09:19:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BEA3E00B76
-	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 09:16:20 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	10 Jul 2017 09:16:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,341,1496127600"; 
-	d="scan'208,217";a="1150040243"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
-	by orsmga001.jf.intel.com with ESMTP; 10 Jul 2017 09:16:19 -0700
-Received: from fmsmsx124.amr.corp.intel.com (10.18.125.39) by
-	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 10 Jul 2017 09:16:17 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.210]) by
-	fmsmsx124.amr.corp.intel.com ([169.254.8.252]) with mapi id
-	14.03.0319.002; Mon, 10 Jul 2017 09:16:17 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HK_NAME_DR
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000] *  0.0 T_HK_NAME_DR T_HK_NAME_DR
+Received: from mx.kellendonk.de (mx.kellendonk.de [213.168.66.147])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C137DE00B76
+	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 09:19:35 -0700 (PDT)
+From: =?utf-8?B?RHIuIE1hdHRoaWFzIFNjaMO2cGZlcg==?=
+	<Matthias.Schoepfer@ithinx.io>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, June
-	6, 2017 8:00 AM US Pacific Time
-Thread-Index: AdLeIzCJTAUBrEd/TL+oXodWFjHtTQ==
-Date: Mon, 10 Jul 2017 16:16:16 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E9821BB84@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
+Thread-Topic: License missing coreutils when creating /usr/share/licenses
+	and bbappend
+Thread-Index: AdL5mE78aKVdcmwYTKeFJQ+XwmQWMg==
+Date: Mon, 10 Jul 2017 16:19:30 +0000
+Message-ID: <63EFF8D6B0566D4E82DEBC3D979C491383D59D8A@SW-VM-02.kelle.grp>
+Accept-Language: en-US, de-DE
 X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiM2IwM2VhNTEtZTI4My00ZDQwLWE1ZjMtYjdkMjIwOGQxMjg0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImxrNFA4N0VlS1dIRVwvcWN5VzRZK2lYN2VGaTd3OGJFK0RteTUzSmIxMXY0PSJ9
+x-originating-ip: [172.16.100.89]
+x-c2processedorg: 75376498-2711-4ea7-8653-9a4c2c5b248f
 MIME-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, June 6, 2017 8:00 AM US Pacific Time
+Subject: License missing coreutils when creating /usr/share/licenses and bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,278 +37,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jul 2017 16:16:21 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9821BB84fmsmsx111amrcor_"
+X-List-Received-Date: Mon, 10 Jul 2017 16:19:38 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9821BB84fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Tuesday, July 11, 2017 8:00 AM US Pacific Time
-
-
-
-Agenda:
-
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto Project status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features
-
-* Opens - 10 min
-
-* Team Sharing - 10 min
-
+SGkhDQoNCldlIGFyZSB1c2luZyB5b2N0byAvIG9wZW5lbWJlZGRlZCAocHlybykuIEkgdXNlOg0K
+DQpDT1BZX0xJQ19NQU5JRkVTVCA9ICIxIg0KQ09QWV9MSUNfRElSUyA9ICIxIg0KTElDRU5TRV9D
+UkVBVEVfUEFDS0FHRSA9ICIxIg0KDQp0byBnZW5lcmF0ZSBhIC91c3Ivc2hhcmUvbGljZW5zZXMg
+YW5kIC91c3Ivc2hhcmUvY29tbW9uLWxpY2Vuc2VzDQpyZXNwZWN0aXZlbHkuIEJ1dCB1bmZvcnR1
+bmF0ZWx5LCB0aGUgY29yZXV0aWxzIHN1YmRpcmVjdG9yeSBpcyBlbXB0eS4NCg0KSSB1c2UgYSBi
+YmFwcGVuZCBmaWxlIGNvbnRhaW5pbmcgb25seToNCg0KQUxURVJOQVRJVkVfUFJJT1JJVFkgPSAi
+NDAiDQpBTFRFUk5BVElWRV9QUklPUklUWVtvZF0gPSAiMTAwIg0KDQpzdWNoIHRoYXQgb25seSBv
+ZCBnZXRzIGluc3RhbGxlZCAocmVtYWluaW5nIGZ1bmN0aW9uYWxpdHkgYnkgYnVzeWJveCkuDQoN
+CkFueSBoaW50cyBvbiBob3cgdG8gZ2V0IHRoZSBsaWNlbnNlIGluZm8gaW4gdGhlcmUgYXMgd2Vs
+bD8hDQoNClJlZ2FyZHMsDQoNCiAgICBNYXR0aGlhcw0KDQoNCg0KDQoNCmkuQS4gRHIuLUluZy4g
+TWF0dGhpYXMgU2Now7ZwZmVyICB8ICBpdGhpbnggR21iSCAgfCAgU29mdHdhcmUgRW5naW5lZXIN
+ClBob25lOiArNDkgKDIyMSkgOTk1ODktMzMyICB8ICBGYXg6ICs0OSAoMjIxKSA5OTU4OS0xOTkN
+CkFkZHJlc3M6IGl0aGlueCBHbWJIICB8ICBCdXR6d2VpbGVyaG9mIEFsbGVlIDQgIHwgIDUwODI5
+IENvbG9nbmUgIHwgIEdlcm1hbnkNCkUtTWFpbDogTWF0dGhpYXMuU2Nob2VwZmVyQGl0aGlueC5p
+byAgfCAgV2Vic2l0ZTogd3d3Lml0aGlueC5pbw0KUmVnaXN0ZXJlZCBPZmZpY2U6IENvbG9nbmUg
+IHwgIERpc3RyaWN0IGNvdXJ0OiBNYXJidXJnICB8ICBIUkIgNjc0OQ0KTWFuYWdpbmcgRGlyZWN0
+b3I6IENocmlzdGlhbiBGYXVzdA0KDQpUaGlzIGUtbWFpbCBtYXkgY29udGFpbiBjb25maWRlbnRp
+YWwgYW5kL29yIHByaXZpbGVnZWQgaW5mb3JtYXRpb24uIGlmIHlvdSBhcmUgbm90IHRoZSBpbnRl
+bmRlZCByZWNpcGllbnQgKG9yIGhhdmUgcmVjZWl2ZWQgdGhpcyBlLW1haWwgaW4gZXJyb3IpIHBs
+ZWFzZQ0Kbm90aWZpeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZXN0cm95IHRoaXMgZS1t
+YWlsLiBBbnkgdW5hdXRvaHJpemVkIGNvcHlpbmcsIGRpc2Nsb3N1cmUgb3IgZGlzdHJpYnV0aW9u
+IG9mIHRoZSBtYXRlcmlhbCBpbiB0aGlzIGUtbWFpbCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uDQoN
+CldlIGxpa2UgdHJlZXMuIFBsZWFzZSBjb25zaWRlciB0aGUgZW52aXJvbm1lbnQgYmVmb3JlIHBy
+aW50aW5nIHRoaXMgZS1tYWlsLiBUaGFuayB5b3UuDQo=
 
 
-We encourage people attending the meeting to logon the Yocto Project IRC ch=
-annel during the meeting (optional):
-
-
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-
-Conference Details:
-Company:           WIND RIVER SYS
-
-- dial into: 1-800-262-0778/404-397-1527
-
-- enter the bridge number: 88748961#
-
-
-For International numbers see: https://www.yoctoproject.org/tools-resources=
-/community/monthly-technical-call
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:        (503) 712-0534
-*    Cell:                              (208) 244-4460
-* Email:                            stephen.k.jolley@intel.com<mailto:steph=
-en.k.jolley@intel.com>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9821BB84fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Tuesday, July 11, 2017 8:00 AM US Pacific Time<o:p=
-></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v2.4_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.=
-4_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_2.4_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_2.4_Features">https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features</a>
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
-n the Yocto Project IRC channel during the meeting (optional):<o:p></o:p></=
-p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
-/?channels=3D#yocto">
-http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
-<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
-rchelp/irctutorial.html">
-http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt">Conference Details:</span><span style=3D"font-size:12.0pt;font-f=
-amily:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; WIND RIVER SYS</span><span style=3D"font-size:12.0pt;font-family:&quot=
-;Arial&quot;,sans-serif"><o:p></o:p></span></p>
-<p class=3D"MsoPlainText">- dial into: 1-800-262-0778/404-397-1527<o:p></o:=
-p></p>
-<p class=3D"MsoPlainText">- enter the bridge number: 88748961#<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
-Verdana&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></b></p>
-<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
-/www.yoctoproject.org/tools-resources/community/monthly-technical-call">
-https://www.yoctoproject.org/tools-resources/community/monthly-technical-ca=
-ll</a><o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;
-<u><span style=3D"color:blue"><a href=3D"mailto:stephen.k.jolley@intel.com"=
->stephen.k.jolley@intel.com</a></span></u></span><span lang=3D"FR" style=3D=
-"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></sp=
-an></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9821BB84fmsmsx111amrcor_--
