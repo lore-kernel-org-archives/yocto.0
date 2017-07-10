@@ -1,31 +1,35 @@
-Return-Path: <Matthias.Schoepfer@ithinx.io>
+Return-Path: <menschel-d@posteo.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0CB8E00BB6; Mon, 10 Jul 2017 09:19:38 -0700 (PDT)
+	id 88018E00BB6; Mon, 10 Jul 2017 09:52:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HK_NAME_DR
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000] *  0.0 T_HK_NAME_DR T_HK_NAME_DR
-Received: from mx.kellendonk.de (mx.kellendonk.de [213.168.66.147])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C137DE00B76
-	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 09:19:35 -0700 (PDT)
-From: =?utf-8?B?RHIuIE1hdHRoaWFzIFNjaMO2cGZlcg==?=
-	<Matthias.Schoepfer@ithinx.io>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: License missing coreutils when creating /usr/share/licenses
-	and bbappend
-Thread-Index: AdL5mE78aKVdcmwYTKeFJQ+XwmQWMg==
-Date: Mon, 10 Jul 2017 16:19:30 +0000
-Message-ID: <63EFF8D6B0566D4E82DEBC3D979C491383D59D8A@SW-VM-02.kelle.grp>
-Accept-Language: en-US, de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.100.89]
-x-c2processedorg: 75376498-2711-4ea7-8653-9a4c2c5b248f
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [185.67.36.66 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Mon, 10 Jul 2017 09:52:19 PDT
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E79BE00B76
+	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 09:52:19 -0700 (PDT)
+Received: from submission (posteo.de [89.146.220.130]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 3A8A720E28
+	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 18:51:10 +0200 (CEST)
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 3x5rnn4KG2z10HY
+	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 18:51:09 +0200 (CEST)
+From: Dennis Menschel <menschel-d@posteo.de>
+To: yocto@yoctoproject.org
+Message-ID: <c8e75209-3fd2-925c-9245-3db1876b8bdc@posteo.de>
+Date: Mon, 10 Jul 2017 18:51:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-Subject: License missing coreutils when creating /usr/share/licenses and bbappend
+Subject: New software layer for the barebox bootloader
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,34 +41,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jul 2017 16:19:38 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 10 Jul 2017 16:52:21 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-SGkhDQoNCldlIGFyZSB1c2luZyB5b2N0byAvIG9wZW5lbWJlZGRlZCAocHlybykuIEkgdXNlOg0K
-DQpDT1BZX0xJQ19NQU5JRkVTVCA9ICIxIg0KQ09QWV9MSUNfRElSUyA9ICIxIg0KTElDRU5TRV9D
-UkVBVEVfUEFDS0FHRSA9ICIxIg0KDQp0byBnZW5lcmF0ZSBhIC91c3Ivc2hhcmUvbGljZW5zZXMg
-YW5kIC91c3Ivc2hhcmUvY29tbW9uLWxpY2Vuc2VzDQpyZXNwZWN0aXZlbHkuIEJ1dCB1bmZvcnR1
-bmF0ZWx5LCB0aGUgY29yZXV0aWxzIHN1YmRpcmVjdG9yeSBpcyBlbXB0eS4NCg0KSSB1c2UgYSBi
-YmFwcGVuZCBmaWxlIGNvbnRhaW5pbmcgb25seToNCg0KQUxURVJOQVRJVkVfUFJJT1JJVFkgPSAi
-NDAiDQpBTFRFUk5BVElWRV9QUklPUklUWVtvZF0gPSAiMTAwIg0KDQpzdWNoIHRoYXQgb25seSBv
-ZCBnZXRzIGluc3RhbGxlZCAocmVtYWluaW5nIGZ1bmN0aW9uYWxpdHkgYnkgYnVzeWJveCkuDQoN
-CkFueSBoaW50cyBvbiBob3cgdG8gZ2V0IHRoZSBsaWNlbnNlIGluZm8gaW4gdGhlcmUgYXMgd2Vs
-bD8hDQoNClJlZ2FyZHMsDQoNCiAgICBNYXR0aGlhcw0KDQoNCg0KDQoNCmkuQS4gRHIuLUluZy4g
-TWF0dGhpYXMgU2Now7ZwZmVyICB8ICBpdGhpbnggR21iSCAgfCAgU29mdHdhcmUgRW5naW5lZXIN
-ClBob25lOiArNDkgKDIyMSkgOTk1ODktMzMyICB8ICBGYXg6ICs0OSAoMjIxKSA5OTU4OS0xOTkN
-CkFkZHJlc3M6IGl0aGlueCBHbWJIICB8ICBCdXR6d2VpbGVyaG9mIEFsbGVlIDQgIHwgIDUwODI5
-IENvbG9nbmUgIHwgIEdlcm1hbnkNCkUtTWFpbDogTWF0dGhpYXMuU2Nob2VwZmVyQGl0aGlueC5p
-byAgfCAgV2Vic2l0ZTogd3d3Lml0aGlueC5pbw0KUmVnaXN0ZXJlZCBPZmZpY2U6IENvbG9nbmUg
-IHwgIERpc3RyaWN0IGNvdXJ0OiBNYXJidXJnICB8ICBIUkIgNjc0OQ0KTWFuYWdpbmcgRGlyZWN0
-b3I6IENocmlzdGlhbiBGYXVzdA0KDQpUaGlzIGUtbWFpbCBtYXkgY29udGFpbiBjb25maWRlbnRp
-YWwgYW5kL29yIHByaXZpbGVnZWQgaW5mb3JtYXRpb24uIGlmIHlvdSBhcmUgbm90IHRoZSBpbnRl
-bmRlZCByZWNpcGllbnQgKG9yIGhhdmUgcmVjZWl2ZWQgdGhpcyBlLW1haWwgaW4gZXJyb3IpIHBs
-ZWFzZQ0Kbm90aWZpeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZXN0cm95IHRoaXMgZS1t
-YWlsLiBBbnkgdW5hdXRvaHJpemVkIGNvcHlpbmcsIGRpc2Nsb3N1cmUgb3IgZGlzdHJpYnV0aW9u
-IG9mIHRoZSBtYXRlcmlhbCBpbiB0aGlzIGUtbWFpbCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uDQoN
-CldlIGxpa2UgdHJlZXMuIFBsZWFzZSBjb25zaWRlciB0aGUgZW52aXJvbm1lbnQgYmVmb3JlIHBy
-aW50aW5nIHRoaXMgZS1tYWlsLiBUaGFuayB5b3UuDQo=
+Hi all!
 
+I have created a new software layer named meta-barebox that provides
+support for the barebox bootloader.
+
+The layer has already been added to the OpenEmbedded Layer Index:
+https://layers.openembedded.org/layerindex/branch/master/layer/meta-barebox/
+
+The layer features its own reference manual that describes the interface
+of meta-barebox and provides a usage example.
+Last but not least, it also answers the question why I have created a
+separate layer for the barebox bootloader.
+The reference manual can be found here:
+https://github.com/menschel-d/meta-barebox/blob/master/doc/ref-manual.md
+
+Have fun!
+
+Best regards,
+Dennis Menschel
 
