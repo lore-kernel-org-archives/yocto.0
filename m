@@ -1,65 +1,65 @@
-Return-Path: <rafaelrodrigues.machado@gmail.com>
+Return-Path: <jussi.kukkonen@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A6BCE00C35; Mon, 10 Jul 2017 06:02:12 -0700 (PDT)
+	id 7AF6EE00C31; Mon, 10 Jul 2017 06:23:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rafaelrodrigues.machado[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,HTML_OBFUSCATE_10_20,RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.1 HTML_OBFUSCATE_10_20 BODY: Message is 10% to 20% HTML obfuscation
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f41.google.com (mail-vk0-f41.google.com
-	[209.85.213.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DDA8E00C32
-	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 06:02:11 -0700 (PDT)
-Received: by mail-vk0-f41.google.com with SMTP id r126so46777529vkg.0
-	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 06:02:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Nruv1fA3xnw0X4j8aihvCsXYkDZNt777JmZfI13y7Mo=;
-	b=m4FIvWlbwAYwcZE3K5aHPhWyX8U1KB6mDrsN9ZIhDKfhKKT+SAKzSQ+ZQxP9LyzV8/
-	Tc5/d0O9X1rrzPIrHWkpj/HM68c43ae5NYXAXeZI8LHDM/g4c3Pm7eGAhxfAHyS/3MAK
-	Qak4IF1IxUBPcPAWdimrtNR1zDTkIMtwhszd548zVxs6S5KmPP3r9B4t0015DoYG+L8t
-	2SaodqOnQ/lOy+tpjrhczhssjAt3LfqZFgqNJiltkA/rdoBoj+t0bnxBmvVd36rm7yd/
-	7AjR5nAJ9ocMNfKo/89AKY0O2k5+OhHkeIok6jedW3fYTsXZq3wJbzgsvaNe3qhq6+n3
-	qf1A==
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.46 listed in dnsbl.sorbs.net]
+Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
+	[209.85.214.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1C9AE00C2B
+	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 06:23:46 -0700 (PDT)
+Received: by mail-it0-f46.google.com with SMTP id k192so38308498ith.1
+	for <yocto@yoctoproject.org>; Mon, 10 Jul 2017 06:23:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=GrNGR4C2kyKpntfJfVt+Iu1MMzFPZJUSOPQhV480y0w=;
+	b=dRCuuuQQBcU3IWGXT2/tG/h/3DRlQfk+KO1z3YBkHzaNdWzoUhffi0Ia1R7zNv+qky
+	haKQqrKO0GJUXTD0fbAlz6Uq/getn0Jw+6z5QQ88uEqiUKCrYADcJcBBAq4QI4Wipx/H
+	tu81pq2uuoHocjpnxtRb7Js8Ayey5GJvPDHyjp4DQgRswzDljdZ4YQHIH6CyXbktE1S+
+	l65rvTERpU9TA8KfjRTFw/5I7wFYFeKdi5JdhlonJkV7T6RoNJJOmeVlUG0mdw0h0PbW
+	xCYm2+kbtwur5Vf0S/qLSMDJVrYYM4jdP3Ra+DL7F9dXyMheuVdqDy5NNJB6RxKOiD6z
+	jZ9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=Nruv1fA3xnw0X4j8aihvCsXYkDZNt777JmZfI13y7Mo=;
-	b=OAzXtbYQfqdPQ2BL7h8mP4LadKCXuUCCfzVgYp8CY984eqtO0fbQzNvo+kklhqqFnn
-	UZLREnOoAPLAvYNsfh7NW4JmKxA6m2dLlO91ZHtBumXnuWZa+pvYHJzNK58Zn7oCA5+l
-	/vE4j66pUeh2ylIMd4JacTMaqofn1uRGKDpOwW3pxyCyiBw1fyuXUuA/zhGOVK5n7s5h
-	BnV6/L2cuCnsPStVEuASBKcfcc6V0K6CN6agOdUU0f7vAxEOelvGdo5+ClVktkqwvZ7R
-	8ndy6ZuYFxC0jOeqBppUMEt2F+odC8XmDCabXR/W77JRxuRMmTcrkHS37dfKOSUI44jW
-	sk0A==
-X-Gm-Message-State: AIVw110lN+qZt/GVE0x35N933a1Ucc16y+BNclMA6kVU58mc55zvU3NH
-	JwdQrmFfdKofZOgNe02PC1JiFWbntw==
-X-Received: by 10.31.69.82 with SMTP id s79mr6881479vka.118.1499691730561;
-	Mon, 10 Jul 2017 06:02:10 -0700 (PDT)
+	bh=GrNGR4C2kyKpntfJfVt+Iu1MMzFPZJUSOPQhV480y0w=;
+	b=P9I54Pb3V3GlapI0bC37SbRpDk8025vt0y9WAbUCjODL1BBOff0chH015+9/QnMS5m
+	VnE+1C04rjKxlmM8LijjQVxLdR6uoigx9At2j50QUSgujLeq/Ys4CDsqcWMD5H/DTsEw
+	7GMtMGaa6l9omnzpw7Z7F+745Pnci79JVFV8eJU2C7jsQO+BdPyXiZLgM4hU1G/NoGHP
+	fHnG6HgzUAV/6otKrZV0PHL+rqyCPN36VqbKN12/Yl6mE2j1xuFiodTrictp6on7B5g6
+	4R6YO6nhlg7OTN2ZwtruQvDiotdQEANsvBrwuP71TxKMYti3f11QCrxy7WPSdcyctfAt
+	eaeQ==
+X-Gm-Message-State: AIVw112oVTq50hadYqUOi2NAJicVEel4yW4N+ncByswGILCBAQHl3lTJ
+	LgdIUZ2u6oToovoClXKhPHmj8+glcA2z
+X-Received: by 10.107.37.141 with SMTP id l135mr3152053iol.146.1499693026011; 
+	Mon, 10 Jul 2017 06:23:46 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.107.44.87 with HTTP; Mon, 10 Jul 2017 06:23:15 -0700 (PDT)
+In-Reply-To: <CACgnt7-BsX1EkCnMj8T=tFqguhCNRWrrTgsG4ai3nR213SiFqA@mail.gmail.com>
 References: <CACgnt7-ZUQ4FKiU4iBG9Lxym8SjWRR5GSPtmu4pULozHo_45-w@mail.gmail.com>
 	<CAJTo0LZTW=+yzdSebDbKKd2QuSS91HXAPHRPcg6Z5e=WMMKOEg@mail.gmail.com>
 	<CACgnt7-BsX1EkCnMj8T=tFqguhCNRWrrTgsG4ai3nR213SiFqA@mail.gmail.com>
-	<CAJTo0LZyvY=u_ctNYFpkS3ay11p5REti3UgLJDfOaAWyRLpZaQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LZyvY=u_ctNYFpkS3ay11p5REti3UgLJDfOaAWyRLpZaQ@mail.gmail.com>
-From: Rafael Machado <rafaelrodrigues.machado@gmail.com>
-Date: Mon, 10 Jul 2017 13:01:59 +0000
-Message-ID: <CACgnt79wC_x1i1_oxn_xff8onutBWYQ1VEVEPYkW5GW-7OJdmg@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+From: Jussi Kukkonen <jussi.kukkonen@intel.com>
+Date: Mon, 10 Jul 2017 16:23:15 +0300
+Message-ID: <CAHiDW_EW+t+HekGYVx69Cq=1fVzxoL=wvcAriiHpwmy8OOez8g@mail.gmail.com>
+To: Rafael Machado <rafaelrodrigues.machado@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto build at Kali
 X-BeenThere: yocto@yoctoproject.org
@@ -73,115 +73,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jul 2017 13:02:12 -0000
-Content-Type: multipart/alternative; boundary="001a114db0bcdf6fab0553f630a2"
+X-List-Received-Date: Mon, 10 Jul 2017 13:23:50 -0000
+Content-Type: multipart/alternative; boundary="001a114031ea1688e60553f67e78"
 
---001a114db0bcdf6fab0553f630a2
+--001a114031ea1688e60553f67e78
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-The only place I was able to check this information was at the
-ChangeLog file inside the bitbake tree on the BSP package:
+On 10 July 2017 at 15:38, Rafael Machado <rafaelrodrigues.machado@gmail.com>
+wrote:
 
-"Changes in Bitbake 1.9.x:
-        - Add PE (Package Epoch) support from Philipp Zabel (pH5)
-        - Treat python functions the same as shell functions for logging
-        - Use TMPDIR/anonfunc as a __anonfunc temp directory (T)
-        - Catch truncated cache file errors
-        - Allow operations other than assignment on flag variables
-        - Add code to handle inter-task dependencies
-        - Fix cache errors when generation dotGraphs
-        - Make sure __inherit_cache is updated before calling include()
-(from Michael Krelin)
-        - Fix bug when target was in ASSUME_PROVIDED (#2236)
-        ...
-"
-
-Thanks for the Help
-Rafael R. Machado
-
-Em seg, 10 de jul de 2017 =C3=A0s 09:47, Burton, Ross <ross.burton@intel.co=
-m>
-escreveu:
-
+> Thanks for the answer guys.
+> Yes Jussi. Seco website requires a registration. Sorry about that.
 >
-> On 10 July 2017 at 13:38, Rafael Machado <
-> rafaelrodrigues.machado@gmail.com> wrote:
+> Follows the complete output:
 >
->>     from . import _html5lib
->>   File
->> "/home/rafael/Projetos/seco/poky/bitbake/lib/bs4/builder/_html5lib.py",
->> line 57, in <module>
->>     class TreeBuilderForHtml5lib(html5lib.treebuilders._base.TreeBuilder=
-):
->> AttributeError: 'module' object has no attribute '_base'
->>
->
-> That's the actual error.  What version of oe-core/bitbake does this BSP
-> use?
->
-> Ross
+> Traceback (most recent call last):
+>   File "/home/rafael/Projetos/seco/poky/bitbake/bin/bitbake", line 31, in
+> <module>
+>     import bb
+>   File "/home/rafael/Projetos/seco/poky/bitbake/lib/bb/__init__.py", line
+> 77, in <module>
+>     from bb import fetch2 as fetch
+>   File "/home/rafael/Projetos/seco/poky/bitbake/lib/bb/fetch2/__init__.py",
+> line 1769, in <module>
+>     from . import wget
+>   File "/home/rafael/Projetos/seco/poky/bitbake/lib/bb/fetch2/wget.py",
+> line 40, in <module>
+>     from   bs4 import BeautifulSoup
+>   File "/home/rafael/Projetos/seco/poky/bitbake/lib/bs4/__init__.py",
+> line 30, in <module>
+>     from .builder import builder_registry, ParserRejectedMarkup
+>   File "/home/rafael/Projetos/seco/poky/bitbake/lib/bs4/builder/__init__.py",
+> line 311, in <module>
+>     from . import _html5lib
+>   File "/home/rafael/Projetos/seco/poky/bitbake/lib/bs4/builder/_html5lib.py",
+> line 57, in <module>
+>     class TreeBuilderForHtml5lib(html5lib.treebuilders._base.TreeBuilder):
+> AttributeError: 'module' object has no attribute '_base'
 >
 
---001a114db0bcdf6fab0553f630a2
+This is probably an incompatibility with newish html5lib fixed by
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=
+5c1ad6852e1246fda717582d7fb4959200bf71a6. This fix is in the last two Yocto
+releases (pyro and morty).
+
+You could try patching that yourself and/or reporting this issue to the BSP
+maker.
+
+HTH,
+  Jussi
+
+--001a114031ea1688e60553f67e78
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">The only place I was able to check this information was at=
- the=C2=A0<div>ChangeLog file inside the bitbake tree on the BSP package:<d=
-iv><br></div><div>&quot;<font color=3D"#24292e" face=3D"SFMono-Regular, Con=
-solas, Liberation Mono, Menlo, Courier, monospace"><span style=3D"font-size=
-:11.9px">Changes in Bitbake 1.9.x:</span></font></div><div><font color=3D"#=
-24292e" face=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, =
-monospace"><span style=3D"font-size:11.9px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 - A=
-dd PE (Package Epoch) support from Philipp Zabel (pH5)</span></font></div><=
-div><font color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberation Mo=
-no, Menlo, Courier, monospace"><span style=3D"font-size:11.9px">=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 - Treat python functions the same as shell functions for =
-logging</span></font></div><div><font color=3D"#24292e" face=3D"SFMono-Regu=
-lar, Consolas, Liberation Mono, Menlo, Courier, monospace"><span style=3D"f=
-ont-size:11.9px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 - Use TMPDIR/anonfunc as a __a=
-nonfunc temp directory (T)</span></font></div><div><font color=3D"#24292e" =
-face=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospac=
-e"><span style=3D"font-size:11.9px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 - Catch tru=
-ncated cache file errors</span></font></div><div><font color=3D"#24292e" fa=
-ce=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace"=
-><span style=3D"font-size:11.9px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 - Allow opera=
-tions other than assignment on flag variables</span></font></div><div><font=
- color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo=
-, Courier, monospace"><span style=3D"font-size:11.9px">=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 - Add code to handle inter-task dependencies</span></font></div><di=
-v><font color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberation Mono=
-, Menlo, Courier, monospace"><span style=3D"font-size:11.9px">=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 - Fix cache errors when generation dotGraphs</span></font></=
-div><div><font color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberati=
-on Mono, Menlo, Courier, monospace"><span style=3D"font-size:11.9px">=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 - Make sure __inherit_cache is updated before calling=
- include() (from Michael Krelin)</span></font></div><div><font color=3D"#24=
-292e" face=3D"SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, mo=
-nospace"><span style=3D"font-size:11.9px">=C2=A0 =C2=A0 =C2=A0 =C2=A0 - Fix=
- bug when target was in ASSUME_PROVIDED (#2236)</span></font></div><div><fo=
-nt color=3D"#24292e" face=3D"SFMono-Regular, Consolas, Liberation Mono, Men=
-lo, Courier, monospace"><span style=3D"font-size:11.9px">=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 ...</span></font></div><div>&quot;</div><div><br></div><div>Than=
-ks for the Help</div><div>Rafael R. Machado</div></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr">Em seg, 10 de jul de 2017 =C3=A0s 09:47, =
-Burton, Ross &lt;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel=
-.com</a>&gt; escreveu:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"=
-ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 10 July 2=
-017 at 13:38, Rafael Machado <span dir=3D"ltr">&lt;<a href=3D"mailto:rafael=
-rodrigues.machado@gmail.com" target=3D"_blank">rafaelrodrigues.machado@gmai=
-l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>=C2=A0 =
-=C2=A0 from . import _html5lib</div><div>=C2=A0 File &quot;/home/rafael/Pro=
-jetos/seco/poky/bitbake/lib/bs4/builder/_html5lib.py&quot;, line 57, in &lt=
-;module&gt;</div><div>=C2=A0 =C2=A0 class TreeBuilderForHtml5lib(html5lib.t=
-reebuilders._base.TreeBuilder):</div><div>AttributeError: &#39;module&#39; =
-object has no attribute &#39;_base&#39;</div><div></div></blockquote></div>=
-<br></div></div><div dir=3D"ltr"><div class=3D"gmail_extra">That&#39;s the =
-actual error.=C2=A0 What version of oe-core/bitbake does this BSP use?</div=
-></div><div dir=3D"ltr"><div class=3D"gmail_extra"><br></div><div class=3D"=
-gmail_extra">Ross</div></div></blockquote></div>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On 10 July 2017 at 15:38, Rafael Machado <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:rafaelrodrigues.machado@gmail.com" target=3D"_blank">rafaelrodri=
+gues.machado@<wbr>gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr">Thanks for the answer guys.<di=
+v>Yes Jussi. Seco website requires a registration. Sorry about that.</div><=
+div><br></div><div>Follows the complete output:<br></div><div><br></div><di=
+v><div>Traceback (most recent call last):</div><div>=C2=A0 File &quot;/home=
+/rafael/Projetos/seco/po<wbr>ky/bitbake/bin/bitbake&quot;, line 31, in &lt;=
+module&gt;</div><div>=C2=A0 =C2=A0 import bb</div><div>=C2=A0 File &quot;/h=
+ome/rafael/Projetos/seco/po<wbr>ky/bitbake/lib/bb/__init__.py&quot;<wbr>, l=
+ine 77, in &lt;module&gt;</div><span class=3D"m_3369569762648647989gmail-">=
+<div>=C2=A0 =C2=A0 from bb import fetch2 as fetch</div></span><div>=C2=A0 F=
+ile &quot;/home/rafael/Projetos/seco/po<wbr>ky/bitbake/lib/bb/fetch2/__ini<=
+wbr>t__.py&quot;, line 1769, in &lt;module&gt;</div><div>=C2=A0 =C2=A0 from=
+ . import wget</div><div>=C2=A0 File &quot;/home/rafael/Projetos/seco/po<wb=
+r>ky/bitbake/lib/bb/fetch2/wget.<wbr>py&quot;, line 40, in &lt;module&gt;</=
+div><div>=C2=A0 =C2=A0 from =C2=A0 bs4 import BeautifulSoup</div><div>=C2=
+=A0 File &quot;/home/rafael/Projetos/seco/po<wbr>ky/bitbake/lib/bs4/__init_=
+_.py<wbr>&quot;, line 30, in &lt;module&gt;</div><div>=C2=A0 =C2=A0 from .b=
+uilder import builder_registry, ParserRejectedMarkup</div><div>=C2=A0 File =
+&quot;/home/rafael/Projetos/seco/po<wbr>ky/bitbake/lib/bs4/builder/__<wbr>i=
+nit__.py&quot;, line 311, in &lt;module&gt;</div><div>=C2=A0 =C2=A0 from . =
+import _html5lib</div><div>=C2=A0 File &quot;/home/rafael/Projetos/seco/po<=
+wbr>ky/bitbake/lib/bs4/builder/_ht<wbr>ml5lib.py&quot;, line 57, in &lt;mod=
+ule&gt;</div><div>=C2=A0 =C2=A0 class TreeBuilderForHtml5lib(html5li<wbr>b.=
+treebuilders._base.TreeBuild<wbr>er):</div><div>AttributeError: &#39;module=
+&#39; object has no attribute &#39;_base&#39;</div></div></div></blockquote=
+><div><br></div><div>This is probably an incompatibility with newish html5l=
+ib fixed by <a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/commi=
+t/?id=3D5c1ad6852e1246fda717582d7fb4959200bf71a6" target=3D"_blank">http://=
+git.yoctoproject.org/<wbr>cgit/cgit.cgi/poky/commit/?id=3D<wbr>5c1ad6852e12=
+46fda717582d7fb495<wbr>9200bf71a6</a>. This fix is in the last two Yocto re=
+leases (pyro and morty).</div><div><br></div><div>You could try patching th=
+at yourself and/or reporting this issue to the BSP maker. =C2=A0</div><div>=
+<br></div><div>HTH,</div><div>=C2=A0 Jussi</div></div></div></div>
 
---001a114db0bcdf6fab0553f630a2--
+--001a114031ea1688e60553f67e78--
