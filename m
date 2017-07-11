@@ -1,49 +1,46 @@
-Return-Path: <tom.rini@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F5EBE00C3E; Tue, 11 Jul 2017 05:35:38 -0700 (PDT)
+	id 4157FE00C7A; Tue, 11 Jul 2017 08:17:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.178 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.178 listed in dnsbl.sorbs.net]
-Received: from mail-yb0-f178.google.com (mail-yb0-f178.google.com
-	[209.85.213.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7FB9E00B31
-	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 05:35:35 -0700 (PDT)
-Received: by mail-yb0-f178.google.com with SMTP id e201so37437105ybb.1
-	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 05:35:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=AW8AISTJbgnfJzs22nkIqArkOlJO2KwXGE7sTJz6Kyg=;
-	b=poofXf/5yqoL32l3Sc/vFpqt1v384v0zqF39fK9XmcupyejkOZS4alF5eAo+9H9M9F
-	NL0kODmu3JboNusHixwOuMMmniTcvur1rH4rQuJyFXRPfPgm377qjDIbcL9eGYL7AnIF
-	SFTsObhHhWi2JHH5h83F8cU14/+3Muvwb24mP0lrls7izHacJepAoUhBwQdn3Zks+rX8
-	apevE8+wvv7O5SyN2m/0HDZkEw0gVkANiIl9MB/yOlNPT1lRPXYKjVDCd/J//hKFBBBS
-	7ZHPWeZKFN7HYYxFnDtDqwrmOpBhVP7lIJQqFm+ZBE19nAY0E+rcZvOO+UIkOjuwvWro
-	57Pw==
-X-Gm-Message-State: AIVw110dedcSoj4t7P0C+gsWXkB0rVIv8Nh/u2lr26bKHTQj+IORygdG
-	/lQJU0yeDxNxeUGz
-X-Received: by 10.37.188.66 with SMTP id d2mr18855849ybk.85.1499776534537;
-	Tue, 11 Jul 2017 05:35:34 -0700 (PDT)
-Received: from localhost.localdomain (cpe-75-180-228-133.ec.res.rr.com.
-	[75.180.228.133]) by smtp.gmail.com with ESMTPSA id
-	w74sm5961785yww.21.2017.07.11.05.35.33
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 11 Jul 2017 05:35:33 -0700 (PDT)
-From: Tom Rini <trini@konsulko.com>
-To: yocto@yoctoproject.org
-Date: Tue, 11 Jul 2017 08:36:29 -0400
-Message-Id: <1499776589-7362-1-git-send-email-trini@konsulko.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] apparmor: Additional runtime fixes
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E930E00B31
+	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 08:17:06 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	11 Jul 2017 08:17:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.40,347,1496127600"; 
+	d="scan'208,217";a="123827245"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+	by orsmga005.jf.intel.com with ESMTP; 11 Jul 2017 08:17:04 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.210]) by
+	fmsmsx107.amr.corp.intel.com ([169.254.6.4]) with mapi id
+	14.03.0319.002; Tue, 11 Jul 2017 08:17:03 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting
+Thread-Index: AdKtWbwMokvHRUUrQnmf8qT10kd6zw==
+Date: Tue, 11 Jul 2017 15:17:02 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E9821CDDE@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.106]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmRjYjc3YWYtODRjYS00ZTkxLWFhYjAtMGFiZTQ4Mzc5NTIzIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IjI0eVdhZUlKZm5kSXlKRERVM0lCNDZ5bDJLMjVIVFNcLzBqVHFsK2V2MEJzPSJ9
+MIME-Version: 1.0
+Subject: Minutes: Yocto Project Technical Team Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,129 +52,163 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jul 2017 12:35:38 -0000
+X-List-Received-Date: Tue, 11 Jul 2017 15:17:16 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9821CDDEfmsmsx111amrcor_"
 
-- We need various python3 modules and we can only really solve this
-  problem by including all python3-modules.
-- aa-easyprof needs to have its shebang corrected, do so.
-- The apparmor initscript depends on functions that LSB does not require
-  so we must provide them.  In some cases it's using non-standard
-  function, so we just use more appropriate names.
-- The apparmor sysvinit-style initscript assumes that
-  systemd-detect-virt will exist on the filesystem.  Change this to
-  check that it does before trying to execute it.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9821CDDEfmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-[for aa-easyprof:]
-Reported-by: Anders Montonen <Anders.Montonen@iki.fi>
-Signed-off-by: Tom Rini <trini@konsulko.com>
----
- recipes-security/AppArmor/apparmor_2.11.0.bb |  6 +++++-
- recipes-security/AppArmor/files/apparmor     | 30 +++++++++++++++++++++-------
- 2 files changed, 28 insertions(+), 8 deletions(-)
+Attendees: Saul, Stephen, Joshua L., Richard, Paul, Stephano, Joshua W., Ro=
+ss, Libby, Trevor, Christopher,
 
-diff --git a/recipes-security/AppArmor/apparmor_2.11.0.bb b/recipes-security/AppArmor/apparmor_2.11.0.bb
-index 647ab124f115..d9572e4e626f 100644
---- a/recipes-security/AppArmor/apparmor_2.11.0.bb
-+++ b/recipes-security/AppArmor/apparmor_2.11.0.bb
-@@ -79,6 +79,10 @@ do_install () {
- 		oe_runmake -C ${B}/changehat/pam_apparmor DESTDIR="${D}" install
- 	fi
- 
-+	# aa-easyprof is installed by python-tools-setup.py, fix it up
-+	sed -i -e 's:/usr/bin/env.*:/usr/bin/python3:' ${D}${bindir}/aa-easyprof
-+	chmod 0755 ${D}${bindir}/aa-easyprof
-+
- 	install ${WORKDIR}/apparmor ${D}/${INIT_D_DIR}/apparmor
- 	install ${WORKDIR}/functions ${D}/lib/apparmor
- }
-@@ -124,6 +128,6 @@ FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}
- FILES_mod-${PN} = "${libdir}/apache2/modules/*"
- 
- RDEPENDS_${PN} += "bash lsb"
--RDEPENDS_${PN} += "${@bb.utils.contains('PACKAGECONFIG','python','python3 python3-argparse python3-json','', d)}"
-+RDEPENDS_${PN} += "${@bb.utils.contains('PACKAGECONFIG','python','python3 python3-modules','', d)}"
- RDEPENDS_${PN}_remove += "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
- RDEPENDS_${PN}-ptest += "coreutils dbus-lib"
-diff --git a/recipes-security/AppArmor/files/apparmor b/recipes-security/AppArmor/files/apparmor
-index c73c1cec94e9..ac3ab9a4acb5 100644
---- a/recipes-security/AppArmor/files/apparmor
-+++ b/recipes-security/AppArmor/files/apparmor
-@@ -32,6 +32,20 @@
- # Description: AppArmor init script. This script loads all AppArmor profiles.
- ### END INIT INFO
- 
-+log_daemon_msg() {
-+    echo $*
-+}
-+
-+log_end_msg () {
-+    retval=$1
-+    if [ $retval -eq 0 ]; then
-+        echo "."
-+    else
-+        echo " failed!"
-+    fi
-+    return $retval
-+}
-+
- . /lib/apparmor/functions
- . /lib/lsb/init-functions
- 
-@@ -47,20 +61,19 @@ securityfs() {
- 	# Need securityfs for any mode
- 	if [ ! -d "${AA_SFS}" ]; then
- 		if cut -d" " -f2,3 /proc/mounts | grep -q "^${SECURITYFS} securityfs"'$' ; then
--			log_action_msg "AppArmor not available as kernel LSM."
-+			log_daemon_msg "AppArmor not available as kernel LSM."
- 			log_end_msg 1
- 			exit 1
- 		else
--			log_action_begin_msg "Mounting securityfs on ${SECURITYFS}"
-+			log_daemon_msg "Mounting securityfs on ${SECURITYFS}"
- 			if ! mount -t securityfs none "${SECURITYFS}"; then
--				log_action_end_msg 1
- 				log_end_msg 1
- 				exit 1
- 			fi
- 		fi
- 	fi
- 	if [ ! -w "$AA_SFS"/.load ]; then
--		log_action_msg "Insufficient privileges to change profiles."
-+		log_daemon_msg "Insufficient privileges to change profiles."
- 		log_end_msg 1
- 		exit 1
- 	fi
-@@ -127,7 +140,8 @@ test -d /rofs/etc/apparmor.d && exit 0
- rc=255
- case "$1" in
- 	start)
--		if systemd-detect-virt --quiet --container && \
-+		if test -x /sbin/systemd-detect-virt && \
-+		   systemd-detect-virt --quiet --container && \
- 		   ! is_container_with_internal_policy; then
- 			log_daemon_msg "Not starting AppArmor in container"
- 			log_end_msg 0
-@@ -161,7 +175,8 @@ with the 'teardown' option."
- EOM
- 		;;
- 	teardown)
--		if systemd-detect-virt --quiet --container && \
-+		if test -x /sbin/systemd-detect-virt && \
-+		   systemd-detect-virt --quiet --container && \
- 		   ! is_container_with_internal_policy; then
- 			log_daemon_msg "Not tearing down AppArmor in container"
- 			log_end_msg 0
-@@ -179,7 +194,8 @@ EOM
- 		log_end_msg $rc
- 		;;
- 	restart|reload|force-reload)
--		if systemd-detect-virt --quiet --container && \
-+		if test -x /sbin/systemd-detect-virt && \
-+		   systemd-detect-virt --quiet --container && \
- 		   ! is_container_with_internal_policy; then
- 			log_daemon_msg "Not reloading AppArmor in container"
- 			log_end_msg 0
--- 
-1.9.1
+Agenda:
+
+* Opens collection - 5 min (Stephen)
+* Yocto Project status - 5 min (Stephen/team)
+YP 2.4 M1 has been released
+YP 2.1.3 has been released
+YP 2.3.1 and YP 2.2.2 are still planned, but not yet ready to be built.
+YP 2.4 M2 is planned to be built next week.
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features
+
+* Opens - 10 min
+
+https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance
+
+* Team Sharing - 10 min
+Richard - Continuing on with the project.  GCC upgrades and tools hardening=
+.  Still debating Memory Resident Bitbake to be default in M2.
+Paul - Discussed that no one has complained about Memres yet, but have peop=
+le been testing it?  Discussed the pro's and con's of using Memres.
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:     (503) 712-0534
+*    Cell:              (208) 244-4460
+* Email:                stephen.k.jolley@intel.comYP
 
 
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9821CDDEfmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12pt;"><=
+a name=3D"_MailEndCompose"></a>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Att=
+endees: Saul, Stephen, Joshua L., Richard, Paul, Stephano, Joshua W., Ross,=
+ Libby, Trevor, Christopher, </span></font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Age=
+nda:</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">&nb=
+sp;</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* O=
+pens collection - 5 min (Stephen)</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* Y=
+octo Project status - 5 min (Stephen/team)</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
+2.4 M1 has been released</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
+2.1.3 has been released</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
+2.3.1 and YP 2.2.2 are still planned, but not yet ready to be built.</span>=
+</font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
+2.4 M2 is planned to be built next week.</span></font></div>
+<div>&nbsp;</div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Statu=
+s"><font face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-si=
+ze:11pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status</=
+u></span></font></a></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule"><fon=
+t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
+;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule</u></span></fon=
+t></a></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features"><fon=
+t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
+;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features</u></span></fon=
+t></a><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+</span></font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* O=
+pens - 10 min </span></font></div>
+<div>&nbsp;</div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Stable_branch_maintenanc=
+e"><font face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-si=
+ze:11pt;"><u>https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance</=
+u></span></font></a></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* T=
+eam Sharing - 10 min</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Ric=
+hard &#8211; Continuing on with the project.&nbsp; GCC upgrades and tools h=
+ardening.&nbsp; Still debating Memory Resident Bitbake to be default in M2.=
+ </span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Pau=
+l &#8211; Discussed that no one has complained about Memres yet, but have p=
+eople been testing it?&nbsp; Discussed the pro&#8217;s and con&#8217;s of u=
+sing Memres.</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">&nb=
+sp;</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Tha=
+nks,</span></font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font size=3D"4" color=3D"purple"><span style=3D"font-size:16pt;"><b><=
+i>Stephen K. Jolley</i></b></span></font></div>
+<div><font face=3D"Courier New" size=3D"1" color=3D"blue"><span style=3D"fo=
+nt-size:8pt;"><b>Yocto Project Program Manager</b></span></font></div>
+<div><font face=3D"Courier New" size=3D"2" color=3D"fuchsia"><span style=3D=
+"font-size:10pt;"><b>INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, O=
+R 97124 </b></span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;"><font face=3D"Wingdin=
+gs">(</font><font face=3D"MS Sans Serif" color=3D"teal"> </font><font face=
+=3D"MS Sans Serif" size=3D"1" color=3D"teal"><span style=3D"font-size:8pt;"=
+>&nbsp; </span></font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal=
+"><span style=3D"font-size:8pt;"><b>Work
+Telephone</b></span></font><font face=3D"MS Sans Serif" color=3D"teal">:&nb=
+sp;&nbsp;&nbsp;&nbsp; </font><font face=3D"MS Sans Serif" size=3D"2" color=
+=3D"#1F497D"><span style=3D"font-size:9pt;">(503) 712-0534</span></font></s=
+pan></font></div>
+<div><font size=3D"2"><span style=3D"font-size:9pt;"><font face=3D"Wingding=
+s">(</font><font face=3D"MS Sans Serif" color=3D"teal">&nbsp;&nbsp;&nbsp; <=
+/font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal"><span style=3D=
+"font-size:8pt;"><b>Cell</b></span></font><font face=3D"MS Sans Serif" colo=
+r=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+</font><font face=3D"MS Sans Serif" color=3D"#1F497D">(208) 244-4460</font>=
+</span></font></div>
+<div><font size=3D"2" color=3D"#1F497D"><span style=3D"font-size:9pt;"><fon=
+t face=3D"Wingdings">* </font><font face=3D"Comic Sans MS" size=3D"1" color=
+=3D"teal"><span style=3D"font-size:8pt;"><b>Email</b></span></font><font fa=
+ce=3D"MS Sans Serif" color=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font face=3D"MS Sans Serif" color=3D"blue"><u>stephen.k.jolley@inte=
+l.com</u></font><font face=3D"Arial" size=3D"3"><span style=3D"font-size:12=
+pt;">YP</span></font></span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+</span></font>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9821CDDEfmsmsx111amrcor_--
