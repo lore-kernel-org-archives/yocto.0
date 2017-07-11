@@ -1,35 +1,49 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <tom.rini@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 593DBE00C59; Tue, 11 Jul 2017 04:02:31 -0700 (PDT)
+	id 4F5EBE00C3E; Tue, 11 Jul 2017 05:35:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF9F1E00C4B
-	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 04:02:24 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	11 Jul 2017 04:02:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,346,1496127600"; d="scan'208";a="1150323685"
-Received: from jlock-mobl1.ger.corp.intel.com ([10.252.0.217])
-	by orsmga001.jf.intel.com with ESMTP; 11 Jul 2017 04:02:11 -0700
-Message-ID: <1499770930.3497.11.camel@linux.intel.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-To: Stephano Cetola <stephano.cetola@linux.intel.com>, yocto@yoctoproject.org
-Date: Tue, 11 Jul 2017 12:02:10 +0100
-In-Reply-To: <20170710210446.45687-1-stephano.cetola@linux.intel.com>
-References: <20170710210446.45687-1-stephano.cetola@linux.intel.com>
-X-Mailer: Evolution 3.22.6 (3.22.6-2.fc25) 
-Mime-Version: 1.0
-Subject: Re: [yocto-autobuilder][PATCH] add force bash option on build and preamble
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.178 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.178 listed in dnsbl.sorbs.net]
+Received: from mail-yb0-f178.google.com (mail-yb0-f178.google.com
+	[209.85.213.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7FB9E00B31
+	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 05:35:35 -0700 (PDT)
+Received: by mail-yb0-f178.google.com with SMTP id e201so37437105ybb.1
+	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 05:35:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=AW8AISTJbgnfJzs22nkIqArkOlJO2KwXGE7sTJz6Kyg=;
+	b=poofXf/5yqoL32l3Sc/vFpqt1v384v0zqF39fK9XmcupyejkOZS4alF5eAo+9H9M9F
+	NL0kODmu3JboNusHixwOuMMmniTcvur1rH4rQuJyFXRPfPgm377qjDIbcL9eGYL7AnIF
+	SFTsObhHhWi2JHH5h83F8cU14/+3Muvwb24mP0lrls7izHacJepAoUhBwQdn3Zks+rX8
+	apevE8+wvv7O5SyN2m/0HDZkEw0gVkANiIl9MB/yOlNPT1lRPXYKjVDCd/J//hKFBBBS
+	7ZHPWeZKFN7HYYxFnDtDqwrmOpBhVP7lIJQqFm+ZBE19nAY0E+rcZvOO+UIkOjuwvWro
+	57Pw==
+X-Gm-Message-State: AIVw110dedcSoj4t7P0C+gsWXkB0rVIv8Nh/u2lr26bKHTQj+IORygdG
+	/lQJU0yeDxNxeUGz
+X-Received: by 10.37.188.66 with SMTP id d2mr18855849ybk.85.1499776534537;
+	Tue, 11 Jul 2017 05:35:34 -0700 (PDT)
+Received: from localhost.localdomain (cpe-75-180-228-133.ec.res.rr.com.
+	[75.180.228.133]) by smtp.gmail.com with ESMTPSA id
+	w74sm5961785yww.21.2017.07.11.05.35.33
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 11 Jul 2017 05:35:33 -0700 (PDT)
+From: Tom Rini <trini@konsulko.com>
+To: yocto@yoctoproject.org
+Date: Tue, 11 Jul 2017 08:36:29 -0400
+Message-Id: <1499776589-7362-1-git-send-email-trini@konsulko.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-security][PATCH] apparmor: Additional runtime fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,117 +55,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jul 2017 11:02:31 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 11 Jul 2017 12:35:38 -0000
 
-On Mon, 2017-07-10 at 14:04 -0700, Stephano Cetola wrote:
-> Certain distros (Ubuntu) use a less desirable shell for /bin/sh
-> (dash). In some edge cases, if we source oe-init-build-env from
-> outside the OEROOT folder, the script will fail (as stated in the
-> oe-init-build-env script). By adding a variable to force bash as the
-> shell, we can call "bash -c" to ensure that a compatible shell is
-> used.
-> 
-> Currently, refkit is the only build that suffers from this edge case.
+- We need various python3 modules and we can only really solve this
+  problem by including all python3-modules.
+- aa-easyprof needs to have its shebang corrected, do so.
+- The apparmor initscript depends on functions that LSB does not require
+  so we must provide them.  In some cases it's using non-standard
+  function, so we just use more appropriate names.
+- The apparmor sysvinit-style initscript assumes that
+  systemd-detect-virt will exist on the filesystem.  Change this to
+  check that it does before trying to execute it.
 
-Thanks for the fix! I split the patch into two before merging, one for
-the buildstep logic change and a follow-on to update the buildset-
-config.controller. Hope you don't mind.
+[for aa-easyprof:]
+Reported-by: Anders Montonen <Anders.Montonen@iki.fi>
+Signed-off-by: Tom Rini <trini@konsulko.com>
+---
+ recipes-security/AppArmor/apparmor_2.11.0.bb |  6 +++++-
+ recipes-security/AppArmor/files/apparmor     | 30 +++++++++++++++++++++-------
+ 2 files changed, 28 insertions(+), 8 deletions(-)
 
-Joshua
+diff --git a/recipes-security/AppArmor/apparmor_2.11.0.bb b/recipes-security/AppArmor/apparmor_2.11.0.bb
+index 647ab124f115..d9572e4e626f 100644
+--- a/recipes-security/AppArmor/apparmor_2.11.0.bb
++++ b/recipes-security/AppArmor/apparmor_2.11.0.bb
+@@ -79,6 +79,10 @@ do_install () {
+ 		oe_runmake -C ${B}/changehat/pam_apparmor DESTDIR="${D}" install
+ 	fi
+ 
++	# aa-easyprof is installed by python-tools-setup.py, fix it up
++	sed -i -e 's:/usr/bin/env.*:/usr/bin/python3:' ${D}${bindir}/aa-easyprof
++	chmod 0755 ${D}${bindir}/aa-easyprof
++
+ 	install ${WORKDIR}/apparmor ${D}/${INIT_D_DIR}/apparmor
+ 	install ${WORKDIR}/functions ${D}/lib/apparmor
+ }
+@@ -124,6 +128,6 @@ FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}
+ FILES_mod-${PN} = "${libdir}/apache2/modules/*"
+ 
+ RDEPENDS_${PN} += "bash lsb"
+-RDEPENDS_${PN} += "${@bb.utils.contains('PACKAGECONFIG','python','python3 python3-argparse python3-json','', d)}"
++RDEPENDS_${PN} += "${@bb.utils.contains('PACKAGECONFIG','python','python3 python3-modules','', d)}"
+ RDEPENDS_${PN}_remove += "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
+ RDEPENDS_${PN}-ptest += "coreutils dbus-lib"
+diff --git a/recipes-security/AppArmor/files/apparmor b/recipes-security/AppArmor/files/apparmor
+index c73c1cec94e9..ac3ab9a4acb5 100644
+--- a/recipes-security/AppArmor/files/apparmor
++++ b/recipes-security/AppArmor/files/apparmor
+@@ -32,6 +32,20 @@
+ # Description: AppArmor init script. This script loads all AppArmor profiles.
+ ### END INIT INFO
+ 
++log_daemon_msg() {
++    echo $*
++}
++
++log_end_msg () {
++    retval=$1
++    if [ $retval -eq 0 ]; then
++        echo "."
++    else
++        echo " failed!"
++    fi
++    return $retval
++}
++
+ . /lib/apparmor/functions
+ . /lib/lsb/init-functions
+ 
+@@ -47,20 +61,19 @@ securityfs() {
+ 	# Need securityfs for any mode
+ 	if [ ! -d "${AA_SFS}" ]; then
+ 		if cut -d" " -f2,3 /proc/mounts | grep -q "^${SECURITYFS} securityfs"'$' ; then
+-			log_action_msg "AppArmor not available as kernel LSM."
++			log_daemon_msg "AppArmor not available as kernel LSM."
+ 			log_end_msg 1
+ 			exit 1
+ 		else
+-			log_action_begin_msg "Mounting securityfs on ${SECURITYFS}"
++			log_daemon_msg "Mounting securityfs on ${SECURITYFS}"
+ 			if ! mount -t securityfs none "${SECURITYFS}"; then
+-				log_action_end_msg 1
+ 				log_end_msg 1
+ 				exit 1
+ 			fi
+ 		fi
+ 	fi
+ 	if [ ! -w "$AA_SFS"/.load ]; then
+-		log_action_msg "Insufficient privileges to change profiles."
++		log_daemon_msg "Insufficient privileges to change profiles."
+ 		log_end_msg 1
+ 		exit 1
+ 	fi
+@@ -127,7 +140,8 @@ test -d /rofs/etc/apparmor.d && exit 0
+ rc=255
+ case "$1" in
+ 	start)
+-		if systemd-detect-virt --quiet --container && \
++		if test -x /sbin/systemd-detect-virt && \
++		   systemd-detect-virt --quiet --container && \
+ 		   ! is_container_with_internal_policy; then
+ 			log_daemon_msg "Not starting AppArmor in container"
+ 			log_end_msg 0
+@@ -161,7 +175,8 @@ with the 'teardown' option."
+ EOM
+ 		;;
+ 	teardown)
+-		if systemd-detect-virt --quiet --container && \
++		if test -x /sbin/systemd-detect-virt && \
++		   systemd-detect-virt --quiet --container && \
+ 		   ! is_container_with_internal_policy; then
+ 			log_daemon_msg "Not tearing down AppArmor in container"
+ 			log_end_msg 0
+@@ -179,7 +194,8 @@ EOM
+ 		log_end_msg $rc
+ 		;;
+ 	restart|reload|force-reload)
+-		if systemd-detect-virt --quiet --container && \
++		if test -x /sbin/systemd-detect-virt && \
++		   systemd-detect-virt --quiet --container && \
+ 		   ! is_container_with_internal_policy; then
+ 			log_daemon_msg "Not reloading AppArmor in container"
+ 			log_end_msg 0
+-- 
+1.9.1
 
-> Signed-off-by: Stephano Cetola <stephano.cetola@linux.intel.com>
-> ---
->  buildset-config.controller/nightly-refkit.conf                    |
-> 3 ++-
->  lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py |
-> 3 +++
->  lib/python2.7/site-packages/autobuilder/buildsteps/RunPreamble.py |
-> 3 +++
->  3 files changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/buildset-config.controller/nightly-refkit.conf
-> b/buildset-config.controller/nightly-refkit.conf
-> index 1d2487da6..cbc8508d7 100644
-> --- a/buildset-config.controller/nightly-refkit.conf
-> +++ b/buildset-config.controller/nightly-refkit.conf
-> @@ -11,7 +11,7 @@ repos: [{'poky':
->               'submodules': True}}]
->  steps: [{'SetDest':{}},
->          {'CheckOutLayers': {'submodules': True}},
-> -        {'RunPreamble': {'altcmd': 'refkit/oe-init-build-env'}},
-> +        {'RunPreamble': {'forcebash': True, 'altcmd': 'refkit/oe-
-> init-build-env'}},
->          {'GetDistroVersion' : {'distro': 'refkit'}},
->          {'CreateAutoConf': {'machine': 'intel-corei7-64',
-> 'packages': 'ipk',
->                              'distro': 'refkit', 'buildhistory' :
-> False,
-> @@ -44,6 +44,7 @@ steps: [{'SetDest':{}},
->          {'ScrapeTargets': {'source': 'refkit/meta-
-> refkit/conf/distro/include/refkit-ci.inc',
->                             'targetsvar':
-> 'REFKIT_CI_BUILD_TARGETS'}},
->          {'BuildImages': {'images': '#SCRAPEDTARGETS',
-> +                         'forcebash': True,
->                           'oeinit': 'refkit/oe-init-build-env',
->                           'overrideenv':
-> ['BITBAKEDIR=#YPDIR/bitbake', 'OEROOT=#YPDIR/meta']}},
->          {'ScrapeTargets': {'source': 'refkit/meta-
-> refkit/conf/distro/include/refkit-ci.inc',
-> diff --git a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/BuildImages.py b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/BuildImages.py
-> index 60ce07ff7..0406fd2e9 100644
-> --- a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/BuildImages.py
-> +++ b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/BuildImages.py
-> @@ -23,6 +23,7 @@ class BuildImages(BitbakeShellCommand):
->      haltOnFailure = False
->      flunkOnFailure = True
->      name = "BuildImages"
-> +    forcebash = False
->      def __init__(self, factory, argdict=None, **kwargs):
->          self.layerversion_yoctobsp=0
->          self.machine=""
-> @@ -163,6 +164,8 @@ class BuildImages(BitbakeShellCommand):
->                  if self.minnowExists is None or self.minnowExists ==
-> "True":
->                      self.command = env + ". ./" + self.oeinit + ";
-> bitbake " + bitbakeflags + self.images
->                      self.description = ["Building " +
-> str(self.images)]
-> +        if self.forcebash:
-> +            self.command = ['bash', '-c', self.command]
->          ShellCommand.start(self)
->  
->      def describe(self, done=False):
-> diff --git a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunPreamble.py b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunPreamble.py
-> index e9de3c76c..23c4ace2b 100644
-> --- a/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunPreamble.py
-> +++ b/lib/python2.7/site-
-> packages/autobuilder/buildsteps/RunPreamble.py
-> @@ -16,6 +16,7 @@ class RunPreamble(ShellCommand):
->      haltOnFailure = False
->      flunkOnFailure = True
->      name = "RunPreamble"
-> +    forcebash = False
->  
->      def __init__(self, factory, argdict=None, **kwargs):
->          self.factory = factory
-> @@ -27,4 +28,6 @@ class RunPreamble(ShellCommand):
->              self.command = ". ./oe-init-build-env"
->          else:
->              self.command = ". ./" + self.altcmd
-> +        if self.forcebash:
-> +            self.command = ['bash', '-c', self.command]
->          ShellCommand.__init__(self, **kwargs)
-> -- 
-> 2.13.2
-> 
 
