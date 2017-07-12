@@ -1,36 +1,59 @@
-Return-Path: <california.l.sullivan@intel.com>
+Return-Path: <kenny@understoryweather.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C24BE00C3E; Tue, 11 Jul 2017 16:56:44 -0700 (PDT)
+	id 4DC3AE00C76; Tue, 11 Jul 2017 22:23:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.213.49 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.49 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D5C3E00BD0
-	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 16:56:39 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	11 Jul 2017 16:56:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,347,1496127600"; d="scan'208";a="991861467"
-Received: from clsulliv.jf.intel.com ([10.7.201.36])
-	by orsmga003.jf.intel.com with ESMTP; 11 Jul 2017 16:56:35 -0700
-To: Tim Orling <timothy.t.orling@linux.intel.com>, yocto@yoctoproject.org
-References: <20170711212552.26897-1-timothy.t.orling@linux.intel.com>
-From: Cal Sullivan <california.l.sullivan@intel.com>
-Message-ID: <c1f0d9f7-54fd-f7bc-a2d1-35232f9e8e1d@intel.com>
-Date: Tue, 11 Jul 2017 16:56:35 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f49.google.com (mail-vk0-f49.google.com
+	[209.85.213.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86D58E00BD2
+	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 22:23:50 -0700 (PDT)
+Received: by mail-vk0-f49.google.com with SMTP id f68so3286025vkg.2
+	for <yocto@yoctoproject.org>; Tue, 11 Jul 2017 22:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=understoryweather-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=cBvRrdqGwNzOYMwFzAms0noOF9yEhHL9GdbkY+2NSIs=;
+	b=kqzcLGw+8sqsLJOlZBwrAUb3s+syS54X+DPo3+hSIorMDh7Ar2iFSCd17qOQCQp/Yd
+	0Gq13ItZOd0TKGWUL6JqKF7kamh2SWA+tes3STp6qe3x4GPSy+tZC8/Ww6AFsU7YUY/L
+	ofOUfQtHzhDXPQABBVG8XSiv0v5GWy4Uo0oWCAjgWUCOoP5ei6QZqL9iolSo6FN60pIv
+	f5aEr7YQHXTudBNsmwhi0zt9Clr7Gp0QP4QrbojEGfvO9L8PphXMTU3ec2b9o1gapARL
+	4MHpNb1bV4/CLDawRjQ+c6vOGuPxYpVL0dpsnSgxl4xYVRYU2OMo5+y3i2U5GOMF+mMR
+	pZCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=cBvRrdqGwNzOYMwFzAms0noOF9yEhHL9GdbkY+2NSIs=;
+	b=pmXnCwR8wSwheL8iq+PJ3HPQfl+AwwOo6K47ZmgQsJX5LMKpQZc+ea56/5kjrYztDA
+	WVT839PGHm5UqD9xAXtdDB2/kht07La5r9qLSBWmWdtb883tFvsF0iWPVl7YE82ZgM9a
+	HXQJeVkm75RyQGlVs9CNZ/V2qJdD13VtoOTtdNniWfC6z+voCIeEmKg4f7Ibo7qzfuIW
+	L0fIkEen1UwOsZaP2xqhXO0PMJLful3ySXAyWSezm+I312ozIYAr0Zy+RSSBLt6NLvSY
+	CTuKrNWgnynXPgOxsM/U3PEyrm+xLXoKGT3lw3Ub/N0DJrXI7y2fHbtYFploD+BX2g07
+	PhJw==
+X-Gm-Message-State: AIVw112CajxUJjbQdai5H3oibN1d1B8KvJl9tHBfwjUnVKeJEwr5/PJU
+	6jXbcRUQU3JeypAVEuMaWkKVtQOE3fWtdLY=
+X-Received: by 10.31.152.213 with SMTP id a204mr309093vke.145.1499837029910;
+	Tue, 11 Jul 2017 22:23:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20170711212552.26897-1-timothy.t.orling@linux.intel.com>
-Subject: Re: [meta-alexa-demo][PATCH] Fix setuptools_scm build error for several python packages
+From: Kenny Koller <kenny@understoryweather.com>
+Date: Wed, 12 Jul 2017 05:23:39 +0000
+Message-ID: <CAPtqgUxdtgOZNVqRUjrGX6e-+e9Hd=zwac2-zDRUdWQSk=+8fw@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Determining Load Addresses
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,128 +65,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jul 2017 23:56:44 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 12 Jul 2017 05:23:52 -0000
+Content-Type: multipart/alternative; boundary="001a1140eaf6639d8705541805f8"
 
-I actually wasn't able to reproduce the issue.I added alexapi to my 
-IMAGE_INSTALL and ran a build, see below:
+--001a1140eaf6639d8705541805f8
+Content-Type: text/plain; charset="UTF-8"
 
-[clsulliv@clsulliv build]$ bitbake core-image-minimal
-Parsing recipes: 100% 
-|############################################################################################################| 
-Time: 0:00:08
-Parsing of 1825 .bb files complete (0 cached, 1825 parsed). 2581 
-targets, 143 skipped, 0 masked, 0 errors.
-NOTE: There are 4 recipes to be removed from sysroot x86_64, removing...
-NOTE: There are 1 recipes to be removed from sysroot corei7-64, removing...
-NOTE: There are 1 recipes to be removed from sysroot intel-corei7-64, 
-removing...
-NOTE: Resolving any missing task queue dependencies
+I'm trying to piece together the various load addresses used in the boot
+sequence. I have built core-image-minimal for a Beaglebone. How can I
+determine which load address and entry point is used when mkimage is called
+for the kernel? Should I dig in to the recipe? Search some log files? I've
+tried a few difference things without results.
 
-Build Configuration:
-BB_VERSION        = "1.34.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal"
-TARGET_SYS        = "x86_64-poky-linux"
-MACHINE           = "intel-corei7-64"
-DISTRO            = "poky"
-DISTRO_VERSION    = "2.3"
-TUNE_FEATURES     = "m64 corei7"
-TARGET_FPU        = ""
-meta
-meta-poky
-meta-yocto-bsp    = "pyro:7c27bf2dd85ee77d643d975add4256e957652a5c"
-meta-intel        = "pyro:16aea09d224f3ed2021623d17c3e807f4b8ff18d"
-meta-oe           = "pyro:5e82995148a2844c6f483ae5ddd1438d87ea9fb7"
-meta-alexa        = "master:1b5618a1af6ea79f51aa89480b857648584c581f"
-meta-python
-meta-multimedia   = "pyro:5e82995148a2844c6f483ae5ddd1438d87ea9fb7"
+Thanks.
 
-Initialising tasks: 100% 
-|#########################################################################################################| 
-Time: 0:00:11
-Checking sstate mirror object availability: 100% 
-|#################################################################################| 
-Time: 0:00:00
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Tasks Summary: Attempted 5678 tasks of which 5653 didn't need to 
-be rerun and all succeeded.
+--001a1140eaf6639d8705541805f8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'm curious as to what's different for you guys.
+<div dir=3D"ltr">I&#39;m trying to piece together the various load addresse=
+s used in the boot sequence. I have built core-image-minimal for a Beaglebo=
+ne. How can I determine which load address and entry point is used when mki=
+mage is called for the kernel? Should I dig in to the recipe? Search some l=
+og files? I&#39;ve tried a few difference things without results.<div><br><=
+/div><div>Thanks.</div></div>
 
----
-Cal
-
-
-On 07/11/2017 02:25 PM, Tim Orling wrote:
-> python-setuptools-scm-native is needed at build time for:
->    python-cheroot
->    python-cherrypy
->    python-portend
->    python-tempora
->
-> Signed-off-by: Tim Orling <timothy.t.orling@linux.intel.com>
-> ---
->   recipes-devtools/python/python-cheroot_5.1.0.bb   | 2 +-
->   recipes-devtools/python/python-cherrypy_10.1.1.bb | 2 +-
->   recipes-devtools/python/python-portend_1.8.bb     | 2 +-
->   recipes-devtools/python/python-tempora_1.6.1.bb   | 2 +-
->   4 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/recipes-devtools/python/python-cheroot_5.1.0.bb b/recipes-devtools/python/python-cheroot_5.1.0.bb
-> index 2da3115..e8795d1 100644
-> --- a/recipes-devtools/python/python-cheroot_5.1.0.bb
-> +++ b/recipes-devtools/python/python-cheroot_5.1.0.bb
-> @@ -14,7 +14,7 @@ FILES_${PN} += "${datadir}/cheroot"
->   
->   BBCLASSEXTEND = "nativesdk"
->   
-> -DEPENDS += " swig-native"
-> +DEPENDS += " swig-native python-setuptools-scm-native"
->   
->   RDEPENDS_${PN} += " \
->       python-pip \
-> diff --git a/recipes-devtools/python/python-cherrypy_10.1.1.bb b/recipes-devtools/python/python-cherrypy_10.1.1.bb
-> index 2a75fd8..6a9086a 100644
-> --- a/recipes-devtools/python/python-cherrypy_10.1.1.bb
-> +++ b/recipes-devtools/python/python-cherrypy_10.1.1.bb
-> @@ -14,7 +14,7 @@ FILES_${PN} += "${datadir}/CherryPy"
->   
->   BBCLASSEXTEND = "nativesdk"
->   
-> -DEPENDS += " swig-native"
-> +DEPENDS += " swig-native python-setuptools-scm-native"
->   
->   RDEPENDS_${PN} += " \
->       python-pip \
-> diff --git a/recipes-devtools/python/python-portend_1.8.bb b/recipes-devtools/python/python-portend_1.8.bb
-> index f50de7c..926d238 100644
-> --- a/recipes-devtools/python/python-portend_1.8.bb
-> +++ b/recipes-devtools/python/python-portend_1.8.bb
-> @@ -14,7 +14,7 @@ FILES_${PN} += "${datadir}/portend"
->   
->   BBCLASSEXTEND = "nativesdk"
->   
-> -DEPENDS += " swig-native"
-> +DEPENDS += " swig-native python-setuptools-scm-native"
->   
->   RDEPENDS_${PN} += " \
->       python-pip \
-> diff --git a/recipes-devtools/python/python-tempora_1.6.1.bb b/recipes-devtools/python/python-tempora_1.6.1.bb
-> index 417818b..4412030 100644
-> --- a/recipes-devtools/python/python-tempora_1.6.1.bb
-> +++ b/recipes-devtools/python/python-tempora_1.6.1.bb
-> @@ -14,7 +14,7 @@ FILES_${PN} += "${datadir}/tempora"
->   
->   BBCLASSEXTEND = "nativesdk"
->   
-> -DEPENDS += " swig-native"
-> +DEPENDS += " swig-native python-setuptools-scm-native"
->   
->   RDEPENDS_${PN} += " \
->       python-pip \
-
-
+--001a1140eaf6639d8705541805f8--
