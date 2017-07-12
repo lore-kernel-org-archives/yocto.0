@@ -1,66 +1,57 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <jose.perez.carranza@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 531E7E00B28; Wed, 12 Jul 2017 09:38:01 -0700 (PDT)
+	id 21E82E00B28; Wed, 12 Jul 2017 10:03:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.44 listed in list.dnswl.org]
-Received: from mail-pg0-f44.google.com (mail-pg0-f44.google.com [74.125.83.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26C65E00ACF
-	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 09:37:57 -0700 (PDT)
-Received: by mail-pg0-f44.google.com with SMTP id k14so15716215pgr.0
-	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 09:37:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=to:from:subject:organization:message-id:date:user-agent
-	:mime-version:content-language:content-transfer-encoding;
-	bh=Sm+b5ieJ06YTl757DBsXA68D69Vhl1B/74+KEm+mweU=;
-	b=DcpveHJu33PsqX+Uwcz5bK81cmChaokgqnVwN+9kSvC1/kBRB7q9nlFcVP5HsEkoXh
-	MAzKa2GtZXdnXeGZg8foIwU6iIVvW7vf7WGa2Wo7ed2P54acC/kmJ6Dj5NArc7Qw5Jfy
-	uuYV/jI2PaynUyYa88gXR5FT+SzKGg7IGuMLc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:organization:message-id:date
-	:user-agent:mime-version:content-language:content-transfer-encoding;
-	bh=Sm+b5ieJ06YTl757DBsXA68D69Vhl1B/74+KEm+mweU=;
-	b=cEjhzNntQSGxzVBMyO2gf7aXEXi0ReUXMO9GZAX3ojUXiYeIb1v6BcaALe8afBJrFx
-	K7wYomQeh7bWFMgKf6WxAdPvfzDTlBOGySVVhnOURk/B0CLXJsrgEusDuHMoLaHjP+fW
-	5DiFXlX55/6r3vMceWUtX+hep19T4cWtxSy4l9XAaVCQREtG0xZ/WtQskoEY36vI4SXa
-	/t3yVe7OkrAMSvOnDayxb0X549RbgXPWaVYvLvIyT+p4sI1MsQLearZTLnpEAatrM58u
-	kquVvReAwe5YmjzqpdG6+5+BA1YXGtoJqCgMrz3jJVKmT24Pgfd+/qcl5N6a+VWsgmlX
-	0o2A==
-X-Gm-Message-State: AIVw113r8IKvet6KYtj0zvbxvRODw8dcTqdGPcutVCxs0G8N1WlbBssD
-	9mcjZceAwFYPFZvpG9Px1A==
-X-Received: by 10.101.72.207 with SMTP id o15mr4787082pgs.73.1499877476383;
-	Wed, 12 Jul 2017 09:37:56 -0700 (PDT)
-Received: from yct-lpt.lan (50-39-170-83.bvtn.or.frontiernet.net.
-	[50.39.170.83])
-	by smtp.gmail.com with ESMTPSA id r27sm8113771pfe.0.2017.07.12.09.37.54
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 12 Jul 2017 09:37:55 -0700 (PDT)
-To: pidge@toganlabs.com, jose.perez.carranza@intel.com,
-	libertad.cruz@intel.com, otavio@ossystems.com.br, yi.zhao@windriver.com,
-	tracy.graydon@intel.com, joshua.g.lock@intel.com, yocto@yoctoproject.org
-From: Michael Halstead <mhalstead@linuxfoundation.org>
-Organization: Linux Foundation
-Message-ID: <2e55442b-959f-623b-9056-df8343acf544@linuxfoundation.org>
-Date: Wed, 12 Jul 2017 09:37:54 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAAE8E00ACF
+	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 10:03:16 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	12 Jul 2017 10:03:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.40,350,1496127600"; d="scan'208";a="124357203"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+	by orsmga005.jf.intel.com with ESMTP; 12 Jul 2017 10:03:14 -0700
+Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
+	FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Wed, 12 Jul 2017 10:03:13 -0700
+Received: from fmsmsx101.amr.corp.intel.com ([169.254.1.27]) by
+	fmsmsx115.amr.corp.intel.com ([169.254.4.195]) with mapi id
+	14.03.0319.002; Wed, 12 Jul 2017 10:03:13 -0700
+From: "Perez Carranza, Jose" <jose.perez.carranza@intel.com>
+To: Michael Halstead <mhalstead@linuxfoundation.org>, "pidge@toganlabs.com"
+	<pidge@toganlabs.com>, "Cruz, Libertad" <libertad.cruz@intel.com>,
+	"otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Zhao,
+	Yi (Wind River)"
+	<yi.zhao@windriver.com>, "Graydon, Tracy" <tracy.graydon@intel.com>,
+	"Lock, Joshua G" <joshua.g.lock@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "Purdie, Richard" <richard.purdie@intel.com>
+Thread-Topic: Release Candidate Build for yocto-2.3.1.rc1 now available
+Thread-Index: AQHS+y0/TBd9kQXdV0KY5TXaL0D3aKJQarRA
+Date: Wed, 12 Jul 2017 17:03:13 +0000
+Message-ID: <0A5D9A624DF90343892F8F3FE7DE525A169A5788@fmsmsx101.amr.corp.intel.com>
+References: <2e55442b-959f-623b-9056-df8343acf544@linuxfoundation.org>
+In-Reply-To: <2e55442b-959f-623b-9056-df8343acf544@linuxfoundation.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNTk4ZWFjY2UtMDMxZC00NzM3LWI5NGItODQ1MTlmYWIxMGVlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuNi42IiwiVHJ1c3RlZExhYmVsSGFzaCI6Ims2ZmNFR0RFQlJ4R1BEQUFEWkFzRFdFQzBcL3ladnlVSWtna1d5QnlCT1RBPSJ9
+dlp-product: dlpe-windows
+dlp-version: 10.0.102.7
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-Subject: Release Candidate Build for yocto-2.3.1.rc1 now available
+Subject: Re: Release Candidate Build for yocto-2.3.1.rc1 now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,62 +63,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jul 2017 16:38:01 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Wed, 12 Jul 2017 17:03:20 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-A release candidate build for yocto-2.3.1.rc1 is now available at:
-
-
-    https://autobuilder.yocto.io/pub/releases/yocto-2.3.1.rc1
-
-
-Please begin QA on this build as soon as possible.
-
-
-Build hash information:
-meta-intel : 16aea09d224f3ed2021623d17c3e807f4b8ff18d
-meta-qt4 : e120a2193be3982d55741fb9e51472db6ab9a5cd
-refkit : d86ed372d83a930e9fe2ef22e8a4b98a269d33e6
-meta-mingw : 4bdb99650a053f254ccd158a6d0c25c80e79f6ee
-meta-qt3 : f33b73a9563f2dfdfd0ee37b61d65d90197a456f
-meta-gplv2 : de001bd6bfcec943d274b649c62be6848cc9c3e6
-poky : c2ef32ae58737463cf19aab7446d6a30ad81754f
-
-\nThis is an automated message from\nThe Yocto Project Autobuilder\nGit:
-git://git.yoctoproject.org/yocto-autobuilder\nEmail: pidge@toganlabs.com
-" | sendmail -t
- in dir /home/pokybuild/yocto-autobuilder/yocto-worker/nightly/build
-(timeout 100000 secs)
- watching logfiles {}
- argv: echo "To: yocto@yoctoproject.org
-Cc: pidge@toganlabs.com, jose.perez.carranza@intel.com,
-libertad.cruz@intel.com, otavio@ossystems.com.br, yi.zhao@windriver.com,
-tracy.graydon@intel.com, joshua.g.lock@intel.com
-Subject: Release Candidate Build for yocto-2.3.1.rc1 now available.
-
-
-A release candidate build for yocto-2.3.1.rc1 is now available at:
-
-
-    https://autobuilder.yocto.io/pub/releases/yocto-2.3.1.rc1
-
-
-Please begin QA on this build as soon as possible.
-
-
-Build hash information:
-meta-intel : 16aea09d224f3ed2021623d17c3e807f4b8ff18d
-meta-qt4 : e120a2193be3982d55741fb9e51472db6ab9a5cd
-refkit : d86ed372d83a930e9fe2ef22e8a4b98a269d33e6
-meta-mingw : 4bdb99650a053f254ccd158a6d0c25c80e79f6ee
-meta-qt3 : f33b73a9563f2dfdfd0ee37b61d65d90197a456f
-meta-gplv2 : de001bd6bfcec943d274b649c62be6848cc9c3e6
-poky : c2ef32ae58737463cf19aab7446d6a30ad81754f
-
-
--- 
-Michael Halstead
-Linux Foundation / SysAdmin
+SGkgTWljaGFlbA0KDQpZb3Ugc2VudCB0aGUgbWFpbCBmb3IgcmMxIGFuZCB0aGVyZSBpcyBhbiBy
+YzIgYXZhaWxhYmxlLCBhY2NvcmRpbmcgdG8gUlAgcmMyIGlzIHRoZSBvbmUgdGhhdCB3aWxsIGJl
+IHVzZWQgZm9yIFFBLiANCg0KUmVnYXJkcywNCkpvc8OpDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNz
+YWdlLS0tLS0NCkZyb206IE1pY2hhZWwgSGFsc3RlYWQgW21haWx0bzptaGFsc3RlYWRAbGludXhm
+b3VuZGF0aW9uLm9yZ10gDQpTZW50OiBXZWRuZXNkYXksIEp1bHkgMTIsIDIwMTcgMTE6MzggQU0N
+ClRvOiBwaWRnZUB0b2dhbmxhYnMuY29tOyBQZXJleiBDYXJyYW56YSwgSm9zZSA8am9zZS5wZXJl
+ei5jYXJyYW56YUBpbnRlbC5jb20+OyBDcnV6LCBMaWJlcnRhZCA8bGliZXJ0YWQuY3J1ekBpbnRl
+bC5jb20+OyBvdGF2aW9Ab3NzeXN0ZW1zLmNvbS5icjsgWmhhbywgWWkgKFdpbmQgUml2ZXIpIDx5
+aS56aGFvQHdpbmRyaXZlci5jb20+OyBHcmF5ZG9uLCBUcmFjeSA8dHJhY3kuZ3JheWRvbkBpbnRl
+bC5jb20+OyBMb2NrLCBKb3NodWEgRyA8am9zaHVhLmcubG9ja0BpbnRlbC5jb20+OyB5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZWxlYXNlIENhbmRpZGF0ZSBCdWlsZCBmb3IgeW9j
+dG8tMi4zLjEucmMxIG5vdyBhdmFpbGFibGUNCg0KQSByZWxlYXNlIGNhbmRpZGF0ZSBidWlsZCBm
+b3IgeW9jdG8tMi4zLjEucmMxIGlzIG5vdyBhdmFpbGFibGUgYXQ6DQoNCg0KICAgIGh0dHBzOi8v
+YXV0b2J1aWxkZXIueW9jdG8uaW8vcHViL3JlbGVhc2VzL3lvY3RvLTIuMy4xLnJjMQ0KDQoNClBs
+ZWFzZSBiZWdpbiBRQSBvbiB0aGlzIGJ1aWxkIGFzIHNvb24gYXMgcG9zc2libGUuDQoNCg0KQnVp
+bGQgaGFzaCBpbmZvcm1hdGlvbjoNCm1ldGEtaW50ZWwgOiAxNmFlYTA5ZDIyNGYzZWQyMDIxNjIz
+ZDE3YzNlODA3ZjRiOGZmMThkDQptZXRhLXF0NCA6IGUxMjBhMjE5M2JlMzk4MmQ1NTc0MWZiOWU1
+MTQ3MmRiNmFiOWE1Y2QNCnJlZmtpdCA6IGQ4NmVkMzcyZDgzYTkzMGU5ZmUyZWYyMmU4YTRiOThh
+MjY5ZDMzZTYNCm1ldGEtbWluZ3cgOiA0YmRiOTk2NTBhMDUzZjI1NGNjZDE1OGE2ZDBjMjVjODBl
+NzlmNmVlDQptZXRhLXF0MyA6IGYzM2I3M2E5NTYzZjJkZmRmZDBlZTM3YjYxZDY1ZDkwMTk3YTQ1
+NmYNCm1ldGEtZ3BsdjIgOiBkZTAwMWJkNmJmY2VjOTQzZDI3NGI2NDljNjJiZTY4NDhjYzljM2U2
+DQpwb2t5IDogYzJlZjMyYWU1ODczNzQ2M2NmMTlhYWI3NDQ2ZDZhMzBhZDgxNzU0Zg0KDQpcblRo
+aXMgaXMgYW4gYXV0b21hdGVkIG1lc3NhZ2UgZnJvbVxuVGhlIFlvY3RvIFByb2plY3QgQXV0b2J1
+aWxkZXJcbkdpdDoNCmdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3lvY3RvLWF1dG9idWlsZGVy
+XG5FbWFpbDogcGlkZ2VAdG9nYW5sYWJzLmNvbSAiIHwgc2VuZG1haWwgLXQgIGluIGRpciAvaG9t
+ZS9wb2t5YnVpbGQveW9jdG8tYXV0b2J1aWxkZXIveW9jdG8td29ya2VyL25pZ2h0bHkvYnVpbGQN
+Cih0aW1lb3V0IDEwMDAwMCBzZWNzKQ0KIHdhdGNoaW5nIGxvZ2ZpbGVzIHt9DQogYXJndjogZWNo
+byAiVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCkNjOiBwaWRnZUB0b2dhbmxhYnMuY29tLCBq
+b3NlLnBlcmV6LmNhcnJhbnphQGludGVsLmNvbSwgbGliZXJ0YWQuY3J1ekBpbnRlbC5jb20sIG90
+YXZpb0Bvc3N5c3RlbXMuY29tLmJyLCB5aS56aGFvQHdpbmRyaXZlci5jb20sIHRyYWN5LmdyYXlk
+b25AaW50ZWwuY29tLCBqb3NodWEuZy5sb2NrQGludGVsLmNvbQ0KU3ViamVjdDogUmVsZWFzZSBD
+YW5kaWRhdGUgQnVpbGQgZm9yIHlvY3RvLTIuMy4xLnJjMSBub3cgYXZhaWxhYmxlLg0KDQoNCkEg
+cmVsZWFzZSBjYW5kaWRhdGUgYnVpbGQgZm9yIHlvY3RvLTIuMy4xLnJjMSBpcyBub3cgYXZhaWxh
+YmxlIGF0Og0KDQoNCiAgICBodHRwczovL2F1dG9idWlsZGVyLnlvY3RvLmlvL3B1Yi9yZWxlYXNl
+cy95b2N0by0yLjMuMS5yYzENCg0KDQpQbGVhc2UgYmVnaW4gUUEgb24gdGhpcyBidWlsZCBhcyBz
+b29uIGFzIHBvc3NpYmxlLg0KDQoNCkJ1aWxkIGhhc2ggaW5mb3JtYXRpb246DQptZXRhLWludGVs
+IDogMTZhZWEwOWQyMjRmM2VkMjAyMTYyM2QxN2MzZTgwN2Y0YjhmZjE4ZA0KbWV0YS1xdDQgOiBl
+MTIwYTIxOTNiZTM5ODJkNTU3NDFmYjllNTE0NzJkYjZhYjlhNWNkDQpyZWZraXQgOiBkODZlZDM3
+MmQ4M2E5MzBlOWZlMmVmMjJlOGE0Yjk4YTI2OWQzM2U2DQptZXRhLW1pbmd3IDogNGJkYjk5NjUw
+YTA1M2YyNTRjY2QxNThhNmQwYzI1YzgwZTc5ZjZlZQ0KbWV0YS1xdDMgOiBmMzNiNzNhOTU2M2Yy
+ZGZkZmQwZWUzN2I2MWQ2NWQ5MDE5N2E0NTZmDQptZXRhLWdwbHYyIDogZGUwMDFiZDZiZmNlYzk0
+M2QyNzRiNjQ5YzYyYmU2ODQ4Y2M5YzNlNg0KcG9reSA6IGMyZWYzMmFlNTg3Mzc0NjNjZjE5YWFi
+NzQ0NmQ2YTMwYWQ4MTc1NGYNCg0KDQotLQ0KTWljaGFlbCBIYWxzdGVhZA0KTGludXggRm91bmRh
+dGlvbiAvIFN5c0FkbWluDQo=
 
