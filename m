@@ -1,36 +1,66 @@
-Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
+Return-Path: <mhalstead@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93E9BE00AE6; Wed, 12 Jul 2017 08:51:10 -0700 (PDT)
+	id 531E7E00B28; Wed, 12 Jul 2017 09:38:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9644E00AA7
-	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 08:51:08 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Jul 2017 08:51:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,350,1496127600"; d="scan'208";a="1194552724"
-Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.119])
-	by fmsmga002.fm.intel.com with ESMTP; 12 Jul 2017 08:51:07 -0700
-Message-ID: <1499875249.5349.46.camel@linux.intel.com>
-From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
-To: Kenny Koller <kenny@understoryweather.com>
-Date: Wed, 12 Jul 2017 11:00:49 -0500
-In-Reply-To: <CAPtqgUxdtgOZNVqRUjrGX6e-+e9Hd=zwac2-zDRUdWQSk=+8fw@mail.gmail.com>
-References: <CAPtqgUxdtgOZNVqRUjrGX6e-+e9Hd=zwac2-zDRUdWQSk=+8fw@mail.gmail.com>
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Determining Load Addresses
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.44 listed in list.dnswl.org]
+Received: from mail-pg0-f44.google.com (mail-pg0-f44.google.com [74.125.83.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26C65E00ACF
+	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 09:37:57 -0700 (PDT)
+Received: by mail-pg0-f44.google.com with SMTP id k14so15716215pgr.0
+	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 09:37:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=to:from:subject:organization:message-id:date:user-agent
+	:mime-version:content-language:content-transfer-encoding;
+	bh=Sm+b5ieJ06YTl757DBsXA68D69Vhl1B/74+KEm+mweU=;
+	b=DcpveHJu33PsqX+Uwcz5bK81cmChaokgqnVwN+9kSvC1/kBRB7q9nlFcVP5HsEkoXh
+	MAzKa2GtZXdnXeGZg8foIwU6iIVvW7vf7WGa2Wo7ed2P54acC/kmJ6Dj5NArc7Qw5Jfy
+	uuYV/jI2PaynUyYa88gXR5FT+SzKGg7IGuMLc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:to:from:subject:organization:message-id:date
+	:user-agent:mime-version:content-language:content-transfer-encoding;
+	bh=Sm+b5ieJ06YTl757DBsXA68D69Vhl1B/74+KEm+mweU=;
+	b=cEjhzNntQSGxzVBMyO2gf7aXEXi0ReUXMO9GZAX3ojUXiYeIb1v6BcaALe8afBJrFx
+	K7wYomQeh7bWFMgKf6WxAdPvfzDTlBOGySVVhnOURk/B0CLXJsrgEusDuHMoLaHjP+fW
+	5DiFXlX55/6r3vMceWUtX+hep19T4cWtxSy4l9XAaVCQREtG0xZ/WtQskoEY36vI4SXa
+	/t3yVe7OkrAMSvOnDayxb0X549RbgXPWaVYvLvIyT+p4sI1MsQLearZTLnpEAatrM58u
+	kquVvReAwe5YmjzqpdG6+5+BA1YXGtoJqCgMrz3jJVKmT24Pgfd+/qcl5N6a+VWsgmlX
+	0o2A==
+X-Gm-Message-State: AIVw113r8IKvet6KYtj0zvbxvRODw8dcTqdGPcutVCxs0G8N1WlbBssD
+	9mcjZceAwFYPFZvpG9Px1A==
+X-Received: by 10.101.72.207 with SMTP id o15mr4787082pgs.73.1499877476383;
+	Wed, 12 Jul 2017 09:37:56 -0700 (PDT)
+Received: from yct-lpt.lan (50-39-170-83.bvtn.or.frontiernet.net.
+	[50.39.170.83])
+	by smtp.gmail.com with ESMTPSA id r27sm8113771pfe.0.2017.07.12.09.37.54
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 12 Jul 2017 09:37:55 -0700 (PDT)
+To: pidge@toganlabs.com, jose.perez.carranza@intel.com,
+	libertad.cruz@intel.com, otavio@ossystems.com.br, yi.zhao@windriver.com,
+	tracy.graydon@intel.com, joshua.g.lock@intel.com, yocto@yoctoproject.org
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+Organization: Linux Foundation
+Message-ID: <2e55442b-959f-623b-9056-df8343acf544@linuxfoundation.org>
+Date: Wed, 12 Jul 2017 09:37:54 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
+MIME-Version: 1.0
+Subject: Release Candidate Build for yocto-2.3.1.rc1 now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,36 +72,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jul 2017 15:51:10 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 12 Jul 2017 16:38:01 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2017-07-12 at 05:23 +0000, Kenny Koller wrote:
-> I'm trying to piece together the various load addresses used in the
-> boot sequence. I have built core-image-minimal for a Beaglebone. How
-> can I determine which load address and entry point is used when
-> mkimage is called for the kernel? Should I dig in to the recipe?
-> Search some log files? I've tried a few difference things without
-> results.
-> 
-> 
-This type of info usually comes in the machine definition, thus look
-there. Diong a simple git grep ^UBOOT shows the following related
-variables
-
-meta/conf/documentation.conf:UBOOT_ENTRYPOINT[doc] = "Specifies the
-entry point for the U-Boot image."
-meta/conf/documentation.conf:UBOOT_LOADADDRESS[doc] = "Specifies the
-load address for the U-Boot image."
+A release candidate build for yocto-2.3.1.rc1 is now available at:
 
 
-
-> Thanks.
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+    https://autobuilder.yocto.io/pub/releases/yocto-2.3.1.rc1
 
 
+Please begin QA on this build as soon as possible.
+
+
+Build hash information:
+meta-intel : 16aea09d224f3ed2021623d17c3e807f4b8ff18d
+meta-qt4 : e120a2193be3982d55741fb9e51472db6ab9a5cd
+refkit : d86ed372d83a930e9fe2ef22e8a4b98a269d33e6
+meta-mingw : 4bdb99650a053f254ccd158a6d0c25c80e79f6ee
+meta-qt3 : f33b73a9563f2dfdfd0ee37b61d65d90197a456f
+meta-gplv2 : de001bd6bfcec943d274b649c62be6848cc9c3e6
+poky : c2ef32ae58737463cf19aab7446d6a30ad81754f
+
+\nThis is an automated message from\nThe Yocto Project Autobuilder\nGit:
+git://git.yoctoproject.org/yocto-autobuilder\nEmail: pidge@toganlabs.com
+" | sendmail -t
+ in dir /home/pokybuild/yocto-autobuilder/yocto-worker/nightly/build
+(timeout 100000 secs)
+ watching logfiles {}
+ argv: echo "To: yocto@yoctoproject.org
+Cc: pidge@toganlabs.com, jose.perez.carranza@intel.com,
+libertad.cruz@intel.com, otavio@ossystems.com.br, yi.zhao@windriver.com,
+tracy.graydon@intel.com, joshua.g.lock@intel.com
+Subject: Release Candidate Build for yocto-2.3.1.rc1 now available.
+
+
+A release candidate build for yocto-2.3.1.rc1 is now available at:
+
+
+    https://autobuilder.yocto.io/pub/releases/yocto-2.3.1.rc1
+
+
+Please begin QA on this build as soon as possible.
+
+
+Build hash information:
+meta-intel : 16aea09d224f3ed2021623d17c3e807f4b8ff18d
+meta-qt4 : e120a2193be3982d55741fb9e51472db6ab9a5cd
+refkit : d86ed372d83a930e9fe2ef22e8a4b98a269d33e6
+meta-mingw : 4bdb99650a053f254ccd158a6d0c25c80e79f6ee
+meta-qt3 : f33b73a9563f2dfdfd0ee37b61d65d90197a456f
+meta-gplv2 : de001bd6bfcec943d274b649c62be6848cc9c3e6
+poky : c2ef32ae58737463cf19aab7446d6a30ad81754f
+
+
+-- 
+Michael Halstead
+Linux Foundation / SysAdmin
 
