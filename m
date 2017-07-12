@@ -1,74 +1,74 @@
-Return-Path: <Shrawan.Kumar@harman.com>
+Return-Path: <yocto.user.mailinglist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B649AE00C76; Wed, 12 Jul 2017 01:25:06 -0700 (PDT)
+	id 6AFDEE00752; Wed, 12 Jul 2017 11:03:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_20,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yocto.user.mailinglist[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.193 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [216.82.251.16 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0700]
-X-Greylist: delayed 426 seconds by postgrey-1.32 at yocto-www;
-	Wed, 12 Jul 2017 01:25:03 PDT
-Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
-	[216.82.251.16])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 484FDE00BD2
-	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 01:25:03 -0700 (PDT)
-Received: from [216.82.250.99] by server-16.bemta-12.messagelabs.com id
-	E7/1C-23818-43BD5695; Wed, 12 Jul 2017 08:17:56 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrAKsWRWlGSWpSXmKPExsVySpdNU9f4dmq
-	kwf/pahaTXq5hc2D0aD/RxxbAGMWamZeUX5HAmvFn2nzmgk3iFc+vXmNtYJws2sXIxSEksJVR
-	4tC7BjYIZwujxIlr/5kgnIOMElumrWLvYuTkYBMwlLjSc5cRxBYRMJV4cewLG4gtLGArMWnLT
-	DaIuJPE9O5LULaexKK1i8BsFgFVief/3rOA2LwC7hINj88zg9iMArISXxpXg9nMAuISt57MZw
-	KxJQQEJJbsgaiREBCVePn4HyuEbSCxdek+FghbQWJldwMbhG0tsX/eUlaIOTkSf76vY4TYJSh
-	xcuYTsHohoBu2LPzNMoFRZBaSdbOQtMxC0gIR15FYsPsTG4StLbFs4WtmGPvMgcdMyOILGNlX
-	MWoUpxaVpRbpGprpJRVlpmeU5CZm5ugaGhrp5aYWFyemp+YkJhXrJefnbmIExlg9AwPjDsbG6
-	V6HGCU5mJREeRdeSI0U4kvKT6nMSCzOiC8qzUktPsQow8GhJMG7/iZQTrAoNT21Ii0zBxjtMG
-	kJDh4lEV65fUBp3uKCxNzizHSI1ClGS45NM35+Y+I49PvEdyaOYyBSiCUvPy9VSpx3G8g8AZC
-	GjNI8uHGwhHSJUVZKmJeRgYFBiKcgtSg3swRV/hWjOAejkjDvC5ApPJl5JXBbXwEdxAR00Jrs
-	FJCDShIRUlINjGvf3vls2Vl3SvPKvBta9lfevpbbOjtVaNdq94S9S08m7pC6MONKdXzV4md1X
-	LYW/A8LQ1cmC0YoZh4OXvX/7IzqeC+mhnKbi9s3pD7caVoaNlPR4rzhtbDYvKufazPU+9JkGx
-	PNer+fmRtp3+8//VjOMY3YfbvSpkkwRU1e/e6O3SXZ+ibjFUosxRmJhlrMRcWJANh+r6RDAwA
-	A
-X-Env-Sender: Shrawan.Kumar@harman.com
-X-Msg-Ref: server-9.tower-126.messagelabs.com!1499847472!101599595!1
-X-Originating-IP: [202.45.6.41]
-X-StarScan-Received: 
-X-StarScan-Version: 9.4.25; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 27889 invoked from network); 12 Jul 2017 08:17:55 -0000
-Received: from unknown (HELO HIBDWSMB10.ad.harman.com) (202.45.6.41)
-	by server-9.tower-126.messagelabs.com with DHE-RSA-AES256-GCM-SHA384
-	encrypted SMTP; 12 Jul 2017 08:17:55 -0000
-Received: from HIBDWSMB03.ad.harman.com (10.99.236.93) by
-	HIBDWSMB10.ad.harman.com (10.99.236.101) with Microsoft SMTP Server
-	(TLS) id 15.0.1263.5; Wed, 12 Jul 2017 13:47:51 +0530
-Received: from HIBDWSMB02.ad.harman.com (10.99.236.92) by
-	HIBDWSMB03.ad.harman.com (10.99.236.93) with Microsoft SMTP Server
-	(TLS) id 15.0.1263.5; Wed, 12 Jul 2017 13:47:51 +0530
-Received: from HIBDWSMB02.ad.harman.com ([fe80::1150:96d7:1a68:61f8]) by
-	HIBDWSMB02.ad.harman.com ([fe80::1150:96d7:1a68:61f8%16]) with mapi id
-	15.00.1263.000; Wed, 12 Jul 2017 13:47:51 +0530
-From: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: setting security attributes to device file(/dev/ipc)
-Thread-Index: AdL650DtxcQpB+kiRMawZevkp5bM2A==
-Date: Wed, 12 Jul 2017 08:17:51 +0000
-Message-ID: <240f3baeb6254d94be145b275091eb05@HIBDWSMB02.ad.harman.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.99.236.43]
-x-exclaimer-md-config: 4a26c407-9f7b-4db1-94e4-bcbc87a799a8
+	*      [209.85.128.193 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
+	[209.85.128.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB8C0E00529
+	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 11:03:15 -0700 (PDT)
+Received: by mail-wr0-f193.google.com with SMTP id 77so7206476wrb.3
+	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 11:03:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language:content-transfer-encoding;
+	bh=mpeJ7wkMDIz1UE92vA9705130yz2rmkEkmKwoOZWkQ4=;
+	b=D7ARmCldyq5u7w/S4V1KLqAcw6YJex0S5qwLyKeAX1R2kR0XVN3rzRSHY9mvn9Ur5F
+	MyLEGNx8pjaO3YnIfCX6zuG0uPKwoW5ruEHCkDfJ/pEyTZMDHI1dYVFPJC8yrM6VhXfC
+	QGFip4tYtn1LqCRVwzh1sOkuT8Tnbxrs1C+2trdbAMM6Fgi8pRN241wsGmke+IUndVDX
+	bFpfkR7vnuvQF8QuSk2+gZKF70hETI9iNxM8fVFwPbd8pir2ttdTvt6Nyp9VFxbNPkE9
+	1tPW3/DS8jqZH/3C8F2XeDDNZfTc9sbbJmEj80cWOgiv5jwf+suOTR/pt0YEtKtuWZtf
+	Dnfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=mpeJ7wkMDIz1UE92vA9705130yz2rmkEkmKwoOZWkQ4=;
+	b=fn6nojEASLMRJjQkpQ4B/TRTfC8T5WAcg9EHzdD8gVvc9MU0Tnih6lajEgr6FayeGs
+	50Jvcm2QIH+a+Kef17mRCm+p7tb+4Z/HtqQI3sS81hy+4Zt7DtrS2iY/1p6REOv0LBkC
+	9qmLcEy1H23U6eSLvxKDv0AmL8GolIlNfpImYjSQC7bNKEDpesTkOoxQFxhRa8w/bDBj
+	kTl6J8RIiuMJx9mXdwretliB0Gks4Oupbj7CH9dgGaNMyfwSHFB2qyiSRF/MeOmDd04S
+	bfCHb6ZyI4Dkk88nB4xBgNP9F0MfvwkF4+B7JhmKae7brjipgYLR20ONxEWzOtdYFs49
+	tsog==
+X-Gm-Message-State: AIVw111VDZ2l6ZJtmfrLnDiM307ruStkNY4dFPpW3zKVkx/JEzgk0aML
+	kg+Q9VuIVygLdu9PkK0=
+X-Received: by 10.223.132.133 with SMTP id 5mr3527808wrg.132.1499882594207;
+	Wed, 12 Jul 2017 11:03:14 -0700 (PDT)
+Received: from [192.168.42.50] (ppp-2-86-148-99.home.otenet.gr. [2.86.148.99])
+	by smtp.gmail.com with ESMTPSA id
+	i32sm3458654wra.5.2017.07.12.11.03.13
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 12 Jul 2017 11:03:13 -0700 (PDT)
+To: Kenny Koller <kenny@understoryweather.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAPtqgUxdtgOZNVqRUjrGX6e-+e9Hd=zwac2-zDRUdWQSk=+8fw@mail.gmail.com>
+From: Robert Berger <yocto.user.mailinglist@gmail.com>
+Message-ID: <35d94e6e-39ff-f9c6-5030-7213b5f70da3@gmail.com>
+Date: Wed, 12 Jul 2017 21:03:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 12 Jul 2017 10:10:56 -0700
-Subject: setting security attributes to device file(/dev/ipc)
+In-Reply-To: <CAPtqgUxdtgOZNVqRUjrGX6e-+e9Hd=zwac2-zDRUdWQSk=+8fw@mail.gmail.com>
+Subject: Re: Determining Load Addresses
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,99 +80,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jul 2017 08:25:06 -0000
+X-List-Received-Date: Wed, 12 Jul 2017 18:03:16 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_240f3baeb6254d94be145b275091eb05HIBDWSMB02adharmancom_"
+Content-Transfer-Encoding: 7bit
 
---_000_240f3baeb6254d94be145b275091eb05HIBDWSMB02adharmancom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Hello Team ,
+On 2017-07-12 08:23, Kenny Koller wrote:
+> I'm trying to piece together the various load addresses used in the boot 
+> sequence. I have built core-image-minimal for a Beaglebone. How can I 
+> determine which load address and entry point is used when mkimage is 
+> called for the kernel? Should I dig in to the recipe? Search some log 
+> files? I've tried a few difference things without results.
 
-I want to set ACL and SMACK/SELinux rules to device files (line /dev/ipc2  =
-/dev/galcore etc .. )   from the build system . But device files are dynami=
-cally populated at runtime.
+You don't need to bake a board specific address into uImage.
 
-Do we have some way in "Yocto"  to achieve the goal  ?
+Like this you could create an uImage without a baked in address. Check 
+here between lines 98 and 112
+
+https://github.com/RobertBerger/meta-mainline/blob/pyro-training-v4.9.x/multi-v7-ml/conf/machine/multi-v7-ml.conf#L98
 
 
+> 
+> Thanks.
+> 
+> 
 
-Thanks & Regards
-Shrawan
 
---_000_240f3baeb6254d94be145b275091eb05HIBDWSMB02adharmancom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello Team ,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I want to set ACL and SMACK/SELinux rules to device =
-files (line /dev/ipc2 &nbsp;/dev/galcore etc .. )&nbsp;&nbsp; from the buil=
-d system . But device files are dynamically populated at runtime.<o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Do we have some way in &#8220;Yocto&#8221; &nbsp;to =
-achieve the goal &nbsp;?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks &amp; Regards<o:p></o:p></p>
-<p class=3D"MsoNormal">Shrawan<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_240f3baeb6254d94be145b275091eb05HIBDWSMB02adharmancom_--
