@@ -1,34 +1,36 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45D58E00AE6; Thu, 13 Jul 2017 03:00:29 -0700 (PDT)
+	id A3692E009A4; Thu, 13 Jul 2017 03:00:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BD00E00944
-	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 03:00:25 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70A35E009A4
+	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 03:00:29 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v6DA0OZn001219
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v6DA0Pr4001448
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 03:00:24 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 03:00:25 -0700 (PDT)
 Received: from ala-blade48.wrs.com (147.11.105.68) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 13 Jul 2017 03:00:24 -0700
+	Thu, 13 Jul 2017 03:00:25 -0700
 From: Robert Yang <liezhi.yang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Thu, 13 Jul 2017 03:00:23 -0700
-Message-ID: <cover.1499939913.git.liezhi.yang@windriver.com>
+Date: Thu, 13 Jul 2017 03:00:24 -0700
+Message-ID: <9fbaaf1f302381e4a82c447aef6583f130c849be.1499939913.git.liezhi.yang@windriver.com>
 X-Mailer: git-send-email 2.11.0
+In-Reply-To: <cover.1499939913.git.liezhi.yang@windriver.com>
+References: <cover.1499939913.git.liezhi.yang@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-gplv2][PATCH 0/1] rxvt-unicode: move it to BBFILES
+Subject: [meta-gplv2][PATCH 1/1] rxvt-unicode: move it to BBFILES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,21 +42,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jul 2017 10:00:29 -0000
+X-List-Received-Date: Thu, 13 Jul 2017 10:00:32 -0000
 Content-Type: text/plain
 
-The following changes since commit d96ec8f6895d34cc9b05d9a0101ac496db324b18:
+It should be in recipes-sato/rxvt-unicode, not recipes-sato.
 
-  gnutls: make it independent on gnutls.inc from oe-core (2017-06-23 14:29:08 +0100)
-
-are available in the git repository at:
-
-  git://git.pokylinux.org/poky-contrib rbt/rxvt-unicode
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=rbt/rxvt-unicode
-
-Robert Yang (1):
-  rxvt-unicode: move it to BBFILES
-
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+---
  recipes-sato/{ => rxvt-unicode}/rxvt-unicode.inc          |   0
  recipes-sato/rxvt-unicode/{ => rxvt-unicode}/rxvt.desktop |   0
  recipes-sato/rxvt-unicode/{ => rxvt-unicode}/rxvt.png     | Bin
@@ -67,6 +61,26 @@ Robert Yang (1):
  rename recipes-sato/rxvt-unicode/{ => rxvt-unicode}/xwc.patch (100%)
  rename recipes-sato/{ => rxvt-unicode}/rxvt-unicode_9.20.bb (100%)
 
+diff --git a/recipes-sato/rxvt-unicode.inc b/recipes-sato/rxvt-unicode/rxvt-unicode.inc
+similarity index 100%
+rename from recipes-sato/rxvt-unicode.inc
+rename to recipes-sato/rxvt-unicode/rxvt-unicode.inc
+diff --git a/recipes-sato/rxvt-unicode/rxvt.desktop b/recipes-sato/rxvt-unicode/rxvt-unicode/rxvt.desktop
+similarity index 100%
+rename from recipes-sato/rxvt-unicode/rxvt.desktop
+rename to recipes-sato/rxvt-unicode/rxvt-unicode/rxvt.desktop
+diff --git a/recipes-sato/rxvt-unicode/rxvt.png b/recipes-sato/rxvt-unicode/rxvt-unicode/rxvt.png
+similarity index 100%
+rename from recipes-sato/rxvt-unicode/rxvt.png
+rename to recipes-sato/rxvt-unicode/rxvt-unicode/rxvt.png
+diff --git a/recipes-sato/rxvt-unicode/xwc.patch b/recipes-sato/rxvt-unicode/rxvt-unicode/xwc.patch
+similarity index 100%
+rename from recipes-sato/rxvt-unicode/xwc.patch
+rename to recipes-sato/rxvt-unicode/rxvt-unicode/xwc.patch
+diff --git a/recipes-sato/rxvt-unicode_9.20.bb b/recipes-sato/rxvt-unicode/rxvt-unicode_9.20.bb
+similarity index 100%
+rename from recipes-sato/rxvt-unicode_9.20.bb
+rename to recipes-sato/rxvt-unicode/rxvt-unicode_9.20.bb
 -- 
 2.11.0
 
