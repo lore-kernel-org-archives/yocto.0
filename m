@@ -1,99 +1,47 @@
-Return-Path: <gemad@outlook.com>
+Return-Path: <umamahesh.y@hcl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF51FE00944; Wed, 12 Jul 2017 15:31:30 -0700 (PDT)
+	id 7807AE009E7; Wed, 12 Jul 2017 23:21:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gemad[at]outlook.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [40.92.67.31 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_HTML_ONLY,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.8.186.130 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 10814 seconds by postgrey-1.32 at yocto-www;
-	Wed, 12 Jul 2017 15:31:23 PDT
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
-	(mail-oln040092067031.outbound.protection.outlook.com [40.92.67.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 341C7E008FF;
-	Wed, 12 Jul 2017 15:31:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=qW2SlwVUK4JOkl2RyMsso2OjVSjK6lSkTP7Bi6QtUxU=;
-	b=jxqkCL8pMnoQvJsogvCvb0mCZ3iK0im5KXXQKTkODwiPQqbwoL+W9PUlnY836xm70YKjVjJ14/79jDcspGh7G/qB14ujCg7mGyjZZZcRHZi8v/+5P8n4oqIEC6aT2uwNpSUNItGYX/EHYP4mjznQtcGdlaI5RUwOo0z9W8wZZqznPkcn6tscqjq2/HC8pWFCuj+qavL4ovumeMDoXI682LPApsAwOfRPtyoG7Y7+1prExWjrPVGSJSVjJQSLMVrVIy7RVusS1ppoQ6Jtbm50ur3ixYf1LCCn8SobXB5oPIxgLEVhLpJJ8VMWAVfrY0exNxaIZem55GkV6PTsUbxnCQ==
-Received: from HE1EUR02FT009.eop-EUR02.prod.protection.outlook.com
-	(10.152.10.52) by HE1EUR02HT199.eop-EUR02.prod.protection.outlook.com
-	(10.152.11.91) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.1240.9;
-	Wed, 12 Jul 2017 10:55:52 +0000
-Received: from AM4P191MB0163.EURP191.PROD.OUTLOOK.COM (10.152.10.60) by
-	HE1EUR02FT009.mail.protection.outlook.com (10.152.10.103) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1240.9 via Frontend Transport; Wed, 12 Jul 2017 10:55:52 +0000
-Received: from AM4P191MB0163.EURP191.PROD.OUTLOOK.COM
-	([fe80::d162:3159:9b6e:c2da]) by AM4P191MB0163.EURP191.PROD.OUTLOOK.COM
-	([fe80::d162:3159:9b6e:c2da%17]) with mapi id 15.01.1261.015;
-	Wed, 12 Jul 2017 10:55:52 +0000
-From: george emad <gemad@outlook.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"linux-yocto@yoctoproject.org" <linux-yocto@yoctoproject.org>
-Thread-Topic: [yocto] [ARM][Renesas Salvator x Board R-car] PERF events
-	support 
-Thread-Index: AQHS+v0WO28pMI8yJEWgE1kZWRwzkQ==
-Date: Wed, 12 Jul 2017 10:55:52 +0000
-Message-ID: <AM4P191MB0163121FBFB93578DB662A8BB6AF0@AM4P191MB0163.EURP191.PROD.OUTLOOK.COM>
-Accept-Language: en-US
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+Received: from GWS07.hcl.com (gws07.hcl.com [192.8.186.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53D99E009A4
+	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 23:21:24 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.40,352,1496082600"; d="scan'208,217";a="79632535"
+Received: from unknown (HELO CHN-CORP-HT02.CORP.HCL.IN) ([10.249.2.34])
+	by GWS07.hcl.com with ESMTP/TLS/AES128-SHA; 13 Jul 2017 11:51:17 +0530
+Received: from CHN-HCLT-CSHT05.HCLT.CORP.HCL.IN (10.150.12.30) by
+	CHN-CORP-HT02.CORP.HCL.IN (10.249.2.34) with Microsoft SMTP Server
+	(TLS) id 14.3.339.0; Thu, 13 Jul 2017 11:51:17 +0530
+Received: from CHN-HCLT-MBS02.HCLT.CORP.HCL.IN ([fe80::45e7:d7f7:b243:fdd9])
+	by CHN-HCLT-CSHT05.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0339.000;
+	Thu, 13 Jul 2017 11:51:17 +0530
+From: Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>
+To: Ayoub Zaki <ayoub.zaki@embexus.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Wifi on wandboard with Yoct0 Morty
+Thread-Index: AdL29weARh2ivtCESiyf/rbwmNIfeP//pXEAgACEmbOACSfiRQ==
+Date: Thu, 13 Jul 2017 06:21:17 +0000
+Message-ID: <7238EEDF8C36444C95B21A966F50FB8851DBD2CA@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>
+References: <7238EEDF8C36444C95B21A966F50FB8851DB30BD@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>,
+	<bce3d4ba-1a3f-1c94-07c2-ed1fc42fea9d@embexus.com>,
+	<7238EEDF8C36444C95B21A966F50FB8851DB3150@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>
+In-Reply-To: <7238EEDF8C36444C95B21A966F50FB8851DB3150@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>
+Accept-Language: en-GB, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=outlook.com;
-x-incomingtopheadermarker: OriginalChecksum:BE5B3044E12B63C3D4C4E6257B743C53AD57274C845DDD0764AC2F5EB7CBAC48;
-	UpperCasedChecksum:B01BB99C8EF84C395F67B48A0B8C1D15F05508CD17DB300225BA0F5A3B6D058D;
-	SizeAsReceived:7183; Count:43
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [9ljogAdYiLqn8QvruYuhZDNJCQ5/N4b5]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; HE1EUR02HT199;
-	7:nCVDLk1Wqb+mE8NO0BYTETQDGjNmq+JeT0/5W4RJ9q01b0BQQKVms3qek9gsUta2gtL4LD81mKX6+N4YXa4lgBZS8KtTCiSYb3lyVbO6oMt9LoSmNFF6R6FU/K2wfAyjq7T6Tad19jc90L6j0fyyIHpjzAW4eFejRIXtACwW1M8zDOtuwzXCmnS579f4kJnwdigrPVcPh8U2ppB60y8/Lp47PsLVf2/2p/gYNEq4wlfDDpsOd0uQF1AXfGAoqzuS8RHCEexoGcgdt72fMXV57kZtA68z0WIFXc/ldBrDdW5dge/xos0wxNlqf1ajT5qpZ7PQKXAl6r4Go0ldywVroXzTq/6Xm1WWdEGKmvDw92ENOlbLjGIgknQZsdEb4r4Hb0vnriKFdQ0pywTJ3EMiuAP1/VOjafD6PD+7elShT7JI6767mDP5K3MOBLPspy+NdV2/3UuGuadi9lm2LIvCWJZcEsSC5YUtO/ICqzYcLRVsGS54MMN9tx3SW8ezpemNLKaR1kc4KkRLfXaPXyMzgSL8bRkzuR15FcojbyonaYjnmRwsRS+/uxozeH1IX80Fg0idEznBhT3QuW5Nyju7jDNkSFYwQ2UWZDs8uxzPSmOHUmeIde6R5u6qJtWgzcHPF+EA4PI4wvHKvRoQaH32kIZDrEGza2Fn+SX/M0Wb2YRl0u1OQcxoQE0QhxwAvMjvKRYQXV80FOc/PTHRF5NMW4D517Ge/HvbmTavPDntEJqukxYQmK5xJobu84CXkzAAeEOVNx7R3xanDJ9cUsdTwQ==
-x-incomingheadercount: 43
-x-eopattributedmessage: 0
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(7070007)(98901004);
-	DIR:OUT; SFP:1901; SCL:1; SRVR:HE1EUR02HT199;
-	H:AM4P191MB0163.EURP191.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: 25dab563-3397-49dd-b3c0-08d4c9149092
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(300000503095)(300135400095)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322274)(1603101448)(1601125374)(1701031045)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
-	SRVR:HE1EUR02HT199; 
-x-ms-traffictypediagnostic: HE1EUR02HT199:
-x-exchange-antispam-report-test: UriScan:(133145235818549)(236129657087228)(209349559609743); 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(444000031);
-	SRVR:HE1EUR02HT199; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:HE1EUR02HT199; 
-x-forefront-prvs: 036614DD9C
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+x-originating-ip: [10.150.5.113]
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jul 2017 10:55:52.7519 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR02HT199
-Subject: [ARM][Renesas Salvator x Board R-car] PERF events support
+Subject: Re: Wifi on wandboard with Yoct0 Morty
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -105,90 +53,191 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jul 2017 22:31:31 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AM4P191MB0163121FBFB93578DB662A8BB6AF0AM4P191MB0163EURP_"
-
---_000_AM4P191MB0163121FBFB93578DB662A8BB6AF0AM4P191MB0163EURP_
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Thu, 13 Jul 2017 06:21:37 -0000
+Content-Language: en-GB
+Content-Type: text/html; charset="koi8-r"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All ,
-
-I want to ask if anyone managed to Run the PERF tool utilities that depends=
- on the "perf events" as i have problem
-finding the path "/sys/kernel/debug/tracing/events" in my build even after =
-configuring all the necessary options and recipes and many tries.
-
-
-some information about my system :
-- salvator x board M3
--Renesas Yocto Version tested 2.9 And 2.16
-
-
-
-Thank you in Advance
-
-Best Regards,
-
-George Eamd
-
---_000_AM4P191MB0163121FBFB93578DB662A8BB6AF0AM4P191MB0163EURP_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
+<html dir=3D"ltr">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dkoi8-r">
 </head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"">
-<p style=3D""><span style=3D"font-size: 12pt;">Hello All ,&nbsp;</span><br>
+<body fpstyle=3D"1" ocsi=3D"0" bgcolor=3D"#FFFFFF">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hello All,<br>
+Could you help me in resolving the following issue in Yocto Morty for wifi<=
+br>
 <br>
-<span style=3D"font-size: 12pt;">I want to ask if anyone managed to Run the=
- PERF tool utilities that depends on the &quot;perf events</span><span styl=
-e=3D"font-size: 12pt;">&quot; as i have problem&nbsp;</span><br>
-<span style=3D"font-size: 12pt;">finding the path &quot;/sys/kernel/debug/t=
-racing/events&quot; in my build even after
-</span><span style=3D"color: rgb(0, 0, 0); font-family: Calibri, Helvetica,=
- sans-serif, EmojiFont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji=
-&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&qu=
-ot;, EmojiSymbols; font-size: 12pt;">configuring&nbsp;</span><span style=3D=
-"font-size: 12pt;">all
- the n</span><span style=3D"color: rgb(0, 0, 0); font-family: Calibri, Helv=
-etica, sans-serif, EmojiFont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI=
- Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Em=
-oji&quot;, EmojiSymbols; font-size: 12pt;">ecessary&nbsp;</span><span style=
-=3D"font-size: 12pt;">options
- and </span>recipes and many tries.<span style=3D"font-size: 12pt;">&nbsp;&=
-nbsp;</span></p>
-<p style=3D"color: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-seri=
-f, EmojiFont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, No=
-toColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, Emoji=
-Symbols; font-size: 12pt;">
-<span><br>
-</span></p>
-<p style=3D"color: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-seri=
-f, EmojiFont, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, No=
-toColorEmoji, &quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, Emoji=
-Symbols; font-size: 12pt;">
-<span>some information about my system :&nbsp;<br>
--&nbsp;salvator x board M3&nbsp;<br>
-</span>-Renesas Yocto Version tested 2.9 And 2.16<br>
+Enabled the drivers,<br>
+<br>
+&lt;*&gt; Broadcom FullMAC wireless cards support =81 =81 <br>
+=81 =81 [*] SDIO bus interface support <br>
+<br>
+At the target getting following errors,<br>
+<br>
+root@wandboard:~# dmesg | grep brcm<br>
+[ 1.739333] brcmfmac_sdio mmc1:0001:1: Direct firmware load for brcm/brcmfm=
+ac4330-sdio.bin failed with error -2<br>
+[ 1.748200] brcmfmac_sdio mmc1:0001:1: Falling back to user helper<br>
+[ 62.783879] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
+ 0x50<br>
+[ 63.793963] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
+ 0x50<br>
+root@wandboard:~# <br>
 <br>
 <br>
 <br>
-Thank you in Advance&nbsp;<br>
+<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
+">
+<hr tabindex=3D"-1">
+<div id=3D"divRpF632827" style=3D"direction: ltr;"><font color=3D"#000000" =
+size=3D"2" face=3D"Tahoma"><b>From:</b> Umamahesh Yelchuruvenkata<br>
+<b>Sent:</b> 07 July 2017 16:02<br>
+<b>To:</b> Ayoub Zaki; yocto@yoctoproject.org<br>
+<b>Subject:</b> RE: [yocto] Wifi on wandboard with Yoct0 Morty<br>
+</font><br>
+</div>
+<div></div>
+<div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">Please check the dmesg log posted, how to overcome the issue. Do you h=
+ave procedure how to compile for meta-freescale and meta-freescale-3rdparty=
+ layers.<br>
+<div style=3D"font-family:Times New Roman; color:#000000; font-size:16px">
+<hr tabindex=3D"-1">
+<div id=3D"divRpF332173" style=3D"direction:ltr"><font color=3D"#000000" si=
+ze=3D"2" face=3D"Tahoma"><b>From:</b> yocto-bounces@yoctoproject.org [yocto=
+-bounces@yoctoproject.org] on behalf of Ayoub Zaki [ayoub.zaki@embexus.com]=
 <br>
-Best Regards,&nbsp;<br>
+<b>Sent:</b> 07 July 2017 13:35<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] Wifi on wandboard with Yoct0 Morty<br>
+</font><br>
+</div>
+<div></div>
+<div>
+<p>Fo wandboard I use meta-freescale and meta-freescale-3rdparty layers.</p=
+>
+<p>Wifi works out of the box <span class=3D"moz-smiley-s1"><span>:-)</span>=
+</span><br>
+</p>
 <br>
-George Eamd&nbsp; </p>
+<div class=3D"moz-cite-prefix">On 07.07.2017 09:59, Umamahesh Yelchuruvenka=
+ta wrote:<br>
+</div>
+<blockquote type=3D"cite"><style type=3D"text/css" id=3D"owaParaStyle">=0A=
+<!--=0A=
+p=0A=
+	{margin-top:0;=0A=
+	margin-bottom:0}=0A=
+body=0A=
+	{direction:ltr;=0A=
+	font-family:Tahoma;=0A=
+	color:#000000;=0A=
+	font-size:10pt}=0A=
+p=0A=
+	{margin-top:0;=0A=
+	margin-bottom:0}=0A=
+-->=0A=
+BODY {direction: ltr;font-family: Tahoma;color: #000000;font-size: 10pt;}P =
+{margin-top:0;margin-bottom:0;}</style>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">Hi <br>
+I am trying to bring up Wifi on wandboard Rev C1 and using Yocto Morty vers=
+ion(2.2.2) , I downloaded the firmware bin files from following
+<br>
+<br>
+wget -c <a class=3D"postlink" href=3D"https://git.kernel.org/cgit/linux/ker=
+nel/git/firmware/linux-firmware.git/plain/brcm/brcmfmac4330-sdio.bin" targe=
+t=3D"_blank">
+https://git.kernel.org/cgit/linux/kerne ... 0-sdio.bin</a><br>
+wget -c <a class=3D"postlink" href=3D"https://rcn-ee.com/repos/git/meta-fsl=
+-arm-extra/recipes-bsp/broadcom-nvram-config/files/wandboard/brcmfmac4330-s=
+dio.txt" target=3D"_blank">
+https://rcn-ee.com/repos/git/meta-fsl-a ... 0-sdio.txt</a><br>
+<br>
+Created a folder firmware/brcm under tmp/work/wandboard-fslc-linux-gnueabi/=
+core-image-minimal/1.0-r0/rootfs/lib<br>
+<br>
+Enabled the drivers,<br>
+<br>
+&lt;*&gt; Broadcom FullMAC wireless cards support =81 =81 <br>
+=81 =81 [*] SDIO bus interface support <br>
+<br>
+At the target getting following errors,<br>
+<br>
+root@wandboard:~# dmesg | grep brcm<br>
+[ 1.739333] brcmfmac_sdio mmc1:0001:1: Direct firmware load for brcm/brcmfm=
+ac4330-sdio.bin failed with error -2<br>
+[ 1.748200] brcmfmac_sdio mmc1:0001:1: Falling back to user helper<br>
+[ 62.783879] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
+ 0x50<br>
+[ 63.793963] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
+ 0x50<br>
+root@wandboard:~# <br>
+<br>
+<br>
+Please suggest</div>
+<span style=3D"font-family:'Arial','sans-serif'; color:gray; font-size:7.5p=
+t">
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><br>
+<br>
+<font style=3D"font-family:'Arial','sans-serif'; color:gray; font-size:9px"=
+>::DISCLAIMER::<br>
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------</=
+font></p>
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><font style=3D"font-fam=
+ily:'Arial','sans-serif'; color:gray; font-size:11px">The contents of this =
+e-mail and any attachment(s) are confidential and intended for the named re=
+cipient(s) only.<br>
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted,
+<br>
+lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
+mission. The e mail and its contents
+<br>
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates.
+<br>
+Views or opinions, if any, presented in this email are solely those of the =
+author and may not necessarily reflect the
+<br>
+views or opinions of HCL or its affiliates. Any form of reproduction, disse=
+mination, copying, disclosure, modification,
+<br>
+distribution and / or publication of this message without the prior written=
+ consent of authorized representative of
+<br>
+HCL is strictly prohibited. If you have received this email in error please=
+ delete it and notify the sender immediately.
+<br>
+Before opening any email and/or attachments, please check them for viruses =
+and other defects.</font></p>
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><font style=3D"font-fam=
+ily:'Arial','sans-serif'; color:gray; font-size:11px">---------------------=
+---------------------------------------------------------------------------=
+----------------------------------------------------</font></p>
+<br>
+<fieldset class=3D"mimeAttachmentHeader" target=3D"_blank"></fieldset> <br>
+</span></blockquote>
+<br>
+<pre class=3D"moz-signature" cols=3D"72">-- =0A=
+=0A=
+Ayoub Zaki=0A=
+=0A=
+<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:ayoub.zaki@embexus.com=
+" target=3D"_blank">ayoub.zaki@embexus.com</a>=0A=
+Mobile: &#43;49(0)176-62901545=0A=
+Skype: ayoub.zaki_2=0A=
+<a class=3D"moz-txt-link-freetext" href=3D"https://embexus.com" target=3D"_=
+blank">https://embexus.com</a></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>
 
---_000_AM4P191MB0163121FBFB93578DB662A8BB6AF0AM4P191MB0163EURP_--
