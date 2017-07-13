@@ -1,6 +1,6 @@
-Return-Path: <argprstest@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2AD8E00A38; Thu, 13 Jul 2017 07:31:23 -0700 (PDT)
+	id 8286FE0090A; Thu, 13 Jul 2017 07:44:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,12 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (argprstest[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.66 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,47 +21,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.220.178 listed in dnsbl.sorbs.net]
-Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D0CEE00726
-	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 07:31:21 -0700 (PDT)
-Received: by mail-qk0-f178.google.com with SMTP id 16so51899668qkg.2
-	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 07:31:21 -0700 (PDT)
+Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
+	[209.85.214.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5B25E00A38
+	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 07:44:00 -0700 (PDT)
+Received: by mail-it0-f66.google.com with SMTP id o202so7592758itc.1
+	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 07:44:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=8wwr3qFfRaYf1RxbXESC2G2cyvDtM5/dEqlhJEKX0jI=;
-	b=TUDyC/QkNyQnvoctCwS0mtcvDgYmZCerEo5/XqUt7/WRlFTDB9iJ7G0n+6EETeKjXp
-	xwKa6raRPDfnVE+kxEunKx4jWDU4e/pO+IHmolAMXxVhxzyZSpiyWV7wk80O10W/4buS
-	6P+tfvotpEJrwgyihx8/L3dL3UiLjhABRgBKS9j5TXbMqCgBiGwTT3rCOQf8pa2Lw5MB
-	fEuu55UVJiLGgnc+30OlpkDPrOu0dqJRxW9PGfAJ8sQ9iuk2GIVbs6DyVm/qh1Rm5kR7
-	qXd4cSFxvGP2ZrlBrhu0yDR3dBm2MdilWv4TxxhoUSdmYZRE0Bvazcys03/VJM9IUZXq
-	ABNg==
+	h=from:to:subject:date:message-id;
+	bh=+Njs5JHOF6EviNU4MPI2+49J054gWD6hnOghLbylFbg=;
+	b=l269bdNB4CH2EuqGSPbVI57QrK7b+fkCjzumRz1nAIZv01HE3k8Pcg0OFa6KKO3nJE
+	6hc5SGy3K9x5un/JQG2+y3RRIHeS/JuFtssY939EE+f4GNyRFO4qwnsnXpgrtZKjc4w+
+	i7G4oft3wlXZPQO84ZQjYeyNpopkPlRwM8KL/zRj8VikqSWVTBkzACogFDRnkLQqRJej
+	c0Rzs08lhgf+kzXZluzA1ky+U923oVszkALumLsQkQ5Ezo/eH9N6AlCFm51ut1986Zlq
+	uYxTiEfqDSbNp9GZcjFVyUXAk2HFwtn9qA+HVW46/yPUwHqEAW5ZBZc8DD3iKVP3MmsY
+	pP7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=8wwr3qFfRaYf1RxbXESC2G2cyvDtM5/dEqlhJEKX0jI=;
-	b=UY+HwapbCqLC8kXqaXc7qORYmgThu2QcvzHDChmMEQqxL1RolVWf1ht5sVPTjTyjhi
-	oLe1UNUo/EpLcicVC/XxTxbL5VqJw3CVS0cv8xNVvt+K46FZeWcSennmV1mC8rC3smny
-	3v23IBkQEzO0n43OnJkscgDCw//BtvqPohItvlbvJo1/mVlV25oRR2Mw9SnxXs7wQDRV
-	V5wm03sIx+UXGLUs8cbleeFRLYaqM1chIgCamvnH2nXs1zxGgwDcsTrp0vY6L9TO696e
-	pQyHSKb31F7x1RjkaJktIfmXt9LSRe6YUql02xO8agkEIqmD57tpH/8BHm8M2VHQ7E3p
-	jDdA==
-X-Gm-Message-State: AIVw110S55F6QY80nhO/J2DLi7fZBHnC24LMRjwwZPANDfWDkLpwZ/TI
-	jANy1903c38qsRdeAbHSnC54HHSI8Z8K
-X-Received: by 10.55.170.205 with SMTP id t196mr4924219qke.106.1499956279460; 
-	Thu, 13 Jul 2017 07:31:19 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.237.40.97 with HTTP; Thu, 13 Jul 2017 07:31:19 -0700 (PDT)
-From: test gprs <argprstest@gmail.com>
-Date: Thu, 13 Jul 2017 17:31:19 +0300
-Message-ID: <CANT-yaRZ3D7nQyEivJTn1C7H1ELZm5XrrZx_D+zEsH5-vfaX=A@mail.gmail.com>
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=+Njs5JHOF6EviNU4MPI2+49J054gWD6hnOghLbylFbg=;
+	b=J2Ekte/qZo1ALHmopxgUBQvyJ253qrfxNu6kfOEt6yNv4Ty62bVe9Esj+Uizr2VQJr
+	vJTOxPrIVXnbKB17vVMEUO76vxyPy3MMnz9ANbE2gMcCicY/lg40R1rm0FjXjoU8k8Gi
+	gUKFoTZY8yQSEmU2Rar+ay1qGNqK0pvvPtgbBIvS69LSY+xN4PpVVX54yyCgh06VSNEy
+	/A4tc8FguaAEXIlUmlWczh1WIUZLmqxcIA3sKjYJ+JHNLj2gt8sjpu81Y3fjci7LVw6k
+	Mbg5Mn65PyY9bYTtQU3FZ1Z8PObLO57MBEJX5j4cY5qLUR7/nPP86OdB3IrfuQEG1fFi
+	gQ8Q==
+X-Gm-Message-State: AIVw110w3r14o55l9hHaiXrqBD4vU2pSipDMhA8D9MzMfVomMQinqPLS
+	Q78sUlavwFJpt4cEJsQ=
+X-Received: by 10.36.246.134 with SMTP id u128mr13677761ith.114.1499957039492; 
+	Thu, 13 Jul 2017 07:43:59 -0700 (PDT)
+Received: from linux-uys3.suse ([206.248.190.95])
+	by smtp.gmail.com with ESMTPSA id n19sm3117758ioe.3.2017.07.13.07.43.58
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 13 Jul 2017 07:43:58 -0700 (PDT)
+From: Trevor Woerner <twoerner@gmail.com>
 To: yocto@yoctoproject.org
-Subject: QTVirtualKeyboard Custom Layout Problem
+Date: Thu, 13 Jul 2017 10:43:53 -0400
+Message-Id: <20170713144353.10740-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.13.0
+Subject: [meta-rockchip][PATCH] linux: 4.11 -> 4.12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,28 +72,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jul 2017 14:31:23 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 13 Jul 2017 14:44:02 -0000
 
-Hi.
+Bump mainline kernel to latest release.
 
-I am using Yocto project on Rarpberry pi 3 with QT-QML 5.7. My Distro
-version is 2.2 - poky.
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ recipes-kernel/linux/{linux_4.11.bb => linux_4.12.bb} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename recipes-kernel/linux/{linux_4.11.bb => linux_4.12.bb} (88%)
 
- My project need virtual keyboard for Turkish language. QT Virtual
-Keyboard has no support Turkish language so I think create my custom
-layout or change using English layout files. I cant found layout files
-in Yocto system but I found layout files on my computer from
-"...build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/qtvirtualkeyboard"
-path. I added Turkish custom keyboard layout and then builded new
-Yocto image. I couldnt find custom keyboard in QT program. Then I
-changed some keys in English layout files on
-"qtvirtualkeyboard/5.7.0+gitAUTOINC+626e78c966-r0/git/src/virtualkeyboard/content/layouts/en_GB"
-path and again buildednew Yocto images with editted English keyboard
-layout files. Butnothing changed again.
+diff --git a/recipes-kernel/linux/linux_4.11.bb b/recipes-kernel/linux/linux_4.12.bb
+similarity index 88%
+rename from recipes-kernel/linux/linux_4.11.bb
+rename to recipes-kernel/linux/linux_4.12.bb
+index 8f1d2a7..0eff49b 100644
+--- a/recipes-kernel/linux/linux_4.11.bb
++++ b/recipes-kernel/linux/linux_4.12.bb
+@@ -6,8 +6,8 @@ require recipes-kernel/linux/linux-yocto.inc
+ 
+ SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+ 
+-SRCREV = "a351e9b9fc24e982ec2f0e76379a49826036da12"
+-LINUX_VERSION = "4.11"
++SRCREV = "6f7da290413ba713f0cdd9ff1a2a9bb129ef4f6c"
++LINUX_VERSION = "4.12"
+ # Override local version in order to use the one generated by linux build system
+ # And not "yocto-standard"
+ LINUX_VERSION_EXTENSION = ""
+-- 
+2.13.0
 
-What am I missing ?
-
-
-Thank you
 
