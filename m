@@ -1,47 +1,60 @@
-Return-Path: <umamahesh.y@hcl.com>
+Return-Path: <afenkart@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7807AE009E7; Wed, 12 Jul 2017 23:21:37 -0700 (PDT)
+	id 26E29E009E7; Thu, 13 Jul 2017 01:52:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_HTML_ONLY,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.8.186.130 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (afenkart[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-Received: from GWS07.hcl.com (gws07.hcl.com [192.8.186.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53D99E009A4
-	for <yocto@yoctoproject.org>; Wed, 12 Jul 2017 23:21:24 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.40,352,1496082600"; d="scan'208,217";a="79632535"
-Received: from unknown (HELO CHN-CORP-HT02.CORP.HCL.IN) ([10.249.2.34])
-	by GWS07.hcl.com with ESMTP/TLS/AES128-SHA; 13 Jul 2017 11:51:17 +0530
-Received: from CHN-HCLT-CSHT05.HCLT.CORP.HCL.IN (10.150.12.30) by
-	CHN-CORP-HT02.CORP.HCL.IN (10.249.2.34) with Microsoft SMTP Server
-	(TLS) id 14.3.339.0; Thu, 13 Jul 2017 11:51:17 +0530
-Received: from CHN-HCLT-MBS02.HCLT.CORP.HCL.IN ([fe80::45e7:d7f7:b243:fdd9])
-	by CHN-HCLT-CSHT05.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0339.000;
-	Thu, 13 Jul 2017 11:51:17 +0530
-From: Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>
-To: Ayoub Zaki <ayoub.zaki@embexus.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Wifi on wandboard with Yoct0 Morty
-Thread-Index: AdL29weARh2ivtCESiyf/rbwmNIfeP//pXEAgACEmbOACSfiRQ==
-Date: Thu, 13 Jul 2017 06:21:17 +0000
-Message-ID: <7238EEDF8C36444C95B21A966F50FB8851DBD2CA@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>
-References: <7238EEDF8C36444C95B21A966F50FB8851DB30BD@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>,
-	<bce3d4ba-1a3f-1c94-07c2-ed1fc42fea9d@embexus.com>,
-	<7238EEDF8C36444C95B21A966F50FB8851DB3150@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>
-In-Reply-To: <7238EEDF8C36444C95B21A966F50FB8851DB3150@CHN-HCLT-MBS02.HCLT.CORP.HCL.IN>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.150.5.113]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f44.google.com (mail-vk0-f44.google.com
+	[209.85.213.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 878D2E009A4
+	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 01:52:33 -0700 (PDT)
+Received: by mail-vk0-f44.google.com with SMTP id y70so26027785vky.3
+	for <yocto@yoctoproject.org>; Thu, 13 Jul 2017 01:52:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=OH2tmCUTeRGvPAT6e/NfO9iR1whEW01c9wQc/7g2TD8=;
+	b=D0hzMI/16ZQaqxIbmnuMuyiO/AmVtmXbFGtXILvkOscHvCbVdAvWiu80o3IQpgtrsk
+	TcyPVWhMfkyYO1PZ0SxHGwIwmTQJqjaCvdkOx/THoyTCZcZcr42DBx9SFh0rkBGP571I
+	a7L+TaNaeaOA7QeBdRf5UoasekrsKFGgIzVkHYkgM3Y21o9QNnKnn4yaWJqObNnJXoWb
+	aS+5zgBh03jHRO819BwL/HO9o8DMZTsFIX8emhkwYykbLDZkePhaouRMCVfla4JpiUd9
+	pvkCK1XGtn19IRX/2Mfg7Gd1vNWlbBVom9aVVxpGyazuKYknTCHM3aAqXjhAFiPTAm7U
+	yCTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=OH2tmCUTeRGvPAT6e/NfO9iR1whEW01c9wQc/7g2TD8=;
+	b=QFHQx0FODBNMxzo9koi8TrKSf8ZVBGzEDiwitZ+ZLNDm8gxAK0yXeC+Yw2WGY+Y6jE
+	RXRioDbTVnhLIWuHT+815bgGgza0jONLJKd+rZIyqlraOTmiRVByY26IOGnr6E4VEc01
+	QhM+l/RaVAKxeSTH4NMT7K6xEitE1RcsSRDCnMHH2sBWNkVavZ4MpibXpYHPnaDf2qwI
+	LV5hc5B9A83sZ7ZP5AvbvwbcuCpw6uqUt3pMnXOXfNi7Xtek/c3x0Q3V55qBrCsA/685
+	QlPni13653R0QkWgDAn03qF3pDyNnhs8Xdl9sNszcSDnbVNegkumNAZTqtA+uhOcJCe9
+	AMwQ==
+X-Gm-Message-State: AIVw110ukvt1n9MNVhITck35yWxf9jdpY3Lp66I/KVL9TxOVw27/idO8
+	9DQWs8gVCmMEf0q1tgziMLAqcD1KR6E+
+X-Received: by 10.31.3.135 with SMTP id f7mr1547333vki.120.1499935951872; Thu,
+	13 Jul 2017 01:52:31 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Wifi on wandboard with Yoct0 Morty
+Received: by 10.31.108.137 with HTTP; Thu, 13 Jul 2017 01:52:31 -0700 (PDT)
+From: Andreas Fenkart <afenkart@gmail.com>
+Date: Thu, 13 Jul 2017 10:52:31 +0200
+Message-ID: <CALtMJEAHnhZJBRsAwm6KHdahp59Wy8PD+O8F3JKDNN3gJCbfgA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: sstate cache not used when adding custom task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,191 +66,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jul 2017 06:21:37 -0000
-Content-Language: en-GB
-Content-Type: text/html; charset="koi8-r"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 13 Jul 2017 08:52:37 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dkoi8-r">
-</head>
-<body fpstyle=3D"1" ocsi=3D"0" bgcolor=3D"#FFFFFF">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">Hello All,<br>
-Could you help me in resolving the following issue in Yocto Morty for wifi<=
-br>
-<br>
-Enabled the drivers,<br>
-<br>
-&lt;*&gt; Broadcom FullMAC wireless cards support =81 =81 <br>
-=81 =81 [*] SDIO bus interface support <br>
-<br>
-At the target getting following errors,<br>
-<br>
-root@wandboard:~# dmesg | grep brcm<br>
-[ 1.739333] brcmfmac_sdio mmc1:0001:1: Direct firmware load for brcm/brcmfm=
-ac4330-sdio.bin failed with error -2<br>
-[ 1.748200] brcmfmac_sdio mmc1:0001:1: Falling back to user helper<br>
-[ 62.783879] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
- 0x50<br>
-[ 63.793963] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
- 0x50<br>
-root@wandboard:~# <br>
-<br>
-<br>
-<br>
-<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
-">
-<hr tabindex=3D"-1">
-<div id=3D"divRpF632827" style=3D"direction: ltr;"><font color=3D"#000000" =
-size=3D"2" face=3D"Tahoma"><b>From:</b> Umamahesh Yelchuruvenkata<br>
-<b>Sent:</b> 07 July 2017 16:02<br>
-<b>To:</b> Ayoub Zaki; yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: [yocto] Wifi on wandboard with Yoct0 Morty<br>
-</font><br>
-</div>
-<div></div>
-<div>
-<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
-0pt">Please check the dmesg log posted, how to overcome the issue. Do you h=
-ave procedure how to compile for meta-freescale and meta-freescale-3rdparty=
- layers.<br>
-<div style=3D"font-family:Times New Roman; color:#000000; font-size:16px">
-<hr tabindex=3D"-1">
-<div id=3D"divRpF332173" style=3D"direction:ltr"><font color=3D"#000000" si=
-ze=3D"2" face=3D"Tahoma"><b>From:</b> yocto-bounces@yoctoproject.org [yocto=
--bounces@yoctoproject.org] on behalf of Ayoub Zaki [ayoub.zaki@embexus.com]=
-<br>
-<b>Sent:</b> 07 July 2017 13:35<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Wifi on wandboard with Yoct0 Morty<br>
-</font><br>
-</div>
-<div></div>
-<div>
-<p>Fo wandboard I use meta-freescale and meta-freescale-3rdparty layers.</p=
->
-<p>Wifi works out of the box <span class=3D"moz-smiley-s1"><span>:-)</span>=
-</span><br>
-</p>
-<br>
-<div class=3D"moz-cite-prefix">On 07.07.2017 09:59, Umamahesh Yelchuruvenka=
-ta wrote:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" id=3D"owaParaStyle">=0A=
-<!--=0A=
-p=0A=
-	{margin-top:0;=0A=
-	margin-bottom:0}=0A=
-body=0A=
-	{direction:ltr;=0A=
-	font-family:Tahoma;=0A=
-	color:#000000;=0A=
-	font-size:10pt}=0A=
-p=0A=
-	{margin-top:0;=0A=
-	margin-bottom:0}=0A=
--->=0A=
-BODY {direction: ltr;font-family: Tahoma;color: #000000;font-size: 10pt;}P =
-{margin-top:0;margin-bottom:0;}</style>
-<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
-0pt">Hi <br>
-I am trying to bring up Wifi on wandboard Rev C1 and using Yocto Morty vers=
-ion(2.2.2) , I downloaded the firmware bin files from following
-<br>
-<br>
-wget -c <a class=3D"postlink" href=3D"https://git.kernel.org/cgit/linux/ker=
-nel/git/firmware/linux-firmware.git/plain/brcm/brcmfmac4330-sdio.bin" targe=
-t=3D"_blank">
-https://git.kernel.org/cgit/linux/kerne ... 0-sdio.bin</a><br>
-wget -c <a class=3D"postlink" href=3D"https://rcn-ee.com/repos/git/meta-fsl=
--arm-extra/recipes-bsp/broadcom-nvram-config/files/wandboard/brcmfmac4330-s=
-dio.txt" target=3D"_blank">
-https://rcn-ee.com/repos/git/meta-fsl-a ... 0-sdio.txt</a><br>
-<br>
-Created a folder firmware/brcm under tmp/work/wandboard-fslc-linux-gnueabi/=
-core-image-minimal/1.0-r0/rootfs/lib<br>
-<br>
-Enabled the drivers,<br>
-<br>
-&lt;*&gt; Broadcom FullMAC wireless cards support =81 =81 <br>
-=81 =81 [*] SDIO bus interface support <br>
-<br>
-At the target getting following errors,<br>
-<br>
-root@wandboard:~# dmesg | grep brcm<br>
-[ 1.739333] brcmfmac_sdio mmc1:0001:1: Direct firmware load for brcm/brcmfm=
-ac4330-sdio.bin failed with error -2<br>
-[ 1.748200] brcmfmac_sdio mmc1:0001:1: Falling back to user helper<br>
-[ 62.783879] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
- 0x50<br>
-[ 63.793963] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000): clkctl=
- 0x50<br>
-root@wandboard:~# <br>
-<br>
-<br>
-Please suggest</div>
-<span style=3D"font-family:'Arial','sans-serif'; color:gray; font-size:7.5p=
-t">
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><br>
-<br>
-<font style=3D"font-family:'Arial','sans-serif'; color:gray; font-size:9px"=
->::DISCLAIMER::<br>
----------------------------------------------------------------------------=
--------------------------------------------------------------------------</=
-font></p>
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><font style=3D"font-fam=
-ily:'Arial','sans-serif'; color:gray; font-size:11px">The contents of this =
-e-mail and any attachment(s) are confidential and intended for the named re=
-cipient(s) only.<br>
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-<br>
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-<br>
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-<br>
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-<br>
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-<br>
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-<br>
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-<br>
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.</font></p>
-<p class=3D"MsoNormal" style=3D"margin:0in 0in 0pt"><font style=3D"font-fam=
-ily:'Arial','sans-serif'; color:gray; font-size:11px">---------------------=
----------------------------------------------------------------------------=
-----------------------------------------------------</font></p>
-<br>
-<fieldset class=3D"mimeAttachmentHeader" target=3D"_blank"></fieldset> <br>
-</span></blockquote>
-<br>
-<pre class=3D"moz-signature" cols=3D"72">-- =0A=
-=0A=
-Ayoub Zaki=0A=
-=0A=
-<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:ayoub.zaki@embexus.com=
-" target=3D"_blank">ayoub.zaki@embexus.com</a>=0A=
-Mobile: &#43;49(0)176-62901545=0A=
-Skype: ayoub.zaki_2=0A=
-<a class=3D"moz-txt-link-freetext" href=3D"https://embexus.com" target=3D"_=
-blank">https://embexus.com</a></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+Hi,
+
+A custom task in a bbclass causes all recipes including it to be
+rebuilt every time. Link to full bbclass attached below.
+
+I already stripped that task down to this
+
+
+    addtask check after do_compile before do_build
+    addons_do_check() {
+        :
+    }
+
+If I remove the addtask line, the recipe is not rerun:
+
+$ bitbake recipe_name
+NOTE: Tasks Summary: Attempted 2746 tasks of which 2746 didn't need to
+be rerun and all succeeded.
+
+With the 'addtask check' all task of the recipe from fetch till
+rm_work_all is executed every time.
+
+From the cooker log, do_populate_sysroot is the last task running
+before do_build was, hence I changed the addtask line to this:
+addtask check after do_populate_sysroot before do_build
+
+Then the recipe will not start from do_fetch on rerun, but will
+reuse the previous do_populate_sysroot run. Hence only the last 4
+tasks are run (do_check, do_build, do_rm_work, do_rm_work_all)
+
+I experimented with bitbake-diffsig/bitbake-dumpsig, but the hash
+of the stamp files (do_check) are identical on each run, of
+course its content too. Only the timestamp of the stamp file
+changes each run.
+I'm confused what triggers the rebuild. I looked into bitbake
+trying to understand how the task dependency is calculated, how
+the sstate files are used. But it's quite a biest and will take
+me quite some time to understand.
+
+Any hints or regarding the issue or simply where to put a print
+in bitbake to get me started was welcome.
+
+This is still yocto 2.0.2 as we missed a couple of upgrades.
+
+The full bbclass with the do_check task
+https://git.digitalstrom.org/dss-oe/dss-oe/blob/master/yocto/dS/meta-digitalstrom-devel/classes/addons.bbclass#L46
+
+/Andreas
 
