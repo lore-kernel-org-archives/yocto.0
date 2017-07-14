@@ -1,59 +1,65 @@
-Return-Path: <fcamarda@micron.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF718E00B77; Fri, 14 Jul 2017 06:28:49 -0700 (PDT)
+	id 95347E00B87; Fri, 14 Jul 2017 06:32:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [137.201.242.129 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mailout.micron.com (mailout.micron.com [137.201.242.129])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40761E00A39;
-	Fri, 14 Jul 2017 06:28:47 -0700 (PDT)
-Received: from mail.micron.com (bowex36c.micron.com [137.201.84.132])
-	by mailout.micron.com (8.14.4/8.14.6) with ESMTP id v6EDSk5H002759;
-	Fri, 14 Jul 2017 07:28:46 -0600
-Received: from bowex36c.micron.com (137.201.84.132) by bowex36c.micron.com
-	(137.201.84.132) with Microsoft SMTP Server (TLS) id 15.0.1263.5;
-	Fri, 14 Jul 2017 07:28:45 -0600
-Received: from bowex36c.micron.com ([fe80::8143:7a9:4aa:a105]) by
-	bowex36c.micron.com ([fe80::8143:7a9:4aa:a105%21]) with mapi id
-	15.00.1263.000; Fri, 14 Jul 2017 07:28:45 -0600
-From: "Francesco Camarda (fcamarda)" <fcamarda@micron.com>
-To: Tim Orling <timothy.t.orling@linux.intel.com>
-Thread-Topic: [EXT] Re: [meta-intel] How to build module iasImage from bzImage
-	outside yocto
-Thread-Index: AdL7z3+dAFULDapbTy+olNlxz25uKAAz4LwAAADiF4A=
-Date: Fri, 14 Jul 2017 13:28:45 +0000
-Message-ID: <570c1359b3194c9cb250ea75e40764f8@bowex36c.micron.com>
-References: <29844a74085e4efd9f279dfea9054c09@bowex36c.micron.com>
-	<CC972D51-93E5-4DDA-9638-2F968C123AFC@linux.intel.com>
-In-Reply-To: <CC972D51-93E5-4DDA-9638-2F968C123AFC@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [137.201.20.7]
-x-tm-as-product-ver: SMEX-12.0.0.1464-8.100.1062-23194.004
-x-tm-as-result: No--18.784100-0.000000-31
-x-tm-as-matchedid: 150567-701625-704425-700685-139010-139006-700648-700316-8
-	60851-106660-700918-110462-700555-700075-186055-847298-701669-121536-862883
-	-701445-703491-707788-861157-704341-702020-702520-700416-712062-853842-7033
-	66-711863-702379-702668-187067-709137-703004-188019-702762-139704-707904-70
-	0826-707663-701232-709584-702113-703176-701604-702209-701249-139705-148004-
-	148133-20043-42000-42003-52000
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
-x-mt-checkinternalsenderrule: True
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D293E00A39
+	for <yocto@yoctoproject.org>; Fri, 14 Jul 2017 06:32:00 -0700 (PDT)
+Received: by mail-wm0-f65.google.com with SMTP id u23so10884114wma.2
+	for <yocto@yoctoproject.org>; Fri, 14 Jul 2017 06:32:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=L3ZjkPVXKhZxMhJmuT6adgAtmOBAuqZE3i0IolQVjJc=;
+	b=SbOZRPEtyRbPITLw5TGhrYbMxtoQgTNscQWMppk9GozWHpEcLBE/WJ7YmQ5KLQYy+v
+	BijLhjIJG9hy0jp+BcyML5/e95w/uGk9B66LE9MfmbnTZmddIHk+p6Rf9bDgyBXq59JB
+	8+mZJpDSOiIWH3j49yRekcmL554kp4g9PShy4+ps9kwz3nFAmJ80A0WBFGjqq14Chf38
+	gBro5i8XRVPdU4DnuN76gLJyFfwao5sF8KeAkt1rgo00ZBTxGH6s9gA6qMinprZk6roR
+	Pd8aKXJBIyqPxMVajEdy2kOWx/HOz9gyQRzox326im2CiD5sjiePkfqoneq8H0pT7YE2
+	A16g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=L3ZjkPVXKhZxMhJmuT6adgAtmOBAuqZE3i0IolQVjJc=;
+	b=RDynZFM7u2Cbs9TBHL64r6DPv+ZZYUU6spMKtBgx493ChlUG+dKDLumUqbNQja1zr1
+	ymMg+jmu2iNWgFkaOeZqh5I3WFxI3nATS2NxJJ3AUuKWR7brJ7gvDseJmrfXzLXmlA5E
+	CbgXpSvw6N+IUWKLBtYtQS2QF7ot15DG1iq6tMxs/YVo4jv9rJ5IBW1u+H8jnQmhHMp2
+	+BAtf4r31KdJYSb2vNz+MuKnzwznNtliXh/4KMOKswDIpnN2dUtkdTvZNbnXtuw8o7vh
+	jnuMUXml83TcOyMX2lEq5hGYrVkV6A8Wy40UjLxy49rJP6yXE6A0ob8rtMq2oA5FSJEH
+	s3aw==
+X-Gm-Message-State: AIVw111c0MlNbDnjU5lEn81L1zrzyQsn3O6Xb9QvLUpZzZr4zTVSZ+IX
+	UowDnNCXf6UjGyHZi9+zMGBhUPUkSg==
+X-Received: by 10.80.170.218 with SMTP id r26mr6900571edc.113.1500039119298;
+	Fri, 14 Jul 2017 06:31:59 -0700 (PDT)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.78 on 137.201.82.98
-Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [EXT] Re: [meta-intel] How to build module iasImage from bzImage outside yocto
+Received: by 10.80.145.210 with HTTP; Fri, 14 Jul 2017 06:31:28 -0700 (PDT)
+In-Reply-To: <1500022998-25701-1-git-send-email-gizero@gmail.com>
+References: <1500022998-25701-1-git-send-email-gizero@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 14 Jul 2017 06:31:28 -0700
+Message-ID: <CAMKF1spKFOHKvJ0hLBvDPuTiTy13HYfFFaHCzsdxmRyUN8HGUw@mail.gmail.com>
+To: Andrea Galbusera <gizero@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] userland: Add missing EGL_CAST defines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,139 +71,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jul 2017 13:28:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 14 Jul 2017 13:32:04 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IFRpbSBPcmxpbmcgW21haWx0
-bzp0aW1vdGh5LnQub3JsaW5nQGxpbnV4LmludGVsLmNvbV0NCj4gU2VudDogRnJpZGF5LCBKdWx5
-IDE0LCAyMDE3IDg6NDUgQU0NCj4gVG86IEZyYW5jZXNjbyBDYW1hcmRhIChmY2FtYXJkYSkgPGZj
-YW1hcmRhQG1pY3Jvbi5jb20+DQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBtZXRhLWlu
-dGVsQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogW0VYVF0gUmU6IFttZXRhLWludGVsXSBI
-b3cgdG8gYnVpbGQgbW9kdWxlIGlhc0ltYWdlIGZyb20gYnpJbWFnZQ0KPiBvdXRzaWRlIHlvY3Rv
-DQo+IA0KPiANCj4gPiBPbiBKdWwgMTMsIDIwMTcsIGF0IDU6NTkgQU0sIEZyYW5jZXNjbyBDYW1h
-cmRhIChmY2FtYXJkYSkNCj4gPGZjYW1hcmRhQG1pY3Jvbi5jb20+IHdyb3RlOg0KPiA+DQo+ID4g
-SGVsbG8sDQo+ID4gU3RhcnRpbmcgZnJvbSBhIHlvY3RvIGJ1aWxkIChkZXRhaWxzIGJlbG93KToN
-Cj4gPg0KPiA+ICQgYml0YmFrZSBpYXMta2MtcGYtaW1hZ2UNCj4gPiBMb2FkaW5nIGNhY2hlOiAx
-MDAlDQo+ID4NCj4gfCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIw0KPiAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjI3wgRVRB
-OiAgMDA6MDA6MDAgTG9hZGVkIDI1MzYNCj4gZW50cmllcyBmcm9tIGRlcGVuZGVuY3kgY2FjaGUu
-DQo+ID4gUGFyc2luZyByZWNpcGVzOiAxMDAlDQo+ID4NCj4gfCMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIw0KPiAjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDAwOjAwOjAwIFBhcnNpbmcgb2YgMTk2NA0KPiAuYmIg
-ZmlsZXMgY29tcGxldGUgKDE5NjMgY2FjaGVkLCAxIHBhcnNlZCkuIDI1MzYgdGFyZ2V0cywgMzIy
-IHNraXBwZWQsIDINCj4gbWFza2VkLCAwIGVycm9ycy4NCj4gPiBOT1RFOiBSZXNvbHZpbmcgYW55
-IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNpZXMNCj4gPg0KPiA+IEJ1aWxkIENvbmZpZ3Vy
-YXRpb246DQo+ID4gQkJfVkVSU0lPTiAgICAgICAgPSAiMS4yOC4wIg0KPiA+IEJVSUxEX1NZUyAg
-ICAgICAgID0gIng4Nl82NC1saW51eCINCj4gPiBOQVRJVkVMU0JTVFJJTkcgICA9ICJVYnVudHUt
-MTYuMDQiDQo+ID4gVEFSR0VUX1NZUyAgICAgICAgPSAieDg2XzY0LXBva3ktbGludXgiDQo+ID4g
-TUFDSElORSAgICAgICAgICAgPSAiZ3ItbXJiLTY0Ig0KPiA+IERJU1RSTyAgICAgICAgICAgID0g
-InBva3ktaXZpLXN5c3RlbWQiDQo+ID4gRElTVFJPX1ZFUlNJT04gICAgPSAiMTAuMCtzbmFwc2hv
-dC0yMDE3MDcxMyINCj4gPiBUVU5FX0ZFQVRVUkVTICAgICA9ICJtNjQgY29yZWk3Ig0KPiA+IFRB
-UkdFVF9GUFUgICAgICAgID0gIiINCj4gPiBtZXRhDQo+ID4gbWV0YS15b2N0bw0KPiANCj4gVGhp
-cyBzaG91bGQgYmUgbWV0YS1wb2t5IG5vdy4gSG93IG9sZCBpcyB0aGUgbWV0YWRhdGEgKHZlcnNp
-b24gb2YgcG9reSAvDQo+IFlvY3RvIFByb2plY3QgcmVsZWFzZSkgeW91ciBkaXN0cm8gaXMgYmFz
-ZWQgb24/DQo+IA0KPiA+DQo+ID4gbWV0YS15b2N0by1ic3AgICAgPQ0KPiAiZmlyc3RfYnVpbGQ6
-ZGFkZTBlNjhjNjQ1NDczZDk0ZTFiMDUwMjBiMDY0ZGY0MDY3N2U4MeKAnQ0KPiANCj4gVGhpcyBo
-YXNoIHNob3dzIHlvdSBhcmUgdXNpbmcgYSBsb2NhbCBicmFuY2gsIHNvIEkgY2Fu4oCZdCBndWVz
-cyBhdCB3aGljaCB2ZXJzaW9uDQo+IG9mIHBva3kgeW91IGFyZSB1c2luZy4NCj4gDQoNClRoZSBj
-b21taXQgSUQgb2YgdGhlc2UgbWV0YS1sYXllciByZXBvc2l0b3JpZXMgYXJlOg0KDQpwb2t5L21l
-dGEgZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reSBkYWRlMGU2OGM2NDU0NzNkOTRlMWIw
-NTAyMGIwNjRkZjQwNjc3ZTgxDQpwb2t5L21ldGEteW9jdG8gZ2l0Oi8vZ2l0LnlvY3RvcHJvamVj
-dC5vcmcvcG9reSBkYWRlMGU2OGM2NDU0NzNkOTRlMWIwNTAyMGIwNjRkZjQwNjc3ZTgxDQpwb2t5
-L21ldGEteW9jdG8tYnNwIGdpdDovL2dpdC55b2N0b3Byb2plY3Qub3JnL3Bva3kgZGFkZTBlNjhj
-NjQ1NDczZDk0ZTFiMDUwMjBiMDY0ZGY0MDY3N2U4MQ0KbWV0YS1pbnRlbCBnaXQ6Ly9naXQueW9j
-dG9wcm9qZWN0Lm9yZy9tZXRhLWludGVsIDhjMTVkZThkYmFhMTQxNGZmZDBmNjliZWE3MjI3ZTcy
-ODU4MTZmODUNCm1ldGEtaW50ZWwvbWV0YS1pc2cvbWV0YS12YWxsZXlpc2xhbmQgZ2l0Oi8vZ2l0
-LnlvY3RvcHJvamVjdC5vcmcvbWV0YS1pbnRlbCA4YzE1ZGU4ZGJhYTE0MTRmZmQwZjY5YmVhNzIy
-N2U3Mjg1ODE2Zjg1DQptZXRhLWl2aS9tZXRhLWl2aSBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9y
-Zy9tZXRhLWl2aSBlNDI3NzdlZjc0YjQ3NmVkNjcwMmIwMzY4MThiY2ZmZDRmZTBkNzY4DQptZXRh
-LW9wZW5lbWJlZGRlZC9tZXRhLWZpbGVzeXN0ZW1zIGdpdDovL2dpdC5vcGVuZW1iZWRkZWQub3Jn
-L21ldGEtb3BlbmVtYmVkZGVkIGRjNTYzNDk2OGIyNzBkZGUyNTA2OTA2MDlmMDAxNWY4ODFkYjgx
-ZjINCm1ldGEtb3BlbmVtYmVkZGVkL21ldGEtbmV0d29ya2luZyBnaXQ6Ly9naXQub3BlbmVtYmVk
-ZGVkLm9yZy9tZXRhLW9wZW5lbWJlZGRlZCBkYzU2MzQ5NjhiMjcwZGRlMjUwNjkwNjA5ZjAwMTVm
-ODgxZGI4MWYyDQptZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW9lIGdpdDovL2dpdC5vcGVuZW1iZWRk
-ZWQub3JnL21ldGEtb3BlbmVtYmVkZGVkIGRjNTYzNDk2OGIyNzBkZGUyNTA2OTA2MDlmMDAxNWY4
-ODFkYjgxZjINCm1ldGEtb3BlbmVtYmVkZGVkL21ldGEtcHl0aG9uIGdpdDovL2dpdC5vcGVuZW1i
-ZWRkZWQub3JnL21ldGEtb3BlbmVtYmVkZGVkIGRjNTYzNDk2OGIyNzBkZGUyNTA2OTA2MDlmMDAx
-NWY4ODFkYjgxZjINCm1ldGEtb3JhY2xlLWphdmEgZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcv
-bWV0YS1vcmFjbGUtamF2YSBmN2M5ODcwNmY4MGEyNDg4YWQyNjI4ZTViMGM2ZDNmOWY4MGMyNGZk
-DQogDQo+ID4gbWV0YS1pYXMtYXVkaW8NCj4gPiBtZXRhLWlhcy1ib290DQo+ID4gbWV0YS1pYXMt
-Y29yZQ0KPiA+IG1ldGEtaWFzLWRldnRvb2xzDQo+ID4gbWV0YS1pYXMtZWFybHlhcHBsaWNhdGlv
-bg0KPiA+IG1ldGEtaWFzLWdyYXBoaWNzDQo+ID4gbWV0YS1pYXMtZ3ItbXJiLWJzcA0KPiA+IG1l
-dGEtaWFzLWl2aS1hZGFwdA0KPiA+IG1ldGEtaWFzLWtjLXJlZmVyZW5jZQ0KPiA+IG1ldGEtaWFz
-LWxpZmVjeWNsZQ0KPiA+IG1ldGEtaWFzLW1lZGlhc2RrDQo+ID4gbWV0YS1pYXMtbWVkaWF0cmFu
-c3BvcnQNCj4gPiBtZXRhLWlhcy1vc3MNCj4gPiBtZXRhLWlhcy1zZWN1cml0eQ0KPiA+IG1ldGEt
-aWFzLXNldHVwDQo+ID4gbWV0YS1pYXMtc3lzdGVtYnVzDQo+ID4gbWV0YS1pYXMtdGFyZ2V0dXRp
-bGl0aWVzDQo+ID4gbWV0YS1pYXMtdmVoaWNsZWJ1cyA9DQo+ICJtYXN0ZXI6ODk4MTFmMjkyMjk3
-NjRkNjVkYjliNTc3MjUyZTkwMTYwODNiODY5OeKAnQ0KPiANCj4gSSBjYW4gZmluZCBubyByZWZl
-cmVuY2VzIHRvIG1ldGEtaWFzIG9uIGxheWVycy5vcGVuZW1iZWRkZWQub3JnIG9yIGluIGENCj4g
-R29vZ2xlIHNlYXJjaCwgc28gbm8gaWRlYSBob3cgdG8gaGVscCB5b3Ugd2l0aCByZXNwZWN0IHRv
-IHlvdXIg4oCcaWFzSW1hZ2XigJ0NCj4gcXVlc3Rpb24uDQo+IA0KPiA+IG1ldGEtaW50ZWwNCj4g
-PiBtZXRhLXZhbGxleWlzbGFuZCA9DQo+ICJmaXJzdF9idWlsZDo4YzE1ZGU4ZGJhYTE0MTRmZmQw
-ZjY5YmVhNzIyN2U3Mjg1ODE2Zjg1Ig0KPiA+IG1ldGEtaXZpICAgICAgICAgID0gImZpcnN0X2J1
-aWxkOmU0Mjc3N2VmNzRiNDc2ZWQ2NzAyYjAzNjgxOGJjZmZkNGZlMGQ3NjgiDQo+ID4gbWV0YS1m
-aWxlc3lzdGVtcw0KPiA+IG1ldGEtbmV0d29ya2luZw0KPiA+IG1ldGEtb2UNCj4gPiBtZXRhLXB5
-dGhvbiAgICAgICA9DQo+ICJmaXJzdF9idWlsZDpkYzU2MzQ5NjhiMjcwZGRlMjUwNjkwNjA5ZjAw
-MTVmODgxZGI4MWYyIg0KPiA+IG1ldGEtb3JhY2xlLWphdmEgID0NCj4gImZpcnN0X2J1aWxkOmY3
-Yzk4NzA2ZjgwYTI0ODhhZDI2MjhlNWIwYzZkM2Y5ZjgwYzI0ZmQiDQo+ID4NCj4gPiBBZnRlciBi
-dWlsZGluZyB0aGUgYnpJbWFnZSBmcm9tIGFuIGV4dGVybmFsIHRvb2xjaGFpbiBpcyBpdCBwb3Nz
-aWJsZSB0byBidWlsZA0KPiAob3V0c2lkZSB5b2N0bykgdGhlIGlhc0ltYWdlIG5lY2Vzc2FyeSB0
-byBib290IHRoZSBHb3Jkb24gcGVhayAoSW50ZWwNCj4gQXBvbGxvIGxha2UgU29DKS4NCj4gPg0K
-PiANCj4gPiBBbHNvIEkgYW0gdHJ5aW5nIHRvIGJ1aWxkIGEgc2F0byBpbWFnZSBidXQ6DQo+ID4N
-Cj4gPiAkIGJpdGJha2UgY29yZS1pbWFnZS1zYXRvDQo+ID4gTG9hZGluZyBjYWNoZTogMTAwJQ0K
-PiA+DQo+IHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMNCj4gIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IEVUQTogIDAw
-OjAwOjAwIExvYWRlZCAyNTM2DQo+IGVudHJpZXMgZnJvbSBkZXBlbmRlbmN5IGNhY2hlLg0KPiA+
-IFBhcnNpbmcgcmVjaXBlczogMTAwJQ0KPiA+DQo+IHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMNCj4gIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjfCBUaW1lOiAwMDowMDowMCBQYXJzaW5nIG9mIDE5NjQNCj4gLmJiIGZpbGVz
-IGNvbXBsZXRlICgxOTYzIGNhY2hlZCwgMSBwYXJzZWQpLiAyNTM2IHRhcmdldHMsIDMyMiBza2lw
-cGVkLCAyDQo+IG1hc2tlZCwgMCBlcnJvcnMuDQo+ID4gTk9URTogUmVzb2x2aW5nIGFueSBtaXNz
-aW5nIHRhc2sgcXVldWUgZGVwZW5kZW5jaWVzDQo+ID4gRVJST1I6IE5vdGhpbmcgUlBST1ZJREVT
-ICdwYWNrYWdlZ3JvdXAtY29yZS14MTEtc2F0by1nYW1lcycgKGJ1dA0KPiA+IC9ob21lL3JhaC93
-b3Jrc3BhY2UvaW50ZWxfR1BfQVBML0dSX1lvY3RvL3Bva3kvbWV0YS9yZWNpcGVzLQ0KPiBzYXRv
-L2ltYWdlDQo+ID4gcy9jb3JlLWltYWdlLXNhdG8uYmIgUkRFUEVORFMgb24gb3Igb3RoZXJ3aXNl
-IHJlcXVpcmVzIGl0KQ0KPiA+IE5PVEU6IFJ1bnRpbWUgdGFyZ2V0ICdwYWNrYWdlZ3JvdXAtY29y
-ZS14MTEtc2F0by1nYW1lcycgaXMgdW5idWlsZGFibGUsDQo+IHJlbW92aW5nLi4uDQo+ID4gTWlz
-c2luZyBvciB1bmJ1aWxkYWJsZSBkZXBlbmRlbmN5IGNoYWluIHdhczoNCj4gPiBbJ3BhY2thZ2Vn
-cm91cC1jb3JlLXgxMS1zYXRvLWdhbWVzJ10NCj4gPiBFUlJPUjogUmVxdWlyZWQgYnVpbGQgdGFy
-Z2V0ICdjb3JlLWltYWdlLXNhdG8nIGhhcyBubyBidWlsZGFibGUgcHJvdmlkZXJzLg0KPiA+IE1p
-c3Npbmcgb3IgdW5idWlsZGFibGUgZGVwZW5kZW5jeSBjaGFpbiB3YXM6IFsnY29yZS1pbWFnZS1z
-YXRvJywNCj4gPiAncGFja2FnZWdyb3VwLWNvcmUteDExLXNhdG8tZ2FtZXMnXQ0KPiA+DQo+IA0K
-PiBZb3UgYXJlIG1pc3NpbmcgdGhlIGZvbGxvd2luZyBjb21taXQgZnJvbSBlaXRoZXIgcG9reSBv
-ciBvZS1jb3JlOg0KPiBodHRwOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvY2dpdC9jZ2l0LmNnaS9w
-b2t5L2NvbW1pdC9tZXRhL3JlY2lwZXMtDQo+IHNhdG8vaW1hZ2VzL2NvcmUtaW1hZ2UtDQo+IHNh
-dG8uYmI/aWQ9M2FmZWQxNTQ5YTYyM2QyYTQ5MjE4ODMzMTlmZjk2YmYzZTZlZGM1NA0KPiANCg0K
-DQpJIGFscmVhZHkgdXNlZCB0aGUgcGF0Y2ggYW5kIGJha2UgcmVzdWx0IGlzOg0KDQokIGJpdGJh
-a2UgY29yZS1pbWFnZS1zYXRvDQpMb2FkaW5nIGNhY2hlOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjI3wgRVRBOiAgMDA6MDA6MDANCkxvYWRlZCAyNTM2IGVudHJpZXMg
-ZnJvbSBkZXBlbmRlbmN5IGNhY2hlLg0KUGFyc2luZyByZWNpcGVzOiAxMDAlIHwjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyN8IFRpbWU6IDAwOjAwOjAwDQpQYXJzaW5nIG9mIDE5NjQg
-LmJiIGZpbGVzIGNvbXBsZXRlICgxOTYwIGNhY2hlZCwgNCBwYXJzZWQpLiAyNTM2IHRhcmdldHMs
-IDMyMiBza2lwcGVkLCAyIG1hc2tlZCwgMCBlcnJvcnMuDQpOT1RFOiBSZXNvbHZpbmcgYW55IG1p
-c3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRlbmNpZXMNCkVSUk9SOiBOb3RoaW5nIFJQUk9WSURFUyAn
-cGFja2FnZWdyb3VwLWNvcmUteDExLXNhdG8nIChidXQgL2hvbWUvcmFoL3dvcmtzcGFjZS9pbnRl
-bF9HUF9BUEwvR1JfWW9jdG8vcG9reS9tZXRhL3JlY2lwZXMtc2F0by9pbWFnZXMvY29yZS1pbWFn
-ZS1zYXRvLmJiIFJERVBFTkRTIG9uIG9yIG90aGVyd2lzZSByZXF1aXJlcyBpdCkNCkVSUk9SOiBw
-YWNrYWdlZ3JvdXAtY29yZS14MTEtc2F0byB3YXMgc2tpcHBlZDogbWlzc2luZyByZXF1aXJlZCBk
-aXN0cm8gZmVhdHVyZSAneDExJyAobm90IGluIERJU1RST19GRUFUVVJFUykNCk5PVEU6IFJ1bnRp
-bWUgdGFyZ2V0ICdwYWNrYWdlZ3JvdXAtY29yZS14MTEtc2F0bycgaXMgdW5idWlsZGFibGUsIHJl
-bW92aW5nLi4uDQpNaXNzaW5nIG9yIHVuYnVpbGRhYmxlIGRlcGVuZGVuY3kgY2hhaW4gd2FzOiBb
-J3BhY2thZ2Vncm91cC1jb3JlLXgxMS1zYXRvJ10NCkVSUk9SOiBSZXF1aXJlZCBidWlsZCB0YXJn
-ZXQgJ2NvcmUtaW1hZ2Utc2F0bycgaGFzIG5vIGJ1aWxkYWJsZSBwcm92aWRlcnMuDQpNaXNzaW5n
-IG9yIHVuYnVpbGRhYmxlIGRlcGVuZGVuY3kgY2hhaW4gd2FzOiBbJ2NvcmUtaW1hZ2Utc2F0bycs
-ICdwYWNrYWdlZ3JvdXAtY29yZS14MTEtc2F0byddDQoNClN1bW1hcnk6IFRoZXJlIHdlcmUgMiBF
-UlJPUiBtZXNzYWdlcyBzaG93biwgcmV0dXJuaW5nIGEgbm9uLXplcm8gZXhpdCBjb2RlLg0KDQoN
-Cj4gPiBTdW1tYXJ5OiBUaGVyZSB3ZXJlIDIgRVJST1IgbWVzc2FnZXMgc2hvd24sIHJldHVybmlu
-ZyBhIG5vbi16ZXJvIGV4aXQNCj4gY29kZS4NCj4gPg0KPiA+DQo+ID4gUmVnYXJkcywNCj4gPiBG
-cmFuY2VzY28NCj4gPg0KPiA+IDxpbWFnZTAwMS5wbmc+DQo+ID4gRnJhbmNlc2NvIENhbWFyZGEg
-fCBFQlUNCj4gPiBBdXRvbW90aXZlIFNyLiBTeXN0ZW0gQUUNCj4gPiBkZXNrICszOS4wOTUuNzQ4
-MzUzNiB8IG1vYmlsZSArMzkuMzQ2Ljc4OTcyMjENCj4gPg0KPiA+IC0tDQo+ID4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiBtZXRhLWludGVsIG1h
-aWxpbmcgbGlzdA0KPiA+IG1ldGEtaW50ZWxAeW9jdG9wcm9qZWN0Lm9yZw0KPiA+IGh0dHBzOi8v
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby9tZXRhLWludGVsDQoNCg==
+On Fri, Jul 14, 2017 at 2:03 AM, Andrea Galbusera <gizero@gmail.com> wrote:
+> Needed by libepoxy
+>
+> Signed-off-by: Andrea Galbusera <gizero@gmail.com>
+> ---
+>  .../0015-EGL-glplatform.h-define-EGL_CAST.patch    | 32 ++++++++++++++++++++++
+>  recipes-graphics/userland/userland_git.bb          |  1 +
+>  2 files changed, 33 insertions(+)
+>  create mode 100644 recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
+>
+> diff --git a/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch b/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
+> new file mode 100644
+> index 0000000..5a80a26
+> --- /dev/null
+> +++ b/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
+> @@ -0,0 +1,32 @@
+> +From 382e3b16cbcc09d825540d5bd3e45a2fca4484fe Mon Sep 17 00:00:00 2001
+> +From: Andrea Galbusera <gizero@gmail.com>
+> +Date: Fri, 14 Jul 2017 09:52:54 +0200
+> +Subject: [PATCH] EGL/glplatform.h: define EGL_CAST
+> +
+> +C++ / C typecast macros for special EGL handle values: used by libepoxy code
+> +The definition comes from the updated version of this header in mesa.
+> +
+> +Upstream-Status: Pending
+> +---
+> + interface/khronos/include/EGL/eglplatform.h | 7 +++++++
+> + 1 file changed, 7 insertions(+)
+> +
+> +diff --git a/interface/khronos/include/EGL/eglplatform.h b/interface/khronos/include/EGL/eglplatform.h
+> +index 1f7c930..c39d425 100644
+> +--- a/interface/khronos/include/EGL/eglplatform.h
+> ++++ b/interface/khronos/include/EGL/eglplatform.h
+> +@@ -202,4 +202,11 @@ EGLAPI void EGLAPIENTRY BEGL_GetDefaultDriverInterfaces(BEGL_DriverInterfaces *i
+> + #include "interface/khronos/common/khrn_client_mangle.h"
+> + #endif
+> +
+> ++/* C++ / C typecast macros for special EGL handle values */
+> ++#if defined(__cplusplus)
+> ++#define EGL_CAST(type, value) (static_cast<type>(value))
+> ++#else
+> ++#define EGL_CAST(type, value) ((type) (value))
+> ++#endif
+> ++
+> + #endif /* __eglplatform_h */
+> +--
+
+LGTM
+please merge it
+
+> +2.7.4
+> +
+> diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+> index 26bbfaf..893fcba 100644
+> --- a/recipes-graphics/userland/userland_git.bb
+> +++ b/recipes-graphics/userland/userland_git.bb
+> @@ -34,6 +34,7 @@ SRC_URI = "\
+>      file://0012-implement-buffer-wrapping-interface-for-dispmanx.patch \
+>      file://0013-Implement-triple-buffering-for-wayland.patch \
+>      file://0014-GLES2-gl2ext.h-Define-GL_R8_EXT-and-GL_RG8_EXT.patch \
+> +    file://0015-EGL-glplatform.h-define-EGL_CAST.patch \
+>  "
+>  S = "${WORKDIR}/git"
+>
+> --
+> 2.7.4
+>
 
