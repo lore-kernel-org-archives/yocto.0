@@ -1,18 +1,18 @@
 Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9EE1AE00A38; Fri, 14 Jul 2017 02:03:37 -0700 (PDT)
+	id A9A53E009C2; Fri, 14 Jul 2017 02:29:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (gizero[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -20,47 +20,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1061E00944
-	for <yocto@yoctoproject.org>; Fri, 14 Jul 2017 02:03:34 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id j85so9627298wmj.0
-	for <yocto@yoctoproject.org>; Fri, 14 Jul 2017 02:03:34 -0700 (PDT)
+	*      [209.85.161.194 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.161.194 listed in dnsbl.sorbs.net]
+Received: from mail-yw0-f194.google.com (mail-yw0-f194.google.com
+	[209.85.161.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EE85E0090A
+	for <yocto@yoctoproject.org>; Fri, 14 Jul 2017 02:29:53 -0700 (PDT)
+Received: by mail-yw0-f194.google.com with SMTP id l21so3188694ywb.3
+	for <yocto@yoctoproject.org>; Fri, 14 Jul 2017 02:29:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=mcqZALM84K4k/sV+V5S916bpSDWt29lNhatb5fJCCd0=;
-	b=kDNOx8k8FGOvThJ0IYhfEIHGUU8Z8Z765YsL+Ye0v+b84r+9r+uSyKCP+r0ajLKcOv
-	o5d232ZoVL8j2TnWirFJ1HekuHiXUlKeHTfL+Lp2uQi6KXjD6v3QsmUnP0CkRWhs8LXs
-	5d7IKYqcVVyPrUIZRMKSYKeUxrR9QGeQPUsmDsAKY2sT/362POk4N+/LsUPOrZ2/i0Nm
-	z/s9EngzSDEMroR6xcXgU0Hdza03FbHV54kFzGhxeZMOplqYGuW8sH3yWJYaIwVBg8yK
-	kHb4jIS2tpE3vV/3DyAI5q2nxRvhvUjpUNfxQ6sSoDrEHChlY6abJqVN5JhMVP6Qh6NK
-	C4Vg==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=AIi6++99s12DCwIrN6yEa229f+/Lv9zAQOuw87b3wbw=;
+	b=ED5jXOGPleixjTWat7PLqFImW/NkjJMP9U9PVqcEL+B0HJCAyDrM2MK3lo8oxtWnxh
+	xql83gBGThOvNGBcvnSIaYG9Y0DyxVxQoahLmzp8cHI2GJPizrQp+fmf/HAo1+q5Gc3a
+	2nlHmE6MSgTqxHmS/BHpSmbV/ISn+eIjsm788XG0paeh46jfj9qav2T8/+hAj7CBrQJe
+	meUxIQEaOhT4MZvwSWzReim4tK2ek1qzZFMtVu/+U2ecKb7y33VogwfnvHI2QiaKZTgh
+	bUDprSyl3ze5KHmJyfhZom2quGeYUAKIa+oWVo/ilTmy2V1Wc2tabsBCvzzciUwyFb9R
+	DFnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=mcqZALM84K4k/sV+V5S916bpSDWt29lNhatb5fJCCd0=;
-	b=hFqFaB4TUTkKWk7bWHmR8nCbN/YK8HV1eXFRAINC98oWYCEI4OgqbqW7kZ6gz6qNRi
-	iMEmpd6bJ1aO+6DXU2wN9C2fbOE/Fklb+5gm41m0DhDwXjB8V1piBXy0pRYbhG/FSfQB
-	WMPZyU9VBLbd1hDXS7ELIbHZIWFUyL528qn5xX8SqdcBUVtbL3wegNTg55i/clrhKRpp
-	saf54ha7SgGlrrInpvNyvi6jR042BTYShZJnDMibPElrm8iMXR1YINxI5PYfJ6pXI5He
-	qhki5/DgIA2WFjn77ACsdoQ8ABsBqkcZFYWQNyuUihdnQmoLbsmERyzRdiWXOYsreiZE
-	FTxQ==
-X-Gm-Message-State: AIVw111rmy6Oz0PcxU5r6jpVio/GKWBKlZKhvkfnBvysWZ2wFxwcoYN6
-	VjY2UnjWw1MtdGSX
-X-Received: by 10.28.178.203 with SMTP id b194mr2133393wmf.36.1500023013278;
-	Fri, 14 Jul 2017 02:03:33 -0700 (PDT)
-Received: from gizero-desktop.tw.it
-	(host193-245-static.58-79-b.business.telecomitalia.it.
-	[79.58.245.193]) by smtp.gmail.com with ESMTPSA id
-	j31sm5231151wre.67.2017.07.14.02.03.32
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 14 Jul 2017 02:03:32 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=AIi6++99s12DCwIrN6yEa229f+/Lv9zAQOuw87b3wbw=;
+	b=iaskuq4Rynk/JJVB4Kza0SFfo9SPRyzcUJ3XEi9t9KQbUuS4ZkS18qwIxNTQVdZFi1
+	xtFSjAyvZBjOg+FF4efoTsawqNnnR1sxezAZjm9FU8bL9WJfRnJGzo6JjPv9zicxZBj6
+	rchPJhnVCmxEJ+ItH0qgA+ifuIW9bWVmWmIjYGi8QaAEplZLWia+7oeAs4MgttqhD9m0
+	Xy9dlF5AAscWFr7fE97sRVPeFbgDyiK2p1LCIb47teU2DtlBjbIIv1IBeQbcxsngUKKY
+	jYWdLLnOsN/Xpsl2POXV3HKGDwa3TH3IBAQukZ1wjd0SQPmMATXDaBgCYo8owNIar1TB
+	64eg==
+X-Gm-Message-State: AIVw112KkUILhS2dtAuhAaHwLbLCwtQAM/2B/nJjZ0hXUy+w5KnunCMm
+	BVbVP+sMClQLj9hitYVu58k38nh4uQ==
+X-Received: by 10.13.253.7 with SMTP id n7mr5165330ywf.188.1500024592693; Fri,
+	14 Jul 2017 02:29:52 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.13.200.129 with HTTP; Fri, 14 Jul 2017 02:29:52 -0700 (PDT)
+In-Reply-To: <DB6PR1001MB107895DCFA50D66A17EFE7D6B8AC0@DB6PR1001MB1078.EURPRD10.PROD.OUTLOOK.COM>
+References: <DB6PR1001MB107895DCFA50D66A17EFE7D6B8AC0@DB6PR1001MB1078.EURPRD10.PROD.OUTLOOK.COM>
 From: Andrea Galbusera <gizero@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 14 Jul 2017 11:03:18 +0200
-Message-Id: <1500022998-25701-1-git-send-email-gizero@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-raspberrypi][PATCH] userland: Add missing EGL_CAST defines
+Date: Fri, 14 Jul 2017 11:29:52 +0200
+Message-ID: <CAC+thW3XbfXxzRCdA-yKg18pi+ivf-MNaxJr+vYXp=Hu105FxQ@mail.gmail.com>
+To: Elmar van Rijnswou <Elmarblabla@hotmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Cross compile recipe cmake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,68 +74,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jul 2017 09:03:37 -0000
+X-List-Received-Date: Fri, 14 Jul 2017 09:29:57 -0000
+Content-Type: multipart/alternative; boundary="94eb2c06c23a00842a055443b14f"
 
-Needed by libepoxy
+--94eb2c06c23a00842a055443b14f
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Andrea Galbusera <gizero@gmail.com>
----
- .../0015-EGL-glplatform.h-define-EGL_CAST.patch    | 32 ++++++++++++++++++++++
- recipes-graphics/userland/userland_git.bb          |  1 +
- 2 files changed, 33 insertions(+)
- create mode 100644 recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
+On Thu, Jul 13, 2017 at 10:48 AM, Elmar van Rijnswou <
+Elmarblabla@hotmail.com> wrote:
 
-diff --git a/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch b/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
-new file mode 100644
-index 0000000..5a80a26
---- /dev/null
-+++ b/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
-@@ -0,0 +1,32 @@
-+From 382e3b16cbcc09d825540d5bd3e45a2fca4484fe Mon Sep 17 00:00:00 2001
-+From: Andrea Galbusera <gizero@gmail.com>
-+Date: Fri, 14 Jul 2017 09:52:54 +0200
-+Subject: [PATCH] EGL/glplatform.h: define EGL_CAST
-+
-+C++ / C typecast macros for special EGL handle values: used by libepoxy code
-+The definition comes from the updated version of this header in mesa.
-+
-+Upstream-Status: Pending
-+---
-+ interface/khronos/include/EGL/eglplatform.h | 7 +++++++
-+ 1 file changed, 7 insertions(+)
-+
-+diff --git a/interface/khronos/include/EGL/eglplatform.h b/interface/khronos/include/EGL/eglplatform.h
-+index 1f7c930..c39d425 100644
-+--- a/interface/khronos/include/EGL/eglplatform.h
-++++ b/interface/khronos/include/EGL/eglplatform.h
-+@@ -202,4 +202,11 @@ EGLAPI void EGLAPIENTRY BEGL_GetDefaultDriverInterfaces(BEGL_DriverInterfaces *i
-+ #include "interface/khronos/common/khrn_client_mangle.h"
-+ #endif
-+ 
-++/* C++ / C typecast macros for special EGL handle values */
-++#if defined(__cplusplus)
-++#define EGL_CAST(type, value) (static_cast<type>(value))
-++#else
-++#define EGL_CAST(type, value) ((type) (value))
-++#endif
-++
-+ #endif /* __eglplatform_h */
-+-- 
-+2.7.4
-+
-diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-index 26bbfaf..893fcba 100644
---- a/recipes-graphics/userland/userland_git.bb
-+++ b/recipes-graphics/userland/userland_git.bb
-@@ -34,6 +34,7 @@ SRC_URI = "\
-     file://0012-implement-buffer-wrapping-interface-for-dispmanx.patch \
-     file://0013-Implement-triple-buffering-for-wayland.patch \
-     file://0014-GLES2-gl2ext.h-Define-GL_R8_EXT-and-GL_RG8_EXT.patch \
-+    file://0015-EGL-glplatform.h-define-EGL_CAST.patch \
- "
- S = "${WORKDIR}/git"
- 
--- 
-2.7.4
+> Hello! I've been doing a lot of searching on the internet,but I can't seem
+> to find anybody with my problem. I'm trying to add a recipe to my image and
+> deliver it straight with the system. Everything goes fine, up until the
+> recipe I created links to other libraries. I have dependencies to Qt4. I
+> used the hello world example recipe, which I can bitbake successfully. My
+> recipe is the following:
+>
+>
+> SUMMARY = "Simple helloworld application"
+> SECTION = "examples"
+> LICENSE = "Closed"
+> SRC_URI = "file://media/traffic/Yocto/src/elva/"
+> S = "/media/traffic/Yocto/src/elva/proj/src"
+>
+
+it looks like you're trying to build from an "external" source tree. Yocto
+does support this with a dedicated class you can inherit (externalsrc). See
+[1] for the relevant doc. Maybe it can help solving the issue with cmake...
+
+[1]
+http://www.yoctoproject.org/docs/2.3/mega-manual/mega-manual.html#building-software-from-an-external-source
 
 
+> inherit cmake
+> EXTRA_OECMAKE = ""
+>
+> The problem I'm having now is that, using the generated toolchain, cmake
+> is looking at the wrong directories. The rootpath is also crooked when I
+> print it out in my cmake project file:
+>
+> CMAKE_FIND_ROOT_PATH:/media/traffic/Yocto/QorIQ-SDK-V2.0-
+> 20160527-yocto/build_ls2080abluebox/tmp/sysroots/ls2080abluebox
+> /media/traffic/Yocto/QorIQ-SDK-V2.0-20160527-yocto/build_ls2080abluebox/
+> tmp/sysroots/x86_64-linux
+>
+>
+> What am I doing wrong? My target is arm. I can build my image fine without
+> the recipe, so I'm thinking that there is a step I'm missing. Also when I
+> export the SDK I can see that all the right libraries and findscripts are
+> available (in the sysroot). But whenever I change my source, it still looks
+> in the sysroot of the host system. Any help would be greatly appreciated!
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--94eb2c06c23a00842a055443b14f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Thu, Jul 13, 2017 at 10:48 AM, Elmar van Rijnswou <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:Elmarblabla@hotmail.com" target=3D"_blank">Elmarblabl=
+a@hotmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div id=3D"gmail-m_-6810055190572032317divtagdefaultwrapper" style=3D"font-=
+size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D=
+"ltr">
+<p>Hello! I&#39;ve been doing a lot of searching on the internet,but I can&=
+#39;t seem to find anybody with my problem. I&#39;m trying to add a recipe =
+to my image and deliver it straight with the system. Everything goes fine, =
+up until the recipe I created links to other
+ libraries. I have dependencies to Qt4. I used the hello world example reci=
+pe, which I can bitbake successfully. My recipe is the following:
+<br>
+</p>
+<p><br>
+</p>
+<p></p>
+<div>SUMMARY =3D &quot;Simple helloworld application&quot;<br>
+SECTION =3D &quot;examples&quot;<br>
+LICENSE =3D &quot;Closed&quot;<br>
+SRC_URI =3D &quot;file://media/traffic/Yocto/<wbr>src/elva/&quot;<br>
+S =3D &quot;/media/traffic/Yocto/src/<wbr>elva/proj/src&quot;<br></div></di=
+v></div></blockquote><div><br></div><div>it looks like you&#39;re trying to=
+ build from an &quot;external&quot; source tree. Yocto does support this wi=
+th a dedicated class you can inherit (externalsrc). See [1] for the relevan=
+t doc. Maybe it can help solving the issue with cmake...=C2=A0</div><div>=
+=C2=A0</div><div>[1]=C2=A0<a href=3D"http://www.yoctoproject.org/docs/2.3/m=
+ega-manual/mega-manual.html#building-software-from-an-external-source">http=
+://www.yoctoproject.org/docs/2.3/mega-manual/mega-manual.html#building-soft=
+ware-from-an-external-source</a></div><div>=C2=A0</div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"ltr"><div id=3D"gmail-m_-68100551=
+90572032317divtagdefaultwrapper" style=3D"font-size:12pt;color:rgb(0,0,0);f=
+ont-family:Calibri,Helvetica,sans-serif" dir=3D"ltr"><div>
+inherit cmake<br>
+EXTRA_OECMAKE =3D &quot;&quot;<br>
+</div>
+<br>
+<p></p>
+<p>The problem I&#39;m having now is that, using the generated toolchain, c=
+make is looking at the wrong directories. The rootpath is also crooked when=
+ I print it out in my cmake project file:</p>
+<p><span>CMAKE_FIND_ROOT_PATH:/media/<wbr>traffic/Yocto/QorIQ-SDK-V2.0-<wbr=
+>20160527-yocto/build_<wbr>ls2080abluebox/tmp/sysroots/<wbr>ls2080abluebox<=
+span>/media/traffic/<wbr>Yocto/QorIQ-SDK-V2.0-20160527-<wbr>yocto/build_ls2=
+080abluebox/<wbr>tmp/sysroots/x86_64-linux</span></span></p>
+<p><span><span><br>
+</span></span></p>
+<p><span><span>What am I doing wrong? My target is arm. I can build my imag=
+e fine without the recipe, so I&#39;m thinking that there is a step I&#39;m=
+ missing. Also when I export the SDK I can see that all the right libraries=
+ and findscripts are available (in the sysroot).
+ But whenever I change my source, it still looks in the sysroot of the host=
+ system. Any help would be greatly appreciated!</span></span><br>
+</p>
+</div>
+</div>
+
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div></div>
+
+--94eb2c06c23a00842a055443b14f--
