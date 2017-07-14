@@ -1,36 +1,66 @@
-Return-Path: <timothy.t.orling@linux.intel.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4035EE00A38; Thu, 13 Jul 2017 23:45:08 -0700 (PDT)
+	id 9EE1AE00A38; Fri, 14 Jul 2017 02:03:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8D7CE00944;
-	Thu, 13 Jul 2017 23:45:03 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga104.jf.intel.com with ESMTP; 13 Jul 2017 23:45:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,357,1496127600"; d="scan'208";a="286766921"
-Received: from samhenry-mobl2.amr.corp.intel.com ([10.252.200.245])
-	by fmsmga004.fm.intel.com with ESMTP; 13 Jul 2017 23:45:02 -0700
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-From: Tim Orling <timothy.t.orling@linux.intel.com>
-In-Reply-To: <29844a74085e4efd9f279dfea9054c09@bowex36c.micron.com>
-Date: Thu, 13 Jul 2017 23:45:02 -0700
-Message-Id: <CC972D51-93E5-4DDA-9638-2F968C123AFC@linux.intel.com>
-References: <29844a74085e4efd9f279dfea9054c09@bowex36c.micron.com>
-To: "Francesco Camarda (fcamarda)" <fcamarda@micron.com>
-X-Mailer: Apple Mail (2.3273)
-Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-intel] How to build module iasImage from bzImage outside yocto
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1061E00944
+	for <yocto@yoctoproject.org>; Fri, 14 Jul 2017 02:03:34 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id j85so9627298wmj.0
+	for <yocto@yoctoproject.org>; Fri, 14 Jul 2017 02:03:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=mcqZALM84K4k/sV+V5S916bpSDWt29lNhatb5fJCCd0=;
+	b=kDNOx8k8FGOvThJ0IYhfEIHGUU8Z8Z765YsL+Ye0v+b84r+9r+uSyKCP+r0ajLKcOv
+	o5d232ZoVL8j2TnWirFJ1HekuHiXUlKeHTfL+Lp2uQi6KXjD6v3QsmUnP0CkRWhs8LXs
+	5d7IKYqcVVyPrUIZRMKSYKeUxrR9QGeQPUsmDsAKY2sT/362POk4N+/LsUPOrZ2/i0Nm
+	z/s9EngzSDEMroR6xcXgU0Hdza03FbHV54kFzGhxeZMOplqYGuW8sH3yWJYaIwVBg8yK
+	kHb4jIS2tpE3vV/3DyAI5q2nxRvhvUjpUNfxQ6sSoDrEHChlY6abJqVN5JhMVP6Qh6NK
+	C4Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=mcqZALM84K4k/sV+V5S916bpSDWt29lNhatb5fJCCd0=;
+	b=hFqFaB4TUTkKWk7bWHmR8nCbN/YK8HV1eXFRAINC98oWYCEI4OgqbqW7kZ6gz6qNRi
+	iMEmpd6bJ1aO+6DXU2wN9C2fbOE/Fklb+5gm41m0DhDwXjB8V1piBXy0pRYbhG/FSfQB
+	WMPZyU9VBLbd1hDXS7ELIbHZIWFUyL528qn5xX8SqdcBUVtbL3wegNTg55i/clrhKRpp
+	saf54ha7SgGlrrInpvNyvi6jR042BTYShZJnDMibPElrm8iMXR1YINxI5PYfJ6pXI5He
+	qhki5/DgIA2WFjn77ACsdoQ8ABsBqkcZFYWQNyuUihdnQmoLbsmERyzRdiWXOYsreiZE
+	FTxQ==
+X-Gm-Message-State: AIVw111rmy6Oz0PcxU5r6jpVio/GKWBKlZKhvkfnBvysWZ2wFxwcoYN6
+	VjY2UnjWw1MtdGSX
+X-Received: by 10.28.178.203 with SMTP id b194mr2133393wmf.36.1500023013278;
+	Fri, 14 Jul 2017 02:03:33 -0700 (PDT)
+Received: from gizero-desktop.tw.it
+	(host193-245-static.58-79-b.business.telecomitalia.it.
+	[79.58.245.193]) by smtp.gmail.com with ESMTPSA id
+	j31sm5231151wre.67.2017.07.14.02.03.32
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 14 Jul 2017 02:03:32 -0700 (PDT)
+From: Andrea Galbusera <gizero@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 14 Jul 2017 11:03:18 +0200
+Message-Id: <1500022998-25701-1-git-send-email-gizero@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-raspberrypi][PATCH] userland: Add missing EGL_CAST defines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,141 +72,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jul 2017 06:45:08 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 14 Jul 2017 09:03:37 -0000
 
+Needed by libepoxy
 
-> On Jul 13, 2017, at 5:59 AM, Francesco Camarda (fcamarda) =
-<fcamarda@micron.com> wrote:
->=20
-> Hello,
-> Starting from a yocto build (details below):
-> =20
-> $ bitbake ias-kc-pf-image
-> Loading cache: 100% =
-|#########################################################################=
-###################| ETA:  00:00:00
-> Loaded 2536 entries from dependency cache.
-> Parsing recipes: 100% =
-|#########################################################################=
-#################| Time: 00:00:00
-> Parsing of 1964 .bb files complete (1963 cached, 1 parsed). 2536 =
-targets, 322 skipped, 2 masked, 0 errors.
-> NOTE: Resolving any missing task queue dependencies
-> =20
-> Build Configuration:
-> BB_VERSION        =3D "1.28.0"
-> BUILD_SYS         =3D "x86_64-linux"
-> NATIVELSBSTRING   =3D "Ubuntu-16.04"
-> TARGET_SYS        =3D "x86_64-poky-linux"
-> MACHINE           =3D "gr-mrb-64"
-> DISTRO            =3D "poky-ivi-systemd"
-> DISTRO_VERSION    =3D "10.0+snapshot-20170713"
-> TUNE_FEATURES     =3D "m64 corei7"
-> TARGET_FPU        =3D ""
-> meta             =20
-> meta-yocto
+Signed-off-by: Andrea Galbusera <gizero@gmail.com>
+---
+ .../0015-EGL-glplatform.h-define-EGL_CAST.patch    | 32 ++++++++++++++++++++++
+ recipes-graphics/userland/userland_git.bb          |  1 +
+ 2 files changed, 33 insertions(+)
+ create mode 100644 recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
 
-This should be meta-poky now. How old is the metadata (version of poky / =
-Yocto Project release) your distro is based on?
-
->       =20
-> meta-yocto-bsp    =3D =
-"first_build:dade0e68c645473d94e1b05020b064df40677e81=E2=80=9D
-
-This hash shows you are using a local branch, so I can=E2=80=99t guess =
-at which version of poky you are using.
-
-> meta-ias-audio   =20
-> meta-ias-boot    =20
-> meta-ias-core    =20
-> meta-ias-devtools=20
-> meta-ias-earlyapplication=20
-> meta-ias-graphics=20
-> meta-ias-gr-mrb-bsp=20
-> meta-ias-ivi-adapt=20
-> meta-ias-kc-reference=20
-> meta-ias-lifecycle=20
-> meta-ias-mediasdk=20
-> meta-ias-mediatransport=20
-> meta-ias-oss     =20
-> meta-ias-security=20
-> meta-ias-setup   =20
-> meta-ias-systembus=20
-> meta-ias-targetutilities=20
-> meta-ias-vehiclebus =3D =
-"master:89811f29229764d65db9b577252e9016083b8699=E2=80=9D
-
-I can find no references to meta-ias on layers.openembedded.org or in a =
-Google search, so no idea how to help you with respect to your =
-=E2=80=9CiasImage=E2=80=9D question.
-
-> meta-intel       =20
-> meta-valleyisland =3D =
-"first_build:8c15de8dbaa1414ffd0f69bea7227e7285816f85"
-> meta-ivi          =3D =
-"first_build:e42777ef74b476ed6702b036818bcffd4fe0d768"
-> meta-filesystems =20
-> meta-networking  =20
-> meta-oe          =20
-> meta-python       =3D =
-"first_build:dc5634968b270dde250690609f0015f881db81f2"
-> meta-oracle-java  =3D =
-"first_build:f7c98706f80a2488ad2628e5b0c6d3f9f80c24fd"
-> =20
-> After building the bzImage from an external toolchain is it possible =
-to build (outside yocto) the iasImage necessary to boot the Gordon peak =
-(Intel Apollo lake SoC).
-> =20
-
-> Also I am trying to build a sato image but:
-> =20
-> $ bitbake core-image-sato
-> Loading cache: 100% =
-|#########################################################################=
-###################| ETA:  00:00:00
-> Loaded 2536 entries from dependency cache.
-> Parsing recipes: 100% =
-|#########################################################################=
-#################| Time: 00:00:00
-> Parsing of 1964 .bb files complete (1963 cached, 1 parsed). 2536 =
-targets, 322 skipped, 2 masked, 0 errors.
-> NOTE: Resolving any missing task queue dependencies
-> ERROR: Nothing RPROVIDES 'packagegroup-core-x11-sato-games' (but =
-/home/rah/workspace/intel_GP_APL/GR_Yocto/poky/meta/recipes-sato/images/co=
-re-image-sato.bb RDEPENDS on or otherwise requires it)
-> NOTE: Runtime target 'packagegroup-core-x11-sato-games' is =
-unbuildable, removing...
-> Missing or unbuildable dependency chain was: =
-['packagegroup-core-x11-sato-games']
-> ERROR: Required build target 'core-image-sato' has no buildable =
-providers.
-> Missing or unbuildable dependency chain was: ['core-image-sato', =
-'packagegroup-core-x11-sato-games']
-> =20
-
-You are missing the following commit from either poky or oe-core:
-=
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta/recipes-sato/im=
-ages/core-image-sato.bb?id=3D3afed1549a623d2a4921883319ff96bf3e6edc54
-
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit =
-code.
-> =20
-> =20
-> Regards,
-> Francesco
-> =20
-> <image001.png>
-> Francesco Camarda | EBU=20
-> Automotive Sr. System AE
-> desk +39.095.7483536 | mobile +39.346.7897221
-> =20
-> --=20
-> _______________________________________________
-> meta-intel mailing list
-> meta-intel@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-intel
+diff --git a/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch b/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
+new file mode 100644
+index 0000000..5a80a26
+--- /dev/null
++++ b/recipes-graphics/userland/userland/0015-EGL-glplatform.h-define-EGL_CAST.patch
+@@ -0,0 +1,32 @@
++From 382e3b16cbcc09d825540d5bd3e45a2fca4484fe Mon Sep 17 00:00:00 2001
++From: Andrea Galbusera <gizero@gmail.com>
++Date: Fri, 14 Jul 2017 09:52:54 +0200
++Subject: [PATCH] EGL/glplatform.h: define EGL_CAST
++
++C++ / C typecast macros for special EGL handle values: used by libepoxy code
++The definition comes from the updated version of this header in mesa.
++
++Upstream-Status: Pending
++---
++ interface/khronos/include/EGL/eglplatform.h | 7 +++++++
++ 1 file changed, 7 insertions(+)
++
++diff --git a/interface/khronos/include/EGL/eglplatform.h b/interface/khronos/include/EGL/eglplatform.h
++index 1f7c930..c39d425 100644
++--- a/interface/khronos/include/EGL/eglplatform.h
+++++ b/interface/khronos/include/EGL/eglplatform.h
++@@ -202,4 +202,11 @@ EGLAPI void EGLAPIENTRY BEGL_GetDefaultDriverInterfaces(BEGL_DriverInterfaces *i
++ #include "interface/khronos/common/khrn_client_mangle.h"
++ #endif
++ 
+++/* C++ / C typecast macros for special EGL handle values */
+++#if defined(__cplusplus)
+++#define EGL_CAST(type, value) (static_cast<type>(value))
+++#else
+++#define EGL_CAST(type, value) ((type) (value))
+++#endif
+++
++ #endif /* __eglplatform_h */
++-- 
++2.7.4
++
+diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+index 26bbfaf..893fcba 100644
+--- a/recipes-graphics/userland/userland_git.bb
++++ b/recipes-graphics/userland/userland_git.bb
+@@ -34,6 +34,7 @@ SRC_URI = "\
+     file://0012-implement-buffer-wrapping-interface-for-dispmanx.patch \
+     file://0013-Implement-triple-buffering-for-wayland.patch \
+     file://0014-GLES2-gl2ext.h-Define-GL_R8_EXT-and-GL_RG8_EXT.patch \
++    file://0015-EGL-glplatform.h-define-EGL_CAST.patch \
+ "
+ S = "${WORKDIR}/git"
+ 
+-- 
+2.7.4
 
 
