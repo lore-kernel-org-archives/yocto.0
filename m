@@ -1,52 +1,30 @@
-Return-Path: <robert_joslyn@selinc.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 810FFE00C2E; Mon, 17 Jul 2017 11:13:06 -0700 (PDT)
+	id D7B62E00C30; Mon, 17 Jul 2017 12:05:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.117.214.141 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from valiant.selinc.com (valiant.selinc.com [74.117.214.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D013E00BC4
-	for <yocto@yoctoproject.org>; Mon, 17 Jul 2017 11:13:04 -0700 (PDT)
-Received: from pps.filterd (valiant.selinc.com [127.0.0.1])
-	by valiant.selinc.com (8.16.0.20/8.16.0.20) with SMTP id v6HIC35X018147;
-	Mon, 17 Jul 2017 11:13:03 -0700
-Received: from edison2.ad.selinc.com (mail.ad.selinc.com [10.100.0.115])
-	by valiant.selinc.com with ESMTP id 2bqh56bbfg-1;
-	Mon, 17 Jul 2017 11:13:03 -0700
-Received: from robejoslpc.ad.selinc.com ([10.203.80.174])
-	by edison2.ad.selinc.com (IBM Domino Release 9.0.1FP3 HF515)
-	with ESMTP id 2017071711130298-248125 ;
-	Mon, 17 Jul 2017 11:13:02 -0700 
-Message-ID: <1500315183.18255.2.camel@selinc.com>
-From: Robert Joslyn <robert_joslyn@selinc.com>
-To: Robert Berger <yocto.user.mailinglist@gmail.com>,
-	Jimi Damon	 <jdamon@gmail.com>
-Date: Mon, 17 Jul 2017 11:13:03 -0700
-In-Reply-To: <65a84bf6-0f68-033a-c197-74bc870ee5aa@gmail.com>
-References: <a241bdb0-6ea7-8f0e-8411-02e9dbb1662c@gmail.com>
-	<CAJTo0LZR0=_+WaUqQPx-UA75jOcjMa1OhaB13ztJE+oW4_4xBg@mail.gmail.com>
-	<1500064345.5177.3.camel@selinc.com>
-	<65a84bf6-0f68-033a-c197-74bc870ee5aa@gmail.com>
-X-Mailer: Evolution 3.22.6 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0001]
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from blaine.gmane.org (unknown [195.159.176.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25C2CE00BDC
+	for <yocto@yoctoproject.org>; Mon, 17 Jul 2017 12:05:17 -0700 (PDT)
+Received: from list by blaine.gmane.org with local (Exim 4.84_2)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1dXBKK-0005nS-6B
+	for yocto@yoctoproject.org; Mon, 17 Jul 2017 21:05:04 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Ferry Toth <ftoth@telfort.nl>
+Date: Mon, 17 Jul 2017 21:02:20 +0200
+Organization: Exalon Delft
+Message-ID: <okj1jq$log$1@blaine.gmane.org>
 Mime-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Edison2/SEL(Release 9.0.1FP3
-	HF515|April 25, 2015) at 07/17/2017 11:13:02 AM,
-	Serialize by Router on Edison2/SEL(Release 9.0.1FP3 HF515|April 25,
-	2015) at 07/17/2017 11:13:03 AM,
-	Serialize complete at 07/17/2017 11:13:03 AM
-X-TNEFEvaluated: 1
-X-Proofpoint-Virus-Version: vendor=nai engine=5800 definitions=8594
-	signatures=668516
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How do you build 2 versions of the same recipe and a specific version from bitbake cmd line
+X-Complaints-To: usenet@blaine.gmane.org
+User-Agent: KNode/4.14.10
+Subject: Build core2 (i686) U-Boot for a core-i7 (amd64) image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,69 +36,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jul 2017 18:13:06 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 17 Jul 2017 19:05:20 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7Bit
 
-On Sat, 2017-07-15 at 15:47 +0300, Robert Berger wrote:
-> Hi,
->=20
-> On 2017-07-14 23:32, Robert Joslyn wrote:
-> >=20
-> > Just to clarify, the typical way this is done is to put the major
-> > version number as part of the package name. For example, the
-> > recipes
-> > could be called zeromq3_3.2.2.bb and zeromq4_4.1.5.bb. This assumes
-> > zeromq can tolerate having multiple versions installed at the same
-> > time.
-> >=20
-> > Robert
-> >=20
->=20
-> I did not try but I think in the meantime we can have the same
-> package=C2=A0
-> with different versions in the same image.
->=20
-> The docu says about (run time dependencies) RDEPENDS:
->=20
-> "BitBake, which the OpenEmbedded build system uses, supports
-> specifying=C2=A0
-> versioned dependencies. Although the syntax varies depending on the=C2=A0
-> packaging format, BitBake hides these differences from you."[1]
->=20
-> [1]=C2=A0
-> https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__www.yoctoproject.
-> org_docs_latest_mega-2Dmanual_mega-2Dmanual.html-23var-
-> 2DRDEPENDS&d=3DDwICaQ&c=3DzVFQZQ67ypsA9mYKSCqWmQHiVkCCaN-
-> Gb60_N6TVnLk&r=3DjKjb9x138uKtDnkEJ0l_Ks7NxaK4YpEWM1o0MkNOIx0&m=3DlB4lbBsS
-> MGKatP7Qhwv-yEOj_8wqdO1udb-
-> Fcowl95Y&s=3DlenIoSon3TiBnHTCoAxPZnfUoziIo_uEwECWpfj9qEA&e=3D=C2=A0
->=20
-> What's unclear to me is how this works with build time dependencies=C2=A0
-> DEPENDS? I guess somewhere you need to say that you want to link
-> against=C2=A0
-> version 3.2.2 for one package and against 4.1.5 in another package
-> and=C2=A0
-> since it looks like DEPENDS doesn't contain versioned dependencies I=C2=
-=A0
-> guess you need to work with names like zeromq3_3.2.2.bb and=C2=A0
-> zeromq4_4.1.5.bb.
->=20
-> Is this the case?
+On edison U-Boot is 32 bit. I'm building a 64 bit kernel + rootfs.
 
-As far as I know, yes, you need to use recipes named like that, so
-DEPENDS could contain "zeromq3" or "zeromq4". I don't think it's
-possible to specify versions with DEPENDS the same way you can with
-RDEPENDS.
+The only recipy that fails is U-Boot with:
+undefined reference to `__normal___udivdi3'
 
-> Which in turn makes me wonder what's the use case for RDEPENDS and=C2=A0
-> versioned dependencies.
+Apparently, when building 32 bit U-Boot outside of yocto on a 64bit 
+machine you need to install gcc-6-multilib.
 
-I'm not sure, I never actually needed them. The versioned RDEPENDS are
-encoded in whatever packages you build (rpm, for example), so I assume
-there are use cases when using package feeds.
+How would I configure poke or change the recipe to do the same?
 
-
-Robert
 
 
