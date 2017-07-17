@@ -1,33 +1,47 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <pierre.ficheux@smile.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83F9CE00C38; Mon, 17 Jul 2017 14:38:10 -0700 (PDT)
+	id E42A7E00C38; Mon, 17 Jul 2017 15:48:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [91.216.209.19 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1512E00C34
-	for <yocto@yoctoproject.org>; Mon, 17 Jul 2017 14:38:09 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 Jul 2017 14:38:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,375,1496127600"; d="scan'208";a="994037682"
-Received: from unknown (HELO alimonb-mobl1.zpn.intel.com) ([10.219.128.142])
-	by orsmga003.jf.intel.com with ESMTP; 17 Jul 2017 14:38:07 -0700
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 17 Jul 2017 16:38:40 -0500
-Message-Id: <20170717213840.25983-1-anibal.limon@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
+Received: from idris.smile.fr (idris.smile.fr [91.216.209.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E5FAE00C34
+	for <yocto@yoctoproject.org>; Mon, 17 Jul 2017 15:48:51 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by idris.smile.fr (Postfix) with ESMTP id 10E6D1EE2D5C;
+	Tue, 18 Jul 2017 00:48:51 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at smile.fr
+Received: from idris.smile.fr ([127.0.0.1])
+	by localhost (bluemind-mta.prod.vitry.intranet [127.0.0.1])
+	(amavisd-new, port 10024)
+	with ESMTP id YkLUo+7z252h; Tue, 18 Jul 2017 00:48:50 +0200 (CEST)
+Received: from bluemind.smile.fr (bluemind.prod.vitry.intranet [10.10.1.35])
+	by idris.smile.fr (Postfix) with ESMTPS id E47911EE2D53;
+	Tue, 18 Jul 2017 00:48:50 +0200 (CEST)
+Received: from localhost.localdomain (localhost [127.0.0.1])
+	by bluemind.smile.fr (Postfix) with ESMTP id DFD4754604CB;
+	Tue, 18 Jul 2017 00:48:50 +0200 (CEST)
 MIME-Version: 1.0
-Subject: [meta-yocto-bsp][PATCH] oeqa/selftest/cases: systemd_boot enable threaded runs
+Date: Tue, 18 Jul 2017 00:48:50 +0200
+From: Pierre FICHEUX <pierre.ficheux@smile.fr>
+To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+In-Reply-To: <1500302882.5349.110.camel@linux.intel.com>
+References: <1500278455-5712-1-git-send-email-pierre.ficheux@smile.fr>
+	<1500300247.5349.105.camel@linux.intel.com>
+	<CAJTo0LYvGfA-QxNt42AQrT71ExA5Raf=VP6mxTOwPua8TCViZA@mail.gmail.com>
+	<1500302882.5349.110.camel@linux.intel.com>
+Message-ID: <48055de13a9e8286adede7bb3143bafe@smile.fr>
+X-Sender: pierre.ficheux@smile.fr
+User-Agent: Roundcube Webmail/0.8.5
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] Added missing CPPFLAGS/CFLAGS/LDFLAGS in sample recipe for morty branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,95 +53,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jul 2017 21:38:10 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 17 Jul 2017 22:48:54 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
----
- .../lib/oeqa/selftest/cases/systemd_boot.py        | 26 ++++++++++++----------
- 1 file changed, 14 insertions(+), 12 deletions(-)
+My first proposed patch didn't include CPPFLAGS/CFLAGS but Khem Raj did 
+prefer the new way :)
 
-diff --git a/meta-yocto-bsp/lib/oeqa/selftest/cases/systemd_boot.py b/meta-yocto-bsp/lib/oeqa/selftest/cases/systemd_boot.py
-index dd5eeec1633..0bd52dc6b85 100644
---- a/meta-yocto-bsp/lib/oeqa/selftest/cases/systemd_boot.py
-+++ b/meta-yocto-bsp/lib/oeqa/selftest/cases/systemd_boot.py
-@@ -3,9 +3,11 @@ import os
- from oeqa.selftest.case import OESelftestTestCase
- from oeqa.core.decorator.oeid import OETestID
- from oeqa.core.decorator.depends import OETestDepends
--from oeqa.utils.commands import runCmd, bitbake, get_bb_var, runqemu
- 
- class Systemdboot(OESelftestTestCase):
-+    _use_own_builddir = True
-+    _main_thread = False
-+
-     def _common_setup(self):
-         """
-         Common setup for test cases: 1445, 1528
-@@ -22,7 +24,7 @@ class Systemdboot(OESelftestTestCase):
-         """
- 
-         # Build a genericx86-64/efi systemdboot image
--        bitbake('mtools-native core-image-minimal')
-+        self.bitbake('mtools-native core-image-minimal')
- 
- 
-     @OETestID(1445)
-@@ -38,14 +40,14 @@ class Systemdboot(OESelftestTestCase):
- 
-         # We'd use DEPLOY_DIR_IMAGE here, except that we need its value for
-         # MACHINE="genericx86-64 which is probably not the one configured
--        systemdbootfile = os.path.join(get_bb_var('DEPLOY_DIR'), 'images', 'genericx86-64', 'systemd-bootx64.efi')
-+        systemdbootfile = os.path.join(self.get_bb_var('DEPLOY_DIR'), 'images', 'genericx86-64', 'systemd-bootx64.efi')
- 
-         self._common_setup()
- 
-         # Ensure we're actually testing that this gets built and not that
-         # it was around from an earlier build
--        bitbake('-c cleansstate systemd-boot')
--        runCmd('rm -f %s' % systemdbootfile)
-+        self.bitbake('-c cleansstate systemd-boot')
-+        self.runCmd('rm -f %s' % systemdbootfile)
- 
-         self._common_build()
- 
-@@ -71,20 +73,20 @@ class Systemdboot(OESelftestTestCase):
-         AutomatedBy:  Jose Perez Carranza <jose.perez.carranza at linux-intel.com>
-         """
- 
--        systemdbootfile = os.path.join(get_bb_var('DEPLOY_DIR'), 'images', 'genericx86-64',
-+        systemdbootfile = os.path.join(self.get_bb_var('DEPLOY_DIR'), 'images', 'genericx86-64',
-                                            'systemd-bootx64.efi')
--        systemdbootimage = os.path.join(get_bb_var('DEPLOY_DIR'), 'images', 'genericx86-64',
-+        systemdbootimage = os.path.join(self.get_bb_var('DEPLOY_DIR'), 'images', 'genericx86-64',
-                                                 'core-image-minimal-genericx86-64.hddimg')
--        imagebootfile = os.path.join(get_bb_var('DEPLOY_DIR'), 'images', 'genericx86-64',
-+        imagebootfile = os.path.join(self.get_bb_var('DEPLOY_DIR'), 'images', 'genericx86-64',
-                                                             'bootx64.efi')
--        mcopynative = os.path.join(get_bb_var('STAGING_BINDIR_NATIVE'), 'mcopy')
-+        mcopynative = os.path.join(self.get_bb_var('STAGING_BINDIR_NATIVE'), 'mcopy')
- 
-         #Clean environment before start the test
-         if os.path.isfile(imagebootfile):
--            runCmd('rm -f %s' % imagebootfile)
-+            self.runCmd('rm -f %s' % imagebootfile)
- 
-             #Step 1
--            runCmd('%s -i %s ::EFI/BOOT/bootx64.efi %s' % (mcopynative ,systemdbootimage,
-+            self.runCmd('%s -i %s ::EFI/BOOT/bootx64.efi %s' % (mcopynative ,systemdbootimage,
-                                                            imagebootfile))
- 
-             #Step 2
-@@ -93,6 +95,6 @@ class Systemdboot(OESelftestTestCase):
-                             % imagebootfile)
- 
-             #Step 3
--            result = runCmd('md5sum %s %s' % (systemdbootfile, imagebootfile))
-+            result = self.runCmd('md5sum %s %s' % (systemdbootfile, imagebootfile))
-             self.assertEqual(result.output.split()[0], result.output.split()[2],
-                              '%s was not correclty generated' % imagebootfile)
 -- 
-2.11.0
+Pierre FICHEUX -/- CTO Smile-ECS, France -\- pierre.ficheux@smile.fr
+                                     http://www.smile.fr
+                                     http://ingenierie.openwide.fr
+I would love to change the world, but they won't give me the source 
+code
 
+Le 2017-07-17 16:48, Leonardo Sandoval a écrit :
+> On Mon, 2017-07-17 at 15:30 +0100, Burton, Ross wrote:
+>> 
+>> On 17 July 2017 at 15:04, Leonardo Sandoval
+>> <leonardo.sandoval.gonzalez@linux.intel.com> wrote:
+>>         master has the second line (LDFLAGS) but not the first one
+>>         (CPPFLAGS and
+>>         CFLAGS) so the problem may also be present on master. Would
+>>         you mind
+>>         checking this and sent patches to the poky mailing list?
+>> 
+>> 
+>> The GNU_HASH warning is triggered by ignoring LDFLAGS.
+> 
+> Got it, so definitely LDFLAGS var is missing, not sure if the rest are
+> necessary for this simple hello world recipe.
+> Leo
+>> 
+>> 
+>> Ross
 
