@@ -1,65 +1,30 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CB5C2E00C3B; Mon, 17 Jul 2017 19:50:25 -0700 (PDT)
+	id B6A66E00C3B; Tue, 18 Jul 2017 00:12:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.194 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.194 listed in dnsbl.sorbs.net]
-Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
-	[209.85.128.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FC3DE00C39
-	for <yocto@yoctoproject.org>; Mon, 17 Jul 2017 19:50:23 -0700 (PDT)
-Received: by mail-wr0-f194.google.com with SMTP id y43so1460wrd.0
-	for <yocto@yoctoproject.org>; Mon, 17 Jul 2017 19:50:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=SzO/H9jcmd/b02zF/mA0DhX+QsK5x9qvjO0gOQQLZFY=;
-	b=kjkvk1yomIpdDjbyy8wVouGKDWRD8C0IkwEiMRsBdCEFuiAdk4MduUzcGBm/UYN0m0
-	XYNxYoBjjGq5G2+ozh2L3FwJwkfrsE/LF6/WEhMw4/LJcf24iMZmKyUoeO0mL05xQHRd
-	SvlSP6NWpe/+NA+TNwuwuPnsCPLpghqh8jovdzRE58foJitUwby36nvfRA84wGmGOu9a
-	RqYGbCjX4n6VjM/0thJsOCP93nOklqxhNiCRCaJOXBbbjg6qoN78qBXKDqh62nPE+/Ln
-	Ji818SgO8AU5z1RZaSj2c6xKDIkZE5qyCYMjY9tM4lB4MiyKKaiSE/HiQnUcEbmQpXhu
-	/2kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=SzO/H9jcmd/b02zF/mA0DhX+QsK5x9qvjO0gOQQLZFY=;
-	b=S0dUoBrbxIiI3DQ94tRPOqz0CWIAzc1tWeYy0HqWktmQwMouumMz3nMswu0NRHDH50
-	RyTUqwzCmMOo2yL+br46+W2jJRXWGUdpGKxeGdl+0hjX6b7WiYweRNBOLUvadvrMTehU
-	wkUJYa8oAdJSz1STpb+2QZEbXwiDLZqFg9dDnaNb5ldOtAhRTF8Z0f2I663in3Z569VT
-	F1EIG1iPOkmP8attad1izsg3FN9WvTcvsKME0K+OYYguMr764uO48RM5l2UxTzXgwpk4
-	SE42jIrLeI4MBCO8zIVGuAEQNvm1MnhfDOCRN/noxBoE5JWBxLLBO6Ljdl6WotW/MZsx
-	CO8w==
-X-Gm-Message-State: AIVw112LxbFXFpHEIZwdwwYQa/vKKSx7CzRELvGG3MnPFQknSf8eTpdA
-	YYMjFumZ2IcCM9kDH9/y3sedL9X2gg==
-X-Received: by 10.80.170.218 with SMTP id r26mr465782edc.113.1500346222292;
-	Mon, 17 Jul 2017 19:50:22 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.80.145.210 with HTTP; Mon, 17 Jul 2017 19:49:51 -0700 (PDT)
-In-Reply-To: <okj1jq$log$1@blaine.gmane.org>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from blaine.gmane.org (unknown [195.159.176.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B60F7E00C39
+	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 00:12:07 -0700 (PDT)
+Received: from list by blaine.gmane.org with local (Exim 4.84_2)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1dXMfn-0002Yi-NP
+	for yocto@yoctoproject.org; Tue, 18 Jul 2017 09:11:59 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Ferry Toth <ftoth@telfort.nl>
+Date: Tue, 18 Jul 2017 07:11:52 +0000 (UTC)
+Message-ID: <okkcbo$8r6$1@blaine.gmane.org>
 References: <okj1jq$log$1@blaine.gmane.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 17 Jul 2017 22:49:51 -0400
-Message-ID: <CAMKF1soyv1xqY06yXj=C4Xz_1LePJhch0H8a4TgNcL_ufpw-cA@mail.gmail.com>
-To: Ferry Toth <ftoth@telfort.nl>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAMKF1soyv1xqY06yXj=C4Xz_1LePJhch0H8a4TgNcL_ufpw-cA@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@blaine.gmane.org
+User-Agent: Pan/0.141 (Tarzan's Death; 168b179 git.gnome.org/pan2)
 Subject: Re: Build core2 (i686) U-Boot for a core-i7 (amd64) image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -72,31 +37,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jul 2017 02:50:25 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 18 Jul 2017 07:12:08 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 17, 2017 at 3:02 PM, Ferry Toth <ftoth@telfort.nl> wrote:
-> On edison U-Boot is 32 bit. I'm building a 64 bit kernel + rootfs.
->
-> The only recipy that fails is U-Boot with:
-> undefined reference to `__normal___udivdi3'
->
+Op Mon, 17 Jul 2017 22:49:51 -0400, schreef Khem Raj:
 
-this means gcc is generating a helper call which it assumes libgcc will provide
-but here the toolchain in multilib env might be not providing it.
+> On Mon, Jul 17, 2017 at 3:02 PM, Ferry Toth
+> <ftoth@telfort.nl> wrote:
+>> On edison U-Boot is 32 bit. I'm building a 64 bit kernel + rootfs.
+>>
+>> The only recipy that fails is U-Boot with:
+>> undefined reference to `__normal___udivdi3'
+>>
+>>
+> this means gcc is generating a helper call which it assumes libgcc will
+> provide but here the toolchain in multilib env might be not providing
+> it.
 
-One solution is to rewrite the code such that this call is not generated by
-gcc. So help the compiler.
+I am not using multilib yet, as I don't know exactly how to do that. 
+Actually that is my question.
 
-> Apparently, when building 32 bit U-Boot outside of yocto on a 64bit
-> machine you need to install gcc-6-multilib.
->
-> How would I configure poke or change the recipe to do the same?
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> One solution is to rewrite the code such that this call is not generated
+> by gcc. So help the compiler.
+
+Rewrite U-Boot to not use this helper, that doesn't sound right.
+
+I would rather tell this specific recipe to use the 32 bit compiler, 
+while all other recipies are built with 64. 
+
+>> Apparently, when building 32 bit U-Boot outside of yocto on a 64bit
+>> machine you need to install gcc-6-multilib.
+>>
+>> How would I configure poke or change the recipe to do the same?
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
+
 
