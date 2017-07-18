@@ -1,36 +1,35 @@
-Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 364ACE00BC0; Tue, 18 Jul 2017 09:05:37 -0700 (PDT)
+	id 6A395E00B6F; Tue, 18 Jul 2017 09:14:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95800E00B6F
-	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 09:05:36 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	18 Jul 2017 09:05:35 -0700
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91A06E00B6F
+	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 09:14:06 -0700 (PDT)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by fmsmga105.fm.intel.com with ESMTP; 18 Jul 2017 09:14:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,378,1496127600"; d="scan'208";a="112702546"
-Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.119])
-	by orsmga002.jf.intel.com with ESMTP; 18 Jul 2017 09:05:34 -0700
-Message-ID: <1500394433.2753.11.camel@linux.intel.com>
-From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
-To: Paulo Neves <ptsneves@gmail.com>
-Date: Tue, 18 Jul 2017 11:13:53 -0500
-In-Reply-To: <CAJO0J4hEcDr36TMJtBO+nb8cFMubct7yhUuu4HDjEQyQntvuQw@mail.gmail.com>
-References: <CAJO0J4hEcDr36TMJtBO+nb8cFMubct7yhUuu4HDjEQyQntvuQw@mail.gmail.com>
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [PATCH] fetch2/__init_.py removed bb.error which caused exit code 1
+X-IronPort-AV: E=Sophos;i="5.40,378,1496127600"; d="scan'208";a="128830615"
+Received: from alimonb-mobl1.zpn.intel.com ([10.219.128.142])
+	by fmsmga006.fm.intel.com with ESMTP; 18 Jul 2017 09:14:05 -0700
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 18 Jul 2017 11:14:34 -0500
+Message-Id: <20170718161438.31649-2-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20170718161438.31649-1-anibal.limon@linux.intel.com>
+References: <20170718161438.31649-1-anibal.limon@linux.intel.com>
+MIME-Version: 1.0
+Cc: mikko.ylinen@intel.com
+Subject: [yocto-autobuilder][PATCHv3 1/5] buildsteps/BuildImages: Setproperty BuildImages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,40 +41,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jul 2017 16:05:37 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 18 Jul 2017 16:14:07 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-you need to send it to openembedde-core mailing list and use
-git-send-email to submit your patch. More info on the link below
+In certain situations is need to know what images was built for
+example the DAFT executes flashing over certain image.
 
+[YOCTO #10604]
 
-http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Leo
-
-On Tue, 2017-07-18 at 15:43 +0200, Paulo Neves wrote:
-> http://lists.openembedded.org/pipermail/openembedded-core/2012-September/069448.html
-> 
-> Workaround to avoid exit 1 status.
-> 
->     The reason it happens is that there are 2 missions
->     the state cache uses the normal fetcher to get
->     its's stuff and it is acceptable for it to fail.
->     On the other hand it is not acceptable for fetch
->     to fail.
-> 
->     In it's code the state cache code catches the exception that the
->     fetcher launches and discards. The problem
->     is that before this exception is caught it prints
->     a bb.error and bb.error prints something and
->     continues on like no problem happened.  but marks
->     the exit code as 1 which is a disaster.
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
+index f276863f8ff..8f3a5c04f73 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
+@@ -172,6 +172,9 @@ class BuildImages(BitbakeShellCommand):
+                     self.description = ["Building " + str(self.images)]
+         if self.forcebash:
+             self.command = ['bash', '-c', self.command]
++        
++        self.setProperty("BuildImages", self.images)
++
+         ShellCommand.start(self)
+ 
+     def describe(self, done=False):
+-- 
+2.11.0
 
 
