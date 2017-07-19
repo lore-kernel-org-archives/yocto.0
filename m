@@ -1,6 +1,6 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <ticotimo@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3AC5E00BFF; Tue, 18 Jul 2017 18:19:29 -0700 (PDT)
+	id 3E25AE00BC0; Tue, 18 Jul 2017 21:07:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,10 +9,10 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
+	mail provider *      (ticotimo[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.47 listed in list.dnswl.org]
+	*      [209.85.223.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -22,51 +22,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.47 listed in dnsbl.sorbs.net]
-Received: from mail-pg0-f47.google.com (mail-pg0-f47.google.com [74.125.83.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F49EE00BBC
-	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 18:19:28 -0700 (PDT)
-Received: by mail-pg0-f47.google.com with SMTP id u5so21644526pgq.3
-	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 18:19:28 -0700 (PDT)
+	*      [209.85.223.178 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DB35E00BC0
+	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 21:07:40 -0700 (PDT)
+Received: by mail-io0-f178.google.com with SMTP id 5so23754827iow.0
+	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 21:07:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-language;
-	bh=rRj71jRxtP0EXhmLPHoXaOsEZwazIilrwdldLOFavpU=;
-	b=kewRuY2U9YiRiXo1lHghYG4mdSjKxUfrHx16hiT8fvTggoNeC8RYPfQn/kNUi/aY8Y
-	GcTBvc7ywAxf6oqyjUO/Zh3wMmgEbHSiwNe+636co5RBVjVnvd2hg5+Qo8AHbDAKNhkn
-	mIbcAjagWddMRdY0pHTyfuvLaQT6gL7ZAjAFZ+OWFsZUxVHH5vfoxEpdeiL9PmgnsmcG
-	rAUn9RBfAv8pNLjST6Jr2CJMXyUu4BBZU9rAWUNOKQp4RPtKQ7Zb2wO3+Lc6pmYMXma4
-	BT7yTVjdpFsTR4OP0qmrPoN8ET6a4SwmGXfQR0hZwecM1DrO94AcnxtnxQRnYLWv3xAk
-	mbVg==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=rbPu9i4eGTcmau3DoK7a5i3ttemDUuQTJq9gDGNFAKY=;
+	b=VDedO27MWwTDECMjl9Quhzv006DVjBLUMthNjwL/vH83OQMIZG1z2D2PJhNqGRmAia
+	GRZMflHoMOEtzgW5UXib2jR5NUgzBNso2q2Xg4fT4JEGQowmVPIwpR5PgMXbeuIi39rH
+	I9RcQbqwCZ2FMgSlG3WwKiFpfS/9yo/DubQMQs7zkrq8tlua1RtnMT2ud5k5pp94SCwb
+	3CDW60BFrkgKuDQJdOJ13KnSFBC+XfHWC+oz5O8Nv5pWWeSMJXAZB9hhkF3c0/IFB3YI
+	EE+2/soTTmXSBSi+pJg/nAWg7CxxsifNlqta54X+IOADUldTlRvR9hqRlw2SvmzI3e4u
+	mFMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language;
-	bh=rRj71jRxtP0EXhmLPHoXaOsEZwazIilrwdldLOFavpU=;
-	b=pArMIf0uSdV/qE4KwMzGitoWnlPV+BctCAeK4B+YuC/y63siu749Km0zAxp05t/4wk
-	8rVLVOagvuSqca5/S6IG7qiXyp9tnaMKmm5nMIydPHSQOzpN+QSoGjPGbqqQjb7cJRc2
-	LOPQ1B2gIUWf0kmDKfCis9edFYOwlfmI4RB9NBPEOIoHYHsK2YGBqJ3RmB8GEaZTSbHE
-	xX4kwdHUs1uR51WuaRnocDTQljFJwQlpXLQN0uImvKpJz+ot3o7VaALxlJK77PoCQys3
-	6jtx2xvX89La7ZGYeQaJL8X8OI+Fp3t25lrHKCRnZs8JEpGKDpsG4gN6qoJLrA/I/xs6
-	zKjQ==
-X-Gm-Message-State: AIVw113TmB8ACWOI0Nm+SzucXekVjsmngJDfpZjrByeU8hiakDLpQGS1
-	iTrL5YqF4ndSCXGg
-X-Received: by 10.84.231.201 with SMTP id g9mr485073pln.86.1500427167773;
-	Tue, 18 Jul 2017 18:19:27 -0700 (PDT)
-Received: from ?IPv6:2001:8003:804a:b500:d026:ae85:24b8:9c14?
-	([2001:8003:804a:b500:d026:ae85:24b8:9c14])
-	by smtp.gmail.com with ESMTPSA id
-	s87sm7900866pfa.86.2017.07.18.18.19.26 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 18 Jul 2017 18:19:27 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <6f93e799-ee94-359e-24d4-ff55b74e36b5@gmail.com>
-Date: Wed, 19 Jul 2017 09:19:24 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=rbPu9i4eGTcmau3DoK7a5i3ttemDUuQTJq9gDGNFAKY=;
+	b=mxiEIEhb8Sc5sewcPCdeWrIJfAa/cDIf2U1GR8sKUeSp0TMbcB3B2eU27M7zi1m1dk
+	UtXhNLP+DMmgKqI5heyOC6TgmfpN3bs08QPY0XN4JYevwfRn3TPCT8KZqbw5nlISmhhQ
+	M2pQVqF86sEQhNDhr8oj2a4ovtIf1ZuyaEyk1PC4BSDs/x+0c4O7hHhdjScJmdYP3dNv
+	SHj1Di8wpOXQRBSz0vHgcXsw7dmASah3ZpsnwWFCg1zaS3vKgCOwXny+ZIRCS5PfNBXm
+	5XmC8PIL8B3gD7GT2jnKf/Vb9pmr5+P5yXKQJ/eQ1fpAY1he4GxObb9VMj2F+YRH/4lD
+	GRUg==
+X-Gm-Message-State: AIVw111zGnfTXU4g+i/qKDhpMkC0gi6rnv9m06zZcnstsgcWrmDx4Giu
+	w0nvFGTzlj3IGaSJBlR92fnYMEMMEEGw
+X-Received: by 10.107.173.15 with SMTP id w15mr601473ioe.99.1500437259685;
+	Tue, 18 Jul 2017 21:07:39 -0700 (PDT)
 MIME-Version: 1.0
-Subject: FFplay question ?
+References: <5500469A22567C4BAF673A6E86AFA3A40295F0863A44@IR-CENTRAL.corp.innerrange.com>
+In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A40295F0863A44@IR-CENTRAL.corp.innerrange.com>
+From: Tim Orling <ticotimo@gmail.com>
+Date: Wed, 19 Jul 2017 04:07:28 +0000
+Message-ID: <CANx9H-A1FjvhvjQTvneTJdjOjez550jwx=LyD=x3fgeXHEg_yQ@mail.gmail.com>
+To: Craig McQueen <craig.mcqueen@innerrange.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: python3-jinja2 missing package dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,88 +73,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 01:19:30 -0000
-Content-Type: multipart/alternative;
-	boundary="------------57A83FD494A8A0A1EFD34A16"
-Content-Language: en-US
+X-List-Received-Date: Wed, 19 Jul 2017 04:07:42 -0000
+Content-Type: multipart/alternative; boundary="001a11446e9adf21b20554a3c5cd"
 
---------------57A83FD494A8A0A1EFD34A16
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a11446e9adf21b20554a3c5cd
+Content-Type: text/plain; charset="UTF-8"
 
-Dear Yocto Members,
+Can you submit a patch please? Thank you!
+On Tue, Jul 18, 2017 at 5:15 PM Craig McQueen <craig.mcqueen@innerrange.com>
+wrote:
 
-I tried to compile FFplay with FFMpeg, but I can not get it ?
+> For the python3-jinja2 package in meta-openembedded meta-python, it should
+> also have a dependency on python3-numbers.
+>
+> I'm not sure if this dependency also applies for python-jinja2 package.
+> I'm just using the Python 3 package.
+>
+> --
+> Craig McQueen
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-What should I change on this code ?
+--001a11446e9adf21b20554a3c5cd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Here's on ffmpeg_3.3.bb :
+Can you submit a patch please? Thank you!<br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr">On Tue, Jul 18, 2017 at 5:15 PM Craig McQueen &lt;<a href=3D"=
+mailto:craig.mcqueen@innerrange.com">craig.mcqueen@innerrange.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex">For the python3-jinja2 packag=
+e in meta-openembedded meta-python, it should also have a dependency on pyt=
+hon3-numbers.<br>
+<br>
+I&#39;m not sure if this dependency also applies for python-jinja2 package.=
+ I&#39;m just using the Python 3 package.<br>
+<br>
+--<br>
+Craig McQueen<br>
+<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
 
-===
-
-EXTRA_OECONF = " \
-     --disable-stripping \
-     --enable-pic \
-     --enable-shared \
-     --enable-pthreads \
-     --enable-ffplay  \
-
-"
-
-
-Thank you
-
-
--- 
-*
-
-/*******/
-Sent by Ubuntu LTS 16.04,
-Kind regards,
-Riko Ho
-/*******/
-
-*
-
---------------57A83FD494A8A0A1EFD34A16
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Dear Yocto Members,</p>
-    <p>I tried to compile FFplay with FFMpeg, but I can not get it ?</p>
-    <p>What should I change on this code ?</p>
-    <p>Here's on ffmpeg_3.3.bb :</p>
-    <p>===</p>
-    <p>EXTRA_OECONF = " \<br>
-          --disable-stripping \<br>
-          --enable-pic \<br>
-          --enable-shared \<br>
-          --enable-pthreads \<br>
-          --enable-ffplay  \ <br>
-    </p>
-    <p>"</p>
-    <p><br>
-    </p>
-    <p>Thank you<br>
-    </p>
-    <p><br>
-    </p>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          Kind regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
-  </body>
-</html>
-
---------------57A83FD494A8A0A1EFD34A16--
+--001a11446e9adf21b20554a3c5cd--
