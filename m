@@ -1,39 +1,55 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <jaymin.dabhi@vivaldi.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17AE0E00BC0; Wed, 19 Jul 2017 05:29:21 -0700 (PDT)
+	id 63940E00BC0; Wed, 19 Jul 2017 05:48:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37E51E00B76
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 05:29:19 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v6JCTHWp010656
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 19 Jul 2017 05:29:17 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.229) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 19 Jul 2017 05:29:16 -0700
-To: Patrick Ohly <patrick.ohly@intel.com>, Armin Kuster <akuster808@gmail.com>
-References: <1500447463.5689.81.camel@intel.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <2ad0b40b-b201-9974-7f28-10efc611ffb1@windriver.com>
-Date: Wed, 19 Jul 2017 07:29:15 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.2.1
-MIME-Version: 1.0
-In-Reply-To: <1500447463.5689.81.camel@intel.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: dynamic layer dependencies in meta-security
+	*      [82.221.99.162 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
+	*      [score: 0.1541]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 547 seconds by postgrey-1.32 at yocto-www;
+	Wed, 19 Jul 2017 05:48:54 PDT
+Received: from mail.vivaldi.net (mail.vivaldi.net [82.221.99.162])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD16EE00B76
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 05:48:54 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.vivaldi.net (Postfix) with ESMTP id 2A377F26
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 12:39:51 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=vivaldi.net; h=
+	subject:subject:from:from:x-mailer:message-id:content-type
+	:content-type:date:date:mime-version:received:received; s=dkim;
+	t=1500467988; bh=AC3x/L7fzMdbDtugu3OtkpUTyC8+woRJJByTKD+oLaA=; b=
+	uk5YCUkcA530QgUWPOE8nu1KKDXsGK9nHMnj68Vh9PMtWDFYUFY0g63XNfgF8GQ/
+	kZEBlxlwFwVvCQqmVxM7c1cJa0xd+lCq52Tn2hsu2QxO/4SAGXnS15et9Cejv9Nd
+	OrsDpktF2vgANYtiu/yVnEc8/yYQTww1XEDNs9Rl+YE=
+X-Virus-Scanned: Debian amavisd-new at vivaldi.net
+Received: from mail.vivaldi.net ([127.0.0.1])
+	by localhost (mail.vivaldi.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id K08dxqfBK0CP for <yocto@yoctoproject.org>;
+	Wed, 19 Jul 2017 12:39:48 +0000 (GMT)
+Received: from webmail.vivaldi.net (unknown [10.20.20.55])
+	(Authenticated sender: jaymin.dabhi)
+	by mail.vivaldi.net (Postfix) with ESMTPSA id F0620F20
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 12:39:45 +0000 (GMT)
+Mime-Version: 1.0
+Date: Wed, 19 Jul 2017 12:39:41 +0000
+Message-ID: <3709be24aaf0557d2d66d1c93fb3c189@webmail.vivaldi.net>
+X-Mailer: AfterLogic webmail client
+From: "JAYMIN DABHI" <jaymin.dabhi@vivaldi.net>
+To: yocto@yoctoproject.org
+X-Priority: 3 (Normal)
+Subject: Error while integrating PyPy module in Yocto (Jethro branch) build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,111 +61,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 12:29:21 -0000
+X-List-Received-Date: Wed, 19 Jul 2017 12:48:56 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_Part_472_946789111.1500467981"
+
+------=_Part_472_946789111.1500467981
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 7/19/17 1:57 AM, Patrick Ohly wrote:
-> Hello Armin!
-> 
-> I'm trying to use the latest meta-security master in refkit. Refkit runs
-> yocto-compat-layer.py against its own layers, which then pulls in
-> meta-security as one of the dependencies. That's where I am hitting a
-> snag:
-> 
-> INFO: Detected layers:
-> INFO: meta-refkit: LayerType.DISTRO, /fast/work/intel-iot-refkit-pr/meta-refkit
-> INFO: 
-> INFO: Setting up for meta-refkit(LayerType.DISTRO), /fast/work/intel-iot-refkit-pr/meta-refkit
-> INFO: Adding layer dependency meta-selftest
-> INFO: Adding layer dependency meta-intel
-> INFO: Adding layer dependency meta-refkit-gateway
-> INFO: Adding layer dependency meta-refkit-core
-> INFO: Adding layer dependency meta-oic
-> INFO: Adding layer dependency meta-iot-web
-> INFO: Adding layer dependency meta-refkit-computervision
-> INFO: Adding layer dependency meta-intel-realsense
-> INFO: Adding layer dependency meta-clang
-> INFO: Adding layer dependency meta-oe
-> INFO: Adding layer dependency meta-refkit-industrial
-> INFO: Adding layer dependency meta-python
-> INFO: Adding layer dependency meta-ros
-> INFO: Adding layer dependency meta-iotqa
-> INFO: Adding layer dependency meta-security
-> INFO: Adding layer dependency meta-perl
-> INFO: Adding layer dependency meta-security-isafw
-> INFO: Adding layer dependency meta-filesystems
-> INFO: Adding layer dependency meta-gnome
-> INFO: Adding layer dependency meta-networking
-> INFO: Adding layer dependency meta-flatpak
-> Traceback (most recent call last):
->   File "/fast/work/intel-iot-refkit-pr/openembedded-core/scripts/yocto-compat-layer.py", line 203, in <module>
->     ret =  main()
->   File "/fast/work/intel-iot-refkit-pr/openembedded-core/scripts/yocto-compat-layer.py", line 151, in main
->     if not add_layer_dependencies(bblayersconf, layer, dep_layers, logger) or \
->   File "/fast/work/intel-iot-refkit-pr/openembedded-core/scripts/lib/compatlayer/__init__.py", line 195, in add_layer_dependencies
->     output = check_command('Getting existing layers failed.', 'bitbake-layers show-layers').decode('utf-8')
->   File "/fast/work/intel-iot-refkit-pr/openembedded-core/scripts/lib/compatlayer/__init__.py", line 228, in check_command
->     raise RuntimeError(msg)
-> RuntimeError: Getting existing layers failed.
-> Command: bitbake-layers show-layers
-> Output:
-> ERROR: Layer 'security' depends on layer 'xfce-layer', but this layer is not enabled in your configuration
-> 
-> The reason is the way how meta-security declares its dependencies:
-> 
-> LAYERDEPENDS_security = "core openembedded-layer perl-layer"
-> LAYERDEPENDS_security += "${@bb.utils.contains("DISTRO_FEATURES", "x11", "gnome-layer xfce-layer", "", d)}"
-> LAYERDEPENDS_security += "${@bb.utils.contains("MACHINE_FEATURES", "tpm", "tpm-layer", "",d)}"
-> LAYERDEPENDS_security += "${@bb.utils.contains("MACHINE_FEATURES", "tpm2", "tpm-layer", "",d)}"
-> LAYERDEPENDS_security += "${@bb.utils.contains("MACHINE_FEATURES", "vtpm", "tpm-layer meta-filesystems", "",d)}"
-> 
-> I haven't checked how exactly yocto-compat-layer.py deals with this, but
-> the end result is that it doesn't add meta-xfce when adding
-> meta-security. Then when "bitbake-layers show-layers" is called, a
-> distro (poky) has been chosen where x11 is in DISTRO_FEATURES, causing
-> the dependency check to fail.
+Hi All,=0A I am trying to integrate PyPy in my current Yocto (Jethro bran=
+ch) build for my i.MX6UL processor based development board. The board has=
+ "armv7a" (cortexa7) architecture. =0A I am using "meta-pypy" layer from =
+here (https://github.com/mzakharo/meta-pypy) and inherit the pypy package=
+ in my local.conf.=0A But, it gives me error during bitbaking. I am bitba=
+king the "core-image-base".=0A The error is as below :=0A	ERROR: Fetcher =
+failure: Unable to find file file://pypy-4.0.1-cortexa7.tar.bz2 anywhere.=
+  I think, it can't find the package "pypy-4.0.1-cortexa7.tar.bz2" in pyp=
+y directory.=0A What should be the other possible reason? and How it can =
+be solved?=0A=0A Suggestions are welcome.=0A=0A Thanks,=0A-=0AJAYMIN
 
-The meta-freescale method of checking if a layer is present and adding features
-is how they resolve this issue.  Instead of making it a dependency, they simply
-check if it's already present and then add to it.
+------=_Part_472_946789111.1500467981
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I agree the above is less then optimal way of doing things, and will prevent the
-layer index from getting a clear list of what may be required.
+<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"t=
+ext/html; charset=3Dutf-8" /></head><body><div data-crea=3D"font-wrapper"=
+ style=3D"font-family: Tahoma; font-size: 16px; direction: ltr"><div clas=
+s=3D"issue-description wiki-content"><font face=3D"Times New Roman, serif=
+">Hi All,</font></div><div class=3D"issue-description wiki-content"><font=
+ face=3D"Times New Roman, serif"><br>=0AI am trying to integrate PyPy in =
+my current Yocto (Jethro branch) =0Abuild for my i.MX6UL processor based =
+development board. The board has "armv7a" (cortexa7) =0Aarchitecture.=C2=
+=A0</font></div><div class=3D"issue-description wiki-content"><font face=
+=3D"Times New Roman, serif"><br>=0AI am using "meta-pypy" layer from <a h=
+ref=3D"https://github.com/mzakharo/meta-pypy" style=3D"cursor: pointer;">=
+here</a> and inherit the pypy package in my local.conf.<br>=0ABut, it giv=
+es me error during bitbaking. I am bitbaking the "core-image-base".<br>=
+=0AThe error is as below :<br></font><div class=3D"codehilite"><pre><font=
+ face=3D"Times New Roman, serif"><span class=3D"n">ERROR</span><span clas=
+s=3D"o">:</span> <span class=3D"n">Fetcher</span> <span class=3D"n">failu=
+re</span><span class=3D"o">:</span> <span class=3D"n">Unable</span> <span=
+ class=3D"n">to</span> <span class=3D"n">find</span> <span class=3D"n">fi=
+le</span> <span class=3D"n">file</span><span class=3D"o">://</span><span =
+class=3D"n">pypy</span><span class=3D"o">-</span><span class=3D"mf">4.0</=
+span><span class=3D"o">.</span><span class=3D"mi">1</span><span class=3D"=
+o">-</span><span class=3D"n">cortexa7</span><span class=3D"o">.</span><sp=
+an class=3D"na">tar</span><span class=3D"o">.</span><span class=3D"na">bz=
+2</span> <span class=3D"n">anywhere</span><span class=3D"o">.</span>=0A</=
+font></pre></div><font face=3D"Times New Roman, serif">=0A=0A=0AI think, =
+it can't find the package "pypy-4.0.1-cortexa7.tar.bz2" in pypy directory=
+.</font></div><div class=3D"issue-description wiki-content"><font face=3D=
+"Times New Roman, serif"><br>=0AWhat should be the other possible reason?=
+ and How it can be solved?<br><br></font></div><div class=3D"issue-descri=
+ption wiki-content">=0A<font face=3D"Times New Roman, serif">Suggestions =
+are welcome.<br><br></font></div><div class=3D"issue-description wiki-con=
+tent">=0A<font face=3D"Times New Roman, serif">Thanks,</font></div><div><=
+div data-crea=3D"font-wrapper" style=3D"font-family: Tahoma; font-size: 1=
+6px; direction: ltr"><font face=3D"Times New Roman, serif">-</font><div><=
+font face=3D"Times New Roman, serif">JAYMIN</font></div></div></div><br><=
+/div></body></html>
 
-Note, there is also LAYERRECOMMENDS_... in this case, the system could recommend
-gnome-layer, xfce-layer, tpm-layer, meta-filesystems, and then use the
-meta-freescale approach to only enabling thsoe features if the recommended
-layers are present.
-
-> This highlights a conceptual issue with the dynamic
-> LAYERDEPENDS_security above: which distro or machine config is active?
-> Tools like yocto-compat-layer.py or the layer index have to do their
-> work before that is defined.
-> 
-> This is also problematic with multiconfig. The same bblayers.conf might
-> be used with one config where x11 is off and another where it is on.
-> 
-> I suspect LAYERDEPENDS simply can't be dynamic. It either has to include
-> everything that a layer might depend on (even when the additional
-> content doesn't end up being used), or it just depends on the essential
-> parts and then enables additional recipes only when the optional layers
-> they depend on are present. BBFILES_DYNAMIC can be used for that, or the
-> recipes themselves check BBCOLLECTIONS in anonymous python code and
-> raise a SkipRecipe exception when their pre-condition isn't satisfied.
-> 
-> Copying Paul (layer index) and Mark (oe-yocto-compat.py, setup tool) for
-> their input.
-
-I would certainly caution against dynamic layerdepends/layerrecommends and
-instead focus on listing everything between what is required and what you want
-to add in addition -- then using the meta-freescale approach of only extending
-(the recommends) when present.
-
-The setup program and layer index can handle this situaton.  The
-yocto-compat-layer checking may have to be augmented to deal with recommends as
-well, but that should be fairly minor.
-
---Mark
-
+------=_Part_472_946789111.1500467981--
