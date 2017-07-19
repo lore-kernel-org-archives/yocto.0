@@ -1,55 +1,63 @@
-Return-Path: <jaymin.dabhi@vivaldi.net>
+Return-Path: <jngigiw@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63940E00BC0; Wed, 19 Jul 2017 05:48:56 -0700 (PDT)
+	id F1058E00B76; Wed, 19 Jul 2017 05:58:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_20,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [82.221.99.162 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jngigiw[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.47 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.47 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.1541]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 547 seconds by postgrey-1.32 at yocto-www;
-	Wed, 19 Jul 2017 05:48:54 PDT
-Received: from mail.vivaldi.net (mail.vivaldi.net [82.221.99.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD16EE00B76
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 05:48:54 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.vivaldi.net (Postfix) with ESMTP id 2A377F26
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 12:39:51 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=vivaldi.net; h=
-	subject:subject:from:from:x-mailer:message-id:content-type
-	:content-type:date:date:mime-version:received:received; s=dkim;
-	t=1500467988; bh=AC3x/L7fzMdbDtugu3OtkpUTyC8+woRJJByTKD+oLaA=; b=
-	uk5YCUkcA530QgUWPOE8nu1KKDXsGK9nHMnj68Vh9PMtWDFYUFY0g63XNfgF8GQ/
-	kZEBlxlwFwVvCQqmVxM7c1cJa0xd+lCq52Tn2hsu2QxO/4SAGXnS15et9Cejv9Nd
-	OrsDpktF2vgANYtiu/yVnEc8/yYQTww1XEDNs9Rl+YE=
-X-Virus-Scanned: Debian amavisd-new at vivaldi.net
-Received: from mail.vivaldi.net ([127.0.0.1])
-	by localhost (mail.vivaldi.net [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id K08dxqfBK0CP for <yocto@yoctoproject.org>;
-	Wed, 19 Jul 2017 12:39:48 +0000 (GMT)
-Received: from webmail.vivaldi.net (unknown [10.20.20.55])
-	(Authenticated sender: jaymin.dabhi)
-	by mail.vivaldi.net (Postfix) with ESMTPSA id F0620F20
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 12:39:45 +0000 (GMT)
-Mime-Version: 1.0
-Date: Wed, 19 Jul 2017 12:39:41 +0000
-Message-ID: <3709be24aaf0557d2d66d1c93fb3c189@webmail.vivaldi.net>
-X-Mailer: AfterLogic webmail client
-From: "JAYMIN DABHI" <jaymin.dabhi@vivaldi.net>
+Received: from mail-pg0-f47.google.com (mail-pg0-f47.google.com [74.125.83.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A96CE00B76
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 05:58:38 -0700 (PDT)
+Received: by mail-pg0-f47.google.com with SMTP id k14so47649pgr.0
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 05:58:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=mZCbk+a/EWRfirRbsh2Uuor+KgkZGh7jRjMJlg85VQs=;
+	b=gfAQ0PamfWR3sL99PAnct8HJgczLu4f9BnVaKR1nX2+5BGcAITRczvzcqpqJIfn2lA
+	JtL0B8TV8XcRZHrP6e4w2puyLsS05JJmcM2Mx0PRpm7av6Bh1avrRxG2NbubhlDPRbZd
+	YW+lYh/6Vz6silM2SLZSx1CWD4orNqKrxocaDUJ6WAVq5pMKYkWTQO8CvEesIbOEowHZ
+	kRGLrLIy3hWdlGqd2YzPg1GTypYOBKi4BDErdpMDFD2UGBFmKCckoD7POYSNsQSvDiQ9
+	AtH0DtZvygSZW7iuVvjkQh+mtFnTYa1AcLexbDgkH1ZYEyU6zMuJ6KrvjXTX1CxcADXy
+	z5gA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=mZCbk+a/EWRfirRbsh2Uuor+KgkZGh7jRjMJlg85VQs=;
+	b=OnynAiGsZK42LW8HQ6O89pBWG576IsOucoHSVsg+/IFRjaS+JAjgVXz0sb2onXeh2h
+	TGwmTZDYpMsZnkrPdCPuB9dsTfh93VhqLdynnM4ImurXA0NT1n9clM5D7nRGyNIOqY4C
+	jsnd7n7maZMnHjxwIQSRXdr+J1ZWjhXvnDLulsGWq/NkM5S+W1wHyPF+F6ejh+T0AAe4
+	xzPsQUCIQ9grfDd8TwVYXaZXhpTZm/0ZFAOmrKf4+47Os/LOh1aDPeAhPdcJzhqXPri7
+	Zjt+b4+yPlGBnEMywxjIIQbvtZznotvyZcXj1uViSU1geDatu8fg3lwnmNdwyOHXHyY5
+	GaVg==
+X-Gm-Message-State: AIVw111ktXINlEPe3+/Va7kHMcvOgZxH3FxAleSIJiqo+CnQtZ3S5NuF
+	QqSjV9lh5GwWFF4rCjqaS9nZSFD1rKg4
+X-Received: by 10.98.205.69 with SMTP id o66mr2803435pfg.173.1500469118359;
+	Wed, 19 Jul 2017 05:58:38 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.100.150.200 with HTTP; Wed, 19 Jul 2017 05:58:38 -0700 (PDT)
+From: Joseph Ngigi <jngigiw@gmail.com>
+Date: Wed, 19 Jul 2017 15:58:38 +0300
+Message-ID: <CABaDK3V7Rdt4ahQ7kBHVHr8=T3Lct8a7kWTLV6yjn9Mu+5nu5w@mail.gmail.com>
 To: yocto@yoctoproject.org
-X-Priority: 3 (Normal)
-Subject: Error while integrating PyPy module in Yocto (Jethro branch) build.
+Subject: do_compile errors.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,64 +69,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 12:48:56 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_Part_472_946789111.1500467981"
+X-List-Received-Date: Wed, 19 Jul 2017 12:58:40 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1458eccbdc3c0554ab30f4"
 
-------=_Part_472_946789111.1500467981
-Content-Type: text/plain; charset="utf-8"
+--94eb2c1458eccbdc3c0554ab30f4
+Content-Type: text/plain; charset="UTF-8"
+
+I seem to be having a lot of do_compile failure errors, building
+core-image-sato for cubieboard2 using poky pyro. I do not understand
+whether it is a gcc compiler issue or any other problem. Any assistance
+will be highly appreciated.
+
+Below is my logfile.
+
+DEBUG: Executing shell function do_compile
+NOTE: make -j 8
+ERROR: oe_runmake failed
+cd lib; make all
+make[1]: Entering directory
+'/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/lib'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory
+'/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/lib'
+cd src; make all
+make[1]: Entering directory
+'/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/src'
+g++
+-isystem/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/include
+-O2 -pipe -D_GLIBCXX_USE_CXX11_ABI=0
+-L/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib
+-L/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib
+-Wl,-rpath-link,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib
+-Wl,-rpath-link,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib
+-Wl,-rpath,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib
+-Wl,-rpath,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib
+-Wl,-O1 -o gperf version.o positions.o options.o keyword.o keyword-list.o
+input.o bool-array.o hash-table.o search.o output.o main.o ../lib/libgp.a
+-lm
+g++: error: version.o: No such file or directory
+g++: error: positions.o: No such file or directory
+g++: error: options.o: No such file or directory
+g++: error: keyword.o: No such file or directory
+g++: error: keyword-list.o: No such file or directory
+g++: error: input.o: No such file or directory
+g++: error: bool-array.o: No such file or directory
+g++: error: hash-table.o: No such file or directory
+g++: error: output.o: No such file or directory
+g++: error: main.o: No such file or directory
+g++: error: ../lib/libgp.a: No such file or directory
+Makefile:74: recipe for target 'gperf' failed
+make[1]: *** [gperf] Error 1
+make[1]: Leaving directory
+'/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/src'
+Makefile:33: recipe for target 'all' failed
+make: *** [all] Error 2
+ERROR: Function failed: do_compile (log file is located at
+/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/temp/log.do_compile.600)
+
+-- 
+J.W.Ngigi
+
+--94eb2c1458eccbdc3c0554ab30f4
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,=0A I am trying to integrate PyPy in my current Yocto (Jethro bran=
-ch) build for my i.MX6UL processor based development board. The board has=
- "armv7a" (cortexa7) architecture. =0A I am using "meta-pypy" layer from =
-here (https://github.com/mzakharo/meta-pypy) and inherit the pypy package=
- in my local.conf.=0A But, it gives me error during bitbaking. I am bitba=
-king the "core-image-base".=0A The error is as below :=0A	ERROR: Fetcher =
-failure: Unable to find file file://pypy-4.0.1-cortexa7.tar.bz2 anywhere.=
-  I think, it can't find the package "pypy-4.0.1-cortexa7.tar.bz2" in pyp=
-y directory.=0A What should be the other possible reason? and How it can =
-be solved?=0A=0A Suggestions are welcome.=0A=0A Thanks,=0A-=0AJAYMIN
+<div dir=3D"ltr"><div>I seem to be having a lot of do_compile failure error=
+s, building core-image-sato for cubieboard2 using poky pyro. I do not under=
+stand whether it is a gcc compiler issue or any other problem. Any assistan=
+ce will be highly appreciated.<br><br></div>Below is my logfile.<br><br cle=
+ar=3D"all"><div><div>DEBUG: Executing shell function do_compile<br>NOTE: ma=
+ke -j 8<br>ERROR: oe_runmake failed<br>cd lib; make all<br>make[1]: Enterin=
+g directory &#39;/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_=
+64-linux/gperf-native/3.0.4-r0/build/lib&#39;<br>make[1]: Nothing to be don=
+e for &#39;all&#39;.<br>make[1]: Leaving directory &#39;/home/ngigijoe/src/=
+git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build=
+/lib&#39;<br>cd src; make all<br>make[1]: Entering directory &#39;/home/ngi=
+gijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.=
+4-r0/build/src&#39;<br>g++=C2=A0 -isystem/home/ngigijoe/src/git/pyro/poky/c=
+ubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-nativ=
+e/usr/include -O2 -pipe -D_GLIBCXX_USE_CXX11_ABI=3D0 -L/home/ngigijoe/src/g=
+it/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe=
+-sysroot-native/usr/lib -L/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/=
+work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib -Wl,-rpat=
+h-link,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/g=
+perf-native/3.0.4-r0/recipe-sysroot-native/usr/lib -Wl,-rpath-link,/home/ng=
+igijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0=
+.4-r0/recipe-sysroot-native/lib -Wl,-rpath,/home/ngigijoe/src/git/pyro/poky=
+/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-nat=
+ive/usr/lib -Wl,-rpath,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/wor=
+k/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib -Wl,-O1 -o g=
+perf version.o positions.o options.o keyword.o keyword-list.o input.o bool-=
+array.o hash-table.o search.o output.o main.o ../lib/libgp.a -lm<br>g++: er=
+ror: version.o: No such file or directory<br>g++: error: positions.o: No su=
+ch file or directory<br>g++: error: options.o: No such file or directory<br=
+>g++: error: keyword.o: No such file or directory<br>g++: error: keyword-li=
+st.o: No such file or directory<br>g++: error: input.o: No such file or dir=
+ectory<br>g++: error: bool-array.o: No such file or directory<br>g++: error=
+: hash-table.o: No such file or directory<br>g++: error: output.o: No such =
+file or directory<br>g++: error: main.o: No such file or directory<br>g++: =
+error: ../lib/libgp.a: No such file or directory<br>Makefile:74: recipe for=
+ target &#39;gperf&#39; failed<br>make[1]: *** [gperf] Error 1<br>make[1]: =
+Leaving directory &#39;/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/wor=
+k/x86_64-linux/gperf-native/3.0.4-r0/build/src&#39;<br>Makefile:33: recipe =
+for target &#39;all&#39; failed<br>make: *** [all] Error 2<br>ERROR: Functi=
+on failed: do_compile (log file is located at /home/ngigijoe/src/git/pyro/p=
+oky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/temp/log.do_com=
+pile.600)<br><br>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"><di=
+v><div dir=3D"ltr"><div><div dir=3D"ltr">J.W.Ngigi</div><div dir=3D"ltr"><b=
+r><br></div></div></div></div></div></div>
+</div></div></div>
 
-------=_Part_472_946789111.1500467981
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<!DOCTYPE html><html><head><meta http-equiv=3D"Content-Type" content=3D"t=
-ext/html; charset=3Dutf-8" /></head><body><div data-crea=3D"font-wrapper"=
- style=3D"font-family: Tahoma; font-size: 16px; direction: ltr"><div clas=
-s=3D"issue-description wiki-content"><font face=3D"Times New Roman, serif=
-">Hi All,</font></div><div class=3D"issue-description wiki-content"><font=
- face=3D"Times New Roman, serif"><br>=0AI am trying to integrate PyPy in =
-my current Yocto (Jethro branch) =0Abuild for my i.MX6UL processor based =
-development board. The board has "armv7a" (cortexa7) =0Aarchitecture.=C2=
-=A0</font></div><div class=3D"issue-description wiki-content"><font face=
-=3D"Times New Roman, serif"><br>=0AI am using "meta-pypy" layer from <a h=
-ref=3D"https://github.com/mzakharo/meta-pypy" style=3D"cursor: pointer;">=
-here</a> and inherit the pypy package in my local.conf.<br>=0ABut, it giv=
-es me error during bitbaking. I am bitbaking the "core-image-base".<br>=
-=0AThe error is as below :<br></font><div class=3D"codehilite"><pre><font=
- face=3D"Times New Roman, serif"><span class=3D"n">ERROR</span><span clas=
-s=3D"o">:</span> <span class=3D"n">Fetcher</span> <span class=3D"n">failu=
-re</span><span class=3D"o">:</span> <span class=3D"n">Unable</span> <span=
- class=3D"n">to</span> <span class=3D"n">find</span> <span class=3D"n">fi=
-le</span> <span class=3D"n">file</span><span class=3D"o">://</span><span =
-class=3D"n">pypy</span><span class=3D"o">-</span><span class=3D"mf">4.0</=
-span><span class=3D"o">.</span><span class=3D"mi">1</span><span class=3D"=
-o">-</span><span class=3D"n">cortexa7</span><span class=3D"o">.</span><sp=
-an class=3D"na">tar</span><span class=3D"o">.</span><span class=3D"na">bz=
-2</span> <span class=3D"n">anywhere</span><span class=3D"o">.</span>=0A</=
-font></pre></div><font face=3D"Times New Roman, serif">=0A=0A=0AI think, =
-it can't find the package "pypy-4.0.1-cortexa7.tar.bz2" in pypy directory=
-.</font></div><div class=3D"issue-description wiki-content"><font face=3D=
-"Times New Roman, serif"><br>=0AWhat should be the other possible reason?=
- and How it can be solved?<br><br></font></div><div class=3D"issue-descri=
-ption wiki-content">=0A<font face=3D"Times New Roman, serif">Suggestions =
-are welcome.<br><br></font></div><div class=3D"issue-description wiki-con=
-tent">=0A<font face=3D"Times New Roman, serif">Thanks,</font></div><div><=
-div data-crea=3D"font-wrapper" style=3D"font-family: Tahoma; font-size: 1=
-6px; direction: ltr"><font face=3D"Times New Roman, serif">-</font><div><=
-font face=3D"Times New Roman, serif">JAYMIN</font></div></div></div><br><=
-/div></body></html>
-
-------=_Part_472_946789111.1500467981--
+--94eb2c1458eccbdc3c0554ab30f4--
