@@ -1,42 +1,32 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <justin@redfish.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D38F6E00C49; Tue, 18 Jul 2017 21:55:01 -0700 (PDT)
+	id C74F1E00C45; Tue, 18 Jul 2017 23:15:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [194.25.134.21 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [194.25.134.21 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 407 seconds by postgrey-1.32 at yocto-www;
-	Tue, 18 Jul 2017 21:55:00 PDT
-Received: from mailout10.t-online.de (mailout10.t-online.de [194.25.134.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9E7CE00BFF
-	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 21:55:00 -0700 (PDT)
-Received: from fwd25.aul.t-online.de (fwd25.aul.t-online.de [172.20.26.130])
-	by mailout10.t-online.de (Postfix) with SMTP id E65AF41C0D03
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 06:48:12 +0200 (CEST)
-Received: from genericx86-64.Speedport_W_724V_01011603_05_032
-	(E4qHBGZFwh8q9iyEIXvQWBdvsAwABTKc6UTknSnkNxiaUHrqRNfvyGSjp9xqdNTw1m@[84.146.40.121])
-	by fwd25.t-online.de
-	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
-	esmtp id 1dXgu8-0WWAaW0; Wed, 19 Jul 2017 06:48:08 +0200
-Date: Wed, 19 Jul 2017 06:48:08 +0200
-From: Markus Volk <f_l_k@t-online.de>
-To: yocto@yoctoproject.org
-Message-Id: <20170719064808.d856c55a9d17c6d8d74f51fb@t-online.de>
-In-Reply-To: <6f93e799-ee94-359e-24d4-ff55b74e36b5@gmail.com>
-References: <6f93e799-ee94-359e-24d4-ff55b74e36b5@gmail.com>
-X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.31; x86_64-poky-linux-gnu)
-Mime-Version: 1.0
-X-ID: E4qHBGZFwh8q9iyEIXvQWBdvsAwABTKc6UTknSnkNxiaUHrqRNfvyGSjp9xqdNTw1m
-X-TOI-MSGID: e7994a0d-aee9-4f4a-b6aa-8838ae0d19f5
-Subject: Re: FFplay question ?
+X-Greylist: delayed 561 seconds by postgrey-1.32 at yocto-www;
+	Tue, 18 Jul 2017 23:15:06 PDT
+Received: from mail.redfish.com.au (mail.redfish.com.au [180.214.65.30])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A333E00BC0
+	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 23:15:06 -0700 (PDT)
+Received: from [192.168.42.111] (unknown [192.168.42.111])
+	by mail.redfish.com.au (Postfix) with ESMTPSA id 658E11EB84A4;
+	Wed, 19 Jul 2017 16:07:18 +1000 (AEST)
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+From: Justin Clacherty <justin@redfish.com.au>
+In-Reply-To: <CAGb_=SXgdg=Za2JbeYadJi-kOA5EtKLmw+jdDcn_Fzn+iRa2tw@mail.gmail.com>
+Date: Wed, 19 Jul 2017 16:05:44 +1000
+Message-Id: <9F567B9C-65EE-4852-A3E9-37DD09A7A7C0@redfish.com.au>
+References: <CAGb_=SVC0Z_-ZKD2+VAt9HMG+ejYm0VcrECyn6cLRVtDFWYcfQ@mail.gmail.com>
+	<CAGb_=SXgdg=Za2JbeYadJi-kOA5EtKLmw+jdDcn_Fzn+iRa2tw@mail.gmail.com>
+To: Joe MacDonald <joe_macdonald@mentor.com>
+X-Mailer: Apple Mail (2.3273)
+Cc: yocto@yoctoproject.org, Marco Ostini <marco@ostini.org>
+Subject: Re: SELinux with Busybox on morty
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,55 +38,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 04:55:01 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 19 Jul 2017 06:15:07 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Dear Riko,
+Hi Joe,
 
-ffplay needs sdl as dependency, guess that's your problem
+Is this something you or one of the other meta-selinux devs are able to =
+help out with or is it more of an upstream question?
 
-regards,
-Markus
+Cheers,
+Justin.
 
-On Wed, 19 Jul 2017 09:19:24 +0800
-Riko Ho <antonius.riko@gmail.com> wrote:
 
-> Dear Yocto Members,
-> 
-> I tried to compile FFplay with FFMpeg, but I can not get it ?
-> 
-> What should I change on this code ?
-> 
-> Here's on ffmpeg_3.3.bb :
-> 
-> ===
-> 
-> EXTRA_OECONF = " \
->      --disable-stripping \
->      --enable-pic \
->      --enable-shared \
->      --enable-pthreads \
->      --enable-ffplay  \
-> 
-> "
-> 
-> 
-> Thank you
-> 
-> 
-> -- 
-> *
-> 
-> /*******/
-> Sent by Ubuntu LTS 16.04,
+> On 17 Jul 2017, at 4:57 pm, Marco Ostini <marco@ostini.org> wrote:
+>=20
+>=20
+> Hi All,
+>=20
+> At the moment I'm attempting to prepare a VM of morty with SELinux =
+running well in enforcing mode. Once bedded down this will be running on =
+an embedded system.
+>=20
+> We use Busybox to keep the environment slim.
+>=20
+> As you may be aware the file contexts of =
+/etc/selinux/targeted/contexts/files/file_contexts don't include =
+appropriate paths (/sbin + /usr/lib/busybox/sbin/) and relative file =
+contexts for commands provided by Busybox. The /sbin files provided by =
+Busybox are symlinks to their counterparts in /usr/lib/busybox/sbin/.
+>=20
+> I've attempted to use semanage to apply file contexts and look up =
+login contexts. Any time I use semanage I receive this message:
+>=20
+>    Error: Failed to read //etc/selinux/targeted/policy/policy.30 =
+policy file
+>=20
+> In an attempt to mitigate this error I ran semodule --build and while =
+it did rebuild the policy file, it didn't mitigate the error message =
+generated by semanage. At the moment I'm applying temporary file =
+contexts with chcon.
+>=20
+> My questions are:
+>=20
+> 1. Is it possible to run Busybox (providing init, getty, syslog ...) =
+in SELinux enforcing. If so, where's the policy files?
+> 2. Is there some documentation somewhere on reference builds of Morty =
+with SELinux enforcing ?
+>=20
 > Kind regards,
-> Riko Ho
-> /*******/
-> 
-> *
+> Marco
+>=20
 
-
--- 
-Markus Volk <f_l_k@t-online.de>
 
