@@ -1,59 +1,58 @@
-Return-Path: <t_dufff@yahoo.ca>
+Return-Path: <libertad.cruz@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C089E00C4F; Wed, 19 Jul 2017 11:37:15 -0700 (PDT)
+	id E0817E00BBF; Wed, 19 Jul 2017 14:58:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_MUA_MOZILLA, FREEMAIL_FROM,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (t_dufff[at]yahoo.ca)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.6.132.84 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  2.3 FORGED_MUA_MOZILLA Forged mail pretending to be from Mozilla
-Received: from sonic322-29.consmr.mail.bf2.yahoo.com
-	(sonic322-29.consmr.mail.bf2.yahoo.com [74.6.132.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0912AE00C49
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 11:37:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.ca; s=s2048;
-	t=1500489433; bh=whaXPACBJds3+3fE/m26zFUEOOq/keJZNcCFHBPSI6Q=;
-	h=Date:From:Reply-To:To:Subject:References:From:Subject;
-	b=AerrhgUiS/UPMCLr/zZzk7cJsGdOTM1vgcnD5aRG13svOI1aN22EqxFHhqUz8Bxg4VDo242BDmyNG/E6+phOoh6/AVYBkTId/tc8YawcdlTHPrU2OzAydZfg5+CAJzUgSqyGljewJRQ+H4UEApN4JHH3Xs9jmFgs7XKnlwcNcULHXs1HN+mbnjTzWEM1PfQPsZRrkFTPWkzrGS9aItEAJkgXL67K18LM2Pz7h7Ac/DMlrqOHsZBj3WOeddHBQpwBLHvoKlrZ6W+ADMKVW9kMaid1BJIgQ7nIcfKKYZn+IjyKGWrs6ogn932OEoSk/FcIcsRwbzzq+NXuhr7rScDYlg==
-X-YMail-OSG: mH5CM2gVM1n1HKoXjtiCOFy5whQMDpLPnf4rpX5AGjIqya06IAlW1A0FfM4iHtJ
-	7fb6rvORiAA7D1gAhoxCh.JaRLvDGts77SsoCC5KJRaPb10MGCX77Iezi53eZJ_ffeniRkOsfAbE
-	jHGIS.RFVUKCr30SijhzZLOVX4wHfypS3ZJJMSeLRbAzkgY4u.MOh5ZQxFzuiwYzciVjeDwVW34l
-	9_CbfkyAJJ69yh7ncB3b3fwwU1tDXMU.hdODP.O_jjv81ZpanmtbXFHuENGD415sooAQ_rWSkBsX
-	AvFmOJ4HLzeIGDFToiRwAnrkOv7hNQefTuxsz4MywreXVacmnWhUEj0gnViBEZalJSCC.x4LKL6c
-	H1uQ3dtO3msRTYxVwuRQuCl_KslsLFIbLzh34LmnKiYNfiRBVKbvXh936JJoJViT0eR7Rk2EFPPP
-	52bWf3Sd.elDMH_0h93bWOfz2hCxcmZFiveM6AJtZDWKDXXCtjwIKPgvmny2c7t72E_mEc8ctgbP
-	AFkSVweplLZpSmZLQbg--
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic322.consmr.mail.bf2.yahoo.com with HTTP;
-	Wed, 19 Jul 2017 18:37:13 +0000
-Date: Wed, 19 Jul 2017 18:37:13 +0000 (UTC)
-From: kris duff <t_dufff@yahoo.ca>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <1954548235.650907.1500489433358@mail.yahoo.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 184CFE00B3D
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 14:58:06 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga104.jf.intel.com with ESMTP; 19 Jul 2017 14:58:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.40,381,1496127600"; 
+	d="scan'208,217";a="1153218712"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+	by orsmga001.jf.intel.com with ESMTP; 19 Jul 2017 14:58:06 -0700
+Received: from fmsmsx153.amr.corp.intel.com (10.18.125.6) by
+	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Wed, 19 Jul 2017 14:58:05 -0700
+Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.4]) by
+	FMSMSX153.amr.corp.intel.com ([169.254.9.113]) with mapi id
+	14.03.0319.002; Wed, 19 Jul 2017 14:58:05 -0700
+From: "Cruz, Libertad" <libertad.cruz@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Jolley,
+	Stephen K" <stephen.k.jolley@intel.com>
+Thread-Topic: QA cycle report for 2.3.1 rc2
+Thread-Index: AdMAnN7A3atyBoOKQ9+TofCvS54OZg==
+Date: Wed, 19 Jul 2017 21:58:05 +0000
+Message-ID: <58D9E2E50A021A45AD740492365FCDC531EC860D@fmsmsx107.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYzA0ZTM2YjMtZTI1ZC00ZjY4LTlmMTQtMzIwMmU5YWVhMGU4IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6InFVN2ZEN0dNM3dVelZubmtRZ3lIc3lRcmx3cm03Q000bllIMUtOaytZODg9In0=
+x-ctpclassification: CTP_IC
+dlp-product: dlpe-windows
+dlp-version: 10.0.102.7
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.106]
 MIME-Version: 1.0
-References: <1954548235.650907.1500489433358.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.10121 YahooMailNeo Mozilla/5.0 (Windows NT 6.1; Win64;
-	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115
-	Safari/537.36
-Subject: [dizzy] php 5.4.36 compilation with postgresql 9.3.4
+Cc: "Lock, Joshua G" <joshua.g.lock@intel.com>, "Cruz Alcaraz,
+	Juan M" <juan.m.cruz.alcaraz@intel.com>, "Eggleton,
+	Paul" <paul.eggleton@intel.com>
+Subject: QA cycle report for 2.3.1 rc2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: kris duff <t_dufff@yahoo.ca>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -62,115 +61,460 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 18:37:15 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_650906_1677724989.1500489433356"
+X-List-Received-Date: Wed, 19 Jul 2017 21:58:09 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_58D9E2E50A021A45AD740492365FCDC531EC860Dfmsmsx107amrcor_"
 
-------=_Part_650906_1677724989.1500489433356
-Content-Type: text/plain; charset=UTF-8
+--_000_58D9E2E50A021A45AD740492365FCDC531EC860Dfmsmsx107amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-For a few weeks (part time) I am trying to add to my image php support (und=
-er lighttpd/fastcgi) with postgresql support.
-The php module can get compiled and used without pgsql support.
-I have created a php_5.4.36.bbappend file that contains this :
------------------------------------------------------------------FILES_${PN=
-} +=3D "/usr/lib"
-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+Hello All,
 
-export LPQLIBDIR =3D "${STAGING_LIBDIR}"
-export LPQINCLUDEDIR =3D "${STAGING_INCDIR}"=C2=A0=C2=A0DEPENDS =3D "postgr=
-esql postgresql-native pg-config-custom"
-EXTRA_OECONF +=3D " --with-pgsql=3D${STAGING_DIR_TARGET}${EXEC_PREFIX} --wi=
-th-pdo-pgsql=3D${D}${bindir}"
------------------------------------------------------------------
 
-I know, I should have used PACKAGECONFIG[pgsql] but in my case I prefer not=
- touching local.conf.
-when I bitbake my image, I see the following message :
-ERROR: This autoconf log indicates errors, it looked at host include and/or=
- library paths while determining system capabilities.Rerun configure task a=
-fter fixing this. The path was '/home/yocto/build/tmp/work/core2-64-poky-li=
-nux/php/5.4.36-r0/build'ERROR: Function failed: do_qa_configure
-from my reading, the problem could be here :checking for pkg-config... /hom=
-e/yocto/build/tmp/sysroots/x86_64-linux/usr/bin/pkg-configconfigure: WARNIN=
-G: using cross tools not prefixed with host triplet
-other than that, looked in the compile log file to find "'CROSS COMPILE Bad=
-ness:' or 'is unsafe for cross-compilation'"... as seen in insane.bbclass. =
-and found nothing.
-How to solve this issue ? Anyone has been able to connect php with pgsql ?
-Thank you
+
+Here is the report for the 2.3.1 rc2 full point release test cycle.
+
+Full Report : https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Full_Te=
+st_Cycle_-_2.3.1_rc2#Testing_data
+
+
+
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+
+The QA cycle for release 2.3.1 rc2 is complete, no blockers. 10832 [3] was =
+reopened after issue reappeared when trying to install eSDK. Only one new b=
+ug about tcf-agent daemon not being able to be stopped. [1]
+
+
+
+There was a 8.05% regression on building rootfs in Fedora 23. The performan=
+ce test results for Ubuntu 15 are misleading because there is a problem wit=
+h the machine running the OS, this is currently being investigated by the Q=
+A team.
+
+
+
+For ptest there was an improvement of the pass rate for gdk-pixbuf of 5% an=
+ improvement of 1.30% of valgrind. On the other side there was a regression=
+ on the pass rate of libxml2 of 1.20% [5], on openssh of 2.9%[6] and on bus=
+ybox of 0.20%[4].
+
+
+
+QA-Hint: QA sees no mayor issues, blockers on this point release. Current b=
+ugs don't block full functionalities, on any component.
+
+
+
+       New Bugs
+            -11795     [Yocto 2.3.1] Can not stop tcf-agent daemon [1]
+            -11811 - ptest-busybox
+            -11812 - ptest- libxml2 cases failed
+            -11813 - ptest- openssh
+
+      * M+ bugs
+            - 10477 yocto-bsp: tool should output a conf file to be consume=
+ by the qemu runner [2]
+
+            - 10832  eSDK install script failed with "tasks executed unexpe=
+ctedly" messages [3]
+
+
+
+
+
+Full Bug Report : https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Ful=
+l_Test_Cycle_-_2.3.1_rc2#Bugs_Found_during_QA_Test
+
+
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+    1.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11795 <https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D11795%20> [1]
+
+    2.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477 <https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477%20> [2]
+
+    3.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832 <https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832%20> [3]
+
+    4.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11811 <https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D11811%20> [4]
+
+    5.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11812 <https:=
+//bugzilla.yoctoproject.org/show_bug.cgi?id=3D11812%20> [5]
+
+    6.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11813 [6]
+
+
+
+
+
+
+
+
+
+
+
 Regards
-Kris
+
+Libertad G.
 
 
-------=_Part_650906_1677724989.1500489433356
-Content-Type: text/html; charset=UTF-8
+--_000_58D9E2E50A021A45AD740492365FCDC531EC860Dfmsmsx107amrcor_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
-ont-family:Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font=
--size:16px"><div id=3D"yui_3_16_0_ym19_1_1500487316159_31191">Hello,</div><=
-div id=3D"yui_3_16_0_ym19_1_1500487316159_31192"><br></div><div id=3D"yui_3=
-_16_0_ym19_1_1500487316159_31193">For a few weeks (part time) I am trying t=
-o add to my image php support (under lighttpd/fastcgi) with postgresql supp=
-ort.</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_31194"><br></div><div =
-id=3D"yui_3_16_0_ym19_1_1500487316159_31195">The php module can get compile=
-d and used without pgsql support.</div><div id=3D"yui_3_16_0_ym19_1_1500487=
-316159_31196"><br></div><div id=3D"yui_3_16_0_ym19_1_1500487316159_27942">I=
- have created a php_5.4.36.bbappend file that contains this :</div><div id=
-=3D"yui_3_16_0_ym19_1_1500487316159_27941"><br></div><div id=3D"yui_3_16_0_=
-ym19_1_1500487316159_27941">-----------------------------------------------=
-------------------</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_27941">F=
-ILES_${PN} +=3D "/usr/lib"<br></div><div id=3D"yui_3_16_0_ym19_1_1500487316=
-159_28027">FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"<br></div><div i=
-d=3D"yui_3_16_0_ym19_1_1500487316159_28030"><br></div><div id=3D"yui_3_16_0=
-_ym19_1_1500487316159_28030">export LPQLIBDIR =3D "${STAGING_LIBDIR}"<br></=
-div><div id=3D"yui_3_16_0_ym19_1_1500487316159_28042">export LPQINCLUDEDIR =
-=3D "${STAGING_INCDIR}"</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_280=
-43">&nbsp;&nbsp;</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_28045">DEP=
-ENDS =3D "postgresql postgresql-native pg-config-custom"</div><div id=3D"yu=
-i_3_16_0_ym19_1_1500487316159_28045"><br></div><div id=3D"yui_3_16_0_ym19_1=
-_1500487316159_28046">EXTRA_OECONF +=3D " --with-pgsql=3D${STAGING_DIR_TARG=
-ET}${EXEC_PREFIX} --with-pdo-pgsql=3D${D}${bindir}"<br></div><div id=3D"yui=
-_3_16_0_ym19_1_1500487316159_28052" dir=3D"ltr">---------------------------=
---------------------------------------<br></div><div id=3D"yui_3_16_0_ym19_=
-1_1500487316159_28052" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1=
-500487316159_28052" dir=3D"ltr">I know, I should have used PACKAGECONFIG[pg=
-sql] but in my case I prefer not touching local.conf.</div><div id=3D"yui_3=
-_16_0_ym19_1_1500487316159_28052" dir=3D"ltr"><br></div><div id=3D"yui_3_16=
-_0_ym19_1_1500487316159_28052" dir=3D"ltr">when I bitbake my image, I see t=
-he following message :</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_2805=
-2" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1500487316159_32785">=
-ERROR: This autoconf log indicates errors, it looked at host include and/or=
- library paths while determining system capabilities.</div><div id=3D"yui_3=
-_16_0_ym19_1_1500487316159_32786">Rerun configure task after fixing this. T=
-he path was '/home/yocto/build/tmp/work/core2-64-poky-linux/php/5.4.36-r0/b=
-uild'</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_32787">ERROR: Functio=
-n failed: do_qa_configure</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_150=
-0487316159_32788"><br id=3D"yui_3_16_0_ym19_1_1500487316159_32789"></div><d=
-iv dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_32788">from my reading=
-, the problem could be here :</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1=
-_1500487316159_32788"><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_150048731615=
-9_35921">checking for pkg-config... /home/yocto/build/tmp/sysroots/x86_64-l=
-inux/usr/bin/pkg-config</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_15004=
-87316159_35922">configure: WARNING: using cross tools not prefixed with hos=
-t triplet</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922=
-"><br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922">o=
-ther than that, looked in the compile log file to find "'CROSS COMPILE Badn=
-ess:' or 'is unsafe for cross-compilation'"... as seen in insane.bbclass. a=
-nd found nothing.</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_15004873161=
-59_35922"><br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_=
-35922">How to solve this issue ? Anyone has been able to connect php with p=
-gsql ?</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><=
-br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922">Than=
-k you</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><b=
-r></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922">Regar=
-ds</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><br><=
-/div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922">Kris</di=
-v><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><br></div><=
-div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><br></div></di=
-v></div></body></html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle23
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:409936447;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2121806452 -607866720 67698691 67698693 67698689 676=
+98691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:45.0pt;
+	text-indent:-.25in;
+	font-family:"Calibri Light",sans-serif;
+	mso-fareast-font-family:Calibri;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:81.0pt;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:117.0pt;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:153.0pt;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:189.0pt;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:225.0pt;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:261.0pt;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:297.0pt;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:333.0pt;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">Hello All,<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">Here is the report for the 2.3.1 rc2 full point release tes=
+t cycle.<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">Full Report :
+</span><a href=3D"https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Ful=
+l_Test_Cycle_-_2.3.1_rc2#Testing_data"><span style=3D"font-family:&quot;Cal=
+ibri Light&quot;,sans-serif">https://wiki.yoctoproject.org/wiki/WW29_-_2017=
+-07-18-_Full_Test_Cycle_-_2.3.1_rc2#Testing_data</span></a><span style=3D"f=
+ont-family:&quot;Calibri Light&quot;,sans-serif"><o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D<o:p>=
+</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">The QA cycle for release 2.3.1 rc2 is complete, no blockers=
+. 10832 [3] was reopened after issue reappeared when trying to install eSDK=
+. Only one new bug about tcf-agent daemon not
+ being able to be stopped. [1]<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">There was a 8.05% regression on building rootfs in Fedora 2=
+3. The performance test results for Ubuntu 15 are misleading because there =
+is a problem with the machine running the OS,
+ this is currently being investigated by the QA team.<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">For ptest there was an improvement of the pass rate for gdk=
+-pixbuf of 5% an improvement of 1.30% of valgrind. On the other side there =
+was a regression on the pass rate of libxml2 of
+ 1.20% [5], on openssh of 2.9%[6] and on busybox of 0.20%[4].<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">QA-Hint: QA sees no mayor issues, blockers on this point re=
+lease. Current bugs don&#8217;t block full functionalities, on any componen=
+t.
+<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></=
+span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Bugs<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11795 &nbsp;=
+&nbsp;&nbsp; [Yocto 2.3.1] Can not stop tcf-agent daemon [1]<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11811 - ptes=
+t-busybox
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11812 - ptes=
+t- libxml2 cases failed
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11813 - ptes=
+t- openssh
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; * M&#43; bugs<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 10477 yocto-bsp:=
+ tool should output a conf file to be consume by the qemu runner [2]<o:p></=
+o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; - 10832&nbsp; eSDK install script failed with &quot;tasks executed =
+unexpectedly&quot; messages [3]<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">Full Bug Report :
+<a href=3D"https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Full_Test_=
+Cycle_-_2.3.1_rc2#Bugs_Found_during_QA_Test">
+https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Full_Test_Cycle_-_2.3=
+.1_rc2#Bugs_Found_during_QA_Test</a><o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D<=
+o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">&nbsp;&nbsp;&nbsp; 1.&nbsp;&nbsp;&nbsp;
+</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11795=
+%20"><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">https=
+://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11795
+</span></a><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif"=
+>[1]<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">&nbsp;&nbsp;&nbsp; 2.&nbsp;&nbsp;&nbsp;
+</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477=
+%20"><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">https=
+://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477
+</span></a><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif"=
+>[2]<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">&nbsp;&nbsp;&nbsp; 3.&nbsp;&nbsp;&nbsp;
+</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832=
+%20"><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">https=
+://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832
+</span></a><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif"=
+>[3]<span style=3D"color:#1F497D"><o:p></o:p></span></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">&nbsp;&nbsp;&nbsp; 4.&nbsp;&nbsp;&nbsp;
+<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11811%20">ht=
+tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11811
+</a>[4]<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">&nbsp;&nbsp;&nbsp; 5.&nbsp;&nbsp;&nbsp;
+<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11812%20">ht=
+tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11812
+</a>[5]<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">&nbsp;&nbsp;&nbsp; 6.&nbsp;&nbsp;&nbsp;
+<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11813">https=
+://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11813</a> [6]<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">Regards<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
+ot;,sans-serif">Libertad G.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri Light&quot;=
+,sans-serif"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
 
-------=_Part_650906_1677724989.1500489433356--
+--_000_58D9E2E50A021A45AD740492365FCDC531EC860Dfmsmsx107amrcor_--
