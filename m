@@ -1,67 +1,42 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <f_l_k@t-online.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E25AE00BC0; Tue, 18 Jul 2017 21:07:42 -0700 (PDT)
+	id D38F6E00C49; Tue, 18 Jul 2017 21:55:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ticotimo[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.178 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [194.25.134.21 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [194.25.134.21 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.178 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DB35E00BC0
-	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 21:07:40 -0700 (PDT)
-Received: by mail-io0-f178.google.com with SMTP id 5so23754827iow.0
-	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 21:07:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=rbPu9i4eGTcmau3DoK7a5i3ttemDUuQTJq9gDGNFAKY=;
-	b=VDedO27MWwTDECMjl9Quhzv006DVjBLUMthNjwL/vH83OQMIZG1z2D2PJhNqGRmAia
-	GRZMflHoMOEtzgW5UXib2jR5NUgzBNso2q2Xg4fT4JEGQowmVPIwpR5PgMXbeuIi39rH
-	I9RcQbqwCZ2FMgSlG3WwKiFpfS/9yo/DubQMQs7zkrq8tlua1RtnMT2ud5k5pp94SCwb
-	3CDW60BFrkgKuDQJdOJ13KnSFBC+XfHWC+oz5O8Nv5pWWeSMJXAZB9hhkF3c0/IFB3YI
-	EE+2/soTTmXSBSi+pJg/nAWg7CxxsifNlqta54X+IOADUldTlRvR9hqRlw2SvmzI3e4u
-	mFMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=rbPu9i4eGTcmau3DoK7a5i3ttemDUuQTJq9gDGNFAKY=;
-	b=mxiEIEhb8Sc5sewcPCdeWrIJfAa/cDIf2U1GR8sKUeSp0TMbcB3B2eU27M7zi1m1dk
-	UtXhNLP+DMmgKqI5heyOC6TgmfpN3bs08QPY0XN4JYevwfRn3TPCT8KZqbw5nlISmhhQ
-	M2pQVqF86sEQhNDhr8oj2a4ovtIf1ZuyaEyk1PC4BSDs/x+0c4O7hHhdjScJmdYP3dNv
-	SHj1Di8wpOXQRBSz0vHgcXsw7dmASah3ZpsnwWFCg1zaS3vKgCOwXny+ZIRCS5PfNBXm
-	5XmC8PIL8B3gD7GT2jnKf/Vb9pmr5+P5yXKQJ/eQ1fpAY1he4GxObb9VMj2F+YRH/4lD
-	GRUg==
-X-Gm-Message-State: AIVw111zGnfTXU4g+i/qKDhpMkC0gi6rnv9m06zZcnstsgcWrmDx4Giu
-	w0nvFGTzlj3IGaSJBlR92fnYMEMMEEGw
-X-Received: by 10.107.173.15 with SMTP id w15mr601473ioe.99.1500437259685;
-	Tue, 18 Jul 2017 21:07:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <5500469A22567C4BAF673A6E86AFA3A40295F0863A44@IR-CENTRAL.corp.innerrange.com>
-In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A40295F0863A44@IR-CENTRAL.corp.innerrange.com>
-From: Tim Orling <ticotimo@gmail.com>
-Date: Wed, 19 Jul 2017 04:07:28 +0000
-Message-ID: <CANx9H-A1FjvhvjQTvneTJdjOjez550jwx=LyD=x3fgeXHEg_yQ@mail.gmail.com>
-To: Craig McQueen <craig.mcqueen@innerrange.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: python3-jinja2 missing package dependency
+X-Greylist: delayed 407 seconds by postgrey-1.32 at yocto-www;
+	Tue, 18 Jul 2017 21:55:00 PDT
+Received: from mailout10.t-online.de (mailout10.t-online.de [194.25.134.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9E7CE00BFF
+	for <yocto@yoctoproject.org>; Tue, 18 Jul 2017 21:55:00 -0700 (PDT)
+Received: from fwd25.aul.t-online.de (fwd25.aul.t-online.de [172.20.26.130])
+	by mailout10.t-online.de (Postfix) with SMTP id E65AF41C0D03
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 06:48:12 +0200 (CEST)
+Received: from genericx86-64.Speedport_W_724V_01011603_05_032
+	(E4qHBGZFwh8q9iyEIXvQWBdvsAwABTKc6UTknSnkNxiaUHrqRNfvyGSjp9xqdNTw1m@[84.146.40.121])
+	by fwd25.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1dXgu8-0WWAaW0; Wed, 19 Jul 2017 06:48:08 +0200
+Date: Wed, 19 Jul 2017 06:48:08 +0200
+From: Markus Volk <f_l_k@t-online.de>
+To: yocto@yoctoproject.org
+Message-Id: <20170719064808.d856c55a9d17c6d8d74f51fb@t-online.de>
+In-Reply-To: <6f93e799-ee94-359e-24d4-ff55b74e36b5@gmail.com>
+References: <6f93e799-ee94-359e-24d4-ff55b74e36b5@gmail.com>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.31; x86_64-poky-linux-gnu)
+Mime-Version: 1.0
+X-ID: E4qHBGZFwh8q9iyEIXvQWBdvsAwABTKc6UTknSnkNxiaUHrqRNfvyGSjp9xqdNTw1m
+X-TOI-MSGID: e7994a0d-aee9-4f4a-b6aa-8838ae0d19f5
+Subject: Re: FFplay question ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,57 +48,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 04:07:42 -0000
-Content-Type: multipart/alternative; boundary="001a11446e9adf21b20554a3c5cd"
+X-List-Received-Date: Wed, 19 Jul 2017 04:55:01 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
---001a11446e9adf21b20554a3c5cd
-Content-Type: text/plain; charset="UTF-8"
+Dear Riko,
 
-Can you submit a patch please? Thank you!
-On Tue, Jul 18, 2017 at 5:15 PM Craig McQueen <craig.mcqueen@innerrange.com>
-wrote:
+ffplay needs sdl as dependency, guess that's your problem
 
-> For the python3-jinja2 package in meta-openembedded meta-python, it should
-> also have a dependency on python3-numbers.
->
-> I'm not sure if this dependency also applies for python-jinja2 package.
-> I'm just using the Python 3 package.
->
-> --
-> Craig McQueen
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+regards,
+Markus
 
---001a11446e9adf21b20554a3c5cd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Wed, 19 Jul 2017 09:19:24 +0800
+Riko Ho <antonius.riko@gmail.com> wrote:
 
-Can you submit a patch please? Thank you!<br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr">On Tue, Jul 18, 2017 at 5:15 PM Craig McQueen &lt;<a href=3D"=
-mailto:craig.mcqueen@innerrange.com">craig.mcqueen@innerrange.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex">For the python3-jinja2 packag=
-e in meta-openembedded meta-python, it should also have a dependency on pyt=
-hon3-numbers.<br>
-<br>
-I&#39;m not sure if this dependency also applies for python-jinja2 package.=
- I&#39;m just using the Python 3 package.<br>
-<br>
---<br>
-Craig McQueen<br>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+> Dear Yocto Members,
+> 
+> I tried to compile FFplay with FFMpeg, but I can not get it ?
+> 
+> What should I change on this code ?
+> 
+> Here's on ffmpeg_3.3.bb :
+> 
+> ===
+> 
+> EXTRA_OECONF = " \
+>      --disable-stripping \
+>      --enable-pic \
+>      --enable-shared \
+>      --enable-pthreads \
+>      --enable-ffplay  \
+> 
+> "
+> 
+> 
+> Thank you
+> 
+> 
+> -- 
+> *
+> 
+> /*******/
+> Sent by Ubuntu LTS 16.04,
+> Kind regards,
+> Riko Ho
+> /*******/
+> 
+> *
 
---001a11446e9adf21b20554a3c5cd--
+
+-- 
+Markus Volk <f_l_k@t-online.de>
+
