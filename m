@@ -1,20 +1,17 @@
-Return-Path: <jngigiw@gmail.com>
+Return-Path: <t_dufff@yahoo.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD612E00BFF; Wed, 19 Jul 2017 06:13:42 -0700 (PDT)
+	id 9C089E00C4F; Wed, 19 Jul 2017 11:37:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_MUA_MOZILLA, FREEMAIL_FROM,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jngigiw[at]gmail.com)
+	mail provider *      (t_dufff[at]yahoo.ca)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.46 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.46 listed in dnsbl.sorbs.net]
+	*      [74.6.132.84 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -23,47 +20,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f46.google.com (mail-pg0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6224EE00B76
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 06:13:41 -0700 (PDT)
-Received: by mail-pg0-f46.google.com with SMTP id y129so107035pgy.4
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 06:13:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=/riiVWSwt/N6xWhfJg3pSnckhjZp19umPSc9gUfrEGg=;
-	b=c79RpnGE/1wOi766u0lTZJxM5QT4f5V7Vo2BDJZ2bi3IQTATXKCscVyXtrXF0ygGxk
-	ZmHnPwL1g14zW8H5nba7kDYouvT+NrAzIhIW449aPFqg3QJEJirVJTZwjh9BppTFY9j3
-	R9YROSfXhZS7YpssQvP1xmDwx0hYNAUPnkCr+6r4cZC+Cgm003S/nGfO9dnuFI2hpoAY
-	4h8kbQi6jv+OMnD3FLFybl6Oq2wxJ+m4AazOQAqW0lECFFZ/PBZI2Ela/KFmGL9nKMWf
-	JTtAItyvAi8IpcChIYXPpktomTKusf9OfLaeVT+lO6OvSo0QC21+dsvCCKUTjIcsnV9X
-	6yPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=/riiVWSwt/N6xWhfJg3pSnckhjZp19umPSc9gUfrEGg=;
-	b=J89ED9Fg4OuHSazgZFCo0JxD9dSs+9N74IOKBZSeA6OQ27ztT+EQANuBF4ivX+D2QM
-	LLadOOg8+jA5IJYmDqm5K/A4Pm/5KGyZbS2uf7ptGERNfA0NlIKik3bkszMXWSqEgRVy
-	rg/OfLK3NgC8WU5mD1Zkw7+PtXkVl5qmp2c7pjy0foDKEN69TZPEazs81DD1nW2Nf3L6
-	kjRtfnAcvfgjmvYLzDnc5Oqqyoa3HgrnbP779zly6Hh6/FKWSp7LeGScqPhrUuOd6zJT
-	G+zWFkRJ6AlYSry9gsvjDX2m6PypOeOlIaDJwZmnoeE+FcfO1DknpYmsViUlTPUup/y2
-	K5Sg==
-X-Gm-Message-State: AIVw112+FJb569fD5llX11kBTIky2hwpTb0asXtrRAQ4iIsErGZou5+Q
-	j4/XQn5vjYb4ng5qNdYf1gZEWthjnZXNN/w=
-X-Received: by 10.99.126.86 with SMTP id o22mr624172pgn.383.1500470020341;
-	Wed, 19 Jul 2017 06:13:40 -0700 (PDT)
+	*  2.3 FORGED_MUA_MOZILLA Forged mail pretending to be from Mozilla
+Received: from sonic322-29.consmr.mail.bf2.yahoo.com
+	(sonic322-29.consmr.mail.bf2.yahoo.com [74.6.132.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0912AE00C49
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 11:37:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.ca; s=s2048;
+	t=1500489433; bh=whaXPACBJds3+3fE/m26zFUEOOq/keJZNcCFHBPSI6Q=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=AerrhgUiS/UPMCLr/zZzk7cJsGdOTM1vgcnD5aRG13svOI1aN22EqxFHhqUz8Bxg4VDo242BDmyNG/E6+phOoh6/AVYBkTId/tc8YawcdlTHPrU2OzAydZfg5+CAJzUgSqyGljewJRQ+H4UEApN4JHH3Xs9jmFgs7XKnlwcNcULHXs1HN+mbnjTzWEM1PfQPsZRrkFTPWkzrGS9aItEAJkgXL67K18LM2Pz7h7Ac/DMlrqOHsZBj3WOeddHBQpwBLHvoKlrZ6W+ADMKVW9kMaid1BJIgQ7nIcfKKYZn+IjyKGWrs6ogn932OEoSk/FcIcsRwbzzq+NXuhr7rScDYlg==
+X-YMail-OSG: mH5CM2gVM1n1HKoXjtiCOFy5whQMDpLPnf4rpX5AGjIqya06IAlW1A0FfM4iHtJ
+	7fb6rvORiAA7D1gAhoxCh.JaRLvDGts77SsoCC5KJRaPb10MGCX77Iezi53eZJ_ffeniRkOsfAbE
+	jHGIS.RFVUKCr30SijhzZLOVX4wHfypS3ZJJMSeLRbAzkgY4u.MOh5ZQxFzuiwYzciVjeDwVW34l
+	9_CbfkyAJJ69yh7ncB3b3fwwU1tDXMU.hdODP.O_jjv81ZpanmtbXFHuENGD415sooAQ_rWSkBsX
+	AvFmOJ4HLzeIGDFToiRwAnrkOv7hNQefTuxsz4MywreXVacmnWhUEj0gnViBEZalJSCC.x4LKL6c
+	H1uQ3dtO3msRTYxVwuRQuCl_KslsLFIbLzh34LmnKiYNfiRBVKbvXh936JJoJViT0eR7Rk2EFPPP
+	52bWf3Sd.elDMH_0h93bWOfz2hCxcmZFiveM6AJtZDWKDXXCtjwIKPgvmny2c7t72E_mEc8ctgbP
+	AFkSVweplLZpSmZLQbg--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic322.consmr.mail.bf2.yahoo.com with HTTP;
+	Wed, 19 Jul 2017 18:37:13 +0000
+Date: Wed, 19 Jul 2017 18:37:13 +0000 (UTC)
+From: kris duff <t_dufff@yahoo.ca>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <1954548235.650907.1500489433358@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.100.150.200 with HTTP; Wed, 19 Jul 2017 06:13:39 -0700 (PDT)
-In-Reply-To: <CABaDK3V7Rdt4ahQ7kBHVHr8=T3Lct8a7kWTLV6yjn9Mu+5nu5w@mail.gmail.com>
-References: <CABaDK3V7Rdt4ahQ7kBHVHr8=T3Lct8a7kWTLV6yjn9Mu+5nu5w@mail.gmail.com>
-From: Joseph Ngigi <jngigiw@gmail.com>
-Date: Wed, 19 Jul 2017 16:13:39 +0300
-Message-ID: <CABaDK3WAqG4MOa9vbJd8Sg9TGNM_JkBrDYgtpmY59wKYSJuSCA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: do_compile errors.
+References: <1954548235.650907.1500489433358.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.10121 YahooMailNeo Mozilla/5.0 (Windows NT 6.1; Win64;
+	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115
+	Safari/537.36
+Subject: [dizzy] php 5.4.36 compilation with postgresql 9.3.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: kris duff <t_dufff@yahoo.ca>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,316 +62,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 13:13:42 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1b63448f026d0554ab6659"
+X-List-Received-Date: Wed, 19 Jul 2017 18:37:15 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_650906_1677724989.1500489433356"
 
---94eb2c1b63448f026d0554ab6659
-Content-Type: text/plain; charset="UTF-8"
-
-Here's my console output:
-
-ngigijoe@ngigijoe-HP-2000-Notebook-PC:~/src/git/pyro/poky/cubieboard2$
-bitbake core-image-sato
-Loading cache: 100%
-|#################################################################################################################################|
-Time: 0:00:00
-Loaded 2168 entries from dependency cache.
-NOTE: Resolving any missing task queue dependencies
-
-Build Configuration:
-BB_VERSION        = "1.34.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal-4.8"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "cubieboard2"
-DISTRO            = "poky"
-DISTRO_VERSION    = "2.3.1"
-TUNE_FEATURES     = "arm armv7ve vfp neon vfpv4 callconvention-hard
-cortexa7"
-TARGET_FPU        = "hard"
-meta
-meta-poky         = "pyro:6bd890d9e011014cf323e61267f8b256949d44aa"
-meta-sunxi        = "pyro:0056643fcf2c496a0f2cf005fb67d626ab0e2c10"
-meta-oe
-meta-gnome        = "pyro:5e82995148a2844c6f483ae5ddd1438d87ea9fb7"
-
-Initialising tasks: 100%
-|############################################################################################################################|
-Time: 0:00:19
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: gperf-native-3.0.4-r0 do_compile: oe_runmake failed
-ERROR: gperf-native-3.0.4-r0 do_compile: Function failed: do_compile (log
-file is located at
-/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/temp/log.do_compile.7266)
-ERROR: Logfile of failure stored in:
-/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/temp/log.do_compile.7266
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| NOTE: make -j 8
-| ERROR: oe_runmake failed
-| cd lib; make all
-| make[1]: Entering directory
-'/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/lib'
-| make[1]: Nothing to be done for 'all'.
-| make[1]: Leaving directory
-'/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/lib'
-| cd src; make all
-| make[1]: Entering directory
-'/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/src'
-| g++
--isystem/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/include
--O2 -pipe -D_GLIBCXX_USE_CXX11_ABI=0
--L/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib
--L/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib
--Wl,-rpath-link,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib
--Wl,-rpath-link,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib
--Wl,-rpath,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib
--Wl,-rpath,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib
--Wl,-O1 -o gperf version.o positions.o options.o keyword.o keyword-list.o
-input.o bool-array.o hash-table.o search.o output.o main.o ../lib/libgp.a
--lm
-| g++: error: version.o: No such file or directory
-| g++: error: positions.o: No such file or directory
-| g++: error: options.o: No such file or directory
-| g++: error: keyword.o: No such file or directory
-| g++: error: keyword-list.o: No such file or directory
-| g++: error: input.o: No such file or directory
-| g++: error: bool-array.o: No such file or directory
-| g++: error: hash-table.o: No such file or directory
-| g++: error: output.o: No such file or directory
-| g++: error: main.o: No such file or directory
-| g++: error: ../lib/libgp.a: No such file or directory
-| Makefile:74: recipe for target 'gperf' failed
-| make[1]: *** [gperf] Error 1
-| make[1]: Leaving directory
-'/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/src'
-| Makefile:33: recipe for target 'all' failed
-| make: *** [all] Error 2
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at
-/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/temp/log.do_compile.7266)
-ERROR: Task
-(virtual:native:/home/ngigijoe/src/git/pyro/poky/meta/recipes-extended/gperf/gperf_3.0.4.bb:do_compile)
-failed with exit code '1'
-
-Second Keyboard Interrupt, stopping...
-
-
-Summary: 1 task failed:
-
-virtual:native:/home/ngigijoe/src/git/pyro/poky/meta/recipes-extended/gperf/gperf_3.0.4.bb:
-do_compile
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-NOTE: Sending SIGTERM to remaining 6 tasks
-
-
-On Wed, Jul 19, 2017 at 3:58 PM, Joseph Ngigi <jngigiw@gmail.com> wrote:
-
-> I seem to be having a lot of do_compile failure errors, building
-> core-image-sato for cubieboard2 using poky pyro. I do not understand
-> whether it is a gcc compiler issue or any other problem. Any assistance
-> will be highly appreciated.
->
-> Below is my logfile.
->
-> DEBUG: Executing shell function do_compile
-> NOTE: make -j 8
-> ERROR: oe_runmake failed
-> cd lib; make all
-> make[1]: Entering directory '/home/ngigijoe/src/git/pyro/
-> poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/lib'
-> make[1]: Nothing to be done for 'all'.
-> make[1]: Leaving directory '/home/ngigijoe/src/git/pyro/
-> poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/lib'
-> cd src; make all
-> make[1]: Entering directory '/home/ngigijoe/src/git/pyro/
-> poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/src'
-> g++  -isystem/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/
-> work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/include
-> -O2 -pipe -D_GLIBCXX_USE_CXX11_ABI=0 -L/home/ngigijoe/src/git/pyro/
-> poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-
-> r0/recipe-sysroot-native/usr/lib -L/home/ngigijoe/src/git/pyro/
-> poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib
-> -Wl,-rpath-link,/home/ngigijoe/src/git/pyro/poky/
-> cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib
-> -Wl,-rpath-link,/home/ngigijoe/src/git/pyro/poky/
-> cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib
-> -Wl,-rpath,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/
-> work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib
-> -Wl,-rpath,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/
-> work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib -Wl,-O1
-> -o gperf version.o positions.o options.o keyword.o keyword-list.o input.o
-> bool-array.o hash-table.o search.o output.o main.o ../lib/libgp.a -lm
-> g++: error: version.o: No such file or directory
-> g++: error: positions.o: No such file or directory
-> g++: error: options.o: No such file or directory
-> g++: error: keyword.o: No such file or directory
-> g++: error: keyword-list.o: No such file or directory
-> g++: error: input.o: No such file or directory
-> g++: error: bool-array.o: No such file or directory
-> g++: error: hash-table.o: No such file or directory
-> g++: error: output.o: No such file or directory
-> g++: error: main.o: No such file or directory
-> g++: error: ../lib/libgp.a: No such file or directory
-> Makefile:74: recipe for target 'gperf' failed
-> make[1]: *** [gperf] Error 1
-> make[1]: Leaving directory '/home/ngigijoe/src/git/pyro/
-> poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/src'
-> Makefile:33: recipe for target 'all' failed
-> make: *** [all] Error 2
-> ERROR: Function failed: do_compile (log file is located at
-> /home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_
-> 64-linux/gperf-native/3.0.4-r0/temp/log.do_compile.600)
->
-> --
-> J.W.Ngigi
->
->
->
-
-
--- 
-J.W.Ngigi
-
---94eb2c1b63448f026d0554ab6659
-Content-Type: text/html; charset="UTF-8"
+------=_Part_650906_1677724989.1500489433356
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Here&#39;s my console output:<br><br>ngigijoe@ngigijoe-HP-=
-2000-Notebook-PC:~/src/git/pyro/poky/cubieboard2$ bitbake core-image-sato<b=
-r>Loading cache: 100% |####################################################=
-###########################################################################=
-##| Time: 0:00:00<br>Loaded 2168 entries from dependency cache.<br>NOTE: Re=
-solving any missing task queue dependencies<br><br>Build Configuration:<br>=
-BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.34.0&quot;=
-<br>BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86=
-_64-linux&quot;<br>NATIVELSBSTRING=C2=A0=C2=A0 =3D &quot;universal-4.8&quot=
-;<br>TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm-pok=
-y-linux-gnueabi&quot;<br>MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 =3D &quot;cubieboard2&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;poky&quot;<br>DI=
-STRO_VERSION=C2=A0=C2=A0=C2=A0 =3D &quot;2.3.1&quot;<br>TUNE_FEATURES=C2=A0=
-=C2=A0=C2=A0=C2=A0 =3D &quot;arm armv7ve vfp neon vfpv4 callconvention-hard=
- cortexa7&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=
- &quot;hard&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-poky=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 =3D &quot;pyro:6bd890d9e011014cf323e61267f8b256949d44aa&=
-quot;<br>meta-sunxi=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;pyr=
-o:0056643fcf2c496a0f2cf005fb67d626ab0e2c10&quot;<br>meta-oe=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-gnome=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;pyro:5e82995148a2844c6f483ae5ddd1438d=
-87ea9fb7&quot;<br><br>Initialising tasks: 100% |###########################=
-###########################################################################=
-######################| Time: 0:00:19<br>NOTE: Executing SetScene Tasks<br>=
-NOTE: Executing RunQueue Tasks<br>ERROR: gperf-native-3.0.4-r0 do_compile: =
-oe_runmake failed<br>ERROR: gperf-native-3.0.4-r0 do_compile: Function fail=
-ed: do_compile (log file is located at /home/ngigijoe/src/git/pyro/poky/cub=
-ieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/temp/log.do_compile.72=
-66)<br>ERROR: Logfile of failure stored in: /home/ngigijoe/src/git/pyro/pok=
-y/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/temp/log.do_compi=
-le.7266<br>Log data follows:<br>| DEBUG: Executing shell function do_compil=
-e<br>| NOTE: make -j 8<br>| ERROR: oe_runmake failed<br>| cd lib; make all<=
-br>| make[1]: Entering directory &#39;/home/ngigijoe/src/git/pyro/poky/cubi=
-eboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/build/lib&#39;<br>| mak=
-e[1]: Nothing to be done for &#39;all&#39;.<br>| make[1]: Leaving directory=
- &#39;/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gp=
-erf-native/3.0.4-r0/build/lib&#39;<br>| cd src; make all<br>| make[1]: Ente=
-ring directory &#39;/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x=
-86_64-linux/gperf-native/3.0.4-r0/build/src&#39;<br>| g++=C2=A0 -isystem/ho=
-me/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-nativ=
-e/3.0.4-r0/recipe-sysroot-native/usr/include -O2 -pipe -D_GLIBCXX_USE_CXX11=
-_ABI=3D0 -L/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-lin=
-ux/gperf-native/3.0.4-r0/recipe-sysroot-native/usr/lib -L/home/ngigijoe/src=
-/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/reci=
-pe-sysroot-native/lib -Wl,-rpath-link,/home/ngigijoe/src/git/pyro/poky/cubi=
-eboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/u=
-sr/lib -Wl,-rpath-link,/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/wor=
-k/x86_64-linux/gperf-native/3.0.4-r0/recipe-sysroot-native/lib -Wl,-rpath,/=
-home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-nat=
-ive/3.0.4-r0/recipe-sysroot-native/usr/lib -Wl,-rpath,/home/ngigijoe/src/gi=
-t/pyro/poky/cubieboard2/tmp/work/x86_64-linux/gperf-native/3.0.4-r0/recipe-=
-sysroot-native/lib -Wl,-O1 -o gperf version.o positions.o options.o keyword=
-.o keyword-list.o input.o bool-array.o hash-table.o search.o output.o main.=
-o ../lib/libgp.a -lm<br>| g++: error: version.o: No such file or directory<=
-br>| g++: error: positions.o: No such file or directory<br>| g++: error: op=
-tions.o: No such file or directory<br>| g++: error: keyword.o: No such file=
- or directory<br>| g++: error: keyword-list.o: No such file or directory<br=
->| g++: error: input.o: No such file or directory<br>| g++: error: bool-arr=
-ay.o: No such file or directory<br>| g++: error: hash-table.o: No such file=
- or directory<br>| g++: error: output.o: No such file or directory<br>| g++=
-: error: main.o: No such file or directory<br>| g++: error: ../lib/libgp.a:=
- No such file or directory<br>| Makefile:74: recipe for target &#39;gperf&#=
-39; failed<br>| make[1]: *** [gperf] Error 1<br>| make[1]: Leaving director=
-y &#39;/home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux/g=
-perf-native/3.0.4-r0/build/src&#39;<br>| Makefile:33: recipe for target &#3=
-9;all&#39; failed<br>| make: *** [all] Error 2<br>| WARNING: exit code 1 fr=
-om a shell command.<br>| ERROR: Function failed: do_compile (log file is lo=
-cated at /home/ngigijoe/src/git/pyro/poky/cubieboard2/tmp/work/x86_64-linux=
-/gperf-native/3.0.4-r0/temp/log.do_compile.7266)<br>ERROR: Task (virtual:na=
-tive:/home/ngigijoe/src/git/pyro/poky/meta/recipes-extended/gperf/gperf_3.0=
-.4.bb:do_compile) failed with exit code &#39;1&#39;<br><br>Second Keyboard =
-Interrupt, stopping...<br><br><br>Summary: 1 task failed:<br>=C2=A0 virtual=
-:native:/home/ngigijoe/src/git/pyro/poky/meta/recipes-extended/gperf/gperf_=
-3.0.4.bb:do_compile<br>Summary: There were 2 ERROR messages shown, returnin=
-g a non-zero exit code.<br>NOTE: Sending SIGTERM to remaining 6 tasks<br><b=
-r></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, J=
-ul 19, 2017 at 3:58 PM, Joseph Ngigi <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:jngigiw@gmail.com" target=3D"_blank">jngigiw@gmail.com</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>I seem to be ha=
-ving a lot of do_compile failure errors, building core-image-sato for cubie=
-board2 using poky pyro. I do not understand whether it is a gcc compiler is=
-sue or any other problem. Any assistance will be highly appreciated.<br><br=
-></div>Below is my logfile.<br><br clear=3D"all"><div><div>DEBUG: Executing=
- shell function do_compile<br>NOTE: make -j 8<br>ERROR: oe_runmake failed<b=
-r>cd lib; make all<br>make[1]: Entering directory &#39;/home/ngigijoe/src/g=
-it/pyro/<wbr>poky/cubieboard2/tmp/work/x86_<wbr>64-linux/gperf-native/3.0.4=
--<wbr>r0/build/lib&#39;<br>make[1]: Nothing to be done for &#39;all&#39;.<b=
-r>make[1]: Leaving directory &#39;/home/ngigijoe/src/git/pyro/<wbr>poky/cub=
-ieboard2/tmp/work/x86_<wbr>64-linux/gperf-native/3.0.4-<wbr>r0/build/lib&#3=
-9;<br>cd src; make all<br>make[1]: Entering directory &#39;/home/ngigijoe/s=
-rc/git/pyro/<wbr>poky/cubieboard2/tmp/work/x86_<wbr>64-linux/gperf-native/3=
-.0.4-<wbr>r0/build/src&#39;<br>g++=C2=A0 -isystem/home/ngigijoe/src/<wbr>gi=
-t/pyro/poky/cubieboard2/tmp/<wbr>work/x86_64-linux/gperf-<wbr>native/3.0.4-=
-r0/recipe-<wbr>sysroot-native/usr/include -O2 -pipe -D_GLIBCXX_USE_CXX11_AB=
-I=3D0 -L/home/ngigijoe/src/git/pyro/<wbr>poky/cubieboard2/tmp/work/x86_<wbr=
->64-linux/gperf-native/3.0.4-<wbr>r0/recipe-sysroot-native/usr/<wbr>lib -L/=
-home/ngigijoe/src/git/pyro/<wbr>poky/cubieboard2/tmp/work/x86_<wbr>64-linux=
-/gperf-native/3.0.4-<wbr>r0/recipe-sysroot-native/lib -Wl,-rpath-link,/home=
-/<wbr>ngigijoe/src/git/pyro/poky/<wbr>cubieboard2/tmp/work/x86_64-<wbr>linu=
-x/gperf-native/3.0.4-r0/<wbr>recipe-sysroot-native/usr/lib -Wl,-rpath-link,=
-/home/<wbr>ngigijoe/src/git/pyro/poky/<wbr>cubieboard2/tmp/work/x86_64-<wbr=
->linux/gperf-native/3.0.4-r0/<wbr>recipe-sysroot-native/lib -Wl,-rpath,/hom=
-e/ngigijoe/src/<wbr>git/pyro/poky/cubieboard2/tmp/<wbr>work/x86_64-linux/gp=
-erf-<wbr>native/3.0.4-r0/recipe-<wbr>sysroot-native/usr/lib -Wl,-rpath,/hom=
-e/ngigijoe/src/<wbr>git/pyro/poky/cubieboard2/tmp/<wbr>work/x86_64-linux/gp=
-erf-<wbr>native/3.0.4-r0/recipe-<wbr>sysroot-native/lib -Wl,-O1 -o gperf ve=
-rsion.o positions.o options.o keyword.o keyword-list.o input.o bool-array.o=
- hash-table.o search.o output.o main.o ../lib/libgp.a -lm<br>g++: error: ve=
-rsion.o: No such file or directory<br>g++: error: positions.o: No such file=
- or directory<br>g++: error: options.o: No such file or directory<br>g++: e=
-rror: keyword.o: No such file or directory<br>g++: error: keyword-list.o: N=
-o such file or directory<br>g++: error: input.o: No such file or directory<=
-br>g++: error: bool-array.o: No such file or directory<br>g++: error: hash-=
-table.o: No such file or directory<br>g++: error: output.o: No such file or=
- directory<br>g++: error: main.o: No such file or directory<br>g++: error: =
-../lib/libgp.a: No such file or directory<br>Makefile:74: recipe for target=
- &#39;gperf&#39; failed<br>make[1]: *** [gperf] Error 1<br>make[1]: Leaving=
- directory &#39;/home/ngigijoe/src/git/pyro/<wbr>poky/cubieboard2/tmp/work/=
-x86_<wbr>64-linux/gperf-native/3.0.4-<wbr>r0/build/src&#39;<br>Makefile:33:=
- recipe for target &#39;all&#39; failed<br>make: *** [all] Error 2<br>ERROR=
-: Function failed: do_compile (log file is located at /home/ngigijoe/src/gi=
-t/pyro/<wbr>poky/cubieboard2/tmp/work/x86_<wbr>64-linux/gperf-native/3.0.4-=
-<wbr>r0/temp/log.do_compile.600)<span class=3D"HOEnZb"><font color=3D"#8888=
-88"><br><br>-- <br><div class=3D"m_6206264962165269254gmail_signature"><div=
- dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">J.W.Ngigi</div><di=
-v dir=3D"ltr"><br><br></div></div></div></div></div></div>
-</font></span></div></div></div>
-</blockquote></div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail_sig=
-nature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=
-=3D"ltr"><div><div dir=3D"ltr">J.W.Ngigi</div><div dir=3D"ltr"><br><br></di=
-v></div></div></div></div></div>
-</div>
+Hello,
+For a few weeks (part time) I am trying to add to my image php support (und=
+er lighttpd/fastcgi) with postgresql support.
+The php module can get compiled and used without pgsql support.
+I have created a php_5.4.36.bbappend file that contains this :
+-----------------------------------------------------------------FILES_${PN=
+} +=3D "/usr/lib"
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
 
---94eb2c1b63448f026d0554ab6659--
+export LPQLIBDIR =3D "${STAGING_LIBDIR}"
+export LPQINCLUDEDIR =3D "${STAGING_INCDIR}"=C2=A0=C2=A0DEPENDS =3D "postgr=
+esql postgresql-native pg-config-custom"
+EXTRA_OECONF +=3D " --with-pgsql=3D${STAGING_DIR_TARGET}${EXEC_PREFIX} --wi=
+th-pdo-pgsql=3D${D}${bindir}"
+-----------------------------------------------------------------
+
+I know, I should have used PACKAGECONFIG[pgsql] but in my case I prefer not=
+ touching local.conf.
+when I bitbake my image, I see the following message :
+ERROR: This autoconf log indicates errors, it looked at host include and/or=
+ library paths while determining system capabilities.Rerun configure task a=
+fter fixing this. The path was '/home/yocto/build/tmp/work/core2-64-poky-li=
+nux/php/5.4.36-r0/build'ERROR: Function failed: do_qa_configure
+from my reading, the problem could be here :checking for pkg-config... /hom=
+e/yocto/build/tmp/sysroots/x86_64-linux/usr/bin/pkg-configconfigure: WARNIN=
+G: using cross tools not prefixed with host triplet
+other than that, looked in the compile log file to find "'CROSS COMPILE Bad=
+ness:' or 'is unsafe for cross-compilation'"... as seen in insane.bbclass. =
+and found nothing.
+How to solve this issue ? Anyone has been able to connect php with pgsql ?
+Thank you
+Regards
+Kris
+
+
+------=_Part_650906_1677724989.1500489433356
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font=
+-size:16px"><div id=3D"yui_3_16_0_ym19_1_1500487316159_31191">Hello,</div><=
+div id=3D"yui_3_16_0_ym19_1_1500487316159_31192"><br></div><div id=3D"yui_3=
+_16_0_ym19_1_1500487316159_31193">For a few weeks (part time) I am trying t=
+o add to my image php support (under lighttpd/fastcgi) with postgresql supp=
+ort.</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_31194"><br></div><div =
+id=3D"yui_3_16_0_ym19_1_1500487316159_31195">The php module can get compile=
+d and used without pgsql support.</div><div id=3D"yui_3_16_0_ym19_1_1500487=
+316159_31196"><br></div><div id=3D"yui_3_16_0_ym19_1_1500487316159_27942">I=
+ have created a php_5.4.36.bbappend file that contains this :</div><div id=
+=3D"yui_3_16_0_ym19_1_1500487316159_27941"><br></div><div id=3D"yui_3_16_0_=
+ym19_1_1500487316159_27941">-----------------------------------------------=
+------------------</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_27941">F=
+ILES_${PN} +=3D "/usr/lib"<br></div><div id=3D"yui_3_16_0_ym19_1_1500487316=
+159_28027">FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"<br></div><div i=
+d=3D"yui_3_16_0_ym19_1_1500487316159_28030"><br></div><div id=3D"yui_3_16_0=
+_ym19_1_1500487316159_28030">export LPQLIBDIR =3D "${STAGING_LIBDIR}"<br></=
+div><div id=3D"yui_3_16_0_ym19_1_1500487316159_28042">export LPQINCLUDEDIR =
+=3D "${STAGING_INCDIR}"</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_280=
+43">&nbsp;&nbsp;</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_28045">DEP=
+ENDS =3D "postgresql postgresql-native pg-config-custom"</div><div id=3D"yu=
+i_3_16_0_ym19_1_1500487316159_28045"><br></div><div id=3D"yui_3_16_0_ym19_1=
+_1500487316159_28046">EXTRA_OECONF +=3D " --with-pgsql=3D${STAGING_DIR_TARG=
+ET}${EXEC_PREFIX} --with-pdo-pgsql=3D${D}${bindir}"<br></div><div id=3D"yui=
+_3_16_0_ym19_1_1500487316159_28052" dir=3D"ltr">---------------------------=
+--------------------------------------<br></div><div id=3D"yui_3_16_0_ym19_=
+1_1500487316159_28052" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1=
+500487316159_28052" dir=3D"ltr">I know, I should have used PACKAGECONFIG[pg=
+sql] but in my case I prefer not touching local.conf.</div><div id=3D"yui_3=
+_16_0_ym19_1_1500487316159_28052" dir=3D"ltr"><br></div><div id=3D"yui_3_16=
+_0_ym19_1_1500487316159_28052" dir=3D"ltr">when I bitbake my image, I see t=
+he following message :</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_2805=
+2" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1500487316159_32785">=
+ERROR: This autoconf log indicates errors, it looked at host include and/or=
+ library paths while determining system capabilities.</div><div id=3D"yui_3=
+_16_0_ym19_1_1500487316159_32786">Rerun configure task after fixing this. T=
+he path was '/home/yocto/build/tmp/work/core2-64-poky-linux/php/5.4.36-r0/b=
+uild'</div><div id=3D"yui_3_16_0_ym19_1_1500487316159_32787">ERROR: Functio=
+n failed: do_qa_configure</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_150=
+0487316159_32788"><br id=3D"yui_3_16_0_ym19_1_1500487316159_32789"></div><d=
+iv dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_32788">from my reading=
+, the problem could be here :</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1=
+_1500487316159_32788"><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_150048731615=
+9_35921">checking for pkg-config... /home/yocto/build/tmp/sysroots/x86_64-l=
+inux/usr/bin/pkg-config</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_15004=
+87316159_35922">configure: WARNING: using cross tools not prefixed with hos=
+t triplet</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922=
+"><br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922">o=
+ther than that, looked in the compile log file to find "'CROSS COMPILE Badn=
+ess:' or 'is unsafe for cross-compilation'"... as seen in insane.bbclass. a=
+nd found nothing.</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_15004873161=
+59_35922"><br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_=
+35922">How to solve this issue ? Anyone has been able to connect php with p=
+gsql ?</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><=
+br></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922">Than=
+k you</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><b=
+r></div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922">Regar=
+ds</div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><br><=
+/div><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922">Kris</di=
+v><div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><br></div><=
+div dir=3D"ltr" id=3D"yui_3_16_0_ym19_1_1500487316159_35922"><br></div></di=
+v></div></body></html>
+
+------=_Part_650906_1677724989.1500489433356--
