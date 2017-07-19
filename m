@@ -1,34 +1,69 @@
-Return-Path: <victor_wang@winmate.com.tw>
+Return-Path: <vm.rod25@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DB10E00C45; Wed, 19 Jul 2017 00:48:04 -0700 (PDT)
+	id 5F386E00BFF; Wed, 19 Jul 2017 04:07:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [122.147.158.238 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vm.rod25[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.68 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0455]
-X-Greylist: delayed 321 seconds by postgrey-1.32 at yocto-www;
-	Wed, 19 Jul 2017 00:48:02 PDT
-Received: from mx.winmate.com.tw (mail.winmate.com.tw [122.147.158.238])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 67C45E00BC0
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 00:48:01 -0700 (PDT)
-Received: from winmate.com.tw([192.168.100.101]) by RaidenMAILD([192.168.1.6]);
-	Wed, 19 Jul 2017 15:44:31 +0800
-Received: from WE1441 ([192.168.8.41]) by winmate.com.tw ([220.130.150.210]);
-	Wed, 19 Jul 2017 15:42:13 +0800
-From: "victor_wang.Winmate" <victor_wang@winmate.com.tw>
-To: <yocto@yoctoproject.org>
-Date: Wed, 19 Jul 2017 15:41:48 +0800
-Message-ID: <000601d30062$7a3b0680$6eb11380$@winmate.com.tw>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.68 listed in dnsbl.sorbs.net]
+Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
+	[209.85.218.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15A73E00BBC
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 04:07:01 -0700 (PDT)
+Received: by mail-oi0-f68.google.com with SMTP id h143so3604559oic.2
+	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 04:07:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=rWrnCrDxoqw+ROIGQzlDehWTHeOqhg1xF2L819Cajc8=;
+	b=fRcq13i8GZsGRCod8aexUjiqFrT6M5IzYaatl3RYVhJAXRVW4oYQj2Xcy0s/yR3aK0
+	tNwH/iqqv48KFEyt6QBny5lDRfuRoyVtafninkGSZGd+MsOqpNXQ8BS11OoJZU1apwjb
+	1ZQtv4qxMKO7UQEkDGVyuXdvxf+qLKq7l3xpwwo2NDNYErvdRpPSRLpZyvgdF9PIy63I
+	Q//SSVmo7olalodr2L4jC8oibcHQIBzZGUOlYN1nIpJhnUTcSv5P1+buGL2ASD+qa511
+	otCf9iEL8dlr2KV75ZGEmJa721zttZQAZL9FJY/k7OqG3VEw5QfqmnQ7CSk00ZKu8v5j
+	gCeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=rWrnCrDxoqw+ROIGQzlDehWTHeOqhg1xF2L819Cajc8=;
+	b=mxN9lF5jIsYbKLCctpmj7QABBvhwl0XbrQb8v99oX4cd8jYzTAIdnsbSmr7kn2ob57
+	/uGvS86O7y8+r3yaADlYm6H6UCyZn3AWq/zFeSXavKQHGFxsPHAKRZMLm9EF6+ycsoAK
+	jn942hx2OD/71IFryhNn6BQw89VjRSUpaYO9Y72ftJzRykSGMHL+Xa5am50VkPyZ58fb
+	38C1rb6zZEQ3rU5t4aUuabB8V7U/tz3inzvwSTj8T3L7EXDyBHeOIpycnvMf1Rmh36mF
+	J4eallfSnLgDpTjalo5tNU+1bt9ZW93FV1l5yzWPAiktXFbwW20thlBpP5OpmssAdqN6
+	wLFg==
+X-Gm-Message-State: AIVw113TR2s1tQK1rLEeBmbdwkvo/Q7MbK2el5h4DIKEewYyb3tL5lcz
+	nuUHQ1/jZxILhmnVRpPbzTgPBpyYkw==
+X-Received: by 10.202.193.85 with SMTP id r82mr1418268oif.200.1500462421030;
+	Wed, 19 Jul 2017 04:07:01 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AdMAYIIlf3jOMOKYSRiB1nfW/R46Dw==
-Subject: Help Compiling vlc for i.MX6 SABRE-SD
+Received: by 10.202.182.4 with HTTP; Wed, 19 Jul 2017 04:07:00 -0700 (PDT)
+In-Reply-To: <20170718161438.31649-6-anibal.limon@linux.intel.com>
+References: <20170718161438.31649-1-anibal.limon@linux.intel.com>
+	<20170718161438.31649-6-anibal.limon@linux.intel.com>
+From: Victor Rodriguez <vm.rod25@gmail.com>
+Date: Wed, 19 Jul 2017 06:07:00 -0500
+Message-ID: <CAK5mteyG3Y=UGOUriSuQyXjNLx1Rv_6NUan7SAfnYehtHubQ+g@mail.gmail.com>
+To: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, mikko.ylinen@intel.com
+Subject: Re: [yocto-autobuilder][PATCHv3 5/5] buildset-config.yocto-qa: Add intel-corei7-64-daft buildset
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,225 +75,306 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 07:48:04 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0007_01D300A5.885FCD20"
-Content-Language: zh-tw
+X-List-Received-Date: Wed, 19 Jul 2017 11:07:04 -0000
+Content-Type: multipart/alternative; boundary="001a113d29d69abcb50554a9a1a8"
 
-------=_NextPart_000_0007_01D300A5.885FCD20
-Content-Type: text/plain;
-	charset="UTF-8"
+--001a113d29d69abcb50554a9a1a8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Tue, Jul 18, 2017 at 11:14 AM, An=C3=ADbal Lim=C3=B3n <anibal.limon@linu=
+x.intel.com
+> wrote:
 
-=20
+> This buildset is for support running sanity tests over a DUT like
+> Minnowboard for the moment only builds core-image-sato, there is a need
+> to make it configurable.
+>
+> Also the listo of the available devices are fixed into the UI as
+> parameters.
+>
+> [YOCTO #10604]
+>
+> Signed-off-by: An=C3=ADbal Lim=C3=B3n <anibal.limon@linux.intel.com>
+> ---
+>  buildset-config.yocto-qa/intel-corei7-64-daft.conf | 59
+> ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 buildset-config.yocto-qa/intel-corei7-64-daft.conf
+>
+> diff --git a/buildset-config.yocto-qa/intel-corei7-64-daft.conf
+> b/buildset-config.yocto-qa/intel-corei7-64-daft.conf
+> new file mode 100644
+> index 00000000000..cb3bcdade75
+> --- /dev/null
+> +++ b/buildset-config.yocto-qa/intel-corei7-64-daft.conf
+> @@ -0,0 +1,59 @@
+> +[intel-corei7-64-daft]
+> +builders: 'example-worker'
+> +repos: [{'poky':
+> +            {'repourl':'git://git.yoctoproject.org/poky',
+> +             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp',
+> 'yocto':'meta-yocto', 'poky':'meta-poky'},
+> +             'branch':'master'}},
+> +        {'meta-intel':
+> +            {'repourl':'git://git.yoctoproject.org/meta-intel',
+> +             'layerversion':{'intel':'meta-intel'},
+> +             'branch':'master'}}]
+> +props: [{'kmeta':{'prop_type':'StringParameter',
+> +                       'size': 15,
+> +                       'name': 'kmeta',
+> +                       'default': '',
+> +                       'label':'<hr><h3> branch for KMETA_${MACHINE}
+> (default is blank):</h3>'}},
+> +        {'srcrev_meta':{'prop_type':'StringParameter',
+> +                       'size': 15,
+> +                       'name': 'srcrev_meta',
+> +                       'default': '${AUTOREV}',
+> +                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE}
+> (default is ${AUTOREV}):<br></h3>'}},
+> +        {'srcuri_meta':{'prop_type':'StringParameter',
+> +                       'size': 50,
+> +                       'name': 'srcuri_meta',
+> +                       'default': '',
+> +                       'label':'<hr><h3> SRC_URI_pn-linux-yocto KMETA
+> append. (default is blank).<br> This should be constructed as *just* the
+> git uri portion of the string. <br>(git://git.yoctoproject.
+> org/linux-yocto-3.19.git</h3>'}},
+> +        {'kbranch':{'prop_type':'StringParameter',
+> +                       'size': 15,
+> +                       'name': 'kbranch',
+> +                       'default': '',
+> +                       'label':'<hr><h3> branch for KBRANCH_${MACHINE}
+> (default is blank):</h3>'}},
+> +        {'srcrev_machine':{'prop_type':'StringParameter',
+> +                       'size': 15,
+> +                       'name': 'srcrev_machine',
+> +                       'default': '${AUTOREV}',
+> +                       'label':'<hr><h3> SRCREV for KBRANCH. (default is
+> ${AUTOREV}):<br></h3>'}},
+> +        {'srcuri_machine':{'prop_type':'StringParameter',
+> +                       'size': 50,
+> +                       'name': 'srcuri_machine',
+> +                       'default': '',
+> +                       'label':'<hr><h3> SRC_URI_pn-linux-yocto KBRANCH
+> append. (default is blank).<br> This should be constructed as *just* the
+> git uri portion of the string. <br>(git://git.yoctoproject.
+> org/linux-yocto-3.19.git</h3>'}},
+> +       {'dut':{'prop_type':'ChoiceStringParameter',
+> +                  'choices': ['Minnowboard1'],
+> +                  'name': 'dut',
+> +                  'label':'<hr><h3>Selects DUT for flashing.<br></h3>'}}=
+]
+> +steps: [{'SetDest':{}},
+> +        {'CheckOutLayers': {}},
+> +        {'RunPreamble': {}},
+> +        {'CheckBSPExists': {}},
+> +        {'GetDistroVersion' : {'distro': 'poky'}},
+> +        {'CreateAutoConf': {'machine': 'intel-corei7-64', 'SDKMACHINE' :
+> 'x86_64',
+> +                            'distro': 'poky'}},
+> +        {'CreateBBLayersConf': {'buildprovider' : 'yocto',
+> +                                'bsplayer': True, 'bspprovider': 'intel'=
+,
+> +                                'layerdirs': ['meta-intel',
+> 'meta-intel/meta-tlk']}},
+> +        {'AddKernelProps': {}},
+> +        {'DaftGetDevices': {}},
+> +        {'BuildImages': {'images': 'core-image-sato'}},
+> +        {'DaftFlash':{}},
+> +        {'RunSanityTests': {'images': 'core-image-sato'}},]
+> --
+> 2.11.0
+>
+> Is there any documentation for this , i like a lot the idea and i would
+like to know how to test this
 
-I am new in Yocto, I have to admit it, please be patient with my stupid =
-questions.
-
-I built vlc on meta-fsl-arm layers and fsl-imx-x11 distro on machine =
-imx6dlsabresd.
-
-I used commend `bitbake vlc` to build it and will get errors like bellow =
-link.
-
-=20
-
-https://gist.github.com/victorwangwinmate/3fb03f42a47f3405b5aef05c3ac47bd=
-c
-
-=20
-
-After some googling, I try to modify my local.conf like bellow link.
-
-=20
-
-https://gist.github.com/victorwangwinmate/3593c1c63cf96a0d44537a24cc6d17c=
-5
-
-=20
-
-And I try to build the image with this commend `bitbake =E2=80=93C =
-compile fsl-image-gui `
-
-Unfortunately, I will get the same error as the first link.
-
-=20
-
-The first question is why it will show the error that one of =
-libjpeg-turbo_8d+1.4.1.bb and jpeg_9a.bb is missing something.
-
-The second is which one I should use and how?
-
-The third is how can I fix this error in the proper way?
-
-=20
-
-Please help
-
-=20
-
-Thanks in advance
-
-Best Regards
-
-Victor Wang
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-Winmate Commuication INC.
-
- <tel:+886-2-8511-0288> Tel:+886-2-8511-0288 ext 878; =
-Fax:+886-2-85110211
-
-=E2=9C=89  <mailto:victor_wang@winmate.com.tw> =
-victor_wang@winmate.com.tw
-
-=20
 
 
-------=_NextPart_000_0007_01D300A5.885FCD20
-Content-Type: text/html;
-	charset="UTF-8"
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--001a113d29d69abcb50554a9a1a8
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 14 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"MS Mincho";
-	panose-1:2 2 6 9 4 2 5 8 3 4;}
-@font-face
-	{font-family:=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94;
-	panose-1:2 2 5 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94;
-	panose-1:2 2 5 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94";
-	panose-1:2 2 5 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"\@MS Mincho";
-	panose-1:2 2 6 9 4 2 5 8 3 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DZH-TW link=3Dblue =
-vlink=3Dpurple style=3D'text-justify-trim:punctuation'><div =
-class=3DWordSection1><p class=3DMsoNormal><span =
-lang=3DEN-US>Hi,<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I am new in Yocto, I have to admit it, please be patient =
-with my stupid questions.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>I built vlc on meta-fsl-arm layers =
-and fsl-imx-x11 distro on machine imx6dlsabresd.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>I used commend `bitbake vlc` to =
-build it and will get errors like bellow link.<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><a =
-href=3D"https://gist.github.com/victorwangwinmate/3fb03f42a47f3405b5aef05=
-c3ac47bdc">https://gist.github.com/victorwangwinmate/3fb03f42a47f3405b5ae=
-f05c3ac47bdc</a><o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>After some googling, I try to modify my local.conf like =
-bellow link.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><a =
-href=3D"https://gist.github.com/victorwangwinmate/3593c1c63cf96a0d44537a2=
-4cc6d17c5">https://gist.github.com/victorwangwinmate/3593c1c63cf96a0d4453=
-7a24cc6d17c5</a><o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>And I try to build the image with this commend `bitbake =
-=E2=80=93C compile fsl-image-gui `<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Unfortunately, I will get the same =
-error as the first link.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>The first question is why it will show the error that one =
-of libjpeg-turbo_8d+1.4.1.bb and jpeg_9a.bb is missing =
-something.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>The second is which one I should use and =
-how?<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>The =
-third is how can I fix this error in the proper =
-way?<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Please help<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Thanks in advance<o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto'><b><i><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>B=
-est Regards</span></i></b><span lang=3DEN-US =
-style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif";color=
-:#000066'><o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto'><b><i><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>V=
-ictor Wang</span></i></b><span lang=3DEN-US =
-style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif"'><o:p=
-></o:p></span></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto'><b><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span></b><span =
-lang=3DEN-US =
-style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif"'><o:p=
-></o:p></span></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto'><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>W=
-inmate Commuication INC.</span><span lang=3DEN-US =
-style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif"'><o:p=
-></o:p></span></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto'><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'><=
-a href=3D"tel:+886-2-8511-0288"><span =
-style=3D'color:#0563C1'>Tel:+886-2-8511-0288</span></a> ext 878; =
-Fax:+886-2-85110211</span><span lang=3DEN-US =
-style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif"'><o:p=
-></o:p></span></p><p class=3DMsoNormal><span style=3D'font-family:"MS =
-Mincho";color:black'>=E2=9C=89</span><span lang=3DEN-US =
-style=3D'color:black'>&nbsp;</span><span lang=3DEN-US =
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:purple'>=
-<a href=3D"mailto:victor_wang@winmate.com.tw"><span =
-style=3D'color:#0563C1'>victor_wang@winmate.com.tw</span></a></span><span=
- lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Tue, Jul 18, 2017 at 11:14 AM, An=C3=ADbal Lim=C3=B3n <span dir=3D"l=
+tr">&lt;<a href=3D"mailto:anibal.limon@linux.intel.com" target=3D"_blank">a=
+nibal.limon@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">This buildset is for support running sanity tes=
+ts over a DUT like<br>
+Minnowboard for the moment only builds core-image-sato, there is a need<br>
+to make it configurable.<br>
+<br>
+Also the listo of the available devices are fixed into the UI as<br>
+parameters.<br>
+<br>
+[YOCTO #10604]<br>
+<br>
+Signed-off-by: An=C3=ADbal Lim=C3=B3n &lt;<a href=3D"mailto:anibal.limon@li=
+nux.intel.com">anibal.limon@linux.intel.com</a>&gt;<br>
+---<br>
+=C2=A0buildset-config.yocto-qa/<wbr>intel-corei7-64-daft.conf | 59 ++++++++=
+++++++++++++++<br>
+=C2=A01 file changed, 59 insertions(+)<br>
+=C2=A0create mode 100644 buildset-config.yocto-qa/<wbr>intel-corei7-64-daft=
+.conf<br>
+<br>
+diff --git a/buildset-config.yocto-qa/<wbr>intel-corei7-64-daft.conf b/buil=
+dset-config.yocto-qa/<wbr>intel-corei7-64-daft.conf<br>
+new file mode 100644<br>
+index 00000000000..cb3bcdade75<br>
+--- /dev/null<br>
++++ b/buildset-config.yocto-qa/<wbr>intel-corei7-64-daft.conf<br>
+@@ -0,0 +1,59 @@<br>
++[intel-corei7-64-daft]<br>
++builders: &#39;example-worker&#39;<br>
++repos: [{&#39;poky&#39;:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;repourl&#39;:&#39;git://<a=
+ href=3D"http://git.yoctoproject.org/poky" rel=3D"noreferrer" target=3D"_bl=
+ank">git.<wbr>yoctoproject.org/poky</a>&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&#39;layerversion&#39;:{&#=
+39;core&#39;:&#39;meta&#39;, &#39;yoctobsp&#39;:&#39;meta-yocto-bsp&#39;, &=
+#39;yocto&#39;:&#39;meta-yocto&#39;, &#39;poky&#39;:&#39;meta-poky&#39;},<b=
+r>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&#39;branch&#39;:&#39;mast=
+er&#39;}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;meta-intel&#39;:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;repourl&#39;:&#39;git://<a=
+ href=3D"http://git.yoctoproject.org/meta-intel" rel=3D"noreferrer" target=
+=3D"_blank">git.<wbr>yoctoproject.org/meta-intel</a>&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&#39;layerversion&#39;:{&#=
+39;intel&#39;:&#39;meta-<wbr>intel&#39;},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&#39;branch&#39;:&#39;mast=
+er&#39;}}]<br>
++props: [{&#39;kmeta&#39;:{&#39;prop_type&#39;:&#39;<wbr>StringParameter&#3=
+9;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;size&#39;: 15,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;name&#39;: &#39;kmeta&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;default&#39;: &#39;&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;label&#39;:&#39;&lt;hr&gt;&lt;h3&gt; branch for KMETA_${MACH=
+INE} (default is blank):&lt;/h3&gt;&#39;}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;srcrev_meta&#39;:{&#39;prop_type&#39;:&#=
+39;<wbr>StringParameter&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;size&#39;: 15,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;name&#39;: &#39;srcrev_meta&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;default&#39;: &#39;${AUTOREV}&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;label&#39;:&#39;&lt;hr&gt;&lt;h3&gt; SRCREV for KMETA_${MACH=
+INE} (default is ${AUTOREV}):&lt;br&gt;&lt;/h3&gt;&#39;}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;srcuri_meta&#39;:{&#39;prop_type&#39;:&#=
+39;<wbr>StringParameter&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;size&#39;: 50,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;name&#39;: &#39;srcuri_meta&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;default&#39;: &#39;&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;label&#39;:&#39;&lt;hr&gt;&lt;h3&gt; SRC_URI_pn-linux-yocto =
+KMETA append. (default is blank).&lt;br&gt; This should be constructed as *=
+just* the git uri portion of the string. &lt;br&gt;(git://<a href=3D"http:/=
+/git.yoctoproject.org/linux-yocto-3.19.git" rel=3D"noreferrer" target=3D"_b=
+lank">git.yoctoproject.<wbr>org/linux-yocto-3.19.git</a>&lt;/h3&gt;&#39;<wb=
+r>}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;kbranch&#39;:{&#39;prop_type&#39;:&#39;<=
+wbr>StringParameter&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;size&#39;: 15,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;name&#39;: &#39;kbranch&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;default&#39;: &#39;&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;label&#39;:&#39;&lt;hr&gt;&lt;h3&gt; branch for KBRANCH_${MA=
+CHINE} (default is blank):&lt;/h3&gt;&#39;}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;srcrev_machine&#39;:{&#39;prop_type&#39;=
+<wbr>:&#39;StringParameter&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;size&#39;: 15,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;name&#39;: &#39;srcrev_machine&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;default&#39;: &#39;${AUTOREV}&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;label&#39;:&#39;&lt;hr&gt;&lt;h3&gt; SRCREV for KBRANCH. (de=
+fault is ${AUTOREV}):&lt;br&gt;&lt;/h3&gt;&#39;}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;srcuri_machine&#39;:{&#39;prop_type&#39;=
+<wbr>:&#39;StringParameter&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;size&#39;: 50,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;name&#39;: &#39;srcuri_machine&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;default&#39;: &#39;&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&#39;label&#39;:&#39;&lt;hr&gt;&lt;h3&gt; SRC_URI_pn-linux-yocto =
+KBRANCH append. (default is blank).&lt;br&gt; This should be constructed as=
+ *just* the git uri portion of the string. &lt;br&gt;(git://<a href=3D"http=
+://git.yoctoproject.org/linux-yocto-3.19.git" rel=3D"noreferrer" target=3D"=
+_blank">git.yoctoproject.<wbr>org/linux-yocto-3.19.git</a>&lt;/h3&gt;&#39;<=
+wbr>}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0{&#39;dut&#39;:{&#39;prop_type&#39;:&#39;<wbr>C=
+hoiceStringParameter&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;choice=
+s&#39;: [&#39;Minnowboard1&#39;],<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;name&#=
+39;: &#39;dut&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;label&=
+#39;:&#39;&lt;hr&gt;&lt;h3&gt;Selects DUT for flashing.&lt;br&gt;&lt;/h3&gt=
+;&#39;}}]<br>
++steps: [{&#39;SetDest&#39;:{}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;CheckOutLayers&#39;: {}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;RunPreamble&#39;: {}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;CheckBSPExists&#39;: {}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;GetDistroVersion&#39; : {&#39;distro&#39=
+;: &#39;poky&#39;}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;CreateAutoConf&#39;: {&#39;machine&#39;:=
+ &#39;intel-corei7-64&#39;, &#39;SDKMACHINE&#39; : &#39;x86_64&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 &#39;distro&#39;: &#39;poky&#39;}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;CreateBBLayersConf&#39;: {&#39;buildprov=
+ider&#39; : &#39;yocto&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;bsplayer&#39;: True, &#39;bsppr=
+ovider&#39;: &#39;intel&#39;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;layerdirs&#39;: [&#39;meta-inte=
+l&#39;, &#39;meta-intel/meta-tlk&#39;]}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;AddKernelProps&#39;: {}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;DaftGetDevices&#39;: {}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;BuildImages&#39;: {&#39;images&#39;: &#3=
+9;core-image-sato&#39;}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;DaftFlash&#39;:{}},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 {&#39;RunSanityTests&#39;: {&#39;images&#39;: =
+&#39;core-image-sato&#39;}},]<br>
+<span class=3D"gmail-HOEnZb"><font color=3D"#888888">--<br>
+2.11.0<br>
+<br></font></span></blockquote><div>Is there any documentation for this , i=
+ like a lot the idea and i would like to know how to test this =C2=A0</div>=
+<div><br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><span class=3D"gmail-HOEnZb"><font color=3D"#888888">
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br></div></div>
 
-------=_NextPart_000_0007_01D300A5.885FCD20--
+--001a113d29d69abcb50554a9a1a8--
