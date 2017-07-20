@@ -1,55 +1,26 @@
-Return-Path: <libertad.cruz@intel.com>
+Return-Path: <auh@auh.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0817E00BBF; Wed, 19 Jul 2017 14:58:08 -0700 (PDT)
+	id B835CE00BA1; Thu, 20 Jul 2017 03:48:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 184CFE00B3D
-	for <yocto@yoctoproject.org>; Wed, 19 Jul 2017 14:58:06 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga104.jf.intel.com with ESMTP; 19 Jul 2017 14:58:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,381,1496127600"; 
-	d="scan'208,217";a="1153218712"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
-	by orsmga001.jf.intel.com with ESMTP; 19 Jul 2017 14:58:06 -0700
-Received: from fmsmsx153.amr.corp.intel.com (10.18.125.6) by
-	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Wed, 19 Jul 2017 14:58:05 -0700
-Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.4]) by
-	FMSMSX153.amr.corp.intel.com ([169.254.9.113]) with mapi id
-	14.03.0319.002; Wed, 19 Jul 2017 14:58:05 -0700
-From: "Cruz, Libertad" <libertad.cruz@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Jolley,
-	Stephen K" <stephen.k.jolley@intel.com>
-Thread-Topic: QA cycle report for 2.3.1 rc2
-Thread-Index: AdMAnN7A3atyBoOKQ9+TofCvS54OZg==
-Date: Wed, 19 Jul 2017 21:58:05 +0000
-Message-ID: <58D9E2E50A021A45AD740492365FCDC531EC860D@fmsmsx107.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYzA0ZTM2YjMtZTI1ZC00ZjY4LTlmMTQtMzIwMmU5YWVhMGU4IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6InFVN2ZEN0dNM3dVelZubmtRZ3lIc3lRcmx3cm03Q000bllIMUtOaytZODg9In0=
-x-ctpclassification: CTP_IC
-dlp-product: dlpe-windows
-dlp-version: 10.0.102.7
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.106]
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from auh.yoctoproject.org (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C896E00BA1
+	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 03:48:29 -0700 (PDT)
+Received: from auh.yocto.io (localhost [127.0.0.1])
+	by auh.yoctoproject.org (Postfix) with ESMTP id 9BB1844D8AD
+	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 03:47:44 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "Lock, Joshua G" <joshua.g.lock@intel.com>, "Cruz Alcaraz,
-	Juan M" <juan.m.cruz.alcaraz@intel.com>, "Eggleton,
-	Paul" <paul.eggleton@intel.com>
-Subject: QA cycle report for 2.3.1 rc2
+From: auh@auh.yoctoproject.org
+To: yocto@yoctoproject.org
+Message-Id: <20170720104744.9BB1844D8AD@auh.yoctoproject.org>
+Date: Thu, 20 Jul 2017 03:47:44 -0700 (PDT)
+Subject: [AUH] Upgrade status: 2017-07-20
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,460 +32,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jul 2017 21:58:09 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_58D9E2E50A021A45AD740492365FCDC531EC860Dfmsmsx107amrcor_"
+X-List-Received-Date: Thu, 20 Jul 2017 10:48:31 -0000
+Content-Type: multipart/mixed; boundary="===============7702254352451800932=="
 
---_000_58D9E2E50A021A45AD740492365FCDC531EC860Dfmsmsx107amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--===============7702254352451800932==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 
-Hello All,
+QVVIIGZpbmlzaGVkIHVwZ3JhZGUgYmF0Y2ggdGhlIHJlc3VsdCBwYXRjaGVzL2xvZ3MgY2FuIGJl
+IGZvdW5kIGF0OgpodHRwczovL2xvZ3MueW9jdG9wcm9qZWN0Lm9yZy9hdWgvLzIwMTcwNzE4MDcz
+MDQwLCBuZXh0IGFyZSB0aGUgc3RhdGlzdGljczoKClJlY2lwZSB1cGdyYWRlIHN0YXRpc3RpY3M6
+CgogICAgKiBGYWlsZWQoZG9fY29uZmlndXJlKTogNQogICAgICAgIGpzb24tZ2xpYiwgMS4zLjIs
+IERlbmdrZSBEdSA8ZGVuZ2tlLmR1QHdpbmRyaXZlci5jb20+CiAgICAgICAgbGliaW5wdXQsIDEu
+OC4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGdz
+dHJlYW1lcjEuMC1ydHNwLXNlcnZlciwgMS4xMi4yLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2hu
+QGludGVsLmNvbT4KICAgICAgICBuc3ByLCA0LjE1LCBBcm1pbiBLdXN0ZXIgPGFrdXN0ZXJAbXZp
+c3RhLmNvbT4KICAgICAgICBnc3RyZWFtZXIxLjAtdmFhcGksIDEuMTIuMiwgV2VpIFRlZSBOZyA8
+d2VpLnRlZS5uZ0BpbnRlbC5jb20+CiAgICAqIFN1Y2NlZWRlZDogMjgKICAgICAgICBzcWxpdGUz
+LCAzLjE5LjMsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIHBj
+aXV0aWxzLCAzLjUuNSwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGJ0
+cmZzLXRvb2xzLCA0LjExLjEsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBp
+bnRlbC5jb20+CiAgICAgICAgY2Fpcm8sIDEuMTQuMTAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5r
+dWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZ2xpYi0yLjAsIDIuNTIuMywgSnVzc2kgS3Vra29u
+ZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBsaWJnY3J5cHQsIDEuOC4wLCBI
+b25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgZXhwYXQsIDIuMi4y
+LCBEZW5na2UgRHUgPGRlbmdrZS5kdUB3aW5kcml2ZXIuY29tPgogICAgICAgIGN1cHMsIDIuMi40
+LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgb3JjLCAwLjQuMjcsIE1h
+eGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGdudXBnLCAyLjEuMjEs
+IEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBlcGlwaGFueSwg
+My4yNC4zLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgog
+ICAgICAgIHBhbmdvLCAxLjQwLjcsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRl
+bC5jb20+CiAgICAgICAgYmFzaC1jb21wbGV0aW9uLCAyLjcsIEFsZXhhbmRlciBLYW5hdmluIDxh
+bGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgZGJ1cywgMS4xMC4yMCwgQ2hlbiBR
+aSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGJsdWV6NSwgNS40NiwgTWF4aW4gQi4g
+Sm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgd2F5bGFuZCwgMS4xMy45MSwgRGVu
+eXMgRG15dHJpeWVua28gPGRlbnlzQHRpLmNvbT4KICAgICAgICBnc2V0dGluZ3MtZGVza3RvcC1z
+Y2hlbWFzLCAzLjI0LjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+
+CiAgICAgICAgdmFsYSwgMC4zNi40LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2
+aW5AaW50ZWwuY29tPgogICAgICAgIHN5c3N0YXQsIDExLjUuNywgQ2hlbiBRaSA8UWkuQ2hlbkB3
+aW5kcml2ZXIuY29tPgogICAgICAgIGdudXRscywgMy41LjE0LCBBcm1pbiBLdXN0ZXIgPGFrdXN0
+ZXJAbXZpc3RhLmNvbT4KICAgICAgICBsaWJzb2x2LCAwLjYuMjgsIE1heGluIEIuIEpvaG4gPG1h
+eGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGV1ZGV2LCAzLjIuMiwgQWxlamFuZHJvIEhlcm5h
+bmRleiA8YWxlamFuZHJvLmhlcm5hbmRlekBsaW51eC5pbnRlbC5jb20+CiAgICAgICAgZGJ1cy10
+ZXN0LCAxLjEwLjIwLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgbGli
+cGNyZSwgOC40MSwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAg
+ICAgeGRnLXV0aWxzLCAxLjEuMiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVs
+LmNvbT4KICAgICAgICBncGVyZiwgMy4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmth
+bmF2aW5AaW50ZWwuY29tPgogICAgICAgIHN1YnZlcnNpb24sIDEuOS42LCBSaWNoYXJkIFB1cmRp
+ZSA8cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz4KICAgICAgICBsaWJic2QsIDAu
+OC42LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICogRmFpbGVk
+KGdldF9lbnYpOiAxCiAgICAgICAgdS1ib290LW1raW1hZ2UsIDIwMTcuMDcsIE1hcmVrIFZhc3V0
+IDxtYXJlay52YXN1dEBnbWFpbC5jb20+CiAgICAqIEZhaWxlZChkb19mZXRjaCk6IDYKICAgICAg
+ICBjcnlwdG9kZXYtbGludXgsIDEuOSwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZl
+ci5jb20+CiAgICAgICAgZ2l0LCAyLjEzLjMsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5k
+cml2ZXIuY29tPgogICAgICAgIHB5dGhvbjMtbWFrbywgMS4wLjcsIEpvc2UgTGFtZWdvIDxqb3Nl
+LmEubGFtZWdvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBweXRob24zLWdpdCwgMi4xLjUsIEpv
+c2UgTGFtZWdvIDxqb3NlLmEubGFtZWdvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBjcnlwdG9k
+ZXYtbW9kdWxlLCAxLjksIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgog
+ICAgICAgIGNyeXB0b2Rldi10ZXN0cywgMS45LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2lu
+ZHJpdmVyLmNvbT4KICAgICogRmFpbGVkKGRvX2NvbXBpbGUpOiA3CiAgICAgICAgcHl0aG9uLXNl
+dHVwdG9vbHMsIDM2LjIuMCwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXguaW50ZWwu
+Y29tPgogICAgICAgIGljdSwgNTkuMSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5h
+dmluQGludGVsLmNvbT4KICAgICAgICBzdWRvLCAxLjguMjBwMiwgQ2hlbiBRaSA8UWkuQ2hlbkB3
+aW5kcml2ZXIuY29tPgogICAgICAgIHRleGluZm8sIDYuNCwgTGVvbmFyZG8gU2FuZG92YWwgPGxl
+b25hcmRvLnNhbmRvdmFsLmdvbnphbGV6QGxpbnV4LmludGVsLmNvbT4KICAgICAgICBsaWJwbmcs
+IDEuNi4zMCwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgcHl0
+aG9uMy1kb2N1dGlscywgMC4xNHJjMSwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXgu
+aW50ZWwuY29tPgogICAgICAgIGdwZ21lLCAxLjkuMCwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3
+aW5kcml2ZXIuY29tPgogICAgKiBGYWlsZWQob3RoZXIgZXJyb3JzKTogNDAKICAgICAgICBmbGV4
+LCAyLjYuNCwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGxpYnhtbC1u
+YW1lc3BhY2VzdXBwb3J0LXBlcmwsIDEuMTIuOSwgQW7DrWJhbCBMaW3Ds24gPGFuaWJhbC5saW1v
+bkBsaW51eC5pbnRlbC5jb20+CiAgICAgICAgb3BlbnNzbCwgMS4xLjBmLCBBbGV4YW5kZXIgS2Fu
+YXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1w
+bHVnaW5zLWJhZCwgMS4xMi4yLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4K
+ICAgICAgICBsaWJ1bndpbmQsIDEuMi4xLCBCcnVjZSBBc2hmaWVsZCA8YnJ1Y2UuYXNoZmllbGRA
+d2luZHJpdmVyLmNvbT4KICAgICAgICBhdmFoaS11aSwgMC43LCBEZW5na2UgRHUgPGRlbmdrZS5k
+dUB3aW5kcml2ZXIuY29tPgogICAgICAgIG1lc2EsIDE3LjEuNSwgT3RhdmlvIFNhbHZhZG9yIDxv
+dGF2aW8uc2FsdmFkb3JAb3NzeXN0ZW1zLmNvbS5icj4KICAgICAgICBhdmFoaSwgMC43LCBEZW5n
+a2UgRHUgPGRlbmdrZS5kdUB3aW5kcml2ZXIuY29tPgogICAgICAgIHN5c3RlbWQtYm9vdCwgMjM0
+LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgZm9udGNvbmZpZywgMi4x
+Mi40LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGRw
+a2csIDEuMTguMjQsIEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29t
+PgogICAgICAgIGdzdHJlYW1lcjEuMCwgMS4xMi4yLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2hu
+QGludGVsLmNvbT4KICAgICAgICB2YWxncmluZCwgMy4xMy4wLlJDMiwgQWxleGFuZGVyIEthbmF2
+aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBweXRob24zLXNldHVwdG9v
+bHMsIDM2LjIuMCwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXguaW50ZWwuY29tPgog
+ICAgICAgIGxvZ3JvdGF0ZSwgMy4xMi4zLCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJp
+dmVyLmNvbT4KICAgICAgICBsaWJubCwgMy4zLjAsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5k
+ZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgbGlidGlycGMsIDEuMC4yLCBNYXhpbiBCLiBK
+b2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBzZWQsIDQuNCwgQ2hlbiBRaSA8UWku
+Q2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGlwcm91dGUyLCA0LjEyLjAsIENoYW5naHllb2sg
+QmFlIDxjaGFuZ2h5ZW9rLmJhZUBsZ2UuY29tPgogICAgICAgIG9wcm9maWxlLCAxLjIuMHJjMiwg
+QWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBi
+dXN5Ym94LCAxLjI3LjAsIEFybWluIEt1c3RlciA8YWt1c3RlcjgwOEBnbWFpbC5jb20+CiAgICAg
+ICAgcWVtdSwgMi45LjAsIEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwu
+Y29tPgogICAgICAgIGlmdXBkb3duLCAwLjguMjEsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5A
+aW50ZWwuY29tPgogICAgICAgIGtleGVjLXRvb2xzLCAyLjAuMTUsIEFybWluIEt1c3RlciA8YWt1
+c3RlckBtdmlzdGEuY29tPgogICAgICAgIGRpZmZ1dGlscywgMy42LCBDaGVuIFFpIDxRaS5DaGVu
+QHdpbmRyaXZlci5jb20+CiAgICAgICAgcHJlbGluaywgMjAxNTEwMzAuK2dpdEFVVE9JTkMrOTI3
+OTc5YmJkMSwgTWFyayBIYXRsZSA8bWFyay5oYXRsZUB3aW5kcml2ZXIuY29tPgogICAgICAgIGJh
+c2gsIDQuNCwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIGdz
+dHJlYW1lcjEuMC1wbHVnaW5zLWdvb2QsIDEuMTIuMiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9o
+bkBpbnRlbC5jb20+CiAgICAgICAgd2VzdG9uLCAyLjk5LjkxLCBEZW55cyBEbXl0cml5ZW5rbyA8
+ZGVueXNAdGkuY29tPgogICAgICAgIHNjcmVlbiwgNC42LjEsIE1heGluIEIuIEpvaG4gPG1heGlu
+LmpvaG5AaW50ZWwuY29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWJhc2UsIDEuMTIu
+MiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgYXByLXV0aWws
+IDEuNi4wLCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgc3Ry
+YWNlLCA0LjE4LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAg
+ICBsaWJqcGVnLXR1cmJvLCAxLjUuMiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5j
+b20+CiAgICAgICAgZWxmdXRpbHMsIDAuMTY5LCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRy
+aXZlci5jb20+CiAgICAgICAgYmMsIDEuMDcuMSwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29A
+bGludXguaW50ZWwuY29tPgogICAgICAgIHBzbWlzYywgMjMuMSwgQWxleGFuZGVyIEthbmF2aW4g
+PGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBsejQsIDEzMSwgRGVueXMgRG15
+dHJpeWVua28gPGRlbnlzQHRpLmNvbT4KICAgICAgICBwZXJsLCA1LjI2LjAsIEFuw61iYWwgTGlt
+w7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIGFwdCwgMS40LjcsIEFu
+w61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgoKICAgIFRPVEFMOiBh
+dHRlbXB0ZWQ9ODcgc3VjY2VlZGVkPTI4KDMyLjE4JSkgZmFpbGVkPTU5KDY3LjgyJSkKClJlY2lw
+ZSB1cGdyYWRlIHN0YXRpc3RpY3MgcGVyIE1haW50YWluZXI6CgogICAgRGVuZ2tlIER1IDxkZW5n
+a2UuZHU6IGF0dGVtcHRlZD00IHN1Y2NlZWRlZD0xKDI1LjAwJSkgZmFpbGVkPTMoNzUuMDAlKQog
+ICAgQnJ1Y2UgQXNoZmllbGQgPGJydWNlLmFzaGZpZWxkOiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9
+MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIENoYW5naHllb2sgQmFlIDxjaGFuZ2h5ZW9r
+LmJhZTogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEwMC4wMCUpCiAg
+ICBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huOiBhdHRlbXB0ZWQ9MTQgc3VjY2VlZGVkPTQoMjgu
+NTclKSBmYWlsZWQ9MTAoNzEuNDMlKQogICAgQW7DrWJhbCBMaW3Ds24gPGFuaWJhbC5saW1vbjog
+YXR0ZW1wdGVkPTUgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD01KDEwMC4wMCUpCiAgICBNYXJl
+ayBWYXN1dCA8bWFyZWsudmFzdXQ6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWls
+ZWQ9MSgxMDAuMDAlKQogICAgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYTogYXR0ZW1wdGVkPTYgc3Vj
+Y2VlZGVkPTIoMzMuMzMlKSBmYWlsZWQ9NCg2Ni42NyUpCiAgICBKdXNzaSBLdWtrb25lbiA8anVz
+c2kua3Vra29uZW46IGF0dGVtcHRlZD03IHN1Y2NlZWRlZD01KDcxLjQzJSkgZmFpbGVkPTIoMjgu
+NTclKQogICAgTGVvbmFyZG8gU2FuZG92YWwgPGxlb25hcmRvLnNhbmRvdmFsLmdvbnphbGV6OiBh
+dHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIERlbnlz
+IERteXRyaXllbmtvIDxkZW55czogYXR0ZW1wdGVkPTMgc3VjY2VlZGVkPTEoMzMuMzMlKSBmYWls
+ZWQ9Mig2Ni42NyUpCiAgICBNYXJrIEhhdGxlIDxtYXJrLmhhdGxlOiBhdHRlbXB0ZWQ9MSBzdWNj
+ZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIEFsZWphbmRybyBIZXJuYW5kZXog
+PGFsZWphbmRyby5oZXJuYW5kZXo6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0xKDEwMC4wMCUpIGZh
+aWxlZD0wKDAuMDAlKQogICAgV2VpIFRlZSBOZyA8d2VpLnRlZS5uZzogYXR0ZW1wdGVkPTEgc3Vj
+Y2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEwMC4wMCUpCiAgICBPdGF2aW8gU2FsdmFkb3IgPG90
+YXZpby5zYWx2YWRvcjogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEw
+MC4wMCUpCiAgICBSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5wdXJkaWU6IGF0dGVtcHRlZD0xIHN1
+Y2NlZWRlZD0xKDEwMC4wMCUpIGZhaWxlZD0wKDAuMDAlKQogICAgSm9zZSBMYW1lZ28gPGpvc2Uu
+YS5sYW1lZ286IGF0dGVtcHRlZD02IHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9NigxMDAuMDAl
+KQogICAgQXJtaW4gS3VzdGVyIDxha3VzdGVyOiBhdHRlbXB0ZWQ9MyBzdWNjZWVkZWQ9MSgzMy4z
+MyUpIGZhaWxlZD0yKDY2LjY3JSkKICAgIENoZW4gUWkgPFFpLkNoZW46IGF0dGVtcHRlZD0xMCBz
+dWNjZWVkZWQ9NSg1MC4wMCUpIGZhaWxlZD01KDUwLjAwJSkKICAgIEFybWluIEt1c3RlciA8YWt1
+c3RlcjgwODogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEwMC4wMCUp
+CiAgICBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmc6IGF0dGVtcHRlZD04IHN1Y2NlZWRlZD0yKDI1
+LjAwJSkgZmFpbGVkPTYoNzUuMDAlKQogICAgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5r
+YW5hdmluOiBhdHRlbXB0ZWQ9MTEgc3VjY2VlZGVkPTUoNDUuNDUlKSBmYWlsZWQ9Nig1NC41NSUp
+Cg==
 
-
-
-Here is the report for the 2.3.1 rc2 full point release test cycle.
-
-Full Report : https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Full_Te=
-st_Cycle_-_2.3.1_rc2#Testing_data
-
-
-
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-
-The QA cycle for release 2.3.1 rc2 is complete, no blockers. 10832 [3] was =
-reopened after issue reappeared when trying to install eSDK. Only one new b=
-ug about tcf-agent daemon not being able to be stopped. [1]
-
-
-
-There was a 8.05% regression on building rootfs in Fedora 23. The performan=
-ce test results for Ubuntu 15 are misleading because there is a problem wit=
-h the machine running the OS, this is currently being investigated by the Q=
-A team.
-
-
-
-For ptest there was an improvement of the pass rate for gdk-pixbuf of 5% an=
- improvement of 1.30% of valgrind. On the other side there was a regression=
- on the pass rate of libxml2 of 1.20% [5], on openssh of 2.9%[6] and on bus=
-ybox of 0.20%[4].
-
-
-
-QA-Hint: QA sees no mayor issues, blockers on this point release. Current b=
-ugs don't block full functionalities, on any component.
-
-
-
-       New Bugs
-            -11795     [Yocto 2.3.1] Can not stop tcf-agent daemon [1]
-            -11811 - ptest-busybox
-            -11812 - ptest- libxml2 cases failed
-            -11813 - ptest- openssh
-
-      * M+ bugs
-            - 10477 yocto-bsp: tool should output a conf file to be consume=
- by the qemu runner [2]
-
-            - 10832  eSDK install script failed with "tasks executed unexpe=
-ctedly" messages [3]
-
-
-
-
-
-Full Bug Report : https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Ful=
-l_Test_Cycle_-_2.3.1_rc2#Bugs_Found_during_QA_Test
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-
-
-    1.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11795 <https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D11795%20> [1]
-
-    2.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477 <https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477%20> [2]
-
-    3.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832 <https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832%20> [3]
-
-    4.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11811 <https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D11811%20> [4]
-
-    5.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11812 <https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D11812%20> [5]
-
-    6.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11813 [6]
-
-
-
-
-
-
-
-
-
-
-
-Regards
-
-Libertad G.
-
-
---_000_58D9E2E50A021A45AD740492365FCDC531EC860Dfmsmsx107amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Calibri Light";
-	panose-1:2 15 3 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle23
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:409936447;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2121806452 -607866720 67698691 67698693 67698689 676=
-98691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:45.0pt;
-	text-indent:-.25in;
-	font-family:"Calibri Light",sans-serif;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:81.0pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:117.0pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:153.0pt;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:189.0pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:225.0pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:261.0pt;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:297.0pt;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:333.0pt;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Hello All,<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Here is the report for the 2.3.1 rc2 full point release tes=
-t cycle.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Full Report :
-</span><a href=3D"https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Ful=
-l_Test_Cycle_-_2.3.1_rc2#Testing_data"><span style=3D"font-family:&quot;Cal=
-ibri Light&quot;,sans-serif">https://wiki.yoctoproject.org/wiki/WW29_-_2017=
--07-18-_Full_Test_Cycle_-_2.3.1_rc2#Testing_data</span></a><span style=3D"f=
-ont-family:&quot;Calibri Light&quot;,sans-serif"><o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D<o:p>=
-</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">The QA cycle for release 2.3.1 rc2 is complete, no blockers=
-. 10832 [3] was reopened after issue reappeared when trying to install eSDK=
-. Only one new bug about tcf-agent daemon not
- being able to be stopped. [1]<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">There was a 8.05% regression on building rootfs in Fedora 2=
-3. The performance test results for Ubuntu 15 are misleading because there =
-is a problem with the machine running the OS,
- this is currently being investigated by the QA team.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">For ptest there was an improvement of the pass rate for gdk=
--pixbuf of 5% an improvement of 1.30% of valgrind. On the other side there =
-was a regression on the pass rate of libxml2 of
- 1.20% [5], on openssh of 2.9%[6] and on busybox of 0.20%[4].<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">QA-Hint: QA sees no mayor issues, blockers on this point re=
-lease. Current bugs don&#8217;t block full functionalities, on any componen=
-t.
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Bugs<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11795 &nbsp;=
-&nbsp;&nbsp; [Yocto 2.3.1] Can not stop tcf-agent daemon [1]<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11811 - ptes=
-t-busybox
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11812 - ptes=
-t- libxml2 cases failed
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11813 - ptes=
-t- openssh
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; * M&#43; bugs<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 10477 yocto-bsp:=
- tool should output a conf file to be consume by the qemu runner [2]<o:p></=
-o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp; - 10832&nbsp; eSDK install script failed with &quot;tasks executed =
-unexpectedly&quot; messages [3]<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Full Bug Report :
-<a href=3D"https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Full_Test_=
-Cycle_-_2.3.1_rc2#Bugs_Found_during_QA_Test">
-https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Full_Test_Cycle_-_2.3=
-.1_rc2#Bugs_Found_during_QA_Test</a><o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D<=
-o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 1.&nbsp;&nbsp;&nbsp;
-</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11795=
-%20"><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11795
-</span></a><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif"=
->[1]<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 2.&nbsp;&nbsp;&nbsp;
-</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477=
-%20"><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10477
-</span></a><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif"=
->[2]<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 3.&nbsp;&nbsp;&nbsp;
-</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832=
-%20"><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832
-</span></a><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif"=
->[3]<span style=3D"color:#1F497D"><o:p></o:p></span></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 4.&nbsp;&nbsp;&nbsp;
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11811%20">ht=
-tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11811
-</a>[4]<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 5.&nbsp;&nbsp;&nbsp;
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11812%20">ht=
-tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11812
-</a>[5]<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 6.&nbsp;&nbsp;&nbsp;
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11813">https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11813</a> [6]<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Regards<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Libertad G.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri Light&quot;=
-,sans-serif"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
-</html>
-
---_000_58D9E2E50A021A45AD740492365FCDC531EC860Dfmsmsx107amrcor_--
+--===============7702254352451800932==--
