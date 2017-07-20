@@ -1,26 +1,75 @@
-Return-Path: <auh@auh.yoctoproject.org>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B835CE00BA1; Thu, 20 Jul 2017 03:48:31 -0700 (PDT)
+	id B2E61E00944; Thu, 20 Jul 2017 14:39:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.49 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from auh.yoctoproject.org (unknown [198.145.29.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C896E00BA1
-	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 03:48:29 -0700 (PDT)
-Received: from auh.yocto.io (localhost [127.0.0.1])
-	by auh.yoctoproject.org (Postfix) with ESMTP id 9BB1844D8AD
-	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 03:47:44 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.49 listed in dnsbl.sorbs.net]
+Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A764EE0083A
+	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 14:39:26 -0700 (PDT)
+Received: by mail-pg0-f49.google.com with SMTP id k14so20076660pgr.0
+	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 14:39:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding:content-language;
+	bh=Leli2jYDarAk3/FcRcpyKDCDXpb7WQQo2/xwQxzDp0E=;
+	b=GQ/LwWQOXHZC+Zri9ckaFPLIFUreSXyA+zHUUsI4wV8/k0w2VRFHavbCiiruJtGc5V
+	yNas8Z9MiVdouIBx+bD8SJ0CorZ3N1e+WQs8F3utBK0HlI1DX+nCD3ST6Ea1Z/LNoez5
+	NQqIg06u7Ss4RBkx775BDzHwolb/Q9Mp0onvhUKcbes+XoqUIKjbWm3MYhCncc0GNv+F
+	DQldosgpyCv7iT0Ct4oyd4lc5FXdbua7b+E4PK0Q0f4bA1hE8vA1EiZXzYviNZCeX7N9
+	BjG5X/8HEW3n+CUwNZKQ+Vkzd0doq2/Yi4CkNE+qr0bWTsmKHg27JX1IsxhmanPYKnnW
+	uD6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=Leli2jYDarAk3/FcRcpyKDCDXpb7WQQo2/xwQxzDp0E=;
+	b=ZMuWfhoDdGlPJrnga8mAh//oZBt5FAdt1fAuyLSXcly3BndGIeMYIV4ghHLhsK717a
+	CupyDAjQG+7Gx8kg0FzcDp+iY2wxMEpCI37KNjuJ/AKzqVRkr43QaRE2o55p8GlX/TYc
+	91ogwoUY0N+Yu/ALapyhFun6Ugdu7NCvIfl0QjR03p+mCkSQmTL1km+SEdNyIemsaYUb
+	m4628F5FXNn1NtTD17X+jnNlBE6Ky8ptwsP6XszMmD3AWd+QoiigNkMokGJlhiRhDpc4
+	BtF2KRQSBhOZgJKCq8JdjuuYhJ0JpW7RWhIA6i43erLlNVck8O5QQ+W8MJjQmK9FDb3h
+	PGzQ==
+X-Gm-Message-State: AIVw111fE0sVVVnME/alqTmIwQD+zrOqaiIJBWydhSmYtZ9qywO8MII6
+	rjImc+RfGTzs04xS08c=
+X-Received: by 10.98.86.3 with SMTP id k3mr5318228pfb.144.1500586765817;
+	Thu, 20 Jul 2017 14:39:25 -0700 (PDT)
+Received: from [10.43.100.234] (50-233-148-156-static.hfc.comcastbusiness.net.
+	[50.233.148.156])
+	by smtp.gmail.com with ESMTPSA id w7sm6064502pfw.25.2017.07.20.14.39.25
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 20 Jul 2017 14:39:25 -0700 (PDT)
+To: Mark Hatle <mark.hatle@windriver.com>,
+	Patrick Ohly <patrick.ohly@intel.com>
+References: <1500447463.5689.81.camel@intel.com>
+	<2ad0b40b-b201-9974-7f28-10efc611ffb1@windriver.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <1628a1f3-ec46-1144-1d5e-8242c8672edd@gmail.com>
+Date: Thu, 20 Jul 2017 14:39:24 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-From: auh@auh.yoctoproject.org
-To: yocto@yoctoproject.org
-Message-Id: <20170720104744.9BB1844D8AD@auh.yoctoproject.org>
-Date: Thu, 20 Jul 2017 03:47:44 -0700 (PDT)
-Subject: [AUH] Upgrade status: 2017-07-20
+In-Reply-To: <2ad0b40b-b201-9974-7f28-10efc611ffb1@windriver.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: dynamic layer dependencies in meta-security
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,154 +81,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jul 2017 10:48:31 -0000
-Content-Type: multipart/mixed; boundary="===============7702254352451800932=="
+X-List-Received-Date: Thu, 20 Jul 2017 21:39:27 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---===============7702254352451800932==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
 
-QVVIIGZpbmlzaGVkIHVwZ3JhZGUgYmF0Y2ggdGhlIHJlc3VsdCBwYXRjaGVzL2xvZ3MgY2FuIGJl
-IGZvdW5kIGF0OgpodHRwczovL2xvZ3MueW9jdG9wcm9qZWN0Lm9yZy9hdWgvLzIwMTcwNzE4MDcz
-MDQwLCBuZXh0IGFyZSB0aGUgc3RhdGlzdGljczoKClJlY2lwZSB1cGdyYWRlIHN0YXRpc3RpY3M6
-CgogICAgKiBGYWlsZWQoZG9fY29uZmlndXJlKTogNQogICAgICAgIGpzb24tZ2xpYiwgMS4zLjIs
-IERlbmdrZSBEdSA8ZGVuZ2tlLmR1QHdpbmRyaXZlci5jb20+CiAgICAgICAgbGliaW5wdXQsIDEu
-OC4wLCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGdz
-dHJlYW1lcjEuMC1ydHNwLXNlcnZlciwgMS4xMi4yLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2hu
-QGludGVsLmNvbT4KICAgICAgICBuc3ByLCA0LjE1LCBBcm1pbiBLdXN0ZXIgPGFrdXN0ZXJAbXZp
-c3RhLmNvbT4KICAgICAgICBnc3RyZWFtZXIxLjAtdmFhcGksIDEuMTIuMiwgV2VpIFRlZSBOZyA8
-d2VpLnRlZS5uZ0BpbnRlbC5jb20+CiAgICAqIFN1Y2NlZWRlZDogMjgKICAgICAgICBzcWxpdGUz
-LCAzLjE5LjMsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIHBj
-aXV0aWxzLCAzLjUuNSwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGJ0
-cmZzLXRvb2xzLCA0LjExLjEsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5kZXIua2FuYXZpbkBp
-bnRlbC5jb20+CiAgICAgICAgY2Fpcm8sIDEuMTQuMTAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5r
-dWtrb25lbkBpbnRlbC5jb20+CiAgICAgICAgZ2xpYi0yLjAsIDIuNTIuMywgSnVzc2kgS3Vra29u
-ZW4gPGp1c3NpLmt1a2tvbmVuQGludGVsLmNvbT4KICAgICAgICBsaWJnY3J5cHQsIDEuOC4wLCBI
-b25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgZXhwYXQsIDIuMi4y
-LCBEZW5na2UgRHUgPGRlbmdrZS5kdUB3aW5kcml2ZXIuY29tPgogICAgICAgIGN1cHMsIDIuMi40
-LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgb3JjLCAwLjQuMjcsIE1h
-eGluIEIuIEpvaG4gPG1heGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGdudXBnLCAyLjEuMjEs
-IEhvbmd4dSBKaWEgPGhvbmd4dS5qaWFAd2luZHJpdmVyLmNvbT4KICAgICAgICBlcGlwaGFueSwg
-My4yNC4zLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgog
-ICAgICAgIHBhbmdvLCAxLjQwLjcsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRl
-bC5jb20+CiAgICAgICAgYmFzaC1jb21wbGV0aW9uLCAyLjcsIEFsZXhhbmRlciBLYW5hdmluIDxh
-bGV4YW5kZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgZGJ1cywgMS4xMC4yMCwgQ2hlbiBR
-aSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGJsdWV6NSwgNS40NiwgTWF4aW4gQi4g
-Sm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgd2F5bGFuZCwgMS4xMy45MSwgRGVu
-eXMgRG15dHJpeWVua28gPGRlbnlzQHRpLmNvbT4KICAgICAgICBnc2V0dGluZ3MtZGVza3RvcC1z
-Y2hlbWFzLCAzLjI0LjAsIEp1c3NpIEt1a2tvbmVuIDxqdXNzaS5rdWtrb25lbkBpbnRlbC5jb20+
-CiAgICAgICAgdmFsYSwgMC4zNi40LCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmthbmF2
-aW5AaW50ZWwuY29tPgogICAgICAgIHN5c3N0YXQsIDExLjUuNywgQ2hlbiBRaSA8UWkuQ2hlbkB3
-aW5kcml2ZXIuY29tPgogICAgICAgIGdudXRscywgMy41LjE0LCBBcm1pbiBLdXN0ZXIgPGFrdXN0
-ZXJAbXZpc3RhLmNvbT4KICAgICAgICBsaWJzb2x2LCAwLjYuMjgsIE1heGluIEIuIEpvaG4gPG1h
-eGluLmpvaG5AaW50ZWwuY29tPgogICAgICAgIGV1ZGV2LCAzLjIuMiwgQWxlamFuZHJvIEhlcm5h
-bmRleiA8YWxlamFuZHJvLmhlcm5hbmRlekBsaW51eC5pbnRlbC5jb20+CiAgICAgICAgZGJ1cy10
-ZXN0LCAxLjEwLjIwLCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgbGli
-cGNyZSwgOC40MSwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZlci5jb20+CiAgICAg
-ICAgeGRnLXV0aWxzLCAxLjEuMiwgSnVzc2kgS3Vra29uZW4gPGp1c3NpLmt1a2tvbmVuQGludGVs
-LmNvbT4KICAgICAgICBncGVyZiwgMy4xLCBBbGV4YW5kZXIgS2FuYXZpbiA8YWxleGFuZGVyLmth
-bmF2aW5AaW50ZWwuY29tPgogICAgICAgIHN1YnZlcnNpb24sIDEuOS42LCBSaWNoYXJkIFB1cmRp
-ZSA8cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz4KICAgICAgICBsaWJic2QsIDAu
-OC42LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICogRmFpbGVk
-KGdldF9lbnYpOiAxCiAgICAgICAgdS1ib290LW1raW1hZ2UsIDIwMTcuMDcsIE1hcmVrIFZhc3V0
-IDxtYXJlay52YXN1dEBnbWFpbC5jb20+CiAgICAqIEZhaWxlZChkb19mZXRjaCk6IDYKICAgICAg
-ICBjcnlwdG9kZXYtbGludXgsIDEuOSwgUm9iZXJ0IFlhbmcgPGxpZXpoaS55YW5nQHdpbmRyaXZl
-ci5jb20+CiAgICAgICAgZ2l0LCAyLjEzLjMsIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5k
-cml2ZXIuY29tPgogICAgICAgIHB5dGhvbjMtbWFrbywgMS4wLjcsIEpvc2UgTGFtZWdvIDxqb3Nl
-LmEubGFtZWdvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBweXRob24zLWdpdCwgMi4xLjUsIEpv
-c2UgTGFtZWdvIDxqb3NlLmEubGFtZWdvQGxpbnV4LmludGVsLmNvbT4KICAgICAgICBjcnlwdG9k
-ZXYtbW9kdWxlLCAxLjksIFJvYmVydCBZYW5nIDxsaWV6aGkueWFuZ0B3aW5kcml2ZXIuY29tPgog
-ICAgICAgIGNyeXB0b2Rldi10ZXN0cywgMS45LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2lu
-ZHJpdmVyLmNvbT4KICAgICogRmFpbGVkKGRvX2NvbXBpbGUpOiA3CiAgICAgICAgcHl0aG9uLXNl
-dHVwdG9vbHMsIDM2LjIuMCwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXguaW50ZWwu
-Y29tPgogICAgICAgIGljdSwgNTkuMSwgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5h
-dmluQGludGVsLmNvbT4KICAgICAgICBzdWRvLCAxLjguMjBwMiwgQ2hlbiBRaSA8UWkuQ2hlbkB3
-aW5kcml2ZXIuY29tPgogICAgICAgIHRleGluZm8sIDYuNCwgTGVvbmFyZG8gU2FuZG92YWwgPGxl
-b25hcmRvLnNhbmRvdmFsLmdvbnphbGV6QGxpbnV4LmludGVsLmNvbT4KICAgICAgICBsaWJwbmcs
-IDEuNi4zMCwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgcHl0
-aG9uMy1kb2N1dGlscywgMC4xNHJjMSwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXgu
-aW50ZWwuY29tPgogICAgICAgIGdwZ21lLCAxLjkuMCwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3
-aW5kcml2ZXIuY29tPgogICAgKiBGYWlsZWQob3RoZXIgZXJyb3JzKTogNDAKICAgICAgICBmbGV4
-LCAyLjYuNCwgQ2hlbiBRaSA8UWkuQ2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGxpYnhtbC1u
-YW1lc3BhY2VzdXBwb3J0LXBlcmwsIDEuMTIuOSwgQW7DrWJhbCBMaW3Ds24gPGFuaWJhbC5saW1v
-bkBsaW51eC5pbnRlbC5jb20+CiAgICAgICAgb3BlbnNzbCwgMS4xLjBmLCBBbGV4YW5kZXIgS2Fu
-YXZpbiA8YWxleGFuZGVyLmthbmF2aW5AaW50ZWwuY29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1w
-bHVnaW5zLWJhZCwgMS4xMi4yLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4K
-ICAgICAgICBsaWJ1bndpbmQsIDEuMi4xLCBCcnVjZSBBc2hmaWVsZCA8YnJ1Y2UuYXNoZmllbGRA
-d2luZHJpdmVyLmNvbT4KICAgICAgICBhdmFoaS11aSwgMC43LCBEZW5na2UgRHUgPGRlbmdrZS5k
-dUB3aW5kcml2ZXIuY29tPgogICAgICAgIG1lc2EsIDE3LjEuNSwgT3RhdmlvIFNhbHZhZG9yIDxv
-dGF2aW8uc2FsdmFkb3JAb3NzeXN0ZW1zLmNvbS5icj4KICAgICAgICBhdmFoaSwgMC43LCBEZW5n
-a2UgRHUgPGRlbmdrZS5kdUB3aW5kcml2ZXIuY29tPgogICAgICAgIHN5c3RlbWQtYm9vdCwgMjM0
-LCBDaGVuIFFpIDxRaS5DaGVuQHdpbmRyaXZlci5jb20+CiAgICAgICAgZm9udGNvbmZpZywgMi4x
-Mi40LCBKdXNzaSBLdWtrb25lbiA8anVzc2kua3Vra29uZW5AaW50ZWwuY29tPgogICAgICAgIGRw
-a2csIDEuMTguMjQsIEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29t
-PgogICAgICAgIGdzdHJlYW1lcjEuMCwgMS4xMi4yLCBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2hu
-QGludGVsLmNvbT4KICAgICAgICB2YWxncmluZCwgMy4xMy4wLlJDMiwgQWxleGFuZGVyIEthbmF2
-aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBweXRob24zLXNldHVwdG9v
-bHMsIDM2LjIuMCwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29AbGludXguaW50ZWwuY29tPgog
-ICAgICAgIGxvZ3JvdGF0ZSwgMy4xMi4zLCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJp
-dmVyLmNvbT4KICAgICAgICBsaWJubCwgMy4zLjAsIEFsZXhhbmRlciBLYW5hdmluIDxhbGV4YW5k
-ZXIua2FuYXZpbkBpbnRlbC5jb20+CiAgICAgICAgbGlidGlycGMsIDEuMC4yLCBNYXhpbiBCLiBK
-b2huIDxtYXhpbi5qb2huQGludGVsLmNvbT4KICAgICAgICBzZWQsIDQuNCwgQ2hlbiBRaSA8UWku
-Q2hlbkB3aW5kcml2ZXIuY29tPgogICAgICAgIGlwcm91dGUyLCA0LjEyLjAsIENoYW5naHllb2sg
-QmFlIDxjaGFuZ2h5ZW9rLmJhZUBsZ2UuY29tPgogICAgICAgIG9wcm9maWxlLCAxLjIuMHJjMiwg
-QWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBi
-dXN5Ym94LCAxLjI3LjAsIEFybWluIEt1c3RlciA8YWt1c3RlcjgwOEBnbWFpbC5jb20+CiAgICAg
-ICAgcWVtdSwgMi45LjAsIEFuw61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwu
-Y29tPgogICAgICAgIGlmdXBkb3duLCAwLjguMjEsIE1heGluIEIuIEpvaG4gPG1heGluLmpvaG5A
-aW50ZWwuY29tPgogICAgICAgIGtleGVjLXRvb2xzLCAyLjAuMTUsIEFybWluIEt1c3RlciA8YWt1
-c3RlckBtdmlzdGEuY29tPgogICAgICAgIGRpZmZ1dGlscywgMy42LCBDaGVuIFFpIDxRaS5DaGVu
-QHdpbmRyaXZlci5jb20+CiAgICAgICAgcHJlbGluaywgMjAxNTEwMzAuK2dpdEFVVE9JTkMrOTI3
-OTc5YmJkMSwgTWFyayBIYXRsZSA8bWFyay5oYXRsZUB3aW5kcml2ZXIuY29tPgogICAgICAgIGJh
-c2gsIDQuNCwgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYUB3aW5kcml2ZXIuY29tPgogICAgICAgIGdz
-dHJlYW1lcjEuMC1wbHVnaW5zLWdvb2QsIDEuMTIuMiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9o
-bkBpbnRlbC5jb20+CiAgICAgICAgd2VzdG9uLCAyLjk5LjkxLCBEZW55cyBEbXl0cml5ZW5rbyA8
-ZGVueXNAdGkuY29tPgogICAgICAgIHNjcmVlbiwgNC42LjEsIE1heGluIEIuIEpvaG4gPG1heGlu
-LmpvaG5AaW50ZWwuY29tPgogICAgICAgIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWJhc2UsIDEuMTIu
-MiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5jb20+CiAgICAgICAgYXByLXV0aWws
-IDEuNi4wLCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRyaXZlci5jb20+CiAgICAgICAgc3Ry
-YWNlLCA0LjE4LCBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmdAd2luZHJpdmVyLmNvbT4KICAgICAg
-ICBsaWJqcGVnLXR1cmJvLCAxLjUuMiwgTWF4aW4gQi4gSm9obiA8bWF4aW4uam9obkBpbnRlbC5j
-b20+CiAgICAgICAgZWxmdXRpbHMsIDAuMTY5LCBIb25neHUgSmlhIDxob25neHUuamlhQHdpbmRy
-aXZlci5jb20+CiAgICAgICAgYmMsIDEuMDcuMSwgSm9zZSBMYW1lZ28gPGpvc2UuYS5sYW1lZ29A
-bGludXguaW50ZWwuY29tPgogICAgICAgIHBzbWlzYywgMjMuMSwgQWxleGFuZGVyIEthbmF2aW4g
-PGFsZXhhbmRlci5rYW5hdmluQGludGVsLmNvbT4KICAgICAgICBsejQsIDEzMSwgRGVueXMgRG15
-dHJpeWVua28gPGRlbnlzQHRpLmNvbT4KICAgICAgICBwZXJsLCA1LjI2LjAsIEFuw61iYWwgTGlt
-w7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgogICAgICAgIGFwdCwgMS40LjcsIEFu
-w61iYWwgTGltw7NuIDxhbmliYWwubGltb25AbGludXguaW50ZWwuY29tPgoKICAgIFRPVEFMOiBh
-dHRlbXB0ZWQ9ODcgc3VjY2VlZGVkPTI4KDMyLjE4JSkgZmFpbGVkPTU5KDY3LjgyJSkKClJlY2lw
-ZSB1cGdyYWRlIHN0YXRpc3RpY3MgcGVyIE1haW50YWluZXI6CgogICAgRGVuZ2tlIER1IDxkZW5n
-a2UuZHU6IGF0dGVtcHRlZD00IHN1Y2NlZWRlZD0xKDI1LjAwJSkgZmFpbGVkPTMoNzUuMDAlKQog
-ICAgQnJ1Y2UgQXNoZmllbGQgPGJydWNlLmFzaGZpZWxkOiBhdHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9
-MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIENoYW5naHllb2sgQmFlIDxjaGFuZ2h5ZW9r
-LmJhZTogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEwMC4wMCUpCiAg
-ICBNYXhpbiBCLiBKb2huIDxtYXhpbi5qb2huOiBhdHRlbXB0ZWQ9MTQgc3VjY2VlZGVkPTQoMjgu
-NTclKSBmYWlsZWQ9MTAoNzEuNDMlKQogICAgQW7DrWJhbCBMaW3Ds24gPGFuaWJhbC5saW1vbjog
-YXR0ZW1wdGVkPTUgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD01KDEwMC4wMCUpCiAgICBNYXJl
-ayBWYXN1dCA8bWFyZWsudmFzdXQ6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWls
-ZWQ9MSgxMDAuMDAlKQogICAgSG9uZ3h1IEppYSA8aG9uZ3h1LmppYTogYXR0ZW1wdGVkPTYgc3Vj
-Y2VlZGVkPTIoMzMuMzMlKSBmYWlsZWQ9NCg2Ni42NyUpCiAgICBKdXNzaSBLdWtrb25lbiA8anVz
-c2kua3Vra29uZW46IGF0dGVtcHRlZD03IHN1Y2NlZWRlZD01KDcxLjQzJSkgZmFpbGVkPTIoMjgu
-NTclKQogICAgTGVvbmFyZG8gU2FuZG92YWwgPGxlb25hcmRvLnNhbmRvdmFsLmdvbnphbGV6OiBh
-dHRlbXB0ZWQ9MSBzdWNjZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIERlbnlz
-IERteXRyaXllbmtvIDxkZW55czogYXR0ZW1wdGVkPTMgc3VjY2VlZGVkPTEoMzMuMzMlKSBmYWls
-ZWQ9Mig2Ni42NyUpCiAgICBNYXJrIEhhdGxlIDxtYXJrLmhhdGxlOiBhdHRlbXB0ZWQ9MSBzdWNj
-ZWVkZWQ9MCgwLjAwJSkgZmFpbGVkPTEoMTAwLjAwJSkKICAgIEFsZWphbmRybyBIZXJuYW5kZXog
-PGFsZWphbmRyby5oZXJuYW5kZXo6IGF0dGVtcHRlZD0xIHN1Y2NlZWRlZD0xKDEwMC4wMCUpIGZh
-aWxlZD0wKDAuMDAlKQogICAgV2VpIFRlZSBOZyA8d2VpLnRlZS5uZzogYXR0ZW1wdGVkPTEgc3Vj
-Y2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEwMC4wMCUpCiAgICBPdGF2aW8gU2FsdmFkb3IgPG90
-YXZpby5zYWx2YWRvcjogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEw
-MC4wMCUpCiAgICBSaWNoYXJkIFB1cmRpZSA8cmljaGFyZC5wdXJkaWU6IGF0dGVtcHRlZD0xIHN1
-Y2NlZWRlZD0xKDEwMC4wMCUpIGZhaWxlZD0wKDAuMDAlKQogICAgSm9zZSBMYW1lZ28gPGpvc2Uu
-YS5sYW1lZ286IGF0dGVtcHRlZD02IHN1Y2NlZWRlZD0wKDAuMDAlKSBmYWlsZWQ9NigxMDAuMDAl
-KQogICAgQXJtaW4gS3VzdGVyIDxha3VzdGVyOiBhdHRlbXB0ZWQ9MyBzdWNjZWVkZWQ9MSgzMy4z
-MyUpIGZhaWxlZD0yKDY2LjY3JSkKICAgIENoZW4gUWkgPFFpLkNoZW46IGF0dGVtcHRlZD0xMCBz
-dWNjZWVkZWQ9NSg1MC4wMCUpIGZhaWxlZD01KDUwLjAwJSkKICAgIEFybWluIEt1c3RlciA8YWt1
-c3RlcjgwODogYXR0ZW1wdGVkPTEgc3VjY2VlZGVkPTAoMC4wMCUpIGZhaWxlZD0xKDEwMC4wMCUp
-CiAgICBSb2JlcnQgWWFuZyA8bGllemhpLnlhbmc6IGF0dGVtcHRlZD04IHN1Y2NlZWRlZD0yKDI1
-LjAwJSkgZmFpbGVkPTYoNzUuMDAlKQogICAgQWxleGFuZGVyIEthbmF2aW4gPGFsZXhhbmRlci5r
-YW5hdmluOiBhdHRlbXB0ZWQ9MTEgc3VjY2VlZGVkPTUoNDUuNDUlKSBmYWlsZWQ9Nig1NC41NSUp
-Cg==
 
---===============7702254352451800932==--
+On 07/19/2017 05:29 AM, Mark Hatle wrote:
+> On 7/19/17 1:57 AM, Patrick Ohly wrote:
+>> Hello Armin!
+>>
+>> I'm trying to use the latest meta-security master in refkit. Refkit runs
+>> yocto-compat-layer.py against its own layers, which then pulls in
+>> meta-security as one of the dependencies. That's where I am hitting a
+>> snag:
+>>
+>> INFO: Detected layers:
+>> INFO: meta-refkit: LayerType.DISTRO, /fast/work/intel-iot-refkit-pr/meta-refkit
+>> INFO:
+>> INFO: Setting up for meta-refkit(LayerType.DISTRO), /fast/work/intel-iot-refkit-pr/meta-refkit
+>> INFO: Adding layer dependency meta-selftest
+>> INFO: Adding layer dependency meta-intel
+>> INFO: Adding layer dependency meta-refkit-gateway
+>> INFO: Adding layer dependency meta-refkit-core
+>> INFO: Adding layer dependency meta-oic
+>> INFO: Adding layer dependency meta-iot-web
+>> INFO: Adding layer dependency meta-refkit-computervision
+>> INFO: Adding layer dependency meta-intel-realsense
+>> INFO: Adding layer dependency meta-clang
+>> INFO: Adding layer dependency meta-oe
+>> INFO: Adding layer dependency meta-refkit-industrial
+>> INFO: Adding layer dependency meta-python
+>> INFO: Adding layer dependency meta-ros
+>> INFO: Adding layer dependency meta-iotqa
+>> INFO: Adding layer dependency meta-security
+>> INFO: Adding layer dependency meta-perl
+>> INFO: Adding layer dependency meta-security-isafw
+>> INFO: Adding layer dependency meta-filesystems
+>> INFO: Adding layer dependency meta-gnome
+>> INFO: Adding layer dependency meta-networking
+>> INFO: Adding layer dependency meta-flatpak
+>> Traceback (most recent call last):
+>>    File "/fast/work/intel-iot-refkit-pr/openembedded-core/scripts/yocto-compat-layer.py", line 203, in <module>
+>>      ret =  main()
+>>    File "/fast/work/intel-iot-refkit-pr/openembedded-core/scripts/yocto-compat-layer.py", line 151, in main
+>>      if not add_layer_dependencies(bblayersconf, layer, dep_layers, logger) or \
+>>    File "/fast/work/intel-iot-refkit-pr/openembedded-core/scripts/lib/compatlayer/__init__.py", line 195, in add_layer_dependencies
+>>      output = check_command('Getting existing layers failed.', 'bitbake-layers show-layers').decode('utf-8')
+>>    File "/fast/work/intel-iot-refkit-pr/openembedded-core/scripts/lib/compatlayer/__init__.py", line 228, in check_command
+>>      raise RuntimeError(msg)
+>> RuntimeError: Getting existing layers failed.
+>> Command: bitbake-layers show-layers
+>> Output:
+>> ERROR: Layer 'security' depends on layer 'xfce-layer', but this layer is not enabled in your configuration
+Thats not good. Thanks for the feedback.
+
+>>
+>> The reason is the way how meta-security declares its dependencies:
+>>
+>> LAYERDEPENDS_security = "core openembedded-layer perl-layer"
+>> LAYERDEPENDS_security += "${@bb.utils.contains("DISTRO_FEATURES", "x11", "gnome-layer xfce-layer", "", d)}"
+>> LAYERDEPENDS_security += "${@bb.utils.contains("MACHINE_FEATURES", "tpm", "tpm-layer", "",d)}"
+>> LAYERDEPENDS_security += "${@bb.utils.contains("MACHINE_FEATURES", "tpm2", "tpm-layer", "",d)}"
+>> LAYERDEPENDS_security += "${@bb.utils.contains("MACHINE_FEATURES", "vtpm", "tpm-layer meta-filesystems", "",d)}"
+>>
+>> I haven't checked how exactly yocto-compat-layer.py deals with this, but
+>> the end result is that it doesn't add meta-xfce when adding
+>> meta-security. Then when "bitbake-layers show-layers" is called, a
+>> distro (poky) has been chosen where x11 is in DISTRO_FEATURES, causing
+>> the dependency check to fail.
+> The meta-freescale method of checking if a layer is present and adding features
+> is how they resolve this issue.  Instead of making it a dependency, they simply
+> check if it's already present and then add to it.
+>
+> I agree the above is less then optimal way of doing things, and will prevent the
+> layer index from getting a clear list of what may be required.
+>
+> Note, there is also LAYERRECOMMENDS_... in this case, the system could recommend
+> gnome-layer, xfce-layer, tpm-layer, meta-filesystems, and then use the
+> meta-freescale approach to only enabling thsoe features if the recommended
+> layers are present.
+Thanks. I will take a look at that.
+
+>
+>> This highlights a conceptual issue with the dynamic
+>> LAYERDEPENDS_security above: which distro or machine config is active?
+>> Tools like yocto-compat-layer.py or the layer index have to do their
+>> work before that is defined.
+>>
+>> This is also problematic with multiconfig. The same bblayers.conf might
+>> be used with one config where x11 is off and another where it is on.
+>>
+>> I suspect LAYERDEPENDS simply can't be dynamic. It either has to include
+>> everything that a layer might depend on (even when the additional
+>> content doesn't end up being used), or it just depends on the essential
+>> parts and then enables additional recipes only when the optional layers
+>> they depend on are present. BBFILES_DYNAMIC can be used for that, or the
+>> recipes themselves check BBCOLLECTIONS in anonymous python code and
+>> raise a SkipRecipe exception when their pre-condition isn't satisfied.
+>>
+>> Copying Paul (layer index) and Mark (oe-yocto-compat.py, setup tool) for
+>> their input.
+> I would certainly caution against dynamic layerdepends/layerrecommends and
+> instead focus on listing everything between what is required and what you want
+> to add in addition -- then using the meta-freescale approach of only extending
+> (the recommends) when present.
+This appears to be more beneficial in a  bbappends than a recipe needing 
+a package from another layer.
+
+>
+> The setup program and layer index can handle this situaton.  The
+> yocto-compat-layer checking may have to be augmented to deal with recommends as
+> well, but that should be fairly minor.
+>
+> --Mark
+Thanks for the detailed explanation. I will look into the and submit 
+changes soon.
+-armin
+
