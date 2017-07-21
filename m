@@ -1,55 +1,72 @@
-Return-Path: <bluehills7@comcast.net>
+Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C4B6E00944; Thu, 20 Jul 2017 17:00:44 -0700 (PDT)
+	id E8C71E00A38; Thu, 20 Jul 2017 21:37:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bluehills7[at]comcast.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [69.252.207.37 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.44 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.44 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from resqmta-ch2-05v.sys.comcast.net
-	(resqmta-ch2-05v.sys.comcast.net [69.252.207.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E2A7E0083A
-	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 17:00:42 -0700 (PDT)
-Received: from resomta-ch2-10v.sys.comcast.net ([69.252.207.106])
-	by resqmta-ch2-05v.sys.comcast.net with ESMTP
-	id YLMqddU11ywLIYLN4d4O0H; Fri, 21 Jul 2017 00:00:42 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=q20161114; t=1500595242;
-	bh=OWeb3xw99ymdQq3rXmc9IQm0RkOwO5SaRzSYqhAaExI=;
-	h=Received:Received:From:Content-Type:Mime-Version:Subject:
-	Message-Id:Date:To;
-	b=KlIzWpZapLizr/DvUaHlRYt5OQjj3xOhLjW9c3BviP6jNGAlKxx/QlAaTO2X24IIa
-	ilRF+Gf+zZsGE+3Z/ITv+WYPUoF7tVj0oNqTVEL1B2yDGhX4b1dsQ33jHpKVKyDxLx
-	O/ZJ3Z560PPD9mtMR4J0VEnKnwqWDMCd6qo4HA3pZp5vAkatCeKSyf9iotLG+SHWsI
-	/4nY+imh6YDslBXSRCk8IE31iYMccW2OLDV75Q3V4Q8lmvucjMoeZw9Nm9ra9ZhlU3
-	mNJxPVfTV/KGIIMBFzHO46hUJGVbcNBeoz4E0jvCtQf1CcD9WGW8+sn+E7ArIf9zRB
-	c7puHUs89B+KA==
-Received: from [IPv6:2601:18f:800:acc1:c912:4070:9500:1ead]
-	([IPv6:2601:18f:800:acc1:c912:4070:9500:1ead])
-	by resomta-ch2-10v.sys.comcast.net with SMTP
-	id YLN3doj9qHMYzYLN3dD2PL; Fri, 21 Jul 2017 00:00:42 +0000
-From: Russell Peterson <bluehills7@comcast.net>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Message-Id: <7CF00C3D-723C-473B-8D5E-767FF15BBFD5@comcast.net>
-Date: Thu, 20 Jul 2017 20:00:40 -0400
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3273)
-X-CMAE-Envelope: MS4wfArzuHExY3b9Opvty5blx5E+f0v3QqIgX74NKbWTPtDqgNmhUKZB5IOuaXxT9Orh4++xtb+aXt+SgnOc1jRWIMNIk4kckrNK6ljO0sll8BEzY9/+zmbT
-	BnzQ1npVuSKS5G7cGMEBwi5FSVyAFPMvjdQRii5NGEwuT9zKOJV6RfsLFiHFK6aSRXovNgoArYYhYJ7GXbf0ugO5xUh2k04fjg0=
-Subject: SDK license manifest
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 083E7E0090A
+	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 21:37:56 -0700 (PDT)
+Received: by mail-oi0-f44.google.com with SMTP id q4so43429489oif.1
+	for <yocto@yoctoproject.org>; Thu, 20 Jul 2017 21:37:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:organization:mime-version:content-transfer-encoding;
+	bh=EHLIs+fKW+fqqDdYZ6NVlF1tGQFS0Zn3vmAxwpahctY=;
+	b=STmxIOs0AdILJETIBFC81jOJ+vrZrrNfAtZ2SANLbm46oJAX7TQQJwgOMMorBq1UV5
+	mCWdM3gQppf7ON2zPJ6m9x3V6rlgc9xZ0u1YClcIO8ubOJR+Bd9+yAUX2einZZmKU/q5
+	b4pxui3YU5jX+kzAmh+CaYxTufo8nXvOVRrPNSj7ILqzm6s+F7J48qzHs/8z6aRrtq0k
+	tFa7mHfVsipclVk6M5J3b4ApWqmc2tjz4MC3hzV6npq4VKsW92qdtsj2MDjl08xw/WqS
+	/Lou/ZsJYdQygWu7E/xZYcW01sL453RBPAKJ9Dpb4+eRICnHvCsb97+5GhL/DJGSEviP
+	yByw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:organization:mime-version:content-transfer-encoding;
+	bh=EHLIs+fKW+fqqDdYZ6NVlF1tGQFS0Zn3vmAxwpahctY=;
+	b=RBD8wkqgJk36GwtXB6rGghi5kmO7miH8AhJoxfEM5LaNj39uwVtmZrR1SUr3ZWqnhD
+	c+QF3jfE7ecj+8CeE38+T9UZqSBeBZfhWH6mk3/1sZsqbXaDvPmC/slzRY/w0b0cw9/0
+	GYNUt5xCz//krhY+NYUemt3AIDJD/2jY+vuSwoMjPRRgEPjJLCWbCG7rgdJo0U4MR2Bx
+	lcmnQYVNEShFfe65x/eRkkMnY6E0SHatIjRmRmVKOl6mHyttL3pxWjwHjk8O2nS0qlGI
+	Sq1SWXbwplUSN9GmipaCHiSP/gY4H+EfSoxAzFG2WX1gMZUfOohmsVbCeaSjOJzP4TxX
+	ji3A==
+X-Gm-Message-State: AIVw110nDNK4owQP5TRlKrJXhXGLEmlISvNoaLkF5cZmbE3G8dN05PNE
+	/bpY+FBFghQbKNMB
+X-Received: by 10.202.4.208 with SMTP id 199mr1000758oie.182.1500611875861;
+	Thu, 20 Jul 2017 21:37:55 -0700 (PDT)
+Received: from pohly-mobl1 (p5DE8FE14.dip0.t-ipconnect.de. [93.232.254.20])
+	by smtp.gmail.com with ESMTPSA id
+	v195sm1708760oif.54.2017.07.20.21.37.52
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 20 Jul 2017 21:37:54 -0700 (PDT)
+Message-ID: <1500611869.8415.11.camel@intel.com>
+From: Patrick Ohly <patrick.ohly@intel.com>
+To: akuster808 <akuster808@gmail.com>
+Date: Fri, 21 Jul 2017 06:37:49 +0200
+In-Reply-To: <1628a1f3-ec46-1144-1d5e-8242c8672edd@gmail.com>
+References: <1500447463.5689.81.camel@intel.com>
+	<2ad0b40b-b201-9974-7f28-10efc611ffb1@windriver.com>
+	<1628a1f3-ec46-1144-1d5e-8242c8672edd@gmail.com>
+Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: dynamic layer dependencies in meta-security
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,24 +78,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jul 2017 00:00:44 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 21 Jul 2017 04:37:58 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On Thu, 2017-07-20 at 14:39 -0700, akuster808 wrote:
+> > I would certainly caution against dynamic layerdepends/layerrecommends and
+> > instead focus on listing everything between what is required and what you want
+> > to add in addition -- then using the meta-freescale approach of only extending
+> > (the recommends) when present.
 
-I am currently building an SDK and a disk image using morty.  Learning =
-quite a bit about Yocto.
+FWIW, the meta-freescale approach has been superseeded by
+BBFILES_DYNAMIC.
 
-Eventually I will distribute both the SDK and the rootfs image to =
-customers.  I see that there is a license manifest generated for the =
-full rootfs which is very useful.  My question is, what about the SDK?  =
-Is the SDK covered by the same manifest or is there something I=E2=80=99m =
-missing.  I assume there are some things in the nativesdk rootfs, for =
-example, that need to be tracked.
+> This appears to be more beneficial in a  bbappends than a recipe needing 
+> a package from another layer.
 
-Thanks!
+BBFILES_DYNAMIC can be used for both .bb and .bbappend files.
 
-Russell
+In refkit, I ended up just using it for .bbappend files:
+https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/conf/layer.conf#L7
+
+        # All our .bbappends for other layers are in a separate
+        # "bbappends/<layer>" hierarchy. We activate only those
+        # bbappends for which the layer they apply to is actually
+        # present.
+        #
+        # Sorted by layer path to keep related layers together.
+        BBFILES_DYNAMIC += " \
+        clang-layer:${LAYERDIR}/bbappends/meta-clang/*/*/*.bbappend \
+        flatpak:${LAYERDIR}/bbappends/meta-flatpak/*/*/*.bbappend \
+        
+For recipes, I wanted to have a bit more flexibility:
+- let developers decide from where they get the dependency - the
+  well-known layer or a copy elsewhere
+- let recipes decide which features they enable based on which
+  dependencies are available
+        
+Also, "bitbake foo" should result in an error about "dependency bar
+required for foo not found", not a blunt "nothing provides foo". With
+BBFILES_DYNAMIC for .bb files one only gets the latter.
+
+Here's how it is defined what's available:
+https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/conf/layer.conf#L51
+        
+                # There are multiple different ways for providing some of the
+                # dependencies. Here we assume that the dependencies are available if
+                # the layers that the refkit distro takes them from are present.
+                HAVE_META_OE = "${@ bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'True', 'False', d) }"
+                HAVE_ATOP ??= "${HAVE_META_OE}"
+            HAVE_CRYPTSETUP ??= "${HAVE_META_OE}"
+            ...
+
+And here's how it is used:
+https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/recipes-images/images/initramfs-framework-refkit-dm-verity.bb#L22
+
+        python () {
+            if not oe.types.boolean(d.getVar('HAVE_CRYPTSETUP') or '0'):
+                raise bb.parse.SkipRecipe('cryptsetup dependency not available')
+        }
+
+
+-- 
+Best Regards, Patrick Ohly
+
+The content of this message is my personal opinion only and although
+I am an employee of Intel, the statements I make here in no way
+represent Intel's position on the issue, nor am I authorized to speak
+on behalf of Intel on this matter.
+
+
 
 
