@@ -1,37 +1,44 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11CA4E00B49; Fri, 21 Jul 2017 07:15:32 -0700 (PDT)
+	id 4C992E00B77; Fri, 21 Jul 2017 12:46:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FDBBE00B31
-	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 07:15:31 -0700 (PDT)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Jul 2017 07:15:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,390,1496127600"; d="scan'208";a="110480021"
-Received: from skopplex-mobl1.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.39.4])
-	by orsmga004.jf.intel.com with ESMTP; 21 Jul 2017 07:15:29 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Diana Thayer <garbados@gmail.com>
-Date: Fri, 21 Jul 2017 16:15:26 +0200
-Message-ID: <1540054.pZpUqmJ2aX@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <1498521563-26590-1-git-send-email-garbados@gmail.com>
-References: <1498521563-26590-1-git-send-email-garbados@gmail.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47786E00B53
+	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 12:46:56 -0700 (PDT)
+Received: from svr-orw-fem-04.mgc.mentorg.com ([147.34.97.41])
+	by relay1.mentorg.com with esmtp 
+	id 1dYdt0-00049L-LJ from Joe_MacDonald@mentor.com ;
+	Fri, 21 Jul 2017 12:46:54 -0700
+Received: from burninator.cal.mentorg.com (147.34.91.1) by
+	svr-orw-fem-04.mgc.mentorg.com (147.34.97.41) with Microsoft SMTP
+	Server id 14.3.224.2; Fri, 21 Jul 2017 12:46:54 -0700
+Received: by burninator.cal.mentorg.com (Postfix, from userid 1000)	id
+	1244458078A; Fri, 21 Jul 2017 15:46:53 -0400 (EDT)
+Date: Fri, 21 Jul 2017 15:46:53 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: Justin Clacherty <justin@redfish.com.au>
+Message-ID: <20170721194652.v7xh3culqr2r2h6v@mentor.com>
+References: <CAGb_=SVC0Z_-ZKD2+VAt9HMG+ejYm0VcrECyn6cLRVtDFWYcfQ@mail.gmail.com>
+	<CAGb_=SXgdg=Za2JbeYadJi-kOA5EtKLmw+jdDcn_Fzn+iRa2tw@mail.gmail.com>
+	<9F567B9C-65EE-4852-A3E9-37DD09A7A7C0@redfish.com.au>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [layerindex-web][PATCH] layerindex-web : adding asynchronous task execution
+In-Reply-To: <9F567B9C-65EE-4852-A3E9-37DD09A7A7C0@redfish.com.au>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-800 http://www.vim.org
+User-Agent: NeoMutt/20170113 (1.7.2)
+Cc: yocto@yoctoproject.org, Marco Ostini <marco@ostini.org>,
+	Shrikant_Bobade@mentor.com
+Subject: Re: SELinux with Busybox on morty
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,49 +50,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jul 2017 14:15:32 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 21 Jul 2017 19:46:57 -0000
+X-Groupsio-MsgNum: 37117
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="bwyxiw42ds53wcun"
+Content-Disposition: inline
 
-Hi Diana,
+--bwyxiw42ds53wcun
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Sorry it's taken me a ridiculous amount of time to get back to you on this!
+Hi Justin / Marco,
 
-On Tuesday, 27 June 2017 1:59:23 AM CEST Diana Thayer wrote:
-> This is a work-in-progress solution to issue 11197 within layerindex-web: 
-> adding asynchronous task execution.
-> I used RabbitMQ and Celery. I'm still working with Paul Eggleton on adding
-> install instructions for RabbitMQ to
-> the site's Dockerfile.
-> 
-> Previously, when a user submitted a layer, Django would synchronously send
-> emails to users able to publish layers,
-> such that if an email bounced or otherwise failed, the user submitting the
-> layer would see an error.
-> This patch sends those emails as asynchronous tasks, so any sending errors
-> don't reach the user submitting a layer.
+[Re: SELinux with Busybox on morty] On 17.07.19 (Wed 16:05) Justin Clachert=
+y wrote:
 
-I had a chance to try your patch out today, although I had to apply it 
-partially - I figured a good test would just be the email part. I installed 
-rabbitmq and ensured it got started. I started the web interface and submitted 
-a dummy layer, and the email sent as expected. I then tried killing my local 
-SMTP server and the layer submission returned an error page, which is what 
-happened previously - it looks to me as if the sending is still being done 
-synchronously. The celery worker isn't reporting anything so I can only assume 
-the django app is not trying to connect to it.
+> Hi Joe,
+>=20
+> Is this something you or one of the other meta-selinux devs are able
+> to help out with or is it more of an upstream question?
 
-I've pushed just the changes I applied to a new branch here:
+I'll see if I can give this a shot.  :-)
 
-http://git.yoctoproject.org/cgit/cgit.cgi/layerindex-web/log/?h=paule/celery
+>=20
+> Cheers,
+> Justin.
+>=20
+>=20
+> > On 17 Jul 2017, at 4:57 pm, Marco Ostini <marco@ostini.org> wrote:
+> >=20
+> >=20
+> > Hi All,
+> >=20
+> > At the moment I'm attempting to prepare a VM of morty with SELinux
+> > running well in enforcing mode. Once bedded down this will be
+> > running on an embedded system.
+> >=20
+> > We use Busybox to keep the environment slim.
+> >=20
+> > As you may be aware the file contexts of
+> > /etc/selinux/targeted/contexts/files/file_contexts don't include
+> > appropriate paths (/sbin + /usr/lib/busybox/sbin/) and relative file
+> > contexts for commands provided by Busybox. The /sbin files provided
+> > by Busybox are symlinks to their counterparts in
+> > /usr/lib/busybox/sbin/.
+> >=20
+> > I've attempted to use semanage to apply file contexts and look up
+> > login contexts. Any time I use semanage I receive this message:
+> >=20
+> >    Error: Failed to read //etc/selinux/targeted/policy/policy.30 policy=
+ file
+> >=20
+> > In an attempt to mitigate this error I ran semodule --build and
+> > while it did rebuild the policy file, it didn't mitigate the error
+> > message generated by semanage. At the moment I'm applying temporary
+> > file contexts with chcon.
+> >=20
+> > My questions are:
+> >=20
+> > 1. Is it possible to run Busybox (providing init, getty, syslog ...)
+> > in SELinux enforcing. If so, where's the policy files?
 
-Any idea what's going wrong? Did I mess up in applying the changes, or 
-misconfigure something else? 
+You haven't mentioned which policy you're currently using so I'm
+guessing it is the default you get from meta-selinux, that is
+refpolicy-git.  I've been debugging some (I think) unrelated issues with
+refpolicy-git this week, so my advice would first to be try out
+2.20151208, the current release version we have in tree.  That's
+obviously also out of date, but it is currently better tested than the
+git recipe.
 
-Thanks,
-Paul
+All that said, yes, we have been, in the past, able to use busybox with
+SELinux enforcing enabled, though as you can see from the layer, we've
+had to tweak refpolicy to make it work well.  I'm adding a colleague of
+mine here, Shrikant, who has done a fair bit of recent work with
+meta-selinux as well, he might have some additional insight into the
+current status of busybox-based systems.
 
--- 
+> > 2. Is there some documentation somewhere on reference builds of
+> > Morty with SELinux enforcing ?
 
-Paul Eggleton
-Intel Open Source Technology Centre
+There is not at the moment, as far as I know.  It's possible that
+someone else currently using that combination can help out with some
+guidance, but we haven't done any Morty+SELinux specific documentation.
+Since I'm investigating some other issues right now in a slightly
+different area, though, I may get some time next week to write up
+something quick for this for you, though. If I do, I'll be sure to share
+it here.
 
+--=20
+-Joe MacDonald.
+:wq
+
+--bwyxiw42ds53wcun
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEkMd/b97HINT8/zEqSfx99yw59pYFAllyWiwACgkQSfx99yw5
+9pbpKggAoj6D+tpw4tJ9h41sUyIJu/R8RvgaUFju7vbr4Jha2864rpxuI68JYjgy
+IeRqKv2ZV1QExLhkUWeOOravqY6y5PeTPSci9JcWt0bba8gHfUJKP8GltqMrodfy
+waqXF1IdW1du0qFmJYLxP8QtHgBjggsFS5CZHoiQ7snTJd+AKHBCtFxyeCW8E4mM
+rthL9UkgJJc4U/MUGqvzS2GjHmZK/8sVTtgq5teokv4F9YgLseymHQ6DRvXC6UPM
+MzmJT7Ywi7MCjemh0Cc1QpBdy0jQzoL53oshk89vXX/TbJiOlFZRm7gdKNpIlaOx
+zCjfrtXyiqSgzzTNQyp/pAlGB7vx5w==
+=M62+
+-----END PGP SIGNATURE-----
+
+--bwyxiw42ds53wcun--
