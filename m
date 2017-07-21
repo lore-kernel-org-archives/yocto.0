@@ -1,42 +1,73 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <jpewhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42DA0E009A4; Fri, 21 Jul 2017 06:06:30 -0700 (PDT)
+	id B1412E00A39; Fri, 21 Jul 2017 06:08:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jpewhacker[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63DE6E0090A
-	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 06:06:29 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v6LD6QBb026622
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 21 Jul 2017 06:06:26 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 21 Jul 2017 06:06:26 -0700
-To: Patrick Ohly <patrick.ohly@intel.com>, akuster808 <akuster808@gmail.com>
-References: <1500447463.5689.81.camel@intel.com>
-	<2ad0b40b-b201-9974-7f28-10efc611ffb1@windriver.com>
-	<1628a1f3-ec46-1144-1d5e-8242c8672edd@gmail.com>
-	<1500611869.8415.11.camel@intel.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <0ad0604b-0025-9c7d-f024-f6bd14cc3081@windriver.com>
-Date: Fri, 21 Jul 2017 08:06:29 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.2.1
-MIME-Version: 1.0
-In-Reply-To: <1500611869.8415.11.camel@intel.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: dynamic layer dependencies in meta-security
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.173 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E791E0090A
+	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 06:08:35 -0700 (PDT)
+Received: by mail-io0-f173.google.com with SMTP id m88so13616583iod.2
+	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 06:08:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:message-id:subject:to:date:in-reply-to:references:mime-version
+	:content-transfer-encoding;
+	bh=g72XrPLuTwfTyK6+OA4xkgWDSmPLuouBxc+Anc4DFb8=;
+	b=YyL9dPi6QrjwKudMZ0FgV3veuFi69Z4rGr9kJk6Z6rASFMQeFZueCzdX5LDbPEHVKY
+	DndjZLNmmlpwKEipbjDCx1ms3sVVxCBWD83QOtyAvC4pTvEiX0Lb9G/IyV6lmAfCdkYe
+	jS3KZnhQUzBxmUTSJp1T3lk2ribWHD/J4ZCTmDx+NWqah4gvfrFFJa91QeinDABFTyOY
+	4DM+bkBKf8EOErWNxqBtxXf9NKI0GTLT0dQ0xic+ZIk0DORLqTVsPLb8GSQXJ5T6kIBk
+	qO3zM2htHRVuqSw/xCRVcQSGAp8gacX07EsKre37MCvlT4eJH5NLHdO4zJD2Yr5ChjqU
+	IOvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:message-id:subject:to:date:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=g72XrPLuTwfTyK6+OA4xkgWDSmPLuouBxc+Anc4DFb8=;
+	b=tFaZG0JccxywRB5AHJZiR/KXFYZsfC9VN8dzUs2Jw4FE/SDtULG6FDM0CNcTtUn6R8
+	3FKZ0gheI/RQ8Z1gsodjUoye0ZKej6gpsQM2e8gH5zf6nKmRs4l65Lay5lM/6/KP7yJn
+	DG2ERUX9LU3gFWRgXKmM+c+dLwawnADryFqrokegD6KSH+gccCZzgugBhInKO/YCfCjE
+	EQDookUZrOCQtwhLPvLlDNZ9oxSJjgsiQ/wRFhWGmddFNJ7qW/4stVIJJvFz+gOqnrPN
+	nhhV2YeRZ0mFnsDM7mKsFEBAELu3ewbGS7468f8tvhkmRKJZRMa/7n6lzA3a3VibTbuU
+	iWwg==
+X-Gm-Message-State: AIVw110HDFbDPy35Zojrfoj01OzB1TqgsPs1+A5zxQJoAXcYoDoHH0fr
+	XP8VvLuDOuFUOQ==
+X-Received: by 10.107.63.214 with SMTP id m205mr6720060ioa.87.1500642514828;
+	Fri, 21 Jul 2017 06:08:34 -0700 (PDT)
+Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
+	by smtp.googlemail.com with ESMTPSA id
+	r186sm2270192iod.64.2017.07.21.06.08.33
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Fri, 21 Jul 2017 06:08:33 -0700 (PDT)
+From: Joshua Watt <jpewhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Message-ID: <1500642513.30630.1.camel@gmail.com>
+To: Florian Doersch <florian.doersch@iis.fraunhofer.de>, 
+	yocto@yoctoproject.org
+Date: Fri, 21 Jul 2017 08:08:33 -0500
+In-Reply-To: <5971A44E.9090106@iis.fraunhofer.de>
+References: <5971A44E.9090106@iis.fraunhofer.de>
+X-Mailer: Evolution 3.22.6 (3.22.6-2.fc25) 
+Mime-Version: 1.0
+Subject: Re: correct approach to set up utf-8 locales?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,101 +79,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jul 2017 13:06:30 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+X-List-Received-Date: Fri, 21 Jul 2017 13:08:36 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 
-On 7/20/17 11:37 PM, Patrick Ohly wrote:
-> On Thu, 2017-07-20 at 14:39 -0700, akuster808 wrote:
->>> I would certainly caution against dynamic layerdepends/layerrecommends and
->>> instead focus on listing everything between what is required and what you want
->>> to add in addition -- then using the meta-freescale approach of only extending
->>> (the recommends) when present.
+On Fri, 2017-07-21 at 08:50 +0200, Florian Doersch wrote:
+> Hi,
 > 
-> FWIW, the meta-freescale approach has been superseeded by
-> BBFILES_DYNAMIC.
-
-BBFILES_DYNAMIC requires master.  You need to use the meta-freescale approach
-for any of the existing released trees.
-
-You are correct it is the right approach for master and future, but we should
-fix existing trees as well, since it does affect the output of the layer index
-for people looking at existing releases.
-
->> This appears to be more beneficial in a  bbappends than a recipe needing 
->> a package from another layer.
+> I recently trying to set up a raspberry pi with yocto.
+> The basic image with meta-raspberrypi works, but I cant get locales 
+> working correctly. I always only have "posix" keyboard.
 > 
-> BBFILES_DYNAMIC can be used for both .bb and .bbappend files.
+> I tried setting
 > 
-> In refkit, I ended up just using it for .bbappend files:
-> https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/conf/layer.conf#L7
+> GLIBC_GENERATE_LOCALES="de_DE.UTF-8"
+> IMAGE_LINGUAS="de-de"
 > 
->         # All our .bbappends for other layers are in a separate
->         # "bbappends/<layer>" hierarchy. We activate only those
->         # bbappends for which the layer they apply to is actually
->         # present.
->         #
->         # Sorted by layer path to keep related layers together.
->         BBFILES_DYNAMIC += " \
->         clang-layer:${LAYERDIR}/bbappends/meta-clang/*/*/*.bbappend \
->         flatpak:${LAYERDIR}/bbappends/meta-flatpak/*/*/*.bbappend \
-
-Even when using this, there should be a LAYERRECOMMENDS for clang-layer and
-flatpak IMHO.  Otherwise the layer index and other automated tools will have no
-way to determine that the user should have those items.
-
-> For recipes, I wanted to have a bit more flexibility:
-> - let developers decide from where they get the dependency - the
->   well-known layer or a copy elsewhere
-> - let recipes decide which features they enable based on which
->   dependencies are available
->         
-> Also, "bitbake foo" should result in an error about "dependency bar
-> required for foo not found", not a blunt "nothing provides foo". With
-> BBFILES_DYNAMIC for .bb files one only gets the latter.
-
-Problem of course is that if we bring in a .bb that requires another layer (in
-certain ways) then the parse can fail, or you have to start 'protecting' certain
-things (like inherits/requires/etc) so the parse can complete.  This becomes a
-big problem very quickly.
-
-> Here's how it is defined what's available:
-> https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/conf/layer.conf#L51
->         
->                 # There are multiple different ways for providing some of the
->                 # dependencies. Here we assume that the dependencies are available if
->                 # the layers that the refkit distro takes them from are present.
->                 HAVE_META_OE = "${@ bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'True', 'False', d) }"
->                 HAVE_ATOP ??= "${HAVE_META_OE}"
->             HAVE_CRYPTSETUP ??= "${HAVE_META_OE}"
->             ...
-
-I have mixed feeling on this approach... I certainly understand it, and get why
-it's needed.  (I've used it myself as well...)  but in the end you are
-essentially defining a distribution flag (variable?) that is being set by the
-layer.conf based on the existence of another layer.  This would be very
-confusing to someone trying to understand why two different builds are getting
-different behaviors.
-
-The best of the 'bad situation' would be to implement (in the recipes) a
-PKGCONFIG where the default uses these magic variables to define the defaults.
-Then the user can have a chance at debugging the issue by seeing that the
-PKGCONFIG (default) is changing from one build to another.  Using the variables
-directly during the build is very tempting, but I would caution against it.
-
-> And here's how it is used:
-> https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/recipes-images/images/initramfs-framework-refkit-dm-verity.bb#L22
+> I also installed the packages
 > 
->         python () {
->             if not oe.types.boolean(d.getVar('HAVE_CRYPTSETUP') or '0'):
->                 raise bb.parse.SkipRecipe('cryptsetup dependency not available')
->         }
+> glibc-utils locales localedef
+> 
+> into my image, but that seems not to change anything.
+> 
+> $ locale -a
+> 
+> does have a "de_DE" (but not the UTF-8 one ...)
 
-This is certainly nicer then the other way.  It may be possible in bitbake to
-implement this type of work directly.  I.e. in the BBFILES_DYNAMIC processing.
-If the layer isn't there, we could still process the glob and report the
-skipRecipe.  (I'm sure I'm making it sound easier then it would be to implement.)
+I noticed something similar while trying to get locale.aliases to work
+(see https://bugzilla.yoctoproject.org/show_bug.cgi?id=11815). I don't
+know why the .utf8 suffixes to do not appear, but it might be related
+(perhaps some configuration in glibc is incorrect?). Based on a little
+bit of testing I did, I think that the utf8 locale might be present as
+you can do setlocale(LC_ALL, "de_DE.utf8") in C and it should work (you
+might want to check this yourself). Perhaps the locale program just
+isn't showing it?
 
---Mark
+
+> 
+> but its still unset:
+> 
+> $ locale
+> always outputs "POSIX"
+
+I think you would need to set $LANG to actually change the language,
+i.e.
+
+$ LANG="de_DE.UTF8" locale
+
+> 
+> 
+> Also the (usb) keyboard layout does not change.
+> 
+> What do I have to set so the getty has the correct default language?
+> 
+> I also have yocto on a zynq board, where I also can't figure out how
+> to 
+> set the correct locale.
+> 
+> Thank you very much
+> 
+> Florian
+
 
