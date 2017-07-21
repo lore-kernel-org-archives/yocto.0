@@ -1,44 +1,34 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C992E00B77; Fri, 21 Jul 2017 12:46:57 -0700 (PDT)
+	id B1E29E00B77; Fri, 21 Jul 2017 15:12:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47786E00B53
-	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 12:46:56 -0700 (PDT)
-Received: from svr-orw-fem-04.mgc.mentorg.com ([147.34.97.41])
-	by relay1.mentorg.com with esmtp 
-	id 1dYdt0-00049L-LJ from Joe_MacDonald@mentor.com ;
-	Fri, 21 Jul 2017 12:46:54 -0700
-Received: from burninator.cal.mentorg.com (147.34.91.1) by
-	svr-orw-fem-04.mgc.mentorg.com (147.34.97.41) with Microsoft SMTP
-	Server id 14.3.224.2; Fri, 21 Jul 2017 12:46:54 -0700
-Received: by burninator.cal.mentorg.com (Postfix, from userid 1000)	id
-	1244458078A; Fri, 21 Jul 2017 15:46:53 -0400 (EDT)
-Date: Fri, 21 Jul 2017 15:46:53 -0400
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: Justin Clacherty <justin@redfish.com.au>
-Message-ID: <20170721194652.v7xh3culqr2r2h6v@mentor.com>
-References: <CAGb_=SVC0Z_-ZKD2+VAt9HMG+ejYm0VcrECyn6cLRVtDFWYcfQ@mail.gmail.com>
-	<CAGb_=SXgdg=Za2JbeYadJi-kOA5EtKLmw+jdDcn_Fzn+iRa2tw@mail.gmail.com>
-	<9F567B9C-65EE-4852-A3E9-37DD09A7A7C0@redfish.com.au>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E222AE00B53;
+	Fri, 21 Jul 2017 15:12:55 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	21 Jul 2017 15:12:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.40,392,1496127600"; d="scan'208";a="881395750"
+Received: from yiwenguo-mobl1.ccr.corp.intel.com ([10.254.20.231])
+	by FMSMGA003.fm.intel.com with ESMTP; 21 Jul 2017 15:12:54 -0700
+From: Tracy Graydon <tracy.graydon@intel.com>
+To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
+Message-ID: <59727C66.5050200@intel.com>
+Date: Fri, 21 Jul 2017 15:12:54 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
+	Gecko/20100101 Thunderbird/38.5.1
 MIME-Version: 1.0
-In-Reply-To: <9F567B9C-65EE-4852-A3E9-37DD09A7A7C0@redfish.com.au>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-800 http://www.vim.org
-User-Agent: NeoMutt/20170113 (1.7.2)
-Cc: yocto@yoctoproject.org, Marco Ostini <marco@ostini.org>,
-	Shrikant_Bobade@mentor.com
-Subject: Re: SELinux with Busybox on morty
+Subject: [ANNOUNCEMENT] Yocto Project 2.3.1 (pyro 17.0.1) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,111 +40,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jul 2017 19:46:57 -0000
-X-Groupsio-MsgNum: 37117
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bwyxiw42ds53wcun"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 21 Jul 2017 22:12:57 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---bwyxiw42ds53wcun
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-Hi Justin / Marco,
+The latest release of the Yocto Project 2.3.1 (pyro-17.0.1) is now available for download at:
 
-[Re: SELinux with Busybox on morty] On 17.07.19 (Wed 16:05) Justin Clachert=
-y wrote:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.1/poky-pyro-17.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.1/poky-pyro-17.0.1.tar.bz2
 
-> Hi Joe,
->=20
-> Is this something you or one of the other meta-selinux devs are able
-> to help out with or is it more of an upstream question?
+A gpg signed version of these release notes is available at:
 
-I'll see if I can give this a shot.  :-)
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.1/RELEASENOTES
 
->=20
-> Cheers,
-> Justin.
->=20
->=20
-> > On 17 Jul 2017, at 4:57 pm, Marco Ostini <marco@ostini.org> wrote:
-> >=20
-> >=20
-> > Hi All,
-> >=20
-> > At the moment I'm attempting to prepare a VM of morty with SELinux
-> > running well in enforcing mode. Once bedded down this will be
-> > running on an embedded system.
-> >=20
-> > We use Busybox to keep the environment slim.
-> >=20
-> > As you may be aware the file contexts of
-> > /etc/selinux/targeted/contexts/files/file_contexts don't include
-> > appropriate paths (/sbin + /usr/lib/busybox/sbin/) and relative file
-> > contexts for commands provided by Busybox. The /sbin files provided
-> > by Busybox are symlinks to their counterparts in
-> > /usr/lib/busybox/sbin/.
-> >=20
-> > I've attempted to use semanage to apply file contexts and look up
-> > login contexts. Any time I use semanage I receive this message:
-> >=20
-> >    Error: Failed to read //etc/selinux/targeted/policy/policy.30 policy=
- file
-> >=20
-> > In an attempt to mitigate this error I ran semodule --build and
-> > while it did rebuild the policy file, it didn't mitigate the error
-> > message generated by semanage. At the moment I'm applying temporary
-> > file contexts with chcon.
-> >=20
-> > My questions are:
-> >=20
-> > 1. Is it possible to run Busybox (providing init, getty, syslog ...)
-> > in SELinux enforcing. If so, where's the policy files?
+Full pass test report is available at:
 
-You haven't mentioned which policy you're currently using so I'm
-guessing it is the default you get from meta-selinux, that is
-refpolicy-git.  I've been debugging some (I think) unrelated issues with
-refpolicy-git this week, so my advice would first to be try out
-2.20151208, the current release version we have in tree.  That's
-obviously also out of date, but it is currently better tested than the
-git recipe.
+https://wiki.yoctoproject.org/wiki/WW29_-_2017-07-18-_Full_Test_Cycle_-_2.3.1_rc2
 
-All that said, yes, we have been, in the past, able to use busybox with
-SELinux enforcing enabled, though as you can see from the layer, we've
-had to tweak refpolicy to make it work well.  I'm adding a colleague of
-mine here, Shrikant, who has done a fair bit of recent work with
-meta-selinux as well, he might have some additional insight into the
-current status of busybox-based systems.
+Thank you to everyone for your contributions on this release!
 
-> > 2. Is there some documentation somewhere on reference builds of
-> > Morty with SELinux enforcing ?
+Tracy Graydon
+Yocto Project Build and Release
+tracy.graydon at intel.com
 
-There is not at the moment, as far as I know.  It's possible that
-someone else currently using that combination can help out with some
-guidance, but we haven't done any Morty+SELinux specific documentation.
-Since I'm investigating some other issues right now in a slightly
-different area, though, I may get some time next week to write up
-something quick for this for you, though. If I do, I'll be sure to share
-it here.
 
---=20
--Joe MacDonald.
-:wq
+------------------
+yocto-2.3.1 Errata
+------------------
 
---bwyxiw42ds53wcun
-Content-Type: application/pgp-signature; name="signature.asc"
+Release Name: eclipse-poky-mars-pyro-17.0.1
+Branch: mars/pyro
+Tag: mars/pyro-17.0.1
+Hash: 92aa0e79e8b01c56f0670af3cd8296ec68b43350
+md5: 6dc814439b7469dd5ed76ce752b262c1
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.1/eclipse-poky-mars-pyro-17.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.1/eclipse-poky-mars-pyro-17.0.1.tar.bz2
 
------BEGIN PGP SIGNATURE-----
+Release Name: eclipse-poky-neon-pyro-17.0.1
+Branch: neon/pyro
+Tag: neon/pyro-17.0.1
+Hash: 83e0083ef3a71e10039ace7d18057dddc154408b
+md5: ea7e1e5eb218cc4ac38d1393092ccf60
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.1/eclipse-poky-neon-pyro-17.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.1/eclipse-poky-neon-pyro-17.0.1.tar.bz2
 
-iQEzBAABCAAdFiEEkMd/b97HINT8/zEqSfx99yw59pYFAllyWiwACgkQSfx99yw5
-9pbpKggAoj6D+tpw4tJ9h41sUyIJu/R8RvgaUFju7vbr4Jha2864rpxuI68JYjgy
-IeRqKv2ZV1QExLhkUWeOOravqY6y5PeTPSci9JcWt0bba8gHfUJKP8GltqMrodfy
-waqXF1IdW1du0qFmJYLxP8QtHgBjggsFS5CZHoiQ7snTJd+AKHBCtFxyeCW8E4mM
-rthL9UkgJJc4U/MUGqvzS2GjHmZK/8sVTtgq5teokv4F9YgLseymHQ6DRvXC6UPM
-MzmJT7Ywi7MCjemh0Cc1QpBdy0jQzoL53oshk89vXX/TbJiOlFZRm7gdKNpIlaOx
-zCjfrtXyiqSgzzTNQyp/pAlGB7vx5w==
-=M62+
------END PGP SIGNATURE-----
+Release Name: meta-qt3-pyro-17.0.1
+Branch: pyro
+Tag: pyro-17.0.1
+Hash: f33b73a9563f2dfdfd0ee37b61d65d90197a456f
+md5: bd3087bdef5683b73240ef30f23b5618
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.1/meta-qt3-pyro-17.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.1/meta-qt3-pyro-17.0.1.tar.bz2
 
---bwyxiw42ds53wcun--
+Release Name: meta-qt4-pyro-17.0.1
+Branch: pyro
+Tag: pyro-17.0.1
+Hash: e120a2193be3982d55741fb9e51472db6ab9a5cd
+md5: 6a8126ed32c86aba3df975a7e8671e97
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.1/meta-qt4-pyro-17.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.1/meta-qt4-pyro-17.0.1.tar.bz2
+
+Release Name: poky-pyro-17.0.1
+Branch: pyro
+Tag: pyro-17.0.1
+Hash: 6bd890d9e011014cf323e61267f8b256949d44aa
+md5: 6deb722f128908355c95528cb9ae7086
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.1/poky-pyro-17.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.1/poky-pyro-17.0.1.tar.bz2
+
+
+---------------
+ Known Issues
+---------------
+N/A
+
+---------------
+Security Fixes
+---------------
+binutils: fix CVE-2017-7210
+binutils: fix CVE-2017-7209 in readelf
+libxslt: Fix CVE-2017-5029
+ghostscript: CVE-2016-7977, CVE-2016-7978, CVE-2016-7979, CVE-2017-9216
+ghostscript: CVE-2016-8602, CVE-2017-7975
+binutils: fix CVE-2017-6969 in readelf
+rpcbind: Fix CVE-2017-8779
+binutils: Fix CVE-2017-8392
+cve-check.bbclass: make warning contain CVE IDs
+cve-check-tool: backport a patch to make CVE checking work
+bash: CVE-2016-0634
+
+
+---------------
+Fixes
+---------------
+Revert "bitbake.conf: Add sdl-config to HOSTTOOLS if using host SDL"
+bitbake: siggen: Make calc_taskhash match get_taskhash for file checksums
+bitbake: fetch: fix handling of files with incorrect checksums from a premirror
+ref-manual: uClibc Replaced by musl from Yocto 2.2
+dev-manual: Fixed a DocBook issue with formatting "bug-id"
+sdk-manual: Updated the note for building SDK Installer
+ref-manual: Updated LAYERRECOMMENDS variable
+documentation: Prepared 2.3.1 release variables and dates
+ref-manual: Updated PACKAGECONFIG_CONFARGS variable
+ref-manual: Added warning to native.bbclass for naming convention
+ref-manual: Updated PACKAGECONFIG_CONFARGS variable description
+yocto-project-qs: Updated the YP Development Flow figure
+dev-manual, sdk-manual: Fixed link to Eclipse section
+dev-manual: Fixed broken link into the setting up Eclipse section
+ref-manual: Added LAYERRECOMMENDS variable description
+ref-manual: Updated LAYERDEPENDS variable description
+ref-manual: Updated image-live.bbclass description
+ref-manual: Enhanced the glossary description for INHERIT
+ref-manual: Fixed typo for "Installation"
+package_ipk: Clean up Source entry in ipk packages
+mkelfimage: Fix broken patch when building native
+automake: Backport perl 5.22 fix
+bitbake.conf: Add sdl-config to HOSTTOOLS if using host SDL
+piglit: add patches for unbuildable surfaceless Mesa test
+piglit: add patch for lack of gbm_bo_map
+piglit: depend on virtual/egl
+image-vm: Avoid use of fold, tac and paste commands for DISK_SIGNATURE
+kernel: predefine KBUILD_BUILD_USER and KBUILD_BUILD_HOST
+oeqa/selftest: lock down Meson git revision for reliability
+scriptutils: fix fetch_uri() to work with RSS
+cryptodev-linux: update SRC_URI
+staging: Allow BB_LIMITEDDEPS to avoid BB_TASKDEPDATA
+sstate: Ensure native/cross recipes have relocation of HOSTTOOLS_DIR
+python.inc: Fix python2/3 hosttools path references
+rpm: Ensure macros file doesn't reference HOSTTOOLS
+GNU_MIRROR: switch from ftp to https
+DEBIAN_MIRROR: switch from ftp to http
+useradd: remove preinst script referring to recipe sysroot
+useradd.bbclass: Handle COMPONENTS_DIR when restoring state
+bitbake.conf: Add COMPONENTS_DIR for ${STAGING_DIR}-components
+yocto-project-qs: Updated output for git clone of meta-intel.
+yocto-project-qs: Updated git clone output for pyro poky.
+ref-manual: Removed section on checking for build-time dependencies.
+ref-manual, dev-manual: replaced "depexp" with "taskexp"
+ref-manual: Removed text surrounding BB_SETSCENE_VERIFY_FUNCTION* vars
+dev-manual: Cleaned up "Gdbserver" term
+dev-manual: Updated a few occurrences of "dnf" to "DNF"
+dev-manual: Changed "Dnf" to "DNF" for consistency
+ref-manual: Added links for variables
+ref-manual: Added 4 DISTRO_FEATURES* variable descriptions.
+ref-manual, dev-manual: Completed first draft of 2.3 migration section.
+ref-manual: Applied 2.3 Migration review comments.
+ref-manual: Added new glossary entries for HOSTTOOLS* variables.
+
