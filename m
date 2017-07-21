@@ -1,60 +1,42 @@
-Return-Path: <dinara.vv@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C80E1E00944; Fri, 21 Jul 2017 04:09:28 -0700 (PDT)
+	id 42DA0E009A4; Fri, 21 Jul 2017 06:06:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dinara.vv[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFFFDE0083A
-	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 04:09:27 -0700 (PDT)
-Received: by mail-wm0-f43.google.com with SMTP id w191so5695589wmw.1
-	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 04:09:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=qZIB6Co0rtzksOSOnfggcicKFCEyRWuaz9noKTC6MVM=;
-	b=gPcMe7NROk7wk1GwVu1eC4OHwY267+jjWBONVBqr6uzml7GToOafUfXrQk12BKx6p5
-	RU5oWqPKJE3hpnGEEZ5gNlKeDjZS6hplwUBJxjEqAuiuL49xFJLnIRvMHNqS0Fk+0ToU
-	4/nH+/0o1i4YaGGt8svtmmIJSCNeeo9JvsgUQGfys4bbVmL8aIHs6Jq7ca11/oRtFzE3
-	yV9BanZPLAnvaVqNMWZ2b363h7ipRHPlwymrs6p6pyjrfB8J8aLGKwfMHGwI5yWjUtp/
-	snVMtm4LGo3Lrk8OrV2VGANyoHdIqvoL/vaNs3oPEN8d2cZIk9MKQGTMqXkJ2IjVblG9
-	cZLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=qZIB6Co0rtzksOSOnfggcicKFCEyRWuaz9noKTC6MVM=;
-	b=aQPwGtWisomnkD2nGYxJkxJR1ZccHhd0sIuEW/5fj3bxENzIe8LdfxwNePSOy+qQT2
-	0gSAQenSFh95L9xZY3Rx5aaIeJ1YkeWt+Q/zAEZu43c2vp1G1/mwVaq3IkFHNmXyfWo8
-	zf+0WPfOCl+RMZkYOPYZXRUXDlOhRd9eHwUc1O7rKPXuDaXjHZir6G0l/tkoOthf7oe5
-	Z/HoqfSZnp5KTzLRLOCZm9ivL31IUnVkLpgPHONb3Ja3CVsj+qdIjhamyVTAqMCF94bo
-	nawT0KFGWm2ovGv5KIRxWKsMeYbgaXk3On8GUgj/6547eewIkOmB4coH10cnZMlEjeLi
-	q9zA==
-X-Gm-Message-State: AIVw112pWXtLAtPkP8YeZosTgLaHMSD7VuRZuA7+n8LOEwE4PenQpRGW
-	W0rGFuQOqc7tF3E9iY4WHyhC+AGQCPK4
-X-Received: by 10.80.168.132 with SMTP id k4mr5741146edc.198.1500635366779;
-	Fri, 21 Jul 2017 04:09:26 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63DE6E0090A
+	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 06:06:29 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v6LD6QBb026622
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 21 Jul 2017 06:06:26 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 21 Jul 2017 06:06:26 -0700
+To: Patrick Ohly <patrick.ohly@intel.com>, akuster808 <akuster808@gmail.com>
+References: <1500447463.5689.81.camel@intel.com>
+	<2ad0b40b-b201-9974-7f28-10efc611ffb1@windriver.com>
+	<1628a1f3-ec46-1144-1d5e-8242c8672edd@gmail.com>
+	<1500611869.8415.11.camel@intel.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <0ad0604b-0025-9c7d-f024-f6bd14cc3081@windriver.com>
+Date: Fri, 21 Jul 2017 08:06:29 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.2.1
 MIME-Version: 1.0
-Received: by 10.80.185.38 with HTTP; Fri, 21 Jul 2017 04:09:26 -0700 (PDT)
-From: Dinara Vadimovna <dinara.vv@gmail.com>
-Date: Fri, 21 Jul 2017 13:09:26 +0200
-Message-ID: <CAB+WSgz7XFVhyw7+WRt=1e-vpNc0Gr2vZSJBd-+owrzE_Q8GGg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: new machine on mips32 r5
+In-Reply-To: <1500611869.8415.11.camel@intel.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: dynamic layer dependencies in meta-security
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,103 +48,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jul 2017 11:09:28 -0000
-Content-Type: multipart/alternative; boundary="94eb2c195006f9725a0554d1e5c7"
+X-List-Received-Date: Fri, 21 Jul 2017 13:06:30 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---94eb2c195006f9725a0554d1e5c7
-Content-Type: text/plain; charset="UTF-8"
+On 7/20/17 11:37 PM, Patrick Ohly wrote:
+> On Thu, 2017-07-20 at 14:39 -0700, akuster808 wrote:
+>>> I would certainly caution against dynamic layerdepends/layerrecommends and
+>>> instead focus on listing everything between what is required and what you want
+>>> to add in addition -- then using the meta-freescale approach of only extending
+>>> (the recommends) when present.
+> 
+> FWIW, the meta-freescale approach has been superseeded by
+> BBFILES_DYNAMIC.
 
-Hi,
+BBFILES_DYNAMIC requires master.  You need to use the meta-freescale approach
+for any of the existing released trees.
 
-Actually I'm quite a beginner with Yocto project. And in general with all
-of this story of processors and processor architecture.
-In my studying project I have to build Linux for a hardware on processor
-P5600 MIPS
-<https://ru.wikipedia.org/wiki/MIPS_(%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0)>32
-Release 5. And I am recently trying to do it. I have some questions that
-can be quite general but I can not understand.
+You are correct it is the right approach for master and future, but we should
+fix existing trees as well, since it does affect the output of the layer index
+for people looking at existing releases.
 
-1) As I could found in openembedded git there is a meta layer meta-image
-that has some of the include files for mips architecture. But only for
-mips32/64 r2/r6 et not for my processor exacltly something like
-*tune-mips32r2.inc*. And I can't understand what exactly I should do.
-Does it mean that I have to create one other .inc-file for this processor
-or not? is it generally the same as for other mips processors? If you can
-advise me something it will be greate. what exactly I have to do?
+>> This appears to be more beneficial in a  bbappends than a recipe needing 
+>> a package from another layer.
+> 
+> BBFILES_DYNAMIC can be used for both .bb and .bbappend files.
+> 
+> In refkit, I ended up just using it for .bbappend files:
+> https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/conf/layer.conf#L7
+> 
+>         # All our .bbappends for other layers are in a separate
+>         # "bbappends/<layer>" hierarchy. We activate only those
+>         # bbappends for which the layer they apply to is actually
+>         # present.
+>         #
+>         # Sorted by layer path to keep related layers together.
+>         BBFILES_DYNAMIC += " \
+>         clang-layer:${LAYERDIR}/bbappends/meta-clang/*/*/*.bbappend \
+>         flatpak:${LAYERDIR}/bbappends/meta-flatpak/*/*/*.bbappend \
 
-2) As I've catched for my machine I have two ways to create an image
-- create a new bsp layer using *yocto-bsp* command (in the properties I
-have to chose those for my machine.), add it to bblayers before build,
-chose MACHINE ?= "mymachine" in local.conf. And that is all
+Even when using this, there should be a LAYERRECOMMENDS for clang-layer and
+flatpak IMHO.  Otherwise the layer index and other automated tools will have no
+way to determine that the user should have those items.
 
-- make my own machine.conf file with the specifications for my machine and
-chose MACHINE ?= "mymachine" in local.conf (which I think yocto-bsp do
-itself).
+> For recipes, I wanted to have a bit more flexibility:
+> - let developers decide from where they get the dependency - the
+>   well-known layer or a copy elsewhere
+> - let recipes decide which features they enable based on which
+>   dependencies are available
+>         
+> Also, "bitbake foo" should result in an error about "dependency bar
+> required for foo not found", not a blunt "nothing provides foo". With
+> BBFILES_DYNAMIC for .bb files one only gets the latter.
 
-I don't understand where I specificate that it is on P5600 MIPS
-<https://ru.wikipedia.org/wiki/MIPS_(%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0)>32
-Release 5 processor. Do I have to do it and if so how exactly?
+Problem of course is that if we bring in a .bb that requires another layer (in
+certain ways) then the parse can fail, or you have to start 'protecting' certain
+things (like inherits/requires/etc) so the parse can complete.  This becomes a
+big problem very quickly.
 
-Also do I have to change kernel properties or anything else?
+> Here's how it is defined what's available:
+> https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/conf/layer.conf#L51
+>         
+>                 # There are multiple different ways for providing some of the
+>                 # dependencies. Here we assume that the dependencies are available if
+>                 # the layers that the refkit distro takes them from are present.
+>                 HAVE_META_OE = "${@ bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'True', 'False', d) }"
+>                 HAVE_ATOP ??= "${HAVE_META_OE}"
+>             HAVE_CRYPTSETUP ??= "${HAVE_META_OE}"
+>             ...
 
-3) one question off topic:
-Can I run any image (whatever it is fir harware or simulation) with qemu
-emulator or not?
+I have mixed feeling on this approach... I certainly understand it, and get why
+it's needed.  (I've used it myself as well...)  but in the end you are
+essentially defining a distribution flag (variable?) that is being set by the
+layer.conf based on the existence of another layer.  This would be very
+confusing to someone trying to understand why two different builds are getting
+different behaviors.
 
+The best of the 'bad situation' would be to implement (in the recipes) a
+PKGCONFIG where the default uses these magic variables to define the defaults.
+Then the user can have a chance at debugging the issue by seeing that the
+PKGCONFIG (default) is changing from one build to another.  Using the variables
+directly during the build is very tempting, but I would caution against it.
 
-Thanks a lot
+> And here's how it is used:
+> https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/recipes-images/images/initramfs-framework-refkit-dm-verity.bb#L22
+> 
+>         python () {
+>             if not oe.types.boolean(d.getVar('HAVE_CRYPTSETUP') or '0'):
+>                 raise bb.parse.SkipRecipe('cryptsetup dependency not available')
+>         }
 
-And have a nice day!
+This is certainly nicer then the other way.  It may be possible in bitbake to
+implement this type of work directly.  I.e. in the BBFILES_DYNAMIC processing.
+If the layer isn't there, we could still process the glob and report the
+skipRecipe.  (I'm sure I'm making it sound easier then it would be to implement.)
 
-Dinara
+--Mark
 
---94eb2c195006f9725a0554d1e5c7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>Actually I&#39;m quite a beginner w=
-ith Yocto project. And in general with all of this story of processors and =
-processor architecture.</div><div>In my studying project I have to build Li=
-nux for a hardware on processor=C2=A0<span style=3D"font-family:sans-serif;=
-font-size:14px">P5600=C2=A0</span><a href=3D"https://ru.wikipedia.org/wiki/=
-MIPS_(%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0)" =
-title=3D"MIPS (=D0=B0=D1=80=D1=85=D0=B8=D1=82=D0=B5=D0=BA=D1=82=D1=83=D1=80=
-=D0=B0)" style=3D"text-decoration-line:none;color:rgb(11,0,128);background-=
-image:none;background-position:initial;background-size:initial;background-r=
-epeat:initial;background-origin:initial;background-clip:initial;font-family=
-:sans-serif;font-size:14px">MIPS</a><span style=3D"font-family:sans-serif;f=
-ont-size:14px">32 Release 5. And I am=C2=A0</span>recently trying to do it.=
- I have some questions that can be quite general but I can not understand.<=
-/div><div><br></div><div>1) As I could found in openembedded git there is a=
- meta layer meta-image that has some of the include files for mips architec=
-ture. But only for mips32/64 r2/r6 et not for my processor exacltly somethi=
-ng like <i>tune-mips32r2.inc</i>. And I can&#39;t understand what exactly I=
- should do.=C2=A0</div><div>Does it mean that I have to create one other .i=
-nc-file for this processor or not? is it generally the same as for other mi=
-ps processors? If you can advise me something it will be greate. what exact=
-ly I have to do?</div><div><br></div><div>2) As I&#39;ve catched for my mac=
-hine I have two ways to create an image=C2=A0</div><div>- create a new bsp =
-layer using=C2=A0<i>yocto-bsp</i> command (in the properties I have to chos=
-e those for my machine.), add it to bblayers before build, chose MACHINE ?=
-=3D &quot;mymachine&quot; in local.conf. And that is all</div><div>=C2=A0</=
-div><div>- make my own machine.conf file with the specifications for my mac=
-hine and chose MACHINE ?=3D &quot;mymachine&quot; in local.conf (which I th=
-ink yocto-bsp do itself).<br></div><div><br></div><div>I don&#39;t understa=
-nd where I specificate that it is on=C2=A0<span style=3D"font-family:sans-s=
-erif;font-size:14px">P5600=C2=A0</span><a href=3D"https://ru.wikipedia.org/=
-wiki/MIPS_(%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%=
-B0)" title=3D"MIPS (=D0=B0=D1=80=D1=85=D0=B8=D1=82=D0=B5=D0=BA=D1=82=D1=83=
-=D1=80=D0=B0)" style=3D"color:rgb(11,0,128);background-image:none;backgroun=
-d-position:initial;background-size:initial;background-repeat:initial;backgr=
-ound-origin:initial;background-clip:initial;text-decoration-line:none;font-=
-family:sans-serif;font-size:14px">MIPS</a><span style=3D"font-family:sans-s=
-erif;font-size:14px">32 Release 5 processor. Do I have to do it and if so h=
-ow exactly?</span></div><div><span style=3D"font-family:sans-serif;font-siz=
-e:14px"><br></span></div><div>Also do I have to change kernel properties or=
- anything else?</div><div><br></div><div>3) one question off topic:</div><d=
-iv>Can I run any image (whatever it is fir harware or simulation) with qemu=
- emulator or not?</div><div><br></div><div><br></div><div>Thanks a lot</div=
-><div><br></div><div>And have a nice day!</div><div><br></div><div>Dinara</=
-div></div>
-
---94eb2c195006f9725a0554d1e5c7--
