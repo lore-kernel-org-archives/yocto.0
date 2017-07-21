@@ -1,73 +1,37 @@
-Return-Path: <jpewhacker@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B1412E00A39; Fri, 21 Jul 2017 06:08:36 -0700 (PDT)
+	id 11CA4E00B49; Fri, 21 Jul 2017 07:15:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jpewhacker[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.173 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E791E0090A
-	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 06:08:35 -0700 (PDT)
-Received: by mail-io0-f173.google.com with SMTP id m88so13616583iod.2
-	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 06:08:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:message-id:subject:to:date:in-reply-to:references:mime-version
-	:content-transfer-encoding;
-	bh=g72XrPLuTwfTyK6+OA4xkgWDSmPLuouBxc+Anc4DFb8=;
-	b=YyL9dPi6QrjwKudMZ0FgV3veuFi69Z4rGr9kJk6Z6rASFMQeFZueCzdX5LDbPEHVKY
-	DndjZLNmmlpwKEipbjDCx1ms3sVVxCBWD83QOtyAvC4pTvEiX0Lb9G/IyV6lmAfCdkYe
-	jS3KZnhQUzBxmUTSJp1T3lk2ribWHD/J4ZCTmDx+NWqah4gvfrFFJa91QeinDABFTyOY
-	4DM+bkBKf8EOErWNxqBtxXf9NKI0GTLT0dQ0xic+ZIk0DORLqTVsPLb8GSQXJ5T6kIBk
-	qO3zM2htHRVuqSw/xCRVcQSGAp8gacX07EsKre37MCvlT4eJH5NLHdO4zJD2Yr5ChjqU
-	IOvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:message-id:subject:to:date:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=g72XrPLuTwfTyK6+OA4xkgWDSmPLuouBxc+Anc4DFb8=;
-	b=tFaZG0JccxywRB5AHJZiR/KXFYZsfC9VN8dzUs2Jw4FE/SDtULG6FDM0CNcTtUn6R8
-	3FKZ0gheI/RQ8Z1gsodjUoye0ZKej6gpsQM2e8gH5zf6nKmRs4l65Lay5lM/6/KP7yJn
-	DG2ERUX9LU3gFWRgXKmM+c+dLwawnADryFqrokegD6KSH+gccCZzgugBhInKO/YCfCjE
-	EQDookUZrOCQtwhLPvLlDNZ9oxSJjgsiQ/wRFhWGmddFNJ7qW/4stVIJJvFz+gOqnrPN
-	nhhV2YeRZ0mFnsDM7mKsFEBAELu3ewbGS7468f8tvhkmRKJZRMa/7n6lzA3a3VibTbuU
-	iWwg==
-X-Gm-Message-State: AIVw110HDFbDPy35Zojrfoj01OzB1TqgsPs1+A5zxQJoAXcYoDoHH0fr
-	XP8VvLuDOuFUOQ==
-X-Received: by 10.107.63.214 with SMTP id m205mr6720060ioa.87.1500642514828;
-	Fri, 21 Jul 2017 06:08:34 -0700 (PDT)
-Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-	by smtp.googlemail.com with ESMTPSA id
-	r186sm2270192iod.64.2017.07.21.06.08.33
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Fri, 21 Jul 2017 06:08:33 -0700 (PDT)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Message-ID: <1500642513.30630.1.camel@gmail.com>
-To: Florian Doersch <florian.doersch@iis.fraunhofer.de>, 
-	yocto@yoctoproject.org
-Date: Fri, 21 Jul 2017 08:08:33 -0500
-In-Reply-To: <5971A44E.9090106@iis.fraunhofer.de>
-References: <5971A44E.9090106@iis.fraunhofer.de>
-X-Mailer: Evolution 3.22.6 (3.22.6-2.fc25) 
-Mime-Version: 1.0
-Subject: Re: correct approach to set up utf-8 locales?
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FDBBE00B31
+	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 07:15:31 -0700 (PDT)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	21 Jul 2017 07:15:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.40,390,1496127600"; d="scan'208";a="110480021"
+Received: from skopplex-mobl1.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.39.4])
+	by orsmga004.jf.intel.com with ESMTP; 21 Jul 2017 07:15:29 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Diana Thayer <garbados@gmail.com>
+Date: Fri, 21 Jul 2017 16:15:26 +0200
+Message-ID: <1540054.pZpUqmJ2aX@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <1498521563-26590-1-git-send-email-garbados@gmail.com>
+References: <1498521563-26590-1-git-send-email-garbados@gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [layerindex-web][PATCH] layerindex-web : adding asynchronous task execution
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,65 +43,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jul 2017 13:08:36 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 21 Jul 2017 14:15:32 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Fri, 2017-07-21 at 08:50 +0200, Florian Doersch wrote:
-> Hi,
-> 
-> I recently trying to set up a raspberry pi with yocto.
-> The basic image with meta-raspberrypi works, but I cant get locales 
-> working correctly. I always only have "posix" keyboard.
-> 
-> I tried setting
-> 
-> GLIBC_GENERATE_LOCALES="de_DE.UTF-8"
-> IMAGE_LINGUAS="de-de"
-> 
-> I also installed the packages
-> 
-> glibc-utils locales localedef
-> 
-> into my image, but that seems not to change anything.
-> 
-> $ locale -a
-> 
-> does have a "de_DE" (but not the UTF-8 one ...)
+Hi Diana,
 
-I noticed something similar while trying to get locale.aliases to work
-(see https://bugzilla.yoctoproject.org/show_bug.cgi?id=11815). I don't
-know why the .utf8 suffixes to do not appear, but it might be related
-(perhaps some configuration in glibc is incorrect?). Based on a little
-bit of testing I did, I think that the utf8 locale might be present as
-you can do setlocale(LC_ALL, "de_DE.utf8") in C and it should work (you
-might want to check this yourself). Perhaps the locale program just
-isn't showing it?
+Sorry it's taken me a ridiculous amount of time to get back to you on this!
 
+On Tuesday, 27 June 2017 1:59:23 AM CEST Diana Thayer wrote:
+> This is a work-in-progress solution to issue 11197 within layerindex-web: 
+> adding asynchronous task execution.
+> I used RabbitMQ and Celery. I'm still working with Paul Eggleton on adding
+> install instructions for RabbitMQ to
+> the site's Dockerfile.
+> 
+> Previously, when a user submitted a layer, Django would synchronously send
+> emails to users able to publish layers,
+> such that if an email bounced or otherwise failed, the user submitting the
+> layer would see an error.
+> This patch sends those emails as asynchronous tasks, so any sending errors
+> don't reach the user submitting a layer.
 
-> 
-> but its still unset:
-> 
-> $ locale
-> always outputs "POSIX"
+I had a chance to try your patch out today, although I had to apply it 
+partially - I figured a good test would just be the email part. I installed 
+rabbitmq and ensured it got started. I started the web interface and submitted 
+a dummy layer, and the email sent as expected. I then tried killing my local 
+SMTP server and the layer submission returned an error page, which is what 
+happened previously - it looks to me as if the sending is still being done 
+synchronously. The celery worker isn't reporting anything so I can only assume 
+the django app is not trying to connect to it.
 
-I think you would need to set $LANG to actually change the language,
-i.e.
+I've pushed just the changes I applied to a new branch here:
 
-$ LANG="de_DE.UTF8" locale
+http://git.yoctoproject.org/cgit/cgit.cgi/layerindex-web/log/?h=paule/celery
 
-> 
-> 
-> Also the (usb) keyboard layout does not change.
-> 
-> What do I have to set so the getty has the correct default language?
-> 
-> I also have yocto on a zynq board, where I also can't figure out how
-> to 
-> set the correct locale.
-> 
-> Thank you very much
-> 
-> Florian
+Any idea what's going wrong? Did I mess up in applying the changes, or 
+misconfigure something else? 
 
+Thanks,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
