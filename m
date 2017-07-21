@@ -1,62 +1,68 @@
-Return-Path: <colin.helliwell@ln-systems.com>
+Return-Path: <galasso.maurizio@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29706E00BC0; Tue, 25 Jul 2017 08:25:27 -0700 (PDT)
+	id 98A75E00B31; Fri, 21 Jul 2017 07:00:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.227.126.187 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	HTML_OBFUSCATE_05_10, 
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (galasso.maurizio[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.43 listed in list.dnswl.org]
+	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [212.227.126.187 listed in dnsbl.sorbs.net]
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0D22E00B76
-	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 08:25:25 -0700 (PDT)
-Received: from oxbsltgw13.schlund.de ([172.19.249.30]) by
-	mrelayeu.kundenserver.de (mreue005 [212.227.15.163]) with ESMTPSA
-	(Nemesis)
-	id 0MYJFd-1d4ruO2yZN-00VAnN; Tue, 25 Jul 2017 17:25:17 +0200
-Date: Tue, 25 Jul 2017 16:25:17 +0100 (BST)
-From: Colin Helliwell <colin.helliwell@ln-systems.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Message-ID: <1558360909.204127.1500996317120@email.1and1.co.uk>
-In-Reply-To: <754678217.203078.1500994847726@email.1and1.co.uk>
-References: <097a01d3054f$89a3b940$9ceb2bc0$@ln-systems.com>
-	<CAJTo0LZDPfqeZhpg1uZ+s5tis_rPj-MN6D1jFc76aUA02LmSZQ@mail.gmail.com>
-	<838512139.316467.1500993599795@email.1and1.co.uk>
-	<CAJTo0LYTp4j9kGBqtPXT6X+Z1JZUWJRrYmgUe8GU8DtPKcPNkg@mail.gmail.com>
-	<754678217.203078.1500994847726@email.1and1.co.uk>
+	*      [209.85.215.43 listed in dnsbl.sorbs.net]
+Received: from mail-lf0-f43.google.com (mail-lf0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F046E00B1B
+	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 07:00:17 -0700 (PDT)
+Received: by mail-lf0-f43.google.com with SMTP id p2so8053541lfg.0
+	for <yocto@yoctoproject.org>; Fri, 21 Jul 2017 07:00:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=jfQF51U+UBrggLtocwwGlQD9mFD8py7OjekiJAwex4E=;
+	b=cO8CNM4Xn5WLGvMC95V0HwzgPt+7mRaaKhXVKoNjYhD7hSmncZSY90fMME2oUfPLwZ
+	fO5KUnxPz0Tjero5B9pCWgf0PhPqN7qvS7dM9+DsQIhw35AURWicZkh8OYa7FBdPLafJ
+	ZSwBl24adp1VSaPBFxc9UtdyooVURxceMggSZgfL/mS+QEUALRocPzD39EIZPddU03TT
+	R3PgZyRz467IidVCd9KRei1Sue3wBtQ+E/Ytsgmrw7oLN3bFRkVk9aGQjXoin6GzSaEB
+	a+Z3S7SwpeOQHFKEqgsj1hIhKeTYSYuPy3C9HGm2OpaFm1ClyhCsTJaB/0rUHyj9WH6R
+	wtaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=jfQF51U+UBrggLtocwwGlQD9mFD8py7OjekiJAwex4E=;
+	b=EhfiKNP1B2qLRwWZnISBSA0b686xa0WIrn8SfysX4dewI8nccZIFtNEy6z3QLuUsR1
+	mHdTGXMOMwGnGXJVcIrydu1prvJNAvZDmQ03q8O4SLzWbzWE7c6HkE0X55IC6GU22Zxe
+	E8Mv3/U2Rh4KirIKd236qQoMl4O3gfOT0z27No7SuyWHoSBLTTsv53JfX7UJWu+vJTOM
+	C97G9tK2c3mi5m0exBbUDKKaDvkn/DprhWcbjgXnb+SJ1Ut52+uU5WZQ+vJ+tOVmc7OJ
+	ZDeYQuBwJJHITMeUaQGAqPSfDhsh9ITg8hxKfCJrI+S9ThYXF1OqWdx7HvPQdwj3mQOv
+	lJiw==
+X-Gm-Message-State: AIVw110I0HFiAuXa7+97GeQLU+U3OMDpBmNEWwEsJK2A2CJSd9gWUjbo
+	T/Rjm/ekBZHXP1HT9TgW+B9PwNHUe1TL
+X-Received: by 10.46.82.88 with SMTP id g85mr2692601ljb.123.1500645616171;
+	Fri, 21 Jul 2017 07:00:16 -0700 (PDT)
 MIME-Version: 1.0
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.8.2-Rev34
-X-Originating-Client: open-xchange-appsuite
-X-Provags-ID: V03:K0:aNZv/l/O+0/HCItBGxqYjqjdAZBn6XxFkivSYjzegirr/u0nq4T
-	lOsk0Ffi3Q6CSrIn1RyKHycIDYWGNyzQL6N4ZKKHrJsrKN2N5pnxwxYLu4YMFPWlbVRn/Jm
-	5HQL/UqggEdZpCklkTltfJ/EEiBti/1pSF8fWdtw+W6/fpL4Vv02KxYkoAlE+WSBUblRdzO
-	ZsJ4foRp1/wEYVVWIbCxg==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:G9aQjy5C550=:Q3T4S6Po63qh5rQ/x4B4Ej
-	d2CzSIeNclmRI9Z3/xNf9RtGDImTRH6e7tN6WbGmwUwdfSH3W4mSGHGUFgPkrwYSZGJn+LS3N
-	5BM+YzUUkw0J6LeLwdfvBBN0DfJ4ry57rw+AKnlg3Dw1S8thr+ZsY/uTU1e7dbjcVBbpsyQ7Y
-	2wJORHXwGgYnf4f/Kx5L/f4QBijKpVUC2HDp5nCt3x2VTdpNJ7HCGVsMcLM8SWjQexwMpi+np
-	tKGtFoKCr7Mcegv8M8cyG+WCTyquzuUnfe5NNIVOSGh91z6DGGWCA+Z2wf4dHThIdwGkqUjp5
-	1ceqBm5qFKCQgb7WcUmxCT8NtX6x0GMi4K6MawgrTQ9HrJbPMdZf8G4R5MhU/G3r6Dhp8x8Lk
-	Ssgg/i8+9SiGTQsNznNcG2xQZTPCwHpdn/4bt+OdchdXVxRtFL7pnkaSQUC45gTa57N+xy6UC
-	OzPGQa+MCct6UP2QYad4jp4YVE56Z8pDLuvtggBE0XJ7rnWwUigIcH7rcklJZXj184Gue9aIp
-	ridt8rxvJE86pfkbCfpSIOYWmA1/A8I+fwFqVnczCShORpYiiGUQJyO9Jqi5gK/0cqXBtGv3M
-	qg2REsgi8xjoEXlPh+TVMJAyUNsuGS+HQxerp/fj3fE8qMH387NY+eC6symuBjC4blxmDnmqS
-	tvgIhbjnER+J8zzQXDC8TFJG+5WowgSVxHwRyWxoYCyiHModtWDG5eETZ/RSfAJ+cHEQjfDFk
-	NxEP0pZ8xpD7BfzPN1RQ8veD1sxXa4POUCfNs9ZhS+4kAY8JVUshL4YtJ5w=
-Cc: yocto@yoctoproject.org
-Subject: Re: Problems with 'configure' on own recipe [after moving to morty]
+From: Maurizio Galasso <galasso.maurizio@gmail.com>
+Date: Fri, 21 Jul 2017 14:00:05 +0000
+Message-ID: <CAGbeqampN7-BHbkTTDK5EtKzWLQVu0Ziv3whu2BSt-+thj1s3A@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Tue, 25 Jul 2017 11:19:05 -0700
+Subject: information on cedarview support for Yocto Poky
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Colin Helliwell <colin.helliwell@ln-systems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -65,25 +71,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jul 2017 15:25:27 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 21 Jul 2017 14:00:18 -0000
+Content-Type: multipart/alternative; boundary="001a113e0322e2c34d0554d448c8"
+
+--001a113e0322e2c34d0554d448c8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
 
 
-> On 25 July 2017 at 16:00 Colin Helliwell <colin.helliwell@ln-systems.com> wrote:
-> 
-> Ah yes, that's true Ross - I should be able to try that approach instead.
-> 
 
-However.... there's obviously been a lot of changes from 1.4 to 1.8 and hence something to be said for a fresh recipe rather than mega-appending an older one..? (Well, there certainly would be if it worked....!)
-And, as I say, the recipe works on krogoth [cleanly rebuilt today and definitely the same git version] - something subtly changed in some or other class perhaps, but not obvious to me.
+I am about to work in a cedarview Machine. From what I seeing online it
+seems that the only available support is for yocto danny.
 
-> > On 25 July 2017 at 15:57 "Burton, Ross" <ross.burton@intel.com> wrote:
-> > 
-> > On 25 July 2017 at 15:39, Colin Helliwell <colin.helliwell@ln-systems.com> wrote:
-> > 
-> > > That is in fact what I blagged as the starting point for 'my' recipe, but then evolved it so as to use the github head. For my particular [embedded] platform I also need to switch off some of the configure options.
-> > 
-> > Sounds like a bbappend should be able to fiddle SRC_URI and some PACKAGECONFIGs right?
-> >
+It is the cedarview supported and I=E2=80=99m missing the reference or the =
+system
+is no longer supported? Can I consider some possible patch on poky?
 
+My target is to work on an implementation where the sw will be updated in
+the future and to receive further kernel update.
+
+
+did you have any feedback on this topic?
+
+
+thank you very much for your support
+
+--001a113e0322e2c34d0554d448c8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"MsoNormal">Hello,</p>
+
+<p class=3D"MsoNormal">=C2=A0</p>
+
+<p class=3D"MsoNormal">I am about to work in a cedarview Machine. From what=
+ I seeing
+online it seems that the only available support is for yocto danny.</p>
+
+<p class=3D"MsoNormal">It is the cedarview supported and I<span style=3D"fo=
+nt-family:&quot;Times New Roman&quot;,serif">=E2=80=99</span>m missing the =
+reference or the system is no longer
+supported? Can I consider some possible patch on poky? </p>
+
+<p class=3D"MsoNormal">My target is to work on an implementation where the =
+sw will
+be updated in the future and to receive further kernel update.</p><p class=
+=3D"MsoNormal"><br></p><p class=3D"MsoNormal">did you have any feedback on =
+this topic?</p><p class=3D"MsoNormal"><br></p><p class=3D"MsoNormal">thank =
+you very much for your support</p></div>
+
+--001a113e0322e2c34d0554d448c8--
