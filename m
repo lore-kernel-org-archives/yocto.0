@@ -1,65 +1,32 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <victor_wang@winmate.com.tw>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3345AE00BF3; Mon, 24 Jul 2017 02:27:40 -0700 (PDT)
+	id 3E57CE00BF3; Mon, 24 Jul 2017 02:34:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.41 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [122.147.158.238 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
-	[209.85.214.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 202BBE00A9C
-	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 02:27:38 -0700 (PDT)
-Received: by mail-it0-f41.google.com with SMTP id h199so31792932ith.1
-	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 02:27:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=bzSMOlrIY2t1e73fJsn2PmYWf5XGmQT/dHrErTmden8=;
-	b=PyWN3AhYMbNjR1mn7pjs+OOLQzKCN0faa2E6/l7f/ynn4Gtg2wiqxUdIBGwmAiLubG
-	jbhEpBr4uJ1+R8KlNSQ8X+A9H8JuqtZphu8mvLQtyYkV/LNUmU8sEz69tdRFMvFsXK/O
-	prcv9wtaPvLJYTpn/uH6E0sZIIZxeo3xHQfEh60Htgt2nM/srxybBLTW7LjSLo0t7oTG
-	1msEkx22WMVcrDqCCZxY/Pk+cyLRSSDjNdBJeJ0cT/N+lhDGmHvnXinmuh8UA0s67ZV2
-	GBhxBc56RCM5I+moFAmrD1pv6SPpB+NLTxK0sow7rUQz2kXET543rTbjuKFsee+7yupl
-	yDrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=bzSMOlrIY2t1e73fJsn2PmYWf5XGmQT/dHrErTmden8=;
-	b=evZkLuFVK0OiBj0+wgiy1hV6k8JIuOKAsoJjXzfzMRrM/el/ul8/WUWzH75dbWlPKG
-	4U1sLt8h+eBYlJBJu1oTSrTBMOXVQ0UBMFn3g5TOzGEAjxwZGOzstQlDDyMcV4SY1CnA
-	PidJGt29wdPHOoVygewuB04f9xei0OIJW/hFcU0UNnFNrWlT6NI0kfzsCAwhVsvHNVHM
-	qmRcXxpg43LEpYZNoydhmrGLydob+M4qRUdDHEc3wYp/WfsSgYRgePDJN7NDapuYk3LM
-	pYPrpg29cFJgiDF26NfFkm2UN8sXjlVaoLeMj2fynSNlzaXSXwhKkXp7c7G6YCuKOd+C
-	HaBQ==
-X-Gm-Message-State: AIVw110Z5ZWeS8iJpnpEQxEnF4sJs34ajsfeEojY+2o8m8srFpOkelDc
-	uI0d86+6UZrhmFzh/cAfzBs3B5E77Wee
-X-Received: by 10.36.218.3 with SMTP id z3mr6009425itg.116.1500888458165; Mon,
-	24 Jul 2017 02:27:38 -0700 (PDT)
+Received: from mx.winmate.com.tw (mail.winmate.com.tw [122.147.158.238])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 75AB2E00A9C
+	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 02:34:50 -0700 (PDT)
+Received: from winmate.com.tw([192.168.100.101]) by RaidenMAILD([192.168.1.6]);
+	Mon, 24 Jul 2017 17:36:49 +0800
+Received: from WE1441 ([192.168.8.41]) by winmate.com.tw ([220.130.150.210]);
+	Mon, 24 Jul 2017 17:34:41 +0800
+From: "victor_wang.Winmate" <victor_wang@winmate.com.tw>
+To: <yocto@yoctoproject.org>
+Date: Mon, 24 Jul 2017 17:33:50 +0800
+Message-ID: <000601d3045f$f559bea0$e00d3be0$@winmate.com.tw>
 MIME-Version: 1.0
-Received: by 10.107.135.234 with HTTP; Mon, 24 Jul 2017 02:27:17 -0700 (PDT)
-In-Reply-To: <1400955154.3545388.1500874019478@mail.yahoo.com>
-References: <1400955154.3545388.1500874019478.ref@mail.yahoo.com>
-	<1400955154.3545388.1500874019478@mail.yahoo.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 24 Jul 2017 10:27:17 +0100
-Message-ID: <CAJTo0LaYHJNJKhgr0AnLAA7s6jC1BSz0KfkuwkXOUVkQWCbt3w@mail.gmail.com>
-To: Bacheh Karaji <bachehkaraji@yahoo.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How do I write a yocto/bitbake recipe to replace the default vsftpd.conf file with my own file?
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AdMEW8zeKLHjFJjsT4SaM745EnM+vw==
+Subject: Showing HDMI and LVDS in the same time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,112 +38,645 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jul 2017 09:27:40 -0000
-Content-Type: multipart/alternative; boundary="94eb2c0b0ad665984e05550cd3d7"
+X-List-Received-Date: Mon, 24 Jul 2017 09:34:53 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0007_01D304A3.0382CB00"
+Content-Language: zh-tw
 
---94eb2c0b0ad665984e05550cd3d7
-Content-Type: text/plain; charset="UTF-8"
-
-The package that generates will conflict with the real one.
-
-Write a bbappend for the recipe you want to replace the files in, add the
-files to SRC_URI, and use do_install_append() to overwrite the files in
-${D}.
-
-Ross
-
-On 24 July 2017 at 06:26, Bacheh Karaji <bachehkaraji@yahoo.com> wrote:
-
-> Hi,
-> I want to replace the default vsftpd.conf file with my own file!
-> My bitbake file looks following:
->
-> bbexample_1.0.bb
->     DESCRIPTION = "Configuration and extra files for TX28"
->     LICENSE = "CLOSED"
->     LIC_FILES_CHKSUM = ""
->
->     S = "${WORKDIR}"
->
->     SRC_URI += " \
->         file://ld.so.conf \
->         file://vsftpd.conf \
->         file://nginx/nginx.conf \
->         file://init.d/myscript.sh"
->
->     inherit allarch
->
->     do_install () {
->         install -d ${D}${sysconfdir}
->         install -d ${D}${sysconfdir}/nginx
->         install -d ${D}${sysconfdir}/init.d
->         rm -f ${D}${sysconfdir}/ld.so.conf
->         rm -f ${D}${sysconfdir}/vsftpd.conf
->         install -m 0755 ${WORKDIR}/ld.so.conf ${D}${sysconfdir}
->         install -m 0755 ${WORKDIR}/vsftpd.conf ${D}${sysconfdir}
->         install -m 0755 ${WORKDIR}/nginx/nginx.conf
-> ${D}${sysconfdir}/nginx/
->         install -m 0755 ${WORKDIR}/init.d/myscript.sh
-> ${D}${sysconfdir}/init.d/
->     }
->
->  But, the file could not be replaced!
->  What is wrong?
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---94eb2c0b0ad665984e05550cd3d7
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_0007_01D304A3.0382CB00
+Content-Type: text/plain;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">The package that generates will conflict with the real one=
-.<div><br></div><div>Write a bbappend for the recipe you want to replace th=
-e files in, add the files to SRC_URI, and use do_install_append() to overwr=
-ite the files in ${D}.</div><div><br></div><div>Ross</div></div><div class=
-=3D"gmail_extra"><br><div class=3D"gmail_quote">On 24 July 2017 at 06:26, B=
-acheh Karaji <span dir=3D"ltr">&lt;<a href=3D"mailto:bachehkaraji@yahoo.com=
-" target=3D"_blank">bachehkaraji@yahoo.com</a>&gt;</span> wrote:<br><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
-solid;padding-left:1ex"><div><div style=3D"font-family:Helvetica Neue,Helve=
-tica,Arial,sans-serif;font-size:x-small"><div><div>Hi,</div><div>I want to =
-replace the default vsftpd.conf file with my own file!</div><div>My bitbake=
- file looks following:</div><div><br></div><div><a href=3D"http://bbexample=
-_1.0.bb" target=3D"_blank">bbexample_1.0.bb</a></div><div>=C2=A0 =C2=A0 DES=
-CRIPTION =3D &quot;Configuration and extra files for TX28&quot;</div><div>=
-=C2=A0 =C2=A0 LICENSE =3D &quot;CLOSED&quot;</div><div>=C2=A0 =C2=A0 LIC_FI=
-LES_CHKSUM =3D &quot;&quot;</div><div>=C2=A0 =C2=A0=C2=A0</div><div>=C2=A0 =
-=C2=A0 S =3D &quot;${WORKDIR}&quot;</div><div>=C2=A0 =C2=A0=C2=A0</div><div=
->=C2=A0 =C2=A0 SRC_URI +=3D &quot; \</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-file://ld.so.conf \</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://vsftpd.con=
-f \</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://nginx/nginx.conf \</div><d=
-iv>=C2=A0 =C2=A0 =C2=A0 =C2=A0 file://init.d/myscript.sh&quot;</div><div>=
-=C2=A0 =C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 inherit allarch</div><div>=C2=
-=A0 =C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 do_install () {</div><div>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 install -d ${D}${sysconfdir}</div><div>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 install -d ${D}${sysconfdir}/nginx</div><div>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 install -d ${D}${sysconfdir}/init.d</div><div>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 rm -f ${D}${sysconfdir}/ld.so.conf</div><div>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 rm -f ${D}${sysconfdir}/vsftpd.conf</div><div>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/ld.so.conf ${D}${sysconfdir}</div>=
-<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/vsftpd.conf ${D=
-}${sysconfdir}</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORK=
-DIR}/nginx/nginx.conf ${D}${sysconfdir}/nginx/</div><div>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 install -m 0755 ${WORKDIR}/init.d/myscript.sh ${D}${sysconfdir}/=
-init.d/</div><div>=C2=A0 =C2=A0 }</div><div><br></div><div>=C2=A0But, the f=
-ile could not be replaced!</div><div>=C2=A0What is wrong?</div></div></div>=
-</div><br>--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br></div>
+Hi All,
 
---94eb2c0b0ad665984e05550cd3d7--
+I=E2=80=99m trying to display HDMI and LVDS In the same time recently.
+
+But now I have got three different issues here.
+
+By the way I=E2=80=99m using SABRESD IMX.6 for development.
+
+=20
+
+First issue :
+
+I had trying to modify the ipu_id and disp_id to 0 and 1 like below.
+
+=20
+
+&hdmi_core {
+
+        ipu_id =3D <0>;/*winmate victor test*/
+
+        disp_id =3D <1>;/*winmate victor test*/
+
+        status =3D "okay";
+
+};
+
+=20
+
+And my bootargs settings is like below.
+
+=20
+
+setenv mmcargs "setenv bootargs console=3D${console},${baudrate} ${smp} =
+consoleblank=3D0 root=3D${mmcroot} video=3Dmxcfb0:dev=3Dldb =
+video=3Dmxcfb1:dev=3Dhdmi,1920x1080M@60,if=3DRGB24 video=3Dmxcfb2:off =
+video=3Dmxcfb3:off"
+
+=20
+
+But HDMI can=E2=80=99t work unless I change my bootargs settings like =
+below and it will work.
+
+=20
+
+setenv mmcargs "setenv bootargs console=3D${console},${baudrate} ${smp} =
+consoleblank=3D0 root=3D${mmcroot} =
+video=3Dmxcfb0:dev=3Dhdmi,1920x1080M@60,if=3DRGB24 video=3Dmxcfb2:off =
+video=3Dmxcfb3:off"
+
+=20
+
+Second issue :=20
+
+I had trying to modify the ipu_id and disp_id to 0 and 1 like below.
+
+=20
+
+&hdmi_core {
+
+        ipu_id =3D <0>;/*winmate victor test*/
+
+        disp_id =3D <1>;/*winmate victor test*/
+
+        status =3D "okay";
+
+};
+
+=20
+
+And I will print ipu_id and disp_id out in the driver like below.
+
+=20
+
+static int hdmi_core_get_of_property(struct platform_device *pdev)
+
+{
+
+        struct device_node *np =3D pdev->dev.of_node;
+
+        int err;
+
+        int ipu_id, disp_id;
+
+=20
+
+        err =3D of_property_read_u32(np, "ipu_id", &ipu_id);
+
+        if (err) {
+
+                dev_dbg(&pdev->dev, "get of property ipu_id fail\n");
+
+                return err;
+
+        }
+
+        err =3D of_property_read_u32(np, "disp_id", &disp_id);
+
+        if (err) {
+
+                dev_dbg(&pdev->dev, "get of property disp_id fail\n");
+
+                return err;
+
+        }
+
+        ipu_id =3D 0;
+
+        disp_id =3D 1;
+
+=20
+
+        mxc_hdmi_ipu_id =3D ipu_id;
+
+        mxc_hdmi_disp_id =3D disp_id;
+
+=20
+
+        dev_err(&pdev->dev, "winmate victor ipu: %d disp: =
+%d\n",mxc_hdmi_ipu_id,mxc_hdmi_disp_id);
+
+=20
+
+        return err;
+
+}
+
+=20
+
+But it always print winmate victor ipu: 0 disp: 0 not winmate victor =
+ipu: 0 disp: 1.
+
+It is weird that it didn=E2=80=99t show the value that I gave it.
+
+=20
+
+=20
+
+Third issue :
+
+I had trying to modify the ipu_id and disp_id to 0 and 1 like below.
+
+=20
+
+&hdmi_core {
+
+        ipu_id =3D <0>;/*winmate victor test*/
+
+        disp_id =3D <1>;/*winmate victor test*/
+
+        status =3D "okay";
+
+};
+
+=20
+
+And I try to set ipu_id and disp_id to 0 and 1 in the driver like below.
+
+=20
+
+static int hdmi_core_get_of_property(struct platform_device *pdev)
+
+{
+
+        struct device_node *np =3D pdev->dev.of_node;
+
+        int err;
+
+        int ipu_id, disp_id;
+
+=20
+
+        err =3D of_property_read_u32(np, "ipu_id", &ipu_id);
+
+        if (err) {
+
+                dev_dbg(&pdev->dev, "get of property ipu_id fail\n");
+
+                return err;
+
+        }
+
+        err =3D of_property_read_u32(np, "disp_id", &disp_id);
+
+        if (err) {
+
+                dev_dbg(&pdev->dev, "get of property disp_id fail\n");
+
+                return err;
+
+        }
+
+        ipu_id =3D 0;
+
+        disp_id =3D 1;
+
+=20
+
+        mxc_hdmi_ipu_id =3D 0;
+
+        mxc_hdmi_disp_id =3D 1;/*winmate victor*/
+
+=20
+
+        dev_err(&pdev->dev, "winmate victor ipu: %d disp: =
+%d\n",mxc_hdmi_ipu_id,mxc_hdmi_disp_id);
+
+=20
+
+        return err;
+
+}
+
+=20
+
+In this case I will get this information in my syslog.
+
+=20
+
+mxc_sdc_fb fb@1: registered mxc display driver hdmi
+
+mxc_sdc_fb fb@1: Winmate victor You are now using ipu0-di1
+
+=20
+
+It seems it have confirm the id and prepare to used.
+
+But HDMI still show nothing.
+
+=20
+
+By the way, the bootargs setting is like below.
+
+=20
+
+setenv mmcargs "setenv bootargs console=3D${console},${baudrate} ${smp} =
+consoleblank=3D0 root=3D${mmcroot} video=3Dmxcfb0:dev=3Dldb =
+video=3Dmxcfb1:dev=3Dhdmi,1920x1080M@60,if=3DRGB24 video=3Dmxcfb2:off =
+video=3Dmxcfb3:off"
+
+=20
+
+=20
+
+=20
+
+=20
+
+=20
+
+First question : Is that possible that Yocto can display HDMI and LVDS =
+in the same time?
+
+Second question : According to the first issue. Why HDMI just can work =
+on mxcfb0 ?
+
+Third question : According to the second issue. Why is the ipu_id and =
+disp_id didn=E2=80=99t show the value that I gave them ?
+
+Fourth question : According to the third issue. I had set the id into 0 =
+and 1 but why HDMI still can=E2=80=99t work?
+
+=20
+
+Please Help!
+
+Thanks in advanced !
+
+Best Regards
+
+Victor Wang
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Winmate Commuication INC.
+
+ <tel:+886-2-8511-0288> Tel:+886-2-8511-0288 ext 878; =
+Fax:+886-2-85110211
+
+=E2=9C=89  <mailto:victor_wang@winmate.com.tw> =
+victor_wang@winmate.com.tw
+
+=20
+
+
+------=_NextPart_000_0007_01D304A3.0382CB00
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 14 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94;
+	panose-1:2 2 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94;
+	panose-1:2 2 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94";
+	panose-1:2 2 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+/* Page Definitions */
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DZH-TW link=3Dblue =
+vlink=3Dpurple style=3D'text-justify-trim:punctuation'><div =
+class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-US>Hi =
+All,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I=E2=80=99m trying to display HDMI and LVDS In the same =
+time recently.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>But now I have got three different issues =
+here.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>By =
+the way I=E2=80=99m using SABRESD IMX.6 for =
+development.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>First issue :<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I had trying to modify the ipu_id =
+and disp_id to 0 and 1 like below.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>&amp;hdmi_core =
+{<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ipu_id =3D =
+&lt;0&gt;;/*winmate victor test*/<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 disp_id =3D =
+&lt;1&gt;;/*winmate victor test*/<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>=C2=A0=C2=A0=C2=A0 =
+=C2=A0=C2=A0=C2=A0=C2=A0status =3D =
+&quot;okay&quot;;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>};<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>And my bootargs settings is like =
+below.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>setenv mmcargs &quot;setenv bootargs =
+console=3D${console},${baudrate} ${smp} consoleblank=3D0 =
+root=3D${mmcroot} video=3Dmxcfb0:dev=3Dldb =
+video=3Dmxcfb1:dev=3Dhdmi,1920x1080M@60,if=3DRGB24 video=3Dmxcfb2:off =
+video=3Dmxcfb3:off&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>But HDMI can=E2=80=99t work unless I change my bootargs =
+settings like below and it will work.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>setenv mmcargs &quot;setenv =
+bootargs console=3D${console},${baudrate} ${smp} consoleblank=3D0 =
+root=3D${mmcroot} video=3Dmxcfb0:dev=3Dhdmi,1920x1080M@60,if=3DRGB24 =
+video=3Dmxcfb2:off video=3Dmxcfb3:off&quot;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Second issue : =
+<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I had =
+trying to modify the ipu_id and disp_id to 0 and 1 like =
+below.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&amp;hdmi_core {<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ipu_id =3D =
+&lt;0&gt;;/*winmate victor test*/<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 disp_id =3D =
+&lt;1&gt;;/*winmate victor test*/<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>=C2=A0=C2=A0=C2=A0 =
+=C2=A0=C2=A0=C2=A0=C2=A0status =3D =
+&quot;okay&quot;;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>};<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>And I will print ipu_id and disp_id out in the driver like =
+below.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>static int hdmi_core_get_of_property(struct platform_device =
+*pdev)<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>{<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct =
+device_node *np =3D pdev-&gt;dev.of_node;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int =
+err;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int ipu_id, =
+disp_id;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =3D =
+of_property_read_u32(np, &quot;ipu_id&quot;, =
+&amp;ipu_id);<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err) =
+{<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(&amp;pdev-&gt;dev, &quot;get of =
+property ipu_id fail\n&quot;);<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return err;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+}<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =3D =
+of_property_read_u32(np, &quot;disp_id&quot;, =
+&amp;disp_id);<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err) =
+{<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(&amp;pdev-&gt;dev, &quot;get of =
+property disp_id fail\n&quot;);<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return err;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+}<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ipu_id =3D =
+0;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 disp_id =3D =
+1;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mxc_hdmi_ipu_id =
+=3D ipu_id;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mxc_hdmi_disp_id =
+=3D disp_id;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+dev_err(&amp;pdev-&gt;dev, &quot;winmate victor ipu: %d disp: =
+%d\n&quot;,mxc_hdmi_ipu_id,mxc_hdmi_disp_id);<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return =
+err;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>}<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>But it always print winmate victor ipu: 0 disp: 0 not =
+winmate victor ipu: 0 disp: 1.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>It is weird that it didn=E2=80=99t =
+show the value that I gave it.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Third issue =
+:<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I had =
+trying to modify the ipu_id and disp_id to 0 and 1 like =
+below.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&amp;hdmi_core {<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ipu_id =3D =
+&lt;0&gt;;/*winmate victor test*/<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 disp_id =3D =
+&lt;1&gt;;/*winmate victor test*/<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>=C2=A0=C2=A0=C2=A0 =
+=C2=A0=C2=A0=C2=A0=C2=A0status =3D =
+&quot;okay&quot;;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>};<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>And I try to set ipu_id and disp_id to 0 and 1 in the =
+driver like below.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>static int hdmi_core_get_of_property(struct platform_device =
+*pdev)<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>{<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct =
+device_node *np =3D pdev-&gt;dev.of_node;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int =
+err;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int ipu_id, =
+disp_id;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =3D =
+of_property_read_u32(np, &quot;ipu_id&quot;, =
+&amp;ipu_id);<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err) =
+{<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(&amp;pdev-&gt;dev, &quot;get of =
+property ipu_id fail\n&quot;);<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return err;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+}<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 err =3D =
+of_property_read_u32(np, &quot;disp_id&quot;, =
+&amp;disp_id);<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (err) =
+{<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_dbg(&amp;pdev-&gt;dev, &quot;get of =
+property disp_id fail\n&quot;);<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return err;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+}<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ipu_id =3D =
+0;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 disp_id =3D =
+1;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mxc_hdmi_ipu_id =
+=3D 0;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mxc_hdmi_disp_id =
+=3D 1;/*winmate victor*/<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+dev_err(&amp;pdev-&gt;dev, &quot;winmate victor ipu: %d disp: =
+%d\n&quot;,mxc_hdmi_ipu_id,mxc_hdmi_disp_id);<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return =
+err;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>}<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>In this case I will get this information in my =
+syslog.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>mxc_sdc_fb fb@1: registered mxc display driver =
+hdmi<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>mxc_sdc_fb fb@1: Winmate victor You are now using =
+ipu0-di1<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>It seems it have confirm the id and prepare to =
+used.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>But =
+HDMI still show nothing.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>By the way, the bootargs setting is like =
+below.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>setenv mmcargs &quot;setenv bootargs =
+console=3D${console},${baudrate} ${smp} consoleblank=3D0 =
+root=3D${mmcroot} video=3Dmxcfb0:dev=3Dldb =
+video=3Dmxcfb1:dev=3Dhdmi,1920x1080M@60,if=3DRGB24 video=3Dmxcfb2:off =
+video=3Dmxcfb3:off&quot;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>First question : Is that possible that Yocto can display =
+HDMI and LVDS in the same time?<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Second question : According to the =
+first issue. Why HDMI just can work on mxcfb0 ?<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Third question : According to the =
+second issue. Why is the ipu_id and disp_id didn=E2=80=99t show the =
+value that I gave them ?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Fourth question : According to the third issue. I had set =
+the id into 0 and 1 but why HDMI still can=E2=80=99t =
+work?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Please Help!<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Thanks in advanced =
+!<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto'><b><i><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>B=
+est Regards</span></i></b><span lang=3DEN-US =
+style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif";color=
+:#000066'><o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto'><b><i><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>V=
+ictor Wang</span></i></b><span lang=3DEN-US =
+style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif"'><o:p=
+></o:p></span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto'><b><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span></b><span =
+lang=3DEN-US =
+style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif"'><o:p=
+></o:p></span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto'><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>W=
+inmate Commuication INC.</span><span lang=3DEN-US =
+style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif"'><o:p=
+></o:p></span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto'><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'><=
+a href=3D"tel:+886-2-8511-0288"><span =
+style=3D'color:#0563C1'>Tel:+886-2-8511-0288</span></a> ext 878; =
+Fax:+886-2-85110211</span><span lang=3DEN-US =
+style=3D'font-family:"=E6=96=B0=E7=B4=B0=E6=98=8E=E9=AB=94","serif"'><o:p=
+></o:p></span></p><p class=3DMsoNormal><span style=3D'font-family:"MS =
+Mincho";color:black'>=E2=9C=89</span><span lang=3DEN-US =
+style=3D'color:black'>&nbsp;</span><span lang=3DEN-US =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:purple'>=
+<a href=3D"mailto:victor_wang@winmate.com.tw"><span =
+style=3D'color:#0563C1'>victor_wang@winmate.com.tw</span></a></span><span=
+ lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+
+------=_NextPart_000_0007_01D304A3.0382CB00--
