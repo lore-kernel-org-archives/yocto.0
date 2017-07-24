@@ -1,38 +1,69 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8764AE00BF3; Mon, 24 Jul 2017 02:49:43 -0700 (PDT)
+	id 37A4BE00BF3; Mon, 24 Jul 2017 06:16:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.182 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.182 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BA6CE00A9C
-	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 02:49:42 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	24 Jul 2017 02:49:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,406,1496127600"; d="scan'208";a="882054064"
-Received: from mwidmer-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.43.109])
-	by FMSMGA003.fm.intel.com with ESMTP; 24 Jul 2017 02:49:40 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Diana Thayer <garbados@gmail.com>
-Date: Mon, 24 Jul 2017 11:49:39 +0200
-Message-ID: <2092872.EczXXc7Pe0@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <1540054.pZpUqmJ2aX@peggleto-mobl.ger.corp.intel.com>
-References: <1498521563-26590-1-git-send-email-garbados@gmail.com>
-	<1540054.pZpUqmJ2aX@peggleto-mobl.ger.corp.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f182.google.com (mail-ua0-f182.google.com
+	[209.85.217.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B2A7E00A9C
+	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 06:16:34 -0700 (PDT)
+Received: by mail-ua0-f182.google.com with SMTP id f9so78158057uaf.4
+	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 06:16:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=TTBt0BQ09GSETGsoahBqS14+ClV8r6xvZ78akOZhxHQ=;
+	b=Z7QarbwDTwvUdJcwyO2XlnGSPG2TOSmF8tdL+hg38n6hU72KRgPmkHlCJCBS3lm32K
+	azcMaTkuU/DyhPi/7Nw2z9Sl3YQotScWSi+HZdMKh70psOpoa8vcGlN0QBLchGVzESBr
+	yiieo1hDzRG0m9sdM7YrWplVHwMWoJ6WoYl93n+oIlnSo/VS87O4zTilyJ4n6kY7KSti
+	DWpXhIG0QTopWTRyUpP2zzvtoHfVInPL/hTrasq5RTunfSLZYySIQntxBpnHW6brO0XZ
+	LqGx3As+Bh+XWXp+a6fE5pILVF0cJduv2uvqMEdXWNEzPMmw1+rtmATu1WCPQ8cSoBEI
+	RFDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=TTBt0BQ09GSETGsoahBqS14+ClV8r6xvZ78akOZhxHQ=;
+	b=Ab0AzvJoWvMUPUUzulFxEZxu83LQpkwMv0SYz45skWbwh7tRdyIQGIrh6K3vKovNwn
+	obHYRQnImAUyEOgS6vwAT8YSZdkzB3IqO+OorR9D0P0wj7u3Q8KyiMSD5gVMFZJCKZEz
+	hCGFKC9QR2bxQpMPVRevW8HRY5fCtCgvNwcSJ0dXbz/JTEsDPuiQGrM4o9PKRJJ6ezqr
+	V49UIn0ijj/GdwOmgjgiC7N9YMf9Z2bBMPQlxrw482Zlk8er62pvoyZmfgmREOr6HQNL
+	XLSv35JW4Py20gtcNxtz538f1XTO9IeT5J0UyMlfuNMEEcEZjoaeUl1g12km+9q0y0jf
+	FdYQ==
+X-Gm-Message-State: AIVw110xwI/t6g+IO//iwCSDplzdyHTNS9LKk4vGCoR7Xxq2nxX14SIq
+	NlWVj9nG8oGC09pnSNoko5EOLjrff5CR
+X-Received: by 10.176.24.144 with SMTP id t16mr10110174uag.15.1500902193529;
+	Mon, 24 Jul 2017 06:16:33 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [layerindex-web][PATCH] layerindex-web : adding asynchronous task execution
+Received: by 10.103.48.88 with HTTP; Mon, 24 Jul 2017 06:16:32 -0700 (PDT)
+In-Reply-To: <33bba87d-ce40-417a-31ab-f8432248aa1b@eumx.net>
+References: <20170722224032.1963-1-twoerner@gmail.com>
+	<20170722234550.GB26163@bill-the-cat>
+	<CAHUNapQaKUVuHkehG2L-rCA0xh-fhZaqa9qBO4C2w5FtiVzyog@mail.gmail.com>
+	<33bba87d-ce40-417a-31ab-f8432248aa1b@eumx.net>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Mon, 24 Jul 2017 09:16:32 -0400
+Message-ID: <CAHUNapRubsMXeSTndP2xfnRRs_5u10ukiMQE3QucfGau=ojN3Q@mail.gmail.com>
+To: Jack Mitchell <ml@embed.me.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] u-boot-rockchip: update require path
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,54 +75,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jul 2017 09:49:43 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 24 Jul 2017 13:16:35 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Friday, 21 July 2017 4:15:26 PM CEST Paul Eggleton wrote:
-> On Tuesday, 27 June 2017 1:59:23 AM CEST Diana Thayer wrote:
-> > This is a work-in-progress solution to issue 11197 within layerindex-web: 
-> > adding asynchronous task execution.
-> > I used RabbitMQ and Celery. I'm still working with Paul Eggleton on adding
-> > install instructions for RabbitMQ to
-> > the site's Dockerfile.
-> > 
-> > Previously, when a user submitted a layer, Django would synchronously send
-> > emails to users able to publish layers,
-> > such that if an email bounced or otherwise failed, the user submitting the
-> > layer would see an error.
-> > This patch sends those emails as asynchronous tasks, so any sending errors
-> > don't reach the user submitting a layer.
-> 
-> I had a chance to try your patch out today, although I had to apply it 
-> partially - I figured a good test would just be the email part. I installed 
-> rabbitmq and ensured it got started. I started the web interface and
-> submitted  a dummy layer, and the email sent as expected. I then tried
-> killing my local  SMTP server and the layer submission returned an error 
-> page, which is what  happened previously - it looks to me as if the sending 
-> is still being done synchronously. The celery worker isn't reporting
-> anything so I can only assume  the django app is not trying to connect to
-> it.
-> 
-> I've pushed just the changes I applied to a new branch here:
-> 
-> http://git.yoctoproject.org/cgit/cgit.cgi/layerindex-web/log/?h=paule/celery
-> 
-> Any idea what's going wrong? Did I mess up in applying the changes, or 
-> misconfigure something else? 
+On Mon, Jul 24, 2017 at 4:46 AM, Jack Mitchell <ml@embed.me.uk> wrote:
+> I have a small layer I use for booting mainline components on the tinker, so
+> i can confirm that works with current upstream.
+>
+> https://github.com/jackmitch/meta-tinker
 
-I figured out the issue - in order to have the task executed asynchronously 
-you need to call .delay(<args>) on the task object rather than the task 
-function itself. That leads to a "django.core.exceptions.ImproperlyConfigured" 
-error reported by the worker since in my configuration the "import settings" 
-succeeds but Django isn't set up properly, but at least it's actually 
-executing the task via the worker now.
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Thanks! :-D
 
