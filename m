@@ -1,43 +1,31 @@
-Return-Path: <karim@monespabidou.fr>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82F94E00C1C; Mon, 24 Jul 2017 13:54:41 -0700 (PDT)
+	id 744D5E00C2B; Mon, 24 Jul 2017 23:51:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [87.98.150.177 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 1129 seconds by postgrey-1.32 at yocto-www;
-	Mon, 24 Jul 2017 13:54:39 PDT
-Received: from 15.mo3.mail-out.ovh.net (15.mo3.mail-out.ovh.net
-	[87.98.150.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7CCAE00C19
-	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 13:54:39 -0700 (PDT)
-Received: from player732.ha.ovh.net (b6.ovh.net [213.186.33.56])
-	by mo3.mail-out.ovh.net (Postfix) with ESMTP id 9AFBC122F21
-	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 22:35:49 +0200 (CEST)
-Received: from [192.168.1.16] (lpr83-1-88-168-110-28.fbx.proxad.net
-	[88.168.110.28]) (Authenticated sender: karim@monespabidou.fr)
-	by player732.ha.ovh.net (Postfix) with ESMTPSA id 714A620085
-	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 22:35:49 +0200 (CEST)
-To: yocto@yoctoproject.org
-References: <e850a4af-9774-44e9-b42c-722f5f6ffde0@monespabidou.fr>
-From: karim bernardet <karim@monespabidou.fr>
-Message-ID: <9316535a-8f18-e5cd-58d5-f4dd1c9a41bb@monespabidou.fr>
-Date: Mon, 24 Jul 2017 22:35:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48A82E00C25
+	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 23:51:00 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v6P6p0JN022318
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
+	for <yocto@yoctoproject.org>; Mon, 24 Jul 2017 23:51:00 -0700
+Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.294.0; Mon, 24 Jul 2017 23:50:59 -0700
+From: Chen Qi <Qi.Chen@windriver.com>
+To: <yocto@yoctoproject.org>, <bruce.ashfield@windriver.com>
+Date: Tue, 25 Jul 2017 14:50:38 +0800
+Message-ID: <20170725065038.1209-1-Qi.Chen@windriver.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-In-Reply-To: <e850a4af-9774-44e9-b42c-722f5f6ffde0@monespabidou.fr>
-X-Ovh-Tracer-Id: 6495598038552494249
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeelkedrheefgdduheegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecufedttdenuc
-Subject: Re: Change keyboard layout
+Subject: [meta-cloud-services][PATCH] spice: set COMPATIBLE_HOST
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,31 +37,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jul 2017 20:54:41 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: fr
+X-List-Received-Date: Tue, 25 Jul 2017 06:51:02 -0000
+Content-Type: text/plain
 
-Le 24/07/2017 à 21:48, karim bernardet a écrit :
-> Hi
->
-> I just begin to Yocto. I managed to build a system for a Raspberry Pi 
-> 0 W using
->
-> https://github.com/jumpnow/meta-rpi
->
-> The wireless is ok, the GPIO are ok. But how to have a french keyboard 
-> (azerty) ?
->
-> Thanks for any info, link, ...
->
-> Karim
->
-Got it
+Set COMPATIBLE_HOST to restrict building only for x86 archs.
 
-Got a fr-latin9.map.gz from a Centos distribution and I did
+The configure script clearly requires x86 archs. Message is as below.
 
-root@rpi:~# loadkeys ./fr-latin9.map.gz
+  Only x86 and x86-64 are supported
 
+Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+---
+ recipes-support/spice/spice_git.bb | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/recipes-support/spice/spice_git.bb b/recipes-support/spice/spice_git.bb
+index 6f1be3a..e62f315 100644
+--- a/recipes-support/spice/spice_git.bb
++++ b/recipes-support/spice/spice_git.bb
+@@ -70,3 +70,5 @@ do_install_append() {
+ 	oe_runmake DESTDIR="${D}" install
+ 	cd -
+ }
++
++COMPATIBLE_HOST = '(x86_64|i.86).*-linux'
+-- 
+2.11.0
 
 
