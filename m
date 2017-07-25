@@ -1,36 +1,63 @@
-Return-Path: <menschel-d@posteo.de>
+Return-Path: <raltherr@google.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16D7BE00B6F; Tue, 25 Jul 2017 14:19:21 -0700 (PDT)
+	id A9055E00B6F; Tue, 25 Jul 2017 15:30:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [185.67.36.66 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA9B5E00B43
-	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 14:19:19 -0700 (PDT)
-Received: from submission (posteo.de [89.146.220.130]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 0DF7E20E4D
-	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 23:19:17 +0200 (CEST)
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 3xHB2F23D0z10HC;
-	Tue, 25 Jul 2017 23:19:17 +0200 (CEST)
-To: =?UTF-8?B?Tmfhu41jIFRoaSBIdeG7s25o?= <so61pi.re@gmail.com>,
-	Yocto <yocto@yoctoproject.org>
-References: <CAGnCEbuysuVU34RSX435ftsa+GKawUB0tWtcEdVdCFRqvY4TSw@mail.gmail.com>
-From: Dennis Menschel <menschel-d@posteo.de>
-Message-ID: <f9d7925e-e938-6f80-9fba-b271ec568c90@posteo.de>
-Date: Tue, 25 Jul 2017 23:18:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E1FCE00B43
+	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 15:30:57 -0700 (PDT)
+Received: by mail-wm0-f54.google.com with SMTP id c184so63671808wmd.0
+	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 15:30:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=rXiodPIDPUxPppZTL0U48ysipx36Y6tQpFTw/aNrDo4=;
+	b=DVkiqXV552ioluU3nGojnPZC9AJNhz/fNMpukIVJ9h0FtXEq+GQUqhyzLHE1P9ELdX
+	dt18kKuKOAhDW+amOKZQXGC194TLfBT1tn3X8D42eB9Pxzrw/V0u9V5nBKR7n7vrgd1I
+	jbbBFlJWy+HyBCiPfRrxx2B2yMLuxPKVA0XkG0y+w/BS2lqwRbdNLzMhYLd7tH/ZGuxi
+	CzBFsiVdKMqamtVS/gKeVc8+RxCUoT4zmLdA78lTOa9TfrTg/wOUMKmXLbSBVVpPdaY0
+	pUDt632AbWTpDqequbwSWWY2BvRZwWuLlpW1xzip0kvJMYhtWtS3SCzMYhrA91RbpUiX
+	UAig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=rXiodPIDPUxPppZTL0U48ysipx36Y6tQpFTw/aNrDo4=;
+	b=In85VrzZUnnha7ZtJO3HZTBGWS8cZw+6rqXqmzPBJr9sbzBM5XAsaBY1p91K+C1zKm
+	uwU+1Af3vWWVmIV7QRST36mg7tgn0MlZmchoHcWZ9qQJgv5slcYsTZ0f+clg6+e0qGEp
+	6WItlQpo+KaprUjzjog2yhW0SOPWVXIAxEMgxk+FdW07JdaSXE5WN1AFjV9Ud7h7SO9j
+	POVbS2WdRL7p8uVS02W+EekkfueDZZG51I2tJX2BV3Db+dR8yInw7YvTcX4+OJJXkXI7
+	LZfvgao+4BUWKcjLrtyGCrQ0ha+gdF2TjGLj4H5/LN1W0mD0xGu2X7AcBtNGnSlTc7CT
+	Ku7w==
+X-Gm-Message-State: AIVw112P8/Pe/Gl9SK1OVW1acDkwri7ufOpA/xpZxpW/DFLepvTVan5T
+	oGq5UQCe6kPeoHMQk3HlzkXcxDksaGj7
+X-Received: by 10.28.142.203 with SMTP id q194mr7530663wmd.174.1501021856841; 
+	Tue, 25 Jul 2017 15:30:56 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAGnCEbuysuVU34RSX435ftsa+GKawUB0tWtcEdVdCFRqvY4TSw@mail.gmail.com>
-Subject: Re: How to build a same package twice with different configurations for same MACHINE?
+Received: by 10.28.153.69 with HTTP; Tue, 25 Jul 2017 15:30:56 -0700 (PDT)
+In-Reply-To: <CABatt_wTBZYa2DNgB3_PqYay_SFUpcr=Hghg4=xyvpfbJeGt8Q@mail.gmail.com>
+References: <CABatt_xOTsWEgJDaYepdFpF6_2Pk8UcCiXQBZddGV34MZPB2Yg@mail.gmail.com>
+	<CABatt_wTBZYa2DNgB3_PqYay_SFUpcr=Hghg4=xyvpfbJeGt8Q@mail.gmail.com>
+From: Rick Altherr <raltherr@google.com>
+Date: Tue, 25 Jul 2017 15:30:56 -0700
+Message-ID: <CAPLgG==LjxR0Lz20piro5e8ZM4gC_z5ZSjYDgoENMFEfg6i1zw@mail.gmail.com>
+To: Martin Townsend <mtownsend1973@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Problem building kernel FIT image with initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,87 +69,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jul 2017 21:19:21 -0000
-X-Groupsio-MsgNum: 37156
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="MaAGf7J3I04mwnMMC96lpUHhw8GlKW1MO"
+X-List-Received-Date: Tue, 25 Jul 2017 22:30:59 -0000
+Content-Type: multipart/alternative; boundary="001a1143bf26943f8e05552be27b"
 
---MaAGf7J3I04mwnMMC96lpUHhw8GlKW1MO
-Content-Type: multipart/mixed; boundary="udFd6p5sdqNVPN9KM40g1kuVlXueL2Sso";
- protected-headers="v1"
-From: Dennis Menschel <menschel-d@posteo.de>
-To: =?UTF-8?B?Tmfhu41jIFRoaSBIdeG7s25o?= <so61pi.re@gmail.com>,
- Yocto <yocto@yoctoproject.org>
-Message-ID: <f9d7925e-e938-6f80-9fba-b271ec568c90@posteo.de>
-Subject: Re: [yocto] How to build a same package twice with different
- configurations for same MACHINE?
-References: <CAGnCEbuysuVU34RSX435ftsa+GKawUB0tWtcEdVdCFRqvY4TSw@mail.gmail.com>
-In-Reply-To: <CAGnCEbuysuVU34RSX435ftsa+GKawUB0tWtcEdVdCFRqvY4TSw@mail.gmail.com>
+--001a1143bf26943f8e05552be27b
+Content-Type: text/plain; charset="UTF-8"
 
---udFd6p5sdqNVPN9KM40g1kuVlXueL2Sso
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+AFAIK, FIT w/ initramfs works with linux-yocto.  I suspect this is a bug in
+the freescale kernel recipe.
+
+On Tue, Jul 18, 2017 at 6:01 AM, Martin Townsend <mtownsend1973@gmail.com>
+wrote:
+
+> Sorry hit send before finishing email.
+>
+> So it looks like do_install and do_deploy are expecting
+> fitImage-${INITRAMFS_IMAGE} so is this renaming required anymore? and
+> if so is this a problem with the freescale kernel?
+>
+> Many Thanks,
+> Martin.
+>
+> On Tue, Jul 18, 2017 at 1:58 PM, Martin Townsend
+> <mtownsend1973@gmail.com> wrote:
+> > Hi,
+> >
+> > Using Yocto 2.3 (pyro) I was trying to create a FIT image with the 4.9
+> > linux-fslc kernel and an initramfs image.  following the instructions
+> > it failed during do_bundle_initramfs.  After debugging I found that it
+> > moves the fitImage file to fitImage.bak and then runs a second pass
+> > and renames the new fitImage to fitImage.initramfs but fitImage is
+> > never created on this second pass but  fitImage-${INITRAMFS_IMAGE} is
+> > created.
+> >
+> > If I comment out the line that does this rename every builds fine
+> >
+> > echo "Resoring Kernel Image"
+> > for tp in $tmp_path ; do
+> >   type=`echo $tp|cut -d "#" -f 1`
+> >   linkpath=`echo $tp|cut -d "#" -f 2`
+> >   realpath=`echo $tp|cut -d "#" -f 3`
+> >   if [ -n "$realpath" ]; then
+> >     mv -f $realpath $realpath.initramfs
+> >     mv -f $realpath.bak $realpath
+> >     ln -sf $linkpath.initramfs ${B}/${KERNEL_OUTPUT_DIR}/$type.initramfs
+> >   else
+> >
+> >     #mv -f ${KERNEL_OUTPUT_DIR}/$type ${KERNEL_OUTPUT_DIR}/$type.
+> initramfs
+> >     mv -f ${KERNEL_OUTPUT_DIR}/$type.bak ${KERNEL_OUTPUT_DIR}/$type
+> >   fi
+> > done
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--001a1143bf26943f8e05552be27b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr">AFAIK, FIT w/ initramfs works with linux-yocto.=C2=A0 I su=
+spect this is a bug in the freescale kernel recipe.</div><div class=3D"gmai=
+l_extra"><br><div class=3D"gmail_quote">On Tue, Jul 18, 2017 at 6:01 AM, Ma=
+rtin Townsend <span dir=3D"ltr">&lt;<a href=3D"mailto:mtownsend1973@gmail.c=
+om" target=3D"_blank">mtownsend1973@gmail.com</a>&gt;</span> wrote:<br><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
+cc solid;padding-left:1ex">Sorry hit send before finishing email.<br>
+<br>
+So it looks like do_install and do_deploy are expecting<br>
+fitImage-${INITRAMFS_IMAGE} so is this renaming required anymore? and<br>
+if so is this a problem with the freescale kernel?<br>
+<br>
+Many Thanks,<br>
+Martin.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+On Tue, Jul 18, 2017 at 1:58 PM, Martin Townsend<br>
+&lt;<a href=3D"mailto:mtownsend1973@gmail.com">mtownsend1973@gmail.com</a>&=
+gt; wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; Using Yocto 2.3 (pyro) I was trying to create a FIT image with the 4.9=
+<br>
+&gt; linux-fslc kernel and an initramfs image.=C2=A0 following the instruct=
+ions<br>
+&gt; it failed during do_bundle_initramfs.=C2=A0 After debugging I found th=
+at it<br>
+&gt; moves the fitImage file to fitImage.bak and then runs a second pass<br=
+>
+&gt; and renames the new fitImage to fitImage.initramfs but fitImage is<br>
+&gt; never created on this second pass but=C2=A0 fitImage-${INITRAMFS_IMAGE=
+} is<br>
+&gt; created.<br>
+&gt;<br>
+&gt; If I comment out the line that does this rename every builds fine<br>
+&gt;<br>
+&gt; echo &quot;Resoring Kernel Image&quot;<br>
+&gt; for tp in $tmp_path ; do<br>
+&gt;=C2=A0 =C2=A0type=3D`echo $tp|cut -d &quot;#&quot; -f 1`<br>
+&gt;=C2=A0 =C2=A0linkpath=3D`echo $tp|cut -d &quot;#&quot; -f 2`<br>
+&gt;=C2=A0 =C2=A0realpath=3D`echo $tp|cut -d &quot;#&quot; -f 3`<br>
+&gt;=C2=A0 =C2=A0if [ -n &quot;$realpath&quot; ]; then<br>
+&gt;=C2=A0 =C2=A0 =C2=A0mv -f $realpath $realpath.initramfs<br>
+&gt;=C2=A0 =C2=A0 =C2=A0mv -f $realpath.bak $realpath<br>
+&gt;=C2=A0 =C2=A0 =C2=A0ln -sf $linkpath.initramfs ${B}/${KERNEL_OUTPUT_DIR=
+}/$<wbr>type.initramfs<br>
+&gt;=C2=A0 =C2=A0else<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0#mv -f ${KERNEL_OUTPUT_DIR}/$type ${KERNEL_OUTPUT_D=
+IR}/$type.<wbr>initramfs<br>
+&gt;=C2=A0 =C2=A0 =C2=A0mv -f ${KERNEL_OUTPUT_DIR}/$type.bak ${KERNEL_OUTPU=
+T_DIR}/$type<br>
+&gt;=C2=A0 =C2=A0fi<br>
+&gt; done<br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</div></div></blockquote></div><br></div>
 
-Am 18.07.2017 um 15:24 schrieb Ng=E1=BB=8Dc Thi Hu=E1=BB=B3nh:
-> [...]
->=20
-> Both images use busybox package but in different ways. The main-image
-> can use several busybox' tools but the initial-flasher-image only uses
-> one or two of them just to complete the flashing goal.
->=20
-> My question is, is there a way to build busybox for main-image with one=
-
-> defconfig, then build the busybox for initial-flasher-image with a
-> different defconfig when I issue "bitbake initial-flasher-image" comman=
-d?
->=20
-> [...]
-I'm not aware of such a feature in BitBake. As for your situation I'd
-suggest creating a secondary recipe (e.g. "busybox-flasher") in your own
-layer which includes the original busybox recipe and adapts its feature
-set with a configuration fragment.
-
-Example: busybox-flasher_1.24.1.bb
-
-    require recipes-core/busybox/busybox_${PV}.bb
-    SRC_URI +=3D "file://flasher-options.cfg"
-
-That way you can easily distinguish busybox and busybox-flasher in your
-images and you can minimize the redundancies between the recipes.
-
-Hope it helps!
-
-Best regards,
-Dennis Menschel
-
-
---udFd6p5sdqNVPN9KM40g1kuVlXueL2Sso--
-
---MaAGf7J3I04mwnMMC96lpUHhw8GlKW1MO
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJZd7XUAAoJELoiXviItXXQEjIQAMD2qvR4PLLpfIKTacpeLYlx
-pl9TkTy05ja3xETWrjvQOzqsYaPJhZaMSkULC7XLxrbSjF/EkQ/M6zKTZW+lGbfJ
-zRNoQ8HiB2odTJgaV2fR7DJjL4EFm1lXsadVyLh+zjuPiqOqpzcwN7h0L+UhWGbc
-S9rulczNXj31cTDoEMgmT8cBS9uj84jTvQHmstl1QS+6PMezhPBeR7vpyUrTqgey
-pNu5T6uSK6f1ewtKx53u/L5fLLSdwmPh1d+E3r/3VSLAZHKiYixwCxviMtE/nZIl
-qlFOdOi22MCKyr8LahOQHbTZDs1THIdFOwgmEFdo3ZK2hkp5bKzzG6uT5Gl48jHf
-6DkRJY0S0nUy1ZsYPTH5+8iVEFe4BvWs8UKpL7mg9IdjS62Sp9q8/r4R60nEeDk4
-xYv+3rt1fwk6D3O6vwcDLpamDmv2eUIBVk3C//XRfln/IqBbsCS+O0sW+/LtyBGk
-NEB15QaiMerGu4nBW07mRr4CHkwB8LBFdgMRYIJv+N9HtyCvPilMj3tDc5OjJz43
-z7dX8Ffppa+3UWDwBBiLs/kfGKTV3xk6oEdrm+gNeeEA/Fzlvm0JyS4Tf5K0bOuP
-unEQSxRHol7CuxEPPpBACllEPmRseS3kCXC55LrCksBaHdUGs7L2uieCnD4NXly9
-vELkt389QuKVltmrCe/R
-=CH29
------END PGP SIGNATURE-----
-
---MaAGf7J3I04mwnMMC96lpUHhw8GlKW1MO--
+--001a1143bf26943f8e05552be27b--
