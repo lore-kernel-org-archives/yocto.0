@@ -1,72 +1,69 @@
-Return-Path: <prvs=138094b9f3=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <einar@vading.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5EF9E00BE8; Tue, 25 Jul 2017 23:00:44 -0700 (PDT)
+	id D6365E00BE8; Tue, 25 Jul 2017 23:06:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.161 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.216.172 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.216.172 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 177 seconds by postgrey-1.32 at yocto-www;
-	Tue, 25 Jul 2017 23:00:42 PDT
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5727BE00BAF
-	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 23:00:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1501048841;
-	l=935; s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Language:Content-Type:In-Reply-To:
-	MIME-Version:Date:From:References:To:Subject;
-	bh=EFMmOMqZa6eS6tzBF9tvwhQ3CXeipDYwrssIGCnQbl4=;
-	b=YjJEpUwxjw1cU3cj9Ti8PvhgsF0r7vibnnIIDNDnXBajtFkjbs/Ik3e2gIxYRmsGLu
-	4r7TsU3V1r7bDA/FLcgZlcz5tswVMNJqX3lfAIgiDFoN7shoZslW4e8bH/fH1te9uUlu
-	YmUdRdugzrQAz9KGxAN8cC3GJjmZJ5c4H/1cs=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvF1MhuFNtPdyidq2NsVaruNM0BuYWC2Hzed5IgCQrA==
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	([2001:0:9d38:78cf:2035:3c8e:af6c:cbea])
-	by smtp.strato.de (RZmta 41.1 AUTH) with ESMTPSA id n0b16dt6Q5ve4Ud
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Wed, 26 Jul 2017 07:57:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1501048642; x=1501653442;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:To:
-	References:From:Message-ID:Date:User-Agent:MIME-Version:
-	In-Reply-To:Content-Type:Content-Language:
-	Content-Transfer-Encoding; bh=EFMmOMqZa6eS6tzBF9tvwhQ3CXeipDYwrs
-	sIGCnQbl4=; b=Kf+frDqZ1oaxGg8W0QJ79uRq9DZD9FhpWkoyr2OaZ3afJVIRDW
-	8l2B1htGgOLgkuh2s94YDV7rf3pEQ8qes1/Y72xFPZz7PYrTIg0fGrmtakyLA2cV
-	gZo886+H1HI7Y+5eNVq6Kz19VJ7d4+gAC4SEP55Pg2H5jeQgUYbUuHlwY=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.0.2) with ESMTPSA id
-	md50000545992.msg; Wed, 26 Jul 2017 07:57:21 +0200
-X-MDRemoteIP: 178.26.238.27
-X-MDArrival-Date: Wed, 26 Jul 2017 07:57:21 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=138094b9f3=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: Riko Ho <antonius.riko@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <ebdb747a-8506-87d0-b1ac-8338436d7dd6@gmail.com>
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <3917f163-9def-7069-ea70-0a9a943e8dc0@rsi-elektrotechnik.de>
-Date: Wed, 26 Jul 2017 07:57:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+Received: from mail-qt0-f172.google.com (mail-qt0-f172.google.com
+	[209.85.216.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BD39E00BAF
+	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 23:06:26 -0700 (PDT)
+Received: by mail-qt0-f172.google.com with SMTP id v29so20431220qtv.3
+	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 23:06:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vading.se; s=google;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc;
+	bh=/NREaxGbrfAS4ynP1vBEn5KlCq/18DvTijiGA0X/7wM=;
+	b=AZg8Z1C2oRH6akUwRyf/F7Y+EQJ2X2+hKDFjxKHVb6C+0zAIzOqPjGTOHrsW9bOc2z
+	QVmJBasTje6/H88bvVdswpGWQuIYfFSXy6IUzMMdsDUsKum1ekjbMk+u/BcqfAwvqkbT
+	Z6mIbNsrr6wUqi04q2cc5okwfBzqQJuUg8gmc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
+	:date:message-id:subject:to:cc;
+	bh=/NREaxGbrfAS4ynP1vBEn5KlCq/18DvTijiGA0X/7wM=;
+	b=aQh20VU6rzqf7aMbyJLmucfFH9aCgfgmGBXmPsSfH4Wcn+TPxvusqac4Gu6L8CYzga
+	zASp2I/YhNpnYq7Oj6j1/VTAArO+20lYI9qAvx29QeH6/PrSuuPvG9bYEoSo/P3ggJ+2
+	7mrGrFfVjEM+NqSvUAPHUsV2jsDnGYOCe04FnFxXQx7fpoJ7N/+fFA8kxGyP3AozSppj
+	4s4ZzxcGtgaR2Znd19uAG8OtdWDaWOsfc4AlJOAbcYhGmTsQvd5/3XlL8WgATHnKFOXO
+	XPb0NXF0boJsDD3zLeHeVDh2uDlre7fs7nQYJgI1ra1CknQrsaNPl2OllkCZGx9ztNQI
+	FDjg==
+X-Gm-Message-State: AIVw110OFk7SCbCiI9x5ykhGjhVualJq7DvabJEwSUBzb0n3GrMl/6Ec
+	Y9pr5/5EJ0psy8lQmOrDFiGDDGJ4pNS83ltXjg==
+X-Received: by 10.200.2.133 with SMTP id p5mr28146877qtg.330.1501049186542;
+	Tue, 25 Jul 2017 23:06:26 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <ebdb747a-8506-87d0-b1ac-8338436d7dd6@gmail.com>
-Subject: Re: Mpich and yocto ?
+Sender: einar@vading.se
+Received: by 10.140.30.70 with HTTP; Tue, 25 Jul 2017 23:06:25 -0700 (PDT)
+X-Originating-IP: [195.60.68.157]
+In-Reply-To: <1500302882.5349.110.camel@linux.intel.com>
+References: <1500278455-5712-1-git-send-email-pierre.ficheux@smile.fr>
+	<1500300247.5349.105.camel@linux.intel.com>
+	<CAJTo0LYvGfA-QxNt42AQrT71ExA5Raf=VP6mxTOwPua8TCViZA@mail.gmail.com>
+	<1500302882.5349.110.camel@linux.intel.com>
+From: Einar Vading <yocto-ml@vading.se>
+Date: Wed, 26 Jul 2017 08:06:25 +0200
+X-Google-Sender-Auth: 3uxHTI4ObZu2U0fB7LYqJOOGq8o
+Message-ID: <CAB6-VtKE+yj2ODVzwBnA-6PkYfq_d-ysLaVsByQSW2yPEZvbOg@mail.gmail.com>
+To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] Added missing CPPFLAGS/CFLAGS/LDFLAGS in sample recipe for morty branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,40 +75,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jul 2017 06:00:44 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 26 Jul 2017 06:06:27 -0000
+Content-Type: multipart/alternative; boundary="f4030435b8cc8dfe450555323fe2"
 
-Hi
+--f4030435b8cc8dfe450555323fe2
+Content-Type: text/plain; charset="UTF-8"
 
-On 26.07.2017 05:12, Riko Ho wrote:
-> Does anyone know on how to run poky on mpich cluster ?
+On Mon, Jul 17, 2017 at 4:48 PM, Leonardo Sandoval <
+leonardo.sandoval.gonzalez@linux.intel.com> wrote:
 
-As far as I can see, MPICH is a userland library, basically. So it would 
-be the other way round, you could probably run a mpich application on a 
-number of nodes that run some OE/Poky thing.
+> On Mon, 2017-07-17 at 15:30 +0100, Burton, Ross wrote:
+> >
+> > On 17 July 2017 at 15:04, Leonardo Sandoval
+> > <leonardo.sandoval.gonzalez@linux.intel.com> wrote:
+> >         master has the second line (LDFLAGS) but not the first one
+> >         (CPPFLAGS and
+> >         CFLAGS) so the problem may also be present on master. Would
+> >         you mind
+> >         checking this and sent patches to the poky mailing list?
+> >
+> >
+> > The GNU_HASH warning is triggered by ignoring LDFLAGS.
+>
+> Got it, so definitely LDFLAGS var is missing, not sure if the rest are
+> necessary for this simple hello world recipe.
+> Leo
+>
 
-Greetz
--- 
-Josef Holzmayr
-Software Developer Embedded Systems
+I had this problem to and IIRC i fixed it by moving the LDFLAGS variable to
+the end of the line
+> +          ${CC} helloworld.o -o helloworld  ${LDFLAGS}
 
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
+>
+> >
+> > Ross
+>
+>
+Einar
 
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
+--f4030435b8cc8dfe450555323fe2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Mon, Jul 17, 2017 at 4:48 PM, Leonardo Sandoval <span dir=3D"ltr">&l=
+t;<a href=3D"mailto:leonardo.sandoval.gonzalez@linux.intel.com" target=3D"_=
+blank">leonardo.sandoval.gonzalez@linux.intel.com</a>&gt;</span> wrote:<br>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><span class=3D"gmail-">On=
+ Mon, 2017-07-17 at 15:30 +0100, Burton, Ross wrote:<br>
+&gt;<br>
+&gt; On 17 July 2017 at 15:04, Leonardo Sandoval<br>
+&gt; &lt;<a href=3D"mailto:leonardo.sandoval.gonzalez@linux.intel.com">leon=
+ardo.sandoval.gonzalez@<wbr>linux.intel.com</a>&gt; wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0master has the second line (LDFLAGS) =
+but not the first one<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(CPPFLAGS and<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0CFLAGS) so the problem may also be pr=
+esent on master. Would<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0you mind<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0checking this and sent patches to the=
+ poky mailing list?<br>
+&gt;<br>
+&gt;<br>
+&gt; The GNU_HASH warning is triggered by ignoring LDFLAGS.<br>
+<br>
+</span>Got it, so definitely LDFLAGS var is missing, not sure if the rest a=
+re<br>
+necessary for this simple hello world recipe.<br>
+Leo<br></blockquote><div><br></div><div>I had this problem to and IIRC i fi=
+xed it by moving the LDFLAGS variable to the end of the line</div><div>&gt;=
+ + =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${CC} helloworld.o -o helloworld =C2=
+=A0${LDFLAGS}<br></div><div><br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">
+&gt;<br>
+&gt;<br>
+&gt; Ross<br>
+<div class=3D"gmail-HOEnZb"><div class=3D"gmail-h5"><br></div></div></block=
+quote><div><br></div><div>Einar=C2=A0</div></div></div></div>
 
-
+--f4030435b8cc8dfe450555323fe2--
