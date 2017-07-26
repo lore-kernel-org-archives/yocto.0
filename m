@@ -1,69 +1,72 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <prvs=138094b9f3=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C7684E00BC0; Tue, 25 Jul 2017 20:12:36 -0700 (PDT)
+	id C5EF9E00BE8; Tue, 25 Jul 2017 23:00:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.49 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.169.146.161 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1A4DE00B6F
-	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 20:12:35 -0700 (PDT)
-Received: by mail-pg0-f49.google.com with SMTP id b8so1526883pgn.0
-	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 20:12:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-language;
-	bh=7t0yxBq8pS8aI4qY4Uibr1Sd+3yxstbk8NS3qTzues4=;
-	b=eJv9sCYV2CrYnUNRj+b+Yee5zsOK3onXwEB4Ply/EkRZ4dqkPhilvXE8aWlKyjWBiG
-	lI6mJpjsDt4SReQzW9BMV0Of6CF6LzpidXijyEee+xgVeQuvZtrqCWtprJTnIPpVUR1I
-	kjQjCNUvL8GNbuN6UFAZocytt9SmjiAt1THv1bWdz7rlCWjdHJGSyuSlOhw5uNLAhmTp
-	U753hMSwymieEkndzDOHCHjwOVGFxY0ZnGDAQaRy0As8N2h9CtPgbnEdqWqHjRnB6eue
-	a2ygbddGl7lzJ7RI4q95RxJzy+3frhf044vrg9NnDfkW8kY4oADjkk8tMmvL7pL6sEBB
-	qMIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-language;
-	bh=7t0yxBq8pS8aI4qY4Uibr1Sd+3yxstbk8NS3qTzues4=;
-	b=YukWiKTEAbK5J538JyXiewCkcIbok04bAR4oWnlx7+U96poAjTmStFEnO8cqJwDHIT
-	Br4xOIzgxJyp6I+R7SgIcstk8pZf/DnBbAOIagnxWDFHPZ4Qb8pv1m7Fy8gFDG02eVaw
-	1cqnGuk5InxIhLBY/KCNR1OJxIe5P+tCiISeTDCXS03Hb81kUxD1JuJJ7Ryuhl4G5N6I
-	FR/QqeFX0kb63tyNcS2YsvG0HRWDNeiFXL+uy3LRBOM/8FqhnYaZb0Ve04fUWsOEqA8Z
-	mfSw0WbiWbwGizBovn5eNIQviWRKs5+vgDeaXQ/V39a39bMjaYeN6c6QHtL0cRaFackZ
-	BypA==
-X-Gm-Message-State: AIVw113bCADCJ+b6TQ0StnaDXfUY+vvl8Z+pdwOxPWBM8UBGuVLK8QEo
-	65okxIZiA6uUh+9/
-X-Received: by 10.84.232.79 with SMTP id f15mr23809878pln.172.1501038755069;
-	Tue, 25 Jul 2017 20:12:35 -0700 (PDT)
-Received: from ?IPv6:2001:8003:804a:b500:3c0c:83f6:8591:c912?
-	([2001:8003:804a:b500:3c0c:83f6:8591:c912])
-	by smtp.gmail.com with ESMTPSA id
-	z74sm31192411pfd.112.2017.07.25.20.12.33 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 25 Jul 2017 20:12:34 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <ebdb747a-8506-87d0-b1ac-8338436d7dd6@gmail.com>
-Date: Wed, 26 Jul 2017 11:12:31 +0800
+X-Greylist: delayed 177 seconds by postgrey-1.32 at yocto-www;
+	Tue, 25 Jul 2017 23:00:42 PDT
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5727BE00BAF
+	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 23:00:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1501048841;
+	l=935; s=domk; d=rsi-elektrotechnik.de;
+	h=Content-Transfer-Encoding:Content-Language:Content-Type:In-Reply-To:
+	MIME-Version:Date:From:References:To:Subject;
+	bh=EFMmOMqZa6eS6tzBF9tvwhQ3CXeipDYwrssIGCnQbl4=;
+	b=YjJEpUwxjw1cU3cj9Ti8PvhgsF0r7vibnnIIDNDnXBajtFkjbs/Ik3e2gIxYRmsGLu
+	4r7TsU3V1r7bDA/FLcgZlcz5tswVMNJqX3lfAIgiDFoN7shoZslW4e8bH/fH1te9uUlu
+	YmUdRdugzrQAz9KGxAN8cC3GJjmZJ5c4H/1cs=
+X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvF1MhuFNtPdyidq2NsVaruNM0BuYWC2Hzed5IgCQrA==
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de
+	([2001:0:9d38:78cf:2035:3c8e:af6c:cbea])
+	by smtp.strato.de (RZmta 41.1 AUTH) with ESMTPSA id n0b16dt6Q5ve4Ud
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Wed, 26 Jul 2017 07:57:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1501048642; x=1501653442;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:To:
+	References:From:Message-ID:Date:User-Agent:MIME-Version:
+	In-Reply-To:Content-Type:Content-Language:
+	Content-Transfer-Encoding; bh=EFMmOMqZa6eS6tzBF9tvwhQ3CXeipDYwrs
+	sIGCnQbl4=; b=Kf+frDqZ1oaxGg8W0QJ79uRq9DZD9FhpWkoyr2OaZ3afJVIRDW
+	8l2B1htGgOLgkuh2s94YDV7rf3pEQ8qes1/Y72xFPZz7PYrTIg0fGrmtakyLA2cV
+	gZo886+H1HI7Y+5eNVq6Kz19VJ7d4+gAC4SEP55Pg2H5jeQgUYbUuHlwY=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.0.2) with ESMTPSA id
+	md50000545992.msg; Wed, 26 Jul 2017 07:57:21 +0200
+X-MDRemoteIP: 178.26.238.27
+X-MDArrival-Date: Wed, 26 Jul 2017 07:57:21 +0200
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=138094b9f3=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+To: Riko Ho <antonius.riko@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <ebdb747a-8506-87d0-b1ac-8338436d7dd6@gmail.com>
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+Message-ID: <3917f163-9def-7069-ea70-0a9a943e8dc0@rsi-elektrotechnik.de>
+Date: Wed, 26 Jul 2017 07:57:04 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-Subject: Mpich and yocto ?
+In-Reply-To: <ebdb747a-8506-87d0-b1ac-8338436d7dd6@gmail.com>
+Subject: Re: Mpich and yocto ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,56 +78,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jul 2017 03:12:36 -0000
-Content-Type: multipart/alternative;
-	boundary="------------FB607F1287AE65325D230268"
-Content-Language: en-US
-
---------------FB607F1287AE65325D230268
+X-List-Received-Date: Wed, 26 Jul 2017 06:00:44 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Language: de-DE
+Content-Transfer-Encoding: 8bit
 
-Dear Yocto Member,
+Hi
 
-Does anyone know on how to run poky on mpich cluster ?
+On 26.07.2017 05:12, Riko Ho wrote:
+> Does anyone know on how to run poky on mpich cluster ?
 
-Thanks,
+As far as I can see, MPICH is a userland library, basically. So it would 
+be the other way round, you could probably run a mpich application on a 
+number of nodes that run some OE/Poky thing.
 
+Greetz
 -- 
-*
+Josef Holzmayr
+Software Developer Embedded Systems
 
-/*******/
-Sent by Ubuntu LTS 16.04,
-Kind regards,
-Riko Ho
-/*******/
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
-*
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548
 
---------------FB607F1287AE65325D230268
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
-<html>
-  <head>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Dear Yocto Member,</p>
-    <p>Does anyone know on how to run poky on mpich cluster ?</p>
-    <p>Thanks,<br>
-    </p>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          Kind regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
-  </body>
-</html>
-
---------------FB607F1287AE65325D230268--
