@@ -1,31 +1,38 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <f_l_k@t-online.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0C35E00BFF; Wed, 26 Jul 2017 01:12:08 -0700 (PDT)
+	id 4731AE00BEC; Wed, 26 Jul 2017 08:48:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [194.25.134.82 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [194.25.134.82 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F7F0E00BAF
-	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 01:12:06 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v6Q8C6Le025877
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 01:12:06 -0700
-Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.294.0; Wed, 26 Jul 2017 01:12:05 -0700
-From: <jackie.huang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 26 Jul 2017 16:11:44 +0800
-Message-ID: <20170726081144.2245-1-jackie.huang@windriver.com>
-X-Mailer: git-send-email 2.11.0
-MIME-Version: 1.0
-Subject: [meta-security][PATCH] keynote: add new recipe
+Received: from mailout05.t-online.de (mailout05.t-online.de [194.25.134.82])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1353E00BAF
+	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 08:48:45 -0700 (PDT)
+Received: from fwd40.aul.t-online.de (fwd40.aul.t-online.de [172.20.26.139])
+	by mailout05.t-online.de (Postfix) with SMTP id B1587422017E
+	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 17:48:43 +0200 (CEST)
+Received: from genericx86-64.Speedport_W_724V_01011603_05_032
+	(EGWWfEZbwhr22AlW4VM8Q6P-U8TMawADqZc8GoChn3F8CBGtcZnQs8OKYaL+MifZty@[84.146.40.121])
+	by fwd40.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1daOY7-4VmzGy0; Wed, 26 Jul 2017 17:48:35 +0200
+Date: Wed, 26 Jul 2017 17:48:31 +0200
+From: Markus Volk <f_l_k@t-online.de>
+To: yocto@yoctoproject.org
+Message-Id: <20170726174831.508d9a1e159141570a927549@t-online.de>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.31; x86_64-poky-linux-gnu)
+Mime-Version: 1.0
+X-ID: EGWWfEZbwhr22AlW4VM8Q6P-U8TMawADqZc8GoChn3F8CBGtcZnQs8OKYaL+MifZty
+X-TOI-MSGID: 04fdfc3f-b362-4989-81b5-5083400f567d
+Subject: cogl-1.0-dev
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,178 +44,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jul 2017 08:12:08 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 26 Jul 2017 15:48:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-From: Jackie Huang <jackie.huang@windriver.com>
+Hi,
 
-KeyNote is a simple and flexible trust-management system
-designed to work well for a variety of large- and small-
-scale Internet-based applications
+I build myself an image (x86_64) for my NUC. Because i=B4m including all de=
+v packages i encountered the following problem while switching from pyro to=
+ the recent poky master
 
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
----
- .../configure-remove-hardcode-path.patch           | 37 ++++++++++++++++++++++
- .../keynote/keynote-2.3/makefile-add-ldflags.patch | 36 +++++++++++++++++++++
- recipes-security/keynote/keynote-2.3/run-ptest     | 16 ++++++++++
- recipes-security/keynote/keynote_2.3.bb            | 37 ++++++++++++++++++++++
- 4 files changed, 126 insertions(+)
- create mode 100644 recipes-security/keynote/keynote-2.3/configure-remove-hardcode-path.patch
- create mode 100644 recipes-security/keynote/keynote-2.3/makefile-add-ldflags.patch
- create mode 100644 recipes-security/keynote/keynote-2.3/run-ptest
- create mode 100644 recipes-security/keynote/keynote_2.3.bb
+do_rootfs crashes with an error message because cogl-1.0-dev wants to insta=
+ll package cogl-1.0. Cogl-1.0 is empty and has therefore not been created.
 
-diff --git a/recipes-security/keynote/keynote-2.3/configure-remove-hardcode-path.patch b/recipes-security/keynote/keynote-2.3/configure-remove-hardcode-path.patch
-new file mode 100644
-index 0000000..af3ef42
---- /dev/null
-+++ b/recipes-security/keynote/keynote-2.3/configure-remove-hardcode-path.patch
-@@ -0,0 +1,37 @@
-+Remove the hardcoded lib and include dirs
-+
-+Upstream-Status: Inappropriate [cross compile specific]
-+
-+written by: Amy Fong <amy.fong@windriver.com>
-+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-+
-+--- keynote-2.3/configure.in.orig	2010-05-24 04:44:16.000000000 -0700
-++++ keynote-2.3/configure.in	2010-05-24 04:44:55.000000000 -0700
-+@@ -21,27 +21,16 @@
-+ AC_PATH_PROG(ECHO, echo, /bin/echo)
-+ AC_PATH_PROG(SED, sed, /usr/bin/sed)
-+ 
-+-dnl Checks for libraries.
-+-LIBS="-L/usr/lib -L/usr/local/lib -L/usr/ssl/lib -L/usr/openssl/lib\
-+- -L/usr/local/ssl/lib -L/usr/local/openssl/lib -L/usr/pkg/lib -L/pkg/lib"
-+-
-+ AC_CHECK_LIB(m, floor, LIBS="$LIBS -lm")
-+ AC_CHECK_LIB(rsaref, RSAPrivateDecrypt, LIBS="$LIBS -lrsaref")
-+ AC_CHECK_LIB(crypto, i2a_ASN1_STRING, LIBS="$LIBS -lcrypto")
-+ AC_CHECK_LIB(RSAglue, RSA_ref_private_encrypt, LIBS="$LIBS -lRSAglue")
-+ 
-+-dnl Checks for header files.
-+-CPPFLAGS="-I/usr/include -I/usr/local/include -I/usr/ssl/include\
-+- -I/usr/local/ssl/include -I/usr/openssl/include -I/usr/pkg/include\
-+- -I/usr/local/openssl/include -I/pkg/include"
-+-
-+ AC_HEADER_STDC
-+ AC_HEADER_TIME
-+ AC_CHECK_HEADERS(fcntl.h limits.h unistd.h regex.h sys/time.h io.h)
-+ AC_CHECK_HEADERS(ssl/crypto.h openssl/crypto.h crypto.h memory.h)
-+ 
-+-dnl Checks for other files
-+-
-+ dnl Checks for typedefs, structures, and compiler characteristics.
-+ AC_C_CONST
-+ AC_CHECK_TYPE(u_int, unsigned int)
-diff --git a/recipes-security/keynote/keynote-2.3/makefile-add-ldflags.patch b/recipes-security/keynote/keynote-2.3/makefile-add-ldflags.patch
-new file mode 100644
-index 0000000..80d87cf
---- /dev/null
-+++ b/recipes-security/keynote/keynote-2.3/makefile-add-ldflags.patch
-@@ -0,0 +1,36 @@
-+Add LDFLAGS variable to Makefile so that extra linker flags can be sent via this variable.
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+
-+diff --git a/Makefile.in b/Makefile.in
-+index b216648..42b4827 100644
-+--- a/Makefile.in
-++++ b/Makefile.in
-+@@ -35,6 +35,7 @@ MKDIR = @MKDIR@
-+ SED = @SED@
-+ ECHO = @ECHO@
-+ TR = @TR@
-++LDFLAGS = @LDFLAGS@
-+ 
-+ TARFLAGS = -cvzf ${DISTFILE}
-+ YACCFLAGS2 = -d -p kv -b z
-+@@ -83,7 +84,7 @@ $(TARGET): $(OBJS)
-+ 	$(RANLIB) $(TARGET)
-+ 
-+ $(TARGET2): $(TARGET) $(OBJS2)
-+-	$(CC) $(CFLAGS) -o $(TARGET2) $(OBJS2) $(LIBS)
-++	$(CC) $(CFLAGS) $(LDFLAGS) -o $(TARGET2) $(OBJS2) $(LIBS)
-+ 
-+ k.tab.c: keynote.y header.h keynote.h assertion.h config.h
-+ 	$(YACC) $(YACCFLAGS) keynote.y
-+@@ -131,7 +132,7 @@ $(SSLCERT) $(SSLKEY):
-+ 	-keyout $(SSLKEY)
-+ 
-+ test-sample: all $(OBJS3)
-+-	$(CC) $(CFLAGS) -o $(TARGET3) $(OBJS3) $(LIBS)
-++	$(CC) $(CFLAGS) $(LDFLAGS) -o $(TARGET3) $(OBJS3) $(LIBS)
-+ 
-+ test-sig: all $(SSLCERT) $(SSLKEY)
-+ 	$(SED) -e 's/--.*//' < $(SSLCERT) > $(SSLCERT).1
-diff --git a/recipes-security/keynote/keynote-2.3/run-ptest b/recipes-security/keynote/keynote-2.3/run-ptest
-new file mode 100644
-index 0000000..4dc35c9
---- /dev/null
-+++ b/recipes-security/keynote/keynote-2.3/run-ptest
-@@ -0,0 +1,16 @@
-+#!/bin/sh
-+
-+cd @PTEST_PATH@
-+keynote verify -e testsuite/test-env \
-+               -r false,maybe,probably,true \
-+               -k testsuite/auth1 -k testsuite/auth2 \
-+               -k testsuite/auth3 -k testsuite/auth4 \
-+               -l testsuite/test-assertion1 \
-+               -l testsuite/test-assertion2 \
-+               -l testsuite/test-assertion3 \
-+               -l testsuite/test-assertion4 \
-+               -l testsuite/test-assertion5 \
-+               -l testsuite/test-assertion6 \
-+               -l testsuite/test-assertion7 \
-+               && echo "PASS: keynote-ptest" \
-+               || echo "FAIL: keynote-ptest"
-diff --git a/recipes-security/keynote/keynote_2.3.bb b/recipes-security/keynote/keynote_2.3.bb
-new file mode 100644
-index 0000000..b1df880
---- /dev/null
-+++ b/recipes-security/keynote/keynote_2.3.bb
-@@ -0,0 +1,37 @@
-+SUMMARY = "Keynote tool and library"
-+DESCRIPTION = "KeyNote is a simple and flexible trust-management \
-+  system designed to work well for a variety of large- and small- \
-+  scale Internet-based applications. \
-+"
-+HOMEPAGE = "http://www.cs.columbia.edu/~angelos/keynote.html"
-+SECTION = "security"
-+
-+LICENSE = "ISC"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=3a265095c549c1808686a676f2699c98"
-+
-+SRC_URI = "http://www.cs.columbia.edu/~angelos/Code/${BPN}.tar.gz \
-+       file://configure-remove-hardcode-path.patch \
-+       file://makefile-add-ldflags.patch \
-+       file://run-ptest \
-+"
-+
-+inherit autotools-brokensep ptest
-+
-+SRC_URI[md5sum] = "ba58a0297c421dc6aa671e6b753ef695"
-+SRC_URI[sha256sum] = "62f7a9d57ceb6bcdd47b604b637a7ac8ed337cef0ab02f1fa28b7e61c9b15821"
-+
-+DEPENDS = "flex openssl"
-+
-+EXTRA_OEMAKE += "test-sample -j1"
-+
-+do_install() {
-+    install -D -m 0755 ${S}/keynote ${D}${bindir}/keynote
-+    install -D -m 0644 ${S}/libkeynote.a ${D}${libdir}/libkeynote.a
-+    install -D -m 0644 ${S}/keynote.h ${D}${includedir}/keynote.h
-+}
-+
-+do_install_ptest() {
-+    install -D -m 0755 ${S}/sample-app ${D}${PTEST_PATH}
-+    cp -r ${S}/testsuite ${D}${PTEST_PATH}
-+    sed -i 's|@PTEST_PATH@|${PTEST_PATH}|' ${D}${PTEST_PATH}/run-ptest
-+}
--- 
-2.11.0
+I tried to fix this with a line in cogl-1.0_%.bbappend
 
+ALLOW_EMPTY_${PN} =3D "1"
+
+next error ... cogl-1.0-dev is missing the package libcogl20
+
+At this point i=B4ve simply overwritten the files variables in my bbappend =
+like this
+
+FILES_${PN} =3D "*"
+FILES_${PN}-examples =3D "$ {bindir} / * $ {datadir} / cogl / examples-data=
+ / *"
+FILES_libcogl =3D ""
+FILES_libcogl-gles2 =3D ""
+FILES_libcogl-pango =3D ""
+
+FILES_libcogl-path =3D ""
+
+The problem is gone, but i guess this would not be a proper solution for th=
+e project. I=B4m pretty sure, i saw those cogl errors in the do_rootfs log =
+in pyro also, but log_check didn=B4t care about that so far
+
+Markus
+--=20
+Markus Volk <f_l_k@t-online.de>
 
