@@ -1,77 +1,31 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C530E00BAF; Tue, 25 Jul 2017 23:09:49 -0700 (PDT)
+	id B0C35E00BFF; Wed, 26 Jul 2017 01:12:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.181 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.181 listed in dnsbl.sorbs.net]
-Received: from mail-pf0-f181.google.com (mail-pf0-f181.google.com
-	[209.85.192.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5996FE00BAF
-	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 23:09:47 -0700 (PDT)
-Received: by mail-pf0-f181.google.com with SMTP id s70so67065646pfs.0
-	for <yocto@yoctoproject.org>; Tue, 25 Jul 2017 23:09:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language;
-	bh=Xf8O7RcQxxbpy98Fbg1BNl2KGx4k+YH1eymyTSwE41Q=;
-	b=BoZb+pX3Mn+tkgwJIUY//suhOwa1potz7gtOWDf/e+crh0DpKEv5DD4W4C6TMHaFV8
-	SxLYwD75p/g4tJZzHgA6fuAoc9V+RTYa7Iu3ZQkyeF5cRKUHi/t2qwOchIwBarjfpaYJ
-	jg2rpjBuchh1kDV8k1Yv4SKK3iHWW9wQL8Flst43Sj+sTgugFGiiiR4q3svTcJwj8BvS
-	mX2+LQb3TBU/D+sbZwgrjn9qltEfsQVvES16ySY33sAw2fkV/x+GAqMxZ27LgcFM/wdw
-	jDN13DGDbsnZn7AarW44XER9AY6ljGgCKplfO/yOvnWFAB8PyQpgew1yW7x9KySQk6EQ
-	HPsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=Xf8O7RcQxxbpy98Fbg1BNl2KGx4k+YH1eymyTSwE41Q=;
-	b=JngRZrdXGTTyh60EMfuajP71OFBANxqHZit/xxMv8OdlG82AJ7SpHEhmoPxa0y5/Qg
-	J7uP6tk6BM8Y3rwgE3XTVnBqd7C3q31qjrsIS/jrXeWtOdDgeUjjmvzmgsm/CzZcJpii
-	qUpnauRTOA3O6aLv6u1TQo2TaaxnOcanhUorWRfri5BGksc1fOpQrla99/YylsllNrgy
-	4RIkhB6VcEfy5nnEvajxw8CX4pxa5RFvPglZqB6dNgXf9DMZ11Jx5mp6W7VpzqwfiXmY
-	B/9pVBVS35P/LNo7eze+4Xik0/QHeMWJyhF2CXbOVZHetHCKP4UsPGWpaXaBBgFio6Nx
-	BnRQ==
-X-Gm-Message-State: AIVw113RSXMnQSC+SG5uwWPHEKx66dml6kyW4Oo3qPt6sBI/1dhAOOnS
-	TkWHY5Du9Xe1fRoE
-X-Received: by 10.98.7.132 with SMTP id 4mr8984654pfh.216.1501049387210;
-	Tue, 25 Jul 2017 23:09:47 -0700 (PDT)
-Received: from ?IPv6:2001:8003:804a:b500:3c0c:83f6:8591:c912?
-	([2001:8003:804a:b500:3c0c:83f6:8591:c912])
-	by smtp.gmail.com with ESMTPSA id
-	y62sm28235121pfb.3.2017.07.25.23.09.45
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 25 Jul 2017 23:09:46 -0700 (PDT)
-To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <ebdb747a-8506-87d0-b1ac-8338436d7dd6@gmail.com>
-	<3917f163-9def-7069-ea70-0a9a943e8dc0@rsi-elektrotechnik.de>
-From: Riko Ho <antonius.riko@gmail.com>
-Message-ID: <118eb01a-00c6-7aff-3e4b-ce3ee56a9841@gmail.com>
-Date: Wed, 26 Jul 2017 14:09:43 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.1.1
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F7F0E00BAF
+	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 01:12:06 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v6Q8C6Le025877
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
+	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 01:12:06 -0700
+Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.294.0; Wed, 26 Jul 2017 01:12:05 -0700
+From: <jackie.huang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 26 Jul 2017 16:11:44 +0800
+Message-ID: <20170726081144.2245-1-jackie.huang@windriver.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-In-Reply-To: <3917f163-9def-7069-ea70-0a9a943e8dc0@rsi-elektrotechnik.de>
-Subject: Re: Mpich and yocto ?
+Subject: [meta-security][PATCH] keynote: add new recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,89 +37,178 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jul 2017 06:09:49 -0000
-Content-Type: multipart/alternative;
-	boundary="------------2D1356EA733DAE3C0F9B3C51"
-Content-Language: en-US
+X-List-Received-Date: Wed, 26 Jul 2017 08:12:08 -0000
+Content-Type: text/plain
 
---------------2D1356EA733DAE3C0F9B3C51
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Jackie Huang <jackie.huang@windriver.com>
 
-How can we do that ?
+KeyNote is a simple and flexible trust-management system
+designed to work well for a variety of large- and small-
+scale Internet-based applications
 
-bitbake in which node ? I don't understand ?
+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+---
+ .../configure-remove-hardcode-path.patch           | 37 ++++++++++++++++++++++
+ .../keynote/keynote-2.3/makefile-add-ldflags.patch | 36 +++++++++++++++++++++
+ recipes-security/keynote/keynote-2.3/run-ptest     | 16 ++++++++++
+ recipes-security/keynote/keynote_2.3.bb            | 37 ++++++++++++++++++++++
+ 4 files changed, 126 insertions(+)
+ create mode 100644 recipes-security/keynote/keynote-2.3/configure-remove-hardcode-path.patch
+ create mode 100644 recipes-security/keynote/keynote-2.3/makefile-add-ldflags.patch
+ create mode 100644 recipes-security/keynote/keynote-2.3/run-ptest
+ create mode 100644 recipes-security/keynote/keynote_2.3.bb
 
-
-On 26/07/17 13:57, Josef Holzmayr wrote:
-> Hi
->
-> On 26.07.2017 05:12, Riko Ho wrote:
->> Does anyone know on how to run poky on mpich cluster ?
->
-> As far as I can see, MPICH is a userland library, basically. So it 
-> would be the other way round, you could probably run a mpich 
-> application on a number of nodes that run some OE/Poky thing.
->
-> Greetz
-
+diff --git a/recipes-security/keynote/keynote-2.3/configure-remove-hardcode-path.patch b/recipes-security/keynote/keynote-2.3/configure-remove-hardcode-path.patch
+new file mode 100644
+index 0000000..af3ef42
+--- /dev/null
++++ b/recipes-security/keynote/keynote-2.3/configure-remove-hardcode-path.patch
+@@ -0,0 +1,37 @@
++Remove the hardcoded lib and include dirs
++
++Upstream-Status: Inappropriate [cross compile specific]
++
++written by: Amy Fong <amy.fong@windriver.com>
++Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
++
++--- keynote-2.3/configure.in.orig	2010-05-24 04:44:16.000000000 -0700
+++++ keynote-2.3/configure.in	2010-05-24 04:44:55.000000000 -0700
++@@ -21,27 +21,16 @@
++ AC_PATH_PROG(ECHO, echo, /bin/echo)
++ AC_PATH_PROG(SED, sed, /usr/bin/sed)
++ 
++-dnl Checks for libraries.
++-LIBS="-L/usr/lib -L/usr/local/lib -L/usr/ssl/lib -L/usr/openssl/lib\
++- -L/usr/local/ssl/lib -L/usr/local/openssl/lib -L/usr/pkg/lib -L/pkg/lib"
++-
++ AC_CHECK_LIB(m, floor, LIBS="$LIBS -lm")
++ AC_CHECK_LIB(rsaref, RSAPrivateDecrypt, LIBS="$LIBS -lrsaref")
++ AC_CHECK_LIB(crypto, i2a_ASN1_STRING, LIBS="$LIBS -lcrypto")
++ AC_CHECK_LIB(RSAglue, RSA_ref_private_encrypt, LIBS="$LIBS -lRSAglue")
++ 
++-dnl Checks for header files.
++-CPPFLAGS="-I/usr/include -I/usr/local/include -I/usr/ssl/include\
++- -I/usr/local/ssl/include -I/usr/openssl/include -I/usr/pkg/include\
++- -I/usr/local/openssl/include -I/pkg/include"
++-
++ AC_HEADER_STDC
++ AC_HEADER_TIME
++ AC_CHECK_HEADERS(fcntl.h limits.h unistd.h regex.h sys/time.h io.h)
++ AC_CHECK_HEADERS(ssl/crypto.h openssl/crypto.h crypto.h memory.h)
++ 
++-dnl Checks for other files
++-
++ dnl Checks for typedefs, structures, and compiler characteristics.
++ AC_C_CONST
++ AC_CHECK_TYPE(u_int, unsigned int)
+diff --git a/recipes-security/keynote/keynote-2.3/makefile-add-ldflags.patch b/recipes-security/keynote/keynote-2.3/makefile-add-ldflags.patch
+new file mode 100644
+index 0000000..80d87cf
+--- /dev/null
++++ b/recipes-security/keynote/keynote-2.3/makefile-add-ldflags.patch
+@@ -0,0 +1,36 @@
++Add LDFLAGS variable to Makefile so that extra linker flags can be sent via this variable.
++
++Upstream-Status: Pending
++
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++
++diff --git a/Makefile.in b/Makefile.in
++index b216648..42b4827 100644
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -35,6 +35,7 @@ MKDIR = @MKDIR@
++ SED = @SED@
++ ECHO = @ECHO@
++ TR = @TR@
+++LDFLAGS = @LDFLAGS@
++ 
++ TARFLAGS = -cvzf ${DISTFILE}
++ YACCFLAGS2 = -d -p kv -b z
++@@ -83,7 +84,7 @@ $(TARGET): $(OBJS)
++ 	$(RANLIB) $(TARGET)
++ 
++ $(TARGET2): $(TARGET) $(OBJS2)
++-	$(CC) $(CFLAGS) -o $(TARGET2) $(OBJS2) $(LIBS)
+++	$(CC) $(CFLAGS) $(LDFLAGS) -o $(TARGET2) $(OBJS2) $(LIBS)
++ 
++ k.tab.c: keynote.y header.h keynote.h assertion.h config.h
++ 	$(YACC) $(YACCFLAGS) keynote.y
++@@ -131,7 +132,7 @@ $(SSLCERT) $(SSLKEY):
++ 	-keyout $(SSLKEY)
++ 
++ test-sample: all $(OBJS3)
++-	$(CC) $(CFLAGS) -o $(TARGET3) $(OBJS3) $(LIBS)
+++	$(CC) $(CFLAGS) $(LDFLAGS) -o $(TARGET3) $(OBJS3) $(LIBS)
++ 
++ test-sig: all $(SSLCERT) $(SSLKEY)
++ 	$(SED) -e 's/--.*//' < $(SSLCERT) > $(SSLCERT).1
+diff --git a/recipes-security/keynote/keynote-2.3/run-ptest b/recipes-security/keynote/keynote-2.3/run-ptest
+new file mode 100644
+index 0000000..4dc35c9
+--- /dev/null
++++ b/recipes-security/keynote/keynote-2.3/run-ptest
+@@ -0,0 +1,16 @@
++#!/bin/sh
++
++cd @PTEST_PATH@
++keynote verify -e testsuite/test-env \
++               -r false,maybe,probably,true \
++               -k testsuite/auth1 -k testsuite/auth2 \
++               -k testsuite/auth3 -k testsuite/auth4 \
++               -l testsuite/test-assertion1 \
++               -l testsuite/test-assertion2 \
++               -l testsuite/test-assertion3 \
++               -l testsuite/test-assertion4 \
++               -l testsuite/test-assertion5 \
++               -l testsuite/test-assertion6 \
++               -l testsuite/test-assertion7 \
++               && echo "PASS: keynote-ptest" \
++               || echo "FAIL: keynote-ptest"
+diff --git a/recipes-security/keynote/keynote_2.3.bb b/recipes-security/keynote/keynote_2.3.bb
+new file mode 100644
+index 0000000..b1df880
+--- /dev/null
++++ b/recipes-security/keynote/keynote_2.3.bb
+@@ -0,0 +1,37 @@
++SUMMARY = "Keynote tool and library"
++DESCRIPTION = "KeyNote is a simple and flexible trust-management \
++  system designed to work well for a variety of large- and small- \
++  scale Internet-based applications. \
++"
++HOMEPAGE = "http://www.cs.columbia.edu/~angelos/keynote.html"
++SECTION = "security"
++
++LICENSE = "ISC"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=3a265095c549c1808686a676f2699c98"
++
++SRC_URI = "http://www.cs.columbia.edu/~angelos/Code/${BPN}.tar.gz \
++       file://configure-remove-hardcode-path.patch \
++       file://makefile-add-ldflags.patch \
++       file://run-ptest \
++"
++
++inherit autotools-brokensep ptest
++
++SRC_URI[md5sum] = "ba58a0297c421dc6aa671e6b753ef695"
++SRC_URI[sha256sum] = "62f7a9d57ceb6bcdd47b604b637a7ac8ed337cef0ab02f1fa28b7e61c9b15821"
++
++DEPENDS = "flex openssl"
++
++EXTRA_OEMAKE += "test-sample -j1"
++
++do_install() {
++    install -D -m 0755 ${S}/keynote ${D}${bindir}/keynote
++    install -D -m 0644 ${S}/libkeynote.a ${D}${libdir}/libkeynote.a
++    install -D -m 0644 ${S}/keynote.h ${D}${includedir}/keynote.h
++}
++
++do_install_ptest() {
++    install -D -m 0755 ${S}/sample-app ${D}${PTEST_PATH}
++    cp -r ${S}/testsuite ${D}${PTEST_PATH}
++    sed -i 's|@PTEST_PATH@|${PTEST_PATH}|' ${D}${PTEST_PATH}/run-ptest
++}
 -- 
-*
+2.11.0
 
-/*******/
-Sent by Ubuntu LTS 16.04,
-Kind regards,
-Riko Ho
-/*******/
 
-*
-
---------------2D1356EA733DAE3C0F9B3C51
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>How can we do that ?</p>
-    <p>bitbake in which node ? I don't understand ?<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 26/07/17 13:57, Josef Holzmayr
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:3917f163-9def-7069-ea70-0a9a943e8dc0@rsi-elektrotechnik.de">Hi
-      <br>
-      <br>
-      On 26.07.2017 05:12, Riko Ho wrote:
-      <br>
-      <blockquote type="cite">Does anyone know on how to run poky on
-        mpich cluster ?
-        <br>
-      </blockquote>
-      <br>
-      As far as I can see, MPICH is a userland library, basically. So it
-      would be the other way round, you could probably run a mpich
-      application on a number of nodes that run some OE/Poky thing.
-      <br>
-      <br>
-      Greetz
-      <br>
-    </blockquote>
-    <br>
-    <div class="moz-signature">-- <br>
-      <b>
-        <p style="color:blue;"> /*******/<br>
-          Sent by Ubuntu LTS 16.04,<br>
-          Kind regards,<br>
-          Riko Ho<br>
-          /*******/<br>
-        </p>
-      </b></div>
-  </body>
-</html>
-
---------------2D1356EA733DAE3C0F9B3C51--
