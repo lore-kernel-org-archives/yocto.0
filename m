@@ -1,33 +1,80 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C996E00C6E; Wed, 26 Jul 2017 18:26:06 -0700 (PDT)
+	id 67D69E00C69; Wed, 26 Jul 2017 20:39:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.68 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (antonius.riko[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.68 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A19FE00C60
-	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 18:26:03 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	26 Jul 2017 18:26:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.40,417,1496127600"; d="scan'208";a="1199729573"
-Received: from tgraydonws.ostc.intel.com ([10.54.69.46])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Jul 2017 18:25:56 -0700
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 26 Jul 2017 18:25:52 -0700
-Message-Id: <1501118752-27659-1-git-send-email-tracy.graydon@intel.com>
-X-Mailer: git-send-email 2.7.0
-Cc: joshua.g.lock@intel.com
-Subject: [yocto-autobuilder][PATCH] /buildset-config.meta-intel/*.conf
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 203C8E00B87
+	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 20:39:19 -0700 (PDT)
+Received: by mail-pg0-f68.google.com with SMTP id d193so19148738pgc.2
+	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 20:39:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=s+cfY/ztqSbJp3yaA+a1/cBMwAOuRs5FZjbxPWAsxyk=;
+	b=VJS7IwEFbBC4Ii+WX81BTFAv6oXKMPAy38ZJ/QTln/bBFDxULCJ51oJG53YxSTzpvv
+	z0hvdF5sveOdqRSekl65LqWrT9zZyNvDHMUbYRegsQ0VSZhI4qRDnaj0TaYbwVTethXa
+	z/QE6sqTqPRe2rq+xX6q1mEQqvX24gEq8a8F2SbP3H0V2fXmsv1j++Md6Kqp3e/TyKRY
+	yVC7NMyQ4hORNTiQ7g4yo/zfIPGfdIVawl+Zegb4RsB8TCVqMaTazk2+G/PKuRucKInj
+	PM4TSjH5j7ILww7rdD6gyNyaCbrPFRFvSCWfSOvJKUsQsvhjumyJiEbQNwFnPdqimbLy
+	vTxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=s+cfY/ztqSbJp3yaA+a1/cBMwAOuRs5FZjbxPWAsxyk=;
+	b=M7KS7jklSaqE+JP5fcB4uCPiA3Hjj4m3SfsYv1APpyuX2gSj2P0GPVLdySeWg+58pp
+	dxYmymXfUUv8UA8GcR+HrZv8/qMRamBzmbyAVtKDGOslS5nmVCrBcrBGgs+8ea9UZeIZ
+	d3HPG/vxSbbA79PUxAeRxNAcVJ3N5I+z4nLkkrqNC+T8o8ErZsk2gAIoo11qKOOA81Tb
+	nbLIUwbTUa5G9P+3A6Ds6Y0PWyzfSEpFD9yv71VXNM9TtRy0IClLj8lzrf29rUyOxMkc
+	iCyeNgOfc5S7JJyc6C63ck6JbIFe2jE86GHuX6gB2obqfIGGDqCJVMgCIkqA5UsEhMpQ
+	FaWg==
+X-Gm-Message-State: AIVw112lboAUk+YfUn58v0Y3Dsh3rQFV4fBzZ022I6ut0F6tph5zvepj
+	yQRAcOLoj9QSTVoG
+X-Received: by 10.84.232.197 with SMTP id x5mr2966108plm.329.1501126758772;
+	Wed, 26 Jul 2017 20:39:18 -0700 (PDT)
+Received: from ?IPv6:2001:8003:804a:b500:8d40:2cc5:d4f4:a895?
+	([2001:8003:804a:b500:8d40:2cc5:d4f4:a895])
+	by smtp.gmail.com with ESMTPSA id
+	s11sm32905369pgr.53.2017.07.26.20.39.16
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 26 Jul 2017 20:39:18 -0700 (PDT)
+To: Randy MacLeod <randy.macleod@windriver.com>
+References: <ebdb747a-8506-87d0-b1ac-8338436d7dd6@gmail.com>
+	<3917f163-9def-7069-ea70-0a9a943e8dc0@rsi-elektrotechnik.de>
+	<118eb01a-00c6-7aff-3e4b-ce3ee56a9841@gmail.com>
+	<515b47cb-90af-21e0-7e40-2af2be9326ce@windriver.com>
+	<CAByQQ_pBh0RLbsk8f+-nHD_OZ2BnKF59R9z_EdntX9HfOXDUVg@mail.gmail.com>
+	<8a379ee0-7123-947e-3a1c-f9413bb3d604@windriver.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <be7e35b2-0ee1-f739-0303-da512a734c4c@gmail.com>
+Date: Thu, 27 Jul 2017 11:39:14 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.1.1
+MIME-Version: 1.0
+In-Reply-To: <8a379ee0-7123-947e-3a1c-f9413bb3d604@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Mpich and yocto ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,468 +86,486 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jul 2017 01:26:06 -0000
+X-List-Received-Date: Thu, 27 Jul 2017 03:39:21 -0000
+Content-Type: multipart/alternative;
+	boundary="------------772CD68C1FE962F53385B27F"
+Content-Language: en-US
 
-Update meta-intel buildsets to reflect current production versions:
+--------------772CD68C1FE962F53385B27F
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-- Change various SRCREVs to default to blank instead of linux-yocto or AUTOREV.
+Dear Yocto Team Member,
 
-Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
----
- .../intel-core2-32-lsb-rt.conf                     | 12 +++++-----
- buildset-config.meta-intel/intel-core2-32-lsb.conf | 10 ++++-----
- buildset-config.meta-intel/intel-core2-32-rt.conf  | 12 +++++-----
- buildset-config.meta-intel/intel-core2-32.conf     | 10 ++++-----
- .../intel-corei7-64-lsb-rt.conf                    | 12 +++++-----
- .../intel-corei7-64-lsb.conf                       | 10 ++++-----
- buildset-config.meta-intel/intel-corei7-64-rt.conf | 12 +++++-----
- buildset-config.meta-intel/intel-corei7-64.conf    | 10 ++++-----
- .../nightly-meta-intel-world.conf                  | 10 ++++-----
- buildset-config.meta-intel/nightly-musl.conf       | 17 +++++++-------
- buildset-config.meta-intel/nightly-x32.conf        | 26 ++++++++++------------
- 11 files changed, 70 insertions(+), 71 deletions(-)
+Thanks for the reply,
 
-diff --git a/buildset-config.meta-intel/intel-core2-32-lsb-rt.conf b/buildset-config.meta-intel/intel-core2-32-lsb-rt.conf
-index 6e5d794..365c437 100644
---- a/buildset-config.meta-intel/intel-core2-32-lsb-rt.conf
-+++ b/buildset-config.meta-intel/intel-core2-32-lsb-rt.conf
-@@ -1,5 +1,5 @@
- [intel-core2-32-lsb-rt]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -22,8 +22,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -37,8 +37,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank}):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-@@ -56,7 +56,7 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'intel-core2-32',
-                             'SDKMACHINE' : 'x86_64',
-                             'distro': 'poky-lsb',
--                            'atextappend' : '\nPREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"\n'}},
-+                            'atextappend' : '\nPREFERRED_PROVIDER_virtual/kernel_linuxstdbase = "linux-intel-rt"\n'}},
-         {'AddKernelProps': {}},
-         {'BuildImages': {'images': 'core-image-rt'}},
-         {'PublishLayerTarballs':{}},
-diff --git a/buildset-config.meta-intel/intel-core2-32-lsb.conf b/buildset-config.meta-intel/intel-core2-32-lsb.conf
-index 5cb608f..cea5962 100644
---- a/buildset-config.meta-intel/intel-core2-32-lsb.conf
-+++ b/buildset-config.meta-intel/intel-core2-32-lsb.conf
-@@ -1,5 +1,5 @@
- [intel-core2-32-lsb]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -22,8 +22,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -37,8 +37,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-diff --git a/buildset-config.meta-intel/intel-core2-32-rt.conf b/buildset-config.meta-intel/intel-core2-32-rt.conf
-index 45af310..09aa462 100644
---- a/buildset-config.meta-intel/intel-core2-32-rt.conf
-+++ b/buildset-config.meta-intel/intel-core2-32-rt.conf
-@@ -1,5 +1,5 @@
- [intel-core2-32-rt]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -16,8 +16,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -31,8 +31,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-@@ -49,7 +49,7 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'intel-core2-32',
-                             'SDKMACHINE' : 'x86_64',
-                             'distro': 'poky',
--                            'atextappend' : '\nPREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"\n'}},
-+                            'atextappend' : '\nPREFERRED_PROVIDER_virtual/kernel = "linux-intel-rt"\n'}},
-         {'AddKernelProps': {}},
-         {'BuildImages': {'images': 'core-image-rt'}},
-         {'PublishLayerTarballs':{}},
-diff --git a/buildset-config.meta-intel/intel-core2-32.conf b/buildset-config.meta-intel/intel-core2-32.conf
-index 6361940..4397650 100644
---- a/buildset-config.meta-intel/intel-core2-32.conf
-+++ b/buildset-config.meta-intel/intel-core2-32.conf
-@@ -1,5 +1,5 @@
- [intel-core2-32]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -16,8 +16,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -31,8 +31,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank}):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-diff --git a/buildset-config.meta-intel/intel-corei7-64-lsb-rt.conf b/buildset-config.meta-intel/intel-corei7-64-lsb-rt.conf
-index 00049ac..c58a3be 100644
---- a/buildset-config.meta-intel/intel-corei7-64-lsb-rt.conf
-+++ b/buildset-config.meta-intel/intel-corei7-64-lsb-rt.conf
-@@ -1,5 +1,5 @@
- [intel-corei7-64-lsb-rt]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -22,8 +22,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -37,8 +37,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-@@ -55,7 +55,7 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'intel-corei7-64',
-                             'SDKMACHINE' : 'x86_64',
-                             'distro': 'poky-lsb',
--                            'atextappend' : '\nPREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"\n'}},
-+                            'atextappend' : '\nPREFERRED_PROVIDER_virtual/kernel_linuxstdbase = "linux-intel-rt"\n'}},
-         {'AddKernelProps': {}},
-         {'BuildImages': {'images': 'core-image-rt'}},
-         {'PublishLayerTarballs':{}},
-diff --git a/buildset-config.meta-intel/intel-corei7-64-lsb.conf b/buildset-config.meta-intel/intel-corei7-64-lsb.conf
-index 6d22818..4d86cc4 100644
---- a/buildset-config.meta-intel/intel-corei7-64-lsb.conf
-+++ b/buildset-config.meta-intel/intel-corei7-64-lsb.conf
-@@ -1,5 +1,5 @@
- [intel-corei7-64-lsb]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -22,8 +22,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -37,8 +37,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-diff --git a/buildset-config.meta-intel/intel-corei7-64-rt.conf b/buildset-config.meta-intel/intel-corei7-64-rt.conf
-index d1102de..6edcb07 100644
---- a/buildset-config.meta-intel/intel-corei7-64-rt.conf
-+++ b/buildset-config.meta-intel/intel-corei7-64-rt.conf
-@@ -1,5 +1,5 @@
- [intel-corei7-64-rt]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -16,8 +16,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -31,8 +31,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-@@ -49,7 +49,7 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'intel-corei7-64',
-                             'SDKMACHINE' : 'x86_64',
-                             'distro': 'poky',
--                            'atextappend' : '\nPREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"\n'}},
-+                            'atextappend' : '\nPREFERRED_PROVIDER_virtual/kernel = "linux-intel-rt"\n'}},
-         {'AddKernelProps': {}},
-         {'BuildImages': {'images': 'core-image-rt'}},
-         {'PublishLayerTarballs':{}},
-diff --git a/buildset-config.meta-intel/intel-corei7-64.conf b/buildset-config.meta-intel/intel-corei7-64.conf
-index 4d664f6..934b2c0 100644
---- a/buildset-config.meta-intel/intel-corei7-64.conf
-+++ b/buildset-config.meta-intel/intel-corei7-64.conf
-@@ -1,5 +1,5 @@
- [intel-corei7-64]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -16,8 +16,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -31,8 +31,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-diff --git a/buildset-config.meta-intel/nightly-meta-intel-world.conf b/buildset-config.meta-intel/nightly-meta-intel-world.conf
-index d951620..6df70eb 100644
---- a/buildset-config.meta-intel/nightly-meta-intel-world.conf
-+++ b/buildset-config.meta-intel/nightly-meta-intel-world.conf
-@@ -1,5 +1,5 @@
- [nightly-meta-intel-world]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -16,8 +16,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -31,8 +31,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-diff --git a/buildset-config.meta-intel/nightly-musl.conf b/buildset-config.meta-intel/nightly-musl.conf
-index c65c302..d74c3d7 100644
---- a/buildset-config.meta-intel/nightly-musl.conf
-+++ b/buildset-config.meta-intel/nightly-musl.conf
-@@ -1,5 +1,5 @@
- [nightly-musl]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -16,8 +16,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -31,8 +31,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-@@ -42,11 +42,12 @@ steps: [{'SetDest':{}},
-         {'CheckOutLayers': {}},
-         {'RunPreamble': {}},
-         {'GetDistroVersion' : {'distro': 'poky'}},
--        {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'x86_64',
-+        {'CreateAutoConf': {'machine': 'intel-corei7-64', 'SDKMACHINE' : 'x86_64',
-                             'buildhistory' : False, 'distro': 'poky',
-                             'atextappend' : '\nTCLIBC="musl"\n' }},
--        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-+        {'CreateBBLayersConf': {'buildprovider' : 'yocto',
-+                                'bsplayer': True, 'bspprovider': 'intel',
-+                                'layerdirs': ['meta-intel', 'meta-intel/meta-tlk']}},
-         {'BuildImages': {'images':  'core-image-minimal core-image-full-cmdline core-image-sato world'}},
--        {'RunSanityTests': {'images': 'core-image-minimal core-image-full-cmdline core-image-sato'}},
-         {'DownloadErrorReports': {}},
-         {'SendErrorReport': {}}]
-diff --git a/buildset-config.meta-intel/nightly-x32.conf b/buildset-config.meta-intel/nightly-x32.conf
-index 6a24952..95e3d01 100644
---- a/buildset-config.meta-intel/nightly-x32.conf
-+++ b/buildset-config.meta-intel/nightly-x32.conf
-@@ -1,5 +1,5 @@
- [nightly-x32]
--builders: 'example-worker'
-+builders: ['example-worker']
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
-              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp', 'yocto':'meta-yocto', 'poky':'meta-poky'},
-@@ -16,8 +16,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_meta':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_meta',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KMETA_${MACHINE} (default is blank):<br></h3>'}},
-         {'srcuri_meta':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_meta',
-@@ -31,8 +31,8 @@ props: [{'kmeta':{'prop_type':'StringParameter',
-         {'srcrev_machine':{'prop_type':'StringParameter',
-                        'size': 15,
-                        'name': 'srcrev_machine',
--                       'default': '${AUTOREV}',
--                       'label':'<hr><h3> SRCREV for KBRANCH. (default is ${AUTOREV}):<br></h3>'}},
-+                       'default': '',
-+                       'label':'<hr><h3> SRCREV for KBRANCH. (default is blank):<br></h3>'}},
-         {'srcuri_machine':{'prop_type':'StringParameter',
-                        'size': 50,
-                        'name': 'srcuri_machine',
-@@ -43,17 +43,15 @@ steps: [{'SetDest':{}},
-         {'RunPreamble': {}},
-         {'GetDistroVersion' : {'distro': 'poky'}},
-         {'GetBitbakeVersion': {}},
--        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64',
-+        {'CreateAutoConf': {'machine': 'intel-corei7-64', 'SDKMACHINE' : 'x86_64',
-                             'buildhistory' : False, 'x32': True,
--                            'distro': 'poky'}},
--        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-+                            'distro': 'poky',
-+                            'atextappend' : '\nrequire conf/multilib.conf\nMULTILIBS = "multilib:libx32"\nDEFAULTTUNE_virtclass-multilib-libx32 = "corei7-64-x32"\n'}},
-+        {'CreateBBLayersConf': {'buildprovider' : 'yocto',
-+                                'bsplayer': True, 'bspprovider': 'intel',
-+                                'layerdirs': ['meta-intel', 'meta-intel/meta-tlk']}},
-         {'PublishLayerTarballs':{}},
--        {'BuildImages': {'images': 'core-image-minimal core-image-sato world'}},
--        {'RunSanityTests': {'images': 'core-image-minimal'}},
--        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64',
--                            'buildhistory' : False, 'x32': True,
--                            'distro': 'poky'}},
--        {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'x32lib'}},
-+        {'BuildImages': {'images': 'core-image-minimal core-image-sato'}},
-         {'DownloadErrorReports': {}},
-         {'SendErrorReport': {}},
-         {'UploadToasterEventlog': {}},
+So :
+
+"YP+distcc/icecream" is equal to MpichCluster ? or that one is inside 
+MpichCluster,
+
+I have tested :
+
+https://help.ubuntu.com/community/MpichCluster
+
+I don't have a fancy systems as you said below, but I have a spare 
+motherboards, memories and hard drives for a test on a small cluster, at 
+least making my compilation time faster and get more space.
+
+Ok, I'll have a look on those links below and keep posted, thanks.
+
+
+
+On 27/07/17 09:10, Randy MacLeod wrote:
+> On 2017-07-26 08:08 PM, Riko Ho wrote:
+>> Dear Yocto Team Member,
+>>
+>> The cluster is using Ubuntu.
+>> I haven't checked all the packages on the other computer. I will.
+>>
+>> My goal is getting more hardrive space and compiling speed.
+>>
+>> How can I relate bitbake with mpicc or other compilers needed by 
+>> yocto (arm-linux-gcc, gcc, etc)?
+>
+> Do you mean that you want to do part of the build using each node in 
+> the cluster? That's possible now using distcc/icecream
+> (https://github.com/icecc/icecream ) but I haven't done it in years
+> as explained below.
+>
+> Oh, there's a Stack Overflow entry for YP+distcc/icecream:
+>
+> https://stackoverflow.com/questions/14472175/distributed-compile-with-bitbake 
+>
+>
+> and distcc is mentioned in the docs:
+>    http://www.yoctoproject.org/docs/2.3/dev-manual/dev-manual.html
+>
+>
+> Anyway, this just distributes the compilation so:
+>  - build management,
+>  - recipe download, unpack, patch, configuring and packaging,
+>  - linking, etc
+> are still done centrally.
+>
+> There are plans to improve the bitbake task manager so that, with
+> the recipe specific sysroot work that has been done in 2.2, we'd be
+> able to farm out all of the stages of a package's build to individual
+> nodes in a cluster:
+>    https://bugzilla.yoctoproject.org/show_bug.cgi?id=10684
+> I don't know if that work is a priority for the fall 2.4 release.
+>
+> Note that depending on your workload, inter-recipe dependencies and
+> the long time taken to run configure for autotools-based packages is
+> the bottleneck. Therefore, buying a high-end ( >= 16+16 core )
+> system with lots (64GB+) RAM and a good IO sub-system results
+> in core-image-minimal building quickly, certainly under 40 minutes.
+>    https://wiki.yoctoproject.org/wiki/Build_Performance
+>
+> Also for repeated builds by one or more developers, sstate-cache is
+> a huge speed-up with some cost in scripts and people to manage it.
+>
+>
+> I've wondered if anyone has played with bitbake on an OS that is
+> known as a single-system image:
+>    https://en.wikipedia.org/wiki/Single_system_image
+> On these systems, jobs are transparently moved from the master-node
+> to idle nodes in the cluster by the operating system. That would be
+> an interesting academic exercise but it wouldn't be useful in
+> practice since such OSs are not generally used as far as I know at
+> least.
+>
+> I look forward to hearing what your goals and plans are.
+>
+> ../Randy
+>
+>
+>>
+>> I have tested a small code with mpicc and the cluster do the job.
+>>
+>> Thanks for the attention.
+>>
+>> On Jul 27, 2017 3:23 AM, "Randy MacLeod" <randy.macleod@windriver.com 
+>> <mailto:randy.macleod@windriver.com>> wrote:
+>>  >
+>>  > On 2017-07-26 02:09 AM, Riko Ho wrote:
+>>  >>
+>>  >> How can we do that ?
+>>  >>
+>>  >> bitbake in which node ? I don't understand ?
+>>  >>
+>>  >>
+>>  >> On 26/07/17 13:57, Josef Holzmayr wrote:
+>>  >>>
+>>  >>> Hi
+>>  >>>
+>>  >>> On 26.07.2017 05:12, Riko Ho wrote:
+>>  >>>>
+>>  >>>> Does anyone know on how to run poky on mpich cluster ?
+>>  >
+>>  >
+>>  > That's a rather ambiguous question.
+>>  >
+>>  > What OS/Distro is the mpich cluster running?
+>>  > Have you installed the packages that are required on the host:
+>>  >    see: "The Build Host Packages" here:
+>>  >
+>>  > 
+>> http://www.yoctoproject.org/docs/2.3/yocto-project-qs/yocto-project-qs.html
+>>  >
+>>  > What do you hope to achieve using bitbake?
+>>  >
+>>  >
+>>  >>>
+>>  >>> As far as I can see, MPICH is a userland library, basically. So 
+>> it would be the other way round, you could probably run a mpich 
+>> application on a number of nodes that run some OE/Poky thing.
+>>  >>>
+>>  >>> Greetz
+>>  >
+>>  >
+>>  > There is an mpich recipe here:
+>>  > http://layers.openembedded.org/layerindex/recipe/33348/
+>>  >
+>>  > but again, it's not clear what your ultimate goal is.
+>>  >
+>>  > ../Randy
+>>  >
+>>  >>
+>>  >> --
+>>  >> *
+>>  >>
+>>  >>
+>>  >> /*******/
+>>  >> Sent by Ubuntu LTS 16.04,
+>>  >> Kind regards,
+>>  >> Riko Ho
+>>  >> /*******/
+>>  >>
+>>  >> *
+>>  >>
+>>  >>
+>>  >
+>>  >
+>>  > --
+>>  > # Randy MacLeod. SMTS, Linux, Wind River
+>>  > Direct: 613.963.1350 | 350 Terry Fox Drive, Suite 200, Ottawa, ON, 
+>> Canada, K2K 2W5
+>>
+>
+>
+
 -- 
-2.7.0
+*
 
+/*******/
+Sent by Ubuntu LTS 16.04,
+Kind regards,
+Riko Ho
+/*******/
 
+*
+
+--------------772CD68C1FE962F53385B27F
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Dear Yocto Team Member,</p>
+    <p>Thanks for the reply,</p>
+    <p>So :</p>
+    <p>"YP+distcc/icecream" is equal to MpichCluster ? or that one is
+      inside MpichCluster,</p>
+    <p>I have tested :</p>
+    <p><a class="moz-txt-link-freetext" href="https://help.ubuntu.com/community/MpichCluster">https://help.ubuntu.com/community/MpichCluster</a></p>
+    <p>I don't have a fancy systems as you said below, but I have a
+      spare motherboards, memories and hard drives for a test on a small
+      cluster, at least making my compilation time faster and get more
+      space.</p>
+    <p>Ok, I'll have a look on those links below and keep posted,
+      thanks.<br>
+    </p>
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 27/07/17 09:10, Randy MacLeod wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:8a379ee0-7123-947e-3a1c-f9413bb3d604@windriver.com">On
+      2017-07-26 08:08 PM, Riko Ho wrote:
+      <br>
+      <blockquote type="cite">Dear Yocto Team Member,
+        <br>
+        <br>
+        The cluster is using Ubuntu.
+        <br>
+        I haven't checked all the packages on the other computer. I
+        will.
+        <br>
+        <br>
+        My goal is getting more hardrive space and compiling speed.
+        <br>
+        <br>
+        How can I relate bitbake with mpicc or other compilers needed by
+        yocto (arm-linux-gcc, gcc, etc)?
+        <br>
+      </blockquote>
+      <br>
+      Do you mean that you want to do part of the build using each node
+      in the cluster? That's possible now using distcc/icecream
+      <br>
+      (<a class="moz-txt-link-freetext" href="https://github.com/icecc/icecream">https://github.com/icecc/icecream</a> ) but I haven't done it in
+      years
+      <br>
+      as explained below.
+      <br>
+      <br>
+      Oh, there's a Stack Overflow entry for YP+distcc/icecream:
+      <br>
+      <br>
+<a class="moz-txt-link-freetext" href="https://stackoverflow.com/questions/14472175/distributed-compile-with-bitbake">https://stackoverflow.com/questions/14472175/distributed-compile-with-bitbake</a>
+      <br>
+      <br>
+      and distcc is mentioned in the docs:
+      <br>
+         <a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.3/dev-manual/dev-manual.html">http://www.yoctoproject.org/docs/2.3/dev-manual/dev-manual.html</a>
+      <br>
+      <br>
+      <br>
+      Anyway, this just distributes the compilation so:
+      <br>
+       - build management,
+      <br>
+       - recipe download, unpack, patch, configuring and packaging,
+      <br>
+       - linking, etc
+      <br>
+      are still done centrally.
+      <br>
+      <br>
+      There are plans to improve the bitbake task manager so that, with
+      <br>
+      the recipe specific sysroot work that has been done in 2.2, we'd
+      be
+      <br>
+      able to farm out all of the stages of a package's build to
+      individual
+      <br>
+      nodes in a cluster:
+      <br>
+         <a class="moz-txt-link-freetext" href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=10684">https://bugzilla.yoctoproject.org/show_bug.cgi?id=10684</a>
+      <br>
+      I don't know if that work is a priority for the fall 2.4 release.
+      <br>
+      <br>
+      Note that depending on your workload, inter-recipe dependencies
+      and
+      <br>
+      the long time taken to run configure for autotools-based packages
+      is
+      <br>
+      the bottleneck. Therefore, buying a high-end ( &gt;= 16+16 core )
+      <br>
+      system with lots (64GB+) RAM and a good IO sub-system results
+      <br>
+      in core-image-minimal building quickly, certainly under 40
+      minutes.
+      <br>
+         <a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Build_Performance">https://wiki.yoctoproject.org/wiki/Build_Performance</a>
+      <br>
+      <br>
+      Also for repeated builds by one or more developers, sstate-cache
+      is
+      <br>
+      a huge speed-up with some cost in scripts and people to manage it.
+      <br>
+      <br>
+      <br>
+      I've wondered if anyone has played with bitbake on an OS that is
+      <br>
+      known as a single-system image:
+      <br>
+         <a class="moz-txt-link-freetext" href="https://en.wikipedia.org/wiki/Single_system_image">https://en.wikipedia.org/wiki/Single_system_image</a>
+      <br>
+      On these systems, jobs are transparently moved from the
+      master-node
+      <br>
+      to idle nodes in the cluster by the operating system. That would
+      be
+      <br>
+      an interesting academic exercise but it wouldn't be useful in
+      <br>
+      practice since such OSs are not generally used as far as I know at
+      <br>
+      least.
+      <br>
+      <br>
+      I look forward to hearing what your goals and plans are.
+      <br>
+      <br>
+      ../Randy
+      <br>
+      <br>
+      <br>
+      <blockquote type="cite">
+        <br>
+        I have tested a small code with mpicc and the cluster do the
+        job.
+        <br>
+        <br>
+        Thanks for the attention.
+        <br>
+        <br>
+        On Jul 27, 2017 3:23 AM, "Randy MacLeod"
+        &lt;<a class="moz-txt-link-abbreviated" href="mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a>
+        <a class="moz-txt-link-rfc2396E" href="mailto:randy.macleod@windriver.com">&lt;mailto:randy.macleod@windriver.com&gt;</a>&gt; wrote:
+        <br>
+         &gt;
+        <br>
+         &gt; On 2017-07-26 02:09 AM, Riko Ho wrote:
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt; How can we do that ?
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt; bitbake in which node ? I don't understand ?
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt; On 26/07/17 13:57, Josef Holzmayr wrote:
+        <br>
+         &gt;&gt;&gt;
+        <br>
+         &gt;&gt;&gt; Hi
+        <br>
+         &gt;&gt;&gt;
+        <br>
+         &gt;&gt;&gt; On 26.07.2017 05:12, Riko Ho wrote:
+        <br>
+         &gt;&gt;&gt;&gt;
+        <br>
+         &gt;&gt;&gt;&gt; Does anyone know on how to run poky on mpich
+        cluster ?
+        <br>
+         &gt;
+        <br>
+         &gt;
+        <br>
+         &gt; That's a rather ambiguous question.
+        <br>
+         &gt;
+        <br>
+         &gt; What OS/Distro is the mpich cluster running?
+        <br>
+         &gt; Have you installed the packages that are required on the
+        host:
+        <br>
+         &gt;    see: "The Build Host Packages" here:
+        <br>
+         &gt;
+        <br>
+         &gt;
+<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.3/yocto-project-qs/yocto-project-qs.html">http://www.yoctoproject.org/docs/2.3/yocto-project-qs/yocto-project-qs.html</a><br>
+         &gt;
+        <br>
+         &gt; What do you hope to achieve using bitbake?
+        <br>
+         &gt;
+        <br>
+         &gt;
+        <br>
+         &gt;&gt;&gt;
+        <br>
+         &gt;&gt;&gt; As far as I can see, MPICH is a userland library,
+        basically. So it would be the other way round, you could
+        probably run a mpich application on a number of nodes that run
+        some OE/Poky thing.
+        <br>
+         &gt;&gt;&gt;
+        <br>
+         &gt;&gt;&gt; Greetz
+        <br>
+         &gt;
+        <br>
+         &gt;
+        <br>
+         &gt; There is an mpich recipe here:
+        <br>
+         &gt; <a class="moz-txt-link-freetext" href="http://layers.openembedded.org/layerindex/recipe/33348/">http://layers.openembedded.org/layerindex/recipe/33348/</a>
+        <br>
+         &gt;
+        <br>
+         &gt; but again, it's not clear what your ultimate goal is.
+        <br>
+         &gt;
+        <br>
+         &gt; ../Randy
+        <br>
+         &gt;
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt; --
+        <br>
+         &gt;&gt; *
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt; /*******/
+        <br>
+         &gt;&gt; Sent by Ubuntu LTS 16.04,
+        <br>
+         &gt;&gt; Kind regards,
+        <br>
+         &gt;&gt; Riko Ho
+        <br>
+         &gt;&gt; /*******/
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt; *
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;&gt;
+        <br>
+         &gt;
+        <br>
+         &gt;
+        <br>
+         &gt; --
+        <br>
+         &gt; # Randy MacLeod. SMTS, Linux, Wind River
+        <br>
+         &gt; Direct: 613.963.1350 | 350 Terry Fox Drive, Suite 200,
+        Ottawa, ON, Canada, K2K 2W5
+        <br>
+        <br>
+      </blockquote>
+      <br>
+      <br>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          Kind regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
+  </body>
+</html>
+
+--------------772CD68C1FE962F53385B27F--
