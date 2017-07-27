@@ -1,50 +1,72 @@
-Return-Path: <tom.rini@gmail.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E353AE00C69; Wed, 26 Jul 2017 12:32:46 -0700 (PDT)
+	id 642D4E00C69; Wed, 26 Jul 2017 17:08:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.173 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (antonius.riko[at]gmail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.173 listed in dnsbl.sorbs.net]
+	*      [209.85.218.67 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-yw0-f173.google.com (mail-yw0-f173.google.com
-	[209.85.161.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6216CE00C5D
-	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 12:32:45 -0700 (PDT)
-Received: by mail-yw0-f173.google.com with SMTP id x125so93971638ywa.0
-	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 12:32:45 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f67.google.com (mail-oi0-f67.google.com
+	[209.85.218.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C374E00C60
+	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 17:08:44 -0700 (PDT)
+Received: by mail-oi0-f67.google.com with SMTP id v11so14790657oif.1
+	for <yocto@yoctoproject.org>; Wed, 26 Jul 2017 17:08:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=eCGZZS6DbObUWtJ65F3dYhJ3tY7mwLY7X5ClzRcg2yg=;
+	b=Uhql0LfzrWuJi1FS5CdnZfGNv9w+eLEFx2Ui1NqnGTQGycK9M919a2bMDrdaCgcdjL
+	rsFRm9NKj8h3gNnHtvq38mwK14rkOMZjT3Xw3kUy7kbvbJqJBurRaslDdutn+L/AN7p6
+	Su4Y3aRjNjDpzBfP6QHSaNuxSy6n+5VEApJH/2131jcC1ZBnXHohgeK1jeq4QNujW6mD
+	TvDufcdnNIerazssc/WbQCHG412LvjVgf7k57J+mAhMyp15Uk4Qe9Yn/Ueraty26XHW4
+	kaVa9hsqepTvoUuH2TknzNKzjQCBUIh3lCsAsMLh8cNqG41Mgl0fThuwxxnYaQwHvg8p
+	2hUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=v8YxsxxuApvSsCRz064w5uMfKlwkOluugECORB1uG9w=;
-	b=CtN1FQ6Dt/RoomMHG1OlilJ1YadzPA/lKlFH8H7E1qlihuUjf05ZOI13RG23y0hzft
-	jtC6mglZgdVh2+NOmPA/ytDeW3Svv3J73HtZMgSucxdZwo21X62fbpvdNQG5zpqGcsCr
-	NxKngRRwOWEfdUaiaE5rRx7wJtTuvLra5ahVnJGgNdZDdg4zCHnAjLxbDtIMDXWeYdeL
-	jXUee2KzrQrACtDhbcQTDyhKq3ASb0SmePNC7ZGGWpAMs99loX3ihNcdgk2czfOvl3FX
-	lQKucMjrm8vaD2ubMF2rk/WAFjpITrlUguxQsy1YcfFzKvHhH7PCwULX3O7VQD9gSNxx
-	Ebig==
-X-Gm-Message-State: AIVw111vWx2AEsufxY3qdqTK9wM0kBYzEPFd45BYVRBOulrWtXrDSKaC
-	zQ+E4qXlhr9QhzHP
-X-Received: by 10.13.230.22 with SMTP id p22mr1749308ywe.297.1501097565076;
-	Wed, 26 Jul 2017 12:32:45 -0700 (PDT)
-Received: from localhost.localdomain (cpe-174-106-0-58.ec.res.rr.com.
-	[174.106.0.58]) by smtp.gmail.com with ESMTPSA id
-	b195sm6287662ywb.21.2017.07.26.12.32.44
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 26 Jul 2017 12:32:44 -0700 (PDT)
-From: Tom Rini <trini@konsulko.com>
-To: yocto@yoctoproject.org
-Date: Wed, 26 Jul 2017 15:34:01 -0400
-Message-Id: <1501097641-15737-1-git-send-email-trini@konsulko.com>
-X-Mailer: git-send-email 1.9.1
-Cc: Scott Rifenbark <srifenbark@gmail.com>
-Subject: [PATCH] dev-manual, ref-manual: Update for vmdk/vdi/qcow2/u-boot image changes
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=eCGZZS6DbObUWtJ65F3dYhJ3tY7mwLY7X5ClzRcg2yg=;
+	b=gqFgjbGBwstW7sCNiP0gOf/rPHz3okdeJY7uRsDPxd5+QE1tHbeZJsLuE0+Kf9IyDt
+	MnKlUsPV/LuTUi4rE80CBmqOG0wI0FBQTWUBtGlTnAc3hdv2jXKuGRxlZe2pK89oQfe0
+	gKZYIsaJaQuWxBPdGsTqQHugMPplIDpuHAOPgB8K3TxcFfMqwXVGq7+qL/8lfH8f1ZaV
+	El0+5itJOJVd67otnC5zCVOpOr7kBsXGF2ZhNZkZD27KDNkkZct83BWhUHluz5UDG+cA
+	5R+vU/MxlN7CKDH0f1luxNhBtbQY01nFDY4xypjG32xaDa4cJqfqQQLWCzGTRMrM760G
+	/BzA==
+X-Gm-Message-State: AIVw112caK35Aw9YmZHZSEoG13hDNY5tEjhEam8zhx1Fjn3pLt53USiO
+	4DAleGfDk3bnilcTzxKUBSLqhiiWkw==
+X-Received: by 10.202.106.9 with SMTP id f9mr2304697oic.191.1501114124105;
+	Wed, 26 Jul 2017 17:08:44 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.74.48.17 with HTTP; Wed, 26 Jul 2017 17:08:42 -0700 (PDT)
+Received: by 10.74.48.17 with HTTP; Wed, 26 Jul 2017 17:08:42 -0700 (PDT)
+In-Reply-To: <515b47cb-90af-21e0-7e40-2af2be9326ce@windriver.com>
+References: <ebdb747a-8506-87d0-b1ac-8338436d7dd6@gmail.com>
+	<3917f163-9def-7069-ea70-0a9a943e8dc0@rsi-elektrotechnik.de>
+	<118eb01a-00c6-7aff-3e4b-ce3ee56a9841@gmail.com>
+	<515b47cb-90af-21e0-7e40-2af2be9326ce@windriver.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Date: Thu, 27 Jul 2017 08:08:42 +0800
+Message-ID: <CAByQQ_pBh0RLbsk8f+-nHD_OZ2BnKF59R9z_EdntX9HfOXDUVg@mail.gmail.com>
+To: Randy MacLeod <randy.macleod@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Mpich and yocto ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,193 +78,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jul 2017 19:32:47 -0000
+X-List-Received-Date: Thu, 27 Jul 2017 00:08:46 -0000
+Content-Type: multipart/alternative; boundary="001a114037ba227f0b0555415efe"
 
-Recently a number of changes have happened on the implementation side of
-some image formats, and a few have been renamed.  The u-boot image
-signing code is now always available and no longer in a stand-alone
-file.  The vmdk/vdi/qcow2 images have been removed and are now just a
-conversion type that is applied to wic images.
+--001a114037ba227f0b0555415efe
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Tom Rini <trini@konsulko.com>
----
-Please note that while the u-boot image changes are live the
-vmdk/vdi/qcow2 portions are not yet merged.  But given that they are
-user visible changes I promised to provide documentation updates along
-with the implementation changes, so these shouldn't be applied until
-they have been merged.  Thanks!
----
- documentation/dev-manual/dev-manual-qemu.xml |  6 +++---
- documentation/ref-manual/ref-classes.xml     | 32 +++++-----------------------
- documentation/ref-manual/ref-tasks.xml       | 10 ---------
- documentation/ref-manual/ref-variables.xml   |  9 +++-----
- documentation/ref-manual/usingpoky.xml       |  8 +++----
- 5 files changed, 15 insertions(+), 50 deletions(-)
+Dear Yocto Team Member,
 
-diff --git a/documentation/dev-manual/dev-manual-qemu.xml b/documentation/dev-manual/dev-manual-qemu.xml
-index ed4040ca60d8..2b3383c40482 100644
---- a/documentation/dev-manual/dev-manual-qemu.xml
-+++ b/documentation/dev-manual/dev-manual-qemu.xml
-@@ -168,13 +168,13 @@
-                             </para></listitem>
-                         <listitem><para>
-                             This example specifies to boot a virtual machine image
--                            (<filename>.vmdk</filename> file).
--                            From the <filename>.vmdk</filename>,
-+                            (<filename>.wic.vmdk</filename> file).
-+                            From the <filename>.wic.vmdk</filename>,
-                             <filename>runqemu</filename> determines the QEMU
-                             architecture (<replaceable>MACHINE</replaceable>) to be
-                             "qemux86" and the root filesystem type to be "vmdk".
-                             <literallayout class='monospaced'>
--     $ runqemu /home/scott-lenovo/vm/core-image-minimal-qemux86.vmdk
-+     $ runqemu /home/scott-lenovo/vm/core-image-minimal-qemux86.wic.vmdk
-                             </literallayout>
-                             </para></listitem>
-                     </itemizedlist>
-diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref-manual/ref-classes.xml
-index 1801faf501ee..b177902b776a 100644
---- a/documentation/ref-manual/ref-classes.xml
-+++ b/documentation/ref-manual/ref-classes.xml
-@@ -1286,14 +1286,13 @@
-         <filename>image_types</filename> must also appear in
-         <filename>IMAGE_CLASSES</filename>.
-     </para>
--</section>
--
--<section id='ref-classes-image_types_uboot'>
--    <title><filename>image_types_uboot.bbclass</filename></title>
- 
-     <para>
--        The <filename>image_types_uboot</filename> class
--        defines additional image types specifically for the U-Boot bootloader.
-+	This class also handles conversion and compression of images as well.
-+	Note that to build a VMware VMDK image you need to add "wic.vmdk" to
-+	<link linkend='var-IMAGE_FSTYPES'><filename>IMAGE_FSTYPES</filename></link>.
-+	This would also be similar for Virtual Box Virtual Disk Image ("vdi")
-+	and QEMU Copy On Write Version 2 ("qcow2") images.
-     </para>
- </section>
- 
-@@ -1370,27 +1369,6 @@
-     </para>
- </section>
- 
--<section id='ref-classes-image-vm'>
--    <title><filename>image-vm.bbclass</filename></title>
--
--    <para>
--        The <filename>image-vm</filename> class supports building VM
--        images.
--    </para>
--</section>
--
--<section id='ref-classes-image-vmdk'>
--    <title><filename>image-vmdk.bbclass</filename></title>
--
--    <para>
--        The <filename>image-vmdk</filename> class supports building VMware
--        VMDK images.
--        Normally, you do not use this class directly.
--        Instead, you add "vmdk" to
--        <link linkend='var-IMAGE_FSTYPES'><filename>IMAGE_FSTYPES</filename></link>.
--    </para>
--</section>
--
- <section id='ref-classes-insane'>
-     <title><filename>insane.bbclass</filename></title>
- 
-diff --git a/documentation/ref-manual/ref-tasks.xml b/documentation/ref-manual/ref-tasks.xml
-index 99e9f52b8651..1fe175e10453 100644
---- a/documentation/ref-manual/ref-tasks.xml
-+++ b/documentation/ref-manual/ref-tasks.xml
-@@ -838,16 +838,6 @@
-             section in the Yocto Project Development Manual.
-         </para>
-     </section>
--
--    <section id='ref-tasks-vmdkimg'>
--        <title><filename>do_vmdkimg</filename></title>
--
--        <para>
--            Creates a <filename>.vmdk</filename> image for use with
--            <ulink url='http://www.vmware.com/'>VMware</ulink>
--            and compatible virtual machine hosts.
--        </para>
--    </section>
- </section>
- 
- <section id='kernel-related-tasks'>
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index ff8f4e73d041..54a9ff5ab85e 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -3864,14 +3864,14 @@
- 
-         <glossentry id='var-EFI_PROVIDER'><glossterm>EFI_PROVIDER</glossterm>
-             <info>
--                EFI_PROVIDER[doc] = "When building bootable images (i.e. where hddimg or vmdk is in IMAGE_FSTYPES), the EFI_PROVIDER variable specifies the EFI bootloader to use."
-+                EFI_PROVIDER[doc] = "When building bootable images (i.e. where hddimg, iso or live is in IMAGE_FSTYPES), the EFI_PROVIDER variable specifies the EFI bootloader to use."
-             </info>
-             <glossdef>
-                 <para role="glossdeffirst">
- <!--                <para role="glossdeffirst"><imagedata fileref="figures/define-generic.png" /> -->
-                     When building bootable images (i.e. where
--                    <filename>hddimg</filename> or <filename>vmdk</filename>
--                    is in
-+		    <filename>hddimg</filename>, <filename>iso</filename> or
-+		    <filename>live</filename> is in
-                     <link linkend='var-IMAGE_FSTYPES'><filename>IMAGE_FSTYPES</filename></link>),
-                     the <filename>EFI_PROVIDER</filename> variable specifies
-                     the EFI bootloader to use.
-@@ -6190,7 +6190,6 @@
-      jffs2
-      jffs2.sum
-      multiubi
--     qcow2
-      squashfs
-      squashfs-lzo
-      squashfs-xz
-@@ -6201,8 +6200,6 @@
-      tar.xz
-      ubi
-      ubifs
--     vdi
--     vmdk
-      wic
-      wic.bz2
-      wic.gz
-diff --git a/documentation/ref-manual/usingpoky.xml b/documentation/ref-manual/usingpoky.xml
-index c323d3831831..ef2e611c9a26 100644
---- a/documentation/ref-manual/usingpoky.xml
-+++ b/documentation/ref-manual/usingpoky.xml
-@@ -1245,11 +1245,11 @@
-        runqemu qemux86-64 core-image-sato ext4
-        runqemu qemux86-64 wic-image-minimal wic
-        runqemu path/to/bzImage-qemux86.bin path/to/nfsrootdir/ serial
--       runqemu qemux86 iso/hddimg/vmdk/qcow2/vdi/ramfs/cpio.gz...
-+       runqemu qemux86 iso/hddimg/wic.vmdk/wic.qcow2/wic.vdi/ramfs/cpio.gz...
-        runqemu qemux86 qemuparams="-m 256"
-        runqemu qemux86 bootparams="psplash=false"
--       runqemu path/to/&lt;image&gt;-&lt;machine&gt;.vmdk
-        runqemu path/to/&lt;image&gt;-&lt;machine&gt;.wic
-+       runqemu path/to/&lt;image&gt;-&lt;machine&gt;.wic.vmdk
-             </literallayout>
-         </para>
-     </section>
-@@ -1276,9 +1276,9 @@
-                 <listitem><para>
-                     <filename><replaceable>VM</replaceable></filename>:
-                     The virtual machine image, which must be a
--                    <filename>.vmdk</filename> file.
-+                    <filename>.wic.vmdk</filename> file.
-                     Use this option when you want to boot a
--                    <filename>.vmdk</filename> image.
-+                    <filename>.wic.vmdk</filename> image.
-                     The image filename you provide must contain one of the
-                     following strings: "qemux86-64", "qemux86", "qemuarm",
-                     "qemumips64", "qemumips", "qemuppc", or "qemush4".
--- 
-1.9.1
+The cluster is using Ubuntu.
+I haven't checked all the packages on the other computer. I will.
 
+My goal is getting more hardrive space and compiling speed.
 
+How can I relate bitbake with mpicc or other compilers needed by yocto
+(arm-linux-gcc, gcc, etc)?
+
+I have tested a small code with mpicc and the cluster do the job.
+
+Thanks for the attention.
+
+On Jul 27, 2017 3:23 AM, "Randy MacLeod" <randy.macleod@windriver.com>
+wrote:
+>
+> On 2017-07-26 02:09 AM, Riko Ho wrote:
+>>
+>> How can we do that ?
+>>
+>> bitbake in which node ? I don't understand ?
+>>
+>>
+>> On 26/07/17 13:57, Josef Holzmayr wrote:
+>>>
+>>> Hi
+>>>
+>>> On 26.07.2017 05:12, Riko Ho wrote:
+>>>>
+>>>> Does anyone know on how to run poky on mpich cluster ?
+>
+>
+> That's a rather ambiguous question.
+>
+> What OS/Distro is the mpich cluster running?
+> Have you installed the packages that are required on the host:
+>    see: "The Build Host Packages" here:
+>
+>
+http://www.yoctoproject.org/docs/2.3/yocto-project-qs/yocto-project-qs.html
+>
+> What do you hope to achieve using bitbake?
+>
+>
+>>>
+>>> As far as I can see, MPICH is a userland library, basically. So it
+would be the other way round, you could probably run a mpich application on
+a number of nodes that run some OE/Poky thing.
+>>>
+>>> Greetz
+>
+>
+> There is an mpich recipe here:
+> http://layers.openembedded.org/layerindex/recipe/33348/
+>
+> but again, it's not clear what your ultimate goal is.
+>
+> ../Randy
+>
+>>
+>> --
+>> *
+>>
+>>
+>> /*******/
+>> Sent by Ubuntu LTS 16.04,
+>> Kind regards,
+>> Riko Ho
+>> /*******/
+>>
+>> *
+>>
+>>
+>
+>
+> --
+> # Randy MacLeod. SMTS, Linux, Wind River
+> Direct: 613.963.1350 | 350 Terry Fox Drive, Suite 200, Ottawa, ON,
+Canada, K2K 2W5
+
+--001a114037ba227f0b0555415efe
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Dear Yocto Team Member,</p>
+<p dir=3D"ltr">The cluster is using Ubuntu.<br>
+I haven&#39;t checked all the packages on the other computer. I will.</p>
+<p dir=3D"ltr">My goal is getting more hardrive space and compiling speed.<=
+/p>
+<p dir=3D"ltr">How can I relate bitbake with mpicc or other compilers neede=
+d by yocto (arm-linux-gcc, gcc, etc)?</p>
+<p dir=3D"ltr">I have tested a small code with mpicc and the cluster do the=
+ job.</p>
+<p dir=3D"ltr">Thanks for the attention.</p>
+<p dir=3D"ltr">On Jul 27, 2017 3:23 AM, &quot;Randy MacLeod&quot; &lt;<a hr=
+ef=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a>&g=
+t; wrote:<br>
+&gt;<br>
+&gt; On 2017-07-26 02:09 AM, Riko Ho wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; How can we do that ?<br>
+&gt;&gt;<br>
+&gt;&gt; bitbake in which node ? I don&#39;t understand ?<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; On 26/07/17 13:57, Josef Holzmayr wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Hi<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; On 26.07.2017 05:12, Riko Ho wrote:<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Does anyone know on how to run poky on mpich cluster ?<br>
+&gt;<br>
+&gt;<br>
+&gt; That&#39;s a rather ambiguous question.<br>
+&gt;<br>
+&gt; What OS/Distro is the mpich cluster running?<br>
+&gt; Have you installed the packages that are required on the host:<br>
+&gt; =C2=A0 =C2=A0see: &quot;The Build Host Packages&quot; here:<br>
+&gt;<br>
+&gt; <a href=3D"http://www.yoctoproject.org/docs/2.3/yocto-project-qs/yocto=
+-project-qs.html">http://www.yoctoproject.org/docs/2.3/yocto-project-qs/yoc=
+to-project-qs.html</a><br>
+&gt;<br>
+&gt; What do you hope to achieve using bitbake?<br>
+&gt;<br>
+&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; As far as I can see, MPICH is a userland library, basically. S=
+o it would be the other way round, you could probably run a mpich applicati=
+on on a number of nodes that run some OE/Poky thing.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Greetz<br>
+&gt;<br>
+&gt;<br>
+&gt; There is an mpich recipe here:<br>
+&gt; <a href=3D"http://layers.openembedded.org/layerindex/recipe/33348/">ht=
+tp://layers.openembedded.org/layerindex/recipe/33348/</a><br>
+&gt;<br>
+&gt; but again, it&#39;s not clear what your ultimate goal is.<br>
+&gt;<br>
+&gt; ../Randy<br>
+&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; -- <br>
+&gt;&gt; *<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; /*******/<br>
+&gt;&gt; Sent by Ubuntu LTS 16.04,<br>
+&gt;&gt; Kind regards,<br>
+&gt;&gt; Riko Ho<br>
+&gt;&gt; /*******/<br>
+&gt;&gt;<br>
+&gt;&gt; *<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; -- <br>
+&gt; # Randy MacLeod. SMTS, Linux, Wind River<br>
+&gt; Direct: 613.963.1350 | 350 Terry Fox Drive, Suite 200, Ottawa, ON, Can=
+ada, K2K 2W5<br>
+</p>
+
+--001a114037ba227f0b0555415efe--
