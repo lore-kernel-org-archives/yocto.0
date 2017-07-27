@@ -1,57 +1,34 @@
-Return-Path: <bachehkaraji@yahoo.com>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6BB30E00B87; Thu, 27 Jul 2017 00:43:58 -0700 (PDT)
+	id 9D19EE00C25; Thu, 27 Jul 2017 01:19:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_MUA_MOZILLA, FREEMAIL_FROM,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bachehkaraji[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.6.131.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  2.3 FORGED_MUA_MOZILLA Forged mail pretending to be from Mozilla
-Received: from sonic303-4.consmr.mail.bf2.yahoo.com
-	(sonic303-4.consmr.mail.bf2.yahoo.com [74.6.131.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 320B3E00B87
-	for <yocto@yoctoproject.org>; Thu, 27 Jul 2017 00:43:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1501141436; bh=f1TTrv3nBoiUDT1Y1D/idoIYiR4RWYKB4nC5rlaN8z8=;
-	h=Date:From:To:In-Reply-To:References:Subject:From:Subject;
-	b=gCNhi6MfojSOWJ9KmdxuAT9pKcd4AxbQ2QzeN0yt2MJlMzHF5gNCcaATV+J3kpfvsHTXe1elVN71lasjAtrQAY5z0rKVbijqn5q/mvG51is1Aeh8UR00FlmHBK+sua4CZSt6QPG4kKHo7qtSVYkwNqF37rMYoCUKTcxFwDfmlnOAmfDsb4Xb4jUGM62NxtEzC2vquBz6tQ5eSws5HT5A1l3edPNI4cEyiNA52r4OLSXdEFK6rQ6syBhHe5CFpbn4mnkjiUm5ljXku0E6xGG4XFX7tMXGvEvZK6T9YMAvnMZwLtwz7tjYnt4kA2ZrQNg/ut/s7Yl3XjLe5M6UgxTFzA==
-X-YMail-OSG: Mt_r6SYVM1ne2GlPxHtPXqP9nd1x.Vi81y9u2kTQEBYCz_SfqmgbAeoWN3zhe8u
-	M4Aq45Mxf2K4qVGnURQ3QXP8lup9pDuJlwHm4sXGQeAyiylj4AARVLXNUXYlx4MU6r2275Eoc3TC
-	BDTdZ0aGicyTiPjY1Xc._.GQEsikzOegwfcIOTg6HPlRyI9mtp5nIZKLEA2DI0WIPpWf71nil4Pt
-	OqGn.5HSWYts4FnW0249dmjogRVxUFMJ1WmQRTjlTgYfoK_xzMG58uxgtRtxsupmv8NjHI8lB9Fo
-	S3.LFloxGedIuWSSY9KaNR5OWsAG3zaU_upjk5.l244eMYpCQc3KQvvqr3Gue_8ddbZQC97X63UG
-	fOp5l7okWq5RZ07magXECk11dQrWbRQ0GJZcZ19Tj7gohaT.Czvo0d7MZCeeuitvrJ4ui2EDrRP6
-	XiRYVgECN9PvXuGTTObvlMILrXZ3kI5zgWENXsaC4B6Qq4DB4nldVpCvLHX5oSsH1BjrFWb7EH3M
-	tCNbPCICqay9Qdt.Qd34S0oPYSI.g4dL4X5at
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic303.consmr.mail.bf2.yahoo.com with HTTP;
-	Thu, 27 Jul 2017 07:43:56 +0000
-Date: Thu, 27 Jul 2017 07:43:10 +0000 (UTC)
-From: Bacheh Karaji <bachehkaraji@yahoo.com>
-To: Ayoub Zaki <ayoub.zaki@embexus.com>,  <yocto@yoctoproject.org>
-Message-ID: <114091654.126731.1501141390266@mail.yahoo.com>
-In-Reply-To: <d8fecc11-51f2-59ff-9f59-6bbb6dd99844@embexus.com>
-References: <CAKgkYTR0e5aX_eO-JTgfs4Q94YVmFd1HNAYZy60Mv4tiiFU4dQ@mail.gmail.com>
-	<d8fecc11-51f2-59ff-9f59-6bbb6dd99844@embexus.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AAAFE00B87
+	for <yocto@yoctoproject.org>; Thu, 27 Jul 2017 01:19:10 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v6R8JAIC006513
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 27 Jul 2017 01:19:10 -0700 (PDT)
+Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.294.0; Thu, 27 Jul 2017 01:19:09 -0700
+From: <jackie.huang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 27 Jul 2017 16:18:47 +0800
+Message-ID: <20170727081847.2948-1-jackie.huang@windriver.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.10181 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
-	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115
-	Safari/537.36
-Subject: Re: How do I write a yocto/bitbake recipe to replace the default vsftpd.conf file with my own filE?
+Subject: [meta-security][PATCH] nmap: upgrade to 7.50
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,141 +40,196 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jul 2017 07:43:58 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_126730_1212812064.1501141390265"
+X-List-Received-Date: Thu, 27 Jul 2017 08:19:13 -0000
+Content-Type: text/plain
 
-------=_Part_126730_1212812064.1501141390265
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+From: Jackie Huang <jackie.huang@windriver.com>
 
-Ok, thanks very much=C2=A0 ...
+- Add a patch to fix python library install dir for multilib.
+
+- Add a patch to fix race condition with mkdir command.
+
+- Inherit pythonnative instead of python-dir and install
+  python modules for ndiff to fix the following errors:
+
+  """
+  root@qemux86-64:~# ndiff --help
+  -sh: /usr/bin/ndiff: /path_to_build/tmp/hosttools/python: bad interpreter: No such file or directory
+  root@qemux86-64:~# python /usr/bin/ndiff
+  Could not import the ndiff module: 'No module named ndiff'.
+  """
+
+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+---
+ .../nmap-redefine-the-python-library-dir.patch     | 37 +++++++++++++++++
+ ...shtool-mkdir-with-coreutils-mkdir-command.patch | 48 ++++++++++++++++++++++
+ .../nmap/{nmap_7.31.bb => nmap_7.50.bb}            | 23 ++++++-----
+ 3 files changed, 97 insertions(+), 11 deletions(-)
+ create mode 100644 recipes-security/nmap/files/nmap-redefine-the-python-library-dir.patch
+ create mode 100644 recipes-security/nmap/files/nmap-replace-shtool-mkdir-with-coreutils-mkdir-command.patch
+ rename recipes-security/nmap/{nmap_7.31.bb => nmap_7.50.bb} (75%)
+
+diff --git a/recipes-security/nmap/files/nmap-redefine-the-python-library-dir.patch b/recipes-security/nmap/files/nmap-redefine-the-python-library-dir.patch
+new file mode 100644
+index 0000000..356b507
+--- /dev/null
++++ b/recipes-security/nmap/files/nmap-redefine-the-python-library-dir.patch
+@@ -0,0 +1,37 @@
++[PATCH] redefine the python library install dir
++
++Upstream-Status: Pending
++
++If install-lib is not defined, it is always /usr/lib/, but it
++maybe /usr/lib64 for multilib
++
++Signed-off-by: Roy Li <rongqing.li@windriver.com>
++---
++ Makefile.in | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/Makefile.in b/Makefile.in
++index 1bb062c..cced2fb 100644
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -311,7 +311,7 @@ build-zenmap: $(ZENMAPDIR)/setup.py $(ZENMAPDIR)/zenmapCore/Version.py
++ 
++ install-zenmap: $(ZENMAPDIR)/setup.py
++ 	$(INSTALL) -d $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1
++-	cd $(ZENMAPDIR) && $(PYTHON) setup.py --quiet install --prefix "$(prefix)" --force $(if $(DESTDIR),--root "$(DESTDIR)")
+++	cd $(ZENMAPDIR) && $(PYTHON) setup.py --quiet install --prefix "$(prefix)" --install-lib="${PYTHON_SITEPACKAGES_DIR}" --force $(if $(DESTDIR),--root "$(DESTDIR)")
++ 	$(INSTALL) -c -m 644 docs/zenmap.1 $(DESTDIR)$(mandir)/man1/
++ # Create a symlink from nmapfe to zenmap if nmapfe doesn't exist or is
++ # already a link.
++@@ -328,7 +328,7 @@ build-nping: $(NPINGDIR)/Makefile nbase_build nsock_build netutil_build $(NPINGD
++ 	@cd $(NPINGDIR) && $(MAKE)
++ 
++ install-ndiff:
++-	cd $(NDIFFDIR) && $(PYTHON) setup.py install --prefix "$(prefix)" $(if $(DESTDIR),--root "$(DESTDIR)")
+++	cd $(NDIFFDIR) && $(PYTHON) setup.py install --prefix "$(prefix)" --install-lib="${PYTHON_SITEPACKAGES_DIR}" $(if $(DESTDIR),--root "$(DESTDIR)")
++ 
++ NSE_FILES = scripts/script.db scripts/*.nse
++ NSE_LIB_LUA_FILES = nselib/*.lua nselib/*.luadoc
++-- 
++1.9.1
++
+diff --git a/recipes-security/nmap/files/nmap-replace-shtool-mkdir-with-coreutils-mkdir-command.patch b/recipes-security/nmap/files/nmap-replace-shtool-mkdir-with-coreutils-mkdir-command.patch
+new file mode 100644
+index 0000000..cfe043a
+--- /dev/null
++++ b/recipes-security/nmap/files/nmap-replace-shtool-mkdir-with-coreutils-mkdir-command.patch
+@@ -0,0 +1,48 @@
++[PATCH] replace "./shtool mkdir" with coreutils mkdir command
++
++Upstream-Status: Pending
++
++"./shtool mkdir" is used when mkdir has not -p parameter, but mkdir in today
++most release has supportted the -p parameter, not need to use shtool, and it
++can not fix the race if two process are running mkdir to create same dir
++
++Signed-off-by: Roy Li <rongqing.li@windriver.com>
++---
++ ncat/Makefile.in        | 4 ++--
++ nmap-update/Makefile.in | 2 +-
++ 2 files changed, 3 insertions(+), 3 deletions(-)
++
++diff --git a/ncat/Makefile.in b/ncat/Makefile.in
++index cfd306d..2166e08 100644
++--- a/ncat/Makefile.in
+++++ b/ncat/Makefile.in
++@@ -163,11 +163,11 @@ $(NSOCKDIR)/libnsock.a: $(NSOCKDIR)/Makefile
++ 
++ install: $(TARGET)
++ 	@echo Installing Ncat;
++-	$(SHTOOL) mkdir -f -p -m 755 $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1
+++	mkdir -p -m 755 $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1
++ 	$(INSTALL) -c -m 755 ncat $(DESTDIR)$(bindir)/ncat
++ 	$(STRIP) -x $(DESTDIR)$(bindir)/ncat
++ 	if [ -n "$(DATAFILES)" ]; then \
++-		$(SHTOOL) mkdir -f -p -m 755 $(DESTDIR)$(pkgdatadir); \
+++		mkdir -p -m 755 $(DESTDIR)$(pkgdatadir); \
++ 		$(INSTALL) -c -m 644 $(DATAFILES) $(DESTDIR)$(pkgdatadir)/; \
++ 	fi
++ 	$(INSTALL) -c -m 644 docs/$(TARGET).1 $(DESTDIR)$(mandir)/man1/$(TARGET).1
++diff --git a/nmap-update/Makefile.in b/nmap-update/Makefile.in
++index 89ff928..93f48d8 100644
++--- a/nmap-update/Makefile.in
+++++ b/nmap-update/Makefile.in
++@@ -37,7 +37,7 @@ $(NBASELIB):
++ 	cd $(NBASEDIR) && $(MAKE)
++ 
++ install: nmap-update
++-	$(SHTOOL) mkdir -f -p -m 755 $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1
+++	mkdir -p -m 755 $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man1
++ 	$(INSTALL) -c -m 755 nmap-update $(DESTDIR)$(bindir)
++ 	$(STRIP) -x $(DESTDIR)$(bindir)/nmap-update
++ 	$(INSTALL) -c -m 644 ../docs/nmap-update.1 $(DESTDIR)$(mandir)/man1/
++-- 
++1.9.1
++
+diff --git a/recipes-security/nmap/nmap_7.31.bb b/recipes-security/nmap/nmap_7.50.bb
+similarity index 75%
+rename from recipes-security/nmap/nmap_7.31.bb
+rename to recipes-security/nmap/nmap_7.50.bb
+index c50b240..30ae06f 100644
+--- a/recipes-security/nmap/nmap_7.31.bb
++++ b/recipes-security/nmap/nmap_7.50.bb
+@@ -3,14 +3,17 @@ DESCRIPTION = "Nmap ("Network Mapper") is a free and open source (license) utili
+ SECTION = "security"
+ LICENSE = "GPL-2.0"
+ 
+-LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=bce7593e567a4b12f60c6a04f9b8c1e5"
++LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=87c6956e28c3603a0a1dda11bcdc227a"
+ 
+-SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2"
++SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2 \
++           file://nmap-redefine-the-python-library-dir.patch \
++           file://nmap-replace-shtool-mkdir-with-coreutils-mkdir-command.patch \
++"
+ 
+-SRC_URI[md5sum] = "f2f6660142a777862342a58cc54258ea"
+-SRC_URI[sha256sum] = "cb9f4e03c0771c709cd47dc8fc6ac3421eadbdd313f0aae52276829290583842"
++SRC_URI[md5sum] = "435c7e095bdd4565e0f69c41743a45be"
++SRC_URI[sha256sum] = "e9a96a8e02bfc9e80c617932acc61112c23089521ee7d6b1502ecf8e3b1674b2"
+ 
+-inherit autotools-brokensep pkgconfig python-dir distro_features_check
++inherit autotools-brokensep pkgconfig pythonnative distro_features_check
+ 
+ PACKAGECONFIG ?= "ncat nping ndiff pcap"
+ PACKAGECONFIG += " ${@bb.utils.contains('IMAGE_FEATURES', 'x11-base', 'zenmap', '', d)}"
+@@ -22,7 +25,7 @@ PACKAGECONFIG[ssl] = "--with-openssl=${STAGING_LIBDIR}/.., --without-openssl, op
+ #disable/enable packages
+ PACKAGECONFIG[nping] = ",--without-nping,"
+ PACKAGECONFIG[ncat] = ",--without-ncat,"
+-PACKAGECONFIG[ndiff] = ",--without-ndiff,"
++PACKAGECONFIG[ndiff] = ",--without-ndiff,python"
+ PACKAGECONFIG[update] = ",--without-nmap-update,"
+ 
+ #Add gui
+@@ -30,6 +33,8 @@ PACKAGECONFIG[zenmap] = "--with-zenmap, --without-zenmap, gtk+ python-core pytho
+ 
+ EXTRA_OECONF = "--with-libdnet=included --with-liblinear=included --without-subversion --with-liblua=included"
+ 
++export PYTHON_SITEPACKAGES_DIR
++
+ do_configure() {
+     # strip hard coded python2#
+     sed -i -e 's=python2\.*=python=g'  ${S}/configure.ac
+@@ -38,13 +43,9 @@ do_configure() {
+     oe_runconf
+ }
+ 
+-do_install_append () {
+-   # remove python dir, its not used or installed
+-   rm -fr ${D}/${libdir}
+-}
+-
+ PACKAGES += "${@bb.utils.contains('PACKAGECONFIG', 'zenmap', '${PN}-zenmap', '', d)}"
+ 
++FILES_${PN} += "${PYTHON_SITEPACKAGES_DIR}"
+ FILES_${PN}-zenmap = "${@bb.utils.contains("PACKAGECONFIG", "zenmap", "${bindir}/*zenmap ${bindir}/xnmap ${datadir}/applications/*  ${bindir}/nmapfe ${datadir}/zenmap/* ${PYTHON_SITEPACKAGES_DIR}/radialnet/* ${PYTHON_SITEPACKAGES_DIR}/zenmap*", "", d)}"
+ 
+ RDEPENDS_${PN} = "python"
+-- 
+2.11.0
 
 
-On Tuesday, July 25, 2017, 11:18:13 PM GMT+4:30, Ayoub Zaki <ayoub.zaki@emb=
-exus.com> wrote:
-
-
-
-On 24.07.2017 07:18, Mohammad Nouri wrote:
-> Hi,
-> I want to replace the default vsftpd.conf file with my own file!
-> My bitbake file looks following:
->
-> bbexample_1.0.bb
->=C2=A0 =C2=A0 =C2=A0 DESCRIPTION =3D "Configuration and extra files for TX=
-28"
->=C2=A0 =C2=A0 =C2=A0 LICENSE =3D "CLOSED"
->=C2=A0 =C2=A0 =C2=A0 LIC_FILES_CHKSUM =3D ""
->
->=C2=A0 =C2=A0 =C2=A0 S =3D "${WORKDIR}"
->
->=C2=A0 =C2=A0 =C2=A0 SRC_URI +=3D " \
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://ld.so.conf \
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://vsftpd.conf \
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://nginx/nginx.conf \
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://init.d/myscript.sh"
->
->=C2=A0 =C2=A0 =C2=A0 inherit allarch
->
->=C2=A0 =C2=A0 =C2=A0 do_install () {
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d ${D}${sysconfdir}
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d ${D}${sysconfdir}/nginx
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d ${D}${sysconfdir}/init.d
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rm -f ${D}${sysconfdir}/ld.so.conf
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rm -f ${D}${sysconfdir}/vsftpd.conf
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/ld.so.conf $=
-{D}${sysconfdir}
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/vsftpd.conf =
-${D}${sysconfdir}
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/nginx/nginx.=
-conf ${D}${sysconfdir}/nginx/
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/init.d/myscr=
-ipt.sh ${D}${sysconfdir}/init.d/
->=C2=A0 =C2=A0 =C2=A0 }
->
->=C2=A0 But, the file could not be replaced!
->=C2=A0 What is wrong?
-you should add to your recipe :
-
-FILES_${PN} +=3D " list of files you installed"
-
---=20
-
-Ayoub Zaki
-
-ayoub.zaki@embexus.com
-Mobile: +49(0)176-62901545
-Skype: ayoub.zaki_2
-https://embexus.com
-
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-------=_Part_126730_1212812064.1501141390265
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body><div style=3D"font-family:Helvetica Neue, Helvetic=
-a, Arial, sans-serif;font-size:x-small;"><div><div>
-<!--StartFragment--><span style=3D"color: rgb(36, 39, 41); font-family: Ari=
-al, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 13px;">Ok=
-, thanks very much</span><!--EndFragment-->&nbsp; ...<br></div></div><div><=
-br></div><div><br></div><div id=3D"yahoo_quoted_1719134951" class=3D"yahoo_=
-quoted"><div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, sans-=
-serif;font-size:13px;color:#26282a;"><div>On Tuesday, July 25, 2017, 11:18:=
-13 PM GMT+4:30, Ayoub Zaki &lt;ayoub.zaki@embexus.com&gt; wrote:</div><div>=
-<br></div><div><br></div><div><div dir=3D'ltr'><html><body><br clear=3D"non=
-e"><br clear=3D"none">On 24.07.2017 07:18, Mohammad Nouri wrote:<br clear=
-=3D"none">&gt; Hi,<br clear=3D"none">&gt; I want to replace the default vsf=
-tpd.conf file with my own file!<br clear=3D"none">&gt; My bitbake file look=
-s following:<br clear=3D"none">&gt;<br clear=3D"none">&gt; bbexample_1.0.bb=
-<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 DESCRIPTION =3D &quot;Configura=
-tion and extra files for TX28&quot;<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=
-=A0 LICENSE =3D &quot;CLOSED&quot;<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=
-=A0 LIC_FILES_CHKSUM =3D &quot;&quot;<br clear=3D"none">&gt;<br clear=3D"no=
-ne">&gt;=C2=A0 =C2=A0 =C2=A0 S =3D &quot;${WORKDIR}&quot;<br clear=3D"none"=
->&gt;<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 SRC_URI +=3D &quot; \<br c=
-lear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://ld.so.conf \<br=
- clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://vsftpd.conf \=
-<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://nginx/ngin=
-x.conf \<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 file://in=
-it.d/myscript.sh&quot;<br clear=3D"none">&gt;<br clear=3D"none">&gt;=C2=A0 =
-=C2=A0 =C2=A0 inherit allarch<br clear=3D"none">&gt;<br clear=3D"none">&gt;=
-=C2=A0 =C2=A0 =C2=A0 do_install () {<br clear=3D"none">&gt;=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 install -d ${D}${sysconfdir}<br clear=3D"none">&gt;=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d ${D}${sysconfdir}/nginx<br clear=
-=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d ${D}${sysconfdi=
-r}/init.d<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rm -f ${=
-D}${sysconfdir}/ld.so.conf<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 rm -f ${D}${sysconfdir}/vsftpd.conf<br clear=3D"none">&gt;=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/ld.so.conf ${D}${sy=
-sconfdir}<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install =
--m 0755 ${WORKDIR}/vsftpd.conf ${D}${sysconfdir}<br clear=3D"none">&gt;=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0755 ${WORKDIR}/nginx/nginx.conf=
- ${D}${sysconfdir}/nginx/<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 install -m 0755 ${WORKDIR}/init.d/myscript.sh ${D}${sysconfdir}/ini=
-t.d/<br clear=3D"none">&gt;=C2=A0 =C2=A0 =C2=A0 }<br clear=3D"none">&gt;<br=
- clear=3D"none">&gt;=C2=A0  But, the file could not be replaced!<br clear=
-=3D"none">&gt;=C2=A0  What is wrong?<br clear=3D"none">you should add to yo=
-ur recipe :<br clear=3D"none"><br clear=3D"none">FILES_${PN} +=3D &quot; li=
-st of files you installed&quot;<br clear=3D"none"><br clear=3D"none">-- <br=
- clear=3D"none"><br clear=3D"none">Ayoub Zaki<br clear=3D"none"><br clear=
-=3D"none"><a shape=3D"rect" ymailto=3D"mailto:ayoub.zaki@embexus.com" href=
-=3D"mailto:ayoub.zaki@embexus.com">ayoub.zaki@embexus.com</a><br clear=3D"n=
-one">Mobile: +49(0)176-62901545<br clear=3D"none">Skype: ayoub.zaki_2<br cl=
-ear=3D"none"><a shape=3D"rect" href=3D"https://embexus.com" target=3D"_blan=
-k">https://embexus.com</a><div class=3D"yqt8912361071" id=3D"yqtfd22340"><b=
-r clear=3D"none"><br clear=3D"none">-- <br clear=3D"none">_________________=
-______________________________<br clear=3D"none">yocto mailing list<br clea=
-r=3D"none"><a shape=3D"rect" ymailto=3D"mailto:yocto@yoctoproject.org" href=
-=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br clear=3D"n=
-one"><a shape=3D"rect" href=3D"https://lists.yoctoproject.org/listinfo/yoct=
-o" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br c=
-lear=3D"none"></div></body></html></div></div></div></div></div></body></ht=
-ml>
-
-------=_Part_126730_1212812064.1501141390265--
