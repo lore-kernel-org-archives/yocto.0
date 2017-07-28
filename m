@@ -1,67 +1,234 @@
-Return-Path: <afenkart@gmail.com>
+Return-Path: <marco.stadler@buhlergroup.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 89D62E00D16; Fri, 28 Jul 2017 06:20:41 -0700 (PDT)
+	id 0F790E00D11; Fri, 28 Jul 2017 06:41:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (afenkart[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.109 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.172 listed in dnsbl.sorbs.net]
-Received: from mail-ua0-f172.google.com (mail-ua0-f172.google.com
-	[209.85.217.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65F48E00CEF
-	for <yocto@yoctoproject.org>; Fri, 28 Jul 2017 06:20:39 -0700 (PDT)
-Received: by mail-ua0-f172.google.com with SMTP id k43so126641964uaf.3
-	for <yocto@yoctoproject.org>; Fri, 28 Jul 2017 06:20:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ZdH0bfsbXaGbQ19B+uxVIwAdXI7cnt6HwqGQHD4hNzc=;
-	b=akEZlEXtYdCY+UsYOuRp7ciFhVKI7FQMdwlPgzv7Nkt/CvVOGm7i2uQ9pnn5uBaicZ
-	o+dABu1pgpDA/p0N2dMrpdkkoJYCUcKOUUc1I+WoFiRezKwi9eQTZb+yYojECuNoIL6m
-	4hSnOBiiby1yM5g+ZqbXd6DCOoZ1PANQXcrOtB4L/wzzVI8UAvbG+6KN8V9kxUHj3x0d
-	vs3vDOg8K42Vspt01SQUQW2CcEzKxa/41G2IQ56ZDn1W7gFL0eBtf1GY3DqRUiMLN1ac
-	S0hLHjem9wgLknNogtbkiQR1hS/k0EVUa1AQ05J7/WZxkzZ+v/QnsVgRT3FnOjQQKU6m
-	CqxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ZdH0bfsbXaGbQ19B+uxVIwAdXI7cnt6HwqGQHD4hNzc=;
-	b=HB0PFXBvcfGs8OS6vQf1ECrLiXM0cIv4RN+XH7hfa76GnSWJj4YCgpDMdb8OmZwRif
-	yA2u/YGNM5uxUKu3AOtf3VtY4SGdaxRTnldc4xgv8fJhk/YDgBR4sYoXSot22cRmRexm
-	2r8UJz17FnVYFXBMXG1Q+O3DKlTRF+kIVP6YgVgzjso4Og+P+MJ6lf66KtBitXyXgOho
-	v3pUQZRSs1/h0Ikp70PrB0p3EVkEf+YCZRhTLp6/dL6yuEveUKvzj0JsYA41r5D3HCAt
-	ip67Q9VUrMuX6QTGWBfXIE3f8JTuzIQiM7q79DjS51qHtUu1CcTTROWtO9mjH1sUFjFD
-	LyKA==
-X-Gm-Message-State: AIVw112qHe33quSssMs962AWk+rdJNWTlRm1L6HLDIrv5goeB22ODtkI
-	IHXZOIrboX7pFWJYt9r+qlQXIKb7KjMJ
-X-Received: by 10.31.83.193 with SMTP id h184mr5181640vkb.17.1501248039245;
-	Fri, 28 Jul 2017 06:20:39 -0700 (PDT)
+X-Greylist: delayed 14425 seconds by postgrey-1.32 at yocto-www;
+	Fri, 28 Jul 2017 06:41:07 PDT
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0109.outbound.protection.outlook.com [104.47.2.109])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 467D5E00CEF
+	for <yocto@yoctoproject.org>; Fri, 28 Jul 2017 06:41:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=buhlergroup.onmicrosoft.com; s=selector1-buhlergroup-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=2kWlHiMn2O2/cC8ZqK1kb1m92DHMHpBs/zc/GoN14ck=;
+	b=rR5srsX5ErQXZ/qNWvseEhdgsELoNkO6QBgahTQ9MBotoFUu4we71uw+mCd1EsHpGl88YygT2oEpQa1E7u4SDtuWWx9h1QVRh63w9+1UUYNOMDlsopzWWN+7sOzmLLNw/s/AxaMwV1i8s5tChB9Mf2c2EiXbbHM0Nin2MZirqQ0=
+Received: from HE1PR0902CA0040.eurprd09.prod.outlook.com (2603:10a6:7:15::29)
+	by HE1PR0901MB1404.eurprd09.prod.outlook.com (2603:10a6:3:16::24)
+	with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1304.14;
+	Fri, 28 Jul 2017 06:07:22 +0000
+Received: from DB5EUR03FT018.eop-EUR03.prod.protection.outlook.com
+	(94.245.120.79) by HE1PR0902CA0040.outlook.office365.com
+	(10.170.250.157) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.13 via
+	Frontend Transport; Fri, 28 Jul 2017 06:07:21 +0000
+Authentication-Results: spf=pass (sender IP is 194.9.121.41)
+	smtp.mailfrom=buhlergroup.com; gmail.com; dkim=none (message not signed)
+	header.d=none;gmail.com; dmarc=bestguesspass action=none
+	header.from=buhlergroup.com;
+Received-SPF: Pass (protection.outlook.com: domain of buhlergroup.com
+	designates 194.9.121.41 as permitted sender)
+	receiver=protection.outlook.com; 
+	client-ip=194.9.121.41; helo=UZNA92.buhlergroup.com;
+Received: from UZNA92.buhlergroup.com (194.9.121.41) by
+	DB5EUR03FT018.mail.protection.outlook.com (10.152.20.69) with Microsoft
+	SMTP Server (version=TLS1_0,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id
+	15.1.1240.9 via Frontend Transport; Fri, 28 Jul 2017 06:07:21 +0000
+Received: from UZNA90.buhler-ltd.com (10.3.229.15) by UZNA92.buhlergroup.com
+	(194.9.121.41) with Microsoft SMTP Server (TLS) id 14.3.352.0;
+	Fri, 28 Jul 2017 08:07:20 +0200
+Received: from UZNA89.buhler-ltd.com ([169.254.3.50]) by UZNA90.buhler-ltd.com
+	([169.254.4.250]) with mapi id 14.03.0352.000;
+	Fri, 28 Jul 2017 08:07:20 +0200
+From: <marco.stadler@buhlergroup.com>
+To: <holzmayr@rsi-elektrotechnik.de>, <geeler@identech.ch>,
+	<raj.khem@gmail.com>
+Thread-Topic: [yocto] Crosscompile packages (ipk) based on SDK
+Thread-Index: AQHTBue8yEC+jbSxhkm79qmVTnGy2KJnstCAgAACMgCAAAQNAIAACgKAgADOC4CAAC8ncA==
+Date: Fri, 28 Jul 2017 06:07:19 +0000
+Message-ID: <4C570A44E7E1ED4795628009B7E297AD687E056E@UZNA89.buhler-ltd.com>
+References: <2040571762.17271.1501166601217@ox1.tophost.ch>
+	<CAMKF1spMG+h7cbkH-ErYnTeCkfPXsOZZsFLc7+V-7EdthcNJ7A@mail.gmail.com>
+	<907836710.17581.1501171532604@ox1.tophost.ch>
+	<CAMKF1srxzdd-ogoce-GVaeVxmAGoK0C09e8G7eg7h=H1ig3Sig@mail.gmail.com>
+	<1754976.17734.1501174551143@ox1.tophost.ch>
+	<5405e920-c3a1-d32f-2f74-c7ab710f841f@rsi-elektrotechnik.de>
+In-Reply-To: <5405e920-c3a1-d32f-2f74-c7ab710f841f@rsi-elektrotechnik.de>
+Accept-Language: de-DE, de-CH, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.12.70.126]
 MIME-Version: 1.0
-Received: by 10.31.13.209 with HTTP; Fri, 28 Jul 2017 06:20:38 -0700 (PDT)
-In-Reply-To: <990d598a-da7c-f568-96a0-d360902baf7e@denx.de>
-References: <CALtMJEDs_oFkifuHe8gahxS25UEqP-gKCLfkH3HbZqsB8T8DPQ@mail.gmail.com>
-	<990d598a-da7c-f568-96a0-d360902baf7e@denx.de>
-From: Andreas Fenkart <afenkart@gmail.com>
-Date: Fri, 28 Jul 2017 15:20:38 +0200
-Message-ID: <CALtMJEBbYsq5SGZOD+zof5viTJUcK_WqLVOxjex7s0oBXipMVA@mail.gmail.com>
-To: Stefano Babic <sbabic@denx.de>
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:194.9.121.41; IPV:NLI; CTRY:EU; EFV:NLI;
+	SFV:NSPM;
+	SFS:(10019020)(6009001)(39410400002)(39450400003)(39850400002)(39860400002)(39840400002)(39400400002)(2980300002)(438002)(13464003)(377454003)(189002)(24454002)(199003)(55846006)(55016002)(76176999)(9686003)(6306002)(54356999)(5660300001)(2900100001)(2906002)(53546010)(7696004)(626005)(50986999)(8936002)(229853002)(50466002)(8676002)(7736002)(47776003)(2920100001)(2201001)(39060400002)(2950100002)(966005)(7636002)(3846002)(38730400002)(6246003)(86152003)(246002)(356003)(23676002)(14454004)(478600001)(33656002)(2876002)(4326008)(53416004)(86362001)(106466001)(305945005)(93886004)(5890100001)(6116002)(189998001)(102836003)(15974865002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1PR0901MB1404;
+	H:UZNA92.buhlergroup.com; FPR:; SPF:Pass;
+	PTR:uzna92.buhlergroup.com; MX:1; A:1; LANG:en; 
+X-Microsoft-Exchange-Diagnostics: 1; DB5EUR03FT018;
+	1:3Ind42pNTA1YuT3ebluhyABOjS6hE3dcuiHC2PYhq/aanR5t63xH2R86QwTV+eqhi7w0ZpwDyTu7i0RSymRGM9sUPHqgy46pbn3pppHe04rHfNPX0mc1z727e5xhhiYwqlQkiGmjZ8Pi+oq9zRJ4jCwodY476OhW/UkBjmOI8T3nzhkS6SYy6+8xDrAbXs+BE3WWBpuJkpzi0RCee9Ggqmc+qqeHoJ4KKpUIvIpNCuq8wTe3syM1jVfl3TF/mfvaJ0JdufxO+U+CsbXPnlSGvveyHTDlYM/trZWtm/lhnFhEa82kwyNp3rns10PWxxUjgeQkBCfyxvogQs4Itd1fepUM6SLhAmrcySc+aBZZneAa95OCBeKPbLND0HRMsoL12W32iRRHp1SXrlzY3VQ+UFQSmZhxRsHqf5pSXR36ffFVNPHp5MOZefVXbh/pYLOcok4YEiHhXiQLaxQPS7KZ/iiKN+XQt+NLlXsmt3+cZFX3snAFsOeYe/Bz0wAoPX1cl0YisnFvwjoRw10iS6RmpUDqaPhXKHNownEKcGVXJxVloFIBVWu12calTFmxMFNera/3b+piFDfAQmypkNo6/yZ/68NsYCKIozZjPkg9CG3KR8238xNDhIALNxuUsvkiF0sB7A7/VNpZQnSCZ2peoxUt35tIQlIHrDiOsmEoz11juZRG8n9Ujd7vKqsOVW0T46zyzVVomrNRYr0ee1eTzDi+UjxLObOynTCK4X/6xOTEl3yNL+CdlaNyYnR3HDE/flfTbXHMCHoWi59z+ZTYU3jNDCz2pLvqYsq0Ndth5k3RzqF1hsYL8i0g27Ik2TwCv0cN73kf1vO3pFcQSZbbaZ3XyGC1xfkhN8do7SIYgQooJ084PQfMoDUr/rp8Ij1b
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e89104a7-0132-4ec0-c61c-08d4d57ee917
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(8251501002)(2017030254075)(300000503095)(300135400095)(2017052603031)(201703131423075)(201703031133081)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:HE1PR0901MB1404; 
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtIRTFQUjA5MDFNQjE0MDQ7MzpGeCs4WFo5MEc4dkp4Unc3RVRBQ2lhNk5X?=
+	=?utf-8?B?SFdMSnRPeVFKd0IwOEdxNUk0bnR3ZjVaUjlMa0dUVGszV3FyNElmWDFtekdB?=
+	=?utf-8?B?UnJuYlk1TVhBdWRRL3BvWGNSN0NmMTVwcVlzSGdnKzkrbUVtM1p0Q09iUFBs?=
+	=?utf-8?B?QzhqSXFTOERWY1RQSEFncUROR0VndjFKWG5neXlLeE5CNXk5T01IWnYvejZr?=
+	=?utf-8?B?QWx4aExMZndaQjZsRlBiVXNGRnJFL1BPeEs2RE52NTNlVlk1MEJrUHFGU0Zr?=
+	=?utf-8?B?bHU3SnFDejE1eEZzUVdXYjVQei90ekRTdGxKZ2ZNd1NmUGFVa1l0eTJhRTgr?=
+	=?utf-8?B?M3R0NlNaRWNBck1hU3BhMUpwaFZnMEgyNTYwSGJnellzMnNEYkZJRndVN0xj?=
+	=?utf-8?B?TWoyMmFwbndnTlF0djhublNiVnIrYjVOTVFQR2ZYZUhISUhqakwyUDcrTFdF?=
+	=?utf-8?B?TmxFRFN2NHZBTStlaFlKQmlRcVdIVTlQVUVJMHBnTEVndzVyZWEwQU5qQlJP?=
+	=?utf-8?B?MDRObTlMNHI0RWcrM0J0bGgrenlkcWZZRDM2b09pTkdXcG9zN2V6Z1FDTGVL?=
+	=?utf-8?B?YUNQK3BvVWdSNi9MSVBMYVRhVWFRd3dnUm4ySEdnVzVQWk02bHk3OUk4djZn?=
+	=?utf-8?B?RDJWNmdsanR4dVIxWElwVmpiTEQwaDl1RytyRThEQjh0TTZoSTFKejdHdEZl?=
+	=?utf-8?B?bzVWQ0dqa3dFN25TcktQU1VTWFZJUUlVbThuak1KMXlPTlJzdUNmcGJhNi8z?=
+	=?utf-8?B?OE9ROEtMN0ZjLy9NK1AzTnY1eUJSYUFBN0xEQXRRZmpkKzZzWGxTeWtNTlVw?=
+	=?utf-8?B?Q0NUMWxMNHRWdUtMWW5tajRGMFlqMC9keXl2bXpZZzZDcHlvdXdjclJNMG1Y?=
+	=?utf-8?B?Mmp5OURDc1FiK0syOHFtTlVmbDBNSnhvbmZJQjFweldqa2lNeFdEWXVYRnhR?=
+	=?utf-8?B?ck9aWTJ1OFhPZ3ovN3FPa2ZDc0xOODVoSEk1bjd0YjV1UisvSTcxVEl3NXlh?=
+	=?utf-8?B?QVk4bmt0UlFuSXdaVGZRT3lyMjRmMDluRStFcUM3QTUxWHlqVVRPWW9Nd3Ey?=
+	=?utf-8?B?K1E3TkhKVnA5bjFSeDJhMFAzNndvVXE2cE9zYVlybTZoRS9pUk1ka29zWFFQ?=
+	=?utf-8?B?akhTNDJNSE1BZUpJQmt5aEFDVHRnOUhzNlAxNGFxc3Z5VGlIQ1hwUlhnVUJW?=
+	=?utf-8?B?bHF1ZDZOUG90VHZwSTY5cGNISXRweWw5T2tid1F2T1FPWURwaGxhOWhyUmhj?=
+	=?utf-8?B?b2RkYktZeXJCbitBc09mbVNYRFJQYWVrMU1VcmZGdXZ3M1p1ZHAyek1DKzRz?=
+	=?utf-8?B?UlFXMDBlN2tjOWtnPT0=?=
+X-MS-TrafficTypeDiagnostic: HE1PR0901MB1404:
+X-Microsoft-Exchange-Diagnostics: 1; HE1PR0901MB1404;
+	25:7tBlzmcytbGIs7q/7FjSEfz6gpFKvXhVoXhgZ8XaPGfnfAIot2Pg0hkHgU1cVXgoTxks3W/5mqLIB23gk1Udy12+JgFDccQSyRfhM/4vfnftfaoR+mfTXFYxs2kUscv4u/u0Ls1MXG7m/iIvX0W1UCaQgxo+XbxJSNqMEfT3y5lbjyOVlf+qZJJ3chK7Xi0CvMY04Mn71dE5vDCLPiZccpPS4d4qEcDaX6q9Ax9qwe3vZW4FAfvLi3fJA7GToR+ftHkTGZsr273uzUH/I29BU/sxschX+bXlcbFMNeQOEM7rJ2m3MfODxKozKfclIVlYOGIl7SvG39WvP6PKO9PO1r8VQBlfY0N25x8nY8kTSgJ+F5qEXVGL4b+eSmnwA0ubXBazbWdmnBl/eBWVKGOxL0vddc4egIYnlWgN8hebtTFJ+Hj03leiHCa/U3yGsmY5Kv1Vljd1OumG2OazIp6YvkiZwWtsf9esz5gGDNrxPTwUOZ+gX9PIq19ydbP85XtT5tgK3NbzhSuD9n6NXH/QowmVVA+qDhvfyl1ca8XXE0WKjExnI1ABSm01h6WMQU45bezgyLeevrS2Sb8qUy+jl8GATBsU0Wt8xw/IVSK1QHULljXAkwNe4tb4D+J/eEo/CSBiYsC5ItDUNARI32h9tDBKdkuzAK0KCeWUuc8tG5IBl9QYzZORgDh2UUBPobSD0++FYAw31fYVpLbBqVXMvQNAwRXXHB2TcHeQ8D0/zhTjKLp9LDngsSvf/B2oP0Pr8pLwYUgdRiCJ24bg01GRZ9WkpRyV8x0ecjFBZADMlSPC1u1KfaOVT0J7prZht8XRFsZFVgWs793KTDQIOZyfbvbyy4Zhe66zWzrXoG0x0AD+8SoLHHK1vOJLlDGAUaUR6Vp2oNBtv73/J+fh7SLAkr9FPV493U4tmIb6eHOGCwk=
+X-Microsoft-Exchange-Diagnostics: 1; HE1PR0901MB1404;
+	31:5dn/LqUjv5u9uwTAxZJJPfDCSyusQXDh36Bak6nPn/TwG2GNstKgD6etqMvlTHuexnPMfIOWxZB6kb0XjmnVRHLrj3JvlcwlipovqB2ZUHGv8xDzJeF8I03E1KBJTxWKe4Um2+QVky2V/ILMjFKr0xjJrcitQWlgYdcKMDotTevJikQ04dfQXlLoHCuHtHC1CcWCB1jMz522NEgdzkaPitMa7MC+QNFhiB0Jlv9ypaYFZJIP7gJS40mdlPgQ0Xm1RUVcB/ZXGYmMV7NtlR9/jUTs2peP4hjFBZBtepyJGxH9knyouh8RkcrfgzCSSgn7ZpRmXUoliEvKJ8u3g4X6UgWTSRngicosoBOsQduvf52YuZ2gxmFzA+s0scZaj1/FAL3QxWEL5roHsOSjaL8aexQlENM4vvDGNrY81QT8x6GlAtcLdWLrjc+My171YP/BDyUcYxWNCrTpo7IfIVo4xKsefMtzI3U1ksDp0MddVpcYr11yLRO1K+0GVsC+s+gHMhqXIq6mw73+O22XG3jeFul8RG3QQLg0saX5VxKU8VSxlmhMLUTIF6lkdljmZXjUQ6tnFJ2gaCxSVnh4lSuQe5ZIj5YJOBX9SL0RQWJ5Es1vzVNkfusSt+WJevFgh9mOgC9GfqEpvRC7t8+fq6rkDVL8zcL+y+nfoN3S807+1XW3Elwv03WANdO0RtwCqJNKi9Ja/x6dd6/MXETm+jmP3A==
+X-Microsoft-Exchange-Diagnostics: 1; HE1PR0901MB1404;
+	20:txstmEf0WNK6G/vLpCvc4EAd9nrGD9qTsMzYWqkYezw6S5vMBVH5SBuiy6c2lp8NKQVrCWaS4GVjhA90ba0xcdmDt0x/UgX0MaSjnTvWPxrZyCUCF3YI2VfQeZyEg6rHklrgneAvALUmtQTsmllfZWurCz4Cv4H8prYjlLAN6TBzE3KE+qtCYuSu7P3/xuxWqZt24ZtpgHQn+Zvti6+iv7i/bKRyewAB4Hi8ouR7APj9qp8qhbTxK+9Wj/5jxuHsQ10l+4kta8AV5mraTnOOXhwnIY5raLrr+FJLbXYInq+ZrxTHak6qdZXjua+rRR2xKwG0268OR1oRGoRv8HzmPfyjwCtgH0r/AcMyoOdHp1ukl90w8c1KOaNxrZ8bOexoMVgmE5aaqvW4htSyT1N1GpnGdg7VGo5vU2Zmym/K30RJZVUvIDVjWjDpIf1heNFffullk8fqGE49OfaalbAm2foJiV8IPYVtlSV5OYczVoFo0CzorXC2E674NtPB0+5Q
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Microsoft-Antispam-PRVS: <HE1PR0901MB140408D728A751DFBBD28F80EBBF0@HE1PR0901MB1404.eurprd09.prod.outlook.com>
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(13016025)(5005006)(13018025)(100000703101)(100105400095)(93006095)(93004095)(10201501046)(3002001)(6055026)(6041248)(20161123555025)(20161123560025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123562025)(20161123558100)(20161123564025)(6072148)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:HE1PR0901MB1404; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:HE1PR0901MB1404; 
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtIRTFQUjA5MDFNQjE0MDQ7NDo2R2ZFN2pFWDB6cmdwRmxyMmttekVwK09X?=
+	=?utf-8?B?UlZ0K0ZONVRYNmNEVWo4RnFYczBKdFBTUG1wMFl4Z3RyaWQ1S3E5TzFoUGNv?=
+	=?utf-8?B?d2RkZHo2VkxGU01VSzczT01VbEU3V2JSNlJEa2dEejFYTWN0dWwzQnJzck1N?=
+	=?utf-8?B?OFN3dHQ5WGpCVG1uODFFU0x2Q1N2NjFielN4dXIwd09vTUs4RU1wZEtpclpZ?=
+	=?utf-8?B?eGJPbEZZRmhianFkbVJ5U2pqNGpUQlZsZzU4OHlwYzJuaCtXTDNmdFg4Q21W?=
+	=?utf-8?B?YlYvd1N2djBhbjFwaUk2OFpVUTFxckN6TWl4cnB1aGZtck1MOWplbzBKYUtz?=
+	=?utf-8?B?b0wzTlpWbWNjeDMwZDBEOE1DNFkvUG05Y1dpT2tuM1lhczdiZFN0SVNwQ1dr?=
+	=?utf-8?B?dVo1aHNHbHBDWncwNVZORFVzcmphaC90Q3JJZkZYZE9Ka3c4RGNtdWJnZ3ZV?=
+	=?utf-8?B?TloxOE1XSHRpUUpYZ1Fwd3hxOEVaNHh2RGNUa01sVldsVXdnNUxRcGI3NDNV?=
+	=?utf-8?B?aHNHcmJpUjdGTzdzOUw2MEFET0tCZC9VR21Uc3RpSGtRNFVlZGhyZXEzQmo2?=
+	=?utf-8?B?ZXNmczduUGMvTnhKcFViaFA2bGd5U2JMbzN0dU14bll1ckk2OEV4bVl4YjZ1?=
+	=?utf-8?B?eWl2Yjh3L0NvL3BuZ3BOdjVoS2ZlMXZ2a3ViOEVEY0xGRWRRQjI3eGJNN2NU?=
+	=?utf-8?B?L2dqL2JqN3hjV0J4bFFGQVBZcmpmbDNLUU01TXRvaUJPOCtnTER1TzNiQmNR?=
+	=?utf-8?B?K2VxVjl4TE56RnZXYjN0NVJQMW0xSjNhdUpVb3FGU0FVU3hlN0xubGJuUmts?=
+	=?utf-8?B?YWNNY2hVWDhPU2NLVVJjNU9PN05ZQjRRLzQrMllMbmFLQUJYYU9Rd2RQSTQv?=
+	=?utf-8?B?cTQrZ01DRDhXTmVqdEIySTh3K2g2RCtTZDNiaElKN0dpaUYxdEFiOUpFb3Za?=
+	=?utf-8?B?V2pQNnN0SGc4NUZFR1Y2eVd4UXBVWVVNWU9IdFN3L3AvRnlXenRwU2pxSmlF?=
+	=?utf-8?B?azJuc3AzZVlybGp6U001NDZqTzdaZzByM1JiMDlvRG82MDRGVENqc2tLcUNC?=
+	=?utf-8?B?VHVRZWNoRUlPNjZ3Tk1lZlRXWFhIMGxkbFFrV2MxQnArWFlHdVBBdTU2WmZF?=
+	=?utf-8?B?WDBYVXJVMEtTQ005SGgwTGRrTUFrcE5WTDhZa3djRUtmS2pGRWxNYnpnVFdh?=
+	=?utf-8?B?QmxFQWdqOE9HSVNWM1FwZzNkdzU3M2Z1UlA3YXVWQWRKemY3d1E0Y0dTT3Rh?=
+	=?utf-8?B?aElPRU1GbllzaW9Qb2pndXJHcFpQajJhZXpaS0pnbnJvSFBCTk9qa2ZEbTZO?=
+	=?utf-8?B?ckU3Y1BGbW10ckxZVzI1QkJkRHRENEx4a29kNGVoekd3aDJLYm9GZE1QTnJW?=
+	=?utf-8?B?RWJhaEJZMnNGUGZZZjh5Tm51VlpCcnE0d3JkYlpSdjBoQTMrVXg1aU1KUnZ4?=
+	=?utf-8?B?UXBodDVCK1UxYjF1WXFCeUh0RnFvdUxNdHIybHN0V2twZDRCOWhNUkdLU1Zn?=
+	=?utf-8?B?aFlySVdhL0ZJaFdNOVNMVHhvWURxaVk5N0k3UHhERVF6Sk5zRlpqbUdaaFhB?=
+	=?utf-8?B?Y0VxMEt3OWsrcktQNmZTVytTVWtJU200Mmg4TitTbG5aaHl3cll0T1lDZXEx?=
+	=?utf-8?Q?xIpj+KPP/QTHiQmyAXxP6?=
+X-Forefront-PRVS: 03827AF76E
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtIRTFQUjA5MDFNQjE0MDQ7MjM6UUpiY0lIMWdhbkF5aGJmdTVzWmc1S290?=
+	=?utf-8?B?WnIvNkRqaHN5dFREZU5iK0lCbUlwYkRGeHh6OEVJYVpBMXA1RnBFYjdMeU1C?=
+	=?utf-8?B?MjM0YS9sWlhPR0xnMlhjSmdIRjhhV3ZTQTE0VlI3T1ljaEVQYUNHb1F2RnZj?=
+	=?utf-8?B?NEt5WDdQdm5nNXRpRHBJR2tuQ0dOVmlzMUJrQ2xoeG5hVjBVYjhJY01wZ1RQ?=
+	=?utf-8?B?cE84dEQweHNBdTZOeDUrTHNCbENEREk2TFpuQ05rWGdrS0w4UzFrUjBUUjZQ?=
+	=?utf-8?B?Z0NnNWw1cnN1YWZqQnRHb2ZVM09ENUd4TlNhQU1CTE9oSFdmR1NTNUZBdkZJ?=
+	=?utf-8?B?cGEwYkNxSDlwVzNZUjlBZE54UFBQQ3pYRWNTRUZWdDA5cTA4YTB2c3luZ0Jh?=
+	=?utf-8?B?WDRhRThOV2VRU1dtNWdYWTlDa0lDVUdkdlduWkFSeWMrUlZ4K3dadmFMa3NP?=
+	=?utf-8?B?OGtjVTExcmdFeUFXQ0loSFpQU3crR2RFSUhiR0tCbm9kdmxzS3VudUlxS0Yx?=
+	=?utf-8?B?Wk14R3diaEpuWGc5TjdPdmlESjV4T2xzcTRQWUlmd29pb3RRV3VVT1RXdDhV?=
+	=?utf-8?B?MTR1TmpWU3cxN1c5QkxWMnBMajRtOXdqVXlITGJmblNTN1ZWRlJ5OGd4cksr?=
+	=?utf-8?B?Z1Qzdmt5d2phTEwxSzJsZG03OWVYOW4yVVhtbWhUYXFrR3lUYXE3TFpDMXhL?=
+	=?utf-8?B?OUpJbExzR2pzZm1nWDBpZTk1NDF1VUY4SlE1UEMrbUllWXhlVWJCUDZsTXhH?=
+	=?utf-8?B?ZVBQRGVCTEVUZTNnQmRSQm1ZZlBhelBHWDlOL1ZUdlVrMld3aHhpNjFJbTRO?=
+	=?utf-8?B?c1E1MmpnVHhJWExmN3VjcG52SThXU2tISXlTL29HVHlOQm5nL3Z4WTJiWjRU?=
+	=?utf-8?B?NURWc0hPM0VXSWNmTmVsdzdCcGZLSkdNZlloK25yUUhXLzRUNXRTRXFXUThX?=
+	=?utf-8?B?OHRIbnBBYkxjM29NaDZEOFZsVHpneFl5ZWxnZjFGRTNWZVRwcndLRm9qTTFI?=
+	=?utf-8?B?aW9lbTY5K3FKRHZrTWdYNkI5WHNjS0V4QkFFYlVZbFpvNllOT3hRa0VGQyt1?=
+	=?utf-8?B?OU1wQ2paSFBxa1dYU2dmakFnTlRvQ3NCMVB5WW1laGZIQU44TWg2UUN4Mkcy?=
+	=?utf-8?B?TkhtMUJtTE45QXFUT2xaM3RYZ1F4R016NWpTd2t4S1R1TlFtS3Q4VFBqZU8x?=
+	=?utf-8?B?SHJZZ1pKNHVMeDNHR0dKZFRnS0JJaklqT3N4UFNMb0JVbWpWcjFlY3BSTVZL?=
+	=?utf-8?B?L0srOXh3OTkySHZBU0daRjlFVEpJNWNCeTZCWFJxbUJENVN6U1NNYk12WktT?=
+	=?utf-8?B?RURqWC9UWFBKY1UrSkdwNGs4cUdRclhJcnpDaURzaXdJQTR1QU8xbTBGdmRz?=
+	=?utf-8?B?SUNhSUgxQXgzWXpQSHpoUDNmQUFWN1hndGVrMjlDbmY1a0ZYcmwybFhYTTJE?=
+	=?utf-8?B?eTBIZkZScTNaVHhybG1FaUFxTkJLWEYwZFdLTi9HYnpXa0U5TWVYODlWdVBT?=
+	=?utf-8?B?bW4vYzhpaE9sakdWMVJqWVJhblhuSzkvTGdHekdKNnMvTFJPNXJQajg2MW4r?=
+	=?utf-8?B?QkR6VFBwdTRiZWFpQTYzODAzQStoam1CTVFyY0JVSTZjMWtZa0FiNlVPOTY4?=
+	=?utf-8?B?eVdoc1l0TElCME9mUWtxYVNpVisxd3lpT0JtdEEraTBURGZCVW84MC9TYzRB?=
+	=?utf-8?B?dHRrckhwaHhEamQwb1FibUJFTDI1ZGlJdnZhbnRnNWNvbHFvUVJsUXBWOUd6?=
+	=?utf-8?B?OHkwMGxjK0lzQy9NZTZ0NUU0STdYajFocUxHMnlzVVdUQlptVFhTOElpS3dz?=
+	=?utf-8?B?c3JDN05WWTJIc1pyS01HZWVIOTBMVzVQWEdNa2MxRFBuTG85bkIrdVIxZUYw?=
+	=?utf-8?B?UmdudnZsZENISmVXancydkIvai9FeHMzb2hSMXYxZndaNUxtK1cxdm42WjAz?=
+	=?utf-8?Q?0mlOMLKXeQ2oazQF1Hvb4SmACGi85ANM=3D?=
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtIRTFQUjA5MDFNQjE0MDQ7NjozcUJiN3FHOGlCRHBnWFJCM1p3N1VObVF1?=
+	=?utf-8?B?a0Yxa3dkeDNJUTN6MmRjTUFiKytRY3JjcWZBa2VvYUgvcFk5U3l0WUkwaloz?=
+	=?utf-8?B?Q0FDeXJUbm9Iand3SFlndGlKc0ZwRnEyZXIvaHpoU2lHdk5sRElNVUNvY1Ev?=
+	=?utf-8?B?QUpwSzA1TG16U2F4emRMWTJabVUrOW9HSS9rdzBQNFZXc21oU2FSNUx5UmEr?=
+	=?utf-8?B?bWZ1WmpTTys4cHVnbEJFUDhKdGo1UThmbktvZy9JVmg5VE1wMUlXMzdIRzZP?=
+	=?utf-8?B?YzIrempLSm9CbzNJbDN0Z0lrUXdmdHRMQkYvc2VvNTF3N1F3ZTg4bWt2bG82?=
+	=?utf-8?B?STR0bjBNbkZ1YWMwOFB5UnVzREVaV3RoOHBZTlY5WFhCcFk2ZW5Da3BJUWRo?=
+	=?utf-8?B?c1ZWN1ByeEJibE1MUjlMTFRyUW8zQ0lRek5LNVg5Sm03dnhIMGVibkFuelEz?=
+	=?utf-8?B?Z01Xd1VsdDZweVJZeVpUWHBnSlFXbTI3SWs5YTFVKzROWDhKa3VUbzJFQ1ZL?=
+	=?utf-8?B?MDdlSWVuUkVUVWdBVldsMS90QlpqVThHczVjUlNuUEZ3VEhFdXVDZ3Jycjl6?=
+	=?utf-8?B?NklDMmtQRzB5YXlYVU9VWnZZR3pFcTRTWG9XYXo3bUZucjc3OWpGSkt6VjNE?=
+	=?utf-8?B?a0dhYTVuK1VHZXpRSG1YNzRjbyttdUV6UFczNFZoMmpNbVRNMi95Nnk0bGlD?=
+	=?utf-8?B?cjJQd3BWNHViUkpYS0dFbHE2eS90Q3cwUWVaMHM1T09aK3hwcEZ1V0NHRkhP?=
+	=?utf-8?B?ODB0aHcyTnloTTRWaGk1c21QZWdURGhpWUVwelNrV2JYSkVuMzdueU12Mm95?=
+	=?utf-8?B?Slc5ektPU1ZrdTFSWGJBNkJhSlBWQld5RFFheEtxUVRCNno5SklqRHhwOFJv?=
+	=?utf-8?B?eXc4SlFhdVk1Zk4vU3N4b2ttUUJtZVJvRmlYTmFUNnRXcnh1bWRTQlBMalR3?=
+	=?utf-8?B?THY3RnBnbDdha0F2VU9Lb2F1L3h4amYxY0dOUW9wNWIyT08vNElIbTlRZWNY?=
+	=?utf-8?B?RU11dC83STBpMTFTVG42ZHl2RXBVWnRQMUdPNVVYT2JqOG9qODBhelA0Q3p6?=
+	=?utf-8?B?UDE0S1JFM1FlQXY3ZVF1bVBKaU1vUlBXdGtITHBkd0dEOW5sb0xvM2xqZG55?=
+	=?utf-8?B?WTdza21vcHhyUktBaWR1eXByUEhiSGRSRCtzN3ZvcTdhRnB2c3c1dlAwTnVn?=
+	=?utf-8?B?aTVKZkpzOVpWQk5Fb1A5RmxxbTMyanVqTWFMdVdwRHRCSjhpNVFjWEVDdUxs?=
+	=?utf-8?B?UEJLMG5JRHBSdFVlR0VvR0h5TURFdlJKcXJnU0JDak55dFdzNU5na0ZkU3hH?=
+	=?utf-8?B?SEwrWUpENlNvVEJXaTFHbU5wSmg4WW01VUNLdHlEalQ2WVdXU2dFNjVxQktu?=
+	=?utf-8?Q?g/HoGVvv/?=
+X-Microsoft-Exchange-Diagnostics: 1; HE1PR0901MB1404;
+	5:70n4cE1dyYH4QOKuNNuhMBPPlOv38NVRPq82vJO/UY75BI9BUR0W4r8EBkKtb217pTz4uaTywRiFg5+H4UUi/a7IujTGnlWDbYYPpNrv30L2UEj6gJTklky/ZfBJSHkEK3bl3xZCXaGNpx2KfRb+6OKZ2ma6qZ5YVbTlql3KfU1Vn6UzRodFKm4UHRr+svYOffXu93TVtSIVFoePXj6A3Jt60z30h8NnXA7SdLzaIyTrIR7Vh5PcjUiXOBdEw5FTTNcXheZsUsIvfDBWYvsFowrImteCkgVmAnSfTmsfu3DEXak0LY6wd2Rtaic9yllGAaGPK/lKX3iVh08B7orqwJUrkYgnQExEiodvWlAPmUcO3En7OQ6T/7yq917usbAe59Z7wxNBWwbvv8AU7Yhd4mGNpfJoQNpkBtb9g89IBsFeZsIHrnweXGdLhjOPCHOmGzH/V2nUrRO+obwkd7Wchvt3GRrteWmhOsP6yv4gInyms2DRzkZkB57TMengxqyF;
+	24:BDbiqFUlDKOYqa+6prtZV83gb1S1CBmpWCSn+rX4GpH0zSuBSk6PVREsx0kLz6biqL3x+hNti/72kz/Cn3d/on+krmpSyKh/Gup3lv3htzc=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-Microsoft-Exchange-Diagnostics: 1; HE1PR0901MB1404;
+	7:0QSbOzRN6rtXCHH7tz5Q1uGB7NWy+7gVuqA7q5yi9Hdd0op6sh7o3+E+5nLKmNz1ZHSXaqBYgvfH/sZPlRs6SaMAGZLwq0VKpSIZUCA2nzL3T1xBfRHyxIZyovj4CFOKLQwVLCkMosuLfpw7O8HG9X+jomL2VxnSEVdbeaHrZya3ksn4gaOg9YCR2yyNgstO5LgbejDvHTslG3stovVktazUxxKW1juWEr4aY70kDocNUyw9ZAq2YWK7Dk+yjtxjwc7YGJ64yIVEx6GN+AOG8uA5ZKioDoWtt3NmGDykVZxxLvfUpaVaAsZYScsMFWET3/PNpcy7y+gBa3kE4hHxlkMqIumRkVd9GUHDq2H/Gwpd01bu2ezw47+N7XOwdTGu1vddS+sv3SLOF91snZPndmfx+J3wW1bVIPaK38VNL5GOdFB7R5hj+VB7nM94GUuAvbur9hDa5eH69sHNKfiegRQeiO34e+W29QQvFSi/MtUmtreknH5lrSYl9CmXDK+GVk735bkYSit3WRhSWlUJCrWag4rYqMGzvJNradAB/+nQ1T29pcpo8JV5qwezze1TVudGNucRTjk1EcqEifcDyS1JSsecFD4YAE+SmC3wt++mMxi6gglIZnxyXl+evV307R+B0cQ6Lo49h6homCbqX3vb4LkRYjagKIBX1G+PyfHOJJz0Ac+/TLuHsMoTU3aVaGBCoAzIlfcRmeqjetvq1Iq++S+Y4tgSeo/S/nU3rJfi43oVMfp/fvS6radnRjLAwA+t/nYE+BKjQK916HqYV2Qyv5q7DvI+R6aWREzE2bM=
+X-OriginatorOrg: buhlergroup.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2017 06:07:21.6358 (UTC)
+X-MS-Exchange-CrossTenant-Id: ec64c433-1ee8-4dbd-837a-39f56c7cdcea
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ec64c433-1ee8-4dbd-837a-39f56c7cdcea; Ip=[194.9.121.41];
+	Helo=[UZNA92.buhlergroup.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0901MB1404
 Cc: yocto@yoctoproject.org
-Subject: Re: swupate.bblcass dependencies not triggering rebuild
+Subject: Re: Crosscompile packages (ipk) based on SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,138 +240,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jul 2017 13:20:41 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 28 Jul 2017 13:41:11 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Stefano,
-
-2017-06-14 10:32 GMT+02:00 Stefano Babic <sbabic@denx.de>:
-> Hi Andreas,
->
-> On 13/06/2017 14:18, Andreas Fenkart wrote:
->> Hi list,
->>
->> I want to create a swupdate file, which is a cpio file with rootfs and
->> some metadata to control software update. My problem is, that it is not
->> rebuilt everytime the rootfs changes. I checked in the cooker log.
->>
->> NOTE: recipe swupdate-image-1.0-r4: task do_populate_sysroot_setscene: Succeeded
->> NOTE: Running noexec task 5475 of 5478 (ID: 27,
->> meta-devel/recipes-core/images/swupdate-image.bb, do_build)
->>
->> I generated the dot files with bitbake -g swupdate, and while do_swuimage
->> has to run before do_build, do_build does not depend directly on do_swuimage:
->>
->> swupdate-image.do_createlink -> swupdate-image.do_swuimage
->> swupdate-image.do_install -> swupdate-image.do_createlink
->> swupdate-image.do_populate_sysroot -> swupdate-image.do_install
->> swupdate-image.do_build" -> swupdate-image.do_populate_sysroot
->>
->> $ bitbake-diffsigs -t swupdate-image do_build
->> ERROR: No sigdata files found matching swupdate-image do_build
->>
->> $ bitbake-diffsigs -t swupdate-image do_populate_sysroot
->> Unable to find matching sigdata for ....
->> recipes-core/images/swupdate-image.bb.do_install with hashes
->> c0bc8039e8dbe8d70939dd3db2ceb922 or e9d7b242613f323d4d6adff3d6d4881b
->>
->> $ bitbake-diffsigs -t swupdate-image do_install
->> ERROR: No sigdata files found matching swupdate-image do_install
->>
->> $ bitbake-diffsigs -t swupdate-image do_createlink
->> Hash for dependent task imagesswupdate-image.bb.do_swuimage changed
->> from cec64d7e21b0375ff641427d5d631254 to
->> 45510576a402839f4c4d4ac9b9eff578
->>   Hash for dependent task imagesrootfs.bb.do_build changed from
->> 876eb436b444f84efd355c0294b871bf to fabbabdd000427cdf5e721b59784d5c4
->>   Unable to find matching sigdata for
->> meta-devel/recipes-core/images/rootfs.bb.do_build with hashes
->> 876eb436b444f84efd355c0294b871bf or fabbabdd000427cdf5e721b59784d5c4
->>
->> The dependency on rootfs is added here:
->> https://github.com/sbabic/meta-swupdate/blob/master/classes/swupdate.bbclass#L64
->> with IMAGE_DEPENDS="rootfs"
->>
->> Is it correct to 'depend' on :do_build? It seems rather uncommon.
->
-> I think that the first attempt to set dependency here was with
-> do_rootfs, but this just works for rootfs, not for all other images. In
-> the history. commit b2f47aa9de53a98380b8677eb9e078db608b0ad3 changed
-> from do_populatesysroot to do_build because it was noted that it runs
-> too early.
->
-> I am not sure if I have this issue, maybe it was sporadic. I wrote a
-> patch, really to fix an issue in the transition morty --> pyro, where I
-> changed the dependency as:
-> diff --git a/classes/swupdate.bbclass b/classes/swupdate.bbclass
-> index 44e4546..511f147 100644
-> --- a/classes/swupdate.bbclass
-> +++ b/classes/swupdate.bbclass
-> @@ -61,16 +61,23 @@ def swupdate_getdepends(d):
->
->      depstr = ""
->      for dep in deps:
-> -        depstr += " " + dep + ":do_build"
-> +        if dep.find(":") != -1:
-> +            deptask = ""
-> +        else:
-> +            if (dep == "virtual/kernel") or (dep == "virtual/bootloader"):
-> +                deptask = ":do_deploy"
-> +            else:
-> +                deptask = ":do_image_complete"
-> +
-> +        depstr += " " + dep + deptask
-> +
->      return depstr
->
->
-> So "do_image_complete" instead of "do_build", but I have to check
-> explicitely for kernel and bootloader because they have no
-> do_image_complete. But I do not know if this can be a correct solution.
->
->>
->> I checked the latest swupdate-image.do_populate siginfo in sstate, which is
->> pretty large, so adding just the task-dependencies:
->> ..
->> Tasks this task depends on:
->> ['..-devel/recipes-core/images/swupdate-image.bb.do_install']
->> This task depends on the checksums of files: []
->> Hash for dependent task
->> ./meta-devel/recipes-core/images/swupdate-image.bb.do_install is
->> e9d7b242613f323d4d6adff3d6d4881b
->> Computed Hash is d8b1d389351c25e0c4a519fb8fe9ddda
->> ..
->>
->> Which makes me wonder, since bitbake-diffsig said do_install has no sigdata
->>
->
-> We have do_install[noexec] = "1" in the class - is this the reason ?
-
-I removed all the 'noexec' stamps from swupdate.bbclass, but still the
-cooker.log says, that none of the swupdate-image tasks needs
-execution:
-
-NOTE: Setscene stamp current for task
-5(../recipes-core/images/swupdate-image.bb, do_populate_sysroot)
-NOTE: Setscene stamp current for task
-6(../recipes-core/images/swupdate-image.bb, do_populate_lic)
-NOTE: Setscene stamp current for task
-7(../recipes-core/images/swupdate-image.bb, do_packagedata)
-NOTE: Setscene stamp current for task
-8(../recipes-core/images/swupdate-image.bb, do_package_qa)
-NOTE: Setscene stamp current for task
-9(../recipes-core/images/swupdate-image.bb, do_package)
-
-The funny thing is, that bitbake swupdate-image actually triggers a built
-of the rootfs. But the task do_swuimage is not even mentioned in the
-cooker.log! Now only do_swuimage depends on rootfs:do_build, so
-how can bitbake built a dependency for task it's not running?
-
-This is yocto-2.0.2, quite old, but I'd expect this to work on that
-release still
-
->> I must admit that I feel pretty lost here.
->
-> Best regards,
-> Stefano
+SGkgTWFudWVsDQoNCklmIHlvdXIgZGVmYXVsdCBwYWNrYWdlIGZvcm1hdCBvZiB5b3VyIFNESyBp
+cyBJUEsgaXQgc2hvdWxkIGNvbnRhaW4gdGhlIG9wa2cgcGFja2FnZXIgKHN5c3Jvb3QvdXNyL2Jp
+bi9vcGtnLWJ1aWxkKS4NCg0KWW91IGNhbiB0aGVuIHNldCB1cCB0aGUgcGFja2FnZSBhcmNoaXRl
+Y3R1cmUgKGUuZy4gYnkgYSBzY3JpcHQpIGFuZCBwYWNrIGl0Lg0KDQpGcmV1bmRsaWNoZSBHcsO8
+c3NlIC8gS2luZCByZWdhcmRzDQoNCk1hcmNvIFN0YWRsZXINCkVtYmVkZGVkIFNvZnR3YXJlIEVu
+Z2luZWVyDQoNCkLDvGhsZXIgQUcNCjkyNDAgVXp3aWwNClN3aXR6ZXJsYW5kDQpUZWw6ICs0MSA3
+MSA5NTUgMjEgMDENCg0KTWFpbHRvOm1hcmNvLnN0YWRsZXJAYnVobGVyZ3JvdXAuY29tDQp3d3cu
+YnVobGVyZ3JvdXAuY29tDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IHlv
+Y3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9w
+cm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9mIEpvc2VmIEhvbHptYXlyDQpTZW50OiBGcmlkYXksIEp1
+bHkgMjgsIDIwMTcgNzoxMyBBTQ0KVG86IE1hbnVlbCBHZWVsZXIgPGdlZWxlckBpZGVudGVjaC5j
+aD47IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+DQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0
+Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gQ3Jvc3Njb21waWxlIHBhY2thZ2VzIChpcGspIGJh
+c2VkIG9uIFNESw0KDQpPbiAyNy4wNy4yMDE3IDE4OjU1LCBNYW51ZWwgR2VlbGVyIHdyb3RlOg0K
+PiBJIG9ubHkgZ290IHRoZSBzdGFuZGFyZCBTREsuIEFyZSB0aGUgaW5mb3JtYXRpb24gSSBuZWVk
+IGZvciBidWlsZGluZyBteQ0KPiBvd24geW9jdG8gaW5zdGFsbGF0aW9uIG1hdGNoaW5nIHRoZSB0
+YXJnZXQgc29tZXdoZXJlIGhpZGRlbiBpbiB0aGUgU0RLPw0KDQpOb3BlLCB0aGUgc3RhbmRhcmQg
+U0RLIGlzIGFjdHVhbGx5IG9ubHkgbGl0dGxlIG1vcmUgdGhhbiBhIGNvbXBpbGVyDQp0b29sY2hh
+aW4gcGx1cyBzeXNyb290LiBZb3UgaGF2ZSB0byBhc2sgd2hvbWV2ZXIgc3VwcGxpZWQgdGhlIGhh
+cmR3YXJlDQp0byB5b3UgZm9yIHByb3BlciBidWlsZCBpbnN0cnVjdGlvbnMgcmVzcGVjdGl2ZWx5
+IHNvdXJjZXMuDQoNCkdyZWV0eg0KLS0NCkpvc2VmIEhvbHptYXlyDQpTb2Z0d2FyZSBEZXZlbG9w
+ZXIgRW1iZWRkZWQgU3lzdGVtcw0KDQpUZWw6ICs0OSA4NDQ0IDkyMDQtNDgNCkZheDogKzQ5IDg0
+NDQgOTIwNC01MA0KDQpSLVMtSSBFbGVrdHJvdGVjaG5payBHbWJIICYgQ28uIEtHDQpXb2Vsa2Vz
+dHJhc3NlIDExDQpELTg1MzAxIFNjaHdlaXRlbmtpcmNoZW4NCnd3dy5yc2ktZWxla3Ryb3RlY2hu
+aWsuZGUNCuKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlA0KQW10
+c2dlcmljaHQgSW5nb2xzdGFkdCDigJMgR21iSDogSFJCIDE5MTMyOCDigJMgS0c6IEhSQSAxNzAz
+OTMNCkdlc2Now6RmdHNmw7xocmVyOiBEci4tSW5nLiBNaWNoYWVsIFNvcmcsIERpcGwuLUluZy4g
+RnJhbnogU29yZw0KVXN0LUlkTnI6IERFIDEyODU5MjU0OA0KDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpBbXRzZ2VyaWNodCBJ
+bmdvbHN0YWR0IC0gR21iSDogSFJCIDE5MTMyOCAtIEtHOiBIUkEgMTcwMzYzDQpHZXNjaMOkZnRz
+ZsO8aHJlcjogRHIuLUluZy4gTWljaGFlbCBTb3JnLCBEaXBsLi1JbmcuIEZyYW56IFNvcmcNClVT
+dC1JZE5yLjogREUgMTI4NTkyNTQ4DQoNCi0tDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXw0KeW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0b3Byb2pl
+Y3Qub3JnDQpodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVGhpcyBlLW1haWwgKGluY2x1ZGlu
+ZyBhbnkgYXR0YWNobWVudHMpIGlzIGNvbmZpZGVudGlhbCwNCm1heSBiZSBsZWdhbGx5IHByaXZp
+bGVnZWQgYW5kIGlzIGRlc2lnbmF0ZWQgZXhjbHVzaXZlbHkNCmZvciB0aGUgaW50ZW5kZWQgcmVj
+aXBpZW50LiBBY2Nlc3MgYnkgYW55IG90aGVyIHBlcnNvbiBpcw0Kbm90IGF1dGhvcmlzZWQuIEFu
+eSBkaXNjbG9zdXJlIG9mIHRoaXMgZS1tYWlsIG9yIG9mIG5hbWVzDQpvZiBwZXJzb25zIG1lbnRp
+b25lZCB0aGVyZWluIGFzIHdlbGwgYXMgYW55IHN0b3JpbmcsDQpjb3B5aW5nLCBkaXN0cmlidXRp
+b24gYW5kIGRpc3NlbWluYXRpb24gaXMgc3RyaWN0bHkgcHJvaGliaXRlZC4NCg0KSWYgeW91IGFy
+ZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgcGxlYXNlIGltbWVkaWF0ZWx5DQpkZWxldGUg
+dGhpcyBlLW1haWwgYW5kIG5vdGlmeSB0aGUgc2VuZGVyIGJ5IHBob25lIG9yIGJ5IGUtbWFpbC4N
+Cg==
 
