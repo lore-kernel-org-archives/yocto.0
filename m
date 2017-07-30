@@ -1,48 +1,58 @@
-Return-Path: <pierre.ficheux@smile.fr>
+Return-Path: <bluehills7@comcast.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DA33E00C28; Sun, 30 Jul 2017 05:10:23 -0700 (PDT)
+	id A19AFE00BB1; Sun, 30 Jul 2017 07:22:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [91.216.209.19 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	MIME_QP_LONG_LINE, 
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bluehills7[at]comcast.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [69.252.207.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from idris.smile.fr (idris.smile.fr [91.216.209.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E36ABE00825
-	for <yocto@yoctoproject.org>; Sun, 30 Jul 2017 05:10:21 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by idris.smile.fr (Postfix) with ESMTP id 5D3141EE2BFA;
-	Sun, 30 Jul 2017 14:10:20 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at smile.fr
-Received: from idris.smile.fr ([127.0.0.1])
-	by localhost (bluemind-mta.prod.vitry.intranet [127.0.0.1])
-	(amavisd-new, port 10024)
-	with ESMTP id XsRqm44bdbZ0; Sun, 30 Jul 2017 14:10:20 +0200 (CEST)
-Received: from bluemind.smile.fr (bluemind.prod.vitry.intranet [10.10.1.35])
-	by idris.smile.fr (Postfix) with ESMTPS id 3B4BB1EE2BF7;
-	Sun, 30 Jul 2017 14:10:20 +0200 (CEST)
-Received: from localhost.localdomain (localhost [127.0.0.1])
-	by bluemind.smile.fr (Postfix) with ESMTP id 36EBD5460120;
-	Sun, 30 Jul 2017 14:10:20 +0200 (CEST)
-MIME-Version: 1.0
-Date: Sun, 30 Jul 2017 14:10:20 +0200
-From: Pierre FICHEUX <pierre.ficheux@smile.fr>
-To: Einar Vading <yocto-ml@vading.se>
-In-Reply-To: <CAB6-VtKE+yj2ODVzwBnA-6PkYfq_d-ysLaVsByQSW2yPEZvbOg@mail.gmail.com>
-References: <1500278455-5712-1-git-send-email-pierre.ficheux@smile.fr>
-	<1500300247.5349.105.camel@linux.intel.com>
-	<CAJTo0LYvGfA-QxNt42AQrT71ExA5Raf=VP6mxTOwPua8TCViZA@mail.gmail.com>
-	<1500302882.5349.110.camel@linux.intel.com>
-	<CAB6-VtKE+yj2ODVzwBnA-6PkYfq_d-ysLaVsByQSW2yPEZvbOg@mail.gmail.com>
-Message-ID: <7bcfe2db1fb55e00c7362455a772602b@smile.fr>
-X-Sender: pierre.ficheux@smile.fr
-User-Agent: Roundcube Webmail/0.8.5
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] Added missing CPPFLAGS/CFLAGS/LDFLAGS in sample recipe for morty branch
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from resqmta-ch2-10v.sys.comcast.net
+	(resqmta-ch2-10v.sys.comcast.net [69.252.207.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16224E00BAB
+	for <yocto@yoctoproject.org>; Sun, 30 Jul 2017 07:22:24 -0700 (PDT)
+Received: from resomta-ch2-07v.sys.comcast.net ([69.252.207.103])
+	by resqmta-ch2-10v.sys.comcast.net with ESMTP
+	id bp6hd5og1bO55bp6ud5UMA; Sun, 30 Jul 2017 14:22:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=q20161114; t=1501424544;
+	bh=+LaJldaI/vGdvhZ2chorWdcdvzf2vE4lGoAeA9eSfPA=;
+	h=Received:Received:From:Content-Type:Mime-Version:Subject:
+	Message-Id:Date:To;
+	b=diFWoZ/PMRHx8W7kAOytdiVaiQtPShDrF5J492EX1x3WpQCzNEl/E1Os+V1ncSdSY
+	6ksVB3tKXjbId7GueGlhtyptwVpC3/Nvj16x0/cB2XlB38He1gCgbiUVt4myvO0XOV
+	mzdlxxwGL5sfTdW6bzccxiwsA7I/3S85VG8KfXiZ8rcS6iex1WMkmulSk+Y59tseMk
+	NXDn3xfpM88urlHcWQmAULF3eZSJVGCZFUVTpjHUvXORfrLaPalzE3ov42VuJK9uzz
+	ozy+qNfD60h906jWFa69BOxcOdZn/jm9FhWyjJlgb2dV/D3mJUbMq11b+1Z45iG16U
+	q6bvna+eui/pg==
+Received: from [IPv6:2601:18f:800:acc1:c55a:360c:95ad:36fb]
+	([IPv6:2601:18f:800:acc1:c55a:360c:95ad:36fb])
+	by resomta-ch2-07v.sys.comcast.net with SMTP
+	id bp6tdHGicDWJJbp6tdr0BO; Sun, 30 Jul 2017 14:22:23 +0000
+From: Russell Peterson <bluehills7@comcast.net>
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+Message-Id: <FCFE4E57-753C-47F3-AFBC-A969AABDDD2C@comcast.net>
+Date: Sun, 30 Jul 2017 10:22:24 -0400
+To: yocto@yoctoproject.org
+X-Mailer: Apple Mail (2.3273)
+X-CMAE-Envelope: MS4wfDtJww5nidVgj+jfgOUHqQmLCiqXIlQTBqHnDx0oXQQcisdT/CVpXRSEAvZMBcvmKoT+GLult/XI5+ABdbI1qIRT1r4MIBNBfopsKNxPGzHGi279ptM4
+	G1dFWPwt+IYt2wARlJDq/3iM7QvfKx0IOoMEu5YAeUSBD+RD9JyMoFkM2gPEd9Y7Bzr+nVMXQmdBU99iPLAbCK5+pKXFrBz+n1U=
+Subject: extensible SDK build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,53 +64,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 30 Jul 2017 12:10:23 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sun, 30 Jul 2017 14:22:25 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_721CD7EF-5688-422C-AE3D-FA1E90BF8F23"
 
-Hi,
+--Apple-Mail=_721CD7EF-5688-422C-AE3D-FA1E90BF8F23
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-So do you want a new patch with LDFLAGS only?
+Hello, all.
 
-regards
+I=E2=80=99m trying to build the eSDK for my platform and I just can=E2=80=99=
+t figure out why dnf can=E2=80=99t find kernel-devsrc.  It=E2=80=99s =
+there, I added it.  The =E2=80=9Cnormal SDK=E2=80=9D uses it and builds =
+fine.  Just no luck with the eSDK.
+Any help out there?  Poky is pyro.  aarch64 SoC target platform with an =
+x86 build host (CentOS 7.3).  Basically I just bitbake -c =
+do_populate_sdk_ext core-image-full.  I do have a linux kernel recipe =
+that pulls the kernel from the standard kernel.org <http://kernel.org/> =
+repo.
 
--- 
-Pierre FICHEUX -/- CTO Smile-ECS, France -\- pierre.ficheux@smile.fr
-                                     http://www.smile.fr
-                                     http://ingenierie.openwide.fr
-I would love to change the world, but they won't give me the source 
-code
+ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Could not invoke dnf. =
+Command =
+'/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/build=
+tools-tarball/1.0-r0/recipe-sysroot-native/usr/bin/dnf -y -c =
+/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/buildt=
+ools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroots/none/etc/dnf/dnf.con=
+f =
+--setopt=3Dreposdir=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesd=
+k-pokysdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroot=
+s/none/etc/yum.repos.d =
+--repofrompath=3Doe-repo,/scratch/russell/yocto-00dc025f/work/x86_64-nativ=
+esdk-pokysdk-linux/buildtools-tarball/1.0-r0/oe-rootfs-repo =
+--installroot=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-poky=
+sdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroots/none=
+ =
+--setopt=3Dlogdir=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-=
+pokysdk-linux/buildtools-tarball/1.0-r0/temp --nogpgcheck install =
+kernel-devsrc' returned 1:
+Added oe-repo repo from =
+file:///scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux=
+/buildtools-tarball/1.0-r0/oe-rootfs-repo =
+<file:///scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linu=
+x/buildtools-tarball/1.0-r0/oe-rootfs-repo>
+Last metadata expiration check: 0:00:01 ago on Sun Jul 30 01:38:48 2017 =
+UTC.
+No package kernel-devsrc available.
+Error: Unable to find a match
+=20
+ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Function failed: =
+do_populate_sdk
+ERROR: Logfile of failure stored in: =
+/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/buildt=
+ools-tarball/1.0-r0/temp/log.do_populate_sdk.4836
+ERROR: Task =
+(/labhome/russell/src/bf/poky/meta/recipes-core/meta/buildtools-tarball.bb=
+:do_populate_sdk) failed with exit code '1'=
 
-Le 2017-07-26 08:06, Einar Vading a écrit :
-> On Mon, Jul 17, 2017 at 4:48 PM, Leonardo Sandoval
-> <leonardo.sandoval.gonzalez@linux.intel.com> wrote:
-> 
->> On Mon, 2017-07-17 at 15:30 +0100, Burton, Ross wrote:
->>> 
->>> On 17 July 2017 at 15:04, Leonardo Sandoval
->>> <leonardo.sandoval.gonzalez@linux.intel.com> wrote:
->>>          master has the second line (LDFLAGS) but not the first one
->>>          (CPPFLAGS and
->>>          CFLAGS) so the problem may also be present on master. Would
->>>          you mind
->>>          checking this and sent patches to the poky mailing list?
->>> 
->>> 
->>> The GNU_HASH warning is triggered by ignoring LDFLAGS.
->> 
->> Got it, so definitely LDFLAGS var is missing, not sure if the rest 
->> are
->> necessary for this simple hello world recipe.
->> Leo
-> 
-> I had this problem to and IIRC i fixed it by moving the LDFLAGS
-> variable to the end of the line
->> +          ${CC} helloworld.o -o helloworld  ${LDFLAGS}
-> 
->>> 
->>> 
->>> Ross
-> 
-> Einar 
+--Apple-Mail=_721CD7EF-5688-422C-AE3D-FA1E90BF8F23
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">Hello, all.<div class=3D""><br class=3D""></div><div =
+class=3D"">I=E2=80=99m trying to build the eSDK for my platform and I =
+just can=E2=80=99t figure out why dnf can=E2=80=99t find kernel-devsrc. =
+&nbsp;It=E2=80=99s there, I added it. &nbsp;The =E2=80=9Cnormal SDK=E2=80=9D=
+ uses it and builds fine. &nbsp;Just no luck with the eSDK.</div><div =
+class=3D"">Any help out there? &nbsp;Poky is pyro. &nbsp;aarch64 SoC =
+target platform with an x86 build host (CentOS 7.3). &nbsp;Basically I =
+just bitbake -c do_populate_sdk_ext core-image-full. &nbsp;I do have a =
+linux kernel recipe that pulls the kernel from the standard <a =
+href=3D"http://kernel.org" class=3D"">kernel.org</a>&nbsp;repo.</div><div =
+class=3D""><br class=3D""></div><div class=3D""><div style=3D"margin: =
+0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D"">ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Could not =
+invoke dnf. Command =
+'/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/build=
+tools-tarball/1.0-r0/recipe-sysroot-native/usr/bin/dnf -y -c =
+/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/buildt=
+ools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroots/none/etc/dnf/dnf.con=
+f =
+--setopt=3Dreposdir=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesd=
+k-pokysdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroot=
+s/none/etc/yum.repos.d =
+--repofrompath=3Doe-repo,/scratch/russell/yocto-00dc025f/work/x86_64-nativ=
+esdk-pokysdk-linux/buildtools-tarball/1.0-r0/oe-rootfs-repo =
+--installroot=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-poky=
+sdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroots/none=
+ =
+--setopt=3Dlogdir=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-=
+pokysdk-linux/buildtools-tarball/1.0-r0/temp --nogpgcheck install =
+kernel-devsrc' returned 1:<o:p class=3D""></o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D"">Added oe-repo repo from&nbsp;<a =
+href=3D"file:///scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokys=
+dk-linux/buildtools-tarball/1.0-r0/oe-rootfs-repo" style=3D"color: =
+rgb(149, 79, 114);" =
+class=3D"">file:///scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-po=
+kysdk-linux/buildtools-tarball/1.0-r0/oe-rootfs-repo</a><o:p =
+class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">Last =
+metadata expiration check: 0:00:01 ago on Sun Jul 30 01:38:48 2017 =
+UTC.<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">No =
+package kernel-devsrc available.<o:p class=3D""></o:p></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif;" class=3D"">Error: Unable to find a match<o:p =
+class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
+class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">ERROR: =
+buildtools-tarball-1.0-r0 do_populate_sdk: Function failed: =
+do_populate_sdk<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
+0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
+class=3D"">ERROR: Logfile of failure stored in: =
+/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/buildt=
+ools-tarball/1.0-r0/temp/log.do_populate_sdk.4836<o:p =
+class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">ERROR: =
+Task =
+(/labhome/russell/src/bf/poky/meta/recipes-core/meta/buildtools-tarball.bb=
+:do_populate_sdk) failed with exit code '1'</div></div></body></html>=
+
+--Apple-Mail=_721CD7EF-5688-422C-AE3D-FA1E90BF8F23--
