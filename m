@@ -1,74 +1,62 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <xpetept@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9DFCE00C3C; Mon, 31 Jul 2017 06:26:34 -0700 (PDT)
+	id 78988E00C40; Mon, 31 Jul 2017 06:27:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.179 listed in list.dnswl.org]
+	*      [209.85.214.45 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.179 listed in dnsbl.sorbs.net]
+	*      [209.85.214.45 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (xpetept[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
-	[209.85.223.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ADA1E00BB7
-	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:26:33 -0700 (PDT)
-Received: by mail-io0-f179.google.com with SMTP id g35so78327591ioi.3
-	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:26:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=sniQiuZUgcNZnrTaTc/xNNemQYo7XOJp8aBLKGTeK+4=;
-	b=XHmSh3KhZ2t/lJi4pYSpN/27NT0LUALRvCb/cUeK1bqJawNgLJ2acS/diyJHL7W+qr
-	Q43Y9vlHy2BQhFIgH+7uvP1O6DXPtDpSZb+HFCWAotDG8o8OBTgYYP8Uwq9CtGYTE3/N
-	acP8acLBg1oGM7V3/S1vOWX/T4iAFCahlLCNyUI+ar43eujoe/EPod23hLeDj2a8ZoWq
-	Qq2t6ye/h/ASUJZZTaX2QbIi4w2wl8/BVSUEeYM11Ff3i1dSE2hcDOrFE7JWEZtviGlr
-	HGhJOSvJHsP0E2dcxrruE7yyeSUAzaUUmYJXlDUuSbjzKn27Rmpo0bAuGX+qzl65NhLQ
-	foSQ==
+Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
+	[209.85.214.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A171BE00BB7
+	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:27:24 -0700 (PDT)
+Received: by mail-it0-f45.google.com with SMTP id v127so126175170itd.0
+	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:27:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=jw1gqC8HoyH4khqKiyu4LjpPopLZMIhyrnalRpFODlI=;
+	b=JpKb8eDmiTbi/WjjXCDxnou0UyPrQVj19hXSPc7haW7KC5at4uAktxE3qiMbS6QUux
+	7OpJJrRasHm77VVVYg27BGb3N6AloEMezBeP/ql5t61cUvMvmMQNCzL+S63PI0luSNky
+	Qi+qRsHnX4nDOCDNbVmTKLtohh//QrZogma81wVfqKOXjPOtPoOc7mru7tfipDw1ruE+
+	1KOx/OnueJG6m6iWppJ1qgR4zXakxoB4Eu9O2pASoyyF4SwMkQRQwmM8l9Ie+znFEQVH
+	SsnZZnz1ZIzbWXLHQYs5Hg2uU6E5d5da2POA5UGB5abx5byG3+1MSMJ9N0ATXao5X/Eb
+	gpGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=sniQiuZUgcNZnrTaTc/xNNemQYo7XOJp8aBLKGTeK+4=;
-	b=aYxKT1FJkQI4p/GHi7Gr344ujJvYW9eGxkxdxDKKN+82qYplbzC849vcCVTZ8Mwc9e
-	WDR/znHZjYDCEKMej9xx8/GHRwe+g0mgN+VDp7esl4gIUXD6lP+9ZsWGY4zqiL+XSI9I
-	ddDj9O83Fp0ssI2rdVSPl43K4K8EBBUP/n5lBqJdjwZNTE2Lm6nx+lauV51OVRvl8+1W
-	zpBdGUVZ/DzUbJfnvLvJjcyc8oORuHfiHj4gf1SDq5ZXq4CSvMkAPrg1wKnaavgCvZ+Y
-	qF9bwXWXHbWun5C5RlhT388g+jyoSFT9F7QP4syp+lwzM7yrqkICdbbPXnvLZjbjfn5C
-	7Q1A==
-X-Gm-Message-State: AIVw1120ejThE+32WcPwRTZNJit+y/eyfDcYXvcWPdBkZ1z+odUXvevk
-	iUj2NELnhzt14RHksMvCg0NEIWxrM1m6
-X-Received: by 10.107.205.72 with SMTP id d69mr18971804iog.224.1501507593534; 
-	Mon, 31 Jul 2017 06:26:33 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=jw1gqC8HoyH4khqKiyu4LjpPopLZMIhyrnalRpFODlI=;
+	b=ZTE37C9YYrHoH18wV2DLgOfQ+5Iab8CJLGgvWEycGiNiL8FnImFBLxQsKyJUvTLgI4
+	XBOi4DHr6K7BdBmizYagfUWg5kHIi+Hc+Guj8f9B2qP7EuqAtJhzbURPZ7eY8wMcLJRw
+	wUDwfOG4EnCCeiSenkr3PcJey3mzhIlPt0o1kHDGurG99JRPBbEQNzjncvrj6eeUcrvx
+	3DLbiigqVOJTJUPsODi7eo+MGiDbkq2FCs6JvNGLFKe4rsoNRftiu1K5Zc6+uJ6a1Adb
+	9F0MiytvVbMDNViEB/zQu8Ww7IAgrCNy6i0nbN6pEptTH9UDAQK98ITPgS2yxOvkBppI
+	/cjQ==
+X-Gm-Message-State: AIVw111SVdjLQsXhqRlQ9PjK83jaGPXwUj/HABkdzrpVWwQpFvwkz+Ln
+	5KdoMERhi+OIOSBvBKP3eafVX7J/0/Jx0Zw=
+X-Received: by 10.36.153.198 with SMTP id a189mr18208768ite.133.1501507643674; 
+	Mon, 31 Jul 2017 06:27:23 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.135.234 with HTTP; Mon, 31 Jul 2017 06:26:13 -0700 (PDT)
-In-Reply-To: <CAByQQ_q0mkG2BfK3FGBZgXOSJxzkUAORCZPC5mYiAQ2oB5qgFw@mail.gmail.com>
-References: <8caab74c-84db-d95c-1dc1-4c85ac534f26@gmail.com>
-	<c85b9033-3b0d-a973-d074-5f59392c18c3@rsi-elektrotechnik.de>
-	<3f743f3c-abcc-2453-284a-55ebb1f3d769@gmail.com>
-	<0d539070-2944-2ea0-d847-917ae9a556f9@rsi-elektrotechnik.de>
-	<8292ae18-05ae-2f98-0dd3-f56392af92ed@gmail.com>
-	<c8622989-4ee6-d34a-d083-4679ed6710f9@rsi-elektrotechnik.de>
-	<337a7f6c-0ca1-6505-f5ea-16c355c84f72@gmail.com>
-	<CAJTo0LbxgW4Gwjbai-MAaifdFuHKz4rLcf3nTNHuTBX1WBkuEw@mail.gmail.com>
-	<CAByQQ_r007RG__TP-XNaWxoH+vBCsOESzAcY2FQJUj+X=UE5eg@mail.gmail.com>
-	<CAJTo0LZAwKLB6ZRTw79B9VfPz+ra=CAoJHn8Bzz9Z3ra=jzq3g@mail.gmail.com>
-	<CAByQQ_q0mkG2BfK3FGBZgXOSJxzkUAORCZPC5mYiAQ2oB5qgFw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 31 Jul 2017 14:26:13 +0100
-Message-ID: <CAJTo0LbsyCZmjhBCHjnQRsedmNc7__KzGi5vhPjh328cXedsKA@mail.gmail.com>
-To: Riko Ho <antonius.riko@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: DEBUG: automake-native: class native found in blacklist, disable icecc ?
+Received: by 10.2.137.73 with HTTP; Mon, 31 Jul 2017 06:27:03 -0700 (PDT)
+From: =?UTF-8?Q?Diogo_Pi=C3=A7arra?= <xpetept@gmail.com>
+Date: Mon, 31 Jul 2017 14:27:03 +0100
+Message-ID: <CAOWR=gsQoW5FgUvy2vGpQz8aLW7j5PT=TxvMT0bGe-mm-nA1OA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: build problem after upgrade to pyro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,101 +68,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Jul 2017 13:26:34 -0000
-Content-Type: multipart/alternative; boundary="94eb2c189baebd8b7c05559cfa41"
-
---94eb2c189baebd8b7c05559cfa41
+X-List-Received-Date: Mon, 31 Jul 2017 13:27:25 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Then the branch you checked out.  git branch will tell you.
+Hi,
 
-Ross
+I have a recipe to build macchina.io that was working with morty but
+after updating to pyro i get the error "/lib/ld-linux-armhf.so.3: No
+such file or directory".
+It's looking fot the file in the wrong place.
+I already read the release notes and can't anyting that could have
+created this problem.
+How can I fix this?
 
-On 31 July 2017 at 14:17, Riko Ho <antonius.riko@gmail.com> wrote:
+Thanks
+Diogo
 
-> Git clone ...
-> On Jul 31, 2017 9:16 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
->
->> How did you get poky?
->>
->> Ross
->>
->> On 31 July 2017 at 14:14, Riko Ho <antonius.riko@gmail.com> wrote:
->>
->>> How can I see my branch?
->>> On Jul 31, 2017 9:12 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
->>>
->>>> On 31 July 2017 at 03:33, Riko Ho <antonius.riko@gmail.com> wrote:
->>>>
->>>>> Is my auto make disabled with icecc ?
->>>>>
->>>>> How to make it enable ? thanks.
->>>>>
->>>>
->>>> That's just a debug message.
->>>>
->>>> > | help2man: can't get `--help' info from automake-1.15
->>>> > | Try `--no-discard-stderr' if option outputs to stderr
->>>> > | Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
->>>>
->>>>
->>>> That's the error your hitting.
->>>>
->>>> I think you need to update to the latest commit for the branch you're
->>>> on, there was a problem with modern perl in help2man.  What release/branch
->>>> are you using?
->>>>
->>>> Ross
->>>>
->>>
->>
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| Building V8 for arch arm with flags: library=shared i18nsupport=off
+werror=no snapshot=on  arm_version=7
+| tools/gyp/v8_external_snapshot.target.arm.release.mk:15: warning:
+overriding recipe for target
+'/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/git/platform/JS/V8/v8-3.28.4/out/arm.release/snapshot_blob.bin'
+| tools/gyp/v8_external_snapshot.host.arm.release.mk:15: warning:
+ignoring old recipe for target
+'/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/git/platform/JS/V8/v8-3.28.4/out/arm.release/snapshot_blob.bin'
+| ** Compiling src/Wrapper.cpp (release, shared)
+| ** Compiling src/PooledIsolate.cpp (release, shared)
+| ** Compiling src/LoggerWrapper.cpp (release, shared)
+| ** Compiling src/ConsoleWrapper.cpp (release, shared)
+| ** Compiling src/SystemWrapper.cpp (release, shared)
+| ** Compiling src/DateTimeWrapper.cpp (release, shared)
+| ** Compiling src/LocalDateTimeWrapper.cpp (release, shared)
+| ** Compiling src/ConfigurationWrapper.cpp (release, shared)
+| ** Compiling src/ApplicationWrapper.cpp (release, shared)
+| ** Compiling src/URIWrapper.cpp (release, shared)
+| ** Compiling src/TimerWrapper.cpp (release, shared)
+| ** Compiling src/BufferWrapper.cpp (release, shared)
+| ** Compiling src/JSExecutor.cpp (release, shared)
+| ** Compiling src/Module.cpp (release, shared)
+| ** Compiling src/ModuleRegistry.cpp (release, shared)
+| ** Building shared library (release)
+/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/recipe-sysroot/lib//libPocoJSCore.so.1
+| ** Compiling src/SessionWrapper.cpp (release, shared)
+| ** Compiling src/RecordSetWrapper.cpp (release, shared)
+| ** Building shared library (release)
+/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/recipe-sysroot/lib//libPocoJSData.so.1
+| ** Compiling src/Serializer.cpp (release, shared)
+| ** Compiling src/Deserializer.cpp (release, shared)
+| ** Compiling src/TaggedBinaryReader.cpp (release, shared)
+| ** Compiling src/BridgeWrapper.cpp (release, shared)
+| ** Building shared library (release)
+/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/recipe-sysroot/lib//libPocoJSBridge.so.1
+| ** Compiling src/HTTPRequestWrapper.cpp (release, shared)
+| ** Compiling src/HTTPResponseWrapper.cpp (release, shared)
+| ** Compiling src/HTMLFormWrapper.cpp (release, shared)
+| ** Building shared library (release)
+/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/recipe-sysroot/lib//libPocoJSNet.so.1
+| ** Creating dependency info for src/NetSSLBundleActivator.cpp
+| ** Compiling src/NetSSLBundleActivator.cpp (release, shared)
+| ** Building dynamic library (release, shared)
+/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/git/platform/OSP/NetSSL_OpenSSL/bin/Linux/armv7l/poco.net.ssl.so
+| /lib/ld-linux-armhf.so.3: No such file or directory
+| /home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/git/platform/build/rules/dylib:60:
+recipe for target
+'/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/git/platform/OSP/NetSSL_OpenSSL/bin/Linux/armv7l/poco.net.ssl.so'
+failed
+| make[2]: *** [/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/git/platform/OSP/NetSSL_OpenSSL/bin/Linux/armv7l/poco.net.ssl.so]
+Error 255
+| Makefile:383: recipe for target 'OSP/NetSSL_OpenSSL-libexec' failed
+| make[1]: *** [OSP/NetSSL_OpenSSL-libexec] Error 2
+| Makefile:78: recipe for target 'clean' failed
+| make: *** [clean] Error 2
+| WARNING: exit code 2 from a shell command.
+| ERROR: Function failed: do_compile (log file is located at
+/home/username/yocto/build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/macchina.io/git-r0/temp/log.do_compile.22044)
 
---94eb2c189baebd8b7c05559cfa41
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Then the branch you checked out. =C2=A0git branch will tel=
-l you.<div><br></div><div>Ross</div></div><div class=3D"gmail_extra"><br><d=
-iv class=3D"gmail_quote">On 31 July 2017 at 14:17, Riko Ho <span dir=3D"ltr=
-">&lt;<a href=3D"mailto:antonius.riko@gmail.com" target=3D"_blank">antonius=
-.riko@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
-style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p =
-dir=3D"ltr">Git clone ...</p><div class=3D"HOEnZb"><div class=3D"h5">
-<div class=3D"gmail_quote">On Jul 31, 2017 9:16 PM, &quot;Burton, Ross&quot=
-; &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burto=
-n@intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gma=
-il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
-t:1ex"><div dir=3D"ltr">How did you get poky?<div><br></div><div>Ross</div>=
-</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 31 July =
-2017 at 14:14, Riko Ho <span dir=3D"ltr">&lt;<a href=3D"mailto:antonius.rik=
-o@gmail.com" target=3D"_blank">antonius.riko@gmail.com</a>&gt;</span> wrote=
-:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex"><p dir=3D"ltr">How can I see my branch?=
-</p><div class=3D"m_2019242909827686211m_-4777739250393309465HOEnZb"><div c=
-lass=3D"m_2019242909827686211m_-4777739250393309465h5">
-<div class=3D"gmail_quote">On Jul 31, 2017 9:12 PM, &quot;Burton, Ross&quot=
-; &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burto=
-n@intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gma=
-il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
-t:1ex"><div dir=3D"ltr">On 31 July 2017 at 03:33, Riko Ho <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:antonius.riko@gmail.com" target=3D"_blank">antonius.=
-riko@gmail.com</a>&gt;</span> wrote:<div class=3D"gmail_extra"><div class=
-=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex"><div text=3D"#000000" bgcol=
-or=3D"#FFFFFF">
-    <p>Is my auto make disabled with icecc ?</p>
-    <p>How to make it enable ? thanks.<br></p></div></blockquote><div><br><=
-/div><div>That&#39;s just a debug message. <br><br>&gt; | help2man: can&#39=
-;t get `--help&#39; info from automake-1.15<br>&gt; | Try `--no-discard-std=
-err&#39; if option outputs to stderr<br>&gt; | Makefile:3687: recipe for ta=
-rget &#39;doc/automake-1.15.1&#39; failed<br><br><br>That&#39;s the error y=
-our hitting.</div><div><br></div><div>I think you need to update to the lat=
-est commit for the branch you&#39;re on, there was a problem with modern pe=
-rl in help2man.=C2=A0 What release/branch are you using?</div><div><br></di=
-v><div>Ross</div></div></div></div>
-</blockquote></div>
-</div></div></blockquote></div><br></div>
-</blockquote></div>
-</div></div></blockquote></div><br></div>
-
---94eb2c189baebd8b7c05559cfa41--
