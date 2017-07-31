@@ -1,61 +1,56 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13AD0E00C3C; Mon, 31 Jul 2017 06:20:21 -0700 (PDT)
+	id A9DFCE00C3C; Mon, 31 Jul 2017 06:26:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.42 listed in list.dnswl.org]
+	*      [209.85.223.179 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.42 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (antonius.riko[at]gmail.com)
+	*      [209.85.223.179 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
-	[209.85.218.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72DA2E00BB7
-	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:20:20 -0700 (PDT)
-Received: by mail-oi0-f42.google.com with SMTP id x3so178861880oia.1
-	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:20:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ADA1E00BB7
+	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:26:33 -0700 (PDT)
+Received: by mail-io0-f179.google.com with SMTP id g35so78327591ioi.3
+	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:26:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=0IRQj5sHdypOMRzMYX/viWt/c0DnLiEnE9fYb63up1w=;
-	b=iOXWx7XCNuLTspc/TZAyN05FcgxnrOIxkYF568GpD0aDcmAJbf2M6POy8utlIspH/I
-	pMDKmj6bBNwkpqJw81vHchQJGU7EnpXrEcgSAhbnBR+G+qZOjSJnmeQclvu3NUMXHu+0
-	CkLe79J4xt9OPzj+hulQw52DBxXyHSKDrOgnmwwiZBUiWEkVZqjOD7xCRpI693NP3N8E
-	QV8mYwxkHVNSrbhs0ZluW9eLYWXpcjGBWe5jh+v4S1ep3DDulc5OJfyzlzu9GkmZBe4d
-	ULEpbeeEQEdbxtLMOPyfB0g6/wBRZrwpQIqcznFh30jkAjtcaVQef4i9vnCQ5xA6t/M0
-	w0Hg==
+	:cc; bh=sniQiuZUgcNZnrTaTc/xNNemQYo7XOJp8aBLKGTeK+4=;
+	b=XHmSh3KhZ2t/lJi4pYSpN/27NT0LUALRvCb/cUeK1bqJawNgLJ2acS/diyJHL7W+qr
+	Q43Y9vlHy2BQhFIgH+7uvP1O6DXPtDpSZb+HFCWAotDG8o8OBTgYYP8Uwq9CtGYTE3/N
+	acP8acLBg1oGM7V3/S1vOWX/T4iAFCahlLCNyUI+ar43eujoe/EPod23hLeDj2a8ZoWq
+	Qq2t6ye/h/ASUJZZTaX2QbIi4w2wl8/BVSUEeYM11Ff3i1dSE2hcDOrFE7JWEZtviGlr
+	HGhJOSvJHsP0E2dcxrruE7yyeSUAzaUUmYJXlDUuSbjzKn27Rmpo0bAuGX+qzl65NhLQ
+	foSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=0IRQj5sHdypOMRzMYX/viWt/c0DnLiEnE9fYb63up1w=;
-	b=LdN9CTJjaaE4IN5ZYWK0slFQYYWjZkFp9yo8qvdJ4TFHKs6hHKfD+33ocP8etQLkT2
-	cMT3zYrKI2BphpTKdHQofZH4heI+I0BZb9xsT3Or/jiD4u3h2jnTkA9Y37emL9kqOu0x
-	amfU2JyeGnm/R14b7RTjBkyB3Ih7vesIcs/FlRlahb33lj6QHhTp237ZOSbNh5UBDi7G
-	WluaLzJD1Wg0dax6ngQK5qTD0ZScSGiYHWpFGUJT43fgBvIZbGd+8ZtsVIA4FhnVcYwu
-	80jQ+JaMIPqdPbrH75xUKt2ncUm5Q3HuQL8uzksRSMTiGv1/+fqpcKoT2G1PcPxhiuDU
-	uPXw==
-X-Gm-Message-State: AIVw112nl8ARj+MyuR/wt0fxDPEK8qK7q7B01buj0RzdNRlnlhrJsoWv
-	VUNvuQ8Y1C7cMTRT9oMitwZsHvTmOQ==
-X-Received: by 10.202.198.199 with SMTP id w190mr13104747oif.93.1501507219547; 
-	Mon, 31 Jul 2017 06:20:19 -0700 (PDT)
+	bh=sniQiuZUgcNZnrTaTc/xNNemQYo7XOJp8aBLKGTeK+4=;
+	b=aYxKT1FJkQI4p/GHi7Gr344ujJvYW9eGxkxdxDKKN+82qYplbzC849vcCVTZ8Mwc9e
+	WDR/znHZjYDCEKMej9xx8/GHRwe+g0mgN+VDp7esl4gIUXD6lP+9ZsWGY4zqiL+XSI9I
+	ddDj9O83Fp0ssI2rdVSPl43K4K8EBBUP/n5lBqJdjwZNTE2Lm6nx+lauV51OVRvl8+1W
+	zpBdGUVZ/DzUbJfnvLvJjcyc8oORuHfiHj4gf1SDq5ZXq4CSvMkAPrg1wKnaavgCvZ+Y
+	qF9bwXWXHbWun5C5RlhT388g+jyoSFT9F7QP4syp+lwzM7yrqkICdbbPXnvLZjbjfn5C
+	7Q1A==
+X-Gm-Message-State: AIVw1120ejThE+32WcPwRTZNJit+y/eyfDcYXvcWPdBkZ1z+odUXvevk
+	iUj2NELnhzt14RHksMvCg0NEIWxrM1m6
+X-Received: by 10.107.205.72 with SMTP id d69mr18971804iog.224.1501507593534; 
+	Mon, 31 Jul 2017 06:26:33 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.74.12.89 with HTTP; Mon, 31 Jul 2017 06:20:18 -0700 (PDT)
-Received: by 10.74.12.89 with HTTP; Mon, 31 Jul 2017 06:20:18 -0700 (PDT)
+Received: by 10.107.135.234 with HTTP; Mon, 31 Jul 2017 06:26:13 -0700 (PDT)
 In-Reply-To: <CAByQQ_q0mkG2BfK3FGBZgXOSJxzkUAORCZPC5mYiAQ2oB5qgFw@mail.gmail.com>
 References: <8caab74c-84db-d95c-1dc1-4c85ac534f26@gmail.com>
 	<c85b9033-3b0d-a973-d074-5f59392c18c3@rsi-elektrotechnik.de>
@@ -68,10 +63,10 @@ References: <8caab74c-84db-d95c-1dc1-4c85ac534f26@gmail.com>
 	<CAByQQ_r007RG__TP-XNaWxoH+vBCsOESzAcY2FQJUj+X=UE5eg@mail.gmail.com>
 	<CAJTo0LZAwKLB6ZRTw79B9VfPz+ra=CAoJHn8Bzz9Z3ra=jzq3g@mail.gmail.com>
 	<CAByQQ_q0mkG2BfK3FGBZgXOSJxzkUAORCZPC5mYiAQ2oB5qgFw@mail.gmail.com>
-From: Riko Ho <antonius.riko@gmail.com>
-Date: Mon, 31 Jul 2017 21:20:18 +0800
-Message-ID: <CAByQQ_pmpHgaD8vSqV8QfxV-0Let2mC1kYVA8CCafSZJWLE0YA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 31 Jul 2017 14:26:13 +0100
+Message-ID: <CAJTo0LbsyCZmjhBCHjnQRsedmNc7__KzGi5vhPjh328cXedsKA@mail.gmail.com>
+To: Riko Ho <antonius.riko@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: DEBUG: automake-native: class native found in blacklist, disable icecc ?
 X-BeenThere: yocto@yoctoproject.org
@@ -85,15 +80,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Jul 2017 13:20:21 -0000
-Content-Type: multipart/alternative; boundary="001a1134fb2473ab4f05559ce497"
+X-List-Received-Date: Mon, 31 Jul 2017 13:26:34 -0000
+Content-Type: multipart/alternative; boundary="94eb2c189baebd8b7c05559cfa41"
 
---001a1134fb2473ab4f05559ce497
+--94eb2c189baebd8b7c05559cfa41
 Content-Type: text/plain; charset="UTF-8"
 
-I forgot which one? How can I update?thx
-https://www.yoctoproject.org/downloads/yocto-project
-On Jul 31, 2017 9:17 PM, "Riko Ho" <antonius.riko@gmail.com> wrote:
+Then the branch you checked out.  git branch will tell you.
+
+Ross
+
+On 31 July 2017 at 14:17, Riko Ho <antonius.riko@gmail.com> wrote:
 
 > Git clone ...
 > On Jul 31, 2017 9:16 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
@@ -132,18 +129,17 @@ On Jul 31, 2017 9:17 PM, "Riko Ho" <antonius.riko@gmail.com> wrote:
 >>>
 >>
 
---001a1134fb2473ab4f05559ce497
+--94eb2c189baebd8b7c05559cfa41
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<p dir=3D"ltr">I forgot which one? How can I update?thx<br>
-<a href=3D"https://www.yoctoproject.org/downloads/yocto-project">https://ww=
-w.yoctoproject.org/downloads/yocto-project</a></p>
-<div class=3D"gmail_quote">On Jul 31, 2017 9:17 PM, &quot;Riko Ho&quot; &lt=
-;<a href=3D"mailto:antonius.riko@gmail.com">antonius.riko@gmail.com</a>&gt;=
- wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p dir=3D"lt=
-r">Git clone ...</p>
+<div dir=3D"ltr">Then the branch you checked out. =C2=A0git branch will tel=
+l you.<div><br></div><div>Ross</div></div><div class=3D"gmail_extra"><br><d=
+iv class=3D"gmail_quote">On 31 July 2017 at 14:17, Riko Ho <span dir=3D"ltr=
+">&lt;<a href=3D"mailto:antonius.riko@gmail.com" target=3D"_blank">antonius=
+.riko@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p =
+dir=3D"ltr">Git clone ...</p><div class=3D"HOEnZb"><div class=3D"h5">
 <div class=3D"gmail_quote">On Jul 31, 2017 9:16 PM, &quot;Burton, Ross&quot=
 ; &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burto=
 n@intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gma=
@@ -154,8 +150,8 @@ t:1ex"><div dir=3D"ltr">How did you get poky?<div><br></div><div>Ross</div>=
 o@gmail.com" target=3D"_blank">antonius.riko@gmail.com</a>&gt;</span> wrote=
 :<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
 ft:1px #ccc solid;padding-left:1ex"><p dir=3D"ltr">How can I see my branch?=
-</p><div class=3D"m_-2527222328943836964m_-4777739250393309465HOEnZb"><div =
-class=3D"m_-2527222328943836964m_-4777739250393309465h5">
+</p><div class=3D"m_2019242909827686211m_-4777739250393309465HOEnZb"><div c=
+lass=3D"m_2019242909827686211m_-4777739250393309465h5">
 <div class=3D"gmail_quote">On Jul 31, 2017 9:12 PM, &quot;Burton, Ross&quot=
 ; &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burto=
 n@intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gma=
@@ -179,6 +175,6 @@ v><div>Ross</div></div></div></div>
 </blockquote></div>
 </div></div></blockquote></div><br></div>
 </blockquote></div>
-</blockquote></div>
+</div></div></blockquote></div><br></div>
 
---001a1134fb2473ab4f05559ce497--
+--94eb2c189baebd8b7c05559cfa41--
