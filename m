@@ -1,54 +1,62 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 983A7E00C3D; Mon, 31 Jul 2017 06:16:09 -0700 (PDT)
+	id 61C92E00C43; Mon, 31 Jul 2017 06:17:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (antonius.riko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.42 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.42 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f47.google.com (mail-it0-f47.google.com
-	[209.85.214.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 123A4E00C37
-	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:16:08 -0700 (PDT)
-Received: by mail-it0-f47.google.com with SMTP id 77so2994478itj.1
-	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:16:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
+	[209.85.218.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF63EE00C3D
+	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:17:07 -0700 (PDT)
+Received: by mail-oi0-f42.google.com with SMTP id a9so183525753oih.0
+	for <yocto@yoctoproject.org>; Mon, 31 Jul 2017 06:17:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=J27b0irKRRGGU0mADIvZk7Vp0Qvd0kHRppSERePRNPE=;
-	b=dLfaOHdzxl/dgYohQQBUY66P98l4nUBPGfi0WkBJMcYQiTi8bdiD6605FyLHrIZKEJ
-	DjUIT2cAK1RPnsatVTUfzK/+v64RTkV938zugP74p1jULBwssY3JecCErhgYu8UhZIC/
-	EZfd8OUZ4ql14dr6r4vAC4P6K4N0laAgb9Kffs0upnwF9AXeFzkXaW1Ok/7mhZjBTdHR
-	g2FSDu2ZRwZdk1ygAcTjX3TeNRuXmf5pOh9nGjsB2Cd1flY6uzvDc4EVu4dDHcMEcdgk
-	+bocs57pfUDxHizdUlYlQC3spmYhES1612fxdIb1294p5kk65bcrCTbyvO8ZnySwuta0
-	B33w==
+	:cc; bh=H9KOInsTx7oGmp9aW5neOvBlYjr8rpf1aWWewIBI8eo=;
+	b=JWVWZae4NkfWkS48uN7/5p6wugEPyzyAecC3iQnX9xrGvDodKQJ7rtcgsclQMGGRue
+	gZyWnu4nQ1YvWeqFNEVJiV7Jr7yiKZUv90mm6hLVxrv7lbNaspXw2mPJhBUkNKViUNBf
+	Ktbodv2znaBlnQn7kGeSCmHNuo8oKRguYOKXisxpeaqxcvxXp98uGKszrTwYulMAOAK9
+	N4b/QRxaXSGaub7vyhZtDVG/poYV5D1szaimIKyGA/e75WkgTZmWZf0asLLSZrZFe2tA
+	wHr8dWUT82azlCRu7SV0qcgKTuA5B7XXtx9X7mhZR4vhwSeU6J8Z74iKwOqQHL0mH0vt
+	ycVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=J27b0irKRRGGU0mADIvZk7Vp0Qvd0kHRppSERePRNPE=;
-	b=FDH/C7+cOm1QPApyMAc7XQqcsa7w3C7ph4syn1BLNnyX4lD4rxTXJT3bitgAT5m19e
-	1hLaTZ7Er94LG9UQ75SnBnz6Kq1eW2CD6menXkOvZs/24b23n/5a5nEkLwZM4uYqjqRD
-	Nr1KyFjM58Ytos16PrUR51pYUb5dWGlfy5UTAxSY3jJtc05VElWq+yzopK2nR58xkP0G
-	l/4sfjWj1dtpY7hFiMVr058lGLg0LVQQnVJ2tM2PQQc+eUXMSv7WeiVueEgVFBcDSnHi
-	MEAXKtsLq1d+ti/+vBH83SPK/MjsDQlX1IuZNBecTsxcz4MKKbj2HsH2loQBkkzaBXbb
-	ENkw==
-X-Gm-Message-State: AIVw112oqO2d4HbY3z6Ua5oaDJdAF/WRa/Rgag22qYj2OXbjRLsTEt95
-	57fSwS2tnG/cjcdfU8MQH0eAYUXSL9Mo
-X-Received: by 10.36.201.198 with SMTP id h189mr18441794itg.113.1501506968383; 
-	Mon, 31 Jul 2017 06:16:08 -0700 (PDT)
+	bh=H9KOInsTx7oGmp9aW5neOvBlYjr8rpf1aWWewIBI8eo=;
+	b=hGKD34T212ZN0akP9B+dBRJvk3lcWGmfcGrag3kfPGfnzDrRZES0D2UE7cd7wqRVbb
+	LAOJbv2/0gIRwmYqDuR42RBMXraEeTsh2wv5iodxiB+bNN3/sCA9eqRvwIfjvGHHMxi2
+	i0Zafj4MRdtiKdJsOqEX0LzzyCpFDhSMWqIez7+n4KOrEkdzix6nRAlWLYvAqrmQig8z
+	eGcxJtq0M19mmIH9Q3+nCD7ZEsTw+5JMmVOlNOI1z4mFNklSKYpB5xYQv4xYAX3JoDi3
+	Y9rRr6p/Ur4kwxwp2bxGGi9ea9s4qGDhs/CwLD5q2UT2pa8ebCBFHrsCm/O0x3T/1X6D
+	/jog==
+X-Gm-Message-State: AIVw110Wzh8auuv4BOyH3nt3LGudrY+OQJAkS5tGAtJUOKkH8B3iULps
+	ZacqIWLZ0v8GmUEMIo6nmkDrvgLFYg==
+X-Received: by 10.202.91.67 with SMTP id p64mr8294369oib.225.1501507027094;
+	Mon, 31 Jul 2017 06:17:07 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.135.234 with HTTP; Mon, 31 Jul 2017 06:15:47 -0700 (PDT)
-In-Reply-To: <CAByQQ_r007RG__TP-XNaWxoH+vBCsOESzAcY2FQJUj+X=UE5eg@mail.gmail.com>
+Received: by 10.74.12.89 with HTTP; Mon, 31 Jul 2017 06:17:05 -0700 (PDT)
+Received: by 10.74.12.89 with HTTP; Mon, 31 Jul 2017 06:17:05 -0700 (PDT)
+In-Reply-To: <CAJTo0LZAwKLB6ZRTw79B9VfPz+ra=CAoJHn8Bzz9Z3ra=jzq3g@mail.gmail.com>
 References: <8caab74c-84db-d95c-1dc1-4c85ac534f26@gmail.com>
 	<c85b9033-3b0d-a973-d074-5f59392c18c3@rsi-elektrotechnik.de>
 	<3f743f3c-abcc-2453-284a-55ebb1f3d769@gmail.com>
@@ -58,10 +66,11 @@ References: <8caab74c-84db-d95c-1dc1-4c85ac534f26@gmail.com>
 	<337a7f6c-0ca1-6505-f5ea-16c355c84f72@gmail.com>
 	<CAJTo0LbxgW4Gwjbai-MAaifdFuHKz4rLcf3nTNHuTBX1WBkuEw@mail.gmail.com>
 	<CAByQQ_r007RG__TP-XNaWxoH+vBCsOESzAcY2FQJUj+X=UE5eg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 31 Jul 2017 14:15:47 +0100
-Message-ID: <CAJTo0LZAwKLB6ZRTw79B9VfPz+ra=CAoJHn8Bzz9Z3ra=jzq3g@mail.gmail.com>
-To: Riko Ho <antonius.riko@gmail.com>
+	<CAJTo0LZAwKLB6ZRTw79B9VfPz+ra=CAoJHn8Bzz9Z3ra=jzq3g@mail.gmail.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Date: Mon, 31 Jul 2017 21:17:05 +0800
+Message-ID: <CAByQQ_q0mkG2BfK3FGBZgXOSJxzkUAORCZPC5mYiAQ2oB5qgFw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: DEBUG: automake-native: class native found in blacklist, disable icecc ?
 X-BeenThere: yocto@yoctoproject.org
@@ -75,56 +84,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Jul 2017 13:16:09 -0000
-Content-Type: multipart/alternative; boundary="94eb2c0893607a89f305559cd50c"
+X-List-Received-Date: Mon, 31 Jul 2017 13:17:08 -0000
+Content-Type: multipart/alternative; boundary="001a113d5edefa6e2a05559cd84d"
 
---94eb2c0893607a89f305559cd50c
+--001a113d5edefa6e2a05559cd84d
 Content-Type: text/plain; charset="UTF-8"
 
-How did you get poky?
+Git clone ...
+On Jul 31, 2017 9:16 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
 
-Ross
-
-On 31 July 2017 at 14:14, Riko Ho <antonius.riko@gmail.com> wrote:
-
-> How can I see my branch?
-> On Jul 31, 2017 9:12 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
+> How did you get poky?
 >
->> On 31 July 2017 at 03:33, Riko Ho <antonius.riko@gmail.com> wrote:
+> Ross
+>
+> On 31 July 2017 at 14:14, Riko Ho <antonius.riko@gmail.com> wrote:
+>
+>> How can I see my branch?
+>> On Jul 31, 2017 9:12 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
 >>
->>> Is my auto make disabled with icecc ?
+>>> On 31 July 2017 at 03:33, Riko Ho <antonius.riko@gmail.com> wrote:
 >>>
->>> How to make it enable ? thanks.
+>>>> Is my auto make disabled with icecc ?
+>>>>
+>>>> How to make it enable ? thanks.
+>>>>
 >>>
->>
->> That's just a debug message.
->>
->> > | help2man: can't get `--help' info from automake-1.15
->> > | Try `--no-discard-stderr' if option outputs to stderr
->> > | Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
->>
->>
->> That's the error your hitting.
->>
->> I think you need to update to the latest commit for the branch you're on,
->> there was a problem with modern perl in help2man.  What release/branch are
->> you using?
->>
->> Ross
+>>> That's just a debug message.
+>>>
+>>> > | help2man: can't get `--help' info from automake-1.15
+>>> > | Try `--no-discard-stderr' if option outputs to stderr
+>>> > | Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
+>>>
+>>>
+>>> That's the error your hitting.
+>>>
+>>> I think you need to update to the latest commit for the branch you're
+>>> on, there was a problem with modern perl in help2man.  What release/branch
+>>> are you using?
+>>>
+>>> Ross
+>>>
 >>
 >
 
---94eb2c0893607a89f305559cd50c
+--001a113d5edefa6e2a05559cd84d
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">How did you get poky?<div><br></div><div>Ross</div></div><=
-div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 31 July 2017 at=
- 14:14, Riko Ho <span dir=3D"ltr">&lt;<a href=3D"mailto:antonius.riko@gmail=
-.com" target=3D"_blank">antonius.riko@gmail.com</a>&gt;</span> wrote:<br><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
-#ccc solid;padding-left:1ex"><p dir=3D"ltr">How can I see my branch?</p><di=
-v class=3D"HOEnZb"><div class=3D"h5">
+<p dir=3D"ltr">Git clone ...</p>
+<div class=3D"gmail_quote">On Jul 31, 2017 9:16 PM, &quot;Burton, Ross&quot=
+; &lt;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt=
+; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D=
+"ltr">How did you get poky?<div><br></div><div>Ross</div></div><div class=
+=3D"gmail_extra"><br><div class=3D"gmail_quote">On 31 July 2017 at 14:14, R=
+iko Ho <span dir=3D"ltr">&lt;<a href=3D"mailto:antonius.riko@gmail.com" tar=
+get=3D"_blank">antonius.riko@gmail.com</a>&gt;</span> wrote:<br><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
+d;padding-left:1ex"><p dir=3D"ltr">How can I see my branch?</p><div class=
+=3D"m_-4777739250393309465HOEnZb"><div class=3D"m_-4777739250393309465h5">
 <div class=3D"gmail_quote">On Jul 31, 2017 9:12 PM, &quot;Burton, Ross&quot=
 ; &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burto=
 n@intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gma=
@@ -147,5 +165,6 @@ rl in help2man.=C2=A0 What release/branch are you using?</div><div><br></di=
 v><div>Ross</div></div></div></div>
 </blockquote></div>
 </div></div></blockquote></div><br></div>
+</blockquote></div>
 
---94eb2c0893607a89f305559cd50c--
+--001a113d5edefa6e2a05559cd84d--
