@@ -1,56 +1,65 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EBFB1E00CAB; Tue,  1 Aug 2017 23:38:34 -0700 (PDT)
+	id 9E7B3E00CAB; Tue,  1 Aug 2017 23:42:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.68 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (antonius.riko[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAB48E00C19
-	for <yocto@yoctoproject.org>; Tue,  1 Aug 2017 23:38:33 -0700 (PDT)
-Received: by mail-wm0-f43.google.com with SMTP id t201so32755040wmt.0
-	for <yocto@yoctoproject.org>; Tue, 01 Aug 2017 23:38:33 -0700 (PDT)
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1A00E00C19
+	for <yocto@yoctoproject.org>; Tue,  1 Aug 2017 23:42:36 -0700 (PDT)
+Received: by mail-pg0-f68.google.com with SMTP id 83so5471565pgb.4
+	for <yocto@yoctoproject.org>; Tue, 01 Aug 2017 23:42:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=jVoX7ev5SIhXrXjDiyTzNNLfsBmiV52hnP5sMvfDv/8=;
-	b=OaOiksjzkn1UPz4IeN8NwICqDWLiKifOogunfPAJKTK9SXej38ZKC0SE3qrogTQXu8
-	9AFL+06pY/99KHrR7MatQ5gbwC2hObc/pFJDD7cFLI+1F6Tt2LgVaLDuTVdxUsbAEGE4
-	GZ4bXIRsuiVQeXT0nX+P6gm7xW6/7Fhv1rPCTY28FZYP6F0OjKQXhbFLtwK774gQV/76
-	e1eC6zU7J04122uyVTDSRgrTEQFlveiO4FFMXsOFHQSSyrYK4XV7ynGDjK92CcFTHTSy
-	EUgytBhD6yOBlkpWUge2Tbp6I0mU0XTCCY3rTj2WtQcPlFH8BtVs4WBQvJGNM+k7bnYg
-	4SqQ==
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=dsz295rprdDfX3xL5jNIBjd+Ruu1cRznwdORCw+CqPw=;
+	b=Rg/ZelSOYX3YJwYosuout9FKQ+qEFA7w1gG/3uvgE7R7kt53XR3kz+3bt+l6mrLsXI
+	gqWZgG8dX+e6NPvLmPSyBO8vo2eKmftdj3QbdKxrmREf5U2UZ1vG9f9Qd6Uq7lepc9ZT
+	LAcFcMt/XouWfdeboo880kJIkhoYKa6tunBYxNLCofk9BJWz+UoxWUQoA5mAd3td+hO7
+	vfYgGe2ZOG/Sr8Mb8ajAZwnsfsG5CzYyc4oAB2h2kRMyjhd/Dgdy/zpSWelMMLW8agqu
+	wNIAw2/NALncpqrOR4A8IGSTKxTlT3av6bL1aKi13JVakDg75/xaqApJt+ibMKDI1Dny
+	yy+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=jVoX7ev5SIhXrXjDiyTzNNLfsBmiV52hnP5sMvfDv/8=;
-	b=JIqelQpfFgeyQme9z3YXD3rr5gHcc6Ku7M/FNLyYpfW1lRcwtV0QdCrewYPagiPp73
-	KA15Je+mmGovMu3PJHgufl/R6j50YZoqaLDKREwgIf1cwQtZjrtS90NV4VhZmlqCTGEV
-	/zVxW1GBigWIqWFt3FtMWnShw0vnBqDckURobBzQeiuLOgb4e1mX+DvIUaL2mz2ubHJ2
-	C/ivMw1J1MDl8c/9YW+7dzr4gThvZVz75xj8Rzs4MlM1AhvVUf6MLLBuT2G9K2qUGU+x
-	vFV3UC3leThvo/xEXNrYal0/eRKRDR9KDJwOM+n9bpZp2/i0pRLDybsis4mmxEt02STI
-	A8AQ==
-X-Gm-Message-State: AIVw113j0Yn+2va/Ku5qdoBKnOAq6rKi5pSVBef+cnfNUYqMxNCaKcrh
-	AXaiQdTY/xPfFOm/2vXlT6k4Gzkg9w==
-X-Received: by 10.80.140.253 with SMTP id r58mr20442311edr.123.1501655912354; 
-	Tue, 01 Aug 2017 23:38:32 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.80.149.181 with HTTP; Tue, 1 Aug 2017 23:38:01 -0700 (PDT)
-In-Reply-To: <7205fa77-6677-581b-7067-fb4d0baad7ab@gmail.com>
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=dsz295rprdDfX3xL5jNIBjd+Ruu1cRznwdORCw+CqPw=;
+	b=nrcqMB6UyMvUNpoPpk7NngDnGb3qGsFGiZ86VSdOhdUjw8x1lS9jrsC1urBr+OoMj0
+	nxbxpBlt/mUMhwmVG7ntSSBrX1rSTbVrIulqewseEYgOXly1LQZwzTzuuLfhd4k/ncCw
+	t1Ul5aqTD9HhSbgf2uA5wz3yfSCzuONOPNH2SiWo1ZSvS/r+GempVyNVmju3B3kStI4W
+	txgYdx9FecA3PwD/acpaCn/4UV+BVhdhutHYxzv0EGbyuv+++i23Z1wfb42+fflmFyxg
+	BYuEjNhcifNlBtlE8AAs45Qyta6ff1NPMZbtE+Te6fotoGsfg9xObsVN2p5taurDSQGu
+	9nWQ==
+X-Gm-Message-State: AIVw111v++ZToQlZrTAQCigVVvGd8SMU9ciKV8aLF9xR+NwpXyT9MvuJ
+	jj9OIrFHn/rjF7zm
+X-Received: by 10.101.73.72 with SMTP id q8mr21512947pgs.219.1501656155810;
+	Tue, 01 Aug 2017 23:42:35 -0700 (PDT)
+Received: from ?IPv6:2001:8003:804a:b500:ce:8dc4:f998:6a84?
+	([2001:8003:804a:b500:ce:8dc4:f998:6a84])
+	by smtp.gmail.com with ESMTPSA id
+	74sm30509544pfp.21.2017.08.01.23.42.33
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 01 Aug 2017 23:42:34 -0700 (PDT)
+To: Khem Raj <raj.khem@gmail.com>
 References: <8caab74c-84db-d95c-1dc1-4c85ac534f26@gmail.com>
 	<c85b9033-3b0d-a973-d074-5f59392c18c3@rsi-elektrotechnik.de>
 	<3f743f3c-abcc-2453-284a-55ebb1f3d769@gmail.com>
@@ -66,10 +75,14 @@ References: <8caab74c-84db-d95c-1dc1-4c85ac534f26@gmail.com>
 	<23c2a7a6-50fb-d3f1-3cd2-4fc406975367@gmail.com>
 	<CAMKF1sqk5L0_51Gv3r7-PjAW7Lj_RKFRGkwpGdOygWPAdpPzAg@mail.gmail.com>
 	<7205fa77-6677-581b-7067-fb4d0baad7ab@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 1 Aug 2017 23:38:01 -0700
-Message-ID: <CAMKF1soVe9msdj8ouWUZF+v-+5nncB7CPB08g_4LkgX7-Ns0qg@mail.gmail.com>
-To: Riko Ho <antonius.riko@gmail.com>
+	<CAMKF1soVe9msdj8ouWUZF+v-+5nncB7CPB08g_4LkgX7-Ns0qg@mail.gmail.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <663aa40d-78d8-2e9b-e756-55dffe3ce8d5@gmail.com>
+Date: Wed, 2 Aug 2017 14:42:31 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
+MIME-Version: 1.0
+In-Reply-To: <CAMKF1soVe9msdj8ouWUZF+v-+5nncB7CPB08g_4LkgX7-Ns0qg@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: DEBUG: automake-native: class native found in blacklist, disable icecc ?
 X-BeenThere: yocto@yoctoproject.org
@@ -83,161 +96,377 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Aug 2017 06:38:35 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 02 Aug 2017 06:42:37 -0000
+Content-Type: multipart/alternative;
+	boundary="------------EB9C78C9583FB665B68C651F"
+Content-Language: en-US
 
-apply the solutions they may work for ubuntu
+--------------EB9C78C9583FB665B68C651F
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 1, 2017 at 11:33 PM, Riko Ho <antonius.riko@gmail.com> wrote:
-> Dear Yocto Team Member,
->
-> I'm building with Ubuntu 16
->
->
-> On 02/08/17 14:31, Khem Raj wrote:
->
-> On Tue, Aug 1, 2017 at 11:18 PM, Riko Ho <antonius.riko@gmail.com> wrote:
->
-> Dear Yocto Team Member,
->
-> That's the branch :
->
-> ======
->
-> meta-poky
-> meta-yocto-bsp    = "pyro:e5aa1ac23669a45491de9ecffac491c01e70203f"
-> openembedded-core = "master:2fd0757ae7fd63bc93a4ce8579c6ba0cdbb4c1cd"
-> meta-openembedded
-> meta-oe
-> meta-xfce
-> meta-gnome
-> meta-python
-> meta-multimedia
-> meta-networking   = "master:b063789560bfb9c60a7a15277b5b3a9839b5ba74"
-> meta-browser      =
-> "firefox-52.1.2esr-2:c79cf6c7811afd2cd167e8967e3c29b1e797371e"
-> meta-ti           = "master:872d418f6e503dea66e3533f43e7a17618183982"
->
-> Initialising tasks: 100%
-> |################################################################################################################################|
-> Time: 0:00:08
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> ERROR: automake-native-1.15-r0 do_compile: oe_runmake failed
-> ERROR: automake-native-1.15-r0 do_compile: Function failed: do_compile (log
-> file is located at
-> /home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)
-> ERROR: Logfile of failure stored in:
-> /home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291
-> Log data follows:
-> | DEBUG: Executing shell function do_compile
-> | NOTE: Using icecc
-> | NOTE: make -j 10
-> | ERROR: oe_runmake failed
-> | : && /home/bianchi77/poky/build/tmp/hosttools/mkdir -p doc && {
-> PATH='/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/build/t/wrap:'$PATH
-> && export PATH; } && /usr/bin/env perl ../automake-1.15/doc/help2man
-> --output=doc/automake-1.15.1 automake-1.15
-> | help2man: can't get `--help' info from automake-1.15
->
-> What OS do you run on build machine ?
-> if its archlinux then apply this patch to automake
->
-> https://gist.github.com/xywei/03b546054f0d2e2f76c5ac530c88268a
->
-> otherwise if its centos7 then install
->
-> yum install perl-Thread-Queue
->
->
->
-> | Try `--no-discard-stderr' if option outputs to stderr
-> | Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
-> | make: *** [doc/automake-1.15.1] Error 255
-> | ERROR: Function failed: do_compile (log file is located at
-> /home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)
-> ERROR: Task
-> (virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile)
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 845 tasks of which 844 didn't need to be
-> rerun and 1 failed.
->
-> Summary: 1 task failed:
->
-> virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile
-> Summary: There were 4 WARNING messages shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-> bianchi77@bianchi77-HP-Pavilion-dv6-Notebook-PC:~/poky/build$
->
-> How can I fix that automake error ?
->
-> I tried to run bitbake core-image-minimal for it.
-> Thanks,
->
-> On 31/07/17 21:26, Burton, Ross wrote:
->
-> Then the branch you checked out.  git branch will tell you.
->
-> Ross
->
-> On 31 July 2017 at 14:17, Riko Ho <antonius.riko@gmail.com> wrote:
->
-> Git clone ...
->
-> On Jul 31, 2017 9:16 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
->
-> How did you get poky?
->
-> Ross
->
-> On 31 July 2017 at 14:14, Riko Ho <antonius.riko@gmail.com> wrote:
->
-> How can I see my branch?
->
-> On Jul 31, 2017 9:12 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
->
-> On 31 July 2017 at 03:33, Riko Ho <antonius.riko@gmail.com> wrote:
->
-> Is my auto make disabled with icecc ?
->
-> How to make it enable ? thanks.
->
-> That's just a debug message.
->
-> | help2man: can't get `--help' info from automake-1.15
-> | Try `--no-discard-stderr' if option outputs to stderr
-> | Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
->
-> That's the error your hitting.
->
-> I think you need to update to the latest commit for the branch you're
-> on, there was a problem with modern perl in help2man.  What release/branch
-> are you using?
->
-> Ross
->
->
-> --
->
-> /*******/
-> Sent by Ubuntu LTS 16.04,
-> Kind regards,
-> Riko Ho
-> /*******/
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-> --
->
-> /*******/
-> Sent by Ubuntu LTS 16.04,
-> Kind regards,
-> Riko Ho
-> /*******/
+Could it be this one ?
 
+https://www.devmanuals.net/install/ubuntu/ubuntu-12-04-lts-precise-pangolin/install-libthread-queue-perl.html
+
+Thanks
+
+
+On 02/08/17 14:38, Khem Raj wrote:
+> apply the solutions they may work for ubuntu
+>
+> On Tue, Aug 1, 2017 at 11:33 PM, Riko Ho <antonius.riko@gmail.com> wrote:
+>> Dear Yocto Team Member,
+>>
+>> I'm building with Ubuntu 16
+>>
+>>
+>> On 02/08/17 14:31, Khem Raj wrote:
+>>
+>> On Tue, Aug 1, 2017 at 11:18 PM, Riko Ho <antonius.riko@gmail.com> wrote:
+>>
+>> Dear Yocto Team Member,
+>>
+>> That's the branch :
+>>
+>> ======
+>>
+>> meta-poky
+>> meta-yocto-bsp    = "pyro:e5aa1ac23669a45491de9ecffac491c01e70203f"
+>> openembedded-core = "master:2fd0757ae7fd63bc93a4ce8579c6ba0cdbb4c1cd"
+>> meta-openembedded
+>> meta-oe
+>> meta-xfce
+>> meta-gnome
+>> meta-python
+>> meta-multimedia
+>> meta-networking   = "master:b063789560bfb9c60a7a15277b5b3a9839b5ba74"
+>> meta-browser      =
+>> "firefox-52.1.2esr-2:c79cf6c7811afd2cd167e8967e3c29b1e797371e"
+>> meta-ti           = "master:872d418f6e503dea66e3533f43e7a17618183982"
+>>
+>> Initialising tasks: 100%
+>> |################################################################################################################################|
+>> Time: 0:00:08
+>> NOTE: Executing SetScene Tasks
+>> NOTE: Executing RunQueue Tasks
+>> ERROR: automake-native-1.15-r0 do_compile: oe_runmake failed
+>> ERROR: automake-native-1.15-r0 do_compile: Function failed: do_compile (log
+>> file is located at
+>> /home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)
+>> ERROR: Logfile of failure stored in:
+>> /home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291
+>> Log data follows:
+>> | DEBUG: Executing shell function do_compile
+>> | NOTE: Using icecc
+>> | NOTE: make -j 10
+>> | ERROR: oe_runmake failed
+>> | : && /home/bianchi77/poky/build/tmp/hosttools/mkdir -p doc && {
+>> PATH='/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/build/t/wrap:'$PATH
+>> && export PATH; } && /usr/bin/env perl ../automake-1.15/doc/help2man
+>> --output=doc/automake-1.15.1 automake-1.15
+>> | help2man: can't get `--help' info from automake-1.15
+>>
+>> What OS do you run on build machine ?
+>> if its archlinux then apply this patch to automake
+>>
+>> https://gist.github.com/xywei/03b546054f0d2e2f76c5ac530c88268a
+>>
+>> otherwise if its centos7 then install
+>>
+>> yum install perl-Thread-Queue
+>>
+>>
+>>
+>> | Try `--no-discard-stderr' if option outputs to stderr
+>> | Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
+>> | make: *** [doc/automake-1.15.1] Error 255
+>> | ERROR: Function failed: do_compile (log file is located at
+>> /home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)
+>> ERROR: Task
+>> (virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile)
+>> failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 845 tasks of which 844 didn't need to be
+>> rerun and 1 failed.
+>>
+>> Summary: 1 task failed:
+>>
+>> virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile
+>> Summary: There were 4 WARNING messages shown.
+>> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+>> bianchi77@bianchi77-HP-Pavilion-dv6-Notebook-PC:~/poky/build$
+>>
+>> How can I fix that automake error ?
+>>
+>> I tried to run bitbake core-image-minimal for it.
+>> Thanks,
+>>
+>> On 31/07/17 21:26, Burton, Ross wrote:
+>>
+>> Then the branch you checked out.  git branch will tell you.
+>>
+>> Ross
+>>
+>> On 31 July 2017 at 14:17, Riko Ho <antonius.riko@gmail.com> wrote:
+>>
+>> Git clone ...
+>>
+>> On Jul 31, 2017 9:16 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
+>>
+>> How did you get poky?
+>>
+>> Ross
+>>
+>> On 31 July 2017 at 14:14, Riko Ho <antonius.riko@gmail.com> wrote:
+>>
+>> How can I see my branch?
+>>
+>> On Jul 31, 2017 9:12 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
+>>
+>> On 31 July 2017 at 03:33, Riko Ho <antonius.riko@gmail.com> wrote:
+>>
+>> Is my auto make disabled with icecc ?
+>>
+>> How to make it enable ? thanks.
+>>
+>> That's just a debug message.
+>>
+>> | help2man: can't get `--help' info from automake-1.15
+>> | Try `--no-discard-stderr' if option outputs to stderr
+>> | Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
+>>
+>> That's the error your hitting.
+>>
+>> I think you need to update to the latest commit for the branch you're
+>> on, there was a problem with modern perl in help2man.  What release/branch
+>> are you using?
+>>
+>> Ross
+>>
+>>
+>> --
+>>
+>> /*******/
+>> Sent by Ubuntu LTS 16.04,
+>> Kind regards,
+>> Riko Ho
+>> /*******/
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>> --
+>>
+>> /*******/
+>> Sent by Ubuntu LTS 16.04,
+>> Kind regards,
+>> Riko Ho
+>> /*******/
+
+-- 
+*
+
+/*******/
+Sent by Ubuntu LTS 16.04,
+Kind regards,
+Riko Ho
+/*******/
+
+*
+
+--------------EB9C78C9583FB665B68C651F
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Could it be this one ?</p>
+    <p><a class="moz-txt-link-freetext" href="https://www.devmanuals.net/install/ubuntu/ubuntu-12-04-lts-precise-pangolin/install-libthread-queue-perl.html">https://www.devmanuals.net/install/ubuntu/ubuntu-12-04-lts-precise-pangolin/install-libthread-queue-perl.html</a></p>
+    <p>Thanks<br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 02/08/17 14:38, Khem Raj wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAMKF1soVe9msdj8ouWUZF+v-+5nncB7CPB08g_4LkgX7-Ns0qg@mail.gmail.com">
+      <pre wrap="">apply the solutions they may work for ubuntu
+
+On Tue, Aug 1, 2017 at 11:33 PM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">Dear Yocto Team Member,
+
+I'm building with Ubuntu 16
+
+
+On 02/08/17 14:31, Khem Raj wrote:
+
+On Tue, Aug 1, 2017 at 11:18 PM, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+
+Dear Yocto Team Member,
+
+That's the branch :
+
+======
+
+meta-poky
+meta-yocto-bsp    = "pyro:e5aa1ac23669a45491de9ecffac491c01e70203f"
+openembedded-core = "master:2fd0757ae7fd63bc93a4ce8579c6ba0cdbb4c1cd"
+meta-openembedded
+meta-oe
+meta-xfce
+meta-gnome
+meta-python
+meta-multimedia
+meta-networking   = "master:b063789560bfb9c60a7a15277b5b3a9839b5ba74"
+meta-browser      =
+"firefox-52.1.2esr-2:c79cf6c7811afd2cd167e8967e3c29b1e797371e"
+meta-ti           = "master:872d418f6e503dea66e3533f43e7a17618183982"
+
+Initialising tasks: 100%
+|################################################################################################################################|
+Time: 0:00:08
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: automake-native-1.15-r0 do_compile: oe_runmake failed
+ERROR: automake-native-1.15-r0 do_compile: Function failed: do_compile (log
+file is located at
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)
+ERROR: Logfile of failure stored in:
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: Using icecc
+| NOTE: make -j 10
+| ERROR: oe_runmake failed
+| : &amp;&amp; /home/bianchi77/poky/build/tmp/hosttools/mkdir -p doc &amp;&amp; {
+PATH='/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/build/t/wrap:'$PATH
+&amp;&amp; export PATH; } &amp;&amp; /usr/bin/env perl ../automake-1.15/doc/help2man
+--output=doc/automake-1.15.1 automake-1.15
+| help2man: can't get `--help' info from automake-1.15
+
+What OS do you run on build machine ?
+if its archlinux then apply this patch to automake
+
+<a class="moz-txt-link-freetext" href="https://gist.github.com/xywei/03b546054f0d2e2f76c5ac530c88268a">https://gist.github.com/xywei/03b546054f0d2e2f76c5ac530c88268a</a>
+
+otherwise if its centos7 then install
+
+yum install perl-Thread-Queue
+
+
+
+| Try `--no-discard-stderr' if option outputs to stderr
+| Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
+| make: *** [doc/automake-1.15.1] Error 255
+| ERROR: Function failed: do_compile (log file is located at
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)
+ERROR: Task
+(virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 845 tasks of which 844 didn't need to be
+rerun and 1 failed.
+
+Summary: 1 task failed:
+
+virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile
+Summary: There were 4 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+bianchi77@bianchi77-HP-Pavilion-dv6-Notebook-PC:~/poky/build$
+
+How can I fix that automake error ?
+
+I tried to run bitbake core-image-minimal for it.
+Thanks,
+
+On 31/07/17 21:26, Burton, Ross wrote:
+
+Then the branch you checked out.  git branch will tell you.
+
+Ross
+
+On 31 July 2017 at 14:17, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+
+Git clone ...
+
+On Jul 31, 2017 9:16 PM, "Burton, Ross" <a class="moz-txt-link-rfc2396E" href="mailto:ross.burton@intel.com">&lt;ross.burton@intel.com&gt;</a> wrote:
+
+How did you get poky?
+
+Ross
+
+On 31 July 2017 at 14:14, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+
+How can I see my branch?
+
+On Jul 31, 2017 9:12 PM, "Burton, Ross" <a class="moz-txt-link-rfc2396E" href="mailto:ross.burton@intel.com">&lt;ross.burton@intel.com&gt;</a> wrote:
+
+On 31 July 2017 at 03:33, Riko Ho <a class="moz-txt-link-rfc2396E" href="mailto:antonius.riko@gmail.com">&lt;antonius.riko@gmail.com&gt;</a> wrote:
+
+Is my auto make disabled with icecc ?
+
+How to make it enable ? thanks.
+
+That's just a debug message.
+
+| help2man: can't get `--help' info from automake-1.15
+| Try `--no-discard-stderr' if option outputs to stderr
+| Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
+
+That's the error your hitting.
+
+I think you need to update to the latest commit for the branch you're
+on, there was a problem with modern perl in help2man.  What release/branch
+are you using?
+
+Ross
+
+
+--
+
+/*******/
+Sent by Ubuntu LTS 16.04,
+Kind regards,
+Riko Ho
+/*******/
+
+
+--
+_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+
+
+--
+
+/*******/
+Sent by Ubuntu LTS 16.04,
+Kind regards,
+Riko Ho
+/*******/
+</pre>
+      </blockquote>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          Kind regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
+  </body>
+</html>
+
+--------------EB9C78C9583FB665B68C651F--
