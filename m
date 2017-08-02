@@ -1,6 +1,6 @@
-Return-Path: <c.andersen@kostal.com>
+Return-Path: <f_l_k@t-online.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B6D9E00C9E; Wed,  2 Aug 2017 02:56:37 -0700 (PDT)
+	id 72E82E00C9E; Wed,  2 Aug 2017 02:57:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,40 +8,32 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [193.22.205.227 listed in list.dnswl.org]
+	*      [194.25.134.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from debemgw001.kostal.com (securemail.kostal.com [193.22.205.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BE95E00C19
-	for <yocto@yoctoproject.org>; Wed,  2 Aug 2017 02:56:35 -0700 (PDT)
-Received: from DEBEMAIL002.kostal.int ([10.20.2.182]) by 
-	debemgw001.kostal.com (8.14.7/8.14.7) with ESMTP id v729uVjL004377 
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL) for 
-	<yocto@yoctoproject.org>; Wed, 2 Aug 2017 11:56:31 +0200
-Received: from DEBEMAIL001.kostal.int (10.20.2.181) by DEBEMAIL002.kostal.int 
-	(10.20.2.182) with Microsoft SMTP Server (TLS) id 15.0.1293.2;
-	Wed, 2 Aug 2017 11:56:31 +0200
-Received: from DEBEMAIL001.kostal.int ([fe80::709d:54a:e7ef:38eb]) by 
-	DEBEMAIL001.kostal.int ([fe80::709d:54a:e7ef:38eb%12]) with mapi id 
-	15.00.1293.004; Wed, 2 Aug 2017 11:56:31 +0200
-From: "Andersen, Christian" <c.andersen@kostal.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] postinstall intercept hooks fail because of missing 
-	qemuwrapper
-Thread-Index: AdMLcG4rnYX7FD19RKSJOkSo1XZxbf//4zQA///Z64A=
-Date: Wed, 2 Aug 2017 09:56:31 +0000
-Message-ID: <ca14488af82146bd826b3e121ffa0eb5@DEBEMAIL001.kostal.int>
-References: <45217eb6b5da40db93f9a86af0436077@DEBEMAIL001.kostal.int> 
-	<3dvct001bm9re2v7@debemgw001.kostal.com>
-In-Reply-To: <3dvct001bm9re2v7@debemgw001.kostal.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.20.2.192]
-MIME-Version: 1.0
-x-msw-jemd-newsletter: false
-Subject: Re: postinstall intercept hooks fail because of missing qemuwrapper
+Received: from mailout08.t-online.de (mailout08.t-online.de [194.25.134.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EBADE00C19
+	for <yocto@yoctoproject.org>; Wed,  2 Aug 2017 02:57:31 -0700 (PDT)
+Received: from fwd21.aul.t-online.de (fwd21.aul.t-online.de [172.20.27.66])
+	by mailout08.t-online.de (Postfix) with SMTP id 366A141D7029
+	for <yocto@yoctoproject.org>; Wed,  2 Aug 2017 11:57:30 +0200 (CEST)
+Received: from genericx86-64.Speedport_W_724V_01011603_05_032
+	(ESSY1wZZ8hdq1YjNTjpJsjGBLvViR9ducvHF9+0Jcs3Komcv11P5UCPe5WLgo2zghZ@[84.146.40.121])
+	by fwd21.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1dcqP6-0xq3rE0; Wed, 2 Aug 2017 11:57:24 +0200
+Date: Wed, 2 Aug 2017 11:57:24 +0200
+From: Markus Volk <f_l_k@t-online.de>
+To: yocto@yoctoproject.org
+Message-Id: <20170802115724.b3e533695e670e4fef58bbdd@t-online.de>
+In-Reply-To: <568398942.4073936.1501667235929@mail.yahoo.com>
+References: <568398942.4073936.1501667235929.ref@mail.yahoo.com>
+	<568398942.4073936.1501667235929@mail.yahoo.com>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.31; x86_64-poky-linux-gnu)
+Mime-Version: 1.0
+X-ID: ESSY1wZZ8hdq1YjNTjpJsjGBLvViR9ducvHF9+0Jcs3Komcv11P5UCPe5WLgo2zghZ
+X-TOI-MSGID: 3bbbdef3-157d-45fa-9cd6-c5a1d7cc1306
+Subject: Re: How to strip down my Yocto Linux?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,64 +45,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Aug 2017 09:56:37 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 02 Aug 2017 09:57:32 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Markus,
+I guess that depends on what your needs are. Personally i would start to build core-image-minimal and just add the packages i need
 
-thanks for the hint. In my image recipe I was setting some other dependenci=
-es for wic using DEPENDS=3D"...". So the dependency for qemuwrapper-cross, =
-which is provided by image.bbclass, was overwritten. After changing my depe=
-ndencies to DEPENDS_append it is working now.
+regards
+Markus
 
-Regards
-Christian
+On Wed, 2 Aug 2017 09:47:15 +0000 (UTC)
+Bacheh Karaji <bachehkaraji@yahoo.com> wrote:
+
+> 
+> I would like to strip down my Yocto Linux before put in it to flash. Unneeded software, man pages, POCO sample codes and other documentation just waste resource, especially on the i.MX28 EVK with only 128MB flash.
+> 
+> My local.conf file looks following:
+> 
+> $ gedit conf/local.conf &
+> ...
+> IMAGE_INSTALL_append = " poco nginx canutils vsftpd curl fcgi spawn-fcgi net-snmp util-linux ubiattach-klibc ubimkvol-klibc ubiformat-klibc minicom net-tools zeroconf avahi-autoipd mtd-utils u-boot-fw-utils ethtool"
+> ...
+> I bitbake the image "core-image-base".
+> 
+> I was wondering, is there a way that I can delete all of the Unneeded files?
+> 
+> Can somebody help me howto strip down my Yocto Linux?
+> 
 
 
-> -----Urspr=FCngliche Nachricht-----
-> Von: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.or=
-g]
-> Im Auftrag von Markus Volk
-> Gesendet: Mittwoch, 2. August 2017 11:36
-> An: yocto@yoctoproject.org
-> Betreff: Re: [yocto] postinstall intercept hooks fail because of missing
-> qemuwrapper
->=20
-> hi,
->=20
-> this could be fixed by adding "qemuwrapper-cross" to the depends of your
-> image.bb
->=20
-> regards
-> Markus
->=20
-> On Wed, 2 Aug 2017 09:24:06 +0000
-> "Andersen, Christian" <c.andersen@kostal.com> wrote:
->=20
-> > Hello,
-> >
-> > we are using the current version of pyro. When building an image recipe=
- we get
-> some warnings, that some postinstall intercept hooks failed. The log-file=
- of
-> do_rootfs shows:
-> >
-> >(...)
-> >
-> > So qemuwrapper is missing. How can I fix this?
-> >
-> > Kind regards
-> > Christian
-
-KOSTAL Industrie Elektrik GmbH - Sitz L=FCdenscheid, Registergericht Iserlo=
-hn HRB 3924 - USt-Id-Nr./Vat No.: DE 813742170
-Postanschrift: An der Bellmerei 10, D-58513 L=FCdenscheid * Telefon: +49  2=
-351 16-0 * Telefax: +49  2351 16-2400
-Werksanschrift: Lange Eck 11, D-58099 Hagen * Tel. +49 2331 8040-601 * Fax =
-+49 2331 8040-602
-Gesch=E4ftsf=FChrung: Dr.-Ing. Dipl.-Wirt.Ing. Manfred Gerhard, Dipl.-Ing. =
-Marwin Kinzl, Dipl.-Oec. Andreas Kostal
-
+-- 
+Markus Volk <f_l_k@t-online.de>
 
