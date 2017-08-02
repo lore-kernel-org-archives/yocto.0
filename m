@@ -1,70 +1,64 @@
-Return-Path: <prvs=13872ee4e4=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA345E00C9E; Wed,  2 Aug 2017 03:06:57 -0700 (PDT)
+	id E0BDAE00C9E; Wed,  2 Aug 2017 03:34:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.220 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.170 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 309E6E00C19
-	for <yocto@yoctoproject.org>; Wed,  2 Aug 2017 03:06:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1501668414;
-	l=1539; s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Language:Content-Type:In-Reply-To:
-	MIME-Version:Date:From:References:To:Subject;
-	bh=K7C7yeJ9dU8vfMo3yCT+eGXOQWK87ytUts2aNA28dNs=;
-	b=GVFVg1FtsS36ua0dbRnlO16yNfBUdc0OKCCAYHJYAWrt9bCDiLHvu6LzwMSRQ/GZZi
-	Z39zFF28OE1dhUT6CodBW9ZMUxbxgUxP3TTDPqIL+JvU0fzRUA7LhfUPlPoM6jufCrhN
-	q9h/8WCgJvRydxiDpotaQGXWn3iUqnrcco4yg=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPWwJyH/ODuV4n+N24+CqMVTDvF1MhuFNtPdyidq2NsVaruNM0BuYWC2Hzed5IgCQrA==
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	([2001:0:9d38:78cf:2035:3c8e:af6c:cbea])
-	by smtp.strato.de (RZmta 41.1 AUTH) with ESMTPSA id d0acf7t72A6qDp8
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Wed, 2 Aug 2017 12:06:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1501668400; x=1502273200;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:To:
-	References:From:Message-ID:Date:User-Agent:MIME-Version:
-	In-Reply-To:Content-Type:Content-Language:
-	Content-Transfer-Encoding; bh=K7C7yeJ9dU8vfMo3yCT+eGXOQWK87ytUts
-	2aNA28dNs=; b=C2AzuLc0UWNFL3wgjUOYT4PLWz0uwtKOpKhS79qNqTrHSveTZQ
-	PgDhLeCNSxn9pR2gwWrwuhnmP7iNyFyfUShS7OtEK+cCc+VNhvyxrf581x9HBabh
-	cPkRdZInLwvLPkuIk4wDhdIijvYoIRksM8yTMq6e9EBUXwO11/hBChZqI=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.0.2) with ESMTPSA id
-	md50000547895.msg; Wed, 02 Aug 2017 12:06:39 +0200
-X-MDRemoteIP: 80.147.52.21
-X-MDArrival-Date: Wed, 02 Aug 2017 12:06:39 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=13872ee4e4=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: Bacheh Karaji <bachehkaraji@yahoo.com>,
-	Yocto Discussion List <yocto@yoctoproject.org>
+Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EF75E00C19
+	for <yocto@yoctoproject.org>; Wed,  2 Aug 2017 03:34:25 -0700 (PDT)
+Received: by mail-io0-f170.google.com with SMTP id c74so18696316iod.4
+	for <yocto@yoctoproject.org>; Wed, 02 Aug 2017 03:34:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=KxLz7IFb/B1ZKgI3+NgJ5ZGpcydTPQL0XDdXmdDTQYc=;
+	b=U5qjNqjBOjOKb+bn36CHU4ybXC3owmttScT4qcKPsIP00Dn9WD4h/FQOSbojHnmwT6
+	7U+2ity/TIJQSfMdXuanMzc8kZMlYp+n8n1H0B2HbieEBravMP5cgYM8ol3CFxrjlIxE
+	oftJEfKBeIuWfRtB2klnJfPeLj2D0pDSerNEKmYQbrfiO5w2qWBQC36IbhV67gXPvw9P
+	21lRvLb5+t/66+LoNNJGCAzcJakiH4ng61vIYcTRZ1lM7f+M1XsSSCAMMzMfuNYMYvLz
+	mjHCEqHtA0unZYLnZJUZ+XVopbxB2nwvE3yXWvQQsfJkRKXtutrdWBivJaMtT679uEyv
+	PctQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=KxLz7IFb/B1ZKgI3+NgJ5ZGpcydTPQL0XDdXmdDTQYc=;
+	b=cmp+QPRZXarEW0NKZvVI6GKgC6G25/iMCvodTebYkjNXO4q8zyKd+XVPKvcWKg1DPw
+	mfZjsWxtlYCfNTMWIc5u8mzUe0x1BiAShCLmUD8uIG+/9vjKAcVFtff7dvwB41BMCuxY
+	KkHkbpp6AcmPm/n96FsXcBJVv4gj3vcAmBvwlemrW32A5e9zfwRadTB/0PL/k4ML6WH0
+	QpPoqRprTSe/G9G4PYBUTA9SolL9u1OATFKC949xUgxxD5FjHbsY4Xtkvrn2t3RuvWNA
+	pRiXz4vCpbv706Aao5SaiP2S1Qc2SoIpPRG3sJVxSw3AHVwx6kEP5oicY6wh4mwXM6Ep
+	cPdA==
+X-Gm-Message-State: AIVw113mL6OnmAyY6fqcbHx0mHMJyOSdX+xrZCEHOQXChiLeVX5We0OJ
+	LU3CAGTG0HlASO0t21wpx/bOwiCYaChz
+X-Received: by 10.107.170.170 with SMTP id g42mr27633207ioj.19.1501670065621; 
+	Wed, 02 Aug 2017 03:34:25 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.135.234 with HTTP; Wed, 2 Aug 2017 03:34:05 -0700 (PDT)
+In-Reply-To: <568398942.4073936.1501667235929@mail.yahoo.com>
 References: <568398942.4073936.1501667235929.ref@mail.yahoo.com>
 	<568398942.4073936.1501667235929@mail.yahoo.com>
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <b92ea58d-f44d-2655-59d0-7490545fea7a@rsi-elektrotechnik.de>
-Date: Wed, 2 Aug 2017 12:06:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
-MIME-Version: 1.0
-In-Reply-To: <568398942.4073936.1501667235929@mail.yahoo.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 2 Aug 2017 11:34:05 +0100
+Message-ID: <CAJTo0LbifEhF4sUgZmaipkem2tRDUurWyvqBMmYE2GA4oRwAfw@mail.gmail.com>
+To: Bacheh Karaji <bachehkaraji@yahoo.com>
+Cc: Yocto Discussion List <yocto@yoctoproject.org>
 Subject: Re: How to strip down my Yocto Linux?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -77,57 +71,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Aug 2017 10:06:57 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 02 Aug 2017 10:34:27 -0000
+Content-Type: multipart/alternative; boundary="001a114260bad4ea750555c2ce17"
 
-Hi!
+--001a114260bad4ea750555c2ce17
+Content-Type: text/plain; charset="UTF-8"
 
-At the moment it like this:
+First, the core images are examples; copy and paste the closest to what you
+want and then modify the recipe.
 
-On 02.08.2017 11:47, Bacheh Karaji wrote:
- > I bitbake the image "core-image-base"/.
+If you want a really small image then start from core-image-minimal, but be
+aware that is missing a lot of stuff you may actually want.
 
-You start out with a already big image setup.
+How to remove things depends on how they got installed in the first place.
+Unless you have doc-pkgs in IMAGE_FEATURES then you shouldn't have any man
+pages or documentation.  If the poco recipe installs sample code you don't
+want then fix the recipe to put those in another package. etc etc.
 
-> IMAGE_INSTALL_append = " poco nginx canutils vsftpd curl fcgi spawn-fcgi 
-> net-snmp util-linux ubiattach-klibc ubimkvol-klibc ubiformat-klibc 
-> minicom net-tools zeroconf avahi-autoipd mtd-utils u-boot-fw-utils ethtool"
+Ross
 
-And then you add even more stuff.
+On 2 August 2017 at 10:47, Bacheh Karaji <bachehkaraji@yahoo.com> wrote:
 
-After that, you want to remove lots of it again.
+> I would like to strip down my Yocto Linux before put in it to flash.
+> Unneeded software, man pages, POCO sample codes and other documentation
+> just waste resource, especially on the i.MX28 EVK with only 128MB flash.
+>
+> My local.conf file looks following:
+>
+>
+>
+>
+>
+> *$ gedit conf/local.conf & ... IMAGE_INSTALL_append = " poco nginx
+> canutils vsftpd curl fcgi spawn-fcgi net-snmp util-linux ubiattach-klibc
+> ubimkvol-klibc ubiformat-klibc minicom net-tools zeroconf avahi-autoipd
+> mtd-utils u-boot-fw-utils ethtool" ... I bitbake the image
+> "core-image-base"*.
+>
+> I was wondering, is there a way that I can delete all of the Unneeded
+> files?
+>
+> Can somebody help me howto strip down my Yocto Linux?
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-While that maybe technically works, its pretty pointless. You first 
-waste a lot of compilation time in generating stuff, which you then need 
-additional time to remove again.
+--001a114260bad4ea750555c2ce17
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The correct approach is to create an image recipe that exactly fits your 
-needs. Usually one would start out with core-image-minimal.bb, copy that 
-to your-cool-image.bb, and then add the additionally wanted packages in 
-there.
+<div dir=3D"ltr"><div>First, the core images are examples; copy and paste t=
+he closest to what you want and then modify the recipe.</div><div><br></div=
+>If you want a really small image then start from core-image-minimal, but b=
+e aware that is missing a lot of stuff you may actually want.<div><br></div=
+><div>How to remove things depends on how they got installed in the first p=
+lace.=C2=A0 Unless you have doc-pkgs in IMAGE_FEATURES then you shouldn&#39=
+;t have any man pages or documentation.=C2=A0 If the poco recipe installs s=
+ample code you don&#39;t want then fix the recipe to put those in another p=
+ackage. etc etc.</div><div><br></div><div>Ross</div></div><div class=3D"gma=
+il_extra"><br><div class=3D"gmail_quote">On 2 August 2017 at 10:47, Bacheh =
+Karaji <span dir=3D"ltr">&lt;<a href=3D"mailto:bachehkaraji@yahoo.com" targ=
+et=3D"_blank">bachehkaraji@yahoo.com</a>&gt;</span> wrote:<br><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex"><div><div style=3D"font-family:Helvetica Neue,Helvetica,A=
+rial,sans-serif;font-size:x-small"><p style=3D"margin:0px 0px 1em;padding:0=
+px;border:0px;font-stretch:inherit;line-height:inherit;vertical-align:basel=
+ine;clear:both;color:rgb(36,39,41)"><span style=3D"font-family:Arial,&quot;=
+Helvetica Neue&quot;,Helvetica,sans-serif;font-size:15px">I would like to s=
+trip down my Yocto Linux before put in it to flash. Unneeded software, man =
+pages, POCO sample codes and other documentation just waste resource, espec=
+ially on the i.MX28 EVK with only 128MB flash.
+</span><br>
+<br><span style=3D"font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,s=
+ans-serif;font-size:15px">My local.conf file looks following:
+</span><br>
+<br><font face=3D"courier new, courier, monaco, monospace, sans-serif" size=
+=3D"2"><i>$ gedit conf/local.conf &amp;
+<br>...
+<br>IMAGE_INSTALL_append =3D &quot; poco nginx canutils vsftpd curl fcgi sp=
+awn-fcgi net-snmp util-linux ubiattach-klibc ubimkvol-klibc ubiformat-klibc=
+ minicom net-tools zeroconf avahi-autoipd mtd-utils u-boot-fw-utils ethtool=
+&quot;
+<br>...
+<br>I bitbake the image &quot;core-image-base&quot;</i>.
+</font><br>
+<br><span style=3D"font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,s=
+ans-serif;font-size:15px">I was wondering, is there a way that I can delete=
+ all of the Unneeded files?
+</span><br>
+<br><span style=3D"font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,s=
+ans-serif;font-size:15px">Can somebody help me howto strip down my Yocto Li=
+nux?</span><br></p></div></div><br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
-Greetz
--- 
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
-
-
+--001a114260bad4ea750555c2ce17--
