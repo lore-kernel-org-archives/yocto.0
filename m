@@ -1,62 +1,83 @@
-Return-Path: <bluehills7@comcast.net>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF55BE00CB4; Tue,  1 Aug 2017 17:55:29 -0700 (PDT)
+	id F1016E00CAB; Tue,  1 Aug 2017 23:18:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bluehills7[at]comcast.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [69.252.207.36 listed in list.dnswl.org]
+	mail provider *      (antonius.riko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from resqmta-ch2-04v.sys.comcast.net
-	(resqmta-ch2-04v.sys.comcast.net [69.252.207.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F30B8E00C9D
-	for <yocto@yoctoproject.org>; Tue,  1 Aug 2017 17:55:28 -0700 (PDT)
-Received: from resomta-ch2-01v.sys.comcast.net ([69.252.207.97])
-	by resqmta-ch2-04v.sys.comcast.net with ESMTP
-	id chwad0fTu0sIechwddwj0b; Wed, 02 Aug 2017 00:55:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=q20161114; t=1501635327;
-	bh=Na5RFWKCy56kipUdEu10BZrpHY+RfDGnaVyNlC93qiI=;
-	h=Received:Received:Content-Type:Mime-Version:Subject:From:Date:
-	Message-Id:To;
-	b=My2igId8O6CDy/tpYsOslAWyfx3ZUjN/E8LNVJjNVupOU7loUCQTAKGbyL0uf1+8g
-	W53NpTzCvDzpYdNX7DTUzmxukG+8SABNwjbsVTq4ocaEuZX8qjogSTag4bqIb/lHkd
-	cGsSxy8yTS7sJ57toNVfh8yt+SdC+KHeX+hHXhkxNme1QDsgDOmH9pjnMK+I9cxNV4
-	CC/v5XHSrsDC2al0Vi3WZaWVmQl9qmYW/QlPB2FqIlWdNXyKzINmAcj56ZgXEPv+oW
-	HcUdcWFdQ+SilFr+di5kX4rS2VOch7L2Z42VgxIAZ+GPmR/GWFxRLGsYwY1PVfaMUK
-	PzO2WtldFoRcw==
-Received: from [IPv6:2601:18f:800:acc1:7057:341e:5042:3de]
-	([IPv6:2601:18f:800:acc1:7057:341e:5042:3de])
-	by resomta-ch2-01v.sys.comcast.net with SMTP
-	id chwcdqLzA3hkzchwcdbPRN; Wed, 02 Aug 2017 00:55:27 +0000
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-From: Russell Peterson <bluehills7@comcast.net>
-X-Priority: 3
-In-Reply-To: <1928283135.524860.1501624351743@connect.xfinity.com>
-Date: Tue, 1 Aug 2017 20:55:26 -0400
-Message-Id: <33807B63-4010-4E20-9200-92EA19FBED02@comcast.net>
-References: <FCFE4E57-753C-47F3-AFBC-A969AABDDD2C@comcast.net>
-	<20571187.vhiZQWh1oz@peggleto-mobl.ger.corp.intel.com>
-	<1928283135.524860.1501624351743@connect.xfinity.com>
-To: Russell Peterson <bluehills7@comcast.net>
-X-Mailer: Apple Mail (2.3273)
-X-CMAE-Envelope: MS4wfDFlnU5q46zqhxpsxuTCWwcLVScpV/bdwYufpvTOqbhmYmMWKutQDOgr/zPkY2Nu0OuzESNAuUcAKOA9rOoS212mfjHBgn4f2pdXMtYIjFXLRsWb8n9G
-	ZD+RwaAKwMzEr25y2BYNdDpasS0iwXJ52U9w/cNRodSaplcFBerq7X0NPE+HHX5qhccpx/BhpyJaMjyX7rNgCiUyQExTVJVPJzl5gQBRJ6ljm82lIn9HzMU0
-	Y96e8H817/8wWTyyEN0R2t6VBKqUlAkOabN2JnpWJh0=
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: extensible SDK build failure
+Received: from mail-pg0-f53.google.com (mail-pg0-f53.google.com [74.125.83.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D91EFE00C19
+	for <yocto@yoctoproject.org>; Tue,  1 Aug 2017 23:18:11 -0700 (PDT)
+Received: by mail-pg0-f53.google.com with SMTP id l64so17242575pge.5
+	for <yocto@yoctoproject.org>; Tue, 01 Aug 2017 23:18:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=Ope2zPp2+iOTaKHKNP/pQa1IaPxkeLCvWmquY00jPdA=;
+	b=OcnnILFsITbAummzA57iTxVB5H8I9cG6zRZElzgKMoc/u2W114WzMf8sj6QNgTgbpd
+	WAKQ7EGbT0kqwhROVZQTNAuHGcZse7TjfAuq4U1QVlT9UzbAUNkyuXTMfHUZc17neAh1
+	ghiir1l0ljXi/Mpcu4d3tNvyj377ytzS7Kl4FbDyW8/NDHLil2EhY6ofBlZdIKY2L/Oi
+	NNDQzgDQVlBSN5woG5/b4POPMzYhGAVGK8U0LXbCan2iRheKXv31XAA4P6RfTdiH9O0x
+	PsbB51tVcjShgl9iaQYVTntRSTu2/+gK/lViyw1hR6vNN3zvEwnruReMDMQTo09frEgv
+	4Xhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=Ope2zPp2+iOTaKHKNP/pQa1IaPxkeLCvWmquY00jPdA=;
+	b=UvotRa+ciYJr+0qoFHORzoOL61c9SZyE9oPh/quWVb5i0/VDF5mQ0AyBACWpGGiPBv
+	+cAx2GNHYISv2hZYV8Kk9uGvlX1JCh4aiXRHYztqgftoPk6nqxj6+0QWA6HoC1B/Wv5s
+	HJ8+/4iIocpEt3ccYhq+uHz47DugftjyHoatKHTjgInXcV3ffKxY+pM/i+cgQC6W030/
+	hKb5V1GDzb42sKqscCypi8BjNhbDz1cPbcnh35uEJgbh4BHSN49QnJvinTRgvwbhVdJB
+	o4zCZgiC5LMRZQQ3p+xI7QW85gbAOnl+El1zRJDSG9frRVNY2tJf9AqBx9K+LgLAfU05
+	Kdxg==
+X-Gm-Message-State: AIVw110sU5ZCToGJmgUu4L0UFf4i5UlgrqPHV7l6tbH6Vgb2zNRbX1M7
+	dTeUdT5oErjx8hio
+X-Received: by 10.98.202.214 with SMTP id y83mr22042095pfk.2.1501654690968;
+	Tue, 01 Aug 2017 23:18:10 -0700 (PDT)
+Received: from ?IPv6:2001:8003:804a:b500:ce:8dc4:f998:6a84?
+	([2001:8003:804a:b500:ce:8dc4:f998:6a84])
+	by smtp.gmail.com with ESMTPSA id
+	t186sm62668979pgc.28.2017.08.01.23.18.07
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 01 Aug 2017 23:18:10 -0700 (PDT)
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <8caab74c-84db-d95c-1dc1-4c85ac534f26@gmail.com>
+	<c85b9033-3b0d-a973-d074-5f59392c18c3@rsi-elektrotechnik.de>
+	<3f743f3c-abcc-2453-284a-55ebb1f3d769@gmail.com>
+	<0d539070-2944-2ea0-d847-917ae9a556f9@rsi-elektrotechnik.de>
+	<8292ae18-05ae-2f98-0dd3-f56392af92ed@gmail.com>
+	<c8622989-4ee6-d34a-d083-4679ed6710f9@rsi-elektrotechnik.de>
+	<337a7f6c-0ca1-6505-f5ea-16c355c84f72@gmail.com>
+	<CAJTo0LbxgW4Gwjbai-MAaifdFuHKz4rLcf3nTNHuTBX1WBkuEw@mail.gmail.com>
+	<CAByQQ_r007RG__TP-XNaWxoH+vBCsOESzAcY2FQJUj+X=UE5eg@mail.gmail.com>
+	<CAJTo0LZAwKLB6ZRTw79B9VfPz+ra=CAoJHn8Bzz9Z3ra=jzq3g@mail.gmail.com>
+	<CAByQQ_q0mkG2BfK3FGBZgXOSJxzkUAORCZPC5mYiAQ2oB5qgFw@mail.gmail.com>
+	<CAJTo0LbsyCZmjhBCHjnQRsedmNc7__KzGi5vhPjh328cXedsKA@mail.gmail.com>
+From: Riko Ho <antonius.riko@gmail.com>
+Message-ID: <23c2a7a6-50fb-d3f1-3cd2-4fc406975367@gmail.com>
+Date: Wed, 2 Aug 2017 14:18:05 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0LbsyCZmjhBCHjnQRsedmNc7__KzGi5vhPjh328cXedsKA@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: DEBUG: automake-native: class native found in blacklist, disable icecc ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,142 +89,355 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Aug 2017 00:55:30 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 02 Aug 2017 06:18:13 -0000
+Content-Type: multipart/alternative;
+	boundary="------------423EA1D21C7CB3F9603D60FB"
+Content-Language: en-US
 
-FYI: For those interested=E2=80=A6
+--------------423EA1D21C7CB3F9603D60FB
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Just as a test/workaround I added a harfbuzz_%.bbappend file to my meta =
-layer and directly set the acpaths variable to the STAGING native =
-directory and that seems to work fine.  Works for now but I will try to =
-come up with a cleaner, more generic fix.
+Dear Yocto Team Member,
 
-acpaths =3D =E2=80=9C-I ${STAGING_DATADIR_NATIVE}/aclocal/=E2=80=9C
+That's the branch :
 
+======
 
-Regards,
+*meta-poky **
+**meta-yocto-bsp    = "pyro:e5aa1ac23669a45491de9ecffac491c01e70203f"*
+openembedded-core = "master:2fd0757ae7fd63bc93a4ce8579c6ba0cdbb4c1cd"
+meta-openembedded
+meta-oe
+meta-xfce
+meta-gnome
+meta-python
+meta-multimedia
+meta-networking   = "master:b063789560bfb9c60a7a15277b5b3a9839b5ba74"
+meta-browser      = 
+"firefox-52.1.2esr-2:c79cf6c7811afd2cd167e8967e3c29b1e797371e"
+meta-ti           = "master:872d418f6e503dea66e3533f43e7a17618183982"
 
-Russell
+Initialising tasks: 100% 
+|################################################################################################################################| 
+Time: 0:00:08
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: automake-native-1.15-r0 do_compile: oe_runmake failed
+ERROR: automake-native-1.15-r0 do_compile: Function failed: do_compile 
+(log file is located at 
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)
+ERROR: Logfile of failure stored in: 
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: Using icecc
+| NOTE: make -j 10
+| ERROR: oe_runmake failed
+| : && /home/bianchi77/poky/build/tmp/hosttools/mkdir -p doc && { 
+PATH='/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/build/t/wrap:'$PATH 
+&& export PATH; } && /usr/bin/env perl ../automake-1.15/doc/help2man 
+--output=doc/automake-1.15.1 automake-1.15
+| help2man: can't get `--help' info from automake-1.15
+| Try `--no-discard-stderr' if option outputs to stderr
+| Makefile:3687: recipe for target 'doc/automake-1.15.1' failed
+| make: *** [doc/automake-1.15.1] Error 255
+| ERROR: Function failed: do_compile (log file is located at 
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)
+ERROR: Task 
+(virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile) 
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 845 tasks of which 844 didn't need to be 
+rerun and 1 failed.
 
+Summary: 1 task failed:
+virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile
+Summary: There were 4 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+bianchi77@bianchi77-HP-Pavilion-dv6-Notebook-PC:~/poky/build$
 
-> On Aug 1, 2017, at 5:52 PM, RUSSELL PETERSON <bluehills7@comcast.net> =
-wrote:
->=20
-> Thank you for the response, Paul. You were correct that I had the =
-TOOLCHAIN_*_TASK variables set in my machine.conf file. I put it into my =
-image bb file and things seem far more sane... although I must admit I =
-am not 100% sure why it works but I will study it a bit and figure it =
-out. Thanks for your help.
->=20
-> I have run into another issue while trying to generate the eSDK in =
-that there appears to be an issue with building harfbuzz. =46rom what I =
-can tell, this appears to be an issue with the search paths for the =
-autoreconf call. The autoreconf tool is finding the pkg.m4 file in the =
-harfbuzz m4 directory FIRST and therefore not getting the one in =
-harfbuzz/1.4.1-r0/recipe-sysroot-native/usr/share/aclocal which indeed =
-has the correct m4_pattern_allow.
->=20
-> Do you think that's a bug or something with my recipe? Seems like I =
-just want to reverse the -I options... but I don't know how, exactly.
->=20
-> =
-/scratch/russell/yocto-00dc025f/work/aarch64-poky-linux/harfbuzz/1.4.1-r0/=
-recipe-sysroot-native/usr/bin/autoconf =
---include=3D/scratch/russell/yocto-00dc025f/work/aarch64-poky-linux/harfbu=
-zz/1.4.1-r0/harfbuzz-1.4.1/m4/ =
---include=3D/scratch/russell/yocto-00dc025f/work/aarch64-poky-linux/harfbu=
-zz/1.4.1-r0/recipe-sysroot-native/usr/share/aclocal/ --force
->=20
-> ../../../autoconf-2.69/lib/autoconf/specific.m4:368: =
-AC_USE_SYSTEM_EXTENSIONS is expanded from...
-> | configure.ac:22: the top level
-> | configure:18902: error: possibly undefined macro: =
-PKG_CONFIG_SYSROOT_DIR
-> | If this token and others are legitimate, please use =
-m4_pattern_allow.
-> | See the Autoconf documentation.
-> | autoreconf: =
-/scratch/russell/yocto-00dc025f/work/aarch64-poky-linux/harfbuzz/1.4.1-r0/=
-recipe-sysroot-native/usr/bin/autoconf failed with exit status: 1
-> | ERROR: Function failed: do_configure (log file is located at =
-/scratch/russell/yocto-00dc025f/work/aarch64-poky-linux/harfbuzz/1.4.1-r0/=
-temp/log.do_configure.14956)
->=20
-> > On July 31, 2017 at 9:50 AM Paul Eggleton =
-<paul.eggleton@linux.intel.com> wrote:
-> >=20
-> >=20
-> > Hi Russell,
-> >=20
-> > It looks to me like you have added kernel-devsrc to the =
-TOOLCHAIN_*_TASK variable at the global level, which you really don't =
-want to do if you're going to be building buildtools-tarball (which eSDK =
-will build as a dependency). I'd suggest moving that setting to your =
-image recipe.
-> >=20
-> > Cheers,
-> > Paul
-> >=20
-> > On Sunday, 30 July 2017 4:22:24 PM CEST Russell Peterson wrote:
-> > > Hello, all.
-> > >=20
-> > > I=E2=80=99m trying to build the eSDK for my platform and I just =
-can=E2=80=99t figure out why dnf can=E2=80=99t find kernel-devsrc. =
-It=E2=80=99s there, I added it. The =E2=80=9Cnormal SDK=E2=80=9D uses it =
-and builds fine. Just no luck with the eSDK.
-> > > Any help out there? Poky is pyro. aarch64 SoC target platform with =
-an x86 build host (CentOS 7.3). Basically I just bitbake -c =
-do_populate_sdk_ext core-image-full. I do have a linux kernel recipe =
-that pulls the kernel from the standard kernel.org <http://kernel.org/> =
-repo.
-> > >=20
-> > > ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Could not invoke =
-dnf. Command =
-'/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/build=
-tools-tarball/1.0-r0/recipe-sysroot-native/usr/bin/dnf -y -c =
-/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/buildt=
-ools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroots/none/etc/dnf/dnf.con=
-f =
---setopt=3Dreposdir=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesd=
-k-pokysdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroot=
-s/none/etc/yum.repos.d =
---repofrompath=3Doe-repo,/scratch/russell/yocto-00dc025f/work/x86_64-nativ=
-esdk-pokysdk-linux/buildtools-tarball/1.0-r0/oe-rootfs-repo =
---installroot=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-poky=
-sdk-linux/buildtools-tarball/1.0-r0/sdk/image/opt/poky/2.3.1/sysroots/none=
- =
---setopt=3Dlogdir=3D/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-=
-pokysdk-linux/buildtools-tarball/1.0-r0/temp --nogpgcheck install =
-kernel-devsrc' returned 1:
-> > > Added oe-repo repo from =
-file:///scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux=
-/buildtools-tarball/1.0-r0/oe-rootfs-repo =
-<file:///scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linu=
-x/buildtools-tarball/1.0-r0/oe-rootfs-repo>
-> > > Last metadata expiration check: 0:00:01 ago on Sun Jul 30 01:38:48 =
-2017 UTC.
-> > > No package kernel-devsrc available.
-> > > Error: Unable to find a match
-> > >=20
-> > > ERROR: buildtools-tarball-1.0-r0 do_populate_sdk: Function failed: =
-do_populate_sdk
-> > > ERROR: Logfile of failure stored in: =
-/scratch/russell/yocto-00dc025f/work/x86_64-nativesdk-pokysdk-linux/buildt=
-ools-tarball/1.0-r0/temp/log.do_populate_sdk.4836
-> > > ERROR: Task =
-(/labhome/russell/src/bf/poky/meta/recipes-core/meta/buildtools-tarball.bb=
-:do_populate_sdk) failed with exit code '1'
-> >=20
-> >=20
-> > --=20
-> >=20
-> > Paul Eggleton
-> > Intel Open Source Technology Centre
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+How can I fix that automake error ?
 
+I tried to run bitbake core-image-minimal for it.
+Thanks,
 
+On 31/07/17 21:26, Burton, Ross wrote:
+> Then the branch you checked out.  git branch will tell you.
+>
+> Ross
+>
+> On 31 July 2017 at 14:17, Riko Ho <antonius.riko@gmail.com 
+> <mailto:antonius.riko@gmail.com>> wrote:
+>
+>     Git clone ...
+>
+>     On Jul 31, 2017 9:16 PM, "Burton, Ross" <ross.burton@intel.com
+>     <mailto:ross.burton@intel.com>> wrote:
+>
+>         How did you get poky?
+>
+>         Ross
+>
+>         On 31 July 2017 at 14:14, Riko Ho <antonius.riko@gmail.com
+>         <mailto:antonius.riko@gmail.com>> wrote:
+>
+>             How can I see my branch?
+>
+>             On Jul 31, 2017 9:12 PM, "Burton, Ross"
+>             <ross.burton@intel.com <mailto:ross.burton@intel.com>> wrote:
+>
+>                 On 31 July 2017 at 03:33, Riko Ho
+>                 <antonius.riko@gmail.com
+>                 <mailto:antonius.riko@gmail.com>> wrote:
+>
+>                     Is my auto make disabled with icecc ?
+>
+>                     How to make it enable ? thanks.
+>
+>
+>                 That's just a debug message.
+>
+>                 > | help2man: can't get `--help' info from automake-1.15
+>                 > | Try `--no-discard-stderr' if option outputs to stderr
+>                 > | Makefile:3687: recipe for target
+>                 'doc/automake-1.15.1' failed
+>
+>
+>                 That's the error your hitting.
+>
+>                 I think you need to update to the latest commit for
+>                 the branch you're on, there was a problem with modern
+>                 perl in help2man.  What release/branch are you using?
+>
+>                 Ross
+>
+>
+>
+
+-- 
+*
+
+/*******/
+Sent by Ubuntu LTS 16.04,
+Kind regards,
+Riko Ho
+/*******/
+
+*
+
+--------------423EA1D21C7CB3F9603D60FB
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Dear Yocto Team Member,</p>
+    <p>That's the branch :</p>
+    <p>======<br>
+    </p>
+    <p><b>meta-poky         </b><b><br>
+      </b><b>meta-yocto-bsp    =
+        "pyro:e5aa1ac23669a45491de9ecffac491c01e70203f"</b><br>
+      openembedded-core =
+      "master:2fd0757ae7fd63bc93a4ce8579c6ba0cdbb4c1cd"<br>
+      meta-openembedded <br>
+      meta-oe           <br>
+      meta-xfce         <br>
+      meta-gnome        <br>
+      meta-python       <br>
+      meta-multimedia   <br>
+      meta-networking   =
+      "master:b063789560bfb9c60a7a15277b5b3a9839b5ba74"<br>
+      meta-browser      =
+      "firefox-52.1.2esr-2:c79cf6c7811afd2cd167e8967e3c29b1e797371e"<br>
+      meta-ti           =
+      "master:872d418f6e503dea66e3533f43e7a17618183982"<br>
+      <br>
+      Initialising tasks: 100%
+|################################################################################################################################|
+      Time: 0:00:08<br>
+      NOTE: Executing SetScene Tasks<br>
+      NOTE: Executing RunQueue Tasks<br>
+      ERROR: automake-native-1.15-r0 do_compile: oe_runmake failed<br>
+      ERROR: automake-native-1.15-r0 do_compile: Function failed:
+      do_compile (log file is located at
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)<br>
+      ERROR: Logfile of failure stored in:
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291<br>
+      Log data follows:<br>
+      | DEBUG: Executing shell function do_compile<br>
+      | NOTE: Using icecc<br>
+      | NOTE: make -j 10<br>
+      | ERROR: oe_runmake failed<br>
+      | : &amp;&amp; /home/bianchi77/poky/build/tmp/hosttools/mkdir -p
+      doc &amp;&amp; {
+PATH='/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/build/t/wrap:'$PATH
+      &amp;&amp; export PATH; } &amp;&amp; /usr/bin/env perl
+      ../automake-1.15/doc/help2man --output=doc/automake-1.15.1
+      automake-1.15<br>
+      | help2man: can't get `--help' info from automake-1.15<br>
+      | Try `--no-discard-stderr' if option outputs to stderr<br>
+      | Makefile:3687: recipe for target 'doc/automake-1.15.1' failed<br>
+      | make: *** [doc/automake-1.15.1] Error 255<br>
+      | ERROR: Function failed: do_compile (log file is located at
+/home/bianchi77/poky/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.9291)<br>
+      ERROR: Task
+(virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile)
+      failed with exit code '1'<br>
+      NOTE: Tasks Summary: Attempted 845 tasks of which 844 didn't need
+      to be rerun and 1 failed.<br>
+      <br>
+      Summary: 1 task failed:<br>
+       
+virtual:native:/home/bianchi77/poky/meta/recipes-devtools/automake/automake_1.15.bb:do_compile<br>
+      Summary: There were 4 WARNING messages shown.<br>
+      Summary: There were 2 ERROR messages shown, returning a non-zero
+      exit code.<br>
+      bianchi77@bianchi77-HP-Pavilion-dv6-Notebook-PC:~/poky/build$ <br>
+      <br>
+    </p>
+    How can I fix that automake error ?<br>
+    <br>
+    I tried to run bitbake core-image-minimal for it.<br>
+    Thanks,<br>
+    <br>
+    <div class="moz-cite-prefix">On 31/07/17 21:26, Burton, Ross wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAJTo0LbsyCZmjhBCHjnQRsedmNc7__KzGi5vhPjh328cXedsKA@mail.gmail.com">
+      <div dir="ltr">Then the branch you checked out.  git branch will
+        tell you.
+        <div><br>
+        </div>
+        <div>Ross</div>
+      </div>
+      <div class="gmail_extra"><br>
+        <div class="gmail_quote">On 31 July 2017 at 14:17, Riko Ho <span
+            dir="ltr">&lt;<a href="mailto:antonius.riko@gmail.com"
+              target="_blank" moz-do-not-send="true">antonius.riko@gmail.com</a>&gt;</span>
+          wrote:<br>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">
+            <p dir="ltr">Git clone ...</p>
+            <div class="HOEnZb">
+              <div class="h5">
+                <div class="gmail_quote">On Jul 31, 2017 9:16 PM,
+                  "Burton, Ross" &lt;<a
+                    href="mailto:ross.burton@intel.com" target="_blank"
+                    moz-do-not-send="true">ross.burton@intel.com</a>&gt;
+                  wrote:<br type="attribution">
+                  <blockquote class="gmail_quote" style="margin:0 0 0
+                    .8ex;border-left:1px #ccc solid;padding-left:1ex">
+                    <div dir="ltr">How did you get poky?
+                      <div><br>
+                      </div>
+                      <div>Ross</div>
+                    </div>
+                    <div class="gmail_extra"><br>
+                      <div class="gmail_quote">On 31 July 2017 at 14:14,
+                        Riko Ho <span dir="ltr">&lt;<a
+                            href="mailto:antonius.riko@gmail.com"
+                            target="_blank" moz-do-not-send="true">antonius.riko@gmail.com</a>&gt;</span>
+                        wrote:<br>
+                        <blockquote class="gmail_quote" style="margin:0
+                          0 0 .8ex;border-left:1px #ccc
+                          solid;padding-left:1ex">
+                          <p dir="ltr">How can I see my branch?</p>
+                          <div
+                            class="m_2019242909827686211m_-4777739250393309465HOEnZb">
+                            <div
+                              class="m_2019242909827686211m_-4777739250393309465h5">
+                              <div class="gmail_quote">On Jul 31, 2017
+                                9:12 PM, "Burton, Ross" &lt;<a
+                                  href="mailto:ross.burton@intel.com"
+                                  target="_blank" moz-do-not-send="true">ross.burton@intel.com</a>&gt;
+                                wrote:<br type="attribution">
+                                <blockquote class="gmail_quote"
+                                  style="margin:0 0 0
+                                  .8ex;border-left:1px #ccc
+                                  solid;padding-left:1ex">
+                                  <div dir="ltr">On 31 July 2017 at
+                                    03:33, Riko Ho <span dir="ltr">&lt;<a
+href="mailto:antonius.riko@gmail.com" target="_blank"
+                                        moz-do-not-send="true">antonius.riko@gmail.com</a>&gt;</span>
+                                    wrote:
+                                    <div class="gmail_extra">
+                                      <div class="gmail_quote">
+                                        <blockquote class="gmail_quote"
+                                          style="margin:0 0 0
+                                          .8ex;border-left:1px #ccc
+                                          solid;padding-left:1ex">
+                                          <div text="#000000"
+                                            bgcolor="#FFFFFF">
+                                            <p>Is my auto make disabled
+                                              with icecc ?</p>
+                                            <p>How to make it enable ?
+                                              thanks.<br>
+                                            </p>
+                                          </div>
+                                        </blockquote>
+                                        <div><br>
+                                        </div>
+                                        <div>That's just a debug
+                                          message. <br>
+                                          <br>
+                                          &gt; | help2man: can't get
+                                          `--help' info from
+                                          automake-1.15<br>
+                                          &gt; | Try
+                                          `--no-discard-stderr' if
+                                          option outputs to stderr<br>
+                                          &gt; | Makefile:3687: recipe
+                                          for target
+                                          'doc/automake-1.15.1' failed<br>
+                                          <br>
+                                          <br>
+                                          That's the error your hitting.</div>
+                                        <div><br>
+                                        </div>
+                                        <div>I think you need to update
+                                          to the latest commit for the
+                                          branch you're on, there was a
+                                          problem with modern perl in
+                                          help2man.  What release/branch
+                                          are you using?</div>
+                                        <div><br>
+                                        </div>
+                                        <div>Ross</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </blockquote>
+                              </div>
+                            </div>
+                          </div>
+                        </blockquote>
+                      </div>
+                      <br>
+                    </div>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <b>
+        <p style="color:blue;"> /*******/<br>
+          Sent by Ubuntu LTS 16.04,<br>
+          Kind regards,<br>
+          Riko Ho<br>
+          /*******/<br>
+        </p>
+      </b></div>
+  </body>
+</html>
+
+--------------423EA1D21C7CB3F9603D60FB--
