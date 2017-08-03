@@ -1,67 +1,25 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <pokybuild@centos7.yocto.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63FDFE00C35; Thu,  3 Aug 2017 09:03:20 -0700 (PDT)
+	id 0D77CE00C44; Thu,  3 Aug 2017 09:35:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.53 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.53 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BCB4E00C32
-	for <yocto@yoctoproject.org>; Thu,  3 Aug 2017 09:03:18 -0700 (PDT)
-Received: by mail-it0-f53.google.com with SMTP id v127so3455229itd.0
-	for <yocto@yoctoproject.org>; Thu, 03 Aug 2017 09:03:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=yzQ2xeYqpw7Vqc+jYC8yrslfaQGG5xlnurCXGkW0SVI=;
-	b=gvqd8Zj0nVvz7Z5zcPnEEkSE51g3q5GZUunbqyMsEnCo8iZW3tfsg5mznajF4bnpyN
-	24ebA5dsDDg+1lipZrHIP/9sidk/aJI+H2n5hDUwEiLZIWFuGa8sDD4aG6X8MMhAx1Dr
-	typTP8y0t0nGVAaOYK9jHhz3FDf5x6dB6kXqoTr5AMEg9Q7Amm5RaHeq055+XKJgCF11
-	o6/c/argBcIzkC+xlZAkz/G4cGZji8cuA9iPC6kDrgs1tciyOty+PwfTO+MyuLvjXNFy
-	6kL0zapIjW/HpkRxNVLxHB/+zwoCIV/05DAz7VOCDZIuwyw7VoFtPTOmPfLUDlRTT3oS
-	8rpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=yzQ2xeYqpw7Vqc+jYC8yrslfaQGG5xlnurCXGkW0SVI=;
-	b=KZjEJ7KxECI5v8Qfzvv3bJn1WTGo/EsTW9Zmjp7swjr4/nMgF+TFyDhcxnevCMCJRs
-	HByag3bKzRzvOLqlTmTRlDJXqQsQHicZkkjuIxX09dsyO5MRhpb8UdShKX4lYMOhZqML
-	OAJReEFhh4cysF4t6Hlm9uuLKm9dngPwIeIUgqhdCpV7cIKhJtmTuHzeaSx4yqA/Kzvh
-	mQ3mILjeAler2JWLXEaUJX5kngVmtkxlaMNQDDeT6BM2GXy90KpeUWC52iaqu4heANrQ
-	vewyktGl7q/OJLl0cHga7ttvn+X0uVG5yvgX+c34McDdr1ORDf1N45jzUcHZGAIGGvm9
-	++rA==
-X-Gm-Message-State: AIVw113v580GbqkQU0b5jX3rqXJIP6lPRNisFG4iOaw/joAdwMVwG4lH
-	XBh7s8fCCVMpat5Uhz6VvmektRYVWzBA
-X-Received: by 10.36.172.15 with SMTP id s15mr2243407ite.111.1501776197735;
-	Thu, 03 Aug 2017 09:03:17 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.135.234 with HTTP; Thu, 3 Aug 2017 09:02:57 -0700 (PDT)
-In-Reply-To: <CAEsOVNeMzZnGSQANcZ3w=4eMK1Tg+iDyYH-uojUu1r_5mbXZYA@mail.gmail.com>
-References: <CA+z1-f8Fv3DYhfQcPB2v_bV6515-5hf03LBS0hTdFGhn_bfqRw@mail.gmail.com>
-	<CAJTo0LaOSxrGXXXCyHJ_7XbqZCGnC-LyKWLhS5nsQTmFg4jnAg@mail.gmail.com>
-	<CAEsOVNeMzZnGSQANcZ3w=4eMK1Tg+iDyYH-uojUu1r_5mbXZYA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 3 Aug 2017 17:02:57 +0100
-Message-ID: <CAJTo0LatFiD7qh_poY-oetOEd8j-0RaQG8Hx4tRJxZkwSN_0qw@mail.gmail.com>
-To: Matthew McClintock <msm-oss@mcclintock.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"blackthirt33n ." <jjosburn@gmail.com>
-Subject: Re: bitbake download only
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from centos7.yocto.io (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A891E00C32;
+	Thu,  3 Aug 2017 09:35:55 -0700 (PDT)
+Received: by centos7.yocto.io (Postfix, from userid 6000)
+	id 9ACB45E620; Thu,  3 Aug 2017 16:38:05 +0000 (GMT)
+To: yocto@yoctoproject.org
+Message-Id: <20170803163805.9ACB45E620@centos7.yocto.io>
+Date: Thu,  3 Aug 2017 16:38:05 +0000 (GMT)
+From: pokybuild@centos7.yocto.io (Poky Build User)
+Cc: otavio@ossystems.com.br, joshua.g.lock@intel.com
+Subject: Release Candidate Build for yocto-2.4_M2.rc3 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,49 +31,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Aug 2017 16:03:20 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1fd75ccc72fc0555db8400"
-
---94eb2c1fd75ccc72fc0555db8400
-Content-Type: text/plain; charset="UTF-8"
-
-On 3 August 2017 at 17:00, Matthew McClintock <msm-oss@mcclintock.net>
-wrote:
-
-> On Thu, Aug 3, 2017 at 10:00 AM, Burton, Ross <ross.burton@intel.com>
-> wrote:
-> > Yes,
-> >
-> > bitbake core-image-minimal -c fetchall
->
-> Or for more recent version of bitbake
->
-> bitbake core-image-minimal --runall fetch
+X-List-Received-Date: Thu, 03 Aug 2017 16:35:56 -0000
 
 
-I'd actually forgotten that existed.  Maybe fetchall should tell the user?
+A release candidate build for yocto-2.4_M2.rc3 is now available at:
 
-Ross
 
---94eb2c1fd75ccc72fc0555db8400
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+    https://autobuilder.yocto.io/pub/releases/yocto-2.4_M2.rc3
 
-<div dir=3D"ltr">On 3 August 2017 at 17:00, Matthew McClintock <span dir=3D=
-"ltr">&lt;<a href=3D"mailto:msm-oss@mcclintock.net" target=3D"_blank">msm-o=
-ss@mcclintock.net</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div =
-class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Th=
-u, Aug 3, 2017 at 10:00 AM, Burton, Ross &lt;<a href=3D"mailto:ross.burton@=
-intel.com">ross.burton@intel.com</a>&gt; wrote:<br>
-&gt; Yes,<br>
-&gt;<br>
-&gt; bitbake core-image-minimal -c fetchall<br>
-<br>
-</span>Or for more recent version of bitbake<br>
-<br>
-bitbake core-image-minimal --runall fetch</blockquote><div><br></div><div>I=
-&#39;d actually forgotten that existed.=C2=A0 Maybe fetchall should tell th=
-e user?</div><div><br></div><div>Ross=C2=A0</div></div></div></div>
 
---94eb2c1fd75ccc72fc0555db8400--
+Please begin QA on this build as soon as possible.
+
+
+Build hash information: 
+meta-intel : 0d590c4be300365a2d1787fcea767ac41c741875 
+meta-qt4 : d52c38ad9f0a617b9ad5048a872a9e97b3af5b44 
+refkit : 112c0e10de6414657f097671005bc21adabf381b 
+meta-mingw : 0679d2a91575bd7f3efd0973aa99d7ee681e9395 
+meta-qt3 : f33b73a9563f2dfdfd0ee37b61d65d90197a456f 
+meta-gplv2 : 07e5dd2136a2a7cc069ad8c70bb422fa9d5b14f0 
+poky : 9ed748a542b520c1cb763d981969233c0f5efd4e 
+
+\nThis is an automated message from\nThe Yocto Project Autobuilder\nGit: git://git.yoctoproject.org/yocto-autobuilder\nEmail: pidge@toganlabs.com 
+
