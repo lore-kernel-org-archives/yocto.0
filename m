@@ -1,66 +1,54 @@
-Return-Path: <gauravvohra89@gmail.com>
+Return-Path: <locutusofborg@debian.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F916E00C29; Thu, 27 Jul 2017 01:55:53 -0700 (PDT)
+	id E5F80E00C45; Thu,  3 Aug 2017 23:49:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gauravvohra89[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FORGED_MUA_MOZILLA,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [87.248.110.234 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.53 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 172D2E00B87
-	for <yocto@yoctoproject.org>; Thu, 27 Jul 2017 01:55:52 -0700 (PDT)
-Received: by mail-it0-f53.google.com with SMTP id h199so79404022ith.0
-	for <yocto@yoctoproject.org>; Thu, 27 Jul 2017 01:55:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=lMboZ7Xnhl7ASgFSQseWuuYkHgmFN2+Goi/QMrhosD0=;
-	b=SL1yNa+QyOH2C2i3/u1b0s/giL1PhlXV9se9W+ciqDH4jKkm6DX1hChqi5DGeyoDE7
-	dWRKFN7sO5op8E/AYLt2zALTivPDzcxPeb0o03CZh/vbFM0FttcbIGfOLPUyxZKmFouy
-	gFuRqQ9n6r+XzAwI9Qed+0/ijj/S5x8ANI5SXyUj1D4Psf60XOG2inUSGzyKq3iULWTx
-	oZzzJYA+UYcE+ChPOR2xDMT0YdFcCa8NLnLTsYa5YQ317cu8h9tiRvsE27Z1OOyzoZpB
-	38wPuTQ/1FfEnXZvoRtuwWd7Xj0fEU8Evv+IQJr+4DKjuJcDfqnHQyEpEz22dZ973wCu
-	9KNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=lMboZ7Xnhl7ASgFSQseWuuYkHgmFN2+Goi/QMrhosD0=;
-	b=YlffR9eflaeS5JqPTWIWqL1PiVztJaJcbb7S2K9ID550JKvWfqYyQFKdNjTDzG32D+
-	qRwL8JawWeVus0eVekmluhyUZc1SE07xzdargG7pvimYhhCGcwnUNihRevdrnLnTkwIO
-	oG705vOeRIjKq1M+m0mmchKD3t6pwxsIn4IElYAkLXHM7Rw46QxFhTAoJxmNaq/R6ziq
-	yvcMjWWbhXTvhmxwd5RqyU/AmZXGHvaQZsMZ8RChGaHvwFJV8UFF0hrFN5LJEXoKNQMv
-	x5n2xVyG2XhZXUFLPbwm+Z3w774+PE/3bLVSsyEXGcUENqIBXb7Z0O6ojVia+cD0AWf8
-	DCwg==
-X-Gm-Message-State: AIVw111CJIEF7eTWbtoWEESTNHYVH24gn6daWop24gl8O+HL6Sw+zML/
-	myhNDdXgWRJx8f18O/2dl6e13S+CJ07A
-X-Received: by 10.36.190.65 with SMTP id i62mr4105358itf.174.1501145752149;
-	Thu, 27 Jul 2017 01:55:52 -0700 (PDT)
+	*  2.3 FORGED_MUA_MOZILLA Forged mail pretending to be from Mozilla
+Received: from sonic317-36.consmr.mail.ir2.yahoo.com
+	(sonic317-36.consmr.mail.ir2.yahoo.com [87.248.110.234])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AF8EE00C43
+	for <yocto@yoctoproject.org>; Thu,  3 Aug 2017 23:49:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1501829341; bh=5fsiyx0zrttgdFdb0rY92z7UZdcnWVU2v32zxuUXbis=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=NvKWmv81332KPRSnaCG2HxEapcYKWV1lAS+YNW3QhOAaC4Ae6IAoNGS9ykRxjF1egoGTtwAmKVVW04CTPekjhmSJe2uwtxfoNZHDD44tvyEo6K/Z/1OEy5zGCAMijg12pu5K5NzjZ2/mok3f1/7HTiOuFUw/n010BG/OreZ+zS5VhPRVbxCY/KBC+lBvsbEIVfcsOs2Vh7JdIa/UfRRJ2OLDn6wvgFyc9chFH/Mzz1yVrT2+QCJ9AUTMR/lov4C+iBZq8+B+WDl1PD5w6BUJNkBoLVgzBEZkGR0wGtOUAqih4ySqaqDVfEFAVld8KqhPMOcOUSh3adf/Y6EJjbxrrg==
+X-YMail-OSG: dRPqOfMVM1ljjE3q53kI2jV4sXxPiB8yXECmkTnaQF_HlGQHKNvcW93vGNMLvVQ
+	rE9lFhhqXiZiBqQ7hqjufyoGtknCz_aFr9eup6v0AofQcotCpC_Jvssc28Y1m9I2YHt0OV_ujobx
+	9BYH27tExUFFKvDP89VuTwp7qs_IOMQ3Aq.o.HAcUX3IvdlJoWtUa2BraIqU2dAyHPIEmJvbk_Nn
+	QD8xEzqjlOY4nGw7f5kwULm4v04vU4NogwUDbw8sDcQiok9lGSUIUBLnDgTk81uhfS6BTCpMoNsn
+	fKwK2gzxmeoOMNEHjKP5BRMNbZjU4J3ly6RLSfzbRSRF3z659bInWWbeBdFMFBB0jDXJ6lbO5.EP
+	7G8ioJSB.322UQstCTnqdg2e8P5LeiJ7nEm9Zmwi7BmLZSkT1PRo65I1.YfDpSAKIViNHXJCQMCc
+	RNJDGVGTxsk13hujheq90HQrOig0fvczNRab5xxCKZffdKV6vgWgRdt6aQ8GolMAew421RoeIAjp
+	XYobuwARoSG.Otv3WtPjYaB1NB3OGwAoWi.POaBTwtQ--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic317.consmr.mail.ir2.yahoo.com with HTTP;
+	Fri, 4 Aug 2017 06:49:01 +0000
+Date: Fri, 4 Aug 2017 06:48:56 +0000 (UTC)
+From: Gianfranco Costamagna <locutusofborg@debian.org>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <1280838053.2327487.1501829336917@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.79.170.6 with HTTP; Thu, 27 Jul 2017 01:55:51 -0700 (PDT)
-From: Gaurav Vohra <gauravvohra89@gmail.com>
-Date: Thu, 27 Jul 2017 14:25:51 +0530
-Message-ID: <CALc4YzLi6spQSe=MecgfcMECTBEKLLmed4gZefOe5Eh88ORMXA@mail.gmail.com>
-To: yocto@yoctoproject.org
+References: <1280838053.2327487.1501829336917.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.10181 YahooMailNeo Mozilla/5.0 (X11; Ubuntu;
+	Linux x86_64; rv:54.0) Gecko/20100101 Firefox/54.0
 X-Mailman-Approved-At: Sun, 06 Aug 2017 16:56:47 -0700
-Subject: Enable only 32 bit packages in a packagegroup for 64 bit machine
+Subject: feature request: avoid getting the server stuck because of high "-j" value
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Gianfranco Costamagna <locutusofborg@debian.org>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -69,42 +57,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jul 2017 08:55:53 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 04 Aug 2017 06:49:04 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello,
+Hello Yocto developers!
 
-I need to use multilib feature in yocto to build some applications
-which are part of a packagegroup recipe as only 32 bit.
 
-I can use command to  create 32 bit packages from this packagegroup
-which works,.
+recently I found a really nice make feature, that tunes at runtime the number of parallel
+execution jobs, according to the current system load [1].
 
-# bitbake lib32-packagegroup-name.bb
+I think such a feature would be really nice on server were multiple yocto builds are run in parallel,
+and when people forgets to put the correct number of parallel build jobs.
 
-But the packages in this packagegroup are still building as 64 bit
-when i am trying to build image
+E.g., a number around CPU+1 is nice, but sometimes CPU*2 gives better results.
+Unfortunately if somebody else starts a build in parallel, that CPU*2 locks really hard the server, specially
+when building qt-based projects (e.g. qtbase, qtwebengine).
 
-bitbake core-sato-image.bb
+Tuning such value at runtime will probably end in faster compilation time and lower swapping on remote
+servers.
+(I would think also to something that checks the amount of free RAM)
 
-Configuration done
 
-in local.conf :
+is such a feature feasible?
 
-MACHINE = "qemux86-64"
-require conf/multilib.conf
-MULTILIBS = "multilib:lib32"
-DEFAULTTUNE_virtclass-multilib-lib32 = "x86"
+[1] https://www.gnu.org/software/make/manual/html_node/Parallel.html#Parallel
 
-In image recipe replaced
+thanks,
 
-IMAGE_INSTALL += "packagegroup-name"
-
-to
-
-IMAGE_INSTALL += "lib32-packagegroup-name"
-
-Please suggest, how i can i get to only build 32 bit package in packagegroup.
-
-Thanks gaurav
+Gianfranco
 
