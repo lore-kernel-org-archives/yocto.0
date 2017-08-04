@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A606E00C43; Fri,  4 Aug 2017 05:00:43 -0700 (PDT)
+	id 734AAE00C43; Fri,  4 Aug 2017 05:01:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,55 +9,56 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.43 listed in list.dnswl.org]
+	*      [209.85.223.182 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.43 listed in dnsbl.sorbs.net]
+	*      [209.85.223.182 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f43.google.com (mail-it0-f43.google.com
-	[209.85.214.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7994E00C35
-	for <yocto@yoctoproject.org>; Fri,  4 Aug 2017 05:00:42 -0700 (PDT)
-Received: by mail-it0-f43.google.com with SMTP id h199so6912765ith.1
-	for <yocto@yoctoproject.org>; Fri, 04 Aug 2017 05:00:42 -0700 (PDT)
+Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7465E00C35
+	for <yocto@yoctoproject.org>; Fri,  4 Aug 2017 05:01:45 -0700 (PDT)
+Received: by mail-io0-f182.google.com with SMTP id g35so5078033ioi.3
+	for <yocto@yoctoproject.org>; Fri, 04 Aug 2017 05:01:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=QvF86ZrDAzFfgp+BN+wqka3ZDZuzPegcX6/snd6a9Kw=;
-	b=VWyzovK/oVBS8P7W+tUTD3T5p4H2u39faCV6C7d4xOU6Ke6bBbCKnUD7muSZuwWIab
-	rQOC6CWh0r9fyGn4Dtlgsx5HAvE5AOzROmVYxSBJVCEs7D6r8tOQuWXjRUp/e8TfPqQZ
-	+ebX4YJWuggC40F4u+arZPPrMWcPDhq8BmkAUG6hVuW9uerhuZJO/nER2Dy175T4Zebx
-	ZQtOD2H+RKBRPYViwP1GVQT5vRIDQdbM1TUn+5ouh3vlFt41tXmrZ8SaZyGh/KZstIXO
-	Yz1WusTshTa+72aBJw2MzH3vyWjt8Al1cVrJ0Dh1KvRTCHFaaDbJvQZ31j55spcQDV0h
-	FKyw==
+	:cc; bh=En3uwGB70DBQbf9eGYXq7RXjLF4miHsLIAlb50//+4o=;
+	b=qKlkjKVRUjVeTWziUjuVCwIjz9+UwIDb/usBKL+4sSCiyOIv+2cnjLAejCDwp0fhnl
+	KaJzp1W1sllufLFunbUuxMfQoBKj4jyAvyevGQiwU8C8FDFV81LVaYGyuRBQR9gmZdvU
+	WFDloYe0rIoPuw/rwZGI7KrzR6EC+B78gIa0/r0HpOXKm8lU9kBOHu0DsJuhNHUi1Us1
+	Y+94t2QLJgiXgL5e+DEUu+tP+FcJTLosN2fUcsrKYAipAdVuFcXJlJpNtQkvJUbcB9zC
+	+p+VTK2f3pRWYgqxiKlimOWUJckH9VYcp0VtlxvETHeAAmzo6ddFz4UoeLa3cC3AEFjg
+	OEng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=QvF86ZrDAzFfgp+BN+wqka3ZDZuzPegcX6/snd6a9Kw=;
-	b=oWGQv3j4VyxLDUi7Gy8uGfGhZl2UBv+QTKgFc/r/LirPbnHUmGz/OO/9ojIWBAgBE8
-	xjMPCs27si6yfRsDLZYD6+RPudOI9ZFnAr1dC/v8N4uBpGVFIpq/II19CSLWSJqgEkle
-	Z3GDK0UUrcRBvCdAjgjNZguAGX4Lcq5OobE2HWDTvS6g4YkDJigoH5GuL4QL5unTlvA9
-	6vuoQJwRNud2YjQ6CxD9zgfTy2RSrCKvO1OD7czust79lzlxVvZKL+7TNJfKtIp+ZoE/
-	oAh3wqek77DXwaty9Up0NYPx49zpgvNklyemKuYpMvsfd4L71IciiwKpJb2PvCLBdiOQ
-	FL9Q==
-X-Gm-Message-State: AHYfb5icVB0GDj5kliEUwKVs5THOUGajj71quEWo9DouOIA8AE4gajrR
-	gOTqjKDQ4vaS+jDI7pQie2mTuNvCsaP2
-X-Received: by 10.36.44.77 with SMTP id i74mr1773082iti.42.1501848042095; Fri,
-	04 Aug 2017 05:00:42 -0700 (PDT)
+	bh=En3uwGB70DBQbf9eGYXq7RXjLF4miHsLIAlb50//+4o=;
+	b=tZwYiCuRrWo7rTFlFxOdsmFPSBlJfHW8x/2tLZ7MglifYHgNpKsXzJsG5ijDFTSpQp
+	AgtyAgZTJ9XQGall4JBqo5I+htKq7x30QwFcwMhR7mVevgpCfc1WaG3+yd6yLV4ehpiG
+	6i9mtjdj9l5fePrSRZMN+sISb6pS6AnQ0E1Zk0vyGBw4W2gj139A9dOZC2kGxw5ihgdI
+	YmkmsPIaGDVZh37blzyFM1uEAeeIgQfT9wHuGmcUIFtNDB2HT6jYiHgTs1WrDEF0wn9V
+	SmInO3ZOq5yp7Jjpgx5mZTJ1Hy9NmulVBtU964/8aVKKm2KvuLO65GkN5ZVimCEiPlg8
+	yxzg==
+X-Gm-Message-State: AHYfb5jYwQjoGbobEYlMSorMY/T3ale+icakpV1NkzI48HXbMEcYKbiN
+	PwQoA2jr6X0d7i86vovkkM0SqqstDZvg
+X-Received: by 10.107.12.160 with SMTP id 32mr2188047iom.207.1501848104998;
+	Fri, 04 Aug 2017 05:01:44 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.135.234 with HTTP; Fri, 4 Aug 2017 05:00:21 -0700 (PDT)
-In-Reply-To: <1452600482.2586512.1501844336709@mail.yahoo.com>
+Received: by 10.107.135.234 with HTTP; Fri, 4 Aug 2017 05:01:24 -0700 (PDT)
+In-Reply-To: <CAJTo0LYs5bo=Dd4h=Siqiq+kMtN0-msgQX6H3Kmn6hHSp8DWAQ@mail.gmail.com>
 References: <1280838053.2327487.1501829336917.ref@mail.yahoo.com>
 	<1280838053.2327487.1501829336917@mail.yahoo.com>
 	<1452600482.2586512.1501844336709@mail.yahoo.com>
+	<CAJTo0LYs5bo=Dd4h=Siqiq+kMtN0-msgQX6H3Kmn6hHSp8DWAQ@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 4 Aug 2017 13:00:21 +0100
-Message-ID: <CAJTo0LYs5bo=Dd4h=Siqiq+kMtN0-msgQX6H3Kmn6hHSp8DWAQ@mail.gmail.com>
+Date: Fri, 4 Aug 2017 13:01:24 +0100
+Message-ID: <CAJTo0LbYyEQz0UW8MfDXVa1huwXZ=1cgr6Js_HC=Km1dyuGGtQ@mail.gmail.com>
 To: Gianfranco Costamagna <costamagnagianfranco@yahoo.it>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [feature request] avoid getting the server stuck because of high "-j" value
@@ -72,92 +73,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Aug 2017 12:00:43 -0000
-Content-Type: multipart/alternative; boundary="001a113f66c00e60390555ec3f07"
+X-List-Received-Date: Fri, 04 Aug 2017 12:01:46 -0000
+Content-Type: multipart/alternative; boundary="001a113f9376ce2f8f0555ec42c4"
 
---001a113f66c00e60390555ec3f07
+--001a113f9376ce2f8f0555ec42c4
 Content-Type: text/plain; charset="UTF-8"
 
-It's not just feasible but you can do it right now.
-
-PARALLEL_MAKE is the variable that sets how parallel the build should be.
-By default we pass -j<number of processors".
-
-Just set it to -l2.5 or whatever load average you want.
+Alex's comment is right that the semantics of PARALLEL_MAKE are GNU Make
+specific so you might find some recipes don't handle anything but there
+being -j values.  You might have a little bit of fixing to do.
 
 Ross
 
-On 4 August 2017 at 11:58, Gianfranco Costamagna <
-costamagnagianfranco@yahoo.it> wrote:
+On 4 August 2017 at 13:00, Burton, Ross <ross.burton@intel.com> wrote:
 
-> Hello Yocto developers!
+> It's not just feasible but you can do it right now.
 >
+> PARALLEL_MAKE is the variable that sets how parallel the build should be.
+> By default we pass -j<number of processors".
 >
+> Just set it to -l2.5 or whatever load average you want.
 >
+> Ross
 >
-> recently I found a really nice make feature, that tunes at runtime the
-> number of parallel
+> On 4 August 2017 at 11:58, Gianfranco Costamagna <
+> costamagnagianfranco@yahoo.it> wrote:
 >
-> execution jobs, according to the current system load [1].
+>> Hello Yocto developers!
+>>
+>>
+>>
+>>
+>> recently I found a really nice make feature, that tunes at runtime the
+>> number of parallel
+>>
+>> execution jobs, according to the current system load [1].
+>>
+>>
+>> I think such a feature would be really nice on server were multiple yocto
+>> builds are run in parallel,
+>>
+>> and when people forgets to put the correct number of parallel build jobs.
+>>
+>>
+>> E.g., a number around CPU+1 is nice, but sometimes CPU*2 gives better
+>> results.
+>>
+>> Unfortunately if somebody else starts a build in parallel, that CPU*2
+>> locks really hard the server, specially
+>>
+>> when building qt-based projects (e.g. qtbase, qtwebengine).
+>>
+>>
+>> Tuning such value at runtime will probably end in faster compilation time
+>> and lower swapping on remote
+>>
+>> servers.
+>>
+>> (I would think also to something that checks the amount of free RAM)
+>>
+>>
+>>
+>> is such a feature feasible?
+>> should I open a bug for it?
+>>
+>>
+>> [1] https://www.gnu.org/software/make/manual/html_node/Parallel.
+>> html#Parallel
+>>
+>>
+>> thanks,
+>>
+>>
+>> Gianfranco
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 >
->
-> I think such a feature would be really nice on server were multiple yocto
-> builds are run in parallel,
->
-> and when people forgets to put the correct number of parallel build jobs.
->
->
-> E.g., a number around CPU+1 is nice, but sometimes CPU*2 gives better
-> results.
->
-> Unfortunately if somebody else starts a build in parallel, that CPU*2
-> locks really hard the server, specially
->
-> when building qt-based projects (e.g. qtbase, qtwebengine).
->
->
-> Tuning such value at runtime will probably end in faster compilation time
-> and lower swapping on remote
->
-> servers.
->
-> (I would think also to something that checks the amount of free RAM)
->
->
->
-> is such a feature feasible?
-> should I open a bug for it?
->
->
-> [1] https://www.gnu.org/software/make/manual/html_node/
-> Parallel.html#Parallel
->
->
-> thanks,
->
->
-> Gianfranco
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---001a113f66c00e60390555ec3f07
+--001a113f9376ce2f8f0555ec42c4
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">It&#39;s not just feasible but you can do it right now.<di=
-v><br></div><div>PARALLEL_MAKE is the variable that sets how parallel the b=
-uild should be.=C2=A0 By default we pass -j&lt;number of processors&quot;.<=
-/div><div><br></div><div>Just set it to -l2.5 or whatever load average you =
-want.</div><div><br></div><div>Ross</div></div><div class=3D"gmail_extra"><=
-br><div class=3D"gmail_quote">On 4 August 2017 at 11:58, Gianfranco Costama=
-gna <span dir=3D"ltr">&lt;<a href=3D"mailto:costamagnagianfranco@yahoo.it" =
-target=3D"_blank">costamagnagianfranco@yahoo.it</a>&gt;</span> wrote:<br><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
-#ccc solid;padding-left:1ex">Hello Yocto developers!<br>
+<div dir=3D"ltr">Alex&#39;s comment is right that the semantics of PARALLEL=
+_MAKE are GNU Make specific so you might find some recipes don&#39;t handle=
+ anything but there being -j values.=C2=A0 You might have a little bit of f=
+ixing to do.<div><br></div><div>Ross</div></div><div class=3D"gmail_extra">=
+<br><div class=3D"gmail_quote">On 4 August 2017 at 13:00, Burton, Ross <spa=
+n dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank=
+">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex"><div dir=3D"ltr">It&#39;s not just feasible but you can do it right no=
+w.<div><br></div><div>PARALLEL_MAKE is the variable that sets how parallel =
+the build should be.=C2=A0 By default we pass -j&lt;number of processors&qu=
+ot;.</div><div><br></div><div>Just set it to -l2.5 or whatever load average=
+ you want.</div><span class=3D"HOEnZb"><font color=3D"#888888"><div><br></d=
+iv><div>Ross</div></font></span></div><div class=3D"HOEnZb"><div class=3D"h=
+5"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 4 August 20=
+17 at 11:58, Gianfranco Costamagna <span dir=3D"ltr">&lt;<a href=3D"mailto:=
+costamagnagianfranco@yahoo.it" target=3D"_blank">costamagnagianfranco@yahoo=
+.it</a><wbr>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello Yo=
+cto developers!<br>
 <br>
 <br>
 <br>
@@ -197,20 +218,23 @@ is such a feature feasible?<br>
 should I open a bug for it?<br>
 <br>
 <br>
-[1] <a href=3D"https://www.gnu.org/software/">https://www.gnu.org/software/=
-</a><wbr>make/manual/html_node/<wbr>Parallel.html#Parallel<br>
+[1] <a href=3D"https://www.gnu.org/software/" target=3D"_blank">https://www=
+.gnu.org/software/</a>m<wbr>ake/manual/html_node/Parallel.<wbr>html#Paralle=
+l<br>
 <br>
 <br>
 thanks,<br>
 <br>
 <br>
 Gianfranco<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+<span class=3D"m_-9218674551763075708HOEnZb"><font color=3D"#888888">--<br>
 ______________________________<wbr>_________________<br>
 yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject">https://lists.yoctoproject</a>.<wbr>=
-org/listinfo/yocto<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject" target=3D"_blank">https://lists.yoct=
+oproject</a>.org<wbr>/listinfo/yocto<br>
 </font></span></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
 
---001a113f66c00e60390555ec3f07--
+--001a113f9376ce2f8f0555ec42c4--
