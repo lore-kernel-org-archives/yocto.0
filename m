@@ -1,38 +1,61 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <yegorslists@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B75CDE00AD0; Sun,  6 Aug 2017 23:49:15 -0700 (PDT)
+	id 3A991E00AD0; Mon,  7 Aug 2017 00:00:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yegorslists[at]googlemail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A2ADE009A4
-	for <yocto@yoctoproject.org>; Sun,  6 Aug 2017 23:49:14 -0700 (PDT)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga105.jf.intel.com with ESMTP; 06 Aug 2017 23:49:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,336,1498546800"; d="scan'208";a="137084483"
-Received: from peggleto-mobl1.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.43.222])
-	by fmsmga006.fm.intel.com with ESMTP; 06 Aug 2017 23:49:13 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: RUSSELL PETERSON <bluehills7@comcast.net>
-Date: Mon, 07 Aug 2017 08:49:12 +0200
-Message-ID: <2375676.dB7SvS9hsX@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <1944952060.249322.1501698853728@connect.xfinity.com>
-References: <FCFE4E57-753C-47F3-AFBC-A969AABDDD2C@comcast.net>
-	<33807B63-4010-4E20-9200-92EA19FBED02@comcast.net>
-	<1944952060.249322.1501698853728@connect.xfinity.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f182.google.com (mail-ua0-f182.google.com
+	[209.85.217.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80D98E009A4
+	for <yocto@yoctoproject.org>; Mon,  7 Aug 2017 00:00:26 -0700 (PDT)
+Received: by mail-ua0-f182.google.com with SMTP id w45so26762488uac.5
+	for <yocto@yoctoproject.org>; Mon, 07 Aug 2017 00:00:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=JSGc0tVw6pqkIZ8/09+MM5DZiaHCZuJNpbKzSnxZ5Mw=;
+	b=rEhBEouoVpdL+2BGcp6W0WhrWMUl6chN/numskmIrwN47VsOR+JocCEjuOmOTri2pq
+	wsTgeclNuQIXrsJHN5S9rhBqMACNauwBbNkiafhp17zE9FjU2mYtCPXRNVC3zPemgGLZ
+	MC5QxS4CkMyXaso40gStuGMTeMZ9CnVUTibMEsk0/GgofghivqRw7UB0/3ZdpvluUCjo
+	PHCthb76MK3eoIFtfvNVwv7Dr7+vKVh6ZXFHLURHDOqWSd4ecgY+HnBmY6XsqlMH2FmL
+	egeZTFDd9b5dTXnM0t6JMtTwTcWJBLddNf+SJtfFjor0cdbgql8hkCKCbm0egtqfQu0N
+	Fhpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=JSGc0tVw6pqkIZ8/09+MM5DZiaHCZuJNpbKzSnxZ5Mw=;
+	b=MYO7X20vLOh9Yie3daAgVJ16XqB1nI/rM2MymOSvJ+iGi83DLWrKB4uCZuEOeS6VZO
+	eQTrT9JuOkLPvgIICWt3WknzHoDIegRJeM12v5leq1iJrZi5MR0s36YglTu1KH8fwf4C
+	i7Btz0o93O6bAB5Ht0/4CjlEPJs1WR/XewNJpfkaCoT/6iukIX3eB7vV6lY08uxQCvme
+	/ssZHu3h5jjd+6u2szlehr6LRH8NuCTcvc/4T20/AtlHV5isZbWzD7m1EsDhI3KHQ4QC
+	sva2biuMPedrJRXFD2FBYfIrWwc6akGMLe+Fwd5OZZSqNoPA4D/jPi723tNAx36A1yF9
+	ooog==
+X-Gm-Message-State: AHYfb5in08hysCQhP5zuHZc88+ZpgvWANV4AVTASGkdrM7zsF+pxMzJw
+	4XSZiJ97Pn1teas4nd4+fqAozDv5qzmB
+X-Received: by 10.176.25.45 with SMTP id v45mr7540671uag.16.1502089225630;
+	Mon, 07 Aug 2017 00:00:25 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: extensible SDK build failure
+Received: by 10.176.73.115 with HTTP; Mon, 7 Aug 2017 00:00:05 -0700 (PDT)
+From: Yegor Yefremov <yegorslists@googlemail.com>
+Date: Mon, 7 Aug 2017 09:00:05 +0200
+Message-ID: <CAGm1_ks-gk4aMeEYtDPnf_AGu=KfR_NYY7JGuS1ZSpppEe-3gg@mail.gmail.com>
+To: Yocto <yocto@yoctoproject.org>
+Subject: Custom FIT image: circular dependencies issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,30 +67,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Aug 2017 06:49:15 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 07 Aug 2017 07:00:27 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Russell,
+I've switched to Yocto's master branch from Krogoth and get now
+circular dependencies for my kernel recipe:
 
-On Wednesday, 2 August 2017 8:34:11 PM CEST RUSSELL PETERSON wrote:
-> Frustrating in that I can't get the eSDK to fully build. I'm past the issue
-> with kernel-devsrc and harfbuzz... but now I see hundreds of messages like
-> below. Anyone seen this before? From what I can tell these tasks are being
-> executed out of the run queue.  Not all the messages are from cve-check but
-> most.
+ERROR: 502 unbuildable tasks were
+found.#####################################################################
 
-So there are certain classes that will interfere with the ability of the eSDK 
-to lock down the configuration, I wasn't aware of it but cve-check.bbclass is 
-apparently one of them. Try adding this to your configuration:
+                                      | ETA:  0:00:08
+These are usually caused by circular dependencies and any circular
+dependency chains found will be printed below. Increase the debug
+level to see a list of unbuildable tasks.
 
-SDK_INHERIT_BLACKLIST = "buildhistory icecc cve-check"
+Identifying dependency loops (this may take a short while)...
 
-Cheers,
-Paul
+ERROR:
+Dependency loop #1 found:
+  Task /home/user/MyProjects/oss/yocto/poky/meta-baltos/recipes-kernel/linux/linux-yocto-custom.bb:do_create_fitimage
+(dependent Tasks ['linux-yocto-custom.bb:do_deploy'])
+  Task /home/user/MyProjects/oss/yocto/poky/meta-baltos/recipes-kernel/linux/linux-yocto-custom.bb:do_packagedata
+(dependent Tasks ['linux-yocto-custom.bb:do_package',
+'linux-yocto-custom.bb:do_create_fitimage'])
+  Task /home/user/MyProjects/oss/yocto/poky/meta-baltos/recipes-kernel/linux/linux-yocto-custom.bb:do_deploy
+(dependent Tasks ['linux-yocto-custom.bb:do_bundle_initramfs',
+'depmodwrapper-cross_1.0.bb:do_populate_sysroot',
+'linux-yocto-custom.bb:do_populate_sysroot',
+'linux-yocto-custom.bb:do_packagedata'])
 
--- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+ERROR: Command execution failed: 1
+
+My kernel recipe:
+
+inherit kernel
+require recipes-kernel/linux/linux-yocto.inc
+
+python __anonymous () {
+        depends = d.getVar("DEPENDS", True)
+        depends = "%s u-boot-mkimage-native dtc-native" % depends
+        d.setVar("DEPENDS", depends)
+}
+
+do_create_fitimage() {
+        cp ${THISDIR}/linux-yocto-custom/kernel-fit.its ${DEPLOY_DIR_IMAGE}
+        uboot-mkimage -f ${DEPLOY_DIR_IMAGE}/kernel-fit.its
+${DEPLOY_DIR_IMAGE}/kernel-fit.itb
+}
+
+addtask create_fitimage before do_packagedata after do_deploy
+
+KBRANCH = "linux-3.18.y"
+KCONFIG_MODE = "--alldefconfig"
+
+SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1;branch=${KBRANCH}"
+SRC_URI += "file://defconfig"
+SRC_URI += "file://baltos.scc \
+           "
+
+LINUX_VERSION ?= "3.18"
+LINUX_VERSION_EXTENSION ?= ""
+
+SRCREV="v3.18.32"
+
+PV = "${LINUX_VERSION}+git${SRCPV}"
+
+COMPATIBLE_MACHINE_baltos = "baltos"
+
+Any idea?
+
+Regards,
+Yegor
 
