@@ -1,46 +1,47 @@
 Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55B78E00B65; Mon,  7 Aug 2017 07:42:29 -0700 (PDT)
+	id D3DAAE00B65; Mon,  7 Aug 2017 10:03:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66798E00B49
-	for <yocto@yoctoproject.org>; Mon,  7 Aug 2017 07:42:27 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49B4BE009A4
+	for <yocto@yoctoproject.org>; Mon,  7 Aug 2017 10:03:49 -0700 (PDT)
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga104.jf.intel.com with ESMTP; 07 Aug 2017 07:42:26 -0700
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Aug 2017 10:02:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,338,1498546800"; 
-	d="scan'208,217";a="296966543"
+X-IronPort-AV: E=Sophos;i="5.41,339,1498546800"; 
+	d="scan'208,217";a="297015598"
 Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by fmsmga004.fm.intel.com with ESMTP; 07 Aug 2017 07:42:26 -0700
-Received: from fmsmsx151.amr.corp.intel.com (10.18.125.4) by
+	by fmsmga004.fm.intel.com with ESMTP; 07 Aug 2017 10:02:24 -0700
+Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
 	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 7 Aug 2017 07:42:26 -0700
+	(TLS) id 14.3.319.2; Mon, 7 Aug 2017 10:02:23 -0700
 Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.220]) by
-	FMSMSX151.amr.corp.intel.com ([169.254.7.116]) with mapi id
-	14.03.0319.002; Mon, 7 Aug 2017 07:42:25 -0700
+	FMSMSX125.amr.corp.intel.com ([169.254.2.32]) with mapi id
+	14.03.0319.002; Mon, 7 Aug 2017 10:02:23 -0700
 From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"openembedded-core@lists.openembedded.org"
 	<openembedded-core@lists.openembedded.org>
 Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW32=9217?=
 Thread-Index: AdMPirWqyZGeu42bRlKUMhqPyunqSw==
-Date: Mon, 7 Aug 2017 14:42:25 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E982596D6@fmsmsx111.amr.corp.intel.com>
+Date: Mon, 7 Aug 2017 17:02:22 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E9825AD78@fmsmsx111.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+x-originating-ip: [10.1.200.108]
 x-ctpclassification: CTP_IC
 x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjkwYmE0ZGMtMDE0MS00NjZiLWIzNzUtNDczYTY2ODIyY2U2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6Ik5WWWVkc1RrQzBmd1ZjSlN3R0xTZzlVXC8xNTNNcjZwbVwvcVcra2ZcLzluQ2c9In0=
 MIME-Version: 1.0
@@ -56,16 +57,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Aug 2017 14:42:29 -0000
+X-List-Received-Date: Mon, 07 Aug 2017 17:03:51 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E982596D6fmsmsx111amrcor_"
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9825AD78fmsmsx111amrcor_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E982596D6fmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9825AD78fmsmsx111amrcor_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Current Dev Position: YP 2.4 M3 is in QA, patches are being merged for M3
+Current Dev Position: YP 2.4 M2 rc3 is in QA, patches are being merged for =
+M3
 
 Next Deadline: YP 2.4 M3 Cut off is Aug. 21, 2017
 
@@ -156,7 +158,7 @@ INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
 =95 Email:                          stephen.k.jolley@intel.com
 
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E982596D6fmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9825AD78fmsmsx111amrcor_
 Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -180,9 +182,6 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 @font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
 	{font-family:Tahoma;
 	panose-1:2 11 6 4 3 5 4 4 2 4;}
 @font-face
@@ -190,6 +189,9 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 	panose-1:3 15 7 2 3 3 2 2 2 4;}
 @font-face
 	{font-family:"MS Sans Serif";}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -303,82 +305,6 @@ div.WordSection1
 	text-indent:-.25in;
 	mso-ansi-font-size:10.0pt;
 	font-family:Wingdings;}
-@list l1
-	{mso-list-id:1026759540;
-	mso-list-template-ids:-1228512000;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
 ol
 	{margin-bottom:0in;}
 ul
@@ -394,8 +320,8 @@ ul
 <div class=3D"WordSection1">
 <p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
 pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
-on: YP 2.4 M3 is in QA, patches are being merged for M3</span><o:p></o:p></=
-p>
+on: YP 2.4 M2 rc3 is in QA, patches are being merged for M3</span><o:p></o:=
+p></p>
 <p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
 pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
 2.4 M3 Cut off is Aug. 21, 2017</span><o:p></o:p></p>
@@ -416,7 +342,7 @@ pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
 :</span><o:p></o:p></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
 n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
+2;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
 t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -427,7 +353,7 @@ sues found, many of which were fixed post rc2
  in master.<o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
 n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
+2;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
 t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -439,7 +365,7 @@ t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
 n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
+2;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
 t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -449,7 +375,7 @@ sed which allows the system to work with newer distros with newer gcc and g=
 libc versions.<o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
 n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
+2;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
 t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -463,7 +389,7 @@ he merge of code into master so we=92d appreciate people=92s attention to d=
 etail when they do send changes.<o:p></o:p></span></p>
 <p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
 n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l0 level1 lfo=
-3;vertical-align:baseline">
+2;vertical-align:baseline">
 <![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
 or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
 t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -565,31 +491,34 @@ n></b></p>
 or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
 <o:p></o:p></span></b></p>
 <p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;,serif;color:teal=
+">
 </span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;
+,serif;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><sp=
+an style=3D"font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
+,serif">(503) 712-0534<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
 ;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+ans Serif&quot;,serif;color:teal">&nbsp;&nbsp;&nbsp;
 </span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
 ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+quot;MS Sans Serif&quot;,serif;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+,serif">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span>=
+</p>
 <p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
 ">* </span>
 <b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
 MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+.0pt;font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:</span><span =
+lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;,=
+serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;
 <u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
 span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
 ns-serif"><o:p></o:p></span></p>
@@ -598,4 +527,4 @@ ns-serif"><o:p></o:p></span></p>
 </body>
 </html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E982596D6fmsmsx111amrcor_--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E9825AD78fmsmsx111amrcor_--
