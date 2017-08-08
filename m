@@ -1,34 +1,63 @@
-Return-Path: <amanda.r.brindle@intel.com>
+Return-Path: <bluehills7@comcast.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3660BE00BC0; Mon,  7 Aug 2017 16:18:43 -0700 (PDT)
+	id 85EEBE00BBC; Mon,  7 Aug 2017 18:41:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, MIME_QP_LONG_LINE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bluehills7[at]comcast.net)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [69.252.207.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E547E00B8E
-	for <yocto@yoctoproject.org>; Mon,  7 Aug 2017 16:18:40 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga105.jf.intel.com with ESMTP; 07 Aug 2017 16:18:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,340,1498546800"; d="scan'208";a="134795907"
-Received: from arbrindl-dev.jf.intel.com ([10.7.159.149])
-	by orsmga005.jf.intel.com with ESMTP; 07 Aug 2017 16:18:40 -0700
-From: Amanda Brindle <amanda.r.brindle@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon,  7 Aug 2017 16:17:54 -0700
-Message-Id: <1502147875-4801-2-git-send-email-amanda.r.brindle@intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1502147875-4801-1-git-send-email-amanda.r.brindle@intel.com>
-References: <1502147875-4801-1-git-send-email-amanda.r.brindle@intel.com>
-Cc: Matthew Hansen <matthew.k.hansen@intel.com>
-Subject: [meta-alexa-demo][PATCH 2/3] Added meta-alexa-led for demo files
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from resqmta-ch2-12v.sys.comcast.net
+	(resqmta-ch2-12v.sys.comcast.net [69.252.207.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53B5FE00BA2
+	for <yocto@yoctoproject.org>; Mon,  7 Aug 2017 18:41:50 -0700 (PDT)
+Received: from resomta-ch2-11v.sys.comcast.net ([69.252.207.107])
+	by resqmta-ch2-12v.sys.comcast.net with ESMTP
+	id etVbdoKqVxR26etWodGygR; Tue, 08 Aug 2017 01:41:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=q20161114; t=1502156510;
+	bh=5wQLjLGGHnJJgn7YjLVqQ9GP7s1OOfLVzmUGDEO1eYU=;
+	h=Received:Received:Content-Type:Mime-Version:Subject:From:Date:
+	Message-Id:To;
+	b=XinLJSinDjDa7eJsC7nYAc/FsKsO/eDE2s6S0LslOQBSEP6y2FFHIZ3iYWFcWeI+i
+	ryGGchumTopPnWCNC2WGWxJrLIYY6jq/kfWgiuSh5lioc8HDihHoHl7q7lpNUsGM50
+	Vwgsb7bnxOP8iaBgdGLCWrTOeIqlYCk4tpH39cnlnCE4CJRIiADu4uCZJhwi+XN248
+	I1eAvO67u0m6Y0ywB2mUvl57T5aWgUE7vrLgpIC4jIllZQ1ZspPG3Lm8ZGZeoldQw2
+	pVOy1nsn0ro8cPJGa3fD7WMINpGN4A5LAIhQOVANGae76y0SdABhK9pR3OfO6PO2Kv
+	beiPtvMcj7slA==
+Received: from [IPv6:2601:18f:800:acc1:6521:5b15:4878:e863]
+	([IPv6:2601:18f:800:acc1:6521:5b15:4878:e863])
+	by resomta-ch2-11v.sys.comcast.net with SMTP
+	id etWndqgjsuMJOetWndebFA; Tue, 08 Aug 2017 01:41:50 +0000
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+From: Russell Peterson <bluehills7@comcast.net>
+In-Reply-To: <2375676.dB7SvS9hsX@peggleto-mobl.ger.corp.intel.com>
+Date: Mon, 7 Aug 2017 21:41:48 -0400
+Message-Id: <F0A9A900-5197-4F66-A56B-43954E06C7DF@comcast.net>
+References: <FCFE4E57-753C-47F3-AFBC-A969AABDDD2C@comcast.net>
+	<33807B63-4010-4E20-9200-92EA19FBED02@comcast.net>
+	<1944952060.249322.1501698853728@connect.xfinity.com>
+	<2375676.dB7SvS9hsX@peggleto-mobl.ger.corp.intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-Mailer: Apple Mail (2.3273)
+X-CMAE-Envelope: MS4wfPPmM8V65e86kXOPLhIi+HhTC9hhjfTig5DGxLthti2xNN7q5Lu+qvDjuNNwqALnKTJUM/gqCL6ahoX5vOoS0MMUlighJEeWGhEMLyZPaHNeswExP85F
+	D3H+LhTtnyRwZZ6qHk0AbFLMCuByr2vfMq+bybY539cmTqWUxvft2Nnm0gkBQbWabLB2cYVK5GWsX43DJsof8ngZJp0fXs2K53zdURNMprLn5eN6Ajue8fzB
+	9VoEh+LB5JYDxCtJyf5pYQ==
+Cc: yocto@yoctoproject.org
+Subject: Re: extensible SDK build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,445 +69,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Aug 2017 23:18:43 -0000
+X-List-Received-Date: Tue, 08 Aug 2017 01:41:52 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Matthew Hansen <matthew.k.hansen@intel.com>
+Thanks, Paul.
 
----
- meta-alexa-led/COPYING.MIT                         |  17 +++
- meta-alexa-led/LICENSE                             |   2 +
- meta-alexa-led/README                              |  64 ++++++++++
- meta-alexa-led/conf/layer.conf                     |  10 ++
- meta-alexa-led/recipes-demo/alexa-led/alexa-led.bb |  16 +++
- .../recipes-demo/alexa-led/files/COPYING.MIT       |  17 +++
- .../recipes-demo/alexa-led/files/LICENSE           |   2 +
- .../recipes-demo/alexa-led/files/index.js          | 142 +++++++++++++++++++++
- .../recipes-demo/alexa-led/files/main.js           |  89 +++++++++++++
- 9 files changed, 359 insertions(+)
- create mode 100644 meta-alexa-led/COPYING.MIT
- create mode 100644 meta-alexa-led/LICENSE
- create mode 100644 meta-alexa-led/README
- create mode 100644 meta-alexa-led/conf/layer.conf
- create mode 100644 meta-alexa-led/recipes-demo/alexa-led/alexa-led.bb
- create mode 100644 meta-alexa-led/recipes-demo/alexa-led/files/COPYING.MIT
- create mode 100644 meta-alexa-led/recipes-demo/alexa-led/files/LICENSE
- create mode 100644 meta-alexa-led/recipes-demo/alexa-led/files/index.js
- create mode 100755 meta-alexa-led/recipes-demo/alexa-led/files/main.js
+That helped, however, I still see some of the same =E2=80=9Cunexpected=E2=80=
+=9D errors for perf tasks as well as my virtual/kernel tasks. =20
 
-diff --git a/meta-alexa-led/COPYING.MIT b/meta-alexa-led/COPYING.MIT
-new file mode 100644
-index 0000000..89de354
---- /dev/null
-+++ b/meta-alexa-led/COPYING.MIT
-@@ -0,0 +1,17 @@
-+Permission is hereby granted, free of charge, to any person obtaining a copy
-+of this software and associated documentation files (the "Software"), to deal
-+in the Software without restriction, including without limitation the rights
-+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-+copies of the Software, and to permit persons to whom the Software is
-+furnished to do so, subject to the following conditions:
-+
-+The above copyright notice and this permission notice shall be included in
-+all copies or substantial portions of the Software.
-+
-+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-+THE SOFTWARE.
-diff --git a/meta-alexa-led/LICENSE b/meta-alexa-led/LICENSE
-new file mode 100644
-index 0000000..5190d8e
---- /dev/null
-+++ b/meta-alexa-led/LICENSE
-@@ -0,0 +1,2 @@
-+All files in this layer are under the MIT license unless a file specifically notes otherwise.
-+See COPYING.MIT for license details.
-diff --git a/meta-alexa-led/README b/meta-alexa-led/README
-new file mode 100644
-index 0000000..c671cfe
---- /dev/null
-+++ b/meta-alexa-led/README
-@@ -0,0 +1,64 @@
-+This README file contains information on the contents of the
-+alexa-led layer.
-+
-+Please see the corresponding sections below for details.
-+
-+
-+Dependencies
-+============
-+
-+This layer depends on:
-+
-+  URI: git://git.openembedded.org/bitbake
-+  branch: master
-+
-+  URI: git://git.openembedded.org/openembedded-core
-+  layers: meta
-+  branch: master
-+
-+  URI: git://git.yoctoproject.org/xxxx
-+  layers: xxxx
-+  branch: master
-+
-+
-+Patches
-+=======
-+
-+Please submit any patches against the alexa-led layer to the
-+xxxx mailing list (xxxx@zzzz.org) and cc: the maintainer:
-+
-+Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
-+
-+
-+Table of Contents
-+=================
-+
-+  I. Adding the alexa-led layer to your build
-+ II. Misc
-+
-+
-+I. Adding the alexa-led layer to your build
-+=================================================
-+
-+--- replace with specific instructions for the alexa-led layer ---
-+
-+In order to use this layer, you need to make the build system aware of
-+it.
-+
-+Assuming the alexa-led layer exists at the top-level of your
-+yocto build tree, you can add it to the build system by adding the
-+location of the alexa-led layer to bblayers.conf, along with any
-+other layers needed. e.g.:
-+
-+  BBLAYERS ?= " \
-+    /path/to/yocto/meta \
-+    /path/to/yocto/meta-poky \
-+    /path/to/yocto/meta-yocto-bsp \
-+    /path/to/yocto/meta-alexa-led \
-+    "
-+
-+
-+II. Misc
-+========
-+
-+--- replace with specific information about the alexa-led layer ---
-diff --git a/meta-alexa-led/conf/layer.conf b/meta-alexa-led/conf/layer.conf
-new file mode 100644
-index 0000000..d469d0a
---- /dev/null
-+++ b/meta-alexa-led/conf/layer.conf
-@@ -0,0 +1,10 @@
-+# We have a conf and classes directory, add to BBPATH
-+BBPATH .= ":${LAYERDIR}"
-+
-+# We have recipes-* directories, add to BBFILES
-+BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-+	${LAYERDIR}/recipes-*/*/*.bbappend"
-+
-+BBFILE_COLLECTIONS += "alexa-led"
-+BBFILE_PATTERN_alexa-led = "^${LAYERDIR}/"
-+BBFILE_PRIORITY_alexa-led = "6"
-diff --git a/meta-alexa-led/recipes-demo/alexa-led/alexa-led.bb b/meta-alexa-led/recipes-demo/alexa-led/alexa-led.bb
-new file mode 100644
-index 0000000..3e09f30
---- /dev/null
-+++ b/meta-alexa-led/recipes-demo/alexa-led/alexa-led.bb
-@@ -0,0 +1,16 @@
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=afaffb6a59e1896be335c5dd05c69e4b"
-+
-+SRC_URI = "file://main.js"
-+
-+RDEPENDS_${PN} = "nodejs \
-+                  alexapi"
-+
-+do_install () {
-+    install -d ${D}${libdir}/node_modules/alexa_led
-+    install ${WORKDIR}/main.js ${D}${libdir}/node_modules/alexa_led
-+}
-+
-+FILES_${PN} = " \
-+    ${libdir}/node_modules \
-+    "
-diff --git a/meta-alexa-led/recipes-demo/alexa-led/files/COPYING.MIT b/meta-alexa-led/recipes-demo/alexa-led/files/COPYING.MIT
-new file mode 100644
-index 0000000..89de354
---- /dev/null
-+++ b/meta-alexa-led/recipes-demo/alexa-led/files/COPYING.MIT
-@@ -0,0 +1,17 @@
-+Permission is hereby granted, free of charge, to any person obtaining a copy
-+of this software and associated documentation files (the "Software"), to deal
-+in the Software without restriction, including without limitation the rights
-+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-+copies of the Software, and to permit persons to whom the Software is
-+furnished to do so, subject to the following conditions:
-+
-+The above copyright notice and this permission notice shall be included in
-+all copies or substantial portions of the Software.
-+
-+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-+THE SOFTWARE.
-diff --git a/meta-alexa-led/recipes-demo/alexa-led/files/LICENSE b/meta-alexa-led/recipes-demo/alexa-led/files/LICENSE
-new file mode 100644
-index 0000000..5190d8e
---- /dev/null
-+++ b/meta-alexa-led/recipes-demo/alexa-led/files/LICENSE
-@@ -0,0 +1,2 @@
-+All files in this layer are under the MIT license unless a file specifically notes otherwise.
-+See COPYING.MIT for license details.
-diff --git a/meta-alexa-led/recipes-demo/alexa-led/files/index.js b/meta-alexa-led/recipes-demo/alexa-led/files/index.js
-new file mode 100644
-index 0000000..5c5503f
---- /dev/null
-+++ b/meta-alexa-led/recipes-demo/alexa-led/files/index.js
-@@ -0,0 +1,142 @@
-+'use strict';
-+var config = {};
-+
-+var AWS = require('aws-sdk');
-+var Alexa = require('alexa-sdk');
-+
-+//replace with endpoint from AWS IoT Device
-+var iotData = new AWS.IotData({endpoint: 'a22iwj71w43omu.iot.us-east-2.amazonaws.com', region: 'us-east-2'});
-+var APP_ID = undefined; //OPTIONAL: replace with 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';
-+var SKILL_NAME = 'gateway-demo';
-+
-+exports.handler = function(event, context, callback) {
-+    var alexa = Alexa.handler(event, context);
-+    alexa.APP_ID = APP_ID;
-+    alexa.registerHandlers(handlers);
-+    alexa.execute();
-+};
-+
-+var led_state = 0;
-+
-+var handlers = {
-+    'LaunchRequest': function () {
-+
-+      var LEDState = [
-+        {"state":{ "desired":{"device":"minnowboard_1","led":0}}}
-+      ];
-+      var speechOutput="Gateway Operational";
-+      AWSIoT.sendMessage(this, LEDState,speechOutput);
-+
-+    },
-+    'DeviceStateIntent': function () {
-+
-+      var speechOutput;
-+      var itemSlot = this.event.request.intent.slots.LEDState;
-+      console.log("itemSlot: "+itemSlot);
-+      var LED_State="none";
-+      if (itemSlot && itemSlot.value) {
-+          LED_State = itemSlot.value.toLowerCase();
-+      }
-+      console.log("LED_State: "+ LED_State);
-+      var deviceState=null;
-+
-+      switch (LED_State) {
-+        case "on":
-+        led_state = 1;
-+        deviceState = [
-+        {'state':{ 'desired':{'device':'minnowboard_1','led_state':led_state}}}
-+        ];
-+        speechOutput="L E D on";
-+        console.log('on recieved')
-+        break;
-+        case "off":
-+        led_state = 0;
-+        deviceState = [
-+        {'state':{ 'desired':{'device':'minnowboard_1','led_state':led_state}}}
-+        ];
-+        speechOutput="L E D off";
-+        break;
-+        default:
-+        speechOutput="no L E D state";
-+        break;
-+      }
-+      if (deviceState===null) {
-+        this.emit(':tell',speechOutput);
-+      } else {
-+        AWSIoT.sendMessage(this, deviceState, speechOutput);
-+        console.log("message sent: ", deviceState )
-+      }
-+
-+
-+    },
-+    'AMAZON.HelpIntent': function () {
-+        this.attributes['speechOutput'] = 'You can ask questions such as, what\'s the L E D state, or, you can say exit... ' +
-+            'Now, what can I help you with?';
-+        this.attributes['repromptSpeech'] = 'You can say things like, what\'s the L E D state, or you can say exit...' +
-+            ' Now, what can I help you with?';
-+        this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech'])
-+    },
-+    'AMAZON.RepeatIntent': function () {
-+        this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech'])
-+    },
-+    'AMAZON.StopIntent': function () {
-+        this.emit('SessionEndedRequest');
-+    },
-+    'AMAZON.CancelIntent': function () {
-+        this.emit('SessionEndedRequest');
-+    },
-+    'SessionEndedRequest':function () {
-+        this.emit(':tell', 'Goodbye!');
-+    }
-+  };
-+
-+var AWSIoT = {
-+    postSendMessage: function (thisOfParent,speechOutput) {
-+      console.log('doot doot, all doot');
-+      thisOfParent.emit(':tell', speechOutput);
-+    },
-+    sendMessage: function (thisOfParent, deviceState, speechOutput) {
-+
-+      var itemsProcessed = 0;
-+
-+      deviceState.forEach((item, index, array) => {
-+          console.log("item "+index+": "+JSON.stringify(item));
-+          console.log("device "+index+": "+item.state.desired.device)
-+
-+          var thingNameAndPayload= {
-+            thingName: 'minnowboard_1',
-+            payload: JSON.stringify(item)
-+          };
-+
-+         iotData.updateThingShadow(thingNameAndPayload, function(err, data) {
-+            console.log('sent shadow update')
-+            if (err) console.log(err, err.stack); // an error occurred
-+            else     console.log(data);           // successful response
-+
-+
-+            if (err){
-+              console.log("update error: ");
-+              console.log(err);
-+              //Handle the error here
-+              speechOutput += " - Error updating device state: " + err + " ";
-+              speechOutput += thingNameAndPayload.thingName + " ";
-+              speechOutput += thingNameAndPayload.payload;
-+            }
-+
-+            else {
-+              console.log("update success: ");
-+              console.log(data);
-+            }
-+          itemsProcessed++;
-+          if(itemsProcessed === array.length) {
-+              AWSIoT.postSendMessage(thisOfParent, speechOutput);
-+            }
-+
-+
-+          });
-+
-+        });
-+
-+    }
-+
-+  };
-diff --git a/meta-alexa-led/recipes-demo/alexa-led/files/main.js b/meta-alexa-led/recipes-demo/alexa-led/files/main.js
-new file mode 100755
-index 0000000..6224890
---- /dev/null
-+++ b/meta-alexa-led/recipes-demo/alexa-led/files/main.js
-@@ -0,0 +1,89 @@
-+"use strict" ;
-+
-+var APP_NAME = "Alexa Demo" ;
-+console.log("Initializing " + APP_NAME) ;
-+
-+
-+var fs = require ('fs');
-+if (!fs.existsSync('/sys/class/gpio/gpio360/value')) {
-+	fs.writeFile('/sys/class/gpio/export', 360, (err) => {
-+		if (err) console.log('Error - couldnt export gpio 360');
-+	});
-+}
-+fs.writeFile('/sys/class/gpio/gpio360/direction', 'out', (err) => {
-+	if (err) console.log('Error - couldnt set gpio direction');
-+});
-+
-+fs.writeFile('/sys/class/gpio/gpio360/value', '0', (err) => {
-+	if (err) console.log('Error - couldnt set gpio value');
-+}); 
-+
-+console.log("GPIO initialized...");
-+
-+const deviceModule = require('aws-iot-device-sdk').device;
-+
-+console.log("Device module found...");
-+
-+function connectAWS() {
-+
-+   const device = deviceModule({
-+      keyPath: "/connect_device_package/Minnowboard.private.key", //Make sure these paths match your certifacte locations 
-+      certPath: "/connect_device_package/Minnowboard.cert.pem",
-+      caPath: "/connect_device_package/root-CA.crt",
-+      host: "a22iwj71w43omu.iot.us-east-2.amazonaws.com", //Replace with your endpoint from AWS IoT Device Dashboard
-+   });
-+      console.log("deviceModule initialized...");
-+
-+      device.subscribe('$aws/things/minnowboard_1/shadow/update/accepted');
-+      device.publish('topic_1', 'hello from Minnowboard')
-+      console.log("Publish and subscribe started...");
-+
-+device
-+      .on('connect', function() {
-+         console.log('connect');
-+      });
-+   device
-+      .on('close', function() {
-+         console.log('close');
-+      });
-+   device
-+      .on('reconnect', function() {
-+         console.log('reconnect');
-+      });
-+   device
-+      .on('offline', function() {
-+         console.log('offline');
-+      });
-+   device
-+      .on('error', function(error) {
-+         console.log('error', error);
-+      });
-+   device
-+      .on('message', function(topic, payload) {
-+         console.log('message', topic, payload.toString());
-+         updateState(payload)
-+      });
-+
-+      console.log("Device callbacks set...");
-+}
-+
-+
-+//globals:
-+var led_state = 0;
-+var shadow = null;
-+
-+function updateState(payload){
-+   var pay_json=JSON.parse(payload.toString())
-+   led_state = 1 - pay_json.state.desired.led_state; // Invert state since on/off are 0/1
-+
-+   console.log("Setting gpio 360 (LED) to " + led_state);
-+
-+   fs.writeFile('/sys/class/gpio/gpio360/value', led_state, (err) => {
-+      if (err) console.log('Error - couldnt set gpio value');
-+}); 
-+
-+};
-+
-+
-+connectAWS();
-+
--- 
-2.7.4
+I presume SDK_INHERIT_BLACKLIST excludes the use of the class for the =
+SDK=E2=80=A6 but I am unclear as to why I see these errors with my =
+linux-yocto-xxx.bb recipe/tasks.
+
+Thanks again.
+
+Russell
+
+
+> On Aug 7, 2017, at 2:49 AM, Paul Eggleton =
+<paul.eggleton@linux.intel.com> wrote:
+>=20
+> Hi Russell,
+>=20
+> On Wednesday, 2 August 2017 8:34:11 PM CEST RUSSELL PETERSON wrote:
+>> Frustrating in that I can't get the eSDK to fully build. I'm past the =
+issue
+>> with kernel-devsrc and harfbuzz... but now I see hundreds of messages =
+like
+>> below. Anyone seen this before? =46rom what I can tell these tasks =
+are being
+>> executed out of the run queue.  Not all the messages are from =
+cve-check but
+>> most.
+>=20
+> So there are certain classes that will interfere with the ability of =
+the eSDK=20
+> to lock down the configuration, I wasn't aware of it but =
+cve-check.bbclass is=20
+> apparently one of them. Try adding this to your configuration:
+>=20
+> SDK_INHERIT_BLACKLIST =3D "buildhistory icecc cve-check"
+>=20
+> Cheers,
+> Paul
+>=20
+> --=20
+>=20
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
 
