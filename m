@@ -1,66 +1,96 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <carlos.bejar-colonia@philips.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79F9BE00A9B; Wed,  9 Aug 2017 03:35:12 -0700 (PDT)
+	id EFE32E0090A; Wed,  9 Aug 2017 06:16:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.169 listed in list.dnswl.org]
+	*      [104.47.2.107 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.169 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33F38E00970
-	for <yocto@yoctoproject.org>; Wed,  9 Aug 2017 03:35:10 -0700 (PDT)
-Received: by mail-io0-f169.google.com with SMTP id o9so23610313iod.1
-	for <yocto@yoctoproject.org>; Wed, 09 Aug 2017 03:35:10 -0700 (PDT)
+X-Greylist: delayed 1091 seconds by postgrey-1.32 at yocto-www;
+	Wed, 09 Aug 2017 06:15:59 PDT
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0107.outbound.protection.outlook.com [104.47.2.107])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49ED8E0090A
+	for <yocto@yoctoproject.org>; Wed,  9 Aug 2017 06:15:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=P3efL6bRw4RcV1ZBGXHyNhdEq83kd+WnVMuBQG070qo=;
-	b=iVUfKoeSwHPL3zTp0iO23Ui5bvHlBAFb/yPy+/U/WRTwex++1i+uUn6iYiRbbqvy9z
-	vjEM3Ja54Qbta/Mdq60qhp3Hsbmbq8DP+XdHTB2KqZw2peRt8zUe7dHCYHij7CQlzT/F
-	bcTRio2VpPj/kkM4vPfBHcwJOqrfpArMy9bWrmb/c6HymlIfqweM2hoI5KIwih88O9zO
-	A0fIBePQGYoiWfjCnEwJVkjnxXcVXe7NeTHebFspaC8oExza2BX/GTa78BntpHVamSw7
-	G1Y43GdhQEXuMkjfJszQDkJt2IPerdIa7FaKM6oFAWCTFrqH2KPvXTiZZGsy1iI+WzUI
-	DuzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=P3efL6bRw4RcV1ZBGXHyNhdEq83kd+WnVMuBQG070qo=;
-	b=bapjp+jHM5yN2KK/G8LA/aYlmFlAvkgFgdalW/G+L4TxDpda/idUt2xmFvX/GssA8K
-	FMe2iZYWITof6OHLTM7ejMzZJrNfP7TMLG3BcZs5g41Hbies2zEqPmJcC/8HDFEUmIyS
-	oElq0mIgj4oIGCUKHsVjfKd/KgE+VAx2dDHyoB4ZyXNeDT19f0wggRRF71RahuZUNpTs
-	SlMD/4At+VgKO85cYzmYK+r948H8tM+pHfdZTvc8xUFoqvdQxF4itZN+Y0VlAeAhRzRc
-	9CrdljpKyitHrv1do+2Pim7q+8Ua+uDWrb4FkVVsgSPeYHoJHg3vrIk9n8cAUTaEjYb4
-	mKWg==
-X-Gm-Message-State: AHYfb5h+SibJRtQgbEQEZqwbJtjnTxU9KjWZq6km2EaArfTtdpH1yBFa
-	kzzPqZRfY1fIIf+WM6Ne37017mpTdD9/
-X-Received: by 10.107.132.33 with SMTP id g33mr5798545iod.300.1502274910122;
-	Wed, 09 Aug 2017 03:35:10 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.135.234 with HTTP; Wed, 9 Aug 2017 03:34:49 -0700 (PDT)
-In-Reply-To: <CAByQQ_q5s2cWY6FJVLnSaygmS1ytcYTgLAHfR=q_p3YNwQogzA@mail.gmail.com>
+	d=Philips.onmicrosoft.com; s=selector1-philips-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=6GFjWqEop8JgzPN0nQPPWkk6PUr7mrXbFvR/ADxseu0=;
+	b=LAgfNy6Yv/zGd1oxLAhEcNb4OsTNGxiZOIn8nybzFSl1TddBUNl78GDERdA4e9PWJIdh95L+o+ZpM8Y2nGHgiPUqwPDb8x933Pn+/EeR3QodBJp6jdxQj3g6MCqdlM3WKoNr75MGGXL7NBTfTEt/jdXX7vPP+UUXtXngzegsngY=
+Received: from DB5P122MB0007.EURP122.PROD.OUTLOOK.COM (129.75.100.214) by
+	DB5P122MB0008.EURP122.PROD.OUTLOOK.COM (129.75.100.215) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.1.1304.22; Wed, 9 Aug 2017 12:42:31 +0000
+Received: from DB5P122MB0007.EURP122.PROD.OUTLOOK.COM
+	([fe80::830:1c6b:a05e:47e2]) by DB5P122MB0007.EURP122.PROD.OUTLOOK.COM
+	([fe80::830:1c6b:a05e:47e2%13]) with mapi id 15.01.1304.027;
+	Wed, 9 Aug 2017 12:42:31 +0000
+From: "Bejar-Colonia, Carlos" <carlos.bejar-colonia@philips.com>
+To: "Burton, Ross" <ross.burton@intel.com>, Riko Ho <antonius.riko@gmail.com>
+Thread-Topic: [yocto] bitbake error ?
+Thread-Index: AQHTEOm5z7CwsbBX2Ey3pxIjOXjyr6J7shoAgAAAkQCAAAFDgIAAHmUAgAACGoCAACIjMA==
+Date: Wed, 9 Aug 2017 12:42:31 +0000
+Message-ID: <DB5P122MB000777D198C8510F25BF9093D68B0@DB5P122MB0007.EURP122.PROD.OUTLOOK.COM>
 References: <759e84aa-b429-d9f8-bd71-aeef9fbe7bfe@gmail.com>
 	<CAJTo0Lb41N7A_dZMHKHoBAEDm0KHAW2K-R-TWvEKxbsygbyK=g@mail.gmail.com>
 	<adde6220-1d6d-103d-b9ff-cd39d32bf943@gmail.com>
 	<CAJTo0LbM1Ly6aFCeq7FTsOiCpmhSw_PoRRu-3NmMbKx1CXtAkQ@mail.gmail.com>
 	<CAByQQ_q5s2cWY6FJVLnSaygmS1ytcYTgLAHfR=q_p3YNwQogzA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 9 Aug 2017 11:34:49 +0100
-Message-ID: <CAJTo0LaPD2aQp7ufSgg6PePV7k1_nqGKdzhpWTYPacqmdEtu9g@mail.gmail.com>
-To: Riko Ho <antonius.riko@gmail.com>
+	<CAJTo0LaPD2aQp7ufSgg6PePV7k1_nqGKdzhpWTYPacqmdEtu9g@mail.gmail.com>
+In-Reply-To: <CAJTo0LaPD2aQp7ufSgg6PePV7k1_nqGKdzhpWTYPacqmdEtu9g@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=carlos.bejar-colonia@philips.com; 
+x-originating-ip: [161.84.225.8]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DB5P122MB0008;
+	6:gNAkSXzBi3LMBiGYoXfeM3m+kmd2yuXo3d6i3i2nm1DBuErGSnxOGcCkGdJZL+qT0MkLCJqTaTr67eGj0h5v4NA1znxiwHSa30mNB8kUf+BPxatJHkkh6nU9gaVTDTxzCrPa9IqX9rQLsO7I1yBGJieSNQJmJq7NfWkyXafAFYWvf/UACmvh2wruMykuqDLUnmBL8SXBd+RAGDcArd0qKaLQU2Ppq5cPLTW/H18365D8L102v7H6RrSMjGjfQA2PFvF5wR2Otlw/bC54PkVTN/OX8CEs/60QFPdD4jCwZ83j3GHPbqyQM316xCelDbLl7THPV3vT8yvKiPokwvY6bQ==;
+	5:tiqaFrYWJq32pWA0J3Pnr/ff5DyV0M8msQSGuzq2Nf41ZMhmfsfpNSeyFepOiK/mPWV1ewBuNIcuNxnMv4qA6Ij6PTqQjblLI4f5XzSfbpIt4HzDDkolsiE+3vWw8q+zPN/SRBwakRhC96sZPToIcw==;
+	24:ZLOfbumt1Ai2xazBb+8tz6Ga6GwUgcEcoLATOiUyja1E/X+6i7lNIOSXgIstPUmfmeC4rHFBKifhvrOJkb3yoJEWTthmO2sndWo6zaBeQd8=;
+	7:RMK4fG9qxpHFLFv1UnHUO+u8QLw7/jwTmBxnu6Fuzr39pNZDnwYZb54TNbr7E4Yti7ANK/mHw8ozOBQhYwJ77xcxmTI44GmSeuSFxoNFcj2uCYUmU7CMS5ngtsIrJNReAN57kzgGZD4OjhzNOcP3OCWfBZUS5lYZQ9Xo5J3hTYv1Ot0B+Ty7SsMLriBZcsFa5VAQTbclZhacG3Or6ZEbn4ndJHOt0e3jM0xu0WtuxDA=
+x-ms-office365-filtering-correlation-id: d3764ef8-7372-46f8-f4c8-08d4df241a07
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254152)(48565401081)(300000503095)(300135400095)(2017052603031)(201703131423075)(201703031133081)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:DB5P122MB0008; 
+x-ms-traffictypediagnostic: DB5P122MB0008:
+x-exchange-antispam-report-test: UriScan:(21748063052155)(21532816269658)(79290750141951)(228905959029699);
+x-microsoft-antispam-prvs: <DB5P122MB00088B5CFD0B70AD908ADDF3D68B0@DB5P122MB0008.EURP122.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(5005006)(8121501046)(10201501046)(3002001)(93006095)(93001095)(100000703101)(100105400095)(6055026)(6041248)(20161123558100)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123564025)(20161123560025)(20161123555025)(20161123562025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:DB5P122MB0008; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:DB5P122MB0008; 
+x-forefront-prvs: 0394259C80
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(979002)(39850400002)(39410400002)(39840400002)(39400400002)(39450400003)(39860400002)(55904004)(377454003)(374574003)(85714005)(189002)(24454002)(199003)(377424004)(105586002)(102836003)(6506006)(6116002)(101416001)(189998001)(25786009)(2900100001)(97736004)(3846002)(4326008)(33656002)(790700001)(229853002)(606006)(2950100002)(74316002)(93886004)(106356001)(53546010)(9686003)(7696004)(236005)(6306002)(54896002)(5250100002)(15974865002)(81166006)(8936002)(6246003)(66066001)(3280700002)(14454004)(8676002)(6436002)(3660700001)(38730400002)(53386004)(5660300001)(1680700002)(81156014)(76176999)(54356999)(966005)(39060400002)(2906002)(53376002)(50986999)(55016002)(7736002)(53936002)(86362001)(478600001)(68736007)(969003)(989001)(999001)(1009001)(1019001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DB5P122MB0008;
+	H:DB5P122MB0007.EURP122.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: philips.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: philips.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2017 12:42:31.2284 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1a407a2d-7675-4d17-8692-b3ac285306e4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5P122MB0008
 Cc: "N:" <yocto@yoctoproject.org>
 Subject: Re: bitbake error ?
 X-BeenThere: yocto@yoctoproject.org
@@ -74,365 +104,354 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Aug 2017 10:35:12 -0000
-Content-Type: multipart/alternative; boundary="001a113ed2e85fc4e405564fa2ad"
+X-List-Received-Date: Wed, 09 Aug 2017 13:16:03 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DB5P122MB000777D198C8510F25BF9093D68B0DB5P122MB0007EURP_"
 
---001a113ed2e85fc4e405564fa2ad
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_DB5P122MB000777D198C8510F25BF9093D68B0DB5P122MB0007EURP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I've no idea why you can't connect to example.com using wget, you'll have
-to debug it yourself.
+VGhpcyBpc3N1ZSBzZWVtcyB0byBiZSByZWxhdGVkIHRvIHByb3h5IHNlcnZlci4gUHJvYmFibHkg
+eW91ciBuZXR3b3JrIGlzIGJlaGluZCBhICBwcm94eS4NClRoaXMgbWF5IGhlbHA6DQpodHRwczov
+L3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1dvcmtpbmdfQmVoaW5kX2FfTmV0d29ya19Qcm94
+eQ0KDQotQ2FybG9zIEINCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFtt
+YWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgQnVydG9u
+LCBSb3NzDQpTZW50OiBXZWRuZXNkYXksIEF1Z3VzdCAwOSwgMjAxNyA2OjM1IEFNDQpUbzogUmlr
+byBIbyA8YW50b25pdXMucmlrb0BnbWFpbC5jb20+DQpDYzogTjogPHlvY3RvQHlvY3RvcHJvamVj
+dC5vcmc+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBiaXRiYWtlIGVycm9yID8NCg0KSSd2ZSBubyBp
+ZGVhIHdoeSB5b3UgY2FuJ3QgY29ubmVjdCB0byBleGFtcGxlLmNvbTxodHRwOi8vZXhhbXBsZS5j
+b20+IHVzaW5nIHdnZXQsIHlvdSdsbCBoYXZlIHRvIGRlYnVnIGl0IHlvdXJzZWxmLg0KDQpSb3Nz
+DQoNCk9uIDkgQXVndXN0IDIwMTcgYXQgMTE6MjcsIFJpa28gSG8gPGFudG9uaXVzLnJpa29AZ21h
+aWwuY29tPG1haWx0bzphbnRvbml1cy5yaWtvQGdtYWlsLmNvbT4+IHdyb3RlOg0KDQpzbyB3aGF0
+IHMgdGhlIGlzc3Vl77yfIG15IGNvbm5lY3Rpb24gaXMgd29ya2luZy4gaXMgaXQgcmVsYXRlZCB3
+aXRoIC9ldGMvaG9zdHM/DQp0aGFua3MNCk9uIEF1ZyA5LCAyMDE3IDQ6MzggUE0sICJCdXJ0b24s
+IFJvc3MiIDxyb3NzLmJ1cnRvbkBpbnRlbC5jb208bWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNv
+bT4+IHdyb3RlOg0KWWVwLiAgVGhhdCdzIHlvdXIgcHJvYmxlbS4NCg0KJCB3Z2V0IGh0dHBzOi8v
+d3d3LmV4YW1wbGUuY29tLw0KLS0yMDE3LTA4LTA5IDA5OjM3OjQzLS0gIGh0dHBzOi8vd3d3LmV4
+YW1wbGUuY29tLw0KUmVzb2x2aW5nIHd3dy5leGFtcGxlLmNvbTxodHRwOi8vd3d3LmV4YW1wbGUu
+Y29tPi4uLiA5My4xODQuMjE2LjM0LCAyNjA2OjI4MDA6MjIwOjE6MjQ4OjE4OTM6MjVjODoxOTQ2
+DQpDb25uZWN0aW5nIHRvIHd3dy5leGFtcGxlLmNvbTxodHRwOi8vd3d3LmV4YW1wbGUuY29tPnw5
+My4xODQuMjE2LjM0fDo0NDMuLi4gY29ubmVjdGVkLg0KSFRUUCByZXF1ZXN0IHNlbnQsIGF3YWl0
+aW5nIHJlc3BvbnNlLi4uIDIwMCBPSw0KTGVuZ3RoOiAxMjcwICgxLjJLKSBbdGV4dC9odG1sXQ0K
+U2F2aW5nIHRvOiDigJhpbmRleC5odG1s4oCZDQoNCmluZGV4Lmh0bWwgICAgICAgICAgMTAwJVs9
+PT09PT09PT09PT09PT09PT09Pl0gICAxLjI0SyAgLS0uLUtCL3MgICAgaW4gMHMNCg0KMjAxNy0w
+OC0wOSAwOTozNzo0NCAoMTUuMyBNQi9zKSAtIOKAmGluZGV4Lmh0bWzigJkgc2F2ZWQgWzEyNzAv
+MTI3MF0NCg0KV29ya3MgZm9yIG1lLiAgWW91ciBuZXR3b3JrIG9yIHdnZXQgaXMgYnJva2VuLCBh
+bmQgdGhhdCBpcyB1bnJlbGF0ZWQgdG8gYml0YmFrZS95b2N0by9ldGMuDQoNClJvc3MNCg0KT24g
+OSBBdWd1c3QgMjAxNyBhdCAwOTozNCwgUmlrbyA8YW50b25pdXMucmlrb0BnbWFpbC5jb208bWFp
+bHRvOmFudG9uaXVzLnJpa29AZ21haWwuY29tPj4gd3JvdGU6DQoNClRoaXMgb25lID8NCg0KYmlh
+bmNoaUBiaWFuY2hpLUhQLVBhdmlsaW9uLWR2Ni1Ob3RlYm9vay1QQzp+L3Bva3kvYnVpbGQkIHdn
+ZXQgaHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vDQotLTIwMTctMDgtMDkgMTY6MzM6MDUtLSAgaHR0
+cHM6Ly93d3cuZXhhbXBsZS5jb20vDQpSZXNvbHZpbmcgd3d3LmV4YW1wbGUuY29tPGh0dHA6Ly93
+d3cuZXhhbXBsZS5jb20+ICh3d3cuZXhhbXBsZS5jb208aHR0cDovL3d3dy5leGFtcGxlLmNvbT4p
+Li4uIGZhaWxlZDogTmFtZSBvciBzZXJ2aWNlIG5vdCBrbm93bi4NCndnZXQ6IHVuYWJsZSB0byBy
+ZXNvbHZlIGhvc3QgYWRkcmVzcyAnd3d3LmV4YW1wbGUuY29t4oCZPGh0dHA6Ly93d3cuZXhhbXBs
+ZS5jb23igJk+DQoNCk9uIDA5LzA4LzE3IDE2OjMxLCBCdXJ0b24sIFJvc3Mgd3JvdGU6DQpGb3Ig
+c29tZSByZWFzb24sIGJpdGJha2UgY2FuJ3QgZG8gIndnZXQgaHR0cHM6Ly93d3cuZXhhbXBsZS5j
+b20vIi4gICBUcnkgcnVubmluZyB0aGF0IGNvbW1hbmQgb3V0c2lkZSBvZiBiaXRiYWtlIGFuZCBz
+ZWVpbmcgaWYgaXQgcmV0dXJucyBhbnkgZXJyb3JzLg0KDQpSb3NzDQoNCk9uIDkgQXVndXN0IDIw
+MTcgYXQgMDk6MjksIFJpa28gPGFudG9uaXVzLnJpa29AZ21haWwuY29tPG1haWx0bzphbnRvbml1
+cy5yaWtvQGdtYWlsLmNvbT4+IHdyb3RlOg0KRGVhciBZb2N0byBNZW1iZXIsDQoNCg0KSSBoYXZl
+IGRvd25sb2FkZWQgZnJlc2ggaW5zdGFsbCBvZiB5b2N0byBidXQgZ290IGVycm9yLCBoZXJlJ3Mg
+dGhlIHRyYWNlIDoNCg0KYmlhbmNoaUBiaWFuY2hpLUhQLVBhdmlsaW9uLWR2Ni1Ob3RlYm9vay1Q
+Qzp+JCBnaXQgY2xvbmUgLWIgcHlybyBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9wb2t5Lmdp
+dDxodHRwOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reS5naXQ+DQpDbG9uaW5nIGludG8gJ3Bv
+a3knLi4uDQpyZW1vdGU6IENvdW50aW5nIG9iamVjdHM6IDM3MzE4MywgZG9uZS4NCnJlbW90ZTog
+Q29tcHJlc3Npbmcgb2JqZWN0czogMTAwJSAoODkzNjYvODkzNjYpLCBkb25lLg0KcmVtb3RlOiBU
+b3RhbCAzNzMxODMgKGRlbHRhIDI3NzQxOCksIHJldXNlZCAzNzMwMzEgKGRlbHRhIDI3NzI2NikN
+ClJlY2VpdmluZyBvYmplY3RzOiAxMDAlICgzNzMxODMvMzczMTgzKSwgMTM0LjcxIE1pQiB8IDEu
+NDcgTWlCL3MsIGRvbmUuDQpSZXNvbHZpbmcgZGVsdGFzOiAxMDAlICgyNzc0MTgvMjc3NDE4KSwg
+ZG9uZS4NCkNoZWNraW5nIGNvbm5lY3Rpdml0eS4uLiBkb25lLg0KDQoNCmJpYW5jaGlAYmlhbmNo
+aS1IUC1QYXZpbGlvbi1kdjYtTm90ZWJvb2stUEM6fi9wb2t5JCBzb3VyY2Ugb2UtaW5pdC1idWls
+ZC1lbnYNCllvdSBoYWQgbm8gY29uZi9sb2NhbC5jb25mIGZpbGUuIFRoaXMgY29uZmlndXJhdGlv
+biBmaWxlIGhhcyB0aGVyZWZvcmUgYmVlbg0KY3JlYXRlZCBmb3IgeW91IHdpdGggc29tZSBkZWZh
+dWx0IHZhbHVlcy4gWW91IG1heSB3aXNoIHRvIGVkaXQgaXQgdG8sIGZvcg0KZXhhbXBsZSwgc2Vs
+ZWN0IGEgZGlmZmVyZW50IE1BQ0hJTkUgKHRhcmdldCBoYXJkd2FyZSkuIFNlZSBjb25mL2xvY2Fs
+LmNvbmYNCmZvciBtb3JlIGluZm9ybWF0aW9uIGFzIGNvbW1vbiBjb25maWd1cmF0aW9uIG9wdGlv
+bnMgYXJlIGNvbW1lbnRlZC4NCg0KWW91IGhhZCBubyBjb25mL2JibGF5ZXJzLmNvbmYgZmlsZS4g
+VGhpcyBjb25maWd1cmF0aW9uIGZpbGUgaGFzIHRoZXJlZm9yZSBiZWVuDQpjcmVhdGVkIGZvciB5
+b3Ugd2l0aCBzb21lIGRlZmF1bHQgdmFsdWVzLiBUbyBhZGQgYWRkaXRpb25hbCBtZXRhZGF0YSBs
+YXllcnMNCmludG8geW91ciBjb25maWd1cmF0aW9uIHBsZWFzZSBhZGQgZW50cmllcyB0byBjb25m
+L2JibGF5ZXJzLmNvbmYuDQoNClRoZSBZb2N0byBQcm9qZWN0IGhhcyBleHRlbnNpdmUgZG9jdW1l
+bnRhdGlvbiBhYm91dCBPRSBpbmNsdWRpbmcgYSByZWZlcmVuY2UNCm1hbnVhbCB3aGljaCBjYW4g
+YmUgZm91bmQgYXQ6DQogICAgaHR0cDovL3lvY3RvcHJvamVjdC5vcmcvZG9jdW1lbnRhdGlvbg0K
+DQpGb3IgbW9yZSBpbmZvcm1hdGlvbiBhYm91dCBPcGVuRW1iZWRkZWQgc2VlIHRoZWlyIHdlYnNp
+dGU6DQogICAgaHR0cDovL3d3dy5vcGVuZW1iZWRkZWQub3JnLw0KDQoNCiMjIyBTaGVsbCBlbnZp
+cm9ubWVudCBzZXQgdXAgZm9yIGJ1aWxkcy4gIyMjDQoNCllvdSBjYW4gbm93IHJ1biAnYml0YmFr
+ZSA8dGFyZ2V0PicNCg0KQ29tbW9uIHRhcmdldHMgYXJlOg0KICAgIGNvcmUtaW1hZ2UtbWluaW1h
+bA0KICAgIGNvcmUtaW1hZ2Utc2F0bw0KICAgIG1ldGEtdG9vbGNoYWluDQogICAgbWV0YS1pZGUt
+c3VwcG9ydA0KDQpZb3UgY2FuIGFsc28gcnVuIGdlbmVyYXRlZCBxZW11IGltYWdlcyB3aXRoIGEg
+Y29tbWFuZCBsaWtlICdydW5xZW11IHFlbXV4ODYnDQpiaWFuY2hpQGJpYW5jaGktSFAtUGF2aWxp
+b24tZHY2LU5vdGVib29rLVBDOn4vcG9reS9idWlsZCQgYml0YmFrZSBjb3JlLWltYWdlLW1pbmlt
+YWwNCkVSUk9SOiAgT0UtY29yZSdzIGNvbmZpZyBzYW5pdHkgY2hlY2tlciBkZXRlY3RlZCBhIHBv
+dGVudGlhbCBtaXNjb25maWd1cmF0aW9uLg0KICAgIEVpdGhlciBmaXggdGhlIGNhdXNlIG9mIHRo
+aXMgZXJyb3Igb3IgYXQgeW91ciBvd24gcmlzayBkaXNhYmxlIHRoZSBjaGVja2VyIChzZWUgc2Fu
+aXR5LmNvbmYpLg0KICAgIEZvbGxvd2luZyBpcyB0aGUgbGlzdCBvZiBwb3RlbnRpYWwgcHJvYmxl
+bXMgLyBhZHZpc29yaWVzOg0KDQogICAgRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6ICdodHRwczov
+L3d3dy5leGFtcGxlLmNvbS8nLiBVUkwgaHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vIGRvZXNuJ3Qg
+d29yay4NCiAgICBQbGVhc2UgZW5zdXJlIHlvdXIgaG9zdCdzIG5ldHdvcmsgaXMgY29uZmlndXJl
+ZCBjb3JyZWN0bHksDQogICAgb3Igc2V0IEJCX05PX05FVFdPUksgPSAiMSIgdG8gZGlzYWJsZSBu
+ZXR3b3JrIGFjY2VzcyBpZg0KICAgIGFsbCByZXF1aXJlZCBzb3VyY2VzIGFyZSBvbiBsb2NhbCBk
+aXNrLg0KDQoNClN1bW1hcnk6IFRoZXJlIHdhcyAxIEVSUk9SIG1lc3NhZ2Ugc2hvd24sIHJldHVy
+bmluZyBhIG5vbi16ZXJvIGV4aXQgY29kZS4NCg0KDQpBbnkgc3VnZ2VzdGlvbnMgPw0KDQpJJ20g
+dXNpbmcgdWJ1bnR1IDE2LjA0LA0KDQpUaGFua3MNCg0KLS0NCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlv
+Y3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRwczovL2xp
+c3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0KDQoNCg0KDQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXw0KVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0aGlz
+IG1lc3NhZ2UgbWF5IGJlIGNvbmZpZGVudGlhbCBhbmQgbGVnYWxseSBwcm90ZWN0ZWQgdW5kZXIg
+YXBwbGljYWJsZSBsYXcuIFRoZSBtZXNzYWdlIGlzIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIGFk
+ZHJlc3NlZShzKS4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgeW91IGFy
+ZSBoZXJlYnkgbm90aWZpZWQgdGhhdCBhbnkgdXNlLCBmb3J3YXJkaW5nLCBkaXNzZW1pbmF0aW9u
+LCBvciByZXByb2R1Y3Rpb24gb2YgdGhpcyBtZXNzYWdlIGlzIHN0cmljdGx5IHByb2hpYml0ZWQg
+YW5kIG1heSBiZSB1bmxhd2Z1bC4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVu
+dCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBieSByZXR1cm4gZS1tYWlsIGFuZCBkZXN0cm95
+IGFsbCBjb3BpZXMgb2YgdGhlIG9yaWdpbmFsIG1lc3NhZ2UuDQo=
 
-Ross
+--_000_DB5P122MB000777D198C8510F25BF9093D68B0DB5P122MB0007EURP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 9 August 2017 at 11:27, Riko Ho <antonius.riko@gmail.com> wrote:
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Ik1TIEdvdGhpYyI7DQoJcGFub3NlLTE6MiAxMSA2IDkgNyAyIDUgOCAyIDQ7fQ0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQE1TIEdv
+dGhpYyI7DQoJcGFub3NlLTE6MiAxMSA2IDkgNyAyIDUgOCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5p
+dGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFy
+Z2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglm
+b250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlw
+ZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVj
+b3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2Vk
+DQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0
+aW9uOnVuZGVybGluZTt9DQpwDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFs
+dDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFt
+aWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4ubTM2NjAwNzg2MjE1OTM4OTExMW0t
+MjEwODE5OTQ1NDUxNTE5MDg1OW0xMjYyMjEzOTM5ODEyMTc4NzAzaG9lbnpiDQoJe21zby1zdHls
+ZS1uYW1lOm1fMzY2MDA3ODYyMTU5Mzg5MTExbV8tMjEwODE5OTQ1NDUxNTE5MDg1OW1fMTI2MjIx
+MzkzOTgxMjE3ODcwM2hvZW56Yjt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlw
+ZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCglj
+b2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1v
+bmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0
+aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4w
+aW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxl
+PjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIg
+c3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48
+eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQi
+IGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+
+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNs
+YXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOiMxRjQ5N0QiPlRoaXMgaXNzdWUgc2VlbXMgdG8gYmUgcmVsYXRlZCB0byBwcm94eSBz
+ZXJ2ZXIuIFByb2JhYmx5IHlvdXIgbmV0d29yayBpcyBiZWhpbmQgYSAmbmJzcDtwcm94eS48bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6IzFGNDk3RCI+VGhpcyBtYXkgaGVscDo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiMxRjQ5N0QiPjxhIGhyZWY9Imh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvV29y
+a2luZ19CZWhpbmRfYV9OZXR3b3JrX1Byb3h5Ij5odHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9y
+Zy93aWtpL1dvcmtpbmdfQmVoaW5kX2FfTmV0d29ya19Qcm94eTwvYT48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPi1DYXJsb3MgQjxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiB5b2N0by1ib3Vu
+Y2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5v
+cmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkJ1cnRvbiwgUm9zczxicj4NCjxiPlNlbnQ6PC9iPiBX
+ZWRuZXNkYXksIEF1Z3VzdCAwOSwgMjAxNyA2OjM1IEFNPGJyPg0KPGI+VG86PC9iPiBSaWtvIEhv
+ICZsdDthbnRvbml1cy5yaWtvQGdtYWlsLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IE46ICZsdDt5
+b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3Rv
+XSBiaXRiYWtlIGVycm9yID88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
+J3ZlIG5vIGlkZWEgd2h5IHlvdSBjYW4ndCBjb25uZWN0IHRvIDxhIGhyZWY9Imh0dHA6Ly9leGFt
+cGxlLmNvbSI+DQpleGFtcGxlLmNvbTwvYT4gdXNpbmcgd2dldCwgeW91J2xsIGhhdmUgdG8gZGVi
+dWcgaXQgeW91cnNlbGYuPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5Sb3NzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPk9uIDkgQXVndXN0IDIwMTcgYXQgMTE6MjcsIFJpa28gSG8gJmx0OzxhIGhyZWY9Im1h
+aWx0bzphbnRvbml1cy5yaWtvQGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmFudG9uaXVzLnJp
+a29AZ21haWwuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBz
+dHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5n
+OjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0K
+PHA+c28gd2hhdCBzIHRoZSBpc3N1ZTxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LHNhbnMtc2VyaWYiPu+8nzwvc3Bhbj4gbXkgY29ubmVjdGlvbiBpcyB3b3JraW5n
+LiBpcyBpdCByZWxhdGVkIHdpdGggL2V0Yy9ob3N0cz88YnI+DQp0aGFua3M8bzpwPjwvbzpwPjwv
+cD4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIEF1ZyA5LCAy
+MDE3IDQ6MzggUE0sICZxdW90O0J1cnRvbiwgUm9zcyZxdW90OyAmbHQ7PGEgaHJlZj0ibWFpbHRv
+OnJvc3MuYnVydG9uQGludGVsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnJvc3MuYnVydG9uQGludGVs
+LmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJv
+cmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGlu
+IDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5ZZXAuJm5ic3A7IFRoYXQncyB5b3VyIHByb2JsZW0uPG86cD48
+L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+JCB3Z2V0IDxh
+IGhyZWY9Imh0dHBzOi8vd3d3LmV4YW1wbGUuY29tLyIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8v
+d3d3LmV4YW1wbGUuY29tLzwvYT48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPi0tMjAxNy0wOC0wOSAwOTozNzo0My0tICZuYnNwOzxhIGhyZWY9Imh0
+dHBzOi8vd3d3LmV4YW1wbGUuY29tLyIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vd3d3LmV4YW1w
+bGUuY29tLzwvYT48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPlJlc29sdmluZyA8YSBocmVmPSJodHRwOi8vd3d3LmV4YW1wbGUuY29tIj53d3cuZXhh
+bXBsZS5jb208L2E+Li4uIDkzLjE4NC4yMTYuMzQsIDI2MDY6MjgwMDoyMjA6MToyNDg6MTg5Mzoy
+NWM4OjE5NDY8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPkNvbm5lY3RpbmcgdG8gPGEgaHJlZj0iaHR0cDovL3d3dy5leGFtcGxlLmNvbSIgdGFyZ2V0
+PSJfYmxhbmsiPg0Kd3d3LmV4YW1wbGUuY29tPC9hPnw5My4xODQuMjE2LjM0fDo0NDMuLi4gY29u
+bmVjdGVkLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+SFRUUCByZXF1ZXN0IHNlbnQsIGF3YWl0aW5nIHJlc3BvbnNlLi4uIDIwMCBPSzxvOnA+PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TGVuZ3RoOiAxMjcw
+ICgxLjJLKSBbdGV4dC9odG1sXTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+U2F2aW5nIHRvOiDigJhpbmRleC5odG1s4oCZPG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmluZGV4Lmh0bWwgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOzEwMCVbPT09PT09PT09PT09PT09PT09PSZndDtd
+ICZuYnNwOyAxLjI0SyAmbmJzcDstLS4tS0IvcyAmbmJzcDsgJm5ic3A7aW4gMHM8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+MjAxNy0wOC0wOSAw
+OTozNzo0NCAoMTUuMyBNQi9zKSAtIOKAmGluZGV4Lmh0bWzigJkgc2F2ZWQgWzEyNzAvMTI3MF08
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5Xb3JrcyBmb3IgbWUuJm5ic3A7IFlvdXIgbmV0d29yayBvciB3Z2V0IGlzIGJyb2tlbiwg
+YW5kIHRoYXQgaXMgdW5yZWxhdGVkIHRvIGJpdGJha2UveW9jdG8vZXRjLjxvOnA+PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Sb3NzPG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDkgQXVndXN0IDIw
+MTcgYXQgMDk6MzQsIFJpa28gJmx0OzxhIGhyZWY9Im1haWx0bzphbnRvbml1cy5yaWtvQGdtYWls
+LmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmFudG9uaXVzLnJpa29AZ21haWwuY29tPC9hPiZndDsgd3Jv
+dGU6PG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVy
+LWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdp
+bi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0KPGRpdj4NCjxwPlRoaXMgb25lID88bzpw
+PjwvbzpwPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+YmlhbmNoaUBiaWFu
+Y2hpLUhQLVBhdmlsaW9uLWR2Ni1Ob3RlYm9vay1QQzp+L3Bva3kvYnVpbGQkIHdnZXQNCjxhIGhy
+ZWY9Imh0dHBzOi8vd3d3LmV4YW1wbGUuY29tLyIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vd3d3
+LmV4YW1wbGUuY29tLzwvYT48YnI+DQotLTIwMTctMDgtMDkgMTY6MzM6MDUtLSZuYnNwOyA8YSBo
+cmVmPSJodHRwczovL3d3dy5leGFtcGxlLmNvbS8iIHRhcmdldD0iX2JsYW5rIj5odHRwczovL3d3
+dy5leGFtcGxlLmNvbS88L2E+PGJyPg0KUmVzb2x2aW5nIDxhIGhyZWY9Imh0dHA6Ly93d3cuZXhh
+bXBsZS5jb20iIHRhcmdldD0iX2JsYW5rIj53d3cuZXhhbXBsZS5jb208L2E+ICg8YSBocmVmPSJo
+dHRwOi8vd3d3LmV4YW1wbGUuY29tIiB0YXJnZXQ9Il9ibGFuayI+d3d3LmV4YW1wbGUuY29tPC9h
+PikuLi4gZmFpbGVkOiBOYW1lIG9yIHNlcnZpY2Ugbm90IGtub3duLjxicj4NCndnZXQ6IHVuYWJs
+ZSB0byByZXNvbHZlIGhvc3QgYWRkcmVzcyAnPGEgaHJlZj0iaHR0cDovL3d3dy5leGFtcGxlLmNv
+beKAmSIgdGFyZ2V0PSJfYmxhbmsiPnd3dy5leGFtcGxlLmNvbeKAmTwvYT48bzpwPjwvbzpwPjwv
+cD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMDkvMDgvMTcgMTY6MzEsIEJ1cnRv
+biwgUm9zcyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9
+Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+Rm9yIHNvbWUgcmVhc29uLCBiaXRiYWtlIGNhbid0IGRvICZxdW90O3dnZXQg
+PGEgaHJlZj0iaHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vIiB0YXJnZXQ9Il9ibGFuayI+DQpodHRw
+czovL3d3dy5leGFtcGxlLmNvbS88L2E+JnF1b3Q7LiAmbmJzcDsgVHJ5IHJ1bm5pbmcgdGhhdCBj
+b21tYW5kIG91dHNpZGUgb2YgYml0YmFrZSBhbmQgc2VlaW5nIGlmIGl0IHJldHVybnMgYW55IGVy
+cm9ycy4NCjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Um9z
+czxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5P
+biA5IEF1Z3VzdCAyMDE3IGF0IDA5OjI5LCBSaWtvICZsdDs8YSBocmVmPSJtYWlsdG86YW50b25p
+dXMucmlrb0BnbWFpbC5jb20iIHRhcmdldD0iX2JsYW5rIj5hbnRvbml1cy5yaWtvQGdtYWlsLmNv
+bTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRl
+cjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBp
+biA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPkRlYXIgWW9jdG8gTWVtYmVyLDxicj4NCjxicj4NCjxicj4NCkkgaGF2ZSBkb3du
+bG9hZGVkIGZyZXNoIGluc3RhbGwgb2YgeW9jdG8gYnV0IGdvdCBlcnJvciwgaGVyZSdzIHRoZSB0
+cmFjZSA6PGJyPg0KPGJyPg0KYmlhbmNoaUBiaWFuY2hpLUhQLVBhdmlsaW9uLWR2Ni1Ob3RlYm9v
+ay1QQzp+JCBnaXQgY2xvbmUgLWIgcHlybyBnaXQ6Ly88YSBocmVmPSJodHRwOi8vZ2l0LnlvY3Rv
+cHJvamVjdC5vcmcvcG9reS5naXQiIHRhcmdldD0iX2JsYW5rIj5naXQueW9jdG9wcm9qZWN0Lm9y
+Zy9wb2t5LmdpdDwvYT48YnI+DQpDbG9uaW5nIGludG8gJ3Bva3knLi4uPGJyPg0KcmVtb3RlOiBD
+b3VudGluZyBvYmplY3RzOiAzNzMxODMsIGRvbmUuPGJyPg0KcmVtb3RlOiBDb21wcmVzc2luZyBv
+YmplY3RzOiAxMDAlICg4OTM2Ni84OTM2NiksIGRvbmUuPGJyPg0KcmVtb3RlOiBUb3RhbCAzNzMx
+ODMgKGRlbHRhIDI3NzQxOCksIHJldXNlZCAzNzMwMzEgKGRlbHRhIDI3NzI2Nik8YnI+DQpSZWNl
+aXZpbmcgb2JqZWN0czogMTAwJSAoMzczMTgzLzM3MzE4MyksIDEzNC43MSBNaUIgfCAxLjQ3IE1p
+Qi9zLCBkb25lLjxicj4NClJlc29sdmluZyBkZWx0YXM6IDEwMCUgKDI3NzQxOC8yNzc0MTgpLCBk
+b25lLjxicj4NCkNoZWNraW5nIGNvbm5lY3Rpdml0eS4uLiBkb25lLjxicj4NCjxicj4NCjxicj4N
+CmJpYW5jaGlAYmlhbmNoaS1IUC1QYXZpbGlvbi1kdjYtTm90ZWJvb2stUEM6fi9wb2t5JCBzb3Vy
+Y2Ugb2UtaW5pdC1idWlsZC1lbnY8YnI+DQpZb3UgaGFkIG5vIGNvbmYvbG9jYWwuY29uZiBmaWxl
+LiBUaGlzIGNvbmZpZ3VyYXRpb24gZmlsZSBoYXMgdGhlcmVmb3JlIGJlZW48YnI+DQpjcmVhdGVk
+IGZvciB5b3Ugd2l0aCBzb21lIGRlZmF1bHQgdmFsdWVzLiBZb3UgbWF5IHdpc2ggdG8gZWRpdCBp
+dCB0bywgZm9yPGJyPg0KZXhhbXBsZSwgc2VsZWN0IGEgZGlmZmVyZW50IE1BQ0hJTkUgKHRhcmdl
+dCBoYXJkd2FyZSkuIFNlZSBjb25mL2xvY2FsLmNvbmY8YnI+DQpmb3IgbW9yZSBpbmZvcm1hdGlv
+biBhcyBjb21tb24gY29uZmlndXJhdGlvbiBvcHRpb25zIGFyZSBjb21tZW50ZWQuPGJyPg0KPGJy
+Pg0KWW91IGhhZCBubyBjb25mL2JibGF5ZXJzLmNvbmYgZmlsZS4gVGhpcyBjb25maWd1cmF0aW9u
+IGZpbGUgaGFzIHRoZXJlZm9yZSBiZWVuPGJyPg0KY3JlYXRlZCBmb3IgeW91IHdpdGggc29tZSBk
+ZWZhdWx0IHZhbHVlcy4gVG8gYWRkIGFkZGl0aW9uYWwgbWV0YWRhdGEgbGF5ZXJzPGJyPg0KaW50
+byB5b3VyIGNvbmZpZ3VyYXRpb24gcGxlYXNlIGFkZCBlbnRyaWVzIHRvIGNvbmYvYmJsYXllcnMu
+Y29uZi48YnI+DQo8YnI+DQpUaGUgWW9jdG8gUHJvamVjdCBoYXMgZXh0ZW5zaXZlIGRvY3VtZW50
+YXRpb24gYWJvdXQgT0UgaW5jbHVkaW5nIGEgcmVmZXJlbmNlPGJyPg0KbWFudWFsIHdoaWNoIGNh
+biBiZSBmb3VuZCBhdDo8YnI+DQombmJzcDsgJm5ic3A7IDxhIGhyZWY9Imh0dHA6Ly95b2N0b3By
+b2plY3Qub3JnL2RvY3VtZW50YXRpb24iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8veW9jdG9wcm9q
+ZWN0Lm9yZy9kb2N1bWVudGF0aW9uPC9hPjxicj4NCjxicj4NCkZvciBtb3JlIGluZm9ybWF0aW9u
+IGFib3V0IE9wZW5FbWJlZGRlZCBzZWUgdGhlaXIgd2Vic2l0ZTo8YnI+DQombmJzcDsgJm5ic3A7
+IDxhIGhyZWY9Imh0dHA6Ly93d3cub3BlbmVtYmVkZGVkLm9yZy8iIHRhcmdldD0iX2JsYW5rIj5o
+dHRwOi8vd3d3Lm9wZW5lbWJlZGRlZC5vcmcvPC9hPjxicj4NCjxicj4NCjxicj4NCiMjIyBTaGVs
+bCBlbnZpcm9ubWVudCBzZXQgdXAgZm9yIGJ1aWxkcy4gIyMjPGJyPg0KPGJyPg0KWW91IGNhbiBu
+b3cgcnVuICdiaXRiYWtlICZsdDt0YXJnZXQmZ3Q7Jzxicj4NCjxicj4NCkNvbW1vbiB0YXJnZXRz
+IGFyZTo8YnI+DQombmJzcDsgJm5ic3A7IGNvcmUtaW1hZ2UtbWluaW1hbDxicj4NCiZuYnNwOyAm
+bmJzcDsgY29yZS1pbWFnZS1zYXRvPGJyPg0KJm5ic3A7ICZuYnNwOyBtZXRhLXRvb2xjaGFpbjxi
+cj4NCiZuYnNwOyAmbmJzcDsgbWV0YS1pZGUtc3VwcG9ydDxicj4NCjxicj4NCllvdSBjYW4gYWxz
+byBydW4gZ2VuZXJhdGVkIHFlbXUgaW1hZ2VzIHdpdGggYSBjb21tYW5kIGxpa2UgJ3J1bnFlbXUg
+cWVtdXg4Nic8YnI+DQpiaWFuY2hpQGJpYW5jaGktSFAtUGF2aWxpb24tZHY2LU5vdGVib29rLVBD
+On4vcG9reS9idWlsZCQgYml0YmFrZSBjb3JlLWltYWdlLW1pbmltYWw8YnI+DQpFUlJPUjombmJz
+cDsgT0UtY29yZSdzIGNvbmZpZyBzYW5pdHkgY2hlY2tlciBkZXRlY3RlZCBhIHBvdGVudGlhbCBt
+aXNjb25maWd1cmF0aW9uLjxicj4NCiZuYnNwOyAmbmJzcDsgRWl0aGVyIGZpeCB0aGUgY2F1c2Ug
+b2YgdGhpcyBlcnJvciBvciBhdCB5b3VyIG93biByaXNrIGRpc2FibGUgdGhlIGNoZWNrZXIgKHNl
+ZSBzYW5pdHkuY29uZikuPGJyPg0KJm5ic3A7ICZuYnNwOyBGb2xsb3dpbmcgaXMgdGhlIGxpc3Qg
+b2YgcG90ZW50aWFsIHByb2JsZW1zIC8gYWR2aXNvcmllczo8YnI+DQo8YnI+DQombmJzcDsgJm5i
+c3A7IEZldGNoZXIgZmFpbHVyZSBmb3IgVVJMOiAnPGEgaHJlZj0iaHR0cHM6Ly93d3cuZXhhbXBs
+ZS5jb20vIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vPC9hPicuIFVS
+TA0KPGEgaHJlZj0iaHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vIiB0YXJnZXQ9Il9ibGFuayI+aHR0
+cHM6Ly93d3cuZXhhbXBsZS5jb20vPC9hPiBkb2Vzbid0IHdvcmsuPGJyPg0KJm5ic3A7ICZuYnNw
+OyBQbGVhc2UgZW5zdXJlIHlvdXIgaG9zdCdzIG5ldHdvcmsgaXMgY29uZmlndXJlZCBjb3JyZWN0
+bHksPGJyPg0KJm5ic3A7ICZuYnNwOyBvciBzZXQgQkJfTk9fTkVUV09SSyA9ICZxdW90OzEmcXVv
+dDsgdG8gZGlzYWJsZSBuZXR3b3JrIGFjY2VzcyBpZjxicj4NCiZuYnNwOyAmbmJzcDsgYWxsIHJl
+cXVpcmVkIHNvdXJjZXMgYXJlIG9uIGxvY2FsIGRpc2suPGJyPg0KPGJyPg0KPGJyPg0KU3VtbWFy
+eTogVGhlcmUgd2FzIDEgRVJST1IgbWVzc2FnZSBzaG93biwgcmV0dXJuaW5nIGEgbm9uLXplcm8g
+ZXhpdCBjb2RlLjxicj4NCjxicj4NCjxicj4NCkFueSBzdWdnZXN0aW9ucyA/PGJyPg0KPGJyPg0K
+SSdtIHVzaW5nIHVidW50dSAxNi4wNCw8YnI+DQo8YnI+DQpUaGFua3M8c3BhbiBzdHlsZT0iY29s
+b3I6Izg4ODg4OCI+PGJyPg0KPGJyPg0KPHNwYW4gY2xhc3M9Im0zNjYwMDc4NjIxNTkzODkxMTFt
+LTIxMDgxOTk0NTQ1MTUxOTA4NTltMTI2MjIxMzkzOTgxMjE3ODcwM2hvZW56YiI+LS0NCjwvc3Bh
+bj48YnI+DQo8c3BhbiBjbGFzcz0ibTM2NjAwNzg2MjE1OTM4OTExMW0tMjEwODE5OTQ1NDUxNTE5
+MDg1OW0xMjYyMjEzOTM5ODEyMTc4NzAzaG9lbnpiIj5fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0ibTM2NjAwNzg2
+MjE1OTM4OTExMW0tMjEwODE5OTQ1NDUxNTE5MDg1OW0xMjYyMjEzOTM5ODEyMTc4NzAzaG9lbnpi
+Ij55b2N0byBtYWlsaW5nIGxpc3Q8L3NwYW4+PGJyPg0KPHNwYW4gY2xhc3M9Im0zNjYwMDc4NjIx
+NTkzODkxMTFtLTIxMDgxOTk0NTQ1MTUxOTA4NTltMTI2MjIxMzkzOTgxMjE3ODcwM2hvZW56YiI+
+PGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciIHRhcmdldD0iX2JsYW5rIj55
+b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPjwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0ibTM2NjAw
+Nzg2MjE1OTM4OTExMW0tMjEwODE5OTQ1NDUxNTE5MDg1OW0xMjYyMjEzOTM5ODEyMTc4NzAzaG9l
+bnpiIj48YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9j
+dG8iIHRhcmdldD0iX2JsYW5rIj5odHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGlu
+Zm8veW9jdG88L2E+PC9zcGFuPjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4N
+CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rp
+dj4NCjwvYmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1
+b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
+YnI+DQo8aHI+DQo8Zm9udCBmYWNlPSJBcmlhbCIgY29sb3I9IkdyYXkiIHNpemU9IjEiPlRoZSBp
+bmZvcm1hdGlvbiBjb250YWluZWQgaW4gdGhpcyBtZXNzYWdlIG1heSBiZSBjb25maWRlbnRpYWwg
+YW5kIGxlZ2FsbHkgcHJvdGVjdGVkIHVuZGVyIGFwcGxpY2FibGUgbGF3LiBUaGUgbWVzc2FnZSBp
+cyBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBhZGRyZXNzZWUocykuIElmIHlvdSBhcmUgbm90IHRo
+ZSBpbnRlbmRlZCByZWNpcGllbnQsIHlvdSBhcmUgaGVyZWJ5IG5vdGlmaWVkDQogdGhhdCBhbnkg
+dXNlLCBmb3J3YXJkaW5nLCBkaXNzZW1pbmF0aW9uLCBvciByZXByb2R1Y3Rpb24gb2YgdGhpcyBt
+ZXNzYWdlIGlzIHN0cmljdGx5IHByb2hpYml0ZWQgYW5kIG1heSBiZSB1bmxhd2Z1bC4gSWYgeW91
+IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRl
+ciBieSByZXR1cm4gZS1tYWlsIGFuZCBkZXN0cm95IGFsbCBjb3BpZXMgb2YgdGhlIG9yaWdpbmFs
+IG1lc3NhZ2UuPGJyPg0KPC9mb250Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-> so what s the issue=EF=BC=9F my connection is working. is it related with
-> /etc/hosts?
-> thanks
-> On Aug 9, 2017 4:38 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
->
->> Yep.  That's your problem.
->>
->> $ wget https://www.example.com/
->> --2017-08-09 09:37:43--  https://www.example.com/
->> Resolving www.example.com... 93.184.216.34, 2606:2800:220:1:248:1893:25c=
-8:
->> 1946
->> Connecting to www.example.com|93.184.216.34|:443... connected.
->> HTTP request sent, awaiting response... 200 OK
->> Length: 1270 (1.2K) [text/html]
->> Saving to: =E2=80=98index.html=E2=80=99
->>
->> index.html          100%[=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D>]   1.24K  --.-KB/s    in 0s
->>
->> 2017-08-09 09:37:44 (15.3 MB/s) - =E2=80=98index.html=E2=80=99 saved [12=
-70/1270]
->>
->> Works for me.  Your network or wget is broken, and that is unrelated to
->> bitbake/yocto/etc.
->>
->> Ross
->>
->> On 9 August 2017 at 09:34, Riko <antonius.riko@gmail.com> wrote:
->>
->>> This one ?
->>>
->>> bianchi@bianchi-HP-Pavilion-dv6-Notebook-PC:~/poky/build$ wget
->>> https://www.example.com/
->>> --2017-08-09 16:33:05--  https://www.example.com/
->>> Resolving www.example.com (www.example.com)... failed: Name or service
->>> not known.
->>> wget: unable to resolve host address 'www.example.com=E2=80=99
->>>
->>>
->>> On 09/08/17 16:31, Burton, Ross wrote:
->>>
->>> For some reason, bitbake can't do "wget https://www.example.com/".
->>> Try running that command outside of bitbake and seeing if it returns an=
-y
->>> errors.
->>>
->>> Ross
->>>
->>> On 9 August 2017 at 09:29, Riko <antonius.riko@gmail.com> wrote:
->>>
->>>> Dear Yocto Member,
->>>>
->>>>
->>>> I have downloaded fresh install of yocto but got error, here's the
->>>> trace :
->>>>
->>>> bianchi@bianchi-HP-Pavilion-dv6-Notebook-PC:~$ git clone -b pyro git:/=
-/
->>>> git.yoctoproject.org/poky.git
->>>> Cloning into 'poky'...
->>>> remote: Counting objects: 373183, done.
->>>> remote: Compressing objects: 100% (89366/89366), done.
->>>> remote: Total 373183 (delta 277418), reused 373031 (delta 277266)
->>>> Receiving objects: 100% (373183/373183), 134.71 MiB | 1.47 MiB/s, done=
-.
->>>> Resolving deltas: 100% (277418/277418), done.
->>>> Checking connectivity... done.
->>>>
->>>>
->>>> bianchi@bianchi-HP-Pavilion-dv6-Notebook-PC:~/poky$ source
->>>> oe-init-build-env
->>>> You had no conf/local.conf file. This configuration file has therefore
->>>> been
->>>> created for you with some default values. You may wish to edit it to,
->>>> for
->>>> example, select a different MACHINE (target hardware). See
->>>> conf/local.conf
->>>> for more information as common configuration options are commented.
->>>>
->>>> You had no conf/bblayers.conf file. This configuration file has
->>>> therefore been
->>>> created for you with some default values. To add additional metadata
->>>> layers
->>>> into your configuration please add entries to conf/bblayers.conf.
->>>>
->>>> The Yocto Project has extensive documentation about OE including a
->>>> reference
->>>> manual which can be found at:
->>>>     http://yoctoproject.org/documentation
->>>>
->>>> For more information about OpenEmbedded see their website:
->>>>     http://www.openembedded.org/
->>>>
->>>>
->>>> ### Shell environment set up for builds. ###
->>>>
->>>> You can now run 'bitbake <target>'
->>>>
->>>> Common targets are:
->>>>     core-image-minimal
->>>>     core-image-sato
->>>>     meta-toolchain
->>>>     meta-ide-support
->>>>
->>>> You can also run generated qemu images with a command like 'runqemu
->>>> qemux86'
->>>> bianchi@bianchi-HP-Pavilion-dv6-Notebook-PC:~/poky/build$ bitbake
->>>> core-image-minimal
->>>> ERROR:  OE-core's config sanity checker detected a potential
->>>> misconfiguration.
->>>>     Either fix the cause of this error or at your own risk disable the
->>>> checker (see sanity.conf).
->>>>     Following is the list of potential problems / advisories:
->>>>
->>>>     Fetcher failure for URL: 'https://www.example.com/'. URL
->>>> https://www.example.com/ doesn't work.
->>>>     Please ensure your host's network is configured correctly,
->>>>     or set BB_NO_NETWORK =3D "1" to disable network access if
->>>>     all required sources are on local disk.
->>>>
->>>>
->>>> Summary: There was 1 ERROR message shown, returning a non-zero exit
->>>> code.
->>>>
->>>>
->>>> Any suggestions ?
->>>>
->>>> I'm using ubuntu 16.04,
->>>>
->>>> Thanks
->>>>
->>>> --
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>
->>>
->>>
->>
-
---001a113ed2e85fc4e405564fa2ad
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I&#39;ve no idea why you can&#39;t connect to <a href=3D"h=
-ttp://example.com">example.com</a> using wget, you&#39;ll have to debug it =
-yourself.<div><br></div><div>Ross</div></div><div class=3D"gmail_extra"><br=
-><div class=3D"gmail_quote">On 9 August 2017 at 11:27, Riko Ho <span dir=3D=
-"ltr">&lt;<a href=3D"mailto:antonius.riko@gmail.com" target=3D"_blank">anto=
-nius.riko@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
-><p>so what s the issue=EF=BC=9F my connection is working. is it related wi=
-th /etc/hosts?<br>
-thanks</p><div class=3D"HOEnZb"><div class=3D"h5">
-<div class=3D"gmail_quote">On Aug 9, 2017 4:38 PM, &quot;Burton, Ross&quot;=
- &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton=
-@intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex"><div dir=3D"ltr">Yep.=C2=A0 That&#39;s your problem.<div><br></div><d=
-iv><div>$ wget <a href=3D"https://www.example.com/" target=3D"_blank">https=
-://www.example.com/</a></div><div>--2017-08-09 09:37:43-- =C2=A0<a href=3D"=
-https://www.example.com/" target=3D"_blank">https://www.example.com/</a></d=
-iv><div>Resolving www.example.com... 93.184.216.34, 2606:2800:220:1:248:189=
-3:25c8:<wbr>1946</div><div>Connecting to <a href=3D"http://www.example.com"=
- target=3D"_blank">www.example.com</a>|93.184.216.34|<wbr>:443... connected=
-.</div><div>HTTP request sent, awaiting response... 200 OK</div><div>Length=
-: 1270 (1.2K) [text/html]</div><div>Saving to: =E2=80=98index.html=E2=80=99=
-</div><div><br></div><div>index.html =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0100%=
-[=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D&gt;] =C2=A0 1.24=
-K =C2=A0--.-KB/s =C2=A0 =C2=A0in 0s</div><div><br></div><div>2017-08-09 09:=
-37:44 (15.3 MB/s) - =E2=80=98index.html=E2=80=99 saved [1270/1270]</div></d=
-iv><div><br></div><div>Works for me.=C2=A0 Your network or wget is broken, =
-and that is unrelated to bitbake/yocto/etc.</div><div><br></div><div>Ross</=
-div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 9 Au=
-gust 2017 at 09:34, Riko <span dir=3D"ltr">&lt;<a href=3D"mailto:antonius.r=
-iko@gmail.com" target=3D"_blank">antonius.riko@gmail.com</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p>This one ?<br>
-    </p>
-    <p>bianchi@bianchi-HP-Pavilion-dv<wbr>6-Notebook-PC:~/poky/build$ wget
-      <a class=3D"m_366007862159389111m_-2108199454515190859m_1262213939812=
-178703moz-txt-link-freetext" href=3D"https://www.example.com/" target=3D"_b=
-lank">https://www.example.com/</a><br>
-      --2017-08-09 16:33:05--=C2=A0 <a class=3D"m_366007862159389111m_-2108=
-199454515190859m_1262213939812178703moz-txt-link-freetext" href=3D"https://=
-www.example.com/" target=3D"_blank">https://www.example.com/</a><br>
-      Resolving <a class=3D"m_366007862159389111m_-2108199454515190859m_126=
-2213939812178703moz-txt-link-abbreviated" href=3D"http://www.example.com" t=
-arget=3D"_blank">www.example.com</a> (<a class=3D"m_366007862159389111m_-21=
-08199454515190859m_1262213939812178703moz-txt-link-abbreviated" href=3D"htt=
-p://www.example.com" target=3D"_blank">www.example.com</a>)... failed: Name=
- or
-      service not known.<br>
-      wget: unable to resolve host address &#39;<a class=3D"m_3660078621593=
-89111m_-2108199454515190859m_1262213939812178703moz-txt-link-abbreviated" h=
-ref=3D"http://www.example.com=E2=80=99" target=3D"_blank">www.example.com=
-=E2=80=99</a><br>
-      <br>
-    </p><div><div class=3D"m_366007862159389111m_-2108199454515190859h5">
-    <br>
-    <div class=3D"m_366007862159389111m_-2108199454515190859m_1262213939812=
-178703moz-cite-prefix">On 09/08/17 16:31, Burton, Ross wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">For some reason, bitbake can&#39;t do &quot;wget <a =
-href=3D"https://www.example.com/" target=3D"_blank">https://www.example.com=
-/</a>&quot;.
-        =C2=A0 Try running that command outside of bitbake and seeing if it
-        returns any errors.
-        <div><br>
-        </div>
-        <div>Ross</div>
-      </div>
-      <div class=3D"gmail_extra"><br>
-        <div class=3D"gmail_quote">On 9 August 2017 at 09:29, Riko <span di=
-r=3D"ltr">&lt;<a href=3D"mailto:antonius.riko@gmail.com" target=3D"_blank">=
-antonius.riko@gmail.com</a>&gt;</span>
-          wrote:<br>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex">Dear Yocto
-            Member,<br>
-            <br>
-            <br>
-            I have downloaded fresh install of yocto but got error,
-            here&#39;s the trace :<br>
-            <br>
-            bianchi@bianchi-HP-Pavilion-dv<wbr>6-Notebook-PC:~$ git
-            clone -b pyro git://<a href=3D"http://git.yoctoproject.org/poky=
-.git" rel=3D"noreferrer" target=3D"_blank">git.yoctoproject.org/pok<wbr>y.g=
-it</a><br>
-            Cloning into &#39;poky&#39;...<br>
-            remote: Counting objects: 373183, done.<br>
-            remote: Compressing objects: 100% (89366/89366), done.<br>
-            remote: Total 373183 (delta 277418), reused 373031 (delta
-            277266)<br>
-            Receiving objects: 100% (373183/373183), 134.71 MiB | 1.47
-            MiB/s, done.<br>
-            Resolving deltas: 100% (277418/277418), done.<br>
-            Checking connectivity... done.<br>
-            <br>
-            <br>
-            bianchi@bianchi-HP-Pavilion-dv<wbr>6-Notebook-PC:~/poky$
-            source oe-init-build-env<br>
-            You had no conf/local.conf file. This configuration file has
-            therefore been<br>
-            created for you with some default values. You may wish to
-            edit it to, for<br>
-            example, select a different MACHINE (target hardware). See
-            conf/local.conf<br>
-            for more information as common configuration options are
-            commented.<br>
-            <br>
-            You had no conf/bblayers.conf file. This configuration file
-            has therefore been<br>
-            created for you with some default values. To add additional
-            metadata layers<br>
-            into your configuration please add entries to
-            conf/bblayers.conf.<br>
-            <br>
-            The Yocto Project has extensive documentation about OE
-            including a reference<br>
-            manual which can be found at:<br>
-            =C2=A0 =C2=A0 <a href=3D"http://yoctoproject.org/documentation"=
- rel=3D"noreferrer" target=3D"_blank">http://yoctoproject.org/docume<wbr>nt=
-ation</a><br>
-            <br>
-            For more information about OpenEmbedded see their website:<br>
-            =C2=A0 =C2=A0 <a href=3D"http://www.openembedded.org/" rel=3D"n=
-oreferrer" target=3D"_blank">http://www.openembedded.org/</a><br>
-            <br>
-            <br>
-            ### Shell environment set up for builds. ###<br>
-            <br>
-            You can now run &#39;bitbake &lt;target&gt;&#39;<br>
-            <br>
-            Common targets are:<br>
-            =C2=A0 =C2=A0 core-image-minimal<br>
-            =C2=A0 =C2=A0 core-image-sato<br>
-            =C2=A0 =C2=A0 meta-toolchain<br>
-            =C2=A0 =C2=A0 meta-ide-support<br>
-            <br>
-            You can also run generated qemu images with a command like
-            &#39;runqemu qemux86&#39;<br>
-            bianchi@bianchi-HP-Pavilion-dv<wbr>6-Notebook-PC:~/poky/build$
-            bitbake core-image-minimal<br>
-            ERROR:=C2=A0 OE-core&#39;s config sanity checker detected a pot=
-ential
-            misconfiguration.<br>
-            =C2=A0 =C2=A0 Either fix the cause of this error or at your own=
- risk
-            disable the checker (see sanity.conf).<br>
-            =C2=A0 =C2=A0 Following is the list of potential problems /
-            advisories:<br>
-            <br>
-            =C2=A0 =C2=A0 Fetcher failure for URL: &#39;<a href=3D"https://=
-www.example.com/" rel=3D"noreferrer" target=3D"_blank">https://www.example.=
-com/</a>&#39;.
-            URL <a href=3D"https://www.example.com/" rel=3D"noreferrer" tar=
-get=3D"_blank">https://www.example.com/</a>
-            doesn&#39;t work.<br>
-            =C2=A0 =C2=A0 Please ensure your host&#39;s network is configur=
-ed
-            correctly,<br>
-            =C2=A0 =C2=A0 or set BB_NO_NETWORK =3D &quot;1&quot; to disable=
- network access if<br>
-            =C2=A0 =C2=A0 all required sources are on local disk.<br>
-            <br>
-            <br>
-            Summary: There was 1 ERROR message shown, returning a
-            non-zero exit code.<br>
-            <br>
-            <br>
-            Any suggestions ?<br>
-            <br>
-            I&#39;m using ubuntu 16.04,<br>
-            <br>
-            Thanks<span class=3D"m_366007862159389111m_-2108199454515190859=
-m_1262213939812178703HOEnZb"><font color=3D"#888888"><br>
-                <br>
-                -- <br>
-                ______________________________<wbr>_________________<br>
-                yocto mailing list<br>
-                <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank"=
->yocto@yoctoproject.org</a><br>
-                <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" r=
-el=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org<wbr>/lis=
-tinfo/yocto</a><br>
-              </font></span></blockquote>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-  </div></div></div>
-
-</blockquote></div><br></div>
-</blockquote></div>
-</div></div></blockquote></div><br></div>
-
---001a113ed2e85fc4e405564fa2ad--
+--_000_DB5P122MB000777D198C8510F25BF9093D68B0DB5P122MB0007EURP_--
