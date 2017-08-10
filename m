@@ -1,54 +1,101 @@
-Return-Path: <libertad.cruz@intel.com>
+Return-Path: <natalia_th92@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 311C8E00C09; Thu, 10 Aug 2017 10:10:28 -0700 (PDT)
+	id AD460E00C1B; Thu, 10 Aug 2017 12:58:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (natalia_th92[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [40.92.65.72 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35A53E00B8B
-	for <yocto@yoctoproject.org>; Thu, 10 Aug 2017 10:10:26 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	10 Aug 2017 10:10:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,353,1498546800"; 
-	d="scan'208,217";a="138108243"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by fmsmga005.fm.intel.com with ESMTP; 10 Aug 2017 10:10:25 -0700
-Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 10 Aug 2017 10:10:25 -0700
-Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.150]) by
-	fmsmsx118.amr.corp.intel.com ([169.254.1.248]) with mapi id
-	14.03.0319.002; Thu, 10 Aug 2017 10:10:25 -0700
-From: "Cruz, Libertad" <libertad.cruz@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Eggleton, Paul" <paul.eggleton@intel.com>, 
-	"Jolley, Stephen K" <stephen.k.jolley@intel.com>
-Thread-Topic: QA cycle report for 2.4 M2 rc3
-Thread-Index: AdMR8HqRp3ybj5wrQUiQtcjuAXJRmQ==
-Date: Thu, 10 Aug 2017 17:10:24 +0000
-Message-ID: <58D9E2E50A021A45AD740492365FCDC532A00D19@fmsmsx107.amr.corp.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 21589 seconds by postgrey-1.32 at yocto-www;
+	Thu, 10 Aug 2017 12:58:48 PDT
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com
+	(mail-oln040092065072.outbound.protection.outlook.com [40.92.65.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76495E00C09
+	for <yocto@yoctoproject.org>; Thu, 10 Aug 2017 12:58:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=N2xIAHUBM2ffLzzaWVK15DvX+thL2teW1DwkAhI4d+Q=;
+	b=un/IL7y5O9HSZXZCBmBe5v9rloiarFp8/atLHgane+QohGejbw0DQbw3smfPjB0i5Vn7RUjQjqKELK2+lr4JYHayXfmarTRkqKBTRjFRwxmUA48xTSJr2HUSNdENj8lKfg+ASbtE3rcZJdS9FXQaw8xHDm6kujCoKu5GJepbXwXype/3JNVTTQtiuHo18DoKHHaTqGFVlza75p4/Hpktftz3MDvrY3wU6UR+X4nl6MIM8uFiTJJuBimY6zT3kt6t4NDDkh7lWiAw5K0YZ6/pJ0NXMbo7GRWW0Wd77BFJe64FMTfKzPCB3mjB92HH0Kve3TieyhlCzllOvcH3M5leig==
+Received: from DB5EUR01FT029.eop-EUR01.prod.protection.outlook.com
+	(10.152.4.55) by DB5EUR01HT055.eop-EUR01.prod.protection.outlook.com
+	(10.152.5.142) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.1304.16;
+	Thu, 10 Aug 2017 08:24:34 +0000
+Received: from VI1PR0502MB2941.eurprd05.prod.outlook.com (10.152.4.53) by
+	DB5EUR01FT029.mail.protection.outlook.com (10.152.4.241) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.1.1304.16 via Frontend Transport; Thu, 10 Aug 2017 08:24:34 +0000
+Received: from VI1PR0502MB2941.eurprd05.prod.outlook.com
+	([fe80::51ee:ca3f:556a:3d26]) by
+	VI1PR0502MB2941.eurprd05.prod.outlook.com
+	([fe80::51ee:ca3f:556a:3d26%13]) with mapi id 15.01.1320.019;
+	Thu, 10 Aug 2017 08:24:34 +0000
+From: Natalia Theologou <natalia_th92@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Nodejs and npm
+Thread-Index: AQHTEbGzUWehXJOJlkm81oUIV6Wztg==
+Date: Thu, 10 Aug 2017 08:24:34 +0000
+Message-ID: <VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880@VI1PR0502MB2941.eurprd05.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiY2YyMWQ3ZGYtZjYxMC00MGViLWIwNGQtMWZiMWExZTliZmVmIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IktVXC8rVnhTaW5rS3YxT3lTMEY3cU1GOXladUhkcll2bUJ3YlZJbGFMK3dnPSJ9
-x-ctpclassification: CTP_IC
-dlp-product: dlpe-windows
-dlp-version: 10.0.102.7
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.108]
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:1256DAF062D0E518D2974FCEA81CD9B0E0529E50EE08222A23B34F25AF17C9F4;
+	UpperCasedChecksum:D57D6590255E1D25F78C4E2EFE65C25B5EC3453A5E77F2B7A2A099BD5C37CDA8;
+	SizeAsReceived:7071; Count:44
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [9xv9kygwkz43e3i28DgCWw4bKC99e44t]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DB5EUR01HT055;
+	7:VqWSvYO7aNGRg1+3XcS7kIZWoUFc9+Jz31Ls1iv+0ffH+oZnXou8b9GECGbobyjKdaprl+Tg9SBbZ57VOWq7n5SFigU9x6S+XOZBsDRbsCruId698re56iz8AVRp2JFj7kYD22XkVr8z9SFNxjWpVEhFma9iR1g5Y7GNci89liJEHQ0PuTk8dKSuh2DvlRjBykDeii/QaGix5ugKb8d6sY+pTss2AU4eM7qnDdBPrCNcqreYgA69WZCFIDsznxvDw5mx4KrrcjXN2PDoI19csH3HqKJRWd/t9xOFTPcNXIzTMbAxpAlQeXvosBAxlz0a8JaL2PFMEB2BMtjJTuH3SCSGkDC7DiXeNpjQBIduI/y/R3zKTo5a5A+8oG0imwXGfdLBAB6TsaE4Z8JyVjd0s9I6tKLS0IAeWDuGuNupebMKN9bQ22rsH7YWnP30qkF8RBQ9lswIhohbF8lopB9iu0A6teEW9buEoNKeAaQsBgUTMY8aIA6r/kHznPoA45YAhhUpUghIXi2Q65C4CvxG0TBxQL8MQ4+OdOVAXOa2whEByInM3AknJOwrYt2b2XIlsHDFBpV+OXssEKqM+39zLP9j+DFy9CdtCL7kFxzl0d8NcIZTGM+jibHvh7IlZAGFyX3uWSU1VXzl+orTqLXs21QTh//V6N0+wg2BPvEqu38cDeKHFmh6mr+iRxHbiHqBzZtmTzEX387veAg77HByEbvVG9jMWMERaA/q5zN7BKzzRkJJwRM6t4FaLneMTgedMCshidrBju9Ktwe8WXP1nA==
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(7070007)(98901004);
+	DIR:OUT; SFP:1901; SCL:1; SRVR:DB5EUR01HT055;
+	H:VI1PR0502MB2941.eurprd05.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; 
+x-ms-office365-filtering-correlation-id: 0ce060a1-ba14-4ace-5cac-08d4dfc93b54
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(300000503095)(300135400095)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322377)(1603101448)(1601125374)(1701031045)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:DB5EUR01HT055; 
+x-ms-traffictypediagnostic: DB5EUR01HT055:
+x-exchange-antispam-report-test: UriScan:(166708455590820);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(444000031);
+	SRVR:DB5EUR01HT055; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:DB5EUR01HT055; 
+x-forefront-prvs: 03950F25EC
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Cc: "Cruz Alcaraz, Juan M" <juan.m.cruz.alcaraz@intel.com>
-Subject: QA cycle report for 2.4 M2 rc3
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2017 08:24:34.1168 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR01HT055
+Subject: Nodejs and npm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,699 +107,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Aug 2017 17:10:28 -0000
+X-List-Received-Date: Thu, 10 Aug 2017 19:58:51 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_58D9E2E50A021A45AD740492365FCDC532A00D19fmsmsx107amrcor_"
+	boundary="_000_VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880VI1PR0502MB2941_"
 
---_000_58D9E2E50A021A45AD740492365FCDC532A00D19fmsmsx107amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--_000_VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880VI1PR0502MB2941_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+Hello,
 
 
+I follow these instructions https://github.com/imyller/meta-nodejs
 
-Here is the report for the 2.4 M2 rc3 full release test cycle.
 
-Full Report :  https://wiki.yoctoproject.org/wiki/WW32_-_2017-08-09_-_Full_=
-Test_Cycle_2.4_M2_rc3
+and I bitbake nodejs in order to have nodejs and npm in a raspberry. In the=
+ raspberry I have node -v but no npm -v.
 
+What does it mean:
 
+Inherit npm-install build task class in your recipe. ?
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+Should I do something more in order to have npm in the raspberry?
 
-The QA cycle for release 2.4 M2 rc3 is complete.  There are two new bugs, 1=
-1923[2] medium + impacts 28.6% of eclipse test run and 11917[1] medium + is=
- not a critical blocker since it only impacts 0.8% of oe-selftest on Fedora=
- 24. The one bug that worries QA is 11923[2]  which impacts the eclipse tes=
-tcases responsible for verifying the process of project debugging, workarou=
-nd for this can be that user uses eclipse-plugin in 2.4 M2 rc2 which are st=
-able.
+Thank you.
+Best,
+Natalia
+<https://github.com/imyller/meta-nodejs#bitbake-classes>
 
-
-
-On the wiki a  new section was created for Compliance results. There is cur=
-rently an issue with the hardware infrastructure of Wind River hence  beagl=
-ebone and edgerouter have not been fully tested.
-
-
-Performance
-There were no relevant changes on measurements compared to  2.4 M1 rc2.
-
-
-
-Ubuntu                Test        2.4 M2 rc2          2.4 M2 rc3          %
-
-                                sato       1:13:58                         =
-    1:14:08             0.23
-
-                                rootfs    2:31                    2:31     =
-              0.00
-
-                                rmwork                1:07:22              =
-               1:06:40           -1.04
-
-                                kernel    5:39                    5:32     =
-             -2.06
-
-                                eSDK      2:30                    2:32     =
-             1.33
-
-
-
-
-
-Fedora                  Test        2.4 M2 rc2          2.4 M2 rc3         =
- %
-
-                                sato       1:13:52                         =
-    1:12:25           -1.96
-
-                                rootfs    2:29                    2:25     =
-             -2.68
-
-                                rmwork                1:08:42              =
-               1:07:48           -1.31
-
-                                kernel    6:04                    5:58     =
-             -1.65
-
-                                eSDK      2:34                    2:34     =
-             0.00
-
-
-
-
-
-ptest
-
-There were no relevant changes on ptest compared to 2.3 M2 rc2
-
-
-
-Compliance
-
-For posix test there is no changes in the number of failures when comparing=
-  2.4m2 rc2 and 2.4 m2 rc3.
-
-
-
-                    Failures            2.4 M2 RC3      2.4 M1 RC2
-
-                  Generic86-64           46                      46
-
-                  Beaglebone              45                      45
-
-                  Edgerouter               46                      46
-
-                  Mpc8315e-rdb        45                      45
-
-
-
-Results are found here: https://wiki.yoctoproject.org/wiki/Posix_result
-
-Detail analysis found here:  https://wiki.yoctoproject.org/wiki/POSIX-resul=
-ts
-
-
-
-On 2.4 M2 rc3  LTP testing was also completed for beaglebone and we had an =
-less test failed on Genericx86-64 and mpc8315e-rdb when comparing results w=
-ith 2.4 M1 rc 2.
-
-
-
-                                                                Genericx86-=
-64     beaglebone       mpc8315e-rdb
-
-2.4 M2 rc3                Total                        1384                =
-          1346                    1346
-
-                                     Failures                    23        =
-                       15                          27
-
-
-
-                                                                Genericx86-=
-64                                    mpc8315e-rdb
-
-2.4 M1 rc 2               Total                        1384                =
-                                       1348
-
-                                     Failures                    24        =
-                                                    30
-
-
-
-
-
-The LPT results are found: https://wiki.yoctoproject.org/wiki/LTP_result .
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
-
-
-
-QA has found 2.4 m2 rc3  to be stable and all commits provided as workaroun=
-ds in 2.4 m2 rc2 were successfully integrated. QA approves to this build ca=
-ndidate being released.
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-
-
-
-       New Bugs
-            -11917[1]  (buildoptions) Failure on test_arch_work_dir and lay=
-er_with_out_git_dir
-            -11923[2] [Eclipse] Failed to debug a Project in Eclipse and di=
-splays error: java.lang.NullPointerException
-       M+ bugs
-            -11879[3]  Testimage: multiple "uvesafb" errors present in log =
-in minnowmax on genericx86/genericx86-64
-            -11833[4] Toaster timeout for bitbake server
-
-
-
-
-
-
-Full Bug Report : https://wiki.yoctoproject.org/wiki/WW32_-_2017-08-09_-_Fu=
-ll_Test_Cycle_2.4_M2_rc3#Bugs_Found_during_QA_Test
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-
-
-    1.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11917 [1]
-
-    2.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11923 <https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D11923%20> [2]
-
-    3.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11879 <https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832%20> [3]
-
-    4.    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11833 <https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D11833%20> [4]
-
-
-
-
-
-Regards
-
-Libertad G.
-
---_000_58D9E2E50A021A45AD740492365FCDC532A00D19fmsmsx107amrcor_
-Content-Type: text/html; charset="us-ascii"
+--_000_VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880VI1PR0502MB2941_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Calibri Light";
-	panose-1:2 15 3 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Hello All,<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Here is the report for the 2.4 M2 rc3 full release test cyc=
-le.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Full Report :
-<span style=3D"color:#1F497D">&nbsp;https://wiki.yoctoproject.org/wiki/WW32=
-_-_2017-08-09_-_Full_Test_Cycle_2.4_M2_rc3</span><o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D<o:p>=
-</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">The QA cycle for release 2.4 M2 rc3 is complete.
-<span style=3D"color:#1F497D">&nbsp;</span>There are two new bugs, 11923[2]=
- medium &#43; impacts 28.6% of eclipse test run and 11917[1] medium &#43; i=
-s not a critical blocker since it only impacts 0.8% of oe-selftest on Fedor=
-a 24. The one bug that worries QA is 11923[2] &nbsp;which
- impacts the eclipse testcases responsible for verifying the process of pro=
-ject debugging, workaround for this can be that user uses eclipse-plugin in=
- 2.4 M2 rc2 which are stable.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">On the wiki a &nbsp;new section was created for Compliance =
-results. There is currently an issue with the hardware infrastructure of Wi=
-nd River hence &nbsp;beaglebone and edgerouter have not
- been fully tested. <o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Performance<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri Light&quot;=
-,sans-serif">There were no relevant changes on measurements compared to &nb=
-sp;2.4 M1 rc2.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri Light&quot;=
-,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri Light&quot;=
-,sans-serif">&nbsp; <o:p>
-</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Ubuntu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; 2.4 M2 rc2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.4 M=
-2 rc3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sato&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; 1:13:58&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1:14:08&nbsp;&nbsp; &nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.23<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rootfs&nbsp;&nbsp;&nbs=
-p; 2:31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2:31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-0.00<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rmwork&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-1:07:22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; 1:06:40&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; -1.04<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kernel&nbsp;&nbsp;&nbs=
-p; 5:39&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5:32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -2.06<=
-o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eSDK&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; 2:30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2:32&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; 1.33<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Fedora&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Test &nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; 2.4 M2 rc2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; 2.4 M2 rc3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %<o=
-:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sato&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; 1:13:52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1:12:25&nbsp;&nbsp; &nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; -1.96<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rootfs&nbsp;&nbsp;&nbs=
-p; 2:29&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2:25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -2.68<=
-o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rmwork&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-1:08:42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; 1:07:48&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; -1.31<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kernel&nbsp;&nbsp;&nbs=
-p; 6:04&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5:58&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -1.65<=
-o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eSDK&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; 2:34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2:34&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; 0.00<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><b><span style=3D"font-family:&quot;Calibri Light=
-&quot;,sans-serif">ptest</span></b><span style=3D"font-family:&quot;Calibri=
- Light&quot;,sans-serif">
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">There were no relevant changes on ptest compared to 2.3 M2 =
-rc2<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><b><span style=3D"font-family:&quot;Calibri Light=
-&quot;,sans-serif">Compliance
-<o:p></o:p></span></b></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">For posix test there is no change<span style=3D"color:#1F49=
-7D">s</span> in the number of failures when comparing &nbsp;2.4m2 rc2 and 2=
-.4 m2 rc3.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Failures&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.4 M2 RC3&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 2.4 M1 RC2<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Generic86-64&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;46&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; 46<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Beaglebone&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;45&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 45<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Edgerouter&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;46&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mpc8315e-rdb&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; 45&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p; 45<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Results are found here:
-<a href=3D"https://wiki.yoctoproject.org/wiki/Posix_result">https://wiki.yo=
-ctoproject.org/wiki/Posix_result</a><o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Detail analysis found here: &nbsp;<a href=3D"https://wiki.y=
-octoproject.org/wiki/POSIX-results">https://wiki.yoctoproject.org/wiki/POSI=
-X-results</a><o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">On 2.4 M2 rc3 &nbsp;LTP testing was also completed for beag=
-lebone and we had an less test failed on Genericx86-64 and mpc8315e-rdb whe=
-n comparing results with 2.4 M1 rc&nbsp;2.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; Genericx86-64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;beaglebone&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mpc8315e-rdb<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">2.4 M2 rc3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;1384&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1346&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; 1346<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;Failures&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;23&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; 27<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; Genericx86-64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;<span style=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>mpc8315e-rdb<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">2.4 M1 rc&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;1384&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span styl=
-e=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;
-</span>1348<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;Failures&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=3D"color:#1F497D">&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span>30<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">The LPT results are found:
-<a href=3D"https://wiki.yoctoproject.org/wiki/LTP_result">https://wiki.yoct=
-oproject.org/wiki/LTP_result</a> .<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D<o:p>=
-</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">QA has found 2.4 m2 rc3 &nbsp;to be stable and all commits =
-provided as workarounds in 2.4 m2 rc2 were successfully integrated. QA appr=
-oves to this build candidate being released.
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D<o:p></o=
-:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New Bugs<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11917[1] &nb=
-sp;(buildoptions) Failure on test_arch_work_dir and layer_with_out_git_dir<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11923[2] [Ec=
-lipse] Failed to debug a Project in Eclipse and displays error: java.lang.N=
-ullPointerException
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; M&#43; bugs<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11879[3] &nb=
-sp;Testimage: multiple &quot;uvesafb&quot; errors present in log in minnowm=
-ax on genericx86/genericx86-64</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-11833[4] Toa=
-ster timeout for bitbake server<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
-argin-bottom:7.5pt;margin-left:0in">
-<span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Full Bug Report :
-<span style=3D"color:#1F497D">https://wiki.yoctoproject.org/wiki/WW32_-_201=
-7-08-09_-_Full_Test_Cycle_2.4_M2_rc3#Bugs_Found_during_QA_Test</span><o:p><=
-/o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D<=
-o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 1.&nbsp;&nbsp;&nbsp;
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11917">https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11917</a> [1]<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 2.&nbsp;&nbsp;&nbsp;
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11923%20">ht=
-tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11923
-</a>[2]<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 3.&nbsp;&nbsp;&nbsp;
-</span><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10832=
-%20"><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif">https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11879
-</span></a><span style=3D"font-family:&quot;Calibri Light&quot;,sans-serif"=
->[3]<span style=3D"color:#1F497D"><o:p></o:p></span></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; 4.&nbsp;&nbsp;&nbsp;
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11833%20">ht=
-tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11833
-</a>[4]<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">&nbsp;&nbsp;&nbsp; <o:p>
-</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Regards<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-family:&quot;Calibri Light&qu=
-ot;,sans-serif">Libertad G.<o:p></o:p></span></p>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hello,&nbsp;</p>
+<p><br>
+</p>
+<p>I follow these instructions&nbsp;<a href=3D"https://github.com/imyller/m=
+eta-nodejs" class=3D"OWAAutoLink" id=3D"LPlnk848381" previewremoved=3D"true=
+">https://github.com/imyller/meta-nodejs</a>&nbsp;</p>
+<p><br>
+</p>
+and I <span style=3D"background-color: rgb(190, 190, 190);">bitbake nodejs<=
+/span> in order to have nodejs and npm in a raspberry. In the raspberry I h=
+ave
+<span style=3D"background-color: rgb(190, 190, 190);">node -v</span> but no=
+ <span style=3D"background-color: rgb(190, 190, 190);">
+npm -v.</span>
+<div><span style=3D"background-color: rgb(190, 190, 190);"><br>
+</span></div>
+<div><span style=3D"background-color: rgb(190, 190, 190);"><span style=3D"b=
+ackground-color: rgb(255, 255, 255);">What does it mean:</span><span style=
+=3D"background-color: rgb(255, 255, 255);">&nbsp;</span>
+<p style=3D"box-sizing: border-box; margin-bottom: 16px; color: rgb(36, 41,=
+ 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;,=
+ Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe U=
+I Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">
+Inherit&nbsp;<code style=3D"box-sizing: border-box; font-family: SFMono-Reg=
+ular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; fon=
+t-size: 13.6px; padding: 0.2em 0px; margin: 0px; background-color: rgba(27,=
+ 31, 35, 0.05); border-radius: 3px;">npm-install</code>&nbsp;build
+ task class in your recipe. ?</p>
+<div>Should I do something more in order to have npm in the raspberry?</div=
+>
+<div><br>
+</div>
+<div>Thank you.&nbsp;</div>
+<div>Best,&nbsp;</div>
+<div>Natalia</div>
+<h1 style=3D"box-sizing: border-box; margin: 24px 0px 16px; line-height: 1.=
+25; padding-bottom: 0.3em; border-bottom: 1px solid rgb(234, 236, 239); col=
+or: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;=
+Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;=
+, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;">
+<a id=3D"user-content-bitbake-classes" class=3D"anchor" href=3D"https://git=
+hub.com/imyller/meta-nodejs#bitbake-classes" aria-hidden=3D"true" style=3D"=
+box-sizing: border-box; background-color: transparent; color: rgb(3, 102, 2=
+14); text-decoration-line: none; float: left; padding-right: 4px; margin-le=
+ft: -20px; line-height: 1;"><svg aria-hidden=3D"true" class=3D"octicon octi=
+con-link" height=3D"16" version=3D"1.1" viewBox=3D"0 0 16 16" width=3D"16">=
+<path fill-rule=3D"evenodd" d=3D"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h=
+4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 =
+5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S=
+13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1=
+.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>=
+</svg></a></h1>
+</span></div>
 </div>
 </body>
 </html>
 
---_000_58D9E2E50A021A45AD740492365FCDC532A00D19fmsmsx107amrcor_--
+--_000_VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880VI1PR0502MB2941_--
