@@ -1,62 +1,60 @@
-Return-Path: <mohammedaqdam@gmail.com>
+Return-Path: <y.yasar92@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD603E00BAB; Wed,  9 Aug 2017 21:16:54 -0700 (PDT)
+	id 25E9BE00BAB; Thu, 10 Aug 2017 02:18:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.177 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.177 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (mohammedaqdam[at]gmail.com)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (y.yasar92[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f177.google.com (mail-yw0-f177.google.com
-	[209.85.161.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40DFEE00B77
-	for <yocto@yoctoproject.org>; Wed,  9 Aug 2017 21:16:53 -0700 (PDT)
-Received: by mail-yw0-f177.google.com with SMTP id p68so51851711ywg.0
-	for <yocto@yoctoproject.org>; Wed, 09 Aug 2017 21:16:53 -0700 (PDT)
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90E3BE00B77
+	for <yocto@yoctoproject.org>; Thu, 10 Aug 2017 02:18:39 -0700 (PDT)
+Received: by mail-wm0-f51.google.com with SMTP id m85so14833094wma.0
+	for <yocto@yoctoproject.org>; Thu, 10 Aug 2017 02:18:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=2Qk8WRhLo+5ityXdc6vLiX1HZmD3o3ZFvBlJuK0vcuY=;
-	b=H00798nbGM1kbc5cwapuNbd4KzLZfKlGZT7PrpEoY7vYHb0rpqahcVlufmYImD4H61
-	SrV4jkAk7i8HA5TRqwH3Auv1YUei394CDO60mZV9Q+vmhDkPHMvOKnPEVKzDuJZ+5C1R
-	PrkY6p+fkM5gSq3kB9PRnHkldrpnMtdahbBAGzNpUennsRalVv3xjBpdxGLElltFA01J
-	ww9aFQokmQTq12TU9lZCeXyNeeG2Xwq8c2Sl7+6PZAFo3fQqymv91CAeXXYFOKoLwoe+
-	QF6tKCGI8ByD4jszJICtAbVGkmUHTozNJLvl0VDnhj239/EOLlH8+1kolBPq0BgllyUr
-	98cQ==
+	bh=tmvQq2cAQHREVvo9n5bSYCMUNReWlGJryc4WVubLkK8=;
+	b=HllUW3RiI/mSho2xYlh52fzQfXeXFiPfZzmY+x2fcQeHy6cbaS99xb9wKyC/jeOo3d
+	XGTwxzu6ZLLL9lm4wcM6g1L1wmRqhBcAD7iOF8b6OQDf5E95dI93iw9gKJLf/2G9XXZH
+	YZQxXiiXXzliXGOSWNODKdtPfYbOpzN66F9CEBUXewDYd1ns5858YE7mG93AVSvUG6dF
+	MRhTI4wCR7LHKmp98K0alkhUO/sXyHgBf5TZSBbbcuYMHoo+b6odEbPW8kwWuvKIHqDO
+	I+1/NYF051W59BEHIKppp+9GY0dYH0+sbCRwzwD4eGka8MeVwNWFL7/AFGifJmPS1Myj
+	VvVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=2Qk8WRhLo+5ityXdc6vLiX1HZmD3o3ZFvBlJuK0vcuY=;
-	b=fJV0PxhgfHnpHVi6VUtNIJdASkJb/mT6jvi3hET7hTo6FHwi2Rt6zvOvHdZTbi0K9F
-	Q/HTr+CfJA43grVHyxqI93eGlOxp6v9Ekjp0vCPUrDoYgH89PL763j5s41LuXslNSxHa
-	O1Ax3B697Kj5LJfmpkGA0wHIt2bKaU3JGwIfVLO0McduP1PnIUk6kgoitOWYCQHtjfhO
-	V6HLi7+9FIGTXhCZOFpRANHwfZ/1c38sfZHlunp/opvJB0wbXfUHvKOJ1LATjl0NZHFS
-	elnXmO6g3R4FVoyUTuP6j6u5janK8sIbvfcTJt57f6Ase/1IXRBo8mXmpqoxI7uj6loW
-	iXQg==
-X-Gm-Message-State: AHYfb5i0f68qG7TCfG7imc+a1m6FANnYdD1ZbPDz6lvzjXoaWjdUCF2Q
-	46TEoGdx/FwolHlgBTuqravrEJE1fw==
-X-Received: by 10.129.197.73 with SMTP id o9mr8247608ywj.183.1502338613061;
-	Wed, 09 Aug 2017 21:16:53 -0700 (PDT)
+	bh=tmvQq2cAQHREVvo9n5bSYCMUNReWlGJryc4WVubLkK8=;
+	b=BpDk1zTxCjXZas32shhFThHO8wnGCD+wKXsvanFSri40kd1OsbbM0iYAsptRE8r7kb
+	FOFkKx45GCS/W2hp+VjPHjg/L6FaU+3Sl8SwkePfoY2rUwzmTOxXxwO7GJ4X4zJZ33yS
+	pKM+GhUkAgq5zZNLOPqUAYK8VDQ6mhFyRXgVwofJ0800v43Tyqui0o4V5ipRSjLPMb1g
+	5YFEfnr92fmmgRj3EZtfR2ydS4nKD9EYqgmeOCIMxSj9kuUOvbb1Gc9Ki+f3ZB2jpn/z
+	RvS+XOxL2B7EVRcHc29jteHwM8CPppC6aF8MIiBPtEimGbnEkdcx5qujAmP21dTiyqjO
+	maaw==
+X-Gm-Message-State: AHYfb5ivc7RsbNj4e0kIpkt4awwwFW7/C3dwq2ucea+899LX8s2m9Gms
+	kXNchrLYXOxgFDdXO/we5H7sbU53YE5733c=
+X-Received: by 10.28.63.13 with SMTP id m13mr6503142wma.63.1502356718074; Thu,
+	10 Aug 2017 02:18:38 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.129.51.80 with HTTP; Wed, 9 Aug 2017 21:16:52 -0700 (PDT)
-From: mohammed aqdam <mohammedaqdam@gmail.com>
-Date: Thu, 10 Aug 2017 09:46:52 +0530
-Message-ID: <CAGsrAHfOmMFfZPNWgZ64U52h968Mri4VT-QUMXt1CpsN1b3uqg@mail.gmail.com>
+Received: by 10.28.131.17 with HTTP; Thu, 10 Aug 2017 02:18:37 -0700 (PDT)
+From: =?UTF-8?B?WWnEn2l0IFlBxZ5BUg==?= <y.yasar92@gmail.com>
+Date: Thu, 10 Aug 2017 12:18:37 +0300
+Message-ID: <CAF=WmVwFi=rDRm0EjpoCEd2jsMcrf6wa43w6=D43ZYt-OJL5jA@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: rpi-basic-image-1.0-r0 do_rootfs: Function failed: do_rootfs
+Subject: do_complie Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,125 +66,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Aug 2017 04:16:54 -0000
+X-List-Received-Date: Thu, 10 Aug 2017 09:18:40 -0000
+Content-Type: multipart/alternative; boundary="001a114b741881c045055662ae52"
+
+--001a114b741881c045055662ae52
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-i was building image for rpi 3.
-so when i run bitbake -k rpi-basic-image i'm getting following error.
-how to recover this error...
+Hi All,
 
-root@pcz-ee207837-2:/u/my_poky/poky/build# bitbake -k rpi-basic-image
-Parsing recipes: 100%
-|##########################################################################################################################################|
-Time: 0:01:10
-Parsing of 851 .bb files complete (0 cached, 851 parsed). 1320
-targets, 73 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
+I new with Yocto, I tried to build poky for imxsabre board and I was
+encounter a problem, here is the error messagge;
 
-Build Configuration:
-BB_VERSION        = "1.34.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal-4.8"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "raspberrypi3"
-DISTRO            = "poky"
-DISTRO_VERSION    = "2.3.1"
-TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4
-callconvention-hard cortexa7"
-TARGET_FPU        = "hard"
-meta
-meta-poky
-meta-yocto-bsp    = "pyro:4a39979c8d1e560fa54240e99734a651dfbaa63a"
-meta-raspberrypi  = "master:f6a2ca21c72b8d97cd0f89a0a436bf90b431698b"
+ERROR: Function failed: do_compile (log file located at
+/home/systick/build/tmp/work/x86_64-linux/gmp-native/5.1.1-r0/temp/log.do_c=
+ompile.21665)
 
-Initialising tasks: 100%
-|#######################################################################################################################################|
-Time: 0:00:06
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: rpi-basic-image-1.0-r0 do_rootfs: Error executing a python
-function in exec_python_func() autogenerated:
+ERROR: Task
+1461(virtual:native:/home/systick/sources/poky/meta/recipes-support/gmp/
+gmp_5.1.1.bb, do_compile) failed with exit code '1'
 
-The stack trace of python calls that resulted in this exception/failure was:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-     0001:
- *** 0002:do_rootfs(d)
-     0003:
-File: '/u/my_poky/poky/meta/classes/image.bbclass', lineno: 270,
-function: do_rootfs
-     0266:
-     0267:    progress_reporter.next_stage()
-     0268:
-     0269:    # generate rootfs
- *** 0270:    create_rootfs(d, progress_reporter=progress_reporter,
-logcatcher=logcatcher)
-     0271:
-     0272:    progress_reporter.finish()
-     0273:}
-     0274:do_rootfs[dirs] = "${TOPDIR}"
-File: '/u/my_poky/poky/meta/lib/oe/rootfs.py', lineno: 1005, function:
-create_rootfs
-     1001:        RpmRootfs(d, manifest_dir, progress_reporter,
-logcatcher).create()
-     1002:    elif img_type == "ipk":
-     1003:        OpkgRootfs(d, manifest_dir, progress_reporter,
-logcatcher).create()
-     1004:    elif img_type == "deb":
- *** 1005:        DpkgRootfs(d, manifest_dir, progress_reporter,
-logcatcher).create()
-     1006:
-     1007:    os.environ.clear()
-     1008:    os.environ.update(env_bkp)
-     1009:
-File: '/u/my_poky/poky/meta/lib/oe/rootfs.py', lineno: 638, function: __init__
-     0634:        bb.utils.remove(self.d.getVar('MULTILIB_TEMP_ROOTFS'), True)
-     0635:        self.manifest = DpkgManifest(d, manifest_dir)
-     0636:        self.pm = DpkgPM(d, d.getVar('IMAGE_ROOTFS'),
-     0637:                         d.getVar('PACKAGE_ARCHS'),
- *** 0638:                         d.getVar('DPKG_ARCH'))
-     0639:
-     0640:
-     0641:    def _create(self):
-     0642:        pkgs_to_install = self.manifest.parse_initial_manifest()
-File: '/u/my_poky/poky/meta/lib/oe/package_manager.py', lineno: 1245,
-function: __init__
-     1241:        self.all_arch_list = archs.split()
-     1242:        all_mlb_pkg_arch_list =
-(self.d.getVar('ALL_MULTILIB_PACKAGE_ARCHS') or "").split()
-     1243:        self.all_arch_list.extend(arch for arch in
-all_mlb_pkg_arch_list if arch not in self.all_arch_list)
-     1244:
- *** 1245:        self._create_configs(archs, base_archs)
-     1246:
-     1247:        self.indexer = DpkgIndexer(self.d, self.deploy_dir)
-     1248:
-     1249:    """
-File: '/u/my_poky/poky/meta/lib/oe/package_manager.py', lineno: 1483,
-function: _create_configs
-     1479:            if variant_arch not in base_arch_list:
-     1480:                base_arch_list.append(variant_arch)
-     1481:
-     1482:        with open(self.apt_conf_file, "w+") as apt_conf:
- *** 1483:            with
-open(self.d.expand("${STAGING_ETCDIR_NATIVE}/apt/apt.conf.sample")) as
-apt_conf_sample:
-     1484:                for line in apt_conf_sample.read().split("\n"):
-     1485:                    match_arch = re.match("  Architecture
-\".*\";$", line)
-     1486:                    architectures = ""
-     1487:                    if match_arch:
-Exception: FileNotFoundError: [Errno 2] No such file or directory:
-'/u/my_poky/poky/build/tmp/work/raspberrypi3-poky-linux-gnueabi/rpi-basic-image/1.0-r0/recipe-sysroot-native/etc/apt/apt.conf.sample'
+Is there anyone knows what is the problem ?
+Thanks.
+--=20
+Yi=C4=9Fit YA=C5=9EAR
 
-ERROR: rpi-basic-image-1.0-r0 do_rootfs: Function failed: do_rootfs
-ERROR: Logfile of failure stored in:
-/u/my_poky/poky/build/tmp/work/raspberrypi3-poky-linux-gnueabi/rpi-basic-image/1.0-r0/temp/log.do_rootfs.21760
-ERROR: Task (/u/my_poky/poky/meta-raspberrypi/recipes-core/images/rpi-basic-image.bb:do_rootfs)
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 2312 tasks of which 2311 didn't need to
-be rerun and 1 failed.
+--001a114b741881c045055662ae52
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Summary: 1 task failed:
-  /u/my_poky/poky/meta-raspberrypi/recipes-core/images/rpi-basic-image.bb:do_rootfs
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+<div dir=3D"ltr">Hi All,<div><br></div><div>I new with Yocto, I tried to bu=
+ild poky for imxsabre board and I was encounter a problem, here is the erro=
+r messagge;</div><div><br></div><div>ERROR: Function failed: do_compile (lo=
+g file located at /home/systick/build/tmp/work/x86_64-linux/gmp-native/5.1.=
+1-r0/temp/log.do_compile.21665)</div><div><br></div><div>ERROR: Task 1461(v=
+irtual:native:/home/systick/sources/poky/meta/recipes-support/gmp/<a href=
+=3D"http://gmp_5.1.1.bb">gmp_5.1.1.bb</a>, do_compile) failed with exit cod=
+e &#39;1&#39;<br clear=3D"all"><div><br></div><div>Is there anyone knows wh=
+at is the problem ?=C2=A0</div><div>Thanks.</div>-- <br><div class=3D"gmail=
+_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">Yi=C4=9Fit =
+YA=C5=9EAR<div><br></div></div></div>
+</div></div>
 
+--001a114b741881c045055662ae52--
