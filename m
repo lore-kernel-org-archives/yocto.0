@@ -1,21 +1,21 @@
-Return-Path: <natalia_th92@hotmail.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD460E00C1B; Thu, 10 Aug 2017 12:58:51 -0700 (PDT)
+	id A0AB4E00C41; Fri, 11 Aug 2017 03:27:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (natalia_th92[at]hotmail.com)
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	HTML_OBFUSCATE_05_10, 
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.48 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (gizero[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [40.92.65.72 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
-	but no 'Received:'
+	*      [209.85.213.48 listed in list.dnswl.org]
+	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -24,78 +24,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 21589 seconds by postgrey-1.32 at yocto-www;
-	Thu, 10 Aug 2017 12:58:48 PDT
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com
-	(mail-oln040092065072.outbound.protection.outlook.com [40.92.65.72])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76495E00C09
-	for <yocto@yoctoproject.org>; Thu, 10 Aug 2017 12:58:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=N2xIAHUBM2ffLzzaWVK15DvX+thL2teW1DwkAhI4d+Q=;
-	b=un/IL7y5O9HSZXZCBmBe5v9rloiarFp8/atLHgane+QohGejbw0DQbw3smfPjB0i5Vn7RUjQjqKELK2+lr4JYHayXfmarTRkqKBTRjFRwxmUA48xTSJr2HUSNdENj8lKfg+ASbtE3rcZJdS9FXQaw8xHDm6kujCoKu5GJepbXwXype/3JNVTTQtiuHo18DoKHHaTqGFVlza75p4/Hpktftz3MDvrY3wU6UR+X4nl6MIM8uFiTJJuBimY6zT3kt6t4NDDkh7lWiAw5K0YZ6/pJ0NXMbo7GRWW0Wd77BFJe64FMTfKzPCB3mjB92HH0Kve3TieyhlCzllOvcH3M5leig==
-Received: from DB5EUR01FT029.eop-EUR01.prod.protection.outlook.com
-	(10.152.4.55) by DB5EUR01HT055.eop-EUR01.prod.protection.outlook.com
-	(10.152.5.142) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.1304.16;
-	Thu, 10 Aug 2017 08:24:34 +0000
-Received: from VI1PR0502MB2941.eurprd05.prod.outlook.com (10.152.4.53) by
-	DB5EUR01FT029.mail.protection.outlook.com (10.152.4.241) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
-	15.1.1304.16 via Frontend Transport; Thu, 10 Aug 2017 08:24:34 +0000
-Received: from VI1PR0502MB2941.eurprd05.prod.outlook.com
-	([fe80::51ee:ca3f:556a:3d26]) by
-	VI1PR0502MB2941.eurprd05.prod.outlook.com
-	([fe80::51ee:ca3f:556a:3d26%13]) with mapi id 15.01.1320.019;
-	Thu, 10 Aug 2017 08:24:34 +0000
-From: Natalia Theologou <natalia_th92@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Nodejs and npm
-Thread-Index: AQHTEbGzUWehXJOJlkm81oUIV6Wztg==
-Date: Thu, 10 Aug 2017 08:24:34 +0000
-Message-ID: <VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880@VI1PR0502MB2941.eurprd05.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;yoctoproject.org; dmarc=none action=none
-	header.from=hotmail.com;
-x-incomingtopheadermarker: OriginalChecksum:1256DAF062D0E518D2974FCEA81CD9B0E0529E50EE08222A23B34F25AF17C9F4;
-	UpperCasedChecksum:D57D6590255E1D25F78C4E2EFE65C25B5EC3453A5E77F2B7A2A099BD5C37CDA8;
-	SizeAsReceived:7071; Count:44
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [9xv9kygwkz43e3i28DgCWw4bKC99e44t]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; DB5EUR01HT055;
-	7:VqWSvYO7aNGRg1+3XcS7kIZWoUFc9+Jz31Ls1iv+0ffH+oZnXou8b9GECGbobyjKdaprl+Tg9SBbZ57VOWq7n5SFigU9x6S+XOZBsDRbsCruId698re56iz8AVRp2JFj7kYD22XkVr8z9SFNxjWpVEhFma9iR1g5Y7GNci89liJEHQ0PuTk8dKSuh2DvlRjBykDeii/QaGix5ugKb8d6sY+pTss2AU4eM7qnDdBPrCNcqreYgA69WZCFIDsznxvDw5mx4KrrcjXN2PDoI19csH3HqKJRWd/t9xOFTPcNXIzTMbAxpAlQeXvosBAxlz0a8JaL2PFMEB2BMtjJTuH3SCSGkDC7DiXeNpjQBIduI/y/R3zKTo5a5A+8oG0imwXGfdLBAB6TsaE4Z8JyVjd0s9I6tKLS0IAeWDuGuNupebMKN9bQ22rsH7YWnP30qkF8RBQ9lswIhohbF8lopB9iu0A6teEW9buEoNKeAaQsBgUTMY8aIA6r/kHznPoA45YAhhUpUghIXi2Q65C4CvxG0TBxQL8MQ4+OdOVAXOa2whEByInM3AknJOwrYt2b2XIlsHDFBpV+OXssEKqM+39zLP9j+DFy9CdtCL7kFxzl0d8NcIZTGM+jibHvh7IlZAGFyX3uWSU1VXzl+orTqLXs21QTh//V6N0+wg2BPvEqu38cDeKHFmh6mr+iRxHbiHqBzZtmTzEX387veAg77HByEbvVG9jMWMERaA/q5zN7BKzzRkJJwRM6t4FaLneMTgedMCshidrBju9Ktwe8WXP1nA==
-x-incomingheadercount: 44
-x-eopattributedmessage: 0
-x-forefront-antispam-report: EFV:NLI; SFV:NSPM; SFS:(7070007)(98901004);
-	DIR:OUT; SFP:1901; SCL:1; SRVR:DB5EUR01HT055;
-	H:VI1PR0502MB2941.eurprd05.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; 
-x-ms-office365-filtering-correlation-id: 0ce060a1-ba14-4ace-5cac-08d4dfc93b54
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(300000503095)(300135400095)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322377)(1603101448)(1601125374)(1701031045)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
-	SRVR:DB5EUR01HT055; 
-x-ms-traffictypediagnostic: DB5EUR01HT055:
-x-exchange-antispam-report-test: UriScan:(166708455590820);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(444000031);
-	SRVR:DB5EUR01HT055; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:DB5EUR01HT055; 
-x-forefront-prvs: 03950F25EC
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-vk0-f48.google.com (mail-vk0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B301E00C14
+	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 03:27:57 -0700 (PDT)
+Received: by mail-vk0-f48.google.com with SMTP id u133so11793485vke.3
+	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 03:27:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=ahAxbEEOg5qG79cwM2DqiiPNWxj9A/1yEQt56P9we/s=;
+	b=o9/iuKu8/8N/tt7t9+LX8Lckora5bhveNbWXFXGLrKrLSKu0aMsiHaXDmO7nHrjKDY
+	AXx9PPEeSRse5w4LchLJL9iS4qkUmaI2dRjXZZJquIfKIlfw5mZbeAHnbJEpGfz6lbdw
+	dv8EUcIvlh2g5mhdqrRPI/MSZQXoghA9vMg8wq8W0kHnkqS7q2OxWeCiOd2YRpp4YZ1e
+	6xVDScnlYcTwtocQ539e/W8wn7huRCeTemtSFiA6QPH9wDAznYlX035SnAb4cWkX4OI8
+	F1vPo8ub34pq52KlxY2acKr9XM2WbDYNRXBNF2s5ZRJTWUKyc0m65kpsw2u9Vp0rVWvw
+	zi2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=ahAxbEEOg5qG79cwM2DqiiPNWxj9A/1yEQt56P9we/s=;
+	b=Fe07Ni+tmVHlBDWIq++5OKFV1icnNGQ69ZPVyJ/pJ5SBvILYiUFnVcu1rO0Os7dfHv
+	/vNaOi3FN7sdIBG9lzhbSZuumjCMvwA5sLCNcXScTvb6wTI+hhkpIQwJ/shnbXkvEI1w
+	znpH8Xyvk28G/Kz+C2edX+E0ij/W/4bazonluHSSZv2hcWAOg3Nqpr112irC8RRFgi5y
+	4x5I2BoHV1wsvlPioxWB97nev6MOMWAKluJ9xtqg5axzMbiZ0Rb4j77EfiDeUUyyjC8P
+	icVq7KqjNzBLiW/k21C8eZDCzVpJts2I2TUrigpE2zVyuQtC2srtZ1mFusFwxcorP2AA
+	vDvw==
+X-Gm-Message-State: AHYfb5j14oStJKgKNrFqRLtj0bL+/WMQvu7wDWr6Pd95oiKVIs0XtCA6
+	4c0wOH7nVDpU0tmmVhfHyMGeMGZQsA==
+X-Received: by 10.31.94.131 with SMTP id s125mr10164739vkb.206.1502447276288; 
+	Fri, 11 Aug 2017 03:27:56 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2017 08:24:34.1168 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR01HT055
-Subject: Nodejs and npm
+Received: by 10.176.74.94 with HTTP; Fri, 11 Aug 2017 03:27:55 -0700 (PDT)
+In-Reply-To: <CAGsrAHeCVebxamT4hHwXq0fgDWb-P4-Dgc3eJEb1FCzhzBuSiA@mail.gmail.com>
+References: <CAGsrAHfOmMFfZPNWgZ64U52h968Mri4VT-QUMXt1CpsN1b3uqg@mail.gmail.com>
+	<CAC+thW0rKv7C1u6Qgs_xLSPXq0H4WS8Q=-o2rerb9KwN9bC-kA@mail.gmail.com>
+	<CAGsrAHcSAruiDr+QP=kkUQA5R4N7hSr7b2XXCxkKyvHv8WbinA@mail.gmail.com>
+	<CAC+thW1VR-vHi7m3ydHeye_gwy1vjfV9r8qKw6qZUXfLmFmA-g@mail.gmail.com>
+	<CAGsrAHcc483HCn5EYJu6fkbFsiPdowmrPr6nbJwwjDrsAd3nSw@mail.gmail.com>
+	<CAC+thW3kJ6xedATm_iTg593b=oU-vb0_mJCZ2s_4VDKoGOSdKg@mail.gmail.com>
+	<CAGsrAHeCVebxamT4hHwXq0fgDWb-P4-Dgc3eJEb1FCzhzBuSiA@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Fri, 11 Aug 2017 12:27:55 +0200
+Message-ID: <CAC+thW0qk-_Yhx4hhRMnfq8m+0f_DUzof4WgdyKZ_7w6YrQwkA@mail.gmail.com>
+To: mohammed aqdam <mohammedaqdam@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: rpi-basic-image-1.0-r0 do_rootfs: Function failed: do_rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -107,104 +81,593 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Aug 2017 19:58:51 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880VI1PR0502MB2941_"
+X-List-Received-Date: Fri, 11 Aug 2017 10:27:59 -0000
+Content-Type: multipart/alternative; boundary="001a114e5450327199055677c4c1"
 
---_000_VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880VI1PR0502MB2941_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--001a114e5450327199055677c4c1
+Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+On Fri, Aug 11, 2017 at 9:27 AM, mohammed aqdam <mohammedaqdam@gmail.com>
+wrote:
 
-
-I follow these instructions https://github.com/imyller/meta-nodejs
-
-
-and I bitbake nodejs in order to have nodejs and npm in a raspberry. In the=
- raspberry I have node -v but no npm -v.
-
-What does it mean:
-
-Inherit npm-install build task class in your recipe. ?
-
-Should I do something more in order to have npm in the raspberry?
-
-Thank you.
-Best,
-Natalia
-<https://github.com/imyller/meta-nodejs#bitbake-classes>
-
---_000_VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880VI1PR0502MB2941_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Hello,&nbsp;</p>
-<p><br>
-</p>
-<p>I follow these instructions&nbsp;<a href=3D"https://github.com/imyller/m=
-eta-nodejs" class=3D"OWAAutoLink" id=3D"LPlnk848381" previewremoved=3D"true=
-">https://github.com/imyller/meta-nodejs</a>&nbsp;</p>
-<p><br>
-</p>
-and I <span style=3D"background-color: rgb(190, 190, 190);">bitbake nodejs<=
-/span> in order to have nodejs and npm in a raspberry. In the raspberry I h=
-ave
-<span style=3D"background-color: rgb(190, 190, 190);">node -v</span> but no=
- <span style=3D"background-color: rgb(190, 190, 190);">
-npm -v.</span>
-<div><span style=3D"background-color: rgb(190, 190, 190);"><br>
-</span></div>
-<div><span style=3D"background-color: rgb(190, 190, 190);"><span style=3D"b=
-ackground-color: rgb(255, 255, 255);">What does it mean:</span><span style=
-=3D"background-color: rgb(255, 255, 255);">&nbsp;</span>
-<p style=3D"box-sizing: border-box; margin-bottom: 16px; color: rgb(36, 41,=
- 46); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;,=
- Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe U=
-I Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px;">
-Inherit&nbsp;<code style=3D"box-sizing: border-box; font-family: SFMono-Reg=
-ular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; fon=
-t-size: 13.6px; padding: 0.2em 0px; margin: 0px; background-color: rgba(27,=
- 31, 35, 0.05); border-radius: 3px;">npm-install</code>&nbsp;build
- task class in your recipe. ?</p>
-<div>Should I do something more in order to have npm in the raspberry?</div=
+> thanks for your response.
+> I made the reqd changes from the [1] link and added the open embedded
+> layer as well and in that layer I found v4l-utils,so hopefully it will work.
+> But in order to take pic I need gstreamer and OMXplayer which is present
+> in met area so berry pi/recipes-multimedia.....now I want yo use this,how
+> to add those two utilities to my image?
 >
-<div><br>
-</div>
-<div>Thank you.&nbsp;</div>
-<div>Best,&nbsp;</div>
-<div>Natalia</div>
-<h1 style=3D"box-sizing: border-box; margin: 24px 0px 16px; line-height: 1.=
-25; padding-bottom: 0.3em; border-bottom: 1px solid rgb(234, 236, 239); col=
-or: rgb(36, 41, 46); font-family: -apple-system, BlinkMacSystemFont, &quot;=
-Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;=
-, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;">
-<a id=3D"user-content-bitbake-classes" class=3D"anchor" href=3D"https://git=
-hub.com/imyller/meta-nodejs#bitbake-classes" aria-hidden=3D"true" style=3D"=
-box-sizing: border-box; background-color: transparent; color: rgb(3, 102, 2=
-14); text-decoration-line: none; float: left; padding-right: 4px; margin-le=
-ft: -20px; line-height: 1;"><svg aria-hidden=3D"true" class=3D"octicon octi=
-con-link" height=3D"16" version=3D"1.1" viewBox=3D"0 0 16 16" width=3D"16">=
-<path fill-rule=3D"evenodd" d=3D"M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h=
-4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 =
-5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S=
-13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1=
-.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>=
-</svg></a></h1>
-</span></div>
-</div>
-</body>
-</html>
 
---_000_VI1PR0502MB2941DB28E0B30BBFC38F9EFFF9880VI1PR0502MB2941_--
+AFAICT omxplayer is part of rpi-test-image, a more feature reach image than
+rpi-basic-image: you could try building that instead, or refer to
+customising images content on the Yocto Reference Manual if you want to add
+it to rpi-basic-image (i.e. by setting IMAGE_INSTALL_append). A simple
+search for omxplayer in meta-raspberrypi documentation shows you'd also
+need to enable building that specific recipe, since it depends on non-free
+libraries. gstreamer is available from poky and meta-raspberrypi only
+provides some customisation to that recipe via bbappends. Again, if not
+already present in your image it should be possible to add it via the usual
+IMAGE_INSTALL_append mechanism.
+
+
+>
+>
+> On Aug 10, 2017 10:34 PM, "Andrea Galbusera" <gizero@gmail.com> wrote:
+>
+>> On Thu, Aug 10, 2017 at 4:06 PM, mohammed aqdam <mohammedaqdam@gmail.com>
+>> wrote:
+>>
+>>> Thanks for your response
+>>> I did it from scratch and it worked even apt is there but its not
+>>> working properly.....its giving failed to fork and no installation packages
+>>> for all commands....how to fix apt?
+>>>
+>>
+>> Did you try to follow the suggestion to use "package-management" image
+>> feature instead? Beside installing the tools like apt, it's going to deploy
+>> all related configuration files, like the installed packages database and
+>> whatever is needed to have a working package management on the target.
+>>
+>>
+>>> Next I want to enable picamera v2 on rpi3 and use v4l2's api's......so
+>>> how to add/enable camera? One more thing do I need to download any camera
+>>> related folder and add it to bblayer.conf?
+>>>
+>>
+>> I've never used the picamera myself, but I'd expect you'll need a lot of
+>> stuff from kernel support to appropriate device tree overlays and user
+>> space tools. A quick skim to meta-raspberrypi documentation showed [1] as a
+>> starting point. Also, some v4l related utils can be found in meta-oe which,
+>> yes, is one optional "layer" you can add to your bblayer.conf if needed.
+>> For searching which layer includes recipes for the software you need,
+>> please refer to the OpenEmbedded Layer Index [2]: it should be the most
+>> up-to-date source for such a bit.
+>>
+>> [1] https://github.com/agherzan/meta-raspberrypi/blob/master/doc
+>> s/extra-build-config.md#video-camera-support-with-v4l2-drivers
+>> [2] https://layers.openembedded.org/layerindex/branch/master/layers/
+>>
+>>
+>>> On Aug 10, 2017 3:04 PM, "Andrea Galbusera" <gizero@gmail.com> wrote:
+>>>
+>>>> On Thu, Aug 10, 2017 at 10:58 AM, mohammed aqdam <
+>>>> mohammedaqdam@gmail.com> wrote:
+>>>>
+>>>>> thanks for your response...
+>>>>> How to change my meta-raspberrypi branch to pyro?
+>>>>>
+>>>>
+>>>> Just checkout pyro branch from meta-raspberrypi repo... This is plain
+>>>> git, nothing specific to Yocto/OE.
+>>>>
+>>>>
+>>>>> And yeah I'm trying to customize for Debian,and trying to add apt into
+>>>>> my kernel using IMAGE_INSTALL_append +=" apt".
+>>>>>
+>>>>
+>>>> If you want to add package management features to your image (which
+>>>> rpi-basic-image does not include by default), the supported way is by using
+>>>> the "package-management" image feature. This can be enabled either by
+>>>> IMAGE_FEATURES += "package-management" in your custom image recipe or by
+>>>> extending EXTRA_IMAGE_FEATURES in local.conf. See [1] for best practices on
+>>>> enabling additional image features and dig the docs for package-management
+>>>> to grasp the advantages of using this approach.
+>>>>
+>>>> That said, I just run a build with your exact metadata commits and it
+>>>> went fine to the end, also resulting in apt-get related files to be in the
+>>>> final image rootfs. You might have messed up something while changing your PACKAGE_CLASSES
+>>>> value. Have you tried wiping tmp/ and running the build again? If it
+>>>> doesn't help you should share your local.conf to help figuring out what's
+>>>> wrong.
+>>>>
+>>>> [1] http://www.yoctoproject.org/docs/latest/mega-manual/mega
+>>>> -manual.html#usingpoky-extend-customimage-imagefeatures
+>>>>
+>>>>
+>>>>>
+>>>>>
+>>>>> On Aug 10, 2017 1:40 PM, "Andrea Galbusera" <gizero@gmail.com> wrote:
+>>>>>
+>>>>>> On Thu, Aug 10, 2017 at 6:16 AM, mohammed aqdam <
+>>>>>> mohammedaqdam@gmail.com> wrote:
+>>>>>>
+>>>>>>> i was building image for rpi 3.
+>>>>>>> so when i run bitbake -k rpi-basic-image i'm getting following error.
+>>>>>>> how to recover this error...
+>>>>>>>
+>>>>>>> root@pcz-ee207837-2:/u/my_poky/poky/build# bitbake -k
+>>>>>>> rpi-basic-image
+>>>>>>> Parsing recipes: 100%
+>>>>>>> |###########################################################
+>>>>>>> ############################################################
+>>>>>>> ###################|
+>>>>>>> Time: 0:01:10
+>>>>>>> Parsing of 851 .bb files complete (0 cached, 851 parsed). 1320
+>>>>>>> targets, 73 skipped, 0 masked, 0 errors.
+>>>>>>> NOTE: Resolving any missing task queue dependencies
+>>>>>>>
+>>>>>>> Build Configuration:
+>>>>>>> BB_VERSION        = "1.34.0"
+>>>>>>> BUILD_SYS         = "x86_64-linux"
+>>>>>>> NATIVELSBSTRING   = "universal-4.8"
+>>>>>>> TARGET_SYS        = "arm-poky-linux-gnueabi"
+>>>>>>> MACHINE           = "raspberrypi3"
+>>>>>>> DISTRO            = "poky"
+>>>>>>> DISTRO_VERSION    = "2.3.1"
+>>>>>>> TUNE_FEATURES     = "arm armv7ve vfp thumb neon vfpv4
+>>>>>>> callconvention-hard cortexa7"
+>>>>>>> TARGET_FPU        = "hard"
+>>>>>>> meta
+>>>>>>> meta-poky
+>>>>>>> meta-yocto-bsp    = "pyro:4a39979c8d1e560fa54240e99734a651dfbaa63a"
+>>>>>>> meta-raspberrypi  = "master:f6a2ca21c72b8d97cd0f89
+>>>>>>> a0a436bf90b431698b"
+>>>>>>>
+>>>>>>
+>>>>>> Hi! You are mixing layers from different release branches: this
+>>>>>> shouldn't be a big issue in your scenario, but, in order to debug further,
+>>>>>> you should try with pyro branch from meta-raspberrypi to match your poky
+>>>>>> commit. Moreover, it looks like you are using package_deb as the packaging
+>>>>>> format for your image: what's the exact value of your PACKAGE_CLASSES
+>>>>>> variable? Do you have any other customisation in your local.conf w.r.t. the
+>>>>>> default configuration?
+>>>>>>
+>>>>>>
+>>>>>>>
+>>>>>>> Initialising tasks: 100%
+>>>>>>> |###########################################################
+>>>>>>> ############################################################
+>>>>>>> ################|
+>>>>>>> Time: 0:00:06
+>>>>>>> NOTE: Executing SetScene Tasks
+>>>>>>> NOTE: Executing RunQueue Tasks
+>>>>>>> ERROR: rpi-basic-image-1.0-r0 do_rootfs: Error executing a python
+>>>>>>> function in exec_python_func() autogenerated:
+>>>>>>>
+>>>>>>> The stack trace of python calls that resulted in this
+>>>>>>> exception/failure was:
+>>>>>>> File: 'exec_python_func() autogenerated', lineno: 2, function:
+>>>>>>> <module>
+>>>>>>>      0001:
+>>>>>>>  *** 0002:do_rootfs(d)
+>>>>>>>      0003:
+>>>>>>> File: '/u/my_poky/poky/meta/classes/image.bbclass', lineno: 270,
+>>>>>>> function: do_rootfs
+>>>>>>>      0266:
+>>>>>>>      0267:    progress_reporter.next_stage()
+>>>>>>>      0268:
+>>>>>>>      0269:    # generate rootfs
+>>>>>>>  *** 0270:    create_rootfs(d, progress_reporter=progress_reporter,
+>>>>>>> logcatcher=logcatcher)
+>>>>>>>      0271:
+>>>>>>>      0272:    progress_reporter.finish()
+>>>>>>>      0273:}
+>>>>>>>      0274:do_rootfs[dirs] = "${TOPDIR}"
+>>>>>>> File: '/u/my_poky/poky/meta/lib/oe/rootfs.py', lineno: 1005,
+>>>>>>> function:
+>>>>>>> create_rootfs
+>>>>>>>      1001:        RpmRootfs(d, manifest_dir, progress_reporter,
+>>>>>>> logcatcher).create()
+>>>>>>>      1002:    elif img_type == "ipk":
+>>>>>>>      1003:        OpkgRootfs(d, manifest_dir, progress_reporter,
+>>>>>>> logcatcher).create()
+>>>>>>>      1004:    elif img_type == "deb":
+>>>>>>>  *** 1005:        DpkgRootfs(d, manifest_dir, progress_reporter,
+>>>>>>> logcatcher).create()
+>>>>>>>      1006:
+>>>>>>>      1007:    os.environ.clear()
+>>>>>>>      1008:    os.environ.update(env_bkp)
+>>>>>>>      1009:
+>>>>>>> File: '/u/my_poky/poky/meta/lib/oe/rootfs.py', lineno: 638,
+>>>>>>> function: __init__
+>>>>>>>      0634:        bb.utils.remove(self.d.getVar('MULTILIB_TEMP_ROOTFS'),
+>>>>>>> True)
+>>>>>>>      0635:        self.manifest = DpkgManifest(d, manifest_dir)
+>>>>>>>      0636:        self.pm = DpkgPM(d, d.getVar('IMAGE_ROOTFS'),
+>>>>>>>      0637:                         d.getVar('PACKAGE_ARCHS'),
+>>>>>>>  *** 0638:                         d.getVar('DPKG_ARCH'))
+>>>>>>>      0639:
+>>>>>>>      0640:
+>>>>>>>      0641:    def _create(self):
+>>>>>>>      0642:        pkgs_to_install = self.manifest.parse_initial_ma
+>>>>>>> nifest()
+>>>>>>> File: '/u/my_poky/poky/meta/lib/oe/package_manager.py', lineno:
+>>>>>>> 1245,
+>>>>>>> function: __init__
+>>>>>>>      1241:        self.all_arch_list = archs.split()
+>>>>>>>      1242:        all_mlb_pkg_arch_list =
+>>>>>>> (self.d.getVar('ALL_MULTILIB_PACKAGE_ARCHS') or "").split()
+>>>>>>>      1243:        self.all_arch_list.extend(arch for arch in
+>>>>>>> all_mlb_pkg_arch_list if arch not in self.all_arch_list)
+>>>>>>>      1244:
+>>>>>>>  *** 1245:        self._create_configs(archs, base_archs)
+>>>>>>>      1246:
+>>>>>>>      1247:        self.indexer = DpkgIndexer(self.d, self.deploy_dir)
+>>>>>>>      1248:
+>>>>>>>      1249:    """
+>>>>>>> File: '/u/my_poky/poky/meta/lib/oe/package_manager.py', lineno:
+>>>>>>> 1483,
+>>>>>>> function: _create_configs
+>>>>>>>      1479:            if variant_arch not in base_arch_list:
+>>>>>>>      1480:                base_arch_list.append(variant_arch)
+>>>>>>>      1481:
+>>>>>>>      1482:        with open(self.apt_conf_file, "w+") as apt_conf:
+>>>>>>>  *** 1483:            with
+>>>>>>> open(self.d.expand("${STAGING_ETCDIR_NATIVE}/apt/apt.conf.sample"))
+>>>>>>> as
+>>>>>>> apt_conf_sample:
+>>>>>>>      1484:                for line in apt_conf_sample.read().split("
+>>>>>>> \n"):
+>>>>>>>      1485:                    match_arch = re.match("  Architecture
+>>>>>>> \".*\";$", line)
+>>>>>>>      1486:                    architectures = ""
+>>>>>>>      1487:                    if match_arch:
+>>>>>>> Exception: FileNotFoundError: [Errno 2] No such file or directory:
+>>>>>>> '/u/my_poky/poky/build/tmp/work/raspberrypi3-poky-linux-gnue
+>>>>>>> abi/rpi-basic-image/1.0-r0/recipe-sysroot-native/etc/apt/apt
+>>>>>>> .conf.sample'
+>>>>>>>
+>>>>>>> ERROR: rpi-basic-image-1.0-r0 do_rootfs: Function failed: do_rootfs
+>>>>>>> ERROR: Logfile of failure stored in:
+>>>>>>> /u/my_poky/poky/build/tmp/work/raspberrypi3-poky-linux-gnuea
+>>>>>>> bi/rpi-basic-image/1.0-r0/temp/log.do_rootfs.21760
+>>>>>>> ERROR: Task (/u/my_poky/poky/meta-raspberr
+>>>>>>> ypi/recipes-core/images/rpi-basic-image.bb:do_rootfs)
+>>>>>>> failed with exit code '1'
+>>>>>>> NOTE: Tasks Summary: Attempted 2312 tasks of which 2311 didn't need
+>>>>>>> to
+>>>>>>> be rerun and 1 failed.
+>>>>>>>
+>>>>>>> Summary: 1 task failed:
+>>>>>>>   /u/my_poky/poky/meta-raspberrypi/recipes-core/images/rpi-bas
+>>>>>>> ic-image.bb:do_rootfs
+>>>>>>> Summary: There were 2 ERROR messages shown, returning a non-zero
+>>>>>>> exit code.
+>>>>>>> --
+>>>>>>> _______________________________________________
+>>>>>>> yocto mailing list
+>>>>>>> yocto@yoctoproject.org
+>>>>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>>>>
+>>>>>>
+>>>>>>
+>>>>
+>>
+
+--001a114e5450327199055677c4c1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On F=
+ri, Aug 11, 2017 at 9:27 AM, mohammed aqdam <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:mohammedaqdam@gmail.com" target=3D"_blank">mohammedaqdam@gmail.c=
+om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto=
+">thanks for your response.<div dir=3D"auto">I made the reqd changes from t=
+he [1] link and added the open embedded layer as well and in that layer I f=
+ound v4l-utils,so hopefully it will work.</div><div dir=3D"auto">But in ord=
+er to take pic I need gstreamer and OMXplayer which is present in met area =
+so berry pi/recipes-multimedia.....now I want yo use this,how to add those =
+two utilities to my image?</div></div></blockquote><div><br></div><div>AFAI=
+CT omxplayer is part of rpi-test-image, a more feature reach image than rpi=
+-basic-image: you could try building that instead, or refer to customising =
+images content on the Yocto Reference Manual if you want to add it to rpi-b=
+asic-image (i.e. by setting IMAGE_INSTALL_append). A simple search for omxp=
+layer in meta-raspberrypi documentation shows you&#39;d also need to enable=
+ building that specific recipe, since it depends on non-free libraries. gst=
+reamer is available from poky and meta-raspberrypi only provides some custo=
+misation to that recipe via bbappends. Again, if not already present in you=
+r image it should be possible to add it via the usual IMAGE_INSTALL_append =
+mechanism.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D=
+"auto"><div dir=3D"auto"><br></div></div><div class=3D"HOEnZb"><div class=
+=3D"h5"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Aug 10=
+, 2017 10:34 PM, &quot;Andrea Galbusera&quot; &lt;<a href=3D"mailto:gizero@=
+gmail.com" target=3D"_blank">gizero@gmail.com</a>&gt; wrote:<br type=3D"att=
+ribution"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gma=
+il_extra"><div class=3D"gmail_quote">On Thu, Aug 10, 2017 at 4:06 PM, moham=
+med aqdam <span dir=3D"ltr">&lt;<a href=3D"mailto:mohammedaqdam@gmail.com" =
+target=3D"_blank">mohammedaqdam@gmail.com</a>&gt;</span> wrote:<br><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Thanks for your=
+ response<div dir=3D"auto">I did it from scratch and it worked even apt is =
+there but its not working properly.....its giving failed to fork and no ins=
+tallation packages for all commands....how to fix apt?</div></div></blockqu=
+ote><div><br></div><div>Did you try to follow the suggestion to use &quot;p=
+ackage-management&quot; image feature instead? Beside installing the tools =
+like apt, it&#39;s going to deploy all related configuration files, like th=
+e installed packages database and whatever is needed to have a working pack=
+age management on the target.</div><div>=C2=A0</div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"auto"><div dir=3D"auto">Next I want =
+to enable picamera v2 on rpi3 and use v4l2&#39;s api&#39;s......so how to a=
+dd/enable camera? One more thing do I need to download any camera related f=
+older and add it to bblayer.conf?</div></div></blockquote><div><br></div><d=
+iv>I&#39;ve never used the picamera myself, but I&#39;d expect you&#39;ll n=
+eed a lot of stuff from kernel support to appropriate device tree overlays =
+and user space tools. A quick skim to meta-raspberrypi documentation showed=
+ [1] as a starting point. Also, some v4l related utils can be found in meta=
+-oe which, yes, is one optional &quot;layer&quot; you can add to your bblay=
+er.conf if needed. For searching which layer includes recipes for the softw=
+are you need, please refer to the OpenEmbedded Layer Index [2]: it should b=
+e the most up-to-date source for such a bit.</div><div><br></div><div>[1] <=
+a href=3D"https://github.com/agherzan/meta-raspberrypi/blob/master/docs/ext=
+ra-build-config.md#video-camera-support-with-v4l2-drivers" target=3D"_blank=
+">https://github.com/agherzan/me<wbr>ta-raspberrypi/blob/master/doc<wbr>s/e=
+xtra-build-config.md#video-<wbr>camera-support-with-v4l2-<wbr>drivers</a></=
+div><div>[2]=C2=A0<a href=3D"https://layers.openembedded.org/layerindex/bra=
+nch/master/layers/" target=3D"_blank">https://layers.openembedde<wbr>d.org/=
+layerindex/branch/<wbr>master/layers/</a></div><div><br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div class=3D"m_1270136168937222160m_-=
+1838101509340986021gmail-HOEnZb"><div class=3D"m_1270136168937222160m_-1838=
+101509340986021gmail-h5"><div class=3D"gmail_extra"><br><div class=3D"gmail=
+_quote">On Aug 10, 2017 3:04 PM, &quot;Andrea Galbusera&quot; &lt;<a href=
+=3D"mailto:gizero@gmail.com" target=3D"_blank">gizero@gmail.com</a>&gt; wro=
+te:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">O=
+n Thu, Aug 10, 2017 at 10:58 AM, mohammed aqdam <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:mohammedaqdam@gmail.com" target=3D"_blank">mohammedaqdam@gmail=
+.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div dir=3D"auto">thanks for your response...=C2=A0<div dir=3D"auto">H=
+ow to change my meta-raspberrypi branch to pyro?</div></div></blockquote><d=
+iv><br></div><div>Just checkout pyro branch from meta-raspberrypi repo... T=
+his is plain git, nothing specific to Yocto/OE.</div><div>=C2=A0</div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><div dir=3D"=
+auto">And yeah I&#39;m trying to customize for Debian,and trying to add apt=
+ into my kernel using IMAGE_INSTALL_append +=3D&quot; apt&quot;.</div></div=
+></blockquote><div><br></div><div>If you want to add package management fea=
+tures to your image (which rpi-basic-image does not include by default), th=
+e supported way is by using the &quot;package-management&quot; image featur=
+e. This can be enabled either by IMAGE_FEATURES +=3D &quot;package-manageme=
+nt&quot; in your custom image recipe or by extending EXTRA_IMAGE_FEATURES i=
+n local.conf. See [1] for best practices on enabling additional image featu=
+res and dig the docs for package-management to grasp the advantages of usin=
+g this approach.</div><div><br></div><div>That said, I just run a build wit=
+h your exact metadata commits and it went fine to the end, also resulting i=
+n apt-get related files to be in the final image rootfs. You might have mes=
+sed up something while changing your=C2=A0<span style=3D"font-family:sans-s=
+erif;font-size:13.696px">PACKAGE_CLASSES value. Have you tried wiping tmp/ =
+and running the build again?</span>=C2=A0If it doesn&#39;t help you should =
+share your local.conf to help figuring out what&#39;s wrong.</div><div><br>=
+</div><div>[1]=C2=A0<a href=3D"http://www.yoctoproject.org/docs/latest/mega=
+-manual/mega-manual.html#usingpoky-extend-customimage-imagefeatures" target=
+=3D"_blank">http://www.yoctoproject.or<wbr>g/docs/latest/mega-manual/mega<w=
+br>-manual.html#usingpoky-extend-<wbr>customimage-imagefeatures</a></div><d=
+iv>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"auto"><div dir=3D"auto"><br></div></div><div class=3D"m_127013616893722=
+2160m_-1838101509340986021gmail-m_7403972029661969540m_6204495544071591042g=
+mail-HOEnZb"><div class=3D"m_1270136168937222160m_-1838101509340986021gmail=
+-m_7403972029661969540m_6204495544071591042gmail-h5"><div class=3D"gmail_ex=
+tra"><br><div class=3D"gmail_quote">On Aug 10, 2017 1:40 PM, &quot;Andrea G=
+albusera&quot; &lt;<a href=3D"mailto:gizero@gmail.com" target=3D"_blank">gi=
+zero@gmail.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><d=
+iv class=3D"gmail_quote">On Thu, Aug 10, 2017 at 6:16 AM, mohammed aqdam <s=
+pan dir=3D"ltr">&lt;<a href=3D"mailto:mohammedaqdam@gmail.com" target=3D"_b=
+lank">mohammedaqdam@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex">i was building image for rpi 3.<br>
+so when i run bitbake -k rpi-basic-image i&#39;m getting following error.<b=
+r>
+how to recover this error...<br>
+<br>
+root@pcz-ee207837-2:/u/my_poky<wbr>/poky/build# bitbake -k rpi-basic-image<=
+br>
+Parsing recipes: 100%<br>
+|#############################<wbr>##############################<wbr>#####=
+#########################<wbr>##############################<wbr>##########=
+#########|<br>
+Time: 0:01:10<br>
+Parsing of 851 .bb files complete (0 cached, 851 parsed). 1320<br>
+targets, 73 skipped, 0 masked, 0 errors.<br>
+NOTE: Resolving any missing task queue dependencies<br>
+<br>
+Build Configuration:<br>
+BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;1.34.0&quot;<br>
+BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;x86_64-linux&quot;<br>
+NATIVELSBSTRING=C2=A0 =C2=A0=3D &quot;universal-4.8&quot;<br>
+TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;arm-poky-linux-gnueabi&quot=
+;<br>
+MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;raspberrypi3&quot=
+;<br>
+DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;poky&quot;<br>
+DISTRO_VERSION=C2=A0 =C2=A0 =3D &quot;2.3.1&quot;<br>
+TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0=3D &quot;arm armv7ve vfp thumb neon vfpv4=
+<br>
+callconvention-hard cortexa7&quot;<br>
+TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;hard&quot;<br>
+meta<br>
+meta-poky<br>
+meta-yocto-bsp=C2=A0 =C2=A0 =3D &quot;pyro:4a39979c8d1e560fa54240e9<wbr>973=
+4a651dfbaa63a&quot;<br>
+meta-raspberrypi=C2=A0 =3D &quot;master:f6a2ca21c72b8d97cd0f89<wbr>a0a436bf=
+90b431698b&quot;<br></blockquote><div><br></div><div>Hi! You are mixing lay=
+ers from different release branches: this shouldn&#39;t be a big issue in y=
+our scenario, but, in order to debug further, you should try with pyro bran=
+ch from meta-raspberrypi to match your poky commit. Moreover, it looks like=
+ you are using package_deb as the packaging format for your image: what&#39=
+;s the exact value of your PACKAGE_CLASSES variable? Do you have any other =
+customisation in your local.conf w.r.t. the default configuration?</div><di=
+v>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+Initialising tasks: 100%<br>
+|#############################<wbr>##############################<wbr>#####=
+#########################<wbr>##############################<wbr>##########=
+######|<br>
+Time: 0:00:06<br>
+NOTE: Executing SetScene Tasks<br>
+NOTE: Executing RunQueue Tasks<br>
+ERROR: rpi-basic-image-1.0-r0 do_rootfs: Error executing a python<br>
+function in exec_python_func() autogenerated:<br>
+<br>
+The stack trace of python calls that resulted in this exception/failure was=
+:<br>
+File: &#39;exec_python_func() autogenerated&#39;, lineno: 2, function: &lt;=
+module&gt;<br>
+=C2=A0 =C2=A0 =C2=A00001:<br>
+=C2=A0*** 0002:do_rootfs(d)<br>
+=C2=A0 =C2=A0 =C2=A00003:<br>
+File: &#39;/u/my_poky/poky/meta/classes/<wbr>image.bbclass&#39;, lineno: 27=
+0,<br>
+function: do_rootfs<br>
+=C2=A0 =C2=A0 =C2=A00266:<br>
+=C2=A0 =C2=A0 =C2=A00267:=C2=A0 =C2=A0 progress_reporter.next_stage()<br>
+=C2=A0 =C2=A0 =C2=A00268:<br>
+=C2=A0 =C2=A0 =C2=A00269:=C2=A0 =C2=A0 # generate rootfs<br>
+=C2=A0*** 0270:=C2=A0 =C2=A0 create_rootfs(d, progress_reporter=3Dprogress_=
+rep<wbr>orter,<br>
+logcatcher=3Dlogcatcher)<br>
+=C2=A0 =C2=A0 =C2=A00271:<br>
+=C2=A0 =C2=A0 =C2=A00272:=C2=A0 =C2=A0 progress_reporter.finish()<br>
+=C2=A0 =C2=A0 =C2=A00273:}<br>
+=C2=A0 =C2=A0 =C2=A00274:do_rootfs[dirs] =3D &quot;${TOPDIR}&quot;<br>
+File: &#39;/u/my_poky/poky/meta/lib/oe/r<wbr>ootfs.py&#39;, lineno: 1005, f=
+unction:<br>
+create_rootfs<br>
+=C2=A0 =C2=A0 =C2=A01001:=C2=A0 =C2=A0 =C2=A0 =C2=A0 RpmRootfs(d, manifest_=
+dir, progress_reporter,<br>
+logcatcher).create()<br>
+=C2=A0 =C2=A0 =C2=A01002:=C2=A0 =C2=A0 elif img_type =3D=3D &quot;ipk&quot;=
+:<br>
+=C2=A0 =C2=A0 =C2=A01003:=C2=A0 =C2=A0 =C2=A0 =C2=A0 OpkgRootfs(d, manifest=
+_dir, progress_reporter,<br>
+logcatcher).create()<br>
+=C2=A0 =C2=A0 =C2=A01004:=C2=A0 =C2=A0 elif img_type =3D=3D &quot;deb&quot;=
+:<br>
+=C2=A0*** 1005:=C2=A0 =C2=A0 =C2=A0 =C2=A0 DpkgRootfs(d, manifest_dir, prog=
+ress_reporter,<br>
+logcatcher).create()<br>
+=C2=A0 =C2=A0 =C2=A01006:<br>
+=C2=A0 =C2=A0 =C2=A01007:=C2=A0 =C2=A0 os.environ.clear()<br>
+=C2=A0 =C2=A0 =C2=A01008:=C2=A0 =C2=A0 os.environ.update(env_bkp)<br>
+=C2=A0 =C2=A0 =C2=A01009:<br>
+File: &#39;/u/my_poky/poky/meta/lib/oe/r<wbr>ootfs.py&#39;, lineno: 638, fu=
+nction: __init__<br>
+=C2=A0 =C2=A0 =C2=A00634:=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.utils.remove(self.d=
+.getVar(<wbr>&#39;MULTILIB_TEMP_ROOTFS&#39;), True)<br>
+=C2=A0 =C2=A0 =C2=A00635:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.manifest =3D Dpkg=
+Manifest(d, manifest_dir)<br>
+=C2=A0 =C2=A0 =C2=A00636:=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"http://self=
+.pm" rel=3D"noreferrer" target=3D"_blank">self.pm</a> =3D DpkgPM(d, d.getVa=
+r(&#39;IMAGE_ROOTFS&#39;),<br>
+=C2=A0 =C2=A0 =C2=A00637:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0d.getVar(&#39;PACKAGE_ARCHS&#39;),=
+<br>
+=C2=A0*** 0638:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0d.getVar(&#39;DPKG_ARCH&#39;))<br>
+=C2=A0 =C2=A0 =C2=A00639:<br>
+=C2=A0 =C2=A0 =C2=A00640:<br>
+=C2=A0 =C2=A0 =C2=A00641:=C2=A0 =C2=A0 def _create(self):<br>
+=C2=A0 =C2=A0 =C2=A00642:=C2=A0 =C2=A0 =C2=A0 =C2=A0 pkgs_to_install =3D se=
+lf.manifest.parse_initial_ma<wbr>nifest()<br>
+File: &#39;/u/my_poky/poky/meta/lib/oe/p<wbr>ackage_manager.py&#39;, lineno=
+: 1245,<br>
+function: __init__<br>
+=C2=A0 =C2=A0 =C2=A01241:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.all_arch_list =3D=
+ archs.split()<br>
+=C2=A0 =C2=A0 =C2=A01242:=C2=A0 =C2=A0 =C2=A0 =C2=A0 all_mlb_pkg_arch_list =
+=3D<br>
+(self.d.getVar(&#39;ALL_MULTILIB_P<wbr>ACKAGE_ARCHS&#39;) or &quot;&quot;).=
+split()<br>
+=C2=A0 =C2=A0 =C2=A01243:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.all_arch_list.ext=
+end(arch for arch in<br>
+all_mlb_pkg_arch_list if arch not in self.all_arch_list)<br>
+=C2=A0 =C2=A0 =C2=A01244:<br>
+=C2=A0*** 1245:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self._create_configs(archs, base=
+_archs)<br>
+=C2=A0 =C2=A0 =C2=A01246:<br>
+=C2=A0 =C2=A0 =C2=A01247:=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.indexer =3D DpkgI=
+ndexer(self.d, self.deploy_dir)<br>
+=C2=A0 =C2=A0 =C2=A01248:<br>
+=C2=A0 =C2=A0 =C2=A01249:=C2=A0 =C2=A0 &quot;&quot;&quot;<br>
+File: &#39;/u/my_poky/poky/meta/lib/oe/p<wbr>ackage_manager.py&#39;, lineno=
+: 1483,<br>
+function: _create_configs<br>
+=C2=A0 =C2=A0 =C2=A01479:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if varia=
+nt_arch not in base_arch_list:<br>
+=C2=A0 =C2=A0 =C2=A01480:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 base_arch_list.append(variant_<wbr>arch)<br>
+=C2=A0 =C2=A0 =C2=A01481:<br>
+=C2=A0 =C2=A0 =C2=A01482:=C2=A0 =C2=A0 =C2=A0 =C2=A0 with open(self.apt_con=
+f_file, &quot;w+&quot;) as apt_conf:<br>
+=C2=A0*** 1483:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 with<br>
+open(self.d.expand(&quot;${STAGING_<wbr>ETCDIR_NATIVE}/apt/<a href=3D"http:=
+//apt.conf.sa" target=3D"_blank">apt.conf.sa</a><wbr>mple&quot;)) as<br>
+apt_conf_sample:<br>
+=C2=A0 =C2=A0 =C2=A01484:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 for line in apt_conf_sample.read().split(&quot;<wbr>\n&quot;):<br>
+=C2=A0 =C2=A0 =C2=A01485:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 match_arch =3D re.match(&quot;=C2=A0 Architecture<br>
+\&quot;.*\&quot;;$&quot;, line)<br>
+=C2=A0 =C2=A0 =C2=A01486:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 architectures =3D &quot;&quot;<br>
+=C2=A0 =C2=A0 =C2=A01487:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 if match_arch:<br>
+Exception: FileNotFoundError: [Errno 2] No such file or directory:<br>
+&#39;/u/my_poky/poky/build/tmp/wor<wbr>k/raspberrypi3-poky-linux-gnue<wbr>a=
+bi/rpi-basic-image/1.0-r0/rec<wbr>ipe-sysroot-native/etc/apt/apt<wbr>.conf.=
+sample&#39;<br>
+<br>
+ERROR: rpi-basic-image-1.0-r0 do_rootfs: Function failed: do_rootfs<br>
+ERROR: Logfile of failure stored in:<br>
+/u/my_poky/poky/build/tmp/work<wbr>/raspberrypi3-poky-linux-gnuea<wbr>bi/rp=
+i-basic-image/1.0-r0/temp<wbr>/log.do_rootfs.21760<br>
+ERROR: Task (/u/my_poky/poky/meta-raspberr<wbr>ypi/recipes-core/images/rpi-=
+ba<wbr>sic-image.bb:do_rootfs)<br>
+failed with exit code &#39;1&#39;<br>
+NOTE: Tasks Summary: Attempted 2312 tasks of which 2311 didn&#39;t need to<=
+br>
+be rerun and 1 failed.<br>
+<br>
+Summary: 1 task failed:<br>
+=C2=A0 /u/my_poky/poky/meta-raspberry<wbr>pi/recipes-core/images/rpi-bas<wb=
+r>ic-image.bb:do_rootfs<br>
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.=
+<br>
+<span class=3D"m_1270136168937222160m_-1838101509340986021gmail-m_740397202=
+9661969540m_6204495544071591042gmail-m_2002249612472036039m_525300071957511=
+9424m_1565124425357432306HOEnZb"><font color=3D"#888888">--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br></div></div>
+</blockquote></div></div>
+</div></div></blockquote></div><br></div></div>
+</blockquote></div></div>
+</div></div></blockquote></div><br></div></div>
+</blockquote></div></div>
+</div></div></blockquote></div><br></div></div>
+
+--001a114e5450327199055677c4c1--
