@@ -1,62 +1,97 @@
-Return-Path: <Michal.Vokac@ysoft.com>
+Return-Path: <yannick.koehler@hpe.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01FECE00C3A; Fri, 11 Aug 2017 05:59:09 -0700 (PDT)
+	id 0F889E00BB1; Fri, 11 Aug 2017 06:29:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [81.19.3.130 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [15.241.32.99 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 366 seconds by postgrey-1.32 at yocto-www;
-	Fri, 11 Aug 2017 05:59:07 PDT
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD2B5E00C14
-	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 05:59:07 -0700 (PDT)
-Received: from APczBrno16.ysoft.local (apczbrno16.ysoft.local [10.0.0.90])
+Received: from g9t1613g.houston.hpe.com (g9t1613g.houston.hpe.com
+	[15.241.32.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80BA1E00B67
+	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 06:29:43 -0700 (PDT)
+Received: from g4t3427.houston.hpe.com (g4t3427.houston.hpe.com
+	[15.241.140.73])
+	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by g9t1613g.houston.hpe.com (Postfix) with ESMTPS id B165960277
+	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 13:29:42 +0000 (UTC)
+Received: from G1W8108.americas.hpqcorp.net (g1w8108.austin.hp.com
+	[16.193.72.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by uho.ysoft.cz (Postfix) with ESMTPS id 6067DA0341
-	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 14:52:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-	s=20160406-ysoft-com; t=1502455979;
-	bh=33GLbzwCtPfiHBfvMRkN4gGcXHr56DlAxj+Ua8/2KYs=;
-	h=From:To:Subject:Date:From;
-	b=Y/OAm8mSnHGJvAI+M0xWNk4nQ8YvetIQiQFxl4wEH9pPfyl+lcBaXRsUTiAVPokfT
-	JzIPTAp9Y6pqwaDWv9bPNUXN/69DeRPlQINjFNbHJKbND7P/hss/S+SI6JmClfbUIZ
-	2PUgB0WCZIvocJPFHt6BrCWlfjHoWqVZeTKdy7GI=
-Received: from APczBrno16.ysoft.local (10.0.0.90) by APczBrno16.ysoft.local
-	(10.0.0.90) with Microsoft SMTP Server (TLS) id 15.0.1293.2;
-	Fri, 11 Aug 2017 14:52:58 +0200
-Received: from APczBrno16.ysoft.local ([fe80::641b:9b18:e002:b3e2]) by
-	APczBrno16.ysoft.local ([fe80::641b:9b18:e002:b3e2%12]) with mapi id
-	15.00.1293.002; Fri, 11 Aug 2017 14:52:58 +0200
-From: =?iso-8859-2?Q?Vok=E1=E8_Michal?= <Michal.Vokac@ysoft.com>
+	by g4t3427.houston.hpe.com (Postfix) with ESMTPS id D2B2D5C
+	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 13:29:41 +0000 (UTC)
+Received: from G4W9120.americas.hpqcorp.net (2002:10d2:150f::10d2:150f) by
+	G1W8108.americas.hpqcorp.net (2002:10c1:483c::10c1:483c) with Microsoft
+	SMTP Server (TLS) id 15.0.1178.4; Fri, 11 Aug 2017 13:29:41 +0000
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com (15.241.52.12) by
+	G4W9120.americas.hpqcorp.net (16.210.21.15) with Microsoft SMTP
+	Server (TLS)
+	id 15.0.1178.4 via Frontend Transport; Fri, 11 Aug 2017 13:29:41 +0000
+Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.157) by
+	TU4PR84MB0174.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.155) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.1.1320.16; Fri, 11 Aug 2017 13:29:40 +0000
+Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) by
+	TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) with mapi id
+	15.01.1320.019; Fri, 11 Aug 2017 13:29:40 +0000
+From: "Koehler, Yannick" <yannick.koehler@hpe.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to generate cpio.gz AND cpio.gz.u-boot image from single
-	recipe?
-Thread-Index: AQHTEpvXTIu23KJDUEeJ4SMMxfgByw==
-Date: Fri, 11 Aug 2017 12:52:58 +0000
-Message-ID: <1502455978267.42486@ysoft.com>
-Accept-Language: en-US
+Thread-Topic: How to configure multi-lines under kernel_module_<modname>
+	variables?
+Thread-Index: AdMSpVjpoeZvkdZTRr6pc8cKiFALrQ==
+Date: Fri, 11 Aug 2017 13:29:40 +0000
+Message-ID: <TU4PR84MB0176AAF94BB682B979BF7648ED890@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
+Accept-Language: en-CA, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.1.8.241]
-x-gfi-smtp-submission: 1
-x-gfi-smtp-hellodomain: APczBrno16.ysoft.local
-x-gfi-smtp-remoteip: 10.0.0.90
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=yannick.koehler@hpe.com; 
+x-originating-ip: [15.219.163.10]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; TU4PR84MB0174;
+	6:N5yXu5tHlrCCOaMdZTCyFEGNNqVG3tn3wgflQXpIP/NecdD1e+LRxZBxEIK/Ba94Ijp6XW+es3rLtLGZvPDj4Te1RMqqEl8xzh+hlHlxUMcvGwsS6kp3nXNzf7hxNfq4WlwDdy5Y8YhCc0aOTUmQGvCx9wOodzuRhtzKZztgEDrvC4LP0SZtWKD1ypF18mmmN9PX5Xukq0X8ObTnCMRiXCJcWymczxXuya4Wg4naXaCp5PyueiAzCsK/KwVAbF2Dlse/hWtdrjmmJkVTEAKKQE4E4jZOmYtZw1DfANpXwIxyrwyA7LsAJFrv+pYIszjAUQ6KFvdTsqFwviML82zJnQ==;
+	5:TyvaDAj59Zk2Glqsz6tCpEsMHB6aIMG8HI8m4eTYIaqURhMUYHjWD5tGwjc096jxcsWWKbcxa5TFF/9z25RJzfzY8MKCFQO7BW7Rpf8v8aCP2fxf6MTZjWigPSLJEczGBU9d3J+Bnop69x3bJjzQgw==;
+	24:pxFIF0FSXoUlqlo4OwZUhTzM8HdzcWL3q1Ju+ufDkHUUffgwMfi87Fbvm/4OY4qTHaga8FNSHG46lwmXkfWxTqIv0rr5as0COvwMtN0NEsc=;
+	7:lq7vrx/ywF3pz8ywJN4GCtNvDDme7p/mp32l7TvJ6M2yL3pdEQQvVuu2giPJ7yVvDKCf3sywagjwSJGrLp7rVfhpFV2xyXRcHq2zYrKTIlyiOuTm8EoIWzUNBh4DItjv1NX3NJqa4qBhXuAfOCIDyh2INYDRJOaUt8qO5hTlGTST19u1c0wzMSxr5LBUilwkS85lzBS7IXI0FcDxvXuWW4W9eKDoV1RBShEQfL+hm9c=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 2bb3b655-130e-4127-dd52-08d4e0bd04f4
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254152)(300000503095)(300135400095)(48565401081)(2017052603031)(201703131423075)(201703031133081)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:TU4PR84MB0174; 
+x-ms-traffictypediagnostic: TU4PR84MB0174:
+x-exchange-antispam-report-test: UriScan:;
+x-microsoft-antispam-prvs: <TU4PR84MB01749BC65B7789DBCC64F0E1ED890@TU4PR84MB0174.NAMPRD84.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(100000703101)(100105400095)(93006095)(93001095)(10201501046)(3002001)(6055026)(6041248)(20161123560025)(20161123555025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123562025)(20161123564025)(20161123558100)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:TU4PR84MB0174; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:TU4PR84MB0174; 
+x-forefront-prvs: 03965EFC76
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(39860400002)(199003)(189002)(86362001)(189998001)(5640700003)(478600001)(77096006)(6436002)(55016002)(25786009)(33656002)(97736004)(6506006)(53936002)(105586002)(2900100001)(6116002)(106356001)(2351001)(102836003)(9686003)(3846002)(6916009)(3280700002)(110136004)(3660700001)(2501003)(14454004)(81166006)(8936002)(8676002)(81156014)(1730700003)(101416001)(305945005)(7736002)(2906002)(68736007)(66066001)(7696004)(74316002)(5660300001)(50986999)(54356999);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:TU4PR84MB0174;
+	H:TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: hpe.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Subject: How to generate cpio.gz AND cpio.gz.u-boot image from single recipe?
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Aug 2017 13:29:40.1742 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR84MB0174
+X-OriginatorOrg: hpe.com
+Subject: How to configure multi-lines under kernel_module_<modname> variables?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,52 +103,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Aug 2017 12:59:09 -0000
+X-List-Received-Date: Fri, 11 Aug 2017 13:29:44 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-2"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+I would like to have the following content under my modname.conf.  It appea=
+rs that the module_conf_<modname> is a single-line variable, and I am tryin=
+g using \n to add a newline character but that doesn't appear to be working=
+.
 
-I am in a process of upgrading our project from Jethro to Morty.
-For a while I am trying to solve an issue with generating initramfs images.
+	module_conf_modname :=3D  "options modname op1=3D0\n"
+	module_conf_modname_append =3D "install modname /sbin/modprobe 2ndmodname;=
+ /sbin/modprobe -ignore-install modname $CMDLINE_OPTS"
 
-We have an image recipe that says:
+Result in the following file content
 
-IMAGE_FSTYPES =3D "tar.bz2 cpio.gz cpio.gz.u-boot"
-inherit core-image
-inherit image_types_uboot
+	options modname opt1=3D0\ninstall modname /sbin/modprobe 2ndmodname; /sbin=
+/modprobe -ignore-install modname $CMDLINE_OPTS
 
-With the Jethro branch of the openembedded-core layer all thee defined imag=
-e types are generated.
+Expected
 
-After upgrade to Morty, the cpio.gz image is deleted somewhere in the proce=
-ss of generating
-the cpio.gz.u-boot image (which is probably the right behavior of image_typ=
-es_uboot.bbclass).
+	options modname opt1=3D0
+	install modname /sbin/modprobe 2ndmodname; /sbin/modprobe -ignore-install =
+modname $CMDLINE_OPTS
 
-I wonder why it worked before and how to make it work again, properly.
+Any help appreciated.
 
-Thanks in advance for any hints,
-Michal
-
-________________________________
-
-CONFIDENTIALITY NOTICE
-This message is for the named person's use only. It may contain confidentia=
-l, proprietary or legally privileged information.
-If you receive this message in error, please immediately delete it and all =
-copies of it from your system, destroy any hard copies of it and notify us =
-by email to info@ysoft.com with a copy of this message. You must not, direc=
-tly or indirectly, use, disclose, distribute, print or copy any part of thi=
-s message if you are not the intended recipient. Y Soft and any of its subs=
-idiaries each reserves the right to monitor all e-mail communications throu=
-gh its networks.
-Y Soft is neither liable for the proper, complete transmission of the infor=
-mation contained in this communication nor any delay in its receipt. This e=
-mail was scanned for the presence of computer viruses. In the unfortunate e=
-vent of infection Y Soft does not accept liability.
-Any views expressed in this message are those of the individual sender, exc=
-ept where the message states otherwise and the sender is authorised to stat=
-e them.
+--
+Yannick Koehler
 
