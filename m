@@ -1,97 +1,64 @@
-Return-Path: <yannick.koehler@hpe.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F889E00BB1; Fri, 11 Aug 2017 06:29:44 -0700 (PDT)
+	id 31DA5E00C52; Fri, 11 Aug 2017 09:31:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [15.241.32.99 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from g9t1613g.houston.hpe.com (g9t1613g.houston.hpe.com
-	[15.241.32.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80BA1E00B67
-	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 06:29:43 -0700 (PDT)
-Received: from g4t3427.houston.hpe.com (g4t3427.houston.hpe.com
-	[15.241.140.73])
-	(using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by g9t1613g.houston.hpe.com (Postfix) with ESMTPS id B165960277
-	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 13:29:42 +0000 (UTC)
-Received: from G1W8108.americas.hpqcorp.net (g1w8108.austin.hp.com
-	[16.193.72.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by g4t3427.houston.hpe.com (Postfix) with ESMTPS id D2B2D5C
-	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 13:29:41 +0000 (UTC)
-Received: from G4W9120.americas.hpqcorp.net (2002:10d2:150f::10d2:150f) by
-	G1W8108.americas.hpqcorp.net (2002:10c1:483c::10c1:483c) with Microsoft
-	SMTP Server (TLS) id 15.0.1178.4; Fri, 11 Aug 2017 13:29:41 +0000
-Received: from NAM01-SN1-obe.outbound.protection.outlook.com (15.241.52.12) by
-	G4W9120.americas.hpqcorp.net (16.210.21.15) with Microsoft SMTP
-	Server (TLS)
-	id 15.0.1178.4 via Frontend Transport; Fri, 11 Aug 2017 13:29:41 +0000
-Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.157) by
-	TU4PR84MB0174.NAMPRD84.PROD.OUTLOOK.COM (10.162.187.155) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.1.1320.16; Fri, 11 Aug 2017 13:29:40 +0000
-Received: from TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) by
-	TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM ([10.162.187.157]) with mapi id
-	15.01.1320.019; Fri, 11 Aug 2017 13:29:40 +0000
-From: "Koehler, Yannick" <yannick.koehler@hpe.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to configure multi-lines under kernel_module_<modname>
-	variables?
-Thread-Index: AdMSpVjpoeZvkdZTRr6pc8cKiFALrQ==
-Date: Fri, 11 Aug 2017 13:29:40 +0000
-Message-ID: <TU4PR84MB0176AAF94BB682B979BF7648ED890@TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=yannick.koehler@hpe.com; 
-x-originating-ip: [15.219.163.10]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; TU4PR84MB0174;
-	6:N5yXu5tHlrCCOaMdZTCyFEGNNqVG3tn3wgflQXpIP/NecdD1e+LRxZBxEIK/Ba94Ijp6XW+es3rLtLGZvPDj4Te1RMqqEl8xzh+hlHlxUMcvGwsS6kp3nXNzf7hxNfq4WlwDdy5Y8YhCc0aOTUmQGvCx9wOodzuRhtzKZztgEDrvC4LP0SZtWKD1ypF18mmmN9PX5Xukq0X8ObTnCMRiXCJcWymczxXuya4Wg4naXaCp5PyueiAzCsK/KwVAbF2Dlse/hWtdrjmmJkVTEAKKQE4E4jZOmYtZw1DfANpXwIxyrwyA7LsAJFrv+pYIszjAUQ6KFvdTsqFwviML82zJnQ==;
-	5:TyvaDAj59Zk2Glqsz6tCpEsMHB6aIMG8HI8m4eTYIaqURhMUYHjWD5tGwjc096jxcsWWKbcxa5TFF/9z25RJzfzY8MKCFQO7BW7Rpf8v8aCP2fxf6MTZjWigPSLJEczGBU9d3J+Bnop69x3bJjzQgw==;
-	24:pxFIF0FSXoUlqlo4OwZUhTzM8HdzcWL3q1Ju+ufDkHUUffgwMfi87Fbvm/4OY4qTHaga8FNSHG46lwmXkfWxTqIv0rr5as0COvwMtN0NEsc=;
-	7:lq7vrx/ywF3pz8ywJN4GCtNvDDme7p/mp32l7TvJ6M2yL3pdEQQvVuu2giPJ7yVvDKCf3sywagjwSJGrLp7rVfhpFV2xyXRcHq2zYrKTIlyiOuTm8EoIWzUNBh4DItjv1NX3NJqa4qBhXuAfOCIDyh2INYDRJOaUt8qO5hTlGTST19u1c0wzMSxr5LBUilwkS85lzBS7IXI0FcDxvXuWW4W9eKDoV1RBShEQfL+hm9c=
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 2bb3b655-130e-4127-dd52-08d4e0bd04f4
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254152)(300000503095)(300135400095)(48565401081)(2017052603031)(201703131423075)(201703031133081)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
-	SRVR:TU4PR84MB0174; 
-x-ms-traffictypediagnostic: TU4PR84MB0174:
-x-exchange-antispam-report-test: UriScan:;
-x-microsoft-antispam-prvs: <TU4PR84MB01749BC65B7789DBCC64F0E1ED890@TU4PR84MB0174.NAMPRD84.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(100000703101)(100105400095)(93006095)(93001095)(10201501046)(3002001)(6055026)(6041248)(20161123560025)(20161123555025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123562025)(20161123564025)(20161123558100)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:TU4PR84MB0174; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:TU4PR84MB0174; 
-x-forefront-prvs: 03965EFC76
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(39860400002)(199003)(189002)(86362001)(189998001)(5640700003)(478600001)(77096006)(6436002)(55016002)(25786009)(33656002)(97736004)(6506006)(53936002)(105586002)(2900100001)(6116002)(106356001)(2351001)(102836003)(9686003)(3846002)(6916009)(3280700002)(110136004)(3660700001)(2501003)(14454004)(81166006)(8936002)(8676002)(81156014)(1730700003)(101416001)(305945005)(7736002)(2906002)(68736007)(66066001)(7696004)(74316002)(5660300001)(50986999)(54356999);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:TU4PR84MB0174;
-	H:TU4PR84MB0176.NAMPRD84.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: hpe.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f48.google.com (mail-pg0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94BAFE00B83
+	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 09:31:54 -0700 (PDT)
+Received: by mail-pg0-f48.google.com with SMTP id u5so17545533pgn.0
+	for <yocto@yoctoproject.org>; Fri, 11 Aug 2017 09:31:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=4rmS9Kqex+btQc/nx2DBY7reTrw1UtGcrvY/X/sNzHU=;
+	b=ayvCYp9pYauD/6aq0KF78ZLNFyDYTrNwcd0UGaf6r0MV48g1Px5A0csNya9ztSrLnp
+	SdtMGGhzmBA5ckC2hXytJ6O2m2iOycH/4dA4KWW6bg6WZqKuJmocDDDJv2ZVwmBZgXZc
+	JkY9yOoMHdBbmHQKkqWt9yStKyiVFfLbKTV36975TxLekJ8T3Pij0LQ6h3UPj5CZpCz/
+	JXYp5359P++Sb0+TUuuF7zy5plaAfvbi/icxE7S4nvfboKC27O5Jy1/UEJUWZ6TcXO7l
+	Coi+s6vzR4F1GL2IlkViLqyKPlYCJ1fpBV6GTRBK1soOy0ZbSRkziwan5u2BF3bLPDob
+	Dz+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=4rmS9Kqex+btQc/nx2DBY7reTrw1UtGcrvY/X/sNzHU=;
+	b=nTmez0/cPotOVbaxdN/W/ucB3qZ/3JP0Ui+Oh2zxQWWc1bVZNg6oirDdlqw11RypJw
+	qw8nckQb7Q/Nf2zo3/xsf10ULKYlQwEJKgyMC6lFRltTitF8Qy1bbE7BVl4oP8fgOKO5
+	EaoKq+oZNHwbHl8+LdEzuJjYuQ1Hr0wZLoPBOOd80BsF+buMmjxF59Rhzr6BwhZbPR2h
+	ssGwr+O6xUc7zsFEoQivoPM0jBMYpf9Kkcqk7NEzjh6f7CiLTw4MUjP9Dsxy73w3JM1c
+	gxSr/Uo/S8xy9RcYBRHoigMJEIg1mDsoSycJew/o3bEQq6p3P33Iww6jh3jluYbACrdB
+	iEwg==
+X-Gm-Message-State: AHYfb5hrE1O3lB6Q47osnfZpfptgTze+90lGNvnC6NrM7XB0gVbummz6
+	EPqzuWvih/YqaRQIznVxzI5XDSdwO4bz
+X-Received: by 10.84.239.8 with SMTP id w8mr17763988plk.73.1502469113938; Fri,
+	11 Aug 2017 09:31:53 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Aug 2017 13:29:40.1742 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR84MB0174
-X-OriginatorOrg: hpe.com
-Subject: How to configure multi-lines under kernel_module_<modname> variables?
+Received: by 10.100.167.2 with HTTP; Fri, 11 Aug 2017 09:31:23 -0700 (PDT)
+In-Reply-To: <1502455978267.42486@ysoft.com>
+References: <1502455978267.42486@ysoft.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 11 Aug 2017 09:31:23 -0700
+Message-ID: <CAMKF1sq7UyCVO4hW_D0Z==5AVi9Ua-R_bd+NhSj0LHykvY50Xw@mail.gmail.com>
+To: =?UTF-8?B?Vm9rw6HEjSBNaWNoYWw=?= <Michal.Vokac@ysoft.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to generate cpio.gz AND cpio.gz.u-boot image from single recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -103,33 +70,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Aug 2017 13:29:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 11 Aug 2017 16:31:55 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I would like to have the following content under my modname.conf.  It appea=
-rs that the module_conf_<modname> is a single-line variable, and I am tryin=
-g using \n to add a newline character but that doesn't appear to be working=
-.
+On Fri, Aug 11, 2017 at 5:52 AM, Vok=C3=A1=C4=8D Michal <Michal.Vokac@ysoft=
+.com> wrote:
+> Hi,
+>
+> I am in a process of upgrading our project from Jethro to Morty.
+> For a while I am trying to solve an issue with generating initramfs image=
+s.
+>
+> We have an image recipe that says:
+>
+> IMAGE_FSTYPES =3D "tar.bz2 cpio.gz cpio.gz.u-boot"
+> inherit core-image
+> inherit image_types_uboot
+>
+> With the Jethro branch of the openembedded-core layer all thee defined im=
+age types are generated.
+>
+> After upgrade to Morty, the cpio.gz image is deleted somewhere in the pro=
+cess of generating
+> the cpio.gz.u-boot image (which is probably the right behavior of image_t=
+ypes_uboot.bbclass).
+>
+> I wonder why it worked before and how to make it work again, properly.
 
-	module_conf_modname :=3D  "options modname op1=3D0\n"
-	module_conf_modname_append =3D "install modname /sbin/modprobe 2ndmodname;=
- /sbin/modprobe -ignore-install modname $CMDLINE_OPTS"
+it is intentional. See
+https://github.com/01org/luv-yocto/commit/09a5cb0cca109395a4835e25d483019dd=
+d5e773c
 
-Result in the following file content
-
-	options modname opt1=3D0\ninstall modname /sbin/modprobe 2ndmodname; /sbin=
-/modprobe -ignore-install modname $CMDLINE_OPTS
-
-Expected
-
-	options modname opt1=3D0
-	install modname /sbin/modprobe 2ndmodname; /sbin/modprobe -ignore-install =
-modname $CMDLINE_OPTS
-
-Any help appreciated.
-
---
-Yannick Koehler
+>
+> Thanks in advance for any hints,
+> Michal
+>
+> ________________________________
+>
+> CONFIDENTIALITY NOTICE
+> This message is for the named person's use only. It may contain confident=
+ial, proprietary or legally privileged information.
+> If you receive this message in error, please immediately delete it and al=
+l copies of it from your system, destroy any hard copies of it and notify u=
+s by email to info@ysoft.com with a copy of this message. You must not, dir=
+ectly or indirectly, use, disclose, distribute, print or copy any part of t=
+his message if you are not the intended recipient. Y Soft and any of its su=
+bsidiaries each reserves the right to monitor all e-mail communications thr=
+ough its networks.
+> Y Soft is neither liable for the proper, complete transmission of the inf=
+ormation contained in this communication nor any delay in its receipt. This=
+ email was scanned for the presence of computer viruses. In the unfortunate=
+ event of infection Y Soft does not accept liability.
+> Any views expressed in this message are those of the individual sender, e=
+xcept where the message states otherwise and the sender is authorised to st=
+ate them.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
