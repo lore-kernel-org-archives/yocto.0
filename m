@@ -1,17 +1,14 @@
-Return-Path: <bluehills7@comcast.net>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4DA89E00C3A; Sun, 13 Aug 2017 03:58:35 -0700 (PDT)
+	id 3D74DE00C9B; Sun, 13 Aug 2017 07:29:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bluehills7[at]comcast.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [69.252.207.43 listed in list.dnswl.org]
+	mail provider *      (gizero[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,37 +16,52 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from resqmta-ch2-11v.sys.comcast.net
-	(resqmta-ch2-11v.sys.comcast.net [69.252.207.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD890E00C0A
-	for <yocto@yoctoproject.org>; Sun, 13 Aug 2017 03:58:34 -0700 (PDT)
-Received: from resomta-ch2-19v.sys.comcast.net ([69.252.207.115])
-	by resqmta-ch2-11v.sys.comcast.net with ESMTP
-	id gqbJdhScG4W2QgqbJdiaLh; Sun, 13 Aug 2017 10:58:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=q20161114; t=1502621913;
-	bh=SRru3BfMrXJlosUpaWJAQR725xZq7ZupgwT+d2u6y04=;
-	h=Received:Received:From:Content-Type:Mime-Version:Subject:
-	Message-Id:Date:To;
-	b=Nc27J92iWFFDOm5CdVqortJkWkc4FhtZCpLvVMvZpd0S6FqU1P8x0/uQznDPrLews
-	XF3EzoTbFQ/oSHizaSBYu6AAj5+RelQ9TvXmt92xTnL/5ngYmjMV0zM9bMXrq+1KzD
-	AM6fNVM0P81XRDzrHJNfXTYlvJsGiI7KRfakoW+58Fli946aN0dTatKGUYLFHvcvDM
-	tocwtcUwxIyIPNFh609XF9snzN9+fw29dmwYdSqoFfqLWR7VDTMC5mGZrAHUxTalax
-	hcDvMqWeN5S0MFKBKXQqekSfsiUV6Y+v/ZMUanERcP1KS8G9Jxq3d4jt7t5aDCSDpQ
-	Q7Vx4yci1J1sQ==
-Received: from [IPv6:2601:18f:800:acc1:3c93:9071:3d1c:b036]
-	([IPv6:2601:18f:800:acc1:3c93:9071:3d1c:b036])
-	by resomta-ch2-19v.sys.comcast.net with SMTP
-	id gqbJdv2J8cYpvgqbJdirOZ; Sun, 13 Aug 2017 10:58:33 +0000
-From: Russell Peterson <bluehills7@comcast.net>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Message-Id: <CC06751E-FB4C-46CE-8127-6344F8B00D96@comcast.net>
-Date: Sun, 13 Aug 2017 06:58:32 -0400
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8210CE00A9C
+	for <yocto@yoctoproject.org>; Sun, 13 Aug 2017 07:29:32 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id t138so11690138wmt.4
+	for <yocto@yoctoproject.org>; Sun, 13 Aug 2017 07:29:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=I2vHIZM9JY1Pm4rwn9wgbzyxeQOCwTZ15MgBNIFwgj0=;
+	b=iSVu9h/Cp26mvXGv2HKCb2YCld3sdGoYeM005BzJnfRrFCiHlygWDEHSdSNWl5U44f
+	UOLpOgm9gF1H8gFZnfSyWMRiVW0LXEtWt0inSd5ORmAiL0gw6Rocg7ltdEhv9142uDHl
+	FxjxJeNm78d5jQ7RuFpCywXh0r64MiqOjAVxqyZQYxhkVdbsiP51G0FaF/o5LQwKarm2
+	mzqlj0A23u/pBg7kkfQ13MPM88WUTcw/PNdKf1cRUbIHzDL4w+GYorkqnzVDCfpCftJa
+	6HZWnmXjutV4zzqGGfOOrDqd8wvUUO7GaOwhmt1xOFm5NBISptUWhYUIULqb4zUCKcS9
+	abzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=I2vHIZM9JY1Pm4rwn9wgbzyxeQOCwTZ15MgBNIFwgj0=;
+	b=WSJgutNRbYNopAY2bMLZmQMQdQdzBxHy+/qspUd4awDWCo7TXzIwE7/LrywmcszTkr
+	xs9n28UT/WZgyRejlvi8VYoS1fuDd35Pn27YNpXKalwZuwSdTNH9ngq+RZaBKbeOgqrR
+	2BmWj2K058sRAoZ2RDeF+bjykeiXXzg4xioPLft+bBPf1MawgH7UQ2TXvjWq5XqW0+bZ
+	9QlzahzaNJHViIrs+xwitaZ6AY0ap069v7AsVR06NhIimb02xO1qvF9A8CgjrvfAWV7f
+	MNWCgSuC4ryuf6KHi+xff0GFUMURDn6UBzQ2u96tFqQdx+XSFBbAnRb+SaBvA4E0rRrv
+	TgeA==
+X-Gm-Message-State: AHYfb5iaeQISqmx9+ToNyvgjXY9ItoOTd8P2sBRlfdivJK9brNLTCEv4
+	Q0teIoP0CA4hWjd/
+X-Received: by 10.28.156.210 with SMTP id f201mr2570145wme.50.1502634571648;
+	Sun, 13 Aug 2017 07:29:31 -0700 (PDT)
+Received: from gizero-desktop.tw.it
+	(host193-245-static.58-79-b.business.telecomitalia.it.
+	[79.58.245.193]) by smtp.gmail.com with ESMTPSA id
+	u17sm3961630wra.42.2017.08.13.07.29.30
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sun, 13 Aug 2017 07:29:30 -0700 (PDT)
+From: Andrea Galbusera <gizero@gmail.com>
 To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3273)
-X-CMAE-Envelope: MS4wfAMCWf7gWKELU9A1q4CV0Sm2dXeK8ZHRxS04vRjbLY5l8hh+fT8HDlcmZcKx021dSN4iQt88RGFbkFvST5NdaxteGwDds0UWkdkUoNw8D5NMZ5kedAWz
-	y0n0/+ds88bn6bXxwsJggszQKH7NMDL7qRpx+iE0I0vyU1J/bhOHpMJJOIe23vjuofyzbm2oDBbHDxOm1YAwFMGGOjgCmrXXFRg=
-Subject: release management
+Date: Sun, 13 Aug 2017 16:29:11 +0200
+Message-Id: <1502634551-6371-1-git-send-email-gizero@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Cc: srifenbark@gmail.com
+Subject: [yocto-docs][PATCH] kernel-dev: fix typo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,41 +73,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 13 Aug 2017 10:58:35 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 13 Aug 2017 14:29:34 -0000
 
-Hello.
+Signed-off-by: Andrea Galbusera <gizero@gmail.com>
+---
+ documentation/kernel-dev/kernel-dev-advanced.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-As I learn more about yocto and more importantly gain practical =
-experience with it I have started to think about my release structure.  =
-Is there a =E2=80=9Cbest practices=E2=80=9D document or something like =
-that that speaks to this?
-
-For example, how does everyone deal with =E2=80=9Cexternal=E2=80=9D meta =
-layer dependencies?  My software uses poky and meta-openembedded, of =
-course.  It also relies on some recipes in meta-linaro and =
-meta-virtualization.  I suspect there will be more as time goes by.  I =
-have tweaked my layer priorities as well as used BBMASK to avoid =
-unwanted bbappend files etc=E2=80=A6 works but seems slightly clunky=E2=80=
-=A6 still better than duplicating recipes in my meta layer I think.
-
-Also=E2=80=A6 I quickly came to the conclusion that =E2=80=9Cthou shall =
-not modify poky or meta-openembedded=E2=80=9D.  That is, ALWAYS use =
-bbappend files instead of modifying external layers.  If I think that =
-poky or some other layer has a recipe bug or want to change something in =
-poky, for example, I plan to upstream a fix to the project and when that =
-becomes available I rebase my poky and remove the bbappend from my meta =
-layer. One thing about modifying poky and not using bbappend files is =
-that I would then need to ship patches for poky instead of just =
-directing users to to use this branch and this commit for release x.y.z.
-
-Comments and suggestions welcome.
-
-Regards,
-
-Russell
-
-
+diff --git a/documentation/kernel-dev/kernel-dev-advanced.xml b/documentation/kernel-dev/kernel-dev-advanced.xml
+index 0394e08..c7e5a3a 100644
+--- a/documentation/kernel-dev/kernel-dev-advanced.xml
++++ b/documentation/kernel-dev/kernel-dev-advanced.xml
+@@ -867,7 +867,7 @@
+             When stored outside of the recipe-space, the kernel Metadata
+             files reside in a separate repository.
+             The OpenEmbedded build system adds the Metadata to the build as
+-            a "ktype=meta" repository through the
++            a "type=kmeta" repository through the
+             <ulink url='&YOCTO_DOCS_REF_URL;#var-SRC_URI'><filename>SRC_URI</filename></ulink>
+             variable.
+             As an example, consider the following <filename>SRC_URI</filename>
+-- 
+2.7.4
 
 
