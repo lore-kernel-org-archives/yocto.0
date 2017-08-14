@@ -1,64 +1,40 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <brendan.ta@jacques.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF62BE00D01; Sun, 13 Aug 2017 21:21:01 -0700 (PDT)
+	id 1B64AE00D7B; Sun, 13 Aug 2017 22:46:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.47 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.47 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.70.91.145 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f47.google.com (mail-pg0-f47.google.com [74.125.83.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C1E5E00AD0
-	for <yocto@yoctoproject.org>; Sun, 13 Aug 2017 21:21:00 -0700 (PDT)
-Received: by mail-pg0-f47.google.com with SMTP id u5so39059586pgn.0
-	for <yocto@yoctoproject.org>; Sun, 13 Aug 2017 21:21:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Wa0Gl+/IY0kdQynZ6N8vbpSBR5iU3m+66kpWyJGSawo=;
-	b=SYFUGHgwokHpwjnSyNhdM+uFE1O7afvqbzAL8/MsaRkqrvruV9xDcCE9HQbF/asat+
-	LaZuoS9K/7u/iWCT38b63+q1wlg/pOjjXXuz0asHzW0U75mePi3p8xrX9SYTDNjSKm2f
-	g4JpZqL0jaqFXpYs+UwhTVZTtkXvwu+YM4m0DBaWpcscsmQ3YgdTr42doNzW33RJQqbI
-	uXi//I2zZRCbaOmhC91XnbRKyUVL2VbgFAwMXTC8uQ3B3f3927eRYzeYVVjJexRrvtMQ
-	Nau0Qy5feYD465WbEsj3Z91V2GGnMx9VNuU5nEmErVhC2XLXe+Sec5NBoMAb4+A3FgSf
-	MjuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Wa0Gl+/IY0kdQynZ6N8vbpSBR5iU3m+66kpWyJGSawo=;
-	b=OqHenl81fdY+gNpiMcKMJjhwSN02gbNSM57Zc0lCsF0mMRVi1VlTL/bRpM5KDF4uV0
-	HSSoutJTnojyqysmw6XfmBrwfyCodYr1C8YSVFaKbsHVg75ARqYztzvPqf4L8YgWg02W
-	EUb9FhOsxlmEcpo5NSp0YsYJGONg0vv4C1NrBizEE/DvGmWWgZw6UQncur0f1pMow6DN
-	Y6IIf+VvGGnsTG6AI60FQXsJFbJ7ZEr+zBL50QT2/nnqxkznY+IrGqFcOUJgYFRHl797
-	R1UDOgrzMtCyP43+Ci6rdkcCeeGVKYia8NG9lDGPnubGiybSqrTG+2gC83TrtTkrixR0
-	whWw==
-X-Gm-Message-State: AHYfb5hBHEipf4JF5YOnSsYx9TUS5wEY3AnlfZ2lH4XXldHuFe+5Ji6B
-	O9HPEDNHk9fsb5nUu8BNbn0Y/5f8tA==
-X-Received: by 10.84.133.14 with SMTP id 14mr26429040plf.440.1502684460500;
-	Sun, 13 Aug 2017 21:21:00 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.100.167.2 with HTTP; Sun, 13 Aug 2017 21:20:30 -0700 (PDT)
-In-Reply-To: <9ad6c122-a6a4-be78-d767-b6299de00020@jacques.com.au>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 422 seconds by postgrey-1.32 at yocto-www;
+	Sun, 13 Aug 2017 22:46:19 PDT
+Received: from cal1-mh779.smtproutes.com (cal1-mh779.smtproutes.com
+	[208.70.91.145])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B1BE00A9C
+	for <yocto@yoctoproject.org>; Sun, 13 Aug 2017 22:46:19 -0700 (PDT)
+X-Katharion-ID: 1502689127.75171.cal1-mh779
+Received: from jacquessvr.jacques.com.au ([110.143.100.131]) by 
+	cal1-mh779.smtproutes.com [(192.69.16.145)] with ESMTP via TCP 
+	(TLSv1/TLS_RSA_WITH_AES_128_CBC_SHA); 14 Aug 2017 05:38:47 +0000
+Received: from [192.168.100.58] (192.168.100.58) by mail.jacques.com.au
+	(192.168.100.155) with Microsoft SMTP Server (TLS) id 8.2.255.0;
+	Mon, 14 Aug 2017 15:36:39 +1000
+From: Brendan Ta <brendan.ta@jacques.com.au>
+To: Khem Raj <raj.khem@gmail.com>, <yocto@yoctoproject.org>
 References: <9ad6c122-a6a4-be78-d767-b6299de00020@jacques.com.au>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 13 Aug 2017 21:20:30 -0700
-Message-ID: <CAMKF1soHZukPvaRcMF_F2KmjVsBfMQw1D+6NArJH4J2H7djKNQ@mail.gmail.com>
-To: Brendan Ta <brendan.ta@jacques.com.au>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAMKF1soHZukPvaRcMF_F2KmjVsBfMQw1D+6NArJH4J2H7djKNQ@mail.gmail.com>
+Message-ID: <b3711112-d00f-9ae7-49f5-87be234a1e75@jacques.com.au>
+Date: Mon, 14 Aug 2017 15:38:47 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
+MIME-Version: 1.0
+In-Reply-To: <CAMKF1soHZukPvaRcMF_F2KmjVsBfMQw1D+6NArJH4J2H7djKNQ@mail.gmail.com>
 Subject: Re: Possible to rename file when using KERNEL_DEVICETREE_APPEND?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -71,36 +47,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Aug 2017 04:21:01 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 14 Aug 2017 05:46:22 -0000
+Content-Type: multipart/alternative;
+	boundary="------------38A83B237EC2798BFE449E8E"
+Content-Language: en-AU
 
-On Sun, Aug 13, 2017 at 3:50 PM, Brendan Ta <brendan.ta@jacques.com.au> wrote:
->
-> As the title states, I am including my modified device tree using
-> KERNEL_DEVICETREE_APPEND= and I was wondering if there was the possibility
-> where I could rename the file here?
->
-> I understand that IMAGE_BOOT_FILES has the option of:
-> IMAGE_BOOT_FILES = "oldname;newname" which uses the OpenEmbedded Image
-> Creator; wic.
->
-> Is it possible to easily rename the included device tree file using
-> KERNEL_DEVICETREE_APPEND= ?
->
+--------------38A83B237EC2798BFE449E8E
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I dont think so. But you can insert a function to do so easily. See
+
+On 14/08/17 14:20, Khem Raj wrote:
+> On Sun, Aug 13, 2017 at 3:50 PM, Brendan Ta<brendan.ta@jacques.com.au>  wrote:
+>> As the title states, I am including my modified device tree using
+>> KERNEL_DEVICETREE_APPEND= and I was wondering if there was the possibility
+>> where I could rename the file here?
+>>
+>> I understand that IMAGE_BOOT_FILES has the option of:
+>> IMAGE_BOOT_FILES = "oldname;newname" which uses the OpenEmbedded Image
+>> Creator; wic.
+>>
+>> Is it possible to easily rename the included device tree file using
+>> KERNEL_DEVICETREE_APPEND= ?
+>>
+> I dont think so. But you can insert a function to do so easily. See
+> meta-raspberrypi for some
+> guidance, it doesnt do exactly what you want but you can get enough
+> hints for what can
+> be done.
+
+Is it possible for you to provide further clarification on which 
+function in the meta-raspberrypi to achieve this?  I am just having some 
+trouble finding this.
+
+Thanks
+
+
+--------------38A83B237EC2798BFE449E8E
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <br>
+    <div class="moz-cite-prefix">On 14/08/17 14:20, Khem Raj wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAMKF1soHZukPvaRcMF_F2KmjVsBfMQw1D+6NArJH4J2H7djKNQ@mail.gmail.com">
+      <pre wrap="">On Sun, Aug 13, 2017 at 3:50 PM, Brendan Ta <a class="moz-txt-link-rfc2396E" href="mailto:brendan.ta@jacques.com.au">&lt;brendan.ta@jacques.com.au&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">As the title states, I am including my modified device tree using
+KERNEL_DEVICETREE_APPEND= and I was wondering if there was the possibility
+where I could rename the file here?
+
+I understand that IMAGE_BOOT_FILES has the option of:
+IMAGE_BOOT_FILES = "oldname;newname" which uses the OpenEmbedded Image
+Creator; wic.
+
+Is it possible to easily rename the included device tree file using
+KERNEL_DEVICETREE_APPEND= ?
+
+</pre>
+      </blockquote>
+      <pre wrap="">I dont think so. But you can insert a function to do so easily. See
 meta-raspberrypi for some
 guidance, it doesnt do exactly what you want but you can get enough
 hints for what can
-be done.
+be done.</pre>
+    </blockquote>
+    <br>
+    Is it possible for you to provide further clarification on which
+    function in the meta-raspberrypi to achieve this?  I am just having
+    some trouble finding this.<br>
+    <br>
+    Thanks<br>
+    <div class="moz-signature"><font face="Calibri"><span
+          style="font-size:9.0pt;color:#1F497D;mso-fareast-language:EN-AU"><br>
+        </span></font> </div>
+  </body>
+</html>
 
-> Thanks
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
+--------------38A83B237EC2798BFE449E8E--
