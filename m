@@ -1,68 +1,48 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5FCFE00C8B; Mon, 14 Aug 2017 06:37:29 -0700 (PDT)
+	id 71DA8E00CE2; Mon, 14 Aug 2017 07:45:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.47 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.47 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f47.google.com (mail-pg0-f47.google.com [74.125.83.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 068E8E00B8E
-	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 06:37:28 -0700 (PDT)
-Received: by mail-pg0-f47.google.com with SMTP id v189so47373384pgd.2
-	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 06:37:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=aP1E2T4+LP7Tqk9d+38ClVlQfm9I000t1zXCERc1+G0=;
-	b=EX514UOIjjTRSC4O4ACY7h2bAjCREcC1bimnkx72IiBTCssBlMEucXU+WLTYgaW3rK
-	42CRCw1/Al0OwNx+K7Oz6R7ksUuRmfoSjupeydhnYqmiHS9nKP4BBCcjheiVmUn97zTS
-	SZkVE+hzPgnkm8N7HlOHdVTRkgE1QGcXnszO9Lw0NRM3uhqgCcoS76vwdG0WP4slfgBS
-	fwST8iHJrFxs0L3KCMUOUbq8Qm8BLuDRIWExc8gTti96UxwM4MQhTo9zJbbvBjASAsBK
-	iNhrTzNoWfr6kGqJWm+7UAIY8/NtuHiYquhEW1nKM+6ArPD1GNho0wjkbAFFYvT3Efug
-	3msw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=aP1E2T4+LP7Tqk9d+38ClVlQfm9I000t1zXCERc1+G0=;
-	b=HDCeQfkHVWZrM06dHdSz+pQpk88HOEf/ZS9MqK0DqrKkZmSRA7bxNIZdH0CrXRkjbj
-	NZpsUonzvM7Yy1mXceDX/acLSKBLGCxZi9PjEBrux54krTEYo82TD43VVCGQhAtNlaYq
-	n6dcQXABdDg0qWEOSyhzjCVGzv0BIvKLBGtZJEcaB0/9l8vWiEje1BtrTIR+WZYw7ikj
-	BNO4NX5E1Zs7ytwyKs3H17qXFgITVtQPQeOWih/v22S6i+cQavgmgkLtgRqihwmpMika
-	rawmoGUdLoUYFdMJMH5GC5q7H6vl0ypJy3KBHtsNi1dVUy/kh0f4T+5colkX/Qr4Ua6H
-	1oKQ==
-X-Gm-Message-State: AHYfb5j8qqAdtg2ZRKdgpD+CaIzUImSXwnXOG2+2cGBCs7c1AqtVogs5
-	N7HYTyrP7hhp09nmMmfEu7an4uk5jQ==
-X-Received: by 10.98.150.8 with SMTP id c8mr2057734pfe.283.1502717848243; Mon,
-	14 Aug 2017 06:37:28 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42396E00C89
+	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 07:45:24 -0700 (PDT)
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	14 Aug 2017 07:45:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.41,373,1498546800"; 
+	d="scan'208,217";a="118786040"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+	by orsmga004.jf.intel.com with ESMTP; 14 Aug 2017 07:45:23 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.115]) by
+	fmsmsx107.amr.corp.intel.com ([169.254.6.150]) with mapi id
+	14.03.0319.002; Mon, 14 Aug 2017 07:45:22 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW33=9217?=
+Thread-Index: AdMVC+HKoC55raDjRTyopYZ3YbZTDA==
+Date: Mon, 14 Aug 2017 14:45:21 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E98C99221@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjkwYmE0ZGMtMDE0MS00NjZiLWIzNzUtNDczYTY2ODIyY2U2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6Ik5WWWVkc1RrQzBmd1ZjSlN3R0xTZzlVXC8xNTNNcjZwbVwvcVcra2ZcLzluQ2c9In0=
 MIME-Version: 1.0
-References: <1502455978267.42486@ysoft.com>
-	<CAMKF1sq7UyCVO4hW_D0Z==5AVi9Ua-R_bd+NhSj0LHykvY50Xw@mail.gmail.com>
-	<d2639fe8-813e-69e3-5e85-c1687e1663a4@ysoft.com>
-In-Reply-To: <d2639fe8-813e-69e3-5e85-c1687e1663a4@ysoft.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 14 Aug 2017 13:37:17 +0000
-Message-ID: <CAMKF1spW6ev2U2pn+qiNTfi9yEagQ_urBZO6n31bjW2FVLyH5A@mail.gmail.com>
-To: =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to generate cpio.gz AND cpio.gz.u-boot image from single recipe?
+Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1czM+KAmTE3?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,225 +54,553 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Aug 2017 13:37:29 -0000
-Content-Type: multipart/alternative; boundary="94eb2c0dfda68ad32f0556b6c3fc"
+X-List-Received-Date: Mon, 14 Aug 2017 14:45:26 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98C99221fmsmsx111amrcor_"
 
---94eb2c0dfda68ad32f0556b6c3fc
-Content-Type: text/plain; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98C99221fmsmsx111amrcor_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Please open a bugzilla entry for it
+Current Dev Position: YP 2.4 M3
 
-On Mon, Aug 14, 2017 at 6:11 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.=
-com> wrote:
+Next Deadline: YP 2.4 M3 Cut off is Aug. 21, 2017
 
-> On 11.8.2017 18:31, Khem Raj wrote:
-> > On Fri, Aug 11, 2017 at 5:52 AM, Vok=C3=A1=C4=8D Michal <Michal.Vokac@y=
-soft.com>
-> wrote:
-> >> Hi,
-> >>
-> >> I am in a process of upgrading our project from Jethro to Morty.
-> >> For a while I am trying to solve an issue with generating initramfs
-> images.
-> >>
-> >> We have an image recipe that says:
-> >>
-> >> IMAGE_FSTYPES =3D "tar.bz2 cpio.gz cpio.gz.u-boot"
-> >> inherit core-image
-> >> inherit image_types_uboot
-> >>
-> >> With the Jethro branch of the openembedded-core layer all thee defined
-> image types are generated.
-> >>
-> >> After upgrade to Morty, the cpio.gz image is deleted somewhere in the
-> process of generating
-> >> the cpio.gz.u-boot image (which is probably the right behavior of
-> image_types_uboot.bbclass).
-> >>
-> >> I wonder why it worked before and how to make it work again, properly.
-> >
-> > it is intentional. See
-> >
-> https://github.com/01org/luv-yocto/commit/09a5cb0cca109395a4835e25d483019=
-ddd5e773c
-> >
->
-> Thank you Raj, that explain why the gziped image is being removed.
->
-> I still need to figure out, how to produce both image types from one
-> recipe.
-> Lets imagine I went through these steps.
->
->    1. I set up the recipe so that the tar.bz2 and cpio.gz images are
-> generated.
->
->    IMAGE_FSTYPES =3D "tar.bz2 cpio.gz"
->    inherit core-image
->
->    The tar is just for development debugging and the cpio.gz is packed in=
-to
->    a FIT image that goes into production.
->
->    2. After some unspecified time a need arose to produce also
->    the cpio.gz.u-boot image that can be loaded manually in U-Boot during
-> development.
->
->    I changed the recipe like this:
->
->    IMAGE_FSTYPES =3D "tar.bz2 cpio.gz cpio.gz.u-boot"
->    inherit core-image
->    inherit image_types_uboot
->
->  From my point of view, the image_types_uboot class is removing
-> the cpio.gz image that was generated by someone else.
-> In my situation it is not "a middle file" as the commit you referenced
-> says.
->
-> I would understand that the cpio.gz is removed when it is not stated in
-> the IMAGE_FSTYPES variable.
->
->  From reading the IMAGE_FSTYPES variable documentation a user/developer
-> can never
-> get the idea that some image types can not be generated simultaneously.
-> IMHO a proper behavior would be to generate and preserve all supported
-> image
-> types stated in the IMAGE_FSTYPES variable.
->
-> Any ideas how to achieve that?
->
-> ________________________________
->
-> CONFIDENTIALITY NOTICE
-> This message is for the named person's use only. It may contain
-> confidential, proprietary or legally privileged information.
-> If you receive this message in error, please immediately delete it and al=
-l
-> copies of it from your system, destroy any hard copies of it and notify u=
-s
-> by email to info@ysoft.com with a copy of this message. You must not,
-> directly or indirectly, use, disclose, distribute, print or copy any part
-> of this message if you are not the intended recipient. Y Soft and any of
-> its subsidiaries each reserves the right to monitor all e-mail
-> communications through its networks.
-> Y Soft is neither liable for the proper, complete transmission of the
-> information contained in this communication nor any delay in its receipt.
-> This email was scanned for the presence of computer viruses. In the
-> unfortunate event of infection Y Soft does not accept liability.
-> Any views expressed in this message are those of the individual sender,
-> except where the message states otherwise and the sender is authorised to
-> state them.
->
 
---94eb2c0dfda68ad32f0556b6c3fc
-Content-Type: text/html; charset="UTF-8"
+SWAT team rotation: Leo -> Juro on Aug. 11, 2017.
+
+SWAT team rotation: Juro -> Paul on Aug. 18, 2017.
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+
+Key Status/Updates:
+
+=B7        YP 2.4 M2 rc3 should be publicly released shortly. This build ha=
+d much better test results than rc2.  See the QA report at: https://wiki.yo=
+ctoproject.org/wiki/WW32_-_2017-08-09_-_Full_Test_Cycle_2.4_M2_rc3 And the =
+release Criteria at: https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_=
+Status#Milestone_2_-_Target_July_28.2C_2017
+
+=B7        Patches are flowing into master, albeit slowly. Vacations for va=
+rious people is resulting in high workload for those who aren=92t away.
+
+=B7        We=92re seeing problems with new symbols in glibc 2.25 (getrando=
+m and getentropy) interacting badly with uninative. For now we=92re disabli=
+ng those symbols in the native case since most code has fallback code, at l=
+east for now. We may need a better workaround. We=92d prefer to avoid havin=
+g to make uninative glibc version specific.
+
+=B7        The new autobuilder has been updated to newer worker distro inst=
+ances (resulting in some of the failures) but is back to full strength afte=
+r a while running without one or two workers for various issues. Having it =
+at full strength should speed up builds/testing.
+
+=B7        YP 2.2 (Morty) is continuing to struggling due to build issues. =
+The issue appears to be that certain ppc/lsb lsb images are taking a long t=
+ime to run. We need to understand why the non-lsb images don=92t suffer the=
+ same issues but are struggling to find anyone with the time to look into i=
+t properly. We need to get these resolved in order to unblock this release =
+series.
+
+
+Planned upcoming dot releases:
+
+YP 2.2.2 Cut off June 5, 2017 - Not ready to do an rc2 yet.
+
+YP 2.2.2 Release by June, 16 2017
+
+YP 2.3.2 Cut off Sept. 1, 2017
+
+YP 2.3.2 Release by Sept. 15, 2017
+
+
+Key YP 2.4 Dates are:
+
+YP 2.4 M3 Cut off is Aug. 21, 2017
+
+YP 2.4 M3 Release by Sept. 1, 2017
+
+YP 2.4 M4 (Final) Cut off is Sept. 18, 2017
+
+YP 2.4 M4 (Final) Release by Oct. 20, 2017
+
+
+Tracking Metrics:
+
+            WDD 2480 (last week 2433)
+
+(https://wiki.yoctoproject.org/charts/combo.html)
+
+
+Key Status Links for YP:
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features
+
+
+[If anyone has suggestions for other information you=92d like to see on thi=
+s weekly status update, let us know!]
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+=95   Work Telephone:        (503) 712-0534
+=95    Cell:               (208) 244-4460
+=95 Email:                          stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98C99221fmsmsx111amrcor_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div><div dir=3D"auto">Please open a bugzilla entry for it</div><br><div cl=
-ass=3D"gmail_quote"><div>On Mon, Aug 14, 2017 at 6:11 AM Michal Vok=C3=A1=
-=C4=8D &lt;<a href=3D"mailto:michal.vokac@ysoft.com">michal.vokac@ysoft.com=
-</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On 11.8.2017 18:31,=
- Khem Raj wrote:<br>
-&gt; On Fri, Aug 11, 2017 at 5:52 AM, Vok=C3=A1=C4=8D Michal &lt;<a href=3D=
-"mailto:Michal.Vokac@ysoft.com" target=3D"_blank">Michal.Vokac@ysoft.com</a=
->&gt; wrote:<br>
-&gt;&gt; Hi,<br>
-&gt;&gt;<br>
-&gt;&gt; I am in a process of upgrading our project from Jethro to Morty.<b=
-r>
-&gt;&gt; For a while I am trying to solve an issue with generating initramf=
-s images.<br>
-&gt;&gt;<br>
-&gt;&gt; We have an image recipe that says:<br>
-&gt;&gt;<br>
-&gt;&gt; IMAGE_FSTYPES =3D &quot;tar.bz2 cpio.gz cpio.gz.u-boot&quot;<br>
-&gt;&gt; inherit core-image<br>
-&gt;&gt; inherit image_types_uboot<br>
-&gt;&gt;<br>
-&gt;&gt; With the Jethro branch of the openembedded-core layer all thee def=
-ined image types are generated.<br>
-&gt;&gt;<br>
-&gt;&gt; After upgrade to Morty, the cpio.gz image is deleted somewhere in =
-the process of generating<br>
-&gt;&gt; the cpio.gz.u-boot image (which is probably the right behavior of =
-image_types_uboot.bbclass).<br>
-&gt;&gt;<br>
-&gt;&gt; I wonder why it worked before and how to make it work again, prope=
-rly.<br>
-&gt;<br>
-&gt; it is intentional. See<br>
-&gt; <a href=3D"https://github.com/01org/luv-yocto/commit/09a5cb0cca109395a=
-4835e25d483019ddd5e773c" rel=3D"noreferrer" target=3D"_blank">https://githu=
-b.com/01org/luv-yocto/commit/09a5cb0cca109395a4835e25d483019ddd5e773c</a><b=
-r>
-&gt;<br>
-<br>
-Thank you Raj, that explain why the gziped image is being removed.<br>
-<br>
-I still need to figure out, how to produce both image types from one recipe=
-.<br>
-Lets imagine I went through these steps.<br>
-<br>
-=C2=A0 =C2=A01. I set up the recipe so that the tar.bz2 and cpio.gz images =
-are generated.<br>
-<br>
-=C2=A0 =C2=A0IMAGE_FSTYPES =3D &quot;tar.bz2 cpio.gz&quot;<br>
-=C2=A0 =C2=A0inherit core-image<br>
-<br>
-=C2=A0 =C2=A0The tar is just for development debugging and the cpio.gz is p=
-acked into<br>
-=C2=A0 =C2=A0a FIT image that goes into production.<br>
-<br>
-=C2=A0 =C2=A02. After some unspecified time a need arose to produce also<br=
->
-=C2=A0 =C2=A0the cpio.gz.u-boot image that can be loaded manually in U-Boot=
- during development.<br>
-<br>
-=C2=A0 =C2=A0I changed the recipe like this:<br>
-<br>
-=C2=A0 =C2=A0IMAGE_FSTYPES =3D &quot;tar.bz2 cpio.gz cpio.gz.u-boot&quot;<b=
-r>
-=C2=A0 =C2=A0inherit core-image<br>
-=C2=A0 =C2=A0inherit image_types_uboot<br>
-<br>
-=C2=A0From my point of view, the image_types_uboot class is removing<br>
-the cpio.gz image that was generated by someone else.<br>
-In my situation it is not &quot;a middle file&quot; as the commit you refer=
-enced says.<br>
-<br>
-I would understand that the cpio.gz is removed when it is not stated in<br>
-the IMAGE_FSTYPES variable.<br>
-<br>
-=C2=A0From reading the IMAGE_FSTYPES variable documentation a user/develope=
-r can never<br>
-get the idea that some image types can not be generated simultaneously.<br>
-IMHO a proper behavior would be to generate and preserve all supported imag=
-e<br>
-types stated in the IMAGE_FSTYPES variable.<br>
-<br>
-Any ideas how to achieve that?<br>
-<br>
-________________________________<br>
-<br>
-CONFIDENTIALITY NOTICE<br>
-This message is for the named person&#39;s use only. It may contain confide=
-ntial, proprietary or legally privileged information.<br>
-If you receive this message in error, please immediately delete it and all =
-copies of it from your system, destroy any hard copies of it and notify us =
-by email to <a href=3D"mailto:info@ysoft.com" target=3D"_blank">info@ysoft.=
-com</a> with a copy of this message. You must not, directly or indirectly, =
-use, disclose, distribute, print or copy any part of this message if you ar=
-e not the intended recipient. Y Soft and any of its subsidiaries each reser=
-ves the right to monitor all e-mail communications through its networks.<br=
->
-Y Soft is neither liable for the proper, complete transmission of the infor=
-mation contained in this communication nor any delay in its receipt. This e=
-mail was scanned for the presence of computer viruses. In the unfortunate e=
-vent of infection Y Soft does not accept liability.<br>
-Any views expressed in this message are those of the individual sender, exc=
-ept where the message states otherwise and the sender is authorised to stat=
-e them.<br>
-</blockquote></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.apple-tab-span
+	{mso-style-name:apple-tab-span;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:741023065;
+	mso-list-template-ids:536783790;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:1318609649;
+	mso-list-template-ids:-148885612;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
+on: YP 2.4 M3</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
+2.4 M3 Cut off is Aug. 21, 2017</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
+: Leo -&gt; Juro on Aug. 11, 2017.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
+: Juro -&gt; Paul on Aug. 18, 2017.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
+.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
+/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
+:</span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.4 M2 rc3 should be publicly =
+released shortly. This build had much better test results than rc2. &nbsp;S=
+ee the QA report at:
+<a href=3D"https://wiki.yoctoproject.org/wiki/WW32_-_2017-08-09_-_Full_Test=
+_Cycle_2.4_M2_rc3">
+<span style=3D"color:#1155CC">https://wiki.yoctoproject.org/wiki/WW32_-_201=
+7-08-09_-_Full_Test_Cycle_2.4_M2_rc3
+</span></a>And the release Criteria at:<a href=3D"https://wiki.yoctoproject=
+.org/wiki/Yocto_Project_v2.4_Status#Milestone_2_-_Target_July_28.2C_2017"><=
+span style=3D"color:black;text-decoration:none">
+</span><span style=3D"color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
+to_Project_v2.4_Status#Milestone_2_-_Target_July_28.2C_2017</span></a><o:p>=
+</o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">Patches are flowing into master, =
+albeit slowly. Vacations for various people is resulting in high workload f=
+or those who aren=92t away.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">We=92re seeing problems with new =
+symbols in glibc 2.25 (getrandom and getentropy) interacting badly with uni=
+native. For now we=92re disabling those symbols
+ in the native case since most code has fallback code, at least for now. We=
+ may need a better workaround. We=92d prefer to avoid having to make uninat=
+ive glibc version specific.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">The new autobuilder has been upda=
+ted to newer worker distro instances (resulting in some of the failures) bu=
+t is back to full strength after a while running
+ without one or two workers for various issues. Having it at full strength =
+should speed up builds/testing.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.2 (Morty) is continuing to s=
+truggling due to build issues. The issue appears to be that certain ppc/lsb=
+ lsb images are taking a long time to run. We
+ need to understand why the non-lsb images don=92t suffer the same issues b=
+ut are struggling to find anyone with the time to look into it properly. We=
+ need to get these resolved in order to unblock this release series.<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Planned upcoming d=
+ot releases:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.2 Cut off J=
+une 5, 2017 - Not ready to do an rc2 yet.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.2 Release b=
+y June, 16 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3.2 Cut off S=
+ept. 1, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3.2 Release b=
+y Sept. 15, 2017</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.4 Dates a=
+re:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.4 M3 Cut off =
+is Aug. 21, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.4 M3 Release =
+by Sept. 1, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.4 M4 (Final) =
+Cut off is Sept. 18, 2017</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.4 M4 (Final) =
+Release by Oct. 20, 2017</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
+/span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
+"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
+color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;
+</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
+,sans-serif;color:black">WDD 2480 (last week 2433)</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
+=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
+ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
+.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
+octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
+;font-family:Consolas;color:black">)</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
+or YP:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Project_v2.4_Status"><span style=3D"font-size:11.0pt=
+;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
+to_Project_v2.4_Status</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.4_Schedule"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.4_=
+Schedule</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.4_Features"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.4_=
+Features</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If anyone has sug=
+gestions for other information you=92d like to see on this weekly status up=
+date, let us know!]</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:black">Thanks,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sa=
+ns-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
---94eb2c0dfda68ad32f0556b6c3fc--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98C99221fmsmsx111amrcor_--
