@@ -1,68 +1,39 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 86E67E00CA5; Mon, 14 Aug 2017 19:15:39 -0700 (PDT)
+	id 59E47E00BB7; Mon, 14 Aug 2017 20:02:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f52.google.com (mail-pg0-f52.google.com [74.125.83.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B3D2E00B8E
-	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 19:15:39 -0700 (PDT)
-Received: by mail-pg0-f52.google.com with SMTP id i12so7621163pgr.3
-	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 19:15:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding:content-language;
-	bh=c/LIluS6YsBHh5B5SF9eO2iyb8qJL9MaaXvWS22yeC0=;
-	b=ZI3FN7UOtP9RteejH/lySwmV3KdmyS6QrZqHNjcnwvw6GsIG/MPEIkssEe0tnECgwz
-	8a4GjCemk5JltQotk2LJh7M8otetw/uhAN4Ul/oCyRQuTeAfY+gz2SdIW5HAxDtIO7w0
-	t2ohkSUPpmXjJBSYHkW3vVYZ+muA1FsRIe5OKEpUCikldUwtnnwnfT+sPwNZ66LFhW8Q
-	SmOIwE1jPKg7B2ImiAbG2mbo3C/KqbpzDH+lN8RsZ8WzEPBFEwhObPZuicFqM/kEtbKR
-	O4rrOi4LkRbK6q2oVXpf5J7f/rSSNQjYymEuaS4nLH685avWEe3KtVPBpBD+d7jGjj39
-	ujMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding:content-language;
-	bh=c/LIluS6YsBHh5B5SF9eO2iyb8qJL9MaaXvWS22yeC0=;
-	b=RFGypL/zg1m05jyIcHe6s9L4F4SS1GWIPs7JtjB8JRiwCEejg0z/aAsayg86jAe6ed
-	ncsJulqgAD5HOSKFDrzuu+tzkwiu6K4PwZpJjLvnw2Yp5WF5LpBDa6FZL8urrALD63N3
-	U/B++rVR/l4SQUd7Obzgk10rdbhdPzZzjCauDy7GP3OVHXe9PIWdClEiES16z5XIYJYB
-	w2ylVIznz8JqudeFtBnCEIL/KzZrDnmGmo4fLTXS9R8XaZL1J9pnpeO7YaZefkOs+daP
-	VAyMchsFFsDPZ1RwNw0udgPksprlo/4VKHfIDZYK0igaJSMijB0g+aW/mwcAjL5A3QU8
-	jDoA==
-X-Gm-Message-State: AHYfb5h7ru/NDedrzRFqkJznFl9No3T/R6qV3Hl4zaldco5Ti0YYiXfo
-	V9A7Mh9d+LIMzqhHTgE=
-X-Received: by 10.84.195.131 with SMTP id j3mr29255235pld.147.1502763338489;
-	Mon, 14 Aug 2017 19:15:38 -0700 (PDT)
-Received: from ?IPv6:2001:8003:804a:b500:7ae4:ff:fe2d:ca29?
-	([2001:8003:804a:b500:7ae4:ff:fe2d:ca29])
-	by smtp.gmail.com with ESMTPSA id
-	139sm12600586pgh.60.2017.08.14.19.15.35 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 14 Aug 2017 19:15:37 -0700 (PDT)
-To: "N:" <yocto@yoctoproject.org>
-From: Riko <antonius.riko@gmail.com>
-Message-ID: <a94a076e-50a3-bf78-e628-15128682128f@gmail.com>
-Date: Tue, 15 Aug 2017 10:15:33 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1B36E00349
+	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 20:02:20 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v7F32Ggj001417
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 14 Aug 2017 20:02:18 -0700 (PDT)
+Received: from server.local (128.224.20.239) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.361.1;
+	Mon, 14 Aug 2017 20:02:15 -0700
+To: Gunnar Andersson <gandersson@genivi.org>, <yocto@yoctoproject.org>
+References: <1502739375.26251.126.camel@genivi.org>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <f75c19c6-e128-5932-fd29-1d3cb92b539d@windriver.com>
+Date: Mon, 14 Aug 2017 23:02:14 -0400
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.2.1
 MIME-Version: 1.0
-Subject: How can I use PREFERRED_VERSION_ ?
+In-Reply-To: <1502739375.26251.126.camel@genivi.org>
+Cc: "automotive-discussions@lists.linuxfoundation.org"
+	<automotive-discussions@lists.linuxfoundation.org>
+Subject: Re: Idea for bbappend / layer organization and naming convention
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,26 +45,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Aug 2017 02:15:39 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 Aug 2017 03:02:21 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Dear Yocto Team Members,
+On 2017-08-14 3:36 PM, Gunnar Andersson wrote:
+> 
+> Yocto community,
+> 
+> Triggered by the previous email request to yocto@ about best practices for
+> layer organization I'm finally firing off this email for (hopefully) some
+> feedback on an idea we first kicked around, discussed for rough consensus
+> and then decided to implement in the Yocto based GDP project [1].  You can
+> see it as a trial, anything can be changed, but so far so good...
+> 
+> We adopted a somewhat novel (but actually not really unique, see inside)
+> naming convention [2] for all modifications to components that belong to
+> other layers.
+> 
 
-How can I use PREFERRED_VERSION_ ?
+I've been using a similar naming/sorting mechanism in layers that
+I maintain for several years now. When you have a single layer that
+is carrying bbappends to many other layers, I find that it really
+helps keep everything separated and aids finding the original
+recipe.
 
+(that being said, recent work with layer index, etc, make it
+easier to locate the original recipe and any bbappends .. but that
+doesn't preclude keeping things organized in a layer).
 
-ERROR: Multiple versions of openssl are due to be built 
-(/home/bianchi/poky/openembedded-core/meta/recipes-connectivity/openssl/openssl_1.1.0f.bb 
-/home/bianchi/poky/meta/recipes-connectivity/openssl/openssl_1.0.2k.bb). 
-Only one version of a given PN should be built in any given build. You 
-likely need to set PREFERRED_VERSION_openssl to select the correct 
-version or don't depend on multiple versions.
+Cheers,
 
+Bruce
 
-Regards,
-
-Riko
+> This convention shows what layers are being modified by the .bbappends by
+> actually naming the layer it is (intending to**) modify.  The initiative
+> also aims to highlight and separate .bbappends (modifications) from uniquely
+> added components in our project (new .bb files) in GDP.
+> 
+> **Note that we are well aware this does NOT control bitbake behavior (as
+> neither does the recipe-xxx/ directory convention), and is therefore just a
+> guide.  If the project is misconfigured, bitbake could do something
+> different than the naming convention implies and it could even be
+> misleading, but at least the *programmer intent* is shown clearly.
+> 
+> I think it also makes .bbappends more explicitly visible and might trigger
+> the idea:   Do we really need this?  Are we really modifying *that* adopted
+> layer, and if so, why?
+> 
+> To Russel who wrote the previous request for guidance - feel free to
+> consider, but I won't recommend this directly since it's by no means an
+> agreed best practice in all of the community.  I'm rather asking for other
+> experienced OE developers to consider and comment on the idea.
+> 
+> For oldtimers it's probably easy to find this odd and just be negative
+> against it since well, "standard practice", inertia, NIH and all that, but
+> I'll stick my neck out anyway because it seems to solve some issues of
+> organization and understanding at least for us (and I'm a sucker for some
+> flamebait ;)
+> 
+> If the intro is too formal and long, just look at the final examples.  I
+> think you'll get it.  Feel free to ask.
+> 
+> 
+> - Gunnar
+> 
+> -- 
+> Gunnar Andersson <gandersson@genivi.org>
+> Development Lead
+> GENIVI Alliance
+> 
+> [1] https://github.com/GENIVI/genivi-dev-platform
+> [2] Naming strategy for bitbake extension layers:			
+> https://at.projects.genivi.org/wiki/x/w4Xk
+> 
+> 
+> 
 
 
