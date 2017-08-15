@@ -1,6 +1,6 @@
 Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A4CDE00C9D; Mon, 14 Aug 2017 22:35:22 -0700 (PDT)
+	id CD308E00D12; Mon, 14 Aug 2017 22:36:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,9 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.67 listed in list.dnswl.org]
+	*      [74.125.83.65 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.67 listed in dnsbl.sorbs.net]
+	*      [74.125.83.65 listed in dnsbl.sorbs.net]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (antonius.riko[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -21,49 +21,49 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01C49E00C7A
-	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 22:35:19 -0700 (PDT)
-Received: by mail-pg0-f67.google.com with SMTP id l64so19019pge.2
-	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 22:35:19 -0700 (PDT)
+Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C4D5E00CF1
+	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 22:35:59 -0700 (PDT)
+Received: by mail-pg0-f65.google.com with SMTP id y129so16063pgy.3
+	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 22:35:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-transfer-encoding:content-language;
-	bh=GKFLJR+ZZy0wG6e7MHlulWURyOQR+YUmlc/ly0f5Hwg=;
-	b=b99iaFdW0dR25ph6IhQ8PqUTc6P/yNePt+ZRzdbsJTMIyXqsHagtUuJNZLETIeg73o
-	7KJQV676I41BPaTg74ZbSuXYVBMxygr/rQVmqjqfKdsLtjz8nrUe0j2q3n0rOORP8i+H
-	eKOdsWPTU9JRO7b9xFX6pMLYAKzsiiDWLcSgruFOKzEWUd0iS7BHFIObHSQEtxhcu09Q
-	FtlHrp6nBBLSk/Gnex8UDZ7oGzNoNRUP/XZtf4CHnBJJ/9Lb7tysqLSBkg789sB+SmAj
-	NsoLFOHRkizFQlToTc1KTs5159SFPCGyZvHQ+ec/HvkvjlfNoOTVhN3z72aIle9zw/WC
-	BRgA==
+	bh=onsxFb7QMLBsWZQqRp+8NZjLkfz/FMhSldn+LilS2zg=;
+	b=CGn9UTUz1NroYgOruJJq/AzKCgJLonSnW87vE/0Rz/MBPwbDihZF0k/fwukiK8QNdp
+	zG3aqV3cXdYdCXGlAfbwZH/u3B88T6wT0rIGxLtMw1nYjgPuI/+NSfiwJ0ic7CzKYsJx
+	2YMJXY3/8eXjV/11aehBrjSOxNPVzEhwwWeCt5niZSGoQy3tKkrRh3puFTSnA8qHlDqg
+	d49BieolhxkTTbhdIMzLOuj+M/7PdCHfb+wUYl3B4o7k+jMpLWMRkhiMNRnuQWQu3V7P
+	oxT60RcEPKU0kmAIe1ZAaqZ2x99Gst20DV6Sjjk2bRSbTjIetTkRkp7tzNGQ9AYomnPM
+	aX9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=GKFLJR+ZZy0wG6e7MHlulWURyOQR+YUmlc/ly0f5Hwg=;
-	b=eAg41W7kNqAcJQpz4aTEM+Hw3LFzxbz6cUY4I2YI5Sjl2IqoYNr+T/6va12KJQfnMB
-	gEbT02vW6S5yiXa2kwvVEvtS5uTbtZ3HfJ5P3CduW7U6V8gzrhZvSJQyf1p5WPy54eZR
-	zf3k1JIR99PvkSneaDctyTPZsBQHJ+3RNC/47BQhAuCZgg5WBReAwOOuIDx//MtgWOgX
-	dY67byWNRmE3j4TliF2BRVHNaxbh6pnb6IgKdJx0ilbEh4blB9gPoHO8oJcsIV/NWj2d
-	VjpPpKGY9bhc12QxeD1lZQLdqvHens2o2UTmoxxRdO+FdIzAz3ZH2U3gzkDdRdfJSWga
-	FhpA==
-X-Gm-Message-State: AHYfb5irHgQKCpHeHue0T0m1H7erF/NhFSe21aWBatuM6kK5gv9NWTwA
-	t+84tEWV+tazbkCSnrE=
-X-Received: by 10.101.90.136 with SMTP id c8mr25803308pgt.168.1502775318826;
-	Mon, 14 Aug 2017 22:35:18 -0700 (PDT)
+	bh=onsxFb7QMLBsWZQqRp+8NZjLkfz/FMhSldn+LilS2zg=;
+	b=XRb62NW/uvA/5aX2tsOR1pm5zPewlVM4Wi3krfAhqhsZSBwIbjFTe6blgCwbH3y+7f
+	3dUYg87rh4DbxZCAmnmFrcGvN/uAlEM7NDyy3bBW8jELS0678/FBeX2N5hQuDNDVcu5a
+	XWGYQQM7A+IUwBfZ3RLjqMLMFJd/51qmEqNVpxHKGpbW9VPn2XpHLqU/uNB1xy05C2Au
+	98Y2ZTWh0R3Hqi07ldA2hluY5zduKMyzYjAbd99UBmDG5KY/Bsz9Df/Jb/0DWtSEMXbT
+	lViSCbnGy0QW59f8kPcyM7XdixABljunYUiRyuwLsDfTbAfYlx6wZ1pAfmpvylrAxUpG
+	TzFQ==
+X-Gm-Message-State: AHYfb5h8CGpgAEm1MrN4VzjOz1xEFNfI1IfaXwv6rgqVE6N+pOkqDXGL
+	tzAmaHvmIWvqgMRHPEQ=
+X-Received: by 10.84.136.131 with SMTP id 3mr30887789pll.149.1502775358284;
+	Mon, 14 Aug 2017 22:35:58 -0700 (PDT)
 Received: from ?IPv6:2001:8003:804a:b500:7ae4:ff:fe2d:ca29?
 	([2001:8003:804a:b500:7ae4:ff:fe2d:ca29])
 	by smtp.gmail.com with ESMTPSA id
-	w1sm14548330pge.59.2017.08.14.22.35.16
+	d4sm17688420pfj.59.2017.08.14.22.35.56
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 14 Aug 2017 22:35:18 -0700 (PDT)
+	Mon, 14 Aug 2017 22:35:57 -0700 (PDT)
 To: Khem Raj <raj.khem@gmail.com>
 References: <0649cefe-8c90-7268-f363-10ea09f6cd74@gmail.com>
 	<CAMKF1srETgqU+m-X99t7ZXAFLTezSX0cbfxVKs7K7Fr8UVBLwA@mail.gmail.com>
 From: Riko <antonius.riko@gmail.com>
-Message-ID: <d7c53af7-0410-214d-d670-8267d59c708b@gmail.com>
-Date: Tue, 15 Aug 2017 13:35:13 +0800
+Message-ID: <255b8a2d-8036-76cf-327b-a3128b83ba51@gmail.com>
+Date: Tue, 15 Aug 2017 13:35:54 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.2.1
 MIME-Version: 1.0
@@ -81,14 +81,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Aug 2017 05:35:22 -0000
+X-List-Received-Date: Tue, 15 Aug 2017 05:36:00 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-which branch are you talking about ?
+Do you mean this one ?
 
-I don't understand your question
+Build Configuration:
+BB_VERSION        = "1.34.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "universal"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beaglebone"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.3.1"
+TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa8"
+TARGET_FPU        = "hard"
+meta
+meta-poky
+meta-yocto-bsp    = "pyro:4a39979c8d1e560fa54240e99734a651dfbaa63a"
+meta              = "master:5a25ed1071f0d9b7d95edcc2b5b4545f960d5f95"
+meta-oe
+meta-xfce
+meta-gnome
+meta-python
+meta-multimedia
+meta-networking   = "master:a8b54e300be027fefe8a774ca1861d0fb8e80d99"
+meta-browser      = "master:e3c3aa0591506672245904227a46519a276957e0"
 
 
 On 15/08/17 13:30, Khem Raj wrote:
