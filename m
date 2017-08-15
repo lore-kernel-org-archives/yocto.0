@@ -1,14 +1,20 @@
 Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5EE9BE00D77; Mon, 14 Aug 2017 17:55:35 -0700 (PDT)
+	id 29B4DE00C93; Mon, 14 Aug 2017 18:09:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (antonius.riko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.41 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.41 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,53 +23,50 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.50 listed in list.dnswl.org]
-Received: from mail-pg0-f50.google.com (mail-pg0-f50.google.com [74.125.83.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 734C9E00A39
-	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 17:55:28 -0700 (PDT)
-Received: by mail-pg0-f50.google.com with SMTP id u5so57426483pgn.0
-	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 17:55:28 -0700 (PDT)
+Received: from mail-pg0-f41.google.com (mail-pg0-f41.google.com [74.125.83.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E424E00CB9
+	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 18:09:11 -0700 (PDT)
+Received: by mail-pg0-f41.google.com with SMTP id i12so6784979pgr.3
+	for <yocto@yoctoproject.org>; Mon, 14 Aug 2017 18:09:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:cc:references:from:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language;
-	bh=dRMoXziYXvXnNc77ISTHbSnpFGKI161rPn1uIB2XDCw=;
-	b=Qu3IXze31GKGWKnJqjNDCBQIWeW12ilREn1w0mlXoRTlsuvKefj4GGmGiLXXl+JG5B
-	YsA3KPvZd+3MQ2k9UfGtbi1i/fc06W+7sFPonnEfIxLusS40dq4voqk/G2Brqb0fAz/4
-	acO7E7tc4EM7B9x9JeJWBo7MPiiIk8heAxAHvIf5neg83y4cV6vse5RcZr4JuUl2LbQt
-	EHoMSLW8sxO+IDNdsVYWqIRdEGzB0mHzUeu4WbL35E5fDLPlv+vM3sT6W1RG+To6Qo8z
-	4Adg8Av35JKpgOOPEcGxIlMUyDFzlXIdHJv912srwUHcYVMa2R3Hl9S3PvH4ItG7eVaq
-	fUpA==
+	bh=+7oVLmddTQQIyfxx0jMeYLhMixB8L2UUNu2nPMsqfOM=;
+	b=AQBgJ9kFCygByl24LsKV646C9xiNNA5ReOBqh68KOpp83j7WzoV8eDo+GigM4zMovf
+	cRP9w86Xf7l44tUNLKfxiBms+mjIN0WIIkZIh0+cZH8fKoyzP16wOm8ZcTGboAfigpuT
+	8Go9RnRnD2ojjXxR50Fd9GKOL+O24l/bX5a+fK/EPFkhHsP4a+EjlhNMytRrGGoOas8F
+	1WtxRSIeAt1ofiSHn5gFmgd5YlQ0Qxi7MZX64LH+eESJqLOYKIev1CPwGbUedVDO1Mlu
+	KP+mtjDP6jBLAO3D1D74T5zcjmPezma5r+6g66jqav3CD2pSkeQsdEOBVuc2f43bc6ek
+	Hflg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
 	:user-agent:mime-version:in-reply-to:content-language;
-	bh=dRMoXziYXvXnNc77ISTHbSnpFGKI161rPn1uIB2XDCw=;
-	b=NMbO0HO1ZEIu+YJXOmu552ps3j40wwH2fMriupGOXufDOUzjggU8mtyXHJ6IWIAlB3
-	QRphneQNnMS/3z3bUb5vWnh7w3p2ildl2jfNkpjT3+Fvkr3dUQ3Idz73/ufBrO3+9ZYu
-	I/ER21FCIB+BZOQBIIy41poidEqdGivblLgGKm+aDwednRRWtVBv6iGrgcK1toit6i/T
-	nmrGGCrQ5KVO5UabLWSSh+J37SQkhzQIqdonzvPQ3QgyoLhItk5PK8Lu4+afYZcNQlyC
-	HL5BJfH+i3Hikzp2ZWrW3uoUCmiUNI3cGu0AbP2GJts3XUF8jkYOGwLcdTuJVIeL/Rvp
-	K9KQ==
-X-Gm-Message-State: AHYfb5iLlzFt9s2Uh0uAKuEm5/J+Z/+aw+a9vG6E0V9i5NU5cOfxN048
-	+3z0L71xayDJA6QZwro=
-X-Received: by 10.84.209.165 with SMTP id y34mr29827782plh.200.1502758528360; 
-	Mon, 14 Aug 2017 17:55:28 -0700 (PDT)
+	bh=+7oVLmddTQQIyfxx0jMeYLhMixB8L2UUNu2nPMsqfOM=;
+	b=YN2Im4HQgvbwGFYySaEVxGd+C0WqT5CaO3rTy9SUQI3b6aECCIgNBgu4KjRc7XlMSq
+	amm41AUpsmpODrUxFqUI4ntP0sh1NaloauyWSkHz8xYkuzYRi2m9wnVdQQVhBz3Ta8i0
+	glpAQXQY+K7j6oeuprTmdMbWjpwMkqSuYb9a9sVj2whGIUCRldyxAAbGZoqiF3MaPaw9
+	ybEkXbr6fU0YKKQexwK4J3zbU+PlZ/TiiL/RLRk1ORwu0L7x5dWHtGbfu2XsPBFL8B8V
+	vR47tf6QFhqinl45XER7ZUpijA7aovtXnA2xXsLcya2+eYYXOcElPgHUbPytqKj8gyHw
+	Tq6Q==
+X-Gm-Message-State: AHYfb5hAlOfRyH5+t0fSBy9rxQft0YOf4SoRLtQebr3y/lF/JQnfppGf
+	VaYnHeCCNiqHbh/lCSo=
+X-Received: by 10.98.16.194 with SMTP id 63mr23888574pfq.172.1502759350320;
+	Mon, 14 Aug 2017 18:09:10 -0700 (PDT)
 Received: from ?IPv6:2001:8003:804a:b500:7ae4:ff:fe2d:ca29?
 	([2001:8003:804a:b500:7ae4:ff:fe2d:ca29])
 	by smtp.gmail.com with ESMTPSA id
-	e5sm16242258pgn.55.2017.08.14.17.55.25
+	w123sm16056255pfb.60.2017.08.14.18.09.08
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 14 Aug 2017 17:55:27 -0700 (PDT)
+	Mon, 14 Aug 2017 18:09:09 -0700 (PDT)
 To: Christopher Larson <kergoth@gmail.com>,
 	Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
 References: <39341581-7086-955e-d678-fa771e5941da@gmail.com>
 	<1502725740.28941.13.camel@linux.intel.com>
 	<CABcZANkw2EPzROT6WFkqzL+OoJtnXBu_HWJVevKg07RrmGOLfw@mail.gmail.com>
 From: Riko <antonius.riko@gmail.com>
-Message-ID: <118304ca-6d89-0dcd-fa3f-df08db04b9bf@gmail.com>
-Date: Tue, 15 Aug 2017 08:55:23 +0800
+Message-ID: <299105a1-2bf6-a89f-d1f1-e35bd2d458c1@gmail.com>
+Date: Tue, 15 Aug 2017 09:09:05 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.2.1
 MIME-Version: 1.0
@@ -81,16 +84,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Aug 2017 00:55:35 -0000
+X-List-Received-Date: Tue, 15 Aug 2017 01:09:13 -0000
 Content-Type: multipart/alternative;
-	boundary="------------16AB4205C6CE193447293BA4"
+	boundary="------------964E40E660AA9914513FEAD6"
 Content-Language: en-US
 
---------------16AB4205C6CE193447293BA4
+--------------964E40E660AA9914513FEAD6
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Thanks for the clue, now it's compiling,
+Dear Team Yocto Members,
+
+I continue compiling, and got :
+
+ERROR: 
+/home/bianchi/poky/openembedded-core/meta/recipes-core/images/build-appliance-image_15.0.0.bb: 
+No IMAGE_CMD defined for IMAGE_FSTYPES entry 'wic.vmdk' - possibly 
+invalid type name or missing support class
+ERROR: Failed to parse recipe: 
+/home/bianchi/poky/openembedded-core/meta/recipes-core/images/build-appliance-image_15.0.0.bb
+
+How can I fix it ?
+
+regards,
+
+Riko
 
 
 On 14/08/17 23:56, Christopher Larson wrote:
@@ -142,7 +160,7 @@ On 14/08/17 23:56, Christopher Larson wrote:
 > Senior Software Engineer, Mentor Graphics
 
 
---------------16AB4205C6CE193447293BA4
+--------------964E40E660AA9914513FEAD6
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -151,7 +169,17 @@ Content-Transfer-Encoding: 8bit
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    <p>Thanks for the clue, now it's compiling,<br>
+    <p>Dear Team Yocto Members,</p>
+    <p>I continue compiling, and got :</p>
+    <p>ERROR:
+/home/bianchi/poky/openembedded-core/meta/recipes-core/images/build-appliance-image_15.0.0.bb:
+      No IMAGE_CMD defined for IMAGE_FSTYPES entry 'wic.vmdk' - possibly
+      invalid type name or missing support class<br>
+      ERROR: Failed to parse recipe:
+/home/bianchi/poky/openembedded-core/meta/recipes-core/images/build-appliance-image_15.0.0.bb</p>
+    <p>How can I fix it ?</p>
+    <p>regards,</p>
+    <p>Riko<br>
     </p>
     <br>
     <div class="moz-cite-prefix">On 14/08/17 23:56, Christopher Larson
@@ -232,4 +260,4 @@ cite="mid:CABcZANkw2EPzROT6WFkqzL+OoJtnXBu_HWJVevKg07RrmGOLfw@mail.gmail.com">
   </body>
 </html>
 
---------------16AB4205C6CE193447293BA4--
+--------------964E40E660AA9914513FEAD6--
