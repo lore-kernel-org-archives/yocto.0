@@ -1,78 +1,77 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DDC7AE00DE4; Tue, 15 Aug 2017 03:09:10 -0700 (PDT)
+	id 3604AE00CA3; Tue, 15 Aug 2017 05:35:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.215.49 listed in dnsbl.sorbs.net]
+	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (antonius.riko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.49 listed in list.dnswl.org]
+	*      [74.125.83.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f49.google.com (mail-lf0-f49.google.com
-	[209.85.215.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1E11E00851
-	for <yocto@yoctoproject.org>; Tue, 15 Aug 2017 03:09:09 -0700 (PDT)
-Received: by mail-lf0-f49.google.com with SMTP id t128so2015108lff.2
-	for <yocto@yoctoproject.org>; Tue, 15 Aug 2017 03:09:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=chargestorm-se.20150623.gappssmtp.com; s=20150623;
-	h=date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-disposition:in-reply-to:organization
-	:user-agent; bh=wPQ9Wbr49n3SiXg5rDtKodrMz86odxisDVc0RLubLf4=;
-	b=G6tui5HBvK5E93q+rrclVj7wRzmbCb1gWI+6+DsYdIDbNOZUib4RO8suBoH64KtT9y
-	rqmBr88ENhMQc8EyojYqDIqf6JrcQwJWU3ePF5YwD3hztuf2eeU6trI4potosgGvYxHS
-	sID1io+irG89bP/NRfZY81yye9HvtrdBQWCrIB21b9IBLpZ2m9T7uQ/R0JEeckPfBcvi
-	Of7HInbh0fA21coO1xY/rcI+FM8Q7fs0YXV6cbLqwTQzhBzYOh39/TFr/5Woc5kLG4rr
-	UWoSNjGzcKk6g608VSa/Q0J0zsRreYXErZRfVqxvfehyJbJ+i8KWxw8cGDMWRO4Z0/P+
-	PTKA==
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 236DDE00A9C
+	for <yocto@yoctoproject.org>; Tue, 15 Aug 2017 05:35:05 -0700 (PDT)
+Received: by mail-pg0-f68.google.com with SMTP id y129so1305789pgy.3
+	for <yocto@yoctoproject.org>; Tue, 15 Aug 2017 05:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=xElyRFFvwfVAUoWS//4QLaKFQrheJlUI/UBsUJLYbD4=;
+	b=NqKwsUmJdvOS3M8E+/ewlYfEXXw1+TfNx0jKWlkzhVTXo9B6PXtbf4aiPL+w/tQdAa
+	4Tat2++lIEOaIP1FOKhCkI+yGa5wYhrUtNTerkexq3i840T2wYAl/BR5r5setF2uOAae
+	u9Doxx/tbdVTwRaHpRCAw49K94gao9cbShu8oOd+iTQ0jBbvrrI0YFTx0FcDhklD4ra/
+	Qy8dZScDTwRkQtvOKddhrBZxpKtFyL2PRP0jaXj7goKqkZWWsDf9L7JJfShQRl/a1Yty
+	6aQ91AZTnALrpfDuevAGI6uG2JdTbjoJvezS1l++Ph7LrV1dcQxvpaXZNaIu4poMGfYM
+	uX/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
-	:references:mime-version:content-disposition:in-reply-to
-	:organization:user-agent;
-	bh=wPQ9Wbr49n3SiXg5rDtKodrMz86odxisDVc0RLubLf4=;
-	b=fUYsZVTsSHCT/9hc2uAWEs+laK+BPO9qt6ygKdm4L7UuFbJTpDGgAIHXpVNuw6L947
-	PrM/M7iig6ZhcuK0m+5zXo9Df0qV6dEHGdWSEqjjiF2TKVB9S2JP4efBD424LXrDUdN8
-	ZGiXwWIeBz5uy00knF4Xb9MPd9SRCjuXsPPuMA+XcvJzutcNUAVo7HaOmP81WvNesvXD
-	AJFIu80ujzzwSYV7g6GsdohiwNfFStkMwvTJsk4xo/1pCIalo+zcwUMV409HKKC4hN+C
-	sbti12QdJpv2NortvXUmr1MNXP9XaUQNywj9zKoVsz/lcNNt3ieLk4+vF9GhCQr27SgQ
-	ApAA==
-X-Gm-Message-State: AHYfb5g9byqdNhaivZvlpMAGpass4KDmrSXPYK7Zz3ni+RUEhfQCw948
-	D0UKvlBe026qzBc28dHBww==
-X-Received: by 10.25.115.19 with SMTP id o19mr7941089lfc.145.1502791748261;
-	Tue, 15 Aug 2017 03:09:08 -0700 (PDT)
-Received: from ad.chargestorm.se (h83-209-191-235.cust.se.alltele.net.
-	[83.209.191.235])
-	by smtp.gmail.com with ESMTPSA id s2sm1436052ljd.62.2017.08.15.03.09.07
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 15 Aug 2017 03:09:07 -0700 (PDT)
-Date: Tue, 15 Aug 2017 12:09:05 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: yocto@yoctoproject.org
-Message-ID: <20170815100905.e5ssrq5kpoljbalt@ad.chargestorm.se>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <0649cefe-8c90-7268-f363-10ea09f6cd74@gmail.com>
-	<CAMKF1srETgqU+m-X99t7ZXAFLTezSX0cbfxVKs7K7Fr8UVBLwA@mail.gmail.com>
-	<255b8a2d-8036-76cf-327b-a3128b83ba51@gmail.com>
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=xElyRFFvwfVAUoWS//4QLaKFQrheJlUI/UBsUJLYbD4=;
+	b=rJTMy8LXQO6/UDaK4NuartlmMQSaq0mZWe1FIxDNiGBz79y8dWliO2qSt4sjZpvBRH
+	kFbB3QYwnXOxORWi9ealrrg7yLu1dX+XmLeECx7F6TUZFn+cl1Td0EvSZwI/YpDtrs2h
+	/Cbz9S/nWz53qWpwd0cntL10Dil7aN4XCq9lCyAVkTSB1AUGXoLLcL9hDM/xKzLYutDf
+	V9OOSPizP5/24WAI6gw00Q0UHRd/XhLUZoEQOcORbVInzokThl6ek+P7i1lgn/6MpC/k
+	0ovR0yPOyWVJcHB7H8oLoTX5boTpMSLbNeQyBSzPqKFwKZdQ/0YSabkLx3GZCDt0K0Ou
+	IQ4g==
+X-Gm-Message-State: AHYfb5ggpY2Isj1W2Wdu0x7S6d6O9tPvoRFgmSJ5NQ9tWPu8442ZgJ+f
+	KVNs33sekBuzoFUbF7U=
+X-Received: by 10.99.44.23 with SMTP id s23mr26684646pgs.399.1502800505181;
+	Tue, 15 Aug 2017 05:35:05 -0700 (PDT)
+Received: from ?IPv6:2001:8003:804a:b500:7ae4:ff:fe2d:ca29?
+	([2001:8003:804a:b500:7ae4:ff:fe2d:ca29])
+	by smtp.gmail.com with ESMTPSA id
+	y4sm19725919pfd.116.2017.08.15.05.35.02
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 15 Aug 2017 05:35:04 -0700 (PDT)
+To: Martin Jansa <martin.jansa@gmail.com>, Khem Raj <raj.khem@gmail.com>
+References: <a94a076e-50a3-bf78-e628-15128682128f@gmail.com>
+	<CAMKF1sq9gu9fHDARcYkwH36ZBp_9OtaF_FfDHLz5CyThdvxq-A@mail.gmail.com>
+	<CA+chaQdZXaBg+ykJCHH+9gcW6gmze3VL_ifHBHokj8TBhb+8NQ@mail.gmail.com>
+From: Riko <antonius.riko@gmail.com>
+Message-ID: <c8358f28-0cec-cd19-d56e-372173b6a828@gmail.com>
+Date: Tue, 15 Aug 2017 20:35:00 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-In-Reply-To: <255b8a2d-8036-76cf-327b-a3128b83ba51@gmail.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: NeoMutt/20170609 (1.8.3)
-Subject: Re: ERROR: gcc-source-6.3.0-6.3.0-r0 do_fetch: Fetcher failure for URL: 'file://0002-uclibc-conf.patch'. Unable to fetch URL from any source.
+In-Reply-To: <CA+chaQdZXaBg+ykJCHH+9gcW6gmze3VL_ifHBHokj8TBhb+8NQ@mail.gmail.com>
+Cc: "N:" <yocto@yoctoproject.org>
+Subject: Re: How can I use PREFERRED_VERSION_ ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,55 +83,194 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Aug 2017 10:09:10 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 15 Aug 2017 12:35:07 -0000
+Content-Type: multipart/alternative;
+	boundary="------------2CC2968B9A18FC14A7F4DCD9"
+Content-Language: en-US
 
-* Riko <antonius.riko@gmail.com> [170815 07:42]:
+--------------2CC2968B9A18FC14A7F4DCD9
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> Do you mean this one ?
+is openembedded-core layer equal to meta-openembedded layer ?
 
-Yes.
+this conf was working before :
 
-> Build Configuration:
-> BB_VERSION        = "1.34.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "universal"
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
-> MACHINE           = "beaglebone"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "2.3.1"
-> TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa8"
-> TARGET_FPU        = "hard"
-> meta
-
-^ OE-Core from Poky repo.
-
-> meta-poky
-> meta-yocto-bsp    = "pyro:4a39979c8d1e560fa54240e99734a651dfbaa63a"
+BBLAYERS ?= " \
+   /home/bianchi/poky/meta \
+   /home/bianchi/poky/meta-poky \
+   /home/bianchi/poky/meta-yocto-bsp \
+   /home/bianchi/poky/openembedded-core \
+   /home/bianchi77/poky/meta-openembedded \
+   /home/bianchi77/poky/meta-openembedded/meta-oe \
+   /home/bianchi77/poky/meta-openembedded/meta-xfce \
+   /home/bianchi77/poky/meta-openembedded/meta-gnome \
+   /home/bianchi77/poky/meta-openembedded/meta-python \
+   /home/bianchi77/poky/meta-openembedded/meta-multimedia \
+   /home/bianchi77/poky/meta-openembedded/meta-networking \
 
 
-> meta              = "master:5a25ed1071f0d9b7d95edcc2b5b4545f960d5f95"
+On 15/08/17 17:20, Martin Jansa wrote:
+> and you should start by not including 2 different versions of 
+> openembedded-core/meta in your builds.
+>
+> Then you won't need PREFERRED_VERSION for openssl and the issue with 
+> wic.vmdk you reported elsewhere will also probably disappear.
+>
+> On Tue, Aug 15, 2017 at 7:31 AM, Khem Raj <raj.khem@gmail.com 
+> <mailto:raj.khem@gmail.com>> wrote:
+>
+>     On Mon, Aug 14, 2017 at 7:15 PM, Riko <antonius.riko@gmail.com
+>     <mailto:antonius.riko@gmail.com>> wrote:
+>     > Dear Yocto Team Members,
+>     >
+>     > How can I use PREFERRED_VERSION_ ?
+>     >
+>     >
+>
+>     read through
+>     http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-PREFERRED_VERSION
+>     <http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-PREFERRED_VERSION>
+>
+>     > ERROR: Multiple versions of openssl are due to be built
+>     >
+>     (/home/bianchi/poky/openembedded-core/meta/recipes-connectivity/openssl/openssl_1.1.0f.bb
+>     <http://openssl_1.1.0f.bb>
+>     >
+>     /home/bianchi/poky/meta/recipes-connectivity/openssl/openssl_1.0.2k.bb
+>     <http://openssl_1.0.2k.bb>).
+>     > Only one version of a given PN should be built in any given
+>     build. You
+>     > likely need to set PREFERRED_VERSION_openssl to select the
+>     correct version
+>     > or don't depend on multiple versions.
+>     >
+>     >
+>     > Regards,
+>     >
+>     > Riko
+>     >
+>     > --
+>     > _______________________________________________
+>     > yocto mailing list
+>     > yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     > https://lists.yoctoproject.org/listinfo/yocto
+>     <https://lists.yoctoproject.org/listinfo/yocto>
+>     --
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>     <https://lists.yoctoproject.org/listinfo/yocto>
+>
+>
 
-^ OE-Core from a manual checkout?
 
-I see two possible issues, you have multiple copies of oe-core in your
-active bblayers.conf.
+--------------2CC2968B9A18FC14A7F4DCD9
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Remove the 2nd one, if you want to use Poky from the Pyro branch.
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>is openembedded-core layer equal to meta-openembedded layer ?</p>
+    <p>this conf was working before :</p>
+    <p>BBLAYERS ?= " \<br>
+        /home/bianchi/poky/meta \<br>
+        /home/bianchi/poky/meta-poky \<br>
+        /home/bianchi/poky/meta-yocto-bsp \<br>
+        /home/bianchi/poky/openembedded-core \<br>
+        /home/bianchi77/poky/meta-openembedded \<br>
+        /home/bianchi77/poky/meta-openembedded/meta-oe \<br>
+        /home/bianchi77/poky/meta-openembedded/meta-xfce \<br>
+        /home/bianchi77/poky/meta-openembedded/meta-gnome \<br>
+        /home/bianchi77/poky/meta-openembedded/meta-python \<br>
+        /home/bianchi77/poky/meta-openembedded/meta-multimedia \<br>
+        /home/bianchi77/poky/meta-openembedded/meta-networking \<br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 15/08/17 17:20, Martin Jansa wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CA+chaQdZXaBg+ykJCHH+9gcW6gmze3VL_ifHBHokj8TBhb+8NQ@mail.gmail.com">
+      <div dir="ltr">and you should start by not including 2 different
+        versions of openembedded-core/meta in your builds.
+        <div><br>
+        </div>
+        <div>Then you won't need PREFERRED_VERSION for openssl and the
+          issue with wic.vmdk you reported elsewhere will also probably
+          disappear.</div>
+      </div>
+      <div class="gmail_extra"><br>
+        <div class="gmail_quote">On Tue, Aug 15, 2017 at 7:31 AM, Khem
+          Raj <span dir="ltr">&lt;<a href="mailto:raj.khem@gmail.com"
+              target="_blank" moz-do-not-send="true">raj.khem@gmail.com</a>&gt;</span>
+          wrote:<br>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex"><span
+              class="">On Mon, Aug 14, 2017 at 7:15 PM, Riko &lt;<a
+                href="mailto:antonius.riko@gmail.com"
+                moz-do-not-send="true">antonius.riko@gmail.com</a>&gt;
+              wrote:<br>
+              &gt; Dear Yocto Team Members,<br>
+              &gt;<br>
+              &gt; How can I use PREFERRED_VERSION_ ?<br>
+              &gt;<br>
+              &gt;<br>
+              <br>
+            </span>read through<br>
+            <a
+href="http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-PREFERRED_VERSION"
+              rel="noreferrer" target="_blank" moz-do-not-send="true">http://www.yoctoproject.org/<wbr>docs/latest/ref-manual/ref-<wbr>manual.html#var-PREFERRED_<wbr>VERSION</a><br>
+            <div class="HOEnZb">
+              <div class="h5"><br>
+                &gt; ERROR: Multiple versions of openssl are due to be
+                built<br>
+                &gt; (/home/bianchi/poky/<wbr>openembedded-core/meta/<wbr>recipes-connectivity/openssl/<a
+                  href="http://openssl_1.1.0f.bb" rel="noreferrer"
+                  target="_blank" moz-do-not-send="true">o<wbr>penssl_1.1.0f.bb</a><br>
+                &gt; /home/bianchi/poky/meta/<wbr>recipes-connectivity/openssl/<a
+                  href="http://openssl_1.0.2k.bb" rel="noreferrer"
+                  target="_blank" moz-do-not-send="true">o<wbr>penssl_1.0.2k.bb</a>).<br>
+                &gt; Only one version of a given PN should be built in
+                any given build. You<br>
+                &gt; likely need to set PREFERRED_VERSION_openssl to
+                select the correct version<br>
+                &gt; or don't depend on multiple versions.<br>
+                &gt;<br>
+                &gt;<br>
+                &gt; Regards,<br>
+                &gt;<br>
+                &gt; Riko<br>
+                &gt;<br>
+                &gt; --<br>
+                &gt; ______________________________<wbr>_________________<br>
+                &gt; yocto mailing list<br>
+                &gt; <a href="mailto:yocto@yoctoproject.org"
+                  moz-do-not-send="true">yocto@yoctoproject.org</a><br>
+                &gt; <a
+                  href="https://lists.yoctoproject.org/listinfo/yocto"
+                  rel="noreferrer" target="_blank"
+                  moz-do-not-send="true">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><br>
+                --<br>
+                ______________________________<wbr>_________________<br>
+                yocto mailing list<br>
+                <a href="mailto:yocto@yoctoproject.org"
+                  moz-do-not-send="true">yocto@yoctoproject.org</a><br>
+                <a href="https://lists.yoctoproject.org/listinfo/yocto"
+                  rel="noreferrer" target="_blank"
+                  moz-do-not-send="true">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><br>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-> meta-oe
-> meta-xfce
-> meta-gnome
-> meta-python
-> meta-multimedia
-> Ameta-networking   = "master:a8b54e300be027fefe8a774ca1861d0fb8e80d99"
-
-If you use the Pyro branch above, change these layers to also use the
-pyro branch.
-
-Do not mix release branches unless you know what you do...
-
-Cheers,
-Anders
-
+--------------2CC2968B9A18FC14A7F4DCD9--
