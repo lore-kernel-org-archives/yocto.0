@@ -1,36 +1,41 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <j.remmet@phytec.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3DE4E00D24; Wed, 16 Aug 2017 08:46:27 -0700 (PDT)
+	id 6F9D5E00CFB; Wed, 16 Aug 2017 06:04:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [217.6.246.34 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 360BBE00C1C
-	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 08:46:26 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	16 Aug 2017 08:46:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,383,1498546800"; d="scan'208";a="1183430609"
-Received: from jlock-mobl3.ger.corp.intel.com ([10.252.31.202])
-	by fmsmga001.fm.intel.com with ESMTP; 16 Aug 2017 08:46:24 -0700
-To: yocto@yoctoproject.org, akuster808 <akuster808@gmail.com>
-References: <30C2D590D16A5C46ADFE652191037798922773DF@AZ-US1EXMB02.global.avaya.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <775769b0-58cf-66cb-3c6a-94794be67b97@linux.intel.com>
-Date: Wed, 16 Aug 2017 16:46:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
-MIME-Version: 1.0
-In-Reply-To: <30C2D590D16A5C46ADFE652191037798922773DF@AZ-US1EXMB02.global.avaya.com>
-Subject: Re: NotImplementedError from sanity check
+X-Greylist: delayed 572 seconds by postgrey-1.32 at yocto-www;
+	Wed, 16 Aug 2017 06:04:22 PDT
+Received: from root.phytec.de (mail.phycard.de [217.6.246.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B5ABE00CA3
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 06:04:22 -0700 (PDT)
+Received: from idefix.phytec.de (idefix.phytec.de [172.16.0.10])
+	by root.phytec.de (Postfix) with ESMTP id 1319FA0020F
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 14:56:16 +0200 (CEST)
+Received: from augenblix.phytec.de ([172.16.0.56])
+	by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+	with ESMTP id 2017081614544913-37111 ;
+	Wed, 16 Aug 2017 14:54:49 +0200 
+From: Jan Remmet <j.remmet@phytec.de>
+To: yocto@yoctoproject.org
+Date: Wed, 16 Aug 2017 14:54:49 +0200
+Message-Id: <1502888089-13686-1-git-send-email-j.remmet@phytec.de>
+X-Mailer: git-send-email 1.9.1
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August
+	17, 2016) at 16.08.2017 14:54:49,
+	Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17,
+	2016) at 16.08.2017 14:54:49,
+	Serialize complete at 16.08.2017 14:54:49
+X-TNEFEvaluated: 1
+X-Mailman-Approved-At: Wed, 16 Aug 2017 09:45:12 -0700
+Subject: [meta-oracle-java][PATCH] oracle-java: create directory before creating links
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,75 +47,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Aug 2017 15:46:28 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Aug 2017 13:04:24 -0000
 
+if bindir directory doesn't exists the link is created wrongly:
 
+file -b tmp/work/x86_64-linux/oracle-jse-jdk-x86-64-native/1.8.0-u131r0/image/home/yocto/build/tmp/sysroots/x86_64-linux/usr/bin
+symbolic link to
+`/home/yocto/build/tmp/sysroots/x86_64-linux/usr/lib/jvm/java-8-oracle/bin/javac'
 
-On 16/08/17 15:42, Vuille, Martin (Martin) wrote:
-> In the process of transitioning from Fido to Morty.
-> 
-> In the past, when sanity detected a version mismatch with some of
-> the configuration files (e.g., local.conf, bblayers.conf,) an error message
-> was displayed.
-> 
-> Now, we see the below, which I do not find very informative or helpful.
-> 
-> Is that a bug or intentional? Is there a way to get back the error message?
+tested on morty
 
-It's a bug, newer branches have a fix:
+Signed-off-by: Jan Remmet <j.remmet@phytec.de>
+---
+ recipes-devtools/oracle-java/oracle-jse-jdk.inc | 3 +++
+ 1 file changed, 3 insertions(+)
 
-http://git.yoctoproject.org/clean/cgit.cgi/poky/commit/?id=62b521722ae72bc87d599719b400dab771154fa7
-http://git.openembedded.org/openembedded-core/commit/?id=a675b2c89e477af088faee9b3be96eae19a85f0b
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+index 935ad9bc2d9f..a5723879862b 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+@@ -15,8 +15,11 @@ do_install_class-native() {
+ 	install -d -m 0755			${D}${libdir_jvm}
+ 	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
+ 
++	install -d -m 0755			${D}${bindir}
+ 	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}
+ 	ln -sf ${JDK_HOME}/bin/javac		${D}${bindir}
++
++	install -d -m 0755			${D}${JDK_HOME}/bin
+ 	ln -sf javah				${D}${JDK_HOME}/bin/gjavah
+ 	ln -sf jar				${D}${JDK_HOME}/bin/fastjar
+ }
+-- 
+1.9.1
 
-It would be nice to propose that patch as a backport to morty.
-
-Thanks,
-
-Joshua
-
-> MV
-> 
-> ERROR: Execution of event handler 'config_reparse_eventhandler' failed
-> Traceback (most recent call last):
->    File "/home/platform/Workspace/dspgbase/poky/meta/classes/sanity.bbclass", line 1006, in config_reparse_eventhandler(e=<bb.event.ConfigParsed object at 0x7fc99cba1b00>):
->       python config_reparse_eventhandler() {
->      >    sanity_check_conffiles(e.data)
->       }
->    File "/home/platform/Workspace/dspgbase/poky/meta/classes/sanity.bbclass", line 568, in sanity_check_conffiles(d=<bb.data_smart.DataSmart object at 0x7fc99d00f198>):
->                   except NotImplementedError as e:
->      >                bb.fatal(e)
->                   d.setVar("BB_INVALIDCONF", True)
->    File "/home/platform/Workspace/dspgbase/poky/bitbake/lib/bb/__init__.py", line 103, in fatal:
->       def fatal(*args, **kwargs):
->      >    mainlogger.critical(''.join(args), extra=kwargs)
->           raise BBHandledException()
-> TypeError: sequence item 0: expected str instance, NotImplementedError found
-> 
-> ERROR: Error parsing configuration files
-> Traceback (most recent call last):
->    File "/home/platform/Workspace/dspgbase/poky/bitbake/lib/bb/event.py", line 124, in fire_class_handlers(event=<bb.event.ConfigParsed object at 0x7fc99cba1b00>, d=<bb.data_smart.DataSmart object at 0x7fc99d00f198>):
->                           continue
->      >            execute_handler(name, handler, event, d)
-> 
->    File "/home/platform/Workspace/dspgbase/poky/bitbake/lib/bb/event.py", line 96, in execute_handler(name='config_reparse_eventhandler', handler=<function config_reparse_eventhandler at 0x7fc99cbd4a60>, event=<bb.event.ConfigParsed object at 0x7fc99cba1b00>, d=<bb.data_smart.DataSmart object at 0x7fc99d00f198>):
->           try:
->      >        ret = handler(event)
->           except (bb.parse.SkipRecipe, bb.BBHandledException):
->    File "/home/platform/Workspace/dspgbase/poky/meta/classes/sanity.bbclass", line 1006, in config_reparse_eventhandler(e=<bb.event.ConfigParsed object at 0x7fc99cba1b00>):
->       python config_reparse_eventhandler() {
->      >    sanity_check_conffiles(e.data)
->       }
->    File "/home/platform/Workspace/dspgbase/poky/meta/classes/sanity.bbclass", line 568, in sanity_check_conffiles(d=<bb.data_smart.DataSmart object at 0x7fc99d00f198>):
->                   except NotImplementedError as e:
->      >                bb.fatal(e)
->                   d.setVar("BB_INVALIDCONF", True)
->    File "/home/platform/Workspace/dspgbase/poky/bitbake/lib/bb/__init__.py", line 103, in fatal:
->       def fatal(*args, **kwargs):
->      >    mainlogger.critical(''.join(args), extra=kwargs)
->           raise BBHandledException()
-> TypeError: sequence item 0: expected str instance, NotImplementedError found
-> 
 
