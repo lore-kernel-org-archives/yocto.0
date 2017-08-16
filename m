@@ -1,66 +1,57 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20898E00CCB; Wed, 16 Aug 2017 06:55:01 -0700 (PDT)
+	id 134DBE00D2E; Wed, 16 Aug 2017 07:43:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.179 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (twoerner[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.179 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f179.google.com (mail-yw0-f179.google.com
-	[209.85.161.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF8EAE00C45
-	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 06:55:00 -0700 (PDT)
-Received: by mail-yw0-f179.google.com with SMTP id s143so22947131ywg.1
-	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 06:55:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=4Yg0SSWU95S4ivp+iX7i9Wkh/al47mzb23zvlKwnNYk=;
-	b=SP88TLbWKPJ58smp+18S2wk85pUzwcD2QWQljsKfU8V3Kd6rYxZjHfLSwwj5ijxvs3
-	IPPCDMj3y6mUG0yPVDpFRioR0vc3X1TWJFuwBDmRM78bOQfdD2stUsm5oYtgJUmIE9P5
-	Pj1D/TuN6a98AsRGolBeEfc5F6tyTbwf16hNjiCPN2LkYbexV6X7UgD0p1o06F5PcKOi
-	dxikD7OdD596BgJbXVVXfDnf5e64A8UWbEHI4dFGrdX908kXV7TAqMAut38G0aPcMyk9
-	IpIXQ7hsoWvCcy50TdnxD1hE1kyyZsB9L7mUMaIqKzxMJ23vvWxyyxI1EqL68sXK4pkK
-	F9hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=4Yg0SSWU95S4ivp+iX7i9Wkh/al47mzb23zvlKwnNYk=;
-	b=KmLpWk2T0XBor3GPXNkKVbnE7rrd29/0+2pyQA43WcmiP64Mt/oQGnXdTNvICrJEC4
-	+x6cLsGj5TXFI+8FdRaWBw7xx/jSDecOBCGgFJg7SwdAclrNpuhLCO/QmGO+CCSSLr4k
-	kokxYR4TVr1oaU/vYwS8CW/JevybmHn6l+mh9glTUvlxMPlNDzf8vGQN2RTuRda4ttaf
-	8WHKTUCSAmAGHc437N9PLbmKJ51bcobnBvA8UH/Z7dSWfABCQBFmDUVxDTlC5iMJIgC/
-	6ac6lCWNxQoSVLglEbtpuwI0+GyjfveLhtGMFG8Z7bART+iOfBLAMHuPAr+QkdW6nRNj
-	ZLcg==
-X-Gm-Message-State: AHYfb5jbK2r9AZNsAu1EPaIZV5JBT7hqcrjO1Hd9PaP6rLi8c+oTTijD
-	5+tKVsYdfT+bxDnHr2pH+sTmuEdwuIsu
-X-Received: by 10.129.97.84 with SMTP id v81mr1361416ywb.280.1502891699740;
-	Wed, 16 Aug 2017 06:54:59 -0700 (PDT)
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Wed, 16 Aug 2017 07:43:30 PDT
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 462F8E00C1A
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 07:43:30 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2G7BADRWJRZ/wUHmMZdGgEBAQECAQEBA?=
+	=?us-ascii?q?QgBAQEBgxFJZIEVB54ehAEBjyiEXYISHAiBFYQOAoRDQRYBAgEBAQEBAQEDaB0?=
+	=?us-ascii?q?LhAJbVChRARUVFEImAQQbGooOAaBKjQ4iAotKASWCMnaCAoFMiX+DQYIxBYl3h?=
+	=?us-ascii?q?xyBZ41LAodSj1eIdoZ9kRuFACYOJIEKdxWHY3aIUwGBDgEBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2G7BADRWJRZ/wUHmMZdGgEBAQECAQEBAQgBAQEBgxFJZIE?=
+	=?us-ascii?q?VB54ehAEBjyiEXYISHAiBFYQOAoRDQRYBAgEBAQEBAQEDaB0LhAJbVChRARUVF?=
+	=?us-ascii?q?EImAQQbGooOAaBKjQ4iAotKASWCMnaCAoFMiX+DQYIxBYl3hxyBZ41LAodSj1e?=
+	=?us-ascii?q?IdoZ9kRuFACYOJIEKdxWHY3aIUwGBDgEBAQ?=
+X-IronPort-AV: E=Sophos;i="5.41,383,1498536000"; d="scan'208";a="210004186"
+Received: from unknown (HELO co300216-co-erhwest.avaya.com) ([198.152.7.5])
+	by de307622-de-outbound.net.avaya.com with ESMTP;
+	16 Aug 2017 10:42:24 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	16 Aug 2017 10:42:24 -0400
+Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
+	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0352.000;
+	Wed, 16 Aug 2017 10:42:23 -0400
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: NotImplementedError from sanity check
+Thread-Index: AdMWnU8KdxrIZPr7SXqR6RUARlJXRg==
+Date: Wed, 16 Aug 2017 14:42:22 +0000
+Message-ID: <30C2D590D16A5C46ADFE652191037798922773DF@AZ-US1EXMB02.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 10.0.250.9
+dlp-reaction: no-action
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-Received: by 10.37.66.151 with HTTP; Wed, 16 Aug 2017 06:54:59 -0700 (PDT)
-In-Reply-To: <DB6PR0502MB291749533AFB89E8DE29AC75E0880@DB6PR0502MB2917.eurprd05.prod.outlook.com>
-References: <DB6PR0502MB291749533AFB89E8DE29AC75E0880@DB6PR0502MB2917.eurprd05.prod.outlook.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Wed, 16 Aug 2017 09:54:59 -0400
-Message-ID: <CAHUNapQra7NqvGJFvb0jx0oApvZCFVXVe2LFO5JsxL6mzEDYCg@mail.gmail.com>
-To: Never Read <dsjnews@hotmail.co.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Debugging Yocto Project build failures
+Subject: NotImplementedError from sanity check
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,16 +63,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Aug 2017 13:55:01 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 16 Aug 2017 14:43:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 10, 2017 at 8:36 AM, Never Read <dsjnews@hotmail.co.uk> wrote:
-> Instead of running make to try and debug the problem (which takes ages to
-> reach the point of error), is there a way to use do_compile to manually
-> compile/build this one item?
+In the process of transitioning from Fido to Morty.
 
+In the past, when sanity detected a version mismatch with some of
+the configuration files (e.g., local.conf, bblayers.conf,) an error message
+was displayed.
 
-Along with the log files, in the "temp" directory of each recipe's
-work dir (e.g. tmp-glibc/work/cortex7hf-neon-vfpv4-oe-linux-gnueabi/i2c-tools/3.1.2-r0/temp)
-are "run" scripts (i.e. run.do_compile) that are self-contained.
+Now, we see the below, which I do not find very informative or helpful.
+
+Is that a bug or intentional? Is there a way to get back the error message?
+
+MV
+
+ERROR: Execution of event handler 'config_reparse_eventhandler' failed
+Traceback (most recent call last):
+  File "/home/platform/Workspace/dspgbase/poky/meta/classes/sanity.bbclass"=
+, line 1006, in config_reparse_eventhandler(e=3D<bb.event.ConfigParsed obje=
+ct at 0x7fc99cba1b00>):
+     python config_reparse_eventhandler() {
+    >    sanity_check_conffiles(e.data)
+     }
+  File "/home/platform/Workspace/dspgbase/poky/meta/classes/sanity.bbclass"=
+, line 568, in sanity_check_conffiles(d=3D<bb.data_smart.DataSmart object a=
+t 0x7fc99d00f198>):
+                 except NotImplementedError as e:
+    >                bb.fatal(e)
+                 d.setVar("BB_INVALIDCONF", True)
+  File "/home/platform/Workspace/dspgbase/poky/bitbake/lib/bb/__init__.py",=
+ line 103, in fatal:
+     def fatal(*args, **kwargs):
+    >    mainlogger.critical(''.join(args), extra=3Dkwargs)
+         raise BBHandledException()
+TypeError: sequence item 0: expected str instance, NotImplementedError foun=
+d
+
+ERROR: Error parsing configuration files
+Traceback (most recent call last):
+  File "/home/platform/Workspace/dspgbase/poky/bitbake/lib/bb/event.py", li=
+ne 124, in fire_class_handlers(event=3D<bb.event.ConfigParsed object at 0x7=
+fc99cba1b00>, d=3D<bb.data_smart.DataSmart object at 0x7fc99d00f198>):
+                         continue
+    >            execute_handler(name, handler, event, d)
+
+  File "/home/platform/Workspace/dspgbase/poky/bitbake/lib/bb/event.py", li=
+ne 96, in execute_handler(name=3D'config_reparse_eventhandler', handler=3D<=
+function config_reparse_eventhandler at 0x7fc99cbd4a60>, event=3D<bb.event.=
+ConfigParsed object at 0x7fc99cba1b00>, d=3D<bb.data_smart.DataSmart object=
+ at 0x7fc99d00f198>):
+         try:
+    >        ret =3D handler(event)
+         except (bb.parse.SkipRecipe, bb.BBHandledException):
+  File "/home/platform/Workspace/dspgbase/poky/meta/classes/sanity.bbclass"=
+, line 1006, in config_reparse_eventhandler(e=3D<bb.event.ConfigParsed obje=
+ct at 0x7fc99cba1b00>):
+     python config_reparse_eventhandler() {
+    >    sanity_check_conffiles(e.data)
+     }
+  File "/home/platform/Workspace/dspgbase/poky/meta/classes/sanity.bbclass"=
+, line 568, in sanity_check_conffiles(d=3D<bb.data_smart.DataSmart object a=
+t 0x7fc99d00f198>):
+                 except NotImplementedError as e:
+    >                bb.fatal(e)
+                 d.setVar("BB_INVALIDCONF", True)
+  File "/home/platform/Workspace/dspgbase/poky/bitbake/lib/bb/__init__.py",=
+ line 103, in fatal:
+     def fatal(*args, **kwargs):
+    >    mainlogger.critical(''.join(args), extra=3Dkwargs)
+         raise BBHandledException()
+TypeError: sequence item 0: expected str instance, NotImplementedError foun=
+d
 
