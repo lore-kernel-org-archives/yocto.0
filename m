@@ -1,36 +1,66 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96663E00D86; Wed, 16 Aug 2017 04:14:06 -0700 (PDT)
+	id 20898E00CCB; Wed, 16 Aug 2017 06:55:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.161.179 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (twoerner[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.161.179 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99697E009A4
-	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 04:14:04 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	16 Aug 2017 04:13:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,382,1498546800"; d="scan'208";a="300792864"
-Received: from jlock-mobl3.ger.corp.intel.com ([10.252.31.202])
-	by fmsmga004.fm.intel.com with ESMTP; 16 Aug 2017 04:13:52 -0700
-To: "Graydon, Tracy" <tracy.graydon@intel.com>, yocto@yoctoproject.org
-References: <1502833986-2237-1-git-send-email-tracy.graydon@intel.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <70c6cb95-09e1-6451-97d9-30dd820f61c6@linux.intel.com>
-Date: Wed, 16 Aug 2017 12:13:49 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yw0-f179.google.com (mail-yw0-f179.google.com
+	[209.85.161.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF8EAE00C45
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 06:55:00 -0700 (PDT)
+Received: by mail-yw0-f179.google.com with SMTP id s143so22947131ywg.1
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 06:55:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=4Yg0SSWU95S4ivp+iX7i9Wkh/al47mzb23zvlKwnNYk=;
+	b=SP88TLbWKPJ58smp+18S2wk85pUzwcD2QWQljsKfU8V3Kd6rYxZjHfLSwwj5ijxvs3
+	IPPCDMj3y6mUG0yPVDpFRioR0vc3X1TWJFuwBDmRM78bOQfdD2stUsm5oYtgJUmIE9P5
+	Pj1D/TuN6a98AsRGolBeEfc5F6tyTbwf16hNjiCPN2LkYbexV6X7UgD0p1o06F5PcKOi
+	dxikD7OdD596BgJbXVVXfDnf5e64A8UWbEHI4dFGrdX908kXV7TAqMAut38G0aPcMyk9
+	IpIXQ7hsoWvCcy50TdnxD1hE1kyyZsB9L7mUMaIqKzxMJ23vvWxyyxI1EqL68sXK4pkK
+	F9hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=4Yg0SSWU95S4ivp+iX7i9Wkh/al47mzb23zvlKwnNYk=;
+	b=KmLpWk2T0XBor3GPXNkKVbnE7rrd29/0+2pyQA43WcmiP64Mt/oQGnXdTNvICrJEC4
+	+x6cLsGj5TXFI+8FdRaWBw7xx/jSDecOBCGgFJg7SwdAclrNpuhLCO/QmGO+CCSSLr4k
+	kokxYR4TVr1oaU/vYwS8CW/JevybmHn6l+mh9glTUvlxMPlNDzf8vGQN2RTuRda4ttaf
+	8WHKTUCSAmAGHc437N9PLbmKJ51bcobnBvA8UH/Z7dSWfABCQBFmDUVxDTlC5iMJIgC/
+	6ac6lCWNxQoSVLglEbtpuwI0+GyjfveLhtGMFG8Z7bART+iOfBLAMHuPAr+QkdW6nRNj
+	ZLcg==
+X-Gm-Message-State: AHYfb5jbK2r9AZNsAu1EPaIZV5JBT7hqcrjO1Hd9PaP6rLi8c+oTTijD
+	5+tKVsYdfT+bxDnHr2pH+sTmuEdwuIsu
+X-Received: by 10.129.97.84 with SMTP id v81mr1361416ywb.280.1502891699740;
+	Wed, 16 Aug 2017 06:54:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1502833986-2237-1-git-send-email-tracy.graydon@intel.com>
-Subject: Re: [yocto-autobuilder][PATCH] /bin/checkvnc
+Received: by 10.37.66.151 with HTTP; Wed, 16 Aug 2017 06:54:59 -0700 (PDT)
+In-Reply-To: <DB6PR0502MB291749533AFB89E8DE29AC75E0880@DB6PR0502MB2917.eurprd05.prod.outlook.com>
+References: <DB6PR0502MB291749533AFB89E8DE29AC75E0880@DB6PR0502MB2917.eurprd05.prod.outlook.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Wed, 16 Aug 2017 09:54:59 -0400
+Message-ID: <CAHUNapQra7NqvGJFvb0jx0oApvZCFVXVe2LFO5JsxL6mzEDYCg@mail.gmail.com>
+To: Never Read <dsjnews@hotmail.co.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Debugging Yocto Project build failures
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,42 +72,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Aug 2017 11:14:06 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Aug 2017 13:55:01 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Thanks, queued for merge (after tweaking the commit message some)
+On Thu, Aug 10, 2017 at 8:36 AM, Never Read <dsjnews@hotmail.co.uk> wrote:
+> Instead of running make to try and debug the problem (which takes ages to
+> reach the point of error), is there a way to use do_compile to manually
+> compile/build this one item?
 
-Joshua
 
-On 15/08/17 22:53, Graydon, Tracy wrote:
-> [Yocto #11897]
-> 
-> The checkvnc script uses deprecated netstat command for finding vnc sessions.
-> This breaks on Centos, and will break on other OS as it is removed in the
-> future.
-> 
-> Drop the dependency on netstat and instead grep /proc/net/tcp for
-> active sessions on 5901 port.
-> 
-> Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
-> ---
->   bin/checkvnc | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/bin/checkvnc b/bin/checkvnc
-> index d934dfa..11e03bb 100755
-> --- a/bin/checkvnc
-> +++ b/bin/checkvnc
-> @@ -2,7 +2,7 @@
->   #
->   # check if vnc server is running, and if not, cleanup and restart
->   #
-> -netstat -tnl | grep :5901 > /dev/null
-> +grep ':170D' /proc/net/tcp > /dev/null
->   if [ $? != 0 ]; then
->       echo "Xvnc not running, attempting restart"
->       vncserver -kill :1
-> 
+Along with the log files, in the "temp" directory of each recipe's
+work dir (e.g. tmp-glibc/work/cortex7hf-neon-vfpv4-oe-linux-gnueabi/i2c-tools/3.1.2-r0/temp)
+are "run" scripts (i.e. run.do_compile) that are self-contained.
 
