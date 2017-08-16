@@ -1,57 +1,53 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C74F5E00D2E; Wed, 16 Aug 2017 07:45:49 -0700 (PDT)
+	id CF281E00D2E; Wed, 16 Aug 2017 07:46:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6858E00C1A
-	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 07:45:48 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2FpAgD3WZRZ/wUHmMZdGgEBAQECAQEBA?=
-	=?us-ascii?q?QgBAQEBgxFJggCeHpoZHIUrAoRDQhUBAgEBAQEBAQEDaB0LhTEoUQEVFRRCJgE?=
-	=?us-ascii?q?EGxqKDgGgQ40OIgKLSiaDKIICgUyJf4NBgjEFoEUCljgBiWaGfZYbNSOBCncVh?=
-	=?us-ascii?q?2OJSQGBDgEBAQ?=
-X-IPAS-Result: =?us-ascii?q?A2FpAgD3WZRZ/wUHmMZdGgEBAQECAQEBAQgBAQEBgxFJggC?=
-	=?us-ascii?q?eHpoZHIUrAoRDQhUBAgEBAQEBAQEDaB0LhTEoUQEVFRRCJgEEGxqKDgGgQ40OI?=
-	=?us-ascii?q?gKLSiaDKIICgUyJf4NBgjEFoEUCljgBiWaGfZYbNSOBCncVh2OJSQGBDgEBAQ?=
-X-IronPort-AV: E=Sophos;i="5.41,383,1498536000"; d="scan'208";a="210004655"
-Received: from unknown (HELO co300216-co-erhwest.avaya.com) ([198.152.7.5])
-	by de307622-de-outbound.net.avaya.com with ESMTP;
-	16 Aug 2017 10:45:46 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC03.global.avaya.com) ([135.11.85.14])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
-	16 Aug 2017 10:45:46 -0400
-Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
-	AZ-US1EXHC03.global.avaya.com ([::1]) with mapi id 14.03.0352.000;
-	Wed, 16 Aug 2017 10:45:45 -0400
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: pkgname QA warnings not displayed
-Thread-Index: AdMWngwlqoyo3F5DQp2MuQ/loPmy3w==
-Date: Wed, 16 Aug 2017 14:45:44 +0000
-Message-ID: <30C2D590D16A5C46ADFE652191037798922773F2@AZ-US1EXMB02.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 10.0.250.9
-dlp-reaction: no-action
-x-originating-ip: [135.11.85.50]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [212.227.17.10 listed in list.dnswl.org]
+X-Greylist: delayed 454 seconds by postgrey-1.32 at yocto-www;
+	Wed, 16 Aug 2017 07:46:58 PDT
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EA07E00C1A
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 07:46:57 -0700 (PDT)
+Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de (mreue102
+	[212.227.15.179]) with ESMTPSA (Nemesis) id 0MV4iD-1e5JXF0xll-00YQay
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 16:34:20 +0200
+From: <colin.helliwell@ln-systems.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 16 Aug 2017 15:34:19 +0100
+Organization: LN Systems Limited
+Message-ID: <037a01d3169c$bf3c0f90$3db42eb0$@ln-systems.com>
 MIME-Version: 1.0
-Subject: pkgname QA warnings not displayed
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdMWm4aAwsOl6PQASCabhMR7Beknjw==
+X-Provags-ID: V03:K0:ByS7wOiJ3AV6I+NA3jOUvZyCx3X4mXO/D0ZYFhGARUmtfRj4B6e
+	cV4TvZ/vJ/lC3JSCyB+HRUbAP4mz3KDi6LPfXaARfp8W2BgmZYAcHFzW3MxXMG+K1yQHSLd
+	C7Yy3L6jRwNRvvqu/la//ZNquCGZwpgUmskuFEFBC1oGgQ3SgBAG2+IC5SeZU1GfpFzdAF0
+	gBoscfI7PzEZrQ98t9iCQ==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:BCgh3T/v9DM=:ZSw0+qkbHMEzMbP9qqhfsK
+	/ZasI7gYiiP79DAOVKq4hIJdvSAvbBKWiVHwjMqu7SLjdhLIjI1d5Yg5rSV/rGSC+gEM51lJ/
+	yqDg6GR6bEiNfZFmU07YwWgCU7vSvHnJEJi7/F1r1fzqVLiaCx5DKAlwCI0ynLFPUIA65A9v1
+	KrVtl6bvdQFFF0uA1xBYvoNKhGK9d6jpEaGDAe7fEGOu1UctJrQaX1yUz/c4SVAB9Ox09fNLX
+	Tt4QxP7wxJuW0VNi3HBO0swr4Rw+Rf9xzjbPvYCRmFI0dSIoBxWbM3iTJNH3XDFSycorFAcuO
+	CSwjSOU4oiHNM3JDtStF+BuQ+Ez7RqN7xkGiW9yU2l/BnE01og9HE+/42iNMXL3qUS1iuJ+Bt
+	5t4AOzXeh0dgZ9plvjTT2T7OnqRtX1s8NlU6kFzNDrspvEdW0tR5FYhwLgokkw+F+e0QC6bQh
+	Q8NGYYT+vANF8j9ICe71Ej4O/P3fJNbMyvs+256uHHugl1dSfEWryf/e9eUkdqTEQbKI0YDWF
+	GElOt9BptrgHF3tDBaxrDowdqqI7byckvkD83AWoxK7I0ufYZ4r4r9t9Ik+i8hMMNSFIDNZYy
+	DZh3wuvg/U1HRaCrgERtE3y+KejwBblsFV0IgR8X7QKzIncw6b7r1RWy8Yk8tpFCKQ42LmP8T
+	/LwRt6w+R8MO+TLnOiKPm5tRIPc3BdubTIqXVSFCCPTRDtf6B63SCmCAucBj4LPCCxsAsyZeC
+	Fmy9Jh/lTzstJpLwiRCdvE45VAgMksitnvFyG0FgGV36PmXulPagUaTngFU=
+Subject: Building multiple U-Boot configurations
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -60,21 +56,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Aug 2017 14:45:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 16 Aug 2017 14:46:59 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-gb
 
-Transitioning from Fido to Morty
+Just wondering if there's a clean n simple way to modify machine/recipe
+configs such that I can build two versions of U-Boot - one for development,
+one for production. 
+Obviously I'll need to watch out for which one is 'deployed', but unsure of
+a nice way to get two built - separate recipes which pull in the different
+configs/patches? 
+Any gotchas I'd need to be aware of when it comes to the interaction with
+the rest of the image generation; or would it just be safer to take the
+approach of having separate images? (That wouldn't be so usable, since it'll
+only be u-boot that's different between the two - I'd prefer to get both
+generated from a single bitbake)
 
-Noticed that there now QA warnings for packages with incorrect names.
 
-But it seems these warnings only show up in tmp/qa.txt, they are not displa=
-yed
-in the build output.
 
-Is that a bug or intentional? Is there a way to make them appear in the
-build output?
-
-MV
 
