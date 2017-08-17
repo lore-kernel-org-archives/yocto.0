@@ -1,36 +1,70 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <antonius.riko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7670EE00BAB; Wed, 16 Aug 2017 16:56:17 -0700 (PDT)
+	id 93271E00D64; Wed, 16 Aug 2017 20:22:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	URIBL_SBL autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (antonius.riko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.53 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.53 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.6 URIBL_SBL Contains an URL's NS IP listed in the SBL blocklist
-	*      [URIs: yoctoproject.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5102EE008D2;
-	Wed, 16 Aug 2017 16:56:16 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	16 Aug 2017 16:56:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,385,1498546800"; d="scan'208";a="890835192"
-Received: from dwrussex-mobl1.amr.corp.intel.com ([10.254.82.146])
-	by FMSMGA003.fm.intel.com with ESMTP; 16 Aug 2017 16:56:15 -0700
-From: Tracy Graydon <tracy.graydon@intel.com>
-To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
-Message-ID: <5994DB9E.3040409@intel.com>
-Date: Wed, 16 Aug 2017 16:56:14 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0)
-	Gecko/20100101 Thunderbird/38.5.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f53.google.com (mail-pg0-f53.google.com [74.125.83.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 448DEE00A39
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 20:22:57 -0700 (PDT)
+Received: by mail-pg0-f53.google.com with SMTP id v189so33585068pgd.2
+	for <yocto@yoctoproject.org>; Wed, 16 Aug 2017 20:22:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=Mcq88duuA18H4XhHYDarMJ1sIyD+qcArlte83Sq5ZuY=;
+	b=Jndkw2EYMRzLyyp4fX5vd9fs9bkNy/1kYDnHXMfjnLDDV6nG1E4ZSXTDAzNRYh+Y6Q
+	SsBwDMlfLthCKaaalDj/eQOcVJM70/FOswMTsXtfguH2We3ZMLxB7Ut2fkr6byfg28To
+	yINiyORsCsUcuKuQG+VAr8rZiQBUT6Y3hMq2MFikXat/EDNJBstWjq1gtOlUvxDAxmXe
+	UU5RwcMfUb5yhLVKSoiR5rZ+aoerF5U3KlNUA38AS4d9cP6GL4GqoWNqj+uP+gwF+zNW
+	DCfGHZ12oags2hKj73kNmSnobp33J0dqZwMmHAOVp7UBENJcWIV9aUGZWin9LBu3E/+0
+	/Zqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=Mcq88duuA18H4XhHYDarMJ1sIyD+qcArlte83Sq5ZuY=;
+	b=N9US8myp+XG9ytw0JXPZZihF73ZeiqYRVJcFibGTZ1oq7wU0MlZbviy+shOt2YDxZe
+	njIaXKeq5t48XN6NTugRbyqBXK+RQgsEth3g19726ONl8pgXnMcRnCoD8tCggQgRb/O6
+	45gSHWbV60D0zuuM8yfzEFYLK2EOf1yssf9gf2ezov5N4IjEti+b8rNsjAcvVmruB+4m
+	7XuT367mFXHhZwZXW1V6++qnLRl7f6ulyWEWyvnyZfIWWXS21SfIze9wpdaEh+4X61Oe
+	Y1c69GSnv1A1ohoYRHlJ1XYrAFVSOwB7rpH66WVS6xbamumJ/HShB8w3wOcPaGmq4EP/
+	L7Jw==
+X-Gm-Message-State: AHYfb5ivrNh96cDtlld4k+CpVndZEQuYi+HqwKGiABp3F5JX//zVVund
+	Fv+7b0Ky3fPb8K1m5jI=
+X-Received: by 10.98.217.27 with SMTP id s27mr3823608pfg.293.1502940176710;
+	Wed, 16 Aug 2017 20:22:56 -0700 (PDT)
+Received: from ?IPv6:2001:8003:804a:b500:7ae4:ff:fe2d:ca29?
+	([2001:8003:804a:b500:7ae4:ff:fe2d:ca29])
+	by smtp.gmail.com with ESMTPSA id
+	g25sm4548253pfg.91.2017.08.16.20.22.55 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 16 Aug 2017 20:22:56 -0700 (PDT)
+To: "N:" <yocto@yoctoproject.org>
+From: Riko <antonius.riko@gmail.com>
+Message-ID: <c969bc1a-2bf6-a194-a413-711c1b6917bf@gmail.com>
+Date: Thu, 17 Aug 2017 11:22:52 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] Milestone 2 for Yocto Project 2.4 now available
+Subject: Machine definition ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,29 +76,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Aug 2017 23:56:17 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 17 Aug 2017 03:22:58 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-The second milestone release for Yocto Project 2.4 is available for download now.
+Dear Yocto Members,
 
-Download:
+I have a question related with machine,
 
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-2.4_M2/
+If I want to use Orange Pi, how can I define my machine on local.conf ?
 
-eclipse-poky-mars 92aa0e79e8b01c56f0670af3cd8296ec68b43350
-eclipse-poky-neon 83e0083ef3a71e10039ace7d18057dddc154408b
-meta-qt3 f33b73a9563f2dfdfd0ee37b61d65d90197a456f
-meta-qt4 d52c38ad9f0a617b9ad5048a872a9e97b3af5b44
-poky 9ed748a542b520c1cb763d981969233c0f5efd4e
+Related with :
 
-Test report:
+https://github.com/linux-sunxi/meta-sunxi/tree/morty/conf/machine
 
-https://wiki.yoctoproject.org/wiki/WW32_-_2017-08-09_-_Full_Test_Cycle_2.4_M2_rc3
 
-Thank you.
+/*****
 
-Tracy Graydon
-Yocto Project
-Build and Release
+Sent By
+
+Ubuntu 16.04 LTS
+
+Regards,
+
+Riko H
+
+*****/
+
 
