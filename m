@@ -1,66 +1,38 @@
-Return-Path: <antonius.riko@gmail.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B81DE00D2E; Thu, 17 Aug 2017 03:37:58 -0700 (PDT)
+	id 2EDB2E00CFC; Thu, 17 Aug 2017 04:26:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (antonius.riko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.52 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.52 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f52.google.com (mail-oi0-f52.google.com
-	[209.85.218.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3892CE00B01
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 03:37:57 -0700 (PDT)
-Received: by mail-oi0-f52.google.com with SMTP id f11so62250932oic.0
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 03:37:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to:cc;
-	bh=ClvTqz3DUTNjvIvU/g1INscFiv9+GBsn85xJlttxnYQ=;
-	b=jEHEbMaYLWQ9JzquLdXfkxCibAfddr1OtCxSOK0tz/3RIrgyvOrZI1WgpKsKqCQiSy
-	IRpVkx+bHmwMqkFfKjL101ZsLLjjx9h1H5hLplCRnfN58PGYItKSMtSZh7OkTB2OIIh1
-	eigA2XTWzcyNSVDLOhDi4N2SB5k+EICt+3e67ETi8nsbSzsSUyO15DXI5YjofNqPBr2C
-	z2/FWHJiRA56lArP9Yp7tMiI7SH6Iw8bu8OjWH+Z/t4Tz/K+pw8Cq36wVLVHFVBxlRhH
-	h031+M6qoERuWyK4gFqe6lccifgCs0W3tfl/4WrGMNNAHNbZMkhZz6oM8o2lU0oBtSvx
-	v5UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-	bh=ClvTqz3DUTNjvIvU/g1INscFiv9+GBsn85xJlttxnYQ=;
-	b=CShzjjGdH6s3BxRAX1OkGJ5w4H8BNTa0wTE/lX5Js6Fda2aTv5Es3xFypUqK++eYTv
-	ga5zU/odc+oOL0U00tRZJOuQ1IBEQE0JUeJoAb6+9CJa/lRs46oVTrfm9oDqMK8ZEObS
-	9plnOyxjNU3owwNowOabp4Ddy3YiPuFOwFPpU0keLtWBn6NKLQYKLVxQvlMgN6GG4FtN
-	STy0j3abXt6U2QKw+8FXLCWPPuZ+GIGrYU+a3SC+J1m8lkGrEYofHgXksvYVjiMROSxL
-	CmH369Vi+IxWwDfUDG+Akm8K4D7VpUFrJ1R4RjVjai2jqcNatml43jQmlCt2orrZJgam
-	Bytw==
-X-Gm-Message-State: AHYfb5gA08jXGeo0IyALRNDxg6rSWh6Kuogvb3h5gkEYKe6IvLnsp5Sk
-	KviRxtC9dpsBC77fNEceTdQ2hsBuPg==
-X-Received: by 10.202.235.140 with SMTP id j134mr5744570oih.281.1502966277422; 
-	Thu, 17 Aug 2017 03:37:57 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A892E00B67
+	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 04:26:26 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	17 Aug 2017 04:26:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.41,387,1498546800"; d="scan'208";a="1183825124"
+Received: from mbabyjoh-desk.fi.intel.com (HELO
+	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.84])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Aug 2017 04:26:25 -0700
+Date: Thu, 17 Aug 2017 14:28:13 +0300
+From: "Maxin B. John" <maxin.john@intel.com>
+To: Jan Remmet <j.remmet@phytec.de>
+Message-ID: <20170817112813.GA36930@mbabyjoh-desk.ger.corp.intel.com>
+References: <1502888089-13686-1-git-send-email-j.remmet@phytec.de>
+	<1502951792-29932-1-git-send-email-j.remmet@phytec.de>
 MIME-Version: 1.0
-Received: by 10.74.44.5 with HTTP; Thu, 17 Aug 2017 03:37:56 -0700 (PDT)
-Received: by 10.74.44.5 with HTTP; Thu, 17 Aug 2017 03:37:56 -0700 (PDT)
-From: Riko Ho <antonius.riko@gmail.com>
-Date: Thu, 17 Aug 2017 18:37:56 +0800
-Message-ID: <CAByQQ_q9bBxrK6gzn2nAj2QK9PEiOfyt_09Le27DvXpU4_54hg@mail.gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: dd to nand flash chip?
+In-Reply-To: <1502951792-29932-1-git-send-email-j.remmet@phytec.de>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-oracle-java][PATCH v2] oracle-java: create directory before creating links
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,36 +44,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Aug 2017 10:37:58 -0000
-Content-Type: multipart/alternative; boundary="001a113ce37e1346910556f09be8"
+X-List-Received-Date: Thu, 17 Aug 2017 11:26:28 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---001a113ce37e1346910556f09be8
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Dear Yocto Team Members=EF=BC=8C
+On Thu, Aug 17, 2017 at 08:36:32AM +0200, Jan Remmet wrote:
+> if bindir directory doesn't exists the link is created wrongly:
+> 
+> file -b tmp/work/x86_64-linux/oracle-jse-jdk-x86-64-native/1.8.0-u131r0/image/home/yocto/build/tmp/sysroots/x86_64-linux/usr/bin
+> symbolic link to
+> `/home/yocto/build/tmp/sysroots/x86_64-linux/usr/lib/jvm/java-8-oracle/bin/javac'
+> 
+> tested on morty
+> 
+> Signed-off-by: Jan Remmet <j.remmet@phytec.de>
+> ---
+> v2: remove default -m 0755 from install command 
+> 
+>  recipes-devtools/oracle-java/oracle-jse-jdk.inc | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> index 935ad9bc2d9f..a7210d9ca475 100644
+> --- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> @@ -12,11 +12,14 @@ JDK_JRE = "jdk"
+>  require oracle-jse.inc
+>  
+>  do_install_class-native() {
+> -	install -d -m 0755			${D}${libdir_jvm}
+> +	install -d				${D}${libdir_jvm}
+>  	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
+>  
+> +	install -d				${D}${bindir}
+>  	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}
+>  	ln -sf ${JDK_HOME}/bin/javac		${D}${bindir}
+> +
+> +	install -d				${D}${JDK_HOME}/bin
+>  	ln -sf javah				${D}${JDK_HOME}/bin/gjavah
+>  	ln -sf jar				${D}${JDK_HOME}/bin/fastjar
+>  }
+> -- 
 
-I tried to dd *.wic to nand flash but always got kernel panic, it can not
-find rootfs
-when I dd the same file to sd card, it worked.
-
-I copy only *.wic file to usb drive n dd it.
-Do I need the whole directory of images for dd? or I need hddimg?
+Pushed now. Thanks.
 
 Regards,
-Riko
+Maxin
 
---001a113ce37e1346910556f09be8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p>Dear Yocto Team Members=EF=BC=8C</p>
-<p>I tried to dd *.wic to nand flash but always got kernel panic, it can no=
-t find rootfs<br>
-when I dd the same file to sd card, it worked.</p>
-<p>I copy only *.wic file to usb drive n dd it. <br>
-Do I need the whole directory of images for dd? or I need hddimg?</p>
-<p>Regards,<br>
-Riko</p>
-
---001a113ce37e1346910556f09be8--
