@@ -1,78 +1,37 @@
-Return-Path: <idealsim@laposte.net>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AA771E00DE2; Thu, 17 Aug 2017 02:20:18 -0700 (PDT)
+	id 0B55EE00DAF; Thu, 17 Aug 2017 02:27:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (idealsim[at]laposte.net)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [178.22.154.198 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1464 seconds by postgrey-1.32 at yocto-www;
-	Thu, 17 Aug 2017 02:20:16 PDT
-Received: from smtp.laposte.net (smtpoutz298.laposte.net [178.22.154.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74738E00D3D
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 02:20:16 -0700 (PDT)
-Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout010 (Postfix) with ESMTP id 65C6545D350
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 10:55:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
-	t=1502960151; bh=CUGjP1TcA3ng1q3U5G2a5zTDkxAJaVqr2JkMxfOmDG8=;
-	h=To:From:Subject:Date;
-	b=f5pBwsyeG3f2fXvdBTqrNhzUtkLmB4w088XQPF+ldyAYvPtTvH/owobMbaHEkKeRg
-	MVomyJq6RUEQsZA6A1Hrzk7dkbhME7a4lPawjLrousckF9vuR8EDruWCH5IQTdhNUo
-	ax22U5QMUH4z0XO3hjZLPlFs/adRYtZqPe2+8N+QMKRgrfH4wRv0I6y1j7mtros4qd
-	yjdcS4McvQvGYW4iwooCrpjzzPBSW00wVo8fZ1TvuhL3rAQXP7mqtcoZ+RMmpiONu9
-	MN4PKVQWRYLtOm9XBJwqHCFr6FQSp1KZpa/Lm3GXbxd+pV99+pK1CuJfZPqJKVgzS7
-	iSRZUy+PF39eg==
-Received: from smtp.laposte.net (localhost [127.0.0.1])
-	by lpn-prd-vrout010 (Postfix) with ESMTP id 570D545D3F4
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 10:55:51 +0200 (CEST)
-Received: from lpn-prd-vrin003 (lpn-prd-vrin003.laposte [10.128.63.4])
-	by lpn-prd-vrout010 (Postfix) with ESMTP id 5150A45D350
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 10:55:51 +0200 (CEST)
-Received: from lpn-prd-vrin003 (localhost [127.0.0.1])
-	by lpn-prd-vrin003 (Postfix) with ESMTP id 443FC493315
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 10:55:51 +0200 (CEST)
-Received: from [192.168.1.19] (ARennes-654-1-262-25.w2-13.abo.wanadoo.fr
-	[2.13.73.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by lpn-prd-vrin003 (Postfix) with ESMTPSA id 138C2493305
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 10:55:51 +0200 (CEST)
-To: Yocto list discussion <yocto@yoctoproject.org>
-From: idealsim <idealsim@laposte.net>
-Message-ID: <0ee7bfc7-9aa1-f1b4-7455-337c7e7233b8@laposte.net>
-Date: Thu, 17 Aug 2017 10:55:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69322E00D23
+	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 02:27:34 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	17 Aug 2017 02:27:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.41,387,1498546800"; d="scan'208";a="1163559154"
+Received: from qnguye5-mobl1.ccr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.135.6])
+	by orsmga001.jf.intel.com with ESMTP; 17 Aug 2017 02:27:17 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: =?ISO-8859-1?Q?Dr=2E_Matthias_Sch=F6pfer?= <Matthias.Schoepfer@ithinx.io>
+Date: Thu, 17 Aug 2017 21:27:13 +1200
+Message-ID: <2194654.OpPfn0j9vU@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <63EFF8D6B0566D4E82DEBC3D979C491383D8D9F3@SW-VM-02.kelle.grp>
+References: <63EFF8D6B0566D4E82DEBC3D979C491383D8D9F3@SW-VM-02.kelle.grp>
 MIME-Version: 1.0
-X-VR-SrcIP: 2.13.73.25
-X-VR-FullState: 0
-X-VR-Score: -100
-X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrfeelkedruddtuddgtdekucetufdoteggodetrfdotffvucfrrhho
-X-VR-Cause-2: fhhilhgvmecunfetrffquffvgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhht
-X-VR-Cause-3: shculddquddttddmnecujfgurhepvffhuffkffgfgggtsegrtderredtfeejnecuhfhrohhmpehiuggv
-X-VR-Cause-4: rghlshhimhcuoehiuggvrghlshhimheslhgrphhoshhtvgdrnhgvtheqnecukfhppedvrddufedrjeef
-X-VR-Cause-5: rddvheenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopegludelvddrudeikedruddr
-X-VR-Cause-6: udelngdpihhnvghtpedvrddufedrjeefrddvhedpmhgrihhlfhhrohhmpehiuggvrghlshhimheslhgr
-X-VR-Cause-7: phhoshhtvgdrnhgvthdprhgtphhtthhopeihohgtthhoseihohgtthhophhrohhjvggtthdrohhrgh
-X-VR-AvState: No
-X-VR-State: 0
-X-VR-State: 0
-Subject: [php7] packageconfig apache2 error
+Cc: yocto@yoctoproject.org
+Subject: Re: RDEPENDS on package does not include package in rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,132 +43,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Aug 2017 09:20:18 -0000
-Content-Type: multipart/alternative;
-	boundary="------------441B42FB3C8ADA6BA15D21DA"
+X-List-Received-Date: Thu, 17 Aug 2017 09:27:37 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
---------------441B42FB3C8ADA6BA15D21DA
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Matthias,
 
-Hi i would like to add modphp to my image (pyro branch). For this i add 
-this to my local.conf :
+On Thursday, 17 August 2017 8:43:41 PM NZST Dr. Matthias Sch=F6pfer wrote:
+> Here is my problem, maybe I misunderstood something. I have a library
+> recipe, lets name it foo, that DEPENDS on mosquitto from
+> meta-intel-iot-middleware. I added a RDEPENDS_${PN} +=3D " libmosquitto1
+> ", as the mosquitto package adds this extra package for the mosquitto
+> library, that library foo depends on. Then I have my app "bar", that
+> depends on "foo". "bar" is added to the image recipe. The rootfs is
+> missing out the package libmosquitto1, and therefore missing the
+> mosquitto library. Workaround is to add libmosquitto explicitly to the
+> Image recipe, but as I understand, this should not me necessary.
 
-PACKAGECONFIG_append_pn-php = "apache2 pam"
-IMAGE_INSTALL_append = "\
-apache2 \
-php \
-php-cli \
-"
+Something is odd here because if your foo library links to libmosquitto1.so=
+=2E1 then it should already get a runtime dependency on the libmosquitto1 p=
+ackage without you needing to add it. I would perhaps suggest looking at pk=
+gdata -  bitbake -e foo | grep PKGDATA_DIR  and then look in runtime/foo un=
+der that and see what RDEPENDS is indicated in there.
 
-But during the build of php (7.1.0 by default in pyro) i have this error 
-during install :
+Cheers,
+Paul
 
-/| 
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/php-7.1.0/build/shtool 
-install -c ext/phar/phar.phar 
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/image/usr/bin//
-//|   page: php-config.1//
-//| ln -s -f phar.phar 
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/image/usr/bin/phar//
-//| Installing PDO headers: 
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/image/usr/include/php/ext/pdo///
-//| //
-//| Notice: unserialize(): Error at offset 394 of 2427 bytes in 
-phar:///media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/build/pear/install-pear-nozlib.phar/PEAR/Config.php 
-on line 1080//
-//| ERROR: One of /home/modjo/.pearrc or 
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/recipe-sysroot-native/usr/bin/../../etc//pear.conf 
-is corrupt, please remove them and try againInstalling header files: 
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/image/usr/include/php///
-//| install: cannot stat 'libs/libphp5.so': No such file or directory//
-//| WARNING: exit code 1 from a shell command.//
-//| ERROR: Function failed: do_install (log file is located at 
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/temp/log.do_install.31439)//
-//ERROR: Task 
-(/media/modjo/data1TO/yocto/pyro/sources/meta-openembedded/meta-oe/recipes-devtools/php/php_7.1.0.bb:do_install) 
-failed with exit code '1'//
-//NOTE: Tasks Summary: Attempted 1283 tasks of which 1276 didn't need to 
-be rerun and 1 failed./
 
-To resolve this i change this line (in php.inc) :
+=2D-=20
 
-/Line 179 install -m 755  libs/libphp5.so ${D}${libdir}/apache2/modules/
+Paul Eggleton
+Intel Open Source Technology Centre
 
-by this one :
-
-/Line 179 install -m 755  libs/libphp7.so ${D}${libdir}/apache2/modules
-
-/Perhaps this recipe need a patch ?
-
-Modjo
-
---------------441B42FB3C8ADA6BA15D21DA
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hi i would like to add modphp to my image (pyro branch). For this i
-    add this to my local.conf : <br>
-    <br>
-    PACKAGECONFIG_append_pn-php = "apache2 pam"<br>
-    IMAGE_INSTALL_append = "\<br>
-    apache2 \<br>
-    php \<br>
-    php-cli \<br>
-    "<br>
-    <br>
-    But during the build of php (7.1.0 by default in pyro) i have this
-    error during install :<br>
-    <br>
-    <i>|
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/php-7.1.0/build/shtool
-      install -c ext/phar/phar.phar
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/image/usr/bin</i><i><br>
-    </i><i>|   page: php-config.1</i><i><br>
-    </i><i>| ln -s -f phar.phar
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/image/usr/bin/phar</i><i><br>
-    </i><i>| Installing PDO headers:          
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/image/usr/include/php/ext/pdo/</i><i><br>
-    </i><i>| </i><i><br>
-    </i><i>| Notice: unserialize(): Error at offset 394 of 2427 bytes in
-phar:///media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/build/pear/install-pear-nozlib.phar/PEAR/Config.php
-      on line 1080</i><i><br>
-    </i><i>| ERROR: One of /home/modjo/.pearrc or
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/recipe-sysroot-native/usr/bin/../../etc//pear.conf
-      is corrupt, please remove them and try againInstalling header
-      files:          
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/image/usr/include/php/</i><i><br>
-    </i><i>| install: cannot stat 'libs/libphp5.so': No such file or
-      directory</i><i><br>
-    </i><i>| WARNING: exit code 1 from a shell command.</i><i><br>
-    </i><i>| ERROR: Function failed: do_install (log file is located at
-/media/modjo/data1TO/yocto/pyro/quadBuild/tmp/work/udooqdl-poky-linux-gnueabi/php/7.1.0-r0/temp/log.do_install.31439)</i><i><br>
-    </i><i>ERROR: Task
-(/media/modjo/data1TO/yocto/pyro/sources/meta-openembedded/meta-oe/recipes-devtools/php/php_7.1.0.bb:do_install)
-      failed with exit code '1'</i><i><br>
-    </i><i>NOTE: Tasks Summary: Attempted 1283 tasks of which 1276
-      didn't need to be rerun and 1 failed.</i><br>
-    <br>
-    To resolve this i change this line (in php.inc) :<br>
-    <br>
-    <i>Line 179 install -m 755  libs/libphp5.so
-      ${D}${libdir}/apache2/modules</i><br>
-    <br>
-    by this one :<br>
-    <br>
-    <i>Line 179 install -m 755  libs/libphp7.so
-      ${D}${libdir}/apache2/modules<br>
-      <br>
-    </i>Perhaps this recipe need a patch ?<br>
-    <br>
-    Modjo<br>
-  </body>
-</html>
-
---------------441B42FB3C8ADA6BA15D21DA--
