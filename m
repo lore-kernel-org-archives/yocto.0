@@ -1,33 +1,38 @@
-Return-Path: <amanda.r.brindle@intel.com>
+Return-Path: <f_l_k@t-online.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85B5EE00D57; Thu, 17 Aug 2017 15:02:24 -0700 (PDT)
+	id CD079E00CFB; Thu, 17 Aug 2017 16:35:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [194.25.134.80 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8940EE00D03
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 15:02:23 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 Aug 2017 15:02:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,389,1498546800"; d="scan'208";a="138901952"
-Received: from arbrindl-dev.jf.intel.com ([10.7.159.68])
-	by orsmga005.jf.intel.com with ESMTP; 17 Aug 2017 15:02:22 -0700
-From: Amanda Brindle <amanda.r.brindle@intel.com>
+Received: from mailout01.t-online.de (mailout01.t-online.de [194.25.134.80])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7685E00726
+	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 16:35:05 -0700 (PDT)
+Received: from fwd07.aul.t-online.de (fwd07.aul.t-online.de [172.20.27.150])
+	by mailout01.t-online.de (Postfix) with SMTP id 21DFC4202681
+	for <yocto@yoctoproject.org>; Fri, 18 Aug 2017 01:35:04 +0200 (CEST)
+Received: from genericx86-64
+	(rA6KR2ZewhvFAFpXaXij+a+LvCh4ITSZLbtXGBCBeMYFlyMdtw4yHXqymJurZsHwbH@[84.146.40.121])
+	by fwd07.t-online.de
+	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
+	esmtp id 1diUJc-27pZiq0; Fri, 18 Aug 2017 01:35:04 +0200
+Date: Fri, 18 Aug 2017 01:34:58 +0200
+From: Markus Volk <f_l_k@t-online.de>
 To: yocto@yoctoproject.org
-Date: Thu, 17 Aug 2017 15:00:37 -0700
-Message-Id: <1503007237-32095-1-git-send-email-amanda.r.brindle@intel.com>
-X-Mailer: git-send-email 2.7.4
-Cc: paul.eggleton@linux.intel.com, Amanda Brindle <amanda.r.brindle@intel.com>
-Subject: [layerindex-web][PATCH] Redirect user to correct url after editing a layer
+Message-Id: <20170818013458.da848df3fac10ac277be82bb@t-online.de>
+In-Reply-To: <20170817100003.d378a00de6788f3d9e36724d@t-online.de>
+References: <20170817100003.d378a00de6788f3d9e36724d@t-online.de>
+X-Mailer: Sylpheed 3.6.0 (GTK+ 2.24.31; x86_64-poky-linux-gnu)
+Mime-Version: 1.0
+X-ID: rA6KR2ZewhvFAFpXaXij+a+LvCh4ITSZLbtXGBCBeMYFlyMdtw4yHXqymJurZsHwbH
+X-TOI-MSGID: 1ba4015b-2185-431d-9cda-a11808b1a082
+Subject: Re: some issues with current poky master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,35 +44,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Aug 2017 22:02:24 -0000
+X-List-Received-Date: Thu, 17 Aug 2017 23:35:06 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Before, if a user edited a layer's name, they would be redirected
-to a url utilizing the old name and then receive a 404 Page not
-found error. Now, the url utilizes the new name.
 
-Fixes [YOCTO #11932]
+ 
+> After sucessful build of the Image, my .iso has 38MB in size and seems to be missing the entire rootfs
+> The created hddimg has the right size of 4,3GB, but when i write it onto an usb drive (tried dd and gnome-disk-utility) it ends up with a big /boot partiton containing only the boot files
+> 
 
-Signed-off-by: Amanda Brindle <amanda.r.brindle@intel.com>
----
- layerindex/views.py | 4 ++++
- 1 file changed, 4 insertions(+)
+I still do not know if this is a homemade one, but i saw inside the do_bootimg log that isolevel 3 was missing for mkisofs because the rootfs is too big without.
 
-diff --git a/layerindex/views.py b/layerindex/views.py
-index eaeb5c3..1661cb3 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -186,6 +186,10 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
-                     return HttpResponseRedirect(reverse('submit_layer_thanks'))
-             messages.success(request, 'Layer %s saved successfully.' % layeritem.name)
-             if return_url:
-+                if returnto == 'layer_review':
-+                    return_url = reverse_lazy(returnto, args=(layeritem.name,))
-+                else:
-+                    return_url = reverse_lazy(returnto, args=(branch, layeritem.name))
-                 return HttpResponseRedirect(return_url)
-     else:
-         form = EditLayerForm(request.user, layerbranch, instance=layeritem)
+For me this here inside image-live.bbclass fails for some reason:
+
+	# Check the size of ${ISODIR}/rootfs.img, use mkisofs -iso-level 3
+	# when it exceeds 3.8GB, the specification is 4G - 1 bytes, we need
+	# leave a few space for other files.
+	mkisofs_iso_level=""
+
+        if [ -n "${ROOTFS}" ] && [ -s "${ROOTFS}" ]; then
+		rootfs_img_size=`stat -c '%s' ${ISODIR}/rootfs.img`
+		# 4080218931 = 3.8 * 1024 * 1024 * 1024
+		if [ $rootfs_img_size -gt 4080218931 ]; then
+			bbnote "${ISODIR}/rootfs.img execeeds 3.8GB, using '-iso-level 3' for mkisofs"
+			mkisofs_iso_level="-iso-level 3"
+		fi
+	fi
+
+
+
+hard coding mkisofs_iso_level to
+
+	mkisofs_iso_level="-iso-level 3"
+
+fixes this up
 -- 
-2.7.4
-
+Markus Volk <f_l_k@t-online.de>
 
