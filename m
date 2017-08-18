@@ -1,34 +1,33 @@
 Return-Path: <Hongxu.Jia@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD5ABE00CDE; Fri, 18 Aug 2017 02:29:48 -0700 (PDT)
+	id 22997E00B67; Fri, 18 Aug 2017 02:29:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13C85E00B67
-	for <yocto@yoctoproject.org>; Fri, 18 Aug 2017 02:29:46 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B2B7E00B67
+	for <yocto@yoctoproject.org>; Fri, 18 Aug 2017 02:29:48 -0700 (PDT)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v7I9TjuC020284
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 18 Aug 2017 02:29:45 -0700 (PDT)
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v7I9Tkm6013679
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Fri, 18 Aug 2017 02:29:47 -0700
 Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCB.corp.ad.wrs.com
 	(147.11.189.41) with Microsoft SMTP Server id 14.3.361.1;
-	Fri, 18 Aug 2017 02:29:44 -0700
+	Fri, 18 Aug 2017 02:29:46 -0700
 From: Hongxu Jia <hongxu.jia@windriver.com>
 To: <yocto@yoctoproject.org>, <richard.purdie@linuxfoundation.org>
-Date: Fri, 18 Aug 2017 05:29:40 -0400
-Message-ID: <cover.1503048463.git.hongxu.jia@windriver.com>
+Date: Fri, 18 Aug 2017 05:29:41 -0400
+Message-ID: <f59e4332cdceadd45c678750ebaa04570266f764.1503048463.git.hongxu.jia@windriver.com>
 X-Mailer: git-send-email 2.8.1
+In-Reply-To: <cover.1503048463.git.hongxu.jia@windriver.com>
+References: <cover.1503048463.git.hongxu.jia@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-gplv2][PATCH V2 0/3] fix mc compile failure while ncurses upgraded
+Subject: [PATCH 1/3] Revert "layer.conf: Remove mc from packagegroup-core-full-cmdline-utils"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +39,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Aug 2017 09:29:48 -0000
+X-List-Received-Date: Fri, 18 Aug 2017 09:29:51 -0000
 Content-Type: text/plain
 
-Changed in V2:
+This reverts commit 73a8f9df9f4b5e0d87605962c3bd8dcbaef28aea.
 
-We could not backport fix from the latest master which introduce
-gplv3 contamination, but we could revert to disable Ctrl-g key 
-and Ctrl-\ key
+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+---
+ conf/layer.conf | 2 --
+ 1 file changed, 2 deletions(-)
 
-//Hongxu
-
-The following changes since commit 73a8f9df9f4b5e0d87605962c3bd8dcbaef28aea:
-
-  layer.conf: Remove mc from packagegroup-core-full-cmdline-utils (2017-08-17 17:37:57 +0100)
-
-are available in the git repository at:
-
-  git://git.openembedded.org/openembedded-core-contrib hongxu/fix-gplv2-mc
-  http://cgit.openembedded.org/openembedded-core-contrib/log/?h=hongxu/fix-gplv2-mc
-
-Hongxu Jia (3):
-  Revert "layer.conf: Remove mc from
-    packagegroup-core-full-cmdline-utils"
-  Revert "mc: Drop from meta-gplv2 as incompatible with newer ncurses
-    versions"
-  mc: disable Ctrl-g key and Ctrl-\ key
-
- conf/layer.conf                                    |  2 -
- .../mc/0001-disable-Ctrl-g-key-and-Ctrl-key.patch  | 86 ++++++++++++++++++++++
- recipes-extended/mc/mc/mc-CTRL.patch               | 31 ++++++++
- recipes-extended/mc/mc_4.7.5.2.bb                  | 48 ++++++++++++
- 4 files changed, 165 insertions(+), 2 deletions(-)
- create mode 100644 recipes-extended/mc/mc/0001-disable-Ctrl-g-key-and-Ctrl-key.patch
- create mode 100644 recipes-extended/mc/mc/mc-CTRL.patch
- create mode 100644 recipes-extended/mc/mc_4.7.5.2.bb
-
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 5c373a8..f5601bb 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -13,5 +13,3 @@ BBFILE_PRIORITY_gplv2 = "1"
+ LAYERVERSION_gplv2 = "1"
+ 
+ LAYERDEPENDS_gplv2 = "core"
+-
+-RDEPENDS_packagegroup-core-full-cmdline-utils_remove_pn-packagegroup-core-full-cmdline = "mc mc-fish mc-helpers mc-helpers-perl"
 -- 
 2.8.1
 
