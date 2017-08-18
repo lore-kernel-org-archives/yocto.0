@@ -1,43 +1,59 @@
-Return-Path: <gandersson@genivi.org>
+Return-Path: <aaron.schwartz@logicsupply.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1EA17E00D1C; Fri, 18 Aug 2017 07:46:39 -0700 (PDT)
+	id 9BDD6E00D26; Fri, 18 Aug 2017 09:37:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.53 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.53 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [38.101.164.234 listed in list.dnswl.org]
-Received: from smtp1.genivi.org (smtp1.genivi.org [38.101.164.234])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C949E00C01
-	for <yocto@yoctoproject.org>; Fri, 18 Aug 2017 07:46:38 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp1.genivi.org (Postfix) with ESMTP id 9149521B95;
-	Fri, 18 Aug 2017 07:46:37 -0700 (PDT)
-X-Virus-Scanned: Debian amavisd-new at smtp1.genivi.org
-Received: from smtp1.genivi.org ([127.0.0.1])
-	by localhost (smtp1.genivi.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id fm8IwxR38e2y; Fri, 18 Aug 2017 07:46:32 -0700 (PDT)
-Received: from linuxlap (c-5eea37f7-74736162.cust.telenor.se [94.234.55.247])
-	by smtp1.genivi.org (Postfix) with ESMTPSA id CD82521B93;
-	Fri, 18 Aug 2017 07:46:26 -0700 (PDT)
-Message-ID: <1503067579.6972.4.camel@genivi.org>
-From: Gunnar Andersson <gandersson@genivi.org>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, yocto@yoctoproject.org
-In-Reply-To: <f75c19c6-e128-5932-fd29-1d3cb92b539d@windriver.com>
-References: <1502739375.26251.126.camel@genivi.org>
-	<f75c19c6-e128-5932-fd29-1d3cb92b539d@windriver.com>
-Organization: GENIVI Alliance
-Date: Fri, 18 Aug 2017 16:46:19 +0200
-Mime-Version: 1.0
-X-Mailer: Evolution 3.22.6 (3.22.6-2.fc25) 
-Cc: "automotive-discussions@lists.linuxfoundation.org"
-	<automotive-discussions@lists.linuxfoundation.org>
-Subject: Re: Idea for bbappend / layer organization and naming convention
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f53.google.com (mail-oi0-f53.google.com
+	[209.85.218.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25293E00AD0
+	for <yocto@yoctoproject.org>; Fri, 18 Aug 2017 09:37:46 -0700 (PDT)
+Received: by mail-oi0-f53.google.com with SMTP id g131so101639420oic.3
+	for <yocto@yoctoproject.org>; Fri, 18 Aug 2017 09:37:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=logicsupply.com; s=google-lscom;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=lFkLjsbEiPBzglXukHm/5QrCiHi1T2LBfLyV8H8lI0Y=;
+	b=SQSiv4A8X2DwRj/6vOqzWFNS10N6FXRSwmv+d5/TZBs6lRVyly64LMgPTTfl01CGY+
+	pDrY1mrchDh4LAaAGUViKB1hvrVzd8qyQJxfiD3O0CSlJAEj9alm/9Ytm4GBd1j92jnl
+	Gwky3KjFiU6Btg3JsOCsbVNFhsI8O+wAu0Q6A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=lFkLjsbEiPBzglXukHm/5QrCiHi1T2LBfLyV8H8lI0Y=;
+	b=JKAr4IH2tUZ3VzbQBnhjBtq+8suHQ4dz7zIQ5tmvdrl8bBWqyDFK9V+NRvaSEqu4+i
+	dbCfdUwHFS2A3K2FAeWJTFZ+7idMo9zjVhMwXTp3Rk0+nSXj/yLuaAVeMCMhRFGJWLDQ
+	O4JNPf3UZGUyEpoZRtx/4Aa1ixi4OfioyouCwL0kBv4zrcZrUmLz3uosdQetsVgdyZUd
+	gJVMNJLDDNL3/3y1hpOWhmJL6TSt8fwYR9KL+tCh/vwQlnuJPgqEttk0dn2PKsge698W
+	HlZeFIVenoiw0q2Pm8MoZN1o6GYQdCDDpP59g/k5Xn1ms2StHz1PBNzxVvKNQ+unqNPH
+	kdWw==
+X-Gm-Message-State: AHYfb5gwblwr8ygo7swWaalKrvPrTqHO8uU7BhKwQQ/3u5+fP7RbHiCa
+	h/wRlc+9oXavpdkQCG8ABd7D+XjC6czXNPM=
+X-Received: by 10.202.106.67 with SMTP id f64mr13335013oic.85.1503074265623;
+	Fri, 18 Aug 2017 09:37:45 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.74.117.90 with HTTP; Fri, 18 Aug 2017 09:37:45 -0700 (PDT)
+From: Aaron Schwartz <aaron.schwartz@logicsupply.com>
+Date: Fri, 18 Aug 2017 12:37:45 -0400
+Message-ID: <CAP3gWc9wu0_86_QjKQOyKXXOc-5pD4H61sU2i_WMY2=rooCT6g@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Predictable network interface names without systemd?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,77 +65,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Aug 2017 14:46:39 -0000
+X-List-Received-Date: Fri, 18 Aug 2017 16:37:47 -0000
+Content-Type: multipart/alternative; boundary="001a1141b688ac885f055709bf24"
+
+--001a1141b688ac885f055709bf24
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
+Does anybody here know of a way to get predictable network interface names
+<https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/>
+without systemd?
 
-On Mon, 2017-08-14 at 23:02 -0400, Bruce Ashfield wrote:
-> On 2017-08-14 3:36 PM, Gunnar Andersson wrote:
-> > 
-> > Yocto community,
-> > 
-> > Triggered by the previous email request to yocto@ about best practices
-> > for layer organization I'm finally firing off this email for (hopefully)
-> > some feedback on an idea we first kicked around, discussed for rough
-> > consensus and then decided to implement in the Yocto based GDP project
-> > [1].  You can see it as a trial, anything can be changed, but so far so
-> > good...
-> > 
-> > We adopted a somewhat novel (but actually not really unique, see inside)
-> > naming convention [2] for all modifications to components that belong to
-> > other layers.
-> > 
-> 
-> I've been using a similar naming/sorting mechanism in layers that
-> I maintain for several years now. 
+I realize I could write a script to do it myself, but I was hoping there's
+an easier solution that's ready to go (or close to it).
 
-Great.  Is it similar, or /exactly/ like this?  I'm only asking because I
-think it would be useful to have some written down rules and if there are
-additional tweaks that will improve this proposal, I'd like to hear them.
+Thanks in advance!
+Aaron
 
-I suspected it might actually be somewhat of a common practice.
+--001a1141b688ac885f055709bf24
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> When you have a single layer that is carrying bbappends to many other
-> layers, I find that it really helps keep everything separated and aids
-> finding the original recipe.
+<div dir=3D"ltr">Does anybody here know of a way to get <a href=3D"https://=
+www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/=
+">predictable network interface names</a> without systemd?<div><br></div><d=
+iv>I realize I could write a script to do it myself, but I was hoping there=
+&#39;s an easier solution that&#39;s ready to go (or close to it).</div><di=
+v><br></div><div>Thanks in advance!</div><div>Aaron<div class=3D"gmail_sign=
+ature" data-smartmail=3D"gmail_signature"></div>
+</div></div>
 
-Yes, that is the idea.
-
-> 
-> (that being said, recent work with layer index, etc, make it
-> easier to locate the original recipe and any bbappends .. but that
-> doesn't preclude keeping things organized in a layer).
-
-... but I didn't get any more feedback than yours, so I'll just leave it
-where it is for now.  Maybe this is not something the other Yocto community
-cares about, or similar practices are actually done in practice, but not
-written down.  Or maybe everyone is OK with the state of mixing .bb and
-.bbappend files within the layers...
-
-So far I think the initial experience on our side is positive.  It's
-something that needs to be looked after a bit (we have a few mistakes to
-fix).  But since some directories will only have .bb files, and others only
-.bbappend files, it's therefore easy to script a warning system for anything
-that is out of place.
-
-Best Regards
-- Gunnar
-
-> Cheers,
-> 
-> Bruce
-> 
-[trimmed]
-
-> > -- 
-> > Gunnar Andersson <gandersson@genivi.org>
-> > Development Lead
-> > GENIVI Alliance
-> > 
-> > [1] https://github.com/GENIVI/genivi-dev-platform
-> > [2] Naming strategy for bitbake extension layers:			
-> > https://at.projects.genivi.org/wiki/x/w4Xk
-
-
-
+--001a1141b688ac885f055709bf24--
