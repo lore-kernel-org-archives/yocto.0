@@ -1,36 +1,33 @@
 Return-Path: <Hongxu.Jia@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8CAAEE00DE3; Thu, 17 Aug 2017 23:44:51 -0700 (PDT)
+	id 9BA92E00E00; Thu, 17 Aug 2017 23:44:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50EFFE00CDE
-	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 23:44:45 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B606BE00D44
+	for <yocto@yoctoproject.org>; Thu, 17 Aug 2017 23:44:47 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v7I6iiUW019014
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 17 Aug 2017 23:44:44 -0700 (PDT)
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v7I6ikc9010120
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Thu, 17 Aug 2017 23:44:46 -0700
 Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Thu, 17 Aug 2017 23:44:44 -0700
+	Thu, 17 Aug 2017 23:44:45 -0700
 From: Hongxu Jia <hongxu.jia@windriver.com>
 To: <yocto@yoctoproject.org>, <richard.purdie@linuxfoundation.org>
-Date: Fri, 18 Aug 2017 02:44:38 -0400
-Message-ID: <0e5128085be917a51d6fe5fe7638978fe9c9beef.1503038547.git.hongxu.jia@windriver.com>
+Date: Fri, 18 Aug 2017 02:44:39 -0400
+Message-ID: <db02cefecd79b0b2b92726a5f301c12521bcb154.1503038547.git.hongxu.jia@windriver.com>
 X-Mailer: git-send-email 2.8.1
 In-Reply-To: <cover.1503038547.git.hongxu.jia@windriver.com>
 References: <cover.1503038547.git.hongxu.jia@windriver.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/3] Revert "mc: Drop from meta-gplv2 as incompatible with newer ncurses versions"
+Subject: [PATCH 3/3] mc: unify curses initialization
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,109 +39,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Aug 2017 06:44:51 -0000
+X-List-Received-Date: Fri, 18 Aug 2017 06:44:54 -0000
 Content-Type: text/plain
 
-This reverts commit ec80d2cac67a952b06ed27fbd4d71f17641e9a7c.
+Since ncurses upgraded to 6.0+20170715, it compile failed
+...
+| ../../../mc-4.7.5.2/lib/tty/tty-ncurses.c: In function 'tty_init':
+| ../../../mc-4.7.5.2/lib/tty/tty-ncurses.c:163:13: error:
+dereferencing pointer to incomplete type 'TERMINAL {aka struct term}'
+|      cur_term->Nttyb.c_cc[VINTR] = CTRL ('g');   /* ^g */
+...
+
+Backport a patch from upstream and rebase to 4.7.5.2 could fix the issue.
 
 Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
 ---
- recipes-extended/mc/mc/mc-CTRL.patch | 31 ++++++++++++++++++++++++
- recipes-extended/mc/mc_4.7.5.2.bb    | 47 ++++++++++++++++++++++++++++++++++++
- 2 files changed, 78 insertions(+)
- create mode 100644 recipes-extended/mc/mc/mc-CTRL.patch
- create mode 100644 recipes-extended/mc/mc_4.7.5.2.bb
+ ...3697-tty_init-unify-curses-initialization.patch | 51 ++++++++++++++++++++++
+ recipes-extended/mc/mc_4.7.5.2.bb                  |  1 +
+ 2 files changed, 52 insertions(+)
+ create mode 100644 recipes-extended/mc/mc/0001-Ticket-3697-tty_init-unify-curses-initialization.patch
 
-diff --git a/recipes-extended/mc/mc/mc-CTRL.patch b/recipes-extended/mc/mc/mc-CTRL.patch
+diff --git a/recipes-extended/mc/mc/0001-Ticket-3697-tty_init-unify-curses-initialization.patch b/recipes-extended/mc/mc/0001-Ticket-3697-tty_init-unify-curses-initialization.patch
 new file mode 100644
-index 0000000..ee4ba9f
+index 0000000..3fe836a
 --- /dev/null
-+++ b/recipes-extended/mc/mc/mc-CTRL.patch
-@@ -0,0 +1,31 @@
-+Fix build with musl by ensuring CTRL is defined.
++++ b/recipes-extended/mc/mc/0001-Ticket-3697-tty_init-unify-curses-initialization.patch
+@@ -0,0 +1,51 @@
++From 4d46a108629beb66a293672db7b44f863b6598ba Mon Sep 17 00:00:00 2001
++From: Thomas Dickey <dickey@his.com>
++Date: Fri, 14 Apr 2017 14:06:13 +0300
++Subject: [PATCH] Ticket #3697: (tty_init): unify curses initialization
 +
-+musl does not define CTRL in <termios.h>, we could include <sys/ttydefaults.h>
-+explicitly but it's easier just to ensure CTRL is defined.
++...for various curses implementations.
 +
-+This patch is taken from Sabotage Linux, the license statement for patches and
-+build scripts in Sabotage Linux says:
++Signed-off-by: Andrew Borodin <aborodin@vmail.ru>
 +
-+    To the extent possible under law, Christian Neukirchen has waived
-+    all copyright and related or neighboring rights to this work.
++Upstream-Status: Backport [https://github.com/MidnightCommander/mc.git]
 +
-+    http://creativecommons.org/publicdomain/zero/1.0/
++Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
++---
++ lib/tty/tty-ncurses.c | 12 +++++++++---
++ 1 file changed, 9 insertions(+), 3 deletions(-)
 +
-+Therefore this should be good to include in OpenEmbedded.
-+
-+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
-+
-+Upstream-Status: Accepted (should be included in v4.8.14)
-+
-+diff -u mc-4.8.1.7.org/lib/tty/tty-ncurses.c mc-4.8.1.7/lib/tty/tty-ncurses.c
-+--- mc-4.8.1.7.org/lib/tty/tty-ncurses.c
-++++ mc-4.8.1.7/lib/tty/tty-ncurses.c
-+@@ -65,7 +65,7 @@
++diff --git a/lib/tty/tty-ncurses.c b/lib/tty/tty-ncurses.c
++index ab61891..47e537e 100644
++--- a/lib/tty/tty-ncurses.c
+++++ b/lib/tty/tty-ncurses.c
++@@ -144,6 +144,8 @@ tty_init (gboolean slow, gboolean ugly_lines)
++     slow_tty = slow;
++     (void) ugly_lines;
 + 
-+ /*** file scope macro definitions ****************************************************************/
+++    struct termios mode;
+++
++     initscr ();
 + 
-+-#if defined(_AIX) && !defined(CTRL)
-++#if !defined(CTRL)
-+ #define CTRL(x) ((x) & 0x1f)
-+ #endif
++ #ifdef HAVE_ESCDELAY
++@@ -159,11 +161,15 @@ tty_init (gboolean slow, gboolean ugly_lines)
++     ESCDELAY = 200;
++ #endif /* HAVE_ESCDELAY */
 + 
+++    tcgetattr (STDIN_FILENO, &mode);
++     /* use Ctrl-g to generate SIGINT */
++-    cur_term->Nttyb.c_cc[VINTR] = CTRL ('g');   /* ^g */
+++    mode.c_cc[VINTR] = CTRL ('g');  /* ^g */
++     /* disable SIGQUIT to allow use Ctrl-\ key */
++-    cur_term->Nttyb.c_cc[VQUIT] = NULL_VALUE;
++-    tcsetattr (cur_term->Filedes, TCSANOW, &cur_term->Nttyb);
+++    mode.c_cc[VQUIT] = NULL_VALUE;
+++    tcsetattr (STDIN_FILENO, TCSANOW, &mode);
+++
+++    /* curses remembers the "in-program" modes after this call */
+++    def_prog_mode ();
++ 
++     tty_start_interrupt_key ();
++ 
++-- 
++1.8.3.1
++
 diff --git a/recipes-extended/mc/mc_4.7.5.2.bb b/recipes-extended/mc/mc_4.7.5.2.bb
-new file mode 100644
-index 0000000..b38964d
---- /dev/null
+index b38964d..cf2ad8e 100644
+--- a/recipes-extended/mc/mc_4.7.5.2.bb
 +++ b/recipes-extended/mc/mc_4.7.5.2.bb
-@@ -0,0 +1,47 @@
-+SUMMARY = "Midnight Commander is an ncurses based file manager"
-+HOMEPAGE = "http://www.midnight-commander.org/"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"
-+SECTION = "console/utils"
-+DEPENDS = "ncurses glib-2.0"
-+RDEPENDS_${PN} = "ncurses-terminfo"
-+
-+PR = "r3"
-+
-+SRC_URI = "http://www.midnight-commander.org/downloads/${BPN}-${PV}.tar.bz2 \
-+           file://mc-CTRL.patch \
-+           "
-+
-+SRC_URI[md5sum] = "bdae966244496cd4f6d282d80c9cf3c6"
-+SRC_URI[sha256sum] = "a68338862bb30017eb65ed569a58e80ab66ae8cef11c886440c9e9f4d1efc6ab"
-+
-+inherit autotools gettext pkgconfig
-+
-+EXTRA_OECONF = "--with-screen=ncurses --without-gpm-mouse --without-x --without-samba"
-+
-+do_install_append () {
-+	sed -i -e '1s,#!.*perl,#!${bindir}/env perl,' ${D}${libexecdir}/mc/extfs.d/*
-+	sed -i -e '1s,#!.*python,#!${bindir}/env python,' ${D}${libexecdir}/mc/extfs.d/*
-+}
-+
-+PACKAGES =+ "${BPN}-helpers-perl ${BPN}-helpers-python ${BPN}-helpers ${BPN}-fish"
-+
-+SUMMARY_${BPN}-helpers-perl = "Midnight Commander Perl-based helper scripts"
-+FILES_${BPN}-helpers-perl = "${libexecdir}/mc/extfs.d/a+ ${libexecdir}/mc/extfs.d/apt+ \
-+                             ${libexecdir}/mc/extfs.d/deb ${libexecdir}/mc/extfs.d/deba \
-+                             ${libexecdir}/mc/extfs.d/debd ${libexecdir}/mc/extfs.d/dpkg+ \
-+                             ${libexecdir}/mc/extfs.d/mailfs ${libexecdir}/mc/extfs.d/patchfs \ 
-+                             ${libexecdir}/mc/extfs.d/rpms+ ${libexecdir}/mc/extfs.d/ulib \ 
-+                             ${libexecdir}/mc/extfs.d/uzip"
-+RDEPENDS_${BPN}-helpers-perl = "perl"
-+
-+SUMMARY_${BPN}-helpers-python = "Midnight Commander Python-based helper scripts"
-+FILES_${BPN}-helpers-python = "${libexecdir}/mc/extfs.d/s3+ ${libexecdir}/mc/extfs.d/uc1541"
-+RDEPENDS_${BPN}-helpers-python = "python"
-+
-+SUMMARY_${BPN}-helpers = "Midnight Commander shell helper scripts"
-+FILES_${BPN}-helpers = "${libexecdir}/mc/extfs.d/* ${libexecdir}/mc/ext.d/*"
-+
-+SUMMARY_${BPN}-fish = "Midnight Commander Fish scripts"
-+FILES_${BPN}-fish = "${libexecdir}/mc/fish"
-+
+@@ -10,6 +10,7 @@ PR = "r3"
+ 
+ SRC_URI = "http://www.midnight-commander.org/downloads/${BPN}-${PV}.tar.bz2 \
+            file://mc-CTRL.patch \
++           file://0001-Ticket-3697-tty_init-unify-curses-initialization.patch \
+            "
+ 
+ SRC_URI[md5sum] = "bdae966244496cd4f6d282d80c9cf3c6"
 -- 
 2.8.1
 
