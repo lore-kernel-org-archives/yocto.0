@@ -1,38 +1,33 @@
-Return-Path: <f_l_k@t-online.de>
+Return-Path: <oliver.staebler@bytesatwork.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 821EFE00C7B; Mon, 21 Aug 2017 04:24:15 -0700 (PDT)
+	id 00B9DE00C62; Mon, 21 Aug 2017 06:01:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [194.25.134.21 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mailout10.t-online.de (mailout10.t-online.de [194.25.134.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3ED3E00B01
-	for <yocto@yoctoproject.org>; Mon, 21 Aug 2017 04:24:14 -0700 (PDT)
-Received: from fwd40.aul.t-online.de (fwd40.aul.t-online.de [172.20.26.139])
-	by mailout10.t-online.de (Postfix) with SMTP id 1B3AA41C8E74
-	for <yocto@yoctoproject.org>; Mon, 21 Aug 2017 13:24:13 +0200 (CEST)
-Received: from genericx86-64
-	(bH-hCrZf8h4KqehvP9My4BHZ6gbN9bFIIsniyui0THWzL+sNXZg6U7xzR-5aMspghG@[84.146.40.121])
-	by fwd40.t-online.de
-	with (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384 encrypted)
-	esmtp id 1djkoR-4F582S0; Mon, 21 Aug 2017 13:24:07 +0200
-Date: Mon, 21 Aug 2017 13:24:02 +0200
-From: Markus Volk <f_l_k@t-online.de>
+X-Greylist: delayed 409 seconds by postgrey-1.32 at yocto-www;
+	Mon, 21 Aug 2017 06:01:49 PDT
+Received: from bytesatwork.ch (bytesatwork.ch [91.135.72.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C5C7E00B8B
+	for <yocto@yoctoproject.org>; Mon, 21 Aug 2017 06:01:49 -0700 (PDT)
+Received: from stanley.bytesatwork.ch (162.40.150.83.ftth.as8758.net
+	[83.150.40.162])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+	(No client certificate requested) (Authenticated sender: oliver)
+	by bytesatwork.ch (Postfix) with ESMTPSA id F1059101C0452;
+	Mon, 21 Aug 2017 14:54:49 +0200 (CEST)
+From: =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>
 To: yocto@yoctoproject.org
-Message-Id: <20170821132402.9804f121f9badfe2b36da1d9@t-online.de>
-In-Reply-To: <20170817100003.d378a00de6788f3d9e36724d@t-online.de>
-References: <20170817100003.d378a00de6788f3d9e36724d@t-online.de>
-X-Mailer: Sylpheed 3.6.0 (GTK+ 2.24.31; x86_64-poky-linux-gnu)
-Mime-Version: 1.0
-X-ID: bH-hCrZf8h4KqehvP9My4BHZ6gbN9bFIIsniyui0THWzL+sNXZg6U7xzR-5aMspghG
-X-TOI-MSGID: bbf804e8-bc0b-4a4f-ab1b-e7b7c7b3ab61
-Subject: Re: some issues with current poky master
+Date: Mon, 21 Aug 2017 14:55:17 +0200
+Message-Id: <20170821125518.29160-1-oliver.staebler@bytesatwork.ch>
+X-Mailer: git-send-email 2.13.5
+MIME-Version: 1.0
+Cc: =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>
+Subject: [RFC][PATCH 0/1] kernel.bbclass overwrites custom variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,24 +39,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Aug 2017 11:24:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 21 Aug 2017 13:01:51 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi
 
-> it is working then, unless the .deb is removed from download directory. M=
-aybe i=B4m missing something inside the .bb ?
->=20
+It seems that it's not possible to set a custom pre/postinst function for a
+kernel recipe.
+kernel.bbclass overwrites the necessary variables without checking its content.
 
-Unpacking .deb packages can be done by including
+My patch does fix this.
+However, I'm not sure how to handle similar variables which get overwritten by
+kernel.bbclass, therefore a RFC.
 
-do_unpack[depends] +=3D "xz-native:do_populate_sysroot \=20
-		       tar-native:do_populate_sysroot \
-		       binutils-native:do_populate_sysroot \
-"
+What about FILES_kernel_image?
+A custom recipe should be able to add other files into the kernel package,
+right?
 
-I don=B4t know for sure if all of those are needed, but i wanted to be safe
+What about PKG_kernel_image?
+I'm not really sure what this variable is used for.
 
---=20
-Markus Volk <f_l_k@t-online.de>
+Oliver Stäbler (1):
+  kernel.bbclass: Do not overwrite pre/postinst
+
+ meta/classes/kernel.bbclass | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+-- 
+2.13.5
+
 
