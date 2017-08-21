@@ -1,41 +1,42 @@
 Return-Path: <ed.bartosh@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0CF9E00D6C; Mon, 21 Aug 2017 01:33:45 -0700 (PDT)
+	id 57492E00D6E; Mon, 21 Aug 2017 01:56:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F912E00D61
-	for <yocto@yoctoproject.org>; Mon, 21 Aug 2017 01:33:44 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga104.jf.intel.com with ESMTP; 21 Aug 2017 01:33:44 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE43CE00D26
+	for <yocto@yoctoproject.org>; Mon, 21 Aug 2017 01:56:09 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	21 Aug 2017 01:56:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,408,1498546800"; d="scan'208";a="1185970052"
+X-IronPort-AV: E=Sophos;i="5.41,408,1498546800"; d="scan'208";a="892542027"
 Received: from linux.intel.com ([10.54.29.200])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Aug 2017 01:33:44 -0700
+	by FMSMGA003.fm.intel.com with ESMTP; 21 Aug 2017 01:56:08 -0700
 Received: from linux.intel.com (vmed.fi.intel.com [10.237.72.38])
 	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTPS id 13CBA5805B3;
-	Mon, 21 Aug 2017 01:33:42 -0700 (PDT)
-Date: Mon, 21 Aug 2017 11:09:40 +0300
+	by linux.intel.com (Postfix) with ESMTPS id A6B39580815;
+	Mon, 21 Aug 2017 01:56:07 -0700 (PDT)
+Date: Mon, 21 Aug 2017 11:32:05 +0300
 From: Ed Bartosh <ed.bartosh@linux.intel.com>
 To: Riko <antonius.riko@gmail.com>
-Message-ID: <20170821080940.GB17975@linux.intel.com>
+Message-ID: <20170821083205.GC17975@linux.intel.com>
 References: <CAByQQ_q9bBxrK6gzn2nAj2QK9PEiOfyt_09Le27DvXpU4_54hg@mail.gmail.com>
 	<1502979391.28682.1.camel@linux.intel.com>
 	<3e39f3ca-9228-769f-0b39-126fb124d280@gmail.com>
 	<20170818085833.GA6976@linux.intel.com>
-	<6428aa75-f822-710e-fd86-c1a83401f1e3@gmail.com>
+	<be5970b8-895c-972e-2b00-2f3d9fb5147b@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <6428aa75-f822-710e-fd86-c1a83401f1e3@gmail.com>
+In-Reply-To: <be5970b8-895c-972e-2b00-2f3d9fb5147b@gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
@@ -52,23 +53,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Aug 2017 08:33:45 -0000
+X-List-Received-Date: Mon, 21 Aug 2017 08:56:10 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-On Sat, Aug 19, 2017 at 10:08:06AM +0800, Riko wrote:
-> Is it related with :
+On Sat, Aug 19, 2017 at 10:31:32AM +0800, Riko wrote:
+> When I did fdisk -l here was what I got :
 > 
-> https://stackoverflow.com/questions/43211384/how-to-get-to-menuconfig-for-u-boot-in-yocto-environment
+> Disk /dev/mmcblk0: 14.6 GiB, 15640559616 bytes, 30547968 sectors
+> Units: sectors of 1 * 512 = 512 bytes
+> Sector size (logical/physical): 512 bytes / 512 bytes
+> I/O size (minimum/optimal): 512 bytes / 512 bytes
+> Disklabel type: dos
+> Disk identifier: 0x156b2128
 > 
-I don't think so. It's about kernel build configuration.
+> Device         Boot Start     End Sectors  Size Id Type
+> /dev/mmcblk0p1 *        8   42605   42598 20.8M  c W95 FAT32 (LBA)
+> /dev/mmcblk0p2      42608 2171617 2129010    1G 83 Linux
+> 
+> 
+> Disk /dev/mmcblk1: 3.6 GiB, 3825205248 bytes, 7471104 sectors
+> Units: sectors of 1 * 512 = 512 bytes
+> Sector size (logical/physical): 512 bytes / 512 bytes
+> I/O size (minimum/optimal): 512 bytes / 512 bytes
+> Disklabel type: dos
+> Disk identifier: 0x19fcf925
+> 
+> Device         Boot Start     End Sectors  Size Id Type
+> /dev/mmcblk1p1 *        8   32775   32768   16M  c W95 FAT32 (LBA)
+> /dev/mmcblk1p2      32776 1546183 1513408  739M 83 Linux
+> 
+> 
+> Disk /dev/mmcblk1boot1: 4 MiB, 4194304 bytes, 8192 sectors
+> Units: sectors of 1 * 512 = 512 bytes
+> Sector size (logical/physical): 512 bytes / 512 bytes
+> I/O size (minimum/optimal): 512 bytes / 512 bytes
+> 
+> 
+> Disk /dev/mmcblk1boot0: 4 MiB, 4194304 bytes, 8192 sectors
+> Units: sectors of 1 * 512 = 512 bytes
+> Sector size (logical/physical): 512 bytes / 512 bytes
+> I/O size (minimum/optimal): 512 bytes / 512 bytes
+> 
+> I boot from :
+> 
+> Disk /dev/mmcblk0: 14.6 GiB, 15640559616 bytes, 30547968 sectors
+> 
+> but I can't boot from : Disk /dev/mmcblk1 which is NAND flash chip.
+> 
+> Is there a partition problem here ? thanks
+> 
 
-> ?
-> 
-> Thanks
-> 
-> 
+I can tell you more after I can see .wks file you're using. So far I can
+guess that you're using something similar to
+scripts/lib/wic/canned-wks/directdisk.wks
+
+which uses this or similar partitioning scheme:
+
+part /boot --source bootimg-pcbios --ondisk sda --label boot --active --align 1024
+part / --source rootfs --use-uuid --fstype=ext4 --label platform --align 1024
+
+--use-uuid option means that kernel command line in bootloader
+configuration file contains root=PARTUUID=<root partition UUID>. That
+works for your USB drive (/dev/mmcblk0), but doesn't work for your NAND
+for some reason.
+
+There is a simple workaround for this issue(you can switch to using
+device names instead of PARTUUID in .wks). However, it would be better to
+investigate and fix this properly.
+
+As I don't have a device to reproduce this I need your help.
+We can either continue here or you can contact me(ed21) on #yocto freenode channel.
+There I can help you faster I hope.
+
+Regards,
+Ed
+
 > On 18/08/17 16:58, Ed Bartosh wrote:
 > >On Fri, Aug 18, 2017 at 11:40:58AM +0800, Riko wrote:
 > >>Here's the boot messages :
