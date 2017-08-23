@@ -1,39 +1,71 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87A0BE00B8B; Tue, 22 Aug 2017 17:08:57 -0700 (PDT)
+	id 9098FE00D50; Tue, 22 Aug 2017 23:56:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM,WEIRD_PORT autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.170 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.170 listed in dnsbl.sorbs.net]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DFCBE00B8B
-	for <yocto@yoctoproject.org>; Tue, 22 Aug 2017 17:08:55 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	22 Aug 2017 17:08:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,414,1498546800"; d="scan'208";a="1187114227"
-Received: from skhurana-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.139.43])
-	by fmsmga001.fm.intel.com with ESMTP; 22 Aug 2017 17:08:52 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Diana Thayer <garbados@gmail.com>
-Date: Wed, 23 Aug 2017 12:08:50 +1200
-Message-ID: <1937568.Cu0G2Ybujr@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <4298192.f0WJ1oCf9T@peggleto-mobl.ger.corp.intel.com>
-References: <1498521563-26590-1-git-send-email-garbados@gmail.com>
-	<CA++8a_CiuUr-2YQAQ-EhG7htxxptuX00=B7X=1CvWsNRJB5y2A@mail.gmail.com>
-	<4298192.f0WJ1oCf9T@peggleto-mobl.ger.corp.intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f170.google.com (mail-wr0-f170.google.com
+	[209.85.128.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FF3FE00CAB
+	for <yocto@yoctoproject.org>; Tue, 22 Aug 2017 23:56:25 -0700 (PDT)
+Received: by mail-wr0-f170.google.com with SMTP id a47so2478919wra.0
+	for <yocto@yoctoproject.org>; Tue, 22 Aug 2017 23:56:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=TcNrRJ8C5rcMGYkh+c6F8hpWyMPIBmdlG1Orfr1pNzU=;
+	b=p7BoeIaiDKsNubvNaJ7Tdn41YJ7gYktGAStrraePrIr3n+pmH1I4j7rT2tt0ZGQLDw
+	XOIR6PsfgToQmWftJlsiK3G9gv7NpvGsJibPxdN+c4RrwOufgfDRIqZn526E3sgvFgQI
+	cpgMnBpvYCBN2sE/HSEkQZOJgyjXlfGmI0kMQy6bPucO9GyBhY/UMVP/xkopoj44czJn
+	WLbmTG5BX3lHkM6nHNds18j52+WwYhQXQwXCI1mV0ff3VcukyzL8UlCZUROCmfBOs5xK
+	kurbrSKnZVT0YwrvLaTdI/f++f00ER/YOZsyexhqpIUXDj0036ulF9YAsq2DgKPP+1pn
+	YKCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=TcNrRJ8C5rcMGYkh+c6F8hpWyMPIBmdlG1Orfr1pNzU=;
+	b=oJQUXkzaUoMYpBAzy4K//bGk504f0m/MNLOZzFA92Sm/LSlJW2gtQ2uervNfadK7eV
+	xeD2j2ily6Kq3q7GTk1BuTvkgj7tV9gPZdy5f4m4pJboKpfTqaIKi62hx0DHZbGcyifC
+	3zXi1jfjk2/+zm/t209McWl/cTtcmFSdY668j5Ll1ZSi6SXL4pPN3x0mkOxN2x7ou6uY
+	Z1r2iIF1rKv//qFp4DeTNv+Na97RAnqg1OF1xJDZmew7oMV854essK7HjYFT2157MS2t
+	lgvqEzyPEmvpZIwcBeTTebfu20NpfSdusaYq7u9DOtVAyZ9RgeG/C+wSUd7GW5a8pk5M
+	H0Rw==
+X-Gm-Message-State: AHYfb5iKPaYgW+wB1vHFAbOLNz34b9v9iEuX2ifSxqd4sMueazVzKDdL
+	FfLe/es+2sGmMNf42zvgiYlv4yGPPQ==
+X-Received: by 10.223.173.51 with SMTP id p48mr1030936wrc.149.1503471384180;
+	Tue, 22 Aug 2017 23:56:24 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [layerindex-web][PATCH] layerindex-web : adding asynchronous task execution
+Received: by 10.28.138.18 with HTTP; Tue, 22 Aug 2017 23:56:23 -0700 (PDT)
+In-Reply-To: <CABpTzB3yC2vHf0mFdDq8vGksQSJk1BHkuwTxMb0orCTL4kh1YQ@mail.gmail.com>
+References: <CABpTzB12oTgOmND6wDn+vD2aTvUd6WmavbmHNAXGpA6_dA+Tag@mail.gmail.com>
+	<96d5a0c7-4df6-1576-7e50-916c5af724c6@linux.intel.com>
+	<CABpTzB3yC2vHf0mFdDq8vGksQSJk1BHkuwTxMb0orCTL4kh1YQ@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 23 Aug 2017 08:56:23 +0200
+Message-ID: <CAGAf8LzHHWqNmq9g2ZGUMnMnrtD00QPdJ736ttTNAbM+-uyHHQ@mail.gmail.com>
+To: alexander.kanavin@linux.intel.com, yocto@yoctoproject.org, 
+	Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Subject: [DNF YOCTO clarifications] smart was replaced with dnf in Yocto 2.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,108 +77,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Aug 2017 00:08:57 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 23 Aug 2017 06:56:26 -0000
+Content-Type: multipart/alternative; boundary="f403045cf2aec8bd2005576635b8"
 
-On Wednesday, 23 August 2017 12:06:09 PM NZST Paul Eggleton wrote:
-> Hi Diana
-> 
-> I did finally manage to get to it today - sorry about the delay. I've
-> sorted out the settings issue and dropped the related item from the todo list.
+--f403045cf2aec8bd2005576635b8
+Content-Type: text/plain; charset="UTF-8"
 
-Oops, I neglected to mention I pushed these minor changes to the same
-paule/celery branch.
+Privet Aleks,
 
-> Assuming that didn't break anything on your end, could you please squash all of
-> these into one commit with you as the author and an appropriate shortlog /
-> commit message and then send a new patch? We'd probably want to mention that
-> the mechanism this establishes will be used later for executing other
-> asynchronous tasks.
-> 
-> Thanks,
-> Paul
-> 
-> On Saturday, 12 August 2017 7:56:15 AM NZST Diana Thayer wrote:
-> > Hello! Did you get a chance to look at the PR
-> > <https://github.com/garbados/layerindex-web/pull/1>?
-> > 
-> > On Wed, Jul 26, 2017 at 6:02 PM, Diana Thayer <garbados@gmail.com> wrote:
-> > 
-> > > Great! Thanks for testing it out and identifying that issue.
-> > >
-> > > I've put together a PR on GitHub
-> > > <https://github.com/garbados/layerindex-web/pull/1> that includes some
-> > > changes that appear to fix the issue you're describing. It also updates the
-> > > readme to document how to configure the connection to the RabbitMQ server,
-> > > and how to start the Celery worker. You can see all the file changes here
-> > > <https://github.com/garbados/layerindex-web/pull/1/files>.
-> > >
-> > > On Mon, Jul 24, 2017 at 2:49 AM, Paul Eggleton <
-> > > paul.eggleton@linux.intel.com> wrote:
-> > >
-> > >> On Friday, 21 July 2017 4:15:26 PM CEST Paul Eggleton wrote:
-> > >> > On Tuesday, 27 June 2017 1:59:23 AM CEST Diana Thayer wrote:
-> > >> > > This is a work-in-progress solution to issue 11197 within
-> > >> layerindex-web:
-> > >> > > adding asynchronous task execution.
-> > >> > > I used RabbitMQ and Celery. I'm still working with Paul Eggleton on
-> > >> adding
-> > >> > > install instructions for RabbitMQ to
-> > >> > > the site's Dockerfile.
-> > >> > >
-> > >> > > Previously, when a user submitted a layer, Django would synchronously
-> > >> send
-> > >> > > emails to users able to publish layers,
-> > >> > > such that if an email bounced or otherwise failed, the user
-> > >> submitting the
-> > >> > > layer would see an error.
-> > >> > > This patch sends those emails as asynchronous tasks, so any sending
-> > >> errors
-> > >> > > don't reach the user submitting a layer.
-> > >> >
-> > >> > I had a chance to try your patch out today, although I had to apply it
-> > >> > partially - I figured a good test would just be the email part. I
-> > >> installed
-> > >> > rabbitmq and ensured it got started. I started the web interface and
-> > >> > submitted  a dummy layer, and the email sent as expected. I then tried
-> > >> > killing my local  SMTP server and the layer submission returned an error
-> > >> > page, which is what  happened previously - it looks to me as if the
-> > >> sending
-> > >> > is still being done synchronously. The celery worker isn't reporting
-> > >> > anything so I can only assume  the django app is not trying to connect
-> > >> to
-> > >> > it.
-> > >> >
-> > >> > I've pushed just the changes I applied to a new branch here:
-> > >> >
-> > >> > http://git.yoctoproject.org/cgit/cgit.cgi/layerindex-web/log
-> > >> /?h=paule/celery
-> > >> >
-> > >> > Any idea what's going wrong? Did I mess up in applying the changes, or
-> > >> > misconfigure something else?
-> > >>
-> > >> I figured out the issue - in order to have the task executed
-> > >> asynchronously
-> > >> you need to call .delay(<args>) on the task object rather than the task
-> > >> function itself. That leads to a "django.core.exceptions.Improp
-> > >> erlyConfigured"
-> > >> error reported by the worker since in my configuration the "import
-> > >> settings"
-> > >> succeeds but Django isn't set up properly, but at least it's actually
-> > >> executing the task via the worker now.
-> > >>
-> > >> Cheers,
-> > >> Paul
-> > >>
-> 
-> 
-> 
-> 
+Nezacem zlitsja/serditsja. Ja prosto ne znal cto u vas takaja politika.
 
+All Cool. Did not know that this is the policy, to have real names on YOCTO
+list. I removed nobody from it, and added my real name and real @. I
+removed user nobody from the YOCTO @ list.
 
--- 
+The/Your answer is too general. I somehow well know DNF service, but in
+FEDORA light. For fedora I do know what I need to do, and where/what are
+the options and which plug-ins to use/add, and ho to remove, upgrade, and
+configure.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+I tried all of this in the lieu of the following pointers:
+https://docs.fedoraproject.org/en-US...ositories.html
+<https://docs.fedoraproject.org/en-US/Fedora/26/html/System_Administrators_Guide/sec-Configuring_DNF_and_DNF_Repositories.html>
+https://docs.fedoraproject.org/en-US...y_Options.html
+<https://docs.fedoraproject.org/en-US/Fedora/26/html/System_Administrators_Guide/sec-Setting_repository_Options.html>
 
+And made on my target (which is connected with my server with simplistic
+Apache (it is one machine, which carries F26 on bare metal INTEL CORE) on
+server, client runs as qemux86_64 YOCTO emulator).
+
+So I need more help. Or we can work this out together for the whole YOCTO
+community. Adapting DNF for .rpm package use for YOCTO further on. :-)
+
+Thank you,
+Zoran
+
+On Tue, Aug 22, 2017 at 1:33 PM, Alexander Kanavin <
+alexander.kanavin@linux.intel.com> wrote:
+
+> On 08/22/2017 09:09 AM, _nobody_ _nobody_ wrote:
+>
+>> The question is: where the Hell (in which /etc files on target) I should
+>> put these???
+>>
+>> Links to the repos should be something like these:
+>> http://127.0.0.1:8000/core2_64
+>> http://127.0.0.1:8000/noarch
+>> http://127.0.0.1:8000/qemux86_64
+>> http://127.0.0.1:8000/x86_64_nativesdk
+>>
+>> Any suggestions/verbal help is appreciated!
+>>
+>> Let us go from here... There is more to come!
+>>
+>
+> First of all, please introduce yourself. I personally am not very keen to
+> help people who are aggressively anonymous.
+>
+> The answer is here:
+>
+> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manua
+> l.html#using-runtime-package-management
+>
+>
+> Alex
+>
+
+--f403045cf2aec8bd2005576635b8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">Privet Aleks,<=
+div><br></div><div>Nezacem zlitsja/serditsja. Ja prosto ne znal cto u vas t=
+akaja politika.</div><div><br></div><div>All Cool. Did not know that this i=
+s the policy, to have real names on YOCTO list. I removed nobody from it, a=
+nd added my real name and real @. I removed user nobody from the YOCTO @ li=
+st.</div><div><br></div><div>The/Your answer is too general. I somehow well=
+ know DNF service, but in FEDORA light. For fedora I do know what I need to=
+ do, and where/what are the options and which plug-ins to use/add, and ho t=
+o remove, upgrade, and configure.</div><div><br></div><div>I tried all of t=
+his in the lieu of the following pointers:</div><div><a href=3D"https://doc=
+s.fedoraproject.org/en-US/Fedora/26/html/System_Administrators_Guide/sec-Co=
+nfiguring_DNF_and_DNF_Repositories.html" style=3D"color:rgb(0,0,0);font-fam=
+ily:verdana,geneva,lucida,&quot;lucida grande&quot;,arial,helvetica,sans-se=
+rif,sans;font-size:11px;background-color:rgb(250,250,250)" target=3D"_blank=
+">https://docs.fedoraproject.org<wbr>/en-US...ositories.html</a></div><a hr=
+ef=3D"https://docs.fedoraproject.org/en-US/Fedora/26/html/System_Administra=
+tors_Guide/sec-Setting_repository_Options.html" style=3D"color:rgb(0,0,0);f=
+ont-family:verdana,geneva,lucida,&quot;lucida grande&quot;,arial,helvetica,=
+sans-serif,sans;font-size:11px;background-color:rgb(250,250,250)" target=3D=
+"_blank">https://docs.fedoraproject.org<wbr>/en-US...y_Options.html</a><div=
+><br></div><div>And made on my target (which is connected with my server wi=
+th simplistic Apache (it is one machine, which carries F26 on bare metal IN=
+TEL CORE) on server, client runs as qemux86_64 YOCTO emulator).</div><div><=
+br></div><div>So I need more help. Or we can work this out together for the=
+ whole YOCTO community. Adapting DNF for .rpm package use for YOCTO further=
+ on. :-)</div><div><br></div><div>Thank you,</div><div>Zoran</div></div><di=
+v class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Aug 22, 2017=
+ at 1:33 PM, Alexander Kanavin <span dir=3D"ltr">&lt;<a href=3D"mailto:alex=
+ander.kanavin@linux.intel.com" target=3D"_blank">alexander.kanavin@linux.in=
+tel<wbr>.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span>=
+On 08/22/2017 09:09 AM, _nobody_ _nobody_ wrote:<br>
+</span><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><span>
+The question is: where the Hell (in which /etc files on target) I should pu=
+t these???<br>
+<br></span><span>
+Links to the repos should be something like these:<br>
+<a href=3D"http://127.0.0.1:8000/core2_64" rel=3D"noreferrer" target=3D"_bl=
+ank">http://127.0.0.1:8000/core2_64</a><br>
+<a href=3D"http://127.0.0.1:8000/noarch" rel=3D"noreferrer" target=3D"_blan=
+k">http://127.0.0.1:8000/noarch</a><br>
+<a href=3D"http://127.0.0.1:8000/qemux86_64" rel=3D"noreferrer" target=3D"_=
+blank">http://127.0.0.1:8000/qemux86_<wbr>64</a><br>
+<a href=3D"http://127.0.0.1:8000/x86_64_nativesdk" rel=3D"noreferrer" targe=
+t=3D"_blank">http://127.0.0.1:8000/x86_64_n<wbr>ativesdk</a><br>
+<br>
+Any suggestions/verbal help is appreciated!<br>
+<br></span><span>
+Let us go from here... There is more to come!<br>
+</span></blockquote>
+<br>
+First of all, please introduce yourself. I personally am not very keen to h=
+elp people who are aggressively anonymous.<br>
+<br>
+The answer is here:<br>
+<br>
+<a href=3D"http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.ht=
+ml#using-runtime-package-management" rel=3D"noreferrer" target=3D"_blank">h=
+ttp://www.yoctoproject.org/do<wbr>cs/latest/dev-manual/dev-manua<wbr>l.html=
+#using-runtime-package-m<wbr>anagement</a><br>
+<br>
+<br>
+Alex<br>
+</blockquote></div><br></div>
+</div><br></div>
+
+--f403045cf2aec8bd2005576635b8--
