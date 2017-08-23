@@ -1,61 +1,63 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E72CE00C97; Wed, 23 Aug 2017 09:38:19 -0700 (PDT)
+	id 42C39E00CA5; Wed, 23 Aug 2017 10:17:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.180 listed in list.dnswl.org]
+	*      [212.227.126.134 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f180.google.com (mail-wr0-f180.google.com
-	[209.85.128.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2E2BE00C45
-	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 09:38:18 -0700 (PDT)
-Received: by mail-wr0-f180.google.com with SMTP id f8so2102301wrf.3
-	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 09:38:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=jXIzAoCD+CPFDVQUpbkQ7uPv5r/lGml/0Oh7TTfXS68=;
-	b=dS6DQ/+AhpWzqDmx7xtvGFQN4x2IQXmRj3YEKfKHaihmpd6+8JpOUYDX+u53r5X40s
-	akAnycv3C0mudR/gco2W4/KTyuLhYDuqOhuImGFBDVWxOySvWYpcVB+mwt45XxxZS2A5
-	Gmil8K5sh+iEs3K6voskpkiZv7yOfAnyeHYOABuSmsaOYx4Pw56snhUrEsoBhY+Wd93e
-	0R+kXLABOeIqCRY21nKYqtj35d/KakdU+V8l1f2F2FWG5h8kYv2vfDySg5sXOMjGhYeF
-	Dsm3rz0fKPb5JqM40TMBc1J4Jyzlnq1jVd8/R2/15sbMwMFsDcwnNbX7O2SrNJ13l/rH
-	mQbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=jXIzAoCD+CPFDVQUpbkQ7uPv5r/lGml/0Oh7TTfXS68=;
-	b=Q2MzcqTM53XzLxk0s3FWf302JhXxNQwtn4gsvZFy/oYNYBDitSp//IxCYmiNZ+mjGD
-	mJk5FjYmk0miKoNOmZd0A8pY5K3wWYh/Qq6AqavwISQwzqqTzBDXj3dJ1VkVHpeVAYvE
-	amGfm6kH3FodgzpFbdg/+LevAM3tuVq2pzUmpqWAsO1wCPyme9OI+vlj9DqzGAAga7nZ
-	l6DRB5QNSoCr4YknprY14IsXA/0DCshNQ6vnJaEXar/0jwvKoCl9K/J0rwBAKcRw5FW5
-	SuCsBNbWfSF8TNm1il14KI4QzWeJLJXbUe5qKOeqLQzBm7U0FQ1fQ8xCXJQljtMU8SiE
-	vhXA==
-X-Gm-Message-State: AHYfb5jx0Jal/PLQseOcPwt4GL5nvSa8UFxs8D4w5+AbMbhn+ay4HdRv
-	MXcsxdPBww/4ob52JLXVvM81yvKNcvrwXzit8g==
-X-Received: by 10.223.166.101 with SMTP id k92mr2346465wrc.283.1503506297141; 
-	Wed, 23 Aug 2017 09:38:17 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [212.227.126.134 listed in dnsbl.sorbs.net]
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD78AE00C45
+	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 10:17:46 -0700 (PDT)
+Received: from oxbaltgw54.schlund.de ([172.19.246.178]) by
+	mrelayeu.kundenserver.de (mreue001 [212.227.15.163]) with ESMTPSA
+	(Nemesis)
+	id 0MEfLF-1dmQxI2jAf-00FnLv; Wed, 23 Aug 2017 19:17:33 +0200
+Date: Wed, 23 Aug 2017 18:17:32 +0100 (BST)
+From: Colin Helliwell <colin.helliwell@ln-systems.com>
+To: Jussi Kukkonen <jussi.kukkonen@intel.com>,
+	Andre McCurdy <armccurdy@gmail.com>
+Message-ID: <117613376.118923.1503508652817@email.1and1.co.uk>
+In-Reply-To: <CAJ86T=U2e0ukN=pd5P9-kQrgOoBSDSXPq1kDjrm93QRwYT3m1Q@mail.gmail.com>
+References: <0fe401d31b4c$ad25dac0$07719040$@ln-systems.com>
+	<CAHiDW_H+OPiekHXkoU2yxSbOXcuFoLKVvEG6U5XxQ8Htsu=K0Q@mail.gmail.com>
+	<1860092135.29844.1503412987767@email.1and1.co.uk>
+	<CAHiDW_FtVmiKcFqwH9vedxrEdB1YnLDQROypCuiRyapt_uu01w@mail.gmail.com>
+	<CAJ86T=U2e0ukN=pd5P9-kQrgOoBSDSXPq1kDjrm93QRwYT3m1Q@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.28.45.195 with HTTP; Wed, 23 Aug 2017 09:37:36 -0700 (PDT)
-X-Originating-IP: [82.22.166.118]
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 23 Aug 2017 17:37:36 +0100
-Message-ID: <CAK18fxG23fiaTMk86hQUYZVbRZApZMtM3StvuM5QefmCEHdw-g@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: kernel-yocto class requires BSP definition now
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.3-Rev30
+X-Originating-Client: open-xchange-appsuite
+X-Provags-ID: V03:K0:72F5nMDp84J+QjM6W45Va6wyQOQujeDbKWc/WjF8E1bIw1j9hD5
+	Sc0v+Ryj8Msa6qKCCVlsDuM7I6qVPHdLQ0df1ZLefiftvNy9Klw7GLaaTuXHUl2dwnGCR1J
+	40S7d/vG2N6yjuPnFo/UsGUDGRJstlCiTJY7V0HkIhewAlguOlVP4OQ/crQEr+WQnjDcYwf
+	I3iUvtnb80pDKapBqLodQ==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:u2P8O60TcCw=:ML3mFfZEuQrLEpws0HOi5z
+	Mmg7MByXhX1WnI++SjPvCvyOgNJxOS3+uaOnZkOvmS8TieBAsmtHhkSZW4GFQ2VZzKzKiOOlQ
+	FcDNC6bpB6b+0K4aCTRzpfIBJRCXxgRpPrDbkrh5cEkQzTjtRY4W+Ive3qZw0Y1cxRRo8XmV8
+	OVDFbNgKu761DooU3LqFe6H4fd5sh1kd0/nhmn/QZ5rx/n72gqFibDDYtL5++q14WoB3C0uYU
+	AMTIiqna7jTtwCR6MmXNOj1bKqjX9mfM4OCfOee2YubRRgHcupSAh67LI5F8H/T56GkZ2LmAv
+	a6zI028fXsazO5PTpoC3j8mJyC4/6+HOd0rAma4mVE/pHWZ5E4BaRuu+epUMLl2MT70T76dyW
+	+wvwq8CWPB7mgsRwowq+3ZDmZJZO2v9A3PX1YfAtF26EhV00duUV25NII1TmLwFgePUSTVbe6
+	5puBmDYrbWWQQAKhXlAez5pd+q4+93fCUFMdob61E59W5QRP8cXliOwxgLWpslA0tgbgP++bg
+	t2WTv1DgKhyNut817RUJ5gD6UJPC6O8yhRlbOoWXCipBm5TYDsk+tghmIQNh+w21I6SCJ69tw
+	ygWmNgxv+HFZODTx2wzODErkmY8mDRhKnjBsrYd3xVHmy/9t7VGMQAAIhVSrIaaNNdVsHBUuW
+	QMzVBIA2EPD1zQfL9zuisqBlkgAtu3KgmGCEtVm0m/sgZZzA4jghzAH8Daj03O9oEBJYwfT91
+	Tr83j5JsqJe8TjcSaR0GAIg36Wc6Q5XaAuWZfVKTijQ6jw9phLO0yoHF9FE=
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Custom recipe - resolving "do_package_qa: QA Issue: -dev package contains non-symlink .so"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Colin Helliwell <colin.helliwell@ln-systems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -64,84 +66,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Aug 2017 16:38:19 -0000
-Content-Type: multipart/alternative; boundary="f403045cf6eac2557405576e560b"
+X-List-Received-Date: Wed, 23 Aug 2017 17:17:48 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---f403045cf6eac2557405576e560b
-Content-Type: text/plain; charset="UTF-8"
+Resolved now - thanks for the assistance.
 
-Hello all,
+> On 23 August 2017 at 00:45 Andre McCurdy <armccurdy@gmail.com> wrote:
+> 
+> On Tue, Aug 22, 2017 at 12:18 PM, Jussi Kukkonen
+> 
+> <jussi.kukkonen@intel.com> wrote:
+> 
+> > On 22 August 2017 at 17:43, Colin Helliwell <colin.helliwell@ln-systems.com>
+> > wrote:
+> > 
+> > > > On 22 August 2017 at 15:13 Jussi Kukkonen <jussi.kukkonen@intel.com>
+> > > > wrote:
+> > > > On 22 August 2017 at 16:43, <colin.helliwell@ln-systems.com> wrote:
+> > > > 
+> > > > > I have a custom recipe (for the AWS SDK), which is failing at the
+> > > > > package_qa
+> > > > > stage.
+> > > > > The recipe is a very basic cmake styley, and on its own seems to begin
+> > > > > with:
+> > > > > 'bitbake -f -c package aws-sdk' completes without errors.
+> > > > > 
+> > > > > But for 'bitbake -c package_qa aws-sdk) I get:
+> > > > > 
+> > > > > ERROR: aws-sdk-1.1.31-r0 do_package_qa: QA Issue: -dev package
+> > > > > contains
+> > > > > non-symlink .so: aws-sdk-dev path
+> > > > > 
+> > > > > '/work/armv7a-neon-poky-linux-gnueabi/aws-sdk/1.1.31-r0/packages-split/aws-s
+> > > > > dk-dev/usr/lib/libaws-cpp-sdk-core.so'
+> > > > > -dev package contains non-symlink .so: aws-sdk-dev path
+> > > > > 
+> > > > > '/work/armv7a-neon-poky-linux-gnueabi/aws-sdk/1.1.31-r0/packages-split/aws-s
+> > > > > dk-dev/usr/lib/libaws-cpp-sdk-s3.so' [dev-elf]
+> > > > > 
+> > > > > I'd appreciate help with resolving this. Thanks.>
+> > > > 
+> > > > It looks like aws-sdk installs .so files that are actual libraries (and
+> > > > not symlinks to the versioned libraries as would be the usual case). The
+> > > > best solution would be to get aws to install versioned libraries but if
+> > > > that's not an option, you probably want to package the .so files in the
+> > > > actual library package, not the -dev package (which is the default since
+> > > > usually .so are symlinks for development and the actually versioned ).
+> > > > 
+> > > > You may have to set both FILES_${PN}-dev and FILES_${PN} (so the former
+> > > > doesn't grab the so files, and the latter does)
+> > > > 
+> > > > HTH,
+> > > >  Jussi
+> > > 
+> > > Thanks for the tips, Jussi.
+> > > I'm managing to get a little further, added
+> > > INSANE_SKIP_${PN}-dev += "dev-elf"
+> > 
+> > I suggest not doing this. It seems the warning is valid so you should fix
+> > the issue, not silence the warning.
+> 
+> Right, and especially true for the dev-elf QA check. Putting an actual
+> elf .so file in a -dev package introduces a run-time dependency on the
+> -dev package, which causes header files etc to be pulled into the
+> final image. Trying to disable the "dev-elf" QA test should be QA test
+> failure in itself... :-)
+> 
+> > > FILES_${PN}-dev += "${libdir}/libaws-cpp-sdk-core.so
+> > > ${libdir}/libaws-cpp-sdk-s3.so"
+> > 
+> > ${PN}-dev should _not_ contain so files (in your special case). The issue is
+> > that the default value contains "${libdir}/lib*.so" already (it's not quite
+> > so simple but see meta/conf/bitbake.conf for details if interested). You
+> > should be able to just redefine the variable completely:
+> > 
+> > FILES_${PN}-dev = "${includedir}"
+> 
+> Completely over-riding any of the default packaging rules isn't ideal.
+> To force .so files into main package the following is a little
+> cleaner:
+> 
+> FILES_SOLIBSDEV = ""
+>  FILES_${PN} += "${libdir}/*.so"
+> 
+> > > FILES_${PN} += "${libdir}/libaws-cpp-sdk-core.so
+> > > ${libdir}/libaws-cpp-sdk-s3.so"
+> > 
+> > This looks correct to me.
+> > 
+> > Jussi
+> > 
+> > --
+> > 
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 
-Since...
-
-commit b6f78c7a27d6d3acae63cf1fdb7b56c11c919830
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Sun Aug 20 22:58:21 2017 -0400
-
-    kernel-yocto: ensure that only valid BSPs are built
-
-    There was a bug in the search routines responsible for locating
-    BSP definitions which returned a valid match if only the ktype
-    matched.
-
-    This meant that someone looking for "qemux86foo" (which is an
-    invalid definition) would potentially end up building "qemuarm"
-    and be none the wiser (until it didn't boot).
-
-    With this fix to the tools search routine, and improved return
-    code testing, we will now stop the build and report and error to
-    the user.
-
-    [YOCTO: #11878]
-
-    (From OE-Core rev: 44aea7b87307795fe4e089c51d45afccaa2f6525)
-
-    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-
-... the build fails for cases where there is no scc definition used.
-meta-raspberrypi was using this for configuration fragments feature but
-without defining any scc or using any feature branches etc. This got broken
-now since finding BSP definition files is a requirement in the class.
-
---
-Andrei Gherzan
-
---f403045cf6eac2557405576e560b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello all,</div><div><br></div><div>Since...</div><di=
-v><br></div><div><div>commit b6f78c7a27d6d3acae63cf1fdb7b56c11c919830</div>=
-<div>Author: Bruce Ashfield &lt;<a href=3D"mailto:bruce.ashfield@windriver.=
-com">bruce.ashfield@windriver.com</a>&gt;</div><div>Date: =C2=A0 Sun Aug 20=
- 22:58:21 2017 -0400</div><div><br></div><div>=C2=A0 =C2=A0 kernel-yocto: e=
-nsure that only valid BSPs are built</div><div>=C2=A0 =C2=A0=C2=A0</div><di=
-v>=C2=A0 =C2=A0 There was a bug in the search routines responsible for loca=
-ting</div><div>=C2=A0 =C2=A0 BSP definitions which returned a valid match i=
-f only the ktype</div><div>=C2=A0 =C2=A0 matched.</div><div>=C2=A0 =C2=A0=
-=C2=A0</div><div>=C2=A0 =C2=A0 This meant that someone looking for &quot;qe=
-mux86foo&quot; (which is an</div><div>=C2=A0 =C2=A0 invalid definition) wou=
-ld potentially end up building &quot;qemuarm&quot;</div><div>=C2=A0 =C2=A0 =
-and be none the wiser (until it didn&#39;t boot).</div><div>=C2=A0 =C2=A0=
-=C2=A0</div><div>=C2=A0 =C2=A0 With this fix to the tools search routine, a=
-nd improved return</div><div>=C2=A0 =C2=A0 code testing, we will now stop t=
-he build and report and error to</div><div>=C2=A0 =C2=A0 the user.</div><di=
-v>=C2=A0 =C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 [YOCTO: #11878]</div><div>=C2=
-=A0 =C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 (From OE-Core rev: 44aea7b87307795=
-fe4e089c51d45afccaa2f6525)</div><div>=C2=A0 =C2=A0=C2=A0</div><div>=C2=A0 =
-=C2=A0 Signed-off-by: Bruce Ashfield &lt;<a href=3D"mailto:bruce.ashfield@w=
-indriver.com">bruce.ashfield@windriver.com</a>&gt;</div><div>=C2=A0 =C2=A0 =
-Signed-off-by: Richard Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfou=
-ndation.org">richard.purdie@linuxfoundation.org</a>&gt;</div></div><div><br=
-></div><div><br></div><div>... the build fails for cases where there is no =
-scc definition used. meta-raspberrypi was using this for configuration frag=
-ments feature but without defining any scc or using any feature branches et=
-c. This got broken now since finding BSP definition files is a requirement =
-in the class.</div><br clear=3D"all"><div><div class=3D"gmail_signature"><d=
-iv dir=3D"ltr"><div><div dir=3D"ltr"><div>--</div>Andrei Gherzan</div></div=
-></div></div></div>
-</div>
-
---f403045cf6eac2557405576e560b--
