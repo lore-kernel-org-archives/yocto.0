@@ -1,19 +1,20 @@
-Return-Path: <nobodyless@gmail.com>
+Return-Path: <torstensievers@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36117E00CB4; Tue, 22 Aug 2017 23:47:44 -0700 (PDT)
+	id 54589E00CA5; Wed, 23 Aug 2017 10:41:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM,WEIRD_PORT autolearn=no version=3.3.1
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (nobodyless[at]gmail.com)
+	mail provider *      (torstensievers[at]googlemail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.161.175 listed in list.dnswl.org]
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	*      [209.85.218.52 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.52 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -22,50 +23,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.175 listed in dnsbl.sorbs.net]
-Received: from mail-yw0-f175.google.com (mail-yw0-f175.google.com
-	[209.85.161.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 220F5E00B8B
-	for <yocto@yoctoproject.org>; Tue, 22 Aug 2017 23:47:42 -0700 (PDT)
-Received: by mail-yw0-f175.google.com with SMTP id h127so4671451ywf.0
-	for <yocto@yoctoproject.org>; Tue, 22 Aug 2017 23:47:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=70eUE1vbIxgbqX7LJfZBznOkf1fmSKzgtKQYjrqwF+w=;
-	b=E2xNbqXJT3GKDfRVw0t1GOnPgHOicWVKlHRILWD/H9XEwqyCzKp2EDyuVcDgw1n/V/
-	gGpnA0nsX1IfepBUNLKQWysDPPdAxVegs2K0+YqBvA/f8mcIbniR5R9EPKMuBoMlcd+t
-	8bui/Kjf4aVAqcaM/uy96XqghrfMJ6S5midXRGmKWX6XvYZ1NAoAuf4A4+kD/+wIBTsu
-	OwYi+/a/zfNdqCyy8IJSrHpBjaA88KoymLWu9FOvUfvdVRgpr63kRAALU9eUP4T55sbR
-	yUINLvwMnXn8Ps5Yl7SZYyBKM1lslBXszRaFHvtRwb88DbBqPpzKnaavypZTWVHOlcll
-	qNgQ==
+Received: from mail-oi0-f52.google.com (mail-oi0-f52.google.com
+	[209.85.218.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 460D1E00C45
+	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 10:41:25 -0700 (PDT)
+Received: by mail-oi0-f52.google.com with SMTP id j144so8412784oib.1
+	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 10:41:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=FjM+6pZESPl8cBEri/ecMAImY3WT9AP4rt3PZjW4P54=;
+	b=JzmIeSjhbVhGBFqMId5C7KTv0jCudN23qEqmRYqLZykvmK1shmptcmknS9qSBeZHPn
+	JvuKtk3l5KWD7dyfMYW0fgDayaxrmYtAp8tNLT0ch+9iKPHgu/dvRag3a5TXdob4TW4i
+	OUXXm2Y+7Y6CLDBn/YCyO3tZVBzory4n2X/VP26UXhYhzlveAzgR9BXrgF5ujDCcJ2jV
+	JzeLcnEHZ2KJkyDCGOZZHE3dJgbwYeCw0EdDO+pmowLyqyB9yXPFB1/XxbOKEihwjlB9
+	bZ++p5v44Xb1VT9xzbILQUg7fExLhsK3JZek6DrM3/AyHbSUS71QUlq6zwFcD3geKWIy
+	Tw+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=70eUE1vbIxgbqX7LJfZBznOkf1fmSKzgtKQYjrqwF+w=;
-	b=BFdYYuS3McbgmdH3Ehhr7ssnM7HYRDA4hx7laOva98cMBMxvSEFNht2n2XY05zHQRH
-	wQ6nZP7ajSTSvL9rMKIEeXTYSEmH8cS2u7QSMirCtWbHu7LUNVY0aHRmFVaRES45bkC8
-	DCLu0m0U3XvxTINEJX/lYnQ779pKkRVCM/FCwdlh/erdJnp+Nt+13hG/3YjBV8tzId9b
-	hhNoGXaDdHGBBP4fhenCYhCS9Ry5I7oH4POyNSg65g8I74s1EvFpZqGWJrKVg+ZKHn8k
-	IupUIAp2Ew+HYGQmrl2IOnG23qNqy3NRqNvwCnRxXB/QyrsFDMLB8hSqsDfVdv6ZnVSb
-	l5Qg==
-X-Gm-Message-State: AHYfb5hCfPiXUdeEiXhzmWupyqzV/E9aCJVn2Uia45/Gui0kVKNOqkfb
-	6SfHItdx6TZCfNZdZSycXRFHJesh6/C6
-X-Received: by 10.37.105.195 with SMTP id e186mr1400723ybc.278.1503470862088; 
-	Tue, 22 Aug 2017 23:47:42 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=FjM+6pZESPl8cBEri/ecMAImY3WT9AP4rt3PZjW4P54=;
+	b=HAtgugL6iFpCgEaAb8MPNQeR07wvNdeUh2iqCj3mgBAOV0VwHzd4fHJ1ECOUWypFFM
+	C2shSDo/vV+hsBhrAhjKroWQUd44EIITjOEPJaEh3QuqJn7XrRPh74TJ4YC/tuo//c3E
+	8iijfYE8kjvXXzLWPEYE/rvuUpLvK2U7e163EEQ2ygG1VWwYOTi0Mi2nnmF4IjEjcJXO
+	pOZKrGur1lBcife2n0TTTrwG8MVNWFnfAyh1tSGYLR+R1Sb6pDhUTFL4DA6ZKYIbEchO
+	K+LAcDrDbZYFjLevfw5IqFA+zFnRCtUbcVzvhfuNtdDwC5X0pYfUPNO2qfPqvlW1N+KI
+	EwZQ==
+X-Gm-Message-State: AHYfb5hcH2Ph4MX5YauJ7gYzSmAQb/KNgQALQvunpx9Q9ZL8gR+klMUn
+	fuj4lbzgBjZHDj4YE9/Gi2g3s8JApwHz
+X-Received: by 10.202.208.70 with SMTP id h67mr4091421oig.106.1503510084370;
+	Wed, 23 Aug 2017 10:41:24 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.129.83.213 with HTTP; Tue, 22 Aug 2017 23:47:41 -0700 (PDT)
-In-Reply-To: <96d5a0c7-4df6-1576-7e50-916c5af724c6@linux.intel.com>
-References: <CABpTzB12oTgOmND6wDn+vD2aTvUd6WmavbmHNAXGpA6_dA+Tag@mail.gmail.com>
-	<96d5a0c7-4df6-1576-7e50-916c5af724c6@linux.intel.com>
-From: _nobody_ _nobody_ <nobodyless@gmail.com>
-Date: Wed, 23 Aug 2017 08:47:41 +0200
-Message-ID: <CABpTzB3yC2vHf0mFdDq8vGksQSJk1BHkuwTxMb0orCTL4kh1YQ@mail.gmail.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Received: by 10.74.139.16 with HTTP; Wed, 23 Aug 2017 10:41:23 -0700 (PDT)
+From: Torsten Sievers <torstensievers@googlemail.com>
+Date: Wed, 23 Aug 2017 19:41:23 +0200
+Message-ID: <CAPZw6vNdWvidmxEhYDU+i3sAYaYZJ=e_nudT3y-f=upcr-SVzQ@mail.gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Wed, 23 Aug 2017 15:14:16 -0700
-Cc: yocto@yoctoproject.org
-Subject: Re: [DNF YOCTO clarifications] smart was replaced with dnf in Yocto 2.3
+Subject: Runtime Dependencies dependent on lowercase recipe name?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,142 +72,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Aug 2017 06:47:44 -0000
-Content-Type: multipart/alternative; boundary="94eb2c14eda8aa4264055766165a"
+X-List-Received-Date: Wed, 23 Aug 2017 17:41:26 -0000
+Content-Type: multipart/alternative; boundary="001a11401b367ec7a205576f38a7"
 
---94eb2c14eda8aa4264055766165a
+--001a11401b367ec7a205576f38a7
 Content-Type: text/plain; charset="UTF-8"
 
-Privet Aleks,
+Hi everybody,
 
-Nezacem zlitsja/serditsja. Ja prosto ne znal cto u vas takaja politika.
+i am using Poky/Pyro for one of my projects. The chosen Package Format is
+RPM.
 
-All Cool. Did not know that this is the policy, to have real names on YOCTO
-list. I removed nobody from it, and added my real name and real @. Please,
-remove nobody from RE: email.
+After some hours of debugging in ran into this pretty interesting behaviour
+were i would guess it is a bug...
 
-The answer is to general. I somehow well know DNF service, but in FEDORA
-light. For fedora I do know what I need to do, and where/what are the
-options and which plug-ins to use/add, and ho to remove, upgrade, and
-configure.
+My starting point was a really simple  HelloWorld Recipe:
+---------- snip ----------------
+$ cat helloworld_0.1.bb
+DESCRIPTION = "Simple helloworld application"
+LICENSE = "CLOSED"
+RDEPENDS_${PN}+="procps"
+do_compile() {
+             echo 'int main(int argc, char **argv) { return 0; }' >
+helloworld.c
+             ${CC} ${LDFLAGS} helloworld.c -o helloworld
+}
 
-I tried all of this in the lieu of the following pointers:
-https://docs.fedoraproject.org/en-US...ositories.html
-<https://docs.fedoraproject.org/en-US/Fedora/26/html/System_Administrators_Guide/sec-Configuring_DNF_and_DNF_Repositories.html>
-https://docs.fedoraproject.org/en-US...y_Options.html
-<https://docs.fedoraproject.org/en-US/Fedora/26/html/System_Administrators_Guide/sec-Setting_repository_Options.html>
+do_install() {
+             install -d ${D}${bindir}
+             install -m 0755 helloworld ${D}${bindir}
+}
+---------- snap --------------
 
-And made on my target (which is connected with my server with simplistic
-Apache (it is one machine, which carries F26 on bare metal INTEL CORE) on
-server, client runs as qemux86_64 YOCTO emulator).
+As you can see it does just compile a program that is immediately
+returning.
+However it introduces an arbitrary runtime dependency to procps
+Building it results in an RPM that depends to procps
 
-So I need more help. Or we can work this out together for the whole YOCTO
-community. Adapting DNF for .rpm package use for YOCTO further on.
+---------------snip -------------------
+$ rpm -qpR helloworld-0.1-r0.cortexa7hf_neon_vfpv4.rpm
+libc6 >= 2.25
+procps
+rpmlib(CompressedFileNames) <= 3.0.4-1
+rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+---------- snap --------------
 
-Please, reply on my real @ address.
 
-Thank you,
-Zoran
+Now the strange thing happens: copy the helloworld_0.1.bb to
+Helloworld_0.1.bb
+So the only difference is the lowercase vs capital "H" in the recipe name.
 
-On Tue, Aug 22, 2017 at 1:33 PM, Alexander Kanavin <
-alexander.kanavin@linux.intel.com> wrote:
+rebuild and look at the rpm dependencies
+----------- snip --------------------------
+$ rpm -qpR Helloworld-0.1-r0.cortexa7hf_neon_vfpv4.rpm
+rpmlib(CompressedFileNames) <= 3.0.4-1
+rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+------------- snap ------------------------
 
-> On 08/22/2017 09:09 AM, _nobody_ _nobody_ wrote:
->
->> The question is: where the Hell (in which /etc files on target) I should
->> put these???
->>
->> Links to the repos should be something like these:
->> http://127.0.0.1:8000/core2_64
->> http://127.0.0.1:8000/noarch
->> http://127.0.0.1:8000/qemux86_64
->> http://127.0.0.1:8000/x86_64_nativesdk
->>
->> Any suggestions/verbal help is appreciated!
->>
->> Let us go from here... There is more to come!
->>
->
-> First of all, please introduce yourself. I personally am not very keen to
-> help people who are aggressively anonymous.
->
-> The answer is here:
->
-> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manua
-> l.html#using-runtime-package-management
->
->
-> Alex
->
+both the libc as well as the procps dependencies are gone...
+It is also gone in the spec-file and already forgotton in the
+package_rpm.class
 
---94eb2c14eda8aa4264055766165a
+Other than the omitted dependencies the rpm looks fine. It contains the
+binary as well as hashes etc...
+
+
+Anybody can explain me if this is intended or do i run into a bug?
+
+Many thanks and best regards
+  Torsten
+
+--001a11401b367ec7a205576f38a7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Privet Aleks,<div><br></div><div>Nezacem zlitsja/serditsja=
-. Ja prosto ne znal cto u vas takaja politika.</div><div><br></div><div>All=
- Cool. Did not know that this is the policy, to have real names on YOCTO li=
-st. I removed nobody from it, and added my real name and real @. Please, re=
-move nobody from RE: email.</div><div><br></div><div>The answer is to gener=
-al. I somehow well know DNF service, but in FEDORA light. For fedora I do k=
-now what I need to do, and where/what are the options and which plug-ins to=
- use/add, and ho to remove, upgrade, and configure.</div><div><br></div><di=
-v>I tried all of this in the lieu of the following pointers:</div><div><a h=
-ref=3D"https://docs.fedoraproject.org/en-US/Fedora/26/html/System_Administr=
-ators_Guide/sec-Configuring_DNF_and_DNF_Repositories.html" target=3D"_blank=
-" style=3D"color:rgb(0,0,0);font-family:verdana,geneva,lucida,&quot;lucida =
-grande&quot;,arial,helvetica,sans-serif,sans;font-size:11px;background-colo=
-r:rgb(250,250,250)">https://docs.fedoraproject.org/en-US...ositories.html</=
-a></div><a href=3D"https://docs.fedoraproject.org/en-US/Fedora/26/html/Syst=
-em_Administrators_Guide/sec-Setting_repository_Options.html" target=3D"_bla=
-nk" style=3D"color:rgb(0,0,0);font-family:verdana,geneva,lucida,&quot;lucid=
-a grande&quot;,arial,helvetica,sans-serif,sans;font-size:11px;background-co=
-lor:rgb(250,250,250)">https://docs.fedoraproject.org/en-US...y_Options.html=
-</a><div><br></div><div>And made on my target (which is connected with my s=
-erver with simplistic Apache (it is one machine, which carries F26 on bare =
-metal INTEL CORE) on server, client runs as qemux86_64 YOCTO emulator).</di=
-v><div><br></div><div>So I need more help. Or we can work this out together=
- for the whole YOCTO community. Adapting DNF for .rpm package use for YOCTO=
- further on.</div><div><br></div><div>Please, reply on my real @ address.</=
-div><div><br></div><div>Thank you,</div><div>Zoran</div></div><div class=3D=
-"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Aug 22, 2017 at 1:33 P=
-M, Alexander Kanavin <span dir=3D"ltr">&lt;<a href=3D"mailto:alexander.kana=
-vin@linux.intel.com" target=3D"_blank">alexander.kanavin@linux.intel.com</a=
->&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On 0=
-8/22/2017 09:09 AM, _nobody_ _nobody_ wrote:<br>
-</span><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><span class=3D"">
-The question is: where the Hell (in which /etc files on target) I should pu=
-t these???<br>
-<br></span><span class=3D"">
-Links to the repos should be something like these:<br>
-<a href=3D"http://127.0.0.1:8000/core2_64" rel=3D"noreferrer" target=3D"_bl=
-ank">http://127.0.0.1:8000/core2_64</a><br>
-<a href=3D"http://127.0.0.1:8000/noarch" rel=3D"noreferrer" target=3D"_blan=
-k">http://127.0.0.1:8000/noarch</a><br>
-<a href=3D"http://127.0.0.1:8000/qemux86_64" rel=3D"noreferrer" target=3D"_=
-blank">http://127.0.0.1:8000/qemux86_<wbr>64</a><br>
-<a href=3D"http://127.0.0.1:8000/x86_64_nativesdk" rel=3D"noreferrer" targe=
-t=3D"_blank">http://127.0.0.1:8000/x86_64_n<wbr>ativesdk</a><br>
-<br>
-Any suggestions/verbal help is appreciated!<br>
-<br></span><span class=3D"">
-Let us go from here... There is more to come!<br>
-</span></blockquote>
-<br>
-First of all, please introduce yourself. I personally am not very keen to h=
-elp people who are aggressively anonymous.<br>
-<br>
-The answer is here:<br>
-<br>
-<a href=3D"http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.ht=
-ml#using-runtime-package-management" rel=3D"noreferrer" target=3D"_blank">h=
-ttp://www.yoctoproject.org/do<wbr>cs/latest/dev-manual/dev-manua<wbr>l.html=
-#using-runtime-package-<wbr>management</a><br>
-<br>
-<br>
-Alex<br>
-</blockquote></div><br></div>
+<div dir=3D"ltr">Hi everybody,<div><br></div><div>i am using Poky/Pyro for =
+one of my projects. The chosen Package Format is RPM.</div><div><br></div><=
+div>After some hours of debugging in ran into this pretty interesting behav=
+iour were i would guess it is a bug...</div><div><br></div><div>My starting=
+ point was a really simple =C2=A0HelloWorld Recipe:</div><div><div>--------=
+-- snip ----------------</div><div>$ cat <a href=3D"http://helloworld_0.1.b=
+b">helloworld_0.1.bb</a></div><div>DESCRIPTION =3D &quot;Simple helloworld =
+application&quot;</div><div>LICENSE =3D &quot;CLOSED&quot;</div><div>RDEPEN=
+DS_${PN}+=3D&quot;procps&quot;</div><div>do_compile() {</div><div>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0echo &#39;int main(int argc, char =
+**argv) { return 0; }&#39; &gt; helloworld.c</div><div>=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0${CC} ${LDFLAGS} helloworld.c -o helloworld</di=
+v><div>}</div><div><br></div><div>do_install() {</div><div>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0install -d ${D}${bindir}</div><div>=C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0install -m 0755 helloworld ${D}${=
+bindir}</div><div>}</div></div><div>---------- snap --------------</div><di=
+v><br></div><div>As you can see it does just compile a program that is imme=
+diately returning.=C2=A0</div><div>However it introduces an arbitrary runti=
+me dependency to procps=C2=A0</div><div>Building it results in an RPM that =
+depends to procps</div><div><br></div><div>---------------snip ------------=
+-------</div><div><div>$ rpm -qpR helloworld-0.1-r0.cortexa7hf_neon_vfpv4.r=
+pm</div><div>libc6 &gt;=3D 2.25<br></div><div>procps</div><div>rpmlib(Compr=
+essedFileNames) &lt;=3D 3.0.4-1</div><div>rpmlib(PayloadFilesHavePrefix) &l=
+t;=3D 4.0-1</div></div><div><div>---------- snap --------------</div></div>=
+<div><br></div><div><br></div><div>Now the strange thing happens: copy the =
+<a href=3D"http://helloworld_0.1.bb">helloworld_0.1.bb</a> to <a href=3D"ht=
+tp://Helloworld_0.1.bb">Helloworld_0.1.bb</a>=C2=A0</div><div>So the only d=
+ifference is the lowercase vs capital &quot;H&quot; in the recipe name.</di=
+v><div><br></div><div>rebuild and look at the rpm dependencies</div><div>--=
+--------- snip --------------------------</div><div><div>$ rpm -qpR Hellowo=
+rld-0.1-r0.cortexa7hf_neon_vfpv4.rpm</div><div>rpmlib(CompressedFileNames) =
+&lt;=3D 3.0.4-1</div><div>rpmlib(PayloadFilesHavePrefix) &lt;=3D 4.0-1</div=
+></div><div>------------- snap ------------------------</div><div><br></div=
+><div>both the libc as well as the procps dependencies are gone...</div><di=
+v><div>It is also gone in the spec-file and already forgotton in the packag=
+e_rpm.class</div></div><div><br></div><div>Other than the omitted dependenc=
+ies the rpm looks fine. It contains the binary as well as hashes etc...</di=
+v><div><br></div><div><br></div><div>Anybody can explain me if this is inte=
+nded or do i run into a bug?</div><div><br></div><div>Many thanks and best =
+regards</div><div>=C2=A0 Torsten</div><div><br></div></div>
 
---94eb2c14eda8aa4264055766165a--
+--001a11401b367ec7a205576f38a7--
