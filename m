@@ -1,60 +1,33 @@
-Return-Path: <msm-oss@mcclintock.net>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31F88E0090A; Wed, 23 Aug 2017 15:37:25 -0700 (PDT)
+	id 12CEBE0090A; Wed, 23 Aug 2017 15:41:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.45 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
-	[209.85.213.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72631E00349
-	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 15:37:23 -0700 (PDT)
-Received: by mail-vk0-f45.google.com with SMTP id s199so5078055vke.1
-	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 15:37:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mcclintock.net; s=google;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=JKU8iNwblr1OljvDfNtVGP9cRyFimzuptunCbKBsZao=;
-	b=lsbGY0FZDb/mvYQMOXcVrcQonjvilDGUL3bwqk47lYgupT4bOnA8w34AFdWPNS9hrU
-	W8bEdpdn5/hoGQqd7eR5Uxd3ZryTL5wMrAlK09sBwXcwz8e1OaKhqKy8/Sx4ikChMj6M
-	OFnDfk1p3Abnuw3/oISP1uGb/DqMpU4UOSc7o=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=JKU8iNwblr1OljvDfNtVGP9cRyFimzuptunCbKBsZao=;
-	b=jVyS35q5/woasvel+tmFL4yFetB+saFKWNcVrSxC4XPIxXoG95lS12vkK43Uu1NHum
-	NXNS1IXo2dcijo+OHKNXpkz07LDXBmRgG3w/8pMcUBgkpSVXhyXA9dIAp9JVA+qivMhK
-	Ee4uXMiCpeohPnmFyJFSLP/k7dEVVoRk5OPUBJpUw95kdE4toToN2rig8aLrHhTW3BY3
-	+ZV7OzCd+ICJJ6NPH5EaFlj4sHPbDvVY8kZTI0JM6pHDvYjNg00kseoOZipfhjjL/BVT
-	aiZKV9DWmw/Ia1iNOENEqChxj6i+2GwjFpVpyB/eKWQ9FDgEvem/b1PxEU6DTGDLHS8u
-	8ndg==
-X-Gm-Message-State: AHYfb5g48KuhDbkzHHmnk5QClRSCn2GBore2iNOykLwlmiDPV9oAXHz8
-	ROB6HapY3/72mXxGO1FVy1lxI/WzLJL0
-X-Received: by 10.31.174.149 with SMTP id x143mr2271193vke.175.1503527843370; 
-	Wed, 23 Aug 2017 15:37:23 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.103.62.18 with HTTP; Wed, 23 Aug 2017 15:37:03 -0700 (PDT)
-In-Reply-To: <AM4PR08MB28993716E41C0DD068249D208E870@AM4PR08MB2899.eurprd08.prod.outlook.com>
-References: <AM4PR08MB28993716E41C0DD068249D208E870@AM4PR08MB2899.eurprd08.prod.outlook.com>
-From: Matthew McClintock <msm-oss@mcclintock.net>
-Date: Wed, 23 Aug 2017 17:37:03 -0500
-Message-ID: <CAEsOVNeP3T8Thz=2EgR2Y7UNL77ZEpGJHNAQ4koGu+Ky+12s6w@mail.gmail.com>
-To: Pieter Cardoen <pieter.cardoen@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-raspberrypi: u-boot serial console on rpi 3 b
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from blaine.gmane.org (unknown [195.159.176.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13622E00349
+	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 15:41:08 -0700 (PDT)
+Received: from list by blaine.gmane.org with local (Exim 4.84_2)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1dkeKV-0006YN-BD
+	for yocto@yoctoproject.org; Thu, 24 Aug 2017 00:40:55 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Ferry Toth <ftoth@telfort.nl>
+Date: Wed, 23 Aug 2017 22:40:41 +0000 (UTC)
+Message-ID: <onl099$de$1@blaine.gmane.org>
+References: <onj82v$64m$1@blaine.gmane.org>
+	<7b1dbafb-9cdb-c64b-aed7-37f6b26d8b50@gmail.com>
+	<onkni5$c4n$1@blaine.gmane.org> <onks4d$r7b$1@blaine.gmane.org>
+	<e516cd1c-786a-18f5-7ea6-09da77514d7c@gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@blaine.gmane.org
+User-Agent: Pan/0.141 (Tarzan's Death; 168b179 git.gnome.org/pan2)
+Subject: Re: Problems building U-Boot for x86_64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,26 +39,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Aug 2017 22:37:25 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 23 Aug 2017 22:41:10 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Aug 21, 2017 at 4:50 AM, Pieter Cardoen
-<pieter.cardoen@hotmail.com> wrote:
-> Dear
->
->
-> I noticed that the serial console is not working in u-boot on a raspberry pi
-> 3 model B when I build an image using yocto morty branch.
->
->
-> Can anyone give me advice to solve this?
+Op Wed, 23 Aug 2017 14:51:55 -0700, schreef Khem Raj:
+
+> On 8/23/17 2:29 PM, Ferry Toth wrote:
+>> Ferry Toth wrote:
+>> 
+>>> Khem Raj wrote:
+>>>
+>>>> On 8/22/17 11:41 PM, Ferry Toth wrote:
+>>>>> I am having trouble building a specific U-Boot version with Yocto.
+>>>>> Outside of Yocto on 64 bit Ubuntu 17.04 with multilib it builds
+>>>>> fine.
+>>>>>
+>>>>> I am extending meta-intel-edison to build a 64 bit Poke Morty, with
+>>>>> a vanilla 64-bit kernel (4.12). This is working quite well.
+>>>>>
+>>>>> My host is x86_64, the target is core2 with tune=core-64.
+>>>>>
+>>>>> Without 64bit tune I can build U-Boot fine. With 64bit it can not
+>>>>> link, appearently because it needs lbgcc.a
+>>>>
+>>>> what is exact error message ? is it while compiling host bits or
+>>>> target bits ?
+>>>
+>>> The failing line is:
+>>> x86_64-poky-linux-ld.bfd -Bsymbolic -Bsymbolic-functions -m elf_i386
+>>> --emit- relocs --wrap=__divdi3 --wrap=__udivdi3 --wrap=__moddi3
+>>> --wrap=__umoddi3 -- gc-sections -pie -Bstatic --no-dynamic-linker
+>>> -Ttext 0x01101000 -o u-boot -T u-boot.lds arch/x86/cpu/start.o
+>>> --start-group arch/x86/cpu/built-in.o arch/x86/lib/built-in.o
+>>> board/intel/edison/built-in.o cmd/built-in.o common/built-in.o
+>>> disk/built-in.o drivers/built-in.o drivers/dma/built-in.o
+>>> drivers/gpio/built-in.o drivers/i2c/built-in.o drivers/mmc/built-in.o
+>>> drivers/mtd/built-in.o drivers/mtd/onenand/built-in.o
+>>> drivers/mtd/spi/built- in.o drivers/net/built-in.o
+>>> drivers/net/phy/built-in.o drivers/pci/built- in.o
+>>> drivers/power/built-in.o drivers/power/battery/built-in.o
+>>> drivers/power/domain/built-in.o drivers/power/fuel_gauge/built-in.o
+>>> drivers/power/mfd/built-in.o drivers/power/pmic/built-in.o
+>>> drivers/power/regulator/built-in.o drivers/serial/built-in.o
+>>> drivers/spi/built-in.o drivers/usb/common/built-in.o
+>>> drivers/usb/dwc3/built- in.o drivers/usb/emul/built-in.o
+>>> drivers/usb/eth/built-in.o drivers/usb/gadget/built-in.o
+>>> drivers/usb/gadget/udc/built-in.o drivers/usb/host/built-in.o
+>>> drivers/usb/musb-new/built-in.o drivers/usb/musb/built-in.o
+>>> drivers/usb/phy/built-in.o drivers/usb/ulpi/built-in.o dts/built-in.o
+>>> fs/built-in.o lib/built-in.o net/built-in.o test/built-in.o
+>>> test/dm/built-in.o --end-group arch/x86/lib/lib.a -Map u-boot.map
+>>> ERROR: oe_runmake failed arch/x86/lib/built-in.o: In function
+>>> `__wrap___udivdi3':
+>>> /home/ferry/tmp/edison-intel/my/edison-
+>>> morty/out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
+v2017.03-
+>>> r0/git/arch/x86/lib/gcc.c:25: undefined reference to
+>>> `__normal___udivdi3'
+>> 
+>> I as believe the missing lib is libgcc.a I just my sysroot and found it
+>> here:
+> 
+> the linker cmdline above does not link with libgcc and there might be a
+> good reason for that, many standalone applications dont link with libgcc
+> intentionally. You could look into the code and see if it can be written
+> differently such that gcc does not have to invoke a helper function from
+> gcc runtime. Another option is to link with libgcc explicitly
+
+If change my setup to build for a 32bit target, it build u-boot without 
+error.
+When I build the same git outside yocto on 64bit with multilib installed 
+it also builds without error. In that case the make command would be:
+make -j8 edison_defconfig
+
+My conclusion: I have some bb variable set to the wrong value or I need 
+to get multilib installed into /..../sysroots/x86_64-linux/lib.
+
+So how to do that?
+
+>> sysroots/lib32-edison/usr/lib/i686-pokymllib32-linux/6.2.0/
+>> sysroots/lib32-edison-tcbootstrap/usr/lib/i686-pokymllib32-linux/6.2.0/
+>> sysroots/edison/usr/lib64/x86_64-poky-linux/6.2.0/
+>> sysroots/edison-tcbootstrap/usr/lib64/x86_64-poky-linux/6.2.0/
+>> 
+>> How compile log shows:
+>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
+>> CC=x86_64-poky-linux-gcc --sysroot=/..../sysroots/edison V=1 HOSTCC=gcc
+>> -isystem/..../sysroots/x86_64-linux/usr/include -O2 -pipe
+>> -L/..../sysroots/x86_64-linux/usr/lib -L/..../sysroots/x86_64-linux/lib
+>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/usr/lib
+>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/lib
+>> -Wl,-rpath,/..../sysroots/x86_64-linux/usr/lib
+>> -Wl,-rpath,/..../sysroots/x86_64-linux/lib -Wl,-O1 -C
+>> /..../out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
+>> v2017.03-r0/git O=/..../out/linux64/build/tmp/work/edison-poky-linux/u-
+>> boot/edison-v2017.03-r0/build edison_defconfig
+>> 
+>> (.... my edits to shorten the uninteresting part of the path)
+>> 
+>> I would think: --sysroot points to /edison dir which actually contains
+>> libgcc.a, but -i, _l and -W1 options point to host dirs that don't have
+>> the lib.
+>> 
+>> 
+>>>>> I attempted to add multilib, but although that immediately exposed
+>>>>> bugs in other recipes but actually adds libgcc.a, it does that for
+>>>>> the target sysroot only.
+>>>>>
+>>>>> And for some reason, U-Boot is built with the native gcc
+>>>>> (x86_64-linux),
+>>>>> and multilib does not add libgcc.a to that sysroot.
+>>>>>
+>>>>> So, how do I add multilib to -native sysroot, preferably only to
+>>>>> -native and not to the target, as the target has not further use for
+>>>>> it?
+>>>>>
+>>>>> Strangest thing is in u-boot.inc there is:
+>>>>> EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX}
+>>>>> CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" V=1'
+>>>>> EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS}
+>>>>> ${BUILD_LDFLAGS}"'
+>>>>>
+>>>>> But when I check my log file:
+>>>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
+>>>>> CC=x86_64-poky-linux- gcc  ......
+>>>>>
+>>>>> So TARGET_PREFIX resolves to x86_64-poky-linux, but I think my
+>>>>> target is core2_64 (or something like that). Is that normal for
+>>>>> U-Boot?
+>>>>
+>>>> thats ok.
+>>>>
+>>>>
+>>>>> I am a little lost, so any help would be greatly appreciated!
+>>>>>
+>>>>> Ferry
+>>>>>
+>>>>>
+>>>> --
+>>>
+>>>
+>>> --
 
 
-You can add:
-
-echo 'ENABLE_UART = "1"' >> conf/local.conf
-
-To enable serial output.
-
--M
 
