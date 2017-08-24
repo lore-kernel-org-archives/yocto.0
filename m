@@ -1,17 +1,17 @@
-Return-Path: <garbados@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19FB9E008D2; Wed, 23 Aug 2017 17:58:56 -0700 (PDT)
+	id 0B4EBE0090A; Wed, 23 Aug 2017 21:08:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (garbados[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.68 listed in list.dnswl.org]
+	*      [74.125.83.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,46 +19,58 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.68 listed in dnsbl.sorbs.net]
-Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB1BFE00349
-	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 17:58:54 -0700 (PDT)
-Received: by mail-pg0-f68.google.com with SMTP id m7so1449667pga.3
-	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 17:58:54 -0700 (PDT)
+Received: from mail-pg0-f54.google.com (mail-pg0-f54.google.com [74.125.83.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2799DE00726
+	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 21:07:58 -0700 (PDT)
+Received: by mail-pg0-f54.google.com with SMTP id s14so10327426pgs.1
+	for <yocto@yoctoproject.org>; Wed, 23 Aug 2017 21:07:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=UCrmaAhdqE46FqttpLaKybLHToFiVMTVFx/xRZZjpE4=;
-	b=ZmM15XJuLWiZRY9LkGYFRx+kIGapZXgqTH2tfAFWhf21LD+142RpbYDtIvoNc0XqGF
-	+VHcSV6HrkCCOug1zsJm3oFfB6PBbe17ClN9O+/oORY7clKD4AkElU9ObcrojxnWUnhF
-	VJX3FELmFJAW3lU8TWADvihXHibW6N6JvXoAH1c8uedK5miI5/RIjUii9BYhm0wPaP9I
-	50aja8hyU1lsnaWnwm/3ZeFy21B0LczjRhLO+coeZ7QmKrNK8I3VjYupN/g4JVpQuWYv
-	FQ5jMqq9dteVZba8fJHysTCAK8cLZcIbFvvsto9qwRDIFKZuDvOBhVspYvnkssNtUiRO
-	6P9Q==
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=eYpfRGg5zoSK4yaLTPKfr5BdkF+eB0Q0289uvcWnRxA=;
+	b=Y+lSgbf28PF5fT+GLdBXu/ik1gSOtzy4+tlVYAJp3HZQKn4qGDBo9QA1dZcocgGKds
+	8XeqYSKA8tzQfhxuz6+2+G5niym7kEmRczEzBk69BKcl/usIotwXK//8Xq4SJbPElS+S
+	DeIcPRPk7qwsfAkTI98D4jpmrFq4W+9sdKPxIX337XPR/QPTZ7WgWkCe220Zl/5Swdxh
+	phoWCzucetIwP2l7NpKjEePVhRQ8TyL1UVesrB32ofA/iLwNl2yaC/fK5XDcLH7+g8lG
+	meYqf2ATQPUkdnI+9hIEZUIt0u2+/cpBu6sOFFTLQmQ4zDatReiqQF4TitvTpOBm3vhf
+	ItTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=UCrmaAhdqE46FqttpLaKybLHToFiVMTVFx/xRZZjpE4=;
-	b=HmWQeD4oy0q1cz6CFUBRQOIkkBrK23k6RYiqOCgruvMOO3VtxrE/jbVapqPOZno/mM
-	uF+qeGrcDuGwyQFZzxYYrSrLqRekH6ZjK53fzcS45nrKEgJ57zk0wp+MgPNyEvWEVxcR
-	e32fyogXJPNzj3RC/1qVyVQdJM47N6eJvcUqU+bmeKwVTo/luhKzS13ah6s0J0BmHUdx
-	iOE/L4qwU3sLf6jRFMDFokehT+KOt7E1XHWm0CA72a5hH/R4M4Nr3kkNsORXTOSOUuND
-	evCob3K7ZC8wqMgg+6KbyGCHlmCR+PpMaffkK7UhEL9oLGTyLJFKbI/XFhQeAn7iHUec
-	46gA==
-X-Gm-Message-State: AHYfb5jEFsH/DnF804gAD79lZUY0GDfMeoyNieHvNC+1nhlzNMzIMqjo
-	fNSMghlQBOy7oC22
-X-Received: by 10.99.44.10 with SMTP id s10mr4628810pgs.116.1503536333585;
-	Wed, 23 Aug 2017 17:58:53 -0700 (PDT)
-Received: from deus.apple.sh.pie ([2601:1c2:303:6b0:1c82:c46b:9103:f2d4])
-	by smtp.gmail.com with ESMTPSA id f15sm3885900pga.5.2017.08.23.17.58.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 23 Aug 2017 17:58:52 -0700 (PDT)
-From: Diana Thayer <garbados@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed, 23 Aug 2017 17:58:38 -0700
-Message-Id: <1503536318-18791-1-git-send-email-garbados@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [layerindex-web][PATCH v2] Asynchronous email notifications, task execution
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language:content-transfer-encoding;
+	bh=eYpfRGg5zoSK4yaLTPKfr5BdkF+eB0Q0289uvcWnRxA=;
+	b=ZvM7r3rF9WwunbQJT1FN/lYPUwrTbuFgEicmDpQmkytIGfiu9DhWoBLiaaWG1sO1qI
+	WH/pfNE8fvvKq8RvHO/nUgpmcDVruRvT3+tz6IJtpvJ2zPDY1/EG/J/8Hzvw21KMLqWd
+	v9QDcjvssMP5XO/zoKk8exaLUa/qf4InzLxO4M0UdwRYRXnrTwY4nkrm9DrMEdC+c0L0
+	t0rV+pEUePKv9mgLTwOL6VbN5H33qUAVc1EI9wZNfevM/7/60yrAWOmsC6mGfwRTigPw
+	gyYl6AewmnMyx9BB5Nwc5q1xVfmQbiqeyCFeKyEkuAnU3gAork47Ldr5zNxw7LCDrcTu
+	ejog==
+X-Gm-Message-State: AHYfb5imrrtQKSHJFg7MjeWPyGGjsELNj6bgzyCqc77CAyQ3N46auk1l
+	A4edr/P7vieJK8xzdOo=
+X-Received: by 10.98.55.134 with SMTP id e128mr5217716pfa.176.1503547678144;
+	Wed, 23 Aug 2017 21:07:58 -0700 (PDT)
+Received: from Khems-MacBook-Pro.local
+	([2601:646:8882:b8c:8143:a21b:eabb:2640])
+	by smtp.gmail.com with ESMTPSA id
+	m127sm5429838pfc.37.2017.08.23.21.07.57
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 23 Aug 2017 21:07:57 -0700 (PDT)
+To: Ferry Toth <ftoth@telfort.nl>, yocto@yoctoproject.org
+References: <onj82v$64m$1@blaine.gmane.org>
+	<7b1dbafb-9cdb-c64b-aed7-37f6b26d8b50@gmail.com>
+	<onkni5$c4n$1@blaine.gmane.org> <onks4d$r7b$1@blaine.gmane.org>
+	<e516cd1c-786a-18f5-7ea6-09da77514d7c@gmail.com>
+	<onl099$de$1@blaine.gmane.org>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <c05477ea-cefe-7532-5694-8334566bd1a3@gmail.com>
+Date: Wed, 23 Aug 2017 21:07:56 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:56.0)
+	Gecko/20100101 Thunderbird/56.0
+MIME-Version: 1.0
+In-Reply-To: <onl099$de$1@blaine.gmane.org>
+Subject: Re: Problems building U-Boot for x86_64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,165 +82,159 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Aug 2017 00:58:56 -0000
+X-List-Received-Date: Thu, 24 Aug 2017 04:08:00 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-This patch adds asynchronous task execution using a Celery backend
-and RabbitMQ task queue.
 
-It updates the README to reflect the installation and configuration
-of a basic RabbitMQ setup, adds a 'tasks.py' file to contain task
-definitions, updates the 'edit_layer_view' function to send
-emails to administrators about new and updated layers asynchronously,
-and modifies the 'settings.py' to include a default configuration
-for a RabbitMQ connection.
----
- README              | 10 +++++++++-
- TODO                |  1 -
- layerindex/tasks.py | 24 ++++++++++++++++++++++++
- layerindex/views.py |  7 +++----
- requirements.txt    |  1 +
- settings.py         |  4 ++++
- 6 files changed, 41 insertions(+), 6 deletions(-)
- create mode 100644 layerindex/tasks.py
 
-diff --git a/README b/README
-index 62f739d..c7f7409 100644
---- a/README
-+++ b/README
-@@ -14,6 +14,7 @@ In order to make use of this application you will need:
- * Python 3.4+
- * Django 1.8.x - tested with 1.8.17; newer versions may work, but
-   the application has not been tested with 1.9 or newer.
-+* RabbitMQ 3.6.x - tested with 3.6.10.
- * For production usage, a web server set up to host Django applications
-   (not needed for local-only testing)
- * A database supported by Django (SQLite, MySQL, etc.). Django takes
-@@ -41,7 +42,9 @@ Setup instructions:
- 1. Edit settings.py to specify a database, EMAIL_HOST, SECRET_KEY and
-    other settings specific to your installation. Ensure you set
-    LAYER_FETCH_DIR to an absolute path to a location with sufficient
--   space for fetching layer repositories.
-+   space for fetching layer repositories. Modify RABBIT_BROKER
-+   and RABBIT_BACKEND to reflect the settings used by your RabbitMQ
-+   server.
- 
- 2. Run the following commands within the layerindex-web directory to
-    initialise the database:
-@@ -64,6 +67,11 @@ Setup instructions:
-    production you need to use a proper web server and have DEBUG set
-    to False.
- 
-+   3.1. In order to process asynchronous tasks like sending email,
-+        you will need to run a Celery worker:
-+
-+        celery -A layerindex.tasks worker --loglevel=info
-+
- 4. You'll need to add at least the openembedded-core layer to the
-    database, or some equivalent that contains conf/bitbake.conf for
-    the base system configuration. To add this, follow these steps:
-diff --git a/TODO b/TODO
-index 186219f..29986ac 100644
---- a/TODO
-+++ b/TODO
-@@ -27,7 +27,6 @@ Other
- * Show layer type in layer detail?
- * Usage links in list page?
- * Subdirs in list page?
--* Prevent SMTP failures from breaking submission process
- * Query backend service i.e. special URL to query information for external apps/scripts
- * Add comparison to duplicates page
- * Create simple script to check for unlisted layer subdirectories in all repos
-diff --git a/layerindex/tasks.py b/layerindex/tasks.py
-new file mode 100644
-index 0000000..de80804
---- /dev/null
-+++ b/layerindex/tasks.py
-@@ -0,0 +1,24 @@
-+from celery import Celery
-+from django.core.mail import EmailMessage
-+from . import utils
-+import os
-+import time
-+
-+try:
-+    import settings
-+except ImportError:
-+    # not in a full django env, so settings is inaccessible.
-+    # setup django to access settings.
-+    utils.setup_django()
-+    import settings
-+
-+tasks = Celery('layerindex',
-+    broker=settings.RABBIT_BROKER,
-+    backend=settings.RABBIT_BACKEND)
-+
-+@tasks.task
-+def send_email(subject, text_content, from_email=settings.DEFAULT_FROM_EMAIL, to_emails=[]):
-+    # We seem to need to run this within the task
-+    utils.setup_django()
-+    msg = EmailMessage(subject, text_content, from_email, to_emails)
-+    msg.send()
-diff --git a/layerindex/views.py b/layerindex/views.py
-index 1661cb3..8eac866 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -19,7 +19,6 @@ from layerindex.forms import EditLayerForm, LayerMaintainerFormSet, EditNoteForm
- from django.db import transaction
- from django.contrib.auth.models import User, Permission
- from django.db.models import Q, Count, Sum
--from django.core.mail import EmailMessage
- from django.template.loader import get_template
- from django.template import Context
- from django.utils.decorators import method_decorator
-@@ -28,6 +27,7 @@ from django.contrib import messages
- from reversion.models import Revision
- from . import utils
- from . import simplesearch
-+from . import tasks
- import settings
- from django.dispatch import receiver
- import reversion
-@@ -163,7 +163,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
-                     # Send email
-                     plaintext = get_template('layerindex/submitemail.txt')
-                     perm = Permission.objects.get(codename='publish_layer')
--                    users = User.objects.filter(Q(groups__permissions=perm) | Q(user_permissions=perm) ).distinct()
-+                    users = User.objects.filter(Q(groups__permissions=perm) | Q(user_permissions=perm) | Q(is_superuser=True)).distinct()
-                     for user in users:
-                         if user.first_name:
-                             user_name = user.first_name
-@@ -181,8 +181,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
-                         from_email = settings.SUBMIT_EMAIL_FROM
-                         to_email = user.email
-                         text_content = plaintext.render(d)
--                        msg = EmailMessage(subject, text_content, from_email, [to_email])
--                        msg.send()
-+                        tasks.send_email.apply_async((subject, text_content, from_email, [to_email]))
-                     return HttpResponseRedirect(reverse('submit_layer_thanks'))
-             messages.success(request, 'Layer %s saved successfully.' % layeritem.name)
-             if return_url:
-diff --git a/requirements.txt b/requirements.txt
-index f80e5d4..7cd741b 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -1,3 +1,4 @@
-+celery==3.1.25
- Django==1.8.17
- django-cors-headers==1.1.0
- django-nvd3==0.9.7
-diff --git a/settings.py b/settings.py
-index 92146f8..e26f4b2 100644
---- a/settings.py
-+++ b/settings.py
-@@ -224,3 +224,7 @@ FORCE_REVIEW_HTTPS = False
- # Settings for layer submission feature
- SUBMIT_EMAIL_FROM = 'noreply@example.com'
- SUBMIT_EMAIL_SUBJECT = 'OE Layerindex layer submission'
-+
-+# RabbitMQ settings
-+RABBIT_BROKER = 'amqp://'
-+RABBIT_BACKEND = 'rpc://'
--- 
-2.7.4
+On 8/23/17 3:40 PM, Ferry Toth wrote:
+> Op Wed, 23 Aug 2017 14:51:55 -0700, schreef Khem Raj:
+> 
+>> On 8/23/17 2:29 PM, Ferry Toth wrote:
+>>> Ferry Toth wrote:
+>>>
+>>>> Khem Raj wrote:
+>>>>
+>>>>> On 8/22/17 11:41 PM, Ferry Toth wrote:
+>>>>>> I am having trouble building a specific U-Boot version with Yocto.
+>>>>>> Outside of Yocto on 64 bit Ubuntu 17.04 with multilib it builds
+>>>>>> fine.
+>>>>>>
+>>>>>> I am extending meta-intel-edison to build a 64 bit Poke Morty, with
+>>>>>> a vanilla 64-bit kernel (4.12). This is working quite well.
+>>>>>>
+>>>>>> My host is x86_64, the target is core2 with tune=core-64.
+>>>>>>
+>>>>>> Without 64bit tune I can build U-Boot fine. With 64bit it can not
+>>>>>> link, appearently because it needs lbgcc.a
+>>>>>
+>>>>> what is exact error message ? is it while compiling host bits or
+>>>>> target bits ?
+>>>>
+>>>> The failing line is:
+>>>> x86_64-poky-linux-ld.bfd -Bsymbolic -Bsymbolic-functions -m elf_i386
+>>>> --emit- relocs --wrap=__divdi3 --wrap=__udivdi3 --wrap=__moddi3
+>>>> --wrap=__umoddi3 -- gc-sections -pie -Bstatic --no-dynamic-linker
+>>>> -Ttext 0x01101000 -o u-boot -T u-boot.lds arch/x86/cpu/start.o
+>>>> --start-group arch/x86/cpu/built-in.o arch/x86/lib/built-in.o
+>>>> board/intel/edison/built-in.o cmd/built-in.o common/built-in.o
+>>>> disk/built-in.o drivers/built-in.o drivers/dma/built-in.o
+>>>> drivers/gpio/built-in.o drivers/i2c/built-in.o drivers/mmc/built-in.o
+>>>> drivers/mtd/built-in.o drivers/mtd/onenand/built-in.o
+>>>> drivers/mtd/spi/built- in.o drivers/net/built-in.o
+>>>> drivers/net/phy/built-in.o drivers/pci/built- in.o
+>>>> drivers/power/built-in.o drivers/power/battery/built-in.o
+>>>> drivers/power/domain/built-in.o drivers/power/fuel_gauge/built-in.o
+>>>> drivers/power/mfd/built-in.o drivers/power/pmic/built-in.o
+>>>> drivers/power/regulator/built-in.o drivers/serial/built-in.o
+>>>> drivers/spi/built-in.o drivers/usb/common/built-in.o
+>>>> drivers/usb/dwc3/built- in.o drivers/usb/emul/built-in.o
+>>>> drivers/usb/eth/built-in.o drivers/usb/gadget/built-in.o
+>>>> drivers/usb/gadget/udc/built-in.o drivers/usb/host/built-in.o
+>>>> drivers/usb/musb-new/built-in.o drivers/usb/musb/built-in.o
+>>>> drivers/usb/phy/built-in.o drivers/usb/ulpi/built-in.o dts/built-in.o
+>>>> fs/built-in.o lib/built-in.o net/built-in.o test/built-in.o
+>>>> test/dm/built-in.o --end-group arch/x86/lib/lib.a -Map u-boot.map
+>>>> ERROR: oe_runmake failed arch/x86/lib/built-in.o: In function
+>>>> `__wrap___udivdi3':
+>>>> /home/ferry/tmp/edison-intel/my/edison-
+>>>> morty/out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
+> v2017.03-
+>>>> r0/git/arch/x86/lib/gcc.c:25: undefined reference to
+>>>> `__normal___udivdi3'
+>>>
+>>> I as believe the missing lib is libgcc.a I just my sysroot and found it
+>>> here:
+>>
+>> the linker cmdline above does not link with libgcc and there might be a
+>> good reason for that, many standalone applications dont link with libgcc
+>> intentionally. You could look into the code and see if it can be written
+>> differently such that gcc does not have to invoke a helper function from
+>> gcc runtime. Another option is to link with libgcc explicitly
+> 
+> If change my setup to build for a 32bit target, it build u-boot without 
+> error.
 
+compiler may not be generating calls for the missing function.
+
+> When I build the same git outside yocto on 64bit with multilib installed 
+> it also builds without error. In that case the make command would be:
+> make -j8 edison_defconfig
+
+same is possible. Can you do readelf -sW gcc.o and see if there is a
+undefined reference to __normal___udivdi3
+
+> 
+> My conclusion: I have some bb variable set to the wrong value or I need 
+> to get multilib installed into /..../sysroots/x86_64-linux/lib.
+> 
+> So how to do that?
+> 
+>>> sysroots/lib32-edison/usr/lib/i686-pokymllib32-linux/6.2.0/
+>>> sysroots/lib32-edison-tcbootstrap/usr/lib/i686-pokymllib32-linux/6.2.0/
+>>> sysroots/edison/usr/lib64/x86_64-poky-linux/6.2.0/
+>>> sysroots/edison-tcbootstrap/usr/lib64/x86_64-poky-linux/6.2.0/
+>>>
+>>> How compile log shows:
+>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
+>>> CC=x86_64-poky-linux-gcc --sysroot=/..../sysroots/edison V=1 HOSTCC=gcc
+>>> -isystem/..../sysroots/x86_64-linux/usr/include -O2 -pipe
+>>> -L/..../sysroots/x86_64-linux/usr/lib -L/..../sysroots/x86_64-linux/lib
+>>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/usr/lib
+>>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/lib
+>>> -Wl,-rpath,/..../sysroots/x86_64-linux/usr/lib
+>>> -Wl,-rpath,/..../sysroots/x86_64-linux/lib -Wl,-O1 -C
+>>> /..../out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
+>>> v2017.03-r0/git O=/..../out/linux64/build/tmp/work/edison-poky-linux/u-
+>>> boot/edison-v2017.03-r0/build edison_defconfig
+>>>
+>>> (.... my edits to shorten the uninteresting part of the path)
+>>>
+>>> I would think: --sysroot points to /edison dir which actually contains
+>>> libgcc.a, but -i, _l and -W1 options point to host dirs that don't have
+>>> the lib.
+>>>
+>>>
+>>>>>> I attempted to add multilib, but although that immediately exposed
+>>>>>> bugs in other recipes but actually adds libgcc.a, it does that for
+>>>>>> the target sysroot only.
+>>>>>>
+>>>>>> And for some reason, U-Boot is built with the native gcc
+>>>>>> (x86_64-linux),
+>>>>>> and multilib does not add libgcc.a to that sysroot.
+>>>>>>
+>>>>>> So, how do I add multilib to -native sysroot, preferably only to
+>>>>>> -native and not to the target, as the target has not further use for
+>>>>>> it?
+>>>>>>
+>>>>>> Strangest thing is in u-boot.inc there is:
+>>>>>> EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX}
+>>>>>> CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" V=1'
+>>>>>> EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS}
+>>>>>> ${BUILD_LDFLAGS}"'
+>>>>>>
+>>>>>> But when I check my log file:
+>>>>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
+>>>>>> CC=x86_64-poky-linux- gcc  ......
+>>>>>>
+>>>>>> So TARGET_PREFIX resolves to x86_64-poky-linux, but I think my
+>>>>>> target is core2_64 (or something like that). Is that normal for
+>>>>>> U-Boot?
+>>>>>
+>>>>> thats ok.
+>>>>>
+>>>>>
+>>>>>> I am a little lost, so any help would be greatly appreciated!
+>>>>>>
+>>>>>> Ferry
+>>>>>>
+>>>>>>
+>>>>> --
+>>>>
+>>>>
+>>>> --
+> 
+> 
 
