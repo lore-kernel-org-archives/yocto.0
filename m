@@ -1,49 +1,54 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <gera-pesikoff@rambler.ru>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 603EAE00BA2; Thu, 24 Aug 2017 07:48:20 -0700 (PDT)
+	id 84797E00BA2; Thu, 24 Aug 2017 08:24:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [81.19.78.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F6A3E0090A
-	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 07:48:18 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	24 Aug 2017 07:48:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,421,1498546800"; d="scan'208";a="1187744335"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Aug 2017 07:48:17 -0700
-To: yocto@yoctoproject.org, zoran.stojsavljevic@gmail.com
-References: <CABpTzB12oTgOmND6wDn+vD2aTvUd6WmavbmHNAXGpA6_dA+Tag@mail.gmail.com>
-	<96d5a0c7-4df6-1576-7e50-916c5af724c6@linux.intel.com>
-	<CABpTzB3yC2vHf0mFdDq8vGksQSJk1BHkuwTxMb0orCTL4kh1YQ@mail.gmail.com>
-	<CAGAf8LzHHWqNmq9g2ZGUMnMnrtD00QPdJ736ttTNAbM+-uyHHQ@mail.gmail.com>
-	<CAHiDW_GPQ4WvxqbkSGAq4K=bGfqX45pJrzUGJ1NsgazLtyv40g@mail.gmail.com>
-	<CAGAf8Ly4y7xtjgmMrUb35Jkm-fyumN=LKCcfFsXm7+03xUE0Hw@mail.gmail.com>
-	<CAHiDW_GuP0+aQdr8utVDD=vUwXoq3OPjR9Psb=t-Js9v8j+F+w@mail.gmail.com>
-	<CAGAf8Lyi4k4o6VSXg97Occ+VErBo5cbTcwa8V7rZhjDKGiOjoQ@mail.gmail.com>
-	<CAHiDW_EUWtZ6LOEL=yNNbyvp=59i4QRqusknwQJ43PPXa+Diyg@mail.gmail.com>
-	<CAGAf8LxofVx8TQgrgHFsLhZF5_ROUb6GXR8mAWs7xxxv1iBOKA@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <042df3b0-02e9-1d6a-af4d-923bc86d3d43@linux.intel.com>
-Date: Thu, 24 Aug 2017 17:45:13 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mxout1.rambler.ru (mxout1.rambler.ru [81.19.78.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53B32E0090A
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 08:24:47 -0700 (PDT)
+Received: from saddam1.rambler.ru (saddam1.rambler.ru [10.32.16.1])
+	by mxout1.rambler.ru (Postfix) with ESMTP id 8CC62C2C071
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 18:24:46 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rambler.ru; s=mail;
+	t=1503588286; bh=6A8kQjY7aDOIl8K7Pqo421zcb9pC21d9nZrzZPZAob8=;
+	h=From:To:Reply-To:Subject:Date:In-Reply-To:References;
+	b=fH0VsCbHhpgan1ndkVoH6Ij8YXnGaPPRtttUAqPOR8iY4kpWphPHhhslrcUSZrZmO
+	twbnO4CxY4qKhaMshofnAi8CdedFH8Bx/mST/ninshtqjoCwjQUkagVxJZ89dqJWih
+	yRkkHr2geq0h6CIl30UV1HwspCkI69UfyZTvyDpA=
+Received: from localhost.localdomain (localhost [127.0.0.1])
+	by saddam1.rambler.ru (Postfix) with ESMTP id 752CF27342E4
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 18:24:46 +0300 (MSK)
+Received: from [94.233.165.160] by mail.rambler.ru with HTTP;
+	Thu, 24 Aug 2017 18:24:46 +0300
+From: "Gera Pesikoff" <gera-pesikoff@rambler.ru>
+To: yocto@yoctoproject.org
+Date: Thu, 24 Aug 2017 18:24:46 +0300
+In-Reply-To: <1503588276.608193.20925.31663@mail.rambler.ru>
+Message-Id: <1503588286.42108.3061.23849@mail.rambler.ru>
 MIME-Version: 1.0
-In-Reply-To: <CAGAf8LxofVx8TQgrgHFsLhZF5_ROUb6GXR8mAWs7xxxv1iBOKA@mail.gmail.com>
-Subject: Re: [DNF YOCTO clarifications] smart was replaced with dnf in Yocto 2.3
+References: <1503588276.608193.20925.31663@mail.rambler.ru>
+X-Mailer: Rambler WebMail, http://mail.rambler.ru/
+X-Rambler-User: gera-pesikoff@rambler.ru/94.233.165.160
+Subject: ERROR: Unable to connect to bitbake server, or start one
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Gera Pesikoff <gera-pesikoff@rambler.ru>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,22 +57,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Aug 2017 14:48:20 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+X-List-Received-Date: Thu, 24 Aug 2017 15:24:49 -0000
 Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative; boundary="_----------=_15035882863061104"
 
-On 08/24/2017 05:34 PM, Zoran Stojsavljevic wrote:
+--_----------=_15035882863061104
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; format="flowed"
 
-> Do you agree to continue keeping DNF package (in 
-> .../meta/recipe_devtools/) for handling of .rpm type of packages in the 
-> future releases of YOCTO (it is, after all, much better and more mature 
-> tool that smartpm)?
+Hi
+I started to study bitbake and decided to repeat the BitBake Hello World fr=
+om the
+manual
+(http://www.yoctoproject.org/docs/2.3.1/bitbake-user-manual/bitbake-user-ma=
+nual.html#bitbake-hello-world).
+I do everything according to the instructions, but when I run the bitbake
+command, I get the following output:
 
-The smart to dnf transition is now complete, and it has been well 
-documented:
+NOTE: Retrying server connection... (Traceback (most recent call last):
+File "/home/leonid/test/bitbake/lib/bb/main.py", line 432, in setup_bitbake
+topdir, lock =3D lockBitbake()
+File "/home/leonid/test/bitbake/lib/bb/main.py", line 484, in lockBitbake
+lockfile =3D topdir + "/bitbake.lock"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+)
 
-http://www.yoctoproject.org/docs/2.3/ref-manual/ref-manual.html#migration-2.3-package-management-changes
+This is repeated five times, and at the end:
 
-Alex
+ERROR: Unable to connect to bitbake server, or start one
 
+Could someone please tell me what the problem is and what I can do about it?
+I'm using Kubuntu 17.04 and clear Ubuntu 17.04. BitBake Build Tool Core ver=
+sion
+1.35.0
+
+--_----------=_15035882863061104
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<p>Hi<br>I started to study bitbake and decided to repeat the BitBake Hello=
+ World from the manual (http://www.yoctoproject.org/docs/2.3.1/bitbake-user=
+-manual/bitbake-user-manual.html#bitbake-hello-world).<br>I do everything a=
+ccording to the instructions, but when I run the bitbake command, I get the=
+ following output:<br><br>NOTE: Retrying server connection... (Traceback (m=
+ost recent call last):<br>&nbsp; File "/home/leonid/test/bitbake/lib/bb/mai=
+n.py", line 432, in setup_bitbake<br>&nbsp;&nbsp;&nbsp; topdir, lock =3D lo=
+ckBitbake()<br>&nbsp; File "/home/leonid/test/bitbake/lib/bb/main.py", line=
+ 484, in lockBitbake<br>&nbsp;&nbsp;&nbsp; lockfile =3D topdir + "/bitbake.=
+lock"<br>TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'=
+<br>)<br><br>This is repeated five times, and at the end:<br><br>ERROR: Una=
+ble to connect to bitbake server, or start one<br><br>Could someone please =
+tell me what the problem is and what I can do about it?<br>I'm using Kubunt=
+u 17.04 and clear Ubuntu 17.04. BitBake Build Tool Core version 1.35.0</p>=
+
+--_----------=_15035882863061104--
