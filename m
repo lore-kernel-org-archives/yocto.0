@@ -1,37 +1,76 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F355E00A39; Thu, 24 Aug 2017 06:10:25 -0700 (PDT)
+	id 77498E00BAB; Thu, 24 Aug 2017 07:34:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.174 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.174 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from blaine.gmane.org (unknown [195.159.176.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12F99E00726
-	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 06:10:23 -0700 (PDT)
-Received: from list by blaine.gmane.org with local (Exim 4.84_2)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1dkrti-0003iD-BU
-	for yocto@yoctoproject.org; Thu, 24 Aug 2017 15:10:10 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Ferry Toth <ftoth@telfort.nl>
-Date: Thu, 24 Aug 2017 13:09:51 +0000 (UTC)
-Message-ID: <onmj6v$7n0$1@blaine.gmane.org>
-References: <onj82v$64m$1@blaine.gmane.org>
-	<7b1dbafb-9cdb-c64b-aed7-37f6b26d8b50@gmail.com>
-	<onkni5$c4n$1@blaine.gmane.org> <onks4d$r7b$1@blaine.gmane.org>
-	<e516cd1c-786a-18f5-7ea6-09da77514d7c@gmail.com>
-	<onl099$de$1@blaine.gmane.org>
-	<c05477ea-cefe-7532-5694-8334566bd1a3@gmail.com>
-	<onlt2c$u3m$1@blaine.gmane.org>
-	<277fb613-dcc1-255e-082e-8b3506945255@denx.de>
-Mime-Version: 1.0
-X-Complaints-To: usenet@blaine.gmane.org
-User-Agent: Pan/0.141 (Tarzan's Death; 168b179 git.gnome.org/pan2)
-Subject: Re: Problems building U-Boot for x86_64
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f174.google.com (mail-wr0-f174.google.com
+	[209.85.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AFC9E00B87
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 07:34:36 -0700 (PDT)
+Received: by mail-wr0-f174.google.com with SMTP id u15so2987512wrg.5
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 07:34:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=9vtIJS4F8KRbNe02ic/1bhnraou+8VkY2lIXGoYrilA=;
+	b=Kcs/CeF4ePpUv0PtCbY0ckhYUYdE2dsqN3C4OylvgMjIYrQzhG8cxnCftrjt4ifd8W
+	aXB7eQf96XHq2th2/3SQuANa+7Fy52WjRKAV6jRK+rpcXTO8g/cNnvhhnOioi+RJTHVv
+	Mnbf4Mb9EQwOQ8KDFZouCY5FVvWVizztjHqtYb0t8+ZlGGFTwaJ704yGgALLmyoU28KG
+	yjOdfwsi7sGp1HvgahIhiVx96FwNqUWNnzKINkDmfSZqQvjE7TssrpX11WgF+euBnI7+
+	l/giDcv5YB0SmUKAeoHfwiGktE+fYFruUSnIsrzaMC5buPIwhgy3f5CUy3rt3jKYUjzM
+	4lgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=9vtIJS4F8KRbNe02ic/1bhnraou+8VkY2lIXGoYrilA=;
+	b=qdYe3Mk7hEUxVNKWOe/N/rLhoSEatBfJO3fIK4ajY5mIDy08SaXvunwAFnduFarlWf
+	BNiFOzGvo0WUO9JMhjppKL8BQlTbPMjuzwdJLDPZ7K2pOpYSHPrtNsFgM3RSEICEGNUA
+	BHSY9wwqFJ2UVsTjxfHDdtUHtdSP27w4kBGSf2ydC5pnLj4EEocur62Vi7Wcjdt/MLao
+	TnKpklHhc4VnTrcy+yp/LgzOfzrF4/1jf6f+0dVhxEVITNw4rrOPUztawfpTxkbm36eV
+	PPpPAr96hBlPef14hIVERq+7eN9047xmpX3fqlPLoAvbl/b+KbDLrmiNtUWd5/T98uh8
+	gWZg==
+X-Gm-Message-State: AHYfb5itENgC4fMQMzrRK1NFgiC7adPubwtNrxh0y6QIk1RsOWL9u3zf
+	BHCPNMWn8Hvz9nCflPHyeeQuHUlGaA==
+X-Received: by 10.223.175.21 with SMTP id z21mr4802503wrc.145.1503585275253;
+	Thu, 24 Aug 2017 07:34:35 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.28.138.18 with HTTP; Thu, 24 Aug 2017 07:34:34 -0700 (PDT)
+In-Reply-To: <CAHiDW_EUWtZ6LOEL=yNNbyvp=59i4QRqusknwQJ43PPXa+Diyg@mail.gmail.com>
+References: <CABpTzB12oTgOmND6wDn+vD2aTvUd6WmavbmHNAXGpA6_dA+Tag@mail.gmail.com>
+	<96d5a0c7-4df6-1576-7e50-916c5af724c6@linux.intel.com>
+	<CABpTzB3yC2vHf0mFdDq8vGksQSJk1BHkuwTxMb0orCTL4kh1YQ@mail.gmail.com>
+	<CAGAf8LzHHWqNmq9g2ZGUMnMnrtD00QPdJ736ttTNAbM+-uyHHQ@mail.gmail.com>
+	<CAHiDW_GPQ4WvxqbkSGAq4K=bGfqX45pJrzUGJ1NsgazLtyv40g@mail.gmail.com>
+	<CAGAf8Ly4y7xtjgmMrUb35Jkm-fyumN=LKCcfFsXm7+03xUE0Hw@mail.gmail.com>
+	<CAHiDW_GuP0+aQdr8utVDD=vUwXoq3OPjR9Psb=t-Js9v8j+F+w@mail.gmail.com>
+	<CAGAf8Lyi4k4o6VSXg97Occ+VErBo5cbTcwa8V7rZhjDKGiOjoQ@mail.gmail.com>
+	<CAHiDW_EUWtZ6LOEL=yNNbyvp=59i4QRqusknwQJ43PPXa+Diyg@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Thu, 24 Aug 2017 16:34:34 +0200
+Message-ID: <CAGAf8LxofVx8TQgrgHFsLhZF5_ROUb6GXR8mAWs7xxxv1iBOKA@mail.gmail.com>
+To: Jussi Kukkonen <jussi.kukkonen@intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [DNF YOCTO clarifications] smart was replaced with dnf in Yocto 2.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,247 +82,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Aug 2017 13:10:25 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 24 Aug 2017 14:34:37 -0000
+Content-Type: multipart/alternative; boundary="f403045f4fd23896ea055780bac7"
 
-Op Thu, 24 Aug 2017 12:40:57 +0200, schreef Stefano Babic:
+--f403045f4fd23896ea055780bac7
+Content-Type: text/plain; charset="UTF-8"
 
-> Hi Ferry,
-> 
-> On 24/08/2017 08:51, Ferry Toth wrote:
->> Op Wed, 23 Aug 2017 21:07:56 -0700, schreef Khem Raj:
->> 
->>> On 8/23/17 3:40 PM, Ferry Toth wrote:
->>>> Op Wed, 23 Aug 2017 14:51:55 -0700, schreef Khem Raj:
->>>>
->>>>> On 8/23/17 2:29 PM, Ferry Toth wrote:
->>>>>> Ferry Toth wrote:
->>>>>>
->>>>>>> Khem Raj wrote:
->>>>>>>
->>>>>>>> On 8/22/17 11:41 PM, Ferry Toth wrote:
->>>>>>>>> I am having trouble building a specific U-Boot version with
->>>>>>>>> Yocto.
->>>>>>>>> Outside of Yocto on 64 bit Ubuntu 17.04 with multilib it builds
->>>>>>>>> fine.
->>>>>>>>>
->>>>>>>>> I am extending meta-intel-edison to build a 64 bit Poke Morty,
->>>>>>>>> with a vanilla 64-bit kernel (4.12). This is working quite well.
->>>>>>>>>
->>>>>>>>> My host is x86_64, the target is core2 with tune=core-64.
->>>>>>>>>
->>>>>>>>> Without 64bit tune I can build U-Boot fine. With 64bit it can
->>>>>>>>> not link, appearently because it needs lbgcc.a
->>>>>>>>
->>>>>>>> what is exact error message ? is it while compiling host bits or
->>>>>>>> target bits ?
->>>>>>>
->>>>>>> The failing line is:
->>>>>>> x86_64-poky-linux-ld.bfd -Bsymbolic -Bsymbolic-functions -m
->>>>>>> elf_i386 --emit- relocs --wrap=__divdi3 --wrap=__udivdi3
->>>>>>> --wrap=__moddi3 --wrap=__umoddi3 -- gc-sections -pie -Bstatic
->>>>>>> --no-dynamic-linker -Ttext 0x01101000 -o u-boot -T u-boot.lds
->>>>>>> arch/x86/cpu/start.o --start-group arch/x86/cpu/built-in.o
->>>>>>> arch/x86/lib/built-in.o board/intel/edison/built-in.o
->>>>>>> cmd/built-in.o common/built-in.o disk/built-in.o
->>>>>>> drivers/built-in.o drivers/dma/built-in.o drivers/gpio/built-in.o
->>>>>>> drivers/i2c/built-in.o drivers/mmc/built-in.o
->>>>>>> drivers/mtd/built-in.o drivers/mtd/onenand/built-in.o
->>>>>>> drivers/mtd/spi/built- in.o drivers/net/built-in.o
->>>>>>> drivers/net/phy/built-in.o drivers/pci/built-
->>>>>>> in.o drivers/power/built-in.o drivers/power/battery/built-in.o
->>>>>>> drivers/power/domain/built-in.o
->>>>>>> drivers/power/fuel_gauge/built-in.o drivers/power/mfd/built-in.o
->>>>>>> drivers/power/pmic/built-in.o drivers/power/regulator/built-in.o
->>>>>>> drivers/serial/built-in.o drivers/spi/built-in.o
->>>>>>> drivers/usb/common/built-in.o drivers/usb/dwc3/built- in.o
->>>>>>> drivers/usb/emul/built-in.o drivers/usb/eth/built-in.o
->>>>>>> drivers/usb/gadget/built-in.o drivers/usb/gadget/udc/built-in.o
->>>>>>> drivers/usb/host/built-in.o drivers/usb/musb-new/built-in.o
->>>>>>> drivers/usb/musb/built-in.o drivers/usb/phy/built-in.o
->>>>>>> drivers/usb/ulpi/built-in.o dts/built-in.o fs/built-in.o
->>>>>>> lib/built-in.o net/built-in.o test/built-in.o test/dm/built-in.o
->>>>>>> --end-group arch/x86/lib/lib.a -Map u-boot.map ERROR: oe_runmake
->>>>>>> failed arch/x86/lib/built-in.o: In function `__wrap___udivdi3':
->>>>>>> /home/ferry/tmp/edison-intel/my/edison-
->>>>>>> morty/out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
->>>> v2017.03-
->>>>>>> r0/git/arch/x86/lib/gcc.c:25: undefined reference to
->>>>>>> `__normal___udivdi3'
->>>>>>
->>>>>> I as believe the missing lib is libgcc.a I just my sysroot and
->>>>>> found it here:
->>>>>
->>>>> the linker cmdline above does not link with libgcc and there might
->>>>> be a good reason for that, many standalone applications dont link
->>>>> with libgcc intentionally. You could look into the code and see if
->>>>> it can be written differently such that gcc does not have to invoke
->>>>> a helper function from gcc runtime. Another option is to link with
->>>>> libgcc explicitly
->>>>
->>>> If change my setup to build for a 32bit target, it build u-boot
->>>> without error.
->>>
->>> compiler may not be generating calls for the missing function.
->> 
->> That would be a bug then? Regardless if I set tune=core-64 or not the
->> resulting U-Boot should be the same.
->> 
->>>> When I build the same git outside yocto on 64bit with multilib
->>>> installed it also builds without error. In that case the make command
->>>> would be: make -j8 edison_defconfig
->>>
->>> same is possible. Can you do readelf -sW gcc.o and see if there is a
->>> undefined reference to __normal___udivdi3
->>>
->> I will do that tonight.
->> 
->>>> My conclusion: I have some bb variable set to the wrong value or I
->>>> need to get multilib installed into /..../sysroots/x86_64-linux/lib.
->>>>
->>>> So how to do that?
->>>>
->>>>>> sysroots/lib32-edison/usr/lib/i686-pokymllib32-linux/6.2.0/
->>>>>> sysroots/lib32-edison-tcbootstrap/usr/lib/i686-pokymllib32-
->> linux/6.2.0/
->>>>>> sysroots/edison/usr/lib64/x86_64-poky-linux/6.2.0/
->>>>>> sysroots/edison-tcbootstrap/usr/lib64/x86_64-poky-linux/6.2.0/
->>>>>>
->>>>>> How compile log shows:
->>>>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
->>>>>> CC=x86_64-poky-linux-gcc --sysroot=/..../sysroots/edison V=1
->>>>>> HOSTCC=gcc -isystem/..../sysroots/x86_64-linux/usr/include -O2
->>>>>> -pipe -L/..../sysroots/x86_64-linux/usr/lib
->>>>>> -L/..../sysroots/x86_64-linux/lib
->>>>>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/usr/lib
->>>>>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/lib
->>>>>> -Wl,-rpath,/..../sysroots/x86_64-linux/usr/lib
->>>>>> -Wl,-rpath,/..../sysroots/x86_64-linux/lib -Wl,-O1 -C
->>>>>> /..../out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
->>>>>> v2017.03-r0/git
->>>>>> O=/..../out/linux64/build/tmp/work/edison-poky-linux/u-
->>>>>> boot/edison-v2017.03-r0/build edison_defconfig
->>>>>>
->>>>>> (.... my edits to shorten the uninteresting part of the path)
->>>>>>
->>>>>> I would think: --sysroot points to /edison dir which actually
->>>>>> contains libgcc.a, but -i, _l and -W1 options point to host dirs
->>>>>> that don't have the lib.
->>>>>>
->>>>>>
->>>>>>>>> I attempted to add multilib, but although that immediately
->>>>>>>>> exposed bugs in other recipes but actually adds libgcc.a, it
->>>>>>>>> does that for the target sysroot only.
->>>>>>>>>
->>>>>>>>> And for some reason, U-Boot is built with the native gcc
->>>>>>>>> (x86_64-linux),
->>>>>>>>> and multilib does not add libgcc.a to that sysroot.
->>>>>>>>>
->>>>>>>>> So, how do I add multilib to -native sysroot, preferably only to
->>>>>>>>> -native and not to the target, as the target has not further use
->>>>>>>>> for it?
->>>>>>>>>
->>>>>>>>> Strangest thing is in u-boot.inc there is:
->>>>>>>>> EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX}
->>>>>>>>> CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" V=1'
->>>>>>>>> EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS}
->>>>>>>>> ${BUILD_LDFLAGS}"'
->>>>>>>>>
->>>>>>>>> But when I check my log file:
->>>>>>>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
->>>>>>>>> CC=x86_64-poky-linux- gcc  ......
->>>>>>>>>
->>>>>>>>> So TARGET_PREFIX resolves to x86_64-poky-linux, but I think my
->>>>>>>>> target is core2_64 (or something like that). Is that normal for
->>>>>>>>> U-Boot?
->>>>>>>>
->>>>>>>> thats ok.
->>>>>>>>
->>>>>>>>
->>>>>>>>> I am a little lost, so any help would be greatly appreciated!
->>>>>>>>>
->>>>>>>>> Ferry
-> 
-> This is a known problem in U-Boot for x86 and it is not yet *cleaned*
-> solved. U-Boot for x86 is a 32 bit - there are just disadvantages to go
-> to 64 bit version because it is overkilling for a bootloader . The issue
+> No. Yocto is not an operating system, it's a toolset that can be used to
+build many wildly different operating systems. An rpm repo would
+> only be compatible with one of those OSes.
 
-Alright then. But I didn't intend to build a 64 bit U-Boot. I intended to 
-build a 64 bit image, which consists in the end of 3 binary image, U-
-Boot, Linux and rootfs. The bitness of U-Boot should not depend on either 
-host or target bitness, it should only depend on the architectures 
-requirements.
+YOCTO is a custom made distro for eLinuxes, on this I agree with you. At
+least, you should keep DNF (instead smartpm) as package representative for
+dealing with .rpms, in all future YOCTO releases. This should be (as
+considering embedded use cases) enough.
 
-> is, as you have found, the libgcc.a library, because the library
-> supplied with the host distro is used. This is solved in an elegant way
-> with other architectures (PowerPC, ARM) because the required (just a
-> few) functions taken from libgcc.a are reimplemented in U-Boot (see
-> CONFIG_USE_PRIVATE_LIBGCC, too.) . But this was not done for X86,
-> because host and target shared (until 64 bit came) the same architecture
-> and the host library is taken. However, this breaks in Yocto because the
-> generated library (and then, 64 bit) is taken.
+And, yes, I see your point, if anybody has so big project that he would
+like to make master servers and maintain his own source code packages
+(.src.rpm), and plain .rpm (as Fedora does, I just run there on Fedora 26
+command: dnf list all | wc -l and got package # around 60K), he should do
+this on his own. ;-)
 
-Still don't get this. When I build outside of Yocto on a 64 bit host, it 
-just builds. U-Boot's make file already selects the correct target 
-bitness and finds the correct libraries.
-To me that sounds like that building inside Yocto should just work too, 
-if I just get the configuration right.
+Do you agree to continue keeping DNF package (in .../meta/recipe_devtools/)
+for handling of .rpm type of packages in the future releases of YOCTO (it
+is, after all, much better and more mature tool that smartpm)?
 
-And correct me if I'm wrong, to do that that I need to force Yocto to 
-build 32 bit target, in case of U-Boot (lib32-u-boot?). Or override 
-tune=core-64 for U-Boot only?
+Thank you,
+Zoran
 
-Still, when I build on my host outside of Yocto I don't need to do any of 
-this. And the linker probably uses 32 bit copy of libgcc.a installed with 
-multilib on my host.
+On Thu, Aug 24, 2017 at 12:40 PM, Jussi Kukkonen <jussi.kukkonen@intel.com>
+wrote:
 
-Hence my question: Yocto has multilib, which in this case installs 32 bit 
-libs into the targets sysroot. And I suspect I need to install 32 bit 
-libs into the -native sysroot. How to do that? All the documentation I 
-found are related to installing libs into the target image.
+> On 24 August 2017 at 10:33, Zoran Stojsavljevic <
+> zoran.stojsavljevic@gmail.com> wrote:
+> >
+> > Hello Jussi,
+> >
+> > I would like to thank you very much for the useful reply. It was a bit
+> different with me, but most boiled down as you said/explained (the
+> difference are in client/server IP addresses, but everything else is almost
+> the same - I guess, I do not have complete set of .rpms on my server side).
+> >
+> > I issued the following comand on client (qemux86-64): dnf list all | wc
+> -l, and got the following response:
+> > Repository 'oe-packages' is missing name in configuration, using id.
+> > Last metadata expiration check: 0:42:56 ago on Thu Aug 24 06:13:31 2017
+> UTC
+> > 7909
+> >
+> > Regarding the command's answer, I have two questions to ask: one easy,
+> and one tough. ;-)
+> >
+> > Easy one. What is the reason for this message: Repository 'oe-packages'
+> is missing name in configuration, using id???
+>
+> I'm not a yum/dnf expert at all but the error seems to be saying that
+> oe-packages.repo is missing a line like "name =  OpenEmbedded packages".
+>
+> > Tough one: 7909 packages overall on server. Could you (YOCTO
+> maintainers), please, keep DNF (for .rpm packages) onwards indefinitely in
+> YOCTO, and make/create master YOCTO download servers, the same what Fedora
+> distro does for almost two decades (with YUM, prior DNF)?
+> >
+> > The positive answer on the second question will make (for many thousand
+> people using .rpms in YOCTO) life much easier, won't it?!
+>
+> No. Yocto is not an operating system, it's a toolset that can be used to
+> build many wildly different operating systems. An rpm repo would only be
+> compatible with one of those OSes.
+>
+> If a Yocto user builds and maintains a specific OS with Yocto, it might
+> make sense for them to maintain rpm repos for that OS. It does not make
+> sense for Yocto project.
+>
+>  - Jussi
+>
 
-> The right and cleanest solution should be to fix in U-Boot just as it
-> was done with other architectures.
+--f403045f4fd23896ea055780bac7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I think I saw something upstreamed related to this, I'd prefer to wait 
-till that lands. But I will try to let Yocto apply a patch, instead of 
-adding to my git.
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">&gt; No. Yocto is not an =
+operating system, it&#39;s a toolset that can be used to build many wildly =
+different operating systems. An rpm repo would</span><div><span style=3D"fo=
+nt-size:12.8px">&gt; only be compatible with one of those OSes.</span><br><=
+/div><div><span style=3D"font-size:12.8px"><br></span></div><div><span styl=
+e=3D"font-size:12.8px">YOCTO is a custom made distro for eLinuxes, on this =
+I agree with you. At least, you should keep DNF (instead smartpm) as packag=
+e representative for dealing with .rpms, in all future YOCTO releases. This=
+ should be (as considering embedded use cases) enough.</span></div><div><sp=
+an style=3D"font-size:12.8px"><br></span></div><div><span style=3D"font-siz=
+e:12.8px">And, yes, I see your point, if anybody has so big project that he=
+ would like to make master servers and maintain his own source code package=
+s (.src.rpm), and plain .rpm (as Fedora does, I just run there on Fedora 26=
+ command: dnf list all | wc -l and got package # around 60K), he should do =
+this on his own. ;-)</span></div><div><span style=3D"font-size:12.8px"><br>=
+</span></div><div><span style=3D"font-size:12.8px">Do you agree to continue=
+ keeping DNF package (in .../meta/recipe_devtools/) for handling of .rpm ty=
+pe of packages in the future releases of YOCTO (it is, after all, much bett=
+er and more mature tool that smartpm)?</span></div><div><span style=3D"font=
+-size:12.8px"><br></span></div><div><span style=3D"font-size:12.8px">Thank =
+you,</span></div><div><span style=3D"font-size:12.8px">Zoran</span></div></=
+div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Aug 2=
+4, 2017 at 12:40 PM, Jussi Kukkonen <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:jussi.kukkonen@intel.com" target=3D"_blank">jussi.kukkonen@intel.com</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><span c=
+lass=3D"">On 24 August 2017 at 10:33, Zoran Stojsavljevic &lt;<a href=3D"ma=
+ilto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojsavljevic@g=
+mail.com</a><wbr>&gt; wrote:<br>&gt;<br>&gt; Hello Jussi,<br>&gt;<br></span=
+><span class=3D"">&gt; I would like to thank you very much for the useful r=
+eply. It was a bit different with me, but most boiled down as you said/expl=
+ained (the difference are in client/server IP addresses, but everything els=
+e is almost the same - I guess, I do not have complete set of .rpms on my s=
+erver side).<br>&gt;<br>&gt; I issued the following comand on client (qemux=
+86-64): dnf list all | wc -l, and got the following response:<br>&gt; Repos=
+itory &#39;oe-packages&#39; is missing name in configuration, using id.<br>=
+&gt; Last metadata expiration check: 0:42:56 ago on Thu Aug 24 06:13:31 201=
+7 UTC<br>&gt; 7909<br>&gt;<br>&gt; Regarding the command&#39;s answer, I ha=
+ve two questions to ask: one easy, and one tough. ;-)<br>&gt;<br>&gt; Easy =
+one. What is the reason for this message: Repository &#39;oe-packages&#39; =
+is missing name in configuration, using id???<div><br></div></span><div>I&#=
+39;m not a yum/dnf expert at all but the error seems to be saying that oe-p=
+ackages.repo is missing a line like &quot;name =3D =C2=A0OpenEmbedded packa=
+ges&quot;.</div><span class=3D""><div><br>&gt; Tough one: 7909 packages ove=
+rall on server. Could you (YOCTO maintainers), please, keep DNF (for .rpm p=
+ackages) onwards indefinitely in YOCTO, and make/create master YOCTO downlo=
+ad servers, the same what Fedora distro does for almost two decades (with Y=
+UM, prior DNF)?<br>&gt;<br>&gt; The positive answer on the second question =
+will make (for many thousand people using .rpms in YOCTO) life much easier,=
+ won&#39;t it?!</div><div><br></div></span><div>No. Yocto is not an operati=
+ng system, it&#39;s a toolset that can be used to build many wildly differe=
+nt operating systems. An rpm repo would only be compatible with one of thos=
+e OSes.</div><div><br></div><div>If a Yocto user builds and maintains a spe=
+cific OS with Yocto, it might make sense for them to maintain rpm repos for=
+ that OS. It does not make sense for Yocto project.</div><span class=3D"HOE=
+nZb"><font color=3D"#888888"><div><br></div><div>=C2=A0- Jussi</div></font>=
+</span></div>
+</blockquote></div><br></div>
 
-> The workaround I used in a couple of projects is to store in my custom
-> meta layer a 32 bit copy of libgcc.a and patch U-Boot to use this
-> instead of the library in the distro, that is in :
-> 
-> 
-> diff --git a/arch/x86/lib/Makefile b/arch/x86/lib/Makefile index
-> e17f0bb..62764ec 100644 --- a/arch/x86/lib/Makefile +++
-> b/arch/x86/lib/Makefile @@ -40,7 +40,9 @@ obj-$(CONFIG_HAVE_FSP) += fsp/
-> 
->  extra-$(CONFIG_USE_PRIVATE_LIBGCC) += lib.a
-> 
-> -NORMAL_LIBGCC = $(shell $(CC) $(PLATFORM_CPPFLAGS)
-> -print-libgcc-file-name) +#NORMAL_LIBGCC = $(shell $(CC)
-> $(PLATFORM_CPPFLAGS)
-> -print-libgcc-file-name)
-> +NORMAL_LIBGCC = $(PWD)/arch/$(ARCH)/lib/libgcc.a
->  OBJCOPYFLAGS := --prefix-symbols=__normal_ $(obj)/lib.a:
->  $(NORMAL_LIBGCC) FORCE
-> +       echo "Library GCC" ${NORMAL_LIBGCC}
->         $(call if_changed,objcopy)
-> --
-> 
-> I hope this helps.
-> 
-> Best regards,
-> Stefano Babic
-> 
-> --
-> =====================================================================
-> DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-> Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email:
-> sbabic@denx.de
-> =====================================================================
-
-
-
+--f403045f4fd23896ea055780bac7--
