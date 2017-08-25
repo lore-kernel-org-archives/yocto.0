@@ -1,17 +1,19 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <garbados@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6551BE00BBC; Thu, 24 Aug 2017 21:45:39 -0700 (PDT)
+	id 2010BE00BBC; Thu, 24 Aug 2017 21:54:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (garbados[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.41 listed in list.dnswl.org]
+	*      [74.125.83.67 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,48 +21,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f41.google.com (mail-pg0-f41.google.com [74.125.83.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D45EE00B3D
-	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 21:45:37 -0700 (PDT)
-Received: by mail-pg0-f41.google.com with SMTP id b8so8642304pgn.5
-	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 21:45:37 -0700 (PDT)
+Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9129CE00B3D
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 21:54:01 -0700 (PDT)
+Received: by mail-pg0-f67.google.com with SMTP id 83so2255093pgb.3
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 21:54:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Sn6PY9T5E5r+F/xIOEmdPtR6ChDDl0TQ2TwbRGsGtfI=;
-	b=iyVmxzOqeoOqzZg8w0WHmXeT5QW8Wc565RPEKwunDbNfLuzi8BMqTkU1Y8GJY7/rGs
-	fel9SGX87Vj90Wc2STz7yZyWrHCTHoKzgjT00/aZ+PhWKw/Qwr2YfbNh0sO5jCuWs4l0
-	GACiW/P3K67xzfTARGbIIGVKeFt4jdyqjsfcwYrYSTYs3EbyDrlCGf1lmQY/m8+D/SEc
-	LvxBeUeiIPFLLfWEAOw9qbzyB87BkOEJhC/C6hsB5UEV5ngC4BUWOSnTDIOjNADdd40N
-	VpJKCdBf76EcljCs0FvvH3eMfIND0+IBNO+jKuI4ldYku6hf67F2ojZ/YV73voxxVCuJ
-	sbEQ==
+	h=from:to:cc:subject:date:message-id;
+	bh=xjCBEljbLT10SzFKa2tOs6N1yPr7AwngxtjloYUFFfA=;
+	b=CHauOdLhstbFHNuyaeBKeXPsv5PkYfv6Tyk2QCgRDXoqSwQ3TO84cgY+m/XUSqx6mw
+	D1iq95tz8as7jq7dxyKlubRJfJZsfgdSpW5djuCro9r8iaCR3QC1P9OpWZRVKiBRumPu
+	GNyMmpuZm7fNRm2neE6WsGEsIO8+h5Cn73w0zRfogcjoRZXxW0iXFrtvhGguHtecqDn+
+	6IvFy+6lw87hXm5bjy5PotlAJeEpbHGLltB/NWL0TLdOF0fJX2d7D67Wz4vJf2FaiVL/
+	rT7FbEst0rhQO/2klX9/WwKcvIzjkxHaR1/9uiyK1fRNVZ7JgaRFTeODvJ1iBM96NaL4
+	9E0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Sn6PY9T5E5r+F/xIOEmdPtR6ChDDl0TQ2TwbRGsGtfI=;
-	b=cU4SwRpZSB07lLtVVLdAGqAPQlXIAcbmH1TVfVLx8QiU80mvW0eFPDlx963A5kWNdV
-	wqvHL8STtrfqeu1NFNOk/J7Q43CU3SFqnAjZTaVjuHk2FSifU8ughSSL3ckRj7EfYer/
-	xu9TWjOCQWqw3zI6mjl6NlLZ0gpAtqzBQ5Y8Qlp9hWqtkkCZeix//0yRBuyMMUqa740S
-	vF6zmsZ294QwhGOGSQM0pyai7hINRY0oFSG2kBxeRqc5C5bCuBMiJzlLd3AZjuJBfeJo
-	7j9oiM3DyUf7QvrXcE9dqqU/CWIyDMUVCJXMCOpCqCbX5JwFUsPbu83VJWGfH2tUYkTC
-	4ubQ==
-X-Gm-Message-State: AHYfb5jRLfa66galUwZcS19B7PhxF3Sus5/wdaCIN/f59lZStra1I1pf
-	axk7uPqsqRv7dr7bxnurZTwWy8YVDw==
-X-Received: by 10.84.133.14 with SMTP id 14mr9334445plf.440.1503636336790;
-	Thu, 24 Aug 2017 21:45:36 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.100.167.2 with HTTP; Thu, 24 Aug 2017 21:45:06 -0700 (PDT)
-In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A40295F0864194@IR-CENTRAL.corp.innerrange.com>
-References: <5500469A22567C4BAF673A6E86AFA3A40295F086417D@IR-CENTRAL.corp.innerrange.com>
-	<5500469A22567C4BAF673A6E86AFA3A40295F0864183@IR-CENTRAL.corp.innerrange.com>
-	<CAMKF1soq1xM+HM+tBX3ear57EU0P8N5MMSJxgOy3+ixyt2GPOA@mail.gmail.com>
-	<5500469A22567C4BAF673A6E86AFA3A40295F0864194@IR-CENTRAL.corp.innerrange.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 24 Aug 2017 21:45:06 -0700
-Message-ID: <CAMKF1soW30WKkrHtcNcgLM5A22oLO-irncSnBFjJFw999PjtdQ@mail.gmail.com>
-To: Craig McQueen <craig.mcqueen@innerrange.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Python module and build_ext args
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=xjCBEljbLT10SzFKa2tOs6N1yPr7AwngxtjloYUFFfA=;
+	b=eLqbEQss0NoNQLc6OVkXGw5E6eARydV/pVDMUCMDPVWsCHD4aIPWJPVqYZVm0dKiSW
+	ojh7RxgZTrvDORfG0x9aJ+VLuIktQRDPNN1N643YEA7cZAiE2hQdzUd7R7yW0iQu2M4w
+	7LuL7wVL+keYUKOf9D8tZdc69kZtBYfjvXHUg/GWfisZTUKahxpHX8plAUphWrPfN75x
+	lmD0QEL74GW7J4Odz+qplrO4cLgUtZlZy/c89GsKDdqD0AuIsv8QyOTZulijIwBwnRnI
+	eLkMXRtR69myZMGS2A2T3Y1sPkjFfrmJpK73B1SZGLts3GEZ2wVPH8762gi7TZPCJMnp
+	kogA==
+X-Gm-Message-State: AHYfb5gY9X54Lo0DFDWcxwOltd4WQth8f7OwnNwwctnRkMfYwoRJeKtz
+	Oo1scW1FnNQdejna
+X-Received: by 10.84.211.99 with SMTP id b90mr9246935pli.400.1503636840584;
+	Thu, 24 Aug 2017 21:54:00 -0700 (PDT)
+Received: from deus.apple.sh.pie ([2601:1c2:303:6b0:48e3:269e:1213:4ae9])
+	by smtp.gmail.com with ESMTPSA id
+	o75sm11981799pfa.50.2017.08.24.21.53.59
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 24 Aug 2017 21:53:59 -0700 (PDT)
+From: Diana Thayer <garbados@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 24 Aug 2017 21:53:32 -0700
+Message-Id: <1503636812-5812-1-git-send-email-garbados@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [layerindex-web][PATCH v3] Asynchronous email notifications, task execution
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,89 +71,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Aug 2017 04:45:39 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 25 Aug 2017 04:54:02 -0000
 
-On Thu, Aug 24, 2017 at 9:42 PM, Craig McQueen
-<craig.mcqueen@innerrange.com> wrote:
-> Khem Raj wrote:
->
->
->
-> On Thu, Aug 24, 2017 at 6:48 PM Craig McQueen <craig.mcqueen@innerrange.com>
-> wrote:
->
-> I wrote:
->> I'm trying to make a recipe for python3-uvloop, using setuptools3.
->>
->> The Python 3 uvloop module depends on libuv. It bundles a version of
->> libuv,
->> and setup.py tries to build it, but it doesn't work well for
->> cross-compilation.
->> However, it also provides a build_ext parameter "--use-system-libuv",
->> which
->> seems to work when I try running it manually in devshell. (I have made a
->> suitable recipe for libuv and added libuv to DEPENDS.)
->>
->> How can I specify the "--use-system-libuv" parameter for build_ext in the
->> python3-uvloop recipe? I see a reference to DISTUTILS_BUILD_EXT_ARGS,
->> but it doesn't seem to be functional.
->
->
-> I see DISTUTILS_BUILD_EXT_ARGS was submitted in this patch:
-> https://patchwork.openembedded.org/patch/66071/
->
-> However, in the Yocto poky repository, I see commit
-> 0221af0f4ee9e8bfb8796841bdf806e38bc600c6 which appears to be a broken
-> version of the above patch with the separate build_ext step not actually
-> executed with the DISTUTILS_BUILD_EXT_ARGS parameters.
->
->
->
-> You did not explain broken in which sense ?
->
->
->
-> It is broken in the sense that: The separate build_ext step is not actually
-> executed with the DISTUTILS_BUILD_EXT_ARGS parameters. The original patch
-> submission contained:
->
->
->
->           STAGING_INCDIR=${STAGING_INCDIR} \
->
->           STAGING_LIBDIR=${STAGING_LIBDIR} \
->
->           BUILD_SYS=${BUILD_SYS} HOST_SYS=${HOST_SYS} \
->
-> -         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py
-> build ${DISTUTILS_BUILD_ARGS} || \
->
-> +         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py
-> \
->
-> +         build_ext --include-dirs
-> ${STAGING_INCDIR}/${PYTHON_DIR}${PYTHON_ABI} \
->
-> +         --library-dirs ${STAGING_LIBCDIR}/${PYTHON_DIR} \
->
-> +         ${DISTUTILS_BUILD_EXT_ARGS} \
->
-> +         build ${DISTUTILS_BUILD_ARGS} || \
->
-> +         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py
-> build_ext ${DISTUTILS_BUILD_ARGS} || \
->
->           bbfatal "${PYTHON_PN} setup.py build_ext execution failed."
->
-> }
->
->
->
-> However that part of the patch is not present in commit
-> 0221af0f4ee9e8bfb8796841bdf806e38bc600c6.
->
+This patch adds asynchronous task execution using a Celery backend
+and RabbitMQ task queue, so that the layer submission process to
+proceed even in the event that sending the notification email fails,
+and establishing an asynchronous execution mechanism that we can use
+in the future e.g. for triggering parse operations from the web UI.
 
-IIRC there were some breakages with this but it was long time ago. Can
-you appy this change and test it out ?
+It updates the README to reflect the installation and configuration
+of a basic RabbitMQ setup, adds a 'tasks.py' file to contain task
+definitions, updates the 'edit_layer_view' function to send
+emails to administrators about new and updated layers asynchronously,
+and modifies the 'settings.py' to include a default configuration
+for a RabbitMQ connection.
+
+Signed-off-by: Diana Thayer <garbados@gmail.com>
+---
+ README              | 10 +++++++++-
+ TODO                |  1 -
+ layerindex/tasks.py | 24 ++++++++++++++++++++++++
+ layerindex/views.py |  7 +++----
+ requirements.txt    |  1 +
+ settings.py         |  4 ++++
+ 6 files changed, 41 insertions(+), 6 deletions(-)
+ create mode 100644 layerindex/tasks.py
+
+diff --git a/README b/README
+index 62f739d..c7f7409 100644
+--- a/README
++++ b/README
+@@ -14,6 +14,7 @@ In order to make use of this application you will need:
+ * Python 3.4+
+ * Django 1.8.x - tested with 1.8.17; newer versions may work, but
+   the application has not been tested with 1.9 or newer.
++* RabbitMQ 3.6.x - tested with 3.6.10.
+ * For production usage, a web server set up to host Django applications
+   (not needed for local-only testing)
+ * A database supported by Django (SQLite, MySQL, etc.). Django takes
+@@ -41,7 +42,9 @@ Setup instructions:
+ 1. Edit settings.py to specify a database, EMAIL_HOST, SECRET_KEY and
+    other settings specific to your installation. Ensure you set
+    LAYER_FETCH_DIR to an absolute path to a location with sufficient
+-   space for fetching layer repositories.
++   space for fetching layer repositories. Modify RABBIT_BROKER
++   and RABBIT_BACKEND to reflect the settings used by your RabbitMQ
++   server.
+ 
+ 2. Run the following commands within the layerindex-web directory to
+    initialise the database:
+@@ -64,6 +67,11 @@ Setup instructions:
+    production you need to use a proper web server and have DEBUG set
+    to False.
+ 
++   3.1. In order to process asynchronous tasks like sending email,
++        you will need to run a Celery worker:
++
++        celery -A layerindex.tasks worker --loglevel=info
++
+ 4. You'll need to add at least the openembedded-core layer to the
+    database, or some equivalent that contains conf/bitbake.conf for
+    the base system configuration. To add this, follow these steps:
+diff --git a/TODO b/TODO
+index 186219f..29986ac 100644
+--- a/TODO
++++ b/TODO
+@@ -27,7 +27,6 @@ Other
+ * Show layer type in layer detail?
+ * Usage links in list page?
+ * Subdirs in list page?
+-* Prevent SMTP failures from breaking submission process
+ * Query backend service i.e. special URL to query information for external apps/scripts
+ * Add comparison to duplicates page
+ * Create simple script to check for unlisted layer subdirectories in all repos
+diff --git a/layerindex/tasks.py b/layerindex/tasks.py
+new file mode 100644
+index 0000000..de80804
+--- /dev/null
++++ b/layerindex/tasks.py
+@@ -0,0 +1,24 @@
++from celery import Celery
++from django.core.mail import EmailMessage
++from . import utils
++import os
++import time
++
++try:
++    import settings
++except ImportError:
++    # not in a full django env, so settings is inaccessible.
++    # setup django to access settings.
++    utils.setup_django()
++    import settings
++
++tasks = Celery('layerindex',
++    broker=settings.RABBIT_BROKER,
++    backend=settings.RABBIT_BACKEND)
++
++@tasks.task
++def send_email(subject, text_content, from_email=settings.DEFAULT_FROM_EMAIL, to_emails=[]):
++    # We seem to need to run this within the task
++    utils.setup_django()
++    msg = EmailMessage(subject, text_content, from_email, to_emails)
++    msg.send()
+diff --git a/layerindex/views.py b/layerindex/views.py
+index 1661cb3..c582505 100644
+--- a/layerindex/views.py
++++ b/layerindex/views.py
+@@ -19,7 +19,6 @@ from layerindex.forms import EditLayerForm, LayerMaintainerFormSet, EditNoteForm
+ from django.db import transaction
+ from django.contrib.auth.models import User, Permission
+ from django.db.models import Q, Count, Sum
+-from django.core.mail import EmailMessage
+ from django.template.loader import get_template
+ from django.template import Context
+ from django.utils.decorators import method_decorator
+@@ -28,6 +27,7 @@ from django.contrib import messages
+ from reversion.models import Revision
+ from . import utils
+ from . import simplesearch
++from . import tasks
+ import settings
+ from django.dispatch import receiver
+ import reversion
+@@ -163,7 +163,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
+                     # Send email
+                     plaintext = get_template('layerindex/submitemail.txt')
+                     perm = Permission.objects.get(codename='publish_layer')
+-                    users = User.objects.filter(Q(groups__permissions=perm) | Q(user_permissions=perm) ).distinct()
++                    users = User.objects.filter(Q(groups__permissions=perm) | Q(user_permissions=perm)).distinct()
+                     for user in users:
+                         if user.first_name:
+                             user_name = user.first_name
+@@ -181,8 +181,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
+                         from_email = settings.SUBMIT_EMAIL_FROM
+                         to_email = user.email
+                         text_content = plaintext.render(d)
+-                        msg = EmailMessage(subject, text_content, from_email, [to_email])
+-                        msg.send()
++                        tasks.send_email.apply_async((subject, text_content, from_email, [to_email]))
+                     return HttpResponseRedirect(reverse('submit_layer_thanks'))
+             messages.success(request, 'Layer %s saved successfully.' % layeritem.name)
+             if return_url:
+diff --git a/requirements.txt b/requirements.txt
+index f80e5d4..7cd741b 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,3 +1,4 @@
++celery==3.1.25
+ Django==1.8.17
+ django-cors-headers==1.1.0
+ django-nvd3==0.9.7
+diff --git a/settings.py b/settings.py
+index 92146f8..e26f4b2 100644
+--- a/settings.py
++++ b/settings.py
+@@ -224,3 +224,7 @@ FORCE_REVIEW_HTTPS = False
+ # Settings for layer submission feature
+ SUBMIT_EMAIL_FROM = 'noreply@example.com'
+ SUBMIT_EMAIL_SUBJECT = 'OE Layerindex layer submission'
++
++# RabbitMQ settings
++RABBIT_BROKER = 'amqp://'
++RABBIT_BACKEND = 'rpc://'
+-- 
+2.7.4
+
 
