@@ -1,40 +1,65 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE215E00BBC; Thu, 24 Aug 2017 21:43:04 -0700 (PDT)
+	id 6551BE00BBC; Thu, 24 Aug 2017 21:45:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.41 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from remote.innerrange.com (vpn.innerrange.com.au [203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E01FE00B3D
-	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 21:43:01 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
-	mapi; Fri, 25 Aug 2017 14:42:58 +1000
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: Khem Raj <raj.khem@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Fri, 25 Aug 2017 14:42:57 +1000
-Thread-Topic: [yocto] Python module and build_ext args
-Thread-Index: AdMdS6akfBX4inj2RYGBD40wqxneDQAD9J1g
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A40295F0864194@IR-CENTRAL.corp.innerrange.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f41.google.com (mail-pg0-f41.google.com [74.125.83.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D45EE00B3D
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 21:45:37 -0700 (PDT)
+Received: by mail-pg0-f41.google.com with SMTP id b8so8642304pgn.5
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 21:45:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Sn6PY9T5E5r+F/xIOEmdPtR6ChDDl0TQ2TwbRGsGtfI=;
+	b=iyVmxzOqeoOqzZg8w0WHmXeT5QW8Wc565RPEKwunDbNfLuzi8BMqTkU1Y8GJY7/rGs
+	fel9SGX87Vj90Wc2STz7yZyWrHCTHoKzgjT00/aZ+PhWKw/Qwr2YfbNh0sO5jCuWs4l0
+	GACiW/P3K67xzfTARGbIIGVKeFt4jdyqjsfcwYrYSTYs3EbyDrlCGf1lmQY/m8+D/SEc
+	LvxBeUeiIPFLLfWEAOw9qbzyB87BkOEJhC/C6hsB5UEV5ngC4BUWOSnTDIOjNADdd40N
+	VpJKCdBf76EcljCs0FvvH3eMfIND0+IBNO+jKuI4ldYku6hf67F2ojZ/YV73voxxVCuJ
+	sbEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Sn6PY9T5E5r+F/xIOEmdPtR6ChDDl0TQ2TwbRGsGtfI=;
+	b=cU4SwRpZSB07lLtVVLdAGqAPQlXIAcbmH1TVfVLx8QiU80mvW0eFPDlx963A5kWNdV
+	wqvHL8STtrfqeu1NFNOk/J7Q43CU3SFqnAjZTaVjuHk2FSifU8ughSSL3ckRj7EfYer/
+	xu9TWjOCQWqw3zI6mjl6NlLZ0gpAtqzBQ5Y8Qlp9hWqtkkCZeix//0yRBuyMMUqa740S
+	vF6zmsZ294QwhGOGSQM0pyai7hINRY0oFSG2kBxeRqc5C5bCuBMiJzlLd3AZjuJBfeJo
+	7j9oiM3DyUf7QvrXcE9dqqU/CWIyDMUVCJXMCOpCqCbX5JwFUsPbu83VJWGfH2tUYkTC
+	4ubQ==
+X-Gm-Message-State: AHYfb5jRLfa66galUwZcS19B7PhxF3Sus5/wdaCIN/f59lZStra1I1pf
+	axk7uPqsqRv7dr7bxnurZTwWy8YVDw==
+X-Received: by 10.84.133.14 with SMTP id 14mr9334445plf.440.1503636336790;
+	Thu, 24 Aug 2017 21:45:36 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.100.167.2 with HTTP; Thu, 24 Aug 2017 21:45:06 -0700 (PDT)
+In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A40295F0864194@IR-CENTRAL.corp.innerrange.com>
 References: <5500469A22567C4BAF673A6E86AFA3A40295F086417D@IR-CENTRAL.corp.innerrange.com>
 	<5500469A22567C4BAF673A6E86AFA3A40295F0864183@IR-CENTRAL.corp.innerrange.com>
 	<CAMKF1soq1xM+HM+tBX3ear57EU0P8N5MMSJxgOy3+ixyt2GPOA@mail.gmail.com>
-In-Reply-To: <CAMKF1soq1xM+HM+tBX3ear57EU0P8N5MMSJxgOy3+ixyt2GPOA@mail.gmail.com>
-Accept-Language: en-US, en-AU
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1278-8.100.1062-23278.007
-x-tm-as-result: No--18.477800-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
-MIME-Version: 1.0
+	<5500469A22567C4BAF673A6E86AFA3A40295F0864194@IR-CENTRAL.corp.innerrange.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 24 Aug 2017 21:45:06 -0700
+Message-ID: <CAMKF1soW30WKkrHtcNcgLM5A22oLO-irncSnBFjJFw999PjtdQ@mail.gmail.com>
+To: Craig McQueen <craig.mcqueen@innerrange.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Python module and build_ext args
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -47,198 +72,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Aug 2017 04:43:05 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5500469A22567C4BAF673A6E86AFA3A40295F0864194IRCENTRALco_"
+X-List-Received-Date: Fri, 25 Aug 2017 04:45:39 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_5500469A22567C4BAF673A6E86AFA3A40295F0864194IRCENTRALco_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Thu, Aug 24, 2017 at 9:42 PM, Craig McQueen
+<craig.mcqueen@innerrange.com> wrote:
+> Khem Raj wrote:
+>
+>
+>
+> On Thu, Aug 24, 2017 at 6:48 PM Craig McQueen <craig.mcqueen@innerrange.com>
+> wrote:
+>
+> I wrote:
+>> I'm trying to make a recipe for python3-uvloop, using setuptools3.
+>>
+>> The Python 3 uvloop module depends on libuv. It bundles a version of
+>> libuv,
+>> and setup.py tries to build it, but it doesn't work well for
+>> cross-compilation.
+>> However, it also provides a build_ext parameter "--use-system-libuv",
+>> which
+>> seems to work when I try running it manually in devshell. (I have made a
+>> suitable recipe for libuv and added libuv to DEPENDS.)
+>>
+>> How can I specify the "--use-system-libuv" parameter for build_ext in the
+>> python3-uvloop recipe? I see a reference to DISTUTILS_BUILD_EXT_ARGS,
+>> but it doesn't seem to be functional.
+>
+>
+> I see DISTUTILS_BUILD_EXT_ARGS was submitted in this patch:
+> https://patchwork.openembedded.org/patch/66071/
+>
+> However, in the Yocto poky repository, I see commit
+> 0221af0f4ee9e8bfb8796841bdf806e38bc600c6 which appears to be a broken
+> version of the above patch with the separate build_ext step not actually
+> executed with the DISTUTILS_BUILD_EXT_ARGS parameters.
+>
+>
+>
+> You did not explain broken in which sense ?
+>
+>
+>
+> It is broken in the sense that: The separate build_ext step is not actually
+> executed with the DISTUTILS_BUILD_EXT_ARGS parameters. The original patch
+> submission contained:
+>
+>
+>
+>           STAGING_INCDIR=${STAGING_INCDIR} \
+>
+>           STAGING_LIBDIR=${STAGING_LIBDIR} \
+>
+>           BUILD_SYS=${BUILD_SYS} HOST_SYS=${HOST_SYS} \
+>
+> -         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py
+> build ${DISTUTILS_BUILD_ARGS} || \
+>
+> +         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py
+> \
+>
+> +         build_ext --include-dirs
+> ${STAGING_INCDIR}/${PYTHON_DIR}${PYTHON_ABI} \
+>
+> +         --library-dirs ${STAGING_LIBCDIR}/${PYTHON_DIR} \
+>
+> +         ${DISTUTILS_BUILD_EXT_ARGS} \
+>
+> +         build ${DISTUTILS_BUILD_ARGS} || \
+>
+> +         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.py
+> build_ext ${DISTUTILS_BUILD_ARGS} || \
+>
+>           bbfatal "${PYTHON_PN} setup.py build_ext execution failed."
+>
+> }
+>
+>
+>
+> However that part of the patch is not present in commit
+> 0221af0f4ee9e8bfb8796841bdf806e38bc600c6.
+>
 
-S2hlbSBSYWogd3JvdGU6DQoNCk9uIFRodSwgQXVnIDI0LCAyMDE3IGF0IDY6NDggUE0gQ3JhaWcg
-TWNRdWVlbiA8Y3JhaWcubWNxdWVlbkBpbm5lcnJhbmdlLmNvbTxtYWlsdG86Y3JhaWcubWNxdWVl
-bkBpbm5lcnJhbmdlLmNvbT4+IHdyb3RlOg0KSSB3cm90ZToNCj4gSSdtIHRyeWluZyB0byBtYWtl
-IGEgcmVjaXBlIGZvciBweXRob24zLXV2bG9vcCwgdXNpbmcgc2V0dXB0b29sczMuDQo+DQo+IFRo
-ZSBQeXRob24gMyB1dmxvb3AgbW9kdWxlIGRlcGVuZHMgb24gbGlidXYuIEl0IGJ1bmRsZXMgYSB2
-ZXJzaW9uIG9mIGxpYnV2LA0KPiBhbmQgc2V0dXAucHkgdHJpZXMgdG8gYnVpbGQgaXQsIGJ1dCBp
-dCBkb2Vzbid0IHdvcmsgd2VsbCBmb3IgY3Jvc3MtY29tcGlsYXRpb24uDQo+IEhvd2V2ZXIsIGl0
-IGFsc28gcHJvdmlkZXMgYSBidWlsZF9leHQgcGFyYW1ldGVyICItLXVzZS1zeXN0ZW0tbGlidXYi
-LCB3aGljaA0KPiBzZWVtcyB0byB3b3JrIHdoZW4gSSB0cnkgcnVubmluZyBpdCBtYW51YWxseSBp
-biBkZXZzaGVsbC4gKEkgaGF2ZSBtYWRlIGENCj4gc3VpdGFibGUgcmVjaXBlIGZvciBsaWJ1diBh
-bmQgYWRkZWQgbGlidXYgdG8gREVQRU5EUy4pDQo+DQo+IEhvdyBjYW4gSSBzcGVjaWZ5IHRoZSAi
-LS11c2Utc3lzdGVtLWxpYnV2IiBwYXJhbWV0ZXIgZm9yIGJ1aWxkX2V4dCBpbiB0aGUNCj4gcHl0
-aG9uMy11dmxvb3AgcmVjaXBlPyBJIHNlZSBhIHJlZmVyZW5jZSB0byBESVNUVVRJTFNfQlVJTERf
-RVhUX0FSR1MsDQo+IGJ1dCBpdCBkb2Vzbid0IHNlZW0gdG8gYmUgZnVuY3Rpb25hbC4NCg0KDQpJ
-IHNlZSBESVNUVVRJTFNfQlVJTERfRVhUX0FSR1Mgd2FzIHN1Ym1pdHRlZCBpbiB0aGlzIHBhdGNo
-Og0KaHR0cHM6Ly9wYXRjaHdvcmsub3BlbmVtYmVkZGVkLm9yZy9wYXRjaC82NjA3MS8NCg0KSG93
-ZXZlciwgaW4gdGhlIFlvY3RvIHBva3kgcmVwb3NpdG9yeSwgSSBzZWUgY29tbWl0IDAyMjFhZjBm
-NGVlOWU4YmZiODc5Njg0MWJkZjgwNmUzOGJjNjAwYzYgd2hpY2ggYXBwZWFycyB0byBiZSBhIGJy
-b2tlbiB2ZXJzaW9uIG9mIHRoZSBhYm92ZSBwYXRjaCB3aXRoIHRoZSBzZXBhcmF0ZSBidWlsZF9l
-eHQgc3RlcCBub3QgYWN0dWFsbHkgZXhlY3V0ZWQgd2l0aCB0aGUgRElTVFVUSUxTX0JVSUxEX0VY
-VF9BUkdTIHBhcmFtZXRlcnMuDQoNCllvdSBkaWQgbm90IGV4cGxhaW4gYnJva2VuIGluIHdoaWNo
-IHNlbnNlID8NCg0KSXQgaXMgYnJva2VuIGluIHRoZSBzZW5zZSB0aGF0OiBUaGUgc2VwYXJhdGUg
-YnVpbGRfZXh0IHN0ZXAgaXMgbm90IGFjdHVhbGx5IGV4ZWN1dGVkIHdpdGggdGhlIERJU1RVVElM
-U19CVUlMRF9FWFRfQVJHUyBwYXJhbWV0ZXJzLiBUaGUgb3JpZ2luYWwgcGF0Y2ggc3VibWlzc2lv
-biBjb250YWluZWQ6DQoNCiAgICAgICAgICBTVEFHSU5HX0lOQ0RJUj0ke1NUQUdJTkdfSU5DRElS
-fSBcDQogICAgICAgICAgU1RBR0lOR19MSUJESVI9JHtTVEFHSU5HX0xJQkRJUn0gXA0KICAgICAg
-ICAgIEJVSUxEX1NZUz0ke0JVSUxEX1NZU30gSE9TVF9TWVM9JHtIT1NUX1NZU30gXA0KLSAgICAg
-ICAgICR7U1RBR0lOR19CSU5ESVJfTkFUSVZFfS8ke1BZVEhPTl9QTn0tbmF0aXZlLyR7UFlUSE9O
-X1BOfSBzZXR1cC5weSBidWlsZCAke0RJU1RVVElMU19CVUlMRF9BUkdTfSB8fCBcDQorICAgICAg
-ICAgJHtTVEFHSU5HX0JJTkRJUl9OQVRJVkV9LyR7UFlUSE9OX1BOfS1uYXRpdmUvJHtQWVRIT05f
-UE59IHNldHVwLnB5IFwNCisgICAgICAgICBidWlsZF9leHQgLS1pbmNsdWRlLWRpcnMgJHtTVEFH
-SU5HX0lOQ0RJUn0vJHtQWVRIT05fRElSfSR7UFlUSE9OX0FCSX0gXA0KKyAgICAgICAgIC0tbGli
-cmFyeS1kaXJzICR7U1RBR0lOR19MSUJDRElSfS8ke1BZVEhPTl9ESVJ9IFwNCisgICAgICAgICAk
-e0RJU1RVVElMU19CVUlMRF9FWFRfQVJHU30gXA0KKyAgICAgICAgIGJ1aWxkICR7RElTVFVUSUxT
-X0JVSUxEX0FSR1N9IHx8IFwNCisgICAgICAgICAke1NUQUdJTkdfQklORElSX05BVElWRX0vJHtQ
-WVRIT05fUE59LW5hdGl2ZS8ke1BZVEhPTl9QTn0gc2V0dXAucHkgYnVpbGRfZXh0ICR7RElTVFVU
-SUxTX0JVSUxEX0FSR1N9IHx8IFwNCiAgICAgICAgICBiYmZhdGFsICIke1BZVEhPTl9QTn0gc2V0
-dXAucHkgYnVpbGRfZXh0IGV4ZWN1dGlvbiBmYWlsZWQuIg0KfQ0KDQpIb3dldmVyIHRoYXQgcGFy
-dCBvZiB0aGUgcGF0Y2ggaXMgbm90IHByZXNlbnQgaW4gY29tbWl0IDAyMjFhZjBmNGVlOWU4YmZi
-ODc5Njg0MWJkZjgwNmUzOGJjNjAwYzYuDQoNCi0tDQpDcmFpZyBNY1F1ZWVuDQoNCg==
+IIRC there were some breakages with this but it was long time ago. Can
+you appy this change and test it out ?
 
---_000_5500469A22567C4BAF673A6E86AFA3A40295F0864194IRCENTRALco_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj1Db250ZW50LVR5cGUgY29udGVu
-dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij48bWV0YSBuYW1lPUdlbmVyYXRvciBjb250ZW50
-PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQgbWVkaXVtKSI+PHN0eWxlPjwhLS0NCi8qIEZv
-bnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0
-aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQt
-ZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5
-bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3Jt
-YWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEy
-LjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9DQphOmxpbmssIHNw
-YW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0K
-CXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlu
-a0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4
-dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwcmUNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
-CW1zby1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltYXJnaW46MGNtOw0K
-CW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5
-OiJDb3VyaWVyIE5ldyI7fQ0KcC5Nc29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBo
-LCBkaXYuTXNvTGlzdFBhcmFncmFwaA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2lu
-LXRvcDowY207DQoJbWFyZ2luLXJpZ2h0OjBjbTsNCgltYXJnaW4tYm90dG9tOjBjbTsNCgltYXJn
-aW4tbGVmdDozNi4wcHQ7DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4w
-cHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0Kc3Bhbi5IVE1MUHJl
-Zm9ybWF0dGVkQ2hhcg0KCXttc28tc3R5bGUtbmFtZToiSFRNTCBQcmVmb3JtYXR0ZWQgQ2hhciI7
-DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1h
-dHRlZCI7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3IjsNCgltc28tZmFyZWFzdC1sYW5ndWFn
-ZTpFTi1BVTt9DQpzcGFuLkVtYWlsU3R5bGUyMA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1y
-ZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdE
-O30NCnNwYW4ucGRlbA0KCXttc28tc3R5bGUtbmFtZTpwX2RlbDt9DQpzcGFuLnBhZGQNCgl7bXNv
-LXN0eWxlLW5hbWU6cF9hZGQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhw
-b3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fu
-cy1zZXJpZjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBXb3JkU2VjdGlv
-bjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0
-IDcyLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
-c3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJl
-ZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNv
-IDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0i
-ZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT48L2hl
-YWQ+PGJvZHkgbGFuZz1FTi1BVSBsaW5rPWJsdWUgdmxpbms9cHVycGxlPjxkaXYgY2xhc3M9V29y
-ZFNlY3Rpb24xPjxwIGNsYXNzPU1zb05vcm1hbD48c3BhbiBzdHlsZT0nY29sb3I6IzFGNDk3RCc+
-S2hlbSBSYWogd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9wPjxwIGNsYXNzPU1zb05vcm1hbD48
-c3BhbiBzdHlsZT0nY29sb3I6IzFGNDk3RCc+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPjxk
-aXYgc3R5bGU9J2JvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkIGJsdWUgMS41cHQ7cGFkZGlu
-ZzowY20gMGNtIDBjbSA0LjBwdCc+PGRpdj48ZGl2PjxkaXY+PHAgY2xhc3M9TXNvTm9ybWFsPk9u
-IFRodSwgQXVnIDI0LCAyMDE3IGF0IDY6NDggUE0gQ3JhaWcgTWNRdWVlbiAmbHQ7PGEgaHJlZj0i
-bWFpbHRvOmNyYWlnLm1jcXVlZW5AaW5uZXJyYW5nZS5jb20iPmNyYWlnLm1jcXVlZW5AaW5uZXJy
-YW5nZS5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD48L2Rpdj48YmxvY2txdW90ZSBz
-dHlsZT0nYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5n
-OjBjbSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi10b3A6NS4wcHQ7bWFy
-Z2luLXJpZ2h0OjBjbTttYXJnaW4tYm90dG9tOjUuMHB0Jz48cCBjbGFzcz1Nc29Ob3JtYWw+SSB3
-cm90ZTo8YnI+Jmd0OyBJJ20gdHJ5aW5nIHRvIG1ha2UgYSByZWNpcGUgZm9yIHB5dGhvbjMtdXZs
-b29wLCB1c2luZyBzZXR1cHRvb2xzMy48YnI+Jmd0Ozxicj4mZ3Q7IFRoZSBQeXRob24gMyB1dmxv
-b3AgbW9kdWxlIGRlcGVuZHMgb24gbGlidXYuIEl0IGJ1bmRsZXMgYSB2ZXJzaW9uIG9mIGxpYnV2
-LDxicj4mZ3Q7IGFuZCBzZXR1cC5weSB0cmllcyB0byBidWlsZCBpdCwgYnV0IGl0IGRvZXNuJ3Qg
-d29yayB3ZWxsIGZvciBjcm9zcy1jb21waWxhdGlvbi48YnI+Jmd0OyBIb3dldmVyLCBpdCBhbHNv
-IHByb3ZpZGVzIGEgYnVpbGRfZXh0IHBhcmFtZXRlciAmcXVvdDstLXVzZS1zeXN0ZW0tbGlidXYm
-cXVvdDssIHdoaWNoPGJyPiZndDsgc2VlbXMgdG8gd29yayB3aGVuIEkgdHJ5IHJ1bm5pbmcgaXQg
-bWFudWFsbHkgaW4gZGV2c2hlbGwuIChJIGhhdmUgbWFkZSBhPGJyPiZndDsgc3VpdGFibGUgcmVj
-aXBlIGZvciBsaWJ1diBhbmQgYWRkZWQgbGlidXYgdG8gREVQRU5EUy4pPGJyPiZndDs8YnI+Jmd0
-OyBIb3cgY2FuIEkgc3BlY2lmeSB0aGUgJnF1b3Q7LS11c2Utc3lzdGVtLWxpYnV2JnF1b3Q7IHBh
-cmFtZXRlciBmb3IgYnVpbGRfZXh0IGluIHRoZTxicj4mZ3Q7IHB5dGhvbjMtdXZsb29wIHJlY2lw
-ZT8gSSBzZWUgYSByZWZlcmVuY2UgdG8gRElTVFVUSUxTX0JVSUxEX0VYVF9BUkdTLDxicj4mZ3Q7
-IGJ1dCBpdCBkb2Vzbid0IHNlZW0gdG8gYmUgZnVuY3Rpb25hbC48YnI+PGJyPjxicj5JIHNlZSBE
-SVNUVVRJTFNfQlVJTERfRVhUX0FSR1Mgd2FzIHN1Ym1pdHRlZCBpbiB0aGlzIHBhdGNoOjxicj48
-YSBocmVmPSJodHRwczovL3BhdGNod29yay5vcGVuZW1iZWRkZWQub3JnL3BhdGNoLzY2MDcxLyI+
-aHR0cHM6Ly9wYXRjaHdvcmsub3BlbmVtYmVkZGVkLm9yZy9wYXRjaC82NjA3MS88L2E+PGJyPjxi
-cj5Ib3dldmVyLCBpbiB0aGUgWW9jdG8gcG9reSByZXBvc2l0b3J5LCBJIHNlZSBjb21taXQgMDIy
-MWFmMGY0ZWU5ZThiZmI4Nzk2ODQxYmRmODA2ZTM4YmM2MDBjNiB3aGljaCBhcHBlYXJzIHRvIGJl
-IGEgYnJva2VuIHZlcnNpb24gb2YgdGhlIGFib3ZlIHBhdGNoIHdpdGggdGhlIHNlcGFyYXRlIGJ1
-aWxkX2V4dCBzdGVwIG5vdCBhY3R1YWxseSBleGVjdXRlZCB3aXRoIHRoZSBESVNUVVRJTFNfQlVJ
-TERfRVhUX0FSR1MgcGFyYW1ldGVycy48bzpwPjwvbzpwPjwvcD48L2Jsb2NrcXVvdGU+PGRpdj48
-cCBjbGFzcz1Nc29Ob3JtYWw+PG86cD4mbmJzcDs8L286cD48L3A+PC9kaXY+PGRpdj48cCBjbGFz
-cz1Nc29Ob3JtYWw+WW91IGRpZCBub3QgZXhwbGFpbiBicm9rZW4gaW4gd2hpY2ggc2Vuc2UgPzxv
-OnA+PC9vOnA+PC9wPjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjxwIGNsYXNzPU1zb05vcm1hbD48
-c3BhbiBzdHlsZT0nZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1z
-ZXJpZjtjb2xvcjojMUY0OTdEJz48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9
-TXNvTm9ybWFsPjxzcGFuIHN0eWxlPSdmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiJDYWxp
-YnJpIixzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QnPkl0IGlzIGJyb2tlbiBpbiB0aGUgc2Vuc2Ug
-dGhhdDogVGhlIHNlcGFyYXRlIGJ1aWxkX2V4dCBzdGVwIGlzIG5vdCBhY3R1YWxseSBleGVjdXRl
-ZCB3aXRoIHRoZSBESVNUVVRJTFNfQlVJTERfRVhUX0FSR1MgcGFyYW1ldGVycy4gVGhlIG9yaWdp
-bmFsIHBhdGNoIHN1Ym1pc3Npb24gY29udGFpbmVkOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD48cCBj
-bGFzcz1Nc29Ob3JtYWw+PHNwYW4gc3R5bGU9J2ZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-IkNhbGlicmkiLHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCc+PG86cD4mbmJzcDs8L286cD48L3Nw
-YW4+PC9wPjxwIGNsYXNzPU1zb05vcm1hbD48c3BhbiBzdHlsZT0nZm9udC1zaXplOjEwLjBwdDtm
-b250LWZhbWlseToiQ291cmllciBOZXciJz7CoMKgwqDCoMKgwqDCoMKgwqAgU1RBR0lOR19JTkNE
-SVI9JHtTVEFHSU5HX0lOQ0RJUn0gXDxvOnA+PC9vOnA+PC9zcGFuPjwvcD48cCBjbGFzcz1Nc29O
-b3JtYWw+PHNwYW4gc3R5bGU9J2ZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6IkNvdXJpZXIg
-TmV3Iic+wqDCoMKgwqDCoMKgwqDCoMKgIFNUQUdJTkdfTElCRElSPSR7U1RBR0lOR19MSUJESVJ9
-IFw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFuIHN0eWxlPSdm
-b250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyInPsKgwqDCoMKgwqDCoMKg
-wqDCoCBCVUlMRF9TWVM9JHtCVUlMRF9TWVN9IEhPU1RfU1lTPSR7SE9TVF9TWVN9IFw8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFuIHN0eWxlPSdmb250LXNpemU6
-MTAuMHB0O2ZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyInPi3CoMKgwqDCoMKgwqDCoMKgICR7U1RB
-R0lOR19CSU5ESVJfTkFUSVZFfS8ke1BZVEhPTl9QTn0tbmF0aXZlLyR7UFlUSE9OX1BOfSBzZXR1
-cC5weSBidWlsZCAke0RJU1RVVElMU19CVUlMRF9BUkdTfSB8fCBcPG86cD48L286cD48L3NwYW4+
-PC9wPjxwIGNsYXNzPU1zb05vcm1hbD48c3BhbiBzdHlsZT0nZm9udC1zaXplOjEwLjBwdDtmb250
-LWZhbWlseToiQ291cmllciBOZXciJz4rwqDCoMKgwqDCoMKgwqDCoCAke1NUQUdJTkdfQklORElS
-X05BVElWRX0vJHtQWVRIT05fUE59LW5hdGl2ZS8ke1BZVEhPTl9QTn0gc2V0dXAucHkgXDxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD48cCBjbGFzcz1Nc29Ob3JtYWw+PHNwYW4gc3R5bGU9J2ZvbnQtc2l6
-ZToxMC4wcHQ7Zm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Iic+K8KgwqDCoMKgwqDCoMKgwqAgYnVp
-bGRfZXh0IC0taW5jbHVkZS1kaXJzICR7U1RBR0lOR19JTkNESVJ9LyR7UFlUSE9OX0RJUn0ke1BZ
-VEhPTl9BQkl9IFw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFu
-IHN0eWxlPSdmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyInPivCoMKg
-wqDCoMKgwqDCoMKgIC0tbGlicmFyeS1kaXJzICR7U1RBR0lOR19MSUJDRElSfS8ke1BZVEhPTl9E
-SVJ9IFw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFuIHN0eWxl
-PSdmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyInPivCoMKgwqDCoMKg
-wqDCoMKgICR7RElTVFVUSUxTX0JVSUxEX0VYVF9BUkdTfSBcPG86cD48L286cD48L3NwYW4+PC9w
-PjxwIGNsYXNzPU1zb05vcm1hbD48c3BhbiBzdHlsZT0nZm9udC1zaXplOjEwLjBwdDtmb250LWZh
-bWlseToiQ291cmllciBOZXciJz4rwqDCoMKgwqDCoMKgwqDCoCBidWlsZCAke0RJU1RVVElMU19C
-VUlMRF9BUkdTfSB8fCBcPG86cD48L286cD48L3NwYW4+PC9wPjxwIGNsYXNzPU1zb05vcm1hbD48
-c3BhbiBzdHlsZT0nZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseToiQ291cmllciBOZXciJz4r
-wqDCoMKgwqDCoMKgwqDCoCAke1NUQUdJTkdfQklORElSX05BVElWRX0vJHtQWVRIT05fUE59LW5h
-dGl2ZS8ke1BZVEhPTl9QTn0gc2V0dXAucHkgYnVpbGRfZXh0ICR7RElTVFVUSUxTX0JVSUxEX0FS
-R1N9IHx8IFw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFuIHN0
-eWxlPSdmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyInPsKgwqDCoMKg
-wqDCoMKgwqDCoCBiYmZhdGFsICZxdW90OyR7UFlUSE9OX1BOfSBzZXR1cC5weSBidWlsZF9leHQg
-ZXhlY3V0aW9uIGZhaWxlZC4mcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNv
-Tm9ybWFsPjxzcGFuIHN0eWxlPSdmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiJDb3VyaWVy
-IE5ldyInPn08bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFuIHN0
-eWxlPSdmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO2Nv
-bG9yOiMxRjQ5N0QnPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD48cCBjbGFzcz1Nc29Ob3Jt
-YWw+PHNwYW4gc3R5bGU9J2ZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
-bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCc+SG93ZXZlciB0aGF0IHBhcnQgb2YgdGhlIHBhdGNoIGlz
-IG5vdCBwcmVzZW50IDwvc3Bhbj48c3BhbiBzdHlsZT0nZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1
-YWdlOkVOLVVTJz5pbiBjb21taXQgMDIyMWFmMGY0ZWU5ZThiZmI4Nzk2ODQxYmRmODA2ZTM4YmM2
-MDBjNi48bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFuIHN0eWxl
-PSdmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMnPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD48cCBjbGFzcz1Nc29Ob3JtYWw+PHNwYW4gc3R5bGU9J2ZvbnQtc2l6ZToxMS4wcHQ7
-Zm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFz
-dC1sYW5ndWFnZTpFTi1VUyc+LS0gPG86cD48L286cD48L3NwYW4+PC9wPjxwIGNsYXNzPU1zb05v
-cm1hbD48c3BhbiBzdHlsZT0nZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseToiQ2FsaWJyaSIs
-c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTJz5DcmFp
-ZyBNY1F1ZWVuPG86cD48L286cD48L3NwYW4+PC9wPjxwIGNsYXNzPU1zb05vcm1hbD48c3BhbiBz
-dHlsZT0nZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjtj
-b2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTJz48bzpwPiZuYnNwOzwvbzpw
-Pjwvc3Bhbj48L3A+PC9kaXY+PC9ib2R5PjwvaHRtbD4=
-
---_000_5500469A22567C4BAF673A6E86AFA3A40295F0864194IRCENTRALco_--
