@@ -1,65 +1,70 @@
-Return-Path: <garbados@gmail.com>
+Return-Path: <mickey.happygolucky@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98165E00CB0; Fri, 25 Aug 2017 13:01:43 -0700 (PDT)
+	id 922CEE00CC6; Fri, 25 Aug 2017 13:17:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.68 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (garbados[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mickey.happygolucky[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.47 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+	*      [209.85.213.47 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22EF9E00B1B
-	for <yocto@yoctoproject.org>; Fri, 25 Aug 2017 13:01:42 -0700 (PDT)
-Received: by mail-pg0-f68.google.com with SMTP id 63so1081382pgc.1
-	for <yocto@yoctoproject.org>; Fri, 25 Aug 2017 13:01:42 -0700 (PDT)
+Received: from mail-vk0-f47.google.com (mail-vk0-f47.google.com
+	[209.85.213.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7A27E00B1B
+	for <yocto@yoctoproject.org>; Fri, 25 Aug 2017 13:17:08 -0700 (PDT)
+Received: by mail-vk0-f47.google.com with SMTP id q189so2590060vke.4
+	for <yocto@yoctoproject.org>; Fri, 25 Aug 2017 13:17:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=ENvsKtM2YfLCIbVjd4HSu3xIUEzBGw60D6c4JrTQhCQ=;
-	b=BKlTLjTioF3WV6kHlyaME/f/3aoBjjDSzWa2nbzjoosXXZtXkniFZ5vaPFGjX4Ssbd
-	Vl5W093njjaUcFcUZYd+hSVGRrWijgq6MeLAlpw8A0uIz6AiTokMNkYoeZWw2ACT/kIL
-	TxspJ7dQvdhO2TGZN5e5cZo/IvmwwMzax3dPWACCKX8ufDQLIFxk72HQ2kxQ3H0xQrql
-	UmnN+zEn2glCXIHhDL+ai4FJo3OBE/rwM+p+lGyJfcrx62t4WgrEclKyj+5UPzZalb5F
-	vDdVCWb7NkWPvxOHYqjnEPoGPIRDpJmjWQ2NxTZGS2RSA539H9ewDQMTC5H37TJGmvrJ
-	OZPA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=zcHeZIgq4seQGwS15t/RS7XchiepZuyUDXQ9kRvZDn4=;
+	b=jghF+Dv+m0yxsWwK06WDzaw5fkdFBhX++SyL17YA/nVQ36vvEL2YyWKJ4UjnyqOz2D
+	3Td1TzsRvb7CN7Hf8ygBfyWutgIEehCd795cRAixoNCCsqjSvxFp37+b9WYJ6K79WFDc
+	zAgJNB2/W5M5mCpY9yKmkIgkqjOMJ7/GmbhuQF9QlG0WZt9FHu/L2Z1hM4yhIf6AtPEM
+	iBYPPcCVke3UBVAwA8esUDjhY1foXkQv0+VRKyK+pE+s2ShzIRWLuOFV4BDsJJEIkFTR
+	fQCGHi54RvlQtKn/mDjvT0zIuYu2eFo/sBSm3M0uGkCxlbom0wzG7vrD+kq+xFPhZtLu
+	qCcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=ENvsKtM2YfLCIbVjd4HSu3xIUEzBGw60D6c4JrTQhCQ=;
-	b=NoipG8ChauoZjrG7JuKzkxEX4/jUBZ+pqYkpnm9MAjeNGNYBPPoGVw0vvYbOWKAHRA
-	NKmqAV2qdNgVyXuUClwE77qQS9AfiMhNIAuD4ON5Z3NC8/ymlGskWndvlhPLmQMu6sk0
-	zQrPq3y3psLbYWwvSXh+cUjzIBvLkXot1iv47+zJatIVe9A3HiVbC3WsLgXX8+0y4/lV
-	SK0bfsP7QR4XVPYI5BW5Kt/6zHWJ/kWXMNrTaIblKRn1ATkAm3GWdaQ7vPq4J8xk51PZ
-	WYEpGqOM2Je/wOUSyyJMSV0iftEEIn/wR95CXqktYMFl7Ymc+Koxp90EpjweRC46XFM5
-	RZNw==
-X-Gm-Message-State: AHYfb5gHxZZsxyDJxBCtwNDxjrDmb1Nh1h+WWzXDBiJ4pgogTECHBIGE
-	srBm1Tpee39QZOTc
-X-Received: by 10.84.231.139 with SMTP id g11mr11991920plk.34.1503691302168;
-	Fri, 25 Aug 2017 13:01:42 -0700 (PDT)
-Received: from deus.apple.sh.pie ([2601:1c2:303:6b0:7d83:e360:78db:8aea])
-	by smtp.gmail.com with ESMTPSA id
-	z127sm12050974pfb.64.2017.08.25.13.01.40
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 25 Aug 2017 13:01:40 -0700 (PDT)
-From: Diana Thayer <garbados@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 25 Aug 2017 13:00:51 -0700
-Message-Id: <1503691251-30043-1-git-send-email-garbados@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [layerindex-web][PATCH v2] docker : update dockerfile to start celery worker
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=zcHeZIgq4seQGwS15t/RS7XchiepZuyUDXQ9kRvZDn4=;
+	b=UAdhBUgcvFREg6NrwHtvhjsh/tf84jkEuaZgW8wj3ZhlFUid/YyMdN40OAfFi2Dr90
+	4FyuIhtBEnSNmpHqo7FmBwTWrW429vEvuChCboWLLajzrKQUflwXDWYjnA4SA4otghRJ
+	adsMiXk4nzbLFM2zWJGbz7HvbKCJp5gge209+BspUzjj5qyYh6O0Jw3IOPqViPUu23OJ
+	48jQ8tHcBAEeDe8IO5SzEgXKk6ubvbohjbjKm6RF0Tk4gRVJ92ZfPZtUOj28/vsyAj9f
+	GGIOWuWkQig2DTIQRykWnli9upOE8jd7kcOTqKSc3wWIaCR3MBxNstmhvTFNXqFNIDN+
+	CInA==
+X-Gm-Message-State: AHYfb5hQVmbO/q8JopH42EVLZfSivGSNiYD4Ib+LGV2Xr3FpeDhZgwdW
+	ufzLOqm2/QVnWTcFABDsxV1rFRV/jQ==
+X-Received: by 10.31.60.78 with SMTP id j75mr7200158vka.38.1503692227663; Fri,
+	25 Aug 2017 13:17:07 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.31.211.129 with HTTP; Fri, 25 Aug 2017 13:17:07 -0700 (PDT)
+In-Reply-To: <CAPyrkgz_zRA3+FL6v9yrvaZNeEGh5OH+j6edbusjU1xooB6+qA@mail.gmail.com>
+References: <1503576301-18920-1-git-send-email-mickey.happygolucky@gmail.com>
+	<1503576301-18920-2-git-send-email-mickey.happygolucky@gmail.com>
+	<CAPyrkgz_zRA3+FL6v9yrvaZNeEGh5OH+j6edbusjU1xooB6+qA@mail.gmail.com>
+From: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+Date: Sat, 26 Aug 2017 05:17:07 +0900
+Message-ID: <CACMwXoUxrv9OzS18w0VkhULmajWC3YiZsV0G=fcV=LXMTSXS2g@mail.gmail.com>
+To: Paul Barker <pbarker@toganlabs.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] bluez5: add functions for raspberrypi0-wifi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,188 +76,196 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Aug 2017 20:01:43 -0000
+X-List-Received-Date: Fri, 25 Aug 2017 20:17:09 -0000
+Content-Type: multipart/alternative; boundary="001a11438c1e14db91055799a1e2"
 
-Related to bug 11197
-(https://bugzilla.yoctoproject.org/show_bug.cgi?id=11197)
-this WIP patch updates the Dockerfile to start a Celery worker
-alongside the Gunicorn daemon. These changes allow the Docker
-image to leverage the asynchronous task execution framework
-established in a prior patch.
+--001a11438c1e14db91055799a1e2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I don't have the best grasp of Docker but the image appears
-to serve up a functioning layerindex.
+okay. I will try.
 
-Signed-off-by: Diana Thayer <garbados@gmail.com>
----
- Dockerfile          | 10 ++++++++--
- README              | 10 +++++++++-
- TODO                |  1 -
- layerindex/tasks.py | 24 ++++++++++++++++++++++++
- layerindex/views.py |  5 ++---
- requirements.txt    |  1 +
- settings.py         |  4 ++++
- 7 files changed, 48 insertions(+), 7 deletions(-)
- create mode 100644 layerindex/tasks.py
+2017-08-25 17:51 GMT+09:00 Paul Barker <pbarker@toganlabs.com>:
 
-diff --git a/Dockerfile b/Dockerfile
-index 1f63e2a..9bb251e 100644
---- a/Dockerfile
-+++ b/Dockerfile
-@@ -13,11 +13,13 @@ RUN apt-get install -y --no-install-recommends \
- 	python-mysqldb \
- 	python-dev \
- 	python-imaging \
--    netcat-openbsd \
--    vim \
-+	rabbitmq-server \
-+	netcat-openbsd \
-+	vim \
- 	&& rm -rf /var/lib/apt/lists/*
- RUN pip install --upgrade pip
- RUN pip install gunicorn
-+RUN pip install setuptools
- CMD mkdir /opt/workdir
- ADD . /opt/layerindex
- RUN pip install -r /opt/layerindex/requirements.txt
-@@ -31,4 +33,8 @@ ADD docker/migrate.sh /opt/migrate.sh
- ## do so, you will also have to edit .gitconfig appropriately
- #ADD docker/git-proxy /opt/bin/git-proxy
- 
-+# Start Gunicorn
- CMD ["/usr/local/bin/gunicorn", "wsgi:application", "--workers=4", "--bind=:5000", "--log-level=debug", "--chdir=/opt/layerindex"]
-+
-+# Start Celery
-+CMD ["/usr/local/bin/celery", "-A", "layerindex.tasks", "worker", "--loglevel=info", "--workdir=/opt/layerindex"]
-diff --git a/README b/README
-index 62f739d..c7f7409 100644
---- a/README
-+++ b/README
-@@ -14,6 +14,7 @@ In order to make use of this application you will need:
- * Python 3.4+
- * Django 1.8.x - tested with 1.8.17; newer versions may work, but
-   the application has not been tested with 1.9 or newer.
-+* RabbitMQ 3.6.x - tested with 3.6.10.
- * For production usage, a web server set up to host Django applications
-   (not needed for local-only testing)
- * A database supported by Django (SQLite, MySQL, etc.). Django takes
-@@ -41,7 +42,9 @@ Setup instructions:
- 1. Edit settings.py to specify a database, EMAIL_HOST, SECRET_KEY and
-    other settings specific to your installation. Ensure you set
-    LAYER_FETCH_DIR to an absolute path to a location with sufficient
--   space for fetching layer repositories.
-+   space for fetching layer repositories. Modify RABBIT_BROKER
-+   and RABBIT_BACKEND to reflect the settings used by your RabbitMQ
-+   server.
- 
- 2. Run the following commands within the layerindex-web directory to
-    initialise the database:
-@@ -64,6 +67,11 @@ Setup instructions:
-    production you need to use a proper web server and have DEBUG set
-    to False.
- 
-+   3.1. In order to process asynchronous tasks like sending email,
-+        you will need to run a Celery worker:
-+
-+        celery -A layerindex.tasks worker --loglevel=info
-+
- 4. You'll need to add at least the openembedded-core layer to the
-    database, or some equivalent that contains conf/bitbake.conf for
-    the base system configuration. To add this, follow these steps:
-diff --git a/TODO b/TODO
-index 186219f..29986ac 100644
---- a/TODO
-+++ b/TODO
-@@ -27,7 +27,6 @@ Other
- * Show layer type in layer detail?
- * Usage links in list page?
- * Subdirs in list page?
--* Prevent SMTP failures from breaking submission process
- * Query backend service i.e. special URL to query information for external apps/scripts
- * Add comparison to duplicates page
- * Create simple script to check for unlisted layer subdirectories in all repos
-diff --git a/layerindex/tasks.py b/layerindex/tasks.py
-new file mode 100644
-index 0000000..de80804
---- /dev/null
-+++ b/layerindex/tasks.py
-@@ -0,0 +1,24 @@
-+from celery import Celery
-+from django.core.mail import EmailMessage
-+from . import utils
-+import os
-+import time
-+
-+try:
-+    import settings
-+except ImportError:
-+    # not in a full django env, so settings is inaccessible.
-+    # setup django to access settings.
-+    utils.setup_django()
-+    import settings
-+
-+tasks = Celery('layerindex',
-+    broker=settings.RABBIT_BROKER,
-+    backend=settings.RABBIT_BACKEND)
-+
-+@tasks.task
-+def send_email(subject, text_content, from_email=settings.DEFAULT_FROM_EMAIL, to_emails=[]):
-+    # We seem to need to run this within the task
-+    utils.setup_django()
-+    msg = EmailMessage(subject, text_content, from_email, to_emails)
-+    msg.send()
-diff --git a/layerindex/views.py b/layerindex/views.py
-index 1661cb3..bcf6671 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -19,7 +19,6 @@ from layerindex.forms import EditLayerForm, LayerMaintainerFormSet, EditNoteForm
- from django.db import transaction
- from django.contrib.auth.models import User, Permission
- from django.db.models import Q, Count, Sum
--from django.core.mail import EmailMessage
- from django.template.loader import get_template
- from django.template import Context
- from django.utils.decorators import method_decorator
-@@ -28,6 +27,7 @@ from django.contrib import messages
- from reversion.models import Revision
- from . import utils
- from . import simplesearch
-+from . import tasks
- import settings
- from django.dispatch import receiver
- import reversion
-@@ -181,8 +181,7 @@ def edit_layer_view(request, template_name, branch='master', slug=None):
-                         from_email = settings.SUBMIT_EMAIL_FROM
-                         to_email = user.email
-                         text_content = plaintext.render(d)
--                        msg = EmailMessage(subject, text_content, from_email, [to_email])
--                        msg.send()
-+                        tasks.send_email.apply_async((subject, text_content, from_email, [to_email]))
-                     return HttpResponseRedirect(reverse('submit_layer_thanks'))
-             messages.success(request, 'Layer %s saved successfully.' % layeritem.name)
-             if return_url:
-diff --git a/requirements.txt b/requirements.txt
-index f80e5d4..7cd741b 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -1,3 +1,4 @@
-+celery==3.1.25
- Django==1.8.17
- django-cors-headers==1.1.0
- django-nvd3==0.9.7
-diff --git a/settings.py b/settings.py
-index 92146f8..e26f4b2 100644
---- a/settings.py
-+++ b/settings.py
-@@ -224,3 +224,7 @@ FORCE_REVIEW_HTTPS = False
- # Settings for layer submission feature
- SUBMIT_EMAIL_FROM = 'noreply@example.com'
- SUBMIT_EMAIL_SUBJECT = 'OE Layerindex layer submission'
-+
-+# RabbitMQ settings
-+RABBIT_BROKER = 'amqp://'
-+RABBIT_BACKEND = 'rpc://'
--- 
-2.7.4
+> On Thu, Aug 24, 2017 at 1:05 PM, Yusuke Mitsuki
+> <mickey.happygolucky@gmail.com> wrote:
+> > hciattach on raspberrypi0-wifi failed because BCM43430A1.hcd is not
+> found.
+> >
+> > Paches that in order to use bluetooth with BCM43430 are not enabled.
+> > Functions are only enabled with raspberrypi3 in bluez5_%.bbappend like
+> as follows:
+> >
+> > - SRC_URI_append_raspberrypi3
+> > - do_install_append_raspberrypi3()
+> > - FILES_${PN}_append_raspberrypi3
+> > - SYSTEMD_SERVICE_${PN}_append_raspberrypi3
+> >
+> > These should be enabled with raspberrypi0-wifi too.
+> >
+> > Signed-off-by: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+> > ---
+> >  recipes-connectivity/bluez5/bluez5_%.bbappend | 25
+> +++++++++++++++++++++++++
+> >  1 file changed, 25 insertions(+)
+> >
+> > diff --git a/recipes-connectivity/bluez5/bluez5_%.bbappend
+> b/recipes-connectivity/bluez5/bluez5_%.bbappend
+> > index 956d776..075dc2b 100644
+> > --- a/recipes-connectivity/bluez5/bluez5_%.bbappend
+> > +++ b/recipes-connectivity/bluez5/bluez5_%.bbappend
+> > @@ -24,3 +24,28 @@ FILES_${PN}_append_raspberrypi3 =3D " \
+> >      "
+> >
+> >  SYSTEMD_SERVICE_${PN}_append_raspberrypi3 =3D " brcm43438.service"
+> > +
+> > +SRC_URI_append_raspberrypi0-wifi =3D " \
+> > +    file://BCM43430A1.hcd \
+> > +    file://0001-bcm43xx-Add-bcm43xx-3wire-variant.patch \
+> > +    file://0002-bcm43xx-The-UART-speed-must-be-reset-after-the-firmw.p=
+atch
+> \
+> > +    file://0003-Increase-firmware-load-timeout-to-30s.patch \
+> > +    file://0004-Move-the-43xx-firmware-into-lib-firmware.patch \
+> > +    file://brcm43438.service \
+> > +    "
+> > +
+> > +do_install_append_raspberrypi0-wifi() {
+> > +    install -d ${D}/lib/firmware/brcm/
+> > +    install -m 0644 ${WORKDIR}/BCM43430A1.hcd ${D}/lib/firmware/brcm/
+> BCM43430A1.hcd
+> > +
+> > +    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true',
+> 'false', d)}; then
+> > +        install -d ${D}${systemd_unitdir}/system
+> > +        install -m 0644 ${WORKDIR}/brcm43438.service
+> ${D}${systemd_unitdir}/system
+> > +    fi
+> > +}
+> > +
+> > +FILES_${PN}_append_raspberrypi0-wifi =3D " \
+> > +    /lib/firmware/brcm/BCM43430A1.hcd \
+> > +    "
+> > +
+> > +SYSTEMD_SERVICE_${PN}_append_raspberrypi0-wifi =3D " brcm43438.service=
+"
+>
+> I don't like the amount of duplication here. Could you define some
+> common variables and use those in the appends? This will make it
+> easier to change/upgrade in the future and avoid risk of the
+> duplicates falling out of sync with each other.
+>
+> Eg.
+>
+>     RPI_WIFI_SOURCES =3D "...."
+>
+>     SRC_URI_append_raspberrypi3 =3D "${RPI_WIFI_SOURCES}"
+>     SRC_URI_append_raspberrypi0-wifi =3D "${RPI_WIFI_SOURCES}"
+>
+> --
+> Paul Barker
+> Tog=C3=A1n Labs Ltd
+>
 
+--001a11438c1e14db91055799a1e2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">okay. I will try.</div><div class=3D"gmail_extra"><br><div=
+ class=3D"gmail_quote">2017-08-25 17:51 GMT+09:00 Paul Barker <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:pbarker@toganlabs.com" target=3D"_blank">pbarker=
+@toganlabs.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div cla=
+ss=3D"HOEnZb"><div class=3D"h5">On Thu, Aug 24, 2017 at 1:05 PM, Yusuke Mit=
+suki<br>
+&lt;<a href=3D"mailto:mickey.happygolucky@gmail.com">mickey.happygolucky@gm=
+ail.com</a><wbr>&gt; wrote:<br>
+&gt; hciattach on raspberrypi0-wifi failed because BCM43430A1.hcd is not fo=
+und.<br>
+&gt;<br>
+&gt; Paches that in order to use bluetooth with BCM43430 are not enabled.<b=
+r>
+&gt; Functions are only enabled with raspberrypi3 in bluez5_%.bbappend like=
+ as follows:<br>
+&gt;<br>
+&gt; - SRC_URI_append_raspberrypi3<br>
+&gt; - do_install_append_<wbr>raspberrypi3()<br>
+&gt; - FILES_${PN}_append_<wbr>raspberrypi3<br>
+&gt; - SYSTEMD_SERVICE_${PN}_append_<wbr>raspberrypi3<br>
+&gt;<br>
+&gt; These should be enabled with raspberrypi0-wifi too.<br>
+&gt;<br>
+&gt; Signed-off-by: Yusuke Mitsuki &lt;<a href=3D"mailto:mickey.happygoluck=
+y@gmail.com">mickey.happygolucky@gmail.com</a><wbr>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 recipes-connectivity/bluez5/<wbr>bluez5_%.bbappend | 25 ++++++++=
++++++++++++++++++<br>
+&gt;=C2=A0 1 file changed, 25 insertions(+)<br>
+&gt;<br>
+&gt; diff --git a/recipes-connectivity/bluez5/<wbr>bluez5_%.bbappend b/reci=
+pes-connectivity/bluez5/<wbr>bluez5_%.bbappend<br>
+&gt; index 956d776..075dc2b 100644<br>
+&gt; --- a/recipes-connectivity/bluez5/<wbr>bluez5_%.bbappend<br>
+&gt; +++ b/recipes-connectivity/bluez5/<wbr>bluez5_%.bbappend<br>
+&gt; @@ -24,3 +24,28 @@ FILES_${PN}_append_<wbr>raspberrypi3 =3D &quot; \<b=
+r>
+&gt;=C2=A0 =C2=A0 =C2=A0 &quot;<br>
+&gt;<br>
+&gt;=C2=A0 SYSTEMD_SERVICE_${PN}_append_<wbr>raspberrypi3 =3D &quot; brcm43=
+438.service&quot;<br>
+&gt; +<br>
+&gt; +SRC_URI_append_raspberrypi0-<wbr>wifi =3D &quot; \<br>
+&gt; +=C2=A0 =C2=A0 file://BCM43430A1.hcd \<br>
+&gt; +=C2=A0 =C2=A0 file://0001-bcm43xx-Add-<wbr>bcm43xx-3wire-variant.patc=
+h \<br>
+&gt; +=C2=A0 =C2=A0 file://0002-bcm43xx-The-UART-<wbr>speed-must-be-reset-a=
+fter-the-<wbr>firmw.patch \<br>
+&gt; +=C2=A0 =C2=A0 file://0003-Increase-firmware-<wbr>load-timeout-to-30s.=
+patch \<br>
+&gt; +=C2=A0 =C2=A0 file://0004-Move-the-43xx-<wbr>firmware-into-lib-firmwa=
+re.<wbr>patch \<br>
+&gt; +=C2=A0 =C2=A0 file://brcm43438.service \<br>
+&gt; +=C2=A0 =C2=A0 &quot;<br>
+&gt; +<br>
+&gt; +do_install_append_<wbr>raspberrypi0-wifi() {<br>
+&gt; +=C2=A0 =C2=A0 install -d ${D}/lib/firmware/brcm/<br>
+&gt; +=C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/BCM43430A1.hcd ${D}/lib/firm=
+ware/brcm/<wbr>BCM43430A1.hcd<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 if ${@bb.utils.contains(&#39;DISTRO_<wbr>FEATURES&#39;,=
+ &#39;systemd&#39;, &#39;true&#39;, &#39;false&#39;, d)}; then<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d ${D}${systemd_unitdir}/system<=
+br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/brcm43438.serv=
+ice ${D}${systemd_unitdir}/system<br>
+&gt; +=C2=A0 =C2=A0 fi<br>
+&gt; +}<br>
+&gt; +<br>
+&gt; +FILES_${PN}_append_<wbr>raspberrypi0-wifi =3D &quot; \<br>
+&gt; +=C2=A0 =C2=A0 /lib/firmware/brcm/BCM43430A1.<wbr>hcd \<br>
+&gt; +=C2=A0 =C2=A0 &quot;<br>
+&gt; +<br>
+&gt; +SYSTEMD_SERVICE_${PN}_append_<wbr>raspberrypi0-wifi =3D &quot; brcm43=
+438.service&quot;<br>
+<br>
+</div></div>I don&#39;t like the amount of duplication here. Could you defi=
+ne some<br>
+common variables and use those in the appends? This will make it<br>
+easier to change/upgrade in the future and avoid risk of the<br>
+duplicates falling out of sync with each other.<br>
+<br>
+Eg.<br>
+<br>
+=C2=A0 =C2=A0 RPI_WIFI_SOURCES =3D &quot;....&quot;<br>
+<br>
+=C2=A0 =C2=A0 SRC_URI_append_raspberrypi3 =3D &quot;${RPI_WIFI_SOURCES}&quo=
+t;<br>
+=C2=A0 =C2=A0 SRC_URI_append_raspberrypi0-<wbr>wifi =3D &quot;${RPI_WIFI_SO=
+URCES}&quot;<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+Paul Barker<br>
+Tog=C3=A1n Labs Ltd<br>
+</font></span></blockquote></div><br></div>
+
+--001a11438c1e14db91055799a1e2--
