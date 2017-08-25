@@ -1,53 +1,37 @@
-Return-Path: <pderocco@ix.netcom.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A208E00B87; Thu, 24 Aug 2017 16:47:06 -0700 (PDT)
+	id 383C4E00B87; Thu, 24 Aug 2017 18:25:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.86.89.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from elasmtp-kukur.atl.sa.earthlink.net
-	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3BB4E009A4
-	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 16:47:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
-	s=dk12062016; t=1503618425; bh=1XEMd+MIdwu38NC8Ze4kaoILKtnma0WeftgQ
-	aD4iq/s=; h=Received:From:To:Subject:Date:Message-ID:MIME-Version:
-	Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:
-	X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=Njd7AdYMAmYEaUns1vWkmct
-	hyHuyrylQIFc28xuKngV4V+fKBvuAt94Ykg85+Jrik12h3Hp9AxBCNFOZtkLKiCRFW3
-	CH8UMcX2PbmKtvLWKfTaO4SRDnzsYYaBQwv3TUIf3hu84+uWKqCOh4a/RcohX8+yuoL
-	Ryn/SGJW4T8NczGiCfCT+dRKgOIxyYsAB5k7FvRKX/DUXXCo8pIcE+TL8T/8wSNopWf
-	zOBGPBwxmLyjrJ5EJgCdUYNCKMetrQbZFTdlVnYs4Q0hnRLZAkJrFZvaRQXkKmHHKEF
-	ZY+nCmELB6rHgWc+LnXxFUYyioe/ztAQXxbD/ReAKEvg5d2toWA==
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk12062016; d=ix.netcom.com;
-	b=mGLV9GqeqQ5xi4HaPzxyoKJLVIG/SczZPzcHEWc5spLZpNBmngibMuxHBQejN1n08Zi9DJgtkH2tfojdMDC6Tz/Ju3A49unuSWiFfpg/x97CMlrTU7BHWFxB3ejT3mRwwHj1vM9zMphFCEP2UIJZb8YGhYs8pEkJdJ6ZpCyztL0IO+muuPiSZbm55ozkCNd08EqfSt2lFASOChxryU2CrmWPavhJ3SpSYL2HIqSLDQUD55YzWvI1vXlqnUBAJ0EAGoLodtb83dR82XGq2vO+l2Enez8k0LVEwHqi9X0FiMS33pDUV9HjtBqCPbtKqSl99Pdq9hoBRdelxLMh5vfk3Q==;
-	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [108.228.233.89] (helo=PAULD)
-	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4)
-	(envelope-from <pderocco@ix.netcom.com>) id 1dl1q3-000ETL-HR
-	for yocto@yoctoproject.org; Thu, 24 Aug 2017 19:47:03 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 24 Aug 2017 16:46:59 -0700
-Message-ID: <CC45D5CE9E0D434F8BF079FB4CE69702@PAULD>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0002]
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Thu, 24 Aug 2017 18:25:11 PDT
+Received: from remote.innerrange.com (vpn.innerrange.com.au [203.122.143.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51B76E009A4
+	for <yocto@yoctoproject.org>; Thu, 24 Aug 2017 18:25:11 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
+	mapi; Fri, 25 Aug 2017 11:24:03 +1000
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 25 Aug 2017 11:24:01 +1000
+Thread-Topic: Python module and build_ext args
+Thread-Index: AdMdQKxWZvDcB4mqSD6bfq24MXjHxA==
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A40295F086417D@IR-CENTRAL.corp.innerrange.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1278-8.100.1062-23278.007
+x-tm-as-result: No--3.553900-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdMdM0bT6cKTnT7tQ+GG5tKK8fyZFQ==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.23651
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068845affe2a7cf25a68ba0f408f3c85e5a6350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 108.228.233.89
-Subject: Yocto plug-in not running cmake
+Subject: Python module and build_ext args
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,24 +43,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Aug 2017 23:47:06 -0000
-Content-Type: text/plain;
-	charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 25 Aug 2017 01:25:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Yocto 2.2.1, standard SDK for RPi, Yocto plug-in for Eclipse Mars
+I'm trying to make a recipe for python3-uvloop, using setuptools3.
 
-I do File -> New -> C Project, give it a name, select Project Type ->
-Yocto Project SDK CMake Project -> Hello World C CMake Project, click
-Finish, and it creates a project. I click the build button, and it runs
-"make all" and complains "make: *** No rule to make target 'all'. Stop."
+The Python 3 uvloop module depends on libuv. It bundles a version of libuv,=
+ and setup.py tries to build it, but it doesn't work well for cross-compila=
+tion. However, it also provides a build_ext parameter "--use-system-libuv",=
+ which seems to work when I try running it manually in devshell. (I have ma=
+de a suitable recipe for libuv and added libuv to DEPENDS.)
 
-Why is it running make and not cmake? It's hard to imagine that I made a
-mistake somewhere in those two steps.
+How can I specify the "--use-system-libuv" parameter for build_ext in the p=
+ython3-uvloop recipe? I see a reference to DISTUTILS_BUILD_EXT_ARGS, but it=
+ doesn't seem to be functional.
 
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com
+--=20
+Craig McQueen
 
 
