@@ -1,36 +1,65 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96001E00CB0; Fri, 25 Aug 2017 15:31:21 -0700 (PDT)
+	id CF566E00CB0; Fri, 25 Aug 2017 17:50:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.68 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (armccurdy[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.68 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from blaine.gmane.org (unknown [195.159.176.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 660B7E00B87
-	for <yocto@yoctoproject.org>; Fri, 25 Aug 2017 15:31:20 -0700 (PDT)
-Received: from list by blaine.gmane.org with local (Exim 4.84_2)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1dlN7z-0002jT-Is
-	for yocto@yoctoproject.org; Sat, 26 Aug 2017 00:30:59 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f68.google.com (mail-pg0-f68.google.com [74.125.83.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB356E00B1B
+	for <yocto@yoctoproject.org>; Fri, 25 Aug 2017 17:50:25 -0700 (PDT)
+Received: by mail-pg0-f68.google.com with SMTP id 83so1797469pgb.3
+	for <yocto@yoctoproject.org>; Fri, 25 Aug 2017 17:50:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=vnWDa0LxrzBWLOIUXlj0bK/ff+w0bshGuWcto74o4DY=;
+	b=rMX4zxHDSMR/7DS3gaBI9bq9Oj42UyQhjHun3QXit0ogtYZBM5xcJQSSD8HU1dlp12
+	obp/e4e4Bmh3ZyAVtvrEBYHNSdlBo+JF/WE6jnmv89e6JPjMkGzDpfBD2+eyZ+BMd4wH
+	GvfetMdAtM0003c1a75lRamk0gfJOdUAtkfYrLXnA4Xk5Iij4pO843gnUbu8UwzeoflG
+	UjRq0t8Ohu/9r+/kZnVPqrp7/7Cqv9gw2o2tddLbmvDOYkjNDtWxJKSKHKsSbtxc0DxV
+	aOF8p6vlWG1njIibtPbzbm5N7XYOYFI0w4LMnDGcSqLEd+MY0vrjV8RFL5ZebNu8kyb9
+	022g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=vnWDa0LxrzBWLOIUXlj0bK/ff+w0bshGuWcto74o4DY=;
+	b=c/pcTYof850xBHgR40r2C3c6zd2wZ2cgTEaS+RGw95Ztm87Y2xCzLGgvn3lkzY5DgI
+	XtoZmEZCwWgKH+7vKIXm1jcRGmcbWjbG0SnLxsR1kanvCRwPRkU4+XThLFAEc+/PlTmG
+	xM1OrpV+m7Z2Gy4VOJg+2o0LwJUrh6oD3MvGgv4A+fxbIv5IO+H/JuRTO3UyQuMQItN4
+	I7Weo+xM746c18Vpjqm+et3sh3qV7XFbham86roIGbTQkpFjPVanbdBO3lJexF8kI1zf
+	D0/fxIYXw4++QD2C0cu3SIBspsqhVOeetaDeO7GUq9PEzY/E0ZOoXAyVh5DGbcGKCPp/
+	cKKw==
+X-Gm-Message-State: AHYfb5jHjpAtyRob61zbFyITwnCFSW4Vxx9MLTLnVCeGh48wSvzhvLXY
+	quRtwGo25oALSLv0
+X-Received: by 10.84.211.66 with SMTP id b60mr317169pli.150.1503708624753;
+	Fri, 25 Aug 2017 17:50:24 -0700 (PDT)
+Received: from e6520.guest-wifi.scl.liberty.com ([4.16.80.121])
+	by smtp.gmail.com with ESMTPSA id
+	l190sm6104063pfl.156.2017.08.25.17.50.23
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 25 Aug 2017 17:50:23 -0700 (PDT)
+From: Andre McCurdy <armccurdy@gmail.com>
 To: yocto@yoctoproject.org
-From: Ferry Toth <ftoth@telfort.nl>
-Date: Fri, 25 Aug 2017 22:30:42 +0000 (UTC)
-Message-ID: <onq8ei$suh$1@blaine.gmane.org>
-References: <onj82v$64m$1@blaine.gmane.org>
-	<7b1dbafb-9cdb-c64b-aed7-37f6b26d8b50@gmail.com>
-	<onkni5$c4n$1@blaine.gmane.org> <onks4d$r7b$1@blaine.gmane.org>
-	<e516cd1c-786a-18f5-7ea6-09da77514d7c@gmail.com>
-	<onl099$de$1@blaine.gmane.org>
-	<c05477ea-cefe-7532-5694-8334566bd1a3@gmail.com>
-	<onptdo$u8l$1@blaine.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@blaine.gmane.org
-User-Agent: Pan/0.141 (Tarzan's Death; 168b179 git.gnome.org/pan2)
-Subject: Re: Problems building U-Boot for x86_64
+Date: Fri, 25 Aug 2017 17:50:16 -0700
+Message-Id: <1503708616-11645-1-git-send-email-armccurdy@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-gplv2][PATCH] gmp_4.2.1: prevent calls to mpn_add_nc() if HAVE_NATIVE_mpn_sub_nc is false
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,201 +71,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Aug 2017 22:31:21 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 26 Aug 2017 00:50:26 -0000
 
-Op Fri, 25 Aug 2017 21:22:40 +0200, schreef Ferry Toth:
+When building for aarch64 (ie relying only on generic C code rather
+than asm) libgmp.so contains undefined references to __gmpn_add_nc
+and __gmpn_sub_nc which causes attempts to link with -lgmp to fail:
 
-> Khem Raj wrote:
-> 
-> 
->> 
->> 
->> On 8/23/17 3:40 PM, Ferry Toth wrote:
->>> Op Wed, 23 Aug 2017 14:51:55 -0700, schreef Khem Raj:
->>> 
->>>> On 8/23/17 2:29 PM, Ferry Toth wrote:
->>>>> Ferry Toth wrote:
->>>>>
->>>>>> Khem Raj wrote:
->>>>>>
->>>>>>> On 8/22/17 11:41 PM, Ferry Toth wrote:
->>>>>>>> I am having trouble building a specific U-Boot version with
->>>>>>>> Yocto. Outside of Yocto on 64 bit Ubuntu 17.04 with multilib it
->>>>>>>> builds fine.
->>>>>>>>
->>>>>>>> I am extending meta-intel-edison to build a 64 bit Poke Morty,
->>>>>>>> with a vanilla 64-bit kernel (4.12). This is working quite well.
->>>>>>>>
->>>>>>>> My host is x86_64, the target is core2 with tune=core-64.
->>>>>>>>
->>>>>>>> Without 64bit tune I can build U-Boot fine. With 64bit it can not
->>>>>>>> link, appearently because it needs lbgcc.a
->>>>>>>
->>>>>>> what is exact error message ? is it while compiling host bits or
->>>>>>> target bits ?
->>>>>>
->>>>>> The failing line is:
->>>>>> x86_64-poky-linux-ld.bfd -Bsymbolic -Bsymbolic-functions -m
->>>>>> elf_i386 --emit- relocs --wrap=__divdi3 --wrap=__udivdi3
->>>>>> --wrap=__moddi3 --wrap=__umoddi3 -- gc-sections -pie -Bstatic
->>>>>> --no-dynamic-linker -Ttext 0x01101000 -o u-boot -T u-boot.lds
->>>>>> arch/x86/cpu/start.o --start-group arch/x86/cpu/built-in.o
->>>>>> arch/x86/lib/built-in.o board/intel/edison/built-in.o
->>>>>> cmd/built-in.o common/built-in.o disk/built-in.o drivers/built-in.o
->>>>>> drivers/dma/built-in.o drivers/gpio/built-in.o
->>>>>> drivers/i2c/built-in.o drivers/mmc/built-in.o
->>>>>> drivers/mtd/built-in.o drivers/mtd/onenand/built-in.o
->>>>>> drivers/mtd/spi/built- in.o drivers/net/built-in.o
->>>>>> drivers/net/phy/built-in.o drivers/pci/built- in.o
->>>>>> drivers/power/built-in.o drivers/power/battery/built-in.o
->>>>>> drivers/power/domain/built-in.o drivers/power/fuel_gauge/built-in.o
->>>>>> drivers/power/mfd/built-in.o drivers/power/pmic/built-in.o
->>>>>> drivers/power/regulator/built-in.o drivers/serial/built-in.o
->>>>>> drivers/spi/built-in.o drivers/usb/common/built-in.o
->>>>>> drivers/usb/dwc3/built- in.o drivers/usb/emul/built-in.o
->>>>>> drivers/usb/eth/built-in.o drivers/usb/gadget/built-in.o
->>>>>> drivers/usb/gadget/udc/built-in.o drivers/usb/host/built-in.o
->>>>>> drivers/usb/musb-new/built-in.o drivers/usb/musb/built-in.o
->>>>>> drivers/usb/phy/built-in.o drivers/usb/ulpi/built-in.o
->>>>>> dts/built-in.o fs/built-in.o lib/built-in.o net/built-in.o
->>>>>> test/built-in.o test/dm/built-in.o --end-group arch/x86/lib/lib.a
->>>>>> -Map u-boot.map ERROR: oe_runmake failed arch/x86/lib/built-in.o:
->>>>>> In function `__wrap___udivdi3':
->>>>>> /home/ferry/tmp/edison-intel/my/edison-
->>>>>> morty/out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
->>> v2017.03-
->>>>>> r0/git/arch/x86/lib/gcc.c:25: undefined reference to
->>>>>> `__normal___udivdi3'
->>>>>
->>>>> I as believe the missing lib is libgcc.a I just my sysroot and found
->>>>> it here:
->>>>
->>>> the linker cmdline above does not link with libgcc and there might be
->>>> a good reason for that, many standalone applications dont link with
->>>> libgcc intentionally. You could look into the code and see if it can
->>>> be written differently such that gcc does not have to invoke a helper
->>>> function from gcc runtime. Another option is to link with libgcc
->>>> explicitly
->>> 
->>> If change my setup to build for a 32bit target, it build u-boot
->>> without error.
->> 
->> compiler may not be generating calls for the missing function.
->> 
->>> When I build the same git outside yocto on 64bit with multilib
->>> installed it also builds without error. In that case the make command
->>> would be: make -j8 edison_defconfig
->> 
->> same is possible. Can you do readelf -sW gcc.o and see if there is a
->> undefined reference to __normal___udivdi3
-> 
->    20: 00000000    22 FUNC    GLOBAL HIDDEN     4 __wrap___divdi3 21:
->    00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___divdi3 22:
->    00000000    22 FUNC    GLOBAL HIDDEN     6 __wrap___udivdi3 23:
->    00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___udivdi3 24:
->    00000000    22 FUNC    GLOBAL HIDDEN     8 __wrap___moddi3 25:
->    00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___moddi3 26:
->    00000000    22 FUNC    GLOBAL HIDDEN    10 __wrap___umoddi3 27:
->    00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___umoddi3
+ | .../usr/lib/libgmp.so: undefined reference to `__gmpn_sub_nc'
+ | .../usr/lib/libgmp.so: undefined reference to `__gmpn_add_nc'
 
-AFAIKT when building for a 32-bit target is only that U-Boot makefile is 
-called with CROSS_COMPILE=i686-poky-linux- CC=i686-poky-linux-gcc instead 
-of CROSS_COMPILE=x86_64-poky-linux- CC=x86_64-poky-linux-gcc.
+Solution based on a historical patch posted to the gmp mailing list:
 
-Result from readelf -sW gcc.o built wuth i686:
+  https://gmplib.org/list-archives/gmp-discuss/2006-May/002344.html
 
-20: 00000000    27 FUNC    GLOBAL HIDDEN     4 __wrap___divdi3
-21: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___divdi3
-22: 00000000    27 FUNC    GLOBAL HIDDEN     6 __wrap___udivdi3
-23: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___udivdi3
-24: 00000000    27 FUNC    GLOBAL HIDDEN     8 __wrap___moddi3
-25: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___moddi3
-26: 00000000    27 FUNC    GLOBAL HIDDEN    10 __wrap___umoddi3
-27: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___umoddi3
+Signed-off-by: Andre McCurdy <armccurdy@gmail.com>
+---
+ ...ls-to-mpn_add_nc-if-HAVE_NATIVE_mpn_sub_n.patch | 78 ++++++++++++++++++++++
+ recipes-support/gmp/gmp_4.2.1.bb                   |  1 +
+ 2 files changed, 79 insertions(+)
+ create mode 100644 recipes-support/gmp/gmp-4.2.1/prevent-calls-to-mpn_add_nc-if-HAVE_NATIVE_mpn_sub_n.patch
 
-The path to libs and incs is the same (x86_64...) and I can't find any 
-libgcc.a there. Still it links in this case.
-
-Maybe in the 64-bit case I need to add i686-poky-linux-gcc to native and 
-modify the recipe to use that?
-
->  
->>> My conclusion: I have some bb variable set to the wrong value or I
->>> need to get multilib installed into /..../sysroots/x86_64-linux/lib.
->>> 
->>> So how to do that?
->>> 
->>>>> sysroots/lib32-edison/usr/lib/i686-pokymllib32-linux/6.2.0/
->>>>> sysroots/lib32-edison-tcbootstrap/usr/lib/i686-pokymllib32-
-linux/6.2.0/
->>>>> sysroots/edison/usr/lib64/x86_64-poky-linux/6.2.0/
->>>>> sysroots/edison-tcbootstrap/usr/lib64/x86_64-poky-linux/6.2.0/
->>>>>
->>>>> How compile log shows:
->>>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
->>>>> CC=x86_64-poky-linux-gcc --sysroot=/..../sysroots/edison V=1
->>>>> HOSTCC=gcc -isystem/..../sysroots/x86_64-linux/usr/include -O2 -pipe
->>>>> -L/..../sysroots/x86_64-linux/usr/lib
->>>>> -L/..../sysroots/x86_64-linux/lib
->>>>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/usr/lib
->>>>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/lib
->>>>> -Wl,-rpath,/..../sysroots/x86_64-linux/usr/lib
->>>>> -Wl,-rpath,/..../sysroots/x86_64-linux/lib -Wl,-O1 -C
->>>>> /..../out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
->>>>> v2017.03-r0/git
->>>>> O=/..../out/linux64/build/tmp/work/edison-poky-linux/u-
->>>>> boot/edison-v2017.03-r0/build edison_defconfig
->>>>>
->>>>> (.... my edits to shorten the uninteresting part of the path)
->>>>>
->>>>> I would think: --sysroot points to /edison dir which actually
->>>>> contains libgcc.a, but -i, _l and -W1 options point to host dirs
->>>>> that don't have the lib.
->>>>>
->>>>>
->>>>>>>> I attempted to add multilib, but although that immediately
->>>>>>>> exposed bugs in other recipes but actually adds libgcc.a, it does
->>>>>>>> that for the target sysroot only.
->>>>>>>>
->>>>>>>> And for some reason, U-Boot is built with the native gcc
->>>>>>>> (x86_64-linux),
->>>>>>>> and multilib does not add libgcc.a to that sysroot.
->>>>>>>>
->>>>>>>> So, how do I add multilib to -native sysroot, preferably only to
->>>>>>>> -native and not to the target, as the target has not further use
->>>>>>>> for it?
->>>>>>>>
->>>>>>>> Strangest thing is in u-boot.inc there is:
->>>>>>>> EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX}
->>>>>>>> CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" V=1'
->>>>>>>> EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS}
->>>>>>>> ${BUILD_LDFLAGS}"'
->>>>>>>>
->>>>>>>> But when I check my log file:
->>>>>>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
->>>>>>>> CC=x86_64-poky-linux- gcc  ......
->>>>>>>>
->>>>>>>> So TARGET_PREFIX resolves to x86_64-poky-linux, but I think my
->>>>>>>> target is core2_64 (or something like that). Is that normal for
->>>>>>>> U-Boot?
->>>>>>>
->>>>>>> thats ok.
->>>>>>>
->>>>>>>
->>>>>>>> I am a little lost, so any help would be greatly appreciated!
->>>>>>>>
->>>>>>>> Ferry
->>>>>>>>
->>>>>>>>
->>>>>>> --
->>>>>>
->>>>>>
->>>>>> --
->>> 
->>> 
->> --
-
+diff --git a/recipes-support/gmp/gmp-4.2.1/prevent-calls-to-mpn_add_nc-if-HAVE_NATIVE_mpn_sub_n.patch b/recipes-support/gmp/gmp-4.2.1/prevent-calls-to-mpn_add_nc-if-HAVE_NATIVE_mpn_sub_n.patch
+new file mode 100644
+index 0000000..7b879c3
+--- /dev/null
++++ b/recipes-support/gmp/gmp-4.2.1/prevent-calls-to-mpn_add_nc-if-HAVE_NATIVE_mpn_sub_n.patch
+@@ -0,0 +1,78 @@
++From d4f3542fabe0797cf2d60afd957585862bd9a29b Mon Sep 17 00:00:00 2001
++From: Andre McCurdy <armccurdy@gmail.com>
++Date: Fri, 25 Aug 2017 16:16:06 -0700
++Subject: [PATCH] prevent calls to mpn_add_nc() if HAVE_NATIVE_mpn_sub_nc is false
++
++When building for aarch64 (ie relying only on generic C code rather
++than asm) libgmp.so contains undefined references to __gmpn_add_nc
++and __gmpn_sub_nc which causes attempts to link with -lgmp to fail:
++
++ | .../usr/lib/libgmp.so: undefined reference to `__gmpn_sub_nc'
++ | .../usr/lib/libgmp.so: undefined reference to `__gmpn_add_nc'
++
++Solution based on a historical patch posted to the gmp mailing list:
++
++  https://gmplib.org/list-archives/gmp-discuss/2006-May/002344.html
++
++Upstream-Status: Inappropriate [Fixed in current versions]
++
++Signed-off-by: Andre McCurdy <armccurdy@gmail.com>
++---
++ mpn/generic/addsub_n.c | 12 ++++++------
++ 1 file changed, 6 insertions(+), 6 deletions(-)
++
++diff --git a/mpn/generic/addsub_n.c b/mpn/generic/addsub_n.c
++index 27b2c08..0ff7ca0 100644
++--- a/mpn/generic/addsub_n.c
+++++ b/mpn/generic/addsub_n.c
++@@ -58,13 +58,13 @@ mpn_addsub_n (mp_ptr r1p, mp_ptr r2p, mp_srcptr s1p, mp_srcptr s2p, mp_size_t n)
++       for (off = 0; off < n; off += PART_SIZE)
++ 	{
++ 	  this_n = MIN (n - off, PART_SIZE);
++-#if HAVE_NATIVE_mpn_add_nc || !HAVE_NATIVE_mpn_add_n
+++#if HAVE_NATIVE_mpn_add_nc
++ 	  acyo = mpn_add_nc (r1p + off, s1p + off, s2p + off, this_n, acyo);
++ #else
++ 	  acyn = mpn_add_n (r1p + off, s1p + off, s2p + off, this_n);
++ 	  acyo = acyn + mpn_add_1 (r1p + off, r1p + off, this_n, acyo);
++ #endif
++-#if HAVE_NATIVE_mpn_sub_nc || !HAVE_NATIVE_mpn_sub_n
+++#if HAVE_NATIVE_mpn_sub_nc
++ 	  scyo = mpn_sub_nc (r2p + off, s1p + off, s2p + off, this_n, scyo);
++ #else
++ 	  scyn = mpn_sub_n (r2p + off, s1p + off, s2p + off, this_n);
++@@ -81,13 +81,13 @@ mpn_addsub_n (mp_ptr r1p, mp_ptr r2p, mp_srcptr s1p, mp_srcptr s2p, mp_size_t n)
++       for (off = 0; off < n; off += PART_SIZE)
++ 	{
++ 	  this_n = MIN (n - off, PART_SIZE);
++-#if HAVE_NATIVE_mpn_sub_nc || !HAVE_NATIVE_mpn_sub_n
+++#if HAVE_NATIVE_mpn_sub_nc
++ 	  scyo = mpn_sub_nc (r2p + off, s1p + off, s2p + off, this_n, scyo);
++ #else
++ 	  scyn = mpn_sub_n (r2p + off, s1p + off, s2p + off, this_n);
++ 	  scyo = scyn + mpn_sub_1 (r2p + off, r2p + off, this_n, scyo);
++ #endif
++-#if HAVE_NATIVE_mpn_add_nc || !HAVE_NATIVE_mpn_add_n
+++#if HAVE_NATIVE_mpn_add_nc
++ 	  acyo = mpn_add_nc (r1p + off, s1p + off, s2p + off, this_n, acyo);
++ #else
++ 	  acyn = mpn_add_n (r1p + off, s1p + off, s2p + off, this_n);
++@@ -105,13 +105,13 @@ mpn_addsub_n (mp_ptr r1p, mp_ptr r2p, mp_srcptr s1p, mp_srcptr s2p, mp_size_t n)
++       for (off = 0; off < n; off += PART_SIZE)
++ 	{
++ 	  this_n = MIN (n - off, PART_SIZE);
++-#if HAVE_NATIVE_mpn_add_nc || !HAVE_NATIVE_mpn_add_n
+++#if HAVE_NATIVE_mpn_add_nc
++ 	  acyo = mpn_add_nc (tp, s1p + off, s2p + off, this_n, acyo);
++ #else
++ 	  acyn = mpn_add_n (tp, s1p + off, s2p + off, this_n);
++ 	  acyo = acyn + mpn_add_1 (tp, tp, this_n, acyo);
++ #endif
++-#if HAVE_NATIVE_mpn_sub_nc || !HAVE_NATIVE_mpn_sub_n
+++#if HAVE_NATIVE_mpn_sub_nc
++ 	  scyo = mpn_sub_nc (r2p + off, s1p + off, s2p + off, this_n, scyo);
++ #else
++ 	  scyn = mpn_sub_n (r2p + off, s1p + off, s2p + off, this_n);
++-- 
++1.9.1
++
+diff --git a/recipes-support/gmp/gmp_4.2.1.bb b/recipes-support/gmp/gmp_4.2.1.bb
+index 5e8ee29..029e728 100644
+--- a/recipes-support/gmp/gmp_4.2.1.bb
++++ b/recipes-support/gmp/gmp_4.2.1.bb
+@@ -11,6 +11,7 @@ SRC_URI = "https://gmplib.org/download/${BPN}/archive/${BP}.tar.bz2 \
+            file://Use-__gnu_inline__-attribute.patch \
+            file://gmp_fix_for_automake-1.12.patch \
+            file://avoid-h-asm-constraint-for-MIPS.patch \
++           file://prevent-calls-to-mpn_add_nc-if-HAVE_NATIVE_mpn_sub_n.patch \
+ "
+ 
+ SRC_URI[md5sum] = "091c56e0e1cca6b09b17b69d47ef18e3"
+-- 
+1.9.1
 
 
