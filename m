@@ -1,42 +1,42 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 433CCE00CC6; Sat, 26 Aug 2017 00:42:50 -0700 (PDT)
+	id 888CAE00CB0; Sat, 26 Aug 2017 06:19:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [93.17.128.10 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 342 seconds by postgrey-1.32 at yocto-www;
-	Sat, 26 Aug 2017 00:42:48 PDT
-Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E90C5E00C95
-	for <yocto@yoctoproject.org>; Sat, 26 Aug 2017 00:42:48 -0700 (PDT)
-Received: from nbhjo (203-69-87-74.HINET-IP.hinet.net [203.69.87.74])
-	by msfrf2623.sfr.fr (SMTP Server) with ESMTP id 1BE091C000412;
-	Sat, 26 Aug 2017 09:37:05 +0200 (CEST)
-Received: from nbhjo (203-69-87-74.HINET-IP.hinet.net [203.69.87.74])	(using
-	TLSv1.2
-	with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))	(No client
-	certificate requested)	(Authenticated sender: herve.jourdain@neuf.fr)
-	by msfrf2623.sfr.fr (SMTP Server) with ESMTPSA;
-	Sat, 26 Aug 2017 09:37:03 +0200 (CEST)
-Authentication-Results: sfr.fr; auth=pass (LOGIN)
-	smtp.auth=herve.jourdain@neuf.fr
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Khem Raj' <raj.khem@gmail.com>, 'Bill Jenkins' <bill@korgrd.com>,
-	yocto@yoctoproject.org
-Date: Sat, 26 Aug 2017 09:36:41 +0200
-Message-ID: <001201d31e3e$12964540$37c2cfc0$@neuf.fr>
+X-Greylist: delayed 552 seconds by postgrey-1.32 at yocto-www;
+	Sat, 26 Aug 2017 06:19:17 PDT
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2468EE00B1B
+	for <yocto@yoctoproject.org>; Sat, 26 Aug 2017 06:19:17 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id A9460861B2
+	for <yocto@yoctoproject.org>; Sat, 26 Aug 2017 13:10:03 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id tVfev_qX5WKJ for <yocto@yoctoproject.org>;
+	Sat, 26 Aug 2017 13:09:54 +0000 (UTC)
+Received: from [192.168.0.10]
+	(cpc111193-live30-2-0-cust656.17-2.cable.virginm.net [92.232.58.145])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 8345C860E9
+	for <yocto@yoctoproject.org>; Sat, 26 Aug 2017 13:09:52 +0000 (UTC)
+To: Yocto <yocto@yoctoproject.org>
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <258ff3cf-5cac-501a-132b-b91c487c4d5b@dynamicdevices.co.uk>
+Date: Sat, 26 Aug 2017 14:09:49 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AdMePeTARhlSp64tQLWrySM4eZyFFA==
-X-sfr-mailing: LEGIT
-Subject: Re: raspberrypi3-64 target not booting
+Subject: Problems running image in qemu (x86)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,65 +48,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Aug 2017 07:42:50 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
-Content-Language: fr
+X-List-Received-Date: Sat, 26 Aug 2017 13:19:19 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-Are you using vc4 as graphics, or are you using the default userland?
-If you want graphics with 64 bits, you need to use vc4.
+I'm bringing the Mono build up to date in the meta-mono layer and ran
+into a problem with my testing.
 
-Cheers,
-Herve
+I generally target QEMU, e.g. qemux86, build a core-image-sato based
+Mono test image and run up with 'runqemu qemux86'
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org =
-[mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Khem Raj
-Sent: vendredi 25 ao=FBt 2017 19:28
-To: Bill Jenkins <bill@korgrd.com>; yocto@yoctoproject.org
-Subject: ***SPAM*** Re: [yocto] raspberrypi3-64 target not booting
+It's a remote build system so I am SSH'd in with VNC port forwarding and
+I view the QEMU box running with a TightVNC client.
 
-On Fri, Aug 25, 2017 at 10:14 AM, Bill Jenkins <bill@korgrd.com> wrote:
->
-> On Aug 25, 2017, at 9:42 AM, Khem Raj <raj.khem@gmail.com> wrote:
->
->
-> On Fri, Aug 25, 2017 at 9:39 AM Bill Jenkins <bill@korgrd.com> wrote:
->>
->> I am trying to just get the simple 64-bit rpi-basic-image to work,=20
->> but the Raspberry Pi 3 seems to hang with the rainbow screen at =
-startup.
->
->
-> Can you plugin a serial cable and see if that worked or try to add ssh =
+This has worked well for a long time, and still works fine with the
+current krogoth branch.
 
-> daemon on target and try to ssh into pi
->>
->>
->
-> That was a good call. I can login with the ssh daemon, so it does=20
-> successfully boot. I just cannot access it from the HDMI port. (I do=20
-> not have the hardware for a serial connection at the moment)
->
-> Any ideas on how to get the HDMI port to function the same way as it=20
-> does for the 32-bit case?
->
+I have just built against master though and am seeing screen corruption.
 
-Readding the mailing list.
+e.g. https://postimg.org/image/xjcdybdul
 
-what you have is exactly what I had when I submitted the port to
-meta-raspberrypi. Haven;t had a chance to revisit it. but this could
-be related to device tree files we are using here. I have had reports
-from other devs of having been able to boot into graphics using older
-kernels but I never got
-that far myself.
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Can anybody tell me what's changed?
+
+Thanks,
+
+Alex
 
 
