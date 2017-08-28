@@ -1,34 +1,46 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 036B9E00C9E; Mon, 28 Aug 2017 13:32:03 -0700 (PDT)
+	id 568C7E00CC2; Mon, 28 Aug 2017 13:32:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69AB9E00C89
-	for <yocto@yoctoproject.org>; Mon, 28 Aug 2017 13:32:02 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v7SKVv2C014697
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 28 Aug 2017 13:31:57 -0700 (PDT)
-Received: from msp-lpggp1.wrs.com (172.25.34.110) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Mon, 28 Aug 2017 13:31:57 -0700
-From: Mark Hatle <mark.hatle@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 28 Aug 2017 15:30:31 -0500
-Message-ID: <1503952231-71689-1-git-send-email-mark.hatle@windriver.com>
-X-Mailer: git-send-email 1.8.3.1
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE580E00CC2
+	for <yocto@yoctoproject.org>; Mon, 28 Aug 2017 13:32:11 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 019D9861B9;
+	Mon, 28 Aug 2017 20:32:10 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id LBktuprOXGq0; Mon, 28 Aug 2017 20:31:55 +0000 (UTC)
+Received: from [127.0.0.1] (cpc111193-live30-2-0-cust656.17-2.cable.virginm.net
+	[92.232.58.145])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 5F593860E5;
+	Mon, 28 Aug 2017 20:30:29 +0000 (UTC)
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <258ff3cf-5cac-501a-132b-b91c487c4d5b@dynamicdevices.co.uk>
+	<2151273.fElYf2KXPe@peggleto-mobl.ger.corp.intel.com>
+	<dfab7077-0402-1c1f-32dd-3be96d2cce97@dynamicdevices.co.uk>
+	<3382579.O7URAfhVFX@peggleto-mobl.ger.corp.intel.com>
+From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <42165ae9-0852-3314-b72f-3084c3c2be95@dynamicdevices.co.uk>
+Date: Mon, 28 Aug 2017 20:30:23 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-Subject: [meta-mingw][PATCH] Fix Yocto Project compatible errors
+In-Reply-To: <3382579.O7URAfhVFX@peggleto-mobl.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Problems running image in qemu (x86)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,76 +52,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Aug 2017 20:32:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 28 Aug 2017 20:32:21 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
 
-Each of the recipes modified fail the YP compatible checking script because
-they modify the checksum of the package, even when the mingw32 SDK is not
-enabled.
 
-This is corrected by ensuring that each of the settings is only done when
-the mingw32 override is enabled.
 
-The PACKAGECONFIG options are moved to oe-core, as there is no way to
-specify they should only available in the mingw32 override is enabled.
+On 28/08/2017 20:25, Paul Eggleton wrote:
+> On Tuesday, 29 August 2017 12:57:35 AM NZST Alex J Lennon wrote:
+>> On 28/08/2017 10:32, Paul Eggleton wrote:
+>>> On Sunday, 27 August 2017 1:09:49 AM NZST Alex J Lennon wrote:
+>>>> I have just built against master though and am seeing screen corruption.
+>>>>
+>>>> e.g. https://postimg.org/image/xjcdybdul
+>>> Yuck :( Would you please file a bug for this? I'm aware we've upgraded qemu
+>>> recently (I assume this was with the 2.10-rc2 version currently in master?),
+>>> maybe that has something to do with it.
+>>>
+>> Will do Paul.
+> Thanks!
+>
+>> (I don't suppose you're back over for ELC-E 2017 or FOSDEM
+>> 2018 by any chance?)
+> I'd love to be, but it's rather unlikely at this point unfortunately.
+>
+>
 
-Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
----
- recipes-core/gettext/gettext_0.19.%.bbappend       | 6 +++---
- recipes-graphics/libsdl/libsdl_%.bbappend          | 5 -----
- recipes-support/libgcrypt/libgcrypt_1.8.%.bbappend | 4 ++--
- 3 files changed, 5 insertions(+), 10 deletions(-)
+Shame. I'll leave a beer / coffee in the tap then...
 
-diff --git a/recipes-core/gettext/gettext_0.19.%.bbappend b/recipes-core/gettext/gettext_0.19.%.bbappend
-index 9835d7b..b33970a 100644
---- a/recipes-core/gettext/gettext_0.19.%.bbappend
-+++ b/recipes-core/gettext/gettext_0.19.%.bbappend
-@@ -4,14 +4,14 @@ LDFLAGS_prepend_mingw32 = " -lpthread "
- CFLAGS_append_mingw32 = " -DLIBXML_STATIC"
- EXTRA_OECONF_append_mingw32 = " --enable-threads=windows --enable-static"
- 
--FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
--SRC_URI_append = " \
-+FILESEXTRAPATHS_prepend_mingw32 := "${THISDIR}/${BPN}:"
-+SRC_URI_append_mingw32 = " \
- 		file://fix-gl_cv_prog_as_underscore-test.patch \
- 		"
- 
- FILES_libgettextlib_mingw32 = "${bindir}/libgettextlib-*.dll"
- FILES_libgettextsrc_mingw32 = "${bindir}/libgettextsrc-*.dll"
- 
--PACKAGES =+ "libintl"
-+PACKAGES_prepend_mingw32 = "libintl "
- FILES_libintl_mingw32 = "${bindir}/libintl*.dll"
- 
-diff --git a/recipes-graphics/libsdl/libsdl_%.bbappend b/recipes-graphics/libsdl/libsdl_%.bbappend
-index bb65f03..592ace5 100644
---- a/recipes-graphics/libsdl/libsdl_%.bbappend
-+++ b/recipes-graphics/libsdl/libsdl_%.bbappend
-@@ -1,9 +1,4 @@
- # Disable default x11 support
- PACKAGECONFIG_class-nativesdk_mingw32 = ""
- 
--# Configs that only apply to Windows/MinGW
--PACKAGECONFIG[stdio-redirect] = "--enable-stdio-redirect,--disable-stdio-redirect"
--PACKAGECONFIG[directx] = "--enable-directx,--disable-directx"
--
- FILES_${PN}-bin_mingw32 = "${bindir}/*.exe ${sbindir}/*.exe"
--
-diff --git a/recipes-support/libgcrypt/libgcrypt_1.8.%.bbappend b/recipes-support/libgcrypt/libgcrypt_1.8.%.bbappend
-index e30e376..3da0f53 100644
---- a/recipes-support/libgcrypt/libgcrypt_1.8.%.bbappend
-+++ b/recipes-support/libgcrypt/libgcrypt_1.8.%.bbappend
-@@ -1,6 +1,6 @@
- 
--FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
--SRC_URI_append = " \
-+FILESEXTRAPATHS_prepend_mingw32 := "${THISDIR}/files:"
-+SRC_URI_append_mingw32 = " \
- 		file://configure.ac-Set-mym4_revision-to-0-if-not-a-git-rep.patch \
- 		"
- 
--- 
-1.8.3.1
+Cheers, Alex
 
 
