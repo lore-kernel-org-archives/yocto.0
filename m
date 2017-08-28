@@ -1,64 +1,26 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4628BE00CB7; Sun, 27 Aug 2017 12:29:03 -0700 (PDT)
+	id 4420EE00C35; Sun, 27 Aug 2017 21:02:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f175.google.com (mail-wr0-f175.google.com
-	[209.85.128.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF980E00C8F
-	for <yocto@yoctoproject.org>; Sun, 27 Aug 2017 12:29:01 -0700 (PDT)
-Received: by mail-wr0-f175.google.com with SMTP id z91so12846049wrc.1
-	for <yocto@yoctoproject.org>; Sun, 27 Aug 2017 12:29:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=pvh1tcNVqcmIxsl6OdN207Y0gzSUNBVbqQPR3dvf4ec=;
-	b=bQZPfJsOpSsdL8/uJVvbhrk5FP1lMB8AYzEjhsIIVa/PK3I+Y2POVqULSiBcn6u+6h
-	j4t/+376nfl504crabBNpJWmnFcuOIywN8MqtBMuoWGnLdpy/7OyXSpIUn/10aYUs4jD
-	3+b++CWLcUF+1Y0UpwyBZubzrSR0b4L1QiA649QSOr9pyirJV5niUZoGwxNX5uBkoJnq
-	+qCFTyNna7TW37mO1FnbZvD9t5kAfGJ8SjgVNh3PWq0yJcmMS8HI7ngtzWk15PCsLKmm
-	6hS6RTPcP/C2RtNR7mrMOhyuBSYWh9nsohy+IVwgW+H8BHwmFpq57mfmQ5hOyGkQfM1u
-	gnxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=pvh1tcNVqcmIxsl6OdN207Y0gzSUNBVbqQPR3dvf4ec=;
-	b=pZuIT8y6y7z+KJg2hbxIwO24p50H2KiRnNo8xR5Ci0hlyHXbS60Gk6QjfjJoAoE5r4
-	J4TRDeC8G2p8DiFz0IW/ovJXNuKWHfvBSrEvtI/0sCTsZTqhOzbMzKExwNRAjh1cJL+t
-	BtNwVj0C1uBMayNf3E117oHE4sA+yMKL9bWgfYUHkWL+RebGIyxnow827Y7UmlXWcGFO
-	I4PjqnUu+FpTtTuU312mesNQulyxOQ7EaWKFxQeklC6p63ARZRKwFaCczD2LDw+K2vgB
-	p83oKqIGsZM0rBgG54GzRk/7tMG+EarpnV4nsobUvYs4xkmnGZwnKNlF882ThZn3d901
-	Vt8w==
-X-Gm-Message-State: AHYfb5hqYfun4DVAbhoemvdCNW9Fobg3RND37D/uCnhuHqYl0Fvs4A3H
-	TY2VRuv4JAHjtIWLZjkJlAf4DnJ+rQ==
-X-Received: by 10.223.150.48 with SMTP id b45mr3151478wra.139.1503862140616;
-	Sun, 27 Aug 2017 12:29:00 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44D4BE00B8E
+	for <yocto@yoctoproject.org>; Sun, 27 Aug 2017 21:02:36 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id D2F968758141
+	for <yocto@yoctoproject.org>; Mon, 28 Aug 2017 00:02:35 -0400 (EDT)
 MIME-Version: 1.0
-Received: by 10.28.199.195 with HTTP; Sun, 27 Aug 2017 12:28:59 -0700 (PDT)
-In-Reply-To: <CAGm1_ks-gk4aMeEYtDPnf_AGu=KfR_NYY7JGuS1ZSpppEe-3gg@mail.gmail.com>
-References: <CAGm1_ks-gk4aMeEYtDPnf_AGu=KfR_NYY7JGuS1ZSpppEe-3gg@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Sun, 27 Aug 2017 21:28:59 +0200
-Message-ID: <CAAfyv36thUd79C=T5vtvidxgyEb7x8_mUMNL9EhkBCh_M2xmPg@mail.gmail.com>
-To: Yegor Yefremov <yegorslists@googlemail.com>
-Cc: richard@openedhand.com, Yocto <yocto@yoctoproject.org>
-Subject: Re: Custom FIT image: circular dependencies issue
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 28 Aug 2017 04:02:35 -0000
+Message-ID: <20170828040235.12452.78040@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,114 +32,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 Aug 2017 19:29:03 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 28 Aug 2017 04:02:37 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Yegor,
+This mail was sent out by Recipe reporting system.
 
-On Mon, Aug 7, 2017 at 9:00 AM, Yegor Yefremov
-<yegorslists@googlemail.com> wrote:
-> I've switched to Yocto's master branch from Krogoth and get now
-> circular dependencies for my kernel recipe:
->
-> ERROR: 502 unbuildable tasks were
-> found.#####################################################################
->
->                                       | ETA:  0:00:08
-> These are usually caused by circular dependencies and any circular
-> dependency chains found will be printed below. Increase the debug
-> level to see a list of unbuildable tasks.
->
-> Identifying dependency loops (this may take a short while)...
->
-> ERROR:
-> Dependency loop #1 found:
->   Task /home/user/MyProjects/oss/yocto/poky/meta-baltos/recipes-kernel/linux/linux-yocto-custom.bb:do_create_fitimage
-> (dependent Tasks ['linux-yocto-custom.bb:do_deploy'])
->   Task /home/user/MyProjects/oss/yocto/poky/meta-baltos/recipes-kernel/linux/linux-yocto-custom.bb:do_packagedata
-> (dependent Tasks ['linux-yocto-custom.bb:do_package',
-> 'linux-yocto-custom.bb:do_create_fitimage'])
->   Task /home/user/MyProjects/oss/yocto/poky/meta-baltos/recipes-kernel/linux/linux-yocto-custom.bb:do_deploy
-> (dependent Tasks ['linux-yocto-custom.bb:do_bundle_initramfs',
-> 'depmodwrapper-cross_1.0.bb:do_populate_sysroot',
-> 'linux-yocto-custom.bb:do_populate_sysroot',
-> 'linux-yocto-custom.bb:do_packagedata'])
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-This is my just rough explanation why you see this error. As you have
-defined task do_create_fitimage before do_packagedata after do_deploy
-new circular dependency check added in commit 7821f225 is creating
-error showed above. When changing to following everything seems to
-works fine:
--addtask create_fitimage before do_packagedata after do_deploy
-+
-+addtask create_fitimage before do_install after do_compile
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-As you simply copy its file + create dtb you can create
-do_deploy_append method and create those steps there and you don't
-need separate task. Hope this helps.
->
->
-> ERROR: Command execution failed: 1
->
-> My kernel recipe:
->
-> inherit kernel
-> require recipes-kernel/linux/linux-yocto.inc
->
-> python __anonymous () {
->         depends = d.getVar("DEPENDS", True)
->         depends = "%s u-boot-mkimage-native dtc-native" % depends
->         d.setVar("DEPENDS", depends)
-> }
->
-> do_create_fitimage() {
->         cp ${THISDIR}/linux-yocto-custom/kernel-fit.its ${DEPLOY_DIR_IMAGE}
->         uboot-mkimage -f ${DEPLOY_DIR_IMAGE}/kernel-fit.its
-> ${DEPLOY_DIR_IMAGE}/kernel-fit.itb
-> }
->
-> addtask create_fitimage before do_packagedata after do_deploy
->
-> KBRANCH = "linux-3.18.y"
-> KCONFIG_MODE = "--alldefconfig"
->
-> SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1;branch=${KBRANCH}"
-> SRC_URI += "file://defconfig"
-> SRC_URI += "file://baltos.scc \
->            "
->
-> LINUX_VERSION ?= "3.18"
-> LINUX_VERSION_EXTENSION ?= ""
->
-> SRCREV="v3.18.32"
->
-> PV = "${LINUX_VERSION}+git${SRCPV}"
->
-> COMPATIBLE_MACHINE_baltos = "baltos"
->
-> Any idea?
->
-> Regards,
-> Yegor
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+You can check the detail information at:
 
-BR,
+http://recipes.yoctoproject.org/
 
-marek
+Package               Version     Upstream version      Maintainer           NoUpgradeReason
+--------------------  ----------  --------------------  -------------------  ------------------------------
+python3-native        3.5.3       3.6.2                 Alejandro Hernandez
+python3               3.5.3       3.6.2                 Alejandro Hernandez
+gtk-doc               1.25        1.26                  Alexander Kanavin
+boost                 1.64.0      1.65.0                Alexander Kanavin
+ca-certificates       20161130    20170717              Alexander Kanavin
+bjam-native           1.64.0      1.65.0                Alexander Kanavin
+libnl                 3.2.29      3.3.0                 Alexander Kanavin
+psmisc                22.21       23.1                  Alexander Kanavin
+oprofile              1.1.0       1.2.0                 Alexander Kanavin
+mkelfimage            4.0+gitX    4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
+perl                  5.24.1      5.26.0                Aníbal Limón
+qemu                  2.10.0-rc2  3                     Aníbal Limón
+apt                   1.2.12      1.4.7                 Aníbal Limón
+libxml-namespaces...  1.12        1.12.9                Aníbal Limón
+apt-native            1.2.12      1.4.7                 Aníbal Limón
+dpkg                  1.18.10     1.18.24               Aníbal Limón
+perl-native           5.24.1      5.26.0                Aníbal Limón
+bind                  9.10.5-P3   9.11.2                Armin Kuster
+curl                  7.54.1      7.55.1                Armin Kuster
+busybox               1.24.1      1.27.2                Armin Kuster
+libpcre2              10.23       10.30                 Armin Kuster
+gnutls                3.5.13      3.6.0                 Armin Kuster
+kexec-tools           2.0.14      2.0.15                Armin Kuster
+libxkbcommon          0.7.1       0.7.2                 Armin Kuster
+linux-libc-headers    4.10        4.12.8                Bruce Ashfield
+libunwind             1.2         1.2.1                 Bruce Ashfield
+connman               1.34        1.35                  Changhyeok Bae
+iproute2              4.11.0      4.12.0                Changhyeok Bae
+dbus-test             1.10.20     1.10.22               Chen Qi
+dbus                  1.10.20     1.10.22               Chen Qi
+util-linux            2.30        2.30.1                Chen Qi
+sed                   4.2.2       4.4                   Chen Qi
+sysstat               11.5.7      11.6.0                Chen Qi
+systemd-bootchart     231+gitX    232+gitAUTOINC+79...  Chen Qi
+flex                  2.6.0       2.6.4                 Chen Qi
+build-appliance-i...  15.0.0      17.0.1                Cristian Iorga
+avahi-ui              0.6.32      0.7                   Dengke Du
+avahi                 0.6.32      0.7                   Dengke Du
+expat                 2.2.3       2.2.4                 Dengke Du
+chkconfig             1.3.58      1.8                   Dengke Du            Version 1.5 requires selinux
+json-glib             1.2.8       1.3.2                 Dengke Du
+wayland               1.13.0      1.14.0                Denys Dmytriyenko
+weston                2.0.0       3.0.0                 Denys Dmytriyenko
+lzop                  1.03        1.04                  Denys Dmytriyenko
+lz4                   1.7.4       131                   Denys Dmytriyenko
+acpica                20170303    20170728              Fathi Boudra
+man-pages             4.11        4.12                  Hongxu Jia
+gnupg                 2.1.20      2.1.23                Hongxu Jia
+bc                    1.06        1.07.1                Jose Lamego
+pango                 1.40.6      1.40.11               Jussi Kukkonen
+assimp                4.0.0       4.0.1                 Jussi Kukkonen
+gtk-icon-utils-na...  3.22.17     3.22.19               Jussi Kukkonen
+gsettings-desktop...  3.22.0      3.24.0                Jussi Kukkonen
+libsoup-2.4           2.58.1      2.58.2                Jussi Kukkonen
+vulkan                1.0.51.0    1.0.57.0              Jussi Kukkonen
+xdg-utils             1.1.1       1.1.2                 Jussi Kukkonen
+gdk-pixbuf            2.36.8      2.36.9                Jussi Kukkonen
+gtk+3                 3.22.17     3.22.19               Jussi Kukkonen
+hicolor-icon-theme    0.15        0.16                  Jussi Kukkonen
+clutter-gtk-1.0       1.8.2       1.8.4                 Jussi Kukkonen
+glew                  2.0.0       2.1.0                 Jussi Kukkonen
+ninja                 1.7.2       120715                Khem Raj
+re2c                  0.16        1.0.1                 Khem Raj
+go-native             1.8.3       1.9rc2                Khem Raj
+go                    1.8.3       1.9rc2                Khem Raj
+libnsl2               1.0.5+gitX  1.1.0+gitAUTOINC+...  Khem Raj
+texinfo               6.3         6.4                   Leonardo Sandoval
+prelink               1.0+gitX    20151030.+gitAUTO...  Mark Hatle
+libpfm4               4.6.0       4.8.0                 Matthew McClintock
+ifupdown              0.8.16      0.8.24                Maxin B. John
+gcc-source-6.3.0      6.3.0       7.2.0                 No maintainer
+go-bootstrap-native   1.4.3       1.9rc2                No maintainer
+go-cross-i586         1.8.3       1.9rc2                No maintainer
+mesa                  17.1.6      17.1.7                Otavio Salvador
+cmake                 3.8.2       3.9.1                 Otavio Salvador
+cmake-native          3.8.2       3.9.1                 Otavio Salvador
+libdrm                2.4.81      2.4.82                Otavio Salvador
+mesa-gl               17.1.6      17.1.7                Otavio Salvador
+subversion            1.9.6       1.9.7                 Richard Purdie
+lttng-tools           2.9.5       2.10.1                Richard Purdie
+lttng-ust             2.9.1       2.10.0                Richard Purdie
+lttng-modules         2.9.3       2.10.0                Richard Purdie
+liberror-perl         0.17024     0.17025               Robert Yang
+debianutils           4.8.1.1     4.8.2                 Robert Yang
+strace                4.17        4.18                  Robert Yang
+autoconf-archive      2016.09.16  2017.03.21            Robert Yang
+tcl                   8.6.6       8.6.7                 Robert Yang
+libbsd                0.8.5       0.8.6                 Robert Yang
+e2fsprogs             1.43.4      1.43.5                Robert Yang
+git                   2.13.2      2.14.1                Robert Yang
+base-passwd           3.5.29      3.5.43                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.72        9.77                  Ross Burton
+pulseaudio            10.0        10.99.1               Tanu Kaskinen
 
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+Upgradable count: 90
+Upgradable total count: 93
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+The based commit is:
+
+commit 7f10c5118793da6ded59ae6e60e796152dbd7ca3
+Author: Tobias Hagelborn <tobias.hagelborn@axis.com>
+Date:   Fri Aug 25 13:32:38 2017 +0200
+
+    devtool: deploy-target: Support stripped libs and execs
+    
+    New devtool deploy-target option --strip which enables deploying
+    stripped binaries, saving some space on target.
+    
+    * Copies the files of ${D} into a new directory and strips them in place
+    * Used oe.package.strip_execs for stripping directory
+    * Added devtool.conf option "strip" for changing default behavior
+    
+    Config example:
+    [Deploy]
+    strip = true
+    
+    [YOCTO #11227]
+    
+    Signed-off-by: Tobias Hagelborn <tobiasha@axis.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+
 
