@@ -1,73 +1,64 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <yahiafarghaly@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 54584E00C14; Tue, 29 Aug 2017 09:31:38 -0700 (PDT)
+	id 46E6AE00C14; Tue, 29 Aug 2017 10:38:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.182 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yahiafarghaly[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.223.182 listed in list.dnswl.org]
+	*      [209.85.218.44 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.44 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD2CDE00B8B
-	for <yocto@yoctoproject.org>; Tue, 29 Aug 2017 09:31:37 -0700 (PDT)
-Received: by mail-io0-f182.google.com with SMTP id g33so18799903ioj.3
-	for <yocto@yoctoproject.org>; Tue, 29 Aug 2017 09:31:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=tZnlGCp+2QHImCBE5aU/C4atXeEjiJva8I3mRGu5uR0=;
-	b=g85LBqRTjDWZ/N0+ZjcwFVvzD1T+92fdliq5OdqOLMdj/PqWgDP4JNjWaUtn+12T8t
-	63bJTe6YxUBa2XFh1MyyJKqd0kFEx1NhXLsdhz0cks5k1dxaKrKdrzh4tV5vZ1lM/X8I
-	G4eLK/sqZejdTJ/aDLTDc8GAEBmxKjip/PEdMvmJFOXfpzPNwdnG01oJZkANdAhzT1LD
-	wMnLHkAdvaB3CUKMs4+1UeNRlp1nJsfhRBI5kM9V5cDUsJ8tqBThrSouu/Up/i++v93e
-	cZ8x1uGlJEuD5JDvIA5Fp3V3KvED2HZjQONSgP9sSy+6IYdn9c4TPM3A72gzrG+H8Iho
-	+yKw==
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EA17E00B8B
+	for <yocto@yoctoproject.org>; Tue, 29 Aug 2017 10:38:14 -0700 (PDT)
+Received: by mail-oi0-f44.google.com with SMTP id k77so33107104oib.2
+	for <yocto@yoctoproject.org>; Tue, 29 Aug 2017 10:38:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Gni5YMPR40PYzc4moKmbhUbYv1d3YiMuZgXfWPlsNkM=;
+	b=S+U3a8oqxsP++iI4euysS7hsWv4M8k9c+qKI4fm+hIDbHGArJxULR8qjrvcDDbEnFS
+	XsR3y9MhpCiO9WY8FrXc1QfBhQnp1hagMqWsfAXKfdX5IJ1mYU8NlEck7XojUvJJ/vSI
+	lVkBA8wPdKrv8fUvdki3j76xMacMC8u+SQ5kbaSF4be5jU8zpwMai2CCPFiv46QJWHMO
+	yJo8YkvcScRXbg373y4ZkLcuzx2kQ87yBM9edlUJzimL86cIJAZm4vWBCsYDZm2+4bMf
+	SD1C38tMMDl6MC3nyIGnv0F7P4t8VLn4GDA+kM8BwwTsfMnTdKzouhEEHmhMPh80iR3V
+	ENBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=tZnlGCp+2QHImCBE5aU/C4atXeEjiJva8I3mRGu5uR0=;
-	b=r20/MLvjKoDJXUiSYQC4DCDQbSWUHhZaSijADaCf5OWyuDsOM4KX8lnvq8Pxtiahuz
-	NFV/M4LxSEx8vTOIqB2s/+ddPxpb6Ey2FjNMqG7UGv2UUO9Vx/jYoZMhVMkNLT5pCnty
-	Idp/bO2sYEj30nuU9mYx5jUbv76Idhm0dw3piLXR6Ob9Iklvzkrx3Sd6Xq/pL526V/km
-	O5zrS4EO2Nyl7HnkszkIbQ4noZiBey5R/9aXD8ZU6pLtZGKbMAlonz0+hxO8Pln3fY4J
-	QybStXuS7yccv2oVHyDYmElX92XJUK5NQr5dzjVI6cNwjEs8SwiJnnHV7dy7w13gFM5h
-	pMTw==
-X-Gm-Message-State: AHYfb5icN4mhWMEKQHaPikwpAJ5W6+Qo1DQDkKSPfOElzGtkurYTdtkE
-	eg2d15+l4VrKxbMmZOr6g9B86fUgeoZ0
-X-Received: by 10.107.27.133 with SMTP id b127mr4613914iob.144.1504024296748; 
-	Tue, 29 Aug 2017 09:31:36 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Gni5YMPR40PYzc4moKmbhUbYv1d3YiMuZgXfWPlsNkM=;
+	b=p2m02Lort+exuKJhjg39bJtnphqBhUIIc2lUvgydkZH75+BY113z7DPSaX8BnF/e+a
+	jVTEGaeTT6UY5EXaZQ1Rn4Rs/HYd/MtTxEr9/Ff6A9kT1a6eSiu5RonluzNXpy4gkhsx
+	eVQ90HFdwWbF5YCJ8kLKHQU0CDi60EZ3lM3Gd3HJgZjVD+iPzwR1BAgk5FUnDhqH3s0Q
+	lPhK5paWmT5wp2Uknuwhbvqb0xt/kTMkF1PyrsK7uTIEHy28sBBRv/mGAFNcgZV+TZ9h
+	u2RYWxR5KbBWCp2k3Uaooi7IbBHvbzFU4wR5nS8Ky+j2EpBEztbnnWIIxsSR/kQsK7jf
+	Jabw==
+X-Gm-Message-State: AHYfb5h4fC5+USz1c+om/4Oj6opPxDmVWlp7DmRSodAMWNsDR9NeiWEe
+	UXXQN0lkJ/e9cJ21+Is83woTkQYQRs4R
+X-Received: by 10.202.206.208 with SMTP id e199mr1051675oig.253.1504028293313; 
+	Tue, 29 Aug 2017 10:38:13 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.33.83 with HTTP; Tue, 29 Aug 2017 09:31:16 -0700 (PDT)
-In-Reply-To: <CAGAf8LxofVx8TQgrgHFsLhZF5_ROUb6GXR8mAWs7xxxv1iBOKA@mail.gmail.com>
-References: <CABpTzB12oTgOmND6wDn+vD2aTvUd6WmavbmHNAXGpA6_dA+Tag@mail.gmail.com>
-	<96d5a0c7-4df6-1576-7e50-916c5af724c6@linux.intel.com>
-	<CABpTzB3yC2vHf0mFdDq8vGksQSJk1BHkuwTxMb0orCTL4kh1YQ@mail.gmail.com>
-	<CAGAf8LzHHWqNmq9g2ZGUMnMnrtD00QPdJ736ttTNAbM+-uyHHQ@mail.gmail.com>
-	<CAHiDW_GPQ4WvxqbkSGAq4K=bGfqX45pJrzUGJ1NsgazLtyv40g@mail.gmail.com>
-	<CAGAf8Ly4y7xtjgmMrUb35Jkm-fyumN=LKCcfFsXm7+03xUE0Hw@mail.gmail.com>
-	<CAHiDW_GuP0+aQdr8utVDD=vUwXoq3OPjR9Psb=t-Js9v8j+F+w@mail.gmail.com>
-	<CAGAf8Lyi4k4o6VSXg97Occ+VErBo5cbTcwa8V7rZhjDKGiOjoQ@mail.gmail.com>
-	<CAHiDW_EUWtZ6LOEL=yNNbyvp=59i4QRqusknwQJ43PPXa+Diyg@mail.gmail.com>
-	<CAGAf8LxofVx8TQgrgHFsLhZF5_ROUb6GXR8mAWs7xxxv1iBOKA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 29 Aug 2017 17:31:16 +0100
-Message-ID: <CAJTo0LbqNEQ0Vz9Jy3KKGqGN5=fFgAHRNG+2yR7uUDG9thoLvA@mail.gmail.com>
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [DNF YOCTO clarifications] smart was replaced with dnf in Yocto 2.3
+Received: by 10.157.41.131 with HTTP; Tue, 29 Aug 2017 10:38:12 -0700 (PDT)
+From: yahia farghaly <yahiafarghaly@gmail.com>
+Date: Tue, 29 Aug 2017 19:38:12 +0200
+Message-ID: <CABFXn3GQ4-MXfmgBVmi0OwhP0YjJb_2UHf51f_oUTGbzS_b16A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: error in apt-key add
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,48 +70,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Aug 2017 16:31:38 -0000
-Content-Type: multipart/alternative; boundary="001a113fd5e2f10aa90557e6f108"
+X-List-Received-Date: Tue, 29 Aug 2017 17:38:15 -0000
+Content-Type: multipart/alternative; boundary="001a113ad52e27bada0557e7e0a2"
 
---001a113fd5e2f10aa90557e6f108
+--001a113ad52e27bada0557e7e0a2
 Content-Type: text/plain; charset="UTF-8"
 
-On 24 August 2017 at 15:34, Zoran Stojsavljevic <
-zoran.stojsavljevic@gmail.com> wrote:
+I am building a linux image using yocto which support deb package
+manager(apt-get). I created the repo with packages and i want to authorize
+this repo to my target machine. i followed these steps
+<https://help.ubuntu.com/community/CreateAuthenticatedRepository> for that
+purpose. I created the keyFile successfully for the server (host). and when
+transfer this keyFile to my target and execute apt-key add keyFile, it
+promotes me the error
 
-> Do you agree to continue keeping DNF package (in
-> .../meta/recipe_devtools/) for handling of .rpm type of packages in the
-> future releases of YOCTO (it is, after all, much better and more mature
-> tool that smartpm)?
->
+> /usr/bin/apt-key: line 352: comm: command not found
 
-For all future releases, forever?  Committing to that would be foolish.
 
-We have no plans to move from DNF to something else.  Luckily Yocto is open
-source so if in a few years time a stable and superior alternative to DNF
-appears and we move to it, you can continue to maintain the DNF recipes
-yourself.
 
-Ross
+i use yocto pyro 17.0.1 and i built for core-image-sato plus adding the
+recipe gnupg which exist in meta/recipes-support/gnupg
 
---001a113fd5e2f10aa90557e6f108
+Why this error ? and possible ways to fix it ?
+
+-- 
+Yahia Farghaly
+Graduated from Faculty of Engineering - Electronics and Communications
+Department at Cairo University.
+Linkedin <https://linkedin.com/in/yahiafarghaly> - GitHub
+<https://github.com/yahiafarghaly>
+
+--001a113ad52e27bada0557e7e0a2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On 24 August 2017 at 15:34, Zoran Stojsavljevic <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_bl=
-ank">zoran.stojsavljevic@gmail.com</a>&gt;</span> wrote:<div class=3D"gmail=
-_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=
-=3D"ltr"><div><span style=3D"font-size:12.8px">Do you agree to continue kee=
-ping DNF package (in .../meta/recipe_devtools/) for handling of .rpm type o=
-f packages in the future releases of YOCTO (it is, after all, much better a=
-nd more mature tool that smartpm)?</span></div></div></blockquote><div><br>=
-</div><div>For all future releases, forever?=C2=A0 Committing to that would=
- be foolish.</div><div><br></div><div>We have no plans to move from DNF to =
-something else.=C2=A0 Luckily Yocto is open source so if in a few years tim=
-e a stable and superior alternative to DNF appears and we move to it, you c=
-an continue to maintain the DNF recipes yourself.</div><div><br></div><div>=
-Ross</div></div></div></div>
+<div dir=3D"ltr"><img width=3D"0" height=3D"0" class=3D"mailtrack-img" alt=
+=3D"" style=3D"display:flex" src=3D"https://mailtrack.io/trace/mail/54cd11b=
+ba47dbee722d03f53c2c2e61241c1f4fc.png?u=3D1822760"><div><div><span style=3D=
+"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica=
+,sans-serif;font-size:15px">I am building a linux image using yocto which s=
+upport deb package manager(apt-get). I created the repo with packages and i=
+ want to authorize this repo to my target machine. i followed=C2=A0</span><=
+a href=3D"https://help.ubuntu.com/community/CreateAuthenticatedRepository" =
+rel=3D"nofollow noreferrer" style=3D"margin:0px;padding:0px;border:0px;font=
+-variant-numeric:inherit;font-stretch:inherit;font-size:15px;line-height:in=
+herit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;ver=
+tical-align:baseline;color:rgb(0,89,153);text-decoration:none">these steps<=
+/a><span style=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica Neu=
+e&quot;,Helvetica,sans-serif;font-size:15px">=C2=A0for that purpose. I crea=
+ted the keyFile successfully for the server (host). and when transfer this =
+keyFile to my target and execute apt-key add keyFile, it promotes me the er=
+ror</span></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><span sty=
+le=3D"color:rgb(36,39,41);font-family:Arial,&quot;Helvetica Neue&quot;,Helv=
+etica,sans-serif;font-size:15px;background-color:rgb(255,248,220)">/usr/bin=
+/apt-key: line 352: comm: command not found=C2=A0</span></blockquote><div>=
+=C2=A0</div><div><p style=3D"margin:0px 0px 1em;padding:0px;border:0px;font=
+-variant-numeric:inherit;font-stretch:inherit;font-size:15px;line-height:in=
+herit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;ver=
+tical-align:baseline;clear:both;color:rgb(36,39,41)">i use yocto pyro 17.0.=
+1 and i built for core-image-sato plus adding the recipe gnupg which exist =
+in meta/recipes-support/gnupg</p><p style=3D"margin:0px 0px 1em;padding:0px=
+;border:0px;font-variant-numeric:inherit;font-stretch:inherit;font-size:15p=
+x;line-height:inherit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetic=
+a,sans-serif;vertical-align:baseline;clear:both;color:rgb(36,39,41)">Why th=
+is error ? and possible ways to fix it ?=C2=A0</p></div><div><div><br></div=
+>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><font size=3D"1" color=3D"#777777" style=3D"font-family:Tahoma,sans-seri=
+f,Arial,serif,EmojiFont"><span style=3D"font-size:13px">Yahia Farghaly=C2=
+=A0</span></font><span style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,=
+Helvetica,sans-serif,serif,EmojiFont;font-size:16px"></span><div><font colo=
+r=3D"#777777" face=3D"Tahoma, sans-serif, Arial, serif, EmojiFont"><span st=
+yle=3D"font-size:13px">Graduated from Faculty of Engineering - Electronics =
+and Communications Department at Cairo University.</span></font><br></div><=
+div style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-seri=
+f,serif,EmojiFont;font-size:16px"><div><a href=3D"https://linkedin.com/in/y=
+ahiafarghaly" rel=3D"noopener noreferrer" target=3D"_blank"><font size=3D"1=
+" style=3D"font-family:Tahoma,sans-serif,Arial,serif,EmojiFont"><span style=
+=3D"font-size:13px">Linkedin</span></font></a><font size=3D"1" color=3D"#77=
+7777" style=3D"font-family:Tahoma,sans-serif,Arial,serif,EmojiFont"><span s=
+tyle=3D"font-size:13px">=C2=A0-=C2=A0</span></font><a href=3D"https://githu=
+b.com/yahiafarghaly" rel=3D"noopener noreferrer" target=3D"_blank"><font si=
+ze=3D"1" style=3D"font-family:Tahoma,sans-serif,Arial,serif,EmojiFont"><spa=
+n style=3D"font-size:13px">GitHub</span></font></a></div></div></div></div>=
+</div></div>
+<br><br><br><div style=3D"display:inline">
+            </div></div></div><div style=3D"display:inline">
+            </div></div>
 
---001a113fd5e2f10aa90557e6f108--
+--001a113ad52e27bada0557e7e0a2--
