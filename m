@@ -1,46 +1,42 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 568C7E00CC2; Mon, 28 Aug 2017 13:32:21 -0700 (PDT)
+	id 99073E00C9F; Mon, 28 Aug 2017 19:39:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE580E00CC2
-	for <yocto@yoctoproject.org>; Mon, 28 Aug 2017 13:32:11 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 019D9861B9;
-	Mon, 28 Aug 2017 20:32:10 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id LBktuprOXGq0; Mon, 28 Aug 2017 20:31:55 +0000 (UTC)
-Received: from [127.0.0.1] (cpc111193-live30-2-0-cust656.17-2.cable.virginm.net
-	[92.232.58.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 5F593860E5;
-	Mon, 28 Aug 2017 20:30:29 +0000 (UTC)
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <258ff3cf-5cac-501a-132b-b91c487c4d5b@dynamicdevices.co.uk>
-	<2151273.fElYf2KXPe@peggleto-mobl.ger.corp.intel.com>
-	<dfab7077-0402-1c1f-32dd-3be96d2cce97@dynamicdevices.co.uk>
-	<3382579.O7URAfhVFX@peggleto-mobl.ger.corp.intel.com>
-From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <42165ae9-0852-3314-b72f-3084c3c2be95@dynamicdevices.co.uk>
-Date: Mon, 28 Aug 2017 20:30:23 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+Received: from remote.innerrange.com (vpn.innerrange.com.au [203.122.143.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16018E00C99
+	for <yocto@yoctoproject.org>; Mon, 28 Aug 2017 19:39:01 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
+	mapi; Tue, 29 Aug 2017 12:38:58 +1000
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 29 Aug 2017 12:38:56 +1000
+Thread-Topic: [yocto] Python module and build_ext args
+Thread-Index: AdMdXQNEjfh8vJQ0TRyR6DmwaftuSQDEo1Ng
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A40295F08641D1@IR-CENTRAL.corp.innerrange.com>
+References: <5500469A22567C4BAF673A6E86AFA3A40295F086417D@IR-CENTRAL.corp.innerrange.com>
+	<5500469A22567C4BAF673A6E86AFA3A40295F0864183@IR-CENTRAL.corp.innerrange.com>
+	<CAMKF1soq1xM+HM+tBX3ear57EU0P8N5MMSJxgOy3+ixyt2GPOA@mail.gmail.com>
+	<5500469A22567C4BAF673A6E86AFA3A40295F0864194@IR-CENTRAL.corp.innerrange.com>
+	<CAMKF1soW30WKkrHtcNcgLM5A22oLO-irncSnBFjJFw999PjtdQ@mail.gmail.com>
+In-Reply-To: <CAMKF1soW30WKkrHtcNcgLM5A22oLO-irncSnBFjJFw999PjtdQ@mail.gmail.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1278-8.100.1062-23286.007
+x-tm-as-result: No--18.479400-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-In-Reply-To: <3382579.O7URAfhVFX@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Problems running image in qemu (x86)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Python module and build_ext args
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,35 +48,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Aug 2017 20:32:21 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
+X-List-Received-Date: Tue, 29 Aug 2017 02:39:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
-On 28/08/2017 20:25, Paul Eggleton wrote:
-> On Tuesday, 29 August 2017 12:57:35 AM NZST Alex J Lennon wrote:
->> On 28/08/2017 10:32, Paul Eggleton wrote:
->>> On Sunday, 27 August 2017 1:09:49 AM NZST Alex J Lennon wrote:
->>>> I have just built against master though and am seeing screen corruption.
->>>>
->>>> e.g. https://postimg.org/image/xjcdybdul
->>> Yuck :( Would you please file a bug for this? I'm aware we've upgraded qemu
->>> recently (I assume this was with the 2.10-rc2 version currently in master?),
->>> maybe that has something to do with it.
->>>
->> Will do Paul.
-> Thanks!
->
->> (I don't suppose you're back over for ELC-E 2017 or FOSDEM
->> 2018 by any chance?)
-> I'd love to be, but it's rather unlikely at this point unfortunately.
->
->
-
-Shame. I'll leave a beer / coffee in the tap then...
-
-Cheers, Alex
-
+S2hlbSBSYWogd3JvdGU6DQo+IE9uIFRodSwgQXVnIDI0LCAyMDE3IGF0IDk6NDIgUE0sIENyYWln
+IE1jUXVlZW4NCj4gPGNyYWlnLm1jcXVlZW5AaW5uZXJyYW5nZS5jb20+IHdyb3RlOg0KPiA+IEto
+ZW0gUmFqIHdyb3RlOg0KPiA+IE9uIFRodSwgQXVnIDI0LCAyMDE3IGF0IDY6NDggUE0gQ3JhaWcg
+TWNRdWVlbg0KPiA+IDxjcmFpZy5tY3F1ZWVuQGlubmVycmFuZ2UuY29tPg0KPiA+IHdyb3RlOg0K
+PiA+DQo+ID4gSSB3cm90ZToNCj4gPj4gSSdtIHRyeWluZyB0byBtYWtlIGEgcmVjaXBlIGZvciBw
+eXRob24zLXV2bG9vcCwgdXNpbmcgc2V0dXB0b29sczMuDQo+ID4+DQo+ID4+IFRoZSBQeXRob24g
+MyB1dmxvb3AgbW9kdWxlIGRlcGVuZHMgb24gbGlidXYuIEl0IGJ1bmRsZXMgYSB2ZXJzaW9uIG9m
+DQo+ID4+IGxpYnV2LCBhbmQgc2V0dXAucHkgdHJpZXMgdG8gYnVpbGQgaXQsIGJ1dCBpdCBkb2Vz
+bid0IHdvcmsgd2VsbCBmb3INCj4gPj4gY3Jvc3MtY29tcGlsYXRpb24uDQo+ID4+IEhvd2V2ZXIs
+IGl0IGFsc28gcHJvdmlkZXMgYSBidWlsZF9leHQgcGFyYW1ldGVyICItLXVzZS1zeXN0ZW0tbGli
+dXYiLA0KPiA+PiB3aGljaCBzZWVtcyB0byB3b3JrIHdoZW4gSSB0cnkgcnVubmluZyBpdCBtYW51
+YWxseSBpbiBkZXZzaGVsbC4gKEkNCj4gPj4gaGF2ZSBtYWRlIGEgc3VpdGFibGUgcmVjaXBlIGZv
+ciBsaWJ1diBhbmQgYWRkZWQgbGlidXYgdG8gREVQRU5EUy4pDQo+ID4+DQo+ID4+IEhvdyBjYW4g
+SSBzcGVjaWZ5IHRoZSAiLS11c2Utc3lzdGVtLWxpYnV2IiBwYXJhbWV0ZXIgZm9yIGJ1aWxkX2V4
+dCBpbg0KPiA+PiB0aGUgcHl0aG9uMy11dmxvb3AgcmVjaXBlPyBJIHNlZSBhIHJlZmVyZW5jZSB0
+bw0KPiA+PiBESVNUVVRJTFNfQlVJTERfRVhUX0FSR1MsIGJ1dCBpdCBkb2Vzbid0IHNlZW0gdG8g
+YmUgZnVuY3Rpb25hbC4NCj4gPg0KPiA+DQo+ID4gSSBzZWUgRElTVFVUSUxTX0JVSUxEX0VYVF9B
+UkdTIHdhcyBzdWJtaXR0ZWQgaW4gdGhpcyBwYXRjaDoNCj4gPiBodHRwczovL3BhdGNod29yay5v
+cGVuZW1iZWRkZWQub3JnL3BhdGNoLzY2MDcxLw0KPiA+DQo+ID4gSG93ZXZlciwgaW4gdGhlIFlv
+Y3RvIHBva3kgcmVwb3NpdG9yeSwgSSBzZWUgY29tbWl0DQo+ID4gMDIyMWFmMGY0ZWU5ZThiZmI4
+Nzk2ODQxYmRmODA2ZTM4YmM2MDBjNiB3aGljaCBhcHBlYXJzIHRvIGJlIGENCj4gYnJva2VuDQo+
+ID4gdmVyc2lvbiBvZiB0aGUgYWJvdmUgcGF0Y2ggd2l0aCB0aGUgc2VwYXJhdGUgYnVpbGRfZXh0
+IHN0ZXAgbm90DQo+ID4gYWN0dWFsbHkgZXhlY3V0ZWQgd2l0aCB0aGUgRElTVFVUSUxTX0JVSUxE
+X0VYVF9BUkdTIHBhcmFtZXRlcnMuDQo+ID4NCj4gPg0KPiA+DQo+ID4gWW91IGRpZCBub3QgZXhw
+bGFpbiBicm9rZW4gaW4gd2hpY2ggc2Vuc2UgPw0KPiA+DQo+ID4NCj4gPg0KPiA+IEl0IGlzIGJy
+b2tlbiBpbiB0aGUgc2Vuc2UgdGhhdDogVGhlIHNlcGFyYXRlIGJ1aWxkX2V4dCBzdGVwIGlzIG5v
+dA0KPiA+IGFjdHVhbGx5IGV4ZWN1dGVkIHdpdGggdGhlIERJU1RVVElMU19CVUlMRF9FWFRfQVJH
+UyBwYXJhbWV0ZXJzLiBUaGUNCj4gPiBvcmlnaW5hbCBwYXRjaCBzdWJtaXNzaW9uIGNvbnRhaW5l
+ZDoNCj4gPg0KPiA+DQo+ID4NCj4gPiAgICAgICAgICAgU1RBR0lOR19JTkNESVI9JHtTVEFHSU5H
+X0lOQ0RJUn0gXA0KPiA+DQo+ID4gICAgICAgICAgIFNUQUdJTkdfTElCRElSPSR7U1RBR0lOR19M
+SUJESVJ9IFwNCj4gPg0KPiA+ICAgICAgICAgICBCVUlMRF9TWVM9JHtCVUlMRF9TWVN9IEhPU1Rf
+U1lTPSR7SE9TVF9TWVN9IFwNCj4gPg0KPiA+IC0gICAgICAgICAke1NUQUdJTkdfQklORElSX05B
+VElWRX0vJHtQWVRIT05fUE59LW5hdGl2ZS8ke1BZVEhPTl9QTn0NCj4gc2V0dXAucHkNCj4gPiBi
+dWlsZCAke0RJU1RVVElMU19CVUlMRF9BUkdTfSB8fCBcDQo+ID4NCj4gPiArICAgICAgICAgJHtT
+VEFHSU5HX0JJTkRJUl9OQVRJVkV9LyR7UFlUSE9OX1BOfS1uYXRpdmUvJHtQWVRIT05fUE59DQo+
+ID4gKyBzZXR1cC5weQ0KPiA+IFwNCj4gPg0KPiA+ICsgICAgICAgICBidWlsZF9leHQgLS1pbmNs
+dWRlLWRpcnMNCj4gPiAke1NUQUdJTkdfSU5DRElSfS8ke1BZVEhPTl9ESVJ9JHtQWVRIT05fQUJJ
+fSBcDQo+ID4NCj4gPiArICAgICAgICAgLS1saWJyYXJ5LWRpcnMgJHtTVEFHSU5HX0xJQkNESVJ9
+LyR7UFlUSE9OX0RJUn0gXA0KPiA+DQo+ID4gKyAgICAgICAgICR7RElTVFVUSUxTX0JVSUxEX0VY
+VF9BUkdTfSBcDQo+ID4NCj4gPiArICAgICAgICAgYnVpbGQgJHtESVNUVVRJTFNfQlVJTERfQVJH
+U30gfHwgXA0KPiA+DQo+ID4gKyAgICAgICAgICR7U1RBR0lOR19CSU5ESVJfTkFUSVZFfS8ke1BZ
+VEhPTl9QTn0tbmF0aXZlLyR7UFlUSE9OX1BOfQ0KPiA+ICsgc2V0dXAucHkNCj4gPiBidWlsZF9l
+eHQgJHtESVNUVVRJTFNfQlVJTERfQVJHU30gfHwgXA0KPiA+DQo+ID4gICAgICAgICAgIGJiZmF0
+YWwgIiR7UFlUSE9OX1BOfSBzZXR1cC5weSBidWlsZF9leHQgZXhlY3V0aW9uIGZhaWxlZC4iDQo+
+ID4NCj4gPiB9DQo+ID4NCj4gPg0KPiA+DQo+ID4gSG93ZXZlciB0aGF0IHBhcnQgb2YgdGhlIHBh
+dGNoIGlzIG5vdCBwcmVzZW50IGluIGNvbW1pdA0KPiA+IDAyMjFhZjBmNGVlOWU4YmZiODc5Njg0
+MWJkZjgwNmUzOGJjNjAwYzYuDQo+ID4NCj4gDQo+IElJUkMgdGhlcmUgd2VyZSBzb21lIGJyZWFr
+YWdlcyB3aXRoIHRoaXMgYnV0IGl0IHdhcyBsb25nIHRpbWUgYWdvLiBDYW4geW91DQo+IGFwcHkg
+dGhpcyBjaGFuZ2UgYW5kIHRlc3QgaXQgb3V0ID8NCg0KSSB0cmllZCBhcHBseWluZyB0aGUgY2hh
+bmdlIG1hbnVhbGx5LiBUaGUgWW9jdG8gZG9fY29tcGlsZSBzdGVwIHN1Y2NlZWRlZC4gQnV0IHRo
+ZW4gdGhlIGRvX2luc3RhbGwgc3RlcCBzdGlsbCBmYWlsZWQuIEl0IHNlZW1zIHRoYXQgdGhlIGRv
+X2luc3RhbGwgc3RlcCAod2hpY2ggcnVucyBzZXR1cC5weSBpbnN0YWxsKSBzdGlsbCBydW5zIHRo
+ZSBzZXR1cC5weSBidWlsZF9leHQgc3RlcCBhIHNlY29uZCB0aW1lLCB3aXRob3V0IHRoZSBleHRy
+YSBvcHRpb24gSSB3YXMgdHJ5aW5nIHRvIHVzZS4NCg0KSSdtIG5vdCBmYW1pbGlhciBlbm91Z2gg
+d2l0aCB0aGUgd29ya2luZyBvZiBweXRob24zIHNldHVwLnB5IHRvIGtub3cgd2h5IHRoZSBpbnN0
+YWxsIHN0ZXAgcmUtcnVucyB0aGUgYnVpbGRfZXh0IHN0ZXAgYSBzZWNvbmQgdGltZS4NCg0KLS0g
+DQpDcmFpZyBNY1F1ZWVuDQoNCg==
 
