@@ -1,44 +1,73 @@
-Return-Path: <c.andersen@kostal.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 305B6E00C2B; Tue, 29 Aug 2017 07:37:09 -0700 (PDT)
+	id 54584E00C14; Tue, 29 Aug 2017 09:31:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [193.22.205.227 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.182 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from debemgw001.kostal.com (securemail.kostal.com [193.22.205.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1506E00A38
-	for <yocto@yoctoproject.org>; Tue, 29 Aug 2017 07:37:06 -0700 (PDT)
-Received: from DEBEMAIL002.kostal.int ([10.20.2.182]) by 
-	debemgw001.kostal.com (8.14.7/8.14.7) with ESMTP id v7TEatZp023149 
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL) for 
-	<yocto@yoctoproject.org>; Tue, 29 Aug 2017 16:36:55 +0200
-Received: from DEBEMAIL001.kostal.int (10.20.2.181) by DEBEMAIL002.kostal.int 
-	(10.20.2.182) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Tue, 
-	29 Aug 2017 16:36:55 +0200
-Received: from DEBEMAIL001.kostal.int ([fe80::709d:54a:e7ef:38eb]) by 
-	DEBEMAIL001.kostal.int ([fe80::709d:54a:e7ef:38eb%12]) with mapi id 
-	15.00.1320.000; Tue, 29 Aug 2017 16:36:54 +0200
-From: "Andersen, Christian" <c.andersen@kostal.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Building multiple FIT images with different initramfs images
-Thread-Index: AdMg051XjHWBCmV9SjOMKs0gT/noaw==
-Date: Tue, 29 Aug 2017 14:36:54 +0000
-Message-ID: <3d7dfdc5c8dc4eb4b31cb394d2ab32b4@DEBEMAIL001.kostal.int>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.20.2.192]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD2CDE00B8B
+	for <yocto@yoctoproject.org>; Tue, 29 Aug 2017 09:31:37 -0700 (PDT)
+Received: by mail-io0-f182.google.com with SMTP id g33so18799903ioj.3
+	for <yocto@yoctoproject.org>; Tue, 29 Aug 2017 09:31:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=tZnlGCp+2QHImCBE5aU/C4atXeEjiJva8I3mRGu5uR0=;
+	b=g85LBqRTjDWZ/N0+ZjcwFVvzD1T+92fdliq5OdqOLMdj/PqWgDP4JNjWaUtn+12T8t
+	63bJTe6YxUBa2XFh1MyyJKqd0kFEx1NhXLsdhz0cks5k1dxaKrKdrzh4tV5vZ1lM/X8I
+	G4eLK/sqZejdTJ/aDLTDc8GAEBmxKjip/PEdMvmJFOXfpzPNwdnG01oJZkANdAhzT1LD
+	wMnLHkAdvaB3CUKMs4+1UeNRlp1nJsfhRBI5kM9V5cDUsJ8tqBThrSouu/Up/i++v93e
+	cZ8x1uGlJEuD5JDvIA5Fp3V3KvED2HZjQONSgP9sSy+6IYdn9c4TPM3A72gzrG+H8Iho
+	+yKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=tZnlGCp+2QHImCBE5aU/C4atXeEjiJva8I3mRGu5uR0=;
+	b=r20/MLvjKoDJXUiSYQC4DCDQbSWUHhZaSijADaCf5OWyuDsOM4KX8lnvq8Pxtiahuz
+	NFV/M4LxSEx8vTOIqB2s/+ddPxpb6Ey2FjNMqG7UGv2UUO9Vx/jYoZMhVMkNLT5pCnty
+	Idp/bO2sYEj30nuU9mYx5jUbv76Idhm0dw3piLXR6Ob9Iklvzkrx3Sd6Xq/pL526V/km
+	O5zrS4EO2Nyl7HnkszkIbQ4noZiBey5R/9aXD8ZU6pLtZGKbMAlonz0+hxO8Pln3fY4J
+	QybStXuS7yccv2oVHyDYmElX92XJUK5NQr5dzjVI6cNwjEs8SwiJnnHV7dy7w13gFM5h
+	pMTw==
+X-Gm-Message-State: AHYfb5icN4mhWMEKQHaPikwpAJ5W6+Qo1DQDkKSPfOElzGtkurYTdtkE
+	eg2d15+l4VrKxbMmZOr6g9B86fUgeoZ0
+X-Received: by 10.107.27.133 with SMTP id b127mr4613914iob.144.1504024296748; 
+	Tue, 29 Aug 2017 09:31:36 -0700 (PDT)
 MIME-Version: 1.0
-x-msw-jemd-newsletter: false
-Subject: Building multiple FIT images with different initramfs images
+Received: by 10.107.33.83 with HTTP; Tue, 29 Aug 2017 09:31:16 -0700 (PDT)
+In-Reply-To: <CAGAf8LxofVx8TQgrgHFsLhZF5_ROUb6GXR8mAWs7xxxv1iBOKA@mail.gmail.com>
+References: <CABpTzB12oTgOmND6wDn+vD2aTvUd6WmavbmHNAXGpA6_dA+Tag@mail.gmail.com>
+	<96d5a0c7-4df6-1576-7e50-916c5af724c6@linux.intel.com>
+	<CABpTzB3yC2vHf0mFdDq8vGksQSJk1BHkuwTxMb0orCTL4kh1YQ@mail.gmail.com>
+	<CAGAf8LzHHWqNmq9g2ZGUMnMnrtD00QPdJ736ttTNAbM+-uyHHQ@mail.gmail.com>
+	<CAHiDW_GPQ4WvxqbkSGAq4K=bGfqX45pJrzUGJ1NsgazLtyv40g@mail.gmail.com>
+	<CAGAf8Ly4y7xtjgmMrUb35Jkm-fyumN=LKCcfFsXm7+03xUE0Hw@mail.gmail.com>
+	<CAHiDW_GuP0+aQdr8utVDD=vUwXoq3OPjR9Psb=t-Js9v8j+F+w@mail.gmail.com>
+	<CAGAf8Lyi4k4o6VSXg97Occ+VErBo5cbTcwa8V7rZhjDKGiOjoQ@mail.gmail.com>
+	<CAHiDW_EUWtZ6LOEL=yNNbyvp=59i4QRqusknwQJ43PPXa+Diyg@mail.gmail.com>
+	<CAGAf8LxofVx8TQgrgHFsLhZF5_ROUb6GXR8mAWs7xxxv1iBOKA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 29 Aug 2017 17:31:16 +0100
+Message-ID: <CAJTo0LbqNEQ0Vz9Jy3KKGqGN5=fFgAHRNG+2yR7uUDG9thoLvA@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [DNF YOCTO clarifications] smart was replaced with dnf in Yocto 2.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,169 +79,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Aug 2017 14:37:09 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative; 
-	boundary="_000_3d7dfdc5c8dc4eb4b31cb394d2ab32b4DEBEMAIL001kostalint_"
+X-List-Received-Date: Tue, 29 Aug 2017 16:31:38 -0000
+Content-Type: multipart/alternative; boundary="001a113fd5e2f10aa90557e6f108"
 
---_000_3d7dfdc5c8dc4eb4b31cb394d2ab32b4DEBEMAIL001kostalint_
-Content-Type: text/plain; charset="ISO-8859-1"
+--001a113fd5e2f10aa90557e6f108
+Content-Type: text/plain; charset="UTF-8"
+
+On 24 August 2017 at 15:34, Zoran Stojsavljevic <
+zoran.stojsavljevic@gmail.com> wrote:
+
+> Do you agree to continue keeping DNF package (in
+> .../meta/recipe_devtools/) for handling of .rpm type of packages in the
+> future releases of YOCTO (it is, after all, much better and more mature
+> tool that smartpm)?
+>
+
+For all future releases, forever?  Committing to that would be foolish.
+
+We have no plans to move from DNF to something else.  Luckily Yocto is open
+source so if in a few years time a stable and superior alternative to DNF
+appears and we move to it, you can continue to maintain the DNF recipes
+yourself.
+
+Ross
+
+--001a113fd5e2f10aa90557e6f108
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<div dir=3D"ltr">On 24 August 2017 at 15:34, Zoran Stojsavljevic <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_bl=
+ank">zoran.stojsavljevic@gmail.com</a>&gt;</span> wrote:<div class=3D"gmail=
+_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=
+=3D"ltr"><div><span style=3D"font-size:12.8px">Do you agree to continue kee=
+ping DNF package (in .../meta/recipe_devtools/) for handling of .rpm type o=
+f packages in the future releases of YOCTO (it is, after all, much better a=
+nd more mature tool that smartpm)?</span></div></div></blockquote><div><br>=
+</div><div>For all future releases, forever?=C2=A0 Committing to that would=
+ be foolish.</div><div><br></div><div>We have no plans to move from DNF to =
+something else.=C2=A0 Luckily Yocto is open source so if in a few years tim=
+e a stable and superior alternative to DNF appears and we move to it, you c=
+an continue to maintain the DNF recipes yourself.</div><div><br></div><div>=
+Ross</div></div></div></div>
 
-we are using signed FIT images to establish a verified boot system. Now I t=
-ry to generate multiple FIT images, where every image contains another init=
-ramfs. The idea is to use a signed FIT image (loaded via TFTP) including a =
-special ramdisk in our production line. This ramdisk only contains the code=
- to copy the rootfs onto our eMMC. Another FIT image (the default one) will=
- be included in our rootfs and used in all other cases (in the field).
-
-Currently Yocto (kernel-fitimage.bbclass) only supports the variable INITRA=
-MFS_IMAGE (which as far as I know, has to be set in the machine config). So=
- I am not able to build a second FIT image with another initramfs image.
-
-I did some (ugly) hacking on kernel.bbclass and kernel-fitimage.bbclass and=
- created a new variable INITRAMFS_IMAGES, which may contain one or more dif=
-ferent initramfs images. Using this approach I am now able to build multipl=
-e FIT images for one machine, which contain different ramdisks.
-
-What do you think about such a feature? Is it something which might be inte=
-grated into mainline YP/OE?
-
-Regards
-Christian
-
-
-KOSTAL Industrie Elektrik GmbH - Sitz L=FCdenscheid, Registergericht Iserlo=
-hn HRB 3924 - USt-Id-Nr./Vat No.: DE 813742170
-Postanschrift: An der Bellmerei 10, D-58513 L=FCdenscheid * Telefon: +49  2=
-351 16-0 * Telefax: +49  2351 16-2400
-Werksanschrift: Lange Eck 11, D-58099 Hagen * Tel. +49 2331 8040-601 * Fax =
-+49 2331 8040-602
-Gesch=E4ftsf=FChrung: Dr.-Ing. Dipl.-Wirt.Ing. Manfred Gerhard, Dipl.-Ing. =
-Marwin Kinzl, Dipl.-Oec. Andreas Kostal
-
-
---_000_3d7dfdc5c8dc4eb4b31cb394d2ab32b4DEBEMAIL001kostalint_
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<META http-equiv=3D"Content-Type" content=3D"text/html; charset=3DISO-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Arial",sans-serif;
-	color:windowtext;
-	font-weight:normal;
-	font-style:normal;
-	text-decoration:none none;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Hello,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif">we are using signed FIT images to esta=
-blish a verified boot system. Now I try to generate multiple FIT images, wh=
-ere every image contains another initramfs. The
- idea is to use a signed FIT image (loaded via TFTP) including a special ra=
-mdisk in our production line. This ramdisk only contains the code to copy t=
-he rootfs onto our eMMC. Another FIT image (the default one) will be includ=
-ed in our rootfs and used in all
- other cases (in the field).<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif">Currently Yocto (kernel-fitimage.bbcla=
-ss) only supports the variable INITRAMFS_IMAGE (which as far as I know, has=
- to be set in the machine config). So I am not able
- to build a second FIT image with another initramfs image.<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif">I did some (ugly) hacking on kernel.bb=
-class and kernel-fitimage.bbclass and created a new variable INITRAMFS_IMAG=
-ES, which may contain one or more different initramfs
- images. Using this approach I am now able to build multiple FIT images for=
- one machine, which contain different ramdisks.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif">What do you think about such a feature=
-? Is it something which might be integrated into mainline YP/OE?<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif">Regards<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
-family:&quot;Arial&quot;,sans-serif">Christian<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-</div>
-=0A<table>=0A<tbody><tr valign=3D"bottom">=0A<td valign=3D"bottom">=0A<img =
-border=3D"0" src=3D"http://www.kostal-solar-electric.com/~/media/Industrie%=
-20Elektrik/Header_Logos%20und%20Bilder/blue_Quadrat_Intelligent.ashx" />=0A=
-</td>=0A<td width=3D"5"></td>=0A<td valign=3D"bottom" style=3D"font-size: 8=
-pt;">=0AKOSTAL Industrie Elektrik GmbH - Sitz L=FCdenscheid, Registergerich=
-t Iserlohn HRB 3924 - USt-Id-Nr./Vat No.: DE 813742170=0A<br />=0APostansch=
-rift: An der Bellmerei 10, D-58513 L=FCdenscheid * Telefon: +49  2351 16-0 =
-* Telefax: +49  2351 16-2400=0A<br />=0AWerksanschrift: Lange Eck 11, D-580=
-99 Hagen * Tel. +49 2331 8040-800 * Fax +49 2331 8040-602=0A<br />=0AGesch=
-=E4ftsf=FChrung: Dr.-Ing. Dipl.-Wirt.Ing. Manfred Gerhard, Dipl.-Ing. Marwi=
-n Kinzl, Dipl.-Oec. Andreas Kostal=0A</td>=0A</tr>=0A</tbody></table>=0A=0A=
-=0A=0A=0A</body>
-</html>
-
---_000_3d7dfdc5c8dc4eb4b31cb394d2ab32b4DEBEMAIL001kostalint_--
+--001a113fd5e2f10aa90557e6f108--
