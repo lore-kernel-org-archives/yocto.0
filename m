@@ -1,68 +1,90 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <aseilis@ciena.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4F25E00B01; Thu, 31 Aug 2017 01:56:58 -0700 (PDT)
+	id 04265E00C09; Thu, 31 Aug 2017 08:27:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.65 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.65 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.34.82 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
-	[209.85.213.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E970E00A9B
-	for <yocto@yoctoproject.org>; Thu, 31 Aug 2017 01:56:55 -0700 (PDT)
-Received: by mail-vk0-f65.google.com with SMTP id x85so33214vkx.1
-	for <yocto@yoctoproject.org>; Thu, 31 Aug 2017 01:56:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=3AHNteKyxhhAEaH1SZgcRySW+fF801PPMir95woyzcs=;
-	b=eKScevcttNnFgG2zMGX2XjlBTi74l0Jm0D40y36KXM7rLeW05beQ0NPbaqIcJZlIuk
-	8lpXY3bmm6kZwrJZOXGwx9WPimUBRbMkSpvklHbYWJZ/HCzvYN/vYdmvq/VoGAbdhA2J
-	ZJLVExJ370Wxddq1NKXb9Mqy7c9aG2S4gt1jPnNUINUsCm5Ibzh7LAUR5OX50FGaSYog
-	6TyJL7Fc132K1q57yVXHilEflI3W0VqQwfuD4gj2Lpd4H4oq5rpknjhPYLhE3Rqr07oY
-	bYboAYxxo8O34DbOPnHZyyQy8Urbva0akNHgpVFvUdF7cwZ76VtlPLVTJSBp6OCIOr4H
-	dgLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=3AHNteKyxhhAEaH1SZgcRySW+fF801PPMir95woyzcs=;
-	b=IVTOUaxxlRlMghiMAX1y5B3FPPFM2fzEmJF8fC4/EFfihWroIDBVng7g/8Thg+uxmc
-	kdo+nxWlgCieIwoS0h5rbpsdXGFNHf0wxE4kpKbMkWv8nm20icBbdWhWvB+0OOHr4DAS
-	CsYKgEj7C1niVP4ivqiYYxfCgQl020Oy1aro+4FGEtUYLBQC/GwsCObJM320sviKdW51
-	IBu5ZEJiVi1dpnCfcU4UgzCNJrdhNSS0ys4RNb45kog3bk9N1uTuLJ2mfSoUqvqbwkJw
-	4GfeE/f9lznj63CqQUKP8BA739HgsSk7amz0ds/8AlkGgC07zfoGc6bxGSOi+wk5/jV2
-	eRoA==
-X-Gm-Message-State: AHYfb5j5wd/fUDOy4NBvzAm36N6eBAm2UjHQlEsfsoeoYo4+2hG4LVun
-	qea1jh/zE/OKIhjYgnTDJ/x7byX3jQ==
-X-Received: by 10.31.102.4 with SMTP id a4mr2536044vkc.15.1504169814152; Thu,
-	31 Aug 2017 01:56:54 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.176.93.42 with HTTP; Thu, 31 Aug 2017 01:56:53 -0700 (PDT)
-In-Reply-To: <1502634551-6371-1-git-send-email-gizero@gmail.com>
-References: <1502634551-6371-1-git-send-email-gizero@gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Thu, 31 Aug 2017 10:56:53 +0200
-Message-ID: <CAC+thW1vA3N3SjsVJ9uE+rz9+4FXCzzAKd6RzrtWHv-yORrgWQ@mail.gmail.com>
+X-Greylist: delayed 4641 seconds by postgrey-1.32 at yocto-www;
+	Thu, 31 Aug 2017 08:27:41 PDT
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam01on0082.outbound.protection.outlook.com [104.47.34.82])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22437E00C01
+	for <yocto@yoctoproject.org>; Thu, 31 Aug 2017 08:27:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cienacorp.onmicrosoft.com; s=selector1-ciena-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=OYRVi+ioy/htwkCwxxZsKJ08swBcl6MU6XDgo3lr0Go=;
+	b=ZGOMYLnmEVK/kFhuQhMb9SzhyTbLXh/oCWSafgwzBAzvlDd5HxurxQBeWAi+WBg8om6r2dWYkavcN10eQVVIuHK3C7IMhvAheMkHLJJA766EWuQiqjsjP3UFnYB6FaNWvmJ6guBjEDWs13f9ak86oFT/QMg1oec8hMZPaWxf8QM=
+Received: from SN4PR0401MB3599.namprd04.prod.outlook.com (10.167.133.30) by
+	SN4PR0401MB3694.namprd04.prod.outlook.com (10.167.139.160) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.1385.9;
+	Thu, 31 Aug 2017 13:54:59 +0000
+Received: from SN4PR0401MB3599.namprd04.prod.outlook.com
+	([fe80::6d50:f54b:d3c2:d500]) by
+	SN4PR0401MB3599.namprd04.prod.outlook.com
+	([fe80::6d50:f54b:d3c2:d500%13]) with mapi id 15.01.1385.015;
+	Thu, 31 Aug 2017 13:54:59 +0000
+From: "Seilis, Aaron" <aseilis@ciena.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: Scott Rifenbark <srifenbark@gmail.com>
-Subject: Re: [yocto-docs][PATCH] kernel-dev: fix typo
+Thread-Topic: Building Custom Python 3 Packages
+Thread-Index: AQHTIl5g106SEXDve0SpqAo3eY73Gg==
+Date: Thu, 31 Aug 2017 13:54:59 +0000
+Message-ID: <SN4PR0401MB3599F4AAECE68D38EDEF8C4CBD9D0@SN4PR0401MB3599.namprd04.prod.outlook.com>
+Accept-Language: en-CA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=aseilis@ciena.com; 
+x-originating-ip: [66.48.12.177]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; SN4PR0401MB3694;
+	6:ymE87jCNOteRtZiL/qHWSe9PHUR+gKaiynV5UgS7yQH4yFV/cBSSuFduK+lmuq3ZkykS/i6H/ZmCVU9q96eZBoD5mDpqQMW2iFcHdlu+c4VmvYk4efzU9/UY6NZK+PF232EWT9Pvh+hC/39gu/bA8nLYRE9TDDU/PiEY7ljcQNYef4FGE1F/w8A8Hw78W3l5o/l9q3Z53Q8Za7Kl8nHdVwSHfl/yiZ6td78M+JTx7HmnQF0xYHT3wMf0aAlt4sT+uDpfrtNhkC4E0rM7k1ahIpgPR7na66vXOtiptz9B06FtbtLMFlHa4osH04Hc7wPqDSKG+XJV2XG672bV1R3zOg==;
+	5:2SMTjugnYYhjGklx+R0aq3idTYOPk5qDECVNM/ZVIWaGHJWert0lPFKWXOY/7M7cyb/a15QNFuBSzNBLbeb2R/ChSJFq5OrAYo3rkavjVNvBMgFbLxuPDJtqip8Pb3r+DR9cNjE5c5MgGYDAZl2pQg==;
+	24:R1uIO6KYvhBSRzasrD+IhoOcq4GgIn6YXL066OMsGIUTGYv8WTQYv92xs3XSZ0EsDqsDlC64XepwNsDnenX9JhpIhQiDV+P3seX/eBGuhsQ=;
+	7:GR9Rh+H/z2VnBZ8jOCT3MLvFSD32q84GpAVghQezt0azPHcbjMr5MjqkQTEjCgGhCGdH120AfrGcuE4KHlUPYacaxo5sxeM2IiZYwC8XvhHTneIEn/wbrrg/23+iryteBEv/2JudXL9Z2f/TtMQiO/VXRF9OgCwL8fOeT6GYFieM83CpI4ntHSSiW7ez8lNMKDMeuAqyvAtGGibwiMP7by3oXhZzt3pC2wA7lpHZ1p0=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 6e9ad50a-36ca-4331-1682-08d4f077deea
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254152)(300000503095)(300135400095)(2017052603199)(201703131423075)(201703031133081)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:SN4PR0401MB3694; 
+x-ms-traffictypediagnostic: SN4PR0401MB3694:
+x-exchange-antispam-report-test: UriScan:(48706222282353)(5213294742642);
+x-microsoft-antispam-prvs: <SN4PR0401MB369406038DA197C1AFC5DC6DBD9D0@SN4PR0401MB3694.namprd04.prod.outlook.com>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(100000703101)(100105400095)(3002001)(10201501046)(93006095)(93001095)(6041248)(20161123555025)(20161123558100)(20161123560025)(20161123562025)(20161123564025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:SN4PR0401MB3694; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:SN4PR0401MB3694; 
+x-forefront-prvs: 04163EF38A
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(189002)(199003)(6436002)(8936002)(6506006)(189998001)(97736004)(2351001)(86362001)(5250100002)(2501003)(105586002)(101416001)(8676002)(1730700003)(81156014)(81166006)(33656002)(66066001)(3846002)(6116002)(102836003)(106356001)(478600001)(5640700003)(3660700001)(110136004)(3280700002)(7696004)(14454004)(2906002)(9686003)(99286003)(55016002)(53936002)(50986999)(68736007)(6916009)(54356999)(74316002)(7736002)(305945005)(25786009)(5660300001)(2900100001)(19627235001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:SN4PR0401MB3694;
+	H:SN4PR0401MB3599.namprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: ciena.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: ciena.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Aug 2017 13:54:59.6333 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 457a2b01-0019-42ba-a449-45f99e96b60a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR0401MB3694
+Subject: Building Custom Python 3 Packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,86 +96,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Aug 2017 08:56:58 -0000
-Content-Type: multipart/alternative; boundary="001a114df4f0745a80055808d361"
-
---001a114df4f0745a80055808d361
-Content-Type: text/plain; charset="UTF-8"
-
-On Sun, Aug 13, 2017 at 4:29 PM, Andrea Galbusera <gizero@gmail.com> wrote:
-
-> Signed-off-by: Andrea Galbusera <gizero@gmail.com>
-> ---
->  documentation/kernel-dev/kernel-dev-advanced.xml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/documentation/kernel-dev/kernel-dev-advanced.xml
-> b/documentation/kernel-dev/kernel-dev-advanced.xml
-> index 0394e08..c7e5a3a 100644
-> --- a/documentation/kernel-dev/kernel-dev-advanced.xml
-> +++ b/documentation/kernel-dev/kernel-dev-advanced.xml
-> @@ -867,7 +867,7 @@
->              When stored outside of the recipe-space, the kernel Metadata
->              files reside in a separate repository.
->              The OpenEmbedded build system adds the Metadata to the build
-> as
-> -            a "ktype=meta" repository through the
-> +            a "type=kmeta" repository through the
->              <ulink url='&YOCTO_DOCS_REF_URL;#var-
-> SRC_URI'><filename>SRC_URI</filename></ulink>
->              variable.
->              As an example, consider the following
-> <filename>SRC_URI</filename>
-> --
-> 2.7.4
->
->
-ping...
-
-Just to check I'm not mistakenly using the wrong list/subject/workflow...
-
---001a114df4f0745a80055808d361
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Thu, 31 Aug 2017 15:27:44 -0000
+Content-Language: en-CA
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On S=
-un, Aug 13, 2017 at 4:29 PM, Andrea Galbusera <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:gizero@gmail.com" target=3D"_blank">gizero@gmail.com</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex">Signed-off-by: Andrea Galbuser=
-a &lt;<a href=3D"mailto:gizero@gmail.com">gizero@gmail.com</a>&gt;<br>
----<br>
-=C2=A0documentation/kernel-dev/<wbr>kernel-dev-advanced.xml | 2 +-<br>
-=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
-<br>
-diff --git a/documentation/kernel-dev/<wbr>kernel-dev-advanced.xml b/docume=
-ntation/kernel-dev/<wbr>kernel-dev-advanced.xml<br>
-index 0394e08..c7e5a3a 100644<br>
---- a/documentation/kernel-dev/<wbr>kernel-dev-advanced.xml<br>
-+++ b/documentation/kernel-dev/<wbr>kernel-dev-advanced.xml<br>
-@@ -867,7 +867,7 @@<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0When stored outside of the =
-recipe-space, the kernel Metadata<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0files reside in a separate =
-repository.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0The OpenEmbedded build syst=
-em adds the Metadata to the build as<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 a &quot;ktype=3Dmeta&quot; repos=
-itory through the<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 a &quot;type=3Dkmeta&quot; repos=
-itory through the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;ulink url=3D&#39;&amp;Y=
-OCTO_DOCS_REF_URL;#var-<wbr>SRC_URI&#39;&gt;&lt;filename&gt;SRC_URI&lt;/<wb=
-r>filename&gt;&lt;/ulink&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0variable.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0As an example, consider the=
- following &lt;filename&gt;SRC_URI&lt;/filename&gt;<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-2.7.4<br>
-<br>
-</font></span></blockquote></div><br></div><div class=3D"gmail_extra">ping.=
-..</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Jus=
-t to check I&#39;m not mistakenly using the wrong list/subject/workflow...<=
-/div></div>
+Hi,
 
---001a114df4f0745a80055808d361--
+I'm building a couple of custom Python 3 scripts+modules as part of the -na=
+tive tools required to build a number of my embedded components. I'm having=
+ difficulties getting my recipe to build when I've run `devtool modify` but=
+ the build works fine in a regular build. The Python tools are stored in va=
+rious Git repositories and use the typical setuptools infrastructure.
+
+My recipe is roughly as follows:
+
+> inherit setuptools3
+>
+> SUMMARY =3D "My tool"
+> DESCRIPTION =3D "Description"
+>
+> SECTION =3D "devel/scripts"
+> LICENSE =3D "CLOSED"
+>
+> SRC_URI =3D "my-URL"
+> SRCREV =3D "git hash"
+>
+> S =3D "${WORKDIR}/git/"
+> BBCLASSEXTEND =3D "native"
+
+This builds fine when running Bitbake normally; the tool is built and can b=
+e used to build other components. However, when I run `devtool modify`, the=
+ ${S} variable gets set to my alternate source location but the ${B} variab=
+le remains under ${WORKDIR}. This causes the build to fail with the error:
+
+> ERROR: mytool-native-1.3.5-r0 do_install: python3 setup.py install execut=
+ion failed.
+> ERROR: mytool-native-1.3.5-r0 do_install: Function failed: do_install (lo=
+g file is located at /.../build/tmp/work/x86_64-linux/mytool-native/1.3.5-r=
+0/temp/log.do_install.39172)
+> ERROR: Logfile of failure stored in: /.../build/tmp/work/x86_64-linux/myt=
+ool-native/1.3.5-r0/temp/log.do_install.39172
+> Log data follows:
+> | DEBUG: Executing shell function do_install
+> | /.../build/tmp/sysroots/x86_64-linux/usr/bin/python3-native/python3: ca=
+n't open file 'setup.py': [Errno 2] No such file or directory
+> | ERROR: python3 setup.py install execution failed.
+> ERROR: Function failed: do_install (log file is located at /.../build/tmp=
+/work/x86_64-linux/mytool-native/1.3.5-r0/temp/log.do_install.39172)
+> ERROR: Task 0 (virtual:native:/.../sources/meta-myproject/recipes-tools/m=
+ytool/mytool_1.3.5.bb, do_install) failed with exit code '1'
+
+Looking at the build recipes for Python, shows that the do_compile() step f=
+or Python modules (with setuptools3) is:
+
+>distutils3_do_compile() {
+>        if [ x86_64-linux !=3D aarch64-WaveserverOS-linux ]; then
+>                SYS=3Dwcs
+>        else
+>                SYS=3Daarch64-WaveserverOS-linux
+>        fi
+>        STAGING_INCDIR=3D/localdata/projects/waveserver/build/tmp/sysroots=
+/wcs/usr/include \
+>        STAGING_LIBDIR=3D/localdata/projects/waveserver/build/tmp/sysroots=
+/wcs/usr/lib \
+>        BUILD_SYS=3Dx86_64-linux HOST_SYS=3D${SYS} \
+>        /localdata/projects/waveserver/build/tmp/sysroots/x86_64-linux/usr=
+/bin/python3-native/python3 setup.py \
+>        build  || \
+>        bbfatal_log "python3 setup.py build_ext execution failed."
+>}
+
+This clearly indicates that the issue is that the build is looking for setu=
+p.py in the ${B} location, but it is only present in the ${S} location when=
+ `devtool modify` has been run. I have tried setting ${B} to ${S} explicitl=
+y in the recipe, but this doesn't result in ${B} being changed when I run `=
+bitbake -e mytool`. I could always copy ${S} to ${B} in the recipe, but tha=
+t seems a bit hack-ish.
+
+Did I miss something or is there another way that Python builds are intende=
+d to work?
+
+Thanks,
+Aaron=
+
