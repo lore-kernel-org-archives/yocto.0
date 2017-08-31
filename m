@@ -1,70 +1,68 @@
-Return-Path: <drew.moseley@northern.tech>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F167E009F5; Wed, 30 Aug 2017 15:44:41 -0700 (PDT)
+	id A4F25E00B01; Thu, 31 Aug 2017 01:56:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.65 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.181 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.181 listed in dnsbl.sorbs.net]
-Received: from mail-yw0-f181.google.com (mail-yw0-f181.google.com
-	[209.85.161.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F356E0091D
-	for <yocto@yoctoproject.org>; Wed, 30 Aug 2017 15:44:40 -0700 (PDT)
-Received: by mail-yw0-f181.google.com with SMTP id s187so38007253ywf.2
-	for <yocto@yoctoproject.org>; Wed, 30 Aug 2017 15:44:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=northern.tech; s=google;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding:content-language;
-	bh=4kqiRIMFsEuIBOZe7VOXHdhdrdhvGkPnKkczlS1il/w=;
-	b=Dxp/ImHLbA1/7WwoPEA616tsD1YBDNkm6CRv4srcKDC+0aBPoxwF9UmoGim4KDgRwV
-	/DWIg7alCYMgRCySuEJGWY/gqyfo2uvpKY9eTaYO/KqjcaFYZO5K6OADYUQsXcXqnZG2
-	cYWHUz/ErH0drQb/xCPICaLo5a8kpt8ylT+3n2pc/roTKCQvaE5in4Vknw7ZBltGfsxw
-	GNR7d7U40F8K/+TH/YrxFFH6uK6iuyyE5TAltcCdJaLgVyUMn6cDBqglnEaQhtH9sosC
-	L7/SDKDWgxlFls6vb6oo0slwH9N1zQqR5pEqQHJ5hZ+q2aW7kc+LLx6P5UoaJEh89AoC
-	PDbA==
+Received: from mail-vk0-f65.google.com (mail-vk0-f65.google.com
+	[209.85.213.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E970E00A9B
+	for <yocto@yoctoproject.org>; Thu, 31 Aug 2017 01:56:55 -0700 (PDT)
+Received: by mail-vk0-f65.google.com with SMTP id x85so33214vkx.1
+	for <yocto@yoctoproject.org>; Thu, 31 Aug 2017 01:56:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=3AHNteKyxhhAEaH1SZgcRySW+fF801PPMir95woyzcs=;
+	b=eKScevcttNnFgG2zMGX2XjlBTi74l0Jm0D40y36KXM7rLeW05beQ0NPbaqIcJZlIuk
+	8lpXY3bmm6kZwrJZOXGwx9WPimUBRbMkSpvklHbYWJZ/HCzvYN/vYdmvq/VoGAbdhA2J
+	ZJLVExJ370Wxddq1NKXb9Mqy7c9aG2S4gt1jPnNUINUsCm5Ibzh7LAUR5OX50FGaSYog
+	6TyJL7Fc132K1q57yVXHilEflI3W0VqQwfuD4gj2Lpd4H4oq5rpknjhPYLhE3Rqr07oY
+	bYboAYxxo8O34DbOPnHZyyQy8Urbva0akNHgpVFvUdF7cwZ76VtlPLVTJSBp6OCIOr4H
+	dgLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding:content-language;
-	bh=4kqiRIMFsEuIBOZe7VOXHdhdrdhvGkPnKkczlS1il/w=;
-	b=Iq6aIenGKCoGNPmmYeSFARPWnnZUMRlBhmC0YfUeCsLPaPpV+jAq0lk3BN4+4K5nWB
-	XFVd6VBOj+9/rcOBHW2N499P+SDsSivd+Ct7+/UKhrUAhW/v/qDwUkPaB+3I8HZ2M425
-	NacWLJWnZ50zTBJp5EfqsPg42Z3Z3ZHHTk2D9xOTLmQEDi2eo5IGXp0u/6UEDpwQf0We
-	2e56HRWfp6nclqGpheRo9jbnB6UPX7XmJ+6bBim/ph3bh+VI0R8aFN0dnxz35sSZv3h3
-	X7yObfEyr4Z7fXERvdvMFDHvSEYBqUHdgsouH91vxyUbZNxDCuTZThw20wMJ3lWLkpFB
-	gx4g==
-X-Gm-Message-State: AHYfb5jBEQqraFqHHQiD6h3BDAnfGOMW7aBU1MihTd7KXR+Ld2deU5N4
-	b4m3FZrbGOD2AI2OH3tMSA==
-X-Received: by 10.37.105.211 with SMTP id e202mr2507503ybc.253.1504133079079; 
-	Wed, 30 Aug 2017 15:44:39 -0700 (PDT)
-Received: from [192.168.1.36] (653240hfc152.tampabay.res.rr.com.
-	[65.32.40.152])
-	by smtp.gmail.com with ESMTPSA id c1sm610806ywh.61.2017.08.30.15.44.38
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 30 Aug 2017 15:44:38 -0700 (PDT)
-To: yocto@yoctoproject.org
-From: Drew Moseley <drew.moseley@northern.tech>
-Message-ID: <66f47867-75c2-0f93-589c-f1e32e512611@northern.tech>
-Date: Wed, 30 Aug 2017 18:44:37 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=3AHNteKyxhhAEaH1SZgcRySW+fF801PPMir95woyzcs=;
+	b=IVTOUaxxlRlMghiMAX1y5B3FPPFM2fzEmJF8fC4/EFfihWroIDBVng7g/8Thg+uxmc
+	kdo+nxWlgCieIwoS0h5rbpsdXGFNHf0wxE4kpKbMkWv8nm20icBbdWhWvB+0OOHr4DAS
+	CsYKgEj7C1niVP4ivqiYYxfCgQl020Oy1aro+4FGEtUYLBQC/GwsCObJM320sviKdW51
+	IBu5ZEJiVi1dpnCfcU4UgzCNJrdhNSS0ys4RNb45kog3bk9N1uTuLJ2mfSoUqvqbwkJw
+	4GfeE/f9lznj63CqQUKP8BA739HgsSk7amz0ds/8AlkGgC07zfoGc6bxGSOi+wk5/jV2
+	eRoA==
+X-Gm-Message-State: AHYfb5j5wd/fUDOy4NBvzAm36N6eBAm2UjHQlEsfsoeoYo4+2hG4LVun
+	qea1jh/zE/OKIhjYgnTDJ/x7byX3jQ==
+X-Received: by 10.31.102.4 with SMTP id a4mr2536044vkc.15.1504169814152; Thu,
+	31 Aug 2017 01:56:54 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-chip] Wifi driver on CHIP boards?
+Received: by 10.176.93.42 with HTTP; Thu, 31 Aug 2017 01:56:53 -0700 (PDT)
+In-Reply-To: <1502634551-6371-1-git-send-email-gizero@gmail.com>
+References: <1502634551-6371-1-git-send-email-gizero@gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Thu, 31 Aug 2017 10:56:53 +0200
+Message-ID: <CAC+thW1vA3N3SjsVJ9uE+rz9+4FXCzzAKd6RzrtWHv-yORrgWQ@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: Scott Rifenbark <srifenbark@gmail.com>
+Subject: Re: [yocto-docs][PATCH] kernel-dev: fix typo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,38 +74,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Aug 2017 22:44:41 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 31 Aug 2017 08:56:58 -0000
+Content-Type: multipart/alternative; boundary="001a114df4f0745a80055808d361"
 
-Has anyone managed to use the onboard WIFI for the CHIP boards in the
-current meta-chip repo?  I added the kernel-module-r8723bs and rtl8723bs
-packages to my build and setup a wpa_supplicant.conf that works on other
-boards but I get error messages about power save. A few google searches
-suggested some power save changes but nothing I tried worked.
+--001a114df4f0745a80055808d361
+Content-Type: text/plain; charset="UTF-8"
 
-root@chip:~# ifup wlan0
-Successfully initialized wpa_supplicant
-[  172.875000] rtl8723bs: accquire FW from file:rtlwifi/rtl8723bs_nic.bin
-[  174.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
-[  174.235000] RTL8723BS: set bssid:00:00:00:00:00:00
-ioctl[SIOCSIWAP]: Operation not permitted
-udhcpc (v1.24.1) started
-Sending discover...
-[  175.855000] RTL8723BS: nolinked power save enter
-Sending discover...
-Sending discover...
-No lease, forking to background
-root@chip:~# [  184.580000] RTL8723BS: nolinked power save leave
-[  184.800000] RTL8723BS: set bssid:20:c9:d0:18:7a:95
-[  184.810000] RTL8723BS: set ssid [caribbean] fw_state = 0x00000088
-[  194.605000] RTL8723BS: nolinked power save enter
-[  195.850000] RTL8723BS: nolinked power save leave
-[  196.060000] RTL8723BS: set bssid:00:00:00:00:00:00
+On Sun, Aug 13, 2017 at 4:29 PM, Andrea Galbusera <gizero@gmail.com> wrote:
 
+> Signed-off-by: Andrea Galbusera <gizero@gmail.com>
+> ---
+>  documentation/kernel-dev/kernel-dev-advanced.xml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/documentation/kernel-dev/kernel-dev-advanced.xml
+> b/documentation/kernel-dev/kernel-dev-advanced.xml
+> index 0394e08..c7e5a3a 100644
+> --- a/documentation/kernel-dev/kernel-dev-advanced.xml
+> +++ b/documentation/kernel-dev/kernel-dev-advanced.xml
+> @@ -867,7 +867,7 @@
+>              When stored outside of the recipe-space, the kernel Metadata
+>              files reside in a separate repository.
+>              The OpenEmbedded build system adds the Metadata to the build
+> as
+> -            a "ktype=meta" repository through the
+> +            a "type=kmeta" repository through the
+>              <ulink url='&YOCTO_DOCS_REF_URL;#var-
+> SRC_URI'><filename>SRC_URI</filename></ulink>
+>              variable.
+>              As an example, consider the following
+> <filename>SRC_URI</filename>
+> --
+> 2.7.4
+>
+>
+ping...
 
-Drew
+Just to check I'm not mistakenly using the wrong list/subject/workflow...
 
+--001a114df4f0745a80055808d361
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On S=
+un, Aug 13, 2017 at 4:29 PM, Andrea Galbusera <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:gizero@gmail.com" target=3D"_blank">gizero@gmail.com</a>&gt;</sp=
+an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex">Signed-off-by: Andrea Galbuser=
+a &lt;<a href=3D"mailto:gizero@gmail.com">gizero@gmail.com</a>&gt;<br>
+---<br>
+=C2=A0documentation/kernel-dev/<wbr>kernel-dev-advanced.xml | 2 +-<br>
+=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/documentation/kernel-dev/<wbr>kernel-dev-advanced.xml b/docume=
+ntation/kernel-dev/<wbr>kernel-dev-advanced.xml<br>
+index 0394e08..c7e5a3a 100644<br>
+--- a/documentation/kernel-dev/<wbr>kernel-dev-advanced.xml<br>
++++ b/documentation/kernel-dev/<wbr>kernel-dev-advanced.xml<br>
+@@ -867,7 +867,7 @@<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0When stored outside of the =
+recipe-space, the kernel Metadata<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0files reside in a separate =
+repository.<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0The OpenEmbedded build syst=
+em adds the Metadata to the build as<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 a &quot;ktype=3Dmeta&quot; repos=
+itory through the<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 a &quot;type=3Dkmeta&quot; repos=
+itory through the<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;ulink url=3D&#39;&amp;Y=
+OCTO_DOCS_REF_URL;#var-<wbr>SRC_URI&#39;&gt;&lt;filename&gt;SRC_URI&lt;/<wb=
+r>filename&gt;&lt;/ulink&gt;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0variable.<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0As an example, consider the=
+ following &lt;filename&gt;SRC_URI&lt;/filename&gt;<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+2.7.4<br>
+<br>
+</font></span></blockquote></div><br></div><div class=3D"gmail_extra">ping.=
+..</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Jus=
+t to check I&#39;m not mistakenly using the wrong list/subject/workflow...<=
+/div></div>
 
+--001a114df4f0745a80055808d361--
