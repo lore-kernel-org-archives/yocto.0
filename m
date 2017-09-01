@@ -1,66 +1,66 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9445DE00CAA; Fri,  1 Sep 2017 06:45:10 -0700 (PDT)
+	id F0473E00C95; Fri,  1 Sep 2017 06:54:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.171 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM,WEIRD_PORT autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.174 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f171.google.com (mail-pf0-f171.google.com
-	[209.85.192.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 076EBE00B1B
-	for <yocto@yoctoproject.org>; Fri,  1 Sep 2017 06:45:08 -0700 (PDT)
-Received: by mail-pf0-f171.google.com with SMTP id r187so727613pfr.3
-	for <yocto@yoctoproject.org>; Fri, 01 Sep 2017 06:45:08 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.174 listed in dnsbl.sorbs.net]
+Received: from mail-ua0-f174.google.com (mail-ua0-f174.google.com
+	[209.85.217.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1172BE00B1B
+	for <yocto@yoctoproject.org>; Fri,  1 Sep 2017 06:54:37 -0700 (PDT)
+Received: by mail-ua0-f174.google.com with SMTP id j46so782080uag.5
+	for <yocto@yoctoproject.org>; Fri, 01 Sep 2017 06:54:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=pAxYRFlHE8BpktJD12Nglh0UBGvkuWhkHAXJe5LERZQ=;
-	b=UXMDBTRQGX5vSFKJYUx689+/Zdu7sm99KYgfTF+Nzf3G2yCHZ/Y4XTSqAOuIM64v4n
-	fy0qz2zcBpwBqfxdwABuVoKro675iW+mGLhd6ZvA31rYCtCK64BuRIJ7p5K7gMDLIMDj
-	SLNp6302qJD6U39C5wGEMy1PiTYIYc1CbEv17/9nHzmcyyYy4ydymNI88YXPeVpCEA64
-	H6AAdBeS8C0fZYOtgHD4xPqW5u+soOMbNiDYbYqCuQWJ+Qy8iQluiV5J3fIq2OJGNeLr
-	Ym2cAjklKUsNClIq7PGq5zK1uD6/tunCcc3aiG0Lblfx7E8575EqKTXAzK0ZBLma4kdu
-	9UaA==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=OGEcs9P1xgeZBuMh8YRuJI9htzEgSCkV6mf7RrHybCE=;
+	b=qkt44lUvPlJyx1/nN46O6EHSpvOwqNfFodK47yZg/crUTL/dapPB+FNngYzoOjXHJD
+	L8C2Ili11O4U6E+IbcG3+XtAolJGW0fcu86lGR7XMgzZNHRfccKvCX9RpFK3DCKqLRnT
+	UsNRS9ico32ymJryAYfAJCv3SMpxlD1oSbId1XFLxtRqok9LbouWQd8DDGlLrt4yXgUN
+	Xrjo0Mr1AZoey0RuN4mQ239gCbokK4YvGMN8eNpLXwjGDWlg1IQ74DGLRKerHqdkMqGM
+	UfhCyC9fBu3PfcXrvZPjOllQh/tXRKZ3UcOe7N0/PlGttPz0Sd0qmSt13O4wCqzDGIAD
+	LljQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=pAxYRFlHE8BpktJD12Nglh0UBGvkuWhkHAXJe5LERZQ=;
-	b=d/DCfbv8zcOc4XS5rPFdTyzfzhc+9UISVsVufeFv8BSIxLKeCwoxwM8KYHKPaR3z3q
-	Usd84SsmfA0LFVIyNovxebArlRAMFRM3mMOchOzBG4urDzvD6yShocR1f+Y1Dnu/lnqF
-	JPbr8V2T81EZor7/L0Kb9DLbyaFTMypvbUmKOlQqrZmpxdENAdt47aw36sSCF/bI5sJO
-	sc7P0jFWTdXFbrZ2LABctjTi6J/NviJwKS9KKu8Vsw5E7Yr/j4iDb+kFKWA22gPmuyPy
-	kG4JFtCA/Ss9YG4k5qwpBRoZKRy4JJx100lCX33eRH1X8JXm/55tzX8vUixhhVCq6Uvr
-	lyvw==
-X-Gm-Message-State: AHPjjUjOs6k5OIwog/vDVYEmlV9gIbZqiwg37vDI0mMfcc0B1XEhv+bW
-	AVZy0WdKPPnmAaA2
-X-Google-Smtp-Source: ADKCNb505GoONjP6TVpe93Rbq6owTqDwXJG9ftunVfJQcUS62mwbstpoKLiloKaZe7mTTBruYGgxQw==
-X-Received: by 10.98.36.136 with SMTP id k8mr2401160pfk.56.1504273508119;
-	Fri, 01 Sep 2017 06:45:08 -0700 (PDT)
-Received: from akuster-ThinkPad-T460s.mvista.com
-	([2601:202:4001:9ea0:c400:6ad5:9d97:9621])
-	by smtp.gmail.com with ESMTPSA id w64sm391346pfi.75.2017.09.01.06.45.07
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 01 Sep 2017 06:45:07 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: akuster@mvista.com,
-	yocto@yoctoproject.org
-Date: Fri,  1 Sep 2017 06:45:06 -0700
-Message-Id: <1504273506-21404-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][v2][PATCH] fail2Ban: Add new package
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=OGEcs9P1xgeZBuMh8YRuJI9htzEgSCkV6mf7RrHybCE=;
+	b=a5+Q61qPVi4pI2bwgj22qBBY/ebHHQE9cBMn6IrBW5DIw48iQr+TmguWiKeE+Uq2tK
+	OpGX1Wgwmc1Y7BnLruEILUbbLJ52c3Fh5sVXy2jpKtcPTQE3aa35k+Wnqya5wtCkHpUE
+	fUR1P5qeeqPYjpzI4mMAmDUVFQDKsSQv29xsOz9ImLo0fboBlaAIzrr54Suk7gL3fYYI
+	GsBVrfqLkMuuzejUFW+aVpiO2bGGYgvUheBDc74GrFJBCiLHXmvH+7NpZS+IRTW5pCTh
+	uwuo2uZH8uLzIHCznDiRisbOlc01GayN+wy05MiYJTQ7CC79mXso6y6GcGV4yMi8zFAJ
+	VeNw==
+X-Gm-Message-State: AHPjjUhEfX/A8rbGoZlLV9JqS03kWZ39Yf2Yx0HgODgQP+KpAaeOja09
+	4rC0rx4YvfcM9DTdZMg/lWLLwVwioVQW
+X-Google-Smtp-Source: ADKCNb4l36y96d14CjVBnopL/RCFSuu37gHuVzkh+VPf+DO63rC0iYwIi9QcSFCgP2FhCfw4LFOOnWy8zV7ktGFXp/w=
+X-Received: by 10.176.2.18 with SMTP id 18mr1283265uas.16.1504274076723; Fri,
+	01 Sep 2017 06:54:36 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.176.93.42 with HTTP; Fri, 1 Sep 2017 06:54:36 -0700 (PDT)
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Fri, 1 Sep 2017 15:54:36 +0200
+Message-ID: <CAC+thW14riQRGnruH2NszoavVA5J9utX8926Q36DvKXGPbZrow@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: cannot re-use shared state cache between build hosts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,355 +72,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Sep 2017 13:45:10 -0000
+X-List-Received-Date: Fri, 01 Sep 2017 13:54:41 -0000
+Content-Type: multipart/alternative; boundary="001a113edb24fcf08d0558211939"
 
-Fail2Ban scans log files like /var/log/auth.log and bans IP addresses having too many failed login attempts. It does this by updating system firewall rules to reject new connections from those IP addresses, for a configurable amount of time. Fail2Ban comes out-of-the-box ready to read many standard log files, such as those for sshd and Apache, and is easy to configure to read any log file you choose, for any error you choose.
+--001a113edb24fcf08d0558211939
+Content-Type: text/plain; charset="UTF-8"
 
-Though Fail2Ban is able to reduce the rate of incorrect authentications attempts, it cannot eliminate the risk that weak authentication presents. Configure services to use only two factor or public/private authentication mechanisms if you really want to protect services.
+Hi!
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/fail2ban/fail2ban_0.10.0.bb      |  41 +++++
- recipes-security/fail2ban/files/fail2ban_setup.py | 175 ++++++++++++++++++++++
- recipes-security/fail2ban/files/initd             |  98 ++++++++++++
- 3 files changed, 314 insertions(+)
- create mode 100644 recipes-security/fail2ban/fail2ban_0.10.0.bb
- create mode 100755 recipes-security/fail2ban/files/fail2ban_setup.py
- create mode 100644 recipes-security/fail2ban/files/initd
+I was trying to share sstate between different hosts, but the consumer
+build system seems to be unable to use re-use any sstate object. My
+scenario is setup as follows:
 
-diff --git a/recipes-security/fail2ban/fail2ban_0.10.0.bb b/recipes-security/fail2ban/fail2ban_0.10.0.bb
-new file mode 100644
-index 0000000..465316c
---- /dev/null
-+++ b/recipes-security/fail2ban/fail2ban_0.10.0.bb
-@@ -0,0 +1,41 @@
-+SUMMARY = "Daemon to ban hosts that cause multiple authentication errors."
-+DESCRIPTION = "Fail2Ban scans log files like /var/log/auth.log and bans IP addresses having too \
-+many failed login attempts. It does this by updating system firewall rules to reject new \
-+connections from those IP addresses, for a configurable amount of time. Fail2Ban comes \
-+out-of-the-box ready to read many standard log files, such as those for sshd and Apache, \
-+and is easy to configure to read any log file you choose, for any error you choose."
-+HOMEPAGE = "http://www.fail2ban.org"
-+
-+LICENSE = "GPL-2.0"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=ecabc31e90311da843753ba772885d9f"
-+
-+SRCREV ="c60784540c5307d16cdc136ace5b395961492e73"
-+SRC_URI = " \
-+	git://github.com/fail2ban/fail2ban.git;branch=0.10 \
-+	file://initd \
-+	file://fail2ban_setup.py \
-+"
-+
-+inherit update-rc.d setuptools
-+
-+S = "${WORKDIR}/git"
-+
-+INITSCRIPT_PACKAGES = "${PN}"
-+INITSCRIPT_NAME = "fail2ban-server"
-+INITSCRIPT_PARAMS = "defaults 25"
-+
-+do_compile_prepend () {
-+    cp ${WORKDIR}/fail2ban_setup.py ${S}/setup.py
-+}
-+
-+do_install_append () {
-+	install -d ${D}/${sysconfdir}/fail2ban
-+	install -d ${D}/${sysconfdir}/init.d
-+    	install -m 0755 ${WORKDIR}/initd ${D}${sysconfdir}/init.d/fail2ban-server
-+}
-+
-+FILES_${PN} += "/run"
-+
-+INSANE_SKIP_${PN}_append = "already-stripped"
-+
-+RDEPENDS_${PN} = "sysklogd iptables sqlite3 python python-pyinotify"
-diff --git a/recipes-security/fail2ban/files/fail2ban_setup.py b/recipes-security/fail2ban/files/fail2ban_setup.py
-new file mode 100755
-index 0000000..a5d4ed6
---- /dev/null
-+++ b/recipes-security/fail2ban/files/fail2ban_setup.py
-@@ -0,0 +1,175 @@
-+#!/usr/bin/env python
-+# emacs: -*- mode: python; py-indent-offset: 4; indent-tabs-mode: t -*-
-+# vi: set ft=python sts=4 ts=4 sw=4 noet :
-+
-+# This file is part of Fail2Ban.
-+#
-+# Fail2Ban is free software; you can redistribute it and/or modify
-+# it under the terms of the GNU General Public License as published by
-+# the Free Software Foundation; either version 2 of the License, or
-+# (at your option) any later version.
-+#
-+# Fail2Ban is distributed in the hope that it will be useful,
-+# but WITHOUT ANY WARRANTY; without even the implied warranty of
-+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+# GNU General Public License for more details.
-+#
-+# You should have received a copy of the GNU General Public License
-+# along with Fail2Ban; if not, write to the Free Software
-+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-+
-+__author__ = "Cyril Jaquier, Steven Hiscocks, Yaroslav Halchenko"
-+__copyright__ = "Copyright (c) 2004 Cyril Jaquier, 2008-2016 Fail2Ban Contributors"
-+__license__ = "GPL"
-+
-+import platform
-+
-+try:
-+	import setuptools
-+	from setuptools import setup
-+	from setuptools.command.install import install
-+	from setuptools.command.install_scripts import install_scripts
-+except ImportError:
-+	setuptools = None
-+	from distutils.core import setup
-+
-+# all versions
-+from distutils.command.build_py import build_py
-+from distutils.command.build_scripts import build_scripts
-+if setuptools is None:
-+	from distutils.command.install import install
-+	from distutils.command.install_scripts import install_scripts
-+try:
-+	# python 3.x
-+	from distutils.command.build_py import build_py_2to3
-+	from distutils.command.build_scripts import build_scripts_2to3
-+	_2to3 = True
-+except ImportError:
-+	# python 2.x
-+	_2to3 = False
-+
-+import os
-+from os.path import isfile, join, isdir, realpath
-+import sys
-+import warnings
-+from glob import glob
-+
-+from fail2ban.setup import updatePyExec
-+
-+if setuptools and "test" in sys.argv:
-+	import logging
-+	logSys = logging.getLogger("fail2ban")
-+	hdlr = logging.StreamHandler(sys.stdout)
-+	fmt = logging.Formatter("%(asctime)-15s %(message)s")
-+	hdlr.setFormatter(fmt)
-+	logSys.addHandler(hdlr)
-+	if set(["-q", "--quiet"]) & set(sys.argv):
-+		logSys.setLevel(logging.CRITICAL)
-+		warnings.simplefilter("ignore")
-+		sys.warnoptions.append("ignore")
-+	elif set(["-v", "--verbose"]) & set(sys.argv):
-+		logSys.setLevel(logging.DEBUG)
-+	else:
-+		logSys.setLevel(logging.INFO)
-+elif "test" in sys.argv:
-+	print("python distribute required to execute fail2ban tests")
-+	print("")
-+
-+longdesc = '''
-+Fail2Ban scans log files like /var/log/pwdfail or
-+/var/log/apache/error_log and bans IP that makes
-+too many password failures. It updates firewall rules
-+to reject the IP address or executes user defined
-+commands.'''
-+
-+if setuptools:
-+	setup_extra = {
-+		'test_suite': "fail2ban.tests.utils.gatherTests",
-+		'use_2to3': True,
-+	}
-+else:
-+	setup_extra = {}
-+
-+data_files_extra = []
-+
-+# Installing documentation files only under Linux or other GNU/ systems
-+# (e.g. GNU/kFreeBSD), since others might have protective mechanisms forbidding
-+# installation there (see e.g. #1233)
-+platform_system = platform.system().lower()
-+doc_files = ['README.md', 'DEVELOP', 'FILTERS', 'doc/run-rootless.txt']
-+if platform_system in ('solaris', 'sunos'):
-+	doc_files.append('README.Solaris')
-+if platform_system in ('linux', 'solaris', 'sunos') or platform_system.startswith('gnu'):
-+	data_files_extra.append(
-+		('/usr/share/doc/fail2ban', doc_files)
-+	)
-+
-+# Get version number, avoiding importing fail2ban.
-+# This is due to tests not functioning for python3 as 2to3 takes place later
-+exec(open(join("fail2ban", "version.py")).read())
-+
-+setup(
-+	name = "fail2ban",
-+	version = version,
-+	description = "Ban IPs that make too many password failures",
-+	long_description = longdesc,
-+	author = "Cyril Jaquier & Fail2Ban Contributors",
-+	author_email = "cyril.jaquier@fail2ban.org",
-+	url = "http://www.fail2ban.org",
-+	license = "GPL",
-+	platforms = "Posix",
-+	cmdclass = {
-+		'build_py': build_py, 'build_scripts': build_scripts, 
-+	},
-+	scripts = [
-+		'bin/fail2ban-client',
-+		'bin/fail2ban-server',
-+		'bin/fail2ban-regex',
-+		'bin/fail2ban-testcases',
-+		# 'bin/fail2ban-python', -- link (binary), will be installed via install_scripts_f2b wrapper
-+	],
-+	packages = [
-+		'fail2ban',
-+		'fail2ban.client',
-+		'fail2ban.server',
-+		'fail2ban.tests',
-+		'fail2ban.tests.action_d',
-+	],
-+	package_data = {
-+		'fail2ban.tests':
-+			[ join(w[0], f).replace("fail2ban/tests/", "", 1)
-+				for w in os.walk('fail2ban/tests/files')
-+				for f in w[2]] +
-+			[ join(w[0], f).replace("fail2ban/tests/", "", 1)
-+				for w in os.walk('fail2ban/tests/config')
-+				for f in w[2]] +
-+			[ join(w[0], f).replace("fail2ban/tests/", "", 1)
-+				for w in os.walk('fail2ban/tests/action_d')
-+				for f in w[2]]
-+	},
-+	data_files = [
-+		('/etc/fail2ban',
-+			glob("config/*.conf")
-+		),
-+		('/etc/fail2ban/filter.d',
-+			glob("config/filter.d/*.conf")
-+		),
-+		('/etc/fail2ban/filter.d/ignorecommands',
-+			[p for p in glob("config/filter.d/ignorecommands/*") if isfile(p)]
-+		),
-+		('/etc/fail2ban/action.d',
-+			glob("config/action.d/*.conf") +
-+			glob("config/action.d/*.py")
-+		),
-+		('/etc/fail2ban/fail2ban.d',
-+			''
-+		),
-+		('/etc/fail2ban/jail.d',
-+			''
-+		),
-+		('/var/lib/fail2ban',
-+			''
-+		),
-+	] + data_files_extra,
-+	**setup_extra
-+)
-diff --git a/recipes-security/fail2ban/files/initd b/recipes-security/fail2ban/files/initd
-new file mode 100644
-index 0000000..4f4b394
---- /dev/null
-+++ b/recipes-security/fail2ban/files/initd
-@@ -0,0 +1,98 @@
-+#!/bin/sh
-+### BEGIN INIT INFO
-+# Provides: fail2ban
-+# Required-Start: $local_fs $remote_fs
-+# Required-Stop: $local_fs $remote_fs
-+# Should-Start: $time $network $syslog iptables firehol shorewall ferm
-+# Should-Stop: $network $syslog iptables firehol shorewall ferm
-+# Default-Start: 2 3 4 5
-+# Default-Stop: 0 1 6
-+# Short-Description: Start/Stop fail2ban
-+# Description: Start/Stop fail2ban, a daemon to ban hosts that cause multiple authentication errors
-+### END INIT INFO
-+
-+# Source function library.
-+. /etc/init.d/functions
-+
-+# Check that the config file exists
-+[ -f /etc/fail2ban/fail2ban.conf ] || exit 0
-+
-+check_privsep_dir() {                                                              
-+    # Create the PrivSep empty dir if necessary
-+    if [ ! -d /var/run/fail2ban ]; then            
-+        mkdir /var/run/fail2ban                    
-+        chmod 0755 /var/run/fail2ban
-+    fi                                         
-+}         
-+
-+FAIL2BAN="/usr/bin/fail2ban-client"
-+prog=fail2ban-server
-+lockfile=${LOCKFILE-/var/lock/subsys/fail2ban}
-+socket=${SOCKET-/var/run/fail2ban/fail2ban.sock}
-+pidfile=${PIDFILE-/var/run/fail2ban/fail2ban.pid}
-+RETVAL=0
-+
-+start() {
-+    echo -n $"Starting fail2ban: "
-+    check_privsep_dir
-+    ${FAIL2BAN} -x start > /dev/null
-+    RETVAL=$?
-+    if [ $RETVAL = 0 ]; then
-+        touch ${lockfile}
-+        echo_success
-+    else
-+        echo_failure
-+    fi
-+    echo
-+    return $RETVAL
-+}
-+
-+stop() {
-+    echo -n $"Stopping fail2ban: "
-+    ${FAIL2BAN} stop > /dev/null
-+    RETVAL=$?
-+    if [ $RETVAL = 0 ]; then
-+        rm -f ${lockfile} ${pidfile}
-+        echo_success
-+    else
-+        echo_failure
-+    fi
-+    echo
-+    return $RETVAL
-+}
-+
-+reload() {
-+    echo "Reloading fail2ban: "
-+    ${FAIL2BAN} reload
-+    RETVAL=$?
-+    echo
-+    return $RETVAL
-+}
-+
-+# See how we were called.
-+case "$1" in
-+    start)
-+        status -p ${pidfile} ${prog} >/dev/null 2>&1 && exit 0
-+        start
-+        ;;
-+    stop)
-+        stop
-+        ;;
-+    reload)
-+        reload
-+        ;;
-+    restart)
-+        stop
-+        start
-+        ;;
-+    status)
-+        status -p ${pidfile} ${prog}
-+        RETVAL=$?
-+        [ $RETVAL = 0 ] && ${FAIL2BAN} status
-+        ;;
-+    *)
-+        echo $"Usage: fail2ban {start|stop|restart|reload|status}"
-+        RETVAL=2
-+esac
-+
-+exit $RETVAL
--- 
-2.7.4
+* The cache was populated by a pristine qemux86 core-image-minimal build of
+morty. This was done in a crops/poky container (running in docker on Mac)
+* The cache was then served via HTTP
+* The second host is a VM running Ubuntu 16.04 where I set SSTATE_MIRRORS
+to point to the hosted sstate cache like this:
+
+SSTATE_MIRRORS ?= "\
+file://.* http://192.168.33.1:8000/sstate-cache/PATH;downloadfilename=PATH"
+
+* I checked with curl that the VM can successfully get sstate objects from
+the server.
+* Then I start a new build (same metadata revisions, default configuration
+for core-image-minimal) and each and every task run from scratch with no
+sstate cache re-use.
+
+Here are the two configurations from bitbake and /etc/lsb-release files:
+
+On the container used to seed sstate cache:
+
+Build Configuration:
+BB_VERSION        = "1.32.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "universal"
+TARGET_SYS        = "i586-poky-linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.2.2"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-poky
+meta-yocto-bsp    = "morty:2a70e84643381eca0e7bf7928d4a3d56f9651128"
+
+$ cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.2 LTS"
+
+On the VM that should consume the cache:
+
+Build Configuration:
+BB_VERSION        = "1.32.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-16.04"
+TARGET_SYS        = "i586-poky-linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.2.2"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-poky
+meta-yocto-bsp    = "morty:2a70e84643381eca0e7bf7928d4a3d56f9651128"
+
+$ cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.3 LTS"
 
 
+To me, the only differing bit that in my understanding can lead to sstate
+cache objects invalidation is the value of NATIVELSBSTRING which is
+"universal" inside the container and "Ubuntu-16.04". This sounds strange to
+me, since both underlying systems are Ubuntu 16.04 (although not exactly
+the same dot release) as confirmed by /etc/lsb-release contents.
+
+Is the different NATIVELSBSTRING the root cause for everything being
+re-built? If so, what's causing them being different in the end and what
+does "universal" exactly mean (to me it looks like a more generic and
+incluse term than any distro label, so I'm confused...)?
+
+--001a113edb24fcf08d0558211939
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi!<div><br></div><div>I was trying to share sstate betwee=
+n different hosts, but the consumer build system seems to be unable to use =
+re-use any sstate object. My scenario is setup as follows:</div><div><br></=
+div><div>* The cache was populated by a pristine qemux86 core-image-minimal=
+ build of morty. This was done in a crops/poky container (running in docker=
+ on Mac)</div><div>* The cache was then served via HTTP</div><div>* The sec=
+ond host is a VM running Ubuntu 16.04 where I set SSTATE_MIRRORS to point t=
+o the hosted sstate cache like this:</div><div><br></div><div><div>SSTATE_M=
+IRRORS ?=3D &quot;\</div><div>file://.* <a href=3D"http://192.168.33.1:8000=
+/sstate-cache/PATH;downloadfilename=3DPATH">http://192.168.33.1:8000/sstate=
+-cache/PATH;downloadfilename=3DPATH</a>&quot;</div></div><div><br></div><di=
+v>* I checked with curl that the VM can successfully get sstate objects fro=
+m the server.</div><div>* Then I start a new build (same metadata revisions=
+, default configuration for core-image-minimal) and each and every task run=
+ from scratch with no sstate cache re-use.</div><div><br></div><div>Here ar=
+e the two configurations from bitbake and /etc/lsb-release files:</div><div=
+><br></div><div>On the container used to seed sstate cache:</div><div><br><=
+/div><div><div>Build Configuration:</div><div>BB_VERSION =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0=3D &quot;1.32.0&quot;</div><div>BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =3D &quot;x86_64-linux&quot;</div><div>NATIVELSBSTRING =C2=A0 =3D &q=
+uot;universal&quot;</div><div>TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &qu=
+ot;i586-poky-linux&quot;</div><div>MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =3D &quot;qemux86&quot;</div><div>DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0=3D &quot;poky&quot;</div><div>DISTRO_VERSION =C2=A0 =C2=A0=3D=
+ &quot;2.2.2&quot;</div><div>TUNE_FEATURES =C2=A0 =C2=A0 =3D &quot;m32 i586=
+&quot;</div><div>TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;&quot;</di=
+v><div>meta</div><div>meta-poky</div><div>meta-yocto-bsp =C2=A0 =C2=A0=3D &=
+quot;morty:2a70e84643381eca0e7bf7928d4a3d56f9651128&quot;</div></div><div><=
+br></div><div><div>$ cat /etc/lsb-release</div><div>DISTRIB_ID=3DUbuntu</di=
+v><div>DISTRIB_RELEASE=3D16.04</div><div>DISTRIB_CODENAME=3Dxenial</div><di=
+v>DISTRIB_DESCRIPTION=3D&quot;Ubuntu 16.04.2 LTS&quot;</div></div><div><br>=
+</div><div>On the VM that should consume the cache:</div><div><br></div><di=
+v><div>Build Configuration:</div><div>BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0=3D &quot;1.32.0&quot;</div><div>BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=3D &quot;x86_64-linux&quot;</div><div>NATIVELSBSTRING =C2=A0 =3D &quot;Ubu=
+ntu-16.04&quot;</div><div>TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;i=
+586-poky-linux&quot;</div><div>MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=3D &quot;qemux86&quot;</div><div>DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0=3D &quot;poky&quot;</div><div>DISTRO_VERSION =C2=A0 =C2=A0=3D &quot=
+;2.2.2&quot;</div><div>TUNE_FEATURES =C2=A0 =C2=A0 =3D &quot;m32 i586&quot;=
+</div><div>TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;&quot;</div><div=
+>meta</div><div>meta-poky</div><div>meta-yocto-bsp =C2=A0 =C2=A0=3D &quot;m=
+orty:2a70e84643381eca0e7bf7928d4a3d56f9651128&quot;</div></div><div><br></d=
+iv><div>$ cat /etc/lsb-release<br></div><div><div>DISTRIB_ID=3DUbuntu</div>=
+<div>DISTRIB_RELEASE=3D16.04</div><div>DISTRIB_CODENAME=3Dxenial</div><div>=
+DISTRIB_DESCRIPTION=3D&quot;Ubuntu 16.04.3 LTS&quot;</div></div><div><br></=
+div><div><br></div><div>To me, the only differing bit that in my understand=
+ing can lead to sstate cache objects invalidation is the value of NATIVELSB=
+STRING which is &quot;universal&quot; inside the container and &quot;Ubuntu=
+-16.04&quot;. This sounds strange to me, since both underlying systems are =
+Ubuntu 16.04 (although not exactly the same dot release) as confirmed by /e=
+tc/lsb-release contents.</div><div><br></div><div>Is the different NATIVELS=
+BSTRING the root cause for everything being re-built? If so, what&#39;s cau=
+sing them being different in the end and what does &quot;universal&quot; ex=
+actly mean (to me it looks like a more generic and incluse term than any di=
+stro label, so I&#39;m confused...)?</div><div><br></div></div>
+
+--001a113edb24fcf08d0558211939--
