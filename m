@@ -1,6 +1,6 @@
 Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A4C9E00CBA; Fri,  1 Sep 2017 05:45:09 -0700 (PDT)
+	id C3C56E00CAA; Fri,  1 Sep 2017 05:54:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,28 +10,28 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
 	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FC75E00CAA
-	for <yocto@yoctoproject.org>; Fri,  1 Sep 2017 05:45:08 -0700 (PDT)
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72435E00C8B
+	for <yocto@yoctoproject.org>; Fri,  1 Sep 2017 05:54:29 -0700 (PDT)
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	01 Sep 2017 05:45:06 -0700
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	01 Sep 2017 05:54:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,458,1498546800"; d="scan'208";a="896208164"
+X-IronPort-AV: E=Sophos;i="5.41,458,1498546800"; d="scan'208";a="896210363"
 Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
 	([10.237.68.161])
-	by FMSMGA003.fm.intel.com with ESMTP; 01 Sep 2017 05:45:05 -0700
-To: yocto@yoctoproject.org, "Seilis, Aaron" <aseilis@ciena.com>
-References: <SN4PR0401MB3599F4AAECE68D38EDEF8C4CBD9D0@SN4PR0401MB3599.namprd04.prod.outlook.com>
+	by FMSMGA003.fm.intel.com with ESMTP; 01 Sep 2017 05:54:28 -0700
+To: yocto@yoctoproject.org, yahia farghaly <yahiafarghaly@gmail.com>
+References: <CABFXn3Err-9RR=1mc0UpU-FzpzOWr6dYEyyvc1vd4hcCqn1Kdw@mail.gmail.com>
 From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <2b24bf6d-84bb-b420-af92-d9ffc406531f@linux.intel.com>
-Date: Fri, 1 Sep 2017 15:42:09 +0300
+Message-ID: <e0df598e-6381-4011-fea7-201412bc4add@linux.intel.com>
+Date: Fri, 1 Sep 2017 15:51:32 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.2.1
 MIME-Version: 1.0
-In-Reply-To: <SN4PR0401MB3599F4AAECE68D38EDEF8C4CBD9D0@SN4PR0401MB3599.namprd04.prod.outlook.com>
-Subject: Re: Building Custom Python 3 Packages
+In-Reply-To: <CABFXn3Err-9RR=1mc0UpU-FzpzOWr6dYEyyvc1vd4hcCqn1Kdw@mail.gmail.com>
+Subject: Re: apt-key not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,25 +43,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Sep 2017 12:45:09 -0000
+X-List-Received-Date: Fri, 01 Sep 2017 12:54:30 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-On 08/31/2017 04:54 PM, Seilis, Aaron wrote:
-> This clearly indicates that the issue is that the build is looking
-> for setup.py in the ${B} location, but it is only present in the ${S}
-> location when `devtool modify` has been run. I have tried setting
-> ${B} to ${S} explicitly in the recipe, but this doesn't result in
-> ${B} being changed when I run `bitbake -e mytool`. I could always
-> copy ${S} to ${B} in the recipe, but that seems a bit hack-ish.
-> 
-> Did I miss something or is there another way that Python builds are
-> intended to work?
+On 09/01/2017 06:17 AM, yahia farghaly wrote:
 
-I think this might be a limitation of setuptools: they do not support 
-out-of-tree builds (which is a must for devtool modify'). If you can 
-figure out how to solve it, that would be nice!
+> So, what the right way to do this ?
+
+You should study how signing RPM/IPK package feeds is done in Yocto, and 
+modify the code in the same way. Start from
+
+meta/recipes-core/meta/signing-keys.bb
+meta/classes/sign_package_feed.bbclass
+meta/lib/oe/package_manager.py (RpmIndexer/OpkgIndexer classes)
+
+Then modify DpkgIndexer class to use apt-key to do the signing in a 
+similar way. It even has a stub:
+
+         if self.d.getVar('PACKAGE_FEED_SIGN') == '1':
+             raise NotImplementedError('Package feed signing not 
+implementd for dpkg')
+
 
 Alex
 
