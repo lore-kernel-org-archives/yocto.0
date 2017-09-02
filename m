@@ -1,66 +1,109 @@
-Return-Path: <ktreddy70@gmail.com>
+Return-Path: <knapp@ambibox.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA9CCE00CCA; Sat,  2 Sep 2017 11:30:20 -0700 (PDT)
+	id A4948E00A73; Sat,  2 Sep 2017 12:34:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM,WEIRD_PORT autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ktreddy70[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.44 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,WEIRD_PORT autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [52.58.63.22 listed in list.dnswl.org]
 	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
-	[209.85.214.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 778B7E00C91
-	for <yocto@yoctoproject.org>; Sat,  2 Sep 2017 11:30:20 -0700 (PDT)
-Received: by mail-it0-f44.google.com with SMTP id 77so8781247itj.1
-	for <yocto@yoctoproject.org>; Sat, 02 Sep 2017 11:30:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=1MK/NVW/0uPkW0r1UFpDNhQnImaHShhHSy8zb2ogT9s=;
-	b=ahU7Ntn/Yw9NOcT/M33wt9eHsc6QOmmO3wCOcTeV0AyXVpr7zPYG2SAwGtYmx5Q+lL
-	5k1tMeK9XIT2I9HowfK0mOxxAK+eyh+cecrHgYjWuY/Xj2IQpMAa5CvA0sk3oLPw7xTb
-	dsoR/YtxHl9r7eEk9xEah0U8D6728NNHv+CclKAVx9emAnSb7IUMTO7pS6uw+wptw8vp
-	XJ2YFdxw1lWvHfbtBI7q3pvdyVRVhR5l0IIDBvQ2aHDW/xDjCVIJ3/LXG3LXG5Jl0WMM
-	tVzgeDEx8fB12IKK9iTp5GU/H1GMf2uAhwwd5+t0MaXc4VJGQgZc4nqd2NOl/Ka4GB0l
-	MJuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=1MK/NVW/0uPkW0r1UFpDNhQnImaHShhHSy8zb2ogT9s=;
-	b=AA+ZI3p7Jz8oHKPYlQEBJam/Q1tXryqeergmn0t9t2sslTMlapfPxk+a85lDrwsOy3
-	UOy/AEpe7l5RSh3R1wBC5KjJMbgM/FS99r6NIRUZ2Ei7IS0SCd2EYzr9J77h4jjBAblO
-	Rgs7DQJxeXYhHNs1goSm/qNWX+STchIxj39PVkOQTxBKP5utr4/7X4yUoVKvKtGOy+Oo
-	7jrsSKLZzgcPdp3k+/7m2GV/xFNMrQL5CT8j1F0RQu5xdUyuwVZ3Wxj6SMpEMWTrxdRX
-	UxU5xS9gwGjoIRToCN6wSczwXWBocn0EuqQO8fKTOgsqbT4U/c4tQ7KSAVr/J9JhbM1y
-	UnYw==
-X-Gm-Message-State: AHPjjUi8VRmeGKrHBHrOuwatUZb2gnNyyC3Rr/pKEdajQtPLep4HGF8s
-	RmIVqULKLDf04m5D7b/JXgnZ40omVDxO7wQ=
-X-Google-Smtp-Source: ADKCNb7D3RU3hzPWpBAL5MwiA8CLihU4MuhdQZSjCE8+uQFfXLUlZTP+kbqFy++VGaC8PGkD0s3qd/OB5V+VxKLH3qg=
-X-Received: by 10.36.90.72 with SMTP id v69mr1787234ita.8.1504377018704; Sat,
-	02 Sep 2017 11:30:18 -0700 (PDT)
+Received: from routemea3.hes.trendmicro.eu (routemea3.hes.trendmicro.eu
+	[52.58.63.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F28AFE0090A
+	for <yocto@yoctoproject.org>; Sat,  2 Sep 2017 12:34:06 -0700 (PDT)
+Received: from 0.0.0.0_hes.trendmicro.com (unknown [192.168.13.217])
+	by routemea3.hes.trendmicro.eu (Postfix) with SMTP id 87A8645605B;
+	Sat,  2 Sep 2017 19:34:05 +0000 (UTC)
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com (unknown
+	[213.199.154.118])
+	by relayemea3.hes.trendmicro.eu (Postfix) with ESMTPS id 5111758C054;
+	Sat,  2 Sep 2017 19:34:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=pho2risGmbHCoKG.onmicrosoft.com; s=selector1-ambibox-de;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=Lew8J6OnfAoo2bdGNjmBBNzMi9ZgM2WHN3VWacUTi44=;
+	b=FqVxejBHM2csHIyT2vvklJkvtWztvQ0zPT/9AC/G0yCpdN2w2RCXq33k7pFGITdC3HGkk2+cJsNEzsDj0eUJrJuMqxHIkZA1hzIKetMOdHEYdNwcBBQuXk6Hxp9jkX/u2jKBKqUDMXvT4m3aF11SClxUDNCMCy4lQ5zviE5HC3o=
+Received: from HE1PR10MB0361.EURPRD10.PROD.OUTLOOK.COM (10.167.250.147) by
+	HE1PR10MB1626.EURPRD10.PROD.OUTLOOK.COM (10.160.68.19) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.13.10; Sat, 2 Sep 2017 19:34:01 +0000
+Received: from HE1PR10MB0361.EURPRD10.PROD.OUTLOOK.COM
+	([fe80::6d26:ebc6:d0e:779c]) by HE1PR10MB0361.EURPRD10.PROD.OUTLOOK.COM
+	([fe80::6d26:ebc6:d0e:779c%13]) with mapi id 15.20.0013.018;
+	Sat, 2 Sep 2017 19:34:01 +0000
+From: Fabian Knapp <knapp@ambibox.de>
+To: ktreddy 70 <ktreddy70@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] yocto layer dependencies
+Thread-Index: AQHTJBnubEEP2CLVQ06EvstB3Yp42KKh+85A
+Date: Sat, 2 Sep 2017 19:34:01 +0000
+Message-ID: <HE1PR10MB03612D297AE804164131E10BC3930@HE1PR10MB0361.EURPRD10.PROD.OUTLOOK.COM>
+References: <CAKXGAjB9xNynnDpT3zXrZZNyc_x3ONxOrg1eGH_VZ4xuFqkjDA@mail.gmail.com>
+In-Reply-To: <CAKXGAjB9xNynnDpT3zXrZZNyc_x3ONxOrg1eGH_VZ4xuFqkjDA@mail.gmail.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=knapp@ambibox.de; 
+x-originating-ip: [93.243.17.67]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; HE1PR10MB1626;
+	6:qNUNwvtzFkqfvJmofrk5kOhcdJCiiOyUkOKXXrnnfZYLb9gt8HnwlQ6Y+hMlDAV/eZ7W8vdfz3MJ3Moqmobkj3NlqFp2Ezejn6ihQN9xkPitvoTQFFyS7UmFcoUefY5iwX+mFeZ3RUSp5sDN7HOu5M2byB7cy++IA8ocPKHctrys6uxxid3Jmua6fEH/3qWB8N26U7JHVVgTd72P/SWkri+ATRE+tPkbFddUEg9+divB/K4dz6HX3raOEHjGV7HdkLUh+XBAQsFq+0KxVOGUrU+ejzIyLYbEMht1YLx4ygs/A10b6khOrwAvDfx7QFt59DoZSPGV7uxA+5/0nzFgSw==;
+	5:4Duu6qK3I0vIxEAQZ+HHMreQz57Vp0di9KfY2D7DDG/VHkHoGxJfnM0aO+MWzlQ4txWztNjiOVxfHzHyPz0Z/cg3M/QtMb9HpZdLs4vpkWHS/JhGWDgK+iyLh+CtbpDIhyazXzEIwtwI/e1L91vk0g==;
+	24:CpCevJOZJE1HQsKVy8RvAN5nM+Crj/bWGnDP3GeIUKF5f44wLUvMFTGQUBtkVmEB2KBKhqxQ+m0Xrxhh+pfNgZjaY4zXaPd66sZ8Ye+L3Vw=;
+	7:a0/rOmLR+wKs9nJYI8jcO/jLVmjRjBO0nvjcxPvmksW7CSKZ+Xjl9llWvzWJrLteo2KtX/5tt9MZh/7FwA4/CBUUliW3+Z6tOMHOPKpkuK8KTeuNhJ5+rdxAf8eFvxsSJlKNESl6+Es6Eu9Hf90P8nFlOiuqggbPmYJwsW1G3swI/wOqkwTBH3fCLLgBYTfM0Zm9YNeL30a9RhEkJJ9MbqcBsgjgOFKV1w4uKQhQr0g=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: cabd3ca3-dd0d-4843-d257-08d4f2399061
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(300000502095)(300135100095)(22001)(2017030254152)(2017082002075)(300000503095)(300135400095)(2017052603199)(201703131423075)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:HE1PR10MB1626; 
+x-ms-traffictypediagnostic: HE1PR10MB1626:
+x-exchange-antispam-report-test: UriScan:(21748063052155);
+x-microsoft-antispam-prvs: <HE1PR10MB1626B0757173A58D5EB6C42AC3930@HE1PR10MB1626.EURPRD10.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(601004)(2401047)(8121501046)(5005006)(3002001)(10201501046)(100000703101)(100105400095)(93006095)(93001095)(6041248)(20161123555025)(20161123564025)(20161123558100)(20161123560025)(20161123562025)(201703131423075)(201703061421075)(2016111802025)(6043046)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:HE1PR10MB1626; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:HE1PR10MB1626; 
+x-forefront-prvs: 04180B6720
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(979002)(629001)(279900001)(199003)(174874002)(189002)(53474002)(40764003)(606006)(66066001)(7696004)(508600001)(74316002)(19625305001)(2900100001)(101416001)(54356999)(14454004)(50986999)(2501003)(53936002)(86362001)(5250100002)(76176999)(25786009)(74482002)(189998001)(33656002)(6436002)(102836003)(790700001)(3846002)(6116002)(7736002)(2906002)(6506006)(3280700002)(3660700001)(5660300001)(39060400002)(517774005)(9686003)(8936002)(68736007)(106356001)(2950100002)(105586002)(6306002)(55016002)(97736004)(54896002)(8676002)(236005)(81156014)(81166006)(75402003)(19627235001)(969003)(989001)(999001)(1009001)(1019001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1PR10MB1626;
+	H:HE1PR10MB0361.EURPRD10.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: ambibox.de does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.107.59.69 with HTTP; Sat, 2 Sep 2017 11:30:18 -0700 (PDT)
-From: ktreddy 70 <ktreddy70@gmail.com>
-Date: Sat, 2 Sep 2017 11:30:18 -0700
-Message-ID: <CAKXGAjB9xNynnDpT3zXrZZNyc_x3ONxOrg1eGH_VZ4xuFqkjDA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: yocto layer dependencies
+X-OriginatorOrg: ambibox.de
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2017 19:34:01.2501 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a41b53b7-6aea-46d7-8cc4-114287daa697
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR10MB1626
+X-TMASE-Version: StarCloud-1.3-8.2.1006-23300.002
+X-TMASE-Result: 10--19.576400-7.000000
+X-TMASE-MatchedRID: zRq+SEqfCYrL7LpHhopGkEw6MpTEJnCvLuyt5Ak2dzs1UCYsv5FgIwYZ
+	0XMP5DxAt+m1lNsVVIrTnJmLPW7bpCyV46Sc0EjTPepbkTVGAYb6rx1jnOZw+sV6a4pfRRDGNBS
+	SiEcvHFrqGKjS6AJ+VLxygpRxo469E+VNlwE+VkVGMe+tDjQ3FgaTalM8C773DurjibKh7WhBVg
+	r5vOsPONLF6Y0L7R/QG66tuBin4dDqv7ls89q4d/k3SjZMcZFkqAVfbHPk2MfiPiWvhafhGKwQU
+	p5/xlTGp/nT+xnI1R26kMgL3jbYOtMxD/3e8TxdRtqpRW8sWyJqRyrZEAcpymPqdi9REDedDbp6
+	Fm4oU1cBL02QCDJezSI9MxSOQ6CSLVEjAx3HjK6k7BPGf466/guVMctAPCgtgD7NlsAV2tJOYCD
+	DesGQl5cFdomgH0lnFEUknJ/kEl7Ba6VG2+9jFNQdB5NUNSsiJ/L+aicUobCHHQtvygWztIzOPM
+	tT6kcfGUSWdL/R6USs2a0rjHuSRqIdXPiGkWVFebBBpkCnuPg=
+X-TM-Deliver-Signature: 9D7443359D57D8F5248F448707DCE3C2
+Subject: Re: yocto layer dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,116 +115,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 02 Sep 2017 18:30:20 -0000
-Content-Type: multipart/alternative; boundary="001a113a22cecee7d80558391166"
+X-List-Received-Date: Sat, 02 Sep 2017 19:34:08 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_HE1PR10MB03612D297AE804164131E10BC3930HE1PR10MB0361EURP_"
 
---001a113a22cecee7d80558391166
-Content-Type: text/plain; charset="UTF-8"
+--_000_HE1PR10MB03612D297AE804164131E10BC3930HE1PR10MB0361EURP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I am trying to set up yocto build environment for openlte, meta-sdr has
-most of the openlte depends
-I am getting following error when I try to build sdr,
+RG8geW91IGhhdmUgY29uZmlndXJlZCAvbWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1xdDQvIGluIHlv
+dXIgYmJsYXllcnMuY29uZiAoYnVpbGQvY29uZi9iYmxheWVycy5jb25mKT8NCg0KDQpGYWJpYW4N
+Cg0KVm9uOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3Vu
+Y2VzQHlvY3RvcHJvamVjdC5vcmddIEltIEF1ZnRyYWcgdm9uIGt0cmVkZHkgNzANCkdlc2VuZGV0
+OiBTYW1zdGFnLCAyLiBTZXB0ZW1iZXIgMjAxNyAyMDozMA0KQW46IHlvY3RvQHlvY3RvcHJvamVj
+dC5vcmcNCkJldHJlZmY6IFt5b2N0b10geW9jdG8gbGF5ZXIgZGVwZW5kZW5jaWVzDQoNCkkgYW0g
+dHJ5aW5nIHRvIHNldCB1cCB5b2N0byBidWlsZCBlbnZpcm9ubWVudCBmb3Igb3Blbmx0ZSwgbWV0
+YS1zZHIgaGFzIG1vc3Qgb2YgdGhlIG9wZW5sdGUgZGVwZW5kcw0KSSBhbSBnZXR0aW5nIGZvbGxv
+d2luZyBlcnJvciB3aGVuIEkgdHJ5IHRvIGJ1aWxkIHNkciwNCg0KDQovYnVpbGQkIGJpdGJha2Ug
+c2RyDQpMb2FkaW5nIGNhY2hlOiAxMDAlIHwjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjI3wgVGlt
+ZTogMDowMDowMA0KTG9hZGVkIDE2NDIgZW50cmllcyBmcm9tIGRlcGVuZGVuY3kgY2FjaGUuDQpF
+UlJPUjogUGFyc2VFcnJvciBhdCAvaG9tZS9rdHJlZGR5L3pjdTEwMi9zb3VyY2VzL3Bva3kvLi4v
+bWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1zZHIvcmVjaXBlcy1hcHBsaWNhdGlvbnMvZ3FyeC9ncXJ4
+X2dpdC5iYjo4PGh0dHA6Ly9ncXJ4X2dpdC5iYjo4Lz46IENvdWxkIG5vdCBpbmhlcml0IGZpbGUg
+Y2xhc3Nlcy9xdDR4MTEuYmJjbGFzcw0KDQoNCkkgZG8gaGF2ZSBtZXRhLXF0NCB1bmRlciBtZXRh
+LW9wZW5lbWJlZGRlZCBsYXllciAgYXMgYmVsb3cuDQoNCnpjdTEwMi9zb3VyY2VzJCBscyBtZXRh
+LW9wZW5lbWJlZGRlZC9tZXRhLXF0NC9jbGFzc2VzLw0KcW1ha2UyLmJiY2xhc3MgIHFtYWtlX2Jh
+c2UuYmJjbGFzcyAgcXQ0ZS5iYmNsYXNzICBxdDR4MTEuYmJjbGFzcw0KDQoNCmNvdWxkIHlvdSBw
+bGVhc2UgaGVscCBtZSBvbiB3aHkgYW0gSSBnZXR0aW5nIHRoaXMgZXJyb3IgPw0KSG93IGNhbiBJ
+IG1ha2Ugb25lIGxheWVyIHZpc2libGUgdG8gYW5vdGhlciBsYXllciA/DQpFeDogIEhvdyBjYW4g
+SSBtYWtlIG1ldGEtc2RyIHZpc2libGUgdG8gb3Blbmx0ZSA/IEkgbWVhbiBob3cgY2FuIEkgc2F5
+IHRvIG9wZW5sdGUgdGhhdCB0aGUgZGVwZW5kZW5jeSByZWNpcGVzIGFyZSBhdmFpbGFibGUgdW5k
+ZXIgbWV0YS1zZHIgPw0KDQppZiBuZXcgcmVjaXBlcyBhcmUgYXZhaWxhYmxlIGZvciBhIGxheWVy
+IGhvdyBjYW4gSSBnZXQgdGhvc2Ugb24gdG8gbXkgYnVpbGQgZW52aXJvbm1lbnQgPw0KDQpUaGFu
+a3MgZm9yIHlvdXIgaGVscC4NCg==
 
+--_000_HE1PR10MB03612D297AE804164131E10BC3930HE1PR10MB0361EURP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-/build$ bitbake sdr
-Loading cache: 100% |#############################
-############################################################
-###################################################| Time: 0:00:00
-Loaded 1642 entries from dependency cache.
-ERROR: ParseError at /home/ktreddy/zcu102/sources/p
-oky/../meta-openembedded/meta-sdr/recipes-applications/gqrx/gqrx_git.bb:8:
-Could not inherit file classes/qt4x11.bbclass
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1z
+b0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJw
+bGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25v
+cm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90
+dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uRS1NYWlsRm9ybWF0dm9ybGFn
+ZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxp
+YnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7
+bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMt
+c2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24x
+DQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4wY20g
+NzAuODVwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
+c3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJl
+ZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNv
+IDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0i
+ZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwv
+aGVhZD4NCjxib2R5IGxhbmc9IkRFIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYg
+Y2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkRvIHlvdSBoYXZlIGNvbmZpZ3VyZWQgL21ldGEt
+b3BlbmVtYmVkZGVkL21ldGEtcXQ0LyBpbiB5b3VyIGJibGF5ZXJzLmNvbmYgKGJ1aWxkL2NvbmYv
+YmJsYXllcnMuY29uZik/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkZhYmlhbjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Wb246PC9i
+PiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlv
+Y3RvcHJvamVjdC5vcmddDQo8Yj5JbSBBdWZ0cmFnIHZvbiA8L2I+a3RyZWRkeSA3MDxicj4NCjxi
+Pkdlc2VuZGV0OjwvYj4gU2Ftc3RhZywgMi4gU2VwdGVtYmVyIDIwMTcgMjA6MzA8YnI+DQo8Yj5B
+bjo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5CZXRyZWZmOjwvYj4gW3lvY3Rv
+XSB5b2N0byBsYXllciBkZXBlbmRlbmNpZXM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9Im1hcmdpbi1s
+ZWZ0OjMzLjBwdCI+DQo8ZGl2IGlkPSJnbWFpbC1tXzQ3MjQ1Mjg0NDcyMDE3NDgzODdnbWFpbC06
+a2QiPg0KPGRpdiBpZD0iZ21haWwtbV80NzI0NTI4NDQ3MjAxNzQ4Mzg3Z21haWwtOmtjIj4NCjxk
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5
+LjVwdCI+SSBhbSB0cnlpbmcgdG8gc2V0IHVwIHlvY3RvIGJ1aWxkIGVudmlyb25tZW50IGZvciBv
+cGVubHRlLCBtZXRhLXNkciBoYXMgbW9zdCBvZiB0aGUgb3Blbmx0ZSBkZXBlbmRzPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZTo5LjVwdCI+SSBhbSBnZXR0aW5nIGZvbGxvd2luZyBlcnJvciB3aGVu
+IEkgdHJ5IHRvIGJ1aWxkIHNkciwmbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuNXB0
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS41cHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZTo5LjVwdCI+L2J1aWxkJCBiaXRiYWtlIHNkcjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6OS41cHQiPkxvYWRpbmcgY2FjaGU6IDEwMCUgfCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+fCBUaW1lOiAwOjAwOjAwPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjVwdCI+TG9hZGVkIDE2
+NDIgZW50cmllcyBmcm9tIGRlcGVuZGVuY3kgY2FjaGUuPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZTo5LjVwdCI+RVJST1I6IFBhcnNlRXJyb3IgYXQgL2hvbWUva3RyZWRkeS96Y3UxMDIvc291cmNl
+cy9wb2t5Ly4uL21ldGEtb3BlbmVtYmVkZGVkL21ldGEtc2RyL3JlY2lwZXMtYXBwbGljYXRpb25z
+L2dxcngvPGEgaHJlZj0iaHR0cDovL2dxcnhfZ2l0LmJiOjgvIiB0YXJnZXQ9Il9ibGFuayI+Z3Fy
+eF9naXQuYmI6ODwvYT46IENvdWxkIG5vdCBpbmhlcml0IGZpbGUgY2xhc3Nlcy9xdDR4MTEuYmJj
+bGFzczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjVwdCI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjVwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZTo5LjVwdCI+SSBkbyBoYXZlIG1ldGEtcXQ0IHVuZGVyIG1ldGEtb3BlbmVtYmVkZGVkIGxheWVy
+Jm5ic3A7IGFzIGJlbG93LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS41cHQiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuNXB0Ij56Y3UxMDIvc291cmNlcyQ8Yj4m
+bmJzcDtscyZuYnNwOzwvYj5tZXRhLW9wZW5lbWJlZGRlZC9tZXRhLXF0NC9jbGFzc2VzLzxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6OS41cHQiPnFtYWtlMi5iYmNsYXNzICZuYnNwO3FtYWtlX2Jh
+c2UuYmJjbGFzcyAmbmJzcDtxdDRlLmJiY2xhc3MgJm5ic3A7PGI+cXQ0eDExLmJiY2xhc3M8L2I+
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuNXB0Ij48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjkuNXB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjku
+NXB0Ij5jb3VsZCB5b3UgcGxlYXNlIGhlbHAgbWUgb24gd2h5IGFtIEkgZ2V0dGluZyB0aGlzIGVy
+cm9yID88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLWxlZnQ6MzMuMHB0Ij4NCjxkaXYgaWQ9Imdt
+YWlsLW1fNDcyNDUyODQ0NzIwMTc0ODM4N2dtYWlsLTprZCI+DQo8ZGl2IGlkPSJnbWFpbC1tXzQ3
+MjQ1Mjg0NDcyMDE3NDgzODdnbWFpbC06a2MiPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS41cHQiPkhvdyBjYW4gSSBtYWtlIG9uZSBsYXllciB2
+aXNpYmxlIHRvIGFub3RoZXIgbGF5ZXIgPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLWxlZnQ6MzMuMHB0Ij4N
+CjxkaXYgaWQ9ImdtYWlsLW1fNDcyNDUyODQ0NzIwMTc0ODM4N2dtYWlsLTprZCI+DQo8ZGl2IGlk
+PSJnbWFpbC1tXzQ3MjQ1Mjg0NDcyMDE3NDgzODdnbWFpbC06a2MiPg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS41cHQiPkV4OiAmbmJzcDtIb3cg
+Y2FuIEkgbWFrZSBtZXRhLXNkciB2aXNpYmxlIHRvIG9wZW5sdGUgPyBJIG1lYW4gaG93IGNhbiBJ
+IHNheSB0byBvcGVubHRlIHRoYXQgdGhlIGRlcGVuZGVuY3kgcmVjaXBlcyBhcmUgYXZhaWxhYmxl
+IHVuZGVyIG1ldGEtc2RyID88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9Im1hcmdpbi1sZWZ0OjMzLjBwdCI+DQo8ZGl2IGlk
+PSJnbWFpbC1tXzQ3MjQ1Mjg0NDcyMDE3NDgzODdnbWFpbC06a2QiPg0KPGRpdiBpZD0iZ21haWwt
+bV80NzI0NTI4NDQ3MjAxNzQ4Mzg3Z21haWwtOmtjIj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuNXB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9Im1hcmdp
+bi1sZWZ0OjMzLjBwdCI+DQo8ZGl2IGlkPSJnbWFpbC1tXzQ3MjQ1Mjg0NDcyMDE3NDgzODdnbWFp
+bC06a2QiPg0KPGRpdiBpZD0iZ21haWwtbV80NzI0NTI4NDQ3MjAxNzQ4Mzg3Z21haWwtOmtjIj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuNXB0
+Ij5pZiBuZXcgcmVjaXBlcyBhcmUgYXZhaWxhYmxlIGZvciBhIGxheWVyIGhvdyBjYW4gSSBnZXQg
+dGhvc2Ugb24gdG8gbXkgYnVpbGQgZW52aXJvbm1lbnQgPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0ibWFyZ2luLWxlZnQ6
+MzMuMHB0Ij4NCjxkaXYgaWQ9ImdtYWlsLW1fNDcyNDUyODQ0NzIwMTc0ODM4N2dtYWlsLTprZCI+
+DQo8ZGl2IGlkPSJnbWFpbC1tXzQ3MjQ1Mjg0NDcyMDE3NDgzODdnbWFpbC06a2MiPg0KPGRpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuNXB0
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuNXB0Ij5UaGFua3MgZm9yIHlvdXIg
+aGVscC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-
-I do have meta-qt4 under meta-openembedded layer  as below.
-
-zcu102/sources$* ls *meta-openembedded/meta-qt4/classes/
-qmake2.bbclass  qmake_base.bbclass  qt4e.bbclass  *qt4x11.bbclass*
-
-
-could you please help me on why am I getting this error ?
-How can I make one layer visible to another layer ?
-Ex:  How can I make meta-sdr visible to openlte ? I mean how can I say to
-openlte that the dependency recipes are available under meta-sdr ?
-
-if new recipes are available for a layer how can I get those on to my build
-environment ?
-
-Thanks for your help.
-
---001a113a22cecee7d80558391166
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail-m_4724528447201748387gmail-gs" style=
-=3D"font-size:medium;margin-left:44px"><div id=3D"gmail-m_47245284472017483=
-87gmail-:kd" class=3D"gmail-m_4724528447201748387gmail-ii gmail-m_472452844=
-7201748387gmail-gt gmail-m_4724528447201748387gmail-adP gmail-m_47245284472=
-01748387gmail-adO" style=3D"font-size:12.8px;margin-bottom:0px;margin-left:=
-0px;padding-bottom:5px"><div id=3D"gmail-m_4724528447201748387gmail-:kc" cl=
-ass=3D"gmail-m_4724528447201748387gmail-a3s gmail-m_4724528447201748387gmai=
-l-aXjCH gmail-m_4724528447201748387gmail-m15e43bb908747dd4"><div dir=3D"ltr=
-"><div>I am trying to set up yocto build environment for openlte, meta-sdr =
-has most of the openlte depends</div><div>I am getting following error when=
- I try to build sdr,=C2=A0</div><div><br></div><br><div><div>/build$ bitbak=
-e sdr</div><div>Loading cache: 100% |#############################<wbr>####=
-##########################<wbr>##############################<wbr>#########=
-#####################<wbr>#####################| Time: 0:00:00</div><div>Lo=
-aded 1642 entries from dependency cache.</div><div>ERROR: ParseError at /ho=
-me/ktreddy/zcu102/sources/p<wbr>oky/../meta-openembedded/meta-<wbr>sdr/reci=
-pes-applications/gqrx/<a href=3D"http://gqrx_git.bb:8/" target=3D"_blank"><=
-wbr>gqrx_git.bb:8</a>: Could not inherit file classes/qt4x11.bbclass</div><=
-/div><div><br></div><div><br></div><div>I do have meta-qt4 under meta-opene=
-mbedded layer=C2=A0 as below.</div><div><br></div><div><div>zcu102/sources$=
-<b>=C2=A0ls=C2=A0</b>meta-<wbr>openembedded/meta-qt4/classes/</div><div>qma=
-ke2.bbclass =C2=A0qmake_base.bbclass =C2=A0qt4e.bbclass =C2=A0<b>qt4x11.bbc=
-lass</b></div></div><div><b><br></b></div><div><b><br></b></div><div>could =
-you please help me on why am I getting this error ?</div></div></div></div>=
-</div><div class=3D"gmail-m_4724528447201748387gmail-gs" style=3D"font-size=
-:medium;margin-left:44px"><div id=3D"gmail-m_4724528447201748387gmail-:kd" =
-class=3D"gmail-m_4724528447201748387gmail-ii gmail-m_4724528447201748387gma=
-il-gt gmail-m_4724528447201748387gmail-adP gmail-m_4724528447201748387gmail=
--adO" style=3D"font-size:12.8px;margin-bottom:0px;margin-left:0px;padding-b=
-ottom:5px"><div id=3D"gmail-m_4724528447201748387gmail-:kc" class=3D"gmail-=
-m_4724528447201748387gmail-a3s gmail-m_4724528447201748387gmail-aXjCH gmail=
--m_4724528447201748387gmail-m15e43bb908747dd4"><div dir=3D"ltr">How can I m=
-ake one layer visible to another layer ?</div></div></div></div><div class=
-=3D"gmail-m_4724528447201748387gmail-gs" style=3D"font-size:medium;margin-l=
-eft:44px"><div id=3D"gmail-m_4724528447201748387gmail-:kd" class=3D"gmail-m=
-_4724528447201748387gmail-ii gmail-m_4724528447201748387gmail-gt gmail-m_47=
-24528447201748387gmail-adP gmail-m_4724528447201748387gmail-adO" style=3D"f=
-ont-size:12.8px;margin-bottom:0px;margin-left:0px;padding-bottom:5px"><div =
-id=3D"gmail-m_4724528447201748387gmail-:kc" class=3D"gmail-m_47245284472017=
-48387gmail-a3s gmail-m_4724528447201748387gmail-aXjCH gmail-m_4724528447201=
-748387gmail-m15e43bb908747dd4"><div dir=3D"ltr">Ex: =C2=A0<span style=3D"fo=
-nt-size:12.8px">How can I make meta-sdr visible to openlte ? I mean how can=
- I say to openlte that the dependency recipes are available under meta-sdr =
-?</span></div></div></div></div><div class=3D"gmail-m_4724528447201748387gm=
-ail-gs" style=3D"font-size:medium;margin-left:44px"><div id=3D"gmail-m_4724=
-528447201748387gmail-:kd" class=3D"gmail-m_4724528447201748387gmail-ii gmai=
-l-m_4724528447201748387gmail-gt gmail-m_4724528447201748387gmail-adP gmail-=
-m_4724528447201748387gmail-adO" style=3D"font-size:12.8px;margin-bottom:0px=
-;margin-left:0px;padding-bottom:5px"><div id=3D"gmail-m_4724528447201748387=
-gmail-:kc" class=3D"gmail-m_4724528447201748387gmail-a3s gmail-m_4724528447=
-201748387gmail-aXjCH gmail-m_4724528447201748387gmail-m15e43bb908747dd4"><d=
-iv dir=3D"ltr"><br></div></div></div></div><div class=3D"gmail-m_4724528447=
-201748387gmail-gs" style=3D"font-size:medium;margin-left:44px"><div id=3D"g=
-mail-m_4724528447201748387gmail-:kd" class=3D"gmail-m_4724528447201748387gm=
-ail-ii gmail-m_4724528447201748387gmail-gt gmail-m_4724528447201748387gmail=
--adP gmail-m_4724528447201748387gmail-adO" style=3D"font-size:12.8px;margin=
--bottom:0px;margin-left:0px;padding-bottom:5px"><div id=3D"gmail-m_47245284=
-47201748387gmail-:kc" class=3D"gmail-m_4724528447201748387gmail-a3s gmail-m=
-_4724528447201748387gmail-aXjCH gmail-m_4724528447201748387gmail-m15e43bb90=
-8747dd4"><div dir=3D"ltr">if new recipes are available for a layer how can =
-I get those on to my build environment ?</div></div></div></div><div class=
-=3D"gmail-m_4724528447201748387gmail-gs" style=3D"font-size:medium;margin-l=
-eft:44px"><div id=3D"gmail-m_4724528447201748387gmail-:kd" class=3D"gmail-m=
-_4724528447201748387gmail-ii gmail-m_4724528447201748387gmail-gt gmail-m_47=
-24528447201748387gmail-adP gmail-m_4724528447201748387gmail-adO" style=3D"f=
-ont-size:12.8px;margin-bottom:0px;margin-left:0px;padding-bottom:5px"><div =
-id=3D"gmail-m_4724528447201748387gmail-:kc" class=3D"gmail-m_47245284472017=
-48387gmail-a3s gmail-m_4724528447201748387gmail-aXjCH gmail-m_4724528447201=
-748387gmail-m15e43bb908747dd4"><div dir=3D"ltr"><div><br></div><div>Thanks =
-for your help.</div></div></div></div></div></div>
-
---001a113a22cecee7d80558391166--
+--_000_HE1PR10MB03612D297AE804164131E10BC3930HE1PR10MB0361EURP_--
