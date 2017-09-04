@@ -1,35 +1,67 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4619AE00C94; Mon,  4 Sep 2017 08:01:35 -0700 (PDT)
+	id BBDD7E00C9E; Mon,  4 Sep 2017 13:31:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.51 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.51 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6625CE00C82
-	for <yocto@yoctoproject.org>; Mon,  4 Sep 2017 08:01:34 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga105.jf.intel.com with ESMTP; 04 Sep 2017 08:01:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,475,1498546800"; d="scan'208";a="147322883"
-Received: from unknown (HELO jlock-mobl3.ger.corp.intel.com) ([10.252.1.230])
-	by fmsmga005.fm.intel.com with ESMTP; 04 Sep 2017 08:01:33 -0700
-To: yocto@yoctoproject.org
-References: <20170830172710.23531-1-sonia.leon.bautista@intel.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <10fee317-6a89-c3a4-009e-ca6f98a46359@linux.intel.com>
-Date: Mon, 4 Sep 2017 16:01:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01AF0E00349
+	for <yocto@yoctoproject.org>; Mon,  4 Sep 2017 13:31:48 -0700 (PDT)
+Received: by mail-wm0-f51.google.com with SMTP id 187so8828199wmn.1
+	for <yocto@yoctoproject.org>; Mon, 04 Sep 2017 13:31:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=54MlsquVJ3N5Lxf7/TW4Gn9A2LbtjO1Olm1bojuHvRk=;
+	b=UOTmEIfVobIbDEhminr0W+3An8hq5c7iZ9E5TiR4PI+8UNbC1Ja/MIb216sh6mIyC8
+	JwohqYde8tEWf6A++Gbqvd8qWqweQdODSvotqFFFXWfgYFhcqZax50MI9Tk3Awah6yIh
+	vKCN69YTljnwH9k4fcDxf43uAvD6y0Txcwp2ucrS5oxgf5Mh4q9l8u8EKwKmxApoHq5R
+	gK4IJ3UkbYYoqm1eitXU/Py7ZhSRdE7CCkwIGTefJB0tsaFkcHLXyBS9aGojSNoejJf+
+	FJdeQHiH9HnNpcTRbG1MxJenWoVS8EpizRg/uOWjtP/gXTOMHosgqYcpOeXT4iDNFNM6
+	n5CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=54MlsquVJ3N5Lxf7/TW4Gn9A2LbtjO1Olm1bojuHvRk=;
+	b=Hv9u3WQDYPAADCRVKVlzlRW4ul/SKOgcwxprqZ1nP1BDD2n1r26R2vVZdntF+F5+qt
+	rAcrG7DsCuWGm3c/glznhrVKTDNg9pAPPgDgY7PK/AdKtlPXDQujTlfTtLLW8enM6use
+	Dmpp6X6QF/C2ogXnUlrLeVa2gGLxfdUXAOHtgmwVmP6A45sX0lTlMc1rQucrGY1ejcOE
+	zKOMNWKvmr88Rglw0keN3uvT4IAGtUvcNZpMyL9gFOA07pA/Frui05sMA+saWa/1QtQi
+	AVq+RdNVgu8FBGvgqPm6vxxB1hVGLBWJL/cdFxqfwsUYnQ0sF8KtX1tUCrmpANyXXUWr
+	Fd8Q==
+X-Gm-Message-State: AHPjjUioUy5SUEa5B3Br34FS+mLjH3hEhI6e/8lDu0HiJB/7RMKojsNS
+	xMolm5XVqfCKwakmNs3PkzBn3FQUdXta
+X-Google-Smtp-Source: ADKCNb6796jeG3sOvpdfVNL3VOlXXlPGZRwIExHboIUvlxpfR1RX8jwQIKquuMUkwC/ydaOnVQIht4kl5sY+/fzJMRY=
+X-Received: by 10.28.135.133 with SMTP id j127mr1060101wmd.21.1504557107815;
+	Mon, 04 Sep 2017 13:31:47 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20170830172710.23531-1-sonia.leon.bautista@intel.com>
-Subject: Re: [PATCH][yocto-autobuilder] buildset-config.yocto-qa: Update the nightly-qa-distro.conf
+Received: by 10.223.166.53 with HTTP; Mon, 4 Sep 2017 13:31:47 -0700 (PDT)
+In-Reply-To: <CAMKF1sreAs1W_TA9yFSKLhVvjNOcXJMTLjLU=cjZ+EJYQuxVqQ@mail.gmail.com>
+References: <BD59C156-6B9B-442C-B8B8-92D2194902C0@korgrd.com>
+	<CAMKF1soJ2=jwPnfefEvDppJGBxPutA_usc0E--XbWY9txredpg@mail.gmail.com>
+	<6668FC5E-F4CC-4E92-8857-3B3BC71C7045@korgrd.com>
+	<CAMKF1sreAs1W_TA9yFSKLhVvjNOcXJMTLjLU=cjZ+EJYQuxVqQ@mail.gmail.com>
+From: Paul Barker <pbarker@toganlabs.com>
+Date: Mon, 4 Sep 2017 21:31:47 +0100
+Message-ID: <CAPyrkgziawJVn2cDbwAziEF78LZDNq1=e1jhHrM6rL41GtK0NQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: raspberrypi3-64 target not booting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,150 +73,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Sep 2017 15:01:35 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 04 Sep 2017 20:31:49 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Aug 25, 2017 at 6:27 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> On Fri, Aug 25, 2017 at 10:14 AM, Bill Jenkins <bill@korgrd.com> wrote:
+>>
+>> On Aug 25, 2017, at 9:42 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>>
+>>
+>> On Fri, Aug 25, 2017 at 9:39 AM Bill Jenkins <bill@korgrd.com> wrote:
+>>>
+>>> I am trying to just get the simple 64-bit rpi-basic-image to work, but =
+the
+>>> Raspberry Pi 3 seems to hang with the rainbow screen at startup.
+>>
+>>
+>> Can you plugin a serial cable and see if that worked or try to add ssh
+>> daemon on target and try to ssh into pi
+>>>
+>>>
+>>
+>> That was a good call. I can login with the ssh daemon, so it does
+>> successfully boot. I just
+>> cannot access it from the HDMI port. (I do not have the hardware for a
+>> serial connection
+>> at the moment)
+>>
+>> Any ideas on how to get the HDMI port to function the same way as it doe=
+s
+>> for the
+>> 32-bit case?
+>>
+>
+> Readding the mailing list.
+>
+> what you have is exactly what I had when I submitted the port to
+> meta-raspberrypi. Haven;t had a chance to revisit it. but this could
+> be related to device tree files we are using here. I have had reports
+> from other devs of having been able to boot into graphics using older
+> kernels but I never got
+> that far myself.
 
+I'm seeing the same issue on builds from both pyro and master
+branches. I've confirmed this isn't a HW issue by trying out an
+OpenSUSE Leap 42.2 64-bit build for Raspberry Pi 3.
 
-On 30/08/17 18:27, Sonia Leon Bautista wrote:
-> From: Aníbal Limón <anibal.limon@linux.intel.com>
-> 
-> Some buildsets was removed:
-> 
-> nigthly-{deb,ipk,rpm}: Merge into nigthly-packagemanagers, see rev
->      faabab725053b4.
-> nigthly-qa*: Merge into nigthly-qa-extras, see rev 363a472366a61.
-> nightly-intel-gpl: Removed on rev 61355851e575.
+Khem, are you saying this is the current expected state of Raspberry
+Pi 3 64-bit support? If so I'd really like us to document this in the
+readme and open a bug so we don't lose track of it.
 
-Merged, thanks.
+Cheers,
 
-Joshua
-
-> Signed-off-by: Sonia Leon Bautista <sonia.leon.bautista@intel.com>
-> Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
-> ---
->   buildset-config.yocto-qa/nightly-deb.conf             | 1 -
->   buildset-config.yocto-qa/nightly-ipk.conf             | 1 -
->   buildset-config.yocto-qa/nightly-packagemanagers.conf | 1 +
->   buildset-config.yocto-qa/nightly-qa-distro.conf       | 9 +--------
->   buildset-config.yocto-qa/nightly-qa-logrotate.conf    | 1 -
->   buildset-config.yocto-qa/nightly-qa-pam.conf          | 1 -
->   buildset-config.yocto-qa/nightly-qa-skeleton.conf     | 1 -
->   buildset-config.yocto-qa/nightly-qa-systemd.conf      | 1 -
->   buildset-config.yocto-qa/nightly-qa-targetbuilds.conf | 1 -
->   buildset-config.yocto-qa/nightly-rpm.conf             | 1 -
->   10 files changed, 2 insertions(+), 16 deletions(-)
->   delete mode 120000 buildset-config.yocto-qa/nightly-deb.conf
->   delete mode 120000 buildset-config.yocto-qa/nightly-ipk.conf
->   create mode 120000 buildset-config.yocto-qa/nightly-packagemanagers.conf
->   delete mode 120000 buildset-config.yocto-qa/nightly-qa-logrotate.conf
->   delete mode 120000 buildset-config.yocto-qa/nightly-qa-pam.conf
->   delete mode 120000 buildset-config.yocto-qa/nightly-qa-skeleton.conf
->   delete mode 120000 buildset-config.yocto-qa/nightly-qa-systemd.conf
->   delete mode 120000 buildset-config.yocto-qa/nightly-qa-targetbuilds.conf
->   delete mode 120000 buildset-config.yocto-qa/nightly-rpm.conf
-> 
-> diff --git a/buildset-config.yocto-qa/nightly-deb.conf b/buildset-config.yocto-qa/nightly-deb.conf
-> deleted file mode 120000
-> index 4ae053c..0000000
-> --- a/buildset-config.yocto-qa/nightly-deb.conf
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -../buildset-config.controller/nightly-deb.conf
-> \ No newline at end of file
-> diff --git a/buildset-config.yocto-qa/nightly-ipk.conf b/buildset-config.yocto-qa/nightly-ipk.conf
-> deleted file mode 120000
-> index 4f92036..0000000
-> --- a/buildset-config.yocto-qa/nightly-ipk.conf
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -../buildset-config.controller/nightly-ipk.conf
-> \ No newline at end of file
-> diff --git a/buildset-config.yocto-qa/nightly-packagemanagers.conf b/buildset-config.yocto-qa/nightly-packagemanagers.conf
-> new file mode 120000
-> index 0000000..8e69fc0
-> --- /dev/null
-> +++ b/buildset-config.yocto-qa/nightly-packagemanagers.conf
-> @@ -0,0 +1 @@
-> +../buildset-config.controller/nightly-packagemanagers.conf
-> \ No newline at end of file
-> diff --git a/buildset-config.yocto-qa/nightly-qa-distro.conf b/buildset-config.yocto-qa/nightly-qa-distro.conf
-> index d7c6c0d..0d02d15 100644
-> --- a/buildset-config.yocto-qa/nightly-qa-distro.conf
-> +++ b/buildset-config.yocto-qa/nightly-qa-distro.conf
-> @@ -35,9 +35,7 @@ steps: [{'SetDest':{}},
->                'schedulerNames': {
->                    'nightly-oe-selftest': {},
->                    'nightly-oecore': {},
-> -                 'nightly-rpm': {},
-> -                 'nightly-deb': {},
-> -                 'nightly-ipk': {},
-> +                 'nightly-packagemanagers': {},
->                    'nightly-world': {},
->                    'nightly-arm': {},
->                    'nightly-multilib': {},
-> @@ -45,12 +43,7 @@ steps: [{'SetDest':{}},
->                    'nightly-x86': {},
->                    'nightly-x32': {},
->                    'poky-tiny': {},
-> -                 'nightly-qa-systemd': {},
->                    'nightly-qa-extras': {},
-> -                 'nightly-qa-targetbuilds': {},
-> -                 'nightly-qa-skeleton': {},
-> -                 'nightly-qa-logrotate': {},
-> -                 'nightly-qa-pam': {},
->                    'buildtools': {}},
->                    'eclipse-plugin-neon': {},
->                'schedulerNames_nowait': {}}},]
-> diff --git a/buildset-config.yocto-qa/nightly-qa-logrotate.conf b/buildset-config.yocto-qa/nightly-qa-logrotate.conf
-> deleted file mode 120000
-> index 9cdb7b3..0000000
-> --- a/buildset-config.yocto-qa/nightly-qa-logrotate.conf
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -../buildset-config.controller/nightly-qa-logrotate.conf
-> \ No newline at end of file
-> diff --git a/buildset-config.yocto-qa/nightly-qa-pam.conf b/buildset-config.yocto-qa/nightly-qa-pam.conf
-> deleted file mode 120000
-> index fe05369..0000000
-> --- a/buildset-config.yocto-qa/nightly-qa-pam.conf
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -../buildset-config.controller/nightly-qa-pam.conf
-> \ No newline at end of file
-> diff --git a/buildset-config.yocto-qa/nightly-qa-skeleton.conf b/buildset-config.yocto-qa/nightly-qa-skeleton.conf
-> deleted file mode 120000
-> index 516b3fb..0000000
-> --- a/buildset-config.yocto-qa/nightly-qa-skeleton.conf
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -../buildset-config.controller/nightly-qa-skeleton.conf
-> \ No newline at end of file
-> diff --git a/buildset-config.yocto-qa/nightly-qa-systemd.conf b/buildset-config.yocto-qa/nightly-qa-systemd.conf
-> deleted file mode 120000
-> index bc4b7ed..0000000
-> --- a/buildset-config.yocto-qa/nightly-qa-systemd.conf
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -../buildset-config.controller/nightly-qa-systemd.conf
-> \ No newline at end of file
-> diff --git a/buildset-config.yocto-qa/nightly-qa-targetbuilds.conf b/buildset-config.yocto-qa/nightly-qa-targetbuilds.conf
-> deleted file mode 120000
-> index 316746a..0000000
-> --- a/buildset-config.yocto-qa/nightly-qa-targetbuilds.conf
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -../buildset-config.controller/nightly-qa-targetbuilds.conf
-> \ No newline at end of file
-> diff --git a/buildset-config.yocto-qa/nightly-rpm.conf b/buildset-config.yocto-qa/nightly-rpm.conf
-> deleted file mode 120000
-> index 7051b63..0000000
-> --- a/buildset-config.yocto-qa/nightly-rpm.conf
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -../buildset-config.controller/nightly-rpm.conf
-> \ No newline at end of file
-> 
+--=20
+Paul Barker
+Tog=C3=A1n Labs Ltd
 
