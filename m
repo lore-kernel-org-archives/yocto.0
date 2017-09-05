@@ -1,53 +1,38 @@
-Return-Path: <pderocco@ix.netcom.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4165E00BB7; Tue,  5 Sep 2017 13:19:04 -0700 (PDT)
+	id 76581E00C09; Tue,  5 Sep 2017 15:19:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.86.89.69 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.168.135.167 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from elasmtp-mealy.atl.sa.earthlink.net
-	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D619E00B77
-	for <yocto@yoctoproject.org>; Tue,  5 Sep 2017 13:19:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
-	s=dk12062016; t=1504642744; bh=R2C71gI36rkh3FuON+KMR7WS0JZOaJEexJN+
-	vRlStYM=; h=Received:From:To:Subject:Date:Message-ID:MIME-Version:
-	Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:
-	X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=kyw91cExWiQ/9j5uT0ABC8+
-	MqqC9L1ZBHXzegUk9W+08oDxjxXTP3XgJ3ArVRNrE7/z4B/xkeM+/aIQ99KWQf/ig9Z
-	y15iHCZEMvEAHh5IKqunq2iuVnV1PafE/eZINvA0U8+n4Sg4xf+YcXQXVds94yMHw5M
-	vXGYA7xmYc/KckiZed6wVnxL4CmYtHqYOM3YqNWdsku8tBfDs4VApfM/IgZWfNt0fkM
-	vzQGEQzEodCRiqJm0O1HRsoYwbZMqYrg4QfzFSwRACEngHHV0hC9QFbz/r0QhXopDY0
-	ooA1/jz1HT8/AaYX9RP3n3xJxHYVEao2df0gQp3jjGXzRUbp+KQ==
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk12062016; d=ix.netcom.com;
-	b=l2InqhhVd9p9Q4UI2cuwMbH7kCe/mt6DI2wgsBBpxPwB+ziOSqspxoXpcRJJpt5xT9l1k7MQtQFFmyodrago3a/SebVdrMI4lmpXggpzlMvKxSKp8XrWubKUEFQ5LcFG/Axb+dc0PcYMjYRWzjkbFAAns8RK7SX3pyKxN5ukwBeetvUrnwYZV4Oazz8bQu6fM5TQWaNpQ4OUb6EeT3HkiSz2l44bG5WPWu2oEmU1L6V8hx18xblJSzXpEVFQalm9dA6SothlvX0ucmx8i0BUCkUd3Hu5LV8lTpJT+VvRM9H3bRBlP8NPZEZh2BG74bvmnq9BaWyXDcSSyTScSWLCKQ==;
-	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [108.228.233.89] (helo=PAULD)
-	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4)
-	(envelope-from <pderocco@ix.netcom.com>) id 1dpKJK-00079H-Uh
-	for yocto@yoctoproject.org; Tue, 05 Sep 2017 16:19:03 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 5 Sep 2017 13:19:04 -0700
-Message-ID: <F98BA99E4B0943A0A53066A561848FB5@PAULD>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F13A5E009F5
+	for <yocto@yoctoproject.org>; Tue,  5 Sep 2017 15:19:25 -0700 (PDT)
+Received: (qmail 30581 invoked by uid 1003); 5 Sep 2017 22:19:25 -0000
+Received: from unknown (HELO ?192.168.11.142?)
+	(philip@opensdr.com@108.44.111.57)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	5 Sep 2017 22:19:25 -0000
+To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+References: <9ADD3FDE8B189B4AA2F8A3C711F8155E98CBD645@fmsmsx111.amr.corp.intel.com>
+From: Philip Balister <philip@balister.org>
+Message-ID: <433794e5-211f-902a-5e93-c2a75b0ac419@balister.org>
+Date: Tue, 5 Sep 2017 18:19:16 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: AdMmhDgne9EoQYucS8GHXTgaCAJTeg==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.23651
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688b36f13f4b0a624f4b8903753fc4a9ca1350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 108.228.233.89
-Subject: Build RPi without wireless?
+In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155E98CBD645@fmsmsx111.amr.corp.intel.com>
+Subject: =?UTF-8?B?UmU6IFlvY3RvIFByb2plY3QgU3RhdHVzIFdXMzXigJkxNw==?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,18 +44,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Sep 2017 20:19:04 -0000
-Content-Type: text/plain;
-	charset="iso-8859-1"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 05 Sep 2017 22:19:27 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-MW
+Content-Transfer-Encoding: 8bit
 
-How do I build a Raspberry Pi image without WiFi or Bluetooth, or any of
-the related utilities? There seem to be lots of packages involved in this,
-and I can't figure out what's pulling them in in the first place.
+And do not forget the OpenEmbedded Developer Meeting in Prague before ELCE:
 
--- 
+https://www.openembedded.org/wiki/OEDEM_2017
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com
+Philip
 
+On 08/28/2017 10:42 AM, Jolley, Stephen K wrote:
+> Current Dev Position: YP 2.4 M3
+> 
+> Next Deadline: YP 2.4 M3 (In QA)
+> 
+> 
+> SWAT team rotation: Paul -> Todor on Aug. 25, 2017.
+> 
+> SWAT team rotation: Todor -> Tracy on Aug. 18, 2017.
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+> 
+> 
+> Key Status/Updates:
+> 
+> ·        We’ve reached feature freeze for 2.4 and the M3 rc1 build is in QA.  See: https://wiki.yoctoproject.org/wiki/2.4_QA_Status
+> 
+> ·        Some things did not make 2.4. In particular, the python manifest rework didn’t, nor did the multiple kernels work or the switch to pkgconf by default. These patchsets were too late in the cycle and potentially caused too many issues. I’ve started queueing some things on master-next-2.5 in the meantime.
+> 
+> ·        We’ve continued to struggle with various autobuilder reported failures although current master appears to be working better than we’ve had things for a while.
+> 
+> ·        Some fixes were merged for the bitbake server reconnection issues and this should remove the traceback many people were seeing and generally clean up some of the behavior for reconnections.
+> 
+> ·        There were some staging.bbclass fixes that have recently merged which allow the system to cope much better with changing things like the pkgconfig provider.
+> 
+> 
+> Planned upcoming dot releases:
+> 
+> YP 2.2.2 Cut off June 5, 2017 - Not ready to do an rc2 yet.
+> 
+> YP 2.2.2 Release by June, 16 2017
+> 
+> YP 2.3.2 Cut off Sept. 1, 2017
+> 
+> YP 2.3.2 Release by Sept. 15, 2017
+> 
+> 
+> Key YP 2.4 Dates are:
+> 
+> YP 2.4 M3 Cut off is Aug. 21, 2017 (In QA)
+> 
+> YP 2.4 M3 Release by Sept. 1, 2017
+> 
+> YP 2.4 M4 (Final) Cut off is Sept. 18, 2017
+> 
+> YP 2.4 M4 (Final) Release by Oct. 20, 2017
+> 
+> 
+> Tracking Metrics:
+> 
+>             WDD 2504 (last week 2476)
+> 
+> (https://wiki.yoctoproject.org/charts/combo.html)
+> 
+> 
+> Key Status Links for YP:
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule
+> 
+> https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features
+> 
+> 
+> [If anyone has suggestions for other information you’d like to see on this weekly status update, let us know!]
+> 
+> 
+> Thanks,
+> 
+> Stephen K. Jolley
+> Yocto Project Program Manager
+> INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+> •   Work Telephone:        (503) 712-0534
+> •    Cell:               (208) 244-4460
+> • Email:                          stephen.k.jolley@intel.com
+> 
+> 
+> 
+> 
 
