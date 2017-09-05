@@ -1,41 +1,41 @@
 Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8983E00C89; Mon,  4 Sep 2017 20:51:27 -0700 (PDT)
+	id B4D99E00CFE; Mon,  4 Sep 2017 20:52:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0872FE00349
-	for <yocto@yoctoproject.org>; Mon,  4 Sep 2017 20:51:26 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	04 Sep 2017 20:51:26 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F303E00CFE
+	for <yocto@yoctoproject.org>; Mon,  4 Sep 2017 20:52:00 -0700 (PDT)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	04 Sep 2017 20:51:53 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.41,478,1498546800"; 
-	d="scan'208,217";a="145479793"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
-	by orsmga005.jf.intel.com with ESMTP; 04 Sep 2017 20:51:25 -0700
-Received: from fmsmsx154.amr.corp.intel.com (10.18.116.70) by
-	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 4 Sep 2017 20:51:17 -0700
+	d="scan'208,217";a="147479197"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+	by fmsmga005.fm.intel.com with ESMTP; 04 Sep 2017 20:51:53 -0700
+Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
+	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 4 Sep 2017 20:51:53 -0700
 Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
-	FMSMSX154.amr.corp.intel.com ([169.254.6.227]) with mapi id
-	14.03.0319.002; Mon, 4 Sep 2017 20:51:16 -0700
+	fmsmsx117.amr.corp.intel.com ([169.254.3.51]) with mapi id
+	14.03.0319.002; Mon, 4 Sep 2017 20:51:52 -0700
 From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, Aug
-	1, 2017 8:00 AM US Pacific Time
-Thread-Index: AdMKFSxRHySz7T/qQoqlaNGiqUzAbA==
-Date: Tue, 5 Sep 2017 03:51:15 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64CE@fmsmsx111.amr.corp.intel.com>
+Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday,
+	Sept. 5, 2017 8:00 AM US Pacific Time
+Thread-Index: AdMl+k0FHiWsOAbxQ0qN1wSDPHWIdw==
+Date: Tue, 5 Sep 2017 03:51:52 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64E1@fmsmsx111.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-Auto-Response-Suppress: DR, OOF, AutoReply
@@ -44,7 +44,7 @@ x-originating-ip: [10.1.200.106]
 x-ctpclassification: CTP_IC
 x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiM2IwM2VhNTEtZTI4My00ZDQwLWE1ZjMtYjdkMjIwOGQxMjg0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImxrNFA4N0VlS1dIRVwvcWN5VzRZK2lYN2VGaTd3OGJFK0RteTUzSmIxMXY0PSJ9
 MIME-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, Aug 1, 2017 8:00 AM US Pacific Time
+Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, Sept. 5, 2017 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,12 +56,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Sep 2017 03:51:27 -0000
+X-List-Received-Date: Tue, 05 Sep 2017 03:52:08 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64CEfmsmsx111amrcor_"
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64E1fmsmsx111amrcor_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64CEfmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64E1fmsmsx111amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -121,7 +121,7 @@ INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
 * Email:                            stephen.k.jolley@intel.com<mailto:steph=
 en.k.jolley@intel.com>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64CEfmsmsx111amrcor_
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64E1fmsmsx111amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -330,4 +330,4 @@ an></p>
 </body>
 </html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64CEfmsmsx111amrcor_--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC64E1fmsmsx111amrcor_--
