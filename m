@@ -1,69 +1,49 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53E36E00C2B; Tue,  5 Sep 2017 08:21:01 -0700 (PDT)
+	id 24C92E00C2B; Tue,  5 Sep 2017 08:31:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.194 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9694BE009F5
-	for <yocto@yoctoproject.org>; Tue,  5 Sep 2017 08:21:00 -0700 (PDT)
-Received: by mail-pf0-f194.google.com with SMTP id m1so1830115pfk.0
-	for <yocto@yoctoproject.org>; Tue, 05 Sep 2017 08:21:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=dWDu25S7fnefzKw0N+/heRFGR0Eap6yVaWccOQhQVlQ=;
-	b=o+z/zxHCqcFUduRz/A8xp+dw4QBtaa9ly+rL9432TFfxMKKTdbGCFeNJxg848Mp3so
-	NyzDXWsf8YnB8eab1G/Nw5dMVHvN0t/xObTznVuNpeHrX7zvn+gdEdq5y3+KheQu6PjK
-	SqIWaPciaGHd+my33mS1EvRispjjQPTuq485t8vWj2VJAN8GmuG0v/hMbbdlDkw/Vpaj
-	b7aZL7NA8MF/53GGCdKB6neFERR0WuZSPDwv/PkeDAQuMvxN4jig2qjmGiNySVhrnS1a
-	yu1FIQmlXxGHssTuK+JMCemH2ykCptBspliWMNay3N2UBYhqwL4h2QGZ4J5lIQDit4lL
-	EoBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=dWDu25S7fnefzKw0N+/heRFGR0Eap6yVaWccOQhQVlQ=;
-	b=c28dy4PC3o7sGUbGfkUU3oW5ZnB699KHmvVD/045lpLoIxLWFjMOlyNb9QppA1hZlm
-	DvL32TLrxJq7GPY/oh1mNHAmv6yCMkMEnnaOSW8eh9mhfIcE3HBPCcp5CKaq8wKMwHNE
-	wwoX+6cYmjhobBqbTlj+5TA/cnefzW4YLO4rSWUYV7QY59Mu4fOQ/8gXSsvszsm7Zi2D
-	TCt3yxeMVMddoByQQnLRQIFEU2en4Brx7vfH3LrhRKrAw6WvXLFItU8/vuhhU2gfH+DR
-	zfCqdNcb5e8OlMMWzwK7Fu3hAcyu6HbYh5hIVYYdQixYnOWV2iufKiOHQk1KaXd62q9E
-	9RGg==
-X-Gm-Message-State: AHPjjUgDHG12+OUcYMR0UeB7ixYnW9q5V8skxpDbXEDFKK0GRhzlhM7B
-	NB5HsLInV4Cqwuqn
-X-Google-Smtp-Source: ADKCNb4ew2XBDRExORtWwq1Hjq/I2s1CL0Xa9X3nn/mA1zvy0atK5/+0hTPZZ1HXb2leJwwbutjF9g==
-X-Received: by 10.99.165.88 with SMTP id r24mr4369736pgu.331.1504624859865;
-	Tue, 05 Sep 2017 08:20:59 -0700 (PDT)
-Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net
-	([2601:202:4001:9ea0:58b1:c8ad:be98:9713])
-	by smtp.gmail.com with ESMTPSA id
-	z24sm1848992pfk.118.2017.09.05.08.20.59
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 05 Sep 2017 08:20:59 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: akuster@mvista.com,
-	yocto@yoctoproject.org
-Date: Tue,  5 Sep 2017 08:20:58 -0700
-Message-Id: <1504624858-28252-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH] nmap: update to 7.60
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CCBCE00C1C
+	for <yocto@yoctoproject.org>; Tue,  5 Sep 2017 08:31:45 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	05 Sep 2017 08:31:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.41,480,1498546800"; 
+	d="scan'208,217";a="1214979942"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+	by fmsmga002.fm.intel.com with ESMTP; 05 Sep 2017 08:31:35 -0700
+Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
+	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Tue, 5 Sep 2017 08:31:34 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
+	FMSMSX113.amr.corp.intel.com ([169.254.13.198]) with mapi id
+	14.03.0319.002; Tue, 5 Sep 2017 08:31:33 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting
+Thread-Index: AdKtWbwMokvHRUUrQnmf8qT10kd6zw==
+Date: Tue, 5 Sep 2017 15:31:33 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E98CC6C1B@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmRjYjc3YWYtODRjYS00ZTkxLWFhYjAtMGFiZTQ4Mzc5NTIzIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IjI0eVdhZUlKZm5kSXlKRERVM0lCNDZ5bDJLMjVIVFNcLzBqVHFsK2V2MEJzPSJ9
+MIME-Version: 1.0
+Subject: Minutes: Yocto Project Technical Team Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,54 +55,152 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Sep 2017 15:21:01 -0000
+X-List-Received-Date: Tue, 05 Sep 2017 15:31:46 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC6C1Bfmsmsx111amrcor_"
 
-LIC_CHKSUM_FILES changed do to yr update.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC6C1Bfmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-add a few more PACKCONFIG
+Attendees: Richard, Joshua L., Ross, Saul, Trevor, Stephano, Stephen, Leo, =
+Joshua W., Michael, Bill Mills, Mark,
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/nmap/{nmap_7.50.bb => nmap_7.60.bb} | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
- rename recipes-security/nmap/{nmap_7.50.bb => nmap_7.60.bb} (84%)
+Agenda:
 
-diff --git a/recipes-security/nmap/nmap_7.50.bb b/recipes-security/nmap/nmap_7.60.bb
-similarity index 84%
-rename from recipes-security/nmap/nmap_7.50.bb
-rename to recipes-security/nmap/nmap_7.60.bb
-index 30ae06f..a6616eb 100644
---- a/recipes-security/nmap/nmap_7.50.bb
-+++ b/recipes-security/nmap/nmap_7.60.bb
-@@ -3,15 +3,15 @@ DESCRIPTION = "Nmap ("Network Mapper") is a free and open source (license) utili
- SECTION = "security"
- LICENSE = "GPL-2.0"
- 
--LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=87c6956e28c3603a0a1dda11bcdc227a"
-+LIC_FILES_CHKSUM = "file://COPYING;beginline=7;endline=12;md5=700c690f4ca6b1754f3f1db8645e42d9"
- 
- SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2 \
-            file://nmap-redefine-the-python-library-dir.patch \
-            file://nmap-replace-shtool-mkdir-with-coreutils-mkdir-command.patch \
- "
- 
--SRC_URI[md5sum] = "435c7e095bdd4565e0f69c41743a45be"
--SRC_URI[sha256sum] = "e9a96a8e02bfc9e80c617932acc61112c23089521ee7d6b1502ecf8e3b1674b2"
-+SRC_URI[md5sum] = "4e454266559ddf2c4e2109866c62560c"
-+SRC_URI[sha256sum] = "a8796ecc4fa6c38aad6139d9515dc8113023a82e9d787e5a5fb5fa1b05516f21"
- 
- inherit autotools-brokensep pkgconfig pythonnative distro_features_check
- 
-@@ -21,6 +21,8 @@ PACKAGECONFIG += " ${@bb.utils.contains('IMAGE_FEATURES', 'x11-base', 'zenmap',
- PACKAGECONFIG[pcap] = "--with-pcap=linux, --without-pcap, libpcap, libpcap"
- PACKAGECONFIG[pcre] = "--with-libpcre=${STAGING_LIBDIR}/.., --with-libpcre=included, libpre"
- PACKAGECONFIG[ssl] = "--with-openssl=${STAGING_LIBDIR}/.., --without-openssl, openssl, openssl"
-+PACKAGECONFIG[ssh2] = "--with-openssh2=${STAGING_LIBDIR}/.., --without-openssh2, libssh2, libssh2"
-+PACKAGECONFIG[libz] = "--with-libz=${STAGING_LIBDIR}/.., --without-libz, zlib, zlib"
- 
- #disable/enable packages
- PACKAGECONFIG[nping] = ",--without-nping,"
--- 
-2.7.4
+* Opens collection - 5 min (Stephen)
+* Yocto Project status - 5 min (Stephen/team)
+YP 2.4 M3 released last Friday.
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule
+https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features
+
+* Opens - 10 min
+
+* Team Sharing - 10 min
+*       YP 2.4 M4 is in process, we are feature frozen. Richard discussed t=
+he features which were accepted into YP 2.4 and those which will push to YP=
+ 2.5. Discussed issues we are having with Autobuilder.
+*       We discussed Pseudo issues.  We have lost ongoing support for Pseud=
+o and are struggling with issues.
+*       YP 2.2.2 is now almost ready to be tested, most all the issues have=
+ been fixed. This should go in soon.
+*       YP 2.3.2 is also being prepared to be tested.
+*       Build times have improved with the new Autobuilders.
+*       Discussed the need to test layers with YP Compatible testing.
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:     (503) 712-0534
+*    Cell:              (208) 244-4460
+* Email:                stephen.k.jolley@intel.com
 
 
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC6C1Bfmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12pt;"><=
+a name=3D"_MailEndCompose"></a>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Att=
+endees: Richard, Joshua L., Ross, Saul, Trevor, Stephano, Stephen, Leo, Jos=
+hua W., Michael, Bill Mills, Mark,</span></font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Age=
+nda:</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">&nb=
+sp;</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* O=
+pens collection - 5 min (Stephen)</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* Y=
+octo Project status - 5 min (Stephen/team)</span></font></div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
+2.4 M3 released last Friday.</span></font></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Statu=
+s"><font face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-si=
+ze:11pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status</=
+u></span></font></a></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule"><fon=
+t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
+;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule</u></span></fon=
+t></a></div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features"><fon=
+t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
+;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features</u></span></fon=
+t></a><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+</span></font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* O=
+pens - 10 min </span></font></div>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* T=
+eam Sharing - 10 min</span></font></div>
+<ul style=3D"margin:0;padding-left:36pt;">
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<li>YP 2.4 M4 is in process, we are feature frozen. Richard discussed the f=
+eatures which were accepted into YP 2.4 and those which will push to YP 2.5=
+. Discussed issues we are having with Autobuilder. </li><li>We discussed Ps=
+eudo issues.  We have lost ongoing support for Pseudo and are struggling wi=
+th issues.</li><li>YP 2.2.2 is now almost ready to be tested, most all the =
+issues have been fixed. This should go in soon.</li><li>YP 2.3.2 is also be=
+ing prepared to be tested.</li><li>Build times have improved with the new A=
+utobuilders.</li><li>Discussed the need to test layers with YP Compatible t=
+esting. </li></span></font>
+</ul>
+<div>&nbsp;</div>
+<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Tha=
+nks,</span></font></div>
+<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
+t-size:11pt;">&nbsp;</span></font></div>
+<div><font size=3D"4" color=3D"purple"><span style=3D"font-size:16pt;"><b><=
+i>Stephen K. Jolley</i></b></span></font></div>
+<div><font face=3D"Courier New" size=3D"1" color=3D"blue"><span style=3D"fo=
+nt-size:8pt;"><b>Yocto Project Program Manager</b></span></font></div>
+<div><font face=3D"Courier New" size=3D"2" color=3D"fuchsia"><span style=3D=
+"font-size:10pt;"><b>INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, O=
+R 97124 </b></span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;"><font face=3D"Wingdin=
+gs">(</font><font face=3D"MS Sans Serif" color=3D"teal"> </font><font face=
+=3D"MS Sans Serif" size=3D"1" color=3D"teal"><span style=3D"font-size:8pt;"=
+>&nbsp; </span></font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal=
+"><span style=3D"font-size:8pt;"><b>Work
+Telephone</b></span></font><font face=3D"MS Sans Serif" color=3D"teal">:&nb=
+sp;&nbsp;&nbsp;&nbsp; </font><font face=3D"MS Sans Serif" size=3D"2" color=
+=3D"#1F497D"><span style=3D"font-size:9pt;">(503) 712-0534</span></font></s=
+pan></font></div>
+<div><font size=3D"2"><span style=3D"font-size:9pt;"><font face=3D"Wingding=
+s">(</font><font face=3D"MS Sans Serif" color=3D"teal">&nbsp;&nbsp;&nbsp; <=
+/font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal"><span style=3D=
+"font-size:8pt;"><b>Cell</b></span></font><font face=3D"MS Sans Serif" colo=
+r=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+</font><font face=3D"MS Sans Serif" color=3D"#1F497D">(208) 244-4460</font>=
+</span></font></div>
+<div><font size=3D"2" color=3D"#1F497D"><span style=3D"font-size:9pt;"><fon=
+t face=3D"Wingdings">* </font><font face=3D"Comic Sans MS" size=3D"1" color=
+=3D"teal"><span style=3D"font-size:8pt;"><b>Email</b></span></font><font fa=
+ce=3D"MS Sans Serif" color=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font face=3D"MS Sans Serif" color=3D"blue"><u>stephen.k.jolley@inte=
+l.com</u></font></span></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+</span></font>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CC6C1Bfmsmsx111amrcor_--
