@@ -1,31 +1,32 @@
 Return-Path: <jose.a.lamego@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46B68E00A9C; Wed,  6 Sep 2017 08:32:00 -0700 (PDT)
+	id 027A8E00A9C; Wed,  6 Sep 2017 08:49:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0E23E0091D
-	for <yocto@yoctoproject.org>; Wed,  6 Sep 2017 08:31:59 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga105.jf.intel.com with ESMTP; 06 Sep 2017 08:31:58 -0700
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B9D8E0091D
+	for <yocto@yoctoproject.org>; Wed,  6 Sep 2017 08:49:35 -0700 (PDT)
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Sep 2017 08:49:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.41,484,1498546800"; d="scan'208";a="1192194303"
+X-IronPort-AV: E=Sophos;i="5.41,484,1498546800"; d="scan'208";a="308640748"
 Received: from jalamego-mobl3.zpn.intel.com ([10.219.128.130])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Sep 2017 08:31:58 -0700
+	by fmsmga004.fm.intel.com with ESMTP; 06 Sep 2017 08:49:34 -0700
 From: Jose Lamego <jose.a.lamego@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  6 Sep 2017 10:31:55 -0500
-Message-Id: <1504711915-10280-1-git-send-email-jose.a.lamego@linux.intel.com>
+Date: Wed,  6 Sep 2017 10:49:19 -0500
+Message-Id: <1504712959-10724-1-git-send-email-jose.a.lamego@linux.intel.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [patchwork][PATCH] parsemail: keep branch name in subject for series
+Subject: [patchwork][PATCH] htdocs/css/style.css: fix select style in FF and IE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,87 +38,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Sep 2017 15:32:00 -0000
+X-List-Received-Date: Wed, 06 Sep 2017 15:49:36 -0000
 
-patches with different branch names included in their name are
-wrongly appended as succesive revisions of the same patch in a
-series. This is due to the patches being assigned to the same
-series after their prefixes got removed during series naming/search.
+Series view displays the "Revision" select element not in
+line with the general patchwork style/design when viewed
+using Firefox or Internet Explorer browsers due to a known
+incompatibility of this browsers with Boostrap library
+(for example, an arrow head inside a button is displayed next
+to the "Revision" select element when using FF).
 
-This change looks for an updated release name list from the Yocto
-wiki and keeps the release name in the series naming/search,
-effectively creating individual series for patches targeted to
-diferent releases.
+This change hides the out-of-style items by using browser-specific
+css properties "moz-appearance" and "ms-expand".
 
-[YOCTO #10716]
+[YOCTO #11886]
 
 Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
 ---
- patchwork/bin/parsemail.py | 28 ++++++++++++++++++++++++++++
- patchwork/models.py        |  5 ++++-
- 2 files changed, 32 insertions(+), 1 deletion(-)
+ htdocs/css/style.css | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/patchwork/bin/parsemail.py b/patchwork/bin/parsemail.py
-index 1d27f24..ed081b5 100755
---- a/patchwork/bin/parsemail.py
-+++ b/patchwork/bin/parsemail.py
-@@ -678,6 +678,34 @@ prefixes_re = re.compile(r'^\[[^\]]*\]\s*')
- 
- 
- def strip_prefixes(subject):
-+    # get last releases names from Yocto wiki page to keep them
-+    # as part of the series name if present, since such patches
-+    # are branch-specific
-+    try:
-+        from lxml import html
-+        import requests
+diff --git a/htdocs/css/style.css b/htdocs/css/style.css
+index 52e2422..633f13e 100644
+--- a/htdocs/css/style.css
++++ b/htdocs/css/style.css
+@@ -549,3 +549,12 @@ pre.test-result {
+         margin: 0px;
+ 	border: 0px;
+ }
 +
-+        page = requests.get(
-+            'https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance')
-+        tree = html.fromstring(page.content)
-+        branches = tree.xpath('//table[@class="wikitable"]//td[count(\
-+//th[contains(., "Branch name")]/preceding-sibling::th)+1]//text()')
-+        # uncomment the following line to keep only last two branch names
-+        # branches=branches[0:2]
-+        branches[:] = [branch.replace('\n', '') for branch in branches]
-+        subject = re.sub((r',?\d+/\d+\]'), ']', subject)
-+        for branch in branches:
-+            if "[" + branch + "]" in subject:
-+                prefixes_re = re.compile(r'^\s*\[[^\]]*\]\s*')
-+                branch_re = r"(?<=\[" + branch + "\])\s*(.*)"
-+                branch_search = re.search(branch_re, subject)
-+                if branch_search:
-+                    return "[" + branch + "] " + prefixes_re.sub(
-+                        '', branch_search.group(0))
-+    except ImportError:
-+        pass
-+
-+    prefixes_re = re.compile(r'^\[[^\]]*\]\s*')
-     return prefixes_re.sub('', subject)
- 
- 
-diff --git a/patchwork/models.py b/patchwork/models.py
-index 7dd8120..d08e189 100644
---- a/patchwork/models.py
-+++ b/patchwork/models.py
-@@ -1047,13 +1047,16 @@ def _on_revision_complete(sender, revision, **kwargs):
-     if series.name == SERIES_DEFAULT_NAME:
-         name = series.latest_revision().ordered_patches()[0].name
-         n = re.compile(r'((\[.*\]\s?)*\[.*\w+.*'
--                       '(?P<comb_pref>\W+\d+\/\d+)+\s*\]\s?)'
-+                       '(?P<comb_pref>(\[|,)+\d+\/\d+\s*)\]\s?)'
-                        '|(?P<ind_pref>\[\d+\/\d+\]\s?)')
-         if n.match(name):
-             name = re.sub(
-                 n.match(name).group("comb_pref") or
-                 re.escape(n.match(name).group("ind_pref")),
-                 '', name)
-+        re.sub(r'\[\]', '', name)
-+        re.sub(r'\[\[+', '\[', name)
-+        re.sub(r'\]\]+', '\]', name)
-         c = len(series.latest_revision().ordered_patches())
-         # For one-patch series (1/1) without cover letter
-         if c == 1:
++#revs-list{
++        -moz-appearance: none;
++        text-indent: 0.01px;
++        text-overflow: ''
++}
++#revs-list::-ms-expand{
++        display: none;
++}
 -- 
 2.7.4
 
