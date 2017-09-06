@@ -1,68 +1,32 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <fzhang@sgl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1B49FE00BB7; Wed,  6 Sep 2017 10:53:24 -0700 (PDT)
+	id 0C8F9E00CAA; Wed,  6 Sep 2017 12:20:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.195 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.195 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f195.google.com (mail-wr0-f195.google.com
-	[209.85.128.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7B17E00A38
-	for <yocto@yoctoproject.org>; Wed,  6 Sep 2017 10:53:22 -0700 (PDT)
-Received: by mail-wr0-f195.google.com with SMTP id g50so914448wra.3
-	for <yocto@yoctoproject.org>; Wed, 06 Sep 2017 10:53:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=pDQvvFxR+tFRMJglXmZ7LspRIyQXZFutx3RmwT/nfEk=;
-	b=fTydpNFwND6R7OwmLW1gNFo5Z0SxD82Lhf19nznn62XEaV9skJsP5vCXWbVbAho5Oh
-	uQK4eI9fnemYbWX9DDJs7hj2wvdrJh7Zizcf54vtDrbQl3wS5WnIZpzeVgONaJofo08s
-	3dqbuQwhoXxsHndxk9V4ogm49slxJ7VcfwfAiR/36zk4m7vDb5gZ4eRn1QLQ2UqLZa8f
-	7I9N7ryX6l0WNpUDU+Skdfw1o0jirLSsKBXHB+aMny2wuXqcsCD9/YNtRIXW6iOJ2zjp
-	HUW8NwxqTG6KViohaIlAnDqpQzKWZINX32IUIyEN1qsWO4y0ramJ3wdDLx8WR7ulOCHZ
-	BVew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=pDQvvFxR+tFRMJglXmZ7LspRIyQXZFutx3RmwT/nfEk=;
-	b=oTBrGRVZvT859zNxmTIOtr9c+j3+eSi5dO3sQ78+EBtYH0NqIjClZIbGW0ZE+uu1QM
-	MKQo4X+ijBAT6YIfsJ7WnzMw3uruM0OOQvElGa0Aau2HA6DunuvnuW54+s67E2iTlbrU
-	f7mB6Bm33vE9x1gSET5/HsHqbffs6Bw6SsOLQ1LenhjUuNdVQ/8mqyZvq+HXiTiEFPjk
-	6eZ9sImeze9aC/tJDRjQNvIHKdPpxYF5rOPLLbsMNLyEswCQGaR3rSj77UFOC1KB42dd
-	rzrAa+WQS8m/wBDpXPKHxKVsYblqaeeDIdwp33yU20LBJuthVVSkyv0eOqJIdSWKA5Zn
-	2LAg==
-X-Gm-Message-State: AHPjjUiia3r5KFUn5qxkqcAP7AMBS652/gcezJCaIIUHSewprye008UD
-	et4RXcxIArNC0z5UU209cBlg0+fg73j6
-X-Google-Smtp-Source: ADKCNb5ivFGugXGSXuLDs978i0rzBUa+ZuTNUoWOXqftEOW57zqI14E5ekV4jOOy3YvUdnSccKnqYfUdB3bpowUuOLE=
-X-Received: by 10.223.172.196 with SMTP id o62mr2231558wrc.305.1504720401459; 
-	Wed, 06 Sep 2017 10:53:21 -0700 (PDT)
+Received: from webmail.sgl.com (mail1.sgl.com [209.87.231.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8075CE00A9B
+	for <yocto@yoctoproject.org>; Wed,  6 Sep 2017 12:20:31 -0700 (PDT)
+Received: from [10.1.20.15] (unknown [10.1.20.15])
+	by webmail.sgl.com (Postfix) with ESMTP id 25F1F1D1F20EA;
+	Wed,  6 Sep 2017 15:18:46 -0400 (EDT)
+To: Vincent Prince <vincent.prince.fr@gmail.com>,
+	yocto@yoctoproject.org
+References: <59dff5cc-490c-f100-bdab-3e6dc552a496@sgl.com>
+	<CAB2nKc9mst-yWiCWY4pn-o=WztcM2-Mc7jqg_-7gt0ubtXfBtQ@mail.gmail.com>
+From: Fan Zhang <fzhang@sgl.com>
+Message-ID: <12bb334d-b90b-7dcb-d460-35c2da44a42f@sgl.com>
+Date: Wed, 6 Sep 2017 15:20:30 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-Received: by 10.28.178.206 with HTTP; Wed, 6 Sep 2017 10:52:40 -0700 (PDT)
-X-Originating-IP: [109.150.130.236]
-In-Reply-To: <CAPyrkgyu0G4WWbjTgz_N4ErrpA9QsCVvPmJPE1hP4J56h5kTEA@mail.gmail.com>
-References: <1503576301-18920-1-git-send-email-mickey.happygolucky@gmail.com>
-	<1504650859-5194-1-git-send-email-mickey.happygolucky@gmail.com>
-	<CAPyrkgyu0G4WWbjTgz_N4ErrpA9QsCVvPmJPE1hP4J56h5kTEA@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 6 Sep 2017 18:52:40 +0100
-Message-ID: <CAK18fxGP6bRKsHZe2MP4g_zX34rTkp-Ao1b2KS2Lr2d-5-JCKw@mail.gmail.com>
-To: Paul Barker <pbarker@toganlabs.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH v2 1/2] bluez5: add functions/variables to enabling bluetooth on another raspberrypi
+In-Reply-To: <CAB2nKc9mst-yWiCWY4pn-o=WztcM2-Mc7jqg_-7gt0ubtXfBtQ@mail.gmail.com>
+Subject: Re: Building out of tree module into kernel image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,201 +38,403 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Sep 2017 17:53:24 -0000
-Content-Type: multipart/alternative; boundary="001a113c5f92040d260558890513"
+X-List-Received-Date: Wed, 06 Sep 2017 19:20:34 -0000
+X-Groupsio-MsgNum: 37705
+Content-Type: multipart/mixed; boundary="------------D97E1B35BEC54F384E91140B"
+Content-Language: en-US
 
---001a113c5f92040d260558890513
-Content-Type: text/plain; charset="UTF-8"
+--------------D97E1B35BEC54F384E91140B
+Content-Type: multipart/alternative;
+ boundary="------------39F68A945E0C0883503E06CB"
 
-On Wed, Sep 6, 2017 at 10:18 AM, Paul Barker <pbarker@toganlabs.com> wrote:
+--------------39F68A945E0C0883503E06CB
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> On Tue, Sep 5, 2017 at 11:34 PM, Yusuke Mitsuki
-> <mickey.happygolucky@gmail.com> wrote:
-> > functions/variables in this bbappend implemented for only raspberrypi3.
-> > But these must be able to used to enabling bluetooth on another
-> raspberrypi that has bluetooth feature such as raspberrypi0-wifi.
-> >
-> > The simple solution is a duplicating these but it is not good ideas for
-> maintainance.
-> >
-> > Add functions/variables follows to simplify to enabling bluetooth on
-> another raspberrypi that has bluetooth.
-> > - BCM_BT_SOURCES
-> > - enable_bcm_bluetooth()
-> > - BCM_BT_FIRMWARE
-> > - BCM_BT_SERVICE
-> >
-> > Signed-off-by: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
-> > ---
-> >  recipes-connectivity/bluez5/bluez5_%.bbappend | 18 ++++++++++++++----
-> >  1 file changed, 14 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/recipes-connectivity/bluez5/bluez5_%.bbappend
-> b/recipes-connectivity/bluez5/bluez5_%.bbappend
-> > index 956d776..b2fbf22 100644
-> > --- a/recipes-connectivity/bluez5/bluez5_%.bbappend
-> > +++ b/recipes-connectivity/bluez5/bluez5_%.bbappend
-> > @@ -1,6 +1,6 @@
-> >  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> >
-> > -SRC_URI_append_raspberrypi3 = " \
-> > +BCM_BT_SOURCES =  " \
-> >      file://BCM43430A1.hcd \
-> >      file://0001-bcm43xx-Add-bcm43xx-3wire-variant.patch \
-> >      file://0002-bcm43xx-The-UART-speed-must-be-reset-after-the-firmw.patch
-> \
-> > @@ -9,7 +9,7 @@ SRC_URI_append_raspberrypi3 = " \
-> >      file://brcm43438.service \
-> >      "
-> >
-> > -do_install_append_raspberrypi3() {
-> > +enable_bcm_bluetooth() {
-> >      install -d ${D}/lib/firmware/brcm/
-> >      install -m 0644 ${WORKDIR}/BCM43430A1.hcd ${D}/lib/firmware/brcm/
-> BCM43430A1.hcd
-> >
-> > @@ -19,8 +19,18 @@ do_install_append_raspberrypi3() {
-> >      fi
-> >  }
-> >
-> > -FILES_${PN}_append_raspberrypi3 = " \
-> > +BCM_BT_FIRMWARE =  " \
-> >      /lib/firmware/brcm/BCM43430A1.hcd \
-> >      "
-> >
-> > -SYSTEMD_SERVICE_${PN}_append_raspberrypi3 = " brcm43438.service"
-> > +BCM_BT_SERVICE =  " brcm43438.service"
-> > +
-> > +SRC_URI_append_raspberrypi3 = " ${BCM_BT_SOURCES}"
-> > +
-> > +do_install_append_raspberrypi3() {
-> > +    enable_bcm_bluetooth
-> > +}
-> > +
-> > +FILES_${PN}_append_raspberrypi3 = " ${BCM_BT_FIRMWARE}"
-> > +
-> > +SYSTEMD_SERVICE_${PN}_append_raspberrypi3 = " ${BCM_BT_SERVICE}"
-> > --
-> > 2.7.4
-> >
+Hi Vincent
+
+Thanks for the quick reply. The MACHINE_ESSENTIAL_EXTRA_RDEPENDS 
+  instruction was put in the local.conf in my build folder.
+
+After renaming axidma.bb to kernel-module-axidma.bb. The image build 
+picked up this module. Thanks you so much.
+
+There is this comments in the module sample bb file/
+/
+
+    /# The inherit of module.bbclass will automatically name module
+    packages with/
+    /# "kernel-module-" prefix as required by the oe-core build environment.
+    /
+
+leaded me to believe this is done automatically by bitbake. Thanks again.
+
+Best regards,
+
+Fan
+
+
+/
+/
+//On 06/09/2017 11:00 AM, Vincent Prince wrote:
+> Hi,
 >
-> This and the follow up patch look excellent, should be easy to modify
-> in the future if we need to.
+> Where did you put MACHINE_ESSENTIAL_EXTRA_RDEPENDS  instruction?
+> Did you try to rename axidma.bb <http://axidma.bb/> to 
+> kernel-module-axidma.bb <http://kernel-module-axidma.bb> ?
 >
-> We have switched to using github pull requests for meta-raspberrypi.
-> Could you open a pull request on
-> https://github.com/agherzan/meta-raspberrypi with these changes
-> please? Let me know if you have any issues doing that.
+> Best Regards,
+> Vincent
+>
+> 2017-09-06 16:13 GMT+02:00 Fan Zhang <fzhang@sgl.com 
+> <mailto:fzhang@sgl.com>>:
+>
+>     Hi,
+>
+>     I've followed the Yocto manual here:
+>     http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html#incorporating-out-of-tree-modules
+>     <http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html#incorporating-out-of-tree-modules>
+>     to include an out of tree module, named axidma. I can build this
+>     module alone by
+>
+>     bitbake axidma
+>
+>     and get the .ko file in build/tmp/work/my_machine/axidma
+>     directory, but when I build my custom image, and include this
+>     module by
+>
+>     MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "kernel-module-axidma"
+>
+>     I got an error that says "/Computing transaction...error: Can't
+>     install packagegroup-core-boot-1.0-r17@microzed_zynq7: no package
+>     provides kernel-module-axidma/". All the other variables mentioned
+>     in the manual doesn't compile the module either. They just doesn't
+>     stop the image from building.
+>
+>     After googling for a few days, it seems every thread I found
+>     stucked at different stage of this problem, some advance further
+>     than me, but from my very limited knowledge about bitbake, out of
+>     tree modules should be included into the build by module.bbclass,
+>     which has do_configuration, do_compile and do _install in that
+>     class. So it is quite puzzling why this is not working.
+>
+>     Any pointer is greatly appreciated. Thanks. Below are the
+>     configurations for my module:
+>
+>         My axidma folder structure is this
+>
+>             /axidma (a directory under recipes-sgl directory)
+>             /
+>
+>             /    - files (directory)
+>             /
+>
+>             /            - COPYING/
+>
+>             /            - dma_proxy.c/
+>
+>             /            - dma_proxy.h/
+>
+>             /            - Makefile
+>             /
+>
+>             /    - axidma.bb <http://axidma.bb>/
+>
+>         The bb files in axidma directory is added to BBFILES in
+>         layer.conf by
+>
+>             /BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \//
+>             //    ${LAYERDIR}/recipes-*/*/*.bbappend"/
+>
+>         axidma.bb <http://axidma.bb> file looks like this:
+>
+>             /SUMMARY = "Example of how to build an external Linux
+>             kernel module"
+>             LICENSE = "GPLv2"
+>             LIC_FILES_CHKSUM =
+>             "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e"
+>
+>             inherit module
+>             PR = "r0"
+>             PV = "0.1"
+>             SRC_URI = "file://Makefile \
+>             file://dma_proxy.c \
+>             file://dma_proxy.h \
+>             file://COPYING \
+>                       "
+>
+>             S = "${WORKDIR}"
+>
+>             # The inherit of module.bbclass will automatically name
+>             module packages with
+>             # "kernel-module-" prefix as required by the oe-core build
+>             environment./
+>
+>         Makefile looks like this:
+>
+>             /obj-m := dma_proxy.o//
+>             //
+>             //SRC := $(shell pwd)//
+>             //
+>             //all://
+>             //    $(MAKE) -C $(KERNEL_SRC) M=$(SRC)//
+>             //
+>             //modules_install://
+>             //    $(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install//
+>             //
+>             //clean://
+>             //    rm -f *.o *~ core .depend .*.cmd *.ko *.mod.c//
+>             //    rm -f Module.markers Module.symvers modules.order//
+>             //    rm -rf .tmp_versions Modules.symvers/
+>
+>     Fan Zhang
+>
+>
+>
+>     --
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>     <https://lists.yoctoproject.org/listinfo/yocto>
+>
 >
 
-+1 from my side.  Thanks for this change. We still try to keep patches
-rolling to the mailing list too but the main development now happens
-through PRs in github.
 
---
-Andrei Gherzan
+--------------39F68A945E0C0883503E06CB
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---001a113c5f92040d260558890513
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Hi Vincent<br>
+      <br>
+      Thanks for the quick reply. The MACHINE_ESSENTIAL_EXTRA_RDEPENDS
+       instruction was put in the local.conf in my build folder. <br>
+      <br>
+      After renaming axidma.bb to kernel-module-axidma.bb. The image
+      build picked up this module. Thanks you so much. <br>
+      <br>
+      There is this comments in the module sample bb file<i><font
+          size="-1"><br>
+        </font></i>
+      <blockquote><i><font size="-1"> # The inherit of module.bbclass
+            will automatically name module packages with</font></i><br>
+        <i><font size="-1"> # "kernel-module-" prefix as required by the
+            oe-core build environment.<br>
+          </font></i></blockquote>
+      leaded me to believe this is done automatically by bitbake. 
+      Thanks again. <br>
+      <br>
+      Best regards,<br>
+      <br>
+      Fan<br>
+      <br>
+      <br>
+      <i><font size="-1"><br>
+        </font></i><br>
+      <i><font size="-1"></font></i>On 06/09/2017 11:00 AM, Vincent
+      Prince wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAB2nKc9mst-yWiCWY4pn-o=WztcM2-Mc7jqg_-7gt0ubtXfBtQ@mail.gmail.com">
+      <div dir="ltr">Hi, 
+        <div><br>
+        </div>
+        <div>Where did you put MACHINE_ESSENTIAL_EXTRA_<wbr>RDEPENDS
+           instruction?<br>
+          <div class="gmail_extra">Did you try to rename <a
+              href="http://axidma.bb/" target="_blank"
+              moz-do-not-send="true">axidma.bb</a> to <a
+              href="http://kernel-module-axidma.bb"
+              moz-do-not-send="true">kernel-module-axidma.bb</a> ?</div>
+          <div class="gmail_extra"><br>
+          </div>
+          <div class="gmail_extra">Best Regards, </div>
+          <div class="gmail_extra">Vincent</div>
+          <div class="gmail_extra"><br>
+            <div class="gmail_quote">2017-09-06 16:13 GMT+02:00 Fan
+              Zhang <span dir="ltr">&lt;<a href="mailto:fzhang@sgl.com"
+                  target="_blank" moz-do-not-send="true">fzhang@sgl.com</a>&gt;</span>:<br>
+              <blockquote class="gmail_quote" style="margin:0px 0px 0px
+                0.8ex;border-left:1px solid
+                rgb(204,204,204);padding-left:1ex">
+                <div bgcolor="#FFFFFF">
+                  <p>Hi,</p>
+                  <p>I've followed the Yocto manual here:
+                    <a
+                      class="gmail-m_3278242207135345267moz-txt-link-freetext"
+href="http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html#incorporating-out-of-tree-modules"
+                      target="_blank" moz-do-not-send="true">http://www.yoctoproject.org/<wbr>docs/1.6.1/kernel-dev/kernel-<wbr>dev.html#incorporating-out-of-<wbr>tree-modules</a>
+                    to include an out of tree module, named axidma. I
+                    can build this module alone by</p>
+                  <p>bitbake axidma<br>
+                  </p>
+                  <p>and get the .ko file in build/tmp/work/my_machine/<wbr>axidma
+                    directory, but when I build my custom image, and
+                    include this module by <br>
+                  </p>
+                  <p>MACHINE_ESSENTIAL_EXTRA_<wbr>RDEPENDS +=
+                    "kernel-module-axidma"</p>
+                  <p>I got an error that says "<i>Computing
+                      transaction...error: Can't install
+                      packagegroup-core-boot-1.0-<wbr>r17@microzed_zynq7:
+                      no package provides kernel-module-axidma</i>". All
+                    the other variables mentioned in the manual doesn't
+                    compile the module either. They just doesn't stop
+                    the image from building. <br>
+                  </p>
+                  <p>After googling for a few days, it seems every
+                    thread I found stucked at different stage of this
+                    problem, some advance further than me, but from my
+                    very limited knowledge about bitbake, out of tree
+                    modules should be included into the build by
+                    module.bbclass, which has do_configuration,
+                    do_compile and do _install in that class. So it is
+                    quite puzzling why this is not working. <br>
+                  </p>
+                  <p>Any pointer is greatly appreciated. Thanks. Below
+                    are the configurations for my module:</p>
+                  <blockquote>
+                    <p>My axidma folder structure is this</p>
+                    <blockquote>
+                      <p><font size="-1"><i>axidma (a directory under
+                            recipes-sgl directory)<br>
+                          </i></font></p>
+                      <p><font size="-1"><i>    - files (directory) <br>
+                          </i></font></p>
+                      <p><font size="-1"><i>            - COPYING</i></font></p>
+                      <p><font size="-1"><i>            - dma_proxy.c</i></font></p>
+                      <p><font size="-1"><i>            - dma_proxy.h</i></font></p>
+                      <p><font size="-1"><i>            - Makefile<br>
+                          </i></font></p>
+                      <p><font size="-1"><i>    - <a
+                              href="http://axidma.bb" target="_blank"
+                              moz-do-not-send="true">axidma.bb</a></i></font></p>
+                    </blockquote>
+                    <p>The bb files in axidma directory is added to
+                      BBFILES in layer.conf by<br>
+                    </p>
+                    <blockquote>
+                      <p><font size="-1"><i>BBFILES +=
+                            "${LAYERDIR}/recipes-*/*/*.bb \</i><i><br>
+                          </i><i>    ${LAYERDIR}/recipes-*/*/*.<wbr>bbappend"</i></font><br>
+                      </p>
+                    </blockquote>
+                    <p><a href="http://axidma.bb" target="_blank"
+                        moz-do-not-send="true">axidma.bb</a> file looks
+                      like this:</p>
+                    <blockquote>
+                      <p><i><font size="-1">SUMMARY = "Example of how to
+                            build an external Linux kernel module"<br>
+                            LICENSE = "GPLv2"<br>
+                            LIC_FILES_CHKSUM = <a
+                              class="gmail-m_3278242207135345267moz-txt-link-rfc2396E"
+                              moz-do-not-send="true">"file://COPYING;md5=<wbr>12f884d2ae1ff87c09e5b7ccc2c4ca<wbr>7e"</a><br>
+                            <br>
+                            inherit module<br>
+                            PR = "r0"<br>
+                            PV = "0.1"<br>
+                            SRC_URI = "<a
+                              class="gmail-m_3278242207135345267moz-txt-link-freetext"
+                              moz-do-not-send="true">file://Makefile</a>
+                            \<br>
+                                       <a
+                              class="gmail-m_3278242207135345267moz-txt-link-freetext"
+                              moz-do-not-send="true">file://dma_proxy.c</a>
+                            \<br>
+                                       <a
+                              class="gmail-m_3278242207135345267moz-txt-link-freetext"
+                              moz-do-not-send="true">file://dma_proxy.h</a>
+                            \<br>
+                                       <a
+                              class="gmail-m_3278242207135345267moz-txt-link-freetext"
+                              moz-do-not-send="true">file://COPYING</a>
+                            \<br>
+                                      "<br>
+                            <br>
+                            S = "${WORKDIR}"<br>
+                            <br>
+                            # The inherit of module.bbclass will
+                            automatically name module packages with<br>
+                            # "kernel-module-" prefix as required by the
+                            oe-core build environment.</font></i></p>
+                    </blockquote>
+                    <p>Makefile looks like this: <br>
+                    </p>
+                    <blockquote>
+                      <p><font size="-1"><i>obj-m := dma_proxy.o</i><i><br>
+                          </i><i><br>
+                          </i><i>SRC := $(shell pwd)</i><i><br>
+                          </i><i><br>
+                          </i><i>all:</i><i><br>
+                          </i><i>    $(MAKE) -C $(KERNEL_SRC) M=$(SRC)</i><i><br>
+                          </i><i><br>
+                          </i><i>modules_install:</i><i><br>
+                          </i><i>    $(MAKE) -C $(KERNEL_SRC) M=$(SRC)
+                            modules_install</i><i><br>
+                          </i><i><br>
+                          </i><i>clean:</i><i><br>
+                          </i><i>    rm -f *.o *~ core .depend .*.cmd
+                            *.ko *.mod.c</i><i><br>
+                          </i><i>    rm -f Module.markers Module.symvers
+                            modules.order</i><i><br>
+                          </i><i>    rm -rf .tmp_versions
+                            Modules.symvers</i></font><span
+                          class="gmail-HOEnZb"><font color="#888888"><br>
+                          </font></span></p>
+                      <span class="gmail-HOEnZb"><font color="#888888">
+                        </font></span></blockquote>
+                    <span class="gmail-HOEnZb"><font color="#888888"> </font></span></blockquote>
+                  <span class="gmail-HOEnZb"><font color="#888888">
+                      <p>Fan Zhang<br>
+                      </p>
+                      <p><br>
+                      </p>
+                    </font></span></div>
+                <br>
+                --<br>
+                ______________________________<wbr>_________________<br>
+                yocto mailing list<br>
+                <a href="mailto:yocto@yoctoproject.org"
+                  moz-do-not-send="true">yocto@yoctoproject.org</a><br>
+                <a href="https://lists.yoctoproject.org/listinfo/yocto"
+                  rel="noreferrer" target="_blank"
+                  moz-do-not-send="true">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><br>
+                <br>
+              </blockquote>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
-ed, Sep 6, 2017 at 10:18 AM, Paul Barker <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:pbarker@toganlabs.com" target=3D"_blank">pbarker@toganlabs.com</a>&gt=
-;</span> wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div class=3D"gmail-HOEnZb"><div class=3D"gmail-=
-h5">On Tue, Sep 5, 2017 at 11:34 PM, Yusuke Mitsuki<br>
-&lt;<a href=3D"mailto:mickey.happygolucky@gmail.com">mickey.happygolucky@gm=
-ail.com</a><wbr>&gt; wrote:<br>
-&gt; functions/variables in this bbappend implemented for only raspberrypi3=
-.<br>
-&gt; But these must be able to used to enabling bluetooth on another raspbe=
-rrypi that has bluetooth feature such as raspberrypi0-wifi.<br>
-&gt;<br>
-&gt; The simple solution is a duplicating these but it is not good ideas fo=
-r maintainance.<br>
-&gt;<br>
-&gt; Add functions/variables follows to simplify to enabling bluetooth on a=
-nother raspberrypi that has bluetooth.<br>
-&gt; - BCM_BT_SOURCES<br>
-&gt; - enable_bcm_bluetooth()<br>
-&gt; - BCM_BT_FIRMWARE<br>
-&gt; - BCM_BT_SERVICE<br>
-&gt;<br>
-&gt; Signed-off-by: Yusuke Mitsuki &lt;<a href=3D"mailto:mickey.happygoluck=
-y@gmail.com">mickey.happygolucky@gmail.com</a><wbr>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 recipes-connectivity/bluez5/<wbr>bluez5_%.bbappend | 18 ++++++++=
-++++++----<br>
-&gt;=C2=A0 1 file changed, 14 insertions(+), 4 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/recipes-connectivity/bluez5/<wbr>bluez5_%.bbappend b/reci=
-pes-connectivity/bluez5/<wbr>bluez5_%.bbappend<br>
-&gt; index 956d776..b2fbf22 100644<br>
-&gt; --- a/recipes-connectivity/bluez5/<wbr>bluez5_%.bbappend<br>
-&gt; +++ b/recipes-connectivity/bluez5/<wbr>bluez5_%.bbappend<br>
-&gt; @@ -1,6 +1,6 @@<br>
-&gt;=C2=A0 FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
-&gt;<br>
-&gt; -SRC_URI_append_raspberrypi3 =3D &quot; \<br>
-&gt; +BCM_BT_SOURCES =3D=C2=A0 &quot; \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 file://BCM43430A1.hcd \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 file://0001-bcm43xx-Add-<wbr>bcm43xx-3wire-variant=
-.patch \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 file://0002-bcm43xx-The-UART-<wbr>speed-must-be-re=
-set-after-the-<wbr>firmw.patch \<br>
-&gt; @@ -9,7 +9,7 @@ SRC_URI_append_raspberrypi3 =3D &quot; \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 file://brcm43438.service \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &quot;<br>
-&gt;<br>
-&gt; -do_install_append_<wbr>raspberrypi3() {<br>
-&gt; +enable_bcm_bluetooth() {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 install -d ${D}/lib/firmware/brcm/<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/BCM43430A1.hcd ${D}/lib=
-/firmware/brcm/<wbr>BCM43430A1.hcd<br>
-&gt;<br>
-&gt; @@ -19,8 +19,18 @@ do_install_append_<wbr>raspberrypi3() {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 fi<br>
-&gt;=C2=A0 }<br>
-&gt;<br>
-&gt; -FILES_${PN}_append_<wbr>raspberrypi3 =3D &quot; \<br>
-&gt; +BCM_BT_FIRMWARE =3D=C2=A0 &quot; \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 /lib/firmware/brcm/BCM43430A1.<wbr>hcd \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 &quot;<br>
-&gt;<br>
-&gt; -SYSTEMD_SERVICE_${PN}_append_<wbr>raspberrypi3 =3D &quot; brcm43438.s=
-ervice&quot;<br>
-&gt; +BCM_BT_SERVICE =3D=C2=A0 &quot; brcm43438.service&quot;<br>
-&gt; +<br>
-&gt; +SRC_URI_append_raspberrypi3 =3D &quot; ${BCM_BT_SOURCES}&quot;<br>
-&gt; +<br>
-&gt; +do_install_append_<wbr>raspberrypi3() {<br>
-&gt; +=C2=A0 =C2=A0 enable_bcm_bluetooth<br>
-&gt; +}<br>
-&gt; +<br>
-&gt; +FILES_${PN}_append_<wbr>raspberrypi3 =3D &quot; ${BCM_BT_FIRMWARE}&qu=
-ot;<br>
-&gt; +<br>
-&gt; +SYSTEMD_SERVICE_${PN}_append_<wbr>raspberrypi3 =3D &quot; ${BCM_BT_SE=
-RVICE}&quot;<br>
-&gt; --<br>
-&gt; 2.7.4<br>
-&gt;<br>
-<br>
-</div></div>This and the follow up patch look excellent, should be easy to =
-modify<br>
-in the future if we need to.<br>
-<br>
-We have switched to using github pull requests for meta-raspberrypi.<br>
-Could you open a pull request on<br>
-<a href=3D"https://github.com/agherzan/meta-raspberrypi" rel=3D"noreferrer"=
- target=3D"_blank">https://github.com/agherzan/<wbr>meta-raspberrypi</a> wi=
-th these changes<br>
-please? Let me know if you have any issues doing that.<br></blockquote><div=
-><br></div><div>+1 from my side.=C2=A0 Thanks for this change. We still try=
- to keep patches rolling to the mailing list too but the main development n=
-ow happens through PRs in github.</div><div><div><br></div><div>--</div><di=
-v>Andrei Gherzan</div></div></div></div></div>
+--------------39F68A945E0C0883503E06CB--
 
---001a113c5f92040d260558890513--
+--------------D97E1B35BEC54F384E91140B
+Content-Type: text/x-vcard; charset=utf-8;
+ name="fzhang.vcf"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="fzhang.vcf"
+
+begin:vcard
+fn:Fan Zhang
+n:Zhang;Fan
+org:Sander Geophysics Ltd. 
+email;internet:fzhang@sgl.com
+title:Electronics Design Engineer
+tel;work:(613)521-9626
+version:2.1
+end:vcard
+
+
+--------------D97E1B35BEC54F384E91140B--
