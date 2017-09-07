@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B91E5E00D8A; Thu,  7 Sep 2017 06:24:49 -0700 (PDT)
+	id A94ECE00D8D; Thu,  7 Sep 2017 06:24:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,49 +18,52 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69999E00D88
-	for <yocto@yoctoproject.org>; Thu,  7 Sep 2017 06:24:48 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id x17so1037964wmd.5
-	for <yocto@yoctoproject.org>; Thu, 07 Sep 2017 06:24:47 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DE12E00D89
+	for <yocto@yoctoproject.org>; Thu,  7 Sep 2017 06:24:52 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id p17so1380515wmd.3
+	for <yocto@yoctoproject.org>; Thu, 07 Sep 2017 06:24:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=VpU3vA6gch25pE/yIXq1oUTYdk9udfoiyWXqtnZKBPE=;
-	b=YDB5x5DmXk/AbNTiwfc/UdyY17sjhKfaEedUGMoauRuTBhxiRPYjKbrlYFuBHcjNO0
-	NT0sMMuJsGnjE2NuFFrgf2wonv4dmUPHCfiGoCdlIjjp0pYhKbRggKPpE9CdzioF608L
-	vICNlr8YO9WyB6+9U4c0JTca33Y7qNulyRadtofK33A1idwqUsAPdgHvFevX+5QJ2I45
-	ccoSDAuv1vxVoGGcuKKDWhGa+yMjXzdz/129KqW/8TCj69vpRga34RvzLPFYHrXotybX
-	l+d3Wk07w49yBjs3F2WpwSot05uC1i7Pg/gPN4k4tJWxD2bnnIqkixkYxc49eBfxDRCj
-	8KhQ==
+	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=NkAUu+yxh/yqAJw3xdLCEh5YoGfi0URGaR7DHDpQ/fM=;
+	b=B275poWJQBNcdjCUkbpbqf+00MvyzfOQei+blQ/CtQ/sgbiJe7Ky81OaPy8egnuxlt
+	h4HgpLEvXojwYk2Llc3rRaqhzx7p+ukJ4yuUn/R/YLZTtUYPi8MFOPRTeQCqKMdmPiF3
+	jrM9/ErEENtaYH9wT5jjKMaCkwBUgk9qzinmU/j+Oj2qP5e9lzOKwyJ+hCuRt5RxAWhe
+	bLH29cKS7UBLVnUxc/sgZFeMQqzMaXEFHsbMzYdbzT8ZAMyJEE9bQQrHlX93OF49gQL0
+	rCqBBlEaDSIEaSP0ZSlmtGWFGLSKz2303I+GLyeqvUn0OqSI2AS3Tz+FHEWulf3uhx5e
+	7PBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
-	bh=VpU3vA6gch25pE/yIXq1oUTYdk9udfoiyWXqtnZKBPE=;
-	b=Ss0GpS7VHN1HtBrVnBxBP/g/GKbMmtnCYIj5Xzd/dZ/nd2sm+IALSyd/AtEJWc9foH
-	ha8wCX4+84JLjUUbWy1qDlmEHE7CdD4dZmwx5aA2Etwq5sxm45R09EG7WBJtG3uUHEx5
-	zCZSdKlFi2+JqKrzZfXNvNjQVE5GkBeFv2hFaqSuqvApFJY4+9PpVBCiy2ZVGHUyKiCg
-	neUZeLUhm816NRU1zJxQm0LaiJQBbFBtmt8boPcBI0sNwRkjnZO76bJ8GjFgof86+SMq
-	8V0pF+lmw1wqoklTciB7weJ+Fns4cCYpuZOhmtQtk3LZc0uapZNq5RImCmmc5TV7390p
-	jVow==
-X-Gm-Message-State: AHPjjUg3WDI4SHRQrI70L5b2yje8BSWdYymEn+Wehb6ogMmaBullEQQ+
-	01MiHo5CsF89fcMtc8Ctzw==
-X-Google-Smtp-Source: AOwi7QCdmd8A/hPTPJFMAq8pi4dr+gsZGr/q+rjDnQhx1gPzWJWoNvfv0MX50aEK9yzEnxrtX6gQzw==
-X-Received: by 10.28.93.146 with SMTP id r140mr484925wmb.133.1504790686621;
-	Thu, 07 Sep 2017 06:24:46 -0700 (PDT)
+	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+	:in-reply-to:references;
+	bh=NkAUu+yxh/yqAJw3xdLCEh5YoGfi0URGaR7DHDpQ/fM=;
+	b=QU3tMFQD7X6pNP2Oa5lj7/lD7NlOi+eraUDs2e2DhsVvxkLxlWkyVyOZu5We8q/qv1
+	E5B0k6pjH7Lam07cY2MlXq88a3VHPiCr2L9YDVXfmcUuaniQpFl5wcSHOSBA9gDmkVqh
+	BcLUsgEj11/zwNMmBJjW8rineDlW0wuHogkaJCXQfGIXrz0QZEnapSTlg4i4/rccq4uO
+	xPf9k31ZD8sM4AIaxbnCMqDtEt5Qr/bROntxAnAaK5UTIVdH9R3VkRNdlcb8cZ+ve9+L
+	G6lvBdQxULSZtZexV9YslpiSo5C00QhfbGTt4uxy5W52lIWotNFtDzdzVasevN4yWv2t
+	/0/w==
+X-Gm-Message-State: AHPjjUjbQAxVNssW9L1AWdQNYx/sZrqYsYD2kz3D3BMQNfer2znM3HJq
+	ctcfehFe8/gnGiLIH6xE9A==
+X-Google-Smtp-Source: AOwi7QDEBTNLREhLFI3Py4qQpt3ks9Vu9Dfk2IV/F3zgZTYTinnmpUiEDBiR0Tul066fnJTNu68uYQ==
+X-Received: by 10.28.133.75 with SMTP id h72mr490765wmd.113.1504790690232;
+	Thu, 07 Sep 2017 06:24:50 -0700 (PDT)
 Received: from localhost.localdomain
 	(host109-150-130-236.range109-150.btcentralplus.com.
 	[109.150.130.236]) by smtp.gmail.com with ESMTPSA id
-	z108sm2581622wrc.49.2017.09.07.06.24.45
+	z108sm2581622wrc.49.2017.09.07.06.24.49
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 07 Sep 2017 06:24:45 -0700 (PDT)
+	Thu, 07 Sep 2017 06:24:49 -0700 (PDT)
 Sender: Andrei Gherzan <andrei@gherzan.ro>
 From: Andrei Gherzan <andrei@gherzan.com>
 To: yocto@yoctoproject.org
-Date: Thu,  7 Sep 2017 14:24:36 +0100
-Message-Id: <1504790680-20783-1-git-send-email-andrei@gherzan.com>
+Date: Thu,  7 Sep 2017 14:24:37 +0100
+Message-Id: <1504790680-20783-2-git-send-email-andrei@gherzan.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1504790680-20783-1-git-send-email-andrei@gherzan.com>
+References: <1504790680-20783-1-git-send-email-andrei@gherzan.com>
 Cc: Andrei Gherzan <andrei@gherzan.com>
-Subject: [PATCH 1/5] rpi-gpio: Update to 0.6.3
+Subject: [PATCH 2/5] python-sense-hat: Update to 2.2.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,65 +75,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Sep 2017 13:24:49 -0000
+X-List-Received-Date: Thu, 07 Sep 2017 13:24:53 -0000
 
 As well integrate with meta-oe bbclass pypi.
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.com>
 ---
- recipes-devtools/python/rpi-gpio_0.6.2.bb | 21 ---------------------
- recipes-devtools/python/rpi-gpio_0.6.3.bb | 14 ++++++++++++++
- 2 files changed, 14 insertions(+), 21 deletions(-)
- delete mode 100644 recipes-devtools/python/rpi-gpio_0.6.2.bb
- create mode 100644 recipes-devtools/python/rpi-gpio_0.6.3.bb
+ recipes-devtools/python/python-sense-hat_2.1.0.bb | 28 -----------------------
+ recipes-devtools/python/python-sense-hat_2.2.0.bb | 24 +++++++++++++++++++
+ 2 files changed, 24 insertions(+), 28 deletions(-)
+ delete mode 100644 recipes-devtools/python/python-sense-hat_2.1.0.bb
+ create mode 100644 recipes-devtools/python/python-sense-hat_2.2.0.bb
 
-diff --git a/recipes-devtools/python/rpi-gpio_0.6.2.bb b/recipes-devtools/python/rpi-gpio_0.6.2.bb
+diff --git a/recipes-devtools/python/python-sense-hat_2.1.0.bb b/recipes-devtools/python/python-sense-hat_2.1.0.bb
 deleted file mode 100644
-index 9c72168..0000000
---- a/recipes-devtools/python/rpi-gpio_0.6.2.bb
+index e990a28..0000000
+--- a/recipes-devtools/python/python-sense-hat_2.1.0.bb
 +++ /dev/null
-@@ -1,21 +0,0 @@
--DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
--HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
+@@ -1,28 +0,0 @@
+-SUMMARY = "Python module to control the Raspberry Pi Sense HAT used in the Astro Pi mission"
+-HOMEPAGE = "https://github.com/RPi-Distro/python-sense-hat"
 -SECTION = "devel/python"
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=9b95630a648966b142f1a0dcea001cb7"
+-LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=d80fe312e1ff5fbd97369b093bf21cda"
 -
--SRCNAME = "RPi.GPIO"
+-SRCNAME = "sense-hat"
 -
--SRC_URI = "\
--          http://pypi.python.org/packages/source/R/RPi.GPIO/${SRCNAME}-${PV}.tar.gz \
--          file://0001-Remove-nested-functions.patch \
--          "
--SRC_URI[md5sum] = "9db86fd5f3bae872de9dbb068ee0b096"
--SRC_URI[sha256sum] = "82acff0ef6bbe3cdf6f4dbdd73d96add5294bb94baf7f51c1d901861af3c2392"
+-SRC_URI = "https://pypi.python.org/packages/source/s/${SRCNAME}/${SRCNAME}-${PV}.tar.gz"
+-
+-SRC_URI[md5sum] = "71217f15ea963040f06e2f50722186ca"
+-SRC_URI[sha256sum] = "c6c76707c0ea514e4b0f1f96f1b5b79755875891aae037df7434b6aad7b9dbca"
 -
 -S = "${WORKDIR}/${SRCNAME}-${PV}"
 -
--inherit distutils
+-inherit setuptools
 -
--COMPATIBLE_MACHINE = "^rpi$"
+-DEPENDS += " \
+-    jpeg \
+-    zlib \
+-    freetype \
+-    "
 -
-diff --git a/recipes-devtools/python/rpi-gpio_0.6.3.bb b/recipes-devtools/python/rpi-gpio_0.6.3.bb
+-RDEPENDS_${PN} += " \
+-    python-numpy \
+-    python-rtimu \
+-    python-imaging \
+-    "
+diff --git a/recipes-devtools/python/python-sense-hat_2.2.0.bb b/recipes-devtools/python/python-sense-hat_2.2.0.bb
 new file mode 100644
-index 0000000..d0ff00a
+index 0000000..f7c4e34
 --- /dev/null
-+++ b/recipes-devtools/python/rpi-gpio_0.6.3.bb
-@@ -0,0 +1,14 @@
-+DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
-+HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
++++ b/recipes-devtools/python/python-sense-hat_2.2.0.bb
+@@ -0,0 +1,24 @@
++SUMMARY = "Python module to control the Raspberry Pi Sense HAT used in the Astro Pi mission"
++HOMEPAGE = "https://github.com/RPi-Distro/python-sense-hat"
 +SECTION = "devel/python"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=9b95630a648966b142f1a0dcea001cb7"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=d80fe312e1ff5fbd97369b093bf21cda"
 +
-+PYPI_PACKAGE = "RPi.GPIO"
-+inherit pypi distutils
++inherit setuptools pypi
 +
-+SRC_URI += "file://0001-Remove-nested-functions.patch"
-+SRC_URI[md5sum] = "e4abe1cfb5eacebe53078032256eb837"
-+SRC_URI[sha256sum] = "a5fc0eb5e401963b6c0a03650da6b42c4005f02d962b81241d96c98d0a578516"
++PYPI_PACKAGE = "sense-hat"
 +
-+COMPATIBLE_MACHINE = "^rpi$"
++SRC_URI[md5sum] = "69929250cb72349a8a82edf2584b1d83"
++SRC_URI[sha256sum] = "f000998d042d96ed722d459312e1bebd0107f9f3015cd34b3e4fabcab9c800af"
++
++DEPENDS += " \
++    jpeg \
++    zlib \
++    freetype \
++    "
++
++RDEPENDS_${PN} += " \
++    python-numpy \
++    python-rtimu \
++    python-imaging \
++    "
 -- 
 2.7.4
 
