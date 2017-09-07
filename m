@@ -1,68 +1,66 @@
-Return-Path: <prvs=0423146122=mike.looijmans@topicproducts.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20D31E00CCC; Thu,  7 Sep 2017 06:10:13 -0700 (PDT)
+	id B91E5E00D8A; Thu,  7 Sep 2017 06:24:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [207.244.64.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 3034 seconds by postgrey-1.32 at yocto-www;
-	Thu, 07 Sep 2017 06:10:10 PDT
-Received: from mx18-11.smtp.antispamcloud.com (mx18-11.smtp.antispamcloud.com
-	[207.244.64.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D2FCE00CB4
-	for <yocto@yoctoproject.org>; Thu,  7 Sep 2017 06:10:10 -0700 (PDT)
-Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
-	by mx6.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
-	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1dpvmK-0002k0-Sy
-	for yocto@yoctoproject.org; Thu, 07 Sep 2017 14:19:35 +0200
-Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 7 Sep 2017 14:19:27 +0200
-To: <yocto@yoctoproject.org>
-References: <CAGAf8Lype6p4Dqzab9O0sGfEUhzYUYczjrua49o80baw_OYvpA@mail.gmail.com>
-	<CAMKF1sqVUnLXf3AWSLjnnZRg0aiP_m08oAWwEeJJGE91RZ+XMQ@mail.gmail.com>
-	<CAGAf8LypQHdWKO4ka8xFirYs20iAFHEyXH4K6gZGoTmBKjnvtg@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <2a7b7b06-7160-be27-5bfa-6c0cf423b207@topic.nl>
-Date: Thu, 7 Sep 2017 14:19:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
-MIME-Version: 1.0
-In-Reply-To: <CAGAf8LypQHdWKO4ka8xFirYs20iAFHEyXH4K6gZGoTmBKjnvtg@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Originating-IP: 37.74.225.130
-X-SpamExperts-Domain: topic.nl
-X-SpamExperts-Username: 37.74.225.128/28
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=37.74.225.128/28@topic.nl
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.07)
-X-Recommended-Action: accept
-X-Filter-ID: PqwsvolAWURa0gwxuN3S5YEa3T7JuZT23fGO2rGt3ZgWMD8gia7lRmdoHJ3n0cm6Vtfp9X1ZBchZ
-	wvx8a7dTUQWF0kx98HH3GX+iQK7NiP6LBDMrD7q/cJogwbqzsuokIXMJ1U4MKKnQ5SAJ1V9dkP9x
-	bu57BDazLmklZgT7xzYWL8l7crBncoIuvOM8GMzWxJG7Wj7S0YHKzSR/8vHsffD/EiW0GHcd/fWY
-	o1XLxUU8CVsONrMJuGzuoGnKTKcygLJjfy2/hUPxxGqITycuLMdYaphGvYopQ24KJ9kgRDN3pbXn
-	aMbbC1QSUBxihEsjBWOBqoptsYkcljagCMIDypReAQCFQo+KUtaSCrVTlxOfVsst/QEVbupaaYfx
-	KYRJ8ar4sO9kYmr7/nmchPR9G2DCX9m2p4wUnZpURALMKaPBcC9OMLR/g2nFXNsLRUFie5/p+NPl
-	rtNUMvaVdgZ1X1ngTKIo4o/iU2NyhSTkTDrfLM7Ww0jFUCG51FTiiz6cR64dodD7udB+zcx8OjSt
-	1b1YgBvhxKfoFZHs3o0j+S0jv2y8/jlUqm+TeNrMp4+E6LTovubp4smUMQs0MtjHa5nckpWaLvah
-	yBjmQxBKOztbsILhTbeUyfxVdxn9bXHLesDDSzRoWU0PVbVIfHlEORqZR3KVQgqF/fPYYAfEfshX
-	WWeT3cQveONRuwAhy4JMPCW+5qkGu4DVyxr5QJAMwYkgQbZ5vJIdmRfAMyIXTSJ8JmFmLZ6h3eau
-	qEcwyeT0VZvJGSxm4bcH1lFUB/zPeGsnJ395jBJAgljEd2a/UHQV6Xe4bIYRHe1fiVaECIfGCs+d
-	m3T5GTMS0IoMjuD73MBlNCXldRLkC5TILJuZrGjDpJxxYwML4QEFO4rejcoT5MGdo9sF/Wc/OvxZ
-	QWoMhQ==
-X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
-Subject: Re: The basehash value changed from...
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69999E00D88
+	for <yocto@yoctoproject.org>; Thu,  7 Sep 2017 06:24:48 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id x17so1037964wmd.5
+	for <yocto@yoctoproject.org>; Thu, 07 Sep 2017 06:24:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=sender:from:to:cc:subject:date:message-id;
+	bh=VpU3vA6gch25pE/yIXq1oUTYdk9udfoiyWXqtnZKBPE=;
+	b=YDB5x5DmXk/AbNTiwfc/UdyY17sjhKfaEedUGMoauRuTBhxiRPYjKbrlYFuBHcjNO0
+	NT0sMMuJsGnjE2NuFFrgf2wonv4dmUPHCfiGoCdlIjjp0pYhKbRggKPpE9CdzioF608L
+	vICNlr8YO9WyB6+9U4c0JTca33Y7qNulyRadtofK33A1idwqUsAPdgHvFevX+5QJ2I45
+	ccoSDAuv1vxVoGGcuKKDWhGa+yMjXzdz/129KqW/8TCj69vpRga34RvzLPFYHrXotybX
+	l+d3Wk07w49yBjs3F2WpwSot05uC1i7Pg/gPN4k4tJWxD2bnnIqkixkYxc49eBfxDRCj
+	8KhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+	bh=VpU3vA6gch25pE/yIXq1oUTYdk9udfoiyWXqtnZKBPE=;
+	b=Ss0GpS7VHN1HtBrVnBxBP/g/GKbMmtnCYIj5Xzd/dZ/nd2sm+IALSyd/AtEJWc9foH
+	ha8wCX4+84JLjUUbWy1qDlmEHE7CdD4dZmwx5aA2Etwq5sxm45R09EG7WBJtG3uUHEx5
+	zCZSdKlFi2+JqKrzZfXNvNjQVE5GkBeFv2hFaqSuqvApFJY4+9PpVBCiy2ZVGHUyKiCg
+	neUZeLUhm816NRU1zJxQm0LaiJQBbFBtmt8boPcBI0sNwRkjnZO76bJ8GjFgof86+SMq
+	8V0pF+lmw1wqoklTciB7weJ+Fns4cCYpuZOhmtQtk3LZc0uapZNq5RImCmmc5TV7390p
+	jVow==
+X-Gm-Message-State: AHPjjUg3WDI4SHRQrI70L5b2yje8BSWdYymEn+Wehb6ogMmaBullEQQ+
+	01MiHo5CsF89fcMtc8Ctzw==
+X-Google-Smtp-Source: AOwi7QCdmd8A/hPTPJFMAq8pi4dr+gsZGr/q+rjDnQhx1gPzWJWoNvfv0MX50aEK9yzEnxrtX6gQzw==
+X-Received: by 10.28.93.146 with SMTP id r140mr484925wmb.133.1504790686621;
+	Thu, 07 Sep 2017 06:24:46 -0700 (PDT)
+Received: from localhost.localdomain
+	(host109-150-130-236.range109-150.btcentralplus.com.
+	[109.150.130.236]) by smtp.gmail.com with ESMTPSA id
+	z108sm2581622wrc.49.2017.09.07.06.24.45
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 07 Sep 2017 06:24:45 -0700 (PDT)
+Sender: Andrei Gherzan <andrei@gherzan.ro>
+From: Andrei Gherzan <andrei@gherzan.com>
+To: yocto@yoctoproject.org
+Date: Thu,  7 Sep 2017 14:24:36 +0100
+Message-Id: <1504790680-20783-1-git-send-email-andrei@gherzan.com>
+X-Mailer: git-send-email 2.7.4
+Cc: Andrei Gherzan <andrei@gherzan.com>
+Subject: [PATCH 1/5] rpi-gpio: Update to 0.6.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,123 +72,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Sep 2017 13:10:13 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: nl
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 07 Sep 2017 13:24:49 -0000
 
-=EF=BB=BFOn 07-09-17 11:06, Zoran Stojsavljevic wrote:
->  > If you keep your sstate-cache directory then delete tmp/ dir is what y=
-ou need
->  > to do. Rebuilding from sstate-cache is very quick.
->=20
-> It does not help. Since I'll have at the end/I'll end-up with the same=20
-> problem. My best guess. :-(
->=20
-> Since I am building the whole humongous YOCTO build not in one, rather in=
- two=20
-> steps, like this:
->=20
-> |bitbake meta-toolchain-qt5 (5 hours build||on my HP EliteBook 840 G1)
-> ||bitbake angstrom-lxde-image|  (5 hours build on my HP EliteBook 840 G1)
->=20
-> Here, my best guess is that the first build sets its own hash, which the=
-=20
-> second sets also its own (very
-> different), then makes hash checks in deploy/ tree, and fails... !?
+As well integrate with meta-oe bbclass pypi.
 
-You should be able to do "bitbake meta-toolchain-qt5 angstrom-lxde-image" i=
-n=20
-one go. That should be faster than two separate runs.
+Signed-off-by: Andrei Gherzan <andrei@gherzan.com>
+---
+ recipes-devtools/python/rpi-gpio_0.6.2.bb | 21 ---------------------
+ recipes-devtools/python/rpi-gpio_0.6.3.bb | 14 ++++++++++++++
+ 2 files changed, 14 insertions(+), 21 deletions(-)
+ delete mode 100644 recipes-devtools/python/rpi-gpio_0.6.2.bb
+ create mode 100644 recipes-devtools/python/rpi-gpio_0.6.3.bb
 
-If you change the DISTRO, you'll invalidate your "tmp" building dir resulti=
-ng=20
-in loads of new stuff being built.
-
-If you need two distros, make two build enviroments from them. You should=20
-share the sstate-cache directory between them (saves tons on building=20
-compilers and such) but not the "tmp" directory.
-
-
-
-> On Thu, Sep 7, 2017 at 9:42 AM, Khem Raj <raj.khem@gmail.com=20
-> <mailto:raj.khem@gmail.com>> wrote:
->=20
->     On Thu, Sep 7, 2017 at 12:37 AM, Zoran Stojsavljevic
->     <zoran.stojsavljevic@gmail.com <mailto:zoran.stojsavljevic@gmail.com>=
-> wrote:
->     > While re-compiling the whole YOCTO load for freescale i.MX6, where =
-I have
->     > added Qt5 layers (and it failed many times, so I needed to do some =
-tricks
->     > there), I encounter the following warning (in ORANGE) and error (in=
- RED)
->     > while finishing the build:
->     >
->     > WARNING: Duplicate inclusion for
->     > /home/user/toradex/Qt5-plus-x11/oe-core/build/../layers/meta-torade=
-x-bsp-common/conf/tdx_version.conf
->     > in
->     > /home/user/toradex/Qt5-plus-x11/oe-core/build/../layers/meta-torade=
-x-demos/recipes-images/images/tdx-image-fstype.inc
->     > ERROR: When reparsing
->     > /home/user/toradex/Qt5-plus-x11/oe-core/build/../layers/meta-torade=
-x-demos/recipes-images/images/angstrom-lxde-image.bb.do_image_teziimg,
->     > the basehash value changed from b7b4f312b8b657bfdd068ebd8e2dd104 to
->     > 1e71714a9c01964cdc724c52290abee4. The metadata is not deterministic=
- and this
->     > needs to be fixed.
->     > NOTE: Tasks Summary: Attempted 7415 tasks of which 7394 didn't need=
- to be
->     > rerun and all succeeded.
->     > NOTE: Writing buildhistory
->     >
->     > It built (after all) complete deploy with all the images. I kind of=
- get what
->     > is going on here.
->     >
->     > Question: how to rebuild the complete deploy/images NOT deleting tm=
-p/? It
->     > compiled overall (in two steps) > 10h. Do I need to touch some file=
-?
->     >
->=20
->     if you keep your sstate-cache directory then delete tmp/ dir is what =
-you need
->     to do. Rebuilding from sstate-cache is very quick
->=20
->      > Thank you,
->      > Zoran
->      >
->     >
->     > --
->     >=20
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Products
-Materiaalweg 4, NL-5681 RJ Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-
-_______________________________________________
->     > yocto mailing list
->     > yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     > https://lists.yoctoproject.org/listinfo/yocto
->     <https://lists.yoctoproject.org/listinfo/yocto>
->     >
->=20
->=20
->=20
->=20
+diff --git a/recipes-devtools/python/rpi-gpio_0.6.2.bb b/recipes-devtools/python/rpi-gpio_0.6.2.bb
+deleted file mode 100644
+index 9c72168..0000000
+--- a/recipes-devtools/python/rpi-gpio_0.6.2.bb
++++ /dev/null
+@@ -1,21 +0,0 @@
+-DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
+-HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
+-SECTION = "devel/python"
+-LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=9b95630a648966b142f1a0dcea001cb7"
+-
+-SRCNAME = "RPi.GPIO"
+-
+-SRC_URI = "\
+-          http://pypi.python.org/packages/source/R/RPi.GPIO/${SRCNAME}-${PV}.tar.gz \
+-          file://0001-Remove-nested-functions.patch \
+-          "
+-SRC_URI[md5sum] = "9db86fd5f3bae872de9dbb068ee0b096"
+-SRC_URI[sha256sum] = "82acff0ef6bbe3cdf6f4dbdd73d96add5294bb94baf7f51c1d901861af3c2392"
+-
+-S = "${WORKDIR}/${SRCNAME}-${PV}"
+-
+-inherit distutils
+-
+-COMPATIBLE_MACHINE = "^rpi$"
+-
+diff --git a/recipes-devtools/python/rpi-gpio_0.6.3.bb b/recipes-devtools/python/rpi-gpio_0.6.3.bb
+new file mode 100644
+index 0000000..d0ff00a
+--- /dev/null
++++ b/recipes-devtools/python/rpi-gpio_0.6.3.bb
+@@ -0,0 +1,14 @@
++DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
++HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
++SECTION = "devel/python"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=9b95630a648966b142f1a0dcea001cb7"
++
++PYPI_PACKAGE = "RPi.GPIO"
++inherit pypi distutils
++
++SRC_URI += "file://0001-Remove-nested-functions.patch"
++SRC_URI[md5sum] = "e4abe1cfb5eacebe53078032256eb837"
++SRC_URI[sha256sum] = "a5fc0eb5e401963b6c0a03650da6b42c4005f02d962b81241d96c98d0a578516"
++
++COMPATIBLE_MACHINE = "^rpi$"
+-- 
+2.7.4
 
 
