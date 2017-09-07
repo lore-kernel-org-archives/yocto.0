@@ -1,40 +1,66 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E85FE00CC6; Thu,  7 Sep 2017 09:31:09 -0700 (PDT)
+	id E4BAEE00CC9; Thu,  7 Sep 2017 09:52:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69125E00C62
-	for <yocto@yoctoproject.org>; Thu,  7 Sep 2017 09:31:07 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v87GV3Hc003198
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 7 Sep 2017 09:31:03 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
-	Thu, 7 Sep 2017 09:31:02 -0700
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>, Andre McCurdy
-	<armccurdy@gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0D62E00CC6
+	for <yocto@yoctoproject.org>; Thu,  7 Sep 2017 09:52:07 -0700 (PDT)
+Received: by mail-pg0-f49.google.com with SMTP id d8so478439pgt.4
+	for <yocto@yoctoproject.org>; Thu, 07 Sep 2017 09:52:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=r26IDjMSqw5BmuhdWodFVKR9qt0irHQ/pokpM2f3Vfo=;
+	b=bFg+sUw7bQ8Mq4i1fIxE8eRVDpUw/LGWIQZIa0cE3aoAzX6EKc9InYkAdg7oL4NOnn
+	VHRb9vzuluulU8ghEOTg0LKVetp1Xt4f71KANf70en+pB6eAuG1odsD/Kr0T9PdTLqkH
+	DrmVVmBtvEo9kf5f3EpbXohzSw1ahdUmTBahuZWzp5yS9MpVDWZN8K4CWsIvTjbIjz25
+	64AFaOjkUiU+qWHsQoiwhizQ39lKpJtLA2Otyycdgfag4cqGjf+gHfOyVyBBKPG4YX79
+	wXI9gNJ/j6TsJn9YDBW2fCH4A+Za3VE1tFd+Q+D3ZgYdQ40QkJPpEFcIeG2UHkCIBgDA
+	jgjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=r26IDjMSqw5BmuhdWodFVKR9qt0irHQ/pokpM2f3Vfo=;
+	b=Ff9tdOVO9S2yDLgFbmi8LVTan5v6YRqiqi74A6995vEQqUoJOlnWkkT8nIFewzSxRG
+	fTTcLXc93wg5zrBZi08Al6rIa1nTEB0fEJKgU94hK9IqRXuw1x/OLW01tc+SRvaDj1Bw
+	VeYWZmZbUt5FrYynd46IK2b5MU7h/xP5GiVUqVfgBX4FB1jbGQ+B4R40pZGezXl/O3a7
+	ZU9iDy2EqhNkhnruPYTPOPaqRXzAUHzS0LZz4Vmth5i0ZCUQ+dXRV8tHk1F1BIcPQIJO
+	W3klHCE/eXHkPEAmvSn2pQ2R3mxTRkSRmxKg86D7xA28Y5sdNxphUmHBryKOoFpOKAXB
+	WZyg==
+X-Gm-Message-State: AHPjjUhNJRviL/qwGVWi6nCvG5V75byONIVkHHdcw3mPfb2MaRc6doFJ
+	g3sfE2DT2Em+9G8wkZf3MdIl9rHx2jM+9PhrkX4=
+X-Google-Smtp-Source: ADKCNb4mGPbXLZJOp2mfZ687iMYctzYtl1V5/CmUHJ4e0A27eSgqXAzfwCaf+09JnRwoN9pPJzNJxDkOWmb/FeIADyM=
+X-Received: by 10.84.177.129 with SMTP id x1mr3766163plb.161.1504803126755;
+	Thu, 07 Sep 2017 09:52:06 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.100.189.8 with HTTP; Thu, 7 Sep 2017 09:51:36 -0700 (PDT)
+In-Reply-To: <f8d14557-176c-f463-34cc-d93ef9cdb929@windriver.com>
 References: <afce79fad80649ff88295ca3d41499ef@sakuraus.com>
 	<CAJ86T=Uce45W_Thtuqv_CORNx7X6c1TD-Bg8O_DRyu65NLS6wQ@mail.gmail.com>
 	<70ce682e4c584761b8bb5fad63f7d737@sakuraus.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <f8d14557-176c-f463-34cc-d93ef9cdb929@windriver.com>
-Date: Thu, 7 Sep 2017 11:31:02 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.3.0
-MIME-Version: 1.0
-In-Reply-To: <70ce682e4c584761b8bb5fad63f7d737@sakuraus.com>
+	<f8d14557-176c-f463-34cc-d93ef9cdb929@windriver.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 7 Sep 2017 09:51:36 -0700
+Message-ID: <CAMKF1sqgjD6e7YGjpAvON8YxrxbLHFdeQxKpPnztEEoTiEK1-Q@mail.gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Working behind a Palo Alto firewall/proxy
 X-BeenThere: yocto@yoctoproject.org
@@ -48,95 +74,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Sep 2017 16:31:09 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 07 Sep 2017 16:52:08 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SSd2ZSBoYWQgYSBjdXN0b21lciB3aXRoIGEgc2ltaWxhciBwcm9ibGVtLiAgVGhlIHdheSB0
-aGV5IHJlc29sdmVkIGl0IHdhcyB0bw0KZG93bmxvYWQgdGhlIGNlcnRpZmljYXRpb24gZnJv
-bSB0aGVpciBwcm94eSBhbmQgYWRkIGl0IHRvIHRoZWlyIHN5c3RlbSBhcyBhDQprbm93biBj
-ZXJ0aWZpY2F0ZS4NCg0KU29ycnkgSSBkb24ndCBoYXZlIGFueSBtb3JlIGRldGFpbHMgdGhl
-biB0aGF0LCBidXQgbWF5YmUgdGhhdCBjYW4gc3Bhcmsgc29tZW9uZQ0Kd2hvIGtub3dzIHRo
-ZSBhY3R1YWwgc3RlcHMgdG8gYmUgYWJsZSB0byBjb21tZW50Lg0KDQotLU1hcmsNCg0KT24g
-OS83LzE3IDExOjI4IEFNLCBHcmVnIFdpbHNvbi1MaW5kYmVyZyB3cm90ZToNCj4gSGkgQW5k
-cmUsDQo+IA0KPiANCj4gSGVyZSBpcyB0aGUgY29tcGxldGUgZXJyb3Igb3V0cHV0Og0KPiAN
-Cj4gRVJST1I6IHF0ZGV2aWNldXRpbGl0aWVzLTUuOS4xK2dpdEFVVE9JTkMrNDhmYjcwNGU2
-NC1yMCBkb19mZXRjaDogRmV0Y2hlcg0KPiBmYWlsdXJlOiBGZXRjaCBjb21tYW5kIGV4cG9y
-dA0KPiBEQlVTX1NFU1NJT05fQlVTX0FERFJFU1M9InVuaXg6YWJzdHJhY3Q9L3RtcC9kYnVz
-LTlSZVFXWFlFazEiOyBleHBvcnQNCj4gU1NIX0FVVEhfU09DSz0iL3J1bi91c2VyLzEwMDAv
-a2V5cmluZy00UEdBQkIvc3NoIjsgZXhwb3J0DQo+IFBBVEg9Ii9ob21lL2d3aWxzb24vUXQt
-NS45L1lvY3RvLWJ1aWxkLVJQaTMvYnVpbGQtcmFzcGJlcnJ5cGkzL3RtcC9zeXNyb290cy94
-ODZfNjQtbGludXgvdXNyL2JpbjovaG9tZS9nd2lsc29uL1F0LTUuOS9Zb2N0by1idWlsZC1S
-UGkzL2J1aWxkLXJhc3BiZXJyeXBpMy90bXAvc3lzcm9vdHMtdW5pbmF0aXZlL3g4Nl82NC1s
-aW51eC91c3IvYmluOi9ob21lL2d3aWxzb24vUXQtNS45L1lvY3RvLWJ1aWxkLVJQaTMvc291
-cmNlcy9wb2t5L3NjcmlwdHM6L2hvbWUvZ3dpbHNvbi9RdC01LjkvWW9jdG8tYnVpbGQtUlBp
-My9idWlsZC1yYXNwYmVycnlwaTMvdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvYmlu
-L2FybS1wb2t5LWxpbnV4LWdudWVhYmk6L2hvbWUvZ3dpbHNvbi9RdC01LjkvWW9jdG8tYnVp
-bGQtUlBpMy9idWlsZC1yYXNwYmVycnlwaTMvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMy91
-c3IvYmluL2Nyb3Nzc2NyaXB0czovaG9tZS9nd2lsc29uL1F0LTUuOS9Zb2N0by1idWlsZC1S
-UGkzL2J1aWxkLXJhc3BiZXJyeXBpMy90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9z
-YmluOi9ob21lL2d3aWxzb24vUXQtNS45L1lvY3RvLWJ1aWxkLVJQaTMvYnVpbGQtcmFzcGJl
-cnJ5cGkzL3RtcC9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2JpbjovaG9tZS9nd2lsc29u
-L1F0LTUuOS9Zb2N0by1idWlsZC1SUGkzL2J1aWxkLXJhc3BiZXJyeXBpMy90bXAvc3lzcm9v
-dHMveDg2XzY0LWxpbnV4L3NiaW46L2hvbWUvZ3dpbHNvbi9RdC01LjkvWW9jdG8tYnVpbGQt
-UlBpMy9idWlsZC1yYXNwYmVycnlwaTMvdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC9iaW46
-L2hvbWUvZ3dpbHNvbi9RdC01LjkvWW9jdG8tYnVpbGQtUlBpMy9zb3VyY2VzL3Bva3kvc2Ny
-aXB0czovaG9tZS9nd2lsc29uL1F0LTUuOS9Zb2N0by1idWlsZC1SUGkzL3NvdXJjZXMvcG9r
-eS9iaXRiYWtlL2JpbjovaG9tZS9nd2lsc29uL1RFRTovaG9tZS9nd2lsc29uL2JpbjovdXNy
-L2xvY2FsL3NiaW46L3Vzci9sb2NhbC9iaW46L3Vzci9zYmluOi91c3IvYmluOi9zYmluOi9i
-aW46L3Vzci9nYW1lczovdXNyL2xvY2FsL2dhbWVzOi9vcHQvbWljcm9jaGlwL3hjMzIvdjEu
-MzQvYmluOi9ob21lL2d3aWxzb24vUlBpMy90b29scy9hcm0tYmNtMjcwOC9nY2MtbGluYXJv
-LWFybS1saW51eC1nbnVlYWJpaGYtcmFzcGJpYW4teDY0L2JpbiI7DQo+IGV4cG9ydCBIT01F
-PSIvaG9tZS9nd2lsc29uIjsgTEFORz1DIGdpdCAtYyBjb3JlLmZzeW5jb2JqZWN0ZmlsZXM9
-MCBjbG9uZSAtLWJhcmUNCj4gLS1taXJyb3IgaHR0cDovL2NvZGVyZXZpZXcucXQtcHJvamVj
-dC5vcmcvcXQvcXRkZXZpY2V1dGlsaXRpZXMNCj4gL2hvbWUvZ3dpbHNvbi9RdC01LjkvWW9j
-dG8tYnVpbGQtUlBpMy9idWlsZC1yYXNwYmVycnlwaTMvLi4vZG93bmxvYWRzL2dpdDIvY29k
-ZXJldmlldy5xdC1wcm9qZWN0Lm9yZy5xdC5xdGRldmljZXV0aWxpdGllcw0KPiAtLXByb2dy
-ZXNzIGZhaWxlZCB3aXRoIGV4aXQgY29kZSAxMjgsIG91dHB1dDoNCj4gQ2xvbmluZyBpbnRv
-IGJhcmUgcmVwb3NpdG9yeQ0KPiAnL2hvbWUvZ3dpbHNvbi9RdC01LjkvWW9jdG8tYnVpbGQt
-UlBpMy9idWlsZC1yYXNwYmVycnlwaTMvLi4vZG93bmxvYWRzL2dpdDIvY29kZXJldmlldy5x
-dC1wcm9qZWN0Lm9yZy5xdC5xdGRldmljZXV0aWxpdGllcycuLi4NCj4gZmF0YWw6IHVuYWJs
-ZSB0byBhY2Nlc3MNCj4gJ2h0dHBzOi8vY29kZXJldmlldy5xdC1wcm9qZWN0Lm9yZy9xdC9x
-dGRldmljZXV0aWxpdGllcy8nOiBzZXJ2ZXIgY2VydGlmaWNhdGUNCj4gdmVyaWZpY2F0aW9u
-IGZhaWxlZC4gQ0FmaWxlOg0KPiAvdXNyL3NoYXJlL2NhLWNlcnRpZmljYXRlcy9jZXJ0X0Rl
-Y3J5cHRpb24tQ2VydGlmaWNhdGUucGVtIENSTGZpbGU6IG5vbmUNCj4gDQo+IEVSUk9SOiBx
-dGRldmljZXV0aWxpdGllcy01LjkuMStnaXRBVVRPSU5DKzQ4ZmI3MDRlNjQtcjAgZG9fZmV0
-Y2g6IEZldGNoZXINCj4gZmFpbHVyZSBmb3IgVVJMOg0KPiAnZ2l0Oi8vY29kZXJldmlldy5x
-dC1wcm9qZWN0Lm9yZy9xdC9xdGRldmljZXV0aWxpdGllcztub2JyYW5jaD0xO3Byb3RvY29s
-PWh0dHAnLg0KPiBVbmFibGUgdG8gZmV0Y2ggVVJMIGZyb20gYW55IHNvdXJjZS4NCj4gRVJS
-T1I6IHF0ZGV2aWNldXRpbGl0aWVzLTUuOS4xK2dpdEFVVE9JTkMrNDhmYjcwNGU2NC1yMCBk
-b19mZXRjaDogRnVuY3Rpb24NCj4gZmFpbGVkOiBiYXNlX2RvX2ZldGNoDQo+IEVSUk9SOiBM
-b2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOg0KPiAvaG9tZS9nd2lsc29uL1F0LTUuOS9Z
-b2N0by1idWlsZC1SUGkzL2J1aWxkLXJhc3BiZXJyeXBpMy90bXAvd29yay9jb3J0ZXhhN2hm
-LW5lb24tdmZwdjQtcG9reS1saW51eC1nbnVlYWJpL3F0ZGV2aWNldXRpbGl0aWVzLzUuOS4x
-K2dpdEFVVE9JTkMrNDhmYjcwNGU2NC1yMC90ZW1wL2xvZy5kb19mZXRjaC44MTI4DQo+IEVS
-Uk9SOiBUYXNrDQo+ICgvaG9tZS9nd2lsc29uL1F0LTUuOS9Zb2N0by1idWlsZC1SUGkzL3Nv
-dXJjZXMvbWV0YS1ib290MnF0L3JlY2lwZXMtcXQvcXQ1L3F0ZGV2aWNldXRpbGl0aWVzLmJi
-OmRvX2ZldGNoKQ0KPiBmYWlsZWQgd2l0aCBleGl0IGNvZGUgJzEnDQo+IA0KPiBTbyBpdCBs
-b29rcyBsaWtlOg0KPiANCj4gcXRkZXZpY2V1dGlsaXRpZXMtNS45LjErZ2l0QVVUT0lOQys0
-OGZiNzA0ZTY0LXIwIGRvX2ZldGNoDQo+IA0KPiBpcyB3aGF0J3MgcnVubmluZy4NCj4gDQo+
-IA0KPiANCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gKkZyb206KiBBbmRyZSBN
-Y0N1cmR5IDxhcm1jY3VyZHlAZ21haWwuY29tPg0KPiAqU2VudDoqIFdlZG5lc2RheSwgU2Vw
-dGVtYmVyIDYsIDIwMTcgNjozNDowNyBQTQ0KPiAqVG86KiBHcmVnIFdpbHNvbi1MaW5kYmVy
-Zw0KPiAqQ2M6KiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+ICpTdWJqZWN0OiogUmU6IFt5
-b2N0b10gV29ya2luZyBiZWhpbmQgYSBQYWxvIEFsdG8gZmlyZXdhbGwvcHJveHkNCj4goA0K
-PiBPbiBXZWQsIFNlcCA2LCAyMDE3IGF0IDI6NDIgUE0sIEdyZWcgV2lsc29uLUxpbmRiZXJn
-DQo+IDxHV2lsc29uQHNha3VyYXVzLmNvbT4gd3JvdGU6DQo+PiBIaSBMaXN0LA0KPj4NCj4+
-IERvZXMgYW55Ym9keSBoYXZlIGFueSBleHBlcmllbmNlIHRyeWluZyB0byBydW4gWW9jdG8g
-YmVoaW5kIGEgUGFsbyBBbHRvDQo+PiBmaXJld2FsbC4gVGhlIFBhbG8gQWx0byBmaXJld2Fs
-bCBiYXNpY2FsbHkgd29ya3MgYXMgYSBNYW4gaW4gdGhlIE1pZGRsZQ0KPj4gc3lzdGVtLCBp
-dCBoYW5kcyBvdXQgaXRzIG93biBjZXJ0aWZpY2F0ZSB0byBib3hlcyBiZWhpbmQgaXQgYW5k
-IHRoZW4NCj4+IGRlY3J5cHRzIGFuZCByZS1lbmNyeXB0cyB0cmFmZmljIGdvaW5nIHRocm91
-Z2ggaXQuIFRoZSBQYWxvIEFsdG8gYm94IGlzDQo+PiBzdXBwb3NlZCB0byBhY3QgYXMgYSB0
-cmFuc3BhcmVudCBQcm94eS4NCj4+DQo+PiBJJ20gZ2V0dGluZyBhbiBlcnJvciB0aGF0IHRo
-ZSAnc2VydmVyIGNlcnRpZmljYXRlIHZlcmlmaWNhdGlvbiBmYWlsZWQnIGFib3V0DQo+PiBh
-biBob3VyIGludG8gYSB5b2N0byBidWlsZC4gVGhlIGNlcnRpZmljYXRlIHRoYXQgdGhlIFBh
-bG8gQWx0byBib3ggaXMNCj4+IHNlbmRpbmcgdG8gbXkgc3lzdGVtIGlzIHNlbGYtc2lnbmVk
-IHNvIHdpbGwgZmFpbCBpZiBjaGVja2VkIGZvciBhIHZhbGlkIHJvb3QNCj4+IENBLCBhbmQg
-YWxzbyBpcyBub3QgZnJvbSB3aGF0ZXZlciBzaXRlIGlzIGJlaW5nIGRvd25sb2FkZWQgZnJv
-bS4NCj4gDQo+IFdoaWNoIHNpdGUgaXMgYmVpbmcgZG93bmxvYWRlZCBmcm9tIGFuZCBhdCB3
-aGljaCBwb2ludCBpbiB0aGUgYnVpbGQNCj4gKGllIHdoaWNoIHJlY2lwZSBhbmQgdGFzaykg
-Pw0KPiANCj4gDQoNCg==
+you can try adding following to ~/.gitconfig
+
+[http]
+        sslverify =3D false
+
+On Thu, Sep 7, 2017 at 9:31 AM, Mark Hatle <mark.hatle@windriver.com> wrote=
+:
+> I've had a customer with a similar problem.  The way they resolved it was=
+ to
+> download the certification from their proxy and add it to their system as=
+ a
+> known certificate.
+>
+> Sorry I don't have any more details then that, but maybe that can spark s=
+omeone
+> who knows the actual steps to be able to comment.
+>
+> --Mark
+>
+> On 9/7/17 11:28 AM, Greg Wilson-Lindberg wrote:
+>> Hi Andre,
+>>
+>>
+>> Here is the complete error output:
+>>
+>> ERROR: qtdeviceutilities-5.9.1+gitAUTOINC+48fb704e64-r0 do_fetch: Fetche=
+r
+>> failure: Fetch command export
+>> DBUS_SESSION_BUS_ADDRESS=3D"unix:abstract=3D/tmp/dbus-9ReQWXYEk1"; expor=
+t
+>> SSH_AUTH_SOCK=3D"/run/user/1000/keyring-4PGABB/ssh"; export
+>> PATH=3D"/home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/sys=
+roots/x86_64-linux/usr/bin:/home/gwilson/Qt-5.9/Yocto-build-RPi3/build-rasp=
+berrypi3/tmp/sysroots-uninative/x86_64-linux/usr/bin:/home/gwilson/Qt-5.9/Y=
+octo-build-RPi3/sources/poky/scripts:/home/gwilson/Qt-5.9/Yocto-build-RPi3/=
+build-raspberrypi3/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi=
+:/home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/sysroots/rasp=
+berrypi3/usr/bin/crossscripts:/home/gwilson/Qt-5.9/Yocto-build-RPi3/build-r=
+aspberrypi3/tmp/sysroots/x86_64-linux/usr/sbin:/home/gwilson/Qt-5.9/Yocto-b=
+uild-RPi3/build-raspberrypi3/tmp/sysroots/x86_64-linux/usr/bin:/home/gwilso=
+n/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/sysroots/x86_64-linux/sbin=
+:/home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/sysroots/x86_=
+64-linux/bin:/home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/poky/scripts:/ho=
+me/gwilson/Qt-5.9/Yocto-build-RPi3/sources/poky/bitbake/bin:/home/gwilson/T=
+EE:/home/gwilson/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbi=
+n:/bin:/usr/games:/usr/local/games:/opt/microchip/xc32/v1.34/bin:/home/gwil=
+son/RPi3/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin"=
+;
+>> export HOME=3D"/home/gwilson"; LANG=3DC git -c core.fsyncobjectfiles=3D0=
+ clone --bare
+>> --mirror http://codereview.qt-project.org/qt/qtdeviceutilities
+>> /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/../downloads/gi=
+t2/codereview.qt-project.org.qt.qtdeviceutilities
+>> --progress failed with exit code 128, output:
+>> Cloning into bare repository
+>> '/home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/../downloads/g=
+it2/codereview.qt-project.org.qt.qtdeviceutilities'...
+>> fatal: unable to access
+>> 'https://codereview.qt-project.org/qt/qtdeviceutilities/': server certif=
+icate
+>> verification failed. CAfile:
+>> /usr/share/ca-certificates/cert_Decryption-Certificate.pem CRLfile: none
+>>
+>> ERROR: qtdeviceutilities-5.9.1+gitAUTOINC+48fb704e64-r0 do_fetch: Fetche=
+r
+>> failure for URL:
+>> 'git://codereview.qt-project.org/qt/qtdeviceutilities;nobranch=3D1;proto=
+col=3Dhttp'.
+>> Unable to fetch URL from any source.
+>> ERROR: qtdeviceutilities-5.9.1+gitAUTOINC+48fb704e64-r0 do_fetch: Functi=
+on
+>> failed: base_do_fetch
+>> ERROR: Logfile of failure stored in:
+>> /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/work/cortex=
+a7hf-neon-vfpv4-poky-linux-gnueabi/qtdeviceutilities/5.9.1+gitAUTOINC+48fb7=
+04e64-r0/temp/log.do_fetch.8128
+>> ERROR: Task
+>> (/home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/meta-boot2qt/recipes-qt/q=
+t5/qtdeviceutilities.bb:do_fetch)
+>> failed with exit code '1'
+>>
+>> So it looks like:
+>>
+>> qtdeviceutilities-5.9.1+gitAUTOINC+48fb704e64-r0 do_fetch
+>>
+>> is what's running.
+>>
+>>
+>>
+>> ------------------------------------------------------------------------=
+--------
+>> *From:* Andre McCurdy <armccurdy@gmail.com>
+>> *Sent:* Wednesday, September 6, 2017 6:34:07 PM
+>> *To:* Greg Wilson-Lindberg
+>> *Cc:* yocto@yoctoproject.org
+>> *Subject:* Re: [yocto] Working behind a Palo Alto firewall/proxy
+>>
+>> On Wed, Sep 6, 2017 at 2:42 PM, Greg Wilson-Lindberg
+>> <GWilson@sakuraus.com> wrote:
+>>> Hi List,
+>>>
+>>> Does anybody have any experience trying to run Yocto behind a Palo Alto
+>>> firewall. The Palo Alto firewall basically works as a Man in the Middle
+>>> system, it hands out its own certificate to boxes behind it and then
+>>> decrypts and re-encrypts traffic going through it. The Palo Alto box is
+>>> supposed to act as a transparent Proxy.
+>>>
+>>> I'm getting an error that the 'server certificate verification failed' =
+about
+>>> an hour into a yocto build. The certificate that the Palo Alto box is
+>>> sending to my system is self-signed so will fail if checked for a valid=
+ root
+>>> CA, and also is not from whatever site is being downloaded from.
+>>
+>> Which site is being downloaded from and at which point in the build
+>> (ie which recipe and task) ?
+>>
+>>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
