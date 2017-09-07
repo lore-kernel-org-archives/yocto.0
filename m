@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A94ECE00D8D; Thu,  7 Sep 2017 06:24:53 -0700 (PDT)
+	id CC232E00D8A; Thu,  7 Sep 2017 06:24:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,61 +9,62 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
+	*      [209.85.128.194 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+	*      [209.85.128.194 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DE12E00D89
+Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
+	[209.85.128.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A23A9E00D8A
 	for <yocto@yoctoproject.org>; Thu,  7 Sep 2017 06:24:52 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id p17so1380515wmd.3
+Received: by mail-wr0-f194.google.com with SMTP id n64so1046248wrb.2
 	for <yocto@yoctoproject.org>; Thu, 07 Sep 2017 06:24:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=NkAUu+yxh/yqAJw3xdLCEh5YoGfi0URGaR7DHDpQ/fM=;
-	b=B275poWJQBNcdjCUkbpbqf+00MvyzfOQei+blQ/CtQ/sgbiJe7Ky81OaPy8egnuxlt
-	h4HgpLEvXojwYk2Llc3rRaqhzx7p+ukJ4yuUn/R/YLZTtUYPi8MFOPRTeQCqKMdmPiF3
-	jrM9/ErEENtaYH9wT5jjKMaCkwBUgk9qzinmU/j+Oj2qP5e9lzOKwyJ+hCuRt5RxAWhe
-	bLH29cKS7UBLVnUxc/sgZFeMQqzMaXEFHsbMzYdbzT8ZAMyJEE9bQQrHlX93OF49gQL0
-	rCqBBlEaDSIEaSP0ZSlmtGWFGLSKz2303I+GLyeqvUn0OqSI2AS3Tz+FHEWulf3uhx5e
-	7PBw==
+	bh=6y2QW2x0bjp2raxeYtUJxuBubNfUem0c5++8j5CxVhE=;
+	b=X45LNK/EF0Rnt3eRaonM6hOSgBF8uhrUp6AXP7/WQeNGpjSNzOA3gtUrHXrmmkgCxz
+	8dF3Ds84Qz++PlyKeAb1ypXDWnKLaXvoNezKUaMA5EJKpj8/n7n1Wq98mPiJy6d72P5b
+	H8NWEEzptkhomganbuTUjG9WfznAREzC2oacWSBrmYaUZRIKaG19xSAYsv79cD+GLwr0
+	EuEAdDQmRXNwzBNPBFzuq4NgXENlBqiAFBg3G2ucrjEDoL+s+28uAF6y1T8LRZCxnjXH
+	hYFNC7NeCpC2VBFA6oO/S+JpGepv5v/ffwOET0Ki4nsc3gl6KsBCfL6mw9YpHI8ncjWD
+	d5cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
 	:in-reply-to:references;
-	bh=NkAUu+yxh/yqAJw3xdLCEh5YoGfi0URGaR7DHDpQ/fM=;
-	b=QU3tMFQD7X6pNP2Oa5lj7/lD7NlOi+eraUDs2e2DhsVvxkLxlWkyVyOZu5We8q/qv1
-	E5B0k6pjH7Lam07cY2MlXq88a3VHPiCr2L9YDVXfmcUuaniQpFl5wcSHOSBA9gDmkVqh
-	BcLUsgEj11/zwNMmBJjW8rineDlW0wuHogkaJCXQfGIXrz0QZEnapSTlg4i4/rccq4uO
-	xPf9k31ZD8sM4AIaxbnCMqDtEt5Qr/bROntxAnAaK5UTIVdH9R3VkRNdlcb8cZ+ve9+L
-	G6lvBdQxULSZtZexV9YslpiSo5C00QhfbGTt4uxy5W52lIWotNFtDzdzVasevN4yWv2t
-	/0/w==
-X-Gm-Message-State: AHPjjUjbQAxVNssW9L1AWdQNYx/sZrqYsYD2kz3D3BMQNfer2znM3HJq
-	ctcfehFe8/gnGiLIH6xE9A==
-X-Google-Smtp-Source: AOwi7QDEBTNLREhLFI3Py4qQpt3ks9Vu9Dfk2IV/F3zgZTYTinnmpUiEDBiR0Tul066fnJTNu68uYQ==
-X-Received: by 10.28.133.75 with SMTP id h72mr490765wmd.113.1504790690232;
+	bh=6y2QW2x0bjp2raxeYtUJxuBubNfUem0c5++8j5CxVhE=;
+	b=OdvCKZ9UHtjhAcVzBzdK+NoxZS92TpfTo/Rpk4g1j5bGMrQsNVEDHpzD3KF8i7mCVA
+	p64aGFSAUftU98w3sfHNJ+HFQm+Uy+CxyT9XTP3odAyHtIkFJyP6ArDSbK0HFEvCpnR1
+	wnAmpz6NbssJ2JIFi7VgPfTw1cZpYTEKf45mzpeasE3MAECElORsYFKY09mNiLPvAzPn
+	4laCrM1rry1YlI/NkUL1Iq9M4/+/mu+kLIZEj7zyUlmZGYVTAzCKQi6l8IyHwVNRaggo
+	XOYay1JsOoNUSGdYHVtjIYHFujyD8eI6KZx2rF3MPInDkOdly2cO6USxRO10fUYGrrKc
+	iHFw==
+X-Gm-Message-State: AHPjjUhc+W2vBk7zZkBu4vTE2qX1q5/JOxELQNW8kb+ap4QhR7I5BzGI
+	+HN7zC5GED6eFnqf0Ca7gQ==
+X-Google-Smtp-Source: ADKCNb4VcDo1IFCqqoUVR2X6rU6U1sBqrIut3nkHAGE6EuHTgDq3AE1hfMjQD6DjfEWkCxSrD4hVLA==
+X-Received: by 10.223.138.235 with SMTP id z40mr1744535wrz.14.1504790690923;
 	Thu, 07 Sep 2017 06:24:50 -0700 (PDT)
 Received: from localhost.localdomain
 	(host109-150-130-236.range109-150.btcentralplus.com.
 	[109.150.130.236]) by smtp.gmail.com with ESMTPSA id
-	z108sm2581622wrc.49.2017.09.07.06.24.49
+	z108sm2581622wrc.49.2017.09.07.06.24.50
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 07 Sep 2017 06:24:49 -0700 (PDT)
+	Thu, 07 Sep 2017 06:24:50 -0700 (PDT)
 Sender: Andrei Gherzan <andrei@gherzan.ro>
 From: Andrei Gherzan <andrei@gherzan.com>
 To: yocto@yoctoproject.org
-Date: Thu,  7 Sep 2017 14:24:37 +0100
-Message-Id: <1504790680-20783-2-git-send-email-andrei@gherzan.com>
+Date: Thu,  7 Sep 2017 14:24:38 +0100
+Message-Id: <1504790680-20783-3-git-send-email-andrei@gherzan.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1504790680-20783-1-git-send-email-andrei@gherzan.com>
 References: <1504790680-20783-1-git-send-email-andrei@gherzan.com>
 Cc: Andrei Gherzan <andrei@gherzan.com>
-Subject: [PATCH 2/5] python-sense-hat: Update to 2.2.0
+Subject: [PATCH 3/5] pi-blaster: Update to current master HEAD
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,80 +78,36 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 07 Sep 2017 13:24:53 -0000
 
-As well integrate with meta-oe bbclass pypi.
+License in the README was moved a couple of lines below.
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.com>
 ---
- recipes-devtools/python/python-sense-hat_2.1.0.bb | 28 -----------------------
- recipes-devtools/python/python-sense-hat_2.2.0.bb | 24 +++++++++++++++++++
- 2 files changed, 24 insertions(+), 28 deletions(-)
- delete mode 100644 recipes-devtools/python/python-sense-hat_2.1.0.bb
- create mode 100644 recipes-devtools/python/python-sense-hat_2.2.0.bb
+ recipes-devtools/pi-blaster/pi-blaster.inc    | 2 +-
+ recipes-devtools/pi-blaster/pi-blaster_git.bb | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-devtools/python/python-sense-hat_2.1.0.bb b/recipes-devtools/python/python-sense-hat_2.1.0.bb
-deleted file mode 100644
-index e990a28..0000000
---- a/recipes-devtools/python/python-sense-hat_2.1.0.bb
-+++ /dev/null
-@@ -1,28 +0,0 @@
--SUMMARY = "Python module to control the Raspberry Pi Sense HAT used in the Astro Pi mission"
--HOMEPAGE = "https://github.com/RPi-Distro/python-sense-hat"
--SECTION = "devel/python"
--LICENSE = "BSD"
--LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=d80fe312e1ff5fbd97369b093bf21cda"
--
--SRCNAME = "sense-hat"
--
--SRC_URI = "https://pypi.python.org/packages/source/s/${SRCNAME}/${SRCNAME}-${PV}.tar.gz"
--
--SRC_URI[md5sum] = "71217f15ea963040f06e2f50722186ca"
--SRC_URI[sha256sum] = "c6c76707c0ea514e4b0f1f96f1b5b79755875891aae037df7434b6aad7b9dbca"
--
--S = "${WORKDIR}/${SRCNAME}-${PV}"
--
--inherit setuptools
--
--DEPENDS += " \
--    jpeg \
--    zlib \
--    freetype \
--    "
--
--RDEPENDS_${PN} += " \
--    python-numpy \
--    python-rtimu \
--    python-imaging \
--    "
-diff --git a/recipes-devtools/python/python-sense-hat_2.2.0.bb b/recipes-devtools/python/python-sense-hat_2.2.0.bb
-new file mode 100644
-index 0000000..f7c4e34
---- /dev/null
-+++ b/recipes-devtools/python/python-sense-hat_2.2.0.bb
-@@ -0,0 +1,24 @@
-+SUMMARY = "Python module to control the Raspberry Pi Sense HAT used in the Astro Pi mission"
-+HOMEPAGE = "https://github.com/RPi-Distro/python-sense-hat"
-+SECTION = "devel/python"
-+LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=d80fe312e1ff5fbd97369b093bf21cda"
-+
-+inherit setuptools pypi
-+
-+PYPI_PACKAGE = "sense-hat"
-+
-+SRC_URI[md5sum] = "69929250cb72349a8a82edf2584b1d83"
-+SRC_URI[sha256sum] = "f000998d042d96ed722d459312e1bebd0107f9f3015cd34b3e4fabcab9c800af"
-+
-+DEPENDS += " \
-+    jpeg \
-+    zlib \
-+    freetype \
-+    "
-+
-+RDEPENDS_${PN} += " \
-+    python-numpy \
-+    python-rtimu \
-+    python-imaging \
-+    "
+diff --git a/recipes-devtools/pi-blaster/pi-blaster.inc b/recipes-devtools/pi-blaster/pi-blaster.inc
+index 6ea4fa3..3cb79cc 100644
+--- a/recipes-devtools/pi-blaster/pi-blaster.inc
++++ b/recipes-devtools/pi-blaster/pi-blaster.inc
+@@ -2,7 +2,7 @@ DESCRIPTION = "This project enables PWM on the GPIO pins you request of a Raspbe
+ HOMEPAGE = "https://github.com/sarfata/pi-blaster/"
+ SECTION = "devel/libs"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://README.md;beginline=212;endline=239;md5=a012868ef5f83b9f257af253d7cb07a3"
++LIC_FILES_CHKSUM = "file://README.md;beginline=225;endline=252;md5=a012868ef5f83b9f257af253d7cb07a3"
+ 
+ SRC_URI = "git://github.com/sarfata/pi-blaster \
+            file://remove-initscript-lsb-dependency.patch \
+diff --git a/recipes-devtools/pi-blaster/pi-blaster_git.bb b/recipes-devtools/pi-blaster/pi-blaster_git.bb
+index ac812ab..730f9d3 100644
+--- a/recipes-devtools/pi-blaster/pi-blaster_git.bb
++++ b/recipes-devtools/pi-blaster/pi-blaster_git.bb
+@@ -1,3 +1,3 @@
+ require pi-blaster.inc
+ 
+-SRCREV = "9f45eb23a8a3b2d1c08d08a6d68f206fe91ecf4c"
++SRCREV = "1035ad7dffb270c40eec1bb3a654171a755fba98"
 -- 
 2.7.4
 
