@@ -1,74 +1,40 @@
-Return-Path: <yocto.user.mailinglist@gmail.com>
+Return-Path: <philippe.coval@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E3C5E00CCE; Fri,  8 Sep 2017 09:20:27 -0700 (PDT)
+	id 30CD1E00B1B; Fri,  8 Sep 2017 12:07:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yocto.user.mailinglist[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC,
+	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9375FE00970
-	for <yocto@yoctoproject.org>; Fri,  8 Sep 2017 09:20:26 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id x17so2052367wmd.5
-	for <yocto@yoctoproject.org>; Fri, 08 Sep 2017 09:20:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=m60C6g93rTqNj1RUz3/WUUXNUKY/6K/5nW19IfbZrqw=;
-	b=hyVQKar5wKO5pFtGay1/Lse3mrQZ9DTgqWkCdxMEwVUF3EGB+gmQapHn24cJVEH3sU
-	ic9WW4PbLU9Jc0BVUUvPpQ081CUGK13LE2GdQDgS9AB3+fxzpiycmoJ3DTMkejQCBSAT
-	jty7xINCkkKnOdUxmoNAFe9V8gsnnjyQl+QXbVsbkBTKvKuF84ifTpTG0uz4hsPKIDWh
-	dp4s14TaYJesekztnQYbrM+BdDZ2YP8CjBqJMB/zYO0PrCMc/VUTjC1REQivEBHC0fCF
-	Zyn3FtdcQdV/tja/rWioUm6bGrIJ5YVWydP2ptGbBbL9qB0of9dQFW9XUZ7yZpJar0VN
-	qfrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=m60C6g93rTqNj1RUz3/WUUXNUKY/6K/5nW19IfbZrqw=;
-	b=F1Wp1FkxRw1/gsZoqw2eetzVkA/UISSOcl8OSNnSV+yuYMQno1Izi4zah3NaKyTWiA
-	GY2iQfRoIls7NKtb07NjwdPMI3iJDPhk7YKQ4vWgQR7zqdf38N8SPJJSZ0d/5X5YV02m
-	h6Hgg8fd2JgkGmMgimJ8d4Pb6JI8N2kS0ZN0yiyMa7dY3kZcapPal+Xkbi7nOx672Fzu
-	ZcBGC3GUNevEif19gM4CPtwfHqF7LZh0p5VbJT4v61pq4fbg3A/WVh6UAV7xS9hNsnf4
-	QKWI62DJ2E+NKwfR2m6u0TAYA3k2w0mRXVMz22h7lFz48ghhUwTtdRSDehD5rUDMch/T
-	rpVA==
-X-Gm-Message-State: AHPjjUhOVV1CEpFUQcpZeJfkqgCV0xfxiWQDN9rYEbwpP4n/d9RYuyI3
-	qGQth9wLe8FwAtO8jOc=
-X-Google-Smtp-Source: AOwi7QDo7dn/0ObnmqNeeT2TTThADIE7UqT3YL+jEdkH5fM3vVObcgVhTDvAGQVLApj0eJmzkAvXVA==
-X-Received: by 10.28.70.130 with SMTP id t124mr2030262wma.145.1504887625138;
-	Fri, 08 Sep 2017 09:20:25 -0700 (PDT)
-Received: from [192.168.42.50] (ppp-2-86-140-5.home.otenet.gr. [2.86.140.5])
-	by smtp.gmail.com with ESMTPSA id
-	187sm2405150wmm.42.2017.09.08.09.20.24
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 08 Sep 2017 09:20:24 -0700 (PDT)
-To: Fan Zhang <fzhang@sgl.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <b2971216-bfa5-20d3-9cdd-ceee0afffb76@sgl.com>
-From: Robert Berger <yocto.user.mailinglist@gmail.com>
-Message-ID: <2169f5a0-7166-1ff0-6b43-611167a8cacf@gmail.com>
-Date: Fri, 8 Sep 2017 19:20:23 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
-MIME-Version: 1.0
-In-Reply-To: <b2971216-bfa5-20d3-9cdd-ceee0afffb76@sgl.com>
-Subject: Re: [meta-xilinx] How to include Xilinx DMA driver
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+X-Greylist: delayed 425 seconds by postgrey-1.32 at yocto-www;
+	Fri, 08 Sep 2017 12:07:06 PDT
+Received: from osg.samsung.com
+	(ec2-52-27-115-49.us-west-2.compute.amazonaws.com [52.27.115.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2685E00970
+	for <yocto@yoctoproject.org>; Fri,  8 Sep 2017 12:07:06 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by osg.samsung.com (Postfix) with ESMTP id F3CE6A06C2;
+	Fri,  8 Sep 2017 19:00:28 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at osg.samsung.com
+Received: from osg.samsung.com ([127.0.0.1])
+	by localhost (s-opensource.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id adCmvCXmXMxR; Fri,  8 Sep 2017 19:00:27 +0000 (UTC)
+Received: from WSF-1127.8.8.8.8 (unknown [82.236.136.171])
+	by osg.samsung.com (Postfix) with ESMTPSA id 1A3B2A05F0;
+	Fri,  8 Sep 2017 19:00:25 +0000 (UTC)
+From: Philippe Coval <philippe.coval@osg.samsung.com>
+To: kishen.maloor@intel.com
+Date: Fri,  8 Sep 2017 20:59:41 +0200
+Message-Id: <1504897181-17561-1-git-send-email-philippe.coval@osg.samsung.com>
+X-Mailer: git-send-email 1.9.1
+Cc: iotivity-dev@lists.iotivity.org, yocto@yoctoproject.org,
+	Philippe Coval <philippe.coval@osg.samsung.com>
+Subject: [meta-oic][PATCH] iotivity_1.2.1: Hotfix: Add ORIGIN rpath for binutils-2.29
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,39 +46,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Sep 2017 16:20:27 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 08 Sep 2017 19:07:08 -0000
 
-Hi,
+Set RPATH to ORIGIN as supported by gcc/ld (-rpath=\$ORIGIN)
 
-On 2017-09-08 19:00, Fan Zhang wrote:
-> Hi All,
->  
-> 1. How to include xilinx_dma.c driver in to the poky image build?
+Observed issue on poky master was:
 
-In case you want to include out-of tree drivers it could work like 
-this[1] in case you want in-tree it's just a kernel patch similar to[2].
+  ld: warning: libconnectivity_abstraction.so, \
+  needed by out/yocto/x86_64/release/liboctbstack.so,
+  not found (try using -rpath or -rpath-link)
+  out/yocto/x86_64/release/liboctbstack.so: \
+  undefined reference to `coap_write_block_opt'
 
-Apparently you will need to turn on kernel config features. You might 
-try something like this[3].
+Note that problem is also about to be fixed upstream directly in scons files.
 
-For Yocto/Xilinx specific questions you might want to ask on the Xilinx 
-mailing list[4].
+Bug: https://jira.iotivity.org/browse/IOT-2651
+Relate-to: https://gerrit.iotivity.org/gerrit/#/c/22355/
+Thanks-to: Mikko Ylinen <mikko.ylinen@intel.com>
+Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
+---
 
-[1] 
-https://github.com/RobertBerger/meta-mainline/tree/pyro-training-v4.9.x/multi-v7-ml/recipes-zedboard/xilinx-dma
+Origin: https://github.com/tizenteam/meta-oic/tree/sandbox/pcoval/on/master/review
 
-[2] 
-https://github.com/RobertBerger/meta-mainline/blob/pyro-training-v4.9.x/multi-v7-ml/recipes-kernel/linux/patch/4.9.x/patches/zedboard-zynq7/zynq-qspi/0001-zynq-zedboard-non-mainline-qspi-support.patch
+ recipes-core/iotivity/iotivity_1.2.1.bb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-[3] 
-https://github.com/RobertBerger/meta-mainline/tree/pyro-training-v4.9.x/multi-v7-ml/recipes-kernel/linux/config/multi-v7-ml-base/features/zynq-qspi
+diff --git a/recipes-core/iotivity/iotivity_1.2.1.bb b/recipes-core/iotivity/iotivity_1.2.1.bb
+index c8fb8fd..bd7943e 100644
+--- a/recipes-core/iotivity/iotivity_1.2.1.bb
++++ b/recipes-core/iotivity/iotivity_1.2.1.bb
+@@ -1,4 +1,4 @@
+-PR = "r1"
++PR = "r2"
+ SUMMARY = "IoTivity framework and SDK sponsored by the Open Connectivity Foundation."
+ DESCRIPTION = "IoTivity is an open source software framework enabling seamless device-to-device connectivity to address the emerging needs of the Internet of Things."
+ HOMEPAGE = "https://www.iotivity.org/"
+@@ -36,6 +36,7 @@ SRC_URI += "${url_mbedtls};name=mbedtls;destsuffix=${S}/extlibs/mbedtls/mbedtls;
+ 
+ inherit pkgconfig scons
+ 
++TARGET_LDFLAGS_append = " -Wl,-rpath-link=\\$$ORIGIN"
+ 
+ python () {
+     IOTIVITY_TARGET_ARCH = d.getVar("TARGET_ARCH", True)
+-- 
+1.9.1
 
-[4] https://lists.yoctoproject.org/listinfo/meta-xilinx
-
-Regards,
-
-Robert
 
