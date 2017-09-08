@@ -1,28 +1,64 @@
-Return-Path: <fzhang@sgl.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4E08E00CCE; Fri,  8 Sep 2017 09:00:51 -0700 (PDT)
+	id 5C144E00B1B; Fri,  8 Sep 2017 09:02:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.51 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from webmail.sgl.com (mail1.sgl.com [209.87.231.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9186E00970
-	for <yocto@yoctoproject.org>; Fri,  8 Sep 2017 09:00:50 -0700 (PDT)
-Received: from [10.1.20.15] (unknown [10.1.20.15])
-	by webmail.sgl.com (Postfix) with ESMTP id B9EC91D20B5E8
-	for <yocto@yoctoproject.org>; Fri,  8 Sep 2017 11:58:54 -0400 (EDT)
-To: yocto@yoctoproject.org
-From: Fan Zhang <fzhang@sgl.com>
-Message-ID: <b2971216-bfa5-20d3-9cdd-ceee0afffb76@sgl.com>
-Date: Fri, 8 Sep 2017 12:00:49 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f51.google.com (mail-pg0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC500E00970
+	for <yocto@yoctoproject.org>; Fri,  8 Sep 2017 09:02:04 -0700 (PDT)
+Received: by mail-pg0-f51.google.com with SMTP id q68so5537647pgq.1
+	for <yocto@yoctoproject.org>; Fri, 08 Sep 2017 09:02:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=0xL8VCFqwEjqjq+E7ruEGw/y1aGZCXGtaCYiuf95mvo=;
+	b=KyYs7fLWnPhvgn4xTZe3bMDZDFU0k2vU5TK7sXXAqLT/fiA3ZgSrobX7CVA7eijfHQ
+	lXH5lk2ihXySOvDaq5QUXQk2dEvuH8FX1JwQO5HJJtrIlkHw1zmGKPCj4z4WNZLRQA41
+	0jDmZH7Gxl0r5Jf8OcR9dshAQQEmjr0ilNrasswqPyQqyGXbQy8b+++EfzYr05oon4Jx
+	jzKKjyB+LGN1hTmhrOTfF4s0GTghSf+zDya/QRckpL+XyaO5kP7tx0RR+Kq5hkbam2tu
+	med6rGPF1OY2VNKNzbkrggjVTHU73lFt8qWYQCWZv5feq/yA2hZEjooklDkJXl+BDEo1
+	AdBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=0xL8VCFqwEjqjq+E7ruEGw/y1aGZCXGtaCYiuf95mvo=;
+	b=DfBhVgrOlibTql/n/thg30ZomaMTU0neyWkgaF/3lHbW6m1xiO2kRadpq7IhvlEgsw
+	UhRQP3C7q/MAIRtueGHMAUpE228sZmrJ46ZrbkidZGRB8cHJWLi1VOCwKLcfUrUdVJiZ
+	NDP5VBNFgHWsUinQVHuM6zZscKZY5zhjCpAwvzWWMAqcL4bXKoYM/V9s4jTKq8EhVK8s
+	RcGcVtnuR+qI7KwNeLJKAtgaMMAKh9+VcwpNPVOmxbWQfmoVD0bHQlza/nTGf/Mb0tP4
+	jQjKtkA4tKcMxd1LFK2ZEsEbQ4Le7zJv47Cf5WYpAZe0gUcCMuank1Bl+63a3927LUM7
+	IZGA==
+X-Gm-Message-State: AHPjjUjItn4uJS+emD15w9YIwt2+uTKuZf43WEVPCA36Lixb+/CYaaA7
+	MnK5F/9Is6Rz1nhjIYamTYfK4hNU9tO7lNB3fF8=
+X-Google-Smtp-Source: ADKCNb5iqm6Z9kFShjJivVasHM9fof9B50oJDBCBEL7RXkTPM4D/OixFijPGL+kRlOVTMYlknG7Y+aeDyLFGXjqMc18=
+X-Received: by 10.98.157.74 with SMTP id i71mr3726357pfd.168.1504886523625;
+	Fri, 08 Sep 2017 09:02:03 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-xilinx] How to include Xilinx DMA driver
+Received: by 10.100.189.8 with HTTP; Fri, 8 Sep 2017 09:01:33 -0700 (PDT)
+In-Reply-To: <d0148a6a-9eac-1f8a-6bd5-d7bd967c82eb@vitheia.com>
+References: <d0148a6a-9eac-1f8a-6bd5-d7bd967c82eb@vitheia.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 8 Sep 2017 09:01:33 -0700
+Message-ID: <CAMKF1sqhKZvkhsywsFq63F-MXb0CKXShJP2ACWKnneaRf4xqew@mail.gmail.com>
+To: Mircea Gliga <mircea.gliga@vitheia.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: dnsmasq init script typo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,189 +70,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Sep 2017 16:00:51 -0000
-X-Groupsio-MsgNum: 37743
-Content-Type: multipart/mixed; boundary="------------9CFB9260314A02BA14F3D4B7"
-Content-Language: en-US
+X-List-Received-Date: Fri, 08 Sep 2017 16:02:05 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---------------9CFB9260314A02BA14F3D4B7
-Content-Type: multipart/alternative;
- boundary="------------715AD911ADACF73EAB366CF4"
+On Fri, Sep 8, 2017 at 12:47 AM, Mircea Gliga <mircea.gliga@vitheia.com> wrote:
+> Hi
+>
+> I think there is a problem in the dnsmasq init script related to the pidfile
+>
+>  test -z "${PIDFILE}" && PIFILE="/run/dnsmasq.pid"
+>
+>
+> The script defines a variable PIFILE, notice the missing "D" from PID. And
+> then it doesn't use that variable anymore.
+> It only uses the PIDFILE one.
 
---------------715AD911ADACF73EAB366CF4
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+this is a typo so please submit a patch to fix it if you can.
 
-Hi All,
+> So, if you run /etc/init.d/dnsmasq status you get in trouble because of this
+> line:
+>
+>   PID=`cat ${PIDFILE}`
+>
+> Also the script doesn't handle the situation when the the pidfile is also
+> specified in the dnsmasq.conf file - the daemon creates the pidfile in the
+> location specified in the dnsmaq.conf file.
+> But, this is done for the `no-resolv` entry in the conf file.
+>
+> This is the script in question:
+> http://cgit.openembedded.org/meta-openembedded/tree/meta-networking/recipes-support/dnsmasq/files/init?h=krogoth#n19
+>
+> Best regards
+> Mircea
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-I have a design on Zynq that uses DMA, and I need to setup a driver to 
-program the DMA controller, setup the data transfer and supply data to 
-user space.
-
-I searched around in the Xilinx forum, and found an dma_proxy driver. 
-Xilinx also provides an xilinx_dma.c driver for the DMA. It is unclear 
-to me how these all fit together. I have a few questions and I 
-appreciate anyone to give me some pointer to moving things forward.
-
-1. How to include xilinx_dma.c driver in to the poky image build?
-
-    Xilinx wiki says enable these options: CONFIG_DMADEVICES,
-    CONFIG_XILINX_DMA. I did a search on my bitbake folder, and they are
-    enabled in a number of cfg files. But checking the environment with
-    bitbake -e , and these options didn't show up. I can't find any
-    xilinx_dma.ko in the build either. So what am I missing, and how can
-    I include the xilinx driver into my build? Xilinx wiki page is here:
-    http://www.wiki.xilinx.com/DMA+Drivers+-+Soft+IPs
-
-2. I found a set of character device based dma driver, and it's user 
-space application example. A number of people refer to this solution as 
-an starting point for driver development. It's unclear to me whether 
-this driver is built on top of the Xilinx_dma driver. When I tried this 
-driver, it fails at requesting DMA channel. Anyone has experience with 
-this driver, could you share your experience? Thank you so much.
-
-    Driver can be found here:
-    https://bitbucket.org/Schnegg/pa/src/b8f430a3ebd756f231e88e5dc8523737ed5db034/petalinux_project/components/modules/dma_proxy/dma_proxy.c?at=master&fileviewer=file-view-default
-
-Best Regards,
-
-Fan
-
-	
-	
-
-
-
-
---------------715AD911ADACF73EAB366CF4
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>
-    </p>
-    <div class="moz-text-html" lang="x-unicode">
-      <p>Hi All,</p>
-      <p>I have a design on Zynq that uses DMA, and I need to setup a
-        driver to program the DMA controller, setup the data transfer
-        and supply data to user space. <br>
-      </p>
-      <p>I searched around in the Xilinx forum, and found an dma_proxy
-        driver. Xilinx also provides an xilinx_dma.c driver for the DMA.
-        It is unclear to me how these all fit together. I have a few
-        questions and I appreciate anyone to give me some pointer to
-        moving things forward.</p>
-      <p>1. How to include xilinx_dma.c driver in to the poky image
-        build? <br>
-      </p>
-      <blockquote>
-        <p>Xilinx wiki says enable these options<span style="box-sizing:
-            border-box; color: rgb(0, 0, 0); font-family: arial,
-            helvetica, sans-serif; font-size: 13px; font-style: normal;
-            font-variant-ligatures: normal; font-variant-caps: normal;
-            font-weight: normal; letter-spacing: normal; orphans: 2;
-            text-align: start; text-indent: 0px; text-transform: none;
-            white-space: normal; widows: 2; word-spacing: 0px;
-            -webkit-text-stroke-width: 0px; text-decoration-style:
-            initial; text-decoration-color: initial; background-color:
-            rgb(255, 255, 255);">: CONFIG_</span><span style="color:
-            rgb(0, 0, 0); font-family: arial, helvetica, sans-serif;
-            font-size: 13px; font-style: normal; font-variant-ligatures:
-            normal; font-variant-caps: normal; font-weight: normal;
-            letter-spacing: normal; orphans: 2; text-align: start;
-            text-indent: 0px; text-transform: none; white-space: normal;
-            widows: 2; word-spacing: 0px; -webkit-text-stroke-width:
-            0px; background-color: rgb(255, 255, 255);
-            text-decoration-style: initial; text-decoration-color:
-            initial; display: inline !important; float: none;">DMADEVICES</span><span
-            style="box-sizing: border-box; color: rgb(0, 0, 0);
-            font-family: arial, helvetica, sans-serif; font-size: 13px;
-            font-style: normal; font-variant-ligatures: normal;
-            font-variant-caps: normal; font-weight: normal;
-            letter-spacing: normal; orphans: 2; text-align: start;
-            text-indent: 0px; text-transform: none; white-space: normal;
-            widows: 2; word-spacing: 0px; -webkit-text-stroke-width:
-            0px; text-decoration-style: initial; text-decoration-color:
-            initial; background-color: rgb(255, 255, 255);">,
-            CONFIG_XILINX_DMA</span>. I did a search on my bitbake
-          folder, and they are enabled in a number of cfg files. But
-          checking the environment with bitbake -e , and these options
-          didn't show up. I can't find any xilinx_dma.ko in the build
-          either. So what am I missing, and how can I include the xilinx
-          driver into my build? Xilinx wiki page is here: <a
-            class="moz-txt-link-freetext"
-            href="http://www.wiki.xilinx.com/DMA+Drivers+-+Soft+IPs">http://www.wiki.xilinx.com/DMA+Drivers+-+Soft+IPs</a></p>
-      </blockquote>
-      <p>2. I found a set of character device based dma driver, and it's
-        user space application example. A number of people refer to this
-        solution as an starting point for driver development. It's
-        unclear to me whether this driver is built on top of the
-        Xilinx_dma driver. When I tried this driver, it fails at
-        requesting DMA channel. Anyone has experience with this driver,
-        could you share your experience? Thank you so much. <br>
-      </p>
-      <blockquote>Driver can be found here:
-        <a class="moz-txt-link-freetext"
-href="https://bitbucket.org/Schnegg/pa/src/b8f430a3ebd756f231e88e5dc8523737ed5db034/petalinux_project/components/modules/dma_proxy/dma_proxy.c?at=master&amp;fileviewer=file-view-default">https://bitbucket.org/Schnegg/pa/src/b8f430a3ebd756f231e88e5dc8523737ed5db034/petalinux_project/components/modules/dma_proxy/dma_proxy.c?at=master&amp;fileviewer=file-view-default</a><br>
-      </blockquote>
-      Best Regards,<br>
-      <br>
-      Fan<br>
-    </div>
-    <table class="moz-vcard-table">
-      <tbody>
-        <tr>
-          <td valign="top"><br>
-          </td>
-          <td valign="top"><br>
-          </td>
-          <td>
-            <table id="moz-vcard-properties-table">
-              <tbody>
-                <tr>
-                  <td class="moz-vcard-title-property"><br>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="moz-vcard-property"><br>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="moz-vcard-property"><br>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
-</html>
-
---------------715AD911ADACF73EAB366CF4--
-
---------------9CFB9260314A02BA14F3D4B7
-Content-Type: text/x-vcard; charset=utf-8;
- name="fzhang.vcf"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="fzhang.vcf"
-
-begin:vcard
-fn:Fan Zhang
-n:Zhang;Fan
-org:Sander Geophysics Ltd. 
-email;internet:fzhang@sgl.com
-title:Electronics Design Engineer
-tel;work:(613)521-9626
-version:2.1
-end:vcard
-
-
---------------9CFB9260314A02BA14F3D4B7--
