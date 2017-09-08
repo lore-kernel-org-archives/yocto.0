@@ -1,40 +1,37 @@
-Return-Path: <philippe.coval@osg.samsung.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30CD1E00B1B; Fri,  8 Sep 2017 12:07:08 -0700 (PDT)
+	id 2C7E9E00CD2; Fri,  8 Sep 2017 12:57:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC,
-	SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-	*      dynamic-looking rDNS
-X-Greylist: delayed 425 seconds by postgrey-1.32 at yocto-www;
-	Fri, 08 Sep 2017 12:07:06 PDT
-Received: from osg.samsung.com
-	(ec2-52-27-115-49.us-west-2.compute.amazonaws.com [52.27.115.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2685E00970
-	for <yocto@yoctoproject.org>; Fri,  8 Sep 2017 12:07:06 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by osg.samsung.com (Postfix) with ESMTP id F3CE6A06C2;
-	Fri,  8 Sep 2017 19:00:28 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at osg.samsung.com
-Received: from osg.samsung.com ([127.0.0.1])
-	by localhost (s-opensource.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id adCmvCXmXMxR; Fri,  8 Sep 2017 19:00:27 +0000 (UTC)
-Received: from WSF-1127.8.8.8.8 (unknown [82.236.136.171])
-	by osg.samsung.com (Postfix) with ESMTPSA id 1A3B2A05F0;
-	Fri,  8 Sep 2017 19:00:25 +0000 (UTC)
-From: Philippe Coval <philippe.coval@osg.samsung.com>
-To: kishen.maloor@intel.com
-Date: Fri,  8 Sep 2017 20:59:41 +0200
-Message-Id: <1504897181-17561-1-git-send-email-philippe.coval@osg.samsung.com>
-X-Mailer: git-send-email 1.9.1
-Cc: iotivity-dev@lists.iotivity.org, yocto@yoctoproject.org,
-	Philippe Coval <philippe.coval@osg.samsung.com>
-Subject: [meta-oic][PATCH] iotivity_1.2.1: Hotfix: Add ORIGIN rpath for binutils-2.29
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD18FE00B01
+	for <yocto@yoctoproject.org>; Fri,  8 Sep 2017 12:57:02 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v88JusM2022838
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 8 Sep 2017 12:56:54 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Fri, 8 Sep 2017 12:56:53 -0700
+To: Yocto Project <yocto@yoctoproject.org>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <0ab5a9a3-d8c2-b1e0-1a54-2641427fbe86@windriver.com>
+Date: Fri, 8 Sep 2017 14:56:53 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.3.0
+MIME-Version: 1.0
+Cc: Joe MacDonald <joe.macdonald@windriver.com>
+Subject: [meta-selinux] Update in progress
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,50 +43,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Sep 2017 19:07:08 -0000
+X-List-Received-Date: Fri, 08 Sep 2017 19:57:03 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Set RPATH to ORIGIN as supported by gcc/ld (-rpath=\$ORIGIN)
+I've started catching up on the past commits and trying to conform to the new
+Yocto Project compatible checking scripts.  My current work in progress is
+available in the "mgh/master-next" branch.
 
-Observed issue on poky master was:
+f1f0860 openssh: set ChallengeResponseAuthentication to no
+24cce7b refpolicy: fix a typo in RDEPENDS
+827b305 initscripts: use the 'i' option for restorecon command
+eeb2c2f audit: fix the wrong packaging for auditd.service
+2aadc0d audit 2.7.1 -> 2.7.6
+beaaa37 attr: fix ptest failures when selinux enabled
+e685cad README: Update and remove references to distros, replace w/ DISTRO_FEATURES
+cb0d26c Refactor to conform to YP Compat requirements
+ae9553c systemd: Remove inherit enable-selinux, obsolete
 
-  ld: warning: libconnectivity_abstraction.so, \
-  needed by out/yocto/x86_64/release/liboctbstack.so,
-  not found (try using -rpath or -rpath-link)
-  out/yocto/x86_64/release/liboctbstack.so: \
-  undefined reference to `coap_write_block_opt'
+If you are interested, please try this layer (pay attention to the README file
+and enabling/configuring is different then in the past).
 
-Note that problem is also about to be fixed upstream directly in scons files.
+As of my latest run, the reference policies are not working properly.  The git
+based reference policy doesn't compile -- and the current version results in a
+system I wasn't able to log-in to.
 
-Bug: https://jira.iotivity.org/browse/IOT-2651
-Relate-to: https://gerrit.iotivity.org/gerrit/#/c/22355/
-Thanks-to: Mikko Ylinen <mikko.ylinen@intel.com>
-Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
----
+Help resolving this would be appreciated, and will get us closer to making this
+'master' and not 'master-next'  :)
 
-Origin: https://github.com/tizenteam/meta-oic/tree/sandbox/pcoval/on/master/review
-
- recipes-core/iotivity/iotivity_1.2.1.bb | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/recipes-core/iotivity/iotivity_1.2.1.bb b/recipes-core/iotivity/iotivity_1.2.1.bb
-index c8fb8fd..bd7943e 100644
---- a/recipes-core/iotivity/iotivity_1.2.1.bb
-+++ b/recipes-core/iotivity/iotivity_1.2.1.bb
-@@ -1,4 +1,4 @@
--PR = "r1"
-+PR = "r2"
- SUMMARY = "IoTivity framework and SDK sponsored by the Open Connectivity Foundation."
- DESCRIPTION = "IoTivity is an open source software framework enabling seamless device-to-device connectivity to address the emerging needs of the Internet of Things."
- HOMEPAGE = "https://www.iotivity.org/"
-@@ -36,6 +36,7 @@ SRC_URI += "${url_mbedtls};name=mbedtls;destsuffix=${S}/extlibs/mbedtls/mbedtls;
- 
- inherit pkgconfig scons
- 
-+TARGET_LDFLAGS_append = " -Wl,-rpath-link=\\$$ORIGIN"
- 
- python () {
-     IOTIVITY_TARGET_ARCH = d.getVar("TARGET_ARCH", True)
--- 
-1.9.1
-
+Thanks!
+--Mark
 
