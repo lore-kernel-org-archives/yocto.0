@@ -1,40 +1,64 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1AB8E00CD5; Sun, 10 Sep 2017 01:05:52 -0700 (PDT)
+	id 6D539E00C87; Sun, 10 Sep 2017 04:20:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [89.248.60.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02DCDE00C77
-	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 01:05:51 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 2580F861B3;
-	Sun, 10 Sep 2017 08:05:49 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id RGsNixz9EnK3; Sun, 10 Sep 2017 08:05:40 +0000 (UTC)
-Received: from [127.0.0.1] (unknown [92.232.58.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id B5272860E1;
-	Sun, 10 Sep 2017 08:05:39 +0000 (UTC)
-To: yocto@yoctoproject.org, usmanhaider89@gmail.com
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 1164 seconds by postgrey-1.32 at yocto-www;
+	Sun, 10 Sep 2017 04:20:18 PDT
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2649DE0049C
+	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 04:20:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=keylevel.com; s=default; h=To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Mo3gtr2MlS44vrZm5br+2SsIybYtQmmLj182CEABde8=;
+	b=AZNmgO8pfm1PSZ/7+eu6HWwWd
+	mJzOZlgqOnEsQvXsnhw6VEcc3Pkxpq//wFuT2nPBH0edWCCmjdClwWWlfJWArk8Vykf8IHckRS98S
+	uB1tuhffwXWi50ThnHFhMx2beD2BHydcyxJVhXWKd6SJ3pS3Su3n+K+scBG3VwATqqjpA=; 
+Received: from durham.keylevel.com ([212.159.18.174]:59301
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:ECDHE-RSA-AES256-SHA:256)
+	(Exim 4.89) (envelope-from <opensource@keylevel.com>)
+	id 1dqzys-000mIn-Rb; Sun, 10 Sep 2017 12:00:50 +0100
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <b59f7241-632a-0801-1dce-ade844162f23@dynamicdevices.co.uk>
+Date: Sun, 10 Sep 2017 12:00:56 +0100
+Message-Id: <6353963F-63D3-413E-B685-72A56004CBA9@keylevel.com>
 References: <CANxWOTbROX_e50FqD_oV9=3KTnxHik2jgDP98rRWq2A09QaNeg@mail.gmail.com>
-From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <b59f7241-632a-0801-1dce-ade844162f23@dynamicdevices.co.uk>
-Date: Sun, 10 Sep 2017 09:05:36 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
-MIME-Version: 1.0
-In-Reply-To: <CANxWOTbROX_e50FqD_oV9=3KTnxHik2jgDP98rRWq2A09QaNeg@mail.gmail.com>
+	<b59f7241-632a-0801-1dce-ade844162f23@dynamicdevices.co.uk>
+To: Alex Lennon <ajlennon@dynamicdevices.co.uk>
+X-Mailer: Apple Mail (2.3124)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
 Subject: Re: Suitable machine for yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -47,30 +71,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Sep 2017 08:05:52 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
+X-List-Received-Date: Sun, 10 Sep 2017 11:20:20 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Usman,
 
-On 10/09/2017 08:00, Usman Haider wrote:
-> Hi,
->
-> Can someone please recommend some good machine for yocto environment 
-> and building sdks. I am interested in RAM, hard disk space, processor.
->
->
-
-I use a AMD FX-8350 4GHz Eight-Core Processor on a GA-78LMT-USB3 
-mainboard with 32GB RAM and a couple of 4TB drives, running Ubuntu 
+> On 10 Sep 2017, at 09:05, Alex Lennon <ajlennon@dynamicdevices.co.uk> =
+wrote:
+>=20
+> Hi Usman,
+>=20
+> On 10/09/2017 08:00, Usman Haider wrote:
+>> Hi,
+>>=20
+>> Can someone please recommend some good machine for yocto environment =
+and building sdks. I am interested in RAM, hard disk space, processor.
+>>=20
+>>=20
+>=20
+> I use a AMD FX-8350 4GHz Eight-Core Processor on a GA-78LMT-USB3 =
+mainboard with 32GB RAM and a couple of 4TB drives, running Ubuntu =
 16.04.03 LTS.
 
-I find this more or less does the job although I drink more coffee 
+I have a similar spec, except I use an SSD for the build area and only =
+16GB RAM (I don=E2=80=99t see more than about 12GB used during a build) =
+- a build from scratch (excluding download time) takes just under an =
+hour.
+
+If you go for an Intel CPU, then having one with a decent turbo boost =
+can help as some parts of the initial build only use a single core and =
+it helps to get past that bottle-neck.
+
+>=20
+> I find this more or less does the job although I drink more coffee =
 nowadays...
+>=20
+> Cheers,
+>=20
+> Alex
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Cheers,
+--
 
-Alex
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
 
 
