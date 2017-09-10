@@ -1,58 +1,42 @@
-Return-Path: <danwalkes@trellis-logic.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21E60E00C89; Sun, 10 Sep 2017 13:35:10 -0700 (PDT)
+	id D0839E00C3A; Sun, 10 Sep 2017 16:56:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.51 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,LOTS_OF_MONEY,
+	T_MONEY_PERCENT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFE0AE00C35
-	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 13:35:08 -0700 (PDT)
-Received: by mail-wm0-f51.google.com with SMTP id i189so27538936wmf.1
-	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 13:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=trellis-logic-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=GDggH1AMxpalg4wjs1NlDbSqClhpIH9Kez6LQpVp+e0=;
-	b=Nkzaj+Dcib6siRYMBvfXVSvYrDuKxWEw01lVCrQcuVoKeont5GN0wfl5kLOSVQIbIU
-	+xMzytX45rpHmrAZp87RVftqn9B+SDKqeJp6hcTBNENCvpBe8Wbbdiz2OZyMc3msQGQ7
-	l3+eALr21aJqGSeLGaDxx5KxyKvEEi++kq4x8Q3YffoN6EfjvUfSYyNC6764lOB1g1Wr
-	Qc3jEoA5izCzPEwOA0TURtX7xnmy4Uf/Jf7rVgHnIxx8F8o4YGBZpptyi4R8PVncWo8K
-	fddyes+wRHELfZsbSQyMnm/y1h8NnosL1OvCmdZGrvNvJt+ylXQwbguXhooH3QM/GH4W
-	N3nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=GDggH1AMxpalg4wjs1NlDbSqClhpIH9Kez6LQpVp+e0=;
-	b=Oq3Wy7jIrH1ehOkBTMYshBbIBWjm6PCNroKliymCUafbdple7H7cJsE0aOqCH/DDIg
-	vJUKiObB/Ng9Zd/176LGLNUtIakXWtfnNNv1kdktZG/IWOWDl36TxJ6AmqwixUrMsa+u
-	saQCZDYrkIC4S6x4A+bkWetc6uHOpRFRi1AFUzpFN3Rq9mxb3yFL1zk9GIN5+f5MfAgn
-	OhqBXf8Lrp2pxMbE6+1pualj3qZ5D2Lgvqzp7kmYrvusmLfhgLGVtRZeZBnk34bY8Azd
-	abdn1rz2hMXUfgou9gQBWFTtKQBQOaNbgfzgkzVHXeSAQrspLB9/FGaW0d6A4MaI8Mmm
-	9bGw==
-X-Gm-Message-State: AHPjjUjQIkGrhbB60qwF0QbLFBKCUUhWYNCt0VxXspiSC2hIwfwmvfip
-	20j7hBL4IFSv2aWhyVOjGTaTWSRONGBwH2JRWjxGi+ig+dg=
-X-Google-Smtp-Source: AOwi7QDHiXy9mOJm8gbM4YOCPZjnS9RXrPO1VkczaOUhlxzlwAd3q/zDW0//RuyWzTHtcCbxaIXxpY5963ztXD3mnDk=
-X-Received: by 10.28.11.85 with SMTP id 82mr7139655wml.158.1505075707286; Sun,
-	10 Sep 2017 13:35:07 -0700 (PDT)
+	*  0.0 LOTS_OF_MONEY Huge... sums of money
+	*  0.0 T_MONEY_PERCENT X% of a lot of money for you
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5905E00BB1
+	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 16:56:34 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v8ANuS8m004993
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Sun, 10 Sep 2017 16:56:28 -0700
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Sun, 10 Sep 2017 16:56:27 -0700
+To: Alex Lennon <ajlennon@dynamicdevices.co.uk>, Usman Haider
+	<usmanhaider89@gmail.com>, <yocto@yoctoproject.org>
+References: <CANxWOTbROX_e50FqD_oV9=3KTnxHik2jgDP98rRWq2A09QaNeg@mail.gmail.com>
+	<df26f444-d0f3-ec02-49a3-bc565b175afa@windriver.com>
+	<ea868d42-c5e1-3fa4-8c7d-f0775d941453@dynamicdevices.co.uk>
+	<f6204bba-ab19-c34f-ee9a-498781e2473d@windriver.com>
+	<73a79c9a-d9cb-825d-ac1b-340edd07dc5a@dynamicdevices.co.uk>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <b286d9a2-fe98-a85b-d4cb-f17bbfad4846@windriver.com>
+Date: Sun, 10 Sep 2017 18:56:39 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.3.0
 MIME-Version: 1.0
-Received: by 10.28.102.69 with HTTP; Sun, 10 Sep 2017 13:35:06 -0700 (PDT)
-From: Dan Walkes <danwalkes@trellis-logic.com>
-Date: Sun, 10 Sep 2017 14:35:06 -0600
-Message-ID: <CAAhKrJ0Vcq=udaGzcWi5s4cMyxEnNoyXWoeYW+wJhzWD_zxM8g@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: pyro openembedded gpsd update-rc.d problems with read-only-rootfs
+In-Reply-To: <73a79c9a-d9cb-825d-ac1b-340edd07dc5a@dynamicdevices.co.uk>
+Subject: Re: Suitable machine for yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,95 +48,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Sep 2017 20:35:10 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 10 Sep 2017 23:56:35 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-We=E2=80=99ve successfully included gpsd from meta-openembedded in a projec=
-t
-with IMAGE_FEATURES including read-only-rootfs on the morty branch.
-However, I=E2=80=99m running into issues on an attempt to upgrade from mort=
-y
-to pyro.  The do_rootfs for my image build step is failing with
-message:
+On 9/10/17 2:31 PM, Alex Lennon wrote:
+> 
+> 
+> On 10/09/2017 19:17, Mark Hatle wrote:
+>> On 9/10/17 11:14 AM, Alex Lennon wrote:
+>>>
+>>> On 10/09/2017 17:06, Mark Hatle wrote:
+>>>> On 9/10/17 2:00 AM, Usman Haider wrote:
+>>>>> Hi,
+>>>>>
+>>>>> Can someone please recommend some good machine for yocto environment and
+>>>>> building sdks. I am interested in RAM, hard disk space, processor.
+>>>> You want fast I/O, as much RAM and as many (fast) cores as you can afford.  I
+>>>> don't think there is a single answer as what is 'best'.  It also depends on
+>>>> which Yocto Project versions, and which layers you are using as to which
+>>>> combination is best.
+>>>>
+>>>> I run builds on my laptop, 4-core/8-thread & SSD and 16 GB of ram from a few
+>>>> years ago.  It's fast, but I wouldn't want to do all of my development on it.
+>>>>
+>>>> I've had 8-core/16-thread (32GB ram/standard disk), 16-core/32-thread (72GB
+>>>> ram/SAS-3 RAID), 24-core/48-thread (64GB ram/SATA - software RAID), 72-core/144
+>>>> thread (256 GB ram/hardware raid/SAS-3), and recently upgraded to
+>>>> 96-core/192-thread (256 GB ram/hardware raid/SAS-3).
+>>>>
+>>>> I would not go below quad-core (8-thread) myself.  You can get a quad core, good
+>>>> quality machine for $1000 or less these day.  If you move up to the larger
+>>>> machines, you can even be able to get to a 24-core for less then $5000.  By the
+>>>> time you get to 96-core and all of the googles you are likely talking $50000 or
+>>>> more.
+>>>>
+>>>> By clock raid, the 24-core machine is the fastest..  While the 96-core monster
+>>>> can do the builds the quickest.  But when you figure out cost/performance/etc..
+>>>> the 24-core is probably the best performance per dollar, and with adequate RAM
+>>>> (I'd say at least 64GB if not 128GB), and fast I/O you'll probably get the
+>>>> lowest price for the best performance in that category.
+>>>>
+>>>> If you need sheer speed and price is no option, then the (4 CPU w/ 24 core each)
+>>>> 96-core monster (or even better) is what you want to go with.  256GB ram would
+>>>> be a minimum with that configuration (I'm not sure if more is actually helpful,
+>>>> I rarely end up in swap -- but I go get into situations where more then 50% of
+>>>> ram is used.)  With that many cores, disk I/O starts to become obvious.  So
+>>>> faster the better... SSDs would be the fastest, but of course the most expensive.
+>>>>
+>>>> If your employer is paying for the machine, you may be able to get a better then
+>>>> normal machine by explaining how much time a faster machine will save and how
+>>>> comparing to your salary a machine is inexpensive.  (If you are a contractor or
+>>>> student, that changes of course.)  :)
+>>>>
+>>>> So my point is really, figure out how much money you have to spend.  My rule of
+>>>> thumb is roughly:
+>>>>
+>>>> 1) Buy as many cores as you can.  Try to get a CPU that has Hyperthreading or
+>>>> equivalent to double the effective core count.  Fastest processing speed helps
+>>>> in repetitive cases vs full system builds.
+>>>>
+>>>> So if the choice is a 24 core @ 2.2GHz vs 22 core @ 2.5, I'd probably go with
+>>>> the 22-core.  While if it was 24 core @ 2.2GHz vs 8 core @ 4.2 GHz, I'd go with
+>>>> the 24 core.
+>>>>
+>>>> 2) Try to get at least 1 GB of ram per thread (2 GB per core..)  You can cut
+>>>> back on the ram (if necessary) once you hit 72 threads or so.   (72 threads
+>>>> right now seems to cover most of the parallelization in a full system build.
+>>>> There are points in the system where it can parallelize MUCH more, but they are
+>>>> fairly rare.)
+>>>>
+>>>> 3) You need fast disks.  Software RAID works fine, but you likely need to buy at
+>>>> least a couple of disk to boost performance.  SSDs are fast, but lots of builds
+>>>> take space, so fast SATA or even better SAS drives are the best performance per
+>>>> cost.
+>>> This brings to mind a related question I keep coming back to as to the
+>>> economics of a docker (or similar) image running a fast Yocto build in
+>>> the cloud.
+>>>
+>>> i.e. set config params -> bring up server image on plaform A/B/C ->
+>>> perform build taking time X/Y/Z -> store output images -> bring down
+>>> server  == $ ?
+>>>
+>>> I find myself asking what the optimal cost per-build would be using this
+>>> approach...
+>> I helped someone do some very -preliminary- figured a few years ago.  The
+>> processing was 'cheap', but between storage and network transfer costs.. it was
+>> cheaper to buy a reasonable machine.. payback time was only a few months.
+>>
+>> (cloud 'storage' is often very slow as well, because there are expectations of
+>> migration and things like that.)
+>>
+>> So as of a few years ago at least, the economics didn't factory the cloud -- yet.
+>>
+>>
+> 
+> Yeah that is more or less my thinking. Although I do imagine that if a 
+> source mirror on an internal network leg could be set up then that might 
+> significantly reduce chargeable network b/w...
 
-...
+premirror for downloads and sstate-cache shared between multiple customers could
+reduce the network b/w far enough to make it economical.   But you would need to
+trust other vendors since the sstate-cache can be manipulated to provide
+malicious software (in some cases).  (And strengthening the sstate-cache
+checking can cause enough extra overhead to make it 'cheaper' to build then use
+sstate-cache in many cases.)
 
-ERROR: core-image-fs5-nand-1.0-r0 do_rootfs: The following packages
-could not be configured offline and rootfs is read-only: ['100-gpsd']
+--Mark
 
-...
+> Cheers,
+> 
+> Alex
+> 
 
-Earlier In the do_rootfs log I see these messages:
-
-...
-
- Installing  : gpsd-gpsctl-3.14-r1.armv7ahf_neon                        98/=
-407
-
-Removing any system startup links for gpsd ...
-
- Installing  : gpsd-3.14-r1.armv7ahf_neon                               99/=
-407
-
-update-alternatives: Linking
-/home/dan/ASD/Yocto/build-am3517/tmp/work/fs5_am3517-poky-linux-gnueabi/cor=
-e-image-fs5-nand/1.0-r0/rootfs/usr/bin/gpsd-defaults
-to /etc/default/gpsd.default
-
-update-rc.d: /home/dan/ASD/Yocto/build-am3517/tmp/work/fs5_am3517-poky-linu=
-x-gnueabi/core-image-fs5-nand/1.0-r0/rootfs/etc/init.d/gpsd:
-file does not exist
-
-warning: %post(gpsd-3.14-r1.armv7ahf_neon) scriptlet failed, exit status 1
-...
-
-Complete!
-
-Non-fatal POSTIN scriptlet failure in rpm package gpsd
-
-Non-fatal POSTIN scriptlet failure in rpm package gpsd
-
-
-NOTE: Saving postinstall script of gpsd
-
-=E2=80=A6
-
-
-It looks like because the update-rc.d step fails this setup gets moved
-into a gpsd post install script, which won=E2=80=99t work because I=E2=80=
-=99m
-configured to use a read only root filesystem.  So I need to find a
-way to keep the update-rc.d step from failing.
-
-
-If I do ls-la on the path
-/home/dan/ASD/Yocto/build-am3517/tmp/work/fs5_am3517-poky-linux-gnueabi/cor=
-e-image-fs5-nand/1.0-r0/rootfs/etc/init.d/gpsd
-after the failure the file does in fact exist.  So it must be added
-sometime after the failure occurs.
-
-If I remove the dependency on gpsd I=E2=80=99m able to build my image, so i=
-t
-appears this is the only dependency which is causing issues for me
-after attempting the switch from morty to pyro branches.
-
-The =E2=80=9CRemoving any system startup links for gpsd=E2=80=9D message du=
-ring the
-gpsd-gpsctl install step just before the error looks suspicious and
-I=E2=80=99m wondering if something about multiple packages being provided i=
-n
-the gpsd_3.16.bb file at
-https://github.com/openembedded/meta-openembedded/blob/master/meta-oe/recip=
-es-navigation/gpsd/gpsd_3.16.bb
-is related.  It=E2=80=99s not obvious to me from a review of the yocto
-development manual what might be missing in the setup for update-rc.d
-which would explain this.
-
-Any suggestions about what I=E2=80=99m doing wrong or how I could debug thi=
-s
-would be greatly appreciated.
-
-Thanks,
-Dan
 
