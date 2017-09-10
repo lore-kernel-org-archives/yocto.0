@@ -1,64 +1,36 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 935E4E00C35; Sun, 10 Sep 2017 06:48:09 -0700 (PDT)
+	id 87451E00C35; Sun, 10 Sep 2017 09:06:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [89.248.60.180 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,LOTS_OF_MONEY,
+	T_MONEY_PERCENT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3326E00851
-	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 06:48:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=keylevel.com; s=default; h=To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=YjgCRPEvaEaDia9cBLM47hRd2Pi517Btc87SZxJply4=;
-	b=q/s4e7cJXYEs+5MvP5I+JVVre
-	riidQFknwOz3lb7vYwulxZh3cy2pDcIBSEDWqJL6yZTAHdQE5GkxxcX5moUltLRIQd8V7fmiUYhz6
-	WUAM795iDNVlcR6oDoqa5LIyv8AhktszdGJfXr6rv2maIoAqMEPk/O9H8UiY2TW7w2Uqg=; 
-Received: from durham.keylevel.com ([212.159.18.174]:10637
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:ECDHE-RSA-AES256-SHA:256)
-	(Exim 4.89) (envelope-from <opensource@keylevel.com>)
-	id 1dr2ai-0015O1-Ly; Sun, 10 Sep 2017 14:48:04 +0100
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <ef51f43e-9a37-995c-3577-5df51898af3c@dynamicdevices.co.uk>
-Date: Sun, 10 Sep 2017 14:48:11 +0100
-Message-Id: <75F2F15B-5E1A-4545-9DF6-94569205EF21@keylevel.com>
+	*  0.0 LOTS_OF_MONEY Huge... sums of money
+	*  0.0 T_MONEY_PERCENT X% of a lot of money for you
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54AFFE00851
+	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 09:06:05 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v8AG62Zq028272
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Sun, 10 Sep 2017 09:06:02 -0700
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Sun, 10 Sep 2017 09:06:01 -0700
+To: Usman Haider <usmanhaider89@gmail.com>, <yocto@yoctoproject.org>
 References: <CANxWOTbROX_e50FqD_oV9=3KTnxHik2jgDP98rRWq2A09QaNeg@mail.gmail.com>
-	<b59f7241-632a-0801-1dce-ade844162f23@dynamicdevices.co.uk>
-	<6353963F-63D3-413E-B685-72A56004CBA9@keylevel.com>
-	<ef51f43e-9a37-995c-3577-5df51898af3c@dynamicdevices.co.uk>
-To: Alex Lennon <ajlennon@dynamicdevices.co.uk>
-X-Mailer: Apple Mail (2.3124)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <df26f444-d0f3-ec02-49a3-bc565b175afa@windriver.com>
+Date: Sun, 10 Sep 2017 11:06:13 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.3.0
+MIME-Version: 1.0
+In-Reply-To: <CANxWOTbROX_e50FqD_oV9=3KTnxHik2jgDP98rRWq2A09QaNeg@mail.gmail.com>
 Subject: Re: Suitable machine for yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -71,73 +43,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Sep 2017 13:48:09 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 10 Sep 2017 16:06:07 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
+On 9/10/17 2:00 AM, Usman Haider wrote:
+> Hi,
+> 
+> Can someone please recommend some good machine for yocto environment and
+> building sdks. I am interested in RAM, hard disk space, processor.
 
-> On 10 Sep 2017, at 12:53, Alex Lennon <ajlennon@dynamicdevices.co.uk> =
-wrote:
->=20
->=20
->=20
-> On 10/09/2017 12:00, Chris Tapp wrote:
->>> On 10 Sep 2017, at 09:05, Alex Lennon =
-<ajlennon@dynamicdevices.co.uk> wrote:
->>>=20
->>> Hi Usman,
->>>=20
->>> On 10/09/2017 08:00, Usman Haider wrote:
->>>> Hi,
->>>>=20
->>>> Can someone please recommend some good machine for yocto =
-environment and building sdks. I am interested in RAM, hard disk space, =
-processor.
->>>>=20
->>>>=20
->>> I use a AMD FX-8350 4GHz Eight-Core Processor on a GA-78LMT-USB3 =
-mainboard with 32GB RAM and a couple of 4TB drives, running Ubuntu =
-16.04.03 LTS.
->> I have a similar spec, except I use an SSD for the build area and =
-only 16GB RAM (I don=E2=80=99t see more than about 12GB used during a =
-build) - a build from scratch (excluding download time) takes just under =
-an hour.
->>=20
->>=20
->=20
-> I am toying with putting an SSD in there. I use the Samsung Evo 1TB =
-units for day to day on my laptop and that has worked very well for me. =
-Maybe I should move that forward.
+You want fast I/O, as much RAM and as many (fast) cores as you can afford.  I
+don't think there is a single answer as what is 'best'.  It also depends on
+which Yocto Project versions, and which layers you are using as to which
+combination is best.
 
-I use a 750 GB Evo - mainly so there=E2=80=99s lots of over-provisioning =
-as builds create a lot of artefacts. Better wear than some HDDs though =
-as the heads get a really hammering.
+I run builds on my laptop, 4-core/8-thread & SSD and 16 GB of ram from a few
+years ago.  It's fast, but I wouldn't want to do all of my development on it.
 
-> 16GB is no doubt absolutely fine in general. I suppose in part it may =
-depend on how many tasks are executing in parallel on the CPU cores.
->=20
-> I find a very few recipes are _real_ memory hogs. I imagine I could =
-get by with less RAM but Chromium and possibly Qt5 stick in the mind as =
-having intermittent build issues when the RAM was lower.
+I've had 8-core/16-thread (32GB ram/standard disk), 16-core/32-thread (72GB
+ram/SAS-3 RAID), 24-core/48-thread (64GB ram/SATA - software RAID), 72-core/144
+thread (256 GB ram/hardware raid/SAS-3), and recently upgraded to
+96-core/192-thread (256 GB ram/hardware raid/SAS-3).
 
-Sure, it will depend on what=E2=80=99s being built - this machine is =
-quite old now and 16 GB needed a (not so) small mortgage when it was =
-built ;-)
+I would not go below quad-core (8-thread) myself.  You can get a quad core, good
+quality machine for $1000 or less these day.  If you move up to the larger
+machines, you can even be able to get to a 24-core for less then $5000.  By the
+time you get to 96-core and all of the googles you are likely talking $50000 or
+more.
 
->=20
-> Cheers!
->=20
-> Alex
->=20
+By clock raid, the 24-core machine is the fastest..  While the 96-core monster
+can do the builds the quickest.  But when you figure out cost/performance/etc..
+the 24-core is probably the best performance per dollar, and with adequate RAM
+(I'd say at least 64GB if not 128GB), and fast I/O you'll probably get the
+lowest price for the best performance in that category.
 
---
+If you need sheer speed and price is no option, then the (4 CPU w/ 24 core each)
+96-core monster (or even better) is what you want to go with.  256GB ram would
+be a minimum with that configuration (I'm not sure if more is actually helpful,
+I rarely end up in swap -- but I go get into situations where more then 50% of
+ram is used.)  With that many cores, disk I/O starts to become obvious.  So
+faster the better... SSDs would be the fastest, but of course the most expensive.
 
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
+If your employer is paying for the machine, you may be able to get a better then
+normal machine by explaining how much time a faster machine will save and how
+comparing to your salary a machine is inexpensive.  (If you are a contractor or
+student, that changes of course.)  :)
 
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
+So my point is really, figure out how much money you have to spend.  My rule of
+thumb is roughly:
 
+1) Buy as many cores as you can.  Try to get a CPU that has Hyperthreading or
+equivalent to double the effective core count.  Fastest processing speed helps
+in repetitive cases vs full system builds.
+
+So if the choice is a 24 core @ 2.2GHz vs 22 core @ 2.5, I'd probably go with
+the 22-core.  While if it was 24 core @ 2.2GHz vs 8 core @ 4.2 GHz, I'd go with
+the 24 core.
+
+2) Try to get at least 1 GB of ram per thread (2 GB per core..)  You can cut
+back on the ram (if necessary) once you hit 72 threads or so.   (72 threads
+right now seems to cover most of the parallelization in a full system build.
+There are points in the system where it can parallelize MUCH more, but they are
+fairly rare.)
+
+3) You need fast disks.  Software RAID works fine, but you likely need to buy at
+least a couple of disk to boost performance.  SSDs are fast, but lots of builds
+take space, so fast SATA or even better SAS drives are the best performance per
+cost.
 
