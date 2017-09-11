@@ -1,42 +1,69 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0839E00C3A; Sun, 10 Sep 2017 16:56:35 -0700 (PDT)
+	id C5EDFE00C44; Sun, 10 Sep 2017 19:06:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,LOTS_OF_MONEY,
-	T_MONEY_PERCENT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.195 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 LOTS_OF_MONEY Huge... sums of money
-	*  0.0 T_MONEY_PERCENT X% of a lot of money for you
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5905E00BB1
-	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 16:56:34 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v8ANuS8m004993
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Sun, 10 Sep 2017 16:56:28 -0700
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
-	Sun, 10 Sep 2017 16:56:27 -0700
-To: Alex Lennon <ajlennon@dynamicdevices.co.uk>, Usman Haider
-	<usmanhaider89@gmail.com>, <yocto@yoctoproject.org>
-References: <CANxWOTbROX_e50FqD_oV9=3KTnxHik2jgDP98rRWq2A09QaNeg@mail.gmail.com>
-	<df26f444-d0f3-ec02-49a3-bc565b175afa@windriver.com>
-	<ea868d42-c5e1-3fa4-8c7d-f0775d941453@dynamicdevices.co.uk>
-	<f6204bba-ab19-c34f-ee9a-498781e2473d@windriver.com>
-	<73a79c9a-d9cb-825d-ac1b-340edd07dc5a@dynamicdevices.co.uk>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <b286d9a2-fe98-a85b-d4cb-f17bbfad4846@windriver.com>
-Date: Sun, 10 Sep 2017 18:56:39 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.3.0
-MIME-Version: 1.0
-In-Reply-To: <73a79c9a-d9cb-825d-ac1b-340edd07dc5a@dynamicdevices.co.uk>
-Subject: Re: Suitable machine for yocto
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.195 listed in dnsbl.sorbs.net]
+Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
+	[209.85.192.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C706E00C35
+	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 19:06:44 -0700 (PDT)
+Received: by mail-pf0-f195.google.com with SMTP id h4so4313467pfk.0
+	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 19:06:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=+j/r12hIJAZHPC6EgDnO4CIBXfnZyDo0cW/ygAWE2yg=;
+	b=ZYtJbD//asNSYw7Ynm14BnK9dZKdgmsfOE5mRI+uH1fJrME2paPxrPKkO8Ct7e/ijr
+	mUq1zsr12SrrpVT3JQae97RM7t4PNwGXM0h8CpyP1QPaQ8F0Hh3lcrGXEvtImAq0prer
+	YRvtzKePBHKgP/ibZ2T+1sHfQ7gSuNhE5bPfS8GmTp0zLrAedut0uW1IakXMyGGA+Q/2
+	0W188jLQq/sSq2Bu1qIMaCc/dCkMhmhwVR49Cqz2Dd18GmqYdeoX1OAePqJ95sCh9SyS
+	gM/LX48qkLmN4iQW881mY+YCj6K2cjaL2sTd2QH0Gd/HfjbNdmVU17zp6fH1TQxxNqVk
+	rUEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=+j/r12hIJAZHPC6EgDnO4CIBXfnZyDo0cW/ygAWE2yg=;
+	b=ucQz/UqYa7ED/FEd1Mnz/vtJkzS10fAASnW3JJZvfQKak8iYR1+wVo774SCZ2BWLpP
+	KQRIL7lNtZZ9iVN7CSTmjNDl3zmQirqiAWtcUwya4h7OBncUKf2fNtbSM8Ms5BdqbZZj
+	Y7GTSxFVqiRZ1zqd4FxIH12wycBdEUucmK8LyREGPuFA/Redj53cCdvyncHYWkyaKco2
+	b1+jMvLJWwzkfzxh7OGPEEOx2Cxtnlr7c5em+gI7nPbuJ3tnK7eTLrJlZytwaCyegOSi
+	SsS/R8qz0uvh4DmOfSl9MsaxXDrleLBNTBnoa/EWKDg3+84qBUTOuthvV/DJgaqoUvWP
+	leUQ==
+X-Gm-Message-State: AHPjjUjrUIxYOcN+5ya4lg4Os+gcwh2kipL5/PS/F3l6HgxaSK9uKyjH
+	JQNOgmrWrUQhJQ==
+X-Google-Smtp-Source: ADKCNb6V+QGWK+ZfeceEh7Jta2O1B3FLjUpH0nlhilsUHmP5JvD3miB1MOEviGrcY3OsaU5x0uR9Mw==
+X-Received: by 10.84.246.195 with SMTP id j3mr11396700plt.91.1505095604564;
+	Sun, 10 Sep 2017 19:06:44 -0700 (PDT)
+Received: from akuster-ThinkPad-T460s.mvista.com
+	([2601:202:4001:9ea0:645a:9f13:1c42:b124])
+	by smtp.gmail.com with ESMTPSA id
+	d5sm14012680pfg.26.2017.09.10.19.06.43
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sun, 10 Sep 2017 19:06:43 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: akuster@mvista.com,
+	yocto@yoctoproject.org
+Date: Sun, 10 Sep 2017 19:06:41 -0700
+Message-Id: <1505095602-12683-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][PATCH 1/2] Apparmor: add apache2 to PACKAGECONF and check for webserver layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,118 +75,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Sep 2017 23:56:35 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 11 Sep 2017 02:06:45 -0000
 
-On 9/10/17 2:31 PM, Alex Lennon wrote:
-> 
-> 
-> On 10/09/2017 19:17, Mark Hatle wrote:
->> On 9/10/17 11:14 AM, Alex Lennon wrote:
->>>
->>> On 10/09/2017 17:06, Mark Hatle wrote:
->>>> On 9/10/17 2:00 AM, Usman Haider wrote:
->>>>> Hi,
->>>>>
->>>>> Can someone please recommend some good machine for yocto environment and
->>>>> building sdks. I am interested in RAM, hard disk space, processor.
->>>> You want fast I/O, as much RAM and as many (fast) cores as you can afford.  I
->>>> don't think there is a single answer as what is 'best'.  It also depends on
->>>> which Yocto Project versions, and which layers you are using as to which
->>>> combination is best.
->>>>
->>>> I run builds on my laptop, 4-core/8-thread & SSD and 16 GB of ram from a few
->>>> years ago.  It's fast, but I wouldn't want to do all of my development on it.
->>>>
->>>> I've had 8-core/16-thread (32GB ram/standard disk), 16-core/32-thread (72GB
->>>> ram/SAS-3 RAID), 24-core/48-thread (64GB ram/SATA - software RAID), 72-core/144
->>>> thread (256 GB ram/hardware raid/SAS-3), and recently upgraded to
->>>> 96-core/192-thread (256 GB ram/hardware raid/SAS-3).
->>>>
->>>> I would not go below quad-core (8-thread) myself.  You can get a quad core, good
->>>> quality machine for $1000 or less these day.  If you move up to the larger
->>>> machines, you can even be able to get to a 24-core for less then $5000.  By the
->>>> time you get to 96-core and all of the googles you are likely talking $50000 or
->>>> more.
->>>>
->>>> By clock raid, the 24-core machine is the fastest..  While the 96-core monster
->>>> can do the builds the quickest.  But when you figure out cost/performance/etc..
->>>> the 24-core is probably the best performance per dollar, and with adequate RAM
->>>> (I'd say at least 64GB if not 128GB), and fast I/O you'll probably get the
->>>> lowest price for the best performance in that category.
->>>>
->>>> If you need sheer speed and price is no option, then the (4 CPU w/ 24 core each)
->>>> 96-core monster (or even better) is what you want to go with.  256GB ram would
->>>> be a minimum with that configuration (I'm not sure if more is actually helpful,
->>>> I rarely end up in swap -- but I go get into situations where more then 50% of
->>>> ram is used.)  With that many cores, disk I/O starts to become obvious.  So
->>>> faster the better... SSDs would be the fastest, but of course the most expensive.
->>>>
->>>> If your employer is paying for the machine, you may be able to get a better then
->>>> normal machine by explaining how much time a faster machine will save and how
->>>> comparing to your salary a machine is inexpensive.  (If you are a contractor or
->>>> student, that changes of course.)  :)
->>>>
->>>> So my point is really, figure out how much money you have to spend.  My rule of
->>>> thumb is roughly:
->>>>
->>>> 1) Buy as many cores as you can.  Try to get a CPU that has Hyperthreading or
->>>> equivalent to double the effective core count.  Fastest processing speed helps
->>>> in repetitive cases vs full system builds.
->>>>
->>>> So if the choice is a 24 core @ 2.2GHz vs 22 core @ 2.5, I'd probably go with
->>>> the 22-core.  While if it was 24 core @ 2.2GHz vs 8 core @ 4.2 GHz, I'd go with
->>>> the 24 core.
->>>>
->>>> 2) Try to get at least 1 GB of ram per thread (2 GB per core..)  You can cut
->>>> back on the ram (if necessary) once you hit 72 threads or so.   (72 threads
->>>> right now seems to cover most of the parallelization in a full system build.
->>>> There are points in the system where it can parallelize MUCH more, but they are
->>>> fairly rare.)
->>>>
->>>> 3) You need fast disks.  Software RAID works fine, but you likely need to buy at
->>>> least a couple of disk to boost performance.  SSDs are fast, but lots of builds
->>>> take space, so fast SATA or even better SAS drives are the best performance per
->>>> cost.
->>> This brings to mind a related question I keep coming back to as to the
->>> economics of a docker (or similar) image running a fast Yocto build in
->>> the cloud.
->>>
->>> i.e. set config params -> bring up server image on plaform A/B/C ->
->>> perform build taking time X/Y/Z -> store output images -> bring down
->>> server  == $ ?
->>>
->>> I find myself asking what the optimal cost per-build would be using this
->>> approach...
->> I helped someone do some very -preliminary- figured a few years ago.  The
->> processing was 'cheap', but between storage and network transfer costs.. it was
->> cheaper to buy a reasonable machine.. payback time was only a few months.
->>
->> (cloud 'storage' is often very slow as well, because there are expectations of
->> migration and things like that.)
->>
->> So as of a few years ago at least, the economics didn't factory the cloud -- yet.
->>
->>
-> 
-> Yeah that is more or less my thinking. Although I do imagine that if a 
-> source mirror on an internal network leg could be set up then that might 
-> significantly reduce chargeable network b/w...
+Don't want to add layer depends for one package unless needed.
 
-premirror for downloads and sstate-cache shared between multiple customers could
-reduce the network b/w far enough to make it economical.   But you would need to
-trust other vendors since the sstate-cache can be manipulated to provide
-malicious software (in some cases).  (And strengthening the sstate-cache
-checking can cause enough extra overhead to make it 'cheaper' to build then use
-sstate-cache in many cases.)
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/AppArmor/apparmor_2.11.0.bb | 26 ++++++++++++++++++++++----
+ 1 file changed, 22 insertions(+), 4 deletions(-)
 
---Mark
-
-> Cheers,
-> 
-> Alex
-> 
+diff --git a/recipes-security/AppArmor/apparmor_2.11.0.bb b/recipes-security/AppArmor/apparmor_2.11.0.bb
+index d9572e4..ae3391d 100644
+--- a/recipes-security/AppArmor/apparmor_2.11.0.bb
++++ b/recipes-security/AppArmor/apparmor_2.11.0.bb
+@@ -11,7 +11,7 @@ SECTION = "admin"
+ LICENSE = "GPLv2 & GPLv2+ & BSD-3-Clause & LGPLv2.1+"
+ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=fd57a4b0bc782d7b80fd431f10bbf9d0"
+ 
+-DEPENDS = "bison-native apr apache2 gettext-native coreutils-native"
++DEPENDS = "bison-native apr gettext-native coreutils-native"
+ 
+ SRC_URI = " \
+ 	http://archive.ubuntu.com/ubuntu/pool/main/a/${BPN}/${BPN}_${PV}.orig.tar.gz \
+@@ -38,8 +38,18 @@ PACKAGECONFIG ?="man python perl"
+ PACKAGECONFIG[man] = "--enable-man-pages, --disable-man-pages"
+ PACKAGECONFIG[python] = "--with-python, --without-python, python3 swig-native"
+ PACKAGECONFIG[perl] = "--with-perl, --without-perl, perl perl-native swig-native"
++PACKAGECONFIG[apache2] = ",,apache2,"
+ 
+ PAMLIB="${@bb.utils.contains('DISTRO_FEATURES', 'pam', '1', '0', d)}"
++HTTPD="${@bb.utils.contains('PACKAGECONFIG', 'apache2', '1', '0', d)}"
++
++
++python() {
++    if 'apache2' in d.getVar('PACKAGECONFIG').split() and \
++	'webserver' not in d.getVar('BBFILE_COLLECTIONS').split():
++        raise bb.parse.SkipRecipe('Requires meta-webserver to be present.')
++}
++
+ 
+ do_configure() {
+ 	cd ${S}/libraries/libapparmor
+@@ -57,7 +67,10 @@ do_compile () {
+         oe_runmake -C ${B}/utils
+         oe_runmake -C ${B}/parser
+         oe_runmake -C ${B}/profiles
+-        oe_runmake -C ${B}/changehat/mod_apparmor
++
++	if test -z "${HTTPD}" ; then
++        	oe_runmake -C ${B}/changehat/mod_apparmor
++	fi	
+ 
+ 	if test -z "${PAMLIB}" ; then
+         	oe_runmake -C ${B}/changehat/pam_apparmor
+@@ -73,7 +86,10 @@ do_install () {
+ 	oe_runmake -C ${B}/utils DESTDIR="${D}" install
+ 	oe_runmake -C ${B}/parser DESTDIR="${D}" install
+ 	oe_runmake -C ${B}/profiles DESTDIR="${D}" install
+-	oe_runmake -C ${B}/changehat/mod_apparmor DESTDIR="${D}" install
++
++	if test -z "${HTTPD}" ; then
++		oe_runmake -C ${B}/changehat/mod_apparmor DESTDIR="${D}" install
++	fi
+ 
+ 	if test -z "${PAMLIB}" ; then
+ 		oe_runmake -C ${B}/changehat/pam_apparmor DESTDIR="${D}" install
+@@ -122,11 +138,13 @@ SYSTEMD_PACKAGES = "${PN}"
+ SYSTEMD_SERVICE_${PN} = "apparmor.service"
+ SYSTEMD_AUTO_ENABLE = "disable"
+ 
+-PACKAGES += "mod-${PN}"
++PACKAGES += "${@bb.utils.contains('PACKAGECONFIG', 'apache2', 'mod-${PN}', '', d)}"
+ 
+ FILES_${PN} += "/lib/apparmor/ ${sysconfdir}/apparmor ${PYTHON_SITEPACKAGES_DIR}"
+ FILES_mod-${PN} = "${libdir}/apache2/modules/*"
+ 
++ALLOW_EMPTY_${PN} = "1"
++
+ RDEPENDS_${PN} += "bash lsb"
+ RDEPENDS_${PN} += "${@bb.utils.contains('PACKAGECONFIG','python','python3 python3-modules','', d)}"
+ RDEPENDS_${PN}_remove += "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
+-- 
+2.7.4
 
 
