@@ -1,18 +1,15 @@
-Return-Path: <usmanhaider89@gmail.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1810E00C44; Mon, 11 Sep 2017 01:24:21 -0700 (PDT)
+	id CB35AE00C3A; Mon, 11 Sep 2017 01:38:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (usmanhaider89[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [89.248.60.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -21,50 +18,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.175 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 934C6E00C89
-	for <yocto@yoctoproject.org>; Mon, 11 Sep 2017 01:24:14 -0700 (PDT)
-Received: by mail-io0-f175.google.com with SMTP id y123so21318998iod.0
-	for <yocto@yoctoproject.org>; Mon, 11 Sep 2017 01:24:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=91z3f4Ul+Ab9C8u3wabD7v5DXdSzbIoAjEwIqsmMNYc=;
-	b=R/1CF00OlPzfo4AFNT1x3m9CN8N0iRTHbBgkw55qitRfcJt2FgI2EFsFz02OF05ROE
-	C8wW+ioKipE2ucfBelMfAcBk1OQX2V1L9RNU4DvTY0lEmpplIXAoZ8v0f4lWKaLJowdA
-	XvvABb/lhoRCXc284BD2ZqPodBqR71YLqbAcOCdw1QXwjIXjofPBAkIlJn+R7AHOCwj7
-	Wf/eZLOiBemqJaWDd4WzInnvTLnJUW+udlJ8134aGxNvCdJZT0o5e3hKyb7ftFTYHZmt
-	yDwns4MRlER9oRyY86GgFrBPBx35iPmuf2CaP589rDKNM+W82VUt4UUg0ELb+LJQPC6p
-	4fwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=91z3f4Ul+Ab9C8u3wabD7v5DXdSzbIoAjEwIqsmMNYc=;
-	b=c1PQYU//v6k/HKIHT1rFZc8B0Ju+c7ry3HXmbkr5iWLuU/np9IUs7Sd2MxM4GJK2vJ
-	N3fT9yRB7Yk/CNFImchGKkVc08Zuq4PIRLc9eO3kBnG/DCT2faLbPU++JLFK6cpREPnj
-	lpOGDucKWp4wmtiSGlXaD+NxDogB1Jsl/OSF963dqHT2lPJLiEFOxSrUv6LWBw8FjIbh
-	oth0CAlozjFQahZsjP1QdI7u1D8E9K/7OowONCcbpr5TBJknmYW+KDQcpRz7wMumLLQm
-	dV3PU8ZgJskstRJzjoICukiQE6EfzcKPLvtdsXdyRLBqBizZnbj2iW7RGi353HqZyH5D
-	9hFQ==
-X-Gm-Message-State: AHPjjUjkG4l0HKzJtVfe7ahmvrX+C3AJZlrlEjceXAqMCHY73YjQB+O1
-	pXfi/aeOu82tnS9modCeQiHihkUdUIwP
-X-Google-Smtp-Source: ADKCNb7+wAysy4+3REegP7vk1poCPPrGtGqwAfz3F7xQPPnw6sn9EygFL08EKuN6ytWW6D4L0fXSIAFHad6Imcz/RnU=
-X-Received: by 10.107.19.139 with SMTP id 11mr5793998iot.286.1505118253778;
-	Mon, 11 Sep 2017 01:24:13 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.57.2 with HTTP; Mon, 11 Sep 2017 01:24:13 -0700 (PDT)
-In-Reply-To: <CAJTo0LbEg7M0FfhJ7bFzr+B3DSprTXVD=jp6oMkiyKP8+wARzg@mail.gmail.com>
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8872CE00C01
+	for <yocto@yoctoproject.org>; Mon, 11 Sep 2017 01:38:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=keylevel.com; s=default;
+	h=To:References:Message-Id:Cc:Date:In-Reply-To:
+	From:Subject:Mime-Version:Content-Type:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=jQE6T/A7thpHUk5GmSX6VJp5sxpX9DBE05hELMw0mY4=;
+	b=JzBud1shglTnguOko5kfuWc6h
+	rtszf0H6RazW5IE+pQ3XjQPGojciMlmoYAkAM4GShGCghbqfTGmRKGcZhPavbTj3T/8ZfN71AEX+Y
+	BrKIEAFn/gqJPZ8fOuXq1Mq2Za8wYCjh2jzZlNlWY96OJVIm8CSDyLOZhrVVS0O4DfrE0=; 
+Received: from durham.keylevel.com ([212.159.18.174]:62229
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:ECDHE-RSA-AES256-SHA:256)
+	(Exim 4.89) (envelope-from <opensource@keylevel.com>)
+	id 1drKEE-003CRh-A4; Mon, 11 Sep 2017 09:38:02 +0100
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CANxWOTa28uL3HoPvU5mU54XB1HMpxu_iskSZH1gdBB=ugEcMtA@mail.gmail.com>
+Date: Mon, 11 Sep 2017 09:38:09 +0100
+Message-Id: <744F5E96-6FA0-4C7E-BE48-C1C4E9E75231@keylevel.com>
 References: <CANxWOTbROX_e50FqD_oV9=3KTnxHik2jgDP98rRWq2A09QaNeg@mail.gmail.com>
 	<b59f7241-632a-0801-1dce-ade844162f23@dynamicdevices.co.uk>
 	<6353963F-63D3-413E-B685-72A56004CBA9@keylevel.com>
 	<CAJTo0LbEg7M0FfhJ7bFzr+B3DSprTXVD=jp6oMkiyKP8+wARzg@mail.gmail.com>
-From: Usman Haider <usmanhaider89@gmail.com>
-Date: Mon, 11 Sep 2017 13:24:13 +0500
-Message-ID: <CANxWOTa28uL3HoPvU5mU54XB1HMpxu_iskSZH1gdBB=ugEcMtA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	<CANxWOTa28uL3HoPvU5mU54XB1HMpxu_iskSZH1gdBB=ugEcMtA@mail.gmail.com>
+To: Usman Haider <usmanhaider89@gmail.com>
+X-Mailer: Apple Mail (2.3124)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+X-Authenticated-Sender: a180.4uh.net: chris.tapp@keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Suitable machine for yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -78,94 +74,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Sep 2017 08:24:22 -0000
-Content-Type: multipart/alternative; boundary="001a113f30e6dc8be50558e5a64f"
+X-List-Received-Date: Mon, 11 Sep 2017 08:38:07 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_5FD25937-9CA7-44B6-93C0-6967D75D52AF"
 
---001a113f30e6dc8be50558e5a64f
-Content-Type: text/plain; charset="UTF-8"
+--Apple-Mail=_5FD25937-9CA7-44B6-93C0-6967D75D52AF
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-On Mon, Sep 11, 2017 at 1:21 PM, Burton, Ross <ross.burton@intel.com> wrote=
-:
 
-> On 10 September 2017 at 12:00, Chris Tapp <opensource@keylevel.com> wrote=
-:
->
->> I have a similar spec, except I use an SSD for the build area and only
->> 16GB RAM (I don=E2=80=99t see more than about 12GB used during a build) =
-- a build
->> from scratch (excluding download time) takes just under an hour.
->>
->
-> The thing to remember with SSDs is that builds can write *a lot* of data
-> and this can destroy SSDs faster than you'd like.
->
-> Personally I find lots of RAM more cost effective.  If you've got a
-> moderate amount then a slow commit time in fstab lets the kernel batch
-> writes wisely.  If you've got plenty of RAM (my machine has 64GB) then a
-> good sized tmpfs (32GB here) mounted at TMPDIR (the local.conf setting, n=
-ot
-> /tmp) in with rm_work means you literally have no I/O latency.  To persis=
-t
-> files either copy them out or for example set DEPLOY_DIR to a real disk.
->
+> On 11 Sep 2017, at 09:24, Usman Haider <usmanhaider89@gmail.com> =
+wrote:
+>=20
+>=20
+>=20
+> On Mon, Sep 11, 2017 at 1:21 PM, Burton, Ross <ross.burton@intel.com =
+<mailto:ross.burton@intel.com>> wrote:
+> On 10 September 2017 at 12:00, Chris Tapp <opensource@keylevel.com =
+<mailto:opensource@keylevel.com>> wrote:
+> I have a similar spec, except I use an SSD for the build area and only =
+16GB RAM (I don=E2=80=99t see more than about 12GB used during a build) =
+- a build from scratch (excluding download time) takes just under an =
+hour.
+>=20
+> The thing to remember with SSDs is that builds can write *a lot* of =
+data and this can destroy SSDs faster than you'd like.
+>=20
+> Personally I find lots of RAM more cost effective.  If you've got a =
+moderate amount then a slow commit time in fstab lets the kernel batch =
+writes wisely.  If you've got plenty of RAM (my machine has 64GB) then a =
+good sized tmpfs (32GB here) mounted at TMPDIR (the local.conf setting, =
+not /tmp) in with rm_work means you literally have no I/O latency.  To =
+persist files either copy them out or for example set DEPLOY_DIR to a =
+real disk.
+>=20
 > Ross
->
+>=20
 > --
 > _______________________________________________
 > yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
-Thanks,
-
-I'll consider this too. A lot of techincal stuff to learn here on this
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
+>=20
+>=20
+>=20
+> Thanks,
+>=20
+> I'll consider this too. A lot of techincal stuff to learn here on this =
 mailing list :)
 
-Regards,
-Usman
+One thing you=E2=80=99ll find here is a lot of very knowledgable people =
+who go out of their way to help as much as possible - got me going from =
+a cold start very, very quickly :-)
 
---001a113f30e6dc8be50558e5a64f
-Content-Type: text/html; charset="UTF-8"
+A really good example of an excellent opensource project / community.
+
+> Regards,
+> Usman
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
+
+
+--Apple-Mail=_5FD25937-9CA7-44B6-93C0-6967D75D52AF
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Mon, Sep 11, 2017 at 1:21 PM, Burton, Ross <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.c=
-om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"=
-><span class=3D"">On 10 September 2017 at 12:00, Chris Tapp <span dir=3D"lt=
-r">&lt;<a href=3D"mailto:opensource@keylevel.com" target=3D"_blank">opensou=
-rce@keylevel.com</a>&gt;</span> wrote:<br></span><div class=3D"gmail_extra"=
-><div class=3D"gmail_quote"><span class=3D""><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
->I have a similar spec, except I use an SSD for the build area and only 16G=
-B RAM (I don=E2=80=99t see more than about 12GB used during a build) - a bu=
-ild from scratch (excluding download time) takes just under an hour.<br></b=
-lockquote><div><br></div></span><div>The thing to remember with SSDs is tha=
-t builds can write *a lot* of data and this can destroy SSDs faster than yo=
-u&#39;d like.</div><div><br></div><div>Personally I find lots of RAM more c=
-ost effective.=C2=A0 If you&#39;ve got a moderate amount then a slow commit=
- time in fstab lets the kernel batch writes wisely.=C2=A0 If you&#39;ve got=
- plenty of RAM (my machine has 64GB) then a good sized tmpfs (32GB here) mo=
-unted at TMPDIR (the local.conf setting, not /tmp) in with rm_work means yo=
-u literally have no I/O latency.=C2=A0 To persist files either copy them ou=
-t or for example set DEPLOY_DIR to a real disk.</div><span class=3D"HOEnZb"=
-><font color=3D"#888888"><div><br></div><div>Ross</div></font></span></div>=
-</div></div>
-<br>--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br><br></div><div class=3D"gmail_extra">Thanks,<br>=
-<br></div><div class=3D"gmail_extra">I&#39;ll consider this too. A lot of t=
-echincal stuff to learn here on this mailing list :)<br><br></div><div clas=
-s=3D"gmail_extra">Regards,<br></div><div class=3D"gmail_extra">Usman<br></d=
-iv></div>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On 11 Sep 2017, at 09:24, Usman Haider &lt;<a =
+href=3D"mailto:usmanhaider89@gmail.com" =
+class=3D"">usmanhaider89@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
+class=3D""><br class=3D""><div class=3D"gmail_extra"><br class=3D""><div =
+class=3D"gmail_quote">On Mon, Sep 11, 2017 at 1:21 PM, Burton, Ross =
+<span dir=3D"ltr" class=3D"">&lt;<a href=3D"mailto:ross.burton@intel.com" =
+target=3D"_blank" class=3D"">ross.burton@intel.com</a>&gt;</span> =
+wrote:<br class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr" =
+class=3D""><span class=3D"">On 10 September 2017 at 12:00, Chris Tapp =
+<span dir=3D"ltr" class=3D"">&lt;<a =
+href=3D"mailto:opensource@keylevel.com" target=3D"_blank" =
+class=3D"">opensource@keylevel.com</a>&gt;</span> wrote:<br =
+class=3D""></span><div class=3D"gmail_extra"><div =
+class=3D"gmail_quote"><span class=3D""><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
+solid;padding-left:1ex">I have a similar spec, except I use an SSD for =
+the build area and only 16GB RAM (I don=E2=80=99t see more than about =
+12GB used during a build) - a build from scratch (excluding download =
+time) takes just under an hour.<br class=3D""></blockquote><div =
+class=3D""><br class=3D""></div></span><div class=3D"">The thing to =
+remember with SSDs is that builds can write *a lot* of data and this can =
+destroy SSDs faster than you'd like.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Personally I find lots of RAM more cost =
+effective.&nbsp; If you've got a moderate amount then a slow commit time =
+in fstab lets the kernel batch writes wisely.&nbsp; If you've got plenty =
+of RAM (my machine has 64GB) then a good sized tmpfs (32GB here) mounted =
+at TMPDIR (the local.conf setting, not /tmp) in with rm_work means you =
+literally have no I/O latency.&nbsp; To persist files either copy them =
+out or for example set DEPLOY_DIR to a real disk.</div><span =
+class=3D"HOEnZb"><font color=3D"#888888" class=3D""><div class=3D""><br =
+class=3D""></div><div =
+class=3D"">Ross</div></font></span></div></div></div>
+<br class=3D"">--<br class=3D"">
+______________________________<wbr class=3D"">_________________<br =
+class=3D"">
+yocto mailing list<br class=3D"">
+<a href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br class=3D"">
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+rel=3D"noreferrer" target=3D"_blank" =
+class=3D"">https://lists.yoctoproject.<wbr =
+class=3D"">org/listinfo/yocto</a><br class=3D"">
+<br class=3D""></blockquote></div><br class=3D""><br class=3D""></div><div=
+ class=3D"gmail_extra">Thanks,<br class=3D""><br class=3D""></div><div =
+class=3D"gmail_extra">I'll consider this too. A lot of techincal stuff =
+to learn here on this mailing list :)<br =
+class=3D""></div></div></div></blockquote><div><br =
+class=3D""></div><div>One thing you=E2=80=99ll find here is a lot of =
+very knowledgable people who go out of their way to help as much as =
+possible - got me going from a cold start very, very quickly =
+:-)</div><div><br class=3D""></div><div>A really good example of an =
+excellent opensource project / community.</div><br class=3D""><blockquote =
+type=3D"cite" class=3D""><div class=3D""><div dir=3D"ltr" class=3D""><div =
+class=3D"gmail_extra">Regards,</div><div class=3D"gmail_extra">Usman<br =
+class=3D""></div></div>
+</div></blockquote></div><br class=3D""><div class=3D"">
+<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: =
+auto; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><span class=3D"Apple-style-span" style=3D"border-collapse: =
+separate; font-variant-ligatures: normal; font-variant-position: normal; =
+font-variant-numeric: normal; font-variant-alternates: normal; =
+font-variant-east-asian: normal; line-height: normal; border-spacing: =
+0px;"><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space;" class=3D""><div =
+class=3D"">--</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Chris Tapp</div><div class=3D""><a =
+href=3D"mailto:opensource@keylevel.com" =
+class=3D"">opensource@keylevel.com</a></div><div class=3D""><a =
+href=3D"http://www.keylevel.com" class=3D"">www.keylevel.com</a></div><div=
+ class=3D""><br class=3D""></div><div class=3D"">----</div><div =
+class=3D"">You can tell you're getting older when your car insurance =
+gets real cheap!</div></div></span></div></div></div></div>
+</div>
+<br class=3D""></body></html>=
 
---001a113f30e6dc8be50558e5a64f--
+--Apple-Mail=_5FD25937-9CA7-44B6-93C0-6967D75D52AF--
