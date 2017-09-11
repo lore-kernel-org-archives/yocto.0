@@ -1,32 +1,91 @@
-Return-Path: <fzhang@sgl.com>
+Return-Path: <hernan_gutierrez@hp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DDCAE0078E; Mon, 11 Sep 2017 08:37:56 -0700 (PDT)
+	id 9589EE0090A; Mon, 11 Sep 2017 10:15:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.40.114 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from webmail.sgl.com (mail1.sgl.com [209.87.231.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EBB2E0078E;
-	Mon, 11 Sep 2017 08:37:55 -0700 (PDT)
-Received: from [10.1.20.15] (unknown [10.1.20.15])
-	by webmail.sgl.com (Postfix) with ESMTP id 8C1111D233052;
-	Mon, 11 Sep 2017 11:35:43 -0400 (EDT)
-To: Robert Berger <yocto.user.mailinglist@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	meta-xilinx@yoctoproject.org
-References: <b2971216-bfa5-20d3-9cdd-ceee0afffb76@sgl.com>
-	<2169f5a0-7166-1ff0-6b43-611167a8cacf@gmail.com>
-From: Fan Zhang <fzhang@sgl.com>
-Message-ID: <eac81ff8-3b9b-7307-11f5-eae0dba0e4b5@sgl.com>
-Date: Mon, 11 Sep 2017 11:37:54 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 3567 seconds by postgrey-1.32 at yocto-www;
+	Mon, 11 Sep 2017 10:15:33 PDT
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+	(mail-co1nam03on0114.outbound.protection.outlook.com [104.47.40.114])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F887E00CF1
+	for <yocto@yoctoproject.org>; Mon, 11 Sep 2017 10:15:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HP.onmicrosoft.com;
+	s=selector1-hp-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=JG69+7GDSjXzQPEDOQIHCZWXxpJXxYXFzIrTOtVyPzw=;
+	b=rVmSmS16Zdfx0qO4ZvzAujOZvzcyqeDgiinlyuykrf743M6NXCE6V5o5Ayw3KqabYREJKF8PEjtackEl6lnqtZJ1Y12wj3lVYi7Js3WqLia4JeulstRV4KKiSMBRVNw49R9iBzeiBmuaYa/alGdxVf9Phbi+CmVG9gLUltDe9y8=
+Received: from DF4PR84MB0313.NAMPRD84.PROD.OUTLOOK.COM (10.162.193.27) by
+	DF4PR84MB0203.NAMPRD84.PROD.OUTLOOK.COM (10.162.193.145) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.35.12; Mon, 11 Sep 2017 15:43:58 +0000
+Received: from DF4PR84MB0313.NAMPRD84.PROD.OUTLOOK.COM ([10.162.193.27]) by
+	DF4PR84MB0313.NAMPRD84.PROD.OUTLOOK.COM ([10.162.193.27]) with mapi id
+	15.20.0035.021; Mon, 11 Sep 2017 15:43:58 +0000
+From: "Gutierrez, Hernan Ildefonso (Boise R&D, FW)" <hernan_gutierrez@hp.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Can yocto build a QEMU image to run under MS Windows ?
+Thread-Index: AdMnVpXP8Phx1XGCRnCJiJdM6lQrsQDvaD5g
+Date: Mon, 11 Sep 2017 15:43:58 +0000
+Message-ID: <DF4PR84MB03139932BE4EA85DE8EF4CAD99680@DF4PR84MB0313.NAMPRD84.PROD.OUTLOOK.COM>
+References: <CS1PR84MB03093A584ACCD5C2F93D38A299970@CS1PR84MB0309.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <CS1PR84MB03093A584ACCD5C2F93D38A299970@CS1PR84MB0309.NAMPRD84.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=hernan_gutierrez@hp.com; 
+x-originating-ip: [15.65.244.15]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DF4PR84MB0203;
+	6:omFayqc3cpJo8F64Zgf1B5QeEMTMJCQqqAtnUH19+6tuVJPdZGjPw73nCtNo+AU68ymqYfBik1QHjKeRE9qLchETV1oVhuzgmkvwEpVitge/H/+9RveSd3s+nsUr/HIt7k5pO/P1Y3jzxFovt0sF0Wbc1P9OaUL+imLvXlYnd9BhEHNvzv8SX1UWGLdnw/M5HvqnCezMfbc3DHIyW5wpG5qP71ebISsBRNKHAhWFaZF4U+Ei1T56HV7XXmThrWuZmmfkikdK8ONsnhM5pKNkcLuhRec/bouD00xis6VbogvEQ6wifIwUYT6fpSAiT3wXwHNDErMOtNSTMnOB8HTi3w==;
+	5:40g7Srz/ZixG3xN3tJdwxGpvglYqccIuxB1brDC5cojPy0nNoUZno+1GsuIXuf4R20qhy5O0Uc2BOqo1yYKtagUph6fhlAlNZdBudUJxfFpqHlWsloI+gBQVd/ffE9yAdfoLI0O+spnOM8dr197m7w==;
+	24:m4rCa4MStVqlZZauRmz6JDF7j5AC85JuPr5av4deJv3sYy9UM9yHXurXeTERX+BS5gPbT3W2X9ukolrQRJGApNFj4Iob5RliTlspUK1Gtk0=;
+	7:+v/ErHzEpaRyWYrB9CIS5+sLB5+u0nYmtoyQH5/WfySL77f7Z8waSo3TBqzvjdZb/7q0O9eGm44h7o9TbpvBilbl+SNoty2VvdgOt4ll9iYrb2ddYTDXD7WEpkd0x0cl7ZehBrnHzqQ/AkI0ySuCWk/HP6w0VuDm8CcHD0Q8hrJFWC3Wf7XW49PmpOxox47iX3ya4UYwcYI7v6N3odVAGzfrEv6hypW2FznbnP2xx50=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 4c7a0500-19c5-4ef8-e9f6-08d4f92beacc
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(2017030254152)(300000503095)(300135400095)(2017052603199)(201703131423075)(201703031133081)(201702281549075)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:DF4PR84MB0203; 
+x-ms-traffictypediagnostic: DF4PR84MB0203:
+x-exchange-antispam-report-test: UriScan:(21748063052155);
+x-microsoft-antispam-prvs: <DF4PR84MB0203E947D71AB2AC002FADA199680@DF4PR84MB0203.NAMPRD84.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(8121501046)(5005006)(100000703101)(100105400095)(10201501046)(93006095)(93001095)(3002001)(6041248)(20161123558100)(20161123564025)(20161123555025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123560025)(20161123562025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:DF4PR84MB0203; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:DF4PR84MB0203; 
+x-forefront-prvs: 04270EF89C
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(39860400002)(6602003)(199003)(54094003)(189002)(377454003)(54356999)(7736002)(76176999)(1730700003)(105586002)(81156014)(81166006)(2900100001)(9686003)(5640700003)(8676002)(236005)(54896002)(6306002)(25786009)(86362001)(9326002)(53936002)(55016002)(106356001)(2501003)(3280700002)(2351001)(2906002)(3660700001)(101416001)(8936002)(50986999)(97736004)(33656002)(2950100002)(66066001)(6916009)(14454004)(189998001)(5630700001)(7696004)(5660300001)(6506006)(606006)(6436002)(53546010)(77096006)(229853002)(3846002)(102836003)(6116002)(790700001)(110136004)(6246003)(966005)(74316002)(478600001)(68736007);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DF4PR84MB0203;
+	H:DF4PR84MB0313.NAMPRD84.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: hp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-In-Reply-To: <2169f5a0-7166-1ff0-6b43-611167a8cacf@gmail.com>
-Subject: Re: [meta-xilinx] How to include Xilinx DMA driver
+X-OriginatorOrg: hp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2017 15:43:58.3040 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ca7981a2-785a-463d-b82a-3db87dfc3ce6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DF4PR84MB0203
+Subject: Re: Can yocto build a QEMU image to run under MS Windows ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,99 +97,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Sep 2017 15:37:56 -0000
-X-Groupsio-MsgNum: 37789
-Content-Type: multipart/mixed; boundary="------------9625EF6E21D30CAFC96B5932"
+X-List-Received-Date: Mon, 11 Sep 2017 17:15:39 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DF4PR84MB03139932BE4EA85DE8EF4CAD99680DF4PR84MB0313NAMP_"
 
---------------9625EF6E21D30CAFC96B5932
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_DF4PR84MB03139932BE4EA85DE8EF4CAD99680DF4PR84MB0313NAMP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all
+SGksDQoNCkkgZmlndXJlZCB0aGF0IEkgY2FuIGRpcmVjdGx5IGRvd25sb2FkIFFFTVUgZm9yIHdp
+bmRvd3MgYW5kIHVzZSBpbiBhIE1TIFdpbmRvd3MgYm94Lg0KDQpEb3dubG9hZHMgb2YgUWVtdSBm
+b3IgTVMgV2luZG93czoNCg0KRm9yIHdpbmRvd3MgNjQgYml0czogaHR0cHM6Ly9xZW11LndlaWxu
+ZXR6LmRlL3c2NC8NCkZvciBXaW5kb3dzIDMyIGJpdHM6IGh0dHBzOi8vcWVtdS53ZWlsbmV0ei5k
+ZS8NCg0KSSBqdXN0IG5lZWQgdG8gbWF0Y2ggdGhlIFFFTVUgdmVyc2lvbiB0aGF0IFlvY3RvIGlz
+IHVzaW5nIHVuZGVyIGxpbnV4IHNvIEkgY2FuIGRpcmVjdGx5IHBhc3Mga2VybmVsL3Jvb3RmcyBn
+ZW5lcmF0ZWQgYnkgeW9jdG8gYW5kIFFlbXUgY2FuIGJvb3QgYXMgd2hlbiBvbmUgcnVucyBydW5x
+ZW11IDxYPiB1bmRlciB5b2N0by4NCg0KLS1IZXJuYW4NCg0KDQoNCkZyb206IHlvY3RvLWJvdW5j
+ZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9y
+Z10gT24gQmVoYWxmIE9mIEd1dGllcnJleiwgSGVybmFuIElsZGVmb25zbyAoQm9pc2UgUiZELCBG
+VykNClNlbnQ6IFdlZG5lc2RheSwgU2VwdGVtYmVyIDA2LCAyMDE3IDM6MjggUE0NClRvOiB5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbeW9jdG9dIENhbiB5b2N0byBidWlsZCBhIFFF
+TVUgaW1hZ2UgdG8gcnVuIHVuZGVyIE1TIFdpbmRvd3MgPw0KDQpIaSwNCg0KQXMgdGhlIHN1Ympl
+Y3Qgc3RhdGVzLCBJIGFtIGxvb2tpbmcgdG8gc2VlIGlmIFlvY3RvIGNhbiBidWlsZCBhIHFlbXUg
+aW1hZ2UgdG8gcnVuIHVuZGVyIE1TIHdpbmRvd3MuDQoNCkkgaGF2ZSB1c2VkIHRoZSBzdGFuZGFy
+ZCBxZW11YXJtL3FlbXVhcm02NCBNQUNISU5FUyBhcyBkZWZpbmVkIGluIGRlZmF1bHQgcmVjaXBl
+cyB0byBydW4gdW5kZXIgbGludXgsIGJ1dCBJIHdvbmRlciBpZiB0aGVyZSBpcyBhIHJlY2lwZSB0
+byBidWlsZCBxZW11IHdoaWNoIEkgY2FuIGRlcGxveSB0byBNUyB3aW5kb3dzIGJveGVzLg0KDQpB
+bnkgcG9pbnRlcnMgd2lsbCBoZWxwLg0KDQpUaGFua3MhDQoNCi0tSGVybmFuIEd1dGllcnJleg0K
+DQo=
 
-Thank you Robert for the guide. I tried option [1] out of tree driver. 
-Got it compiled, and loaded when image boot up. My understand of the dma 
-driver is that Linux DMA engine depends on the Xilinx device driver 
-(xilinx_cdma.c) and then dma_proxy.c driver depends on the Linux DMA 
-engine. Am I correct?
+--_000_DF4PR84MB03139932BE4EA85DE8EF4CAD99680DF4PR84MB0313NAMP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-It does seems Xilinx_cdma is loaded succefully, but dmatest didn't. Here 
-is the message I've got:
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjsN
+Cgljb2xvcjpibGFjazt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1w
+cmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0K
+YTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0
+eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwDQoJ
+e21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJn
+aW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0
+OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4i
+LHNlcmlmOw0KCWNvbG9yOmJsYWNrO30NCnNwYW4uZ21haWwtaG9lbnpiDQoJe21zby1zdHlsZS1u
+YW1lOmdtYWlsLWhvZW56Yjt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpw
+ZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0
+OTdEO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5
+Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0K
+Lk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXpl
+OjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFy
+Z2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpX
+b3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNo
+YXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRp
+Zl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0
+Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0Pjwv
+eG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hpdGUiIGxhbmc9IkVO
+LVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9u
+MSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjojMUY0OTdEIj5IaSw8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVy
+IE5ldyZxdW90Oztjb2xvcjojMUY0OTdEIj5JIGZpZ3VyZWQgdGhhdCBJIGNhbiBkaXJlY3RseSBk
+b3dubG9hZCBRRU1VIGZvciB3aW5kb3dzIGFuZCB1c2UgaW4gYSBNUyBXaW5kb3dzIGJveC48bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVy
+IE5ldyZxdW90Oztjb2xvcjojMUY0OTdEIj5Eb3dubG9hZHMgb2YgUWVtdSBmb3IgTVMgV2luZG93
+czoNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7
+O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NvdXJpZXIgTmV3JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkZvciB3aW5kb3dzIDY0IGJpdHM6DQo8
+YSBocmVmPSJodHRwczovL3FlbXUud2VpbG5ldHouZGUvdzY0LyI+aHR0cHM6Ly9xZW11LndlaWxu
+ZXR6LmRlL3c2NC88L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmll
+ciBOZXcmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Rm9yIFdpbmRvd3MgMzIgYml0czoNCjxhIGhyZWY9
+Imh0dHBzOi8vcWVtdS53ZWlsbmV0ei5kZS8iPmh0dHBzOi8vcWVtdS53ZWlsbmV0ei5kZS88L2E+
+IDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O2Nv
+bG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nv
+dXJpZXIgTmV3JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkkganVzdCBuZWVkIHRvIG1hdGNoIHRoZSBR
+RU1VIHZlcnNpb24gdGhhdCBZb2N0byBpcyB1c2luZyB1bmRlciBsaW51eCBzbyBJIGNhbiBkaXJl
+Y3RseSBwYXNzIGtlcm5lbC9yb290ZnMgZ2VuZXJhdGVkIGJ5IHlvY3RvIGFuZCBRZW11IGNhbiBi
+b290IGFzIHdoZW4gb25lIHJ1bnMgcnVucWVtdQ0KICZsdDtYJmd0OyB1bmRlciB5b2N0by48bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90Oztjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVy
+IE5ldyZxdW90Oztjb2xvcjojMUY0OTdEIj4tLUhlcm5hbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O2NvbG9yOiMx
+RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0
+O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpu
+b25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4g
+MGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjp3aW5k
+b3d0ZXh0Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOndpbmRvd3RleHQi
+PiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlv
+Y3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkd1dGllcnJleiwgSGVybmFuIEls
+ZGVmb25zbyAoQm9pc2UgUiZhbXA7RCwgRlcpPGJyPg0KPGI+U2VudDo8L2I+IFdlZG5lc2RheSwg
+U2VwdGVtYmVyIDA2LCAyMDE3IDM6MjggUE08YnI+DQo8Yj5Ubzo8L2I+IHlvY3RvQHlvY3RvcHJv
+amVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3RvXSBDYW4geW9jdG8gYnVpbGQgYSBR
+RU1VIGltYWdlIHRvIHJ1biB1bmRlciBNUyBXaW5kb3dzID88bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+
+SGksPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
+LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5BcyB0aGUgc3Vi
+amVjdCBzdGF0ZXMsIEkgYW0gbG9va2luZyB0byBzZWUgaWYgWW9jdG8gY2FuIGJ1aWxkIGEgcWVt
+dSBpbWFnZSB0byBydW4gdW5kZXIgTVMgd2luZG93cy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiMxRjQ5N0QiPkkgaGF2ZSB1c2VkIHRoZSBzdGFuZGFyZCBxZW11YXJtL3FlbXVh
+cm02NCBNQUNISU5FUyBhcyBkZWZpbmVkIGluIGRlZmF1bHQgcmVjaXBlcyB0byBydW4gdW5kZXIg
+bGludXgsIGJ1dCBJIHdvbmRlciBpZiB0aGVyZSBpcyBhIHJlY2lwZSB0byBidWlsZCBxZW11IHdo
+aWNoIEkNCiBjYW4gZGVwbG95IHRvIE1TIHdpbmRvd3MgYm94ZXMuPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5BbnkgcG9pbnRlcnMgd2lsbCBoZWxwLjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xv
+cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhhbmtzITxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
+OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291
+cmllciBOZXcmcXVvdDs7Y29sb3I6IzFGNDk3RCI+LS1IZXJuYW4gR3V0aWVycmV6PG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDs7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9ib2R5Pg0KPC9odG1sPg0K
 
-
-root@microzed-zynq7:~# dmesg | grep dma
-[    0.202348] dma-pl330 f8003000.dmac: Loaded driver for PL330 DMAC-241330
-[    0.202370] dma-pl330 f8003000.dmac:         DBUFF-128x8bytes 
-Num_Chans-8 Num_Peri-4 Num_Events-16
-[    0.202654] xilinx-vdma 7e200000.dma: failed to get axi_clk (4294967294)
-[    0.202679] xilinx-vdma: probe of 7e200000.dma failed with error -2
-[    2.609417] xilinx-cdma 7e200000.dma: Xilinx AXI CDMA Engine driver 
-Probed!!
-[    2.635552] Modules linked in: axidmatest(O+) xilinx_cdma(O)
-[    2.659271] PC is at xilinx_axidmatest_probe+0xd8/0x418 [axidmatest]
-[    2.916646] [<bf00522c>] (xilinx_axidmatest_probe [axidmatest]) from 
-[<c03905c8>] (platform_drv_probe+0x50/0xb0)
-[    3.028812] udevd[674]: worker [687] failed while handling 
-'/devices/soc0/dmatest@0'
-
- From these message, I'm guessing there is an issue in configuration of 
-the common clock framework. Is the clkc.c needs to be built as an out of 
-tree module to be used in Yocto?
-
-Fan
-
-On 08/09/2017 12:20 PM, Robert Berger wrote:
-> Hi,
->
-> On 2017-09-08 19:00, Fan Zhang wrote:
->> Hi All,
->>
->> 1. How to include xilinx_dma.c driver in to the poky image build?
->
-> In case you want to include out-of tree drivers it could work like 
-> this[1] in case you want in-tree it's just a kernel patch similar to[2].
->
-> Apparently you will need to turn on kernel config features. You might 
-> try something like this[3].
->
-> For Yocto/Xilinx specific questions you might want to ask on the 
-> Xilinx mailing list[4].
->
-> [1] 
-> https://github.com/RobertBerger/meta-mainline/tree/pyro-training-v4.9.x/multi-v7-ml/recipes-zedboard/xilinx-dma
->
-> [2] 
-> https://github.com/RobertBerger/meta-mainline/blob/pyro-training-v4.9.x/multi-v7-ml/recipes-kernel/linux/patch/4.9.x/patches/zedboard-zynq7/zynq-qspi/0001-zynq-zedboard-non-mainline-qspi-support.patch
->
-> [3] 
-> https://github.com/RobertBerger/meta-mainline/tree/pyro-training-v4.9.x/multi-v7-ml/recipes-kernel/linux/config/multi-v7-ml-base/features/zynq-qspi
->
-> [4] https://lists.yoctoproject.org/listinfo/meta-xilinx
->
-> Regards,
->
-> Robert
->
->
-
-
---------------9625EF6E21D30CAFC96B5932
-Content-Type: text/x-vcard; charset=utf-8;
- name="fzhang.vcf"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="fzhang.vcf"
-
-begin:vcard
-fn:Fan Zhang
-n:Zhang;Fan
-org:Sander Geophysics Ltd. 
-email;internet:fzhang@sgl.com
-title:Electronics Design Engineer
-tel;work:(613)521-9626
-version:2.1
-end:vcard
-
-
---------------9625EF6E21D30CAFC96B5932--
+--_000_DF4PR84MB03139932BE4EA85DE8EF4CAD99680DF4PR84MB0313NAMP_--
