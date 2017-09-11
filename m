@@ -1,26 +1,50 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25085E00C89; Sun, 10 Sep 2017 21:02:29 -0700 (PDT)
+	id 2F7ACE00C44; Sun, 10 Sep 2017 23:51:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,LOTS_OF_MONEY,
+	SPF_HELO_PASS,T_MONEY_PERCENT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FC28E00C01
-	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 21:02:28 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id C374684AA387
-	for <yocto@yoctoproject.org>; Mon, 11 Sep 2017 00:02:27 -0400 (EDT)
+	*  0.0 LOTS_OF_MONEY Huge... sums of money
+	*  0.0 T_MONEY_PERCENT X% of a lot of money for you
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C944E00C01
+	for <yocto@yoctoproject.org>; Sun, 10 Sep 2017 23:51:32 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id C84CC861B3;
+	Mon, 11 Sep 2017 06:51:31 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id lhSB5I3VDbh5; Mon, 11 Sep 2017 06:51:20 +0000 (UTC)
+Received: from [127.0.0.1] (cpc111193-live30-2-0-cust656.17-2.cable.virginm.net
+	[92.232.58.145])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 56E74860E1;
+	Mon, 11 Sep 2017 06:51:19 +0000 (UTC)
+To: Mark Hatle <mark.hatle@windriver.com>,
+	Usman Haider <usmanhaider89@gmail.com>, yocto@yoctoproject.org
+References: <CANxWOTbROX_e50FqD_oV9=3KTnxHik2jgDP98rRWq2A09QaNeg@mail.gmail.com>
+	<df26f444-d0f3-ec02-49a3-bc565b175afa@windriver.com>
+	<ea868d42-c5e1-3fa4-8c7d-f0775d941453@dynamicdevices.co.uk>
+	<f6204bba-ab19-c34f-ee9a-498781e2473d@windriver.com>
+	<73a79c9a-d9cb-825d-ac1b-340edd07dc5a@dynamicdevices.co.uk>
+	<b286d9a2-fe98-a85b-d4cb-f17bbfad4846@windriver.com>
+From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <446cff96-6e54-1f76-2aad-ddfb0e937270@dynamicdevices.co.uk>
+Date: Mon, 11 Sep 2017 07:51:18 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 11 Sep 2017 04:02:27 -0000
-Message-ID: <20170911040227.1329.9079@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+In-Reply-To: <b286d9a2-fe98-a85b-d4cb-f17bbfad4846@windriver.com>
+Subject: Re: Suitable machine for yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,138 +56,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Sep 2017 04:02:29 -0000
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Mon, 11 Sep 2017 06:51:34 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
 
-This mail was sent out by Recipe reporting system.
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+On 11/09/2017 00:56, Mark Hatle wrote:
+> On 9/10/17 2:31 PM, Alex Lennon wrote:
+>>
+>> On 10/09/2017 19:17, Mark Hatle wrote:
+>>> On 9/10/17 11:14 AM, Alex Lennon wrote:
+>>>> On 10/09/2017 17:06, Mark Hatle wrote:
+>>>>> On 9/10/17 2:00 AM, Usman Haider wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> Can someone please recommend some good machine for yocto environment and
+>>>>>> building sdks. I am interested in RAM, hard disk space, processor.
+>>>>> You want fast I/O, as much RAM and as many (fast) cores as you can afford.  I
+>>>>> don't think there is a single answer as what is 'best'.  It also depends on
+>>>>> which Yocto Project versions, and which layers you are using as to which
+>>>>> combination is best.
+>>>>>
+>>>>> I run builds on my laptop, 4-core/8-thread & SSD and 16 GB of ram from a few
+>>>>> years ago.  It's fast, but I wouldn't want to do all of my development on it.
+>>>>>
+>>>>> I've had 8-core/16-thread (32GB ram/standard disk), 16-core/32-thread (72GB
+>>>>> ram/SAS-3 RAID), 24-core/48-thread (64GB ram/SATA - software RAID), 72-core/144
+>>>>> thread (256 GB ram/hardware raid/SAS-3), and recently upgraded to
+>>>>> 96-core/192-thread (256 GB ram/hardware raid/SAS-3).
+>>>>>
+>>>>> I would not go below quad-core (8-thread) myself.  You can get a quad core, good
+>>>>> quality machine for $1000 or less these day.  If you move up to the larger
+>>>>> machines, you can even be able to get to a 24-core for less then $5000.  By the
+>>>>> time you get to 96-core and all of the googles you are likely talking $50000 or
+>>>>> more.
+>>>>>
+>>>>> By clock raid, the 24-core machine is the fastest..  While the 96-core monster
+>>>>> can do the builds the quickest.  But when you figure out cost/performance/etc..
+>>>>> the 24-core is probably the best performance per dollar, and with adequate RAM
+>>>>> (I'd say at least 64GB if not 128GB), and fast I/O you'll probably get the
+>>>>> lowest price for the best performance in that category.
+>>>>>
+>>>>> If you need sheer speed and price is no option, then the (4 CPU w/ 24 core each)
+>>>>> 96-core monster (or even better) is what you want to go with.  256GB ram would
+>>>>> be a minimum with that configuration (I'm not sure if more is actually helpful,
+>>>>> I rarely end up in swap -- but I go get into situations where more then 50% of
+>>>>> ram is used.)  With that many cores, disk I/O starts to become obvious.  So
+>>>>> faster the better... SSDs would be the fastest, but of course the most expensive.
+>>>>>
+>>>>> If your employer is paying for the machine, you may be able to get a better then
+>>>>> normal machine by explaining how much time a faster machine will save and how
+>>>>> comparing to your salary a machine is inexpensive.  (If you are a contractor or
+>>>>> student, that changes of course.)  :)
+>>>>>
+>>>>> So my point is really, figure out how much money you have to spend.  My rule of
+>>>>> thumb is roughly:
+>>>>>
+>>>>> 1) Buy as many cores as you can.  Try to get a CPU that has Hyperthreading or
+>>>>> equivalent to double the effective core count.  Fastest processing speed helps
+>>>>> in repetitive cases vs full system builds.
+>>>>>
+>>>>> So if the choice is a 24 core @ 2.2GHz vs 22 core @ 2.5, I'd probably go with
+>>>>> the 22-core.  While if it was 24 core @ 2.2GHz vs 8 core @ 4.2 GHz, I'd go with
+>>>>> the 24 core.
+>>>>>
+>>>>> 2) Try to get at least 1 GB of ram per thread (2 GB per core..)  You can cut
+>>>>> back on the ram (if necessary) once you hit 72 threads or so.   (72 threads
+>>>>> right now seems to cover most of the parallelization in a full system build.
+>>>>> There are points in the system where it can parallelize MUCH more, but they are
+>>>>> fairly rare.)
+>>>>>
+>>>>> 3) You need fast disks.  Software RAID works fine, but you likely need to buy at
+>>>>> least a couple of disk to boost performance.  SSDs are fast, but lots of builds
+>>>>> take space, so fast SATA or even better SAS drives are the best performance per
+>>>>> cost.
+>>>> This brings to mind a related question I keep coming back to as to the
+>>>> economics of a docker (or similar) image running a fast Yocto build in
+>>>> the cloud.
+>>>>
+>>>> i.e. set config params -> bring up server image on plaform A/B/C ->
+>>>> perform build taking time X/Y/Z -> store output images -> bring down
+>>>> server  == $ ?
+>>>>
+>>>> I find myself asking what the optimal cost per-build would be using this
+>>>> approach...
+>>> I helped someone do some very -preliminary- figured a few years ago.  The
+>>> processing was 'cheap', but between storage and network transfer costs.. it was
+>>> cheaper to buy a reasonable machine.. payback time was only a few months.
+>>>
+>>> (cloud 'storage' is often very slow as well, because there are expectations of
+>>> migration and things like that.)
+>>>
+>>> So as of a few years ago at least, the economics didn't factory the cloud -- yet.
+>>>
+>>>
+>> Yeah that is more or less my thinking. Although I do imagine that if a
+>> source mirror on an internal network leg could be set up then that might
+>> significantly reduce chargeable network b/w...
+> premirror for downloads and sstate-cache shared between multiple customers could
+> reduce the network b/w far enough to make it economical.   But you would need to
+> trust other vendors since the sstate-cache can be manipulated to provide
+> malicious software (in some cases).  (And strengthening the sstate-cache
+> checking can cause enough extra overhead to make it 'cheaper' to build then use
+> sstate-cache in many cases.)
+>
+>
 
-You can check the detail information at:
+Interesting... Thanks for your thoughts.
 
-http://recipes.yoctoproject.org/
-
-Package               Version     Upstream version      Maintainer           NoUpgradeReason
---------------------  ----------  --------------------  -------------------  ------------------------------
-python3-native        3.5.3       3.6.2                 Alejandro Hernandez
-python3               3.5.3       3.6.2                 Alejandro Hernandez
-gtk-doc               1.25        1.26                  Alexander Kanavin
-boost                 1.64.0      1.65.0                Alexander Kanavin
-ca-certificates       20161130    20170717              Alexander Kanavin
-bjam-native           1.64.0      1.65.0                Alexander Kanavin
-libnl                 3.2.29      3.3.0                 Alexander Kanavin
-psmisc                22.21       23.1                  Alexander Kanavin
-oprofile              1.1.0       1.2.0                 Alexander Kanavin
-mkelfimage            4.0+gitX    4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
-perl                  5.24.1      5.26.0                Aníbal Limón
-qemu                  2.10.0-rc2  3                     Aníbal Limón
-apt                   1.2.12      1.4.7                 Aníbal Limón
-libxml-namespaces...  1.12        1.12.9                Aníbal Limón
-apt-native            1.2.12      1.4.7                 Aníbal Limón
-dpkg                  1.18.10     1.18.24               Aníbal Limón
-perl-native           5.24.1      5.26.0                Aníbal Limón
-bind                  9.10.5-P3   9.11.2                Armin Kuster
-curl                  7.54.1      7.55.1                Armin Kuster
-busybox               1.24.1      1.27.2                Armin Kuster
-libpcre2              10.23       10.30                 Armin Kuster
-gnutls                3.5.13      3.6.0                 Armin Kuster
-kexec-tools           2.0.14      2.0.15                Armin Kuster
-libxkbcommon          0.7.1       0.7.2                 Armin Kuster
-linux-libc-headers    4.10        4.12.8                Bruce Ashfield
-libunwind             1.2         1.2.1                 Bruce Ashfield
-connman               1.34        1.35                  Changhyeok Bae
-iproute2              4.11.0      4.12.0                Changhyeok Bae
-dbus-test             1.10.20     1.10.22               Chen Qi
-dbus                  1.10.20     1.10.22               Chen Qi
-util-linux            2.30        2.30.1                Chen Qi
-sed                   4.2.2       4.4                   Chen Qi
-sysstat               11.5.7      11.6.0                Chen Qi
-systemd-bootchart     231+gitX    232+gitAUTOINC+79...  Chen Qi
-flex                  2.6.0       2.6.4                 Chen Qi
-build-appliance-i...  15.0.0      17.0.1                Cristian Iorga
-avahi-ui              0.6.32      0.7                   Dengke Du
-avahi                 0.6.32      0.7                   Dengke Du
-expat                 2.2.3       2.2.4                 Dengke Du
-chkconfig             1.3.58      1.8                   Dengke Du            Version 1.5 requires selinux
-json-glib             1.2.8       1.3.2                 Dengke Du
-wayland               1.13.0      1.14.0                Denys Dmytriyenko
-weston                2.0.0       3.0.0                 Denys Dmytriyenko
-lzop                  1.03        1.04                  Denys Dmytriyenko
-lz4                   1.7.4       131                   Denys Dmytriyenko
-acpica                20170303    20170728              Fathi Boudra
-man-pages             4.11        4.12                  Hongxu Jia
-gnupg                 2.1.20      2.1.23                Hongxu Jia
-bc                    1.06        1.07.1                Jose Lamego
-pango                 1.40.6      1.40.11               Jussi Kukkonen
-assimp                4.0.0       4.0.1                 Jussi Kukkonen
-gtk-icon-utils-na...  3.22.17     3.22.19               Jussi Kukkonen
-gsettings-desktop...  3.22.0      3.24.0                Jussi Kukkonen
-libsoup-2.4           2.58.1      2.58.2                Jussi Kukkonen
-vulkan                1.0.51.0    1.0.57.0              Jussi Kukkonen
-xdg-utils             1.1.1       1.1.2                 Jussi Kukkonen
-gdk-pixbuf            2.36.8      2.36.9                Jussi Kukkonen
-gtk+3                 3.22.17     3.22.19               Jussi Kukkonen
-hicolor-icon-theme    0.15        0.16                  Jussi Kukkonen
-clutter-gtk-1.0       1.8.2       1.8.4                 Jussi Kukkonen
-glew                  2.0.0       2.1.0                 Jussi Kukkonen
-ninja                 1.7.2       120715                Khem Raj
-re2c                  0.16        1.0.1                 Khem Raj
-go-native             1.8.3       1.9rc2                Khem Raj
-go                    1.8.3       1.9rc2                Khem Raj
-libnsl2               1.0.5+gitX  1.1.0+gitAUTOINC+...  Khem Raj
-texinfo               6.3         6.4                   Leonardo Sandoval
-prelink               1.0+gitX    20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0       4.8.0                 Matthew McClintock
-ifupdown              0.8.16      0.8.24                Maxin B. John
-gcc-source-6.3.0      6.3.0       7.2.0                 No maintainer
-go-bootstrap-native   1.4.3       1.9rc2                No maintainer
-go-cross-i586         1.8.3       1.9rc2                No maintainer
-mesa                  17.1.6      17.1.7                Otavio Salvador
-cmake                 3.8.2       3.9.1                 Otavio Salvador
-cmake-native          3.8.2       3.9.1                 Otavio Salvador
-libdrm                2.4.81      2.4.82                Otavio Salvador
-mesa-gl               17.1.6      17.1.7                Otavio Salvador
-subversion            1.9.6       1.9.7                 Richard Purdie
-lttng-tools           2.9.5       2.10.1                Richard Purdie
-lttng-ust             2.9.1       2.10.0                Richard Purdie
-lttng-modules         2.9.3       2.10.0                Richard Purdie
-liberror-perl         0.17024     0.17025               Robert Yang
-debianutils           4.8.1.1     4.8.2                 Robert Yang
-strace                4.17        4.18                  Robert Yang
-autoconf-archive      2016.09.16  2017.03.21            Robert Yang
-tcl                   8.6.6       8.6.7                 Robert Yang
-libbsd                0.8.5       0.8.6                 Robert Yang
-e2fsprogs             1.43.4      1.43.5                Robert Yang
-git                   2.13.2      2.14.1                Robert Yang
-base-passwd           3.5.29      3.5.43                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.72        9.77                  Ross Burton
-pulseaudio            10.0        10.99.1               Tanu Kaskinen
-
-Upgradable count: 90
-Upgradable total count: 93
-
-The based commit is:
-
-commit cc319b6dcc5b4a5019fb91c9771b12ce17f3c953
-Author: Jussi Kukkonen <jussi.kukkonen@intel.com>
-Date:   Mon Sep 4 11:39:24 2017 +0300
-
-    mesa-gl: Fix build after recent mesa PACKAGECONFIG changes
-    
-    48d39cf43b added "opengl" PACKAGECONFIG option to mesa: before that
-    the configuration was always enabled. "opengl" should have been added
-    to mesa-gl default PACKAGECONFIG but wasn't: do it now.
-    
-    Signed-off-by: Jussi Kukkonen <jussi.kukkonen@intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+Cheers, Alex
 
 
