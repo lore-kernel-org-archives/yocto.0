@@ -1,18 +1,21 @@
-Return-Path: <yahiafarghaly@gmail.com>
+Return-Path: <karim_atiki@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F104E00C14; Tue, 12 Sep 2017 13:22:01 -0700 (PDT)
+	id 06D3AE00C14; Tue, 12 Sep 2017 18:30:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE, SPF_HELO_PASS,
+	UPPERCASE_50_75 autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yahiafarghaly[at]gmail.com)
+	mail provider *      (karim_atiki[at]hotmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.223.181 listed in list.dnswl.org]
+	*      [40.92.67.98 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -21,48 +24,83 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.181 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3C29E00B83
-	for <yocto@yoctoproject.org>; Tue, 12 Sep 2017 13:22:00 -0700 (PDT)
-Received: by mail-io0-f181.google.com with SMTP id v36so41865003ioi.1
-	for <yocto@yoctoproject.org>; Tue, 12 Sep 2017 13:22:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=toYCEeT7CKqEBqSmmMZyg4OPiBjorYJL92Zb/2mgCdk=;
-	b=Idvv1MliTgnyhxRlGzJwW8SR7OJ86Q3gp/0QqaB906fufTWr3xnp3oEJGJiCfA3qDl
-	QGFzWKxn04kDW/R2jmmtBYvjdM7Vg7GnJD5R8+nyAIsJiiZKbhANlGWHXPDo9nmNCX+Y
-	Yo7m8rjNhwdRDR5dUpKeH5bXF9YAqGlYqkkKarEl7qbUVRykZMI00ikpMD3SQN8rDlTt
-	kpCNMkujcf90soaRklctRj4lsb+jNjibdoAyrUL0tAFrwIlOxRN/BiAmK/JeYoXMDDHK
-	ygBNuF3D9d5Y1VIOBZI+Iw+t9q4V6QBqjUMypnjAT6XMAzWOxg7qk/SlTKk8gJcaKx7X
-	XLbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=toYCEeT7CKqEBqSmmMZyg4OPiBjorYJL92Zb/2mgCdk=;
-	b=IGDtiuVcA2dFQtzYsw9KbGb5q5Aec9Ry+MWFgAGZvtvSaDHL+5LXE0OkvjCsCB/yba
-	+k0QVJD0Yzvn+C7OCSQTsQ+cLvzRuRYC1nCofzKDy8lzAX9jkjOvaBWg4Onu1iXYW33n
-	g3swxZvcUvB4R2CcgYbLfwMgpg2RPHXAI0P4n3Toy+0tUP32HrTUZTQPQjMbiBOk14eJ
-	tJor60Py06pydGVA9mIv5hP73rXEtc+IRUH0FP0H+35OzBybkAl7zAeziao6nHNIuawS
-	9gwfHWK3lLM5g55ATCP81zqDCG60ghfI3+ji2OuDgscwcvCkACp3uNBzzZ4BvsfWAykF
-	bK8Q==
-X-Gm-Message-State: AHPjjUjkze6aX04ysEFvcswZHQUl1iaym3sRMM9ZjQ3Kvmno3e2VynUc
-	Bi6S9VYPLRmKCYS8ilwuGLxCrNfAEg==
-X-Google-Smtp-Source: AOwi7QD2VWYLsBVU0IgrnVnuXmgHmTIStFq6qxBNSK7Ru1Oyc7HXV5CBW6JfvsgrP3czTPs4kW1xy9WSVWJo0TXVMGk=
-X-Received: by 10.202.173.11 with SMTP id w11mr14894919oie.239.1505247719791; 
-	Tue, 12 Sep 2017 13:21:59 -0700 (PDT)
+	*  0.0 UPPERCASE_50_75 message body is 50-75% uppercase
+X-Greylist: delayed 3576 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Sep 2017 18:30:49 PDT
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com
+	(mail-oln040092067098.outbound.protection.outlook.com [40.92.67.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70D29E00B8E
+	for <yocto@yoctoproject.org>; Tue, 12 Sep 2017 18:30:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=VpmxgNrWrWOw988VmeVu+PIp566ECGMjQ473+rCWobo=;
+	b=GaeJhFHbBoBRGao0Jfk2msr8OPlmyY7sNL1lPdcAkA/KZE7+vfFX4JwIuuV5TYTWvKQAZoMla8QUnijZrAiy2vswiNjqe8/BjU8ZqZbVckvPYYO2WsmUuwf8MNOC1P05C4crKxBtadhGVp6F0saId+qjPUuglOFc3ZuC6fxJXboy2oOtO21x3aq/ORyhotDGkkWm0ntsaYUQL33q/VaP6kxMTcrqMSL36K8ivEy+LzCJoOvVFO4mcM/VTQZa77x6GH9VG75Zr3aS4J5qqyruDlKFL4RWP+3PVsj94iZbeggz5lQL3C1nAnWPpjhaHNO6l+Fp1P9cdzE4fT3S4Vh50w==
+Received: from VE1EUR02FT019.eop-EUR02.prod.protection.outlook.com
+	(10.152.12.57) by VE1EUR02HT220.eop-EUR02.prod.protection.outlook.com
+	(10.152.13.175) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.13.11;
+	Tue, 12 Sep 2017 07:56:34 +0000
+Received: from AM3PR01MB328.eurprd01.prod.exchangelabs.com (10.152.12.56) by
+	VE1EUR02FT019.mail.protection.outlook.com (10.152.12.107) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.20.13.11 via Frontend Transport; Tue, 12 Sep 2017 07:56:33 +0000
+Received: from AM3PR01MB328.eurprd01.prod.exchangelabs.com
+	([fe80::69d2:6735:4d59:7a2c]) by
+	AM3PR01MB328.eurprd01.prod.exchangelabs.com
+	([fe80::69d2:6735:4d59:7a2c%17]) with mapi id 15.20.0035.021;
+	Tue, 12 Sep 2017 07:56:33 +0000
+From: Karim ATIKI <karim_atiki@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto][bitbake] Failed to launch bitbake image -u -g depexp on
+	a Debian 9 host system ?
+Thread-Index: AQHTK5xsWEVRu/3BAUSmXd+P6K02Kg==
+Date: Tue, 12 Sep 2017 07:56:33 +0000
+Message-ID: <AM3PR01MB3280CDBFF17DF19270F0E1392690@AM3PR01MB328.eurprd01.prod.exchangelabs.com>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=none action=none
+	header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:1586D55E7B253F447ADFC5DA14A6BFD1790F10ECD287D4439788CC394579ABC1;
+	UpperCasedChecksum:69E6BBC75F2FDF49C04B462280C1618EBB7E855842F22121A800E79CEB23029D;
+	SizeAsReceived:7005; Count:44
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [c6CWaT8mvZ323gEtzrp67LHtvldxU2e6]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; VE1EUR02HT220;
+	6:KSKcv+uDw+55QFSt4l6OVf9i4ItUWBfAQePvJjUlfNRGp9LBj4bfR+6eBBcCpM+rdjGB/IoJSZ4OXx0VktG9lUrDyUjHN3mdw/FqXMtGveMCDN/cT1jfXQIX6lF5I2f2BU1C9wGNaeeSkELb/NzJvW4MjiZjzWHFp7CtxEYIWAa/0UC73WfD2s3iRRPPW3kvbX3PaqbgijH9aBq8/DPlFrlHXfI+bCwUm0wIdT8jsEXntDt3yGDxBYFS+WNUzIzbY0EN2HISQhpH0cP2Hiry95xTkVQNbF5aAAE34TjAssFlgIWnEBIgs/gZvN2op21XWDebzlyiL1QDSOQmI+CMrA==;
+	5:nuT0lu9gGzJeSuecZZ1ENdzgfJ1UV2TTfoEv8EeVHGn6FhvOneoFI1odxjammlbxqPtYqzHhAXkVx/Ja5OeIvg/IfNvw0RAyIDORKCfynXy37UMFRXWRMSIwjoGKwZVqX497Ekm+7nK4rGYZK+hKFA==;
+	24:fDdu3VcbOBX9lOESYNwIYwC3vmMxdi1MHTIqMr6BSeltZrbL39NFujjnzt424mRNTx69WDKQjzh9NGeJmmsSFaXiUQO25/b1MR4GPX3fYY8=;
+	7:Cxuk7HshG6AdcFjxWatmCW6SwgewzduJ0NHBkRqaKkNZUZ0+oS1zVAgnn6xUvAsCYg/3Rec9/ug1SSbtB326JbVHPyu6mKBbSgWLRW5mwxnLnYPn+X/9lT7Bh0zqSw5e0OfxMr1XTi8IA1et0FiYv9HFhK252eP0kNB9q4Fr9GXpla9EUHbqhmW6M9/bzCe3Gef2T5iXITkV4KeOxKLXEzsDbtlNQgUKOiAiD40/n6M=
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 0797fd2e-2cb6-457d-5012-08d4f9b3c934
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(300000500095)(300135000095)(300000501095)(300135300095)(22001)(300000502095)(300135100095)(300000503095)(300135400095)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1601125374)(1603101448)(1701031045)(300000504095)(300135200095)(300000505095)(300135600095)(300000506095)(300135500095);
+	SRVR:VE1EUR02HT220; 
+x-ms-traffictypediagnostic: VE1EUR02HT220:
+x-exchange-antispam-report-test: UriScan:(158342451672863)(21532816269658);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(444000031);
+	SRVR:VE1EUR02HT220; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:VE1EUR02HT220; 
+x-forefront-prvs: 042857DBB5
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:VE1EUR02HT220;
+	H:AM3PR01MB328.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
+	LANG:; 
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.157.82.15 with HTTP; Tue, 12 Sep 2017 13:21:59 -0700 (PDT)
-In-Reply-To: <CABFXn3EHj=o=FoAdkO9B3F+tSsBg-TmHQVc=T7PiW+dBbmY_8g@mail.gmail.com>
-References: <CABFXn3EHj=o=FoAdkO9B3F+tSsBg-TmHQVc=T7PiW+dBbmY_8g@mail.gmail.com>
-From: yahia farghaly <yahiafarghaly@gmail.com>
-Date: Tue, 12 Sep 2017 22:21:59 +0200
-Message-ID: <CABFXn3E1ztBinKVjWaoE+HamkSxXK2UUMGHWB+Xq7HWEAhLO-g@mail.gmail.com>
-To: yocto@yoctoproject.org, Andrei Gherzan <andrei@gherzan.ro>
-Subject: Re: [meta-raspberrypi] enable serial communication pi 3
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2017 07:56:33.4005 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR02HT220
+Subject: [bitbake] Failed to launch bitbake image -u -g depexp on a Debian 9 host system ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,141 +112,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Sep 2017 20:22:01 -0000
-X-Groupsio-MsgNum: 37801
-Content-Type: multipart/related; boundary="h7pBdt9h0tVej6Q9tVQY"
+X-List-Received-Date: Wed, 13 Sep 2017 01:30:51 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_AM3PR01MB3280CDBFF17DF19270F0E1392690AM3PR01MB328eurprd_"
 
---h7pBdt9h0tVej6Q9tVQY
-Content-Type: multipart/alternative; boundary="001a113ce896a320ae055903cb3d"
-
---001a113ce896a320ae055903cb3d
-Content-Type: text/plain; charset="UTF-8"
+--_000_AM3PR01MB3280CDBFF17DF19270F0E1392690AM3PR01MB328eurprd_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-:(
+Hi all,
 
 
+I'm currently using Yocto Poky pyro on a Debian 9 host.
 
-=E2=80=8C
-
-On 12 September 2017 at 14:09, yahia farghaly <yahiafarghaly@gmail.com>
-wrote:
-
-> I have bitbaked rpi-hwup-image for raspberry pi 3 on sd card and connecte=
-d
-> the serial ports to *usb to ttl device* . i have set the minicom to
-> port: /dev/ttyUSB0
-> baud rate: 115200
-> the image is booting fine and i can see the prompt on the screen but
-> cannot see in my serial console using minicom.
-> *is serial enabled by default for this image ? *
-> i also tried ENABLE_UART =3D "1" in local.conf but doesn't help.
->
-> how to enable it ? and what the serial device name with respect to
-> raspberry pi
->
-> thanks,
->
-> --
-> Yahia Farghaly
-> Graduated from Faculty of Engineering - Electronics and Communications
-> Department at Cairo University.
-> Linkedin <https://linkedin.com/in/yahiafarghaly> - GitHub
-> <https://github.com/yahiafarghaly>
->
->
->
-> =E2=80=8C
->
+I tried to launch bitbake -u -g depexp to have the GUI window with dependen=
+cies but I got the following errors:
 
 
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+FATAL: Unable to import extension module "depexp" from bb.ui. Valid extensi=
+on modules: knotty, ncurses or taskexp
+DEBUG: Removed the following variables from the environment: GJS_DEBUG_TOPI=
+CS, SESSION_MANAGER, LS_COLORS, XDG_MENU_PREFIX, _, VTE_VERSION, XDG_SESSIO=
+N_ID, QT_LINUX_ACCESSIBILITY_ALWAYS_ON, WINDOWPATH, GJS_DEBUG_OUTPUT, GPG_A=
+GENT_INFO, XDG_VTNR, XAUTHORITY, QT_QPA_PLATFORMTHEME, XDG_RUNTIME_DIR, GNO=
+ME_DESKTOP_SESSION_ID, XDG_CURRENT_DESKTOP, QT_ACCESSIBILITY, JOURNAL_STREA=
+M, WINDOWID, DISPLAY, XDG_DATA_DIRS, GTK_MODULES, BUILDDIR, XDG_SESSION_DES=
+KTOP, DBUS_SESSION_BUS_ADDRESS, COLORTERM, OLDPWD, GDM_LANG, XDG_SEAT, GDMS=
+ESSION, DESKTOP_SESSION, SHLVL, LANG, XDG_SESSION_TYPE, USERNAME
 
---=20
-Yahia Farghaly
-Graduated from Faculty of Engineering - Electronics and Communications
-Department at Cairo University.
-Linkedin <https://linkedin.com/in/yahiafarghaly> - GitHub
-<https://github.com/yahiafarghaly>
+Is it related to Debian 9 ?
 
---001a113ce896a320ae055903cb3d
-Content-Type: text/html; charset="utf-8"
+Anyone has experienced this problem ?
+
+
+Thanks.
+
+
+Karim
+
+--_000_AM3PR01MB3280CDBFF17DF19270F0E1392690AM3PR01MB328eurprd_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div dir=3D"ltr"><img width=3D"0" height=3D"0" cla=
-ss=3D"mailtrack-img" alt=3D"" style=3D"display:flex" src=3D"https://mailtra=
-ck.io/trace/mail/0ec1a51e132749b8cd9e7362c093c7a963b302b8.png?u=3D1822760"/=
->:(=C2=A0<br/><br/><br/><br/>=E2=80=8C</div><div class=3D"gmail_extra"><br/=
-><div class=3D"gmail_quote">On 12 September 2017 at 14:09, yahia farghaly <=
-span dir=3D"ltr">&lt;<a href=3D"mailto:yahiafarghaly@gmail.com" target=3D"_=
-blank">yahiafarghaly@gmail.com</a>&gt;</span> wrote:<br/><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex"><div dir=3D"ltr"><img width=3D"0" height=3D"0" class=3D"m_61=
-31530914211328334mailtrack-img" alt=3D"" style=3D"display:flex" src=3D"cid:=
-attach_0_15D95A7CE237235F_15037@groups.io"/>I have bitbaked=C2=A0rpi-hwup-i=
-mage for raspberry pi 3 on sd card and connected the serial ports to <i>usb=
- to ttl device</i>=C2=A0. i have set the minicom to=C2=A0<br/>port: /dev/tt=
-yUSB0<div>baud rate:=C2=A0115200=C2=A0</div><div>the image is booting fine =
-and i can see the prompt on the screen but cannot see in my serial console =
-using minicom.=C2=A0</div><div><b>is serial enabled by default for this ima=
-ge ?=C2=A0</b><br clear=3D"all"/><div>i also tried ENABLE_UART =3D &#34;1&#=
-34; in local.conf but doesn&#39;t help.=C2=A0</div><div><br/></div><div>how=
- to enable it ? and what the serial device name with respect to raspberry p=
-i</div><div><br/></div><div>thanks,</div><span class=3D"HOEnZb"><font color=
-=
-=3D"#888888"><div><br/></div>-- <br/><div class=3D"m_6131530914211328334gm=
-ail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><font size=3D"1" colo=
-r=3D"#777777" style=3D"font-family:Tahoma,sans-serif,Arial,serif,EmojiFont"=
-><span style=3D"font-size:13px">Yahia Farghaly=C2=A0</span></font><span sty=
-le=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-serif,serif=
-,EmojiFont;font-size:16px"></span><div><font color=3D"#777777" face=3D"Taho=
-ma, sans-serif, Arial, serif, EmojiFont"><span style=3D"font-size:13px">Gra=
-duated from Faculty of Engineering - Electronics and Communications Departm=
-ent at Cairo University.</span></font><br/></div><div style=3D"color:rgb(0,=
-0,0);font-family:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;font-si=
-ze:16px"><div><a href=3D"https://linkedin.com/in/yahiafarghaly" rel=3D"noop=
-ener noreferrer" target=3D"_blank"><font size=3D"1" style=3D"font-family:Ta=
-homa,sans-serif,Arial,serif,EmojiFont"><span style=3D"font-size:13px">Linke=
-din</span></font></a><font size=3D"1" color=3D"#777777" style=3D"font-famil=
-y:Tahoma,sans-serif,Arial,serif,EmojiFont"><span style=3D"font-size:13px">=
-=C2=A0-=C2=A0</span></font><a href=3D"https://github.com/yahiafarghaly" re=
-l=3D"noopener noreferrer" target=3D"_blank"><font size=3D"1" style=3D"font-=
-family:Tahoma,sans-serif,Arial,serif,EmojiFont"><span style=3D"font-size:13=
-px">GitHub</span></font></a></div></div></div></div></div></div>
-<br/><br/><br/>=E2=80=8C</font></span></div></div>
-</blockquote></div><br/><br clear=3D"all"/><div><br/></div>-- <br/><div cl=
-ass=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"=
-><div><div dir=3D"ltr"><font size=3D"1" color=3D"#777777" style=3D"font-fam=
-ily:Tahoma,sans-serif,Arial,serif,EmojiFont"><span style=3D"font-size:13px"=
->Yahia Farghaly=C2=A0</span></font><span style=3D"color:rgb(0,0,0);font-fam=
-ily:Calibri,Arial,Helvetica,sans-serif,serif,EmojiFont;font-size:16px"></sp=
-an><div><font color=3D"#777777" face=3D"Tahoma, sans-serif, Arial, serif, E=
-mojiFont"><span style=3D"font-size:13px">Graduated from Faculty of Engineer=
-ing - Electronics and Communications Department at Cairo University.</span>=
-</font><br/></div><div style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,=
-Helvetica,sans-serif,serif,EmojiFont;font-size:16px"><div><a href=3D"https:=
-//linkedin.com/in/yahiafarghaly" rel=3D"noopener noreferrer" target=3D"_bla=
-nk"><font size=3D"1" style=3D"font-family:Tahoma,sans-serif,Arial,serif,Emo=
-jiFont"><span style=3D"font-size:13px">Linkedin</span></font></a><font size=
-=
-=3D"1" color=3D"#777777" style=3D"font-family:Tahoma,sans-serif,Arial,seri=
-f,EmojiFont"><span style=3D"font-size:13px">=C2=A0-=C2=A0</span></font><a h=
-ref=3D"https://github.com/yahiafarghaly" rel=3D"noopener noreferrer" target=
-=
-=3D"_blank"><font size=3D"1" style=3D"font-family:Tahoma,sans-serif,Arial,=
-serif,EmojiFont"><span style=3D"font-size:13px">GitHub</span></font></a></d=
-iv></div></div></div></div></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hi all,</p>
+<p><br>
+</p>
+<p>I'm currently using Yocto Poky pyro on a Debian 9 host.</p>
+<p>I tried to launch bitbake -u -g depexp to have the GUI window with depen=
+dencies but I got the following errors:</p>
+<p><br>
+</p>
+<p></p>
+<div><i>Unable to init server: Could not connect: Connection refused</i></d=
+iv>
+<div><i>Unable to init server: Could not connect: Connection refused</i></d=
+iv>
+<div><i>FATAL: Unable to import extension module &quot;depexp&quot; from bb=
+.ui. Valid extension modules: knotty, ncurses or taskexp</i></div>
+<div><i>DEBUG: Removed the following variables from the environment: GJS_DE=
+BUG_TOPICS, SESSION_MANAGER, LS_COLORS, XDG_MENU_PREFIX, _, VTE_VERSION, XD=
+G_SESSION_ID, QT_LINUX_ACCESSIBILITY_ALWAYS_ON, WINDOWPATH, GJS_DEBUG_OUTPU=
+T, GPG_AGENT_INFO, XDG_VTNR, XAUTHORITY,
+ QT_QPA_PLATFORMTHEME, XDG_RUNTIME_DIR, GNOME_DESKTOP_SESSION_ID, XDG_CURRE=
+NT_DESKTOP, QT_ACCESSIBILITY, JOURNAL_STREAM, WINDOWID, DISPLAY, XDG_DATA_D=
+IRS, GTK_MODULES, BUILDDIR, XDG_SESSION_DESKTOP, DBUS_SESSION_BUS_ADDRESS, =
+COLORTERM, OLDPWD, GDM_LANG, XDG_SEAT,
+ GDMSESSION, DESKTOP_SESSION, SHLVL, LANG, XDG_SESSION_TYPE, USERNAME</i></=
+div>
+<div><br>
 </div>
-</body></html>
+Is it related to Debian 9 ?
+<p></p>
+<p>Anyone has experienced this problem ?</p>
+<p><br>
+</p>
+<p>Thanks.</p>
+<p><br>
+</p>
+<p>Karim</p>
+</div>
+</body>
+</html>
 
---001a113ce896a320ae055903cb3d--
-
---h7pBdt9h0tVej6Q9tVQY
-Content-Id: <attach_0_15D95A7CE237235F_15037@groups.io>
-X-Attachment-Id: attach_0_15D95A7CE237235F_15037@groups.io
-Content-Type: image/gif; name="dummyfile.0.part"
-Content-Disposition: inline; filename="dummyfile.0.part"
-Content-Transfer-Encoding: base64
-
-R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
-
---h7pBdt9h0tVej6Q9tVQY--
+--_000_AM3PR01MB3280CDBFF17DF19270F0E1392690AM3PR01MB328eurprd_--
