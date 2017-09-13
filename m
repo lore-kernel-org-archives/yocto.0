@@ -1,37 +1,34 @@
 Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EAD19E00CB0; Tue, 12 Sep 2017 19:43:19 -0700 (PDT)
+	id 08B16E00CC9; Tue, 12 Sep 2017 19:43:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98D29E00CAF
-	for <yocto@yoctoproject.org>; Tue, 12 Sep 2017 19:43:12 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24C91E00C99
+	for <yocto@yoctoproject.org>; Tue, 12 Sep 2017 19:43:09 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v8D2hBV0009333
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 12 Sep 2017 19:43:11 -0700 (PDT)
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v8D2h90t012528
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
+	Tue, 12 Sep 2017 19:43:09 -0700
 Received: from ala-lpggp5.wrs.com (147.11.105.121) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Tue, 12 Sep 2017 19:43:10 -0700
+	Tue, 12 Sep 2017 19:43:07 -0700
 From: <wenzong.fan@windriver.com>
 To: <yocto@yoctoproject.org>, <mark.hatle@windriver.com>,
 	<Joe_MacDonald@mentor.com>
-Date: Tue, 12 Sep 2017 19:42:53 -0700
-Message-ID: <3348e25d523e9b4540f022d21aaedfa44ee3473a.1505270194.git.wenzong.fan@windriver.com>
+Date: Tue, 12 Sep 2017 19:42:49 -0700
+Message-ID: <c6dc95f31dc9e53b5d877334ad327dc787e06d67.1505270194.git.wenzong.fan@windriver.com>
 X-Mailer: git-send-email 2.13.0
 In-Reply-To: <cover.1505270194.git.wenzong.fan@windriver.com>
 References: <cover.1505270194.git.wenzong.fan@windriver.com>
 MIME-Version: 1.0
-Subject: [PATCH 11/20] selinux-sandbox: add package 2.7 (20170804)
+Subject: [PATCH 07/20] policycoreutils: uprev to 2.7 (20170804)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,160 +45,95 @@ Content-Type: text/plain
 
 From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Move policycoreutils/sandbox to sandbox:
+Uprev the recipe file as is.
 
-* Move and rebase patch:
-  - policycoreutils-sandbox-de-bashify.patch
+Some packages have been moved out from policycoreutils, they will be
+added as new packages and the policycoreutils.inc need to be cleaned
+up from later commits accordingly.
 
-* Cleanup policycoreutils.inc
+Moved packages:
+    From:                            To:
+  - policycoreutils/gui              gui
+  - policycoreutils/mcstrans         mcstrans
+  - policycoreutils/restorecond      restorecond
+  - policycoreutils/sandbox          sandbox
+  - policycoreutils/sepolicy/dbus    dbus
+  - policycoreutils/semodule_deps    semodule-utils/semodule_deps
+  - policycoreutils/semodule_expand  semodule-utils/semodule_expand
+  - policycoreutils/semodule_link    semodule-utils/semodule_link
+  - policycoreutils/semodule_package semodule-utils/semodule_package
+  - policycoreutils/semanage         python/semanage
+  - policycoreutils/audit2allow      python/audit2allow
+  - policycoreutils/sepolgen-ifgen   python/audit2allow/sepolgen-ifgen
+  - policycoreutils/sepolicy         python/sepolicy
+  - policycoreutils/scripts/chcat    python/chcat
+
+Released package list refer to:
+  https://github.com/SELinuxProject/selinux/wiki/Releases
+
+Cleanup the patch file that have been removed in 2.6:
+  - policycoreutils-fts_flags-FTS_NOCHDIR.patch
 
 Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
 ---
- recipes-security/selinux/policycoreutils.inc       | 17 -------------
- recipes-security/selinux/selinux-sandbox.inc       | 28 ++++++++++++++++++++++
- .../sandbox-de-bashify.patch}                      | 13 +++++-----
- recipes-security/selinux/selinux-sandbox_2.7.bb    |  7 ++++++
- 4 files changed, 42 insertions(+), 23 deletions(-)
- create mode 100644 recipes-security/selinux/selinux-sandbox.inc
- rename recipes-security/selinux/{policycoreutils/policycoreutils-sandbox-de-bashify.patch => selinux-sandbox/sandbox-de-bashify.patch} (79%)
- create mode 100644 recipes-security/selinux/selinux-sandbox_2.7.bb
+ .../policycoreutils-fts_flags-FTS_NOCHDIR.patch    | 25 ----------------------
+ ...licycoreutils_2.6.bb => policycoreutils_2.7.bb} |  6 +++---
+ 2 files changed, 3 insertions(+), 28 deletions(-)
+ delete mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch
+ rename recipes-security/selinux/{policycoreutils_2.6.bb => policycoreutils_2.7.bb} (74%)
 
-diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
-index e8f6e5f..9e45e0c 100644
---- a/recipes-security/selinux/policycoreutils.inc
-+++ b/recipes-security/selinux/policycoreutils.inc
-@@ -9,7 +9,6 @@ LICENSE = "GPLv2+"
- 
- SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${PAM_SRC_URI}', '', d)} \
-             file://policycoreutils-fixfiles-de-bashify.patch \
--            file://policycoreutils-sandbox-de-bashify.patch \
-            "
- 
- PAM_SRC_URI = "file://pam.d/newrole \
-@@ -64,15 +63,6 @@ RDEPENDS_${BPN}-python += "\
- 	libsemanage-python \
- "
- RDEPENDS_${BPN}-runinit += "libselinux"
--RDEPENDS_${BPN}-sandbox += "\
--	python-math \
--	python-shell \
--	python-subprocess \
--	python-textutils \
--	python-unixadmin \
--	libselinux-python \
--	${BPN}-python \
--"
- RDEPENDS_${BPN}-secon += "libselinux"
- RDEPENDS_${BPN}-semanage = "\
- 	python-core \
-@@ -128,7 +118,6 @@ PACKAGES =+ "\
- 	${PN}-newrole \
- 	${PN}-python \
- 	${PN}-runinit \
--	${PN}-sandbox \
- 	${PN}-secon \
- 	${PN}-semanage \
- 	${PN}-semodule \
-@@ -171,12 +160,6 @@ FILES_${PN}-runinit += "\
- 	${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${sysconfdir}/pam.d/run_init', '', d)} \
- "
- FILES_${PN}-dbg += "${libdir}/python${PYTHON_BASEVERSION}/site-packages/sepolicy/.debug/* ${prefix}/libexec/selinux/hll/.debug"
--FILES_${PN}-sandbox += "\
--	${datadir}/sandbox/* \
--	${bindir}/sandbox \
--	${sbindir}/seunshare \
--	${sysconfdir}/sysconfig/sandbox \
--"
- FILES_${PN}-secon += "${bindir}/secon"
- FILES_${PN}-semanage = "\
- 	${sbindir}/semanage \
-diff --git a/recipes-security/selinux/selinux-sandbox.inc b/recipes-security/selinux/selinux-sandbox.inc
-new file mode 100644
-index 0000000..8616dd7
---- /dev/null
-+++ b/recipes-security/selinux/selinux-sandbox.inc
-@@ -0,0 +1,28 @@
-+SUMMARY = "Run cmd under an SELinux sandbox"
-+DESCRIPTION = "\
-+Run application within a tightly confined SELinux domain. The default \
-+sandbox domain only allows applications the ability to read and write \
-+stdin, stdout and any other file descriptors handed to it."
-+
-+SECTION = "base"
-+LICENSE = "GPLv2+"
-+
-+SRC_URI += "file://sandbox-de-bashify.patch \
-+"
-+
-+DEPENDS += "libcap-ng libselinux"
-+
-+RDEPENDS_${PN} += "\
-+        python-math \
-+        python-shell \
-+        python-subprocess \
-+        python-textutils \
-+        python-unixadmin \
-+        libselinux-python \
-+        selinux-python \
-+"
-+
-+FILES_${PN} += "\
-+        ${datadir}/sandbox/sandboxX.sh \
-+        ${datadir}/sandbox/start \
-+"
-diff --git a/recipes-security/selinux/policycoreutils/policycoreutils-sandbox-de-bashify.patch b/recipes-security/selinux/selinux-sandbox/sandbox-de-bashify.patch
-similarity index 79%
-rename from recipes-security/selinux/policycoreutils/policycoreutils-sandbox-de-bashify.patch
-rename to recipes-security/selinux/selinux-sandbox/sandbox-de-bashify.patch
-index c078ef6..18cef4b 100644
---- a/recipes-security/selinux/policycoreutils/policycoreutils-sandbox-de-bashify.patch
-+++ b/recipes-security/selinux/selinux-sandbox/sandbox-de-bashify.patch
-@@ -9,25 +9,26 @@ sandboxX script, so point them at /bin/sh instead.
- Upstream-Status: Pending
- 
- Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
-+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
- ---
-  sandbox/sandbox.init | 2 +-
-  sandbox/sandboxX.sh  | 2 +-
-  2 files changed, 2 insertions(+), 2 deletions(-)
- 
--diff --git a/sandbox/sandbox.init b/sandbox/sandbox.init
-+diff --git a/sandbox.init b/sandbox.init
- index b3979bf..1893dc8 100644
----- a/sandbox/sandbox.init
--+++ b/sandbox/sandbox.init
-+--- a/sandbox.init
-++++ b/sandbox.init
- @@ -1,4 +1,4 @@
- -#!/bin/bash
- +#!/bin/sh
-  ## BEGIN INIT INFO
-  # Provides: sandbox
-  # Default-Start: 3 4 5
--diff --git a/sandbox/sandboxX.sh b/sandbox/sandboxX.sh
-+diff --git a/sandboxX.sh b/sandboxX.sh
- index eaa500d..8755d75 100644
----- a/sandbox/sandboxX.sh
--+++ b/sandbox/sandboxX.sh
-+--- a/sandboxX.sh
-++++ b/sandboxX.sh
- @@ -1,4 +1,4 @@
- -#!/bin/bash
- +#!/bin/sh
-diff --git a/recipes-security/selinux/selinux-sandbox_2.7.bb b/recipes-security/selinux/selinux-sandbox_2.7.bb
-new file mode 100644
-index 0000000..1307ce7
---- /dev/null
-+++ b/recipes-security/selinux/selinux-sandbox_2.7.bb
-@@ -0,0 +1,7 @@
+diff --git a/recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch b/recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch
+deleted file mode 100644
+index fd04b51..0000000
+--- a/recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch
++++ /dev/null
+@@ -1,25 +0,0 @@
+-This works around a bug in the default libc used by OE. FTS functions are
+-supposed to change the current working directory as they walk the file
+-hierarchy. The fts_accpath member of the FTSENT structure relies on this
+-behavior and without it the path is not relative to cwd as expected.
+-Supplying the FTS_NOCHDIR flag disables this optimization and causes
+-fts_accpath to be relative to the directory where the traversal started.
+-Use of this flag doesn't effect compatibility with glibc.
+-
+-An alternative fix could replace the use of fts_accpath with fts_path
+-which is absolute.
+-
+-Signed-off-by: Philip Tricca <flihp@twobit.us>
+-Index: policycoreutils/setfiles/setfiles.c
+-===================================================================
+---- policycoreutils.orig/setfiles/setfiles.c
+-+++ policycoreutils/setfiles/setfiles.c
+-@@ -194,7 +194,7 @@ int main(int argc, char **argv)
+- 		r_opts.expand_realpath = 0;
+- 		r_opts.abort_on_error = 1;
+- 		r_opts.add_assoc = 1;
+--		r_opts.fts_flags = FTS_PHYSICAL | FTS_XDEV;
+-+		r_opts.fts_flags = FTS_PHYSICAL | FTS_XDEV | FTS_NOCHDIR;
+- 		ctx_validate = 1;
+- 	} else {
+- 		/*
+diff --git a/recipes-security/selinux/policycoreutils_2.6.bb b/recipes-security/selinux/policycoreutils_2.7.bb
+similarity index 74%
+rename from recipes-security/selinux/policycoreutils_2.6.bb
+rename to recipes-security/selinux/policycoreutils_2.7.bb
+index 6a625b3..50f15d0 100644
+--- a/recipes-security/selinux/policycoreutils_2.6.bb
++++ b/recipes-security/selinux/policycoreutils_2.7.bb
+@@ -1,10 +1,10 @@
+-include selinux_20161014.inc
 +include selinux_20170804.inc
-+include ${BPN}.inc
-+
-+LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
-+
-+SRC_URI[md5sum] = "7360e9dc7b1757b7f82face655982bfa"
-+SRC_URI[sha256sum] = "9490620380ab6d428a92869002a51ada0343ca35fa2a6905595745902a64c541"
+ include ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ 
+-SRC_URI[md5sum] = "0358f0136e2dd9a8c9e99f181aaab1b2"
+-SRC_URI[sha256sum] = "68891b376f5048edc53c6ccb2fca44da3dc7f4563f4b6894e201d70c04a05a29"
++SRC_URI[md5sum] = "65311b66ae01f7b7ad7c2ea7401b68ed"
++SRC_URI[sha256sum] = "0a1b8a4a323b854981c6755ff025fe98a0f1cff307f109abb260f0490f13e4f4"
+ 
+ SRC_URI += "\
+ 	file://policycoreutils-fix-sepolicy-install-path.patch \
 -- 
 2.13.0
 
