@@ -1,65 +1,47 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <o.mandel@menlosystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25B74E00C2B; Wed, 13 Sep 2017 01:55:44 -0700 (PDT)
+	id 6E6E6E00C62; Wed, 13 Sep 2017 04:15:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.180 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.18.0.9 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01C18E00BE8
-	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 01:55:41 -0700 (PDT)
-Received: by mail-io0-f180.google.com with SMTP id g32so303372ioj.2
-	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 01:55:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=uIrUB3Ueqk5IK4laDM70Zu9bby+2fQpkl6U5u89PDbk=;
-	b=VhplYgjc7SS79VoE4BBkkDrUhIHZPuwGlkmJiBP2dlz5J1Y4Z8nJGKiwQS1uiOQL7U
-	s59Prd8JgoceOP/KmLOJBlHPOLv04NFIyzzHShzYOzO3mFTpGXQfwWfwePfMnxB9d4HM
-	0CvIVADk8CWpadLyUh716lVsgo0PkJFBNaF2bUT73bTGKb70iE1IZhLkTtbGzTUNULU7
-	cKjv6tsMiEEHzZ7LLHWokO9RCZkl+4sfGJd0kSlvmDbmmLXTiZQeCFnp11aBwz5CE6bP
-	xb0bsV6GAM/UDMfbg8937xYAZO04nL3hf8viIV6mmReMkfOf0kYliuB16du4+3wMl593
-	95AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=uIrUB3Ueqk5IK4laDM70Zu9bby+2fQpkl6U5u89PDbk=;
-	b=phyzEW31OQACNZ9lbWxjm0FTVo+bVzMvpn5FQzZFcZMNZU8+E/6LG3IK0XATA2f+pf
-	dZGb+dRgYUXdeD4YVlqEK4pU7DwpPHg9h9Gusfd11KC6KVuxUHWi3ljzqif9FECUO7r/
-	7+vA9zkA/U1ZvR2i+x+RfsxvB7eLuqg8ZBsIrpiqS3QMCHeNVPe7kIYVHYkbYM6dcso9
-	jAJ8LYj2v3sKCSxlGbUTAsEqfJSzl60wLhuLtFFPbEi8MSq5lo+veEd5G2tpbHn2CovK
-	kJbYCOOwx90okpwN5Wi371CXk5gKf/EgX4JFwn0vY89Z03DxaGs4c8Nrk5hbQ/susX78
-	Cp/A==
-X-Gm-Message-State: AHPjjUjXGSn9S3VcDTRipH7yjLNdA2wDEna6aym6d8x0bjvnvgRc2Jxj
-	R+Feo0ywgvQkjcf583fEHh+iQmEJ4dU1AeOEYfMByA==
-X-Google-Smtp-Source: ADKCNb5w0DrAaUK7wBTCT0lSOEEUgY8OfpbVTqd6iAgdMemY1gijiF6z2I0buZNHEUNABKnm2PBILVRPXD4xF3zKxjk=
-X-Received: by 10.107.133.92 with SMTP id h89mr16852206iod.208.1505292941107; 
-	Wed, 13 Sep 2017 01:55:41 -0700 (PDT)
+X-Greylist: delayed 351 seconds by postgrey-1.32 at yocto-www;
+	Wed, 13 Sep 2017 04:15:47 PDT
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06287E00C2B
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 04:15:47 -0700 (PDT)
+Received: from frontend03.mail.m-online.net (unknown [192.168.6.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3xsf830kxNz1qsDq
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 13:09:55 +0200 (CEST)
+Received: from localhost (dynscan3.mnet-online.de [192.168.6.84])
+	by mail.m-online.net (Postfix) with ESMTP id 3xsf8304dLz1qqkS
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 13:09:54 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+	by localhost (dynscan3.mail.m-online.net [192.168.6.84]) (amavisd-new,
+	port 10024) with ESMTP id KMVwXv9A4zuO for <yocto@yoctoproject.org>;
+	Wed, 13 Sep 2017 13:09:53 +0200 (CEST)
+X-Auth-Info: nh7sRJzvXpGev06x1QpGQ37Jrbz8Nl2SfXRGWURXp4m8cuDuYQdN9tA2dFPIjT13
+Received: from [10.0.0.72] (host-141-40-253-38.customer.izb-online.de
+	[141.40.253.38])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPSA
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 13:09:53 +0200 (CEST)
+To: yocto@yoctoproject.org
+From: Olaf Mandel <o.mandel@menlosystems.com>
+Message-ID: <264515b7-d412-2188-ad66-003c0e3d0dd8@menlosystems.com>
+Date: Wed, 13 Sep 2017 13:08:54 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-Received: by 10.107.19.68 with HTTP; Wed, 13 Sep 2017 01:55:20 -0700 (PDT)
-In-Reply-To: <AM3PR01MB3280CDBFF17DF19270F0E1392690@AM3PR01MB328.eurprd01.prod.exchangelabs.com>
-References: <AM3PR01MB3280CDBFF17DF19270F0E1392690@AM3PR01MB328.eurprd01.prod.exchangelabs.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 13 Sep 2017 09:55:20 +0100
-Message-ID: <CAJTo0LaZYb+ZpDOu3=kqRAwBeTL7qmSTK6sSVpiGzGk_rdZgRQ@mail.gmail.com>
-To: Karim ATIKI <karim_atiki@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [bitbake] Failed to launch bitbake image -u -g depexp on a Debian 9 host system ?
+Subject: Question about populate_sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,41 +53,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Sep 2017 08:55:44 -0000
-Content-Type: multipart/alternative; boundary="001a113ff7d009c5d305590e533d"
+X-List-Received-Date: Wed, 13 Sep 2017 11:15:48 -0000
+X-Groupsio-MsgNum: 37835
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="nomLwR0pELjGTLlAiRTPT4Td5pdVeLNwJ"
 
---001a113ff7d009c5d305590e533d
-Content-Type: text/plain; charset="UTF-8"
+--nomLwR0pELjGTLlAiRTPT4Td5pdVeLNwJ
+Content-Type: multipart/mixed; boundary="7MuUhITNxtnGjdDCTCxqiMQDWrQbKVl1u";
+ protected-headers="v1"
+From: Olaf Mandel <o.mandel@menlosystems.com>
+To: yocto@yoctoproject.org
+Message-ID: <264515b7-d412-2188-ad66-003c0e3d0dd8@menlosystems.com>
+Subject: Question about populate_sdk
 
-On 12 September 2017 at 08:56, Karim ATIKI <karim_atiki@hotmail.com> wrote:
-
-> *FATAL: Unable to import extension module "depexp" from bb.ui. Valid
-> extension modules: knotty, ncurses or taskexp*
->
-
-depexp was renamed to taskexp.
-
-Ross
-
---001a113ff7d009c5d305590e533d
-Content-Type: text/html; charset="UTF-8"
+--7MuUhITNxtnGjdDCTCxqiMQDWrQbKVl1u
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On 12 September 2017 at 08:56, Karim ATIKI <span dir=3D"lt=
-r">&lt;<a href=3D"mailto:karim_atiki@hotmail.com" target=3D"_blank">karim_a=
-tiki@hotmail.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div c=
-lass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
-0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+Hello,
+
+I hope this is the right place to ask this: I wanted to generate an SDK
+bundle to work on an applications code outside of the bitbake
+environment (also without devtool, if possible). So I selected an image
+containing the application and ran the populate_sdk task of that image.
+But the generated SDK is missing some dependencies of the application.
+
+Is this expected? Or am I doing something wrong?
+
+I made a minimal demo layer that shows the problem (see below for the 7
+files making up the demo). I ran "bitbake -c populate_sdk test-image"
+and I expected the file usr/lib/test-lib to be present in the SDK, but
+it is not.
+
+
+# meta-test/conf/bblayers.conf.sample
+LCONF_VERSION =3D "7"
+BBLAYERS ?=3D " \
+  ##OEROOT##/meta \
+  ##OEROOT##/meta-test \
+  "
+
+# meta-test/conf/layer.conf
+BBPATH .=3D ":${LAYERDIR}"
+BBFILES +=3D "${LAYERDIR}/recipes-core/*/*.bb"
+BBFILE_COLLECTIONS +=3D "test"
+BBFILE_PATTERN_test =3D "^${LAYERDIR}/"
+BBFILE_PRIORITY_test =3D "7"
+LAYERDEPENDS_test =3D "core"
+
+# meta-test/conf/local.conf.sample
+CONF_VERSION =3D "1"
+MACHINE =3D "qemux86-64"
+
+# meta-test/recipes-core/images/test-image.bb
+inherit core-image
+IMAGE_INSTALL =3D "test-app"
+
+# recipes-core/test-app/files/configure
+#!/bin/sh
+if [ -f "${PKG_CONFIG_SYSROOT_DIR:-}${libdir:-/usr/lib}/test-lib" ]; then=
+
+  echo "test-lib found."
+else
+  echo >&2 "test-lib not found!"
+  exit 1
+fi
+
+# meta-test/recipes-core/test-app/test-app.bb
+LICENSE =3D "PD"
+LIC_FILES_CHKSUM =3D
+"file://${COREBASE}/meta/files/common-licenses/PD;md5=3Db3597d12946881e13=
+cb3b548d1173851"
+DEPENDS =3D "test-lib"
+SRC_URI =3D "file://configure;subdir=3D${BPN}-${PV}"
+do_configure () {
+    sh configure
+}
+
+# meta-test/recipes-core/test-lib/test-lib.bb
+LICENSE =3D "PD"
+do_install () {
+    install -d "${D}${libdir}"
+    touch "${D}${libdir}/test-lib"
+}
+FILES_${PN} =3D "${libdir}/test-lib"
+
+
+Thank you for any suggestions,
+Olaf
+--=20
+Olaf Mandel
 
 
 
+--7MuUhITNxtnGjdDCTCxqiMQDWrQbKVl1u--
 
-<div dir=3D"ltr">
-<div id=3D"m_3943581956551331512divtagdefaultwrapper" style=3D"font-size:12=
-pt;color:#000000;font-family:Calibri,Helvetica,sans-serif" dir=3D"ltr">
-<p><i style=3D"font-size:12pt">FATAL: Unable to import extension module &qu=
-ot;depexp&quot; from bb.ui. Valid extension modules: knotty, ncurses or tas=
-kexp</i></p></div></div></blockquote><div><br></div><div>depexp was renamed=
- to taskexp.</div><div><br></div><div>Ross=C2=A0</div></div></div></div>
+--nomLwR0pELjGTLlAiRTPT4Td5pdVeLNwJ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
---001a113ff7d009c5d305590e533d--
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBCAAGBQJZuRHSAAoJEFS9nbRiUh3/5wsH/0sLX0tOq+lk2HXlEI9RZZwd
+39sw2jR817PVOc72VZXfURBkSln5A4XXF1M5u9ZaesMEaxRXBa7PdiO3lpg4bHKi
+O2Upuq/ewI+R+5PnasmagRn6DKE1o6JSnsWVZVnGxe6z9Fayr7sTau9/al5wPXne
+6RabBE80HRdse9T0paNdl8Yyf18+VteBgr1HLinjq0q9hMd8nrWb2tDkJiQVwbBU
+aVF7y/dE/DHMnAQ66FydWIXOlrhZXs+GjRAOWYJmPT2F9QuxWDEhvogVF769BXSx
+EKmD2NxL+W8z7MJJK0CaZjjcPUVfEJgtiDmTm8rEt7Z8hkkYLR4rreA2maRfpBI=
+=CCK5
+-----END PGP SIGNATURE-----
+
+--nomLwR0pELjGTLlAiRTPT4Td5pdVeLNwJ--
