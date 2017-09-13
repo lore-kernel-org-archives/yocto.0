@@ -1,53 +1,48 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <o.mandel@menlosystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BD3DE00D24; Wed, 13 Sep 2017 05:06:06 -0700 (PDT)
+	id 403A3E00C62; Wed, 13 Sep 2017 05:19:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00, HTML_IMAGE_ONLY_16, 
-	HTML_MESSAGE, SPF_HELO_PASS,
-	T_REMOTE_IMAGE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.18.0.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 1.1 HTML_IMAGE_ONLY_16 BODY: HTML: images with 1200-1600 bytes of
-	words
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6156AE00CDC
-	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 05:06:02 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id AC7BB861B3;
-	Wed, 13 Sep 2017 12:06:01 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id Fvd8IWr5ur3Z; Wed, 13 Sep 2017 12:05:53 +0000 (UTC)
-Received: from [127.0.0.1] (cpc111193-live30-2-0-cust656.17-2.cable.virginm.net
-	[92.232.58.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D6C3E00BE8
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 05:19:50 -0700 (PDT)
+Received: from frontend03.mail.m-online.net (unknown [192.168.6.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3xsghj5k20z1qtNm
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 14:19:49 +0200 (CEST)
+Received: from localhost (dynscan3.mnet-online.de [192.168.6.84])
+	by mail.m-online.net (Postfix) with ESMTP id 3xsghj5GD5z1qqkS
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 14:19:49 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+	by localhost (dynscan3.mail.m-online.net [192.168.6.84]) (amavisd-new,
+	port 10024) with ESMTP id VEzB4YS_O145 for <yocto@yoctoproject.org>;
+	Wed, 13 Sep 2017 14:19:48 +0200 (CEST)
+X-Auth-Info: U/uSZLwtGBDeHnNW02boL/yf1qH1IWpN9y/fqB+bFY50h+GDDbRB60qgkJzjr+Il
+Received: from [10.0.0.72] (host-141-40-253-38.customer.izb-online.de
+	[141.40.253.38])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id A3301860E2;
-	Wed, 13 Sep 2017 12:05:49 +0000 (UTC)
-To: yahia farghaly <yahiafarghaly@gmail.com>
-References: <CABFXn3Gk6wMmARf5UMgdJpsCRDbhWOEfwZvhw96b3=-oa21C0g@mail.gmail.com>
-	<CACMwXoXzB7ucvzFo1Ai4nNypb_+XMfVk0R+cB4oxSuHsV8jBOQ@mail.gmail.com>
-	<CABFXn3FX6Jx=svzTv_91Hrq7E50j1+5sQYojr_6iuuT=0z4-Mg@mail.gmail.com>
-	<CAP3gWc_i72Nnb7FWUdaRYufOn-uMVvpUcVEF686ObH1ZSH7dQg@mail.gmail.com>
-	<949f4667-0869-6a30-3fff-92cffb410c71@dynamicdevices.co.uk>
-	<CABFXn3ERDVR_eo0UXWwXhakPB5qEXLq0A1RiwyyNFzkLGprKHw@mail.gmail.com>
-From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <a75df718-c3d2-61de-26bb-cd05bece4122@dynamicdevices.co.uk>
-Date: Wed, 13 Sep 2017 13:05:46 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	by mail.mnet-online.de (Postfix) with ESMTPSA
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 14:19:48 +0200 (CEST)
+To: yocto@yoctoproject.org
+References: <264515b7-d412-2188-ad66-003c0e3d0dd8@menlosystems.com>
+	<20170913114356.rpb76i365g5r2vec@ad.chargestorm.se>
+From: Olaf Mandel <o.mandel@menlosystems.com>
+Message-ID: <675346a9-8126-76e1-abf9-40ba74527c7c@menlosystems.com>
+Date: Wed, 13 Sep 2017 14:18:56 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <CABFXn3ERDVR_eo0UXWwXhakPB5qEXLq0A1RiwyyNFzkLGprKHw@mail.gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: how to execute bitbake menuconfig from ssh server
+In-Reply-To: <20170913114356.rpb76i365g5r2vec@ad.chargestorm.se>
+Subject: Re: Question about populate_sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,79 +54,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Sep 2017 12:06:06 -0000
-Content-Type: multipart/alternative;
-	boundary="------------E42936185B06B0B66371D613"
+X-List-Received-Date: Wed, 13 Sep 2017 12:19:52 -0000
+X-Groupsio-MsgNum: 37843
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="2hORKjQKG002v8Lohj55TGBodBMCat2Q4"
+
+--2hORKjQKG002v8Lohj55TGBodBMCat2Q4
+Content-Type: multipart/mixed; boundary="ADE6JHJDqHeE2aXrHFNUvsvOB89OdETrl";
+ protected-headers="v1"
+From: Olaf Mandel <o.mandel@menlosystems.com>
+To: yocto@yoctoproject.org
+Message-ID: <675346a9-8126-76e1-abf9-40ba74527c7c@menlosystems.com>
+Subject: Re: [yocto] Question about populate_sdk
+References: <264515b7-d412-2188-ad66-003c0e3d0dd8@menlosystems.com>
+ <20170913114356.rpb76i365g5r2vec@ad.chargestorm.se>
+In-Reply-To: <20170913114356.rpb76i365g5r2vec@ad.chargestorm.se>
+
+--ADE6JHJDqHeE2aXrHFNUvsvOB89OdETrl
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-GB
+Content-Transfer-Encoding: quoted-printable
 
---------------E42936185B06B0B66371D613
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Hello,
+
+Am 13.09.2017 um 13:43 schrieb Anders Darander:
+-Snipp-
+> See Yocto #11724, at https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D=
+11724
+-Snipp-
+> Ah, a small test example? Perfect!
+> Could you add it the bug above? It would likely make it easier to debug=
+=2E
+>=20
+Done.
+
+Cheers,
+Olaf
+--=20
+Olaf Mandel
 
 
 
-On 13/09/2017 13:00, yahia farghaly wrote:
-> Nice Aaron, it worked as charm.  Thank you !
->
-> Alex, i will try your way. but you can test qemu without vnc by 
-> specifying /serial nographic/ of runqemu options
-> ‌
+--ADE6JHJDqHeE2aXrHFNUvsvOB89OdETrl--
 
-Yes. I generally have a need for graphical output for testing though :)
+--2hORKjQKG002v8Lohj55TGBodBMCat2Q4
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-You can actually use the in-built qemu VNC server if you change the 
-options too...
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
-ref: https://wiki.archlinux.org/index.php/QEMU#vnc
+iQEcBAEBCAAGBQJZuSI2AAoJEFS9nbRiUh3/2EEH+gP6BApqL5SnpkiJnAM+Jkpo
+9qvjpUmvusUtZEpEpanlGu4WJ3ooVmoQFeL5/2qJc6BpPqc3Ay4jP+D+hrE0iDmW
+rNXzlHOwAtVSXYL+uAs/+nU+bSIMm26Nn8kgnJ0IPsZEwKDuUAJ6kPffUMplqgJu
+Igl88hr0MPoqUBVIFrh7YSouRQcYbs0fG5hQ8uYhw5V1mnsqOHBd2113q8qoxQEq
+kKCfMrVIvc/aqzyKDtQxZOKoCgp+di9pzHhRoyKXbCajBS1N2VdQmGX45kO0+jeV
+oSSn/j1txuHkBdn+FV3wOjRgv4W7+I4J2gV+L0C1raVCZPqk9dmo4x+Y3xFhBug=
+=5qFV
+-----END PGP SIGNATURE-----
 
-Cheers!
-
-Alex
-
---------------E42936185B06B0B66371D613
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 13/09/2017 13:00, yahia farghaly
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CABFXn3ERDVR_eo0UXWwXhakPB5qEXLq0A1RiwyyNFzkLGprKHw@mail.gmail.com">
-      <div dir="ltr"><img class="mailtrack-img" alt=""
-          style="display:flex"
-src="https://mailtrack.io/trace/mail/d198f6dbe4b03fb187f74d3779d0626a1ec4edeb.png?u=1822760"
-          moz-do-not-send="true" height="0" width="0">Nice Aaron, it
-        worked as charm.  Thank you !
-        <div><br>
-        </div>
-        <div>Alex, i will try your way. but you can test qemu without
-          vnc by specifying <i>serial nographic</i> of runqemu options <br>
-          <div>‌<br>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    Yes. I generally have a need for graphical output for testing though
-    :)<br>
-    <br>
-    You can actually use the in-built qemu VNC server if you change the
-    options too...<br>
-    <br>
-    ref: <a class="moz-txt-link-freetext" href="https://wiki.archlinux.org/index.php/QEMU#vnc">https://wiki.archlinux.org/index.php/QEMU#vnc</a><br>
-    <br>
-    Cheers!<br>
-    <br>
-    Alex<br>
-  </body>
-</html>
-
---------------E42936185B06B0B66371D613--
+--2hORKjQKG002v8Lohj55TGBodBMCat2Q4--
