@@ -1,65 +1,64 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <einar@vading.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A57CE00CD0; Wed, 13 Sep 2017 12:40:33 -0700 (PDT)
+	id 1A188E00CC4; Wed, 13 Sep 2017 13:06:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.52 listed in list.dnswl.org]
+	*      [209.85.192.173 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.173 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.52 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f52.google.com (mail-it0-f52.google.com
-	[209.85.214.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90E5EE00CAF
-	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 12:40:32 -0700 (PDT)
-Received: by mail-it0-f52.google.com with SMTP id g142so219762ita.0
-	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 12:40:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=7iXpf5BdaGXXnc38ZgZEjvxTA+Uk1CECG12bOuboKek=;
-	b=1pN/avCp9IqGDGcNO7vqEIAqYs25ghB7zJjgraC5y/P/WpYc7zEFMKH1ZYFPxE2sLS
-	QKivUdvjOI376O8FcphxbKm/CH155rrmpKpd14x02Ln6ApiQU3fWCwKQNnylW3V+NzuP
-	IqVESxXe8J+jxcNgLtkv7GSUSDV3C43AowV2OUXUIm7cat83HbXu87wFlVruS+RBTTJ2
-	UxSXieh0ydPZgmn7h1YvtTZ/YqdPUsiAEp+LJ55Z2+wS2Gm53xVbL61Pn90leiUQTarn
-	DlERRatut4PgNV056qENgb7PVfTeAuZXW0uqxhFRxx7rGXAWY7EJmmh5SKLZAhUVcvk9
-	Bvcg==
+Received: from mail-pf0-f173.google.com (mail-pf0-f173.google.com
+	[209.85.192.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9661DE00CAF
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 13:06:24 -0700 (PDT)
+Received: by mail-pf0-f173.google.com with SMTP id e199so1822570pfh.3
+	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 13:06:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vading.se; s=google;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to; bh=jDk1Aaa/7+h2moTHIGqD6vtG7ERp3HxHa2eDtw66v3k=;
+	b=Kq434ofLi0c3KpdvmOIXab7KeevzlLJFgklAqalWCFgID95NfhTOs+nz1aZIHRk8y8
+	7MCai5ELwlznTtBZvoLxT794i3gll/Rp5DKaE07SX7DIN7r4LlNDO4mkHPm0UXcaq45C
+	6XVEUcV+eDbtiGkYtaxSLnUbdV0s5FR9iMKuI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=7iXpf5BdaGXXnc38ZgZEjvxTA+Uk1CECG12bOuboKek=;
-	b=hRMPueQxmWoREVIQJc6J5jEZ8knWp5mwQVe2hB4R+zVGQNauXYJnjb0CqgagGT4EkT
-	0rqQorWdOVUT6r++jQzHxLxZY8c8Xn4h4V5KMCmxE7IL0Ghy52+NARgNnrfzIYS4cts8
-	h5+tsU09edvr3NrWTBxA6u+PkBDE73ErdTfS1/Rh7J0aL6tMod+wmPINJXd9XiAPiv6b
-	cceOM6eC1o/QrOoeYcQe/hYM8tEntOVPmRTAd+SkqMYUv5pb4BNK+6dPk/axPVuF2HfX
-	uvAWujp+/03l/zO9RqbIxYhIVYq45Tid0o8wce5rJ8J7tH+zFoHPLIx6W02n6e4Z8IKu
-	x8yA==
-X-Gm-Message-State: AHPjjUg9QhiQF0T6ED4HF3URMWt/7UyHqK3tWiCl/GX5bvJ+LKXIbjtn
-	55hIfGpW58jCv4pKgrt66DHzOCS9rNXY4nt0wpq90w==
-X-Google-Smtp-Source: AOwi7QAVo0tnm21Yx4wjPDJcCEt/R4427RydcJiHxgd2EEgIv5kFBBIWFMiQBC5Sw0Ln+wwr3qhpwhmZUta7RmM+WX4=
-X-Received: by 10.36.237.204 with SMTP id r195mr6441522ith.48.1505331631786;
-	Wed, 13 Sep 2017 12:40:31 -0700 (PDT)
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
+	:date:message-id:subject:to;
+	bh=jDk1Aaa/7+h2moTHIGqD6vtG7ERp3HxHa2eDtw66v3k=;
+	b=TLYAkeZQYldCZ0JODlF7N/JnlW8pQtQcE4Sks6RZngGAmMrtM2E/+Hmkc1WSCmsCFO
+	QNd3YBk2vlLoKXQ/7PrXqXH+CJrvDK5w/sx90deorW+FmKJm+AaBbdLLZ52/jyUEM0IX
+	FuhqdhJV2CKzDYikmPF9CGR9Yi7dXfPXXl5fLDR6I+G5ZEVHeqAJ46/FxpEazTelUunZ
+	4Kjr3Oq+jdbWD/OEBVovYGELxAvY9tgmUDBEa8GBTXkIsP9/cJssTeQwdnczuoMVQyyq
+	A/SkcYPqhT1xpNFVRIyxkQtkk9nu66GOelfj+oE6BEbrqOngCsYqDXQ/TOTDZktk0tLr
+	VUEw==
+X-Gm-Message-State: AHPjjUjPW7+awmUUNmuJlN6MQUELxFBjS9U5bAMj3Y2ewYI6bpoZvNIx
+	EcsXyqCW1HeC9bahn2ElnUNktfKWgZX0lJTPNznhyxpC
+X-Google-Smtp-Source: ADKCNb5s8Y4aHjykG2A7TeAPeLWPXXWH+TwVUIgepB5FsdbNS4sftFn/0VoPHXoJbLjcIu/Xn3WD0MlDnEb7ULWLQuw=
+X-Received: by 10.99.125.81 with SMTP id m17mr18724455pgn.343.1505333183014;
+	Wed, 13 Sep 2017 13:06:23 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.19.68 with HTTP; Wed, 13 Sep 2017 12:40:10 -0700 (PDT)
-In-Reply-To: <8ABCD0C2CB8944EBB4282C42CA3DD60C@PAULD>
-References: <8ABCD0C2CB8944EBB4282C42CA3DD60C@PAULD>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 13 Sep 2017 20:40:10 +0100
-Message-ID: <CAJTo0LaxrtC-1NC6quY+CymKQCHLo3UhfOgfN8TFHwxnjay09Q@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Keeping same IP address under DHCP
+Sender: einar@vading.se
+Received: by 10.100.170.14 with HTTP; Wed, 13 Sep 2017 13:06:22 -0700 (PDT)
+X-Originating-IP: [92.39.43.33]
+In-Reply-To: <CAB6-VtJZkohv2d8-ePCLrgZHPDuUEn5f2CEgmEPy48Ts30EeqQ@mail.gmail.com>
+References: <CAB6-VtJZkohv2d8-ePCLrgZHPDuUEn5f2CEgmEPy48Ts30EeqQ@mail.gmail.com>
+From: Einar Vading <yocto-ml@vading.se>
+Date: Wed, 13 Sep 2017 22:06:22 +0200
+X-Google-Sender-Auth: T46wLidV5zK3aMur8GJx4a2H_2U
+Message-ID: <CAB6-VtJj_Z-GLwbi-OAAs3LZXrFpTVXEbGr_9AYh-H8LS6zthg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Best practices when for script recipes.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,60 +70,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Sep 2017 19:40:33 -0000
-Content-Type: multipart/alternative; boundary="94eb2c042c162eb46e055917556b"
-
---94eb2c042c162eb46e055917556b
+X-List-Received-Date: Wed, 13 Sep 2017 20:06:25 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On 13 September 2017 at 20:32, Paul D. DeRocco <pderocco@ix.netcom.com>
-wrote:
+Hi,
 
-> Whenever I build a new version of my target system, the DHCP server in my
-> router thinks it's a new machine, and assigns it a new IP address. This
-> means that I have to edit the connection settings in Eclipse remote
-> debugging. What is changing in my system that makes that happen, and is
-> there any way, short of assigning a static IP address, to make the router
-> continue to recognize it as the same machine?
->
+I was just wondering if there is some best practice advice on how to
+handle adding a single script from a recipe.
 
-A DHCP server will issue a new IP unless it's asked to renew by the client,
-or has been configured to give out a static IP.  You could tell your DHCP
-server to give out a static IP for the board's mac address, or install
-something like avahi-daemon in the system (or your preferred mDNS
-responder) and just use the hostname.
+If I have one or a few shell scripts with their own recipe. Do I make
+a git and use the git from the recipe or do I just add the scripts to
+a files directory and install from there?
 
-All of my systems have avahi-daemon installed, and I configure the hostname
-in local.conf, so I don't need to care what IP a board has as I can just
-ssh into bob.local.
+Are there any pros and cons to either?
 
-Ross
+Best regards,
+Einar
 
---94eb2c042c162eb46e055917556b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">On 13 September 2017 at 20:32, Paul D. DeRocco <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:pderocco@ix.netcom.com" target=3D"_blank">pd=
-erocco@ix.netcom.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><d=
-iv class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left=
--color:rgb(204,204,204);padding-left:1ex">Whenever I build a new version of=
- my target system, the DHCP server in my<br>
-router thinks it&#39;s a new machine, and assigns it a new IP address. This=
-<br>
-means that I have to edit the connection settings in Eclipse remote<br>
-debugging. What is changing in my system that makes that happen, and is<br>
-there any way, short of assigning a static IP address, to make the router<b=
-r>
-continue to recognize it as the same machine?<br></blockquote><div><br></di=
-v><div>A DHCP server will issue a new IP unless it&#39;s asked to renew by =
-the client, or has been configured to give out a static IP.=C2=A0 You could=
- tell your DHCP server to give out a static IP for the board&#39;s mac addr=
-ess, or install something like avahi-daemon in the system (or your preferre=
-d mDNS responder) and just use the hostname.</div><div><br></div><div>All o=
-f my systems have avahi-daemon installed, and I configure the hostname in l=
-ocal.conf, so I don&#39;t need to care what IP a board has as I can just ss=
-h into bob.local.</div><div><br></div><div>Ross</div></div></div></div>
-
---94eb2c042c162eb46e055917556b--
