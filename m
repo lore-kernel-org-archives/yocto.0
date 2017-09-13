@@ -1,34 +1,37 @@
 Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08B16E00CC9; Tue, 12 Sep 2017 19:43:20 -0700 (PDT)
+	id 22F89E00CC9; Tue, 12 Sep 2017 19:43:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24C91E00C99
-	for <yocto@yoctoproject.org>; Tue, 12 Sep 2017 19:43:09 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C26AE00CD0
+	for <yocto@yoctoproject.org>; Tue, 12 Sep 2017 19:43:10 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v8D2h90t012528
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Tue, 12 Sep 2017 19:43:09 -0700
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v8D2hAxu007843
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 12 Sep 2017 19:43:10 -0700 (PDT)
 Received: from ala-lpggp5.wrs.com (147.11.105.121) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Tue, 12 Sep 2017 19:43:07 -0700
+	Tue, 12 Sep 2017 19:43:09 -0700
 From: <wenzong.fan@windriver.com>
 To: <yocto@yoctoproject.org>, <mark.hatle@windriver.com>,
 	<Joe_MacDonald@mentor.com>
-Date: Tue, 12 Sep 2017 19:42:49 -0700
-Message-ID: <c6dc95f31dc9e53b5d877334ad327dc787e06d67.1505270194.git.wenzong.fan@windriver.com>
+Date: Tue, 12 Sep 2017 19:42:51 -0700
+Message-ID: <1d778da283cab4f12c5c70eea419b67559365faa.1505270194.git.wenzong.fan@windriver.com>
 X-Mailer: git-send-email 2.13.0
+MIME-Version: 1.0
 In-Reply-To: <cover.1505270194.git.wenzong.fan@windriver.com>
 References: <cover.1505270194.git.wenzong.fan@windriver.com>
-MIME-Version: 1.0
-Subject: [PATCH 07/20] policycoreutils: uprev to 2.7 (20170804)
+Subject: [PATCH 09/20] mcstrans: add package 2.7 (20170804)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,99 +44,340 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 13 Sep 2017 02:43:20 -0000
-Content-Type: text/plain
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
 From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Uprev the recipe file as is.
+Move policycoreutils/mcstrans to mcstrans:
 
-Some packages have been moved out from policycoreutils, they will be
-added as new packages and the policycoreutils.inc need to be cleaned
-up from later commits accordingly.
+* Move and rebase patches:
+  - mcstrans-de-bashify.patch
+  - 0001-mcstrans-fix-the-init-script.patch
 
-Moved packages:
-    From:                            To:
-  - policycoreutils/gui              gui
-  - policycoreutils/mcstrans         mcstrans
-  - policycoreutils/restorecond      restorecond
-  - policycoreutils/sandbox          sandbox
-  - policycoreutils/sepolicy/dbus    dbus
-  - policycoreutils/semodule_deps    semodule-utils/semodule_deps
-  - policycoreutils/semodule_expand  semodule-utils/semodule_expand
-  - policycoreutils/semodule_link    semodule-utils/semodule_link
-  - policycoreutils/semodule_package semodule-utils/semodule_package
-  - policycoreutils/semanage         python/semanage
-  - policycoreutils/audit2allow      python/audit2allow
-  - policycoreutils/sepolgen-ifgen   python/audit2allow/sepolgen-ifgen
-  - policycoreutils/sepolicy         python/sepolicy
-  - policycoreutils/scripts/chcat    python/chcat
+* Remove useless patch:
+  - enable-mcstrans.patch
 
-Released package list refer to:
-  https://github.com/SELinuxProject/selinux/wiki/Releases
-
-Cleanup the patch file that have been removed in 2.6:
-  - policycoreutils-fts_flags-FTS_NOCHDIR.patch
+* Cleanup policycoreutils_2.7.bb and policycoreutils.inc.
 
 Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
 ---
- .../policycoreutils-fts_flags-FTS_NOCHDIR.patch    | 25 ----------------------
- ...licycoreutils_2.6.bb => policycoreutils_2.7.bb} |  6 +++---
- 2 files changed, 3 insertions(+), 28 deletions(-)
- delete mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch
- rename recipes-security/selinux/{policycoreutils_2.6.bb => policycoreutils_2.7.bb} (74%)
+ recipes-security/selinux/mcstrans.inc              | 49 ++++++++++++++
+ .../0001-mcstrans-fix-the-init-script.patch        |  9 +--
+ .../selinux/mcstrans/mcstrans-de-bashify.patch     | 26 ++++++++
+ recipes-security/selinux/mcstrans_2.7.bb           |  7 ++
+ recipes-security/selinux/policycoreutils.inc       | 76 +---------------------
+ .../selinux/policycoreutils/enable-mcstrans.patch  | 17 -----
+ .../policycoreutils/mcstrans-de-bashify.patch      | 12 ----
+ recipes-security/selinux/policycoreutils_2.7.bb    |  2 -
+ 8 files changed, 88 insertions(+), 110 deletions(-)
+ create mode 100644 recipes-security/selinux/mcstrans.inc
+ rename recipes-security/selinux/{policycoreutils => mcstrans}/0001-mcstrans-fix-the-init-script.patch (74%)
+ create mode 100644 recipes-security/selinux/mcstrans/mcstrans-de-bashify.patch
+ create mode 100644 recipes-security/selinux/mcstrans_2.7.bb
+ delete mode 100644 recipes-security/selinux/policycoreutils/enable-mcstrans.patch
+ delete mode 100644 recipes-security/selinux/policycoreutils/mcstrans-de-bashify.patch
 
-diff --git a/recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch b/recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch
-deleted file mode 100644
-index fd04b51..0000000
---- a/recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch
-+++ /dev/null
-@@ -1,25 +0,0 @@
--This works around a bug in the default libc used by OE. FTS functions are
--supposed to change the current working directory as they walk the file
--hierarchy. The fts_accpath member of the FTSENT structure relies on this
--behavior and without it the path is not relative to cwd as expected.
--Supplying the FTS_NOCHDIR flag disables this optimization and causes
--fts_accpath to be relative to the directory where the traversal started.
--Use of this flag doesn't effect compatibility with glibc.
--
--An alternative fix could replace the use of fts_accpath with fts_path
--which is absolute.
--
--Signed-off-by: Philip Tricca <flihp@twobit.us>
--Index: policycoreutils/setfiles/setfiles.c
--===================================================================
----- policycoreutils.orig/setfiles/setfiles.c
--+++ policycoreutils/setfiles/setfiles.c
--@@ -194,7 +194,7 @@ int main(int argc, char **argv)
-- 		r_opts.expand_realpath = 0;
-- 		r_opts.abort_on_error = 1;
-- 		r_opts.add_assoc = 1;
---		r_opts.fts_flags = FTS_PHYSICAL | FTS_XDEV;
--+		r_opts.fts_flags = FTS_PHYSICAL | FTS_XDEV | FTS_NOCHDIR;
-- 		ctx_validate = 1;
-- 	} else {
-- 		/*
-diff --git a/recipes-security/selinux/policycoreutils_2.6.bb b/recipes-security/selinux/policycoreutils_2.7.bb
+diff --git a/recipes-security/selinux/mcstrans.inc b/recipes-security/selinux/mcstrans.inc
+new file mode 100644
+index 0000000..590e6d2
+--- /dev/null
++++ b/recipes-security/selinux/mcstrans.inc
+@@ -0,0 +1,49 @@
++SUMMARY = "Daemon to translate SELinux MCS/MLS sensitivity labels"
++DESCRIPTION = "\
++mcstrans provides an translation daemon to translate SELinux categories \
++from internal representations to user defined representation."
++
++SECTION = "base"
++LICENSE = "GPLv2+"
++
++SRC_URI += "file://mcstrans-de-bashify.patch \
++            file://0001-mcstrans-fix-the-init-script.patch \
++"
++
++inherit systemd update-rc.d
++
++DEPENDS += "libsepol libselinux libcap"
++
++EXTRA_OEMAKE += "SYSTEMDDIR=${D}${systemd_unitdir}"
++do_install_append() {
++    install -d ${D}${sbindir}
++    install -m 755 utils/untranscon ${D}${sbindir}/
++    install -m 755 utils/transcon ${D}${sbindir}/
++
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
++        install -d ${D}${sysconfdir}/tmpfiles.d
++        echo "d ${localstatedir}/run/setrans - - - -" \
++            > ${D}${sysconfdir}/tmpfiles.d/setrans.conf
++    else
++        install -d ${D}${sysconfdir}/default/volatiles
++        echo "d root root 0755 /var/run/setrans none" \
++            >${D}${sysconfdir}/default/volatiles/volatiles.80_mcstrans
++    fi
++    install -d ${D}${datadir}/mcstrans
++    cp -r share/* ${D}${datadir}/mcstrans/.
++}
++
++SYSTEMD_SERVICE_mcstrans = "mcstrans.service"
++INITSCRIPT_PACKAGES = "mcstrans"
++INITSCRIPT_NAME_mcstrans = "mcstrans"
++INITSCRIPT_PARAMS_mcstrans = "defaults"
++
++pkg_postinst_mcstrans () {
++    if [ -z "$D" ]; then
++        if command -v systemd-tmpfiles >/dev/null; then
++            systemd-tmpfiles --create ${sysconfdir}/tmpfiles.d/setrans.conf
++        elif [ -e ${sysconfdir}/init.d/populate-volatile.sh ]; then
++            ${sysconfdir}/init.d/populate-volatile.sh update
++        fi
++    fi
++}
+diff --git a/recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch b/recipes-security/selinux/mcstrans/0001-mcstrans-fix-the-init-script.patch
 similarity index 74%
-rename from recipes-security/selinux/policycoreutils_2.6.bb
-rename to recipes-security/selinux/policycoreutils_2.7.bb
-index 6a625b3..50f15d0 100644
---- a/recipes-security/selinux/policycoreutils_2.6.bb
-+++ b/recipes-security/selinux/policycoreutils_2.7.bb
-@@ -1,10 +1,10 @@
--include selinux_20161014.inc
+rename from recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch
+rename to recipes-security/selinux/mcstrans/0001-mcstrans-fix-the-init-script.patch
+index 39be80a..5f7163d 100644
+--- a/recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch
++++ b/recipes-security/selinux/mcstrans/0001-mcstrans-fix-the-init-script.patch
+@@ -5,14 +5,15 @@ Upstream-Status: Inappropriate [embedded specific]
+ replace daemon with start-stop-daemon, due to not daemon functions
+ 
+ Signed-off-by: Roy Li <rongqing.li@windriver.com>
++Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+ ---
+- mcstrans/src/mcstrans.init | 2 +-
++ src/mcstrans.init | 2 +-
+  1 file changed, 1 insertion(+), 1 deletion(-)
+ 
+-diff --git a/mcstrans/src/mcstrans.init b/mcstrans/src/mcstrans.init
++diff --git a/src/mcstrans.init b/src/mcstrans.init
+ index 2804ec0..c660290 100644
+---- a/mcstrans/src/mcstrans.init
+-+++ b/mcstrans/src/mcstrans.init
++--- a/src/mcstrans.init
+++++ b/src/mcstrans.init
+ @@ -51,7 +51,7 @@ start(){
+  	fi
+  
+diff --git a/recipes-security/selinux/mcstrans/mcstrans-de-bashify.patch b/recipes-security/selinux/mcstrans/mcstrans-de-bashify.patch
+new file mode 100644
+index 0000000..805d7e5
+--- /dev/null
++++ b/recipes-security/selinux/mcstrans/mcstrans-de-bashify.patch
+@@ -0,0 +1,26 @@
++commit 54875dcb50f5e40fc86d6fe98dde244bfe4751af
++Author: Joe MacDonald <joe_macdonald@mentor.com>
++Date:   Fri Aug 7 15:16:45 2015 -0400
++
++    mcstrans: remove dependency on bash in initscript
++
++    There were no apparent bashisms in mcstrans.init, so remove the dependency
++    on bash.
++
++    Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
++
++Upstream-Status: Pending
++
++Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
++---
++ src/mcstrans.init |    2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++--- a/src/mcstrans.init
+++++ b/src/mcstrans.init
++@@ -1,4 +1,4 @@
++-#!/bin/bash
+++#!/bin/sh
++ #
++ # mcstransd        This starts and stops mcstransd
++ #
+diff --git a/recipes-security/selinux/mcstrans_2.7.bb b/recipes-security/selinux/mcstrans_2.7.bb
+new file mode 100644
+index 0000000..2d5bbfd
+--- /dev/null
++++ b/recipes-security/selinux/mcstrans_2.7.bb
+@@ -0,0 +1,7 @@
 +include selinux_20170804.inc
- include ${BPN}.inc
++include ${BPN}.inc
++
++LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
++
++SRC_URI[md5sum] = "edba0f72fdf7fdd1ad0a2c6d102e8cfa"
++SRC_URI[sha256sum] = "cdca003282d160b50ad695ab5b013c05ca21387a419b2f89288534184d16e1e2"
+diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
+index fe01004..e8f6e5f 100644
+--- a/recipes-security/selinux/policycoreutils.inc
++++ b/recipes-security/selinux/policycoreutils.inc
+@@ -10,7 +10,6 @@ LICENSE = "GPLv2+"
+ SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${PAM_SRC_URI}', '', d)} \
+             file://policycoreutils-fixfiles-de-bashify.patch \
+             file://policycoreutils-sandbox-de-bashify.patch \
+-            file://mcstrans-de-bashify.patch \
+            "
  
- LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ PAM_SRC_URI = "file://pam.d/newrole \
+@@ -21,9 +20,7 @@ DEPENDS += "libsepol libselinux libsemanage libcap gettext-native"
+ EXTRA_DEPENDS = "libcap-ng libcgroup setools"
+ DEPENDS += "${@['', '${EXTRA_DEPENDS}']['${PN}' != '${BPN}-native']}"
  
--SRC_URI[md5sum] = "0358f0136e2dd9a8c9e99f181aaab1b2"
--SRC_URI[sha256sum] = "68891b376f5048edc53c6ccb2fca44da3dc7f4563f4b6894e201d70c04a05a29"
-+SRC_URI[md5sum] = "65311b66ae01f7b7ad7c2ea7401b68ed"
-+SRC_URI[sha256sum] = "0a1b8a4a323b854981c6755ff025fe98a0f1cff307f109abb260f0490f13e4f4"
+-inherit selinux systemd pythonnative update-rc.d
+-
+-PROVIDES += "mcstrans"
++inherit selinux pythonnative
  
- SRC_URI += "\
- 	file://policycoreutils-fix-sepolicy-install-path.patch \
+ DEPENDS += "${@target_selinux(d, 'libpam audit')}"
+ 
+@@ -144,31 +141,8 @@ PACKAGES =+ "\
+ 	${PN}-sestatus \
+ 	${PN}-setfiles \
+ 	${PN}-setsebool \
+-	mcstrans \
+-	mcstrans-doc \
+ 	system-config-selinux \
+ "
+-PKGV_mcstrans = "0.3.2"
+-PKGV_mcstrans-doc = "0.3.2"
+-SUMMARY_mcstrans = "Daemon to translate SELinux MCS/MLS sensitivity labels"
+-DESCRIPTION_mcstrans = "\
+-        Security-enhanced Linux is a feature of the Linux kernel and a number \
+-        of utilities with enhanced security functionality designed to add \
+-        mandatory access controls to Linux.  The Security-enhanced Linux \
+-        kernel contains new architectural components originally developed to \
+-        improve the security of the Flask operating system. These \
+-        architectural components provide general support for the enforcement \
+-        of many kinds of mandatory access control policies, including those \
+-        based on the concepts of Type Enforcement®, Role-based Access \
+-        Control, and Multi-level Security. \
+-         \
+-        mcstrans provides an translation daemon to translate SELinux categories \
+-        from internal representations to user defined representation. \
+-        "
+-SUMMARY_mcstrans-doc = "${SUMMARY_mcstrans} man pages and examples"
+-DESCRIPTION_mcstrans-doc = "${DESCRIPTION_mcstrans} \
+-        This package contains man pages and examples. \
+-        "
+ FILES_${PN}-audit2allow = "\
+ 	${bindir}/audit2allow \
+ 	${bindir}/audit2why \
+@@ -240,22 +214,6 @@ FILES_${PN}-setsebool += "\
+ 	${sbindir}/setsebool \
+ 	${datadir}/bash-completion/completions/setsebool \
+ "
+-FILES_mcstrans = "\
+-	${base_sbindir}/mcstransd \
+-	${sbindir}/untranscon \
+-	${sbindir}/transcon \
+-	${sysconfdir}/init.d/mcstrans \
+-	${systemd_unitdir}/system/mcstrans.service \
+-	${sysconfdir}/default/volatiles/volatiles.80_mcstrans \
+-	${sysconfdir}/tmpfiles.d/setrans.conf \
+-"
+-
+-FILES_mcstrans-doc = "\
+-    /usr/share/man/man8/mcstransd.8 \
+-    /usr/share/man/man8/mcs.8 \
+-    /usr/share/man/man8/setrans.conf.8 \
+-    ${datadir}/mcstrans \
+-"
+ 
+ FILES_system-config-selinux = " \
+     ${bindir}/sepolgen \
+@@ -304,23 +262,6 @@ do_install_prepend() {
+ 	export SEMODULE_PATH=${sbindir} SYSTEMDDIR=${D}/${systemd_unitdir}
+ }
+ 
+-do_install_append_class-target() {
+-	install -m 755 mcstrans/utils/untranscon ${D}${sbindir}/
+-	install -m 755 mcstrans/utils/transcon ${D}${sbindir}/
+-
+-	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
+-		install -d ${D}${sysconfdir}/tmpfiles.d
+-		echo "d ${localstatedir}/run/setrans - - - -" \
+-		    > ${D}${sysconfdir}/tmpfiles.d/setrans.conf
+-	else
+-		install -d ${D}${sysconfdir}/default/volatiles
+-		echo "d root root 0755 /var/run/setrans none" \
+-			>${D}${sysconfdir}/default/volatiles/volatiles.80_mcstrans
+-	fi
+-	install -d ${D}${datadir}/mcstrans
+-	cp -r mcstrans/share/* ${D}${datadir}/mcstrans/.
+-}
+-
+ do_install_virtclass-native() {
+ 	for PCU_CMD in ${PCU_NATIVE_CMDS} ; do
+ 	     oe_runmake -C $PCU_CMD install \
+@@ -342,18 +283,3 @@ do_install_append_class-target() {
+ 	#   $ semanage permissive [OPTS]
+ 	install -d ${D}${localstatedir}/lib/selinux
+ }
+-
+-SYSTEMD_SERVICE_mcstrans = "mcstrans.service"
+-INITSCRIPT_PACKAGES = "mcstrans"
+-INITSCRIPT_NAME_mcstrans = "mcstrans"
+-INITSCRIPT_PARAMS_mcstrans = "defaults"
+-
+-pkg_postinst_mcstrans () {
+-    if [ -z "$D" ]; then
+-        if command -v systemd-tmpfiles >/dev/null; then
+-            systemd-tmpfiles --create ${sysconfdir}/tmpfiles.d/setrans.conf
+-        elif [ -e ${sysconfdir}/init.d/populate-volatile.sh ]; then
+-            ${sysconfdir}/init.d/populate-volatile.sh update
+-        fi
+-    fi
+-}
+diff --git a/recipes-security/selinux/policycoreutils/enable-mcstrans.patch b/recipes-security/selinux/policycoreutils/enable-mcstrans.patch
+deleted file mode 100644
+index e923903..0000000
+--- a/recipes-security/selinux/policycoreutils/enable-mcstrans.patch
++++ /dev/null
+@@ -1,17 +0,0 @@
+-Add the "mcstrans" subdir so it gets built too.
+-
+-Upstream-Status: Inappropriate [embedded specific]
+-
+-Signed-off-by: Roy Li <rongqing.li@windriver.com>
+-diff --git a/Makefile b/Makefile
+-index 83ebd45..3ae784f 100644
+---- a/Makefile
+-+++ b/Makefile
+-@@ -1,5 +1,7 @@
+- SUBDIRS = sepolicy setfiles semanage load_policy newrole run_init sandbox secon audit2allow sestatus semodule_package semodule semodule_link semodule_expand semodule_deps sepolgen-ifgen setsebool scripts po man gui
+- 
+-+SUBDIRS += mcstrans
+-+
+- INOTIFYH = $(shell ls /usr/include/sys/inotify.h 2>/dev/null)
+- 
+- ifeq (${INOTIFYH}, /usr/include/sys/inotify.h)
+diff --git a/recipes-security/selinux/policycoreutils/mcstrans-de-bashify.patch b/recipes-security/selinux/policycoreutils/mcstrans-de-bashify.patch
+deleted file mode 100644
+index 86141a2..0000000
+--- a/recipes-security/selinux/policycoreutils/mcstrans-de-bashify.patch
++++ /dev/null
+@@ -1,12 +0,0 @@
+----
+- mcstrans/src/mcstrans.init |    2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+---- a/mcstrans/src/mcstrans.init
+-+++ b/mcstrans/src/mcstrans.init
+-@@ -1,4 +1,4 @@
+--#!/bin/bash
+-+#!/bin/sh
+- #
+- # mcstransd        This starts and stops mcstransd
+- #
+diff --git a/recipes-security/selinux/policycoreutils_2.7.bb b/recipes-security/selinux/policycoreutils_2.7.bb
+index 50f15d0..d407ac3 100644
+--- a/recipes-security/selinux/policycoreutils_2.7.bb
++++ b/recipes-security/selinux/policycoreutils_2.7.bb
+@@ -12,6 +12,4 @@ SRC_URI += "\
+ 	file://policycoreutils-loadpolicy-symlink.patch \
+ 	file://policycoreutils-process-ValueError-for-sepolicy-seobject.patch \
+ 	file://policycoreutils-fix-TypeError-for-seobject.py.patch \
+-	file://0001-mcstrans-fix-the-init-script.patch \
+-	file://enable-mcstrans.patch \
+ 	"
 -- 
 2.13.0
 
