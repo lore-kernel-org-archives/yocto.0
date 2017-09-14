@@ -1,65 +1,45 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D5C6E00CC4; Thu, 14 Sep 2017 06:12:05 -0700 (PDT)
+	id E6542E00CB7; Thu, 14 Sep 2017 06:32:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B915E00CB4
-	for <yocto@yoctoproject.org>; Thu, 14 Sep 2017 06:12:04 -0700 (PDT)
-Received: by mail-wm0-f54.google.com with SMTP id 189so5774407wmh.1
-	for <yocto@yoctoproject.org>; Thu, 14 Sep 2017 06:12:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=6itOKtakN6FqU3B8dSzeIO2wRNbYnJ9Zz/xZihkiAHs=;
-	b=qCKZLwnnzSLJvdCVU1kPrHczEeDQ9JmQZpYZ8bmCN+qVAm3jkqfbhcUIPi74pU9QKm
-	0ZO3bbRRxsp/qEjyzTODLGV19fcbmterCxEXtBoJ/uXxFZaUMAaFRuFdcUOatsaQ1Ctx
-	Fimq+TKtBMbRcR5KT2w/YYmd6aw6uRHuyAOO4wGgQ/XemqUlm4fpYKSuJpQaGSTtliUi
-	oAQ5It6gIt1i7SMqtr6H/D1nZ4KHmhKd6Sm3fcU+ZJvGyUWZqCI9Ylp3M/Gd+uJusscY
-	kDqd25E+1Yc/RzeDucKw4uwmG6bgleQj5H6/tsMAGZRkpKR5fFv4k2GfVBH2Yvy74bH6
-	YlTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=6itOKtakN6FqU3B8dSzeIO2wRNbYnJ9Zz/xZihkiAHs=;
-	b=Q68AaGMny4Oqhf3xVug9D+4Q4hxOv5qsZ9ETv5b9wAWSkyCCgJcms1a4taW/rmj/3W
-	PDX8b7LXY37aGd30iG6f5Cgnt6QGwGo59zrWO2+1OYASkPcdR1RJxhVMj3vy+WKrXh/l
-	mw3CzXrhxejy4vF3amfsDDjPLn2GiRhGP0iohyrVODioThasE1f4N1NP62LJldm1L86O
-	OcdNQAW5UPaEy3pcJkt+a+jm4g6kJs6/ChBJBEHDUXgKNv/qoVz9VxwAaLENbIZaCIb9
-	Lkqq2fFiRFaDUQGq7GlK0vxNscmNLs5LLHna7q+4ifXRwVJchfJPZBHxmTwjEtsyXDCO
-	sIGQ==
-X-Gm-Message-State: AHPjjUguPNvG/nA1+TFS+Xm/1QrP4JbN9doidS0z0I8FJht490y6Li0U
-	exehJt1ec2LCV2V84b9ZO/Xp/OD30h567Qw4ZV85NA==
-X-Google-Smtp-Source: AOwi7QDdVQMO8TZb6eZlpndg5Kd+txs6iEgOJH2FtJslW/vpASD7guP10eFoSKixRH+Rfv5mmWDJrhQ1S+jqkRE6j7s=
-X-Received: by 10.28.7.83 with SMTP id 80mr1934903wmh.158.1505394723172; Thu,
-	14 Sep 2017 06:12:03 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BCBDE00CAF
+	for <yocto@yoctoproject.org>; Thu, 14 Sep 2017 06:32:57 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v8EDWu73027473
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 14 Sep 2017 06:32:56 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Thu, 14 Sep 2017 06:32:55 -0700
+To: wenzong fan <wenzong.fan@windriver.com>, Chanho Park <parkch98@gmail.com>, 
+	<yocto@yoctoproject.org>
+References: <20170905055958.54697-1-wenzong.fan@windriver.com>
+	<20170905055958.54697-4-wenzong.fan@windriver.com>
+	<CAPTzV14TtSer1QRZ+5fEiSCUjXiqb4VF9pSuCmNQ5-HUC1Adag@mail.gmail.com>
+	<1f2a8ebb-bc8c-6e26-3381-8df2b043b387@windriver.com>
+	<d03d0a77-16e4-1e98-1d5b-17c60bafea02@windriver.com>
+	<cd1182f7-3a69-e174-e142-d5b06bf2ebd4@windriver.com>
+	<1c944366-3583-25ca-3b8c-b2a64a93bcf5@windriver.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <a97d935a-6057-94ae-9108-58c4a9c91860@windriver.com>
+Date: Thu, 14 Sep 2017 08:33:07 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.3.0
 MIME-Version: 1.0
-Received: by 10.28.208.10 with HTTP; Thu, 14 Sep 2017 06:11:22 -0700 (PDT)
-X-Originating-IP: [109.150.130.236]
-In-Reply-To: <9c644336-0647-865a-6351-a1f221395074@embexus.com>
-References: <CABFXn3EHj=o=FoAdkO9B3F+tSsBg-TmHQVc=T7PiW+dBbmY_8g@mail.gmail.com>
-	<49e17973-5ff9-de9b-c3e3-3036ff5ef068@embexus.com>
-	<CAMKF1sp6iZA+0RZ_wM8ZCAWeAd-P2ecmaOA6Z0NMY_7X3L1q7g@mail.gmail.com>
-	<9c644336-0647-865a-6351-a1f221395074@embexus.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 14 Sep 2017 14:11:22 +0100
-Message-ID: <CAK18fxHE3J+B08=ukAddbRAWX2NSz=C1iEHp2hcUDgHvFYBSMw@mail.gmail.com>
-To: Ayoub Zaki <ayoub.zaki@embexus.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] enable serial communication pi 3
+In-Reply-To: <1c944366-3583-25ca-3b8c-b2a64a93bcf5@windriver.com>
+Subject: Re: [meta-selinux][PATCH 04/21] libsemanage: uprev to 2.7 (20170804)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,127 +51,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Sep 2017 13:12:05 -0000
-Content-Type: multipart/alternative; boundary="001a11443776b8c804055926050f"
+X-List-Received-Date: Thu, 14 Sep 2017 13:32:59 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---001a11443776b8c804055926050f
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Sep 13, 2017 at 6:58 PM, Ayoub Zaki <ayoub.zaki@embexus.com> wrote:
-
->
->
-> On 13.09.2017 19:55, Khem Raj wrote:
->
->
->
-> On Wed, Sep 13, 2017 at 12:27 AM, Ayoub Zaki <ayoub.zaki@embexus.com>
-> wrote:
->
->> I ran into the same problem:
+On 9/14/17 5:31 AM, wenzong fan wrote:
+> 
+> 
+> On 09/14/2017 08:07 AM, Mark Hatle wrote:
+>> On 9/12/17 9:19 PM, Mark Hatle wrote:
+>>> On 9/12/17 9:06 PM, wenzong fan wrote:
+>>>> On 09/12/2017 06:59 PM, Chanho Park wrote:
+>>>>> Hi,
+>>>>>
+>>>>> I can't apply this patch on top of the master branch. Which revision did
+>>>>> you make the patches?
+>>>>
+>>>> Oops, that's my fault. I did a "sed -i -e 's/Subject: [/Subject:
+>>>> [meta-selinux][/g' 00*" to add prefix for mail subjects, that also
+>>>> changed the removed patch files in libsemanage.
+>>>>
+>>>> I'll send v2.
+>>>>
+>>>> Thanks
+>>>> Wenzong
+>>>
+>>> I don't see the original set of patches in my archives.  When you rebase, please
+>>> rebase on top of mgh/master-next.
 >>
->> ENABLE_UART =3D "1" is not enough you should also add INSTALL_append=3D =
-"
->> rpi-config" to your local.conf and Serial port will be enabled.
+>> My mailer finally loaded the original set.  I saw the same problems, but was
+>> able to get them merged.
 >>
->
-> =E2=80=8Bthis should be automatically pulled in if you built a sdcard ima=
-ge.=E2=80=8B
->
-> I'm using Wic so it does not work unless I extend the machine config with=
- :
-> MACHINE_EXTRA_RRECOMMENDS +=3D " bcm2835-bootfiles rpi-config"
->
+>> I have updated 'mgh/master-next'.  Please verify the contents include all of
+>> your changes.
+> 
+> All my changes are there now.
+> 
+>>
+>> I tried to build a system and boot it, but it didn't work.  I'm guessing I
+>> forgot something simple, but I can't make master-next into master without
+>> knowing I can boot..  Any clue would be useful.  Thanks!
+>>
+>>
+>> My configuration is:
+>>
+>> bblayers.conf:
+>>
+>> oe-core (master) & meta-selinux (mgh/master-next)
+>>
+>>
+>> local.conf:
+>>
+>> IMAGE_FEATURES_append = " debug-tweaks ssh-server-openssh"
+>>
+>> DISTRO_FEATURES_append = " opengl x11 wayland acl xattr pam selinux"
+>>
+>> PREFERRED_PROVIDER_virtual/refpolicy = "refpolicy-mls"
+>> PREFERRED_VERSION_refpolicy-mls = "2.20170204"
+> 
+> Above configs are OK, you can simply use:
+> 
+> DISTRO = "poky-selinux"
+> PREFERRED_VERSION_refpolicy-mls ?= "2.20170204"
 
-That is correct. It is because the sdcard generation class includes this
-dependency when building an sdcard.
+The DISTRO settings in meta-selinux are being removed (they are no longer in the
+master-next branch).  Instead the user will be required to set the
+DISTRO_FEATURE 'selinux' to enable the components.  (It is expected they will
+also enable acl/xattr and pam.)
 
-BTW: bcm2835-bootfiles depends on rpi-config.
+>>
+>>
+>> I ran QEMU using:
+>>
+>>
+>> runqemu qemux86 core-image-selinux ext4 nographic
+>>
+>>
+> 
+> Please run QEMU with:
+> 
+> $ runqemu qemux86 core-image-selinux ext4 nographic 
+> bootparams="selinux=1 enforcing=0"
 
-About wic, this sounds like an issue anyway. wic uses IMAGE_BOOT_FILES.
-This variable includes the blobs provided by bcm28350-bootfiles and, in the
-same place, the config gets deployed (due to the dependency above). But in
-the wic case nobody triggers the compilation of these packages making wic
-to just ignore that specific entry in IMAGE_BOOT_FILES. This sounds like a
-bug to me.
 
-If you agree could you create an issue in github and maybe help us fix it
-as well? At this point I think bcm2835-bootfiles should be
-a MACHINE_ESSENTIAL_EXTRA_RDEPENDS.
 
---
-Andrei Gherzan
+>>
+>> Trying to login I get:
+>>
+>> qemux86 login: root
+>> [   23.960609] kauditd_printk_skb: 13 callbacks suppressed
+>> Cannot execute /bin/sh: Permission denied
+>> [   23.973922] audit: type=1400 audit(1505347190.805:29): avc:  denied  {
+>> execute } for  pid=671 comm="login" name="bash.bash" dev="vda" ino=8163
+>> scontext=system_u:system_r:local_login_t:s0-s15:c0.c1023
+>> tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0
+>> [   23.975463] audit: type=1400 audit(1505347190.813:30): avc:  denied  {
+>> execute } for  pid=671 comm="login" name="bash.bash" dev="vda" ino=8163
+>> scontext=system_u:system_r:local_login_t:s0-s15:c0.c1023
+>> tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0
+>>
+>>
+> 
+> This should be blocked by refpolicy-mls, please boot with "selinux=1 
+> enforcing=0" to verify if SELinux tools work. For example:
 
---001a11443776b8c804055926050f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I would like to update the README file for the layer on how the user can
+actually make a bootable system.  If this involves adding a user, that is fine.
+But at present there is no way to login w/o turning off enforcing.  That seems
+to defeat the purpose of enabling selinux in a design.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Sep 13, 2017 at 6:58 PM, Ayoub Zaki <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:ayoub.zaki@embexus.com" target=3D"_blank">ayoub.zaki@embexus.com=
-</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
->
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF"><span class=3D"gmail-">
-    <p><br>
-    </p>
-    <br>
-    <div class=3D"gmail-m_1536317809628253576moz-cite-prefix">On 13.09.2017=
- 19:55, Khem Raj wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div style=3D"font-family:monospace,monospace"><br>
-        </div>
-        <div class=3D"gmail_extra"><br>
-          <div class=3D"gmail_quote">On Wed, Sep 13, 2017 at 12:27 AM,
-            Ayoub Zaki <span dir=3D"ltr">&lt;<a href=3D"mailto:ayoub.zaki@e=
-mbexus.com" target=3D"_blank">ayoub.zaki@embexus.com</a>&gt;</span>
-            wrote:<br>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-              <div bgcolor=3D"#FFFFFF">
-                <p>I ran into the same problem:<br>
-                </p>
-                <p>ENABLE_UART =3D &quot;1&quot; is not enough you should a=
-lso add
-                  INSTALL_append=3D &quot; rpi-config&quot; to your local.c=
-onf and
-                  Serial port will be enabled.</p>
-              </div>
-            </blockquote>
-            <div><br>
-            </div>
-            <div>
-              <div style=3D"font-family:monospace,monospace">=E2=80=8Bthis =
-should be
-                automatically pulled in if you built a sdcard image.=E2=80=
-=8B</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote></span>
-    I&#39;m using Wic so it does not work unless I extend the machine confi=
-g
-    with :<br>
-    MACHINE_EXTRA_RRECOMMENDS +=3D &quot; bcm2835-bootfiles rpi-config&quot=
-;</div></blockquote><div><br></div><div>That is correct. It is because the =
-sdcard generation class includes this dependency when building an sdcard.</=
-div><div><br></div><div>BTW: bcm2835-bootfiles depends on rpi-config.</div>=
-<div><br></div><div>About wic, this sounds like an issue anyway. wic uses I=
-MAGE_BOOT_FILES. This variable includes the blobs provided by bcm28350-boot=
-files and, in the same place, the config gets deployed (due to the dependen=
-cy above). But in the wic case nobody triggers the compilation of these pac=
-kages making wic to just ignore that specific entry in IMAGE_BOOT_FILES. Th=
-is sounds like a bug to me.</div><div><br></div><div>If you agree could you=
- create an issue in github and maybe help us fix it as well? At this point =
-I think bcm2835-bootfiles should be a=C2=A0MACHINE_ESSENTIAL_EXTRA_RDEPENDS=
-.=C2=A0</div><div><br></div><div>--<br></div><div>Andrei Gherzan=C2=A0</div=
-></div></div></div>
+So any help you can give me for the documentation would be appreciated.
 
---001a11443776b8c804055926050f--
+> $ sestatus
+
+root@qemux86:~# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             mls
+Current mode:                   permissive
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Memory protection checking:     requested (insecure)
+Max kernel policy version:      30
+
+> OR:
+> $ semanage login -l
+
+root@qemux86:~# semanage login -l
+
+Login Name           SELinux User         MLS/MCS Range        Service
+
+__default__          user_u               s0-s0                *
+root                 root                 s0-s15:c0.c1023      *
+
+(I followed the information below and enabled the python components.)
+
+> Actually this doesn't work since runtime dependencies, I commented off 
+> this from setools_4.1.1.bb:
+> 
+> # TODO: depends on meta-python, disable the RDEPENDS for now:
+> # RDEPENDS_${PN} += "python-networkx python-enum34 python-decorator 
+> python-setuptools"
+> 
+> For community， we need to discuss if we can get meta-selinux depend on 
+> meta-python by default? Or just get users to do that?
+
+Yes, we can add a requirement for meta-python.  I just need to clearly document
+in the commit message why it is there.
+
+I will work to update the mgh/master-next with the meta-python items and some of
+the information above...
+
+--Mark
+
+> Thanks
+> Wenzong
+> 
+>>
+>>> --Mark
+>>>
+>>
+>>
+
+
