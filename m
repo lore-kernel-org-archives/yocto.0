@@ -1,74 +1,66 @@
-Return-Path: <ruslan.bilovol@gmail.com>
+Return-Path: <vickylinuxer@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4277EE00CB4; Wed, 13 Sep 2017 08:40:56 -0700 (PDT)
+	id 7225BE00C7B; Thu, 14 Sep 2017 13:25:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ruslan.bilovol[at]gmail.com)
+	mail provider *      (vickylinuxer[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.223.194 listed in list.dnswl.org]
+	*      [209.85.215.51 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.194 listed in dnsbl.sorbs.net]
+	*      [209.85.215.51 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
-	[209.85.223.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1B7EE00CAE
-	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 08:40:55 -0700 (PDT)
-Received: by mail-io0-f194.google.com with SMTP id j26so566924iod.0
-	for <yocto@yoctoproject.org>; Wed, 13 Sep 2017 08:40:55 -0700 (PDT)
+Received: from mail-lf0-f51.google.com (mail-lf0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBB06E00C45
+	for <yocto@yoctoproject.org>; Thu, 14 Sep 2017 13:25:42 -0700 (PDT)
+Received: by mail-lf0-f51.google.com with SMTP id c80so498777lfh.0
+	for <yocto@yoctoproject.org>; Thu, 14 Sep 2017 13:25:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=568fV5s2eiVKoQa6KDWEtIy8+es2kf79JWXxc2T312s=;
-	b=ALPXhrX69lf6LALRtnwkAax6eRhzIxm1TXjzVyqDR7Yp/PBl/hSsr0U5264nVg+3PB
-	4CPI3LYkvd+h0UTteYb5u6bhjnsA6V+TQltHjVLfgHkp89uMZsfvRK+nMVTa3sRjA8Lu
-	EJMG30aQgxYNBdITmXlINA5xFEivFu1hJv/hTG10EMULgY9JIGaPuR9wTcTfBQubYsGG
-	CFbVguGo40d7eqy5gOQ6QB/k6lUbKYnQt1zOPFj+CQEMJGKB+plkVLwi9HMsd3qLIn48
-	NcDVuzoP5oFxB1HZ+X7C6efN+KljxUurRL0gPI+9AA9WhK/PkLkD4kCR4vHmmJ9qRXpk
-	C6HA==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=9f2dOGuWvQqpczPGdUgYpJi7OKPSxgg7qELeaJRpPmk=;
+	b=fdN/GfjiVMSGrRVl/0VpJhh+FenamChLV5f1yxaLrsFGm6kRQEyICf3NyILGcar0Zi
+	XeAp79Wb0B8MomAWhCVSRXYQS6Dok1Wr2BwliY/UpItNjBNSFgcZwhD8oykxUqPO7lYY
+	aTV1btU99OyaW4svD5TxbFPekCexSpqGBT5wIBTHHjcRr7ZaEGQaWXBPY3+YWGsr5G/Y
+	4NHCOj/17cEyrd0O1/SLqXA/FuIzHgkDkNCmrrlo8CN5YCAcQDKQyjzWM+l7yhON19mt
+	K55fwAuZJv5h4vC5bt7mjYAVD76aYzvgXbAYRJ72VbkiQ98ELsFcvspmCNcisWSVQEgr
+	T5vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=568fV5s2eiVKoQa6KDWEtIy8+es2kf79JWXxc2T312s=;
-	b=CYSo2el4qC/FGbU+yasbdP/mPQA5dFffE6PY/kXjtEOktpkGEHwHKLw9Av+2PxY0El
-	26yFKicY9+EFfCR4KXitDoF81SHkxS9KxaXYAS8j+SPwTNmA7cJtFqKrH63kkP1VgfV3
-	ilzeDuQU8KxSo26Fvs10vprafZ8WBWYfzwvne2M7IQ1Dv26z1zA34gQDExuQU4pmJouH
-	L5NVM+/lD4P8kFXsUXjeLF7bP46OZV1DaP7DIiPAhnkcqZINAiFK8aISzTk31IqS6ygd
-	3YxsqK5CpTeiEMs/VXCBicp8wM1gUVwQyuZcKSSmIxRCmk1c4y9VhoXUqaIq0PKKKfsJ
-	K1TQ==
-X-Gm-Message-State: AHPjjUh1m57IobHWQRnn6GGt/TuYJeB01KRLTn7/H6Gxm1t/EJc1Rgo6
-	sQNSEIzGDP5zEPBEzNaP8bfL/HyuYq7gWDrirUo=
-X-Google-Smtp-Source: ADKCNb4pAWw1N1UtNgRpRR8Fupc+LjtS2LNPm0a44Yynn1nf0Syl58o5cHBGxtJcp1Ac70e1Uy3C7NQS9Ygial7YaA4=
-X-Received: by 10.107.6.78 with SMTP id 75mr25636500iog.204.1505317254697;
-	Wed, 13 Sep 2017 08:40:54 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=9f2dOGuWvQqpczPGdUgYpJi7OKPSxgg7qELeaJRpPmk=;
+	b=AS9kufIrv6TC/DcdFg7ppUwspVbfBY7O61yVgq7iGbkltPVen+bHBcwnqJLQjlb5+r
+	tRrlTy4M82zPPEJ3A1zihhH1pn+6bIqolyXx5IpKr//d+tf6+wRPRgJCmQ1BGwJQcAD/
+	8Gdgwls7y4x4mYa1svqKnRW+NCmSbacK9/KXDugM1r4EECKq/8yhbn/UQk/I5WkLbH3g
+	rRlh2ljeEiVFhLvQJAeuuvMFezNmlpmGnVMh+rj1+6iOiJKcG4pEvrn0eMKn5PxgVlIm
+	bG3Iur/FUcVp5dVTpgiQ5YoxXHc3Y1ygokWkBoqhZVc8Tw0EaJlloVDpvKFJsL0g0vPE
+	4VJw==
+X-Gm-Message-State: AHPjjUioehqdfkuKktHFW0faEONsja7fYdhuESGXDqZIMp9rZEF7hn3P
+	M7mTS7J8BB9TWpgKrPFgN3sTF3S3FT4VrujYy4M9kA==
+X-Google-Smtp-Source: ADKCNb7OgvebSp5Bmy4E/LZFeYYzVI22cPKdH+uHdp2zYCGxhzD4kc1MrB4lsT6qMfbuHUTf/nTj0W9ZYhirhWOV9vs=
+X-Received: by 10.46.18.211 with SMTP id 80mr7260069ljs.194.1505420741571;
+	Thu, 14 Sep 2017 13:25:41 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.27.133 with HTTP; Wed, 13 Sep 2017 08:40:53 -0700 (PDT)
-In-Reply-To: <37a76fa5-4f25-56dd-9616-4b4b23fbb093@balister.org>
-References: <37a76fa5-4f25-56dd-9616-4b4b23fbb093@balister.org>
-From: Ruslan Bilovol <ruslan.bilovol@gmail.com>
-Date: Wed, 13 Sep 2017 18:40:53 +0300
-Message-ID: <CAB=otbS8_F_Yhisc+ybm8X1m3GXBzCK1q16YjrWATDArwVf+Hw@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
+Received: by 10.25.221.202 with HTTP; Thu, 14 Sep 2017 13:25:41 -0700 (PDT)
+From: Vignesh Rajendran <vickylinuxer@gmail.com>
+Date: Fri, 15 Sep 2017 01:55:41 +0530
+Message-ID: <CALoDM-H_J78BT92JOgR-rasf5WgNHB8+r7=XVO-OBYoTYeMoGA@mail.gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Thu, 14 Sep 2017 13:41:14 -0700
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	"openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>, openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] OpenEmbedded Developer Meeting Oct 22, 2017 in Prague (before ELCE)
+Subject: externalsrc sstate
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,24 +72,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Sep 2017 15:40:56 -0000
+X-List-Received-Date: Thu, 14 Sep 2017 20:25:43 -0000
+Content-Type: multipart/alternative; boundary="001a1148e14489f80a05592c149a"
+
+--001a1148e14489f80a05592c149a
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 24, 2017 at 9:37 PM, Philip Balister <philip@balister.org> wrote:
-> Once again we will have a developer meeting in Prague the Sunday before
-> ELCE.
->
-> Please go to https://www.openembedded.org/wiki/OEDEM_2017 and add
-> yourself if you are attending and ideas for topics.
->
-> Although it is called a developer meeting, we invite members of the
-> larger community to attend. The core developers are always interested in
-> hearing how OpenEmbedded is used, and what we can do to make it better
-> for building the embedded devices of the future.
+Dear Yocto,
 
-Is it free to attend, anything else required except of
-self-registration on wiki?
+While using externalsrc for the recipes, sstate is not working for the
+recipes.
 
-Thanks,
-Ruslan
+Is it possible to enable setscene tasks, if srctree_hash_files reports
+nothing has changed?
 
+my environment is using makefile based sources in git.
+
+Can you please provide your feedback? Or do i need to consider some other
+constraints too?
+
+Regards
+
+Vignesh Rajendran
+
+
+
+
+
+*=E2=80=9C Learning never exhausts the mind =E2=80=9D                   -- =
+Leonardo da
+Vinci --*
+
+--001a1148e14489f80a05592c149a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_signature">Dear Yocto,<br><br>While us=
+ing externalsrc for the recipes, sstate is not working for the recipes.<br>=
+<br>Is it possible to enable setscene tasks, if srctree_hash_files reports=
+=C2=A0 nothing has changed?<br><br>my environment is using makefile based s=
+ources in git.<br><br>Can you please provide your feedback? Or do i need to=
+ consider some other constraints too?<br><font size=3D"2"><span style=3D"fo=
+nt-family:verdana,sans-serif"><font size=3D"1"><br></font></span></font></d=
+iv><div class=3D"gmail_signature"><font size=3D"2"><span style=3D"font-fami=
+ly:verdana,sans-serif"><font size=3D"1">Regards<br><br>Vignesh Rajendran</f=
+ont></span></font><b><font size=3D"2"><span style=3D"font-family:verdana,sa=
+ns-serif"><font size=3D"1"><br><br></font></span></font></b><font size=3D"1=
+"><b><span style=3D"font-family:comic sans ms,sans-serif">=E2=80=9C Learnin=
+g never exhausts the mind =E2=80=9D=C2=A0 <br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 -- Leonardo da Vinci --<br><br><span=
+></span><span></span><br></span></b></font></div>
+</div>
+
+--001a1148e14489f80a05592c149a--
