@@ -1,66 +1,57 @@
-Return-Path: <bill@korgrd.com>
+Return-Path: <pderocco@ix.netcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9551FE00A38; Thu, 14 Sep 2017 22:14:04 -0700 (PDT)
+	id 5BBBCE00A38; Thu, 14 Sep 2017 22:49:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.86.89.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.180 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C712E0091D
-	for <yocto@yoctoproject.org>; Thu, 14 Sep 2017 22:14:03 -0700 (PDT)
-Received: by mail-io0-f180.google.com with SMTP id v36so5771037ioi.1
-	for <yocto@yoctoproject.org>; Thu, 14 Sep 2017 22:14:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
-	h=from:content-transfer-encoding:subject:message-id:date:to
-	:mime-version; bh=WXFZ5bD/9pwQm4OMalUL+4w1fUMwJjPGY2JpNFZ2/eY=;
-	b=CFwipW3wqv3cL4q3CMkFnpxVlUKc/bzfhfmYSifA/3N39kS7XtRPGrLwGj34y8Frcj
-	ZuEsdT2KRIgH/m09v/zJsBjSenf7dNnH2Y00JCcTl+y7ThXhbTLj7ypwL2E+rr3LnJRb
-	buCbCZRiXlBJb9YOv/WEYF/YofITIG4WKPDHZxSdsTGDdmg8rpT+2hRfuuxVsUFfctyo
-	6oWqOlIwTjTTgdenZk+UdknUaUlMDjgxCkrtCt947gt8PAaSaqBY3B7duSUtUfp68XWF
-	BchiOonlo1Q+9FNu5ErPBQow0qW7dUIwjiVdW83E6Kt1OZzmZaOf9WbvBqhl39+Jo1H1
-	/09w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:content-transfer-encoding:subject
-	:message-id:date:to:mime-version;
-	bh=WXFZ5bD/9pwQm4OMalUL+4w1fUMwJjPGY2JpNFZ2/eY=;
-	b=UOnG2tOOiGwnSSn/fbWilqUEMzQHry0JNpMYyb2tMqgug1Mc2ELPndc2rnwgGcnsRe
-	x2QKLqAeFt+E6zWkgemaeLPtb7+D2LaGXGVBBlgdTE4ZQ8c9V0lEhIrX/WlDrnqibl6a
-	Et5Majc10MNlQHPtLbPRza70/rq5Sts7beQ5PorJGK0a98X5c9DZxrtSAxu5pSH0KwZW
-	c/4X0oZ3uAbBnsmL4dw8rWbVIdmUM59FNXvN9i3UcK8DDGOP6vTvJzvmihHYOeGAZf54
-	J5/IiL0GY5ohq5AvZpKZLQbzeEYY6VCyyQYfWeveE0Ng0UiWMhmk5X+O2h9XyL78ZnoT
-	5PNg==
-X-Gm-Message-State: AHPjjUgPGq6NSJlsBCa7otYQx+yxY0LXne9QLIlGXgQJ1HJa0889eAhk
-	O6O6vwXspAEX6+5pH7mbBA==
-X-Google-Smtp-Source: AOwi7QCNPex2VrJkjzh5bbyhX1VV7Okmfmnu214PvEPCJ6LCkDlE2Hbr5R/zo+25fWGOT/f+CcR5IQ==
-X-Received: by 10.202.235.80 with SMTP id j77mr25276488oih.220.1505452442976; 
-	Thu, 14 Sep 2017 22:14:02 -0700 (PDT)
-Received: from [172.20.3.38] ([209.116.245.4])
-	by smtp.gmail.com with ESMTPSA id j5sm65469oiy.43.2017.09.14.22.14.02
-	for <yocto@yoctoproject.org>
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 14 Sep 2017 22:14:02 -0700 (PDT)
-From: Bill Jenkins <bill@korgrd.com>
-Message-Id: <995935C6-A0F6-45AE-8526-D1AFE72B3932@korgrd.com>
-Date: Thu, 14 Sep 2017 22:14:02 -0700
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-X-Mailer: Apple Mail (2.3124)
-Subject: [meta-raspberry-pi] needing newer or patched version of g++
+Received: from elasmtp-kukur.atl.sa.earthlink.net
+	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEF84E00851
+	for <yocto@yoctoproject.org>; Thu, 14 Sep 2017 22:49:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
+	s=dk12062016; t=1505454542; bh=QqTunZ9gXhomFX1PZSGhD7m0q5dxsq9yFhDN
+	xpUL2YM=; h=Received:From:To:References:In-Reply-To:Subject:Date:
+	Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=o
+	Pk1O+ODH/1JVgB63syjSLE444+/movtk+H+pOonfSJgNyx6uft5FGRFv7zLj9C1Pe2l
+	9mfyVxFct2UUPtDsRddmz8KlT2OQhJmBGF5xZvdOFqBCkKvVOkADTZn5zBFJZ0kcu1i
+	2HJb9XR4+79NUGYIja6ArcYI8f8PqagyjkDC0BwWyJSEfDUwG0P942YzeYwXcTnya7+
+	RagH4qoEjt8T19r40JA1twOXoqgt70DZ83k2k2JgCCIiVArdLSNmvmuuGvMmLehFbSV
+	X4p609PinAJ4B/XjtPEBPT3UoxLzpNCb+f5rab3XGfbQNDavlagSwRHKsp1xn53ZHe5
+	w6NrJg==
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk12062016; d=ix.netcom.com;
+	b=haCCVYnfY0cATbJB7ohqRdCFaYvOT9bkUB237lgbjJc+65k4/L3AlRkbh86Isal9IbdGZnVPk9y8gNnsUc02KnVdECV6NTAsHqyFZlchX7fzkyHFbb3Wvn8PA+X1KvV16G94alFRWWaIXEfIMDZSqbJPR2DSV/vAWb7h7Q3iovxXVjjHEYEt6l6af6Qwfe/16VhiIckvjMfJmq1KzMJKUxKKk7b2a7qDTFli8eqYFJ5tO1Vvbr5iCuzquK3U2T5ClHLYNL+HzpV+9dnbTIjat5YH2cAUujLjqhhWhDTedmPQe+6pjwnOT5tiufbwJYq+gp2Cbh9YKmYKEr3MJAPE7Q==;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [108.228.233.89] (helo=PAULD)
+	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1dsjUr-0006Kk-8u; Fri, 15 Sep 2017 01:49:01 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Einar Vading'" <einar@vading.se>,
+	<yocto@yoctoproject.org>
+References: <CAB6-VtJZkohv2d8-ePCLrgZHPDuUEn5f2CEgmEPy48Ts30EeqQ@mail.gmail.com>
+In-Reply-To: <CAB6-VtJZkohv2d8-ePCLrgZHPDuUEn5f2CEgmEPy48Ts30EeqQ@mail.gmail.com>
+Date: Thu, 14 Sep 2017 22:48:59 -0700
+Message-ID: <A051A1ED763B4E9688EF56DB747E947D@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: AdMtmgcHevtFHQXQRku+Nu4h+EJ8DwASbAnA
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.23651
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068849a5c23abd14d1d3f4413dd9a5aedd8c350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 108.228.233.89
+Subject: Re: Best practices when for script recipes.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,27 +63,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Sep 2017 05:14:04 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 15 Sep 2017 05:49:03 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-After creating an SDK for a 32-bit Raspberry Pi3 target, I ran into the =
-following compiler error when
-compiling an application using the SDK:
+> From: Einar Vading
+> 
+> If I have one or a few shell scripts with their own recipe. Do I make
+> a git and use the git from the recipe or do I just add the scripts to
+> a files directory and install from there?
 
-internal compiler error: Max. number of generated reload insns per insn =
-is achieved (90)
+A recipe should fetch from something other than a files directory
+accompanying the recipe if it's large, and you don't want every user of
+the layer containing that recipe to have it unless they specifically
+include that package. Even then, it only needs to be a git repo if you
+want it under version control--FTP is also a valid source.
 
-It turns out that a patch was submitted for g++ early last year for the =
-above problem, but apparently that
-patch is not in the 6.3.0 version within the SDK. When I try to specify =
-a newer version,=20
-(by using PREFERRED_VERSION_gcc-cross-${TARGET_ARCH}) bitbake reports =
-that only 5.4.0 or 6.3.0=20
-are available. Any suggestions on how to resolve this? (i.e. is there =
-some way to use a newer g++ or to=20
-apply the patch?)
+But in your case, what the recipe needs is tiny, so there's no reason not
+to include it with the recipe in a files directory. That's a completely
+routine thing to do.
 
-Thanks,
-Bill=
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com
+
 
