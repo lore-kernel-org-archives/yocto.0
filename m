@@ -1,65 +1,34 @@
-Return-Path: <vincent.prince.fr@gmail.com>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 146ADE00A38; Fri, 15 Sep 2017 00:45:37 -0700 (PDT)
+	id 690A2E00A9B; Fri, 15 Sep 2017 02:18:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vincent.prince.fr[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.66 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2209AE00851
-	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 00:45:34 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id r136so2017638wmf.3
-	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 00:45:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=JaWwSKFX4TeFfVfKxPeyWPjlsKlRjloDZjZvGmnsd+s=;
-	b=Z4GHMe9cjzKnadIQvwzz6tTrVGPb01gLHu0zUeHQlq/7hMDlNHAUX+cpgIV5M5km8F
-	IE/qnHqS4EMXFIl7CsYwKEedRLkU3POpNiVQeeOXNx/kTcynKP03/Zq/wQIXpESg/TEZ
-	RsMLIwwN4/kyien+VMIE0MlBzwhxAEdb7LRBjYNRlq6uiOH83hMeexDAFQ4t4wg44xVB
-	s97zqyqXZfkTSeAy9voHweBwA9co70WIfIOmk4yoriwbhp0XDvUxTXXFIkhiNbYG3GX2
-	MkZNsC8FwDLGFSL87/q+JyHdGH6hV3LaK8+QTRNqjHfVP73DjxThh9YEAWM7s1dWDBeB
-	OnRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=JaWwSKFX4TeFfVfKxPeyWPjlsKlRjloDZjZvGmnsd+s=;
-	b=MTkKHpfIokyv9WMr3zgh5rXBpPrUM6UWH4eXzVhx1lj9cdpYzR2NzU+4ed5kviWoX+
-	gWvITuiC26gjnD0kGV4BxXySWzDlh/Bj1x0qXteBFB/pOK4fQ+i7peAFPY6sOqWlCfj0
-	w3BjMW5PfCRk4/1pr13G++3xXoaWse9wwdkWR8HseuktXohVMfwEK7PAiI66T/+8WPgn
-	JY+24/xdinSlJW0ZIXhRc2ikg9RIQfxlG05JZGyZ26Ab3I0xAi8uWyS2A2rZebYI1T0e
-	WyQKxVcQB5pEnVPipLyDUOkNPzZtH6rrEv9oc5jdMLKBxS0tBz4WBMP6EnOTZeQrJ5b+
-	xuPA==
-X-Gm-Message-State: AHPjjUhX2vg49AYJkTBrOVNqLM3myaBiPyRYfpmC3MXl5i+QXP62GJCp
-	Zqm7a1OyngYwF3yrBD0Cm2AcTw==
-X-Google-Smtp-Source: AOwi7QBnIAXrLHaSbY21rC1/hcuwAT4lKrdUEKhqEa/B7spg+HbN8l310wH6ibr0yhEH4a0Zgq706A==
-X-Received: by 10.28.209.14 with SMTP id i14mr1818506wmg.156.1505461533702;
-	Fri, 15 Sep 2017 00:45:33 -0700 (PDT)
-Received: from hager-VirtualBox.fra.hager.corp ([212.51.167.132])
-	by smtp.gmail.com with ESMTPSA id f84sm424223wme.44.2017.09.15.00.45.32
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 15 Sep 2017 00:45:33 -0700 (PDT)
-From: Vincent Prince <vincent.prince.fr@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 15 Sep 2017 09:38:25 +0200
-Message-Id: <1505461105-8584-1-git-send-email-vincent.prince.fr@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-oracle-java][PATCH] Move RDEPENDS from general include to JRE specific as Embedded JRE is headless and runtime does not depend on graphical libs.
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECDD9E008D2
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 02:18:18 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v8F9IHC6019372
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 02:18:18 -0700 (PDT)
+Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.361.1; Fri, 15 Sep 2017 02:18:17 -0700
+From: <jackie.huang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 15 Sep 2017 17:17:20 +0800
+Message-ID: <20170915091720.16948-1-jackie.huang@windriver.com>
+X-Mailer: git-send-email 2.11.0
+MIME-Version: 1.0
+Subject: [meta-security][PATCH] packagegroups: fix invalid license file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,37 +40,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Sep 2017 07:45:37 -0000
+X-List-Received-Date: Fri, 15 Sep 2017 09:18:19 -0000
+Content-Type: text/plain
 
-Signed-off-by: Vincent Prince <vincent.prince.fr@gmail.com>
+From: Jackie Huang <jackie.huang@windriver.com>
+
+Use '${COMMON_LICENSE_DIR}/MIT' for MIT License to fix the warning:
+
+| WARNING: packagegroup-core-security do_populate_lic:
+  ${COREBASE}/LICENSE is not a valid license file, please use
+  '${COMMON_LICENSE_DIR}/MIT' for a MIT License file in LIC_FILES_CHKSUM.
+  This will become an error in the future
+
+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
 ---
- recipes-devtools/oracle-java/oracle-jse-jre.inc | 2 ++
- recipes-devtools/oracle-java/oracle-jse.inc     | 1 -
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb | 2 +-
+ meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb     | 2 +-
+ meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb    | 2 +-
+ meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb    | 2 +-
+ recipes-security/packagegroup/packagegroup-core-security.bb         | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-jre.inc b/recipes-devtools/oracle-java/oracle-jse-jre.inc
-index e8faba2..80a442a 100644
---- a/recipes-devtools/oracle-java/oracle-jse-jre.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse-jre.inc
-@@ -12,3 +12,5 @@ JDK_JRE = "jre"
- require oracle-jse.inc
+diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
+index 2d93aca..3b9d271 100644
+--- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
++++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Security packagegroup for TPM i2c support"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
  
- BBCLASSEXTEND = "native"
-+
-+RDEPENDS_${PN} += " libasound atk cairo gdk-pixbuf mesa gtk+ libxtst libxi"
-diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
-index ce8280c..4346f23 100644
---- a/recipes-devtools/oracle-java/oracle-jse.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse.inc
-@@ -9,7 +9,6 @@ LIC_FILES_CHKSUM = "\
+ inherit packagegroup
+diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
+index 2db8521..25126ef 100644
+--- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
++++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Security packagegroup for Poky"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
  
- FETCHCMD_wget_append = " --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' "
+ inherit packagegroup
+diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+index 57b0722..13b505f 100644
+--- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
++++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Security packagegroup for Poky"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
  
--RDEPENDS_${PN} += " libasound atk cairo gdk-pixbuf mesa gtk+ libxtst libxi"
- # get the java update version in the resulting package
- PR =. "u${PV_UPDATE}"
- S = "${WORKDIR}"
+ inherit packagegroup
+diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb
+index f7eee7c..2e9394f 100644
+--- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb
++++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Security packagegroup for Poky"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+ 
+ inherit packagegroup
+diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-security/packagegroup/packagegroup-core-security.bb
+index cfd7918..6682d29 100644
+--- a/recipes-security/packagegroup/packagegroup-core-security.bb
++++ b/recipes-security/packagegroup/packagegroup-core-security.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Security packagegroup for Poky"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
+                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+ 
+ inherit packagegroup
 -- 
-2.7.4
+2.11.0
 
 
