@@ -1,73 +1,47 @@
-Return-Path: <bill@korgrd.com>
+Return-Path: <external.vrajendran@de.adit-jv.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4042E00CF1; Fri, 15 Sep 2017 08:02:42 -0700 (PDT)
+	id 981CCE00CF9; Fri, 15 Sep 2017 08:06:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.169 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.169 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EED5E00CC2
-	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 08:02:41 -0700 (PDT)
-Received: by mail-io0-f169.google.com with SMTP id w94so9055254ioi.7
-	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 08:02:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=EZotzTO3Kn95xsk/jkmzgTJ6YwBqAuJpfkWvWOe7Lts=;
-	b=xdeoFKAVGTG8mr9NMaPbznl1GW7wpKgjzY/bYPyuR86oTdIWtlvmED9YqnbZqJajiY
-	2yLOwW8M5BHDphLCo92ZAhRhkQtJTYvGNfRZICY1i3auFm60xXPSgmMktJtCEP7UgENV
-	0ojtybzg17M1hL55gUkZCbcaAgd2NfSf9qqijzoZne7gaoy7c8jy7HDBThSM0nQm3olk
-	T7l/B6coh/j3FAxAPYQXKCNNYsXWxTYKACIb4hlJAPmhyBm/YQqpkEIt2bj2d/nO5kub
-	418QNp9bJ/GfO5eyecpVLZHx7ua0FpuAPII9as0t/wHReCdejNdRL/xTEk9NZznOaVX4
-	159w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=EZotzTO3Kn95xsk/jkmzgTJ6YwBqAuJpfkWvWOe7Lts=;
-	b=Pt5ZNZrE3L7fhO2+xhWFD3SzyPsX38Vn4zJJoOAcjGolBmyOQO0jEQF/mAx9uoDJLH
-	mGqHl6yz2MZKUkO6C+dGMWx1gPGc5UfPnM1CpYm4grScKSzEPb6LoRAMD2BE4ITeXhUA
-	uc/a2yRKl2aQwYaMporxnBXZe0Y/gkl2o9c72g57A+LR3GC7NraSetyojw7OyjCC5DlX
-	s5Qgsc+bImNDD5kNHwiqFsgkDAt78sXRHJc2oPQ/HJV0eoCgTDYpPyZApWajZafofT7v
-	vGQKImFDPzOYi0gFeiTxni+boSQfcdx3Js/soBhCQnyetUWcInlWp/F/xPysOno7SL3y
-	W6JQ==
-X-Gm-Message-State: AHPjjUhE4wbmeq6lX8HA3sdtRhjwNm/+vhHvUaOCu8zTfBX4n/PwjtaL
-	XaSev4dWJ/s3CtND
-X-Google-Smtp-Source: AOwi7QDCRe7lQ8xkl5kOau4P2BP7MNpfLZW70iJeCvq6PryzBoI8q5LoHCyUvL+/HaCK4rbbZiVuvw==
-X-Received: by 10.202.175.137 with SMTP id y131mr25048934oie.114.1505487761354;
-	Fri, 15 Sep 2017 08:02:41 -0700 (PDT)
-Received: from [172.20.3.38] ([209.116.245.4])
-	by smtp.gmail.com with ESMTPSA id
-	y192sm1022094oie.36.2017.09.15.08.02.40
-	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 15 Sep 2017 08:02:40 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-From: Bill Jenkins <bill@korgrd.com>
-In-Reply-To: <CAMKF1spsgUEMnGTht1z2AO6moLSYuid0ZY2BednYR4pnp5bTvA@mail.gmail.com>
-Date: Fri, 15 Sep 2017 08:02:39 -0700
-Message-Id: <E3B6A24B-9451-416D-A59E-B66326392FAE@korgrd.com>
-References: <995935C6-A0F6-45AE-8526-D1AFE72B3932@korgrd.com>
-	<CAMKF1sr-0KzRp5gao6Ze_FgMxx1sGMnnAN=MhU9dZKgHZDiXcQ@mail.gmail.com>
-	<D0360C9B-BCE0-4335-B0DC-5C43DEB92463@korgrd.com>
-	<CAMKF1spsgUEMnGTht1z2AO6moLSYuid0ZY2BednYR4pnp5bTvA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.3124)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberry-pi] needing newer or patched version of g++
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 487 seconds by postgrey-1.32 at yocto-www;
+	Fri, 15 Sep 2017 08:06:00 PDT
+Received: from smtp1.de.adit-jv.com (smtp1.de.adit-jv.com [62.225.105.245])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B993DE00D81
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 08:06:00 -0700 (PDT)
+Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
+	by smtp1.de.adit-jv.com (Postfix) with ESMTP id 6AAAF3C0194
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 16:57:52 +0200 (CEST)
+Received: from smtp1.de.adit-jv.com ([127.0.0.1])
+	by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id EDrd34m3UFk8 for <yocto@yoctoproject.org>;
+	Fri, 15 Sep 2017 16:57:45 +0200 (CEST)
+Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 955283C004D
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 16:57:45 +0200 (CEST)
+Received: from HI2EXCH01.adit-jv.com ([fe80::69bf:8148:2f13:f289]) by
+	HI2EXCH01.adit-jv.com ([fe80::69bf:8148:2f13:f289%12]) with mapi id
+	14.03.0361.001; Fri, 15 Sep 2017 16:57:45 +0200
+From: "Rajendran, Vignesh (RBEI/ECF3; ADITG/SW2)"
+	<external.vrajendran@de.adit-jv.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: externalsrc: enable sstate for git srctrees based on makefile
+Thread-Index: AdMuMs22RBrourW1TVWYa2mZ65qSeQ==
+Date: Fri, 15 Sep 2017 14:57:44 +0000
+Message-ID: <AA675284509C9741BF10EAC9FAA8BCC25933B7@HI2EXCH01.adit-jv.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.72.92.124]
+MIME-Version: 1.0
+Subject: externalsrc: enable sstate for git srctrees based on makefile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,61 +53,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Sep 2017 15:02:43 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Fri, 15 Sep 2017 15:06:11 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AA675284509C9741BF10EAC9FAA8BCC25933B7HI2EXCH01aditjvco_"
+
+--_000_AA675284509C9741BF10EAC9FAA8BCC25933B7HI2EXCH01aditjvco_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Hi Yocto,
 
-> On Sep 15, 2017, at 7:43 AM, Khem Raj <raj.khem@gmail.com> wrote:
->=20
-> On Fri, Sep 15, 2017 at 7:35 AM, Bill Jenkins <bill@korgrd.com> wrote:
->>=20
->>> On Sep 15, 2017, at 6:54 AM, Khem Raj <raj.khem@gmail.com> wrote:
->>>=20
->>> On Thu, Sep 14, 2017 at 10:14 PM, Bill Jenkins <bill@korgrd.com> =
-wrote:
->>>> After creating an SDK for a 32-bit Raspberry Pi3 target, I ran into =
-the following compiler error when
->>>> compiling an application using the SDK:
->>>>=20
->>>> internal compiler error: Max. number of generated reload insns per =
-insn is achieved (90)
->>>>=20
->>>> It turns out that a patch was submitted for g++ early last year for =
-the above problem,
->>>=20
->>> We need to backport the patch to 6.3.0 and regenerate SDK. If you =
-can
->>> point to patch that will be helpful.
->>=20
->> Thanks Khem, here's a link to the commit:
->>=20
->> =
-https://github.com/gcc-mirror/gcc/commit/4fe01ba94e99e792ebe9da2ccb3b071aa=
-1bac388#diff-af18d9175d034b2b3726f1ddc05fae55
->>=20
->=20
-> OK and which release are you on ?
+I am already aware of sstate never works for externalsrc recipes.
 
-I've been building in the pyro branch. DISTRO_VERSION reports 2.3.2.
+My environment is using externalsrc in recipes for makefile based sources i=
+n git.
 
->=20
->>> but apparently that
->>>> patch is not in the 6.3.0 version within the SDK. When I try to =
-specify a newer version,
->>>> (by using PREFERRED_VERSION_gcc-cross-${TARGET_ARCH}) bitbake =
-reports that only 5.4.0 or 6.3.0
->>>> are available. Any suggestions on how to resolve this? (i.e. is =
-there some way to use a newer g++ or to
->>>> apply the patch?)
->>>>=20
->>>> Thanks,
->>>> Bill
->>>> --
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>=20
+I am aware that the source is not going to change and only builds one time =
+in my production build.
+
+I want to use sstate if nothing has changed in my next build/bitbake.
+
+Is it possible to enable setscene tasks if the source is in git and srctree=
+_hash_files reports nothing has been changed in git srctree?
+https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/externals=
+rc.bbclass#n181
+
+Do I have to consider some other constraints as well?
+
+Thanks in Advance.
+
+Best regards
+
+Vignesh Rajendran
 
 
+
+--_000_AA675284509C9741BF10EAC9FAA8BCC25933B7HI2EXCH01aditjvco_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Yocto,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am already aware of sstate never works for externa=
+lsrc recipes.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">My environment is using externalsrc in recipes for m=
+akefile based sources in git.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am aware that the source is not going to change an=
+d only builds one time in my production build.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I want to use sstate if nothing has changed in my ne=
+xt build/bitbake.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is it possible to enable setscene tasks if the sourc=
+e is in git and srctree_hash_files reports nothing has been changed in git =
+srctree?<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"https://git.yoctoproject.org/cgit/cgit.cg=
+i/poky/tree/meta/classes/externalsrc.bbclass#n181">https://git.yoctoproject=
+.org/cgit/cgit.cgi/poky/tree/meta/classes/externalsrc.bbclass#n181</a><o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Do I have to consider some other constraints as well=
+?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks in Advance.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,&quot;sans-serif&quot;">Best regards</span><span style=3D"font-si=
+ze:8.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><br>
+</span><span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,&quot;s=
+ans-serif&quot;"><br>
+</span><b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&qu=
+ot;sans-serif&quot;">Vignesh Rajendran</span></b><span style=3D"font-size:8=
+.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><br>
+<br>
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_AA675284509C9741BF10EAC9FAA8BCC25933B7HI2EXCH01aditjvco_--
