@@ -1,66 +1,71 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <bill@korgrd.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36B96E00CC1; Fri, 15 Sep 2017 06:56:59 -0700 (PDT)
+	id 6AFC0E00CC2; Fri, 15 Sep 2017 07:35:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.50 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.50 listed in dnsbl.sorbs.net]
-Received: from mail-pg0-f50.google.com (mail-pg0-f50.google.com [74.125.83.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3352E00CAE
-	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 06:56:58 -0700 (PDT)
-Received: by mail-pg0-f50.google.com with SMTP id i130so1558246pgc.3
-	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 06:56:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=swbTvfDw9gTVba7y547bcnvBTEyj+3G3ExAl+vOWpas=;
-	b=IWdOKmc4lijo2+wnTnZ0aqPywM1FFrk4zsMO/GqA8fMjH5Jxd/iNzN8F+0zKDTh2A5
-	LO85nXOfm/D78F7YPCHW6A8G0WMF8hP0cD1PVjZHus6mTwMor6eUVtHhFR/H6vairDgr
-	heR2wCG9s6QdCAcRTEcLjGG3t5MJIS/YZ4Hql8JutG4WfmP9H9tRlUoYftIOtP94j2/U
-	Ehha5kh3KtafaEWYMWvoF7t5a/4m0MuHh+i7RdAfMokoVqGtZTxux2DJYRa61eB3MqTu
-	xDRXY5p1wkSwBqMbFVqyxVeuocPCiZCW2tGbc+gMlfwZ6s7P5Zg8OvRZa4/8vXPshEOG
-	Eqww==
+	*      [209.85.223.169 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EE76E00CAE
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 07:35:49 -0700 (PDT)
+Received: by mail-io0-f169.google.com with SMTP id h66so8817071ioh.11
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 07:35:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=i5fpMN2t6hL6e2SipW6zyh7hAmH8J+5n7De6wGyarJA=;
+	b=RkdgDwBalISUZfe2k8BrGBOUmGm9wH79/jf1A2A79pnApawIDWa6xYwc1rX2w2zzZq
+	k76yfSqb+cA2Mh9M1Lv67otCbbNkNDOQSdRFfn43O81Fp0j23qDNFdtjshfcm5nnFU1m
+	uYN9aCyjx9zVTaI21oCRe8c5lFNXHB6C0JShaefqDmjJbqG3azLAYYRzdyeoAcb2dHAd
+	LEHiwN6UD07huLFf+NSzTjws+Vr5wb4bHmhfuEpTcY14E1AaLf7VUPPx2YMt+Q3rkr8r
+	S6l6jHliZ3ODCKCUdiDh4oKRVlQOoebsmEiWvJHzjOQCgm/+MUCHtXi/coJUjKqmzMI6
+	/73w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=swbTvfDw9gTVba7y547bcnvBTEyj+3G3ExAl+vOWpas=;
-	b=P2rSUj4nUg8CsAxRBkwdGFHQ4kTmGN7jnl8zDJ/N3PdanUiOSYPQFGhlCQKj09CCt6
-	qjrHwqHBYoDNzQB0p/WqwosaCxyNsDPsKtaHnQ2ES0PS8uQmfXEG79XUGjMR/M38OVb0
-	OFCiYfSO1UF3UrqN2hMgYjqVqxndKVL/unmY1scprJ3gpGqhArdpEQWF0FTNz/SD5RCu
-	MGOPZzVOPDbNulBLvV/EdwyaCmsgus4DhrgMohdVSltH6pVEUqq7p1ZSSWIKaLif9wVm
-	HGEU4dp5BzbBw2faXmEsekPX05jgZEp9orbPXSls50z4BrqpprDlCpvuhF/EjgZVx804
-	NzLg==
-X-Gm-Message-State: AHPjjUhx7J+ruSJkxQM7gStlKmNUkaYtuT8IFuPMp81cQULPKRFll+mp
-	pVa2gKkngmdTcgnFUOiir3I2PqK+UjtiFH+2uoA=
-X-Google-Smtp-Source: AOwi7QA9Xtss8Y4xnLaylZDMbKTuHtdCzntI3IDgzUSW+nYekwVnzhuYboNWlSLPM3bQ8jK/QGrhZ4xOfkA6oWCIZ/s=
-X-Received: by 10.84.204.133 with SMTP id b5mr2623704ple.440.1505483818610;
-	Fri, 15 Sep 2017 06:56:58 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.100.149.73 with HTTP; Fri, 15 Sep 2017 06:56:28 -0700 (PDT)
-In-Reply-To: <F134F05EDC574B48AC0E09D6006F7C02@PAULD>
-References: <F134F05EDC574B48AC0E09D6006F7C02@PAULD>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 15 Sep 2017 06:56:28 -0700
-Message-ID: <CAMKF1srh8uxO1qKPjA=oBKfb2M8o+Wd=A8pqFmsVv7VhnipDBw@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=i5fpMN2t6hL6e2SipW6zyh7hAmH8J+5n7De6wGyarJA=;
+	b=fuz2atV0u5iEwnD57ZwPqoiCCPWf7jdiHnm34cDbBDYC56xf5rjHrVWK4RA2iiKqsF
+	3C6TDmtpGwTzEM+JZGI8ErZzvRJJHeLLvRpje0AYzTncWAr0/d+KOq2x8SVTI0iHczFa
+	om1bCXUjBaGqTBxGQ8zEoTjDJoC7SkxXPjx+wtlYsLZOjFVsAOyrNK0mg9Ii9Qal59J9
+	OdLCHz6X3BbPf3dpaTA1FxzjryQZs+EeJiABm5s8OxruZe1fIDM7+h3hP5Wdo+KPyg2u
+	NRDNJ9PDbV5q4/l2+z6XdA+Ew9rx0NKa/86LgWwyM6viy9GCX9p56qD5w+fH8v7l8hcB
+	5gGA==
+X-Gm-Message-State: AHPjjUhRdcUHq4ifjCHctUQIGzDBZM2LFg6l2uGJirp1B4PzVx3JKxwJ
+	Coi9+OGSoKq0l6j/
+X-Google-Smtp-Source: AOwi7QD1yY6+1h0p0JqI5OOvqbQYioZqVid/kPIgnnk+I49e5G90hqrC7jWTcJT0qZEVMLe2qI0SaQ==
+X-Received: by 10.202.0.204 with SMTP id 195mr28438013oia.271.1505486148827;
+	Fri, 15 Sep 2017 07:35:48 -0700 (PDT)
+Received: from [172.20.3.38] ([209.116.245.4])
+	by smtp.gmail.com with ESMTPSA id
+	n139sm1349678oig.10.2017.09.15.07.35.48
+	(version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 15 Sep 2017 07:35:48 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+From: Bill Jenkins <bill@korgrd.com>
+In-Reply-To: <CAMKF1sr-0KzRp5gao6Ze_FgMxx1sGMnnAN=MhU9dZKgHZDiXcQ@mail.gmail.com>
+Date: Fri, 15 Sep 2017 07:35:48 -0700
+Message-Id: <D0360C9B-BCE0-4335-B0DC-5C43DEB92463@korgrd.com>
+References: <995935C6-A0F6-45AE-8526-D1AFE72B3932@korgrd.com>
+	<CAMKF1sr-0KzRp5gao6Ze_FgMxx1sGMnnAN=MhU9dZKgHZDiXcQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.3124)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Morty to Pyro upgrade
+Subject: Re: [meta-raspberry-pi] needing newer or patched version of g++
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,29 +77,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Sep 2017 13:56:59 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 15 Sep 2017 14:35:51 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 14, 2017 at 11:15 PM, Paul D. DeRocco
-<pderocco@ix.netcom.com> wrote:
-> I just upgraded to Pyro, and now I get several Python errors in
-> sstate_sign_package(), complaining there is no module named oe.gpg_sign.
->
-> I reused the Morty sstate-cache. Is that legal, or do I need to nuke it
-> and start over?
 
-its too optimistic to use sstate across releases and I dont think abi is
-guaranteed
+> On Sep 15, 2017, at 6:54 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>=20
+> On Thu, Sep 14, 2017 at 10:14 PM, Bill Jenkins <bill@korgrd.com> =
+wrote:
+>> After creating an SDK for a 32-bit Raspberry Pi3 target, I ran into =
+the following compiler error when
+>> compiling an application using the SDK:
+>>=20
+>> internal compiler error: Max. number of generated reload insns per =
+insn is achieved (90)
+>>=20
+>> It turns out that a patch was submitted for g++ early last year for =
+the above problem,
+>=20
+> We need to backport the patch to 6.3.0 and regenerate SDK. If you can
+> point to patch that will be helpful.
 
->
-> --
->
-> Ciao,               Paul D. DeRocco
-> Paul                mailto:pderocco@ix.netcom.com
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Thanks Khem, here's a link to the commit:
+
+=
+https://github.com/gcc-mirror/gcc/commit/4fe01ba94e99e792ebe9da2ccb3b071aa=
+1bac388#diff-af18d9175d034b2b3726f1ddc05fae55
+
+>=20
+> but apparently that
+>> patch is not in the 6.3.0 version within the SDK. When I try to =
+specify a newer version,
+>> (by using PREFERRED_VERSION_gcc-cross-${TARGET_ARCH}) bitbake reports =
+that only 5.4.0 or 6.3.0
+>> are available. Any suggestions on how to resolve this? (i.e. is there =
+some way to use a newer g++ or to
+>> apply the patch?)
+>>=20
+>> Thanks,
+>> Bill
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
 
