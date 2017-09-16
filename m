@@ -1,68 +1,44 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 50B3DE00C31; Fri, 15 Sep 2017 13:44:45 -0700 (PDT)
+	id AF945E00CF5; Fri, 15 Sep 2017 17:07:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f53.google.com (mail-pg0-f53.google.com [74.125.83.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7BD9E008D2
-	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 13:44:44 -0700 (PDT)
-Received: by mail-pg0-f53.google.com with SMTP id p5so2146529pgn.7
-	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 13:44:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding:content-language;
-	bh=K77JQ1PnzYAKY8gi6r+V/4boq+VcpHFAqh6FpQ6zDF8=;
-	b=obQpx/nX5lP3QPAerrpYD1nUIMbQ/nljTCEFjY8ztc+CUI+MR89Wc0C7T/z29nWGRB
-	ulbGAvfqpMPMD7UpvqExx+WlCE3wYRFP8xqx8NFe4V1UZ+cC7+eCiA2mz6ADcPnBfANB
-	m/DCCh9QWT3GAnk85AgR0Ak14wAY3hfTWQNUW3Mz0K+7c3fYlvODk1nVCxhTDWFK7q4H
-	k2NkB7tH/I9GDXqNaqMn3Vwh/Y3y20tgeNB0/rS6wnvDpYDkRroOV5oSCx/7c18X2GE6
-	oak94SzqnAhaBXyBvyshoT0SCHbWU9C+uuMbsElYBjAPPunTe1OFvsc2cbIQVCwGVC1R
-	/URw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=K77JQ1PnzYAKY8gi6r+V/4boq+VcpHFAqh6FpQ6zDF8=;
-	b=cThUrsDceWS76sszxKoqrugWi0zNObOaCpV4iHYGAHPQ/G68EOIuaDniJxsfSZ3Z6u
-	1G1Ik2HeTLfippZrngBWCeogdnl+v6612VujaSNjS9ZeOZtAGkghTqV0Bp6ZGbfjdDhf
-	I8h7tnoW75vlkLN/pPke+ZgImgTjc38wph7/OWAEkHjadgRJgnzsA80bKKl4YBop4uze
-	ZH5HwcVX2dL6EOybT0uMVFtsr16Ps2TUJdiiyBeXLIGqPeYGjXrAaeKSwJ2TOVBzmyyW
-	oxpEFphI1NgCF/JLLwxVebBR/WK0/+OHnifO60Hp5vdKu2Ck7co18ZRHu6KTRlxQkvVd
-	pdxQ==
-X-Gm-Message-State: AHPjjUgJ92Ilx/irDJUK5Lz95rZ3hX4l0eSc9PAgV6ngHUYZ0mbspGgO
-	6njSLz/KylofMa5TOZkZfw==
-X-Google-Smtp-Source: AOwi7QBpX8kDiVgXdsLtsAMHhxrFVcUc7IbnZZI2zmBAZ9Pb1LSO6H8+MxoGyl/gdpJBV57Xh9epQQ==
-X-Received: by 10.84.234.194 with SMTP id i2mr6380829plt.420.1505508283451;
-	Fri, 15 Sep 2017 13:44:43 -0700 (PDT)
-Received: from ?IPv6:2601:202:4001:9ea0:8059:611f:1111:1f0c?
-	([2601:202:4001:9ea0:8059:611f:1111:1f0c])
-	by smtp.gmail.com with ESMTPSA id
-	j10sm3484486pfj.116.2017.09.15.13.44.41
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 15 Sep 2017 13:44:42 -0700 (PDT)
-To: jackie.huang@windriver.com, yocto@yoctoproject.org
-References: <20170915091720.16948-1-jackie.huang@windriver.com>
-From: akuster <akuster@mvista.com>
-Message-ID: <73773caa-5ec9-ccb2-1350-42b08dd0eacc@mvista.com>
-Date: Fri, 15 Sep 2017 13:44:41 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68FE4E00BBF
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 17:07:58 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v8G07vnl010503
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 15 Sep 2017 17:07:57 -0700 (PDT)
+Received: from ALA-MBC.corp.ad.wrs.com ([169.254.1.180]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0361.001;
+	Fri, 15 Sep 2017 17:07:56 -0700
+From: "Huang, Jie (Jackie)" <Jackie.Huang@windriver.com>
+To: "Ashfield, Bruce" <Bruce.Ashfield@windriver.com>
+Thread-Topic: [yocto] [meta-cloud-services][PATCH] packagegroups: fix
+	invalid license file
+Thread-Index: AQHTLld5gCbD5dcKXUuyN/3OLy1nGaK2orig
+Date: Sat, 16 Sep 2017 00:07:56 +0000
+Message-ID: <1B858668EC6A94408DCA5225FDFA85AA014B8AFBF4@ALA-MBC.corp.ad.wrs.com>
+References: <20170915092729.12501-1-jackie.huang@windriver.com>
+	<68b3a824-be81-8973-0965-1d4ffc82253d@windriver.com>
+In-Reply-To: <68b3a824-be81-8973-0965-1d4ffc82253d@windriver.com>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.224.17.25]
 MIME-Version: 1.0
-In-Reply-To: <20170915091720.16948-1-jackie.huang@windriver.com>
-Subject: Re: [meta-security][PATCH] packagegroups: fix invalid license file
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-cloud-services][PATCH] packagegroups: fix invalid license file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,95 +50,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Sep 2017 20:44:45 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 16 Sep 2017 00:07:59 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
-On 09/15/2017 02:17 AM, jackie.huang@windriver.com wrote:
-> From: Jackie Huang <jackie.huang@windriver.com>
->
-> Use '${COMMON_LICENSE_DIR}/MIT' for MIT License to fix the warning:
->
-> | WARNING: packagegroup-core-security do_populate_lic:
->    ${COREBASE}/LICENSE is not a valid license file, please use
->    '${COMMON_LICENSE_DIR}/MIT' for a MIT License file in LIC_FILES_CHKSUM.
->    This will become an error in the future
->
-> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-
-merged,
-Thanks,
-Armin
-> ---
->   meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb | 2 +-
->   meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb     | 2 +-
->   meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb    | 2 +-
->   meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb    | 2 +-
->   recipes-security/packagegroup/packagegroup-core-security.bb         | 2 +-
->   5 files changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
-> index 2d93aca..3b9d271 100644
-> --- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
-> +++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm-i2c.bb
-> @@ -1,6 +1,6 @@
->   DESCRIPTION = "Security packagegroup for TPM i2c support"
->   LICENSE = "MIT"
-> -LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-> +LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
->                       file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->   
->   inherit packagegroup
-> diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
-> index 2db8521..25126ef 100644
-> --- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
-> +++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm.bb
-> @@ -1,6 +1,6 @@
->   DESCRIPTION = "Security packagegroup for Poky"
->   LICENSE = "MIT"
-> -LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-> +LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
->                       file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->   
->   inherit packagegroup
-> diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-> index 57b0722..13b505f 100644
-> --- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-> +++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-> @@ -1,6 +1,6 @@
->   DESCRIPTION = "Security packagegroup for Poky"
->   LICENSE = "MIT"
-> -LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-> +LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
->                       file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->   
->   inherit packagegroup
-> diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb
-> index f7eee7c..2e9394f 100644
-> --- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb
-> +++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-vtpm.bb
-> @@ -1,6 +1,6 @@
->   DESCRIPTION = "Security packagegroup for Poky"
->   LICENSE = "MIT"
-> -LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-> +LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
->                       file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->   
->   inherit packagegroup
-> diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-security/packagegroup/packagegroup-core-security.bb
-> index cfd7918..6682d29 100644
-> --- a/recipes-security/packagegroup/packagegroup-core-security.bb
-> +++ b/recipes-security/packagegroup/packagegroup-core-security.bb
-> @@ -1,6 +1,6 @@
->   DESCRIPTION = "Security packagegroup for Poky"
->   LICENSE = "MIT"
-> -LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-> +LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
->                       file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
->   
->   inherit packagegroup
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQnJ1Y2UgQXNoZmllbGQg
+W21haWx0bzpicnVjZS5hc2hmaWVsZEB3aW5kcml2ZXIuY29tXQ0KPiBTZW50OiBTYXR1cmRheSwg
+U2VwdGVtYmVyIDE2LCAyMDE3IDAzOjE5DQo+IFRvOiBIdWFuZywgSmllIChKYWNraWUpOyB5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFttZXRhLWNsb3VkLXNl
+cnZpY2VzXVtQQVRDSF0gcGFja2FnZWdyb3VwczogZml4IGludmFsaWQNCj4gbGljZW5zZSBmaWxl
+DQo+IA0KPiB3cm9uZyBtYWlsaW5nIGxpc3QsIGJ1dCBtZXJnZWQgYW55d2F5Lg0KPiANCj4gdXNl
+IHRoZSBtZXRhLXZpcnR1YWxpemF0aW9uIG1haWxpbmcgbGlzdCBmb3IgdGhlc2UuDQoNClRoYW5r
+cywgSSB3aWxsIHNlbmQgdGhlcmUgbmV4dCB0aW1lLg0KDQpUaGFua3MsDQpKYWNraWUNCg0KPiAN
+Cj4gQnJ1Y2UNCj4gDQo+IE9uIDIwMTctMDktMTUgNToyNyBBTSwgamFja2llLmh1YW5nQHdpbmRy
+aXZlci5jb20gd3JvdGU6DQo+ID4gRnJvbTogSmFja2llIEh1YW5nIDxqYWNraWUuaHVhbmdAd2lu
+ZHJpdmVyLmNvbT4NCj4gPg0KPiA+IFVzZSAnJHtDT01NT05fTElDRU5TRV9ESVJ9L01JVCcgZm9y
+IE1JVCBMaWNlbnNlIHRvIGZpeCB0aGUgd2FybmluZzoNCj4gPg0KPiA+IHwgV0FSTklORzogcGFj
+a2FnZWdyb3VwLWNsb3VkLWNvbXB1dGUgZG9fcG9wdWxhdGVfbGljOg0KPiA+ICAgICR7Q09SRUJB
+U0V9L0xJQ0VOU0UgaXMgbm90IGEgdmFsaWQgbGljZW5zZSBmaWxlLCBwbGVhc2UgdXNlDQo+ID4g
+ICAgJyR7Q09NTU9OX0xJQ0VOU0VfRElSfS9NSVQnIGZvciBhIE1JVCBMaWNlbnNlIGZpbGUgaW4N
+Cj4gTElDX0ZJTEVTX0NIS1NVTS4NCj4gPiAgICBUaGlzIHdpbGwgYmVjb21lIGFuIGVycm9yIGlu
+IHRoZSBmdXR1cmUNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEphY2tpZSBIdWFuZyA8amFja2ll
+Lmh1YW5nQHdpbmRyaXZlci5jb20+DQo+ID4gLS0tDQo+ID4gICAuLi4vcmVjaXBlcy1leHRlbmRl
+ZC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jbG91ZC1iZW5jaG1hcmtpbmcuYmINCj4gfCAy
+ICstDQo+ID4gICAuLi4vcmVjaXBlcy1leHRlbmRlZC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91
+cC1jbG91ZC1jb21wdXRlLmJiICAgICAgICB8DQo+IDIgKy0NCj4gPiAgIC4uLi9yZWNpcGVzLWV4
+dGVuZGVkL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWNsb3VkLWNvbnRyb2xsZXIuYmIgICAg
+IHwgMg0KPiArLQ0KPiA+ICAgLi4uL3JlY2lwZXMtZXh0ZW5kZWQvcGFja2FnZWdyb3Vwcy9wYWNr
+YWdlZ3JvdXAtY2xvdWQtZGVidWcuYmIgICAgICAgICAgfCAyDQo+ICstDQo+ID4gICAuLi4vcmVj
+aXBlcy1leHRlbmRlZC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jbG91ZC1leHRyYXMuYmIg
+ICAgICAgICB8IDINCj4gKy0NCj4gPiAgIC4uLi9yZWNpcGVzLWV4dGVuZGVkL3BhY2thZ2Vncm91
+cHMvcGFja2FnZWdyb3VwLWNsb3VkLW5ldHdvcmsuYmIgICAgICAgIHwgMg0KPiArLQ0KPiA+ICAg
+NiBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pDQo+ID4NCj4g
+PiBkaWZmIC0tZ2l0IGEvbWV0YS1vcGVuc3RhY2svcmVjaXBlcy1leHRlbmRlZC9wYWNrYWdlZ3Jv
+dXBzL3BhY2thZ2Vncm91cC0NCj4gY2xvdWQtYmVuY2htYXJraW5nLmJiIGIvbWV0YS1vcGVuc3Rh
+Y2svcmVjaXBlcy0NCj4gZXh0ZW5kZWQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY2xvdWQt
+YmVuY2htYXJraW5nLmJiDQo+ID4gaW5kZXggNjMxMGI4Zi4uZTY1OWMzMSAxMDA2NDQNCj4gPiAt
+LS0gYS9tZXRhLW9wZW5zdGFjay9yZWNpcGVzLWV4dGVuZGVkL3BhY2thZ2Vncm91cHMvcGFja2Fn
+ZWdyb3VwLWNsb3VkLQ0KPiBiZW5jaG1hcmtpbmcuYmINCj4gPiArKysgYi9tZXRhLW9wZW5zdGFj
+ay9yZWNpcGVzLWV4dGVuZGVkL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLQ0KPiBjbG91ZC1i
+ZW5jaG1hcmtpbmcuYmINCj4gPiBAQCAtMSw3ICsxLDcgQEANCj4gPiAgIFNVTU1BUlkgPSAiQWRk
+IGJlbmNobWFya2luZyBjYXBhYmlsaXRpZXMgdG8gY2xvdWQgaW1hZ2VzIg0KPiA+ICAgUFIgPSAi
+cjAiDQo+ID4gICBMSUNFTlNFID0gIk1JVCINCj4gPiAtTElDX0ZJTEVTX0NIS1NVTSA9DQo+ICJm
+aWxlOi8vJHtDT1JFQkFTRX0vTElDRU5TRTttZDU9NGQ5MmNkMzczYWJkYTM5MzdjMmJjNDdmYmM0
+OWQ2OTAgXA0KPiA+ICtMSUNfRklMRVNfQ0hLU1VNID0NCj4gImZpbGU6Ly8ke0NPTU1PTl9MSUNF
+TlNFX0RJUn0vTUlUO21kNT0wODM1YWRlNjk4ZTBiY2Y4NTA2ZWNkYTJmN2I0Zg0KPiAzMDIgXA0K
+PiA+DQo+IGZpbGU6Ly8ke0NPUkVCQVNFfS9tZXRhL0NPUFlJTkcuTUlUO21kNT0zZGE5Y2ZiY2I3
+ODhjODBhMDM4NDM2MWI0ZGUyDQo+IDA0MjAiDQo+ID4NCj4gPiAgIGluaGVyaXQgcGFja2FnZWdy
+b3VwDQo+ID4gZGlmZiAtLWdpdCBhL21ldGEtb3BlbnN0YWNrL3JlY2lwZXMtZXh0ZW5kZWQvcGFj
+a2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtDQo+IGNsb3VkLWNvbXB1dGUuYmIgYi9tZXRhLW9wZW5z
+dGFjay9yZWNpcGVzLQ0KPiBleHRlbmRlZC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jbG91
+ZC1jb21wdXRlLmJiDQo+ID4gaW5kZXggMjFmOGYxMC4uMmU5NDQ2ZCAxMDA2NDQNCj4gPiAtLS0g
+YS9tZXRhLW9wZW5zdGFjay9yZWNpcGVzLWV4dGVuZGVkL3BhY2thZ2Vncm91cHMvcGFja2FnZWdy
+b3VwLWNsb3VkLQ0KPiBjb21wdXRlLmJiDQo+ID4gKysrIGIvbWV0YS1vcGVuc3RhY2svcmVjaXBl
+cy1leHRlbmRlZC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC0NCj4gY2xvdWQtY29tcHV0ZS5i
+Yg0KPiA+IEBAIC0xLDcgKzEsNyBAQA0KPiA+ICAgU1VNTUFSWSA9ICJDb25maWd1cmF0aW9uIGZv
+ciBPcGVuU3RhY2sgQ29tcHV0ZSBub2RlIg0KPiA+ICAgUFIgPSAicjAiDQo+ID4gICBMSUNFTlNF
+ID0gIk1JVCINCj4gPiAtTElDX0ZJTEVTX0NIS1NVTSA9DQo+ICJmaWxlOi8vJHtDT1JFQkFTRX0v
+TElDRU5TRTttZDU9NGQ5MmNkMzczYWJkYTM5MzdjMmJjNDdmYmM0OWQ2OTAgXA0KPiA+ICtMSUNf
+RklMRVNfQ0hLU1VNID0NCj4gImZpbGU6Ly8ke0NPTU1PTl9MSUNFTlNFX0RJUn0vTUlUO21kNT0w
+ODM1YWRlNjk4ZTBiY2Y4NTA2ZWNkYTJmN2I0Zg0KPiAzMDIgXA0KPiA+DQo+IGZpbGU6Ly8ke0NP
+UkVCQVNFfS9tZXRhL0NPUFlJTkcuTUlUO21kNT0zZGE5Y2ZiY2I3ODhjODBhMDM4NDM2MWI0ZGUy
+DQo+IDA0MjAiDQo+ID4NCj4gPiAgIGluaGVyaXQgcGFja2FnZWdyb3VwDQo+ID4gZGlmZiAtLWdp
+dCBhL21ldGEtb3BlbnN0YWNrL3JlY2lwZXMtZXh0ZW5kZWQvcGFja2FnZWdyb3Vwcy9wYWNrYWdl
+Z3JvdXAtDQo+IGNsb3VkLWNvbnRyb2xsZXIuYmIgYi9tZXRhLW9wZW5zdGFjay9yZWNpcGVzLQ0K
+PiBleHRlbmRlZC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jbG91ZC1jb250cm9sbGVyLmJi
+DQo+ID4gaW5kZXggZjE3MjgzOS4uMWYwYThkZSAxMDA2NDQNCj4gPiAtLS0gYS9tZXRhLW9wZW5z
+dGFjay9yZWNpcGVzLWV4dGVuZGVkL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWNsb3VkLQ0K
+PiBjb250cm9sbGVyLmJiDQo+ID4gKysrIGIvbWV0YS1vcGVuc3RhY2svcmVjaXBlcy1leHRlbmRl
+ZC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC0NCj4gY2xvdWQtY29udHJvbGxlci5iYg0KPiA+
+IEBAIC0xLDcgKzEsNyBAQA0KPiA+ICAgU1VNTUFSWSA9ICJDb25maWd1cmF0aW9uIGZvciBPcGVu
+U3RhY2sgQ29udHJvbGxlciBub2RlIg0KPiA+ICAgUFIgPSAicjAiDQo+ID4gICBMSUNFTlNFID0g
+Ik1JVCINCj4gPiAtTElDX0ZJTEVTX0NIS1NVTSA9DQo+ICJmaWxlOi8vJHtDT1JFQkFTRX0vTElD
+RU5TRTttZDU9NGQ5MmNkMzczYWJkYTM5MzdjMmJjNDdmYmM0OWQ2OTAgXA0KPiA+ICtMSUNfRklM
+RVNfQ0hLU1VNID0NCj4gImZpbGU6Ly8ke0NPTU1PTl9MSUNFTlNFX0RJUn0vTUlUO21kNT0wODM1
+YWRlNjk4ZTBiY2Y4NTA2ZWNkYTJmN2I0Zg0KPiAzMDIgXA0KPiA+DQo+IGZpbGU6Ly8ke0NPUkVC
+QVNFfS9tZXRhL0NPUFlJTkcuTUlUO21kNT0zZGE5Y2ZiY2I3ODhjODBhMDM4NDM2MWI0ZGUyDQo+
+IDA0MjAiDQo+ID4NCj4gPiAgIGluaGVyaXQgcGFja2FnZWdyb3VwDQo+ID4gZGlmZiAtLWdpdCBh
+L21ldGEtb3BlbnN0YWNrL3JlY2lwZXMtZXh0ZW5kZWQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3Jv
+dXAtDQo+IGNsb3VkLWRlYnVnLmJiIGIvbWV0YS1vcGVuc3RhY2svcmVjaXBlcy0NCj4gZXh0ZW5k
+ZWQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY2xvdWQtZGVidWcuYmINCj4gPiBpbmRleCBl
+NTUxN2QyLi5mZWNiZGM2IDEwMDY0NA0KPiA+IC0tLSBhL21ldGEtb3BlbnN0YWNrL3JlY2lwZXMt
+ZXh0ZW5kZWQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtY2xvdWQtDQo+IGRlYnVnLmJiDQo+
+ID4gKysrIGIvbWV0YS1vcGVuc3RhY2svcmVjaXBlcy1leHRlbmRlZC9wYWNrYWdlZ3JvdXBzL3Bh
+Y2thZ2Vncm91cC0NCj4gY2xvdWQtZGVidWcuYmINCj4gPiBAQCAtMSw3ICsxLDcgQEANCj4gPiAg
+IFNVTU1BUlkgPSAiQWRkIGRlYnVnZ2luZyBjYXBhYmlsaXRpZXMgdG8gY2xvdWQgaW1hZ2VzIg0K
+PiA+ICAgUFIgPSAicjAiDQo+ID4gICBMSUNFTlNFID0gIk1JVCINCj4gPiAtTElDX0ZJTEVTX0NI
+S1NVTSA9DQo+ICJmaWxlOi8vJHtDT1JFQkFTRX0vTElDRU5TRTttZDU9NGQ5MmNkMzczYWJkYTM5
+MzdjMmJjNDdmYmM0OWQ2OTAgXA0KPiA+ICtMSUNfRklMRVNfQ0hLU1VNID0NCj4gImZpbGU6Ly8k
+e0NPTU1PTl9MSUNFTlNFX0RJUn0vTUlUO21kNT0wODM1YWRlNjk4ZTBiY2Y4NTA2ZWNkYTJmN2I0
+Zg0KPiAzMDIgXA0KPiA+DQo+IGZpbGU6Ly8ke0NPUkVCQVNFfS9tZXRhL0NPUFlJTkcuTUlUO21k
+NT0zZGE5Y2ZiY2I3ODhjODBhMDM4NDM2MWI0ZGUyDQo+IDA0MjAiDQo+ID4NCj4gPiAgIGluaGVy
+aXQgcGFja2FnZWdyb3VwDQo+ID4gZGlmZiAtLWdpdCBhL21ldGEtb3BlbnN0YWNrL3JlY2lwZXMt
+ZXh0ZW5kZWQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtDQo+IGNsb3VkLWV4dHJhcy5iYiBi
+L21ldGEtb3BlbnN0YWNrL3JlY2lwZXMtDQo+IGV4dGVuZGVkL3BhY2thZ2Vncm91cHMvcGFja2Fn
+ZWdyb3VwLWNsb3VkLWV4dHJhcy5iYg0KPiA+IGluZGV4IDZmYjYwNDUuLjkyNzM5MTYgMTAwNjQ0
+DQo+ID4gLS0tIGEvbWV0YS1vcGVuc3RhY2svcmVjaXBlcy1leHRlbmRlZC9wYWNrYWdlZ3JvdXBz
+L3BhY2thZ2Vncm91cC1jbG91ZC0NCj4gZXh0cmFzLmJiDQo+ID4gKysrIGIvbWV0YS1vcGVuc3Rh
+Y2svcmVjaXBlcy1leHRlbmRlZC9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC0NCj4gY2xvdWQt
+ZXh0cmFzLmJiDQo+ID4gQEAgLTEsNyArMSw3IEBADQo+ID4gICBTVU1NQVJZID0gIkV4dHJhIHBh
+Y2thZ2VzIHRoYXQgaW1wcm92ZSB0aGUgdXNhYmlsaXR5IG9mIGNvbXB1dGUvY29udHJvbA0KPiBu
+b2RlcyINCj4gPiAgIFBSID0gInIwIg0KPiA+ICAgTElDRU5TRSA9ICJNSVQiDQo+ID4gLUxJQ19G
+SUxFU19DSEtTVU0gPQ0KPiAiZmlsZTovLyR7Q09SRUJBU0V9L0xJQ0VOU0U7bWQ1PTRkOTJjZDM3
+M2FiZGEzOTM3YzJiYzQ3ZmJjNDlkNjkwIFwNCj4gPiArTElDX0ZJTEVTX0NIS1NVTSA9DQo+ICJm
+aWxlOi8vJHtDT01NT05fTElDRU5TRV9ESVJ9L01JVDttZDU9MDgzNWFkZTY5OGUwYmNmODUwNmVj
+ZGEyZjdiNGYNCj4gMzAyIFwNCj4gPg0KPiBmaWxlOi8vJHtDT1JFQkFTRX0vbWV0YS9DT1BZSU5H
+Lk1JVDttZDU9M2RhOWNmYmNiNzg4YzgwYTAzODQzNjFiNGRlMg0KPiAwNDIwIg0KPiA+DQo+ID4g
+ICBpbmhlcml0IHBhY2thZ2Vncm91cA0KPiA+IGRpZmYgLS1naXQgYS9tZXRhLW9wZW5zdGFjay9y
+ZWNpcGVzLWV4dGVuZGVkL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLQ0KPiBjbG91ZC1uZXR3
+b3JrLmJiIGIvbWV0YS1vcGVuc3RhY2svcmVjaXBlcy0NCj4gZXh0ZW5kZWQvcGFja2FnZWdyb3Vw
+cy9wYWNrYWdlZ3JvdXAtY2xvdWQtbmV0d29yay5iYg0KPiA+IGluZGV4IGY1YjA3YTIuLjc0OWE5
+OWYgMTAwNjQ0DQo+ID4gLS0tIGEvbWV0YS1vcGVuc3RhY2svcmVjaXBlcy1leHRlbmRlZC9wYWNr
+YWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1jbG91ZC0NCj4gbmV0d29yay5iYg0KPiA+ICsrKyBiL21l
+dGEtb3BlbnN0YWNrL3JlY2lwZXMtZXh0ZW5kZWQvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAt
+DQo+IGNsb3VkLW5ldHdvcmsuYmINCj4gPiBAQCAtMSw3ICsxLDcgQEANCj4gPiAgIFNVTU1BUlkg
+PSAiQ29uZmlndXJhdGlvbiBmb3IgT3BlblN0YWNrIE5ldHdvcmsgbm9kZSINCj4gPiAgIFBSID0g
+InIwIg0KPiA+ICAgTElDRU5TRSA9ICJNSVQiDQo+ID4gLUxJQ19GSUxFU19DSEtTVU0gPQ0KPiAi
+ZmlsZTovLyR7Q09SRUJBU0V9L0xJQ0VOU0U7bWQ1PTRkOTJjZDM3M2FiZGEzOTM3YzJiYzQ3ZmJj
+NDlkNjkwIFwNCj4gPiArTElDX0ZJTEVTX0NIS1NVTSA9DQo+ICJmaWxlOi8vJHtDT01NT05fTElD
+RU5TRV9ESVJ9L01JVDttZDU9MDgzNWFkZTY5OGUwYmNmODUwNmVjZGEyZjdiNGYNCj4gMzAyIFwN
+Cj4gPg0KPiBmaWxlOi8vJHtDT1JFQkFTRX0vbWV0YS9DT1BZSU5HLk1JVDttZDU9M2RhOWNmYmNi
+Nzg4YzgwYTAzODQzNjFiNGRlMg0KPiAwNDIwIg0KPiA+DQo+ID4gICBpbmhlcml0IHBhY2thZ2Vn
+cm91cA0KPiA+DQoNCg==
 
