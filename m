@@ -1,42 +1,65 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2B13E00CBA; Mon, 18 Sep 2017 00:47:47 -0700 (PDT)
+	id 6F5C2E00CB0; Mon, 18 Sep 2017 01:50:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.171 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6FFCE00C82
-	for <yocto@yoctoproject.org>; Mon, 18 Sep 2017 00:47:46 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v8I7lhTg020116
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Mon, 18 Sep 2017 00:47:43 -0700
-Received: from [128.224.162.147] (128.224.162.147) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Mon, 18 Sep 2017 00:47:42 -0700
-To: Mark Hatle <mark.hatle@windriver.com>, Chanho Park <parkch98@gmail.com>,
-	<yocto@yoctoproject.org>
-References: <20170905055958.54697-1-wenzong.fan@windriver.com>
-	<20170905055958.54697-4-wenzong.fan@windriver.com>
-	<CAPTzV14TtSer1QRZ+5fEiSCUjXiqb4VF9pSuCmNQ5-HUC1Adag@mail.gmail.com>
-	<1f2a8ebb-bc8c-6e26-3381-8df2b043b387@windriver.com>
-	<d03d0a77-16e4-1e98-1d5b-17c60bafea02@windriver.com>
-	<cd1182f7-3a69-e174-e142-d5b06bf2ebd4@windriver.com>
-	<1c944366-3583-25ca-3b8c-b2a64a93bcf5@windriver.com>
-	<a97d935a-6057-94ae-9108-58c4a9c91860@windriver.com>
-From: wenzong fan <wenzong.fan@windriver.com>
-Message-ID: <e2e640d0-6339-c800-b3b6-ade8c4c37081@windriver.com>
-Date: Mon, 18 Sep 2017 15:48:17 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f171.google.com (mail-io0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCA99E00C82
+	for <yocto@yoctoproject.org>; Mon, 18 Sep 2017 01:50:40 -0700 (PDT)
+Received: by mail-io0-f171.google.com with SMTP id 21so402209iof.6
+	for <yocto@yoctoproject.org>; Mon, 18 Sep 2017 01:50:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=x3pbzlHZ4bTFQ6IC24xnZ6W9y4zpAE6zDTCfdeO3hKQ=;
+	b=kZLGfMVVNVBl/detGbYSlPeG2udgaVy0pTD0UNUOthTJkjYj0Kw9txX2lorPhUEEC/
+	Z0u5IuRKM9SDBwh/2XHQRe/+F0o6yd87oVjeKZR+WCWCA3E7JMMklbNpRNc+Rwtud81n
+	7Y3A7a89yEkejemdls0pGK+2o4v8+UPP/A7Sf08sykbjOVcCUUUV+Ad/OB5qqeT6rBk1
+	qpDVKxVigHcE8X1onGXPw08Gm0/gryvIIMoLVQHBlozmKyOB3XFC1GkmAK5FBn70p8n6
+	JK3l0jEaYt8iUyDnyeMTlV3GCPgkJGEeveCNOCcpWlN/c+lk300fgl6OMX7ZmpHjv49Z
+	TtsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=x3pbzlHZ4bTFQ6IC24xnZ6W9y4zpAE6zDTCfdeO3hKQ=;
+	b=ckKEO83wiljMmogXkb8CyPsO/7oJRLht63h1aveN48qyGGegxYRZ5U1S5txHVQhCzw
+	pXsUhewrw1y4fvUW1bxv0TtJXAaPRx9rx27HLpLYScqncyCdYhHYzjgys6zznLWnMcHd
+	/HfqKkEykKjOlTiV0j0kfj6omy6P7I+BuILlYNmyXEkFlTEPw6MhflY3MJnHVLVlaEAS
+	AeAacF6vWnlgxZh+zK/x4cLQRuLUBKaCfWukHUUq4vQ4ybc+Tq/vzV2+xpkXsVDgHabQ
+	C3TyshmRWlC6+tSAztww7LAlIl3JXlGrtPTJvtNPLpuOzyAP/ju6UhDWg58mOKztLs5d
+	X6Nw==
+X-Gm-Message-State: AHPjjUha0qMWw8pZtE4TcJVQopCELFTE7AdPANVDZdYhWI4udUIva8bO
+	t2qZxq3qastsHbtY1SB2yh9T+QVyl2QmIpea/PJKPQ==
+X-Google-Smtp-Source: AOwi7QBJf3NiKmS8f5mQiYQjZCpVtveEHN+UibW773Rd8JLJ/yJZ433x5MVX8ZPC4W2pfWVk0kLTgLXuvs/0H0oyZiw=
+X-Received: by 10.107.133.92 with SMTP id h89mr16967829iod.208.1505724639944; 
+	Mon, 18 Sep 2017 01:50:39 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <a97d935a-6057-94ae-9108-58c4a9c91860@windriver.com>
-Subject: Re: [meta-selinux][PATCH 04/21] libsemanage: uprev to 2.7 (20170804)
+Received: by 10.107.19.68 with HTTP; Mon, 18 Sep 2017 01:50:19 -0700 (PDT)
+In-Reply-To: <3D8D4134BBBF450586E55FD9CF1E9B71@PAULD>
+References: <3D8D4134BBBF450586E55FD9CF1E9B71@PAULD>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 18 Sep 2017 09:50:19 +0100
+Message-ID: <CAJTo0LaWOOp7c_MtuwAYQtBgkWnHh88iMy+9pJuriDAsbD4gMw@mail.gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can't find Python oe package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,179 +71,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Sep 2017 07:47:47 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 18 Sep 2017 08:50:41 -0000
+Content-Type: multipart/alternative; boundary="001a113ff7d04b3ad8055972d6df"
 
+--001a113ff7d04b3ad8055972d6df
+Content-Type: text/plain; charset="UTF-8"
 
+Aah. There was a very weird bug where py3 was dropping .pyc files around
+that was upsetting py2.  The solution is not pretty and it only impacts
+people who downgrade in a git repo.
 
-On 09/14/2017 09:33 PM, Mark Hatle wrote:
-> On 9/14/17 5:31 AM, wenzong fan wrote:
->>
->>
->> On 09/14/2017 08:07 AM, Mark Hatle wrote:
->>> On 9/12/17 9:19 PM, Mark Hatle wrote:
->>>> On 9/12/17 9:06 PM, wenzong fan wrote:
->>>>> On 09/12/2017 06:59 PM, Chanho Park wrote:
->>>>>> Hi,
->>>>>>
->>>>>> I can't apply this patch on top of the master branch. Which revision did
->>>>>> you make the patches?
->>>>>
->>>>> Oops, that's my fault. I did a "sed -i -e 's/Subject: [/Subject:
->>>>> [meta-selinux][/g' 00*" to add prefix for mail subjects, that also
->>>>> changed the removed patch files in libsemanage.
->>>>>
->>>>> I'll send v2.
->>>>>
->>>>> Thanks
->>>>> Wenzong
->>>>
->>>> I don't see the original set of patches in my archives.  When you rebase, please
->>>> rebase on top of mgh/master-next.
->>>
->>> My mailer finally loaded the original set.  I saw the same problems, but was
->>> able to get them merged.
->>>
->>> I have updated 'mgh/master-next'.  Please verify the contents include all of
->>> your changes.
->>
->> All my changes are there now.
->>
->>>
->>> I tried to build a system and boot it, but it didn't work.  I'm guessing I
->>> forgot something simple, but I can't make master-next into master without
->>> knowing I can boot..  Any clue would be useful.  Thanks!
->>>
->>>
->>> My configuration is:
->>>
->>> bblayers.conf:
->>>
->>> oe-core (master) & meta-selinux (mgh/master-next)
->>>
->>>
->>> local.conf:
->>>
->>> IMAGE_FEATURES_append = " debug-tweaks ssh-server-openssh"
->>>
->>> DISTRO_FEATURES_append = " opengl x11 wayland acl xattr pam selinux"
->>>
->>> PREFERRED_PROVIDER_virtual/refpolicy = "refpolicy-mls"
->>> PREFERRED_VERSION_refpolicy-mls = "2.20170204"
->>
->> Above configs are OK, you can simply use:
->>
->> DISTRO = "poky-selinux"
->> PREFERRED_VERSION_refpolicy-mls ?= "2.20170204"
-> 
-> The DISTRO settings in meta-selinux are being removed (they are no longer in the
-> master-next branch).  Instead the user will be required to set the
-> DISTRO_FEATURE 'selinux' to enable the components.  (It is expected they will
-> also enable acl/xattr and pam.)
-> 
->>>
->>>
->>> I ran QEMU using:
->>>
->>>
->>> runqemu qemux86 core-image-selinux ext4 nographic
->>>
->>>
->>
->> Please run QEMU with:
->>
->> $ runqemu qemux86 core-image-selinux ext4 nographic
->> bootparams="selinux=1 enforcing=0"
-> 
-> 
-> 
->>>
->>> Trying to login I get:
->>>
->>> qemux86 login: root
->>> [   23.960609] kauditd_printk_skb: 13 callbacks suppressed
->>> Cannot execute /bin/sh: Permission denied
->>> [   23.973922] audit: type=1400 audit(1505347190.805:29): avc:  denied  {
->>> execute } for  pid=671 comm="login" name="bash.bash" dev="vda" ino=8163
->>> scontext=system_u:system_r:local_login_t:s0-s15:c0.c1023
->>> tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0
->>> [   23.975463] audit: type=1400 audit(1505347190.813:30): avc:  denied  {
->>> execute } for  pid=671 comm="login" name="bash.bash" dev="vda" ino=8163
->>> scontext=system_u:system_r:local_login_t:s0-s15:c0.c1023
->>> tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0
->>>
->>>
->>
->> This should be blocked by refpolicy-mls, please boot with "selinux=1
->> enforcing=0" to verify if SELinux tools work. For example:
-> 
-> I would like to update the README file for the layer on how the user can
-> actually make a bootable system.  If this involves adding a user, that is fine.
-> But at present there is no way to login w/o turning off enforcing.  That seems
-> to defeat the purpose of enabling selinux in a design.
+A fresh clone should solve it, or do git clean -Xn to list files that git
+is ignoring and can be deleted (just -X will delete) them.  I suspect
+they'll be a load of .pyc files in meta/lib/oe/ and Py2 can't import them
+(because this is another instance of where the py2/py3 migration was a
+disaster).
 
-This is really an issue, I'll fix it.
+Ross
 
-Thanks
-Wenzong
+On 18 September 2017 at 02:16, Paul D. DeRocco <pderocco@ix.netcom.com>
+wrote:
 
-> 
-> So any help you can give me for the documentation would be appreciated.
-> 
->> $ sestatus
-> 
-> root@qemux86:~# sestatus
-> SELinux status:                 enabled
-> SELinuxfs mount:                /sys/fs/selinux
-> SELinux root directory:         /etc/selinux
-> Loaded policy name:             mls
-> Current mode:                   permissive
-> Mode from config file:          enforcing
-> Policy MLS status:              enabled
-> Policy deny_unknown status:     allowed
-> Memory protection checking:     requested (insecure)
-> Max kernel policy version:      30
-> 
->> OR:
->> $ semanage login -l
-> 
-> root@qemux86:~# semanage login -l
-> 
-> Login Name           SELinux User         MLS/MCS Range        Service
-> 
-> __default__          user_u               s0-s0                *
-> root                 root                 s0-s15:c0.c1023      *
-> 
-> (I followed the information below and enabled the python components.)
-> 
->> Actually this doesn't work since runtime dependencies, I commented off
->> this from setools_4.1.1.bb:
->>
->> # TODO: depends on meta-python, disable the RDEPENDS for now:
->> # RDEPENDS_${PN} += "python-networkx python-enum34 python-decorator
->> python-setuptools"
->>
->> For community， we need to discuss if we can get meta-selinux depend on
->> meta-python by default? Or just get users to do that?
-> 
-> Yes, we can add a requirement for meta-python.  I just need to clearly document
-> in the commit message why it is there.
-> 
-> I will work to update the mgh/master-next with the meta-python items and some of
-> the information above...
-> 
-> --Mark
-> 
->> Thanks
->> Wenzong
->>
->>>
->>>> --Mark
->>>>
->>>
->>>
-> 
-> 
+> I thought this was a morty->pyro upgrade issue, but trying morty again, on
+> a freshly installed Ubuntu system, didn't change anything. In
+> meta/classes/patch.bbclass, patch_do_patch() is barfing when it tries to
+> import oe.patch. I carefully reinstalled poky, meta-intel, and
+> meta-openembedded from git, and I get this error, and a bunch more related
+> to the oe package. The package is there, in poky/meta/lib/oe, so why isn't
+> it being found? Am I supposed to have a non-empty PYTHONPATH somehow? What
+> kind of misconfiguration could cause this? This worked on morty before I
+> had to do a fresh Ubuntu install, so I doubt it's anything in my own
+> simple layers.
+>
+> --
+>
+> Ciao,               Paul D. DeRocco
+> Paul                mailto:pderocco@ix.netcom.com
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
+--001a113ff7d04b3ad8055972d6df
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Aah. There was a very weird bug where py3 was dropping .py=
+c files around that was upsetting py2.=C2=A0 The solution is not pretty and=
+ it only impacts people who downgrade in a git repo.<div><br></div><div>A f=
+resh clone should solve it, or do git clean -Xn to list files that git is i=
+gnoring and can be deleted (just -X will delete) them.=C2=A0 I suspect they=
+&#39;ll be a load of .pyc files in meta/lib/oe/ and Py2 can&#39;t import th=
+em (because this is another instance of where the py2/py3 migration was a d=
+isaster).</div><div><br></div><div>Ross</div></div><div class=3D"gmail_extr=
+a"><br><div class=3D"gmail_quote">On 18 September 2017 at 02:16, Paul D. De=
+Rocco <span dir=3D"ltr">&lt;<a href=3D"mailto:pderocco@ix.netcom.com" targe=
+t=3D"_blank">pderocco@ix.netcom.com</a>&gt;</span> wrote:<br><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex">I thought this was a morty-&gt;pyro upgrade issue, but try=
+ing morty again, on<br>
+a freshly installed Ubuntu system, didn&#39;t change anything. In<br>
+meta/classes/patch.bbclass, patch_do_patch() is barfing when it tries to<br=
+>
+import oe.patch. I carefully reinstalled poky, meta-intel, and<br>
+meta-openembedded from git, and I get this error, and a bunch more related<=
+br>
+to the oe package. The package is there, in poky/meta/lib/oe, so why isn&#3=
+9;t<br>
+it being found? Am I supposed to have a non-empty PYTHONPATH somehow? What<=
+br>
+kind of misconfiguration could cause this? This worked on morty before I<br=
+>
+had to do a fresh Ubuntu install, so I doubt it&#39;s anything in my own<br=
+>
+simple layers.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+<br>
+Ciao,=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Paul D. DeRocco=
+<br>
+Paul=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 mailto:<a href=
+=3D"mailto:pderocco@ix.netcom.com">pderocco@ix.netcom.com</a><br>
+<br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br></div>
+
+--001a113ff7d04b3ad8055972d6df--
