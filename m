@@ -1,26 +1,66 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AC57E00CBA; Sun, 17 Sep 2017 21:00:51 -0700 (PDT)
+	id 8FBC7E00CBA; Sun, 17 Sep 2017 22:41:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.67 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D2D3E00C82
-	for <yocto@yoctoproject.org>; Sun, 17 Sep 2017 21:00:50 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id F2D1084C3F57
-	for <yocto@yoctoproject.org>; Mon, 18 Sep 2017 00:00:49 -0400 (EDT)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.67 listed in dnsbl.sorbs.net]
+Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0234AE00C82
+	for <yocto@yoctoproject.org>; Sun, 17 Sep 2017 22:41:48 -0700 (PDT)
+Received: by mail-pg0-f67.google.com with SMTP id v82so4746412pgb.1
+	for <yocto@yoctoproject.org>; Sun, 17 Sep 2017 22:41:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=BiGpraAUOaHaixHMhR8XWvC1X2QkYYf7G7GJ1mrr+JM=;
+	b=TYlGV3UKZAcmsRxFrW5tmR2qL22CLsmk7rWxQ8Xh5jOrTVhs2UVRPHRDwaHqc3tYe5
+	D5+eoBVf9+CDxbrF0Xt0IIBE+TyDjAc0pIdJ+YoxzFGgU9+J1hhsYEVSuQpgj5sOTsqU
+	czrYlUyz7KCqaQihVNLkxLtsp4AvPjltxbt1sTBtzbpw6vVuTdEa0147CtXprTdzYC1k
+	QWTa6uX2vhBwru6jLQ4SyvyQHSiCH+cs81P0dIB17NYnYrP7aZRRDV/l5U1It+pDjEth
+	hviKAxF8MQPHegoltiZZXWhpQq53mG31S7dZ0pPXc+R2dD8rClLf4utDRwQKzNA4dxCG
+	mUhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=BiGpraAUOaHaixHMhR8XWvC1X2QkYYf7G7GJ1mrr+JM=;
+	b=CJ2U0PxncaQ6dhddWysWHbmwIaplgzFvmM+M4rOW95PcvTzEdXxwprZ8FfL3SJmmsN
+	SKhvlm/dlbc5IJNwF1U36ZDHwpZFPlaLfQ90F367UgHyx+mtm7NYGRg5Nx5zDBoKGX/C
+	oleASzAEdPkAAt4/sEjGlMu6I8mZyfwLM+CStGAQ2HRulyjw0XyDnX1l/tfOZdU/r7PL
+	6Cw8Tqg2m+nOk48p83r1NBy3TJqoddO9uW+6JilOdyGXzrhy++GrujwYDnWHGDQr6mqC
+	ue6YRk0SqlFrrgrP1kDlN7kbxIAfti9bD8SAvPxwNKOC7VtqKltB3xiZ2tFF1m7qhonL
+	ThXQ==
+X-Gm-Message-State: AHPjjUgwi9oZNMzbkHo4i/UxOSbvk228Op057UVS0nMvOSEiN0arER4z
+	fcMTz4ACcsLMzJNQ
+X-Google-Smtp-Source: ADKCNb4TIsMt7GMgqfu39AIy/CWbyfLsAfQCGElbq7xpmNn8Yc7y3y0JIIBtpRVL1jfBKW8Ko3V1fA==
+X-Received: by 10.99.119.5 with SMTP id s5mr32506054pgc.344.1505713308065;
+	Sun, 17 Sep 2017 22:41:48 -0700 (PDT)
+Received: from localhost.localdomain ([2601:646:8882:b8c::a20b])
+	by smtp.gmail.com with ESMTPSA id
+	h186sm11406591pge.72.2017.09.17.22.41.47
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 17 Sep 2017 22:41:47 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 18 Sep 2017 04:00:49 -0000
-Message-ID: <20170918040049.10493.40908@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Date: Sun, 17 Sep 2017 22:41:35 -0700
+Message-Id: <20170918054137.33583-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.14.1
+Subject: [meta-raspberrypi][PATCH 1/3] linux-raspberrypi_4.9.bb: Upgrade to 4.9.50
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,154 +72,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Sep 2017 04:00:51 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 18 Sep 2017 05:41:49 -0000
 
-This mail was sent out by Recipe reporting system.
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ recipes-kernel/linux/linux-raspberrypi_4.9.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
-
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
-
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version     Upstream version      Maintainer           NoUpgradeReason
---------------------  ----------  --------------------  -------------------  ------------------------------
-python3-native        3.5.3       3.6.2                 Alejandro Hernandez
-python3               3.5.3       3.6.2                 Alejandro Hernandez
-gtk-doc               1.25        1.26                  Alexander Kanavin
-boost                 1.64.0      1.65.0                Alexander Kanavin
-ca-certificates       20161130    20170717              Alexander Kanavin
-bjam-native           1.64.0      1.65.0                Alexander Kanavin
-libnl                 3.2.29      3.3.0                 Alexander Kanavin
-psmisc                22.21       23.1                  Alexander Kanavin
-oprofile              1.1.0       1.2.0                 Alexander Kanavin
-mkelfimage            4.0+gitX    4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
-apt                   1.2.12      1.4.7                 Aníbal Limón
-apt-native            1.2.12      1.4.7                 Aníbal Limón
-dpkg                  1.18.10     1.18.24               Aníbal Limón
-bind                  9.10.5-P3   9.11.2                Armin Kuster
-curl                  7.54.1      7.55.1                Armin Kuster
-busybox               1.24.1      1.27.2                Armin Kuster
-libpcre2              10.23       10.30                 Armin Kuster
-gnutls                3.5.13      3.6.0                 Armin Kuster
-kexec-tools           2.0.14      2.0.15                Armin Kuster
-libxkbcommon          0.7.1       0.7.2                 Armin Kuster
-linux-libc-headers    4.10        4.12.8                Bruce Ashfield
-libunwind             1.2         1.2.1                 Bruce Ashfield
-connman               1.34        1.35                  Changhyeok Bae
-iproute2              4.11.0      4.12.0                Changhyeok Bae
-dbus-test             1.10.20     1.10.22               Chen Qi
-dbus                  1.10.20     1.10.22               Chen Qi
-util-linux            2.30        2.30.1                Chen Qi
-sed                   4.2.2       4.4                   Chen Qi
-sysstat               11.5.7      11.6.0                Chen Qi
-systemd-bootchart     231+gitX    232+gitAUTOINC+79...  Chen Qi
-flex                  2.6.0       2.6.4                 Chen Qi
-build-appliance-i...  15.0.0      17.0.1                Cristian Iorga
-avahi-ui              0.6.32      0.7                   Dengke Du
-avahi                 0.6.32      0.7                   Dengke Du
-expat                 2.2.3       2.2.4                 Dengke Du
-chkconfig             1.3.58      1.8                   Dengke Du            Version 1.5 requires selinux
-json-glib             1.2.8       1.3.2                 Dengke Du
-wayland               1.13.0      1.14.0                Denys Dmytriyenko
-weston                2.0.0       3.0.0                 Denys Dmytriyenko
-lzop                  1.03        1.04                  Denys Dmytriyenko
-lz4                   1.7.4       131                   Denys Dmytriyenko
-acpica                20170303    20170728              Fathi Boudra
-man-pages             4.11        4.12                  Hongxu Jia
-gnupg                 2.1.20      2.1.23                Hongxu Jia
-bc                    1.06        1.07.1                Jose Lamego
-pango                 1.40.6      1.40.11               Jussi Kukkonen
-assimp                4.0.0       4.0.1                 Jussi Kukkonen
-gtk-icon-utils-na...  3.22.17     3.22.19               Jussi Kukkonen
-gsettings-desktop...  3.22.0      3.24.0                Jussi Kukkonen
-libsoup-2.4           2.58.1      2.58.2                Jussi Kukkonen
-vulkan                1.0.51.0    1.0.57.0              Jussi Kukkonen
-xdg-utils             1.1.1       1.1.2                 Jussi Kukkonen
-gdk-pixbuf            2.36.8      2.36.9                Jussi Kukkonen
-gtk+3                 3.22.17     3.22.19               Jussi Kukkonen
-hicolor-icon-theme    0.15        0.16                  Jussi Kukkonen
-clutter-gtk-1.0       1.8.2       1.8.4                 Jussi Kukkonen
-glew                  2.0.0       2.1.0                 Jussi Kukkonen
-ninja                 1.7.2       120715                Khem Raj
-re2c                  0.16        1.0.1                 Khem Raj
-go-native             1.8.3       1.9rc2                Khem Raj
-go                    1.8.3       1.9rc2                Khem Raj
-libnsl2               1.0.5+gitX  1.1.0+gitAUTOINC+...  Khem Raj
-texinfo               6.3         6.4                   Leonardo Sandoval
-perl                  5.24.1      5.26.0                Leonardo Sandoval
-qemu                  2.10.0-rc2  3                     Leonardo Sandoval
-libxml-namespaces...  1.12        1.12.9                Leonardo Sandoval
-perl-native           5.24.1      5.26.0                Leonardo Sandoval
-prelink               1.0+gitX    20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0       4.8.0                 Matthew McClintock
-ifupdown              0.8.16      0.8.24                Maxin B. John
-gcc-source-6.3.0      6.3.0       7.2.0                 No maintainer
-go-bootstrap-native   1.4.3       1.9rc2                No maintainer
-go-cross-i586         1.8.3       1.9rc2                No maintainer
-mesa                  17.1.6      17.1.7                Otavio Salvador
-cmake                 3.8.2       3.9.1                 Otavio Salvador
-cmake-native          3.8.2       3.9.1                 Otavio Salvador
-libdrm                2.4.81      2.4.82                Otavio Salvador
-mesa-gl               17.1.6      17.1.7                Otavio Salvador
-subversion            1.9.6       1.9.7                 Richard Purdie
-lttng-tools           2.9.5       2.10.1                Richard Purdie
-lttng-ust             2.9.1       2.10.0                Richard Purdie
-lttng-modules         2.9.3       2.10.0                Richard Purdie
-liberror-perl         0.17024     0.17025               Robert Yang
-debianutils           4.8.1.1     4.8.2                 Robert Yang
-strace                4.17        4.18                  Robert Yang
-autoconf-archive      2016.09.16  2017.03.21            Robert Yang
-tcl                   8.6.6       8.6.7                 Robert Yang
-libbsd                0.8.5       0.8.6                 Robert Yang
-e2fsprogs             1.43.4      1.43.5                Robert Yang
-git                   2.13.2      2.14.1                Robert Yang
-base-passwd           3.5.29      3.5.43                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.72        9.77                  Ross Burton
-pulseaudio            10.0        10.99.1               Tanu Kaskinen
-
-Upgradable count: 90
-Upgradable total count: 93
-
-The based commit is:
-
-commit a15ec979910a74d4490aecf30aa21fa5c2f4e99d
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Thu Sep 14 09:47:01 2017 -0400
-
-    linux-yocto/4.9: bluetooth: CVE-2017-1000251
-    
-    Integrating the following commit:
-    
-    [
-        commit 16de0149674ed12d983b77a453852ac2e64584b4
-        Author: Ben Seri <ben@armis.com>
-        Date:   Sat Sep 9 23:15:59 2017 +0200
-    
-        Bluetooth: Properly check L2CAP config option output buffer length
-    
-        Validate the output buffer length for L2CAP config requests and
-        responses to avoid overflowing the stack buffer used for building the
-        option blocks.
-    
-        Cc: stable@vger.kernel.org
-        Signed-off-by: Ben Seri <ben@armis.com>
-        Signed-off-by: Marcel Holtmann <marcel@holtmann.org>
-        Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
-        Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-    ]
-    
-    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+index ba17020..068965f 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+@@ -1,8 +1,8 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ 
+-LINUX_VERSION ?= "4.9.41"
++LINUX_VERSION ?= "4.9.50"
+ 
+-SRCREV = "4153f509b449f1c1c816cf124c314975c3daa824"
++SRCREV = "46e2d4d1bd2c17e2f84dd90768321ee0bbaa6b8a"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;branch=rpi-4.9.y"
+ 
+ require linux-raspberrypi.inc
+-- 
+2.14.1
 
 
