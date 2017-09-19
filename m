@@ -1,46 +1,74 @@
-Return-Path: <external.vrajendran@de.adit-jv.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2AEF2E00C89; Mon, 18 Sep 2017 23:40:02 -0700 (PDT)
+	id B39B5E00C2B; Tue, 19 Sep 2017 06:56:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp1.de.adit-jv.com (smtp1.de.adit-jv.com [62.225.105.245])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27CC4E00A38
-	for <yocto@yoctoproject.org>; Mon, 18 Sep 2017 23:40:00 -0700 (PDT)
-Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
-	by smtp1.de.adit-jv.com (Postfix) with ESMTP id 2E6943C02A3
-	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 08:39:59 +0200 (CEST)
-Received: from smtp1.de.adit-jv.com ([127.0.0.1])
-	by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id e5ylKSMfQAWU for <yocto@yoctoproject.org>;
-	Tue, 19 Sep 2017 08:39:53 +0200 (CEST)
-Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 730673C0012
-	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 08:39:53 +0200 (CEST)
-Received: from HI2EXCH01.adit-jv.com ([fe80::69bf:8148:2f13:f289]) by
-	HI2EXCH01.adit-jv.com ([fe80::69bf:8148:2f13:f289%12]) with mapi id
-	14.03.0361.001; Tue, 19 Sep 2017 08:39:53 +0200
-From: "Rajendran, Vignesh (RBEI/ECF3; ADITG/SW2)"
-	<external.vrajendran@de.adit-jv.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] externalsrc: enable sstate for git srctrees based on
-	makefile
-Thread-Index: AdMxEfh1VjXkmzhIS3GAWqwcUECkoA==
-Date: Tue, 19 Sep 2017 06:39:52 +0000
-Message-ID: <AA675284509C9741BF10EAC9FAA8BCC25939FD@HI2EXCH01.adit-jv.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.72.92.124]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07372E00BB1
+	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 06:56:02 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id e64so3989029wmi.2
+	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 06:56:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=hSB0r/hzfOK/ZfIN/OE1l1Kj/OAL1lq36aH9f3dhqMA=;
+	b=E8vVwu8B3dDQ2ckOCuRCHU+EAkzBT7TwM2WUwwgOGvoaAQgQM6PXsG3pGkdVgbJi9Q
+	NZmokOIDsvIcfCSCoixQnliNSYxy5q1OrH5o4/++SS5XwsqHe98YdzQnv+5bNdZLOII8
+	p3dEriqL0ymF8wY7iA3z9IS1Jmm+zwP5gImJ6fA/1BVwz7hgLilVAWNvVK6ih+6SkN55
+	LR7oxmvEh5/9O/8X8RTTGdPQjacaIb9ab/Pwm7nMOVrbn6x0v+zN/isREoEeyJ8STuj5
+	21b6gbqvbNX8isvagMxhp5nMXYs/JbmCZRMT81Lda3EiZXwqEw60FjztxU0yrMC/QP9H
+	P+7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=hSB0r/hzfOK/ZfIN/OE1l1Kj/OAL1lq36aH9f3dhqMA=;
+	b=Clow/vQfbJFbNfq+6TWGFra/40vHR/PeddSMkOev9zvXINxGd+Zfp0EFM6w7eSIbB5
+	JI2pd3q65SO0SEXD8TfbkZ8TbV+uLLeKnPW/nFK3XUraq780vTsXaxk0J2ZoItxxY20J
+	kjAhHc3OIvhmlUQbTDFKEB7B/yHH2ywHz/JOKagEVCwTzEKy1dIP2A69TF3foP5x8Tgo
+	AD5hE39v28JFaNh5fbGPiOb6YY2gRWAYmYFf07ESNWSDQBjZEpIDi2oZSUmpskjBgDO8
+	99x97g0kCTFjQSxWIFWLGe1aanaS9/TNmc46++UW3OsWgL75eReMHNjxxMhtD6h68UXo
+	sRfw==
+X-Gm-Message-State: AHPjjUgIle3QQrdC3hmJYYfYO0acJPa3/8BdOpNvhStKWsnjemoN4OAW
+	emsDqQGvzE3MLF/Ou5gB5ec=
+X-Google-Smtp-Source: AOwi7QBwD6EgrtiuRy3aVbP4AreKrfslxiaJFnybViOblhmARWY1Ih9WjtNXENGMC4htWSn2CWEA5A==
+X-Received: by 10.28.104.67 with SMTP id d64mr1257222wmc.15.1505829361969;
+	Tue, 19 Sep 2017 06:56:01 -0700 (PDT)
+Received: from localhost ([217.30.68.212]) by smtp.gmail.com with ESMTPSA id
+	d9sm10413181wrd.37.2017.09.19.06.56.00
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Tue, 19 Sep 2017 06:56:00 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Tue, 19 Sep 2017 15:58:29 +0200
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20170919135829.GA3797@jama>
+References: <20170918054137.33583-1-raj.khem@gmail.com>
+	<CA+chaQc8ZLh=hOmr+iecg1EZUM+vORLV0=ej8eJefB0GubFSpQ@mail.gmail.com>
+	<CAMKF1srPjVO5Ep5ZCsxWozpzzbQxO69sderkgWfnEhg8et4RWA@mail.gmail.com>
 MIME-Version: 1.0
-Subject: externalsrc: enable sstate for git srctrees based on makefile
+In-Reply-To: <CAMKF1srPjVO5Ep5ZCsxWozpzzbQxO69sderkgWfnEhg8et4RWA@mail.gmail.com>
+User-Agent: Mutt/1.9.0 (2017-09-02)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/3] linux-raspberrypi_4.9.bb: Upgrade to 4.9.50
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,130 +80,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Sep 2017 06:40:02 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AA675284509C9741BF10EAC9FAA8BCC25939FDHI2EXCH01aditjvco_"
+X-List-Received-Date: Tue, 19 Sep 2017 13:56:03 -0000
+X-Groupsio-MsgNum: 37953
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="lrZ03NoBR/3+SXJZ"
+Content-Disposition: inline
 
---_000_AA675284509C9741BF10EAC9FAA8BCC25939FDHI2EXCH01aditjvco_
-Content-Type: text/plain; charset="us-ascii"
+--lrZ03NoBR/3+SXJZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Yocto,
+On Mon, Sep 18, 2017 at 12:29:44PM -0700, Khem Raj wrote:
+> On Mon, Sep 18, 2017 at 11:48 AM, Martin Jansa <martin.jansa@gmail.com> w=
+rote:
+> > With these 3 changes included I see following failure with raspberrypi3=
+-64,
+> > it might be something caused by last oe-core upgrade, but I haven't not=
+iced
+> > anything suspicious there.
+> >
+> > Looks familiar?
+>=20
+> havent seen it here. I would say unbolt these changes and try out see
+> if it goes away or not.
 
-I am already aware of sstate never works for externalsrc recipes.
+The last one "linux-raspberrypi: Build dtbs with dtbs make target for
+rpi64" is causing this error.
 
-My environment is using externalsrc in recipes for makefile based sources i=
-n git.
+>=20
+> >
+> > |   VDSOL   arch/arm64/kernel/vdso/vdso.so.dbg
+> > |
+> > /OE/build/owpb/webos-ports/tmp-glibc/work/raspberrypi3_64-webos-linux/l=
+inux-raspberrypi/1_4.9.50+gitAUTOINC+46e2d4d1bd-r0/recipe-sysroot-native/us=
+r/bin/aarch64-webos-linux/../../libexec/aarch64-webos-linux/gcc/aarch64-web=
+os-linux/7.2.0/ld:
+> > fatal error: -shared and -static are incompatible
+> > | collect2: error: ld returned 1 exit status
+> > | make[3]: ***
+> > [/OE/build/owpb/webos-ports/tmp-glibc/work-shared/raspberrypi3-64/kerne=
+l-source/arch/arm64/kernel/vdso/Makefile:34:
+> > arch/arm64/kernel/vdso/vdso.so.dbg] Error 1
+> > | make[2]: *** [arch/arm64/Makefile:144: vdso_prepare] Error 2
+> > | make[1]: *** [Makefile:150: sub-make] Error 2
+> > | make: *** [Makefile:24: __sub-make] Error 2
+> > | ERROR: oe_runmake failed
+> > | WARNING:
+> > /OE/build/owpb/webos-ports/tmp-glibc/work/raspberrypi3_64-webos-linux/l=
+inux-raspberrypi/1_4.9.50+gitAUTOINC+46e2d4d1bd-r0/temp/run.do_compile.2934=
+1:1
+> > exit 1 from 'exit 1'
+> >
+> >
+> > On Mon, Sep 18, 2017 at 7:41 AM, Khem Raj <raj.khem@gmail.com> wrote:
+> >>
+> >> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> >> ---
+> >>  recipes-kernel/linux/linux-raspberrypi_4.9.bb | 4 ++--
+> >>  1 file changed, 2 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+> >> b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+> >> index ba17020..068965f 100644
+> >> --- a/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+> >> +++ b/recipes-kernel/linux/linux-raspberrypi_4.9.bb
+> >> @@ -1,8 +1,8 @@
+> >>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+> >>
+> >> -LINUX_VERSION ?=3D "4.9.41"
+> >> +LINUX_VERSION ?=3D "4.9.50"
+> >>
+> >> -SRCREV =3D "4153f509b449f1c1c816cf124c314975c3daa824"
+> >> +SRCREV =3D "46e2d4d1bd2c17e2f84dd90768321ee0bbaa6b8a"
+> >>  SRC_URI =3D "git://github.com/raspberrypi/linux.git;branch=3Drpi-4.9.=
+y"
+> >>
+> >>  require linux-raspberrypi.inc
+> >> --
+> >> 2.14.1
+> >>
+> >> --
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
 
-I am aware that the source is not going to change and only builds one time =
-in my production build.
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-I want to use sstate if nothing has changed in my next build/bitbake.
+--lrZ03NoBR/3+SXJZ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-Is it possible to enable setscene tasks if the source is in git and srctree=
-_hash_files reports nothing has been changed in git srctree?
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/externals=
-rc.bbclass#n181
+-----BEGIN PGP SIGNATURE-----
 
-Do I have to consider some other constraints as well?
+iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCWcEigwAKCRA3VSO3ZXaA
+HJ/8AJkBj6DtfN1VDtXd4g9bRK3ljcnoWwCeMZ1KjAiKEo06vfF9fDF9PoDRUhQ=
+=k+bc
+-----END PGP SIGNATURE-----
 
-Thanks in Advance.
-
-Best regards
-
-Vignesh Rajendran
-
---_000_AA675284509C9741BF10EAC9FAA8BCC25939FDHI2EXCH01aditjvco_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Yocto,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am already aware of sstate never works for externa=
-lsrc recipes.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My environment is using externalsrc in recipes for m=
-akefile based sources in git.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am aware that the source is not going to change an=
-d only builds one time in my production build.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I want to use sstate if nothing has changed in my ne=
-xt build/bitbake.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is it possible to enable setscene tasks if the sourc=
-e is in git and srctree_hash_files reports nothing has been changed in git =
-srctree?<o:p></o:p></p>
-<p class=3D"MsoNormal">https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree=
-/meta/classes/externalsrc.bbclass#n181<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Do I have to consider some other constraints as well=
-?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks in Advance.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Best regard=
-s</span><span style=3D"font-size:8.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt;text-autospace:none"><=
-b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
-serif&quot;">Vignesh Rajendran</span></b><span style=3D"font-size:8.0pt;fon=
-t-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span><=
-/p>
-</div>
-</body>
-</html>
-
---_000_AA675284509C9741BF10EAC9FAA8BCC25939FDHI2EXCH01aditjvco_--
+--lrZ03NoBR/3+SXJZ--
