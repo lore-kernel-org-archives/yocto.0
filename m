@@ -1,37 +1,64 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <patrick@advancedtelematic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51D31E00CD0; Wed, 20 Sep 2017 02:54:40 -0700 (PDT)
+	id E7539E00C8F; Tue, 19 Sep 2017 00:30:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5F55E00A39
-	for <yocto@yoctoproject.org>; Wed, 20 Sep 2017 02:54:39 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	20 Sep 2017 02:54:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,420,1500966000"; d="scan'208";a="137441619"
-Received: from clim8-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.147.34])
-	by orsmga002.jf.intel.com with ESMTP; 20 Sep 2017 02:54:35 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Andrea Galbusera <gizero@gmail.com>
-Date: Wed, 20 Sep 2017 21:54:32 +1200
-Message-ID: <51930197.tKTl6ynBxN@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <CAC+thW29aj-ZCsd31cfEsnuQKUuDGAfCzg5AX_srUcud0e9sBA@mail.gmail.com>
-References: <CAC+thW29aj-ZCsd31cfEsnuQKUuDGAfCzg5AX_srUcud0e9sBA@mail.gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f49.google.com (mail-wm0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FE86E00A38
+	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 00:30:11 -0700 (PDT)
+Received: by mail-wm0-f49.google.com with SMTP id g206so2529501wme.0
+	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 00:30:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=advancedtelematic.com; s=google;
+	h=to:from:subject:message-id:date:user-agent:mime-version;
+	bh=/TZJVOw/CJtDnIqRO8D63pzPJZTGCttH9G34Iv3wWmE=;
+	b=BEI/udL37EHOVbdxz9dNFGssgjapzubnmwMO59/ci5ZxNzX7CwMIJ8uTMC73hakup3
+	vrEL9xtF6z+caw0v+VslMtHEYGLyhhaWFry7tEeuTHhmoSiJYMGnc421st3V5JqrPVhX
+	p8I1zjVoVTHvSCjxvvgs0LFPSKG3FASIq5lKg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version;
+	bh=/TZJVOw/CJtDnIqRO8D63pzPJZTGCttH9G34Iv3wWmE=;
+	b=DV9lLnorDbdPt8LigRs1M1i74M9aQIL3MuPTqFa6SxtFaPvdx6+zMoZq60UXJHW3Vu
+	7xUYqornv8fAGkkZMtXPTE3OyoSNsL6a04tioWBOi1ZoyilIYQRHbFMyKZ2ps9gplyCE
+	xc+Co3b6ksndqRvs01JTyhQOED1BkcWhVaNZK1STePrJv33byhzuwLmDAxaOjxK36V9S
+	uEoh5npg3T6HUimihGB5lSX10b9rXIQZ3iyv+O/mrABvA9DLGuZzJyXkccJ8H88ZE2Q0
+	Tvyuc4CO6dAI0il7gMKoiwCN6kED/3oThMap4m+ec1f8xaDCbVDg2LcWBdC2hXymbv9D
+	6Izw==
+X-Gm-Message-State: AHPjjUgIgds0/tqHP7G6AQIk+yDuQ36MyyDLvssFzhPZGwT/rmYNYMFY
+	7ijFUBxEXMjjOy7aGoeF3h+iksJvwos=
+X-Google-Smtp-Source: AOwi7QAstYSqRgC00XqiZixOyxlIUKZhrnJ9ZaTbKn+coaMDovZxKzMy9a68Ml+tNGEiDNVwj2n6eg==
+X-Received: by 10.28.210.204 with SMTP id j195mr208844wmg.124.1505806210644;
+	Tue, 19 Sep 2017 00:30:10 -0700 (PDT)
+Received: from [192.168.1.62] (p57bf9f95.dip0.t-ipconnect.de. [87.191.159.149])
+	by smtp.gmail.com with ESMTPSA id j2sm7507699wrj.82.2017.09.19.00.30.09
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 19 Sep 2017 00:30:09 -0700 (PDT)
+To: yocto@yoctoproject.org
+From: Patrick Vacek <patrick@advancedtelematic.com>
+Message-ID: <94a0df9e-5a97-aeb2-cdc0-8ea83bc47fd8@advancedtelematic.com>
+Date: Tue, 19 Sep 2017 09:30:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: eSDK install script failure
+X-Mailman-Approved-At: Wed, 20 Sep 2017 08:30:38 -0700
+Subject: meta-security / meta-tpm functionality
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,72 +70,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Sep 2017 09:54:40 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 19 Sep 2017 07:30:12 -0000
+X-Groupsio-MsgNum: 37966
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="J9HwDVn2uEoWwxGS28mfT7juI2HW1i1t3"
 
-Hi Andrea,
+--J9HwDVn2uEoWwxGS28mfT7juI2HW1i1t3
+Content-Type: multipart/mixed; boundary="cKXIMg1Blvoup9Pwbn7B8Mo0rDpVHLJTB";
+ protected-headers="v1"
+From: Patrick Vacek <patrick@advancedtelematic.com>
+To: yocto@yoctoproject.org
+Message-ID: <94a0df9e-5a97-aeb2-cdc0-8ea83bc47fd8@advancedtelematic.com>
+Subject: meta-security / meta-tpm functionality
 
-On Wednesday, 20 September 2017 8:44:22 PM NZST Andrea Galbusera wrote:
-> Seeing the errors below while installing an eSDK. This is a routinely
-> generated VM that installs the eSDK from installation script. The errors
-> appeared with the latest iteration of the eSDK script, which is generated
-> with almost up-to-date revisions from master. Of course I have extra layers
-> in the mix, but none of them apparently had relevant changed since last
-> (working) iteration: mostly synching to master branches happened. Can
-> anyone help suggesting how to investigate this further? What do those
-> unexpected task mean? I'm blocked on releasing this SDK to developers and
-> clues from expert would be very appreciated...
-> 
-> ==> default: Checking sstate mirror object availability...
-> ==> default: done.
-> ==> default: ERROR: Task python-native.do_fetch attempted to execute
-> unexpectedly
-> ==> default: ERROR: Task python-native.do_prepare_recipe_sysroot attempted
-> to execute unexpectedly
-> ==> default: ERROR: Task python-native.do_unpack attempted to execute
-> unexpectedly
-> ==> default: ERROR: Task python-native.do_patch attempted to execute
-> unexpectedly
-> ==> default: ERROR: Task python-native.do_populate_lic attempted to execute
-> unexpectedly and should have been setscened
-> ==> default: ERROR: Task python-native.do_configure attempted to execute
-> unexpectedly
-> ==> default: ERROR: Task python-native.do_compile attempted to execute
-> unexpectedly
-> ==> default: ERROR: Task python-native.do_install attempted to execute
-> unexpectedly
-> ==> default: ERROR: Task python-native.do_populate_sysroot attempted to
-> execute unexpectedly and should have been setscened
-> ==> default: ERROR: SDK preparation failed: error log written to
-> /home/vagrant/poky_sdk/preparing_build_system.log
-> 
+--cKXIMg1Blvoup9Pwbn7B8Mo0rDpVHLJTB
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Basically this means that these tasks tried to execute where really the 
-results should have been able to be restored from sstate. 
+Hello,
 
-The cause of this type of error is one of three things: 
+The meta-tpm layer inside the meta-security layer looks like exactly
+what I want in order to get TPM 2.0 support on my devices. I'm currently
+using qemu and trying to create a swtpm device on my host and pass it
+through to the device. Despite my best attempts, I have not yet been
+able to get a TPM device to be recognized in qemu.
 
-1) The sstate archive corresponding to a task wasn't able to be fetched from 
-the server (for a minimal eSDK) or wasn't present in the installer (for a full 
-eSDK - less likely as we basically do a trial run as part of building the eSDK 
-in the first place)
+To use the meta-tpm layer, is there anything I should be doing beyond
+adding meta-tpm to my bblayers.conf and adding
+packagegroup-security-tpm2 to IMAGE_INSTALL_append? If not, is there a
+way to debug what might be going wrong in this process?
 
-2) The signature was somehow different to what it should have been. (Locked 
-signatures are supposed to guard against this.)
+Thank you,
+Patrick
 
-3) A task that wasn't expected to execute did execute and thus the sstate 
-wasn't available.
 
-Given that this was python-native which I would expect would be a normal part 
-of the SDK, I would suspect #1. Is this a minimal or full eSDK (i.e. what is 
-SDK_EXT_TYPE set to)?
+--=20
+Patrick Vacek
+ATS Advanced Telematic Systems GmbH
+Kantstra=C3=9Fe 162, 10623 Berlin
+HRB 151501 B, Amtsgericht Charlottenburg
+Vertreten durch die Gesch=C3=A4ftsf=C3=BChrer
+Dirk P=C3=B6schl, Armin G. Schmidt
 
-Cheers,
-Paul
 
--- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+--cKXIMg1Blvoup9Pwbn7B8Mo0rDpVHLJTB--
 
+--J9HwDVn2uEoWwxGS28mfT7juI2HW1i1t3
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJZwMeAAAoJEJPafbf+QhyoB9MQAMaIUH62v/3o1tYRyW69kFEn
+0H4rV2vWqrF9mAYRQxyIQcIy40FsLyJ7cFqRN0UAF3SocOvRpgD9PWm6dYc+WAfO
+9EJL0ORA4JvBCo7wzAWaWiXFpQH7W5PPmQu8pXUjOk10mksnQSbLo59sK9KPku1h
+MNn6MDgDixLK/f62aWe32QM4hIeFArepsdWEIOIkU5kdAwSDgCUN58TTHnfHJ4Yt
+c2uQi2ieiUquFbEfZsjAvSxwi8I/OZ7wvjJ3iGGGwLyHtSLCyztezZHjP2is46df
+qyIgks4t7rP7oQY4pWPlG5wkhWfB0dYN2lDHRcpVMVy2lNX9vKUSbJvP4PyNINOK
+LVja8KN+x2TO3/LnFvK4VUaxST1+ChVzrD3ePyE1zRT+BFM/u5gwq0YNTHZKjprk
++x0FDemK0DmcxsVoQ6mPESqR6dKIVK783Ul7uGETxDyAJbMIyjdtgMww96eQLYgJ
+qSlbobLFaF44Htc8SDXRWKIbwoi00EubaS8qj0dOey/8WhawC10E+qUpk4fa6sMm
+sESEwPYk4IYqFNxVA2su8dfIx2d1kfxbInV4VPcpJCUWXc8eHyVkiLWUQ4OVQQCe
+BoMUt0jQxrmRwLQ6xdxRPqOIF++UuGczxfLiXh6aMgtlWiAQd0kdxZnNQV6HWFmY
+LtdiMbK43mZgU84iyjv8
+=J0K/
+-----END PGP SIGNATURE-----
+
+--J9HwDVn2uEoWwxGS28mfT7juI2HW1i1t3--
