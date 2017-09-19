@@ -1,19 +1,19 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD844E00CE9; Tue, 19 Sep 2017 09:22:08 -0700 (PDT)
+	id D85CBE00CCC; Tue, 19 Sep 2017 09:22:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM, URIBL_SBL autolearn=no version=3.3.1
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.196 listed in list.dnswl.org]
+	*      [74.125.83.66 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.196 listed in dnsbl.sorbs.net]
+	*      [74.125.83.66 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,52 +21,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.6 URIBL_SBL Contains an URL's NS IP listed in the SBL blocklist
-	*      [URIs: waveshare.com]
-Received: from mail-pf0-f196.google.com (mail-pf0-f196.google.com
-	[209.85.192.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E151E00C62
-	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 09:22:06 -0700 (PDT)
-Received: by mail-pf0-f196.google.com with SMTP id h4so52967pfk.0
-	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 09:22:06 -0700 (PDT)
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A11C7E00CD4
+	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 09:22:07 -0700 (PDT)
+Received: by mail-pg0-f66.google.com with SMTP id j16so70952pga.2
+	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 09:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=Q9v8Sqmefce7Qn9013vY7tccGHvoFShtOKoAQeaqYN0=;
-	b=mprc+5arP3jzXE5rakLCdTKEDMqDaK/Idin7ik5U3oFh+fgTrA7GkOLz6wJJQLo8a/
-	rxrndTxkZ8xbUBCkix1bwSskXqQKQQxZ0UzLnLhLaDj2xN5B9guNR+hjBSvCiwnnlmfi
-	qLinWpduKYO0Nf9Qfh73oIfY9ciKnUJ555UFcxmuYORk7774eN6frePNPkt5A+GhpQW2
-	MnkyLNjputCr7mgWMbw/LhI16z9HMCY9rsbxi/nb+h/PlVxgCoX0MXoCBD3q6kt4QqCb
-	I0Rvt0ox153lAAwPCGXngRLRTnkZ8U79lTz2DDM2vvxlYbkJxCfsP+ut6sUM+8huT68v
-	jSJg==
+	bh=YcXz1dyEZC2epkRLduwh0SHbNckVxVVo3NowfWFqokQ=;
+	b=azI2Hx+snsiL8EhcXX54QTo2ExynjWvteF6iEfOO10ibqCk1qoGr/uCkp75Au8ug1V
+	nQG8+4eyuXhJ9FfBjysQ23z46tjLOKhQpwTZ+RCFEFX9aCDdf6T+P8nJ6Slky1+V+TMV
+	I3iRDee/x65hCSDw/4iNRKZwz+Z2rHJBJzwFCvvvd8ZBOYehrcGK0Y/j9hmvOhs8Dbvi
+	M9USwJ2yXZi7t0dgQVraUiLhFVEkHvvG7cy/SmDMfuKR3iD5EDnt3/h2NTpn3hIPsxxw
+	HKJ+2Rn3HdPwt/e3kijtC0oP0xjHUmbspvwu3MkoHIu9LtquMnEqVJ1Lbd7A0oN70IAl
+	8sYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=Q9v8Sqmefce7Qn9013vY7tccGHvoFShtOKoAQeaqYN0=;
-	b=EuQ1GUtZFUwG/CUJcp1p8jmFZK1PRaWRi7RQqaAJsWQf1nYZLheH3Sa5gENEbS/pvf
-	OavWH6gifyN7Mi9v2vxFiXdcACMhYDzLRljvY3GdoR3+Fj6OEOXN23R4xfOp3FbJNQBF
-	vYoAEfBqMGMQzwZCI0MAFO7zvUDM33Yv948Z9N6IiM6E28/2WGJVhwtRt3l7wlQvvejN
-	t5bSCT+RfiUhdPN2I/LGrgRoOOg2Zw14p7Q21XwVBkPu0vfXsvJ6JsR7lwuydkI+OoNP
-	W6tmkQzWoYZ2P2QJ+ctKHUr1aAwuNdqlovYTFgJQa1Db1s8k0mpMtpMDZQbNOfZxBkrh
-	UVUA==
-X-Gm-Message-State: AHPjjUiSqBCUx5MNXyXg7uotpwsxOh+EPZiB8y56z5mjW/8gp4gZZO4I
-	TcKIersvQl2smwcCgbwKlUJ8ZQ==
-X-Google-Smtp-Source: AOwi7QBcR56+l7pyaKR9WkHf+NT1MdJLZwRPhHeaK2HzS/lZW1/QztkpCP16fe5bZFHn9Yn1n7tBIA==
-X-Received: by 10.159.198.7 with SMTP id f7mr1853742plo.38.1505838125641;
-	Tue, 19 Sep 2017 09:22:05 -0700 (PDT)
+	bh=YcXz1dyEZC2epkRLduwh0SHbNckVxVVo3NowfWFqokQ=;
+	b=jaBelKItyTVC4MECv1sQNnt9danCyf3Q0Z1K5PYC6F8qvGw+63j1qKCOSvlGqoTbNz
+	R9hZZ4DfCCKZzixbdjapL4spuvhxG7z+FgAZ1b+aK0+YMH/n1xXKNp51YK5YyJtnRN86
+	o0XrQDNNRYeB5nZxfDv97i4i1rYfw53emdYkF0cxvAJOp0W2Pd98D1RN5qvdVzqdBTPI
+	wrhcy80Q2cwKzlzu6ZKEeieZAkIFg8Bz10hPEupEN4eci0GfF0JR1wYGxsgyjE4he7JY
+	SQwhCIY96OGai6BpPUNpcGk8AA8/YcsJvohOlPqETzKLfdn/N3lYQuEP8i8ETs3Ps2Ed
+	xCyw==
+X-Gm-Message-State: AHPjjUhWHu2y2KpMOYl1Nee+TAKJsoUSeOAgiAJtw6W3Vp4P9JRAm2i6
+	BpkVYjIjLAE/zW5DVtnNLQWWxA==
+X-Google-Smtp-Source: AOwi7QCtbKLrDOIPzgs0W0zQrL7duKZw9XfF8avo4R0LdTSixbCPsM4xvYUJ+fhR7bqCdH4iiRGjhQ==
+X-Received: by 10.98.101.4 with SMTP id z4mr1800557pfb.6.1505838126984;
+	Tue, 19 Sep 2017 09:22:06 -0700 (PDT)
 Received: from localhost.localdomain (c-73-158-54-208.hsd1.ca.comcast.net.
 	[73.158.54.208]) by smtp.gmail.com with ESMTPSA id
-	s81sm4906836pfg.162.2017.09.19.09.22.04
+	s81sm4906836pfg.162.2017.09.19.09.22.05
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 19 Sep 2017 09:22:04 -0700 (PDT)
+	Tue, 19 Sep 2017 09:22:06 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue, 19 Sep 2017 09:21:50 -0700
-Message-Id: <20170919162152.37560-2-raj.khem@gmail.com>
+Date: Tue, 19 Sep 2017 09:21:51 -0700
+Message-Id: <20170919162152.37560-3-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.14.1
 In-Reply-To: <20170919162152.37560-1-raj.khem@gmail.com>
 References: <20170919162152.37560-1-raj.khem@gmail.com>
-Subject: [meta-raspberrypi][PATCH V2 2/4] raspberrypi3-64: Use vc4-fkms-v3d overlay for rpi64
+Subject: [meta-raspberrypi][PATCH V2 3/4] linux-raspberrypi: Build dtbs with dtbs make target for rpi64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,69 +77,36 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 19 Sep 2017 16:22:08 -0000
 
-Use correct overlay for enabled vc4 accelaration
-This enable 3D accelaration over dispmanx on vc4/rpi64
-Enable audio over HDMI
-Disable overscan to avoid graphics glitches
+OE currently builds dtb files with its own custom targets by
+specifying each dtb file as makefile target, this creates bad
+dtb for rpi64 bit. This patch calles 'make dtbs' at the end
+which regenerates the correct dtb files
+
+This makes the vc4 initialize properly on rpi64
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
-Changes in v2: None
- conf/machine/raspberrypi3-64.conf       |  1 +
- recipes-bsp/bootfiles/rpi-config_git.bb | 14 ++++++++++++--
- 2 files changed, 13 insertions(+), 2 deletions(-)
+Changes in v2: Use KERNEL_CC and KERNEL_LD
 
-diff --git a/conf/machine/raspberrypi3-64.conf b/conf/machine/raspberrypi3-64.conf
-index e3d11f2..237684a 100644
---- a/conf/machine/raspberrypi3-64.conf
-+++ b/conf/machine/raspberrypi3-64.conf
-@@ -31,6 +31,7 @@ KERNEL_DEVICETREE = " \
-     overlays/pi3-disable-bt.dtbo \
-     overlays/pi3-miniuart-bt.dtbo \
-     overlays/vc4-kms-v3d.dtbo \
-+    overlays/vc4-fkms-v3d.dtbo \
-     "
- 
- SERIAL_CONSOLE ?= "115200 ttyS0"
-diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfiles/rpi-config_git.bb
-index 38a1237..4353061 100644
---- a/recipes-bsp/bootfiles/rpi-config_git.bb
-+++ b/recipes-bsp/bootfiles/rpi-config_git.bb
-@@ -21,7 +21,8 @@ PITFT28r="${@bb.utils.contains("MACHINE_FEATURES", "pitft28r", "1", "0", d)}"
- PITFT35r="${@bb.utils.contains("MACHINE_FEATURES", "pitft35r", "1", "0", d)}"
- 
- VC4GRAPHICS="${@bb.utils.contains("MACHINE_FEATURES", "vc4graphics", "1", "0", d)}"
--
-+VC4DTBO_raspberrypi3-64 = "vc4-fkms-v3d"
-+VC4DTBO ?= "vc4-kms-v3d"
- inherit deploy
- 
- do_deploy() {
-@@ -114,7 +115,7 @@ do_deploy() {
-     # VC4 Graphics support
-     if [ "${VC4GRAPHICS}" = "1" ]; then
-         echo "# Enable VC4 Graphics" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
--        echo "dtoverlay=vc4-kms-v3d,${VC4_CMA_SIZE}" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+        echo "dtoverlay=${VC4DTBO},${VC4_CMA_SIZE}" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-     fi
- 
-     # Waveshare "C" 1024x600 7" Rev2.1 IPS capacitive touch (http://www.waveshare.com/7inch-HDMI-LCD-C.htm)
-@@ -129,6 +130,15 @@ do_deploy() {
+ recipes-kernel/linux/linux-raspberrypi.inc | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+index f336490..b348a9d 100644
+--- a/recipes-kernel/linux/linux-raspberrypi.inc
++++ b/recipes-kernel/linux/linux-raspberrypi.inc
+@@ -38,6 +38,11 @@ python __anonymous () {
+     d.setVar("KERNEL_DEVICETREE", kerneldt)
  }
  
- do_deploy_append_raspberrypi3-64() {
-+    echo "# have a properly sized image" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+    echo "disable_overscan=1" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
++do_compile_append_raspberrypi3-64() {
++    cc_extra=$(get_cc_option)
++    oe_runmake dtbs CC="${KERNEL_CC} $cc_extra " LD="${KERNEL_LD}" ${KERNEL_EXTRA_ARGS}
++}
 +
-+    echo "# for sound over HDMI" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+    echo "hdmi_drive=2" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+
-+    echo "# Enable audio (loads snd_bcm2835)" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+    echo "dtparam=audio=on" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-+
-     # Device Tree support
-     echo "# Load correct Device Tree for Aarch64" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
-     echo "device_tree=bcm2710-rpi-3-b.dtb" >>${DEPLOYDIR}/bcm2835-bootfiles/config.txt
+ do_install_prepend() {
+     install -d ${D}/lib/firmware
+ }
 -- 
 2.14.1
 
