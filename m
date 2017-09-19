@@ -1,32 +1,46 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <external.vrajendran@de.adit-jv.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D476E00C89; Mon, 18 Sep 2017 22:15:53 -0700 (PDT)
+	id 2AEF2E00C89; Mon, 18 Sep 2017 23:40:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DAFAE00A38
-	for <yocto@yoctoproject.org>; Mon, 18 Sep 2017 22:15:51 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v8J5FpCd018839
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Mon, 18 Sep 2017 22:15:51 -0700
-Received: from localhost (128.224.162.198) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Mon, 18 Sep 2017 22:15:50 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 19 Sep 2017 13:14:49 +0800
-Message-ID: <1505798089-20319-1-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from smtp1.de.adit-jv.com (smtp1.de.adit-jv.com [62.225.105.245])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27CC4E00A38
+	for <yocto@yoctoproject.org>; Mon, 18 Sep 2017 23:40:00 -0700 (PDT)
+Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
+	by smtp1.de.adit-jv.com (Postfix) with ESMTP id 2E6943C02A3
+	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 08:39:59 +0200 (CEST)
+Received: from smtp1.de.adit-jv.com ([127.0.0.1])
+	by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id e5ylKSMfQAWU for <yocto@yoctoproject.org>;
+	Tue, 19 Sep 2017 08:39:53 +0200 (CEST)
+Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 730673C0012
+	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 08:39:53 +0200 (CEST)
+Received: from HI2EXCH01.adit-jv.com ([fe80::69bf:8148:2f13:f289]) by
+	HI2EXCH01.adit-jv.com ([fe80::69bf:8148:2f13:f289%12]) with mapi id
+	14.03.0361.001; Tue, 19 Sep 2017 08:39:53 +0200
+From: "Rajendran, Vignesh (RBEI/ECF3; ADITG/SW2)"
+	<external.vrajendran@de.adit-jv.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] externalsrc: enable sstate for git srctrees based on
+	makefile
+Thread-Index: AdMxEfh1VjXkmzhIS3GAWqwcUECkoA==
+Date: Tue, 19 Sep 2017 06:39:52 +0000
+Message-ID: <AA675284509C9741BF10EAC9FAA8BCC25939FD@HI2EXCH01.adit-jv.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.72.92.124]
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.198]
-Subject: [meta-gplv2][PATCH] gnupg: specify tar path explicitly
+Subject: externalsrc: enable sstate for git srctrees based on makefile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,101 +52,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Sep 2017 05:15:53 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 19 Sep 2017 06:40:02 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AA675284509C9741BF10EAC9FAA8BCC25939FDHI2EXCH01aditjvco_"
 
-From: Wenlin Kang <wenlin.kang@windriver.com>
+--_000_AA675284509C9741BF10EAC9FAA8BCC25939FDHI2EXCH01aditjvco_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The gpg-zip script contains wrong tar binary path:
-"TAR=/buildarea/poky/build/tmp/hosttools/tar"
+Hi Yocto,
 
-Specify the correct tar path when configure.
-Also remove the code for ustar format detection in configure because it
-is not applicable for cross-compile environment.
+I am already aware of sstate never works for externalsrc recipes.
 
-Signed-off-by: Wenlin Kang <wenlin.kang@windriver.com>
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../gnupg/gnupg-1.4.7/fix-ustar-check-issue.patch  | 38 ++++++++++++++++++++++
- recipes-support/gnupg/gnupg_1.4.7.bb               | 10 +++---
- 2 files changed, 44 insertions(+), 4 deletions(-)
- create mode 100644 recipes-support/gnupg/gnupg-1.4.7/fix-ustar-check-issue.patch
+My environment is using externalsrc in recipes for makefile based sources i=
+n git.
 
-diff --git a/recipes-support/gnupg/gnupg-1.4.7/fix-ustar-check-issue.patch b/recipes-support/gnupg/gnupg-1.4.7/fix-ustar-check-issue.patch
-new file mode 100644
-index 0000000..eb4cc9f
---- /dev/null
-+++ b/recipes-support/gnupg/gnupg-1.4.7/fix-ustar-check-issue.patch
-@@ -0,0 +1,38 @@
-+Remove the code for ustar format detection because it is not applicable
-+for cross-complie platform.
-+
-+Upstream Status: Inappropriate [embedded specific]
-+
-+Signed-off-by: Wenlin Kang <wenlin.kang@windriver.com>
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ m4/tar-ustar.m4 | 13 +++++++++----
-+ 1 file changed, 9 insertions(+), 4 deletions(-)
-+
-+diff --git a/m4/tar-ustar.m4 b/m4/tar-ustar.m4
-+index 4ae9e63..f6e57c2 100644
-+--- a/m4/tar-ustar.m4
-++++ b/m4/tar-ustar.m4
-+@@ -26,10 +26,15 @@ AC_DEFUN([GNUPG_CHECK_USTAR],
-+ 
-+      if test x$_mytar != x ; then
-+         AC_MSG_CHECKING([whether $_mytar speaks USTAR])
-+-        echo hithere > conftest.txt
-+-        $_mytar -cf - conftest.txt | (dd skip=257 bs=1 count=5 2>/dev/null || cat) | grep ustar > /dev/null
-+-        _tar_bad=$?
-+-        rm conftest.txt
-++
-++        # Here, we ignore the check code, because it isn't indeed applicable for
-++        # cross-compile platform.
-++        # Now our tar support ustar, so we say directly yes, but once the tar is changed,
-++        # you should check whether it suppport ustar, and please reference the follow command:
-++        # echo hithere > conftest.txt
-++        # tar -cf - conftest.txt | (dd skip=257 bs=1 count=5 2>/dev/null || cat) | grep ustar > /dev/null
-++
-++        _tar_bad=0
-+ 
-+ 	if test x$_tar_bad = x0 ; then
-+ 	   AC_MSG_RESULT([yes])
-+-- 
-+1.9.1
-+
-diff --git a/recipes-support/gnupg/gnupg_1.4.7.bb b/recipes-support/gnupg/gnupg_1.4.7.bb
-index 6ccffd5..85636ab 100644
---- a/recipes-support/gnupg/gnupg_1.4.7.bb
-+++ b/recipes-support/gnupg/gnupg_1.4.7.bb
-@@ -18,6 +18,7 @@ SRC_URI = "${GNUPG_MIRROR}/gnupg/gnupg-${PV}.tar.bz2 \
-            file://CVE-2013-4351.patch \
-            file://CVE-2013-4576.patch \
-            file://CVE-2013-4242.patch \
-+           file://fix-ustar-check-issue.patch \
- 	  "
- 
- SRC_URI[md5sum] = "b06a141cca5cd1a55bbdd25ab833303c"
-@@ -74,12 +75,13 @@ inherit autotools gettext texinfo
- #   --disable-regex         do not handle regular expressions in trust sigs
- 
- EXTRA_OECONF = "--disable-ldap \
--		--with-zlib=${STAGING_LIBDIR}/.. \
--		--with-bzip2=${STAGING_LIBDIR}/.. \
--		--disable-selinux-support \
-+                --with-zlib=${STAGING_LIBDIR}/.. \
-+                --with-bzip2=${STAGING_LIBDIR}/.. \
-+                --disable-selinux-support \
-                 --with-readline=${STAGING_LIBDIR}/.. \
-                 ac_cv_sys_symbol_underscore=no \
--		"
-+                ac_cv_path_TAR=${base_bindir}/tar \
-+               "
- 
- # Force gcc's traditional handling of inline to avoid issues with gcc 5
- CFLAGS += "-fgnu89-inline"
--- 
-2.7.4
+I am aware that the source is not going to change and only builds one time =
+in my production build.
 
+I want to use sstate if nothing has changed in my next build/bitbake.
 
+Is it possible to enable setscene tasks if the source is in git and srctree=
+_hash_files reports nothing has been changed in git srctree?
+https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/externals=
+rc.bbclass#n181
+
+Do I have to consider some other constraints as well?
+
+Thanks in Advance.
+
+Best regards
+
+Vignesh Rajendran
+
+--_000_AA675284509C9741BF10EAC9FAA8BCC25939FDHI2EXCH01aditjvco_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Yocto,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am already aware of sstate never works for externa=
+lsrc recipes.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">My environment is using externalsrc in recipes for m=
+akefile based sources in git.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am aware that the source is not going to change an=
+d only builds one time in my production build.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I want to use sstate if nothing has changed in my ne=
+xt build/bitbake.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is it possible to enable setscene tasks if the sourc=
+e is in git and srctree_hash_files reports nothing has been changed in git =
+srctree?<o:p></o:p></p>
+<p class=3D"MsoNormal">https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree=
+/meta/classes/externalsrc.bbclass#n181<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Do I have to consider some other constraints as well=
+?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks in Advance.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Best regard=
+s</span><span style=3D"font-size:8.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt;text-autospace:none"><=
+b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
+serif&quot;">Vignesh Rajendran</span></b><span style=3D"font-size:8.0pt;fon=
+t-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span><=
+/p>
+</div>
+</body>
+</html>
+
+--_000_AA675284509C9741BF10EAC9FAA8BCC25939FDHI2EXCH01aditjvco_--
