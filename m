@@ -1,34 +1,47 @@
-Return-Path: <sveinse@seldal.com>
+Return-Path: <krzk@kernel.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C3B70E00CD0; Tue, 19 Sep 2017 23:46:48 -0700 (PDT)
+	id E7AFFE00CD3; Wed, 20 Sep 2017 00:29:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [194.63.252.55 listed in list.dnswl.org]
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,HEXHASH_WORD,
+	RCVD_IN_DNSWL_HI,RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.145.29.99 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.173 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 169 seconds by postgrey-1.32 at yocto-www;
-	Tue, 19 Sep 2017 23:46:48 PDT
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25021E00A39
-	for <yocto@yoctoproject.org>; Tue, 19 Sep 2017 23:46:48 -0700 (PDT)
-Received: from [2a01:79d:7376:8270:c064:8ee8:cd43:324d] (port=51430)
-	by smtp.domeneshop.no with esmtpsa
-	(TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.84_2)
-	(envelope-from <sveinse@seldal.com>) id 1duYjm-0001II-M5
-	for yocto@yoctoproject.org; Wed, 20 Sep 2017 08:43:58 +0200
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Svein Seldal <sveinse@seldal.com>
-Message-ID: <cfa95210-8fc5-492a-7c8c-3f9b6c561cda@seldal.com>
-Date: Wed, 20 Sep 2017 08:43:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75780E00A39
+	for <yocto@yoctoproject.org>; Wed, 20 Sep 2017 00:29:07 -0700 (PDT)
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mail.kernel.org (Postfix) with ESMTPSA id 2BE2C217C2
+	for <yocto@yoctoproject.org>; Wed, 20 Sep 2017 07:29:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2BE2C217C2
+Authentication-Results: mail.kernel.org;
+	dmarc=none (p=none dis=none) header.from=kernel.org
+Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=krzk@kernel.org
+Received: by mail-io0-f173.google.com with SMTP id k101so3299582iod.0
+	for <yocto@yoctoproject.org>; Wed, 20 Sep 2017 00:29:07 -0700 (PDT)
+X-Gm-Message-State: AHPjjUjbtyyj4pjFlgtyHw+BnlWwyjUnrdaHbvTvKNuv9ygHUR/UUpfe
+	90YOUf4ifxoE5Px2B/XyhGtxbuFH/0h4HVX0yCE=
+X-Google-Smtp-Source: AOwi7QAA1TXpz80kDmczpYr/y3H83Hci8MPL6FemiexBRRgK16p88Uxz+S0UwOHSynEzYhPYS8cUbgTj29yAq/9gq8U=
+X-Received: by 10.107.20.215 with SMTP id 206mr5452444iou.116.1505892546450;
+	Wed, 20 Sep 2017 00:29:06 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Sysroot bug in bitbake or wrong configuration?
+Received: by 10.107.149.133 with HTTP; Wed, 20 Sep 2017 00:29:06 -0700 (PDT)
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Wed, 20 Sep 2017 09:29:06 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPc=uS4SQOty1uAgr=hy3oZ4=jWPrLV6Th+vd2Wa0m7s4Q@mail.gmail.com>
+Message-ID: <CAJKOXPc=uS4SQOty1uAgr=hy3oZ4=jWPrLV6Th+vd2Wa0m7s4Q@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: devtool/sdk: multiple issues with sdk-update (and after update)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,84 +53,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Sep 2017 06:46:48 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Sep 2017 07:29:08 -0000
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all,
+
+I am using Yocto Poky 2.3 (yocto-2.3-65-gcc48789276e0) and its
+extensible SDK. Host is Ubuntu 16.04.3 LTS. I have multiple issues
+with sdk-update:
 
 
-I have the spu-image.bb recipe below, and running on Pyro, the recipe 
-behaves differently if the recipe is run on a fresh system with no 
-sstate elements, compared to a system that has a sstate cache present.
+1. $ devtool sdk-update
+Fetching origin
+fatal: unable to access
+'https://foobar.com/~builder/releases/yocto-2.3/toolchain/updates/layers/.git/':
+Problem with the SSL CA cert (path? access rights?)
+error: Could not fetch origin
 
-The failure is that the spu-image required the host tool "uuidgen", and 
-thus has DEPENDS on "util-linux-native". When the -c cleanall spu-image 
-is run prior to building spu-image, the recipe sysroot is properly 
-initialized with util-linux-native and uuidgen is available in the task 
-functions.
+Workaround is GIT_SSL_CAINFO="/etc/ssl/certs/ca-certificates.crt"
+devtool sdk-update but that is not that convenient.
 
-If -c clean is run prior to build, or simply by deleting tmp, the 
-sysroot will not be properly initialized and uuidgen is not available 
-and the recipe fails
 
-Is this a bug in bitbake or am I missing something in my recipe?
+2. SDK update partially succeeds but not all tasks are apparently executed:
 
+HEAD is now at 8189dd22fed5 init repo
+NOTE: Preparing build system... (This may take some time.)
+ERROR: Unexecuted tasks found in preparation log:
+  NOTE: Running task 1065 of 2619
+(/home/krzk/proceq17_sdk/layers/poky/meta/recipes-graphics/freetype/freetype_2.7.1.bb:do_fetch)
+  NOTE: Running task 1077 of 2619
+(/home/krzk/proceq17_sdk/layers/poky/meta/recipes-multimedia/libpng/libpng_1.6.28.bb:do_fetch)
+...
+...
+...
+ NOTE: Running task 2619 of 2619
+(/home/krzk/proceq17_sdk/layers/meta-oe/recipes-support/opencv/opencv_3.2.bb:do_packagedata)
+
+
+It seems that update works... but not entirely.
+
+
+3. devtool sdk-update sees new commits in layers repository on origin
+remote but runs just "git reset --hard" so it does not switch to it.
+
+Fetching origin
+From https://foobar.com/~builder/releases/yocto-2.3/toolchain/updates/layers/
+   f392bd369685..af2013cdfa56  master     -> origin/master
+HEAD is now at f392bd369685 init repo
+
+Running git reset --hard will obviously not switch the HEAD from
+f392bd369685 to af2013cdfa56.
+
+My workaround here is to manually reset --hard origin/master and then
+re-run the sdk-update.
+
+
+4. SDK updated this way (with all workarounds above) is different than
+fresh install. For example some files in sysroots are missing - the
+parts introduced at some point by changes in my software. Here - the
+json-c.pc is missing:
+
+$ cd UPDATED_SDK/workspace/sources
+$ mkdir lib-eclipse
+$ make -G"Eclipse CDT4 - Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug ../lib
+-- Checking for module 'json-c'
+--   No package 'json-c' found
+$ find UPDATED_SDK/ -name 'json-c.pc'
+./tmp/work/cortexa5hf-neon-poky-linux-gnueabi/json-c/0.12-r0/image/usr/lib/pkgconfig/json-c.pc
+./tmp/work/cortexa5hf-neon-poky-linux-gnueabi/json-c/0.12-r0/package/usr/lib/pkgconfig/json-c.pc
+./tmp/work/cortexa5hf-neon-poky-linux-gnueabi/json-c/0.12-r0/sysroot-destdir/usr/lib/pkgconfig/json-c.pc
+./tmp/work/cortexa5hf-neon-poky-linux-gnueabi/json-c/0.12-r0/packages-split/json-c-dev/usr/lib/pkgconfig/json-c.pc
+./tmp/work/cortexa5hf-neon-poky-linux-gnueabi/json-c/0.12-r0/build/json-c.pc
+./tmp/sysroots-components/cortexa5hf-neon/json-c/usr/lib/pkgconfig/json-c.pc
+
+$ find FRESH_INSTALL/ -name 'json-c.pc'
+./tmp/sysroots/col-vf50-proceq/usr/lib/pkgconfig/json-c.pc
+./tmp/work/cortexa5hf-neon-poky-linux-gnueabi/json-c/0.12-r0/sysroot-destdir/usr/lib/pkgconfig/json-c.pc
+./tmp/sysroots-components/cortexa5hf-neon/json-c/usr/lib/pkgconfig/json-c.pc
+
+The devtool build works okay for both cases.
+
+
+Any hints on these issues?
 
 Best regards,
-Svein Seldal
+Krzysztof
 
-
-# spu-image.bb
-DESCRIPTION = "Upgrade Image"
-
-LICENSE = "MIT"
-LIC_FILES_CHKSUM = 
-"file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
-
-DEPENDS = "util-linux-native"
-INHIBIT_DEFAULT_DEPS = "1"
-
-fakeroot do_spu_rootfs() {
-	uuidgen
-}
-addtask do_spu_rootfs before do_build
-
-fakeroot do_spu_image () {
-	uuidgen
-}
-addtask do_spu_image after do_spu_rootfs before do_build
-
-# It does not matter if these are noexec-ed or not
-#do_fetch[noexec] = "1"
-#do_unpack[noexec] = "1"
-#do_patch[noexec] = "1"
-#do_configure[noexec] = "1"
-#do_compile[noexec] = "1"
-#do_install[noexec] = "1"
-#do_package[noexec] = "1"
-#do_package_qa[noexec] = "1"
-#do_packagedata[noexec] = "1"
-#do_package_write_ipk[noexec] = "1"
-#do_package_write_deb[noexec] = "1"
-#do_package_write_rpm[noexec] = "1"
-
-
-# 1) Running works fine
-#   		bitbake -v spu-image |tee log1.txt
-#   		cat log1.txt | grep -2 uuidgen
-#
-# 2) Cleaning
-#   		bitbake -c clean spu-image
-#
-# 3) Rebuilding -- now fails
-#   		bitbake -v spu-image |tee log2.txt
-#   		cat log2.txt | grep -2 uuidgen
-#
-# 4) Sstate cleaning
-#   		bitbake -c cleanall spu-image
-#
-# 5) Works again:
-#   		bitbake -v spu-image |tee log3.txt
-#   		cat log3.txt | grep -2 uuidgen
-
+P.S. I could not find discussion list for extensible SDK or devtool so
+I hope this is the right place...
 
