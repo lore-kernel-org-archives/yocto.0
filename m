@@ -1,47 +1,44 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <c.andersen@kostal.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17705E00CC2; Thu, 21 Sep 2017 03:26:27 -0700 (PDT)
+	id 1AC6DE00CC2; Thu, 21 Sep 2017 03:36:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [193.22.205.227 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cpanel2.indieserve.net (cpanel2.indieserve.net [199.212.143.6])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93A84E00C14
-	for <yocto@yoctoproject.org>; Thu, 21 Sep 2017 03:26:25 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm68b6fcf980b0.cpe.net.cable.rogers.com
-	([174.118.92.171]:48540 helo=localhost.localdomain)
-	by cpanel2.indieserve.net with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.89)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1duyga-00043T-9M; Thu, 21 Sep 2017 06:26:24 -0400
-Date: Thu, 21 Sep 2017 06:26:22 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: "Burton, Ross" <ross.burton@intel.com>
-In-Reply-To: <CAJTo0LZqvCZ3a37krzj4rYZ+g+BEuWPYm5yncYP3keWf2nGwiQ@mail.gmail.com>
-Message-ID: <alpine.LFD.2.21.1709210625200.20962@localhost.localdomain>
-References: <alpine.LFD.2.21.1709210557260.19879@localhost.localdomain>
-	<CAJTo0LZqvCZ3a37krzj4rYZ+g+BEuWPYm5yncYP3keWf2nGwiQ@mail.gmail.com>
-User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+Received: from debemgw001.kostal.com (securemail.kostal.com [193.22.205.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EB60E00C14
+	for <yocto@yoctoproject.org>; Thu, 21 Sep 2017 03:36:23 -0700 (PDT)
+Received: from DEBEMAIL001.kostal.int ([10.20.2.181]) by 
+	debemgw001.kostal.com (8.14.7/8.14.7) with ESMTP id v8LAaGEL003745 
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL) for 
+	<yocto@yoctoproject.org>; Thu, 21 Sep 2017 12:36:17 +0200
+Received: from DEBEMAIL002.kostal.int (10.20.2.182) by DEBEMAIL001.kostal.int 
+	(10.20.2.181) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Thu, 
+	21 Sep 2017 12:36:16 +0200
+Received: from DEBEMAIL002.kostal.int ([fe80::e135:11a6:577e:23bb]) by 
+	DEBEMAIL002.kostal.int ([fe80::e135:11a6:577e:23bb%12]) with mapi id 
+	15.00.1320.000; Thu, 21 Sep 2017 12:36:16 +0200
+From: "Andersen, Christian" <c.andersen@kostal.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Public key for U-Boot verified boot is not inserted in DTB when 
+	rebuilding from sstate
+Thread-Index: AdMyqoNPUyvvVz3ATOKXntRCdGhWWA==
+Date: Thu, 21 Sep 2017 10:36:16 +0000
+Message-ID: <3f15ed46219a40ce8cfe8ba5ab6b43f7@DEBEMAIL002.kostal.int>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.20.2.192]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel2.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel2.indieserve.net: authenticated_id:
-	rpjday+crashcourse.ca/only user confirmed/virtual account not
-	confirmed
-X-Authenticated-Sender: cpanel2.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: which is the official(?) OE/YP openbmc layer?
+x-msw-jemd-newsletter: false
+Subject: Public key for U-Boot verified boot is not inserted in DTB when rebuilding from sstate
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,50 +50,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Sep 2017 10:26:27 -0000
-Content-Type: multipart/mixed; boundary="8323328-620787904-1505989584=:20962"
+X-List-Received-Date: Thu, 21 Sep 2017 10:36:25 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
---8323328-620787904-1505989584=:20962
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Hello,
 
-On Thu, 21 Sep 2017, Burton, Ross wrote:
+I have a problem with U-Boot verified boot and the sstate caching of build =
+artifacts.
 
-> On 21 September 2017 at 11:01, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->         colleague just yesterday asked me a couple questions about openbmc,
->       so i investigated the OE/YP layer, and i'm a bit confused ... the
->       official OE layers page here:
->
->       https://layers.openembedded.org/layerindex/branch/master/layers/
->
->       refers to a meta-openbmc layer at https://github.com/facebook/openbmc,
->       implying it's a facebook project, but github also hosts:
->
->       https://github.com/openbmc
->
->         can anyone clarify the relationship between those two? if there is
->       any?
->
->
-> Oh I really hope that isn't a Google/IBM vs Facebook fork war.
->
-> I think the best way to get an answer is to email both
-> maintainers...
+On a clean rebuild (deleted sstate and tmp dir), the signed FIT image and U=
+-Boot incl. the public key are correctly created.
+But when I delete the tmp dir and let bitbake recreate it from sstate, the =
+public key in U-Boot is missing.
 
-  after just cursory examination of both repos, i have to say, neither
-of them looks particularly well-organized. or am i just being overly
-critical?
+The task sequence according to uboot-sign.bbclass is:
 
-rday
+#   u-boot:do_deploy_dtb
+#   u-boot:do_deploy
+#   virtual/kernel:do_assemble_fitimage
+#   u-boot:do_concat_dtb
+#   u-boot:do_install
 
--- 
+The problem seems to be that while assembling the FIT image (from the kerne=
+l recipe), the U-Boot DTB in DEPLOY_IMAGE_DIR is modified and the public ke=
+y is inserted. After that U-Boot and the new DTB are concatenated. This hap=
+pens for the U-Boot image in DEPLOYDIR as well in DEPLOY_IMAGE_DIR.
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+The problem now is, that the sstate caches the versions of U-Boot and DTB w=
+hile deploying it. Since this happens before assembling the FIT image, the =
+sstate now contains U-Boot and DTB without the public key.
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+U-Boot unfortunately (silently!) disables verified boot when the public key=
+ is not available in the DTB.
 
---8323328-620787904-1505989584=:20962--
+I already filed a bug (#12112) for this, but has anybody an idea how to eas=
+ily fix this (other than cleaning the sstate of U-Boot/Kernel after deletin=
+g the tmp dir)?
+
+A possible solution would be to remove the dependency between kernel and U-=
+Boot. But in this case it would be necessary to insert the public key into =
+the DTB while building U-Boot without using the FIT image from the kernel b=
+uild. Unfortunately uboot-mkimage does not support this at the moment.
+
+
+Regards
+Christian
+
+--=20
+KOSTAL Industrie Elektrik GmbH
+www.kostal-industrie-elektrik.com
+
+
+KOSTAL Industrie Elektrik GmbH - Sitz L=FCdenscheid, Registergericht Iserlo=
+hn HRB 3924 - USt-Id-Nr./Vat No.: DE 813742170
+Postanschrift: An der Bellmerei 10, D-58513 L=FCdenscheid * Telefon: +49  2=
+351 16-0 * Telefax: +49  2351 16-2400
+Werksanschrift: Lange Eck 11, D-58099 Hagen * Tel. +49 2331 8040-601 * Fax =
++49 2331 8040-602
+Gesch=E4ftsf=FChrung: Dr.-Ing. Dipl.-Wirt.Ing. Manfred Gerhard, Dipl.-Ing. =
+Marwin Kinzl, Dipl.-Oec. Andreas Kostal
+
+
