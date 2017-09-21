@@ -1,68 +1,36 @@
-Return-Path: <peter.kjellerstedt@axis.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD3ADE00C78; Wed, 20 Sep 2017 23:49:03 -0700 (PDT)
+	id 1C4EBE00CC2; Thu, 21 Sep 2017 01:47:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.60.68.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 457 seconds by postgrey-1.32 at yocto-www;
-	Wed, 20 Sep 2017 23:49:01 PDT
-Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 277A6E00A9B
-	for <yocto@yoctoproject.org>; Wed, 20 Sep 2017 23:49:01 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bastet.se.axis.com (Postfix) with ESMTP id 638221807C;
-	Thu, 21 Sep 2017 08:41:23 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024)
-	with LMTP id M2ZvzL3llesI; Thu, 21 Sep 2017 08:41:22 +0200 (CEST)
-Received: from boulder03.se.axis.com (boulder03.se.axis.com [10.0.8.17])
-	by bastet.se.axis.com (Postfix) with ESMTPS id 61E8218095;
-	Thu, 21 Sep 2017 08:41:22 +0200 (CEST)
-Received: from boulder03.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 501671E090;
-	Thu, 21 Sep 2017 08:41:22 +0200 (CEST)
-Received: from boulder03.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 44C101E08E;
-	Thu, 21 Sep 2017 08:41:22 +0200 (CEST)
-Received: from seth.se.axis.com (unknown [10.0.2.172])
-	by boulder03.se.axis.com (Postfix) with ESMTP;
-	Thu, 21 Sep 2017 08:41:22 +0200 (CEST)
-Received: from XBOX04.axis.com (xbox04.axis.com [10.0.5.18])
-	by seth.se.axis.com (Postfix) with ESMTP id 391941855;
-	Thu, 21 Sep 2017 08:41:22 +0200 (CEST)
-Received: from XBOX02.axis.com (10.0.5.16) by XBOX04.axis.com (10.0.5.18) with
-	Microsoft SMTP Server (TLS) id 15.0.1263.5;
-	Thu, 21 Sep 2017 08:41:22 +0200
-Received: from XBOX02.axis.com ([fe80::50c3:4d2f:4507:7776]) by
-	XBOX02.axis.com ([fe80::50c3:4d2f:4507:7776%21]) with mapi id
-	15.00.1263.000; Thu, 21 Sep 2017 08:41:22 +0200
-From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-To: Khem Raj <raj.khem@gmail.com>, Takashi Matsuzawa <tmatsuzawa@xevo.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] "(-)"??
-Thread-Index: AQHTMohPs5aV5l+WLk27A7Bpi9W3W6K+qpcAgAA04sA=
-Date: Thu, 21 Sep 2017 06:41:22 +0000
-Message-ID: <eda389cc3fd34e08bd7f37c17fae4fcf@XBOX02.axis.com>
-References: <MWHPR01MB32939418BEF2C9C72FE13D57B6660@MWHPR01MB3293.prod.exchangelabs.com>
-	<386119ba-a8ca-ccc6-0dde-26c01edc1c35@gmail.com>
-In-Reply-To: <386119ba-a8ca-ccc6-0dde-26c01edc1c35@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.0.5.60]
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84639E00C01
+	for <yocto@yoctoproject.org>; Thu, 21 Sep 2017 01:47:08 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	21 Sep 2017 01:47:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.42,424,1500966000"; d="scan'208";a="151741441"
+Received: from jlock-mobl3.ger.corp.intel.com ([10.252.27.138])
+	by orsmga005.jf.intel.com with ESMTP; 21 Sep 2017 01:47:06 -0700
+To: yocto@yoctoproject.org
+References: <20170921013617.41863-1-stephano.cetola@linux.intel.com>
+From: Joshua Lock <joshua.g.lock@linux.intel.com>
+Message-ID: <7ce6dd92-01aa-e06e-28b9-c66c621f51c0@linux.intel.com>
+Date: Thu, 21 Sep 2017 09:47:04 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-X-TM-AS-GCONF: 00
-Subject: Re: "(-)"??
+In-Reply-To: <20170921013617.41863-1-stephano.cetola@linux.intel.com>
+Subject: Re: [yocto-autobuilder][PATCH] CheckYoctoCompat.py: rename yocto-compat-layer to yocto-check-layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,49 +42,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Sep 2017 06:49:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 21 Sep 2017 08:47:09 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Khem Raj
-> Sent: den 21 september 2017 07:15
-> To: Takashi Matsuzawa <tmatsuzawa@xevo.com>; yocto@yoctoproject.org
-> Subject: Re: [yocto] "(-)"??
->=20
-> On 9/20/17 8:18 PM, Takashi Matsuzawa wrote:
-> > Hello.
-> > I am seeing some of the recipes contains lines like below.
-> >
-> >> COMPATIBLE_MACHINE =3D "(-)"
-> >
-> > Sorry being novice, but what is the intended effect of this line?
-> > I can see submit comments that this is for blacklisting but I am not
-> > sure how it works. =A0It simply means a '-' letter?
->=20
-> COMAPTIBLE_MACHINE uses regexp syntax
 
-Which actually makes that a pretty weird COMPATIBLE_MACHINE,=20
-especially if it is intended for blacklisting. Given that it would=20
-match any machine with a dash in it, it would match, e.g., qemux86-64
-but not qemux86. It would also happen to match about half of our=20
-machines which happen to have dashes in their names.
 
-A more appropriate way to blacklist machines using COMPATIBLE_MACHINE=20
-would be something like:
+On 21/09/17 02:36, Stephano Cetola wrote:
+> This script name was changed in the following commit:
+> 
+> b46e05677b342df44829ffe8bcfbfc954e906030
+> 
+> This patch updates the script name to match.
+> 
+> [YOCTO #12110]
+> 
+> Signed-off-by: Stephano Cetola <stephano.cetola@linux.intel.com>
+> ---
+>   lib/python2.7/site-packages/autobuilder/buildsteps/CheckYoctoCompat.py | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/CheckYoctoCompat.py b/lib/python2.7/site-packages/autobuilder/buildsteps/CheckYoctoCompat.py
+> index 134adaa51..62eddae50 100644
+> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/CheckYoctoCompat.py
+> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/CheckYoctoCompat.py
+> @@ -41,11 +41,12 @@ class CheckYoctoCompat(BitbakeShellCommand):
+>   
+>           layerversioncore = int(self.getProperty("layerversion_core", "0"))
+>           # yocto-compat-layer-wrapper was introduced in Pyro
+> +        # it was renamed to yocto-check-layer-wrapper Rocko
+>           if layerversioncore >= 10:
+>               command = ". ./oe-init-build-env;"
+>               for layer in self.layers:
+>                   layerpath = os.path.join(builddir, layer)
+> -                cmd = "yocto-compat-layer-wrapper {}".format(layerpath)
+> +                cmd = "yocto-check-layer-wrapper {}".format(layerpath)
 
-COMPATIBLE_MACHINE =3D "null"
+This will result in failures on Pyro (layer version 10). We should either:
+a) bump the layer version check to only run this for Rocko (layer 
+version 11)
+b) use different program names for layer version 10 vs. layer version 11.
 
-or:
+I'm inclined to suggest a, the yocto-compat-layer scripts only really 
+became useful in the Rocko cycle.
 
-COMPATIBLE_MACHINE =3D "nothing"
 
-I found two occurrences of "(-)" being used as COMPATIBLE_MACHINE in=20
-meta-openembedded for Morty and Pyro, but they have been removed for=20
-Rocko. If you see them anywhere else, consider changing them.
-
-//Peter
-
+>                   cmd = cmd + " || export CL_FAIL=1;"
+>                   command = command + cmd
+>               command = command + 'if [ "$CL_FAIL" = "1" ]; then exit 1; fi;'
+> 
 
