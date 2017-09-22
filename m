@@ -1,65 +1,38 @@
-Return-Path: <prvs=0438b0ab5b=mike.looijmans@topicproducts.com>
+Return-Path: <sveinse@seldal.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AFD67E00D01; Fri, 22 Sep 2017 10:20:20 -0700 (PDT)
+	id 81864E00D00; Fri, 22 Sep 2017 12:10:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [194.63.252.55 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 3950 seconds by postgrey-1.32 at yocto-www;
-	Fri, 22 Sep 2017 10:20:18 PDT
-Received: from out1-6.antispamcloud.com (out1-6.antispamcloud.com
-	[185.201.16.6])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6CDFE00B1B
-	for <yocto@yoctoproject.org>; Fri, 22 Sep 2017 10:20:18 -0700 (PDT)
-Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
-	by mx3.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
-	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1dvOVe-0001X8-U7; Fri, 22 Sep 2017 16:00:57 +0200
-Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 22 Sep 2017 16:00:49 +0200
-To: Martin Jansa <martin.jansa@gmail.com>, Michael Ho <Michael.Ho@bmw-carit.de>
-References: <1498816090789.97105@bmw-carit.de>
-	<CA+chaQcS17v-sPc9Prhu0JTf_TNTRXBEDxnwzZ6eTFC0aYSEJw@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <80532641-d9f5-c6db-15de-257bc075f88c@topic.nl>
-Date: Fri, 22 Sep 2017 16:00:49 +0200
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C00A7E00CF2
+	for <yocto@yoctoproject.org>; Fri, 22 Sep 2017 12:10:28 -0700 (PDT)
+Received: from [2a01:79d:7376:8270:1041:68bf:d6ea:d6bc] (port=46572)
+	by smtp.domeneshop.no with esmtpsa
+	(TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.84_2)
+	(envelope-from <sveinse@seldal.com>) id 1dvTLG-0002rd-RY
+	for yocto@yoctoproject.org; Fri, 22 Sep 2017 21:10:26 +0200
+To: yocto@yoctoproject.org
+References: <CC06751E-FB4C-46CE-8127-6344F8B00D96@comcast.net>
+	<1502737813.26251.119.camel@genivi.org>
+	<f6a1b7cc-f5fc-b891-bed5-3aa0f33632e1@topic.nl>
+	<1502802952.2652.34.camel@gmail.com>
+	<CAEjjReLSPdZB4UdgxFm5HHtqhuVtdcgSvYPqAm74h-t6Xr5HVg@mail.gmail.com>
+From: Svein Seldal <sveinse@seldal.com>
+Message-ID: <026e73ec-4aaa-8047-6bbb-e11322ed0ba4@seldal.com>
+Date: Fri, 22 Sep 2017 21:10:26 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <CA+chaQcS17v-sPc9Prhu0JTf_TNTRXBEDxnwzZ6eTFC0aYSEJw@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Originating-IP: 37.74.225.130
-X-SpamExperts-Domain: topic.nl
-X-SpamExperts-Username: 37.74.225.128/28
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=37.74.225.128/28@topic.nl
-X-SpamExperts-Outgoing-Class: unsure
-X-SpamExperts-Outgoing-Evidence: Combined (0.28)
-X-Recommended-Action: accept
-X-Filter-ID: EX5BVjFpneJeBchSMxfU5oapnpt02i+Gx0UEFzMpsCrj1g3/PwYZaTCzSym8uE9HziYc+ALDjHuU
-	eQwkRg2Yk/h8vMqRIkJzwfbjZMxPrNCr1UMPWgkU9h5OC54KmKfzN2ZxMLZGceNcuCISSUXF0J/H
-	U+SXBcNlXxBSaehPQwbnx8yeplRO3sLIqUlSH7OGgckCJwxeR6uD1F+F/dy5JdVKCGR3hoh079d8
-	W1qhRsVEU5cgoP12hYa8xiyXxAMoIRFsicyJMEhQFtD8PLoinkRi1PyeCgEXNPl7t7QJGKTAXx1T
-	Dr8m4KkK9B1JwKK3XHDuw9wBfTlei3Qh9u/4watwsFhZQbiUjZEEk3KPT9E9oLDEz6cVLClJUS8A
-	nGbzyicJ5tao0zCSY1mwfdVCZjLBm5p9zbBiuIm+LRuMdkh0eQD4kQEEnxu9tWRzbKnQk+EI0wKo
-	w1riXHloKkD++rdtS2ZY5YZLeVribYiizeclW5enDR4aR6HUaKAawgylmCP4WV3nCh+GGC4GXSn5
-	H50ymHhrmYiRSqF6A9Q9yAdaZId8pUA6RRXMGxSMRXKcASJFC/49WOPBr5nlEUI4xMIOUMJ3B1tr
-	R3WfSZo3/YR10/Yykoi1m9n4LvnzuXhfa42SUNIITrrK77Vdw9h4pCVO53fcnzJ5knXHFaV6Atct
-	dAVV1Rqw0xb01fsccviOlAWpIAUfYQFH5qb1QYhq1HKyjjgoE8EuoY+JHIgPKc2RkWS/IhpMbNe2
-	ozFAZJx9dWFXPtM7UJ87yL0cSUYOqxxwEiTVJqDh0qKoKsXx5lldKTGuNmc3vM7Tlyafqi0mRXl1
-	XG+4LbGOaOxWVV//l5Q3WRc9Fz2TobNARp9L5Qk6Ybr/niDNrurllrQAWzPoxu2GnpiRpkw2gppj
-	f3Gxs3ICyTVODr0nIjuBKmR7xs+RVYKU9W9tbmVXJBqdHHDmQUObPbhYqQ985hHZ0PsIKq0yFJcp
-	troaqPMG1n7V7hY=
-X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: Backwards compatibility checking sstate-cache
+In-Reply-To: <CAEjjReLSPdZB4UdgxFm5HHtqhuVtdcgSvYPqAm74h-t6Xr5HVg@mail.gmail.com>
+Subject: Re: release management
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,208 +44,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Sep 2017 17:20:20 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Fri, 22 Sep 2017 19:10:30 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-=EF=BB=BFI think this remark in the referenced link is the best summary of =
-"what could=20
-be improved":
+I have also been slightly puzzled over the meticulousness and 
+determinism of Yocto on recipe level, but the left-to-yourself thinking 
+for the top-level meta-level and configuration management.
 
-"""the biggest weakness of the sstate signature bits, in my opinion, is tha=
-t=20
-it only tracks inputs, not outputs. If task A depends on B, and the metadat=
-a=20
-input to B changes, then A will be rebuilt, even if the *output* of B didn'=
-t=20
-change as a result of the change to its metadata."""
+We have chosen to make a custom configuration management (CM) and 
+lightweight build system on top of Yocto. Firstly, we have mixed SCM, 
+mixing both git and hg, and the CM contains a manifest of the sources 
+and can handle proper checkout (which repo does too for git).
 
-For example, if someone fixes a bug in gcc that only applies to MIPS, then=
-=20
-builds that only target an ARM machine shouldn't be affected. Much worse th=
-an=20
-that, I have a dependency like:
-gcc -> ... -> python -> bitstream tool -> FPGA image
+Secondly, the CM provides a standardized unified location for setting 
+configuration options and control of what artifacts to generate. This is 
+then independent of what sub-system, like Yocto, is being run behind the 
+scenes. Included in this is organization specific systems, such as 
+central defining of system version and build numbers.
 
-so this means that a change in gcc causes Python to rebuild, which causes t=
-he=20
-bitstream tool to be rebuilt and produce idential output, and that triggers=
- a=20
-roughly 31-hour build of lots of FPGA images. These are the ones we really=
-=20
-want to break. A binary output compare would help a lot, even if 80% of the=
-=20
-libraries fail to create reproducible output, I may still be spared those 3=
-1=20
-hours...
+The CM also contains some postprocessors for Yocto. In the versions of 
+Yocto we use, Yocto cannot generate artifacts for more than one MACHINE 
+for each bitbake invocation. We must pack all these output artifacts 
+into a common releasable end-user image and upload it to our PLM system. 
+This part I have not been able to do (cleanly) from a recipe since it 
+spans multiple MACHINES.
 
-I think tracking digital output is technically feasible, and won't require =
-any=20
-change to existing recipes.
+So our conclusion is that you need to know what Yocto is good at and 
+what it can do, and perhaps rely on other systems where this is 
+required. YMMV
 
-Also think about "feed" setups. When I see my settop reporting "331 package=
-s=20
-need updating"... It'd be great if that could be avoided.
+Best regards,
+Svein
 
 
-On 01-07-17 09:48, Martin Jansa wrote:
-> I haven't tried the patches, but I really like this idea (I was suggestin=
-g=20
-> something like that since 2011=20
-> http://permalink.gmane.org/gmane.comp.handhelds.openembedded.core/10327) =
-and=20
-> I'm glad you weren't discouraged attempting to do this.
->=20
-> It also implements 3) b) idea from=20
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5970 , you might be=20
-> interested read that ticket.
->=20
-> Thanks
->=20
-> On Fri, Jun 30, 2017 at 11:48 AM, Michael Ho <Michael.Ho@bmw-carit.de=20
-> <mailto:Michael.Ho@bmw-carit.de>> wrote:
->=20
->     Hi, at BMW Car IT we are working on an experimental feature to improv=
-e sstate
->     cache hits and we are looking for comments on the approach who might =
-have some
->     insights to the problem and seeing if anyone is interested in the fea=
-ture for
->     mainline.
->=20
->     The sstate-cache of a recipe is tied closely to its build dependencie=
-s, as the
->     signature generated for a task includes all parent task's signatures =
-as
->     part of
->     the signature information. This means that when changes occur in the =
-parent
->     recipes, even if insignificant, all children recipes that have valid =
-sstate
->     cache must invalidate their sstate cache objects.
->=20
->     What this patchset does is propose to add another optional variable t=
-o
->     recipes,
->     CDEPENDS, which acts like DEPENDS for all RunQueue purposes but for s=
-ignature
->     generation it excludes any parent tasks that come from dependencies l=
-isted in
->     it. This is to break the signature change domino effect.
->=20
->     This patchset also proposes modifying RunQueue to then be able to run=
- a
->     compatibility checker during task execution phase for recipes and tas=
-ks
->     that use
->     CDEPENDS and allow for deciding to re-execute a task despite being co=
-vered by
->     sstate-cache.
->=20
->     The patchset is based on the jethro branch for the poky repository, a=
-s this is
->     the branch that we are using.  If the general idea sounds good, we ca=
-n
->     consider
->     porting it to master.
->=20
->     Included is an patch that adds an example recipe and compatibility ch=
-ecker,
->     where compatibility is based on the file checksums of the parent reci=
-pes
->     packages. An example recipe, cdepends-test1, generates a compatibilit=
-y report
->     containing the file checksums of all files that it packages and which=
- file
->     paths
->     they are at. Another recipe, cdepends-test2, can then strip this comp=
-atibility
->     report to the minimal files it needs to be consistent and can compare=
- the
->     latest
->     checksums it used to configure/compile/install with and if they have =
-changed,
->     trigger a rebuild. If not, the previous version restored from sstate-=
-cache is
->     used.
->=20
->     We are still experimenting with the usages of this, including the use=
- of
->     having
->     abi-compliance-checker to compare the ABI of shared libraries as a
->     compatibility
->     checker during RunQueue and using the results to avoid rebuilding chi=
-ld
->     recipes
->     when the .so files they depend on are still compatible. Example use c=
-ases of
->     this are allowing recipes which provide multiple shared libraries to =
-change a
->     single .so file without rebuilding all its children that depend on th=
-e other
->     shared libraries but not the one that changed.
->=20
->     We're aware of the SIGGEN_EXCLUDERECIPES_ABISAFE feature but feel it
->     didn't meet
->     the feature requirements of what this compatibility checker callback =
-is doing,
->     although maybe when porting to master we could refactor to make bette=
-r use of
->     the work already done there. The current implementation is a bit hack=
-y but
->     comments would be appreciated in regards to if the concept is feasibl=
-e and if
->     people are interested in making use of it and their use cases.
->=20
->     Kind regards,
->     Michael Ho
->=20
+On 19. aug. 2017 00:58, Chris Z. wrote:
+> Hi,
+> 
+> Regarding submodule for layers. This is good when no one beside you use 
+> it. Especially  with yocto layers. But when dev starts to use it. You or 
+> other support team will be faced against wall of problems with basic 
+> understanding of git submodules and index. But google starts to invest 
+> some funds in submodules instead repo usage. So it can be a game changer 
+> in favor of git submodules.
+> 
+>  From own experience (dev team of 80 persons) we decided to leave 
+> submodules in favor of repo tool. But we had the same conclusion at 
+> first. Why to use other tool were git provides submodules. Further 
+> development and expansion of layers are pro the repo tool manifest file. 
+> But that is from my own exp. And it was good change.
+> 
+> Br,
+> Chris Z
+> 
+> 15.08.2017 15:16 "Joshua Watt" <jpewhacker@gmail.com 
+> <mailto:jpewhacker@gmail.com>> napisał(a):
+> 
+>     On Tue, 2017-08-15 at 09:25 +0200, Mike Looijmans wrote:
+>      > ﻿On 14-08-17 21:10, Gunnar Andersson wrote:
+>      > >
+>      > > Hey Russell
+>      > >
+>      > > I don't claim to be an authority on best practices but I will share
+>      > > some
+>      > > thoughts.
+>      > >
+>      > > On Sun, 2017-08-13 at 06:58 -0400, Russell Peterson wrote:
+>      > > > Hello.
+>      > > >
+>      > > > As I learn more about yocto and more importantly gain practical
+>      > > > experience
+>      > > > with it I have started to think about my release structure.  Is
+>      > > > there a
+>      > > > “best practices” document or something like that that speaks to
+>      > > > this?
+>      > > > For example, how does everyone deal with “external” meta layer
+>      > > > dependencies?  My software uses poky and meta-openembedded, of
+>      > > > course.
+>      > >
+>      > > We simply use a parent project [1] that includes git submodules,
+>      > > one per
+>      > > yocto layer.  I'm of the opinion that if git (only) can be used,
+>      > > why
+>      > > introduce other tools?   But it requires you to learn and master
+>      > > that
+>      > > feature.
+>      > >
+>      >
+>      > We arrived at exactly the same setup. One parent repository that
+>      > contains the
+>      > project-unique recipes, and submodules for the layers it needs.
+>      >
+>      > It's a lot better than attempting to script things. For one thing,
+>      > git will
+>      > tell you the state of the submodules.
+>      >
+>      > If I rembemer correctly, Android builds use a tool to manage the
+>      > layer
+>      > repositories. I didn't much like it though. And "yet another tool"...
+> 
+>     It's called "repo" https://code.google.com/archive/p/git-repo/
+>     <https://code.google.com/archive/p/git-repo/>.
+> 
+>     In my experience git submodules work fine if you follow the core
+>     workflow of adding new submodules and updating them to newer versions.
+>     The workflows for deleting, renaming, changed upstream repostiory, etc.
+>     for submodules is IHMO pretty bad. Pretty much every time I've tried
+>     that it has resulted in a borked local repository that I either had to
+>     manually go into the .git directory and fix, or just start over with a
+>     fresh clone (perhaps I'm just bad at it or newer versions of git are
+>     better?). Not to say you shouldn't use them, just be aware of some of
+>     the catches so you can match the tool to your expected workflow.
+> 
+>     For my $0.02: We use git submodules to manage the multiple yocto trees
+>     we are pulling in and also keep "parallel" layers for each with the
+>     local changes we want to make in .bbappends, where possible (following
+>     the strategy of no modifying the original). We do (particularly for
+>     older versions of Yocto) make changes to the core since we have local
+>     mirrors, but we follow a strict policy of getting changes upstreamed
+>     first, and they trying to get upstream to backport to our version (if
+>     it is still supported).
+> 
+>      >
+>      >
+>      > Kind regards,
+>      >
+>      > Mike Looijmans
+>      > System Expert
+>      >
+>      > TOPIC Products
+>      > Materiaalweg 4, NL-5681 RJ Best
+>      > Postbus 440, NL-5680 AK Best
+>      > Telefoon: +31 (0) 499 33 69 79
+>     <tel:%2B31%20%280%29%20499%2033%2069%2079>
+>      > E-mail: mike.looijmans@topicproducts.com
+>     <mailto:mike.looijmans@topicproducts.com>
+>      > Website: www.topicproducts.com <http://www.topicproducts.com>
+>      >
+>      > Please consider the environment before printing this e-mail
+>      >
+>      >
+>      >
+> 
 >     --
->     BMW Car IT GmbH
->     Michael Ho
->     Spezialist Entwicklung - Linux Software Integration
->     Lise-Meitner-Str. 14
->     89081 Ulm
->=20
->     Tel.: +49 731 3780 4071 <tel:%2B49%20731%203780%204071>
->     Mobil: +49 152 5498 0471 <tel:%2B49%20152%205498%200471>
->     Fax: +49-731-37804-001 <tel:%2B49-731-37804-001>
->     Mail: michael.ho@bmw-carit.de <mailto:michael.ho@bmw-carit.de>
->     Web: http://www.bmw-carit.de
->     --------------------------------------------------------
->     BMW Car IT GmbH
->     Gech=C3=A4ftsf=C3=BChrer: Kai-Uwe Balszuweit und Alexis Trolin
->     Sitz und Registergericht: M=C3=BCnchen HRB 134810
->     --------------------------------------------------------
->=20
->     --
->    =20
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Products
-Materiaalweg 4, NL-5681 RJ Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-Visit us at the Space Tech Expo Europe (Stand E-71)
-_______________________________________________
+>     _______________________________________________
 >     yocto mailing list
 >     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
 >     https://lists.yoctoproject.org/listinfo/yocto
 >     <https://lists.yoctoproject.org/listinfo/yocto>
->=20
->=20
->=20
->=20
-
+> 
+> 
+> 
 
