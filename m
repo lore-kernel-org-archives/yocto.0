@@ -1,40 +1,63 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <mickey.happygolucky@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E8BDE00D01; Fri, 22 Sep 2017 15:52:03 -0700 (PDT)
+	id 31917E00D0B; Fri, 22 Sep 2017 21:15:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mickey.happygolucky[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.175 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.217.175 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CCE5E00C35
-	for <yocto@yoctoproject.org>; Fri, 22 Sep 2017 15:52:02 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga105.jf.intel.com with ESMTP; 22 Sep 2017 15:52:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,428,1500966000"; d="scan'208";a="138491233"
-Received: from edellynx-mobl.ger.corp.intel.com (HELO
-	jlock-mobl3.ger.corp.intel.com) ([10.252.16.59])
-	by orsmga002.jf.intel.com with ESMTP; 22 Sep 2017 15:52:00 -0700
-To: Mike Looijmans <mike.looijmans@topic.nl>,
-	Martin Jansa <martin.jansa@gmail.com>, Michael Ho <Michael.Ho@bmw-carit.de>
-References: <1498816090789.97105@bmw-carit.de>
-	<CA+chaQcS17v-sPc9Prhu0JTf_TNTRXBEDxnwzZ6eTFC0aYSEJw@mail.gmail.com>
-	<80532641-d9f5-c6db-15de-257bc075f88c@topic.nl>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <7501485e-57df-ffbc-9189-f22edbb4de74@linux.intel.com>
-Date: Fri, 22 Sep 2017 23:51:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f175.google.com (mail-ua0-f175.google.com
+	[209.85.217.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B027E00D00
+	for <yocto@yoctoproject.org>; Fri, 22 Sep 2017 21:15:54 -0700 (PDT)
+Received: by mail-ua0-f175.google.com with SMTP id t5so1767411uad.13
+	for <yocto@yoctoproject.org>; Fri, 22 Sep 2017 21:15:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=sXIKJp6oYB//kyT1/2I94OgGHBYlLo6mE4p0nhn0pDw=;
+	b=sv/g6fvCcJbHDu3kEplWe9aTVaOFdDJsoIMSol826+7z/uA/YJrSrHOAxly7TJb53v
+	ieHPTlf2twexn01NGORvShBuZkym+QNpdE/LvJDpzo9c749DVMYQHnofwzsPE89IrFFB
+	e5pbhkuI/fVL0vln8IWXVoACXRbG9LlHqZfR2c8quEP7nRCg/DbC/T5Xqek6/dHD2LEE
+	iBi7jb0J5q7IjXF78STxv+n/M9v5rPeHYAojTOdAiXWhYOud2VV/l3rUDvaHheZ1ftdM
+	SbFHM8akpnbfoZ5o/PlNr6iysTSJkAQs7sbgtLzZ8wiuojqy8cAb0OzShftJNK2FzrO1
+	fRKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=sXIKJp6oYB//kyT1/2I94OgGHBYlLo6mE4p0nhn0pDw=;
+	b=V8aQyzhmDB4vze2pun9bEnPzwm2WJV2PB2Vm1uDfjk/cGUG/W9zIb7CO/L8wza0lSo
+	PZiOvZ0+fv9nmtp5f1N/+GDuHkQCkURHiDHXj3OIWPuHDwPi8R5UuJHL3r/wn7KV/h5v
+	JnSWMhO7jcEcF4+vzEvE/hwNTl+V56rXWxHMtInRWEG+SGgENMm0zNXDmJYci5SmVoyf
+	UgRchHvW8K2LMH4BdgcEAismuEdgzdncLYA4VrZAJc/IwPafa7mh21QTFBc2w5BaG6Yg
+	jqobWKQ7ugKd7SfIYNPTiQLX34O3V8P0UfQUo2nMPwQ2CEx/1P9cBMyxBkru5a6r86Tf
+	kpDQ==
+X-Gm-Message-State: AHPjjUgb2xIQZ892b0oZCj9UBMay2SlS9kOEVuxYkS9oDzA6FZHd6KSq
+	t5koWuLDE01ETNukXgxwGujYFdZbeF4tfsTk95tsqg==
+X-Google-Smtp-Source: AOwi7QB8EFy2qREAZ+i7B2DXwhV590dKkNg/y6+lM9oSQIq2zA2j+EdgfPK1Z5gc2NlKophczqKSbwFFGUvD+tyGkOU=
+X-Received: by 10.176.20.169 with SMTP id d38mr1295755uae.184.1506140153224;
+	Fri, 22 Sep 2017 21:15:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <80532641-d9f5-c6db-15de-257bc075f88c@topic.nl>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: Backwards compatibility checking sstate-cache
+Received: by 10.31.201.130 with HTTP; Fri, 22 Sep 2017 21:15:52 -0700 (PDT)
+From: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+Date: Sat, 23 Sep 2017 13:15:52 +0900
+Message-ID: <CACMwXoWOfgvRzEebbKE4tHCcPmJeChYC1angZiJLPmLFRLTcLQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: libgcrypt building fails for armv6 binaries.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,41 +69,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Sep 2017 22:52:03 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 23 Sep 2017 04:15:55 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 22/09/17 15:00, Mike Looijmans wrote:
-> I think this remark in the referenced link is the best summary of "what 
-> could be improved":
-> 
-> """the biggest weakness of the sstate signature bits, in my opinion, is 
-> that it only tracks inputs, not outputs. If task A depends on B, and the 
-> metadata input to B changes, then A will be rebuilt, even if the 
-> *output* of B didn't change as a result of the change to its metadata."""
-> 
-> For example, if someone fixes a bug in gcc that only applies to MIPS, 
-> then builds that only target an ARM machine shouldn't be affected. Much 
-> worse than that, I have a dependency like:
-> gcc -> ... -> python -> bitstream tool -> FPGA image
-> 
-> so this means that a change in gcc causes Python to rebuild, which 
-> causes the bitstream tool to be rebuilt and produce idential output, and 
-> that triggers a roughly 31-hour build of lots of FPGA images. These are 
-> the ones we really want to break. A binary output compare would help a 
-> lot, even if 80% of the libraries fail to create reproducible output, I 
-> may still be spared those 31 hours...
-> 
-> I think tracking digital output is technically feasible, and won't 
-> require any change to existing recipes.
-> 
-> Also think about "feed" setups. When I see my settop reporting "331 
-> packages need updating"... It'd be great if that could be avoided.
-> 
+Hello yocto
 
-That's what packagefeed-stability.bbclass is for. Work on binary 
-reproducibility will improve things here too.
+libgcrypt has problem that build for armv6.
+bitbake said error messages at do_compile as follows:
+...(snip)...
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S: Assembler messages:
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1165:
+Error: selected processor does not support `rbit r8,lr' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1165:
+Error: selected processor does not support `rbit r9,r9' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1165:
+Error: selected processor does not support `rbit r10,r10' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1165:
+Error: selected processor does not support `rbit r11,r11' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1165:
+Error: selected processor does not support `rbit r8,lr' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1166:
+Error: selected processor does not support `rbit r8,lr' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1166:
+Error: selected processor does not support `rbit r9,r9' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1166:
+Error: selected processor does not support `rbit r10,r10' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1166:
+Error: selected processor does not support `rbit r11,r11' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1166:
+Error: selected processor does not support `rbit r8,lr' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1167:
+Error: selected processor does not support `rbit r8,lr' in ARM mode
+| ../../libgcrypt-1.8.0/cipher/rijndael-armv8-aarch32-ce.S:1167:
+Error: selected processor does not support `rbit r9,r9' in ARM mode
+...(snip)...
 
-Joshua
+I googled about this problem then I found the clue at here.
+https://mail-index.netbsd.org/pkgsrc-bugs/2017/08/01/msg062410.html
+
+I thought it fixed at libcrypt_1.8.1.
+
+I tried update to 1.8.1. It seems fine.
+So I suggest the libgcrypt updating for 1.8.1.
+
+By the way, I created the patch for this problem.
+But I am not sure, where to send to this patch?
+I could not found the guidelines of contributing [meta].
+I should send to OE-Core's ML? or  here directly??
+
+And, Would you let me know what strings of options to git send-email I
+should to set?
+
+Thanks.
 
