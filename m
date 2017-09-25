@@ -1,67 +1,35 @@
-Return-Path: <prvs=0441e0e062=mike.looijmans@topicproducts.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6EC3EE00D0D; Mon, 25 Sep 2017 05:03:51 -0700 (PDT)
+	id 48BB1E00D0E; Mon, 25 Sep 2017 06:05:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.168.135.166 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from out1-6.antispamcloud.com (out1-6.antispamcloud.com
-	[185.201.16.6])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 306A2E00CD5
-	for <yocto@yoctoproject.org>; Mon, 25 Sep 2017 05:03:49 -0700 (PDT)
-Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
-	by mx36.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
-	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1dwRrl-0008Sn-1K; Mon, 25 Sep 2017 13:48:02 +0200
-Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 25 Sep 2017 13:47:55 +0200
-To: Joshua Lock <joshua.g.lock@linux.intel.com>, Martin Jansa
-	<martin.jansa@gmail.com>, Michael Ho <Michael.Ho@bmw-carit.de>
-References: <1498816090789.97105@bmw-carit.de>
-	<CA+chaQcS17v-sPc9Prhu0JTf_TNTRXBEDxnwzZ6eTFC0aYSEJw@mail.gmail.com>
-	<80532641-d9f5-c6db-15de-257bc075f88c@topic.nl>
-	<7501485e-57df-ffbc-9189-f22edbb4de74@linux.intel.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <9b72183b-7f7c-59d9-4afb-24d363e6860e@topic.nl>
-Date: Mon, 25 Sep 2017 13:47:55 +0200
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1551AE00CD3
+	for <yocto@yoctoproject.org>; Mon, 25 Sep 2017 06:05:54 -0700 (PDT)
+Received: (qmail 22086 invoked by uid 1003); 25 Sep 2017 13:05:52 -0000
+Received: from unknown (HELO ?192.168.11.142?)
+	(philip@opensdr.com@108.44.111.57)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	25 Sep 2017 13:05:52 -0000
+To: "Maxin B. John" <maxin.john@intel.com>, yocto@yoctoproject.org
+References: <1506287141-3998-1-git-send-email-maxin.john@intel.com>
+	<1506287141-3998-5-git-send-email-maxin.john@intel.com>
+From: Philip Balister <philip@balister.org>
+Message-ID: <1dfa5df9-190b-6566-1bda-7148ab6990f9@balister.org>
+Date: Mon, 25 Sep 2017 09:05:49 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <7501485e-57df-ffbc-9189-f22edbb4de74@linux.intel.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Originating-IP: 37.74.225.130
-X-SpamExperts-Domain: topic.nl
-X-SpamExperts-Username: 37.74.225.128/28
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=37.74.225.128/28@topic.nl
-X-SpamExperts-Outgoing-Class: unsure
-X-SpamExperts-Outgoing-Evidence: Combined (0.24)
-X-Recommended-Action: accept
-X-Filter-ID: EX5BVjFpneJeBchSMxfU5rnYMBsyoQssi1Q65SmC85fj1g3/PwYZaTCzSym8uE9HziYc+ALDjHuU
-	eQwkRg2Yk0JJAslmRFFFj3HtgXyTP/+VnaT9NV9ZRmkOqbYwD0vNCQ9BXhL12XAJQXAlcQla+QCK
-	VEUaai3SkpKNLAI51RCHF/klOPS5fWJZWsB+FPARim+d08L+p8vsDsQkMRmoWkGlz8CJSOMrvzx9
-	TVg3RkXWtRCVM01fHBtFT4oza+5k/sevPPdLVvjz7b14RFNIS30ONArWHUY/dwk70VyeflhfZdf1
-	siwYNJirk4ABKayR03+K7Ju/qxRhvHDAT5LyR61Qv/sjUDXLdm6w1gNv1etv8Cg3hLmAc6MzNodh
-	mCNS0NZNW/XZC9qHOdKoypXuCpuv8+AJAs5OVVdGw7jzTmmm5dI++Vyz8xORtdI4KXtFaVJDVmKe
-	Dpr9avyeewLWSMYOmcQ4SubaAVu9t1ITChSyteBiC2Fk67lA3oq4sbRYGLS9q7PUvAE5M+uoi7Vn
-	1b3mhms596EiHWMnaJWhO1LjZzKoOS1fbJ8eBzRwmWyabhIf1VyGtn175sojVMHLwUPZJwrB9PDz
-	SePVLTUBD75oh9VoIekQHpwUfpYnEThmh+P9FOBSfb4yot7FAn4mifVJKXZ64UA3UtMnEG/1uFZA
-	MU+hVLX6zWC8WogFc6sqYp9LmvOvOp5BC5uzmBZyXVzlkzXu1dw0WcBov4OS/MDmWX9qu5xRtvpE
-	gQ6+jeHz92PNDpgLsd6Ddd/s7VM53lgba1I91CQ3WEjK3YlD5w8Okf5jZxMgE16bb9a88jHh+Vth
-	d0gJGePaJXlClzl3yodyCXNQWPWpqaG0C3TDtXeFCE3V8KWAT7a7O5nnupqnQKHY6H+wSCoVvwvq
-	uzDDiPGq+LDvZGJq+/55nIT0fRv9l3EK8njykfMKlTyG/zOSKMFEHS3+vt/NjsedNDmPw/Ld14/y
-	82ebPziYNS9mrGcHWFhVQvKDd9aHm1tzPaYBvBBr7WLx7CJQSQYjBPVNjPY4ocfmWv3Fe9Iziczd
-	q+A=
-X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: Backwards compatibility checking sstate-cache
+In-Reply-To: <1506287141-3998-5-git-send-email-maxin.john@intel.com>
+Subject: Re: [meta-java][PATCH 5/6] bdwgc: import from meta-oe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,74 +41,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Sep 2017 12:03:51 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: nl
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 25 Sep 2017 13:05:57 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 
-=EF=BB=BFOn 23-09-17 00:51, Joshua Lock wrote:
-> On 22/09/17 15:00, Mike Looijmans wrote:
->> I think this remark in the referenced link is the best summary of "what=
-=20
->> could be improved":
->>
->> """the biggest weakness of the sstate signature bits, in my opinion, is =
-that=20
->> it only tracks inputs, not outputs. If task A depends on B, and the meta=
-data=20
->> input to B changes, then A will be rebuilt, even if the *output* of B di=
-dn't=20
->> change as a result of the change to its metadata."""
->>
->> For example, if someone fixes a bug in gcc that only applies to MIPS, th=
-en=20
->> builds that only target an ARM machine shouldn't be affected. Much worse=
-=20
->> than that, I have a dependency like:
->> gcc -> ... -> python -> bitstream tool -> FPGA image
->>
->> so this means that a change in gcc causes Python to rebuild, which cause=
-s=20
->> the bitstream tool to be rebuilt and produce idential output, and that=20
->> triggers a roughly 31-hour build of lots of FPGA images. These are the o=
-nes=20
->> we really want to break. A binary output compare would help a lot, even =
-if=20
->> 80% of the libraries fail to create reproducible output, I may still be=
-=20
->> spared those 31 hours...
->>
->> I think tracking digital output is technically feasible, and won't requi=
-re=20
->> any change to existing recipes.
->>
->> Also think about "feed" setups. When I see my settop reporting "331 pack=
-ages=20
->> need updating"... It'd be great if that could be avoided.
->>
->=20
-> That's what packagefeed-stability.bbclass is for. Work on binary=20
-> reproducibility will improve things here too.
+On 09/24/2017 05:05 PM, Maxin B. John wrote:
+> keep a copy of bdwgc recipe in meta-java from meta-oe layer.
+> cacao in meta-java depends on bdwgc.
 
-Interesting, thanks for the hint.
+Duplicating recipes in recipes is frowned upon.
 
-That might cut down a bit on the over 4TB/month "update my box" traffic.
+Shouldn't we have the discussion why you are  not proposing this for
+Openembedded-core instead of duplicating the recipe? Duping a recipe
+just to drop a layer dependency isn't a long term solution.
 
+Philip
 
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Products
-Materiaalweg 4, NL-5681 RJ Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-Visit us at the Space Tech Expo Europe (Stand E-71)
+> 
+> Signed-off-by: Maxin B. John <maxin.john@intel.com>
+> ---
+>  ...ac-add-check-for-NO_GETCONTEXT-definition.patch | 29 +++++++++++++++
+>  recipes-extended/bdwgc/bdwgc/musl_header_fix.patch | 27 ++++++++++++++
+>  recipes-extended/bdwgc/bdwgc_7.6.0.bb              | 42 ++++++++++++++++++++++
+>  3 files changed, 98 insertions(+)
+>  create mode 100644 recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
+>  create mode 100644 recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
+>  create mode 100644 recipes-extended/bdwgc/bdwgc_7.6.0.bb
+> 
+> diff --git a/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch b/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
+> new file mode 100644
+> index 0000000..8ef774f
+> --- /dev/null
+> +++ b/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
+> @@ -0,0 +1,29 @@
+> +configure.ac: add check for NO_GETCONTEXT definition
+> +
+> +Signed-off-by: Samuel Martin <s.martin49@gmail.com>
+> +[yann.morin.1998@free.fr: add a comment, change variable name, use
+> + AS_IF, remove debug traces, use AC_CHECK_FUNCS (as suggested by
+> + Thomas)]
+> +Signed-off-by: "Yann E. MORIN" <yann.morin.1998@free.fr>
+> +Cc: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+> +
+> +---
+> +Upstream-Status: Pending
+> + configure.ac | 6 ++++++
+> + 1 file changed, 6 insertions(+)
+> +
+> +--- bdwgc-7.2f.orig/configure.ac	2014-06-01 19:00:47.000000000 +0200
+> ++++ bdwgc-7.2f/configure.ac	2014-12-23 14:13:11.585716713 +0100
+> +@@ -365,6 +365,12 @@
+> +   AC_MSG_RESULT($ac_cv_fno_strict_aliasing)
+> + fi
+> + 
+> ++# Check for getcontext (uClibc can be configured without it, for example)
+> ++AC_CHECK_FUNCS([getcontext])
+> ++AS_IF([test "$ac_cv_func_getcontext" = "no"],
+> ++  [CFLAGS="$CFLAGS -DNO_GETCONTEXT"
+> ++   CPPFLAGS="$CPPFLAGS -DNO_GETCONTEXT"])
+> ++
+> + case "$host" in
+> + # While IRIX 6 has libdl for the O32 and N32 ABIs, it's missing for N64
+> + # and unnecessary everywhere.
+> diff --git a/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch b/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
+> new file mode 100644
+> index 0000000..4a18496
+> --- /dev/null
+> +++ b/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
+> @@ -0,0 +1,27 @@
+> +Add missing header to avoid:
+> +
+> +| 1472659610.016355: ../git/pthread_stop_world.c: In function 'GC_brief_async_signal_safe_sleep':
+> +| 1472659610.0540252: ../git/pthread_stop_world.c:397:22: error: storage size of 'tv' isn't known
+> +| 1472659610.0540252:        struct timeval tv;
+> +| 1472659610.0540252:                       ^~
+> +| 1472659610.054099: ../git/pthread_stop_world.c:397:22: warning: unused variable 'tv' [-Wunused-variable]
+> +| 1472659610.054099:        struct timeval tv;
+> +| 1472659610.054099:                       ^~
+> +| 1472659610.054099: Makefile:1530: recipe for target 'pthread_stop_world.lo' failed
+> +
+> +in musl builds.
+> +
+> +Upstream-Status: Pending
+> +
+> +Index: git/pthread_stop_world.c
+> +===================================================================
+> +--- git.orig/pthread_stop_world.c
+> ++++ git/pthread_stop_world.c
+> +@@ -45,6 +45,7 @@
+> + #include <semaphore.h>
+> + #include <errno.h>
+> + #include <unistd.h>
+> ++#include <sys/time.h>
+> + #include "atomic_ops.h"
+> + 
+> + /* It's safe to call original pthread_sigmask() here.   */
+> diff --git a/recipes-extended/bdwgc/bdwgc_7.6.0.bb b/recipes-extended/bdwgc/bdwgc_7.6.0.bb
+> new file mode 100644
+> index 0000000..dcb68f0
+> --- /dev/null
+> +++ b/recipes-extended/bdwgc/bdwgc_7.6.0.bb
+> @@ -0,0 +1,42 @@
+> +SUMMARY = "A garbage collector for C and C++"
+> +
+> +DESCRIPTION = "The Boehm-Demers-Weiser conservative garbage collector can be\
+> + used as a garbage collecting replacement for C malloc or C++ new. It allows\
+> + you to allocate memory basically as you normally would, without explicitly\
+> + deallocating memory that is no longer useful. The collector automatically\
+> + recycles memory when it determines that it can no longer be otherwise\
+> + accessed.\
+> +  The collector is also used by a number of programming language\
+> + implementations that either use C as intermediate code, want to facilitate\
+> + easier interoperation with C libraries, or just prefer the simple collector\
+> + interface.\
+> +  Alternatively, the garbage collector may be used as a leak detector for C\
+> + or C++ programs, though that is not its primary goal.\
+> +  Empirically, this collector works with most unmodified C programs, simply\
+> + by replacing malloc with GC_malloc calls, replacing realloc with GC_realloc\
+> + calls, and removing free calls."
+> +
+> +HOMEPAGE = "http://www.hboehm.info/gc/"
+> +SECTION = "devel"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://README.QUICK;md5=4f81f24ec69726c312487c2ac740e9e3"
+> +
+> +SRCREV = "8ac1d84a40eb7a431fec1b8097e3f24b48fb23fa"
+> +SRC_URI = "git://github.com/ivmai/bdwgc.git \
+> +           file://0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch \
+> +           file://musl_header_fix.patch \
+> +          "
+> +
+> +FILES_${PN}-doc = "${datadir}"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +ARM_INSTRUCTION_SET = "arm"
+> +
+> +inherit autotools pkgconfig
+> +
+> +# by default use external libatomic-ops
+> +PACKAGECONFIG ??= "libatomic-ops"
+> +PACKAGECONFIG[libatomic-ops] = "--with-libatomic-ops=yes,--with-libatomic-ops=no,libatomic-ops"
+> +
+> +BBCLASSEXTEND = "native nativesdk"
+> 
 
