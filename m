@@ -1,6 +1,6 @@
-Return-Path: <philip@balister.org>
+Return-Path: <Sean_Hudson@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48BB1E00D0E; Mon, 25 Sep 2017 06:05:57 -0700 (PDT)
+	id CC550E00C89; Mon, 25 Sep 2017 07:05:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,28 +8,46 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1551AE00CD3
-	for <yocto@yoctoproject.org>; Mon, 25 Sep 2017 06:05:54 -0700 (PDT)
-Received: (qmail 22086 invoked by uid 1003); 25 Sep 2017 13:05:52 -0000
-Received: from unknown (HELO ?192.168.11.142?)
-	(philip@opensdr.com@108.44.111.57)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	25 Sep 2017 13:05:52 -0000
-To: "Maxin B. John" <maxin.john@intel.com>, yocto@yoctoproject.org
-References: <1506287141-3998-1-git-send-email-maxin.john@intel.com>
-	<1506287141-3998-5-git-send-email-maxin.john@intel.com>
-From: Philip Balister <philip@balister.org>
-Message-ID: <1dfa5df9-190b-6566-1bda-7148ab6990f9@balister.org>
-Date: Mon, 25 Sep 2017 09:05:49 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F8DBE009F5
+	for <yocto@yoctoproject.org>; Mon, 25 Sep 2017 07:05:41 -0700 (PDT)
+Received: from svr-orw-mbx-04.mgc.mentorg.com ([147.34.90.204])
+	by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+	id 1dwU0x-0004FZ-9h from Sean_Hudson@mentor.com ;
+	Mon, 25 Sep 2017 07:05:39 -0700
+Received: from svr-orw-mbx-01.mgc.mentorg.com (147.34.90.201) by
+	SVR-ORW-MBX-04.mgc.mentorg.com (147.34.90.204) with Microsoft SMTP
+	Server (TLS) id 15.0.1263.5; Mon, 25 Sep 2017 07:05:37 -0700
+Received: from svr-orw-mbx-01.mgc.mentorg.com ([fe80::7525:7282:f67a:970f]) by
+	svr-orw-mbx-01.mgc.mentorg.com ([fe80::7525:7282:f67a:970f%22]) with
+	mapi id 15.00.1263.000; Mon, 25 Sep 2017 07:05:37 -0700
+From: "Hudson, Sean" <Sean_Hudson@mentor.com>
+To: "openembedded-members@lists.openembedded.org"
+	<openembedded-members@lists.openembedded.org>, Philip Balister
+	<philip@balister.org>
+Thread-Topic: [OE-core] OpenEmbedded Developer Meeting Oct 22, 2017 in Prague
+	(before ELCE)
+Thread-Index: AQHTNAr8pHhNE4852UCniJNePdR4oaLFphIw
+Date: Mon, 25 Sep 2017 14:05:37 +0000
+Message-ID: <68d27fe2dbee4b8d83b1f2418406098d@svr-orw-mbx-01.mgc.mentorg.com>
+References: <37a76fa5-4f25-56dd-9616-4b4b23fbb093@balister.org>
+	<CAB=otbS8_F_Yhisc+ybm8X1m3GXBzCK1q16YjrWATDArwVf+Hw@mail.gmail.com>
+In-Reply-To: <CAB=otbS8_F_Yhisc+ybm8X1m3GXBzCK1q16YjrWATDArwVf+Hw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [147.34.91.1]
 MIME-Version: 1.0
-In-Reply-To: <1506287141-3998-5-git-send-email-maxin.john@intel.com>
-Subject: Re: [meta-java][PATCH 5/6] bdwgc: import from meta-oe
+Cc: Yocto Project <yocto@yoctoproject.org>, openembedded-architecture
+	<openembedded-architecture@lists.openembedded.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] OpenEmbedded Developer Meeting Oct 22, 2017 in Prague	(before ELCE)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,149 +59,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Sep 2017 13:05:57 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 25 Sep 2017 14:05:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-On 09/24/2017 05:05 PM, Maxin B. John wrote:
-> keep a copy of bdwgc recipe in meta-java from meta-oe layer.
-> cacao in meta-java depends on bdwgc.
+Ruslan,
 
-Duplicating recipes in recipes is frowned upon.
+  There is no charge.  Feel free to join.
 
-Shouldn't we have the discussion why you are  not proposing this for
-Openembedded-core instead of duplicating the recipe? Duping a recipe
-just to drop a layer dependency isn't a long term solution.
+--
+Sean
 
-Philip
 
-> 
-> Signed-off-by: Maxin B. John <maxin.john@intel.com>
-> ---
->  ...ac-add-check-for-NO_GETCONTEXT-definition.patch | 29 +++++++++++++++
->  recipes-extended/bdwgc/bdwgc/musl_header_fix.patch | 27 ++++++++++++++
->  recipes-extended/bdwgc/bdwgc_7.6.0.bb              | 42 ++++++++++++++++++++++
->  3 files changed, 98 insertions(+)
->  create mode 100644 recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
->  create mode 100644 recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
->  create mode 100644 recipes-extended/bdwgc/bdwgc_7.6.0.bb
-> 
-> diff --git a/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch b/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
-> new file mode 100644
-> index 0000000..8ef774f
-> --- /dev/null
-> +++ b/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
-> @@ -0,0 +1,29 @@
-> +configure.ac: add check for NO_GETCONTEXT definition
-> +
-> +Signed-off-by: Samuel Martin <s.martin49@gmail.com>
-> +[yann.morin.1998@free.fr: add a comment, change variable name, use
-> + AS_IF, remove debug traces, use AC_CHECK_FUNCS (as suggested by
-> + Thomas)]
-> +Signed-off-by: "Yann E. MORIN" <yann.morin.1998@free.fr>
-> +Cc: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-> +
-> +---
-> +Upstream-Status: Pending
-> + configure.ac | 6 ++++++
-> + 1 file changed, 6 insertions(+)
-> +
-> +--- bdwgc-7.2f.orig/configure.ac	2014-06-01 19:00:47.000000000 +0200
-> ++++ bdwgc-7.2f/configure.ac	2014-12-23 14:13:11.585716713 +0100
-> +@@ -365,6 +365,12 @@
-> +   AC_MSG_RESULT($ac_cv_fno_strict_aliasing)
-> + fi
-> + 
-> ++# Check for getcontext (uClibc can be configured without it, for example)
-> ++AC_CHECK_FUNCS([getcontext])
-> ++AS_IF([test "$ac_cv_func_getcontext" = "no"],
-> ++  [CFLAGS="$CFLAGS -DNO_GETCONTEXT"
-> ++   CPPFLAGS="$CPPFLAGS -DNO_GETCONTEXT"])
-> ++
-> + case "$host" in
-> + # While IRIX 6 has libdl for the O32 and N32 ABIs, it's missing for N64
-> + # and unnecessary everywhere.
-> diff --git a/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch b/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
-> new file mode 100644
-> index 0000000..4a18496
-> --- /dev/null
-> +++ b/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
-> @@ -0,0 +1,27 @@
-> +Add missing header to avoid:
-> +
-> +| 1472659610.016355: ../git/pthread_stop_world.c: In function 'GC_brief_async_signal_safe_sleep':
-> +| 1472659610.0540252: ../git/pthread_stop_world.c:397:22: error: storage size of 'tv' isn't known
-> +| 1472659610.0540252:        struct timeval tv;
-> +| 1472659610.0540252:                       ^~
-> +| 1472659610.054099: ../git/pthread_stop_world.c:397:22: warning: unused variable 'tv' [-Wunused-variable]
-> +| 1472659610.054099:        struct timeval tv;
-> +| 1472659610.054099:                       ^~
-> +| 1472659610.054099: Makefile:1530: recipe for target 'pthread_stop_world.lo' failed
-> +
-> +in musl builds.
-> +
-> +Upstream-Status: Pending
-> +
-> +Index: git/pthread_stop_world.c
-> +===================================================================
-> +--- git.orig/pthread_stop_world.c
-> ++++ git/pthread_stop_world.c
-> +@@ -45,6 +45,7 @@
-> + #include <semaphore.h>
-> + #include <errno.h>
-> + #include <unistd.h>
-> ++#include <sys/time.h>
-> + #include "atomic_ops.h"
-> + 
-> + /* It's safe to call original pthread_sigmask() here.   */
-> diff --git a/recipes-extended/bdwgc/bdwgc_7.6.0.bb b/recipes-extended/bdwgc/bdwgc_7.6.0.bb
-> new file mode 100644
-> index 0000000..dcb68f0
-> --- /dev/null
-> +++ b/recipes-extended/bdwgc/bdwgc_7.6.0.bb
-> @@ -0,0 +1,42 @@
-> +SUMMARY = "A garbage collector for C and C++"
-> +
-> +DESCRIPTION = "The Boehm-Demers-Weiser conservative garbage collector can be\
-> + used as a garbage collecting replacement for C malloc or C++ new. It allows\
-> + you to allocate memory basically as you normally would, without explicitly\
-> + deallocating memory that is no longer useful. The collector automatically\
-> + recycles memory when it determines that it can no longer be otherwise\
-> + accessed.\
-> +  The collector is also used by a number of programming language\
-> + implementations that either use C as intermediate code, want to facilitate\
-> + easier interoperation with C libraries, or just prefer the simple collector\
-> + interface.\
-> +  Alternatively, the garbage collector may be used as a leak detector for C\
-> + or C++ programs, though that is not its primary goal.\
-> +  Empirically, this collector works with most unmodified C programs, simply\
-> + by replacing malloc with GC_malloc calls, replacing realloc with GC_realloc\
-> + calls, and removing free calls."
-> +
-> +HOMEPAGE = "http://www.hboehm.info/gc/"
-> +SECTION = "devel"
-> +LICENSE = "MIT"
-> +LIC_FILES_CHKSUM = "file://README.QUICK;md5=4f81f24ec69726c312487c2ac740e9e3"
-> +
-> +SRCREV = "8ac1d84a40eb7a431fec1b8097e3f24b48fb23fa"
-> +SRC_URI = "git://github.com/ivmai/bdwgc.git \
-> +           file://0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch \
-> +           file://musl_header_fix.patch \
-> +          "
-> +
-> +FILES_${PN}-doc = "${datadir}"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +ARM_INSTRUCTION_SET = "arm"
-> +
-> +inherit autotools pkgconfig
-> +
-> +# by default use external libatomic-ops
-> +PACKAGECONFIG ??= "libatomic-ops"
-> +PACKAGECONFIG[libatomic-ops] = "--with-libatomic-ops=yes,--with-libatomic-ops=no,libatomic-ops"
-> +
-> +BBCLASSEXTEND = "native nativesdk"
-> 
+> -----Original Message-----
+> From: openembedded-members-bounces@lists.openembedded.org
+> [mailto:openembedded-members-bounces@lists.openembedded.org] On
+> Behalf Of Ruslan Bilovol
+> Sent: Wednesday, September 13, 2017 10:41 AM
+> To: Philip Balister <philip@balister.org>
+> Cc: Yocto Project <yocto@yoctoproject.org>; openembedded-
+> members@lists.openembedded.org; openembedded-architecture
+> <openembedded-architecture@lists.openembedded.org>;
+> openembedded-devel@lists.openembedded.org; openembedded-core
+> <openembedded-core@lists.openembedded.org>
+> Subject: Re: [OE-core] OpenEmbedded Developer Meeting Oct 22, 2017 in
+> Prague (before ELCE)
+>=20
+> On Thu, Aug 24, 2017 at 9:37 PM, Philip Balister <philip@balister.org> wr=
+ote:
+> > Once again we will have a developer meeting in Prague the Sunday before
+> > ELCE.
+> >
+> > Please go to https://www.openembedded.org/wiki/OEDEM_2017 and
+> add
+> > yourself if you are attending and ideas for topics.
+> >
+> > Although it is called a developer meeting, we invite members of the
+> > larger community to attend. The core developers are always interested i=
+n
+> > hearing how OpenEmbedded is used, and what we can do to make it
+> better
+> > for building the embedded devices of the future.
+>=20
+> Is it free to attend, anything else required except of
+> self-registration on wiki?
+>=20
+> Thanks,
+> Ruslan
+> --
+> _______________________________________________
+> Openembedded-members mailing list
+> Openembedded-members@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-
+> members
 
