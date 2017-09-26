@@ -1,55 +1,70 @@
-Return-Path: <peter.kjellerstedt@axis.com>
+Return-Path: <maxin.john@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A01BFE00D11; Tue, 26 Sep 2017 00:21:00 -0700 (PDT)
+	id 3F2CDE00D11; Tue, 26 Sep 2017 01:19:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [195.60.68.11 listed in list.dnswl.org]
+	*      [74.125.83.66 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.83.66 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (maxin.john[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 246C2E00C89
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 00:20:58 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bastet.se.axis.com (Postfix) with ESMTP id 7AE1918406
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 09:20:57 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024) with LMTP id 7eFajxPsphUG for <yocto@yoctoproject.org>;
-	Tue, 26 Sep 2017 09:20:55 +0200 (CEST)
-Received: from boulder02.se.axis.com (boulder02.se.axis.com [10.0.8.16])
-	by bastet.se.axis.com (Postfix) with ESMTPS id A4E1E1836A
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 09:20:55 +0200 (CEST)
-Received: from boulder02.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 8A2081A09F
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 09:20:55 +0200 (CEST)
-Received: from boulder02.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 7E29E1A09E
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 09:20:55 +0200 (CEST)
-Received: from thoth.se.axis.com (unknown [10.0.2.173])
-	by boulder02.se.axis.com (Postfix) with ESMTP
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 09:20:55 +0200 (CEST)
-Received: from saur-2.se.axis.com (saur-2.se.axis.com [10.92.3.2])
-	by thoth.se.axis.com (Postfix) with ESMTP id 729941E8F
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 09:20:55 +0200 (CEST)
-Received: from saur-2.se.axis.com (localhost [127.0.0.1])
-	by saur-2.se.axis.com (8.14.5/8.14.5) with ESMTP id v8Q7KrLT028613
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 09:20:53 +0200
-Received: (from pkj@localhost)
-	by saur-2.se.axis.com (8.14.5/8.14.5/Submit) id v8Q7KrbT028612
-	for yocto@yoctoproject.org; Tue, 26 Sep 2017 09:20:53 +0200
-From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-To: yocto@yoctoproject.org
-Date: Tue, 26 Sep 2017 09:20:52 +0200
-Message-Id: <20170926072052.28572-1-pkj@axis.com>
-X-Mailer: git-send-email 2.12.0
-X-TM-AS-GCONF: 00
-Subject: [meta-gplv2][PATCH] elfutils: Make it build with GCC 7 and compile time hardening enabled
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40E0FE00C89
+	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 01:19:23 -0700 (PDT)
+Received: by mail-pg0-f66.google.com with SMTP id j16so6368912pga.2
+	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 01:19:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hUp50KcTWMbM6FHzwE6lhckXFIlk6kJ40z3ULBF636I=;
+	b=s6oKxxJM/4dZF9PA8mg3KK16nZKvKmCohcgwpBi6MG6PQh8LphnO7mkamwIL8Pz0Y0
+	6C9707Du2lJvLM1qC/wMoUNFY+/BnBbG9nlhIKpgXURp2JRXMKx9ue2x8pki3BOOBxhp
+	NaQugYkn7yJGwyZAI5cepfESQ5opimhYIGd9gCPtRqidYAhJUGzsuuHhEw5EiTArLpPX
+	0oaoM8gAKVL+VN2euaPQ86dDkji85st/cLp1qwg3rT7/4Qd1+4Zm0taKLv4sPQwGNf2H
+	RYpt+RB+JP96fblUJvMivmyT9l2TImBblNHHi5lsZa3RyGifV95W2sq896AH4cadJmET
+	WCnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hUp50KcTWMbM6FHzwE6lhckXFIlk6kJ40z3ULBF636I=;
+	b=Zs4ImNuV0sW0WZz22TG0hbxZcLVCccDZs9pIuugelP62Diku4g0p1DEQORA4c2apxX
+	ygT8DoPVWCysB1CLaVsIg/py/QjHmVYcq8tx4ThegbSYB7O/GmE/xawv+63st9Gqzv7V
+	AsKl7/ZK9Igb1LASTWxymMLaseORtvp8yJsgcnP3J2w5KpNsbBwGq7tHCCK748T2F2GP
+	Q9GSoPdL4Hu0gn7hQFYYr3J6cWg4VI/bkMgsy91+SvfEZWsAAAys/u7j9ZZQxXhYMvxV
+	iBUCpf+sxOByv0M4IvkKJjNZ1xAYuaDW7h2PhmJzvjlu3TnjfXtkbef37+XboYWiH6aY
+	GuZQ==
+X-Gm-Message-State: AHPjjUgky4AwSqlyiHSH1RIuw7PBP1oPl0YZfQKK5b1MceUbQxRz9VdA
+	hffgyUGGPkMUTiXUqVvFPfXDpght/v2t/XIqG3w=
+X-Google-Smtp-Source: AOwi7QCCDkqKQqtiqHh0od4Q/1lpnneD5EkJ+l40uW5AYEQEdfneptYlzZ2Dos1GM9DgapxN2fAlub/pylZJCrUsMN0=
+X-Received: by 10.98.13.209 with SMTP id 78mr10019773pfn.45.1506413962722;
+	Tue, 26 Sep 2017 01:19:22 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.100.169.73 with HTTP; Tue, 26 Sep 2017 01:19:22 -0700 (PDT)
+In-Reply-To: <1dfa5df9-190b-6566-1bda-7148ab6990f9@balister.org>
+References: <1506287141-3998-1-git-send-email-maxin.john@intel.com>
+	<1506287141-3998-5-git-send-email-maxin.john@intel.com>
+	<1dfa5df9-190b-6566-1bda-7148ab6990f9@balister.org>
+From: "Maxin B. John" <maxin.john@gmail.com>
+Date: Tue, 26 Sep 2017 11:19:22 +0300
+Message-ID: <CAMhs6Yzx+emQw40AvbrHRA2_MmOXiods5=B+2V-sYSW5nxyg_g@mail.gmail.com>
+To: Philip Balister <philip@balister.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-java][PATCH 5/6] bdwgc: import from meta-oe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,118 +76,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Sep 2017 07:21:00 -0000
+X-List-Received-Date: Tue, 26 Sep 2017 08:19:28 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
----
- .../0001-Make-it-compile-with-GCC-7.patch          | 43 ++++++++++++++++++++++
- ...ld-with-GCC-7-and-compile-time-hardening-.patch | 32 ++++++++++++++++
- recipes-devtools/elfutils/elfutils_0.148.bb        |  2 +
- 3 files changed, 77 insertions(+)
- create mode 100644 recipes-devtools/elfutils/elfutils-0.148/0001-Make-it-compile-with-GCC-7.patch
- create mode 100644 recipes-devtools/elfutils/elfutils-0.148/0002-Make-it-build-with-GCC-7-and-compile-time-hardening-.patch
+Hi Philip,
 
-diff --git a/recipes-devtools/elfutils/elfutils-0.148/0001-Make-it-compile-with-GCC-7.patch b/recipes-devtools/elfutils/elfutils-0.148/0001-Make-it-compile-with-GCC-7.patch
-new file mode 100644
-index 0000000..a43508f
---- /dev/null
-+++ b/recipes-devtools/elfutils/elfutils-0.148/0001-Make-it-compile-with-GCC-7.patch
-@@ -0,0 +1,43 @@
-+From 9529f012a1cfdae36aedeab8ccd790c875ae7f73 Mon Sep 17 00:00:00 2001
-+From: Peter Kjellerstedt <pkj@axis.com>
-+Date: Sat, 16 Sep 2017 15:09:23 +0200
-+Subject: [PATCH 1/2] Make it compile with GCC 7
-+
-+This avoids the following errors:
-+
-+  src/readelf.c: In function 'register_info':
-+  src/readelf.c:4481:30: warning: 'sizeof' on array function parameter
-+  'name' will return size of 'char *' [-Wsizeof-array-argument]
-+         snprintf (name, sizeof name, "reg%u", loc->regno);
-+                                ^~~~
-+  src/readelf.c:4472:14: note: declared here
-+           char name[REGNAMESZ], int *bits, int *type)
-+                ^~~~
-+  rc/readelf.c:4481:30: warning: argument to 'sizeof' in 'snprintf' call
-+  is the same expression as the destination; did you mean to provide an
-+  explicit length? [-Wsizeof-pointer-memaccess]
-+         snprintf (name, sizeof name, "reg%u", loc->regno);
-+                                ^~~~
-+
-+Upstream-Status: Inappropriate [legacy version]
-+Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-+---
-+ src/readelf.c | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/src/readelf.c b/src/readelf.c
-+index bf622a6..ba0607b 100644
-+--- a/src/readelf.c
-++++ b/src/readelf.c
-+@@ -4478,7 +4478,7 @@ register_info (Ebl *ebl, unsigned int regno, const Ebl_Register_Location *loc,
-+ 				 bits ?: &ignore, type ?: &ignore);
-+   if (n <= 0)
-+     {
-+-      snprintf (name, sizeof name, "reg%u", loc->regno);
-++      snprintf (name, REGNAMESZ, "reg%u", loc->regno);
-+       if (bits != NULL)
-+ 	*bits = loc->bits;
-+       if (type != NULL)
-+-- 
-+2.12.0
-+
-diff --git a/recipes-devtools/elfutils/elfutils-0.148/0002-Make-it-build-with-GCC-7-and-compile-time-hardening-.patch b/recipes-devtools/elfutils/elfutils-0.148/0002-Make-it-build-with-GCC-7-and-compile-time-hardening-.patch
-new file mode 100644
-index 0000000..68d14b6
---- /dev/null
-+++ b/recipes-devtools/elfutils/elfutils-0.148/0002-Make-it-build-with-GCC-7-and-compile-time-hardening-.patch
-@@ -0,0 +1,32 @@
-+From 5dcd8e331af448e3adcb9ed15a38762a912a8267 Mon Sep 17 00:00:00 2001
-+From: Peter Kjellerstedt <pkj@axis.com>
-+Date: Sat, 16 Sep 2017 15:12:37 +0200
-+Subject: [PATCH 2/2] Make it build with GCC 7 and compile time hardening
-+ enabled
-+
-+This avoids the following error:
-+
-+cc1: error: -Wformat-security ignored without -Wformat [-Werror=format-security]
-+
-+Upstream-Status: Inappropriate [legacy version]
-+Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-+---
-+ config/eu.am | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/config/eu.am b/config/eu.am
-+index 8066d7f..7de66b0 100644
-+--- a/config/eu.am
-++++ b/config/eu.am
-+@@ -33,7 +33,7 @@ INCLUDES = -I. -I$(srcdir) -I$(top_srcdir)/lib -I..
-+ AM_CFLAGS = -std=gnu99 -Wall -Wshadow \
-+ 	    $(if $($(*F)_no_Werror),,-Werror) \
-+ 	    $(if $($(*F)_no_Wunused),,-Wunused $(WEXTRA)) \
-+-	    $(if $($(*F)_no_Wformat),-Wno-format,-Wformat=2) \
-++	    $(if $($(*F)_no_Wformat),-Wno-format -Wno-format-security,-Wformat=2) \
-+ 	    $($(*F)_CFLAGS)
-+ 
-+ if MUDFLAP
-+-- 
-+2.12.0
-+
-diff --git a/recipes-devtools/elfutils/elfutils_0.148.bb b/recipes-devtools/elfutils/elfutils_0.148.bb
-index 29d109a..892a523 100644
---- a/recipes-devtools/elfutils/elfutils_0.148.bb
-+++ b/recipes-devtools/elfutils/elfutils_0.148.bb
-@@ -37,6 +37,8 @@ SRC_URI += "\
-         file://gcc6.patch \
-         file://0001-Fix-fallthrough-warnings.patch \
-         file://0002-Fix-printf-overflow-warnings.patch \
-+        file://0001-Make-it-compile-with-GCC-7.patch \
-+        file://0002-Make-it-build-with-GCC-7-and-compile-time-hardening-.patch \
- "
- # Only apply when building uclibc based target recipe
- SRC_URI_append_libc-uclibc = " file://uclibc-support-for-elfutils-0.148.patch"
--- 
-2.12.0
+On Mon, Sep 25, 2017 at 4:05 PM, Philip Balister <philip@balister.org> wrote:
+> On 09/24/2017 05:05 PM, Maxin B. John wrote:
+>> keep a copy of bdwgc recipe in meta-java from meta-oe layer.
+>> cacao in meta-java depends on bdwgc.
+>
+> Duplicating recipes in recipes is frowned upon.
 
+Thanks for the review. Makes sense here. Will try to find a way to avoid this.
+
+> Shouldn't we have the discussion why you are  not proposing this for
+> Openembedded-core instead of duplicating the recipe? Duping a recipe
+> just to drop a layer dependency isn't a long term solution.
+
+agree.
+
+> Philip
+
+Best Regards,
+Maxin
+
+>>
+>> Signed-off-by: Maxin B. John <maxin.john@intel.com>
+>> ---
+>>  ...ac-add-check-for-NO_GETCONTEXT-definition.patch | 29 +++++++++++++++
+>>  recipes-extended/bdwgc/bdwgc/musl_header_fix.patch | 27 ++++++++++++++
+>>  recipes-extended/bdwgc/bdwgc_7.6.0.bb              | 42 ++++++++++++++++++++++
+>>  3 files changed, 98 insertions(+)
+>>  create mode 100644 recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
+>>  create mode 100644 recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
+>>  create mode 100644 recipes-extended/bdwgc/bdwgc_7.6.0.bb
+>>
+>> diff --git a/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch b/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
+>> new file mode 100644
+>> index 0000000..8ef774f
+>> --- /dev/null
+>> +++ b/recipes-extended/bdwgc/bdwgc/0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch
+>> @@ -0,0 +1,29 @@
+>> +configure.ac: add check for NO_GETCONTEXT definition
+>> +
+>> +Signed-off-by: Samuel Martin <s.martin49@gmail.com>
+>> +[yann.morin.1998@free.fr: add a comment, change variable name, use
+>> + AS_IF, remove debug traces, use AC_CHECK_FUNCS (as suggested by
+>> + Thomas)]
+>> +Signed-off-by: "Yann E. MORIN" <yann.morin.1998@free.fr>
+>> +Cc: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+>> +
+>> +---
+>> +Upstream-Status: Pending
+>> + configure.ac | 6 ++++++
+>> + 1 file changed, 6 insertions(+)
+>> +
+>> +--- bdwgc-7.2f.orig/configure.ac     2014-06-01 19:00:47.000000000 +0200
+>> ++++ bdwgc-7.2f/configure.ac  2014-12-23 14:13:11.585716713 +0100
+>> +@@ -365,6 +365,12 @@
+>> +   AC_MSG_RESULT($ac_cv_fno_strict_aliasing)
+>> + fi
+>> +
+>> ++# Check for getcontext (uClibc can be configured without it, for example)
+>> ++AC_CHECK_FUNCS([getcontext])
+>> ++AS_IF([test "$ac_cv_func_getcontext" = "no"],
+>> ++  [CFLAGS="$CFLAGS -DNO_GETCONTEXT"
+>> ++   CPPFLAGS="$CPPFLAGS -DNO_GETCONTEXT"])
+>> ++
+>> + case "$host" in
+>> + # While IRIX 6 has libdl for the O32 and N32 ABIs, it's missing for N64
+>> + # and unnecessary everywhere.
+>> diff --git a/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch b/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
+>> new file mode 100644
+>> index 0000000..4a18496
+>> --- /dev/null
+>> +++ b/recipes-extended/bdwgc/bdwgc/musl_header_fix.patch
+>> @@ -0,0 +1,27 @@
+>> +Add missing header to avoid:
+>> +
+>> +| 1472659610.016355: ../git/pthread_stop_world.c: In function 'GC_brief_async_signal_safe_sleep':
+>> +| 1472659610.0540252: ../git/pthread_stop_world.c:397:22: error: storage size of 'tv' isn't known
+>> +| 1472659610.0540252:        struct timeval tv;
+>> +| 1472659610.0540252:                       ^~
+>> +| 1472659610.054099: ../git/pthread_stop_world.c:397:22: warning: unused variable 'tv' [-Wunused-variable]
+>> +| 1472659610.054099:        struct timeval tv;
+>> +| 1472659610.054099:                       ^~
+>> +| 1472659610.054099: Makefile:1530: recipe for target 'pthread_stop_world.lo' failed
+>> +
+>> +in musl builds.
+>> +
+>> +Upstream-Status: Pending
+>> +
+>> +Index: git/pthread_stop_world.c
+>> +===================================================================
+>> +--- git.orig/pthread_stop_world.c
+>> ++++ git/pthread_stop_world.c
+>> +@@ -45,6 +45,7 @@
+>> + #include <semaphore.h>
+>> + #include <errno.h>
+>> + #include <unistd.h>
+>> ++#include <sys/time.h>
+>> + #include "atomic_ops.h"
+>> +
+>> + /* It's safe to call original pthread_sigmask() here.   */
+>> diff --git a/recipes-extended/bdwgc/bdwgc_7.6.0.bb b/recipes-extended/bdwgc/bdwgc_7.6.0.bb
+>> new file mode 100644
+>> index 0000000..dcb68f0
+>> --- /dev/null
+>> +++ b/recipes-extended/bdwgc/bdwgc_7.6.0.bb
+>> @@ -0,0 +1,42 @@
+>> +SUMMARY = "A garbage collector for C and C++"
+>> +
+>> +DESCRIPTION = "The Boehm-Demers-Weiser conservative garbage collector can be\
+>> + used as a garbage collecting replacement for C malloc or C++ new. It allows\
+>> + you to allocate memory basically as you normally would, without explicitly\
+>> + deallocating memory that is no longer useful. The collector automatically\
+>> + recycles memory when it determines that it can no longer be otherwise\
+>> + accessed.\
+>> +  The collector is also used by a number of programming language\
+>> + implementations that either use C as intermediate code, want to facilitate\
+>> + easier interoperation with C libraries, or just prefer the simple collector\
+>> + interface.\
+>> +  Alternatively, the garbage collector may be used as a leak detector for C\
+>> + or C++ programs, though that is not its primary goal.\
+>> +  Empirically, this collector works with most unmodified C programs, simply\
+>> + by replacing malloc with GC_malloc calls, replacing realloc with GC_realloc\
+>> + calls, and removing free calls."
+>> +
+>> +HOMEPAGE = "http://www.hboehm.info/gc/"
+>> +SECTION = "devel"
+>> +LICENSE = "MIT"
+>> +LIC_FILES_CHKSUM = "file://README.QUICK;md5=4f81f24ec69726c312487c2ac740e9e3"
+>> +
+>> +SRCREV = "8ac1d84a40eb7a431fec1b8097e3f24b48fb23fa"
+>> +SRC_URI = "git://github.com/ivmai/bdwgc.git \
+>> +           file://0001-configure.ac-add-check-for-NO_GETCONTEXT-definition.patch \
+>> +           file://musl_header_fix.patch \
+>> +          "
+>> +
+>> +FILES_${PN}-doc = "${datadir}"
+>> +
+>> +S = "${WORKDIR}/git"
+>> +
+>> +ARM_INSTRUCTION_SET = "arm"
+>> +
+>> +inherit autotools pkgconfig
+>> +
+>> +# by default use external libatomic-ops
+>> +PACKAGECONFIG ??= "libatomic-ops"
+>> +PACKAGECONFIG[libatomic-ops] = "--with-libatomic-ops=yes,--with-libatomic-ops=no,libatomic-ops"
+>> +
+>> +BBCLASSEXTEND = "native nativesdk"
+>>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
