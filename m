@@ -1,77 +1,65 @@
-Return-Path: <Shrawan.Kumar@harman.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55EFCE00D11; Tue, 26 Sep 2017 05:06:42 -0700 (PDT)
+	id 2CD73E00D13; Tue, 26 Sep 2017 05:15:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,
-	T_FILL_THIS_FORM_SHORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.82.251.14 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
-	[216.82.251.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E894E00C8F
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 05:06:40 -0700 (PDT)
-Received: from [216.82.251.35] by server-14.bemta-12.messagelabs.com id
-	40/0D-01781-FC24AC95; Tue, 26 Sep 2017 12:06:39 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrHKsWRWlGSWpSXmKPExsVySpdNU/e806l
-	Ig/9f1S1OLNvBZjHp5Ro2ByaP+S8esHm0n+hjC2CKYs3MS8qvSGDNmL1mKkvBHZmKzzPOMjUw
-	TpboYuTiEBLYyijxsncBK4SzhVHi06u9UM5BRomfG1czdjFycrAJGEpc6bkLZosIREv07HnFB
-	mILC9hKPD20ihkibidxeM5SdgjbSGLZgXusIDaLgKrEyRtnwWxeAXeJLxees4DYQgLVEkumfA
-	GLcwrYS2w/0coEYjMKyEp8aVwNNpNZQFzi1pP5YHEJAQGJJXvOM0PYohIvH/9jhbANJLYu3cc
-	CYStIrOxuYIOwrSX2z1vKCjFHT+LG1ClsELa2xLKFr5kh7hGUODnzCdQ9qhJbFv5mmcAoPgvJ
-	6llI2mchaZ+FpH0BI8sqRo3i1KKy1CJdYwu9pKLM9IyS3MTMHF1DQyO93NTi4sT01JzEpGK95
-	PzcTYzAuKtnYGDcwfhif/QhRkkOJiVRXkW5U5FCfEn5KZUZicUZ8UWlOanFhxhlODiUJHifOQ
-	LlBItS01Mr0jJzgAkAJi3BwaMkwlsLkuYtLkjMLc5Mh0idYtTluHXr7h8mIZa8/LxUKXHefSB
-	FAiBFGaV5cCNgyegSo6yUMC8jAwODEE9BalFuZgmq/CtGcQ5GJWHecyBTeDLzSuA2vQI6ggno
-	iN6pJ0COKElESEk1MPKbv+h5P/GCku6Zr9+M287+sRJNYZlclnpO68+WMzc3zv3M4XauKvHSY
-	z6/WSx7fHtqw7tsvu69bVmQvfTTn/eSk202vfl7brdha7DwgUtRc51vVvHMucevNePa6oL7m7
-	a25hpKh9zd/uomVyHXq69VlQ+m9m3xLrGr0GCY2rHgXWvtyYRI30AlluKMREMt5qLiRAAgeOT
-	wQQMAAA==
-X-Env-Sender: Shrawan.Kumar@harman.com
-X-Msg-Ref: server-6.tower-151.messagelabs.com!1506427596!110290262!1
-X-Originating-IP: [202.45.6.41]
-X-StarScan-Received: 
-X-StarScan-Version: 9.4.45; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 6209 invoked from network); 26 Sep 2017 12:06:39 -0000
-Received: from unknown (HELO HIBDWSMB09.ad.harman.com) (202.45.6.41)
-	by server-6.tower-151.messagelabs.com with DHE-RSA-AES256-GCM-SHA384
-	encrypted SMTP; 26 Sep 2017 12:06:39 -0000
-Received: from HIBDWSMB04.ad.harman.com (10.99.236.94) by
-	HIBDWSMB09.ad.harman.com (10.99.236.103) with Microsoft SMTP Server
-	(TLS) id 15.0.1263.5; Tue, 26 Sep 2017 17:36:31 +0530
-Received: from HIBDWSMB02.ad.harman.com (10.99.236.92) by
-	HIBDWSMB04.ad.harman.com (10.99.236.94) with Microsoft SMTP Server
-	(TLS) id 15.0.1263.5; Tue, 26 Sep 2017 17:36:28 +0530
-Received: from HIBDWSMB02.ad.harman.com ([fe80::d8dd:3dec:76ff:8e7b]) by
-	HIBDWSMB02.ad.harman.com ([fe80::d8dd:3dec:76ff:8e7b%16]) with mapi id
-	15.00.1263.000; Tue, 26 Sep 2017 17:36:28 +0530
-From: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
-To: Ayoub Zaki <ayoub.zaki@embexus.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [EXTERNAL] Re: [yocto] rootfs encryption support
-Thread-Index: AQHTNrTKmCIk1l2QwkewhEFlN+QTSqLHCR3A
-Date: Tue, 26 Sep 2017 12:06:27 +0000
-Message-ID: <01551177a97b480a8c267aefbf2c6af2@HIBDWSMB02.ad.harman.com>
-References: <e1e5dcc7a72a4e02bf809951ab67f555@HIBDWSMB02.ad.harman.com>
-	<24658a3e-c369-b735-fc25-97076a7ad33f@embexus.com>
-In-Reply-To: <24658a3e-c369-b735-fc25-97076a7ad33f@embexus.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.99.236.43]
-x-exclaimer-md-config: 4a26c407-9f7b-4db1-94e4-bcbc87a799a8
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.175 listed in dnsbl.sorbs.net]
+Received: from mail-wr0-f175.google.com (mail-wr0-f175.google.com
+	[209.85.128.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD157E00D10
+	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 05:15:41 -0700 (PDT)
+Received: by mail-wr0-f175.google.com with SMTP id 108so13070753wra.5
+	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 05:15:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=A8jA99BsVxTqRagmetPk8XZnSNgh74VVfYonDmFji6A=;
+	b=T8rV7VxmRCrb3cs4unxggK7mPMRcoh3bKXwNyXJfgMFEFw3drZ3qZG+jfVJadumDoF
+	zMbNlZ0cXeHddqCBbpHwIdxR4Fw78Bel1lmOy7FP4hIxYMXaGSxbUopUCFLdjqhxT49B
+	qvtmODJVXp1xkeD1mE+refe8xia5VnOMpFyp1u7pn3sJw5ppAw5fbJpEpkwrj154oHZQ
+	KK7z0TB0YoYutOxsWPqgDJDubemgZUDWEiA1fCUaC+xbL28MKFUVIyephk/U2YSZ4hSS
+	ZUyB+/v2vvAiROzQ3Zx+cfY1IVNF5klYUeV9VsU9dsyMK8TjwfODC1vMoAKe4l9Mmhde
+	2hoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=A8jA99BsVxTqRagmetPk8XZnSNgh74VVfYonDmFji6A=;
+	b=g4XZwcwlQysPQj6NlOEAI5JrY8k6PsoaZTFMOFA7K8hIfdcT+Q0pANkKGDUDLJvH3L
+	18/2tgsOt/gVBXfiW0LpJdgE+mMnRNfV+6fKddN3y483Pd3INjIjWDLXmsG+jm2nHxO+
+	8muqAYCPQPw9WtImoQvj1lelTNLCiQp3gqDWy6uR9WpNXqXoNInZjxb2b/lmSU3yngYu
+	QB9h/ezeR6ZHpKWycmgZBmWNRqQVCeiwwS43wbH1lFvBBpfziKb8+gsykc1CsU9Qb4gU
+	CEuIzKS3Tqlpisu2HTO5kqTI+BK4rnJ7FR1ppy4+ubLGZD6G9z8Utmd34aR9bpPfHE6V
+	EdVw==
+X-Gm-Message-State: AHPjjUhwx93JD1sqD9sLaYQ/SitV2iQx1rKCQAfLlbVe/NGWlhGamuk7
+	gOeQvmtubWzPux+rpg39POAYBwQhyZKQlS4SPO9XQQ==
+X-Google-Smtp-Source: AOwi7QAOxsGkxNs1MJyt7EaQa6pt76Mf5NoxwoRbH5lxuxftgDQvChfM5JzwIv+4QQKO0+98bWYYntsFTZJRKzymzhs=
+X-Received: by 10.223.165.5 with SMTP id i5mr343705wrb.87.1506428140055; Tue,
+	26 Sep 2017 05:15:40 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] Re: rootfs encryption support
+Received: by 10.28.228.213 with HTTP; Tue, 26 Sep 2017 05:15:38 -0700 (PDT)
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Tue, 26 Sep 2017 14:15:38 +0200
+Message-ID: <CAGAf8LzkrzSzg=wO4==jioEDoRZRPLuhe+iEnQW+Opnxyy6YmA@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Kernel change in YOCTO
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,126 +71,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Sep 2017 12:06:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 26 Sep 2017 12:15:43 -0000
+Content-Type: multipart/alternative; boundary="f403045f1c262aef02055a16a28e"
+
+--f403045f1c262aef02055a16a28e
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+I have a bit dummy question. I have older Pyro distro, compiled for
+qemux86_64. It has there kernel 4.10.17, and there are two interesting
+directories, where one can find definitions of the kernels:
+
+[user@localhost poky]$ find . -name *.bbappend
+...
+./meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.1.bbappend
+./meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.10.bbappend
+./meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.12.bbappend <<===
+Introduced later
+./meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.4.bbappend
+./meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.9.bbappend
+...
+
+And the .bb scripts are located in:
+./meta/recipes-kernel/linux/linux-yocto-tiny_4.1.bb
+./meta/recipes-kernel/linux/linux-dummy.bb
+./meta/recipes-kernel/linux/linux-yocto_4.9.bb
+./meta/recipes-kernel/linux/linux-yocto_4.1.bb
+./meta/recipes-kernel/linux/linux-yocto-rt_4.1.bb
+./meta/recipes-kernel/linux/linux-yocto-dev.bb
+./meta/recipes-kernel/linux/linux-yocto-rt_4.12.bb
+./meta/recipes-kernel/linux/linux-generic_4.13.3.bb <<=== Introduced later
+(git HEAD checkout)
+./meta/recipes-kernel/linux/linux-yocto-tiny_4.9.bb
+./meta/recipes-kernel/linux/linux-yocto_4.10.bb
+./meta/recipes-kernel/linux/linux-yocto-tiny_4.4.bb
+./meta/recipes-kernel/linux/linux-yocto-rt_4.9.bb
+./meta/recipes-kernel/linux/linux-yocto_4.4.bb
+./meta/recipes-kernel/linux/linux-yocto_4.12.bb <<=== Introduced later
+./meta/recipes-kernel/linux/linux-yocto-rt_4.4.bb
+./meta/recipes-kernel/linux/kernel-devsrc.bb
+
+Whatever I did (introduced kernel_4.12.12 with the same set of the scripts
+from master - different git headers), I was not able to switch kernel while
+building qemux86-64!?
+
+Even at the end (in desperation to understand from where dependencies are
+coming) I deleted .git in poky/, and deleted everything in build/, except
+conf/bbappend.conf and conf/local.conf?!
+
+But still, kernel 4.10.17 is always taken... No idea why?
+
+user@localhost build]$ bitbake -c fetchall core-image-sato
+WARNING: Host distribution "fedora-26" has not been validated with this
+version of the build system; you may possibly experience unexpected
+failures. It is recommended that you use a tested distribution.
+Loading cache: 100%
+|#################################################################################################################################################################|
+Time: 0:00:01
+Loaded 1300 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION        = "1.34.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "universal"
+TARGET_SYS        = "x86_64-poky-linux"
+MACHINE           = "qemux86-64"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.3.1"
+TUNE_FEATURES     = "m64 core2"
+TARGET_FPU        = ""
+meta
+meta-poky
+*meta-yocto-bsp    = "<unknown>:<unknown>" <<=== .git deleted prior
+fetching*
+
+Initialising tasks: 100%
+|############################################################################################################################################################|
+Time: 0:00:18
+NOTE: Executing RunQueue Tasks
+
+Summary: There were 11 WARNING messages shown.
+[user@localhost build]$
+_______
+
+Questions:
+[1] Should I blindly follow:
+http://www.yoctoproject.org/docs/2.3.2/kernel-dev/kernel-
+dev.html#creating-and-preparing-a-layer
+Where it is written that new layer must be introduced for the new kernel,
+also (after layer and scripts creation) placed in
+.../build/conf/bbappend.conf?
+
+[2] If [1] is a must, where I can read about reasons why this requirement
+exists?? Maybe BSP and kernel have some invisible dependencies??
+
+[3] Where are these invisible kernel dependencies? So is there something
+(?) kernel depends on, although I always believed that everything else is
+dependent on kernel (kernel is HW dependend via device drivers), since
+kernel lives on its own (except some BSP data - kernel command line passed
+to it at the boot time, which should have no influence on dependency of any
+kind between kernel boot-loader and kernel itself)?!
+
+Thank you,
+Zoran
+
+--f403045f1c262aef02055a16a28e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-When I execute the cryptsetup manually (with sudo ) on the host , I could s=
-ee " demomap" getting populated . This confirms that it works on  host when=
- I run manually and that HOST configuration is OK .=20
-However this is not happing under yocto fakeroot environment and it says " =
-Cannot initialize device-mapper. Is dm_mod kernel module loaded?*"
+<div dir=3D"ltr"><div><div>Hello,<br><br></div>I have a bit dummy question.=
+ I have older Pyro distro, compiled for qemux86_64. It has there kernel 4.1=
+0.17, and there are two interesting directories, where one can find definit=
+ions of the kernels:</div><div><br></div><div>[user@localhost poky]$ find .=
+ -name *.bbappend<br>...<br>./meta-yocto-bsp/recipes-kernel/linux/linux-yoc=
+to_4.1.bbappend<br>./meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.10.b=
+bappend<br>./meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.12.bbappend =
+&lt;&lt;=3D=3D=3D Introduced later<br>./meta-yocto-bsp/recipes-kernel/linux=
+/linux-yocto_4.4.bbappend<br>./meta-yocto-bsp/recipes-kernel/linux/linux-yo=
+cto_4.9.bbappend<br>...</div><div><br></div><div>And the .bb scripts are lo=
+cated in:</div><div>./meta/recipes-kernel/linux/<a href=3D"http://linux-yoc=
+to-tiny_4.1.bb">linux-yocto-tiny_4.1.bb</a><br>./meta/recipes-kernel/linux/=
+<a href=3D"http://linux-dummy.bb">linux-dummy.bb</a><br>./meta/recipes-kern=
+el/linux/<a href=3D"http://linux-yocto_4.9.bb">linux-yocto_4.9.bb</a><br>./=
+meta/recipes-kernel/linux/<a href=3D"http://linux-yocto_4.1.bb">linux-yocto=
+_4.1.bb</a><br>./meta/recipes-kernel/linux/<a href=3D"http://linux-yocto-rt=
+_4.1.bb">linux-yocto-rt_4.1.bb</a><br>./meta/recipes-kernel/linux/<a href=
+=3D"http://linux-yocto-dev.bb">linux-yocto-dev.bb</a><br>./meta/recipes-ker=
+nel/linux/<a href=3D"http://linux-yocto-rt_4.12.bb">linux-yocto-rt_4.12.bb<=
+/a> <br>./meta/recipes-kernel/linux/<a href=3D"http://linux-generic_4.13.3.=
+bb">linux-generic_4.13.3.bb</a> &lt;&lt;=3D=3D=3D Introduced later (git HEA=
+D checkout)<br>./meta/recipes-kernel/linux/<a href=3D"http://linux-yocto-ti=
+ny_4.9.bb">linux-yocto-tiny_4.9.bb</a><br>./meta/recipes-kernel/linux/<a hr=
+ef=3D"http://linux-yocto_4.10.bb">linux-yocto_4.10.bb</a><br>./meta/recipes=
+-kernel/linux/<a href=3D"http://linux-yocto-tiny_4.4.bb">linux-yocto-tiny_4=
+.4.bb</a><br>./meta/recipes-kernel/linux/<a href=3D"http://linux-yocto-rt_4=
+.9.bb">linux-yocto-rt_4.9.bb</a><br>./meta/recipes-kernel/linux/<a href=3D"=
+http://linux-yocto_4.4.bb">linux-yocto_4.4.bb</a><br>./meta/recipes-kernel/=
+linux/<a href=3D"http://linux-yocto_4.12.bb">linux-yocto_4.12.bb</a> &lt;&l=
+t;=3D=3D=3D Introduced later<br>./meta/recipes-kernel/linux/<a href=3D"http=
+://linux-yocto-rt_4.4.bb">linux-yocto-rt_4.4.bb</a><br>./meta/recipes-kerne=
+l/linux/<a href=3D"http://kernel-devsrc.bb">kernel-devsrc.bb</a><br><br></d=
+iv><div>Whatever I did (introduced kernel_4.12.12 with the same set of the =
+scripts from master - different git headers), I was not able to switch kern=
+el while building qemux86-64!?</div><div><br></div><div>Even at the end (in=
+ desperation to understand from where dependencies are coming) I deleted .g=
+it in poky/, and deleted everything in build/, except conf/bbappend.conf an=
+d conf/local.conf?!</div><div><br></div><div>But still, kernel 4.10.17 is a=
+lways taken... No idea why?<br></div><div><br>user@localhost build]$ bitbak=
+e -c fetchall core-image-sato<br>WARNING: Host distribution &quot;fedora-26=
+&quot; has not been validated with this version of the build system; you ma=
+y possibly experience unexpected failures. It is recommended that you use a=
+ tested distribution.<br>Loading cache: 100% |#############################=
+###########################################################################=
+#########################################################| Time: 0:00:01<br=
+>Loaded 1300 entries from dependency cache.<br>NOTE: Resolving any missing =
+task queue dependencies<br><br>Build Configuration:<br>BB_VERSION=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.34.0&quot;<br>BUILD_SYS=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quot;<br>=
+NATIVELSBSTRING=C2=A0=C2=A0 =3D &quot;universal&quot;<br>TARGET_SYS=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-poky-linux&quot;<br>M=
+ACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quo=
+t;qemux86-64&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=C2=A0=C2=A0=C2=
+=A0 =3D &quot;2.3.1&quot;<br>TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quo=
+t;m64 core2&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+=3D &quot;&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-poky=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 <br><span style=3D"color:rgb(255,0,0)"><b>meta-yocto-bsp=C2=
+=A0=C2=A0=C2=A0 =3D &quot;&lt;unknown&gt;:&lt;unknown&gt;&quot; &lt;&lt;=3D=
+=3D=3D .git deleted prior fetching</b></span><br><br>Initialising tasks: 10=
+0% |#######################################################################=
+###########################################################################=
+##########| Time: 0:00:18<br>NOTE: Executing RunQueue Tasks<br><br>Summary:=
+ There were 11 WARNING messages shown.<br>[user@localhost build]$=C2=A0</di=
+v><div>_______</div><div><br></div><div>Questions:</div><div>[1] Should I b=
+lindly follow: <br><div id=3D"gmail-:ru" class=3D"gmail-a3s gmail-aXjCH gma=
+il-m15ebdf4efe5eff73"><a href=3D"http://www.yoctoproject.org/docs/2.3.2/ker=
+nel-dev/kernel-dev.html#creating-and-preparing-a-layer" target=3D"_blank"><=
+font color=3D"blue" size=3D"2" face=3D"sans-serif">http://www.yoctoproject.=
+org/<wbr>docs/2.3.2/kernel-dev/kernel-<wbr>dev.html#creating-and-<wbr>prepa=
+ring-a-layer</font></a></div><div class=3D"gmail-a3s gmail-aXjCH gmail-m15e=
+bdf4efe5eff73"><font size=3D"2" face=3D"sans-serif">Where it is written tha=
+t new layer must be introduced for the new kernel, also (after layer and sc=
+ripts creation) placed in .../build/conf/bbappend.conf?</font></div><div cl=
+ass=3D"gmail-a3s gmail-aXjCH gmail-m15ebdf4efe5eff73"><font size=3D"2" face=
+=3D"sans-serif"><br></font></div><div class=3D"gmail-a3s gmail-aXjCH gmail-=
+m15ebdf4efe5eff73"><font size=3D"2" face=3D"sans-serif">[2] If [1] is a mus=
+t, where I can read about reasons why this requirement exists?? Maybe BSP a=
+nd kernel have some invisible dependencies??<br></font></div><div class=3D"=
+gmail-a3s gmail-aXjCH gmail-m15ebdf4efe5eff73"><font size=3D"2" face=3D"san=
+s-serif"><br></font></div><div class=3D"gmail-a3s gmail-aXjCH gmail-m15ebdf=
+4efe5eff73"><font size=3D"2" face=3D"sans-serif">[3] Where are these invisi=
+ble kernel dependencies? So is there something (?) kernel depends on, altho=
+ugh I always believed that everything else is dependent on kernel (kernel i=
+s HW dependend via device drivers), since kernel lives on its own (except s=
+ome BSP data - kernel command line passed to it at the boot time, which sho=
+uld have no influence on dependency of any kind between kernel boot-loader =
+and kernel itself)?!<br></font></div><div class=3D"gmail-a3s gmail-aXjCH gm=
+ail-m15ebdf4efe5eff73"><font size=3D"2" face=3D"sans-serif"><br></font></di=
+v><div class=3D"gmail-a3s gmail-aXjCH gmail-m15ebdf4efe5eff73"><font size=
+=3D"2" face=3D"sans-serif">Thank you,</font></div><div class=3D"gmail-a3s g=
+mail-aXjCH gmail-m15ebdf4efe5eff73"><font size=3D"2" face=3D"sans-serif">Zo=
+ran</font></div><div class=3D"gmail-a3s gmail-aXjCH gmail-m15ebdf4efe5eff73=
+"><font size=3D"2" face=3D"sans-serif"><br>
+</font></div></div></div>
 
-@:~$ ls -l /dev/mapper/
-total 0
-crw------- 1 root root 10, 236 Sep 15 02:26 control
-lrwxrwxrwx 1 root root       7 Sep 26 11:56 demomap -> ../dm-7
-lrwxrwxrwx 1 root root       7 Sep 15 02:26 vg00-lv2swap -> ../dm-6
-lrwxrwxrwx 1 root root       7 Sep 15 02:26 vg00-lvdocker -> ../dm-1
-lrwxrwxrwx 1 root root       7 Sep 15 02:26 vg00-lvhome -> ../dm-3
-lrwxrwxrwx 1 root root       7 Sep 15 02:26 vg00-lvroot -> ../dm-2
-lrwxrwxrwx 1 root root       7 Sep 15 02:26 vg00-lvswap -> ../dm-5
-lrwxrwxrwx 1 root root       7 Sep 15 02:26 vg00-lvvar -> ../dm-4
-lrwxrwxrwx 1 root root       7 Sep 15 02:26 vgdata-lvdata -> ../dm-0
-
-
-off course , dm_mod which I could confirm with emty output of  lsmod | grep=
- dm_mod
-But then how does it works on host when I run cryptsetup manually ?
-
-I could see " dm_crypt" module is loaded .=20
-
------Original Message-----
-From: Ayoub Zaki [mailto:ayoub.zaki@embexus.com]=20
-Sent: Tuesday, September 26, 2017 4:17 PM
-To: Kumar, Shrawan <Shrawan.Kumar@harman.com>
-Subject: [EXTERNAL] Re: [yocto] rootfs encryption support
-
-
-
-On 26.09.2017 12:29, Kumar, Shrawan wrote:
-> To add further information to the query , I am executing =A0"cryptsetup"=
-=20
-> =A0from a recipe as below : (/Yocto 2.0.2)/
->
-> fakeroot do_install() {
->
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 cryptsetup --type=3Dplain open=
- hello.enc demomap <=20
-> dm-crypt-key
->
-> }
->
-> Additional debug log :
->
-> + do_install
->
-> | + cryptsetup --type=3Dplain open
-> /path_to/tmp/work/cortexa9hf-vfp-neon-elina-linux-gnueabi/DM-CryptSetu
-> p/1.0-r0/hello.enc
-> demomap
->
-> | *Cannot initialize device-mapper. Is dm_mod kernel module loaded?*
->
-> |
->
-> | Cannot initialize device-mapper. Is dm_mod kernel module loaded?
->
-> | + bb_exit_handler
->
-*||**Your Host kernel need to have support for DM-Crypt enabled, you can au=
-toload the corresponding kernel module by adding to your build host modules=
- configuration:
-
-$ sudo sh -c 'echo dm_mod > /etc/modules-load.d/dm_mod.conf'*
-||
-**
->
-> Ideally , I was under impression that "fakeroot" shall have allowed to=20
-> me achieve the goal.
->
-> Thanks & Regads
->
-> Shrawan
->
-> *From:* Kumar, Shrawan
-> *Sent:* Tuesday, September 26, 2017 10:56 AM
-> *To:* 'yocto@yoctoproject.org' <yocto@yoctoproject.org>
-> *Subject:* rootfs encryption support
->
-> Hello Team ,
->
-> Is it possible to get encrypted rootfs during image build =A0?
->
-> Currently , I am running "*cryptsetup*" (as sudo) *manually* =A0=A0after=
-=20
-> the final image(rootfs.ext4) is produced =A0. The idea is to get this=20
-> done within yocto environment without sudo problem .
->
-> Thanks and Regards
->
-> Shrawan
->
->
->
-
---
-Ayoub Zaki
-Embedded Systems Consultant
-
-Vaihinger Stra=DFe 2/1
-D-71634 Ludwigsburg
-
-Tel.     : +4971415074546
-Mobile   : +4917662901545
-Email    : ayoub.zaki@embexus.com
-Homepage : https://clicktime.symantec.com/a/1/8fQ575pM7qUybRZBFjM9C7WPhR2dX=
-T1R4k3d_4A9BOc=3D?d=3DTm5cGpFBEW_vK6_eBrh-lyBQV_R1miTaoqmkTnsHhnTjNs9fOY92c=
-q9wfN5CbL76p9_yEC-LnqRTAKlF1fzjPCBupycsjT3GP6G75yD1UVlxZ7c2mqLgkyrhClC1V-74=
-zP2Zbhs8BAnSEhpjJoqPP_0JU1Lzuo-iK8U_D7B1zQes8b4JBgf3DPo21HUsMa2qEGMbeqEDq7L=
-U4y2SXKadgb1xcCNmOTvQIJ9LchpVyTITF0Qw2c5M1--o9oWn7FlThc-KBs5TLfBKAIexE3ndzK=
-ZOdu9D2NlCmcrEM7q1Oe8sarufZ71B8FsfvU5lT_9gB-hfFD0PEgEJY8VxBGtY4-tLfyAnaY8Z-=
-BlIlSDBgZeorcaKkAzCj4nQTbXIWTTIYg%3D%3D&u=3Dhttps%3A%2F%2Fembexus.com
-
-
+--f403045f1c262aef02055a16a28e--
