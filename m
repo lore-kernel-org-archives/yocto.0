@@ -1,15 +1,19 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <vincent.prince.fr@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A47CE00C62; Tue, 26 Sep 2017 07:19:47 -0700 (PDT)
+	id 4B1A2E00C62; Tue, 26 Sep 2017 07:27:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=unavailable
-	version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.48 listed in list.dnswl.org]
+	*      [209.85.128.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.193 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (vincent.prince.fr[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -17,54 +21,46 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f48.google.com (mail-pg0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FB95E00C3A
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 07:19:46 -0700 (PDT)
-Received: by mail-pg0-f48.google.com with SMTP id 7so5973105pgd.13
-	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 07:19:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=subject:to:references:from:organization:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=R5JCz7i2y8NTnFyPnLnWOofFz095Ca7/z+WIqRE7jkE=;
-	b=X7MJhPaRjo3LSHIQ9iCBmv9ksfNFqVZRV51UxMfE0kerxt2l+B0/NKySE/48EpRcfu
-	jNzzAHHOoEtVG7sahLgqOEM4f36NE6vmSqJADhmpsROi2aKr33rC/6xb+MWU1HYY6xeJ
-	OT5nN7ch2jkXhYVHx8l6u0cmKTw5rzrJBSjio=
+Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
+	[209.85.128.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9640BE00C1A
+	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 07:27:20 -0700 (PDT)
+Received: by mail-wr0-f193.google.com with SMTP id n64so2620974wrb.2
+	for <yocto@yoctoproject.org>; Tue, 26 Sep 2017 07:27:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=rpFHZfqRHptzU+s68ZGzxnuRz8gx63b7igcUiMxRwfU=;
+	b=WiLVVJpHYLVaYVeAFmd5r1my8URoCsjHs2Q3+63+4DJYbYDZAiyDrgNkzdg+XjiYre
+	ebWLrlJztQMEu0R2zNoXt2WtSWpFGQG4EBLIpAv3QBbswnrDYkwQxAju7mshJjDlCwxr
+	dwrJMFEZmHcgY2fl3XR65l+1/uVSRa75QwkMGHgPZRD49tB9S+nD5vCCS/6iw1BzuJmq
+	/6Nk1/wE+hk31w9JWK2SH5hFeV+QgOi5TJJwjKnh/lumboE2HFdIm9gSdEk/mQVs9UiW
+	y/SnOnvBwNv8EoYxqCTjhj0SFWlCIxDAsTnilgyjfaN6fZZJuj+/lFk2nm4d4Zxnm8Vr
+	egDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-language:content-transfer-encoding;
-	bh=R5JCz7i2y8NTnFyPnLnWOofFz095Ca7/z+WIqRE7jkE=;
-	b=AnHwVDtXtUWjVYTzu4cwShuXPe2mKuf58NGKBNW0+N+df+ynJ4Gpp+0MJ2ghgPG9Rm
-	EGLt0HgOEKI/TQ4wIjbHxvbu2yE1g19NUqNM3OUd0TD1eOU2vy30VbmAn4F5aIcls/GA
-	lFtuypXVuiVPFGFvzN7DfeuyjMTEKEMTNpdQW5YpoSbbG5OuhMVdvWZWYAzStB/++bLF
-	t2m4Nwb/gpIrRTwHNHm7yr24fERTLdwPf1ODpBuJFDRmzDUZg68jM0Vw5j8kSQJ59MXP
-	p/uSsq2k+uU/FFFxlS/Giwdua4wvfdWsWwnaA2xTEf2Gcn4So3eiTAzqWcjcdbTamHXn
-	9LNQ==
-X-Gm-Message-State: AHPjjUhuWAErkeQgyr1XN+eUtu8G7VRwNj53inXxGAINNbF/QXiD8vE5
-	+4cZs+um8ctMmMdznvKfOfWwBPsJUp8=
-X-Google-Smtp-Source: AOwi7QD6UuoTwnwLTyi607LMoGT0yMye04tEYmH2O71jwNaqPHNEylUvzkCr2jssLK6SCkfDJPfsfQ==
-X-Received: by 10.98.147.4 with SMTP id b4mr3652957pfe.347.1506435585444;
-	Tue, 26 Sep 2017 07:19:45 -0700 (PDT)
-Received: from yct-lpt.lan (50-39-175-47.bvtn.or.frontiernet.net.
-	[50.39.175.47]) by smtp.gmail.com with ESMTPSA id
-	z9sm17190642pgc.85.2017.09.26.07.19.43
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 26 Sep 2017 07:19:44 -0700 (PDT)
-To: akuster808 <akuster808@gmail.com>, yocto-infrastructure@yoctoproject.org, 
-	yocto@yoctoproject.org
-References: <b38b99b3-9090-a99c-06c1-396ce3baab26@linuxfoundation.org>
-	<9b2376cd-8fea-1184-497a-036df4d395ea@gmail.com>
-From: Michael Halstead <mhalstead@linuxfoundation.org>
-Organization: Linux Foundation
-Message-ID: <19e69851-4b00-1c6a-d0c0-5d9b30d1dff5@linuxfoundation.org>
-Date: Tue, 26 Sep 2017 07:19:43 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
-MIME-Version: 1.0
-In-Reply-To: <9b2376cd-8fea-1184-497a-036df4d395ea@gmail.com>
-Subject: Re: [infra] git domain name updates
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=rpFHZfqRHptzU+s68ZGzxnuRz8gx63b7igcUiMxRwfU=;
+	b=Z8OgnlKEFElLVm7yWFB5hWfp5mLz4ELg2llB2BDWZRd1VQn0u+3XoniF3xF7J1VsSB
+	tH3WKnekmKRo7rOG4e0qj9Vqdc3HbOjZy9DURsoBHN4iGJrGgAvZurMIEUUIhR5dKIb0
+	8SFIx6bJYFs8YPlAB1FJHJ4aP0SJS6s7uLiOVrLNVflktgdFnTgmOVH8AIO6AKsjZI60
+	sNCIOj7IIR8rwPN3dUhgTK35MvgIt48M8v+S9Er/gkFMtt1hT3eNZtxtxu07P7U3QhrI
+	O5FXKo0CiBSdno28egwd1hXOIXgnOd37lqcjqtOnnb8AoAaeAg8oiP/YkDb2lMsS1Q8Q
+	o0Jg==
+X-Gm-Message-State: AHPjjUjR2DCtxy/4k+n9rjkwvPZEPTJSP54QxJG2nHM8khvYCh4tBVAY
+	oE2JuVmf86VWn/z+DNd/tfp9mg==
+X-Google-Smtp-Source: AOwi7QDZ7lSChcma0QCva+KgDv2uJglTCym20s4xUNmlIu8s/ii31YPTviOpSAS+Yd77ul2Rpw2FzQ==
+X-Received: by 10.223.177.139 with SMTP id q11mr10546012wra.269.1506436039160; 
+	Tue, 26 Sep 2017 07:27:19 -0700 (PDT)
+Received: from VPR-VM.fra.hager.corp ([212.51.167.132])
+	by smtp.gmail.com with ESMTPSA id 204sm3295305wms.1.2017.09.26.07.27.18
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 26 Sep 2017 07:27:18 -0700 (PDT)
+From: Vincent Prince <vincent.prince.fr@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue, 26 Sep 2017 16:27:01 +0200
+Message-Id: <1506436021-23509-1-git-send-email-vincent.prince.fr@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-oracle-java][PATCH] Revert "oracle-jse-ejre: Fix destination" (4eb10648f31539f95110852496b987db6f74df55)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,73 +72,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Sep 2017 14:19:47 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 26 Sep 2017 14:27:21 -0000
 
+We need to add JRE directly in ${JDK_JRE}${PV}_${PV_UPDATE} as oracle-jse.inc installs all dest folder.
 
+Without this patch JRE is installed in /usr/lib/jvm/java-8-oracle/jre/bin/java and /usr/bin/java points to
+/usr/lib/jvm/java-8-oracle/bin/java
 
-On 09/25/2017 06:17 PM, akuster808 wrote:
-> 
-> 
-> On 09/25/2017 05:17 PM, Michael Halstead wrote:
->> Hello,
->>
->> As Yocto Project continues to grow load on our git server does as
->> well. We are going to make a few changes to our git infrastructure to
->> allow for more growth.
->>
->> All read-only git operations should point at git.yoctoproject.org. For
->> example poky can be cloned from the following URLs:
->>
->> git://git.yoctoproject.org/poky
->> https://git.yoctoproject.org/git/poky
->>
->> If you have repositories pointed at www.yoctoproject.org,
->> git.pokylinux.org, or any other domain name please update their remotes
->> to git.yoctoproject.org.
->>
->> Read-write operations via ssh will use a new domain specifically for
->> that purpose. I've added push.yoctoproject.org and ra.yoctoproject.org
->> (like ra.kernel.org).
->>
->     Read-write URLs should be updated to the new domain names. I've
->> changed mine like so:
->>
->>
->> git remote set-url origin ssh://git@push.yoctoproject.org/poky-contrib
->>
->>
-> will this apply  to the other contrib repos hosted by Yocto?
+Signed-off-by: Vincent Prince <vincent.prince.fr@gmail.com>
+---
+ recipes-devtools/oracle-java/oracle-jse-ejre.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This will apply to all repos hosted at git.yoctoproject.org. I used
-poky-contrib as the push example since it has the most users.
-
-> 
-> Is there a policy on pruning old branches in the contrib repos?
-> 
-
-There hasn't been a policy but we need to create one. I've checked with
-Richard and we will move branches to poky-contrib-archive that haven't
-been touched in a year. I'll send out a notice about that.
-
-> 
->> This is all ready to go right now. Please update your remotes.
->>
->> We will have to make these changes required before we can start to get
->> performance benefits from them. I suggest November 1st 2017 but I need
->> more feedback before we can set a cut off date.
-> sounds good to me. Thanks for working on this.
-> 
-> - armin
->>
->> Thank you,
->>
-> 
-> 
-
+diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
+index 0af0b6b..d7a4b33 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-ejre.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
+@@ -19,7 +19,7 @@ LIC_FILES_CHKSUM = "\
+ 	"
+ 
+ do_compile() {
+-	DEST=${S}/ejre${PV}_${PV_UPDATE}/jre
++	DEST=${S}/${JDK_JRE}${PV}_${PV_UPDATE}
+ 	rm -rf ${DEST}
+ 	JAVA_HOME=${STAGING_DIR_NATIVE}/${JDK_HOME} ejdk${PV}_${PV_UPDATE}/bin/jrecreate.sh --dest ${DEST}
+ }
 -- 
-Michael Halstead
-Linux Foundation / SysAdmin
+2.7.4
+
 
