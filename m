@@ -1,68 +1,70 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <john.finley@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AEC9AE00A39; Wed, 27 Sep 2017 08:20:46 -0700 (PDT)
+	id B1AB7E00B1B; Wed, 27 Sep 2017 09:21:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, 
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
+	mail provider *      (john.finley[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.53 listed in dnsbl.sorbs.net]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.66 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.66 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C4DCE007EF
-	for <yocto@lists.yoctoproject.org>;
-	Wed, 27 Sep 2017 08:20:45 -0700 (PDT)
-Received: by mail-wm0-f66.google.com with SMTP id b195so19615704wmb.5
-	for <yocto@lists.yoctoproject.org>;
-	Wed, 27 Sep 2017 08:20:45 -0700 (PDT)
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D08BE009F5
+	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 09:21:04 -0700 (PDT)
+Received: by mail-it0-f53.google.com with SMTP id 85so7870406ith.2
+	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 09:21:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=gvobeyKhHvhavfGQGr2s4J0V1Wtxv0sDZLMJUz9jDYU=;
-	b=sooR6Bp0I+Qs4cfBTVXPimfkPfW50i0BIQ1UFqPVw+F23NaZxD6d2DfYN2gvGUnq16
-	YA0OQ9NT2G4k1J9oxEHwZT7vvgEpuyTbA22VUHuakkSbNrPZ2asXNzm9yvwFmXepZZWX
-	wZDA6m0xdfquRANRId//sXD6cRD/3Ks+t4ndcEP/lqgSZHaG4cmAXLGuRIOcQHQaVZLL
-	SHRvuP3OhwiKdcmHqZzUTsMQYI/o+P4H2HW7iOpyW0IMp7LsjndVw4/75xrd0ocY2tbL
-	yxBd7L6iJ/opxMwk1CEm5IaiEfXXrsjMGeVm8/A78vLd0hREGZxzTt1Bt43pGDiXzXSf
-	NtiA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=55tCczm7jI+aui7MjiPlETKvYOgFB0DP/xXQ/9D3vUI=;
+	b=er+dmOKtfNwcrolhSIqdEBN91t2K0GzKCIocn92ctXPYOE5V3e/BESrsQ/KpyQS6+2
+	YfDVV50AnMGermpRxFdLl6SephYqFMi5coDEg/VxiBNBeQYBL7EHYyi6kEBPVueoIuKS
+	IftrAlM0qND7FpWxRutio794dXHHMwRAyegLrRfLiL2IJGivRffePBkYxvfaFkVljmGB
+	R7DdhC9apOUXeMsmQBGM3GWRJjW0OVYPtrVgMNNuyoqE7ceEv1vSCyDyWg2zqjfs5lu8
+	ClzmZWNB+snCsyQfO+z3PV2UnZkEBw/ydAlyL9G6Vt1HO9BxO9tJsVGZaAJRjIjRf7Ef
+	Iwlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=gvobeyKhHvhavfGQGr2s4J0V1Wtxv0sDZLMJUz9jDYU=;
-	b=PvOJ1gPVLXyTkOCQPCA2PSJpI6BdEHVQr8LgtD3RPE9Gua0qbX8YmDh9rQpZhNx2eC
-	ER09oHnE3xM15LKLl44IghS8QAOTmtIH/Q6HhESCELP9m1nw8Y2fmvz6YGjof/7SF2ag
-	QsxoGra/0xL9T+C8wKp5buvB8kkSqChxa8Oh+EaxayzQ70TPZa2v4xS7j7IYQaus+GPi
-	BPUHof0jyFxFWxtE630umSWbcmIECr81ETo/PtWE7/nLZLz9M65VJZ3Y+LirWOeNxeqx
-	qZuif9OpBD/pQlqMwJAHD/I8c/0BHKCah9ePQot69+3h8OYldWjY1c5qWcfjxREMoxtJ
-	0T3A==
-X-Gm-Message-State: AHPjjUjGjBfBEbxLK5GZ1PmJuN1hrXyKprj4yYLwzwm297THY8OedHiK
-	9rO5GF2omd+2StyImi5cdoQKHQ==
-X-Google-Smtp-Source: AOwi7QAJckDGZIFvIBsoRP9NvIuai0ev6rMQ5EBBuATuagpjFWM8hLRI/pwvk2yZBQUxKrIVRkX69w==
-X-Received: by 10.28.211.66 with SMTP id k63mr571229wmg.33.1506525642881;
-	Wed, 27 Sep 2017 08:20:42 -0700 (PDT)
-Received: from localhost ([217.30.68.212])
-	by smtp.gmail.com with ESMTPSA id j5sm6877979wmg.8.2017.09.27.08.20.41
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 27 Sep 2017 08:20:41 -0700 (PDT)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-To: yocto@lists.yoctoproject.org
-Date: Wed, 27 Sep 2017 15:23:19 +0000
-Message-Id: <1506525799-219-1-git-send-email-Martin.Jansa@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-raspberrypi][PATCH] Revert "qtbase: Enable EGLFS support"
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=55tCczm7jI+aui7MjiPlETKvYOgFB0DP/xXQ/9D3vUI=;
+	b=jZfCBp9p3s2pdAaCeHa6085kdxkCZy1ETTOEK7ODOqJ4fewF5UrR+SMddboszEgYc+
+	yPrHJhG+y5AJ57ghF6OVaB5RsgO1EhP17fBf91+DRye1o0ytPf+wyR9a1GXMyXTXrOB3
+	xGBoahZaObSRPFxVanV7/K+/vXgCGOCr+qCR1eyeZ8cAGnISlIzMkguTREz4OIQwLhKe
+	ceCPuASMhi3ZlDuAyNRt4zj+9BNjO1ICiaXyTfG8QrGdp6gvlzKwWtyv+wtVExLezP7x
+	XGZyYTPZ2PPBHf/9/2176A+8F5+NrI3EWNlU1YGbCVWGtmDIiQxFCPSoHjER0YJ7Yya1
+	jmtw==
+X-Gm-Message-State: AHPjjUhbTCTnstZ2Fcdq/gg05FoEn0Pnlix/tekpsXLV03qpiZKuO+zV
+	yIJL18xZ8vioc8T2jufIVgBhiDt/l7wZlEYhRcY=
+X-Google-Smtp-Source: AOwi7QBbzN9J89ACdsG2lhXPfiZ4eUxu0OICQjzJIVTJyFFy2efONJAk/5HKAh54isfhX6OSrky96ELHJy47mw7QXbM=
+X-Received: by 10.36.32.71 with SMTP id t68mr1454340itt.128.1506529264213;
+	Wed, 27 Sep 2017 09:21:04 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.2.3.26 with HTTP; Wed, 27 Sep 2017 09:21:03 -0700 (PDT)
+In-Reply-To: <6e5f6176b28d4d5397a7a7e36c40d4a9@HIBDWSMB02.ad.harman.com>
+References: <6e5f6176b28d4d5397a7a7e36c40d4a9@HIBDWSMB02.ad.harman.com>
+From: John Finley <john.finley@gmail.com>
+Date: Wed, 27 Sep 2017 09:21:03 -0700
+Message-ID: <CACwBRSC=TrjHrme9neN2wRoak9duR=mp5bfDZX2+GMYyYtbNgg@mail.gmail.com>
+To: "Kumar, Shrawan" <Shrawan.Kumar@harman.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"connect.shrawan@gmail.com" <connect.shrawan@gmail.com>
+Subject: Re: want to execute a script having sudo : sudo cryptsetup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,28 +76,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Sep 2017 15:20:46 -0000
+X-List-Received-Date: Wed, 27 Sep 2017 16:21:06 -0000
+Content-Type: multipart/alternative; boundary="001a1147e89aa32683055a2e2d55"
 
-* this reverts commit 04b37dbdb79638b17a670280058400ffaf1b6ccb.
-* this makes qtbase and everything which depends on some qt* recipe to
-  be effectivelly MACHINE_ARCH
+--001a1147e89aa32683055a2e2d55
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
----
- dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend | 3 ---
- 1 file changed, 3 deletions(-)
- delete mode 100644 dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+Try making it so the user doing the build is not prompted for a password
+when they do "sudo". I have this in my vm:
+    john@vbox-ubuntu-16$ cat /etc/sudoers.d/john
+    john ALL=(ALL) NOPASSWD: ALL
+    john@vbox-ubuntu-16$
+I don't know if that's all that's needed; I have to google it every time.
 
-diff --git a/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend b/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
-deleted file mode 100644
-index ae3f1d3..0000000
---- a/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
-+++ /dev/null
-@@ -1,3 +0,0 @@
--# Copyright (C) 2017 O.S. Systems Software LTDA.
--
--PACKAGECONFIG_GL_rpi   = "gles2 eglfs"
--- 
-2.7.4
+On Mon, Sep 25, 2017 at 2:48 AM, Kumar, Shrawan <Shrawan.Kumar@harman.com>
+wrote:
+
+> Hello Team ,
+>
+>
+>
+> I am trying to achieve below from yocto , do we have a way  ?
+>
+>
+>
+>
+>
+> dd if=/dev/zero of=hello.enc bs=4k count=$400
+>
+> mknod /dev/loop_dev_0
+>
+> losetup /dev/loop_dev_0 hello.enc
+>
+> *sudo* cryptsetup --type=plain open /dev/loop_dev_0  plainMap < $2
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> Thanks and Regards
+>
+> Shrawan
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a1147e89aa32683055a2e2d55
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Try making it so the user doing the build is not prompted =
+for a password when they do &quot;sudo&quot;. I have this in my vm:<div><di=
+v>=C2=A0 =C2=A0 john@vbox-ubuntu-16$ cat /etc/sudoers.d/john=C2=A0</div><di=
+v>=C2=A0 =C2=A0 john ALL=3D(ALL) NOPASSWD: ALL</div><div>=C2=A0 =C2=A0 john=
+@vbox-ubuntu-16$=C2=A0</div></div><div>I don&#39;t know if that&#39;s all t=
+hat&#39;s needed; I have to google it every time.</div></div><div class=3D"=
+gmail_extra"><br><div class=3D"gmail_quote">On Mon, Sep 25, 2017 at 2:48 AM=
+, Kumar, Shrawan <span dir=3D"ltr">&lt;<a href=3D"mailto:Shrawan.Kumar@harm=
+an.com" target=3D"_blank">Shrawan.Kumar@harman.com</a>&gt;</span> wrote:<br=
+><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
+px #ccc solid;padding-left:1ex">
 
 
+
+
+
+<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"m_7332210310540792190WordSection1">
+<p class=3D"MsoNormal">Hello Team ,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I am trying to achieve below from yocto , do we have=
+ a way =C2=A0?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">dd if=3D/dev/zero of=3Dhello.enc bs=3D4k count=3D$40=
+0<u></u><u></u></p>
+<p class=3D"MsoNormal">mknod /dev/loop_dev_0<u></u><u></u></p>
+<p class=3D"MsoNormal">losetup /dev/loop_dev_0 hello.enc<u></u><u></u></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"background:yellow">sudo</span><=
+/u></b> cryptsetup --type=3Dplain open /dev/loop_dev_0 =C2=A0plainMap &lt; =
+$2<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks and Regards<span class=3D"HOEnZb"><font color=
+=3D"#888888"><u></u><u></u></font></span></p><span class=3D"HOEnZb"><font c=
+olor=3D"#888888">
+<p class=3D"MsoNormal">Shrawan<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</font></span></div>
+</div>
+
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
+
+--001a1147e89aa32683055a2e2d55--
