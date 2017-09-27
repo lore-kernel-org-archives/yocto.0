@@ -1,65 +1,69 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4AEAE00CF3; Wed, 27 Sep 2017 02:17:45 -0700 (PDT)
+	id 8553EE00CF3; Wed, 27 Sep 2017 06:05:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.171 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.42 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.42 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.217.171 listed in dnsbl.sorbs.net]
-Received: from mail-ua0-f171.google.com (mail-ua0-f171.google.com
-	[209.85.217.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA78CE00CEC
-	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 02:17:43 -0700 (PDT)
-Received: by mail-ua0-f171.google.com with SMTP id q29so8070619uaf.3
-	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 02:17:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=CQu1vhaS9oZPybaCAU9XxYuTc4BX3feqXryIqV+YIjA=;
-	b=QZYQBpKS/XB7LVsrGf7nHK47464HHhLHAWchg5ksmCdAP08dRme5/5pHWLWuSptORM
-	p+SMEi99xn7zWS5VBBNbwVhhIe9/wO7M2AKMlILhd3mrLREKMp5TqyEsbPfo4qM8QRRQ
-	emZbc9N9p6SqdD9U0RyCD8hLo6nSzpqttRphb0NRsTZQeTOJUoJ35/eoFVRbDZxEE9+s
-	KSC7ApUokbSKxv3FQda21dfrqXxcjFcP7up1DLA5DfqHn59N8k0jeGThGtKJgCI6cef8
-	8b3b4SpNCG0+6CFKfhA7KnjkQRoDnTBa8u00GsfOf5RxncKGLBBCPRKHjdPEAuaXtuvV
-	6xHw==
+Received: from mail-it0-f42.google.com (mail-it0-f42.google.com
+	[209.85.214.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8571E00C62
+	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 06:05:56 -0700 (PDT)
+Received: by mail-it0-f42.google.com with SMTP id d192so6987132itd.1
+	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 06:05:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=QfYKXk+tCi8T0I1zaX7GMIIAxqnPIaZWS4TwhID29h8=;
+	b=iHFNFbCIr4nnXP88Fu5fe2r7pngOoWUTYOGvqd920g4JZqYe6xlbbSYM2lQgPnCFn2
+	AYSfyGKXDATGf6JacHp/Wdv2bNkTMJ3cemRSs9xzFGodTXhgbfUaVm8f2Ni28UlllKV6
+	Z+YJYwNu4Ho6gNQv1kN6CUkE7bBGxHrmVoBflEW9JWgH8Jc0hABrfROabuanjPHj9LaC
+	6qguKs5qvjaEzBHOG+BhWzIqlnQlHOCIwYNH8Dxgxc05ifFGKjRdzgZtxu9xIH7mAXNi
+	y+k8so4TNWOA/L1eH+huNYVzZoviKAlDzoAH5b1U7YA26gBXDVsbyjMHoBUs1Eid01KW
+	4uHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=CQu1vhaS9oZPybaCAU9XxYuTc4BX3feqXryIqV+YIjA=;
-	b=PAceCrTr/+wjw8l3yutsyDAK7ulSPm6lLEPTEVw43httr0XT1/8deNTTzahvdyHzjH
-	96LUWAdKytxA0WkoPnSZeI0ggC/1F+bjoH3Q2hdNKeTNwJXySgOkq/ImiJvoLU0WLktw
-	H/bXZsjKzlb4cJDwo3cE4ZDIHO3Q1seSXF6u9AXPJR7FefFfsVNuSH+nRglWSDZEiYAQ
-	1dgYJNXlGV6/J1zUl54cpjmWqnRf1OZuJross95BV0Aj9wdlCkvtqVRY9n6h6lQEd31n
-	lIdaaRPW09TWqShaX1m9pECBgKUJrQNwgLJTsutYL1FUAs/LS5eNrsL4glqU/486lfK5
-	tlYA==
-X-Gm-Message-State: AMCzsaUDdOoeowu8GpVI0gVS8pUY+sG6F4e/kAkQ8pTDpGne97jndvGS
-	f9DJTff1D3X0vs6JO3NtBvGtn1Bk7dY7msxnHcSjIA==
-X-Google-Smtp-Source: AOwi7QBeAs21JkExArHL2bV3GkkmTek96dXyTUZfQlmMBJ6iiobOMNFZjmkyQkZmzrifJ397aIgZYfgYFMCHbdneNZc=
-X-Received: by 10.159.51.236 with SMTP id y44mr535191uab.2.1506503862479; Wed,
-	27 Sep 2017 02:17:42 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=QfYKXk+tCi8T0I1zaX7GMIIAxqnPIaZWS4TwhID29h8=;
+	b=dDR0DW2bEoWj2aF5VDD+yA8Z73fZY4LMBh3MZSSFG2W0UXEP/8WpEUHsTM3KZV0GEX
+	LK2ecVi8yUYCYi2KfA9wZjSoD8aq6fUuzo+pdmvSixDaQeItljMb879NuI45/uax8CHA
+	s5rAwGob29v2YoEDneTNLRtOZXEoS7OiVt/SXZjAvS4bPvbEREYk2NoN1Oboog7hkmGz
+	rYRfS7kDm4OuNoe3aXzoCPFsiQfBc71KxN7/CeUINsAOawBGGGf4+RiNF+aniRj7hpYz
+	Qq+umT9lYrkG6yhQ8sP+DOH4uFKN7PSXMmUKnAJo8xc/mURMWlPxO7z/Dj/GEYPG32Xw
+	DBAQ==
+X-Gm-Message-State: AHPjjUjTvBK/P35PgLEviZKDmFoHGLEwUG852+Hq4pWIcZVBi9hx/trW
+	KRL/+Fyb+9+ymXmCaPtkwO4V3DXYurSkK2EQ9t6eKg==
+X-Google-Smtp-Source: AOwi7QAlNm4F55UtO32qrPyRK8pziAyxq2O5QNPqmgfX2PJKWQ4S9c1l1sSxM4rI/QgO/jOJWtY8c5ro3DgB+TfvLwU=
+X-Received: by 10.36.162.67 with SMTP id o3mr427411iti.27.1506517556281; Wed,
+	27 Sep 2017 06:05:56 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.86.193 with HTTP; Wed, 27 Sep 2017 02:17:42 -0700 (PDT)
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Wed, 27 Sep 2017 11:17:42 +0200
-Message-ID: <CAC+thW29EEDcrdz+bvD82fnDSV8Q0siUmXqq0GVcWKAe7W0vYA@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: do_populate_sdk_ext always being triggered
+Received: by 10.107.19.68 with HTTP; Wed, 27 Sep 2017 06:05:35 -0700 (PDT)
+In-Reply-To: <DM5PR05MB2954E471F11F1ADF08E544CABB780@DM5PR05MB2954.namprd05.prod.outlook.com>
+References: <DM5PR05MB29545649D8FAD14D890F96C4BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
+	<CAJTo0LYWJFAChPkcOeU4ESOzCZ0XkrVswRnsh7jz=4QnKZ6uWA@mail.gmail.com>
+	<DM5PR05MB29543B944CF11354749DE3C6BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
+	<CAJTo0LZ3+prEXi4eJH-0qcg_mp7CShyVzGg2=nY3c3s585CQ9A@mail.gmail.com>
+	<DM5PR05MB2954E471F11F1ADF08E544CABB780@DM5PR05MB2954.namprd05.prod.outlook.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 27 Sep 2017 14:05:35 +0100
+Message-ID: <CAJTo0LavAJr8D+kuQ_6FkjA-D-XotT7BcrCA3W7bv_HL2EpuxA@mail.gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Errors building with Windows Subsystem for Linux (aka Bash on Ubuntu on Windows)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,26 +75,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Sep 2017 09:17:45 -0000
-Content-Type: multipart/alternative; boundary="f403043ef77c93afa8055a28436e"
+X-List-Received-Date: Wed, 27 Sep 2017 13:05:57 -0000
+Content-Type: multipart/alternative; boundary="f403045fb2a2ca5874055a2b7379"
 
---f403043ef77c93afa8055a28436e
+--f403045fb2a2ca5874055a2b7379
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I noticed that periodically running 'bitbake -c do_populate_sdk_ext' for an
-image in my CI loop does always trigger the task to be executed even if no
-changes where applied either to metadata or to the configuration between
-two iterations. Is this expected? If so, why? Shouldn't SDK artifacts
-exploit the sstate as i.e. images do?
+On 27 September 2017 at 13:57, Bryan Evenson <bevenson@melinkcorp.com>
+wrote:
 
---f403043ef77c93afa8055a28436e
+>
+> Feel free to compress and email it directly to me, but simply grepping fo=
+r
+> EINVAL (invalid argument error) might be enough.
+>
+>
+>
+> I did a search on EINVAL and I got a bunch of entries of that look like
+> this:
+>
+>
+>
+>   linkat(AT_FDCWD, =E2=80=9C<source_full_path>=E2=80=9D, AT_FDCWD, =E2=80=
+=9C<dest_full_path>=E2=80=9D, 0)
+> =3D -1 EINVAL (Invalid argument)
+>
+>
+>
+> I checked a few entries by doing a stat on the source and destination.  I=
+n
+> each case, the source file exists at the specified path, was owned by the
+> user account with which I=E2=80=99m doing the build, and had access right=
+s of
+> 0644.  Also in each case, the destination file did not exist but the
+> destination directory did exist, the destination directory was owned by t=
+he
+> user account with which I=E2=80=99m doing the build, and the destination =
+directory
+> had access rights of 0755.  From reading the man page for linkat, linkat
+> should only return EINVAL if the flags argument is invalid, and 0 should =
+be
+> a valid value for flags.
+>
+>
+>
+> I think there may be something missing from WSL=E2=80=99s implementation =
+of
+> linkat.  I am doing OPKG packages, so I=E2=80=99m guessing there is somet=
+hing
+> different about the resulting function calls in the libc-package class as
+> opposed to the package_ipk class.  I think I may enable the other package
+> types to see if it is as successfully with RPMs and DEB packages.  I=E2=
+=80=99m also
+> going to see if there is an easier way to reproduce the problem to report
+> the issue to Microsoft.
+>
+
+Good digging.  At least you can replicate it on demand, and have a strace
+showing it.  This bit of packaging happens before the rpm/opkg/deb specific
+code, so changing the packaging format won't help.
+
+Ross
+
+--f403045fb2a2ca5874055a2b7379
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I noticed that periodically running &#39;bitbake -c do_pop=
-ulate_sdk_ext&#39; for an image in my CI loop does always trigger the task =
-to be executed even if no changes where applied either to metadata or to th=
-e configuration between two iterations. Is this expected? If so, why? Shoul=
-dn&#39;t SDK artifacts exploit the sstate as i.e. images do?<br></div>
+<div dir=3D"ltr">On 27 September 2017 at 13:57, Bryan Evenson <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:bevenson@melinkcorp.com" target=3D"_blank">beven=
+son@melinkcorp.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div=
+ class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
 
---f403043ef77c93afa8055a28436e--
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"m_-3689249494315933624WordSection1">
+<div><div><span class=3D""><p class=3D"MsoNormal" style=3D"margin-left:.5in=
+"><br>Feel free to compress and email it directly to me, but simply greppin=
+g for EINVAL (invalid argument error) might be enough.<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
+</span><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&=
+quot;Calibri&quot;,sans-serif">I did a search on EINVAL and I got a bunch o=
+f entries of that look like this:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif">=C2=A0 linkat(AT_FDCWD, =E2=80=9C&lt;source_full_pa=
+th&gt;=E2=80=9D, AT_FDCWD, =E2=80=9C&lt;dest_full_path&gt;=E2=80=9D, 0) =3D=
+ -1 EINVAL (Invalid argument)<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif">I checked a few entries by doing a stat on the sour=
+ce and destination.=C2=A0 In each case, the source file exists at the speci=
+fied path, was owned by the user account with which
+ I=E2=80=99m doing the build, and had access rights of 0644.=C2=A0 Also in =
+each case, the destination file did not exist but the destination directory=
+ did exist, the destination directory was owned by the user account with wh=
+ich I=E2=80=99m doing the build, and the destination
+ directory had access rights of 0755.=C2=A0 From reading the man page for l=
+inkat, linkat should only return EINVAL if the flags argument is invalid, a=
+nd 0 should be a valid value for flags.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif">I think there may be something missing from WSL=E2=
+=80=99s implementation of linkat.=C2=A0 I am doing OPKG packages, so I=E2=
+=80=99m guessing there is something different about the resulting function
+ calls in the libc-package class as opposed to the package_ipk class.=C2=A0=
+ I think I may enable the other package types to see if it is as successful=
+ly with RPMs and DEB packages.=C2=A0 I=E2=80=99m also going to see if there=
+ is an easier way to reproduce the problem to report
+ the issue to Microsoft.</span></p></div></div></div></div></blockquote><di=
+v><br></div><div>Good digging.=C2=A0 At least you can replicate it on deman=
+d, and have a strace showing it.=C2=A0 This bit of packaging happens before=
+ the rpm/opkg/deb specific code, so changing the packaging format won&#39;t=
+ help.</div><div><br></div><div>Ross</div></div></div></div>
+
+--f403045fb2a2ca5874055a2b7379--
