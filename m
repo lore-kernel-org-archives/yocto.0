@@ -1,94 +1,69 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51E41E00CCA; Wed, 27 Sep 2017 13:59:16 -0700 (PDT)
+	id D5C76E00CD4; Wed, 27 Sep 2017 15:43:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.36.108 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.223.174 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.174 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
-	(mail-sn1nam02on0108.outbound.protection.outlook.com [104.47.36.108])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 534D5E00C89
-	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 13:59:13 -0700 (PDT)
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7573E00CA2
+	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 15:43:06 -0700 (PDT)
+Received: by mail-io0-f174.google.com with SMTP id g32so65644ioj.2
+	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 15:43:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=Melink.onmicrosoft.com; s=selector1-melinkcorp-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=2FYUrojDjczhE2EAwBBEWZVHjSzPXZnReXVk+1DY7qE=;
-	b=ZwDcd1n71IOX8vzA9sKcOcibpoXQHHUyp8eIq83n95jkjfjv15+DQNhb08+B6nI9gDhaJeylGCjzWR5CMdeL3BQxFwEvFmcSQWT5ckGZoaar7nDPcsbaK+5ZJbNQ2wip7n1MIvET3pu1j7JDIFpjo6HYt24nQkYjL3zuuT34e6M=
-Received: from DM5PR05MB2954.namprd05.prod.outlook.com (10.168.176.142) by
-	DM5PR05MB2956.namprd05.prod.outlook.com (10.168.176.144) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.77.5; Wed, 27 Sep 2017 20:59:12 +0000
-Received: from DM5PR05MB2954.namprd05.prod.outlook.com ([10.168.176.142]) by
-	DM5PR05MB2954.namprd05.prod.outlook.com ([10.168.176.142]) with mapi id
-	15.20.0077.016; Wed, 27 Sep 2017 20:59:12 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Errors building with Windows Subsystem for Linux (aka
-	Bash on Ubuntu on Windows)
-Thread-Index: AdM2vvT/ayFgE6oJRBOg0n7smNXIyQAPHqMAAADZbQAABYZmgAAcwVjQAAJWj4AADyAMsA==
-Date: Wed, 27 Sep 2017 20:59:12 +0000
-Message-ID: <DM5PR05MB2954EF4777E6EB3AE7C36815BB780@DM5PR05MB2954.namprd05.prod.outlook.com>
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=UG/EKTqnWrH9kbH06odie63OlIk4l3Ce8ahFqAYE4a8=;
+	b=t2vqUK0MFXrBVVpaVI8+6jIb9x0qdH8AFfxpMbcIUMdAv79o+e4/p7Lsgis92inwX9
+	Kgee7Nktq6QxnIVWgUIuLgCUJ3EQ673FvUJ3Qeny7sEaxrNB+cfAtX7up041OAJNL8vY
+	9TAE2ijDLfkeXPlaKttuAOr7ybCvlca0ZAh8CYkFM5BMKbKk+Bpc7yq4SH0uKqcpNhw9
+	k5BfUKwGPxjOY6oiQXIJP/e5hsWA/Xf3w/qZV/UpHP1e+lwxKT572s9I2gnlnO5pfppG
+	wfSEu7gZ6s2k1eSpaAVhz6SC16py7qTJBBuzDP/DIu5kp5Asa1yv9/RcBzkTwMvAzSeZ
+	xKXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=UG/EKTqnWrH9kbH06odie63OlIk4l3Ce8ahFqAYE4a8=;
+	b=f6jyN6t/Xf9aSp5MWZYSPr9/2EDSbzfOYYIGu7Jabv/Qe/I5khlbCUQ4DIdPHpvXSI
+	G063XYPJQ98ohrXNe6yF6UEF39CovKYxhh+FPygKEIHl2Twa1fppwcvCIMeGEusZ4ayL
+	reJG4l1d5pW1/w+MkFh1VxUeX9eiOaJ1nvxsARkaZxpXyZK/QEod7yIwlPZN5HtoHv8r
+	j54dI26GJWUA9Z/MOrYYdNOBDoNktytH4ikrjnPxe13e8kXlA9dqz29SHm/r0yhps2sF
+	jVEz6tX7AdvBM9irFJ2OPRt2fte96BHA5JZ71BZBbrXkGi1T67607I9G3W0J2XrAVGrX
+	tHiA==
+X-Gm-Message-State: AHPjjUiU+0zmSor72UAgIdYXq8SthPdtPtMx0vxyWBAJEHIkpQREzaCK
+	7R9wYS94AKbkQsQugVXR0qOF+iu9/rrZcM88aZciTg==
+X-Google-Smtp-Source: AOwi7QCcF8tklFShxeKQzF8t61zEHtwNAniBe/vZdDkaCBPwAM5jS1t9fFSC3yCO6NJpi9+kWh2N1fG9yR0lvIGfsj8=
+X-Received: by 10.107.135.72 with SMTP id j69mr4569090iod.210.1506552185919;
+	Wed, 27 Sep 2017 15:43:05 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.19.68 with HTTP; Wed, 27 Sep 2017 15:42:45 -0700 (PDT)
+In-Reply-To: <DM5PR05MB2954EF4777E6EB3AE7C36815BB780@DM5PR05MB2954.namprd05.prod.outlook.com>
 References: <DM5PR05MB29545649D8FAD14D890F96C4BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
 	<CAJTo0LYWJFAChPkcOeU4ESOzCZ0XkrVswRnsh7jz=4QnKZ6uWA@mail.gmail.com>
 	<DM5PR05MB29543B944CF11354749DE3C6BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
 	<CAJTo0LZ3+prEXi4eJH-0qcg_mp7CShyVzGg2=nY3c3s585CQ9A@mail.gmail.com>
 	<DM5PR05MB2954E471F11F1ADF08E544CABB780@DM5PR05MB2954.namprd05.prod.outlook.com>
 	<CAJTo0LavAJr8D+kuQ_6FkjA-D-XotT7BcrCA3W7bv_HL2EpuxA@mail.gmail.com>
-In-Reply-To: <CAJTo0LavAJr8D+kuQ_6FkjA-D-XotT7BcrCA3W7bv_HL2EpuxA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [98.100.91.242]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; DM5PR05MB2956;
-	6:1zZPTyp97PI1G3ezLmVoldp+kOmQRC2suoUSLw8GgCflU/JvdWmFoJCGvjV1eywgqnV6myWFssvh8FXsHPHQvP2Ot8tc/TmQqLJ2D2eC861dX9QDSyuRlygppfLJPcUj4vyRoSR+DPm4yQsqKLduYOaJhlmz4NUWJJJHpGiOgjB3nBZ3qS8qbMwKypNddjjKTRChIjfehYJdyx11ZAbp/KgR1FduxzflbbapdzzdY6ASN23Qt45UlseZ/aUB3tmSN14caAk+VCPL8QAH5IuQ3aLtGcHrb+XIdywxmre5Y4uWRTkXCicdT+aGDvQdGy5cQwaHPl0mCACcfsSDLBwMkA==;
-	5:+0tXWQw22flnn+5q8BDNl9Ox2x2uyKvH8GU8qa8QNWJqsl+eW70UYFxjy0eycGKO672W8cZujd0rNEzCd2OqkwF0KEecx3dwtsDugU2OSy3RuY3fR0Kr2Fal/64KWG4LsCaACXM3YQ4MV44dPRGSTA==;
-	24:/vXpJPnpdaj/VB8ae4r9NmVCm5DemQuS/TBt+8h72R3ZXQiVDN91RQfOuUzJ1qkLb9Kuj2l8Nl0EFfGhW22SwWjr8PbJa0i0r3ladcpJJ8Y=;
-	7:X7efRvKMUxW8h5m8HUX1GTMWe8hRlsyBL7FO+GXz5iJ2OwPK9IzHWu4T9dNnSj/Ak/4zE74Tx49udCBZ1nd6Ql0leKq70JkenuYq1vLPNbHR7yce9ZenX4cOU13HGijeni6Yd9iGS/KQKkqKUZDJInpU0qhspYFDsuxAaPukx587oRiq+Jx3Zm/ItpC7JSIqVdcnnH8hP8s59CZuRI8SUg+LnD79OaK9FgMXT7SIrs0=
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 34866331-22a1-415b-9bc0-08d505ea9b2b
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(2017030254152)(2017052603199)(201703131423075)(201703031133081)(201702281549075);
-	SRVR:DM5PR05MB2956; 
-x-ms-traffictypediagnostic: DM5PR05MB2956:
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=bevenson@melinkcorp.com; 
-x-exchange-antispam-report-test: UriScan:(176295241369792)(21748063052155)(228905959029699); 
-x-microsoft-antispam-prvs: <DM5PR05MB2956878FE473EBDA0B3F92D1BB780@DM5PR05MB2956.namprd05.prod.outlook.com>
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(5005006)(8121501046)(12181511122)(3002001)(100000703101)(100105400095)(93006095)(93001095)(10201501046)(6041248)(20161123555025)(20161123564025)(20161123560025)(20161123558100)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123562025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:DM5PR05MB2956; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:DM5PR05MB2956; 
-x-forefront-prvs: 04433051BF
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39830400002)(346002)(376002)(61514002)(189002)(3905003)(199003)(377454003)(24454002)(2900100001)(6306002)(6116002)(606006)(101416001)(6436002)(7736002)(790700001)(102836003)(77096006)(3846002)(6506006)(106356001)(33656002)(5660300001)(7696004)(229853002)(966005)(74316002)(3280700002)(105586002)(3660700001)(2950100002)(4326008)(189998001)(8676002)(81156014)(8936002)(81166006)(66066001)(93886005)(53546010)(19609705001)(25786009)(97736004)(45080400002)(236005)(9686003)(86362001)(53936002)(54896002)(6916009)(14454004)(478600001)(50986999)(6246003)(99286003)(316002)(68736007)(55016002)(2906002)(54356999)(76176999);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DM5PR05MB2956;
-	H:DM5PR05MB2954.namprd05.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: melinkcorp.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2017 20:59:12.4105 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR05MB2956
+	<DM5PR05MB2954EF4777E6EB3AE7C36815BB780@DM5PR05MB2954.namprd05.prod.outlook.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 27 Sep 2017 23:42:45 +0100
+Message-ID: <CAJTo0LaoXqf700W4wHMwfCJAK3B5xOTuFm-7ug3DWscFpcF=sg@mail.gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Errors building with Windows Subsystem for Linux (aka Bash on Ubuntu on Windows)
 X-BeenThere: yocto@yoctoproject.org
@@ -102,206 +77,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Sep 2017 20:59:16 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR05MB2954EF4777E6EB3AE7C36815BB780DM5PR05MB2954namp_"
+X-List-Received-Date: Wed, 27 Sep 2017 22:43:07 -0000
+Content-Type: multipart/alternative; boundary="001a113f8e70e0c80f055a338337"
 
---_000_DM5PR05MB2954EF4777E6EB3AE7C36815BB780DM5PR05MB2954namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a113f8e70e0c80f055a338337
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Um9zcywNCg0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5j
-b21dDQpTZW50OiBXZWRuZXNkYXksIFNlcHRlbWJlciAyNywgMjAxNyA5OjA2IEFNDQpUbzogQnJ5
-YW4gRXZlbnNvbiA8YmV2ZW5zb25AbWVsaW5rY29ycC5jb20+DQpDYzogeW9jdG9AeW9jdG9wcm9q
-ZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gRXJyb3JzIGJ1aWxkaW5nIHdpdGggV2luZG93
-cyBTdWJzeXN0ZW0gZm9yIExpbnV4IChha2EgQmFzaCBvbiBVYnVudHUgb24gV2luZG93cykNCg0K
-T24gMjcgU2VwdGVtYmVyIDIwMTcgYXQgMTM6NTcsIEJyeWFuIEV2ZW5zb24gPGJldmVuc29uQG1l
-bGlua2NvcnAuY29tPG1haWx0bzpiZXZlbnNvbkBtZWxpbmtjb3JwLmNvbT4+IHdyb3RlOg0KDQpG
-ZWVsIGZyZWUgdG8gY29tcHJlc3MgYW5kIGVtYWlsIGl0IGRpcmVjdGx5IHRvIG1lLCBidXQgc2lt
-cGx5IGdyZXBwaW5nIGZvciBFSU5WQUwgKGludmFsaWQgYXJndW1lbnQgZXJyb3IpIG1pZ2h0IGJl
-IGVub3VnaC4NCg0KSSBkaWQgYSBzZWFyY2ggb24gRUlOVkFMIGFuZCBJIGdvdCBhIGJ1bmNoIG9m
-IGVudHJpZXMgb2YgdGhhdCBsb29rIGxpa2UgdGhpczoNCg0KICBsaW5rYXQoQVRfRkRDV0QsIOKA
-nDxzb3VyY2VfZnVsbF9wYXRoPuKAnSwgQVRfRkRDV0QsIOKAnDxkZXN0X2Z1bGxfcGF0aD7igJ0s
-IDApID0gLTEgRUlOVkFMIChJbnZhbGlkIGFyZ3VtZW50KQ0KDQpJIGNoZWNrZWQgYSBmZXcgZW50
-cmllcyBieSBkb2luZyBhIHN0YXQgb24gdGhlIHNvdXJjZSBhbmQgZGVzdGluYXRpb24uICBJbiBl
-YWNoIGNhc2UsIHRoZSBzb3VyY2UgZmlsZSBleGlzdHMgYXQgdGhlIHNwZWNpZmllZCBwYXRoLCB3
-YXMgb3duZWQgYnkgdGhlIHVzZXIgYWNjb3VudCB3aXRoIHdoaWNoIEnigJltIGRvaW5nIHRoZSBi
-dWlsZCwgYW5kIGhhZCBhY2Nlc3MgcmlnaHRzIG9mIDA2NDQuICBBbHNvIGluIGVhY2ggY2FzZSwg
-dGhlIGRlc3RpbmF0aW9uIGZpbGUgZGlkIG5vdCBleGlzdCBidXQgdGhlIGRlc3RpbmF0aW9uIGRp
-cmVjdG9yeSBkaWQgZXhpc3QsIHRoZSBkZXN0aW5hdGlvbiBkaXJlY3Rvcnkgd2FzIG93bmVkIGJ5
-IHRoZSB1c2VyIGFjY291bnQgd2l0aCB3aGljaCBJ4oCZbSBkb2luZyB0aGUgYnVpbGQsIGFuZCB0
-aGUgZGVzdGluYXRpb24gZGlyZWN0b3J5IGhhZCBhY2Nlc3MgcmlnaHRzIG9mIDA3NTUuICBGcm9t
-IHJlYWRpbmcgdGhlIG1hbiBwYWdlIGZvciBsaW5rYXQsIGxpbmthdCBzaG91bGQgb25seSByZXR1
-cm4gRUlOVkFMIGlmIHRoZSBmbGFncyBhcmd1bWVudCBpcyBpbnZhbGlkLCBhbmQgMCBzaG91bGQg
-YmUgYSB2YWxpZCB2YWx1ZSBmb3IgZmxhZ3MuDQoNCkkgdGhpbmsgdGhlcmUgbWF5IGJlIHNvbWV0
-aGluZyBtaXNzaW5nIGZyb20gV1NM4oCZcyBpbXBsZW1lbnRhdGlvbiBvZiBsaW5rYXQuICBJIGFt
-IGRvaW5nIE9QS0cgcGFja2FnZXMsIHNvIEnigJltIGd1ZXNzaW5nIHRoZXJlIGlzIHNvbWV0aGlu
-ZyBkaWZmZXJlbnQgYWJvdXQgdGhlIHJlc3VsdGluZyBmdW5jdGlvbiBjYWxscyBpbiB0aGUgbGli
-Yy1wYWNrYWdlIGNsYXNzIGFzIG9wcG9zZWQgdG8gdGhlIHBhY2thZ2VfaXBrIGNsYXNzLiAgSSB0
-aGluayBJIG1heSBlbmFibGUgdGhlIG90aGVyIHBhY2thZ2UgdHlwZXMgdG8gc2VlIGlmIGl0IGlz
-IGFzIHN1Y2Nlc3NmdWxseSB3aXRoIFJQTXMgYW5kIERFQiBwYWNrYWdlcy4gIEnigJltIGFsc28g
-Z29pbmcgdG8gc2VlIGlmIHRoZXJlIGlzIGFuIGVhc2llciB3YXkgdG8gcmVwcm9kdWNlIHRoZSBw
-cm9ibGVtIHRvIHJlcG9ydCB0aGUgaXNzdWUgdG8gTWljcm9zb2Z0Lg0KDQpHb29kIGRpZ2dpbmcu
-ICBBdCBsZWFzdCB5b3UgY2FuIHJlcGxpY2F0ZSBpdCBvbiBkZW1hbmQsIGFuZCBoYXZlIGEgc3Ry
-YWNlIHNob3dpbmcgaXQuICBUaGlzIGJpdCBvZiBwYWNrYWdpbmcgaGFwcGVucyBiZWZvcmUgdGhl
-IHJwbS9vcGtnL2RlYiBzcGVjaWZpYyBjb2RlLCBzbyBjaGFuZ2luZyB0aGUgcGFja2FnaW5nIGZv
-cm1hdCB3b24ndCBoZWxwLg0KDQpJIHRoaW5rIEkgZm91bmQgdGhlIHByb2JsZW0uICBJIHN0YXJ0
-ZWQgbG9va2luZyBhdCBtb3JlIGZpbGUgcHJvcGVydGllcyBmb3IgdGhlIGZpbGVzIHRoYXQgd29y
-a2VkIGFuZCB0aGUgb25lcyB0aGF0IGRpZG7igJl0LCBhbmQgSSBub3RpY2VkIHRoYXQgYWxsIHRo
-ZSBvbmVzIHRoYXQgZmFpbGVkIHNob3cgYSBsaW5rIGNvdW50IG9mIDEwMjQuICBUaGUgV2luZG93
-cyBmaWxlc3lzdGVtIGhhcyBhIGxpbmsgbGltaXQgb2YgMTAyMyBsaW5rcyBwZXIgZmlsZSAoYXQg
-bGVhc3QgYXMgcmVwb3J0ZWQgaGVyZTogaHR0cHM6Ly9tc2RuLm1pY3Jvc29mdC5jb20vZW4tdXMv
-bGlicmFyeS93aW5kb3dzL2Rlc2t0b3AvYWEzNjM4NjAodj12cy44NSkuYXNweCksIHNvIEkgdGhp
-bmsgdGhlIGhhcmQgbGluayBpcyBmYWlsaW5nIGR1ZSB0byB0aGUgV2luZG93cyBsaW5rIGxpbWl0
-LiAgSWYgdGhhdCBpcyB0aGUgY2FzZSwgdGhlbiBJIGRvbuKAmXQgdGhpbmsgaXTigJlsbCBiZSBh
-IHF1aWNrIGZpeCB0byBnZXQgYSB3b3JraW5nIHNvbHV0aW9uIHVuZGVyIFdTTC4NCg0KQnJ5YW4N
-Cg==
+On 27 September 2017 at 21:59, Bryan Evenson <bevenson@melinkcorp.com>
+wrote:
 
---_000_DM5PR05MB2954EF4777E6EB3AE7C36815BB780DM5PR05MB2954namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+>
+> I think I found the problem.  I started looking at more file properties
+> for the files that worked and the ones that didn=E2=80=99t, and I noticed=
+ that all
+> the ones that failed show a link count of 1024.  The Windows filesystem h=
+as
+> a link limit of 1023 links per file (at least as reported here:
+> https://msdn.microsoft.com/en-us/library/windows/desktop/
+> aa363860(v=3Dvs.85).aspx), so I think the hard link is failing due to the
+> Windows link limit.  If that is the case, then I don=E2=80=99t think it=
+=E2=80=99ll be a
+> quick fix to get a working solution under WSL.
+>
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1z
-b25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCglt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4
-DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5z
-LXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkNCgl7bXNvLXN0
-eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1z
-ZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
-eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBw
-YWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4w
-aW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9
-DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2
-OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYg
-Z3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAg
-djpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZd
-LS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBs
-ZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmIj5Sb3NzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWxlZnQ6LjVpbiI+PGI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gQnVydG9u
-LCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+
-IFdlZG5lc2RheSwgU2VwdGVtYmVyIDI3LCAyMDE3IDk6MDYgQU08YnI+DQo8Yj5Ubzo8L2I+IEJy
-eWFuIEV2ZW5zb24gJmx0O2JldmVuc29uQG1lbGlua2NvcnAuY29tJmd0Ozxicj4NCjxiPkNjOjwv
-Yj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3Rv
-XSBFcnJvcnMgYnVpbGRpbmcgd2l0aCBXaW5kb3dzIFN1YnN5c3RlbSBmb3IgTGludXggKGFrYSBC
-YXNoIG9uIFVidW50dSBvbiBXaW5kb3dzKTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWluIj48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWxlZnQ6LjVpbiI+
-T24gMjcgU2VwdGVtYmVyIDIwMTcgYXQgMTM6NTcsIEJyeWFuIEV2ZW5zb24gJmx0OzxhIGhyZWY9
-Im1haWx0bzpiZXZlbnNvbkBtZWxpbmtjb3JwLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmJldmVuc29u
-QG1lbGlua2NvcnAuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPGRp
-dj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0ND
-Q0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFy
-Z2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
-LWFsdDphdXRvO21hcmdpbi1sZWZ0OjEuMGluIj4NCjxicj4NCkZlZWwgZnJlZSB0byBjb21wcmVz
-cyBhbmQgZW1haWwgaXQgZGlyZWN0bHkgdG8gbWUsIGJ1dCBzaW1wbHkgZ3JlcHBpbmcgZm9yIEVJ
-TlZBTCAoaW52YWxpZCBhcmd1bWVudCBlcnJvcikgbWlnaHQgYmUgZW5vdWdoLjxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
-O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvO21hcmdpbi1sZWZ0Oi41aW4iPg0KPHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG87bWFyZ2luLWxlZnQ6LjVpbiI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkkgZGlkIGEgc2VhcmNoIG9u
-IEVJTlZBTCBhbmQgSSBnb3QgYSBidW5jaCBvZiBlbnRyaWVzIG9mIHRoYXQgbG9vayBsaWtlIHRo
-aXM6PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
-by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvO21hcmdpbi1s
-ZWZ0Oi41aW4iPg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
-LW1hcmdpbi1ib3R0b20tYWx0OmF1dG87bWFyZ2luLWxlZnQ6LjVpbiI+DQo8c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWYiPiZuYnNwOyBsaW5rYXQoQVRfRkRDV0QsIOKAnCZsdDtzb3VyY2VfZnVsbF9wYXRoJmd0O+KA
-nSwgQVRfRkRDV0QsIOKAnCZsdDtkZXN0X2Z1bGxfcGF0aCZndDvigJ0sIDApID0gLTEgRUlOVkFM
-IChJbnZhbGlkIGFyZ3VtZW50KTwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
-bWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzttYXJnaW4tbGVmdDoxLjBpbiI+DQombmJzcDs8bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6
-YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzttYXJnaW4tbGVmdDouNWluIj4NCjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-c2Fucy1zZXJpZiI+SSBjaGVja2VkIGEgZmV3IGVudHJpZXMgYnkgZG9pbmcgYSBzdGF0IG9uIHRo
-ZSBzb3VyY2UgYW5kIGRlc3RpbmF0aW9uLiZuYnNwOyBJbiBlYWNoIGNhc2UsIHRoZSBzb3VyY2Ug
-ZmlsZSBleGlzdHMgYXQgdGhlIHNwZWNpZmllZCBwYXRoLCB3YXMgb3duZWQgYnkgdGhlIHVzZXIg
-YWNjb3VudCB3aXRoIHdoaWNoIEnigJltIGRvaW5nIHRoZSBidWlsZCwNCiBhbmQgaGFkIGFjY2Vz
-cyByaWdodHMgb2YgMDY0NC4mbmJzcDsgQWxzbyBpbiBlYWNoIGNhc2UsIHRoZSBkZXN0aW5hdGlv
-biBmaWxlIGRpZCBub3QgZXhpc3QgYnV0IHRoZSBkZXN0aW5hdGlvbiBkaXJlY3RvcnkgZGlkIGV4
-aXN0LCB0aGUgZGVzdGluYXRpb24gZGlyZWN0b3J5IHdhcyBvd25lZCBieSB0aGUgdXNlciBhY2Nv
-dW50IHdpdGggd2hpY2ggSeKAmW0gZG9pbmcgdGhlIGJ1aWxkLCBhbmQgdGhlIGRlc3RpbmF0aW9u
-IGRpcmVjdG9yeSBoYWQgYWNjZXNzDQogcmlnaHRzIG9mIDA3NTUuJm5ic3A7IEZyb20gcmVhZGlu
-ZyB0aGUgbWFuIHBhZ2UgZm9yIGxpbmthdCwgbGlua2F0IHNob3VsZCBvbmx5IHJldHVybiBFSU5W
-QUwgaWYgdGhlIGZsYWdzIGFyZ3VtZW50IGlzIGludmFsaWQsIGFuZCAwIHNob3VsZCBiZSBhIHZh
-bGlkIHZhbHVlIGZvciBmbGFncy48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
-YWx0OmF1dG87bWFyZ2luLWxlZnQ6LjVpbiI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiZuYnNwOzwvc3Bh
-bj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
-LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzttYXJnaW4tbGVmdDouNWlu
-Ij4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZiI+SSB0aGluayB0aGVyZSBtYXkgYmUgc29tZXRoaW5nIG1pc3Np
-bmcgZnJvbSBXU0zigJlzIGltcGxlbWVudGF0aW9uIG9mIGxpbmthdC4mbmJzcDsgSSBhbSBkb2lu
-ZyBPUEtHIHBhY2thZ2VzLCBzbyBJ4oCZbSBndWVzc2luZyB0aGVyZSBpcyBzb21ldGhpbmcgZGlm
-ZmVyZW50IGFib3V0IHRoZSByZXN1bHRpbmcgZnVuY3Rpb24gY2FsbHMgaW4gdGhlIGxpYmMtcGFj
-a2FnZQ0KIGNsYXNzIGFzIG9wcG9zZWQgdG8gdGhlIHBhY2thZ2VfaXBrIGNsYXNzLiZuYnNwOyBJ
-IHRoaW5rIEkgbWF5IGVuYWJsZSB0aGUgb3RoZXIgcGFja2FnZSB0eXBlcyB0byBzZWUgaWYgaXQg
-aXMgYXMgc3VjY2Vzc2Z1bGx5IHdpdGggUlBNcyBhbmQgREVCIHBhY2thZ2VzLiZuYnNwOyBJ4oCZ
-bSBhbHNvIGdvaW5nIHRvIHNlZSBpZiB0aGVyZSBpcyBhbiBlYXNpZXIgd2F5IHRvIHJlcHJvZHVj
-ZSB0aGUgcHJvYmxlbSB0byByZXBvcnQgdGhlIGlzc3VlIHRvIE1pY3Jvc29mdC48L3NwYW4+PG86
-cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90
-ZT4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWxlZnQ6LjVpbiI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibWFyZ2luLWxlZnQ6LjVpbiI+R29vZCBkaWdnaW5nLiZuYnNwOyBBdCBsZWFzdCB5
-b3UgY2FuIHJlcGxpY2F0ZSBpdCBvbiBkZW1hbmQsIGFuZCBoYXZlIGEgc3RyYWNlIHNob3dpbmcg
-aXQuJm5ic3A7IFRoaXMgYml0IG9mIHBhY2thZ2luZyBoYXBwZW5zIGJlZm9yZSB0aGUgcnBtL29w
-a2cvZGViIHNwZWNpZmljIGNvZGUsIHNvIGNoYW5naW5nIHRoZSBwYWNrYWdpbmcgZm9ybWF0IHdv
-bid0IGhlbHAuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
-c2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZiI+SSB0aGluayBJIGZvdW5kIHRoZSBwcm9ibGVtLiZuYnNwOyBJIHN0
-YXJ0ZWQgbG9va2luZyBhdCBtb3JlIGZpbGUgcHJvcGVydGllcyBmb3IgdGhlIGZpbGVzIHRoYXQg
-d29ya2VkIGFuZCB0aGUgb25lcyB0aGF0IGRpZG7igJl0LCBhbmQgSSBub3RpY2VkIHRoYXQgYWxs
-IHRoZSBvbmVzIHRoYXQgZmFpbGVkIHNob3cNCiBhIGxpbmsgY291bnQgb2YgMTAyNC4mbmJzcDsg
-VGhlIFdpbmRvd3MgZmlsZXN5c3RlbSBoYXMgYSBsaW5rIGxpbWl0IG9mIDEwMjMgbGlua3MgcGVy
-IGZpbGUgKGF0IGxlYXN0IGFzIHJlcG9ydGVkIGhlcmU6DQo8YSBocmVmPSJodHRwczovL21zZG4u
-bWljcm9zb2Z0LmNvbS9lbi11cy9saWJyYXJ5L3dpbmRvd3MvZGVza3RvcC9hYTM2Mzg2MCh2PXZz
-Ljg1KS5hc3B4KSI+DQpodHRwczovL21zZG4ubWljcm9zb2Z0LmNvbS9lbi11cy9saWJyYXJ5L3dp
-bmRvd3MvZGVza3RvcC9hYTM2Mzg2MCh2PXZzLjg1KS5hc3B4KTwvYT4sIHNvIEkgdGhpbmsgdGhl
-IGhhcmQgbGluayBpcyBmYWlsaW5nIGR1ZSB0byB0aGUgV2luZG93cyBsaW5rIGxpbWl0LiZuYnNw
-OyBJZiB0aGF0IGlzIHRoZSBjYXNlLCB0aGVuIEkgZG9u4oCZdCB0aGluayBpdOKAmWxsIGJlIGEg
-cXVpY2sgZml4IHRvIGdldCBhIHdvcmtpbmcgc29sdXRpb24gdW5kZXIgV1NMLjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+PG86cD4m
-bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmIj5CcnlhbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
-CjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+That link count doesn't seem feasible though...  we hardlink frequently
+during a recipe build, but I'd expect to see 10 links, not over a
+thousand.  You've definitely found the problem, just need to figure out
+what is causing such excessive linking,
 
---_000_DM5PR05MB2954EF4777E6EB3AE7C36815BB780DM5PR05MB2954namp_--
+Ross
+
+--001a113f8e70e0c80f055a338337
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">On 27 September 2017 at 21:59, Bryan Evenson <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:bevenson@melinkcorp.com" target=3D"_blank">beven=
+son@melinkcorp.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div=
+ class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"m_5915444226458075742WordSection1">
+<p class=3D"MsoNormal"><br></p><div><span class=3D"">
+</span><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&=
+quot;Calibri&quot;,sans-serif">I think I found the problem.=C2=A0 I started=
+ looking at more file properties for the files that worked and the ones tha=
+t didn=E2=80=99t, and I noticed that all the ones that failed show
+ a link count of 1024.=C2=A0 The Windows filesystem has a link limit of 102=
+3 links per file (at least as reported here:
+<a href=3D"https://msdn.microsoft.com/en-us/library/windows/desktop/aa36386=
+0(v=3Dvs.85).aspx)" target=3D"_blank">
+https://msdn.microsoft.com/en-<wbr>us/library/windows/desktop/<wbr>aa363860=
+(v=3Dvs.85).aspx)</a>, so I think the hard link is failing due to the Windo=
+ws link limit.=C2=A0 If that is the case, then I don=E2=80=99t think it=E2=
+=80=99ll be a quick fix to get a working solution under WSL.</span></p></di=
+v></div></div></blockquote><div><br></div><div>That link count doesn&#39;t =
+seem feasible though... =C2=A0we hardlink frequently during a recipe build,=
+ but I&#39;d expect to see 10 links, not over a thousand.=C2=A0 You&#39;ve =
+definitely found the problem, just need to figure out what is causing such =
+excessive linking,</div><div><br></div><div>Ross</div></div></div></div>
+
+--001a113f8e70e0c80f055a338337--
