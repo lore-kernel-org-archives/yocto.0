@@ -1,67 +1,80 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <otavio.salvador@ossystems.com.br>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF40AE00B8B; Wed, 27 Sep 2017 10:22:21 -0700 (PDT)
+	id CB056E00B53; Wed, 27 Sep 2017 10:23:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.161.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.44 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.41 listed in list.dnswl.org]
-Received: from mail-pg0-f41.google.com (mail-pg0-f41.google.com [74.125.83.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC8B2E00B1B
-	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 10:22:20 -0700 (PDT)
-Received: by mail-pg0-f41.google.com with SMTP id c137so8129876pga.11
-	for <yocto@yoctoproject.org>; Wed, 27 Sep 2017 10:22:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=yuEpKRP8BCwm+C5xm041H/U8tt3arce4P/TlzyjE688=;
-	b=gZ+uEGlfvwOLvMs83j0wawe/TwRWV3y3Dq/4gK0+WwaCNqbr4ffV0yUb7DU46N89P4
-	LTJ+f8YbTB2BxzHDCrW7P3iQKs8qyDTK/ZF0MNd/rkutRek4Kxs7ORgwC0XStd0eEz5f
-	uuD4fMV/T/33rfNvAQ2yjowXJa6scINu/BWm//5W1uuX6Mj+R4GEbUid+iBktdHUf9UZ
-	3Kmgdgths9kDlcEA+qyteT2qiM0ZvGjZRTde9y+1535sTByShOYCRWyy1j0cfhZhWI7K
-	Otc4G33XFbFH6ilSP/Nu5vjb6uSEAKCl2YUmW5YWASREjgfzELBrk8yHzrmnZJfQ9UZE
-	ZfQA==
+Received: from mail-yw0-f193.google.com (mail-yw0-f193.google.com
+	[209.85.161.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BAA9E00B1B
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 27 Sep 2017 10:23:48 -0700 (PDT)
+Received: by mail-yw0-f193.google.com with SMTP id v72so7162877ywa.1
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 27 Sep 2017 10:23:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ossystems-com-br.20150623.gappssmtp.com; s=20150623;
+	h=from:mime-version:in-reply-to:references:date:message-id:subject:to
+	:cc; bh=uiY5eaQb6qM4YnUHpj7m+TUSmhlXx96PBbjCLVkfsO4=;
+	b=yThHN1qA/aG19ErKq9JpBBIjTl6/F92izGX9ZZ5SWhXPt6wuJ4n7/6BDoimWdIly4t
+	/SS1HjPNdN4tFMgBSdOn4JhqbG9GHa6nU/wYtga0Fbh4CMy325nMD1+2YkrbtMjnjNIy
+	c/GTnJbJd5CilIa+n2miX9Y+sDUC2yu+LYRU9I7c+SrIdkhDsFz5WSkm1m32DLgHDHn1
+	eRh3GcEbyuG8S+DOnWkr29czY4hS6qcsXfa5YHR+Y6Pm7UIz3D6zfAUH/Ax7R4m9z3Xv
+	KRzbkUnsaaezzY2MVbcq66SrnfkQIyoW0cbdw9qI4O71DgFkvlbjkcYtWqBwL5FvcyyN
+	kmzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	h=x-gm-message-state:from:mime-version:in-reply-to:references:date
 	:message-id:subject:to:cc;
-	bh=yuEpKRP8BCwm+C5xm041H/U8tt3arce4P/TlzyjE688=;
-	b=jwJl5LT1OmwIgUD4NmXcjCgUZAnPcpK0nFo4Gg86bzLqbW5HFuLTPMuA3+dzPjkyIk
-	Z2G6Bmbp5OS/aHt83LiSKlR7HPxXKsmGvJ6Z18Fc+Ldg5KnoKFT72jrQTQIyrzbxGKoc
-	0Eqs6XqOlVKGjptER/1fhovf8+l4mPTL5m0w//KkaeZJLzjTQlR+q9j+xophEJFlfl7Y
-	9MbovXV/Z82m80FJZfTGxm9zRpyqkHK/fT65rho43yifnMX9NUyyoZiRkDORLFWOlGO9
-	wM1PtqNN1H5z90F1pkOs1tpBsAgbj6pxlzBZ9jtstLSk1drXyNKwkrcyV2uoPmUlTAJF
-	L/mg==
-X-Gm-Message-State: AHPjjUjqYh5iG0AOscl2Twl7d/RstipkfxHf2DXAfDmk2YnC4CXhHkIe
-	KPwUvXuMO6Nr6/8iAe7yXn7TUwH7x+Xo20VFNJ8=
-X-Google-Smtp-Source: AOwi7QCHoK7/PGfD8icbYuF3O5hYrpB8oIWg0y4iZnA7eVDGWevkmTCCOTKjmg8G/LIt2AP6MmRUrA+9qM3h8d5XqTc=
-X-Received: by 10.98.157.74 with SMTP id i71mr1962218pfd.168.1506532940313;
-	Wed, 27 Sep 2017 10:22:20 -0700 (PDT)
+	bh=uiY5eaQb6qM4YnUHpj7m+TUSmhlXx96PBbjCLVkfsO4=;
+	b=sHqfQNYTH59PIHYGjDlDOYHVDjmA+xSIBOE9S/rdcD4WU9QaT1yxrepLAsajtgEW1L
+	iWLQCkKQbO9kpa8qWk3t6vcX6O8VnIL0ABGsyPNBq1hYwUhN/Ge32DqGTw+D6i6Uwjj4
+	JXba8x3wmlHhMSFqFbbCM3P/VJ9jNxYOHIcuLUekmvz0SP2Z0JU6Sk1cWKrpRVFOI1+n
+	lZTnIXN2wlZ1K/JQoyQitvX9mTQe5bmFPHtki5w0dawJUwc3Uf8+KC+1+ROnqyj+de6n
+	xbbxxadlehPr2wbrg3vi8HmhPTvPabeXhXSZpiVruoqn9CY8oFOWZAD8dG1iibbcgpnT
+	G1SA==
+X-Gm-Message-State: AHPjjUix8mdgGnOGUK0holFwLK4MtAYtjuvgZuNUpxVpv8Krqjukq8Nf
+	rCWDR4yPnjPUoxzmKHNsXvaEpk++
+X-Received: by 10.13.219.138 with SMTP id d132mr1482104ywe.204.1506533025973; 
+	Wed, 27 Sep 2017 10:23:45 -0700 (PDT)
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com.
+	[209.85.218.44]) by smtp.gmail.com with ESMTPSA id
+	g84sm4784449ywg.100.2017.09.27.10.23.44
+	for <yocto@lists.yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 27 Sep 2017 10:23:44 -0700 (PDT)
+From: Otavio Salvador <otavio.salvador@ossystems.com.br>
+X-Google-Original-From: Otavio Salvador <otavio@ossystems.com.br>
+Received: by mail-oi0-f44.google.com with SMTP id z73so17793659oia.2
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 27 Sep 2017 10:23:44 -0700 (PDT)
+X-Google-Smtp-Source: AOwi7QB1FsIHW36Q8mXuNDQ9y6Kx3yJJhSVv9yWWxISegCfDpTMvIz+GlbFx7NzFEQG0DqLStwvg5B2Hxt5U+hAj9KQ=
+X-Received: by 10.157.22.245 with SMTP id s50mr1405125ots.364.1506533023940;
+	Wed, 27 Sep 2017 10:23:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <6e5f6176b28d4d5397a7a7e36c40d4a9@HIBDWSMB02.ad.harman.com>
-	<CACwBRSC=TrjHrme9neN2wRoak9duR=mp5bfDZX2+GMYyYtbNgg@mail.gmail.com>
-In-Reply-To: <CACwBRSC=TrjHrme9neN2wRoak9duR=mp5bfDZX2+GMYyYtbNgg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 27 Sep 2017 17:22:09 +0000
-Message-ID: <CAMKF1sqwPiLOvjT9hUA7ui8VrrA9+K_yMymsu5vAiWYxNXL8mg@mail.gmail.com>
-To: John Finley <john.finley@gmail.com>, "Kumar,
-	Shrawan" <Shrawan.Kumar@harman.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"connect.shrawan@gmail.com" <connect.shrawan@gmail.com>
-Subject: Re: want to execute a script having sudo : sudo cryptsetup
+Received: by 10.157.66.149 with HTTP; Wed, 27 Sep 2017 10:23:43 -0700 (PDT)
+In-Reply-To: <CAK18fxE0LZZE0tZ=R_f1e=ACixGjE=KRbq1K7c+NzUE7Q10Fvg@mail.gmail.com>
+References: <1506525799-219-1-git-send-email-Martin.Jansa@gmail.com>
+	<CAK18fxE0LZZE0tZ=R_f1e=ACixGjE=KRbq1K7c+NzUE7Q10Fvg@mail.gmail.com>
+Date: Wed, 27 Sep 2017 14:23:43 -0300
+X-Gmail-Original-Message-ID: <CAP9ODKqsz6mYt6K0q2RqZeTr3X8zq+7B+7vsj8c6HkUbqgTp3w@mail.gmail.com>
+Message-ID: <CAP9ODKqsz6mYt6K0q2RqZeTr3X8zq+7B+7vsj8c6HkUbqgTp3w@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: yocto@lists.yoctoproject.org, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Re: [meta-raspberrypi][PATCH] Revert "qtbase: Enable EGLFS support"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,143 +86,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Sep 2017 17:22:21 -0000
-Content-Type: multipart/alternative; boundary="94eb2c113464bff8ff055a2f0812"
-
---94eb2c113464bff8ff055a2f0812
+X-List-Received-Date: Wed, 27 Sep 2017 17:23:50 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Sep 27, 2017 at 9:21 AM John Finley <john.finley@gmail.com> wrote:
+Hello Andrei,
 
-> Try making it so the user doing the build is not prompted for a password
-> when they do "sudo". I have this in my vm:
->
-
-I think you can leverage pseudo tool to emulate the root user during build
-
-    john@vbox-ubuntu-16$ cat /etc/sudoers.d/john
->     john ALL=(ALL) NOPASSWD: ALL
->     john@vbox-ubuntu-16$
-> I don't know if that's all that's needed; I have to google it every time.
->
-> On Mon, Sep 25, 2017 at 2:48 AM, Kumar, Shrawan <Shrawan.Kumar@harman.com>
+On Wed, Sep 27, 2017 at 2:13 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Wed, Sep 27, 2017 at 4:23 PM, Martin Jansa <martin.jansa@gmail.com>
 > wrote:
+>>
+>> * this reverts commit 04b37dbdb79638b17a670280058400ffaf1b6ccb.
+>> * this makes qtbase and everything which depends on some qt* recipe to
+>>   be effectivelly MACHINE_ARCH
+>>
+>> Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+>> ---
+>>  dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend | 3 ---
+>>  1 file changed, 3 deletions(-)
+>>  delete mode 100644
+>> dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+>>
+>> diff --git a/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+>> b/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+>> deleted file mode 100644
+>> index ae3f1d3..0000000
+>> --- a/dynamic-layers/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+>> +++ /dev/null
+>> @@ -1,3 +0,0 @@
+>> -# Copyright (C) 2017 O.S. Systems Software LTDA.
+>> -
+>> -PACKAGECONFIG_GL_rpi   = "gles2 eglfs"
 >
->> Hello Team ,
->>
->>
->>
->> I am trying to achieve below from yocto , do we have a way  ?
->>
->>
->>
->>
->>
->> dd if=/dev/zero of=hello.enc bs=4k count=$400
->>
->> mknod /dev/loop_dev_0
->>
->> losetup /dev/loop_dev_0 hello.enc
->>
->> *sudo* cryptsetup --type=plain open /dev/loop_dev_0  plainMap < $2
->>
->>
->>
->>
->>
->>
->>
->>
->>
->> Thanks and Regards
->>
->> Shrawan
->>
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
+> What would be the solution though?
 
---94eb2c113464bff8ff055a2f0812
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+It would use something similar we use for meta-freescale where we
+change the package architecture depending on the SoC.
 
-<div><br><div class=3D"gmail_quote"><div dir=3D"auto">On Wed, Sep 27, 2017 =
-at 9:21 AM John Finley &lt;<a href=3D"mailto:john.finley@gmail.com">john.fi=
-nley@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>=
-Try making it so the user doing the build is not prompted for a password wh=
-en they do &quot;sudo&quot;. I have this in my vm:</div></blockquote><div d=
-ir=3D"auto"><br></div><div dir=3D"auto">I think you can leverage pseudo too=
-l to emulate the root user during build=C2=A0</div><div dir=3D"auto"><br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex"><div><div><div>=C2=A0 =C2=A0 john@vbox-u=
-buntu-16$ cat /etc/sudoers.d/john=C2=A0</div><div>=C2=A0 =C2=A0 john ALL=3D=
-(ALL) NOPASSWD: ALL</div><div>=C2=A0 =C2=A0 john@vbox-ubuntu-16$=C2=A0</div=
-></div><div>I don&#39;t know if that&#39;s all that&#39;s needed; I have to=
- google it every time.</div></div><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">On Mon, Sep 25, 2017 at 2:48 AM, Kumar, Shrawan <span>&lt;=
-<a href=3D"mailto:Shrawan.Kumar@harman.com" target=3D"_blank">Shrawan.Kumar=
-@harman.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+Martin, do you have any idea how other alternative we have?
 
+-- 
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
-
-
-
-<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"m_364169273529879273m_7332210310540792190WordSection1">
-<p class=3D"MsoNormal">Hello Team ,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I am trying to achieve below from yocto , do we have=
- a way =C2=A0?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">dd if=3D/dev/zero of=3Dhello.enc bs=3D4k count=3D$40=
-0<u></u><u></u></p>
-<p class=3D"MsoNormal">mknod /dev/loop_dev_0<u></u><u></u></p>
-<p class=3D"MsoNormal">losetup /dev/loop_dev_0 hello.enc<u></u><u></u></p>
-<p class=3D"MsoNormal"><b><u><span style=3D"background:yellow">sudo</span><=
-/u></b> cryptsetup --type=3Dplain open /dev/loop_dev_0 =C2=A0plainMap &lt; =
-$2<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks and Regards<span class=3D"m_36416927352987927=
-3HOEnZb"><font color=3D"#888888"><u></u><u></u></font></span></p><span clas=
-s=3D"m_364169273529879273HOEnZb"><font color=3D"#888888">
-<p class=3D"MsoNormal">Shrawan<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</font></span></div>
-</div>
-
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
-
---94eb2c113464bff8ff055a2f0812--
