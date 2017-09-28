@@ -1,73 +1,44 @@
-Return-Path: <stevep@korgrd.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A210E00CD0; Thu, 28 Sep 2017 09:29:36 -0700 (PDT)
+	id 6AD8AE00D26; Thu, 28 Sep 2017 10:18:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.174 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.174 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f174.google.com (mail-yw0-f174.google.com
-	[209.85.161.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A77E9E00CC6
-	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 09:29:35 -0700 (PDT)
-Received: by mail-yw0-f174.google.com with SMTP id w9so1390566ywi.11
-	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 09:29:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=oyK398tONHDGyw00RgRQhb0F/RmabhJVwjzv/EgfiA0=;
-	b=I02WkTUatfNXYubOICs/tNpp9bSn3m86RNjmhVmgZ1Gum2hGm2uYKzOKv88lKPZoi9
-	smj9waBx0CsUoc2KTWlbT4LeC1XpKxOgI8gA3hkFUxdO/sfEsOcoGNpzpb8TDwJPlV7C
-	n4RICBDjHg2Dd8vs53gMcH4rGXeqx+x7ptR8shn+RIfjVEO9eMVLUH5nNqfFUqykqLDj
-	HWNSMwVIdno88EpFSheY4xzIESJry/JMFZ5Lp+lV0MX37xd6S9Sf4uGvB9uwLW7WgzZY
-	28MJOxk7slac3udszfXDtv3kfTnbqTvkA3ISZhP1K0IIJT4nAz9Xb4fxt1vZ3kf7dPid
-	puCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=oyK398tONHDGyw00RgRQhb0F/RmabhJVwjzv/EgfiA0=;
-	b=HlPjcic54O/7xYZ9B68LO0nCcYwrjtVMgabXHqF48K2qvXz/Q79WAB3XxobC4vSkTO
-	j3j7jxtFox10gfaFQIucX22xfBp3gVu6aoCtY/2t/6711Q0NW0fPnkd1iZOvQpiAA3jg
-	FaCoLwZMxdo1E9QiAfij/QRPY2ppCDFFT2xyB4FX0HgcjFYsf//YNCjB+HelREnsGoZN
-	2nA4ECwKNnKjr7mQzigncpXvSIFK7yIRRuUjAIQpsK/beDLhVzxoNQXrDW7pDsVtHNID
-	8ChXIOhFBJX2m0yi4sjb31RUaIbmFqQHRqDECgdX2n4SNwa9Zws+YE/HWIhhTuw11Sjk
-	PDug==
-X-Gm-Message-State: AHPjjUhVFgOiE+2Y7NdMrCKUqXBy+dHAeS3h6fnX3Ql496z4viszXOWZ
-	MJBBLmnmmGvovtrm3FypWB/Oyw==
-X-Google-Smtp-Source: AOwi7QDbSZAQ8aZab4JX2/i3VwvQcvsKf21HhvGoogyEHN8nOVZ4JQ1R/dUwhgTgoTNGbT0ZJj74Og==
-X-Received: by 10.129.168.5 with SMTP id f5mr4112281ywh.7.1506616174779;
-	Thu, 28 Sep 2017 09:29:34 -0700 (PDT)
-Received: from 2600-6c64-617f-fb18-a56e-1e6f-7cab-0a2d.dhcp6.chtrptr.net
-	(2600-6c64-617f-fb18-a56e-1e6f-7cab-0a2d.dhcp6.chtrptr.net.
-	[2600:6c64:617f:fb18:a56e:1e6f:7cab:a2d])
-	by smtp.gmail.com with ESMTPSA id
-	y186sm733833ywc.71.2017.09.28.09.29.33
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 28 Sep 2017 09:29:33 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-From: Steve Pavao <stevep@korgrd.com>
-In-Reply-To: <CAJ86T=V6sbzpz4_3dYrjhkxkavWJbs1vAU6x95GjRTdVT5cX+w@mail.gmail.com>
-Date: Thu, 28 Sep 2017 12:29:32 -0400
-Message-Id: <1A69A446-50D3-4FE2-AC3E-4B26099B9EB5@korgrd.com>
-References: <7C20937E-B5A7-4824-89C2-B93B198E3EDB@korgrd.com>
-	<CAJ86T=V6sbzpz4_3dYrjhkxkavWJbs1vAU6x95GjRTdVT5cX+w@mail.gmail.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-X-Mailer: Apple Mail (2.3273)
-Cc: yocto@yoctoproject.org
-Subject: Re: advice on recipe for shared lib mDNSResponder
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8DC4E00CCC
+	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 10:18:29 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v8SHIPGC005544
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 28 Sep 2017 10:18:25 -0700 (PDT)
+Received: from [172.25.44.7] (172.25.44.7) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Thu, 28 Sep 2017 10:18:22 -0700
+To: John Finley <john.finley@gmail.com>, Khem Raj <raj.khem@gmail.com>
+References: <6e5f6176b28d4d5397a7a7e36c40d4a9@HIBDWSMB02.ad.harman.com>
+	<CACwBRSC=TrjHrme9neN2wRoak9duR=mp5bfDZX2+GMYyYtbNgg@mail.gmail.com>
+	<CAMKF1sqwPiLOvjT9hUA7ui8VrrA9+K_yMymsu5vAiWYxNXL8mg@mail.gmail.com>
+	<CACwBRSBD8bwUqorvT-ACJZQTGPyfaABrc2BkZ1uk+q1bBy-GVA@mail.gmail.com>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <614f4fe6-b9c1-266c-324e-61d944baee45@windriver.com>
+Date: Thu, 28 Sep 2017 13:18:19 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
+MIME-Version: 1.0
+In-Reply-To: <CACwBRSBD8bwUqorvT-ACJZQTGPyfaABrc2BkZ1uk+q1bBy-GVA@mail.gmail.com>
+X-Originating-IP: [172.25.44.7]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Kumar,
+	Shrawan" <Shrawan.Kumar@harman.com>,
+	"connect.shrawan@gmail.com" <connect.shrawan@gmail.com>
+Subject: Re: want to execute a script having sudo : sudo cryptsetup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,150 +50,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Sep 2017 16:29:36 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 28 Sep 2017 17:18:30 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
-Hello,
+On 2017-09-27 01:28 PM, John Finley wrote:
+> pseudo can't do some of the cryptsetup functions that really require 
+> root, or at least I could not convince it to. Using sudo is not so good, 
+> but I don't think there's an easy way around it for the cryptsetup stuff.
 
-Thanks so much for the great and useful information from you and Ross.
+If you can narrow down what's missing, and open an enhancement request
+for oe-core-2.5 that would be helpful.
 
-I was unable to successfully build that recipe here, though.  I=E2=80=99ll=
- check with the maintainers to ask why.
+Please take a quick look to see if your ER is it already in this list:
+ 
+https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=pseudo&list_id=601276
 
-All I did was clone the meta-intel-iot-middleware repo, add that layer =
-to bblayers.conf, and add mdns to IMAGE_INSTALL_append to get this far.
+Sorting by the product column will help.
 
-- Steve Pavao
-Korg R&D
+../Randy
+> 
+> On Wed, Sep 27, 2017 at 10:22 AM, Khem Raj <raj.khem@gmail.com 
+> <mailto:raj.khem@gmail.com>> wrote:
+> 
+> 
+>     On Wed, Sep 27, 2017 at 9:21 AM John Finley <john.finley@gmail.com
+>     <mailto:john.finley@gmail.com>> wrote:
+> 
+>         Try making it so the user doing the build is not prompted for a
+>         password when they do "sudo". I have this in my vm:
+> 
+> 
+>     I think you can leverage pseudo tool to emulate the root user during
+>     build
+> 
+>              john@vbox-ubuntu-16$ cat /etc/sudoers.d/john
+>              john ALL=(ALL) NOPASSWD: ALL
+>              john@vbox-ubuntu-16$
+>         I don't know if that's all that's needed; I have to google it
+>         every time.
+> 
+>         On Mon, Sep 25, 2017 at 2:48 AM, Kumar, Shrawan
+>         <Shrawan.Kumar@harman.com <mailto:Shrawan.Kumar@harman.com>> wrote:
+> 
+>             Hello Team ,____
+> 
+>             __ __
+> 
+>             I am trying to achieve below from yocto , do we have a way
+>               ?____
+> 
+>             __ __
+> 
+>             __ __
+> 
+>             dd if=/dev/zero of=hello.enc bs=4k count=$400____
+> 
+>             mknod /dev/loop_dev_0____
+> 
+>             losetup /dev/loop_dev_0 hello.enc____
+> 
+>             *_sudo_* cryptsetup --type=plain open /dev/loop_dev_0
+>               plainMap < $2____
+> 
+>             __ __
+> 
+>             __ __
+> 
+>             __ __
+> 
+>             __ __
+> 
+>             Thanks and Regards____
+> 
+>             Shrawan____
+> 
 
 
-Build Configuration:
-BB_VERSION        =3D "1.34.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "universal"
-TARGET_SYS        =3D "aarch64-poky-linux"
-MACHINE           =3D "raspberrypi3-64"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "2.3.2"
-TUNE_FEATURES     =3D "aarch64"
-TARGET_FPU        =3D ""
-meta             =20
-meta-poky        =20
-meta-yocto-bsp    =3D "pyro:072430b9b3a78b318b66371c36e2986d2ed5cba4"
-meta-oe          =20
-meta-python      =20
-meta-multimedia   =3D "pyro:5e82995148a2844c6f483ae5ddd1438d87ea9fb7"
-meta-intel-iot-middleware =3D =
-"master:fc8eabfa4fb54802d3f97123b9d2954450175e33"
-meta-raspberrypi  =3D "pyro:c981f01a2cdb3299eb57920cffbb5dfd4248209a"
 
-Initialising tasks: 100% =
-|#########################################################################=
-####################################| Time: 0:00:10
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: mdns-544-r1 do_compile: oe_runmake failed
-ERROR: mdns-544-r1 do_compile: Function failed: do_compile (log file is =
-located at =
-/data/development/lfs/yocto/poky/build/tmp/work/aarch64-poky-linux/mdns/54=
-4-r1/temp/log.do_compile.10472)
-ERROR: Logfile of failure stored in: =
-/data/development/lfs/yocto/poky/build/tmp/work/aarch64-poky-linux/mdns/54=
-4-r1/temp/log.do_compile.10472
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| NOTE: make os=3Dlinux DEBUG=3D0
-| ERROR: oe_runmake failed
-| make: cc: Command not found
-| Makefile:494: recipe for target 'objects/prod/PosixDaemon.c.o' failed
-| make: *** [objects/prod/PosixDaemon.c.o] Error 127
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at =
-/data/development/lfs/yocto/poky/build/tmp/work/aarch64-poky-linux/mdns/54=
-4-r1/temp/log.do_compile.10472)
-ERROR: Task =
-(/data/development/lfs/yocto/poky/meta-intel-iot-middleware/recipes-connec=
-tivity/mdns/mdns_544.bb:do_compile) failed with exit code '1'
-
-
-> On Sep 27, 2017, at 7:17 PM, Andre McCurdy <armccurdy@gmail.com> =
-wrote:
->=20
-> On Wed, Sep 27, 2017 at 3:58 PM, Steve Pavao <stevep@korgrd.com> =
-wrote:
->> Hello,
->>=20
->> I am fairly new to Yocto, yet have been able to successfully add a =
-custom kernel object to my Yocto poky build, no problem. However, I am =
-having some difficulty adding a shared library, namely mDNSResponder.
->>=20
->> Right now, my recipe is very simple and does not use autotools.  =
-There are just a few tweaks for cross-building which I=E2=80=99ve added =
-to the supplied mDNSResponder Makefile for mDNSPosix, in order to target =
-64-bit ARM hardware.  Here is the build error I encounter.  Obviously =
-the environment is not being set 100% correctly, because it can not find =
-stdio.h.  Is there an easy way to avoid this problem?
->=20
-> You need to ensure that the Makefiles etc for the package you are
-> building respect the ${CC} environment variable defined by OE. It
-> includes not only the name of the cross compiler but also important
-> command line options, e.g. tuning for the correct target CPU and the
-> correct --sysroot option. =46rom your build log the --sysroot option =
-is
-> missing, therefore the compiler can not find standard include files
-> etc.
->=20
-> Unfortunately packages with build with custom Makefiles are so diverse
-> that there's no single approach to making them work. Sometimes you can
-> force CC=3D${CC} etc via the make command line to over-ride incorrect
-> defaults in the Makefile, sometime the Makefile needs to be patched,
-> etc. Even if the build succeeds it's wise to carefully check the build
-> log to ensure that all calls to the compiler, linker, etc contain the
-> flags defined by OE.
->=20
-> Note however that according to the layer index there does already seem
-> to be at least one recipe for mDNSResponder. It includes a Makefile
-> patch which looks like it will address your issue (and some others):
->=20
->  =
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-iot-middleware/tree/r=
-ecipes-connectivity/mdns/mdns_544.bb?h=3Dmaster
->=20
->>=20
->> - Steve Pavao
->> Korg R&D
->>=20
->> Log data follows:
->> | DEBUG: Executing shell function do_compile
->> | NOTE: make -j 4
->> | ERROR: oe_runmake failed
->> | make os=3DEmbeddedLinuxAarch64 Daemon libdns_sd -C mDNSPosix
->> | make[1]: warning: jobserver unavailable: using -j1.  Add '+' to =
-parent make rule.
->> | make[1]: Entering directory =
-'/data/development/lfs/yocto/poky/build/tmp/work/aarch64-poky-linux/mDNSRe=
-sponder/333.10-r0/mDNSPosix'
->> | aarch64-poky-linux-gcc -I../mDNSCore -I../mDNSShared =
--Iobjects/prod/EmbeddedLinuxAarch64 -fwrapv -W -Wall =
--DPID_FILE=3D\"/var/run/mdnsd.pid\" =
--DMDNS_UDS_SERVERPATH=3D\"/var/run/mdnsd\" -DNOT_HAVE_SA_LEN =
--DUSES_NETLINK -DHAVE_LINUX -DTARGET_OS_LINUX -fno-strict-aliasing -Os =
--DMDNS_DEBUGMSGS=3D0   -c -o =
-objects/prod/EmbeddedLinuxAarch64/PosixDaemon.c.o PosixDaemon.c
->> | PosixDaemon.c:31:19: fatal error: stdio.h: No such file or =
-directory
->> |  #include <stdio.h>
->> |                    ^
->> | compilation terminated.
->> | Makefile:553: recipe for target =
-'objects/prod/EmbeddedLinuxAarch64/PosixDaemon.c.o' failed
->> | make[1]: *** [objects/prod/EmbeddedLinuxAarch64/PosixDaemon.c.o] =
-Error 1
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-
+-- 
+# Randy MacLeod.  WR Linux
+# Wind River an Intel Company
 
