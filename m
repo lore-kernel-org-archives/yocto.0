@@ -1,62 +1,68 @@
-Return-Path: <francescogiancane8@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93CADE00C45; Thu, 28 Sep 2017 00:25:05 -0700 (PDT)
+	id E4DA5E00CCA; Thu, 28 Sep 2017 02:37:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (francescogiancane8[at]gmail.com)
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67BD4E009F5
-	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 00:25:03 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id f4so646639wmh.4
-	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 00:25:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=xnRcZ+9S+s+7RGXDH14yDizwVYrjlSWcsVk11Ht200w=;
-	b=K+weaHAZ7znxkwpGGyi63LheacVo8Xd4P9TIuy8lpFc4/ZVF3TXmOBfjDXQwvCu34q
-	EV3c/ZsQC8szdnDBuLysE99aAA2jqShCNU/MMU1LPuQHKzT0UBlSGGcYlqPclpjeC27V
-	lb5yt7ara0rh1dT+av5SaSIZUDco4zUPz9BlT9Ki0VkU7DyhFjwBrgaANAPPv4T/Ncf9
-	3+lICTD+L/FoNOmjPK2L4CTs8I5iNhw5LZiERbahyOAZiuFuSf77UpRN2syr26KgqCMS
-	o77nTxG6OaDhz/ADrGfH4o3BZjYo26yuBT/iCtnC0IFNbLruk4yogRpn9fdSqQ6oVqyj
-	ES9A==
+	*      [209.85.214.49 listed in dnsbl.sorbs.net]
+Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
+	[209.85.214.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D43F0E00C45
+	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 02:36:59 -0700 (PDT)
+Received: by mail-it0-f49.google.com with SMTP id 85so515372ith.2
+	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 02:36:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=jooF3vCUJKSFk+aJyEWWgzULsUvdfnoJ5I/z0yLLNKI=;
+	b=Slpq/C8A1XDCmtqdrlvxWaDaurYM7inaHjyBwPB0UgZwQTmmmuJ1mZE+5ZujvSCr6g
+	MKCg1dpsM/6HyD4ztbgEfo1ZMIEr1i89Gc/XNsdwXO5+naPgs+vcK6QJODSei9goJpOW
+	zRp6J2GCyzbaKqDWompXiNX0IbxJ8N5VrXiScsFuGOD8Fvsp1La0JEvKl/CZAmJH328e
+	wkzpIyEUPbkH2FPbaaZHLHgybjE8RbRxmEb58ljJbKQSFlsThnQq7JCd+dBhnJIzD3ZM
+	PDKCfVbnvzBJ7XaXayV+L5C1i6TecGlVbN8nHhz5Fj/32tufLgusjTpUcPpLknOiWm7h
+	DLOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=xnRcZ+9S+s+7RGXDH14yDizwVYrjlSWcsVk11Ht200w=;
-	b=eCZ59lQjAC/gNhJlaFt/h6oox/KsCLKf0MJgT0vqQSpFHHSzxGHG5YXfyRqdviC8kz
-	/Plz/lewy6iXv58H3FzVjRb0HH6DJ3rDTwvt4OTKonshbq9pq7fnfIdMstMdSG+7zOew
-	EC1SOFtdCf9Zrk10/3GIDrPz6ehd1yES6kxQrNxsiy4UWIeYZmoDwhzY2jFkWivyVMiq
-	bxBHhImjCXU/qqWWv5YSLs3nresTk3adWY7sWORgLynSceOV+g6e8ZwYwK/PLLhgymyk
-	O/puJfooQYhoRYb6/9LibBeY0WIB2ssnikRi9N7QYeSeTUKawaBqL9BW9jw4OLTojAab
-	1JzA==
-X-Gm-Message-State: AHPjjUhSd3Ek0Op5Vxxu1vYY9iZG+CV05UWIdEU3ojEXQlPFsmTA7DAK
-	UHBpUbuWo4ejfu2qbs3yKGAMxDH/ovOQHtsv7Rd+Dw==
-X-Google-Smtp-Source: AOwi7QD+0mR/e3evWMSrtCQhPVV9hPPRraLrTjbgg/A3QXExxKbS1zCeehg2/I0ZEgCSQU+jkOHHHQREUEcGh6ZyXx8=
-X-Received: by 10.80.182.195 with SMTP id f3mr4622211ede.127.1506583502727;
-	Thu, 28 Sep 2017 00:25:02 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=jooF3vCUJKSFk+aJyEWWgzULsUvdfnoJ5I/z0yLLNKI=;
+	b=lRMgBWafj7lrZ/FfDTg50+Ejkt+iC8QXO+gmgkwpkrNJGLD6Q2pHGWYfsmlaIB3I3a
+	XTUPneGqGNVaKj+5/j0NSrGN0/XCedUX52Zw8jgBYjeG7rCqsUoL4yB5w9J4iiTCVW12
+	c1fQWp568bQICbladsmmgYAD2WtsKQmcm3LjfaSXRWD4TleIEHpwb/v18Th4PaJvYfBD
+	r8WPO0MvWo1wCqO779B1Z15JzQsLGk86tk4xQSPyovMVY+LGx4xp0fY5sxmmNNnFE8NR
+	/4txIdU4fl9hEm7JJ3gi5Rh+Ng4Nefc68POkCPZiQozpzM5pgnqTAVqKnBvVJWS50Jn4
+	9NCw==
+X-Gm-Message-State: AMCzsaVZZKDRy52EjvSxemA59FpNVsJ0u2WPGvT0EZ3iblSBmJ/U6DrO
+	d37DIuMxeaENNf9A3WMCG1yayDGg3fYQoayeoIweYg==
+X-Google-Smtp-Source: AOwi7QCdpSsTcdjPXezMdyNfijuUi4xDNE2mMiL50Zaw79G6uHbb7Wb0F9cWTsrTpmmv2qYefixKpJHGrUYPXXKXVog=
+X-Received: by 10.36.181.73 with SMTP id j9mr580576iti.6.1506591419113; Thu,
+	28 Sep 2017 02:36:59 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.80.142.236 with HTTP; Thu, 28 Sep 2017 00:25:00 -0700 (PDT)
-From: Francesco Giancane <francescogiancane8@gmail.com>
-Date: Thu, 28 Sep 2017 09:25:00 +0200
-Message-ID: <CAEQ58si6bpFQ47B2XR6i3EbMF-z47ETYRvQtYAPCEcnwSTiqkQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: weston and xorg-xserver fail to build when using Raspberry Pi 3 user land
+Received: by 10.107.19.68 with HTTP; Thu, 28 Sep 2017 02:36:38 -0700 (PDT)
+In-Reply-To: <CAMKF1soJWJaL+hkjiwc1YabimNgt9SHpABXnT7nBax1XQchFvQ@mail.gmail.com>
+References: <CAGsrAHcGAo=L8Oy3aWRwUD8QL=iQ-Hw7bc21X8HX-sOGVL31RA@mail.gmail.com>
+	<CAGsrAHfGk6tXhYBawVSjCJnd+2JUZaD+_J-z__wwHivdS2+VwQ@mail.gmail.com>
+	<CAJTo0LYhvE-BQCgeb1zgmtcQPcd09Zm6Cau_n9cT+5yuztdE0Q@mail.gmail.com>
+	<CAMKF1soJWJaL+hkjiwc1YabimNgt9SHpABXnT7nBax1XQchFvQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 28 Sep 2017 10:36:38 +0100
+Message-ID: <CAJTo0LbXLRv_4X8HHGa_W+7iHTFGNsuPLNDJSHE7bZ24GrUnQA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: do_configure error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,58 +74,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Sep 2017 07:25:05 -0000
-X-Groupsio-MsgNum: 38100
-Content-Type: multipart/mixed; boundary="f403045c2acc814428055a3ace82"
+X-List-Received-Date: Thu, 28 Sep 2017 09:37:01 -0000
+Content-Type: multipart/alternative; boundary="f403045d9e425bcb19055a3ca681"
 
---f403045c2acc814428055a3ace82
+--f403045d9e425bcb19055a3ca681
 Content-Type: text/plain; charset="UTF-8"
 
-Hi everyone,
+On 28 September 2017 at 05:51, Khem Raj <raj.khem@gmail.com> wrote:
 
-I noticed that if I changed the provider for virtual/mesa (in
-particular, virtual/egl) to 'userland' for a raspberry pi 3 build,
-bitbake fails to resolve the dependency chain, complaining about
-missing RPROVIDES libegl.
+> On Sat, Sep 23, 2017 at 12:33 PM, Burton, Ross <ross.burton@intel.com>
+> wrote:
+> > On 23 September 2017 at 06:56, mohammed aqdam <mohammedaqdam@gmail.com>
+> > wrote:
+> >>
+> >> i'm getting the following error...
+> >>
+> >> root@pcz-ee207837-2:/u/my_poky/poky-2/poky/build# bitbake -k
+> >> rpi-test-image
+> >
+> >   ^^^^
+> >
+> >>  configure: error: you should not run configure as root
+> >
+> > As it says, you're running as root.  I thought we bailed early if this
+> > happened but obviously not.  Don't build as root, build as a normal user.
+> >
+>
+> this should be added to sanity check I think
+>
 
-The point is that NO libegl is ever provided, only "egl" package.
-Thought it was a typo. No building errors so far.
+I thought it did, and I was right:
 
-What do you think?
-Patch attached.
-Francesco Giancane
+def check_sanity_everybuild(status, d):
+    ...
+    if 0 == os.getuid():
+        raise_sanity_error("Do not use Bitbake as root.", d)
 
---f403045c2acc814428055a3ace82
-Content-Type: application/octet-stream; 
-	name="0001-Fix-dependency-chain-of-PACKAGECONFIG-glamor.patch"
-Content-Disposition: attachment; 
-	filename="0001-Fix-dependency-chain-of-PACKAGECONFIG-glamor.patch"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_j844wknx0
+Either Mohammed's user is called root but doesn't have UID 0, or Mohammed
+has disabled sanity.
 
-RnJvbSBmNmJhNmFkMjRjMzhkY2Q0ZGMzN2M1NDU2NWQ3OWQyYTNmM2Y5YTc5IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBGcmFuY2VzY28gR2lhbmNhbmUgPGZyYW5jZXNjby5naWFuY2Fu
-ZUBwb2xpdG8uaXQ+CkRhdGU6IFRodSwgMjggU2VwIDIwMTcgMDk6MDE6NTYgKzAyMDAKU3ViamVj
-dDogW1BBVENIXSBGaXggZGVwZW5kZW5jeSBjaGFpbiBvZiBQQUNLQUdFQ09ORklHW2dsYW1vcl0u
-CgotLS0KIG1ldGEvcmVjaXBlcy1ncmFwaGljcy94b3JnLXhzZXJ2ZXIveHNlcnZlci14b3JnLmlu
-YyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoK
-ZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1ncmFwaGljcy94b3JnLXhzZXJ2ZXIveHNlcnZlci14
-b3JnLmluYyBiL21ldGEvcmVjaXBlcy1ncmFwaGljcy94b3JnLXhzZXJ2ZXIveHNlcnZlci14b3Jn
-LmluYwppbmRleCA4NjNkODBjZTQzLi4zM2ZlNjY4NDRlIDEwMDY0NAotLS0gYS9tZXRhL3JlY2lw
-ZXMtZ3JhcGhpY3MveG9yZy14c2VydmVyL3hzZXJ2ZXIteG9yZy5pbmMKKysrIGIvbWV0YS9yZWNp
-cGVzLWdyYXBoaWNzL3hvcmcteHNlcnZlci94c2VydmVyLXhvcmcuaW5jCkBAIC0xMzMsNyArMTMz
-LDcgQEAgUEFDS0FHRUNPTkZJR1tkcmkyXSA9ICItLWVuYWJsZS1kcmkyLC0tZGlzYWJsZS1kcmky
-LGRyaTJwcm90byIKICMgRFJJMyByZXF1aXJlcyB4c2htZmVuY2UgdG8gYWxzbyBiZSBlbmFibGVk
-CiBQQUNLQUdFQ09ORklHW2RyaTNdID0gIi0tZW5hYmxlLWRyaTMsLS1kaXNhYmxlLWRyaTMsZHJp
-M3Byb3RvIgogUEFDS0FHRUNPTkZJR1tnbHhdID0gIi0tZW5hYmxlLWdseCwtLWRpc2FibGUtZ2x4
-LGdscHJvdG8gdmlydHVhbC9saWJnbCB2aXJ0dWFsL2xpYngxMSIKLVBBQ0tBR0VDT05GSUdbZ2xh
-bW9yXSA9ICItLWVuYWJsZS1nbGFtb3IsLS1kaXNhYmxlLWdsYW1vcixsaWJlcG94eSxsaWJlZ2wi
-CitQQUNLQUdFQ09ORklHW2dsYW1vcl0gPSAiLS1lbmFibGUtZ2xhbW9yLC0tZGlzYWJsZS1nbGFt
-b3IsbGliZXBveHksZWdsIgogUEFDS0FHRUNPTkZJR1t1bndpbmRdID0gIi0tZW5hYmxlLWxpYnVu
-d2luZCwtLWRpc2FibGUtbGlidW53aW5kLGxpYnVud2luZCIKIFBBQ0tBR0VDT05GSUdbeHNobWZl
-bmNlXSA9ICItLWVuYWJsZS14c2htZmVuY2UsLS1kaXNhYmxlLXhzaG1mZW5jZSxsaWJ4c2htZmVu
-Y2UiCiBQQUNLQUdFQ09ORklHW3htbHRvXSA9ICItLXdpdGgteG1sdG8sIC0td2l0aG91dC14bWx0
-bywgeG1sdG8tbmF0aXZlIGRvY2Jvb2steG1sLWR0ZDQtbmF0aXZlIGRvY2Jvb2steHNsLXN0eWxl
-c2hlZXRzLW5hdGl2ZSIKLS0gCjIuMTMuNQoK
+Ross
 
---f403045c2acc814428055a3ace82--
+--f403045d9e425bcb19055a3ca681
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">On 28 September 2017 at 05:51, Khem Raj <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.=
+com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div class=3D"gmail=
+_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,20=
+4,204);padding-left:1ex">On Sat, Sep 23, 2017 at 12:33 PM, Burton, Ross &lt=
+;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt; wro=
+te:<br>
+&gt; On 23 September 2017 at 06:56, mohammed aqdam &lt;<a href=3D"mailto:mo=
+hammedaqdam@gmail.com">mohammedaqdam@gmail.com</a>&gt;<br>
+&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; i&#39;m getting the following error...<br>
+&gt;&gt;<br>
+&gt;&gt; root@pcz-ee207837-2:/u/my_<wbr>poky/poky-2/poky/build# bitbake -k<=
+br>
+&gt;&gt; rpi-test-image<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0^^^^<br>
+&gt;<br>
+&gt;&gt;=C2=A0 configure: error: you should not run configure as root<br>
+&gt;<br>
+&gt; As it says, you&#39;re running as root.=C2=A0 I thought we bailed earl=
+y if this<br>
+&gt; happened but obviously not.=C2=A0 Don&#39;t build as root, build as a =
+normal user.<br>
+&gt;<br>
+<br>
+this should be added to sanity check I think<br></blockquote><div><br></div=
+><div>I thought it did, and I was right:</div><div><br></div><div>def check=
+_sanity_everybuild(status, d):</div><div>=C2=A0 =C2=A0 ...</div><div>=C2=A0=
+ =C2=A0 if 0 =3D=3D os.getuid():<br></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+raise_sanity_error(&quot;Do not use Bitbake as root.&quot;, d)=C2=A0</div><=
+div><br></div><div>Either Mohammed&#39;s user is called root but doesn&#39;=
+t have UID 0, or Mohammed has disabled sanity.</div><div><br></div><div>Ros=
+s</div></div></div></div>
+
+--f403045d9e425bcb19055a3ca681--
