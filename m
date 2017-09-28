@@ -1,63 +1,73 @@
-Return-Path: <cavallini.koan@gmail.com>
+Return-Path: <stevep@korgrd.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4227E00CCC; Thu, 28 Sep 2017 06:55:52 -0700 (PDT)
+	id 9A210E00CD0; Thu, 28 Sep 2017 09:29:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (cavallini.koan[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.178 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.161.174 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.161.174 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.178 listed in dnsbl.sorbs.net]
-Received: from mail-wr0-f178.google.com (mail-wr0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C210E00CB4
-	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 06:55:51 -0700 (PDT)
-Received: by mail-wr0-f178.google.com with SMTP id 54so2823528wrz.10
-	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 06:55:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=hnyaccqeZVnj1hcyf/dQRYGX6jmczfMdwMXS6zozOkw=;
-	b=LYAKgtzQEAWeH2SMYvJxLHx2B3Md9Q9j/FEdxgBCIu/T9wW89zdPIlM2tA5AEtz3sj
-	cVjLHKAj//82w4zduBABDhV1E9cjYe7Y2FqBYiz5rEvsxR4r5STGSSf1xMQU/2slhv/I
-	2X/JQemoJ4Cx1C9T97u9ALEwVA19OaRM6Nx30ofj9cNJJZtbbCszhzcdf3lu8NRralwO
-	Qj5xAMcXYxzW5beVXYYLZTbgAkUmy7YhCWLmO4aRM0Q2m0YXPT7mT9RH57zILcsfbsFh
-	Cnie63QFzxhQiG/NnRsUj7Kk+ZE3U/a9nVU7riOiMZ3ilVEYja4kC6b3/urvszWKKFmW
-	/bXw==
+Received: from mail-yw0-f174.google.com (mail-yw0-f174.google.com
+	[209.85.161.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A77E9E00CC6
+	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 09:29:35 -0700 (PDT)
+Received: by mail-yw0-f174.google.com with SMTP id w9so1390566ywi.11
+	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 09:29:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=oyK398tONHDGyw00RgRQhb0F/RmabhJVwjzv/EgfiA0=;
+	b=I02WkTUatfNXYubOICs/tNpp9bSn3m86RNjmhVmgZ1Gum2hGm2uYKzOKv88lKPZoi9
+	smj9waBx0CsUoc2KTWlbT4LeC1XpKxOgI8gA3hkFUxdO/sfEsOcoGNpzpb8TDwJPlV7C
+	n4RICBDjHg2Dd8vs53gMcH4rGXeqx+x7ptR8shn+RIfjVEO9eMVLUH5nNqfFUqykqLDj
+	HWNSMwVIdno88EpFSheY4xzIESJry/JMFZ5Lp+lV0MX37xd6S9Sf4uGvB9uwLW7WgzZY
+	28MJOxk7slac3udszfXDtv3kfTnbqTvkA3ISZhP1K0IIJT4nAz9Xb4fxt1vZ3kf7dPid
+	puCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=hnyaccqeZVnj1hcyf/dQRYGX6jmczfMdwMXS6zozOkw=;
-	b=Db7olylnrjwxwzO3DdEk+gigWXjLAwqP6kwkOLV5bZVxMpJdSC0/ofDFqFlnZiV3oM
-	CYsxk4bKMLX2UeIZtOAhW2pLhW/LtMNjed5x3YudrLlDv6BRUK9+sjA1/ZmP61xt/Woi
-	7tD4DhAM4l2/QYhvLXv/GNvd34qULWNTI7Fes3KHHiB/66lv0mOZzuAib/zulcFdTQC/
-	p534c+KTvzSeNL8D4OW7hGw2RQ+1cwPMyhQVuOYrEKamY9VhZI+m0g1BzcfWgFLNdkQl
-	Ww/z3HP112XsNMGDXleRKNzM6Es3IW0YwehNR+sbcbXhJ2zfWCqubolyi+bKS6p5293p
-	+aYA==
-X-Gm-Message-State: AMCzsaWdMOXXHxg9FCvmScdfAhmZagQCwl6echAuarpS2zVYlIl7AWMF
-	l7RQf+axFE/xxNyZjoSoS+eanpIC8XFWq2MsYbF7eg==
-X-Google-Smtp-Source: AOwi7QCj83gFPwuPrheKUDh/yXggWWGKdVMTVBZxvLzT75w4ZJLHj+Esv3z3Xc6YwZ3tVVBeFEh7jpHdSxbA6QimxG4=
-X-Received: by 10.25.198.8 with SMTP id w8mr232102lff.232.1506606949976; Thu,
-	28 Sep 2017 06:55:49 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.25.212.195 with HTTP; Thu, 28 Sep 2017 06:55:49 -0700 (PDT)
-From: Marco <cavallini.koan@gmail.com>
-Date: Thu, 28 Sep 2017 15:55:49 +0200
-Message-ID: <CAFQ+Dih3dqhvOo-LjbCTxYFibzJdU_V2V6BAEjO6TfpDopZ1Yg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: SSTATE_DIR not working with multi user environment
+	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=oyK398tONHDGyw00RgRQhb0F/RmabhJVwjzv/EgfiA0=;
+	b=HlPjcic54O/7xYZ9B68LO0nCcYwrjtVMgabXHqF48K2qvXz/Q79WAB3XxobC4vSkTO
+	j3j7jxtFox10gfaFQIucX22xfBp3gVu6aoCtY/2t/6711Q0NW0fPnkd1iZOvQpiAA3jg
+	FaCoLwZMxdo1E9QiAfij/QRPY2ppCDFFT2xyB4FX0HgcjFYsf//YNCjB+HelREnsGoZN
+	2nA4ECwKNnKjr7mQzigncpXvSIFK7yIRRuUjAIQpsK/beDLhVzxoNQXrDW7pDsVtHNID
+	8ChXIOhFBJX2m0yi4sjb31RUaIbmFqQHRqDECgdX2n4SNwa9Zws+YE/HWIhhTuw11Sjk
+	PDug==
+X-Gm-Message-State: AHPjjUhVFgOiE+2Y7NdMrCKUqXBy+dHAeS3h6fnX3Ql496z4viszXOWZ
+	MJBBLmnmmGvovtrm3FypWB/Oyw==
+X-Google-Smtp-Source: AOwi7QDbSZAQ8aZab4JX2/i3VwvQcvsKf21HhvGoogyEHN8nOVZ4JQ1R/dUwhgTgoTNGbT0ZJj74Og==
+X-Received: by 10.129.168.5 with SMTP id f5mr4112281ywh.7.1506616174779;
+	Thu, 28 Sep 2017 09:29:34 -0700 (PDT)
+Received: from 2600-6c64-617f-fb18-a56e-1e6f-7cab-0a2d.dhcp6.chtrptr.net
+	(2600-6c64-617f-fb18-a56e-1e6f-7cab-0a2d.dhcp6.chtrptr.net.
+	[2600:6c64:617f:fb18:a56e:1e6f:7cab:a2d])
+	by smtp.gmail.com with ESMTPSA id
+	y186sm733833ywc.71.2017.09.28.09.29.33
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 28 Sep 2017 09:29:33 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+From: Steve Pavao <stevep@korgrd.com>
+In-Reply-To: <CAJ86T=V6sbzpz4_3dYrjhkxkavWJbs1vAU6x95GjRTdVT5cX+w@mail.gmail.com>
+Date: Thu, 28 Sep 2017 12:29:32 -0400
+Message-Id: <1A69A446-50D3-4FE2-AC3E-4B26099B9EB5@korgrd.com>
+References: <7C20937E-B5A7-4824-89C2-B93B198E3EDB@korgrd.com>
+	<CAJ86T=V6sbzpz4_3dYrjhkxkavWJbs1vAU6x95GjRTdVT5cX+w@mail.gmail.com>
+To: Andre McCurdy <armccurdy@gmail.com>
+X-Mailer: Apple Mail (2.3273)
+Cc: yocto@yoctoproject.org
+Subject: Re: advice on recipe for shared lib mDNSResponder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,158 +79,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Sep 2017 13:55:52 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 28 Sep 2017 16:29:36 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi
-this is a follow up to another thread called "Unclear sstate-cache dir
-permissions"
+Hello,
 
-I am trying to share a sstate-cache between two (or more) users in a
-shared directory.
-Although I set the directory owner, group and permissions I face to a
-weird condition that I don't understand and seems to point out a
-bitbake/class problem.
+Thanks so much for the great and useful information from you and Ross.
 
+I was unable to successfully build that recipe here, though.  I=E2=80=99ll=
+ check with the maintainers to ask why.
 
-Problem description
+All I did was clone the meta-intel-iot-middleware repo, add that layer =
+to bblayers.conf, and add mdns to IMAGE_INSTALL_append to get this far.
 
-I have a shared area with the following permissions (g+ws) set up at
-before the builds
+- Steve Pavao
+Korg R&D
 
-ls -al /opt/yocto
-    drwxrwsrwx   4 tux yocto 20480 set 28 14:47 downloads
-    drwxrwsrwx 259 tux yocto  4096 set 28 15:33 sstate-cache
-
-This is the common local.conf
-    DL_DIR ?= "/opt/yocto/downloads"
-    SSTATE_DIR ?= "/opt/yocto/sstate-cache"
-
-1. workspace1 with user1 (tux) generates the first build
-using bitbake core-image-minimal
-
-    /opt/yocto/sstate-cache (content excerpt)
-    drwxr-xr-x   2 tux yocto 4096 set 28 14:44 94
-    drwxr-sr-x   2 tux yocto 4096 set 28 14:45 95
-    drwxr-xr-x   2 tux yocto 4096 set 28 14:46 96
-
-2. build on workspace2 using user2 (devel) faces to the following problem
-Permission denied: '/opt/yocto/sstate-cache/95/sigtask'
-because the permissions of directory '95' is 'drwxr-sr-x'
-
-
-
-$ bitbake core-image-minimal
 
 Build Configuration:
-BB_VERSION        = "1.34.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal-4.8"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "qemuarm"
-DISTRO            = "poky"
-DISTRO_VERSION    = "2.3.2"
-TUNE_FEATURES     = "arm armv5 thumb dsp"
-TARGET_FPU        = "soft"
-meta
-meta-poky
-meta-yocto-bsp    = "pyro:30613467d864130202d90e8460f7bbfa4db98397"
+BB_VERSION        =3D "1.34.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "universal"
+TARGET_SYS        =3D "aarch64-poky-linux"
+MACHINE           =3D "raspberrypi3-64"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "2.3.2"
+TUNE_FEATURES     =3D "aarch64"
+TARGET_FPU        =3D ""
+meta             =20
+meta-poky        =20
+meta-yocto-bsp    =3D "pyro:072430b9b3a78b318b66371c36e2986d2ed5cba4"
+meta-oe          =20
+meta-python      =20
+meta-multimedia   =3D "pyro:5e82995148a2844c6f483ae5ddd1438d87ea9fb7"
+meta-intel-iot-middleware =3D =
+"master:fc8eabfa4fb54802d3f97123b9d2954450175e33"
+meta-raspberrypi  =3D "pyro:c981f01a2cdb3299eb57920cffbb5dfd4248209a"
 
-Initialising tasks: 100%
-|############################################################################################################|
-Time: 0:00:04
+Initialising tasks: 100% =
+|#########################################################################=
+####################################| Time: 0:00:10
 NOTE: Executing SetScene Tasks
 NOTE: Executing RunQueue Tasks
-ERROR: core-image-minimal-1.0-r0 do_image_ext4: Execution of event
-handler 'sstate_eventhandler' failed
-Traceback (most recent call last):
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/siggen.py",
-line 356, in dump_this_task(outfile='/opt/yocto/sstate-cache/95/sstate:core-image-minimal:qemuarm-poky-linux-gnueabi:1.0:r0:qemuarm:3:95da4ea64e782dcc0c8dfb4b9b7c0099_image_ext4.tgz.siginfo',
-d=<bb.data_smart.DataSmart object at 0x7f0e07567cc0>):
-         referencestamp = bb.build.stamp_internal(task, d, None, True)
-    >    bb.parse.siggen.dump_sigtask(fn, task, outfile, "customfile:"
-+ referencestamp)
+ERROR: mdns-544-r1 do_compile: oe_runmake failed
+ERROR: mdns-544-r1 do_compile: Function failed: do_compile (log file is =
+located at =
+/data/development/lfs/yocto/poky/build/tmp/work/aarch64-poky-linux/mdns/54=
+4-r1/temp/log.do_compile.10472)
+ERROR: Logfile of failure stored in: =
+/data/development/lfs/yocto/poky/build/tmp/work/aarch64-poky-linux/mdns/54=
+4-r1/temp/log.do_compile.10472
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make os=3Dlinux DEBUG=3D0
+| ERROR: oe_runmake failed
+| make: cc: Command not found
+| Makefile:494: recipe for target 'objects/prod/PosixDaemon.c.o' failed
+| make: *** [objects/prod/PosixDaemon.c.o] Error 127
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_compile (log file is located at =
+/data/development/lfs/yocto/poky/build/tmp/work/aarch64-poky-linux/mdns/54=
+4-r1/temp/log.do_compile.10472)
+ERROR: Task =
+(/data/development/lfs/yocto/poky/meta-intel-iot-middleware/recipes-connec=
+tivity/mdns/mdns_544.bb:do_compile) failed with exit code '1'
 
-  File "/home/devel/yocto-pyro-qemuarm2/poky/meta/lib/oe/sstatesig.py",
-line 184, in SignatureGeneratorOEBasicHash.dump_sigtask(fn='/home/devel/yocto-pyro-qemuarm2/poky/meta/recipes-core/images/core-image-minimal.bb',
-task='do_image_ext4',
-stampbase='/opt/yocto/sstate-cache/95/sstate:core-image-minimal:qemuarm-poky-linux-gnueabi:1.0:r0:qemuarm:3:95da4ea64e782dcc0c8dfb4b9b7c0099_image_ext4.tgz.siginfo',
-runtime='customfile:/home/devel/yocto-pyro-qemuarm2/poky/build/tmp/stamps/qemuarm-poky-linux-gnueabi/core-image-minimal/1.0-r0'):
-                 return
-    >        super(bb.siggen.SignatureGeneratorBasicHash,
-self).dump_sigtask(fn, task, stampbase, runtime)
 
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/siggen.py",
-line 300, in SignatureGeneratorOEBasicHash.dump_sigtask(fn='/home/devel/yocto-pyro-qemuarm2/poky/meta/recipes-core/images/core-image-minimal.bb',
-task='do_image_ext4',
-stampbase='/opt/yocto/sstate-cache/95/sstate:core-image-minimal:qemuarm-poky-linux-gnueabi:1.0:r0:qemuarm:3:95da4ea64e782dcc0c8dfb4b9b7c0099_image_ext4.tgz.siginfo',
-runtime='customfile:/home/devel/yocto-pyro-qemuarm2/poky/build/tmp/stamps/qemuarm-poky-linux-gnueabi/core-image-minimal/1.0-r0'):
+> On Sep 27, 2017, at 7:17 PM, Andre McCurdy <armccurdy@gmail.com> =
+wrote:
+>=20
+> On Wed, Sep 27, 2017 at 3:58 PM, Steve Pavao <stevep@korgrd.com> =
+wrote:
+>> Hello,
+>>=20
+>> I am fairly new to Yocto, yet have been able to successfully add a =
+custom kernel object to my Yocto poky build, no problem. However, I am =
+having some difficulty adding a shared library, namely mDNSResponder.
+>>=20
+>> Right now, my recipe is very simple and does not use autotools.  =
+There are just a few tweaks for cross-building which I=E2=80=99ve added =
+to the supplied mDNSResponder Makefile for mDNSPosix, in order to target =
+64-bit ARM hardware.  Here is the build error I encounter.  Obviously =
+the environment is not being set 100% correctly, because it can not find =
+stdio.h.  Is there an easy way to avoid this problem?
+>=20
+> You need to ensure that the Makefiles etc for the package you are
+> building respect the ${CC} environment variable defined by OE. It
+> includes not only the name of the cross compiler but also important
+> command line options, e.g. tuning for the correct target CPU and the
+> correct --sysroot option. =46rom your build log the --sysroot option =
+is
+> missing, therefore the compiler can not find standard include files
+> etc.
+>=20
+> Unfortunately packages with build with custom Makefiles are so diverse
+> that there's no single approach to making them work. Sometimes you can
+> force CC=3D${CC} etc via the make command line to over-ride incorrect
+> defaults in the Makefile, sometime the Makefile needs to be patched,
+> etc. Even if the build succeeds it's wise to carefully check the build
+> log to ensure that all calls to the compiler, linker, etc contain the
+> flags defined by OE.
+>=20
+> Note however that according to the layer index there does already seem
+> to be at least one recipe for mDNSResponder. It includes a Makefile
+> patch which looks like it will address your issue (and some others):
+>=20
+>  =
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-iot-middleware/tree/r=
+ecipes-connectivity/mdns/mdns_544.bb?h=3Dmaster
+>=20
+>>=20
+>> - Steve Pavao
+>> Korg R&D
+>>=20
+>> Log data follows:
+>> | DEBUG: Executing shell function do_compile
+>> | NOTE: make -j 4
+>> | ERROR: oe_runmake failed
+>> | make os=3DEmbeddedLinuxAarch64 Daemon libdns_sd -C mDNSPosix
+>> | make[1]: warning: jobserver unavailable: using -j1.  Add '+' to =
+parent make rule.
+>> | make[1]: Entering directory =
+'/data/development/lfs/yocto/poky/build/tmp/work/aarch64-poky-linux/mDNSRe=
+sponder/333.10-r0/mDNSPosix'
+>> | aarch64-poky-linux-gcc -I../mDNSCore -I../mDNSShared =
+-Iobjects/prod/EmbeddedLinuxAarch64 -fwrapv -W -Wall =
+-DPID_FILE=3D\"/var/run/mdnsd.pid\" =
+-DMDNS_UDS_SERVERPATH=3D\"/var/run/mdnsd\" -DNOT_HAVE_SA_LEN =
+-DUSES_NETLINK -DHAVE_LINUX -DTARGET_OS_LINUX -fno-strict-aliasing -Os =
+-DMDNS_DEBUGMSGS=3D0   -c -o =
+objects/prod/EmbeddedLinuxAarch64/PosixDaemon.c.o PosixDaemon.c
+>> | PosixDaemon.c:31:19: fatal error: stdio.h: No such file or =
+directory
+>> |  #include <stdio.h>
+>> |                    ^
+>> | compilation terminated.
+>> | Makefile:553: recipe for target =
+'objects/prod/EmbeddedLinuxAarch64/PosixDaemon.c.o' failed
+>> | make[1]: *** [objects/prod/EmbeddedLinuxAarch64/PosixDaemon.c.o] =
+Error 1
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
-    >        fd, tmpfile =
-tempfile.mkstemp(dir=os.path.dirname(sigfile), prefix="sigtask.")
-             try:
-  File "/usr/lib/python3.4/tempfile.py", line 409, in
-mkstemp(suffix='', prefix='sigtask.',
-dir='/opt/yocto/sstate-cache/95', text=False):
-
-    >    return _mkstemp_inner(dir, prefix, suffix, flags)
-
-  File "/usr/lib/python3.4/tempfile.py", line 339, in
-_mkstemp_inner(dir='/opt/yocto/sstate-cache/95', pre='sigtask.',
-suf='', flags=131266):
-             try:
-    >            fd = _os.open(file, flags, 0o600)
-                 return (fd, _os.path.abspath(file))
-PermissionError: [Errno 13] Permission denied:
-'/opt/yocto/sstate-cache/95/sigtask._nk80whe'
-
-ERROR: core-image-minimal-1.0-r0 do_image_ext4: Build of do_image_ext4 failed
-ERROR: core-image-minimal-1.0-r0 do_image_ext4: Traceback (most recent
-call last):
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/build.py",
-line 644, in exec_task
-    return _exec_task(fn, task, d, quieterr)
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/build.py",
-line 618, in _exec_task
-    event.fire(TaskSucceeded(task, logfn, localdata), localdata)
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/event.py",
-line 211, in fire
-    fire_class_handlers(event, d)
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/event.py",
-line 134, in fire_class_handlers
-    execute_handler(name, handler, event, d)
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/event.py",
-line 106, in execute_handler
-    ret = handler(event)
-  File "/home/devel/yocto-pyro-qemuarm2/poky/meta/classes/sstate.bbclass",
-line 1003, in sstate_eventhandler
-    bb.siggen.dump_this_task(sstatepkg + '_' + taskname + ".tgz" ".siginfo", d)
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/siggen.py",
-line 356, in dump_this_task
-    bb.parse.siggen.dump_sigtask(fn, task, outfile, "customfile:" +
-referencestamp)
-  File "/home/devel/yocto-pyro-qemuarm2/poky/meta/lib/oe/sstatesig.py",
-line 184, in dump_sigtask
-    super(bb.siggen.SignatureGeneratorBasicHash,
-self).dump_sigtask(fn, task, stampbase, runtime)
-  File "/home/devel/yocto-pyro-qemuarm2/poky/bitbake/lib/bb/siggen.py",
-line 300, in dump_sigtask
-    fd, tmpfile = tempfile.mkstemp(dir=os.path.dirname(sigfile),
-prefix="sigtask.")
-  File "/usr/lib/python3.4/tempfile.py", line 409, in mkstemp
-    return _mkstemp_inner(dir, prefix, suffix, flags)
-  File "/usr/lib/python3.4/tempfile.py", line 339, in _mkstemp_inner
-    fd = _os.open(file, flags, 0o600)
-PermissionError: [Errno 13] Permission denied:
-'/opt/yocto/sstate-cache/95/sigtask._nk80whe'
-
-ERROR: Task (/home/devel/yocto-pyro-qemuarm2/poky/meta/recipes-core/images/core-image-minimal.bb:do_image_ext4)
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 2254 tasks of which 2063 didn't need to
-be rerun and 1 failed.
-
-Summary: 1 task failed:
-  /home/devel/yocto-pyro-qemuarm2/poky/meta/recipes-core/images/core-image-minimal.bb:do_image_ext4
-Summary: There was 1 WARNING message shown.
-Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
 
