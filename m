@@ -1,6 +1,6 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <alejandro.hernandez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C9D1E00B53; Fri, 29 Sep 2017 08:48:46 -0700 (PDT)
+	id 8C092E00C62; Fri, 29 Sep 2017 11:18:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,41 +8,29 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 728FEE007EF
-	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 08:48:45 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v8TFmfFQ019375
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 29 Sep 2017 08:48:41 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
-	Fri, 29 Sep 2017 08:48:40 -0700
-To: Bryan Evenson <bevenson@melinkcorp.com>, "Burton, Ross"
-	<ross.burton@intel.com>
-References: <DM5PR05MB29545649D8FAD14D890F96C4BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
-	<CAJTo0LYWJFAChPkcOeU4ESOzCZ0XkrVswRnsh7jz=4QnKZ6uWA@mail.gmail.com>
-	<DM5PR05MB29543B944CF11354749DE3C6BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
-	<CAJTo0LZ3+prEXi4eJH-0qcg_mp7CShyVzGg2=nY3c3s585CQ9A@mail.gmail.com>
-	<DM5PR05MB2954E471F11F1ADF08E544CABB780@DM5PR05MB2954.namprd05.prod.outlook.com>
-	<CAJTo0LavAJr8D+kuQ_6FkjA-D-XotT7BcrCA3W7bv_HL2EpuxA@mail.gmail.com>
-	<DM5PR05MB2954EF4777E6EB3AE7C36815BB780@DM5PR05MB2954.namprd05.prod.outlook.com>
-	<CAJTo0LaoXqf700W4wHMwfCJAK3B5xOTuFm-7ug3DWscFpcF=sg@mail.gmail.com>
-	<DM5PR05MB2954E147CAF6959E26148F2BBB790@DM5PR05MB2954.namprd05.prod.outlook.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <1a8404d4-1052-f464-6fde-cdcaf686386a@windriver.com>
-Date: Fri, 29 Sep 2017 10:48:40 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.3.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BB22E00C01
+	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 11:18:25 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga105.jf.intel.com with ESMTP; 29 Sep 2017 11:18:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.42,453,1500966000"; d="scan'208";a="1200510470"
+Received: from zalatorx-wtg.amr.corp.intel.com (HELO [10.252.252.73])
+	([10.252.252.73])
+	by fmsmga001.fm.intel.com with ESMTP; 29 Sep 2017 11:18:23 -0700
+To: yocto@yoctoproject.org, yocto@emagii.com
+References: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
+From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+Message-ID: <414ca678-5e11-319d-7688-bc5127712b3a@linux.intel.com>
+Date: Fri, 29 Sep 2017 13:18:22 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <DM5PR05MB2954E147CAF6959E26148F2BBB790@DM5PR05MB2954.namprd05.prod.outlook.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Errors building with Windows Subsystem for Linux (aka Bash on Ubuntu on Windows)
+In-Reply-To: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
+Subject: Re: poky using native pkg_resources module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,77 +42,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Sep 2017 15:48:46 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+X-List-Received-Date: Fri, 29 Sep 2017 18:18:27 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-On 9/28/17 8:28 AM, Bryan Evenson wrote:
-> Ross,
-> 
->  
-> 
-> *From:*Burton, Ross [mailto:ross.burton@intel.com]
-> *Sent:* Wednesday, September 27, 2017 6:43 PM
-> *To:* Bryan Evenson <bevenson@melinkcorp.com>
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] Errors building with Windows Subsystem for Linux (aka
-> Bash on Ubuntu on Windows)
-> 
->  
-> 
-> On 27 September 2017 at 21:59, Bryan Evenson <bevenson@melinkcorp.com
-> <mailto:bevenson@melinkcorp.com>> wrote:
-> 
->      
-> 
->     I think I found the problem.  I started looking at more file properties for
->     the files that worked and the ones that didn’t, and I noticed that all the
->     ones that failed show a link count of 1024.  The Windows filesystem has a
->     link limit of 1023 links per file (at least as reported here:
->     https://msdn.microsoft.com/en-us/library/windows/desktop/aa363860(v=vs.85).aspx),
->     so I think the hard link is failing due to the Windows link limit.  If that
->     is the case, then I don’t think it’ll be a quick fix to get a working
->     solution under WSL.
-> 
->  
-> 
-> That link count doesn't seem feasible though...  we hardlink frequently during a
-> recipe build, but I'd expect to see 10 links, not over a thousand.  You've
-> definitely found the problem, just need to figure out what is causing such
-> excessive linking,
-> 
->  
-> 
-> Two files, LC_MEASUREMENT and LC_PAPER, seem to be identical through most the
-> locales.  I’m not sure which are copies and which are hard links, but I did a
-> md5sum comparison and found over 1200 identical LC_MEASUREMENT files in the
-> glibc-locale working directory.  I don’t need all the locales, so I set
-> GLIBC_GENERATE_LOCALES = "en_GB.UTF-8 en_US.UTF-8" in my local.conf and now
-> glibc-locale completes building.
-> 
+Hey Ulf,
 
-FYI, this is expected.  The locales have numerous copies of the same files for
-the same locales.  So to save space there is a step that runs and identifies the
-duplicates and hard links them.  (This helps a lot for the sstate-cache for
-instance).
 
-It likely wouldn't be difficult to determine the link count 'issue' and simply
-link to a different file for subsequent links... but I'm no longer sure where
-the linking occurs that does all of this.
 
---Mark
+On 09/29/2017 04:05 AM, Ulf Samuelsson wrote:
+> It looks like the pkg_resource module is using the native installation
+>
+>
+> I cloned poky early september, and could complete a build.
+>
+> When I clone poky today, the build fails.
+>
+> As part of "do_image_wic" from image_types_wic.bbclass
+>
+> A python program in 'bmap-tools-native' is executing
+>
+>     "from pkg_resources import load_entry_point"
+>
+> grep'ing for pkg_resources in bmap-tools-native reveals:
+>
+> bmaptool:        from pkg_resources import load_entry_point
+> easy3_install:        from pkg_resources import load_entry_point
+> easy_install-3.5:    from pkg_resources import load_entry_point
+> =============================
+> pkg_resources.py is not available inside poky at the moment.
+>
+> It is (or used to be) part of python-setuptools.
 
-> 
-> I’ll report back if the rest of the build completes.
-> 
->  
-> 
-> Bryan
-> 
->  
-> 
-> 
-> 
+Correct, it was and still is part of setuptools
+>
+> On Ubuntu, it is present in: 
+> "http://archive.ubuntu.com/ubuntu/pool/main/p/python-setuptools/python-setuptools_3.3.orig.tar.gz"
+> and used in Ubuntu 14.04 and 16.04 to generate the
+>     "python3-pkg-resource" package.
+>
+> When python-setuptools is generated by Yocto, it is partly
+> a class, but the python-setuptools-native recipe downloads
+>     "https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-26.2.7.zip" 
+>
+
+This should be setuptools-36.2.7 btw
+
+> which does not contain "pkg_resources.py"
+
+Its not partly a class, it uses a class to install the package along 
+with distutils.
+>
+> =============================
+> When bmaptool imports pkg_resources, it will not find anything in the
+> yocto build, but will find the native 
+> "/usr/lib/python3/dist-packages/pkg_resources.py" from
+>
+> This requires bmap-tools == 3.4, but the native bmap-tools in 
+> Ubuntu-14.04 is 2.5, and in Ubuntu-16.04 it is 3.2 so the build fails.
+>
+> Maybe Ubuntu-17.04 supports bmap-tools 3.4 and it will build there,
+> but using the native pkg_resource is of course not a good idea?
+
+There is something wrong with your build although I am not sure what it 
+is, pkg_resources is still part of python(3)-setuptools, in fact you can 
+check that in several ways
+
+if you do a devshell on python3-setuptools-native you can see the 
+extracted package contains the pkg_resources folder (so it is still part 
+of the package)
+then if you do a devshell after do_install, you can check the image 
+directory and find the setuptools.egg file, which is what python-native 
+uses later, if you unzip that
+egg file, you can see that pkg_resources is there, so it was in fact 
+packaged on Yocto / by bitbake.
+
+Lastly, you can also do a
+$ bitbake bmap-tools-native -c devshell
+
+you can then check that python3-native is in fact executing by doing a
+
+$ which python3
+
+that should point to python3-native (the one you just built)
+
+assuming you got python3-native correctly, execute python3
+
+once in python you can do a
+
+
+from pkg_resources import load_entry_point # which would import the module
+
+# check where the module is being loaded from
+import sys
+sys.modules['pkg_resources']
+
+That should print out the location of the imported module, and you can 
+see there that infact it was imported from the setuptools.egg file you 
+just built before, like this:
+
+ >>> sys.modules['pkg_resources']
+<module 'pkg_resources' from 
+'$HOME/builds/qemux86-64/tmp/work/x86_64-linux/bmap-tools-native/3.4-r0/recipe-sysroot-native/usr/lib/python3.5/site-packages/setuptools-36.2.7-py3.5.egg/pkg_resources/__init__.py'>
+
+>
+> Upgrading to a non-LTS Ubuntu is not something I would like to do...
+> ============================================================================================ 
+>
+>
+> Error report
+>
+> ============================================================================================ 
+>
+>
+> | DEBUG: Executing shell function do_image_wic
+> | wic create 
+> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks" 
+> --vars 
+> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/sysroots/beaglebone/imgdata/" 
+> -e "emagii-image" -o 
+> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/"
+> | INFO: Creating image(s)...
+> |
+> | INFO: The new image(s) can be found here:
+> | 
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/emagii_beaglebone-201709290903-mmcblk.direct
+> |
+> | The following build artifacts were used to create the image(s):
+> |   ROOTFS_DIR: 
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/tmp.wic.slysr_64/rootfs_copy
+> |   BOOTIMG_DIR: 
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot/usr/share
+> |   KERNEL_DIR: 
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/deploy/images/beaglebone
+> |   NATIVE_SYSROOT: 
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native
+> |
+> | INFO: The image(s) were created using OE kickstart file:
+> | 
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks
+> | Traceback (most recent call last):
+> |   File 
+> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native/usr/bin/bmaptool", 
+> line 6, in <module>
+> |     from pkg_resources import load_entry_point
+> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 2749, 
+> in <module>
+> |     working_set = WorkingSet._build_master()
+> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 444, 
+> in _build_master
+> |     ws.require(__requires__)
+> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 725, 
+> in require
+> |     needed = self.resolve(parse_requirements(requirements))
+> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 628, 
+> in resolve
+> |     raise DistributionNotFound(req)
+> | pkg_resources.DistributionNotFound: bmap-tools==3.4
+> | WARNING: 
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/run.do_image_wic.19342:1 
+> exit 1 from 'bmaptool create 
+> emagii-image-beaglebone-20170929070314.rootfs.wic -o 
+> emagii-image-beaglebone-20170929070314.rootfs.wic.bmap'
+> | ERROR: Function failed: do_image_wic (log file is located at 
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/log.do_image_wic.19342)
+> ERROR: Task 
+> (/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic) 
+> failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 3187 tasks of which 3186 didn't need to 
+> be rerun and 1 failed.
+>
+> Summary: 1 task failed:
+>
+> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic 
+>
+> Summary: There was 1 WARNING message shown.
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>
+>
+>
+> Best Regards
+> Ulf Samuelsson
 
 
