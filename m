@@ -1,67 +1,37 @@
-Return-Path: <francescogiancane8@gmail.com>
+Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1BF70E00D67; Fri, 29 Sep 2017 01:35:17 -0700 (PDT)
+	id B42DAE00D67; Fri, 29 Sep 2017 02:07:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (francescogiancane8[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	TEQF_USR_MSGID_HEX autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.236.60.156 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E8D3E00D5B
-	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 01:35:15 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id b189so447509wmd.2
-	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 01:35:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=jYwNCQ0/0bSDj7F53Ezx/HFG95CQZ8Ijk91VMb+Zib8=;
-	b=NBb1GROTMuZDO2nkxMXyHB0ydZ41nk+VVKaCa0SrzNzWeqJkH2ms9HDLFCXUVUS1eK
-	kV7USRhIIF6awLNmY8MvHvvKwXusZqX5Ao/VzWA+f8qjmLnw8mxydBupFaSKDxQetbhv
-	S2hLsb9+NTVDswVVptFHU7nqx72SWDKA5rgwqdCWK92pxDxtoqYSWU8LdxZIEBUVnUdG
-	mzIW/LSdiZtBu5luvjo7tlNDG60QBtJlGz5d2i1YPMFDmmbwzjZGRqXhsE8OPXJdjvL+
-	YLhIpCaNv1QJiTHUF4xUJAJnIhKE9gYsr1ibdHUN5f32LjEVewbK5ZnmTdScUwuErwd4
-	akBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=jYwNCQ0/0bSDj7F53Ezx/HFG95CQZ8Ijk91VMb+Zib8=;
-	b=YmWlnwQ6b2OdrbtX/keb/83MKQ/L13nb7X8zvs9tdyhXce14d/7arInUU/VI4J6PdW
-	V9X4M2ijsWbVVBFBM6MnaUSxxD51DMF7Gc4cumQGYldCpjrOQGyjtZr4HqfHfcAo3E+Z
-	VpRTeymLsEYsq8qBL3XVV1i3Fp8t0hKV+C/EUiyFm10UcIpaENumS+nzIjRsVsCMA+Zk
-	ZlglP3lbo2pYRbmXn1VbFzvWf8ips4rAHOcT4vacp4SefcpvLGM8XqzoXRSowQ5fkk1E
-	j3mAF5ws+7ZbS4n+O4PcikH98kGLvZrqlbYp5IxFf6p5fVDiwr5BFeGyrS0rX01G7WvR
-	VGlg==
-X-Gm-Message-State: AHPjjUg1MlyYWd9YamP9JQDXT1gPD+JKRVKzFjQI+o7R3tsPqE46QlJu
-	brLjaafcDP7yjj8sO16/J25SFsAyluxpVveErOs=
-X-Google-Smtp-Source: AOwi7QAUVt2bKNifcY+PVbI/T8thWixe9G/LIXA62+LlEn2ovBZg4ez+9U+y7GlIjMuCf5L38i3WNi/zwsbs4EXsjyA=
-X-Received: by 10.80.174.36 with SMTP id c33mr8830377edd.191.1506674114791;
-	Fri, 29 Sep 2017 01:35:14 -0700 (PDT)
+	* 1.0 TEQF_USR_MSGID_HEX To and from user nearly same + unusual message
+	ID
+X-Greylist: delayed 122 seconds by postgrey-1.32 at yocto-www;
+	Fri, 29 Sep 2017 02:07:09 PDT
+Received: from v-smtpout3.han.skanova.net (v-smtpout3.han.skanova.net
+	[81.236.60.156])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6EECE00D5B
+	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 02:07:09 -0700 (PDT)
+Received: from [10.175.196.109] ([84.216.24.165]) by cmsmtp with SMTP
+	id xrEGdfKlW3RiyxrEGda2aK; Fri, 29 Sep 2017 11:05:06 +0200
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Ulf Samuelsson <yocto@emagii.com>
+Message-ID: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
+Date: Fri, 29 Sep 2017 11:05:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-Received: by 10.80.142.236 with HTTP; Fri, 29 Sep 2017 01:35:14 -0700 (PDT)
-In-Reply-To: <CAC+thW22=x3nzTQvfVMizLe-jWXEfP5EPUEbPy+ypqVxbOOdqQ@mail.gmail.com>
-References: <CAEQ58si6bpFQ47B2XR6i3EbMF-z47ETYRvQtYAPCEcnwSTiqkQ@mail.gmail.com>
-	<CAC+thW22=x3nzTQvfVMizLe-jWXEfP5EPUEbPy+ypqVxbOOdqQ@mail.gmail.com>
-From: Francesco Giancane <francescogiancane8@gmail.com>
-Date: Fri, 29 Sep 2017 10:35:14 +0200
-Message-ID: <CAEQ58shR6+9fy5byibXhq_rywr8kU-dfV-1XZKH4nePfRBRMUA@mail.gmail.com>
-To: Andrea Galbusera <gizero@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: weston and xorg-xserver fail to build when using Raspberry Pi 3 user land
+X-CMAE-Envelope: MS4wfGTCiRRNDPCL4/V+Aiy91i2X1Sxk4yi878DWI/xw51vr7Lvq90H2vEeaYRO1ezQF4AxowwH7cMtaI7E/QSaEHJAC78Tfryd0Ue7c1tqYSigyNdnqAmxA
+	hlWbkSS+63OxjUq9ZM8cLqlwaFzIgtJ629pbw7K/ZTdHKBUMytyCVkD9Gsd9jJN9IG9eoJoyBYIB3mUcBsErkOqcs8DC7L/7PRFX5lMrOvX2XR5qAeDq4SLh
+	202TLl6qASZkFV1S/WMXtw==
+Subject: poky using native pkg_resources module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,45 +43,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Sep 2017 08:35:17 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 29 Sep 2017 09:07:11 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hi Andrea,
-Thank you for your answer.
-Will resend the patch to the open embedded mailing list.
-
-
-Francesco Giancane
-
-Via Paolo Braccini 46, 10141 Torino (TO)
-+393933920466
-https://it.linkedin.com/in/francesco-giancane-aa7213117
+It looks like the pkg_resource module is using the native installation
 
 
+I cloned poky early september, and could complete a build.
 
-2017-09-29 9:09 GMT+02:00 Andrea Galbusera <gizero@gmail.com>:
-> Hi Francesco,
->
-> On Thu, Sep 28, 2017 at 9:25 AM, Francesco Giancane
-> <francescogiancane8@gmail.com> wrote:
->>
->> Hi everyone,
->>
->> I noticed that if I changed the provider for virtual/mesa (in
->> particular, virtual/egl) to 'userland' for a raspberry pi 3 build,
->> bitbake fails to resolve the dependency chain, complaining about
->> missing RPROVIDES libegl.
->>
->> The point is that NO libegl is ever provided, only "egl" package.
->> Thought it was a typo. No building errors so far.
->>
->> What do you think?
->> Patch attached.
->
->
-> This probably goes to oe-core mailing list, which is the upstream project
-> the patch applies to. Also consider sending inline patches instead of
-> attachments [1].
->
-> [1] https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
+When I clone poky today, the build fails.
+
+As part of "do_image_wic" from image_types_wic.bbclass
+
+A python program in 'bmap-tools-native' is executing
+
+	"from pkg_resources import load_entry_point"
+
+grep'ing for pkg_resources in bmap-tools-native reveals:
+
+bmaptool:		from pkg_resources import load_entry_point
+easy3_install:		from pkg_resources import load_entry_point
+easy_install-3.5:	from pkg_resources import load_entry_point
+=============================
+pkg_resources.py is not available inside poky at the moment.
+
+It is (or used to be) part of python-setuptools.
+
+On Ubuntu, it is present in: 
+"http://archive.ubuntu.com/ubuntu/pool/main/p/python-setuptools/python-setuptools_3.3.orig.tar.gz"
+and used in Ubuntu 14.04 and 16.04 to generate the
+	"python3-pkg-resource" package.
+
+When python-setuptools is generated by Yocto, it is partly
+a class, but the python-setuptools-native recipe downloads
+	"https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-26.2.7.zip"
+which does not contain "pkg_resources.py"
+
+=============================
+When bmaptool imports pkg_resources, it will not find anything in the
+yocto build, but will find the native 
+"/usr/lib/python3/dist-packages/pkg_resources.py" from
+
+This requires bmap-tools == 3.4, but the native bmap-tools in 
+Ubuntu-14.04 is 2.5, and in Ubuntu-16.04 it is 3.2 so the build fails.
+
+Maybe Ubuntu-17.04 supports bmap-tools 3.4 and it will build there,
+but using the native pkg_resource is of course not a good idea?
+
+Upgrading to a non-LTS Ubuntu is not something I would like to do...
+============================================================================================
+
+Error report
+
+============================================================================================
+
+| DEBUG: Executing shell function do_image_wic
+| wic create 
+"/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks" 
+--vars 
+"/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/sysroots/beaglebone/imgdata/" 
+-e "emagii-image" -o 
+"/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/"
+| INFO: Creating image(s)...
+|
+| INFO: The new image(s) can be found here:
+| 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/emagii_beaglebone-201709290903-mmcblk.direct
+|
+| The following build artifacts were used to create the image(s):
+|   ROOTFS_DIR: 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/tmp.wic.slysr_64/rootfs_copy
+|   BOOTIMG_DIR: 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot/usr/share
+|   KERNEL_DIR: 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/deploy/images/beaglebone
+|   NATIVE_SYSROOT: 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native
+|
+| INFO: The image(s) were created using OE kickstart file:
+| 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks
+| Traceback (most recent call last):
+|   File 
+"/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native/usr/bin/bmaptool", 
+line 6, in <module>
+|     from pkg_resources import load_entry_point
+|   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 2749, 
+in <module>
+|     working_set = WorkingSet._build_master()
+|   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 444, in 
+_build_master
+|     ws.require(__requires__)
+|   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 725, in 
+require
+|     needed = self.resolve(parse_requirements(requirements))
+|   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 628, in 
+resolve
+|     raise DistributionNotFound(req)
+| pkg_resources.DistributionNotFound: bmap-tools==3.4
+| WARNING: 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/run.do_image_wic.19342:1 
+exit 1 from 'bmaptool create 
+emagii-image-beaglebone-20170929070314.rootfs.wic -o 
+emagii-image-beaglebone-20170929070314.rootfs.wic.bmap'
+| ERROR: Function failed: do_image_wic (log file is located at 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/log.do_image_wic.19342)
+ERROR: Task 
+(/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic) 
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3187 tasks of which 3186 didn't need to 
+be rerun and 1 failed.
+
+Summary: 1 task failed:
+ 
+/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic
+Summary: There was 1 WARNING message shown.
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+
+
+Best Regards
+Ulf Samuelsson
 
