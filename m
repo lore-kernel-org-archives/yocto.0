@@ -1,37 +1,72 @@
-Return-Path: <yocto@emagii.com>
+Return-Path: <prvs=1445b640cf=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B42DAE00D67; Fri, 29 Sep 2017 02:07:11 -0700 (PDT)
+	id A9DFDE00D71; Fri, 29 Sep 2017 03:08:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	TEQF_USR_MSGID_HEX autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [81.236.60.156 listed in list.dnswl.org]
+	*      [81.169.146.216 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.0 TEQF_USR_MSGID_HEX To and from user nearly same + unusual message
-	ID
-X-Greylist: delayed 122 seconds by postgrey-1.32 at yocto-www;
-	Fri, 29 Sep 2017 02:07:09 PDT
-Received: from v-smtpout3.han.skanova.net (v-smtpout3.han.skanova.net
-	[81.236.60.156])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6EECE00D5B
-	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 02:07:09 -0700 (PDT)
-Received: from [10.175.196.109] ([84.216.24.165]) by cmsmtp with SMTP
-	id xrEGdfKlW3RiyxrEGda2aK; Fri, 29 Sep 2017 11:05:06 +0200
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Ulf Samuelsson <yocto@emagii.com>
-Message-ID: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
-Date: Fri, 29 Sep 2017 11:05:04 +0200
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.216])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17B81E00D63
+	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 03:08:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1506679679;
+	s=domk; d=rsi-elektrotechnik.de;
+	h=Content-Transfer-Encoding:Content-Language:Content-Type:In-Reply-To:
+	MIME-Version:Date:References:To:From:Subject;
+	bh=+DvgswKwa9uRfzdLQ3xcu3boAqC7DfhGbkXRSCB7l2w=;
+	b=kPgrelsikLexEiSCHq35h29poiADMfesQKZYFkkpR/H2XHC4fZuS2e6tOXrX91bQ2B
+	rmkfGwq6CLLgdylZm7J/s1muViqYZRp7c+nR9zK4r6CSuy3nGA3RaENf9td5MK2vT3lm
+	7/kY1XhmJAQhK2vmc0h7grPUea3sH32zL3MIY=
+X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9mHNc01sePA6ZpTLlbQjW24Op+tVk4KRcAnsvYqj8BnsImkjBk
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de
+	([2001:0:9d38:78cf:246b:26e9:af6c:cbea])
+	by smtp.strato.de (RZmta 42.2 AUTH) with ESMTPSA id j05e49t8TA7wCx9
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Fri, 29 Sep 2017 12:07:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1506679668; x=1507284468;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:From:To:
+	References:Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+	Content-Type:Content-Language:Content-Transfer-Encoding; bh=+Dvg
+	swKwa9uRfzdLQ3xcu3boAqC7DfhGbkXRSCB7l2w=; b=w6c97sMvRHL/pqZ4q3ej
+	ztp3GUiQt763h19PpXzKNgUUV/gQnfOAGbB0CQ00KmvrNQjAquUF/zmixvg5pFuA
+	ZPHRFQDbqRsehQ9POy1hqQjPZUibVu705AEmAGDKw1/ZxE5nzA4h/5gaD8p1oWQv
+	0Y3K2F0VvmgLqt5xtzg65RQ=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.0.3) with ESMTPSA id
+	md50000007717.msg; Fri, 29 Sep 2017 12:07:47 +0200
+X-MDArrival-Date: Fri, 29 Sep 2017 12:07:47 +0200
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=1445b640cf=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+To: Bryan Evenson <bevenson@melinkcorp.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <DM5PR05MB29545649D8FAD14D890F96C4BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
+	<06d955af-4522-212a-71f7-94429f388e89@rsi-elektrotechnik.de>
+Message-ID: <5a720867-59b1-6f6d-6741-01b649d84dcd@rsi-elektrotechnik.de>
+Date: Fri, 29 Sep 2017 12:07:45 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfGTCiRRNDPCL4/V+Aiy91i2X1Sxk4yi878DWI/xw51vr7Lvq90H2vEeaYRO1ezQF4AxowwH7cMtaI7E/QSaEHJAC78Tfryd0Ue7c1tqYSigyNdnqAmxA
-	hlWbkSS+63OxjUq9ZM8cLqlwaFzIgtJ629pbw7K/ZTdHKBUMytyCVkD9Gsd9jJN9IG9eoJoyBYIB3mUcBsErkOqcs8DC7L/7PRFX5lMrOvX2XR5qAeDq4SLh
-	202TLl6qASZkFV1S/WMXtw==
-Subject: poky using native pkg_resources module
+In-Reply-To: <06d955af-4522-212a-71f7-94429f388e89@rsi-elektrotechnik.de>
+Subject: Re: Errors building with Windows Subsystem for Linux (aka Bash on Ubuntu on Windows)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,127 +78,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Sep 2017 09:07:11 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 29 Sep 2017 10:08:02 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: de-DE
+Content-Transfer-Encoding: 8bit
 
-It looks like the pkg_resource module is using the native installation
+I don't have the slightest clue why this message was delayed so much.
 
+As it might sound now like parodizing the ongoing efforts, please 
+ignore/disregard.
 
-I cloned poky early september, and could complete a build.
+Greetz
+-- 
+Josef Holzmayr
+Software Developer Embedded Systems
 
-When I clone poky today, the build fails.
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
-As part of "do_image_wic" from image_types_wic.bbclass
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548
 
-A python program in 'bmap-tools-native' is executing
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
-	"from pkg_resources import load_entry_point"
-
-grep'ing for pkg_resources in bmap-tools-native reveals:
-
-bmaptool:		from pkg_resources import load_entry_point
-easy3_install:		from pkg_resources import load_entry_point
-easy_install-3.5:	from pkg_resources import load_entry_point
-=============================
-pkg_resources.py is not available inside poky at the moment.
-
-It is (or used to be) part of python-setuptools.
-
-On Ubuntu, it is present in: 
-"http://archive.ubuntu.com/ubuntu/pool/main/p/python-setuptools/python-setuptools_3.3.orig.tar.gz"
-and used in Ubuntu 14.04 and 16.04 to generate the
-	"python3-pkg-resource" package.
-
-When python-setuptools is generated by Yocto, it is partly
-a class, but the python-setuptools-native recipe downloads
-	"https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-26.2.7.zip"
-which does not contain "pkg_resources.py"
-
-=============================
-When bmaptool imports pkg_resources, it will not find anything in the
-yocto build, but will find the native 
-"/usr/lib/python3/dist-packages/pkg_resources.py" from
-
-This requires bmap-tools == 3.4, but the native bmap-tools in 
-Ubuntu-14.04 is 2.5, and in Ubuntu-16.04 it is 3.2 so the build fails.
-
-Maybe Ubuntu-17.04 supports bmap-tools 3.4 and it will build there,
-but using the native pkg_resource is of course not a good idea?
-
-Upgrading to a non-LTS Ubuntu is not something I would like to do...
-============================================================================================
-
-Error report
-
-============================================================================================
-
-| DEBUG: Executing shell function do_image_wic
-| wic create 
-"/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks" 
---vars 
-"/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/sysroots/beaglebone/imgdata/" 
--e "emagii-image" -o 
-"/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/"
-| INFO: Creating image(s)...
-|
-| INFO: The new image(s) can be found here:
-| 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/emagii_beaglebone-201709290903-mmcblk.direct
-|
-| The following build artifacts were used to create the image(s):
-|   ROOTFS_DIR: 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/tmp.wic.slysr_64/rootfs_copy
-|   BOOTIMG_DIR: 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot/usr/share
-|   KERNEL_DIR: 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/deploy/images/beaglebone
-|   NATIVE_SYSROOT: 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native
-|
-| INFO: The image(s) were created using OE kickstart file:
-| 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks
-| Traceback (most recent call last):
-|   File 
-"/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native/usr/bin/bmaptool", 
-line 6, in <module>
-|     from pkg_resources import load_entry_point
-|   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 2749, 
-in <module>
-|     working_set = WorkingSet._build_master()
-|   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 444, in 
-_build_master
-|     ws.require(__requires__)
-|   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 725, in 
-require
-|     needed = self.resolve(parse_requirements(requirements))
-|   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 628, in 
-resolve
-|     raise DistributionNotFound(req)
-| pkg_resources.DistributionNotFound: bmap-tools==3.4
-| WARNING: 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/run.do_image_wic.19342:1 
-exit 1 from 'bmaptool create 
-emagii-image-beaglebone-20170929070314.rootfs.wic -o 
-emagii-image-beaglebone-20170929070314.rootfs.wic.bmap'
-| ERROR: Function failed: do_image_wic (log file is located at 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/log.do_image_wic.19342)
-ERROR: Task 
-(/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic) 
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 3187 tasks of which 3186 didn't need to 
-be rerun and 1 failed.
-
-Summary: 1 task failed:
- 
-/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic
-Summary: There was 1 WARNING message shown.
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-
-
-
-Best Regards
-Ulf Samuelsson
 
