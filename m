@@ -1,36 +1,56 @@
-Return-Path: <alejandro.hernandez@linux.intel.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C092E00C62; Fri, 29 Sep 2017 11:18:27 -0700 (PDT)
+	id 43519E00BB7; Fri, 29 Sep 2017 12:01:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+	*      [64.235.150.234 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BB22E00C01
-	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 11:18:25 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga105.jf.intel.com with ESMTP; 29 Sep 2017 11:18:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,453,1500966000"; d="scan'208";a="1200510470"
-Received: from zalatorx-wtg.amr.corp.intel.com (HELO [10.252.252.73])
-	([10.252.252.73])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Sep 2017 11:18:23 -0700
-To: yocto@yoctoproject.org, yocto@emagii.com
-References: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
-From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-Message-ID: <414ca678-5e11-319d-7688-bc5127712b3a@linux.intel.com>
-Date: Fri, 29 Sep 2017 13:18:22 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
+	[64.235.150.234])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65BE2E00C62
+	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 12:00:53 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx30.ess.sfj.cudaops.com (version=TLSv1.2 cipher=AES256-SHA256
+	bits=256 verify=NO); Fri, 29 Sep 2017 19:00:50 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Fri, 29 Sep 2017 11:45:06 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Fri, 29 Sep 2017 11:45:06 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: trying to initialize a new devtool recipe using mercurial SCM
+Thread-Index: AdM5UKO0x3+4CpfiQY65PixC7/UxbQ==
+Date: Fri, 29 Sep 2017 18:45:05 +0000
+Message-ID: <616c777d037840de983eb77f09a0de05@sakuraus.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.3]
 MIME-Version: 1.0
-In-Reply-To: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
-Subject: Re: poky using native pkg_resources module
+X-BESS-ID: 1506711647-637140-22291-64175-2
+X-BESS-VER: 2017.12-r1709122024
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185535
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in 
+	message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Subject: trying to initialize a new devtool recipe using mercurial SCM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,187 +62,243 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Sep 2017 18:18:27 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 29 Sep 2017 19:01:46 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_616c777d037840de983eb77f09a0de05sakurauscom_"
 
-Hey Ulf,
+--_000_616c777d037840de983eb77f09a0de05sakurauscom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi list,
+I'm a new user of Yocto and I'm trying use devtool to set up a recipe that =
+has a source URI that points to a mercurial repository.
+Here is the output of running devtool:
 
+devtool add canfestival sources/canfestival -d hg://bitbucket.org/Mongo/can=
+festival-3-asc;protocol=3Dhttps
+DEBUG: Using basepath /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberry=
+pi3
+DEBUG: Using standard bitbake path /home/gwilson/Qt-5.9/Yocto-build-RPi3/so=
+urces/poky/bitbake
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
+oky/scripts/lib/devtool...
+DEBUG: Loading plugin deploy
+DEBUG: Loading plugin upgrade
+DEBUG: Loading plugin package
+DEBUG: Loading plugin build_sdk
+DEBUG: Loading plugin sdk
+DEBUG: Loading plugin search
+DEBUG: Loading plugin utilcmds
+DEBUG: Loading plugin build
+DEBUG: Loading plugin runqemu
+DEBUG: Loading plugin build_image
+DEBUG: Loading plugin standard
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
+pberrypi3/workspace/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
+oky/meta-poky/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
+pberrypi3/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
+oky/meta/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-raspberrypi/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-oe/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-python/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-networking/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-initramfs/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-multimedia/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-boot2qt/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-boot2qt/meta-raspberrypi-extras/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-mingw/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-qt5/lib/devtool...
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-sakura/lib/devtool...
+DEBUG: Reading workspace in /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
+pberrypi3/workspace
+DEBUG: Executing command "recipetool --color=3Dalways create -o /tmp/devtoo=
+l_vu_ossg "hg://bitbucket.org/Mongo/canfestival-3-asc"  -x /home/gwilson/Qt=
+-5.9/Yocto-build-RPi3/sources/canfestival -N canfestival"
+ERROR: Command 'recipetool --color=3Dalways create -o /tmp/devtool_vu_ossg =
+"hg://bitbucket.org/Mongo/canfestival-3-asc"  -x /home/gwilson/Qt-5.9/Yocto=
+-build-RPi3/sources/canfestival -N canfestival' failed:
+NOTE: Fetching hg://bitbucket.org/Mongo/canfestival-3-asc...
+ERROR: URL: 'hg://bitbucket.org/Mongo/canfestival-3-asc' is missing the req=
+uired parameter 'module'
 
-On 09/29/2017 04:05 AM, Ulf Samuelsson wrote:
-> It looks like the pkg_resource module is using the native installation
->
->
-> I cloned poky early september, and could complete a build.
->
-> When I clone poky today, the build fails.
->
-> As part of "do_image_wic" from image_types_wic.bbclass
->
-> A python program in 'bmap-tools-native' is executing
->
->     "from pkg_resources import load_entry_point"
->
-> grep'ing for pkg_resources in bmap-tools-native reveals:
->
-> bmaptool:        from pkg_resources import load_entry_point
-> easy3_install:        from pkg_resources import load_entry_point
-> easy_install-3.5:    from pkg_resources import load_entry_point
-> =============================
-> pkg_resources.py is not available inside poky at the moment.
->
-> It is (or used to be) part of python-setuptools.
+I found one reference that implied that adding ';module=3D' might help but =
+it made no difference.
 
-Correct, it was and still is part of setuptools
+I can do a "hg clone https://bitbucket.org/Mongo/canfestival-3-asc'.
+
+Any help would be greatly appreciated.
+
+Greg Wilson-Lindberg
+Sakura Finetek
+310-783-5075
+
+--_000_616c777d037840de983eb77f09a0de05sakurauscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> On Ubuntu, it is present in: 
-> "http://archive.ubuntu.com/ubuntu/pool/main/p/python-setuptools/python-setuptools_3.3.orig.tar.gz"
-> and used in Ubuntu 14.04 and 16.04 to generate the
->     "python3-pkg-resource" package.
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi list,<o:p></o:p></p>
+<p class=3D"MsoNormal">I'm a new user of Yocto and I'm trying use devtool t=
+o set up a recipe that has a source URI that points to a mercurial reposito=
+ry.<o:p></o:p></p>
+<p class=3D"MsoNormal">Here is the output of running devtool:<o:p></o:p></p=
 >
-> When python-setuptools is generated by Yocto, it is partly
-> a class, but the python-setuptools-native recipe downloads
->     "https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-26.2.7.zip" 
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">devtool add canfestival sources/canfestival -d hg://=
+bitbucket.org/Mongo/canfestival-3-asc;protocol=3Dhttps<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Using basepath /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/build-raspberrypi3<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Using standard bitbake path /home/gwilson/Qt-=
+5.9/Yocto-build-RPi3/sources/poky/bitbake<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/poky/scripts/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin deploy<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin upgrade<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin package<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin build_sdk<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin sdk<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin search<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin utilcmds<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin build<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin runqemu<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin build_image<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugin standard<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/build-raspberrypi3/workspace/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/poky/meta-poky/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/build-raspberrypi3/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/poky/meta/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-raspberrypi/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-openembedded/meta-oe/lib/devtool...<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-openembedded/meta-python/lib/devtool...<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-openembedded/meta-networking/lib/devtool...<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-openembedded/meta-initramfs/lib/devtool...<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-openembedded/meta-multimedia/lib/devtool...<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-boot2qt/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-boot2qt/meta-raspberrypi-extras/lib/devtool...<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-mingw/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-qt5/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/sources/meta-sakura/lib/devtool...<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Reading workspace in /home/gwilson/Qt-5.9/Yoc=
+to-build-RPi3/build-raspberrypi3/workspace<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Executing command &quot;recipetool --color=3D=
+always create -o /tmp/devtool_vu_ossg &quot;hg://bitbucket.org/Mongo/canfes=
+tival-3-asc&quot;&nbsp; -x /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/ca=
+nfestival -N canfestival&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Command 'recipetool --color=3Dalways create -=
+o /tmp/devtool_vu_ossg &quot;hg://bitbucket.org/Mongo/canfestival-3-asc&quo=
+t;&nbsp; -x /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/canfestival -N ca=
+nfestival' failed:<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Fetching hg://bitbucket.org/Mongo/canfestival-=
+3-asc...<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: URL: 'hg://bitbucket.org/Mongo/canfestival-3-=
+asc' is missing the required parameter 'module'<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I found one reference that implied that adding ';mod=
+ule=3D' might help but it made no difference.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I can do a &quot;hg clone https://bitbucket.org/Mong=
+o/canfestival-3-asc'.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any help would be greatly appreciated.<o:p></o:p></p=
 >
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Greg Wilson-Lindberg</span><span style=3D"font-size:1=
+2.0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Sakura Finetek</span><span style=3D"font-size:12.0pt;=
+font-family:&quot;Times New Roman&quot;,serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">310-783-5075</span><o:p></o:p></p>
+</div>
+</body>
+</html>
 
-This should be setuptools-36.2.7 btw
-
-> which does not contain "pkg_resources.py"
-
-Its not partly a class, it uses a class to install the package along 
-with distutils.
->
-> =============================
-> When bmaptool imports pkg_resources, it will not find anything in the
-> yocto build, but will find the native 
-> "/usr/lib/python3/dist-packages/pkg_resources.py" from
->
-> This requires bmap-tools == 3.4, but the native bmap-tools in 
-> Ubuntu-14.04 is 2.5, and in Ubuntu-16.04 it is 3.2 so the build fails.
->
-> Maybe Ubuntu-17.04 supports bmap-tools 3.4 and it will build there,
-> but using the native pkg_resource is of course not a good idea?
-
-There is something wrong with your build although I am not sure what it 
-is, pkg_resources is still part of python(3)-setuptools, in fact you can 
-check that in several ways
-
-if you do a devshell on python3-setuptools-native you can see the 
-extracted package contains the pkg_resources folder (so it is still part 
-of the package)
-then if you do a devshell after do_install, you can check the image 
-directory and find the setuptools.egg file, which is what python-native 
-uses later, if you unzip that
-egg file, you can see that pkg_resources is there, so it was in fact 
-packaged on Yocto / by bitbake.
-
-Lastly, you can also do a
-$ bitbake bmap-tools-native -c devshell
-
-you can then check that python3-native is in fact executing by doing a
-
-$ which python3
-
-that should point to python3-native (the one you just built)
-
-assuming you got python3-native correctly, execute python3
-
-once in python you can do a
-
-
-from pkg_resources import load_entry_point # which would import the module
-
-# check where the module is being loaded from
-import sys
-sys.modules['pkg_resources']
-
-That should print out the location of the imported module, and you can 
-see there that infact it was imported from the setuptools.egg file you 
-just built before, like this:
-
- >>> sys.modules['pkg_resources']
-<module 'pkg_resources' from 
-'$HOME/builds/qemux86-64/tmp/work/x86_64-linux/bmap-tools-native/3.4-r0/recipe-sysroot-native/usr/lib/python3.5/site-packages/setuptools-36.2.7-py3.5.egg/pkg_resources/__init__.py'>
-
->
-> Upgrading to a non-LTS Ubuntu is not something I would like to do...
-> ============================================================================================ 
->
->
-> Error report
->
-> ============================================================================================ 
->
->
-> | DEBUG: Executing shell function do_image_wic
-> | wic create 
-> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks" 
-> --vars 
-> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/sysroots/beaglebone/imgdata/" 
-> -e "emagii-image" -o 
-> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/"
-> | INFO: Creating image(s)...
-> |
-> | INFO: The new image(s) can be found here:
-> | 
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/emagii_beaglebone-201709290903-mmcblk.direct
-> |
-> | The following build artifacts were used to create the image(s):
-> |   ROOTFS_DIR: 
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/tmp.wic.slysr_64/rootfs_copy
-> |   BOOTIMG_DIR: 
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot/usr/share
-> |   KERNEL_DIR: 
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/deploy/images/beaglebone
-> |   NATIVE_SYSROOT: 
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native
-> |
-> | INFO: The image(s) were created using OE kickstart file:
-> | 
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks
-> | Traceback (most recent call last):
-> |   File 
-> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native/usr/bin/bmaptool", 
-> line 6, in <module>
-> |     from pkg_resources import load_entry_point
-> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 2749, 
-> in <module>
-> |     working_set = WorkingSet._build_master()
-> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 444, 
-> in _build_master
-> |     ws.require(__requires__)
-> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 725, 
-> in require
-> |     needed = self.resolve(parse_requirements(requirements))
-> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 628, 
-> in resolve
-> |     raise DistributionNotFound(req)
-> | pkg_resources.DistributionNotFound: bmap-tools==3.4
-> | WARNING: 
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/run.do_image_wic.19342:1 
-> exit 1 from 'bmaptool create 
-> emagii-image-beaglebone-20170929070314.rootfs.wic -o 
-> emagii-image-beaglebone-20170929070314.rootfs.wic.bmap'
-> | ERROR: Function failed: do_image_wic (log file is located at 
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/log.do_image_wic.19342)
-> ERROR: Task 
-> (/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic) 
-> failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 3187 tasks of which 3186 didn't need to 
-> be rerun and 1 failed.
->
-> Summary: 1 task failed:
->
-> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic 
->
-> Summary: There was 1 WARNING message shown.
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->
->
->
-> Best Regards
-> Ulf Samuelsson
-
-
+--_000_616c777d037840de983eb77f09a0de05sakurauscom_--
