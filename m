@@ -1,16 +1,15 @@
-Return-Path: <prvs=1445b640cf=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <ayoub.zaki@embexus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9DFDE00D71; Fri, 29 Sep 2017 03:08:02 -0700 (PDT)
+	id 45697E00D28; Fri, 29 Sep 2017 03:43:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.216 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,T_FILL_THIS_FORM_SHORT
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.30.212.2 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,55 +17,37 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.216])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17B81E00D63
-	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 03:08:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1506679679;
-	s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Language:Content-Type:In-Reply-To:
-	MIME-Version:Date:References:To:From:Subject;
-	bh=+DvgswKwa9uRfzdLQ3xcu3boAqC7DfhGbkXRSCB7l2w=;
-	b=kPgrelsikLexEiSCHq35h29poiADMfesQKZYFkkpR/H2XHC4fZuS2e6tOXrX91bQ2B
-	rmkfGwq6CLLgdylZm7J/s1muViqYZRp7c+nR9zK4r6CSuy3nGA3RaENf9td5MK2vT3lm
-	7/kY1XhmJAQhK2vmc0h7grPUea3sH32zL3MIY=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9mHNc01sePA6ZpTLlbQjW24Op+tVk4KRcAnsvYqj8BnsImkjBk
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	([2001:0:9d38:78cf:246b:26e9:af6c:cbea])
-	by smtp.strato.de (RZmta 42.2 AUTH) with ESMTPSA id j05e49t8TA7wCx9
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Fri, 29 Sep 2017 12:07:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1506679668; x=1507284468;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:From:To:
-	References:Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-	Content-Type:Content-Language:Content-Transfer-Encoding; bh=+Dvg
-	swKwa9uRfzdLQ3xcu3boAqC7DfhGbkXRSCB7l2w=; b=w6c97sMvRHL/pqZ4q3ej
-	ztp3GUiQt763h19PpXzKNgUUV/gQnfOAGbB0CQ00KmvrNQjAquUF/zmixvg5pFuA
-	ZPHRFQDbqRsehQ9POy1hqQjPZUibVu705AEmAGDKw1/ZxE5nzA4h/5gaD8p1oWQv
-	0Y3K2F0VvmgLqt5xtzg65RQ=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.0.3) with ESMTPSA id
-	md50000007717.msg; Fri, 29 Sep 2017 12:07:47 +0200
-X-MDArrival-Date: Fri, 29 Sep 2017 12:07:47 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=1445b640cf=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-To: Bryan Evenson <bevenson@melinkcorp.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+	*      information
+Received: from mailrelay3-2.pub.mailoutpod1-cph3.one.com
+	(mailrelay3-2.pub.mailoutpod1-cph3.one.com [46.30.212.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EAB1E00C77
+	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 03:43:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=embexus.com; s=20140924;
+	h=from:subject:date:message-id:to:mime-version:content-type:
+	content-transfer-encoding:in-reply-to:references;
+	bh=XDrbpEMmE464UbFEFBkV1Fs/4/Qlo3ZcMZt48cczVSA=;
+	b=Rh9aEW6bryv1xBZEQF6NfQA+vw9sfh8gv/0md/dB4KSTx86SHHEEyuCjaQCR7uDBktCXA1SuHJQA+
+	goIDRPCSCpJiUyau0c4swmVuK4juXvohGIhk3h7i5Fk1f0sivzYDSYdGCjaQScl/B5ap46zHcvGWVj
+	W4ZApn/qA5MwE/pA=
+X-HalOne-Cookie: 93249e6e6f7d950f7f4d6199e568ad4aff44f627
+X-HalOne-ID: 05f5ea28-a503-11e7-9212-b82a72d06996
+Received: from [192.168.1.68] (unknown [145.236.74.125])
+	by smtpfilter3.public.one.com (Halon) with ESMTPSA
+	id 05f5ea28-a503-11e7-9212-b82a72d06996;
+	Fri, 29 Sep 2017 10:43:26 +0000 (UTC)
+To: yocto@yoctoproject.org
 References: <DM5PR05MB29545649D8FAD14D890F96C4BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
 	<06d955af-4522-212a-71f7-94429f388e89@rsi-elektrotechnik.de>
-Message-ID: <5a720867-59b1-6f6d-6741-01b649d84dcd@rsi-elektrotechnik.de>
-Date: Fri, 29 Sep 2017 12:07:45 +0200
+	<5a720867-59b1-6f6d-6741-01b649d84dcd@rsi-elektrotechnik.de>
+From: Ayoub Zaki <ayoub.zaki@embexus.com>
+Message-ID: <7cb02a24-8c2c-7942-fcf3-9fca7f9f3303@embexus.com>
+Date: Fri, 29 Sep 2017 12:43:26 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <06d955af-4522-212a-71f7-94429f388e89@rsi-elektrotechnik.de>
-Subject: Re: Errors building with Windows Subsystem for Linux (aka Bash on Ubuntu on Windows)
+In-Reply-To: <5a720867-59b1-6f6d-6741-01b649d84dcd@rsi-elektrotechnik.de>
+Subject: Systemd Journal log persistence
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,36 +59,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Sep 2017 10:08:02 -0000
+X-List-Received-Date: Fri, 29 Sep 2017 10:43:30 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-I don't have the slightest clue why this message was delayed so much.
+Hi all,
 
-As it might sound now like parodizing the ongoing efforts, please 
-ignore/disregard.
+I'm trying to get my Journald logs persisting on the filesystem (on 
+seprated partition) but no luck so far, it seems that :
 
-Greetz
+/var/log is a symlink to /var/volatile/log and the /var/volatile is a 
+tmpfs mount so the logs will not persist.
+
+I tried to change this behaviour by appending base-files recipe and 
+remove the symlink above but it still appearing on the filesystem !
+
+Any tipps ?
+
+Regards
+
 -- 
-Josef Holzmayr
-Software Developer Embedded Systems
+Ayoub Zaki
+Embedded Systems Consultant
 
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
+Vaihinger Straße 2/1
+D-71634 Ludwigsburg
 
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+Tel.     : +4971415074546
+Mobile   : +4917662901545
+Email    : ayoub.zaki@embexus.com
+Homepage : https://embexus.com
 
 
