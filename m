@@ -1,35 +1,48 @@
-Return-Path: <Jiwei.Sun@windriver.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B776E00D91; Thu, 28 Sep 2017 19:10:47 -0700 (PDT)
+	id 0C9D1E00B53; Fri, 29 Sep 2017 08:48:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB614E00D5B
-	for <yocto@yoctoproject.org>; Thu, 28 Sep 2017 19:10:45 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 728FEE007EF
+	for <yocto@yoctoproject.org>; Fri, 29 Sep 2017 08:48:45 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v8T2AYR0023579
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Thu, 28 Sep 2017 19:10:34 -0700
-Received: from pek-lpd-ccm2.wrs.com (128.224.179.210) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.361.1; Thu, 28 Sep 2017 19:10:33 -0700
-From: Jiwei Sun <jiwei.sun@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 29 Sep 2017 10:09:35 +0800
-Message-ID: <1506650980-87720-3-git-send-email-jiwei.sun@windriver.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1506650980-87720-1-git-send-email-jiwei.sun@windriver.com>
-References: <1506650980-87720-1-git-send-email-jiwei.sun@windriver.com>
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v8TFmfFQ019375
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 29 Sep 2017 08:48:41 -0700 (PDT)
+Received: from soho-mhatle-m.local (172.25.36.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Fri, 29 Sep 2017 08:48:40 -0700
+To: Bryan Evenson <bevenson@melinkcorp.com>, "Burton, Ross"
+	<ross.burton@intel.com>
+References: <DM5PR05MB29545649D8FAD14D890F96C4BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
+	<CAJTo0LYWJFAChPkcOeU4ESOzCZ0XkrVswRnsh7jz=4QnKZ6uWA@mail.gmail.com>
+	<DM5PR05MB29543B944CF11354749DE3C6BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
+	<CAJTo0LZ3+prEXi4eJH-0qcg_mp7CShyVzGg2=nY3c3s585CQ9A@mail.gmail.com>
+	<DM5PR05MB2954E471F11F1ADF08E544CABB780@DM5PR05MB2954.namprd05.prod.outlook.com>
+	<CAJTo0LavAJr8D+kuQ_6FkjA-D-XotT7BcrCA3W7bv_HL2EpuxA@mail.gmail.com>
+	<DM5PR05MB2954EF4777E6EB3AE7C36815BB780@DM5PR05MB2954.namprd05.prod.outlook.com>
+	<CAJTo0LaoXqf700W4wHMwfCJAK3B5xOTuFm-7ug3DWscFpcF=sg@mail.gmail.com>
+	<DM5PR05MB2954E147CAF6959E26148F2BBB790@DM5PR05MB2954.namprd05.prod.outlook.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <1a8404d4-1052-f464-6fde-cdcaf686386a@windriver.com>
+Date: Fri, 29 Sep 2017 10:48:40 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.3.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 29 Sep 2017 08:40:16 -0700
-Cc: anibal.limon@linux.intel.com
-Subject: [ptest-runner 3/8] Fix linker order for libcheck
+In-Reply-To: <DM5PR05MB2954E147CAF6959E26148F2BBB790@DM5PR05MB2954.namprd05.prod.outlook.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Errors building with Windows Subsystem for Linux (aka Bash on Ubuntu on Windows)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,54 +54,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Sep 2017 02:10:47 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 29 Sep 2017 15:48:46 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-$ gcc  -lm -lrt -lpthread  tests/main.o tests/ptest_list.o tests/utils.o utils.o ptest_list.o -o ptest-runner-test -lcheck
-/usr/local/lib/libcheck.a(check.c.o): In function `tcase_create':
-/home/edavnys/check/src/check.c:145: undefined reference to `floor'
-/home/edavnys/check/src/check.c:148: undefined reference to `floor'
-//usr/local/lib/libcheck.a(check.c.o): In function `tcase_set_timeout':
-/home/edavnys/check/src/check.c:332: undefined reference to `floor'
-/home/edavnys/check/src/check.c:334: undefined reference to `floor'
-//usr/local/lib/libcheck.a(check.c.o): In function `check_get_clockid':
-/home/edavnys/check/src/check.c:616: undefined reference to `timer_create'
-/home/edavnys/check/src/check.c:618: undefined reference to `timer_delete'
-//usr/local/lib/libcheck.a(check_run.c.o): In function `tcase_run_tfun_fork':
-/home/edavnys/check/src/check_run.c:507: undefined reference to `timer_create'
-/home/edavnys/check/src/check_run.c:515: undefined reference to `timer_settime'
-/home/edavnys/check/src/check_run.c:529: undefined reference to `timer_delete'
-collect2: error: ld returned 1 exit status
+On 9/28/17 8:28 AM, Bryan Evenson wrote:
+> Ross,
+> 
+>  
+> 
+> *From:*Burton, Ross [mailto:ross.burton@intel.com]
+> *Sent:* Wednesday, September 27, 2017 6:43 PM
+> *To:* Bryan Evenson <bevenson@melinkcorp.com>
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Errors building with Windows Subsystem for Linux (aka
+> Bash on Ubuntu on Windows)
+> 
+>  
+> 
+> On 27 September 2017 at 21:59, Bryan Evenson <bevenson@melinkcorp.com
+> <mailto:bevenson@melinkcorp.com>> wrote:
+> 
+>      
+> 
+>     I think I found the problem.  I started looking at more file properties for
+>     the files that worked and the ones that didn’t, and I noticed that all the
+>     ones that failed show a link count of 1024.  The Windows filesystem has a
+>     link limit of 1023 links per file (at least as reported here:
+>     https://msdn.microsoft.com/en-us/library/windows/desktop/aa363860(v=vs.85).aspx),
+>     so I think the hard link is failing due to the Windows link limit.  If that
+>     is the case, then I don’t think it’ll be a quick fix to get a working
+>     solution under WSL.
+> 
+>  
+> 
+> That link count doesn't seem feasible though...  we hardlink frequently during a
+> recipe build, but I'd expect to see 10 links, not over a thousand.  You've
+> definitely found the problem, just need to figure out what is causing such
+> excessive linking,
+> 
+>  
+> 
+> Two files, LC_MEASUREMENT and LC_PAPER, seem to be identical through most the
+> locales.  I’m not sure which are copies and which are hard links, but I did a
+> md5sum comparison and found over 1200 identical LC_MEASUREMENT files in the
+> glibc-locale working directory.  I don’t need all the locales, so I set
+> GLIBC_GENERATE_LOCALES = "en_GB.UTF-8 en_US.UTF-8" in my local.conf and now
+> glibc-locale completes building.
+> 
 
-Signed-off-by: Jiwei Sun <jiwei.sun@windriver.com>
----
- Makefile | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+FYI, this is expected.  The locales have numerous copies of the same files for
+the same locales.  So to save space there is a step that runs and identifies the
+duplicates and hard links them.  (This helps a lot for the sstate-cache for
+instance).
 
-diff --git a/Makefile b/Makefile
-index 434b89f..3faf2e7 100644
---- a/Makefile
-+++ b/Makefile
-@@ -21,8 +21,7 @@ EXECUTABLE=ptest-runner
- TEST_SOURCES=tests/main.c tests/ptest_list.c tests/utils.c $(BASE_SOURCES)
- TEST_OBJECTS=$(TEST_SOURCES:.c=.o)
- TEST_EXECUTABLE=ptest-runner-test
--TEST_LDFLAGS=-lm -lrt -lpthread
--TEST_LIBSTATIC=-lcheck
-+TEST_LIBSTATIC=-lcheck -lrt -lm -lpthread
- 
- TEST_DATA=$(shell echo `pwd`/tests/data)
- 
-@@ -34,7 +33,7 @@ $(EXECUTABLE): $(OBJECTS)
- tests: $(TEST_SOURCES) $(TEST_EXECUTABLE)
- 
- $(TEST_EXECUTABLE): $(TEST_OBJECTS)
--	$(CC) $(LDFLAGS) $(TEST_LDFLAGS) $(TEST_OBJECTS) -o $@ $(TEST_LIBSTATIC)
-+	$(CC) $(LDFLAGS) $(TEST_OBJECTS) -o $@ $(TEST_LIBSTATIC)
- 
- check: $(TEST_EXECUTABLE)
- 	./$(TEST_EXECUTABLE) -d $(TEST_DATA)
--- 
-1.8.3.1
+It likely wouldn't be difficult to determine the link count 'issue' and simply
+link to a different file for subsequent links... but I'm no longer sure where
+the linking occurs that does all of this.
+
+--Mark
+
+> 
+> I’ll report back if the rest of the build completes.
+> 
+>  
+> 
+> Bryan
+> 
+>  
+> 
+> 
+> 
 
 
