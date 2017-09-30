@@ -1,34 +1,33 @@
 Return-Path: <alejandro.hernandez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0D42E00C43; Sat, 30 Sep 2017 11:50:00 -0700 (PDT)
+	id 7474AE00CA5; Sat, 30 Sep 2017 12:32:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56D7CE00A9C
-	for <yocto@yoctoproject.org>; Sat, 30 Sep 2017 11:49:58 -0700 (PDT)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CDE3E00B53
+	for <yocto@yoctoproject.org>; Sat, 30 Sep 2017 12:32:04 -0700 (PDT)
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	30 Sep 2017 11:49:58 -0700
+	by fmsmga105.fm.intel.com with ESMTP; 30 Sep 2017 12:32:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,459,1500966000"; d="scan'208";a="157377274"
+X-IronPort-AV: E=Sophos;i="5.42,459,1500966000"; d="scan'208";a="157385240"
 Received: from josueher-mobl.amr.corp.intel.com (HELO [10.252.248.204])
 	([10.252.248.204])
-	by fmsmga005.fm.intel.com with ESMTP; 30 Sep 2017 11:49:57 -0700
+	by fmsmga005.fm.intel.com with ESMTP; 30 Sep 2017 12:32:03 -0700
 To: Ulf Samuelsson <yocto@emagii.com>, yocto@yoctoproject.org
 References: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
 	<414ca678-5e11-319d-7688-bc5127712b3a@linux.intel.com>
 	<730b0fb0-622e-d3b9-24ae-f3f9b2cf68f9@emagii.com>
 From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-Message-ID: <de7f82c2-3b7c-d8ee-c3d2-04e11840bfba@linux.intel.com>
-Date: Sat, 30 Sep 2017 13:49:56 -0500
+Message-ID: <6cb9686c-796e-1d9b-fbba-fea5452fb6cd@linux.intel.com>
+Date: Sat, 30 Sep 2017 14:32:02 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
@@ -45,11 +44,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Sep 2017 18:50:01 -0000
+X-List-Received-Date: Sat, 30 Sep 2017 19:32:07 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
 
+Hey Ulf,
+
+
+Yes, the problem is that the bmap-tools script is trying to be executed 
+by python3 (HOST) but it should be
+
+executed by the native python3 we just built, so fixing the shebang on 
+the script should do it,
+
+please file the bug and email me the bug number so I can take care of it.
+
+
+Alejandro | aehs29
 
 
 On 09/30/2017 01:31 PM, Ulf Samuelsson wrote:
@@ -175,21 +187,6 @@ On 09/30/2017 01:31 PM, Ulf Samuelsson wrote:
 >
 > Best Regards
 > Ulf Samuelsson
-
-
-Correct, please submit a bug on https://bugzilla.yoctoproject.org
-
-This is a bmap-tools-native bug failing to load pkg_resources correctly, 
-most likely caused by  the switch to python3
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=04ef46e2b2b753321408db02a2df3753b85ac0dd
-
-I will take a look at this once the bug is filled.
-
-Thanks!
-
-Alejandro
-
-
 >
 >> then if you do a devshell after do_install, you can check the image 
 >> directory and find the setuptools.egg file, which is what 
