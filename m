@@ -1,64 +1,34 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B63AE00C62; Sat, 30 Sep 2017 02:35:53 -0700 (PDT)
+	id 8CE74E00CA5; Sat, 30 Sep 2017 07:49:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	TEQF_USR_MSGID_HEX autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.236.60.154 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E66BE00C01
-	for <yocto@yoctoproject.org>; Sat, 30 Sep 2017 02:35:52 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id i131so3048908wma.0
-	for <yocto@yoctoproject.org>; Sat, 30 Sep 2017 02:35:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=HSKsc6BfSm+313ORnab7qzvw8SnBSeOaKab+iTxPmks=;
-	b=SDX4jiL7iub/OBpSbc/Yxi5VBereGgQiKWI6OB/NKLl5NNnR2V8KSX5uYOnVMG6Gzz
-	VSxNQO2o5sGK1YxxuGF7ddRuwaFDxsCOqmqD3an9IHyF3QgHmMoeUwSvf/FVUEgWXeSX
-	FCpiimk1rsLbOgLTsmDLnocBVr/aD9zg0iLfmYI70j2BT7iyQJvzBxxir9ukfyTzwYhR
-	a9o0+959UzGbXIaDYxZxrcYArlECMTy2vI15bivA0YyDtMj/I29zRDnHUNvUlkdHXtDt
-	XnJDpumg88O/qQ3ZVrQcLNEdD8BfGWIfm7VtrDAYIjrSX1LaM1NZNitRRcCcXXDjyIqw
-	pydw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=HSKsc6BfSm+313ORnab7qzvw8SnBSeOaKab+iTxPmks=;
-	b=oWNJ0W5LJ0oH0ptEiFE/6cotK76u+MtNXU+z4rZiO2lhlzOAZALq5L7JHHEUU29Esj
-	Ks0F62JJID+NeIq6BSXGDq81/ukAkxq2v+kkogbJPpO2jXz3c5NiBogeTCQsnK7UNc5D
-	Ve7YGxI+NtfYC+7ZdbapBnTe7cdn/Uo6xEePl4vsBFpMUwi7wq8CW/GOkXnnkeSeFXyU
-	LxwoMGtmMTHlkK4VyPrw/uWJqvVrdAcqWBQymcW9Sfm9E5N8vsx9c2LvH6fF5y6S8Vm7
-	xnVOAEvY6UVa0XUSlIaOPjyK7wnXKvg5fQ6ZjSr4T4vZwbsk0iJQqkpz8PCIUHq9XLXm
-	lMMg==
-X-Gm-Message-State: AHPjjUjA57T05EzlXIWz5MfgjAkwn6NC2TDczZ0Ut4thmOi0AMfJNWf7
-	w7Jjdl+7PqzwawZH1hm/i+1hWSOPZwnyGs/9tYxcHw==
-X-Google-Smtp-Source: AOwi7QD7Rj4g54sfNSq18qYiuG8WRHGmD74UedEM1vX9SHoTHYfParv7qbaSW9FvA+nGfUVFTw0AD827esoU6naz+4k=
-X-Received: by 10.28.218.146 with SMTP id r140mr5470356wmg.14.1506764150895;
-	Sat, 30 Sep 2017 02:35:50 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.28.67.131 with HTTP; Sat, 30 Sep 2017 02:35:50 -0700 (PDT)
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Sat, 30 Sep 2017 11:35:50 +0200
-Message-ID: <CAGAf8LxcQAwP5+nFnbjZj=pq1oouYbXkCpMPWwGvBBw6ETzmCA@mail.gmail.com>
+	* 1.0 TEQF_USR_MSGID_HEX To and from user nearly same + unusual message
+	ID
+Received: from v-smtpout1.han.skanova.net (v-smtpout1.han.skanova.net
+	[81.236.60.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F5D3E006CA
+	for <yocto@yoctoproject.org>; Sat, 30 Sep 2017 07:49:12 -0700 (PDT)
+Received: from [10.175.196.109] ([84.216.24.165]) by cmsmtp with SMTP
+	id yJ4odTm7cKC0zyJ4od4MNi; Sat, 30 Sep 2017 16:49:11 +0200
 To: Yocto Project <yocto@yoctoproject.org>
-Subject: INTEL E3900 Apollo Lake I (APL-I) with U-Boot and YOCTO?
+From: Ulf Samuelsson <yocto@emagii.com>
+Message-ID: <4a9df97c-fa72-82a3-b8be-60b8f537e458@emagii.com>
+Date: Sat, 30 Sep 2017 16:49:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
+MIME-Version: 1.0
+X-CMAE-Envelope: MS4wfGjqd+xq3is8xCGIeFLNSgPILPyHD4N7UpsLxv1mFAetot5nRdNdaRhqZFBozuBR8AFnoTtLWcG6OxsyVi2EP8JgyvRxpcb8HWrOgY7ybp54gviWgNo/
+	K1DY2Tx368Icx9LbubyEqyaJHBBw/1zVJ/qYkSOi96RJkQHatidMgOm0
+Subject: RFC: autotooler: generation of "configure.ac" and "Makefile.am" using Kconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,82 +40,335 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Sep 2017 09:35:53 -0000
-Content-Type: multipart/alternative; boundary="001a1145b476f97f30055a64dd3b"
+X-List-Received-Date: Sat, 30 Sep 2017 14:49:15 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---001a1145b476f97f30055a64dd3b
-Content-Type: text/plain; charset="UTF-8"
+Have a need to convert a large number of libraries to use autotools.
 
-Hello to the YOCTO Community,
+I came up with the following idea:
 
-I am curious about the following HW/FW configuration, for the YOCTO Project?
+I create an Kconfig based configuration system, where you define a 
+number of configuration items needed by configure.ac and Makefile.am
 
-Did anybody managed to run the following: INTEL Atom E3900 APL-I with
-U-Boot and YOCTO on the top of it?
+You choose if you want to build an application, a shared library or a 
+static library.
 
-E3900 -> IFWI -> MBR -> U-Boot -> YOCTO ?!
+The build normally depends on other libraries, and you checkmarks
+which library you are interested in from a (small) number of supported 
+libraries.
+You can likewise select to support options like "--enable-openssl",
+again from a (small) number of supported options.
 
-Here are some explanations regarding the terms:
+If you have stuff not supported, the autotooler will include Config.in
+files allowing you to add your own items.
 
-*IFWI is the Intel FirmWare Interface, a binary blob loaded from the eMMC
-boot partition that executes a secondary loader (in this case U-Boot) from
-the main eMMC. IFWI blobs for the APL-I are provided by Intel and are
-specific for different flavors of the MID silicon.*
-*Normal IFWI eMMC boot process*
+Once the configuration is complete, you will compile an application
+which will generate "configure.ac" from the configuration file.
 
-   1. *On-chip boot rom inits eMMC and loads IFWI from the MMC boot
-   partitions*
-   2. *IFWI looks for OSIP header at top of eMMC (MBR boot block)*
-   3. *The header directs IFWI to the start, size, load address, and entry
-   of U-Boot in eMMC*
-   4. *(need clarification) If u-boot is not found, try the alt u-boot
-   image at 5MB into the eMMC*
-   5. *U-Boot is loaded into RAM and executed*
+Again, if you have stuff not supported in the code, you can add it
+in a user include file.
 
-*OSIP stands for OS Image Profile, and it is nothing more and less than
-INTEL name for very known old fashion MBR, considering DATA structure.*
+The generator will read a user-headers.inc file and
+generate an AC_CHECK_HEADERS entry.
 
-Thank you in advance,
-Zoran
 
---001a1145b476f97f30055a64dd3b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The autotooler is available on
+	https://www.github.com/emagii/autotooler.git
 
-<div dir=3D"ltr">Hello to the YOCTO Community,<div><br></div><div>I am curi=
-ous about the following HW/FW configuration, for the YOCTO Project?</div><d=
-iv><br></div><div>Did anybody managed to run the following: INTEL Atom E390=
-0 APL-I with U-Boot and YOCTO on the top of it?</div><div><br></div><div>E3=
-900 -&gt; IFWI -&gt; MBR -&gt; U-Boot -&gt; YOCTO ?!</div><div><br></div><d=
-iv>Here are some explanations regarding the terms:</div><div><br></div><div=
-><div style=3D""><span style=3D"color:rgb(36,41,46)"><font face=3D"arial, h=
-elvetica, sans-serif" style=3D""><i><u>IFWI is the Intel FirmWare Interface=
-, a binary blob loaded from the eMMC boot partition that executes a seconda=
-ry loader (in this case U-Boot) from the main eMMC. IFWI blobs for the APL-=
-I are provided by Intel and are specific for different flavors of the MID s=
-ilicon.</u></i></font></span></div><div style=3D""><h4 style=3D"box-sizing:=
-border-box;margin-top:24px;margin-bottom:16px;line-height:1.25;color:rgb(36=
-,41,46)"><font face=3D"arial, helvetica, sans-serif"><i><u>Normal IFWI eMMC=
- boot process</u></i></font></h4><ol style=3D"box-sizing:border-box;padding=
--left:2em;margin-top:0px;margin-bottom:16px;color:rgb(36,41,46)"><li style=
-=3D"margin-left:15px;box-sizing:border-box"><font face=3D"arial, helvetica,=
- sans-serif"><i><u>On-chip boot rom inits eMMC and loads IFWI from the MMC =
-boot partitions</u></i></font></li><li style=3D"margin-left:15px;box-sizing=
-:border-box;margin-top:0.25em"><font face=3D"arial, helvetica, sans-serif">=
-<i><u>IFWI looks for OSIP header at top of eMMC (MBR boot block)</u></i></f=
-ont></li><li style=3D"margin-left:15px;box-sizing:border-box;margin-top:0.2=
-5em"><font face=3D"arial, helvetica, sans-serif"><i><u>The header directs I=
-FWI to the start, size, load address, and entry of U-Boot in eMMC</u></i></=
-font></li><li style=3D"margin-left:15px;box-sizing:border-box;margin-top:0.=
-25em"><font face=3D"arial, helvetica, sans-serif"><i><u>(need clarification=
-) If u-boot is not found, try the alt u-boot image at 5MB into the eMMC</u>=
-</i></font></li><li style=3D"margin-left:15px;box-sizing:border-box;margin-=
-top:0.25em"><font face=3D"arial, helvetica, sans-serif"><i><u>U-Boot is loa=
-ded into RAM and executed</u></i></font></li></ol></div><div style=3D""><i>=
-<u>OSIP stands for OS Image Profile, and it is nothing more and less than I=
-NTEL name for very known old fashion MBR, considering DATA structure.</u></=
-i></div><div style=3D""><i><u><br></u></i></div><div style=3D"">Thank you i=
-n advance,</div><div style=3D"">Zoran</div><div style=3D"font-size:12.8px">=
-<br></div><div style=3D"font-size:12.8px">=C2=A0</div></div></div>
+===================================================================
+Currently, it does not generate any Makefile.am files, but
+the idea is to separate the source files into
+* C source
+* Public Headers
+* Local Headers
 
---001a1145b476f97f30055a64dd3b--
+A tool would then scan the directories and classify them accordingly,
+so Makefile.am files should be possible to generate fairly easy.
+
+===================================================================
+A final step would clone a empty git tree, and populate it
+with all the files needed for a complete package.
+===================================================================
+
+Comments appreciated.
+
+Best Regards
+Ulf Samuelsson
+===================================================================
+Here is a typical "autoconh.h" generated by Kconfig.
+
+/*
+  * Automatically generated C config: don't edit
+  * Sat Sep 30 16:27:24 2017
+  */
+#define CONFIG_SHARED_LIB 1
+#define CONFIG_PTHREAD 1
+#define CONFIG_LIBRARY 1
+#define CONFIG_PROJECT "myproject"
+#define CONFIG_WORKDIR "${HOME}/projects/autotooler"
+#define CONFIG_OPENSSL 1
+#define CONFIG_CURL 1
+#define CONFIG_COPYRIGHT_DATE "2017"
+#define CONFIG_HOMEPAGE "http://www.emagii.com/"
+#define CONFIG_EXAMPLES 1
+#define CONFIG_DEBUG 1
+#define HAVE_DOT_CONFIG 1
+#define CONFIG_AC_PRERQ "2.59"
+#define CONFIG_BOOST 1
+#define CONFIG_OS_LINUX 1
+#define CONFIG_LIBRARY_NAME "libyocto"
+#define CONFIG_AUTHOR_EMAIL "ulf@emagii.com"
+#define CONFIG_LIBRARY_VERSION "1.0"
+#define CONFIG_AC_CONFIG_HEADER "src/include/config.h"
+#define CONFIG_OS "Linux"
+#define CONFIG_EXAMPLES_VAR "examples"
+#define CONFIG_AC_CONFIG_MACRO_DIR "m4"
+#define CONFIG_DEBUG_VAR "debug"
+#define CONFIG_PROJECT_TYPE "library"
+#define CONFIG_SRCDIR "src"
+#define CONFIG_SRC_URI_REPO ""
+#define CONFIG_AUTHOR "Ulf Samuelsson"
+#define CONFIG_SRC_URI_HOST "https://www.github.com/emagii"
+#define CONFIG_CURLPP 1
+#define CONFIG_AM_INIT_AUTOMAKE "1.10 -Wall no-define"
+
+The application will from this information generate:
+
+AC_INIT([libyocto],
+	[1.0],
+	[Ulf Samuelsson],
+	[libyocto-1.0],
+	[http://www.emagii.com/])
+
+AC_PRERQ([2.59])
+
+AC_CONFIG_HEADER([src/include/config.h])
+
+AC_CONFIG_SRCDIR([src])
+
+AC_PROG_CPP
+AC_PROG_CC
+AC_INIT_AUTOMAKE([1.10 -Wall no-define])
+
+AC_PROG_MAKE_SET
+AM_MAINTAINER_MODE
+AC_HEADER_STDC
+AC_ENABLE_SHARED
+AC_DISABLE_STATIC
+AC_PROG_LIBTOOL
+AC_HEADER_STDC
+
+AC_CHECK_HEADERS( \
+	ctype.h \
+	errno.h \
+	fcntl.h \
+	openssl/bio.h \
+	openssl/err.h \
+	openssl/opensslconf.h \
+	openssl/rand.h \
+	openssl/ssl.h \
+	pthread.h \
+	stdio.h \
+	stdlib.h \
+	stdarg.h \
+	stdint.h \
+	string.h \
+	signal.h \
+	sys/ioctl.h \
+	sys/socket.h \
+	sys/time.h \
+	sys/types.h \
+	time.h \
+	unistd.h \
+	 \
+	,
+dnl to do if not found
+	[],
+dnl to do if not found
+	[],
+dnl default includes
+	[
+#ifdef HAVE_SYS_TYPES_H
+#include <sys/types.h>
+#endif
+#ifdef HAVE_SYS_TIME_H
+#include <sys/time.h>
+#endif
+dnl We do this default-include simply to make sure that the nameser_compat.h
+dnl header *REALLY* can be include after the new nameser.h. It seems AIX 5.1
+dnl (and others?) is not designed to allow this.
+#ifdef HAVE_ARPA_NAMESER_H
+#include <arpa/nameser.h>
+#endif
+
+dnl *Sigh* these are needed in order for net/if.h to get properly detected.
+#ifdef HAVE_SYS_SOCKET_H
+#include <sys/socket.h>
+#endif
+#ifdef HAVE_NETINET_IN_H
+#include <netinet/in.h>
+#endif
+]
+)
+
+# ==== Boost Libraries
+AC_ARG_WITH([boost-include-path],
+	[AS_HELP_STRING([--with-boost-include-path],[location of the Boost 
+headers, defaults to /usr/include/boost])],
+	[CXXFLAGS_BOOST="-I$withval"],
+	[CXXFLAGS_BOOST="-I/usr/include/boost"])
+AC_SUBST([BOOST_CFLAGS])
+
+AC_ARG_WITH([boost-lib-path],
+	[AS_HELP_STRING([--with-boost-lib-path],[location of the Boost 
+libraries, defaults to /usr/lib])],
+	[BOOST_LIBS="-L$withval" -lboost_system -lboost_filesystem 
+-lboost_program_options -lboost_thread -lpthread],
+	[BOOST_LIBS="-L/usr/lib -lboost_system -lboost_filesystem 
+-lboost_program_options -lboost_thread -lpthread"])
+AC_SUBST([BOOST_LIBS])
+
+AC_ARG_ENABLE(boost,
+	[--enable-boost	Include Boost Libraries],
+	[case "${enableval}" in
+		yes)	use_boost=true  ;;
+		no)	use_boost=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-boost) ;;
+	 esac
+	],
+	[use_boost=false])
+AM_CONDITIONAL(CONFIG_BOOST, test x$boost = xtrue)
+
+# ==== cURL Libraries
+AC_ARG_WITH([curl-include-path],
+	[AS_HELP_STRING([--with-curl-include-path],[location of the cURL 
+headers, defaults to /usr/include])],
+	[CXXFLAGS_CURL="-I$withval"],
+	[CXXFLAGS_CURL="-I/usr/include"])
+AC_SUBST([CURL_CFLAGS])
+
+AC_ARG_WITH([curl-lib-path],
+	[AS_HELP_STRING([--with-curl-lib-path],[location of the cURL libraries, 
+defaults to /usr/lib])],
+	[CURL_LIBS="-L$withval" -lcurl],
+	[CURL_LIBS="-L/usr/lib -lcurl"])
+AC_SUBST([CURL_LIBS])
+
+AC_ARG_ENABLE(curl,
+	[--enable-curl	Include cURL],
+	[case "${enableval}" in
+		yes)	use_curl=true  ;;
+		no)	use_curl=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-curl) ;;
+	 esac
+	],
+	[use_curl=false])
+AM_CONDITIONAL(CONFIG_CURL, test x$curl = xtrue)
+
+# ==== cURLPP Libraries
+AC_ARG_WITH([curlpp-include-path],
+	[AS_HELP_STRING([--with-curlpp-include-path],[location of the cURLPP 
+headers, defaults to /usr/include])],
+	[CXXFLAGS_CURLPP="-I$withval"],
+	[CXXFLAGS_CURLPP="-I/usr/include"])
+AC_SUBST([CURLPP_CFLAGS])
+
+AC_ARG_WITH([curlpp-lib-path],
+	[AS_HELP_STRING([--with-curlpp-lib-path],[location of the cURLPP 
+libraries, defaults to /usr/lib])],
+	[CURLPP_LIBS="-L$withval" -lcurlpp -lutilspp],
+	[CURLPP_LIBS="-L/usr/lib -lcurlpp -lutilspp"])
+AC_SUBST([CURLPP_LIBS])
+
+AC_ARG_ENABLE(curlpp,
+	[--enable-curlpp	Include cURLPP],
+	[case "${enableval}" in
+		yes)	use_curlpp=true  ;;
+		no)	use_curlpp=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-curlpp) ;;
+	 esac
+	],
+	[use_curlpp=false])
+AM_CONDITIONAL(CONFIG_CURLPP, test x$curlpp = xtrue)
+
+# ==== OpenSSL Libraries
+AC_ARG_WITH([openssl-include-path],
+	[AS_HELP_STRING([--with-openssl-include-path],[location of the OpenSSL 
+headers, defaults to /usr/include])],
+	[CFLAGS_OPENSSL="-I$withval"],
+	[CFLAGS_OPENSSL="-I/usr/include"])
+AC_SUBST([OPENSSL_CFLAGS])
+
+AC_ARG_WITH([openssl-lib-path],
+	[AS_HELP_STRING([--with-openssl-lib-path],[location of the OpenSSL 
+libraries, defaults to /usr/lib])],
+	[OPENSSL_LIBS="-L$withval" -lssl],
+	[OPENSSL_LIBS="-L/usr/lib -lssl"])
+AC_SUBST([OPENSSL_LIBS])
+
+AC_ARG_ENABLE(openssl,
+	[--enable-openssl	Include OpenSSL],
+	[case "${enableval}" in
+		yes)	use_openssl=true  ;;
+		no)	use_openssl=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-openssl) ;;
+	 esac
+	],
+	[use_openssl=false])
+AM_CONDITIONAL(CONFIG_OPENSSL, test x$openssl = xtrue)
+
+# ==== Pthread Libraries
+AC_ARG_WITH([pthread-include-path],
+	[AS_HELP_STRING([--with-pthread-include-path],[location of the PThread 
+headers, defaults to /usr/include])],
+	[CFLAGS_PTHREAD="-I$withval"],
+	[CFLAGS_PTHREAD="-I/usr/include"])
+AC_SUBST([PTHREAD_CFLAGS])
+
+AC_ARG_WITH([pthread-lib-path],
+	[AS_HELP_STRING([--with-pthread-lib-path],[location of the PThread 
+libraries, defaults to /usr/include])],
+	[PTHREAD_LIBS="-L$withval" -lpthread],
+	[PTHREAD_LIBS="-L/usr/include -lpthread"])
+AC_SUBST([PTHREAD_LIBS])
+
+AC_ARG_ENABLE(pthread,
+	[--enable-pthread	Include PThreads],
+	[case "${enableval}" in
+		yes)	use_pthread=true  ;;
+		no)	use_pthread=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-pthread) ;;
+	 esac
+	],
+	[use_pthread=false])
+AM_CONDITIONAL(CONFIG_PTHREAD, test x$pthread = xtrue)
+
+# ==== Debug
+AC_ARG_ENABLE(debug,
+	[--enable-debug	Build with DEBUG enabled],
+	[case "${enableval}" in
+		yes)	debug=true  ;;
+		no)	debug=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
+	 esac
+	],
+	[debug=false])
+AM_CONDITIONAL(CONFIG_DEBUG, test x$debug = xtrue)
+
+AC_ARG_ENABLE(examples,
+	[--enable-examples	Build examples],
+	[case "${enableval}" in
+		yes)	examples=true  ;;
+		no)	examples=false ;;
+		*) AC_MSG_ERROR(bad value ${enableval} for --enable-examples) ;;
+	 esac
+	],
+	[examples=false])
+AM_CONDITIONAL(CONFIG_EXAMPLES, test x$examples = xtrue)
+
+AC_SUBST([CFLAGS])
+AC_CONFIG_FILES([Makefile  libyocto.pc])
+AC_OUTPUT
+
