@@ -1,34 +1,36 @@
 Return-Path: <yocto@emagii.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8CE74E00CA5; Sat, 30 Sep 2017 07:49:15 -0700 (PDT)
+	id D9EDEE00C43; Sat, 30 Sep 2017 11:31:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	TEQF_USR_MSGID_HEX autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [81.236.60.154 listed in list.dnswl.org]
+	*      [81.236.60.155 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.0 TEQF_USR_MSGID_HEX To and from user nearly same + unusual message
-	ID
-Received: from v-smtpout1.han.skanova.net (v-smtpout1.han.skanova.net
-	[81.236.60.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F5D3E006CA
-	for <yocto@yoctoproject.org>; Sat, 30 Sep 2017 07:49:12 -0700 (PDT)
-Received: from [10.175.196.109] ([84.216.24.165]) by cmsmtp with SMTP
-	id yJ4odTm7cKC0zyJ4od4MNi; Sat, 30 Sep 2017 16:49:11 +0200
-To: Yocto Project <yocto@yoctoproject.org>
+Received: from v-smtpout2.han.skanova.net (v-smtpout2.han.skanova.net
+	[81.236.60.155])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C1ECE00A9C
+	for <yocto@yoctoproject.org>; Sat, 30 Sep 2017 11:31:23 -0700 (PDT)
+Received: from [10.175.196.113] ([84.216.24.165]) by cmsmtp with SMTP
+	id yMXndLns5G9mmyMXndQoIM; Sat, 30 Sep 2017 20:31:21 +0200
+To: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>,
+	yocto@yoctoproject.org
+References: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
+	<414ca678-5e11-319d-7688-bc5127712b3a@linux.intel.com>
 From: Ulf Samuelsson <yocto@emagii.com>
-Message-ID: <4a9df97c-fa72-82a3-b8be-60b8f537e458@emagii.com>
-Date: Sat, 30 Sep 2017 16:49:09 +0200
+Message-ID: <730b0fb0-622e-d3b9-24ae-f3f9b2cf68f9@emagii.com>
+Date: Sat, 30 Sep 2017 20:31:19 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
-X-CMAE-Envelope: MS4wfGjqd+xq3is8xCGIeFLNSgPILPyHD4N7UpsLxv1mFAetot5nRdNdaRhqZFBozuBR8AFnoTtLWcG6OxsyVi2EP8JgyvRxpcb8HWrOgY7ybp54gviWgNo/
-	K1DY2Tx368Icx9LbubyEqyaJHBBw/1zVJ/qYkSOi96RJkQHatidMgOm0
-Subject: RFC: autotooler: generation of "configure.ac" and "Makefile.am" using Kconfig
+In-Reply-To: <414ca678-5e11-319d-7688-bc5127712b3a@linux.intel.com>
+X-CMAE-Envelope: MS4wfBtyMNImlJiykEZ+num8ydISjvAE9Wv1jgwsHKKLNhCsHQYgypGIp5STNl5YwdhVMWZyh3xujfM1xIcgGE/WknDPo7Zs8VH9wUzxfT69XCarcAllqTjq
+	JKZQDF9vCQq5ZcXvn7aVcRm7o+fU2GL80FGymB14dvx2usNGRwsc+uKpRFw1vSQE5R1PBCCDuufpv83y9hdLg2X5Qx0NCpc1Pau2UkgHy8SpRcDCbkYmDLMb
+Subject: Re: poky using native pkg_resources module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,335 +42,253 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Sep 2017 14:49:15 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Sat, 30 Sep 2017 18:31:26 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-
-Have a need to convert a large number of libraries to use autotools.
-
-I came up with the following idea:
-
-I create an Kconfig based configuration system, where you define a 
-number of configuration items needed by configure.ac and Makefile.am
-
-You choose if you want to build an application, a shared library or a 
-static library.
-
-The build normally depends on other libraries, and you checkmarks
-which library you are interested in from a (small) number of supported 
-libraries.
-You can likewise select to support options like "--enable-openssl",
-again from a (small) number of supported options.
-
-If you have stuff not supported, the autotooler will include Config.in
-files allowing you to add your own items.
-
-Once the configuration is complete, you will compile an application
-which will generate "configure.ac" from the configuration file.
-
-Again, if you have stuff not supported in the code, you can add it
-in a user include file.
-
-The generator will read a user-headers.inc file and
-generate an AC_CHECK_HEADERS entry.
+Content-Transfer-Encoding: 8bit
 
 
-The autotooler is available on
-	https://www.github.com/emagii/autotooler.git
 
-===================================================================
-Currently, it does not generate any Makefile.am files, but
-the idea is to separate the source files into
-* C source
-* Public Headers
-* Local Headers
+Den 2017-09-29 kl. 20:18, skrev Alejandro Hernandez:
+> Hey Ulf,
+> 
+> 
+> 
+> On 09/29/2017 04:05 AM, Ulf Samuelsson wrote:
+>> It looks like the pkg_resource module is using the native installation
+>>
+>>
+>> I cloned poky early september, and could complete a build.
+>>
+>> When I clone poky today, the build fails.
+>>
+>> As part of "do_image_wic" from image_types_wic.bbclass
+>>
+>> A python program in 'bmap-tools-native' is executing
+>>
+>>     "from pkg_resources import load_entry_point"
+>>
+>> grep'ing for pkg_resources in bmap-tools-native reveals:
+>>
+>> bmaptool:        from pkg_resources import load_entry_point
+>> easy3_install:        from pkg_resources import load_entry_point
+>> easy_install-3.5:    from pkg_resources import load_entry_point
+>> =============================
+>> pkg_resources.py is not available inside poky at the moment.
+>>
+>> It is (or used to be) part of python-setuptools.
+> 
+> Correct, it was and still is part of setuptools
+>>
+>> On Ubuntu, it is present in: 
+>> "http://archive.ubuntu.com/ubuntu/pool/main/p/python-setuptools/python-setuptools_3.3.orig.tar.gz" 
+>>
+>> and used in Ubuntu 14.04 and 16.04 to generate the
+>>     "python3-pkg-resource" package.
+>>
+>> When python-setuptools is generated by Yocto, it is partly
+>> a class, but the python-setuptools-native recipe downloads
+>>     "https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-26.2.7.zip" 
+>>
+> 
+> This should be setuptools-36.2.7 btw
+> 
+>> which does not contain "pkg_resources.py"
+> 
+> Its not partly a class, it uses a class to install the package along 
+> with distutils.
+>>
+>> =============================
+>> When bmaptool imports pkg_resources, it will not find anything in the
+>> yocto build, but will find the native 
+>> "/usr/lib/python3/dist-packages/pkg_resources.py" from
+>>
+>> This requires bmap-tools == 3.4, but the native bmap-tools in 
+>> Ubuntu-14.04 is 2.5, and in Ubuntu-16.04 it is 3.2 so the build fails.
+>>
+>> Maybe Ubuntu-17.04 supports bmap-tools 3.4 and it will build there,
+>> but using the native pkg_resource is of course not a good idea?
+> 
+> There is something wrong with your build although I am not sure what it 
+> is, pkg_resources is still part of python(3)-setuptools, in fact you can 
+> check that in several ways
+> 
+> if you do a devshell on python3-setuptools-native you can see the 
+> extracted package contains the pkg_resources folder (so it is still part 
+> of the package)
+ >
+I do: "bitbake  -c devshell python3-setuptools-native"
+A terminal windows opens in 
+"tmp/work/x86_64-linux/python3-setuptools-native/36.2.7-r0/setuptools-36.2.7"
 
-A tool would then scan the directories and classify them accordingly,
-so Makefile.am files should be possible to generate fairly easy.
+ls
+bootstrap.py  easy_install.py          PKG-INFO       setuptools
+build         launcher.c               pkg_resources  setuptools.egg-info
+CHANGES.rst   LICENSE                  pytest.ini     tests
+conftest.py   MANIFEST.in              README.rst     tox.ini
+dist          msvc-build-launcher.cmd  setup.cfg
+docs          pavement.py              setup.py
 
-===================================================================
-A final step would clone a empty git tree, and populate it
-with all the files needed for a complete package.
-===================================================================
+so the "pkg_resources" folder is present.
 
-Comments appreciated.
+cd pkg_resources ; ls -l
+-rw-r--r-- 1 ulf ulf  12211 Aug  2 00:40 api_tests.txt
+drwxrwxr-x 3 ulf ulf   4096 Sep 30 17:35 extern
+-rw-r--r-- 1 ulf ulf 104650 Aug  2 00:40 __init__.py
+-rw-r--r-- 1 ulf ulf    600 Aug  2 00:40 py31compat.py
+drwxrwxr-x 2 ulf ulf   4096 Sep 30 17:35 __pycache__
+drwxrwxr-x 2 ulf ulf   4096 Sep 30 17:35 tests
+drwxrwxr-x 4 ulf ulf   4096 Sep 30 17:35 _vendor
+
+so there is NO "pkg_resource.py" file inside.
+
+The statement that fails is "from pkg_resources import load_entry_point"
+
+"load_entry_point" is defined in pkg_resources/__init__.py
+
+Somewhere, something decides that
+"/usr/lib/python3/dist-packages/pkg_resources.py"
+is what we want.
+
+I have a fresh install of Ubuntu-16.04.
+This has received the latest package updates.
+I have also installed a set of packages I usually install on a machine.
+Not much more.
+
+environment lack anything python related.
+
+In one test, I git cloned a fresh copy of "poky".
+No layers added.'
+Insignificant changes to "local.conf", only changed some directory location
+
+Building the beaglebone, and problem occurs.
+
+If I build from poky "8b4f16a9cbbaf521461f699b7264fac2ac872581" from
+Mon Sep 4 11:39:24, I have no problem.
 
 Best Regards
 Ulf Samuelsson
-===================================================================
-Here is a typical "autoconh.h" generated by Kconfig.
 
-/*
-  * Automatically generated C config: don't edit
-  * Sat Sep 30 16:27:24 2017
-  */
-#define CONFIG_SHARED_LIB 1
-#define CONFIG_PTHREAD 1
-#define CONFIG_LIBRARY 1
-#define CONFIG_PROJECT "myproject"
-#define CONFIG_WORKDIR "${HOME}/projects/autotooler"
-#define CONFIG_OPENSSL 1
-#define CONFIG_CURL 1
-#define CONFIG_COPYRIGHT_DATE "2017"
-#define CONFIG_HOMEPAGE "http://www.emagii.com/"
-#define CONFIG_EXAMPLES 1
-#define CONFIG_DEBUG 1
-#define HAVE_DOT_CONFIG 1
-#define CONFIG_AC_PRERQ "2.59"
-#define CONFIG_BOOST 1
-#define CONFIG_OS_LINUX 1
-#define CONFIG_LIBRARY_NAME "libyocto"
-#define CONFIG_AUTHOR_EMAIL "ulf@emagii.com"
-#define CONFIG_LIBRARY_VERSION "1.0"
-#define CONFIG_AC_CONFIG_HEADER "src/include/config.h"
-#define CONFIG_OS "Linux"
-#define CONFIG_EXAMPLES_VAR "examples"
-#define CONFIG_AC_CONFIG_MACRO_DIR "m4"
-#define CONFIG_DEBUG_VAR "debug"
-#define CONFIG_PROJECT_TYPE "library"
-#define CONFIG_SRCDIR "src"
-#define CONFIG_SRC_URI_REPO ""
-#define CONFIG_AUTHOR "Ulf Samuelsson"
-#define CONFIG_SRC_URI_HOST "https://www.github.com/emagii"
-#define CONFIG_CURLPP 1
-#define CONFIG_AM_INIT_AUTOMAKE "1.10 -Wall no-define"
-
-The application will from this information generate:
-
-AC_INIT([libyocto],
-	[1.0],
-	[Ulf Samuelsson],
-	[libyocto-1.0],
-	[http://www.emagii.com/])
-
-AC_PRERQ([2.59])
-
-AC_CONFIG_HEADER([src/include/config.h])
-
-AC_CONFIG_SRCDIR([src])
-
-AC_PROG_CPP
-AC_PROG_CC
-AC_INIT_AUTOMAKE([1.10 -Wall no-define])
-
-AC_PROG_MAKE_SET
-AM_MAINTAINER_MODE
-AC_HEADER_STDC
-AC_ENABLE_SHARED
-AC_DISABLE_STATIC
-AC_PROG_LIBTOOL
-AC_HEADER_STDC
-
-AC_CHECK_HEADERS( \
-	ctype.h \
-	errno.h \
-	fcntl.h \
-	openssl/bio.h \
-	openssl/err.h \
-	openssl/opensslconf.h \
-	openssl/rand.h \
-	openssl/ssl.h \
-	pthread.h \
-	stdio.h \
-	stdlib.h \
-	stdarg.h \
-	stdint.h \
-	string.h \
-	signal.h \
-	sys/ioctl.h \
-	sys/socket.h \
-	sys/time.h \
-	sys/types.h \
-	time.h \
-	unistd.h \
-	 \
-	,
-dnl to do if not found
-	[],
-dnl to do if not found
-	[],
-dnl default includes
-	[
-#ifdef HAVE_SYS_TYPES_H
-#include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_TIME_H
-#include <sys/time.h>
-#endif
-dnl We do this default-include simply to make sure that the nameser_compat.h
-dnl header *REALLY* can be include after the new nameser.h. It seems AIX 5.1
-dnl (and others?) is not designed to allow this.
-#ifdef HAVE_ARPA_NAMESER_H
-#include <arpa/nameser.h>
-#endif
-
-dnl *Sigh* these are needed in order for net/if.h to get properly detected.
-#ifdef HAVE_SYS_SOCKET_H
-#include <sys/socket.h>
-#endif
-#ifdef HAVE_NETINET_IN_H
-#include <netinet/in.h>
-#endif
-]
-)
-
-# ==== Boost Libraries
-AC_ARG_WITH([boost-include-path],
-	[AS_HELP_STRING([--with-boost-include-path],[location of the Boost 
-headers, defaults to /usr/include/boost])],
-	[CXXFLAGS_BOOST="-I$withval"],
-	[CXXFLAGS_BOOST="-I/usr/include/boost"])
-AC_SUBST([BOOST_CFLAGS])
-
-AC_ARG_WITH([boost-lib-path],
-	[AS_HELP_STRING([--with-boost-lib-path],[location of the Boost 
-libraries, defaults to /usr/lib])],
-	[BOOST_LIBS="-L$withval" -lboost_system -lboost_filesystem 
--lboost_program_options -lboost_thread -lpthread],
-	[BOOST_LIBS="-L/usr/lib -lboost_system -lboost_filesystem 
--lboost_program_options -lboost_thread -lpthread"])
-AC_SUBST([BOOST_LIBS])
-
-AC_ARG_ENABLE(boost,
-	[--enable-boost	Include Boost Libraries],
-	[case "${enableval}" in
-		yes)	use_boost=true  ;;
-		no)	use_boost=false ;;
-		*) AC_MSG_ERROR(bad value ${enableval} for --enable-boost) ;;
-	 esac
-	],
-	[use_boost=false])
-AM_CONDITIONAL(CONFIG_BOOST, test x$boost = xtrue)
-
-# ==== cURL Libraries
-AC_ARG_WITH([curl-include-path],
-	[AS_HELP_STRING([--with-curl-include-path],[location of the cURL 
-headers, defaults to /usr/include])],
-	[CXXFLAGS_CURL="-I$withval"],
-	[CXXFLAGS_CURL="-I/usr/include"])
-AC_SUBST([CURL_CFLAGS])
-
-AC_ARG_WITH([curl-lib-path],
-	[AS_HELP_STRING([--with-curl-lib-path],[location of the cURL libraries, 
-defaults to /usr/lib])],
-	[CURL_LIBS="-L$withval" -lcurl],
-	[CURL_LIBS="-L/usr/lib -lcurl"])
-AC_SUBST([CURL_LIBS])
-
-AC_ARG_ENABLE(curl,
-	[--enable-curl	Include cURL],
-	[case "${enableval}" in
-		yes)	use_curl=true  ;;
-		no)	use_curl=false ;;
-		*) AC_MSG_ERROR(bad value ${enableval} for --enable-curl) ;;
-	 esac
-	],
-	[use_curl=false])
-AM_CONDITIONAL(CONFIG_CURL, test x$curl = xtrue)
-
-# ==== cURLPP Libraries
-AC_ARG_WITH([curlpp-include-path],
-	[AS_HELP_STRING([--with-curlpp-include-path],[location of the cURLPP 
-headers, defaults to /usr/include])],
-	[CXXFLAGS_CURLPP="-I$withval"],
-	[CXXFLAGS_CURLPP="-I/usr/include"])
-AC_SUBST([CURLPP_CFLAGS])
-
-AC_ARG_WITH([curlpp-lib-path],
-	[AS_HELP_STRING([--with-curlpp-lib-path],[location of the cURLPP 
-libraries, defaults to /usr/lib])],
-	[CURLPP_LIBS="-L$withval" -lcurlpp -lutilspp],
-	[CURLPP_LIBS="-L/usr/lib -lcurlpp -lutilspp"])
-AC_SUBST([CURLPP_LIBS])
-
-AC_ARG_ENABLE(curlpp,
-	[--enable-curlpp	Include cURLPP],
-	[case "${enableval}" in
-		yes)	use_curlpp=true  ;;
-		no)	use_curlpp=false ;;
-		*) AC_MSG_ERROR(bad value ${enableval} for --enable-curlpp) ;;
-	 esac
-	],
-	[use_curlpp=false])
-AM_CONDITIONAL(CONFIG_CURLPP, test x$curlpp = xtrue)
-
-# ==== OpenSSL Libraries
-AC_ARG_WITH([openssl-include-path],
-	[AS_HELP_STRING([--with-openssl-include-path],[location of the OpenSSL 
-headers, defaults to /usr/include])],
-	[CFLAGS_OPENSSL="-I$withval"],
-	[CFLAGS_OPENSSL="-I/usr/include"])
-AC_SUBST([OPENSSL_CFLAGS])
-
-AC_ARG_WITH([openssl-lib-path],
-	[AS_HELP_STRING([--with-openssl-lib-path],[location of the OpenSSL 
-libraries, defaults to /usr/lib])],
-	[OPENSSL_LIBS="-L$withval" -lssl],
-	[OPENSSL_LIBS="-L/usr/lib -lssl"])
-AC_SUBST([OPENSSL_LIBS])
-
-AC_ARG_ENABLE(openssl,
-	[--enable-openssl	Include OpenSSL],
-	[case "${enableval}" in
-		yes)	use_openssl=true  ;;
-		no)	use_openssl=false ;;
-		*) AC_MSG_ERROR(bad value ${enableval} for --enable-openssl) ;;
-	 esac
-	],
-	[use_openssl=false])
-AM_CONDITIONAL(CONFIG_OPENSSL, test x$openssl = xtrue)
-
-# ==== Pthread Libraries
-AC_ARG_WITH([pthread-include-path],
-	[AS_HELP_STRING([--with-pthread-include-path],[location of the PThread 
-headers, defaults to /usr/include])],
-	[CFLAGS_PTHREAD="-I$withval"],
-	[CFLAGS_PTHREAD="-I/usr/include"])
-AC_SUBST([PTHREAD_CFLAGS])
-
-AC_ARG_WITH([pthread-lib-path],
-	[AS_HELP_STRING([--with-pthread-lib-path],[location of the PThread 
-libraries, defaults to /usr/include])],
-	[PTHREAD_LIBS="-L$withval" -lpthread],
-	[PTHREAD_LIBS="-L/usr/include -lpthread"])
-AC_SUBST([PTHREAD_LIBS])
-
-AC_ARG_ENABLE(pthread,
-	[--enable-pthread	Include PThreads],
-	[case "${enableval}" in
-		yes)	use_pthread=true  ;;
-		no)	use_pthread=false ;;
-		*) AC_MSG_ERROR(bad value ${enableval} for --enable-pthread) ;;
-	 esac
-	],
-	[use_pthread=false])
-AM_CONDITIONAL(CONFIG_PTHREAD, test x$pthread = xtrue)
-
-# ==== Debug
-AC_ARG_ENABLE(debug,
-	[--enable-debug	Build with DEBUG enabled],
-	[case "${enableval}" in
-		yes)	debug=true  ;;
-		no)	debug=false ;;
-		*) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
-	 esac
-	],
-	[debug=false])
-AM_CONDITIONAL(CONFIG_DEBUG, test x$debug = xtrue)
-
-AC_ARG_ENABLE(examples,
-	[--enable-examples	Build examples],
-	[case "${enableval}" in
-		yes)	examples=true  ;;
-		no)	examples=false ;;
-		*) AC_MSG_ERROR(bad value ${enableval} for --enable-examples) ;;
-	 esac
-	],
-	[examples=false])
-AM_CONDITIONAL(CONFIG_EXAMPLES, test x$examples = xtrue)
-
-AC_SUBST([CFLAGS])
-AC_CONFIG_FILES([Makefile  libyocto.pc])
-AC_OUTPUT
+> then if you do a devshell after do_install, you can check the image 
+> directory and find the setuptools.egg file, which is what python-native 
+> uses later, if you unzip that
+> egg file, you can see that pkg_resources is there, so it was in fact 
+> packaged on Yocto / by bitbake.
+> 
+> Lastly, you can also do a
+> $ bitbake bmap-tools-native -c devshell
+> 
+> you can then check that python3-native is in fact executing by doing a
+> 
+> $ which python3
+> 
+> that should point to python3-native (the one you just built)
+> 
+> assuming you got python3-native correctly, execute python3
+> 
+> once in python you can do a
+> 
+> 
+> from pkg_resources import load_entry_point # which would import the module
+> 
+> # check where the module is being loaded from
+> import sys
+> sys.modules['pkg_resources']
+> 
+> That should print out the location of the imported module, and you can 
+> see there that infact it was imported from the setuptools.egg file you 
+> just built before, like this:
+> 
+>  >>> sys.modules['pkg_resources']
+> <module 'pkg_resources' from 
+> '$HOME/builds/qemux86-64/tmp/work/x86_64-linux/bmap-tools-native/3.4-r0/recipe-sysroot-native/usr/lib/python3.5/site-packages/setuptools-36.2.7-py3.5.egg/pkg_resources/__init__.py'> 
+> 
+> 
+>>
+>> Upgrading to a non-LTS Ubuntu is not something I would like to do...
+>> ============================================================================================ 
+>>
+>>
+>> Error report
+>>
+>> ============================================================================================ 
+>>
+>>
+>> | DEBUG: Executing shell function do_image_wic
+>> | wic create 
+>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks" 
+>> --vars 
+>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/sysroots/beaglebone/imgdata/" 
+>> -e "emagii-image" -o 
+>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/" 
+>>
+>> | INFO: Creating image(s)...
+>> |
+>> | INFO: The new image(s) can be found here:
+>> | 
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/emagii_beaglebone-201709290903-mmcblk.direct 
+>>
+>> |
+>> | The following build artifacts were used to create the image(s):
+>> |   ROOTFS_DIR: 
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/tmp.wic.slysr_64/rootfs_copy 
+>>
+>> |   BOOTIMG_DIR: 
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot/usr/share 
+>>
+>> |   KERNEL_DIR: 
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/deploy/images/beaglebone 
+>>
+>> |   NATIVE_SYSROOT: 
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native 
+>>
+>> |
+>> | INFO: The image(s) were created using OE kickstart file:
+>> | 
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks 
+>>
+>> | Traceback (most recent call last):
+>> |   File 
+>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native/usr/bin/bmaptool", 
+>> line 6, in <module>
+>> |     from pkg_resources import load_entry_point
+>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 2749, 
+>> in <module>
+>> |     working_set = WorkingSet._build_master()
+>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 444, 
+>> in _build_master
+>> |     ws.require(__requires__)
+>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 725, 
+>> in require
+>> |     needed = self.resolve(parse_requirements(requirements))
+>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 628, 
+>> in resolve
+>> |     raise DistributionNotFound(req)
+>> | pkg_resources.DistributionNotFound: bmap-tools==3.4
+>> | WARNING: 
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/run.do_image_wic.19342:1 
+>> exit 1 from 'bmaptool create 
+>> emagii-image-beaglebone-20170929070314.rootfs.wic -o 
+>> emagii-image-beaglebone-20170929070314.rootfs.wic.bmap'
+>> | ERROR: Function failed: do_image_wic (log file is located at 
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/log.do_image_wic.19342) 
+>>
+>> ERROR: Task 
+>> (/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic) 
+>> failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 3187 tasks of which 3186 didn't need to 
+>> be rerun and 1 failed.
+>>
+>> Summary: 1 task failed:
+>>
+>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic 
+>>
+>> Summary: There was 1 WARNING message shown.
+>> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>>
+>>
+>>
+>> Best Regards
+>> Ulf Samuelsson
+> 
 
