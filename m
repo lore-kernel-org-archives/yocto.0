@@ -1,40 +1,74 @@
-Return-Path: <alejandro.hernandez@linux.intel.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3667E00A9C; Mon,  2 Oct 2017 10:01:11 -0700 (PDT)
+	id B7510E00B1B; Mon,  2 Oct 2017 10:20:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	HTML_OBFUSCATE_10_20, 
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.213.45 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.213.45 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (gizero[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E43FCE006CA
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 10:01:10 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga105.jf.intel.com with ESMTP; 02 Oct 2017 10:01:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,470,1500966000"; d="scan'208";a="157921435"
-Received: from josueher-mobl.amr.corp.intel.com (HELO [10.252.248.204])
-	([10.252.248.204])
-	by fmsmga005.fm.intel.com with ESMTP; 02 Oct 2017 10:01:09 -0700
-To: Ulf Samuelsson <yocto@emagii.com>, yocto@yoctoproject.org
-References: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
-	<414ca678-5e11-319d-7688-bc5127712b3a@linux.intel.com>
-	<730b0fb0-622e-d3b9-24ae-f3f9b2cf68f9@emagii.com>
-	<6cb9686c-796e-1d9b-fbba-fea5452fb6cd@linux.intel.com>
-	<1c9833c6-95db-c533-4648-8be5cd2a2d7a@emagii.com>
-From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-Message-ID: <f5f7d131-c1d1-56ed-0c9f-a0dcb90d9cd1@linux.intel.com>
-Date: Mon, 2 Oct 2017 12:01:08 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	* 0.1 HTML_OBFUSCATE_10_20 BODY: Message is 10% to 20% HTML obfuscation
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
+	[209.85.213.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D768CE007EF
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 10:20:15 -0700 (PDT)
+Received: by mail-vk0-f45.google.com with SMTP id q190so3221745vkd.13
+	for <yocto@yoctoproject.org>; Mon, 02 Oct 2017 10:20:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=1nbDI/xzbqOiQ+c/X9/QkUcE5bgj5XVvgwEC5051Kc4=;
+	b=DlZVtk7DAgDiT+wyrO2PZ7AlR4k78haBdhEMjZWmp5khFmQTc2VB4wH9H+Pd+QcIYU
+	e25ogRD6qdx3119g8zSdRfCqy9zT68I6HBU5/8GmWPEK+N+xGdrIecU0jJWV8gxWbsiP
+	lA3X/78eaH6u3N+L/vMxntq8DKXVO85ligy57aO80+Z69sqGeFAmSP1qZ0lHSx1DvuyS
+	0K2ERIsUg3B8AjV6Xp6vnYp6BtXGOEsEXbTdIjTz9QKn5tCi7u3QilfrzhM1UdqfhFoi
+	zK++hpd+xdPwWQ7P9Vq+vdDTDWiOpzpS5VY4iejhpzFKXVg4M6Xmm3A7z/8sVJu+IYwT
+	5eHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=1nbDI/xzbqOiQ+c/X9/QkUcE5bgj5XVvgwEC5051Kc4=;
+	b=f441MYr1+TpIuMi2mgtHH6cOdabK9LzJ6Y//jItqIF7z+/5qbna8HfVBtjrgCerQlk
+	ho5i7vTfbBqzSrl3phMeMl5IWdLQbIqgzRw2/bZOxLe9kHDgYR0VR2fvaMB56o04topV
+	OqOLfx9OXHXFjXB5ij56XJ7q05YFm2vVfLVROG7kGOUyjN1bc1XDxR7RODjW5mArZIjc
+	tUyuQvkcKQb7eqRh2HwiKGGbFLMIXWF1uW2jL7Gf1w7b2Aa93MPUUvX2CaM0oFwwnZLQ
+	37gFsjT/pOhMXOUhMAGvEEg5iWhgvZI746VyDSFM+oPjovkxpjFgeL9up7xU0nNcI46k
+	Km3w==
+X-Gm-Message-State: AHPjjUhAJhcfWki60+hcTVwAX8Nc8AjE8NN5kYG4bt+7Z/RyF7gck15Y
+	ZOJe3EFX4xm8GM5sHehdkjAnjrA1FD2nNn4RJy4=
+X-Google-Smtp-Source: AOwi7QCCMZASfULrJ0wcNEomyJIzPDPMFZ46amX9etTy73Z7LfBS6BNQ/bVv1zX9LZgcarzEoGi2c4OfIUNtOHwZt5Y=
+X-Received: by 10.31.137.146 with SMTP id l140mr8782013vkd.137.1506964814938; 
+	Mon, 02 Oct 2017 10:20:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1c9833c6-95db-c533-4648-8be5cd2a2d7a@emagii.com>
-Subject: Re: poky using native pkg_resources module
+Received: by 10.176.71.83 with HTTP; Mon, 2 Oct 2017 10:20:14 -0700 (PDT)
+In-Reply-To: <CAC+thW0xA3W82RXfXap_Btj=J3zECGVh9iZc6G9QPUQCUeC1SA@mail.gmail.com>
+References: <CAC+thW29aj-ZCsd31cfEsnuQKUuDGAfCzg5AX_srUcud0e9sBA@mail.gmail.com>
+	<2247298.VirvghVmfO@peggleto-mobl.ger.corp.intel.com>
+	<CAC+thW0rcZuB-y+=93srk203E+coR4G7r36stmz0UA-L5Td3nw@mail.gmail.com>
+	<11108946.QmoIu7Nc6a@peggleto-mobl.ger.corp.intel.com>
+	<CAC+thW0xA3W82RXfXap_Btj=J3zECGVh9iZc6G9QPUQCUeC1SA@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Mon, 2 Oct 2017 19:20:14 +0200
+Message-ID: <CAC+thW23Yn9R8NVPS4Sr5Ef+9Qf7GRKokgbLOQ1ZMLZ6S+FEyQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: eSDK install script failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,296 +80,565 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 17:01:12 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Mon, 02 Oct 2017 17:20:17 -0000
+Content-Type: multipart/alternative; boundary="001a114593ee7bc6b5055a9396cf"
 
-Thanks Ulf, I will provide a fix soon.
+--001a114593ee7bc6b5055a9396cf
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Paul,
 
-Alejandro
+On Tue, Sep 26, 2017 at 7:18 AM, Andrea Galbusera <gizero@gmail.com> wrote:
 
-
-On 09/30/2017 05:27 PM, Ulf Samuelsson wrote:
+> Paul,
 >
+> On Tue, Sep 26, 2017 at 6:33 AM, Paul Eggleton <
+> paul.eggleton@linux.intel.com> wrote:
 >
-> Den 2017-09-30 kl. 21:32, skrev Alejandro Hernandez:
->> Hey Ulf,
+>> Hi Andrea,
 >>
+>> On Tuesday, 26 September 2017 4:33:46 AM NZDT Andrea Galbusera wrote:
+>> > I'm back to this issue after the weeken break. See below the feedback
+>> from
+>> > your suggestions.
+>> >
+>> > On Thu, Sep 21, 2017 at 11:49 PM, Paul Eggleton <
+>> > paul.eggleton@linux.intel.com> wrote:
+>> >
+>> > > On Friday, 22 September 2017 9:40:41 AM NZST Paul Eggleton wrote:
+>> > > > On Friday, 22 September 2017 9:22:08 AM NZST Andrea Galbusera wrote:
+>> > > > > On Thu, Sep 21, 2017 at 10:48 PM, Paul Eggleton <
+>> > > > > paul.eggleton@linux.intel.com> wrote:
+>> > > > > > Right, so the next step would be looking for the hash for
+>> > > > > > python-native.do_populate_sysroot in conf/locked_sigs.inc
+>> within the
+>> > > > > > failed SDK install directory and then looking for that in both
+>> the
+>> > > sstate-
+>> > > > > > cache directory within the failed SDK and then in the
+>> sstate-cache
+>> > > > > > directory of the build that built it. I suspect it may not be
+>> there,
+>> > > but
+>> > > > > > let me know what you find.
+>> > > > >
+>> > > > > Good catch! In the failing SDK neither conf/locked_sigs.inc nor
+>> > > > > sstate-cache do include any python-native signature or object...
+>> Only
+>> > > > > python3-native stuff is there. Weird! As said, SDKs from the same
+>> build
+>> > > > > directory, used to work since a few weeks ago. May any recent
+>> change in
+>> > > > > poky master have caused this while periodically upgrading without
+>> > > > > regenerating the sstate-cache?
+>> > > >
+>> > > > No, I can't see any added references to python-native anywhere in
+>> the
+>> > > last few
+>> > > > weeks. If you do bitbake -c clean python-native and then rebuild
+>> the SDK
+>> > > does
+>> > > > the issue go away?
+>> > >
+>> > > Actually scratch that, that's not going to help. The question is
+>> where is
+>> > > this dependency coming from and why isn't it properly picked up such
+>> > > that it gets included. bitbake -g -c populate_sdk_ext your-image
+>> might be
+>> > > useful in determining that.
+>> > >
+>> >
+>> > $ bitbake core-image-base-dlms -c populate_sdk_ext -g
+>> >
+>> > Grepping task-depends.dot for "python-native" gives no match.
+>> Surprisingly
+>> > enough (at least for me) I read a different story when doing the same
+>> for
+>> > the image itself
+>> >
+>> > $ bitbake core-image-base-dlms -g
+>> > $ grep python-native task-depends.dot
+>> >  "python-native.do_populate_lic" [label="python-native
+>> > do_populate_lic\n:2.7.13-r1.1\n/home/gizero/work/smartliving
+>> /distro/repo-master/build-poky/conf/../../layers/poky/meta/r
+>> ecipes-devtools/python/python[18/7956]
+>> > .7.13.bb"]
+>> > "python-native.do_populate_lic" -> "python-native.do_patch"
+>> > "python-native.do_prepare_recipe_sysroot" [label="python-native
+>> > do_prepare_recipe_sysroot\n:2.7.13-r1.1\n/home/gizero/work/s
+>> martliving/distro/repo-master/build-poky/conf/../../layers/p
+>> oky/meta/recipes-devtools/py
+>> > thon/python-native_2.7.13.bb"]
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "openssl-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "pkgconfig-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "automake-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "expat-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "sqlite3-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" -> "python-native.do_fetch"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "bzip2-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "readline-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "zlib-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "autoconf-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "gnu-config-native.do_populate_sysroot"
+>> > "python-native.do_prepare_recipe_sysroot" ->
+>> > "libtool-native.do_populate_sysroot"
+>> > "python-native.do_rm_work_all" [label="python-native
+>> > do_rm_work_all\n:2.7.13-r1.1\n/home/gizero/work/smartliving/
+>> distro/repo-master/build-poky/conf/../../layers/poky/meta/re
+>> cipes-devtools/python/python-native_2.7
+>> > .13.bb"]
+>> > "python-native.do_rm_work_all" -> "readline-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "gnu-config-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "openssl-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "automake-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "m4-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "makedepend-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "xproto-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "bzip2-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "ncurses-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "python-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "expat-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "pigz-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "libtool-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "pkgconfig-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "gettext-minimal-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "util-macros-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "quilt-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "autoconf-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "cryptodev-linux-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "xz-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "zlib-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "texinfo-dummy-native.do_rm_work"
+>> > "python-native.do_rm_work_all" -> "sqlite3-native.do_rm_work"
+>> > "python-native.do_compile" [label="python-native
+>> > do_compile\n:2.7.13-r1.1\n/home/gizero/work/smartliving/dist
+>> ro/repo-master/build-poky/conf/../../layers/poky/meta/recipe
+>> s-devtools/python/
+>> > python-native_2.7.13.bb"]
+>> > "python-native.do_compile" -> "python-native.do_configure"
+>> > "python-native.do_install" [label="python-native
+>> > do_install\n:2.7.13-r1.1\n/home/gizero/work/smartliving/dist
+>> ro/repo-master/build-poky/conf/../../layers/poky/meta/recipe
+>> s-devtools/python/
+>> > python-native_2.7.13.bb"]
+>> > "python-native.do_install" -> "python-native.do_compile"
+>> > "bmap-tools-native.do_rm_work_all" -> "python-native.do_rm_work"
+>> > "python-native.do_build" [label="python-native
+>> > do_build\n:2.7.13-r1.1\n/home/gizero/work/smartliving/distro
+>> /repo-master/build-poky/conf/../../layers/poky/meta/recipes-
+>> devtools/python/
+>> > python-native_2.7.13.bb"]
+>> > "python-native.do_build" -> "python-native.do_populate_sysroot"
+>> > "python-native.do_build" -> "python-native.do_rm_work"
+>> > "python-native.do_build" -> "python-native.do_populate_lic"
+>> > "python-native.do_build" -> "python-native.do_rm_work_all"
+>> > "python-native.do_fetch" [label="python-native
+>> > do_fetch\n:2.7.13-r1.1\n/home/gizero/work/smartliving/distro
+>> /repo-master/build-poky/conf/../../layers/poky/meta/recipes-
+>> devtools/python/
+>> > python-native_2.7.13.bb"]
+>> > "python-native.do_unpack" [label="python-native
+>> > do_unpack\n:2.7.13-r1.1\n/home/gizero/work/smartliving/distr
+>> o/repo-master/build-poky/conf/../../layers/poky/meta/recipes
+>> -devtools/python/
+>> > python-native_2.7.13.bb"]
+>> > "python-native.do_unpack" -> "xz-native.do_populate_sysroot"
+>> > "python-native.do_unpack" -> "python-native.do_fetch"
+>> > "python-native.do_patch" [label="python-native
+>> > do_patch\n:2.7.13-r1.1\n/home/gizero/work/smartliving/distro
+>> /repo-master/build-poky/conf/../../layers/poky/meta/recipes-
+>> devtools/python/
+>> > python-native_2.7.13.bb"]
+>> > "python-native.do_patch" -> "python-native.do_unpack"
+>> > "python-native.do_patch" -> "quilt-native.do_populate_sysroot"
+>> > "core-image-base-dlms.do_build" -> "python-native.do_build"
+>> > "python-native.do_configure" [label="python-native
+>> > do_configure\n:2.7.13-r1.1\n/home/gizero/work/smartliving/di
+>> stro/repo-master/build-poky/conf/../../layers/poky/meta/reci
+>> pes-devtools/python/python-native_2.7.13.
+>> > bb"]
+>> > "python-native.do_configure" -> "python-native.do_patch"
+>> > "python-native.do_configure" -> "python-native.do_prepare_reci
+>> pe_sysroot"
+>> > "python-native.do_rm_work" [label="python-native
+>> > do_rm_work\n:2.7.13-r1.1\n/home/gizero/work/smartliving/dist
+>> ro/repo-master/build-poky/conf/../../layers/poky/meta/recipe
+>> s-devtools/python/
+>> > python-native_2.7.13.bb"]
+>> > "python-native.do_rm_work" -> "python-native.do_populate_sysroot"
+>> > "python-native.do_rm_work" -> "python-native.do_populate_lic"
+>> > "python-native.do_populate_sysroot" [label="python-native
+>> > do_populate_sysroot\n:2.7.13-r1.1\n/home/gizero/work/smartli
+>> ving/distro/repo-master/build-poky/conf/../../layers/poky/me
+>> ta/recipes-devtools/python/python-
+>> > native_2.7.13.bb"]
+>> > "python-native.do_populate_sysroot" -> "python-native.do_install"
+>> >
+>> > As expected, on the build bot that builds successfully installable SDKs,
+>> > both dependency graphs contain no mention of python-native. Time to nuke
+>> > the sstate-cache from the failing one or do you have any additional
+>> clue to
+>> > investigate further?
 >>
->> Yes, the problem is that the bmap-tools script is trying to be 
->> executed by python3 (HOST) but it should be
+>> Deleting sstate-cache is very unlikely to help - these dependency
+>> relationships
+>> aren't stored in sstate (or at least they aren't stored there in a way
+>> that
+>> bitbake will take it as input for dependency graph generation).
 >>
->> executed by the native python3 we just built, so fixing the shebang 
->> on the script should do it,
+>> It looks like bmap-tools-native might be how the dependency is getting in
+>> -
+>> perhaps this is coming in conditionally through IMAGE_FSTYPES? For some
+>> unknown reason it also doesn't get triggered when building the eSDK but
+>> does
+>> when restoring the image dependencies within the eSDK.
 >>
->> please file the bug and email me the bug number so I can take care of 
->> it.
 >
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12148
+> Good catch! This explains why the two build systems behaves differently: a
+> little change in local.conf I didn't notice before... The "failing" system
+> does IMAGE_FSTYPES_append = " wic", likely bringing bmap-tools-native in,
+> while the "working" build bot doesn't. However, as you say, this still does
+> not explain why the eSDK is missing the python-native bits. BTW, "wic" is
+> in the IMAGE_FSTYPE of my usual build host since months and I'm pretty sure
+> it did build many successfully installable eSDK with that option in place:
+> but maybe other tasks which also depended on python-native got removed
+> along the way...
+> What I can do now is adding "wic" to IMAGE_FSTYPES on the other system and
+> see if I get the two scenarios equally misbehaving or not. Anything else or
+> different you can suggest to nail this down?
 >
-> BR
-> Ulf
->
->>
->>
->> Alejandro | aehs29
->>
->>
->> On 09/30/2017 01:31 PM, Ulf Samuelsson wrote:
->>>
->>>
->>> Den 2017-09-29 kl. 20:18, skrev Alejandro Hernandez:
->>>> Hey Ulf,
->>>>
->>>>
->>>>
->>>> On 09/29/2017 04:05 AM, Ulf Samuelsson wrote:
->>>>> It looks like the pkg_resource module is using the native 
->>>>> installation
->>>>>
->>>>>
->>>>> I cloned poky early september, and could complete a build.
->>>>>
->>>>> When I clone poky today, the build fails.
->>>>>
->>>>> As part of "do_image_wic" from image_types_wic.bbclass
->>>>>
->>>>> A python program in 'bmap-tools-native' is executing
->>>>>
->>>>>     "from pkg_resources import load_entry_point"
->>>>>
->>>>> grep'ing for pkg_resources in bmap-tools-native reveals:
->>>>>
->>>>> bmaptool:        from pkg_resources import load_entry_point
->>>>> easy3_install:        from pkg_resources import load_entry_point
->>>>> easy_install-3.5:    from pkg_resources import load_entry_point
->>>>> =============================
->>>>> pkg_resources.py is not available inside poky at the moment.
->>>>>
->>>>> It is (or used to be) part of python-setuptools.
->>>>
->>>> Correct, it was and still is part of setuptools
->>>>>
->>>>> On Ubuntu, it is present in: 
->>>>> "http://archive.ubuntu.com/ubuntu/pool/main/p/python-setuptools/python-setuptools_3.3.orig.tar.gz" 
->>>>>
->>>>> and used in Ubuntu 14.04 and 16.04 to generate the
->>>>>     "python3-pkg-resource" package.
->>>>>
->>>>> When python-setuptools is generated by Yocto, it is partly
->>>>> a class, but the python-setuptools-native recipe downloads
->>>>>     "https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-26.2.7.zip" 
->>>>>
->>>>
->>>> This should be setuptools-36.2.7 btw
->>>>
->>>>> which does not contain "pkg_resources.py"
->>>>
->>>> Its not partly a class, it uses a class to install the package 
->>>> along with distutils.
->>>>>
->>>>> =============================
->>>>> When bmaptool imports pkg_resources, it will not find anything in the
->>>>> yocto build, but will find the native 
->>>>> "/usr/lib/python3/dist-packages/pkg_resources.py" from
->>>>>
->>>>> This requires bmap-tools == 3.4, but the native bmap-tools in 
->>>>> Ubuntu-14.04 is 2.5, and in Ubuntu-16.04 it is 3.2 so the build 
->>>>> fails.
->>>>>
->>>>> Maybe Ubuntu-17.04 supports bmap-tools 3.4 and it will build there,
->>>>> but using the native pkg_resource is of course not a good idea?
->>>>
->>>> There is something wrong with your build although I am not sure 
->>>> what it is, pkg_resources is still part of python(3)-setuptools, in 
->>>> fact you can check that in several ways
->>>>
->>>> if you do a devshell on python3-setuptools-native you can see the 
->>>> extracted package contains the pkg_resources folder (so it is still 
->>>> part of the package)
->>> >
->>> I do: "bitbake  -c devshell python3-setuptools-native"
->>> A terminal windows opens in 
->>> "tmp/work/x86_64-linux/python3-setuptools-native/36.2.7-r0/setuptools-36.2.7" 
->>>
->>>
->>> ls
->>> bootstrap.py  easy_install.py          PKG-INFO setuptools
->>> build         launcher.c               pkg_resources 
->>> setuptools.egg-info
->>> CHANGES.rst   LICENSE                  pytest.ini     tests
->>> conftest.py   MANIFEST.in              README.rst     tox.ini
->>> dist          msvc-build-launcher.cmd  setup.cfg
->>> docs          pavement.py              setup.py
->>>
->>> so the "pkg_resources" folder is present.
->>>
->>> cd pkg_resources ; ls -l
->>> -rw-r--r-- 1 ulf ulf  12211 Aug  2 00:40 api_tests.txt
->>> drwxrwxr-x 3 ulf ulf   4096 Sep 30 17:35 extern
->>> -rw-r--r-- 1 ulf ulf 104650 Aug  2 00:40 __init__.py
->>> -rw-r--r-- 1 ulf ulf    600 Aug  2 00:40 py31compat.py
->>> drwxrwxr-x 2 ulf ulf   4096 Sep 30 17:35 __pycache__
->>> drwxrwxr-x 2 ulf ulf   4096 Sep 30 17:35 tests
->>> drwxrwxr-x 4 ulf ulf   4096 Sep 30 17:35 _vendor
->>>
->>> so there is NO "pkg_resource.py" file inside.
->>>
->>> The statement that fails is "from pkg_resources import 
->>> load_entry_point"
->>>
->>> "load_entry_point" is defined in pkg_resources/__init__.py
->>>
->>> Somewhere, something decides that
->>> "/usr/lib/python3/dist-packages/pkg_resources.py"
->>> is what we want.
->>>
->>> I have a fresh install of Ubuntu-16.04.
->>> This has received the latest package updates.
->>> I have also installed a set of packages I usually install on a machine.
->>> Not much more.
->>>
->>> environment lack anything python related.
->>>
->>> In one test, I git cloned a fresh copy of "poky".
->>> No layers added.'
->>> Insignificant changes to "local.conf", only changed some directory 
->>> location
->>>
->>> Building the beaglebone, and problem occurs.
->>>
->>> If I build from poky "8b4f16a9cbbaf521461f699b7264fac2ac872581" from
->>> Mon Sep 4 11:39:24, I have no problem.
->>>
->>> Best Regards
->>> Ulf Samuelsson
->>>
->>>> then if you do a devshell after do_install, you can check the image 
->>>> directory and find the setuptools.egg file, which is what 
->>>> python-native uses later, if you unzip that
->>>> egg file, you can see that pkg_resources is there, so it was in 
->>>> fact packaged on Yocto / by bitbake.
->>>>
->>>> Lastly, you can also do a
->>>> $ bitbake bmap-tools-native -c devshell
->>>>
->>>> you can then check that python3-native is in fact executing by doing a
->>>>
->>>> $ which python3
->>>>
->>>> that should point to python3-native (the one you just built)
->>>>
->>>> assuming you got python3-native correctly, execute python3
->>>>
->>>> once in python you can do a
->>>>
->>>>
->>>> from pkg_resources import load_entry_point # which would import the 
->>>> module
->>>>
->>>> # check where the module is being loaded from
->>>> import sys
->>>> sys.modules['pkg_resources']
->>>>
->>>> That should print out the location of the imported module, and you 
->>>> can see there that infact it was imported from the setuptools.egg 
->>>> file you just built before, like this:
->>>>
->>>>  >>> sys.modules['pkg_resources']
->>>> <module 'pkg_resources' from 
->>>> '$HOME/builds/qemux86-64/tmp/work/x86_64-linux/bmap-tools-native/3.4-r0/recipe-sysroot-native/usr/lib/python3.5/site-packages/setuptools-36.2.7-py3.5.egg/pkg_resources/__init__.py'> 
->>>>
->>>>
->>>>>
->>>>> Upgrading to a non-LTS Ubuntu is not something I would like to do...
->>>>> ============================================================================================ 
->>>>>
->>>>>
->>>>> Error report
->>>>>
->>>>> ============================================================================================ 
->>>>>
->>>>>
->>>>> | DEBUG: Executing shell function do_image_wic
->>>>> | wic create 
->>>>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks" 
->>>>> --vars 
->>>>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/sysroots/beaglebone/imgdata/" 
->>>>> -e "emagii-image" -o 
->>>>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/" 
->>>>>
->>>>> | INFO: Creating image(s)...
->>>>> |
->>>>> | INFO: The new image(s) can be found here:
->>>>> | 
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/emagii_beaglebone-201709290903-mmcblk.direct 
->>>>>
->>>>> |
->>>>> | The following build artifacts were used to create the image(s):
->>>>> |   ROOTFS_DIR: 
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/tmp.wic.slysr_64/rootfs_copy 
->>>>>
->>>>> |   BOOTIMG_DIR: 
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot/usr/share 
->>>>>
->>>>> |   KERNEL_DIR: 
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/deploy/images/beaglebone 
->>>>>
->>>>> |   NATIVE_SYSROOT: 
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native 
->>>>>
->>>>> |
->>>>> | INFO: The image(s) were created using OE kickstart file:
->>>>> | 
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks 
->>>>>
->>>>> | Traceback (most recent call last):
->>>>> |   File 
->>>>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native/usr/bin/bmaptool", 
->>>>> line 6, in <module>
->>>>> |     from pkg_resources import load_entry_point
->>>>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 
->>>>> 2749, in <module>
->>>>> |     working_set = WorkingSet._build_master()
->>>>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 
->>>>> 444, in _build_master
->>>>> |     ws.require(__requires__)
->>>>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 
->>>>> 725, in require
->>>>> |     needed = self.resolve(parse_requirements(requirements))
->>>>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 
->>>>> 628, in resolve
->>>>> |     raise DistributionNotFound(req)
->>>>> | pkg_resources.DistributionNotFound: bmap-tools==3.4
->>>>> | WARNING: 
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/run.do_image_wic.19342:1 
->>>>> exit 1 from 'bmaptool create 
->>>>> emagii-image-beaglebone-20170929070314.rootfs.wic -o 
->>>>> emagii-image-beaglebone-20170929070314.rootfs.wic.bmap'
->>>>> | ERROR: Function failed: do_image_wic (log file is located at 
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/log.do_image_wic.19342) 
->>>>>
->>>>> ERROR: Task 
->>>>> (/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic) 
->>>>> failed with exit code '1'
->>>>> NOTE: Tasks Summary: Attempted 3187 tasks of which 3186 didn't 
->>>>> need to be rerun and 1 failed.
->>>>>
->>>>> Summary: 1 task failed:
->>>>>
->>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic 
->>>>>
->>>>> Summary: There was 1 WARNING message shown.
->>>>> Summary: There was 1 ERROR message shown, returning a non-zero 
->>>>> exit code.
->>>>>
->>>>>
->>>>>
->>>>> Best Regards
->>>>> Ulf Samuelsson
->>>>
->>
 
+Just noticed this thread [1] on the list and the corresponding bug [2]. Do
+you think this issue and the eSDKs with missing python-native can relate to
+each other?
 
+[1] https://lists.yoctoproject.org/pipermail/yocto/2017-September/038199.
+html
+[2] https://bugzilla.yoctoproject.org/show_bug.cgi?id=12148
+
+--001a114593ee7bc6b5055a9396cf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">Hi P=
+aul,</div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote">O=
+n Tue, Sep 26, 2017 at 7:18 AM, Andrea Galbusera <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:gizero@gmail.com" target=3D"_blank">gizero@gmail.com</a>&gt;<=
+/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">Paul,</div><=
+div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote"><div><div cl=
+ass=3D"m_6193618520157148359gmail-m_193840837664023303gmail-m_-636279438469=
+5382573h5">On Tue, Sep 26, 2017 at 6:33 AM, Paul Eggleton <span dir=3D"ltr"=
+>&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">pau=
+l.eggleton@linux.intel.com</a><wbr>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">Hi Andrea,<br>
+<div><div class=3D"m_6193618520157148359gmail-m_193840837664023303gmail-m_-=
+6362794384695382573m_-2696021252065942545gmail-h5"><br>
+On Tuesday, 26 September 2017 4:33:46 AM NZDT Andrea Galbusera wrote:<br>
+&gt; I&#39;m back to this issue after the weeken break. See below the feedb=
+ack from<br>
+&gt; your suggestions.<br>
+&gt;<br>
+&gt; On Thu, Sep 21, 2017 at 11:49 PM, Paul Eggleton &lt;<br>
+&gt; <a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">pau=
+l.eggleton@linux.intel.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; &gt; On Friday, 22 September 2017 9:40:41 AM NZST Paul Eggleton wrote:=
+<br>
+&gt; &gt; &gt; On Friday, 22 September 2017 9:22:08 AM NZST Andrea Galbuser=
+a wrote:<br>
+&gt; &gt; &gt; &gt; On Thu, Sep 21, 2017 at 10:48 PM, Paul Eggleton &lt;<br=
+>
+&gt; &gt; &gt; &gt; <a href=3D"mailto:paul.eggleton@linux.intel.com" target=
+=3D"_blank">paul.eggleton@linux.intel.com</a>&gt; wrote:<br>
+&gt; &gt; &gt; &gt; &gt; Right, so the next step would be looking for the h=
+ash for<br>
+&gt; &gt; &gt; &gt; &gt; python-native.do_populate_sysr<wbr>oot in conf/loc=
+ked_sigs.inc within the<br>
+&gt; &gt; &gt; &gt; &gt; failed SDK install directory and then looking for =
+that in both the<br>
+&gt; &gt; sstate-<br>
+&gt; &gt; &gt; &gt; &gt; cache directory within the failed SDK and then in =
+the sstate-cache<br>
+&gt; &gt; &gt; &gt; &gt; directory of the build that built it. I suspect it=
+ may not be there,<br>
+&gt; &gt; but<br>
+&gt; &gt; &gt; &gt; &gt; let me know what you find.<br>
+&gt; &gt; &gt; &gt;<br>
+&gt; &gt; &gt; &gt; Good catch! In the failing SDK neither conf/locked_sigs=
+.inc nor<br>
+&gt; &gt; &gt; &gt; sstate-cache do include any python-native signature or =
+object... Only<br>
+&gt; &gt; &gt; &gt; python3-native stuff is there. Weird! As said, SDKs fro=
+m the same build<br>
+&gt; &gt; &gt; &gt; directory, used to work since a few weeks ago. May any =
+recent change in<br>
+&gt; &gt; &gt; &gt; poky master have caused this while periodically upgradi=
+ng without<br>
+&gt; &gt; &gt; &gt; regenerating the sstate-cache?<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; No, I can&#39;t see any added references to python-native an=
+ywhere in the<br>
+&gt; &gt; last few<br>
+&gt; &gt; &gt; weeks. If you do bitbake -c clean python-native and then reb=
+uild the SDK<br>
+&gt; &gt; does<br>
+&gt; &gt; &gt; the issue go away?<br>
+&gt; &gt;<br>
+&gt; &gt; Actually scratch that, that&#39;s not going to help. The question=
+ is where is<br>
+&gt; &gt; this dependency coming from and why isn&#39;t it properly picked =
+up such<br>
+&gt; &gt; that it gets included. bitbake -g -c populate_sdk_ext your-image =
+might be<br>
+&gt; &gt; useful in determining that.<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; $ bitbake core-image-base-dlms -c populate_sdk_ext -g<br>
+&gt;<br>
+&gt; Grepping task-depends.dot for &quot;python-native&quot; gives no match=
+. Surprisingly<br>
+&gt; enough (at least for me) I read a different story when doing the same =
+for<br>
+&gt; the image itself<br>
+&gt;<br>
+&gt; $ bitbake core-image-base-dlms -g<br>
+&gt; $ grep python-native task-depends.dot<br>
+&gt;=C2=A0 &quot;python-native.do_populate_lic<wbr>&quot; [label=3D&quot;py=
+thon-native<br>
+&gt; do_populate_lic\n:2.7.13-r1.1\<wbr>n/home/gizero/work/smartliving<wbr>=
+/distro/repo-master/build-poky<wbr>/conf/../../layers/poky/meta/r<wbr>ecipe=
+s-devtools/python/python[<wbr>18/7956]<br>
+&gt; .<a href=3D"http://7.13.bb" rel=3D"noreferrer" target=3D"_blank">7.13.=
+bb</a>&quot;]<br>
+&gt; &quot;python-native.do_populate_lic<wbr>&quot; -&gt; &quot;python-nati=
+ve.do_patch&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; [label=3D&quo=
+t;python-native<br>
+&gt; do_prepare_recipe_sysroot\n:2.<wbr>7.13-r1.1\n/home/gizero/work/s<wbr>=
+martliving/distro/repo-master/<wbr>build-poky/conf/../../layers/p<wbr>oky/m=
+eta/recipes-devtools/py<br>
+&gt; thon/<a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" tar=
+get=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;openssl-native.do_populate_sy<wbr>sroot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;pkgconfig-native.do_populate_<wbr>sysroot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;automake-native.do_populate_s<wbr>ysroot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;expat-native.do_populate_sysr<wbr>oot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;sqlite3-native.do_populate_sy<wbr>sroot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt; &quot;p=
+ython-native.do_fetch&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;bzip2-native.do_populate_sysr<wbr>oot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;readline-native.do_populate_s<wbr>ysroot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;zlib-native.do_populate_sysro<wbr>ot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;autoconf-native.do_populate_s<wbr>ysroot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;gnu-config-native.do_populate<wbr>_sysroot&quot;<br>
+&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
+&gt; &quot;libtool-native.do_populate_sy<wbr>sroot&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; [label=3D&quot;python-native<=
+br>
+&gt; do_rm_work_all\n:2.7.13-r1.1\n<wbr>/home/gizero/work/smartliving/<wbr>=
+distro/repo-master/build-poky/<wbr>conf/../../layers/poky/meta/re<wbr>cipes=
+-devtools/python/python-n<wbr>ative_2.7<br>
+&gt; .<a href=3D"http://13.bb" rel=3D"noreferrer" target=3D"_blank">13.bb</=
+a>&quot;]<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;readline-native.d=
+o_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;gnu-config-native=
+.do_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;openssl-native.do=
+_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;automake-native.d=
+o_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;m4-native.do_rm_w=
+ork&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;makedepend-native=
+.do_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;xproto-native.do_=
+rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;bzip2-native.do_r=
+m_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;ncurses-native.do=
+_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;python-native.do_=
+rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;expat-native.do_r=
+m_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;pigz-native.do_rm=
+_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;libtool-native.do=
+_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;pkgconfig-native.=
+do_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;gettext-minimal-n=
+ative.do_rm_<wbr>work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;util-macros-nativ=
+e.do_rm_work<wbr>&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;quilt-native.do_r=
+m_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;autoconf-native.d=
+o_rm_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;cryptodev-linux-n=
+ative.do_rm_<wbr>work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;xz-native.do_rm_w=
+ork&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;zlib-native.do_rm=
+_work&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;texinfo-dummy-nat=
+ive.do_rm_wo<wbr>rk&quot;<br>
+&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;sqlite3-native.do=
+_rm_work&quot;<br>
+&gt; &quot;python-native.do_compile&quot; [label=3D&quot;python-native<br>
+&gt; do_compile\n:2.7.13-r1.1\n/hom<wbr>e/gizero/work/smartliving/dist<wbr>=
+ro/repo-master/build-poky/conf<wbr>/../../layers/poky/meta/recipe<wbr>s-dev=
+tools/python/<br>
+&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
+=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_compile&quot; -&gt; &quot;python-native.do_conf=
+igure&quot;<br>
+&gt; &quot;python-native.do_install&quot; [label=3D&quot;python-native<br>
+&gt; do_install\n:2.7.13-r1.1\n/hom<wbr>e/gizero/work/smartliving/dist<wbr>=
+ro/repo-master/build-poky/conf<wbr>/../../layers/poky/meta/recipe<wbr>s-dev=
+tools/python/<br>
+&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
+=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_install&quot; -&gt; &quot;python-native.do_comp=
+ile&quot;<br>
+&gt; &quot;bmap-tools-native.do_rm_work_<wbr>all&quot; -&gt; &quot;python-n=
+ative.do_rm_work&quot;<br>
+&gt; &quot;python-native.do_build&quot; [label=3D&quot;python-native<br>
+&gt; do_build\n:2.7.13-r1.1\n/home/<wbr>gizero/work/smartliving/distro<wbr>=
+/repo-master/build-poky/conf/.<wbr>./../layers/poky/meta/recipes-<wbr>devto=
+ols/python/<br>
+&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
+=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_build&quot; -&gt; &quot;python-native.do_popula=
+te_sys<wbr>root&quot;<br>
+&gt; &quot;python-native.do_build&quot; -&gt; &quot;python-native.do_rm_wor=
+k&quot;<br>
+&gt; &quot;python-native.do_build&quot; -&gt; &quot;python-native.do_popula=
+te_lic<wbr>&quot;<br>
+&gt; &quot;python-native.do_build&quot; -&gt; &quot;python-native.do_rm_wor=
+k_all&quot;<br>
+&gt; &quot;python-native.do_fetch&quot; [label=3D&quot;python-native<br>
+&gt; do_fetch\n:2.7.13-r1.1\n/home/<wbr>gizero/work/smartliving/distro<wbr>=
+/repo-master/build-poky/conf/.<wbr>./../layers/poky/meta/recipes-<wbr>devto=
+ols/python/<br>
+&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
+=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_unpack&quot; [label=3D&quot;python-native<br>
+&gt; do_unpack\n:2.7.13-r1.1\n/home<wbr>/gizero/work/smartliving/distr<wbr>=
+o/repo-master/build-poky/conf/<wbr>../../layers/poky/meta/recipes<wbr>-devt=
+ools/python/<br>
+&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
+=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_unpack&quot; -&gt; &quot;xz-native.do_populate_=
+sysroot<wbr>&quot;<br>
+&gt; &quot;python-native.do_unpack&quot; -&gt; &quot;python-native.do_fetch=
+&quot;<br>
+&gt; &quot;python-native.do_patch&quot; [label=3D&quot;python-native<br>
+&gt; do_patch\n:2.7.13-r1.1\n/home/<wbr>gizero/work/smartliving/distro<wbr>=
+/repo-master/build-poky/conf/.<wbr>./../layers/poky/meta/recipes-<wbr>devto=
+ols/python/<br>
+&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
+=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_patch&quot; -&gt; &quot;python-native.do_unpack=
+&quot;<br>
+&gt; &quot;python-native.do_patch&quot; -&gt; &quot;quilt-native.do_populat=
+e_sysr<wbr>oot&quot;<br>
+&gt; &quot;core-image-base-dlms.do_build<wbr>&quot; -&gt; &quot;python-nati=
+ve.do_build&quot;<br>
+&gt; &quot;python-native.do_configure&quot; [label=3D&quot;python-native<br=
+>
+&gt; do_configure\n:2.7.13-r1.1\n/h<wbr>ome/gizero/work/smartliving/di<wbr>=
+stro/repo-master/build-poky/co<wbr>nf/../../layers/poky/meta/reci<wbr>pes-d=
+evtools/python/python-nat<wbr>ive_2.7.13.<br>
+&gt; bb&quot;]<br>
+&gt; &quot;python-native.do_configure&quot; -&gt; &quot;python-native.do_pa=
+tch&quot;<br>
+&gt; &quot;python-native.do_configure&quot; -&gt; &quot;python-native.do_pr=
+epare_reci<wbr>pe_sysroot&quot;<br>
+&gt; &quot;python-native.do_rm_work&quot; [label=3D&quot;python-native<br>
+&gt; do_rm_work\n:2.7.13-r1.1\n/hom<wbr>e/gizero/work/smartliving/dist<wbr>=
+ro/repo-master/build-poky/conf<wbr>/../../layers/poky/meta/recipe<wbr>s-dev=
+tools/python/<br>
+&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
+=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_rm_work&quot; -&gt; &quot;python-native.do_popu=
+late_sys<wbr>root&quot;<br>
+&gt; &quot;python-native.do_rm_work&quot; -&gt; &quot;python-native.do_popu=
+late_lic<wbr>&quot;<br>
+&gt; &quot;python-native.do_populate_sys<wbr>root&quot; [label=3D&quot;pyth=
+on-native<br>
+&gt; do_populate_sysroot\n:2.7.13-r<wbr>1.1\n/home/gizero/work/smartli<wbr>=
+ving/distro/repo-master/build-<wbr>poky/conf/../../layers/poky/me<wbr>ta/re=
+cipes-devtools/python/pyt<wbr>hon-<br>
+&gt; <a href=3D"http://native_2.7.13.bb" rel=3D"noreferrer" target=3D"_blan=
+k">native_2.7.13.bb</a>&quot;]<br>
+&gt; &quot;python-native.do_populate_sys<wbr>root&quot; -&gt; &quot;python-=
+native.do_install&quot;<br>
+&gt;<br>
+&gt; As expected, on the build bot that builds successfully installable SDK=
+s,<br>
+&gt; both dependency graphs contain no mention of python-native. Time to nu=
+ke<br>
+&gt; the sstate-cache from the failing one or do you have any additional cl=
+ue to<br>
+&gt; investigate further?<br>
+<br>
+</div></div>Deleting sstate-cache is very unlikely to help - these dependen=
+cy relationships<br>
+aren&#39;t stored in sstate (or at least they aren&#39;t stored there in a =
+way that<br>
+bitbake will take it as input for dependency graph generation).<br>
+<br>
+It looks like bmap-tools-native might be how the dependency is getting in -=
+<br>
+perhaps this is coming in conditionally through IMAGE_FSTYPES? For some<br>
+unknown reason it also doesn&#39;t get triggered when building the eSDK but=
+ does<br>
+when restoring the image dependencies within the eSDK.<br></blockquote><div=
+><br></div></div></div><div>Good catch! This explains why the two build sys=
+tems behaves differently: a little change in local.conf I didn&#39;t notice=
+ before... The &quot;failing&quot; system does IMAGE_FSTYPES_append =3D &qu=
+ot; wic&quot;, likely bringing bmap-tools-native in, while the &quot;workin=
+g&quot; build bot doesn&#39;t. However, as you say, this still does not exp=
+lain why the eSDK is missing the python-native bits. BTW, &quot;wic&quot; i=
+s in the IMAGE_FSTYPE of my usual build host since months and I&#39;m prett=
+y sure it did build many successfully installable eSDK with that option in =
+place: but maybe other tasks which also depended on python-native got remov=
+ed along the way...=C2=A0</div><div>What I can do now is adding &quot;wic&q=
+uot; to IMAGE_FSTYPES on the other system and see if I get the two scenario=
+s equally misbehaving or not. Anything else or different you can suggest to=
+ nail this down?</div></div></div></div></blockquote><div><br></div><div>Ju=
+st noticed this thread [1] on the list and the corresponding bug [2]. Do yo=
+u think this issue and the eSDKs with missing python-native can relate to e=
+ach other?</div><div><br></div><div>[1]=C2=A0<a href=3D"https://lists.yocto=
+project.org/pipermail/yocto/2017-September/038199.html" target=3D"_blank">h=
+ttps://lists.<wbr>yoctoproject.org/pipermail/<wbr>yocto/2017-September/0381=
+99.<wbr>html</a></div><div>[2]=C2=A0<a href=3D"https://bugzilla.yoctoprojec=
+t.org/show_bug.cgi?id=3D12148" target=3D"_blank">https://bugzilla.yoctoproj=
+<wbr>ect.org/show_bug.cgi?id=3D12148</a></div></div><br></div></div>
+
+--001a114593ee7bc6b5055a9396cf--
