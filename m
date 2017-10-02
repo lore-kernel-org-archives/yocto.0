@@ -1,45 +1,43 @@
-Return-Path: <Robin.Mugridge@oxinst.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1BCC1E00D00; Mon,  2 Oct 2017 07:58:43 -0700 (PDT)
+	id 921C2E00A9C; Mon,  2 Oct 2017 08:03:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [85.115.52.190 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_QP_LONG_LINE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 3392 seconds by postgrey-1.32 at yocto-www;
-	Mon, 02 Oct 2017 07:58:41 PDT
-Received: from cluster-a.mailcontrol.com (cluster-a.mailcontrol.com
-	[85.115.52.190])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E48EE00CAB
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 07:58:41 -0700 (PDT)
-Received: from UKCENHUB02.oxinst.com ([213.121.247.106])
-	by rly29a.srv.mailcontrol.com (MailControl) with ESMTPS id
-	v92E285a025248
-	(version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=OK)
-	for <yocto@yoctoproject.org>; Mon, 2 Oct 2017 15:02:08 +0100
-Received: from UKCENMBX04.oxinst.com ([169.254.4.241]) by
-	UKCENHUB02.oxinst.com ([172.16.105.2]) with mapi id 14.03.0361.001;
-	Mon, 2 Oct 2017 15:02:07 +0100
-From: MUGRIDGE Robin <Robin.Mugridge@oxinst.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: mono 5.0.1.1 TypeLoadException
-Thread-Index: AdM7hv+Nvfr2/lgQTkK1phDXt1YP7Q==
-Date: Mon, 2 Oct 2017 14:02:06 +0000
-Message-ID: <51BE6D71ED8CFC4BA05434EB06711F5DD295DF2E@UKCENMBX04.oxinst.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.105.100]
-MIME-Version: 1.0
-X-Scanned-By: MailControl 44278.1987 (www.mailcontrol.com) on 10.65.0.139
-Subject: mono 5.0.1.1 TypeLoadException
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F149E006CA
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 08:03:20 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 2C427861B2;
+	Mon,  2 Oct 2017 15:03:19 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 6tFhslujUFCF; Mon,  2 Oct 2017 15:03:10 +0000 (UTC)
+Received: from [10.102.54.18] (unknown [94.197.121.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 7F2CB860DC;
+	Mon,  2 Oct 2017 15:03:10 +0000 (UTC)
+Mime-Version: 1.0 (1.0)
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+X-Mailer: iPhone Mail (15A372)
+In-Reply-To: <51BE6D71ED8CFC4BA05434EB06711F5DD295DF2E@UKCENMBX04.oxinst.com>
+Date: Mon, 2 Oct 2017 16:03:02 +0100
+Message-Id: <AC542F9E-FECD-4F59-B5E7-11D441C4F962@dynamicdevices.co.uk>
+References: <51BE6D71ED8CFC4BA05434EB06711F5DD295DF2E@UKCENMBX04.oxinst.com>
+To: MUGRIDGE Robin <Robin.Mugridge@oxinst.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: mono 5.0.1.1 TypeLoadException
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,57 +49,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 14:58:43 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 02 Oct 2017 15:03:22 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_51BE6D71ED8CFC4BA05434EB06711F5DD295DF2EUKCENMBX04oxins_"
+	boundary=Apple-Mail-CE0C25F2-D4EE-4839-812E-2CA5DE58D004
+Content-Transfer-Encoding: 7bit
 
---_000_51BE6D71ED8CFC4BA05434EB06711F5DD295DF2EUKCENMBX04oxins_
-Content-Type: text/plain; charset="us-ascii"
+--Apple-Mail-CE0C25F2-D4EE-4839-812E-2CA5DE58D004
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Robin,
 
-I am using mono with Krogoth.  The current version of mono we are building =
-with is 4.2.2.30.
+If you supply a test case I=E2=80=99ll take a look.
 
-I am trying to move mono forward to 5.0.1.1 to avoid an issue in the HttpLi=
-stener class, but now get a TypeLoadException which I assume is a missing a=
-ssembly or a build configuration error, but I'm struggling to work out what=
-'s wrong...
+Regards,
 
-System.TypeLoadException: Could not load type of field 'System.Net.HttpList=
-ener:tlsSettings' (9) due to: Could not resolve type with token 01000034 (f=
-rom typeref, class/assembly Mono.Security.Inteace.MonoTlsSettings, Mono.Sec=
-urity, Version=3D4.0.0.0, Culture=3Dneutral, PublicKeyToken=3D0738eb9f132ed=
-756) assembly:Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral, PublicKe=
-yToken=3D0738eb9f132ed756 typMono.Security.Interface.MonoTlsSettings member=
-:<none>
+Alex
 
-Has anyone else come across this and know what the root cause is?
+> On 2 Oct 2017, at 15:02, MUGRIDGE Robin <Robin.Mugridge@oxinst.com> wrote:=
 
-Thanks,
+>=20
+> Hi,
+> =20
+> I am using mono with Krogoth.  The current version of mono we are building=
+ with is 4.2.2.30.
+> =20
+> I am trying to move mono forward to 5.0.1.1 to avoid an issue in the HttpL=
+istener class, but now get a TypeLoadException which I assume is a missing a=
+ssembly or a build configuration error, but I=E2=80=99m struggling to work o=
+ut what=E2=80=99s wrong=E2=80=A6
+> =20
+> System.TypeLoadException: Could not load type of field 'System.Net.HttpLis=
+tener:tlsSettings' (9) due to: Could not resolve type with token 01000034 (f=
+rom typeref, class/assembly Mono.Security.Inteace.MonoTlsSettings, Mono.Secu=
+rity, Version=3D4.0.0.0, Culture=3Dneutral, PublicKeyToken=3D0738eb9f132ed75=
+6) assembly:Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral, PublicKeyTo=
+ken=3D0738eb9f132ed756 typMono.Security.Interface.MonoTlsSettings member:<no=
+ne>
+> =20
+> Has anyone else come across this and know what the root cause is?
+> =20
+> Thanks,
+> =20
+> Robin
+> =20
+> =20
+> =20
+>=20
+>=20
+> __________________________________________________________________________=
+_
+> This e-mail is confidential and is for the addressee only.   Please refer t=
+o=20
+> www.oxinst.com/email-statement for regulatory information.
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Robin
-
-
-
-
-
-___________________________________________________________________________=
-This e-mail is confidential and is for the addressee only.  Please refer to=
- www.oxinst.com/email-statement for regulatory information.
-
---_000_51BE6D71ED8CFC4BA05434EB06711F5DD295DF2EUKCENMBX04oxins_
-Content-Type: text/html; charset="us-ascii"
+--Apple-Mail-CE0C25F2-D4EE-4839-812E-2CA5DE58D004
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div></div><div>Hi Robin,</div><div><br></d=
+iv><div>If you supply a test case I=E2=80=99ll take a look.</div><div><br></=
+div><div>Regards,</div><div><br></div><div>Alex</div><div><br>On 2 Oct 2017,=
+ at 15:02, MUGRIDGE Robin &lt;<a href=3D"mailto:Robin.Mugridge@oxinst.com">R=
+obin.Mugridge@oxinst.com</a>&gt; wrote:<br><br></div><blockquote type=3D"cit=
+e"><div>
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
+
 <meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -174,31 +196,31 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
+
+
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hi,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am using mono with Krogoth.&nbsp; The current vers=
-ion of mono we are building with is 4.2.2.30.<o:p></o:p></p>
+<p class=3D"MsoNormal">I am using mono with Krogoth.&nbsp; The current versi=
+on of mono we are building with is 4.2.2.30.<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am trying to move mono forward to 5.0.1.1 to avoid=
- an issue in the HttpListener class, but now get a TypeLoadException which =
-I assume is a missing assembly or a build configuration error, but I&#8217;=
-m struggling to work out what&#8217;s wrong&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal">I am trying to move mono forward to 5.0.1.1 to avoid a=
+n issue in the HttpListener class, but now get a TypeLoadException which I a=
+ssume is a missing assembly or a build configuration error, but I=E2=80=99m s=
+truggling to work out what=E2=80=99s wrong=E2=80=A6<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">System.TypeLoadException: Could not load type of field 'Sy=
-stem.Net.HttpListener:tlsSettings' (9) due to: Could not resolve type with =
-token 01000034 (from typeref, class/assembly Mono.Security.Inteace.MonoTlsS=
-ettings,
- Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral, PublicKeyToken=3D0738=
-eb9f132ed756) assembly:Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral,=
- PublicKeyToken=3D0738eb9f132ed756 typMono.Security.Interface.MonoTlsSettin=
-gs member:&lt;none&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Cou=
+rier New&quot;">System.TypeLoadException: Could not load type of field 'Syst=
+em.Net.HttpListener:tlsSettings' (9) due to: Could not resolve type with tok=
+en 01000034 (from typeref, class/assembly Mono.Security.Inteace.MonoTlsSetti=
+ngs,
+ Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral, PublicKeyToken=3D0738e=
+b9f132ed756) assembly:Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral, P=
+ublicKeyToken=3D0738eb9f132ed756 typMono.Security.Interface.MonoTlsSettings m=
+ember:&lt;none&gt;<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Has anyone else come across this and know what the r=
-oot cause is?<o:p></o:p></p>
+<p class=3D"MsoNormal">Has anyone else come across this and know what the ro=
+ot cause is?<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
@@ -208,11 +230,17 @@ oot cause is?<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 <br><br>
-___________________________________________________________________________=
-<BR>This e-mail is confidential and is for the addressee only.&nbsp;&nbsp; =
-Please refer to <BR><A href=3D"http://www.oxinst.com/email-statement">www.o=
-xinst.com/email-statement</A> for regulatory information.=20
-</body>
-</html>
+___________________________________________________________________________<=
+br>This e-mail is confidential and is for the addressee only.&nbsp;&nbsp; Pl=
+ease refer to <br><a href=3D"http://www.oxinst.com/email-statement">www.oxin=
+st.com/email-statement</a> for regulatory information.=20
 
---_000_51BE6D71ED8CFC4BA05434EB06711F5DD295DF2EUKCENMBX04oxins_--
+
+</div></blockquote><blockquote type=3D"cite"><div><span>-- </span><br><span>=
+_______________________________________________</span><br><span>yocto mailin=
+g list</span><br><span><a href=3D"mailto:yocto@yoctoproject.org">yocto@yocto=
+project.org</a></span><br><span><a href=3D"https://lists.yoctoproject.org/li=
+stinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></=
+div></blockquote></body></html>=
+
+--Apple-Mail-CE0C25F2-D4EE-4839-812E-2CA5DE58D004--
