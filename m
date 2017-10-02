@@ -1,65 +1,41 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Anders.Montonen@iki.fi>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5B1CE00A9C; Mon,  2 Oct 2017 08:58:35 -0700 (PDT)
+	id 90BABE00A9C; Mon,  2 Oct 2017 09:49:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [91.232.154.25 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.172 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BA30E006CA
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 08:58:34 -0700 (PDT)
-Received: by mail-io0-f172.google.com with SMTP id v36so5144805ioi.1
-	for <yocto@yoctoproject.org>; Mon, 02 Oct 2017 08:58:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Kz4RCDTmc3BK8l8+Ppcsy8VPvne8f7H45m8zuJqgmoU=;
-	b=BipX8VD2ZuwjXX1qTpqz5E+oNBNNyIiClKVNdX12Uga4TJWjow0yk+P4tmiNu1FZXZ
-	A9KXxTlaqpv93jsL+pz+AQcR5TljHL4AKYDzf5gvgnTQ1pQ06Xz8yzhfKvT1dr1k3RIb
-	K2okX4wRE9MdbCyKUsOabIVrNVcz1E//zCph4HYAYGgOFDI3UtbcTyNCnohD0Z5+wUnD
-	8AZOtgd0KO18Hn7vcZaF6uTYBQwIJ3v0WEHywUwLI7ef4xV3f5ORL6SWRabcoponbxUn
-	TDcRCzprE1Q/5Dht+H+p4v1k5xxNDWKPHQi53N2NdBLW+SW7ibs1mDjFxKbmwgeIWyPu
-	G0Tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Kz4RCDTmc3BK8l8+Ppcsy8VPvne8f7H45m8zuJqgmoU=;
-	b=uL0jNm1n+ga96g7PWbQuzlo4Z2ITtzA8Tw2TvOD9yus3Nh1mWIykjfVu6B7i0PQAck
-	WulGOE4w6yRWJR9FCDVC6zxXZupJQuISYpwIhqLIaXYg22BFoVYEyaKl3lkhU+psG8kP
-	1RZJ39lXiRaM9tc4U4yYowpP9CYMtd7OVD46nS5zbZRjOxg6wDRDr/KP/xwrh79bpUdX
-	Dn5v29yuVX3Q0Z27dTQLhZcrsq3KzOkhvDqDshwGJor2I6dLD77yxkGmqLxqRJuxke9K
-	l0tnw1XfbUr3zfeLf2+XCTfHhHcruoGjmDfbBpTLQq34IrXYKUGA/6wKJCPkbOaJZ4XM
-	VhVA==
-X-Gm-Message-State: AHPjjUgegcbHsHB9+StcCRiGyBdN13oTlTg46+IumX2WRSxf8Vgfuzvo
-	GFcn9zZ0nctRKYihkA/E1XROscZcHSNoQnUkmfJw3A==
-X-Google-Smtp-Source: AOwi7QDmAM38OqFBmv6yAuFKSk/Doqytcfxx/PDC4fHqrh9atF04NUcgTzuWGxnelaz4bS6lNuRRR1qmJ+KtxpTA+co=
-X-Received: by 10.107.41.135 with SMTP id p129mr23754626iop.142.1506959913438; 
-	Mon, 02 Oct 2017 08:58:33 -0700 (PDT)
+X-Greylist: delayed 4867 seconds by postgrey-1.32 at yocto-www;
+	Mon, 02 Oct 2017 09:49:01 PDT
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81136E006CA
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 09:49:01 -0700 (PDT)
+Received: from lakka.kapsi.fi ([2001:1bc8:1004::1] ident=Debian-exim)
+	by mail.kapsi.fi with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+	(Exim 4.84_2) (envelope-from <Anders.Montonen@iki.fi>)
+	id 1dz2dN-0001kH-Ew
+	for yocto@yoctoproject.org; Mon, 02 Oct 2017 18:27:53 +0300
+Received: from antime (helo=localhost)
+	by lakka.kapsi.fi with local-esmtp (Exim 4.84_2)
+	(envelope-from <Anders.Montonen@iki.fi>) id 1dz2dN-00074K-CU
+	for yocto@yoctoproject.org; Mon, 02 Oct 2017 18:27:53 +0300
+Date: Mon, 2 Oct 2017 18:27:53 +0300 (EEST)
+From: Anders Montonen <Anders.Montonen@iki.fi>
+X-X-Sender: antime@lakka.kapsi.fi
+To: yocto@yoctoproject.org
+Message-ID: <alpine.DEB.2.11.1710021743580.5820@lakka.kapsi.fi>
+User-Agent: Alpine 2.11 (DEB 23 2013-08-11)
 MIME-Version: 1.0
-Received: by 10.107.19.68 with HTTP; Mon, 2 Oct 2017 08:58:12 -0700 (PDT)
-In-Reply-To: <1BBEA542-0994-4239-8593-A48C6476B7E3@gmail.com>
-References: <1BBEA542-0994-4239-8593-A48C6476B7E3@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 2 Oct 2017 16:58:12 +0100
-Message-ID: <CAJTo0LaJPuk9dV-EB9Ai2XDwExLxBCiK=gSjD6rkWSp_5kLCGQ@mail.gmail.com>
-To: Aaron Sarginson <windswept321@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problems when adding custom layer
+X-SA-Exim-Connect-IP: 2001:1bc8:1004::1
+X-SA-Exim-Mail-From: Anders.Montonen@iki.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+Subject: sstate and multiconfigs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,38 +47,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 15:58:35 -0000
-Content-Type: multipart/alternative; boundary="001a1141f226656365055a9272db"
+X-List-Received-Date: Mon, 02 Oct 2017 16:49:02 -0000
+Content-Type: TEXT/PLAIN; format=flowed; charset=US-ASCII
 
---001a1141f226656365055a9272db
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-On 2 October 2017 at 16:55, Aaron Sarginson <windswept321@gmail.com> wrote:
+We've been trying out a setup using multiconfigs to select the source 
+control branch some set of recipes to build. The building part goes well, 
+but whenever we run package-index, the packages built using this scheme 
+are deleted.
 
-> When added, I receive parsing errors at the inherit =E2=80=9Csystemd=E2=
-=80=9D line.
->
+The basic setup is that we have one multiconfig per branch ('master', 
+'staging' etc.) In addition to providing the name of the branch, they are 
+also used to configure some variables like PACKAGE_FEED_URIS. Next, we 
+have a class that basically looks like this (the 'master' config was 
+originally called 'devel'):
 
-No quotes needed, just:
+"""
+def select_branch(d):
+     branch = d.getVar('BB_CURRENT_MC', True)
+     if branch == 'default' or branch == 'devel':
+         branch = 'master'
 
-inherit systemd
+     if not branch:
+         branch = 'master'
+     return branch
 
-Ross
+MC_BRANCH ?= "${@select_branch(d)}"
+"""
 
---001a1141f226656365055a9272db
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In the recipe we have something like the following:
+inherit git-multiconfig # our class
+inherit gitpkgv
 
-<div dir=3D"ltr">On 2 October 2017 at 16:55, Aaron Sarginson <span dir=3D"l=
-tr">&lt;<a href=3D"mailto:windswept321@gmail.com" target=3D"_blank">windswe=
-pt321@gmail.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div cl=
-ass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"word-wrap:=
-break-word"><div>When added, I receive parsing errors at the=C2=A0<font col=
-or=3D"#454545" face=3D"Helvetica Neue">inherit=C2=A0=E2=80=9Csystemd=E2=80=
-=9D line.</font></div></div></blockquote><div><br></div><div>No quotes need=
-ed, just:</div><div><br></div><div>inherit systemd</div><div><br></div><div=
->Ross=C2=A0</div></div></div></div>
+SRCREV = "${AUTOREV}"
+PV = "${FOO_VERSION}.0+gitr${SRCPV}"
+PKGV = "${MC_BRANCH}-${FOO_VERSION}.0+${GITPKGV}"
+SRC_URI += "gitsm://git@repo/foo.git;protocol=ssh;branch=${MC_BRANCH}"
 
---001a1141f226656365055a9272db--
+As stated above, when a specific recipe is built (bitbake 
+multiconfig:master:foo), everything looks fine, but whenever package-index 
+is run (with or without multiconfig), all rpms built using this scheme 
+will be deleted.
+
+If the MC_BRANCH variable is hardcoded inside the class (eg. changing the 
+body of select_branch() to a single return statement) things work as 
+expected. Any suggestions on what's going on, and how to fix it (or do it 
+in a better way)? The ultimate goal is being able to build multiple 
+branches of our project without having to encode or duplicate that 
+information, ideally receiving it as a parameter from the CI system.
+
+Regards,
+Anders Montonen
+
