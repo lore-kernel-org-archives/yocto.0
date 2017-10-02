@@ -1,32 +1,93 @@
-Return-Path: <jose.perez.carranza@linux.intel.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 559CDE00CB6; Mon,  2 Oct 2017 13:49:08 -0700 (PDT)
+	id 6E5A2E00CC4; Mon,  2 Oct 2017 15:22:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.34.103 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3293E00C65
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 13:49:06 -0700 (PDT)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	02 Oct 2017 13:49:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,471,1500966000"; d="scan'208";a="158545569"
-Received: from jgperezc-mobl1.zpn.intel.com ([10.219.4.33])
-	by fmsmga006.fm.intel.com with ESMTP; 02 Oct 2017 13:49:05 -0700
-From: jose.perez.carranza@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Mon,  2 Oct 2017 15:52:27 -0500
-Message-Id: <20171002205227.17058-1-jose.perez.carranza@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-Subject: [qa-tools][PATCH] scripts: Add ptest-parser to create reports for pTest executions
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from NAM01-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam01on0103.outbound.protection.outlook.com [104.47.34.103])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15E0CE00CB6
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 15:22:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=Melink.onmicrosoft.com; s=selector1-melinkcorp-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=9BCVtsUjbFymWgH9hdby6ECWVISMJ+TI60cY6mHGDXQ=;
+	b=LgE5WKofWMbXakk/6Mg4ElOdJsL8svSh+xXdbhY139hLLx5cEffFu739pWSdSSmTpOFi9EvWRDYfyUw71WAj9VXvEugpD4MMLQ0RmQ2tlDVMp7oWIUC0IKaa9h5Qoi7ysa6E13MSgvWXYoi8tmfeLUyR6+xONheSAsciqsBh9pY=
+Received: from DM5PR05MB2954.namprd05.prod.outlook.com (10.168.176.142) by
+	DM5PR05MB2954.namprd05.prod.outlook.com (10.168.176.142) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.77.5; Mon, 2 Oct 2017 20:48:58 +0000
+Received: from DM5PR05MB2954.namprd05.prod.outlook.com ([10.168.176.142]) by
+	DM5PR05MB2954.namprd05.prod.outlook.com ([10.168.176.142]) with mapi id
+	15.20.0077.018; Mon, 2 Oct 2017 20:48:58 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>, "Dominig ar Foll
+	(Intel Open Source)" <dominig.arfoll@fridu.net>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Errors building with Windows Subsystem for Linux (aka
+	Bash on Ubuntu on Windows)
+Thread-Index: AdM2vvT/ayFgE6oJRBOg0n7smNXIyQCbIGYAAFipvwAAS46c4A==
+Date: Mon, 2 Oct 2017 20:48:58 +0000
+Message-ID: <DM5PR05MB2954B861576FBB1E60CA8013BB7D0@DM5PR05MB2954.namprd05.prod.outlook.com>
+References: <DM5PR05MB29545649D8FAD14D890F96C4BB7B0@DM5PR05MB2954.namprd05.prod.outlook.com>
+	<08461abb-3f52-4110-3bb5-14773fa89286@fridu.net>
+	<6ae04a22-4066-670a-87b8-f96c698c1621@linux.intel.com>
+In-Reply-To: <6ae04a22-4066-670a-87b8-f96c698c1621@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=bevenson@melinkcorp.com; 
+x-originating-ip: [98.100.91.242]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DM5PR05MB2954;
+	6:g/fX4B6NUUVuRmBRDj0KgNUEPuSMd+z8kBCCj+MX0d4qfGE2+d62TFp3nERDNAQdYa38BDC5S7JL5SyUhZUDFXlX40NLSXvMQy6a8wATFeyTkKRYzzym+8HjEoAyi476rt9JNCJiwvwXh/uHmooRv+JdfYvvUOPNXtfjnF2A3Pg5n5wKk37Pk3t2C9Gts+R6Y1gXZRNAc3uWzH7N2+m+OEhn7jo9RVKb7y+ifm15f1K8VIaxNDmpPq69kP65n6BLKKJpUWxTI7B+sjm3bs5Cdmb3+8HFyufSP5NxtIpmfwhul+OAy3kt5/KNzqRW0puYXgn1CF6R84qcgTUP/U9o0g==;
+	5:BxNsvUrPVgbeDy7p5HxMWxQD2pfq7O7kUT/6jW+UB4iBvA1gP9bmLJ2y0TEwak73IZNokZRKNaanFdnzK2OHJwQ2sy+kIPOlWg7KugNfl8f/THDzdka/A3jgwY7eaBGZuoidC7YwY5dKi0LstGuO5Q==;
+	24:euxXjgfMkJvEg1K/vsy0mmcAU2MKjezyE1CGrfQ4DQ+Lv4HIqYNtY+CM31DovGofk4Esz8KMVARTJKOY7gZjQ5OWyzg6TALe/yEXFTkNyng=;
+	7:Sr/mzUeZ55SkNe4JOUoR2z8TiaflOKisYPZJyqo/ga8PDjDJRQ3AiecFsDKx7xieCrPEfXGm55Rm4+Aua5w+2hmunKNMOnKi/rPp6AKrL8lB3K6cYVM+iHLiy0o+3xwfjJddIhCVTDKsYiTeF0M0vTNkxm2TyMY3YQDc3bSdvJKFUPFyTd/ncLPnclEirsPhbSGinOE84U8wyDXxtnj9TPVnfmhGsAa/Ga9MmgiVF1I=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 35de8291-2b76-4eca-e17c-08d509d70141
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(2017030254152)(2017052603199)(201703131423075)(201703031133081)(201702281549075);
+	SRVR:DM5PR05MB2954; 
+x-ms-traffictypediagnostic: DM5PR05MB2954:
+x-exchange-antispam-report-test: UriScan:;
+x-microsoft-antispam-prvs: <DM5PR05MB295486CF79B6FD6C89C90A5CBB7D0@DM5PR05MB2954.namprd05.prod.outlook.com>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(5005006)(8121501046)(3002001)(100000703101)(100105400095)(10201501046)(93006095)(93001095)(6041248)(20161123560025)(20161123555025)(201703131423075)(201703061421075)(20161123564025)(20161123562025)(20161123558100)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:DM5PR05MB2954; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:DM5PR05MB2954; 
+x-forefront-prvs: 0448A97BF2
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(346002)(376002)(199003)(377454003)(13464003)(24454002)(189002)(3846002)(110136005)(66066001)(102836003)(99286003)(6246003)(3660700001)(68736007)(189998001)(3280700002)(97736004)(2906002)(74316002)(229853002)(101416001)(305945005)(76176999)(50986999)(54356999)(55016002)(7696004)(5660300001)(7736002)(6506006)(53546010)(9686003)(33656002)(6436002)(86362001)(81166006)(81156014)(8676002)(77096006)(8936002)(6116002)(2501003)(53936002)(508600001)(106356001)(14454004)(25786009)(2900100001)(2950100002)(105586002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DM5PR05MB2954;
+	H:DM5PR05MB2954.namprd05.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: melinkcorp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: melinkcorp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2017 20:48:58.4787 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR05MB2954
+Subject: Re: Errors building with Windows Subsystem for Linux (aka Bash on Ubuntu on Windows)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,262 +99,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 20:49:08 -0000
+X-List-Received-Date: Mon, 02 Oct 2017 22:22:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+Alex,
 
-Add ptest-parser.py scrip that creates a file with the report of pTest
-execution compared with the previous results provided, the data stored
-on the file is in wikimedia format to be copied and pasted on the new
-created wiki for pTest results of QA cycle.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of Alexander Kanavin
+> Sent: Sunday, October 01, 2017 4:20 AM
+> To: Dominig ar Foll (Intel Open Source) <dominig.arfoll@fridu.net>; yocto=
+@yoctoproject.org
+> Subject: Re: [yocto] Errors building with Windows Subsystem for Linux (ak=
+a Bash on Ubuntu on Windows)
+>=20
+> On 09/29/2017 05:01 PM, Dominig ar Foll (Intel Open Source) wrote:
+> >> Due to what our IT department can support, I am issued a Windows lapto=
+p for development.  In the past I have used VMWare to make a Linux virtual =
+machine for my Yocto Project based image builds and application development=
+.  We are starting to get Windows 10 laptops so I am evaluating doing my bu=
+ilds using the Windows Subsystem for Linux (WSL) by building a poky/morty i=
+mage.  Overall it seems to be working.  I've had an issue that I've worked =
+through and other issues that I'm not quite sure what is going on.
+> >>
+> > Hi Brian,
+> >=20
+> > I have been trying the same thing attempting to build Automotive Grade=
+=20
+> > Linux from Linux for Windows subsystem.
+> > We have many adopter of AGL who also receive Windows PC from their IT=20
+> > department. While VM work, they impose a serious limitation on memory=20
+> > and CPU usage.
+>=20
+> Does anyone else think doing embedded linux development on windows machin=
+es is a ridiculous situation, and needs to be discussed with companies mana=
+gement? IT departments should either support product R&D work (because at t=
+he end of the day that is where the company makes money), or stay out of th=
+e way and let engineers self-manage their computers, including installing w=
+eird operating systems.
 
-Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
----
- scripts/ptest-parser.py | 234 ++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 234 insertions(+)
- create mode 100755 scripts/ptest-parser.py
+Yes, ideally I could just get a Linux laptop and do that for development.  =
+Unfortunately, that's not an option for me.  Honestly, if WSL works well I =
+wouldn't mind it as a working solution.  I started trying this more out of =
+curiosity if it would do anything.  I was quite surprised how much did work=
+ with very little modification.
 
-diff --git a/scripts/ptest-parser.py b/scripts/ptest-parser.py
-new file mode 100755
-index 0000000..a3f20fb
---- /dev/null
-+++ b/scripts/ptest-parser.py
-@@ -0,0 +1,234 @@
-+#!/usr/bin/python3
-+
-+import sys
-+import os.path
-+import codecs
-+import logging
-+import argparse
-+
-+
-+prelog = {}
-+currlog = {}
-+
-+
-+def get_args():
-+    parser = argparse.ArgumentParser(description="Parse ptest results")
-+    requiredNamed = parser.add_argument_group('required arguments')
-+    requiredNamed.add_argument('-p', dest="pre_log", required=True, help='prvious log of the pTest result')
-+    requiredNamed.add_argument('--pre_commit', dest="pre_commit", required=True, help='commit of the previous log.')
-+    requiredNamed.add_argument('--pre_release', dest="pre_release", required=True, help='release of the previous log.')
-+    requiredNamed.add_argument('-c', dest="curr_log", required=True, help='current log of pTets results.')
-+    requiredNamed.add_argument('--curr_commit', dest="curr_commit", required=True, help='commit of the current log.')
-+    requiredNamed.add_argument('--curr_release', dest="curr_release", required=True, help='release of the current log.')
-+
-+    return parser.parse_args()
-+
-+
-+
-+##Check that logs exists
-+def check_args():
-+    if not os.path.isfile(args.pre_log):
-+        logging.error("Cannot find log file %s" % args.pre_log)
-+        sys.exit(1)
-+    elif not os.path.isfile(args.curr_log):
-+        logging.error("Cannot find log file %s" % args.pre_curr)
-+
-+
-+def create_log_dict(argslog):
-+    test_id = ""
-+    result = ""
-+    failures = ""
-+    failures_log = []
-+    passed = 0
-+    failed = 0
-+    content_file = codecs.open(argslog, 'r', 'utf-8', errors='ignore')
-+    content = content_file.read()
-+    content = content.split("\n")
-+    res_dict = {}
-+    directory = 'failures'
-+
-+    #create dir to store failures
-+    if not os.path.exists(directory):
-+        os.makedirs(directory)
-+
-+    #Parse the logs
-+    for i in range (len(content)-1):
-+        try:
-+            result = content[i].split(":")[0]
-+            test_id = content[i].split(":")[1].strip()
-+        except:
-+            result = None
-+        if result:
-+            if result in "BEGIN":
-+                test_module = test_id
-+                test_module = test_module.replace('/usr/lib/', '')
-+                test_module = test_module.replace('/ptest', '')
-+            elif result in "PASS":
-+                passed = passed + 1
-+            elif result in "FAIL":
-+                failed = failed + 1
-+                failures = "{0}:{1}" .format(result,test_id)
-+                failures_log.append(failures)
-+            elif result in "END":
-+                total = passed + failed
-+                if total == 0:
-+                    passrate = 0
-+                else:
-+                    passrate = 100 * (passed / total)
-+                res_dict[test_module] = [total, passed, failed, round(passrate,2)]
-+
-+                #Store Failures
-+                with open('failures/'+test_module+".failures", 'w') as failures_file:
-+                    for fails in failures_log:
-+                        failures_file.write("{0}\n" .format(fails))
-+                        failures_log = []
-+
-+                total = passed = failed = 0
-+
-+    return res_dict
-+
-+
-+def create_compared_dict(currlog, prelog):
-+    diff = set(prelog.keys()) - set(currlog.keys())
-+
-+    for key, value in currlog .items():
-+        if key in prelog.keys():
-+            lastpastrate = prelog[key][3]
-+        else:
-+            lastpastrate = 0
-+
-+        currlog[key].append(lastpastrate)
-+
-+    for item in diff:
-+        if item in prelog.keys():
-+            currlog[item] = prelog[item]
-+            currlog[item].insert(3, 0)
-+
-+    return currlog
-+
-+
-+def create_header(file_name):
-+    header = '[https://wiki.yoctoproject.org/wiki/Ptest/archive < Archive]' + \
-+             '\n\n<br />Ran on a NUC and compared with' + \
-+             '[[Ptest %s| %s]]'% (args.pre_commit, args.pre_release) + \
-+             '\n\n[<put-here-link-of-the-log> < FULL_LOG]'
-+
-+    with open(file_name, 'a') as f:
-+        f.write(header)
-+
-+def create_table(file_name, finalog):
-+
-+    nomenclature = '\n\n{| style="border-spacing:0;"\n' + \
-+        '| style="background-color:#ff8080;border:0.05pt solid #000000' + \
-+        ';padding:0.0382in;"| Failures\n' + \
-+        '|-\n' + \
-+        '| style="background-color:#99ff66;border-top:none;border-bottom:0.05pt' + \
-+        'solid #000000;border-left:0.05pt solid #000000;border-right:0.05pt' + \
-+        'solid #000000;padding:0.0201in;"| % increased\n' + \
-+        '|-\n' + \
-+        '| style="background-color:#c5000b;border-top:none;border-bottom:0.05pt' + \
-+        'solid #000000;border-left:0.05pt solid #000000;border-right:0.05pt' + \
-+        'solid #000000;padding:0.0201in;color:#ffffff"| % decreased\n' + \
-+        '|-\n' + \
-+        '| style="background-color:gray;border-top:none;border-bottom:0.05pt' + \
-+        'solid #000000;border-left:0.05pt solid #000000;border-right:0.05pt' + \
-+        'solid #000000;padding:0.0201in;color:#000000"| Module not executed\n' + \
-+        '|}'
-+
-+    titles = ['Package Name', 'Tests ran', 'Passed', 'Failed', 'Passrate', 'Last Passrate']
-+
-+    table = '\n\n{| class="wikitable"\n' + \
-+        '|+Results\n' + \
-+        '|-\n'
-+
-+    for t in titles:
-+        table += '| align=center style="background-color:#ccffff;' + \
-+            'border-top:0.05pt solid #000000;border-bottom:0.5pt solid' + \
-+            '#000000;border-left:0.05pt solid #000000;border-right:0.5pt' + \
-+            'solid #000000;padding:0.0201in;"' + \
-+            "| '''%s'''\n"% t
-+
-+    table += '|-\n'
-+
-+
-+    for key, value in sorted(finalog.items()):
-+        bgcolor_rate = bgcolor_fails = 'transparent'
-+        text_color = '#000000'
-+
-+        if all(v == 0 for v in value[0:2]):
-+            bgcolor_rate = bgcolor_fails = 'gray'
-+            rate_image = 'no_rate.png'
-+
-+        #Package Name
-+        table += '| align=left style="background-color:trasnparent' + \
-+            'border-color:#000000"| %s\n'% key
-+
-+        #Tests ran and Passed
-+        for v in range(0,2):
-+            table += '| align=center style="background-color:%s;'% bgcolor_rate + \
-+                'border-color:#000000"|%s\n'% value[v]
-+
-+        if value[2] > 0:
-+            bgcolor_fails = '#ff8080'
-+
-+        #Failed
-+        table += '| align=center style="background-color:%s;'% bgcolor_fails + \
-+            'border-color:#000000"|%s\n'% value[2]
-+
-+        if value[3] > value[4]:
-+            bgcolor_rate = '#99ff66'
-+            rate_image = 'up_rate.png'
-+        elif value[3] < value[4]:
-+            bgcolor_rate = '#c5000b'
-+            rate_image = 'down_rate.png'
-+            text_color = '#ffffff'
-+
-+        #Passrate
-+        table += '| align=center style="background-color:%s;'% bgcolor_rate + \
-+            'border-color:#000000;color:%s"|%s\n'% (text_color, value[3])
-+
-+        #Last Passrate
-+        table += '| align=center style="background-color:%s;'% bgcolor_rate + \
-+            'border-color:#000000;color:%s"|%s\n'% (text_color, value[4])
-+
-+        if  bgcolor_rate not in 'transparent':
-+            table += '| align=center style="background-color:transparent;' + \
-+                'border-color:transparent" |[[File:%s|15px]]\n'% rate_image
-+
-+        table += '|-\n'
-+
-+
-+
-+    with open(file_name, 'a') as f:
-+        f.write(nomenclature + table)
-+
-+
-+def create_pTest_wiki(finalog):
-+
-+    file_name = args.curr_release + '-wiki.page'
-+
-+    create_header(file_name)
-+
-+    create_table(file_name, finalog)
-+
-+    return file_name
-+
-+if __name__ == '__main__':
-+    args = get_args()
-+    logger = None
-+
-+    logging.basicConfig(stream=sys.stdout)
-+    root = logging.getLogger()
-+    root.setLevel(logging.INFO)
-+
-+    logger = logging.getLogger()
-+    ##Parse previous log
-+    prelog = create_log_dict(args.pre_log)
-+    #Parse current log
-+    currlog = create_log_dict(args.curr_log)
-+    logger.info("Logs parsed correctly")
-+    #Get a compraed result
-+    compared_log = create_compared_dict(currlog, prelog)
-+
-+    file_name = create_pTest_wiki(compared_log)
-+    logger.info("Wiki correctly created as -  %s -"%file_name)
--- 
-2.11.0
+With the few changes I have already mentioned, I was able to build my compl=
+ete image.  I then started working on building my development image to crea=
+te and SDK that has gdb and tools for the Eclipse plugin.  That built all t=
+he way to rootfs, then failed with a blank error message.  I then tried wit=
+h my VM, and the development image failed in the same manner.  I recently u=
+pdated to a more recent Yocto branch, so I think I broke something with my =
+development image build (unrelated to WSL) that I need to go back and fix.
 
+The biggest issue I had with build times was with antivirus tools.  I hadn'=
+t setup the Windows antivirus to ignore the WSL working directory, so it wa=
+s scanning every new file created and modified.  Once I told it to ignore t=
+he WSL working directory, the build times were comparable to under VMWare.
+
+I don't know how far I'll take this, but I thought others would be interest=
+ed in the results.
+
+Bryan
 
