@@ -1,39 +1,45 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <Robin.Mugridge@oxinst.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DF35E00D00; Mon,  2 Oct 2017 07:54:22 -0700 (PDT)
+	id 1BCC1E00D00; Mon,  2 Oct 2017 07:58:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [85.115.52.190 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00C1BE00CAB
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 07:54:20 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v92EsCDK008821
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 2 Oct 2017 07:54:13 -0700 (PDT)
-Received: from [128.224.56.93] (128.224.56.93) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
-	Mon, 2 Oct 2017 07:54:12 -0700
-To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <1506828179.7624.9.camel@sdl.usu.edu>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <3fd40621-6c3e-d7e2-69c0-baa1aa4dab86@windriver.com>
-Date: Mon, 2 Oct 2017 10:54:11 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.2.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 3392 seconds by postgrey-1.32 at yocto-www;
+	Mon, 02 Oct 2017 07:58:41 PDT
+Received: from cluster-a.mailcontrol.com (cluster-a.mailcontrol.com
+	[85.115.52.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E48EE00CAB
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 07:58:41 -0700 (PDT)
+Received: from UKCENHUB02.oxinst.com ([213.121.247.106])
+	by rly29a.srv.mailcontrol.com (MailControl) with ESMTPS id
+	v92E285a025248
+	(version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=OK)
+	for <yocto@yoctoproject.org>; Mon, 2 Oct 2017 15:02:08 +0100
+Received: from UKCENMBX04.oxinst.com ([169.254.4.241]) by
+	UKCENHUB02.oxinst.com ([172.16.105.2]) with mapi id 14.03.0361.001;
+	Mon, 2 Oct 2017 15:02:07 +0100
+From: MUGRIDGE Robin <Robin.Mugridge@oxinst.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: mono 5.0.1.1 TypeLoadException
+Thread-Index: AdM7hv+Nvfr2/lgQTkK1phDXt1YP7Q==
+Date: Mon, 2 Oct 2017 14:02:06 +0000
+Message-ID: <51BE6D71ED8CFC4BA05434EB06711F5DD295DF2E@UKCENMBX04.oxinst.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.105.100]
 MIME-Version: 1.0
-In-Reply-To: <1506828179.7624.9.camel@sdl.usu.edu>
-Cc: Jack Kiefer <Jack.Kiefer@sdl.usu.edu>
-Subject: Re: Configuration fragments not making it into kernel configuration
+X-Scanned-By: MailControl 44278.1987 (www.mailcontrol.com) on 10.65.0.139
+Subject: mono 5.0.1.1 TypeLoadException
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,96 +51,168 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 14:54:22 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Mon, 02 Oct 2017 14:58:43 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative;
+	boundary="_000_51BE6D71ED8CFC4BA05434EB06711F5DD295DF2EUKCENMBX04oxins_"
 
-On 09/30/2017 11:22 PM, Jonathan Haws wrote:
-> All,
-> 
-> I've created a bbappend that appends to the linux-yocto-rt recipe to
-> simply apply configuration fragments.  I've been using this recipe for
-> some time (through many releases) but since I moved to the morty branch
-> my fragments aren't getting applied to the actual kernel configuration.
->   The kernel_configcheck task doesn't catch the error either.
-> 
-> What I'm trying to do in a nutshell is disable the in-kernel IGB driver
-> and use my own, patched version.  The configuration fragments are
-> installed by my recipe in:
-> 
-> <build>/tmp/work/corei7-64-intel-common-sigma-linux/linux-yocto-
-> rt/4.8.3+gitAUTOINC+6d028d2818_4057556c04-r0/
-> 
-> However the .config file at:
-> 
->   <build>/tmp/work/corei7-64-intel-common-sigma-linux/linux-yocto-
-> rt/4.8.3+gitAUTOINC+6d028d2818_4057556c04-r0/linux-corei7-64-intel-
-> common-preempt-rt-build/.config
-> 
-> doesn't have the necessary configuration - it still has the default.
-> 
-> I know I can fix this by simply doing a menuconfig, but that isn't the
-> proper way to do it - I have multiple BSP layers that do the same thing
-> and they all behave in the same way.
-> 
-> What am I doing wrong?  I've attached my layer that contains the
-> recipe.  If the fragments are getting installed I think the recipe is
-> working right - but is there something in the lower-level class that
-> isn't working or do I have a configuration that is breaking it?
+--_000_51BE6D71ED8CFC4BA05434EB06711F5DD295DF2EUKCENMBX04oxins_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I did a build with morty and your BSP, and I'm not seeing
-the same results.
+Hi,
 
-One notable difference is that if you are using the tip of
-the morty branches, you should get 4.8.17, not 4.8.3.
+I am using mono with Krogoth.  The current version of mono we are building =
+with is 4.2.2.30.
 
-I did zero extra configuration, just added your layer, meta-intel
-and then bitbaked linux-yocto-rt.
+I am trying to move mono forward to 5.0.1.1 to avoid an issue in the HttpLi=
+stener class, but now get a TypeLoadException which I assume is a missing a=
+ssembly or a build configuration error, but I'm struggling to work out what=
+'s wrong...
 
-Maybe I'm misunderstanding what I see in the BSP layer, but I
-did get IGB disabled:
+System.TypeLoadException: Could not load type of field 'System.Net.HttpList=
+ener:tlsSettings' (9) due to: Could not resolve type with token 01000034 (f=
+rom typeref, class/assembly Mono.Security.Inteace.MonoTlsSettings, Mono.Sec=
+urity, Version=3D4.0.0.0, Culture=3Dneutral, PublicKeyToken=3D0738eb9f132ed=
+756) assembly:Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral, PublicKe=
+yToken=3D0738eb9f132ed756 typMono.Security.Interface.MonoTlsSettings member=
+:<none>
 
-:~/poky/build/tmp/work/corei7-64-intel-common-poky-linux/linux-yocto-rt/4.8.17+gitAUTOINC+bb6984f46b_9c4f52cb2b-r0/linux-corei7-64-intel-common-preempt-rt-build$ 
-grep CONFIG_IGB .config
-# CONFIG_IGB is not set
-CONFIG_IGBVF=m
+Has anyone else come across this and know what the root cause is?
 
-And I did get a warning during the build:
+Thanks,
 
----------- CONFIG_IGB_DCA -----------------
-Config: CONFIG_IGB_DCA
-From: 
-/home/bruce/poky/build/tmp/work-shared/xpedite7570/kernel-source/.kernel-meta/configs/standard/preempt-rt/intel/features/dca/dca.cfg
-Requested value:  CONFIG_IGB_DCA=y
-Actual value:
-
-Config 'IGB_DCA' has the following conditionals:
-   IGB && DCA && !(IGB = y && DCA = m) (value: "n")
-IGB && DCA && !(IGB = y && DCA = m) (value: "n")
-Dependency values are:
-   y [y] m [m] IGB [n] DCA [y]
-
---------------------
-
-Which explains why CONFIG_IGB_DCA didn't make it into the final .config
-
-Can you clarify what you were looking to get for final configuration
-settings ?
-
-Bruce
+Robin
 
 
-> 
-> Any help or direction is appreciated.  This has been really frustrating
-> since I know I've done this before and all the threads I've found on
-> the lists from before haven't really given an answer - maybe I just
-> missed the golden thread?
-> 
-> Thanks!
-> Jon
-> 
-> 
-> 
 
 
+
+___________________________________________________________________________=
+This e-mail is confidential and is for the addressee only.  Please refer to=
+ www.oxinst.com/email-statement for regulatory information.
+
+--_000_51BE6D71ED8CFC4BA05434EB06711F5DD295DF2EUKCENMBX04oxins_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-language:EN-US;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-language:EN-US;}
+span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am using mono with Krogoth.&nbsp; The current vers=
+ion of mono we are building with is 4.2.2.30.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am trying to move mono forward to 5.0.1.1 to avoid=
+ an issue in the HttpListener class, but now get a TypeLoadException which =
+I assume is a missing assembly or a build configuration error, but I&#8217;=
+m struggling to work out what&#8217;s wrong&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">System.TypeLoadException: Could not load type of field 'Sy=
+stem.Net.HttpListener:tlsSettings' (9) due to: Could not resolve type with =
+token 01000034 (from typeref, class/assembly Mono.Security.Inteace.MonoTlsS=
+ettings,
+ Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral, PublicKeyToken=3D0738=
+eb9f132ed756) assembly:Mono.Security, Version=3D4.0.0.0, Culture=3Dneutral,=
+ PublicKeyToken=3D0738eb9f132ed756 typMono.Security.Interface.MonoTlsSettin=
+gs member:&lt;none&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Has anyone else come across this and know what the r=
+oot cause is?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Robin<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<br><br>
+___________________________________________________________________________=
+<BR>This e-mail is confidential and is for the addressee only.&nbsp;&nbsp; =
+Please refer to <BR><A href=3D"http://www.oxinst.com/email-statement">www.o=
+xinst.com/email-statement</A> for regulatory information.=20
+</body>
+</html>
+
+--_000_51BE6D71ED8CFC4BA05434EB06711F5DD295DF2EUKCENMBX04oxins_--
