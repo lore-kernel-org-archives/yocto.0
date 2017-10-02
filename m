@@ -1,64 +1,107 @@
-Return-Path: <aaron.schwartz@logicsupply.com>
+Return-Path: <jeffrey.pautler@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AC25E00B1B; Mon,  2 Oct 2017 11:01:27 -0700 (PDT)
+	id 91A0EE00C44; Mon,  2 Oct 2017 12:43:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.42 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.42 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [148.163.158.57 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
-	[209.85.218.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ABCDE007EF
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 11:01:22 -0700 (PDT)
-Received: by mail-oi0-f42.google.com with SMTP id 125so10386956oie.5
-	for <yocto@yoctoproject.org>; Mon, 02 Oct 2017 11:01:22 -0700 (PDT)
+X-Greylist: delayed 312 seconds by postgrey-1.32 at yocto-www;
+	Mon, 02 Oct 2017 12:43:10 PDT
+Received: from mx0b-00010702.pphosted.com (mx0b-00010702.pphosted.com
+	[148.163.158.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00438E00BB7
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 12:43:10 -0700 (PDT)
+Received: from pps.filterd (m0098779.ppops.net [127.0.0.1])
+	by mx0b-00010702.pphosted.com (8.16.0.21/8.16.0.21) with SMTP id
+	v92JZrYO004995; Mon, 2 Oct 2017 14:37:56 -0500
+Received: from nam01-bn3-obe.outbound.protection.outlook.com
+	(mail-bn3nam01lp0176.outbound.protection.outlook.com
+	[216.32.180.176])
+	by mx0b-00010702.pphosted.com with ESMTP id 2dburdg0mr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Mon, 02 Oct 2017 14:37:56 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=logicsupply.com; s=google-lscom;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=pXDWwMkj075D7BCzC4pN+Ei6pLFaEEYGou7ZfFlUP64=;
-	b=d+I7wTYxH7zZ39ZDIkzNuDw9WtPmRcQ4d5dIrULDTx16I2DTan44HG4p8CBC4YiN6g
-	isEC4TgaZqRFyc7voY1irv3a+NcqxwhL7agbDFXOFmiyzzFFcmwya3c2AfilyvQbjKgo
-	rmjqLhDk0tyqlYT6mKunUslS2rKOtJzxzBZi0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=pXDWwMkj075D7BCzC4pN+Ei6pLFaEEYGou7ZfFlUP64=;
-	b=gSwrJnwbPhxD3R/+Bu6kJn8n1cTwtiVCfj6CL4wb2ufb4UEyxHsntKGm3NoUBzUxtl
-	8Pv3801QYXi+WnL5mIW2cHhXVdzmM4OeQ6bOp031MFxEjCuZL92avnLMoNRf+QxmIMYS
-	PEfXZpUyd2GuMLBpSpXKji/jBdxi68VHhJTxlnxneD4xUyRTVyzhqkw36Ip55reNTRj9
-	4qF6bjfmCl8WEfDUNOQ3IQdANZ9BjxMlFXPpfFAy54gLvCZO+Ngqk63CeI/rhVhIvKgm
-	eeIyL4kbZv+kyQivfzeJEJQ9GvnOwxy50hIzMO3XCzBn1Ppq+lXZ8pi78QmDesf5aWl2
-	XaPg==
-X-Gm-Message-State: AMCzsaVuoZef0hoUMjIOIp+WbbzmaznjK6u04Ne1khE0uUZvLMvyaBKd
-	5xa3eRqmi5gqDyDfQ4uL6GTMXuXtGH/ObQBl8DZ0/H/hdWE=
-X-Google-Smtp-Source: AOwi7QAw7KkNBC3NfrW4XdUJSSAmCO4bsEGH07k92yTkgxeuun3nQ+pb5fEMNQq4VP9sCfZyh2HHHNLE24Pms/zpBMI=
-X-Received: by 10.157.91.61 with SMTP id x58mr2564118oth.89.1506967281434;
-	Mon, 02 Oct 2017 11:01:21 -0700 (PDT)
+	d=nio365.onmicrosoft.com; s=selector1-ni-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=g7fjyNVBS4pqUxSc4z4UySg0U82ZCQf9iRQG8enjaFk=;
+	b=hMRL0I3GQXdHywg/CkdGvFxUGv6Z8QdtrwZ6VpTobRifpJl0dSFUI9WbHuny6CKG//w0EopCWxl7GRjTtOvN7tB4psR8PDtMYGFbYKKqLsyeCAlCaOwcHBuwHEKHpea3vTu0obI97C3NW2+SgmYsmWvCT8tTp1HrEBQxjXlWH2Q=
+Received: from DM2PR0401MB1295.namprd04.prod.outlook.com (10.160.218.17) by
+	DM2PR0401MB1293.namprd04.prod.outlook.com (10.160.218.156) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.77.7;
+	Mon, 2 Oct 2017 19:37:54 +0000
+Received: from DM2PR0401MB1295.namprd04.prod.outlook.com
+	([fe80::5040:2c84:f7e3:d856]) by
+	DM2PR0401MB1295.namprd04.prod.outlook.com
+	([fe80::5040:2c84:f7e3:d856%16]) with mapi id 15.20.0077.016;
+	Mon, 2 Oct 2017 19:37:54 +0000
+From: Jeffrey Pautler <jeffrey.pautler@ni.com>
+To: "opkg-devel@googlegroups.com" <opkg-devel@googlegroups.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [opkg-utils PATCH] opkg.py: Fix run-time error in call to ArFile
+Thread-Index: AdM7r8cs+kfxt1L2TW+L/9JUO1ZM3w==
+Date: Mon, 2 Oct 2017 19:37:54 +0000
+Message-ID: <DM2PR0401MB12954FB72F09E9F56E39C758967D0@DM2PR0401MB1295.namprd04.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [130.164.62.168]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DM2PR0401MB1293;
+	6:jnaFV7lOMDRcBCU0oTPa8se5Z9fH/F6tT4BdCKxCkNN/eZGyq7B21yfl/RnNzr7EiMN6OAOOGm8EEJz4UiYuKsuJ+//GAdS8mdISiKURhu1XEJWmVVvKpLhMPuE9OAxrK9Gcibaq/3ErWkcJvZPIDojlc9fTxYmwj9vxFTtTE7TGW1thGaIewEKsxReWuDYn/7BisFQPHcQsNr8/u6eRpacQLrxLgY+UTEiC65NrlDralBwqNzXFKNYnBWM/kNAcfvVu8O/mQDIdIjz558Zr1a2Ar+uUeY3euhm6k+0ZFzL+th+SA+psFtjnQBJZguNDutVulUCHApZx0em7Kzy5kQ==;
+	5:QNA5kB/XLNA2pyyvlLqZFy9BJeYeH1fHODX/Q8jzPiQ0gfibP+jNulV0Px/JzLwNZIF9P27BNKkLSs8/icfoP82xkEKa385pK3oo0k+vw3n6fjvTzZtzm8kH00AQQrrFJ8m7kdeofHhtHR+eEOmTVQ==;
+	24:0m/4MxxTneiGY5et3puy4WDSKvQSl8Vc5lVLO8dY/rlu8c0eVW3jEw5aYXDIdOOi7+mpPzanwRN2ClLmeWR/35uCA5VmXECAe7x/hA/8+DI=;
+	7:H3ueoWsbvAtFRk1aUraryIdnQR/5rBDUs+umCnG/5WMjLlJUz2LCDNvRJaf0STdPZMN0bktOymz2xh7kzAlDd/grg140afAZEUfoNZ+B84/1vIjk5QbcjypLZrHOBhjVUEvv9vQwKvuXsq0GPERk4/ZmPG99fuNP9T08oS1WAhSNoC/WcEcnYhHHxXgIOP9bskQs3ovtxeV9KGggSLd/pnogQZxlm6hPv1Uro1JqcOI=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 1bff061e-44ca-4373-c53a-08d509cd1371
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(2017030254152)(2017052603199)(201703131423075)(201703031133081)(201702281549075);
+	SRVR:DM2PR0401MB1293; 
+x-ms-traffictypediagnostic: DM2PR0401MB1293:
+x-exchange-antispam-report-test: UriScan:(21748063052155)(145744241990776);
+x-microsoft-antispam-prvs: <DM2PR0401MB129330136FDAB3D4748BB983967D0@DM2PR0401MB1293.namprd04.prod.outlook.com>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(5005006)(8121501046)(10201501046)(93006095)(93001095)(3002001)(100000703101)(100105400095)(6041248)(20161123555025)(20161123558100)(20161123564025)(20161123560025)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:DM2PR0401MB1293; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:DM2PR0401MB1293; 
+x-forefront-prvs: 0448A97BF2
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6029001)(6009001)(376002)(346002)(189002)(199003)(7736002)(2501003)(5250100002)(14454004)(110136005)(53936002)(6436002)(66066001)(99286003)(316002)(54896002)(55016002)(7696004)(74316002)(6306002)(9686003)(478600001)(6506006)(5660300001)(25786009)(101416001)(54356999)(6116002)(790700001)(102836003)(3846002)(3280700002)(81166006)(81156014)(8676002)(8936002)(50986999)(2900100001)(105586002)(106356001)(86362001)(189998001)(2906002)(33656002)(68736007)(97736004)(3660700001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DM2PR0401MB1293;
+	H:DM2PR0401MB1295.namprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: ni.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.74.39.94 with HTTP; Mon, 2 Oct 2017 11:01:20 -0700 (PDT)
-In-Reply-To: <4a9df97c-fa72-82a3-b8be-60b8f537e458@emagii.com>
-References: <4a9df97c-fa72-82a3-b8be-60b8f537e458@emagii.com>
-From: Aaron Schwartz <aaron.schwartz@logicsupply.com>
-Date: Mon, 2 Oct 2017 14:01:20 -0400
-Message-ID: <CAP3gWc9shs38YqyP9WFN6g62MtWUOBVvpvgOqb9oHchEE0mx+Q@mail.gmail.com>
-To: Ulf Samuelsson <yocto@emagii.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RFC: autotooler: generation of "configure.ac" and "Makefile.am" using Kconfig
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2017 19:37:54.0712 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR0401MB1293
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2017-10-02_06:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy
+	score=30
+	priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0
+	bulkscore=0
+	spamscore=0 clxscore=1011 lowpriorityscore=0 impostorscore=0
+	adultscore=0
+	classifier=spam adjust=30 reason=mlx scancount=1
+	engine=8.0.1-1707230000 definitions=main-1710020283
+Subject: [opkg-utils PATCH] opkg.py: Fix run-time error in call to ArFile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,798 +113,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 18:01:27 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1c18527fd43c055a942989"
+X-List-Received-Date: Mon, 02 Oct 2017 19:43:11 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM2PR0401MB12954FB72F09E9F56E39C758967D0DM2PR0401MB1295_"
 
---94eb2c1c18527fd43c055a942989
-Content-Type: text/plain; charset="UTF-8"
-
-Are you looking to use menuconfig to configure your packages?  BusyBox does
-this [0] pretty well in my experience, you might take a look at how they've
-put that together.
-
-0) https://busybox.net/FAQ.html#configure
-
-On Sat, Sep 30, 2017 at 10:49 AM, Ulf Samuelsson <yocto@emagii.com> wrote:
-
-> Have a need to convert a large number of libraries to use autotools.
->
-> I came up with the following idea:
->
-> I create an Kconfig based configuration system, where you define a number
-> of configuration items needed by configure.ac and Makefile.am
->
-> You choose if you want to build an application, a shared library or a
-> static library.
->
-> The build normally depends on other libraries, and you checkmarks
-> which library you are interested in from a (small) number of supported
-> libraries.
-> You can likewise select to support options like "--enable-openssl",
-> again from a (small) number of supported options.
->
-> If you have stuff not supported, the autotooler will include Config.in
-> files allowing you to add your own items.
->
-> Once the configuration is complete, you will compile an application
-> which will generate "configure.ac" from the configuration file.
->
-> Again, if you have stuff not supported in the code, you can add it
-> in a user include file.
->
-> The generator will read a user-headers.inc file and
-> generate an AC_CHECK_HEADERS entry.
->
->
-> The autotooler is available on
->         https://www.github.com/emagii/autotooler.git
->
-> ===================================================================
-> Currently, it does not generate any Makefile.am files, but
-> the idea is to separate the source files into
-> * C source
-> * Public Headers
-> * Local Headers
->
-> A tool would then scan the directories and classify them accordingly,
-> so Makefile.am files should be possible to generate fairly easy.
->
-> ===================================================================
-> A final step would clone a empty git tree, and populate it
-> with all the files needed for a complete package.
-> ===================================================================
->
-> Comments appreciated.
->
-> Best Regards
-> Ulf Samuelsson
-> ===================================================================
-> Here is a typical "autoconh.h" generated by Kconfig.
->
-> /*
->  * Automatically generated C config: don't edit
->  * Sat Sep 30 16:27:24 2017
->  */
-> #define CONFIG_SHARED_LIB 1
-> #define CONFIG_PTHREAD 1
-> #define CONFIG_LIBRARY 1
-> #define CONFIG_PROJECT "myproject"
-> #define CONFIG_WORKDIR "${HOME}/projects/autotooler"
-> #define CONFIG_OPENSSL 1
-> #define CONFIG_CURL 1
-> #define CONFIG_COPYRIGHT_DATE "2017"
-> #define CONFIG_HOMEPAGE "http://www.emagii.com/"
-> #define CONFIG_EXAMPLES 1
-> #define CONFIG_DEBUG 1
-> #define HAVE_DOT_CONFIG 1
-> #define CONFIG_AC_PRERQ "2.59"
-> #define CONFIG_BOOST 1
-> #define CONFIG_OS_LINUX 1
-> #define CONFIG_LIBRARY_NAME "libyocto"
-> #define CONFIG_AUTHOR_EMAIL "ulf@emagii.com"
-> #define CONFIG_LIBRARY_VERSION "1.0"
-> #define CONFIG_AC_CONFIG_HEADER "src/include/config.h"
-> #define CONFIG_OS "Linux"
-> #define CONFIG_EXAMPLES_VAR "examples"
-> #define CONFIG_AC_CONFIG_MACRO_DIR "m4"
-> #define CONFIG_DEBUG_VAR "debug"
-> #define CONFIG_PROJECT_TYPE "library"
-> #define CONFIG_SRCDIR "src"
-> #define CONFIG_SRC_URI_REPO ""
-> #define CONFIG_AUTHOR "Ulf Samuelsson"
-> #define CONFIG_SRC_URI_HOST "https://www.github.com/emagii"
-> #define CONFIG_CURLPP 1
-> #define CONFIG_AM_INIT_AUTOMAKE "1.10 -Wall no-define"
->
-> The application will from this information generate:
->
-> AC_INIT([libyocto],
->         [1.0],
->         [Ulf Samuelsson],
->         [libyocto-1.0],
->         [http://www.emagii.com/])
->
-> AC_PRERQ([2.59])
->
-> AC_CONFIG_HEADER([src/include/config.h])
->
-> AC_CONFIG_SRCDIR([src])
->
-> AC_PROG_CPP
-> AC_PROG_CC
-> AC_INIT_AUTOMAKE([1.10 -Wall no-define])
->
-> AC_PROG_MAKE_SET
-> AM_MAINTAINER_MODE
-> AC_HEADER_STDC
-> AC_ENABLE_SHARED
-> AC_DISABLE_STATIC
-> AC_PROG_LIBTOOL
-> AC_HEADER_STDC
->
-> AC_CHECK_HEADERS( \
->         ctype.h \
->         errno.h \
->         fcntl.h \
->         openssl/bio.h \
->         openssl/err.h \
->         openssl/opensslconf.h \
->         openssl/rand.h \
->         openssl/ssl.h \
->         pthread.h \
->         stdio.h \
->         stdlib.h \
->         stdarg.h \
->         stdint.h \
->         string.h \
->         signal.h \
->         sys/ioctl.h \
->         sys/socket.h \
->         sys/time.h \
->         sys/types.h \
->         time.h \
->         unistd.h \
->          \
->         ,
-> dnl to do if not found
->         [],
-> dnl to do if not found
->         [],
-> dnl default includes
->         [
-> #ifdef HAVE_SYS_TYPES_H
-> #include <sys/types.h>
-> #endif
-> #ifdef HAVE_SYS_TIME_H
-> #include <sys/time.h>
-> #endif
-> dnl We do this default-include simply to make sure that the
-> nameser_compat.h
-> dnl header *REALLY* can be include after the new nameser.h. It seems AIX
-> 5.1
-> dnl (and others?) is not designed to allow this.
-> #ifdef HAVE_ARPA_NAMESER_H
-> #include <arpa/nameser.h>
-> #endif
->
-> dnl *Sigh* these are needed in order for net/if.h to get properly detected.
-> #ifdef HAVE_SYS_SOCKET_H
-> #include <sys/socket.h>
-> #endif
-> #ifdef HAVE_NETINET_IN_H
-> #include <netinet/in.h>
-> #endif
-> ]
-> )
->
-> # ==== Boost Libraries
-> AC_ARG_WITH([boost-include-path],
->         [AS_HELP_STRING([--with-boost-include-path],[location of the
-> Boost headers, defaults to /usr/include/boost])],
->         [CXXFLAGS_BOOST="-I$withval"],
->         [CXXFLAGS_BOOST="-I/usr/include/boost"])
-> AC_SUBST([BOOST_CFLAGS])
->
-> AC_ARG_WITH([boost-lib-path],
->         [AS_HELP_STRING([--with-boost-lib-path],[location of the Boost
-> libraries, defaults to /usr/lib])],
->         [BOOST_LIBS="-L$withval" -lboost_system -lboost_filesystem
-> -lboost_program_options -lboost_thread -lpthread],
->         [BOOST_LIBS="-L/usr/lib -lboost_system -lboost_filesystem
-> -lboost_program_options -lboost_thread -lpthread"])
-> AC_SUBST([BOOST_LIBS])
->
-> AC_ARG_ENABLE(boost,
->         [--enable-boost Include Boost Libraries],
->         [case "${enableval}" in
->                 yes)    use_boost=true  ;;
->                 no)     use_boost=false ;;
->                 *) AC_MSG_ERROR(bad value ${enableval} for --enable-boost)
-> ;;
->          esac
->         ],
->         [use_boost=false])
-> AM_CONDITIONAL(CONFIG_BOOST, test x$boost = xtrue)
->
-> # ==== cURL Libraries
-> AC_ARG_WITH([curl-include-path],
->         [AS_HELP_STRING([--with-curl-include-path],[location of the cURL
-> headers, defaults to /usr/include])],
->         [CXXFLAGS_CURL="-I$withval"],
->         [CXXFLAGS_CURL="-I/usr/include"])
-> AC_SUBST([CURL_CFLAGS])
->
-> AC_ARG_WITH([curl-lib-path],
->         [AS_HELP_STRING([--with-curl-lib-path],[location of the cURL
-> libraries, defaults to /usr/lib])],
->         [CURL_LIBS="-L$withval" -lcurl],
->         [CURL_LIBS="-L/usr/lib -lcurl"])
-> AC_SUBST([CURL_LIBS])
->
-> AC_ARG_ENABLE(curl,
->         [--enable-curl  Include cURL],
->         [case "${enableval}" in
->                 yes)    use_curl=true  ;;
->                 no)     use_curl=false ;;
->                 *) AC_MSG_ERROR(bad value ${enableval} for --enable-curl)
-> ;;
->          esac
->         ],
->         [use_curl=false])
-> AM_CONDITIONAL(CONFIG_CURL, test x$curl = xtrue)
->
-> # ==== cURLPP Libraries
-> AC_ARG_WITH([curlpp-include-path],
->         [AS_HELP_STRING([--with-curlpp-include-path],[location of the
-> cURLPP headers, defaults to /usr/include])],
->         [CXXFLAGS_CURLPP="-I$withval"],
->         [CXXFLAGS_CURLPP="-I/usr/include"])
-> AC_SUBST([CURLPP_CFLAGS])
->
-> AC_ARG_WITH([curlpp-lib-path],
->         [AS_HELP_STRING([--with-curlpp-lib-path],[location of the cURLPP
-> libraries, defaults to /usr/lib])],
->         [CURLPP_LIBS="-L$withval" -lcurlpp -lutilspp],
->         [CURLPP_LIBS="-L/usr/lib -lcurlpp -lutilspp"])
-> AC_SUBST([CURLPP_LIBS])
->
-> AC_ARG_ENABLE(curlpp,
->         [--enable-curlpp        Include cURLPP],
->         [case "${enableval}" in
->                 yes)    use_curlpp=true  ;;
->                 no)     use_curlpp=false ;;
->                 *) AC_MSG_ERROR(bad value ${enableval} for
-> --enable-curlpp) ;;
->          esac
->         ],
->         [use_curlpp=false])
-> AM_CONDITIONAL(CONFIG_CURLPP, test x$curlpp = xtrue)
->
-> # ==== OpenSSL Libraries
-> AC_ARG_WITH([openssl-include-path],
->         [AS_HELP_STRING([--with-openssl-include-path],[location of the
-> OpenSSL headers, defaults to /usr/include])],
->         [CFLAGS_OPENSSL="-I$withval"],
->         [CFLAGS_OPENSSL="-I/usr/include"])
-> AC_SUBST([OPENSSL_CFLAGS])
->
-> AC_ARG_WITH([openssl-lib-path],
->         [AS_HELP_STRING([--with-openssl-lib-path],[location of the
-> OpenSSL libraries, defaults to /usr/lib])],
->         [OPENSSL_LIBS="-L$withval" -lssl],
->         [OPENSSL_LIBS="-L/usr/lib -lssl"])
-> AC_SUBST([OPENSSL_LIBS])
->
-> AC_ARG_ENABLE(openssl,
->         [--enable-openssl       Include OpenSSL],
->         [case "${enableval}" in
->                 yes)    use_openssl=true  ;;
->                 no)     use_openssl=false ;;
->                 *) AC_MSG_ERROR(bad value ${enableval} for
-> --enable-openssl) ;;
->          esac
->         ],
->         [use_openssl=false])
-> AM_CONDITIONAL(CONFIG_OPENSSL, test x$openssl = xtrue)
->
-> # ==== Pthread Libraries
-> AC_ARG_WITH([pthread-include-path],
->         [AS_HELP_STRING([--with-pthread-include-path],[location of the
-> PThread headers, defaults to /usr/include])],
->         [CFLAGS_PTHREAD="-I$withval"],
->         [CFLAGS_PTHREAD="-I/usr/include"])
-> AC_SUBST([PTHREAD_CFLAGS])
->
-> AC_ARG_WITH([pthread-lib-path],
->         [AS_HELP_STRING([--with-pthread-lib-path],[location of the
-> PThread libraries, defaults to /usr/include])],
->         [PTHREAD_LIBS="-L$withval" -lpthread],
->         [PTHREAD_LIBS="-L/usr/include -lpthread"])
-> AC_SUBST([PTHREAD_LIBS])
->
-> AC_ARG_ENABLE(pthread,
->         [--enable-pthread       Include PThreads],
->         [case "${enableval}" in
->                 yes)    use_pthread=true  ;;
->                 no)     use_pthread=false ;;
->                 *) AC_MSG_ERROR(bad value ${enableval} for
-> --enable-pthread) ;;
->          esac
->         ],
->         [use_pthread=false])
-> AM_CONDITIONAL(CONFIG_PTHREAD, test x$pthread = xtrue)
->
-> # ==== Debug
-> AC_ARG_ENABLE(debug,
->         [--enable-debug Build with DEBUG enabled],
->         [case "${enableval}" in
->                 yes)    debug=true  ;;
->                 no)     debug=false ;;
->                 *) AC_MSG_ERROR(bad value ${enableval} for --enable-debug)
-> ;;
->          esac
->         ],
->         [debug=false])
-> AM_CONDITIONAL(CONFIG_DEBUG, test x$debug = xtrue)
->
-> AC_ARG_ENABLE(examples,
->         [--enable-examples      Build examples],
->         [case "${enableval}" in
->                 yes)    examples=true  ;;
->                 no)     examples=false ;;
->                 *) AC_MSG_ERROR(bad value ${enableval} for
-> --enable-examples) ;;
->          esac
->         ],
->         [examples=false])
-> AM_CONDITIONAL(CONFIG_EXAMPLES, test x$examples = xtrue)
->
-> AC_SUBST([CFLAGS])
-> AC_CONFIG_FILES([Makefile  libyocto.pc])
-> AC_OUTPUT
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
-
--- 
-
-Aaron Schwartz
-Production
-Logic Supply
-Direct: +1 802 861 2300 Ext. 530
-Main: +1 802 861 2300
-www.logicsupply.com
-
-Google+ <https://plus.google.com/+Logicsupply/posts> | Twitter
-<https://twitter.com/logicsupply> | LinkedIn
-<https://www.linkedin.com/company/logic-supply> | YouTube
-<https://www.youtube.com/user/logicsupply>
-
---94eb2c1c18527fd43c055a942989
-Content-Type: text/html; charset="UTF-8"
+--_000_DM2PR0401MB12954FB72F09E9F56E39C758967D0DM2PR0401MB1295_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Are you looking to use menuconfig to configure your packag=
-es?=C2=A0 BusyBox does this [0] pretty well in my experience, you might tak=
-e a look at how they&#39;ve put that together.<div><div><br></div><div>0)=
-=C2=A0<a href=3D"https://busybox.net/FAQ.html#configure">https://busybox.ne=
-t/FAQ.html#configure</a></div></div></div><div class=3D"gmail_extra"><br><d=
-iv class=3D"gmail_quote">On Sat, Sep 30, 2017 at 10:49 AM, Ulf Samuelsson <=
-span dir=3D"ltr">&lt;<a href=3D"mailto:yocto@emagii.com" target=3D"_blank">=
-yocto@emagii.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Ha=
-ve a need to convert a large number of libraries to use autotools.<br>
-<br>
-I came up with the following idea:<br>
-<br>
-I create an Kconfig based configuration system, where you define a number o=
-f configuration items needed by <a href=3D"http://configure.ac" rel=3D"nore=
-ferrer" target=3D"_blank">configure.ac</a> and Makefile.am<br>
-<br>
-You choose if you want to build an application, a shared library or a stati=
-c library.<br>
-<br>
-The build normally depends on other libraries, and you checkmarks<br>
-which library you are interested in from a (small) number of supported libr=
-aries.<br>
-You can likewise select to support options like &quot;--enable-openssl&quot=
-;,<br>
-again from a (small) number of supported options.<br>
-<br>
-If you have stuff not supported, the autotooler will include Config.in<br>
-files allowing you to add your own items.<br>
-<br>
-Once the configuration is complete, you will compile an application<br>
-which will generate &quot;<a href=3D"http://configure.ac" rel=3D"noreferrer=
-" target=3D"_blank">configure.ac</a>&quot; from the configuration file.<br>
-<br>
-Again, if you have stuff not supported in the code, you can add it<br>
-in a user include file.<br>
-<br>
-The generator will read a user-headers.inc file and<br>
-generate an AC_CHECK_HEADERS entry.<br>
-<br>
-<br>
-The autotooler is available on<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"https://www.github.com/emagii/autoto=
-oler.git" rel=3D"noreferrer" target=3D"_blank">https://www.github.com/emagi=
-i/<wbr>autotooler.git</a><br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D<br>
-Currently, it does not generate any Makefile.am files, but<br>
-the idea is to separate the source files into<br>
-* C source<br>
-* Public Headers<br>
-* Local Headers<br>
-<br>
-A tool would then scan the directories and classify them accordingly,<br>
-so Makefile.am files should be possible to generate fairly easy.<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D<br>
-A final step would clone a empty git tree, and populate it<br>
-with all the files needed for a complete package.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D<br>
-<br>
-Comments appreciated.<br>
-<br>
-Best Regards<br>
-Ulf Samuelsson<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D<br>
-Here is a typical &quot;autoconh.h&quot; generated by Kconfig.<br>
-<br>
-/*<br>
-=C2=A0* Automatically generated C config: don&#39;t edit<br>
-=C2=A0* Sat Sep 30 16:27:24 2017<br>
-=C2=A0*/<br>
-#define CONFIG_SHARED_LIB 1<br>
-#define CONFIG_PTHREAD 1<br>
-#define CONFIG_LIBRARY 1<br>
-#define CONFIG_PROJECT &quot;myproject&quot;<br>
-#define CONFIG_WORKDIR &quot;${HOME}/projects/autotooler&quot;<br>
-#define CONFIG_OPENSSL 1<br>
-#define CONFIG_CURL 1<br>
-#define CONFIG_COPYRIGHT_DATE &quot;2017&quot;<br>
-#define CONFIG_HOMEPAGE &quot;<a href=3D"http://www.emagii.com/" rel=3D"nor=
-eferrer" target=3D"_blank">http://www.emagii.com/</a>&quot;<br>
-#define CONFIG_EXAMPLES 1<br>
-#define CONFIG_DEBUG 1<br>
-#define HAVE_DOT_CONFIG 1<br>
-#define CONFIG_AC_PRERQ &quot;2.59&quot;<br>
-#define CONFIG_BOOST 1<br>
-#define CONFIG_OS_LINUX 1<br>
-#define CONFIG_LIBRARY_NAME &quot;libyocto&quot;<br>
-#define CONFIG_AUTHOR_EMAIL &quot;<a href=3D"mailto:ulf@emagii.com" target=
-=3D"_blank">ulf@emagii.com</a>&quot;<br>
-#define CONFIG_LIBRARY_VERSION &quot;1.0&quot;<br>
-#define CONFIG_AC_CONFIG_HEADER &quot;src/include/config.h&quot;<br>
-#define CONFIG_OS &quot;Linux&quot;<br>
-#define CONFIG_EXAMPLES_VAR &quot;examples&quot;<br>
-#define CONFIG_AC_CONFIG_MACRO_DIR &quot;m4&quot;<br>
-#define CONFIG_DEBUG_VAR &quot;debug&quot;<br>
-#define CONFIG_PROJECT_TYPE &quot;library&quot;<br>
-#define CONFIG_SRCDIR &quot;src&quot;<br>
-#define CONFIG_SRC_URI_REPO &quot;&quot;<br>
-#define CONFIG_AUTHOR &quot;Ulf Samuelsson&quot;<br>
-#define CONFIG_SRC_URI_HOST &quot;<a href=3D"https://www.github.com/emagii"=
- rel=3D"noreferrer" target=3D"_blank">https://www.github.com/emagii</a><wbr=
->&quot;<br>
-#define CONFIG_CURLPP 1<br>
-#define CONFIG_AM_INIT_AUTOMAKE &quot;1.10 -Wall no-define&quot;<br>
-<br>
-The application will from this information generate:<br>
-<br>
-AC_INIT([libyocto],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [1.0],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [Ulf Samuelsson],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [libyocto-1.0],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [<a href=3D"http://www.emagii.com/" rel=3D"nore=
-ferrer" target=3D"_blank">http://www.emagii.com/</a>])<br>
-<br>
-AC_PRERQ([2.59])<br>
-<br>
-AC_CONFIG_HEADER([src/include/<wbr>config.h])<br>
-<br>
-AC_CONFIG_SRCDIR([src])<br>
-<br>
-AC_PROG_CPP<br>
-AC_PROG_CC<br>
-AC_INIT_AUTOMAKE([1.10 -Wall no-define])<br>
-<br>
-AC_PROG_MAKE_SET<br>
-AM_MAINTAINER_MODE<br>
-AC_HEADER_STDC<br>
-AC_ENABLE_SHARED<br>
-AC_DISABLE_STATIC<br>
-AC_PROG_LIBTOOL<br>
-AC_HEADER_STDC<br>
-<br>
-AC_CHECK_HEADERS( \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ctype.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 errno.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 fcntl.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/bio.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/err.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/opensslconf.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/rand.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/ssl.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 pthread.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 stdio.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 stdlib.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 stdarg.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 stdint.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 string.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 signal.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys/ioctl.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys/socket.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys/time.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys/types.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 time.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 unistd.h \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ,<br>
-dnl to do if not found<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [],<br>
-dnl to do if not found<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [],<br>
-dnl default includes<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [<br>
-#ifdef HAVE_SYS_TYPES_H<br>
-#include &lt;sys/types.h&gt;<br>
-#endif<br>
-#ifdef HAVE_SYS_TIME_H<br>
-#include &lt;sys/time.h&gt;<br>
-#endif<br>
-dnl We do this default-include simply to make sure that the nameser_compat.=
-h<br>
-dnl header *REALLY* can be include after the new nameser.h. It seems AIX 5.=
-1<br>
-dnl (and others?) is not designed to allow this.<br>
-#ifdef HAVE_ARPA_NAMESER_H<br>
-#include &lt;arpa/nameser.h&gt;<br>
-#endif<br>
-<br>
-dnl *Sigh* these are needed in order for net/if.h to get properly detected.=
-<br>
-#ifdef HAVE_SYS_SOCKET_H<br>
-#include &lt;sys/socket.h&gt;<br>
-#endif<br>
-#ifdef HAVE_NETINET_IN_H<br>
-#include &lt;netinet/in.h&gt;<br>
-#endif<br>
-]<br>
-)<br>
-<br>
-# =3D=3D=3D=3D Boost Libraries<br>
-AC_ARG_WITH([boost-include-pat<wbr>h],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-boost-<wbr>include-path=
-],[location of the Boost headers, defaults to /usr/include/boost])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_BOOST=3D&quot;-I$withval&quot;],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_BOOST=3D&quot;-I/usr/includ<wbr>e/boo=
-st&quot;])<br>
-AC_SUBST([BOOST_CFLAGS])<br>
-<br>
-AC_ARG_WITH([boost-lib-path],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-boost-<wbr>lib-path],[l=
-ocation of the Boost libraries, defaults to /usr/lib])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [BOOST_LIBS=3D&quot;-L$withval&quot; -lboost_sy=
-stem -lboost_filesystem -lboost_program_options -lboost_thread -lpthread],<=
-br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [BOOST_LIBS=3D&quot;-L/usr/lib -lboost_system -=
-lboost_filesystem -lboost_program_options -lboost_thread -lpthread&quot;])<=
-br>
-AC_SUBST([BOOST_LIBS])<br>
-<br>
-AC_ARG_ENABLE(boost,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-boost Include Boost Libraries],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
-se_boost=3Dtrue=C2=A0 ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
-=C2=A0use_boost=3Dfalse ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
- value ${enableval} for --enable-boost) ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_boost=3Dfalse])<br>
-AM_CONDITIONAL(CONFIG_BOOST, test x$boost =3D xtrue)<br>
-<br>
-# =3D=3D=3D=3D cURL Libraries<br>
-AC_ARG_WITH([curl-include-path<wbr>],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-curl-i<wbr>nclude-path]=
-,[location of the cURL headers, defaults to /usr/include])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_CURL=3D&quot;-I$withval&quot;],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_CURL=3D&quot;-I/usr/include<wbr>&quot=
-;])<br>
-AC_SUBST([CURL_CFLAGS])<br>
-<br>
-AC_ARG_WITH([curl-lib-path],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-curl-l<wbr>ib-path],[lo=
-cation of the cURL libraries, defaults to /usr/lib])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CURL_LIBS=3D&quot;-L$withval&quot; -lcurl],<br=
->
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CURL_LIBS=3D&quot;-L/usr/lib -lcurl&quot;])<br=
->
-AC_SUBST([CURL_LIBS])<br>
-<br>
-AC_ARG_ENABLE(curl,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-curl=C2=A0 Include cURL],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
-se_curl=3Dtrue=C2=A0 ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
-=C2=A0use_curl=3Dfalse ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
- value ${enableval} for --enable-curl) ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_curl=3Dfalse])<br>
-AM_CONDITIONAL(CONFIG_CURL, test x$curl =3D xtrue)<br>
-<br>
-# =3D=3D=3D=3D cURLPP Libraries<br>
-AC_ARG_WITH([curlpp-include-pa<wbr>th],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-curlpp<wbr>-include-pat=
-h],[location of the cURLPP headers, defaults to /usr/include])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_CURLPP=3D&quot;-I$withval&quot;]<wbr>=
-,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_CURLPP=3D&quot;-I/usr/inclu<wbr>de&qu=
-ot;])<br>
-AC_SUBST([CURLPP_CFLAGS])<br>
-<br>
-AC_ARG_WITH([curlpp-lib-path],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-curlpp<wbr>-lib-path],[=
-location of the cURLPP libraries, defaults to /usr/lib])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CURLPP_LIBS=3D&quot;-L$withval&quot; -lcurlpp =
--lutilspp],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CURLPP_LIBS=3D&quot;-L/usr/lib -lcurlpp -lutil=
-spp&quot;])<br>
-AC_SUBST([CURLPP_LIBS])<br>
-<br>
-AC_ARG_ENABLE(curlpp,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-curlpp=C2=A0 =C2=A0 =C2=A0 =C2=A0 Inc=
-lude cURLPP],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
-se_curlpp=3Dtrue=C2=A0 ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
-=C2=A0use_curlpp=3Dfalse ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
- value ${enableval} for --enable-curlpp) ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_curlpp=3Dfalse])<br>
-AM_CONDITIONAL(CONFIG_CURLPP, test x$curlpp =3D xtrue)<br>
-<br>
-# =3D=3D=3D=3D OpenSSL Libraries<br>
-AC_ARG_WITH([openssl-include-p<wbr>ath],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-openss<wbr>l-include-pa=
-th],[location of the OpenSSL headers, defaults to /usr/include])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CFLAGS_OPENSSL=3D&quot;-I$withval&quot;],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CFLAGS_OPENSSL=3D&quot;-I/usr/includ<wbr>e&quo=
-t;])<br>
-AC_SUBST([OPENSSL_CFLAGS])<br>
-<br>
-AC_ARG_WITH([openssl-lib-path]<wbr>,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-openss<wbr>l-lib-path],=
-[location of the OpenSSL libraries, defaults to /usr/lib])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [OPENSSL_LIBS=3D&quot;-L$withval&quot; -lssl],<=
-br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [OPENSSL_LIBS=3D&quot;-L/usr/lib -lssl&quot;])<=
-br>
-AC_SUBST([OPENSSL_LIBS])<br>
-<br>
-AC_ARG_ENABLE(openssl,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-openssl=C2=A0 =C2=A0 =C2=A0 =C2=A0Inc=
-lude OpenSSL],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
-se_openssl=3Dtrue=C2=A0 ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
-=C2=A0use_openssl=3Dfalse ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
- value ${enableval} for --enable-openssl) ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_openssl=3Dfalse])<br>
-AM_CONDITIONAL(CONFIG_OPENSSL, test x$openssl =3D xtrue)<br>
-<br>
-# =3D=3D=3D=3D Pthread Libraries<br>
-AC_ARG_WITH([pthread-include-p<wbr>ath],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-pthrea<wbr>d-include-pa=
-th],[location of the PThread headers, defaults to /usr/include])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CFLAGS_PTHREAD=3D&quot;-I$withval&quot;],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CFLAGS_PTHREAD=3D&quot;-I/usr/includ<wbr>e&quo=
-t;])<br>
-AC_SUBST([PTHREAD_CFLAGS])<br>
-<br>
-AC_ARG_WITH([pthread-lib-path]<wbr>,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-pthrea<wbr>d-lib-path],=
-[location of the PThread libraries, defaults to /usr/include])],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [PTHREAD_LIBS=3D&quot;-L$withval&quot; -lpthrea=
-d],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [PTHREAD_LIBS=3D&quot;-L/usr/include -lpthread&=
-quot;])<br>
-AC_SUBST([PTHREAD_LIBS])<br>
-<br>
-AC_ARG_ENABLE(pthread,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-pthread=C2=A0 =C2=A0 =C2=A0 =C2=A0Inc=
-lude PThreads],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
-se_pthread=3Dtrue=C2=A0 ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
-=C2=A0use_pthread=3Dfalse ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
- value ${enableval} for --enable-pthread) ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_pthread=3Dfalse])<br>
-AM_CONDITIONAL(CONFIG_PTHREAD, test x$pthread =3D xtrue)<br>
-<br>
-# =3D=3D=3D=3D Debug<br>
-AC_ARG_ENABLE(debug,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-debug Build with DEBUG enabled],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 d=
-ebug=3Dtrue=C2=A0 ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
-=C2=A0debug=3Dfalse ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
- value ${enableval} for --enable-debug) ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [debug=3Dfalse])<br>
-AM_CONDITIONAL(CONFIG_DEBUG, test x$debug =3D xtrue)<br>
-<br>
-AC_ARG_ENABLE(examples,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-examples=C2=A0 =C2=A0 =C2=A0 Build ex=
-amples],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 e=
-xamples=3Dtrue=C2=A0 ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
-=C2=A0examples=3Dfalse ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
- value ${enableval} for --enable-examples) ;;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 [examples=3Dfalse])<br>
-AM_CONDITIONAL(CONFIG_EXAMPLES<wbr>, test x$examples =3D xtrue)<br>
-<br>
-AC_SUBST([CFLAGS])<br>
-AC_CONFIG_FILES([Makefile=C2=A0 libyocto.pc])<br>
-AC_OUTPUT<span class=3D"HOEnZb"><font color=3D"#888888"><br>
--- <br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
-r><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><p styl=
-e=3D"color:#4c4c4c;font-family:Arial;font-size:13px">Aaron Schwartz<br> Pro=
-duction<br> Logic Supply<br>Direct: +1 802 861 2300 Ext. 530 <br> Main:=C2=
-=A0+1 802 861 2300<br> <a href=3D"http://www.logicsupply.com" target=3D"_bl=
-ank">www.logicsupply.com</a></p><p style=3D"color:#4c4c4c;font-family:Arial=
-;font-size:12px"><a href=3D"https://plus.google.com/+Logicsupply/posts" tar=
-get=3D"_blank">Google+</a> | <a href=3D"https://twitter.com/logicsupply" ta=
-rget=3D"_blank">Twitter</a> | <a href=3D"https://www.linkedin.com/company/l=
-ogic-supply" target=3D"_blank">LinkedIn</a> | <a href=3D"https://www.youtub=
-e.com/user/logicsupply" target=3D"_blank">YouTube</a></p></div>
-</div>
+Signed-off-by: Jeffrey Pautler <jeffrey.pautler@ni.com>
+---
+opkg.py | 2 +-
+1 file changed, 1 insertion(+), 1 deletion(-)
 
---94eb2c1c18527fd43c055a942989--
+diff --git a/opkg.py b/opkg.py
+index 4d6f020..9131755 100644
+--- a/opkg.py
++++ b/opkg.py
+@@ -168,7 +168,7 @@ class Package(object):
+                 tar =3D tarfile.open(fn, "r", f)
+                 tarStream =3D tar.extractfile("./control.tar.gz")
+             else:
+-                ar =3D ArFile(f, fn)
++                ar =3D arfile.ArFile(f, fn)
+                 tarStream =3D ar.open("control.tar.gz")
+             tarf =3D tarfile.open("control.tar.gz", "r", tarStream)
+             try:
+--
+2.7.4
+
+--_000_DM2PR0401MB12954FB72F09E9F56E39C758967D0DM2PR0401MB1295_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">Signed-off-by: Jeffrey Pautler &lt;jeffrey.pautler@ni.com&gt=
+;<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">---<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">opkg.py | 2 &#43;-<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">1 file changed, 1 insertion(&#43;), 1 deletion(-)<o:p></o:p>=
+</span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt"><o:p>&nbsp;</o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">diff --git a/opkg.py b/opkg.py<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">index 4d6f020..9131755 100644<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">--- a/opkg.py<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">&#43;&#43;&#43; b/opkg.py<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">@@ -168,7 &#43;168,7 @@ class Package(object):<o:p></o:p></s=
+pan></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tar =3D tarfile.open(fn, &quot;r&quot;=
+, f)<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tarStream =3D tar.extractfile(&quot;./=
+control.tar.gz&quot;)<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; else:<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ar =3D ArFile(f, fn)<o:p></o:p></span></fon=
+t></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ar =3D arfile.ArFile(f, fn)<o:p></o:p><=
+/span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tarStream =3D ar.open(&quot;control.ta=
+r.gz&quot;)<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; tarf =3D tarfile.open(&quot;control.tar.gz&quot;, &quot;r&quot=
+;, tarStream)<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; try:<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">--
+<o:p></o:p></span></font></p>
+<p class=3D"MsoNormal"><font size=3D"2" face=3D"Calibri"><span style=3D"fon=
+t-size:11.0pt">2.7.4<o:p></o:p></span></font></p>
+</div>
+</body>
+</html>
+
+--_000_DM2PR0401MB12954FB72F09E9F56E39C758967D0DM2PR0401MB1295_--
