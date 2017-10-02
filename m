@@ -1,26 +1,76 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B8A60E00D03; Sun,  1 Oct 2017 21:00:28 -0700 (PDT)
+	id 65F7CE00D00; Mon,  2 Oct 2017 07:36:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.128.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D5E8E00CFC
-	for <yocto@yoctoproject.org>; Sun,  1 Oct 2017 21:00:26 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id DECAE80D2402
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 00:00:25 -0400 (EDT)
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.175 listed in dnsbl.sorbs.net]
+Received: from mail-wr0-f175.google.com (mail-wr0-f175.google.com
+	[209.85.128.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B702E00CAB
+	for <yocto@lists.yoctoproject.org>;
+	Mon,  2 Oct 2017 07:36:48 -0700 (PDT)
+Received: by mail-wr0-f175.google.com with SMTP id 54so4123738wrz.10
+	for <yocto@lists.yoctoproject.org>;
+	Mon, 02 Oct 2017 07:36:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=mC10Vi2lTPP/kjUgOFOknmQHRF18brGUAzVh1Y8xPoE=;
+	b=RFdzmV2UrTwSzEk0mJVyIexv/6s/n4C/Xm+/pfFeRzSufywk3AwYQQbou3Bc0a0w7L
+	Isyw0PcX/+XzIhWrvNS4MT7OINlasTKi6qIkuREtShDW5djuUR77/mxBYouF1reK2/sY
+	5qHJ+1ojTnf8QvAnb9iI/5IKsnBTAFTLgIQQ6sgWOD3slE2zt6ZzvRXTllr0aqjtjgFo
+	fYsgbmRXyJE7uIeHRmifapWcknI9DDWHmYX2d/MmGVHd4vOsOF7ADwzRmNoRpE4xbZKp
+	W8KkRDhqKWScl2mG1QIJklsfgujBxL3AkbDSRdnFtKNgEeL9VrjHb0i5ciyivM0B6qit
+	3z1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=mC10Vi2lTPP/kjUgOFOknmQHRF18brGUAzVh1Y8xPoE=;
+	b=m3p4jB1pGUunk8DxspYlfxpKnlIpoKe3cVX2pt3iggKxW96mWqvCxm99FfmBHQevZP
+	XohHo0bMmYoj3DB0+8XBlBqP5tZFCutPfR+jqkH+aa034dZTgkQ65GtH5vMO7uH6z2ps
+	fHNymRDbDOOP/sXyiaRo2+LHsXA3fb7U+iUmiREqSHcyoWLxLeq5XqM85mb9siZsa3Fv
+	QDL/NvgPcVLO9OZGxKSFf/XdaUIcmmmkLS62BIrwupJtT0IPK4cxWM5bYIN+7sfUU6kz
+	9NL0WWfcQIeAGcFoeReWh84NJ0jOTE3Sp0RoCCIMa9iN3vHmiJNzQcSERI94VKwxSRSJ
+	My7Q==
+X-Gm-Message-State: AHPjjUhSnQ3QbrBSZcQUqA2JAwAse485OBiT9AoSxmZcbfiV+uFQV4b8
+	M590YBFhCFbDTW2AC6XyX6tUEA==
+X-Google-Smtp-Source: AOwi7QBw6LDXtgl63nUlCwIhobDZ3Mz0snA0rjqMwhUPoZhvjSVayiNJ0x5m5bZ6Sw97IJbpbCDAVw==
+X-Received: by 10.223.136.170 with SMTP id f39mr14832694wrf.164.1506955008138; 
+	Mon, 02 Oct 2017 07:36:48 -0700 (PDT)
+Received: from carbonA (host109-150-130-247.range109-150.btcentralplus.com.
+	[109.150.130.247]) by smtp.gmail.com with ESMTPSA id
+	e14sm6873584wra.55.2017.10.02.07.36.45
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Mon, 02 Oct 2017 07:36:46 -0700 (PDT)
+Date: Mon, 2 Oct 2017 15:35:17 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Otavio Salvador <otavio.salvador@ossystems.com.br>
+Message-ID: <20171002143517.GA11297@carbonA>
+References: <1506525799-219-1-git-send-email-Martin.Jansa@gmail.com>
+	<CAK18fxE0LZZE0tZ=R_f1e=ACixGjE=KRbq1K7c+NzUE7Q10Fvg@mail.gmail.com>
+	<CAP9ODKqsz6mYt6K0q2RqZeTr3X8zq+7B+7vsj8c6HkUbqgTp3w@mail.gmail.com>
+	<20170927173431.GA4112@jama>
+	<CAP9ODKqV0ZbkY4GQJuwRxJ+n1gf7R9izcHV77fAby2fk4E48QQ@mail.gmail.com>
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 02 Oct 2017 04:00:25 -0000
-Message-ID: <20171002040025.18960.31405@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+In-Reply-To: <CAP9ODKqV0ZbkY4GQJuwRxJ+n1gf7R9izcHV77fAby2fk4E48QQ@mail.gmail.com>
+User-Agent: Mutt/1.9.1 (2017-09-22)
+Cc: yocto@lists.yoctoproject.org, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Re: [meta-raspberrypi][PATCH] Revert "qtbase: Enable EGLFS support"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,145 +82,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 04:00:28 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 02 Oct 2017 14:36:50 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This mail was sent out by Recipe reporting system.
+On Wed, Sep 27, 2017 at 02:45:07PM -0300, Otavio Salvador wrote:
+> Hello Martin,
+>
+> On Wed, Sep 27, 2017 at 2:34 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
+> ...
+> >> Martin, do you have any idea how other alternative we have?
+> >
+> > In theory you can set QT_PACKAGES_ARCH to MACHINE_ARCH in rpi-base.inc
+> > to make it explicit, but that's also really bad (as e.g. rpi2 and rpi3
+> > will each build it's own qtwebengine and all it's deps even when it
+> > should be the same for both).
+>
+> Agreed and that was the reason of we create MACHINE_SOCARCH in
+> meta-freescale. It allows for SoC specific packages but compatible
+> across machines.
+>
+> --
+> Otavio Salvador                             O.S. Systems
+> http://www.ossystems.com.br        http://code.ossystems.com.br
+> Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Merged to master in the meanwhile.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
-
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version     Upstream version      Maintainer           NoUpgradeReason
---------------------  ----------  --------------------  -------------------  ------------------------------
-python3-native        3.5.3       3.6.2                 Alejandro Hernandez
-python3               3.5.3       3.6.2                 Alejandro Hernandez
-gtk-doc               1.25        1.26                  Alexander Kanavin
-boost                 1.64.0      1.65.0                Alexander Kanavin
-ca-certificates       20161130    20170717              Alexander Kanavin
-bjam-native           1.64.0      1.65.0                Alexander Kanavin
-libnl                 3.2.29      3.3.0                 Alexander Kanavin
-psmisc                22.21       23.1                  Alexander Kanavin
-oprofile              1.1.0       1.2.0                 Alexander Kanavin
-mkelfimage            4.0+gitX    4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
-apt                   1.2.12      1.4.7                 Aníbal Limón
-apt-native            1.2.12      1.4.7                 Aníbal Limón
-dpkg                  1.18.10     1.18.24               Aníbal Limón
-bind                  9.10.5-P3   9.11.2                Armin Kuster
-curl                  7.54.1      7.55.1                Armin Kuster
-busybox               1.24.1      1.27.2                Armin Kuster
-libpcre2              10.23       10.30                 Armin Kuster
-gnutls                3.5.13      3.6.0                 Armin Kuster
-kexec-tools           2.0.14      2.0.15                Armin Kuster
-libxkbcommon          0.7.1       0.7.2                 Armin Kuster
-linux-libc-headers    4.10        4.12.8                Bruce Ashfield
-libunwind             1.2         1.2.1                 Bruce Ashfield
-connman               1.34        1.35                  Changhyeok Bae
-iproute2              4.11.0      4.12.0                Changhyeok Bae
-dbus-test             1.10.20     1.10.22               Chen Qi
-dbus                  1.10.20     1.10.22               Chen Qi
-util-linux            2.30        2.30.1                Chen Qi
-sed                   4.2.2       4.4                   Chen Qi
-sysstat               11.5.7      11.6.0                Chen Qi
-systemd-bootchart     231+gitX    232+gitAUTOINC+79...  Chen Qi
-flex                  2.6.0       2.6.4                 Chen Qi
-build-appliance-i...  15.0.0      17.0.1                Cristian Iorga
-avahi-ui              0.6.32      0.7                   Dengke Du
-avahi                 0.6.32      0.7                   Dengke Du
-expat                 2.2.3       2.2.4                 Dengke Du
-chkconfig             1.3.58      1.8                   Dengke Du            Version 1.5 requires selinux
-json-glib             1.2.8       1.3.2                 Dengke Du
-wayland               1.13.0      1.14.0                Denys Dmytriyenko
-weston                2.0.0       3.0.0                 Denys Dmytriyenko
-lzop                  1.03        1.04                  Denys Dmytriyenko
-lz4                   1.7.4       131                   Denys Dmytriyenko
-acpica                20170303    20170728              Fathi Boudra
-man-pages             4.11        4.12                  Hongxu Jia
-gnupg                 2.1.20      2.1.23                Hongxu Jia
-bc                    1.06        1.07.1                Jose Lamego
-pango                 1.40.6      1.40.11               Jussi Kukkonen
-assimp                4.0.0       4.0.1                 Jussi Kukkonen
-gtk-icon-utils-na...  3.22.17     3.22.19               Jussi Kukkonen
-gsettings-desktop...  3.22.0      3.24.0                Jussi Kukkonen
-libsoup-2.4           2.58.1      2.58.2                Jussi Kukkonen
-vulkan                1.0.51.0    1.0.57.0              Jussi Kukkonen
-xdg-utils             1.1.1       1.1.2                 Jussi Kukkonen
-gdk-pixbuf            2.36.8      2.36.9                Jussi Kukkonen
-gtk+3                 3.22.17     3.22.19               Jussi Kukkonen
-hicolor-icon-theme    0.15        0.16                  Jussi Kukkonen
-clutter-gtk-1.0       1.8.2       1.8.4                 Jussi Kukkonen
-glew                  2.0.0       2.1.0                 Jussi Kukkonen
-ninja                 1.7.2       120715                Khem Raj
-re2c                  0.16        1.0.1                 Khem Raj
-go-native             1.8.3       1.9rc2                Khem Raj
-go                    1.8.3       1.9rc2                Khem Raj
-libnsl2               1.0.5+gitX  1.1.0+gitAUTOINC+...  Khem Raj
-texinfo               6.3         6.4                   Leonardo Sandoval
-perl                  5.24.1      5.26.0                Leonardo Sandoval
-qemu                  2.10.0-rc2  3                     Leonardo Sandoval
-libxml-namespaces...  1.12        1.12.9                Leonardo Sandoval
-perl-native           5.24.1      5.26.0                Leonardo Sandoval
-prelink               1.0+gitX    20151030.+gitAUTO...  Mark Hatle
-libpfm4               4.6.0       4.8.0                 Matthew McClintock
-ifupdown              0.8.16      0.8.24                Maxin B. John
-gcc-source-6.3.0      6.3.0       7.2.0                 No maintainer
-go-bootstrap-native   1.4.3       1.9rc2                No maintainer
-go-cross-i586         1.8.3       1.9rc2                No maintainer
-mesa                  17.1.6      17.1.7                Otavio Salvador
-cmake                 3.8.2       3.9.1                 Otavio Salvador
-cmake-native          3.8.2       3.9.1                 Otavio Salvador
-libdrm                2.4.81      2.4.82                Otavio Salvador
-mesa-gl               17.1.6      17.1.7                Otavio Salvador
-subversion            1.9.6       1.9.7                 Richard Purdie
-lttng-tools           2.9.5       2.10.1                Richard Purdie
-lttng-ust             2.9.1       2.10.0                Richard Purdie
-lttng-modules         2.9.3       2.10.0                Richard Purdie
-liberror-perl         0.17024     0.17025               Robert Yang
-debianutils           4.8.1.1     4.8.2                 Robert Yang
-strace                4.17        4.18                  Robert Yang
-autoconf-archive      2016.09.16  2017.03.21            Robert Yang
-tcl                   8.6.6       8.6.7                 Robert Yang
-libbsd                0.8.5       0.8.6                 Robert Yang
-e2fsprogs             1.43.4      1.43.5                Robert Yang
-git                   2.13.2      2.14.1                Robert Yang
-base-passwd           3.5.29      3.5.43                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.72        9.77                  Ross Burton
-pulseaudio            10.0        10.99.1               Tanu Kaskinen
-
-Upgradable count: 90
-Upgradable total count: 93
-
-The based commit is:
-
-commit abf2e9526a11bcb51b71b90a7b76bd33af656494
-Author: Chen Qi <Qi.Chen@windriver.com>
-Date:   Tue Sep 26 16:41:38 2017 +0800
-
-    systemd-serialtty: allow empty package
-    
-    If SERIAL_CONSOLES is set to empty for some reason, we would have rootfs
-    failure like below.
-    
-      - nothing provides systemd-serialgetty needed by systemd-1:234-r0.core2_64
-    
-    This is because systemd-serialgetty package is not generated when
-    SERIAL_CONSOLES is empty.
-    
-    Set ALLOW_EMPTY to "1" for this recipe to allow for generation of empty
-    systemd-serialgetty package to avoid the above error.
-    
-    Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-
+--
+Andrei Gherzan
+gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
 
