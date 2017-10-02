@@ -1,39 +1,26 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 748A7E00D03; Sun,  1 Oct 2017 20:28:53 -0700 (PDT)
+	id B8A60E00D03; Sun,  1 Oct 2017 21:00:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E12CCE00CFC
-	for <yocto@yoctoproject.org>; Sun,  1 Oct 2017 20:28:52 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v923SnEr011832
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 1 Oct 2017 20:28:50 -0700 (PDT)
-Received: from server.local (128.224.21.215) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Sun, 1 Oct 2017 20:28:49 -0700
-To: Jonathan Haws <Jonathan.Haws@sdl.usu.edu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <1506828179.7624.9.camel@sdl.usu.edu>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <b3ce9b39-bcbc-647e-dad4-8c225d98fec7@windriver.com>
-Date: Sun, 1 Oct 2017 23:28:48 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.3.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D5E8E00CFC
+	for <yocto@yoctoproject.org>; Sun,  1 Oct 2017 21:00:26 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id DECAE80D2402
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 00:00:25 -0400 (EDT)
 MIME-Version: 1.0
-In-Reply-To: <1506828179.7624.9.camel@sdl.usu.edu>
-Cc: Jack Kiefer <Jack.Kiefer@sdl.usu.edu>
-Subject: Re: Configuration fragments not making it into kernel configuration
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 02 Oct 2017 04:00:25 -0000
+Message-ID: <20171002040025.18960.31405@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,61 +32,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 03:28:53 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+X-List-Received-Date: Mon, 02 Oct 2017 04:00:28 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On 2017-09-30 11:22 PM, Jonathan Haws wrote:
-> All,
-> 
-> I've created a bbappend that appends to the linux-yocto-rt recipe to
-> simply apply configuration fragments.  I've been using this recipe for
-> some time (through many releases) but since I moved to the morty branch
-> my fragments aren't getting applied to the actual kernel configuration.
->   The kernel_configcheck task doesn't catch the error either.
-> 
-> What I'm trying to do in a nutshell is disable the in-kernel IGB driver
-> and use my own, patched version.  The configuration fragments are
-> installed by my recipe in:
-> 
-> <build>/tmp/work/corei7-64-intel-common-sigma-linux/linux-yocto-
-> rt/4.8.3+gitAUTOINC+6d028d2818_4057556c04-r0/
-> 
-> However the .config file at:
-> 
->   <build>/tmp/work/corei7-64-intel-common-sigma-linux/linux-yocto-
-> rt/4.8.3+gitAUTOINC+6d028d2818_4057556c04-r0/linux-corei7-64-intel-
-> common-preempt-rt-build/.config
-> 
-> doesn't have the necessary configuration - it still has the default.
-> 
-> I know I can fix this by simply doing a menuconfig, but that isn't the
-> proper way to do it - I have multiple BSP layers that do the same thing
-> and they all behave in the same way.
-> 
-> What am I doing wrong?  I've attached my layer that contains the
-> recipe.  If the fragments are getting installed I think the recipe is
-> working right - but is there something in the lower-level class that
-> isn't working or do I have a configuration that is breaking it?
-> 
+This mail was sent out by Recipe reporting system.
 
-It could be either.
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-Let me do a build with your configuration on Monday and see if I
-get a similar result.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-Bruce
+You can check the detail information at:
 
-> Any help or direction is appreciated.  This has been really frustrating
-> since I know I've done this before and all the threads I've found on
-> the lists from before haven't really given an answer - maybe I just
-> missed the golden thread?
-> 
-> Thanks!
-> Jon
-> 
-> 
-> 
+http://recipes.yoctoproject.org/
+
+Package               Version     Upstream version      Maintainer           NoUpgradeReason
+--------------------  ----------  --------------------  -------------------  ------------------------------
+python3-native        3.5.3       3.6.2                 Alejandro Hernandez
+python3               3.5.3       3.6.2                 Alejandro Hernandez
+gtk-doc               1.25        1.26                  Alexander Kanavin
+boost                 1.64.0      1.65.0                Alexander Kanavin
+ca-certificates       20161130    20170717              Alexander Kanavin
+bjam-native           1.64.0      1.65.0                Alexander Kanavin
+libnl                 3.2.29      3.3.0                 Alexander Kanavin
+psmisc                22.21       23.1                  Alexander Kanavin
+oprofile              1.1.0       1.2.0                 Alexander Kanavin
+mkelfimage            4.0+gitX    4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
+apt                   1.2.12      1.4.7                 Aníbal Limón
+apt-native            1.2.12      1.4.7                 Aníbal Limón
+dpkg                  1.18.10     1.18.24               Aníbal Limón
+bind                  9.10.5-P3   9.11.2                Armin Kuster
+curl                  7.54.1      7.55.1                Armin Kuster
+busybox               1.24.1      1.27.2                Armin Kuster
+libpcre2              10.23       10.30                 Armin Kuster
+gnutls                3.5.13      3.6.0                 Armin Kuster
+kexec-tools           2.0.14      2.0.15                Armin Kuster
+libxkbcommon          0.7.1       0.7.2                 Armin Kuster
+linux-libc-headers    4.10        4.12.8                Bruce Ashfield
+libunwind             1.2         1.2.1                 Bruce Ashfield
+connman               1.34        1.35                  Changhyeok Bae
+iproute2              4.11.0      4.12.0                Changhyeok Bae
+dbus-test             1.10.20     1.10.22               Chen Qi
+dbus                  1.10.20     1.10.22               Chen Qi
+util-linux            2.30        2.30.1                Chen Qi
+sed                   4.2.2       4.4                   Chen Qi
+sysstat               11.5.7      11.6.0                Chen Qi
+systemd-bootchart     231+gitX    232+gitAUTOINC+79...  Chen Qi
+flex                  2.6.0       2.6.4                 Chen Qi
+build-appliance-i...  15.0.0      17.0.1                Cristian Iorga
+avahi-ui              0.6.32      0.7                   Dengke Du
+avahi                 0.6.32      0.7                   Dengke Du
+expat                 2.2.3       2.2.4                 Dengke Du
+chkconfig             1.3.58      1.8                   Dengke Du            Version 1.5 requires selinux
+json-glib             1.2.8       1.3.2                 Dengke Du
+wayland               1.13.0      1.14.0                Denys Dmytriyenko
+weston                2.0.0       3.0.0                 Denys Dmytriyenko
+lzop                  1.03        1.04                  Denys Dmytriyenko
+lz4                   1.7.4       131                   Denys Dmytriyenko
+acpica                20170303    20170728              Fathi Boudra
+man-pages             4.11        4.12                  Hongxu Jia
+gnupg                 2.1.20      2.1.23                Hongxu Jia
+bc                    1.06        1.07.1                Jose Lamego
+pango                 1.40.6      1.40.11               Jussi Kukkonen
+assimp                4.0.0       4.0.1                 Jussi Kukkonen
+gtk-icon-utils-na...  3.22.17     3.22.19               Jussi Kukkonen
+gsettings-desktop...  3.22.0      3.24.0                Jussi Kukkonen
+libsoup-2.4           2.58.1      2.58.2                Jussi Kukkonen
+vulkan                1.0.51.0    1.0.57.0              Jussi Kukkonen
+xdg-utils             1.1.1       1.1.2                 Jussi Kukkonen
+gdk-pixbuf            2.36.8      2.36.9                Jussi Kukkonen
+gtk+3                 3.22.17     3.22.19               Jussi Kukkonen
+hicolor-icon-theme    0.15        0.16                  Jussi Kukkonen
+clutter-gtk-1.0       1.8.2       1.8.4                 Jussi Kukkonen
+glew                  2.0.0       2.1.0                 Jussi Kukkonen
+ninja                 1.7.2       120715                Khem Raj
+re2c                  0.16        1.0.1                 Khem Raj
+go-native             1.8.3       1.9rc2                Khem Raj
+go                    1.8.3       1.9rc2                Khem Raj
+libnsl2               1.0.5+gitX  1.1.0+gitAUTOINC+...  Khem Raj
+texinfo               6.3         6.4                   Leonardo Sandoval
+perl                  5.24.1      5.26.0                Leonardo Sandoval
+qemu                  2.10.0-rc2  3                     Leonardo Sandoval
+libxml-namespaces...  1.12        1.12.9                Leonardo Sandoval
+perl-native           5.24.1      5.26.0                Leonardo Sandoval
+prelink               1.0+gitX    20151030.+gitAUTO...  Mark Hatle
+libpfm4               4.6.0       4.8.0                 Matthew McClintock
+ifupdown              0.8.16      0.8.24                Maxin B. John
+gcc-source-6.3.0      6.3.0       7.2.0                 No maintainer
+go-bootstrap-native   1.4.3       1.9rc2                No maintainer
+go-cross-i586         1.8.3       1.9rc2                No maintainer
+mesa                  17.1.6      17.1.7                Otavio Salvador
+cmake                 3.8.2       3.9.1                 Otavio Salvador
+cmake-native          3.8.2       3.9.1                 Otavio Salvador
+libdrm                2.4.81      2.4.82                Otavio Salvador
+mesa-gl               17.1.6      17.1.7                Otavio Salvador
+subversion            1.9.6       1.9.7                 Richard Purdie
+lttng-tools           2.9.5       2.10.1                Richard Purdie
+lttng-ust             2.9.1       2.10.0                Richard Purdie
+lttng-modules         2.9.3       2.10.0                Richard Purdie
+liberror-perl         0.17024     0.17025               Robert Yang
+debianutils           4.8.1.1     4.8.2                 Robert Yang
+strace                4.17        4.18                  Robert Yang
+autoconf-archive      2016.09.16  2017.03.21            Robert Yang
+tcl                   8.6.6       8.6.7                 Robert Yang
+libbsd                0.8.5       0.8.6                 Robert Yang
+e2fsprogs             1.43.4      1.43.5                Robert Yang
+git                   2.13.2      2.14.1                Robert Yang
+base-passwd           3.5.29      3.5.43                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.72        9.77                  Ross Burton
+pulseaudio            10.0        10.99.1               Tanu Kaskinen
+
+Upgradable count: 90
+Upgradable total count: 93
+
+The based commit is:
+
+commit abf2e9526a11bcb51b71b90a7b76bd33af656494
+Author: Chen Qi <Qi.Chen@windriver.com>
+Date:   Tue Sep 26 16:41:38 2017 +0800
+
+    systemd-serialtty: allow empty package
+    
+    If SERIAL_CONSOLES is set to empty for some reason, we would have rootfs
+    failure like below.
+    
+      - nothing provides systemd-serialgetty needed by systemd-1:234-r0.core2_64
+    
+    This is because systemd-serialgetty package is not generated when
+    SERIAL_CONSOLES is empty.
+    
+    Set ALLOW_EMPTY to "1" for this recipe to allow for generation of empty
+    systemd-serialgetty package to avoid the above error.
+    
+    Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
 
