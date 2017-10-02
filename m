@@ -1,74 +1,64 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <aaron.schwartz@logicsupply.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B7510E00B1B; Mon,  2 Oct 2017 10:20:17 -0700 (PDT)
+	id 9AC25E00B1B; Mon,  2 Oct 2017 11:01:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	HTML_OBFUSCATE_10_20, 
-	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.45 listed in list.dnswl.org]
+	*      [209.85.218.42 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.213.45 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gizero[at]gmail.com)
+	*      [209.85.218.42 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.1 HTML_OBFUSCATE_10_20 BODY: Message is 10% to 20% HTML obfuscation
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f45.google.com (mail-vk0-f45.google.com
-	[209.85.213.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D768CE007EF
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 10:20:15 -0700 (PDT)
-Received: by mail-vk0-f45.google.com with SMTP id q190so3221745vkd.13
-	for <yocto@yoctoproject.org>; Mon, 02 Oct 2017 10:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
+	[209.85.218.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ABCDE007EF
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 11:01:22 -0700 (PDT)
+Received: by mail-oi0-f42.google.com with SMTP id 125so10386956oie.5
+	for <yocto@yoctoproject.org>; Mon, 02 Oct 2017 11:01:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=logicsupply.com; s=google-lscom;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=1nbDI/xzbqOiQ+c/X9/QkUcE5bgj5XVvgwEC5051Kc4=;
-	b=DlZVtk7DAgDiT+wyrO2PZ7AlR4k78haBdhEMjZWmp5khFmQTc2VB4wH9H+Pd+QcIYU
-	e25ogRD6qdx3119g8zSdRfCqy9zT68I6HBU5/8GmWPEK+N+xGdrIecU0jJWV8gxWbsiP
-	lA3X/78eaH6u3N+L/vMxntq8DKXVO85ligy57aO80+Z69sqGeFAmSP1qZ0lHSx1DvuyS
-	0K2ERIsUg3B8AjV6Xp6vnYp6BtXGOEsEXbTdIjTz9QKn5tCi7u3QilfrzhM1UdqfhFoi
-	zK++hpd+xdPwWQ7P9Vq+vdDTDWiOpzpS5VY4iejhpzFKXVg4M6Xmm3A7z/8sVJu+IYwT
-	5eHw==
+	:cc; bh=pXDWwMkj075D7BCzC4pN+Ei6pLFaEEYGou7ZfFlUP64=;
+	b=d+I7wTYxH7zZ39ZDIkzNuDw9WtPmRcQ4d5dIrULDTx16I2DTan44HG4p8CBC4YiN6g
+	isEC4TgaZqRFyc7voY1irv3a+NcqxwhL7agbDFXOFmiyzzFFcmwya3c2AfilyvQbjKgo
+	rmjqLhDk0tyqlYT6mKunUslS2rKOtJzxzBZi0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=1nbDI/xzbqOiQ+c/X9/QkUcE5bgj5XVvgwEC5051Kc4=;
-	b=f441MYr1+TpIuMi2mgtHH6cOdabK9LzJ6Y//jItqIF7z+/5qbna8HfVBtjrgCerQlk
-	ho5i7vTfbBqzSrl3phMeMl5IWdLQbIqgzRw2/bZOxLe9kHDgYR0VR2fvaMB56o04topV
-	OqOLfx9OXHXFjXB5ij56XJ7q05YFm2vVfLVROG7kGOUyjN1bc1XDxR7RODjW5mArZIjc
-	tUyuQvkcKQb7eqRh2HwiKGGbFLMIXWF1uW2jL7Gf1w7b2Aa93MPUUvX2CaM0oFwwnZLQ
-	37gFsjT/pOhMXOUhMAGvEEg5iWhgvZI746VyDSFM+oPjovkxpjFgeL9up7xU0nNcI46k
-	Km3w==
-X-Gm-Message-State: AHPjjUhAJhcfWki60+hcTVwAX8Nc8AjE8NN5kYG4bt+7Z/RyF7gck15Y
-	ZOJe3EFX4xm8GM5sHehdkjAnjrA1FD2nNn4RJy4=
-X-Google-Smtp-Source: AOwi7QCCMZASfULrJ0wcNEomyJIzPDPMFZ46amX9etTy73Z7LfBS6BNQ/bVv1zX9LZgcarzEoGi2c4OfIUNtOHwZt5Y=
-X-Received: by 10.31.137.146 with SMTP id l140mr8782013vkd.137.1506964814938; 
-	Mon, 02 Oct 2017 10:20:14 -0700 (PDT)
+	bh=pXDWwMkj075D7BCzC4pN+Ei6pLFaEEYGou7ZfFlUP64=;
+	b=gSwrJnwbPhxD3R/+Bu6kJn8n1cTwtiVCfj6CL4wb2ufb4UEyxHsntKGm3NoUBzUxtl
+	8Pv3801QYXi+WnL5mIW2cHhXVdzmM4OeQ6bOp031MFxEjCuZL92avnLMoNRf+QxmIMYS
+	PEfXZpUyd2GuMLBpSpXKji/jBdxi68VHhJTxlnxneD4xUyRTVyzhqkw36Ip55reNTRj9
+	4qF6bjfmCl8WEfDUNOQ3IQdANZ9BjxMlFXPpfFAy54gLvCZO+Ngqk63CeI/rhVhIvKgm
+	eeIyL4kbZv+kyQivfzeJEJQ9GvnOwxy50hIzMO3XCzBn1Ppq+lXZ8pi78QmDesf5aWl2
+	XaPg==
+X-Gm-Message-State: AMCzsaVuoZef0hoUMjIOIp+WbbzmaznjK6u04Ne1khE0uUZvLMvyaBKd
+	5xa3eRqmi5gqDyDfQ4uL6GTMXuXtGH/ObQBl8DZ0/H/hdWE=
+X-Google-Smtp-Source: AOwi7QAw7KkNBC3NfrW4XdUJSSAmCO4bsEGH07k92yTkgxeuun3nQ+pb5fEMNQq4VP9sCfZyh2HHHNLE24Pms/zpBMI=
+X-Received: by 10.157.91.61 with SMTP id x58mr2564118oth.89.1506967281434;
+	Mon, 02 Oct 2017 11:01:21 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.176.71.83 with HTTP; Mon, 2 Oct 2017 10:20:14 -0700 (PDT)
-In-Reply-To: <CAC+thW0xA3W82RXfXap_Btj=J3zECGVh9iZc6G9QPUQCUeC1SA@mail.gmail.com>
-References: <CAC+thW29aj-ZCsd31cfEsnuQKUuDGAfCzg5AX_srUcud0e9sBA@mail.gmail.com>
-	<2247298.VirvghVmfO@peggleto-mobl.ger.corp.intel.com>
-	<CAC+thW0rcZuB-y+=93srk203E+coR4G7r36stmz0UA-L5Td3nw@mail.gmail.com>
-	<11108946.QmoIu7Nc6a@peggleto-mobl.ger.corp.intel.com>
-	<CAC+thW0xA3W82RXfXap_Btj=J3zECGVh9iZc6G9QPUQCUeC1SA@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Mon, 2 Oct 2017 19:20:14 +0200
-Message-ID: <CAC+thW23Yn9R8NVPS4Sr5Ef+9Qf7GRKokgbLOQ1ZMLZ6S+FEyQ@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: eSDK install script failure
+Received: by 10.74.39.94 with HTTP; Mon, 2 Oct 2017 11:01:20 -0700 (PDT)
+In-Reply-To: <4a9df97c-fa72-82a3-b8be-60b8f537e458@emagii.com>
+References: <4a9df97c-fa72-82a3-b8be-60b8f537e458@emagii.com>
+From: Aaron Schwartz <aaron.schwartz@logicsupply.com>
+Date: Mon, 2 Oct 2017 14:01:20 -0400
+Message-ID: <CAP3gWc9shs38YqyP9WFN6g62MtWUOBVvpvgOqb9oHchEE0mx+Q@mail.gmail.com>
+To: Ulf Samuelsson <yocto@emagii.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: RFC: autotooler: generation of "configure.ac" and "Makefile.am" using Kconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,565 +70,798 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 17:20:17 -0000
-Content-Type: multipart/alternative; boundary="001a114593ee7bc6b5055a9396cf"
+X-List-Received-Date: Mon, 02 Oct 2017 18:01:27 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1c18527fd43c055a942989"
 
---001a114593ee7bc6b5055a9396cf
+--94eb2c1c18527fd43c055a942989
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Paul,
+Are you looking to use menuconfig to configure your packages?  BusyBox does
+this [0] pretty well in my experience, you might take a look at how they've
+put that together.
 
-On Tue, Sep 26, 2017 at 7:18 AM, Andrea Galbusera <gizero@gmail.com> wrote:
+0) https://busybox.net/FAQ.html#configure
 
-> Paul,
+On Sat, Sep 30, 2017 at 10:49 AM, Ulf Samuelsson <yocto@emagii.com> wrote:
+
+> Have a need to convert a large number of libraries to use autotools.
 >
-> On Tue, Sep 26, 2017 at 6:33 AM, Paul Eggleton <
-> paul.eggleton@linux.intel.com> wrote:
+> I came up with the following idea:
 >
->> Hi Andrea,
->>
->> On Tuesday, 26 September 2017 4:33:46 AM NZDT Andrea Galbusera wrote:
->> > I'm back to this issue after the weeken break. See below the feedback
->> from
->> > your suggestions.
->> >
->> > On Thu, Sep 21, 2017 at 11:49 PM, Paul Eggleton <
->> > paul.eggleton@linux.intel.com> wrote:
->> >
->> > > On Friday, 22 September 2017 9:40:41 AM NZST Paul Eggleton wrote:
->> > > > On Friday, 22 September 2017 9:22:08 AM NZST Andrea Galbusera wrote:
->> > > > > On Thu, Sep 21, 2017 at 10:48 PM, Paul Eggleton <
->> > > > > paul.eggleton@linux.intel.com> wrote:
->> > > > > > Right, so the next step would be looking for the hash for
->> > > > > > python-native.do_populate_sysroot in conf/locked_sigs.inc
->> within the
->> > > > > > failed SDK install directory and then looking for that in both
->> the
->> > > sstate-
->> > > > > > cache directory within the failed SDK and then in the
->> sstate-cache
->> > > > > > directory of the build that built it. I suspect it may not be
->> there,
->> > > but
->> > > > > > let me know what you find.
->> > > > >
->> > > > > Good catch! In the failing SDK neither conf/locked_sigs.inc nor
->> > > > > sstate-cache do include any python-native signature or object...
->> Only
->> > > > > python3-native stuff is there. Weird! As said, SDKs from the same
->> build
->> > > > > directory, used to work since a few weeks ago. May any recent
->> change in
->> > > > > poky master have caused this while periodically upgrading without
->> > > > > regenerating the sstate-cache?
->> > > >
->> > > > No, I can't see any added references to python-native anywhere in
->> the
->> > > last few
->> > > > weeks. If you do bitbake -c clean python-native and then rebuild
->> the SDK
->> > > does
->> > > > the issue go away?
->> > >
->> > > Actually scratch that, that's not going to help. The question is
->> where is
->> > > this dependency coming from and why isn't it properly picked up such
->> > > that it gets included. bitbake -g -c populate_sdk_ext your-image
->> might be
->> > > useful in determining that.
->> > >
->> >
->> > $ bitbake core-image-base-dlms -c populate_sdk_ext -g
->> >
->> > Grepping task-depends.dot for "python-native" gives no match.
->> Surprisingly
->> > enough (at least for me) I read a different story when doing the same
->> for
->> > the image itself
->> >
->> > $ bitbake core-image-base-dlms -g
->> > $ grep python-native task-depends.dot
->> >  "python-native.do_populate_lic" [label="python-native
->> > do_populate_lic\n:2.7.13-r1.1\n/home/gizero/work/smartliving
->> /distro/repo-master/build-poky/conf/../../layers/poky/meta/r
->> ecipes-devtools/python/python[18/7956]
->> > .7.13.bb"]
->> > "python-native.do_populate_lic" -> "python-native.do_patch"
->> > "python-native.do_prepare_recipe_sysroot" [label="python-native
->> > do_prepare_recipe_sysroot\n:2.7.13-r1.1\n/home/gizero/work/s
->> martliving/distro/repo-master/build-poky/conf/../../layers/p
->> oky/meta/recipes-devtools/py
->> > thon/python-native_2.7.13.bb"]
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "openssl-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "pkgconfig-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "automake-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "expat-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "sqlite3-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" -> "python-native.do_fetch"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "bzip2-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "readline-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "zlib-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "autoconf-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "gnu-config-native.do_populate_sysroot"
->> > "python-native.do_prepare_recipe_sysroot" ->
->> > "libtool-native.do_populate_sysroot"
->> > "python-native.do_rm_work_all" [label="python-native
->> > do_rm_work_all\n:2.7.13-r1.1\n/home/gizero/work/smartliving/
->> distro/repo-master/build-poky/conf/../../layers/poky/meta/re
->> cipes-devtools/python/python-native_2.7
->> > .13.bb"]
->> > "python-native.do_rm_work_all" -> "readline-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "gnu-config-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "openssl-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "automake-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "m4-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "makedepend-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "xproto-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "bzip2-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "ncurses-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "python-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "expat-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "pigz-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "libtool-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "pkgconfig-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "gettext-minimal-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "util-macros-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "quilt-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "autoconf-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "cryptodev-linux-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "xz-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "zlib-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "texinfo-dummy-native.do_rm_work"
->> > "python-native.do_rm_work_all" -> "sqlite3-native.do_rm_work"
->> > "python-native.do_compile" [label="python-native
->> > do_compile\n:2.7.13-r1.1\n/home/gizero/work/smartliving/dist
->> ro/repo-master/build-poky/conf/../../layers/poky/meta/recipe
->> s-devtools/python/
->> > python-native_2.7.13.bb"]
->> > "python-native.do_compile" -> "python-native.do_configure"
->> > "python-native.do_install" [label="python-native
->> > do_install\n:2.7.13-r1.1\n/home/gizero/work/smartliving/dist
->> ro/repo-master/build-poky/conf/../../layers/poky/meta/recipe
->> s-devtools/python/
->> > python-native_2.7.13.bb"]
->> > "python-native.do_install" -> "python-native.do_compile"
->> > "bmap-tools-native.do_rm_work_all" -> "python-native.do_rm_work"
->> > "python-native.do_build" [label="python-native
->> > do_build\n:2.7.13-r1.1\n/home/gizero/work/smartliving/distro
->> /repo-master/build-poky/conf/../../layers/poky/meta/recipes-
->> devtools/python/
->> > python-native_2.7.13.bb"]
->> > "python-native.do_build" -> "python-native.do_populate_sysroot"
->> > "python-native.do_build" -> "python-native.do_rm_work"
->> > "python-native.do_build" -> "python-native.do_populate_lic"
->> > "python-native.do_build" -> "python-native.do_rm_work_all"
->> > "python-native.do_fetch" [label="python-native
->> > do_fetch\n:2.7.13-r1.1\n/home/gizero/work/smartliving/distro
->> /repo-master/build-poky/conf/../../layers/poky/meta/recipes-
->> devtools/python/
->> > python-native_2.7.13.bb"]
->> > "python-native.do_unpack" [label="python-native
->> > do_unpack\n:2.7.13-r1.1\n/home/gizero/work/smartliving/distr
->> o/repo-master/build-poky/conf/../../layers/poky/meta/recipes
->> -devtools/python/
->> > python-native_2.7.13.bb"]
->> > "python-native.do_unpack" -> "xz-native.do_populate_sysroot"
->> > "python-native.do_unpack" -> "python-native.do_fetch"
->> > "python-native.do_patch" [label="python-native
->> > do_patch\n:2.7.13-r1.1\n/home/gizero/work/smartliving/distro
->> /repo-master/build-poky/conf/../../layers/poky/meta/recipes-
->> devtools/python/
->> > python-native_2.7.13.bb"]
->> > "python-native.do_patch" -> "python-native.do_unpack"
->> > "python-native.do_patch" -> "quilt-native.do_populate_sysroot"
->> > "core-image-base-dlms.do_build" -> "python-native.do_build"
->> > "python-native.do_configure" [label="python-native
->> > do_configure\n:2.7.13-r1.1\n/home/gizero/work/smartliving/di
->> stro/repo-master/build-poky/conf/../../layers/poky/meta/reci
->> pes-devtools/python/python-native_2.7.13.
->> > bb"]
->> > "python-native.do_configure" -> "python-native.do_patch"
->> > "python-native.do_configure" -> "python-native.do_prepare_reci
->> pe_sysroot"
->> > "python-native.do_rm_work" [label="python-native
->> > do_rm_work\n:2.7.13-r1.1\n/home/gizero/work/smartliving/dist
->> ro/repo-master/build-poky/conf/../../layers/poky/meta/recipe
->> s-devtools/python/
->> > python-native_2.7.13.bb"]
->> > "python-native.do_rm_work" -> "python-native.do_populate_sysroot"
->> > "python-native.do_rm_work" -> "python-native.do_populate_lic"
->> > "python-native.do_populate_sysroot" [label="python-native
->> > do_populate_sysroot\n:2.7.13-r1.1\n/home/gizero/work/smartli
->> ving/distro/repo-master/build-poky/conf/../../layers/poky/me
->> ta/recipes-devtools/python/python-
->> > native_2.7.13.bb"]
->> > "python-native.do_populate_sysroot" -> "python-native.do_install"
->> >
->> > As expected, on the build bot that builds successfully installable SDKs,
->> > both dependency graphs contain no mention of python-native. Time to nuke
->> > the sstate-cache from the failing one or do you have any additional
->> clue to
->> > investigate further?
->>
->> Deleting sstate-cache is very unlikely to help - these dependency
->> relationships
->> aren't stored in sstate (or at least they aren't stored there in a way
->> that
->> bitbake will take it as input for dependency graph generation).
->>
->> It looks like bmap-tools-native might be how the dependency is getting in
->> -
->> perhaps this is coming in conditionally through IMAGE_FSTYPES? For some
->> unknown reason it also doesn't get triggered when building the eSDK but
->> does
->> when restoring the image dependencies within the eSDK.
->>
+> I create an Kconfig based configuration system, where you define a number
+> of configuration items needed by configure.ac and Makefile.am
 >
-> Good catch! This explains why the two build systems behaves differently: a
-> little change in local.conf I didn't notice before... The "failing" system
-> does IMAGE_FSTYPES_append = " wic", likely bringing bmap-tools-native in,
-> while the "working" build bot doesn't. However, as you say, this still does
-> not explain why the eSDK is missing the python-native bits. BTW, "wic" is
-> in the IMAGE_FSTYPE of my usual build host since months and I'm pretty sure
-> it did build many successfully installable eSDK with that option in place:
-> but maybe other tasks which also depended on python-native got removed
-> along the way...
-> What I can do now is adding "wic" to IMAGE_FSTYPES on the other system and
-> see if I get the two scenarios equally misbehaving or not. Anything else or
-> different you can suggest to nail this down?
+> You choose if you want to build an application, a shared library or a
+> static library.
+>
+> The build normally depends on other libraries, and you checkmarks
+> which library you are interested in from a (small) number of supported
+> libraries.
+> You can likewise select to support options like "--enable-openssl",
+> again from a (small) number of supported options.
+>
+> If you have stuff not supported, the autotooler will include Config.in
+> files allowing you to add your own items.
+>
+> Once the configuration is complete, you will compile an application
+> which will generate "configure.ac" from the configuration file.
+>
+> Again, if you have stuff not supported in the code, you can add it
+> in a user include file.
+>
+> The generator will read a user-headers.inc file and
+> generate an AC_CHECK_HEADERS entry.
+>
+>
+> The autotooler is available on
+>         https://www.github.com/emagii/autotooler.git
+>
+> ===================================================================
+> Currently, it does not generate any Makefile.am files, but
+> the idea is to separate the source files into
+> * C source
+> * Public Headers
+> * Local Headers
+>
+> A tool would then scan the directories and classify them accordingly,
+> so Makefile.am files should be possible to generate fairly easy.
+>
+> ===================================================================
+> A final step would clone a empty git tree, and populate it
+> with all the files needed for a complete package.
+> ===================================================================
+>
+> Comments appreciated.
+>
+> Best Regards
+> Ulf Samuelsson
+> ===================================================================
+> Here is a typical "autoconh.h" generated by Kconfig.
+>
+> /*
+>  * Automatically generated C config: don't edit
+>  * Sat Sep 30 16:27:24 2017
+>  */
+> #define CONFIG_SHARED_LIB 1
+> #define CONFIG_PTHREAD 1
+> #define CONFIG_LIBRARY 1
+> #define CONFIG_PROJECT "myproject"
+> #define CONFIG_WORKDIR "${HOME}/projects/autotooler"
+> #define CONFIG_OPENSSL 1
+> #define CONFIG_CURL 1
+> #define CONFIG_COPYRIGHT_DATE "2017"
+> #define CONFIG_HOMEPAGE "http://www.emagii.com/"
+> #define CONFIG_EXAMPLES 1
+> #define CONFIG_DEBUG 1
+> #define HAVE_DOT_CONFIG 1
+> #define CONFIG_AC_PRERQ "2.59"
+> #define CONFIG_BOOST 1
+> #define CONFIG_OS_LINUX 1
+> #define CONFIG_LIBRARY_NAME "libyocto"
+> #define CONFIG_AUTHOR_EMAIL "ulf@emagii.com"
+> #define CONFIG_LIBRARY_VERSION "1.0"
+> #define CONFIG_AC_CONFIG_HEADER "src/include/config.h"
+> #define CONFIG_OS "Linux"
+> #define CONFIG_EXAMPLES_VAR "examples"
+> #define CONFIG_AC_CONFIG_MACRO_DIR "m4"
+> #define CONFIG_DEBUG_VAR "debug"
+> #define CONFIG_PROJECT_TYPE "library"
+> #define CONFIG_SRCDIR "src"
+> #define CONFIG_SRC_URI_REPO ""
+> #define CONFIG_AUTHOR "Ulf Samuelsson"
+> #define CONFIG_SRC_URI_HOST "https://www.github.com/emagii"
+> #define CONFIG_CURLPP 1
+> #define CONFIG_AM_INIT_AUTOMAKE "1.10 -Wall no-define"
+>
+> The application will from this information generate:
+>
+> AC_INIT([libyocto],
+>         [1.0],
+>         [Ulf Samuelsson],
+>         [libyocto-1.0],
+>         [http://www.emagii.com/])
+>
+> AC_PRERQ([2.59])
+>
+> AC_CONFIG_HEADER([src/include/config.h])
+>
+> AC_CONFIG_SRCDIR([src])
+>
+> AC_PROG_CPP
+> AC_PROG_CC
+> AC_INIT_AUTOMAKE([1.10 -Wall no-define])
+>
+> AC_PROG_MAKE_SET
+> AM_MAINTAINER_MODE
+> AC_HEADER_STDC
+> AC_ENABLE_SHARED
+> AC_DISABLE_STATIC
+> AC_PROG_LIBTOOL
+> AC_HEADER_STDC
+>
+> AC_CHECK_HEADERS( \
+>         ctype.h \
+>         errno.h \
+>         fcntl.h \
+>         openssl/bio.h \
+>         openssl/err.h \
+>         openssl/opensslconf.h \
+>         openssl/rand.h \
+>         openssl/ssl.h \
+>         pthread.h \
+>         stdio.h \
+>         stdlib.h \
+>         stdarg.h \
+>         stdint.h \
+>         string.h \
+>         signal.h \
+>         sys/ioctl.h \
+>         sys/socket.h \
+>         sys/time.h \
+>         sys/types.h \
+>         time.h \
+>         unistd.h \
+>          \
+>         ,
+> dnl to do if not found
+>         [],
+> dnl to do if not found
+>         [],
+> dnl default includes
+>         [
+> #ifdef HAVE_SYS_TYPES_H
+> #include <sys/types.h>
+> #endif
+> #ifdef HAVE_SYS_TIME_H
+> #include <sys/time.h>
+> #endif
+> dnl We do this default-include simply to make sure that the
+> nameser_compat.h
+> dnl header *REALLY* can be include after the new nameser.h. It seems AIX
+> 5.1
+> dnl (and others?) is not designed to allow this.
+> #ifdef HAVE_ARPA_NAMESER_H
+> #include <arpa/nameser.h>
+> #endif
+>
+> dnl *Sigh* these are needed in order for net/if.h to get properly detected.
+> #ifdef HAVE_SYS_SOCKET_H
+> #include <sys/socket.h>
+> #endif
+> #ifdef HAVE_NETINET_IN_H
+> #include <netinet/in.h>
+> #endif
+> ]
+> )
+>
+> # ==== Boost Libraries
+> AC_ARG_WITH([boost-include-path],
+>         [AS_HELP_STRING([--with-boost-include-path],[location of the
+> Boost headers, defaults to /usr/include/boost])],
+>         [CXXFLAGS_BOOST="-I$withval"],
+>         [CXXFLAGS_BOOST="-I/usr/include/boost"])
+> AC_SUBST([BOOST_CFLAGS])
+>
+> AC_ARG_WITH([boost-lib-path],
+>         [AS_HELP_STRING([--with-boost-lib-path],[location of the Boost
+> libraries, defaults to /usr/lib])],
+>         [BOOST_LIBS="-L$withval" -lboost_system -lboost_filesystem
+> -lboost_program_options -lboost_thread -lpthread],
+>         [BOOST_LIBS="-L/usr/lib -lboost_system -lboost_filesystem
+> -lboost_program_options -lboost_thread -lpthread"])
+> AC_SUBST([BOOST_LIBS])
+>
+> AC_ARG_ENABLE(boost,
+>         [--enable-boost Include Boost Libraries],
+>         [case "${enableval}" in
+>                 yes)    use_boost=true  ;;
+>                 no)     use_boost=false ;;
+>                 *) AC_MSG_ERROR(bad value ${enableval} for --enable-boost)
+> ;;
+>          esac
+>         ],
+>         [use_boost=false])
+> AM_CONDITIONAL(CONFIG_BOOST, test x$boost = xtrue)
+>
+> # ==== cURL Libraries
+> AC_ARG_WITH([curl-include-path],
+>         [AS_HELP_STRING([--with-curl-include-path],[location of the cURL
+> headers, defaults to /usr/include])],
+>         [CXXFLAGS_CURL="-I$withval"],
+>         [CXXFLAGS_CURL="-I/usr/include"])
+> AC_SUBST([CURL_CFLAGS])
+>
+> AC_ARG_WITH([curl-lib-path],
+>         [AS_HELP_STRING([--with-curl-lib-path],[location of the cURL
+> libraries, defaults to /usr/lib])],
+>         [CURL_LIBS="-L$withval" -lcurl],
+>         [CURL_LIBS="-L/usr/lib -lcurl"])
+> AC_SUBST([CURL_LIBS])
+>
+> AC_ARG_ENABLE(curl,
+>         [--enable-curl  Include cURL],
+>         [case "${enableval}" in
+>                 yes)    use_curl=true  ;;
+>                 no)     use_curl=false ;;
+>                 *) AC_MSG_ERROR(bad value ${enableval} for --enable-curl)
+> ;;
+>          esac
+>         ],
+>         [use_curl=false])
+> AM_CONDITIONAL(CONFIG_CURL, test x$curl = xtrue)
+>
+> # ==== cURLPP Libraries
+> AC_ARG_WITH([curlpp-include-path],
+>         [AS_HELP_STRING([--with-curlpp-include-path],[location of the
+> cURLPP headers, defaults to /usr/include])],
+>         [CXXFLAGS_CURLPP="-I$withval"],
+>         [CXXFLAGS_CURLPP="-I/usr/include"])
+> AC_SUBST([CURLPP_CFLAGS])
+>
+> AC_ARG_WITH([curlpp-lib-path],
+>         [AS_HELP_STRING([--with-curlpp-lib-path],[location of the cURLPP
+> libraries, defaults to /usr/lib])],
+>         [CURLPP_LIBS="-L$withval" -lcurlpp -lutilspp],
+>         [CURLPP_LIBS="-L/usr/lib -lcurlpp -lutilspp"])
+> AC_SUBST([CURLPP_LIBS])
+>
+> AC_ARG_ENABLE(curlpp,
+>         [--enable-curlpp        Include cURLPP],
+>         [case "${enableval}" in
+>                 yes)    use_curlpp=true  ;;
+>                 no)     use_curlpp=false ;;
+>                 *) AC_MSG_ERROR(bad value ${enableval} for
+> --enable-curlpp) ;;
+>          esac
+>         ],
+>         [use_curlpp=false])
+> AM_CONDITIONAL(CONFIG_CURLPP, test x$curlpp = xtrue)
+>
+> # ==== OpenSSL Libraries
+> AC_ARG_WITH([openssl-include-path],
+>         [AS_HELP_STRING([--with-openssl-include-path],[location of the
+> OpenSSL headers, defaults to /usr/include])],
+>         [CFLAGS_OPENSSL="-I$withval"],
+>         [CFLAGS_OPENSSL="-I/usr/include"])
+> AC_SUBST([OPENSSL_CFLAGS])
+>
+> AC_ARG_WITH([openssl-lib-path],
+>         [AS_HELP_STRING([--with-openssl-lib-path],[location of the
+> OpenSSL libraries, defaults to /usr/lib])],
+>         [OPENSSL_LIBS="-L$withval" -lssl],
+>         [OPENSSL_LIBS="-L/usr/lib -lssl"])
+> AC_SUBST([OPENSSL_LIBS])
+>
+> AC_ARG_ENABLE(openssl,
+>         [--enable-openssl       Include OpenSSL],
+>         [case "${enableval}" in
+>                 yes)    use_openssl=true  ;;
+>                 no)     use_openssl=false ;;
+>                 *) AC_MSG_ERROR(bad value ${enableval} for
+> --enable-openssl) ;;
+>          esac
+>         ],
+>         [use_openssl=false])
+> AM_CONDITIONAL(CONFIG_OPENSSL, test x$openssl = xtrue)
+>
+> # ==== Pthread Libraries
+> AC_ARG_WITH([pthread-include-path],
+>         [AS_HELP_STRING([--with-pthread-include-path],[location of the
+> PThread headers, defaults to /usr/include])],
+>         [CFLAGS_PTHREAD="-I$withval"],
+>         [CFLAGS_PTHREAD="-I/usr/include"])
+> AC_SUBST([PTHREAD_CFLAGS])
+>
+> AC_ARG_WITH([pthread-lib-path],
+>         [AS_HELP_STRING([--with-pthread-lib-path],[location of the
+> PThread libraries, defaults to /usr/include])],
+>         [PTHREAD_LIBS="-L$withval" -lpthread],
+>         [PTHREAD_LIBS="-L/usr/include -lpthread"])
+> AC_SUBST([PTHREAD_LIBS])
+>
+> AC_ARG_ENABLE(pthread,
+>         [--enable-pthread       Include PThreads],
+>         [case "${enableval}" in
+>                 yes)    use_pthread=true  ;;
+>                 no)     use_pthread=false ;;
+>                 *) AC_MSG_ERROR(bad value ${enableval} for
+> --enable-pthread) ;;
+>          esac
+>         ],
+>         [use_pthread=false])
+> AM_CONDITIONAL(CONFIG_PTHREAD, test x$pthread = xtrue)
+>
+> # ==== Debug
+> AC_ARG_ENABLE(debug,
+>         [--enable-debug Build with DEBUG enabled],
+>         [case "${enableval}" in
+>                 yes)    debug=true  ;;
+>                 no)     debug=false ;;
+>                 *) AC_MSG_ERROR(bad value ${enableval} for --enable-debug)
+> ;;
+>          esac
+>         ],
+>         [debug=false])
+> AM_CONDITIONAL(CONFIG_DEBUG, test x$debug = xtrue)
+>
+> AC_ARG_ENABLE(examples,
+>         [--enable-examples      Build examples],
+>         [case "${enableval}" in
+>                 yes)    examples=true  ;;
+>                 no)     examples=false ;;
+>                 *) AC_MSG_ERROR(bad value ${enableval} for
+> --enable-examples) ;;
+>          esac
+>         ],
+>         [examples=false])
+> AM_CONDITIONAL(CONFIG_EXAMPLES, test x$examples = xtrue)
+>
+> AC_SUBST([CFLAGS])
+> AC_CONFIG_FILES([Makefile  libyocto.pc])
+> AC_OUTPUT
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
-Just noticed this thread [1] on the list and the corresponding bug [2]. Do
-you think this issue and the eSDKs with missing python-native can relate to
-each other?
 
-[1] https://lists.yoctoproject.org/pipermail/yocto/2017-September/038199.
-html
-[2] https://bugzilla.yoctoproject.org/show_bug.cgi?id=12148
 
---001a114593ee7bc6b5055a9396cf
+-- 
+
+Aaron Schwartz
+Production
+Logic Supply
+Direct: +1 802 861 2300 Ext. 530
+Main: +1 802 861 2300
+www.logicsupply.com
+
+Google+ <https://plus.google.com/+Logicsupply/posts> | Twitter
+<https://twitter.com/logicsupply> | LinkedIn
+<https://www.linkedin.com/company/logic-supply> | YouTube
+<https://www.youtube.com/user/logicsupply>
+
+--94eb2c1c18527fd43c055a942989
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">Hi P=
-aul,</div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote">O=
-n Tue, Sep 26, 2017 at 7:18 AM, Andrea Galbusera <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:gizero@gmail.com" target=3D"_blank">gizero@gmail.com</a>&gt;<=
-/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">Paul,</div><=
-div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote"><div><div cl=
-ass=3D"m_6193618520157148359gmail-m_193840837664023303gmail-m_-636279438469=
-5382573h5">On Tue, Sep 26, 2017 at 6:33 AM, Paul Eggleton <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">pau=
-l.eggleton@linux.intel.com</a><wbr>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">Hi Andrea,<br>
-<div><div class=3D"m_6193618520157148359gmail-m_193840837664023303gmail-m_-=
-6362794384695382573m_-2696021252065942545gmail-h5"><br>
-On Tuesday, 26 September 2017 4:33:46 AM NZDT Andrea Galbusera wrote:<br>
-&gt; I&#39;m back to this issue after the weeken break. See below the feedb=
-ack from<br>
-&gt; your suggestions.<br>
-&gt;<br>
-&gt; On Thu, Sep 21, 2017 at 11:49 PM, Paul Eggleton &lt;<br>
-&gt; <a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">pau=
-l.eggleton@linux.intel.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; &gt; On Friday, 22 September 2017 9:40:41 AM NZST Paul Eggleton wrote:=
+<div dir=3D"ltr">Are you looking to use menuconfig to configure your packag=
+es?=C2=A0 BusyBox does this [0] pretty well in my experience, you might tak=
+e a look at how they&#39;ve put that together.<div><div><br></div><div>0)=
+=C2=A0<a href=3D"https://busybox.net/FAQ.html#configure">https://busybox.ne=
+t/FAQ.html#configure</a></div></div></div><div class=3D"gmail_extra"><br><d=
+iv class=3D"gmail_quote">On Sat, Sep 30, 2017 at 10:49 AM, Ulf Samuelsson <=
+span dir=3D"ltr">&lt;<a href=3D"mailto:yocto@emagii.com" target=3D"_blank">=
+yocto@emagii.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Ha=
+ve a need to convert a large number of libraries to use autotools.<br>
 <br>
-&gt; &gt; &gt; On Friday, 22 September 2017 9:22:08 AM NZST Andrea Galbuser=
-a wrote:<br>
-&gt; &gt; &gt; &gt; On Thu, Sep 21, 2017 at 10:48 PM, Paul Eggleton &lt;<br=
->
-&gt; &gt; &gt; &gt; <a href=3D"mailto:paul.eggleton@linux.intel.com" target=
-=3D"_blank">paul.eggleton@linux.intel.com</a>&gt; wrote:<br>
-&gt; &gt; &gt; &gt; &gt; Right, so the next step would be looking for the h=
-ash for<br>
-&gt; &gt; &gt; &gt; &gt; python-native.do_populate_sysr<wbr>oot in conf/loc=
-ked_sigs.inc within the<br>
-&gt; &gt; &gt; &gt; &gt; failed SDK install directory and then looking for =
-that in both the<br>
-&gt; &gt; sstate-<br>
-&gt; &gt; &gt; &gt; &gt; cache directory within the failed SDK and then in =
-the sstate-cache<br>
-&gt; &gt; &gt; &gt; &gt; directory of the build that built it. I suspect it=
- may not be there,<br>
-&gt; &gt; but<br>
-&gt; &gt; &gt; &gt; &gt; let me know what you find.<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; Good catch! In the failing SDK neither conf/locked_sigs=
-.inc nor<br>
-&gt; &gt; &gt; &gt; sstate-cache do include any python-native signature or =
-object... Only<br>
-&gt; &gt; &gt; &gt; python3-native stuff is there. Weird! As said, SDKs fro=
-m the same build<br>
-&gt; &gt; &gt; &gt; directory, used to work since a few weeks ago. May any =
-recent change in<br>
-&gt; &gt; &gt; &gt; poky master have caused this while periodically upgradi=
-ng without<br>
-&gt; &gt; &gt; &gt; regenerating the sstate-cache?<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; No, I can&#39;t see any added references to python-native an=
-ywhere in the<br>
-&gt; &gt; last few<br>
-&gt; &gt; &gt; weeks. If you do bitbake -c clean python-native and then reb=
-uild the SDK<br>
-&gt; &gt; does<br>
-&gt; &gt; &gt; the issue go away?<br>
-&gt; &gt;<br>
-&gt; &gt; Actually scratch that, that&#39;s not going to help. The question=
- is where is<br>
-&gt; &gt; this dependency coming from and why isn&#39;t it properly picked =
-up such<br>
-&gt; &gt; that it gets included. bitbake -g -c populate_sdk_ext your-image =
-might be<br>
-&gt; &gt; useful in determining that.<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; $ bitbake core-image-base-dlms -c populate_sdk_ext -g<br>
-&gt;<br>
-&gt; Grepping task-depends.dot for &quot;python-native&quot; gives no match=
-. Surprisingly<br>
-&gt; enough (at least for me) I read a different story when doing the same =
-for<br>
-&gt; the image itself<br>
-&gt;<br>
-&gt; $ bitbake core-image-base-dlms -g<br>
-&gt; $ grep python-native task-depends.dot<br>
-&gt;=C2=A0 &quot;python-native.do_populate_lic<wbr>&quot; [label=3D&quot;py=
-thon-native<br>
-&gt; do_populate_lic\n:2.7.13-r1.1\<wbr>n/home/gizero/work/smartliving<wbr>=
-/distro/repo-master/build-poky<wbr>/conf/../../layers/poky/meta/r<wbr>ecipe=
-s-devtools/python/python[<wbr>18/7956]<br>
-&gt; .<a href=3D"http://7.13.bb" rel=3D"noreferrer" target=3D"_blank">7.13.=
-bb</a>&quot;]<br>
-&gt; &quot;python-native.do_populate_lic<wbr>&quot; -&gt; &quot;python-nati=
-ve.do_patch&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; [label=3D&quo=
-t;python-native<br>
-&gt; do_prepare_recipe_sysroot\n:2.<wbr>7.13-r1.1\n/home/gizero/work/s<wbr>=
-martliving/distro/repo-master/<wbr>build-poky/conf/../../layers/p<wbr>oky/m=
-eta/recipes-devtools/py<br>
-&gt; thon/<a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" tar=
-get=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;openssl-native.do_populate_sy<wbr>sroot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;pkgconfig-native.do_populate_<wbr>sysroot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;automake-native.do_populate_s<wbr>ysroot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;expat-native.do_populate_sysr<wbr>oot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;sqlite3-native.do_populate_sy<wbr>sroot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt; &quot;p=
-ython-native.do_fetch&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;bzip2-native.do_populate_sysr<wbr>oot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;readline-native.do_populate_s<wbr>ysroot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;zlib-native.do_populate_sysro<wbr>ot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;autoconf-native.do_populate_s<wbr>ysroot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;gnu-config-native.do_populate<wbr>_sysroot&quot;<br>
-&gt; &quot;python-native.do_prepare_reci<wbr>pe_sysroot&quot; -&gt;<br>
-&gt; &quot;libtool-native.do_populate_sy<wbr>sroot&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; [label=3D&quot;python-native<=
+I came up with the following idea:<br>
+<br>
+I create an Kconfig based configuration system, where you define a number o=
+f configuration items needed by <a href=3D"http://configure.ac" rel=3D"nore=
+ferrer" target=3D"_blank">configure.ac</a> and Makefile.am<br>
+<br>
+You choose if you want to build an application, a shared library or a stati=
+c library.<br>
+<br>
+The build normally depends on other libraries, and you checkmarks<br>
+which library you are interested in from a (small) number of supported libr=
+aries.<br>
+You can likewise select to support options like &quot;--enable-openssl&quot=
+;,<br>
+again from a (small) number of supported options.<br>
+<br>
+If you have stuff not supported, the autotooler will include Config.in<br>
+files allowing you to add your own items.<br>
+<br>
+Once the configuration is complete, you will compile an application<br>
+which will generate &quot;<a href=3D"http://configure.ac" rel=3D"noreferrer=
+" target=3D"_blank">configure.ac</a>&quot; from the configuration file.<br>
+<br>
+Again, if you have stuff not supported in the code, you can add it<br>
+in a user include file.<br>
+<br>
+The generator will read a user-headers.inc file and<br>
+generate an AC_CHECK_HEADERS entry.<br>
+<br>
+<br>
+The autotooler is available on<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"https://www.github.com/emagii/autoto=
+oler.git" rel=3D"noreferrer" target=3D"_blank">https://www.github.com/emagi=
+i/<wbr>autotooler.git</a><br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D<br>
+Currently, it does not generate any Makefile.am files, but<br>
+the idea is to separate the source files into<br>
+* C source<br>
+* Public Headers<br>
+* Local Headers<br>
+<br>
+A tool would then scan the directories and classify them accordingly,<br>
+so Makefile.am files should be possible to generate fairly easy.<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D<br>
+A final step would clone a empty git tree, and populate it<br>
+with all the files needed for a complete package.<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D<br>
+<br>
+Comments appreciated.<br>
+<br>
+Best Regards<br>
+Ulf Samuelsson<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D<br>
+Here is a typical &quot;autoconh.h&quot; generated by Kconfig.<br>
+<br>
+/*<br>
+=C2=A0* Automatically generated C config: don&#39;t edit<br>
+=C2=A0* Sat Sep 30 16:27:24 2017<br>
+=C2=A0*/<br>
+#define CONFIG_SHARED_LIB 1<br>
+#define CONFIG_PTHREAD 1<br>
+#define CONFIG_LIBRARY 1<br>
+#define CONFIG_PROJECT &quot;myproject&quot;<br>
+#define CONFIG_WORKDIR &quot;${HOME}/projects/autotooler&quot;<br>
+#define CONFIG_OPENSSL 1<br>
+#define CONFIG_CURL 1<br>
+#define CONFIG_COPYRIGHT_DATE &quot;2017&quot;<br>
+#define CONFIG_HOMEPAGE &quot;<a href=3D"http://www.emagii.com/" rel=3D"nor=
+eferrer" target=3D"_blank">http://www.emagii.com/</a>&quot;<br>
+#define CONFIG_EXAMPLES 1<br>
+#define CONFIG_DEBUG 1<br>
+#define HAVE_DOT_CONFIG 1<br>
+#define CONFIG_AC_PRERQ &quot;2.59&quot;<br>
+#define CONFIG_BOOST 1<br>
+#define CONFIG_OS_LINUX 1<br>
+#define CONFIG_LIBRARY_NAME &quot;libyocto&quot;<br>
+#define CONFIG_AUTHOR_EMAIL &quot;<a href=3D"mailto:ulf@emagii.com" target=
+=3D"_blank">ulf@emagii.com</a>&quot;<br>
+#define CONFIG_LIBRARY_VERSION &quot;1.0&quot;<br>
+#define CONFIG_AC_CONFIG_HEADER &quot;src/include/config.h&quot;<br>
+#define CONFIG_OS &quot;Linux&quot;<br>
+#define CONFIG_EXAMPLES_VAR &quot;examples&quot;<br>
+#define CONFIG_AC_CONFIG_MACRO_DIR &quot;m4&quot;<br>
+#define CONFIG_DEBUG_VAR &quot;debug&quot;<br>
+#define CONFIG_PROJECT_TYPE &quot;library&quot;<br>
+#define CONFIG_SRCDIR &quot;src&quot;<br>
+#define CONFIG_SRC_URI_REPO &quot;&quot;<br>
+#define CONFIG_AUTHOR &quot;Ulf Samuelsson&quot;<br>
+#define CONFIG_SRC_URI_HOST &quot;<a href=3D"https://www.github.com/emagii"=
+ rel=3D"noreferrer" target=3D"_blank">https://www.github.com/emagii</a><wbr=
+>&quot;<br>
+#define CONFIG_CURLPP 1<br>
+#define CONFIG_AM_INIT_AUTOMAKE &quot;1.10 -Wall no-define&quot;<br>
+<br>
+The application will from this information generate:<br>
+<br>
+AC_INIT([libyocto],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [1.0],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [Ulf Samuelsson],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [libyocto-1.0],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [<a href=3D"http://www.emagii.com/" rel=3D"nore=
+ferrer" target=3D"_blank">http://www.emagii.com/</a>])<br>
+<br>
+AC_PRERQ([2.59])<br>
+<br>
+AC_CONFIG_HEADER([src/include/<wbr>config.h])<br>
+<br>
+AC_CONFIG_SRCDIR([src])<br>
+<br>
+AC_PROG_CPP<br>
+AC_PROG_CC<br>
+AC_INIT_AUTOMAKE([1.10 -Wall no-define])<br>
+<br>
+AC_PROG_MAKE_SET<br>
+AM_MAINTAINER_MODE<br>
+AC_HEADER_STDC<br>
+AC_ENABLE_SHARED<br>
+AC_DISABLE_STATIC<br>
+AC_PROG_LIBTOOL<br>
+AC_HEADER_STDC<br>
+<br>
+AC_CHECK_HEADERS( \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ctype.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 errno.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 fcntl.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/bio.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/err.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/opensslconf.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/rand.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 openssl/ssl.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 pthread.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 stdio.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 stdlib.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 stdarg.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 stdint.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 string.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 signal.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys/ioctl.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys/socket.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys/time.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys/types.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 time.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 unistd.h \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ,<br>
+dnl to do if not found<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [],<br>
+dnl to do if not found<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [],<br>
+dnl default includes<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [<br>
+#ifdef HAVE_SYS_TYPES_H<br>
+#include &lt;sys/types.h&gt;<br>
+#endif<br>
+#ifdef HAVE_SYS_TIME_H<br>
+#include &lt;sys/time.h&gt;<br>
+#endif<br>
+dnl We do this default-include simply to make sure that the nameser_compat.=
+h<br>
+dnl header *REALLY* can be include after the new nameser.h. It seems AIX 5.=
+1<br>
+dnl (and others?) is not designed to allow this.<br>
+#ifdef HAVE_ARPA_NAMESER_H<br>
+#include &lt;arpa/nameser.h&gt;<br>
+#endif<br>
+<br>
+dnl *Sigh* these are needed in order for net/if.h to get properly detected.=
+<br>
+#ifdef HAVE_SYS_SOCKET_H<br>
+#include &lt;sys/socket.h&gt;<br>
+#endif<br>
+#ifdef HAVE_NETINET_IN_H<br>
+#include &lt;netinet/in.h&gt;<br>
+#endif<br>
+]<br>
+)<br>
+<br>
+# =3D=3D=3D=3D Boost Libraries<br>
+AC_ARG_WITH([boost-include-pat<wbr>h],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-boost-<wbr>include-path=
+],[location of the Boost headers, defaults to /usr/include/boost])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_BOOST=3D&quot;-I$withval&quot;],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_BOOST=3D&quot;-I/usr/includ<wbr>e/boo=
+st&quot;])<br>
+AC_SUBST([BOOST_CFLAGS])<br>
+<br>
+AC_ARG_WITH([boost-lib-path],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-boost-<wbr>lib-path],[l=
+ocation of the Boost libraries, defaults to /usr/lib])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [BOOST_LIBS=3D&quot;-L$withval&quot; -lboost_sy=
+stem -lboost_filesystem -lboost_program_options -lboost_thread -lpthread],<=
 br>
-&gt; do_rm_work_all\n:2.7.13-r1.1\n<wbr>/home/gizero/work/smartliving/<wbr>=
-distro/repo-master/build-poky/<wbr>conf/../../layers/poky/meta/re<wbr>cipes=
--devtools/python/python-n<wbr>ative_2.7<br>
-&gt; .<a href=3D"http://13.bb" rel=3D"noreferrer" target=3D"_blank">13.bb</=
-a>&quot;]<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;readline-native.d=
-o_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;gnu-config-native=
-.do_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;openssl-native.do=
-_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;automake-native.d=
-o_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;m4-native.do_rm_w=
-ork&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;makedepend-native=
-.do_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;xproto-native.do_=
-rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;bzip2-native.do_r=
-m_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;ncurses-native.do=
-_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;python-native.do_=
-rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;expat-native.do_r=
-m_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;pigz-native.do_rm=
-_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;libtool-native.do=
-_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;pkgconfig-native.=
-do_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;gettext-minimal-n=
-ative.do_rm_<wbr>work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;util-macros-nativ=
-e.do_rm_work<wbr>&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;quilt-native.do_r=
-m_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;autoconf-native.d=
-o_rm_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;cryptodev-linux-n=
-ative.do_rm_<wbr>work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;xz-native.do_rm_w=
-ork&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;zlib-native.do_rm=
-_work&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;texinfo-dummy-nat=
-ive.do_rm_wo<wbr>rk&quot;<br>
-&gt; &quot;python-native.do_rm_work_all&quot; -&gt; &quot;sqlite3-native.do=
-_rm_work&quot;<br>
-&gt; &quot;python-native.do_compile&quot; [label=3D&quot;python-native<br>
-&gt; do_compile\n:2.7.13-r1.1\n/hom<wbr>e/gizero/work/smartliving/dist<wbr>=
-ro/repo-master/build-poky/conf<wbr>/../../layers/poky/meta/recipe<wbr>s-dev=
-tools/python/<br>
-&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
-=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_compile&quot; -&gt; &quot;python-native.do_conf=
-igure&quot;<br>
-&gt; &quot;python-native.do_install&quot; [label=3D&quot;python-native<br>
-&gt; do_install\n:2.7.13-r1.1\n/hom<wbr>e/gizero/work/smartliving/dist<wbr>=
-ro/repo-master/build-poky/conf<wbr>/../../layers/poky/meta/recipe<wbr>s-dev=
-tools/python/<br>
-&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
-=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_install&quot; -&gt; &quot;python-native.do_comp=
-ile&quot;<br>
-&gt; &quot;bmap-tools-native.do_rm_work_<wbr>all&quot; -&gt; &quot;python-n=
-ative.do_rm_work&quot;<br>
-&gt; &quot;python-native.do_build&quot; [label=3D&quot;python-native<br>
-&gt; do_build\n:2.7.13-r1.1\n/home/<wbr>gizero/work/smartliving/distro<wbr>=
-/repo-master/build-poky/conf/.<wbr>./../layers/poky/meta/recipes-<wbr>devto=
-ols/python/<br>
-&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
-=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_build&quot; -&gt; &quot;python-native.do_popula=
-te_sys<wbr>root&quot;<br>
-&gt; &quot;python-native.do_build&quot; -&gt; &quot;python-native.do_rm_wor=
-k&quot;<br>
-&gt; &quot;python-native.do_build&quot; -&gt; &quot;python-native.do_popula=
-te_lic<wbr>&quot;<br>
-&gt; &quot;python-native.do_build&quot; -&gt; &quot;python-native.do_rm_wor=
-k_all&quot;<br>
-&gt; &quot;python-native.do_fetch&quot; [label=3D&quot;python-native<br>
-&gt; do_fetch\n:2.7.13-r1.1\n/home/<wbr>gizero/work/smartliving/distro<wbr>=
-/repo-master/build-poky/conf/.<wbr>./../layers/poky/meta/recipes-<wbr>devto=
-ols/python/<br>
-&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
-=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_unpack&quot; [label=3D&quot;python-native<br>
-&gt; do_unpack\n:2.7.13-r1.1\n/home<wbr>/gizero/work/smartliving/distr<wbr>=
-o/repo-master/build-poky/conf/<wbr>../../layers/poky/meta/recipes<wbr>-devt=
-ools/python/<br>
-&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
-=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_unpack&quot; -&gt; &quot;xz-native.do_populate_=
-sysroot<wbr>&quot;<br>
-&gt; &quot;python-native.do_unpack&quot; -&gt; &quot;python-native.do_fetch=
-&quot;<br>
-&gt; &quot;python-native.do_patch&quot; [label=3D&quot;python-native<br>
-&gt; do_patch\n:2.7.13-r1.1\n/home/<wbr>gizero/work/smartliving/distro<wbr>=
-/repo-master/build-poky/conf/.<wbr>./../layers/poky/meta/recipes-<wbr>devto=
-ols/python/<br>
-&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
-=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_patch&quot; -&gt; &quot;python-native.do_unpack=
-&quot;<br>
-&gt; &quot;python-native.do_patch&quot; -&gt; &quot;quilt-native.do_populat=
-e_sysr<wbr>oot&quot;<br>
-&gt; &quot;core-image-base-dlms.do_build<wbr>&quot; -&gt; &quot;python-nati=
-ve.do_build&quot;<br>
-&gt; &quot;python-native.do_configure&quot; [label=3D&quot;python-native<br=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [BOOST_LIBS=3D&quot;-L/usr/lib -lboost_system -=
+lboost_filesystem -lboost_program_options -lboost_thread -lpthread&quot;])<=
+br>
+AC_SUBST([BOOST_LIBS])<br>
+<br>
+AC_ARG_ENABLE(boost,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-boost Include Boost Libraries],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
+se_boost=3Dtrue=C2=A0 ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
+=C2=A0use_boost=3Dfalse ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
+ value ${enableval} for --enable-boost) ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_boost=3Dfalse])<br>
+AM_CONDITIONAL(CONFIG_BOOST, test x$boost =3D xtrue)<br>
+<br>
+# =3D=3D=3D=3D cURL Libraries<br>
+AC_ARG_WITH([curl-include-path<wbr>],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-curl-i<wbr>nclude-path]=
+,[location of the cURL headers, defaults to /usr/include])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_CURL=3D&quot;-I$withval&quot;],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_CURL=3D&quot;-I/usr/include<wbr>&quot=
+;])<br>
+AC_SUBST([CURL_CFLAGS])<br>
+<br>
+AC_ARG_WITH([curl-lib-path],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-curl-l<wbr>ib-path],[lo=
+cation of the cURL libraries, defaults to /usr/lib])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CURL_LIBS=3D&quot;-L$withval&quot; -lcurl],<br=
 >
-&gt; do_configure\n:2.7.13-r1.1\n/h<wbr>ome/gizero/work/smartliving/di<wbr>=
-stro/repo-master/build-poky/co<wbr>nf/../../layers/poky/meta/reci<wbr>pes-d=
-evtools/python/python-nat<wbr>ive_2.7.13.<br>
-&gt; bb&quot;]<br>
-&gt; &quot;python-native.do_configure&quot; -&gt; &quot;python-native.do_pa=
-tch&quot;<br>
-&gt; &quot;python-native.do_configure&quot; -&gt; &quot;python-native.do_pr=
-epare_reci<wbr>pe_sysroot&quot;<br>
-&gt; &quot;python-native.do_rm_work&quot; [label=3D&quot;python-native<br>
-&gt; do_rm_work\n:2.7.13-r1.1\n/hom<wbr>e/gizero/work/smartliving/dist<wbr>=
-ro/repo-master/build-poky/conf<wbr>/../../layers/poky/meta/recipe<wbr>s-dev=
-tools/python/<br>
-&gt; <a href=3D"http://python-native_2.7.13.bb" rel=3D"noreferrer" target=
-=3D"_blank">python-native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_rm_work&quot; -&gt; &quot;python-native.do_popu=
-late_sys<wbr>root&quot;<br>
-&gt; &quot;python-native.do_rm_work&quot; -&gt; &quot;python-native.do_popu=
-late_lic<wbr>&quot;<br>
-&gt; &quot;python-native.do_populate_sys<wbr>root&quot; [label=3D&quot;pyth=
-on-native<br>
-&gt; do_populate_sysroot\n:2.7.13-r<wbr>1.1\n/home/gizero/work/smartli<wbr>=
-ving/distro/repo-master/build-<wbr>poky/conf/../../layers/poky/me<wbr>ta/re=
-cipes-devtools/python/pyt<wbr>hon-<br>
-&gt; <a href=3D"http://native_2.7.13.bb" rel=3D"noreferrer" target=3D"_blan=
-k">native_2.7.13.bb</a>&quot;]<br>
-&gt; &quot;python-native.do_populate_sys<wbr>root&quot; -&gt; &quot;python-=
-native.do_install&quot;<br>
-&gt;<br>
-&gt; As expected, on the build bot that builds successfully installable SDK=
-s,<br>
-&gt; both dependency graphs contain no mention of python-native. Time to nu=
-ke<br>
-&gt; the sstate-cache from the failing one or do you have any additional cl=
-ue to<br>
-&gt; investigate further?<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CURL_LIBS=3D&quot;-L/usr/lib -lcurl&quot;])<br=
+>
+AC_SUBST([CURL_LIBS])<br>
 <br>
-</div></div>Deleting sstate-cache is very unlikely to help - these dependen=
-cy relationships<br>
-aren&#39;t stored in sstate (or at least they aren&#39;t stored there in a =
-way that<br>
-bitbake will take it as input for dependency graph generation).<br>
+AC_ARG_ENABLE(curl,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-curl=C2=A0 Include cURL],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
+se_curl=3Dtrue=C2=A0 ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
+=C2=A0use_curl=3Dfalse ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
+ value ${enableval} for --enable-curl) ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_curl=3Dfalse])<br>
+AM_CONDITIONAL(CONFIG_CURL, test x$curl =3D xtrue)<br>
 <br>
-It looks like bmap-tools-native might be how the dependency is getting in -=
+# =3D=3D=3D=3D cURLPP Libraries<br>
+AC_ARG_WITH([curlpp-include-pa<wbr>th],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-curlpp<wbr>-include-pat=
+h],[location of the cURLPP headers, defaults to /usr/include])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_CURLPP=3D&quot;-I$withval&quot;]<wbr>=
+,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CXXFLAGS_CURLPP=3D&quot;-I/usr/inclu<wbr>de&qu=
+ot;])<br>
+AC_SUBST([CURLPP_CFLAGS])<br>
 <br>
-perhaps this is coming in conditionally through IMAGE_FSTYPES? For some<br>
-unknown reason it also doesn&#39;t get triggered when building the eSDK but=
- does<br>
-when restoring the image dependencies within the eSDK.<br></blockquote><div=
-><br></div></div></div><div>Good catch! This explains why the two build sys=
-tems behaves differently: a little change in local.conf I didn&#39;t notice=
- before... The &quot;failing&quot; system does IMAGE_FSTYPES_append =3D &qu=
-ot; wic&quot;, likely bringing bmap-tools-native in, while the &quot;workin=
-g&quot; build bot doesn&#39;t. However, as you say, this still does not exp=
-lain why the eSDK is missing the python-native bits. BTW, &quot;wic&quot; i=
-s in the IMAGE_FSTYPE of my usual build host since months and I&#39;m prett=
-y sure it did build many successfully installable eSDK with that option in =
-place: but maybe other tasks which also depended on python-native got remov=
-ed along the way...=C2=A0</div><div>What I can do now is adding &quot;wic&q=
-uot; to IMAGE_FSTYPES on the other system and see if I get the two scenario=
-s equally misbehaving or not. Anything else or different you can suggest to=
- nail this down?</div></div></div></div></blockquote><div><br></div><div>Ju=
-st noticed this thread [1] on the list and the corresponding bug [2]. Do yo=
-u think this issue and the eSDKs with missing python-native can relate to e=
-ach other?</div><div><br></div><div>[1]=C2=A0<a href=3D"https://lists.yocto=
-project.org/pipermail/yocto/2017-September/038199.html" target=3D"_blank">h=
-ttps://lists.<wbr>yoctoproject.org/pipermail/<wbr>yocto/2017-September/0381=
-99.<wbr>html</a></div><div>[2]=C2=A0<a href=3D"https://bugzilla.yoctoprojec=
-t.org/show_bug.cgi?id=3D12148" target=3D"_blank">https://bugzilla.yoctoproj=
-<wbr>ect.org/show_bug.cgi?id=3D12148</a></div></div><br></div></div>
+AC_ARG_WITH([curlpp-lib-path],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-curlpp<wbr>-lib-path],[=
+location of the cURLPP libraries, defaults to /usr/lib])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CURLPP_LIBS=3D&quot;-L$withval&quot; -lcurlpp =
+-lutilspp],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CURLPP_LIBS=3D&quot;-L/usr/lib -lcurlpp -lutil=
+spp&quot;])<br>
+AC_SUBST([CURLPP_LIBS])<br>
+<br>
+AC_ARG_ENABLE(curlpp,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-curlpp=C2=A0 =C2=A0 =C2=A0 =C2=A0 Inc=
+lude cURLPP],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
+se_curlpp=3Dtrue=C2=A0 ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
+=C2=A0use_curlpp=3Dfalse ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
+ value ${enableval} for --enable-curlpp) ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_curlpp=3Dfalse])<br>
+AM_CONDITIONAL(CONFIG_CURLPP, test x$curlpp =3D xtrue)<br>
+<br>
+# =3D=3D=3D=3D OpenSSL Libraries<br>
+AC_ARG_WITH([openssl-include-p<wbr>ath],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-openss<wbr>l-include-pa=
+th],[location of the OpenSSL headers, defaults to /usr/include])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CFLAGS_OPENSSL=3D&quot;-I$withval&quot;],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CFLAGS_OPENSSL=3D&quot;-I/usr/includ<wbr>e&quo=
+t;])<br>
+AC_SUBST([OPENSSL_CFLAGS])<br>
+<br>
+AC_ARG_WITH([openssl-lib-path]<wbr>,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-openss<wbr>l-lib-path],=
+[location of the OpenSSL libraries, defaults to /usr/lib])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [OPENSSL_LIBS=3D&quot;-L$withval&quot; -lssl],<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [OPENSSL_LIBS=3D&quot;-L/usr/lib -lssl&quot;])<=
+br>
+AC_SUBST([OPENSSL_LIBS])<br>
+<br>
+AC_ARG_ENABLE(openssl,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-openssl=C2=A0 =C2=A0 =C2=A0 =C2=A0Inc=
+lude OpenSSL],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
+se_openssl=3Dtrue=C2=A0 ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
+=C2=A0use_openssl=3Dfalse ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
+ value ${enableval} for --enable-openssl) ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_openssl=3Dfalse])<br>
+AM_CONDITIONAL(CONFIG_OPENSSL, test x$openssl =3D xtrue)<br>
+<br>
+# =3D=3D=3D=3D Pthread Libraries<br>
+AC_ARG_WITH([pthread-include-p<wbr>ath],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-pthrea<wbr>d-include-pa=
+th],[location of the PThread headers, defaults to /usr/include])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CFLAGS_PTHREAD=3D&quot;-I$withval&quot;],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [CFLAGS_PTHREAD=3D&quot;-I/usr/includ<wbr>e&quo=
+t;])<br>
+AC_SUBST([PTHREAD_CFLAGS])<br>
+<br>
+AC_ARG_WITH([pthread-lib-path]<wbr>,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [AS_HELP_STRING([--with-pthrea<wbr>d-lib-path],=
+[location of the PThread libraries, defaults to /usr/include])],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [PTHREAD_LIBS=3D&quot;-L$withval&quot; -lpthrea=
+d],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [PTHREAD_LIBS=3D&quot;-L/usr/include -lpthread&=
+quot;])<br>
+AC_SUBST([PTHREAD_LIBS])<br>
+<br>
+AC_ARG_ENABLE(pthread,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-pthread=C2=A0 =C2=A0 =C2=A0 =C2=A0Inc=
+lude PThreads],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 u=
+se_pthread=3Dtrue=C2=A0 ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
+=C2=A0use_pthread=3Dfalse ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
+ value ${enableval} for --enable-pthread) ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [use_pthread=3Dfalse])<br>
+AM_CONDITIONAL(CONFIG_PTHREAD, test x$pthread =3D xtrue)<br>
+<br>
+# =3D=3D=3D=3D Debug<br>
+AC_ARG_ENABLE(debug,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-debug Build with DEBUG enabled],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 d=
+ebug=3Dtrue=C2=A0 ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
+=C2=A0debug=3Dfalse ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
+ value ${enableval} for --enable-debug) ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [debug=3Dfalse])<br>
+AM_CONDITIONAL(CONFIG_DEBUG, test x$debug =3D xtrue)<br>
+<br>
+AC_ARG_ENABLE(examples,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [--enable-examples=C2=A0 =C2=A0 =C2=A0 Build ex=
+amples],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [case &quot;${enableval}&quot; in<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yes)=C2=A0 =C2=A0 e=
+xamples=3Dtrue=C2=A0 ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 no)=C2=A0 =C2=A0 =
+=C2=A0examples=3Dfalse ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *) AC_MSG_ERROR(bad=
+ value ${enableval} for --enable-examples) ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0esac<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [examples=3Dfalse])<br>
+AM_CONDITIONAL(CONFIG_EXAMPLES<wbr>, test x$examples =3D xtrue)<br>
+<br>
+AC_SUBST([CFLAGS])<br>
+AC_CONFIG_FILES([Makefile=C2=A0 libyocto.pc])<br>
+AC_OUTPUT<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+-- <br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><p styl=
+e=3D"color:#4c4c4c;font-family:Arial;font-size:13px">Aaron Schwartz<br> Pro=
+duction<br> Logic Supply<br>Direct: +1 802 861 2300 Ext. 530 <br> Main:=C2=
+=A0+1 802 861 2300<br> <a href=3D"http://www.logicsupply.com" target=3D"_bl=
+ank">www.logicsupply.com</a></p><p style=3D"color:#4c4c4c;font-family:Arial=
+;font-size:12px"><a href=3D"https://plus.google.com/+Logicsupply/posts" tar=
+get=3D"_blank">Google+</a> | <a href=3D"https://twitter.com/logicsupply" ta=
+rget=3D"_blank">Twitter</a> | <a href=3D"https://www.linkedin.com/company/l=
+ogic-supply" target=3D"_blank">LinkedIn</a> | <a href=3D"https://www.youtub=
+e.com/user/logicsupply" target=3D"_blank">YouTube</a></p></div>
+</div>
 
---001a114593ee7bc6b5055a9396cf--
+--94eb2c1c18527fd43c055a942989--
