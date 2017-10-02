@@ -1,41 +1,40 @@
-Return-Path: <Anders.Montonen@iki.fi>
+Return-Path: <alejandro.hernandez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90BABE00A9C; Mon,  2 Oct 2017 09:49:02 -0700 (PDT)
+	id E3667E00A9C; Mon,  2 Oct 2017 10:01:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [91.232.154.25 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 4867 seconds by postgrey-1.32 at yocto-www;
-	Mon, 02 Oct 2017 09:49:01 PDT
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81136E006CA
-	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 09:49:01 -0700 (PDT)
-Received: from lakka.kapsi.fi ([2001:1bc8:1004::1] ident=Debian-exim)
-	by mail.kapsi.fi with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	(Exim 4.84_2) (envelope-from <Anders.Montonen@iki.fi>)
-	id 1dz2dN-0001kH-Ew
-	for yocto@yoctoproject.org; Mon, 02 Oct 2017 18:27:53 +0300
-Received: from antime (helo=localhost)
-	by lakka.kapsi.fi with local-esmtp (Exim 4.84_2)
-	(envelope-from <Anders.Montonen@iki.fi>) id 1dz2dN-00074K-CU
-	for yocto@yoctoproject.org; Mon, 02 Oct 2017 18:27:53 +0300
-Date: Mon, 2 Oct 2017 18:27:53 +0300 (EEST)
-From: Anders Montonen <Anders.Montonen@iki.fi>
-X-X-Sender: antime@lakka.kapsi.fi
-To: yocto@yoctoproject.org
-Message-ID: <alpine.DEB.2.11.1710021743580.5820@lakka.kapsi.fi>
-User-Agent: Alpine 2.11 (DEB 23 2013-08-11)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E43FCE006CA
+	for <yocto@yoctoproject.org>; Mon,  2 Oct 2017 10:01:10 -0700 (PDT)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by orsmga105.jf.intel.com with ESMTP; 02 Oct 2017 10:01:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.42,470,1500966000"; d="scan'208";a="157921435"
+Received: from josueher-mobl.amr.corp.intel.com (HELO [10.252.248.204])
+	([10.252.248.204])
+	by fmsmga005.fm.intel.com with ESMTP; 02 Oct 2017 10:01:09 -0700
+To: Ulf Samuelsson <yocto@emagii.com>, yocto@yoctoproject.org
+References: <c8eaf63b-d9a3-8456-3dc8-de387ad131d6@emagii.com>
+	<414ca678-5e11-319d-7688-bc5127712b3a@linux.intel.com>
+	<730b0fb0-622e-d3b9-24ae-f3f9b2cf68f9@emagii.com>
+	<6cb9686c-796e-1d9b-fbba-fea5452fb6cd@linux.intel.com>
+	<1c9833c6-95db-c533-4648-8be5cd2a2d7a@emagii.com>
+From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+Message-ID: <f5f7d131-c1d1-56ed-0c9f-a0dcb90d9cd1@linux.intel.com>
+Date: Mon, 2 Oct 2017 12:01:08 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:1bc8:1004::1
-X-SA-Exim-Mail-From: Anders.Montonen@iki.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
-Subject: sstate and multiconfigs
+In-Reply-To: <1c9833c6-95db-c533-4648-8be5cd2a2d7a@emagii.com>
+Subject: Re: poky using native pkg_resources module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,56 +46,296 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 16:49:02 -0000
-Content-Type: TEXT/PLAIN; format=flowed; charset=US-ASCII
+X-List-Received-Date: Mon, 02 Oct 2017 17:01:12 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Hi,
+Thanks Ulf, I will provide a fix soon.
 
-We've been trying out a setup using multiconfigs to select the source 
-control branch some set of recipes to build. The building part goes well, 
-but whenever we run package-index, the packages built using this scheme 
-are deleted.
 
-The basic setup is that we have one multiconfig per branch ('master', 
-'staging' etc.) In addition to providing the name of the branch, they are 
-also used to configure some variables like PACKAGE_FEED_URIS. Next, we 
-have a class that basically looks like this (the 'master' config was 
-originally called 'devel'):
+Alejandro
 
-"""
-def select_branch(d):
-     branch = d.getVar('BB_CURRENT_MC', True)
-     if branch == 'default' or branch == 'devel':
-         branch = 'master'
 
-     if not branch:
-         branch = 'master'
-     return branch
+On 09/30/2017 05:27 PM, Ulf Samuelsson wrote:
+>
+>
+> Den 2017-09-30 kl. 21:32, skrev Alejandro Hernandez:
+>> Hey Ulf,
+>>
+>>
+>> Yes, the problem is that the bmap-tools script is trying to be 
+>> executed by python3 (HOST) but it should be
+>>
+>> executed by the native python3 we just built, so fixing the shebang 
+>> on the script should do it,
+>>
+>> please file the bug and email me the bug number so I can take care of 
+>> it.
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12148
+>
+> BR
+> Ulf
+>
+>>
+>>
+>> Alejandro | aehs29
+>>
+>>
+>> On 09/30/2017 01:31 PM, Ulf Samuelsson wrote:
+>>>
+>>>
+>>> Den 2017-09-29 kl. 20:18, skrev Alejandro Hernandez:
+>>>> Hey Ulf,
+>>>>
+>>>>
+>>>>
+>>>> On 09/29/2017 04:05 AM, Ulf Samuelsson wrote:
+>>>>> It looks like the pkg_resource module is using the native 
+>>>>> installation
+>>>>>
+>>>>>
+>>>>> I cloned poky early september, and could complete a build.
+>>>>>
+>>>>> When I clone poky today, the build fails.
+>>>>>
+>>>>> As part of "do_image_wic" from image_types_wic.bbclass
+>>>>>
+>>>>> A python program in 'bmap-tools-native' is executing
+>>>>>
+>>>>>     "from pkg_resources import load_entry_point"
+>>>>>
+>>>>> grep'ing for pkg_resources in bmap-tools-native reveals:
+>>>>>
+>>>>> bmaptool:        from pkg_resources import load_entry_point
+>>>>> easy3_install:        from pkg_resources import load_entry_point
+>>>>> easy_install-3.5:    from pkg_resources import load_entry_point
+>>>>> =============================
+>>>>> pkg_resources.py is not available inside poky at the moment.
+>>>>>
+>>>>> It is (or used to be) part of python-setuptools.
+>>>>
+>>>> Correct, it was and still is part of setuptools
+>>>>>
+>>>>> On Ubuntu, it is present in: 
+>>>>> "http://archive.ubuntu.com/ubuntu/pool/main/p/python-setuptools/python-setuptools_3.3.orig.tar.gz" 
+>>>>>
+>>>>> and used in Ubuntu 14.04 and 16.04 to generate the
+>>>>>     "python3-pkg-resource" package.
+>>>>>
+>>>>> When python-setuptools is generated by Yocto, it is partly
+>>>>> a class, but the python-setuptools-native recipe downloads
+>>>>>     "https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-26.2.7.zip" 
+>>>>>
+>>>>
+>>>> This should be setuptools-36.2.7 btw
+>>>>
+>>>>> which does not contain "pkg_resources.py"
+>>>>
+>>>> Its not partly a class, it uses a class to install the package 
+>>>> along with distutils.
+>>>>>
+>>>>> =============================
+>>>>> When bmaptool imports pkg_resources, it will not find anything in the
+>>>>> yocto build, but will find the native 
+>>>>> "/usr/lib/python3/dist-packages/pkg_resources.py" from
+>>>>>
+>>>>> This requires bmap-tools == 3.4, but the native bmap-tools in 
+>>>>> Ubuntu-14.04 is 2.5, and in Ubuntu-16.04 it is 3.2 so the build 
+>>>>> fails.
+>>>>>
+>>>>> Maybe Ubuntu-17.04 supports bmap-tools 3.4 and it will build there,
+>>>>> but using the native pkg_resource is of course not a good idea?
+>>>>
+>>>> There is something wrong with your build although I am not sure 
+>>>> what it is, pkg_resources is still part of python(3)-setuptools, in 
+>>>> fact you can check that in several ways
+>>>>
+>>>> if you do a devshell on python3-setuptools-native you can see the 
+>>>> extracted package contains the pkg_resources folder (so it is still 
+>>>> part of the package)
+>>> >
+>>> I do: "bitbake  -c devshell python3-setuptools-native"
+>>> A terminal windows opens in 
+>>> "tmp/work/x86_64-linux/python3-setuptools-native/36.2.7-r0/setuptools-36.2.7" 
+>>>
+>>>
+>>> ls
+>>> bootstrap.py  easy_install.py          PKG-INFO setuptools
+>>> build         launcher.c               pkg_resources 
+>>> setuptools.egg-info
+>>> CHANGES.rst   LICENSE                  pytest.ini     tests
+>>> conftest.py   MANIFEST.in              README.rst     tox.ini
+>>> dist          msvc-build-launcher.cmd  setup.cfg
+>>> docs          pavement.py              setup.py
+>>>
+>>> so the "pkg_resources" folder is present.
+>>>
+>>> cd pkg_resources ; ls -l
+>>> -rw-r--r-- 1 ulf ulf  12211 Aug  2 00:40 api_tests.txt
+>>> drwxrwxr-x 3 ulf ulf   4096 Sep 30 17:35 extern
+>>> -rw-r--r-- 1 ulf ulf 104650 Aug  2 00:40 __init__.py
+>>> -rw-r--r-- 1 ulf ulf    600 Aug  2 00:40 py31compat.py
+>>> drwxrwxr-x 2 ulf ulf   4096 Sep 30 17:35 __pycache__
+>>> drwxrwxr-x 2 ulf ulf   4096 Sep 30 17:35 tests
+>>> drwxrwxr-x 4 ulf ulf   4096 Sep 30 17:35 _vendor
+>>>
+>>> so there is NO "pkg_resource.py" file inside.
+>>>
+>>> The statement that fails is "from pkg_resources import 
+>>> load_entry_point"
+>>>
+>>> "load_entry_point" is defined in pkg_resources/__init__.py
+>>>
+>>> Somewhere, something decides that
+>>> "/usr/lib/python3/dist-packages/pkg_resources.py"
+>>> is what we want.
+>>>
+>>> I have a fresh install of Ubuntu-16.04.
+>>> This has received the latest package updates.
+>>> I have also installed a set of packages I usually install on a machine.
+>>> Not much more.
+>>>
+>>> environment lack anything python related.
+>>>
+>>> In one test, I git cloned a fresh copy of "poky".
+>>> No layers added.'
+>>> Insignificant changes to "local.conf", only changed some directory 
+>>> location
+>>>
+>>> Building the beaglebone, and problem occurs.
+>>>
+>>> If I build from poky "8b4f16a9cbbaf521461f699b7264fac2ac872581" from
+>>> Mon Sep 4 11:39:24, I have no problem.
+>>>
+>>> Best Regards
+>>> Ulf Samuelsson
+>>>
+>>>> then if you do a devshell after do_install, you can check the image 
+>>>> directory and find the setuptools.egg file, which is what 
+>>>> python-native uses later, if you unzip that
+>>>> egg file, you can see that pkg_resources is there, so it was in 
+>>>> fact packaged on Yocto / by bitbake.
+>>>>
+>>>> Lastly, you can also do a
+>>>> $ bitbake bmap-tools-native -c devshell
+>>>>
+>>>> you can then check that python3-native is in fact executing by doing a
+>>>>
+>>>> $ which python3
+>>>>
+>>>> that should point to python3-native (the one you just built)
+>>>>
+>>>> assuming you got python3-native correctly, execute python3
+>>>>
+>>>> once in python you can do a
+>>>>
+>>>>
+>>>> from pkg_resources import load_entry_point # which would import the 
+>>>> module
+>>>>
+>>>> # check where the module is being loaded from
+>>>> import sys
+>>>> sys.modules['pkg_resources']
+>>>>
+>>>> That should print out the location of the imported module, and you 
+>>>> can see there that infact it was imported from the setuptools.egg 
+>>>> file you just built before, like this:
+>>>>
+>>>>  >>> sys.modules['pkg_resources']
+>>>> <module 'pkg_resources' from 
+>>>> '$HOME/builds/qemux86-64/tmp/work/x86_64-linux/bmap-tools-native/3.4-r0/recipe-sysroot-native/usr/lib/python3.5/site-packages/setuptools-36.2.7-py3.5.egg/pkg_resources/__init__.py'> 
+>>>>
+>>>>
+>>>>>
+>>>>> Upgrading to a non-LTS Ubuntu is not something I would like to do...
+>>>>> ============================================================================================ 
+>>>>>
+>>>>>
+>>>>> Error report
+>>>>>
+>>>>> ============================================================================================ 
+>>>>>
+>>>>>
+>>>>> | DEBUG: Executing shell function do_image_wic
+>>>>> | wic create 
+>>>>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks" 
+>>>>> --vars 
+>>>>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/sysroots/beaglebone/imgdata/" 
+>>>>> -e "emagii-image" -o 
+>>>>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/" 
+>>>>>
+>>>>> | INFO: Creating image(s)...
+>>>>> |
+>>>>> | INFO: The new image(s) can be found here:
+>>>>> | 
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/emagii_beaglebone-201709290903-mmcblk.direct 
+>>>>>
+>>>>> |
+>>>>> | The following build artifacts were used to create the image(s):
+>>>>> |   ROOTFS_DIR: 
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/deploy-emagii-image-image-complete/emagii-image-beaglebone-20170929070314/tmp.wic.slysr_64/rootfs_copy 
+>>>>>
+>>>>> |   BOOTIMG_DIR: 
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot/usr/share 
+>>>>>
+>>>>> |   KERNEL_DIR: 
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/deploy/images/beaglebone 
+>>>>>
+>>>>> |   NATIVE_SYSROOT: 
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native 
+>>>>>
+>>>>> |
+>>>>> | INFO: The image(s) were created using OE kickstart file:
+>>>>> | 
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/wic/emagii_beaglebone.wks 
+>>>>>
+>>>>> | Traceback (most recent call last):
+>>>>> |   File 
+>>>>> "/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/recipe-sysroot-native/usr/bin/bmaptool", 
+>>>>> line 6, in <module>
+>>>>> |     from pkg_resources import load_entry_point
+>>>>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 
+>>>>> 2749, in <module>
+>>>>> |     working_set = WorkingSet._build_master()
+>>>>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 
+>>>>> 444, in _build_master
+>>>>> |     ws.require(__requires__)
+>>>>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 
+>>>>> 725, in require
+>>>>> |     needed = self.resolve(parse_requirements(requirements))
+>>>>> |   File "/usr/lib/python3/dist-packages/pkg_resources.py", line 
+>>>>> 628, in resolve
+>>>>> |     raise DistributionNotFound(req)
+>>>>> | pkg_resources.DistributionNotFound: bmap-tools==3.4
+>>>>> | WARNING: 
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/run.do_image_wic.19342:1 
+>>>>> exit 1 from 'bmaptool create 
+>>>>> emagii-image-beaglebone-20170929070314.rootfs.wic -o 
+>>>>> emagii-image-beaglebone-20170929070314.rootfs.wic.bmap'
+>>>>> | ERROR: Function failed: do_image_wic (log file is located at 
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/tmp/work/beaglebone-poky-linux-gnueabi/emagii-image/1.0-r0/temp/log.do_image_wic.19342) 
+>>>>>
+>>>>> ERROR: Task 
+>>>>> (/home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic) 
+>>>>> failed with exit code '1'
+>>>>> NOTE: Tasks Summary: Attempted 3187 tasks of which 3186 didn't 
+>>>>> need to be rerun and 1 failed.
+>>>>>
+>>>>> Summary: 1 task failed:
+>>>>>
+>>>>> /home/ulf/Kunder/eMagii/Disk/yocto-arm/poky-arm/build/../meta-emagii/recipes-images/images/emagii-image.bb:do_image_wic 
+>>>>>
+>>>>> Summary: There was 1 WARNING message shown.
+>>>>> Summary: There was 1 ERROR message shown, returning a non-zero 
+>>>>> exit code.
+>>>>>
+>>>>>
+>>>>>
+>>>>> Best Regards
+>>>>> Ulf Samuelsson
+>>>>
+>>
 
-MC_BRANCH ?= "${@select_branch(d)}"
-"""
-
-In the recipe we have something like the following:
-inherit git-multiconfig # our class
-inherit gitpkgv
-
-SRCREV = "${AUTOREV}"
-PV = "${FOO_VERSION}.0+gitr${SRCPV}"
-PKGV = "${MC_BRANCH}-${FOO_VERSION}.0+${GITPKGV}"
-SRC_URI += "gitsm://git@repo/foo.git;protocol=ssh;branch=${MC_BRANCH}"
-
-As stated above, when a specific recipe is built (bitbake 
-multiconfig:master:foo), everything looks fine, but whenever package-index 
-is run (with or without multiconfig), all rpms built using this scheme 
-will be deleted.
-
-If the MC_BRANCH variable is hardcoded inside the class (eg. changing the 
-body of select_branch() to a single return statement) things work as 
-expected. Any suggestions on what's going on, and how to fix it (or do it 
-in a better way)? The ultimate goal is being able to build multiple 
-branches of our project without having to encode or duplicate that 
-information, ideally receiving it as a parameter from the CI system.
-
-Regards,
-Anders Montonen
 
