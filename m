@@ -1,71 +1,65 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF7C1E00CFF; Tue,  3 Oct 2017 08:40:50 -0700 (PDT)
+	id B9488E00CF6; Tue,  3 Oct 2017 09:29:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.46 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.46 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.235.154.220 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
-	[209.85.214.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BD22E00CEC
-	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 08:40:49 -0700 (PDT)
-Received: by mail-it0-f46.google.com with SMTP id c195so12360988itb.4
-	for <yocto@yoctoproject.org>; Tue, 03 Oct 2017 08:40:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=MtnVv59HxeslEwTJHEq0v5AFgMG4q0vFCqhRpXj/SQw=;
-	b=RsEwVlV3IDEmW1e+N0Fxtc90lSD0lU6ja2YoZuU1Ak2M/KtafrF4GKodM1RHP6X9tp
-	aG14NgqU9dG3I2b14XDOtFNcaRc7U2HdFTrvGxor7EACeuakcQ2N2zCQjoh8AcRBBpdF
-	ElRv5zjtoRfreSL+WbD6YYVW5BZ6VNr/l12zcV09J90UZOBQohM7L4c8dfM+0sqoTeyG
-	rsoH3d/NsMD0uZQtLv4pneIY3ZbCQw9OcWPEpy5ZgIRoMc4XrIK/r1r+uCev1U87WUj5
-	HYltoQqBFZWErWDkR8u6Oq/YLY0zvdGITUFs8yZ3scJZ1qUa68rHPD/Xq8Ya+07mgp+L
-	FOqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=MtnVv59HxeslEwTJHEq0v5AFgMG4q0vFCqhRpXj/SQw=;
-	b=CISHqRT0pMOV/NL6U2hS2q0jc9vwKWiUce+vpq2VpAPwR0PRPhEQRNP4Z9WQSYjNK8
-	9xZr10lPFXBrTc7Yb5Ag0/arlJYS7OMWhPhA45Z5xh55jVVbFt5deMRzJp2uGdc/TsRt
-	CeMSQlaU7RIg9DiTP1QN6QBCjeFnCOVvhr12Vp7HqilRrfMgjTrjkOea+s/zre2Lv+GD
-	TQDbsGHcwKMVq6GbZEs2/oWNuc5U1AgRuaBTQuCdjVsYO9wfzgOONAxBla/LYAUawu3F
-	L+VlgFxpcJoVLtqXOln5w1oQ91SDq+/4n3K2SOLUkVYQzpdOrGa8IQO7rst7sn9aeTY2
-	NU+Q==
-X-Gm-Message-State: AHPjjUh/3W2L//Nc9PgfZSn0LsD8IiFtmiaTEIKzm9JjxSPohXhmmG/8
-	w9LffLETQaeoVWUckR228FXJSCSBy7ZOgMZr5ujqGQ==
-X-Google-Smtp-Source: AOwi7QBU5NxnbbmnilVbY1cFIDWNvN1Jfa/XVmcsg9Qpdluu0PAwlWtYEzQMNPPDlRHGYujeD6VusRKQI0n/D+MbUGI=
-X-Received: by 10.36.178.1 with SMTP id u1mr26608991ite.120.1507045249565;
-	Tue, 03 Oct 2017 08:40:49 -0700 (PDT)
+X-Greylist: delayed 949 seconds by postgrey-1.32 at yocto-www;
+	Tue, 03 Oct 2017 09:29:11 PDT
+Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
+	[64.235.154.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AE0EE00CEC
+	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 09:29:11 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx1402.ess.rzc.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Tue, 03 Oct 2017 16:28:48 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Tue, 3 Oct 2017 09:13:17 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Tue, 3 Oct 2017 09:13:17 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] package error for custom devtool recipe
+Thread-Index: AQHTO953v2swXIiDdUy4BvJzp/pkaKLRytiAgACBgmo=
+Date: Tue, 3 Oct 2017 16:13:17 +0000
+Message-ID: <d0a50649f448465d94e6c4371bc46b75@sakuraus.com>
+References: <7411926e7a7048e99289a55fdf1af075@sakuraus.com>,
+	<1786227.q9ysM0urfs@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <1786227.q9ysM0urfs@peggleto-mobl.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-Received: by 10.107.164.134 with HTTP; Tue, 3 Oct 2017 08:40:29 -0700 (PDT)
-In-Reply-To: <CADS9r7=SVFvLh_ato9mR74Jr_BMUMrqAOAd+5vsDk2GMXCfaOw@mail.gmail.com>
-References: <CADS9r7nue8ozf+ma9xYUeNTz+LMAE8nVCzuoRz0ygfMZCM3nPg@mail.gmail.com>
-	<CAJTo0Lb=_MUNmD2d3oPy=HtuNw-0d-LJ9vo4atA=eHEOZuxwpA@mail.gmail.com>
-	<CADS9r7nVjSiZ-UNZ-2CFt0M8i7Yj3-skt+DsPc8n0mJ7kYKwaA@mail.gmail.com>
-	<CAJTo0LZfoa1yA9kcsC4rnBMmOfB0QB1fU3eqVUg+EayTAwjZVQ@mail.gmail.com>
-	<CADS9r7=vrThVxzq5uvy19C4eH+mGvG52V9cz3FwKvvBeOdkbLQ@mail.gmail.com>
-	<CAJTo0Lb2p7BwAkheq1Cuh2kkfjNuFoi7Dhj7_opLGa5Th-VaXA@mail.gmail.com>
-	<CADS9r7=SVFvLh_ato9mR74Jr_BMUMrqAOAd+5vsDk2GMXCfaOw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 3 Oct 2017 16:40:29 +0100
-Message-ID: <CAJTo0La6bfnz28+LWCHnVixYiQ4muFOQ_BhvBxVghKkKB6N1sg@mail.gmail.com>
-To: "eliya.mir@gmail.com" <eliya.mir@gmail.com>
+X-BESS-ID: 1507048093-321458-17132-342-2
+X-BESS-VER: 2017.12-r1709122024
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185642
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in 
+	message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND,
+	BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status: 1
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: pkg-config search directories
+Subject: Re: package error for custom devtool recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,43 +71,208 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Oct 2017 15:40:50 -0000
-Content-Type: multipart/alternative; boundary="f403045d9c0ec2d2ad055aa650a0"
+X-List-Received-Date: Tue, 03 Oct 2017 16:29:12 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_d0a50649f448465d94e6c4371bc46b75sakurauscom_"
 
---f403045d9c0ec2d2ad055aa650a0
-Content-Type: text/plain; charset="UTF-8"
-
-On 3 October 2017 at 16:36, eliya.mir@gmail.com <eliya.mir@gmail.com> wrote:
-
-> Thanks Ross,
-> That is the issue : default pkg-config does not search host paths - How to
-> edit its search paths ?
->
-
-"If you *really* want to link against host binaries and not building your
-own native recipes for it then see qemu.inc for an example of how to steal
-the host pkg-config path and use it at configure time."
-
-Ross
-
---f403045d9c0ec2d2ad055aa650a0
-Content-Type: text/html; charset="UTF-8"
+--_000_d0a50649f448465d94e6c4371bc46b75sakurauscom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On 3 October 2017 at 16:36, <a href=3D"mailto:eliya.mir@gm=
-ail.com">eliya.mir@gmail.com</a> <span dir=3D"ltr">&lt;<a href=3D"mailto:el=
-iya.mir@gmail.com" target=3D"_blank">eliya.mir@gmail.com</a>&gt;</span> wro=
-te:<br><div class=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px=
-;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1e=
-x"><div dir=3D"ltr">Thanks Ross,=C2=A0<br><div>That is the issue : default =
-pkg-config does not search host paths - How to edit its search paths ?=C2=
-=A0</div></div></blockquote><div><br></div><div>&quot;<span style=3D"font-s=
-ize:12.800000190734863px">If you *really* want to link against host binarie=
-s and not building your own native recipes for it then see qemu.inc for an =
-example of how to steal the host pkg-config path and use it at configure ti=
-me.&quot;</span></div><div><span style=3D"font-size:12.800000190734863px"><=
-br></span></div><div><span style=3D"font-size:12.800000190734863px">Ross</s=
-pan></div></div></div></div>
+Hi Paul,
 
---f403045d9c0ec2d2ad055aa650a0--
+Thanks for the corrections. I was working from examples from the book "Embe=
+dded Linux Systems with the Yocto Project" by Rudolf J. Streif and he left =
+out the ${PN} in the file name. Including that makes sense now that I see y=
+our suggestions. It's now working correctly.
+
+
+Thanks again,
+
+Greg
+
+________________________________
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+Sent: Monday, October 2, 2017 6:26:21 PM
+To: Greg Wilson-Lindberg
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] package error for custom devtool recipe
+
+Hi Greg,
+
+On Tuesday, 3 October 2017 1:30:25 PM NZDT Greg Wilson-Lindberg wrote:
+> I get some package errors when I build this:
+>
+> ERROR: QA Issue: acsccid: Files/directories were installed but not shippe=
+d
+> in any package:
+>   /usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Info.plist
+>   /usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Linux/libacsccid.so
+> Please set FILES such that these items are packaged. Alternatively if the=
+y
+> are unneeded, avoid installing them or delete them within do_install.
+> acsccid: 2 installed and not shipped files. [installed-vs-shipped]
+>
+>
+> I've added some FILES =3D lines to try to get rid of the error to no avai=
+l:
+>
+> FILES_${PN} =3D "${libdir}/libacsccid.so"
+>
+> or:
+>
+> FILES_${PN} =3D ".libs/libacsccid.so"
+>
+> or just:
+>
+> FILES_${PN} =3D "libacsccid.so"
+
+The reason none of these work is that none of these actually match the file
+path (not to mention you are setting the value outright instead of adding t=
+o
+the existing value). The path you are trying to match is
+"/usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Linux/libacsccid.so" so =
+the
+value you want is either exactly that path, or something like
+"${libdir}/pcsc/drivers/*/Contents/Linux/*.so".  Also, instead of =3D use +=
+=3D so
+that you are adding to the existing value.
+
+> and:
+>
+> PACKAGE_BEFORE_PN =3D "info"
+> FILES_${PN}-info =3D "Info.plist"
+
+This isn't right - in PACKAGES (via PACKAGE_BEFORE_PN) you are placing "inf=
+o"
+and then setting FILES_${PN}-info i.e. the package is named "${PN}-info".
+Probably the thing you want is to prepend this package to PACKAGES:
+
+PACKAGES =3D+ "${PN}-info"
+
+Cheers,
+Paul
+
+--
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+--_000_d0a50649f448465d94e6c4371bc46b75sakurauscom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<meta content=3D"text/html; charset=3DUTF-8">
+<style type=3D"text/css" style=3D"">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div id=3D"x_divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; =
+font-family:Calibri,Arial,Helvetica,sans-serif">
+<p>Hi Paul,</p>
+<p>Thanks for the corrections. I was working from examples from the book &q=
+uot;Embedded Linux Systems with the Yocto Project&quot; by Rudolf J. Streif=
+ and he left out the ${PN} in the file name. Including that makes sense now=
+ that I see your suggestions. It's now working
+ correctly.</p>
+<p><br>
+</p>
+<p>Thanks again,</p>
+<p>Greg</p>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Paul Eggleton &lt;p=
+aul.eggleton@linux.intel.com&gt;<br>
+<b>Sent:</b> Monday, October 2, 2017 6:26:21 PM<br>
+<b>To:</b> Greg Wilson-Lindberg<br>
+<b>Cc:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] package error for custom devtool recipe</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">Hi Greg,<br>
+<br>
+On Tuesday, 3 October 2017 1:30:25 PM NZDT Greg Wilson-Lindberg wrote:<br>
+&gt; I get some package errors when I build this:<br>
+&gt; <br>
+&gt; ERROR: QA Issue: acsccid: Files/directories were installed but not shi=
+pped<br>
+&gt; in any package:<br>
+&gt;&nbsp;&nbsp; /usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Info.pli=
+st<br>
+&gt;&nbsp;&nbsp; /usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Linux/li=
+bacsccid.so<br>
+&gt; Please set FILES such that these items are packaged. Alternatively if =
+they<br>
+&gt; are unneeded, avoid installing them or delete them within do_install.<=
+br>
+&gt; acsccid: 2 installed and not shipped files. [installed-vs-shipped]<br>
+&gt; <br>
+&gt; <br>
+&gt; I've added some FILES =3D lines to try to get rid of the error to no a=
+vail:<br>
+&gt; <br>
+&gt; FILES_${PN} =3D &quot;${libdir}/libacsccid.so&quot;<br>
+&gt; <br>
+&gt; or:<br>
+&gt; <br>
+&gt; FILES_${PN} =3D &quot;.libs/libacsccid.so&quot;<br>
+&gt; <br>
+&gt; or just:<br>
+&gt; <br>
+&gt; FILES_${PN} =3D &quot;libacsccid.so&quot;<br>
+<br>
+The reason none of these work is that none of these actually match the file=
+ <br>
+path (not to mention you are setting the value outright instead of adding t=
+o <br>
+the existing value). The path you are trying to match is <br>
+&quot;/usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Linux/libacsccid.so=
+&quot; so the <br>
+value you want is either exactly that path, or something like <br>
+&quot;${libdir}/pcsc/drivers/*/Contents/Linux/*.so&quot;.&nbsp; Also, inste=
+ad of =3D use &#43;=3D so <br>
+that you are adding to the existing value.<br>
+<br>
+&gt; and:<br>
+&gt; <br>
+&gt; PACKAGE_BEFORE_PN =3D &quot;info&quot;<br>
+&gt; FILES_${PN}-info =3D &quot;Info.plist&quot;<br>
+<br>
+This isn't right - in PACKAGES (via PACKAGE_BEFORE_PN) you are placing &quo=
+t;info&quot; <br>
+and then setting FILES_${PN}-info i.e. the package is named &quot;${PN}-inf=
+o&quot;. <br>
+Probably the thing you want is to prepend this package to PACKAGES:<br>
+<br>
+PACKAGES =3D&#43; &quot;${PN}-info&quot;<br>
+<br>
+Cheers,<br>
+Paul <br>
+<br>
+-- <br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</div>
+</span></font>
+</body>
+</html>
+
+--_000_d0a50649f448465d94e6c4371bc46b75sakurauscom_--
