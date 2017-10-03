@@ -1,6 +1,6 @@
 Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9488E00CF6; Tue,  3 Oct 2017 09:29:12 -0700 (PDT)
+	id 54912E00D39; Tue,  3 Oct 2017 10:58:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,54 +12,46 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 949 seconds by postgrey-1.32 at yocto-www;
-	Tue, 03 Oct 2017 09:29:11 PDT
 Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
 	[64.235.154.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AE0EE00CEC
-	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 09:29:11 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52629E00CF6
+	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 10:58:37 -0700 (PDT)
 Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
 	mx1402.ess.rzc.cudaops.com (version=TLSv1.2
 	cipher=AES256-SHA256 bits=256 verify=NO);
-	Tue, 03 Oct 2017 16:28:48 +0000
+	Tue, 03 Oct 2017 17:58:13 +0000
 Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
 	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Tue, 3 Oct 2017 09:13:17 -0700
+	Tue, 3 Oct 2017 10:57:14 -0700
 Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Tue, 3 Oct 2017 09:13:17 -0700
+	([::1]) with mapi id 15.01.0669.032; Tue, 3 Oct 2017 10:57:14 -0700
 From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] package error for custom devtool recipe
-Thread-Index: AQHTO953v2swXIiDdUy4BvJzp/pkaKLRytiAgACBgmo=
-Date: Tue, 3 Oct 2017 16:13:17 +0000
-Message-ID: <d0a50649f448465d94e6c4371bc46b75@sakuraus.com>
-References: <7411926e7a7048e99289a55fdf1af075@sakuraus.com>,
-	<1786227.q9ysM0urfs@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <1786227.q9ysM0urfs@peggleto-mobl.ger.corp.intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: trying to initialize a new devtool recipe using mercurial SCM
+Thread-Index: AdM5UKO0x3+4CpfiQY65PixC7/UxbQDHAG5Q
+Date: Tue, 3 Oct 2017 17:57:14 +0000
+Message-ID: <5bf2456e76ce4b0ba3f6406a9816a841@sakuraus.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-X-BESS-ID: 1507048093-321458-17132-342-2
+X-BESS-ID: 1507053453-321458-14001-4389-3
 X-BESS-VER: 2017.12-r1709122024
 X-BESS-Apparent-Source-IP: 12.26.104.5
 X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185642
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185645
 	Rule breakdown below
 	pts rule name              description
 	---- ---------------------- --------------------------------
 	0.00 HTML_MESSAGE           BODY: HTML included in 
 	message 
 	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
 X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND,
-	BSF_SC0_MISMATCH_TO
+	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
 X-BESS-BRTS-Status: 1
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: package error for custom devtool recipe
+Subject: Re: trying to initialize a new devtool recipe using mercurial SCM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,208 +63,457 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Oct 2017 16:29:12 -0000
+X-List-Received-Date: Tue, 03 Oct 2017 17:58:39 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_d0a50649f448465d94e6c4371bc46b75sakurauscom_"
+	boundary="_000_5bf2456e76ce4b0ba3f6406a9816a841sakurauscom_"
 
---_000_d0a50649f448465d94e6c4371bc46b75sakurauscom_
-Content-Type: text/plain; charset="us-ascii"
+--_000_5bf2456e76ce4b0ba3f6406a9816a841sakurauscom_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
-
-Thanks for the corrections. I was working from examples from the book "Embe=
-dded Linux Systems with the Yocto Project" by Rudolf J. Streif and he left =
-out the ${PN} in the file name. Including that makes sense now that I see y=
-our suggestions. It's now working correctly.
+Is there anyone that has any experience with trying to create a recipe with=
+ devtool with the source in a mercurial repository?
 
 
-Thanks again,
+
+I did some more searching and it looks like the 'module' is the repository =
+that you are trying to pull, so I modified the command to:
+
+
+devtool add canfestival sources/canfestival -d hg://bitbucket.org/Mongo;mod=
+ule=3Dcanfestival-3-asc;protocol=3Dhttps
+
+
+This did not correct the error:
+
+
+ERROR: Command 'recipetool --color=3Dalways create -o /tmp/devtool28_yu0qq =
+"hg://bitbucket.org/Mongo"  -x /usr/share/sources/canfestival -N canfestiva=
+l' failed:
+NOTE: Fetching hg://bitbucket.org/Mongo...
+ERROR: URL: 'hg://bitbucket.org/Mongo' is missing the required parameter 'm=
+odule'
+
+The module & protocol are not being passed to recipetool by devtool, can an=
+yone tell me what I'm doing wrong.
+
+
+Regards,
 
 Greg
 
-________________________________
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-Sent: Monday, October 2, 2017 6:26:21 PM
-To: Greg Wilson-Lindberg
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] package error for custom devtool recipe
 
-Hi Greg,
+Hi list,
 
-On Tuesday, 3 October 2017 1:30:25 PM NZDT Greg Wilson-Lindberg wrote:
-> I get some package errors when I build this:
->
-> ERROR: QA Issue: acsccid: Files/directories were installed but not shippe=
-d
-> in any package:
->   /usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Info.plist
->   /usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Linux/libacsccid.so
-> Please set FILES such that these items are packaged. Alternatively if the=
-y
-> are unneeded, avoid installing them or delete them within do_install.
-> acsccid: 2 installed and not shipped files. [installed-vs-shipped]
->
->
-> I've added some FILES =3D lines to try to get rid of the error to no avai=
-l:
->
-> FILES_${PN} =3D "${libdir}/libacsccid.so"
->
-> or:
->
-> FILES_${PN} =3D ".libs/libacsccid.so"
->
-> or just:
->
-> FILES_${PN} =3D "libacsccid.so"
+I'm a new user of Yocto and I'm trying use devtool to set up a recipe that =
+has a source URI that points to a mercurial repository.
 
-The reason none of these work is that none of these actually match the file
-path (not to mention you are setting the value outright instead of adding t=
-o
-the existing value). The path you are trying to match is
-"/usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Linux/libacsccid.so" so =
-the
-value you want is either exactly that path, or something like
-"${libdir}/pcsc/drivers/*/Contents/Linux/*.so".  Also, instead of =3D use +=
-=3D so
-that you are adding to the existing value.
+Here is the output of running devtool:
 
-> and:
->
-> PACKAGE_BEFORE_PN =3D "info"
-> FILES_${PN}-info =3D "Info.plist"
 
-This isn't right - in PACKAGES (via PACKAGE_BEFORE_PN) you are placing "inf=
-o"
-and then setting FILES_${PN}-info i.e. the package is named "${PN}-info".
-Probably the thing you want is to prepend this package to PACKAGES:
 
-PACKAGES =3D+ "${PN}-info"
+devtool add canfestival sources/canfestival -d hg://bitbucket.org/Mongo/can=
+festival-3-asc;protocol=3Dhttps
 
-Cheers,
-Paul
+DEBUG: Using basepath /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberry=
+pi3
 
---
+DEBUG: Using standard bitbake path /home/gwilson/Qt-5.9/Yocto-build-RPi3/so=
+urces/poky/bitbake
 
-Paul Eggleton
-Intel Open Source Technology Centre
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
+oky/scripts/lib/devtool...
 
---_000_d0a50649f448465d94e6c4371bc46b75sakurauscom_
-Content-Type: text/html; charset="us-ascii"
+DEBUG: Loading plugin deploy
+
+DEBUG: Loading plugin upgrade
+
+DEBUG: Loading plugin package
+
+DEBUG: Loading plugin build_sdk
+
+DEBUG: Loading plugin sdk
+
+DEBUG: Loading plugin search
+
+DEBUG: Loading plugin utilcmds
+
+DEBUG: Loading plugin build
+
+DEBUG: Loading plugin runqemu
+
+DEBUG: Loading plugin build_image
+
+DEBUG: Loading plugin standard
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
+pberrypi3/workspace/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
+oky/meta-poky/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
+pberrypi3/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
+oky/meta/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-raspberrypi/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-oe/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-python/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-networking/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-initramfs/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-openembedded/meta-multimedia/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-boot2qt/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-boot2qt/meta-raspberrypi-extras/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-mingw/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-qt5/lib/devtool...
+
+DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
+eta-sakura/lib/devtool...
+
+DEBUG: Reading workspace in /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
+pberrypi3/workspace
+
+DEBUG: Executing command "recipetool --color=3Dalways create -o /tmp/devtoo=
+l_vu_ossg "hg://bitbucket.org/Mongo/canfestival-3-asc"  -x /home/gwilson/Qt=
+-5.9/Yocto-build-RPi3/sources/canfestival -N canfestival"
+
+ERROR: Command 'recipetool --color=3Dalways create -o /tmp/devtool_vu_ossg =
+"hg://bitbucket.org/Mongo/canfestival-3-asc"  -x /home/gwilson/Qt-5.9/Yocto=
+-build-RPi3/sources/canfestival -N canfestival' failed:
+
+NOTE: Fetching hg://bitbucket.org/Mongo/canfestival-3-asc...
+
+ERROR: URL: 'hg://bitbucket.org/Mongo/canfestival-3-asc' is missing the req=
+uired parameter 'module'
+
+
+
+I found one reference that implied that adding ';module=3D' might help but =
+it made no difference.
+
+
+
+I can do a "hg clone https://bitbucket.org/Mongo/canfestival-3-asc'.
+
+
+
+Any help would be greatly appreciated.
+
+
+
+Greg Wilson-Lindberg
+
+Sakura Finetek
+
+310-783-5075
+
+--_000_5bf2456e76ce4b0ba3f6406a9816a841sakurauscom_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
-<body>
-<meta content=3D"text/html; charset=3DUTF-8">
-<style type=3D"text/css" style=3D"">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div id=3D"x_divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; =
-font-family:Calibri,Arial,Helvetica,sans-serif">
-<p>Hi Paul,</p>
-<p>Thanks for the corrections. I was working from examples from the book &q=
-uot;Embedded Linux Systems with the Yocto Project&quot; by Rudolf J. Streif=
- and he left out the ${PN} in the file name. Including that makes sense now=
- that I see your suggestions. It's now working
- correctly.</p>
-<p><br>
-</p>
-<p>Thanks again,</p>
-<p>Greg</p>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<div style=3D"">
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D">Is there anyone that has any experience with =
+trying to create a recipe with devtool with the source in a mercurial repos=
+itory?</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D">I did some more searching and it looks like t=
+he 'module' is the repository that you are trying to pull, so I modified th=
+e command to:</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D"><br>
+</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D"><span style=3D"font-family:monospace">devtool=
+ add canfestival sources/canfestival -d hg://bitbucket.org/Mongo;module=3Dc=
+anfestival-3-asc;protocol=3Dhttps<br>
+</span><br>
+</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D">This did not correct the error:</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D"><br>
+</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D"><span style=3D"font-family:monospace"><span s=
+tyle=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>:
+<span style=3D"color: rgb(178, 24, 24);">Command 'recipetool --color=3Dalwa=
+ys create -o /tmp/devtool28_yu0qq &quot;hg://bitbucket.org/Mongo&quot; &nbs=
+p;-x /usr/share/sources/canfestival -N canfestival' failed:</span>
+<br>
+<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">NOTE</span>: Fe=
+tching hg://bitbucket.org/Mongo...<span style=3D"color: rgb(178, 24, 24);">=
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;</span>&nbsp;<br>
+<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>: <=
+span style=3D"color: rgb(178, 24, 24);">
+URL: 'hg://bitbucket.org/Mongo' is missing the required parameter 'module'<=
+/span><br>
+<br>
+</span>The module &amp; protocol are not being passed to recipetool by devt=
+ool, can anyone tell me what I'm doing wrong.</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D"><br>
+</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D">Regards,</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D">Greg</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"color:#1F497D"><br>
+</span></p>
+<div style=3D"border:none; border-left:solid blue 1.5pt; padding:0in 0in 0i=
+n 4.0pt">
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<a name=3D"_MailOriginal">Hi list,</a></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">I'm a new user of Yocto and I'm trying use devtool to set =
+up a recipe that has a source URI that points to a mercurial repository.</s=
+pan></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">Here is the output of running devtool:</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">devtool add canfestival sources/canfestival -d hg://bitbuc=
+ket.org/Mongo/canfestival-3-asc;protocol=3Dhttps</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Using basepath /home/gwilson/Qt-5.9/Yocto-build-RPi=
+3/build-raspberrypi3</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Using standard bitbake path /home/gwilson/Qt-5.9/Yo=
+cto-build-RPi3/sources/poky/bitbake</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/poky/scripts/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin deploy</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin upgrade</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin package</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin build_sdk</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin sdk</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin search</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin utilcmds</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin build</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin runqemu</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin build_image</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugin standard</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/build-raspberrypi3/workspace/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/poky/meta-poky/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/build-raspberrypi3/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/poky/meta/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-raspberrypi/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-openembedded/meta-oe/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-openembedded/meta-python/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-openembedded/meta-networking/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-openembedded/meta-initramfs/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-openembedded/meta-multimedia/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-boot2qt/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-boot2qt/meta-raspberrypi-extras/lib/devtool...</span><=
+/p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-mingw/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-qt5/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/sources/meta-sakura/lib/devtool...</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Reading workspace in /home/gwilson/Qt-5.9/Yocto-bui=
+ld-RPi3/build-raspberrypi3/workspace</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">DEBUG: Executing command &quot;recipetool --color=3Dalways=
+ create -o /tmp/devtool_vu_ossg &quot;hg://bitbucket.org/Mongo/canfestival-=
+3-asc&quot;&nbsp; -x /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/canfesti=
+val -N canfestival&quot;</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">ERROR: Command 'recipetool --color=3Dalways create -o /tmp=
+/devtool_vu_ossg &quot;hg://bitbucket.org/Mongo/canfestival-3-asc&quot;&nbs=
+p; -x /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/canfestival -N canfesti=
+val' failed:</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">NOTE: Fetching hg://bitbucket.org/Mongo/canfestival-3-asc.=
+..</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">ERROR: URL: 'hg://bitbucket.org/Mongo/canfestival-3-asc' i=
+s missing the required parameter 'module'</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">I found one reference that implied that adding ';module=3D=
+' might help but it made no difference.</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">I can do a &quot;hg clone </span><a href=3D"https://bitbuc=
+ket.org/Mongo/canfestival-3-asc" style=3D"color: rgb(5, 99, 193); text-deco=
+ration: underline;"><span style=3D"">https://bitbucket.org/Mongo/canfestiva=
+l-3-asc</span><span style=3D""></span></a><span style=3D"">'.</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">Any help would be greatly appreciated.</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D"">&nbsp;</span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D""><span style=3D"font-size:10.0pt; font-family:&quot;Arial&q=
+uot;,sans-serif">Greg Wilson-Lindberg</span></span><span style=3D""><span s=
+tyle=3D"font-size:12.0pt; font-family:&quot;Times New Roman&quot;,serif"></=
+span></span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D""><span style=3D"font-size:10.0pt; font-family:&quot;Arial&q=
+uot;,sans-serif">Sakura Finetek</span></span><span style=3D""><span style=
+=3D"font-size:12.0pt; font-family:&quot;Times New Roman&quot;,serif"></span=
+></span></p>
+<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
+, sans-serif;">
+<span style=3D""><span style=3D"font-size:10.0pt; font-family:&quot;Arial&q=
+uot;,sans-serif">310-783-5075</span></span></p>
 </div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Paul Eggleton &lt;p=
-aul.eggleton@linux.intel.com&gt;<br>
-<b>Sent:</b> Monday, October 2, 2017 6:26:21 PM<br>
-<b>To:</b> Greg Wilson-Lindberg<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] package error for custom devtool recipe</font>
-<div>&nbsp;</div>
 </div>
 </div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText">Hi Greg,<br>
-<br>
-On Tuesday, 3 October 2017 1:30:25 PM NZDT Greg Wilson-Lindberg wrote:<br>
-&gt; I get some package errors when I build this:<br>
-&gt; <br>
-&gt; ERROR: QA Issue: acsccid: Files/directories were installed but not shi=
-pped<br>
-&gt; in any package:<br>
-&gt;&nbsp;&nbsp; /usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Info.pli=
-st<br>
-&gt;&nbsp;&nbsp; /usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Linux/li=
-bacsccid.so<br>
-&gt; Please set FILES such that these items are packaged. Alternatively if =
-they<br>
-&gt; are unneeded, avoid installing them or delete them within do_install.<=
-br>
-&gt; acsccid: 2 installed and not shipped files. [installed-vs-shipped]<br>
-&gt; <br>
-&gt; <br>
-&gt; I've added some FILES =3D lines to try to get rid of the error to no a=
-vail:<br>
-&gt; <br>
-&gt; FILES_${PN} =3D &quot;${libdir}/libacsccid.so&quot;<br>
-&gt; <br>
-&gt; or:<br>
-&gt; <br>
-&gt; FILES_${PN} =3D &quot;.libs/libacsccid.so&quot;<br>
-&gt; <br>
-&gt; or just:<br>
-&gt; <br>
-&gt; FILES_${PN} =3D &quot;libacsccid.so&quot;<br>
-<br>
-The reason none of these work is that none of these actually match the file=
- <br>
-path (not to mention you are setting the value outright instead of adding t=
-o <br>
-the existing value). The path you are trying to match is <br>
-&quot;/usr/lib/pcsc/drivers/ifd-acsccid.bundle/Contents/Linux/libacsccid.so=
-&quot; so the <br>
-value you want is either exactly that path, or something like <br>
-&quot;${libdir}/pcsc/drivers/*/Contents/Linux/*.so&quot;.&nbsp; Also, inste=
-ad of =3D use &#43;=3D so <br>
-that you are adding to the existing value.<br>
-<br>
-&gt; and:<br>
-&gt; <br>
-&gt; PACKAGE_BEFORE_PN =3D &quot;info&quot;<br>
-&gt; FILES_${PN}-info =3D &quot;Info.plist&quot;<br>
-<br>
-This isn't right - in PACKAGES (via PACKAGE_BEFORE_PN) you are placing &quo=
-t;info&quot; <br>
-and then setting FILES_${PN}-info i.e. the package is named &quot;${PN}-inf=
-o&quot;. <br>
-Probably the thing you want is to prepend this package to PACKAGES:<br>
-<br>
-PACKAGES =3D&#43; &quot;${PN}-info&quot;<br>
-<br>
-Cheers,<br>
-Paul <br>
-<br>
--- <br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div>
-</span></font>
 </body>
 </html>
 
---_000_d0a50649f448465d94e6c4371bc46b75sakurauscom_--
+--_000_5bf2456e76ce4b0ba3f6406a9816a841sakurauscom_--
