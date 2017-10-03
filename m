@@ -1,57 +1,38 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <jose.perez.carranza@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 54912E00D39; Tue,  3 Oct 2017 10:58:39 -0700 (PDT)
+	id B49E4E00D3E; Tue,  3 Oct 2017 13:10:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [64.235.154.220 listed in list.dnswl.org]
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.154.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52629E00CF6
-	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 10:58:37 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx1402.ess.rzc.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Tue, 03 Oct 2017 17:58:13 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Tue, 3 Oct 2017 10:57:14 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Tue, 3 Oct 2017 10:57:14 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: trying to initialize a new devtool recipe using mercurial SCM
-Thread-Index: AdM5UKO0x3+4CpfiQY65PixC7/UxbQDHAG5Q
-Date: Tue, 3 Oct 2017 17:57:14 +0000
-Message-ID: <5bf2456e76ce4b0ba3f6406a9816a841@sakuraus.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.239]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81155E00D28
+	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 13:09:58 -0700 (PDT)
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	03 Oct 2017 13:09:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.42,475,1500966000"; d="scan'208";a="158426969"
+Received: from jgperezc-mobl1.zpn.intel.com (HELO [10.219.4.33])
+	([10.219.4.33])
+	by fmsmga005.fm.intel.com with ESMTP; 03 Oct 2017 13:09:56 -0700
+To: Joshua Lock <joshua.g.lock@linux.intel.com>, yocto@yoctoproject.org
+References: <20171002205227.17058-1-jose.perez.carranza@linux.intel.com>
+	<ea13c837-2cf0-fbee-94c0-3b7fb0ece92b@linux.intel.com>
+From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+Message-ID: <e9a1ef0f-1ce4-53c1-e71c-300730d37fd3@linux.intel.com>
+Date: Tue, 3 Oct 2017 15:13:22 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-X-BESS-ID: 1507053453-321458-14001-4389-3
-X-BESS-VER: 2017.12-r1709122024
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185645
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in 
-	message 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Subject: Re: trying to initialize a new devtool recipe using mercurial SCM
+In-Reply-To: <ea13c837-2cf0-fbee-94c0-3b7fb0ece92b@linux.intel.com>
+Subject: Re: [qa-tools][PATCH] scripts: Add ptest-parser to create reports for pTest executions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,457 +44,330 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Oct 2017 17:58:39 -0000
+X-List-Received-Date: Tue, 03 Oct 2017 20:10:00 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5bf2456e76ce4b0ba3f6406a9816a841sakurauscom_"
 
---_000_5bf2456e76ce4b0ba3f6406a9816a841sakurauscom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-Is there anyone that has any experience with trying to create a recipe with=
- devtool with the source in a mercurial repository?
+On 10/03/2017 09:42 AM, Joshua Lock wrote:
+> Hi Jose,
+>
+> Where will the previous log come from in standard QA use?
+>
+> I'm wondering if we should work towards (in the 2.5 cycle) another git 
+> repo in the yp-qa-* namespace to keep historical ptest results and 
+> build some tooling around that, in a similar vein to poky-buildhistory 
+> / buildhistory-diff and yp-qa-build-perf-data / oe-build-perf-report.
+>
+> Thanks,
+>
+> Joshua
+Hi Joshua
+
+Currently,  as defined on the process of execution for pTest on QA 
+cycles [1] , we download the last execution directly from the wiki 
+created previously, here is an archive of the pTest executions [2]. The 
+proposal of creating a separate repo to handle the results is great, are 
+you able to raise a bug with the details of this proposal and assign it 
+to me hence I can check with the team who can manage that implementation.
+
+1- https://wiki.yoctoproject.org/wiki/BSP_Test_Plan#pTest
+2- https://wiki.yoctoproject.org/wiki/Ptest/archive
+
+José
+>
+> On 02/10/17 21:52, jose.perez.carranza@linux.intel.com wrote:
+>> From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+>>
+>> Add ptest-parser.py scrip that creates a file with the report of pTest
+>> execution compared with the previous results provided, the data stored
+>> on the file is in wikimedia format to be copied and pasted on the new
+>> created wiki for pTest results of QA cycle.
+>>
+>> Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
+>> ---
+>>   scripts/ptest-parser.py | 234 
+>> ++++++++++++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 234 insertions(+)
+>>   create mode 100755 scripts/ptest-parser.py
+>>
+>> diff --git a/scripts/ptest-parser.py b/scripts/ptest-parser.py
+>> new file mode 100755
+>> index 0000000..a3f20fb
+>> --- /dev/null
+>> +++ b/scripts/ptest-parser.py
+>> @@ -0,0 +1,234 @@
+>> +#!/usr/bin/python3
+>> +
+>> +import sys
+>> +import os.path
+>> +import codecs
+>> +import logging
+>> +import argparse
+>> +
+>> +
+>> +prelog = {}
+>> +currlog = {}
+>> +
+>> +
+>> +def get_args():
+>> +    parser = argparse.ArgumentParser(description="Parse ptest results")
+>> +    requiredNamed = parser.add_argument_group('required arguments')
+>> +    requiredNamed.add_argument('-p', dest="pre_log", required=True, 
+>> help='prvious log of the pTest result')
+>> +    requiredNamed.add_argument('--pre_commit', dest="pre_commit", 
+>> required=True, help='commit of the previous log.')
+>> +    requiredNamed.add_argument('--pre_release', dest="pre_release", 
+>> required=True, help='release of the previous log.')
+>> +    requiredNamed.add_argument('-c', dest="curr_log", required=True, 
+>> help='current log of pTets results.')
+>> +    requiredNamed.add_argument('--curr_commit', dest="curr_commit", 
+>> required=True, help='commit of the current log.')
+>> +    requiredNamed.add_argument('--curr_release', 
+>> dest="curr_release", required=True, help='release of the current log.')
+>> +
+>> +    return parser.parse_args()
+>> +
+>> +
+>> +
+>> +##Check that logs exists
+>> +def check_args():
+>> +    if not os.path.isfile(args.pre_log):
+>> +        logging.error("Cannot find log file %s" % args.pre_log)
+>> +        sys.exit(1)
+>> +    elif not os.path.isfile(args.curr_log):
+>> +        logging.error("Cannot find log file %s" % args.pre_curr)
+>> +
+>> +
+>> +def create_log_dict(argslog):
+>> +    test_id = ""
+>> +    result = ""
+>> +    failures = ""
+>> +    failures_log = []
+>> +    passed = 0
+>> +    failed = 0
+>> +    content_file = codecs.open(argslog, 'r', 'utf-8', errors='ignore')
+>> +    content = content_file.read()
+>> +    content = content.split("\n")
+>> +    res_dict = {}
+>> +    directory = 'failures'
+>> +
+>> +    #create dir to store failures
+>> +    if not os.path.exists(directory):
+>> +        os.makedirs(directory)
+>> +
+>> +    #Parse the logs
+>> +    for i in range (len(content)-1):
+>> +        try:
+>> +            result = content[i].split(":")[0]
+>> +            test_id = content[i].split(":")[1].strip()
+>> +        except:
+>> +            result = None
+>> +        if result:
+>> +            if result in "BEGIN":
+>> +                test_module = test_id
+>> +                test_module = test_module.replace('/usr/lib/', '')
+>> +                test_module = test_module.replace('/ptest', '')
+>> +            elif result in "PASS":
+>> +                passed = passed + 1
+>> +            elif result in "FAIL":
+>> +                failed = failed + 1
+>> +                failures = "{0}:{1}" .format(result,test_id)
+>> +                failures_log.append(failures)
+>> +            elif result in "END":
+>> +                total = passed + failed
+>> +                if total == 0:
+>> +                    passrate = 0
+>> +                else:
+>> +                    passrate = 100 * (passed / total)
+>> +                res_dict[test_module] = [total, passed, failed, 
+>> round(passrate,2)]
+>> +
+>> +                #Store Failures
+>> +                with open('failures/'+test_module+".failures", 'w') 
+>> as failures_file:
+>> +                    for fails in failures_log:
+>> +                        failures_file.write("{0}\n" .format(fails))
+>> +                        failures_log = []
+>> +
+>> +                total = passed = failed = 0
+>> +
+>> +    return res_dict
+>> +
+>> +
+>> +def create_compared_dict(currlog, prelog):
+>> +    diff = set(prelog.keys()) - set(currlog.keys())
+>> +
+>> +    for key, value in currlog .items():
+>> +        if key in prelog.keys():
+>> +            lastpastrate = prelog[key][3]
+>> +        else:
+>> +            lastpastrate = 0
+>> +
+>> +        currlog[key].append(lastpastrate)
+>> +
+>> +    for item in diff:
+>> +        if item in prelog.keys():
+>> +            currlog[item] = prelog[item]
+>> +            currlog[item].insert(3, 0)
+>> +
+>> +    return currlog
+>> +
+>> +
+>> +def create_header(file_name):
+>> +    header = '[https://wiki.yoctoproject.org/wiki/Ptest/archive < 
+>> Archive]' + \
+>> +             '\n\n<br />Ran on a NUC and compared with' + \
+>> +             '[[Ptest %s| %s]]'% (args.pre_commit, args.pre_release) 
+>> + \
+>> +             '\n\n[<put-here-link-of-the-log> < FULL_LOG]'
+>> +
+>> +    with open(file_name, 'a') as f:
+>> +        f.write(header)
+>> +
+>> +def create_table(file_name, finalog):
+>> +
+>> +    nomenclature = '\n\n{| style="border-spacing:0;"\n' + \
+>> +        '| style="background-color:#ff8080;border:0.05pt solid 
+>> #000000' + \
+>> +        ';padding:0.0382in;"| Failures\n' + \
+>> +        '|-\n' + \
+>> +        '| 
+>> style="background-color:#99ff66;border-top:none;border-bottom:0.05pt' 
+>> + \
+>> +        'solid #000000;border-left:0.05pt solid 
+>> #000000;border-right:0.05pt' + \
+>> +        'solid #000000;padding:0.0201in;"| % increased\n' + \
+>> +        '|-\n' + \
+>> +        '| 
+>> style="background-color:#c5000b;border-top:none;border-bottom:0.05pt' 
+>> + \
+>> +        'solid #000000;border-left:0.05pt solid 
+>> #000000;border-right:0.05pt' + \
+>> +        'solid #000000;padding:0.0201in;color:#ffffff"| % 
+>> decreased\n' + \
+>> +        '|-\n' + \
+>> +        '| 
+>> style="background-color:gray;border-top:none;border-bottom:0.05pt' + \
+>> +        'solid #000000;border-left:0.05pt solid 
+>> #000000;border-right:0.05pt' + \
+>> +        'solid #000000;padding:0.0201in;color:#000000"| Module not 
+>> executed\n' + \
+>> +        '|}'
+>> +
+>> +    titles = ['Package Name', 'Tests ran', 'Passed', 'Failed', 
+>> 'Passrate', 'Last Passrate']
+>> +
+>> +    table = '\n\n{| class="wikitable"\n' + \
+>> +        '|+Results\n' + \
+>> +        '|-\n'
+>> +
+>> +    for t in titles:
+>> +        table += '| align=center style="background-color:#ccffff;' + \
+>> +            'border-top:0.05pt solid #000000;border-bottom:0.5pt 
+>> solid' + \
+>> +            '#000000;border-left:0.05pt solid 
+>> #000000;border-right:0.5pt' + \
+>> +            'solid #000000;padding:0.0201in;"' + \
+>> +            "| '''%s'''\n"% t
+>> +
+>> +    table += '|-\n'
+>> +
+>> +
+>> +    for key, value in sorted(finalog.items()):
+>> +        bgcolor_rate = bgcolor_fails = 'transparent'
+>> +        text_color = '#000000'
+>> +
+>> +        if all(v == 0 for v in value[0:2]):
+>> +            bgcolor_rate = bgcolor_fails = 'gray'
+>> +            rate_image = 'no_rate.png'
+>> +
+>> +        #Package Name
+>> +        table += '| align=left style="background-color:trasnparent' + \
+>> +            'border-color:#000000"| %s\n'% key
+>> +
+>> +        #Tests ran and Passed
+>> +        for v in range(0,2):
+>> +            table += '| align=center style="background-color:%s;'% 
+>> bgcolor_rate + \
+>> +                'border-color:#000000"|%s\n'% value[v]
+>> +
+>> +        if value[2] > 0:
+>> +            bgcolor_fails = '#ff8080'
+>> +
+>> +        #Failed
+>> +        table += '| align=center style="background-color:%s;'% 
+>> bgcolor_fails + \
+>> +            'border-color:#000000"|%s\n'% value[2]
+>> +
+>> +        if value[3] > value[4]:
+>> +            bgcolor_rate = '#99ff66'
+>> +            rate_image = 'up_rate.png'
+>> +        elif value[3] < value[4]:
+>> +            bgcolor_rate = '#c5000b'
+>> +            rate_image = 'down_rate.png'
+>> +            text_color = '#ffffff'
+>> +
+>> +        #Passrate
+>> +        table += '| align=center style="background-color:%s;'% 
+>> bgcolor_rate + \
+>> +            'border-color:#000000;color:%s"|%s\n'% (text_color, 
+>> value[3])
+>> +
+>> +        #Last Passrate
+>> +        table += '| align=center style="background-color:%s;'% 
+>> bgcolor_rate + \
+>> +            'border-color:#000000;color:%s"|%s\n'% (text_color, 
+>> value[4])
+>> +
+>> +        if  bgcolor_rate not in 'transparent':
+>> +            table += '| align=center 
+>> style="background-color:transparent;' + \
+>> +                'border-color:transparent" |[[File:%s|15px]]\n'% 
+>> rate_image
+>> +
+>> +        table += '|-\n'
+>> +
+>> +
+>> +
+>> +    with open(file_name, 'a') as f:
+>> +        f.write(nomenclature + table)
+>> +
+>> +
+>> +def create_pTest_wiki(finalog):
+>> +
+>> +    file_name = args.curr_release + '-wiki.page'
+>> +
+>> +    create_header(file_name)
+>> +
+>> +    create_table(file_name, finalog)
+>> +
+>> +    return file_name
+>> +
+>> +if __name__ == '__main__':
+>> +    args = get_args()
+>> +    logger = None
+>> +
+>> +    logging.basicConfig(stream=sys.stdout)
+>> +    root = logging.getLogger()
+>> +    root.setLevel(logging.INFO)
+>> +
+>> +    logger = logging.getLogger()
+>> +    ##Parse previous log
+>> +    prelog = create_log_dict(args.pre_log)
+>> +    #Parse current log
+>> +    currlog = create_log_dict(args.curr_log)
+>> +    logger.info("Logs parsed correctly")
+>> +    #Get a compraed result
+>> +    compared_log = create_compared_dict(currlog, prelog)
+>> +
+>> +    file_name = create_pTest_wiki(compared_log)
+>> +    logger.info("Wiki correctly created as -  %s -"%file_name)
+>>
+
+-- 
+Saludos
+José
 
 
-
-I did some more searching and it looks like the 'module' is the repository =
-that you are trying to pull, so I modified the command to:
-
-
-devtool add canfestival sources/canfestival -d hg://bitbucket.org/Mongo;mod=
-ule=3Dcanfestival-3-asc;protocol=3Dhttps
-
-
-This did not correct the error:
-
-
-ERROR: Command 'recipetool --color=3Dalways create -o /tmp/devtool28_yu0qq =
-"hg://bitbucket.org/Mongo"  -x /usr/share/sources/canfestival -N canfestiva=
-l' failed:
-NOTE: Fetching hg://bitbucket.org/Mongo...
-ERROR: URL: 'hg://bitbucket.org/Mongo' is missing the required parameter 'm=
-odule'
-
-The module & protocol are not being passed to recipetool by devtool, can an=
-yone tell me what I'm doing wrong.
-
-
-Regards,
-
-Greg
-
-
-Hi list,
-
-I'm a new user of Yocto and I'm trying use devtool to set up a recipe that =
-has a source URI that points to a mercurial repository.
-
-Here is the output of running devtool:
-
-
-
-devtool add canfestival sources/canfestival -d hg://bitbucket.org/Mongo/can=
-festival-3-asc;protocol=3Dhttps
-
-DEBUG: Using basepath /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberry=
-pi3
-
-DEBUG: Using standard bitbake path /home/gwilson/Qt-5.9/Yocto-build-RPi3/so=
-urces/poky/bitbake
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
-oky/scripts/lib/devtool...
-
-DEBUG: Loading plugin deploy
-
-DEBUG: Loading plugin upgrade
-
-DEBUG: Loading plugin package
-
-DEBUG: Loading plugin build_sdk
-
-DEBUG: Loading plugin sdk
-
-DEBUG: Loading plugin search
-
-DEBUG: Loading plugin utilcmds
-
-DEBUG: Loading plugin build
-
-DEBUG: Loading plugin runqemu
-
-DEBUG: Loading plugin build_image
-
-DEBUG: Loading plugin standard
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
-pberrypi3/workspace/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
-oky/meta-poky/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
-pberrypi3/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/p=
-oky/meta/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-raspberrypi/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-openembedded/meta-oe/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-openembedded/meta-python/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-openembedded/meta-networking/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-openembedded/meta-initramfs/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-openembedded/meta-multimedia/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-boot2qt/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-boot2qt/meta-raspberrypi-extras/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-mingw/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-qt5/lib/devtool...
-
-DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/m=
-eta-sakura/lib/devtool...
-
-DEBUG: Reading workspace in /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-ras=
-pberrypi3/workspace
-
-DEBUG: Executing command "recipetool --color=3Dalways create -o /tmp/devtoo=
-l_vu_ossg "hg://bitbucket.org/Mongo/canfestival-3-asc"  -x /home/gwilson/Qt=
--5.9/Yocto-build-RPi3/sources/canfestival -N canfestival"
-
-ERROR: Command 'recipetool --color=3Dalways create -o /tmp/devtool_vu_ossg =
-"hg://bitbucket.org/Mongo/canfestival-3-asc"  -x /home/gwilson/Qt-5.9/Yocto=
--build-RPi3/sources/canfestival -N canfestival' failed:
-
-NOTE: Fetching hg://bitbucket.org/Mongo/canfestival-3-asc...
-
-ERROR: URL: 'hg://bitbucket.org/Mongo/canfestival-3-asc' is missing the req=
-uired parameter 'module'
-
-
-
-I found one reference that implied that adding ';module=3D' might help but =
-it made no difference.
-
-
-
-I can do a "hg clone https://bitbucket.org/Mongo/canfestival-3-asc'.
-
-
-
-Any help would be greatly appreciated.
-
-
-
-Greg Wilson-Lindberg
-
-Sakura Finetek
-
-310-783-5075
-
---_000_5bf2456e76ce4b0ba3f6406a9816a841sakurauscom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<div style=3D"">
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D">Is there anyone that has any experience with =
-trying to create a recipe with devtool with the source in a mercurial repos=
-itory?</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D">&nbsp;</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D">I did some more searching and it looks like t=
-he 'module' is the repository that you are trying to pull, so I modified th=
-e command to:</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D"><br>
-</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D"><span style=3D"font-family:monospace">devtool=
- add canfestival sources/canfestival -d hg://bitbucket.org/Mongo;module=3Dc=
-anfestival-3-asc;protocol=3Dhttps<br>
-</span><br>
-</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D">This did not correct the error:</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D"><br>
-</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D"><span style=3D"font-family:monospace"><span s=
-tyle=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>:
-<span style=3D"color: rgb(178, 24, 24);">Command 'recipetool --color=3Dalwa=
-ys create -o /tmp/devtool28_yu0qq &quot;hg://bitbucket.org/Mongo&quot; &nbs=
-p;-x /usr/share/sources/canfestival -N canfestival' failed:</span>
-<br>
-<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">NOTE</span>: Fe=
-tching hg://bitbucket.org/Mongo...<span style=3D"color: rgb(178, 24, 24);">=
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;</span>&nbsp;<br>
-<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>: <=
-span style=3D"color: rgb(178, 24, 24);">
-URL: 'hg://bitbucket.org/Mongo' is missing the required parameter 'module'<=
-/span><br>
-<br>
-</span>The module &amp; protocol are not being passed to recipetool by devt=
-ool, can anyone tell me what I'm doing wrong.</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D"><br>
-</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D">Regards,</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D">Greg</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"color:#1F497D"><br>
-</span></p>
-<div style=3D"border:none; border-left:solid blue 1.5pt; padding:0in 0in 0i=
-n 4.0pt">
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<a name=3D"_MailOriginal">Hi list,</a></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">I'm a new user of Yocto and I'm trying use devtool to set =
-up a recipe that has a source URI that points to a mercurial repository.</s=
-pan></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">Here is the output of running devtool:</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">&nbsp;</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">devtool add canfestival sources/canfestival -d hg://bitbuc=
-ket.org/Mongo/canfestival-3-asc;protocol=3Dhttps</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Using basepath /home/gwilson/Qt-5.9/Yocto-build-RPi=
-3/build-raspberrypi3</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Using standard bitbake path /home/gwilson/Qt-5.9/Yo=
-cto-build-RPi3/sources/poky/bitbake</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/poky/scripts/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin deploy</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin upgrade</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin package</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin build_sdk</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin sdk</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin search</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin utilcmds</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin build</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin runqemu</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin build_image</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugin standard</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/build-raspberrypi3/workspace/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/poky/meta-poky/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/build-raspberrypi3/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/poky/meta/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-raspberrypi/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-openembedded/meta-oe/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-openembedded/meta-python/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-openembedded/meta-networking/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-openembedded/meta-initramfs/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-openembedded/meta-multimedia/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-boot2qt/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-boot2qt/meta-raspberrypi-extras/lib/devtool...</span><=
-/p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-mingw/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-qt5/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Loading plugins from /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/sources/meta-sakura/lib/devtool...</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Reading workspace in /home/gwilson/Qt-5.9/Yocto-bui=
-ld-RPi3/build-raspberrypi3/workspace</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">DEBUG: Executing command &quot;recipetool --color=3Dalways=
- create -o /tmp/devtool_vu_ossg &quot;hg://bitbucket.org/Mongo/canfestival-=
-3-asc&quot;&nbsp; -x /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/canfesti=
-val -N canfestival&quot;</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">ERROR: Command 'recipetool --color=3Dalways create -o /tmp=
-/devtool_vu_ossg &quot;hg://bitbucket.org/Mongo/canfestival-3-asc&quot;&nbs=
-p; -x /home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/canfestival -N canfesti=
-val' failed:</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">NOTE: Fetching hg://bitbucket.org/Mongo/canfestival-3-asc.=
-..</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">ERROR: URL: 'hg://bitbucket.org/Mongo/canfestival-3-asc' i=
-s missing the required parameter 'module'</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">&nbsp;</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">I found one reference that implied that adding ';module=3D=
-' might help but it made no difference.</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">&nbsp;</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">I can do a &quot;hg clone </span><a href=3D"https://bitbuc=
-ket.org/Mongo/canfestival-3-asc" style=3D"color: rgb(5, 99, 193); text-deco=
-ration: underline;"><span style=3D"">https://bitbucket.org/Mongo/canfestiva=
-l-3-asc</span><span style=3D""></span></a><span style=3D"">'.</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">&nbsp;</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">Any help would be greatly appreciated.</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D"">&nbsp;</span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D""><span style=3D"font-size:10.0pt; font-family:&quot;Arial&q=
-uot;,sans-serif">Greg Wilson-Lindberg</span></span><span style=3D""><span s=
-tyle=3D"font-size:12.0pt; font-family:&quot;Times New Roman&quot;,serif"></=
-span></span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D""><span style=3D"font-size:10.0pt; font-family:&quot;Arial&q=
-uot;,sans-serif">Sakura Finetek</span></span><span style=3D""><span style=
-=3D"font-size:12.0pt; font-family:&quot;Times New Roman&quot;,serif"></span=
-></span></p>
-<p style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri=
-, sans-serif;">
-<span style=3D""><span style=3D"font-size:10.0pt; font-family:&quot;Arial&q=
-uot;,sans-serif">310-783-5075</span></span></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_5bf2456e76ce4b0ba3f6406a9816a841sakurauscom_--
