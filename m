@@ -1,35 +1,65 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1C47CE00CFF; Tue,  3 Oct 2017 07:42:07 -0700 (PDT)
+	id 4BBF7E00CFF; Tue,  3 Oct 2017 07:51:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.182 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.182 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AAA5E00CF5
-	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 07:42:05 -0700 (PDT)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by fmsmga105.fm.intel.com with ESMTP; 03 Oct 2017 07:42:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,474,1500966000"; d="scan'208";a="158836039"
-Received: from unknown (HELO jlock-mobl3.ger.corp.intel.com) ([10.252.2.166])
-	by fmsmga006.fm.intel.com with ESMTP; 03 Oct 2017 07:42:04 -0700
-To: jose.perez.carranza@linux.intel.com, yocto@yoctoproject.org
-References: <20171002205227.17058-1-jose.perez.carranza@linux.intel.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <ea13c837-2cf0-fbee-94c0-3b7fb0ece92b@linux.intel.com>
-Date: Tue, 3 Oct 2017 15:42:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43FEAE00CF5
+	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 07:51:28 -0700 (PDT)
+Received: by mail-io0-f182.google.com with SMTP id i197so7857690ioe.9
+	for <yocto@yoctoproject.org>; Tue, 03 Oct 2017 07:51:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=rtFXkyWKO33W2zi0WstUAretn0mRJY3V2VkTJZYmLzc=;
+	b=rCsP9IWsqqq8Awrgj3hZN+yVPnpNAzNHbbeVBO2xpn1awMD1mCEOl1jHo82mhHrP5E
+	Md4Slb5I4LwBRw4jef1UUqsFwkQrFJ49N0eleiBmn//xeeaGd5qUuZkMaCQCQ/rSF2E+
+	QOKAQToE2gtxoKsGxIEBwll6QkO45ykathQjjSh/XrG1LhmH4f8Qg8YU8UQhI7/VwOk6
+	GEaclwYIKoKeDF0c7Us+ZNGOuVxCoR6c9zASLBGsOsFGY1HpanlPE/mQ+JZgswE4PA5Y
+	9yATzeSZKz4YJFKQ3HD+q4YBCPam1nuCBiaJYWt4xUT1wIfxVIdiFqj7PeP3OZY9HIgZ
+	IEZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=rtFXkyWKO33W2zi0WstUAretn0mRJY3V2VkTJZYmLzc=;
+	b=SDSYO9/Q12ZAmUY7Js+hVAKsC/Oz/8SNQg7gQAP0q+x2KuEWjpaZwAOPOTHX4+7eKG
+	l5ISjSoxxSO8Hvh5YbBhfdzZjQuiqUz9BoVE7ugwz2WPmoxg4WvF2UwfTJ7R4PZ6fbFl
+	JoV/wVChXskLpk8g1o9nOLryhjgfpQ8JZBzgFjGf8nrbKrlMIZNgwnBc/hiRnavoG4BK
+	Dnosg4Na2/IYJsAeW9ebgzOHNmw4pcOrgXmWVRbbC5MUpmd5d8YTIBHqprR9InwuO9Ff
+	vWxvtnguwcgy6ZL9TFUNgGC9l9uBt5WfKfD289evxMphP4VZ4PNVNch2SS4lX524PfBU
+	slrA==
+X-Gm-Message-State: AMCzsaUCmx2gJ2xpYaGZHx11zF6k9QXa6MNMK2ERqcm6BhnhWN4jM/2x
+	7z2sNhIblbaaBqdPD2DeBmYa7hw6twHbiEzjHyM7fA==
+X-Google-Smtp-Source: AOwi7QAEXw456V0mMryxW1VEoGo9WdmhYvVaScDHm59xkp5WjMAbZk6NLmwOIDzQKQGyacj6LyWzKFqAq9DYoPAEDRQ=
+X-Received: by 10.107.133.92 with SMTP id h89mr26988803iod.208.1507042288474; 
+	Tue, 03 Oct 2017 07:51:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20171002205227.17058-1-jose.perez.carranza@linux.intel.com>
-Subject: Re: [qa-tools][PATCH] scripts: Add ptest-parser to create reports for pTest executions
+Received: by 10.107.164.134 with HTTP; Tue, 3 Oct 2017 07:51:07 -0700 (PDT)
+In-Reply-To: <CADS9r7nue8ozf+ma9xYUeNTz+LMAE8nVCzuoRz0ygfMZCM3nPg@mail.gmail.com>
+References: <CADS9r7nue8ozf+ma9xYUeNTz+LMAE8nVCzuoRz0ygfMZCM3nPg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 3 Oct 2017 15:51:07 +0100
+Message-ID: <CAJTo0Lb=_MUNmD2d3oPy=HtuNw-0d-LJ9vo4atA=eHEOZuxwpA@mail.gmail.com>
+To: "eliya.mir@gmail.com" <eliya.mir@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: pkg-config search directories
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,277 +71,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Oct 2017 14:42:07 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 03 Oct 2017 14:51:30 -0000
+Content-Type: multipart/alternative; boundary="001a113ff7d0444a7e055aa5a019"
 
-Hi Jose,
+--001a113ff7d0444a7e055aa5a019
+Content-Type: text/plain; charset="UTF-8"
 
-Where will the previous log come from in standard QA use?
+On 3 October 2017 at 15:13, eliya.mir@gmail.com <eliya.mir@gmail.com> wrote:
 
-I'm wondering if we should work towards (in the 2.5 cycle) another git 
-repo in the yp-qa-* namespace to keep historical ptest results and build 
-some tooling around that, in a similar vein to poky-buildhistory / 
-buildhistory-diff and yp-qa-build-perf-data / oe-build-perf-report.
+> Hi all,
+> I am new to the Yocto project.
+> Is this the Yocto forum ?
+> I would like configure pkg-config search directories but, the program
+> configured from the sysroots file system, so it does not see Host
+> environment variables.
+> i.e : there are two pkg-config apps : Host's pkg-config located at
+> /usr/bin/ , and bitbake pkg-config located at ~/Yocto/build/tmp/sysroots/
+> x86_64-linux/usr/bin/
+>
+>
+If you want to access pkg-config files on the host, you'll need to use the
+pkg-config-native binary as pkg-config uses the *target* sysroots.
 
-Thanks,
+Ross
 
-Joshua
+--001a113ff7d0444a7e055aa5a019
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/10/17 21:52, jose.perez.carranza@linux.intel.com wrote:
-> From: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
-> 
-> Add ptest-parser.py scrip that creates a file with the report of pTest
-> execution compared with the previous results provided, the data stored
-> on the file is in wikimedia format to be copied and pasted on the new
-> created wiki for pTest results of QA cycle.
-> 
-> Signed-off-by: Jose Perez Carranza <jose.perez.carranza@linux.intel.com>
-> ---
->   scripts/ptest-parser.py | 234 ++++++++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 234 insertions(+)
->   create mode 100755 scripts/ptest-parser.py
-> 
-> diff --git a/scripts/ptest-parser.py b/scripts/ptest-parser.py
-> new file mode 100755
-> index 0000000..a3f20fb
-> --- /dev/null
-> +++ b/scripts/ptest-parser.py
-> @@ -0,0 +1,234 @@
-> +#!/usr/bin/python3
-> +
-> +import sys
-> +import os.path
-> +import codecs
-> +import logging
-> +import argparse
-> +
-> +
-> +prelog = {}
-> +currlog = {}
-> +
-> +
-> +def get_args():
-> +    parser = argparse.ArgumentParser(description="Parse ptest results")
-> +    requiredNamed = parser.add_argument_group('required arguments')
-> +    requiredNamed.add_argument('-p', dest="pre_log", required=True, help='prvious log of the pTest result')
-> +    requiredNamed.add_argument('--pre_commit', dest="pre_commit", required=True, help='commit of the previous log.')
-> +    requiredNamed.add_argument('--pre_release', dest="pre_release", required=True, help='release of the previous log.')
-> +    requiredNamed.add_argument('-c', dest="curr_log", required=True, help='current log of pTets results.')
-> +    requiredNamed.add_argument('--curr_commit', dest="curr_commit", required=True, help='commit of the current log.')
-> +    requiredNamed.add_argument('--curr_release', dest="curr_release", required=True, help='release of the current log.')
-> +
-> +    return parser.parse_args()
-> +
-> +
-> +
-> +##Check that logs exists
-> +def check_args():
-> +    if not os.path.isfile(args.pre_log):
-> +        logging.error("Cannot find log file %s" % args.pre_log)
-> +        sys.exit(1)
-> +    elif not os.path.isfile(args.curr_log):
-> +        logging.error("Cannot find log file %s" % args.pre_curr)
-> +
-> +
-> +def create_log_dict(argslog):
-> +    test_id = ""
-> +    result = ""
-> +    failures = ""
-> +    failures_log = []
-> +    passed = 0
-> +    failed = 0
-> +    content_file = codecs.open(argslog, 'r', 'utf-8', errors='ignore')
-> +    content = content_file.read()
-> +    content = content.split("\n")
-> +    res_dict = {}
-> +    directory = 'failures'
-> +
-> +    #create dir to store failures
-> +    if not os.path.exists(directory):
-> +        os.makedirs(directory)
-> +
-> +    #Parse the logs
-> +    for i in range (len(content)-1):
-> +        try:
-> +            result = content[i].split(":")[0]
-> +            test_id = content[i].split(":")[1].strip()
-> +        except:
-> +            result = None
-> +        if result:
-> +            if result in "BEGIN":
-> +                test_module = test_id
-> +                test_module = test_module.replace('/usr/lib/', '')
-> +                test_module = test_module.replace('/ptest', '')
-> +            elif result in "PASS":
-> +                passed = passed + 1
-> +            elif result in "FAIL":
-> +                failed = failed + 1
-> +                failures = "{0}:{1}" .format(result,test_id)
-> +                failures_log.append(failures)
-> +            elif result in "END":
-> +                total = passed + failed
-> +                if total == 0:
-> +                    passrate = 0
-> +                else:
-> +                    passrate = 100 * (passed / total)
-> +                res_dict[test_module] = [total, passed, failed, round(passrate,2)]
-> +
-> +                #Store Failures
-> +                with open('failures/'+test_module+".failures", 'w') as failures_file:
-> +                    for fails in failures_log:
-> +                        failures_file.write("{0}\n" .format(fails))
-> +                        failures_log = []
-> +
-> +                total = passed = failed = 0
-> +
-> +    return res_dict
-> +
-> +
-> +def create_compared_dict(currlog, prelog):
-> +    diff = set(prelog.keys()) - set(currlog.keys())
-> +
-> +    for key, value in currlog .items():
-> +        if key in prelog.keys():
-> +            lastpastrate = prelog[key][3]
-> +        else:
-> +            lastpastrate = 0
-> +
-> +        currlog[key].append(lastpastrate)
-> +
-> +    for item in diff:
-> +        if item in prelog.keys():
-> +            currlog[item] = prelog[item]
-> +            currlog[item].insert(3, 0)
-> +
-> +    return currlog
-> +
-> +
-> +def create_header(file_name):
-> +    header = '[https://wiki.yoctoproject.org/wiki/Ptest/archive < Archive]' + \
-> +             '\n\n<br />Ran on a NUC and compared with' + \
-> +             '[[Ptest %s| %s]]'% (args.pre_commit, args.pre_release) + \
-> +             '\n\n[<put-here-link-of-the-log> < FULL_LOG]'
-> +
-> +    with open(file_name, 'a') as f:
-> +        f.write(header)
-> +
-> +def create_table(file_name, finalog):
-> +
-> +    nomenclature = '\n\n{| style="border-spacing:0;"\n' + \
-> +        '| style="background-color:#ff8080;border:0.05pt solid #000000' + \
-> +        ';padding:0.0382in;"| Failures\n' + \
-> +        '|-\n' + \
-> +        '| style="background-color:#99ff66;border-top:none;border-bottom:0.05pt' + \
-> +        'solid #000000;border-left:0.05pt solid #000000;border-right:0.05pt' + \
-> +        'solid #000000;padding:0.0201in;"| % increased\n' + \
-> +        '|-\n' + \
-> +        '| style="background-color:#c5000b;border-top:none;border-bottom:0.05pt' + \
-> +        'solid #000000;border-left:0.05pt solid #000000;border-right:0.05pt' + \
-> +        'solid #000000;padding:0.0201in;color:#ffffff"| % decreased\n' + \
-> +        '|-\n' + \
-> +        '| style="background-color:gray;border-top:none;border-bottom:0.05pt' + \
-> +        'solid #000000;border-left:0.05pt solid #000000;border-right:0.05pt' + \
-> +        'solid #000000;padding:0.0201in;color:#000000"| Module not executed\n' + \
-> +        '|}'
-> +
-> +    titles = ['Package Name', 'Tests ran', 'Passed', 'Failed', 'Passrate', 'Last Passrate']
-> +
-> +    table = '\n\n{| class="wikitable"\n' + \
-> +        '|+Results\n' + \
-> +        '|-\n'
-> +
-> +    for t in titles:
-> +        table += '| align=center style="background-color:#ccffff;' + \
-> +            'border-top:0.05pt solid #000000;border-bottom:0.5pt solid' + \
-> +            '#000000;border-left:0.05pt solid #000000;border-right:0.5pt' + \
-> +            'solid #000000;padding:0.0201in;"' + \
-> +            "| '''%s'''\n"% t
-> +
-> +    table += '|-\n'
-> +
-> +
-> +    for key, value in sorted(finalog.items()):
-> +        bgcolor_rate = bgcolor_fails = 'transparent'
-> +        text_color = '#000000'
-> +
-> +        if all(v == 0 for v in value[0:2]):
-> +            bgcolor_rate = bgcolor_fails = 'gray'
-> +            rate_image = 'no_rate.png'
-> +
-> +        #Package Name
-> +        table += '| align=left style="background-color:trasnparent' + \
-> +            'border-color:#000000"| %s\n'% key
-> +
-> +        #Tests ran and Passed
-> +        for v in range(0,2):
-> +            table += '| align=center style="background-color:%s;'% bgcolor_rate + \
-> +                'border-color:#000000"|%s\n'% value[v]
-> +
-> +        if value[2] > 0:
-> +            bgcolor_fails = '#ff8080'
-> +
-> +        #Failed
-> +        table += '| align=center style="background-color:%s;'% bgcolor_fails + \
-> +            'border-color:#000000"|%s\n'% value[2]
-> +
-> +        if value[3] > value[4]:
-> +            bgcolor_rate = '#99ff66'
-> +            rate_image = 'up_rate.png'
-> +        elif value[3] < value[4]:
-> +            bgcolor_rate = '#c5000b'
-> +            rate_image = 'down_rate.png'
-> +            text_color = '#ffffff'
-> +
-> +        #Passrate
-> +        table += '| align=center style="background-color:%s;'% bgcolor_rate + \
-> +            'border-color:#000000;color:%s"|%s\n'% (text_color, value[3])
-> +
-> +        #Last Passrate
-> +        table += '| align=center style="background-color:%s;'% bgcolor_rate + \
-> +            'border-color:#000000;color:%s"|%s\n'% (text_color, value[4])
-> +
-> +        if  bgcolor_rate not in 'transparent':
-> +            table += '| align=center style="background-color:transparent;' + \
-> +                'border-color:transparent" |[[File:%s|15px]]\n'% rate_image
-> +
-> +        table += '|-\n'
-> +
-> +
-> +
-> +    with open(file_name, 'a') as f:
-> +        f.write(nomenclature + table)
-> +
-> +
-> +def create_pTest_wiki(finalog):
-> +
-> +    file_name = args.curr_release + '-wiki.page'
-> +
-> +    create_header(file_name)
-> +
-> +    create_table(file_name, finalog)
-> +
-> +    return file_name
-> +
-> +if __name__ == '__main__':
-> +    args = get_args()
-> +    logger = None
-> +
-> +    logging.basicConfig(stream=sys.stdout)
-> +    root = logging.getLogger()
-> +    root.setLevel(logging.INFO)
-> +
-> +    logger = logging.getLogger()
-> +    ##Parse previous log
-> +    prelog = create_log_dict(args.pre_log)
-> +    #Parse current log
-> +    currlog = create_log_dict(args.curr_log)
-> +    logger.info("Logs parsed correctly")
-> +    #Get a compraed result
-> +    compared_log = create_compared_dict(currlog, prelog)
-> +
-> +    file_name = create_pTest_wiki(compared_log)
-> +    logger.info("Wiki correctly created as -  %s -"%file_name)
-> 
+<div dir=3D"ltr">On 3 October 2017 at 15:13, <a href=3D"mailto:eliya.mir@gm=
+ail.com">eliya.mir@gmail.com</a> <span dir=3D"ltr">&lt;<a href=3D"mailto:el=
+iya.mir@gmail.com" target=3D"_blank">eliya.mir@gmail.com</a>&gt;</span> wro=
+te:<br><div class=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex"><div dir=3D"ltr">Hi all,=C2=A0<br>I am new to the Yocto pr=
+oject.=C2=A0<div>Is this the Yocto forum ?=C2=A0</div><div>I would like con=
+figure pkg-config search directories but, the program configured from the s=
+ysroots file system, so it does not see Host environment variables.</div><d=
+iv>i.e : there are two pkg-config apps : Host&#39;s pkg-config located at /=
+usr/bin/ , and bitbake pkg-config located at=C2=A0~/Yocto/build/tmp/sysroot=
+s/<wbr>x86_64-linux/usr/bin/</div><div><br></div></div></blockquote><div><b=
+r></div><div>If you want to access pkg-config files on the host, you&#39;ll=
+ need to use the pkg-config-native binary as pkg-config uses the *target* s=
+ysroots.</div><div><br></div><div>Ross=C2=A0</div></div></div></div>
 
+--001a113ff7d0444a7e055aa5a019--
