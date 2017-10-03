@@ -1,45 +1,69 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F42AE00CFF; Tue,  3 Oct 2017 08:16:18 -0700 (PDT)
+	id 67FA3E00CFF; Tue,  3 Oct 2017 08:29:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.46 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.46 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6B97E00CF5
-	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 08:16:16 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by orsmga105.jf.intel.com with ESMTP; 03 Oct 2017 08:16:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,474,1500966000"; 
-	d="scan'208,217";a="158310920"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
-	by fmsmga005.fm.intel.com with ESMTP; 03 Oct 2017 08:16:15 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
-	FMSMSX108.amr.corp.intel.com ([169.254.9.100]) with mapi id
-	14.03.0319.002; Tue, 3 Oct 2017 08:16:15 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting
-Thread-Index: AdKtWbwMokvHRUUrQnmf8qT10kd6zw==
-Date: Tue, 3 Oct 2017 15:16:14 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E98CE7E8E@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmRjYjc3YWYtODRjYS00ZTkxLWFhYjAtMGFiZTQ4Mzc5NTIzIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IjI0eVdhZUlKZm5kSXlKRERVM0lCNDZ5bDJLMjVIVFNcLzBqVHFsK2V2MEJzPSJ9
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
+	[209.85.214.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0E7CE00CF5
+	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 08:29:13 -0700 (PDT)
+Received: by mail-it0-f46.google.com with SMTP id y138so12364256itc.5
+	for <yocto@yoctoproject.org>; Tue, 03 Oct 2017 08:29:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=bYPgej1i4OGn50HARPSGI0rpZUUjxg2I1L7fQe9PQlM=;
+	b=RO4rfuPz1cVU2Ys3WHs69T3S9imOdUfjjN7im257iE4rm0holW1HWTLZEyERxG+gz7
+	UGt9KveWkD4MstmMdbZq600mYs2bWskYKi1RMCEE60J+eYJ0oLJ/LZA1xkZDB1Qf2iTt
+	v4yiXoILGHauA3bTKtMqtlVOwFUlyp0dellZ97F95p8696hdcdt+1xW7Inxt6LF9i0Zj
+	HELj0dwHZoIeXaopi/05Q3r38ywBlU0ahHLh98YBFno8o1Kab4+vwBu8TznFVI2wKcPS
+	7Nl5YfqzxnaU7PCZNqmasHfaaqfooYLGJFHJp53mkHLa8GVtXcrpQ7c6KrlU3yw4iV1h
+	HwAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=bYPgej1i4OGn50HARPSGI0rpZUUjxg2I1L7fQe9PQlM=;
+	b=nHm/vzGX78mnNPwdLSm0n8h4iv2OopEcJFHn98B2svE0I9cVKH1NfujUsxZRi3W9w5
+	PjBOheaLU7d7fA8gC58JkY/a0gtTEi93o8WuX2fMRkzqLoAJPlpnErzbcQAiRJOvX11y
+	w8ZUtsELJwTsyQ2+q2JgiRdtF08J0RypS2pLvZSkWwQsXHudaRJQLIZGzI40KGZud9cW
+	nHKdY5gmKP8F7aP8zwuXjsaOB+Qz9HkZB68b9qnH40T5L4zsP1RTcgxooy8cobQmFZ2F
+	OrEOFFYGGV6hHROZOujHPi1nYxAg6PyAGu+8J+OWe/uvSFlpdm89tVY1VpxbecwM7q4E
+	U9yw==
+X-Gm-Message-State: AHPjjUj+WQ8H3l6zByE8KLBWzVyoU2AIC12jczuW55qf1O7rXcXwftNe
+	aG5jl1ByW5WCdHKMWBM3I32S/sKh+8z9/uz94NAbDg==
+X-Google-Smtp-Source: AOwi7QDB34OvPUPTWmNxV3gsLdQ6LomFQrNYVPKK5qmqeYThGUM5FEZ9oMnDXY57g3a/oFgP5uRwstyLTusvPb6GakM=
+X-Received: by 10.36.178.1 with SMTP id u1mr26548674ite.120.1507044552954;
+	Tue, 03 Oct 2017 08:29:12 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting
+Received: by 10.107.164.134 with HTTP; Tue, 3 Oct 2017 08:28:52 -0700 (PDT)
+In-Reply-To: <CADS9r7=vrThVxzq5uvy19C4eH+mGvG52V9cz3FwKvvBeOdkbLQ@mail.gmail.com>
+References: <CADS9r7nue8ozf+ma9xYUeNTz+LMAE8nVCzuoRz0ygfMZCM3nPg@mail.gmail.com>
+	<CAJTo0Lb=_MUNmD2d3oPy=HtuNw-0d-LJ9vo4atA=eHEOZuxwpA@mail.gmail.com>
+	<CADS9r7nVjSiZ-UNZ-2CFt0M8i7Yj3-skt+DsPc8n0mJ7kYKwaA@mail.gmail.com>
+	<CAJTo0LZfoa1yA9kcsC4rnBMmOfB0QB1fU3eqVUg+EayTAwjZVQ@mail.gmail.com>
+	<CADS9r7=vrThVxzq5uvy19C4eH+mGvG52V9cz3FwKvvBeOdkbLQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 3 Oct 2017 16:28:52 +0100
+Message-ID: <CAJTo0Lb2p7BwAkheq1Cuh2kkfjNuFoi7Dhj7_opLGa5Th-VaXA@mail.gmail.com>
+To: "eliya.mir@gmail.com" <eliya.mir@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: pkg-config search directories
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,171 +75,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Oct 2017 15:16:18 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CE7E8Efmsmsx111amrcor_"
+X-List-Received-Date: Tue, 03 Oct 2017 15:29:14 -0000
+Content-Type: multipart/alternative; boundary="f403045d9c0e3d8105055aa6277a"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CE7E8Efmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--f403045d9c0e3d8105055aa6277a
+Content-Type: text/plain; charset="UTF-8"
 
-Attendees: Stephen, Armin, Stephano, Saul, Mark, Michael, Joshua, Robin, Br=
-ian, Ulf
+Ah, so if you're inheriting native then the default pkg-config is good, but
+the host paths are not searched out of the box.
 
-Agenda:
+If you *really* want to link against host binaries and not building your
+own native recipes for it then see qemu.inc for an example of how to steal
+the host pkg-config path and use it at configure time.
 
-* Opens collection - 5 min (Stephen)
-* Yocto Project status - 5 min (Stephen/team)
-YP 2.2.2 was released.
-YP 2.3.2 was released.
-YP 2.4 M4 is in QA and 81% complete.  See status at: https://wiki.yoctoproj=
-ect.org/wiki/2.4_QA_Status
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status
-https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features
-YP 2.5 planning has begun, please get you enhancement requests into bugzill=
-a.
+Ross
 
-* Opens - 10 min
+On 3 October 2017 at 16:05, eliya.mir@gmail.com <eliya.mir@gmail.com> wrote:
 
-* Team Sharing - 10 min
-Michael - be moving poky contribute for old branches will move to archive. =
- See the e-mail for details.
-Ross - Discussed that in the next cycle we will probably move to a better p=
-rocess.  In future releases our policy regarding version upgrades will be t=
-o identify anything that needs to change in M4 in advance (e.g. kernel or u=
--boot) so this issue becomes clearer and only known changes come in.  This =
-process will be documented before we move to it.
-Stephen - We introduced Robin who is a new PM for Yocto Project.
-ELC-E status - OEDEM will be the Sunday before ELC-E.  We will have an YP T=
-ech Day associated with ELC-E also.
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:     (503) 712-0534
-*    Cell:              (208) 244-4460
-* Email:                stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CE7E8Efmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> when running the recipe I get  during do_configure:
+> Checking for header stdlib.h             : yes
+> ...
+> Checking for program pkg-config          : /home/wzbwjj/vpm/GR_Yocto/
+> build/tmp/sysroots/x86_64-linux/usr/bin/pkg-config
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12pt;"><=
-a name=3D"_MailEndCompose"></a>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Att=
-endees: Stephen, Armin, Stephano, Saul, Mark, Michael, Joshua, Robin, Brian=
-, Ulf</span></font></div>
-<div>&nbsp;</div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Age=
-nda:</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">&nb=
-sp;</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* O=
-pens collection - 5 min (Stephen)</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* Y=
-octo Project status - 5 min (Stephen/team)</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
-2.2.2 was released.</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
-2.3.2 was released.</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
-2.4 M4 is in QA and 81% complete.&nbsp; See status at: <a href=3D"https://w=
-iki.yoctoproject.org/wiki/2.4_QA_Status"><font face=3D"Arial" color=3D"#115=
-5CC"><u>https://wiki.yoctoproject.org/wiki/2.4_QA_Status</u></font></a></sp=
-an></font></div>
-<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Statu=
-s"><font face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-si=
-ze:11pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.4_Status</=
-u></span></font></a></div>
-<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule"><fon=
-t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
-;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.4_Schedule</u></span></fon=
-t></a></div>
-<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features"><fon=
-t face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt=
-;"><u>https://wiki.yoctoproject.org/wiki/Yocto_2.4_Features</u></span></fon=
-t></a><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">YP =
-2.5 planning has begun, please get you enhancement requests into bugzilla.<=
-/span></font></div>
-<div>&nbsp;</div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* O=
-pens - 10 min </span></font></div>
-<div>&nbsp;</div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">* T=
-eam Sharing - 10 min</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Mic=
-hael &#8211; be moving poky contribute for old branches will move to archiv=
-e.&nbsp; See the e-mail for details.</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Ros=
-s &#8211; Discussed that in the next cycle we will probably move to a bette=
-r process.&nbsp; In future releases our policy regarding version upgrades w=
-ill be to identify anything that needs to change
-in M4 in advance (e.g. kernel or u-boot) so this issue becomes clearer and =
-only known changes come in.&nbsp; This process will be documented before we=
- move to it.</span></font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Ste=
-phen &#8211; We introduced Robin who is a new PM for Yocto Project. </span>=
-</font></div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">ELC=
--E status &#8211; OEDEM will be the Sunday before ELC-E.&nbsp; We will have=
- an YP Tech Day associated with ELC-E also.</span></font></div>
-<div>&nbsp;</div>
-<div><font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">Tha=
-nks,</span></font></div>
-<div><font face=3D"Calibri" size=3D"2" color=3D"#1F497D"><span style=3D"fon=
-t-size:11pt;">&nbsp;</span></font></div>
-<div><font size=3D"4" color=3D"purple"><span style=3D"font-size:16pt;"><b><=
-i>Stephen K. Jolley</i></b></span></font></div>
-<div><font face=3D"Courier New" size=3D"1" color=3D"blue"><span style=3D"fo=
-nt-size:8pt;"><b>Yocto Project Program Manager</b></span></font></div>
-<div><font face=3D"Courier New" size=3D"2" color=3D"fuchsia"><span style=3D=
-"font-size:10pt;"><b>INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, O=
-R 97124 </b></span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:11pt;"><font face=3D"Wingdin=
-gs">(</font><font face=3D"MS Sans Serif" color=3D"teal"> </font><font face=
-=3D"MS Sans Serif" size=3D"1" color=3D"teal"><span style=3D"font-size:8pt;"=
->&nbsp; </span></font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal=
-"><span style=3D"font-size:8pt;"><b>Work
-Telephone</b></span></font><font face=3D"MS Sans Serif" color=3D"teal">:&nb=
-sp;&nbsp;&nbsp;&nbsp; </font><font face=3D"MS Sans Serif" size=3D"2" color=
-=3D"#1F497D"><span style=3D"font-size:9pt;">(503) 712-0534</span></font></s=
-pan></font></div>
-<div><font size=3D"2"><span style=3D"font-size:9pt;"><font face=3D"Wingding=
-s">(</font><font face=3D"MS Sans Serif" color=3D"teal">&nbsp;&nbsp;&nbsp; <=
-/font><font face=3D"Comic Sans MS" size=3D"1" color=3D"teal"><span style=3D=
-"font-size:8pt;"><b>Cell</b></span></font><font face=3D"MS Sans Serif" colo=
-r=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-</font><font face=3D"MS Sans Serif" color=3D"#1F497D">(208) 244-4460</font>=
-</span></font></div>
-<div><font size=3D"2" color=3D"#1F497D"><span style=3D"font-size:9pt;"><fon=
-t face=3D"Wingdings">* </font><font face=3D"Comic Sans MS" size=3D"1" color=
-=3D"teal"><span style=3D"font-size:8pt;"><b>Email</b></span></font><font fa=
-ce=3D"MS Sans Serif" color=3D"teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</font><font face=3D"MS Sans Serif" color=3D"blue"><u>stephen.k.jolley@inte=
-l.com</u></font></span></font></div>
-<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
-p;</span></font></div>
-</span></font>
-</body>
-</html>
+> How do I change that ?
+>
+> On Tue, Oct 3, 2017 at 6:02 PM, Burton, Ross <ross.burton@intel.com>
+> wrote:
+>
+>> You don't need to, it will search the host.
+>>
+>> Ross
+>>
+>> On 3 October 2017 at 15:54, eliya.mir@gmail.com <eliya.mir@gmail.com>
+>> wrote:
+>>
+>>> Hi Ross,
+>>> how to configure use of pkg-config-native ?
+>>>
+>>> On Tue, Oct 3, 2017 at 5:51 PM, Burton, Ross <ross.burton@intel.com>
+>>> wrote:
+>>>
+>>>> On 3 October 2017 at 15:13, eliya.mir@gmail.com <eliya.mir@gmail.com>
+>>>> wrote:
+>>>>
+>>>>> Hi all,
+>>>>> I am new to the Yocto project.
+>>>>> Is this the Yocto forum ?
+>>>>> I would like configure pkg-config search directories but, the program
+>>>>> configured from the sysroots file system, so it does not see Host
+>>>>> environment variables.
+>>>>> i.e : there are two pkg-config apps : Host's pkg-config located at
+>>>>> /usr/bin/ , and bitbake pkg-config located at ~/Yocto/build/tmp/sysroots/
+>>>>> x86_64-linux/usr/bin/
+>>>>>
+>>>>>
+>>>> If you want to access pkg-config files on the host, you'll need to use
+>>>> the pkg-config-native binary as pkg-config uses the *target* sysroots.
+>>>>
+>>>> Ross
+>>>>
+>>>
+>>>
+>>
+>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E98CE7E8Efmsmsx111amrcor_--
+--f403045d9c0e3d8105055aa6277a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Ah, so if you&#39;re inheriting native then the default pk=
+g-config is good, but the host paths are not searched out of the box.<div><=
+br></div><div>If you *really* want to link against host binaries and not bu=
+ilding your own native recipes for it then see qemu.inc for an example of h=
+ow to steal the host pkg-config path and use it at configure time.</div><di=
+v><br></div><div>Ross</div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On 3 October 2017 at 16:05, <a href=3D"mailto:eliya.mir@gm=
+ail.com">eliya.mir@gmail.com</a> <span dir=3D"ltr">&lt;<a href=3D"mailto:el=
+iya.mir@gmail.com" target=3D"_blank">eliya.mir@gmail.com</a>&gt;</span> wro=
+te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">when running the rec=
+ipe I get=C2=A0 during do_configure:=C2=A0<div>Checking for header stdlib.h=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0: yes<br></div><div>...<br>=
+Checking for program pkg-config=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 : /home/w=
+zbwjj/vpm/GR_Yocto/<wbr>build/tmp/sysroots/x86_64-<wbr>linux/usr/bin/pkg-co=
+nfig<br></div><div><br></div><div>How do I change that ?</div></div><div cl=
+ass=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Tue, Oct 3, 2017 at 6:02 PM, Burton, Ross <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.bu=
+rton@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
+ dir=3D"ltr">You don&#39;t need to, it will search the host.<span class=3D"=
+m_-5655495827445326346HOEnZb"><font color=3D"#888888"><div><br></div><div>R=
+oss</div></font></span></div><div class=3D"m_-5655495827445326346HOEnZb"><d=
+iv class=3D"m_-5655495827445326346h5"><div class=3D"gmail_extra"><br><div c=
+lass=3D"gmail_quote">On 3 October 2017 at 15:54, <a href=3D"mailto:eliya.mi=
+r@gmail.com" target=3D"_blank">eliya.mir@gmail.com</a> <span dir=3D"ltr">&l=
+t;<a href=3D"mailto:eliya.mir@gmail.com" target=3D"_blank">eliya.mir@gmail.=
+com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr=
+">Hi Ross,=C2=A0<div>how to configure use of pkg-config-native ?</div></div=
+><div class=3D"m_-5655495827445326346m_-7853540023792357090HOEnZb"><div cla=
+ss=3D"m_-5655495827445326346m_-7853540023792357090h5"><div class=3D"gmail_e=
+xtra"><br><div class=3D"gmail_quote">On Tue, Oct 3, 2017 at 5:51 PM, Burton=
+, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" targe=
+t=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex"><div dir=3D"ltr"><span>On 3 October 2017 at 15:13, <a href=
+=3D"mailto:eliya.mir@gmail.com" target=3D"_blank">eliya.mir@gmail.com</a> <=
+span dir=3D"ltr">&lt;<a href=3D"mailto:eliya.mir@gmail.com" target=3D"_blan=
+k">eliya.mir@gmail.com</a>&gt;</span> wrote:<br></span><div class=3D"gmail_=
+extra"><div class=3D"gmail_quote"><span><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
+ dir=3D"ltr">Hi all,=C2=A0<br>I am new to the Yocto project.=C2=A0<div>Is t=
+his the Yocto forum ?=C2=A0</div><div>I would like configure pkg-config sea=
+rch directories but, the program configured from the sysroots file system, =
+so it does not see Host environment variables.</div><div>i.e : there are tw=
+o pkg-config apps : Host&#39;s pkg-config located at /usr/bin/ , and bitbak=
+e pkg-config located at=C2=A0~/Yocto/build/tmp/sysroots/<wbr>x86_64-linux/u=
+sr/bin/</div><div><br></div></div></blockquote><div><br></div></span><div>I=
+f you want to access pkg-config files on the host, you&#39;ll need to use t=
+he pkg-config-native binary as pkg-config uses the *target* sysroots.</div>=
+<span class=3D"m_-5655495827445326346m_-7853540023792357090m_64086643098926=
+72214HOEnZb"><font color=3D"#888888"><div><br></div><div>Ross=C2=A0</div></=
+font></span></div></div></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+
+--f403045d9c0e3d8105055aa6277a--
