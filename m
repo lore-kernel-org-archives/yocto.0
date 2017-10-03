@@ -1,38 +1,74 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <eliya.mir@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96BD8E00D68; Tue,  3 Oct 2017 08:31:32 -0700 (PDT)
+	id 1E23AE00D3E; Tue,  3 Oct 2017 08:36:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (eliya.mir[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.43 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.215.43 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0D38E00CF6
-	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 08:31:26 -0700 (PDT)
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	03 Oct 2017 08:31:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,474,1500966000"; d="scan'208";a="158854111"
-Received: from unknown (HELO jlock-mobl3.ger.corp.intel.com) ([10.252.2.166])
-	by fmsmga006.fm.intel.com with ESMTP; 03 Oct 2017 08:31:25 -0700
-To: Jiwei Sun <jiwei.sun@windriver.com>, yocto@yoctoproject.org
-References: <1506650980-87720-1-git-send-email-jiwei.sun@windriver.com>
-	<1506650980-87720-8-git-send-email-jiwei.sun@windriver.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <796e17c9-5c56-8b7f-9032-fe8a0f8d3e59@linux.intel.com>
-Date: Tue, 3 Oct 2017 16:31:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f43.google.com (mail-lf0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CA6BE00CF6
+	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 08:36:15 -0700 (PDT)
+Received: by mail-lf0-f43.google.com with SMTP id b127so10191804lfe.9
+	for <yocto@yoctoproject.org>; Tue, 03 Oct 2017 08:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=+YoGeXeS+aoxEhCgQLHuokMniQv5DfEWnodKm7YiiI0=;
+	b=kXD4SrISwCA9dUXBoXKVqojVrG3Vm8ZhUj3pggkP7uCILB2boLvroQD7muDBUKyBvK
+	Xj58oKfu4PDavFsn39gop9joqZtHYAjRRjTGLY6RetlQuaU0CaDgVgwYEZk1jkfq8w7w
+	0e3I5qMkbnUzA7jI25AsiLpCziGMv4ZPzieWzbKso3Al75XI6S4D40HazkgAosAHggeu
+	ZElLy+b+5pQ6ZkzZXvEUXJbnLlwsEi2lA6+3WQa20QFLNQi1PebJDPp/cP+aP38QYz38
+	+zgEyRTLQZRwKS4rXO/Bk3tsocTGslEhVaC1Elqp9h9W+HRZy/U+y8xUju/45k+qhmao
+	742A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=+YoGeXeS+aoxEhCgQLHuokMniQv5DfEWnodKm7YiiI0=;
+	b=lsI4uyWlSvZZ6vlv3Dco5ghdI1NEQk+goxyXo4dO4W8oQsfYTSwKiRwhASAN50z9AE
+	/7eotlohlefOJr7llYc2gn2mJ9kR/BJDy0r05pR2zGDFYkP5EbbMgRylICWVORcUjpVV
+	uKcRyKhKaW5FF/52570bCjrMdlwgrZd0gGg+iuUmyPSQqxEpwTCIZHBgZ9hq4ZhIb8/K
+	l8QHae4T9O+63Yx8LJUJZL+1DNTEvGiESmcCH+3Ee0b5bPDnBLeXN5wwYLrZcm3s4Q/N
+	PqUX3gyJ6TZDWxbCoCwubF5CN2CuCB/4vuKOZ6No8nLb7F3lkPexVJMu90z5d1iAcsCD
+	zDYQ==
+X-Gm-Message-State: AMCzsaV2gbklsgGopV0Cp9oV6f/jmtKyhV+B7poNTscObpc7J0HIsKLQ
+	seA2NafQBp/o+48i9v/zF4O3zdX5bYO/r18sGkZeqA==
+X-Google-Smtp-Source: AOwi7QA/zd5D/WlHE5+6CU8GCbqN95QUQ1kn5Gx+RXUJRVSlc6XEgcW39wuxtkhzOC1cMwQePbPlU/gsGjeXBm7B+1I=
+X-Received: by 10.25.81.146 with SMTP id g18mr2502663lfl.77.1507044974783;
+	Tue, 03 Oct 2017 08:36:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1506650980-87720-8-git-send-email-jiwei.sun@windriver.com>
-Cc: anibal.limon@linux.intel.com
-Subject: Re: [ptest-runner 8/8] Added <system-err></system-err> to XML
+Received: by 10.25.41.17 with HTTP; Tue, 3 Oct 2017 08:36:13 -0700 (PDT)
+In-Reply-To: <CAJTo0Lb2p7BwAkheq1Cuh2kkfjNuFoi7Dhj7_opLGa5Th-VaXA@mail.gmail.com>
+References: <CADS9r7nue8ozf+ma9xYUeNTz+LMAE8nVCzuoRz0ygfMZCM3nPg@mail.gmail.com>
+	<CAJTo0Lb=_MUNmD2d3oPy=HtuNw-0d-LJ9vo4atA=eHEOZuxwpA@mail.gmail.com>
+	<CADS9r7nVjSiZ-UNZ-2CFt0M8i7Yj3-skt+DsPc8n0mJ7kYKwaA@mail.gmail.com>
+	<CAJTo0LZfoa1yA9kcsC4rnBMmOfB0QB1fU3eqVUg+EayTAwjZVQ@mail.gmail.com>
+	<CADS9r7=vrThVxzq5uvy19C4eH+mGvG52V9cz3FwKvvBeOdkbLQ@mail.gmail.com>
+	<CAJTo0Lb2p7BwAkheq1Cuh2kkfjNuFoi7Dhj7_opLGa5Th-VaXA@mail.gmail.com>
+From: "eliya.mir@gmail.com" <eliya.mir@gmail.com>
+Date: Tue, 3 Oct 2017 18:36:13 +0300
+Message-ID: <CADS9r7=SVFvLh_ato9mR74Jr_BMUMrqAOAd+5vsDk2GMXCfaOw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: pkg-config search directories
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,205 +80,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Oct 2017 15:31:32 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 03 Oct 2017 15:36:17 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1cdfc261f2cc055aa640b6"
 
-Is this an evolution of the change in 6/8? Can it be squashed in with 
-that patch?
+--94eb2c1cdfc261f2cc055aa640b6
+Content-Type: text/plain; charset="UTF-8"
 
-Thanks,
+Thanks Ross,
+That is the issue : default pkg-config does not search host paths - How to
+edit its search paths ?
 
-Joshua
 
-On 29/09/17 03:09, Jiwei Sun wrote:
-> Signed-off-by: Jiwei Sun <jiwei.sun@windriver.com>
-> ---
->   tests/data/reference.xml |  3 ++-
->   tests/utils.c            |  4 ++--
->   utils.c                  | 49 +++++++++++++++++++++++++++++++++---------------
->   utils.h                  |  2 +-
->   4 files changed, 39 insertions(+), 19 deletions(-)
-> 
-> diff --git a/tests/data/reference.xml b/tests/data/reference.xml
-> index a23b44b..0dea38c 100644
-> --- a/tests/data/reference.xml
-> +++ b/tests/data/reference.xml
-> @@ -4,6 +4,7 @@
->   	</testcase>
->   	<testcase classname='test2' name='run-ptest'>
->   		<failure type='exit_code' message='run-ptest exited with code: 1'></failure>
-> -		<system-out>ERROR</system-out>
-> +		<system-out>STDOUT ERROR</system-out>
-> +		<system-err>STDERR</system-err>
->   	</testcase>
->   </testsuite>
-> diff --git a/tests/utils.c b/tests/utils.c
-> index bb799f4..230116a 100644
-> --- a/tests/utils.c
-> +++ b/tests/utils.c
-> @@ -262,9 +262,9 @@ START_TEST(test_xml_pass)
->   	ck_assert(xp != NULL);
->           entry.ptest = "test1";
->           entry.run_ptest = "run-ptest";
-> -        xml_add_case(xp, 0, &entry, "");
-> +        xml_add_case(xp, 0, &entry, "", "");
->           entry.ptest = "test2";
-> -        xml_add_case(xp, 1, &entry, "ERROR");
-> +        xml_add_case(xp, 1, &entry, "STDOUT ERROR", "STDERR");
->   	xml_finish(xp);
->   
->   	FILE *fp, *fr;
-> diff --git a/utils.c b/utils.c
-> index 54ef89d..0f712f9 100644
-> --- a/utils.c
-> +++ b/utils.c
-> @@ -295,7 +295,8 @@ wait_child(const char *ptest_dir,
->   	   int timeout,
->   	   int *fds,
->   	   FILE **fps,
-> -	   char *buf)
-> +	   char *bufout,
-> +	   char *buferr)
->   {
->   	struct pollfd pfds[2];
->   	time_t sentinel;
-> @@ -319,13 +320,13 @@ wait_child(const char *ptest_dir,
->   			ssize_t n;
->   
->   			if (pfds[0].revents != 0) {
-> -				while ((n = read(fds[0], buf, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
-> -					fwrite(buf, n, 1, fps[0]);
-> +				while ((n = read(fds[0], bufout, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
-> +					fwrite(bufout, n, 1, fps[0]);
->   			}
->   
->   			if (pfds[1].revents != 0) {
-> -				while ((n = read(fds[1], buf, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
-> -					fwrite(buf, n, 1, fps[1]);
-> +				while ((n = read(fds[1], buferr, WAIT_CHILD_BUF_MAX_SIZE)) > 0)
-> +					fwrite(buferr, n, 1, fps[1]);
->   			}
->   
->   		sentinel = time(NULL);
-> @@ -454,13 +455,15 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
->   				int status;
->   				int fds[2]; fds[0] = pipefd_stdout[0]; fds[1] = pipefd_stderr[0];
->   				FILE *fps[2]; fps[0] = fp; fps[1] = fp_stderr;
-> -				char buf[WAIT_CHILD_BUF_MAX_SIZE];
-> +				char bufout[WAIT_CHILD_BUF_MAX_SIZE];
-> +				char buferr[WAIT_CHILD_BUF_MAX_SIZE];
->   
->   //				fprintf(fp, "%s\n", get_stime(stime, GET_STIME_BUF_SIZE));
->   				fprintf(fp, "BEGIN: %s\n", ptest_dir);
->   
->   				status = wait_child(ptest_dir, p->run_ptest, child,
-> -						    opts.timeout, fds, fps, buf);
-> +						    opts.timeout, fds, fps, bufout,
-> +						    buferr);
->   				if (status)
->   					rc += 1;
->   
-> @@ -468,7 +471,8 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
->   					xml_add_case(xh,
->   						     status,
->   						     (struct ptest_entry *)p,
-> -						     buf);
-> +						     bufout,
-> +						     buferr);
->   
->   //				fprintf(fp, "%s\n", get_stime(stime, GET_STIME_BUF_SIZE));
->   				/* Let non-master gracefully terminate */
-> @@ -502,14 +506,18 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
->   				int status;
->   				int fds[2]; fds[0] = pipefd_stdout[0]; fds[1] = pipefd_stderr[0];
->   				FILE *fps[2]; fps[0] = fp; fps[1] = fp_stderr;
-> -				char buf[WAIT_CHILD_BUF_MAX_SIZE];
-> +				char bufout[WAIT_CHILD_BUF_MAX_SIZE];
-> +				char buferr[WAIT_CHILD_BUF_MAX_SIZE];
-> +				
-> +				memset(bufout, 0, sizeof(bufout));
-> +				memset(buferr, 0, sizeof(buferr));
->   
-> -				memset(buf, 0, sizeof(buf));
->   				fprintf(fp, "%s\n", get_stime(stime, GET_STIME_BUF_SIZE));
->   				fprintf(fp, "BEGIN: %s\n", ptest_dir);
->   
->   				status = wait_child(ptest_dir, p->run_ptest, child,
-> -						    opts.timeout, fds, fps, buf);
-> +						    opts.timeout, fds, fps, bufout,
-> +						    buferr);
->   				if (status)
->   					rc += 1;
->   
-> @@ -517,7 +525,8 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
->   					xml_add_case(xh,
->   						     status,
->   						     (struct ptest_entry *)p,
-> -						     buf);
-> +						     bufout,
-> +						     buferr);
->   
->   				fprintf(fp, "END: %s\n", ptest_dir);
->   				fprintf(fp, "%s\n", get_stime(stime, GET_STIME_BUF_SIZE));
-> @@ -556,7 +565,11 @@ xml_create(int test_count, char *xml_filename)
->   }
->   
->   void
-> -xml_add_case(FILE *xh, int status, struct ptest_entry *ptest, char *buf)
-> +xml_add_case(FILE *xh,
-> +	     int status,
-> +	     struct ptest_entry *ptest,
-> +	     char *bufout,
-> +	     char *buferr)
->   {
->   	struct flock lock;
->   	int fd;
-> @@ -577,11 +590,14 @@ xml_add_case(FILE *xh, int status, struct ptest_entry *ptest, char *buf)
->   				"</failure>\n"				\
->   				"\t\t<system-out>%s"			\
->   				"</system-out>\n"			\
-> +				"\t\t<system-err>%s"			\
-> +				"</system-err>\n"			\
->   				"\t</testcase>\n",
->   				ptest->ptest,
->   				basename(bname),
->   				status,
-> -				buf);
-> +				bufout,
-> +				buferr);
->   		}
->   		else {
->   			fprintf(xh, "\t<testcase classname='%s' name='%s'>\n" \
-> @@ -590,11 +606,14 @@ xml_add_case(FILE *xh, int status, struct ptest_entry *ptest, char *buf)
->   				"</failure>\n"				\
->   				"\t\t<system-out>%s"			\
->   				"</system-out>\n"			\
-> +				"\t\t<system-err>%s"			\
-> +				"</system-err>\n"			\
->   				"\t</testcase>\n",
->   				ptest->ptest,
->   				basename(bname),
->   				status,
-> -				buf);
-> +				bufout,
-> +				buferr);
->   		}
->   	}
->   	else {
-> diff --git a/utils.h b/utils.h
-> index 70e2abe..8f2e5b4 100644
-> --- a/utils.h
-> +++ b/utils.h
-> @@ -48,7 +48,7 @@ extern int run_ptests(struct ptest_list *, const struct ptest_options,
->   		const char *, FILE *, FILE *);
->   
->   extern FILE *xml_create(int, char *);
-> -extern void xml_add_case(FILE *, int, struct ptest_entry *, char *);
-> +extern void xml_add_case(FILE *, int, struct ptest_entry *, char *, char *);
->   extern void xml_finish(FILE *);
->   
->   #endif
-> 
+On Tue, Oct 3, 2017 at 6:28 PM, Burton, Ross <ross.burton@intel.com> wrote:
 
+> Ah, so if you're inheriting native then the default pkg-config is good,
+> but the host paths are not searched out of the box.
+>
+> If you *really* want to link against host binaries and not building your
+> own native recipes for it then see qemu.inc for an example of how to steal
+> the host pkg-config path and use it at configure time.
+>
+> Ross
+>
+> On 3 October 2017 at 16:05, eliya.mir@gmail.com <eliya.mir@gmail.com>
+> wrote:
+>
+>> when running the recipe I get  during do_configure:
+>> Checking for header stdlib.h             : yes
+>> ...
+>> Checking for program pkg-config          : /home/wzbwjj/vpm/GR_Yocto/buil
+>> d/tmp/sysroots/x86_64-linux/usr/bin/pkg-config
+>>
+>> How do I change that ?
+>>
+>> On Tue, Oct 3, 2017 at 6:02 PM, Burton, Ross <ross.burton@intel.com>
+>> wrote:
+>>
+>>> You don't need to, it will search the host.
+>>>
+>>> Ross
+>>>
+>>> On 3 October 2017 at 15:54, eliya.mir@gmail.com <eliya.mir@gmail.com>
+>>> wrote:
+>>>
+>>>> Hi Ross,
+>>>> how to configure use of pkg-config-native ?
+>>>>
+>>>> On Tue, Oct 3, 2017 at 5:51 PM, Burton, Ross <ross.burton@intel.com>
+>>>> wrote:
+>>>>
+>>>>> On 3 October 2017 at 15:13, eliya.mir@gmail.com <eliya.mir@gmail.com>
+>>>>> wrote:
+>>>>>
+>>>>>> Hi all,
+>>>>>> I am new to the Yocto project.
+>>>>>> Is this the Yocto forum ?
+>>>>>> I would like configure pkg-config search directories but, the program
+>>>>>> configured from the sysroots file system, so it does not see Host
+>>>>>> environment variables.
+>>>>>> i.e : there are two pkg-config apps : Host's pkg-config located at
+>>>>>> /usr/bin/ , and bitbake pkg-config located at ~/Yocto/build/tmp/sysroots/
+>>>>>> x86_64-linux/usr/bin/
+>>>>>>
+>>>>>>
+>>>>> If you want to access pkg-config files on the host, you'll need to use
+>>>>> the pkg-config-native binary as pkg-config uses the *target* sysroots.
+>>>>>
+>>>>> Ross
+>>>>>
+>>>>
+>>>>
+>>>
+>>
+>
+
+--94eb2c1cdfc261f2cc055aa640b6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks Ross,=C2=A0<br><div>That is the issue : default pkg=
+-config does not search host paths - How to edit its search paths ?=C2=A0<b=
+r><br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote"=
+>On Tue, Oct 3, 2017 at 6:28 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</=
+a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Ah,=
+ so if you&#39;re inheriting native then the default pkg-config is good, bu=
+t the host paths are not searched out of the box.<div><br></div><div>If you=
+ *really* want to link against host binaries and not building your own nati=
+ve recipes for it then see qemu.inc for an example of how to steal the host=
+ pkg-config path and use it at configure time.</div><div><br></div><div>Ros=
+s</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote"><spa=
+n class=3D"">On 3 October 2017 at 16:05, <a href=3D"mailto:eliya.mir@gmail.=
+com" target=3D"_blank">eliya.mir@gmail.com</a> <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:eliya.mir@gmail.com" target=3D"_blank">eliya.mir@gmail.com</a>&=
+gt;</span> wrote:<br></span><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"=
+><span class=3D"">when running the recipe I get=C2=A0 during do_configure:=
+=C2=A0<div>Checking for header stdlib.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0: yes<br></div></span><div>...<br>Checking for program pkg-con=
+fig=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 : /home/wzbwjj/vpm/GR_Yocto/buil<wbr>=
+d/tmp/sysroots/x86_64-linux/<wbr>usr/bin/pkg-config<br></div><div><br></div=
+><div>How do I change that ?</div></div><div><div class=3D"h5"><div class=
+=3D"m_3570546685881285903HOEnZb"><div class=3D"m_3570546685881285903h5"><di=
+v class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Oct 3, 2017 =
+at 6:02 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burto=
+n@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<=
+br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
+:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">You don&#39;t need to, i=
+t will search the host.<span class=3D"m_3570546685881285903m_-5655495827445=
+326346HOEnZb"><font color=3D"#888888"><div><br></div><div>Ross</div></font>=
+</span></div><div class=3D"m_3570546685881285903m_-5655495827445326346HOEnZ=
+b"><div class=3D"m_3570546685881285903m_-5655495827445326346h5"><div class=
+=3D"gmail_extra"><br><div class=3D"gmail_quote">On 3 October 2017 at 15:54,=
+ <a href=3D"mailto:eliya.mir@gmail.com" target=3D"_blank">eliya.mir@gmail.c=
+om</a> <span dir=3D"ltr">&lt;<a href=3D"mailto:eliya.mir@gmail.com" target=
+=3D"_blank">eliya.mir@gmail.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr">Hi Ross,=C2=A0<div>how to configure use of p=
+kg-config-native ?</div></div><div class=3D"m_3570546685881285903m_-5655495=
+827445326346m_-7853540023792357090HOEnZb"><div class=3D"m_35705466858812859=
+03m_-5655495827445326346m_-7853540023792357090h5"><div class=3D"gmail_extra=
+"><br><div class=3D"gmail_quote">On Tue, Oct 3, 2017 at 5:51 PM, Burton, Ro=
+ss <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D=
+"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr"><span>On 3 October 2017 at 15:13, <a href=3D=
+"mailto:eliya.mir@gmail.com" target=3D"_blank">eliya.mir@gmail.com</a> <spa=
+n dir=3D"ltr">&lt;<a href=3D"mailto:eliya.mir@gmail.com" target=3D"_blank">=
+eliya.mir@gmail.com</a>&gt;</span> wrote:<br></span><div class=3D"gmail_ext=
+ra"><div class=3D"gmail_quote"><span><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div di=
+r=3D"ltr">Hi all,=C2=A0<br>I am new to the Yocto project.=C2=A0<div>Is this=
+ the Yocto forum ?=C2=A0</div><div>I would like configure pkg-config search=
+ directories but, the program configured from the sysroots file system, so =
+it does not see Host environment variables.</div><div>i.e : there are two p=
+kg-config apps : Host&#39;s pkg-config located at /usr/bin/ , and bitbake p=
+kg-config located at=C2=A0~/Yocto/build/tmp/sysroots/<wbr>x86_64-linux/usr/=
+bin/</div><div><br></div></div></blockquote><div><br></div></span><div>If y=
+ou want to access pkg-config files on the host, you&#39;ll need to use the =
+pkg-config-native binary as pkg-config uses the *target* sysroots.</div><sp=
+an class=3D"m_3570546685881285903m_-5655495827445326346m_-78535400237923570=
+90m_6408664309892672214HOEnZb"><font color=3D"#888888"><div><br></div><div>=
+Ross=C2=A0</div></font></span></div></div></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></div></div></blockquote></div><br></div>
+</blockquote></div><br></div>
+
+--94eb2c1cdfc261f2cc055aa640b6--
