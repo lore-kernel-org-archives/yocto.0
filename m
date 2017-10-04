@@ -1,35 +1,36 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <sancelot@numalliance.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1EFAE00D53; Tue,  3 Oct 2017 17:51:47 -0700 (PDT)
+	id A093CE00D50; Wed,  4 Oct 2017 01:17:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C559E00D51
-	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 17:51:47 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga104.jf.intel.com with ESMTP; 03 Oct 2017 17:51:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,475,1500966000"; 
-	d="scan'208,217";a="142395719"
-Received: from kmsim-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.132.147])
-	by orsmga002.jf.intel.com with ESMTP; 03 Oct 2017 17:51:44 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
+Received: from mail.numalliance.com (mail.numalliance.com [194.2.198.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5685E00D4E
+	for <yocto@yoctoproject.org>; Wed,  4 Oct 2017 01:17:30 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.numalliance.com (Postfix) with ESMTP id B3A1220CBD9F
+	for <yocto@yoctoproject.org>; Wed,  4 Oct 2017 10:17:29 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mail.numalliance.com
+Received: from mail.numalliance.com ([127.0.0.1])
+	by localhost (mail.numalliance.com [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id S8gjjMv0J9yT for <yocto@yoctoproject.org>;
+	Wed,  4 Oct 2017 10:17:20 +0200 (CEST)
+Received: from [192.168.0.78] (unknown [192.168.0.78])
+	(Authenticated sender: sancelot@numalliance.com)
+	by mail.numalliance.com (Postfix) with ESMTPSA id 71A6F20CBD7C
+	for <yocto@yoctoproject.org>; Wed,  4 Oct 2017 10:17:20 +0200 (CEST)
 To: yocto@yoctoproject.org
-Date: Wed,  4 Oct 2017 13:51:03 +1300
-Message-Id: <20171004005103.24756-3-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20171004005103.24756-1-paul.eggleton@linux.intel.com>
-References: <20171004005103.24756-1-paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 3/3] Show note if layer branch hasn't been indexed
+From: =?UTF-8?Q?St=c3=a9phane_Ancelot?= <sancelot@numalliance.com>
+Message-ID: <88df9eb2-78a1-8e7b-39ca-bd6f8d8bd9ec@numalliance.com>
+Date: Wed, 4 Oct 2017 10:17:20 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
+MIME-Version: 1.0
+Subject: toaster setup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,35 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Oct 2017 00:51:48 -0000
+X-List-Received-Date: Wed, 04 Oct 2017 08:17:32 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: fr
 
-For newly added layers it may not be immediately obvious that you have
-to wait for it to be indexed (since the update script is usually run on
-a scheduled basis). If the layer branch hasn't been indexed, add a note
-mentioning this.
+hi,
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- templates/layerindex/detail.html | 5 +++++
- 1 file changed, 5 insertions(+)
+I setted up a toaster configuration, but there are few things that are 
+not working or inconsistant with the manual.
 
-diff --git a/templates/layerindex/detail.html b/templates/layerindex/detail.html
-index 144d5e8..0747421 100644
---- a/templates/layerindex/detail.html
-+++ b/templates/layerindex/detail.html
-@@ -167,6 +167,11 @@
-             </div>  <!-- end of row-fluid -->
-         </div> <!-- end of container-fluid -->
- 
-+        {% if not layerbranch.vcs_last_commit %}
-+        <div class="alert alert-info">
-+            <b>Note:</b> The content of this layer on branch {{ url_branch }} has not yet been indexed. Indexing should take place within a few hours.
-+        </div>
-+        {% endif %}
- 
-         <ul class="nav nav-tabs" id="layertabbar">
-             {% if layerbranch.recipe_set.count > 0 %}
--- 
-2.9.5
 
+1/ I can not find any toasterconf.json file
+
+2/ the toaster interface runs but if try to use "local yocto project", 
+no compatible layers are displayed (openembedded-core,meta-poky...)
+
+I am using the mysql backend.
+
+I am running opensuse 42.2. I can use yocto and have successfully built 
+the core-image-sato from the cmdline.
+
+Regards,
+
+S.Ancelot
 
