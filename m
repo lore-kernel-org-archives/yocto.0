@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C97C9E00D4F; Tue,  3 Oct 2017 17:51:41 -0700 (PDT)
+	id 2D5DDE00D5C; Tue,  3 Oct 2017 17:51:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,21 +12,23 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F47EE00D48
-	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 17:51:40 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBBAFE00D50
+	for <yocto@yoctoproject.org>; Tue,  3 Oct 2017 17:51:43 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga104.jf.intel.com with ESMTP; 03 Oct 2017 17:51:40 -0700
+	by orsmga104.jf.intel.com with ESMTP; 03 Oct 2017 17:51:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.42,475,1500966000"; d="scan'208";a="142395698"
+X-IronPort-AV: E=Sophos;i="5.42,475,1500966000"; d="scan'208";a="142395706"
 Received: from kmsim-mobl.gar.corp.intel.com (HELO
 	peggleto-mobl.ger.corp.intel.com) ([10.255.132.147])
-	by orsmga002.jf.intel.com with ESMTP; 03 Oct 2017 17:51:37 -0700
+	by orsmga002.jf.intel.com with ESMTP; 03 Oct 2017 17:51:41 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  4 Oct 2017 13:51:01 +1300
-Message-Id: <20171004005103.24756-1-paul.eggleton@linux.intel.com>
+Date: Wed,  4 Oct 2017 13:51:02 +1300
+Message-Id: <20171004005103.24756-2-paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 2.9.5
-Subject: [layerindex-web][PATCH 1/3] update: allow preserving temp directory
+In-Reply-To: <20171004005103.24756-1-paul.eggleton@linux.intel.com>
+References: <20171004005103.24756-1-paul.eggleton@linux.intel.com>
+Subject: [layerindex-web][PATCH 2/3] models: allow LayerBranch.collection to be blank
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,79 +40,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Oct 2017 00:51:41 -0000
+X-List-Received-Date: Wed, 04 Oct 2017 00:51:46 -0000
 
-If you're diagnosing problems with the bitbake server when running the
-update script, then you need to be able to look at
-bitbake-cookerdaemon.log, but you couldn't do that after the fact
-because the temporary directory it gets written out to was being
-unconditionally deleted. Add a --keep-temp option which preserves it and
-some debug messages to tell you where it is.
+It's really irritating to be forced to specify a value for this field
+especially as it'll get auto-populated by the update script. Set
+blank=True to allow that. While we're at it, touch up the description a
+bit to make more sense.
 
 Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- layerindex/update.py       |  5 +++++
- layerindex/update_layer.py | 10 +++++++++-
- 2 files changed, 14 insertions(+), 1 deletion(-)
+ layerindex/migrations/0009_layerbranch_collection.py | 19 +++++++++++++++++++
+ layerindex/models.py                                 |  2 +-
+ 2 files changed, 20 insertions(+), 1 deletion(-)
+ create mode 100644 layerindex/migrations/0009_layerbranch_collection.py
 
-diff --git a/layerindex/update.py b/layerindex/update.py
-index 2d578df..d1e67a0 100755
---- a/layerindex/update.py
-+++ b/layerindex/update.py
-@@ -85,6 +85,8 @@ def prepare_update_layer_command(options, branch, layer, initial=False):
-         cmd += ' -d'
-     elif options.loglevel == logging.ERROR:
-         cmd += ' -q'
-+    if options.keep_temp:
-+        cmd += ' --keep-temp'
-     return cmd
- 
- def update_actual_branch(layerquery, fetchdir, branch, options, update_bitbake, bitbakepath):
-@@ -165,6 +167,9 @@ def main():
-     parser.add_option("-q", "--quiet",
-             help = "Hide all output except error messages",
-             action="store_const", const=logging.ERROR, dest="loglevel")
-+    parser.add_option("", "--keep-temp",
-+            help = "Preserve temporary directory at the end instead of deleting it",
-+            action="store_true")
- 
-     options, args = parser.parse_args(sys.argv)
-     if len(args) > 1:
-diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-index 7f0c08f..d91c00e 100644
---- a/layerindex/update_layer.py
-+++ b/layerindex/update_layer.py
-@@ -194,6 +194,9 @@ def main():
-     parser.add_option("-q", "--quiet",
-             help = "Hide all output except error messages",
-             action="store_const", const=logging.ERROR, dest="loglevel")
-+    parser.add_option("", "--keep-temp",
-+            help = "Preserve temporary directory at the end instead of deleting it",
-+            action="store_true")
- 
-     options, args = parser.parse_args(sys.argv)
-     if len(args) > 1:
-@@ -258,6 +261,7 @@ def main():
-     except recipeparse.RecipeParseError as e:
-         logger.error(str(e))
-         sys.exit(1)
-+    logger.debug('Using temp directory %s' % tempdir)
-     # Clear the default value of SUMMARY so that we can use DESCRIPTION instead if it hasn't been set
-     tinfoil.config_data.setVar('SUMMARY', '')
-     # Clear the default value of DESCRIPTION so that we can see where it's not set
-@@ -702,7 +706,11 @@ def main():
-         if LooseVersion(bb.__version__) > LooseVersion("1.27"):
-             tinfoil.shutdown()
- 
--    shutil.rmtree(tempdir)
-+    if options.keep_temp:
-+        logger.debug('Preserving temp directory %s' % tempdir)
-+    else:
-+        logger.debug('Deleting temp directory')
-+        shutil.rmtree(tempdir)
-     sys.exit(0)
- 
- 
+diff --git a/layerindex/migrations/0009_layerbranch_collection.py b/layerindex/migrations/0009_layerbranch_collection.py
+new file mode 100644
+index 0000000..bf6276f
+--- /dev/null
++++ b/layerindex/migrations/0009_layerbranch_collection.py
+@@ -0,0 +1,19 @@
++# -*- coding: utf-8 -*-
++from __future__ import unicode_literals
++
++from django.db import migrations, models
++
++
++class Migration(migrations.Migration):
++
++    dependencies = [
++        ('layerindex', '0008_yp_compatible'),
++    ]
++
++    operations = [
++        migrations.AlterField(
++            model_name='layerbranch',
++            name='collection',
++            field=models.CharField(help_text='Name of the collection that the layer provides for the purpose of expressing dependencies (as specified in BBFILE_COLLECTIONS). Can only contain letters, numbers and dashes.', max_length=40, blank=True, null=True, verbose_name='Layer Collection'),
++        ),
++    ]
+diff --git a/layerindex/models.py b/layerindex/models.py
+index e99f0b8..b39518a 100644
+--- a/layerindex/models.py
++++ b/layerindex/models.py
+@@ -157,7 +157,7 @@ class YPCompatibleVersion(models.Model):
+ class LayerBranch(models.Model):
+     layer = models.ForeignKey(LayerItem)
+     branch = models.ForeignKey(Branch)
+-    collection = models.CharField('Layer Collection', max_length=40, null=True, help_text='Name of the layer that could be used in the list of dependencies - can only contain letters, numbers and dashes')
++    collection = models.CharField('Layer Collection', max_length=40, null=True, blank=True, help_text='Name of the collection that the layer provides for the purpose of expressing dependencies (as specified in BBFILE_COLLECTIONS). Can only contain letters, numbers and dashes.')
+     version = models.CharField('Layer Version', max_length=10, null=True, blank=True, help_text='The layer version for this particular branch.')
+     vcs_subdir = models.CharField('Repository subdirectory', max_length=40, blank=True, help_text='Subdirectory within the repository where the layer is located, if not in the root (usually only used if the repository contains more than one layer)')
+     vcs_last_fetch = models.DateTimeField('Last successful fetch', blank=True, null=True)
 -- 
 2.9.5
 
