@@ -1,43 +1,55 @@
-Return-Path: <Aaron_Wright@selinc.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6C1EE00D6A; Wed,  4 Oct 2017 15:59:18 -0700 (PDT)
+	id CEC47E00D72; Wed,  4 Oct 2017 17:16:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.117.214.143 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.235.150.234 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 284 seconds by postgrey-1.32 at yocto-www;
-	Wed, 04 Oct 2017 15:59:16 PDT
-Received: from volare.selinc.com (volare.selinc.com [74.117.214.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E366AE00D1C
-	for <yocto@yoctoproject.org>; Wed,  4 Oct 2017 15:59:16 -0700 (PDT)
-Received: from pps.filterd (volare.selinc.com [127.0.0.1])
-	by volare.selinc.com (8.16.0.21/8.16.0.21) with SMTP id v94Mpq9x024069
-	for <yocto@yoctoproject.org>; Wed, 4 Oct 2017 15:54:32 -0700
-Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
-	by volare.selinc.com with ESMTP id 2da6tv7kt8-1
-	for <yocto@yoctoproject.org>; Wed, 04 Oct 2017 15:54:32 -0700
-To: yocto@yoctoproject.org
+Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
+	[64.235.150.234])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E37EBE00D6A
+	for <yocto@yoctoproject.org>; Wed,  4 Oct 2017 17:16:21 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx2.ess.sfj.cudaops.com (version=TLSv1.2 cipher=AES256-SHA256
+	bits=256 verify=NO); Thu, 05 Oct 2017 00:16:18 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Wed, 4 Oct 2017 17:16:15 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Wed, 4 Oct 2017 17:16:15 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Having trouble getting recipe to run in proper directory
+Thread-Index: AQHTPWxb0oRn/yAKOUO4B9H0W4aZLQ==
+Date: Thu, 5 Oct 2017 00:16:15 +0000
+Message-ID: <2376f96acc0f4c3db9c3b40a3cfc98f3@sakuraus.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-X-KeepSent: AC655E34:B4B3A1E0-882581AF:007C1B86;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0.1FP6 April 21, 2016
-Message-ID: <OFAC655E34.B4B3A1E0-ON882581AF.007C1B86-882581AF.007DD7C9@selinc.com>
-From: Aaron_Wright@selinc.com
-Date: Wed, 4 Oct 2017 15:54:32 -0700
-X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP8|February  23,
-	2017) at 10/04/2017 03:54:32 PM,
-	Serialize complete at 10/04/2017 03:54:32 PM
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=8674
-	signatures=668571
-Subject: local fetcher and devtool don't work well together
+X-BESS-ID: 1507162578-298553-17130-61882-1
+X-BESS-VER: 2017.12-r1709122024
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185698
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, HTML_MESSAGE
+X-BESS-BRTS-Status: 1
+Subject: Having trouble getting recipe to run in proper directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,131 +61,223 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Oct 2017 22:59:18 -0000
+X-List-Received-Date: Thu, 05 Oct 2017 00:16:23 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="=_alternative 007DD7C9882581AF_="
+	boundary="_000_2376f96acc0f4c3db9c3b40a3cfc98f3sakurauscom_"
 
---=_alternative 007DD7C9882581AF_=
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: Quoted-printable
+--_000_2376f96acc0f4c3db9c3b40a3cfc98f3sakurauscom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I have a recipe with:
+I'm trying to create a new recipe for a package that has a version and non-=
+numeric rev in its name (canfestival-3-asc). I've gotten bitbake to unpack =
+the package into a tree that looks ok, but it keeps trying to run the compi=
+le at least in the wrong directory. Here is the recipe:
 
-SRC_URI =3D "file://a/b/c/d;subdir=3Dsrc"
-S =3D "${WORKDIR}/src/a/b/c/d"
 
-First off, ${S} must be set to the full path because the basepath uri=20
-parameter[1] doesn't work. So this doesn't work:
+SUMMARY =3D "Independent CANOpen=AE stack"
+DESCRIPTION =3D "CanFestival focuses on providing an ANSI-C platform indepe=
+ndent \
+               CANOpen=AE stack that can be built as master or slave nodes =
+on PCs, \
+               Real-time IPCs, and Microcontrollers."
 
-SRC_URI =3D "file://a/b/c/d;subdir=3Dsrc;basepath=3Da/b/c/d"
-S =3D "${WORKDIR}/src"
+HOMEPAGE =3D "http://www.canfestival.org/"
 
-I wish it would, but that's ok. I can deal with the long ${S} path as it=20
-compiles and works fine with bitbake. However, it doesn't work with=20
-devtool:
+SRCREV =3D "895:8973dd8be7e8"
 
-$ devtool modify -n d ~/mysrc/a/b/c/d
-NOTE: Creating workspace layer in <... snip=20
-...>/yocto/poky/build/workspace
-NOTE: Enabling workspace layer in bblayers.conf
-Parsing recipes..done.
-NOTE: Recipe d now set up to build from ~/mysrc/a/b/c/d/b/c/d
+SRC_URI =3D "hg://bitbucket.org/Mongo;protocol=3Dhttps;module=3Dcanfestival=
+-3-asc"
+SRC_URI[md5sum] =3D ""
+SRC_URI[sha256sum] =3D ""
 
-Where is the extra 'b/c/d' coming from in where it will be built from?=20
-This directory is reflected in the bbappends created the workspace:
+PN =3D "canfestival"
+PV =3D '3'
+PR =3D 'asc'
 
-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-FILESPATH_prepend :=3D "~/mysrc/a/b/c/d/b/c/d/oe-local-files:"
+LICENSE =3D "LGPL-2"
+LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D \
+                    file://LICENCE;md5=3D"
 
-inherit externalsrc
-# NOTE: We use pn- overrides here to avoid affecting multiple variants in=20
-the case where the recipe uses BBCLASSEXTEND
-EXTERNALSRC_pn-backtrace =3D "~/mysrc/a/b/c/d/b/c/d"
+inherit autotools
 
-If I fix the path in the workspace bbappends, it does compile and work=20
-file.
+# Specify any options you want to pass to the configure script using EXTRA_=
+OECONF:
+EXTRA_OECONF =3D "-can=3Dsocket -timers=3Dunix -SDO_MAX_SIMULTANEOUS_TRANSF=
+ERS=3D25 \
+                -SDO_MAX_LENGTH_TRANSFER=3D4096 -MAX_NB_TIMER=3D128 -SDO_TI=
+MEOUT_MS=3D1000"
 
-Is it possible to have a ${S} of "${WORKDIR}/src" in this situation?
-How can I get devtool to behave and not duplicate the path?
+PROVIDES =3D "canfestival"
 
-PS - This also doesn't work with a normal 'devtool modify d'.
+The directory structure that bitbake builds is:
 
-[1] -=20
-https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__www.yoctoproject.org_=
-docs_latest_bitbake-2Duser-2Dmanual_bitbake-2Duser-2Dmanual.html-23bb-2Dthe=
--2Dunpack&d=3DDwIBAg&c=3DzVFQZQ67ypsA9mYKSCqWmQHiVkCCaN-Gb60_N6TVnLk&r=3DIZ=
-3mUDA8X9CZR4hNctKngDDYs_BhK3qVNLG-nWGbW2E&m=3DwH_YZj_cv9gBOhJqSKTr4fiuM5UCT=
-phWx9zfY2ceudg&s=3D2z9LBCu2xDjBhB51eToRNH7-wsLrFY4NPKy4_cwuRI0&e=3D=20=
 
---=_alternative 007DD7C9882581AF_=
-Content-Type: text/html; charset="US-ASCII"
-Content-Transfer-Encoding: Quoted-printable
+canfestival
 
-<tt><font size=3D2>I have a recipe with:</font></tt>
-<br>
-<br><tt><font size=3D2>SRC_URI =3D &quot;</font></tt><a href=3D"file://fw/a=
-pplications/general/backtrace;unpack=3D0"><tt><font size=3D2>file://a/b/c/d=
-;subdir</font></tt></a><tt><font size=3D2>=3Dsrc&quot;</font></tt>
-<br><tt><font size=3D2>S =3D &quot;${WORKDIR}/src/a/b/c/d&quot;</font></tt>
-<br>
-<br><tt><font size=3D2>First off, ${S} must be set to the full path because
-the basepath uri parameter[1] doesn't work. So this doesn't work:</font></t=
-t>
-<br>
-<br><tt><font size=3D2>SRC_URI =3D &quot;</font></tt><a href=3D"file://fw/a=
-pplications/general/backtrace;unpack=3D0"><tt><font size=3D2>file://a/b/c/d=
-;subdir</font></tt></a><tt><font size=3D2>=3Dsrc;basepath=3Da/b/c/d&quot;</=
-font></tt>
-<br><tt><font size=3D2>S =3D &quot;${WORKDIR}/src&quot;</font></tt>
-<br>
-<br><tt><font size=3D2>I wish it would, but that's ok. I can deal with the
-long ${S} path as it compiles and works fine with bitbake. However, it
-doesn't work with devtool:</font></tt>
-<br>
-<br><tt><font size=3D2>$ devtool modify -n d ~/mysrc/a/b/c/d</font></tt>
-<br><tt><font size=3D2><b>NOTE</b>: Creating workspace layer in &lt;... snip
-...&gt;/yocto/poky/build/workspace</font></tt>
-<br><tt><font size=3D2><b>NOTE</b>: Enabling workspace layer in bblayers.co=
-nf</font></tt>
-<br><tt><font size=3D2>Parsing recipes..done.</font></tt>
-<br><tt><font size=3D2><b>NOTE</b>: Recipe d now set up to build from ~/mys=
-rc/a/b/c/d/b/c/d</font></tt>
-<br>
-<br><tt><font size=3D2>Where is the extra 'b/c/d' coming from in where it
-will be built from? This directory is reflected in the bbappends created
-the workspace:</font></tt>
-<br>
-<br><tt><font size=3D2>FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:=
-&quot;</font></tt>
-<br><tt><font size=3D2>FILESPATH_prepend :=3D &quot;~/mysrc/a/b/c/d/b/c/d/o=
-e-local-files:&quot;</font></tt>
-<br>
-<br><tt><font size=3D2>inherit externalsrc</font></tt>
-<br><tt><font size=3D2># NOTE: We use pn- overrides here to avoid affecting
-multiple variants in the case where the recipe uses BBCLASSEXTEND</font></t=
-t>
-<br><tt><font size=3D2>EXTERNALSRC_pn-backtrace =3D &quot;~/mysrc/a/b/c/d/b=
-/c/d&quot;</font></tt>
-<br>
-<br><tt><font size=3D2>If I fix the path in the workspace bbappends, it does
-compile and work file.</font></tt>
-<br>
-<br><tt><font size=3D2>Is it possible to have a ${S} of &quot;${WORKDIR}/sr=
-c&quot;
-in this situation?</font></tt>
-<br><tt><font size=3D2>How can I get devtool to behave and not duplicate
-the path?</font></tt>
-<br>
-<br><tt><font size=3D2>PS - This also doesn't work with a normal 'devtool
-modify d'.</font></tt>
-<br>
-<br><tt><font size=3D2>[1] - </font></tt><a href=3D"https://urldefense.proo=
-fpoint.com/v2/url?u=3Dhttp-3A__www.yoctoproject.org_docs_latest_bitbake-2Du=
-ser-2Dmanual_bitbake-2Duser-2Dmanual.html-23bb-2Dthe-2Dunpack&d=3DDwMBAg&c=
-=3DzVFQZQ67ypsA9mYKSCqWmQHiVkCCaN-Gb60_N6TVnLk&r=3DIZ3mUDA8X9CZR4hNctKngDDY=
-s_BhK3qVNLG-nWGbW2E&m=3DwH_YZj_cv9gBOhJqSKTr4fiuM5UCTphWx9zfY2ceudg&s=3D2z9=
-LBCu2xDjBhB51eToRNH7-wsLrFY4NPKy4_cwuRI0&e=3D"><tt><font size=3D2 color=3Db=
-lue>http://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-use=
-r-manual.html#bb-the-unpack</font></tt>[yoctoproject.org]</a>=
+           3-asc
 
---=_alternative 007DD7C9882581AF_=--
+                   build
+
+                   canfestival-3           # directory that bitbake is tryi=
+ng to compile in
+
+                   canfestival-3-asc       # directory that code was extrac=
+ted to
+
+                   temp
+
+
+I'm not getting any errors from the configure task, but the log file looks =
+like it is trying to run from the canfestival-3 directory, not the canfesti=
+val-3-asc. What can I do to the recipe to get the build to run in the canfe=
+stival-3-asc directory? Or, i guess, get bitbake to unpack the source into =
+the canfestival-3, or a different directory that it will actually run the t=
+asks in.
+
+
+Regards,
+
+Greg
+
+--_000_2376f96acc0f4c3db9c3b40a3cfc98f3sakurauscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>I'm trying to create a new recipe for a package that has a version and n=
+on-numeric rev in its name (canfestival-3-asc). I've gotten bitbake to unpa=
+ck the package into a tree that looks ok, but it keeps trying to run the co=
+mpile at least in the wrong directory.
+ Here is the recipe:</p>
+<p><br>
+</p>
+<p></p>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">SUMMA=
+RY =3D &quot;Independent CANOpen=AE stack&quot;</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">DESCR=
+IPTION =3D &quot;CanFestival focuses on providing an ANSI-C platform indepe=
+ndent \</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;CANOpen=AE stack that can=
+ be built as master or slave nodes on PCs, \</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Real-time IPCs, and Micro=
+controllers.&quot;</span></div>
+<div><br>
+</div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">HOMEP=
+AGE =3D &quot;http://www.canfestival.org/&quot;</span></div>
+<div><br>
+</div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">SRCRE=
+V =3D &quot;895:8973dd8be7e8&quot;</span></div>
+<div><br>
+</div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">SRC_U=
+RI =3D &quot;hg://bitbucket.org/Mongo;protocol=3Dhttps;module=3Dcanfestival=
+-3-asc&quot;</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">SRC_U=
+RI[md5sum] =3D &quot;&quot;</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">SRC_U=
+RI[sha256sum] =3D &quot;&quot;</span></div>
+<div><br>
+</div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">PN =
+=3D &quot;canfestival&quot;</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">PV =
+=3D '3'</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">PR =
+=3D 'asc'</span></div>
+<div><br>
+</div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">LICEN=
+SE =3D &quot;LGPL-2&quot;</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">LIC_F=
+ILES_CHKSUM =3D &quot;file://COPYING;md5=3D \</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file://LIC=
+ENCE;md5=3D&quot;</span></div>
+<div><br>
+</div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">inher=
+it autotools</span></div>
+<div><br>
+</div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;"># Spe=
+cify any options you want to pass to the configure script using EXTRA_OECON=
+F:</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">EXTRA=
+_OECONF =3D &quot;&#8211;can=3Dsocket &#8211;timers=3Dunix &#8211;SDO_MAX_S=
+IMULTANEOUS_TRANSFERS=3D25 \</span></div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &#8211;SDO_MAX_LENGTH_TR=
+ANSFER=3D4096 &#8211;MAX_NB_TIMER=3D128 &#8211;SDO_TIMEOUT_MS=3D1000&quot;<=
+/span></div>
+<div><br>
+</div>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace;">PROVI=
+DES =3D &quot;canfestival&quot;</span></div>
+<div><br>
+</div>
+The directory structure that bitbake builds is:
+<p></p>
+<p><br>
+</p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;">canfest=
+ival</span><br>
+</p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3-asc</span></p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;build</span><=
+/p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;canfestival-3=
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# directory that bitbake is trying=
+ to compile in</span></p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;canfestival-3=
+-asc&nbsp; &nbsp; &nbsp; &nbsp;# directory that code was extracted to</span=
+></p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;">&nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;temp</span></=
+p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;"><br>
+</span></p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;"><span s=
+tyle=3D"font-family: Calibri, Arial, Helvetica, sans-serif;">I'm not gettin=
+g any errors from the configure task, but the log file looks like it is try=
+ing to run from the canfestival-3 directory, not
+ the canfestival-3-asc.&nbsp;</span></span><span style=3D"font-family: Cali=
+bri, Arial, Helvetica, sans-serif; font-size: 12pt;">What can I do to the r=
+ecipe to get the build to run in the canfestival-3-asc directory? Or, i gue=
+ss, get bitbake to unpack the source into&nbsp;</span><span style=3D"font-f=
+amily: Calibri, Arial, Helvetica, sans-serif;">the
+ canfestival-3, or&nbsp;</span><span style=3D"font-family: Calibri, Arial, =
+Helvetica, sans-serif; font-size: 12pt;">a different directory that it will=
+ actually run the tasks in.</span></p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;"><span s=
+tyle=3D"font-family: Calibri, Arial, Helvetica, sans-serif;"><br>
+</span></span></p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;"><span s=
+tyle=3D"font-family: Calibri, Arial, Helvetica, sans-serif;">Regards,</span=
+></span></p>
+<p><span style=3D"font-family: &quot;Courier New&quot;, monospace;"><span s=
+tyle=3D"font-family: Calibri, Arial, Helvetica, sans-serif;">Greg</span></s=
+pan></p>
+</div>
+</body>
+</html>
+
+--_000_2376f96acc0f4c3db9c3b40a3cfc98f3sakurauscom_--
