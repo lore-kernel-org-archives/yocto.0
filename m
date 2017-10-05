@@ -1,44 +1,47 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <Robin.Mugridge@oxinst.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6103E00D83; Wed,  4 Oct 2017 23:37:37 -0700 (PDT)
+	id 28420E00D7F; Thu,  5 Oct 2017 00:17:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [85.115.60.190 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D913E00D7E
-	for <yocto@yoctoproject.org>; Wed,  4 Oct 2017 23:37:35 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 62529861B2;
-	Thu,  5 Oct 2017 06:37:34 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 50z2RDabQ30C; Thu,  5 Oct 2017 06:37:26 +0000 (UTC)
-Received: from [127.0.0.1] (cpc111193-live30-2-0-cust656.17-2.cable.virginm.net
-	[92.232.58.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id C47A0860DC;
-	Thu,  5 Oct 2017 06:37:25 +0000 (UTC)
-To: MUGRIDGE Robin <Robin.Mugridge@oxinst.com>
+X-Greylist: delayed 3285 seconds by postgrey-1.32 at yocto-www;
+	Thu, 05 Oct 2017 00:17:27 PDT
+Received: from cluster-d.mailcontrol.com (cluster-d.mailcontrol.com
+	[85.115.60.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36080E00D6D
+	for <yocto@yoctoproject.org>; Thu,  5 Oct 2017 00:17:27 -0700 (PDT)
+Received: from UKCENHUB04.oxinst.com ([213.121.247.106])
+	by rly51d.srv.mailcontrol.com (MailControl) with ESMTPS id
+	v956MOF1030747
+	(version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=OK);
+	Thu, 5 Oct 2017 07:22:36 +0100
+Received: from UKCENMBX04.oxinst.com ([169.254.4.241]) by
+	UKCENHUB04.oxinst.com ([172.16.105.4]) with mapi id 14.03.0361.001;
+	Thu, 5 Oct 2017 07:22:21 +0100
+From: MUGRIDGE Robin <Robin.Mugridge@oxinst.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Thread-Topic: -|EXT|- Re: [yocto] mono 5.0.1.1 TypeLoadException
+Thread-Index: AdM7hv+Nvfr2/lgQTkK1phDXt1YP7QAACmIAAIYyxTA=
+Date: Thu, 5 Oct 2017 06:22:21 +0000
+Message-ID: <51BE6D71ED8CFC4BA05434EB06711F5DD29642F5@UKCENMBX04.oxinst.com>
 References: <51BE6D71ED8CFC4BA05434EB06711F5DD295DF2E@UKCENMBX04.oxinst.com>
 	<AC542F9E-FECD-4F59-B5E7-11D441C4F962@dynamicdevices.co.uk>
-	<51BE6D71ED8CFC4BA05434EB06711F5DD29642F5@UKCENMBX04.oxinst.com>
-From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <24e97125-cec0-98a6-0127-bdf28b1d8d6c@dynamicdevices.co.uk>
-Date: Thu, 5 Oct 2017 07:37:21 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+In-Reply-To: <AC542F9E-FECD-4F59-B5E7-11D441C4F962@dynamicdevices.co.uk>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.105.100]
 MIME-Version: 1.0
-In-Reply-To: <51BE6D71ED8CFC4BA05434EB06711F5DD29642F5@UKCENMBX04.oxinst.com>
+X-Scanned-By: MailControl 44278.1987 (www.mailcontrol.com) on 10.68.0.161
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: -|EXT|- Re: mono 5.0.1.1 TypeLoadException
 X-BeenThere: yocto@yoctoproject.org
@@ -52,172 +55,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Oct 2017 06:37:37 -0000
+X-List-Received-Date: Thu, 05 Oct 2017 07:17:29 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="------------D51CC24FA0049B7FDB421649"
-Content-Language: en-GB
+	boundary="_000_51BE6D71ED8CFC4BA05434EB06711F5DD29642F5UKCENMBX04oxins_"
 
---------------D51CC24FA0049B7FDB421649
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_51BE6D71ED8CFC4BA05434EB06711F5DD29642F5UKCENMBX04oxins_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+SGksDQoNCknigJl2ZSBtYW5hZ2VkIHRvIHRyYWNrIHRoaXMgZG93biBhbmQgaXQgdHVybmVkIG91
+dCB0byBiZSBub3RoaW5nIHRvIGRvIHdpdGggbW9uby4NCg0KSW4gdGhlIHByb2Nlc3Mgb2YgY3Jl
+YXRpbmcgYSB0ZXN0IGNhc2UsIEkgZm91bmQgSSBoYWQgYSByZWZlcmVuY2UgdG8gYW4gb2xkIHZl
+cnNpb24gb2YgTnBnc3FsICAodGhpcyBpcyBub3QgcHJvdmlkZWQgdmlhIGEgeW9jdG8gcmVjaXBl
+KS4gIFRoZSBvbGQgdmVyc2lvbiBJIHdhcyByZWZlcmVuY2luZyBpbmNsdWRlZCBhbiBvbGQgdmVy
+c2lvbiBvZiBNb25vLlNlY3VyaXR5LmRsbC4gIE15IGFwcGxpY2F0aW9uIGZvdW5kIHRoaXMgdmVy
+c2lvbiByYXRoZXIgdGhhbiB0aGUgdmVyc2lvbiBkZWxpdmVyZWQgYnkgTW9ubyAgYXMgaXQgd2Fz
+IGluIHRoZSBhcHBsaWNhdGlvbiBkaXJlY3RvcnkuICBMYXRlciB2ZXJzaW9ucyBvZiBOcGdzcWwg
+aGF2ZSBub3cgZHJvcHBlZCB0aGUgaW5jbHVzaW9uIG9mIE1vbm8uU2VjdXJpdHkuZGxsLg0KDQpS
+b2Jpbg0KDQpGcm9tOiBBbGV4IEogTGVubm9uIFttYWlsdG86YWpsZW5ub25AZHluYW1pY2Rldmlj
+ZXMuY28udWtdDQpTZW50OiAwMiBPY3RvYmVyIDIwMTcgMTY6MDMNClRvOiBNVUdSSURHRSBSb2Jp
+bg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IC18RVhUfC0gUmU6IFt5b2N0
+b10gbW9ubyA1LjAuMS4xIFR5cGVMb2FkRXhjZXB0aW9uDQoNCkhpIFJvYmluLA0KDQpJZiB5b3Ug
+c3VwcGx5IGEgdGVzdCBjYXNlIEnigJlsbCB0YWtlIGEgbG9vay4NCg0KUmVnYXJkcywNCg0KQWxl
+eA0KDQpPbiAyIE9jdCAyMDE3LCBhdCAxNTowMiwgTVVHUklER0UgUm9iaW4gPFJvYmluLk11Z3Jp
+ZGdlQG94aW5zdC5jb208bWFpbHRvOlJvYmluLk11Z3JpZGdlQG94aW5zdC5jb20+PiB3cm90ZToN
+CkhpLA0KDQpJIGFtIHVzaW5nIG1vbm8gd2l0aCBLcm9nb3RoLiAgVGhlIGN1cnJlbnQgdmVyc2lv
+biBvZiBtb25vIHdlIGFyZSBidWlsZGluZyB3aXRoIGlzIDQuMi4yLjMwLg0KDQpJIGFtIHRyeWlu
+ZyB0byBtb3ZlIG1vbm8gZm9yd2FyZCB0byA1LjAuMS4xIHRvIGF2b2lkIGFuIGlzc3VlIGluIHRo
+ZSBIdHRwTGlzdGVuZXIgY2xhc3MsIGJ1dCBub3cgZ2V0IGEgVHlwZUxvYWRFeGNlcHRpb24gd2hp
+Y2ggSSBhc3N1bWUgaXMgYSBtaXNzaW5nIGFzc2VtYmx5IG9yIGEgYnVpbGQgY29uZmlndXJhdGlv
+biBlcnJvciwgYnV0IEnigJltIHN0cnVnZ2xpbmcgdG8gd29yayBvdXQgd2hhdOKAmXMgd3Jvbmfi
+gKYNCg0KU3lzdGVtLlR5cGVMb2FkRXhjZXB0aW9uOiBDb3VsZCBub3QgbG9hZCB0eXBlIG9mIGZp
+ZWxkICdTeXN0ZW0uTmV0Lkh0dHBMaXN0ZW5lcjp0bHNTZXR0aW5ncycgKDkpIGR1ZSB0bzogQ291
+bGQgbm90IHJlc29sdmUgdHlwZSB3aXRoIHRva2VuIDAxMDAwMDM0IChmcm9tIHR5cGVyZWYsIGNs
+YXNzL2Fzc2VtYmx5IE1vbm8uU2VjdXJpdHkuSW50ZWFjZS5Nb25vVGxzU2V0dGluZ3MsIE1vbm8u
+U2VjdXJpdHksIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tl
+bj0wNzM4ZWI5ZjEzMmVkNzU2KSBhc3NlbWJseTpNb25vLlNlY3VyaXR5LCBWZXJzaW9uPTQuMC4w
+LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49MDczOGViOWYxMzJlZDc1NiB0eXBN
+b25vLlNlY3VyaXR5LkludGVyZmFjZS5Nb25vVGxzU2V0dGluZ3MgbWVtYmVyOjxub25lPg0KDQpI
+YXMgYW55b25lIGVsc2UgY29tZSBhY3Jvc3MgdGhpcyBhbmQga25vdyB3aGF0IHRoZSByb290IGNh
+dXNlIGlzPw0KDQpUaGFua3MsDQoNClJvYmluDQoNCg0KDQoNCg0KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+DQpUaGlzIGUtbWFpbCBpcyBjb25maWRlbnRpYWwgYW5kIGlzIGZvciB0aGUgYWRkcmVzc2VlIG9u
+bHkuICAgUGxlYXNlIHJlZmVyIHRvDQp3d3cub3hpbnN0LmNvbS9lbWFpbC1zdGF0ZW1lbnQ8aHR0
+cDovL3d3dy5veGluc3QuY29tL2VtYWlsLXN0YXRlbWVudD4gZm9yIHJlZ3VsYXRvcnkgaW5mb3Jt
+YXRpb24uDQotLQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9j
+dG9AeW9jdG9wcm9qZWN0Lm9yZz4NCmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0
+aW5mby95b2N0bw0KDQoNCkNsaWNrIGhlcmU8aHR0cHM6Ly93d3cubWFpbGNvbnRyb2wuY29tL3Ny
+LzJac1JBN1NzdTJiR1gyUFFQT212VWhlMHk4OSt5TnFoemk0a0tjZ2JJMnc3NFFyNnU4VkRodEhC
+andCbWlrR0hReU8wcUYhT3ZhN05mTitOZHdmZEZ3PT0+IHRvIHJlcG9ydCB0aGlzIGVtYWlsIGFz
+IHNwYW0uDQo=
 
+--_000_51BE6D71ED8CFC4BA05434EB06711F5DD29642F5UKCENMBX04oxins_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 05/10/2017 07:22, MUGRIDGE Robin wrote:
->
-> Hi,
->
-> I’ve managed to track this down and it turned out to be nothing to do 
-> with mono.
->
-> In the process of creating a test case, I found I had a reference to 
-> an old version of Npgsql  (this is not provided via a yocto recipe).  
-> The old version I was referencing included an old version of 
-> Mono.Security.dll.  My application found this version rather than the 
-> version delivered by Mono  as it was in the application directory.  
-> Later versions of Npgsql have now dropped the inclusion of 
-> Mono.Security.dll.
->
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28t
+c3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
+aW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUt
+cHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7
+fQ0KcA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
+DQoJbWFyZ2luLXJpZ2h0OjBjbTsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJn
+aW4tbGVmdDowY207DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3
+IFJvbWFuIiwic2VyaWYiO30NCnAuTXNvQWNldGF0ZSwgbGkuTXNvQWNldGF0ZSwgZGl2Lk1zb0Fj
+ZXRhdGUNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJCYWxsb29u
+IFRleHQgQ2hhciI7DQoJbWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9u
+dC1zaXplOjguMHB0Ow0KCWZvbnQtZmFtaWx5OiJUYWhvbWEiLCJzYW5zLXNlcmlmIjsNCgltc28t
+ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpzcGFuLkJhbGxvb25UZXh0Q2hhcg0KCXttc28tc3R5
+bGUtbmFtZToiQmFsbG9vbiBUZXh0IENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCglt
+c28tc3R5bGUtbGluazoiQmFsbG9vbiBUZXh0IjsNCglmb250LWZhbWlseToiVGFob21hIiwic2Fu
+cy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KcC5tc29ub3JtYWwwLCBs
+aS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUtbmFtZTptc29ub3JtYWw7
+DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBjbTsNCgltc28tbWFy
+Z2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowY207DQoJZm9udC1zaXplOjExLjBw
+dDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCnNwYW4uRW1haWxTdHls
+ZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwi
+c2Fucy1zZXJpZiI7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFuLkVtYWlsU3R5bGUyMQ0KCXtt
+c28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2Vy
+aWYiOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjINCgl7bXNvLXN0eWxl
+LXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCglj
+b2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHlsZTI0DQoJe21zby1zdHlsZS10eXBlOnBlcnNv
+bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6
+IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsN
+Cglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQg
+NzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0O30NCmRpdi5Xb3Jk
+U2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
+c28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYi
+IC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
+bGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0K
+PC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0i
+RU4tR0IiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
+b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj5I
+aSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPknigJl2ZSBtYW5hZ2VkIHRv
+IHRyYWNrIHRoaXMgZG93biBhbmQgaXQgdHVybmVkIG91dCB0byBiZSBub3RoaW5nIHRvIGRvIHdp
+dGggbW9uby48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPkluIHRoZSBwcm9j
+ZXNzIG9mIGNyZWF0aW5nIGEgdGVzdCBjYXNlLCBJIGZvdW5kIEkgaGFkIGEgcmVmZXJlbmNlIHRv
+IGFuIG9sZCB2ZXJzaW9uIG9mIE5wZ3NxbCZuYnNwOyAodGhpcyBpcyBub3QgcHJvdmlkZWQgdmlh
+IGEgeW9jdG8gcmVjaXBlKS4mbmJzcDsgVGhlIG9sZCB2ZXJzaW9uIEkgd2FzIHJlZmVyZW5jaW5n
+IGluY2x1ZGVkIGFuIG9sZCB2ZXJzaW9uIG9mIE1vbm8uU2VjdXJpdHkuZGxsLiZuYnNwOw0KIE15
+IGFwcGxpY2F0aW9uIGZvdW5kIHRoaXMgdmVyc2lvbiByYXRoZXIgdGhhbiB0aGUgdmVyc2lvbiBk
+ZWxpdmVyZWQgYnkgTW9ubyAmbmJzcDthcyBpdCB3YXMgaW4gdGhlIGFwcGxpY2F0aW9uIGRpcmVj
+dG9yeS4mbmJzcDsgTGF0ZXIgdmVyc2lvbnMgb2YgTnBnc3FsIGhhdmUgbm93IGRyb3BwZWQgdGhl
+IGluY2x1c2lvbiBvZiBNb25vLlNlY3VyaXR5LmRsbC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImNv
+bG9yOiMxRjQ5N0QiPlJvYmluPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNC
+NUM0REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7bXNvLWZhcmVh
+c3QtbGFuZ3VhZ2U6RU4tR0IiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
+bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDs7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tR0IiPiBBbGV4IEoNCiBM
+ZW5ub24gW21haWx0bzphamxlbm5vbkBkeW5hbWljZGV2aWNlcy5jby51a10gPGJyPg0KPGI+U2Vu
+dDo8L2I+IDAyIE9jdG9iZXIgMjAxNyAxNjowMzxicj4NCjxiPlRvOjwvYj4gTVVHUklER0UgUm9i
+aW48YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0
+OjwvYj4gLXxFWFR8LSBSZTogW3lvY3RvXSBtb25vIDUuMC4xLjEgVHlwZUxvYWRFeGNlcHRpb248
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkg
+Um9iaW4sPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPklmIHlvdSBzdXBwbHkgYSB0ZXN0IGNhc2UgSeKAmWxsIHRha2UgYSBsb29rLjxvOnA+PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5SZWdhcmRzLDxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
+bmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5BbGV4
+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
+ZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxicj4NCk9uIDIgT2N0IDIwMTcsIGF0IDE1OjAyLCBN
+VUdSSURHRSBSb2JpbiAmbHQ7PGEgaHJlZj0ibWFpbHRvOlJvYmluLk11Z3JpZGdlQG94aW5zdC5j
+b20iPlJvYmluLk11Z3JpZGdlQG94aW5zdC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJv
+dHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGksPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPkkgYW0gdXNpbmcgbW9ubyB3aXRoIEtyb2dvdGguJm5ic3A7IFRoZSBjdXJy
+ZW50IHZlcnNpb24gb2YgbW9ubyB3ZSBhcmUgYnVpbGRpbmcgd2l0aCBpcyA0LjIuMi4zMC48bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBhbSB0cnlpbmcgdG8gbW92ZSBtb25vIGZvcndhcmQgdG8g
+NS4wLjEuMSB0byBhdm9pZCBhbiBpc3N1ZSBpbiB0aGUgSHR0cExpc3RlbmVyIGNsYXNzLCBidXQg
+bm93IGdldCBhIFR5cGVMb2FkRXhjZXB0aW9uIHdoaWNoIEkgYXNzdW1lIGlzIGEgbWlzc2luZyBh
+c3NlbWJseSBvciBhIGJ1aWxkIGNvbmZpZ3VyYXRpb24gZXJyb3IsIGJ1dCBJ4oCZbSBzdHJ1Z2ds
+aW5nIHRvIHdvcmsgb3V0IHdoYXTigJlzIHdyb25n4oCmPG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIg
+TmV3JnF1b3Q7Ij5TeXN0ZW0uVHlwZUxvYWRFeGNlcHRpb246IENvdWxkIG5vdCBsb2FkIHR5cGUg
+b2YgZmllbGQgJ1N5c3RlbS5OZXQuSHR0cExpc3RlbmVyOnRsc1NldHRpbmdzJyAoOSkgZHVlIHRv
+OiBDb3VsZCBub3QgcmVzb2x2ZSB0eXBlIHdpdGggdG9rZW4gMDEwMDAwMzQgKGZyb20gdHlwZXJl
+ZiwgY2xhc3MvYXNzZW1ibHkgTW9uby5TZWN1cml0eS5JbnRlYWNlLk1vbm9UbHNTZXR0aW5ncywN
+CiBNb25vLlNlY3VyaXR5LCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
+S2V5VG9rZW49MDczOGViOWYxMzJlZDc1NikgYXNzZW1ibHk6TW9uby5TZWN1cml0eSwgVmVyc2lv
+bj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTA3MzhlYjlmMTMyZWQ3
+NTYgdHlwTW9uby5TZWN1cml0eS5JbnRlcmZhY2UuTW9ub1Rsc1NldHRpbmdzIG1lbWJlcjombHQ7
+bm9uZSZndDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJz
+cDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhhcyBhbnlvbmUgZWxzZSBj
+b21lIGFjcm9zcyB0aGlzIGFuZCBrbm93IHdoYXQgdGhlIHJvb3QgY2F1c2UgaXM/PG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPlRoYW5rcyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Um9iaW48bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5ldyBSb21h
+biZxdW90OywmcXVvdDtzZXJpZiZxdW90Ozttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1HQiI+PGJy
+Pg0KPGJyPg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KVGhpcyBlLW1haWwgaXMgY29uZmlkZW50
+aWFsIGFuZCBpcyBmb3IgdGhlIGFkZHJlc3NlZSBvbmx5LiZuYnNwOyZuYnNwOyBQbGVhc2UgcmVm
+ZXIgdG8gPGJyPg0KPGEgaHJlZj0iaHR0cDovL3d3dy5veGluc3QuY29tL2VtYWlsLXN0YXRlbWVu
+dCI+d3d3Lm94aW5zdC5jb20vZW1haWwtc3RhdGVtZW50PC9hPiBmb3IgcmVndWxhdG9yeSBpbmZv
+cm1hdGlvbi4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0K
+PGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7LCZxdW90O3NlcmlmJnF1
+b3Q7O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUdCIj4tLQ0KPGJyPg0KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQp5b2N0byBtYWlsaW5nIGxpc3Q8
+YnI+DQo8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyI+eW9jdG9AeW9jdG9w
+cm9qZWN0Lm9yZzwvYT48YnI+DQo8YSBocmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5v
+cmcvbGlzdGluZm8veW9jdG8iPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5m
+by95b2N0bzwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGltZXMgTmV3IFJvbWFu
+JnF1b3Q7LCZxdW90O3NlcmlmJnF1b3Q7O2JhY2tncm91bmQ6d2hpdGU7bXNvLWZhcmVhc3QtbGFu
+Z3VhZ2U6RU4tR0IiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGFsaWduPSJjZW50
+ZXIiIHN0eWxlPSJ0ZXh0LWFsaWduOmNlbnRlciI+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQ6d2hp
+dGUiPkNsaWNrIDxhIGhyZWY9Imh0dHBzOi8vd3d3Lm1haWxjb250cm9sLmNvbS9zci8yWnNSQTdT
+c3UyYkdYMlBRUE9tdlVoZTB5ODkmIzQzO3lOcWh6aTRrS2NnYkkydzc0UXI2dThWRGh0SEJqd0Jt
+aWtHSFF5TzBxRiFPdmE3TmZOJiM0MztOZHdmZEZ3PT0iPg0KaGVyZTwvYT4gdG8gcmVwb3J0IHRo
+aXMgZW1haWwgYXMgc3BhbS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYm9keT4N
+CjwvaHRtbD4NCg==
 
-Glad to hear you have it sorted out. Thanks for letting me know Robin.
-
-Cheers,
-
-Alex
-
-
---------------D51CC24FA0049B7FDB421649
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 05/10/2017 07:22, MUGRIDGE Robin
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:51BE6D71ED8CFC4BA05434EB06711F5DD29642F5@UKCENMBX04.oxinst.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <meta name="Generator" content="Microsoft Word 14 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";
-	mso-fareast-language:EN-US;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";
-	mso-fareast-language:EN-US;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle24
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal"><span style="color:#1F497D">Hi,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D">I’ve managed to
-            track this down and it turned out to be nothing to do with
-            mono.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D">In the process
-            of creating a test case, I found I had a reference to an old
-            version of Npgsql  (this is not provided via a yocto
-            recipe).  The old version I was referencing included an old
-            version of Mono.Security.dll.  My application found this
-            version rather than the version delivered by Mono  as it was
-            in the application directory.  Later versions of Npgsql have
-            now dropped the inclusion of Mono.Security.dll.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-    Glad to hear you have it sorted out. Thanks for letting me know
-    Robin.<br>
-    <br>
-    Cheers,<br>
-    <br>
-    Alex<br>
-    <br>
-  </body>
-</html>
-
---------------D51CC24FA0049B7FDB421649--
+--_000_51BE6D71ED8CFC4BA05434EB06711F5DD29642F5UKCENMBX04oxins_--
