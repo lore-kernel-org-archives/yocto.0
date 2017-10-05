@@ -1,71 +1,68 @@
-Return-Path: <prvs=14517a8ec1=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA8ADE00D87; Thu,  5 Oct 2017 12:09:13 -0700 (PDT)
+	id A31B0E00D85; Thu,  5 Oct 2017 12:18:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [81.169.146.162 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.223.173 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.173 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D87E4E00CB4
-	for <yocto@yoctoproject.org>; Thu,  5 Oct 2017 12:09:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1507230550;
-	s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Language:Content-Type:In-Reply-To:
-	MIME-Version:Date:From:References:To:Subject;
-	bh=mgXdfNiL2ezl1JGWIY7Ti0ZHIO5kMHTVnhO+TyI+o34=;
-	b=dEiHR178ch0k6WkU4xRL2N6FSyF9lo9JfO4f6qmzQ+V5riFaVw56mh3EworeleN59Z
-	QP6XkIEQzMfLWqI0VwWT8pasdAGiHKO8Q0IHVSgTImbC9aks8qjEJICnpPBFDiWKUTEA
-	U4CUhH4f4t336T4PrIHUTngLFsJVYL4vXjNCc=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9mHNc01sePA6ZpTLlbQjW24Ospt1k4KBZc70XImprNLhDMzFqr
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	([2001:0:9d38:78cf:3c4b:3794:af6c:cbea])
-	by smtp.strato.de (RZmta 42.2 AUTH) with ESMTPSA id z0b696t95J99JZI
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Thu, 5 Oct 2017 21:09:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1507230538; x=1507835338;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:To:
-	References:From:Message-ID:Date:User-Agent:MIME-Version:
-	In-Reply-To:Content-Type:Content-Language:
-	Content-Transfer-Encoding; bh=mgXdfNiL2ezl1JGWIY7Ti0ZHIO5kMHTVnh
-	O+TyI+o34=; b=KAJhnUN7mFDLG0hZpyO1qcihLEOcst2RY1VCwMJT463RPx/g2F
-	LEh54znDlTWzoRN+caSA7xc4Evj9SYFlni53ig9B1AbHgWywyPAxGiEx3/Fbch1T
-	yIYDQW5orblXDOX4kT6YUxaMIGqh2C5/XK42WTmfex1xNT1UJVFVYQYAo=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.5.0) with ESMTPSA id
-	md50000009199.msg; Thu, 05 Oct 2017 21:08:57 +0200
-X-MDRemoteIP: 178.27.11.181
-X-MDArrival-Date: Thu, 05 Oct 2017 21:08:57 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=14517a8ec1=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: Mark Hieber <hieberm@gmail.com>, yocto@yoctoproject.org
-References: <CAPxJQ9FrPv9Nh6zWeGJKA61Ov1bA9-XquAfS5BMZpi54+VS5nA@mail.gmail.com>
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <3d1914b9-24b0-faca-647f-4efb926abe2d@rsi-elektrotechnik.de>
-Date: Thu, 5 Oct 2017 21:08:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22CE1E00CB4
+	for <yocto@yoctoproject.org>; Thu,  5 Oct 2017 12:18:43 -0700 (PDT)
+Received: by mail-io0-f173.google.com with SMTP id f72so7844106ioj.5
+	for <yocto@yoctoproject.org>; Thu, 05 Oct 2017 12:18:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=J5lLDtMZb7KO9Nc3mPqcoyJ8PDdjWIibBVphCuFgvZQ=;
+	b=0nseAztjRC94bepsLWyEeZ+NJh1Cofh+EoTAMj7OR29P678+nHiyY2crFA7XT1CP6T
+	NfRlGb5vioBl70c/JAvBy219HPaUFAnYcvn8vhpehF+cY80cHTVmAxTYqgshEAHgbb5v
+	TF03umnOZn+hKfQrd1HkL6UVNap37U63wy1S1RxnCnoJgOY5yEaYvGPqEHkse0MfXT7f
+	qSc8GVRCLLI660yFaPIQlwf/wjtccmu3g5IGD5oZuEq7Ti1QyVc2vclyatE6JIlDn17m
+	J+7UcPOtalOmUXbYdAbcy0XpmrUphLFqWjTXrJ1T98DJFSlbsa3jUk7nUIkROwzzfCmn
+	OKfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=J5lLDtMZb7KO9Nc3mPqcoyJ8PDdjWIibBVphCuFgvZQ=;
+	b=mpl3b7gx5m26uSQ+Yr4eWTgp0TNSA85h6q33oRUipkqBR+YcEj7Eb6HTagYuSaBmt9
+	WmN81Q4gRVgh6Qov1qAB3vdB+s9w8f+SteQ9Ybi4zKlqvfCicMpEK9zdD5FE9RH5MgSk
+	8sow2XblACZkQ2PAS149LUdKsOuJUgiSghz3soulaTwoChQOox+cPbN6jBWQPwArTwVO
+	fC9pKySEOcJITgqQDJQ0wllGf/lCicxLYfg3AnGF/wB3TKuObJ6FjsOb2wOLUaDF0iL4
+	RUBjTwSYQXuSmuMkWeGxpVFM+zIv1RCo4Oi339kGCiwsrpnko301PPx0Ky3Z3oX8ZfkA
+	77qg==
+X-Gm-Message-State: AMCzsaWgelxzSJGOpqJwC/gGAjHc5YG0XdXuKERacJ6jlKm5iecVzfoB
+	E13AduGAvRwYhLov9VyJFsmR8kSqHLMWHn/QTLKJyg==
+X-Google-Smtp-Source: AOwi7QCYJswSu0N4pGoON61j1rYz0Vio5u3Plc4PvERQLL3VuCygAWnCJIUBuoPQvgKGEy8kVvgnSM63no1LZKEr9+Y=
+X-Received: by 10.107.164.28 with SMTP id n28mr36755296ioe.175.1507231123418; 
+	Thu, 05 Oct 2017 12:18:43 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAPxJQ9FrPv9Nh6zWeGJKA61Ov1bA9-XquAfS5BMZpi54+VS5nA@mail.gmail.com>
-Subject: Re: Adding support for yum in a yocto image
+Received: by 10.107.59.22 with HTTP; Thu, 5 Oct 2017 12:18:22 -0700 (PDT)
+In-Reply-To: <8c87603b0e564a00b7ef230b0e24b41d@sakuraus.com>
+References: <2376f96acc0f4c3db9c3b40a3cfc98f3@sakuraus.com>
+	<3688235.HQgvHeQ0bO@peggleto-mobl.ger.corp.intel.com>
+	<8c87603b0e564a00b7ef230b0e24b41d@sakuraus.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 5 Oct 2017 20:18:22 +0100
+Message-ID: <CAJTo0LZsJMtOUx9V9PJ959=w4r+r0Ow-AWEn6cgit90HqP5Dmw@mail.gmail.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Having trouble getting recipe to run in proper directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,58 +74,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Oct 2017 19:09:13 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 05 Oct 2017 19:18:44 -0000
+Content-Type: multipart/alternative; boundary="001a114223acb4f140055ad1977c"
 
-Hi!
+--001a114223acb4f140055ad1977c
+Content-Type: text/plain; charset="UTF-8"
 
-On 05.10.2017 20:30, Mark Hieber wrote:
-> I am building a yocto image to run on a network device, and I need to 
-> have yum installed in the image. Is this even possible?
+On 5 October 2017 at 18:51, Greg Wilson-Lindberg <GWilson@sakuraus.com>
+wrote:
 
-Technically, yes. But you'll have to create the support for yourself. 
-The currently supported frontend for RPM is dnf (which has replaced 
-smart) and probably will not change very soon. So the more practical 
-answer is: no, not really.
+> ERROR: configure failed
+> Unknown argument --build=x86_64-linux
+>
+> so bitbake is including an option that the configure script doesn't
+> understand. Is there a way to delete that option
+>
 
-I would also
-> like to have the epel-release repository available in my image.
+If configure doesn't recognise that option then it's not really autotools
+and you shouldn't be using the autotools class.
 
-Uhm. Be aware that your custom built distribution is *not* some kind of 
-Fedora-Light. Its an entirely different distribution, and mixing in 
-repositories from somewhere is most certainly disastrous - or do you 
-think using that OpenSuse repo plays along nicely with your CentOS 
-install? :-)
+Looking at it I'm right,
+https://bitbucket.org/Mongo/canfestival-3-asc/src/8973dd8be7e8d65a25f608fc57557c80edf20bb4/configure?at=default&fileviewer=file-view-default
+is just a hand-crafted script using bash that is called "configure".  Don't
+inherit autotools, and instead look at the --help output and pass all the
+values you'll need to (such as --cc).  Hopefully it cross-compiles
+correctly...
 
-So if you want additional software that is not packaged yet as an 
-OpenEmbedded recipe, the way to archieve that is writing the recipes. 
-Plus, rolling your own package server if you want runtime package 
-management, of course. But there already stuff prepared and should be 
-easy to find in the docs.
+Ross
 
-Greetz
+--001a114223acb4f140055ad1977c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+<div dir=3D"ltr">On 5 October 2017 at 18:51, Greg Wilson-Lindberg <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:GWilson@sakuraus.com" target=3D"_blank">GWil=
+son@sakuraus.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div c=
+lass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-col=
+or:rgb(204,204,204);padding-left:1ex">
 
 
+
+
+
+<div>
+
+
+<div dir=3D"ltr">
+<div id=3D"gmail-m_4999844221184459532x_divtagdefaultwrapper" style=3D"font=
+-size:12pt;color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-serif"=
+>
+<p><span style=3D"font-family:&quot;Courier New&quot;,monospace;font-size:1=
+2pt">ERROR: configure failed</span><br></p>
+<div><span style=3D"font-family:&quot;Courier New&quot;,monospace">Unknown =
+argument --build=3Dx86_64-linux</span></div>
+<div><br>
+</div>
+so bitbake is including an option that the configure script doesn&#39;t und=
+erstand. Is there a way to delete that option</div></div></div></blockquote=
+><div><br></div><div>If configure doesn&#39;t recognise that option then it=
+&#39;s not really autotools and you shouldn&#39;t be using the autotools cl=
+ass.</div><div><br></div><div>Looking at it I&#39;m right,=C2=A0<a href=3D"=
+https://bitbucket.org/Mongo/canfestival-3-asc/src/8973dd8be7e8d65a25f608fc5=
+7557c80edf20bb4/configure?at=3Ddefault&amp;fileviewer=3Dfile-view-default">=
+https://bitbucket.org/Mongo/canfestival-3-asc/src/8973dd8be7e8d65a25f608fc5=
+7557c80edf20bb4/configure?at=3Ddefault&amp;fileviewer=3Dfile-view-default</=
+a> is just a hand-crafted script using bash that is called &quot;configure&=
+quot;.=C2=A0 Don&#39;t inherit autotools, and instead look at the --help ou=
+tput and pass all the values you&#39;ll need to (such as --cc).=C2=A0 Hopef=
+ully it cross-compiles correctly...</div><div><br></div><div>Ross</div></di=
+v></div></div>
+
+--001a114223acb4f140055ad1977c--
