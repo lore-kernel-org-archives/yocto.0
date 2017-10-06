@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4069E00CA2; Fri,  6 Oct 2017 06:37:03 -0700 (PDT)
+	id E0DF1E00CA2; Fri,  6 Oct 2017 07:00:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,9 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.65 listed in list.dnswl.org]
+	*      [209.85.192.177 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.177 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,48 +21,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.83.65 listed in dnsbl.sorbs.net]
-Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7A66E00C35
-	for <yocto@yoctoproject.org>; Fri,  6 Oct 2017 06:37:02 -0700 (PDT)
-Received: by mail-pg0-f65.google.com with SMTP id l24so1181725pgu.2
-	for <yocto@yoctoproject.org>; Fri, 06 Oct 2017 06:37:02 -0700 (PDT)
+Received: from mail-pf0-f177.google.com (mail-pf0-f177.google.com
+	[209.85.192.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 806BCE00C35
+	for <yocto@yoctoproject.org>; Fri,  6 Oct 2017 07:00:32 -0700 (PDT)
+Received: by mail-pf0-f177.google.com with SMTP id 74so2285288pfu.1
+	for <yocto@yoctoproject.org>; Fri, 06 Oct 2017 07:00:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=KYLjRd0jZxVYTaH2eM5Gql5DRsqwIqEhGOfBX3CpqBQ=;
-	b=T0l02clySum75kzpLgcbtTzcywf9Qj3y884JgY/0xMpstZLau+gru6YzYIlW8ORsLZ
-	8WEzTIQk9X1RxdtANTZ8dGf5WvKZCiqxYyb/BsYOqRrzb8DdEi5yGZGwqIgXC/YyppMX
-	njRlUvmn3Rl83MIcfJeKvrbjnsOR5e/lI7tU/AxXa/7L13sXX4xXPYYIwMGYi847LHNz
-	sg7BbQ/Em35knAVQYfB2erEjfuQQnee0Qf47pDI/oKl6AMtEy1Xk5vAVazhr5G8d14DH
-	/ziFzjAz2FTIUc80stcGWVZHcbObIpjEdoO9vKbWueu/jCDAUnqgekk0oQRA/DcO1TpI
-	eKXw==
+	:cc; bh=H2x3BXSGZkmMW+Pm/tLvBMcMb/1qsXyadnMs9ihcxjU=;
+	b=MXQ8QzwoTrX7U7Z7BEWgNQoW7eBqFzt74ZKKyWyE6KHFtqZWNbVO6dHifFpVrYsR5T
+	GdDrqsnLvmJ/puXfqmIb1SG4khY04SDERtXs+MpYBUk9hhDXoArHWifFUTczZjlPILQP
+	cE2cCuEH9neiG351a83vryMiGWM9qupUxpd2ZuLazevp11VZZ8pBXxCgJvorA4/FMbOT
+	NGnBKhJ3O+HW466zRi4+MSxQ/3eBNT0yxemQ01kaddLlRYUpwmZE1SjbMTbZnEsprzdj
+	XpEdKOH60Zvjgo1eiiUrbjWeuY6ProjGrV4ES6yr3Ty54F4PpHuSUMR8aZP0lSArE0+s
+	P4pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=KYLjRd0jZxVYTaH2eM5Gql5DRsqwIqEhGOfBX3CpqBQ=;
-	b=HONZivefjTDolv45urQ3kx2d4/gkGcpEUmIgX1B3nbdWIaKWuSafQFDYqVUNuf72Y+
-	X4XFybPQTgzVpIl5MTe3BGb9+SRog99niQ9QGr4Xx30OgicW51aFPxaGtnoQYgs7f460
-	AV6qFWp/OOb0gKQciogeyupyYGrzdObdYcPw3PxfRgiwPPChDeWnbCOZeMWTxMokY1fX
-	+kyZ6oYWykd1HmMGV81VE4jLnxQwd4oLnonSGMFlLHjtVEVLZVE9QqysBmFvsVws7TE7
-	N7JxNp9vIqXuQNG6DX61J8lVgXYSmYj0P+968ibXxOOSBXo9M+OGVfMXcUJoc+yIDs/0
-	h5yw==
-X-Gm-Message-State: AMCzsaWHnpO4rAgLnZ6I6CbQYvyv2a2cDmPF+GA2nvPWrfC33/JMVWkd
-	ILKV1z6StyHzPkz6jgL96jvR978/3jexy9dVJqs=
-X-Google-Smtp-Source: AOwi7QDj/yJFizrSu6sp4L1ESyH0ZIc5gTxXfPLIJanLAdv+CfLb50ZNIBrlOtBsxNm+fiw73lpZXhFEI/OpvIEeZag=
-X-Received: by 10.84.204.133 with SMTP id b5mr2020035ple.440.1507297021833;
-	Fri, 06 Oct 2017 06:37:01 -0700 (PDT)
+	bh=H2x3BXSGZkmMW+Pm/tLvBMcMb/1qsXyadnMs9ihcxjU=;
+	b=cPp80U8nSSfvFbvQDVpZK3N2IxXyviDiAd+M/figDrX6PB19CeWRoG0Ixejiq/cPsA
+	FmlTTTKFiXJou3gocEXDLkZTKq/GaGFx2A2oYB5TXfofQAr14lxiN/QY/AblIQ9FfXl4
+	Kdn+ENA2Fb1I6y+AKB8Z2RbSJ1Zujl+KgMhk5WJaQUZQCQSqDBRGFQuw/bbInHMNHn/P
+	bs4UFVpFlemGhOfh0Bvf19Y0583WPu1MbhPC+oWs+HGvr1HtqKNIm4bdhDVZykcoKMdt
+	7+dU0AX5DdUjLydL0fhAQiNcWRy/VMnb9TtZFJ7w3/2k6pZdq5R8ZQjY4sucGfKHLMOo
+	xdhQ==
+X-Gm-Message-State: AMCzsaUzCo8f9HoMA8EhGDYFV+80/VGjHdTgM27IAFepew0Gf0v59bPr
+	7szfX+g3ypOA3ZFDlcNWcUaOEPua4VCSz9caEt9OCg==
+X-Google-Smtp-Source: AOwi7QB2hYTWxXhlG87JyrlMt3EMzKwkN5qAofU55QP638CIQbFv7iJB7akJKxeNRz6LgDMjv2zpF+6ZvwOU5GRJ96k=
+X-Received: by 10.84.240.12 with SMTP id y12mr2114530plk.215.1507298431818;
+	Fri, 06 Oct 2017 07:00:31 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.100.135.23 with HTTP; Fri, 6 Oct 2017 06:36:31 -0700 (PDT)
-In-Reply-To: <947c7792-92d4-780a-e3c5-19dc2fb00706@advancedtelematic.com>
-References: <947c7792-92d4-780a-e3c5-19dc2fb00706@advancedtelematic.com>
+Received: by 10.100.135.23 with HTTP; Fri, 6 Oct 2017 07:00:01 -0700 (PDT)
+In-Reply-To: <CAPZw6vNtRpXny=XzB=v88R944eZOP7Lg4RRax8Q9xetRrY7HgA@mail.gmail.com>
+References: <CAPZw6vNtRpXny=XzB=v88R944eZOP7Lg4RRax8Q9xetRrY7HgA@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 6 Oct 2017 06:36:31 -0700
-Message-ID: <CAMKF1sp-KnGeOLOkAdt6aX1b6+KdhpiUwGiLnCAS0-XE-_efUw@mail.gmail.com>
-To: Patrick Vacek <patrick@advancedtelematic.com>
+Date: Fri, 6 Oct 2017 07:00:01 -0700
+Message-ID: <CAMKF1sqZP6b7YO5iO5aDro=devyuzEBVUtG++CjwtFXdkGSriA@mail.gmail.com>
+To: Torsten Sievers <torstensievers@googlemail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Boost + Yocto
+Subject: Re: Bitbaking a recipe often triggers a do_package_write_rpm of a dependant recipe... why?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,34 +73,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Oct 2017 13:37:04 -0000
+X-List-Received-Date: Fri, 06 Oct 2017 14:00:32 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Oct 6, 2017 at 5:05 AM, Patrick Vacek
-<patrick@advancedtelematic.com> wrote:
-> Hello,
+On Thu, Oct 5, 2017 at 3:09 AM, Torsten Sievers
+<torstensievers@googlemail.com> wrote:
+> Hi guys,
 >
-> I'm trying to understand how Yocto figures out which Boost libraries to
-> install in an image. I've been studying the Boost recipes and it looks
-> like RRECOMMENDS is used to specify all of the libraries, but yet my
-> image only gets a subset of them. It's the subset that I typically need,
-> so it's fine, but I want to understand how the process works.
+> Here is the situation:
 >
-> There's an additional tricky detail that got me looking into this. When
-> I bitbake a recipe I've written which just lists "boost" in DEPENDS,
-> running ldd the compiled executable does not appear to depend on a
-> couple of the boost libraries that I'd specified in CMake (although it
-> does depend on several others). Only the libraries that are specifically
-> mentioned with ldd are installed in the image. However, if I manually
-> cross-compile the same code via the native-sdk, ldd indicates that all
-> the expected libraries are dependencies. As such, that executable will
-> not be able to run on my device until I install the missing libraries.
-> Oddly, those libraries are built with bitbake, but not installed! How
-> does bitbake manage to remove some of these dependencies?
+> I have two custom made recipes, one is a SDK , the other one is a set of
+> examples that use the sdk.
+>
+> The examples recipe has DEPENDS and RDEPENDS set that point to artifacts
+> that are produced by the SDK recipe.
+>
+> So far, so normal
+>
+> Now the strange thing happens:
+>
+> when I do
+>
+> bitbake sdk
+>
+> everything is fine, it configures,compiles,installs and eventually create a
+> rpm (by do_package_write_rpm)
+>
+> when I run
+>
+> bitbake examples
+>
+> immediately after the finish of the bitbake sdk
+>
+> it is compiling,installing etc the example rpm. However it is also very
+> often (but not always) re-triggering the do_package_write_rpm from the SDK.
+> but why?
+>
+> I double checked, the SDK code/recipe was not touched, and the SDK rpm was
+> sitting right there before I bitbaked the examples.
+>
+>
+> i am digging deep inside bitbake / yocto recipes for days but i cannot find
+> the rootcause...
+>
+> Any hint what could cause this? I would not bother too much, but the
+> building of the SDK rpms takes roughly 10 minutes, thus significantly
+> slowing down my development iterations.
+>
+> Any hints are highly appreciated...
 
-it could be thst applications dependency detection mechanism is behaving
-differently and presenting different set to linker.
+hard to know without seeing the code but you can try to dump the task
+signatures for do_package_write_rpm task from sdk recipe or use
+bitbake-diffsigs tool to compute the differencs between two runs of
+this task which
+can give some insights into the task variable dependencies which might be
+in play
 
-Secondly its possible that linker options in play are different e.g.
---as-needed and --copy-dt-needed-entries might be in play
+> BR
+>   Torsten
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
