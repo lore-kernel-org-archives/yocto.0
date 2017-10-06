@@ -1,44 +1,47 @@
-Return-Path: <Aaron_Wright@selinc.com>
+Return-Path: <amarnath.valluri@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82E23E00D87; Thu,  5 Oct 2017 16:12:04 -0700 (PDT)
+	id A5E88E00D98; Fri,  6 Oct 2017 01:12:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.117.214.143 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from volare.selinc.com (volare.selinc.com [74.117.214.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F411E00CE2
-	for <yocto@yoctoproject.org>; Thu,  5 Oct 2017 16:12:02 -0700 (PDT)
-Received: from pps.filterd (volare.selinc.com [127.0.0.1])
-	by volare.selinc.com (8.16.0.21/8.16.0.21) with SMTP id v95NB2Kj007044
-	for <yocto@yoctoproject.org>; Thu, 5 Oct 2017 16:12:02 -0700
-Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
-	by volare.selinc.com with ESMTP id 2da6tv945w-1
-	for <yocto@yoctoproject.org>; Thu, 05 Oct 2017 16:12:02 -0700
-In-Reply-To: <1681586.rUkS85rcXk@peggleto-mobl.ger.corp.intel.com>
-References: <OFAC655E34.B4B3A1E0-ON882581AF.007C1B86-882581AF.007DD7C9@selinc.com>
-	<1681586.rUkS85rcXk@peggleto-mobl.ger.corp.intel.com>
-To: yocto@yoctoproject.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B585E00D91
+	for <yocto@yoctoproject.org>; Fri,  6 Oct 2017 01:12:16 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Oct 2017 01:12:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.42,482,1500966000"; 
+	d="scan'208,217";a="1227731301"
+Received: from irsmsx109.ger.corp.intel.com ([163.33.3.23])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Oct 2017 01:12:14 -0700
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.8]) by
+	IRSMSX109.ger.corp.intel.com ([169.254.13.28]) with mapi id
+	14.03.0319.002; Fri, 6 Oct 2017 09:12:13 +0100
+From: "Valluri, Amarnath" <amarnath.valluri@intel.com>
+To: "Jeff.Glanz@dell.com" <Jeff.Glanz@dell.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: Kernel driver installs broken in poky2.3
+Thread-Index: AdM+GLMxy+bw3dOLStu3LoPXTNZXBQAWcxOA
+Date: Fri, 6 Oct 2017 08:12:12 +0000
+Message-ID: <1507277561.4061.7.camel@intel.com>
+References: <96841aee253542c099d45ff7a5297981@ausx13mpc121.AMER.DELL.COM>
+In-Reply-To: <96841aee253542c099d45ff7a5297981@ausx13mpc121.AMER.DELL.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.68.147]
 MIME-Version: 1.0
-X-KeepSent: D00D4004:940B8BF0-882581B0:007E6B92;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0.1FP6 April 21, 2016
-Message-ID: <OFD00D4004.940B8BF0-ON882581B0.007E6B92-882581B0.007F71DA@selinc.com>
-From: Aaron_Wright@selinc.com
-Date: Thu, 5 Oct 2017 16:12:02 -0700
-X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP8|February  23,
-	2017) at 10/05/2017 04:12:02 PM,
-	Serialize complete at 10/05/2017 04:12:02 PM
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=8675
-	signatures=668573
-Subject: Re: local fetcher and devtool don't work well together
+Cc: "Michael.E.Brown@dell.com" <Michael.E.Brown@dell.com>
+Subject: Re: Kernel driver installs broken in poky2.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,216 +53,236 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Oct 2017 23:12:04 -0000
+X-List-Received-Date: Fri, 06 Oct 2017 08:12:18 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="=_alternative 007F71D8882581B0_="
+	boundary="_000_150727756140617camelintelcom_"
 
---=_alternative 007F71D8882581B0_=
-Content-Type: text/plain; charset="US-ASCII"
+--_000_150727756140617camelintelcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Paul Eggleton <paul.eggleton@linux.intel.com> wrote on 10/04/2017 06:47:50 
-PM:
-> Hi Aaron,
-> 
-> On Thursday, 5 October 2017 11:54:32 AM NZDT Aaron_Wright@selinc.com 
-wrote:
-> > I have a recipe with:
-> > 
-> > SRC_URI = "file://a/b/c/d;subdir=src"
-> > S = "${WORKDIR}/src/a/b/c/d"
-> > 
-> > First off, ${S} must be set to the full path because the basepath uri 
-> > parameter[1] doesn't work. So this doesn't work:
-> > 
-> > SRC_URI = "file://a/b/c/d;subdir=src;basepath=a/b/c/d"
-> > S = "${WORKDIR}/src"
-> > 
-> > I wish it would, but that's ok. I can deal with the long ${S} path as 
-it 
-> > compiles and works fine with bitbake. 
-> 
-> My question would be what are you trying to achieve here? Should you be 
-using
-> the externalsrc class perhaps?
+SGkgSmVmZiwNCg0KU29ycnkgdG8gaGVhciBhYm91dCB0aGUgZmFpbHVyZSwNCg0KVGhlIGNoYW5n
+ZSB3YXMgcGFydCBvZiBhZGRpbmcgbWVyZ2VkIC91c3Igc3VwcG9ydCBmb3Igb2Vjb3JlLiAnSU5T
+VEFMTF9NT0RfUEFUSCcgd2FzIHVzaW5nICcvbGliL21vZHVsZXMvJHtLRVJORUxfVkVSU0lPTn0n
+IGFzIGtlcm5lbCBtb2R1bGVzIHBhdGgsIHdoZXJlIGFzIGluIG1lcmdlZCAvdXNyIGVudmlyb25t
+ZW50cyBpdCB3b3VsZCAgYmUgJy91c3IvbGliL21vZHVsZXMvJHtLRVJORUxfVkVSU0lPTn0nLiwg
+QW5kIHRoZXJlIGlzIG5vIHdheSB0byBmaXggdGhpcyBieSB1c2luZyBJTlNUQUxMX01PRF9QQVRI
+LCBTbyBJIGhhZCB0byB1c2UgTU9ETElCIGJ5IHJlcGxhY2luZyBoYXJkY29kZWQgJy9saWInIHdp
+dGggYXBwcm9wcmlhdGUgYml0YmFrZSB2YXJpYWJsZSAuaWUuLCAke25vbmFyY2hfYmFzZV9saWJk
+aXJ9Lg0KDQoNCi0gQW1hcm5hdGgNCg0KDQpPbiBUaHUsIDIwMTctMTAtMDUgYXQgMjA6MzQgKzAw
+MDAsIEplZmYuR2xhbnpAZGVsbC5jb20gd3JvdGU6DQoNClJlOiBwb2t5Mi4zIGtlcm5lbCBkcml2
+ZXIgaW5zdGFsbOKAmXMNCg0KDQoNClBva3kgcmVsZWFzZSwgcHlybyAoMi4zKSwgZmlsZTogbWV0
+YS9jbGFzc2VzL21vZHVsZS5iYmNsYXNzDQoNClRoaXMgY2hhbmdlLCBtYWRlIGluIEphbnVhcnkg
+MjAxNywgaXMgYnJlYWtpbmcgIGRvX2luc3RhbGwncyBmb3Igb3VyIGtlcm5lbCBkcml2ZXJzLCBh
+cyBJTlNUQUxMX01PRF9QQVRIIGlzIG5vdCBkZWZpbmVkLiAgT3VyIE1ha2VmaWxlcyByZWZlcmVu
+Y2UgdGhpcyB2YXJpYWJsZS4NCg0KV2hhdCB3YXMgdGhlIHB1cnBvc2Ugb2YgdGhpcyBwYXJ0aWN1
+bGFyIGNoYW5nZT8NCg0KDQoNCmRpZmY6DQoNCmNvbW1pdCAwZGVjZjFjYzFjMzVkZDcwZjNiODIy
+ZTNiNDI5MWE4MTBhMzE5YmEwDQoNCkF1dGhvcjogQW1hcm5hdGggVmFsbHVyaSA8YW1hcm5hdGgu
+dmFsbHVyaUBpbnRlbC5jb20+DQoNCkRhdGU6ICAgV2VkIEphbiA0IDEzOjU4OjIzIDIwMTcgKzAy
+MDANCg0KDQoNCiAgICBrZXJuZWw6IHVzZSAke25vbmFyY2hfYmFzZV9saWJkaXJ9IGZvciBrZXJu
+ZWwgbW9kdWxlcyBpbnN0YWxsYXRpb24uDQoNCg0KDQogICAgUmVwbGFjZSBoYXJkY29kZWQgJy9s
+aWInIGluIGtlcm5lbCBtb2R1bGVzIGluc3RhbGxhdGlvbiBwYXRoIHdpdGgNCg0KICAgICR7bm9u
+YXJjaF9iYXNlX2xpYmRpcn0sIHdoaWNoIGlzIG1lYW50IGV4YWN0bHkgZm9yIHRoaXMuDQoNCg0K
+DQogICAgKEZyb20gT0UtQ29yZSByZXY6IDIyZjViYTcxNTRmY2JlODI2ZDBhMzI4Mzc0MDkwMzMx
+MmIyYWFiNDYpDQoNCg0KDQogICAgU2lnbmVkLW9mZi1ieTogQW1hcm5hdGggVmFsbHVyaSA8YW1h
+cm5hdGgudmFsbHVyaUBpbnRlbC5jb20+DQoNCiAgICBTaWduZWQtb2ZmLWJ5OiBSaWNoYXJkIFB1
+cmRpZSA8cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZz4NCg0KLiAuIC4NCg0KZGlm
+ZiAtLWdpdCBhL21ldGEvY2xhc3Nlcy9tb2R1bGUuYmJjbGFzcyBiL21ldGEvY2xhc3Nlcy9tb2R1
+bGUuYmJjbGFzcw0KDQppbmRleCA5OWI3ZWJjLi44MDI0NzZiIDEwMDY0NA0KDQotLS0gYS9tZXRh
+L2NsYXNzZXMvbW9kdWxlLmJiY2xhc3MNCg0KKysrIGIvbWV0YS9jbGFzc2VzL21vZHVsZS5iYmNs
+YXNzDQoNCkBAIC0zMSw3ICszMSw3IEBAIG1vZHVsZV9kb19jb21waWxlKCkgew0KDQoNCg0KbW9k
+dWxlX2RvX2luc3RhbGwoKSB7DQoNCiAgICB1bnNldCBDRkxBR1MgQ1BQRkxBR1MgQ1hYRkxBR1Mg
+TERGTEFHUw0KDQotICAgb2VfcnVubWFrZSBERVBNT0Q9ZWNobyBJTlNUQUxMX01PRF9QQVRIPSIk
+e0R9IiBcDQoNCisgb2VfcnVubWFrZSBERVBNT0Q9ZWNobyBNT0RMSUI9IiR7RH0ke25vbmFyY2hf
+YmFzZV9saWJkaXJ9L21vZHVsZXMvJHtLRVJORUxfVkVSU0lPTn0iIFwNCg0KVGhhbmtzIQ0KDQpK
+ZWZmIEdsYW56DQpTZW5pb3IgRGV2IFByaW4gRW5naW5lZXIsIFNDTSAmIFJlbGVhc2UgRW5naW5l
+ZXJpbmcNCkRlbGwgRU1DIHwgU2VydmVyIFNvbHV0aW9ucw0KSmVmZi5HbGFuekBkZWxsLmNvbTxt
+YWlsdG86SmVmZi5HbGFuekBkZWxsLmNvbT4NCg0K
 
-I've waffled between externalsrc and the local fetcher, but the local 
-fetcher seems to behave the best.
+--_000_150727756140617camelintelcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <1F30A801AEC2334CA906439FFFBA52F7@intel.com>
+Content-Transfer-Encoding: base64
 
-What I'm trying to do is a little odd, but we are trying to use yocto with 
-the recipes, meta layer, and source code in the same repository. This 
-makes the continuous integration server much simpler, and developers can 
-see the results of their commit/push in the context of the whole product 
-being put together with yocto.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6ZHQ9InV1aWQ6QzJGNDEwMTAtNjVC
+My0xMWQxLUEyOUYtMDBBQTAwQzE0ODgyIiB4bWxuczptPSJodHRwOi8vc2NoZW1hcy5taWNyb3Nv
+ZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy9UUi9S
+RUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250
+ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1ldGEgbmFtZT0iR2VuZXJhdG9yIiBj
+b250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQgbWVkaXVtKSI+DQo8c3R5bGU+PCEt
+LQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2Ft
+YnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UN
+Cgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9
+DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2
+Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250
+LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGlu
+aywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMw
+NTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNv
+SHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRG
+NzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwDQoJe21zby1zdHlsZS1wcmlvcml0
+eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1z
+by1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6
+MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRW1h
+aWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLWNvbXBvc2U7DQoJZm9udC1mYW1p
+bHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVm
+YXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJy
+aSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47
+DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7
+cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
+CjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48
+IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0
+PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5
+b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiPg0KPGRp
+dj5IaSBKZWZmLDwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+U29ycnkgdG8gaGVhciBh
+Ym91dCB0aGUgZmFpbHVyZSw8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlRoZSBjaGFu
+Z2Ugd2FzIHBhcnQgb2YgYWRkaW5nIG1lcmdlZCAvdXNyIHN1cHBvcnQgZm9yIG9lY29yZS4gJ0lO
+U1RBTExfTU9EX1BBVEgnIHdhcyB1c2luZyAnL2xpYi9tb2R1bGVzLyR7S0VSTkVMX1ZFUlNJT059
+JyBhcyBrZXJuZWwgbW9kdWxlcyBwYXRoLCB3aGVyZSBhcyBpbiBtZXJnZWQgL3VzciBlbnZpcm9u
+bWVudHMgaXQgd291bGQgJm5ic3A7YmUgJy91c3IvbGliL21vZHVsZXMvJHtLRVJORUxfVkVSU0lP
+Tn0nLiwgQW5kIHRoZXJlIGlzIG5vDQogd2F5IHRvIGZpeCB0aGlzIGJ5IHVzaW5nIElOU1RBTExf
+TU9EX1BBVEgsIFNvIEkgaGFkIHRvIHVzZSBNT0RMSUIgYnkgcmVwbGFjaW5nIGhhcmRjb2RlZCAn
+L2xpYicgd2l0aCBhcHByb3ByaWF0ZSBiaXRiYWtlIHZhcmlhYmxlIC5pZS4sICR7bm9uYXJjaF9i
+YXNlX2xpYmRpcn0uPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4N
+CjxkaXY+LSBBbWFybmF0aDwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+Jm5ic3A7PC9k
+aXY+DQo8ZGl2Pk9uIFRodSwgMjAxNy0xMC0wNSBhdCAyMDozNCAmIzQzOzAwMDAsIEplZmYuR2xh
+bnpAZGVsbC5jb20gd3JvdGU6PC9kaXY+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYg
+Y2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9t
+Oi4wMDAxcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+UmU6IHBva3kyLjMga2VybmVs
+IGRyaXZlciBpbnN0YWxs4oCZczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJn
+aW46MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNr
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJn
+aW4tYm90dG9tOi4wMDAxcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+UG9reSByZWxl
+YXNlLCBweXJvICgyLjMpLCBmaWxlOiBtZXRhL2NsYXNzZXMvbW9kdWxlLmJiY2xhc3M8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9tOi4wMDAx
+cHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+VGhpcyBjaGFuZ2UsIG1hZGUgaW4gSmFu
+dWFyeSAyMDE3LCBpcyBicmVha2luZyZuYnNwOyBkb19pbnN0YWxsJ3MgZm9yIG91ciBrZXJuZWwg
+ZHJpdmVycywgYXMgSU5TVEFMTF9NT0RfUEFUSCBpcyBub3QgZGVmaW5lZC4mbmJzcDsgT3VyIE1h
+a2VmaWxlcyByZWZlcmVuY2UNCiB0aGlzIHZhcmlhYmxlLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIHN0eWxlPSJtYXJnaW46MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOmJsYWNrIj5XaGF0IHdhcyB0aGUgcHVycG9zZSBvZiB0aGlzIHBhcnRpY3VsYXIg
+Y2hhbmdlPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGluO21hcmdp
+bi1ib3R0b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj4mbmJzcDs8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9tOi4w
+MDAxcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+ZGlmZjoNCjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5jb21taXQgMGRlY2YxY2MxYzM1ZGQ3MGYzYjgyMmUz
+YjQyOTFhODEwYTMxOWJhMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46
+MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5B
+dXRob3I6IEFtYXJuYXRoIFZhbGx1cmkgJmx0O2FtYXJuYXRoLnZhbGx1cmlAaW50ZWwuY29tJmd0
+OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGluO21hcmdpbi1ib3R0
+b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5EYXRlOiZuYnNwOyZuYnNw
+OyBXZWQgSmFuIDQgMTM6NTg6MjMgMjAxNyAmIzQzOzAyMDA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9tOi4wMDAxcHQiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
+ZXJpZjtjb2xvcjpibGFjayI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgc3R5bGU9
+Im1hcmdpbjowaW47bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+YmxhY2siPiZuYnNwOyZuYnNwOyZuYnNwOyBrZXJuZWw6IHVzZSAke25vbmFyY2hfYmFzZV9saWJk
+aXJ9IGZvciBrZXJuZWwgbW9kdWxlcyBpbnN0YWxsYXRpb24uPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgc3R5bGU9Im1hcmdpbjowaW47bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWY7Y29sb3I6YmxhY2siPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxl
+PSJtYXJnaW46MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OmJsYWNrIj4mbmJzcDsmbmJzcDsmbmJzcDsgUmVwbGFjZSBoYXJkY29kZWQgJy9saWInIGluIGtl
+cm5lbCBtb2R1bGVzIGluc3RhbGxhdGlvbiBwYXRoIHdpdGg8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9tOi4wMDAxcHQiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
+ZXJpZjtjb2xvcjpibGFjayI+Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7bm9uYXJjaF9iYXNlX2xpYmRp
+cn0sIHdoaWNoIGlzIG1lYW50IGV4YWN0bHkgZm9yIHRoaXMuPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgc3R5bGU9Im1hcmdpbjowaW47bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWY7Y29sb3I6YmxhY2siPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxl
+PSJtYXJnaW46MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OmJsYWNrIj4mbmJzcDsmbmJzcDsmbmJzcDsgKEZyb20gT0UtQ29yZSByZXY6IDIyZjViYTcxNTRm
+Y2JlODI2ZDBhMzI4Mzc0MDkwMzMxMmIyYWFiNDYpPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+c3R5bGU9Im1hcmdpbjowaW47bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6YmxhY2siPiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJn
+aW46MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNr
+Ij4mbmJzcDsmbmJzcDsmbmJzcDsgU2lnbmVkLW9mZi1ieTogQW1hcm5hdGggVmFsbHVyaSAmbHQ7
+YW1hcm5hdGgudmFsbHVyaUBpbnRlbC5jb20mZ3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+c3R5bGU9Im1hcmdpbjowaW47bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6YmxhY2siPiZuYnNwOyZuYnNwOyZuYnNwOyBTaWduZWQtb2ZmLWJ5OiBSaWNoYXJkIFB1
+cmRpZSAmbHQ7cmljaGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZyZndDs8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9tOi4wMDAxcHQi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+LiAuIC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9tOi4wMDAxcHQiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
+ZXJpZjtjb2xvcjpibGFjayI+ZGlmZiAtLWdpdCBhL21ldGEvY2xhc3Nlcy9tb2R1bGUuYmJjbGFz
+cyBiL21ldGEvY2xhc3Nlcy9tb2R1bGUuYmJjbGFzczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IHN0eWxlPSJtYXJnaW46MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOmJsYWNrIj5pbmRleCA5OWI3ZWJjLi44MDI0NzZiIDEwMDY0NDxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGluO21hcmdpbi1ib3R0b206LjAwMDFwdCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj4tLS0gYS9tZXRhL2NsYXNzZXMvbW9kdWxlLmJiY2xh
+c3M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90
+dG9tOi4wMDAxcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+JiM0MzsmIzQzOyYjNDM7
+IGIvbWV0YS9jbGFzc2VzL21vZHVsZS5iYmNsYXNzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+c3R5bGU9Im1hcmdpbjowaW47bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6YmxhY2siPkBAIC0zMSw3ICYjNDM7MzEsNyBAQCBtb2R1bGVfZG9fY29tcGlsZSgpIHs8
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9t
+Oi4wMDAxcHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+Jm5ic3A7PG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgc3R5bGU9Im1hcmdpbjowaW47bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2siPm1vZHVsZV9kb19pbnN0YWxsKCkgezxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJtYXJnaW46MGluO21hcmdpbi1ib3R0b206LjAwMDFw
+dCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj4mbmJzcDsmbmJzcDsmbmJzcDsgdW5zZXQg
+Q0ZMQUdTIENQUEZMQUdTIENYWEZMQUdTIExERkxBR1M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBzdHlsZT0ibWFyZ2luOjBpbjttYXJnaW4tYm90dG9tOi4wMDAxcHQiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
+Zjtjb2xvcjpibGFjayI+LSZuYnNwOyZuYnNwOyBvZV9ydW5tYWtlIERFUE1PRD1lY2hvIElOU1RB
+TExfTU9EX1BBVEg9JnF1b3Q7JHtEfSZxdW90OyBcPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+c3R5bGU9Im1hcmdpbjowaW47bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6YmxhY2siPiYjNDM7IG9lX3J1bm1ha2UgREVQTU9EPWVjaG8gTU9ETElCPSZxdW90OyR7
+RH0ke25vbmFyY2hfYmFzZV9saWJkaXJ9L21vZHVsZXMvJHtLRVJORUxfVkVSU0lPTn0mcXVvdDsg
+XDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzITxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVv
+dDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkplZmYgR2xhbno8L3NwYW4+
+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFs
+JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4LjBwdDtmb250LWZh
+bWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlNlbmlvciBE
+ZXYgUHJpbiBFbmdpbmVlciwgU0NNICZhbXA7IFJlbGVhc2UgRW5naW5lZXJpbmc8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjguMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+IzAwQjBGMCI+RGVsbDwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo4LjBwdDtmb250
+LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPg0KPC9z
+cGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojN0Y3RjdGIj5FTUM8L3NwYW4+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZTo4LjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2Nv
+bG9yOiMxRjQ5N0QiPiB8IFNlcnZlciBTb2x1dGlvbnM8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZTo4LjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OmJsYWNrIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjguMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PGEgaHJlZj0ibWFpbHRvOkplZmYuR2xhbnpAZGVsbC5j
+b20iPjxzcGFuIHN0eWxlPSJjb2xvcjpibHVlIj5KZWZmLkdsYW56QGRlbGwuY29tPC9zcGFuPjwv
+YT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
+OzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-This might not be the best idea, and yocto certainly seems to be based on 
-the fact that the source is remote, but things are generally working well 
-for us; at least continuous integration server wise. Right now I'm trying 
-to figure out how to get developers developing.
-
->   https://urldefense.proofpoint.com/v2/url?
-> 
-u=http-3A__www.yoctoproject.org_docs_current_dev-2Dmanual_dev-2Dmanual.html-23building-2Dsoftware-2Dfrom-2Dan-2Dexternal-2Dsource&d=DwICAg&c=zVFQZQ67ypsA9mYKSCqWmQHiVkCCaN-
-> Gb60_N6TVnLk&r=rUGbzRLPRvFX3fKfyNvK9Xgz1MfBXwYtoWGtKfkzG3k&m=o9VVMczGF-
-> R7-
-> 
-EC8L6cShpCsU-3GWfug-0DbDpHLamU&s=JFZPoF89tSSrPhrhqmYSV5VrbkGpTM4jsqr1ij9sBa4&e=
-> 
-> > However, it doesn't work with 
-> > devtool:
-> > 
-> > $ devtool modify -n d ~/mysrc/a/b/c/d
-> > NOTE: Creating workspace layer in <... snip 
-> > ...>/yocto/poky/build/workspace
-> > NOTE: Enabling workspace layer in bblayers.conf
-> > Parsing recipes..done.
-> > NOTE: Recipe d now set up to build from ~/mysrc/a/b/c/d/b/c/d
-> > 
-> > Where is the extra 'b/c/d' coming from in where it will be built from? 
-
-> > This directory is reflected in the bbappends created the workspace:
-> > 
-> > FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > FILESPATH_prepend := "~/mysrc/a/b/c/d/b/c/d/oe-local-files:"
-> >
-> > Is it possible to have a ${S} of "${WORKDIR}/src" in this situation?
-> > How can I get devtool to behave and not duplicate the path?
-> 
-> The ~ shouldn't be in the value of FILESPATH, it ought to be expanded, 
-so
-> that's something we need to fix. 
-
-Don't worry about the ~, that was just something I passed in the email to 
-obscure my path. Sorry.
-
-> With regard to the path doubling of the
-> subdirectories, it's assuming that because you have that subdirectory 
-path in
-> S then you need that underneath the specified source directory (since 
-that is
-> usually true if you were for example pointing to a checkout of a git
-> repository, or an extracted source tarball).
-
-You are correct. I can't believe I didn't think of that before. Thank you 
-so much. That gets me going at least.
-
-> devtool hasn't been written to handle this usage (which is unusual 
--typically
-> the recipe is pointing at remote source). It would be good to get an
-> understanding of your use case here so we can figure out where to go 
-from
-> here.
-> 
-> Cheers,
-> Paul
-> 
-> -- 
-> 
-> Paul Eggleton
-> Intel Open Source Technology Centre
-
---=_alternative 007F71D8882581B0_=
-Content-Type: text/html; charset="US-ASCII"
-
-<tt><font size=2>Paul Eggleton &lt;paul.eggleton@linux.intel.com&gt; wrote
-on 10/04/2017 06:47:50 PM:<br>
-&gt; Hi Aaron,<br>
-&gt; <br>
-&gt; On Thursday, 5 October 2017 11:54:32 AM NZDT Aaron_Wright@selinc.com
-wrote:<br>
-&gt; &gt; I have a recipe with:<br>
-&gt; &gt; <br>
-&gt; &gt; SRC_URI = &quot;</font></tt><a href="file://a/b/c/d;subdir=src"><tt><font size=2>file://a/b/c/d;subdir=src</font></tt></a><tt><font size=2>&quot;<br>
-&gt; &gt; S = &quot;${WORKDIR}/src/a/b/c/d&quot;<br>
-&gt; &gt; <br>
-&gt; &gt; First off, ${S} must be set to the full path because the basepath
-uri <br>
-&gt; &gt; parameter[1] doesn't work. So this doesn't work:<br>
-&gt; &gt; <br>
-&gt; &gt; SRC_URI = &quot;</font></tt><a href="file://a/b/c/d;subdir=src;basepath=a/b/c/d"><tt><font size=2>file://a/b/c/d;subdir=src;basepath=a/b/c/d</font></tt></a><tt><font size=2>&quot;<br>
-&gt; &gt; S = &quot;${WORKDIR}/src&quot;<br>
-&gt; &gt; <br>
-&gt; &gt; I wish it would, but that's ok. I can deal with the long ${S}
-path as it <br>
-&gt; &gt; compiles and works fine with bitbake. <br>
-&gt; <br>
-&gt; My question would be what are you trying to achieve here? Should you
-be using<br>
-&gt; the externalsrc class perhaps?<br>
-</font></tt>
-<br><tt><font size=2>I've waffled between externalsrc and the local fetcher,
-but the local fetcher seems to behave the best.</font></tt>
-<br>
-<br><tt><font size=2>What I'm trying to do is a little odd, but we are
-trying to use yocto with the recipes, meta layer, and source code in the
-same repository. This makes the continuous integration server much simpler,
-and developers can see the results of their commit/push in the context
-of the whole product being put together with yocto.</font></tt>
-<br>
-<br><tt><font size=2>This might not be the best idea, and yocto certainly
-seems to be based on the fact that the source is remote, but things are
-generally working well for us; at least continuous integration server wise.
-Right now I'm trying to figure out how to get developers developing.</font></tt>
-<br><tt><font size=2><br>
-&gt; &nbsp; </font></tt><a href=https://urldefense.proofpoint.com/v2/url?><tt><font size=2>https://urldefense.proofpoint.com/v2/url?</font></tt></a><tt><font size=2><br>
-&gt; u=http-3A__www.yoctoproject.org_docs_current_dev-2Dmanual_dev-2Dmanual.html-23building-2Dsoftware-2Dfrom-2Dan-2Dexternal-2Dsource&amp;d=DwICAg&amp;c=zVFQZQ67ypsA9mYKSCqWmQHiVkCCaN-<br>
-&gt; Gb60_N6TVnLk&amp;r=rUGbzRLPRvFX3fKfyNvK9Xgz1MfBXwYtoWGtKfkzG3k&amp;m=o9VVMczGF-<br>
-&gt; R7-<br>
-&gt; EC8L6cShpCsU-3GWfug-0DbDpHLamU&amp;s=JFZPoF89tSSrPhrhqmYSV5VrbkGpTM4jsqr1ij9sBa4&amp;e=<br>
-&gt; <br>
-&gt; &gt; However, it doesn't work with <br>
-&gt; &gt; devtool:<br>
-&gt; &gt; <br>
-&gt; &gt; $ devtool modify -n d ~/mysrc/a/b/c/d<br>
-&gt; &gt; NOTE: Creating workspace layer in &lt;... snip <br>
-&gt; &gt; ...&gt;/yocto/poky/build/workspace<br>
-&gt; &gt; NOTE: Enabling workspace layer in bblayers.conf<br>
-&gt; &gt; Parsing recipes..done.<br>
-&gt; &gt; NOTE: Recipe d now set up to build from ~/mysrc/a/b/c/d/b/c/d<br>
-&gt; &gt; <br>
-&gt; &gt; Where is the extra 'b/c/d' coming from in where it will be built
-from? <br>
-&gt; &gt; This directory is reflected in the bbappends created the workspace:<br>
-&gt; &gt; <br>
-&gt; &gt; FILESEXTRAPATHS_prepend := &quot;${THISDIR}/${PN}:&quot;<br>
-&gt; &gt; FILESPATH_prepend := &quot;~/mysrc/a/b/c/d/b/c/d/oe-local-files:&quot;<br>
-&gt; &gt;<br>
-&gt; &gt; Is it possible to have a ${S} of &quot;${WORKDIR}/src&quot; in
-this situation?<br>
-&gt; &gt; How can I get devtool to behave and not duplicate the path?<br>
-&gt; <br>
-&gt; The ~ shouldn't be in the value of FILESPATH, it ought to be expanded,
-so<br>
-&gt; that's something we need to fix. </font></tt>
-<br>
-<br><tt><font size=2>Don't worry about the ~, that was just something I
-passed in the email to obscure my path. Sorry.</font></tt>
-<br>
-<br><tt><font size=2>&gt; With regard to the path doubling of the<br>
-&gt; subdirectories, it's assuming that because you have that subdirectory
-path in<br>
-&gt; S then you need that underneath the specified source directory (since
-that is<br>
-&gt; usually true if you were for example pointing to a checkout of a git<br>
-&gt; repository, or an extracted source tarball).<br>
-</font></tt>
-<br><tt><font size=2>You are correct. I can't believe I didn't think of
-that before. Thank you so much. That gets me going at least.</font></tt>
-<br><tt><font size=2><br>
-&gt; devtool hasn't been written to handle this usage (which is unusual
--typically<br>
-&gt; the recipe is pointing at remote source). It would be good to get
-an<br>
-&gt; understanding of your use case here so we can figure out where to
-go from<br>
-&gt; here.<br>
-&gt; <br>
-&gt; Cheers,<br>
-&gt; Paul<br>
-&gt; <br>
-&gt; -- <br>
-&gt; <br>
-&gt; Paul Eggleton<br>
-&gt; Intel Open Source Technology Centre<br>
-</font></tt>
-
---=_alternative 007F71D8882581B0_=--
+--_000_150727756140617camelintelcom_--
