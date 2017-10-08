@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DDFBE00CD3; Sun,  8 Oct 2017 10:28:44 -0700 (PDT)
+	id 04D52E00D18; Sun,  8 Oct 2017 10:28:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
+	*      [74.125.83.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,49 +19,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDF36E00CC1
-	for <yocto@yoctoproject.org>; Sun,  8 Oct 2017 10:28:40 -0700 (PDT)
-Received: by mail-pf0-f194.google.com with SMTP id b85so1888752pfj.1
-	for <yocto@yoctoproject.org>; Sun, 08 Oct 2017 10:28:40 -0700 (PDT)
+Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D106EE00CC3
+	for <yocto@yoctoproject.org>; Sun,  8 Oct 2017 10:28:41 -0700 (PDT)
+Received: by mail-pg0-f67.google.com with SMTP id u144so6367523pgb.3
+	for <yocto@yoctoproject.org>; Sun, 08 Oct 2017 10:28:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=5OtLDFWFAXD3CnVQ8RHvRTPofMqBDJrHbR/iyAO7G+M=;
-	b=vEQwErkExb9ncLRSGWs7hxiNtj7920fAb/PM577qcLNbf4NGTw0lI95L4ZKufiS1FK
-	okXGHaymhVI9wjx9SaFmWImCr5k0/zc9b5TQ9jBajJX1CrQPmCWuhm3E+2liZg0a89v1
-	vY/QLDcoDlDJ0mSaKX17hSZB3Pgq86/sxxn4qxqNQmn49ZiSD31bwAhJx+CE6fh1VQP/
-	LcXpuLKLdlRbLAFsC7jwhWEGZ/oba3S5yhWCSZSRoS/j/+LuBIqAi5eYfh2642jzKJ1F
-	/FfWNch5fcpPEzipdCAFrjTS7CzSbRSTBn0zpjdN13WZKwTTX2/CXsbNy3alXhmFjd5s
-	3PsQ==
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=t1pqUnSMiKSmYIh6a9+qagcB7PabfxAU8ZyOQKoK/Rw=;
+	b=vA3E4icHPxfI0CLBzolSAvV53tUTI7WRIIhyYFF11jcgjQZOhjlf/YniqWidoo5Vvv
+	d8YYed/SRgWh9PxeIMHuGkaMzpdRqzy9JiUxyuvG91Y1b9MC1S8m7npWjfIrAuo3NEnr
+	hCc9Q78GtG3kKl92HiqXpNVBE1HP3KeR4E8KOAR1D0iW+L/7bCbkuom+QQOAKRfvHsIo
+	wJpniDabPwdW8ntgFgTMj8JV2poaFNUl+Gi7dKwX4p7YKJdo27upstnUGvJDgoee8n76
+	hDwN0ENuUgNTpY+EjL1RAkB4lRd3WenUxwQYSHjfNqQDyQni/0wzS83ZtaFMC1G4laJK
+	xEng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=5OtLDFWFAXD3CnVQ8RHvRTPofMqBDJrHbR/iyAO7G+M=;
-	b=jJ/KHBalR4d+8NN1vLqj32ahZS/BbN0mwxCJoh1JaFiEkkS0o+0ieRJWsxqeVJIJlt
-	ljV9i7hv1SdmoYs84AEzfuJjmwzlo7lxrsaZJRkypNnLhhtK/d9CQ0e3Qc7k4aGpRhiB
-	HdH/F7sJPcp5t0PQqHRaLn68MBh7PQwxK44xE/S4bHepd2WkQVY6VcOPufmoRLKpFfWB
-	F1ZjywZ02DFuy0j+ufLkT4pueBr/pKQlPaSntGF/onKpvscRegpzfL19HCidBdAm96tq
-	xN8taW73T3Da+jge+9qlWwL3vyAaCbAp60InhRie84pyQj9UYv4f8Axtxikrs4uxdU1X
-	vqwA==
-X-Gm-Message-State: AMCzsaWOKpMlNekcFQdZzbY4mMYZRNT/BvR2VTMFAS9G03GZrENCBvWN
-	Oyc0tGnwREhvfKFrA3bBXdk=
-X-Google-Smtp-Source: AOwi7QCSDa0S43TeyPcp5L8kAi4UINyoh0xof3X4SATaayECGEw5L3Tc9ro48IFsOWLaAOXlOnAQSQ==
-X-Received: by 10.98.33.67 with SMTP id h64mr7856338pfh.279.1507483720133;
-	Sun, 08 Oct 2017 10:28:40 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=t1pqUnSMiKSmYIh6a9+qagcB7PabfxAU8ZyOQKoK/Rw=;
+	b=SQTyq6qQj0ae1/BifgTHshXqU4uYSSS6I88rOkKKK2F+3BGdkdSxTC9tguMaKwN5G8
+	L45VOuwplD4aP/hd48g5xBaGmsr4iTS7lll//bARg7fxO29FmB1dnh7fYMftXodA5grm
+	ohzCoHaHZYFO2FvGQ93oe0z5/pzjwO/VKkJDtjaZCvXomthHh2p5QNdeEHybO0vxbdA3
+	e97FRaRUhJV4OEogYe5If2FmZCsYgJsuv0oCVyoAkfwhcIXN6+e2kidsuENlpYrK4u9/
+	OnRPgjmPEQTyyLUMcL3UNNmY9Cn/j9PZHp4bvdHlsjvNayrZilfjgjGjpTa+JgUszXiY
+	t95g==
+X-Gm-Message-State: AMCzsaUuM8zrSuUM1i//G5nbyqgOHKs4MaQknyMdr/+KRJccW6ShYCkR
+	bw3eiAG6sNMPC/bY8hN9q78=
+X-Google-Smtp-Source: AOwi7QAX7MXvxlrZeL7kvrNo28ctwb/6aG7sDdzlO2GQ/CaET7Qq2v2dFBe6QiHi1gCtpJcpUPLAVg==
+X-Received: by 10.98.192.18 with SMTP id x18mr5254753pff.280.1507483721052;
+	Sun, 08 Oct 2017 10:28:41 -0700 (PDT)
 Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net
 	([2601:202:4001:9ea0:b4af:95f:9afa:62fc])
 	by smtp.gmail.com with ESMTPSA id
-	a81sm10563350pfe.32.2017.10.08.10.28.39
+	a81sm10563350pfe.32.2017.10.08.10.28.40
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 08 Oct 2017 10:28:39 -0700 (PDT)
+	Sun, 08 Oct 2017 10:28:40 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: akuster@mvista.com,
 	yocto@yoctoproject.org
-Date: Sun,  8 Oct 2017 10:28:35 -0700
-Message-Id: <1507483718-5452-1-git-send-email-akuster808@gmail.com>
+Date: Sun,  8 Oct 2017 10:28:36 -0700
+Message-Id: <1507483718-5452-2-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH 1/4] pcr-extend: add new package
+In-Reply-To: <1507483718-5452-1-git-send-email-akuster808@gmail.com>
+References: <1507483718-5452-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/4] tpm-quote-tools: Add package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,45 +75,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Oct 2017 17:28:44 -0000
+X-List-Received-Date: Sun, 08 Oct 2017 17:28:45 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb | 25 +++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
- create mode 100644 meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
+ .../tpm-quote-tools/tpm-quote-tools_1.0.4.bb       | 23 ++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100644 meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
 
-diff --git a/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
+diff --git a/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb b/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
 new file mode 100644
-index 0000000..0cc4f63
+index 0000000..8486d00
 --- /dev/null
-+++ b/meta-tpm/recipes-tpm/pcr-extend/pcr-extend_git.bb
-@@ -0,0 +1,25 @@
-+SUMMARY = "Command line utility to extend hash of arbitrary data into a TPMs PCR."
-+HOMEPAGE = "https://github.com/flihp/pcr-extend"
++++ b/meta-tpm/recipes-tpm/tpm-quote-tools/tpm-quote-tools_1.0.4.bb
+@@ -0,0 +1,23 @@
++SUMMARY = "The TPM Quote Tools is a collection of programs that provide support \
++  for TPM based attestation using the TPM quote mechanism. \
++  "
++DESCRIPTION = "The TPM Quote Tools is a collection of programs that provide support \
++  for TPM based attestation using the TPM quote mechanism.  The manual \
++  page for tpm_quote_tools provides a usage overview. \
++  \
++  TPM Quote Tools has been tested with TrouSerS on Linux and NTRU on \
++  Windows XP.  It was ported to Windows using MinGW and MSYS. \
++  "
++HOMEPAGE = "https://sourceforge.net/projects/tpmquotetools/"
 +SECTION = "security/tpm"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://COPYING;md5=8ec30b01163d242ecf07d9cd84e3611f"
 +
-+DEPENDS = "libtspi"
++DEPENDS = "libtspi tpm-tools"
 +
-+PV = "0.1+git${SRCPV}"
-+SRCREV = "c02ad8f628b3d99f6d4c087b402fe31a40ee6316"
++SRC_URI = "${SOURCEFORGE_MIRROR}/tpmquotetools/${PV}/${BP}.tar.gz"
 +
-+SRC_URI = "git://github.com/flihp/pcr-extend.git "
++SRC_URI[md5sum] = "6e194f5bc534301bbaef53dc6d22c233"
++SRC_URI[sha256sum] = "10dc4eade02635557a9496b388360844cd18e7864e2eb882f5e45ab2fa405ae2"
 +
 +inherit autotools
-+
-+S = "${WORKDIR}/git"
-+
-+do_compile() {
-+    oe_runmake -C ${S}/src
-+}
-+
-+do_install() {
-+    install -d ${D}${bindir}
-+    oe_runmake -C ${S}/src DESTDIR="${D}" install 
-+}
 -- 
 2.7.4
 
