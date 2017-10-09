@@ -1,30 +1,31 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <Dengke.Du@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7241EE00D2A; Sun,  8 Oct 2017 13:37:41 -0700 (PDT)
+	id 25DF7E00D39; Sun,  8 Oct 2017 19:24:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from blaine.gmane.org (unknown [195.159.176.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58B7DE00CCD
-	for <yocto@yoctoproject.org>; Sun,  8 Oct 2017 13:37:39 -0700 (PDT)
-Received: from list by blaine.gmane.org with local (Exim 4.84_2)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1e1IKB-0005bL-9n
-	for yocto@yoctoproject.org; Sun, 08 Oct 2017 22:37:23 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Ferry Toth <ftoth@telfort.nl>
-Date: Sun, 08 Oct 2017 22:37:19 +0200
-Organization: Exalon Delft
-Message-ID: <ore29n$fsd$1@blaine.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@blaine.gmane.org
-User-Agent: KNode/4.14.10
-Subject: populate sdk fails when multilib enabled
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0886E00D2A
+	for <yocto@yoctoproject.org>; Sun,  8 Oct 2017 19:24:28 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v992ORgH022961
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
+	for <yocto@yoctoproject.org>; Sun, 8 Oct 2017 19:24:28 -0700
+Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.361.1;
+	Sun, 8 Oct 2017 19:24:27 -0700
+From: Dengke Du <dengke.du@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Sun, 8 Oct 2017 22:24:26 -0400
+Message-ID: <1507515866-185145-1-git-send-email-dengke.du@windriver.com>
+X-Mailer: git-send-email 2.8.1
+MIME-Version: 1.0
+Subject: [meta-security][PATCH V2] keynote: update the SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,72 +37,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Oct 2017 20:37:41 -0000
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Mon, 09 Oct 2017 02:24:30 -0000
+Content-Type: text/plain
 
-When I build for x86_64 I found I needed to enable multilib to be able to 
-build u-boot (actually lib32_u-boot). U-boot now builds.
+The old URL can't be available, give the new URL to keynote.
+The project already moved to:
 
-However 'bitbake edison-image -c populate_sdk' now errors with
-Build Configuration: 
-BB_VERSION        = "1.32.0" 
-BUILD_SYS         = "x86_64-linux" 
-NATIVELSBSTRING   = "universal" 
-TARGET_SYS        = "x86_64-poky-linux" 
-MACHINE           = "edison" 
-DISTRO            = "poky-edison" 
-DISTRO_VERSION    = "2.2.2" 
-TUNE_FEATURES     = "m64 core2"
+    https://sourceforge.net/projects/keynote-2-3/
 
-The following packages have unmet dependencies:
- lib32-packagegroup-core-standalone-sdk-target : 
-	Depends: lib32-glibc but it is not installable
-	Depends: lib32-glibc-dbg but it is not installable
-	Depends: lib32-glibc-dev but it is not installable
-	Depends: lib32-glibc-gconv-cp1252 but it is not installable
-	Depends: lib32-glibc-gconv-ibm850 but it is not installable
-	Depends: lib32-glibc-gconv-iso8859-1 but it is not installable
- 	Depends: lib32-glibc-gconv-iso8859-15 but it is not installable
-	Depends: lib32-glibc-localedata-i18n but it is not installable
-	Depends: lib32-glibc-thread-db but it is not installable
-	Depends: lib32-glibc-utils but it is not installable
-	Depends: lib32-libatomic but it is not installable
-	Depends: lib32-libatomic-dev but it is not installable
-	Depends: lib32-libgcc but it is not installable
-	Depends: lib32-libgcc-dev but it is not installable
-	Depends: lib32-libsegfault but it is not installable
-	Depends: lib32-libstdc++ but it is not installable
-	Depends: lib32-libstdc++-dev but it is not installable
-E: Unable to correct problems, you have held broken packages.
+The different between old and new tarball was:
 
+    the old tarball contains doc directory, source codes were same.
 
-Other than u-boot I am not building any lib32- packages. In my image recipy 
-I have:
-EXTRA_IMAGEDEPENDS += "lib32-u-boot"
+Signed-off-by: Dengke Du <dengke.du@windriver.com>
+---
+ recipes-security/keynote/keynote_2.3.bb | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-In my conf file I have:
-#multilib
-require conf/multilib.conf
-MULTILIBS = "multilib:lib32"
-DEFAULTTUNE_virtclass-multilib-lib32 = "core2-32"
-IMAGE_INSTALL_append = " lib32-libgcc"
-
-Both lib32-packagegroup-core-standalone-sdk-target and packagegroup-core-
-standalone-sdk-target can be found under deploy/deb/all, the packages should 
-probably be under deploy/deb/core2-32. Some are there, some I don't 
-recognize, but I have not idea why there are not installable.
-
-Does anybody know what's wrong here? Is there a bug in the lib32 package 
-group?
-
-Is there a way I can prevent this package group from being installed in the 
-sdk?
-
-Thanks in advance!
-
+diff --git a/recipes-security/keynote/keynote_2.3.bb b/recipes-security/keynote/keynote_2.3.bb
+index b1df880..e692485 100644
+--- a/recipes-security/keynote/keynote_2.3.bb
++++ b/recipes-security/keynote/keynote_2.3.bb
+@@ -9,16 +9,19 @@ SECTION = "security"
+ LICENSE = "ISC"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=3a265095c549c1808686a676f2699c98"
+ 
+-SRC_URI = "http://www.cs.columbia.edu/~angelos/Code/${BPN}.tar.gz \
++MAIN_ID = "${@d.getVar('PV').split('.')[0]}"
++MINOR_ID = "${@d.getVar('PV').split('.')[1]}"
++SRC_URI = "${SOURCEFORGE_MIRROR}/project/${BPN}-${MAIN_ID}-${MINOR_ID}/${BPN}_${PV}.tar.gz \
+        file://configure-remove-hardcode-path.patch \
+        file://makefile-add-ldflags.patch \
+        file://run-ptest \
+ "
++S = "${WORKDIR}/${BPN}-${PV}+dfsg.orig"
+ 
+ inherit autotools-brokensep ptest
+ 
+-SRC_URI[md5sum] = "ba58a0297c421dc6aa671e6b753ef695"
+-SRC_URI[sha256sum] = "62f7a9d57ceb6bcdd47b604b637a7ac8ed337cef0ab02f1fa28b7e61c9b15821"
++SRC_URI[md5sum] = "a14553e6ad921b5c85026ce5bec3afe7"
++SRC_URI[sha256sum] = "38d2acfa1c3630a07adcb5c8fe92d2aef7f0e6d242b8998b2bbb1c6e4c408d46"
+ 
+ DEPENDS = "flex openssl"
+ 
 -- 
-Ferry Toth
-
+2.8.1
 
 
