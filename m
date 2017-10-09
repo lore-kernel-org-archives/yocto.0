@@ -1,58 +1,60 @@
 Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7BD98E00D5C; Mon,  9 Oct 2017 11:42:47 -0700 (PDT)
+	id 19699E00D5C; Mon,  9 Oct 2017 11:59:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.235.150.235 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [64.235.154.220 listed in list.dnswl.org]
 Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.154.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9F6BE00D32
-	for <yocto@yoctoproject.org>; Mon,  9 Oct 2017 11:42:45 -0700 (PDT)
+	[64.235.150.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85BACE00D32
+	for <yocto@yoctoproject.org>; Mon,  9 Oct 2017 11:59:56 -0700 (PDT)
 Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx1402.ess.rzc.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Mon, 09 Oct 2017 18:42:43 +0000
+	mx27.ess.sfj.cudaops.com (version=TLSv1.2 cipher=AES256-SHA256
+	bits=256 verify=NO); Mon, 09 Oct 2017 18:59:54 +0000
 Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
 	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Mon, 9 Oct 2017 11:42:42 -0700
+	Mon, 9 Oct 2017 11:59:52 -0700
 Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Mon, 9 Oct 2017 11:42:42 -0700
+	([::1]) with mapi id 15.01.0669.032; Mon, 9 Oct 2017 11:59:52 -0700
 From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: No GNU_HASH in the elf binary: error
-Thread-Index: AQHTQS1FnN+zB4hKNk2hjzQ7uk7lRw==
-Date: Mon, 9 Oct 2017 18:42:42 +0000
-Message-ID: <89836ef330334f32bdad645e73dfd5ca@sakuraus.com>
+Thread-Index: AQHTQS1FnN+zB4hKNk2hjzQ7uk7lR6Lb3oAp
+Date: Mon, 9 Oct 2017 18:59:52 +0000
+Message-ID: <6df2ccbec2b74681adc46ed6f41a5b9d@sakuraus.com>
+References: <89836ef330334f32bdad645e73dfd5ca@sakuraus.com>
+In-Reply-To: <89836ef330334f32bdad645e73dfd5ca@sakuraus.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-X-BESS-ID: 1507574563-321458-16987-2098-1
+X-BESS-ID: 1507575593-637137-5198-188695-1
 X-BESS-VER: 2017.12-r1709122024
 X-BESS-Apparent-Source-IP: 12.26.104.5
 X-BESS-Outbound-Spam-Score: 0.20
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185832
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185833
 	Rule breakdown below
 	pts rule name              description
 	---- ---------------------- --------------------------------
-	0.20 BSF_SC0_SA074b         META: Custom Rule SA074b 
+	0.00 HTML_MESSAGE           BODY: HTML included in 
+	message 
 	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.20 BSF_SC0_SA074b         META: Custom Rule SA074b 
 X-BESS-Outbound-Spam-Status: SCORE=0.20 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=BSF_SC0_SA074b, BSF_BESS_OUTBOUND,
-	HTML_MESSAGE
+	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND,
+	BSF_SC0_SA074b
 X-BESS-BRTS-Status: 1
-Subject: No GNU_HASH in the elf binary: error
+Subject: Re: No GNU_HASH in the elf binary: error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,14 +66,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Oct 2017 18:42:47 -0000
+X-List-Received-Date: Mon, 09 Oct 2017 18:59:59 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_89836ef330334f32bdad645e73dfd5casakurauscom_"
+	boundary="_000_6df2ccbec2b74681adc46ed6f41a5b9dsakurauscom_"
 
---_000_89836ef330334f32bdad645e73dfd5casakurauscom_
+--_000_6df2ccbec2b74681adc46ed6f41a5b9dsakurauscom_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+I had implemented the recommended fix for this error but it didn't take on =
+the first try. I sent out the email and started on another error and the GN=
+U_HASH error has now disappeared. So I guess this thread needs to be ignore=
+d, sorry for the noise.
+
+
+Regards,
+
+Greg
+
+________________________________
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Sent: Monday, October 9, 2017 11:42:42 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] No GNU_HASH in the elf binary: error
+
 
 I'm getting a "No GNU_HASH in the elf binary" error. The documentation says=
  to add LD_FLAGS to the ld command line, but it's already there:
@@ -93,7 +113,7 @@ gs aren't being passed to the loader? Or some other missing flag?
 Regards,
 Greg
 
---_000_89836ef330334f32bdad645e73dfd5casakurauscom_
+--_000_6df2ccbec2b74681adc46ed6f41a5b9dsakurauscom_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -105,6 +125,30 @@ Content-Transfer-Encoding: quoted-printable
 n-bottom:0;} --></style>
 </head>
 <body dir=3D"ltr">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>I had implemented the recommended fix for this error but it didn't take =
+on the first try. I sent out the email and started on another error and the=
+ GNU_HASH error has now disappeared. So I guess this thread needs to be ign=
+ored, sorry for the noise.</p>
+<p><br>
+</p>
+<p>Regards,</p>
+<p>Greg</p>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> yocto-bounces@yoctopr=
+oject.org &lt;yocto-bounces@yoctoproject.org&gt; on behalf of Greg Wilson-L=
+indberg &lt;GWilson@sakuraus.com&gt;<br>
+<b>Sent:</b> Monday, October 9, 2017 11:42:42 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] No GNU_HASH in the elf binary: error</font>
+<div>&nbsp;</div>
+</div>
+<div>
 <div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
 -family:Calibri,Arial,Helvetica,sans-serif;">
 <p>I'm getting a &quot;<span style=3D"font-family:monospace"><span style=3D=
@@ -154,7 +198,8 @@ pan style=3D"color: rgb(0, 0, 0);">Regards,</span></span></div>
 <div><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;"><s=
 pan style=3D"color: rgb(0, 0, 0);">Greg</span></span></div>
 </div>
+</div>
 </body>
 </html>
 
---_000_89836ef330334f32bdad645e73dfd5casakurauscom_--
+--_000_6df2ccbec2b74681adc46ed6f41a5b9dsakurauscom_--
