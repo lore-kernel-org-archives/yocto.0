@@ -1,39 +1,90 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51EF4E00D3F; Mon,  9 Oct 2017 06:34:04 -0700 (PDT)
+	id 7A4AEE00D2F; Mon,  9 Oct 2017 07:35:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [40.107.5.98 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41AC9E00D1B
-	for <yocto@yoctoproject.org>; Mon,  9 Oct 2017 06:34:01 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v99DY0F6012616
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 9 Oct 2017 06:34:00 -0700 (PDT)
-Received: from soho-mhatle-m.local (172.25.36.230) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
-	Mon, 9 Oct 2017 06:33:59 -0700
-To: "Gutierrez, Hernan Ildefonso (Boise R&D, FW)" <hernan_gutierrez@hp.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <TU4PR8401MB1040AD278D9EA3A0B1A82E7599710@TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <5b3b0fdb-5270-3163-da82-3183474d26f9@windriver.com>
-Date: Mon, 9 Oct 2017 08:33:59 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.3.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com
+	(mail-eopbgr50098.outbound.protection.outlook.com [40.107.5.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45311E00CEF
+	for <yocto@yoctoproject.org>; Mon,  9 Oct 2017 07:35:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Enea.onmicrosoft.com; 
+	s=selector1-enea-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=lJdQdpNBN3nxuofsyQC9fy+JyY/fpYca34d11z7mF+U=;
+	b=efdhIp7QOldXzKs5PJQ30bdZzZURoTrBAOLrsfyDipdKo1OQIsmeNoUEKR0qnEjw3XNtHHoW4IpnD97vS/z52p1C8rENX/syiXzfeqMpid4aCg13BhzqkdMOmi+kk2G6cnU5YtUARUCW8rV9Vhc0GO9gkcUBWcDw1/31usRF7m4=
+Received: from HE1PR0702MB3803.eurprd07.prod.outlook.com (52.133.7.21) by
+	HE1PR0702MB3804.eurprd07.prod.outlook.com (52.133.7.22) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.77.5; Mon, 9 Oct 2017 14:01:04 +0000
+Received: from HE1PR0702MB3803.eurprd07.prod.outlook.com
+	([fe80::d875:25fb:3d1c:cdae]) by
+	HE1PR0702MB3803.eurprd07.prod.outlook.com
+	([fe80::d875:25fb:3d1c:cdae%13]) with mapi id 15.20.0077.020;
+	Mon, 9 Oct 2017 14:01:04 +0000
+From: Adrian Dudau <Adrian.Dudau@enea.com>
+To: He Zhe <zhe.he@windriver.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-cgl][PATCH] kernel: Fix config warning for
+	CONFIG_I2C_ALGOBIT
+Thread-Index: AQHTQOHBAFUkTgmYUkqTE2+KYdKLtqLbjCNO
+Date: Mon, 9 Oct 2017 14:01:04 +0000
+Message-ID: <HE1PR0702MB3803697D2DE9C6E0801790BFE4740@HE1PR0702MB3803.eurprd07.prod.outlook.com>
+References: <1506665400-20424-1-git-send-email-zhe.he@windriver.com>,
+	<6597b930-6813-2d89-2723-a38047cc99f6@windriver.com>
+In-Reply-To: <6597b930-6813-2d89-2723-a38047cc99f6@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Adrian.Dudau@enea.com; 
+x-originating-ip: [192.36.1.252]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; HE1PR0702MB3804;
+	20:LqLiyUn9E8qhDi4AZas0k5k2igkcC29XueUUM5WHMrktkx1YD8XrtJ2N9oKs5NXVqcsiab+FA7jVJPMEJ1+UBNqqDHmmRqabeMnnvLUH0UPZBpD8WyAGje8AONlaS016uZRv2C43+bxyUkzOU+GFCrEWYdDJGG05wfIyzQnC4hk=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: f32ffbf2-29bb-4a91-b4bd-08d50f1e2e3b
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(2017030254152)(2017052603199)(201703131423075)(201703031133081)(201702281549075);
+	SRVR:HE1PR0702MB3804; 
+x-ms-traffictypediagnostic: HE1PR0702MB3804:
+x-exchange-antispam-report-test: UriScan:;
+x-microsoft-antispam-prvs: <HE1PR0702MB3804751EAF5943FDC227C350E4740@HE1PR0702MB3804.eurprd07.prod.outlook.com>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(8121501046)(5005006)(100000703101)(100105400095)(3002001)(10201501046)(93006095)(93001095)(6041248)(20161123560025)(20161123555025)(20161123564025)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123558100)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:HE1PR0702MB3804; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:HE1PR0702MB3804; 
+x-forefront-prvs: 045584D28C
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(346002)(376002)(39830400002)(377454003)(24454002)(199003)(189002)(2950100002)(25786009)(3846002)(6116002)(2501003)(102836003)(189998001)(53936002)(316002)(86362001)(72206003)(33656002)(105586002)(5250100002)(6506006)(305945005)(2906002)(7736002)(478600001)(6246003)(74316002)(966005)(106356001)(68736007)(3660700001)(5660300001)(66066001)(6436002)(7696004)(2900100001)(3280700002)(97736004)(6306002)(229853002)(8936002)(101416001)(14454004)(8676002)(110136005)(53546010)(81156014)(50986999)(55016002)(76176999)(54356999)(9686003)(99286003)(81166006)(70780200001)(15760500002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1PR0702MB3804;
+	H:HE1PR0702MB3803.eurprd07.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: enea.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-In-Reply-To: <TU4PR8401MB1040AD278D9EA3A0B1A82E7599710@TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM>
-Subject: Re: Framework to implement mirroring in Yocto
+X-OriginatorOrg: enea.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2017 14:01:04.0174 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 8cdaed89-c47e-40b8-90b5-f28ad2c3fdca
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0702MB3804
+Subject: Re: [meta-cgl][PATCH] kernel: Fix config warning for CONFIG_I2C_ALGOBIT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,135 +96,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Oct 2017 13:34:04 -0000
-Content-Type: text/plain; charset="windows-1252"
+X-List-Received-Date: Mon, 09 Oct 2017 14:35:09 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/6/17 5:08 PM, Gutierrez, Hernan Ildefonso (Boise R&D, FW) wrote:
-> Hi,
-> 
->  
-> 
-> We are planning to implement a mirror for both source code downloaded and
-> sscache in our work environment.
-> 
+merged now, sorry for the delay
 
-We mirror a ton of code for our customers.  We have two types or mirrors that we
-deliver.  Raw 'git servers' and tarball (or equivalent) mirrors.
+--Adrian
 
-The way that we populate these mirrors is to use bitbake with a fetchall
-'universe'.  That way everything that could be downloaded (with a few
-exceptions) is downloaded.
+________________________________________
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of He Zhe <zhe.he@windriver.com>
+Sent: Monday, October 9, 2017 11:31 AM
+To: yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-cgl][PATCH] kernel: Fix config warning for CONFI=
+G_I2C_ALGOBIT
 
-git archives, we identify and create git mirrors in an external server.  This
-server regularly updates the git servers from the upstream location.  This
-allows us to have git mirrors that are 'live' git servers, and not just tarballs
-that could get out of sync.
+Ping.
 
-For this work, you can easily setup a 'premirror' in your projects of the format:
+Zhe
 
-PREMIRRORS_append = " \
-     git://.*/.* git://mirror.hostname.here/git/MIRRORNAME;protocol=git \n \"
-"
+On 2017=1B$BG/=1B(B09=1B$B7n=1B(B29=1B$BF|=1B(B 14:10, zhe.he@windriver.com=
+ wrote:
+> From: He Zhe <zhe.he@windriver.com>
+>
+> CONFIG_DRM in yocto-kernel-cache selects CONFIG_I2C_ALGOBIT as "y".
+> Change CONFIG_I2C_ALGOBIT 00026-lm-sensors.cfg from "m" to "y" to
+> avoid following config conflict.
+>
+> ---------- CONFIG_I2C_ALGOBIT -----------------
+> Config: CONFIG_I2C_ALGOBIT
+> From: /PATH/TO/i915.cfg /PATH/TO/00026-lm-sensors.cfg
+> Requested value:  CONFIG_I2C_ALGOBIT=3Dm
+> Actual value:     CONFIG_I2C_ALGOBIT=3Dy
+>
+> Signed-off-by: He Zhe <zhe.he@windriver.com>
+> ---
+>  meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.cfg | 2 =
++-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sens=
+ors.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.c=
+fg
+> index f28bdf6..71c4cad 100644
+> --- a/meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.cfg
+> +++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.cfg
+> @@ -1,5 +1,5 @@
+>  CONFIG_I2C_SMBUS=3Dm
+> -CONFIG_I2C_ALGOBIT=3Dm
+> +CONFIG_I2C_ALGOBIT=3Dy
+>  CONFIG_I2C_ALGOPCA=3Dm
+>  CONFIG_I2C_ALI1535=3Dm
+>  CONFIG_I2C_ALI1563=3Dm
 
-You can adjust the protocol to be file, git, or http (as necessary for your
-environment).  (In our case, it's usually file.)
-
-For the files, it's even easier.  Just have a shared fileserver that contains
-all of the downloads:
-
-PREMIRRORS_append = " \
-     .*://.*/.* file://<path_to_mirror>/downloads/ \n \
-"
-
-> 
-> We are planning to use Nexus and Nuget to allow storage and versioning control.
-> We don’t know if these are the right tools.
-> 
-
-If you want to formalize this further, there are alternative ways to do this.
-(We use an approach where we have 'download layers'.)  Between the setup program
-(https://github.com/Wind-River/wr-lx-setup) and these special download layers
-our users can download (to their local system) both the mirrors and tarball
-downloads.
-
-Our typical download layer looks like:
-
-conf/layer.conf:
-
-BBFILE_COLLECTIONS += "core-dl"
-BBFILE_PATTERN_core-dl = ""
-BBFILE_PATTERN_IGNORE_EMPTY_core-dl = "1"
-
-# This should only be incremented on significant changes that will
-# cause compatibility issues with other layers
-LAYERVERSION_core-dl = "2.4"
-
-# We have a pre-populated downloads directory, add to PREMIRRORS
-PREMIRRORS_append = " \
-     .*://.*/.* file://${LAYERDIR}/downloads/ \n \
-     git://.*/.* git://${LAYERDIR}/git/MIRRORNAME;protocol=file \n \
-"
-
-Then insides of the 'downloads' directory we have a copy of all of the tarballs
-used by the 'meta' layer (oe-core).  [note this can grow fairly large, so we
-generally have a 2.4, then a 2.5, etc versions to keep the size managable.]
-
-The setup program uses a local layer index to control everything.  We have a
-single local patch to our oe-core that adds a 'recommendation' on this new
-download layer.
-
-LAYERRECOMMENDS_core = "core-dl (= 2.4)"
-
-
-The layer index will bring this is as an 'optional' dependency which the setup
-program can then use.   So if you do this for all of the layers you use -- then
-a user calling setup (with our private layer index) will automatically get the
-downloads that match only the layers they choose to bring into their project.
-
-(The setup program also has a --mirror option, will will allow a local user to
-mirror down the layer index contents, as well as the layers that they are using.
- This is intended both for our commercial product delivery, but also for
-customers to be able to snapshot a given installation so they have all of the
-code necessary to reproduce the environment in the future.)
-
-> 
-> Since we are about to embark in this project, before starting I wanted to know
-> if you have some pointers on how can be implemented a mirroring framework for yocto.
-> 
-
-You can start simple, and just setup a local fileserver and git server with the
-premirror setup.
-
-You can extend this to include custom delivery and installation to customers if
-this is appropriate for your environment.
-
-(Note, the setup program is current external to OE / YP.  We are working to
-integrate this into bitbake.  While there is no specific timeline promised, we
-started this work in the 2.4 timeframe, and I expect much of what I explained
-above will be implemented in the 2.5 timeframe.  But until then, you can use the
-wr-lx-setup repository I mentioned.)
-
---Mark
-
-> 
-> Not sure if there are some common tools (other tools) with which yocto
-> integrates nicely.
-> 
->  
-> 
-> Any pointers will be appreciated,
-> 
->  
-> 
-> --Hernan
-> 
->  
-> 
-> PS> We are in morty branch currently.
-> 
-> 
-> 
-
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
