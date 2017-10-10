@@ -1,36 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <fabien.lahoudere@collabora.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 899CBE00A9C; Tue, 10 Oct 2017 14:19:33 -0700 (PDT)
+	id EB665E00A9C; Tue, 10 Oct 2017 14:30:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44474E006CA
-	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 14:19:33 -0700 (PDT)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga105.fm.intel.com with ESMTP; 10 Oct 2017 14:19:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.43,359,1503385200"; d="scan'208";a="161161548"
-Received: from anusyirw-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.132.95])
-	by fmsmga005.fm.intel.com with ESMTP; 10 Oct 2017 14:19:30 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Ryan Pabis (pabisr)" <pabisr@cisco.com>
-Date: Wed, 11 Oct 2017 10:19:28 +1300
-Message-ID: <3330954.CpFU6iRKnn@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <9615587B-3637-4ABB-BB94-9C9416352354@cisco.com>
-References: <9615587B-3637-4ABB-BB94-9C9416352354@cisco.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Replacing Openssl with a custom version?
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8D17E006CA
+	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 14:30:07 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: aragua) with ESMTPSA id 6655A260F57
+Message-ID: <1507671003.9509.21.camel@collabora.co.uk>
+From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
+To: yocto@yoctoproject.org
+Date: Tue, 10 Oct 2017 23:30:03 +0200
+X-Mailer: Evolution 3.22.6-1 
+Mime-Version: 1.0
+Subject: How to use same user in two recipes?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,38 +37,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Oct 2017 21:19:33 -0000
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 10 Oct 2017 21:30:09 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Ryan,
+Hi
 
-On Wednesday, 11 October 2017 7:37:02 AM NZDT Ryan Pabis (pabisr) wrote:
-> I=E2=80=99m trying to build, link and install our Cisco version of ssl.  =
-And I=E2=80=99ve
-> been able to compile and link it, however I don=E2=80=99t understand how =
-to install
-> our cisco version INSTEAD of openssl.
+I want to use the same user in two different recipe. 
+I create the user in recipe A.bb and it works fine.
+Now I want to use the same user in B.bb so I add DEPENDS = "A" thinking that sysroot will be
+populated with A.bb users.
 
-The easiest way would be to have your recipe add "openssl" (and possibly=20
-"openssl10" in master / upcoming 2.5 release) to PROVIDES i.e.
+But when I bitbake the recipe, user is not found. 
+I conclude that I have to use USERADD_* in each recipe, right?
 
-PROVIDES +=3D "openssl openssl10"
+What happen if I use different USERADD_PARAM_${PN} in each recipe?
 
-Then, in your configuration (distro config or inc file required from there=
-=20
-typically) you would add this assuming your custom openssl recipe were call=
-ed=20
-openssl-cisco:
+I also try to use EXTRA_USERS_PARAMS but without success?
 
-PREFERRED_PROVIDER_openssl =3D "openssl-cisco"
-PREFERRED_PROVIDER_openssl10 =3D "openssl-cisco"
+Is there a way to populate sysroot with users?
 
-Cheers,
-Paul
+Thanks
 
-=2D-=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+-- 
+Fabien
 
