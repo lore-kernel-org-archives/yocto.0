@@ -1,18 +1,18 @@
-Return-Path: <jerry.lian@gmail.com>
+Return-Path: <pabisr@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2BEBCE00D32; Mon,  9 Oct 2017 08:09:00 -0700 (PDT)
+	id 93D79E00D6E; Tue, 10 Oct 2017 11:38:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jerry.lian[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [173.37.86.75 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
+	white-list
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -21,46 +21,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.45 listed in dnsbl.sorbs.net]
-Received: from mail-oi0-f45.google.com (mail-oi0-f45.google.com
-	[209.85.218.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05548E00CEF
-	for <yocto@yoctoproject.org>; Mon,  9 Oct 2017 08:08:55 -0700 (PDT)
-Received: by mail-oi0-f45.google.com with SMTP id g125so22799954oib.12
-	for <yocto@yoctoproject.org>; Mon, 09 Oct 2017 08:08:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=k5XdusJX+gRfz/9lKHc5YsYaWyBisimOHz1oksoZzR8=;
-	b=gUK+AHFFIRmZ4ESVSZIo3gcLNW2bIMF5/5KAMhAkDJDt2Q0LDN80w7iRkELhGOwJCc
-	JXiGMjQyDON9ZkDkqSCKRASGL9QnEEu3mgQtLB5/a6i+hRls5n7OlpPekr4nsxGWayLk
-	xUy6MSVXfBuHJQucIsFmET9WDTtRbbdbstm3bnqgsR2N9GuNzkIr7q9Iq5jG+y8MZQ7x
-	VlzqV07syj5VzQTsVIi8M10sZZwPcJNMCg2BTx6rDg/6K+xGMKqsv7OHjqOptMAI38mQ
-	57VI5mrXt/LeokC73ArWU7xEZ3gbouQm9L25wTFok7jI0BfuB/H4u72p2CsYFVix7vcS
-	yTgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=k5XdusJX+gRfz/9lKHc5YsYaWyBisimOHz1oksoZzR8=;
-	b=CdmzRFtzctel7k4YDKl69Hve7PRMCqyem4Ws2KBuQjTOQa1zbrYahWdbMMbRf+JD+x
-	uIaPmRnGpT4pHVAahQQnHhZT+6rCGtEyy1CR8Qh612x8l/PWrZhFfCiP/M5/H4l/7o9Y
-	A512sVTi9GLJqnYaToNdjr2sK55+ESA7jWm5i886xqaqiYG3dgguGcuWoECCpaMpIbms
-	io9rFgod10uHXO9SUcCnyMBMpmEmo1zMHryp/qSIdhQ8hJ+FmtZEjKYQ/i7gqKORitSW
-	EXosb+7XTvYWLbl2l8HjdUr2cs9LiOrfJay6x8UQoJwzuvMFjLDhNnG1q7iuVio8rhDm
-	8Nmg==
-X-Gm-Message-State: AMCzsaU2BuNcoaZEgkvSSKndicioK3JyiVK/W0x/B0+lYcMfSAezzW9n
-	W/ocRLmVeb1RBB9TWSipVLYUAkuSImaQNvqZ5sEnrA==
-X-Google-Smtp-Source: AOwi7QBShmpaW7DuIaH9LOwWcs78Cj7+9+9D5yMTZX0A4JEx7WS3EaPeQ5b/unOf+Kd1fVjYGSW3r5cfOBQtgwZw5oM=
-X-Received: by 10.157.25.143 with SMTP id k15mr2909347otk.201.1507561734761;
-	Mon, 09 Oct 2017 08:08:54 -0700 (PDT)
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Tue, 10 Oct 2017 11:38:07 PDT
+Received: from rcdn-iport-4.cisco.com (rcdn-iport-4.cisco.com [173.37.86.75])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EC8EE00D18
+	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 11:38:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=3988; q=dns/txt; s=iport;
+	t=1507660687; x=1508870287;
+	h=from:to:subject:date:message-id:mime-version;
+	bh=Q6goGncGjvcMeZwopH6fJBQ4/5cQdPW6HCMAw7iMv1s=;
+	b=f5mvoCobWUAOKGpCHQiEVqjCUnU09nAl7az2gp4A8wqcLQy7aAYctsU/
+	bBw5Wn0vMsBAMXRT3ncV5w0r3EXMddW6n5bZSKjSqcvO4RMltjgrT+KNI
+	y1NZYz9Sd9K0GPjQByBEC2yFd2XELHqLAwa2votldWBp2cLCnEuCd3Wdf 4=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0C1AQB9Et1Z/4sNJK1dGQEBAQEBAQEBA?=
+	=?us-ascii?q?QEBBwEBAQEBgm9sZG4ug3OaE4FUkRKHUQqFV4Q1QhUBAgEBAQEBAQFrHQuFR2g?=
+	=?us-ascii?q?BDD4CBDAnBIlTZKg4gicniwoBAQEBAQEEAQEBAQEBAQEBH4MtggKDZguCc4gXL?=
+	=?us-ascii?q?4IyBaE8ApRnkw+VNAIRGQGBOAE1IoEOeBVbAYcKiiiBEAEBAQ?=
+X-IronPort-AV: E=Sophos;i="5.43,359,1503360000"; 
+	d="scan'208,217";a="306053022"
+Received: from alln-core-6.cisco.com ([173.36.13.139])
+	by rcdn-iport-4.cisco.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	10 Oct 2017 18:37:03 +0000
+Received: from XCH-RCD-001.cisco.com (xch-rcd-001.cisco.com [173.37.102.11])
+	by alln-core-6.cisco.com (8.14.5/8.14.5) with ESMTP id v9AIb3Si022645
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 18:37:03 GMT
+Received: from xch-rcd-001.cisco.com (173.37.102.11) by XCH-RCD-001.cisco.com
+	(173.37.102.11) with Microsoft SMTP Server (TLS) id 15.0.1320.4;
+	Tue, 10 Oct 2017 13:37:02 -0500
+Received: from xch-rcd-001.cisco.com ([173.37.102.11]) by
+	XCH-RCD-001.cisco.com ([173.37.102.11]) with mapi id 15.00.1320.000;
+	Tue, 10 Oct 2017 13:37:02 -0500
+From: "Ryan Pabis (pabisr)" <pabisr@cisco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Replacing Openssl with a custom version?
+Thread-Index: AQHTQfbD0PEZfw7M5ECUZglsq31IuA==
+Date: Tue, 10 Oct 2017 18:37:02 +0000
+Message-ID: <9615587B-3637-4ABB-BB94-9C9416352354@cisco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/f.1d.0.161209
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.116.215.244]
 MIME-Version: 1.0
-Received: by 10.157.14.100 with HTTP; Mon, 9 Oct 2017 08:08:54 -0700 (PDT)
-From: Jerry Lian <jerry.lian@gmail.com>
-Date: Mon, 9 Oct 2017 11:08:54 -0400
-Message-ID: <CAE0QtjN9VykaHZUQrkdmBjbnWFGtriW9zYnADBiWvNptT3APCw@mail.gmail.com>
-To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Tue, 10 Oct 2017 11:53:50 -0700
-Subject: Basic question: "core-image-minimal" v.s "core-image-base" ?
+Subject: Replacing Openssl with a custom version?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,60 +81,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Oct 2017 15:09:00 -0000
-Content-Type: multipart/alternative; boundary="94eb2c091670ad71f5055b1e9162"
+X-List-Received-Date: Tue, 10 Oct 2017 18:38:08 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9615587B36374ABBBB949C9416352354ciscocom_"
 
---94eb2c091670ad71f5055b1e9162
-Content-Type: text/plain; charset="UTF-8"
+--_000_9615587B36374ABBBB949C9416352354ciscocom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi, all:
+QWxsLA0KDQpJ4oCZbSB0cnlpbmcgdG8gYnVpbGQsIGxpbmsgYW5kIGluc3RhbGwgb3VyIENpc2Nv
+IHZlcnNpb24gb2Ygc3NsLiAgQW5kIEnigJl2ZSBiZWVuIGFibGUgdG8gY29tcGlsZSBhbmQgbGlu
+ayBpdCwgaG93ZXZlciBJIGRvbuKAmXQgdW5kZXJzdGFuZCBob3cgdG8gaW5zdGFsbCBvdXIgY2lz
+Y28gdmVyc2lvbiBJTlNURUFEIG9mIG9wZW5zc2wuDQoNCkFueSBoZWxwIGlzIGdyZWF0bHkgYXBw
+cmVjaWF0ZWQuDQoNClJlZ2FyZHMsDQpSeWFuDQo=
 
-I have a basic question: how to tell the difference between
-"core-image-minimal" and "core-image-base"?
-* If we look at file* \poky\meta\recipes-core\images\core-image-base.bb
-<http://core-image-base.bb>*
-============================================================
-=======================
-SUMMARY = "A console-only image that fully supports the target device
-hardware."
+--_000_9615587B36374ABBBB949C9416352354ciscocom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <2D46D39D854A4241A261712446D83D23@emea.cisco.com>
+Content-Transfer-Encoding: base64
 
-IMAGE_FEATURES += "splash"
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iVGl0bGUiIGNvbnRlbnQ9IiI+DQo8bWV0YSBuYW1lPSJLZXl3b3JkcyIgY29udGVu
+dD0iIj4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUg
+KGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8N
+CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0
+IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJ
+cGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
+CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
+CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWls
+eTpDYWxpYnJpO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9y
+aXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFu
+LkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQt
+ZmFtaWx5OkNhbGlicmk7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFuLm1zb0lucw0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCgltc28tc3R5bGUtbmFtZToiIjsNCgl0ZXh0LWRlY29y
+YXRpb246dW5kZXJsaW5lOw0KCWNvbG9yOnRlYWw7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0
+eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6Q2FsaWJyaTt9DQpAcGFnZSBXb3Jk
+U2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGlu
+IDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9z
+dHlsZT4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IndoaXRlIiBsYW5nPSJFTi1VUyIgbGluaz0i
+IzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5BbGwsPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5J4oCZbSB0cnlpbmcgdG8g
+YnVpbGQsIGxpbmsgYW5kIGluc3RhbGwgb3VyIENpc2NvIHZlcnNpb24gb2Ygc3NsLiZuYnNwOyBB
+bmQgSeKAmXZlIGJlZW4gYWJsZSB0byBjb21waWxlIGFuZCBsaW5rIGl0LCBob3dldmVyIEkgZG9u
+4oCZdCB1bmRlcnN0YW5kIGhvdyB0byBpbnN0YWxsIG91ciBjaXNjbyB2ZXJzaW9uIElOU1RFQUQg
+b2Ygb3BlbnNzbC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPkFu
+eSBoZWxwIGlzIGdyZWF0bHkgYXBwcmVjaWF0ZWQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0Ij5SZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5SeWFuPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-LICENSE = "MIT"
-
-inherit core-image
-============================================================
-=======================
-* how can we tell that "core-image-base" will include "support for a
-variety of hardware such as WIFI, bluetooth...", as compare to
-"core-image-minimal"?
-* Do I miss any other document that I need to read?
-
-Thanks!
-
---94eb2c091670ad71f5055b1e9162
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div>Hi, all:<br><br></div>I have a ba=
-sic question: how to tell the difference between &quot;core-image-minimal&q=
-uot; and &quot;core-image-base&quot;?<br></div>* If we look at file<b> \pok=
-y\meta\recipes-core\<wbr>images\<a href=3D"http://core-image-base.bb" targe=
-t=3D"_blank">core-image-base.bb</a></b><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<br><div style=3D"margin-left:40px">SUMMARY =3D &quot;A console-only =
-image that fully supports the target device hardware.&quot;<br><br>IMAGE_FE=
-ATURES +=3D &quot;splash&quot;<br><br>LICENSE =3D &quot;MIT&quot;<br><br>in=
-herit core-image<br></div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br></div>*
- how can we tell that &quot;core-image-base&quot; will include &quot;suppor=
-t for a=20
-variety of hardware such as WIFI, bluetooth...&quot;, as compare to=20
-&quot;core-image-minimal&quot;?<br></div>* Do I miss any other document tha=
-t I need to read?<br><br></div>Thanks!</div>
-
---94eb2c091670ad71f5055b1e9162--
+--_000_9615587B36374ABBBB949C9416352354ciscocom_--
