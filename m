@@ -1,57 +1,65 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB0D5E00D0E; Tue, 10 Oct 2017 09:34:34 -0700 (PDT)
+	id 616F8E00D6B; Tue, 10 Oct 2017 11:18:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.235.150.235 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.42 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.42 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.150.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEE94E00D0E
-	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 09:34:33 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx3.ess.sfj.cudaops.com (version=TLSv1.2 cipher=AES256-SHA256
-	bits=256 verify=NO); Tue, 10 Oct 2017 16:34:31 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Tue, 10 Oct 2017 09:34:28 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Tue, 10 Oct 2017 09:34:28 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: errors in recipe after move from devtool
-Thread-Index: AQHTQeR3bS5Hw1lI/kCbrgtXNT82jKLdRhRG
-Date: Tue, 10 Oct 2017 16:34:28 +0000
-Message-ID: <994eabee7682438ea53aba932c7759c6@sakuraus.com>
-References: <c69919c2a00f4b6f8b9f00b46d848839@sakuraus.com>
-In-Reply-To: <c69919c2a00f4b6f8b9f00b46d848839@sakuraus.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.239]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f42.google.com (mail-it0-f42.google.com
+	[209.85.214.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2853E00D0E
+	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 11:18:54 -0700 (PDT)
+Received: by mail-it0-f42.google.com with SMTP id n195so11329844itg.1
+	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 11:18:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=9e7iTQdAOoDeMSr9fRFozDyyypEyWuruD8zM+LM7P9c=;
+	b=Owr1sMUXeYHwPYD8UYvMKYXqz5rwsuIa7i6f2Co+G6xiAO9mPYkD9+Ei2G3GzZnPm9
+	5GyG+VvTaOt+15mlnR7wQa22zpNLbqEwh74COFKlZiNERo09uF9d1IvybyBSqqF6kDsP
+	T1Za3IRhE/wt7FHUmsWb7ghBHjFeHY1Wb+F3xygHV8JR6JrB/pH/wxmS9F5HOG/QPlAs
+	BtdhGNsiH6u+1MjTISL0zxvk1tRMc057sZ8u4Mra5JKXZRXBB98QIiIJ5iW9k1t57VsN
+	mgjh0+nqafIxi/zvoV8wZUjIhu5GL+wA9Vxit4uGTf+rGRsP2P+uqejAZ1Qckjk9uFmU
+	9p9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=9e7iTQdAOoDeMSr9fRFozDyyypEyWuruD8zM+LM7P9c=;
+	b=bf/neESedW6bcLL1ra40p1iTO5UnfrEX0d7XQiJwlvBAXuo933mEIJk68hqLVncM32
+	pH9P+fXjvatUy2Ouk3goZIGxoklTGQMnx4mu0qPMG+o8OD1I74+AN7poLj4iEWifymxD
+	CSrFO/pQOk21hs5STM52uBqMj2orVECDi21mIT7ZRYRImihdREzJAWc7swvbKro8eARH
+	hOdis5KaCtFUU36gm/ZBSn7PPh67r3DQyoq2BqsGRkqquNjJf86q+pgOCypFNBaBgm/r
+	h5LdrDouwDfxRPlZZCTkq196DMc7/yumc//M8+cr8BSjc4cpweQ8Me0TvHDZRX/EgunE
+	CC1g==
+X-Gm-Message-State: AMCzsaUypWD+/fzq0gt0CjJNAxC6FVv2D84GCzqKzd3mt+siLc2s45Ql
+	b+RzS0FhPAcHx/soQuO98zf+W2tpYp5RlKBjzIKYkw==
+X-Google-Smtp-Source: AOwi7QBbxbWZYn4I6+h4ldqwjHPDz4h3FqJeH/KkSKIF3qUH8QPLlnNgh3HFqX0Nky66zTQt2jCYi6tt8xG2o0hw6XM=
+X-Received: by 10.36.167.79 with SMTP id s15mr18856484iti.6.1507659534289;
+	Tue, 10 Oct 2017 11:18:54 -0700 (PDT)
 MIME-Version: 1.0
-X-BESS-ID: 1507653270-298554-28199-271881-1
-X-BESS-VER: 2017.12-r1709122024
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.185860
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in 
-	message 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
+Received: by 10.107.162.205 with HTTP; Tue, 10 Oct 2017 11:18:33 -0700 (PDT)
+In-Reply-To: <994eabee7682438ea53aba932c7759c6@sakuraus.com>
+References: <c69919c2a00f4b6f8b9f00b46d848839@sakuraus.com>
+	<994eabee7682438ea53aba932c7759c6@sakuraus.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 10 Oct 2017 19:18:33 +0100
+Message-ID: <CAJTo0LYK-f5C4LcRp0dtOoDdMoF_zBhoqZnptYTTpq1GjVfjQA@mail.gmail.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: errors in recipe after move from devtool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -64,167 +72,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Oct 2017 16:34:34 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_994eabee7682438ea53aba932c7759c6sakurauscom_"
+X-List-Received-Date: Tue, 10 Oct 2017 18:18:55 -0000
+Content-Type: multipart/alternative; boundary="f403045fb218fbe79f055b3556a5"
 
---_000_994eabee7682438ea53aba932c7759c6sakurauscom_
-Content-Type: text/plain; charset="iso-8859-1"
+--f403045fb218fbe79f055b3556a5
+Content-Type: text/plain; charset="UTF-8"
+
+On 10 October 2017 at 17:34, Greg Wilson-Lindberg <GWilson@sakuraus.com>
+wrote:
+
+> So to continue, what is the problem with symlinked libraries in a non-dev
+> package, don't most libraries have syslink's to them?
+>
+
+Typically:
+
+libfoo.so -> libfoo.so.1
+libfoo.so.1 -> libfoo.so.1.2
+libfoo.so.1.2 is a real file
+
+In this case libfoo.so is *only* used at link time and should be in
+PN-dev.  The other links and the real library are for runtime and should be
+in PN.
+
+This warning is saying that you have libzint.so in zint instead of
+zint-dev.  This implies that you've been changing FILES_${PN} and it's too
+broad now.
+
+Ross
+
+--f403045fb218fbe79f055b3556a5
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Sorry, hit the wrong button in my mailer and sent this before I was finishe=
-d.
-
-
-So to continue, what is the problem with symlinked libraries in a non-dev p=
-ackage, don't most libraries have syslink's to them?
-
-Secondly, the redundant  RPATH, most of the links that I've found mentionin=
-g this show a link with something like lib/../lib, the error that I'm getti=
-ng doesn't have that. Any insight would be appreciated.
-
-
-Regards,
-
-Greg
-
-________________________________
-From: Greg Wilson-Lindberg
-Sent: Tuesday, October 10, 2017 9:29:11 AM
-To: yocto@yoctoproject.org
-Subject: errors in recipe after move from devtool
-
-
-I'm trying to develop a new recipe for zint, barcode generating software. I=
- initially built the recipe under devtool and got it to the point that ther=
-e were no errors. I then did a devtool finish command to move it to my yoct=
-o build tree under our private recipe and now when I build it I get 2 diffe=
-rent errors that don't make any sense to me:
-
-
-ERROR: zint-2.6.1-r0 do_package_qa: QA Issue: non -dev/-dbg/nativesdk- pack=
-age contains symlink .so: zint path '/work/cortexa7hf-neon-vfpv4-poky-linux=
--gnueabi/zint/2.6.1-r0/packages-split/
-zint/usr/lib/libzint.so'
-non -dev/-dbg/nativesdk- package contains symlink .so: zint path '/work/cor=
-texa7hf-neon-vfpv4-poky-linux-gnueabi/zint/2.6.1-r0/packages-split/zint/usr=
-/lib/libQZint.so' [dev-so]
-ERROR: zint-2.6.1-r0 do_package_qa: QA Issue: zint: /work/cortexa7hf-neon-v=
-fpv4-poky-linux-gnueabi/zint/2.6.1-r0/packages-split/zint/usr/lib/libzint.s=
-o.2.6.1 contains probably-redundant RP
-ATH /usr/lib
-zint: /work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/zint/2.6.1-r0/packages=
--split/zint/usr/lib/libQZint.so.2.6.1 contains probably-redundant RPATH /us=
-r/lib [useless-rpaths]
-ERROR: zint-2.6.1-r0 do_package_qa: QA run found fatal errors. Please consi=
-der fixing them.
-ERROR: zint-2.6.1-r0 do_package_qa: Function failed: do_package_qa
-ERROR: Logfile of failure stored in: /home/gwilson/Qt-5.9/Yocto-build-RPi3/=
-build-raspberrypi3/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/zint/2=
-.6.1-r0/temp/log.do_package_qa.3282
-ERROR: Task (/home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/meta-sakura/reci=
-pes-sakura/Scribe-support/zint_2.6.1.bb:do_package_qa) failed with exit cod=
-e '1'
+<div dir=3D"ltr">On 10 October 2017 at 17:34, Greg Wilson-Lindberg <span di=
+r=3D"ltr">&lt;<a href=3D"mailto:GWilson@sakuraus.com" target=3D"_blank">GWi=
+lson@sakuraus.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div =
+class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
 
 
 
---_000_994eabee7682438ea53aba932c7759c6sakurauscom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Sorry, hit the wrong button in my mailer and sent this before I was fini=
-shed.</p>
-<p><br>
-</p>
-<p>So to continue, what is the problem with symlinked libraries in a non-de=
-v package, don't most libraries have syslink's to them?</p>
-<p>Secondly, the redundant&nbsp; RPATH, most of the links that I've found m=
-entioning this show a link with something like lib/../lib, the error that I=
-'m getting doesn't have that. Any insight would be appreciated.</p>
-<p><br>
-</p>
-<p>Regards,</p>
-<p>Greg</p>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Greg Wilson-Lindberg<=
-br>
-<b>Sent:</b> Tuesday, October 10, 2017 9:29:11 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> errors in recipe after move from devtool</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<p>I'm trying to develop a new recipe for zint, barcode generating software=
-. I initially built the recipe under devtool and got it to the point that t=
-here were no errors. I then did a devtool finish command to move it to my y=
-octo build tree under our private
- recipe and now when I build it I get 2 different errors that don't make an=
-y sense to me:</p>
-<p><br>
-</p>
-<p><span style=3D"font-family:monospace"><span style=3D"font-weight: bold; =
-color: rgb(255, 84, 84);">ERROR</span>:
-<span style=3D"color: rgb(178, 24, 24);">zint-2.6.1-r0 do_package_qa: QA Is=
-sue: non -dev/-dbg/nativesdk- package contains symlink .so: zint path '/wor=
-k/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/zint/2.6.1-r0/packages-split/</s=
-pan><br>
-zint/usr/lib/libzint.so' <br>
-<span style=3D"color: rgb(178, 24, 24);">non -dev/-dbg/nativesdk- package c=
-ontains symlink .so: zint path '/work/cortexa7hf-neon-vfpv4-poky-linux-gnue=
-abi/zint/2.6.1-r0/packages-split/zint/usr/lib/libQZint.so' [dev-so]</span>
-<br>
-<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>: <=
-span style=3D"color: rgb(178, 24, 24);">
-zint-2.6.1-r0 do_package_qa: QA Issue: zint: /work/cortexa7hf-neon-vfpv4-po=
-ky-linux-gnueabi/zint/2.6.1-r0/packages-split/zint/usr/lib/libzint.so.2.6.1=
- contains probably-redundant RP</span><br>
-ATH /usr/lib <br>
-<span style=3D"color: rgb(178, 24, 24);">zint: /work/cortexa7hf-neon-vfpv4-=
-poky-linux-gnueabi/zint/2.6.1-r0/packages-split/zint/usr/lib/libQZint.so.2.=
-6.1 contains probably-redundant RPATH /usr/lib [useless-rpaths]</span>
-<br>
-<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>: <=
-span style=3D"color: rgb(178, 24, 24);">
-zint-2.6.1-r0 do_package_qa: QA run found fatal errors. Please consider fix=
-ing them.</span>
-<br>
-<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>: <=
-span style=3D"color: rgb(178, 24, 24);">
-zint-2.6.1-r0 do_package_qa: Function failed: do_package_qa</span> <br>
-<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>: <=
-span style=3D"color: rgb(178, 24, 24);">
-Logfile of failure stored in: /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-r=
-aspberrypi3/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/zint/2.6.1-r0=
-/temp/log.do_package_qa.3282</span>
-<br>
-<span style=3D"font-weight: bold; color: rgb(255, 84, 84);">ERROR</span>: <=
-span style=3D"color: rgb(178, 24, 24);">
-Task (/home/gwilson/Qt-5.9/Yocto-build-RPi3/sources/meta-sakura/recipes-sak=
-ura/Scribe-support/zint_2.6.1.bb:do_package_qa) failed with exit code '1'</=
-span><br>
-<br>
-</span><br>
-</p>
-</div>
-</div>
-</body>
-</html>
+<div dir=3D"ltr">
 
---_000_994eabee7682438ea53aba932c7759c6sakurauscom_--
+<div id=3D"m_2240563657108159643divtagdefaultwrapper" style=3D"font-size:12=
+pt;color:#000000;font-family:Calibri,Arial,Helvetica,sans-serif">
+<p><span style=3D"font-size:12pt">So to continue, what is the problem with =
+symlinked libraries in a non-dev package, don&#39;t most libraries have sys=
+link&#39;s to them?</span></p></div></div></blockquote><div><br></div><div>=
+Typically:</div><div><br></div><div>libfoo.so -&gt; libfoo.so.1</div><div>l=
+ibfoo.so.1 -&gt; libfoo.so.1.2</div><div>libfoo.so.1.2 is a real file</div>=
+<div><br></div><div>In this case libfoo.so is *only* used at link time and =
+should be in PN-dev.=C2=A0 The other links and the real library are for run=
+time and should be in PN.</div><div><br></div><div>This warning is saying t=
+hat you have libzint.so in zint instead of zint-dev.=C2=A0 This implies tha=
+t you&#39;ve been changing FILES_${PN} and it&#39;s too broad now.</div><di=
+v><br></div><div>Ross =C2=A0</div></div></div></div>
+
+--f403045fb218fbe79f055b3556a5--
