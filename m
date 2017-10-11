@@ -1,42 +1,68 @@
-Return-Path: <fabien.lahoudere@collabora.co.uk>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4357AE00C78; Wed, 11 Oct 2017 10:48:52 -0700 (PDT)
+	id 49F6EE00C82; Wed, 11 Oct 2017 10:57:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 903EFE00C65
-	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 10:48:51 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: aragua) with ESMTPSA id 31A2726D5B0
-Message-ID: <1507744126.9509.35.camel@collabora.co.uk>
-From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-To: "Maxin B. John" <maxin.john@intel.com>
-Date: Wed, 11 Oct 2017 19:48:46 +0200
-In-Reply-To: <20171011113731.GA35471@mbabyjoh-desk.ger.corp.intel.com>
-References: <1507671003.9509.21.camel@collabora.co.uk>
-	<OF5390C64E.C78BBBE2-ON882581B5.007B79AE-882581B5.007BBDD4@selinc.com>
-	<1507704333.9509.23.camel@collabora.co.uk>
-	<CAJTo0La5mPdRzFOv-ofnHwuyG3fNPEf_be=V9d_TZAHLJxt_kA@mail.gmail.com>
-	<1507713002.9509.25.camel@collabora.co.uk>
-	<1507713360.9509.27.camel@collabora.co.uk>
-	<CAOgGgETUawMZ8wAJW-n-UiEW8NOR8sO19gUhkEjJqbDCDa81RQ@mail.gmail.com>
-	<1507717126.9509.29.camel@collabora.co.uk>
-	<20171011113731.GA35471@mbabyjoh-desk.ger.corp.intel.com>
-X-Mailer: Evolution 3.22.6-1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: How to use same user in two recipes?
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.53 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A5B9E00C78
+	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 10:57:34 -0700 (PDT)
+Received: by mail-wm0-f53.google.com with SMTP id f4so7077811wme.0
+	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 10:57:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=aF6h86ZJETwtppNibnm0k1ePxOZu+b7eJQ/DGngKHwg=;
+	b=i11Y3SLeDHI4iEhDM9dqdabO1WWLijQqXwIAuGQ+hZPZiqc+jMO9Lg7hXZ9IZ+UC9i
+	FA5Bkvx9x2Y6+NZT49++HqDiV0bNtULng3I7VOiwDiOq0+yLWAzZPN2Qn6EXvd8xZrqM
+	3iWfsejnjmeDoeW+o3LNy/OSFeCIltXwon38we7rFvhT6KwHUlItqO1exDzjr7crmyl+
+	OScS1SZzAHuhwS+e+pFUYexoPnjUNv2uZ6BUyafLE8a7HIyQlNyCZtv+9NQc8yrTizFR
+	jw/NIcgS0oW2HoHOGo5fJPfIP5AfHuO7WLCKs75InKFrL0Yx/aVcn/0T8FGKpbLkxK5v
+	bIJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=aF6h86ZJETwtppNibnm0k1ePxOZu+b7eJQ/DGngKHwg=;
+	b=QmHseWSxxuywvoWtL+c68o1GxKkl6Nn1qEmAJMPbo+HGTOxS3Ck9Q1Xdkt6J2I/jpt
+	oUgffppWBoFCgfpFpSXRyMQo5edt4W7afw0OT2RLoNKRq95rSB64AO9BxSQqWCKu6wCX
+	SuLozYZ44IWW0SI3yXElGMCRqzm3PskXwvlDm7MnHROv07K7w9VZAdbRsFvQn538JTdb
+	a5LoGaLEGCILJ676QABGkyQuVKfFLG7IAqosLM8sD8yfB+DPUT7yo17WJ/aVO5WANAjU
+	pAow9Nw7HZtmXf77OGnsIbE/ik/3l8mA8+HX80UKcs1tnkAXtagsE5Ay/79eMtzxRPkR
+	Vaqg==
+X-Gm-Message-State: AMCzsaXpWInWyED2jvxU6GX2Menqy7rlqEMThAF6/R+dQscivxoQvmnw
+	GMBDHVdfOSn4NweJvOc2lyAI/1SlFWBB+7w2AGE=
+X-Google-Smtp-Source: ABhQp+T5SlwbnoYRxlNANSfxQ5eUzbCMXZObe55x7nzkdJU1FrVX2xX/sv0MggNMPDzQ1XrCx9zG1SQO1lOWGtItvP0=
+X-Received: by 10.28.91.75 with SMTP id p72mr305584wmb.89.1507744653570; Wed,
+	11 Oct 2017 10:57:33 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.223.166.19 with HTTP; Wed, 11 Oct 2017 10:57:33 -0700 (PDT)
+In-Reply-To: <CAE0QtjMaobVB--VkOobD1CjV+jYtn24Me181g4TSr24vfhMmUw@mail.gmail.com>
+References: <CAE0QtjMERAoesSe9wab80StX-0MRTEAf+RB6pgUguGgOBNCwAA@mail.gmail.com>
+	<CAJ86T=X8VtwndQPWJcdLs7n4CSyFQde5a_cM0qEDcW6EYyih7w@mail.gmail.com>
+	<CAE0QtjMaobVB--VkOobD1CjV+jYtn24Me181g4TSr24vfhMmUw@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Wed, 11 Oct 2017 10:57:33 -0700
+Message-ID: <CAJ86T=VhZdfAbS+W0ALxxu2-mQPJUv2M0d=b4o6mB5wm4eC+Ww@mail.gmail.com>
+To: Jerry Lian <jerry.lian@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Basic question: "core-image-minimal" v.s "core-image-base" ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,34 +74,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Oct 2017 17:48:52 -0000
+X-List-Received-Date: Wed, 11 Oct 2017 17:57:35 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-Maxin,
+On Wed, Oct 11, 2017 at 9:30 AM, Jerry Lian <jerry.lian@gmail.com> wrote:
+> Thanks for answers from Ross and Andre.
+> Now further question:
+> * If we look at file \poky\meta\recipes-core\images\core-image-minimal.bb
+> ========================================================
+> SUMMARY = "A small image just capable of allowing a device to boot."
+>
+> IMAGE_INSTALL = "packagegroup-core-boot ${CORE_IMAGE_EXTRA_INSTALL}"
+>
+> IMAGE_LINGUAS = " "
+>
+> LICENSE = "MIT"
+>
+> inherit core-image
+> ========================================================
+> * "inherit core-image" comes after "IMAGE_INSTALL = ..."
+> * Will the "IMAGE_INSTALL" in this file be overridden by "IMAGE_INSTALL" in
+> "core-image"
+>
+> So what is the rule for "overridden"?
 
-Is this patch submitted or applied for next release?
-
-Thanks
-
-On Wed, 2017-10-11 at 14:37 +0300, Maxin B. John wrote:
-> Hi Fabien,
-> 
-> On Wed, 2017-10-11 at 13:06 +0300, Henrik Lindblom wrote:
-> > > I think you'll want RDEPENDS instead of DEPENDS in your recipe. DEPENDS implies build time
-> > > dependencies (e.g. libraries) while RDEPENDS actually gets the component installed as a
-> > > runtime
-> > > dependency.
-> > > 
-> > Thanks Henrik
-> > I tried to add RDEPENDS too without success. The problem is that users and groups are not
-> > installed
-> > IIUC.
-> 
-> Could you apply this patch and see if it helps here ?
-> 
-> Best Regards,
-> Maxin
--- 
-Fabien
+http://www.yoctoproject.org/docs/2.3/bitbake-user-manual/bitbake-user-manual.html#basic-syntax
 
