@@ -1,6 +1,6 @@
 Return-Path: <fabien.lahoudere@collabora.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D51F3E00C78; Wed, 11 Oct 2017 10:17:51 -0700 (PDT)
+	id 4357AE00C78; Wed, 11 Oct 2017 10:48:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,14 +15,14 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
 	lines
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 420F5E00C65
-	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 10:17:50 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 903EFE00C65
+	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 10:48:51 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: aragua) with ESMTPSA id E51EA26D1D9
-Message-ID: <1507742266.9509.33.camel@collabora.co.uk>
+	(Authenticated sender: aragua) with ESMTPSA id 31A2726D5B0
+Message-ID: <1507744126.9509.35.camel@collabora.co.uk>
 From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
 To: "Maxin B. John" <maxin.john@intel.com>
-Date: Wed, 11 Oct 2017 19:17:46 +0200
+Date: Wed, 11 Oct 2017 19:48:46 +0200
 In-Reply-To: <20171011113731.GA35471@mbabyjoh-desk.ger.corp.intel.com>
 References: <1507671003.9509.21.camel@collabora.co.uk>
 	<OF5390C64E.C78BBBE2-ON882581B5.007B79AE-882581B5.007BBDD4@selinc.com>
@@ -48,15 +48,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Oct 2017 17:17:51 -0000
+X-List-Received-Date: Wed, 11 Oct 2017 17:48:52 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Thanks a lot Maxin
+Maxin,
 
-Your patch fix the issue.
+Is this patch submitted or applied for next release?
 
-\o/
+Thanks
 
 On Wed, 2017-10-11 at 14:37 +0300, Maxin B. John wrote:
 > Hi Fabien,
