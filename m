@@ -1,40 +1,36 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <sancelot@numalliance.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 07A50E00BE8; Wed, 11 Oct 2017 05:32:40 -0700 (PDT)
+	id DDF3AE00C45; Wed, 11 Oct 2017 06:24:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0B98E008A4
-	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 05:32:39 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga104.jf.intel.com with ESMTP; 11 Oct 2017 05:32:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.43,361,1503385200"; d="scan'208";a="1204661294"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by fmsmga001.fm.intel.com with ESMTP; 11 Oct 2017 05:32:36 -0700
-To: Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>,
-	"Maxin B. John" <maxin.john@intel.com>
-References: <HK2PR04MB0995028C6AD9F658017BCB29E64A0@HK2PR04MB0995.apcprd04.prod.outlook.com>
-	<20171011121345.GA5587@mbabyjoh-desk.ger.corp.intel.com>
-	<HK2PR04MB0995F1E36FF064CE210289EEE64A0@HK2PR04MB0995.apcprd04.prod.outlook.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <e84f0fab-4fbe-980a-5b06-1884a082b5c8@linux.intel.com>
-Date: Wed, 11 Oct 2017 15:29:02 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+Received: from mail.numalliance.com (mail.numalliance.com [194.2.198.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36521E00B87;
+	Wed, 11 Oct 2017 06:24:31 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.numalliance.com (Postfix) with ESMTP id B109420D0413;
+	Wed, 11 Oct 2017 15:24:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mail.numalliance.com
+Received: from mail.numalliance.com ([127.0.0.1])
+	by localhost (mail.numalliance.com [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id zwcBqJOHIofv; Wed, 11 Oct 2017 15:24:22 +0200 (CEST)
+Received: from [192.168.0.78] (unknown [192.168.0.78])
+	(Authenticated sender: sancelot@numalliance.com)
+	by mail.numalliance.com (Postfix) with ESMTPSA id 5EA8220CBF8E;
+	Wed, 11 Oct 2017 15:24:22 +0200 (CEST)
+To: toaster@yoctoproject.org, yocto <yocto@yoctoproject.org>
+From: =?UTF-8?Q?St=c3=a9phane_Ancelot?= <sancelot@numalliance.com>
+Message-ID: <0d43684b-22f6-2563-bdcc-2eb4d4ae3870@numalliance.com>
+Date: Wed, 11 Oct 2017 15:24:22 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <HK2PR04MB0995F1E36FF064CE210289EEE64A0@HK2PR04MB0995.apcprd04.prod.outlook.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Adding test case in LTP in Yocto
+Subject: pb when building core-image-sato
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,24 +42,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Oct 2017 12:32:40 -0000
+X-List-Received-Date: Wed, 11 Oct 2017 13:24:32 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Language: fr
+Content-Transfer-Encoding: quoted-printable
 
-On 10/11/2017 03:28 PM, Umamahesh Yelchuruvenkata wrote:
-> Hi Maxin,
-> 
-> Thanks for the reply. Before sending it for review, I have to test via LTP/Yocto.  I am new to yocto /LTP, trying to understand how to add it.
-> It is that only way to add my files is through patch files?.
-> 
-> Please suggest.
+Hi,
 
-You can use 'devtool modify ltp' to get a local copy of ltp source tree, 
-and then modify it as needed. Then issue 'bitbake <image>' as usual to 
-build an image with the local modifications to ltp. When you are happy, 
-create commits using git in the local source tree of ltp, and issue 
-'devtool update-recipe ltp' to get them added as patches to the ltp recipe.
+I don't know where it can com from,=C2=A0 but I have following mistake fr=
+om=20
+toaster when building qemux86-64 core-sato-image :
 
-Alex
+bash -c "source=20
+/var/www/toaster/poky/_toaster_clones/_git___git.yoctoproject.org_poky_ma=
+ster/oe-init-build-env=20
+/var/www/toaster/poky/build-toaster-6; BITBAKE_UI=3D"knotty"=20
+/var/www/toaster/poky/_toaster_clones/_git___git.yoctoproject.org_poky_ma=
+ster/bitbake/bin/bitbake=20
+--read /var/www/toaster/poky/build-toaster-6/conf/toaster.conf --read=20
+/var/www/toaster/poky/build-toaster-6/conf/toaster-bblayers.conf=20
+--server-only -t xmlrpc -B 0.0.0.0:0"
+
+
+bitbake: error: no such option: -t
+
+
+Regards
+
+S.Ancelot
 
