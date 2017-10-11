@@ -1,73 +1,39 @@
-Return-Path: <yocto.user.mailinglist@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F086DE00C7B; Wed, 11 Oct 2017 11:24:16 -0700 (PDT)
+	id 32AAFE00C7B; Wed, 11 Oct 2017 12:56:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yocto.user.mailinglist[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.50 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.50 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA86DE00C77
-	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 11:24:15 -0700 (PDT)
-Received: by mail-wm0-f50.google.com with SMTP id i124so7223229wmf.3
-	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 11:24:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=Mn3LG4OSEjrdQ0ncu+WzrD6NpU+umr455PLqBUjzfpU=;
-	b=PjGMtgJmgygoe0MHp6QiKUb1xs8+KpcnUe7QNCCsL1tzZuhXU+gZ5RRX1UZKQ0+vne
-	cwWB5SWFNuJ7fK2u/6e9Rknwh7no9K4ODK3ZxOvjdJt62qBJRJg9r02vyK+9QsMHNArB
-	1dq1QTGIlxf3+ouzSAf8LnSIZZ9RvS9HubSSM3SnQdT8yK01KZ1Y7q4orMygMRUr81wj
-	P9ZSE5jS/4EOWdlWgnu9uwdvQc5WNIkvkeiru8g1RqiGrJUx+ZP/tnCrE/dqD/sC3UFd
-	GzVvlNTDRQRtMwjo7MAErLK1+BzxcTuF3Z9l3jteZYT5oyhBXrsMCJ8e/wkqDbX6xWb0
-	RBPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=Mn3LG4OSEjrdQ0ncu+WzrD6NpU+umr455PLqBUjzfpU=;
-	b=eBRVBqEb78AlN4b+Rdg5O/ixN2g6RTe9nSI4WF4GgOjcid4gUAWA7unjFpPNHNFpEt
-	RDbHdvFn8u5RxaN40ISsBSwy5hAMWxEQAuw9+kcZHI7QJLembiKbl0WkPigYakxIV7L+
-	0NJmU3Elmj7puqyA0ayIl0RBMRsD8NT8rflWVyC0LOkHnZw+Zb3R91yYlxJ9UEGkYvk5
-	G+yv9jj15N9c7UizdWqWdkRwGQ3Uc28BRKwM35dQ+nHZEUB+wUhHVLtMSh427zk1HqHM
-	k4YMciXVpLLcpm4FS9+fVEw3Dj+qD9SnAXvGeYeZXeKjgCwi0hKuUvXiWQDsLmTZZ2PH
-	KRIQ==
-X-Gm-Message-State: AMCzsaXoJjwr8anWw5nZPCXZDXjWM1u+G/0oa6CGe6f2V9oKDPjsPS4E
-	SiLf+VxckSrbwyGnebrAEaDS2ozQ
-X-Google-Smtp-Source: AOwi7QDwOi+gnpOPaXljjcDFClQxJz+tEJkTIQuSGdPum6fE+AMeuT3BldbcUW12UKaAuWzSE3R5KQ==
-X-Received: by 10.28.2.2 with SMTP id 2mr420792wmc.128.1507746254000;
-	Wed, 11 Oct 2017 11:24:14 -0700 (PDT)
-Received: from [192.168.42.50] (p578adb1c.dip0.t-ipconnect.de. [87.138.219.28])
-	by smtp.gmail.com with ESMTPSA id
-	u18sm16137434wrg.94.2017.10.11.11.24.12 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 11 Oct 2017 11:24:13 -0700 (PDT)
-To: yocto@yoctoproject.org
-References: <CAE0QtjMERAoesSe9wab80StX-0MRTEAf+RB6pgUguGgOBNCwAA@mail.gmail.com>
-From: Robert Berger <yocto.user.mailinglist@gmail.com>
-Message-ID: <67150d7b-80ba-e5e0-86ef-5f7f8afcbfca@gmail.com>
-Date: Wed, 11 Oct 2017 21:24:12 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91CBCE00C77
+	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 12:56:28 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	11 Oct 2017 12:56:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.43,362,1503385200"; d="scan'208";a="145423982"
+Received: from stan55-mobl2.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.145.68])
+	by orsmga002.jf.intel.com with ESMTP; 11 Oct 2017 12:56:23 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Date: Thu, 12 Oct 2017 08:56:20 +1300
+Message-ID: <2178504.Ibe9gh1eKU@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <158f5845a0574c538b147a1fcc70a6c3@sakuraus.com>
+References: <c69919c2a00f4b6f8b9f00b46d848839@sakuraus.com>
+	<4335149.ZQHvdiGDWE@peggleto-mobl.ger.corp.intel.com>
+	<158f5845a0574c538b147a1fcc70a6c3@sakuraus.com>
 MIME-Version: 1.0
-In-Reply-To: <CAE0QtjMERAoesSe9wab80StX-0MRTEAf+RB6pgUguGgOBNCwAA@mail.gmail.com>
-Subject: image dependent pkg versions/pkg variations
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: errors in recipe after move from devtool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,53 +45,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Oct 2017 18:24:17 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 11 Oct 2017 19:56:29 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+On Thursday, 12 October 2017 6:07:55 AM NZDT Greg Wilson-Lindberg wrote:
+> Thanks for the info, now I understand what is going on. Hopefully I can find
+> a way to get rid of the RPATH, I don't like ignoring errors or warnings.
+> 
+> I've spent some more time looking into this, I haven't been able to find out
+> where the -rpath comes from. If I start a devshell none of the environment
+> variables have it set. In the run.do_compile log none of the environment
+> variables have it set, it's not set in the run.do_configure log. But in the
+> log.do_compile file the command that links the library:
+> 
+> /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/sysroots/
+> x86_64-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc ... 
+> -Wl,-rpath,/usr/lib 
+> 
+> There it is at the end of the command line.
+> 
+> As you can see the build for zint is based on CMake. Do you have any
+> suggestions as to where I can look to figure out how this is getting set,
+> I've done searches of all of the files in the zint download and the only
+> ones that have -rpath in them are some files that build a tcl based support
+> program that has its own autotools based build system.
 
-I would like something like this:
+This seems to be something that CMake handles itself. From a quick google 
+which found the CMake wiki page on the subject [1], you may perhaps set 
+CMAKE_SKIP_RPATH? In theory you could do that via EXTRA_OECMAKE in the recipe
+i.e.
 
-1) Produce just a single toolchain like
+EXTRA_OECMAKE += "-DCMAKE_SKIP_RPATH=TRUE"
 
-2) Choose packages depending on image recipe
+Cheers,
+Paul
 
-So far so good. This should be pretty standard, but
+[1] https://cmake.org/Wiki/CMake_RPATH_handling
 
-3) Different package versions depending on the image recipe?
-Well actually I would like to have root file systems with different 
-recipe versions inside
-e.g.
-Customer 1: prg1_1.1.bb, prg2_2.2.bb
-Customer 2: prg1_1.2.bb, prg2_2.1.bb
+-- 
 
-4) Different package variants (e.g. extra compile flags) depending on 
-the image recipe? Again different content of rootfs.
-e.g.
-Customer 3: prg1_1.1.bb (default), prg2_2.2.bb with extra CFLAGS=-DUMMY)
-Customer 4: prg1_1.2.bb (default), prg2_2.1.bb(default)
-
-===
-
-Is this possible at all?
-
-I could define per distro image versions, but the name of the distro 
-e.g. "poky" seems to be part of the compiler prefix, which is not nice 
-and I would need to build the same toolchain multiple times, which again 
-is not nice.
-
-If the choice is based on e.g. the distro variable I could use it to 
-distinguish in the recipes between different build variations, but again 
-not nice.
-
-What would you suggest?
-
-Regards,
-
-Robert
-
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
