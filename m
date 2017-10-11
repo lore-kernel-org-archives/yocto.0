@@ -1,31 +1,53 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <pderocco@ix.netcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EBD96E00C01; Tue, 10 Oct 2017 20:26:28 -0700 (PDT)
+	id EEC7FE00C01; Tue, 10 Oct 2017 21:20:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.86.89.61 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EB20E00B53
-	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 20:26:27 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v9B3QRFP027556
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 20:26:27 -0700
-Received: from ala-lpggp5.wrs.com (147.11.105.121) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Tue, 10 Oct 2017 20:26:26 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>, <mark.hatle@windriver.com>
-Date: Tue, 10 Oct 2017 20:26:26 -0700
-Message-ID: <20171011032626.163301-1-wenzong.fan@windriver.com>
-X-Mailer: git-send-email 2.13.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from elasmtp-galgo.atl.sa.earthlink.net
+	(elasmtp-galgo.atl.sa.earthlink.net [209.86.89.61])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6176E00B53
+	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 21:20:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
+	s=dk12062016; t=1507695641; bh=8LKvuAORZA56WzBY81vi8i2ZQ1ImIkMNDDSa
+	uo87Px8=; h=Received:From:To:Subject:Date:Message-ID:MIME-Version:
+	Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:
+	X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=dGECAO2nigxoid380f9jySx
+	CSnC7IlPd2h7+PHv/iFNM9z54ZmLb2/T99pahTkuSFjCgRp9dSP7Iq2YZR0d6Hi7Vdj
+	vCDM1Xhe/C2aRd3OYSpShEm/Frr5ILK7RMdYNqkDa/GyHjJyXMXYv465+uzXzjeNJJh
+	OF+4PnlcSjDku4B2sNfu9VSuwQH2hUIfS1VBV6SaMbihY5eKp42JeLAOo86MlAOcN6S
+	EX5dqI7fwGSzl39+ikr2sWFiL+k3lKlg86ib07I3JTEc2WVp2PVVeGWYHNohwNQd6uY
+	K2YFMBvuWMXozAGxIgPpogQoXdV46S6vuzS2X7aC/mxYwl7uUEw==
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk12062016; d=ix.netcom.com;
+	b=OhosrRCu4ODAnfkibxIBoFaui1eSJPBjIkni+1HMWc28lwfBXhO2e1IyDD8d1otgW0iOFwcWjMDRh4dgZAvA6fHMPsNe+9z5kd8ecZR3ZiIy8oPzHupVAbstx4aRGoZG1jBYcKknxWpqPBh8QcGcykk+Fk24AWQ99lk8V4VLIS18rPsiblVGMx3F9hTTd1P7SMHVk6y+F5Rj5krVdNp6S8KCbSO9pXpbJfVLZ/TC4HEo1QBMl8WVSzT456NguqEmKFITtGM8ktmnnp6iuJ8qxmAuABh8YW4laacLCVqe1RLIZng2ITVcgcaGcaeFb5GmBDkszAYWzQaDRW0t/f8Scg==;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [108.228.233.89] (helo=PAULD)
+	by elasmtp-galgo.atl.sa.earthlink.net with esmtpa (Exim 4)
+	(envelope-from <pderocco@ix.netcom.com>) id 1e28Vc-000ExS-B2
+	for yocto@yoctoproject.org; Wed, 11 Oct 2017 00:20:40 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 10 Oct 2017 21:20:43 -0700
+Message-ID: <4ED4375230064964986871BF281E2169@PAULD>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH v2] policycoreutils: add PACKAGECONFIG for libpam, audit
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: AdNCSE3a1cFMeywBTseQyD3kMG9e8A==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.23651
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688227c7abdd8ce8aad48294ecdc0b0fbb4350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 108.228.233.89
+Subject: Setting kernel CONFIG variables in the RPi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,59 +59,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Oct 2017 03:26:29 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 11 Oct 2017 04:20:43 -0000
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
+Apparently, the meta-raspberrypi layer does not employ the Yocto method of
+modifying the kernel configuration through config fragments. Instead, it
+uses a kernel_configure_variable function called from within a
+do_configure_prepend function in recipes-kernel/linux/linux-rpi.inc.
 
-* make pam and audit support configurable;
-* remove INITDIR from EXTRA_OEMAKE, the variable is not supported now.
+The question is this: if the defconfig that comes with the kernel includes
+one value, but linux-rpi.inc overrides it to another value in
+do_configure_prepend, but I want the original value, how can I override it
+again in a .bbappend in my own layer? I can't use do_configure_prepend,
+because it would be defining a function already defined in the .bb file,
+right? Or if I could do that, wouldn't I be prepending it before what's
+prepended in the .bb file, so my change would play first, and then be
+undone by the .bb file? What's the solution?
 
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- recipes-security/selinux/policycoreutils.inc | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
-
-diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
-index 442b086..ff981cb 100644
---- a/recipes-security/selinux/policycoreutils.inc
-+++ b/recipes-security/selinux/policycoreutils.inc
-@@ -21,8 +21,6 @@ DEPENDS += "${@['', '${EXTRA_DEPENDS}']['${PN}' != '${BPN}-native']}"
- 
- inherit selinux pythonnative
- 
--DEPENDS += "${@target_selinux(d, 'libpam audit')}"
--
- RDEPENDS_${BPN}-fixfiles += "\
- 	${BPN}-setfiles \
- 	grep \
-@@ -118,11 +116,20 @@ export STAGING_LIBDIR
- export BUILD_SYS
- export HOST_SYS
- 
--AUDITH="`ls ${STAGING_INCDIR}/libaudit.h >/dev/null 2>&1 && echo /usr/include/libaudit.h `"
--PAMH="`ls ${STAGING_INCDIR}/security/pam_appl.h >/dev/null 2>&1 && echo /usr/include/security/pam_appl.h `"
--EXTRA_OEMAKE += "${@target_selinux(d, 'PAMH=${PAMH} AUDITH=${AUDITH}', 'PAMH= AUDITH= ')} INOTIFYH=n"
--EXTRA_OEMAKE += "PREFIX=${D}"
--EXTRA_OEMAKE += "INITDIR=${D}/etc/init.d"
-+PACKAGECONFIG_class-target ?= "\
-+        ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'libpam', '', d)} \
-+        audit \
-+"
-+
-+PACKAGECONFIG[libpam] = ",,libpam,"
-+PACKAGECONFIG[audit] = ",,audit,"
-+
-+EXTRA_OEMAKE += "\
-+        ${@bb.utils.contains('PACKAGECONFIG', 'libpam', 'PAMH=y', 'PAMH=', d)} \
-+        ${@bb.utils.contains('PACKAGECONFIG', 'audit', 'AUDITH=y', 'AUDITH=', d)} \
-+        INOTIFYH=n \
-+        PREFIX=${D} \
-+"
- 
- BBCLASSEXTEND = "native"
- 
 -- 
-2.13.0
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com
 
 
