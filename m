@@ -1,35 +1,64 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2544E00B87; Tue, 10 Oct 2017 18:30:14 -0700 (PDT)
+	id 948F8E00C01; Tue, 10 Oct 2017 19:33:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.48 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49DDAE008A4
-	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 18:30:13 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id v9B1UDG9024600
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 18:30:13 -0700
-Received: from [128.224.162.150] (128.224.162.150) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.361.1;
-	Tue, 10 Oct 2017 18:30:12 -0700
-To: Mark Hatle <mark.hatle@windriver.com>, <yocto@yoctoproject.org>
-References: <20171010074643.114607-1-wenzong.fan@windriver.com>
-	<7050676f-1eb4-4d7b-a999-8add244cb291@windriver.com>
-From: wenzong fan <wenzong.fan@windriver.com>
-Message-ID: <a8902997-f699-a9d1-3e4a-07575493609a@windriver.com>
-Date: Wed, 11 Oct 2017 09:32:24 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f48.google.com (mail-pg0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD2D1E00B53
+	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 19:33:13 -0700 (PDT)
+Received: by mail-pg0-f48.google.com with SMTP id k7so218394pga.3
+	for <yocto@yoctoproject.org>; Tue, 10 Oct 2017 19:33:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=aNcvZXPKUc6BOmNnuYO57JggsNaxYzO90OjbcZRy8Hc=;
+	b=eAFGpgudMnWqsRGA4N9eKrbz4Y1I0ttC5vq8JZSgyyf9QyFXtQ2u3I5jhmACWxKXLo
+	Ghh6GOheCXnYfdTDxAA1h+/5qfmL5jV0je3052Sb1AzdaIZhCO06i+Tga3XEE/lm0bnR
+	gS29R6AlA2MM/hhYOimVrg9r23I7rxZ2fX7pNw40hUMb/+hSLor+ttDfyw7ND6TgRFyh
+	GiyMHZ0Dk98fQC6azc6cPJCv3wuccOydvV5HLvkFANkTChfgvDTi688Ai8JTVHN9ZuvC
+	KjSB6Z8I5BwkjPKzvW3q8lXKN5LW5c0RUWiASwoP7T+7h1nASp8ODZHwqwgHWT1vXnle
+	V/zA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=aNcvZXPKUc6BOmNnuYO57JggsNaxYzO90OjbcZRy8Hc=;
+	b=GXWvPRNutYs9bhDETfp1jma6IEVN4vZdF0/dDkJttx84TmdI6FD6J2rdWuX9jNA6ID
+	MnHqCTalNHLk9/h3zAdSwW8fo64h21ZHfFVSsmn3H4TDe7Pfhws5X5ffGqXp9NHsBN5y
+	joNAQnNQ3vDQP0BG41eFN0i6yYF+M6wEAkNb/mHnwPM3yVs4GKaF7esrZTs+07NVYWMs
+	LGWsUSuFj4b/nMHrRr1EcOrvOzHlq6eddQ/fcx+BF3HTXjjMFsHdMALBfro4ZlmkzUA4
+	667PLLQQr/hdIHJdIUP93eExlDpuOxfoJBii12HhioClWF/9WvxuU3j4bJLSQ9pcbFcr
+	zuyQ==
+X-Gm-Message-State: AMCzsaU7OxsbXYu3IVy/UVHruSCTIQTmo7VgPhNUG63hW5/9pRXJXkQ6
+	3BPDWqKm3I2FPcsoYrGD9JawBk9ftRtoltfThN4=
+X-Google-Smtp-Source: AOwi7QBiq9Gd17sRAAuWZn9ToesphiK5aMsZt8w+HUJC9kFDrYF+G1u+qh4T+HGkblYGaFh39yS5cMTJTopqHchchf0=
+X-Received: by 10.84.204.133 with SMTP id b5mr13804629ple.440.1507689193197;
+	Tue, 10 Oct 2017 19:33:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <7050676f-1eb4-4d7b-a999-8add244cb291@windriver.com>
-Subject: Re: [meta-selinux][PATCH] policycoreutils: update AUDITH, PAMH
+Received: by 10.100.187.66 with HTTP; Tue, 10 Oct 2017 19:32:42 -0700 (PDT)
+In-Reply-To: <CAFUEAPC5+B6JQZ6OZZd5sOFi0UPsySDs4ha-esSrDDw7xi0Rqw@mail.gmail.com>
+References: <CAFUEAPC5+B6JQZ6OZZd5sOFi0UPsySDs4ha-esSrDDw7xi0Rqw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 10 Oct 2017 19:32:42 -0700
+Message-ID: <CAMKF1soGPOsH4wRZ8i2nNjDAik3oOgz77wGXY3f1MhWOWC-YEw@mail.gmail.com>
+To: Siva Balasubramanian <siva.balasubramanian@timesys.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Openscap build fails while do_package_qa
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,64 +70,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Oct 2017 01:30:14 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 11 Oct 2017 02:33:15 -0000
+Content-Type: text/plain; charset="UTF-8"
 
+On Wed, Oct 4, 2017 at 3:47 AM, Siva Balasubramanian
+<siva.balasubramanian@timesys.com> wrote:
+> I tried building openscap from meta-security. It fails while do_package_qa.
+>
+> ERROR: openscap-1.2.14-r0 do_package_qa: QA Issue:
+> /usr/lib/openscap/ptest/tests/API/XCCDF/unittests/test_remediate_python_subs.sh
+> contained in package openscap-ptest requires /bin/bash, but no providers
+> found in RDEPENDS_openscap-ptest? [file-rdeps]
+> ERROR: openscap-1.2.14-r0 do_package_qa: QA Issue:
+> /usr/lib/openscap/ptest/tests/xmldiff.pl contained in package openscap-ptest
+> requires /usr/bin/perl, but no providers found in RDEPENDS_openscap-ptest?
+> [file-rdeps]
+> ERROR: openscap-1.2.14-r0 do_package_qa: QA Issue:
+> /usr/lib/openscap/ptest/tests/nist/test_worker.py contained in package
+> openscap-ptest requires /usr/bin/python2, but no providers found in
+> RDEPENDS_openscap-ptest? [file-rdeps]
 
+you add
 
-On 10/10/2017 09:45 PM, Mark Hatle wrote:
-> This is incorrect.  You are not allowed to dynamically determine capabilities
-> like this.  Because if another component changes, the system has no way to
-> determine if this package should also be recompiled.
-> 
-> policycoreutils should be using 'PACKAGECONFIG', with an audit and pam option.
-> Then set a default with them enabled, allowing a user to override the settings.
+RDEPENDS_openscap-ptest += "bash perl python"
 
-Ok, I'll update the patch with 'PACKAGECONFIG' options.
-
-Thanks
-Wenzong
-
-> 
-> --Mark
-> 
-> On 10/10/17 2:46 AM, wenzong.fan@windriver.com wrote:
->> From: Wenzong Fan <wenzong.fan@windriver.com>
->>
->> Update definition of AUDITH, PAMH according to the upstream changes
->> for Makefiles:
->>
->>    commit 89ce96cac6ce5eeed78cb39c58514cd68494d7aa
->>    ...
->>    -ifeq ($(PAMH), /usr/include/security/pam_appl.h)
->>    +ifeq ($(PAMH), y)
->>    ...
->>    -ifeq ($(AUDITH), /usr/include/libaudit.h)
->>    +ifeq ($(AUDITH), y)
->>
->> Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
->> ---
->>   recipes-security/selinux/policycoreutils.inc | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
->> index 442b086..63ca402 100644
->> --- a/recipes-security/selinux/policycoreutils.inc
->> +++ b/recipes-security/selinux/policycoreutils.inc
->> @@ -118,8 +118,8 @@ export STAGING_LIBDIR
->>   export BUILD_SYS
->>   export HOST_SYS
->>   
->> -AUDITH="`ls ${STAGING_INCDIR}/libaudit.h >/dev/null 2>&1 && echo /usr/include/libaudit.h `"
->> -PAMH="`ls ${STAGING_INCDIR}/security/pam_appl.h >/dev/null 2>&1 && echo /usr/include/security/pam_appl.h `"
->> +AUDITH="`ls ${STAGING_INCDIR}/libaudit.h >/dev/null 2>&1 && echo y`"
->> +PAMH="`ls ${STAGING_INCDIR}/security/pam_appl.h >/dev/null 2>&1 && echo y`"
->>   EXTRA_OEMAKE += "${@target_selinux(d, 'PAMH=${PAMH} AUDITH=${AUDITH}', 'PAMH= AUDITH= ')} INOTIFYH=n"
->>   EXTRA_OEMAKE += "PREFIX=${D}"
->>   EXTRA_OEMAKE += "INITDIR=${D}/etc/init.d"
->>
-> 
-> 
+> ERROR: openscap-1.2.14-r0 do_package_qa: QA run found fatal errors. Please
+> consider fixing them.
+> ERROR: openscap-1.2.14-r0 do_package_qa: Function failed: do_package_qa
+>
+>
+> --
+> Siva Balasubramanian
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
