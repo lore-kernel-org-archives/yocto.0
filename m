@@ -1,31 +1,32 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0D45E00CD3; Thu, 12 Oct 2017 06:14:42 -0700 (PDT)
+	id 1A5F7E00D00; Thu, 12 Oct 2017 07:03:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BF25E00CC6
-	for <yocto@yoctoproject.org>; Thu, 12 Oct 2017 06:14:41 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga105.fm.intel.com with ESMTP; 12 Oct 2017 06:14:40 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9D58E00CEC
+	for <yocto@yoctoproject.org>; Thu, 12 Oct 2017 07:03:43 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	12 Oct 2017 07:03:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.43,366,1503385200"; d="scan'208";a="1181262644"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga001.jf.intel.com with ESMTP; 12 Oct 2017 06:14:39 -0700
-To: Bernd <prof7bit@gmail.com>, yocto@yoctoproject.org
+X-IronPort-AV: E=Sophos;i="5.43,366,1503385200"; d="scan'208";a="159749051"
+Received: from yshteyn-mobl.ger.corp.intel.com (HELO
+	jlock-mobl3.ger.corp.intel.com) ([10.252.6.189])
+	by orsmga005.jf.intel.com with ESMTP; 12 Oct 2017 07:03:42 -0700
+To: yocto@yoctoproject.org
 References: <CAAkg2-mXCpkQuy1kc5wFD3+PbuA96C1f_XLzJHUtqDep=_gfUw@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <78017ceb-817f-7c14-9b18-3c54ca497159@linux.intel.com>
-Date: Thu, 12 Oct 2017 16:11:06 +0300
+From: Joshua Lock <joshua.g.lock@linux.intel.com>
+Message-ID: <81a0ce37-82ec-80ee-ab22-ee3e201b0ec5@linux.intel.com>
+Date: Thu, 12 Oct 2017 15:03:41 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
@@ -42,12 +43,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Oct 2017 13:14:43 -0000
+X-List-Received-Date: Thu, 12 Oct 2017 14:03:44 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 
-On 10/12/2017 12:34 PM, Bernd wrote:
+
+
+On 12/10/17 10:34, Bernd wrote:
+> I am a new user for a few weeks now, trying to make a customized image
+> for a toradex colibri-vf module, so far I have succeeded in the
+> following disciplines:
+> 
+> * adding the 3rd party layers that I need
+> * making my own layers
+> * using a .bbappend to patch the device tree
+> * using a .bbappend to workaround a bug(?) in one of the freescale layers
+> * writing my own recipe to install a python script
+> * writing recipes for pulling additional python packages with pypi and
+> setuptools3
+> * writing my own image recipe
+> * making it boot and run on the target platform
+> 
+> During this learning experience I have made the following observations
+> of circumstances that made it especially hard for me to get things
+> done, I'm not yet really sure if this is a documentation issue or if
+> it is really a missing feature but I feel I could have had a much
+> *much* easier time learning and understanding the concepts and
+> relationships and the inner workings of existing layers upon which I
+> want to build my system if the following things were possible (and/or
+> if they are already possible they should be documented in the very
+> first chapter of the documentation):
+> 
 > * Finding the *file path* of an existing recipe (or append file or
 > class) *by its name* and also all existing .bbappends for it, i
 > imagine something simple like bitbake --show-paths foo-bar would
@@ -58,20 +85,48 @@ On 10/12/2017 12:34 PM, Bernd wrote:
 > incredibly helpful when I need to inspect an existing recipe in order
 > to understand how I can bbappend it or even just to see and understand
 > what it actually does.
-> 
-> * A simple way to track the assignment of a certain variable, to
-> inspect its contents and if it refers to other variables then
-> recursively show their contents too (and also the path of the bb file
-> where this happens), and also show which other recipes will directly
-> and indirectrly depend on this variable further down the line, I
-> imagine this should output two tree-like structures where one can see
-> at one glance how and where all the contents of that variable come
-> from and where they are going to be used. Again this should be a
-> simple command that formats and outputs that (and only that)
-> information in a well formatted and compact tree-like representation.
 
-I think bitbake -e could be of some help with these two things. It's not 
-particularly compact, but it tells you the full story.
+bitbake-layers supports at least some of this functionality:
 
-Alex
+$ bitbake-layers -h
+NOTE: Starting bitbake server...
+usage: bitbake-layers [-d] [-q] [-F] [--color COLOR] [-h] <subcommand> ...
+
+BitBake layers utility
+
+optional arguments:
+   -d, --debug           Enable debug output
+   -q, --quiet           Print only errors
+   -F, --force           Force add without recipe parse verification
+   --color COLOR         Colorize output (where COLOR is auto, always, 
+never)
+   -h, --help            show this help message and exit
+
+subcommands:
+   <subcommand>
+     add-layer           Add a layer to bblayers.conf.
+     remove-layer        Remove a layer from bblayers.conf.
+     flatten             flatten layer configuration into a separate output
+                         directory.
+     layerindex-fetch    Fetches a layer from a layer index along with its
+                         dependent layers, and adds them to 
+conf/bblayers.conf.
+     layerindex-show-depends
+                         Find layer dependencies from layer index.
+     show-layers         show current configured layers.
+     show-overlayed      list overlayed recipes (where the same recipe 
+exists
+                         in another layer)
+     show-recipes        list available recipes, showing the layer they are
+                         provided by
+     show-appends        list bbappend files and recipe files they apply to
+     show-cross-depends  Show dependencies between recipes that cross layer
+                         boundaries.
+     create-layer        Create a basic layer
+
+Use bitbake-layers <subcommand> --help to get help on a specific command
+
+Thanks,
+
+Joshua
 
