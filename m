@@ -1,65 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7EBCBE00CA2; Wed, 11 Oct 2017 18:01:15 -0700 (PDT)
+	id 2A8C1E00CB4; Wed, 11 Oct 2017 19:13:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f179.google.com (mail-pf0-f179.google.com
-	[209.85.192.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 679E6E00C82
-	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 18:01:14 -0700 (PDT)
-Received: by mail-pf0-f179.google.com with SMTP id x7so2681641pfa.1
-	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 18:01:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=VEUREQdM1SslGuZjUWWY1Jvs0jqGRroUup/pl9T/Geg=;
-	b=NXkYq77F2Xy8BeWcqYpIES1CLvuT/tN8DbtLGMremoq733kYVXgONR7uQuwQsJ5M1n
-	MTVtC2oieD+DVUYzCGaClJfTO1XzYmgPrgFClCrSxWHIBcZNCOQpsmEgCaft2q4Fh0Te
-	z/pkUAxB2iCT3FqVIt2y9TOHi3DVsUnYMNBZajP+nFgyTrp8m1Mx8y8msV13RiAVKX0H
-	Pf4jjqg3qI788RqRQM95bMP7nkSKp1bJConKNxcQJ+ZIQ55kX+2njjKs5JGhwnrlVHXm
-	HHb9Ct6bSjxVhcO+4/OtW8/98guEk0Nqf+tRC2F+QMN64Gf+J2T4bkhqMpQ6LWaydOno
-	kOJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=VEUREQdM1SslGuZjUWWY1Jvs0jqGRroUup/pl9T/Geg=;
-	b=bMMy7Y3u3pdBPcRH3NVapajuIapBfPPjJvq1+FhhffXpqm0qD+cZdocwXuBIvtVWN7
-	CiHq1XLyax+xH4eh2Ghb9/bhGLMHYUFkzjOWhgs3U1Fw2lg2yt0JKDDXIJpvOIs8RNne
-	AejWf1f6zi9OmEJF+617/DSpurGgnGRLG9zr12eLc9aT+w4r5mNMmcX6NOBDLT68mECg
-	BnsHBfM00teJOIeX6U9CAcZcpZLRKW424WzBux3UEVKfJ4e8R5V+GsZTO5lv0Qk1HdKZ
-	FnXRWax0kHdvqnucGyFBaeZJAuqChrVCFNK7z+iRs49TRfYapDFUaxmrhHelVVPhXjYO
-	2JQQ==
-X-Gm-Message-State: AMCzsaWwiZWwOzhLe2UiqRp2Ctpi/QV0xD/x3Sw/0D6FFBF9AqYupTAB
-	aaccvKZAExV/3dra1+x4JqvUqOT9+RYb91vG4hw=
-X-Google-Smtp-Source: AOwi7QCE04z2QVNYNRmpH/p8gWh9bDpRV7xcY2dy2gavdyufoHFh+VJvaUUwwzBWcGR6yH9uGS7CsYQdN+8RaCS9/n8=
-X-Received: by 10.98.194.215 with SMTP id w84mr666580pfk.255.1507770073653;
-	Wed, 11 Oct 2017 18:01:13 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7200DE00CA2
+	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 19:13:48 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v9C2DlNC002845
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 11 Oct 2017 19:13:47 -0700 (PDT)
+Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.361.1; Wed, 11 Oct 2017 19:13:46 -0700
+From: <jackie.huang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 12 Oct 2017 10:12:28 +0800
+Message-ID: <cover.1507774123.git.jackie.huang@windriver.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Received: by 10.100.187.66 with HTTP; Wed, 11 Oct 2017 18:00:43 -0700 (PDT)
-In-Reply-To: <TU4PR8401MB104097E5404DDCE3959D9401994A0@TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM>
-References: <TU4PR8401MB104097E5404DDCE3959D9401994A0@TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 11 Oct 2017 18:00:43 -0700
-Message-ID: <CAMKF1sox3ztaxD5NRMHKemO0WMWgiZ7C+EEECXhdpa9N_tSSgA@mail.gmail.com>
-To: "Gutierrez, Hernan Ildefonso (Boise R&D, FW)" <hernan_gutierrez@hp.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: How to use two recipes to satisfy different PROVIDES -- gpu support
+Subject: [meta-cgl][PATCH 0/2 v2] poky-cgl: avoid the linux bbappend adding cfgs for other distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,53 +40,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Oct 2017 01:01:15 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 12 Oct 2017 02:13:49 -0000
+Content-Type: text/plain
 
-On Wed, Oct 11, 2017 at 3:15 PM, Gutierrez, Hernan Ildefonso (Boise
-R&D, FW) <hernan_gutierrez@hp.com> wrote:
-> Hi,
->
-> We have a GPU in our system. We created a recipe to satisfy all the dependencies for core-image-weston (virtual/egl, virtual/libgl, etc.), except virtual/mesa, which is not provided by our GPU recipe.
->
-> When one builds core-image-weston, the image requires mesa to build as well.
->
-> Our approach to satisfy dependencies is very similar to what Freescale and other vendors with Mali GPU support use, which is through the following statements:
->
-> PREFERRED_PROVIDER_virtual/egl = "my-gpu-recipe"
-> PREFERRED_PROVIDER_virtual/libgles1 = " my-gpu-recipe "
-> PREFERRED_PROVIDER_virtual/libgles2 = " my-gpu-recipe "
-> PREFERRED_PROVIDER_virtual/libgl = "my-gpu-recipe"
-> PREFERRED_PROVIDER_virtual/mesa = "mesa"
->
-> The way to remove mesa support for virtual/egl, virtual/libgles1, etc. is by adding a mesa_%.bbappend where it states explicitly to remove those provides from mesa recipe.
->
-> e.g.
-> PROVIDES_remove = "virtual/libgles1 virtual/libgles2 virtual/libopenvg virtual/egl"
->
->
-> The problem I am running into is that bitbake complains stating that virtual/mesa is not satisfied (Nothing PROVIDES 'virtual/mesa')
->
-> When I do bitbake-layers show-recipes, I see that mesa recipe is skipped because it gave priority to my-gpu-recipe.
->
-> How can two recipes be used and let bitbake satisfy parts of each recipe?
->
-> Any hints will be appreciated.
+From: Jackie Huang <jackie.huang@windriver.com>
 
-there is no easy way to control providers once a recipe is pulled in.
-you can refactor mesa recipe like we have done for mesa and mesa-gl
-which will mean adding a another recipe which just builds the needed
-portions of mesa in each recipe, if your GPU driver provides everything
-you need to run weston, then you can let it provide everything that mesa
-provides and bitbake wont pick up mesa at all.
+v2 changes:
+add the missing leading space for _append.
 
->
-> Thanks,
->
-> --Hernan
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+
+--
+The following changes since commit 73d32950c45cc8d8d468e584be68c54c6e6574b9:
+
+  kernel: Fix config warning for CONFIG_I2C_ALGOBIT (2017-10-03 10:15:47 +0200)
+
+are available in the git repository at:
+
+  https://github.com/jackiehjm/meta-cgl.git jhuang0/d_poky-cgl-kernel_171012_0
+  https://github.com//tree/jhuang0/d_poky-cgl-kernel_171012_0
+
+Jackie Huang (2):
+  poky-cgl.conf: add poky-cgl into DISTROOVERRIDES
+  cgl-common.inc: append SRC_URI for poky-cgl only
+
+ meta-cgl-common/conf/distro/poky-cgl.conf           | 1 +
+ meta-cgl-common/recipes-kernel/linux/cgl-common.inc | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+-- 
+2.11.0
+
 
