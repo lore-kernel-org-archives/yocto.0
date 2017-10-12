@@ -1,37 +1,51 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <michael.ho@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A5F7E00D00; Thu, 12 Oct 2017 07:03:44 -0700 (PDT)
+	id 8C2F8E00D04; Thu, 12 Oct 2017 07:15:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9D58E00CEC
-	for <yocto@yoctoproject.org>; Thu, 12 Oct 2017 07:03:43 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Oct 2017 07:03:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.43,366,1503385200"; d="scan'208";a="159749051"
-Received: from yshteyn-mobl.ger.corp.intel.com (HELO
-	jlock-mobl3.ger.corp.intel.com) ([10.252.6.189])
-	by orsmga005.jf.intel.com with ESMTP; 12 Oct 2017 07:03:42 -0700
-To: yocto@yoctoproject.org
-References: <CAAkg2-mXCpkQuy1kc5wFD3+PbuA96C1f_XLzJHUtqDep=_gfUw@mail.gmail.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <81a0ce37-82ec-80ee-ab22-ee3e201b0ec5@linux.intel.com>
-Date: Thu, 12 Oct 2017 15:03:41 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+X-Greylist: delayed 168 seconds by postgrey-1.32 at yocto-www;
+	Thu, 12 Oct 2017 07:15:00 PDT
+Received: from cit-hm8-gw01.bmw-carit.de (cit-hm8-mail01.bmw-carit.de
+	[212.118.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F237E00CEC
+	for <yocto@yoctoproject.org>; Thu, 12 Oct 2017 07:15:00 -0700 (PDT)
+Received: from [10.40.100.14] (port=46359 helo=cit-hm8-mail01.bmw-carit.de)
+	by cit-hm8-gw01.bmw-carit.de with esmtps (TLSv1.2:AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Michael.Ho@bmw-carit.de>)
+	id 1e2eDZ-0000BN-1P; Thu, 12 Oct 2017 16:12:09 +0200
+Received: from CIT-HM8-EX01.bmw-carit.intra (10.40.100.13) by
+	CIT-HM8-EX02.bmw-carit.intra (10.40.100.14) with Microsoft SMTP Server
+	(TLS) id 15.0.1178.4; Thu, 12 Oct 2017 16:12:09 +0200
+Received: from CIT-HM8-EX01.bmw-carit.intra ([fe80::dd00:8c64:6c76:7244]) by
+	CIT-HM8-EX01.bmw-carit.intra ([fe80::dd00:8c64:6c76:7244%12]) with mapi
+	id 15.00.1178.000; Thu, 12 Oct 2017 16:12:09 +0200
+X-CTCH-RefID: str=0001.0A0C0205.59DF7839.0169, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+From: Michael Ho <Michael.Ho@bmw-carit.de>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"mike.looijmans@topic.nl"
+	<mike.looijmans@topic.nl>, "twoerner@gmail.com" <twoerner@gmail.com>,
+	"martin.jansa@gmail.com" <martin.jansa@gmail.com>
+Thread-Topic: [yocto] RFC: Backwards compatibility checking sstate-cache
+Thread-Index: AQHS8YVx0AkhV90UzU6NiV6x+tgB0aK/5BuAgCEAlNA=
+Date: Thu, 12 Oct 2017 14:12:08 +0000
+Message-ID: <1507817528393.71890@bmw-carit.de>
+References: <1498816090789.97105@bmw-carit.de>,
+	<1506010313.18640.166.camel@linuxfoundation.org>
+In-Reply-To: <1506010313.18640.166.camel@linuxfoundation.org>
+Accept-Language: en-GB, de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.20.21.235]
 MIME-Version: 1.0
-In-Reply-To: <CAAkg2-mXCpkQuy1kc5wFD3+PbuA96C1f_XLzJHUtqDep=_gfUw@mail.gmail.com>
-Subject: Re: Navigating the layer labyrinth
+Subject: Re: RFC: Backwards compatibility checking sstate-cache
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,90 +57,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Oct 2017 14:03:44 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Thu, 12 Oct 2017 14:15:02 -0000
 Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 12/10/17 10:34, Bernd wrote:
-> I am a new user for a few weeks now, trying to make a customized image
-> for a toradex colibri-vf module, so far I have succeeded in the
-> following disciplines:
-> 
-> * adding the 3rd party layers that I need
-> * making my own layers
-> * using a .bbappend to patch the device tree
-> * using a .bbappend to workaround a bug(?) in one of the freescale layers
-> * writing my own recipe to install a python script
-> * writing recipes for pulling additional python packages with pypi and
-> setuptools3
-> * writing my own image recipe
-> * making it boot and run on the target platform
-> 
-> During this learning experience I have made the following observations
-> of circumstances that made it especially hard for me to get things
-> done, I'm not yet really sure if this is a documentation issue or if
-> it is really a missing feature but I feel I could have had a much
-> *much* easier time learning and understanding the concepts and
-> relationships and the inner workings of existing layers upon which I
-> want to build my system if the following things were possible (and/or
-> if they are already possible they should be documented in the very
-> first chapter of the documentation):
-> 
-> * Finding the *file path* of an existing recipe (or append file or
-> class) *by its name* and also all existing .bbappends for it, i
-> imagine something simple like bitbake --show-paths foo-bar would
-> output me the small list of absolute paths of recipe files by the name
-> foo-bar and all matching .bbappend files in the order in which they
-> would be applied, it would show me only this small list of paths and
-> not dump 100kb of unrelated information along with it. This would be
-> incredibly helpful when I need to inspect an existing recipe in order
-> to understand how I can bbappend it or even just to see and understand
-> what it actually does.
-
-bitbake-layers supports at least some of this functionality:
-
-$ bitbake-layers -h
-NOTE: Starting bitbake server...
-usage: bitbake-layers [-d] [-q] [-F] [--color COLOR] [-h] <subcommand> ...
-
-BitBake layers utility
-
-optional arguments:
-   -d, --debug           Enable debug output
-   -q, --quiet           Print only errors
-   -F, --force           Force add without recipe parse verification
-   --color COLOR         Colorize output (where COLOR is auto, always, 
-never)
-   -h, --help            show this help message and exit
-
-subcommands:
-   <subcommand>
-     add-layer           Add a layer to bblayers.conf.
-     remove-layer        Remove a layer from bblayers.conf.
-     flatten             flatten layer configuration into a separate output
-                         directory.
-     layerindex-fetch    Fetches a layer from a layer index along with its
-                         dependent layers, and adds them to 
-conf/bblayers.conf.
-     layerindex-show-depends
-                         Find layer dependencies from layer index.
-     show-layers         show current configured layers.
-     show-overlayed      list overlayed recipes (where the same recipe 
-exists
-                         in another layer)
-     show-recipes        list available recipes, showing the layer they are
-                         provided by
-     show-appends        list bbappend files and recipe files they apply to
-     show-cross-depends  Show dependencies between recipes that cross layer
-                         boundaries.
-     create-layer        Create a basic layer
-
-Use bitbake-layers <subcommand> --help to get help on a specific command
-
-Thanks,
-
-Joshua
+Hi Richard (and all),=0A=
+=0A=
+@Richard: Thanks for the input regarding the topic and apologies for not re=
+plying until now, I was a bit buried under workload and simultaneously comp=
+leting my Masters studies. I also wanted to take some time to digest your c=
+omments amid working on this CDEPENDS concept, and I just want to say that =
+I'm very open to finding another way to implement this concept of rebuild a=
+voidance in Yocto.=0A=
+=0A=
+I think the idea of a non-invasive approach can be a bit tricky, but your i=
+dea of a secondary sstate signature and mapping table sounds workable to me=
+. (In fact, as I slowly developed out this concept, I think it's almost req=
+uired). One point though with the removal of the metadata changes is that t=
+he view of "what is compatible" will be concrete and cannot differ among ch=
+ildren. Sometimes you have only specific children of a recipe that can hand=
+le compatibility changes (and at different levels of compatibility) while o=
+thers cannot handle any change at all, and that is why I developed with the=
+ metadata changes as a basis. But definitely, yes, the change to metadata m=
+akes things more complex and does in a sense impose policy, which I underst=
+and would be undesirable. Maybe we can figure out an approach that avoids m=
+etadata changes but keeps this ability to differ compatibility handling amo=
+ng children.=0A=
+=0A=
+Currently I have a working proof of concept (I've developed out the earlier=
+ shared patches further) that I'd like to share soon and demonstrate. It st=
+ill needs some further refinement but I think it's showing some interesting=
+ results already. I'll think further about the topic and see what I can com=
+e up with that matches your line of thoughts.=0A=
+=0A=
+@Martin Jansa: Thank you for the comments and information, it's good to kno=
+w that there's some interest from the community to look into this idea.=0A=
+=0A=
+@Mike Looijmans: Yes, that's essentially the problem I want to resolve with=
+ this proof of concept, breaking long build chains at points where a clear =
+precision cut could've been made depending on whether a rebuild is actually=
+ required or not (i.e. the bitstream tool not changing). In that case I wou=
+ld even use the tool version and assume even if the tool binary has changed=
+, that the output result of tool would stay the same so it is compatible in=
+ essence (and avoid rebuilding 31 hours of stuff).=0A=
+=0A=
+@Trevor Woerner: Thanks for the suggestion, I was planning to cross-post wh=
+en I had a more stable proof of concept code to share.=0A=
+=0A=
+Note: I'll be following my colleague, Mario Domenech Goulart (mario-goulart=
+), to OEDEM 2017 where I hope to discuss the current concept code and show =
+some potential use cases.=0A=
+=0A=
+Kind regards,=0A=
+Michael Ho=0A=
+=0A=
+--=0A=
+BMW Car IT GmbH=0A=
+Michael Ho=0A=
+Spezialist Entwicklung - Linux Software Integration=0A=
+Lise-Meitner-Str. 14=0A=
+89081 Ulm=0A=
+=0A=
+Tel.: +49 731 3780 4071=0A=
+Mobil: +49 152 5498 0471=0A=
+Fax: +49-731-37804-001=0A=
+Mail: michael.ho@bmw-carit.de=0A=
+Web: http://www.bmw-carit.de=0A=
+--------------------------------------------------------=0A=
+BMW Car IT GmbH=0A=
+Gech=E4ftsf=FChrer: Kai-Uwe Balszuweit und Alexis Trolin=0A=
+Sitz und Registergericht: M=FCnchen HRB 134810=0A=
+--------------------------------------------------------=0A=
+=0A=
+________________________________________=0A=
+From: Richard Purdie <richard.purdie@linuxfoundation.org>=0A=
+Sent: 21 September 2017 18:11=0A=
+To: Michael Ho; yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] RFC: Backwards compatibility checking sstate-cache=0A=
+=0A=
+On Fri, 2017-06-30 at 09:48 +0000, Michael Ho wrote:=0A=
+> Hi, at BMW Car IT we are working on an experimental feature to=0A=
+> improve sstate cache hits and we are looking for comments on the=0A=
+> approach who might have some insights to the problem and seeing if=0A=
+> anyone is interested in the feature for mainline.=0A=
+=0A=
+Sorry I didn't see this before now but it was brought to my attention.=0A=
+=0A=
+I have given this problem quite some thought off and on. I do worry=0A=
+that the interface you propose is complex and requires changes=0A=
+throughout the metadata and those changes impose "policy". One of our=0A=
+strengths is that we're managed to keep "policy" out of the metadata.=0A=
+=0A=
+In this context by policy, I mean when a recipe is equivalent and when=0A=
+it is not.=0A=
+=0A=
+I do have a counter-proposal of how we could solve this in a less=0A=
+invasive way. This isn't implemented but wouldn't in theory be hard to=0A=
+do.=0A=
+=0A=
+The idea would be to have some kind of equivalence list. The first=0A=
+built object's sstate checksum would become the definitive checksum and=0A=
+the object added to the sstate cache.=0A=
+=0A=
+If a new object is built, it would be compared with the one in sstate.=0A=
+If deemed equivalent (by whatever policy), a mapping would be added to=0A=
+the list. If not, there is no mapping and it becomes a new definitive=0A=
+checksum.=0A=
+=0A=
+All runqueue would then have to do is present its list of sstate=0A=
+checksums to the list and convert them (in dependency order) into=0A=
+canonical checksums.=0A=
+=0A=
+This list could be a local equivalence file, or an equivalence server=0A=
+which could resolve list of checksums.=0A=
+=0A=
+Doing it this way totally isolates the comparison from the metadata=0A=
+itself and in my view protects us from future changes in definition of=0A=
+equivalence.=0A=
+=0A=
+How does that sound?=0A=
+=0A=
+Cheers,=0A=
+=0A=
+Richard=0A=
+=0A=
+=0A=
+=0A=
 
