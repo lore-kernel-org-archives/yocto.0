@@ -1,19 +1,15 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <ayoub.zaki@embexus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5463E00CD4; Fri, 13 Oct 2017 03:40:27 -0700 (PDT)
+	id 5B994E00CD4; Fri, 13 Oct 2017 04:18:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.53 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.53 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,T_FILL_THIS_FORM_SHORT
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.30.212.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -21,42 +17,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B281E00CC1
-	for <yocto@yoctoproject.org>; Fri, 13 Oct 2017 03:40:26 -0700 (PDT)
-Received: by mail-wm0-f53.google.com with SMTP id l68so20563726wmd.5
-	for <yocto@yoctoproject.org>; Fri, 13 Oct 2017 03:40:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=lZEGMo2mxQqmlzgBfn0PoLvoP/HeR0cpEw2diTjORVo=;
-	b=M58kVVMwB+Nqdh7KITl03es/Smru0rX/K0sZMD6DWZFh0SbfQvJwWOyzBXlcbmmvbM
-	vP1EXzNTGss2BH6GvFlsFSK1XWknIGqgVQoAPdYlnNh0yBkdL2XmeZuBfV+5dd7gxheh
-	Ep8xsdKrwYzq91NqXHbL3+db9RQyx/uHqrNLDN/WJ6Y8CBERvtLQMBLaTH196PioByCs
-	CIIymGihvQ/u2KoFpzokSJdIs2GRuEjTr0X+UDS5kk3v5N6Rn6ibysJA3D3hv6n3JwhY
-	xT1jIJlj25AY87OCbU2WfrohD7jTU8GSFD0ACP4KtkkSwQGRlPBBF8ufVy2kpnYkoQOy
-	+1yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=lZEGMo2mxQqmlzgBfn0PoLvoP/HeR0cpEw2diTjORVo=;
-	b=Xc1FJ1VTMC0uZY6a/O68LxtfSAGm0nsXekhaampaxsbA9ZA0QSaZapNGv6BJ5dxTDc
-	w7TkZtwudfNp2y9ksWJ4Ir5hRwwoF8+lEAeBeaOEUiUI472As902oF2ZfarTL0xY9czV
-	ZhBYX8A02Cttd92TtR7dUbWJ++1l10lPZh8xN9BlqOU4vwaQqwxGlkM2X4m/Styt4Pya
-	gRmFQ1a6MGqPGJ9NHMBR0N9Vs8V8bQzURDffpNbs/JCfnw9iwcvzIUg0LP6HZ3W2uoPA
-	e/15fbwp5ci8cxfZdxAdr4EJ3cbfxi8Uv7XRpQgThwmgy5A7DDH/qHrV1f9dG6+eEArs
-	TqFQ==
-X-Gm-Message-State: AMCzsaVhOn4jO2AH67oggTqLsrj7qNyc6gq94yz/UR3VTJ+7ETGk0ki3
-	13iVBXPkCKtDwD5ZHLublw4CAeXMhyDN4Y74Rao=
-X-Google-Smtp-Source: AOwi7QC66JUlOsq0YJgJKB8cpV0PWotBB/LaCdsJ+CznW4rYIN+xbpMC+/nMvBN+Q8nosMzmkmewvZrkaDQpNrLrhO8=
-X-Received: by 10.223.157.136 with SMTP id p8mr1117253wre.28.1507891225640;
-	Fri, 13 Oct 2017 03:40:25 -0700 (PDT)
+	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+	*      information
+Received: from mailrelay1-3.pub.mailoutpod1-cph3.one.com
+	(mailrelay1-3.pub.mailoutpod1-cph3.one.com [46.30.212.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 466FAE00CC1
+	for <yocto@yoctoproject.org>; Fri, 13 Oct 2017 04:18:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=embexus.com; s=20140924;
+	h=from:subject:date:message-id:to:mime-version:content-type:
+	content-transfer-encoding:in-reply-to:references;
+	bh=szLv7nQpMZKTQWPk/pocYf4sEBBYVlluV4Q4lzoNI/w=;
+	b=YcNlj8l0Wm2qNkz8BgcYn3uYmhPfp8Nfd47hw+IKIvn6Z0ulpySJu8Oxp7t946wEKqVQu7CPQQsi8
+	aoZnuSsCcoP+1Kls6ojgTuTyyOUWaFoQM8io8gSf6lb8byyTu12oDaHN5Aakd4RldZrojC9GwDiNqv
+	p++zRjwv9rS2bHOk=
+X-HalOne-Cookie: 081efc5cbaa5d678c8ed1f97e3ef63705cea968d
+X-HalOne-ID: 2be7061a-b008-11e7-a520-b8ca3afa9d73
+Received: from [192.168.178.20] (unknown [89.12.60.176])
+	by smtpfilter1.public.one.com (Halon) with ESMTPSA
+	id 2be7061a-b008-11e7-a520-b8ca3afa9d73;
+	Fri, 13 Oct 2017 11:18:00 +0000 (UTC)
+To: Stefano Babic <sbabic@denx.de>,
+	Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <9de83734-99a4-580b-4306-746108cbdb9b@embexus.com>
+	<18e01836-129a-0259-ff7a-1a7d21d1f380@rsi-elektrotechnik.de>
+	<35e6c4b3-e48a-f2b6-b595-f1c6868e9b2a@embexus.com>
+	<5ce34bcf-e7d0-da58-49e5-5b0d9e69b3d9@denx.de>
+From: Ayoub Zaki <ayoub.zaki@embexus.com>
+Message-ID: <4642058c-d048-2390-ddb1-893e750df248@embexus.com>
+Date: Fri, 13 Oct 2017 13:18:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-Received: by 10.28.137.212 with HTTP; Fri, 13 Oct 2017 03:40:25 -0700 (PDT)
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Fri, 13 Oct 2017 12:40:25 +0200
-Message-ID: <CAAfyv36SdD+BSW2fxsxHdBb5SDb3GwF2UmWMPc9q5m7dgW9G6w@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: rocko problem with external cross compilation
+In-Reply-To: <5ce34bcf-e7d0-da58-49e5-5b0d9e69b3d9@denx.de>
+Subject: Re: Yocto Image with custom directory layout
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,35 +62,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Oct 2017 10:40:27 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 13 Oct 2017 11:18:03 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
 Hi,
+>>> On 12.10.2017 19:07, Ayoub Zaki wrote:
+>>>> Hi,
+>>>> I would like to generate an image that contains a custom directories
+>>>> layout for expl:
+>>>>
+>>>>
+>>>> foo/
+>>>> ├── bar1
+>>>> │   └── bar2
+>>>> │       ├── config
+>>>> │       └── data
+>>>> └── work
+>>>>       └── var
+>>>>           └── lib
+>>>>               ├── config
+>>>>               └── data
+>>>>
+>>>> It should contains only those directories an nothing else, is there
+>>>> anyway to achieve that ? without using ROOTFS_POSTPROCESS_COMMAND.
+>>> Should be possible if your image installs only your specific recipes
+>>> that populate those directories. Means: no packagegroup-core-boot, no
+>>> base-passwd, no.... -> then nothing should bring along other directories.
+>> I tried that but it does pull other packages even if I set in my image:
+>>
+>> IMAGE_FEATURES = ""
+>> IMAGE_LINGUAS = ""
+>> PACKAGE_INSTALL = "my-layout-recipe"
+>>
+> It looks like you inherit "core-image" instead of just "image". I can
+> confirm that this work, I have this simple recipe:
+>
+>
+> # Copyright (C) 2017 Stefano Babic <sbabic@denx.de>
+> # Released under the MIT license (see COPYING.MIT for the terms)
+>
+> DESCRIPTION = "Image with user processes"
+> LICENSE = "CLOSED"
+> SECTION = "Application"
+>
+> inherit image
+>
+> IMAGE_INSTALL = " \
+> 	projects-firmware \
+>          "
+>
+> And project firmware has just the layout I want.
+Thank you Stefano, it did the trick :-)
 
-we're bumping our layer to latest master (rocko). Previously we use
-for development purposes only flow like:
-- build image and use sysroot + toolchain for cross compilation (we
-use cmake where we setup toolchain file with correct paths and compile
-our application)
-
-But when try to use same approach for image build via rocko it always
-fail when doing external cross compilation (errors about that cannot
-compile simple program -> I checked path for gcc and g++ and they are
-correct). Any ideas what to look for appreciated. Thanks a lot.
-
-BR,
-
-marek
+Cheers
 
 -- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+Ayoub Zaki
+Embedded Systems Consultant
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+Vaihinger Straße 2/1
+D-71634 Ludwigsburg
+
+Tel.     : +4971415074546
+Mobile   : +4917662901545
+Email    : ayoub.zaki@embexus.com
+Homepage : https://embexus.com
+
 
