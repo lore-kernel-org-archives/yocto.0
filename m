@@ -1,61 +1,63 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <sbabic@denx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC04FE00CD4; Thu, 12 Oct 2017 23:47:03 -0700 (PDT)
+	id DFE57E00CE2; Fri, 13 Oct 2017 01:53:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [212.18.0.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D456E00CCC
-	for <yocto@yoctoproject.org>; Thu, 12 Oct 2017 23:47:02 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id 196so26671082wma.1
-	for <yocto@yoctoproject.org>; Thu, 12 Oct 2017 23:47:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:sender:from:date:message-id:subject:to;
-	bh=Y7koneJI/LB3TqyQLYy7CsU69br+7DGznD6GKPYUCgY=;
-	b=pBdvo7Pk2a+cDlk4USGjIldTWksJemt1TtV3NKgbzkvibKXADHXhirROVG8OM/TBMw
-	NJFEsmWHgdT5JbOE+VVtN/ReUyTMoNgWovSDzJaoZ+cTxiNemPgRHh/pSj34rsuW/yBE
-	8b1A07SyOl1rpuvJSh1ojiYf1kDzrMxR/UBwMx4tCgcwn7LSbDBPwuT7t1WMuNhmPY3+
-	bRMuUF4Ft4KcwmPVKVkiUzlWMfQTmPwOZ7FhqOUIvcdroTVrGiLksIoA/ki2pDLNv7ib
-	eksW44XO5T6qi44Z4mz5M/vNvxXHZR8xUdtMxnCmaAuk8Bars477C2v8StyhhdDBPGyO
-	fp1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-	:to; bh=Y7koneJI/LB3TqyQLYy7CsU69br+7DGznD6GKPYUCgY=;
-	b=Bp3v9mAOjQaa/sWjW9HXHz6zkgwtWKpbdWhpDK/oedrIVvDA96sDexcBMYJ20GDXff
-	oLB0VyUmnVI35QdLa/JtyqqduOVsxkm3b9BGKh4syyTH5Bey+qfllBuMG/jNcjd/zhzh
-	KGnE3Ciqo4cDpgqa3pEGFAff+/hVy1AJxmJPoax7ItqEioffya5gglYGfRO8C5ydq5UR
-	1sITKvMXA6ilPiYzCXF9A7jeQWgSDolyl1DlhvKOiVFGMoKTVyNxBAYNbLYQexyH2fQS
-	7C3GhYf04loL5n0ixyD5ZYa/g1RN3pxM1MKmWQmfDxsZhTFrScrwLFLbxx9To36vVwm1
-	KiLQ==
-X-Gm-Message-State: AMCzsaUEc6eTR0rorq3UWJ4cpUEIpRqw+x0U2Jrvu5e4OjK717WiLUq4
-	1wNR2XoTp8DmY4Z9F7MKVMH1Q0MpI3gvK8A91Ovj6g==
-X-Google-Smtp-Source: AOwi7QCBO0QQyQYz1K0G6g9+qj9sS68JuBgWXrW1ZxTu+EA6L9AYtXHV3Wm9386t6aNv9VUAKAp9pDPTUhevGvudmls=
-X-Received: by 10.28.46.210 with SMTP id u201mr509149wmu.64.1507877221426;
-	Thu, 12 Oct 2017 23:47:01 -0700 (PDT)
+X-Greylist: delayed 332 seconds by postgrey-1.32 at yocto-www;
+	Fri, 13 Oct 2017 01:53:03 PDT
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAA47E00CD1
+	for <yocto@yoctoproject.org>; Fri, 13 Oct 2017 01:53:03 -0700 (PDT)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3yD1Yt2HTPz1qsgq;
+	Fri, 13 Oct 2017 10:47:30 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+	by mail.m-online.net (Postfix) with ESMTP id 3yD1Yt1SBqz1qql8;
+	Fri, 13 Oct 2017 10:47:30 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
+	port 10024)
+	with ESMTP id 7VUyoRkk4g-8; Fri, 13 Oct 2017 10:47:29 +0200 (CEST)
+Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
+	[88.217.136.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPS;
+	Fri, 13 Oct 2017 10:47:29 +0200 (CEST)
+Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
+	by babic.homelinux.org (Postfix) with ESMTP id 96D964540515;
+	Fri, 13 Oct 2017 10:47:28 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
+Received: from babic.homelinux.org ([127.0.0.1])
+	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id Zpj0hifNT0gz; Fri, 13 Oct 2017 10:47:26 +0200 (CEST)
+Received: from [192.168.178.132] (papero.fritz.box [192.168.178.132])
+	by babic.homelinux.org (Postfix) with ESMTP id E27EA4540497;
+	Fri, 13 Oct 2017 10:47:25 +0200 (CEST)
+To: Ayoub Zaki <ayoub.zaki@embexus.com>,
+	Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <9de83734-99a4-580b-4306-746108cbdb9b@embexus.com>
+	<18e01836-129a-0259-ff7a-1a7d21d1f380@rsi-elektrotechnik.de>
+	<35e6c4b3-e48a-f2b6-b595-f1c6868e9b2a@embexus.com>
+From: Stefano Babic <sbabic@denx.de>
+Message-ID: <5ce34bcf-e7d0-da58-49e5-5b0d9e69b3d9@denx.de>
+Date: Fri, 13 Oct 2017 10:47:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.223.187.206 with HTTP; Thu, 12 Oct 2017 23:46:40 -0700 (PDT)
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Thu, 12 Oct 2017 23:46:40 -0700
-X-Google-Sender-Auth: Wyo63lSSoM35Kj6LFYxmG31ymwU
-Message-ID: <CA+YB3rYmLWnWSgBZLWHi_=B3=kvRSVTj7Qdbsa3cvYgnsiJzZA@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Yocto Project Developer Day at ELCE in Prague
+In-Reply-To: <35e6c4b3-e48a-f2b6-b595-f1c6868e9b2a@embexus.com>
+Subject: Re: Yocto Image with custom directory layout
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,60 +69,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Oct 2017 06:47:04 -0000
-Content-Type: multipart/alternative; boundary="001a114244ac25f47a055b68069f"
+X-List-Received-Date: Fri, 13 Oct 2017 08:53:05 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: 8bit
 
---001a114244ac25f47a055b68069f
-Content-Type: text/plain; charset="UTF-8"
+On 12/10/2017 20:47, Ayoub Zaki wrote:
+> Hi,
+> 
+> 
+> On 12.10.2017 20:34, Josef Holzmayr wrote:
+>> Hi
+>>
+>> On 12.10.2017 19:07, Ayoub Zaki wrote:
+>>> Hi,
+>>> I would like to generate an image that contains a custom directories
+>>> layout for expl:
+>>>
+>>>
+>>> foo/
+>>> ├── bar1
+>>> │   └── bar2
+>>> │       ├── config
+>>> │       └── data
+>>> └── work
+>>>      └── var
+>>>          └── lib
+>>>              ├── config
+>>>              └── data
+>>>
+>>> It should contains only those directories an nothing else, is there
+>>> anyway to achieve that ? without using ROOTFS_POSTPROCESS_COMMAND.
+>>
+>> Should be possible if your image installs only your specific recipes
+>> that populate those directories. Means: no packagegroup-core-boot, no
+>> base-passwd, no.... -> then nothing should bring along other directories.
+> I tried that but it does pull other packages even if I set in my image:
+> 
+> IMAGE_FEATURES = ""
+> IMAGE_LINGUAS = ""
+> PACKAGE_INSTALL = "my-layout-recipe"
+> 
 
-The Yocto Project is a Bronze sponsor of the Embedded Linux Conference in
-Prague, starting on 23 October, and we also provide a conference add-on as
-we have for the past several years - Yocto Project Developer Day.
+It looks like you inherit "core-image" instead of just "image". I can
+confirm that this work, I have this simple recipe:
 
-DevDay is an inexpensive one-day event that enables you to learn about the
-project in either the Introductory track, a detailed technical introduction
-to the project taught by Linux Foundation professional trainers, or the
-Advanced track, a collection of intermediate and advanced level hands-on
-presentations taught by maintainers and other principals in the Yocto
-Project. This day is a chance for intensive training as well as one-on-one
-contact with the developers who create and maintain the Yocto Project.
 
-In addition, each attendee will receive a development board, with three to
-choose from. Lunch is provided.
+# Copyright (C) 2017 Stefano Babic <sbabic@denx.de>
+# Released under the MIT license (see COPYING.MIT for the terms)
 
-For more details and a link to register, see the DevDay page at
+DESCRIPTION = "Image with user processes"
+LICENSE = "CLOSED"
+SECTION = "Application"
 
-https://www.yoctoproject.org/devday
+inherit image
 
-Even if you don't attend DevDay, be sure to stop and say hello at the booth
-at ELCE!
+IMAGE_INSTALL = " \
+	projects-firmware \
+        "
+
+And project firmware has just the layout I want.
+
+Regards,
+Stefano
 
 -- 
-Jeff Osier-Mixon - Open Source Community Manager, Intel Corporation
+=====================================================================
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
---001a114244ac25f47a055b68069f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">The Yocto Project is a Bronze sponsor of the Embedded Linu=
-x Conference in Prague, starting on 23 October, and we also provide a confe=
-rence add-on as we have for the past several years - Yocto Project Develope=
-r Day.=C2=A0<div><br></div><div>DevDay is an inexpensive one-day event that=
- enables you to learn about the project in either the Introductory track, a=
- detailed technical introduction to the project taught by Linux Foundation =
-professional trainers, or the Advanced track, a collection of intermediate =
-and advanced level hands-on presentations taught by maintainers and other p=
-rincipals in the Yocto Project. This day is a chance for intensive training=
- as well as one-on-one contact with the developers who create and maintain =
-the Yocto Project.</div><div><br></div><div>In addition, each attendee will=
- receive a development board, with three to choose from. Lunch is provided.=
-</div><div><br></div><div>For more details and a link to register, see the =
-DevDay page at</div><div><br></div><div><a href=3D"https://www.yoctoproject=
-.org/devday">https://www.yoctoproject.org/devday</a></div><div><br></div><d=
-iv>Even if you don&#39;t attend DevDay, be sure to stop and say hello at th=
-e booth at ELCE!</div><div><div><br></div>-- <br><div class=3D"gmail_signat=
-ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div>Jeff Osier-Mi=
-xon - Open Source Community Manager, Intel Corporation</div></div></div>
-</div></div>
-
---001a114244ac25f47a055b68069f--
