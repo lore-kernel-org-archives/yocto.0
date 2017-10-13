@@ -1,65 +1,95 @@
-Return-Path: <antonellotartamo@gmail.com>
+Return-Path: <hernan_gutierrez@hp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8AC47E00D03; Fri, 13 Oct 2017 10:35:23 -0700 (PDT)
+	id 5E60FE008A4; Fri, 13 Oct 2017 12:36:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.42 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (antonellotartamo[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.42 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.41.117 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
-	[209.85.218.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30EAAE00CFE
-	for <yocto@yoctoproject.org>; Fri, 13 Oct 2017 10:35:22 -0700 (PDT)
-Received: by mail-oi0-f42.google.com with SMTP id w197so15413868oif.6
-	for <yocto@yoctoproject.org>; Fri, 13 Oct 2017 10:35:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=HOrpOlJ1n4QQkAVXr2T73VG9UMfw/uE2dGXjG2M5pjg=;
-	b=oqlV0UaAFtZl+u6LojSFKV8DdT/A5DsjnUXhFhBJLHtruZtEoBgfatveKHQ3JJ4PV5
-	VaeV0rLGEIGMU//GUzqpyADObeiAUA/v3NcbC01SjK4bmETa83ASiEkjUw24NcqxcgnK
-	0KfxAIzq+PmU3waD3sX7h83LTbJNdrCvKtEbLAFSoGm/rraW0s2dajpC2FBq+27r5n72
-	XKZ4cKXLwXWqi3bdK8xUEPr+YAbVrxNkxOQIZo8pjwPzN/5765yQIIc9mojNxbIoMquQ
-	s39SM0yukNKhylapYTVqsQJzi7KSlu4Ylmzk2VkmMRgHTGL2ddbOcYcFNIpG3zceJ8es
-	Bpww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=HOrpOlJ1n4QQkAVXr2T73VG9UMfw/uE2dGXjG2M5pjg=;
-	b=gqlL+B0gMewnqTyS/iX/3U/timwNjG2SNRp2N/RIBHFV3tLow/mbDHmoD5KCJt2mvF
-	EJllJxypv36YFxR6ekoyWkAg6ejHTyliMc6IV/gnKr9IHNF5b5veqH0W5LlfrudDBZt8
-	mxZbNcJX70uW9kNspbRFGYmF8TPmOhT9FZKAtZ4EoolO4MQwmn05o3LeqGvyGy1O4JOA
-	7IzVG14rFUqqE5r2cfm2FVZqZsXxcRhczlKvWALgYmJk3aGDYEj3oKrD5/gfzmWJXKoV
-	x3xT1XbKadtBQoonSaBxac//ZRQ3nz1knqgvfTOI91dEexbD3r+Nil1QYK2qqx4/0EjQ
-	SiEQ==
-X-Gm-Message-State: AMCzsaUrmevWqqTm/eb3BMeoKFrWcBbPBpqIgYuAHCBtGECefVIV9BCf
-	Ezkswb33A7LKMT73T+kwy4p984eQUv9lkHM6zmZnpg==
-X-Google-Smtp-Source: ABhQp+RrLvtFcvC1bVQYJ8Trkd6r9opurbRcGxuRjFPzPC9nr0/VpizqcZ62j0F57HT+K98KlV7h5Bj6VAMzmn+5Wz4=
-X-Received: by 10.157.43.132 with SMTP id u4mr1216811ota.17.1507916122223;
-	Fri, 13 Oct 2017 10:35:22 -0700 (PDT)
+Received: from NAM03-DM3-obe.outbound.protection.outlook.com
+	(mail-dm3nam03on0117.outbound.protection.outlook.com [104.47.41.117])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60236E006CA
+	for <yocto@yoctoproject.org>; Fri, 13 Oct 2017 12:36:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HP.onmicrosoft.com;
+	s=selector1-hp-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=Ar2j7S+0V4BqlUwxfoug7kR2KJu0lvn95PPAH6+JCdA=;
+	b=Dl2SOAuci+Ls+Orc6jVISPGyj7NOoZXzSRv4zywhjKcvAYehPcxP1q0SUvUGGyKmfHRCQaLDu1eTPltxiEu3/ldOHQ9truzM3PfK8TSi066CnUYR+gTEbXQnev1hCGx7WgHC882XhQMvmlZPUF58G6ANWT4YevhSLVxrEz5z5fo=
+Received: from TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM (10.169.47.144) by
+	TU4PR8401MB1039.NAMPRD84.PROD.OUTLOOK.COM (10.169.47.143) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.77.7; Fri, 13 Oct 2017 19:36:33 +0000
+Received: from TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM
+	([fe80::899b:ab4b:d42e:5e3b]) by
+	TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM
+	([fe80::899b:ab4b:d42e:5e3b%18]) with mapi id 15.20.0077.021;
+	Fri, 13 Oct 2017 19:36:33 +0000
+From: "Gutierrez, Hernan Ildefonso (Boise R&D, FW)" <hernan_gutierrez@hp.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] How to use two recipes to satisfy different PROVIDES --
+	gpu support
+Thread-Index: AdNC22ZV8TpVY/p+Rj+GscF2Iu86HQAGiESAAAUnmjAAMxOqAAAg2jKg
+Date: Fri, 13 Oct 2017 19:36:33 +0000
+Message-ID: <TU4PR8401MB10405BE964561C6D4995700999480@TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM>
+References: <TU4PR8401MB104097E5404DDCE3959D9401994A0@TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM>
+	<CAMKF1sox3ztaxD5NRMHKemO0WMWgiZ7C+EEECXhdpa9N_tSSgA@mail.gmail.com>
+	<TU4PR8401MB1040E74F1B4A2945C4F846A9994B0@TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM>
+	<20171013035048.xa25jylyhigzf4ih@apollo>
+In-Reply-To: <20171013035048.xa25jylyhigzf4ih@apollo>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=hernan_gutierrez@hp.com; 
+x-originating-ip: [15.65.244.15]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; TU4PR8401MB1039;
+	6:cb99Nr4108tN0+riVpP+SUT2Cv546VrdxjwKDXCrIhupif9BaAfkSbpzIkHqES6vxlH7x0IYVgNjxg5qKfg5G+WiisTnUmwxKrvIuV3d4p/tKaWiI4GUjXkgRgvJvHmVkHK0c7hfTT90AWKaUqTC6jq6s9YdnbBOj7Sr+p/hQVC/yNEkC2qie1KI/WUlOkZcaS52Ja/ffmXxfm6cBmRF2ig9bObuEs4tOJ0IYfxsM/GQjFZJjAb1KjVHGZcKk6o8yGjHAmsUaMbojz0FgktdjmukztEivMkzBp6yOq6AZ330BKAt/SkazxfU0VVFBRGo/ec8qRMcDFr81j9Z4m5Rlw==;
+	5:C9MIQrbBJ1xa5SPuqaQMld6lt2kdU9jVwELNdSvAbO8TIt1MrjymPKbWolHx4S3i0/0joLApGTMwgSDfcMRtkF2NqNOvTX5Kx8YEnKmQOHQO4H/RyxIovKynCakH2iAQgB5GUKLw/88+bjbeTvipaSmrvN66xkXLfO4iFW618bw=;
+	24:OxsY7HdLvLrZE69W3fM7PMomT7OPDoLLsR0E9owww+KGuXHreyMg679eQHaqw4N58cL/OfwDxvKB8y/ZVbju6JOqqM0BpmyuuYkar3yugFE=;
+	7:LCkuacRQ9X4mCLRz/tRTrILAxwMda8PTKwYecReYNkw3zOw79gyIJs5cIbdlioU/CLkzHQq4OBXYrGQ80Nsj5YlhFNDXEeqOz21lCBLf0shW9OBqL51Bsf5Rj4t4E1Ez1O6j88kvz4c7t0N07+RB03rL6Xn9l8kxDXnLTV5JBiqMxpB/CaByWFyr8E1k5G8iPOIZFYZh1Sd7CXTHa7+8ZGJUKN6zz3sW9eE6BPOPRrM=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 236d0b65-a044-4451-4ade-08d51271b62d
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(2017030254152)(2017052603199)(201703131423075)(201703031133081)(201702281549075);
+	SRVR:TU4PR8401MB1039; 
+x-ms-traffictypediagnostic: TU4PR8401MB1039:
+x-exchange-antispam-report-test: UriScan:(166708455590820)(73583498263828)(17755550239193); 
+x-microsoft-antispam-prvs: <TU4PR8401MB1039FB3E59E9339E7B9B74B299480@TU4PR8401MB1039.NAMPRD84.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(8121501046)(5005006)(100000703101)(100105400095)(93006095)(93001095)(3002001)(10201501046)(6041248)(20161123562025)(20161123560025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123558100)(20161123555025)(20161123564025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:TU4PR8401MB1039; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:TU4PR8401MB1039; 
+x-forefront-prvs: 04599F3534
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(39860400002)(376002)(346002)(51914003)(6602003)(189002)(199003)(13464003)(377454003)(24454002)(97736004)(54356999)(66066001)(316002)(5660300001)(53936002)(102836003)(55016002)(5250100002)(6436002)(86362001)(3280700002)(50986999)(68736007)(6506006)(4326008)(6116002)(3846002)(3660700001)(2906002)(76176999)(7696004)(2900100001)(478600001)(101416001)(33656002)(6916009)(189998001)(93886005)(105586002)(74316002)(106356001)(8936002)(2950100002)(14454004)(7736002)(25786009)(39060400002)(6306002)(305945005)(6246003)(9686003)(8676002)(966005)(81156014)(81166006)(229853002)(53546010);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:TU4PR8401MB1039;
+	H:TU4PR8401MB1040.NAMPRD84.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: hp.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.168.55.12 with HTTP; Fri, 13 Oct 2017 10:35:21 -0700 (PDT)
-From: Antonello Tartamo <antonellotartamo@gmail.com>
-Date: Fri, 13 Oct 2017 19:35:21 +0200
-Message-ID: <CAKns=mHT51aR2osFJDeEBOiopVxuLPxyq9EaM9E2hPmcRQ9oSw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: raspberrypi3 static library linking
+X-OriginatorOrg: hp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2017 19:36:33.8881 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ca7981a2-785a-463d-b82a-3db87dfc3ce6
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR8401MB1039
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: How to use two recipes to satisfy different PROVIDES -- gpu support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,112 +101,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Oct 2017 17:35:23 -0000
-Content-Type: multipart/alternative; boundary="001a113cfb40d0f881055b7114c5"
-
---001a113cfb40d0f881055b7114c5
-Content-Type: text/plain; charset="UTF-8"
-
-Hello everyone,
-
-I'm using a raspberry pi 3 with meta-raspberrypi meta layer.
-
-I have created a meta-layer (meta-kp) with two recipes directories:
-
-   - *recipes-example*: an example taken from Embedded Linux Projects Using
-   Yocto Project Cookbook with a static library recipe and the relative
-   application.
-   - *recipes-piface:* my recipes for an expansion board
-
-
-   - libmcp23s17: a static library
-      - exmcp23s17: an example just to use the previous static library
-      - libpifacedigital: another static library which requires libmcp23s17
-      - pifacedigital: the final application which requires both
-      libmcp23s17 and libpifacedigital
-
-My layer can be downloaded here: meta-kp
-<https://drive.google.com/file/d/0BwmDwJEEGKdzcjZMVENNM1QzdUU/view?usp=sharing>
-
-I've added in IMAGE_INSTALL_append both the recipe pifacedigital and
-helloworldstatic.
-
-I'm able to compile the image rpi-basic-image, but after booting the image
-if I try to execute the application pifacedigital_cmd it prompts out the
-following error:
-/usr/bin/pifacedigital_cmd: line 1: syntax error: unexpected word
-(expecting ")")
-
-Instead helloworldstatic (recipes-example) binary properly works.
-
-Have you ever faced some similar issue ?
-
-Thanks in advance for your help
-
---001a113cfb40d0f881055b7114c5
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Fri, 13 Oct 2017 19:36:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><p style=3D"box-sizing:border-box;margin-top:0px;margin-bo=
-ttom:16px;color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,=
-&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quo=
-t;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px">H=
-ello everyone,</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-b=
-ottom:16px;color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont=
-,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&qu=
-ot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px">=
-I&#39;m using a raspberry pi 3 with meta-raspberrypi meta layer.</p><p styl=
-e=3D"box-sizing:border-box;margin-top:0px;margin-bottom:16px;color:rgb(36,4=
-1,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Hel=
-vetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&=
-quot;,&quot;Segoe UI Symbol&quot;;font-size:14px">I have created a meta-lay=
-er (meta-kp) with two recipes directories:<br style=3D"box-sizing:border-bo=
-x"></p><ul><li><b>recipes-example</b>: an example taken from Embedded Linux=
- Projects Using Yocto Project Cookbook with a static library recipe and the=
- relative application.</li><li><b>recipes-piface:</b> my recipes for an exp=
-ansion board<br></li></ul><p></p><ul style=3D"box-sizing:border-box;padding=
--left:2em;margin-top:0px;margin-bottom:16px;color:rgb(36,41,46);font-family=
-:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans=
--serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe=
- UI Symbol&quot;;font-size:14px"><ul><li style=3D"box-sizing:border-box;mar=
-gin-left:0px">libmcp23s17: a static library</li><li style=3D"box-sizing:bor=
-der-box;margin-top:0.25em;margin-left:0px">exmcp23s17: an example just to u=
-se the previous static library</li><li style=3D"box-sizing:border-box;margi=
-n-top:0.25em;margin-left:0px">libpifacedigital: another static library whic=
-h requires libmcp23s17</li><li style=3D"box-sizing:border-box;margin-top:0.=
-25em;margin-left:0px">pifacedigital: the final application which requires b=
-oth libmcp23s17 and libpifacedigital</li></ul></ul><p style=3D"box-sizing:b=
-order-box;margin-top:0px;margin-bottom:16px;color:rgb(36,41,46);font-family=
-:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans=
--serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe=
- UI Symbol&quot;;font-size:14px">My layer can be downloaded here:=C2=A0<a h=
-ref=3D"https://drive.google.com/file/d/0BwmDwJEEGKdzcjZMVENNM1QzdUU/view?us=
-p=3Dsharing">meta-kp</a></p><p style=3D"box-sizing:border-box;margin-top:0p=
-x;margin-bottom:16px;color:rgb(36,41,46);font-family:-apple-system,BlinkMac=
-SystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Colo=
-r Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-s=
-ize:14px">I&#39;ve added in IMAGE_INSTALL_append both the recipe pifacedigi=
-tal and helloworldstatic.</p><p style=3D"box-sizing:border-box;margin-top:0=
-px;margin-bottom:16px;color:rgb(36,41,46);font-family:-apple-system,BlinkMa=
-cSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Col=
-or Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-=
-size:14px">I&#39;m able to compile the image rpi-basic-image, but after boo=
-ting the image if I try to execute the application pifacedigital_cmd it pro=
-mpts out the following error:<br style=3D"box-sizing:border-box">/usr/bin/p=
-ifacedigital_cmd: line 1: syntax error: unexpected word (expecting &quot;)&=
-quot;)</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:16=
-px;color:rgb(36,41,46);font-family:-apple-system,BlinkMacSystemFont,&quot;S=
-egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quo=
-t;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-size:14px">Instead =
-helloworldstatic (recipes-example) binary properly works.</p><p style=3D"bo=
-x-sizing:border-box;margin-top:0px;margin-bottom:16px;color:rgb(36,41,46);f=
-ont-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,=
-Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&=
-quot;Segoe UI Symbol&quot;;font-size:14px">Have you ever faced some similar=
- issue ?</p><p style=3D"box-sizing:border-box;margin-top:0px;color:rgb(36,4=
-1,46);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Hel=
-vetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&=
-quot;,&quot;Segoe UI Symbol&quot;;font-size:14px;margin-bottom:0px">Thanks =
-in advance for your help</p></div>
+Raj,
 
---001a113cfb40d0f881055b7114c5--
+Thanks for your response.
+
+I figured two issues I had in my original recipe. (after your response and =
+other queries I did)
+
+a) virtual/libgl is not provided by my recipe, and I was claiming to provid=
+e it.=20
+b) I read that mesa has to provide some of the libraries, even if you have =
+a GPU, so I added DEPENDS +=3D "mesa"
+c) I also found that there is a way to remove the conflicts in the provide =
+by doing a patch to mesa, (mesa_%.bbappend) and inside that recipe, you can=
+ do a PROVIDES_remove +=3D "virtual/ligegl .... etc."
+
+Thanks,
+
+--Hernan
+
+
+> -----Original Message-----
+> From: Khem Raj [mailto:raj.khem@gmail.com]
+> Sent: Thursday, October 12, 2017 9:51 PM
+> To: Gutierrez, Hernan Ildefonso (Boise R&D, FW)
+> <hernan_gutierrez@hp.com>
+> Cc: yocto <yocto@yoctoproject.org>
+> Subject: Re: [yocto] How to use two recipes to satisfy different PROVIDES=
+ --
+> gpu support
+>=20
+> On Thu, Oct 12, 2017 at 03:33:53AM +0000, Gutierrez, Hernan Ildefonso
+> (Boise R&D, FW) wrote:
+> > Raj,
+> >
+> > Thanks for the response.
+> >
+> > Is there an example of what you mentioned below which is open source?
+> >
+> > So far my two references have been Freescale and Mali. I found mali
+> > much simpler than Freescale, however Mali GPU doesn't really have a
+> refactor of mesa, they only do a simple bbappend to mesa with the
+> PROVIDES_remove statement I stated in my original note.
+>=20
+> you can also look at meta-raspberrypi
+>=20
+>=20
+> >
+> > For reference here:  https://github.com/ARM-software/meta-mali
+> >
+> > --Hernan
+> >
+> >
+> >
+> > > -----Original Message-----
+> > > From: Khem Raj [mailto:raj.khem@gmail.com]
+> > > Sent: Wednesday, October 11, 2017 7:01 PM
+> > > To: Gutierrez, Hernan Ildefonso (Boise R&D, FW)
+> > > <hernan_gutierrez@hp.com>
+> > > Cc: yocto <yocto@yoctoproject.org>
+> > > Subject: Re: [yocto] How to use two recipes to satisfy different
+> > > PROVIDES -- gpu support
+> > >
+> > > On Wed, Oct 11, 2017 at 3:15 PM, Gutierrez, Hernan Ildefonso (Boise
+> > > R&D,
+> > > FW) <hernan_gutierrez@hp.com> wrote:
+> > > > Hi,
+> > > >
+> > > > We have a GPU in our system. We created a recipe to satisfy all
+> > > > the
+> > > dependencies for core-image-weston (virtual/egl, virtual/libgl,
+> > > etc.), except virtual/mesa, which is not provided by our GPU recipe.
+> > > >
+> > > > When one builds core-image-weston, the image requires mesa to
+> > > > build as
+> > > well.
+> > > >
+> > > > Our approach to satisfy dependencies is very similar to what
+> > > > Freescale and
+> > > other vendors with Mali GPU support use, which is through the
+> > > following
+> > > statements:
+> > > >
+> > > > PREFERRED_PROVIDER_virtual/egl =3D "my-gpu-recipe"
+> > > > PREFERRED_PROVIDER_virtual/libgles1 =3D " my-gpu-recipe "
+> > > > PREFERRED_PROVIDER_virtual/libgles2 =3D " my-gpu-recipe "
+> > > > PREFERRED_PROVIDER_virtual/libgl =3D "my-gpu-recipe"
+> > > > PREFERRED_PROVIDER_virtual/mesa =3D "mesa"
+> > > >
+> > > > The way to remove mesa support for virtual/egl, virtual/libgles1,
+> > > > etc. is by
+> > > adding a mesa_%.bbappend where it states explicitly to remove those
+> > > provides from mesa recipe.
+> > > >
+> > > > e.g.
+> > > > PROVIDES_remove =3D "virtual/libgles1 virtual/libgles2
+> > > > virtual/libopenvg
+> > > virtual/egl"
+> > > >
+> > > >
+> > > > The problem I am running into is that bitbake complains stating
+> > > > that virtual/mesa is not satisfied (Nothing PROVIDES
+> > > > 'virtual/mesa')
+> > > >
+> > > > When I do bitbake-layers show-recipes, I see that mesa recipe is
+> > > > skipped
+> > > because it gave priority to my-gpu-recipe.
+> > > >
+> > > > How can two recipes be used and let bitbake satisfy parts of each
+> recipe?
+> > > >
+> > > > Any hints will be appreciated.
+> > >
+> > > there is no easy way to control providers once a recipe is pulled in.
+> > > you can refactor mesa recipe like we have done for mesa and mesa-gl
+> > > which will mean adding a another recipe which just builds the needed
+> > > portions of mesa in each recipe, if your GPU driver provides
+> > > everything you need to run weston, then you can let it provide
+> > > everything that mesa provides and bitbake wont pick up mesa at all.
+> > >
+> > > >
+> > > > Thanks,
+> > > >
+> > > > --Hernan
+> > > > --
+> > > > _______________________________________________
+> > > > yocto mailing list
+> > > > yocto@yoctoproject.org
+> > > > https://lists.yoctoproject.org/listinfo/yocto
+
