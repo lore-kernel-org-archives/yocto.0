@@ -1,72 +1,64 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <am.gondaliya007@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B8764E00D36; Mon, 16 Oct 2017 13:58:42 -0700 (PDT)
+	id 72881E00D17; Sun, 15 Oct 2017 07:48:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Level: *
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FORGED_MUA_MOZILLA,FREEMAIL_FROM,
+	FREEMAIL_REPLYTO_END_DIGIT, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
+	mail provider *      (am.gondaliya007[at]yahoo.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [74.6.130.123 listed in list.dnswl.org]
+	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+	digit *      (amit gondaliya <am.gondaliya007[at]yahoo.com>
+	) * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f175.google.com (mail-ua0-f175.google.com
-	[209.85.217.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48189E00D34
-	for <yocto@yoctoproject.org>; Mon, 16 Oct 2017 13:58:42 -0700 (PDT)
-Received: by mail-ua0-f175.google.com with SMTP id v27so10621050uav.7
-	for <yocto@yoctoproject.org>; Mon, 16 Oct 2017 13:58:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=XkQKq6EcuOHVAdNWq644CQ2T9vDHXe1Kh8PSuLVqlSA=;
-	b=kTTpF/Rqm0WPwuRyhTx3ykt9lEK2GTORxhJn4psAmtTaGNOIjwxsDzeLwx3vV64GIG
-	ANUyUfclHdAoawI5dF3uzNtmrDsuiVtY7WRiIYhAkCHnCOcdAjh0oWuQPXZWR699KJZ8
-	1scV1RQ9UNGOFY8gHnV834cDVQ5EjWURH5CYmP0Jy6wHjdSMUMemCbjV+8blGOKXROiz
-	N2OIXM7vjjZ6HUBLBCp1oW6+qeFXQnWl1fXlUrpGjF1RjLhdJ4lG/JYQAOIE1H3ZZ4eS
-	VwrVRX4i5yx7yKLtPwf5G4MnyShoQhXfZP9ZNMmpQp79T6yRzh+btwm1unU5OsWZl4dR
-	PA1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=XkQKq6EcuOHVAdNWq644CQ2T9vDHXe1Kh8PSuLVqlSA=;
-	b=kalzkt7NMvXmZXYN1kdssx7qaBetZgtYRyop0e1XwNHwu2jgUSkU+VTy2zJ2xKf3ym
-	Av7FcXXb738g5MlxbbTDHHwDPq+wj9DoKxik+zD4Z0jeVOYp3aYsEjrYJfhTkf9EfDVL
-	FzxyY8rDwrwMCUXQ9NkvC+4XCcuw1/va+YvsAssfvZU2JvfAQwqx4tFEyEx8iKVKZsty
-	T5i113WCU4V1AIUIyVp4tqA/CFLKQpUEuppknxw8Un6UeOwsNu/F7qzO3wuUX0YBUJ3E
-	MRzQsQlgt79maNm9e7b3WSZ1LYDDUG/PSHsvWzjsH6RTgaY1NKEnEai2chLreBWtrM4S
-	+Lzw==
-X-Gm-Message-State: AMCzsaVTA5R1lCv1MBoyBsj0gk86DQLuTfG9doEnUm7cSnWjRv/xoN1a
-	4VyyRgB3Aw3d15peavgwOXiowzFHCRqnBNGEY44=
-X-Google-Smtp-Source: AOwi7QD6uhawcWmP74CCW7g0ESQqGYXS78Z9AGJXqsEPw709LxH4P2jfcLymProLxqILSJOyBHypQWYisypEJDOidf8=
-X-Received: by 10.176.81.132 with SMTP id g4mr8400507uaa.60.1508187521287;
-	Mon, 16 Oct 2017 13:58:41 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.6.130.123 listed in dnsbl.sorbs.net]
+	*  2.3 FORGED_MUA_MOZILLA Forged mail pretending to be from Mozilla
+Received: from sonic316-13.consmr.mail.bf2.yahoo.com
+	(sonic316-13.consmr.mail.bf2.yahoo.com [74.6.130.123])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D47AE00CBE
+	for <yocto@yoctoproject.org>; Sun, 15 Oct 2017 07:48:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1508078916; bh=fx836aBjGbsW3R42rpn+t7i8Kjuo9grzRSSqvpfcS4A=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=lcEdkol3CpPNj3cHpz//g4uhlglzeU10QCxUH1bwQYCg4/KRQm90MtUC6oAjKWqJkmzut84D7RU98cHSaSCFldabCGVd8lXEO5p1TNJi2juPdR20jYYRYBTC+WRJzsB4UCL5kMXyzrz12oIZi493VO+WAqq2JksM0AUG2/HRvgOH+VZV0a42Xloq3/EVB4osz5BPOsluXYtsgy7oJMKH5IoWBvPiX3ladk8zv/PNRSmpleVs0UwQ+Idf4jXea+twH+PeUIznQDo//LZzL5wWU2TXd+KkZR/lPBOv4bzLUKyGx0JIXxB/tPElz+YX+Y16jGqOO7Tjnp6g/2owSsZu9Q==
+X-YMail-OSG: s6mlSqwVM1nmRu693SmDGNpnLPQG9RXl3btXfvF77TTgvyVrUJxcx2qX38Y6nLa
+	DRX9oy9MTAnu_I4vwLIkqFM7Hx9gZTjMaif13CbTxwHCcxda3KfndZYHLmzyjYHs2BqrkBOONLP4
+	3On7kwmTVBIl2alJYzrcK5S4maaXyhCsbm8KgIrnM6s11DAgzM0nOd3jKDI5yu5XSAhFZ9iAVLBe
+	X_kPqSXFwJGbs23IdJQyv4ubZVeIuHTIWRk_6a2HDpL.J6RVOV_4yQUsy6Np0_Z6U6WDK7YptGTE
+	0VZMT1_A380YyGXLR1M7Z_XO0qZcr7T229OhRG6ct2U2ZFrnDXdimg4fd2GNls4erxcu5A7Y9.2Q
+	JpjmE8h0sWXoxksokuo60Y5sQpYolGzgTCHUnvWo.gu9hVtsgsHB_jKf2CaY4Kg6MNvgDKaZ3mrc
+	YYR0s6Z_4MGx9c8PYU3.0J9jsVUs7gUrzWYg9qYl3eMhRvqm74MJgphY6fqkhrmM-
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic316.consmr.mail.bf2.yahoo.com with HTTP;
+	Sun, 15 Oct 2017 14:48:36 +0000
+Date: Sun, 15 Oct 2017 14:48:33 +0000 (UTC)
+From: Amit Gondaliya <am.gondaliya007@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <467689991.208547.1508078913957@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.176.82.197 with HTTP; Mon, 16 Oct 2017 13:58:40 -0700 (PDT)
-In-Reply-To: <1508165287.20313.192.camel@linuxfoundation.org>
-References: <1502634551-6371-1-git-send-email-gizero@gmail.com>
-	<CAC+thW1vA3N3SjsVJ9uE+rz9+4FXCzzAKd6RzrtWHv-yORrgWQ@mail.gmail.com>
-	<CAC+thW3y7ewju_qseTKJ1uWmC7jsGwEYaKpHchOFem081G3zSQ@mail.gmail.com>
-	<1508165287.20313.192.camel@linuxfoundation.org>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Mon, 16 Oct 2017 22:58:40 +0200
-Message-ID: <CAC+thW3PejvvGqwY0nTJGjf3i7-+f44HW5L4++g4yARpgjPNzg@mail.gmail.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Scott Rifenbark <srifenbark@gmail.com>
-Subject: Re: [yocto-docs][PATCH] kernel-dev: fix typo
+References: <467689991.208547.1508078913957.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.10726 YahooMailNeo Mozilla/5.0 (Windows NT 10.0;
+	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100
+	Safari/537.36
+X-Mailman-Approved-At: Mon, 16 Oct 2017 14:04:40 -0700
+Subject: .config moved as .config.old
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Amit Gondaliya <am.gondaliya007@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -75,19 +67,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Oct 2017 20:58:42 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sun, 15 Oct 2017 14:48:39 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_208546_1751417670.1508078913956"
 
-On Mon, Oct 16, 2017 at 4:48 PM, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> Hi,
->
->
->>...I'm sorry to insist, but I can't figure out why this trivial typo
->> fix has been ignored for long.
->
-> I mentioned this to Scott who hadn't seen it for some reason. He's
-> merged it now, thanks.
+------=_Part_208546_1751417670.1508078913956
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Thanks! ;-)
+Hello,
+I am adding my own machine layer (meta-layer) into the yocto.
+I did the entire work able to compile to kernel and u-boot. when I tried to=
+ give my own defconfig file, yocto is not taking that defconfig ( I used it=
+ in daisy now upgrading the yocto to pyro). My defconfig file is shown in .=
+config.old instead of .config
+would you help me what did i do wrong.
+defconfig File is under files folder where recipe is resided and using SRC_=
+URI variable to defconfig.
+also included do_configure_prepend(){=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 cp <defconfig> to {WORKDIR}/defconfig
+}
+Help will be appreciated=C2=A0
+thanksAmit Gondaliya
 
+------=_Part_208546_1751417670.1508078913956
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:Courier New, courier, monaco, monospace, sans-serif;font-size:16=
+px"><div id=3D"yui_3_16_0_ym19_1_1508078168978_2458">Hello,</div><div id=3D=
+"yui_3_16_0_ym19_1_1508078168978_2458"><br></div><div id=3D"yui_3_16_0_ym19=
+_1_1508078168978_2458">I am adding my own machine layer (meta-layer) into t=
+he yocto.</div><div id=3D"yui_3_16_0_ym19_1_1508078168978_2458"><br></div><=
+div id=3D"yui_3_16_0_ym19_1_1508078168978_2458" dir=3D"ltr">I did the entir=
+e work able to compile to kernel and u-boot. when I tried to give my own de=
+fconfig file, yocto is not taking that defconfig ( I used it in daisy now u=
+pgrading the yocto to pyro). My defconfig file is shown in .config.old inst=
+ead of .config</div><div id=3D"yui_3_16_0_ym19_1_1508078168978_2458" dir=3D=
+"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1508078168978_2458" dir=3D"ltr=
+">would you help me what did i do wrong.</div><div id=3D"yui_3_16_0_ym19_1_=
+1508078168978_2458" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1508=
+078168978_2458" dir=3D"ltr">defconfig File is under files folder where reci=
+pe is resided and using SRC_URI variable to defconfig.</div><div id=3D"yui_=
+3_16_0_ym19_1_1508078168978_2458" dir=3D"ltr"><br></div><div id=3D"yui_3_16=
+_0_ym19_1_1508078168978_2458" dir=3D"ltr">also included do_configure_prepen=
+d(){</div><div id=3D"yui_3_16_0_ym19_1_1508078168978_2458" dir=3D"ltr">&nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cp &lt;defconfig&gt; to=
+ {WORKDIR}/defconfig<br></div><div id=3D"yui_3_16_0_ym19_1_1508078168978_24=
+58" dir=3D"ltr">}</div><div id=3D"yui_3_16_0_ym19_1_1508078168978_2458" dir=
+=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_1508078168978_2458" dir=3D"=
+ltr">Help will be appreciated&nbsp;</div><div id=3D"yui_3_16_0_ym19_1_15080=
+78168978_2458" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_ym19_1_150807816=
+8978_2458" dir=3D"ltr">thanks</div><div id=3D"yui_3_16_0_ym19_1_15080781689=
+78_2458" dir=3D"ltr">Amit Gondaliya</div></div></body></html>
+
+------=_Part_208546_1751417670.1508078913956--
