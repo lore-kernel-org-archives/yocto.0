@@ -1,17 +1,17 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 910F0E00D24; Mon, 16 Oct 2017 10:54:47 -0700 (PDT)
+	id B8764E00D36; Mon, 16 Oct 2017 13:58:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
+	mail provider *      (gizero[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.54 listed in list.dnswl.org]
+	*      [209.85.217.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,51 +19,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.54 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36B10E00D1F
-	for <yocto@yoctoproject.org>; Mon, 16 Oct 2017 10:54:45 -0700 (PDT)
-Received: by mail-wm0-f54.google.com with SMTP id k4so5668069wmc.1
-	for <yocto@yoctoproject.org>; Mon, 16 Oct 2017 10:54:45 -0700 (PDT)
+Received: from mail-ua0-f175.google.com (mail-ua0-f175.google.com
+	[209.85.217.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48189E00D34
+	for <yocto@yoctoproject.org>; Mon, 16 Oct 2017 13:58:42 -0700 (PDT)
+Received: by mail-ua0-f175.google.com with SMTP id v27so10621050uav.7
+	for <yocto@yoctoproject.org>; Mon, 16 Oct 2017 13:58:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=kUA+5/E3yqhZq/munCANCA+KltiwVTFJ+i8ZbG8zZNM=;
-	b=hfhWAgpLTHxK/NHn89NtVeCq/9O0rt67zqvdUbruEKfY1MxTK5s2g2p+QX2/OpQIXq
-	JjOvw0Pt0y2qgGmCvSb9TJKN9o3CzTJHxAkTj2FUvGxSjn1OfpWaCfqR5mXX5xhHV8vm
-	eCbhj21lm8J3ZjF4cxMZ3BTtRVB3wrQV0JWvPLeewZd1Kv+J+0VvmPD5wFRYh/lWyOSg
-	Fq1iBkoxHv3oDbcxRMY7nE//dgEgY0QHbB6n0iAqoeZdYvJ3ME4CXldNDYdttFRliv2/
-	hR8UH5vxm0W068gIEt5v7HBxPwxWCInEUvh4YtIG28do9DbOE5A6npirqvxxRInHiTT0
-	FJdw==
+	:cc; bh=XkQKq6EcuOHVAdNWq644CQ2T9vDHXe1Kh8PSuLVqlSA=;
+	b=kTTpF/Rqm0WPwuRyhTx3ykt9lEK2GTORxhJn4psAmtTaGNOIjwxsDzeLwx3vV64GIG
+	ANUyUfclHdAoawI5dF3uzNtmrDsuiVtY7WRiIYhAkCHnCOcdAjh0oWuQPXZWR699KJZ8
+	1scV1RQ9UNGOFY8gHnV834cDVQ5EjWURH5CYmP0Jy6wHjdSMUMemCbjV+8blGOKXROiz
+	N2OIXM7vjjZ6HUBLBCp1oW6+qeFXQnWl1fXlUrpGjF1RjLhdJ4lG/JYQAOIE1H3ZZ4eS
+	VwrVRX4i5yx7yKLtPwf5G4MnyShoQhXfZP9ZNMmpQp79T6yRzh+btwm1unU5OsWZl4dR
+	PA1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=kUA+5/E3yqhZq/munCANCA+KltiwVTFJ+i8ZbG8zZNM=;
-	b=VuSsZE8kutgjwAp+i5iNS84KrT91WRA+twHbSVNKd6UaDS0S7Cs3yLloKktvmWjm9b
-	VT7wunMpUvRVgSkOdLw9kK451Jjh3Zq6OsCacNnlfwi5tSKAH/fIV2eU1VI1lhg79hfT
-	lfUwG0eHnur3Rdu2meLicV6gF0cXRxlN/NDY1qD5paUJHDWM3u2+PGHf+UAxL46nMDyA
-	LKmMsg2xSVYRb+ve7vMAyREjuteVd1Vq0JnEGxNs1MR17Nszo9f7qMOe041FqhHoJ21c
-	KqH3iZulBJIBBQ2DAG+BLAP4U7J5Fb72bidTv6pJq+71kIRGM4OJYnbcv5YrbhWQs1gT
-	nygw==
-X-Gm-Message-State: AMCzsaVLSY74dGVdjsqGbX+LCX4+pJlh0E4c5gtZftmHh6pHFjznZUf+
-	+KE0f4DodI1TrUVWk0Z2w6RgZ2e6OO6543qb3RQ=
-X-Google-Smtp-Source: ABhQp+RjEGmL0P2GJw1N/RWnJYcm3gguExc6kturrU0wSvwNkpEc1IEo/m2P9gpWhB40/GFU2uC4F0AAz2CtbJDe2yg=
-X-Received: by 10.28.91.75 with SMTP id p72mr1481388wmb.89.1508176484845; Mon,
-	16 Oct 2017 10:54:44 -0700 (PDT)
+	bh=XkQKq6EcuOHVAdNWq644CQ2T9vDHXe1Kh8PSuLVqlSA=;
+	b=kalzkt7NMvXmZXYN1kdssx7qaBetZgtYRyop0e1XwNHwu2jgUSkU+VTy2zJ2xKf3ym
+	Av7FcXXb738g5MlxbbTDHHwDPq+wj9DoKxik+zD4Z0jeVOYp3aYsEjrYJfhTkf9EfDVL
+	FzxyY8rDwrwMCUXQ9NkvC+4XCcuw1/va+YvsAssfvZU2JvfAQwqx4tFEyEx8iKVKZsty
+	T5i113WCU4V1AIUIyVp4tqA/CFLKQpUEuppknxw8Un6UeOwsNu/F7qzO3wuUX0YBUJ3E
+	MRzQsQlgt79maNm9e7b3WSZ1LYDDUG/PSHsvWzjsH6RTgaY1NKEnEai2chLreBWtrM4S
+	+Lzw==
+X-Gm-Message-State: AMCzsaVTA5R1lCv1MBoyBsj0gk86DQLuTfG9doEnUm7cSnWjRv/xoN1a
+	4VyyRgB3Aw3d15peavgwOXiowzFHCRqnBNGEY44=
+X-Google-Smtp-Source: AOwi7QD6uhawcWmP74CCW7g0ESQqGYXS78Z9AGJXqsEPw709LxH4P2jfcLymProLxqILSJOyBHypQWYisypEJDOidf8=
+X-Received: by 10.176.81.132 with SMTP id g4mr8400507uaa.60.1508187521287;
+	Mon, 16 Oct 2017 13:58:41 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.223.166.19 with HTTP; Mon, 16 Oct 2017 10:54:44 -0700 (PDT)
-In-Reply-To: <ee101ffd-a217-0370-d06e-72d51481d45e@gmail.com>
-References: <CAE0QtjMERAoesSe9wab80StX-0MRTEAf+RB6pgUguGgOBNCwAA@mail.gmail.com>
-	<67150d7b-80ba-e5e0-86ef-5f7f8afcbfca@gmail.com>
-	<CAJ86T=U7WkuShnw7hzhGLUT4-mTB__SF2pFx8DtHFJ_O75DY0Q@mail.gmail.com>
-	<ee101ffd-a217-0370-d06e-72d51481d45e@gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Mon, 16 Oct 2017 10:54:44 -0700
-Message-ID: <CAJ86T=VboqXFtwbvtJbFnAMphdeOpzDGXkGwtiKZV0_R40b2Rg@mail.gmail.com>
-To: Robert Berger <yocto.user.mailinglist@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: image dependent pkg versions/pkg variations
+Received: by 10.176.82.197 with HTTP; Mon, 16 Oct 2017 13:58:40 -0700 (PDT)
+In-Reply-To: <1508165287.20313.192.camel@linuxfoundation.org>
+References: <1502634551-6371-1-git-send-email-gizero@gmail.com>
+	<CAC+thW1vA3N3SjsVJ9uE+rz9+4FXCzzAKd6RzrtWHv-yORrgWQ@mail.gmail.com>
+	<CAC+thW3y7ewju_qseTKJ1uWmC7jsGwEYaKpHchOFem081G3zSQ@mail.gmail.com>
+	<1508165287.20313.192.camel@linuxfoundation.org>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Mon, 16 Oct 2017 22:58:40 +0200
+Message-ID: <CAC+thW3PejvvGqwY0nTJGjf3i7-+f44HW5L4++g4yARpgjPNzg@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Scott Rifenbark <srifenbark@gmail.com>
+Subject: Re: [yocto-docs][PATCH] kernel-dev: fix typo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,32 +75,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Oct 2017 17:54:47 -0000
+X-List-Received-Date: Mon, 16 Oct 2017 20:58:42 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Oct 16, 2017 at 2:10 AM, Robert Berger
-<yocto.user.mailinglist@gmail.com> wrote:
+On Mon, Oct 16, 2017 at 4:48 PM, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> Hi,
 >
-> Anyhow, following this idea I was told that there is also something like
-> this[1].
 >
-> So maybe something like this could work:
+>>...I'm sorry to insist, but I can't figure out why this trivial typo
+>> fix has been ignored for long.
 >
-> bitbake \
-> multiconfig:customerA:stable-image \
-> multiconfig:customerA:bleeding-image \
-> multiconfig:customerB:stable-image \
-> multiconfig:customerB:bleeding-image
->
-> where it would be the same MACHINE, but different images and package
-> versions, which could be defined in the configs.
->
-> [1]
-> http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#platdev-building-targets-with-multiple-configurations
+> I mentioned this to Scott who hadn't seen it for some reason. He's
+> merged it now, thanks.
 
-Good luck!
-
-> Regards,
->
-> Robert
+Thanks! ;-)
 
