@@ -1,88 +1,67 @@
-Return-Path: <umamahesh.y@hcl.com>
+Return-Path: <vincent.prince.fr@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47E31E00CD4; Sun, 15 Oct 2017 07:13:57 -0700 (PDT)
+	id A59DCE00D1B; Mon, 16 Oct 2017 00:41:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [192.8.186.131 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vincent.prince.fr[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.169 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2F18E00B67
-	for <yocto@yoctoproject.org>; Sun, 15 Oct 2017 07:13:52 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.43,382,1503340200"; d="scan'208";a="76788813"
-Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
-	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 15 Oct 2017 19:43:50 +0530
-Received: from CHN-CORP-EDGE1.CORP.HCL.COM (10.249.1.159) by
-	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
-	(TLS) id 14.3.339.0; Sun, 15 Oct 2017 19:43:50 +0530
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (65.55.88.244) by
-	transportedge.hcl.com (10.249.1.159) with Microsoft SMTP Server
-	(TLS) id 14.3.339.0; Sun, 15 Oct 2017 19:43:02 +0530
-Received: from HK2PR04MB0995.apcprd04.prod.outlook.com (10.165.58.153) by
-	HK2PR04MB0996.apcprd04.prod.outlook.com (10.165.58.154) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.77.7; Sun, 15 Oct 2017 14:13:47 +0000
-Received: from HK2PR04MB0995.apcprd04.prod.outlook.com
-	([fe80::7da9:d478:cd68:f048]) by
-	HK2PR04MB0995.apcprd04.prod.outlook.com
-	([fe80::7da9:d478:cd68:f048%13]) with mapi id 15.20.0077.022;
-	Sun, 15 Oct 2017 14:13:47 +0000
-From: Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>
-To: Vincent Prince <vincent.prince.fr@gmail.com>
-Thread-Topic: [yocto] Procedure for adding driver in Yocto
-Thread-Index: AdNCUyU9vC4Mhnc1SNCD76rUbn5L1gADsaYAANdkzuA=
-Date: Sun, 15 Oct 2017 14:13:46 +0000
-Message-ID: <HK2PR04MB0995E6C41F4CE558BD3B0DE0E64E0@HK2PR04MB0995.apcprd04.prod.outlook.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 998BBE00D12
+	for <yocto@yoctoproject.org>; Mon, 16 Oct 2017 00:41:02 -0700 (PDT)
+Received: by mail-io0-f169.google.com with SMTP id p186so8903426ioe.12
+	for <yocto@yoctoproject.org>; Mon, 16 Oct 2017 00:41:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=iPRMIiCisF4bOWfzvUjXiD9l2QlvC+COzOXwnKXz1xI=;
+	b=o0OBZjpxzaQU0oV1TF8TZEmo6fO2R5pNUqF2Cef/vRjXHyaROSu110IuJXdyxk41Va
+	3uM3uiPc3ZYFBa3cg4iPAps+iRQrQLu20Ydr4caIHrF7j6jVKeUVPhzZ/242p/kd50tw
+	qdaVbLAsdAfLx/+lcmCcIBsATWLLZdESbcJn3vZje32mUEEqdvIj+EJJfSB13nA9X8s2
+	mbPiFTHjJjdLUlhsenZNb/qSYPyI4a96ojwfLqrOpzXiLsyDKVWBCFOXlUoznqpKx9jD
+	7oBhjzHc4jxxDHayGfjiX7BC14elbFRHKTDSb725jThy1V+mkpCnCNUzOk4ohq2Gscfb
+	ruWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=iPRMIiCisF4bOWfzvUjXiD9l2QlvC+COzOXwnKXz1xI=;
+	b=KIv0/fr7roRrc4KZvcdsxSyrFAADuDJpX73Bh1+fD0EU0YH2ACcxEH7EnDGmh7bKxH
+	lgDy3u8ZL6HG+v/8f5EPai+Hjcnwdy4swS9IzJ0xWPiaIL9isgPzN9rnrhNEca1BMjzW
+	/07sLuOAt2uypdgd4dcJX4WbQnuSp1uzaN2DN5PDlH+2oitylj23Wc/HndYOQNfcDeiP
+	5HwDUzAwhbvpP3Iy/oDDgv4WepenvZAyUT8HEDM10Gf0PrieIrUmU7PleF2c4XCP4b2f
+	NCOCjcaoHQQ+DBJJq/bfJL3XxWJdZiuUv+O5mVZFARjLYQynZXwuYM1jEbDVerT/0TSl
+	t3uA==
+X-Gm-Message-State: AMCzsaXLu6WKAlD9qOb0x8G3nCMh4SV+fyB4SeZ86Zl1snxuuzeRDeMC
+	18ruPfeaAo2+DvNE/u3VHOq0cP4DYoqDHaUfXLE=
+X-Google-Smtp-Source: ABhQp+Sbin5234bk2+t/M862gdplWzyeKP4zHPaNXdaFwWQkKPIafJjMiUn+/2Y1dlIR/RYq0Jbzi0fOB3RiFQTtmpY=
+X-Received: by 10.107.48.76 with SMTP id w73mr11552174iow.301.1508139661569;
+	Mon, 16 Oct 2017 00:41:01 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.2.167.15 with HTTP; Mon, 16 Oct 2017 00:40:40 -0700 (PDT)
+In-Reply-To: <HK2PR04MB0995E6C41F4CE558BD3B0DE0E64E0@HK2PR04MB0995.apcprd04.prod.outlook.com>
 References: <HK2PR04MB09958FA97340182BB1D3D0E9E64A0@HK2PR04MB0995.apcprd04.prod.outlook.com>
 	<CAB2nKc80fwSyRcuNMDrxkuWWjTq7cUpzohTJ7xcc4jWMyCEGEw@mail.gmail.com>
-In-Reply-To: <CAB2nKc80fwSyRcuNMDrxkuWWjTq7cUpzohTJ7xcc4jWMyCEGEw@mail.gmail.com>
-Accept-Language: en-IN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [14.141.193.151]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; HK2PR04MB0996;
-	6:K+n/Ghou9B39uKu5s64NOK0KxfSx4heZ1AypERpDLLKdItzHWA/RpopiJoevqKzapUiEU5Fg1e3jctVp0celiStJSaemUOIMIKfZGqaxuI4d8Na1UGvVbIZ5cFxcJ+p3apGraIguqrXpGRliHerxoJndYhnsi1iUWxuYGUrW3+kjQKiMe4knqb+15u+PXdfWI4aCNee1Xq5OIgvG1MkJtf1HgLGGxCAgo99hn9oY7Syfh5971fqek+MIR18plivtCRDX6mctX4ogtKdhDOw9FOqCViIiPrKR+Mb0SE18dgqjSCfwYpmgE5urG2Wpr+86SMfBFhfglYwrWtL+U8jQkA==;
-	5:iOEKVnqz2SJdodDm0dzPp/2hHH9jGlIaMb3W9YjveV1Twi3HH847muzW+mEl1I474hAmQcO0CLtUbfKJDfhzR5lrOGk7C4AsdWjQV+67/qksYC7auPBabBhwhdvDJZeKekU3NYzEzig1v8mZzsUxvn74lSWKNONiYx2hItLPxss=;
-	24:LbUafZzK+yUyegWYkMnpvnTUlOc0o0mE9hsJ4+9Foi+ltWPD6aYMu6MhEuCxBhjlBmA16+gfFj7CJCjCIulGUaFf3V0MfS9T6nfM5jWhrtQ=;
-	7:kVjd5aQDxZvYt554fSrzp+xF+40VD5G8SByC5/HwDvXoafAm5yr5ogsGcPzy8qauUyk/RUecAjUqrafNvOIz5ZD9IwMVYeTxeNnIy/ulcihzNDG4MdaDzFAhqDske4fh8tgkf4FT8WbUJuhoWWuZcO7kqIVEAPTMkXadsrNf4T/Nb5apAmYG5jF30yHD/zUw9SEej5ygmRxHKRMc7/Q3d4aaWgWzp/HNPyQIg/KSTxI=
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 5a20b8c7-f77f-47a5-fbde-08d513d6f376
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(2017030254152)(2017052603199)(201703131423075)(201703031133081)(201702281549075);
-	SRVR:HK2PR04MB0996; 
-x-ms-traffictypediagnostic: HK2PR04MB0996:
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=umamahesh.y@hcl.com; 
-x-exchange-antispam-report-test: UriScan:(3501301888747);
-x-microsoft-antispam-prvs: <HK2PR04MB09969C92CCD1C008D1D7ECF2E64E0@HK2PR04MB0996.apcprd04.prod.outlook.com>
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(5005006)(8121501046)(93006095)(93001095)(10201501046)(3002001)(100000703101)(100105400095)(6041248)(20161123564025)(20161123558100)(20161123560025)(20161123555025)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:HK2PR04MB0996; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:HK2PR04MB0996; 
-x-forefront-prvs: 046164D5C4
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(376002)(346002)(377424004)(189002)(38564003)(13464003)(199003)(5660300001)(7696004)(101416001)(7736002)(9686003)(99286003)(6306002)(81156014)(8676002)(97736004)(55016002)(81166006)(39060400002)(3846002)(106356001)(4326008)(3660700001)(68736007)(4001150100001)(305945005)(53936002)(74316002)(2950100002)(6916009)(54356999)(76176999)(50986999)(105586002)(86362001)(6116002)(102836003)(554214002)(6436002)(53546010)(5890100001)(5250100002)(66066001)(189998001)(6506006)(25786009)(14454004)(966005)(229853002)(478600001)(8936002)(6246003)(2906002)(3280700002)(2900100001)(33656002)(316002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:HK2PR04MB0996;
-	H:HK2PR04MB0995.apcprd04.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: hcl.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Oct 2017 14:13:46.9820 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 189de737-c93a-4f5a-8b68-6f4ca9941912
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR04MB0996
-X-OriginatorOrg: HCL.COM
+	<HK2PR04MB0995E6C41F4CE558BD3B0DE0E64E0@HK2PR04MB0995.apcprd04.prod.outlook.com>
+From: Vincent Prince <vincent.prince.fr@gmail.com>
+Date: Mon, 16 Oct 2017 09:40:40 +0200
+Message-ID: <CAB2nKc9ZsUi_SVB9xBpq6YeUUezxjrO+VzVS-mP+4DeVksVNVA@mail.gmail.com>
+To: Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Procedure for adding driver in Yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -96,65 +75,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 15 Oct 2017 14:13:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 16 Oct 2017 07:41:03 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-SGkgDQoNCkkgYW0gdXNpbmcgd2FuZGJvYXJkLCAuYmIgZmlsZSBpbiB0aGUgZm9sbG93aW5nIHBh
-dGgNCg0KL3lvY3RvaW14LWZzbC1ic3Avc291cmNlcy9tZXRhLWZyZWVzY2FsZS0zcmRwYXJ0eS9y
-ZWNpcGVzLWtlcm5lbC9rZXJuZWwtbW9kdWxlcw0KDQpDb250YWlucyBrZXJuZWwtbW9kdWxlLW1j
-Y18yLjEuMDEuYmINCg0KQnV0IGhvdyBkbyBJIGVkaXQgaXQgdG8gYWRkIGEgbmV3IGRyaXZlci4g
-DQoNClBsZWFzZSBzdWdnZXN0Lg0KDQpUaGFua3MNClVtYW1haGVzaA0KDQotLS0tLU9yaWdpbmFs
-IE1lc3NhZ2UtLS0tLQ0KRnJvbTogVmluY2VudCBQcmluY2UgW21haWx0bzp2aW5jZW50LnByaW5j
-ZS5mckBnbWFpbC5jb21dIA0KU2VudDogMTEgT2N0b2JlciAyMDE3IDEyOjU0DQpUbzogVW1hbWFo
-ZXNoIFllbGNodXJ1dmVua2F0YSA8dW1hbWFoZXNoLnlAaGNsLmNvbT4NCkNjOiB5b2N0b0B5b2N0
-b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBQcm9jZWR1cmUgZm9yIGFkZGluZyBk
-cml2ZXIgaW4gWW9jdG8NCg0KSGksDQoNCklmIHlvdSB3YW50IHRvIGNyZWF0ZSBhIGtlcm5lbCBt
-b2R1bGUsIHlvdSBjYW4gdXNlIHRoYXQga2luZCBvZiByZWNpcGUNCg0KbWV0YS14LWJzcC9yZWNp
-cGVzLWtlcm5lbC9rZXJuZWwtbW9kdWxlL2tlcm5lbC1tb2R1bGUtbW9kdWxlbmFtZS5iYjoNCg0K
-U1VNTUFSWSA9ICJLZXJuZWwgbG9hZGFibGUgbW9kdWxlIg0KREVTQ1JJUFRJT04gPSAiVGhpcyBw
-YWNrYWdlIGluY2x1ZGVzIGxvYWRhYmxlIG1vZHVsZSINCkxJQ0VOU0UgPSAiR1BMdjIiDQpMSUNf
-RklMRVNfQ0hLU1VNID0gImZpbGU6Ly9DT1BZSU5HO21kNT1hMDRiYTJkOTQ3MjVlNzI3MGFmMDkx
-ZjFmMWNiNjU4MCINCg0KUFYgLj0gIitnaXQke1NSQ1BWfSINCg0KU1JDUkVWID0gImUyNmJhYmEy
-NWZhNzkyNzMwZDA5YzZlNTMzNDgxNGIzMDM3ZTdiYzciDQpTUkNfVVJJID0gImdpdDovL3VybC9t
-b2R1bGVuYW1lLmdpdCINCg0KUyA9ICIke1dPUktESVJ9L2dpdCINCg0KaW5oZXJpdCBtb2R1bGUN
-Cg0KS0VSTkVMX01PRFVMRV9BVVRPTE9BRCA9ICJtb2R1bGVuYW1lIg0KDQpJZiBpdCBvayBmb3Ig
-eW91ID8NCkJlc3QgUmVnYXJkcywNClZpbmNlbnQNCg0KMjAxNy0xMC0xMSA3OjQwIEdNVCswMjow
-MCBVbWFtYWhlc2ggWWVsY2h1cnV2ZW5rYXRhIDx1bWFtYWhlc2gueUBoY2wuY29tPjoNCj4gSGkN
-Cj4NCj4NCj4NCj4gSSBhbSBsb29raW5nIGZvciBhIHByb2NlZHVyZSBob3cgdG8gYWRkIGFuIG5l
-dyBkcml2ZXIgaW4gWW9jdG8gS2VybmVsLiANCj4gSSB0cmllZCBhZGRpbmcgYW4gc2FtcGxlIGNo
-YXIgZHJpdmVyIGJ5IHVwZGF0aW5nIEtjb25maWcgYW5kIG1ha2VmaWxlIA0KPiBvZiByZXNwZWN0
-aXZlIGRpcmVjdG9yeSBhbmQgYnkgZGVmYXVsdCBtYXJrZWQgYXMgYnVpbHQgaW4gYnkgZGVmYXVs
-dC4NCj4NCj4NCj4NCj4gQnV0IEkgZG8gbm90IHNlZSB0aGUgZHJpdmVyIGlzIGNvbWluZyB1cCB3
-aGlsZSBrZXJuZWwgaXMgYm9vdGVkLg0KPg0KPg0KPg0KPiBQbGVhc2Ugc3VnZ2VzdCB0aGUgcHJv
-Y2VkdXJlLg0KPg0KPg0KPg0KPiBUaGFua3MNCj4NCj4gVW1hbWFoZXNoDQo+DQo+DQo+DQo+IDo6
-RElTQ0xBSU1FUjo6DQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiAtLS0tLS0t
-LQ0KPg0KPiBUaGUgY29udGVudHMgb2YgdGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50KHMp
-IGFyZSBjb25maWRlbnRpYWwgYW5kIA0KPiBpbnRlbmRlZCBmb3IgdGhlIG5hbWVkIHJlY2lwaWVu
-dChzKSBvbmx5Lg0KPiBFLW1haWwgdHJhbnNtaXNzaW9uIGlzIG5vdCBndWFyYW50ZWVkIHRvIGJl
-IHNlY3VyZSBvciBlcnJvci1mcmVlIGFzIA0KPiBpbmZvcm1hdGlvbiBjb3VsZCBiZSBpbnRlcmNl
-cHRlZCwgY29ycnVwdGVkLCBsb3N0LCBkZXN0cm95ZWQsIGFycml2ZSANCj4gbGF0ZSBvciBpbmNv
-bXBsZXRlLCBvciBtYXkgY29udGFpbiB2aXJ1c2VzIGluIHRyYW5zbWlzc2lvbi4gVGhlIGUgbWFp
-bCANCj4gYW5kIGl0cyBjb250ZW50cyAod2l0aCBvciB3aXRob3V0IHJlZmVycmVkIGVycm9ycykg
-c2hhbGwgdGhlcmVmb3JlIG5vdCANCj4gYXR0YWNoIGFueSBsaWFiaWxpdHkgb24gdGhlIG9yaWdp
-bmF0b3Igb3IgSENMIG9yIGl0cyBhZmZpbGlhdGVzLg0KPiBWaWV3cyBvciBvcGluaW9ucywgaWYg
-YW55LCBwcmVzZW50ZWQgaW4gdGhpcyBlbWFpbCBhcmUgc29sZWx5IHRob3NlIG9mIA0KPiB0aGUg
-YXV0aG9yIGFuZCBtYXkgbm90IG5lY2Vzc2FyaWx5IHJlZmxlY3QgdGhlIHZpZXdzIG9yIG9waW5p
-b25zIG9mIA0KPiBIQ0wgb3IgaXRzIGFmZmlsaWF0ZXMuIEFueSBmb3JtIG9mIHJlcHJvZHVjdGlv
-biwgZGlzc2VtaW5hdGlvbiwgDQo+IGNvcHlpbmcsIGRpc2Nsb3N1cmUsIG1vZGlmaWNhdGlvbiwg
-ZGlzdHJpYnV0aW9uIGFuZCAvIG9yIHB1YmxpY2F0aW9uIA0KPiBvZiB0aGlzIG1lc3NhZ2Ugd2l0
-aG91dCB0aGUgcHJpb3Igd3JpdHRlbiBjb25zZW50IG9mIGF1dGhvcml6ZWQgDQo+IHJlcHJlc2Vu
-dGF0aXZlIG9mIEhDTCBpcyBzdHJpY3RseSBwcm9oaWJpdGVkLiBJZiB5b3UgaGF2ZSByZWNlaXZl
-ZCANCj4gdGhpcyBlbWFpbCBpbiBlcnJvciBwbGVhc2UgZGVsZXRlIGl0IGFuZCBub3RpZnkgdGhl
-IHNlbmRlciANCj4gaW1tZWRpYXRlbHkuDQo+IEJlZm9yZSBvcGVuaW5nIGFueSBlbWFpbCBhbmQv
-b3IgYXR0YWNobWVudHMsIHBsZWFzZSBjaGVjayB0aGVtIGZvciANCj4gdmlydXNlcyBhbmQgb3Ro
-ZXIgZGVmZWN0cy4NCj4NCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+IC0tLS0t
-LS0tDQo+DQo+DQo+IC0tDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fDQo+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
-DQo+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KPg0K
+Hi,
+
+You have to create your own layer, then create a recipe to add your driver.
+
+I'd suggest you to read
+http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#managing-layers
+http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#incorporating-out-of-tree-modules
+
+Good luck,
+Vincent
+
+2017-10-15 16:13 GMT+02:00 Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>:
+> Hi
+>
+> I am using wandboard, .bb file in the following path
+>
+> /yoctoimx-fsl-bsp/sources/meta-freescale-3rdparty/recipes-kernel/kernel-modules
+>
+> Contains kernel-module-mcc_2.1.01.bb
+>
+> But how do I edit it to add a new driver.
+>
+> Please suggest.
+>
+> Thanks
+> Umamahesh
+>
+> -----Original Message-----
+> From: Vincent Prince [mailto:vincent.prince.fr@gmail.com]
+> Sent: 11 October 2017 12:54
+> To: Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Procedure for adding driver in Yocto
+>
+> Hi,
+>
+> If you want to create a kernel module, you can use that kind of recipe
+>
+> meta-x-bsp/recipes-kernel/kernel-module/kernel-module-modulename.bb:
+>
+> SUMMARY = "Kernel loadable module"
+> DESCRIPTION = "This package includes loadable module"
+> LICENSE = "GPLv2"
+> LIC_FILES_CHKSUM = "file://COPYING;md5=a04ba2d94725e7270af091f1f1cb6580"
+>
+> PV .= "+git${SRCPV}"
+>
+> SRCREV = "e26baba25fa792730d09c6e5334814b3037e7bc7"
+> SRC_URI = "git://url/modulename.git"
+>
+> S = "${WORKDIR}/git"
+>
+> inherit module
+>
+> KERNEL_MODULE_AUTOLOAD = "modulename"
+>
+> If it ok for you ?
+> Best Regards,
+> Vincent
+>
+> 2017-10-11 7:40 GMT+02:00 Umamahesh Yelchuruvenkata <umamahesh.y@hcl.com>:
+>> Hi
+>>
+>>
+>>
+>> I am looking for a procedure how to add an new driver in Yocto Kernel.
+>> I tried adding an sample char driver by updating Kconfig and makefile
+>> of respective directory and by default marked as built in by default.
+>>
+>>
+>>
+>> But I do not see the driver is coming up while kernel is booted.
+>>
+>>
+>>
+>> Please suggest the procedure.
+>>
+>>
+>>
+>> Thanks
+>>
+>> Umamahesh
+>>
+>>
+>>
+>> ::DISCLAIMER::
+>> ----------------------------------------------------------------------
+>> ----------------------------------------------------------------------
+>> --------
+>>
+>> The contents of this e-mail and any attachment(s) are confidential and
+>> intended for the named recipient(s) only.
+>> E-mail transmission is not guaranteed to be secure or error-free as
+>> information could be intercepted, corrupted, lost, destroyed, arrive
+>> late or incomplete, or may contain viruses in transmission. The e mail
+>> and its contents (with or without referred errors) shall therefore not
+>> attach any liability on the originator or HCL or its affiliates.
+>> Views or opinions, if any, presented in this email are solely those of
+>> the author and may not necessarily reflect the views or opinions of
+>> HCL or its affiliates. Any form of reproduction, dissemination,
+>> copying, disclosure, modification, distribution and / or publication
+>> of this message without the prior written consent of authorized
+>> representative of HCL is strictly prohibited. If you have received
+>> this email in error please delete it and notify the sender
+>> immediately.
+>> Before opening any email and/or attachments, please check them for
+>> viruses and other defects.
+>>
+>> ----------------------------------------------------------------------
+>> ----------------------------------------------------------------------
+>> --------
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 
