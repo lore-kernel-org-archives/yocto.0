@@ -1,51 +1,38 @@
-Return-Path: <andre.draszik@gmail.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 693BBE00BE8; Tue, 17 Oct 2017 06:31:26 -0700 (PDT)
+	id 827FFE00C01; Tue, 17 Oct 2017 06:33:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.65 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18457E00B83
-	for <yocto@yoctoproject.org>; Tue, 17 Oct 2017 06:31:24 -0700 (PDT)
-Received: by mail-wm0-f65.google.com with SMTP id b189so3878668wmd.4
-	for <yocto@yoctoproject.org>; Tue, 17 Oct 2017 06:31:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=vlt8H7wQ1cQVPnq+5c7b9Dwtyx3yFUSAOdLlB7jqm3o=;
-	b=a9mnzKCFFEltsHrU9oIWVTjLORL7Kg3kIOkvfZnDPO7cKRTrgp5cFWV7kapA4suhuZ
-	hqqEgTU4w0pGt4jMFlq5i8KM9no8VazpgdsIZ88oeX5Dl+C7SmILaaawY8+/KHNB5H2i
-	ISCtQiyh5J/fnGMqQisnoFSO+bSsDDXhWPjtU8KlYEd6w1yhyK9Rm5TegBfBDyTUKEZr
-	9biFq4yRP9mzL6SRvHvV/MxyEAbrdf7GLXxcFA9NvTKqebLhiSDuXGOXHic2xpVZOa5h
-	QzYG4v7WhSRKq2N5OwzCgkoOkgYE9JzpTgomDmcLPaKlOStPxOamo3yyXqujaIgt5Z7U
-	jltQ==
-X-Gm-Message-State: AMCzsaVYZvFlni0a5Fo6jnOkff5ggnGNPTBTL3+DIXe1hjrqEgl4Usi6
-	q6z8qTE9pINZYr1Ne2xaCgu9B65C
-X-Google-Smtp-Source: ABhQp+QBwWzFsMNT7g7jJ3JPjpeD9TDmKQ80lSmGeaBSIAcXn/VQv6MW0MNicbzHbESFSDQyP9fuJg==
-X-Received: by 10.28.236.25 with SMTP id k25mr4038062wmh.146.1508247083730;
-	Tue, 17 Oct 2017 06:31:23 -0700 (PDT)
-Received: from tfsielt31850.tycofs.com ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id u4sm6932322wre.1.2017.10.17.06.31.22
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 17 Oct 2017 06:31:22 -0700 (PDT)
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08DC2E00B87
+	for <yocto@yoctoproject.org>; Tue, 17 Oct 2017 06:33:21 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	17 Oct 2017 06:33:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.43,391,1503385200"; d="scan'208";a="910730878"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by FMSMGA003.fm.intel.com with ESMTP; 17 Oct 2017 06:33:20 -0700
 To: yocto@yoctoproject.org
-Date: Tue, 17 Oct 2017 14:31:21 +0100
-Message-Id: <20171017133121.19524-1-git@andred.net>
-X-Mailer: git-send-email 2.15.0.rc1
+References: <1508218121.34337.17342@fedora25.yocto.io>
+	<8653269a-f4c0-e7f4-1393-7c77ad18502d@gmail.com>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <eca7f625-f5d1-4b25-7ff5-1ab7d2e9531b@linux.intel.com>
+Date: Tue, 17 Oct 2017 16:28:40 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-Subject: [pyro][bitbake][PATCH] bitbake: Replace deprecated git branch parameter "--set-upstream"
+In-Reply-To: <8653269a-f4c0-e7f4-1393-7c77ad18502d@gmail.com>
+Subject: Re: minimize size of SW update bundle
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,52 +44,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Oct 2017 13:31:26 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 17 Oct 2017 13:33:22 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-From: Andre Rosa <andre.rosa@lge.com>
+On 10/17/2017 04:12 PM, Robert Berger wrote:
+> Imagine you have only a limited bandwidth to your devices available for 
+> SW update. So you would like to minimize what's uploaded (over the air) 
+> to your devices.
+> 
+> How would you do this with yocto?
+> 
+> [1] and [2] might be able to do incremental updates, but maybe there are 
+> more ideas out there.
+> 
+> Like how would you get a diff between two release builds...
+> 
+> [1] https://wiki.yoctoproject.org/wiki/Meta-swupd
+> [2] https://github.com/advancedtelematic/meta-updater
 
-Since 2017-08-17 (git version 2.14.1.473.g3ec7d702a) using deprecated
-git branch parameter "--set-upstream" causes a fetcher error. Replace
-it by "--set-upstream-to".
+If you want to stick with desktop-style rpm package feeds, then there's 
+deltarpm, but YP doesn't currently support it, and I don't know if it's 
+still used by anyone. From what I remember, it did cut down on the 
+downloads time, but installation became much slower.
 
-https://git.kernel.org/pub/scm/git/git.git/commit/?id=52668846ea2d41ffbd87cda7cb8e492dea9f2c4d
-says, it's deprecated since 2012-08-30 so hopefully all still supported
-host distributions have new enough git to support "--set-upstream-to".
-
-ERROR: PACKAGE do_unpack: Fetcher failure: ...;
-git -c core.fsyncobjectfiles=0 branch --set-upstream master origin/master failed with exit code 128, output:
-fatal: the '--set-upstream' option is no longer supported. Please use '--track' or '--set-upstream-to' instead.
-
-ERROR: PACKAGE do_unpack: Function failed: base_do_unpack
-
-(Bitbake rev: 2ab50074c1a6c56a8a178755de108447d7b7acaf)
-
-Signed-off-by: Andre Rosa <andre.rosa@lge.com>
-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-(cherry picked from commit 20d0282c6048fe11b303e538dbf9109ccb0c467d)
-Signed-off-by: André Draszik <adraszik@tycoint.com>
----
- bitbake/lib/bb/fetch2/git.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/bitbake/lib/bb/fetch2/git.py b/bitbake/lib/bb/fetch2/git.py
-index 2550bde838..7442f84414 100644
---- a/bitbake/lib/bb/fetch2/git.py
-+++ b/bitbake/lib/bb/fetch2/git.py
-@@ -326,7 +326,7 @@ class Git(FetchMethod):
-                 branchname =  ud.branches[ud.names[0]]
-                 runfetchcmd("%s checkout -B %s %s" % (ud.basecmd, branchname, \
-                             ud.revisions[ud.names[0]]), d, workdir=destdir)
--                runfetchcmd("%s branch --set-upstream %s origin/%s" % (ud.basecmd, branchname, \
-+                runfetchcmd("%s branch %s --set-upstream-to origin/%s" % (ud.basecmd, branchname, \
-                             branchname), d, workdir=destdir)
-             else:
-                 runfetchcmd("%s checkout %s" % (ud.basecmd, ud.revisions[ud.names[0]]), d, workdir=destdir)
--- 
-2.15.0.rc1
-
+Alex
 
