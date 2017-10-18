@@ -1,32 +1,41 @@
-Return-Path: <jose.a.lamego@linux.intel.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAABAE00D35; Tue, 17 Oct 2017 15:57:07 -0700 (PDT)
+	id B0F4FE00C9F; Tue, 17 Oct 2017 18:42:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57758E00D32
-	for <yocto@yoctoproject.org>; Tue, 17 Oct 2017 15:57:06 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 Oct 2017 15:56:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.43,392,1503385200"; d="scan'208";a="1206927013"
-Received: from jalamego-mobl3.zpn.intel.com ([10.219.128.138])
-	by fmsmga001.fm.intel.com with ESMTP; 17 Oct 2017 15:56:58 -0700
-From: Jose Lamego <jose.a.lamego@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 17 Oct 2017 17:56:55 -0500
-Message-Id: <1508281015-11797-1-git-send-email-jose.a.lamego@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [rrs][PATCH] rrs_upstream_email: Update rrs maintainer info and logging
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+X-Greylist: delayed 66 seconds by postgrey-1.32 at yocto-www;
+	Tue, 17 Oct 2017 18:42:11 PDT
+Received: from remote.innerrange.com (122-143-132.dsl.connexus.net.au
+	[203.122.143.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9C4CE00C82
+	for <yocto@yoctoproject.org>; Tue, 17 Oct 2017 18:42:11 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
+	mapi; Wed, 18 Oct 2017 12:41:03 +1100
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"ajlennon@dynamicdevices.co.uk" <ajlennon@dynamicdevices.co.uk>
+Date: Wed, 18 Oct 2017 12:41:01 +1100
+Thread-Topic: meta-mono 5.2.x recipe and pdb files
+Thread-Index: AdNHsdUeOcc7gILrTEKAqdp8+/6QlQ==
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A40295F094B710@IR-CENTRAL.corp.innerrange.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1278-8.100.1062-23400.006
+x-tm-as-result: No--8.698100-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
+MIME-Version: 1.0
+Subject: meta-mono 5.2.x recipe and pdb files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,47 +47,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Oct 2017 22:57:07 -0000
+X-List-Received-Date: Wed, 18 Oct 2017 01:42:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This change updates rrs maintainer contact data and adds
-script start and end log messages.
+I'm trying to upgrade from mono 4.6.x to 5.2.x. I see resulting image size =
+increases by about 10 MB in my usage. It appears that a significant contrib=
+uting factor is the presence of *.pdb files in 5.2.x which weren't in 4.6.x=
+.
 
-Signed-off-by: Jose Lamego <jose.a.lamego@linux.intel.com>
----
- rrs/tools/rrs_upstream_email.py | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+* Are the *.pdb files necessary?
+* What can  be done to exclude them?
 
-diff --git a/rrs/tools/rrs_upstream_email.py b/rrs/tools/rrs_upstream_email.py
-index 0e73957..7f369ab 100755
---- a/rrs/tools/rrs_upstream_email.py
-+++ b/rrs/tools/rrs_upstream_email.py
-@@ -102,7 +102,7 @@ http://recipes.yoctoproject.org/
- The based commit is:
- 
- %s
--Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
-+Any problem, please contact Jose Lamego <jose.a.lamego@linux.intel.com> 
- """ % ((upgradable_count - no_upgradable_count), upgradable_count, 
-         utils.runcmd("git log -1", repodir))
- 
-@@ -114,6 +114,7 @@ Any problem, please contact Anibal Limon <anibal.limon@intel.com>
- 
-     msg = EmailMessage(subject, text_content, from_email, to_email_list)
-     msg.send()
-+    logger.debug("Email created and sent to %s" % settings.RRS_EMAIL_TO)
- 
- def main():
-     parser = optparse.OptionParser(
-@@ -166,6 +167,8 @@ def main():
- 
-     repodir = os.path.join(settings.LAYER_FETCH_DIR, layer.get_fetch_dir())
- 
-+    logger.debug("Starting email creation")
-+
-     send_email(recipes, repodir, options)
- 
- if __name__ == "__main__":
--- 
-2.7.4
+--=20
+Craig McQueen
 
 
