@@ -1,66 +1,70 @@
-Return-Path: <stevep@korgrd.com>
+Return-Path: <marlon.smith10@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C3ABE00D33; Wed, 18 Oct 2017 14:10:04 -0700 (PDT)
+	id 755D7E00D33; Wed, 18 Oct 2017 15:13:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.161.180 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (marlon.smith10[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.180 listed in dnsbl.sorbs.net]
-Received: from mail-yw0-f180.google.com (mail-yw0-f180.google.com
-	[209.85.161.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D8D2E00C96
-	for <yocto@yoctoproject.org>; Wed, 18 Oct 2017 14:10:02 -0700 (PDT)
-Received: by mail-yw0-f180.google.com with SMTP id l32so1775100ywh.13
-	for <yocto@yoctoproject.org>; Wed, 18 Oct 2017 14:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
-	h=from:content-transfer-encoding:mime-version:date:subject:message-id
-	:to; bh=/nrPpXwFLejIMfJNM4rOQYwQp4lBTQCxzagIcXJzSBI=;
-	b=0Qw2Mn8gLuQ/0NnmfYy6Z8dpSpOXNM0Bjr2/GSzyw5U/uxxkw6SjLzH5TJZtdAuIhC
-	ZH3pv0IWO5iZU0RTl9BXs4LfEhibUeDWNqTQSeOVRlEqpUEggcOzBMY8rOamJ1d55Hdc
-	sktOu16Rpur317p8j3hu5mLCdelh9Q2/r9BpwIfIxQfhYqMWx9P2tgFnpJS7rPxIgnHG
-	2bji/GW+wzUdTxiiHNboHmvWMePnkwXR4Y/7g6QUQWfmdjXTgEnv9JVylpAIyRfulavz
-	xqCaU8XmiUCe88thr3/ykYPVu5pYSTQ9U4dqWGIC7fFXdV0DJosOQuyXg5gQvJs2qI2J
-	AA4w==
+	*      [209.85.192.172 listed in dnsbl.sorbs.net]
+Received: from mail-pf0-f172.google.com (mail-pf0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84EF4E00C96
+	for <yocto@yoctoproject.org>; Wed, 18 Oct 2017 15:13:52 -0700 (PDT)
+Received: by mail-pf0-f172.google.com with SMTP id a8so4980496pfc.0
+	for <yocto@yoctoproject.org>; Wed, 18 Oct 2017 15:13:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=message-id:subject:from:to:date:mime-version;
+	bh=/VEdking5uLsmKbCLfQqpSV+INWx4TNNsYX0+qsMwJg=;
+	b=Mpam3ECh67R6d1AvIrveZW2uRnadIJmqCon0qltlbAZgUZnZaYBw5Kju9P1odyVR6i
+	xt7IWpAPWM2FecnLug6/9suIE+iyldTCdXHc2Mn5EGbwM5YiAWQY5U7Ta8q7MqsCsJJI
+	wY+ZQ6IAI4B4mVDPI1TbM1JuLK8h/SLJk8w7HgRhNb/puaQA0LboyAPhS4RrMb/xQSld
+	r+Hnxxen/sK+6+7ViNlvMkXOx+1RpC/T4l5rELrM99jdweI3WkJ2AybwYhItO6RigeZm
+	KNbBCy4QsQ8224HBtWnJ1Q6uokk1IKR42M0NTyaYbcvgDCfdTFffqO8ltMzzANK/Dv3r
+	tzBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:content-transfer-encoding:mime-version:date
-	:subject:message-id:to;
-	bh=/nrPpXwFLejIMfJNM4rOQYwQp4lBTQCxzagIcXJzSBI=;
-	b=NKcAy5tnyqhIuRmIcaI/HuwuGC7Z9U9Kk7vu37tMPriiD3pkcSpIE1gbyFWgiAZ2y7
-	C79PfurVr7VuihwJRHsvrGHDopEMZlu+PeZZSfzSmkpHmkE3rXiSoSfmhK+kjJdFJzyH
-	W1pYZAKKGvc61AEyOlOuI1/R5bBS1uqKr59Edd712Nl0OXWCPvCSoDHYo0jsgIb+7me/
-	inU3tDmi005gBTwhP31d0oa/tYio+bQTvQEf778z195zUXAEC41mtoEiXDisgjfHsxE4
-	8C4EkT7ecEcueZxpkm0497xIB8vMixJ2+/iMBUdahkT1pJjfe67OKlxaTO/7MsSLZfGb
-	kMUQ==
-X-Gm-Message-State: AMCzsaUa3BqfwU1xIU831DLwK0jew9tC1p8SNRLIhcVcH10UcEVz4qmn
-	3ROB41ZQmoQIKQ37SmH34wPnHLwmzYM=
-X-Google-Smtp-Source: ABhQp+S+0oEanm3zcYM4BaP+2PGDXhr2qwQ/lQGInpGzXIbKYFbMOdtrK2GrzLfK1FKnHk7+Feokgg==
-X-Received: by 10.13.199.131 with SMTP id j125mr2328753ywd.213.1508361001918; 
-	Wed, 18 Oct 2017 14:10:01 -0700 (PDT)
-Received: from [192.168.1.2] (68-112-255-18.dhcp.oxfr.ma.charter.com.
-	[68.112.255.18]) by smtp.gmail.com with ESMTPSA id
-	x189sm7069668ywx.90.2017.10.18.14.10.01
+	h=x-gm-message-state:message-id:subject:from:to:date:mime-version;
+	bh=/VEdking5uLsmKbCLfQqpSV+INWx4TNNsYX0+qsMwJg=;
+	b=rPvY3lACH+rkTIdYdOleDqZ0Au6r/O/ZoP3OserOlQ904nY4eIRwxRkAp3DFLlKjA/
+	urWJqObh+p+L3Zw9Ex5d8mkIuC/kmaGMGMI06vHcZ+gKP9YVoff4lZ7E6F4WlH1zHjVQ
+	YgDiJ44qY63Vi/fMZUV//Lgds7QO9kIAWSwMfHSj6RjDOMq/a3UDmJZIElz8NDiGQXAE
+	pssbwb7mqCcdCLUZ2t37tRF7fsFuJTsgYf3FSsri9UpkAUf1bI+YdMDySxdpHDvZuxqI
+	LgWIQ5PNY7IyGjah8UR/wDHe3XHGBZ9+uh/uSr8jrrcUcp9j1GRd08dKPm2PbTD8uA6c
+	G24A==
+X-Gm-Message-State: AMCzsaW8ACLJy+r8KWvyH+sZVWvj9pF5oiEYv6MaXYmLhNmbLzRpkRK+
+	0DWLPcaqVdhdf7UlVG4hBtL2hg==
+X-Google-Smtp-Source: AOwi7QAdu4RdtXQUR/RjnX9bMuGXjI2y39CD6PwFo4nGOLNrVHmSzpvYA/JAsfJIjELZUvFaHa4v3g==
+X-Received: by 10.84.209.238 with SMTP id y101mr16409470plh.211.1508364831560; 
+	Wed, 18 Oct 2017 15:13:51 -0700 (PDT)
+Received: from [10.2.0.10] (S0106a84e3f53ec33.gv.shawcable.net.
+	[184.66.238.184]) by smtp.gmail.com with ESMTPSA id
+	m17sm23333844pfh.28.2017.10.18.15.13.50 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 18 Oct 2017 14:10:01 -0700 (PDT)
-From: Steve Pavao <stevep@korgrd.com>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Date: Wed, 18 Oct 2017 17:10:00 -0400
-Message-Id: <C900AACF-94AA-42E1-8EC2-92D4E76711E2@korgrd.com>
+	Wed, 18 Oct 2017 15:13:50 -0700 (PDT)
+Message-ID: <1508364829.4636.30.camel@gmail.com>
+From: Marlon Smith <marlon.smith10@gmail.com>
 To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3273)
-Subject: [meta-raspberrypi] errors in tools-testapps when targeting raspberrypi3
+Date: Wed, 18 Oct 2017 15:13:49 -0700
+X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
+Mime-Version: 1.0
+Subject: Building kernel backports for ARM with Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,48 +76,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Oct 2017 21:10:04 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Wed, 18 Oct 2017 22:13:53 -0000
+Content-Type: multipart/alternative; boundary="=-o6QIYvFEjFzLl9SLVeod"
+
+--=-o6QIYvFEjFzLl9SLVeod
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+Hi everyone,
+
+I'm trying to build the Linux backports project to get updated wifi
+drivers on an older kernel.  The problem is that when building
+backports, it first builds several tools that need to be run natively
+before cross-compiling the rest of the project.
+
+I know how to write a bitbake recipe to compile natively, and how to
+write one to build for the target, but I can't figure out how to
+combine the two.  The backports project has steps for LTIB:
+
+ %Build
+ export PATH=$UNSPOOF_PATH
+ 
+ make menuconfig prefix=%{_prefix} \
+   CROSS_COMPILE=${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX} \
+   ARCH=$LINTARCH KLIB=${TOP}/rootfs/lib/modules/%{kversion} \
+   KLIB_BUILD=${TOP}/rpm/BUILD/linux
+ 
+ export PATH=$SPOOF_PATH
+ 
+ make prefix=%{_prefix} \
+   CROSS_COMPILE=${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX} \
+   ARCH=$LINTARCH KLIB=${TOP}/rootfs/lib/modules/%{kversion} \
+   KLIB_BUILD=${TOP}/rpm/BUILD/linux
+
+I believe what I need is an equivalent to the line export
+PATH=$UNSPOOF_PATH but I can't find anything in the Yocto documentation
+or mailing lists that would be equivalent to that.
+
+Any help would be much appreciated!
+
+Thanks
+
+Marlon
+
+--=-o6QIYvFEjFzLl9SLVeod
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<html><head></head><body><div>Hi everyone,</div><div><br></div><div>I'm try=
+ing to build the Linux backports project to get updated wifi drivers on an =
+older kernel. &nbsp;The problem is that when building backports, it first b=
+uilds several tools that need to be run natively before cross-compiling the=
+ rest of the project.</div><div><br></div><div>I know how to write a bitbak=
+e recipe to compile natively, and how to write one to build for the target,=
+ but I can't figure out how to combine the two. &nbsp;The backports project=
+ has steps for LTIB:</div><div><br></div><div><pre> %Build
+ export PATH=3D$UNSPOOF_PATH
+=20
+ make menuconfig prefix=3D%{_prefix} \
+   CROSS_COMPILE=3D${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX} \
+   ARCH=3D$LINTARCH KLIB=3D${TOP}/rootfs/lib/modules/%{kversion} \
+   KLIB_BUILD=3D${TOP}/rpm/BUILD/linux
+=20
+ export PATH=3D$SPOOF_PATH
+=20
+ make prefix=3D%{_prefix} \
+   CROSS_COMPILE=3D${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX} \
+   ARCH=3D$LINTARCH KLIB=3D${TOP}/rootfs/lib/modules/%{kversion} \
+   KLIB_BUILD=3D${TOP}/rpm/BUILD/linux</pre><pre><br></pre><pre><span style=
+=3D"font-family: Cantarell; font-size: 15px; white-space: normal;">I believ=
+e what I need is an equivalent to the line&nbsp;</span>export PATH=3D$UNSPO=
+OF_PATH<span style=3D"font-family: Cantarell; font-size: 15px; white-space:=
+ normal;">&nbsp;but I can't find anything in the Yocto documentation or mai=
+ling lists that would be equivalent to that.</span></pre><pre><span style=
+=3D"font-family: Cantarell; font-size: 15px; white-space: normal;"><br></sp=
+an></pre><pre><span style=3D"font-family: Cantarell; font-size: 15px; white=
+-space: normal;">Any help would be much appreciated!</span></pre><pre><span=
+ style=3D"font-family: Cantarell; font-size: 15px; white-space: normal;"><b=
+r></span></pre><pre><span style=3D"font-family: Cantarell; font-size: 15px;=
+ white-space: normal;">Thanks</span></pre><pre><span style=3D"font-family: =
+Cantarell; font-size: 15px; white-space: normal;"><br></span></pre><pre><sp=
+an style=3D"font-family: Cantarell; font-size: 15px; white-space: normal;">=
+Marlon</span></pre></div></body></html>
 
-When I target raspberrypi3 and have tools-testapps listed in =
-EXTRA_IMAGE_FEATURES in my local.conf, build errors occur.
-
-The errors come from the building of mesa-demos and gst-player.  If I =
-remove those targets from packagegroup-core-tools-testapps.bb, I don=E2=80=
-=99t get errors.
-
-The errors seem to relate to required settings of these variables in =
-local.conf to match available packages:
-
-PREFERRED_PROVIDER_virtual/egl
-PREFERRED_PROVIDER_virtual/libgles1
-PREFERRED_PROVIDER_virtual/libgles2
-PREFERRED_PROVIDER_virtual/libgl
-PREFERRED_PROVIDER_virtual/mesa
-
-I tried setting these all to the value =E2=80=9Cmesa=E2=80=9D, but then =
-the gstreamer build seemed to demand a value of =E2=80=9Cuserland=E2=80=9D=
- for at least one of the variables.  I wasn=E2=80=99t able to resolve =
-the conflict.
-
-Could someone please reply with the proper value of these and other =
-configuration variables possibly needed to complete this build without =
-having to hack packagegroup-core-tools-testapps.bb like I did, or else =
-supply a proper fix?
-
-Here are my local.conf settings of interest.  I=E2=80=99m building in =
-pyro branch for everything, at current head.
-
-MACHINE ??=3D =E2=80=9Craspberrypi3"
-IMAGE_INSTALL_append =3D " apt gdbserver perfcnt-enable mdns"
-EXTRA_IMAGE_FEATURES ?=3D "debug-tweaks x11-base tools-debug =
-tools-testapps ssh-server-dropbear package-management"
-
-- Steve Pavao
-Korg R&D
-
-
-
+--=-o6QIYvFEjFzLl9SLVeod--
