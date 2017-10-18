@@ -1,70 +1,92 @@
-Return-Path: <marlon.smith10@gmail.com>
+Return-Path: <dwatkins@sierrawireless.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 744F2E00CC0; Wed, 18 Oct 2017 16:04:05 -0700 (PDT)
+	id 60900E00CC0; Wed, 18 Oct 2017 18:25:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.49 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marlon.smith10[at]gmail.com)
+	*      [104.47.42.40 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f49.google.com (mail-pg0-f49.google.com [74.125.83.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BAE6E00C96
-	for <yocto@yoctoproject.org>; Wed, 18 Oct 2017 16:04:03 -0700 (PDT)
-Received: by mail-pg0-f49.google.com with SMTP id r25so5490646pgn.4
-	for <yocto@yoctoproject.org>; Wed, 18 Oct 2017 16:04:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=message-id:subject:from:to:date:in-reply-to:references:mime-version; 
-	bh=L/ObC9b7wvNr6auy5rKtAqfHlW7QQtnLyXBkPQ2CehY=;
-	b=t4Aj8nTTPsY+FGg+R3YDGRTuGucaCLQXsJKuZZdkkD6qNlmGxFU0G2FBzkyroLxGva
-	j4LhIi/rM/PNhpSM6o7GtnsqHarDTISyeYTuOYJEVwStRSs1DfYGmORNwjtlJ/DeesUl
-	JxJMmBUYzvvrCcxvaO7WCb9nGD04Qmb4AXdSJ9Ik9cciZ/oRNS9H78yOysI0LiQbGy9F
-	Mkvv/4UN8gP5GgDypWgIlPYLHopPIJQlSKCZNF2H9R9mZtI62ozcuzPaoY2HMdlT5R0k
-	VxXP1rAyb1hqaGvWpWQL3pUESNWwEIs4pbmzAsGvmzuh1HOW7WIxY5bPNCRsTOKXyD0E
-	opvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-	:references:mime-version;
-	bh=L/ObC9b7wvNr6auy5rKtAqfHlW7QQtnLyXBkPQ2CehY=;
-	b=acoA+apqlg+L0rhvLHwP7qc8fV882+3F18osb3oUIHBwsbmGn4UcgrDxsSl/UgYXAk
-	CIqsFiG+laYctZ79dvV0ZxRwicpDKyiL/r29fTOvwMMVT82ztdJec4MCBSBGEFt8H/Kf
-	xMIl8nSUowvraS70ruGtpIjZg/z+eWZXnAn7HfqFYC0wB+LTJu3V4zR/upBtnaSrqXJf
-	FsnqksH52KUrkzR5qjNIrUiRdi/gzxqYeocy8oW+ZBJPqXKPkQRY7Gk4qzzPJfx62HSM
-	2abpnvivmgjWj2hv2vz4AE6P3c69gYb/DJjW3TYdbUY6qpIvWkj0BjXWPt8grk/Wcirm
-	yegA==
-X-Gm-Message-State: AMCzsaWKNbHJawdzBMomtfOEaTUEtazn+/wHNUl9Cgw71KhxpPaQ8NIh
-	Q158xXhmHKV0y0cLUK1Euh4kBQ==
-X-Google-Smtp-Source: ABhQp+Rmc5CP+j7ayfgAdF0kTzid1x5g7KCixwb25aJARzc218+/SUEapiRIJxP1IHFvDsXS75bN8Q==
-X-Received: by 10.98.218.13 with SMTP id c13mr13830832pfh.342.1508367843537;
-	Wed, 18 Oct 2017 16:04:03 -0700 (PDT)
-Received: from [10.2.0.10] (S0106a84e3f53ec33.gv.shawcable.net.
-	[184.66.238.184]) by smtp.gmail.com with ESMTPSA id
-	u77sm21442871pfd.168.2017.10.18.16.04.02
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 18 Oct 2017 16:04:02 -0700 (PDT)
-Message-ID: <1508367841.4636.35.camel@gmail.com>
-From: Marlon Smith <marlon.smith10@gmail.com>
-To: Darcy Watkins <dwatkins@sierrawireless.com>, "yocto@yoctoproject.org"
+X-Greylist: delayed 3549 seconds by postgrey-1.32 at yocto-www;
+	Wed, 18 Oct 2017 18:24:57 PDT
+Received: from NAM03-BY2-obe.outbound.protection.outlook.com
+	(mail-by2nam03on0040.outbound.protection.outlook.com [104.47.42.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F179E00C96
+	for <yocto@yoctoproject.org>; Wed, 18 Oct 2017 18:24:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=SierraWirelessInc.onmicrosoft.com; s=selector1-sierrawireless-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=LbDfgPyT/Y23MCatm5swdf/riq239h5y6rf6PvSpYEY=;
+	b=U/q+zBfP7SqAnfcKUZ/epKIuvhgEjgfGuU6o7OMoOBZ0weIkrEn2TI6+55g7GjVEcKexMjcx8UO9BoP1yBPdGTsKB3ziQUMCBBj1YLJv03zPumZtTjTJs5oC+xmOakEUtihVEa7KdscLacGOnU5VmCAzeMC8qB6tE519RN+3NTY=
+Received: from SN1PR0201MB1790.namprd02.prod.outlook.com (10.162.228.20) by
+	SN1PR0201MB1790.namprd02.prod.outlook.com (10.162.228.20) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.77.7; Wed, 18 Oct 2017 22:53:51 +0000
+Received: from SN1PR0201MB1790.namprd02.prod.outlook.com ([10.162.228.20]) by
+	SN1PR0201MB1790.namprd02.prod.outlook.com ([10.162.228.20]) with
+	mapi id 15.20.0077.022; Wed, 18 Oct 2017 22:53:51 +0000
+From: Darcy Watkins <dwatkins@sierrawireless.com>
+To: Marlon Smith <marlon.smith10@gmail.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Date: Wed, 18 Oct 2017 16:04:01 -0700
-In-Reply-To: <SN1PR0201MB1790B68697FEF20E9E05D400B24D0@SN1PR0201MB1790.namprd02.prod.outlook.com>
+Thread-Topic: [yocto] Building kernel backports for ARM with Yocto
+Thread-Index: AQHTSF54CElgnIC210WiJu0wGxUfgaLqL8Kw
+Date: Wed, 18 Oct 2017 22:53:50 +0000
+Message-ID: <SN1PR0201MB1790B68697FEF20E9E05D400B24D0@SN1PR0201MB1790.namprd02.prod.outlook.com>
 References: <1508364829.4636.30.camel@gmail.com>
-	<SN1PR0201MB1790B68697FEF20E9E05D400B24D0@SN1PR0201MB1790.namprd02.prod.outlook.com>
-X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
-Mime-Version: 1.0
+In-Reply-To: <1508364829.4636.30.camel@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [208.81.120.1]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; SN1PR0201MB1790;
+	6:zf1NURBhJj6wSMG3OPzh5e70GL3v/YVXz2IngtFyynGdKup9Z8glsJ2h0hzLIxtnzPTXy9K/gRNqmUP6mCppKXD+5B6RVMCHUcmtO1bW1C0mF93UptxtjsN8hG+itGUoXkbtIlPcRQAtz5Gu1QD1P4hi9j7vBvxU1W+X3yKruPLNuEbtAgInC3UT6lx7GTVRcI6bM06tXIIzLBIUtIk36q5f0fQNs8RyLmZ4zifiBuZ9wGQsnAlMQlZqVuzlmBpj6eA/qD4TYhKBBJMxFrFa/R6D6fAb5kpvHyLOVS5kioXw+0BhdakcCmRJLyzAmYfElwPd0aIDKSlY/EYqrKPCvQ==;
+	5:wNn1U7hakDE7+K+YEc4UHB+9uAjlJHPfB/R/lqCUStXXz6uRm6j4ubjtOX3hJkPhv4xMyKYIQ2JwPWJa21dVY+FhvS4RViHCGUS+LUXmpbX8BZZivIst3sYXuxn+RYG1TUPeRw0P9tPmBfPw3mEAAg==;
+	24:WnCFqBX+7TZOHWgYe5ScNdNcpWfYsKcA9L0RakiKpHRnlcQTFyYDYnoZQhTJsRwAdZa7Ni/MqDTqxVqr+nvCF2GmrqQy/RDZ97fuWZjNOcU=;
+	7:vmy8uF4qPs9522dvb77qSCPvwY/yQOmBp/UbY9Tts+ubQk1WEbmGSzJyFJ2FhYJDfl6gwRdITa/PfM+gOfzUG+iQimLQIwbRExVnwGUcGfn/69/nmCJeump6+IqVkAL0iHEN4rg1dGrfGkq/GZKaqG3oZl3O7FpyJXDUpj3Iq4jqFQ1GYygSCc1gNy1/ybyba1hIcLgyVHdqq+zP481CeCqBp/FAZ8A1TsbaeOmuMdw=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;SSOR;
+x-ms-office365-filtering-correlation-id: bc0dece6-71fd-46a0-62b1-08d5167b19b4
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(2017030254152)(48565401081)(2017052603227)(201703131423075)(201703031133081)(201702281549075);
+	SRVR:SN1PR0201MB1790; 
+x-ms-traffictypediagnostic: SN1PR0201MB1790:
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=dwatkins@sierrawireless.com; 
+x-exchange-antispam-report-test: UriScan:(219636747203745)(21748063052155);
+x-microsoft-antispam-prvs: <SN1PR0201MB179031874BB74E6EA30DB9BEB24D0@SN1PR0201MB1790.namprd02.prod.outlook.com>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(5005006)(8121501046)(93006095)(93001095)(10201501046)(100000703101)(100105400095)(3002001)(6055026)(6041248)(20161123558100)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123560025)(20161123555025)(20161123564025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:SN1PR0201MB1790; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:SN1PR0201MB1790; 
+x-forefront-prvs: 0464DBBBC4
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(376002)(346002)(199003)(53754006)(189002)(377454003)(2501003)(6506006)(316002)(229853002)(106356001)(3660700001)(105586002)(53936002)(14454004)(3280700002)(74316002)(606006)(6436002)(97736004)(55016002)(86362001)(110136005)(68736007)(7736002)(77096006)(54356999)(25786009)(8936002)(2950100002)(81156014)(7696004)(5660300001)(2900100001)(53546010)(6116002)(3846002)(76176999)(66066001)(790700001)(102836003)(101416001)(189998001)(99286003)(50986999)(9686003)(8676002)(6306002)(54896002)(33656002)(39060400002)(2906002)(6246003)(236005)(478600001)(81166006);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:SN1PR0201MB1790;
+	H:SN1PR0201MB1790.namprd02.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: sierrawireless.com does not
+	designate permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+MIME-Version: 1.0
+X-OriginatorOrg: sierrawireless.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2017 22:53:50.9115 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR0201MB1790
 Subject: Re: Building kernel backports for ARM with Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -77,538 +99,355 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Oct 2017 23:04:05 -0000
-Content-Type: multipart/alternative; boundary="=-tNSuzgkwgZqoqBIoNQYO"
+X-List-Received-Date: Thu, 19 Oct 2017 01:25:00 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SN1PR0201MB1790B68697FEF20E9E05D400B24D0SN1PR0201MB1790_"
 
---=-tNSuzgkwgZqoqBIoNQYO
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+--_000_SN1PR0201MB1790B68697FEF20E9E05D400B24D0SN1PR0201MB1790_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Darcy, thanks for the detailed reply!
-Do you remember how you were able to get it to compile in the first
-place?  I end up with this error:
-./kconf/conf: 1: ./kconf/conf: Syntax error: word unexpected (expecting
-")")
-..because backports needs to compile conf for x86_64, but instead
-compiles it for ARM.  Once that step is done, it needs to compile the
-rest of the project for ARM, but this error stops it.
-I think I could work around the sysroot arm-wrestle because of the way
-our project is built, but haven't made it to that point yet.
-Here's the bb file I'm using:
----------------------------
-include backports.inc
-SRCBRANCH = "linux-4.2.y"
-LOCALVERSION = "v4.2.6-1-0-g90118c7"
-SRCREV = "90118c7656bb55243620c9dc9cc3f12582b1807f"
-DEPENDS += "linux-myproject"do_configure_prepend() {
-	export CROSS_COMPILE=${TARGET_PREFIX}
-	export ARCH=${TARGET_ARCH}
-	export KLIB_BUILD=${STAGING_KERNEL_DIR}
-	export KLIB=${STAGING_DIR_TARGET}
-	make
-}
------------------------------------
-On Wed, 2017-10-18 at 22:53 +0000, Darcy Watkins wrote:
-> I tried building backports under Yocto a few years back using Yocto
-> daisy branch with kernel 3.4 for x86 and kernel 3.12 for ARM.  After
-> a fair amount of pain I was able to get it to sort of work.  The
-> problem was mainly a sysroot arm-wrestle between kernel and backports
-> because they both generate the same kernel module packages.  It was a
-> last-one-wins arm-wrestle.  It sort of worked OK with daisy branch,
-> but newer yocto versions have stricter management of sysroots and
-> staging areas.
->  
-> I think what we need is some sort of virtual provider or alternatives
-> scheme to make this work properly.
->  
-> You can also run into problems related to exports to other out-of-
-> tree modules but IIRC, it would only affect an out-of-tree module
-> with an incompatible license.
->  
-> I was able to run a few circa kernel 3.18 backports experimentally on
-> a kernel 3.4 and a kernel 3.12.  Eventually we just upgraded the
-> kernel.  Another project I know of used backports to update their
-> kernel source and then created a recipe to build kernel from that
-> source.
->  
-> The notes/questions I had in the end were:
->  
-> was building backports as out-of-tree kernel modules
-> was concerned that this wouldn’t provide updated kernel staging
-> source, particularly with respect to any updated includes
-> wasn’t sure what would be propagated into the sysroot
-> should consider the backports use case that patches the kernel source
-> and then perhaps use this to generate patchset to be added to kernel
-> recipe (bbappend)
-> otherwise need to ensure proper handling of sysroot, staging, (as
-> well as a notion of providers and/or alternatives like I mentioned
-> earlier)
->  
-> I haven’t touched this in years, but perhaps it may help a bit.
->  
-> I think your best bet for short term is to use it to patch the kernel
-> and then capture the changes as a patchset to add to a kernel recipe.
->  
->  
->  
-> Regards,
->  
-> Darcy
->  
-> Darcy Watkins ::  Senior Staff Engineer, Firmware
->  
-> SIERRA WIRELESS
-> Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +1 604
-> 231 1100
-> 13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
-> [P2]
-> dwatkins@sierrawireless.com :: www.sierrawireless.com
->  
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproje
-> ct.org] On Behalf Of Marlon Smith
-> Sent: October-18-17 3:14 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Building kernel backports for ARM with Yocto
->  
-> Hi everyone,
->  
-> I'm trying to build the Linux backports project to get updated wifi
-> drivers on an older kernel.  The problem is that when building
-> backports, it first builds several tools that need to be run natively
-> before cross-compiling the rest of the project.
->  
-> I know how to write a bitbake recipe to compile natively, and how to
-> write one to build for the target, but I can't figure out how to
-> combine the two.  The backports project has steps for LTIB:
->  
->  %Build
->  export PATH=$UNSPOOF_PATH
->  
->  make menuconfig prefix=%{_prefix} \
->    CROSS_COMPILE=${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX} \
->    ARCH=$LINTARCH KLIB=${TOP}/rootfs/lib/modules/%{kversion} \
->    KLIB_BUILD=${TOP}/rpm/BUILD/linux
->  
->  export PATH=$SPOOF_PATH
->  
->  make prefix=%{_prefix} \
->    CROSS_COMPILE=${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX} \
->    ARCH=$LINTARCH KLIB=${TOP}/rootfs/lib/modules/%{kversion} \
->    KLIB_BUILD=${TOP}/rpm/BUILD/linux
->  
-> I believe what I need is an equivalent to the line export
-> PATH=$UNSPOOF_PATH but I can't find anything in the Yocto
-> documentation or mailing lists that would be equivalent to that.
->  
-> Any help would be much appreciated!
->  
-> Thanks
->  
-> Marlon
+SSB0cmllZCBidWlsZGluZyBiYWNrcG9ydHMgdW5kZXIgWW9jdG8gYSBmZXcgeWVhcnMgYmFjayB1
+c2luZyBZb2N0byBkYWlzeSBicmFuY2ggd2l0aCBrZXJuZWwgMy40IGZvciB4ODYgYW5kIGtlcm5l
+bCAzLjEyIGZvciBBUk0uICBBZnRlciBhIGZhaXIgYW1vdW50IG9mIHBhaW4gSSB3YXMgYWJsZSB0
+byBnZXQgaXQgdG8gc29ydCBvZiB3b3JrLiAgVGhlIHByb2JsZW0gd2FzIG1haW5seSBhIHN5c3Jv
+b3QgYXJtLXdyZXN0bGUgYmV0d2VlbiBrZXJuZWwgYW5kIGJhY2twb3J0cyBiZWNhdXNlIHRoZXkg
+Ym90aCBnZW5lcmF0ZSB0aGUgc2FtZSBrZXJuZWwgbW9kdWxlIHBhY2thZ2VzLiAgSXQgd2FzIGEg
+bGFzdC1vbmUtd2lucyBhcm0td3Jlc3RsZS4gIEl0IHNvcnQgb2Ygd29ya2VkIE9LIHdpdGggZGFp
+c3kgYnJhbmNoLCBidXQgbmV3ZXIgeW9jdG8gdmVyc2lvbnMgaGF2ZSBzdHJpY3RlciBtYW5hZ2Vt
+ZW50IG9mIHN5c3Jvb3RzIGFuZCBzdGFnaW5nIGFyZWFzLg0KDQpJIHRoaW5rIHdoYXQgd2UgbmVl
+ZCBpcyBzb21lIHNvcnQgb2YgdmlydHVhbCBwcm92aWRlciBvciBhbHRlcm5hdGl2ZXMgc2NoZW1l
+IHRvIG1ha2UgdGhpcyB3b3JrIHByb3Blcmx5Lg0KDQpZb3UgY2FuIGFsc28gcnVuIGludG8gcHJv
+YmxlbXMgcmVsYXRlZCB0byBleHBvcnRzIHRvIG90aGVyIG91dC1vZi10cmVlIG1vZHVsZXMgYnV0
+IElJUkMsIGl0IHdvdWxkIG9ubHkgYWZmZWN0IGFuIG91dC1vZi10cmVlIG1vZHVsZSB3aXRoIGFu
+IGluY29tcGF0aWJsZSBsaWNlbnNlLg0KDQpJIHdhcyBhYmxlIHRvIHJ1biBhIGZldyBjaXJjYSBr
+ZXJuZWwgMy4xOCBiYWNrcG9ydHMgZXhwZXJpbWVudGFsbHkgb24gYSBrZXJuZWwgMy40IGFuZCBh
+IGtlcm5lbCAzLjEyLiAgRXZlbnR1YWxseSB3ZSBqdXN0IHVwZ3JhZGVkIHRoZSBrZXJuZWwuICBB
+bm90aGVyIHByb2plY3QgSSBrbm93IG9mIHVzZWQgYmFja3BvcnRzIHRvIHVwZGF0ZSB0aGVpciBr
+ZXJuZWwgc291cmNlIGFuZCB0aGVuIGNyZWF0ZWQgYSByZWNpcGUgdG8gYnVpbGQga2VybmVsIGZy
+b20gdGhhdCBzb3VyY2UuDQoNClRoZSBub3Rlcy9xdWVzdGlvbnMgSSBoYWQgaW4gdGhlIGVuZCB3
+ZXJlOg0KDQoNCiAgKiAgIHdhcyBidWlsZGluZyBiYWNrcG9ydHMgYXMgb3V0LW9mLXRyZWUga2Vy
+bmVsIG1vZHVsZXMNCiAgKiAgIHdhcyBjb25jZXJuZWQgdGhhdCB0aGlzIHdvdWxkbuKAmXQgcHJv
+dmlkZSB1cGRhdGVkIGtlcm5lbCBzdGFnaW5nIHNvdXJjZSwgcGFydGljdWxhcmx5IHdpdGggcmVz
+cGVjdCB0byBhbnkgdXBkYXRlZCBpbmNsdWRlcw0KICAqICAgd2FzbuKAmXQgc3VyZSB3aGF0IHdv
+dWxkIGJlIHByb3BhZ2F0ZWQgaW50byB0aGUgc3lzcm9vdA0KICAqICAgc2hvdWxkIGNvbnNpZGVy
+IHRoZSBiYWNrcG9ydHMgdXNlIGNhc2UgdGhhdCBwYXRjaGVzIHRoZSBrZXJuZWwgc291cmNlIGFu
+ZCB0aGVuIHBlcmhhcHMgdXNlIHRoaXMgdG8gZ2VuZXJhdGUgcGF0Y2hzZXQgdG8gYmUgYWRkZWQg
+dG8ga2VybmVsIHJlY2lwZSAoYmJhcHBlbmQpDQogICogICBvdGhlcndpc2UgbmVlZCB0byBlbnN1
+cmUgcHJvcGVyIGhhbmRsaW5nIG9mIHN5c3Jvb3QsIHN0YWdpbmcsIChhcyB3ZWxsIGFzIGEgbm90
+aW9uIG9mIHByb3ZpZGVycyBhbmQvb3IgYWx0ZXJuYXRpdmVzIGxpa2UgSSBtZW50aW9uZWQgZWFy
+bGllcikNCg0KSSBoYXZlbuKAmXQgdG91Y2hlZCB0aGlzIGluIHllYXJzLCBidXQgcGVyaGFwcyBp
+dCBtYXkgaGVscCBhIGJpdC4NCg0KSSB0aGluayB5b3VyIGJlc3QgYmV0IGZvciBzaG9ydCB0ZXJt
+IGlzIHRvIHVzZSBpdCB0byBwYXRjaCB0aGUga2VybmVsIGFuZCB0aGVuIGNhcHR1cmUgdGhlIGNo
+YW5nZXMgYXMgYSBwYXRjaHNldCB0byBhZGQgdG8gYSBrZXJuZWwgcmVjaXBlLg0KDQoNCg0KUmVn
+YXJkcywNCg0KRGFyY3kNCg0KRGFyY3kgV2F0a2lucyA6OiAgU2VuaW9yIFN0YWZmIEVuZ2luZWVy
+LCBGaXJtd2FyZQ0KDQpTSUVSUkEgV0lSRUxFU1MNCkRpcmVjdCAgKzEgNjA0IDIzMyA3OTg5ICAg
+OjogIEZheCAgKzEgNjA0IDIzMSAxMTA5ICA6OiAgTWFpbiAgKzEgNjA0IDIzMSAxMTAwDQoxMzgx
+MSBXaXJlbGVzcyBXYXkgIDo6IFJpY2htb25kLCBCQyBDYW5hZGEgVjZWIDNBNA0KW1AyXQ0KZHdh
+dGtpbnNAc2llcnJhd2lyZWxlc3MuY29tPG1haWx0bzpkd2F0a2luc0BzaWVycmF3aXJlbGVzcy5j
+b20+IDo6IHd3dy5zaWVycmF3aXJlbGVzcy5jb208aHR0cDovL3d3dy5zaWVycmF3aXJlbGVzcy5j
+b20vPg0KDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0
+by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBNYXJsb24gU21pdGgNClNl
+bnQ6IE9jdG9iZXItMTgtMTcgMzoxNCBQTQ0KVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1
+YmplY3Q6IFt5b2N0b10gQnVpbGRpbmcga2VybmVsIGJhY2twb3J0cyBmb3IgQVJNIHdpdGggWW9j
+dG8NCg0KSGkgZXZlcnlvbmUsDQoNCkknbSB0cnlpbmcgdG8gYnVpbGQgdGhlIExpbnV4IGJhY2tw
+b3J0cyBwcm9qZWN0IHRvIGdldCB1cGRhdGVkIHdpZmkgZHJpdmVycyBvbiBhbiBvbGRlciBrZXJu
+ZWwuICBUaGUgcHJvYmxlbSBpcyB0aGF0IHdoZW4gYnVpbGRpbmcgYmFja3BvcnRzLCBpdCBmaXJz
+dCBidWlsZHMgc2V2ZXJhbCB0b29scyB0aGF0IG5lZWQgdG8gYmUgcnVuIG5hdGl2ZWx5IGJlZm9y
+ZSBjcm9zcy1jb21waWxpbmcgdGhlIHJlc3Qgb2YgdGhlIHByb2plY3QuDQoNCkkga25vdyBob3cg
+dG8gd3JpdGUgYSBiaXRiYWtlIHJlY2lwZSB0byBjb21waWxlIG5hdGl2ZWx5LCBhbmQgaG93IHRv
+IHdyaXRlIG9uZSB0byBidWlsZCBmb3IgdGhlIHRhcmdldCwgYnV0IEkgY2FuJ3QgZmlndXJlIG91
+dCBob3cgdG8gY29tYmluZSB0aGUgdHdvLiAgVGhlIGJhY2twb3J0cyBwcm9qZWN0IGhhcyBzdGVw
+cyBmb3IgTFRJQjoNCg0KDQogJUJ1aWxkDQoNCiBleHBvcnQgUEFUSD0kVU5TUE9PRl9QQVRIDQoN
+Cg0KDQogbWFrZSBtZW51Y29uZmlnIHByZWZpeD0le19wcmVmaXh9IFwNCg0KICAgQ1JPU1NfQ09N
+UElMRT0ke1RPT0xDSEFJTl9QQVRIfS9iaW4vJHtUT09MQ0hBSU5fUFJFRklYfSBcDQoNCiAgIEFS
+Q0g9JExJTlRBUkNIIEtMSUI9JHtUT1B9L3Jvb3Rmcy9saWIvbW9kdWxlcy8le2t2ZXJzaW9ufSBc
+DQoNCiAgIEtMSUJfQlVJTEQ9JHtUT1B9L3JwbS9CVUlMRC9saW51eA0KDQoNCg0KIGV4cG9ydCBQ
+QVRIPSRTUE9PRl9QQVRIDQoNCg0KDQogbWFrZSBwcmVmaXg9JXtfcHJlZml4fSBcDQoNCiAgIENS
+T1NTX0NPTVBJTEU9JHtUT09MQ0hBSU5fUEFUSH0vYmluLyR7VE9PTENIQUlOX1BSRUZJWH0gXA0K
+DQogICBBUkNIPSRMSU5UQVJDSCBLTElCPSR7VE9QfS9yb290ZnMvbGliL21vZHVsZXMvJXtrdmVy
+c2lvbn0gXA0KDQogICBLTElCX0JVSUxEPSR7VE9QfS9ycG0vQlVJTEQvbGludXgNCg0KDQoNCkkg
+YmVsaWV2ZSB3aGF0IEkgbmVlZCBpcyBhbiBlcXVpdmFsZW50IHRvIHRoZSBsaW5lIGV4cG9ydCBQ
+QVRIPSRVTlNQT09GX1BBVEggYnV0IEkgY2FuJ3QgZmluZCBhbnl0aGluZyBpbiB0aGUgWW9jdG8g
+ZG9jdW1lbnRhdGlvbiBvciBtYWlsaW5nIGxpc3RzIHRoYXQgd291bGQgYmUgZXF1aXZhbGVudCB0
+byB0aGF0Lg0KDQoNCg0KQW55IGhlbHAgd291bGQgYmUgbXVjaCBhcHByZWNpYXRlZCENCg0KDQoN
+ClRoYW5rcw0KDQoNCg0KTWFybG9uDQo=
 
---=-tNSuzgkwgZqoqBIoNQYO
+--_000_SN1PR0201MB1790B68697FEF20E9E05D400B24D0SN1PR0201MB1790_
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Cantarell;
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:472792674;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-653985490 -331437458 269025283 269025285 269025281 =
-269025283 269025285 269025281 269025283 269025285;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:20.25pt;
-	text-indent:-18.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:56.25pt;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:92.25pt;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:128.25pt;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:164.25pt;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:200.25pt;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:236.25pt;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:272.25pt;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:=EF=82=A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:308.25pt;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-CA"><div>Darcy, thanks for the detailed reply!</div><div><=
-br></div><div>Do you remember how you were able to get it to compile in the=
- first place? &nbsp;I end up with this error:</div><div><br></div><div>./kc=
-onf/conf: 1: ./kconf/conf: Syntax error: word unexpected (expecting ")")</d=
-iv><div><br></div><div>..because backports needs to compile conf for x86_64=
-, but instead compiles it for ARM. &nbsp;Once that step is done, it needs t=
-o compile the rest of the project for ARM, but this error stops it.</div><d=
-iv><br></div><div>I think I could work around the sysroot arm-wrestle becau=
-se of the way our project is built, but haven't made it to that point yet.<=
-/div><div><br></div><div>Here's the bb file I'm using:</div><div><br></div>=
-<div>---------------------------</div><div><br></div><div>include backports=
-.inc</div><div><br></div><div>SRCBRANCH =3D "linux-4.2.y"</div><div>LOCALVE=
-RSION =3D "v4.2.6-1-0-g90118c7"</div><div>SRCREV =3D "90118c7656bb55243620c=
-9dc9cc3f12582b1807f"</div><div><br></div><div>DEPENDS +=3D "linux-myproject=
-"<br></div><div><br></div><div>do_configure_prepend() {</div><div><span cla=
-ss=3D"Apple-tab-span" style=3D"white-space:pre">	</span>export CROSS_COMPIL=
-E=3D${TARGET_PREFIX}</div><div><span class=3D"Apple-tab-span" style=3D"whit=
-e-space:pre">	</span>export ARCH=3D${TARGET_ARCH}</div><div><span class=3D"=
-Apple-tab-span" style=3D"white-space:pre">	</span>export KLIB_BUILD=3D${STA=
-GING_KERNEL_DIR}</div><div><span class=3D"Apple-tab-span" style=3D"white-sp=
-ace:pre">	</span>export KLIB=3D${STAGING_DIR_TARGET}</div><div><span class=
-=3D"Apple-tab-span" style=3D"white-space:pre">	</span>make</div><div>}</div=
-><div><br></div><div>-----------------------------------</div><div><br></di=
-v><div>On Wed, 2017-10-18 at 22:53 +0000, Darcy Watkins wrote:</div><blockq=
-uote type=3D"cite">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">I tried b=
-uilding backports under Yocto a few years back using Yocto daisy branch wit=
-h kernel 3.4 for x86 and kernel 3.12 for ARM.&nbsp; After a fair amount of =
-pain I was able to get it to sort of work.&nbsp;
- The problem was mainly a sysroot arm-wrestle between kernel and backports =
-because they both generate the same kernel module packages.&nbsp; It was a =
-last-one-wins arm-wrestle.&nbsp; It sort of worked OK with daisy branch, bu=
-t newer yocto versions have stricter management
- of sysroots and staging areas.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">I think w=
-hat we need is some sort of virtual provider or alternatives scheme to make=
- this work properly.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">You can a=
-lso run into problems related to exports to other out-of-tree modules but I=
-IRC, it would only affect an out-of-tree module with an incompatible licens=
-e.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">I was abl=
-e to run a few circa kernel 3.18 backports experimentally on a kernel 3.4 a=
-nd a kernel 3.12.&nbsp; Eventually we just upgraded the kernel.&nbsp; Anoth=
-er project I know of used backports to update
- their kernel source and then created a recipe to build kernel from that so=
-urce.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">The notes=
-/questions I had in the end were:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<ul style=3D"margin-top:0cm" type=3D"disc">
-<li class=3D"MsoListParagraph" style=3D"margin-left:-15.75pt;mso-list:l0 le=
-vel1 lfo1">
-<span style=3D"mso-fareast-language:EN-US">was building backports as out-of=
--tree kernel modules<o:p></o:p></span></li><li class=3D"MsoListParagraph" s=
-tyle=3D"margin-left:-15.75pt;mso-list:l0 level1 lfo1">
-<span style=3D"mso-fareast-language:EN-US">was concerned that this wouldn=
-=E2=80=99t provide updated kernel staging source, particularly with respect=
- to any updated includes<o:p></o:p></span></li><li class=3D"MsoListParagrap=
-h" style=3D"margin-left:-15.75pt;mso-list:l0 level1 lfo1">
-<span style=3D"mso-fareast-language:EN-US">wasn=E2=80=99t sure what would b=
-e propagated into the sysroot<o:p></o:p></span></li><li class=3D"MsoListPar=
-agraph" style=3D"margin-left:-15.75pt;mso-list:l0 level1 lfo1">
-<span style=3D"mso-fareast-language:EN-US">should consider the backports us=
-e case that patches the kernel source and then perhaps use this to generate=
- patchset to be added to kernel recipe (bbappend)<o:p></o:p></span></li><li=
- class=3D"MsoListParagraph" style=3D"margin-left:-15.75pt;mso-list:l0 level=
-1 lfo1">
-<span style=3D"mso-fareast-language:EN-US">otherwise need to ensure proper =
-handling of sysroot, staging, (as well as a notion of providers and/or alte=
-rnatives like I mentioned earlier)<o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">I haven=
-=E2=80=99t touched this in years, but perhaps it may help a bit.<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US">I think y=
-our best bet for short term is to use it to patch the kernel and then captu=
-re the changes as a patchset to add to a kernel recipe.<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<div>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
-" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
-#656565"><o:p>&nbsp;</o:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
-" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
-#656565">Regards,<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
-" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
-#656565"><o:p>&nbsp;</o:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
-" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
-#656565">Darcy<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
-" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
-#656565"><o:p>&nbsp;</o:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
-" style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#=
-656565">Darcy Watkins ::&nbsp;&nbsp;Senior Staff Engineer, Firmware<o:p></o=
-:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
-" style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#=
-E33A2F"><o:p>&nbsp;</o:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
-" style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#=
-E33A2F">SIERRA WIRELESS<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#E33=
-A2F">Direct</span><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-family=
-:&quot;Arial&quot;,sans-serif;color:#656565">&nbsp; +1 604 233 7989&nbsp;
- &nbsp;::&nbsp; </span><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-f=
-amily:&quot;Arial&quot;,sans-serif;color:#E33A2F">Fax&nbsp;
-</span><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-family:&quot;Aria=
-l&quot;,sans-serif;color:#656565">+1 604 231 1109&nbsp; ::&nbsp;
-</span><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-family:&quot;Aria=
-l&quot;,sans-serif;color:#C00000">Main</span><span lang=3D"EN-US" style=3D"=
-font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif">&nbsp;
-<span style=3D"color:#656565">+1 604 231 1100</span><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#656=
-565">13811 Wireless Way&nbsp; ::&nbsp;Richmond, BC Canada V6V 3A4<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#656=
-565">[P2]<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><a href=3D"mailto:dwat=
-kins@sierrawireless.com"><span lang=3D"EN-US" style=3D"font-size:7.5pt;font=
--family:&quot;Arial&quot;,sans-serif;color:blue">dwatkins@sierrawireless.co=
-m</span></a><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-family:&quot=
-;Arial&quot;,sans-serif;color:#E43B30">
- :: </span><a href=3D"http://www.sierrawireless.com/"><span lang=3D"EN-US" =
-style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:blu=
-e">www.sierrawireless.com</span></a><span lang=3D"EN-US" style=3D"font-size=
-:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#E43B30"><o:p></o:p><=
-/span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"><o:p>&nbs=
-p;</o:p></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
-=3D"EN-US"> yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproje=
-ct.org]
-<b>On Behalf Of </b>Marlon Smith<br>
-<b>Sent:</b> October-18-17 3:14 PM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] Building kernel backports for ARM with Yocto<o:p></=
-o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">Hi everyone,<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I'm trying to build the Linux backports project to g=
-et updated wifi drivers on an older kernel. &nbsp;The problem is that when =
-building backports, it first builds several tools that need to be run nativ=
-ely before cross-compiling the rest of
- the project.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I know how to write a bitbake recipe to compile nati=
-vely, and how to write one to build for the target, but I can't figure out =
-how to combine the two. &nbsp;The backports project has steps for LTIB:<o:p=
-></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<pre> %Build<o:p></o:p></pre>
-<pre> export PATH=3D$UNSPOOF_PATH<o:p></o:p></pre>
-<pre> <o:p></o:p></pre>
-<pre>&nbsp;make menuconfig prefix=3D%{_prefix} \<o:p></o:p></pre>
-<pre>&nbsp;&nbsp; CROSS_COMPILE=3D${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX}=
- \<o:p></o:p></pre>
-<pre>&nbsp;&nbsp; ARCH=3D$LINTARCH KLIB=3D${TOP}/rootfs/lib/modules/%{kvers=
-ion} \<o:p></o:p></pre>
-<pre>&nbsp;&nbsp; KLIB_BUILD=3D${TOP}/rpm/BUILD/linux<o:p></o:p></pre>
-<pre> <o:p></o:p></pre>
-<pre>&nbsp;export PATH=3D$SPOOF_PATH<o:p></o:p></pre>
-<pre> <o:p></o:p></pre>
-<pre>&nbsp;make prefix=3D%{_prefix} \<o:p></o:p></pre>
-<pre>&nbsp;&nbsp; CROSS_COMPILE=3D${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX}=
- \<o:p></o:p></pre>
-<pre>&nbsp;&nbsp; ARCH=3D$LINTARCH KLIB=3D${TOP}/rootfs/lib/modules/%{kvers=
-ion} \<o:p></o:p></pre>
-<pre>&nbsp;&nbsp; KLIB_BUILD=3D${TOP}/rpm/BUILD/linux<o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre><span style=3D"font-size:11.5pt;font-family:&quot;Cantarell&quot;,seri=
-f">I believe what I need is an equivalent to the line&nbsp;</span>export PA=
-TH=3D$UNSPOOF_PATH<span style=3D"font-size:11.5pt;font-family:&quot;Cantare=
-ll&quot;,serif">&nbsp;but I can't find anything in the Yocto documentation =
-or mailing lists that would be equivalent to that.</span><o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre><span style=3D"font-size:11.5pt;font-family:&quot;Cantarell&quot;,seri=
-f">Any help would be much appreciated!</span><o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre><span style=3D"font-size:11.5pt;font-family:&quot;Cantarell&quot;,seri=
-f">Thanks</span><o:p></o:p></pre>
-<pre><o:p>&nbsp;</o:p></pre>
-<pre><span style=3D"font-size:11.5pt;font-family:&quot;Cantarell&quot;,seri=
-f">Marlon</span><o:p></o:p></pre>
-</div>
-</div>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
+CXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMg
+MiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1
+IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFzOw0K
+CXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1p
+bHk6Q2FudGFyZWxsOw0KCXBhbm9zZS0xOjAgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KLyogU3R5bGUg
+RGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwN
+Cgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBw
+dDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNv
+SHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRl
+eHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0Zv
+bGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQt
+ZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglt
+c28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQgQ2hhciI7DQoJbWFyZ2luOjBjbTsNCglt
+YXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToi
+Q291cmllciBOZXciO30NCnAuTXNvTGlzdFBhcmFncmFwaCwgbGkuTXNvTGlzdFBhcmFncmFwaCwg
+ZGl2Lk1zb0xpc3RQYXJhZ3JhcGgNCgl7bXNvLXN0eWxlLXByaW9yaXR5OjM0Ow0KCW1hcmdpbi10
+b3A6MGNtOw0KCW1hcmdpbi1yaWdodDowY207DQoJbWFyZ2luLWJvdHRvbTowY207DQoJbWFyZ2lu
+LWxlZnQ6MzYuMHB0Ow0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0
+Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uSFRNTFByZWZvcm1h
+dHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1z
+by1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQi
+Ow0KCWZvbnQtZmFtaWx5OkNvbnNvbGFzO30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9ybWFsMCwg
+ZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4t
+dG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowY207DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGNtOw0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1p
+bHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7bXNvLXN0eWxl
+LXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
+DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
+eHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtz
+aXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIuMHB0
+O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLyogTGlzdCBEZWZp
+bml0aW9ucyAqLw0KQGxpc3QgbDANCgl7bXNvLWxpc3QtaWQ6NDcyNzkyNjc0Ow0KCW1zby1saXN0
+LXR5cGU6aHlicmlkOw0KCW1zby1saXN0LXRlbXBsYXRlLWlkczotNjUzOTg1NDkwIC0zMzE0Mzc0
+NTggMjY5MDI1MjgzIDI2OTAyNTI4NSAyNjkwMjUyODEgMjY5MDI1MjgzIDI2OTAyNTI4NSAyNjkw
+MjUyODEgMjY5MDI1MjgzIDI2OTAyNTI4NTt9DQpAbGlzdCBsMDpsZXZlbDENCgl7bXNvLWxldmVs
+LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Oi07DQoJbXNvLWxldmVsLXRh
+Yi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCW1hcmdpbi1s
+ZWZ0OjIwLjI1cHQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJy
+aSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFzdC1mb250LWZhbWlseTpDYWxpYnJpO30NCkBsaXN0
+IGwwOmxldmVsMg0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVs
+LXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBv
+c2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6NTYuMjVwdDsNCgl0ZXh0LWluZGVudDotMTguMHB0
+Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWwzDQoJe21zby1s
+ZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxl
+dmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCW1h
+cmdpbi1sZWZ0OjkyLjI1cHQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseTpX
+aW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2ZWw0DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
+bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJ
+bXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCW1hcmdpbi1sZWZ0OjEyOC4yNXB0Ow0K
+CXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxl
+dmVsNQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6
+bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9u
+OmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTY0LjI1cHQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglm
+b250LWZhbWlseToiQ291cmllciBOZXciO30NCkBsaXN0IGwwOmxldmVsNg0KCXttc28tbGV2ZWwt
+bnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674KnOw0KCW1zby1sZXZlbC10
+YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgltYXJnaW4t
+bGVmdDoyMDAuMjVwdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCWZvbnQtZmFtaWx5Oldpbmdk
+aW5nczt9DQpAbGlzdCBsMDpsZXZlbDcNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0
+Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28t
+bGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MjM2LjI1cHQ7DQoJdGV4
+dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDA6bGV2ZWw4
+DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0K
+CW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVm
+dDsNCgltYXJnaW4tbGVmdDoyNzIuMjVwdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1i
+ZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1z
+dG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCW1hcmdpbi1sZWZ0
+OjMwOC4yNXB0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJZm9udC1mYW1pbHk6V2luZ2Rpbmdz
+O30NCm9sDQoJe21hcmdpbi1ib3R0b206MGNtO30NCnVsDQoJe21hcmdpbi1ib3R0b206MGNtO30N
+Ci0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6
+ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBn
+dGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2
+OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0t
+LT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLUNBIiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1
+NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5JIHRyaWVkIGJ1aWxkaW5n
+IGJhY2twb3J0cyB1bmRlciBZb2N0byBhIGZldyB5ZWFycyBiYWNrIHVzaW5nIFlvY3RvIGRhaXN5
+IGJyYW5jaCB3aXRoIGtlcm5lbCAzLjQgZm9yIHg4NiBhbmQga2VybmVsIDMuMTIgZm9yIEFSTS4m
+bmJzcDsgQWZ0ZXIgYSBmYWlyIGFtb3VudCBvZiBwYWluIEkgd2FzIGFibGUgdG8gZ2V0IGl0IHRv
+IHNvcnQgb2Ygd29yay4mbmJzcDsNCiBUaGUgcHJvYmxlbSB3YXMgbWFpbmx5IGEgc3lzcm9vdCBh
+cm0td3Jlc3RsZSBiZXR3ZWVuIGtlcm5lbCBhbmQgYmFja3BvcnRzIGJlY2F1c2UgdGhleSBib3Ro
+IGdlbmVyYXRlIHRoZSBzYW1lIGtlcm5lbCBtb2R1bGUgcGFja2FnZXMuJm5ic3A7IEl0IHdhcyBh
+IGxhc3Qtb25lLXdpbnMgYXJtLXdyZXN0bGUuJm5ic3A7IEl0IHNvcnQgb2Ygd29ya2VkIE9LIHdp
+dGggZGFpc3kgYnJhbmNoLCBidXQgbmV3ZXIgeW9jdG8gdmVyc2lvbnMgaGF2ZSBzdHJpY3RlciBt
+YW5hZ2VtZW50DQogb2Ygc3lzcm9vdHMgYW5kIHN0YWdpbmcgYXJlYXMuPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxh
+bmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkkgdGhpbmsg
+d2hhdCB3ZSBuZWVkIGlzIHNvbWUgc29ydCBvZiB2aXJ0dWFsIHByb3ZpZGVyIG9yIGFsdGVybmF0
+aXZlcyBzY2hlbWUgdG8gbWFrZSB0aGlzIHdvcmsgcHJvcGVybHkuPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1
+YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPllvdSBjYW4gYWxz
+byBydW4gaW50byBwcm9ibGVtcyByZWxhdGVkIHRvIGV4cG9ydHMgdG8gb3RoZXIgb3V0LW9mLXRy
+ZWUgbW9kdWxlcyBidXQgSUlSQywgaXQgd291bGQgb25seSBhZmZlY3QgYW4gb3V0LW9mLXRyZWUg
+bW9kdWxlIHdpdGggYW4gaW5jb21wYXRpYmxlIGxpY2Vuc2UuPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdl
+OkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkkgd2FzIGFibGUgdG8g
+cnVuIGEgZmV3IGNpcmNhIGtlcm5lbCAzLjE4IGJhY2twb3J0cyBleHBlcmltZW50YWxseSBvbiBh
+IGtlcm5lbCAzLjQgYW5kIGEga2VybmVsIDMuMTIuJm5ic3A7IEV2ZW50dWFsbHkgd2UganVzdCB1
+cGdyYWRlZCB0aGUga2VybmVsLiZuYnNwOyBBbm90aGVyIHByb2plY3QgSSBrbm93IG9mIHVzZWQg
+YmFja3BvcnRzIHRvIHVwZGF0ZQ0KIHRoZWlyIGtlcm5lbCBzb3VyY2UgYW5kIHRoZW4gY3JlYXRl
+ZCBhIHJlY2lwZSB0byBidWlsZCBrZXJuZWwgZnJvbSB0aGF0IHNvdXJjZS48bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3Qt
+bGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+VGhlIG5v
+dGVzL3F1ZXN0aW9ucyBJIGhhZCBpbiB0aGUgZW5kIHdlcmU6PG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdl
+OkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8dWwgc3R5bGU9Im1hcmdpbi10
+b3A6MGNtIiB0eXBlPSJkaXNjIj4NCjxsaSBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9
+Im1hcmdpbi1sZWZ0Oi0xNS43NXB0O21zby1saXN0OmwwIGxldmVsMSBsZm8xIj4NCjxzcGFuIHN0
+eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+d2FzIGJ1aWxkaW5nIGJhY2twb3J0cyBh
+cyBvdXQtb2YtdHJlZSBrZXJuZWwgbW9kdWxlczxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PGxpIGNs
+YXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6LTE1Ljc1cHQ7bXNvLWxp
+c3Q6bDAgbGV2ZWwxIGxmbzEiPg0KPHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj53YXMgY29uY2VybmVkIHRoYXQgdGhpcyB3b3VsZG7igJl0IHByb3ZpZGUgdXBkYXRlZCBr
+ZXJuZWwgc3RhZ2luZyBzb3VyY2UsIHBhcnRpY3VsYXJseSB3aXRoIHJlc3BlY3QgdG8gYW55IHVw
+ZGF0ZWQgaW5jbHVkZXM8bzpwPjwvbzpwPjwvc3Bhbj48L2xpPjxsaSBjbGFzcz0iTXNvTGlzdFBh
+cmFncmFwaCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi0xNS43NXB0O21zby1saXN0OmwwIGxldmVsMSBs
+Zm8xIj4NCjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+d2FzbuKAmXQg
+c3VyZSB3aGF0IHdvdWxkIGJlIHByb3BhZ2F0ZWQgaW50byB0aGUgc3lzcm9vdDxvOnA+PC9vOnA+
+PC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxl
+ZnQ6LTE1Ljc1cHQ7bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPg0KPHNwYW4gc3R5bGU9Im1zby1m
+YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5zaG91bGQgY29uc2lkZXIgdGhlIGJhY2twb3J0cyB1c2Ug
+Y2FzZSB0aGF0IHBhdGNoZXMgdGhlIGtlcm5lbCBzb3VyY2UgYW5kIHRoZW4gcGVyaGFwcyB1c2Ug
+dGhpcyB0byBnZW5lcmF0ZSBwYXRjaHNldCB0byBiZSBhZGRlZCB0byBrZXJuZWwgcmVjaXBlIChi
+YmFwcGVuZCk8bzpwPjwvbzpwPjwvc3Bhbj48L2xpPjxsaSBjbGFzcz0iTXNvTGlzdFBhcmFncmFw
+aCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi0xNS43NXB0O21zby1saXN0OmwwIGxldmVsMSBsZm8xIj4N
+CjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+b3RoZXJ3aXNlIG5lZWQg
+dG8gZW5zdXJlIHByb3BlciBoYW5kbGluZyBvZiBzeXNyb290LCBzdGFnaW5nLCAoYXMgd2VsbCBh
+cyBhIG5vdGlvbiBvZiBwcm92aWRlcnMgYW5kL29yIGFsdGVybmF0aXZlcyBsaWtlIEkgbWVudGlv
+bmVkIGVhcmxpZXIpPG86cD48L286cD48L3NwYW4+PC9saT48L3VsPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNv
+LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkkgaGF2ZW7igJl0IHRvdWNoZWQgdGhpcyBpbiB5ZWFy
+cywgYnV0IHBlcmhhcHMgaXQgbWF5IGhlbHAgYSBiaXQuPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkkgdGhpbmsgeW91ciBiZXN0
+IGJldCBmb3Igc2hvcnQgdGVybSBpcyB0byB1c2UgaXQgdG8gcGF0Y2ggdGhlIGtlcm5lbCBhbmQg
+dGhlbiBjYXB0dXJlIHRoZSBjaGFuZ2VzIGFzIGEgcGF0Y2hzZXQgdG8gYWRkIHRvIGEga2VybmVs
+IHJlY2lwZS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1s
+YW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWF1dG9zcGFjZTpub25lIj48Yj48c3BhbiBsYW5n
+PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojNjU2NTY1Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtYXV0b3NwYWNlOm5vbmUi
+PjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWls
+eTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiM2NTY1NjUiPlJlZ2FyZHMsPG86
+cD48L286cD48L3NwYW4+PC9iPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0
+LWF1dG9zcGFjZTpub25lIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZTox
+MC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojNjU2
+NTY1Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9InRleHQtYXV0b3NwYWNlOm5vbmUiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
+ZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiM2NTY1NjUiPkRhcmN5PG86cD48L286cD48L3NwYW4+PC9iPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWF1dG9zcGFjZTpub25lIj48Yj48c3BhbiBsYW5n
+PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwm
+cXVvdDssc2Fucy1zZXJpZjtjb2xvcjojNjU2NTY1Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtYXV0b3NwYWNlOm5vbmUi
+PjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjcuNXB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzY1NjU2NSI+RGFyY3kgV2F0a2lu
+cyA6OiZuYnNwOyZuYnNwO1NlbmlvciBTdGFmZiBFbmdpbmVlciwgRmlybXdhcmU8bzpwPjwvbzpw
+Pjwvc3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtYXV0b3Nw
+YWNlOm5vbmUiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjcuNXB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6I0UzM0EyRiI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9iPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJ0ZXh0LWF1dG9zcGFjZTpub25lIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQt
+c2l6ZTo3LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiNFMzNBMkYiPlNJRVJSQSBXSVJFTEVTUzxvOnA+PC9vOnA+PC9zcGFuPjwvYj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1hdXRvc3BhY2U6bm9uZSI+PHNwYW4gbGFuZz0i
+RU4tVVMiIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjojRTMzQTJGIj5EaXJlY3Q8L3NwYW4+PHNwYW4gbGFuZz0iRU4t
+VVMiIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojNjU2NTY1Ij4mbmJzcDsgJiM0MzsxIDYwNCAyMzMgNzk4OSZuYnNw
+Ow0KICZuYnNwOzo6Jm5ic3A7IDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQt
+c2l6ZTo3LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiNFMzNBMkYiPkZheCZuYnNwOw0KPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
+dC1zaXplOjcuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6IzY1NjU2NSI+JiM0MzsxIDYwNCAyMzEgMTEwOSZuYnNwOyA6OiZuYnNwOw0KPC9zcGFuPjxz
+cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjcuNXB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6I0MwMDAwMCI+TWFpbjwvc3Bhbj48c3BhbiBs
+YW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZTo3LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlh
+bCZxdW90OyxzYW5zLXNlcmlmIj4mbmJzcDsNCjxzcGFuIHN0eWxlPSJjb2xvcjojNjU2NTY1Ij4m
+IzQzOzEgNjA0IDIzMSAxMTAwPC9zcGFuPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWF1dG9zcGFjZTpub25lIj48c3BhbiBsYW5nPSJFTi1V
+UyIgc3R5bGU9ImZvbnQtc2l6ZTo3LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90Oyxz
+YW5zLXNlcmlmO2NvbG9yOiM2NTY1NjUiPjEzODExIFdpcmVsZXNzIFdheSZuYnNwOyA6OiZuYnNw
+O1JpY2htb25kLCBCQyBDYW5hZGEgVjZWIDNBNDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWF1dG9zcGFjZTpub25lIj48c3BhbiBsYW5nPSJF
+Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZTo3LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOiM2NTY1NjUiPltQMl08bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0idGV4dC1hdXRvc3BhY2U6bm9uZSI+PGEgaHJlZj0i
+bWFpbHRvOmR3YXRraW5zQHNpZXJyYXdpcmVsZXNzLmNvbSI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
+eWxlPSJmb250LXNpemU6Ny41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1z
+ZXJpZjtjb2xvcjpibHVlIj5kd2F0a2luc0BzaWVycmF3aXJlbGVzcy5jb208L3NwYW4+PC9hPjxz
+cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjcuNXB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6I0U0M0IzMCI+DQogOjogPC9zcGFuPjxhIGhy
+ZWY9Imh0dHA6Ly93d3cuc2llcnJhd2lyZWxlc3MuY29tLyI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
+eWxlPSJmb250LXNpemU6Ny41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1z
+ZXJpZjtjb2xvcjpibHVlIj53d3cuc2llcnJhd2lyZWxlc3MuY29tPC9zcGFuPjwvYT48c3BhbiBs
+YW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZTo3LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlh
+bCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiNFNDNCMzAiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxh
+bmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBz
+dHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6
+My4wcHQgMGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0i
+RU4tVVMiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyI+IHlvY3RvLWJvdW5jZXNA
+eW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10N
+CjxiPk9uIEJlaGFsZiBPZiA8L2I+TWFybG9uIFNtaXRoPGJyPg0KPGI+U2VudDo8L2I+IE9jdG9i
+ZXItMTgtMTcgMzoxNCBQTTxicj4NCjxiPlRvOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxi
+cj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9dIEJ1aWxkaW5nIGtlcm5lbCBiYWNrcG9ydHMgZm9y
+IEFSTSB3aXRoIFlvY3RvPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPkhpIGV2ZXJ5b25lLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JJ20gdHJ5aW5nIHRvIGJ1aWxkIHRoZSBMaW51eCBiYWNr
+cG9ydHMgcHJvamVjdCB0byBnZXQgdXBkYXRlZCB3aWZpIGRyaXZlcnMgb24gYW4gb2xkZXIga2Vy
+bmVsLiAmbmJzcDtUaGUgcHJvYmxlbSBpcyB0aGF0IHdoZW4gYnVpbGRpbmcgYmFja3BvcnRzLCBp
+dCBmaXJzdCBidWlsZHMgc2V2ZXJhbCB0b29scyB0aGF0IG5lZWQgdG8gYmUgcnVuIG5hdGl2ZWx5
+IGJlZm9yZSBjcm9zcy1jb21waWxpbmcgdGhlIHJlc3Qgb2YNCiB0aGUgcHJvamVjdC48bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBrbm93IGhv
+dyB0byB3cml0ZSBhIGJpdGJha2UgcmVjaXBlIHRvIGNvbXBpbGUgbmF0aXZlbHksIGFuZCBob3cg
+dG8gd3JpdGUgb25lIHRvIGJ1aWxkIGZvciB0aGUgdGFyZ2V0LCBidXQgSSBjYW4ndCBmaWd1cmUg
+b3V0IGhvdyB0byBjb21iaW5lIHRoZSB0d28uICZuYnNwO1RoZSBiYWNrcG9ydHMgcHJvamVjdCBo
+YXMgc3RlcHMgZm9yIExUSUI6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwcmU+
+ICVCdWlsZDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiBleHBvcnQgUEFUSD0kVU5TUE9PRl9QQVRI
+PG86cD48L286cD48L3ByZT4NCjxwcmU+IDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiZuYnNwO21h
+a2UgbWVudWNvbmZpZyBwcmVmaXg9JXtfcHJlZml4fSBcPG86cD48L286cD48L3ByZT4NCjxwcmU+
+Jm5ic3A7Jm5ic3A7IENST1NTX0NPTVBJTEU9JHtUT09MQ0hBSU5fUEFUSH0vYmluLyR7VE9PTENI
+QUlOX1BSRUZJWH0gXDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiZuYnNwOyZuYnNwOyBBUkNIPSRM
+SU5UQVJDSCBLTElCPSR7VE9QfS9yb290ZnMvbGliL21vZHVsZXMvJXtrdmVyc2lvbn0gXDxvOnA+
+PC9vOnA+PC9wcmU+DQo8cHJlPiZuYnNwOyZuYnNwOyBLTElCX0JVSUxEPSR7VE9QfS9ycG0vQlVJ
+TEQvbGludXg8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4gPG86cD48L286cD48L3ByZT4NCjxwcmU+
+Jm5ic3A7ZXhwb3J0IFBBVEg9JFNQT09GX1BBVEg8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4gPG86
+cD48L286cD48L3ByZT4NCjxwcmU+Jm5ic3A7bWFrZSBwcmVmaXg9JXtfcHJlZml4fSBcPG86cD48
+L286cD48L3ByZT4NCjxwcmU+Jm5ic3A7Jm5ic3A7IENST1NTX0NPTVBJTEU9JHtUT09MQ0hBSU5f
+UEFUSH0vYmluLyR7VE9PTENIQUlOX1BSRUZJWH0gXDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiZu
+YnNwOyZuYnNwOyBBUkNIPSRMSU5UQVJDSCBLTElCPSR7VE9QfS9yb290ZnMvbGliL21vZHVsZXMv
+JXtrdmVyc2lvbn0gXDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiZuYnNwOyZuYnNwOyBLTElCX0JV
+SUxEPSR7VE9QfS9ycG0vQlVJTEQvbGludXg8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZu
+YnNwOzwvbzpwPjwvcHJlPg0KPHByZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjVwdDtmb250
+LWZhbWlseTomcXVvdDtDYW50YXJlbGwmcXVvdDssc2VyaWYiPkkgYmVsaWV2ZSB3aGF0IEkgbmVl
+ZCBpcyBhbiBlcXVpdmFsZW50IHRvIHRoZSBsaW5lJm5ic3A7PC9zcGFuPmV4cG9ydCBQQVRIPSRV
+TlNQT09GX1BBVEg8c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjVwdDtmb250LWZhbWlseTomcXVv
+dDtDYW50YXJlbGwmcXVvdDssc2VyaWYiPiZuYnNwO2J1dCBJIGNhbid0IGZpbmQgYW55dGhpbmcg
+aW4gdGhlIFlvY3RvIGRvY3VtZW50YXRpb24gb3IgbWFpbGluZyBsaXN0cyB0aGF0IHdvdWxkIGJl
+IGVxdWl2YWxlbnQgdG8gdGhhdC48L3NwYW4+PG86cD48L286cD48L3ByZT4NCjxwcmU+PG86cD4m
+bmJzcDs8L286cD48L3ByZT4NCjxwcmU+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS41cHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FudGFyZWxsJnF1b3Q7LHNlcmlmIj5BbnkgaGVscCB3b3VsZCBiZSBt
+dWNoIGFwcHJlY2lhdGVkITwvc3Bhbj48bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNw
+OzwvbzpwPjwvcHJlPg0KPHByZT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjVwdDtmb250LWZh
+bWlseTomcXVvdDtDYW50YXJlbGwmcXVvdDssc2VyaWYiPlRoYW5rczwvc3Bhbj48bzpwPjwvbzpw
+PjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjVwdDtmb250LWZhbWlseTomcXVvdDtDYW50YXJlbGwmcXVvdDssc2VyaWYi
+Pk1hcmxvbjwvc3Bhbj48bzpwPjwvbzpwPjwvcHJlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4N
+CjwvaHRtbD4NCg==
 
-
-</blockquote></body></html>
-
---=-tNSuzgkwgZqoqBIoNQYO--
+--_000_SN1PR0201MB1790B68697FEF20E9E05D400B24D0SN1PR0201MB1790_--
