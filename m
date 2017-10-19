@@ -1,110 +1,62 @@
-Return-Path: <samuli.piippo@qt.io>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BCB9BE00D3A; Thu, 19 Oct 2017 03:39:40 -0700 (PDT)
+	id 11A1EE00D3A; Thu, 19 Oct 2017 04:10:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [40.107.0.127 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [74.125.82.46 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.46 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (marek.belisko[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
-	(mail-eopbgr00127.outbound.protection.outlook.com [40.107.0.127])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0AD8E00C96
-	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 03:39:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=qtcompany.onmicrosoft.com; s=selector1-qt-io;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=SCiYtjqu/5bzj4QoZbiElcULr7JZPKryA7OeoU/r3Mc=;
-	b=nNM7Us1BsZx0VjUngjYZGjdwnRLd0FkNyyLtii4njBTMmS+HS8rzk9FUukJT3ZKQdw7He8jzUWzOnnVc/+0vVwS37AErhamqSl6bbikdz5EwdnIofMUeaxXCLTtdoWx5S9GQdOUM37KPPjmGnZFsBrdIDY0F4Paw3Z0lpJIwmss=
-Authentication-Results: spf=none (sender IP is )
-	smtp.mailfrom=samuli.piippo@qt.io; 
-Received: from piippo.intra.qt (192.89.120.53) by
-	DB6PR0202MB2582.eurprd02.prod.outlook.com (2603:10a6:4:1b::16) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.77.7;
-	Thu, 19 Oct 2017 10:39:36 +0000
-From: Samuli Piippo <samuli.piippo@qt.io>
-To: yocto@yoctoproject.org
-Date: Thu, 19 Oct 2017 13:39:13 +0300
-Message-Id: <1508409553-7525-1-git-send-email-samuli.piippo@qt.io>
-X-Mailer: git-send-email 2.7.4
+Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2814E00CFF
+	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 04:10:47 -0700 (PDT)
+Received: by mail-wm0-f46.google.com with SMTP id u138so15254622wmu.5
+	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 04:10:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=O2pIo9z/y9AftlusdmBWobSxQUtlP3xEV39abM2JtIU=;
+	b=EW9nBhO9McnP1GnqKDnjBnZTxS11UghosRG5LQuf0UIr8AkgVNeOvwV14+SrRffAmI
+	cdwvobkqVrIU0KPSCnUG0D73Fl3R9U3k7RWO84FiMnoEP2T/zmpRKhdkLxhK8yf3IDFo
+	wT7mE9Fo+Ry/llBM86OkoK42ew+8Sx/f1b9qOIPgj0QwguzS1WZ7RAbJKOU8CGAIXL7H
+	3+eot338MamYd31IZx1IxkztjrfI+QLJU9ngHfljWtTZF0NcHrzxTilWHrg+ypMSv4Pf
+	K8Ci3b7DDjMl7dVodhaYibpZRG3PERYgPeBNXvIZhdA4+UrcLq7+8rCLxQhmjqwkNjXz
+	4WKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=O2pIo9z/y9AftlusdmBWobSxQUtlP3xEV39abM2JtIU=;
+	b=suODnyBURjXi99unO0wJh0EkDH69FgQg3sbS0vuaqWUfbzXxI+nRR0xHLGJUItg4Ou
+	34MFA6kcRXB+4XP2qIbNSTzRT68LffIqmZvrOWyEE6R7teAcq8AMoP4OrfiiDWvfkQD8
+	OAV8Yux5z6jQS0Byy25vmxdMD1daUplH+MkyExZWnZmqnD8orQj5EDn0sAAy/ieDrIN+
+	9eRuK6Iqf3Nsp04hTemntXoHcmTtUhgRlOVxoUWNzuxnVq69bFssztTmFf06RrHvb6AL
+	nuxpi4EN4MgYISa6FesKdVpxStaKeZkFBvO7NGETlYyGu738I6oFkwNGxSC3r4F0Tgot
+	9RVg==
+X-Gm-Message-State: AMCzsaWUjATT7fsiQdcMTVbv3JJsKQtc4sU9GReaKJG8oAhn48IlghuB
+	XAI3Ia7PXT2GFuF2jidqwsXUp/vdSktROvIeBVVYmw==
+X-Google-Smtp-Source: ABhQp+REky/qlqpxyXf4RqiQGukHnQafrQkOEOLm2AgXIMe31xiT4tNn3/PYCWdQaoxz2zrRrIP20qEcvnpKbbFPpbQ=
+X-Received: by 10.28.131.13 with SMTP id f13mr1466693wmd.157.1508411445834;
+	Thu, 19 Oct 2017 04:10:45 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [192.89.120.53]
-X-ClientProxiedBy: LO2P265CA0057.GBRP265.PROD.OUTLOOK.COM
-	(2603:10a6:600:60::21) To DB6PR0202MB2582.eurprd02.prod.outlook.com
-	(2603:10a6:4:1b::16)
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e4686e9e-46ca-451e-a27c-08d516ddb17e
-X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(2017030254152)(2017052603199)(201703131423075)(201703031133081)(201702281549075);
-	SRVR:DB6PR0202MB2582; 
-X-Microsoft-Exchange-Diagnostics: 1; DB6PR0202MB2582;
-	3:B9/PwOeKhWys+hUKhfz+zFUEYOgMNiv4PaOdmiL5gi5xqOm40TIQ1FL1ai1ux2cIVNKwBH0C4VLHLBny1ggg/VhZo89R/wsIA/U5c6fxZPJNBYQgRyUrVGNPFUPy9nQPmOir7B39bUKjQr0+JqHapz4CdxQ14y8Ex7EdqtMDhoog7gWMSsxcfK8wJwa9/5el/nOKg1RLhZHUlrbnXGRri3MB6x8/fkiN6cnMEmkfql69xPGHBUWqu1ZIXdLrNulP;
-	25:ml6+jj2D9Y8DK1Y8+IemcdwFh7PLU56sl4ghyg4ZoNawV6Lqn6l1mr6hs0kz0vSRDd0+c04H6X9kVwMA4WpdC/OSesQK59X8fz9Ei0UTUAExQhhy0cJO3ZsKIDb/UKGDl+EVK2K/TvthwUA7ap/YPvJHZzwDd7w7jU7/J5+cmm4wkZThnNIsH2EHi8GBkoafWqFlwXh8LKW3SyKKrrop/QTrWPbcn9xEbbN9klluQqdcxCcocilJ1Zp9vcpW1y5OS9EgdfO0yCmXXRF6snu2mTGlDhiwFaOsUk4PYM5GebVnofUuQBacNA07/On7y8RCPOen930sjG6ZjaT1F1DJ8g==;
-	31:YBF0Y89zv25/hnM12egD8k07Ia5FCFlDo1aspdQkuEEX0fBazw4t3Hp/vEB26R+E4Qazt5l9iklS893FyWfeHFj+qPeIcpnEGg6IZ3vvnGPnEmJ8Uv3otIBPbYlYFm06084ii9R7sZkVnBJ92yNtKsblhPEHoCGibSt44UKGtx1b45yScJsNq29gVtVDwAtJFlqq95rjBtYWqLeiGx7toHBXlhEt4mb8e9pDUhF0XT8=
-X-MS-TrafficTypeDiagnostic: DB6PR0202MB2582:
-X-Microsoft-Exchange-Diagnostics: 1; DB6PR0202MB2582;
-	20:KosmVgatgegQYWPMqSBGoeu9oyzPfBdcAnsML3UXYr0BaSPRG7G6FhlQG+gCUhC7TlPfiBQw6OJXjLoBLY+6IpFcIgu7Bo1E35TI0191IrR9dJzLvNOmVrSQg3al/RQuoqPKrVjS0g8Jycb5EqDU5hkS5VHcmMWsAKuH5ZkDbXJjgaeDX/+ayXCF82exzV6olc66hqog2ylky6ay09SC4I87kbz8mgSpfMT5eP3LMTHd2ronzApawu+r+B4cwTO2tcAu4cVMSI8jQjBrAj9f5sfYvTknBYKFVxkZRbmyqxMXb0/GGNCT4vQv6GAzmipMW0VcV0EfxCN7fXh7/YatJra0Dmr4AcfN5xpSvPDTLjhsse9/YoTHXb8h0e8Wkmu16CXVlCsmcLcly4MryTKvkioeSRJ1Vzw6ffWlFrdLcBttIFyi1Xigx2OmrChNRMuvTcDS4FZVCwLcd6447c9m+A9tIHKASK+3p/Rd/MUKWdxFHDex4pbNCF99jvd2m7Oy;
-	4:P7qMZml370D0aBdzX7DeahkF5o+WmJ/Q8adC23r57GyYE+RgO3pwCwX+LiCDIdLswkcTxJ7j/ABmibuBthzLbtwZEhAOEXUpHx/cOI2M68d9vsM0xdFFcojVg8PlCsVsIDzlWbCwLNhnfFNBXaRJLHCkC6xmyAiRzPEssL1tZ5mL5flqde4t/sF7Q0RMSE6iTEhrWKMExGprV3cuBH6O6q6POwdRxTUtx+IHx7aus78fKzncVfbzgYipfJx+5VEE
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Microsoft-Antispam-PRVS: <DB6PR0202MB2582C05EFD7C9999E78AED70E9420@DB6PR0202MB2582.eurprd02.prod.outlook.com>
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(5005006)(8121501046)(10201501046)(100000703101)(100105400095)(93006095)(93001095)(3002001)(6041248)(20161123564025)(20161123558100)(20161123560025)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123555025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:DB6PR0202MB2582; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:DB6PR0202MB2582; 
-X-Forefront-PRVS: 0465429B7F
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10019020)(6009001)(346002)(39830400002)(376002)(199003)(189002)(106356001)(53416004)(97736004)(8676002)(81156014)(81166006)(105586002)(50226002)(8936002)(101416001)(5003940100001)(478600001)(48376002)(50466002)(36756003)(86362001)(7736002)(6666003)(66066001)(305945005)(25786009)(69596002)(6916009)(4326008)(2906002)(47776003)(5660300001)(189998001)(16526018)(53936002)(6486002)(16586007)(68736007)(6506006)(316002)(2351001)(33646002)(2361001)(50986999)(6512007)(74482002)(6116002)(3846002)(460985005);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DB6PR0202MB2582;
-	H:piippo.intra.qt; FPR:; SPF:None; PTR:InfoNoRecords; A:1; MX:1;
-	LANG:en; 
-Received-SPF: None (protection.outlook.com: qt.io does not designate permitted
-	sender hosts)
-X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1; DB6PR0202MB2582;
-	23:IIWQT33+EN1j8dKdf7FAC/7O1kOREHpa3KziiQ/?=
-	=?us-ascii?Q?IreCWU3CTOPpP+rylKq7MacmUb5e+DsCSRuhMc9F6ooWhs9lzRh6MjZAyoP0?=
-	=?us-ascii?Q?U0XZRG+YbJTyIWLtsLgTao8ub6ZwmU/MRsGz/mks28QCZ9/31WakxMNfyGjO?=
-	=?us-ascii?Q?6Hluh9YlYq1CAvwzi/TsQw0rQo1UMRnIK0lPK1E7Rzort0JGMblCXoVn9SMY?=
-	=?us-ascii?Q?hNe0LfPzVayIrb6BmBiEz2V5M41uE5Laivhu2vWQRqfjtEbyFq2M0iSPCytg?=
-	=?us-ascii?Q?Cmukg8JtKzZ9s6Gzhe8lthD4MubAwZZb4cCA8neAW7nDXnn70ivoithvRcEW?=
-	=?us-ascii?Q?yY+LtIVWtXa5REqm9lyU+2BQ1HmY03daVQLhbjOK0frthEh9LUJgBh8na3Wi?=
-	=?us-ascii?Q?d7vouBidOTjxYB6C0JTWoNBBx2HQoSMnaV+OjilHnOTF+/C4B4I5QudjB7sT?=
-	=?us-ascii?Q?/zrnDiq4TrmtZmoSRo9PPihX9fmFVW5Qti4bFbii2QffTuTuLv0sa3pAUMAL?=
-	=?us-ascii?Q?Mr1S21H2dAUVxE7VpEwYkDTVoUhkw28R0X8N/GrCWPMnBOU5gDarQvE2ldtR?=
-	=?us-ascii?Q?zNz4L5f4SHyE6OmLyth1uETpk41J61wX6Cpyua/dTfUkVv/Ec5ZwVgIDXQl1?=
-	=?us-ascii?Q?elTE5fmvnssEeDZG/V0mr7t3OIfMNleVbzBfD4OrY1aQykwQvkamTmlQaqdS?=
-	=?us-ascii?Q?/E1Y8obJXAy9YuiNQaXd9HOBlgaYgA9vKPxNPHz12dtSp/uBG6G50+uy+J9d?=
-	=?us-ascii?Q?q3mukwNXvIojesAIQqi+Wnk/BoP9FTDFLbc0a/1rMi90g3O0drPqmJp4howU?=
-	=?us-ascii?Q?e/FY3h7SPpYj5AveCNAfjQpeLR2TMUHCBRo++IR7Ke6oDQ8yazMz6S8hoV6s?=
-	=?us-ascii?Q?M7rwZtTn06aNAKsWepJizVRfGIPN19LqU9Ho1MPZFQfLxYEUBEUgnDCEui3k?=
-	=?us-ascii?Q?Cuw2zwMi6wZX42aC4J4um1/KBwDcFJBBg6Vm+k4EuqmjNXIqR9/1yNy9BaVE?=
-	=?us-ascii?Q?hba8PIDXLFOk+ISYRKV+BWUj1CqxpaPY1TNYL9OynjXqDl6rGXU/bKaRthUx?=
-	=?us-ascii?Q?hr4kZ2w+NI38Kxt9iM8N4FnvqsAHRjUd6uVTHsLmC+ynG2wbOSl7nINeekL0?=
-	=?us-ascii?Q?+Zkagk/SHg4LUWbOtypMiKoOmxJCEqpA4Ehod6khkGZJAFV+POnWq0A=3D?=
-	=?us-ascii?Q?=3D?=
-X-Microsoft-Exchange-Diagnostics: 1; DB6PR0202MB2582;
-	6:cKrqq0kzYdjPQTgPQdpbi1eTsZoYxY46TIVrCB6mhcQbU1GBwbiPZs9ObM5nbsIotLQ6/LoHpGQ0JP0Xj2yOK4NmIVQmX/cc2uSLVWEVVieb3AKcr/m9ml/f5E9EoBR/kKq3JZ9vwlufqqO8NBAYN7qfDt41E2gpRnpgrw5sNBAQbFnCBmrnL2zJYIQjnzSWMOU46jTJ32kaZmray2J2EE9QihXhnVewWqBAIYx7LQIq52+b43jWTRNCZ2/O2fiDohA51Vx1lmfY3Y3BiaohkGro01ThtApxa+TJOysIsESneKQpAIp4QKqA6pA6tCXETtm1ZGfXMiShVEUJDSM52g==;
-	5:E8I4Hn1y3xYDxd62meq17rBg2jw0CiIZAdTGi9pqxn33DKm5SfuEgQ9c3jyFnrULhgrXh9ibOsEURADlXDAcqiSPPE4tjiKIl0ofg5JY6u9niPaohKmdxcpCMneXz9dwjVMy/G/1u1cAWGbw/vI1iwro2eAbLd6rzAQpVl18Dv0=;
-	24:0rogTbnzpxVntwnHBdxh8TuFj67HfZinBq8I8wQD8Ez61jtMUwuXsBjfWtx0OQJdMLYsffnoGj1Jt1prVpGSja2yNS/s4EE+dI5grvITZJ8=;
-	7:qfYt+Bs/EU9RiiDgnu9LgqcfvLq8hUPWadUMMYOQe8hjIxhJwRJkm7ypD/Eh4O9o6GCVzdrWvw/45/qjTD4AuRfbHvC2Vuh0gJQvwFcszCT80Sa+TfHp99ZrOmkKDU7IuzrO2IOztEDcOlz2OQdPHoYqhJqqfg4oV61MaUAFIL061GMDfM9sY/FDWJJdrr+tF+kCYLenszq0CSWnou+dkv8XqgxEXPO7K80tPGeXNEc=
-SpamDiagnosticOutput: 1:99
-SpamDiagnosticMetadata: NSPM
-X-OriginatorOrg: qt.io
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2017 10:39:36.1274 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 20d0b167-794d-448a-9d01-aaeccc1124ac
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0202MB2582
-Subject: [meta-mingw][PATCH] gdb: add missing space to append line
+Received: by 10.28.137.212 with HTTP; Thu, 19 Oct 2017 04:10:45 -0700 (PDT)
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Thu, 19 Oct 2017 13:10:45 +0200
+Message-ID: <CAAfyv37ogJyGkDSVYSgi61C=3+Y+Z2wXJgg5isHOiXderZ=e-Q@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: rocko: QA issue with glibc-locale
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -116,27 +68,866 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Oct 2017 10:39:40 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 19 Oct 2017 11:10:50 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Samuli Piippo <samuli.piippo@qt.io>
----
- recipes-devtools/gdb/gdb-cross-canadian_%.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi,
 
-diff --git a/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend b/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend
-index 54b975a..067b614 100644
---- a/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend
-+++ b/recipes-devtools/gdb/gdb-cross-canadian_%.bbappend
-@@ -2,6 +2,6 @@ LDFLAGS_append_sdkmingw32 = " -Wl,-static"
- EXEEXT_sdkmingw32 = ".exe"
- DEPENDS_remove_sdkmingw32 = "nativesdk-ncurses nativesdk-readline nativesdk-python"
- RDEPENDS_${PN}_remove_sdkmingw32 = "nativesdk-python-core nativesdk-python-lang nativesdk-python-re nativesdk-python-codecs nativesdk-python-netclient"
--EXTRA_OECONF_append_sdkmingw32 = "--without-curses --without-system-readline --with-python=no"
-+EXTRA_OECONF_append_sdkmingw32 = " --without-curses --without-system-readline --with-python=no"
- PACKAGECONFIG_remove_sdkmingw32 = "readline"
- PACKAGECONFIG_remove_sdkmingw32 = "python"
+I'm using latest origin/rocko
+(65d23bd7986615fdfb0f1717b615534a2a14ab80) with no change to build
+beaglebone core-image-minimal. While build I got this QA error:
+
+ERROR: glibc-locale-2.26-r0 do_package: QA Issue: glibc-locale:
+Files/directories were installed but not shipped in any package:
+  /usr/share/i18n
+  /usr/share/i18n/charmaps
+  /usr/share/i18n/locales
+  /usr/share/i18n/charmaps/EUC-JISX0213.gz
+  /usr/share/i18n/charmaps/IBM905.gz
+  /usr/share/i18n/charmaps/ARMSCII-8.gz
+  /usr/share/i18n/charmaps/JUS_I.B1.003-SERB.gz
+  /usr/share/i18n/charmaps/CP1257.gz
+  /usr/share/i18n/charmaps/EUC-TW.gz
+  /usr/share/i18n/charmaps/IBM1129.gz
+  /usr/share/i18n/charmaps/ISO_10646.gz
+  /usr/share/i18n/charmaps/DS_2089.gz
+  /usr/share/i18n/charmaps/ISO-8859-1.gz
+  /usr/share/i18n/charmaps/SHIFT_JISX0213.gz
+  /usr/share/i18n/charmaps/MACINTOSH.gz
+  /usr/share/i18n/charmaps/IBM273.gz
+  /usr/share/i18n/charmaps/ECMA-CYRILLIC.gz
+  /usr/share/i18n/charmaps/GB_1988-80.gz
+  /usr/share/i18n/charmaps/IEC_P27-1.gz
+  /usr/share/i18n/charmaps/PT154.gz
+  /usr/share/i18n/charmaps/IBM1004.gz
+  /usr/share/i18n/charmaps/ISO-IR-209.gz
+  /usr/share/i18n/charmaps/JOHAB.gz
+  /usr/share/i18n/charmaps/SHIFT_JIS.gz
+  /usr/share/i18n/charmaps/JIS_X0201.gz
+  /usr/share/i18n/charmaps/NATS-DANO-ADD.gz
+  /usr/share/i18n/charmaps/ES2.gz
+  /usr/share/i18n/charmaps/T.101-G2.gz
+  /usr/share/i18n/charmaps/IBM424.gz
+  /usr/share/i18n/charmaps/IBM1164.gz
+  /usr/share/i18n/charmaps/GEORGIAN-PS.gz
+  /usr/share/i18n/charmaps/EBCDIC-DK-NO.gz
+  /usr/share/i18n/charmaps/ISO-8859-7.gz
+  /usr/share/i18n/charmaps/CP770.gz
+  /usr/share/i18n/charmaps/BIG5-HKSCS.gz
+  /usr/share/i18n/charmaps/IBM866.gz
+  /usr/share/i18n/charmaps/EBCDIC-ES-A.gz
+  /usr/share/i18n/charmaps/IBM861.gz
+  /usr/share/i18n/charmaps/EBCDIC-AT-DE-A.gz
+  /usr/share/i18n/charmaps/WINDOWS-31J.gz
+  /usr/share/i18n/charmaps/ISO-8859-5.gz
+  /usr/share/i18n/charmaps/IBM864.gz
+  /usr/share/i18n/charmaps/EBCDIC-PT.gz
+  /usr/share/i18n/charmaps/ISO_6937-2-ADD.gz
+  /usr/share/i18n/charmaps/INIS-CYRILLIC.gz
+  /usr/share/i18n/charmaps/JIS_C6229-1984-A.gz
+  /usr/share/i18n/charmaps/IBM038.gz
+  /usr/share/i18n/charmaps/JIS_C6220-1969-RO.gz
+  /usr/share/i18n/charmaps/KOI8-R.gz
+  /usr/share/i18n/charmaps/ISO-8859-11.gz
+  /usr/share/i18n/charmaps/PT.gz
+  /usr/share/i18n/charmaps/IBM865.gz
+  /usr/share/i18n/charmaps/GBK.gz
+  /usr/share/i18n/charmaps/IBM256.gz
+  /usr/share/i18n/charmaps/IBM1132.gz
+  /usr/share/i18n/charmaps/ISO_5427.gz
+  /usr/share/i18n/charmaps/EBCDIC-CA-FR.gz
+  /usr/share/i18n/charmaps/IBM290.gz
+  /usr/share/i18n/charmaps/LATIN-GREEK.gz
+  /usr/share/i18n/charmaps/IBM1133.gz
+  /usr/share/i18n/charmaps/ISO_646.BASIC.gz
+  /usr/share/i18n/charmaps/IBM922.gz
+  /usr/share/i18n/charmaps/MAC-IS.gz
+  /usr/share/i18n/charmaps/CP1258.gz
+  /usr/share/i18n/charmaps/IBM874.gz
+  /usr/share/i18n/charmaps/IBM856.gz
+  /usr/share/i18n/charmaps/EBCDIC-ES-S.gz
+  /usr/share/i18n/charmaps/IBM855.gz
+  /usr/share/i18n/charmaps/IBM860.gz
+  /usr/share/i18n/charmaps/IBM1162.gz
+  /usr/share/i18n/charmaps/IBM275.gz
+  /usr/share/i18n/charmaps/NC_NC00-10.gz
+  /usr/share/i18n/charmaps/ISO-8859-9.gz
+  /usr/share/i18n/charmaps/DIN_66003.gz
+  /usr/share/i18n/charmaps/TCVN5712-1.gz
+  /usr/share/i18n/charmaps/ISO-8859-15.gz
+  /usr/share/i18n/charmaps/CP10007.gz
+  /usr/share/i18n/charmaps/ISO-IR-197.gz
+  /usr/share/i18n/charmaps/GB2312.gz
+  /usr/share/i18n/charmaps/ISO-8859-2.gz
+  /usr/share/i18n/charmaps/ISO_10367-BOX.gz
+  /usr/share/i18n/charmaps/IBM037.gz
+  /usr/share/i18n/charmaps/EBCDIC-AT-DE.gz
+  /usr/share/i18n/charmaps/MAC-CENTRALEUROPE.gz
+  /usr/share/i18n/charmaps/CP737.gz
+  /usr/share/i18n/charmaps/GEORGIAN-ACADEMY.gz
+  /usr/share/i18n/charmaps/ISO-8859-9E.gz
+  /usr/share/i18n/charmaps/NF_Z_62-010.gz
+  /usr/share/i18n/charmaps/CSA_Z243.4-1985-1.gz
+  /usr/share/i18n/charmaps/IBM869.gz
+  /usr/share/i18n/charmaps/HP-GREEK8.gz
+  /usr/share/i18n/charmaps/ANSI_X3.110-1983.gz
+  /usr/share/i18n/charmaps/ISO_5428.gz
+  /usr/share/i18n/charmaps/GOST_19768-74.gz
+  /usr/share/i18n/charmaps/PT2.gz
+  /usr/share/i18n/charmaps/MIK.gz
+  /usr/share/i18n/charmaps/IBM851.gz
+  /usr/share/i18n/charmaps/JIS_C6229-1984-B-ADD.gz
+  /usr/share/i18n/charmaps/ISO_6937-2-25.gz
+  /usr/share/i18n/charmaps/SEN_850200_C.gz
+  /usr/share/i18n/charmaps/MAC-CYRILLIC.gz
+  /usr/share/i18n/charmaps/CP1256.gz
+  /usr/share/i18n/charmaps/BRF.gz
+  /usr/share/i18n/charmaps/GREEK7.gz
+  /usr/share/i18n/charmaps/INIS-8.gz
+  /usr/share/i18n/charmaps/JIS_C6229-1984-KANA.gz
+  /usr/share/i18n/charmaps/EUC-JP.gz
+  /usr/share/i18n/charmaps/NS_4551-2.gz
+  /usr/share/i18n/charmaps/INVARIANT.gz
+  /usr/share/i18n/charmaps/IBM880.gz
+  /usr/share/i18n/charmaps/EBCDIC-ES.gz
+  /usr/share/i18n/charmaps/IBM277.gz
+  /usr/share/i18n/charmaps/BIG5.gz
+  /usr/share/i18n/charmaps/IBM297.gz
+  /usr/share/i18n/charmaps/IBM866NAV.gz
+  /usr/share/i18n/charmaps/IBM903.gz
+  /usr/share/i18n/charmaps/KOI-8.gz
+  /usr/share/i18n/charmaps/NATS-DANO.gz
+  /usr/share/i18n/charmaps/MAC-SAMI.gz
+  /usr/share/i18n/charmaps/ASMO_449.gz
+  /usr/share/i18n/charmaps/CSA_Z243.4-1985-GR.gz
+  /usr/share/i18n/charmaps/IBM852.gz
+  /usr/share/i18n/charmaps/ISIRI-3342.gz
+  /usr/share/i18n/charmaps/RK1048.gz
+  /usr/share/i18n/charmaps/IBM1160.gz
+  /usr/share/i18n/charmaps/IBM918.gz
+  /usr/share/i18n/charmaps/IBM1163.gz
+  /usr/share/i18n/charmaps/CP1125.gz
+  /usr/share/i18n/charmaps/ISO-IR-90.gz
+  /usr/share/i18n/charmaps/EBCDIC-IS-FRISS.gz
+  /usr/share/i18n/charmaps/MSZ_7795.3.gz
+  /usr/share/i18n/charmaps/IBM1161.gz
+  /usr/share/i18n/charmaps/NEXTSTEP.gz
+  /usr/share/i18n/charmaps/IBM1124.gz
+  /usr/share/i18n/charmaps/NF_Z_62-010_1973.gz
+  /usr/share/i18n/charmaps/IBM437.gz
+  /usr/share/i18n/charmaps/JIS_C6229-1984-HAND.gz
+  /usr/share/i18n/charmaps/CP773.gz
+  /usr/share/i18n/charmaps/CP775.gz
+  /usr/share/i18n/charmaps/NS_4551-1.gz
+  /usr/share/i18n/charmaps/DEC-MCS.gz
+  /usr/share/i18n/charmaps/INIS.gz
+  /usr/share/i18n/charmaps/EBCDIC-DK-NO-A.gz
+  /usr/share/i18n/charmaps/KOI8-T.gz
+  /usr/share/i18n/charmaps/ISO_646.IRV.gz
+  /usr/share/i18n/charmaps/ISO-8859-13.gz
+  /usr/share/i18n/charmaps/CP1252.gz
+  /usr/share/i18n/charmaps/ISO_6937.gz
+  /usr/share/i18n/charmaps/LATIN-GREEK-1.gz
+  /usr/share/i18n/charmaps/CSA_Z243.4-1985-2.gz
+  /usr/share/i18n/charmaps/ISO_5427-EXT.gz
+  /usr/share/i18n/charmaps/EBCDIC-FR.gz
+  /usr/share/i18n/charmaps/IBM857.gz
+  /usr/share/i18n/charmaps/JIS_C6229-1984-HAND-ADD.gz
+  /usr/share/i18n/charmaps/IT.gz
+  /usr/share/i18n/charmaps/MAC-UK.gz
+  /usr/share/i18n/charmaps/JUS_I.B1.002.gz
+  /usr/share/i18n/charmaps/IBM891.gz
+  /usr/share/i18n/charmaps/ANSI_X3.4-1968.gz
+  /usr/share/i18n/charmaps/HP-ROMAN9.gz
+  /usr/share/i18n/charmaps/IBM274.gz
+  /usr/share/i18n/charmaps/IBM284.gz
+  /usr/share/i18n/charmaps/VIDEOTEX-SUPPL.gz
+  /usr/share/i18n/charmaps/CP1255.gz
+  /usr/share/i18n/charmaps/ISO_8859-1,GL.gz
+  /usr/share/i18n/charmaps/CP771.gz
+  /usr/share/i18n/charmaps/EUC-JP-MS.gz
+  /usr/share/i18n/charmaps/JIS_C6229-1984-B.gz
+  /usr/share/i18n/charmaps/CSN_369103.gz
+  /usr/share/i18n/charmaps/KOI8-RU.gz
+  /usr/share/i18n/charmaps/ISO-8859-3.gz
+  /usr/share/i18n/charmaps/IBM280.gz
+  /usr/share/i18n/charmaps/ISO_11548-1.gz
+  /usr/share/i18n/charmaps/EUC-KR.gz
+  /usr/share/i18n/charmaps/IBM863.gz
+  /usr/share/i18n/charmaps/ISO-8859-6.gz
+  /usr/share/i18n/charmaps/VISCII.gz
+  /usr/share/i18n/charmaps/CP1254.gz
+  /usr/share/i18n/charmaps/CP1251.gz
+  /usr/share/i18n/charmaps/KSC5636.gz
+  /usr/share/i18n/charmaps/SEN_850200_B.gz
+  /usr/share/i18n/charmaps/GREEK7-OLD.gz
+  /usr/share/i18n/charmaps/ISO_2033-1983.gz
+  /usr/share/i18n/charmaps/JUS_I.B1.003-MAC.gz
+  /usr/share/i18n/charmaps/IBM875.gz
+  /usr/share/i18n/charmaps/CWI.gz
+  /usr/share/i18n/charmaps/HP-ROMAN8.gz
+  /usr/share/i18n/charmaps/SAMI-WS2.gz
+  /usr/share/i18n/charmaps/HP-THAI8.gz
+  /usr/share/i18n/charmaps/IBM1026.gz
+  /usr/share/i18n/charmaps/IBM870.gz
+  /usr/share/i18n/charmaps/IBM868.gz
+  /usr/share/i18n/charmaps/T.61-8BIT.gz
+  /usr/share/i18n/charmaps/UTF-8.gz
+  /usr/share/i18n/charmaps/IBM423.gz
+  /usr/share/i18n/charmaps/ISO-8859-4.gz
+  /usr/share/i18n/charmaps/CP774.gz
+  /usr/share/i18n/charmaps/HP-TURKISH8.gz
+  /usr/share/i18n/charmaps/IBM420.gz
+  /usr/share/i18n/charmaps/TSCII.gz
+  /usr/share/i18n/charmaps/IBM278.gz
+  /usr/share/i18n/charmaps/EBCDIC-US.gz
+  /usr/share/i18n/charmaps/IBM285.gz
+  /usr/share/i18n/charmaps/JIS_C6220-1969-JP.gz
+  /usr/share/i18n/charmaps/EBCDIC-IT.gz
+  /usr/share/i18n/charmaps/IBM871.gz
+  /usr/share/i18n/charmaps/CP1250.gz
+  /usr/share/i18n/charmaps/ISO_8859-SUPP.gz
+  /usr/share/i18n/charmaps/SAMI.gz
+  /usr/share/i18n/charmaps/TIS-620.gz
+  /usr/share/i18n/charmaps/ISO-8859-16.gz
+  /usr/share/i18n/charmaps/T.61-7BIT.gz
+  /usr/share/i18n/charmaps/BS_VIEWDATA.gz
+  /usr/share/i18n/charmaps/CP1253.gz
+  /usr/share/i18n/charmaps/IBM500.gz
+  /usr/share/i18n/charmaps/NATS-SEFI.gz
+  /usr/share/i18n/charmaps/CP772.gz
+  /usr/share/i18n/charmaps/GREEK-CCITT.gz
+  /usr/share/i18n/charmaps/ISO-8859-10.gz
+  /usr/share/i18n/charmaps/BS_4730.gz
+  /usr/share/i18n/charmaps/KOI8-U.gz
+  /usr/share/i18n/charmaps/IBM904.gz
+  /usr/share/i18n/charmaps/ISO-8859-14.gz
+  /usr/share/i18n/charmaps/IBM850.gz
+  /usr/share/i18n/charmaps/IBM1047.gz
+  /usr/share/i18n/charmaps/GB18030.gz
+  /usr/share/i18n/charmaps/NATS-SEFI-ADD.gz
+  /usr/share/i18n/charmaps/IBM281.gz
+  /usr/share/i18n/charmaps/ES.gz
+  /usr/share/i18n/charmaps/ISO-8859-8.gz
+  /usr/share/i18n/charmaps/IBM862.gz
+  /usr/share/i18n/charmaps/EBCDIC-FI-SE-A.gz
+  /usr/share/i18n/charmaps/EBCDIC-UK.gz
+  /usr/share/i18n/charmaps/EBCDIC-FI-SE.gz
+  /usr/share/i18n/charmaps/CP949.gz
+  /usr/share/i18n/locales/cs_CZ
+  /usr/share/i18n/locales/bn_IN
+  /usr/share/i18n/locales/uz_UZ
+  /usr/share/i18n/locales/fy_NL
+  /usr/share/i18n/locales/gd_GB
+  /usr/share/i18n/locales/de_AT
+  /usr/share/i18n/locales/ru_RU
+  /usr/share/i18n/locales/en_NG
+  /usr/share/i18n/locales/cy_GB
+  /usr/share/i18n/locales/fr_BE
+  /usr/share/i18n/locales/es_GT
+  /usr/share/i18n/locales/wa_BE@euro
+  /usr/share/i18n/locales/lt_LT
+  /usr/share/i18n/locales/nl_NL
+  /usr/share/i18n/locales/id_ID
+  /usr/share/i18n/locales/en_CA
+  /usr/share/i18n/locales/nr_ZA
+  /usr/share/i18n/locales/translit_combining
+  /usr/share/i18n/locales/szl_PL
+  /usr/share/i18n/locales/lg_UG
+  /usr/share/i18n/locales/es_EC
+  /usr/share/i18n/locales/ja_JP
+  /usr/share/i18n/locales/tl_PH
+  /usr/share/i18n/locales/nds_NL
+  /usr/share/i18n/locales/mk_MK
+  /usr/share/i18n/locales/ug_CN
+  /usr/share/i18n/locales/nan_TW@latin
+  /usr/share/i18n/locales/hif_FJ
+  /usr/share/i18n/locales/mg_MG
+  /usr/share/i18n/locales/oc_FR
+  /usr/share/i18n/locales/cmn_TW
+  /usr/share/i18n/locales/is_IS
+  /usr/share/i18n/locales/en_AG
+  /usr/share/i18n/locales/nds_DE
+  /usr/share/i18n/locales/he_IL
+  /usr/share/i18n/locales/fr_FR
+  /usr/share/i18n/locales/es_ES@euro
+  /usr/share/i18n/locales/ta_LK
+  /usr/share/i18n/locales/tk_TM
+  /usr/share/i18n/locales/tr_CY
+  /usr/share/i18n/locales/to_TO
+  /usr/share/i18n/locales/translit_cjk_variants
+  /usr/share/i18n/locales/es_NI
+  /usr/share/i18n/locales/as_IN
+  /usr/share/i18n/locales/fa_IR
+  /usr/share/i18n/locales/sd_IN
+  /usr/share/i18n/locales/niu_NZ
+  /usr/share/i18n/locales/es_PE
+  /usr/share/i18n/locales/aa_ET
+  /usr/share/i18n/locales/es_PA
+  /usr/share/i18n/locales/it_CH
+  /usr/share/i18n/locales/tpi_PG
+  /usr/share/i18n/locales/bo_IN
+  /usr/share/i18n/locales/az_AZ
+  /usr/share/i18n/locales/am_ET
+  /usr/share/i18n/locales/nso_ZA
+  /usr/share/i18n/locales/so_SO
+  /usr/share/i18n/locales/sm_WS
+  /usr/share/i18n/locales/so_ET
+  /usr/share/i18n/locales/ia_FR
+  /usr/share/i18n/locales/de_CH
+  /usr/share/i18n/locales/iso14651_t1
+  /usr/share/i18n/locales/cv_RU
+  /usr/share/i18n/locales/os_RU
+  /usr/share/i18n/locales/hy_AM
+  /usr/share/i18n/locales/ayc_PE
+  /usr/share/i18n/locales/ca_IT
+  /usr/share/i18n/locales/de_LI
+  /usr/share/i18n/locales/yi_US
+  /usr/share/i18n/locales/az_IR
+  /usr/share/i18n/locales/bo_CN
+  /usr/share/i18n/locales/pap_CW
+  /usr/share/i18n/locales/mhr_RU
+  /usr/share/i18n/locales/fr_BE@euro
+  /usr/share/i18n/locales/translit_cjk_compat
+  /usr/share/i18n/locales/agr_PE
+  /usr/share/i18n/locales/th_TH
+  /usr/share/i18n/locales/mi_NZ
+  /usr/share/i18n/locales/sq_MK
+  /usr/share/i18n/locales/es_CL
+  /usr/share/i18n/locales/ber_MA
+  /usr/share/i18n/locales/pl_PL
+  /usr/share/i18n/locales/mni_IN
+  /usr/share/i18n/locales/tt_RU
+  /usr/share/i18n/locales/brx_IN
+  /usr/share/i18n/locales/es_UY
+  /usr/share/i18n/locales/uk_UA
+  /usr/share/i18n/locales/dv_MV
+  /usr/share/i18n/locales/zu_ZA
+  /usr/share/i18n/locales/ar_SD
+  /usr/share/i18n/locales/tr_TR
+  /usr/share/i18n/locales/bi_VU
+  /usr/share/i18n/locales/ln_CD
+  /usr/share/i18n/locales/mag_IN
+  /usr/share/i18n/locales/ks_IN
+  /usr/share/i18n/locales/it_IT
+  /usr/share/i18n/locales/ku_TR
+  /usr/share/i18n/locales/lb_LU
+  /usr/share/i18n/locales/wa_BE
+  /usr/share/i18n/locales/zh_TW
+  /usr/share/i18n/locales/ko_KR
+  /usr/share/i18n/locales/br_FR@euro
+  /usr/share/i18n/locales/es_HN
+  /usr/share/i18n/locales/sq_AL
+  /usr/share/i18n/locales/ar_SS
+  /usr/share/i18n/locales/es_DO
+  /usr/share/i18n/locales/ca_ES@euro
+  /usr/share/i18n/locales/wae_CH
+  /usr/share/i18n/locales/fr_LU
+  /usr/share/i18n/locales/en_IN
+  /usr/share/i18n/locales/ar_AE
+  /usr/share/i18n/locales/be_BY
+  /usr/share/i18n/locales/ar_YE
+  /usr/share/i18n/locales/be_BY@latin
+  /usr/share/i18n/locales/pa_IN
+  /usr/share/i18n/locales/en_ZW
+  /usr/share/i18n/locales/sr_RS@latin
+  /usr/share/i18n/locales/de_BE
+  /usr/share/i18n/locales/de_IT
+  /usr/share/i18n/locales/af_ZA
+  /usr/share/i18n/locales/iu_CA
+  /usr/share/i18n/locales/pt_PT
+  /usr/share/i18n/locales/ar_KW
+  /usr/share/i18n/locales/en_ZM
+  /usr/share/i18n/locales/ks_IN@devanagari
+  /usr/share/i18n/locales/hak_TW
+  /usr/share/i18n/locales/tt_RU@iqtelif
+  /usr/share/i18n/locales/es_BO
+  /usr/share/i18n/locales/en_DK
+  /usr/share/i18n/locales/nl_BE@euro
+  /usr/share/i18n/locales/ur_PK
+  /usr/share/i18n/locales/raj_IN
+  /usr/share/i18n/locales/tg_TJ
+  /usr/share/i18n/locales/sw_TZ
+  /usr/share/i18n/locales/aa_ER
+  /usr/share/i18n/locales/li_NL
+  /usr/share/i18n/locales/de_DE@euro
+  /usr/share/i18n/locales/en_SG
+  /usr/share/i18n/locales/sk_SK
+  /usr/share/i18n/locales/en_ZA
+  /usr/share/i18n/locales/gez_ET
+  /usr/share/i18n/locales/hu_HU
+  /usr/share/i18n/locales/de_BE@euro
+  /usr/share/i18n/locales/uz_UZ@cyrillic
+  /usr/share/i18n/locales/gl_ES@euro
+  /usr/share/i18n/locales/ar_TN
+  /usr/share/i18n/locales/translit_wide
+  /usr/share/i18n/locales/sc_IT
+  /usr/share/i18n/locales/lzh_TW
+  /usr/share/i18n/locales/en_IL
+  /usr/share/i18n/locales/anp_IN
+  /usr/share/i18n/locales/doi_IN
+  /usr/share/i18n/locales/aa_DJ
+  /usr/share/i18n/locales/nn_NO
+  /usr/share/i18n/locales/pt_PT@euro
+  /usr/share/i18n/locales/ml_IN
+  /usr/share/i18n/locales/ur_IN
+  /usr/share/i18n/locales/sd_IN@devanagari
+  /usr/share/i18n/locales/en_BW
+  /usr/share/i18n/locales/ss_ZA
+  /usr/share/i18n/locales/fy_DE
+  /usr/share/i18n/locales/nl_BE
+  /usr/share/i18n/locales/en_PH
+  /usr/share/i18n/locales/sid_ET
+  /usr/share/i18n/locales/csb_PL
+  /usr/share/i18n/locales/nan_TW
+  /usr/share/i18n/locales/ar_SY
+  /usr/share/i18n/locales/en_US
+  /usr/share/i18n/locales/es_PR
+  /usr/share/i18n/locales/es_CO
+  /usr/share/i18n/locales/eo
+  /usr/share/i18n/locales/yue_HK
+  /usr/share/i18n/locales/hi_IN
+  /usr/share/i18n/locales/an_ES
+  /usr/share/i18n/locales/nb_NO
+  /usr/share/i18n/locales/mr_IN
+  /usr/share/i18n/locales/ar_MA
+  /usr/share/i18n/locales/sa_IN
+  /usr/share/i18n/locales/ky_KG
+  /usr/share/i18n/locales/fi_FI@euro
+  /usr/share/i18n/locales/mai_IN
+  /usr/share/i18n/locales/sv_FI
+  /usr/share/i18n/locales/fr_FR@euro
+  /usr/share/i18n/locales/es_AR
+  /usr/share/i18n/locales/pap_AW
+  /usr/share/i18n/locales/es_US
+  /usr/share/i18n/locales/es_MX
+  /usr/share/i18n/locales/sv_SE
+  /usr/share/i18n/locales/hr_HR
+  /usr/share/i18n/locales/translit_font
+  /usr/share/i18n/locales/dz_BT
+  /usr/share/i18n/locales/i18n
+  /usr/share/i18n/locales/es_SV
+  /usr/share/i18n/locales/kok_IN
+  /usr/share/i18n/locales/om_KE
+  /usr/share/i18n/locales/ast_ES
+  /usr/share/i18n/locales/li_BE
+  /usr/share/i18n/locales/en_IE@euro
+  /usr/share/i18n/locales/fil_PH
+  /usr/share/i18n/locales/ar_SA
+  /usr/share/i18n/locales/gv_GB
+  /usr/share/i18n/locales/translit_narrow
+  /usr/share/i18n/locales/fo_FO
+  /usr/share/i18n/locales/ar_BH
+  /usr/share/i18n/locales/ar_LY
+  /usr/share/i18n/locales/gez_ER
+  /usr/share/i18n/locales/gu_IN
+  /usr/share/i18n/locales/pa_PK
+  /usr/share/i18n/locales/fur_IT
+  /usr/share/i18n/locales/ca_AD
+  /usr/share/i18n/locales/kw_GB
+  /usr/share/i18n/locales/ms_MY
+  /usr/share/i18n/locales/gl_ES
+  /usr/share/i18n/locales/so_DJ
+  /usr/share/i18n/locales/de_DE
+  /usr/share/i18n/locales/lv_LV
+  /usr/share/i18n/locales/ber_DZ
+  /usr/share/i18n/locales/sv_FI@euro
+  /usr/share/i18n/locales/fr_LU@euro
+  /usr/share/i18n/locales/iso14651_t1_common
+  /usr/share/i18n/locales/ig_NG
+  /usr/share/i18n/locales/es_ES
+  /usr/share/i18n/locales/yo_NG
+  /usr/share/i18n/locales/ar_JO
+  /usr/share/i18n/locales/iso14651_t1_pinyin
+  /usr/share/i18n/locales/te_IN
+  /usr/share/i18n/locales/en_IE
+  /usr/share/i18n/locales/es_CR
+  /usr/share/i18n/locales/crh_UA
+  /usr/share/i18n/locales/niu_NU
+  /usr/share/i18n/locales/de_AT@euro
+  /usr/share/i18n/locales/ta_IN
+  /usr/share/i18n/locales/wal_ET
+  /usr/share/i18n/locales/ar_DZ
+  /usr/share/i18n/locales/translit_circle
+  /usr/share/i18n/locales/bho_IN
+  /usr/share/i18n/locales/ga_IE
+  /usr/share/i18n/locales/zh_HK
+  /usr/share/i18n/locales/shs_CA
+  /usr/share/i18n/locales/aa_ER@saaho
+  /usr/share/i18n/locales/fr_CH
+  /usr/share/i18n/locales/ca_FR
+  /usr/share/i18n/locales/se_NO
+  /usr/share/i18n/locales/lo_LA
+  /usr/share/i18n/locales/nl_NL@euro
+  /usr/share/i18n/locales/de_LU@euro
+  /usr/share/i18n/locales/de_LU
+  /usr/share/i18n/locales/ts_ZA
+  /usr/share/i18n/locales/ar_IQ
+  /usr/share/i18n/locales/tig_ER
+  /usr/share/i18n/locales/en_NZ
+  /usr/share/i18n/locales/ak_GH
+  /usr/share/i18n/locales/kk_KZ
+  /usr/share/i18n/locales/or_IN
+  /usr/share/i18n/locales/rw_RW
+  /usr/share/i18n/locales/es_CU
+  /usr/share/i18n/locales/fr_CA
+  /usr/share/i18n/locales/eu_ES
+  /usr/share/i18n/locales/mai_NP
+  /usr/share/i18n/locales/bem_ZM
+  /usr/share/i18n/locales/sr_RS
+  /usr/share/i18n/locales/zh_SG
+  /usr/share/i18n/locales/ti_ER
+  /usr/share/i18n/locales/translit_small
+  /usr/share/i18n/locales/el_GR
+  /usr/share/i18n/locales/ce_RU
+  /usr/share/i18n/locales/ar_QA
+  /usr/share/i18n/locales/translit_compat
+  /usr/share/i18n/locales/POSIX
+  /usr/share/i18n/locales/gez_ET@abegede
+  /usr/share/i18n/locales/zh_CN
+  /usr/share/i18n/locales/en_GB
+  /usr/share/i18n/locales/ti_ET
+  /usr/share/i18n/locales/bn_BD
+  /usr/share/i18n/locales/nhn_MX
+  /usr/share/i18n/locales/vi_VN
+  /usr/share/i18n/locales/chr_US
+  /usr/share/i18n/locales/ca_ES
+  /usr/share/i18n/locales/ha_NG
+  /usr/share/i18n/locales/ff_SN
+  /usr/share/i18n/locales/sat_IN
+  /usr/share/i18n/locales/ve_ZA
+  /usr/share/i18n/locales/gez_ER@abegede
+  /usr/share/i18n/locales/sl_SI
+  /usr/share/i18n/locales/mn_MN
+  /usr/share/i18n/locales/bs_BA
+  /usr/share/i18n/locales/ga_IE@euro
+  /usr/share/i18n/locales/ar_LB
+  /usr/share/i18n/locales/translit_hangul
+  /usr/share/i18n/locales/da_DK
+  /usr/share/i18n/locales/es_VE
+  /usr/share/i18n/locales/el_GR@euro
+  /usr/share/i18n/locales/nl_AW
+  /usr/share/i18n/locales/el_CY
+  /usr/share/i18n/locales/translit_neutral
+  /usr/share/i18n/locales/unm_US
+  /usr/share/i18n/locales/quz_PE
+  /usr/share/i18n/locales/wo_SN
+  /usr/share/i18n/locales/sr_ME
+  /usr/share/i18n/locales/tcy_IN
+  /usr/share/i18n/locales/br_FR
+  /usr/share/i18n/locales/kl_GL
+  /usr/share/i18n/locales/sw_KE
+  /usr/share/i18n/locales/the_NP
+  /usr/share/i18n/locales/kn_IN
+  /usr/share/i18n/locales/xh_ZA
+  /usr/share/i18n/locales/lij_IT
+  /usr/share/i18n/locales/hne_IN
+  /usr/share/i18n/locales/bhb_IN
+  /usr/share/i18n/locales/sgs_LT
+  /usr/share/i18n/locales/bg_BG
+  /usr/share/i18n/locales/ka_GE
+  /usr/share/i18n/locales/ne_NP
+  /usr/share/i18n/locales/km_KH
+  /usr/share/i18n/locales/translit_fraction
+  /usr/share/i18n/locales/ar_EG
+  /usr/share/i18n/locales/ar_OM
+  /usr/share/i18n/locales/so_KE
+  /usr/share/i18n/locales/tn_ZA
+  /usr/share/i18n/locales/es_PY
+  /usr/share/i18n/locales/it_IT@euro
+  /usr/share/i18n/locales/ro_RO
+  /usr/share/i18n/locales/ik_CA
+  /usr/share/i18n/locales/st_ZA
+  /usr/share/i18n/locales/mt_MT
+  /usr/share/i18n/locales/my_MM
+  /usr/share/i18n/locales/eu_ES@euro
+  /usr/share/i18n/locales/pt_BR
+  /usr/share/i18n/locales/hsb_DE
+  /usr/share/i18n/locales/et_EE
+  /usr/share/i18n/locales/ht_HT
+  /usr/share/i18n/locales/byn_ER
+  /usr/share/i18n/locales/en_AU
+  /usr/share/i18n/locales/om_ET
+  /usr/share/i18n/locales/en_HK
+  /usr/share/i18n/locales/ru_UA
+  /usr/share/i18n/locales/fi_FI
+  /usr/share/i18n/locales/si_LK
+  /usr/share/i18n/locales/ar_IN
+  /usr/share/i18n/locales/ps_AF
+  /usr/lib/gconv/IBM875.so
+  /usr/lib/gconv/IBM864.so
+  /usr/lib/gconv/EBCDIC-FI-SE.so
+  /usr/lib/gconv/EBCDIC-AT-DE-A.so
+  /usr/lib/gconv/IBM1142.so
+  /usr/lib/gconv/CP1257.so
+  /usr/lib/gconv/IBM1371.so
+  /usr/lib/gconv/GBK.so
+  /usr/lib/gconv/EUC-CN.so
+  /usr/lib/gconv/ISO8859-15.so
+  /usr/lib/gconv/ASMO_449.so
+  /usr/lib/gconv/CP772.so
+  /usr/lib/gconv/IBM256.so
+  /usr/lib/gconv/IBM922.so
+  /usr/lib/gconv/IBM932.so
+  /usr/lib/gconv/ISO8859-3.so
+  /usr/lib/gconv/EBCDIC-FR.so
+  /usr/lib/gconv/BIG5HKSCS.so
+  /usr/lib/gconv/IBM4517.so
+  /usr/lib/gconv/SAMI-WS2.so
+  /usr/lib/gconv/IBM905.so
+  /usr/lib/gconv/libGB.so
+  /usr/lib/gconv/IBM1163.so
+  /usr/lib/gconv/CP773.so
+  /usr/lib/gconv/T.61.so
+  /usr/lib/gconv/ANSI_X3.110.so
+  /usr/lib/gconv/libKSC.so
+  /usr/lib/gconv/IBM930.so
+  /usr/lib/gconv/TCVN5712-1.so
+  /usr/lib/gconv/KOI8-RU.so
+  /usr/lib/gconv/CSN_369103.so
+  /usr/lib/gconv/RK1048.so
+  /usr/lib/gconv/IBM856.so
+  /usr/lib/gconv/EBCDIC-US.so
+  /usr/lib/gconv/IBM1364.so
+  /usr/lib/gconv/IBM1123.so
+  /usr/lib/gconv/CP774.so
+  /usr/lib/gconv/ISO_2033.so
+  /usr/lib/gconv/BRF.so
+  /usr/lib/gconv/KOI8-T.so
+  /usr/lib/gconv/CP932.so
+  /usr/lib/gconv/GEORGIAN-ACADEMY.so
+  /usr/lib/gconv/IBM1025.so
+  /usr/lib/gconv/IBM921.so
+  /usr/lib/gconv/HP-ROMAN9.so
+  /usr/lib/gconv/IBM1157.so
+  /usr/lib/gconv/ISO8859-9E.so
+  /usr/lib/gconv/IBM420.so
+  /usr/lib/gconv/IBM860.so
+  /usr/lib/gconv/LATIN-GREEK-1.so
+  /usr/lib/gconv/IBM862.so
+  /usr/lib/gconv/IBM871.so
+  /usr/lib/gconv/ISO-2022-CN.so
+  /usr/lib/gconv/HP-THAI8.so
+  /usr/lib/gconv/CP771.so
+  /usr/lib/gconv/UHC.so
+  /usr/lib/gconv/ISO-IR-209.so
+  /usr/lib/gconv/ISO-2022-JP.so
+  /usr/lib/gconv/HP-GREEK8.so
+  /usr/lib/gconv/UTF-7.so
+  /usr/lib/gconv/EBCDIC-PT.so
+  /usr/lib/gconv/IBM1145.so
+  /usr/lib/gconv/IBM803.so
+  /usr/lib/gconv/IBM866NAV.so
+  /usr/lib/gconv/EBCDIC-DK-NO.so
+  /usr/lib/gconv/KOI8-U.so
+  /usr/lib/gconv/libJISX0213.so
+  /usr/lib/gconv/IBM1133.so
+  /usr/lib/gconv/BIG5.so
+  /usr/lib/gconv/IBM1146.so
+  /usr/lib/gconv/IBM855.so
+  /usr/lib/gconv/IBM1130.so
+  /usr/lib/gconv/SHIFT_JISX0213.so
+  /usr/lib/gconv/IBM891.so
+  /usr/lib/gconv/IBM851.so
+  /usr/lib/gconv/ISO_11548-1.so
+  /usr/lib/gconv/IBM869.so
+  /usr/lib/gconv/IBM1008.so
+  /usr/lib/gconv/ISO_6937.so
+  /usr/lib/gconv/IBM880.so
+  /usr/lib/gconv/IBM933.so
+  /usr/lib/gconv/ISO_6937-2.so
+  /usr/lib/gconv/IBM1161.so
+  /usr/lib/gconv/ISO8859-13.so
+  /usr/lib/gconv/IBM870.so
+  /usr/lib/gconv/LATIN-GREEK.so
+  /usr/lib/gconv/ISO8859-16.so
+  /usr/lib/gconv/CP1251.so
+  /usr/lib/gconv/EBCDIC-ES.so
+  /usr/lib/gconv/IBM1122.so
+  /usr/lib/gconv/PT154.so
+  /usr/lib/gconv/CP737.so
+  /usr/lib/gconv/IBM500.so
+  /usr/lib/gconv/IBM1144.so
+  /usr/lib/gconv/ISO8859-6.so
+  /usr/lib/gconv/EBCDIC-UK.so
+  /usr/lib/gconv/EBCDIC-IT.so
+  /usr/lib/gconv/CP1256.so
+  /usr/lib/gconv/ISO_10367-BOX.so
+  /usr/lib/gconv/GREEK7-OLD.so
+  /usr/lib/gconv/IBM863.so
+  /usr/lib/gconv/CP1254.so
+  /usr/lib/gconv/IBM868.so
+  /usr/lib/gconv/EUC-JISX0213.so
+  /usr/lib/gconv/ISO8859-1.so
+  /usr/lib/gconv/IBM1140.so
+  /usr/lib/gconv/INIS-CYRILLIC.so
+  /usr/lib/gconv/CP10007.so
+  /usr/lib/gconv/SJIS.so
+  /usr/lib/gconv/IBM903.so
+  /usr/lib/gconv/CP1253.so
+  /usr/lib/gconv/ISO8859-7.so
+  /usr/lib/gconv/IBM1124.so
+  /usr/lib/gconv/MAC-SAMI.so
+  /usr/lib/gconv/IBM275.so
+  /usr/lib/gconv/IBM12712.so
+  /usr/lib/gconv/IBM918.so
+  /usr/lib/gconv/IBM1162.so
+  /usr/lib/gconv/IBM1097.so
+  /usr/lib/gconv/CP1250.so
+  /usr/lib/gconv/IBM278.so
+  /usr/lib/gconv/INIS.so
+  /usr/lib/gconv/MAC-UK.so
+  /usr/lib/gconv/CWI.so
+  /usr/lib/gconv/CP1258.so
+  /usr/lib/gconv/IBM1155.so
+  /usr/lib/gconv/IBM1156.so
+  /usr/lib/gconv/ARMSCII-8.so
+  /usr/lib/gconv/JOHAB.so
+  /usr/lib/gconv/IBM4909.so
+  /usr/lib/gconv/IBM437.so
+  /usr/lib/gconv/EBCDIC-FI-SE-A.so
+  /usr/lib/gconv/IBM852.so
+  /usr/lib/gconv/IBM1137.so
+  /usr/lib/gconv/EUC-TW.so
+  /usr/lib/gconv/IBM1158.so
+  /usr/lib/gconv/KOI-8.so
+  /usr/lib/gconv/EUC-JP-MS.so
+  /usr/lib/gconv/ISO646.so
+  /usr/lib/gconv/NATS-SEFI.so
+  /usr/lib/gconv/INIS-8.so
+  /usr/lib/gconv/IBM857.so
+  /usr/lib/gconv/IBM297.so
+  /usr/lib/gconv/IBM943.so
+  /usr/lib/gconv/MIK.so
+  /usr/lib/gconv/IEC_P27-1.so
+  /usr/lib/gconv/CP1125.so
+  /usr/lib/gconv/HP-TURKISH8.so
+  /usr/lib/gconv/IBM939.so
+  /usr/lib/gconv/ISO8859-4.so
+  /usr/lib/gconv/ISO8859-8.so
+  /usr/lib/gconv/CP775.so
+  /usr/lib/gconv/IBM937.so
+  /usr/lib/gconv/MAC-CENTRALEUROPE.so
+  /usr/lib/gconv/EBCDIC-AT-DE.so
+  /usr/lib/gconv/IBM901.so
+  /usr/lib/gconv/IBM1160.so
+  /usr/lib/gconv/ISIRI-3342.so
+  /usr/lib/gconv/ISO-IR-197.so
+  /usr/lib/gconv/IBM284.so
+  /usr/lib/gconv/IBM277.so
+  /usr/lib/gconv/ISO_5428.so
+  /usr/lib/gconv/IBM865.so
+  /usr/lib/gconv/EBCDIC-ES-A.so
+  /usr/lib/gconv/libISOIR165.so
+  /usr/lib/gconv/IBM424.so
+  /usr/lib/gconv/ISO_5427.so
+  /usr/lib/gconv/IBM1149.so
+  /usr/lib/gconv/IBM1390.so
+  /usr/lib/gconv/IBM1026.so
+  /usr/lib/gconv/IBM038.so
+  /usr/lib/gconv/IBM280.so
+  /usr/lib/gconv/ISO8859-9.so
+  /usr/lib/gconv/EUC-KR.so
+  /usr/lib/gconv/IBM281.so
+  /usr/lib/gconv/IBM1046.so
+  /usr/lib/gconv/IBM16804.so
+  /usr/lib/gconv/UTF-32.so
+  /usr/lib/gconv/IBM1148.so
+  /usr/lib/gconv/TSCII.so
+  /usr/lib/gconv/IBM5347.so
+  /usr/lib/gconv/GB18030.so
+  /usr/lib/gconv/ISO8859-5.so
+  /usr/lib/gconv/UNICODE.so
+  /usr/lib/gconv/IBM1141.so
+  /usr/lib/gconv/IBM285.so
+  /usr/lib/gconv/IBM1153.so
+  /usr/lib/gconv/IBM1047.so
+  /usr/lib/gconv/ISO-2022-CN-EXT.so
+  /usr/lib/gconv/EBCDIC-CA-FR.so
+  /usr/lib/gconv/MACINTOSH.so
+  /usr/lib/gconv/GOST_19768-74.so
+  /usr/lib/gconv/IBM4971.so
+  /usr/lib/gconv/IBM290.so
+  /usr/lib/gconv/ISO8859-14.so
+  /usr/lib/gconv/GEORGIAN-PS.so
+  /usr/lib/gconv/ECMA-CYRILLIC.so
+  /usr/lib/gconv/IBM1164.so
+  /usr/lib/gconv/GREEK7.so
+  /usr/lib/gconv/ISO_5427-EXT.so
+  /usr/lib/gconv/IBM1166.so
+  /usr/lib/gconv/IBM9066.so
+  /usr/lib/gconv/IBM1143.so
+  /usr/lib/gconv/EBCDIC-IS-FRISS.so
+  /usr/lib/gconv/GREEK-CCITT.so
+  /usr/lib/gconv/KOI8-R.so
+  /usr/lib/gconv/IBM850.so
+  /usr/lib/gconv/GBGBK.so
+  /usr/lib/gconv/IBM9448.so
+  /usr/lib/gconv/MAC-IS.so
+  /usr/lib/gconv/TIS-620.so
+  /usr/lib/gconv/EUC-JP.so
+  /usr/lib/gconv/IBM037.so
+  /usr/lib/gconv/NATS-DANO.so
+  /usr/lib/gconv/IBM1132.so
+  /usr/lib/gconv/IBM1004.so
+  /usr/lib/gconv/IBM1112.so
+  /usr/lib/gconv/HP-ROMAN8.so
+  /usr/lib/gconv/IBM1129.so
+  /usr/lib/gconv/CP770.so
+  /usr/lib/gconv/ISO-2022-KR.so
+  /usr/lib/gconv/EBCDIC-DK-NO-A.so
+  /usr/lib/gconv/IBM274.so
+  /usr/lib/gconv/IBM861.so
+  /usr/lib/gconv/gconv-modules
+  /usr/lib/gconv/UTF-16.so
+  /usr/lib/gconv/ISO8859-2.so
+  /usr/lib/gconv/EBCDIC-ES-S.so
+  /usr/lib/gconv/DEC-MCS.so
+  /usr/lib/gconv/VISCII.so
+  /usr/lib/gconv/IBM273.so
+  /usr/lib/gconv/IBM1399.so
+  /usr/lib/gconv/ISO-2022-JP-3.so
+  /usr/lib/gconv/ISO8859-10.so
+  /usr/lib/gconv/IBM1147.so
+  /usr/lib/gconv/ISO8859-11.so
+  /usr/lib/gconv/GBBIG5.so
+  /usr/lib/gconv/CP1252.so
+  /usr/lib/gconv/IBM904.so
+  /usr/lib/gconv/libJIS.so
+  /usr/lib/gconv/IBM874.so
+  /usr/lib/gconv/IBM902.so
+  /usr/lib/gconv/IBM1154.so
+  /usr/lib/gconv/libCNS.so
+  /usr/lib/gconv/IBM423.so
+  /usr/lib/gconv/IBM1388.so
+  /usr/lib/gconv/IBM935.so
+  /usr/lib/gconv/IBM9030.so
+  /usr/lib/gconv/IBM1167.so
+  /usr/lib/gconv/IBM1008_420.so
+  /usr/lib/gconv/IBM866.so
+  /usr/lib/gconv/IBM4899.so
+  /usr/lib/gconv/CP1255.so
+Please set FILES such that these items are packaged. Alternatively if
+they are unneeded, avoid installing them or delete them within
+do_install.
+glibc-locale: 828 installed and not shipped files. [installed-vs-shipped]
+ERROR: glibc-locale-2.26-r0 do_package: Fatal QA errors found, failing task.
+ERROR: glibc-locale-2.26-r0 do_package: Function failed: do_package
+
+Thanks.
+
+BR,
+
+marek
 -- 
-2.7.4
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
