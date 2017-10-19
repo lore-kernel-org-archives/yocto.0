@@ -1,65 +1,74 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <marlon.smith10@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5316CE00D41; Thu, 19 Oct 2017 12:16:03 -0700 (PDT)
+	id 9B6D1E00CD1; Thu, 19 Oct 2017 12:38:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.170 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (marlon.smith10[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.193 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
-Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C55E3E00C45
-	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 12:16:02 -0700 (PDT)
-Received: by mail-io0-f170.google.com with SMTP id m16so10973043iod.1
-	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 12:16:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=CvHn8vilwkY/OEUOKdUHzrywryOsYjBOnnyLzUyX9UA=;
-	b=PG4B7bSQRPECyI6o1fQ0Vl8nGZ9gDKhBPDQKbwfyLef2SIanHLOpLR8BAO8svLbTSQ
-	LthMciSBexFAoZDhbq0xLrA1K9za1VfHGVoKWi0e/yNpNrGIsWGBjXEPbs82n2yVAv57
-	+b+ZaFMW6XJkmwkDK8Dud6ov6tpz+DewKag5j1WmYLu03M/nYljV0Q4aEbIEmI5e4IG5
-	FwBz5SxeDH4tcnoOb3r+21RqtyEovlSWl1oWsqMjOHfr3G/GJ+xOR/ZRtpU8Bd7BkmR5
-	MiHMfM6aeOAtbYnEVLdF7mnAtVkU/8miyigGXPdvuzjqUj92bqAWDjkU2OEWkuGtQ+/n
-	Qv9w==
+Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
+	[209.85.192.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E985E00C45
+	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 12:38:19 -0700 (PDT)
+Received: by mail-pf0-f193.google.com with SMTP id z11so7449441pfk.4
+	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 12:38:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:mime-version:content-transfer-encoding;
+	bh=fL3Vc39bVooqulTKcxScifMWYt6aezbZIizvmyn9LXk=;
+	b=AmW3NZUlPcHnagItCBhoXYIfj1fi4tU0weFjN76PbyMPQebjHf5GSmTBJi/CawNnB0
+	oLFz98cGwwld5UwygXwzsXdKv2kLXC7SI6dvrNgbk7CiFbmLphgd0bw/bH4JzoLJIDS0
+	TKXi5wtC45WVCFDswKsH20Zm89BpPNosALjybRFZjhER2jt92VTI6jcXtJBo6AMITNdA
+	7Ko0eDsY09ZiEO+9eZJuJ7+p8c+nBhHiwqY5Exp8JIwJbj4SiCr0khzV5MIWyR0ZN8sT
+	kwxx9uv6j6RZB/i0vioNJPG/KgAreh/hYhnIxtWDm9rEPRYNIQu2wuAxyMyFsdUcQLU9
+	esBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=CvHn8vilwkY/OEUOKdUHzrywryOsYjBOnnyLzUyX9UA=;
-	b=OQjFEOiUqlPmpUJqwvYoLLEzivqQmKUSHEVYR1DO5Yzci/Tzm4+NcAaAgGjvIZVEiK
-	aWT5Kja6gUIzdYcIu3OZGromcgbA33Z69nYBBDWE3jGPM0x0YQ0q8g4a/XT9TwbmgIvM
-	tCuQscUS4wpZBCguEW5ueWaDWhm7mOnUjiwr1kao/liNmScvQzV1OtYjAKAfLmzKKaXu
-	8pxSp8CSjIFhiN0l+ezoRXLcJVJ04kBaADKZEwjAWLMNRVPkoJSqbYJ1M5tUujBJ1Vnw
-	Hz8wqORvpKATuEP/axk4hNhRQ3CinHi3xKmIv/iYaaogwEStxOmNCfepU4V6BLGGqIsi
-	ww5g==
-X-Gm-Message-State: AMCzsaXJ1LOBZ9E7c4Vp0ixS+wYLdImL9qws4xtSRxYRGnw6c7yPibRM
-	u4Yn+uL1Ptpwsi5UMPloW871GN7KUvWhJwrXOHmfig==
-X-Google-Smtp-Source: ABhQp+SJ0XeDJAnwQYG0DiTIKLLYsaM36DI+75+cY91leUS+oRWdn7Y99obju4uqgZ3fre25bVOIjU78fS+UDHn3sXY=
-X-Received: by 10.107.18.67 with SMTP id a64mr3549989ioj.165.1508440561763;
-	Thu, 19 Oct 2017 12:16:01 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.176.10 with HTTP; Thu, 19 Oct 2017 12:15:41 -0700 (PDT)
-In-Reply-To: <CAAfyv37ogJyGkDSVYSgi61C=3+Y+Z2wXJgg5isHOiXderZ=e-Q@mail.gmail.com>
-References: <CAAfyv37ogJyGkDSVYSgi61C=3+Y+Z2wXJgg5isHOiXderZ=e-Q@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 19 Oct 2017 20:15:41 +0100
-Message-ID: <CAJTo0LYbM5HeRgn6iuVwvpYqrWnN-H2f82qMqzXADj5Zn7QdJQ@mail.gmail.com>
-To: Belisko Marek <marek.belisko@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: rocko: QA issue with glibc-locale
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=fL3Vc39bVooqulTKcxScifMWYt6aezbZIizvmyn9LXk=;
+	b=PrekuED3sKQ3KYg3Qs428MrpOeOFu2NyvgP1L9OWOce35NO1wC/z328UYEkbP0o4cO
+	G6nLvFfIGwpuOodE1Zhdt9G+GGruWqx6g+NvbmEKKdyz5G9LDUGTeYpg0O/kKa3EKM1A
+	O+ADRHZoD1UFTknsoN8pnkn16cBh5XDKlb48ROo5bG9BZhVtkSS7vIDSwp64kmuaT+XT
+	CKqma0pZMqwTpj4fa0YebTIC8PPjxREoo6GpLw3jIhAywdYYJ0UOfaGdxF+XCb7uDMxf
+	zQjwHxYZ4/7ImWbzeP9umZuHz6HAzNsrcZkglfVGtD4EIqKHGt/JjyPwlIxtrVRI7zqR
+	dEYw==
+X-Gm-Message-State: AMCzsaW8AkNeGcD5iRxUFuu4SBZq8wByhTNll99iBXtXGPRSPOs2JKnJ
+	ppubeYb+4F9jbd150o/uo3OWwQ==
+X-Google-Smtp-Source: ABhQp+QOLV7AsQRfsSW/FIymWRT9mKf0sex/J1V/nFnnSLkzbTJLBt6QiCK4IIq74aOWd+c4g7th/Q==
+X-Received: by 10.99.37.193 with SMTP id l184mr2337950pgl.14.1508441898951;
+	Thu, 19 Oct 2017 12:38:18 -0700 (PDT)
+Received: from [10.2.0.10] (S0106a84e3f53ec33.gv.shawcable.net.
+	[184.66.238.184]) by smtp.gmail.com with ESMTPSA id
+	186sm25982869pfe.174.2017.10.19.12.38.17
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 19 Oct 2017 12:38:17 -0700 (PDT)
+Message-ID: <1508441896.4636.70.camel@gmail.com>
+From: Marlon Smith <marlon.smith10@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 19 Oct 2017 12:38:16 -0700
+In-Reply-To: <CAMKF1srFzdJusbLTTEikKQHrzKinot3=YgR+nkegsKGUCbM6tQ@mail.gmail.com>
+References: <1508364829.4636.30.camel@gmail.com>
+	<CAMKF1srFzdJusbLTTEikKQHrzKinot3=YgR+nkegsKGUCbM6tQ@mail.gmail.com>
+X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Building kernel backports for ARM with Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,49 +80,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Oct 2017 19:16:03 -0000
-Content-Type: multipart/alternative; boundary="001a113ee9b2d95d1f055beb2fb9"
-
---001a113ee9b2d95d1f055beb2fb9
+X-List-Received-Date: Thu, 19 Oct 2017 19:38:20 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 19 October 2017 at 12:10, Belisko Marek <marek.belisko@gmail.com> wrote:
+On Wed, 2017-10-18 at 22:50 -0700, Khem Raj wrote:
+> On Wed, Oct 18, 2017 at 3:13 PM, Marlon Smith <marlon.smith10@gmail.c
+> om> wrote:
+> > 
+> > Hi everyone,
+> > 
+> > I'm trying to build the Linux backports project to get updated wifi
+> > drivers
+> > on an older kernel.  The problem is that when building backports,
+> > it first
+> > builds several tools that need to be run natively before cross-
+> > compiling the
+> > rest of the project.
+> > 
+> > I know how to write a bitbake recipe to compile natively, and how
+> > to write
+> > one to build for the target, but I can't figure out how to combine
+> > the two.
+> > The backports project has steps for LTIB:
+> > 
+> >  %Build
+> >  export PATH=$UNSPOOF_PATH
+> > 
+> >  make menuconfig prefix=%{_prefix} \
+> >    CROSS_COMPILE=${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX} \
+> >    ARCH=$LINTARCH KLIB=${TOP}/rootfs/lib/modules/%{kversion} \
+> >    KLIB_BUILD=${TOP}/rpm/BUILD/linux
+> > 
+> >  export PATH=$SPOOF_PATH
+> > 
+> >  make prefix=%{_prefix} \
+> >    CROSS_COMPILE=${TOOLCHAIN_PATH}/bin/${TOOLCHAIN_PREFIX} \
+> >    ARCH=$LINTARCH KLIB=${TOP}/rootfs/lib/modules/%{kversion} \
+> >    KLIB_BUILD=${TOP}/rpm/BUILD/linux
+> > 
+> > 
+> > I believe what I need is an equivalent to the line export
+> > PATH=$UNSPOOF_PATH
+> > but I can't find anything in the Yocto documentation or mailing
+> > lists that
+> > would be equivalent to that.
+> > 
+> > 
+> > Any help would be much appreciated!
+> You might try this out
+> 
+> https://github.com/kraj/meta-himvis/blob/master/recipes-kernel/linux-
+> backports/linux-backports_4.14-rc4.bb
+> 
+> it does not work out of box but with few fixes here and there it
+> should work
 
-> I'm using latest origin/rocko
-> (65d23bd7986615fdfb0f1717b615534a2a14ab80) with no change to build
-> beaglebone core-image-minimal. While build I got this QA error:
->
-> ERROR: glibc-locale-2.26-r0 do_package: QA Issue: glibc-locale:
-> Files/directories were installed but not shipped in any package:
->   /usr/share/i18n
->
+It looks like that recipe inherits backports_module and kernel-
+backports_module-split.. do I need those files as well?
 
-I've seen this (and some other weird ones) in glibc-locales, and they've
-always been resolved by just rebuilding the recipe. bitbake glibc-locale
--cclean && bitbake glibc-locale might well make it go away.
+> 
+> > 
+> > 
+> > 
+> > Thanks
+> > 
+> > 
+> > Marlon
+> > 
+> > 
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> > 
 
-Ross
-
---001a113ee9b2d95d1f055beb2fb9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">On 19 October 2017 at 12:10, Belisko Marek <span dir=3D"lt=
-r">&lt;<a href=3D"mailto:marek.belisko@gmail.com" target=3D"_blank">marek.b=
-elisko@gmail.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div c=
-lass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
-0 .8ex;border-left:1px #ccc solid;padding-left:1ex">I&#39;m using latest or=
-igin/rocko<br>
-(<wbr>65d23bd7986615fdfb0f1717b61553<wbr>4a2a14ab80) with no change to buil=
-d<br>
-beaglebone core-image-minimal. While build I got this QA error:<br>
-<br>
-ERROR: glibc-locale-2.26-r0 do_package: QA Issue: glibc-locale:<br>
-Files/directories were installed but not shipped in any package:<br>
-=C2=A0 /usr/share/i18n<br></blockquote><div><br></div><div>I&#39;ve seen th=
-is (and some other weird ones) in glibc-locales, and they&#39;ve always bee=
-n resolved by just rebuilding the recipe. bitbake glibc-locale -cclean &amp=
-;&amp; bitbake glibc-locale might well make it go away.</div><div><br></div=
-><div>Ross</div></div></div></div>
-
---001a113ee9b2d95d1f055beb2fb9--
