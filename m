@@ -1,35 +1,28 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <sancelot@numalliance.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAC12E00D46; Thu, 19 Oct 2017 23:03:51 -0700 (PDT)
+	id 30033E00D48; Fri, 20 Oct 2017 01:45:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 644F2E00D41
-	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 23:03:50 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v9K63oA8026587
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 19 Oct 2017 23:03:50 -0700 (PDT)
-Received: from localhost (128.224.163.244) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Thu, 19 Oct 2017 23:03:49 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 20 Oct 2017 14:02:15 +0800
-Message-ID: <1508479335-10902-1-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
+Received: from mail.numalliance.com (mail.numalliance.com [194.2.198.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D0D7E00D46
+	for <yocto@yoctoproject.org>; Fri, 20 Oct 2017 01:45:54 -0700 (PDT)
+Received: from [192.168.0.78] (unknown [192.168.0.78])
+	(Authenticated sender: sancelot@numalliance.com)
+	by mail.numalliance.com (Postfix) with ESMTPSA id 8286A20B6449
+	for <yocto@yoctoproject.org>; Fri, 20 Oct 2017 10:45:53 +0200 (CEST)
+To: yocto <yocto@yoctoproject.org>
+From: =?UTF-8?Q?St=c3=a9phane_Ancelot?= <sancelot@numalliance.com>
+Message-ID: <5ca5e19a-869d-ee9f-7cfb-693b203be91c@numalliance.com>
+Date: Fri, 20 Oct 2017 10:45:53 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-X-Originating-IP: [128.224.163.244]
-Subject: [meta-cgl][PATCH] crmsh: disable network access for xsltproc when generate manpages
+Subject: deploying linux kernel bzimage on real disk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,46 +34,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Oct 2017 06:03:51 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 20 Oct 2017 08:45:56 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: fr
 
-If the network is in poor condition, there may be an error when generate
-manpages:
+Hi,
 
-| a2x --xsltproc-opts=--catalogs -L -f manpage doc/crm.8.adoc
-[snip]
-| a2x: ERROR: "xsltproc" --catalogs --stringparam callout.graphics 0
---stringparam navig.graphics 0 --stringparam admon.textlabel 1 --stringparam admon.graphics 0
-"/buildarea/build/tmp-glibc/work/armv5e-wrs-linux-gnueabi/crmsh/2.3.2-r0/recipe-sysroot-native/etc/asciidoc/docbook-xsl/manpage.xsl"
-"/buildarea/build/tmp-glibc/work/armv5e-wrs-linux-gnueabi/crmsh/2.3.2-r0/crmsh-2.3.2/doc/crm.8.xml"
-returned non-zero exit status 6
-| make: *** [Makefile:848: doc/crm.8] Error 1
+I can run the image in qemu.
 
-By default, xsltproc tries to fetch DTDs from network. If the nework is
-in poor condition, the incomplete download may cause a dtd parsing
-error. Pass "--nonet" and "--novalid" options to xsltproc to disable the
-network access and skip loading the document´s DTD.
+however , in the ext3 root fs , the kernel is not copied.
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Is there a way to have the ext3 image ready with the kernel inside ?
 
-diff --git a/meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch b/meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch
-index 6e1a291..f465c82 100644
---- a/meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch
-+++ b/meta-cgl-common/recipes-cgl/crmsh/crmsh/tweaks_for_build.patch
-@@ -17,7 +17,7 @@ index d89affb..0f2361f 100644
-  
-  %.8: %.8.adoc
- -	a2x -f manpage $<
--+	a2x --xsltproc-opts=--catalogs -L -f manpage $<
-++	a2x --xsltproc-opts=--catalogs --xsltproc-opts=--nonet --xsltproc-opts=--novalid -L -f manpage $<
-  
-  # Shared data files
-  install-data-hook:
--- 
-2.7.4
+Then I will only have to setup the bootloader against the target hard disk.
+
+Regards,
+
+S.Ancelot
 
 
