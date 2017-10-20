@@ -1,33 +1,40 @@
-Return-Path: <sancelot@numalliance.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E94C1E00D4C; Fri, 20 Oct 2017 01:46:29 -0700 (PDT)
+	id ECCD8E00D48; Fri, 20 Oct 2017 02:49:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.numalliance.com (mail.numalliance.com [194.2.198.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17558E00D47
-	for <yocto@yoctoproject.org>; Fri, 20 Oct 2017 01:46:28 -0700 (PDT)
-Received: from [192.168.0.78] (unknown [192.168.0.78])
-	(Authenticated sender: sancelot@numalliance.com)
-	by mail.numalliance.com (Postfix) with ESMTPSA id C069D20B6449;
-	Fri, 20 Oct 2017 10:46:27 +0200 (CEST)
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <fb6cf52e-a919-0714-ac61-60f66f9055bc@numalliance.com>
-	<CAJTo0LZwDYTszOYURYKMqhyvbh_y6nN3-Eh3A5yMt3D14+KkHQ@mail.gmail.com>
-From: =?UTF-8?Q?St=c3=a9phane_Ancelot?= <sancelot@numalliance.com>
-Message-ID: <8737c239-17bb-2270-7651-f7ab547a515e@numalliance.com>
-Date: Fri, 20 Oct 2017 10:46:27 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97450E00D46
+	for <yocto@yoctoproject.org>; Fri, 20 Oct 2017 02:49:32 -0700 (PDT)
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	20 Oct 2017 02:49:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.43,405,1503385200"; d="scan'208";a="162766846"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by orsmga005.jf.intel.com with ESMTP; 20 Oct 2017 02:49:30 -0700
+To: "Burton, Ross" <ross.burton@intel.com>,
+	Belisko Marek <marek.belisko@gmail.com>
+References: <CAAfyv37ogJyGkDSVYSgi61C=3+Y+Z2wXJgg5isHOiXderZ=e-Q@mail.gmail.com>
+	<CAJTo0LYbM5HeRgn6iuVwvpYqrWnN-H2f82qMqzXADj5Zn7QdJQ@mail.gmail.com>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <b4892a0c-4562-9d04-1f15-5506e1c3648b@linux.intel.com>
+Date: Fri, 20 Oct 2017 12:44:53 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZwDYTszOYURYKMqhyvbh_y6nN3-Eh3A5yMt3D14+KkHQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LYbM5HeRgn6iuVwvpYqrWnN-H2f82qMqzXADj5Zn7QdJQ@mail.gmail.com>
 Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: customising custom-image-sato
+Subject: Re: rocko: QA issue with glibc-locale
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,120 +46,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Oct 2017 08:46:29 -0000
-Content-Type: multipart/alternative;
-	boundary="------------2AAFBBDFF695A73910777674"
-Content-Language: fr
-
---------------2AAFBBDFF695A73910777674
+X-List-Received-Date: Fri, 20 Oct 2017 09:49:33 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 
-This works as expected, Thanks
+On 10/19/2017 10:15 PM, Burton, Ross wrote:
+> On 19 October 2017 at 12:10, Belisko Marek <marek.belisko@gmail.com 
+> <mailto:marek.belisko@gmail.com>> wrote:
+> 
+>     I'm using latest origin/rocko
+>     (65d23bd7986615fdfb0f1717b615534a2a14ab80) with no change to build
+>     beaglebone core-image-minimal. While build I got this QA error:
+> 
+>     ERROR: glibc-locale-2.26-r0 do_package: QA Issue: glibc-locale:
+>     Files/directories were installed but not shipped in any package:
+>        /usr/share/i18n
+> 
+> 
+> I've seen this (and some other weird ones) in glibc-locales, and they've 
+> always been resolved by just rebuilding the recipe. bitbake glibc-locale 
+> -cclean && bitbake glibc-locale might well make it go away.
 
+I'm beginning to wonder if the best way to resolve these elusive 
+glibc-locale issues (also the notorious host contamination one) is to 
+throw away the existing, extremely convoluted recipe, and do a clean 
+rewrite.
 
-Le 19/10/2017 à 16:26, Burton, Ross a écrit :
-> If you want a custom core-image-sato then the easiest (and right) 
-> thing to do is to write a new image recipe. Then you get to pick what 
-> you want in it and don't want in it.
->
-> puzzles comes in via packagegroup-x11-sato-games, via -x11-sato (which 
-> also depends on -x11-sato-base and -x11-sato-apps)..  Don't install 
-> x11-sato but swap it for just x11-sato-base and you'll get all the 
-> Sato environment but no games or apps.
->
-> Ross
->
-> On 19 October 2017 at 15:19, Stéphane Ancelot 
-> <sancelot@numalliance.com <mailto:sancelot@numalliance.com>> wrote:
->
->     Hi,
->
->     I tried removing puzzles package using IMAGE_INSTALL_remove but it
->     has not had any effect.
->
->
->     Is there a way to remove unwanted packages ?
->
->     Regards,
->
->     S.Ancelot
->
->     -- 
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->     <https://lists.yoctoproject.org/listinfo/yocto>
->
->
+Alex
 
-
---------------2AAFBBDFF695A73910777674
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>This works as expected, Thanks<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">Le 19/10/2017 à 16:26, Burton, Ross a
-      écrit :<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAJTo0LZwDYTszOYURYKMqhyvbh_y6nN3-Eh3A5yMt3D14+KkHQ@mail.gmail.com">
-      <div dir="ltr">If you want a custom core-image-sato then the
-        easiest (and right) thing to do is to write a new image recipe. 
-        Then you get to pick what you want in it and don't want in it.
-        <div><br>
-        </div>
-        <div>puzzles comes in via packagegroup-x11-sato-games, via
-          -x11-sato (which also depends on -x11-sato-base and
-          -x11-sato-apps)..  Don't install x11-sato but swap it for just
-          x11-sato-base and you'll get all the Sato environment but no
-          games or apps.</div>
-        <div><br>
-        </div>
-        <div>Ross</div>
-      </div>
-      <div class="gmail_extra"><br>
-        <div class="gmail_quote">On 19 October 2017 at 15:19, Stéphane
-          Ancelot <span dir="ltr">&lt;<a
-              href="mailto:sancelot@numalliance.com" target="_blank"
-              moz-do-not-send="true">sancelot@numalliance.com</a>&gt;</span>
-          wrote:<br>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-            <br>
-            I tried removing puzzles package using IMAGE_INSTALL_remove
-            but it has not had any effect.<br>
-            <br>
-            <br>
-            Is there a way to remove unwanted packages ?<br>
-            <br>
-            Regards,<br>
-            <br>
-            S.Ancelot<span class="HOEnZb"><font color="#888888"><br>
-                <br>
-                -- <br>
-                ______________________________<wbr>_________________<br>
-                yocto mailing list<br>
-                <a href="mailto:yocto@yoctoproject.org" target="_blank"
-                  moz-do-not-send="true">yocto@yoctoproject.org</a><br>
-                <a href="https://lists.yoctoproject.org/listinfo/yocto"
-                  rel="noreferrer" target="_blank"
-                  moz-do-not-send="true">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><br>
-              </font></span></blockquote>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------2AAFBBDFF695A73910777674--
