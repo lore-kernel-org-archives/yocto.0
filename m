@@ -1,26 +1,67 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21F8FE00CC3; Sun, 22 Oct 2017 21:32:40 -0700 (PDT)
+	id B1153E00CE2; Mon, 23 Oct 2017 02:08:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	HTML_OBFUSCATE_05_10, 
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.177 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.177 listed in dnsbl.sorbs.net]
+	* 0.3 HTML_OBFUSCATE_05_10 BODY: Message is 5% to 10% HTML obfuscation
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08CFAE00CC0
-	for <yocto@yoctoproject.org>; Sun, 22 Oct 2017 21:32:39 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id BFEB484AD8D2
-	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 00:32:37 -0400 (EDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f177.google.com (mail-wr0-f177.google.com
+	[209.85.128.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87A95E00CC4
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 02:08:03 -0700 (PDT)
+Received: by mail-wr0-f177.google.com with SMTP id k62so16533514wrc.9
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 02:08:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=l12mqz4EBx/VFZCi5qfe2RwnOmSweoQzniwtRndh7xY=;
+	b=GrMhhXLiO+/XTsolfiC07Q4IGNsA6LaKJHdRRRceOgRB8upHorv2gQojoLl+yQDpE+
+	OKDBtub9Q5an6sDZQMg8AC3fuhlr0GDKwD0cUcEcXXOjRh78EW5NQhrgfZC3ErD7dcs2
+	2bicEo1LGG4yyEpECN0YxOABIOrG1hczU1phF7v6SU0DgwhP5+gfhpPv+0yhC/DmK5MX
+	ioAtAzDHMduq27maHvaq9p9tZVkBsGcwgSsVd+rswdbKRA6NN37FvU6FynebdBLmX2w5
+	rw8whX8loZh09mxPrKYPKiKzRcOuDmp+Qv/YBjxG7RYTlWiEBTlMPlNXrECfyokEGW+i
+	RnRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=l12mqz4EBx/VFZCi5qfe2RwnOmSweoQzniwtRndh7xY=;
+	b=acyGkLdjrnEJ688e+OSOUe1RVg0aQeoBz1EDFwrVnou1pP6n48Vcp0r1l908y/9CPx
+	qM1gj+mjmRVYI8wEPmJuHVpcL6heu8YQCw09Laf9dBIdFsu7wQHfr6wzsC2h3p8NSKFq
+	N5zRvUl/7IVXpnnXGGwYAqMRTU1DHJIecIbNfEETKrHcmY8KO7BiAH2fk/Ki4mReF5Pl
+	OjTjeSwrumd2yD8qfmgOksZlNk3+Lu7t6287q+1beGIj1djy/TvrMfEiZjfEPaZEf+Gn
+	gzp6fn2CB+wIrqOiSZOB6lRlvnQ3SjSe2Ygrdhx/sNNLAemiTa4rJRxWND23WH6+VKBv
+	KnGw==
+X-Gm-Message-State: AMCzsaXImD9Ow8nVZwl38TRQS37loMoZUohBGmlkgkvkiw/ywdPIM2Eh
+	GFAUhlxrtKpobdPf5ijj6Y2ICuqOkc9FD+b7J2I=
+X-Google-Smtp-Source: ABhQp+RL894TC1jitdpcG6CEvg9f8SDKF4G88zZ3S/uGi+ZOH//oyVVc4o9rtogyoHxhxmcHcNgTOiHaBnYYoveKPIo=
+X-Received: by 10.223.134.84 with SMTP id 20mr11647515wrw.60.1508749682166;
+	Mon, 23 Oct 2017 02:08:02 -0700 (PDT)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 23 Oct 2017 04:32:37 -0000
-Message-ID: <20171023043237.32661.92903@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Received: by 10.28.67.131 with HTTP; Mon, 23 Oct 2017 02:08:01 -0700 (PDT)
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Mon, 23 Oct 2017 11:08:01 +0200
+Message-ID: <CAGAf8Lyz6P-K+bSA8bQ_XutML+SjjVYHGPrRPT=zwT85CB8ZEg@mail.gmail.com>
+To: Philip Balister <philip@balister.org>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: OpenEmbedded sole base meta layer and poky base meta layers in sync, or not (should be The Same meta base layer, used in different distros)???
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,246 +73,318 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Oct 2017 04:32:40 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 23 Oct 2017 09:08:04 -0000
+Content-Type: multipart/alternative; boundary="001a1149196cdc5206055c332821"
 
-This mail was sent out by Recipe reporting system.
+--001a1149196cdc5206055c332821
+Content-Type: text/plain; charset="UTF-8"
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+> Or better yet use
+> http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-ma
+nual.html#ref-classes-image-buildinfo
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+Since I am also (relatively) new to YOCTO, reading these emails makes me
+think about dependencies between YOCTO distros and layers within distros.
 
-You can check the detail information at:
+Looking what is written here, I decided to do couple of the tests on my own
+to try to understand better how OpenEmbedded (oe-core) base layer and Poky
+distro (with two layers on the top of oe-core) are correlated with each
+other. As my best understanding, poky master tree should do nothing more
+that follow dependencies (with two additional layers) on the OpenEmbedded
+master tree.
 
-http://recipes.yoctoproject.org/
+OpenEmbedded layer is YOCTO QEMU project on its own. And one can build well
+known QEMU targets on single oe-core.
 
-Package               Version        Upstream version      Maintainer           NoUpgradeReason
---------------------  -------------  --------------------  -------------------  ------------------------------
-python3               3.5.3          3.6.3                 Alejandro Hernandez
-python                2.7.13         2.7.14                Alejandro Hernandez
-python3-native        3.5.3          3.6.3                 Alejandro Hernandez
-python-native         2.7.13         2.7.14                Alejandro Hernandez
-sysprof               3.24.1         3.26.1                Alexander Kanavin
-gtk-doc               1.25           1.26                  Alexander Kanavin
-webkitgtk             2.16.6         2.18.1                Alexander Kanavin
-bjam-native           1.64.0         1.65.1                Alexander Kanavin
-gnome-desktop3        3.24.2         3.26.1                Alexander Kanavin
-dnf                   2.6.3          2.7.5                 Alexander Kanavin
-expect                5.45           5.45.3                Alexander Kanavin
-epiphany              3.24.3         3.26.1                Alexander Kanavin
-libdnf                0.9.3          0.11.1                Alexander Kanavin
-librepo               1.7.20+gitX    1.8.1+gitAUTOINC+...  Alexander Kanavin
-ffmpeg                3.3.3          3.4                   Alexander Kanavin
-dtc                   1.4.4          7.4                   Alexander Kanavin
-btrfs-tools           4.12           4.13.3                Alexander Kanavin
-oprofile              1.1.0          1.2.0                 Alexander Kanavin
-systemtap-uprobes     3.1            3.2                   Alexander Kanavin
-systemtap             3.1            3.2                   Alexander Kanavin
-mkelfimage            4.0+gitX       4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
-mpg123                1.25.6         1.25.7                Alexander Kanavin
-lighttpd              1.4.45         1.4.47                Alexander Kanavin
-iso-codes             3.75           3.76                  Alexander Kanavin
-boost                 1.64.0         1.65.1                Alexander Kanavin
-libnl                 3.2.29         3.4.0                 Alexander Kanavin
-libxslt               1.1.29         1.1.31                Alexander Kanavin
-psmisc                22.21          23.1                  Alexander Kanavin
-vala                  0.36.4         0.38.2                Alexander Kanavin
-gobject-introspec...  1.52.1         1.54.1                Alexander Kanavin
-apt                   1.2.24         1.5                   Aníbal Limón
-dpkg                  1.18.24        1.19.0.4              Aníbal Limón
-apt-native            1.2.24         1.5                   Aníbal Limón
-bind                  9.10.5-P3      9.11.2                Armin Kuster
-openssh               7.5p1          7.6p1                 Armin Kuster
-libxfont              1.5.2          1.5.3                 Armin Kuster
-libxkbcommon          0.7.1          0.7.2                 Armin Kuster
-libxres               1.0.7          1.2.0                 Armin Kuster
-xkeyboard-config      2.21           2.22                  Armin Kuster
-xserver-xorg          1.19.3         1.19.5                Armin Kuster
-kexec-tools           2.0.14         2.0.15                Armin Kuster
-curl                  7.54.1         7.56.0                Armin Kuster
-busybox               1.24.1         1.27.2                Armin Kuster
-xf86-input-libinput   0.25.1         0.26.0                Armin Kuster
-libxfont2             2.0.1          2.0.2                 Armin Kuster
-nspr                  4.16           4.17                  Armin Kuster
-nss                   3.31.1         3.33                  Armin Kuster
-libpcre2              10.23          10.30                 Armin Kuster
-gnutls                3.5.13         3.6.1                 Armin Kuster
-linux-yocto-dev       4.12-rc++gitX  4.13                  Bruce Ashfield
-linux-libc-headers    4.12           4.13.9                Bruce Ashfield
-libunwind             1.2            1.2.1                 Bruce Ashfield
-linux-yocto           4.12.12+gitX   4.12.14+gitAUTOIN...  Bruce Ashfield
-linux-yocto-tiny      4.12.12+gitX   4.12.14+gitAUTOIN...  Bruce Ashfield
-linux-yocto-rt        4.12.12+gitX   4.12.14+gitAUTOIN...  Bruce Ashfield
-connman               1.34           1.35                  Changhyeok Bae
-iproute2              4.11.0         4.13.0                Changhyeok Bae
-systemd-boot          234            235                   Chen Qi
-dbus-test             1.10.20        1.10.24               Chen Qi
-dbus                  1.10.20        1.10.24               Chen Qi
-systemd-bootchart     231+gitX       233+gitAUTOINC+fe...  Chen Qi
-systemd               234            235                   Chen Qi
-util-linux            2.30           2.31                  Chen Qi
-flex                  2.6.0          2.6.4                 Chen Qi
-cups                  2.2.4          2.2.5                 Chen Qi
-gawk                  4.1.4          4.2.0                 Chen Qi
-sed                   4.2.2          4.4                   Chen Qi
-sudo                  1.8.20p2       1.8.21p2              Chen Qi
-sysstat               11.5.7         11.6.0                Chen Qi
-coreutils             8.27           8.28                  Chen Qi
-build-appliance-i...  15.0.0         17.0.2                Cristian Iorga
-avahi                 0.6.32         0.7                   Dengke Du
-expat                 2.2.3          2.2.4                 Dengke Du
-avahi-ui              0.6.32         0.7                   Dengke Du
-ltp                   20170516       20170929              Dengke Du
-json-glib             1.2.8          1.4.2                 Dengke Du
-chkconfig             1.3.58         1.8                   Dengke Du            Version 1.5 requires selinux
-wayland               1.13.0         1.14.0                Denys Dmytriyenko
-weston                2.0.0          3.0.0                 Denys Dmytriyenko
-lz4                   1.7.4          131                   Denys Dmytriyenko
-lzop                  1.03           1.04                  Denys Dmytriyenko
-mtd-utils             2.0.0          2.0.1                 Denys Dmytriyenko
-wayland-protocols     1.10           1.11                  Denys Dmytriyenko
-acpica                20170303       20170929              Fathi Boudra
-gnupg                 2.2.0          2.2.1                 Hongxu Jia
-libxml2               2.9.4          2.9.6                 Hongxu Jia
-ncurses               6.0+20170715   6.0+20170902          Hongxu Jia
-apr-util              1.6.0          1.6.1                 Hongxu Jia
-apr                   1.6.2          1.6.3                 Hongxu Jia
-libgcrypt             1.8.0          1.8.1                 Hongxu Jia
-bash                  4.4            4.4.12                Hongxu Jia
-ghostscript           9.21           9.22                  Hongxu Jia
-man-pages             4.11           4.13                  Hongxu Jia
-help2man-native       1.47.4         1.47.5                Hongxu Jia
-python3-git           2.1.5          2.1.7                 Jose Lamego
-python3-numpy         1.13.1         1.13.3                Jose Lamego
-python3-six           1.10.0         1.11.0                Jose Lamego
-python-numpy          1.13.1         1.13.3                Jose Lamego
-python3-pygobject     3.24.1         3.26.0                Jose Lamego
-bc                    1.06           1.07.1                Jose Lamego
-python3-setuptools    36.2.7         36.6.0                Jose Lamego
-python-setuptools     36.2.7         36.6.0                Jose Lamego
-pango                 1.40.6         1.40.12               Jussi Kukkonen
-libinput              1.8.1          1.9.0                 Jussi Kukkonen
-libsoup-2.4           2.58.2         2.60.1                Jussi Kukkonen
-gtk-icon-utils-na...  3.22.17        3.22.24               Jussi Kukkonen
-gsettings-desktop...  3.22.0         3.24.1                Jussi Kukkonen
-glib-2.0              2.52.3         2.54.1                Jussi Kukkonen
-at-spi2-atk           2.24.1         2.26.0                Jussi Kukkonen
-librsvg               2.40.18        2.40.19               Jussi Kukkonen
-assimp                4.0.0          4.0.1                 Jussi Kukkonen
-at-spi2-core          2.24.1         2.26.0                Jussi Kukkonen
-atk                   2.24.0         2.26.1                Jussi Kukkonen
-libgudev              231            232                   Jussi Kukkonen
-shared-mime-info      1.8            1.9                   Jussi Kukkonen
-vte                   0.48.3         0.50.1                Jussi Kukkonen
-vulkan                1.0.51.0       1.0.61.1              Jussi Kukkonen
-adwaita-icon-theme    3.24.0         3.26.0                Jussi Kukkonen
-xdg-utils             1.1.1          1.1.2                 Jussi Kukkonen
-gdk-pixbuf            2.36.8         2.36.11               Jussi Kukkonen
-glib-networking       2.50.0         2.54.0                Jussi Kukkonen
-gtk+3                 3.22.17        3.22.24               Jussi Kukkonen
-hicolor-icon-theme    0.15           0.17                  Jussi Kukkonen
-clutter-gtk-1.0       1.8.2          1.8.4                 Jussi Kukkonen
-fontconfig            2.12.4         2.12.6                Jussi Kukkonen
-freetype              2.8            387.5                 Jussi Kukkonen
-glew                  2.0.0          2.1.0                 Jussi Kukkonen
-musl                  1.1.16+gitX    1.1.17+gitAUTOINC...  Khem Raj
-ninja                 1.7.2          1.8.2                 Khem Raj
-glibc                 2.26           2.26.9000             Khem Raj
-binutils              2.29           2.29.1                Khem Raj
-re2c                  0.16           1.0.1                 Khem Raj
-libnsl2               1.0.5+gitX     1.1.0+gitAUTOINC+...  Khem Raj
-gdb                   8.0            8.0.1                 Khem Raj
-mpfr                  3.1.5          3.1.6                 Khem Raj
-go-native             1.9            1.9.1                 Khem Raj
-go                    1.9            1.9.1                 Khem Raj
-cross-localedef-n...  2.26           2.26.9000             Khem Raj
-glibc-initial         2.26           2.26.9000             Khem Raj
-texinfo               6.3            6.5                   Leonardo Sandoval
-ruby                  2.4.1          2.4.2                 Leonardo Sandoval
-perl                  5.24.1         5.26.1                Leonardo Sandoval
-qemu                  2.10.0         2.10.1                Leonardo Sandoval
-libxml-namespaces...  1.12           1.12.9                Leonardo Sandoval
-perl-native           5.24.1         5.26.1                Leonardo Sandoval
-rpm                   4.13.90+gitX   4.14.0+gitAUTOINC...  Mark Hatle
-libpfm4               4.6.0          4.8.0                 Matthew McClintock
-gstreamer1.0          1.12.2         1.12.3                Maxin B. John
-bluez5                5.46           5.47                  Maxin B. John
-gstreamer1.0-omx      1.12.2         1.12.3                Maxin B. John
-libpng                1.6.31         1.6.32                Maxin B. John
-gstreamer1.0-rtsp...  1.12.2         1.12.3                Maxin B. John
-gstreamer1.0-plug...  1.12.2         1.12.3                Maxin B. John
-ofono                 1.20           1.21                  Maxin B. John
-ifupdown              0.8.16         0.8.25                Maxin B. John
-gstreamer1.0-libav    1.12.2         1.12.3                Maxin B. John
-gstreamer1.0-plug...  1.12.2         1.12.3                Maxin B. John
-gstreamer1.0-plug...  1.12.2         1.12.3                Maxin B. John
-libproxy              0.4.14         0.4.15                Maxin B. John
-gstreamer1.0-python   1.12.2         1.12.3                Maxin B. John
-sqlite3               3.20.0         3.20.1                Maxin B. John
-libsolv               0.6.28         0.6.29                Maxin B. John
-quota                 4.03           4.04                  Maxin B. John
-gstreamer1.0-plug...  1.12.2         1.12.3                Maxin B. John
-harfbuzz              1.4.8          1.6.1                 Maxin B. John
-systemtap-native      3.1            3.2                   No maintainer
-gcc-source-6.3.0      6.3.0          7.2.0                 No maintainer
-gdb-cross-canadia...  8.0            8.0.1                 No maintainer
-gdb-cross-i586        8.0            8.0.1                 No maintainer
-go-cross-i586         1.9            1.9.1                 No maintainer
-binutils-cross-ca...  2.29           2.29.1                No maintainer
-binutils-cross-i586   2.29           2.29.1                No maintainer
-binutils-crosssdk...  2.29           2.29.1                No maintainer
-go-cross-canadian...  1.9            1.9.1                 No maintainer
-go-crosssdk-x86_64    1.9            1.9.1                 No maintainer
-go-dep                0.3.0          0.3.2                 No maintainer
-go-runtime            1.9            1.9.1                 No maintainer
-pkgconf               1.3.7          1.3.10                No maintainer
-mesa                  17.1.7         17.2.3                Otavio Salvador
-cmake                 3.8.2          3.9.4                 Otavio Salvador
-libdrm                2.4.83         2.4.85                Otavio Salvador
-cmake-native          3.8.2          3.9.4                 Otavio Salvador
-mesa-gl               17.1.7         17.2.3                Otavio Salvador
-tcf-agent             1.4.0+gitX     1.5+gitAUTOINC+5e...  Randy Witt
-lttng-modules         2.9.3          2.10.2                Richard Purdie
-lttng-tools           2.9.5          2.10.1                Richard Purdie
-lttng-ust             2.9.1          2.10.0                Richard Purdie
-subversion            1.9.6          1.9.7                 Richard Purdie
-e2fsprogs             1.43.5         1.43.7                Robert Yang
-file                  5.31           5.32                  Robert Yang
-git                   2.13.3         2.14.2                Robert Yang
-liberror-perl         0.17024        0.17025               Robert Yang
-strace                4.18           4.19                  Robert Yang
-debianutils           4.8.1.1        4.8.2                 Robert Yang
-autoconf-archive      2016.09.16     2017.09.28            Robert Yang
-less                  487            520                   Robert Yang
-logrotate             3.12.3         3.13.0                Robert Yang
-libsdl2               2.0.5          2.0.6                 Robert Yang
-base-passwd           3.5.29         3.5.44                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.72           9.77                  Ross Burton
-lame                  3.99.5         3.100                 Tanu Kaskinen
-pulseaudio            10.0           11.1                  Tanu Kaskinen
-libva                 1.8.3          2.0.0                 Wei Tee Ng
-libva-utils           1.8.3          2.0.0                 Wei Tee Ng
-gstreamer1.0-vaapi    1.12.2         1.12.3                Wei Tee Ng
+In order to verify this, i did git clone (at the same time) on two distros:
+oe-core master tree, and on poky master tree.
 
-Upgradable count: 202
-Upgradable total count: 205
+Now, after building oe-core, I have the following in qemux86-64 target
+/etc/build:
 
-The based commit is:
+-----------------------
+Build Configuration:  |
+-----------------------
+DISTRO = nodistro
+DISTRO_VERSION = nodistro.0
+-----------------------
+Layer Revisions:      |
+-----------------------
 
-commit 3b413a80578caacd9a7f405f3c51a3921d78a60d
-Author: Randy MacLeod <Randy.MacLeod@windriver.com>
-Date:   Mon Oct 16 11:00:44 2017 -0400
+*meta              = master:3b413a80578caacd9a7f405f3c51a3921d78a60d*
 
-    README.qemu: qemuppc64 is not supported
-    
-    Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+At the same time, for poky, I got the following (qemux86-64 target
+/etc/build):
 
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
+-----------------------
+Build Configuration:  |
+-----------------------
+DISTRO = poky
+DISTRO_VERSION = 2.4
+-----------------------
+Layer Revisions:      |
+-----------------------
+*meta                  = rocko:65d23bd7986615fdfb0f1717b615534a2a14ab80 --
+modified*
+meta-poky         = rocko:65d23bd7986615fdfb0f1717b615534a2a14ab80 --
+modified
+meta-yocto-bsp = rocko:65d23bd7986615fdfb0f1717b615534a2a14ab80 -- modified
+_______
 
+Now, the question: should meta - rocko and meta - master have (in *BOLD*)
+the SAME master HEAD #???
 
+Something here seems not in order/not in sync?! Or...Please, you
+tell/explain to me!?
+
+Thank you,
+Zoran
+_______
+
+On Thu, Oct 12, 2017 at 4:19 PM, Philip Balister <philip@balister.org>
+wrote:
+
+> Or better yet use
+> http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-manu
+> al.html#ref-classes-image-buildinfo
+>
+> to get:
+>
+> -----------------------
+> Build Configuration:  |
+> -----------------------
+> DISTRO = nodistro
+> DISTRO_VERSION = nodistro.0
+> -----------------------
+> Layer Revisions:      |
+> -----------------------
+> meta              = master:8ca61a5464743ff85b6d26886112750d6ddd13e0
+> meta-xilinx       = master:74a0d90e52cca346d05a69bbd628c6ec9e49fbcb
+> meta-oe           = master:5c9a4a08844c215ebd6f2146f50de753b8e7ecef
+> meta-networking   = master:5c9a4a08844c215ebd6f2146f50de753b8e7ecef
+> meta-filesystems  = master:5c9a4a08844c215ebd6f2146f50de753b8e7ecef
+> meta-python       = master:5c9a4a08844c215ebd6f2146f50de753b8e7ecef
+> meta-multimedia   = master:5c9a4a08844c215ebd6f2146f50de753b8e7ecef
+> meta-sdr          = qt5-test:dacc304b01eac7448ec1ebf0b3d0eab761c41a26 --
+> modified
+> meta-qt5          = master:2c3ef00f53683fbdce5b390950b49b67da85d3a1
+> meta-qcom         = master:bae28268a9387bb842ab7bbe8200b98c1210604c
+> meta-raspberrypi  = master:9d84186870a6f9bde44575690105b9bb5e44ca24
+>
+> Philip
+>
+> On 10/12/2017 05:11 AM, Ayoub Zaki wrote:
+> > Hi,
+> >
+> > That's easy to do :
+> >
+> >
+> > do_install_append () {
+> >
+> >     for layer in ${BBLAYERS}; do
+> >         cd $layer
+> >         echo -n "$(basename $layer) = "  >> ${D}${sysconfdir}/gitinfo
+> >         git rev-parse HEAD >> ${D}${sysconfdir}/gitinfo
+> >     done
+> > }
+> >
+> >
+> > add it in a recipe or add it to os-release.bbappend
+> >
+> >
+> > On 12.10.2017 11:05, Alan Martinovic wrote:
+> >> I've noticed that bitbake prints the git commit versions of the layers
+> >> when the build starts.
+> >>
+> >> meta-python       = "HEAD:b40116cf457b88a2db14b86fda9627fb34d56ae6"
+> >> meta-mender-core  = "HEAD:c3b1b465ce3a27fc7b03a6b7ef596348835cff57"
+> >> meta-go           = "HEAD:514b2a80a2a4235687e92fb28328bb3e7c2d6c74"
+> >>
+> >> Does this information find it's way into the rootfs?
+> >> If not, any suggestions on how to achieve this?
+> >>
+> >> The goal is to have this info available while the image is running.
+> >>
+> >> Be Well,
+> >> Alan
+> >>
+> >>
+> >
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--001a1149196cdc5206055c332821
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">&gt; Or better yet use</s=
+pan><br style=3D"font-size:12.8px">&gt;=C2=A0<a href=3D"http://www.yoctopro=
+ject.org/docs/2.3.2/mega-manual/mega-manual.html#ref-classes-image-buildinf=
+o" rel=3D"noreferrer" style=3D"font-size:12.8px" target=3D"_blank">http://w=
+ww.yoctoproject.org/<wbr>docs/2.3.2/mega-manual/mega-ma<wbr>nual.html#ref-c=
+lasses-image-bu<wbr>ildinfo</a><br style=3D"font-size:12.8px"><div><br></di=
+v><div>Since I am also (relatively) new to YOCTO, reading these emails make=
+s me think about dependencies between YOCTO distros and layers within distr=
+os.</div><div><br></div><div>Looking what is written here, I decided to do =
+couple of the tests on my own to try to understand better how OpenEmbedded =
+(oe-core) base layer and Poky distro (with two layers on the top of oe-core=
+) are correlated with each other. As my best understanding, poky master tre=
+e should do nothing more that follow dependencies (with two additional laye=
+rs) on the OpenEmbedded master tree.</div><div><br></div><div>OpenEmbedded =
+layer is YOCTO QEMU project on its own. And one can build well known QEMU t=
+argets on single oe-core.</div><div><br></div><div>In order to verify this,=
+ i did git clone (at the same time) on two distros: oe-core master tree, an=
+d on poky master tree.</div><div><br></div><div>Now, after building oe-core=
+, I have the following in qemux86-64 target /etc/build:</div><div><br></div=
+><div><span style=3D"font-size:12.8px">-----------------------</span><br st=
+yle=3D"font-size:12.8px"><span style=3D"font-size:12.8px">Build Configurati=
+on:=C2=A0 |</span><br style=3D"font-size:12.8px"><span style=3D"font-size:1=
+2.8px">-----------------------</span><br style=3D"font-size:12.8px"><span s=
+tyle=3D"font-size:12.8px">DISTRO =3D nodistro</span><br style=3D"font-size:=
+12.8px"><span style=3D"font-size:12.8px">DISTRO_VERSION =3D nodistro.0</spa=
+n><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">---------=
+--------------</span><br style=3D"font-size:12.8px"><span style=3D"font-siz=
+e:12.8px">Layer Revisions:=C2=A0 =C2=A0 =C2=A0 |</span><br style=3D"font-si=
+ze:12.8px"><span style=3D"font-size:12.8px">-----------------------</span><=
+br style=3D"font-size:12.8px"><b><i><u><span style=3D"font-size:12.8px">met=
+a=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D master:3b413a80578caa=
+cd9a7f405<wbr>f3c51a3921d78a60d</span><br></u></i></b></div><div class=3D"g=
+mail_extra"><br></div><div class=3D"gmail_extra">At the same time, for poky=
+, I got the following (qemux86-64 target /etc/build):</div><div class=3D"gm=
+ail_extra"><br></div><div class=3D"gmail_extra"><span style=3D"font-size:12=
+.8px">-----------------------</span><br style=3D"font-size:12.8px"><span st=
+yle=3D"font-size:12.8px">Build Configuration:=C2=A0 |</span><br style=3D"fo=
+nt-size:12.8px"><span style=3D"font-size:12.8px">-----------------------</s=
+pan><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">DISTRO =
+=3D poky</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8=
+px">DISTRO_VERSION =3D 2.4</span><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px">-----------------------</span><br style=3D"font-size:=
+12.8px"><span style=3D"font-size:12.8px">Layer Revisions:=C2=A0 =C2=A0 =C2=
+=A0 |</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px"=
+>-----------------------</span><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px"><b><i><u>meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =3D rocko:<wbr>65d23bd7986615fdfb0f1717b61553<wbr>=
+4a2a14ab80 -- modified</u></i></b></span><br></div><div class=3D"gmail_extr=
+a">meta-poky=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D rocko:<span style=3D"font=
+-size:12.8px">65d23bd7986615fdfb0f1717<wbr>b615534a2a14ab80 -- modified</sp=
+an></div><div class=3D"gmail_extra">meta-yocto-bsp =3D rocko:<span style=3D=
+"font-size:12.8px">65d23bd7986615fdfb0f1717<wbr>b615534a2a14ab80 -- modifie=
+d</span></div><div class=3D"gmail_extra">_______</div><div class=3D"gmail_e=
+xtra"><br></div><div class=3D"gmail_extra">Now, the question: should meta -=
+ rocko and meta - master have (in <b><i><u>BOLD</u></i></b>) the SAME maste=
+r HEAD #???</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
+xtra">Something here seems not in order/not in sync?! Or...Please, you tell=
+/explain to me!?</div><div class=3D"gmail_extra"><br></div><div class=3D"gm=
+ail_extra">Thank you,</div><div class=3D"gmail_extra">Zoran</div><div class=
+=3D"gmail_extra">_______</div><div class=3D"gmail_extra"><br><div class=3D"=
+gmail_quote">On Thu, Oct 12, 2017 at 4:19 PM, Philip Balister <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:philip@balister.org" target=3D"_blank">philip@ba=
+lister.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">Or better yet use<br>
+<a href=3D"http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-manual.h=
+tml#ref-classes-image-buildinfo" rel=3D"noreferrer" target=3D"_blank">http:=
+//www.yoctoproject.org/do<wbr>cs/2.3.2/mega-manual/mega-manu<wbr>al.html#re=
+f-classes-image-buil<wbr>dinfo</a><br>
+<br>
+to get:<br>
+<br>
+-----------------------<br>
+Build Configuration:=C2=A0 |<br>
+-----------------------<br>
+DISTRO =3D nodistro<br>
+DISTRO_VERSION =3D nodistro.0<br>
+-----------------------<br>
+Layer Revisions:=C2=A0 =C2=A0 =C2=A0 |<br>
+-----------------------<br>
+meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D master:8ca61a54647=
+43ff85b6d268<wbr>86112750d6ddd13e0<br>
+meta-xilinx=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D master:74a0d90e52cca346d05a69b<wb=
+r>bd628c6ec9e49fbcb<br>
+meta-oe=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D master:5c9a4a08844c215e=
+bd6f214<wbr>6f50de753b8e7ecef<br>
+meta-networking=C2=A0 =C2=A0=3D master:5c9a4a08844c215ebd6f214<wbr>6f50de75=
+3b8e7ecef<br>
+meta-filesystems=C2=A0 =3D master:5c9a4a08844c215ebd6f214<wbr>6f50de753b8e7=
+ecef<br>
+meta-python=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D master:5c9a4a08844c215ebd6f214<wb=
+r>6f50de753b8e7ecef<br>
+meta-multimedia=C2=A0 =C2=A0=3D master:5c9a4a08844c215ebd6f214<wbr>6f50de75=
+3b8e7ecef<br>
+meta-sdr=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D qt5-test:dacc304b01eac7448ec=
+1e<wbr>bf0b3d0eab761c41a26 --<br>
+modified<br>
+meta-qt5=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D master:2c3ef00f53683fbdce5b3=
+90<wbr>950b49b67da85d3a1<br>
+meta-qcom=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D master:bae28268a9387bb842ab7=
+bb<wbr>e8200b98c1210604c<br>
+meta-raspberrypi=C2=A0 =3D master:9d84186870a6f9bde445756<wbr>90105b9bb5e44=
+ca24<br>
+<span class=3D"m_7870991403337023450gmail-m_655644554201098189gmail-m_-8687=
+512932877340498HOEnZb"><font color=3D"#888888"><br>
+Philip<br>
+</font></span><span class=3D"m_7870991403337023450gmail-m_65564455420109818=
+9gmail-m_-8687512932877340498im m_7870991403337023450gmail-m_65564455420109=
+8189gmail-m_-8687512932877340498HOEnZb"><br>
+On 10/12/2017 05:11 AM, Ayoub Zaki wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; That&#39;s easy to do :<br>
+&gt;<br>
+&gt;<br>
+&gt; do_install_append () {<br>
+&gt;<br>
+&gt; =C2=A0=C2=A0=C2=A0 for layer in ${BBLAYERS}; do<br>
+&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cd $layer<br>
+&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 echo -n &quot;$(basename $l=
+ayer) =3D &quot;=C2=A0 &gt;&gt; ${D}${sysconfdir}/gitinfo<br>
+&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 git rev-parse HEAD &gt;&gt;=
+ ${D}${sysconfdir}/gitinfo<br>
+&gt; =C2=A0=C2=A0=C2=A0 done<br>
+&gt; }<br>
+&gt;<br>
+&gt;<br>
+&gt; add it in a recipe or add it to os-release.bbappend<br>
+&gt;<br>
+&gt;<br>
+&gt; On 12.10.2017 11:05, Alan Martinovic wrote:<br>
+&gt;&gt; I&#39;ve noticed that bitbake prints the git commit versions of th=
+e layers<br>
+&gt;&gt; when the build starts.<br>
+&gt;&gt;<br>
+&gt;&gt; meta-python=C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;HEAD:b40116cf457b8=
+8a2db14b86f<wbr>da9627fb34d56ae6&quot;<br>
+&gt;&gt; meta-mender-core=C2=A0 =3D &quot;HEAD:c3b1b465ce3a27fc7b03a6b7<wbr=
+>ef596348835cff57&quot;<br>
+&gt;&gt; meta-go=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;HEAD:514=
+b2a80a2a4235687e92fb2<wbr>8328bb3e7c2d6c74&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; Does this information find it&#39;s way into the rootfs?<br>
+&gt;&gt; If not, any suggestions on how to achieve this?<br>
+&gt;&gt;<br>
+&gt;&gt; The goal is to have this info available while the image is running=
+.<br>
+&gt;&gt;<br>
+&gt;&gt; Be Well,<br>
+&gt;&gt; Alan<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+--<br>
+</span><div class=3D"m_7870991403337023450gmail-m_655644554201098189gmail-m=
+_-8687512932877340498HOEnZb"><div class=3D"m_7870991403337023450gmail-m_655=
+644554201098189gmail-m_-8687512932877340498h5">____________________________=
+__<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+</div></div></blockquote></div><br></div></div>
+
+--001a1149196cdc5206055c332821--
