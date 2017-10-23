@@ -1,55 +1,64 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <andrea.adami@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31B76E00928; Mon, 23 Oct 2017 13:31:49 -0700 (PDT)
+	id 693B2E0096A; Mon, 23 Oct 2017 13:50:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (andrea.adami[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.41 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [64.235.150.235 listed in list.dnswl.org]
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.150.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E0FDE00708
-	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 13:31:46 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx27.ess.sfj.cudaops.com (version=TLSv1.2 cipher=AES256-SHA256
-	bits=256 verify=NO); Mon, 23 Oct 2017 20:31:41 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Mon, 23 Oct 2017 13:31:39 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Mon, 23 Oct 2017 13:31:39 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Andrea Adami <andrea.adami@gmail.com>
-Thread-Topic: [yocto] Problem with populate_sdk
-Thread-Index: AQHTSQVi8LeK/WvtBEi7bRUf6L68KKLw+ZKAgADv20A=
-Date: Mon, 23 Oct 2017 20:31:39 +0000
-Message-ID: <fd2f7a350be54f15b16885e6bc261a8b@sakuraus.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9B92E007EF
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 13:50:20 -0700 (PDT)
+Received: by mail-wm0-f41.google.com with SMTP id t69so11906009wmt.2
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 13:50:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=cTPKvkUMAluCKIiNKyfAvajQNS0Lix+utkNfisG+dBQ=;
+	b=o8QL1UjEfoJ2nqhoPJ0hYDQ14Y7YVPCj8kKHNt5PNaizS9bSg5s9eoXq3pmwz6s6B0
+	NkhFw72zJKevFFuc4JHAx8OSe8TrpA6lMsmBZOL/KIvIivWFypOwzTKlfMokwftTt6p+
+	3UvS0XNxQAQyYr3Vc97Y4Bn83XOvbQXDsTgDM+bZwLAQb59aBjGkQomZsP4A9D8WYNh9
+	UdI8oU+bVB+Vtl++AeGjR125XRYi4IJjplr4POi0mE/6U0pZOzIIEgyPoRF4c5knSyCa
+	Gj1+N43j5hhY7/LcAfLe2LaXMaqawFKZF3c0X7x+VGYKPo3qst6NzBs6MXXLUfAfwArs
+	b3Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=cTPKvkUMAluCKIiNKyfAvajQNS0Lix+utkNfisG+dBQ=;
+	b=ftbDfQStS8JiDELEArIP06X8DCGOAGjSB3IgNsOrwzRftkIBZpWBMBUCCMtq/hFyCy
+	MNIbvGZMoJWfnXygTzBH46xdMMIbbWjDi0ACER3eaSFN0ipY+fIg7pajaRsq8eOJu2ge
+	zPKrVFBeW63osBIzbF6K7fmRCuSqlnp0SFgAJK/HxNINv2XeI7yAwtMUmB/vQ8lyWgrw
+	UD6ojK9BCdQT3AKLfr0XSIomKQ7dzyEg4lPqW+zsUcqSeMubsm3P23WfYhNaUzjhQrwX
+	JxgKDRm5w9VIiXCwHvirI/rpeKU9Y0G9oxbckUpDuCTPVDR33bNHHkrPtFJcpqFszi1C
+	P3Eg==
+X-Gm-Message-State: AMCzsaVOIPe2YzjpnqvqWoHfeqUny3/U+2nEacCG34GQlOdFvdgWOsTC
+	HomxE3cgA7s7zbBAe4SAx+9N5G/tz4Kxs3yYhMg=
+X-Google-Smtp-Source: ABhQp+ThIlATOHOL3V08+HA51m92k3L4gi8+JAE5i3f9dw4DosmRQjQWWrrI4hm07ww19AXZFk6ZLx1cJV/U95/pCUw=
+X-Received: by 10.80.178.36 with SMTP id o33mr18280946edd.116.1508791819539;
+	Mon, 23 Oct 2017 13:50:19 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.80.204.143 with HTTP; Mon, 23 Oct 2017 13:50:19 -0700 (PDT)
+In-Reply-To: <fd2f7a350be54f15b16885e6bc261a8b@sakuraus.com>
 References: <7e4405635662496696c940f21d8591a7@sakuraus.com>
 	<CAAQYJAu4e4WCUAP55pPUpU-7mZ5ixq8AAEtHpGv7zqEjj2xipQ@mail.gmail.com>
-In-Reply-To: <CAAQYJAu4e4WCUAP55pPUpU-7mZ5ixq8AAEtHpGv7zqEjj2xipQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.3]
-MIME-Version: 1.0
-X-BESS-ID: 1508790700-637137-14021-876318-1
-X-BESS-VER: 2017.12-r1710102214
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.186231
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
+	<fd2f7a350be54f15b16885e6bc261a8b@sakuraus.com>
+From: Andrea Adami <andrea.adami@gmail.com>
+Date: Mon, 23 Oct 2017 22:50:19 +0200
+Message-ID: <CAAQYJAvbh6SB-_p_2qPAaeFVCFtmaSaP2AoFTQzK9PzENo0rRw@mail.gmail.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Problem with populate_sdk
 X-BeenThere: yocto@yoctoproject.org
@@ -63,49 +72,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Oct 2017 20:31:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 23 Oct 2017 20:50:21 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-SGkgQW5kcmVhLA0KSSBhZGRlZCB0aGUgZGJnLXBrZ3MgdG8gdGhlIElNQUdFX0ZFQVRVUkVTIGJ1
-dCBpdCBkaWRuJ3Qgc2VlbSB0byBtYWtlIGEgZGlmZmVyZW5jZSBpbiB3aGF0IHdhcyBpbmNsdWRl
-ZCwgc3RpbGwgbm8gLmEgZmlsZSBpbiB0aGUgU1lTUk9PVC4NClJlZ2FyZHMsDQpHcmVnDQoNCj4g
-LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5kcmVhIEFkYW1pIFttYWlsdG86
-YW5kcmVhLmFkYW1pQGdtYWlsLmNvbV0NCj4gU2VudDogU3VuZGF5LCBPY3RvYmVyIDIyLCAyMDE3
-IDQ6MTIgUE0NCj4gVG86IEdyZWcgV2lsc29uLUxpbmRiZXJnIDxHV2lsc29uQHNha3VyYXVzLmNv
-bT4NCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IFt5b2N0b10g
-UHJvYmxlbSB3aXRoIHBvcHVsYXRlX3Nkaw0KPiANCj4gT24gVGh1LCBPY3QgMTksIDIwMTcgYXQg
-ODoyNiBQTSwgR3JlZyBXaWxzb24tTGluZGJlcmcNCj4gPEdXaWxzb25Ac2FrdXJhdXMuY29tPiB3
-cm90ZToNCj4gPiBJJ20gdHJ5aW5nIHRvIGJ1aWxkIGFuIFNESyBmb3IgYSBSYXNwYmVycnkgUGkz
-LCBhbmQgSSBnb3QgYSBwcm9ibGVtDQo+ID4gd2l0aCB0aGUgZmlsZXMgZnJvbSBvbmUgb2YgbXkg
-Y3VzdG9tIHJlY2lwZXMuDQo+ID4NCj4gPg0KPiA+IEluIG15IHJlY2lwZSBJIGhhdmU6DQo+ID4N
-Cj4gPiBGSUxFU18ke1BOfS1kZXYgPSAibGliL2xpYiR7UE59LmEgbGliL2xpYiR7UE59X3VuaXgu
-YSBsaWIvcGtnY29uZmlnDQo+ID4gaW5jbHVkZS9jYW5mZXN0aXZhbC8qLmgiDQo+ID4NCj4gPg0K
-PiA+IFRoZSAqLmEgZmlsZXMgZ2V0IHB1dCBpbnRvIHN0YXRpY2RldiBub3QgZGV2IGluIHRoZSBw
-YWNrYWdlIHNwbGl0Lg0KPiA+DQo+ID4NCj4gPiBJbiBteSBpbWFnZSByZWNpcGUgSSd2ZSBhZGRl
-ZDoNCj4gPg0KPiA+IElNQUdFX0ZFQVRVUkVTICs9ICJkZXYtcGtncyAgc3RhdGljZGV2LXBrZ3Mi
-DQo+ID4NCj4gPiBJIGdldCBhbGwgb2YgdGhlIGxpYnJhcmllcyBpbiBteSBpbWFnZS4gSW4gdGhl
-IFNESyBJIGRvbid0IGdldCB0aGUgKi5hDQo+ID4gbGlicmFyaWVzIGZyb20gdGhlIHN0YXRpY2Rl
-diwgSSBkbyBnZXQgdGhlIGhlYWRlciBmaWxlcyB3aGljaCB3ZXJlIHB1dA0KPiA+IGludG8gZGV2
-Lg0KPiA+DQo+ID4NCj4gPiBTbywgYXQgdGhpcyBwb2ludCBJJ20gYSBiaXQgY29uZnVzZWQsIGV2
-ZW4gdGhvdWdoIEkgaW5jbHVkZSBib3RoIHRoZQ0KPiA+IGRldiAmIHN0YXRpY2RldiBJIGFtIG9u
-bHkgZ2V0dGluZyB0aGUgZGV2IGZpbGVzIGluIHRoZSBTREsuIEFuZCwgYWxzbywNCj4gPiB3aHkg
-YXJlIHRoZSAqLmEgbGlicyBiZWluZyBwdXQgaW50byBzdGF0aWNkZXYgaW4gdGhlIGZpcnN0IHBs
-YWNlPw0KPiA+DQo+ID4NCj4gDQo+IEhpLA0KPiB0aGVzZSBkZWZhdWx0cyBhcmUgZGVmaW5lZCBp
-biBtZXRhL2NvbmYvYml0YmFrZS5jb25mOg0KPiANCj4gUEFDS0FHRVMgPSAiJHtQTn0tZGJnICR7
-UE59LXN0YXRpY2RldiAke1BOfS1kZXYgJHtQTn0tZG9jICR7UE59LWxvY2FsZQ0KPiAke1BBQ0tB
-R0VfQkVGT1JFX1BOfSAke1BOfSINCj4gDQo+IFRoaXMgbWVhbnMgdGhhdCBzdGF0aWNkZXYgcGFj
-a2FnZSBpcyBjcmVhdGVkIGJlZm9yZSBkZXYgcGFja2FnZSwganVzdCBhZnRlcg0KPiBkYmcuDQo+
-IA0KPiBhbmQNCj4gDQo+IEZJTEVTXyR7UE59LXN0YXRpY2RldiA9ICIke2xpYmRpcn0vKi5hICR7
-YmFzZV9saWJkaXJ9LyouYSAke2xpYmRpcn0vJHtCUE59LyouYSINCj4gDQo+IGluZGljYXRlcyB0
-aGF0IHRoZSAuYSBmaWxlcyBpbiB0aGVzZSBkaXJzIGJlbG9uZ3MgdG8gdGhlIHN0YXRpY2RldiBw
-YWNrYWdlLg0KPiANCj4gTm93LCBJIGd1ZXNzIHlvdSBzaG91bGQgdHJ5Og0KPiANCj4gIFNES0lN
-QUdFX0ZFQVRVUkVTID0gImRldi1wa2dzIGRiZy1wa2dzIHN0YXRpY2Rldi1wa2dzIg0KPiANCj4g
-U2UgaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE0LQ0K
-PiBTZXB0ZW1iZXIvMDIxNjQ1Lmh0bWwNCj4gDQo+IENoZWVycw0KPiBBbmRyZWENCj4gDQo+IA0K
-PiA+IFJlZ2FyZHMsIEdyZWcNCj4gPg0KPiA+DQo+ID4gLS0NCj4gPiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+IHlvY3RvIG1haWxpbmcgbGlzdA0K
-PiA+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVj
-dC5vcmcvbGlzdGluZm8veW9jdG8NCj4gPg0K
+On Mon, Oct 23, 2017 at 10:31 PM, Greg Wilson-Lindberg
+<GWilson@sakuraus.com> wrote:
+> Hi Andrea,
+> I added the dbg-pkgs to the IMAGE_FEATURES but it didn't seem to make a difference in what was included, still no .a file in the SYSROOT.
+> Regards,
+> Greg
+
+Hi Greg,
+maybe I wasn't clear, from the manual:
+
+SDKIMAGE_FEATURES: Lists the features to include in the "target" part
+of the SDK.
+
+IMAGE_FEATURES: Specifies features to include in the image. Most of
+these features map to additional packages for installation.
+
+So please use  SDKIMAGE_FEATURES = "dev-pkgs staticdev-pkgs"
+
+Cheers
+Andrea
+
+>
+>> -----Original Message-----
+>> From: Andrea Adami [mailto:andrea.adami@gmail.com]
+>> Sent: Sunday, October 22, 2017 4:12 PM
+>> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+>> Cc: yocto@yoctoproject.org
+>> Subject: Re: [yocto] Problem with populate_sdk
+>>
+>> On Thu, Oct 19, 2017 at 8:26 PM, Greg Wilson-Lindberg
+>> <GWilson@sakuraus.com> wrote:
+>> > I'm trying to build an SDK for a Raspberry Pi3, and I got a problem
+>> > with the files from one of my custom recipes.
+>> >
+>> >
+>> > In my recipe I have:
+>> >
+>> > FILES_${PN}-dev = "lib/lib${PN}.a lib/lib${PN}_unix.a lib/pkgconfig
+>> > include/canfestival/*.h"
+>> >
+>> >
+>> > The *.a files get put into staticdev not dev in the package split.
+>> >
+>> >
+>> > In my image recipe I've added:
+>> >
+>> > IMAGE_FEATURES += "dev-pkgs  staticdev-pkgs"
+>> >
+>> > I get all of the libraries in my image. In the SDK I don't get the *.a
+>> > libraries from the staticdev, I do get the header files which were put
+>> > into dev.
+>> >
+>> >
+>> > So, at this point I'm a bit confused, even though I include both the
+>> > dev & staticdev I am only getting the dev files in the SDK. And, also,
+>> > why are the *.a libs being put into staticdev in the first place?
+>> >
+>> >
+>>
+>> Hi,
+>> these defaults are defined in meta/conf/bitbake.conf:
+>>
+>> PACKAGES = "${PN}-dbg ${PN}-staticdev ${PN}-dev ${PN}-doc ${PN}-locale
+>> ${PACKAGE_BEFORE_PN} ${PN}"
+>>
+>> This means that staticdev package is created before dev package, just after
+>> dbg.
+>>
+>> and
+>>
+>> FILES_${PN}-staticdev = "${libdir}/*.a ${base_libdir}/*.a ${libdir}/${BPN}/*.a"
+>>
+>> indicates that the .a files in these dirs belongs to the staticdev package.
+>>
+>> Now, I guess you should try:
+>>
+>>  SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
+>>
+>> Se https://lists.yoctoproject.org/pipermail/yocto/2014-
+>> September/021645.html
+>>
+>> Cheers
+>> Andrea
+>>
+>>
+>> > Regards, Greg
+>> >
+>> >
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>> >
 
