@@ -1,53 +1,71 @@
-Return-Path: <andre.draszik@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBE14E00CF9; Mon, 23 Oct 2017 08:51:23 -0700 (PDT)
+	id 08047E00D04; Mon, 23 Oct 2017 10:17:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.194 listed in dnsbl.sorbs.net]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B5CFE00CD4
-	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 08:51:22 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id m72so9060059wmc.0
-	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 08:51:22 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF890E00CF2
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 10:17:52 -0700 (PDT)
+Received: by mail-pf0-f194.google.com with SMTP id x7so17594083pfa.1
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 10:17:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=2OXjvouPz7HgEDya8jUMKugvAqkuUsKKLGwslrS23ww=;
+	b=ZqM/XbrdBp6x7A0vsPG4bIH7tjUTBspqJVHmZRfpQZIKDl1TwLbPala5BRqrAFNNkM
+	Pt+RMl3ZMhvfzDiJv2Gp/8P/owbztfBtHs1g9pyMmdNZ4Tp/iyeyju2Y0ZGJjd4W+rb0
+	ByJXicniC4WkIJJSuR9GiKdkgbD+bHTaVRovlMGoqM+P8jstnRSHPYhQ5uyllqgQVU6P
+	GmErFvMNgn+2o9F4nZUV82zoyug4+fr99fExhh8tN2oJLUb/POa+Z1/4ZobbAY01yCKA
+	jlHRo655uf5/Ma8NVHVykM0qV9+EFxXb3KvVSO/HGjZ6fyUZOfC+fkqbrhgMvR80yR3T
+	TL8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=EGhcvBv7C8B2T36mRwcSCkZ3UFQhxPWbCHXjoS7GOv8=;
-	b=nFubGs9SQ7lHKsniCC8Anh2+y3GNVIi9Dp/VFJjKXW7LB/ebRm4z1KrzJ64nIw91MC
-	FVvZG6IkEgt1Nm+eqdWaTLQS4jsNGPo9dJUVzVuT5i0Z9Cnn/UOXFODbzD4up75bid4A
-	7SanyMl+DOzLvQLLPSWuj11oyY4d9CH0iLmGEIh8Iw8+mmwen5l3LwBMJJtA5Odqdqrt
-	hQXpVXr0sA2DmPNwDK7l9DUp40ebJ00YZHkyNuc7jJcjutw3LkTMZWQR7r7Vvhq9JYww
-	qsaVj+n5JzUCOPKMNODPBjo/OrnpA8zBfzdM2Ri2X//bMUX2asSSNtVIxdyl5IJ/6bWT
-	Nv+A==
-X-Gm-Message-State: AMCzsaU2Mtn1orTZdd515XA3jYmf4qdD1uQdYqHNQwXYnfyeuWmqHq+E
-	3rtTgR4hqOV4rGYWq3cgBQOQyG/w
-X-Google-Smtp-Source: ABhQp+RBw3vgpWy7zobTOJZbWFC9qYGIOL6W8N0v7r0VKowh1WoHAORpTgn2vRjWoniDVZddHX/vUQ==
-X-Received: by 10.28.151.198 with SMTP id z189mr5675196wmd.133.1508773881662; 
-	Mon, 23 Oct 2017 08:51:21 -0700 (PDT)
-Received: from tfsielt31850.tycofs.com ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id m37sm8365337wrm.4.2017.10.23.08.51.19
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 23 Oct 2017 08:51:20 -0700 (PDT)
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
-To: yocto@yoctoproject.org
-Date: Mon, 23 Oct 2017 16:51:19 +0100
-Message-Id: <20171023155119.10958-1-git@andred.net>
-X-Mailer: git-send-email 2.15.0.rc1
-In-Reply-To: <20171023152608.4149-1-git@andred.net>
-References: <20171023152608.4149-1-git@andred.net>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=2OXjvouPz7HgEDya8jUMKugvAqkuUsKKLGwslrS23ww=;
+	b=uVzpy4N7uVa4iuYJqCuxw3mA1nWZhoOYR0PVTR4mk9sQknXy2NEOY3+aEo51pSipdl
+	OHr+bnW3leA5MQEL2+fjBsfGvgwm0e3P1Gd3qJPACXlyX4VeERWbjf02r3hreC6rSaly
+	X1iCRXk5SMoq0IVi5NePRSpmi3+2ZDSQnvsxx6W0UATLThnwQ2YfIYcJ6Ufuc7v6v25C
+	/byqqeL34cBt6NXQfJjIDEKyX+h1gnMsCNO9+nXbKJc2IBgXlMgrpJd1lyOtHr078N6w
+	g2R67I6MCFJBN4bLpbIUOUl6MT0Lkovfm7ZjoBnjA7us9lGrVus33CG7n7tpSqiIHfl1
+	7u7A==
+X-Gm-Message-State: AMCzsaUGhDeeFQfUWOYYwQ68okUz7v8Tb7SyLvZhkntFb6f4CR79T9+D
+	s3o7jj+n72BdzQY0HTvMrNUCrv6kZfy5GGYMOZw=
+X-Google-Smtp-Source: ABhQp+Tm78ncXHs4nV5wpT2nsbjiaVbnAqrvyaRDBGzmE0qCBM6y/5m4yhmI/oQ7qDFkoFmO/IBSLDG+n5U0zucWZRg=
+X-Received: by 10.99.124.75 with SMTP id l11mr12077000pgn.439.1508779071636;
+	Mon, 23 Oct 2017 10:17:51 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-security][PATCH v2] fscryptctl: add v0.1.0
+Received: by 10.100.187.66 with HTTP; Mon, 23 Oct 2017 10:17:21 -0700 (PDT)
+In-Reply-To: <CAAWyHBJiYDx=+90--zJrEoPFUcU=3c0J3-qkXjjiFj_eu6pftQ@mail.gmail.com>
+References: <CAAWyHBL094mGuwrWkcO4GhCEp+honQ+9zV8Y04bEugGjV3uhSQ@mail.gmail.com>
+	<CAAWyHBKp8tNACEFR6xfDp6qKAzUKYyVrH9PuG0xajLz=FHyUMA@mail.gmail.com>
+	<CAAWyHBLAwfw-JDA8HFqAeUWJyCysv2Bn3RcswfTqftHxZ+USXA@mail.gmail.com>
+	<CAAWyHB+vgT1nZmpXXqWoF4iME-VVYtGeLsoSF7dRqwdfEniuwg@mail.gmail.com>
+	<CAAWyHBJiYDx=+90--zJrEoPFUcU=3c0J3-qkXjjiFj_eu6pftQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 23 Oct 2017 10:17:21 -0700
+Message-ID: <CAMKF1sqLnq1pGKjjnNNgN=j+kqX-QBFVFpsGC4zSa8Rvqn7hQQ@mail.gmail.com>
+To: vishal ashapur <vishalashapur@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Enabling_gcc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,67 +77,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Oct 2017 15:51:23 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 23 Oct 2017 17:17:53 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-From: André Draszik <adraszik@tycoint.com>
+On Mon, Oct 23, 2017 at 4:52 AM, vishal ashapur <vishalashapur@gmail.com> wrote:
+> Hi
+> I'm building a Linux kernel from yocto, on which I have to enable gcc. Can u
+> please tell me how to enable gcc. And also usb_modeswitch package
 
-fscryptctl is a low-level tool written in C that handles
-raw keys and manages policies for Linux filesystem
-encryption [1].
-
-For a tool that presents a higher level interface and
-manages metadata, key generation, key wrapping, PAM
-integration, and passphrase hashing, see fscrypt [2].
-
-[1] https://lwn.net/Articles/639427
-[2] https://github.com/google/fscrypt
-
-Signed-off-by: André Draszik <adraszik@tycoint.com>
-
----
-v2: add RRECOMMENDS on keyutils, as that might be useful when
-dealing with kernel keys.
----
- recipes-security/fscryptctl/fscryptctl_0.1.0.bb | 27 +++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
- create mode 100644 recipes-security/fscryptctl/fscryptctl_0.1.0.bb
-
-diff --git a/recipes-security/fscryptctl/fscryptctl_0.1.0.bb b/recipes-security/fscryptctl/fscryptctl_0.1.0.bb
-new file mode 100644
-index 0000000..4f0b12c
---- /dev/null
-+++ b/recipes-security/fscryptctl/fscryptctl_0.1.0.bb
-@@ -0,0 +1,27 @@
-+SUMMARY = "low-level tool handling Linux filesystem encryption"
-+DESCIPTION = "fscryptctl is a low-level tool written in C that handles raw keys and manages \
-+policies for Linux filesystem encryption (https://lwn.net/Articles/639427). \
-+For a tool that presents a higher level interface and manages metadata, key \
-+generation, key wrapping, PAM integration, and passphrase hashing, see \
-+fscrypt (https://github.com/google/fscrypt)."
-+HOMEPAGE = "https://github.com/google/fscryptctl"
-+SECTION = "base"
-+LICENSE = "Apache-2.0"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
-+
-+SRCREV = "e4c4d0984dee2531897e13c32a18d5e54a2a4aa6"
-+SRC_URI = "git://github.com/google/fscryptctl.git"
-+
-+S = "${WORKDIR}/git"
-+
-+do_install() {
-+    oe_runmake DESTDIR=${D}${bindir} install
-+}
-+
-+RRECOMMENDS_${PN} += "\
-+    keyutils \
-+    kernel-module-cbc \
-+    kernel-module-cts \
-+    kernel-module-ecb \
-+    kernel-module-xts \
-+"
--- 
-2.15.0.rc1
-
+it uses gcc, I think you need to clarify your question a bit so
+someone can provide you help.
 
