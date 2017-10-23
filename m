@@ -1,66 +1,26 @@
-Return-Path: <andrea.adami@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B8BFEE00CC1; Sun, 22 Oct 2017 16:11:49 -0700 (PDT)
+	id 21F8FE00CC3; Sun, 22 Oct 2017 21:32:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (andrea.adami[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.67 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.67 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 130F4E00928
-	for <yocto@yoctoproject.org>; Sun, 22 Oct 2017 16:11:48 -0700 (PDT)
-Received: by mail-wm0-f67.google.com with SMTP id 196so6561184wma.1
-	for <yocto@yoctoproject.org>; Sun, 22 Oct 2017 16:11:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=oczwfFsWC2FhGOuWmOr5sPVvVis1KLbt/DH/RQDsfK0=;
-	b=gpPQiqZ50kkr87lwYwqXgit7+EEF60/SiGjII+LjoDxCjmTlDaT6glhkyODnjQBPoD
-	diOs3wLPW1O/3Bt6ImUT+NGmJETcxe1EqyRA6OjL3K4H+B/IxGHm4oY8czIAZ9fuSlMf
-	yUfo3kIsEPSyMvzD7VsKcbPls9JokIh5aFdlju4mdzKVT9tXp0Azc3SYgJse3NGwUeOq
-	U8CM92Yedp8q0L1FAdIQDI/c/LbGQiN2LoLCGowRdzK9FrVBLCRTD78/K3gROwdhcRgn
-	8eGl1YeL87MdNUW0nb8mSVjyAeDuY1Fcqsh2gRZIrdgRxLktCxnBUwzW/dE6IeWKSe8O
-	+jEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=oczwfFsWC2FhGOuWmOr5sPVvVis1KLbt/DH/RQDsfK0=;
-	b=SlO+tDQZERcgPz8WXsB3TVHyHZkKc06oCTR5Q1mnmjg0YwOnDkAF2AwWP6FYRybmyv
-	6xjT8lAOH8i45CUR3BYbkVUYUv5kCCGKMX0ar7bisPrx84dmS4IRsKk9ZGbcTy5/iMaV
-	5DwRtVew/I4oN8Ljcy3mp+s+P8vgGRNOlsJNSvwqELoz9BpXiVShJ3hWv3b+D9GHn3UX
-	ZB0vgM/zj1Z+37NnuVul1jDoe65SWP+ee69gujg31BC2Vaoo5kB5sD2XdzQBSDujsXUA
-	YbWgEMxGs4ZxpKOlBvfaVmTbeAl6fJpbHz2p1na9LB1aVcFpWMWPLKOSFcplMm8LC/ik
-	wipw==
-X-Gm-Message-State: AMCzsaXSoew4NDyNaviEQHEpehTYnpEwTrH3BjSiVQXwFsQy/a0Puh5N
-	1qAj5+fAUG0QN8O4qAhTthHLIrGcYAJuRID3NOqEL+81
-X-Google-Smtp-Source: ABhQp+RktDnIbF3NO2hFvtGmQdCVKXsd2m5nOm+iq58PnIl2L6UrVlPHEUIEpVzzq11Zzmfpg/95bMSOyAW42Qhpafw=
-X-Received: by 10.80.215.146 with SMTP id w18mr14025497edi.81.1508713907972;
-	Sun, 22 Oct 2017 16:11:47 -0700 (PDT)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08CFAE00CC0
+	for <yocto@yoctoproject.org>; Sun, 22 Oct 2017 21:32:39 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id BFEB484AD8D2
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 00:32:37 -0400 (EDT)
 MIME-Version: 1.0
-Received: by 10.80.204.143 with HTTP; Sun, 22 Oct 2017 16:11:47 -0700 (PDT)
-In-Reply-To: <7e4405635662496696c940f21d8591a7@sakuraus.com>
-References: <7e4405635662496696c940f21d8591a7@sakuraus.com>
-From: Andrea Adami <andrea.adami@gmail.com>
-Date: Mon, 23 Oct 2017 01:11:47 +0200
-Message-ID: <CAAQYJAu4e4WCUAP55pPUpU-7mZ5ixq8AAEtHpGv7zqEjj2xipQ@mail.gmail.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem with populate_sdk
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 23 Oct 2017 04:32:37 -0000
+Message-ID: <20171023043237.32661.92903@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,70 +32,246 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 Oct 2017 23:11:49 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 23 Oct 2017 04:32:40 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 19, 2017 at 8:26 PM, Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
-> I'm trying to build an SDK for a Raspberry Pi3, and I got a problem with the
-> files from one of my custom recipes.
->
->
-> In my recipe I have:
->
-> FILES_${PN}-dev = "lib/lib${PN}.a lib/lib${PN}_unix.a lib/pkgconfig
-> include/canfestival/*.h"
->
->
-> The *.a files get put into staticdev not dev in the package split.
->
->
-> In my image recipe I've added:
->
-> IMAGE_FEATURES += "dev-pkgs  staticdev-pkgs"
->
-> I get all of the libraries in my image. In the SDK I don't get the *.a
-> libraries from the staticdev, I do get the header files which were put into
-> dev.
->
->
-> So, at this point I'm a bit confused, even though I include both the dev &
-> staticdev I am only getting the dev files in the SDK. And, also, why are the
-> *.a libs being put into staticdev in the first place?
->
->
+This mail was sent out by Recipe reporting system.
 
-Hi,
-these defaults are defined in meta/conf/bitbake.conf:
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-PACKAGES = "${PN}-dbg ${PN}-staticdev ${PN}-dev ${PN}-doc ${PN}-locale
-${PACKAGE_BEFORE_PN} ${PN}"
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-This means that staticdev package is created before dev package, just after dbg.
+You can check the detail information at:
 
-and
+http://recipes.yoctoproject.org/
 
-FILES_${PN}-staticdev = "${libdir}/*.a ${base_libdir}/*.a ${libdir}/${BPN}/*.a"
+Package               Version        Upstream version      Maintainer           NoUpgradeReason
+--------------------  -------------  --------------------  -------------------  ------------------------------
+python3               3.5.3          3.6.3                 Alejandro Hernandez
+python                2.7.13         2.7.14                Alejandro Hernandez
+python3-native        3.5.3          3.6.3                 Alejandro Hernandez
+python-native         2.7.13         2.7.14                Alejandro Hernandez
+sysprof               3.24.1         3.26.1                Alexander Kanavin
+gtk-doc               1.25           1.26                  Alexander Kanavin
+webkitgtk             2.16.6         2.18.1                Alexander Kanavin
+bjam-native           1.64.0         1.65.1                Alexander Kanavin
+gnome-desktop3        3.24.2         3.26.1                Alexander Kanavin
+dnf                   2.6.3          2.7.5                 Alexander Kanavin
+expect                5.45           5.45.3                Alexander Kanavin
+epiphany              3.24.3         3.26.1                Alexander Kanavin
+libdnf                0.9.3          0.11.1                Alexander Kanavin
+librepo               1.7.20+gitX    1.8.1+gitAUTOINC+...  Alexander Kanavin
+ffmpeg                3.3.3          3.4                   Alexander Kanavin
+dtc                   1.4.4          7.4                   Alexander Kanavin
+btrfs-tools           4.12           4.13.3                Alexander Kanavin
+oprofile              1.1.0          1.2.0                 Alexander Kanavin
+systemtap-uprobes     3.1            3.2                   Alexander Kanavin
+systemtap             3.1            3.2                   Alexander Kanavin
+mkelfimage            4.0+gitX       4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
+mpg123                1.25.6         1.25.7                Alexander Kanavin
+lighttpd              1.4.45         1.4.47                Alexander Kanavin
+iso-codes             3.75           3.76                  Alexander Kanavin
+boost                 1.64.0         1.65.1                Alexander Kanavin
+libnl                 3.2.29         3.4.0                 Alexander Kanavin
+libxslt               1.1.29         1.1.31                Alexander Kanavin
+psmisc                22.21          23.1                  Alexander Kanavin
+vala                  0.36.4         0.38.2                Alexander Kanavin
+gobject-introspec...  1.52.1         1.54.1                Alexander Kanavin
+apt                   1.2.24         1.5                   Aníbal Limón
+dpkg                  1.18.24        1.19.0.4              Aníbal Limón
+apt-native            1.2.24         1.5                   Aníbal Limón
+bind                  9.10.5-P3      9.11.2                Armin Kuster
+openssh               7.5p1          7.6p1                 Armin Kuster
+libxfont              1.5.2          1.5.3                 Armin Kuster
+libxkbcommon          0.7.1          0.7.2                 Armin Kuster
+libxres               1.0.7          1.2.0                 Armin Kuster
+xkeyboard-config      2.21           2.22                  Armin Kuster
+xserver-xorg          1.19.3         1.19.5                Armin Kuster
+kexec-tools           2.0.14         2.0.15                Armin Kuster
+curl                  7.54.1         7.56.0                Armin Kuster
+busybox               1.24.1         1.27.2                Armin Kuster
+xf86-input-libinput   0.25.1         0.26.0                Armin Kuster
+libxfont2             2.0.1          2.0.2                 Armin Kuster
+nspr                  4.16           4.17                  Armin Kuster
+nss                   3.31.1         3.33                  Armin Kuster
+libpcre2              10.23          10.30                 Armin Kuster
+gnutls                3.5.13         3.6.1                 Armin Kuster
+linux-yocto-dev       4.12-rc++gitX  4.13                  Bruce Ashfield
+linux-libc-headers    4.12           4.13.9                Bruce Ashfield
+libunwind             1.2            1.2.1                 Bruce Ashfield
+linux-yocto           4.12.12+gitX   4.12.14+gitAUTOIN...  Bruce Ashfield
+linux-yocto-tiny      4.12.12+gitX   4.12.14+gitAUTOIN...  Bruce Ashfield
+linux-yocto-rt        4.12.12+gitX   4.12.14+gitAUTOIN...  Bruce Ashfield
+connman               1.34           1.35                  Changhyeok Bae
+iproute2              4.11.0         4.13.0                Changhyeok Bae
+systemd-boot          234            235                   Chen Qi
+dbus-test             1.10.20        1.10.24               Chen Qi
+dbus                  1.10.20        1.10.24               Chen Qi
+systemd-bootchart     231+gitX       233+gitAUTOINC+fe...  Chen Qi
+systemd               234            235                   Chen Qi
+util-linux            2.30           2.31                  Chen Qi
+flex                  2.6.0          2.6.4                 Chen Qi
+cups                  2.2.4          2.2.5                 Chen Qi
+gawk                  4.1.4          4.2.0                 Chen Qi
+sed                   4.2.2          4.4                   Chen Qi
+sudo                  1.8.20p2       1.8.21p2              Chen Qi
+sysstat               11.5.7         11.6.0                Chen Qi
+coreutils             8.27           8.28                  Chen Qi
+build-appliance-i...  15.0.0         17.0.2                Cristian Iorga
+avahi                 0.6.32         0.7                   Dengke Du
+expat                 2.2.3          2.2.4                 Dengke Du
+avahi-ui              0.6.32         0.7                   Dengke Du
+ltp                   20170516       20170929              Dengke Du
+json-glib             1.2.8          1.4.2                 Dengke Du
+chkconfig             1.3.58         1.8                   Dengke Du            Version 1.5 requires selinux
+wayland               1.13.0         1.14.0                Denys Dmytriyenko
+weston                2.0.0          3.0.0                 Denys Dmytriyenko
+lz4                   1.7.4          131                   Denys Dmytriyenko
+lzop                  1.03           1.04                  Denys Dmytriyenko
+mtd-utils             2.0.0          2.0.1                 Denys Dmytriyenko
+wayland-protocols     1.10           1.11                  Denys Dmytriyenko
+acpica                20170303       20170929              Fathi Boudra
+gnupg                 2.2.0          2.2.1                 Hongxu Jia
+libxml2               2.9.4          2.9.6                 Hongxu Jia
+ncurses               6.0+20170715   6.0+20170902          Hongxu Jia
+apr-util              1.6.0          1.6.1                 Hongxu Jia
+apr                   1.6.2          1.6.3                 Hongxu Jia
+libgcrypt             1.8.0          1.8.1                 Hongxu Jia
+bash                  4.4            4.4.12                Hongxu Jia
+ghostscript           9.21           9.22                  Hongxu Jia
+man-pages             4.11           4.13                  Hongxu Jia
+help2man-native       1.47.4         1.47.5                Hongxu Jia
+python3-git           2.1.5          2.1.7                 Jose Lamego
+python3-numpy         1.13.1         1.13.3                Jose Lamego
+python3-six           1.10.0         1.11.0                Jose Lamego
+python-numpy          1.13.1         1.13.3                Jose Lamego
+python3-pygobject     3.24.1         3.26.0                Jose Lamego
+bc                    1.06           1.07.1                Jose Lamego
+python3-setuptools    36.2.7         36.6.0                Jose Lamego
+python-setuptools     36.2.7         36.6.0                Jose Lamego
+pango                 1.40.6         1.40.12               Jussi Kukkonen
+libinput              1.8.1          1.9.0                 Jussi Kukkonen
+libsoup-2.4           2.58.2         2.60.1                Jussi Kukkonen
+gtk-icon-utils-na...  3.22.17        3.22.24               Jussi Kukkonen
+gsettings-desktop...  3.22.0         3.24.1                Jussi Kukkonen
+glib-2.0              2.52.3         2.54.1                Jussi Kukkonen
+at-spi2-atk           2.24.1         2.26.0                Jussi Kukkonen
+librsvg               2.40.18        2.40.19               Jussi Kukkonen
+assimp                4.0.0          4.0.1                 Jussi Kukkonen
+at-spi2-core          2.24.1         2.26.0                Jussi Kukkonen
+atk                   2.24.0         2.26.1                Jussi Kukkonen
+libgudev              231            232                   Jussi Kukkonen
+shared-mime-info      1.8            1.9                   Jussi Kukkonen
+vte                   0.48.3         0.50.1                Jussi Kukkonen
+vulkan                1.0.51.0       1.0.61.1              Jussi Kukkonen
+adwaita-icon-theme    3.24.0         3.26.0                Jussi Kukkonen
+xdg-utils             1.1.1          1.1.2                 Jussi Kukkonen
+gdk-pixbuf            2.36.8         2.36.11               Jussi Kukkonen
+glib-networking       2.50.0         2.54.0                Jussi Kukkonen
+gtk+3                 3.22.17        3.22.24               Jussi Kukkonen
+hicolor-icon-theme    0.15           0.17                  Jussi Kukkonen
+clutter-gtk-1.0       1.8.2          1.8.4                 Jussi Kukkonen
+fontconfig            2.12.4         2.12.6                Jussi Kukkonen
+freetype              2.8            387.5                 Jussi Kukkonen
+glew                  2.0.0          2.1.0                 Jussi Kukkonen
+musl                  1.1.16+gitX    1.1.17+gitAUTOINC...  Khem Raj
+ninja                 1.7.2          1.8.2                 Khem Raj
+glibc                 2.26           2.26.9000             Khem Raj
+binutils              2.29           2.29.1                Khem Raj
+re2c                  0.16           1.0.1                 Khem Raj
+libnsl2               1.0.5+gitX     1.1.0+gitAUTOINC+...  Khem Raj
+gdb                   8.0            8.0.1                 Khem Raj
+mpfr                  3.1.5          3.1.6                 Khem Raj
+go-native             1.9            1.9.1                 Khem Raj
+go                    1.9            1.9.1                 Khem Raj
+cross-localedef-n...  2.26           2.26.9000             Khem Raj
+glibc-initial         2.26           2.26.9000             Khem Raj
+texinfo               6.3            6.5                   Leonardo Sandoval
+ruby                  2.4.1          2.4.2                 Leonardo Sandoval
+perl                  5.24.1         5.26.1                Leonardo Sandoval
+qemu                  2.10.0         2.10.1                Leonardo Sandoval
+libxml-namespaces...  1.12           1.12.9                Leonardo Sandoval
+perl-native           5.24.1         5.26.1                Leonardo Sandoval
+rpm                   4.13.90+gitX   4.14.0+gitAUTOINC...  Mark Hatle
+libpfm4               4.6.0          4.8.0                 Matthew McClintock
+gstreamer1.0          1.12.2         1.12.3                Maxin B. John
+bluez5                5.46           5.47                  Maxin B. John
+gstreamer1.0-omx      1.12.2         1.12.3                Maxin B. John
+libpng                1.6.31         1.6.32                Maxin B. John
+gstreamer1.0-rtsp...  1.12.2         1.12.3                Maxin B. John
+gstreamer1.0-plug...  1.12.2         1.12.3                Maxin B. John
+ofono                 1.20           1.21                  Maxin B. John
+ifupdown              0.8.16         0.8.25                Maxin B. John
+gstreamer1.0-libav    1.12.2         1.12.3                Maxin B. John
+gstreamer1.0-plug...  1.12.2         1.12.3                Maxin B. John
+gstreamer1.0-plug...  1.12.2         1.12.3                Maxin B. John
+libproxy              0.4.14         0.4.15                Maxin B. John
+gstreamer1.0-python   1.12.2         1.12.3                Maxin B. John
+sqlite3               3.20.0         3.20.1                Maxin B. John
+libsolv               0.6.28         0.6.29                Maxin B. John
+quota                 4.03           4.04                  Maxin B. John
+gstreamer1.0-plug...  1.12.2         1.12.3                Maxin B. John
+harfbuzz              1.4.8          1.6.1                 Maxin B. John
+systemtap-native      3.1            3.2                   No maintainer
+gcc-source-6.3.0      6.3.0          7.2.0                 No maintainer
+gdb-cross-canadia...  8.0            8.0.1                 No maintainer
+gdb-cross-i586        8.0            8.0.1                 No maintainer
+go-cross-i586         1.9            1.9.1                 No maintainer
+binutils-cross-ca...  2.29           2.29.1                No maintainer
+binutils-cross-i586   2.29           2.29.1                No maintainer
+binutils-crosssdk...  2.29           2.29.1                No maintainer
+go-cross-canadian...  1.9            1.9.1                 No maintainer
+go-crosssdk-x86_64    1.9            1.9.1                 No maintainer
+go-dep                0.3.0          0.3.2                 No maintainer
+go-runtime            1.9            1.9.1                 No maintainer
+pkgconf               1.3.7          1.3.10                No maintainer
+mesa                  17.1.7         17.2.3                Otavio Salvador
+cmake                 3.8.2          3.9.4                 Otavio Salvador
+libdrm                2.4.83         2.4.85                Otavio Salvador
+cmake-native          3.8.2          3.9.4                 Otavio Salvador
+mesa-gl               17.1.7         17.2.3                Otavio Salvador
+tcf-agent             1.4.0+gitX     1.5+gitAUTOINC+5e...  Randy Witt
+lttng-modules         2.9.3          2.10.2                Richard Purdie
+lttng-tools           2.9.5          2.10.1                Richard Purdie
+lttng-ust             2.9.1          2.10.0                Richard Purdie
+subversion            1.9.6          1.9.7                 Richard Purdie
+e2fsprogs             1.43.5         1.43.7                Robert Yang
+file                  5.31           5.32                  Robert Yang
+git                   2.13.3         2.14.2                Robert Yang
+liberror-perl         0.17024        0.17025               Robert Yang
+strace                4.18           4.19                  Robert Yang
+debianutils           4.8.1.1        4.8.2                 Robert Yang
+autoconf-archive      2016.09.16     2017.09.28            Robert Yang
+less                  487            520                   Robert Yang
+logrotate             3.12.3         3.13.0                Robert Yang
+libsdl2               2.0.5          2.0.6                 Robert Yang
+base-passwd           3.5.29         3.5.44                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.72           9.77                  Ross Burton
+lame                  3.99.5         3.100                 Tanu Kaskinen
+pulseaudio            10.0           11.1                  Tanu Kaskinen
+libva                 1.8.3          2.0.0                 Wei Tee Ng
+libva-utils           1.8.3          2.0.0                 Wei Tee Ng
+gstreamer1.0-vaapi    1.12.2         1.12.3                Wei Tee Ng
 
-indicates that the .a files in these dirs belongs to the staticdev package.
+Upgradable count: 202
+Upgradable total count: 205
 
-Now, I guess you should try:
+The based commit is:
 
- SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs staticdev-pkgs"
+commit 3b413a80578caacd9a7f405f3c51a3921d78a60d
+Author: Randy MacLeod <Randy.MacLeod@windriver.com>
+Date:   Mon Oct 16 11:00:44 2017 -0400
 
-Se https://lists.yoctoproject.org/pipermail/yocto/2014-September/021645.html
+    README.qemu: qemuppc64 is not supported
+    
+    Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Cheers
-Andrea
+Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
 
-
-> Regards, Greg
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
