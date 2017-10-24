@@ -1,71 +1,69 @@
-Return-Path: <vishalashapur@gmail.com>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40ACDE00C7B; Tue, 24 Oct 2017 02:22:22 -0700 (PDT)
+	id 320A4E00C7B; Tue, 24 Oct 2017 02:25:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (vishalashapur[at]gmail.com)
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (marek.belisko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.46 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.46 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f44.google.com (mail-wm0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D918BE00B67
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:22:20 -0700 (PDT)
-Received: by mail-wm0-f44.google.com with SMTP id r196so1910569wmf.2
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:22:20 -0700 (PDT)
+Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03F80E00B67
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:25:30 -0700 (PDT)
+Received: by mail-wm0-f46.google.com with SMTP id r196so1930857wmf.2
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:25:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=3WuKcVwqhyc4IjhTKRNAz8UscTPwchRV/PhcpZq7o+o=;
-	b=lNzH39gVP6WXzTWJU6jJqGR/o/cqn5748OCNqnbsozw1obAWizA23wwEughyTApLNh
-	Pr64hA8bsCKQDp6PScZJCRb0bPEXClXlf7bjOOsrtYJU1+PiktvTCws//b9aQBKVUob4
-	ty14LP+i6Zueh48nbFvhZ+14FA1jSzr2oUCGFqPQXk/8gMtT9ONum/NIe1mZe9tKnxKz
-	SrGFxakINVXuaBrg3xkBJpw38r/18KenS662XU7HHnbB60KNosnBPZVMv56tj0yfwQf7
-	zF8UsUY+GlsSIB+MLXgE82gf2zo71VVq1JJ9MR4pnrTc1kuQBIaLJlDVhw5hCKff5n9u
-	mLeA==
+	:cc; bh=itfevxk1pxM5CUbQE8jSAn+Ud3YwQHZKaKyZuzvwMeI=;
+	b=YIj9aeOvVuOR1jNX4OtUSnHDf1e4GPOzULLxIkFUc8yjsZ1AKr6D7ADmklGh/MomMo
+	eYJZoOJp7LKfoSggmh/KLussjIC06ECY+lDfyvHfQ5dFRqFWP8kceqQbzq3CrW5Baqts
+	vsnK8/lgMDymNk7jYCYU3T3aEWhB9YePrBTv1bdZS8ajBvWodD5cqalMHKEt0WObYU+B
+	KCKs5h1MuF+4NrELeHpf+CAOhEyhE69WVW3gzrEcNVJMhispgFKxa4zVZXxY8v0WLHp5
+	G/RTcxZ9SkBo9NTEGMHZKx+2bu37yHLNUvCL6C3bAFzQQEkHuEGL19i+Q9esHRk6jGSN
+	dSmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=3WuKcVwqhyc4IjhTKRNAz8UscTPwchRV/PhcpZq7o+o=;
-	b=knLmbN3TSrzHt/DWqX3iHymAKaL3vFXfn5MczHYwA+0ryUEMBlk7jcUh+BSDTw59fL
-	AixERObyeQFfq4RNj+4xgmY9Eh7T0w3YpkgTxEaRRQihIzIzdU0/b7md97neZeV7xVg+
-	A8TEL0NFjLenRYRw62Jx7PgaDnyypzaRT9pV7exFV30kKQuvocV16qMmLfcftYIiwu5s
-	piPhUaKygyJfc0lU5fF33HcmQvT4/oJw7snaIZJbjvRMODzMcSN5jB7P8Z82+M3AZdt5
-	vNYQ7AEoYMNjH+KFc4YdIbn6IpEJrTcgcb2gO0YLu6MyxAs02TQJIa9NPN1c4SR019zp
-	VO7A==
-X-Gm-Message-State: AMCzsaXgzJbfo1YOaGz2m90bV5Z8Ku7T4cPgFmUZXi+x6je7V52rl48N
-	LJacct/Gd5Q7aOUmM6NVAIUxycWcExoVBDazBBI=
-X-Google-Smtp-Source: ABhQp+R49nM7snyBP6+cocuxA8U8wOSQiw4l5d+6oxmCQnvoDy8CPAh4fTKahe81tLbf/NY63TrINPtdl0/aRkqs0uY=
-X-Received: by 10.80.182.35 with SMTP id b32mr5128974ede.205.1508836939742;
-	Tue, 24 Oct 2017 02:22:19 -0700 (PDT)
+	bh=itfevxk1pxM5CUbQE8jSAn+Ud3YwQHZKaKyZuzvwMeI=;
+	b=YNmJDJCfcafK1oOjCeM/KJ8uWZ/c7dWWUVXCdyUFL+AFlr0G0Y5jAF86QPnD1AmM3r
+	MZPr4yZzPALGsAYie9L73I32S1kSPjCKe4w2QUD9+DUUfMb1ySlb7KIfvkbzhvK7H+1e
+	sNSpBiPFPwYWawbbCs+v+GjsbPpI/UNnRpa1tJ1IGKSCLzng49j/xH6/w40LxYPOTs0m
+	fW4NCDd+updr9Jn1C+KYVjH6w7cgirvgztVWnBHfdepbbwsVtzQ15bpTVVD5k4uOtwc/
+	FsK+KxGgFyhXU+mJg7ZXkpNE0Tt3VvZl66f1q+DvxulRugbl9UsjK4ZHMw7ER0vr4LS6
+	p6CQ==
+X-Gm-Message-State: AMCzsaUNFtsZaSQX0P+Id8GH0QOSvmZ8N8q2PFwLeG7ckrekKj3PFUVk
+	b2Rmea9D/7qiRr+V8sQQJiH3yRZwvPNAyd3pmLg=
+X-Google-Smtp-Source: ABhQp+SbmGyTGaw0jJW47PBZG5av9980Jv7V3r+8H7WHqyDke2/ojC61Iw5E7a/n4d96jQcTqzDFTf/nxqbEnhwfCMQ=
+X-Received: by 10.28.130.140 with SMTP id e134mr5360665wmd.159.1508837129491; 
+	Tue, 24 Oct 2017 02:25:29 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.80.162.7 with HTTP; Tue, 24 Oct 2017 02:22:18 -0700 (PDT)
-Received: by 10.80.162.7 with HTTP; Tue, 24 Oct 2017 02:22:18 -0700 (PDT)
-In-Reply-To: <CAJTo0LY-eH1hmnBwcvUW8jio8HzNJ7fJ27ra19gK==-S9_ewnQ@mail.gmail.com>
-References: <CAAWyHB+xtKGGLCmGOJvWiVbjCWvhPQMttNjLq=J2SampX8QhBg@mail.gmail.com>
-	<CAAWyHB+vS7nv0GHCUWiXsWQxwTc9A5qprssmU7rSV20qgjRT-A@mail.gmail.com>
-	<CAAWyHBKbq=xm6DbLy9j7fx9=paFWMns=QiU5gxFB-V_NMoZ75Q@mail.gmail.com>
-	<CAAWyHB+7hEg=MJY7VJWMdmzA1a8Ritts88yEdi+ciqum=PS+Qw@mail.gmail.com>
-	<CAAWyHBKXgLZq7jfEAv00o32=uCUek85YnQmFev4U1U9DOVHXEQ@mail.gmail.com>
-	<CAJTo0LY-eH1hmnBwcvUW8jio8HzNJ7fJ27ra19gK==-S9_ewnQ@mail.gmail.com>
-From: vishal ashapur <vishalashapur@gmail.com>
-Date: Tue, 24 Oct 2017 14:52:18 +0530
-Message-ID: <CAAWyHBJi2zUHMuyDKGwWKLPNmAPPSXEi+cmErGxiuX4mzpuCvA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Adding usb-modeswitch and minicom packages on yocto
+Received: by 10.28.137.206 with HTTP; Tue, 24 Oct 2017 02:25:28 -0700 (PDT)
+In-Reply-To: <CA+chaQd3rrBO8niNGSLvsA181qUQj_zAukk6K77ihBQbb-kEMQ@mail.gmail.com>
+References: <CAAfyv37ogJyGkDSVYSgi61C=3+Y+Z2wXJgg5isHOiXderZ=e-Q@mail.gmail.com>
+	<CAJTo0LYbM5HeRgn6iuVwvpYqrWnN-H2f82qMqzXADj5Zn7QdJQ@mail.gmail.com>
+	<b4892a0c-4562-9d04-1f15-5506e1c3648b@linux.intel.com>
+	<CA+chaQd3rrBO8niNGSLvsA181qUQj_zAukk6K77ihBQbb-kEMQ@mail.gmail.com>
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Tue, 24 Oct 2017 11:25:28 +0200
+Message-ID: <CAAfyv34DUfkMhN1zqVMYtqXG4PSuUacAq=6sUBLw5_1cPfCRdg@mail.gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: rocko: QA issue with glibc-locale
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,61 +75,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Oct 2017 09:22:22 -0000
-Content-Type: multipart/alternative; boundary="94eb2c0e433ad14195055c4779ad"
-
---94eb2c0e433ad14195055c4779ad
+X-List-Received-Date: Tue, 24 Oct 2017 09:25:32 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Thank you!
+Hi,
 
-On 24-Oct-2017 2:34 PM, "Burton, Ross" <ross.burton@intel.com> wrote:
-
-> On 24 October 2017 at 05:16, vishal ashapur <vishalashapur@gmail.com>
-> wrote:
+On Fri, Oct 20, 2017 at 6:26 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
+> Similar QA issue is shown when you use:
+> LOCALE_GENERATION_WITH_CROSS-LOCALEDEF_forcevariable = "0"
 >
->> Hi
->> I want to add USB modeswitch and minicom packages on the target image. I
->> am using raspberry pi 3 for the same. How to add those two packages so that
->> they are enabled on target machine.
+> which is needed to build glibc-locale with pyro on hosts with glibc-2.26
+> (with ENABLE_BINARY_LOCALE_GENERATION = "1").
+>
+> On Fri, Oct 20, 2017 at 11:44 AM, Alexander Kanavin
+> <alexander.kanavin@linux.intel.com> wrote:
+>>
+>> On 10/19/2017 10:15 PM, Burton, Ross wrote:
+>>>
+>>> On 19 October 2017 at 12:10, Belisko Marek <marek.belisko@gmail.com
+>>> <mailto:marek.belisko@gmail.com>> wrote:
+>>>
+>>>     I'm using latest origin/rocko
+>>>     (65d23bd7986615fdfb0f1717b615534a2a14ab80) with no change to build
+>>>     beaglebone core-image-minimal. While build I got this QA error:
+>>>
+>>>     ERROR: glibc-locale-2.26-r0 do_package: QA Issue: glibc-locale:
+>>>     Files/directories were installed but not shipped in any package:
+>>>        /usr/share/i18n
+>>>
+>>>
+>>> I've seen this (and some other weird ones) in glibc-locales, and they've
+>>> always been resolved by just rebuilding the recipe. bitbake glibc-locale
+>>> -cclean && bitbake glibc-locale might well make it go away.
 >>
 >>
-> Find the recipes you're after using the layer index:
-> https://layers.openembedded.org
+>> I'm beginning to wonder if the best way to resolve these elusive
+>> glibc-locale issues (also the notorious host contamination one) is to throw
+>> away the existing, extremely convoluted recipe, and do a clean rewrite.
+Probably. Should I fill some bugzilla somewhere? Rocko should be
+released in few days (if not yet already) and this issue can be really
+annoying ;)
+>>
+>> Alex
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >
-> Then customise your image as per the documentation:
-> http://www.yoctoproject.org/docs/2.3.2/dev-manual/dev-
-> manual.html#usingpoky-extend-customimage
->
-> Ross
 >
 
---94eb2c0e433ad14195055c4779ad
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+BR,
 
-<div dir=3D"auto">Thank you!=C2=A0</div><div class=3D"gmail_extra"><br><div=
- class=3D"gmail_quote">On 24-Oct-2017 2:34 PM, &quot;Burton, Ross&quot; &lt=
-;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt; wro=
-te:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"=
->On 24 October 2017 at 05:16, vishal ashapur <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:vishalashapur@gmail.com" target=3D"_blank">vishalashapur@gmail.c=
-om</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div class=3D"gmail_=
-quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"auto">Hi<div dir=3D"auto">I want to add=
- USB modeswitch and minicom packages on the target image. I am using raspbe=
-rry pi 3 for the same. How to add those two packages so that they are enabl=
-ed on target machine.</div><div dir=3D"auto"><br></div></div></blockquote><=
-div><br></div><div>Find the recipes you&#39;re after using the layer index:=
- =C2=A0<a href=3D"https://layers.openembedded.org" target=3D"_blank">https:=
-//layers.openembedded.<wbr>org</a></div><div><br></div><div>Then customise =
-your image as per the documentation: <a href=3D"http://www.yoctoproject.org=
-/docs/2.3.2/dev-manual/dev-manual.html#usingpoky-extend-customimage" target=
-=3D"_blank">http://www.yoctoproject.org/<wbr>docs/2.3.2/dev-manual/dev-<wbr=
->manual.html#usingpoky-extend-<wbr>customimage</a></div><div><br></div><div=
->Ross=C2=A0</div></div></div></div>
-</blockquote></div></div>
+marek
 
---94eb2c0e433ad14195055c4779ad--
+
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
+
