@@ -1,70 +1,57 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <bachehkaraji@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EFE85E00CC1; Tue, 24 Oct 2017 04:00:32 -0700 (PDT)
+	id 36E20E00CC1; Tue, 24 Oct 2017 04:58:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_MUA_MOZILLA, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (marek.belisko[at]gmail.com)
+	mail provider *      (bachehkaraji[at]yahoo.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.169 listed in list.dnswl.org]
+	*      [74.6.130.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f169.google.com (mail-wr0-f169.google.com
-	[209.85.128.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBDD5E007EF
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 04:00:31 -0700 (PDT)
-Received: by mail-wr0-f169.google.com with SMTP id j15so8065729wre.8
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 04:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=zs0ghhow4/Pir2E6hD0Km3quoWnn8U1fvriRTfR7cCw=;
-	b=JRKKKe6tWLUziRxp/QhKIVlIWap2AjaRCUSxDjZh76ujDeeYtEyShAye1UrBF2oQ+O
-	EFqTOrooGdteaarGGpVElDIwnZ+MKiHIum2wU75qRlVFu0aQOZ5wlYJSGQeDPBlA5+pc
-	UcR1rgh9+MBCXjzqkZ3TEFTWmGyg7pc6tFoDkEIu6W1Gx6LdpTdC4kZdzGyHsrijbfEB
-	su1KpqPWNMox/XFqP3NLfnL2e04uUjnmUINRQ14AixFqUOHTv2Ergfq1jfFsWkNOtbKv
-	Emkt3/8IYqJhiImj82Jr6LQS/o2409uL7QY3lkArsct2ojJyGEFnPR8qEF+dxOpyOXc2
-	dbnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=zs0ghhow4/Pir2E6hD0Km3quoWnn8U1fvriRTfR7cCw=;
-	b=IcItQL5Vg6BQoo3UruGtRC+3XtGNJ3/byPn0rw0BhESd0NGF/CBi2Qcj79wAfmoA3+
-	NW99/lKlCVz7ITrNqT/2XzqCfrmNqeZxAhWV18InikSQ/YEl+pmnTUOojW/qc/3TXILK
-	9r2x7yoSR9TQWsBvVZIWde9Ao86sK9qKLCc2SYjbKANTWAbSzsczaykE5DTeVD1gD5Vo
-	gLIn7kf3973jwOVOgRRqbXs/TqBgh1EXxI2/Biff6zUsvA5S7V9jZCq8UwQk6Bftev/b
-	2p3euqW+YCUci06/qcciOQ3RwwofJcjw1DEoSjHvmG5HAs6mL7qntxa6mryVl5Mq/peQ
-	iN6g==
-X-Gm-Message-State: AMCzsaUvB38DBx4wYIzvK5CZI2D+AoA4o58OEbBaBPS3EfUZwv7W0LTo
-	7ADBYE5Xeb9hvAFlYwXWK/LIhE3wmfseHi3U6Do=
-X-Google-Smtp-Source: ABhQp+SxXOedZcgMPB5+7guC3h2g9Edt7NWVZ3BlKPOtb0ykLxbIzxKRbgk4XUL96XFKzOXkcr21Tw2RqBBW4lVNqsU=
-X-Received: by 10.223.147.39 with SMTP id 36mr13138805wro.175.1508842830609;
-	Tue, 24 Oct 2017 04:00:30 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.6.130.41 listed in dnsbl.sorbs.net]
+	*  2.3 FORGED_MUA_MOZILLA Forged mail pretending to be from Mozilla
+Received: from sonic308-2.consmr.mail.bf2.yahoo.com
+	(sonic308-2.consmr.mail.bf2.yahoo.com [74.6.130.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 165CEE00C45
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 04:58:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1508846300; bh=iOYn/6vV3oq4PTomw0+IotVz2M8yQm8fiY4rHfIW9x4=;
+	h=Date:From:To:Subject:References:From:Subject;
+	b=Vqy0jRjoPE503BVPL7WSfxiisTJvT4AMu/XzZW/RZk5RrocJfgwgaMf6jKUrwwSQXQcSYfWyiHGpSnfekvNtXAs62/zf7SviXiSdw74R0QHeMY+tAGNzhfnNqhJlg9piX6lPNha5t9ZUcm5jlUOO4ACzy0dtwKYFip24B8NVFS3KA9R0+r4ZFQDnjMK2n2D8Y+KWdN9qgi9fxgVlPy3J3g8Xgwnu921YZ5A9K+bgtTs4LafnDy2fYH1Q90LVZ4jZHmgRUuN+16xqy+6EaIAJeaBobuj74PnlkvQ6LpOUFJtfl8awGNPXIZc2RCKnVYcfZ3nu0B2tq4EGSSY8awnqtw==
+X-YMail-OSG: gFEteQYVM1k9nWjvxpHXl.JXxWmLjsA4hycDJxBnVbg8s5tazsgpTuc3b24zAu9
+	wSdEq1.YX.9w1nBVGxwMwkLXbii6_xfc0ph45yZhZo.ynzLVWiMnbqTFBNB5PipYpqaDZY8c7.Vl
+	UbjzkN9YOS8DZmb905Hhs7JnKl0il7Icr1sJDG9fNBjrKxro8X_dRB0N.FESb44pnctbiDwcsd4N
+	kOn7f3a3OdHLf1KW1_3c3MM7y4qFLZeBXiAIJ8UHtpX1dK7uzV.hbACfBAu2fy3BrtFxqnOZoLRd
+	z5SWAFIkrXAnSgH71vgNoofL1.hnRjHZeOJbtGSwvweBEoimRFPjKE6WohsQvA_z6Kwi0JcaMcbB
+	c9nklvCA3C8eHtHC3OHnJa299s5vWub5smz5Lch4BVZ2.eJ.tG26Drf2KFIz8KIlos8xzIPX9TSm
+	uPYI4AVC9qwnYfn23kn3WhB5r.rOQFOyNYoann4FhMUM1qlhvpY4-
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic308.consmr.mail.bf2.yahoo.com with HTTP;
+	Tue, 24 Oct 2017 11:58:20 +0000
+Date: Tue, 24 Oct 2017 11:58:19 +0000 (UTC)
+From: Bacheh Karaji <bachehkaraji@yahoo.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Message-ID: <886279436.3600717.1508846299490@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.28.137.206 with HTTP; Tue, 24 Oct 2017 04:00:29 -0700 (PDT)
-In-Reply-To: <CAJTo0LYkn56zd-dx96fjc5u-d4CAoi=YoysazKMNC6=3-KAfQw@mail.gmail.com>
-References: <CAAfyv37ogJyGkDSVYSgi61C=3+Y+Z2wXJgg5isHOiXderZ=e-Q@mail.gmail.com>
-	<CAJTo0LYbM5HeRgn6iuVwvpYqrWnN-H2f82qMqzXADj5Zn7QdJQ@mail.gmail.com>
-	<b4892a0c-4562-9d04-1f15-5506e1c3648b@linux.intel.com>
-	<CA+chaQd3rrBO8niNGSLvsA181qUQj_zAukk6K77ihBQbb-kEMQ@mail.gmail.com>
-	<CAAfyv34DUfkMhN1zqVMYtqXG4PSuUacAq=6sUBLw5_1cPfCRdg@mail.gmail.com>
-	<CAJTo0LYkn56zd-dx96fjc5u-d4CAoi=YoysazKMNC6=3-KAfQw@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Tue, 24 Oct 2017 13:00:29 +0200
-Message-ID: <CAAfyv36_xBjgvVntm0=kBtPKHk6Tp=P7B0=BSe0Z=JPnTp00tg@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: rocko: QA issue with glibc-locale
+References: <886279436.3600717.1508846299490.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.10801 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
+	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100
+	Safari/537.36
+Subject: How /etc/shadow packed into my final image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,38 +63,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Oct 2017 11:00:33 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 24 Oct 2017 11:58:22 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3600716_186005458.1508846299489"
 
-On Tue, Oct 24, 2017 at 12:52 PM, Burton, Ross <ross.burton@intel.com> wrote:
-> On 24 October 2017 at 10:25, Belisko Marek <marek.belisko@gmail.com> wrote:
->>
->> Probably. Should I fill some bugzilla somewhere? Rocko should be
->> released in few days (if not yet already) and this issue can be really
->> annoying ;)
->
->
-> There's already a bug:
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=12265
-OK but it's about compilation not about QA issue. Maybe I should
-create new one or extend existing one? Thanks.
->
-> Ross
+------=_Part_3600716_186005458.1508846299489
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-BR,
-
-marek
+Hi,
+I wanted to modify the content of /etc/shadow,but don't know how=C2=A0/etc/=
+shadow files is packed into final image.
+Can anybody how it is packed and way to modify it?Thanks
 
 
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+------=_Part_3600716_186005458.1508846299489
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+<html><head></head><body><div style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:10px;"><div><font size="3">Hi,</font></div><div><font size="3"><br></font></div><div><font size="3">I wanted to modify the content of /etc/shadow,</font></div><div><font size="3">but don't know how&nbsp;</font><span style="font-size: medium;">/etc/shadow files is packed into final image.</span></div><div><font size="3"><br></font></div><div><font size="3">Can anybody how it is packed and way to modify it?</font></div><div><font size="3">Thanks</font></div><br><br></div></body></html>
 
+------=_Part_3600716_186005458.1508846299489--
