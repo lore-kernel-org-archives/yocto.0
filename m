@@ -1,34 +1,38 @@
-Return-Path: <Kai.Kang@windriver.com>
+Return-Path: <remco+vogels@beryllium.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32115E00C7B; Tue, 24 Oct 2017 02:27:43 -0700 (PDT)
+	id 09D28E00C7B; Tue, 24 Oct 2017 02:30:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 166CCE00B67
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:27:40 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v9O9ReUc014974
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:27:40 -0700 (PDT)
-Received: from pek-hostel-deb02.wrs.com (128.224.153.152) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.361.1; Tue, 24 Oct 2017 02:27:38 -0700
-From: <kai.kang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 24 Oct 2017 17:11:56 +0800
-Message-ID: <20171024091156.16543-1-kai.kang@windriver.com>
-X-Mailer: git-send-email 2.14.1
+X-Greylist: delayed 473 seconds by postgrey-1.32 at yocto-www;
+	Tue, 24 Oct 2017 02:30:57 PDT
+Received: from treon.beryllium.net (treon.beryllium.net [5.135.167.165])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F0C7E00B67
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:30:57 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by treon.beryllium.net (Postfix) with ESMTP id 7E5B1B2F
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 11:23:03 +0200 (CEST)
+X-Virus-Scanned: Ubuntu amavisd-new at treon.beryllium.net
+Received: from treon.beryllium.net ([127.0.0.1])
+	by localhost (treon.beryllium.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 4dhyI36Fnawd for <yocto@yoctoproject.org>;
+	Tue, 24 Oct 2017 11:23:02 +0200 (CEST)
+Received: from webmail.beryllium.net (localhost [IPv6:::1])
+	by treon.beryllium.net (Postfix) with ESMTP id D9BEC73F
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 11:23:02 +0200 (CEST)
 MIME-Version: 1.0
-Subject: [meta-cgl][PATCH] recipes-perl: correct license for perl modules
+Date: Tue, 24 Oct 2017 11:23:02 +0200
+From: Remco Poelstra <remco+vogels@beryllium.net>
+To: yocto@yoctoproject.org
+Organization: Vogel's Products B.V.
+Message-ID: <4b2b01b16549fc2c8a21edf445b53ee0@beryllium.net>
+X-Sender: remco+vogels@beryllium.net
+User-Agent: Roundcube Webmail/0.9.5
+Subject: libcap compile error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,133 +44,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Oct 2017 09:27:43 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 24 Oct 2017 09:30:59 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Kai Kang <kai.kang@windriver.com>
+Hi all,
 
-Correct LICENSE of perl modules that 'GPLv2' is not right for them.
+I’m new with the Yocto project and I’m still trying to find my way.
+I’m using a Hachiko board using Architech SDK and have managed to build 
+and run the standard image.
+As a next step I wanted to include the avahi mdns implementation. In 
+order to do so I included IMAGE_INSTALL_append = “ avahi”
+When I now run bitbake, I get the following error for libcap_2.22.bb:
+| cap_file.c:8:23: fatal error: sys/xattr.h: No such file or directory
 
-libsocket6-perl is licensed with BSD accoring to README file. And other
-4 modules libhtml-tagset-perl, libmailtools-perl, libtest-pod-perl and
-libwww-perl are licensed with same terms of Perl itself according to
-their README files too.
+The compiler has a switch 
+‘--sysroot=/home/architech/architech_sdk/architech/hachiko-tiny/yocto/build/tmp/sysroots/hachiko’, 
+which indeed does not include this file.
+Is that the location where the file should be? How can I add it? Is this 
+a more general bug in Yocto or just my local setup?
 
-Signed-off-by: Kai Kang <kai.kang@windriver.com>
----
- meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb | 6 +++---
- meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb   | 6 +++---
- meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb     | 6 +++---
- meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb    | 6 +++---
- meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb         | 6 +++---
- 5 files changed, 15 insertions(+), 15 deletions(-)
+Thanks in advance.
 
-diff --git a/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb b/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
-index 2924553..96477f6 100644
---- a/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
-+++ b/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
-@@ -1,9 +1,9 @@
- DESCRIPTION = "HTML Tagset bits."
- HOMEPAGE = "http://search.cpan.org/dist/HTML-Tagset/"
- SECTION = "libs"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
--PR = "r3"
-+LICENSE = "Artistic-1.0 | GPL-1.0+"
-+LIC_FILES_CHKSUM = "file://README;beginline=60;md5=16ddda2d845a5546f615e6b122d1dbad"
-+PR = "r4"
- 
- SRC_URI = "http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/HTML-Tagset-${PV}.tar.gz"
- 
-diff --git a/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb b/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb
-index 5a9ef84..e2d2be0 100644
---- a/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb
-+++ b/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb
-@@ -1,8 +1,8 @@
- DESCRIPTION = "MailTools is a set of Perl modules related to mail applications"
- HOMEPAGE = "http://search.cpan.org/dist/MailTools/"
- SECTION = "libs"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
-+LICENSE = "Artistic-1.0 | GPL-1.0+"
-+LIC_FILES_CHKSUM = "file://lib/Mail/Mailer.pod;beginline=144;md5=93c9027e72612b3555f857c4fc17b953"
- DEPENDS = " \
- 	libtest-pod-perl-native \
- 	libtimedate-perl-native \
-@@ -15,7 +15,7 @@ RDEPENDS_${PN} += " \
- 	perl-module-test-more \
- 	"
- BBCLASSEXTEND = "native"
--PR = "r1"
-+PR = "r2"
- 
- SRC_URI = "http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-${PV}.tar.gz"
- SRC_URI[md5sum] = "972468ab5207b90398d77bed4ffc361d"
-diff --git a/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb b/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb
-index 98f8c48..5ab0f4a 100644
---- a/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb
-+++ b/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb
-@@ -1,9 +1,9 @@
- DESCRIPTION = "Perl extensions for IPv6"
- HOMEPAGE = "https://metacpan.org/release/Socket6"
- SECTION = "libs"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
--PR = "r1"
-+LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://README;beginline=31;md5=ad207d410de6d8ca6b4655469baa1ab4"
-+PR = "r2"
- 
- BBCLASSEXTEND = "native"
- 
-diff --git a/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb b/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb
-index 7586725..96e1078 100644
---- a/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb
-+++ b/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Test::Pod - check for POD errors in files"
- SECTION = "libs"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
-+LICENSE = "Artistic-1.0 | GPL-1.0+"
-+LIC_FILES_CHKSUM = "file://README;beginline=26;md5=ea81140c3f3b2937c6490fc732471cd0"
- HOMEPAGE = "https://github.com/perl-pod/test-pod/"
- BBCLASSEXTEND = "native"
- RDEPENDS_${PN} += " perl-module-test-more \
-@@ -9,7 +9,7 @@ RDEPENDS_${PN} += " perl-module-test-more \
-                     perl-module-pod-simple \
-                     perl-module-test-builder-tester \
-                     "
--PR = "r1"
-+PR = "r2"
- 
- SRC_URI ="http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Test-Pod-${PV}.tar.gz;name=test-pod-perl-${PV}"
- SRC_URI[test-pod-perl-1.51.md5sum] = "f806aa84de2f0c0fba48b3a5a8a4aecf"
-diff --git a/meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb b/meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb
-index 4d17b3a..9ac86b1 100644
---- a/meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb
-+++ b/meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb
-@@ -1,8 +1,8 @@
- DESCRIPTION = "libwww-perl provides a simple and consistent API to the World Wide Web"
- HOMEPAGE = "http://search.cpan.org/dist/libwww-perl/"
- SECTION = "libs"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
-+LICENSE = "Artistic-1.0 | GPL-1.0+"
-+LIC_FILES_CHKSUM = "file://README;beginline=92;endline=98;md5=3da13bc02f8f17ed35ac5d192cae6fe4"
- DEPENDS = "liburi-perl-native libhtml-parser-perl-native libhtml-tagset-perl-native"
- RDEPENDS_${PN} += " \
- 	libhtml-parser-perl \
-@@ -13,7 +13,7 @@ RDEPENDS_${PN} += " \
- 	"
- BBCLASSEXTEND = "native"
- 
--PR = "r1"
-+PR = "r2"
- 
- SRC_URI = "http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-${PV}.tar.gz;name=libwww-perl-${PV}"
- SRC_URI[libwww-perl-6.05.md5sum] = "637d5f1eb61336ca2caa6e026b382f87"
--- 
-2.14.1
+Kind regards,
+
+Remco Poelstra
 
 
