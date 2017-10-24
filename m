@@ -1,35 +1,72 @@
-Return-Path: <amanda.r.brindle@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F612E00B53; Mon, 23 Oct 2017 17:10:46 -0700 (PDT)
+	id 766C7E00AAF; Mon, 23 Oct 2017 19:18:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33DBCE00D27
-	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 17:10:44 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	23 Oct 2017 17:10:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.43,424,1503385200"; d="scan'208";a="1028493694"
-Received: from arbrindl-dev.jf.intel.com ([10.7.197.61])
-	by orsmga003.jf.intel.com with ESMTP; 23 Oct 2017 17:10:43 -0700
-From: Amanda Brindle <amanda.r.brindle@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 23 Oct 2017 17:10:13 -0700
-Message-Id: <fdc4ca1540fd607a0acad55da8067a16747ef1b4.1508803311.git.amanda.r.brindle@intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1508803311.git.amanda.r.brindle@intel.com>
-References: <cover.1508803311.git.amanda.r.brindle@intel.com>
-Cc: paul.eggleton@linux.intel.com, Amanda Brindle <amanda.r.brindle@intel.com>
-Subject: [PATCH 1/1] Rewrite bbvars.py to use tinfoil to find variables
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f51.google.com (mail-pg0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFB70E00928
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 19:18:31 -0700 (PDT)
+Received: by mail-pg0-f51.google.com with SMTP id a192so13269693pge.9
+	for <yocto@yoctoproject.org>; Mon, 23 Oct 2017 19:18:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=bJ3b1StYufKs6mcEHb+jVHKRxqHrjmilX+i5HdJD+Ek=;
+	b=My/tk9qg9R1GPcmwgLbD0h8tuHBZHRLEArMafjsWgNRlfamrD5/lxEc2V96pgTHhhZ
+	4Ew4MrV2qip/H054SxeeDa4dEVGxLY8mYEw2CmsCQ4UZEf2aI05JoWpL+eUv7b62+UcB
+	4JbCewIaGFOfV2qJe9u4kYALXJKDUNgtTvNdytkEsbhO3OD2wn7T6pJ0QQpvP+/y+tJu
+	DWseIWLZQ/0x9F2EQ8oVYkOasRKOapQ/p7jj7U9HoPZsObDt6sbYzTk60eRtAg8YlleP
+	EB4aqUzlzLWNNCgtKowEmpwY9FQIoDvL5rZ4ilWZshdOsUL4+vReB8YZvNUFfkW5ouYr
+	pCjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=bJ3b1StYufKs6mcEHb+jVHKRxqHrjmilX+i5HdJD+Ek=;
+	b=Qm10X0Hp0gv70zEaHr6Hi+b6qkUnxlgqQSxb7BQ78F1Rde4h0EsZnq6z48e7Qn+vZi
+	y7wClpAx7x6I0eUUN6R3ZGYgt6oGJkYDCqw8mfbbX+8LGTpVfkUVIRtrxVjmFyATg/mz
+	6iQMlHLbeB81Y4m/7i257SuptqnomdxorKY9Gi9MmQLunC1QBOoE6xHLH75BbQVlvM9X
+	B81a7mXwHE1MnUox5hPPUDOJXbRhBXeS+xX3nY0rHYDih4EKRi6O1NX+qNWZaxKDuSmX
+	vurVzhV9p51QHu3ct5XWi+zqoKgeyHTRKPjzdFvX7ye/ttw0W+2VuE2AS5WgFOuFd4u5
+	OPaA==
+X-Gm-Message-State: AMCzsaUIKMoc+NWOydMRI0nH3PIP8wyjO+k9uaU55mX+1lbgpKBUVxY8
+	EYDGeuim/LNLrmmek4J09KJLwqCCGidWPfN5DYrdYw==
+X-Google-Smtp-Source: ABhQp+Ty7RC/liXX9/Ulzs5Hyn/tGwZfvit/p46I4vZbu1MAK09hmMS+cLjjiVXGbk0WsDJ8MZdu9DYOVpq+F0Kqd5w=
+X-Received: by 10.84.184.12 with SMTP id l12mr3964802plc.404.1508811511050;
+	Mon, 23 Oct 2017 19:18:31 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.100.187.66 with HTTP; Mon, 23 Oct 2017 19:18:00 -0700 (PDT)
+In-Reply-To: <CAAWyHB+XapnVy-a4im+==iJHN7GUKtEVXwrkNhGHatX7fmJt2A@mail.gmail.com>
+References: <CAAWyHBL094mGuwrWkcO4GhCEp+honQ+9zV8Y04bEugGjV3uhSQ@mail.gmail.com>
+	<CAAWyHBKp8tNACEFR6xfDp6qKAzUKYyVrH9PuG0xajLz=FHyUMA@mail.gmail.com>
+	<CAAWyHBLAwfw-JDA8HFqAeUWJyCysv2Bn3RcswfTqftHxZ+USXA@mail.gmail.com>
+	<CAAWyHB+vgT1nZmpXXqWoF4iME-VVYtGeLsoSF7dRqwdfEniuwg@mail.gmail.com>
+	<CAAWyHBJiYDx=+90--zJrEoPFUcU=3c0J3-qkXjjiFj_eu6pftQ@mail.gmail.com>
+	<CAMKF1sqLnq1pGKjjnNNgN=j+kqX-QBFVFpsGC4zSa8Rvqn7hQQ@mail.gmail.com>
+	<40186177-fde5-1edc-63ac-4e88b83c3004@windriver.com>
+	<CAAWyHBL0Z4Pnm2HX861Cnuin7gwvvKwnE=LBek=uhSfO9TMduQ@mail.gmail.com>
+	<CAAWyHB+XapnVy-a4im+==iJHN7GUKtEVXwrkNhGHatX7fmJt2A@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 23 Oct 2017 19:18:00 -0700
+Message-ID: <CAMKF1sqO_wmaH7XeVaw0Agxtux-fbC2BuQUekX714AGUGBg0wA@mail.gmail.com>
+To: vishal ashapur <vishalashapur@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Enabling_gcc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,159 +78,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Oct 2017 00:10:46 -0000
+X-List-Received-Date: Tue, 24 Oct 2017 02:18:32 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Use tinfoil to collect all variable names globally and in each recipe.
+On Mon, Oct 23, 2017 at 4:57 PM, vishal ashapur <vishalashapur@gmail.com> wrote:
+> Ya, I want gcc compiler to be on target image. I'm using raspberry pi3
+> board.
 
-No longer show the count of variables if they are undocumented.
+In local.conf add.
 
-Fixes [YOCTO #2086]
+EXTRA_IMAGE_FEATURES_append = " tools-sdk tools-debug dbg-pkgs"
 
-Signed-off-by: Amanda Brindle <amanda.r.brindle@intel.com>
----
- scripts/contrib/bbvars.py | 90 ++++++++++++++++++++++++++++++++++-------------
- 1 file changed, 66 insertions(+), 24 deletions(-)
+if you are using an image which does not inherit core-image then you can add
+the needed bits to image as Randy suggested.
 
-diff --git a/scripts/contrib/bbvars.py b/scripts/contrib/bbvars.py
-index d8d0594..556f652 100755
---- a/scripts/contrib/bbvars.py
-+++ b/scripts/contrib/bbvars.py
-@@ -23,6 +23,14 @@ import os
- import os.path
- import re
- 
-+# Set up sys.path to let us import tinfoil
-+scripts_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-+lib_path = scripts_path + '/lib'
-+sys.path.insert(0, lib_path)
-+import scriptpath
-+scriptpath.add_bitbake_lib_path()
-+import bb.tinfoil
-+
- def usage():
-     print('Usage: %s -d FILENAME [-d FILENAME]* -m METADIR [-m MATADIR]*' % os.path.basename(sys.argv[0]))
-     print('  -d FILENAME         documentation file to search')
-@@ -66,19 +74,23 @@ def collect_bbvars(metadir):
-                         bbvars[key] = 1
-     return bbvars
- 
--def bbvar_is_documented(var, docfiles):
--    prog = re.compile(".*($|[^A-Z_])%s([^A-Z_]|$)" % (var))
--    for doc in docfiles:
--        try:
--            f = open(doc)
--        except IOError as err:
--            print('WARNING: Failed to open doc ', doc)
--            print(err.args[1])
--        for line in f:
--            if prog.match(line):
--                return True
--        f.close()
--    return False
-+def bbvar_is_documented(var, documented_vars):
-+    ''' Check if variable (var) is in the list of documented variables(documented_vars) '''
-+    if var in documented_vars:
-+        return True
-+    else:
-+        return False
-+
-+def collect_documented_vars(docfiles):
-+    ''' Walk the docfiles and collect the documented variables '''
-+    documented_vars = []
-+    prog = re.compile(".*($|[^A-Z_])<glossentry id=\'var-")
-+    var_prog = re.compile('<glossentry id=\'var-(.*)\'>')
-+    for d in docfiles:
-+        with open(d) as f:
-+            documented_vars += var_prog.findall(f.read())
-+
-+    return documented_vars
- 
- def bbvar_doctag(var, docconf):
-     prog = re.compile('^%s\[doc\] *= *"(.*)"' % (var))
-@@ -101,7 +113,7 @@ def bbvar_doctag(var, docconf):
- def main():
-     docfiles = []
-     metadirs = []
--    bbvars = {}
-+    bbvars = set()
-     undocumented = []
-     docconf = ""
-     onlydoctags = False
-@@ -153,33 +165,63 @@ def main():
-         usage()
-         sys.exit(7)
- 
--    # Collect all the variable names from the recipes in the metadirs
--    for m in metadirs:
--        for key,cnt in collect_bbvars(m).items():
--            if key in bbvars:
--                bbvars[key] = bbvars[key] + cnt
-+    prog = re.compile("^[^a-z]*$")
-+    with bb.tinfoil.Tinfoil() as tinfoil:
-+        tinfoil.prepare(config_only=False)
-+        parser = bb.codeparser.PythonParser('parser', None)
-+        datastore = tinfoil.config_data
-+
-+        def bbvars_update(data):
-+            if prog.match(data):
-+                bbvars.add(data)
-+            if tinfoil.config_data.getVarFlag(data, 'python'):
-+                try:
-+                    parser.parse_python(tinfoil.config_data.getVar(data))
-+                except bb.data_smart.ExpansionError:
-+                    pass
-+                for var in parser.references:
-+                    if prog.match(var):
-+                        bbvars.add(var)
-             else:
--                bbvars[key] = cnt
-+                try:
-+                    expandedVar = datastore.expandWithRefs(datastore.getVar(data, False), data)
-+                    for var in expandedVar.references:
-+                        if prog.match(var):
-+                            bbvars.add(var)
-+                except bb.data_smart.ExpansionError:
-+                    pass
-+
-+        # Use tinfoil to collect all the variable names globally
-+        for data in datastore:
-+            bbvars_update(data)
-+
-+        # Collect variables from all recipes
-+        for recipe in tinfoil.all_recipe_files():
-+            print("Checking %s" % recipe)
-+            for data in tinfoil.parse_recipe_file(recipe):
-+                bbvars_update(data)
-+
-+    documented_vars = collect_documented_vars(docfiles)
- 
-     # Check each var for documentation
-     varlen = 0
--    for v in bbvars.keys():
-+    for v in bbvars:
-         if len(v) > varlen:
-             varlen = len(v)
--        if not bbvar_is_documented(v, docfiles):
-+        if not bbvar_is_documented(v, documented_vars):
-             undocumented.append(v)
-     undocumented.sort()
-     varlen = varlen + 1
- 
-     # Report all undocumented variables
-     print('Found %d undocumented bb variables (out of %d):' % (len(undocumented), len(bbvars)))
--    header = '%s%s%s' % (str("VARIABLE").ljust(varlen), str("COUNT").ljust(6), str("DOCTAG").ljust(7))
-+    header = '%s%s' % (str("VARIABLE").ljust(varlen), str("DOCTAG").ljust(7))
-     print(header)
-     print(str("").ljust(len(header), '='))
-     for v in undocumented:
-         doctag = bbvar_doctag(v, docconf)
-         if not onlydoctags or not doctag == "":
--            print('%s%s%s' % (v.ljust(varlen), str(bbvars[v]).ljust(6), doctag))
-+            print('%s%s' % (v.ljust(varlen), doctag))
- 
- 
- if __name__ == "__main__":
--- 
-2.7.4
 
+>
+> On 24-Oct-2017 1:14 AM, "Randy MacLeod" <randy.macleod@windriver.com> wrote:
+>
+> On 2017-10-23 01:17 PM, Khem Raj wrote:
+>>
+>> On Mon, Oct 23, 2017 at 4:52 AM, vishal ashapur <vishalashapur@gmail.com>
+>> wrote:
+>>>
+>>> Hi
+>>> I'm building a Linux kernel from yocto, on which I have to enable gcc.
+>>> Can u
+>>> please tell me how to enable gcc. And also usb_modeswitch package
+>>
+>>
+>> it uses gcc, I think you need to clarify your question a bit so
+>> someone can provide you help.
+>>
+>
+> Do you mean that you want the compiler in the target image?
+>
+> If so, add:
+>   IMAGE_INSTALL += "packagegroup-core-buildessential"
+> to your conf/local.conf file.
+>
+>
+> ../Randy
+>
+>
+> FYI, I looked-up that up in WR's distro feature:
+>
+> https://github.com/WindRiver-OpenSourceLabs/wr-base/blob/LB21_7.0_RCPL0002/templates/feature/target-toolchain/image.inc
+> since I know it well. :)
+>
+> I didn't quickly find it in the YP manual:
+>   http://www.yoctoproject.org/docs/2.2/mega-manual/mega-manual.html
+> but it should be there.
+>
+> --
+> # Randy MacLeod.  WR Linux
+> # Wind River an Intel Company
+>
+>
 
