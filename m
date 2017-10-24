@@ -1,69 +1,34 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <Kai.Kang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 320A4E00C7B; Tue, 24 Oct 2017 02:25:32 -0700 (PDT)
+	id 32115E00C7B; Tue, 24 Oct 2017 02:27:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.46 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03F80E00B67
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:25:30 -0700 (PDT)
-Received: by mail-wm0-f46.google.com with SMTP id r196so1930857wmf.2
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:25:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=itfevxk1pxM5CUbQE8jSAn+Ud3YwQHZKaKyZuzvwMeI=;
-	b=YIj9aeOvVuOR1jNX4OtUSnHDf1e4GPOzULLxIkFUc8yjsZ1AKr6D7ADmklGh/MomMo
-	eYJZoOJp7LKfoSggmh/KLussjIC06ECY+lDfyvHfQ5dFRqFWP8kceqQbzq3CrW5Baqts
-	vsnK8/lgMDymNk7jYCYU3T3aEWhB9YePrBTv1bdZS8ajBvWodD5cqalMHKEt0WObYU+B
-	KCKs5h1MuF+4NrELeHpf+CAOhEyhE69WVW3gzrEcNVJMhispgFKxa4zVZXxY8v0WLHp5
-	G/RTcxZ9SkBo9NTEGMHZKx+2bu37yHLNUvCL6C3bAFzQQEkHuEGL19i+Q9esHRk6jGSN
-	dSmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=itfevxk1pxM5CUbQE8jSAn+Ud3YwQHZKaKyZuzvwMeI=;
-	b=YNmJDJCfcafK1oOjCeM/KJ8uWZ/c7dWWUVXCdyUFL+AFlr0G0Y5jAF86QPnD1AmM3r
-	MZPr4yZzPALGsAYie9L73I32S1kSPjCKe4w2QUD9+DUUfMb1ySlb7KIfvkbzhvK7H+1e
-	sNSpBiPFPwYWawbbCs+v+GjsbPpI/UNnRpa1tJ1IGKSCLzng49j/xH6/w40LxYPOTs0m
-	fW4NCDd+updr9Jn1C+KYVjH6w7cgirvgztVWnBHfdepbbwsVtzQ15bpTVVD5k4uOtwc/
-	FsK+KxGgFyhXU+mJg7ZXkpNE0Tt3VvZl66f1q+DvxulRugbl9UsjK4ZHMw7ER0vr4LS6
-	p6CQ==
-X-Gm-Message-State: AMCzsaUNFtsZaSQX0P+Id8GH0QOSvmZ8N8q2PFwLeG7ckrekKj3PFUVk
-	b2Rmea9D/7qiRr+V8sQQJiH3yRZwvPNAyd3pmLg=
-X-Google-Smtp-Source: ABhQp+SbmGyTGaw0jJW47PBZG5av9980Jv7V3r+8H7WHqyDke2/ojC61Iw5E7a/n4d96jQcTqzDFTf/nxqbEnhwfCMQ=
-X-Received: by 10.28.130.140 with SMTP id e134mr5360665wmd.159.1508837129491; 
-	Tue, 24 Oct 2017 02:25:29 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 166CCE00B67
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:27:40 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id v9O9ReUc014974
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 02:27:40 -0700 (PDT)
+Received: from pek-hostel-deb02.wrs.com (128.224.153.152) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.361.1; Tue, 24 Oct 2017 02:27:38 -0700
+From: <kai.kang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 24 Oct 2017 17:11:56 +0800
+Message-ID: <20171024091156.16543-1-kai.kang@windriver.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-Received: by 10.28.137.206 with HTTP; Tue, 24 Oct 2017 02:25:28 -0700 (PDT)
-In-Reply-To: <CA+chaQd3rrBO8niNGSLvsA181qUQj_zAukk6K77ihBQbb-kEMQ@mail.gmail.com>
-References: <CAAfyv37ogJyGkDSVYSgi61C=3+Y+Z2wXJgg5isHOiXderZ=e-Q@mail.gmail.com>
-	<CAJTo0LYbM5HeRgn6iuVwvpYqrWnN-H2f82qMqzXADj5Zn7QdJQ@mail.gmail.com>
-	<b4892a0c-4562-9d04-1f15-5506e1c3648b@linux.intel.com>
-	<CA+chaQd3rrBO8niNGSLvsA181qUQj_zAukk6K77ihBQbb-kEMQ@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Tue, 24 Oct 2017 11:25:28 +0200
-Message-ID: <CAAfyv34DUfkMhN1zqVMYtqXG4PSuUacAq=6sUBLw5_1cPfCRdg@mail.gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: rocko: QA issue with glibc-locale
+Subject: [meta-cgl][PATCH] recipes-perl: correct license for perl modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,72 +40,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Oct 2017 09:25:32 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 24 Oct 2017 09:27:43 -0000
+Content-Type: text/plain
 
-Hi,
+From: Kai Kang <kai.kang@windriver.com>
 
-On Fri, Oct 20, 2017 at 6:26 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
-> Similar QA issue is shown when you use:
-> LOCALE_GENERATION_WITH_CROSS-LOCALEDEF_forcevariable = "0"
->
-> which is needed to build glibc-locale with pyro on hosts with glibc-2.26
-> (with ENABLE_BINARY_LOCALE_GENERATION = "1").
->
-> On Fri, Oct 20, 2017 at 11:44 AM, Alexander Kanavin
-> <alexander.kanavin@linux.intel.com> wrote:
->>
->> On 10/19/2017 10:15 PM, Burton, Ross wrote:
->>>
->>> On 19 October 2017 at 12:10, Belisko Marek <marek.belisko@gmail.com
->>> <mailto:marek.belisko@gmail.com>> wrote:
->>>
->>>     I'm using latest origin/rocko
->>>     (65d23bd7986615fdfb0f1717b615534a2a14ab80) with no change to build
->>>     beaglebone core-image-minimal. While build I got this QA error:
->>>
->>>     ERROR: glibc-locale-2.26-r0 do_package: QA Issue: glibc-locale:
->>>     Files/directories were installed but not shipped in any package:
->>>        /usr/share/i18n
->>>
->>>
->>> I've seen this (and some other weird ones) in glibc-locales, and they've
->>> always been resolved by just rebuilding the recipe. bitbake glibc-locale
->>> -cclean && bitbake glibc-locale might well make it go away.
->>
->>
->> I'm beginning to wonder if the best way to resolve these elusive
->> glibc-locale issues (also the notorious host contamination one) is to throw
->> away the existing, extremely convoluted recipe, and do a clean rewrite.
-Probably. Should I fill some bugzilla somewhere? Rocko should be
-released in few days (if not yet already) and this issue can be really
-annoying ;)
->>
->> Alex
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
+Correct LICENSE of perl modules that 'GPLv2' is not right for them.
 
-BR,
+libsocket6-perl is licensed with BSD accoring to README file. And other
+4 modules libhtml-tagset-perl, libmailtools-perl, libtest-pod-perl and
+libwww-perl are licensed with same terms of Perl itself according to
+their README files too.
 
-marek
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
+---
+ meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb | 6 +++---
+ meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb   | 6 +++---
+ meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb     | 6 +++---
+ meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb    | 6 +++---
+ meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb         | 6 +++---
+ 5 files changed, 15 insertions(+), 15 deletions(-)
 
-
-
+diff --git a/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb b/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
+index 2924553..96477f6 100644
+--- a/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
++++ b/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
+@@ -1,9 +1,9 @@
+ DESCRIPTION = "HTML Tagset bits."
+ HOMEPAGE = "http://search.cpan.org/dist/HTML-Tagset/"
+ SECTION = "libs"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
+-PR = "r3"
++LICENSE = "Artistic-1.0 | GPL-1.0+"
++LIC_FILES_CHKSUM = "file://README;beginline=60;md5=16ddda2d845a5546f615e6b122d1dbad"
++PR = "r4"
+ 
+ SRC_URI = "http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/HTML-Tagset-${PV}.tar.gz"
+ 
+diff --git a/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb b/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb
+index 5a9ef84..e2d2be0 100644
+--- a/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb
++++ b/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.18.bb
+@@ -1,8 +1,8 @@
+ DESCRIPTION = "MailTools is a set of Perl modules related to mail applications"
+ HOMEPAGE = "http://search.cpan.org/dist/MailTools/"
+ SECTION = "libs"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
++LICENSE = "Artistic-1.0 | GPL-1.0+"
++LIC_FILES_CHKSUM = "file://lib/Mail/Mailer.pod;beginline=144;md5=93c9027e72612b3555f857c4fc17b953"
+ DEPENDS = " \
+ 	libtest-pod-perl-native \
+ 	libtimedate-perl-native \
+@@ -15,7 +15,7 @@ RDEPENDS_${PN} += " \
+ 	perl-module-test-more \
+ 	"
+ BBCLASSEXTEND = "native"
+-PR = "r1"
++PR = "r2"
+ 
+ SRC_URI = "http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-${PV}.tar.gz"
+ SRC_URI[md5sum] = "972468ab5207b90398d77bed4ffc361d"
+diff --git a/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb b/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb
+index 98f8c48..5ab0f4a 100644
+--- a/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb
++++ b/meta-cgl-common/recipes-perl/perl/libsocket6-perl_0.23.bb
+@@ -1,9 +1,9 @@
+ DESCRIPTION = "Perl extensions for IPv6"
+ HOMEPAGE = "https://metacpan.org/release/Socket6"
+ SECTION = "libs"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
+-PR = "r1"
++LICENSE = "BSD"
++LIC_FILES_CHKSUM = "file://README;beginline=31;md5=ad207d410de6d8ca6b4655469baa1ab4"
++PR = "r2"
+ 
+ BBCLASSEXTEND = "native"
+ 
+diff --git a/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb b/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb
+index 7586725..96e1078 100644
+--- a/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb
++++ b/meta-cgl-common/recipes-perl/perl/libtest-pod-perl_1.51.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Test::Pod - check for POD errors in files"
+ SECTION = "libs"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
++LICENSE = "Artistic-1.0 | GPL-1.0+"
++LIC_FILES_CHKSUM = "file://README;beginline=26;md5=ea81140c3f3b2937c6490fc732471cd0"
+ HOMEPAGE = "https://github.com/perl-pod/test-pod/"
+ BBCLASSEXTEND = "native"
+ RDEPENDS_${PN} += " perl-module-test-more \
+@@ -9,7 +9,7 @@ RDEPENDS_${PN} += " perl-module-test-more \
+                     perl-module-pod-simple \
+                     perl-module-test-builder-tester \
+                     "
+-PR = "r1"
++PR = "r2"
+ 
+ SRC_URI ="http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Test-Pod-${PV}.tar.gz;name=test-pod-perl-${PV}"
+ SRC_URI[test-pod-perl-1.51.md5sum] = "f806aa84de2f0c0fba48b3a5a8a4aecf"
+diff --git a/meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb b/meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb
+index 4d17b3a..9ac86b1 100644
+--- a/meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb
++++ b/meta-cgl-common/recipes-perl/perl/libwww-perl_6.05.bb
+@@ -1,8 +1,8 @@
+ DESCRIPTION = "libwww-perl provides a simple and consistent API to the World Wide Web"
+ HOMEPAGE = "http://search.cpan.org/dist/libwww-perl/"
+ SECTION = "libs"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
++LICENSE = "Artistic-1.0 | GPL-1.0+"
++LIC_FILES_CHKSUM = "file://README;beginline=92;endline=98;md5=3da13bc02f8f17ed35ac5d192cae6fe4"
+ DEPENDS = "liburi-perl-native libhtml-parser-perl-native libhtml-tagset-perl-native"
+ RDEPENDS_${PN} += " \
+ 	libhtml-parser-perl \
+@@ -13,7 +13,7 @@ RDEPENDS_${PN} += " \
+ 	"
+ BBCLASSEXTEND = "native"
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ SRC_URI = "http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/libwww-perl-${PV}.tar.gz;name=libwww-perl-${PV}"
+ SRC_URI[libwww-perl-6.05.md5sum] = "637d5f1eb61336ca2caa6e026b382f87"
 -- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+2.14.1
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
 
