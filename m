@@ -1,65 +1,59 @@
 Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C1CA6E00D14; Wed, 25 Oct 2017 01:43:36 -0700 (PDT)
+	id 5727CE00D14; Wed, 25 Oct 2017 01:50:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.194 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.128.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.194 listed in list.dnswl.org]
-Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
-	[209.85.128.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87985E00D0E
-	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 01:43:35 -0700 (PDT)
-Received: by mail-wr0-f194.google.com with SMTP id l1so23172637wrc.3
-	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 01:43:35 -0700 (PDT)
+Received: from mail-wr0-f171.google.com (mail-wr0-f171.google.com
+	[209.85.128.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B94F3E00D0E
+	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 01:50:03 -0700 (PDT)
+Received: by mail-wr0-f171.google.com with SMTP id o44so23151885wrf.11
+	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 01:50:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=2rh0YoYoEHtCK3gkNFijbVQcxpnq4tKmnUbUnx7+xB0=;
-	b=KAtjOfbm8LiL9tzF+b+jNtf1uYG/K6M/vH8aNaNtvoLtjVbVuf/VVZsV9nNZ8DLmqn
-	WxZPihjffxDzyfAvUXk4hGibp7NDkTyyuxQrmrIW1pziZ+sbIvakInxxAx8ydJu7OQOp
-	BU4hnOi0yLYwQzJN776BozcmQfEnoFZNyVjFnP4z5l3GNzmMF1jZlUSETnhD5PPvGbWR
-	Cu532ST/OkC1UGl6328mqdvSlJGI5iBeuvuAZN85Bw+dcx6V4uIPrpMwx7KWGDdoF+1C
-	pqtnHZV9+O4Ft7n10o2Gq4ifHu9VTxNkWfXpRKyw2njKpfmseFkKaUpHp/StKL4QQ1Vs
-	4Fww==
+	h=mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=+ewGdnUhKejiwnWOOJA+wzbRQpvQPB8jRGle+yfcJtQ=;
+	b=WDvjzDLd2arw+2bl6x224HJlr8Bt9G0EIUHQZJPXZIiUmfhMfBDGrCyOxAJp+gcUAI
+	AVZHoFZ5pAsaaiB26GPE28+9auZf+pagDIPyTlm0YrtffbCf/S3YISjSzkSbz+OADeiO
+	JTtF7QR0VlZwYVk7/yrtN+DCORs+/OobptvflfdYxHkRTh88WnHJ4N/NpmeX5FEiD+Vd
+	FDXYMZ+a+b5PvS9TD+11Om5QmxPK2KiirXtWDga1Ak+Y1WEEPvoBC6Qa5jjYiwKXTXYm
+	XqMwrINFPF7BVUKesrCkhrMAYDO+otVVrbsPGYgeCT7OQhfkmgHnmTBi3KpNtwg3sN3W
+	iYBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=2rh0YoYoEHtCK3gkNFijbVQcxpnq4tKmnUbUnx7+xB0=;
-	b=WOyTc0xluHpqVhGQnVqDRu1praB/zX1kRLD5+axK4yoBL8pwdZDbrHlPBrtne0tgfM
-	IcTNfgsdf9gdtiuieKa7DhjT8mS5pnA9YTYaZp3iz/h67pDGBWAH2B10Ca1o9dUOtdEz
-	B5mBrdVIv4WG6KeGWlwV8EXkCGevb7yPM5oPaHIOcktuTTDdzVxdNegaFPq/Tb1ChWhf
-	aiG51otn7bTnJwnp1v28FvaN2/tXjZ3ruCqCR18bdAbNWj+DWRRMgK39g0+PaWIC2iA+
-	twkH7QMt/yugax+ZkJ2O0qEQPzidxwiZH3qGseMSEqgrsnSDJ/jkY99cOVfArCKWjSqV
-	LGng==
-X-Gm-Message-State: AMCzsaW23AFAywXzTJrw5uSXRxfZrMBipC0HSwSmCXXhlDwa1jgtcn1S
-	JSkCAYfSkQQk08P9QXVPH9nwNNsHU9ZaAWwH216odw==
-X-Google-Smtp-Source: ABhQp+R77b4PGDIoh5zGWurq0O3z8gW5a20HoRcTF7xmk3r9Be+dxDwAKK8/SgDezyb09geL0Q54QCRKNk7B7AEz+qg=
-X-Received: by 10.223.145.165 with SMTP id 34mr1228118wri.140.1508921014414;
-	Wed, 25 Oct 2017 01:43:34 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=+ewGdnUhKejiwnWOOJA+wzbRQpvQPB8jRGle+yfcJtQ=;
+	b=hjnNyHwB2Neb1//T/YMEG/CeUmtfMgJBAGGKd1P/eiQ8JDnlURK/pwhfsmFF1WWR8K
+	kAH9SS/SqHJhSRWTZGweE+EDuUQKH62z7db5JAoYFsJstHjd6BFzyvVNTIed6tmHaVF6
+	8Hbsl9c6+5Z+RxiJ7EiZoXJf+a3CBD31ait1pERv7ytY8fVCdCSbhLvG3WvBq2ZsDo4k
+	xLn03tLxZ1XMfDgLaJi5ipYPuNG7F8siKwnevdeCQ91YN1pNgpJ1A+Vja07p2t8V2MOz
+	fehRVVcNE4UrjUZ0V+SutpHcMa9jy0Yuqq4GoO6W8GRKkognJzbKSb5/Vus96OciCcXB
+	hKxA==
+X-Gm-Message-State: AMCzsaXRujcPLdikqCllAS8BQ/BvrJemGDFmcG7e5YQNjYoe0gXvo+1R
+	FYt06mQfWSmW00Uns0D7QThMvLWtNkDfIFEhmuG4JLe5
+X-Google-Smtp-Source: ABhQp+QLxQVmQiiMt1LyZrhg1E87cuDy8CAyTB6apARixInOJp3j8FvXTH7KGARkAtopgzg+HTes/0MkVIeKQsED0Lk=
+X-Received: by 10.223.154.184 with SMTP id a53mr1515182wrc.48.1508921402609;
+	Wed, 25 Oct 2017 01:50:02 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.223.176.20 with HTTP; Wed, 25 Oct 2017 01:43:34 -0700 (PDT)
-In-Reply-To: <20171025054330.23222-1-mgloff@emacinc.com>
-References: <20171025054330.23222-1-mgloff@emacinc.com>
+Received: by 10.223.176.20 with HTTP; Wed, 25 Oct 2017 01:50:02 -0700 (PDT)
 From: Paul Barker <pbarker@toganlabs.com>
-Date: Wed, 25 Oct 2017 09:43:34 +0100
-Message-ID: <CAPyrkgyZz8wSd+JbP84=ELBji8=pCqBhpCUot5V8coSGcaOorg@mail.gmail.com>
-To: Michael Gloff <mgloff@emacinc.com>
-Cc: Michael Gloff <mgloff@hotmail.com>, yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 1/3] linux-firmware: Replace /lib with ${nonarch_base_libdir}
+Date: Wed, 25 Oct 2017 09:50:02 +0100
+Message-ID: <CAPyrkgxOa749tUa55nK+XZ9UJBcEHU718KEhN4GW+t4c70U7EQ@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>, yocto@yoctoproject.org
+Subject: [meta-raspberrypi] Rocko branch maintenance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,61 +65,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Oct 2017 08:43:36 -0000
+X-List-Received-Date: Wed, 25 Oct 2017 08:50:04 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 25, 2017 at 6:43 AM, Michael Gloff <mgloff@emacinc.com> wrote:
-> From: Michael Gloff <mgloff@hotmail.com>
->
->         Use standard variable name and avoid
->         QA errors when usermerge DISTRO_FEATURE is enabled.
->
-> Signed-off-by: Michael Gloff <mgloff@emacinc.com>
-> ---
->  recipes-kernel/linux-firmware/linux-firmware_%.bbappend | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/re=
-cipes-kernel/linux-firmware/linux-firmware_%.bbappend
-> index 565b735..daf1dbc 100644
-> --- a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-> +++ b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-> @@ -10,17 +10,17 @@ do_install_append() {
->         # (v7.45.41.46)
->         local _firmware=3D"brcmfmac43430-sdio.bin"
->         local _oldmd5=3D9258986488eca9fe5343b0d6fe040f8e
-> -       if [ "$(md5sum ${D}/lib/firmware/brcm/$_firmware | awk '{print $1=
-}')" !=3D "$_oldmd5" ]; then
-> +       if [ "$(md5sum ${D}${nonarch_base_libdir}/firmware/brcm/$_firmwar=
-e | awk '{print $1}')" !=3D "$_oldmd5" ]; then
->                 _firmware=3D""
->                 bbwarn "linux-firmware stopped providing brcmfmac43430 v7=
-.45.41.26."
->         else
->                 _firmware=3D"${WORKDIR}/$_firmware"
->         fi
->
-> -       mkdir -p ${D}/lib/firmware/brcm
-> -       install -m 0644 $_firmware ${WORKDIR}/brcmfmac43430-sdio.txt ${D}=
-/lib/firmware/brcm
-> +       mkdir -p ${D}/${nonarch_base_libdir}/firmware/brcm
-> +       install -m 0644 $_firmware ${WORKDIR}/brcmfmac43430-sdio.txt ${D}=
-${nonarch_base_libdir}/firmware/brcm
->  }
->
->  FILES_${PN}-bcm43430 +=3D " \
-> -       /lib/firmware/brcm/brcmfmac43430-sdio.txt \
-> +       ${nonarch_base_libdir}/firmware/brcm/brcmfmac43430-sdio.txt \
->  "
-> --
-> 2.14.3
->
+Hi all,
 
-All 3 patches look good at first glace. Could you submit them as a
-pull request on https://github.com/agherzan/meta-raspberrypi please?
+I'd like to put myself forward as stable branch maintainer for
+meta-raspberrypi again. The plan is to maintain rocko for 12 months in
+line with the Yocto Project's current maintenance period. I'm
+currently looking after pyro and I think it's gone well over the last
+6 months. Obviously, pyro will also continue to be maintained until
+it's around 12 months old.
 
-Thanks,
+However, if anyone else wants to help spread the load then feel free
+to step forward and propose yourself for rocko branch maintenance.
+
+Cheers,
 
 --=20
 Paul Barker
