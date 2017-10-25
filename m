@@ -1,41 +1,66 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <mgloff@emacinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2762AE00D06; Tue, 24 Oct 2017 19:52:05 -0700 (PDT)
+	id 5FEA1E00D0E; Tue, 24 Oct 2017 22:43:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.65 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.214.65 listed in dnsbl.sorbs.net]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2575CE00D03
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 19:52:03 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id v9P2q0Be007865
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 24 Oct 2017 19:52:00 -0700 (PDT)
-Received: from [128.224.163.189] (128.224.163.189) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Tue, 24 Oct 2017 19:51:59 -0700
-To: Bacheh Karaji <bachehkaraji@yahoo.com>, Yocto Project
-	<yocto@yoctoproject.org>
-References: <886279436.3600717.1508846299490.ref@mail.yahoo.com>
-	<886279436.3600717.1508846299490@mail.yahoo.com>
-From: ChenQi <Qi.Chen@windriver.com>
-Message-ID: <646e07c5-824a-1c4f-7643-6d41c17d8b72@windriver.com>
-Date: Wed, 25 Oct 2017 10:53:00 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
-MIME-Version: 1.0
-In-Reply-To: <886279436.3600717.1508846299490@mail.yahoo.com>
-X-Originating-IP: [128.224.163.189]
-Subject: Re: How /etc/shadow packed into my final image?
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f65.google.com (mail-it0-f65.google.com
+	[209.85.214.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06853E00D0D
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 22:43:42 -0700 (PDT)
+Received: by mail-it0-f65.google.com with SMTP id f187so12726926itb.1
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 22:43:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=emacinc-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=kPGh+rShrvyEzO1xoXCtkgHOXmlys2grOhOinq2xfOU=;
+	b=bkbnfNpsnKAOAFnM/gwktDIfrWXvVoPI12mmPOexWW0TFYh2cvHMWjhJ2428B6QnLp
+	H1T47CybRyu4CiB0zTgkSweWXYYQN0beUMTGrUQAeH2HGpSFlZJHnzXWh6yx1z9XoL1D
+	2V8iptm032WSSi8iWql4F2t+jGH8mB4MgJsdjl2xIRto0N3oUWe6Q1TThd0hFXbcX28V
+	6Mv9lkf6GjeBEUQ8mHsgR5MrfbvSTpnDGi74ZcU7YWCn4LDfiYylsDfavsFMjAonHQJL
+	h7qecmMLt1uiuvW2LuNEyD4/B7ywHI8dVYqh+wLXjAQfVyZeYC1oNepORDDQmVW8qLbL
+	r5WA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=kPGh+rShrvyEzO1xoXCtkgHOXmlys2grOhOinq2xfOU=;
+	b=hEjkaydfxl6+opTHIO/mNTFu127wCjV7SmcDloaU+iA8kmDCQhiY5QfXvCVDUdP8I3
+	c3N1vDmN2rBc07jSm90KtnVgzE/jTgeBo8CmLP9z0yaZPFOa3aaY2RIahusZh61cD6Be
+	S4gAmMzk/SEYTPAeUJllwF0MmTEEjBF23He0KukntATncY2v20nL0D4zlMHnIWneCRGd
+	H2Qn+9BskJxHubNmwa/MuSmQjiCwrSaoRcYKHruM2hus8mDwChCAyfSWFmGsVvLpWc/X
+	AgX3WgJai8yVKJGOw4KEGvQTaAOueBlr8jdeL5bWq5EM+/wtuuEc2+PvVyqtSVXNED0/
+	5IOQ==
+X-Gm-Message-State: AMCzsaXlGgahjoW9uapUlaXczvwe3MSZW2TrsNVkpJ5avkGdRmSr0HoR
+	sjfC1ERKqGxZIcr73wDLwEztTZxR
+X-Google-Smtp-Source: ABhQp+T0CWdcPORSukmQFD3/KcC2kX/5aNPSccRghpouzSZNCa7W9qBltbjbcIbw8nxC7LRTSYIWHw==
+X-Received: by 10.36.82.1 with SMTP id d1mr605243itb.115.1508910221861;
+	Tue, 24 Oct 2017 22:43:41 -0700 (PDT)
+Received: from localhost.localdomain
+	([2604:2d80:8039:8064:ec83:a329:df73:818a])
+	by smtp.gmail.com with ESMTPSA id
+	a187sm929278itd.31.2017.10.24.22.43.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 24 Oct 2017 22:43:41 -0700 (PDT)
+From: Michael Gloff <mgloff@emacinc.com>
+To: yocto@yoctoproject.org
+Date: Wed, 25 Oct 2017 00:43:28 -0500
+Message-Id: <20171025054330.23222-1-mgloff@emacinc.com>
+X-Mailer: git-send-email 2.14.3
+Cc: Michael Gloff <mgloff@hotmail.com>
+Subject: [meta-raspberrypi][PATCH 1/3] linux-firmware: Replace /lib with ${nonarch_base_libdir}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,131 +72,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Oct 2017 02:52:05 -0000
-Content-Type: multipart/alternative;
-	boundary="------------08F0E2731EC41ED424292997"
+X-List-Received-Date: Wed, 25 Oct 2017 05:43:45 -0000
 
---------------08F0E2731EC41ED424292997
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Michael Gloff <mgloff@hotmail.com>
 
-On 10/24/2017 07:58 PM, Bacheh Karaji wrote:
-> Hi,
->
-> I wanted to modify the content of /etc/shadow,
-> but don't know how /etc/shadow files is packed into final image.
->
-> Can anybody how it is packed and way to modify it?
-> Thanks
->
->
->
->
+	Use standard variable name and avoid
+	QA errors when usermerge DISTRO_FEATURE is enabled.
 
-The file is created in postinst of the shadow package.
+Signed-off-by: Michael Gloff <mgloff@emacinc.com>
+---
+ recipes-kernel/linux-firmware/linux-firmware_%.bbappend | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Codes are like below:
-root@qemux86-64:~# rpm -q --scripts shadow
-postinstall scriptlet (using /bin/sh):
-# shadow - postinst
-     if [ "x$D" != "x" ]; then
-       rootarg="--root $D"
-     else
-       rootarg=""
-     fi
-
-     pwconv $rootarg || exit 1
-     grpconv $rootarg || exit 1
-[snip]
-
-There are several ways to modify the file, depending on your purpose.
-If you just want to modify/add/delete user/group in recipe, please try 
-to make use of useradd*.bbclass.
-http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-manual.html#ref-classes-useradd
-
-If you want to do user/group operation in conf file, please try to make 
-use of extrausers.bbclass.
-http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-manual.html#ref-classes-extrausers
-
-The above should be basically enough.
-
-Best Regards,
-Chen Qi
+diff --git a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+index 565b735..daf1dbc 100644
+--- a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
++++ b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
+@@ -10,17 +10,17 @@ do_install_append() {
+ 	# (v7.45.41.46)
+ 	local _firmware="brcmfmac43430-sdio.bin"
+ 	local _oldmd5=9258986488eca9fe5343b0d6fe040f8e
+-	if [ "$(md5sum ${D}/lib/firmware/brcm/$_firmware | awk '{print $1}')" != "$_oldmd5" ]; then
++	if [ "$(md5sum ${D}${nonarch_base_libdir}/firmware/brcm/$_firmware | awk '{print $1}')" != "$_oldmd5" ]; then
+ 		_firmware=""
+ 		bbwarn "linux-firmware stopped providing brcmfmac43430 v7.45.41.26."
+ 	else
+ 		_firmware="${WORKDIR}/$_firmware"
+ 	fi
+ 
+-	mkdir -p ${D}/lib/firmware/brcm
+-	install -m 0644 $_firmware ${WORKDIR}/brcmfmac43430-sdio.txt ${D}/lib/firmware/brcm
++	mkdir -p ${D}/${nonarch_base_libdir}/firmware/brcm
++	install -m 0644 $_firmware ${WORKDIR}/brcmfmac43430-sdio.txt ${D}${nonarch_base_libdir}/firmware/brcm
+ }
+ 
+ FILES_${PN}-bcm43430 += " \
+-	/lib/firmware/brcm/brcmfmac43430-sdio.txt \
++	${nonarch_base_libdir}/firmware/brcm/brcmfmac43430-sdio.txt \
+ "
+-- 
+2.14.3
 
 
---------------08F0E2731EC41ED424292997
-Content-Type: text/html; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 10/24/2017 07:58 PM, Bacheh Karaji
-      wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:886279436.3600717.1508846299490@mail.yahoo.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <div style="font-family:Helvetica Neue, Helvetica, Arial,
-        sans-serif;font-size:10px;">
-        <div><font size="3">Hi,</font></div>
-        <div><font size="3"><br>
-          </font></div>
-        <div><font size="3">I wanted to modify the content of
-            /etc/shadow,</font></div>
-        <div><font size="3">but don't know how </font><span
-            style="font-size: medium;">/etc/shadow files is packed into
-            final image.</span></div>
-        <div><font size="3"><br>
-          </font></div>
-        <div><font size="3">Can anybody how it is packed and way to
-            modify it?</font></div>
-        <div><font size="3">Thanks</font></div>
-        <br>
-        <br>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-    The file is created in postinst of the shadow package.<br>
-    <br>
-    Codes are like below:<br>
-    root@qemux86-64:~# rpm -q --scripts shadow<br>
-    postinstall scriptlet (using /bin/sh):<br>
-    # shadow - postinst<br>
-        if [ "x$D" != "x" ]; then<br>
-          rootarg="--root $D"<br>
-        else<br>
-          rootarg=""<br>
-        fi<br>
-    <br>
-        pwconv $rootarg || exit 1<br>
-        grpconv $rootarg || exit 1<br>
-    [snip]<br>
-    <br>
-    There are several ways to modify the file, depending on your
-    purpose.<br>
-    If you just want to modify/add/delete user/group in recipe, please
-    try to make use of useradd*.bbclass.<br>
-<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-manual.html#ref-classes-useradd">http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-manual.html#ref-classes-useradd</a><br>
-    <br>
-    If you want to do user/group operation in conf file, please try to
-    make use of extrausers.bbclass.<br>
-<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-manual.html#ref-classes-extrausers">http://www.yoctoproject.org/docs/2.3.2/mega-manual/mega-manual.html#ref-classes-extrausers</a><br>
-    <br>
-    The above should be basically enough.<br>
-    <br>
-    Best Regards,<br>
-    Chen Qi<br>
-    <br>
-  </body>
-</html>
-
---------------08F0E2731EC41ED424292997--
