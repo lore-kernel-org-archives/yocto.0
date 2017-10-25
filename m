@@ -1,6 +1,6 @@
 Return-Path: <mgloff@emacinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5FEA1E00D0E; Tue, 24 Oct 2017 22:43:45 -0700 (PDT)
+	id 5F2D9E00D1E; Tue, 24 Oct 2017 22:43:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,58 +9,61 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.65 listed in list.dnswl.org]
+	*      [209.85.214.66 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.65 listed in dnsbl.sorbs.net]
+	*      [209.85.214.66 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f65.google.com (mail-it0-f65.google.com
-	[209.85.214.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06853E00D0D
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 22:43:42 -0700 (PDT)
-Received: by mail-it0-f65.google.com with SMTP id f187so12726926itb.1
-	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 22:43:42 -0700 (PDT)
+Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
+	[209.85.214.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C938E00D0E
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 22:43:43 -0700 (PDT)
+Received: by mail-it0-f66.google.com with SMTP id n195so12724128itg.2
+	for <yocto@yoctoproject.org>; Tue, 24 Oct 2017 22:43:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=emacinc-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=kPGh+rShrvyEzO1xoXCtkgHOXmlys2grOhOinq2xfOU=;
-	b=bkbnfNpsnKAOAFnM/gwktDIfrWXvVoPI12mmPOexWW0TFYh2cvHMWjhJ2428B6QnLp
-	H1T47CybRyu4CiB0zTgkSweWXYYQN0beUMTGrUQAeH2HGpSFlZJHnzXWh6yx1z9XoL1D
-	2V8iptm032WSSi8iWql4F2t+jGH8mB4MgJsdjl2xIRto0N3oUWe6Q1TThd0hFXbcX28V
-	6Mv9lkf6GjeBEUQ8mHsgR5MrfbvSTpnDGi74ZcU7YWCn4LDfiYylsDfavsFMjAonHQJL
-	h7qecmMLt1uiuvW2LuNEyD4/B7ywHI8dVYqh+wLXjAQfVyZeYC1oNepORDDQmVW8qLbL
-	r5WA==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=6911ev97/6mnDYvjXZZqDXnhKOFT6WFfeiA6RHjbC+s=;
+	b=D77gCEuBXR6Nz0OJQYNbNkCSDHJCKoWGcyLmh8c6r0i+DYsTOPEw4qsu3UO9RI+B+L
+	q3+w2xWV3kag1UCk+zO/bOvd476pQ7w/R1qRf/xfm0k++q+gXI366obrnAPxAWu7EcAG
+	wGXAft2f/Hm6POJ8AKgBSJPZz/UhRLPRAlkCzZYiYGl7OVXWVx9M51rJ4h4P7Ipi13ic
+	/muKAtaRxEI+bb46xJLAvbtexPwW3F2BVDoOkL/1Icx1owiCCrFXkg0C5MOheN4jSqUe
+	tYb7f7S5CjXGQV7J2euM2f/0poHOQ+1ztr8e3t+A5jP/UMppspmHn6MQrnhXe2NVVCEa
+	yNQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=kPGh+rShrvyEzO1xoXCtkgHOXmlys2grOhOinq2xfOU=;
-	b=hEjkaydfxl6+opTHIO/mNTFu127wCjV7SmcDloaU+iA8kmDCQhiY5QfXvCVDUdP8I3
-	c3N1vDmN2rBc07jSm90KtnVgzE/jTgeBo8CmLP9z0yaZPFOa3aaY2RIahusZh61cD6Be
-	S4gAmMzk/SEYTPAeUJllwF0MmTEEjBF23He0KukntATncY2v20nL0D4zlMHnIWneCRGd
-	H2Qn+9BskJxHubNmwa/MuSmQjiCwrSaoRcYKHruM2hus8mDwChCAyfSWFmGsVvLpWc/X
-	AgX3WgJai8yVKJGOw4KEGvQTaAOueBlr8jdeL5bWq5EM+/wtuuEc2+PvVyqtSVXNED0/
-	5IOQ==
-X-Gm-Message-State: AMCzsaXlGgahjoW9uapUlaXczvwe3MSZW2TrsNVkpJ5avkGdRmSr0HoR
-	sjfC1ERKqGxZIcr73wDLwEztTZxR
-X-Google-Smtp-Source: ABhQp+T0CWdcPORSukmQFD3/KcC2kX/5aNPSccRghpouzSZNCa7W9qBltbjbcIbw8nxC7LRTSYIWHw==
-X-Received: by 10.36.82.1 with SMTP id d1mr605243itb.115.1508910221861;
-	Tue, 24 Oct 2017 22:43:41 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=6911ev97/6mnDYvjXZZqDXnhKOFT6WFfeiA6RHjbC+s=;
+	b=tr8ogqC3XriOXjksHOngHZITzEyHA/WuKK4vYxl4LyHGeTEY2BqIu/oRpUMwRKxSVL
+	tOZerTkfBvMXciMZDOLcfAo7ZI1ZD7Cr3dmNYUVHFHq4H+n9FYBDYyalBZtRBgu0UgSW
+	4mXMQfrfccO0kEqCjJHM1mkfKHV7Tx6XmCl0Frz/eBVcGBYfH3K5iIjjJy7BRIfcEywi
+	nah3Dj+b7OY4p7mwpQvd7V9Bqf95PbR9dgkc51/bXt/cW1XcEMpFZN09AyxZaGL3UzSB
+	aFJJwp3DCYP3pAcplxKnsST01RaA6C+CscInUmBFeA1UhpUCvaP81wHyl223fD4Skrwp
+	DA+A==
+X-Gm-Message-State: AMCzsaUUtQHK0rjZEy5nc1ukHAhj/fHH/1CFwiA5LfEfhCpO65lylekT
+	6syuwJr8809ulIppBCsUnBbExfBM
+X-Google-Smtp-Source: ABhQp+SrhS+sDPuO2hDG4lCRiXGleh7bdqjdEilw0W8cuD1CitdGrNIu12DFyk2SS3aJ5KMsrYlPuw==
+X-Received: by 10.36.225.200 with SMTP id n191mr692147ith.82.1508910222566;
+	Tue, 24 Oct 2017 22:43:42 -0700 (PDT)
 Received: from localhost.localdomain
 	([2604:2d80:8039:8064:ec83:a329:df73:818a])
 	by smtp.gmail.com with ESMTPSA id
-	a187sm929278itd.31.2017.10.24.22.43.40
+	a187sm929278itd.31.2017.10.24.22.43.41
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 24 Oct 2017 22:43:41 -0700 (PDT)
+	Tue, 24 Oct 2017 22:43:42 -0700 (PDT)
 From: Michael Gloff <mgloff@emacinc.com>
 To: yocto@yoctoproject.org
-Date: Wed, 25 Oct 2017 00:43:28 -0500
-Message-Id: <20171025054330.23222-1-mgloff@emacinc.com>
+Date: Wed, 25 Oct 2017 00:43:29 -0500
+Message-Id: <20171025054330.23222-2-mgloff@emacinc.com>
 X-Mailer: git-send-email 2.14.3
+In-Reply-To: <20171025054330.23222-1-mgloff@emacinc.com>
+References: <20171025054330.23222-1-mgloff@emacinc.com>
 Cc: Michael Gloff <mgloff@hotmail.com>
-Subject: [meta-raspberrypi][PATCH 1/3] linux-firmware: Replace /lib with ${nonarch_base_libdir}
+Subject: [meta-raspberrypi][PATCH 2/3] linux-raspberrypi: Replace /lib with ${nonarch_base_libdir}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,40 +79,27 @@ X-List-Received-Date: Wed, 25 Oct 2017 05:43:45 -0000
 
 From: Michael Gloff <mgloff@hotmail.com>
 
-	Use standard variable name and avoid
-	QA errors when usermerge DISTRO_FEATURE is enabled.
+    Use standard variable name and avoid
+    QA errors when usermerge DISTRO_FEATURE is enabled.
 
 Signed-off-by: Michael Gloff <mgloff@emacinc.com>
 ---
- recipes-kernel/linux-firmware/linux-firmware_%.bbappend | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ recipes-kernel/linux/linux-raspberrypi.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-index 565b735..daf1dbc 100644
---- a/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-+++ b/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-@@ -10,17 +10,17 @@ do_install_append() {
- 	# (v7.45.41.46)
- 	local _firmware="brcmfmac43430-sdio.bin"
- 	local _oldmd5=9258986488eca9fe5343b0d6fe040f8e
--	if [ "$(md5sum ${D}/lib/firmware/brcm/$_firmware | awk '{print $1}')" != "$_oldmd5" ]; then
-+	if [ "$(md5sum ${D}${nonarch_base_libdir}/firmware/brcm/$_firmware | awk '{print $1}')" != "$_oldmd5" ]; then
- 		_firmware=""
- 		bbwarn "linux-firmware stopped providing brcmfmac43430 v7.45.41.26."
- 	else
- 		_firmware="${WORKDIR}/$_firmware"
- 	fi
- 
--	mkdir -p ${D}/lib/firmware/brcm
--	install -m 0644 $_firmware ${WORKDIR}/brcmfmac43430-sdio.txt ${D}/lib/firmware/brcm
-+	mkdir -p ${D}/${nonarch_base_libdir}/firmware/brcm
-+	install -m 0644 $_firmware ${WORKDIR}/brcmfmac43430-sdio.txt ${D}${nonarch_base_libdir}/firmware/brcm
+diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+index da36ca7..cf9f182 100644
+--- a/recipes-kernel/linux/linux-raspberrypi.inc
++++ b/recipes-kernel/linux/linux-raspberrypi.inc
+@@ -162,7 +162,7 @@ do_compile_append_raspberrypi3-64() {
  }
  
- FILES_${PN}-bcm43430 += " \
--	/lib/firmware/brcm/brcmfmac43430-sdio.txt \
-+	${nonarch_base_libdir}/firmware/brcm/brcmfmac43430-sdio.txt \
- "
+ do_install_prepend() {
+-    install -d ${D}/lib/firmware
++    install -d ${D}${nonarch_base_libdir}/firmware
+ }
+ 
+ do_deploy_append() {
 -- 
 2.14.3
 
