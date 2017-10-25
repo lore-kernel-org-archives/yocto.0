@@ -1,18 +1,17 @@
-Return-Path: <prvs=14716c3ac2=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5888DE00D27; Wed, 25 Oct 2017 07:24:29 -0700 (PDT)
+	id CB4C2E00D20; Wed, 25 Oct 2017 10:40:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW, RCVD_IN_SORBS_SPAM,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.169.146.218 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [81.169.146.218 listed in dnsbl.sorbs.net]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,56 +19,47 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.218])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5331E00D1F
-	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 07:24:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1508941466;
-	s=domk; d=rsi-elektrotechnik.de;
-	h=Content-Transfer-Encoding:Content-Language:Content-Type:In-Reply-To:
-	MIME-Version:Date:From:References:Cc:To:Subject;
-	bh=ef4dTIZXMJJB2xlgF9Vs/aoFJus/TfndUGM3dS+XURI=;
-	b=Ilcr5eNjTolJmQxBTB8FsSuFPzXg3nUQfbPpgMw5H+H2jmq1Ex8fvIDc4UJDSvHBOU
-	o+5IYTuCQeTKJcgkzalYr9br+LRI5UP9UZ0EBUncHRC1eqC89kcn9IOanNDMZJS3PXCp
-	pkkUUfQMOqHshgi3eyk+ZA+2Yws8gQjzCJEXU=
-X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9mHNc01sePA6ZpTLlbQjW24Oop5Qo4fhADQi1rSTLfuAPP4FE=
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	([2001:0:9d38:78cf:2cf1:e1f:af6c:cbea])
-	by smtp.strato.de (RZmta 42.8 AUTH) with ESMTPSA id 40b7eet9PEOMSxT
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Wed, 25 Oct 2017 16:24:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1508941458; x=1509546258;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Subject:To:Cc:
-	References:From:Message-ID:Date:User-Agent:MIME-Version:
-	In-Reply-To:Content-Type:Content-Language:
-	Content-Transfer-Encoding; bh=ef4dTIZXMJJB2xlgF9Vs/aoFJus/TfndUG
-	M3dS+XURI=; b=kqaLbtULmt3GHQ20qVOpU+dh9VbfQpeVNsX4J7ZfbiG6YHDqCO
-	h/eweh+CrgGeF1lUmxxrNDYoBas6NpIYE2bN4uMJcKgZpsiBSeS8vgp+Y5u+4jSa
-	rC8IHD0W3xnr5kIbo2yxUt5SKIABL4xsXBCYLsm3VsZDWrT9oXEvT/f58=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.5.0) with ESMTPSA id
-	md50000014626.msg; Wed, 25 Oct 2017 16:24:15 +0200
-X-MDRemoteIP: 62.168.35.106
-X-MDArrival-Date: Wed, 25 Oct 2017 16:24:15 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=14716c3ac2=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
-References: <1508934039-32450-1-git-send-email-holzmayr@rsi-elektrotechnik.de>
-	<1508941225.11251.15@fm-out.intel.com>
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <ab957440-9738-5f1d-d920-0ab79cba3b50@rsi-elektrotechnik.de>
-Date: Wed, 25 Oct 2017 16:24:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+Received: from mail-pg0-f54.google.com (mail-pg0-f54.google.com [74.125.83.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D3EBE00CD4
+	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 10:40:28 -0700 (PDT)
+Received: by mail-pg0-f54.google.com with SMTP id g6so537586pgn.6
+	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 10:40:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=yINtOTZ1BH+Psu3vW6KAzesK163wWcgFPyTzHXc84Qs=;
+	b=lUaey9Ex3lpUZ8ByBYVXVHFu9RYpRT606e/qNIMxGj94nyapMk3t1jDZt+82k4RxEm
+	kZeqjxgYUJcGqzU6Jv7vLxdKuObGAayC/ys+7rZg/hKj1BW7+zgPEOI//1+gOJQQe2oS
+	0G6/plx/Olg0XLh83btwaCFT/6ZVIPizm9rsak6SZDxC8MF1qZFomgENpKhpEntOqUIm
+	L1IaAKYHWMbX5nmZgsRn/hg3DvCS/CSJBTKhpvuZLsKQ6Ud/s8wsXvRuHIIIGhpgVOg5
+	kITSS4C0GCQJZi0TrC2u7GcpuTnwsy3VKwTj3ZmUizS6ZU0ZUguFXxPgPPBhm1oBS6qy
+	Bj4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=yINtOTZ1BH+Psu3vW6KAzesK163wWcgFPyTzHXc84Qs=;
+	b=GYU0RR16GmsGAIp2wkQTvN/14H7x2ecJ0x6fZHOm6X7lvOV6+PlFw04OQeI6gaIEnj
+	bXMDjXFqNDbrb/NSwnLObYPk/B2tlmyXmelSXBva92MEhrE1tjSEkRcUBUDostRD0oV0
+	Dkm3b4CXbtrcCasLtMiOiyi29pjDGq/RIStzuqbRdakLK/16ATHBS5jmmTO9swltWRes
+	vPp9iuDm4h8ErPs4diif4vVeWHyuC6bnpYPkoI2JebdfBlVatmimLRvnGzc1bJZPoWzG
+	jjrfaYHBPArMeWnoCx3NzAPn7ZbFxKCc087i35Lkc+n74/bqmqKK3C3dZWcoQhsyEx7j
+	mOlw==
+X-Gm-Message-State: AMCzsaXSAo8OTiT/dXwYcAkU34dgZqmwwKR5/VBDK1dXTrtXSd+wnwYq
+	EscWN/e0BsXmv38DAz0KzJrqcgdigiUKb6HK52Y=
+X-Google-Smtp-Source: ABhQp+TzmXSttxwHHoukuoOamy4JJLV+vgCb7ufsfYH6TNYJJ8kbT2sEEuERi07xFUkTtBSWTmfo5nIt8uoGRtb61RI=
+X-Received: by 10.84.151.70 with SMTP id i64mr2316144pli.114.1508953228441;
+	Wed, 25 Oct 2017 10:40:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1508941225.11251.15@fm-out.intel.com>
-Cc: paul.eggleton@linux.intel.com, yocto@yoctoproject.org
-Subject: Re: [PATCH] devtool: add clean command
+Received: by 10.100.187.66 with HTTP; Wed, 25 Oct 2017 10:39:58 -0700 (PDT)
+In-Reply-To: <CAPyrkgxOa749tUa55nK+XZ9UJBcEHU718KEhN4GW+t4c70U7EQ@mail.gmail.com>
+References: <CAPyrkgxOa749tUa55nK+XZ9UJBcEHU718KEhN4GW+t4c70U7EQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 25 Oct 2017 10:39:58 -0700
+Message-ID: <CAMKF1sotGjCB6k0-GA-p_0436WhS=yWao2+Q7gSQTSny6Q9W5Q@mail.gmail.com>
+To: Paul Barker <pbarker@toganlabs.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Rocko branch maintenance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,51 +71,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Oct 2017 14:24:29 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 25 Oct 2017 17:40:29 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi!
+On Wed, Oct 25, 2017 at 1:50 AM, Paul Barker <pbarker@toganlabs.com> wrote:
+> Hi all,
+>
+> I'd like to put myself forward as stable branch maintainer for
+> meta-raspberrypi again. The plan is to maintain rocko for 12 months in
+> line with the Yocto Project's current maintenance period. I'm
+> currently looking after pyro and I think it's gone well over the last
+> 6 months. Obviously, pyro will also continue to be maintained until
+> it's around 12 months old.
+>
+> However, if anyone else wants to help spread the load then feel free
+> to step forward and propose yourself for rocko branch maintenance.
+>
 
-On 25.10.2017 16:20, Leonardo Sandoval wrote:
-> 
-> 
-> On Wed, Oct 25, 2017 at 7:20 AM, Josef Holzmayr 
-> <holzmayr@rsi-elektrotechnik.de> wrote:
->> Add an idiomatic way to devtool to clean a recipe. 
-> 
-> what I can see on the patch,  this does a bitbake -c clean <recipename>, 
-> right?
-> 
+you are volunteered :)
+good luck
 
-In a nutshell and by default, yes. It sticks to the configurability that 
-was already there in the build command, but in the end thats what it is 
-meant to do in the vast majority of cases. The motivation is just that 
-when using an eSDK, you don't have direct access to bitbake for 
-triggering that task - which in turn is helpful in some application 
-development situations,
-
-Greetz
--- 
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
-
+> Cheers,
+>
+> --
+> Paul Barker
+> Tog=C3=A1n Labs Ltd
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
