@@ -1,38 +1,62 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <vishalashapur@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 327E7E00D01; Wed, 25 Oct 2017 15:53:30 -0700 (PDT)
+	id 9D565E00D0B; Wed, 25 Oct 2017 20:59:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vishalashapur[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.50 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E2AFE00CF2
-	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 15:53:29 -0700 (PDT)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	25 Oct 2017 15:53:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.43,433,1503385200"; d="scan'208";a="327769361"
-Received: from hussinmo-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.249.68.21])
-	by fmsmga004.fm.intel.com with ESMTP; 25 Oct 2017 15:53:26 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Date: Thu, 26 Oct 2017 11:53:24 +1300
-Message-ID: <1589512.EkHH6QgPt8@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <2375388.SRaGyDveQq@peggleto-mobl.ger.corp.intel.com>
-References: <1508934039-32450-1-git-send-email-holzmayr@rsi-elektrotechnik.de>
-	<2375388.SRaGyDveQq@peggleto-mobl.ger.corp.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 280F8E00D03
+	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 20:59:17 -0700 (PDT)
+Received: by mail-wm0-f50.google.com with SMTP id r196so5487452wmf.2
+	for <yocto@yoctoproject.org>; Wed, 25 Oct 2017 20:59:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=zyimU2znDODKhNhtgFrNC/PQyGug7klMJmwr6LOv7xo=;
+	b=hudptvIF1Y4qVbEwRJr221kPm87vHzKzLUpi8isDhOAbkK2IPx8j19qpl7O+Oec9pj
+	ObgNpIzRiMzhDJZxmI4ejwYo0T7MrcvA6EBZ67e7FGvpn50hK1ONSLl/7Lrv4fKC/brU
+	dmbseK1UIfu0q0j6hpvIrf5eC3wE7SsQ/D0ebjf5MNE4f9e6EKQROLKbKczL4NJkg7XV
+	MZNboQk2EZlkCQ+rBCoySm6uB6gGLg6I8MOAmkaNrsX9RBRV58ELIZ4dY189+1QRv97h
+	NzOdT3NgLr1KhQbccFZUq1c+CjRDOiAg9ofA065WDCtLopaYGtpVDl+sbsXQBXeAIZL6
+	ZodQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=zyimU2znDODKhNhtgFrNC/PQyGug7klMJmwr6LOv7xo=;
+	b=DV8LFYHZFLBs+2g8paMJWqnWbWernOie/J1678kWmOM53g/80DhKfIjan3P97EgPHh
+	vnH4BL6krizr8cC3F5m6oTQz1YMd3mlkNNW0j19DUWVdg22JW7dkE+DbZuUyOg6ex5vW
+	d79LsiHXahv7vtZLdBdm6QP59fsw9LOXdLvYKtyj6EeOSmAX5UPkeqB+oUysN6jS/rl6
+	EdBv8OW3/1hJKx8v8uVJijXwTpaCL2wirqvPrpY/e2nzWeMVhcXDzLrhUw8OD42OW2VD
+	uA9kqw49tNMkM25SZ4y4RmTyD5lfizHJRVwuvyOYzU/2CEucuJ38Kje9+MBrFZoXpKHK
+	kdnA==
+X-Gm-Message-State: AMCzsaUrkIqIbfw4jqyH1pJ4LTXRnqAmpYhKateofXaMIbynfy9xrgJa
+	wrvSyCzpTzVrTcTvh8i+IvZsvXCgjUGSgYRq1ljS5w==
+X-Google-Smtp-Source: ABhQp+SDRQZe/cvrvyperEj6cchL4DNQ4cbEw4B4Gi++n4hY6AZJO1q64IT/Hv8vSJMNrK4RYmDn+3FNM0VgxvP5ArY=
+X-Received: by 10.80.145.6 with SMTP id e6mr19082769eda.34.1508990356842; Wed,
+	25 Oct 2017 20:59:16 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] devtool: add clean command
+Received: by 10.80.162.7 with HTTP; Wed, 25 Oct 2017 20:59:16 -0700 (PDT)
+From: vishal ashapur <vishalashapur@gmail.com>
+Date: Thu, 26 Oct 2017 09:29:16 +0530
+Message-ID: <CAAWyHBJC30Bna_XhjWZaPPDRaAUHQ1z8_SqwtFiPv5iaQw43Xg@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: build error on raspberrypi3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,69 +68,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Oct 2017 22:53:30 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 26 Oct 2017 03:59:18 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Thursday, 26 October 2017 11:51:07 AM NZDT Paul Eggleton wrote:
-> Hi Josef,
-> 
-> Looks good, just a couple of minor tweaks to be made:
-> 
-> On Thursday, 26 October 2017 1:20:39 AM NZDT Josef Holzmayr wrote:
-> > Add an idiomatic way to devtool to clean a recipe.
-> 
-> It would be worth noting that this is particularly important within the eSDK 
-> because you can't run bitbake -c clean directly there.
-> 
-> > Signed-off-by: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-> > ---
-> >  scripts/lib/devtool/clean.py | 48 +++++++++++++++++++++++++++++++++++++++
-++
-> +++
-> >  1 file changed, 48 insertions(+)
-> >  create mode 100644 scripts/lib/devtool/clean.py
-> > 
-> > diff --git a/scripts/lib/devtool/clean.py b/scripts/lib/devtool/clean.py
-> > new file mode 100644
-> > index 0000000..30f4044
-> > --- /dev/null
-> > +++ b/scripts/lib/devtool/clean.py
-> > @@ -0,0 +1,48 @@
-> > +# Development tool - clean command plugin
-> > +#
-> > +# Copyright (C) 2014-2015 Intel Corporation
-> > +#               2017 R-S-I Elektrotechnik GmbH & Co. KG
-> > +#
-> > +# This program is free software; you can redistribute it and/or modify
-> > +# it under the terms of the GNU General Public License version 2 as
-> > +# published by the Free Software Foundation.
-> > +#
-> > +# This program is distributed in the hope that it will be useful,
-> > +# but WITHOUT ANY WARRANTY; without even the implied warranty of
-> > +# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> > +# GNU General Public License for more details.
-> > +#
-> > +# You should have received a copy of the GNU General Public License along
-> > +# with this program; if not, write to the Free Software Foundation, Inc.,
-> > +# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-> > +"""Devtool clean plugin"""
-> > +
-> > +import bb
-> > +from devtool import exec_build_env_command, check_workspace_recipe
-> > +
-> > +def _get_build_tasks(config):
-> 
-> This function should really be called "_get_clean_tasks".
+hi im buliding linux on rpi3 using yocto pyro branch. after doing
+"bitbake linux-raspberrypi -c menuconfig"  it is downloading all
+sources but at the end it is showing the following error.
 
-I didn't notice until I hit send but this patch should go to the oe-core list, 
-if you could send v2 there that would be great.
+ERROR: linux-raspberrypi-1_4.9.30+gitAUTOINC+e54215a9bc-r28 do_fetch:
+Fetcher failure for URL:
+'git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-4.9.y'.
+Unable to fetch URL from any source.
+ERROR: linux-raspberrypi-1_4.9.30+gitAUTOINC+e54215a9bc-r28 do_fetch:
+Function failed: base_do_fetch
+ERROR: Logfile of failure stored in:
+/u/rpi2/rpi/build/tmp/work/raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/1_4.9.30+gitAUTOINC+e54215a9bc-r28/temp/log.do_fetch.30856
+ERROR: Task (/u/rpi2/sources/poky-morty/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.9.bb:do_fetch)
+failed with exit code '1'
 
-Thanks,
-Paul
+so can anybody help with this error.
+my detailed procedure for build is below
+git clone -b pyro git://git.yoctoproject.org/poky
+cd poky
+git clone -b pyro git://git.openembedded.org/meta-openembedded
+git clone -b pyro git://git.yoctoproject.org/meta-raspberrypi
 
--- 
+source sources/poky/oe-init-build-env rpi-build
 
-Paul Eggleton
-Intel Open Source Technology Centre
+changes in local.conf
+MACHINE = "raspberrypi3"
+PREFERRED_VERSION_linux-raspberrypi = "4.9.%"
+DISTRO_FEATURES_remove = "x11 wayland"
+DISTRO_FEATURES_append = " systemd"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+IMAGE_INSTALL += "packagegroup-core-buildessential"
+
+changes in bblayers.conf
+BBLAYERS ?= " \
+  ${BSPDIR}/sources/poky/meta \
+  ${BSPDIR}/sources/poky/meta-poky \
+  ${BSPDIR}/sources/poky/meta-yocto-bsp \
+  ${BSPDIR}/sources/meta-openembedded/meta-oe \
+  ${BSPDIR}/sources/meta-openembedded/meta-multimedia \
+  ${BSPDIR}/sources/meta-raspberrypi \
+
+bitbake linux-raspberrypi -c menuconfig
 
