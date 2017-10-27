@@ -1,6 +1,6 @@
 Return-Path: <vincent.prince.fr@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58C35E00D42; Fri, 27 Oct 2017 05:34:30 -0700 (PDT)
+	id CA071E00D50; Fri, 27 Oct 2017 05:34:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (vincent.prince.fr[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.194 listed in list.dnswl.org]
+	*      [74.125.82.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,49 +20,51 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.194 listed in dnsbl.sorbs.net]
-Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
-	[209.85.128.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34961E00D40
-	for <yocto@yoctoproject.org>; Fri, 27 Oct 2017 05:34:28 -0700 (PDT)
-Received: by mail-wr0-f194.google.com with SMTP id j15so6041167wre.8
-	for <yocto@yoctoproject.org>; Fri, 27 Oct 2017 05:34:27 -0700 (PDT)
+	*      [74.125.82.66 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E6C2E00D41
+	for <yocto@yoctoproject.org>; Fri, 27 Oct 2017 05:34:35 -0700 (PDT)
+Received: by mail-wm0-f66.google.com with SMTP id s66so3245346wmf.5
+	for <yocto@yoctoproject.org>; Fri, 27 Oct 2017 05:34:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=U8PsIKaKsPRtyigeMX5srEHkWvrMrTEisRnEr7rUp1k=;
-	b=h/hlupTMZrIn18XTrloGxwjJVpxWmU5E0WjlFJnQ3rKjDVIXQMDK7m9Fx1AFuk6I5T
-	oEBaSgIWPf6x6F4fa3liPxG49eQ3rYqm/DXDIsBZOkAFyJM4oy41QrDJ3/4sI+NPzVbw
-	RmDMDwe9zby9+vRZ5VbazfxlIqXzzD6eF/zNcOskDm9tDU/0XbIpDRlVdKfXu9O5/k8J
-	rSCFDLAVwU1wYyzxzwDiVG5/GxvsZtYL5L4EwMEQkeafAXZ4pZAvfK97EIOc3gkAr2iN
-	AiBdndgtA+ZFjVlWAokHwy/3JlxTZM0D+XZu7i1HIZp+Kjz5jofY2A5MsZF45dzxIZ9f
-	w36g==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=2dzuXkHAGLQBbsbN7TKzl0ii5oO8euWPgU45b3FQ5iw=;
+	b=i+iCFprwf2A05vTrFpq176B3M6RzCHTbrVajbOmC0nAw3f2nG3QUaWySMm7kZngQCZ
+	V+8kdr6bujfFbJ2xlW6XbCY2EGxpJ0BmoH7Ir0pSl6byoI2k/6qTFLzvh2/ss0vzecj7
+	+YgbNSOGkQsj0h8lVdtB0n7Bf/Ki2gwANzUsebGMPJm9emiIpwvX34SUacmVitpyFqt1
+	y2VM3KKwe7PoblcI2NTxvzYc54tItDVpGsn8op7eOzQsddrXZPyw1dZygTuISNGrPg5X
+	y2PkRVzOxp/KqPRjlnDo7LgaTdujU+DsHlsmggykM6/W8z96pUAecW4OIuhSuhUWkvQw
+	E8jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=U8PsIKaKsPRtyigeMX5srEHkWvrMrTEisRnEr7rUp1k=;
-	b=bJPb0SofP8gyG/vGhwJ5B1Kz7I8CzXt2wVHtztispH05LIWAyrbQtYgmNVfT5er7B5
-	csmlndjCeDkg+yNOLg48pxzXCfQeXYC/Jl3yeaIK/MUSH4OXIrru8ZRW0VoZw1k0/tbH
-	Pa60V7Sv+YPbDaKDSL/DUPgY9z+coAmROuMfxlNeKYOsQ6Mga8SGv8d3VJ4vvwBLDSLy
-	wrYEYhmeBigruR+OH5k5H/PMmKXrro/fho7Xtl8quZTANqQDhXsOFzFrnLJWaP8RgYkK
-	za1avMQXaA6/+xfx4N0vduYpKcjqhwsuHBaHDG7QX/Nw5OYGC+cjxn/XckgzzEFxJXSx
-	y2lQ==
-X-Gm-Message-State: AMCzsaWWLJkHn5lpfbHBiHD/4l2ZJXbjZ1/wddhlewPMgWcFpKUtcrt1
-	MGU+UJ4fEPcGgE5I/tOZ4KKk+w==
-X-Google-Smtp-Source: ABhQp+TwuBJqFlbvKtCNZ4beUugo3vaOHBMLjCRoQ3iIp3AlbItPC9/NejdfdgzoC0XUnytjSvfvsQ==
-X-Received: by 10.223.163.143 with SMTP id l15mr310661wrb.65.1509107666977;
-	Fri, 27 Oct 2017 05:34:26 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=2dzuXkHAGLQBbsbN7TKzl0ii5oO8euWPgU45b3FQ5iw=;
+	b=F9D44sqZpVlKU/0Oc9jZ/O5AqU+wWVQc7dUK+yZJWgWMsb4mt7WgSrOxDN5ENRsxck
+	FviRH3pSb8Rd4aN5RpwAIsVLBdd43VyTfsfTJ1YiMhla21FVV++ny1FBm3lV7mJp7BzO
+	kn7lKg7ASbqYQiTzf9hG19H/uXlf3Mxs1uEgDPXP/SzoE0LA0hxHeVjNqsWeTzV1tCgU
+	QHbsPN4c3KIEMcgyMUYK1inYIIbz/Dg+3QBwhhAtwNH3A0rZhyX7IG0ObgwRZWtVrzKc
+	CZzR3XG+nN+TwLv2YPO9DavjYehvG5iTp9gFZkb3VW1xwtJN0wC4BGCWhXTadgJyXyjT
+	LcmQ==
+X-Gm-Message-State: AMCzsaXhiIUs8JqQIZWsZEvpSOImscWKphj/fJ5xqPsb1Xu+2FKGzG0I
+	2vGy+rTGYJqYf2snJdFX4L0jHQ==
+X-Google-Smtp-Source: ABhQp+Qd0jpUYaZHVr2SrzKDCVmonT7IyflOH2lPC+hkBKjSm8/e5K/U4GB+fhEmA0c+mBVQzPNvvw==
+X-Received: by 10.28.140.15 with SMTP id o15mr312018wmd.8.1509107674130;
+	Fri, 27 Oct 2017 05:34:34 -0700 (PDT)
 Received: from VPR-VM.fra.hager.corp ([212.51.167.132])
 	by smtp.gmail.com with ESMTPSA id
-	l127sm1608729wmd.18.2017.10.27.05.34.26
+	l127sm1608729wmd.18.2017.10.27.05.34.33
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 27 Oct 2017 05:34:26 -0700 (PDT)
+	Fri, 27 Oct 2017 05:34:33 -0700 (PDT)
 From: Vincent Prince <vincent.prince.fr@gmail.com>
 To: yocto@yoctoproject.org,
 	maxin.john@intel.com
-Date: Fri, 27 Oct 2017 14:18:12 +0200
-Message-Id: <1509106693-16052-1-git-send-email-vincent.prince.fr@gmail.com>
+Date: Fri, 27 Oct 2017 14:18:13 +0200
+Message-Id: <1509106693-16052-2-git-send-email-vincent.prince.fr@gmail.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-oracle-java][PATCH 1/2] Fix do_populate_sysroot: sstate found an absolute path symlink
+In-Reply-To: <1509106693-16052-1-git-send-email-vincent.prince.fr@gmail.com>
+References: <1509106693-16052-1-git-send-email-vincent.prince.fr@gmail.com>
+Subject: [meta-oracle-java][PATCH 2/2] On headless arm, do_package() complains about missing libX11.so.6 provider.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,42 +76,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Oct 2017 12:34:30 -0000
+X-List-Received-Date: Fri, 27 Oct 2017 12:34:36 -0000
+
+Full JRE created by jrecreate contains awt/swing dynamic libraries linked to libx11.
+
+This patch creates a compact JRE without those libraries.
 
 Signed-off-by: Vincent Prince <vincent.prince.fr@gmail.com>
 ---
- recipes-devtools/oracle-java/oracle-jse-jdk.inc | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ recipes-devtools/oracle-java/oracle-jse-ejre.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-index a7210d9..11fe17b 100644
---- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-@@ -12,16 +12,16 @@ JDK_JRE = "jdk"
- require oracle-jse.inc
- 
- do_install_class-native() {
--	install -d				${D}${libdir_jvm}
--	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
-+	install -d ${D}${libdir_jvm}
-+	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE} ${D}${JDK_HOME}
- 
--	install -d				${D}${bindir}
--	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}
--	ln -sf ${JDK_HOME}/bin/javac		${D}${bindir}
-+	install -d ${D}${bindir}
-+	ln -sf ${D}${JDK_HOME}/bin/java ${D}${bindir}
-+	ln -sf ${D}${JDK_HOME}/bin/javac ${D}${bindir}
- 
--	install -d				${D}${JDK_HOME}/bin
--	ln -sf javah				${D}${JDK_HOME}/bin/gjavah
--	ln -sf jar				${D}${JDK_HOME}/bin/fastjar
-+	install -d ${D}${JDK_HOME}/bin
-+	ln -sf javah ${D}${JDK_HOME}/bin/gjavah
-+	ln -sf jar ${D}${JDK_HOME}/bin/fastjar
+diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
+index d7a4b33..0b0d978 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-ejre.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
+@@ -21,5 +21,5 @@ LIC_FILES_CHKSUM = "\
+ do_compile() {
+ 	DEST=${S}/${JDK_JRE}${PV}_${PV_UPDATE}
+ 	rm -rf ${DEST}
+-	JAVA_HOME=${STAGING_DIR_NATIVE}/${JDK_HOME} ejdk${PV}_${PV_UPDATE}/bin/jrecreate.sh --dest ${DEST}
++	JAVA_HOME=${STAGING_DIR_NATIVE}/${JDK_HOME} ejdk${PV}_${PV_UPDATE}/bin/jrecreate.sh --profile compact3 --vm all --extension locales --dest ${DEST}
  }
- 
- BBCLASSEXTEND = "native"
 -- 
 2.7.4
 
