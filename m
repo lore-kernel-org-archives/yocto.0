@@ -1,64 +1,38 @@
-Return-Path: <adam.yh.lee@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 493A2E00C01; Mon, 30 Oct 2017 13:49:57 -0700 (PDT)
+	id A8C27E00C44; Mon, 30 Oct 2017 15:10:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (adam.yh.lee[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.193 listed in dnsbl.sorbs.net]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.193 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f193.google.com (mail-yw0-f193.google.com
-	[209.85.161.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1383E00B67
-	for <yocto@yoctoproject.org>; Mon, 30 Oct 2017 13:49:56 -0700 (PDT)
-Received: by mail-yw0-f193.google.com with SMTP id w2so12828167ywa.9
-	for <yocto@yoctoproject.org>; Mon, 30 Oct 2017 13:49:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=FB29WG0IEaIl27w1xI8Qnd8K/u95Q0SMBY80Zo75jI4=;
-	b=ZRmHDBH5ERNouOlEidq+EIQ8yoG9S8/2efHqDURGy5mJ2Uv1VDl6ehSbvvajWlM2H1
-	tQzK0revStrMaIOngyzeVhbKp48BiWlrc6+BwG0jc9l7Ql6pa0+MgwDwLuu11E4tdlyv
-	ZqzHd/ciRHpHWsmdx8igkVKoWNDjXM+G2ZhJxqVvspaLP2AvtLYeSmausI4yJ7XHGh1r
-	eSj90UVy79XAxSHaIZk/GDLdxjWULuPTBVL551yc0YW0Wa1a34+n1A2r+xUZ7CjB6qil
-	6p46TD4QJRNTtthwj7SRm8nLEd2iMjt0O31J0gzJJ9IAMs6GmbiyAuzjxqYf1MHmiN/U
-	pldw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=FB29WG0IEaIl27w1xI8Qnd8K/u95Q0SMBY80Zo75jI4=;
-	b=JD7APXuwN8gA7M5yDQUlPCvKL3oAtkSnfObEyZSpMuGFtv8ASM5OtLqi/ufHDNOp1m
-	p5PB4FtzaLJafzeDcoo1/auho8VbxuqqVqexaLeXbYFk4Bi2IDjUcu+QEUMWUdCPAaJ8
-	dlapTqiPhUAtXl1rFpMHZwZqOryVccJoffObvnre+tpdyfcROcJ+htyzAvEBienqPjto
-	Y/Iel8RDf9PgYDNTsynDMJlwFQISJJZn18UHlATkplH5/fxOBmVaBXjKH6u7LldjGCxg
-	PT9Lel7582MODJx9DHMFfAMJz//imFr6zX3FoCAmw576XboWYx4D+nfiQpsD+EUb6pNB
-	mO5g==
-X-Gm-Message-State: AMCzsaWpdJC8DsfaPXjuC0F/KJV931oHZfRokLuOCTr8XgIbop/aecQC
-	SAEBzPmcIt4khMCRTEqZ2Lad1PhWiDTeMZzIhAk=
-X-Google-Smtp-Source: ABhQp+RijwBvFyUqsONtsbQwZh5lAqolp03P4XmrPikwTDgdhzB0qK7RQZUShQFoPcIpMI0syXtJ5P7ADY7EmGA4i5c=
-X-Received: by 10.13.208.6 with SMTP id s6mr6861835ywd.200.1509396595782; Mon,
-	30 Oct 2017 13:49:55 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C236E009B4
+	for <yocto@yoctoproject.org>; Mon, 30 Oct 2017 15:10:33 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	30 Oct 2017 15:10:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.44,321,1505804400"; d="scan'208";a="1212088537"
+Received: from wsclemen-mobl2.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.139.19])
+	by fmsmga001.fm.intel.com with ESMTP; 30 Oct 2017 15:10:04 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 31 Oct 2017 11:10:01 +1300
+Message-ID: <6482199.42UzUZds2r@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <a2a29050d3b05b61ce7ef1c1d46fce40f1dbe7d1.1508881202.git.amanda.r.brindle@intel.com>
+References: <cover.1508881202.git.amanda.r.brindle@intel.com>
+	<a2a29050d3b05b61ce7ef1c1d46fce40f1dbe7d1.1508881202.git.amanda.r.brindle@intel.com>
 MIME-Version: 1.0
-From: Adam Lee <adam.yh.lee@gmail.com>
-Date: Mon, 30 Oct 2017 20:49:45 +0000
-Message-ID: <CAFeBWL5JfhLLU8V8eQP+O_bNQBbZpO=N6CpW7w8EdXHUy9FyEQ@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Can't run "-c devshell" - "Must be connected to a terminal"
+Cc: Amanda Brindle <amanda.r.brindle@intel.com>
+Subject: Re: [layerindex-web][patch v3 1/1] Send email notification on publication
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,76 +44,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Oct 2017 20:49:57 -0000
-Content-Type: multipart/alternative; boundary="94eb2c07d990eac01a055cc9c75e"
+X-List-Received-Date: Mon, 30 Oct 2017 22:10:34 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---94eb2c07d990eac01a055cc9c75e
-Content-Type: text/plain; charset="UTF-8"
+On Wednesday, 25 October 2017 10:49:42 AM NZDT Amanda Brindle wrote:
+> When publishing a layer, send an email notification to all of that
+> layer's maintainers.
+> 
+> Fixes [YOCTO #11208]
+> 
+> Signed-off-by: Amanda Brindle <amanda.r.brindle@intel.com>
+> ---
+>  layerindex/views.py                          | 34 +++++++++++++++++++++++++
+++-
+>  templates/layerindex/publishemail.txt        |  9 ++++++++
+>  templates/layerindex/publishemailsubject.txt |  1 +
+>  3 files changed, 43 insertions(+), 1 deletion(-)
+>  create mode 100644 templates/layerindex/publishemail.txt
+>  create mode 100644 templates/layerindex/publishemailsubject.txt
+> 
+> diff --git a/layerindex/views.py b/layerindex/views.py
+> index bcf6671..095f428 100644
+> --- a/layerindex/views.py
+> +++ b/layerindex/views.py
+> @@ -5,7 +5,7 @@
+>  # Licensed under the MIT license, see COPYING.MIT for details
+>  
+>  import sys
+> -from django.shortcuts import get_object_or_404, render
+> +from django.shortcuts import get_object_or_404, get_list_or_404, render
+>  from django.http import HttpResponse, HttpResponseRedirect, 
+HttpResponseForbidden, Http404
+>  from django.core.urlresolvers import reverse, reverse_lazy, resolve
+>  from django.core.exceptions import PermissionDenied
+> @@ -261,6 +261,38 @@ def _check_url_branch(kwargs):
+>  def publish(request, name):
+>      if not (request.user.is_authenticated() and 
+request.user.has_perm('layerindex.publish_layer')):
+>          raise PermissionDenied
+> +    layeritem = get_object_or_404(LayerItem, name=name)
+> +    layerbranch = get_object_or_404(LayerBranch, layer=layeritem)
+> +    layer_url = request.build_absolute_uri(reverse('layer_item', 
+args=(layerbranch.branch, layeritem.name)))
+> +    maintainers = get_list_or_404(LayerMaintainer, layerbranch=layerbranch)
+> +    from_email = settings.SUBMIT_EMAIL_FROM
+> +    subjecttext = get_template('layerindex/publishemailsubject.txt')
+> +    bodytext = get_template('layerindex/publishemail.txt')
+> +    maintainer_names = [m.name for m in maintainers]
+> +    # find appropriate help contact
+> +    for user in User.objects.all():
+> +        if user.username != 'root' and user.is_active:
+> +            help_contact = user
+> +            break
 
-Hello everyone, I have this strange issue where I can't run "-c devshell"
-any longer.
+Just to follow up here, I've merged this with a change to the above lines to 
+only include staff/superusers.
 
-This worked until a day ago.
-I am on Morty, and running in a Docker container.
+Cheers,
+Paul
 
-Has anyone seen this:
+-- 
 
-Currently  1 running tasks (100 of 100)  99%
-|#############################################################################################################################################################################################################################################
- |
-0: cmem-4.14.00.00+gitAUTOINC+b514a99ac4-r1 do_devshell - 0s (pid 20279)
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-Trying to run: screen -r devshell_20279
-Must be connected to a terminal.
-WARNING: Screen started. Please connect in another terminal with "screen -r
-devshell_20279"
+Paul Eggleton
+Intel Open Source Technology Centre
 
-Thank you,
-
-Adam
-
---94eb2c07d990eac01a055cc9c75e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello everyone, I have this strange issue where I can&#39;=
-t run &quot;-c devshell&quot; any longer.<div><br></div><div>This worked un=
-til a day ago.</div><div>I am on Morty, and running in a Docker container.<=
-/div><div><br></div><div>Has anyone seen this:</div><div><br></div><div><di=
-v>Currently=C2=A0 1 running tasks (100 of 100)=C2=A0 99% |#################=
-###########################################################################=
-###########################################################################=
-######################################################################=C2=
-=A0 =C2=A0|</div><div>0: cmem-4.14.00.00+gitAUTOINC+b514a99ac4-r1 do_devshe=
-ll - 0s (pid 20279)</div><div>Trying to run: screen -r devshell_20279</div>=
-<div>Must be connected to a terminal.</div><div>Trying to run: screen -r de=
-vshell_20279</div><div>Must be connected to a terminal.</div><div>Trying to=
- run: screen -r devshell_20279</div><div>Must be connected to a terminal.</=
-div><div>Trying to run: screen -r devshell_20279</div><div>Must be connecte=
-d to a terminal.</div><div>Trying to run: screen -r devshell_20279</div><di=
-v>Must be connected to a terminal.</div><div>Trying to run: screen -r devsh=
-ell_20279</div><div>Must be connected to a terminal.</div><div>Trying to ru=
-n: screen -r devshell_20279</div><div>Must be connected to a terminal.</div=
-><div>Trying to run: screen -r devshell_20279</div><div>Must be connected t=
-o a terminal.</div><div>Trying to run: screen -r devshell_20279</div><div>M=
-ust be connected to a terminal.</div><div>WARNING: Screen started. Please c=
-onnect in another terminal with &quot;screen -r devshell_20279&quot;</div><=
-/div><div><br></div><div>Thank you,</div><div><br></div><div>Adam</div><div=
-><br></div></div>
-
---94eb2c07d990eac01a055cc9c75e--
