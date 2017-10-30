@@ -1,64 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E499AE00D4E; Fri, 27 Oct 2017 14:42:30 -0700 (PDT)
+	id 261C1E00D8C; Sun, 29 Oct 2017 21:25:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.42 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f42.google.com (mail-pg0-f42.google.com [74.125.83.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 282CCE00D48
-	for <yocto@yoctoproject.org>; Fri, 27 Oct 2017 14:42:29 -0700 (PDT)
-Received: by mail-pg0-f42.google.com with SMTP id l24so6199006pgu.11
-	for <yocto@yoctoproject.org>; Fri, 27 Oct 2017 14:42:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=DaAtc+glDk871IeihKzRda0Y+kmxbwKxMf9RchOR4hE=;
-	b=jcTu0Fz1T2Wz1rUJPvkTl1ScMDEhuK5xiBXHg5kakG0qPSfyMXu6lKfBNs/KihN3IX
-	bF7lS9kVlNsMwejxq+9ar7LYgPFhJf8GBtUU26HCGMQwVygBiqvLz9smiiTlKqJ32yOG
-	oo5lXAJVUchsmWhwzo1gEB1aePv3ZhHolX70+2RynW4ukgkQp811mmKxpIKfyb76TtSv
-	pbhM0YhN66oY178k4Wh3zOCkHKtz9hlwkO89d3/MxOaEjf5J8Cma7euII/I9+uQfLIHf
-	xQTRuj17kfR+1FT0wArE7wyKH2O3O4yY5rNqf6cTkD2jbdTuvAoCBHf0SqYSEMCIGupw
-	iaWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=DaAtc+glDk871IeihKzRda0Y+kmxbwKxMf9RchOR4hE=;
-	b=l6aLGcM0KSu2YGYXve97H8Gc4xnjfRbUj3mFB68du3xheajgXXuHQQO+s0zS2xn05Z
-	9GwgGJOqMrp4zsJIDJa5ZOeulwPVIO5fDd2QvGpTUcPJYZ27P7be6CWM2yOC2kbZ1mPV
-	B1unKmHb322BnFJohkEOafe2ZL6Asz3uj8Ckh+F65Aq17YBciKdNHdulMHQhwjGUbz3s
-	/sYf6kX5sCN/vsSgmGH1Vu0JQxRvdeMf1F4nsNW7b5oF2WWky3vQ+rf5ViAKY74nMWTp
-	c8fTwJDHdzicIjypWGFqgLSSPdiD7ZmMN3xmWa8uQC3hYhk7ZBsHiGrx2+SWx41b9+jA
-	sHaw==
-X-Gm-Message-State: AMCzsaWQBxXAo4/P/P4SfnHOQWCzfMETYYKXRzJGUrfDToP1TuQb6Zb+
-	i5W23tBQouJ7iN4Ntd7mv7pG0idY/vML3huTTu8=
-X-Google-Smtp-Source: ABhQp+TzdjmBUV8JfI520IJPpROHEeuYY0r6xCCoScdxQmZKUqCDJoR7reahfvcbz1nKnCndN6o1IO718LDa7MVXhUc=
-X-Received: by 10.84.175.3 with SMTP id s3mr1344272plb.440.1509140549431; Fri,
-	27 Oct 2017 14:42:29 -0700 (PDT)
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+Received: from remote.innerrange.com (122-143-132.dsl.connexus.net.au
+	[203.122.143.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF14DE00D85
+	for <yocto@yoctoproject.org>; Sun, 29 Oct 2017 21:25:22 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
+	mapi; Mon, 30 Oct 2017 15:25:19 +1100
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 30 Oct 2017 15:25:17 +1100
+Thread-Topic: fontconfig-native build error
+Thread-Index: AdNRNl3ct1xi9wLqStKFIaxcb0yULQ==
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A40295F094B8AD@IR-CENTRAL.corp.innerrange.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1278-8.100.1062-23424.006
+x-tm-as-result: No-3.659300-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-Received: by 10.100.187.66 with HTTP; Fri, 27 Oct 2017 14:41:58 -0700 (PDT)
-In-Reply-To: <1509101466-32192-1-git-send-email-pascal.bach@siemens.com>
-References: <1509101466-32192-1-git-send-email-pascal.bach@siemens.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 27 Oct 2017 14:41:58 -0700
-Message-ID: <CAMKF1sqnUFWx2yXDovoRsyivNneBsmje1_cJ7+2NC99-_pxtYw@mail.gmail.com>
-To: Pascal Bach <pascal.bach@siemens.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-mono][PATCH] mono-4.xx: compiling mono 4 with btls requires cmake
+Subject: fontconfig-native build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,42 +44,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Oct 2017 21:42:31 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 30 Oct 2017 04:25:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 27, 2017 at 3:51 AM, Pascal Bach <pascal.bach@siemens.com> wrote:
-> This was probably working before pyro and the recipes specific sysroots.
->
-> Signed-off-by: Pascal Bach <pascal.bach@siemens.com>
-> ---
->  recipes-mono/mono/mono-4.xx.inc | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/recipes-mono/mono/mono-4.xx.inc b/recipes-mono/mono/mono-4.xx.inc
-> index e06fac7..cf9170b 100644
-> --- a/recipes-mono/mono/mono-4.xx.inc
-> +++ b/recipes-mono/mono/mono-4.xx.inc
-> @@ -4,7 +4,7 @@ HOMEPAGE = "http://mono-project.com"
->  BUGTRACKER = "http://bugzilla.xamarin.com/"
->  SECTION = "devel"
->
-> -DEPENDS = "zlib"
-> +DEPENDS = "zlib cmake-native"
->
+I've been building a project with 'morty' with no problems for a few months=
+, using Ubuntu 16.04.
 
-perhaps this should inehrit cmake if its using cmake
-or explain how cmake is used where abstactions
-are not relevant
+Today, I've just tried doing a build on a fresh Ubuntu 17.10 VM. But I'm ge=
+tting a build error for fontconfig-native:
 
 
->  SRC_URI = "http://download.mono-project.com/sources/mono/mono-${PV}.tar.bz2 \
->             file://dllmap-config.in.diff \
-> --
-> 2.1.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+x86_64-linux-libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I../../fontconfig-=
+2.12.1/src -I.. -I../../fontconfig-2.12.1 -I../../fontconfig-2.12.1/src -I/=
+home/craigm/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include/freetype=
+2 -I/home/craigm/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include -I/=
+home/craigm/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/include -Wall -W=
+pointer-arith -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declaratio=
+ns -Wnested-externs -fno-strict-aliasing -DFC_CACHEDIR=3D\"/home/craigm/yoc=
+to/poky/build/tmp/sysroots/x86_64-linux/var/cache/fontconfig\" -DFONTCONFIG=
+_PATH=3D\"/home/craigm/yocto/poky/build/tmp/sysroots/x86_64-linux/etc/fonts=
+\" -isystem/home/craigm/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/incl=
+ude -isystem/home/craigm/yocto/poky/build/tmp/sysroots/x86_64-linux/usr/inc=
+lude -O2 -pipe -pthread -c ../../fontconfig-2.12.1/src/fcobjs.c  -fPIC -DPI=
+C -o .libs/fcobjs.o
+ERROR: oe_runmake failed
+../../fontconfig-2.12.1/src/fcmatch.c:324:63: error: 'PRI_CHAR_WIDTH_STRONG=
+' undeclared here (not in a function); did you mean 'PRI_WIDTH_STRONG'?
+ #define FC_OBJECT(NAME, Type, Cmp) { FC_##NAME##_OBJECT, Cmp, PRI_##NAME##=
+_STRONG, PRI_##NAME##_WEAK },
+                                                               ^
+../../fontconfig-2.12.1/src/fcobjs.h:54:1: note: in expansion of macro 'FC_=
+OBJECT'
+ FC_OBJECT (CHAR_WIDTH,  FcTypeInteger, NULL)
+ ^~~~~~~~~
+../../fontconfig-2.12.1/src/fcmatch.c:324:84: error: 'PRI_CHAR_WIDTH_WEAK' =
+undeclared here (not in a function); did you mean 'PRI_WIDTH_WEAK'?
+ #define FC_OBJECT(NAME, Type, Cmp) { FC_##NAME##_OBJECT, Cmp, PRI_##NAME##=
+_STRONG, PRI_##NAME##_WEAK },
+                                                                           =
+         ^
+../../fontconfig-2.12.1/src/fcobjs.h:54:1: note: in expansion of macro 'FC_=
+OBJECT'
+ FC_OBJECT (CHAR_WIDTH,  FcTypeInteger, NULL)
+ ^~~~~~~~~
+Makefile:632: recipe for target 'fcmatch.lo' failed
+make[3]: *** [fcmatch.lo] Error 1
+
+
+Funnily enough, fontconfig (not native) builds fine; it's only fontconfig-n=
+ative that gives the above error.
+
+Any advice on this? I would consider going back to Ubuntu 16.04; I would al=
+so consider moving from morty to pyro or rocko (it's on my to-do list).
+
+--=20
+Craig McQueen
+
 
