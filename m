@@ -1,35 +1,68 @@
-Return-Path: <amanda.r.brindle@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 566F6E00D12; Tue, 31 Oct 2017 10:29:36 -0700 (PDT)
+	id D8E5CE00D07; Tue, 31 Oct 2017 11:27:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.65 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40A06E00CF5
-	for <yocto@yoctoproject.org>; Tue, 31 Oct 2017 10:29:34 -0700 (PDT)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	31 Oct 2017 10:29:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.44,325,1505804400"; d="scan'208";a="167449626"
-Received: from arbrindl-dev.jf.intel.com ([10.7.197.61])
-	by orsmga005.jf.intel.com with ESMTP; 31 Oct 2017 10:29:34 -0700
-From: Amanda Brindle <amanda.r.brindle@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 31 Oct 2017 10:28:37 -0700
-Message-Id: <e8548c2bc7d8700267cd94765f77223f93790bfe.1509470700.git.amanda.r.brindle@intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1509470700.git.amanda.r.brindle@intel.com>
-References: <cover.1509470700.git.amanda.r.brindle@intel.com>
-Cc: paul.eggleton@linux.intel.com, Amanda Brindle <amanda.r.brindle@intel.com>
-Subject: [layerindex-web][patch v1 1/1] templates/layerindex/classes.html: Add bbclass search
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 665B9E00D01
+	for <yocto@yoctoproject.org>; Tue, 31 Oct 2017 11:27:43 -0700 (PDT)
+Received: by mail-pg0-f65.google.com with SMTP id b192so15383374pga.2
+	for <yocto@yoctoproject.org>; Tue, 31 Oct 2017 11:27:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=4HNsJ1bnbLHuLxPHPfhWDB8MJ7lbllwsQ2D2SwDabPo=;
+	b=sEsupkE2cm6Z8SWZIjVPWFCwpx+0s7/nS71YyNmxqKvB9ZeACMFt5S6M84aZjPeeAr
+	7dni4RIQl4uWXnWoeuIoHlsqFepGyHTEE0AB/Aw9pl6bittAgIbwV8YjHXkjFg4RroBk
+	u1yXirFqt5FYCj/hbujU0w7H0ZyfA3nFc6u9zHCD4l2h8G6x2/6rcsG6pps9oDF4Ck+C
+	YKqloLBY+Z9WnpDcinKXCBM3cWKrrqly3fE8/AN1qtAIfjrN9CJMGNVMQvBqQ9Huz4TS
+	w3fAYca8Q/2C+4Cz/vP9zljyCez2d+jcQltRlUgBvHSxr7bp9JIPVTG01L9FBNshrDsS
+	hIQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=4HNsJ1bnbLHuLxPHPfhWDB8MJ7lbllwsQ2D2SwDabPo=;
+	b=plmHSMj54y2UoUY5S4zeQL7+aNltu3sSSsCxwne3GkE+VtVdI71ZXfmtRJEYymUIVA
+	QrQgFzS0iTq4wRcNGRSR13Dd2MoiNt/9denhBzMHMVNjqLwCjYMKn4FQnB7F1PT9VYFX
+	GdlIBf2xKoMaECuz8IAnpwIGyo+dkebA2JIaB+u67rRPah3GSsnyvOJGqVQzIIEQ/GRi
+	Dlh1J7DKoQbW/lXulI7god/ETTEouQlBk5SHDA2ZMdG3uKaW2hQ+KxlbSsewCaYNWwiW
+	w5Nv5d+kqs+hSN5W6eahHLuyR4/Lm2m0Aj3DXui4pR9QARKZDdBeeOPecRraju88uOcx
+	kKPw==
+X-Gm-Message-State: AMCzsaUaLMiOsfeQcTMynCExd2l5CLARhVLMR9184ZDm67uamWj3EUuh
+	NiRWpap7a39QpIhbTvuVhui3n7khWq4KVbUrCKk=
+X-Google-Smtp-Source: ABhQp+TcXDYZMx13FCJWkPsO7Ym2/oSm0MDka0XVUIrLU2hAJ38g5iA6IN6UI4lB0XB/vlgvJm5fkRKwE4L3SZFF0Fw=
+X-Received: by 10.98.102.132 with SMTP id s4mr2981164pfj.168.1509474463353;
+	Tue, 31 Oct 2017 11:27:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAOsp8o87Tu-jsEQts=f-kmM1mtwcMrDN0eM-Zs0w0c+iF36gFQ@mail.gmail.com>
+	<CAMKF1spbS2++NDZ8=mifSPP+i-TOMn1bmNQTnx+H6HdwsPkaDQ@mail.gmail.com>
+	<CAOsp8o_a353XUeojQdeLq-AuqL=eXNwBoma57=C6Cq=29q02GA@mail.gmail.com>
+	<CAJTo0LYPxRO1sB8T=bE2m6aG6jgODWr+fSyujzwcQsEst0eb9w@mail.gmail.com>
+In-Reply-To: <CAJTo0LYPxRO1sB8T=bE2m6aG6jgODWr+fSyujzwcQsEst0eb9w@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 31 Oct 2017 18:27:32 +0000
+Message-ID: <CAMKF1srJ61R+ouYD_pnCjmDtGJesByEP0M208BkCvd7p599Nmw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>,
+	Michael Habibi <mikehabibi@gmail.com>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: Using site.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,258 +74,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Oct 2017 17:29:36 -0000
+X-List-Received-Date: Tue, 31 Oct 2017 18:27:44 -0000
+Content-Type: multipart/alternative; boundary="001a11412ae22f9223055cdbe93f"
 
-Add another tab to search for classes.
+--001a11412ae22f9223055cdbe93f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Fixes [YOCTO #11207]
+On Tue, Oct 31, 2017 at 7:25 AM Burton, Ross <ross.burton@intel.com> wrote:
 
-Signed-off by: Amanda Brindle <amanda.r.brindle@intel.com>
----
- layerindex/restviews.py            | 10 ++++-
- layerindex/urls.py                 |  3 ++
- layerindex/urls_branch.py          |  6 ++-
- layerindex/views.py                | 24 ++++++++++++
- templates/layerindex/classes.html  | 75 ++++++++++++++++++++++++++++++++++++++
- templates/layerindex/distros.html  |  1 +
- templates/layerindex/layers.html   |  1 +
- templates/layerindex/machines.html |  1 +
- templates/layerindex/recipes.html  |  1 +
- 9 files changed, 120 insertions(+), 2 deletions(-)
- create mode 100644 templates/layerindex/classes.html
+> On 31 October 2017 at 14:15, Michael Habibi <mikehabibi@gmail.com> wrote:
+>
+>> Is there an example of this somewhere? I haven't had any luck in
+>> documentation or example code to see how to make the site.conf be used.
+>>
+>>
+> site.conf is loaded if it is present in a conf/ directory anywhere.  I
+> have a meta-ross which contains conf/site.conf, I add that layer to every
+> build tree and bitbake will read the site.conf.  There's not a lot more t=
+o
+> it really.
+>
 
-diff --git a/layerindex/restviews.py b/layerindex/restviews.py
-index d947bbf..836aa54 100644
---- a/layerindex/restviews.py
-+++ b/layerindex/restviews.py
-@@ -1,4 +1,4 @@
--from layerindex.models import Branch, LayerItem, LayerNote, LayerBranch, LayerDependency, Recipe, Machine, Distro
-+from layerindex.models import Branch, LayerItem, LayerNote, LayerBranch, LayerDependency, Recipe, Machine, Distro, BBClass
- from rest_framework import viewsets, serializers
- from layerindex.querysethelper import params_to_queryset, get_search_tuple
- 
-@@ -64,3 +64,11 @@ class DistroSerializer(serializers.ModelSerializer):
- class DistroViewSet(ParametricSearchableModelViewSet):
-     queryset = Distro.objects.all()
-     serializer_class = DistroSerializer
-+
-+class ClassSerializer(serializers.ModelSerializer):
-+    class Meta:
-+        model = BBClass
-+
-+class ClassViewSet(ParametricSearchableModelViewSet):
-+    queryset = BBClass.objects.all()
-+    serializer_class = ClassSerializer
-diff --git a/layerindex/urls.py b/layerindex/urls.py
-index b4535d2..6a1cb6a 100644
---- a/layerindex/urls.py
-+++ b/layerindex/urls.py
-@@ -22,6 +22,7 @@ router.register(r'layerDependencies', restviews.LayerDependencyViewSet)
- router.register(r'recipes', restviews.RecipeViewSet)
- router.register(r'machines', restviews.MachineViewSet)
- router.register(r'distros', restviews.DistroViewSet)
-+router.register(r'classes', restviews.ClassViewSet)
- 
- urlpatterns = patterns('',
-     url(r'^$',
-@@ -40,6 +41,8 @@ urlpatterns = patterns('',
-         RedirectView.as_view(url=reverse_lazy('machine_search', args=('master',)), permanent=False)),
-     url(r'^distros/$',
-         RedirectView.as_view(url=reverse_lazy('distro_search', args=('master',)), permanent=False)),
-+    url(r'^classes/$',
-+        RedirectView.as_view(url=reverse_lazy('class_search', args=('master',)), permanent=False)),
-  
-     url(r'^submit/$', edit_layer_view, {'template_name': 'layerindex/submitlayer.html'}, name="submit_layer"),
-     url(r'^submit/thanks$',
-diff --git a/layerindex/urls_branch.py b/layerindex/urls_branch.py
-index 89659d9..d451896 100644
---- a/layerindex/urls_branch.py
-+++ b/layerindex/urls_branch.py
-@@ -7,7 +7,7 @@
- from django.conf.urls import *
- from django.views.defaults import page_not_found
- from django.core.urlresolvers import reverse_lazy
--from layerindex.views import LayerListView, RecipeSearchView, MachineSearchView, DistroSearchView, PlainTextListView, LayerDetailView, edit_layer_view, delete_layer_view, edit_layernote_view, delete_layernote_view, RedirectParamsView, DuplicatesView, LayerUpdateDetailView
-+from layerindex.views import LayerListView, RecipeSearchView, MachineSearchView, DistroSearchView, ClassSearchView, PlainTextListView, LayerDetailView, edit_layer_view, delete_layer_view, edit_layernote_view, delete_layernote_view, RedirectParamsView, DuplicatesView, LayerUpdateDetailView
- 
- urlpatterns = patterns('',
-     url(r'^$', 
-@@ -32,6 +32,10 @@ urlpatterns = patterns('',
-         DistroSearchView.as_view(
-             template_name='layerindex/distros.html'),
-             name='distro_search'),
-+    url(r'^classes/$',
-+        ClassSearchView.as_view(
-+            template_name='layerindex/classes.html'),
-+            name='class_search'),
-     url(r'^edit/(?P<slug>[-\w]+)/$', edit_layer_view, {'template_name': 'layerindex/editlayer.html'}, name="edit_layer"),
-     url(r'^duplicates/$',
-         DuplicatesView.as_view(
-diff --git a/layerindex/views.py b/layerindex/views.py
-index 3b22067..03d47f2 100644
---- a/layerindex/views.py
-+++ b/layerindex/views.py
-@@ -724,6 +724,30 @@ class DistroSearchView(ListView):
-         context['this_url_name'] = resolve(self.request.path_info).url_name
-         return context
- 
-+class ClassSearchView(ListView):
-+    context_object_name = 'class_list'
-+    paginate_by = 50
-+
-+    def get_queryset(self):
-+        _check_url_branch(self.kwargs)
-+        query_string = self.request.GET.get('q', '')
-+        init_qs = BBClass.objects.filter(layerbranch__branch__name=self.kwargs['branch'])
-+        if query_string.strip():
-+            entry_query = simplesearch.get_query(query_string, ['name'])
-+            return init_qs.filter(entry_query).order_by('name', 'layerbranch__layer')
-+
-+        if 'q' in self.request.GET:
-+            return init_qs.order_by('name', 'layerbranch__layer')
-+
-+        # Be consistent with RecipeSearchView
-+        return Distro.objects.none()
-+
-+    def get_context_data(self, **kwargs):
-+        context = super(ClassSearchView, self).get_context_data(**kwargs)
-+        context['search_keyword'] = self.request.GET.get('q', '')
-+        context['url_branch'] = self.kwargs['branch']
-+        context['this_url_name'] = resolve(self.request.path_info).url_name
-+        return context
- 
- class PlainTextListView(ListView):
-     def render_to_response(self, context):
-diff --git a/templates/layerindex/classes.html b/templates/layerindex/classes.html
-new file mode 100644
-index 0000000..5ab1b4e
---- /dev/null
-+++ b/templates/layerindex/classes.html
-@@ -0,0 +1,75 @@
-+{% extends "base_toplevel.html" %}
-+{% load i18n %}
-+
-+{% comment %}
-+
-+  layerindex-web - class index page template
-+
-+  Copyright (C) 2013 Intel Corporation
-+  Copyright (C) 2016 Wind River Systems
-+  Licensed under the MIT license, see COPYING.MIT for details
-+
-+{% endcomment %}
-+
-+
-+<!--
-+{% block title_append %} - classes{% endblock %}
-+-->
-+
-+{% block navs %}
-+{% autoescape on %}
-+                            <li><a href="{% url 'layer_list' url_branch %}">Layers</a></li>
-+                            <li><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-+                            <li><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-+                            <li><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
-+                            <li class="active"><a href="{% url 'class_search' url_branch %}">Classes</a></li>
-+{% endautoescape %}
-+{% endblock %}
-+
-+
-+{% block content_inner %}
-+{% autoescape on %}
-+
-+
-+                <div class="row-fluid">
-+                    <div class="input-append">
-+                        <form id="filter-form" action="{% url 'class_search' url_branch %}" method="get">
-+                            <input type="text" class="input-xxlarge" id="appendedInputButtons" placeholder="Search classes" name="q" value="{{ search_keyword }}" />
-+                            <button class="btn" type="submit">search</button>
-+                        </form>
-+                    </div>
-+                </div>
-+
-+{% if class_list %}
-+                <table class="table table-striped table-bordered classestable">
-+                    <thead>
-+                        <tr>
-+                            <th>Class Name</th>
-+                            <th>Layer</th>
-+                        </tr>
-+                    </thead>
-+
-+                    <tbody>
-+                        {% for class in class_list %}
-+                            <tr>
-+                                <td><a href="{{ class.vcs_web_url }}">{{ class.name }}</a></td>
-+                                <td><a href="{% url 'layer_item' url_branch class.layerbranch.layer.name %}">{{ class.layerbranch.layer.name }}</a></td>
-+                            </tr>
-+                        {% endfor %}
-+                    </tbody>
-+                </table>
-+
-+    {% if is_paginated %}
-+        {% load pagination %}
-+        {% pagination page_obj %}
-+    {% endif %}
-+{% else %}
-+    {% if search_keyword %}
-+    <p>No matching classes in database.</p>
-+    {% endif %}
-+{% endif %}
-+
-+
-+{% endautoescape %}
-+
-+{% endblock %}
-diff --git a/templates/layerindex/distros.html b/templates/layerindex/distros.html
-index 7085584..ed17744 100644
---- a/templates/layerindex/distros.html
-+++ b/templates/layerindex/distros.html
-@@ -22,6 +22,7 @@
-                             <li><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-                             <li><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-                             <li class="active"><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
-+                            <li><a href="{% url 'class_search' url_branch %}">Classes</a></li>
- {% endautoescape %}
- {% endblock %}
- 
-diff --git a/templates/layerindex/layers.html b/templates/layerindex/layers.html
-index f1a3703..11baccd 100644
---- a/templates/layerindex/layers.html
-+++ b/templates/layerindex/layers.html
-@@ -22,6 +22,7 @@
-                             <li><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-                             <li><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-                             <li><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
-+                            <li><a href="{% url 'class_search' url_branch %}">Classes</a></li>
- {% endautoescape %}
- {% endblock %}
- 
-diff --git a/templates/layerindex/machines.html b/templates/layerindex/machines.html
-index 2a9f947..b5b1365 100644
---- a/templates/layerindex/machines.html
-+++ b/templates/layerindex/machines.html
-@@ -21,6 +21,7 @@
-                             <li><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-                             <li class="active"><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-                             <li><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
-+                            <li><a href="{% url 'class_search' url_branch %}">Classes</a></li>
- {% endautoescape %}
- {% endblock %}
- 
-diff --git a/templates/layerindex/recipes.html b/templates/layerindex/recipes.html
-index 60a2667..4f073f2 100644
---- a/templates/layerindex/recipes.html
-+++ b/templates/layerindex/recipes.html
-@@ -21,6 +21,7 @@
-                             <li class="active"><a href="{% url 'recipe_search' url_branch %}">Recipes</a></li>
-                             <li><a href="{% url 'machine_search' url_branch %}">Machines</a></li>
-                             <li><a href="{% url 'distro_search' url_branch %}">Distros</a></li>
-+                            <li><a href="{% url 'class_search' url_branch %}">Classes</a></li>
- {% endautoescape %}
- {% endblock %}
- 
--- 
-2.7.4
+You don=E2=80=99t want to add a site.conf file in any Layer especially if y=
+ou are
+tweaking a global distri config it would be a bad practice
 
+>
+> Ross
+>
 
+--001a11412ae22f9223055cdbe93f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><br><div class=3D"gmail_quote"><div dir=3D"auto">On Tue, Oct 31, 2017 =
+at 7:25 AM Burton, Ross &lt;<a href=3D"mailto:ross.burton@intel.com">ross.b=
+urton@intel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
+>On 31 October 2017 at 14:15, Michael Habibi <span>&lt;<a href=3D"mailto:mi=
+kehabibi@gmail.com" target=3D"_blank">mikehabibi@gmail.com</a>&gt;</span> w=
+rote:<br></div><div><div class=3D"gmail_extra"><div class=3D"gmail_quote"><=
+blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
+ #ccc solid;padding-left:1ex"><div>Is there an example of this somewhere? I=
+ haven&#39;t had any luck in documentation or example code to see how to ma=
+ke the site.conf be used.</div><div class=3D"gmail_extra"><br></div></block=
+quote><div><br></div></div></div></div><div><div class=3D"gmail_extra"><div=
+ class=3D"gmail_quote"><div>site.conf is loaded if it is present in a conf/=
+ directory anywhere.=C2=A0 I have a meta-ross which contains conf/site.conf=
+, I add that layer to every build tree and bitbake will read the site.conf.=
+=C2=A0 There&#39;s not a lot more to it really.</div></div></div></div><div=
+><div class=3D"gmail_extra"><div class=3D"gmail_quote"><div></div></div></d=
+iv></div></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto">You don=
+=E2=80=99t want to add a site.conf file in any Layer especially if you are =
+tweaking a global distri config it would be a bad practice=C2=A0</div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex"><div><div class=3D"gmail_extra"><div class=3D"gma=
+il_quote"><div><br></div><div>Ross=C2=A0</div></div></div></div></blockquot=
+e></div></div>
+
+--001a11412ae22f9223055cdbe93f--
