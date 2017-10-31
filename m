@@ -1,38 +1,70 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <dogukan.ergun@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0AA4E00CC2; Tue, 31 Oct 2017 00:04:52 -0700 (PDT)
+	id CF791E00CA6; Tue, 31 Oct 2017 00:33:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (dogukan.ergun[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-	*      dynamic-looking rDNS
-Received: from remote.innerrange.com (122-143-132.dsl.connexus.net.au
-	[203.122.143.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 617C9E00C77
-	for <yocto@yoctoproject.org>; Tue, 31 Oct 2017 00:04:50 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%15]) with
-	mapi; Tue, 31 Oct 2017 18:04:47 +1100
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 31 Oct 2017 18:04:00 +1100
-Thread-Topic: linux-firmware: build failure
-Thread-Index: AdNSFdhQHur9NlqHT+m6g7/YMxnkFA==
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A40295F094B8EC@IR-CENTRAL.corp.innerrange.com>
-Accept-Language: en-US, en-AU
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1278-8.100.1062-23428.004
-x-tm-as-result: No--6.396100-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.194 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.194 listed in dnsbl.sorbs.net]
+Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
+	[209.85.128.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF2CEE00C62
+	for <yocto@yoctoproject.org>; Tue, 31 Oct 2017 00:33:06 -0700 (PDT)
+Received: by mail-wr0-f194.google.com with SMTP id y39so15001147wrd.4
+	for <yocto@yoctoproject.org>; Tue, 31 Oct 2017 00:33:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-language:content-transfer-encoding;
+	bh=KIutEaQ0q/lgRFM5wOTh8imAGH1pvRowh1K3SSSKBig=;
+	b=d2son1V0z01xD6jEAp3O6RrckQpu39XAqVRZzM6GhHFLMtFmjL8CJk+VtWFzmtGDjz
+	RcVkUjfE+577M5n/lycvPBO6d7OdkwyigjCTMP3Ml80RbhAJp3YPvQS1cVBMA0wPaXNV
+	bByjBFZj3FehF4oW2HlnmTnsUuoR12Kmi/PTrOAPW3mTy++Y9lj7sbqaGGLmbuHEiYj7
+	9dFBX+kMI1iQcaNyTudT+am9ocmq2ltr0uNsBl+yJDzAyzZNt8aE5DFyDLMz8Fw6GpcM
+	I3MCDqVEFTELPsKq9eGJkZfSHCqAKAaGKgF+JgnMd4deCjPHiwKfarizho+zuUWVQ7xp
+	LgXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-language:content-transfer-encoding;
+	bh=KIutEaQ0q/lgRFM5wOTh8imAGH1pvRowh1K3SSSKBig=;
+	b=rgPPQhVcoU6jaVGMXbniWi/q3WXJ3eIfrZis912xunhvMPqa70WMcWr5Z/JNKahPdl
+	5FU/+LqP1woYIAHn8yvmwnYfkNbHRJn1koM9ORj2WEh/fJJmFG2cD5+bMX22JcVK02XN
+	K5i2bP8AMJEg0TKYHnKzrqoKf8w44d78AN/lKF9SY1yCynjJlau68PpOU+uYPs38LQTr
+	xZRGs0UiBr4DgUN09IeTvs12GoA9sNjqaxRewJADLtLY9IsCmTLcZl95T1uWeOKvIBEj
+	STMKE4PJTCT4O+mHIIKbicQXXNQAzadRF1qywEH2Fqc9eaSPfhhq3NPfdwNEdqVLj+S9
+	yOMw==
+X-Gm-Message-State: AMCzsaUIrZ0PPZbCoVi1AIAPUxCLQFFQcykCYeKm6k1Z6sFjZiXJnRS8
+	5+emF+0rXE7srlexMEm+BvkUX/4kG+g=
+X-Google-Smtp-Source: ABhQp+RzNOfCvmiUoDoOkOHGpEd5qyhTpKGA14/S4s8N983YFDcXUpiqvTt5wssIalhbsRFhMZ+2Mw==
+X-Received: by 10.223.190.132 with SMTP id i4mr949053wrh.123.1509435185337;
+	Tue, 31 Oct 2017 00:33:05 -0700 (PDT)
+Received: from [192.168.1.163] ([81.214.38.25])
+	by smtp.gmail.com with ESMTPSA id d4sm854342wma.29.2017.10.31.00.33.04
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 31 Oct 2017 00:33:04 -0700 (PDT)
+To: yocto@yoctoproject.org, mark.hatle@windriver.com
+From: "Ergun, Dogukan" <dogukan.ergun@gmail.com>
+Message-ID: <e29a84dd-b0ab-66e0-d153-d132e15d69ca@gmail.com>
+Date: Tue, 31 Oct 2017 10:33:03 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-Subject: linux-firmware: build failure
+Subject: [meta-selinux][PATCH] python-ipy: Update SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,59 +76,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Oct 2017 07:04:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 31 Oct 2017 07:33:08 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: tr
+Content-Transfer-Encoding: 7bit
 
-I'm trying upgrading to rocko (from morty).
+From: Dogukan Ergun <dogukan.ergun@gmail.com>
 
-I'm getting a build failure for linux-firmware:
+python.org does not serve files with http anymore
 
+Signed-off-by: Dogukan Ergun <dogukan.ergun@gmail.com>
+---
+ recipes-devtools/python/python-ipy_0.83.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-DEBUG: Executing python function extend_recipe_sysroot
-NOTE: Direct dependencies are ['virtual:native:/home/craigm/yocto/poky/buil=
-d/../meta/recipes-devtools/pseudo/pseudo_1.8.2.bb:do_populate_sysroot', '/h=
-ome/craigm/yocto/poky/build/../meta/recipes-devtools/quilt/quilt-native_0.6=
-5.bb:do_populate_sysroot']
-NOTE: Installed into sysroot: ['pseudo-native']
-NOTE: Skipping as already exists in sysroot: ['quilt-native']
-DEBUG: Python function extend_recipe_sysroot finished
-DEBUG: Executing shell function do_install
-rm: cannot remove '/home/craigm/yocto/poky/build/tmp/work/all-poky-linux/li=
-nux-firmware/1_0.0+gitAUTOINC+80d463be82-r0/image/lib/firmware/check_whence=
-.py': No such file or directory
-WARNING: exit code 1 from a shell command.
-ERROR: Function failed: do_install (log file is located at /home/craigm/yoc=
-to/poky/build/tmp/work/all-poky-linux/linux-firmware/1_0.0+gitAUTOINC+80d46=
-3be82-r0/temp/log.do_install.120558)
-
-
-It seems that the latest git doesn't contain check_whence.py... or somethin=
-g like that. But I'm puzzled as to why the previous committer (17a772775c25=
-59897e49236ae352444065e1b1ff perhaps) would not have encountered this.
-
-Would the following be a suitable fix? --
-
-
-diff --git a/meta/recipes-kernel/linux-firmware/linux-firmware_git.bb b/met=
-a/recipes-kernel/linux-firmware/linux-firmware_git.bb
-index 0338ba8ac2..b8f2865e3b 100644
---- a/meta/recipes-kernel/linux-firmware/linux-firmware_git.bb
-+++ b/meta/recipes-kernel/linux-firmware/linux-firmware_git.bb
-@@ -215,7 +215,7 @@ do_install() {
-        rm ${D}${nonarch_base_libdir}/firmware/configure
-=20
-        # Remove python script used to check the WHENCE file
--       rm ${D}${nonarch_base_libdir}/firmware/check_whence.py
-+       rm ${D}${nonarch_base_libdir}/firmware/check_whence.py -rf
-=20
-        # Libertas sd8686
-        ln -sf libertas/sd8686_v9.bin ${D}${nonarch_base_libdir}/firmware/s=
-d8686.bin
-
-
---=20
-Craig McQueen
+diff --git a/recipes-devtools/python/python-ipy_0.83.bb b/recipes-devtools/python/python-ipy_0.83.bb
+index b2a9739..df060fa 100644
+--- a/recipes-devtools/python/python-ipy_0.83.bb
++++ b/recipes-devtools/python/python-ipy_0.83.bb
+@@ -9,7 +9,7 @@ DEPENDS = "python"
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=ebc0028ff5cdaf7796604875027dcd55"
+ 
+-SRC_URI = "http://pypi.python.org/packages/source/I/IPy/IPy-${PV}.tar.gz"
++SRC_URI = "https://pypi.python.org/packages/source/I/IPy/IPy-${PV}.tar.gz"
+ 
+ SRC_URI[md5sum] = "7b8c6eb4111b15aea31b67108e769712"
+ SRC_URI[sha256sum] = "61da5a532b159b387176f6eabf11946e7458b6df8fb8b91ff1d345ca7a6edab8"
+-- 
+2.7.4
 
 
