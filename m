@@ -1,6 +1,6 @@
 Return-Path: <adam.yh.lee@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A44FE00C44; Wed,  1 Nov 2017 14:26:54 -0700 (PDT)
+	id 3E984E00C59; Wed,  1 Nov 2017 14:36:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,10 +11,10 @@ X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (adam.yh.lee[at]gmail.com)
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.170 listed in dnsbl.sorbs.net]
+	*      [209.85.161.174 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.161.170 listed in list.dnswl.org]
+	*      [209.85.161.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -23,37 +23,37 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f170.google.com (mail-yw0-f170.google.com
-	[209.85.161.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 285D4E00AAF
-	for <yocto@yoctoproject.org>; Wed,  1 Nov 2017 14:26:52 -0700 (PDT)
-Received: by mail-yw0-f170.google.com with SMTP id y75so3053940ywg.0
-	for <yocto@yoctoproject.org>; Wed, 01 Nov 2017 14:26:52 -0700 (PDT)
+Received: from mail-yw0-f174.google.com (mail-yw0-f174.google.com
+	[209.85.161.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96206E00B67
+	for <yocto@yoctoproject.org>; Wed,  1 Nov 2017 14:36:48 -0700 (PDT)
+Received: by mail-yw0-f174.google.com with SMTP id l32so3042598ywh.13
+	for <yocto@yoctoproject.org>; Wed, 01 Nov 2017 14:36:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=kaAJg/heGedQ2vLhWYb5ZxRNNR111oAqV0pbTQpUoDo=;
-	b=iOSk5PuE5xDQMoPJcj/t4n8LobPdc5CUvHMxaCmlEHXZ2ZLgBtV4vZX+0pHgDMaK1i
-	8xinldgahhR+EyR+hZGCAxLjCN0cLW+DRyrEGWwuA83F+qiREaIysj4T0xFW9rDRjbtf
-	J1Xm2O9zUljykoKmzNnvHp6lFrjrmQXCWqGUx6HwMLeYC+3KDsk1QuaFfPKgzqaAHbCF
-	hh7TjIuFFOaCL5+kBT5RvWzIcgmnk94tnYzSaxWzFHC/wwAAT3C5xbiHQdJFbXYDNlg7
-	qiogI5rUiejDb/9qNdk3/MGeMIlK46rpO1rzTXTvkm3pmT4zQdhc/4N6VEYy3cPj13aX
-	d1RA==
+	:cc; bh=ZHW8QuRZa9G6tf/O5+c+brWEYRZTRiWx7C+pVkIKz0w=;
+	b=ek2XkwySqkfYMQlFaMamujbxFj6ek9UfD+IM+oq1EbCmFx9505WhB3obalRUhtmcy8
+	O7pKXS/HlGyZfxIR54h2sIRBMGaAGjk9xfi7g/re4MNZY2yHVG/BptmTy0JExFLEBIpd
+	+1q6Kpw4e5NLzAKam7Clo9smm32U+a1FRvgxBSCA9VORhcg664fvPCIMtA7kIjPED/JC
+	e6OVzu0QNSuy3ONJGcNv+O3io/0FtPneRFxWPTpzOfYRklRefGuoyYPQLaTCLeCV4Vo3
+	B3hO/CilCQNojddlb9efJu+XT9KoK0cqoGJgsCkl5ZE/YWF+opAJLqAfgZorKRNQ3LhJ
+	1oXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=kaAJg/heGedQ2vLhWYb5ZxRNNR111oAqV0pbTQpUoDo=;
-	b=BtTVHAUB3Himk2xL1flcWub+6aDAKckBMuCB2Ft1WxPom69jeJc2sd5KGrKZ0YJub9
-	RINnTXo/vrn4YajT9V/sjKSJgiqwtIL93dBqMrL4rLE8f3vDUmaPl4aUWQXBVZE8qWZU
-	ewsMg4eXN+pYbqLnEJ9SVGGC0RMxynYMS4EXgMuiYiXGgcuKvAhgSatsHep5AZ6ttrv1
-	2IV/NDpe4lKP7aGUTmu2XJ8UsR/lENSTv+wNfE+dLhV+jzfluW7SgHR3psAnEp6DJwrL
-	SyZ9fFMj3BRhoZepLjgBl2l/G1ucGuCAyt8XlcvPjhFNt0Bcs2/+zanyj9F6Fs56JwvF
-	Kcig==
-X-Gm-Message-State: AMCzsaV+xHCnFIkVpJRGNXIkVGZY70ADwmf4+6AceDgsI5S4LWyPQc36
-	iJVIoBwSuXmq5IFqpFsiOt1Blv37Iljo+8yk02U=
-X-Google-Smtp-Source: ABhQp+QWPjRo0h3LCSfwBeDcc1nALkpo81AoT8OTD9I5etiXsMqda/xVb8Ca4/ZKL+SvIgEA/FCf4Xeykxh0hE/dBaU=
-X-Received: by 10.37.95.77 with SMTP id h13mr865420ybm.85.1509571612123; Wed,
-	01 Nov 2017 14:26:52 -0700 (PDT)
+	bh=ZHW8QuRZa9G6tf/O5+c+brWEYRZTRiWx7C+pVkIKz0w=;
+	b=QJcwIzburEhrgcBbaxzdm+EgCsYgPWDtrFJEVeMRXmCyb2gcu+vwaptm/Kd1cmE6JL
+	7DeZydz53vnBQERClKYq7JsiBqQcjBA2wKx0L2w1Z2dVIigVcaONjZMaI2hfADn6VaHT
+	XhAyv4wcmJCGOvRtTGiUrjmsiAVKSIWCPQLsPesd1Ve/F8/Fsd+Ayjm4d0CTu9OHtGbx
+	3rMXv5GyUzjr7NtdPiaM8UMQvlN833tMT067vERsxD4pxpPObcugg+CkbfXa4J6OdvaK
+	sn5e85iCkgNY8nXdN0kvJXccHldRapOYYZ+ILpJE661yzhKEC8jCqclpJtplW7pytGKP
+	Q7/w==
+X-Gm-Message-State: AMCzsaXdLj6xKTM0oQcDNP77K829i2gfdYDnAR2q1/g2lesngN5MBHmm
+	Bs9zrie6O/0mPDTm95+QZWqQBmeX7F+BP82Rf1E=
+X-Google-Smtp-Source: ABhQp+SRcSUgkkTKmMHUctCclFUFf43SpR5flANXzLp27SIZ4MNrdezTvSycCpu3RC5okELPE5FwSV1fde18yO9KBNU=
+X-Received: by 10.37.201.198 with SMTP id z189mr807330ybf.523.1509572208451;
+	Wed, 01 Nov 2017 14:36:48 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAFeBWL7V1TNoGj4gpc5QkQ4mraFwUmvt77sAAxyGTmrivTQ-Mw@mail.gmail.com>
 	<1509546479.13007.35.camel@collabora.co.uk>
@@ -61,10 +61,11 @@ References: <CAFeBWL7V1TNoGj4gpc5QkQ4mraFwUmvt77sAAxyGTmrivTQ-Mw@mail.gmail.com>
 	<CAJTo0LbcS5eG2SxZpWiEXvw0+Nh5DPBJ9gxjb50S9ZfnNAKnwg@mail.gmail.com>
 	<CAFeBWL7EzxmSUHpgb80rwB+cpkKuiZa7gKC0MHVgm5Y9QJ76eA@mail.gmail.com>
 	<CAMKF1spqqN32T6kXHwCDzG3tXFFA3YE8u_rPMgQxZZ9br7P_Tg@mail.gmail.com>
-In-Reply-To: <CAMKF1spqqN32T6kXHwCDzG3tXFFA3YE8u_rPMgQxZZ9br7P_Tg@mail.gmail.com>
+	<CAFeBWL61A_fKa+6eQ-K4W0OdicFGNjwGDjtYrY1c0Cg0UxtC2g@mail.gmail.com>
+In-Reply-To: <CAFeBWL61A_fKa+6eQ-K4W0OdicFGNjwGDjtYrY1c0Cg0UxtC2g@mail.gmail.com>
 From: Adam Lee <adam.yh.lee@gmail.com>
-Date: Wed, 01 Nov 2017 21:26:41 +0000
-Message-ID: <CAFeBWL61A_fKa+6eQ-K4W0OdicFGNjwGDjtYrY1c0Cg0UxtC2g@mail.gmail.com>
+Date: Wed, 01 Nov 2017 21:36:38 +0000
+Message-ID: <CAFeBWL4f-E2rGo9pe5QXkZdMb1-ZoOzadWwCRfU0D6CuSBNKuQ@mail.gmail.com>
 To: Khem Raj <raj.khem@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Checking for xwayland
@@ -79,145 +80,161 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Nov 2017 21:26:54 -0000
-Content-Type: multipart/alternative; boundary="089e082678c0b427e9055cf287f6"
+X-List-Received-Date: Wed, 01 Nov 2017 21:36:50 -0000
+Content-Type: multipart/alternative; boundary="001a114d37183f6391055cf2abd5"
 
---089e082678c0b427e9055cf287f6
+--001a114d37183f6391055cf2abd5
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Raj,
+Ah, meta-arago sets PACCKAGECONFIG_pn-weston without xwayland.
 
-These are my DISTRO_FEATURES:
+PACKAGECONFIG_pn-weston = "egl kms launch clients"
 
-DISTRO_FEATURES="alsa argp bluetooth ext2 irda largefile pcmcia usbgadget
-usbhost wifi xattr nfs zeroconf pci 3g nfc *x11 *ipv4 ipv6 libc-backtrace
-libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets
-libc-crypt                                         libc-crypt-ufc
-libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse
-                                libc-getlogin libc-idn libc-inet-anl
-libc-libm libc-locales libc-locale-code
-libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn
-libc-streams libc-sunrpc                               libc-utmp libc-utmpx
-libc-wordexp libc-posix-clang-wchar libc-posix-regexp
-libc-posix-regexp-glibc
- libc-posix-wchar-io *x11 wayland* pam *opengl *systemd pulseaudio sysvinit
-bluez5 gobject-introspection-data"
+On Wed, Nov 1, 2017 at 5:26 PM Adam Lee <adam.yh.lee@gmail.com> wrote:
 
-Should I remove the first occurrence of x11?
-
-Thanks for your help
-
-Adam
-
-On Wed, Nov 1, 2017 at 5:19 PM Khem Raj <raj.khem@gmail.com> wrote:
-
-> On Wed, Nov 1, 2017 at 2:03 PM, Adam Lee <adam.yh.lee@gmail.com> wrote:
-> > I believe something is incorrect in my distro level configuration. Apart
-> > from including x11 and wayland in DISTRO_FEATURES, what else can I check
-> to
-> > build core-image-weston?
-> >
-> > build@6e35408e8fa5:~/tisdk/build$ bitbake core-image-weston
-> > NOTE: Started PRServer with DBfile:
-> > /home/build/tisdk/build/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 42704,
-> > PID: 13401
-> > Loading cache: 100%
-> >
-> |###########################################################################################################|
-> > Time: 0:00:02
-> > Loaded 3286 entries from dependency cache.
-> > Parsing recipes: 100%
-> >
-> |#########################################################################################################|
-> > Time: 0:00:01
-> > Parsing of 2538 .bb files complete (2537 cached, 1 parsed). 3286 targets,
-> > 272 skipped, 0 masked, 0 errors.
-> > WARNING: No recipes available for:
-> >
-> >
-> /home/build/tisdk/sources/meta-openamp/recipes-bsp/device-tree/device-tree-generation_%.bbappend
-> > NOTE: Resolving any missing task queue dependencies
-> > ERROR: Nothing RPROVIDES 'weston-xwayland' (but
-> > /home/build/tisdk/sources/oe-core/meta/recipes-graphics/images/
-> core-image-weston.bb
-> > RDEPENDS on or otherwise requires it)
-> > NOTE: Runtime target 'weston-xwayland' is unbuildable, removing...
-> > Missing or unbuildable dependency chain was: ['weston-xwayland']
-> > ERROR: Required build target 'core-image-weston' has no buildable
-> providers.
-> > Missing or unbuildable dependency chain was: ['core-image-weston',
-> > 'weston-xwayland']
-> >
-> > Summary: There was 1 WARNING message shown.
-> > Summary: There were 2 ERROR messages shown, returning a non-zero exit
-> code.
-> >
-> >
-> >
-> > On Wed, Nov 1, 2017 at 12:53 PM Burton, Ross <ross.burton@intel.com>
-> wrote:
-> >>
-> >> On 1 November 2017 at 15:58, Adam Lee <adam.yh.lee@gmail.com> wrote:
-> >>>
-> >>> Thanks Fabien, I definitely don't have Xwayland in my rootfs. My
-> manifest
-> >>> is missing xserver-xorg-xwayland as well.
-> >>>
-> >>> Which image are you using? I thought including of  "x11 wayland" was
-> >>> sufficient. Perhaps not..?
-> >>>
-> >>
-> >> Are you refering to DISTRO_FEATURES?  That just controls what is
-> >> *available*, not what goes into a particular image.  As Fabien said,
-> >> core-image-weston is the classic example of an image that has Weston.
-> >>
+> Hi Raj,
 >
-> you need opengl in DISTRO_FEATURES as well. additionally
-> weston-xwayland would need wayland and x11 in DISTRO_FEATURES
+> These are my DISTRO_FEATURES:
 >
-> >> Ross
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
+> DISTRO_FEATURES="alsa argp bluetooth ext2 irda largefile pcmcia usbgadget
+> usbhost wifi xattr nfs zeroconf pci 3g nfc *x11 *ipv4 ipv6 libc-backtrace
+> libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets
+> libc-crypt                                         libc-crypt-ufc
+> libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse
+>                                 libc-getlogin libc-idn libc-inet-anl
+> libc-libm libc-locales libc-locale-code
+> libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn
+> libc-streams libc-sunrpc                               libc-utmp libc-utmpx
+> libc-wordexp libc-posix-clang-wchar libc-posix-regexp
+> libc-posix-regexp-glibc
+>  libc-posix-wchar-io *x11 wayland* pam *opengl *systemd pulseaudio
+> sysvinit bluez5 gobject-introspection-data"
+>
+> Should I remove the first occurrence of x11?
+>
+> Thanks for your help
+>
+> Adam
+>
+> On Wed, Nov 1, 2017 at 5:19 PM Khem Raj <raj.khem@gmail.com> wrote:
+>
+>> On Wed, Nov 1, 2017 at 2:03 PM, Adam Lee <adam.yh.lee@gmail.com> wrote:
+>> > I believe something is incorrect in my distro level configuration. Apart
+>> > from including x11 and wayland in DISTRO_FEATURES, what else can I
+>> check to
+>> > build core-image-weston?
+>> >
+>> > build@6e35408e8fa5:~/tisdk/build$ bitbake core-image-weston
+>> > NOTE: Started PRServer with DBfile:
+>> > /home/build/tisdk/build/cache/prserv.sqlite3, IP: 127.0.0.1, PORT:
+>> 42704,
+>> > PID: 13401
+>> > Loading cache: 100%
+>> >
+>> |###########################################################################################################|
+>> > Time: 0:00:02
+>> > Loaded 3286 entries from dependency cache.
+>> > Parsing recipes: 100%
+>> >
+>> |#########################################################################################################|
+>> > Time: 0:00:01
+>> > Parsing of 2538 .bb files complete (2537 cached, 1 parsed). 3286
+>> targets,
+>> > 272 skipped, 0 masked, 0 errors.
+>> > WARNING: No recipes available for:
+>> >
+>> >
+>> /home/build/tisdk/sources/meta-openamp/recipes-bsp/device-tree/device-tree-generation_%.bbappend
+>> > NOTE: Resolving any missing task queue dependencies
+>> > ERROR: Nothing RPROVIDES 'weston-xwayland' (but
+>> > /home/build/tisdk/sources/oe-core/meta/recipes-graphics/images/
+>> core-image-weston.bb
+>> > RDEPENDS on or otherwise requires it)
+>> > NOTE: Runtime target 'weston-xwayland' is unbuildable, removing...
+>> > Missing or unbuildable dependency chain was: ['weston-xwayland']
+>> > ERROR: Required build target 'core-image-weston' has no buildable
+>> providers.
+>> > Missing or unbuildable dependency chain was: ['core-image-weston',
+>> > 'weston-xwayland']
+>> >
+>> > Summary: There was 1 WARNING message shown.
+>> > Summary: There were 2 ERROR messages shown, returning a non-zero exit
+>> code.
+>> >
+>> >
+>> >
+>> > On Wed, Nov 1, 2017 at 12:53 PM Burton, Ross <ross.burton@intel.com>
+>> wrote:
+>> >>
+>> >> On 1 November 2017 at 15:58, Adam Lee <adam.yh.lee@gmail.com> wrote:
+>> >>>
+>> >>> Thanks Fabien, I definitely don't have Xwayland in my rootfs. My
+>> manifest
+>> >>> is missing xserver-xorg-xwayland as well.
+>> >>>
+>> >>> Which image are you using? I thought including of  "x11 wayland" was
+>> >>> sufficient. Perhaps not..?
+>> >>>
+>> >>
+>> >> Are you refering to DISTRO_FEATURES?  That just controls what is
+>> >> *available*, not what goes into a particular image.  As Fabien said,
+>> >> core-image-weston is the classic example of an image that has Weston.
+>> >>
+>>
+>> you need opengl in DISTRO_FEATURES as well. additionally
+>> weston-xwayland would need wayland and x11 in DISTRO_FEATURES
+>>
+>> >> Ross
+>> >
+>> >
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>>
 >
 
---089e082678c0b427e9055cf287f6
+--001a114d37183f6391055cf2abd5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Raj,<div><br></div><div>These are my DISTRO_FEATURES:</=
-div><div><br></div><div><div>DISTRO_FEATURES=3D&quot;alsa argp bluetooth ex=
-t2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g n=
-fc <b>x11 </b>ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd libc-cxx-te=
-sts libc-catgets libc-charsets libc-crypt=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libc-crypt-ufc libc-db-aliases libc-e=
-nvz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse=C2=A0 =C2=A0 =C2=A0 =C2=
+<div dir=3D"ltr">Ah, meta-arago sets PACCKAGECONFIG_pn-weston without xwayl=
+and.=C2=A0<div><br></div><div>PACKAGECONFIG_pn-weston =3D &quot;egl kms lau=
+nch clients&quot;<br></div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr">On Wed, Nov 1, 2017 at 5:26 PM Adam Lee &lt;<a href=3D"mailto:adam.yh=
+.lee@gmail.com">adam.yh.lee@gmail.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex"><div dir=3D"ltr">Hi Raj,<div><br></div><div>These are my =
+DISTRO_FEATURES:</div><div><br></div><div><div>DISTRO_FEATURES=3D&quot;alsa=
+ argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs=
+ zeroconf pci 3g nfc <b>x11 </b>ipv4 ipv6 libc-backtrace libc-big-macros li=
+bc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libc-crypt-ufc l=
+ibc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse=C2=
 =A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 libc-getlogin libc-idn libc-inet-anl libc-libm libc-lo=
-cales libc-locale-code=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 l=
-ibc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn li=
-bc-streams libc-sunrpc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libc-utmp libc-u=
-tmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp libc-posix-regex=
-p-glibc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0li=
-bc-posix-wchar-io <b>x11 wayland</b> pam <b>opengl </b>systemd pulseaudio s=
-ysvinit bluez5 gobject-introspection-data&quot;</div></div><div><br></div><=
-div>Should I remove the first occurrence of x11?</div><div><br></div><div>T=
-hanks for your help</div><div><br></div><div>Adam</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr">On Wed, Nov 1, 2017 at 5:19 PM Khem Raj &=
-lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex">On Wed, Nov 1, 2017 at 2:03 PM, Ada=
-m Lee &lt;<a href=3D"mailto:adam.yh.lee@gmail.com" target=3D"_blank">adam.y=
-h.lee@gmail.com</a>&gt; wrote:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 libc-getlogin libc-idn libc-inet-=
+anl libc-libm libc-locales libc-locale-code=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rt=
+ld-debug libc-spawn libc-streams libc-sunrpc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-r=
+egexp libc-posix-regexp-glibc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0libc-posix-wchar-io <b>x11 wayland</b> pam <b>opengl </=
+b>systemd pulseaudio sysvinit bluez5 gobject-introspection-data&quot;</div>=
+</div><div><br></div><div>Should I remove the first occurrence of x11?</div=
+><div><br></div><div>Thanks for your help</div></div><div dir=3D"ltr"><div>=
+<br></div><div>Adam</div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr">On Wed, Nov 1, 2017 at 5:19 PM Khem Raj &lt;<a href=3D"mailto:raj.khem@=
+gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex">On Wed, Nov 1, 2017 at 2:03 PM, Adam Lee &lt;<a=
+ href=3D"mailto:adam.yh.lee@gmail.com" target=3D"_blank">adam.yh.lee@gmail.=
+com</a>&gt; wrote:<br>
 &gt; I believe something is incorrect in my distro level configuration. Apa=
 rt<br>
 &gt; from including x11 and wayland in DISTRO_FEATURES, what else can I che=
@@ -306,6 +323,6 @@ oproject.org</a><br>
 errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
 br>
 &gt;<br>
-</blockquote></div>
+</blockquote></div></blockquote></div>
 
---089e082678c0b427e9055cf287f6--
+--001a114d37183f6391055cf2abd5--
