@@ -1,54 +1,51 @@
-Return-Path: <varekpaf@seznam.cz>
+Return-Path: <andre.draszik@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CB17E00D31; Wed,  1 Nov 2017 02:20:47 -0700 (PDT)
+	id 9C859E00D36; Wed,  1 Nov 2017 04:16:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_20,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (varekpaf[at]seznam.cz)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [77.75.78.34 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0762]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 166 seconds by postgrey-1.32 at yocto-www;
-	Wed, 01 Nov 2017 02:20:45 PDT
-Received: from mxe1.seznam.cz (mxe1.seznam.cz [77.75.78.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F9D8E00D2F
-	for <yocto@yoctoproject.org>; Wed,  1 Nov 2017 02:20:45 -0700 (PDT)
-Received: from email.seznam.cz
-	by email-smtpc1a.ko.seznam.cz (email-smtpc1a.ko.seznam.cz
-	[10.53.10.15]) id 46369f56fd011616466b941d;
-	Wed, 01 Nov 2017 10:20:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-	t=1509528044; bh=Q3PFK4dWLAKGymBpU1+p5kHZThGIbH+JrzqxV4riJX0=;
-	h=Received:From:To:Cc:Subject:Date:Message-Id:References:
-	Mime-Version:X-Mailer:Content-Type;
-	b=P5VHOO71JjqZU17gROiZ+9bsexiQjL7egDSRdsCx3YZ2p4p8GagSw5DP6eFDCApnX
-	hPFCNZG2abF7h05SwfkvFKMNvc3cCPHOiiMuy5zmhlY2gZJaUzLppwWwNXvHJWDtIo
-	0hu3anK8Rux7bYfNJPqtXHd/Tg98/6qlLMmyjCaM=
-Received: from unknown ([::ffff:213.175.37.10])
-	by email.seznam.cz (szn-ebox-4.5.295) with HTTP;
-	Wed, 01 Nov 2017 10:17:47 +0100 (CET)
-From: "Pavlina Varekova" <varekpaf@seznam.cz>
-To: "Mark Hatle" <mark.hatle@windriver.com>
-Date: Wed, 01 Nov 2017 10:17:47 +0100 (CET)
-Message-Id: <7kt.NN5y.5gRUOroOgV0.1P{P4x@seznam.cz>
-References: <5Tg.NNol.1AtvAv25bON.1PvACL@seznam.cz>
-	<b62ec672-bddb-cf0f-759e-38ceb026f190@windriver.com>
-Mime-Version: 1.0 (szn-mime-2.0.33)
-X-Mailer: szn-ebox-4.5.295
-Cc: yocto@yoctoproject.org
-Subject: Re: pseudo - few general questions
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.67 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.67 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from mail-wm0-f67.google.com (mail-wm0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0F46E00D30
+	for <yocto@yoctoproject.org>; Wed,  1 Nov 2017 04:16:35 -0700 (PDT)
+Received: by mail-wm0-f67.google.com with SMTP id z3so4189256wme.5
+	for <yocto@yoctoproject.org>; Wed, 01 Nov 2017 04:16:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=e8P5z4BCCDkOZE9rgxSGcoXcBPjogjmaJ9udxs4hDkM=;
+	b=gWyZcpNOjRC7319ewCIJQbOZKLPMCZ8KF9xfQzBwXrXidnpFp2sN7wpKhhIFajT2XX
+	H5zX/zavEIrSacN2GBtD3AFS5VkDqNuWbm719mg88W7cJ/S+IPDjOgbF/Bv4HjFZayi8
+	Pj1KsNPXBfL5i0J6OP8OBFt6NbBC3nwECaqLuax/b3OSAe0a/Fpw/kujykavRduQQs3u
+	8iomuNn7x5ZoKB2ichkyVXGqP7Kq8ZyrEni6tmTfvBX8Mxfy7NbjjkXNLTMdO4bydM/h
+	PLVYuW4pumLisWYe8583NJJSV6s3xoWOd91Fju44ClWOOnt2U4vmxRZ3BKbi2nutbC7z
+	1ESQ==
+X-Gm-Message-State: AMCzsaW5f3nw3GUV1bAaqNuVYISDSeQO6dKdnZElukPayz2++XJSqY0N
+	GShQFux2J1aeCjGzKMhABcwpjj6u
+X-Google-Smtp-Source: ABhQp+RlU8yBbYVbPKm/IQxQL2FJ1XOFXDacJXFiJe2r6I5xQ8oFZGmDTuUEAwKeA5T4VdP3Cq0gRA==
+X-Received: by 10.80.144.4 with SMTP id b4mr6562817eda.127.1509534993946;
+	Wed, 01 Nov 2017 04:16:33 -0700 (PDT)
+Received: from tfsielt31850.garage.tyco.com ([77.107.218.170])
+	by smtp.gmail.com with ESMTPSA id 23sm741225edx.8.2017.11.01.04.16.32
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 01 Nov 2017 04:16:32 -0700 (PDT)
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+To: yocto@yoctoproject.org
+Date: Wed,  1 Nov 2017 11:16:32 +0000
+Message-Id: <20171101111632.19287-1-git@andred.net>
+X-Mailer: git-send-email 2.15.0.rc1
+MIME-Version: 1.0
+Subject: [meta-security][PATCH] trousers: make initscript more reliable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,43 +57,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Nov 2017 09:20:47 -0000
-Content-Type: multipart/alternative;
-	boundary="=_41efb88e1d93093b6cbb941f=85dd0794-e51d-53c7-9fe4-477bd2c45000_="
+X-List-Received-Date: Wed, 01 Nov 2017 11:16:36 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---=_41efb88e1d93093b6cbb941f=85dd0794-e51d-53c7-9fe4-477bd2c45000_=
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+From: André Draszik <adraszik@tycoint.com>
 
-Hi,
-thank you very much. It sounds good. So I tried replace fakechroot with =
+The combination of using start-stop-daemon and pidof is
+not working reliably in all cases. Sometimes, the
+tcsd daemon isn't running yet at the time pidof is being
+invoked.
 
-pseudo.
-I read man pages and replace:
+This results in an empty /var/run/tcsd.pid, making it
+impossible to stop tcsd using the init script.
 
-FAKECHROOT_BASE=3D"${DIR1}" fakechroot=C2=A0 command
+To solve this, one could either add a delay before calling
+pidof, or alternatively use start-stop-daemon's built-in
+functionality to achieve the same.
 
-with:
+Let's do the latter.
 
-%{PATH/TO/PSEUDO/}bin/pseudo=C2=A0 -r "${DIR1}" -P %{PATH/TO/PSEUDO/} comm=
-and
+Signed-off-by: André Draszik <adraszik@tycoint.com>
+---
+ meta-tpm/recipes-tpm/trousers/files/trousers.init.sh | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-But it does not work good. Probably some variable is set differently. 
-Please is the replacement correct?
+diff --git a/meta-tpm/recipes-tpm/trousers/files/trousers.init.sh b/meta-tpm/recipes-tpm/trousers/files/trousers.init.sh
+index 0ecf7cc..d0d6cb3 100644
+--- a/meta-tpm/recipes-tpm/trousers/files/trousers.init.sh
++++ b/meta-tpm/recipes-tpm/trousers/files/trousers.init.sh
+@@ -33,10 +33,12 @@ case "${1}" in
+ 			exit 0
+ 		fi
+ 
+-		start-stop-daemon --start --quiet --oknodo --pidfile /var/run/${NAME}.pid --user ${USER} --chuid ${USER} --exec ${DAEMON} -- ${DAEMON_OPTS}
++		start-stop-daemon --start --quiet --oknodo \
++			--pidfile /var/run/${NAME}.pid --make-pidfile --background \
++			--user ${USER} --chuid ${USER} \
++			--exec ${DAEMON} -- ${DAEMON_OPTS} --foreground
+ 		RETVAL="$?"
+ 		echo "$NAME."
+-		[ "$RETVAL" = 0 ] && pidof $DAEMON > /var/run/${NAME}.pid
+ 		exit $RETVAL
+ 		;;
+ 
+-- 
+2.15.0.rc1
 
-Pavlina
 
---=_41efb88e1d93093b6cbb941f=85dd0794-e51d-53c7-9fe4-477bd2c45000_=
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><body>Hi,<br>thank you very much. It sounds good. So I tried replace=
- fakechroot with pseudo.<br>I read man pages and replace:<br><br>FAKECHROO=
-T_BASE=3D"${DIR1}" fakechroot&nbsp; command<br><br>with:<br><br>%{PATH/TO/=
-PSEUDO/}bin/pseudo&nbsp; -r "${DIR1}" -P %{PATH/TO/PSEUDO/} command<br><br=
->But it does not work good. Probably some variable is set differently. <br=
->Please is the replacement correct?<br><br>Pavlina</body></html>
-
---=_41efb88e1d93093b6cbb941f=85dd0794-e51d-53c7-9fe4-477bd2c45000_=--
