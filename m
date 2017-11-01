@@ -1,74 +1,56 @@
-Return-Path: <adam.yh.lee@gmail.com>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E050E00DE6; Wed,  1 Nov 2017 09:11:18 -0700 (PDT)
+	id 7B4E3E00AAF; Wed,  1 Nov 2017 09:47:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (adam.yh.lee[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [212.227.126.130 listed in dnsbl.sorbs.net]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.161.177 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.161.177 listed in dnsbl.sorbs.net]
+	*      [212.227.126.130 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f177.google.com (mail-yw0-f177.google.com
-	[209.85.161.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 823D5E00DE4
-	for <yocto@yoctoproject.org>; Wed,  1 Nov 2017 09:11:16 -0700 (PDT)
-Received: by mail-yw0-f177.google.com with SMTP id w5so2248627ywg.11
-	for <yocto@yoctoproject.org>; Wed, 01 Nov 2017 09:11:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=npPrDex7qel+uU8nusUT0Tb4XCnGPdguJ45bAuSdjX8=;
-	b=uKRiPMBXmHAW0WjOiTevrVXyyxf3TQ9Ze2vS//M6zX93aa5wwFBqBtxQ9BqrL6oq6E
-	WVxVpwNB0HBnBSgrpTZzyiIjAYNHEGAYKFvX0EjcVM+/j6MBCnn/xVmOaOgSTkzigjju
-	NjQFeYnbL+MU+TGHQNssn3qyXzlgIbO8otTntNafHFCuV2jsgEjVu5F/Ltnxh0gbqb20
-	ZjH/GSCdaP0ED2KtuE1SJU+aNMV7SPl7Nq3/DrgH2QK+Sq9mTKMCS8qFkW3PanNPE3f8
-	aaiKPnm5pDJzraClwA42p9WOKFV0RGGdYXkeP5tJrRnrXQy33cWx7JRoFIEShC2Q09Zi
-	lf5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=npPrDex7qel+uU8nusUT0Tb4XCnGPdguJ45bAuSdjX8=;
-	b=AgJGAFymX1z3COeo79A5b6Pe2sRgEMjRU1eYTQFDZcP5AiyhusebrvxD4M40SwqX2J
-	Q35Er62HmqGI1sjWJ/JjlVFo/UetSeYyDDkHpu1vxU/gLtz3V2U2l8NH5P4/WoMPF4k0
-	hDRhI/Gs6ZN+WtvGxON+B6BU54VjpilMnCByK9S/BpEnSXYBx0l11/2HCkHEPOkmfryz
-	M9NeYivlM6SdJHowAkw9LerLOtsNrcDKscrIK2kx+ltuwKdjJ8HpPuZq95/21B+zV//W
-	/qQlXIxgh0NjjPx9j/9W6Tk7/xhw9y4TXlPj1X4bY8W4UpbT24KhpmccwEZ2NpjIQzZ1
-	72yA==
-X-Gm-Message-State: AMCzsaWtAlr5S3Y6C+Sg4Fwraq7MywQmXAAyyv6r2q5kGwq1J2CmeSIl
-	wQdb58fX70HEoxPA7qE6zluoGqTUwXMAT9XplO0=
-X-Google-Smtp-Source: ABhQp+SB9z8CR7FUuXVqXUgtqHkSVE9p62h/8VkpHqnOE3tiHo52vz7P1uJfhrWevvKUe4T16hgmbtTy9IO7GEkYLgw=
-X-Received: by 10.13.201.66 with SMTP id l63mr259302ywd.83.1509552676287; Wed,
-	01 Nov 2017 09:11:16 -0700 (PDT)
+X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www;
+	Wed, 01 Nov 2017 09:47:57 PDT
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 674FFE00928
+	for <yocto@yoctoproject.org>; Wed,  1 Nov 2017 09:47:57 -0700 (PDT)
+Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de (mreue007
+	[212.227.15.163]) with ESMTPSA (Nemesis) id 0MNRSn-1e32DX0Kqn-006xNn
+	for <yocto@yoctoproject.org>; Wed, 01 Nov 2017 17:42:54 +0100
+From: <colin.helliwell@ln-systems.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 1 Nov 2017 16:43:30 -0000
+Organization: LN Systems Limited
+Message-ID: <06ee01d35330$8d4102e0$a7c308a0$@ln-systems.com>
 MIME-Version: 1.0
-References: <CAFeBWL7V1TNoGj4gpc5QkQ4mraFwUmvt77sAAxyGTmrivTQ-Mw@mail.gmail.com>
-	<1509546479.13007.35.camel@collabora.co.uk>
-	<CAFeBWL79uCL0tci-9YDTeUYLFZGoND1t7yx5rMi3rPJFNt9iOg@mail.gmail.com>
-	<1509552091.13007.37.camel@collabora.co.uk>
-In-Reply-To: <1509552091.13007.37.camel@collabora.co.uk>
-From: Adam Lee <adam.yh.lee@gmail.com>
-Date: Wed, 01 Nov 2017 16:11:05 +0000
-Message-ID: <CAFeBWL7=2nSeGBm10H0AvT6jGpnm2zvVx6iL6CWOshf-DCr6bQ@mail.gmail.com>
-To: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-Cc: yocto@yoctoproject.org
-Subject: Re: Checking for xwayland
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdNTL+1Q86X61HsGS/WE9EVOcB+4xQ==
+X-Provags-ID: V03:K0:fa8/i8RJcU+p65nSbWhL9FgJqqdfx+aPivNViDqK9JlQHZqNSc5
+	TQDAMjSF7VIULDMOYoxIzzQzNtMefbdDtXCTNYiRjZvy43x2qfF2WhGz9rPnOV/2+UmzUj5
+	ofmHHd17LIepR5btEGUI8Wzy1Gi6WwkXc55tE0y633m5gpjkTBNm+nBswB+ec+yQ05BL3fy
+	eE2xRS+4IXO1r1g8uB5OQ==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:wxWhdbqsyG8=:qycu1MrkQkdV+Rj9v/ASzX
+	XQ1Rgax+ys2mmxAZhLsR7S69W+4jrygitV314ipcB6IZ8CAD2qU5ILOBHiMLGEmbJgiX06Tl1
+	IlmieBOrW7ju4nCPb55TMKzChz+7iKhT0yKTzEA+IlEw76DVRt5gJJnC/kc5jjqwDaux24hvM
+	jfLzi/Oq1XEq2RLptR2AVR2Ke9p61OmAA97UO1B2Hq0zIfPrqmIWvzFb1f8ntfgcx68fzhl0o
+	44hsjkUefkKbcZnIsUkssfKxySdTwYTz8nQtlvLHVfGgwuImunIy/MtMnh8i65VS7e4oloOfK
+	CZrrgkKDEBDpewYekUWYLlk8lRuf8p3YWW2TUHNpKczJcgeq1sIugse+eq2yjnyBlDppyhbk2
+	zHdI+B4Yv2si6sseAKVk8yPj5Wi9cjICPQLRYP43rV255f/lcCBp5J3Q7GCkwrnqutQBWEh4o
+	VXGQpW4/A9LNetfiGASQFlqy8gQKGKfQz1khDgolSzNgJLFo1f17Su/y2Wlxas7h67VYRhdlX
+	qyptTW8D+XD2zTo4YzuxJAFSaQRZd6sxutA3do7On9A6kKHHsCTFtZRmfQZziwgaMNE0BE6pF
+	cOLGE2CSz9R305/py+nztmfQFByKyc4toTTmtzVP7LsQf0ReHV0qYnUh5IYsKiQXHlqg82fZP
+	cWyncADLWoW+sttVYJkh41e8+tQO46oSASH8gejSQSiFXYY7PSZyCPXdLv1zfI5EnVJ7EGJIq
+	67h4SvF4I8a+rWt7XOqNbT9rPcDA182uUlpbWyOjIDL78ndZ0HLJ3DkSr18=
+Subject: Slightly varying builds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -77,110 +59,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Nov 2017 16:11:18 -0000
-Content-Type: multipart/alternative; boundary="001a114e67b40a3a63055cee1f45"
+X-List-Received-Date: Wed, 01 Nov 2017 16:47:59 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_06EF_01D35330.8D4102E0"
+Content-Language: en-gb
 
---001a114e67b40a3a63055cee1f45
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_06EF_01D35330.8D4102E0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Thank you I will check out core-image-weston.
+I need to build two slightly varying versions of our Yocto build - one for
+the production units and one for development.
 
-On Wed, Nov 1, 2017 at 12:01 PM Fabien Lahoudere <
-fabien.lahoudere@collabora.co.uk> wrote:
+They differ in only a few ways - the kernel and apps are the same. But one
+has Dropbear, whilst the other doesn't; and the U-Boot configs & patches are
+different.
 
-> On Wed, 2017-11-01 at 15:58 +0000, Adam Lee wrote:
-> > Thanks Fabien, I definitely don't have Xwayland in my rootfs. My
-> manifest is missing xserver-xorg-
-> > xwayland as well.
-> >
-> > Which image are you using? I thought including of  "x11 wayland" was
-> sufficient. Perhaps not..?
-> >
->
-> The image I built is a custom one but I tried core-image-weston on imx6
-> and rpi3 and it does the
-> job.
->
-> > Adam
-> >
-> > On Wed, Nov 1, 2017 at 10:28 AM Fabien Lahoudere <
-> fabien.lahoudere@collabora.co.uk> wrote:
-> > > On Wed, 2017-11-01 at 14:10 +0000, Adam Lee wrote:
-> > > > Hello, how do I tell if I successfully built xwayland into my image?
-> > > >
-> > > > I looked for "xwayland" binary but to no avail.
-> > >
-> > > I have this /usr/bin/Xwayland in my rootfs.
-> > >
-> > > Check you manifest. It should contain xserver-xorg-xwayland.
-> > >
-> > > >
-> > > > Adam
-> > > --
-> > > Fabien
-> > > --
-> > > _______________________________________________
-> > > yocto mailing list
-> > > yocto@yoctoproject.org
-> > > https://lists.yoctoproject.org/listinfo/yocto
-> > >
-> --
-> Fabien
->
+ 
 
---001a114e67b40a3a63055cee1f45
-Content-Type: text/html; charset="UTF-8"
+I'm wondering where to do the separation - image, distro, conf.?
+
+Any thoughts on the cleanest way to split and/or inherit them would be
+appreciated.
+
+ 
+
+
+------=_NextPart_000_06EF_01D35330.8D4102E0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thank you I will check out core-image-weston.</div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Nov 1, 2017 at 12:01 PM Fa=
-bien Lahoudere &lt;<a href=3D"mailto:fabien.lahoudere@collabora.co.uk">fabi=
-en.lahoudere@collabora.co.uk</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
-eft:1ex">On Wed, 2017-11-01 at 15:58 +0000, Adam Lee wrote:<br>
-&gt; Thanks Fabien, I definitely don&#39;t have Xwayland in my rootfs. My m=
-anifest is missing xserver-xorg-<br>
-&gt; xwayland as well.<br>
-&gt;<br>
-&gt; Which image are you using? I thought including of=C2=A0 &quot;x11 wayl=
-and&quot; was sufficient. Perhaps not..?<br>
-&gt;<br>
-<br>
-The image I built is a custom one but I tried core-image-weston on imx6 and=
- rpi3 and it does the<br>
-job.<br>
-<br>
-&gt; Adam<br>
-&gt;<br>
-&gt; On Wed, Nov 1, 2017 at 10:28 AM Fabien Lahoudere &lt;<a href=3D"mailto=
-:fabien.lahoudere@collabora.co.uk" target=3D"_blank">fabien.lahoudere@colla=
-bora.co.uk</a>&gt; wrote:<br>
-&gt; &gt; On Wed, 2017-11-01 at 14:10 +0000, Adam Lee wrote:<br>
-&gt; &gt; &gt; Hello, how do I tell if I successfully built xwayland into m=
-y image?<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; I looked for &quot;xwayland&quot; binary but to no avail.<br=
->
-&gt; &gt;<br>
-&gt; &gt; I have this /usr/bin/Xwayland in my rootfs.<br>
-&gt; &gt;<br>
-&gt; &gt; Check you manifest. It should contain xserver-xorg-xwayland.<br>
-&gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Adam<br>
-&gt; &gt; --<br>
-&gt; &gt; Fabien<br>
-&gt; &gt; --<br>
-&gt; &gt; _______________________________________________<br>
-&gt; &gt; yocto mailing list<br>
-&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto=
-@yoctoproject.org</a><br>
-&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"=
-noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto=
-</a><br>
-&gt; &gt;<br>
---<br>
-Fabien<br>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-GB =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>I need to build two slightly varying versions of our =
+Yocto build &#8211; one for the production units and one for =
+development.<o:p></o:p></p><p class=3DMsoNormal>They differ in only a =
+few ways &#8211; the kernel and apps are the same. But one has Dropbear, =
+whilst the other doesn&#8217;t; and the U-Boot configs &amp; patches are =
+different.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>I&#8217;m wondering where to do the separation &#8211; =
+image, distro, conf&#8230;?<o:p></o:p></p><p class=3DMsoNormal>Any =
+thoughts on the cleanest way to split and/or inherit them would be =
+appreciated.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---001a114e67b40a3a63055cee1f45--
+------=_NextPart_000_06EF_01D35330.8D4102E0--
