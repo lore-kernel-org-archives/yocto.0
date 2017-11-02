@@ -1,69 +1,68 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A870E00C44; Thu,  2 Nov 2017 08:57:44 -0700 (PDT)
+	id 58872E00C59; Thu,  2 Nov 2017 09:00:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.193 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.65 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.193 listed in dnsbl.sorbs.net]
+	*      [74.125.83.65 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
-	[209.85.128.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5281AE00928
-	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 08:57:42 -0700 (PDT)
-Received: by mail-wr0-f193.google.com with SMTP id y39so2001wrd.4
-	for <yocto@yoctoproject.org>; Thu, 02 Nov 2017 08:57:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc;
-	bh=irPxwPwHgHE+czugztDCTLO3DRNgozCOMTdGmysydEI=;
-	b=B+IBr4vfHrSulm2ZurBlI8WyxbYsHxAlzh7fTWCZmpQ49SrdhBcP2Ry3brGqVY8c+m
-	mudwmoTuVgY8kxhEmp9/wm2kyJoyzEqoylm8d7/d41o/uu1FnZeNQ26CjVczgD2jCw8H
-	WPzRfLKF9hdWOgviff2Mmz2ucM6X2EWzOPgh2CE8EQfGrZ2bReB6QI8wYNunvp34h1c/
-	oB1r2OYU+OetYGWQqGe/+lDe+muXivpVy1M26w4Q2etq3JQJKIzWcvB7kHFFT+Gav45d
-	rmkin5VnwxOhdmMyM84Bl2D8Kax3DfgKgvw8p1mScf4jRYTi5HVBdWHidecuPc4/DTcM
-	1wqw==
+Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3004CE00D4D
+	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 09:00:05 -0700 (PDT)
+Received: by mail-pg0-f65.google.com with SMTP id 15so5487012pgc.12
+	for <yocto@yoctoproject.org>; Thu, 02 Nov 2017 09:00:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=j6Mo1r6o86UKuJoV7HzLSvTeBhnDeDtm30oX4xUVruE=;
+	b=aQ0RS9Y1IkKYYmgJL4YHDxEo7r6X9rQPKw96fij4lOqnxnZFldm8QZNPCipjagHMCw
+	CMDMCzj4hCtP+XDGlqhS17VX2DCugRvwMWzQXhE89PFdlQT8faES/XLRAbJxiCiYeHFc
+	l/9p2/UX5zj2RV+j8RIxQWwbGmdkJkCjiQn5Wn6iYQJqm2MYEi2j5tBjw8pgqFwEs9CK
+	NXL46XaRlnNisD5fWXBlZsJWY+ceTg4ODnziqlY4Lzj8029/fPhSieJ6n++xlnOPsEJz
+	347qPSR+W5m77Wd9atq7GcfTt5dEoMl70jqTV1eclnRdWchDv/sTesjFWC3H/BctadDf
+	wXfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
-	:date:message-id:subject:to:cc;
-	bh=irPxwPwHgHE+czugztDCTLO3DRNgozCOMTdGmysydEI=;
-	b=A3uDtR/UTJSTKMEN725OC8/KHUQqpIRd6JtpGiB0dMvAKM75T8l7nzUo7mYnqEp2Mb
-	fJX3MN/qOhoDIsApA7YpT+prlEK9Yw3Mmlj+HtoxxGMN5jFKEgLEOc1HQEGis1i0XIXg
-	VnW7bOQekKIWhAN+dqMFcasgQTxj0aNIBYCjX9xTDU0P2kdG5C2ytbN5FDezHRtWB6Q+
-	OT6mAveotL8yrce/Xx7T1pdwqaFvaUoOrFwoxQdPhgsMbsNuJrJ48W0qS9eq+ihvr8us
-	n39LoqQ083b7AaWXOMcmzaRHYy7Ea71mtf+TdaM/2hhS64XEM1HC67LYCJeCx/PHUe8J
-	Pdhw==
-X-Gm-Message-State: AMCzsaWvPjKlvU/O1nD6yPyOTiia2Zn2j9M+lnX8HGX3kNWc7f1PeEzF
-	Qpn8Y8XdW5HEdyKX05A30SL5RsrL82aY7tKhTZ/q8pHES10=
-X-Google-Smtp-Source: ABhQp+Sep2snuOh+BWZ7yUnPnVziePW2UQdY3hDyBleiVNFwtGjs9O/L46p58Au/5Fj3fPs78L8op9zmDu8eQn+n3Eg=
-X-Received: by 10.223.193.70 with SMTP id w6mr3556209wre.158.1509638261069;
-	Thu, 02 Nov 2017 08:57:41 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=j6Mo1r6o86UKuJoV7HzLSvTeBhnDeDtm30oX4xUVruE=;
+	b=EMffHmUUnqxoceNUfBfF+ZZ9JY7YC+9Z/Xd4N0NDs/M9mMO6hFep/eMFJA1o25y2xM
+	UTpEP2Qzckzl049k0Q5jOnj1hqaEGNPSjDRsxQ8FNqHoc8s474ekv9FY0N0D0/Cs7pcP
+	Xz+9Ft8VgJRNhzE6WBvw4fsaEU3aDwnt00hGBs4FP8yWMk/pRNUf+f+MbdxMVZ92/KAL
+	tXWjbOjbnsu/f5+UJWf9U5UJXDzNjO/xH/ItI6yd27i+RxXIMQXo6Ui2ZVSvetZkkNpF
+	HoY/P+MukNX4OP731lPDvQL8vJr0TIW/YgWHSTdeyEHSXBaPl7YE1jcQNlUwBgP4yJr/
+	TnZw==
+X-Gm-Message-State: AMCzsaWzRgDGR85I3iu4EGSsY9R0YV0rcU5LY6uTtrv02LfBIosb+Y38
+	FngP1wagXoyfSkEw4IFD3IC7YKXbzSu2lwjsUi0=
+X-Google-Smtp-Source: ABhQp+RBBrME/qbcRUgpnO0UNsL5nbHJPcN3XVLadoQUP6YSyX10/vHcuWvEn8CHdd/t2lQuNbci22Tx9kFKo/LdG6w=
+X-Received: by 10.99.51.72 with SMTP id z69mr4110421pgz.317.1509638405402;
+	Thu, 02 Nov 2017 09:00:05 -0700 (PDT)
 MIME-Version: 1.0
-Sender: andrei@gherzan.ro
-Received: by 10.28.183.5 with HTTP; Thu, 2 Nov 2017 08:57:00 -0700 (PDT)
-X-Originating-IP: [86.154.149.85]
-In-Reply-To: <1509637869-29982-1-git-send-email-andrei@gherzan.com>
-References: <1509637869-29982-1-git-send-email-andrei@gherzan.com>
-From: Andrei Gherzan <andrei@gherzan.com>
-Date: Thu, 2 Nov 2017 15:57:00 +0000
-X-Google-Sender-Auth: c4GtQ-Dmat5egrthIhvO6FoL660
-Message-ID: <CAK18fxF-irQPS77AsRCo6ibC4vc7VeuTD2Dt-=SpQ1LcHktFhA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Cc: Andrei Gherzan <andrei@gherzan.com>
-Subject: Re: [meta-raspberrypi][PATCH 1/5] x264: Disable asm for raspberrypi0-wifi
+Received: by 10.100.187.66 with HTTP; Thu, 2 Nov 2017 08:59:34 -0700 (PDT)
+In-Reply-To: <449ad5e0-fef6-a9c3-3ba9-4eec46a60b67@siemens.com>
+References: <1509101466-32192-1-git-send-email-pascal.bach@siemens.com>
+	<CAMKF1sqnUFWx2yXDovoRsyivNneBsmje1_cJ7+2NC99-_pxtYw@mail.gmail.com>
+	<449ad5e0-fef6-a9c3-3ba9-4eec46a60b67@siemens.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 2 Nov 2017 08:59:34 -0700
+Message-ID: <CAMKF1spgFtqfNnXWj=NJ=egJ_TS4WpEb0_65pm_ehy6vhH1__w@mail.gmail.com>
+To: Pascal Bach <pascal.bach@siemens.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-mono][PATCH] mono-4.xx: compiling mono 4 with btls requires cmake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,98 +74,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Nov 2017 15:57:44 -0000
-Content-Type: multipart/alternative; boundary="089e082389484a9a07055d020cb4"
-
---089e082389484a9a07055d020cb4
+X-List-Received-Date: Thu, 02 Nov 2017 16:00:07 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
-
-On Thu, Nov 2, 2017 at 3:51 PM, Andrei Gherzan <andrei@gherzan.com> wrote:
-
-> This used to work in the past because this machine was based on raspberrypi
-> one. Now that they are separate, we need a configuration for it too
-> otherwise:
+On Thu, Nov 2, 2017 at 8:46 AM, Pascal Bach <pascal.bach@siemens.com> wrote:
 >
-> | common/arm/quant-a.S: Assembler messages:
-> | common/arm/quant-a.S:362: Error: selected processor does not support
-> `rbit
-> r1,r1' in ARM mode
-> | common/arm/quant-a.S:363: Error: selected processor does not support
-> `rbit
-> r1,r1' in ARM mode
+> On 27.10.2017 23:41, Khem Raj wrote:
+>> On Fri, Oct 27, 2017 at 3:51 AM, Pascal Bach <pascal.bach@siemens.com> wrote:
+>>> This was probably working before pyro and the recipes specific sysroots.
+>>>
+>>> Signed-off-by: Pascal Bach <pascal.bach@siemens.com>
+>>> ---
+>>>  recipes-mono/mono/mono-4.xx.inc | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/recipes-mono/mono/mono-4.xx.inc b/recipes-mono/mono/mono-4.xx.inc
+>>> index e06fac7..cf9170b 100644
+>>> --- a/recipes-mono/mono/mono-4.xx.inc
+>>> +++ b/recipes-mono/mono/mono-4.xx.inc
+>>> @@ -4,7 +4,7 @@ HOMEPAGE = "http://mono-project.com"
+>>>  BUGTRACKER = "http://bugzilla.xamarin.com/"
+>>>  SECTION = "devel"
+>>>
+>>> -DEPENDS = "zlib"
+>>> +DEPENDS = "zlib cmake-native"
+>>>
+>> perhaps this should inehrit cmake if its using cmake
+>> or explain how cmake is used where abstactions
+>> are not relevant
+> Using the cmake bbclass doesn't work as it is not really a CMake project.
 >
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.com>
-> ---
->  recipes-multimedia/x264/x264_git.bbappend | 1 +
->  1 file changed, 1 insertion(+)
+> Mono requires cmake to build the bundled BoringSSL library. I didn't look why it works in detail but I currently assume that BoringSSL is standalone enough that no additional
+> CMake toolchain settings are required to make it work.
 >
-> diff --git a/recipes-multimedia/x264/x264_git.bbappend
-> b/recipes-multimedia/x264/x264_git.bbappend
-> index c1cb3bc..505719e 100644
-> --- a/recipes-multimedia/x264/x264_git.bbappend
-> +++ b/recipes-multimedia/x264/x264_git.bbappend
-> @@ -1 +1,2 @@
->  EXTRA_OECONF_append_raspberrypi = " --disable-asm"
-> +EXTRA_OECONF_append_raspberrypi0-wifi = " --disable-asm"
-> --
-> 2.7.4
+
+yeah that probably is a case of bundling which is on rise at app level
+these days,
+
+> One option would be to disable it with `--disable-btls` but I fear that would disable TLS1.2 support (http://www.mono-project.com/docs/about-mono/releases/4.8.0/#tls-12-support).
+> But I have no way of checking that.
+>
+
+interesting, do they support any other TLS implementations ?
+
+> Pascal
 >
 >
-Pushed a PR to github too:
-https://github.com/agherzan/meta-raspberrypi/pull/149 in which I fixed the
-two typos in this series: "firmware.in" and "zzImage".
+>>
+>>>  SRC_URI = "http://download.mono-project.com/sources/mono/mono-${PV}.tar.bz2 \
+>>>             file://dllmap-config.in.diff \
+>>> --
+>>> 2.1.4
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Andrei
-
---089e082389484a9a07055d020cb4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi all,<br><div><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">On Thu, Nov 2, 2017 at 3:51 PM, Andrei Gherzan <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:andrei@gherzan.com" target=3D"_blank">andrei=
-@gherzan.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex">This used to work in the past because this machine was based o=
-n raspberrypi<br>
-one. Now that they are separate, we need a configuration for it too otherwi=
-se:<br>
-<br>
-| common/arm/quant-a.S: Assembler messages:<br>
-| common/arm/quant-a.S:362: Error: selected processor does not support `rbi=
-t<br>
-r1,r1&#39; in ARM mode<br>
-| common/arm/quant-a.S:363: Error: selected processor does not support `rbi=
-t<br>
-r1,r1&#39; in ARM mode<br>
-<br>
-Signed-off-by: Andrei Gherzan &lt;<a href=3D"mailto:andrei@gherzan.com">and=
-rei@gherzan.com</a>&gt;<br>
----<br>
-=C2=A0recipes-multimedia/x264/x264_<wbr>git.bbappend | 1 +<br>
-=C2=A01 file changed, 1 insertion(+)<br>
-<br>
-diff --git a/recipes-multimedia/x264/<wbr>x264_git.bbappend b/recipes-multi=
-media/x264/<wbr>x264_git.bbappend<br>
-index c1cb3bc..505719e 100644<br>
---- a/recipes-multimedia/x264/<wbr>x264_git.bbappend<br>
-+++ b/recipes-multimedia/x264/<wbr>x264_git.bbappend<br>
-@@ -1 +1,2 @@<br>
-=C2=A0EXTRA_OECONF_append_<wbr>raspberrypi =3D &quot; --disable-asm&quot;<b=
-r>
-+EXTRA_OECONF_append_<wbr>raspberrypi0-wifi =3D &quot; --disable-asm&quot;<=
-br>
-<span class=3D"gmail-HOEnZb"><font color=3D"#888888">--<br>
-2.7.4<br>
-<br>
-</font></span></blockquote></div></div><div class=3D"gmail_extra"><br></div=
-><div class=3D"gmail_extra">Pushed a PR to github too: <a href=3D"https://g=
-ithub.com/agherzan/meta-raspberrypi/pull/149">https://github.com/agherzan/m=
-eta-raspberrypi/pull/149</a> in which I fixed the two typos in this series:=
- &quot;<a href=3D"http://firmware.in">firmware.in</a>&quot; and &quot;zzIma=
-ge&quot;.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ext=
-ra">Andrei<br></div></div></div>
-
---089e082389484a9a07055d020cb4--
