@@ -1,59 +1,36 @@
-Return-Path: <MBishop@smithsinterconnectinc.com>
+Return-Path: <joshua.g.lock@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB004E00C45; Thu,  2 Nov 2017 13:16:25 -0700 (PDT)
+	id 1E667E00C45; Thu,  2 Nov 2017 14:10:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.smithsinterconnectinc.com (mail.smithsinterconnectinc.com
-	[66.32.24.109])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72981E00AAF
-	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 13:16:23 -0700 (PDT)
-X-ASG-Debug-ID: 1509653782-0abaef13ff19c62d0001-yzSStA
-Received: from ERDCSEXCH01.SMITHSSII.NET ([10.16.188.3]) by
-	mail.smithsinterconnectinc.com with ESMTP id 7sQDZaST20LqgdhR
-	(version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Thu, 02 Nov 2017 16:16:22 -0400 (EDT)
-X-Barracuda-Envelope-From: MBishop@smithsinterconnectinc.com
-Received: from ERDCSEXCH01.SMITHSSII.NET (10.16.188.3) by
-	ERDCSEXCH01.SMITHSSII.NET (10.16.188.3) with Microsoft SMTP Server
-	(TLS) id 15.0.847.32; Thu, 2 Nov 2017 16:16:22 -0400
-Received: from ERDCSEXCH01.SMITHSSII.NET ([fe80::4852:cd1d:f04f:f07]) by
-	ERDCSEXCH01.SMITHSSII.NET ([fe80::4852:cd1d:f04f:f07%12]) with mapi id
-	15.00.0847.040; Thu, 2 Nov 2017 16:16:22 -0400
-From: "Bishop, Mark (STRT)" <MBishop@smithsinterconnectinc.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: do_kernel_checkout() not using the correct directory
-X-ASG-Orig-Subj: RE: do_kernel_checkout() not using the correct directory
-Thread-Index: AdNUACvR6mlT8t+vTISl73pgmu+gzwAFq+Ig
-Date: Thu, 2 Nov 2017 20:16:21 +0000
-Message-ID: <980e80dba47f4e8787556a88ccade2fe@ERDCSEXCH01.SMITHSSII.NET>
-References: <1b231688863c4060b428c93d3b40fa0e@ERDCSEXCH01.SMITHSSII.NET>
-In-Reply-To: <1b231688863c4060b428c93d3b40fa0e@ERDCSEXCH01.SMITHSSII.NET>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.178.96]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7048BE00AAF
+	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 14:10:19 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	02 Nov 2017 14:10:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.44,335,1505804400"; d="scan'208";a="916920435"
+Received: from jlock-mobl3.ger.corp.intel.com ([10.252.10.114])
+	by FMSMGA003.fm.intel.com with ESMTP; 02 Nov 2017 14:10:18 -0700
+To: yocto@yoctoproject.org
+References: <1509478719-23960-1-git-send-email-jeffrey.pautler@ni.com>
+From: Joshua Lock <joshua.g.lock@linux.intel.com>
+Message-ID: <d81a5326-d536-f7d7-f0a3-91bf37bc55b8@linux.intel.com>
+Date: Thu, 2 Nov 2017 21:10:16 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[10.16.188.3]
-X-Barracuda-Start-Time: 1509653782
-X-Barracuda-Encrypted: ECDHE-RSA-AES256-SHA
-X-Barracuda-URL: https://sirblockalot.smithssii.net:443/cgi-mod/mark.cgi
-X-Barracuda-Scan-Msg-Size: 6526
-X-Virus-Scanned: by bsmtpd at smithsinterconnectinc.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=7.0 KILL_LEVEL=8.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.44430
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-Subject: Re: do_kernel_checkout() not using the correct directory
+In-Reply-To: <1509478719-23960-1-git-send-email-jeffrey.pautler@ni.com>
+Subject: Re: [ptest-runner] utils.c: Prefer monotonic clock to calculate elapsed time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,181 +42,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Nov 2017 20:16:25 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-I changed the code in  arm/layers/core/meta/classes/kernel-yocto.bbclass
-
-From:
-=2E
-else
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 # case: we have no git reposi=
-tory at all.=20
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0# To support low bandwidth =
-options for building the kernel, we'll just=20
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0# convert the tree to a git=
- repo and let the rest of the process work unchanged
-
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 # if ${S} hasn't been set to =
-the proper subdirectory a default of "linux" is=20
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0# used, but we can't initia=
-lize that empty directory. So check it and throw a
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 # clear error
-
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 cd ${S}
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if [ ! -f "Makefile" ]; then
-..
-
-To:
-else
-                # case: we have no git repository at all.=20
-                # To support low bandwidth options for building the kernel,=
- we'll just=20
-                # convert the tree to a git repo and let the rest of the pr=
-ocess work unchanged
-
-                # if ${S} hasn't been set to the proper subdirectory a defa=
-ult of "linux" is=20
-                # used, but we can't initialize that empty directory. So ch=
-eck it and throw a
-                # clear error
-
-                if [ -d "${WORKDIR}/trunk/" ]; then
-                        source_workdir=3D"${WORKDIR}/trunk"
-                        if [ "${source_dir}" !=3D "${source_workdir}" ]; th=
-en
-                                rm -rf ${S}
-                                mv ${WORKDIR}/trunk ${S}
-                        fi
-                fi
-
-                cd ${S}
-                if [ ! -f "Makefile" ]; then
-
-And everything is working but it seems that this would be the wrong way to =
-do this as this is me editing a base class file.=20=20
+X-List-Received-Date: Thu, 02 Nov 2017 21:10:20 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
 
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Bishop, Mark (STRT)
-Sent: Thursday, November 02, 2017 1:48 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] do_kernel_checkout() not using the correct directory
+On 31/10/17 19:38, Jeffrey Pautler wrote:
+> The current implementation uses the system clock to calculate how long
+> a ptest has been running with no output. If a ptest changes the system
+> clock as part of the test, that can cause the current implementation
+> to falsely trigger a timeout or miss an actual timeout. It is
+> preferrable to use a monotonic clock for calculating elapsed time in
+> order to avoid these issues.
+> 
+> This change tries to use the monotonic clock first and falls back to
+> the realtime clock if the monotonic clock is not supported.
 
-I am trying to compile a kernel located in SVN.
+This patch looks good to me, merged & pushed to ptest-runner2 repo.
 
-I get this error message:
-ERROR: linux-xlnx-4.9-xilinx-v2017.2+git20-r0 do_kernel_checkout: S /tmp/st=
-ride/work-shared/plnx_arm/kernel-source is not set to the linux source dire=
-ctory. Check=20
-ERROR: linux-xlnx-4.9-xilinx-v2017.2+git20-r0 do_kernel_checkout: the recip=
-e and set S to the proper extracted subdirectory
-ERROR: linux-xlnx-4.9-xilinx-v2017.2+git20-r0 do_kernel_checkout: Function =
-failed: do_kernel_checkout (log file is located at /tmp/stride/work/plnx_ar=
-m-xilinx-linux-gnueabi/linux-xlnx/4.9-xilinx-v2017.2+git20-r0/temp/log.do_k=
-ernel_checkout.34928)
-ERROR: Logfile of failure stored in: /tmp/stride/work/plnx_arm-xilinx-linux=
--gnueabi/linux-xlnx/4.9-xilinx-v2017.2+git20-r0/temp/log.do_kernel_checkout=
-.34928
-ERROR: Task (/opt/pkg/petalinux/2017.2/components/yocto/source/arm/layers/m=
-eta-xilinx/recipes-kernel/linux/linux-xlnx_4.9.bb:do_kernel_checkout) faile=
-d with exit code '1'
+Thanks,
 
-And my kernel gets downloaded to:
-/tmp/stride/work/plnx_arm-xilinx-linux-gnueabi/linux-xlnx/4.9-xilinx-v2017.=
-2+git20-r0/trunk
-But Yocto is looking for it in /tmp/stride/work-shared/plnx_arm/kernel-sour=
-ce
-Which is why it is failing in kernel-yocto.bbclass when I try and compile a=
- kernel located in SVN.
+Joshua
 
-If it is a git repo it gets copied into /tmp/stride/work-shared/plnx_arm/ke=
-rnel-source and things work nicely.
-
-
-do_kernel_checkout() {
-...
-if [ -d "${WORKDIR}/git/" ]; then
-       # case: git repository
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 # if S is WORKDIR/git, then w=
-e shouldn't be moving or deleting the tree.
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if [ "${source_dir}" !=3D "${=
-source_workdir}" ]; then
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if [ =
--d "${source_workdir}/.git" ]; then
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 # regular git repository with .git
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 rm -rf ${S}
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 mv ${WORKDIR}/git ${S}
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 else
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 # create source for bare cloned git repository
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 git clone ${WORKDIR}/git ${S}
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 rm -rf ${WORKDIR}/git
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 fi
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 fi
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 cd ${S}
-else
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 # case: we have no git reposi=
-tory at all.=20
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0# To support low bandwidth =
-options for building the kernel, we'll just=20
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0# convert the tree to a git=
- repo and let the rest of the process work unchanged
-
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 # if ${S} hasn't been set to =
-the proper subdirectory a default of "linux" is=20
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0# used, but we can't initia=
-lize that empty directory. So check it and throw a
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 # clear error
-
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 cd ${S}
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if [ ! -f "Makefile" ]; then
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 bberr=
-or "S ${S} is not set to the linux source directory. Check "
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 bbfat=
-al "the recipe and set S to the proper extracted subdirectory"
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 fi
-..
-
-${S} is set to /tmp/stride/work-shared/plnx_arm/kernel-source when I need o=
-ne of the two things to happen:
-A) ${S} set to =A0${WORKDIR}/trunk=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 OR
-B) ${WORKDIR}/trunk copied to ${S}/
-
-I could modify that file directly on my machine and move on, but is there a=
- way I can create an .bbappend or something that will change ${S}
-
-I'm pretty new to Yocto and I'd like to have a solution that resides in my =
-project folder instead of having to modify Yocto files so that when I do to=
-ol installs on new development machines I can just checkout my project data=
- and have it work.=A0 I'm using Petalinux, so the process would be install =
-that, then checkout the project and then build it, with the correct ${S} di=
-rectory flowing into kernel-yocto.bbclass:do_kernel_checkout()
-
-I'm new Yocto but I've been reading a ton and am looking for some advice.
-
-
-
-
-This e-mail contains proprietary information some or all of which may be le=
-gally privileged. It is intended for the recipient only. If an addressing o=
-r transmission error has misdirected this e-mail, please notify the authori=
-ty by replying to this e-mail. If you are not the intended recipient you mu=
-st not use, disclose, distribute, copy, print, or rely on this e-mail. In a=
-ddition, information contained in or attached to this e-mail may be subject=
- to either 22 C.F.R. Parts 120?130, or 15 C.F.R. Parts 730-774. These regul=
-ations prohibit the release or disclosure of certain information contained =
-herein to anyone who is not a U.S. citizen or permanent resident alien, wit=
-hout a license first having been issued. Failure to observe such requiremen=
-ts is a violation of U.S. law that carries serious penalties. =A0=A0=A0=A0
-
-
+> 
+> Signed-off-by: Jeffrey Pautler <jeffrey.pautler@ni.com>
+> ---
+>   utils.c | 24 +++++++++++++++++-------
+>   1 file changed, 17 insertions(+), 7 deletions(-)
+> 
+> diff --git a/utils.c b/utils.c
+> index 6d65388..933eced 100644
+> --- a/utils.c
+> +++ b/utils.c
+> @@ -257,7 +257,8 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
+>   		int timeout, int *fds, FILE **fps)
+>   {
+>   	struct pollfd pfds[2];
+> -	time_t sentinel;
+> +	struct timespec sentinel;
+> +	clockid_t clock = CLOCK_MONOTONIC;
+>   	int r;
+>   
+>   	int timeouted = 0;
+> @@ -269,7 +270,11 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
+>   	pfds[1].fd = fds[1];
+>   	pfds[1].events = POLLIN;
+>   
+> -	sentinel = time(NULL);
+> +	if (clock_gettime(clock, &sentinel) == -1) {
+> +		clock = CLOCK_REALTIME;
+> +		clock_gettime(clock, &sentinel);
+> +	}
+> +
+>   	while (1) {
+>   		waitflags = WNOHANG;
+>   
+> @@ -288,11 +293,16 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
+>   					fwrite(buf, n, 1, fps[1]);
+>   			}
+>   
+> -			sentinel = time(NULL);
+> -		} else if (timeout >= 0 && ((time(NULL) - sentinel) > timeout)) {
+> -			timeouted = 1;
+> -			kill(pid, SIGKILL);
+> -			waitflags = 0;
+> +			clock_gettime(clock, &sentinel);
+> +		} else if (timeout >= 0) {
+> +			struct timespec time;
+> +
+> +			clock_gettime(clock, &time);
+> +			if ((time.tv_sec - sentinel.tv_sec) > timeout) {
+> +				timeouted = 1;
+> +				kill(pid, SIGKILL);
+> +				waitflags = 0;
+> +			}
+>   		}
+>   
+>   		if (waitpid(pid, &status, waitflags) == pid)
+> 
 
