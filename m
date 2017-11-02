@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 399DCE00D89; Thu,  2 Nov 2017 08:51:45 -0700 (PDT)
+	id 80507E00D8A; Thu,  2 Nov 2017 08:51:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,61 +9,60 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.194 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.128.194 listed in dnsbl.sorbs.net]
+	*      [74.125.82.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f194.google.com (mail-wr0-f194.google.com
-	[209.85.128.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11BE7E00DA9
-	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 08:51:37 -0700 (PDT)
-Received: by mail-wr0-f194.google.com with SMTP id w105so5443477wrc.0
-	for <yocto@yoctoproject.org>; Thu, 02 Nov 2017 08:51:37 -0700 (PDT)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53A7EE00D4A
+	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 08:51:49 -0700 (PDT)
+Received: by mail-wm0-f68.google.com with SMTP id z3so12375779wme.5
+	for <yocto@yoctoproject.org>; Thu, 02 Nov 2017 08:51:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
 	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=c3PcpRliFapRBwMGPEmY8HS+0YiGmQoav9//PDPdvvs=;
-	b=l8izYvJbeFiZlgkad1eU9Dfm9i7Rq3bLpatmhEy5DexT0QYAsGqwSMD+ONh7/l4ZqW
-	CMzZCYyA0xegaOzUQb5pbp4viBaLdUiOz2wD9QP1S9KKpSgFWmIf1TW1fm/67Ag68Fyv
-	a4JaTygwTtyq7xLJ/MT/WmZHTjiUnRgUbTFpifqssrCWPZfcbcaUbfe+RWbnTnuIDwJ/
-	AqUyI3YXbEInMfwggCyLsrYB15SUcZaYOEDVtZMPVgNSCSKjch66tybN2D8rUpfSqUOz
-	ffZmoWYZ5k+ewzWQPFbra2IeJgX1UpQ1iw5xiGCUmrS/0bbfQrzR/BT3xjYSNoYlYqOW
-	xEvA==
+	bh=Qh9koQQeOX9KeTrcOZTM2/R7lkG0Gwy90MBIcQL12zU=;
+	b=CnuAdEUWjGx9M5MToqLMivj2T7zvnBDfirke3/4nZY/CV9Y+hGbcCNE5FqVcZ8qfPT
+	UOfPKwmyCkMDs+GqbBqsx5Cmw1nu+0RkDef+zWVXH8RQj/8n/kc4WkzlVSbzQkPhlBot
+	F3FwuNrv/Y/49FsCn9uik1nKto3yTieyKRGCwF6GzXDy/g85sxXftDGBDuPdjcS0/ZZ2
+	HKBh9qIOVhPicGtO5VTFYgQqxrz76k5q1LRArSoVjsJYQQKEzyYg9SfAMez+o1238O5Y
+	BAlUnzW1TKx9j/hJjo0ySzetAb3zOwdAvWzzoBRTtMA1NZtkq/7V88xDIbbk3azesVGD
+	rQfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
 	:in-reply-to:references;
-	bh=c3PcpRliFapRBwMGPEmY8HS+0YiGmQoav9//PDPdvvs=;
-	b=I4GgdzsQ2a7MryoE6SvZDrppUQL+9GOPURjxFVBaJwbnx6p2dMqG07Be4JhlsVFiYJ
-	5JzAG7vnepagcYSEi/ImhD+xKOS8NH514XrAupMTNnyz9CQp1r20nAd/8NYVQmEKCvgc
-	eLWOnjX3OtD4mobpVSKzQHlNE8KzirsqTV/oeJho5WK5s22NKLG0apISuBBEuJJV3t6b
-	uXjGtU52SLcvyqud1cEHdH/xH7AwOczdkGmPY7kZMSip13Qg0apJftBb6gsWOL9ORdMz
-	mGEtz8j0AdVZyL2n0h8D486+HW77biQ/Z/UVBeCiisuwDCAi4fIyGqSGXdkm0npxflJo
-	GS4A==
-X-Gm-Message-State: AMCzsaWO5UBCuw0XbldvbjdJNgA+SYKTbSZqUFoLfrxsq7B3eO5O3P8D
-	9NL2RcFPLMxLbfFnwtMI6U+Zy2j9zD4=
-X-Google-Smtp-Source: ABhQp+SCCVwgwAgUQx8MEaIUD3OTcv137uJRbYzbig22zcQUTAwUjRg9zoU/yJ9FKRlH06LbLV/gDg==
-X-Received: by 10.223.196.3 with SMTP id v3mr3579596wrf.255.1509637896527;
-	Thu, 02 Nov 2017 08:51:36 -0700 (PDT)
+	bh=Qh9koQQeOX9KeTrcOZTM2/R7lkG0Gwy90MBIcQL12zU=;
+	b=pkQjeaoc9ROz+21HRNrhMbLmwtCE/PzMcHFD1pbN6VVjILzua3rlI95LrIE7bZ9lSP
+	Q6usxx+tHjMm1UG72Y+sEdufRPkbfSWRUJbVX7pBIVKNKfsrXQSSTaTQ6YxCHe56wI60
+	Cc+HDI1Yoe2q3gUbtf+bp8mZdXybQPay/pVaudli/YhTaJldWFn6c5pOQUG3BFyoWNWU
+	jxXeh4k6TMT+hpjPWfbrE3z5eU/u8JV4UIdQ3djKEtPaOi+fDg5CDqFdviMIwNktZrCK
+	NrzbBHgL3xORsy2RvIHUp53lMa3NIf4GNJ/sJxLlwfsrzqEZPy9dY/LcJJjUFUvdkinN
+	FQ6w==
+X-Gm-Message-State: AMCzsaUf2homn4medAhNG66dfxLKpDREDnH2S9h0jYz+kMyrfp+scRex
+	8oB0T5xAaTWvHAM0CVGtlWXANJfOw0M=
+X-Google-Smtp-Source: ABhQp+TLq7uIL1kQZ6+Ft7L9e3l07TEGKeWM0Yetnl4F6scgmtfKqUYgutjO2fYLTCU4CWq3ISA4bQ==
+X-Received: by 10.28.199.4 with SMTP id x4mr1865056wmf.124.1509637908445;
+	Thu, 02 Nov 2017 08:51:48 -0700 (PDT)
 Received: from localhost.localdomain
 	(host86-154-149-85.range86-154.btcentralplus.com. [86.154.149.85])
-	by smtp.gmail.com with ESMTPSA id 89sm1481975wri.79.2017.11.02.08.51.36
+	by smtp.gmail.com with ESMTPSA id 89sm1481975wri.79.2017.11.02.08.51.47
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 02 Nov 2017 08:51:36 -0700 (PDT)
+	Thu, 02 Nov 2017 08:51:48 -0700 (PDT)
 Sender: Andrei Gherzan <andrei@gherzan.ro>
 From: Andrei Gherzan <andrei@gherzan.com>
 To: yocto@yoctoproject.org
-Date: Thu,  2 Nov 2017 15:51:08 +0000
-Message-Id: <1509637869-29982-4-git-send-email-andrei@gherzan.com>
+Date: Thu,  2 Nov 2017 15:51:09 +0000
+Message-Id: <1509637869-29982-5-git-send-email-andrei@gherzan.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1509637869-29982-1-git-send-email-andrei@gherzan.com>
 References: <1509637869-29982-1-git-send-email-andrei@gherzan.com>
 Cc: Andrei Gherzan <andrei@gherzan.com>
-Subject: [meta-raspberrypi][PATCH 4/5] rpi-base.inc: KERNEL_IMAGETYPE default to zzImage
+Subject: [meta-raspberrypi][PATCH 5/5] firmware.in: Update to 20170811
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,31 +74,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Nov 2017 15:51:45 -0000
-
-We used to have this as the default but there was a bug at some point in the
-firmware which didn't work with compressed kernel images. We switched to Image
-and never changed it back even though that bug is long history.
-
-In this way we will stop carrying 15M of a kernel image. 4M looks much better.
+X-List-Received-Date: Thu, 02 Nov 2017 15:51:56 -0000
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.com>
 ---
- conf/machine/include/rpi-base.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-bsp/common/firmware.inc | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index 688227c..71c63cb 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -51,7 +51,7 @@ KERNEL_DEVICETREE ?= " \
- #   within u-boot to load the kernel.
- KERNEL_BOOTCMD ??= "bootm"
- KERNEL_IMAGETYPE_UBOOT ??= "uImage"
--KERNEL_IMAGETYPE ?= "${@bb.utils.contains('RPI_USE_U_BOOT', '1', '${KERNEL_IMAGETYPE_UBOOT}', 'Image', d)}"
-+KERNEL_IMAGETYPE ?= "${@bb.utils.contains('RPI_USE_U_BOOT', '1', '${KERNEL_IMAGETYPE_UBOOT}', 'zImage', d)}"
+diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
+index ac2bd82..67078c1 100644
+--- a/recipes-bsp/common/firmware.inc
++++ b/recipes-bsp/common/firmware.inc
+@@ -1,10 +1,9 @@
+-RPIFW_DATE ?= "20170811"
++RPIFW_DATE ?= "20171029"
+ RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
+ RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
  
- MACHINE_FEATURES += "apm usbhost keyboard vfat ext2 screen touchscreen alsa bluetooth wifi sdio"
+ SRC_URI = "${RPIFW_SRC_URI}"
+-SRC_URI[md5sum] = "afd09f9a6df14e32b6d832fd9f51d087"
+-SRC_URI[sha256sum] = "a25f6281d64732892a2e838cc2346f1a88505b5c77a57a6540755362ea64043a"
+-
++SRC_URI[md5sum] = "4d27c1888a7bab3097471906e7b4a319"
++SRC_URI[sha256sum] = "46ce28c8d87ef22bdcc57ac1836ca3f04d1ec6f46580ff5a30bf76b3c0822117"
+ PV = "${RPIFW_DATE}"
  
 -- 
 2.7.4
