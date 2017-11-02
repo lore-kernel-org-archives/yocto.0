@@ -1,68 +1,69 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80507E00D8A; Thu,  2 Nov 2017 08:51:56 -0700 (PDT)
+	id 3A870E00C44; Thu,  2 Nov 2017 08:57:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.68 listed in list.dnswl.org]
+	*      [209.85.128.193 listed in list.dnswl.org]
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.128.193 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.68 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53A7EE00D4A
-	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 08:51:49 -0700 (PDT)
-Received: by mail-wm0-f68.google.com with SMTP id z3so12375779wme.5
-	for <yocto@yoctoproject.org>; Thu, 02 Nov 2017 08:51:49 -0700 (PDT)
+Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
+	[209.85.128.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5281AE00928
+	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 08:57:42 -0700 (PDT)
+Received: by mail-wr0-f193.google.com with SMTP id y39so2001wrd.4
+	for <yocto@yoctoproject.org>; Thu, 02 Nov 2017 08:57:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=Qh9koQQeOX9KeTrcOZTM2/R7lkG0Gwy90MBIcQL12zU=;
-	b=CnuAdEUWjGx9M5MToqLMivj2T7zvnBDfirke3/4nZY/CV9Y+hGbcCNE5FqVcZ8qfPT
-	UOfPKwmyCkMDs+GqbBqsx5Cmw1nu+0RkDef+zWVXH8RQj/8n/kc4WkzlVSbzQkPhlBot
-	F3FwuNrv/Y/49FsCn9uik1nKto3yTieyKRGCwF6GzXDy/g85sxXftDGBDuPdjcS0/ZZ2
-	HKBh9qIOVhPicGtO5VTFYgQqxrz76k5q1LRArSoVjsJYQQKEzyYg9SfAMez+o1238O5Y
-	BAlUnzW1TKx9j/hJjo0ySzetAb3zOwdAvWzzoBRTtMA1NZtkq/7V88xDIbbk3azesVGD
-	rQfw==
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc;
+	bh=irPxwPwHgHE+czugztDCTLO3DRNgozCOMTdGmysydEI=;
+	b=B+IBr4vfHrSulm2ZurBlI8WyxbYsHxAlzh7fTWCZmpQ49SrdhBcP2Ry3brGqVY8c+m
+	mudwmoTuVgY8kxhEmp9/wm2kyJoyzEqoylm8d7/d41o/uu1FnZeNQ26CjVczgD2jCw8H
+	WPzRfLKF9hdWOgviff2Mmz2ucM6X2EWzOPgh2CE8EQfGrZ2bReB6QI8wYNunvp34h1c/
+	oB1r2OYU+OetYGWQqGe/+lDe+muXivpVy1M26w4Q2etq3JQJKIzWcvB7kHFFT+Gav45d
+	rmkin5VnwxOhdmMyM84Bl2D8Kax3DfgKgvw8p1mScf4jRYTi5HVBdWHidecuPc4/DTcM
+	1wqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-	:in-reply-to:references;
-	bh=Qh9koQQeOX9KeTrcOZTM2/R7lkG0Gwy90MBIcQL12zU=;
-	b=pkQjeaoc9ROz+21HRNrhMbLmwtCE/PzMcHFD1pbN6VVjILzua3rlI95LrIE7bZ9lSP
-	Q6usxx+tHjMm1UG72Y+sEdufRPkbfSWRUJbVX7pBIVKNKfsrXQSSTaTQ6YxCHe56wI60
-	Cc+HDI1Yoe2q3gUbtf+bp8mZdXybQPay/pVaudli/YhTaJldWFn6c5pOQUG3BFyoWNWU
-	jxXeh4k6TMT+hpjPWfbrE3z5eU/u8JV4UIdQ3djKEtPaOi+fDg5CDqFdviMIwNktZrCK
-	NrzbBHgL3xORsy2RvIHUp53lMa3NIf4GNJ/sJxLlwfsrzqEZPy9dY/LcJJjUFUvdkinN
-	FQ6w==
-X-Gm-Message-State: AMCzsaUf2homn4medAhNG66dfxLKpDREDnH2S9h0jYz+kMyrfp+scRex
-	8oB0T5xAaTWvHAM0CVGtlWXANJfOw0M=
-X-Google-Smtp-Source: ABhQp+TLq7uIL1kQZ6+Ft7L9e3l07TEGKeWM0Yetnl4F6scgmtfKqUYgutjO2fYLTCU4CWq3ISA4bQ==
-X-Received: by 10.28.199.4 with SMTP id x4mr1865056wmf.124.1509637908445;
-	Thu, 02 Nov 2017 08:51:48 -0700 (PDT)
-Received: from localhost.localdomain
-	(host86-154-149-85.range86-154.btcentralplus.com. [86.154.149.85])
-	by smtp.gmail.com with ESMTPSA id 89sm1481975wri.79.2017.11.02.08.51.47
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 02 Nov 2017 08:51:48 -0700 (PDT)
-Sender: Andrei Gherzan <andrei@gherzan.ro>
-From: Andrei Gherzan <andrei@gherzan.com>
-To: yocto@yoctoproject.org
-Date: Thu,  2 Nov 2017 15:51:09 +0000
-Message-Id: <1509637869-29982-5-git-send-email-andrei@gherzan.com>
-X-Mailer: git-send-email 2.7.4
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
+	:date:message-id:subject:to:cc;
+	bh=irPxwPwHgHE+czugztDCTLO3DRNgozCOMTdGmysydEI=;
+	b=A3uDtR/UTJSTKMEN725OC8/KHUQqpIRd6JtpGiB0dMvAKM75T8l7nzUo7mYnqEp2Mb
+	fJX3MN/qOhoDIsApA7YpT+prlEK9Yw3Mmlj+HtoxxGMN5jFKEgLEOc1HQEGis1i0XIXg
+	VnW7bOQekKIWhAN+dqMFcasgQTxj0aNIBYCjX9xTDU0P2kdG5C2ytbN5FDezHRtWB6Q+
+	OT6mAveotL8yrce/Xx7T1pdwqaFvaUoOrFwoxQdPhgsMbsNuJrJ48W0qS9eq+ihvr8us
+	n39LoqQ083b7AaWXOMcmzaRHYy7Ea71mtf+TdaM/2hhS64XEM1HC67LYCJeCx/PHUe8J
+	Pdhw==
+X-Gm-Message-State: AMCzsaWvPjKlvU/O1nD6yPyOTiia2Zn2j9M+lnX8HGX3kNWc7f1PeEzF
+	Qpn8Y8XdW5HEdyKX05A30SL5RsrL82aY7tKhTZ/q8pHES10=
+X-Google-Smtp-Source: ABhQp+Sep2snuOh+BWZ7yUnPnVziePW2UQdY3hDyBleiVNFwtGjs9O/L46p58Au/5Fj3fPs78L8op9zmDu8eQn+n3Eg=
+X-Received: by 10.223.193.70 with SMTP id w6mr3556209wre.158.1509638261069;
+	Thu, 02 Nov 2017 08:57:41 -0700 (PDT)
+MIME-Version: 1.0
+Sender: andrei@gherzan.ro
+Received: by 10.28.183.5 with HTTP; Thu, 2 Nov 2017 08:57:00 -0700 (PDT)
+X-Originating-IP: [86.154.149.85]
 In-Reply-To: <1509637869-29982-1-git-send-email-andrei@gherzan.com>
 References: <1509637869-29982-1-git-send-email-andrei@gherzan.com>
+From: Andrei Gherzan <andrei@gherzan.com>
+Date: Thu, 2 Nov 2017 15:57:00 +0000
+X-Google-Sender-Auth: c4GtQ-Dmat5egrthIhvO6FoL660
+Message-ID: <CAK18fxF-irQPS77AsRCo6ibC4vc7VeuTD2Dt-=SpQ1LcHktFhA@mail.gmail.com>
+To: yocto@yoctoproject.org
 Cc: Andrei Gherzan <andrei@gherzan.com>
-Subject: [meta-raspberrypi][PATCH 5/5] firmware.in: Update to 20170811
+Subject: Re: [meta-raspberrypi][PATCH 1/5] x264: Disable asm for raspberrypi0-wifi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,32 +75,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Nov 2017 15:51:56 -0000
+X-List-Received-Date: Thu, 02 Nov 2017 15:57:44 -0000
+Content-Type: multipart/alternative; boundary="089e082389484a9a07055d020cb4"
 
-Signed-off-by: Andrei Gherzan <andrei@gherzan.com>
----
- recipes-bsp/common/firmware.inc | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+--089e082389484a9a07055d020cb4
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
-index ac2bd82..67078c1 100644
---- a/recipes-bsp/common/firmware.inc
-+++ b/recipes-bsp/common/firmware.inc
-@@ -1,10 +1,9 @@
--RPIFW_DATE ?= "20170811"
-+RPIFW_DATE ?= "20171029"
- RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/1.${RPIFW_DATE}.tar.gz"
- RPIFW_S ?= "${WORKDIR}/firmware-1.${RPIFW_DATE}"
- 
- SRC_URI = "${RPIFW_SRC_URI}"
--SRC_URI[md5sum] = "afd09f9a6df14e32b6d832fd9f51d087"
--SRC_URI[sha256sum] = "a25f6281d64732892a2e838cc2346f1a88505b5c77a57a6540755362ea64043a"
--
-+SRC_URI[md5sum] = "4d27c1888a7bab3097471906e7b4a319"
-+SRC_URI[sha256sum] = "46ce28c8d87ef22bdcc57ac1836ca3f04d1ec6f46580ff5a30bf76b3c0822117"
- PV = "${RPIFW_DATE}"
- 
--- 
-2.7.4
+Hi all,
 
+On Thu, Nov 2, 2017 at 3:51 PM, Andrei Gherzan <andrei@gherzan.com> wrote:
 
+> This used to work in the past because this machine was based on raspberrypi
+> one. Now that they are separate, we need a configuration for it too
+> otherwise:
+>
+> | common/arm/quant-a.S: Assembler messages:
+> | common/arm/quant-a.S:362: Error: selected processor does not support
+> `rbit
+> r1,r1' in ARM mode
+> | common/arm/quant-a.S:363: Error: selected processor does not support
+> `rbit
+> r1,r1' in ARM mode
+>
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.com>
+> ---
+>  recipes-multimedia/x264/x264_git.bbappend | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/recipes-multimedia/x264/x264_git.bbappend
+> b/recipes-multimedia/x264/x264_git.bbappend
+> index c1cb3bc..505719e 100644
+> --- a/recipes-multimedia/x264/x264_git.bbappend
+> +++ b/recipes-multimedia/x264/x264_git.bbappend
+> @@ -1 +1,2 @@
+>  EXTRA_OECONF_append_raspberrypi = " --disable-asm"
+> +EXTRA_OECONF_append_raspberrypi0-wifi = " --disable-asm"
+> --
+> 2.7.4
+>
+>
+Pushed a PR to github too:
+https://github.com/agherzan/meta-raspberrypi/pull/149 in which I fixed the
+two typos in this series: "firmware.in" and "zzImage".
+
+Andrei
+
+--089e082389484a9a07055d020cb4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<br><div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Thu, Nov 2, 2017 at 3:51 PM, Andrei Gherzan <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:andrei@gherzan.com" target=3D"_blank">andrei=
+@gherzan.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">This used to work in the past because this machine was based o=
+n raspberrypi<br>
+one. Now that they are separate, we need a configuration for it too otherwi=
+se:<br>
+<br>
+| common/arm/quant-a.S: Assembler messages:<br>
+| common/arm/quant-a.S:362: Error: selected processor does not support `rbi=
+t<br>
+r1,r1&#39; in ARM mode<br>
+| common/arm/quant-a.S:363: Error: selected processor does not support `rbi=
+t<br>
+r1,r1&#39; in ARM mode<br>
+<br>
+Signed-off-by: Andrei Gherzan &lt;<a href=3D"mailto:andrei@gherzan.com">and=
+rei@gherzan.com</a>&gt;<br>
+---<br>
+=C2=A0recipes-multimedia/x264/x264_<wbr>git.bbappend | 1 +<br>
+=C2=A01 file changed, 1 insertion(+)<br>
+<br>
+diff --git a/recipes-multimedia/x264/<wbr>x264_git.bbappend b/recipes-multi=
+media/x264/<wbr>x264_git.bbappend<br>
+index c1cb3bc..505719e 100644<br>
+--- a/recipes-multimedia/x264/<wbr>x264_git.bbappend<br>
++++ b/recipes-multimedia/x264/<wbr>x264_git.bbappend<br>
+@@ -1 +1,2 @@<br>
+=C2=A0EXTRA_OECONF_append_<wbr>raspberrypi =3D &quot; --disable-asm&quot;<b=
+r>
++EXTRA_OECONF_append_<wbr>raspberrypi0-wifi =3D &quot; --disable-asm&quot;<=
+br>
+<span class=3D"gmail-HOEnZb"><font color=3D"#888888">--<br>
+2.7.4<br>
+<br>
+</font></span></blockquote></div></div><div class=3D"gmail_extra"><br></div=
+><div class=3D"gmail_extra">Pushed a PR to github too: <a href=3D"https://g=
+ithub.com/agherzan/meta-raspberrypi/pull/149">https://github.com/agherzan/m=
+eta-raspberrypi/pull/149</a> in which I fixed the two typos in this series:=
+ &quot;<a href=3D"http://firmware.in">firmware.in</a>&quot; and &quot;zzIma=
+ge&quot;.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_ext=
+ra">Andrei<br></div></div></div>
+
+--089e082389484a9a07055d020cb4--
