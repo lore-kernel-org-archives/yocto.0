@@ -1,55 +1,46 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70698E00C59; Thu,  2 Nov 2017 17:12:39 -0700 (PDT)
+	id 62A18E00D36; Fri,  3 Nov 2017 04:48:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.235.150.234 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.150.234])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C90F1E00C44
-	for <yocto@yoctoproject.org>; Thu,  2 Nov 2017 17:12:38 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx30.ess.sfj.cudaops.com (version=TLSv1.2 cipher=AES256-SHA256
-	bits=256 verify=NO); Fri, 03 Nov 2017 00:12:36 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Thu, 2 Nov 2017 17:11:59 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Thu, 2 Nov 2017 17:11:59 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to enable modules in kernel
-Thread-Index: AdNUNzp8aRJFPujrQwqcrZazAu+1Xg==
-Date: Fri, 3 Nov 2017 00:11:59 +0000
-Message-ID: <f1f4656ebbe14769b8fe1837c6533928@sakuraus.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.3]
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B95AE00C59
+	for <yocto@yoctoproject.org>; Fri,  3 Nov 2017 04:48:41 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id CF83C35CE20;
+	Fri,  3 Nov 2017 11:48:39 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 6loGGEEd_1DI; Fri,  3 Nov 2017 11:48:28 +0000 (UTC)
+Received: from [127.0.0.1] (cpc111193-live30-2-0-cust656.17-2.cable.virginm.net
+	[92.232.58.145])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id C6B5C35CE1A;
+	Fri,  3 Nov 2017 11:48:28 +0000 (UTC)
+To: Khem Raj <raj.khem@gmail.com>, Pascal Bach <pascal.bach@siemens.com>
+References: <1509101466-32192-1-git-send-email-pascal.bach@siemens.com>
+	<CAMKF1sqnUFWx2yXDovoRsyivNneBsmje1_cJ7+2NC99-_pxtYw@mail.gmail.com>
+	<449ad5e0-fef6-a9c3-3ba9-4eec46a60b67@siemens.com>
+	<CAMKF1spgFtqfNnXWj=NJ=egJ_TS4WpEb0_65pm_ehy6vhH1__w@mail.gmail.com>
+From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <672ece18-ad55-1198-0753-499fb9cd370f@dynamicdevices.co.uk>
+Date: Fri, 3 Nov 2017 11:48:30 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-X-BESS-ID: 1509667956-637140-17702-522141-1
-X-BESS-VER: 2017.12-r1710252241
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.186532
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-	0.00 HTML_MESSAGE           BODY: HTML included in message 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, HTML_MESSAGE
-X-BESS-BRTS-Status: 1
-Subject: How to enable modules in kernel
+In-Reply-To: <CAMKF1spgFtqfNnXWj=NJ=egJ_TS4WpEb0_65pm_ehy6vhH1__w@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-mono][PATCH] mono-4.xx: compiling mono 4 with btls requires cmake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,106 +52,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Nov 2017 00:12:39 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_f1f4656ebbe14769b8fe1837c6533928sakurauscom_"
+X-List-Received-Date: Fri, 03 Nov 2017 11:48:42 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
 
---_000_f1f4656ebbe14769b8fe1837c6533928sakurauscom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi all, I'm trying to build for a raspberry pi3. I need to enable two drive=
-rs for sound devices: SND_SOC_MAX9768 & MAX1363. I've created my own image =
-recipe and that is building. Now I need to add a couple of modules to the k=
-ernel configuration and I'm not sure what I need to do. Do I create a .scc =
-file and .cfg file in the directory that I've got my image recipe, or is th=
-ere a better way, or different place to put them? And then I'm assuming tha=
-t I add the .scc file to KERNEL_FEATURES in my image recipe.
 
-Regards,
-
-Greg Wilson-Lindberg
-Sakura Finetek
-310-783-5075
-
---_000_f1f4656ebbe14769b8fe1837c6533928sakurauscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 02/11/2017 15:59, Khem Raj wrote:
+> On Thu, Nov 2, 2017 at 8:46 AM, Pascal Bach <pascal.bach@siemens.com> wrote:
+>> On 27.10.2017 23:41, Khem Raj wrote:
+>>> On Fri, Oct 27, 2017 at 3:51 AM, Pascal Bach <pascal.bach@siemens.com> wrote:
+>>>> This was probably working before pyro and the recipes specific sysroots.
+>>>>
+>>>> Signed-off-by: Pascal Bach <pascal.bach@siemens.com>
+>>>> ---
+>>>>   recipes-mono/mono/mono-4.xx.inc | 2 +-
+>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/recipes-mono/mono/mono-4.xx.inc b/recipes-mono/mono/mono-4.xx.inc
+>>>> index e06fac7..cf9170b 100644
+>>>> --- a/recipes-mono/mono/mono-4.xx.inc
+>>>> +++ b/recipes-mono/mono/mono-4.xx.inc
+>>>> @@ -4,7 +4,7 @@ HOMEPAGE = "http://mono-project.com"
+>>>>   BUGTRACKER = "http://bugzilla.xamarin.com/"
+>>>>   SECTION = "devel"
+>>>>
+>>>> -DEPENDS = "zlib"
+>>>> +DEPENDS = "zlib cmake-native"
+>>>>
+>>> perhaps this should inehrit cmake if its using cmake
+>>> or explain how cmake is used where abstactions
+>>> are not relevant
+>> Using the cmake bbclass doesn't work as it is not really a CMake project.
+>>
+>> Mono requires cmake to build the bundled BoringSSL library. I didn't look why it works in detail but I currently assume that BoringSSL is standalone enough that no additional
+>> CMake toolchain settings are required to make it work.
+>>
+> yeah that probably is a case of bundling which is on rise at app level
+> these days,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all, I'm trying to build for a raspberry pi3. I n=
-eed to enable two drivers for sound devices: SND_SOC_MAX9768 &amp; MAX1363.=
- I've created my own image recipe and that is building. Now I need to add a=
- couple of modules to the kernel configuration
- and I'm not sure what I need to do. Do I create a .scc file and .cfg file =
-in the directory that I've got my image recipe, or is there a better way, o=
-r different place to put them? And then I'm assuming that I add the .scc fi=
-le to KERNEL_FEATURES in my image
- recipe.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Greg Wilson-Lindberg</span><span style=3D"font-size:1=
-2.0pt;font-family:&quot;Times New Roman&quot;,serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Sakura Finetek</span><span style=3D"font-size:12.0pt;=
-font-family:&quot;Times New Roman&quot;,serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">310-783-5075</span><o:p></o:p></p>
-</div>
-</body>
-</html>
+>> One option would be to disable it with `--disable-btls` but I fear that would disable TLS1.2 support (http://www.mono-project.com/docs/about-mono/releases/4.8.0/#tls-12-support).
+>> But I have no way of checking that.
+>>
+> interesting, do they support any other TLS implementations ?
+>
 
---_000_f1f4656ebbe14769b8fe1837c6533928sakurauscom_--
+It is disabled in 5.x builds by default as it breaks the build e.g.
+
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-mono/tree/recipes-mono/mono/mono-5.4.0.201.inc
+
+It's probably time to look at a working build with it re-enabled. 
+Patches welcomed...
+
+(I did have a quick look at inheriting cmake but that breaks the build too)
+
+Cheers,
+
+Alex
+
+
