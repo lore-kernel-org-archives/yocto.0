@@ -1,72 +1,65 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <yevgenyp@pointgrab.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5DC5E00D1B; Fri,  3 Nov 2017 09:20:46 -0700 (PDT)
+	id F2DBCE00C82; Sun,  5 Nov 2017 10:04:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [74.125.82.68 listed in dnsbl.sorbs.net]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.47 listed in list.dnswl.org]
-Received: from mail-pg0-f47.google.com (mail-pg0-f47.google.com [74.125.83.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79D19E00CFF
-	for <yocto@yoctoproject.org>; Fri,  3 Nov 2017 09:20:45 -0700 (PDT)
-Received: by mail-pg0-f47.google.com with SMTP id m18so2858826pgd.13
-	for <yocto@yoctoproject.org>; Fri, 03 Nov 2017 09:20:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:subject:to:message-id:date:user-agent:mime-version
-	:content-transfer-encoding:content-language;
-	bh=PZt6bl6yepwegs8HiiseLwJQm7/i7K59xbGoIJn/Ud4=;
-	b=WEZu/P35Oa2F9N8NxrkGMjyOfd9RNWXjy0ztVMx/Y24tLPssICnsUqAsmWr+4+HuJB
-	rR49Fm69mkFRfX0uS8t2UtG0ME+cia1/nRlsXSbZVyUOPjj+QYEfuX5dEJ/PHc7YYPfV
-	FAVT27vjPKiklV8uTyhsQE9rW7wzvsxN8MEwLOmXaJxD6iRk9XkxNxQ8zGTSfeLhCkfO
-	0gAwNHMlEykFMwlNcBREAwHkLm+GpyPzvEEPzF6P36M4LTWuOnnHRIlAhlyq4W8IVK34
-	RK3rNnGUb18f//xh7l7SdSzkbj6FZWAo/uJrt3vaS+EfU/TOwnxK4JUtciXtrYzMxP+X
-	pYdQ==
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 784D2E00AC0
+	for <yocto@yoctoproject.org>; Sun,  5 Nov 2017 10:04:31 -0800 (PST)
+Received: by mail-wm0-f68.google.com with SMTP id r68so9793081wmr.1
+	for <yocto@yoctoproject.org>; Sun, 05 Nov 2017 10:04:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=pointgrab-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=opwNDA3cwrfC2KHnJZae5OGKGCJQJlTV/reZXV76oVI=;
+	b=dM8P1gtX7LYQBaSakVR4a9rQsYgRU3fPB0IA/FovzwHzO1SA799JVJijGXq6tdExaw
+	NTnnLquGimwPGi3fLh5IshiprjwaIgqzPjAhmaCTxlMDkzo3crk9bircSqf2pVyi28tG
+	lDpN7h9nRuPS5t1ZzzGYuKKpC4GZKXG+2tdVFifHvnS6FyuMqwn+nvn+TtR2GSYLaI7y
+	Ygunyv6XnOlhtvp9sBNsrGn4NqKT5rCXaOcy12T4LZRq3IZ2zaBATdv6hf01Vbz3BAuB
+	9ZyST6CzHVjU6NxDI/IWIA2gxLFSgM/nDpDhnNhmCWyw5Lc5ukA4JBAQiKi0p9pPQeKt
+	tfdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:subject:to:message-id:date:user-agent
-	:mime-version:content-transfer-encoding:content-language;
-	bh=PZt6bl6yepwegs8HiiseLwJQm7/i7K59xbGoIJn/Ud4=;
-	b=f8/QHR1TVhNKEHKZSu9yxSJb5eX+F/poUOqqxtIH979Rxmd2YIM0SnesYXmjG0/QXf
-	ZykitqyT85n5yMQENefXW1XvPKsIBX4DjIsWkHk1YF2SWmyNTACAgDqcMvb7X6qny7A3
-	Ha9VY8pXRvE3ETmePYKr6OPWg+BETiR9yF/TZVzpNgRodAzzllHlnPSC+U+49W6AqJOJ
-	aD3xxT6pwR2vxzU6m0kSrUSH3wrhERNOqYwz6gS4FlESOnzscJ8o0F+ZYLdDLu5+y89t
-	IEGKasiB0PpxAtnKetB/DQtpQnNw8NioH4Xw2tJTtGXlkIPwWW+YQyJzuzJytqP/GT9b
-	Mg3A==
-X-Gm-Message-State: AMCzsaVDrDP8XIpQRaGq4p8bKmLGBGrHvRp9zR6jTIohk3QhB1xYkhzv
-	To4gBJ9K9bjTgzCwE9dHsO/VDA==
-X-Google-Smtp-Source: ABhQp+Sc1DAAH4yMPcU81HDX/6wAL26rq8pp7ZqX5qMElNNDijt9QfameQmcFGpG3ItkZ2CQNXC/bQ==
-X-Received: by 10.101.88.140 with SMTP id d12mr7753197pgu.166.1509726045364;
-	Fri, 03 Nov 2017 09:20:45 -0700 (PDT)
-Received: from ?IPv6:2601:202:4001:9ea0:78e5:dcc3:4839:af44?
-	([2601:202:4001:9ea0:78e5:dcc3:4839:af44])
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=opwNDA3cwrfC2KHnJZae5OGKGCJQJlTV/reZXV76oVI=;
+	b=G75wpIhOejAxgBo9fyIskmqYVDAeJxsebPCULRvPBiD/5ZKFh2raO6mN73gHy/THM0
+	uflk6K01UIHxaPCHC7eMNeXU0urhT0XZg76drVA9zP4i+8RfhnoDWl21kmSksRuXEYjh
+	Zt/JFjBpd7PdUkwstxLziCYEOwN3VKksfVT/TFKKjhK2uQcf2qKjRP7jOw6qUtg/8W2g
+	KYltfi6Xbe1X6qAVfPj8vkrtkOKHDllLsYkhPk2nz+n/N8CP6BUqdJeL8DXPt9VGmEIv
+	FvEcDGUr6+S/W7adQRxpOPRFycYrkS6ahK2dp2xhN7Oy5RxqmatqrG4pdN0GtjuFjB+d
+	8sjQ==
+X-Gm-Message-State: AJaThX7xfcH7RBEbukAG4BEEuUjcf76vogaXeGJq+xpUz2BJ2kEGGzKz
+	fL+kLE0EOGUpGbjwXLPtKTCBAj1X
+X-Google-Smtp-Source: ABhQp+S8jmwhUcvgCo2zpNDGqSLzTlbcaeHP4cFekr++4KHNbAuHH9CZrA+GyMB5OmIFPGx6QK6hpA==
+X-Received: by 10.28.1.199 with SMTP id 190mr3665783wmb.51.1509905071075;
+	Sun, 05 Nov 2017 10:04:31 -0800 (PST)
+Received: from localhost.localdomain ([194.183.182.60])
 	by smtp.gmail.com with ESMTPSA id
-	v85sm11361377pfi.71.2017.11.03.09.20.44
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 03 Nov 2017 09:20:44 -0700 (PDT)
-From: akuster808 <akuster808@gmail.com>
-To: openembedded-architecture
-	<openembedded-architecture@lists.openembedded.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <8075716d-066a-ec38-3787-fd64bb9c61d5@gmail.com>
-Date: Fri, 3 Nov 2017 09:20:43 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
-MIME-Version: 1.0
-Subject: [RFC] stable branch naming scheme
+	e131sm14943542wmg.1.2017.11.05.10.04.29
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sun, 05 Nov 2017 10:04:30 -0800 (PST)
+From: Yevgeny Popovych <yevgenyp@pointgrab.com>
+To: yocto@yoctoproject.org
+Date: Sun,  5 Nov 2017 20:04:18 +0200
+Message-Id: <1509905058-65701-1-git-send-email-yevgenyp@pointgrab.com>
+X-Mailer: git-send-email 2.7.4
+Cc: Scott Rifenbark <srifenbark@gmail.com>,
+	Yevgeny Popovych <yevgenyp@pointgrab.com>
+Subject: [yocto-docs][PATCH] ref-manual: Removed misleading paragraph in siteinfo section
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,46 +71,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Nov 2017 16:20:46 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+X-List-Received-Date: Sun, 05 Nov 2017 18:04:33 -0000
 
-Hello,
+..on the inclusion of siteinfo.bbclass in base.bbclass.
+This is not true since 2010.
 
-The problem I hope to solve is that a Maintainer can stage changes in
-any branch in the contrib repos making it difficult for folks to track
-their back port requests. The also makes it harder to automate any kind
-of build automation.
+Signed-off-by: Yevgeny Popovych <yevgenyp@pointgrab.com>
+---
+ documentation/ref-manual/ref-classes.xml | 6 ------
+ 1 file changed, 6 deletions(-)
 
-I would like to propose a contrib naming scheme for the stable release
-branches. I am thinking of the following:
-
-stable/{version}-next or {special char}_stable/{version}-next.
-
-=C2=A0=C2=A0 "version" is either the code name or numeric like in bitbake=
-=2E
-
-=C2=A0=C2=A0 "special char" would be used to have these branches at the t=
-op of th
-list, if we wont that.
-
-
-We can apply this to all OE / Yocto repos that have stable branch
-maintenance process.
-
-If we standardize on a naming scheme, We can then document this so
-contributers can monitor their requests more easily. The community can
-see what changes are being backport.=C2=A0 This will enable the possibili=
-ty
-to automate builds, etc.=C2=A0
-
-let me know what you think.
-
-Kind regards,
-
-Armin
-
-
+diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref-manual/ref-classes.xml
+index 5961d3e..fe41f9e 100644
+--- a/documentation/ref-manual/ref-classes.xml
++++ b/documentation/ref-manual/ref-classes.xml
+@@ -3134,12 +3134,6 @@ This check was removed for YP 2.3 release
+         and <filename><link linkend='var-SITEINFO_BITS'>SITEINFO_BITS</link></filename>
+         that can be used elsewhere in the metadata.
+     </para>
+-
+-    <para>
+-        Because the
+-        <link linkend='ref-classes-base'><filename>base</filename></link> class
+-        includes the <filename>siteinfo</filename> class, it is always active.
+-    </para>
+ </section>
+ 
+ <section id='ref-classes-spdx'>
+-- 
+2.7.4
 
 
