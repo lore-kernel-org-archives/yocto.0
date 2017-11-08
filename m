@@ -1,42 +1,65 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <jerry.lian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F1C8E00CE8; Wed,  8 Nov 2017 07:42:54 -0800 (PST)
+	id BD8ECE00D18; Wed,  8 Nov 2017 07:49:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, 
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jerry.lian[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87DBDE00CD0
-	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 07:42:53 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id vA8Fgqdx024528
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 8 Nov 2017 07:42:52 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.231) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
-	Wed, 8 Nov 2017 07:42:51 -0800
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <cover.1510093646.git.amanda.r.brindle@intel.com>
-	<15d371573edecbc27254c3eb62c074c48f57be84.1510093646.git.amanda.r.brindle@intel.com>
-	<8d7c2327-acf1-8905-da88-7143daf4fa1e@windriver.com>
-	<1736558.4YOozJbAai@peggleto-mobl.ger.corp.intel.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <ddc7ec5b-62bc-afbd-fa1d-ddef31b72a0d@windriver.com>
-Date: Wed, 8 Nov 2017 09:42:50 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.218.51 listed in dnsbl.sorbs.net]
+Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
+	[209.85.218.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 920AEE00CD0
+	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 07:49:55 -0800 (PST)
+Received: by mail-oi0-f51.google.com with SMTP id g125so2220023oib.12
+	for <yocto@yoctoproject.org>; Wed, 08 Nov 2017 07:49:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=f1Lmj831OWN1+hgkp4Yp8lPJf/BmtbypK06GsLYP+Kc=;
+	b=qwNI4W1k+OU5OblbtDRrXxx73zeJBexIO6yrk1gqxXY4euJT4RzysfyfyJO2BfBuKC
+	o30SWKbgMnWUSI3tWGoIVQa5EDWGRzxo8XvlGiKgQx5smruP7xszMfvd5IC9vhxLFgtM
+	idAA24MF2d4INnVzi1BpMg16jCvW1arAdLAWkCPet26HyOnzJTac83oQvhjjlWlHeGVn
+	7jXZl4DEUwRVSUV7Nbmaao4aLGH4DSewKdSdMzUPI2cHnVvXsmOgtgyXnQDAW5D3R0sJ
+	bDInSfAp9/i0ZIGOKE+VZz5C2ciJ7HiKTiMWf8btgAeA8h1/gkBOitzqm1vdNB1pUvcL
+	Si5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=f1Lmj831OWN1+hgkp4Yp8lPJf/BmtbypK06GsLYP+Kc=;
+	b=AdNK5FDzVZOkSkU69hv0P+I5d9kpsBd/wzP0E9kE264GocWTWzgIP6Sg6Gq1F/H0qT
+	SsWKirmj5MWhzkvXm1YcuNAi30emIpXSeWam0WYkA9W+W0s4r0L4WtglQjue1Zg+GAfv
+	YCXRJTOI4MCYJm2NzfuQls8gfSWCud6vaEzDc29D13FmhL3rpQ+e9tkJJUj5kKIvfwj7
+	B31WB6D5pJECLNxAL4RyTku6C0cJDrEeGXbr6g1z5fXGMyS4xLrW4C5F4NI/h1M+w6Ns
+	rOhWkLIStBAhMegPgOQ03ZqBGWd1e/JdU+k2Kqc1xr5ym/cmTNXELguGSKEIJX6k8U2z
+	IM7A==
+X-Gm-Message-State: AJaThX7Np0+5ow074ixqUSLAam+d6mlmLYA5qthaIHSM47Kdvuwmgnq4
+	PidDq4XyYL9Lk+VYWDbJFikAjazSW2K11B2hxd4=
+X-Google-Smtp-Source: ABhQp+TX+VYC2rku9qeIUWKLpZEEHkKSJ4sonacDhyL4Y0uxEbVsJQYDEi4njvwVUkpyzVrgt5Lazaj8sYKupQuR6T4=
+X-Received: by 10.202.236.86 with SMTP id k83mr555391oih.319.1510156194277;
+	Wed, 08 Nov 2017 07:49:54 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1736558.4YOozJbAai@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org, Amanda Brindle <amanda.r.brindle@intel.com>
-Subject: Re: [layerindex-web][patch v3 1/1] recipes.html: Require keyword for recipe search
+Received: by 10.157.45.117 with HTTP; Wed, 8 Nov 2017 07:49:53 -0800 (PST)
+From: Jerry Lian <jerry.lian@gmail.com>
+Date: Wed, 8 Nov 2017 10:49:53 -0500
+Message-ID: <CAE0QtjPDdktSRp6JSUtc_wmxxw5J4fTmP_29PrBEZ8bGo2uBig@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Annoying "rerun to fix" bug for bitbake: task failed, but rerun can fix it.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,52 +71,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Nov 2017 15:42:54 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 Nov 2017 15:49:56 -0000
+Content-Type: multipart/alternative; boundary="001a1145e6b083ef66055d7aa36a"
 
-On 11/7/17 8:43 PM, Paul Eggleton wrote:
-> On Wednesday, 8 November 2017 11:47:49 AM NZDT Mark Hatle wrote:
->> On 11/7/17 4:31 PM, Amanda Brindle wrote:
->>> Use JavaScript to check if the search box for recipe search is
->>> empty before querying the database. This will prevent the "502
->>> Bad Gateway" error that occurs when the query takes too long due
->>> to the large list of recipes. Since there are so many recipes
->>> spread across the layers in the OE index, there's no point in
->>> allowing a user to search without a keyword in order to browse
->>> the list; it simply isn't digestible as a whole.
->>>
->>> Add a browse button for the Machines, Classes, and Distros pages.
->>
->> There are reasons to view all of the recipes, machines, classes, distros,
->> etc. (Not necessarily good reasons, but I know people do it.)
->>
->> If the query is too long, it would be better to figure out a way to get a
->> partial response and formulate the first page based on partial responses...
->> having a multipage response that the user can look at.
-> 
-> I'm willing to be proven wrong, but unfortunately it looks to me like this 
-> will require major re-engineering to sort out for a fairly weak use case. If 
-> you consider this important, would you be able to look into making it work?
+--001a1145e6b083ef66055d7aa36a
+Content-Type: text/plain; charset="UTF-8"
 
-I suspect much of the display engine probably needs a rework as the contents of
-the layer index have grown.  I can't promise anything, but I'll see if I can
-find anyone who can work on it.
+I am not sure whether it is a bug or an error:
+* Quite often, bitbake will fail before finishing, with message like: ...
+task failed with exit code 1...
+* But if you rerun bitbake, it will continue to build.
+* So sometimes I have to rerun many times for finish one build ----
+annoying!
+(by the way, my CPU can run 16 threads)
 
-For recipes, the use-case is very weak.  I have talked with people though who
-have just wanted a list of what is available (one big list).  Primarily so they
-can compare what is available to some magic spec sheet they are looking at.
+Any idea to clear this annoying bug?
+thanks.
 
-For the Machines, Distros pages..  people do want a full list here, as they
-simply won't know what is available or what something is called.  The scope of
-the machines and distros of course is nowhere near the scope for the full recipe
-list.
+--001a1145e6b083ef66055d7aa36a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---Mark
+<div dir=3D"ltr"><div><div><div><div><div><div>I am not sure whether it is =
+a bug or an error:<br></div>* Quite often, bitbake will fail before finishi=
+ng, with message like: ... task failed with exit code 1...<br></div>* But i=
+f you rerun bitbake, it will continue to build.<br></div>* So sometimes I h=
+ave to rerun many times for finish one build ---- annoying!<br></div>(by th=
+e way, my CPU can run 16 threads)<br><br></div>Any idea to clear this annoy=
+ing bug?<br></div>thanks.<br></div>
 
-> Cheers,
-> Paul
-> 
-
-
+--001a1145e6b083ef66055d7aa36a--
