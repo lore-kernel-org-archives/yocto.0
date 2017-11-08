@@ -1,65 +1,42 @@
-Return-Path: <jerry.lian@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7F0CE00CE8; Wed,  8 Nov 2017 07:41:05 -0800 (PST)
+	id 1F1C8E00CE8; Wed,  8 Nov 2017 07:42:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jerry.lian[at]gmail.com)
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.176 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.176 listed in list.dnswl.org]
-Received: from mail-ot0-f176.google.com (mail-ot0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42A90E00CD0
-	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 07:41:04 -0800 (PST)
-Received: by mail-ot0-f176.google.com with SMTP id n19so2263009ote.10
-	for <yocto@yoctoproject.org>; Wed, 08 Nov 2017 07:41:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=O/RW+S0vTk6r/VHDn2JYefcC8A6WvJIjxCCSWLObXCQ=;
-	b=lFuZKM9blI5mpEwH4DvKV8w3330kdgo1AWPRUOvkW5M9Xe1nE11b6mRETVTiFq8JwG
-	gRcdsdn77t1905t3TmfuMLfDY+7ZIkNhcaJ0qHhaeVScUo9igPCIH+Ztz/naXAuiCx9Y
-	UVrliuQrIDSjZIlY2bcCmDj+488aWvLcKekLQ8v1inHdvZErj7fJorlq3yvyrQ0XyacW
-	hZt0BvNPatz/W94l1cRZOtq2uHdRaLGIEnaGYdZFOpH5yShyDrXOUKdHKADNPaZCu8yW
-	mFIHn2QtKRtupJCUYvPuRME4SnEqjNVwYNsM4h1Ht2wslIdXxBhW/+ioxoCHNK/t7ttY
-	GcrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=O/RW+S0vTk6r/VHDn2JYefcC8A6WvJIjxCCSWLObXCQ=;
-	b=DmTK32TpL2ESdPXIYJUrSzcnRGIe4vYIpK3peldreu9nJkJewAH/S+y1arg9y7Yw5r
-	TEzPvfB+ztpqeaNSU17wmbzCV24wHfDkIw/IJEx5EDsN8X27YaAg4xk5sCNKDoC8C8XK
-	3T+98xqkWEaoI42PN70QDWxlpdWbQp2OC2OS2Y1QttOU+Xxm3Hyx1ZKsrFArisOlUb+r
-	0VXHgeyVVRZIG+1Ie8Sx7heDhjyO/VrZ+25RCGvJIu4EX4LptsTUc3BKvO6fsuU6g3cY
-	luMxUM7mzoV6+j6X87ofGDSkE81UAt9eSSU+xm4TElXiqSV5vSXm65vsAeiNRoKVBvJi
-	dSxA==
-X-Gm-Message-State: AJaThX7YVsD2mWvg09HKi9lR4PePQ6AyAEnHqvLtisDNm6uxtLwnpayZ
-	nQhk2L2oaz+7qodomHnspa2t2QpmjOQrLtXr9143Zg==
-X-Google-Smtp-Source: ABhQp+RHFmm26tr/yx9fml1PstjcwpMgSysn5CQ1Rn5S8YEOgt0tjZnKfPAySj4NsBwgclr6uAVhTXfUsa0F7OSeOmo=
-X-Received: by 10.157.1.238 with SMTP id e101mr549965ote.99.1510155663906;
-	Wed, 08 Nov 2017 07:41:03 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87DBDE00CD0
+	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 07:42:53 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id vA8Fgqdx024528
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 8 Nov 2017 07:42:52 -0800 (PST)
+Received: from soho-mhatle-m.local (172.25.36.231) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Wed, 8 Nov 2017 07:42:51 -0800
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <cover.1510093646.git.amanda.r.brindle@intel.com>
+	<15d371573edecbc27254c3eb62c074c48f57be84.1510093646.git.amanda.r.brindle@intel.com>
+	<8d7c2327-acf1-8905-da88-7143daf4fa1e@windriver.com>
+	<1736558.4YOozJbAai@peggleto-mobl.ger.corp.intel.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+Message-ID: <ddc7ec5b-62bc-afbd-fa1d-ddef31b72a0d@windriver.com>
+Date: Wed, 8 Nov 2017 09:42:50 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
+	Gecko/20100101 Thunderbird/52.4.0
 MIME-Version: 1.0
-Received: by 10.157.42.113 with HTTP; Wed, 8 Nov 2017 07:41:03 -0800 (PST)
-From: Jerry Lian <jerry.lian@gmail.com>
-Date: Wed, 8 Nov 2017 10:41:03 -0500
-Message-ID: <CAE0QtjNoY6hheGcKzzg86N+8AxOL4k8n-kTxyq1KGa660_Ut_w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: yocto documentation: no content, no PDF?
+In-Reply-To: <1736558.4YOozJbAai@peggleto-mobl.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org, Amanda Brindle <amanda.r.brindle@intel.com>
+Subject: Re: [layerindex-web][patch v3 1/1] recipes.html: Require keyword for recipe search
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,31 +48,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Nov 2017 15:41:05 -0000
-Content-Type: multipart/alternative; boundary="94eb2c03cf94e71db1055d7a836e"
+X-List-Received-Date: Wed, 08 Nov 2017 15:42:54 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---94eb2c03cf94e71db1055d7a836e
-Content-Type: text/plain; charset="UTF-8"
+On 11/7/17 8:43 PM, Paul Eggleton wrote:
+> On Wednesday, 8 November 2017 11:47:49 AM NZDT Mark Hatle wrote:
+>> On 11/7/17 4:31 PM, Amanda Brindle wrote:
+>>> Use JavaScript to check if the search box for recipe search is
+>>> empty before querying the database. This will prevent the "502
+>>> Bad Gateway" error that occurs when the query takes too long due
+>>> to the large list of recipes. Since there are so many recipes
+>>> spread across the layers in the OE index, there's no point in
+>>> allowing a user to search without a keyword in order to browse
+>>> the list; it simply isn't digestible as a whole.
+>>>
+>>> Add a browse button for the Machines, Classes, and Distros pages.
+>>
+>> There are reasons to view all of the recipes, machines, classes, distros,
+>> etc. (Not necessarily good reasons, but I know people do it.)
+>>
+>> If the query is too long, it would be better to figure out a way to get a
+>> partial response and formulate the first page based on partial responses...
+>> having a multipage response that the user can look at.
+> 
+> I'm willing to be proven wrong, but unfortunately it looks to me like this 
+> will require major re-engineering to sort out for a fairly weak use case. If 
+> you consider this important, would you be able to look into making it work?
 
-Just wondering:
-* As an active project, why yocto documentation does not provide a content
-(better be clickable)?
-* Or PDF format for easy printing.
+I suspect much of the display engine probably needs a rework as the contents of
+the layer index have grown.  I can't promise anything, but I'll see if I can
+find anyone who can work on it.
 
-Isn't good documentation the basic requirement for a good project?
- (By the way, the yocto homepage is also ugly!)
+For recipes, the use-case is very weak.  I have talked with people though who
+have just wanted a list of what is available (one big list).  Primarily so they
+can compare what is available to some magic spec sheet they are looking at.
 
-Thanks,
+For the Machines, Distros pages..  people do want a full list here, as they
+simply won't know what is available or what something is called.  The scope of
+the machines and distros of course is nowhere near the scope for the full recipe
+list.
 
---94eb2c03cf94e71db1055d7a836e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--Mark
 
-<div dir=3D"ltr"><div><div>Just wondering: <br>* As an active project, why =
-yocto documentation does not provide a content (better be clickable)?<br></=
-div>* Or PDF format for easy printing.<br></div><br>Isn&#39;t good document=
-ation the basic requirement for a good project?<br><div><div>=C2=A0(By the =
-way, the yocto homepage is also ugly!)<br><br></div><div>Thanks,<br></div><=
-div><br></div></div></div>
+> Cheers,
+> Paul
+> 
 
---94eb2c03cf94e71db1055d7a836e--
+
