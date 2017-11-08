@@ -1,15 +1,17 @@
-Return-Path: <ayoub.zaki@embexus.com>
+Return-Path: <ranshalit@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39DE4E00D51; Wed,  8 Nov 2017 11:13:47 -0800 (PST)
+	id B5F4EE00D51; Wed,  8 Nov 2017 11:16:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,T_FILL_THIS_FORM_SHORT
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.30.212.10 listed in list.dnswl.org]
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ranshalit[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -17,36 +19,42 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-Received: from mailrelay1-3.pub.mailoutpod1-cph3.one.com
-	(mailrelay1-3.pub.mailoutpod1-cph3.one.com [46.30.212.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 556DCE00D4D
-	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 11:13:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=embexus.com; s=20140924;
-	h=from:subject:date:message-id:to:mime-version:content-type:
-	content-transfer-encoding:in-reply-to:references;
-	bh=XNABqvz7lV9LRbwYEdfGG0EeP+scsBfyvdgCBfioiYY=;
-	b=BNrb6wWOA+7LnHUgqcvH3YAHstkoMzgoAuJHUGuz6OWu97iGs6Ab7MLiFKNwJy+3Wj1QnIJG/kIoL
-	5rwCpfdgdiE0KygGe/3tMUew/LEBptc+iq5371xVeWj44NCKFLnJRHFsYkHpfyfwV2LVIrH9Dw+pif
-	0MdhnbNJ4IF7TGnA=
-X-HalOne-Cookie: 06bc60d12655218e7ef0ced514898a1cebb68f4a
-X-HalOne-ID: efbb3592-c4b8-11e7-b91f-d0431ea8a283
-Received: from [10.10.40.2] (unknown [46.45.147.204])
-	by mailrelay1.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-	id efbb3592-c4b8-11e7-b91f-d0431ea8a283;
-	Wed, 08 Nov 2017 19:13:44 +0000 (UTC)
-To: yocto@yoctoproject.org
-References: <CAE0QtjOyjit90GBrK4i1nCNP_et=GHH=xdnurw72MS+JLfOyDg@mail.gmail.com>
-	<CAE0QtjP2tnXz6Un_BsEh3zmW3zUKvUGZWRC63NJWa-jwbZoFuQ@mail.gmail.com>
-From: Ayoub Zaki <ayoub.zaki@embexus.com>
-Message-ID: <2bc6b037-cc7e-3a1a-fcda-a0e0dfd3b3f6@embexus.com>
-Date: Wed, 8 Nov 2017 20:13:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+Received: from mail-wm0-f52.google.com (mail-wm0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 275A8E00D4D
+	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 11:16:37 -0800 (PST)
+Received: by mail-wm0-f52.google.com with SMTP id b189so12495453wmd.4
+	for <yocto@yoctoproject.org>; Wed, 08 Nov 2017 11:16:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Yp1n+IeTbrN3e4qoePyAwNJ7L929MyWV2CG2ZIp5wO4=;
+	b=Wag6bA+uKB4xbrrTGfIBJFrc4pBnx6avNg8XnllsRz67OPL5U1JvyRqcraM6k4NXJ6
+	G2Gq6YOH/XJzvxlx85yIH8z1ODWq9oLFvJEXtpyboyHU9xZ2pSzr5DitvfQ2KTiF3e44
+	oZaySx2KpDneMCe/MKjN7ig0zj4xYj2LUxLq74K+RyIbZYKcxG+unnzHq9QVN6X7Cb0S
+	WmAPdeXB4ThLJFBvWzgUtrDyV9Hg0okyBx+HgbE3ZkxprwFiWbl8TimiIg/kNco8gOr1
+	fygsR3F3rKQZBpFFOyqprBp7uBZGj9ohmFvoFYEmQYcgrUUELIWY444Yu2bFjm6y6BK+
+	11fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Yp1n+IeTbrN3e4qoePyAwNJ7L929MyWV2CG2ZIp5wO4=;
+	b=l2cr4TPKu+J+Abx3Awn40EaYhU8ZWgcY5G31v6vIbRp1tsj+GJS+Ei6hBKOXxMy+9I
+	3IT37Hnjekf+z38GYQHtdJwwhg9wsb4T9UjonGt7MhaB3S2T5igxtuQeEOHs3eQ3x4eO
+	zH1u/HoqgdhGpRKMtZcoPa5lbHFnipXRqAHCbRPv3EREcEhFZxyGJhGYmAYxYloZfWej
+	0o/TH/N7wKlYiClTiCRY3hiv8dNjVDH8NE/D2FIs5+6AopeAk2IDmkAkdalmO7K8y39/
+	GEJUHQhLCdd7t9G5LHeQzBGbYKYzNVLrNnbUruJV91sehCIYzgiW+E8K0RLpIQtuVM1S
+	vIrA==
+X-Gm-Message-State: AJaThX5KyMV4SQLOZdp43w6yd2AfudN6DrHcYIyHgISaVG+ZImLTSQ3N
+	cTcvffmsrf2rYQf2jpsfwob3J2fuYNqocCJXmFM=
+X-Google-Smtp-Source: ABhQp+QllMAk55C9/jROPSQoY0W06oR+Kg1NL8EsosrCTGoVcL2TtB45XNN1YeBEdMip510upMfKguXlJIfjbvG4LCw=
+X-Received: by 10.80.243.21 with SMTP id p21mr1984369edm.38.1510168596580;
+	Wed, 08 Nov 2017 11:16:36 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAE0QtjP2tnXz6Un_BsEh3zmW3zUKvUGZWRC63NJWa-jwbZoFuQ@mail.gmail.com>
-Subject: Re: Yocto problem for Ryzen-7 cpu
+Received: by 10.80.137.18 with HTTP; Wed, 8 Nov 2017 11:16:35 -0800 (PST)
+From: Ran Shalit <ranshalit@gmail.com>
+Date: Wed, 8 Nov 2017 21:16:35 +0200
+Message-ID: <CAJ2oMhLQJGBZZW8uCG5C9HJDFU7=LiLB9f28Sv6D1Cm+wFiPWg@mail.gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: apt-get
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,54 +66,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Nov 2017 19:13:47 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 08 Nov 2017 19:16:38 -0000
+Content-Type: text/plain; charset="UTF-8"
 
+Hello,
 
+Is there a way to add "apt-get" command (and package manager) in yocto ?
 
-On 08.11.2017 20:07, Jerry Lian wrote:
-> (weird, yocto mails to me blocked by my gmail, treated as spam?)
->
-> Anyway, just change to Ubuntu-17, run first build, succeed with no 
-> failures, good sign!
-> Will run more and see.
-Glad to read that you solved your problem :-)
-
-You are Welcome!
-
->
->
->
->
->
-> On Wed, Nov 8, 2017 at 12:06 PM, Jerry Lian <jerry.lian@gmail.com 
-> <mailto:jerry.lian@gmail.com>> wrote:
->
->     (my Gmail does not accept new message for same subject? so I open
->     a new thread)
->
->     So bad: I do use Ryzen-7.
->     will Ubuntu-17 or latest Debian fix the problem?
->
->
->
->
->
->
-
--- 
-Ayoub Zaki
-Embedded Systems Consultant
-
-Vaihinger Straße 2/1
-D-71634 Ludwigsburg
-
-Tel.     : +4971415074546
-Mobile   : +4917662901545
-Email    : ayoub.zaki@embexus.com
-Homepage : https://embexus.com
-VAT No.  : DE313902634
-
+Thank you,
+Ran
 
