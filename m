@@ -1,38 +1,52 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <ayoub.zaki@embexus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 832EDE00D5D; Wed,  8 Nov 2017 11:08:12 -0800 (PST)
+	id 39DE4E00D51; Wed,  8 Nov 2017 11:13:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,T_FILL_THIS_FORM_SHORT
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.30.212.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB02EE00D4F
-	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 11:08:11 -0800 (PST)
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-	by fmsmga105.fm.intel.com with ESMTP; 08 Nov 2017 11:08:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.44,365,1505804400"; d="scan'208";a="173382271"
-Received: from skanwarx-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.249.73.22])
-	by fmsmga005.fm.intel.com with ESMTP; 08 Nov 2017 11:08:07 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Date: Thu, 09 Nov 2017 08:08:03 +1300
-Message-ID: <1664393.zSGbuEELsx@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <ddc7ec5b-62bc-afbd-fa1d-ddef31b72a0d@windriver.com>
-References: <cover.1510093646.git.amanda.r.brindle@intel.com>
-	<1736558.4YOozJbAai@peggleto-mobl.ger.corp.intel.com>
-	<ddc7ec5b-62bc-afbd-fa1d-ddef31b72a0d@windriver.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+	*      information
+Received: from mailrelay1-3.pub.mailoutpod1-cph3.one.com
+	(mailrelay1-3.pub.mailoutpod1-cph3.one.com [46.30.212.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 556DCE00D4D
+	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 11:13:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=embexus.com; s=20140924;
+	h=from:subject:date:message-id:to:mime-version:content-type:
+	content-transfer-encoding:in-reply-to:references;
+	bh=XNABqvz7lV9LRbwYEdfGG0EeP+scsBfyvdgCBfioiYY=;
+	b=BNrb6wWOA+7LnHUgqcvH3YAHstkoMzgoAuJHUGuz6OWu97iGs6Ab7MLiFKNwJy+3Wj1QnIJG/kIoL
+	5rwCpfdgdiE0KygGe/3tMUew/LEBptc+iq5371xVeWj44NCKFLnJRHFsYkHpfyfwV2LVIrH9Dw+pif
+	0MdhnbNJ4IF7TGnA=
+X-HalOne-Cookie: 06bc60d12655218e7ef0ced514898a1cebb68f4a
+X-HalOne-ID: efbb3592-c4b8-11e7-b91f-d0431ea8a283
+Received: from [10.10.40.2] (unknown [46.45.147.204])
+	by mailrelay1.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+	id efbb3592-c4b8-11e7-b91f-d0431ea8a283;
+	Wed, 08 Nov 2017 19:13:44 +0000 (UTC)
+To: yocto@yoctoproject.org
+References: <CAE0QtjOyjit90GBrK4i1nCNP_et=GHH=xdnurw72MS+JLfOyDg@mail.gmail.com>
+	<CAE0QtjP2tnXz6Un_BsEh3zmW3zUKvUGZWRC63NJWa-jwbZoFuQ@mail.gmail.com>
+From: Ayoub Zaki <ayoub.zaki@embexus.com>
+Message-ID: <2bc6b037-cc7e-3a1a-fcda-a0e0dfd3b3f6@embexus.com>
+Date: Wed, 8 Nov 2017 20:13:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Amanda Brindle <amanda.r.brindle@intel.com>
-Subject: Re: [layerindex-web][patch v3 1/1] recipes.html: Require keyword for recipe search
+In-Reply-To: <CAE0QtjP2tnXz6Un_BsEh3zmW3zUKvUGZWRC63NJWa-jwbZoFuQ@mail.gmail.com>
+Subject: Re: Yocto problem for Ryzen-7 cpu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,66 +58,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Nov 2017 19:08:12 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 08 Nov 2017 19:13:47 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-On Thursday, 9 November 2017 4:42:50 AM NZDT Mark Hatle wrote:
-> On 11/7/17 8:43 PM, Paul Eggleton wrote:
-> > On Wednesday, 8 November 2017 11:47:49 AM NZDT Mark Hatle wrote:
-> >> On 11/7/17 4:31 PM, Amanda Brindle wrote:
-> >>> Use JavaScript to check if the search box for recipe search is
-> >>> empty before querying the database. This will prevent the "502
-> >>> Bad Gateway" error that occurs when the query takes too long due
-> >>> to the large list of recipes. Since there are so many recipes
-> >>> spread across the layers in the OE index, there's no point in
-> >>> allowing a user to search without a keyword in order to browse
-> >>> the list; it simply isn't digestible as a whole.
-> >>>
-> >>> Add a browse button for the Machines, Classes, and Distros pages.
-> >>
-> >> There are reasons to view all of the recipes, machines, classes, distros,
-> >> etc. (Not necessarily good reasons, but I know people do it.)
-> >>
-> >> If the query is too long, it would be better to figure out a way to get a
-> >> partial response and formulate the first page based on partial
-> >> responses... having a multipage response that the user can look at.
-> > 
-> > I'm willing to be proven wrong, but unfortunately it looks to me like this 
-> > will require major re-engineering to sort out for a fairly weak use case.
-> > If you consider this important, would you be able to look into making it
-> > work?
-> 
-> I suspect much of the display engine probably needs a rework as the contents
-> of the layer index have grown.  I can't promise anything, but I'll see if I
-> can find anyone who can work on it.
 
-Could be yes, thanks.
 
-> For recipes, the use-case is very weak.  I have talked with people though
-> who have just wanted a list of what is available (one big list).  Primarily
-> so they can compare what is available to some magic spec sheet they are
-> looking at.
+On 08.11.2017 20:07, Jerry Lian wrote:
+> (weird, yocto mails to me blocked by my gmail, treated as spam?)
+>
+> Anyway, just change to Ubuntu-17, run first build, succeed with no 
+> failures, good sign!
+> Will run more and see.
+Glad to read that you solved your problem :-)
 
-If that's the use case though we should provide a proper export capability, 
-because comparing big lists manually 50 items at a time isn't how you'd best 
-support that. Theoretically the API could be used there but an explicit export 
-function would be more accessible.
+You are Welcome!
 
-> For the Machines, Distros pages..  people do want a full list here, as they
-> simply won't know what is available or what something is called.  The scope
-> of the machines and distros of course is nowhere near the scope for the full
-> recipe list.
-
-Right, and this patch doesn't remove the ability to browse those - in fact it 
-makes it easier to do so by adding an explicit browse button, so I think we're 
-OK there.
-
-Cheers,
-Paul
+>
+>
+>
+>
+>
+> On Wed, Nov 8, 2017 at 12:06 PM, Jerry Lian <jerry.lian@gmail.com 
+> <mailto:jerry.lian@gmail.com>> wrote:
+>
+>     (my Gmail does not accept new message for same subject? so I open
+>     a new thread)
+>
+>     So bad: I do use Ryzen-7.
+>     will Ubuntu-17 or latest Debian fix the problem?
+>
+>
+>
+>
+>
+>
 
 -- 
+Ayoub Zaki
+Embedded Systems Consultant
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Vaihinger Straße 2/1
+D-71634 Ludwigsburg
+
+Tel.     : +4971415074546
+Mobile   : +4917662901545
+Email    : ayoub.zaki@embexus.com
+Homepage : https://embexus.com
+VAT No.  : DE313902634
+
 
