@@ -1,40 +1,67 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23AAAE00D2D; Wed,  8 Nov 2017 18:47:21 -0800 (PST)
+	id 658EAE00D3A; Wed,  8 Nov 2017 19:45:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.192.194 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (armccurdy[at]gmail.com)
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.192.194 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A5F5E00CE8
-	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 18:47:20 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vA92lIhU017851
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 8 Nov 2017 18:47:18 -0800 (PST)
-Received: from [128.224.163.189] (128.224.163.189) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Wed, 8 Nov 2017 18:47:17 -0800
-To: Zhen LiWei <zhenlw@msn.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <PS1PR04MB1001467D35F6C6E759E56B7AC7510@PS1PR04MB1001.apcprd04.prod.outlook.com>
-From: ChenQi <Qi.Chen@windriver.com>
-Message-ID: <69b58a42-f0dd-e6a0-d13a-0ae5fc3ee6ab@windriver.com>
-Date: Thu, 9 Nov 2017 10:48:41 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
-MIME-Version: 1.0
-In-Reply-To: <PS1PR04MB1001467D35F6C6E759E56B7AC7510@PS1PR04MB1001.apcprd04.prod.outlook.com>
-X-Originating-IP: [128.224.163.189]
-Subject: Re: use native (cross) toolchain instead of a populated nativesdk (cross-canadian) toolchain
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5563FE00D2C
+	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 19:45:43 -0800 (PST)
+Received: by mail-pf0-f194.google.com with SMTP id b85so3322769pfj.13
+	for <yocto@yoctoproject.org>; Wed, 08 Nov 2017 19:45:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=YXUee2VN70Lo5yapDZixSuw5NrWqN541Fu2NA6bcMSI=;
+	b=FlSeyuFkqEAqRtcpbMWzz/W+b6uofwvHPStO8ml/pMtmGQggjXptaonnTwSu2sxmm9
+	jErxcAS+6TcGEGJVJ+mCKv92GkAmev11cKJtASEdjFpFEL86ID1R6FbRwrTDyMXE+cm4
+	LsaTEPQP7S/SCHRq0szAWOi5EgEvjzb/67nouVZR8+52HNtBv0ipFIrITB0RnZycSCaX
+	O3EqOw7tb2UUhdOyOK67Vz+roa121UOwV/S17G1eNV0iTCZztpzo9LE0JFNVKR2jd6C4
+	9uzxjrmF9za/NdIyCZj4qT4ZMCtOvNqCJghR6np92Ysssb25KLN3EJA/2JAxicrPgFSJ
+	w7tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=YXUee2VN70Lo5yapDZixSuw5NrWqN541Fu2NA6bcMSI=;
+	b=uboypBA1koD7+epmcyIh52HfhxtiNO+UbdcTYcJJ/aTfjOehu2po9ywsG2MfPHWCaS
+	WhhC3yiDn6tHubd1UNHIAait5fLWrjKNG8WUBdOiVcAhl2+gbCxhdVoPU9zRFRxcrrPf
+	kG2oE+81DreNHvVw1ypbA4LGv3+io8ts+OHS2rUowVGPRzJDaU9y8RGPC0uY4PSLEIpX
+	/Dnm/UPliumS7QP1h+9qqtARords+5EHVJIzKYOe2JW1upBxJh/ZUujxX8oUGXt806/D
+	kUsG7Dok3pqnK+yeYZ6z2jhBRgaxrFb6A0tjjqscZuGNysYIUNyp8MjHsvcZ3fEeK2P7
+	CW9Q==
+X-Gm-Message-State: AJaThX6jdr7UhJytJ7Gccdaj3FMlbV9WCKS2gcDE0/Snu9Wf7rjRavC5
+	cjz0KajeWrkrPIx7ZVkX0fQn3Q==
+X-Google-Smtp-Source: ABhQp+SvkCKx/7LbTbbuN2RLrLDRa1GxmySV4hLp/NOvocz7ekte6kes7/qeJBRa46NDiUBrhwgEMQ==
+X-Received: by 10.159.254.1 with SMTP id r1mr2521124pls.186.1510199142933;
+	Wed, 08 Nov 2017 19:45:42 -0800 (PST)
+Received: from e6520.guest-wifi.scl.liberty.com ([4.16.80.121])
+	by smtp.gmail.com with ESMTPSA id
+	z86sm11286667pfk.34.2017.11.08.19.45.40
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 08 Nov 2017 19:45:41 -0800 (PST)
+From: Andre McCurdy <armccurdy@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed,  8 Nov 2017 19:45:36 -0800
+Message-Id: <1510199136-11656-1-git-send-email-armccurdy@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-gplv2][PATCH] gnutls: update 3.3.27 -> 3.3.28
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,133 +73,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Nov 2017 02:47:21 -0000
-Content-Type: multipart/alternative;
-	boundary="------------FD2F60B3B524D1771DD1E16A"
+X-List-Received-Date: Thu, 09 Nov 2017 03:45:45 -0000
 
---------------FD2F60B3B524D1771DD1E16A
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+* Version 3.3.28 (released 2017-07-04)
 
-If I understand it correctly, you are talking about using native 
-components directly for SDK.
-If you are using all the same machine with the same OS, you could use 
-native components directly, maybe with a little modification.
-But in fact, the host where SDK is installed might be different from the 
-host where SDK is built.
-Check the SDKMACHINE variable.
+** libgnutls: Fixed issue when rehandshaking without a client certificate in
+   a session which initially used one. Reported by Frantisek Sumsal.
 
-Best Regards,
-Chen Qi
+** libgnutls: fix issue in RSA-PSK client callback which resulted in no username
+   being sent to the peer. Patch by Nicolas Dufresne.
 
-On 11/07/2017 11:09 PM, Zhen LiWei wrote:
->
-> Hi, I am working on a yocto 2.0 based distro and we usually 
-> populate_sdk and use the toolchain included in SDK.
->
-> But we also like to check the SDK into a SVN repo, and checkout it 
-> anywhere, and use it away right where it is checked out. And since the 
-> nativesdk binaries are based on a different glibc than native, and 
-> have the “dynamic loader” path hardcoded in them, I have to patch the 
-> toolchain binaries’ .interp secion to point to a common place, and 
-> update the loader into that common place automatically in some way. 
-> Other than this, things work very good for us.
->
-> Then I was thinking: is it a good practice, to use the native/cross 
-> toolchain directly from the tmp/sysroots/x86_64-native folder. I tried 
-> and succeeded, by just moving the sysroot to where the checked-out 
-> nativesdk toolchain was.
->
-> An extra bonus about this is that we got a more populated sysroot for 
-> native platform too, for example a openssl dev package at the same 
-> version as that on target, that we can actually use to make the native 
-> platform a closer-to-target dev env for some “workbench” build.
->
-> However I’m still wondering: is there any thing negative about this 
-> style? One thing known is that the SDK-using host need to be similar 
-> to the SDK-building host, but that is not an issue for us. But 
-> anything else, guys?
->
->
->
+** libgnutls: no longer parse the ResponseID field of the status response
+   TLS extension. The field is not used by GnuTLS nor is made available to
+   calling applications. That addresses a null pointer dereference on server
+   side caused by packets containing the ResponseID field. Reported
+   by Hubert Kario. [GNUTLS-SA-2017-4]
+
+** libgnutls: Handle specially HSMs which request explicit authentication.
+   There are HSMs which return CKR_USER_NOT_LOGGED_IN on the first private key
+   operation. Detect that state and try to login.
+
+** libgnutls: the GNUTLS_PKCS11_OBJ_FLAG_LOGIN will force a login on HSMs.
+   That is, even in tokens which do not have a CKF_LOGIN_REQUIRED flag
+   a login will be forced. This improves operation on certain Safenet HSMs.
+
+** libgnutls: do not set leading zeros when copying integers on HSMs.
+   PKCS#11 defines integers as unsigned having most significant byte
+   first, e.g., 32768 = 0x80 0x00. This is interpreted literraly by
+   some HSMs which do not accept an integer with a leading zero. This
+   improves operation with certain Atos HSMs.
+
+** libgnutls: Backported PKCS#11 key generation functionality for DSA keys.
+
+** libgnutls: Improve check for /dev/urandom uniqueness. Ensure that when
+   gnutls_global_init() is called for a second time that /dev/urandom is
+   re-opened when the inode or device ID has changed.
+
+** API and ABI modifications:
+No changes since last version.
+
+Signed-off-by: Andre McCurdy <armccurdy@gmail.com>
+---
+ recipes-support/gnutls/gnutls.inc       |  9 ++++-----
+ recipes-support/gnutls/gnutls_3.3.27.bb | 17 -----------------
+ recipes-support/gnutls/gnutls_3.3.28.bb |  8 ++++++++
+ 3 files changed, 12 insertions(+), 22 deletions(-)
+ delete mode 100644 recipes-support/gnutls/gnutls_3.3.27.bb
+ create mode 100644 recipes-support/gnutls/gnutls_3.3.28.bb
+
+diff --git a/recipes-support/gnutls/gnutls.inc b/recipes-support/gnutls/gnutls.inc
+index 4a5c3df..4cf375f 100644
+--- a/recipes-support/gnutls/gnutls.inc
++++ b/recipes-support/gnutls/gnutls.inc
+@@ -8,9 +8,8 @@ LICENSE_${PN}-xx = "LGPLv2.1+"
+ LICENSE_${PN}-bin = "GPLv3+"
+ LICENSE_${PN}-openssl = "GPLv3+"
+ 
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=71391c8e0c1cfe68077e7fce3b586283 \
+-                    file://doc/COPYING;md5=d32239bcb673463ab874e80d47fae504 \
+-                    file://doc/COPYING.LESSER;md5=a6f89e2100d9b6cdffcea4f398e37343"
++LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504 \
++                    file://COPYING.LESSER;md5=a6f89e2100d9b6cdffcea4f398e37343"
+ 
+ DEPENDS = "nettle gmp virtual/libiconv"
+ DEPENDS_append_libc-musl = " argp-standalone"
+@@ -21,9 +20,8 @@ SRC_URI = "ftp://ftp.gnutls.org/gcrypt/gnutls/v${SHRT_VER}/gnutls-${PV}.tar.xz"
+ 
+ inherit autotools texinfo binconfig pkgconfig gettext lib_package gtk-doc
+ 
+-PACKAGECONFIG ??= "libidn zlib"
++PACKAGECONFIG ??= "zlib"
+ 
+-PACKAGECONFIG[libidn] = "--with-idn,--without-idn,libidn"
+ PACKAGECONFIG[libtasn1] = "--with-included-libtasn1=no,--with-included-libtasn1,libtasn1"
+ PACKAGECONFIG[p11-kit] = "--with-p11-kit,--without-p11-kit,p11-kit"
+ PACKAGECONFIG[tpm] = "--with-tpm,--without-tpm,trousers"
+@@ -31,6 +29,7 @@ PACKAGECONFIG[zlib] = "--with-zlib,--without-zlib,zlib"
+ 
+ EXTRA_OECONF = " \
+     --enable-doc \
++    --disable-crywrap \
+     --disable-libdane \
+     --disable-guile \
+     --disable-rpath \
+diff --git a/recipes-support/gnutls/gnutls_3.3.27.bb b/recipes-support/gnutls/gnutls_3.3.27.bb
+deleted file mode 100644
+index a1dcdb5..0000000
+--- a/recipes-support/gnutls/gnutls_3.3.27.bb
++++ /dev/null
+@@ -1,17 +0,0 @@
+-require gnutls.inc
+-
+-LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504 \
+-                    file://COPYING.LESSER;md5=a6f89e2100d9b6cdffcea4f398e37343"
+-
+-SRC_URI += " \
+-    file://configure.ac-fix-sed-command.patch \
+-    file://use-pkg-config-to-locate-zlib.patch \
+-"
+-SRC_URI[md5sum] = "8ee8cebd7f7575b11f232766a21c31d3"
+-SRC_URI[sha256sum] = "8dfda16c158ef5c134010d51d1a91d02aa5d43b8cb711b1572650a7ffb56b17f"
+-
+-# This version doesn't support this option added in newer gnutls
+-# ERROR: gnutls-3.3.27-r0 do_configure: QA Issue: gnutls: configure was passed unrecognised options: --with-idn [unknown-configure-option]
+-PACKAGECONFIG[libidn] = ""
+-# but it still has the libidn dependency, without this option
+-EXTRA_OECONF += "--disable-crywrap"
+diff --git a/recipes-support/gnutls/gnutls_3.3.28.bb b/recipes-support/gnutls/gnutls_3.3.28.bb
+new file mode 100644
+index 0000000..1b23369
+--- /dev/null
++++ b/recipes-support/gnutls/gnutls_3.3.28.bb
+@@ -0,0 +1,8 @@
++require gnutls.inc
++
++SRC_URI += " \
++    file://configure.ac-fix-sed-command.patch \
++    file://use-pkg-config-to-locate-zlib.patch \
++"
++SRC_URI[md5sum] = "e19718d97cee5279edf3f3b9318f926c"
++SRC_URI[sha256sum] = "608f63441abc209c5bd5f61e35f2b6128c22e06fa2ad6248a08d8a643feeb807"
+-- 
+1.9.1
 
 
---------------FD2F60B3B524D1771DD1E16A
-Content-Type: text/html; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">If I understand it correctly, you are
-      talking about using native components directly for SDK.<br>
-      If you are using all the same machine with the same OS, you could
-      use native components directly, maybe with a little modification.<br>
-      But in fact, the host where SDK is installed might be different
-      from the host where SDK is built.<br>
-      Check the SDKMACHINE variable.<br>
-      <br>
-      Best Regards,<br>
-      Chen Qi<br>
-      <br>
-      On 11/07/2017 11:09 PM, Zhen LiWei wrote:<br>
-    </div>
-    <blockquote
-cite="mid:PS1PR04MB1001467D35F6C6E759E56B7AC7510@PS1PR04MB1001.apcprd04.prod.outlook.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <div dir="auto">
-        <div class="gmail_extra" dir="auto">
-          <div class="gmail_quote">
-            <p style="font-family: sans-serif; font-size: 18.048px;">Hi,
-              I am working on a yocto 2.0 based distro and we usually
-              populate_sdk and use the toolchain included in SDK.</p>
-            <p style="font-family: sans-serif; font-size: 18.048px;"> </p>
-            <p style="font-family: sans-serif; font-size: 18.048px;">But
-              we also like to check the SDK into a SVN repo, and
-              checkout it anywhere, and use it away right where it is
-              checked out. And since the nativesdk binaries are based on
-              a different glibc than native, and have the “dynamic
-              loader” path hardcoded in them, I have to patch the
-              toolchain binaries’ .interp secion to point to a common
-              place, and update the loader into that common place
-              automatically in some way. Other than this, things work
-              very good for us.</p>
-            <p style="font-family: sans-serif; font-size: 18.048px;"> </p>
-            <p style="font-family: sans-serif; font-size: 18.048px;">Then
-              I was thinking: is it a good practice, to use the
-              native/cross toolchain directly from the
-              tmp/sysroots/x86_64-native folder. I tried and succeeded,
-              by just moving the sysroot to where the checked-out
-              nativesdk toolchain was.</p>
-            <p style="font-family: sans-serif; font-size: 18.048px;"> </p>
-            <p style="font-family: sans-serif; font-size: 18.048px;">An
-              extra bonus about this is that we got a more populated
-              sysroot for native platform too, for example a openssl dev
-              package at the same version as that on target, that we can
-              actually use to make the native platform a
-              closer-to-target dev env for some “workbench” build.<span
-                style="font-size:12pt"></span></p>
-            <p style="font-family: sans-serif; font-size: 18.048px;"> </p>
-            <p style="font-family: sans-serif; font-size: 18.048px;">However
-              I’m still wondering: is there any thing negative about
-              this style? One thing known is that the SDK-using host
-              need to be similar to the SDK-building host, but that is
-              not an issue for us. But anything else, guys?</p>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <p><br>
-    </p>
-  </body>
-</html>
-
---------------FD2F60B3B524D1771DD1E16A--
