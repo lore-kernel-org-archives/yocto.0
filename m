@@ -1,71 +1,40 @@
-Return-Path: <john.rama01@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D612E00D2D; Wed,  8 Nov 2017 17:11:17 -0800 (PST)
+	id 23AAAE00D2D; Wed,  8 Nov 2017 18:47:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (john.rama01[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.178 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.223.178 listed in dnsbl.sorbs.net]
-Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8001BE00CE8
-	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 17:11:16 -0800 (PST)
-Received: by mail-io0-f178.google.com with SMTP id n137so8039333iod.6
-	for <yocto@yoctoproject.org>; Wed, 08 Nov 2017 17:11:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding;
-	bh=eHiCQOEg8Oaql/y2sDjTS3ilACHoITltfTEKBQaMCpU=;
-	b=OfyLp0i6m5EtWecpUDml1T2hbWZlv4FQBlHSNVbi4v3d2nQ5tfr/MMoqiBEK0Rp0/5
-	Z3Jru4IbnZP18SdzupMY2Co29T3pkLLo2CdAfJWwEiSiPs+ykN9ly8mRD46gMQZhkkuK
-	IEjr152rPGjJbH5qL/bjcZxzE3dKoctXNeQ0/KvMxLI036YPFncNlySYQ91o2TdcDLZY
-	wan4NSW+I2q3/WErApxVgltMySK5/QtoJIXMLpVut3zTCJYk2eTcbM29qc5synWgA9y/
-	R8ZL3t0n8nsEiAIgfX8FQoHqHhdPKeSoM3dLefT3uxKZAScUDcB6CFPuoKIdjxCZu5Es
-	MSPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=eHiCQOEg8Oaql/y2sDjTS3ilACHoITltfTEKBQaMCpU=;
-	b=Jrf5PmtITjOu9xUWw1jvLkAFywM7juC4lG6xWXt0qjFRf7qjxmU/F9ILej2wcsrAH3
-	5RobLPhCerC572DojNBwLQf80n3cFQJlpqeeDPIc8Wo/K8xJMkpRwjlLJldt4cKT80r6
-	N0k1URbn4muYSC7iRQ8paZFcOJyIpyXkF6yDllcWbZs4e1m0Y919mEyAiTz37GNoTwpH
-	EaqSQeqN1myUBrUe1sAH0ryJkyr5YIexbJbkYyWqrHLET3jMZrTZD1lMf8kgMviV/l+f
-	/nA0aTtRu9ORcyGKUy9a+KZR2N8zptLTZFSViyu8EcfLuN7T/6nJf3kbiZAeOph2XRr6
-	XECg==
-X-Gm-Message-State: AJaThX5DdV5YbUs1XGGAWEnPyEqsaTBq0cK4WHjNWD+b0SwmWo4t2V3g
-	UztkpJa4QgEueDUebzcy32dAgA==
-X-Google-Smtp-Source: AGs4zMbt9r4sDV0vXl+EIOdV71twdgXbZp4Ny8NRMKiYr50rN9rKqoMKjHv+vcq0aDpNWTSbJPNSlA==
-X-Received: by 10.107.102.13 with SMTP id a13mr3087497ioc.185.1510189875289;
-	Wed, 08 Nov 2017 17:11:15 -0800 (PST)
-Received: from [192.168.0.1] (50-77-232-178-static.hfc.comcastbusiness.net.
-	[50.77.232.178]) by smtp.googlemail.com with ESMTPSA id
-	l5sm2544379ioe.13.2017.11.08.17.11.14 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 08 Nov 2017 17:11:14 -0800 (PST)
-To: yocto@yoctoproject.org
-From: John Rama <john.rama01@gmail.com>
-Message-ID: <5A03AB30.5040907@gmail.com>
-Date: Wed, 8 Nov 2017 20:11:12 -0500
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A5F5E00CE8
+	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 18:47:20 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vA92lIhU017851
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 8 Nov 2017 18:47:18 -0800 (PST)
+Received: from [128.224.163.189] (128.224.163.189) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
+	Wed, 8 Nov 2017 18:47:17 -0800
+To: Zhen LiWei <zhenlw@msn.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <PS1PR04MB1001467D35F6C6E759E56B7AC7510@PS1PR04MB1001.apcprd04.prod.outlook.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <69b58a42-f0dd-e6a0-d13a-0ae5fc3ee6ab@windriver.com>
+Date: Thu, 9 Nov 2017 10:48:41 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Subject: dpkg --print-architecture returns wrong result
+In-Reply-To: <PS1PR04MB1001467D35F6C6E759E56B7AC7510@PS1PR04MB1001.apcprd04.prod.outlook.com>
+X-Originating-IP: [128.224.163.189]
+Subject: Re: use native (cross) toolchain instead of a populated nativesdk (cross-canadian) toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,45 +46,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Nov 2017 01:11:17 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 09 Nov 2017 02:47:21 -0000
+Content-Type: multipart/alternative;
+	boundary="------------FD2F60B3B524D1771DD1E16A"
 
-Hi, Yocto specialists
+--------------FD2F60B3B524D1771DD1E16A
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I've built the whole system with deb package,
-and trying to use package feed feature of yocto.
+If I understand it correctly, you are talking about using native 
+components directly for SDK.
+If you are using all the same machine with the same OS, you could use 
+native components directly, maybe with a little modification.
+But in fact, the host where SDK is installed might be different from the 
+host where SDK is built.
+Check the SDKMACHINE variable.
 
-When try trying to install some package from target, I faced following error.
+Best Regards,
+Chen Qi
 
-# apt-get install fontconfig-utils
-....
-package architecture (armhf) does not match system (armel)
-....
+On 11/07/2017 11:09 PM, Zhen LiWei wrote:
+>
+> Hi, I am working on a yocto 2.0 based distro and we usually 
+> populate_sdk and use the toolchain included in SDK.
+>
+> But we also like to check the SDK into a SVN repo, and checkout it 
+> anywhere, and use it away right where it is checked out. And since the 
+> nativesdk binaries are based on a different glibc than native, and 
+> have the “dynamic loader” path hardcoded in them, I have to patch the 
+> toolchain binaries’ .interp secion to point to a common place, and 
+> update the loader into that common place automatically in some way. 
+> Other than this, things work very good for us.
+>
+> Then I was thinking: is it a good practice, to use the native/cross 
+> toolchain directly from the tmp/sysroots/x86_64-native folder. I tried 
+> and succeeded, by just moving the sysroot to where the checked-out 
+> nativesdk toolchain was.
+>
+> An extra bonus about this is that we got a more populated sysroot for 
+> native platform too, for example a openssl dev package at the same 
+> version as that on target, that we can actually use to make the native 
+> platform a closer-to-target dev env for some “workbench” build.
+>
+> However I’m still wondering: is there any thing negative about this 
+> style? One thing known is that the SDK-using host need to be similar 
+> to the SDK-building host, but that is not an issue for us. But 
+> anything else, guys?
+>
+>
+>
 
-When checking the install package of the target system, everything is armhf architecture. 
-# dpkg -l 
-...
-||/ Name                                           Version                     Architecture Description
-+++-==============================================-===========================-============-===========================================================================================
-ii  alsa-conf:armhf                                1.1.0-r0                    armhf        ALSA sound library
-ii  alsa-conf-base:armhf                           1.1.0-r0                    armhf        ALSA sound library
-ii  alsa-lib:armhf                                 1.1.0-r0                    armhf        ALSA sound library
-...
 
-However, when checking with following commands, it tells armel.
-# dpkg --print-architecture
-armel
+--------------FD2F60B3B524D1771DD1E16A
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
 
-I think "dpkg --print-architecture" returns wrong result. 
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">If I understand it correctly, you are
+      talking about using native components directly for SDK.<br>
+      If you are using all the same machine with the same OS, you could
+      use native components directly, maybe with a little modification.<br>
+      But in fact, the host where SDK is installed might be different
+      from the host where SDK is built.<br>
+      Check the SDKMACHINE variable.<br>
+      <br>
+      Best Regards,<br>
+      Chen Qi<br>
+      <br>
+      On 11/07/2017 11:09 PM, Zhen LiWei wrote:<br>
+    </div>
+    <blockquote
+cite="mid:PS1PR04MB1001467D35F6C6E759E56B7AC7510@PS1PR04MB1001.apcprd04.prod.outlook.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div dir="auto">
+        <div class="gmail_extra" dir="auto">
+          <div class="gmail_quote">
+            <p style="font-family: sans-serif; font-size: 18.048px;">Hi,
+              I am working on a yocto 2.0 based distro and we usually
+              populate_sdk and use the toolchain included in SDK.</p>
+            <p style="font-family: sans-serif; font-size: 18.048px;"> </p>
+            <p style="font-family: sans-serif; font-size: 18.048px;">But
+              we also like to check the SDK into a SVN repo, and
+              checkout it anywhere, and use it away right where it is
+              checked out. And since the nativesdk binaries are based on
+              a different glibc than native, and have the “dynamic
+              loader” path hardcoded in them, I have to patch the
+              toolchain binaries’ .interp secion to point to a common
+              place, and update the loader into that common place
+              automatically in some way. Other than this, things work
+              very good for us.</p>
+            <p style="font-family: sans-serif; font-size: 18.048px;"> </p>
+            <p style="font-family: sans-serif; font-size: 18.048px;">Then
+              I was thinking: is it a good practice, to use the
+              native/cross toolchain directly from the
+              tmp/sysroots/x86_64-native folder. I tried and succeeded,
+              by just moving the sysroot to where the checked-out
+              nativesdk toolchain was.</p>
+            <p style="font-family: sans-serif; font-size: 18.048px;"> </p>
+            <p style="font-family: sans-serif; font-size: 18.048px;">An
+              extra bonus about this is that we got a more populated
+              sysroot for native platform too, for example a openssl dev
+              package at the same version as that on target, that we can
+              actually use to make the native platform a
+              closer-to-target dev env for some “workbench” build.<span
+                style="font-size:12pt"></span></p>
+            <p style="font-family: sans-serif; font-size: 18.048px;"> </p>
+            <p style="font-family: sans-serif; font-size: 18.048px;">However
+              I’m still wondering: is there any thing negative about
+              this style? One thing known is that the SDK-using host
+              need to be similar to the SDK-building host, but that is
+              not an issue for us. But anything else, guys?</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <p><br>
+    </p>
+  </body>
+</html>
 
-I'm using toolchain "arm-poky-linux-gnueabi-gcc" and result of dumpmachine option is as followings.
-$ arm-poky-linux-gnueabi-gcc -dumpmachine 
-arm-poky-linux-gnueabi
-
-I have no idea how to tell yocto to configure the target system correctly.
-Any feedback is highly appreciated.
-
-Kind Regards,
-Jonh Rama
-
+--------------FD2F60B3B524D1771DD1E16A--
