@@ -1,67 +1,67 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 658EAE00D3A; Wed,  8 Nov 2017 19:45:45 -0800 (PST)
+	id D9CB0E00CE8; Thu,  9 Nov 2017 03:26:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.194 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (armccurdy[at]gmail.com)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_SPAM autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
 	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.194 listed in dnsbl.sorbs.net]
+	*      [209.85.214.53 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
-	[209.85.192.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5563FE00D2C
-	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 19:45:43 -0800 (PST)
-Received: by mail-pf0-f194.google.com with SMTP id b85so3322769pfj.13
-	for <yocto@yoctoproject.org>; Wed, 08 Nov 2017 19:45:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=YXUee2VN70Lo5yapDZixSuw5NrWqN541Fu2NA6bcMSI=;
-	b=FlSeyuFkqEAqRtcpbMWzz/W+b6uofwvHPStO8ml/pMtmGQggjXptaonnTwSu2sxmm9
-	jErxcAS+6TcGEGJVJ+mCKv92GkAmev11cKJtASEdjFpFEL86ID1R6FbRwrTDyMXE+cm4
-	LsaTEPQP7S/SCHRq0szAWOi5EgEvjzb/67nouVZR8+52HNtBv0ipFIrITB0RnZycSCaX
-	O3EqOw7tb2UUhdOyOK67Vz+roa121UOwV/S17G1eNV0iTCZztpzo9LE0JFNVKR2jd6C4
-	9uzxjrmF9za/NdIyCZj4qT4ZMCtOvNqCJghR6np92Ysssb25KLN3EJA/2JAxicrPgFSJ
-	w7tg==
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF3BCE00CE8
+	for <yocto@yoctoproject.org>; Thu,  9 Nov 2017 03:26:13 -0800 (PST)
+Received: by mail-it0-f53.google.com with SMTP id l196so10321422itl.4
+	for <yocto@yoctoproject.org>; Thu, 09 Nov 2017 03:26:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=nspULrgDenD7SQdVony76+UNDwfvMzjytmGOxLwoK0U=;
+	b=anFEG7r4L/M5Bq+bZeEaCTJ49zR7UXY8d8lXNRRpSVqv9yDlokFPVqBDJK7xNp7Vvo
+	QT+6mCsgbceEceU8P40uMp7ChfakiGIT1mCa4Sjj26LJc0DM8ixN5hFQEeI6lt2J0KoJ
+	3vSFV09xgZ3fM20gN0KbZtm2Hv9Spyd8ITZ2c/qQmLz2pM23VZ3ahcQBDmIkMsbUH1TT
+	utokhnP/FO61dHCbOBUm4XH2unOxoOX9XNnpY8fyh7pVDcEcwZhO2HPb+x0jp8GrPd7M
+	RYxHLC4uAmiW9L50pid65mmkLM27XICROMJZVenJTVPUw5FzT+wYCL/aMbWm9psyTDmS
+	NfQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=YXUee2VN70Lo5yapDZixSuw5NrWqN541Fu2NA6bcMSI=;
-	b=uboypBA1koD7+epmcyIh52HfhxtiNO+UbdcTYcJJ/aTfjOehu2po9ywsG2MfPHWCaS
-	WhhC3yiDn6tHubd1UNHIAait5fLWrjKNG8WUBdOiVcAhl2+gbCxhdVoPU9zRFRxcrrPf
-	kG2oE+81DreNHvVw1ypbA4LGv3+io8ts+OHS2rUowVGPRzJDaU9y8RGPC0uY4PSLEIpX
-	/Dnm/UPliumS7QP1h+9qqtARords+5EHVJIzKYOe2JW1upBxJh/ZUujxX8oUGXt806/D
-	kUsG7Dok3pqnK+yeYZ6z2jhBRgaxrFb6A0tjjqscZuGNysYIUNyp8MjHsvcZ3fEeK2P7
-	CW9Q==
-X-Gm-Message-State: AJaThX6jdr7UhJytJ7Gccdaj3FMlbV9WCKS2gcDE0/Snu9Wf7rjRavC5
-	cjz0KajeWrkrPIx7ZVkX0fQn3Q==
-X-Google-Smtp-Source: ABhQp+SvkCKx/7LbTbbuN2RLrLDRa1GxmySV4hLp/NOvocz7ekte6kes7/qeJBRa46NDiUBrhwgEMQ==
-X-Received: by 10.159.254.1 with SMTP id r1mr2521124pls.186.1510199142933;
-	Wed, 08 Nov 2017 19:45:42 -0800 (PST)
-Received: from e6520.guest-wifi.scl.liberty.com ([4.16.80.121])
-	by smtp.gmail.com with ESMTPSA id
-	z86sm11286667pfk.34.2017.11.08.19.45.40
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 08 Nov 2017 19:45:41 -0800 (PST)
-From: Andre McCurdy <armccurdy@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed,  8 Nov 2017 19:45:36 -0800
-Message-Id: <1510199136-11656-1-git-send-email-armccurdy@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-gplv2][PATCH] gnutls: update 3.3.27 -> 3.3.28
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=nspULrgDenD7SQdVony76+UNDwfvMzjytmGOxLwoK0U=;
+	b=YzH7AYFJrja6QH/klREkIiGCD6MlgM12L+az0ap6J0BrYw1KiBHokjvOZ2ZNsoG5QL
+	6PwUbLlLvwBbr0XOUxaaX3VaB8fzRSs46alq3se779dQREJUHVpcn9elwEv6KkWPS/nW
+	p2YMvVBsrBWEDqlytvqRAHiTQZZe45YhuK7XzHFT0POvnhi9wd4Bw5IojHDradc55Xrf
+	Fm6ztnoKgrIdjFIjW9tByWPD/2kFWYrd6bCa41YJdGQL0+DEfc2SPCWASohU1FBz6JV+
+	4hAVObu3CbxWUElLhldNePguHoDLYkRCGBkRBKhfa/PNYdL0PSzehRBChga2Ry4Way1/
+	He2Q==
+X-Gm-Message-State: AJaThX5/NUbj0x3d0NP5EDUQdg3S1hXkewMTuCBS9fW8NnPhs7JVVWDI
+	TB9LWSLbGJPgfsrC8xoAFCaTF5swmS0cdXVPnRx+Sg==
+X-Google-Smtp-Source: AGs4zMYHP/IhK6H7wDwlkHjB1CZ63ZYUtdohBLMlz1aaBqVJNvWfwZ4LoiNpi4xJzei6j9ho892yJMiTmElEh8oOeVA=
+X-Received: by 10.36.81.21 with SMTP id s21mr111384ita.144.1510226773009; Thu,
+	09 Nov 2017 03:26:13 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.107.176.10 with HTTP; Thu, 9 Nov 2017 03:25:52 -0800 (PST)
+In-Reply-To: <CAJ2oMhKQ=R615oVu2i-_verahERksqhMtxKq0RkjcxCmXnbKkQ@mail.gmail.com>
+References: <CAJ2oMhLQJGBZZW8uCG5C9HJDFU7=LiLB9f28Sv6D1Cm+wFiPWg@mail.gmail.com>
+	<CAJTo0LZ4WA8cRS3OcryYQubQTBFPyA=Gkf_e_Er1rV7T4wRdsA@mail.gmail.com>
+	<CAJ2oMhKQ=R615oVu2i-_verahERksqhMtxKq0RkjcxCmXnbKkQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 9 Nov 2017 11:25:52 +0000
+Message-ID: <CAJTo0LYW2tz6BryyNBLMpBkQPURB-VTqe_mW+a0+O8E7Uz+nng@mail.gmail.com>
+To: Ran Shalit <ranshalit@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: apt-get
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,127 +73,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Nov 2017 03:45:45 -0000
+X-List-Received-Date: Thu, 09 Nov 2017 11:26:15 -0000
+Content-Type: multipart/alternative; boundary="001a113a714655fdcd055d8b1236"
 
-* Version 3.3.28 (released 2017-07-04)
+--001a113a714655fdcd055d8b1236
+Content-Type: text/plain; charset="UTF-8"
 
-** libgnutls: Fixed issue when rehandshaking without a client certificate in
-   a session which initially used one. Reported by Frantisek Sumsal.
+(adding yocto@ back to CC)
 
-** libgnutls: fix issue in RSA-PSK client callback which resulted in no username
-   being sent to the peer. Patch by Nicolas Dufresne.
+I don't know where you saw that but that is very wrong.
 
-** libgnutls: no longer parse the ResponseID field of the status response
-   TLS extension. The field is not used by GnuTLS nor is made available to
-   calling applications. That addresses a null pointer dereference on server
-   side caused by packets containing the ResponseID field. Reported
-   by Hubert Kario. [GNUTLS-SA-2017-4]
+Set PACKAGE_CLASSES to the package manager that you want to use.  If you
+want to use opkg, then PACKAGE_CLASSES should be package_ipk (historical
+naming).  If you want opkg to be present in the images ensure
+IMAGE_FEATURES contains package-management.
 
-** libgnutls: Handle specially HSMs which request explicit authentication.
-   There are HSMs which return CKR_USER_NOT_LOGGED_IN on the first private key
-   operation. Detect that state and try to login.
+PACKAGE_CLASSES controls what package formats are generated, and multiple
+are supported for flexibility and testing purposes.  For real world use
+there's no need to have more than one.  The first entry is the package type
+that is actually used in the rootfs generation.
 
-** libgnutls: the GNUTLS_PKCS11_OBJ_FLAG_LOGIN will force a login on HSMs.
-   That is, even in tokens which do not have a CKF_LOGIN_REQUIRED flag
-   a login will be forced. This improves operation on certain Safenet HSMs.
+package-management needs to be in IMAGE_FEATURES to both get the tools
+installed (opkg in your case, apt-get for dpkg, yum for rpm) and to keep
+the package management database on the disk.  By removing
+package-management from IMAGE_FEATURES all traces of the package manager
+will be removed from the rootfs, which is useful if you don't want to
+support on-target use of the package manager.
 
-** libgnutls: do not set leading zeros when copying integers on HSMs.
-   PKCS#11 defines integers as unsigned having most significant byte
-   first, e.g., 32768 = 0x80 0x00. This is interpreted literraly by
-   some HSMs which do not accept an integer with a leading zero. This
-   improves operation with certain Atos HSMs.
+Ross
 
-** libgnutls: Backported PKCS#11 key generation functionality for DSA keys.
+On 9 November 2017 at 06:45, Ran Shalit <ranshalit@gmail.com> wrote:
 
-** libgnutls: Improve check for /dev/urandom uniqueness. Ensure that when
-   gnutls_global_init() is called for a second time that /dev/urandom is
-   re-opened when the inode or device ID has changed.
+> Hi,
+>
+> We also consider using opkg.
+>
+> Now, I have some confusion as to how to install opkg.
+> I see in some documentation that it should be installed as following:
+>
+> PACKAGE_CLASSES ?= "package_rpm package_ipk"
+> IMAGE_INSTALL_append = " opkg "
+>
+> Does it mean there are 2 package managers active ?
+> How can we know which of them is active ?
+>
+>
+> If "?=" means that it shall be defined only if not defined previously,
+> so if it is already defined as  package_rpm , it might not install
+> package_ipk?
+> Doesn't it mean that "opkg" might be installed without the required
+> package_ipk ?
+>
+> Thank you,
+> Ran
+>
+> On Wed, Nov 8, 2017 at 9:26 PM, Burton, Ross <ross.burton@intel.com>
+> wrote:
+> > Set PACKAGE_CLASSES to package_deb, and then ensure IMAGE_FEATURES
+> includes
+> > package-management.
+> >
+> > Ross
+> >
+> > On 8 November 2017 at 19:16, Ran Shalit <ranshalit@gmail.com> wrote:
+> >>
+> >> Hello,
+> >>
+> >> Is there a way to add "apt-get" command (and package manager) in yocto ?
+> >>
+> >> Thank you,
+> >> Ran
+> >> --
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
+>
 
-** API and ABI modifications:
-No changes since last version.
+--001a113a714655fdcd055d8b1236
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Andre McCurdy <armccurdy@gmail.com>
----
- recipes-support/gnutls/gnutls.inc       |  9 ++++-----
- recipes-support/gnutls/gnutls_3.3.27.bb | 17 -----------------
- recipes-support/gnutls/gnutls_3.3.28.bb |  8 ++++++++
- 3 files changed, 12 insertions(+), 22 deletions(-)
- delete mode 100644 recipes-support/gnutls/gnutls_3.3.27.bb
- create mode 100644 recipes-support/gnutls/gnutls_3.3.28.bb
+<div dir=3D"ltr"><div>(adding yocto@ back to CC)</div><div><br></div>I don&=
+#39;t know where you saw that but that is very wrong.<div><br></div><div>Se=
+t PACKAGE_CLASSES to the package manager that you want to use.=C2=A0 If you=
+ want to use opkg, then PACKAGE_CLASSES should be package_ipk (historical n=
+aming).=C2=A0 If you want opkg to be present in the images ensure IMAGE_FEA=
+TURES contains package-management.</div><div><br></div><div>PACKAGE_CLASSES=
+ controls what package formats are generated, and multiple are supported fo=
+r flexibility and testing purposes.=C2=A0 For real world use there&#39;s no=
+ need to have more than one.=C2=A0 The first entry is the package type that=
+ is actually used in the rootfs generation.</div><div><br></div><div>packag=
+e-management needs to be in IMAGE_FEATURES to both get the tools installed =
+(opkg in your case, apt-get for dpkg, yum for rpm) and to keep the package =
+management database on the disk.=C2=A0 By removing package-management from =
+IMAGE_FEATURES all traces of the package manager will be removed from the r=
+ootfs, which is useful if you don&#39;t want to support on-target use of th=
+e package manager.</div><div><br></div><div>Ross</div></div><div class=3D"g=
+mail_extra"><br><div class=3D"gmail_quote">On 9 November 2017 at 06:45, Ran=
+ Shalit <span dir=3D"ltr">&lt;<a href=3D"mailto:ranshalit@gmail.com" target=
+=3D"_blank">ranshalit@gmail.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">Hi,<br>
+<br>
+We also consider using opkg.<br>
+<br>
+Now, I have some confusion as to how to install opkg.<br>
+I see in some documentation that it should be installed as following:<br>
+<br>
+PACKAGE_CLASSES ?=3D &quot;package_rpm package_ipk&quot;<br>
+IMAGE_INSTALL_append =3D &quot; opkg &quot;<br>
+<br>
+Does it mean there are 2 package managers active ?<br>
+How can we know which of them is active ?<br>
+<br>
+<br>
+If &quot;?=3D&quot; means that it shall be defined only if not defined prev=
+iously,<br>
+so if it is already defined as=C2=A0 package_rpm , it might not install<br>
+package_ipk?<br>
+Doesn&#39;t it mean that &quot;opkg&quot; might be installed without the re=
+quired<br>
+package_ipk ?<br>
+<br>
+Thank you,<br>
+Ran<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+On Wed, Nov 8, 2017 at 9:26 PM, Burton, Ross &lt;<a href=3D"mailto:ross.bur=
+ton@intel.com">ross.burton@intel.com</a>&gt; wrote:<br>
+&gt; Set PACKAGE_CLASSES to package_deb, and then ensure IMAGE_FEATURES inc=
+ludes<br>
+&gt; package-management.<br>
+&gt;<br>
+&gt; Ross<br>
+&gt;<br>
+&gt; On 8 November 2017 at 19:16, Ran Shalit &lt;<a href=3D"mailto:ranshali=
+t@gmail.com">ranshalit@gmail.com</a>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; Hello,<br>
+&gt;&gt;<br>
+&gt;&gt; Is there a way to add &quot;apt-get&quot; command (and package man=
+ager) in yocto ?<br>
+&gt;&gt;<br>
+&gt;&gt; Thank you,<br>
+&gt;&gt; Ran<br>
+&gt;&gt; --<br>
+&gt;&gt; ______________________________<wbr>_________________<br>
+&gt;&gt; yocto mailing list<br>
+&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
+a><br>
+&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/y=
+octo</a><br>
+&gt;<br>
+&gt;<br>
+</div></div></blockquote></div><br></div>
 
-diff --git a/recipes-support/gnutls/gnutls.inc b/recipes-support/gnutls/gnutls.inc
-index 4a5c3df..4cf375f 100644
---- a/recipes-support/gnutls/gnutls.inc
-+++ b/recipes-support/gnutls/gnutls.inc
-@@ -8,9 +8,8 @@ LICENSE_${PN}-xx = "LGPLv2.1+"
- LICENSE_${PN}-bin = "GPLv3+"
- LICENSE_${PN}-openssl = "GPLv3+"
- 
--LIC_FILES_CHKSUM = "file://LICENSE;md5=71391c8e0c1cfe68077e7fce3b586283 \
--                    file://doc/COPYING;md5=d32239bcb673463ab874e80d47fae504 \
--                    file://doc/COPYING.LESSER;md5=a6f89e2100d9b6cdffcea4f398e37343"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504 \
-+                    file://COPYING.LESSER;md5=a6f89e2100d9b6cdffcea4f398e37343"
- 
- DEPENDS = "nettle gmp virtual/libiconv"
- DEPENDS_append_libc-musl = " argp-standalone"
-@@ -21,9 +20,8 @@ SRC_URI = "ftp://ftp.gnutls.org/gcrypt/gnutls/v${SHRT_VER}/gnutls-${PV}.tar.xz"
- 
- inherit autotools texinfo binconfig pkgconfig gettext lib_package gtk-doc
- 
--PACKAGECONFIG ??= "libidn zlib"
-+PACKAGECONFIG ??= "zlib"
- 
--PACKAGECONFIG[libidn] = "--with-idn,--without-idn,libidn"
- PACKAGECONFIG[libtasn1] = "--with-included-libtasn1=no,--with-included-libtasn1,libtasn1"
- PACKAGECONFIG[p11-kit] = "--with-p11-kit,--without-p11-kit,p11-kit"
- PACKAGECONFIG[tpm] = "--with-tpm,--without-tpm,trousers"
-@@ -31,6 +29,7 @@ PACKAGECONFIG[zlib] = "--with-zlib,--without-zlib,zlib"
- 
- EXTRA_OECONF = " \
-     --enable-doc \
-+    --disable-crywrap \
-     --disable-libdane \
-     --disable-guile \
-     --disable-rpath \
-diff --git a/recipes-support/gnutls/gnutls_3.3.27.bb b/recipes-support/gnutls/gnutls_3.3.27.bb
-deleted file mode 100644
-index a1dcdb5..0000000
---- a/recipes-support/gnutls/gnutls_3.3.27.bb
-+++ /dev/null
-@@ -1,17 +0,0 @@
--require gnutls.inc
--
--LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504 \
--                    file://COPYING.LESSER;md5=a6f89e2100d9b6cdffcea4f398e37343"
--
--SRC_URI += " \
--    file://configure.ac-fix-sed-command.patch \
--    file://use-pkg-config-to-locate-zlib.patch \
--"
--SRC_URI[md5sum] = "8ee8cebd7f7575b11f232766a21c31d3"
--SRC_URI[sha256sum] = "8dfda16c158ef5c134010d51d1a91d02aa5d43b8cb711b1572650a7ffb56b17f"
--
--# This version doesn't support this option added in newer gnutls
--# ERROR: gnutls-3.3.27-r0 do_configure: QA Issue: gnutls: configure was passed unrecognised options: --with-idn [unknown-configure-option]
--PACKAGECONFIG[libidn] = ""
--# but it still has the libidn dependency, without this option
--EXTRA_OECONF += "--disable-crywrap"
-diff --git a/recipes-support/gnutls/gnutls_3.3.28.bb b/recipes-support/gnutls/gnutls_3.3.28.bb
-new file mode 100644
-index 0000000..1b23369
---- /dev/null
-+++ b/recipes-support/gnutls/gnutls_3.3.28.bb
-@@ -0,0 +1,8 @@
-+require gnutls.inc
-+
-+SRC_URI += " \
-+    file://configure.ac-fix-sed-command.patch \
-+    file://use-pkg-config-to-locate-zlib.patch \
-+"
-+SRC_URI[md5sum] = "e19718d97cee5279edf3f3b9318f926c"
-+SRC_URI[sha256sum] = "608f63441abc209c5bd5f61e35f2b6128c22e06fa2ad6248a08d8a643feeb807"
--- 
-1.9.1
-
-
+--001a113a714655fdcd055d8b1236--
