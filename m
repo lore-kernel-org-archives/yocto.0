@@ -1,42 +1,71 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <john.rama01@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 889CBE00D51; Wed,  8 Nov 2017 11:30:49 -0800 (PST)
+	id 8D612E00D2D; Wed,  8 Nov 2017 17:11:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (john.rama01[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC405E00D4D
-	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 11:30:48 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vA8JUl7K022162
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 8 Nov 2017 11:30:47 -0800 (PST)
-Received: from soho-mhatle-m.local (172.25.36.231) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
-	Wed, 8 Nov 2017 11:30:46 -0800
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <cover.1510093646.git.amanda.r.brindle@intel.com>
-	<1736558.4YOozJbAai@peggleto-mobl.ger.corp.intel.com>
-	<ddc7ec5b-62bc-afbd-fa1d-ddef31b72a0d@windriver.com>
-	<1664393.zSGbuEELsx@peggleto-mobl.ger.corp.intel.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-Message-ID: <1c894b20-0cca-812e-8727-ef771bf6ffec@windriver.com>
-Date: Wed, 8 Nov 2017 13:30:45 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
+	*      [209.85.223.178 listed in dnsbl.sorbs.net]
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8001BE00CE8
+	for <yocto@yoctoproject.org>; Wed,  8 Nov 2017 17:11:16 -0800 (PST)
+Received: by mail-io0-f178.google.com with SMTP id n137so8039333iod.6
+	for <yocto@yoctoproject.org>; Wed, 08 Nov 2017 17:11:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=eHiCQOEg8Oaql/y2sDjTS3ilACHoITltfTEKBQaMCpU=;
+	b=OfyLp0i6m5EtWecpUDml1T2hbWZlv4FQBlHSNVbi4v3d2nQ5tfr/MMoqiBEK0Rp0/5
+	Z3Jru4IbnZP18SdzupMY2Co29T3pkLLo2CdAfJWwEiSiPs+ykN9ly8mRD46gMQZhkkuK
+	IEjr152rPGjJbH5qL/bjcZxzE3dKoctXNeQ0/KvMxLI036YPFncNlySYQ91o2TdcDLZY
+	wan4NSW+I2q3/WErApxVgltMySK5/QtoJIXMLpVut3zTCJYk2eTcbM29qc5synWgA9y/
+	R8ZL3t0n8nsEiAIgfX8FQoHqHhdPKeSoM3dLefT3uxKZAScUDcB6CFPuoKIdjxCZu5Es
+	MSPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=eHiCQOEg8Oaql/y2sDjTS3ilACHoITltfTEKBQaMCpU=;
+	b=Jrf5PmtITjOu9xUWw1jvLkAFywM7juC4lG6xWXt0qjFRf7qjxmU/F9ILej2wcsrAH3
+	5RobLPhCerC572DojNBwLQf80n3cFQJlpqeeDPIc8Wo/K8xJMkpRwjlLJldt4cKT80r6
+	N0k1URbn4muYSC7iRQ8paZFcOJyIpyXkF6yDllcWbZs4e1m0Y919mEyAiTz37GNoTwpH
+	EaqSQeqN1myUBrUe1sAH0ryJkyr5YIexbJbkYyWqrHLET3jMZrTZD1lMf8kgMviV/l+f
+	/nA0aTtRu9ORcyGKUy9a+KZR2N8zptLTZFSViyu8EcfLuN7T/6nJf3kbiZAeOph2XRr6
+	XECg==
+X-Gm-Message-State: AJaThX5DdV5YbUs1XGGAWEnPyEqsaTBq0cK4WHjNWD+b0SwmWo4t2V3g
+	UztkpJa4QgEueDUebzcy32dAgA==
+X-Google-Smtp-Source: AGs4zMbt9r4sDV0vXl+EIOdV71twdgXbZp4Ny8NRMKiYr50rN9rKqoMKjHv+vcq0aDpNWTSbJPNSlA==
+X-Received: by 10.107.102.13 with SMTP id a13mr3087497ioc.185.1510189875289;
+	Wed, 08 Nov 2017 17:11:15 -0800 (PST)
+Received: from [192.168.0.1] (50-77-232-178-static.hfc.comcastbusiness.net.
+	[50.77.232.178]) by smtp.googlemail.com with ESMTPSA id
+	l5sm2544379ioe.13.2017.11.08.17.11.14 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 08 Nov 2017 17:11:14 -0800 (PST)
+To: yocto@yoctoproject.org
+From: John Rama <john.rama01@gmail.com>
+Message-ID: <5A03AB30.5040907@gmail.com>
+Date: Wed, 8 Nov 2017 20:11:12 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.4.0
 MIME-Version: 1.0
-In-Reply-To: <1664393.zSGbuEELsx@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org, Amanda Brindle <amanda.r.brindle@intel.com>
-Subject: Re: [layerindex-web][patch v3 1/1] recipes.html: Require keyword for recipe search
+Subject: dpkg --print-architecture returns wrong result
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,71 +77,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Nov 2017 19:30:49 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+X-List-Received-Date: Thu, 09 Nov 2017 01:11:17 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
-On 11/8/17 1:08 PM, Paul Eggleton wrote:
-> On Thursday, 9 November 2017 4:42:50 AM NZDT Mark Hatle wrote:
->> On 11/7/17 8:43 PM, Paul Eggleton wrote:
->>> On Wednesday, 8 November 2017 11:47:49 AM NZDT Mark Hatle wrote:
->>>> On 11/7/17 4:31 PM, Amanda Brindle wrote:
->>>>> Use JavaScript to check if the search box for recipe search is
->>>>> empty before querying the database. This will prevent the "502
->>>>> Bad Gateway" error that occurs when the query takes too long due
->>>>> to the large list of recipes. Since there are so many recipes
->>>>> spread across the layers in the OE index, there's no point in
->>>>> allowing a user to search without a keyword in order to browse
->>>>> the list; it simply isn't digestible as a whole.
->>>>>
->>>>> Add a browse button for the Machines, Classes, and Distros pages.
->>>>
->>>> There are reasons to view all of the recipes, machines, classes, distros,
->>>> etc. (Not necessarily good reasons, but I know people do it.)
->>>>
->>>> If the query is too long, it would be better to figure out a way to get a
->>>> partial response and formulate the first page based on partial
->>>> responses... having a multipage response that the user can look at.
->>>
->>> I'm willing to be proven wrong, but unfortunately it looks to me like this 
->>> will require major re-engineering to sort out for a fairly weak use case.
->>> If you consider this important, would you be able to look into making it
->>> work?
->>
->> I suspect much of the display engine probably needs a rework as the contents
->> of the layer index have grown.  I can't promise anything, but I'll see if I
->> can find anyone who can work on it.
-> 
-> Could be yes, thanks.
-> 
->> For recipes, the use-case is very weak.  I have talked with people though
->> who have just wanted a list of what is available (one big list).  Primarily
->> so they can compare what is available to some magic spec sheet they are
->> looking at.
-> 
-> If that's the use case though we should provide a proper export capability, 
-> because comparing big lists manually 50 items at a time isn't how you'd best 
-> support that. Theoretically the API could be used there but an explicit export 
-> function would be more accessible.
+Hi, Yocto specialists
 
-For my own uses, I export this using the restapi.  So it can certainly be
-exported easily enough and processed externally.  (Of course, few people know
-about the restapi or how to use it.)
+I've built the whole system with deb package,
+and trying to use package feed feature of yocto.
 
->> For the Machines, Distros pages..  people do want a full list here, as they
->> simply won't know what is available or what something is called.  The scope
->> of the machines and distros of course is nowhere near the scope for the full
->> recipe list.
-> 
-> Right, and this patch doesn't remove the ability to browse those - in fact it 
-> makes it easier to do so by adding an explicit browse button, so I think we're 
-> OK there.
+When try trying to install some package from target, I faced following error.
 
-I misunderstood that.  I though the machine/distro would be restricted like recipes.
+# apt-get install fontconfig-utils
+....
+package architecture (armhf) does not match system (armel)
+....
 
-> Cheers,
-> Paul
-> 
+When checking the install package of the target system, everything is armhf architecture. 
+# dpkg -l 
+...
+||/ Name                                           Version                     Architecture Description
++++-==============================================-===========================-============-===========================================================================================
+ii  alsa-conf:armhf                                1.1.0-r0                    armhf        ALSA sound library
+ii  alsa-conf-base:armhf                           1.1.0-r0                    armhf        ALSA sound library
+ii  alsa-lib:armhf                                 1.1.0-r0                    armhf        ALSA sound library
+...
 
+However, when checking with following commands, it tells armel.
+# dpkg --print-architecture
+armel
+
+I think "dpkg --print-architecture" returns wrong result. 
+
+I'm using toolchain "arm-poky-linux-gnueabi-gcc" and result of dumpmachine option is as followings.
+$ arm-poky-linux-gnueabi-gcc -dumpmachine 
+arm-poky-linux-gnueabi
+
+I have no idea how to tell yocto to configure the target system correctly.
+Any feedback is highly appreciated.
+
+Kind Regards,
+Jonh Rama
 
