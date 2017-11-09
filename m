@@ -1,37 +1,37 @@
-Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70AEDE009CB; Thu,  9 Nov 2017 09:22:02 -0800 (PST)
+	id 84505E00A6A; Thu,  9 Nov 2017 11:32:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C776E00928
-	for <yocto@yoctoproject.org>; Thu,  9 Nov 2017 09:22:00 -0800 (PST)
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga104.jf.intel.com with ESMTP; 09 Nov 2017 09:22:00 -0800
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 209FAE009B4
+	for <yocto@yoctoproject.org>; Thu,  9 Nov 2017 11:32:45 -0800 (PST)
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	09 Nov 2017 11:32:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.44,370,1505804400"; d="scan'208";a="147987945"
-Received: from lsandov1-mobl2.zpn.intel.com ([10.219.128.134])
-	by orsmga004.jf.intel.com with ESMTP; 09 Nov 2017 09:22:00 -0800
-Date: Thu, 9 Nov 2017 11:32:22 -0600
-From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Message-ID: <20171109113222.3326bfcf@lsandov1-mobl2.zpn.intel.com>
-In-Reply-To: <CAJTo0LZ-EtWQQzAoDQv5t9UfTSrfU00zzaRk_HoVR4nm5iN98A@mail.gmail.com>
-References: <CAE0QtjNoY6hheGcKzzg86N+8AxOL4k8n-kTxyq1KGa660_Ut_w@mail.gmail.com>
-	<CAJTo0LZ-EtWQQzAoDQv5t9UfTSrfU00zzaRk_HoVR4nm5iN98A@mail.gmail.com>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+X-IronPort-AV: E=Sophos;i="5.44,370,1505804400"; d="scan'208";a="174440055"
+Received: from vanlongb-mobl.ccr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.249.67.211])
+	by fmsmga006.fm.intel.com with ESMTP; 09 Nov 2017 11:32:41 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Michael Halstead <mhalstead@linuxfoundation.org>
+Date: Fri, 10 Nov 2017 08:32:36 +1300
+Message-ID: <16972162.Agi7Apa5Ls@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <CALbNGRRKv72-BPBKKeEMwCiGUf5VkqCE6gSYf91pUPySX=eK_A@mail.gmail.com>
+References: <CALbNGRRKv72-BPBKKeEMwCiGUf5VkqCE6gSYf91pUPySX=eK_A@mail.gmail.com>
 MIME-Version: 1.0
-Cc: Jerry Lian <jerry.lian@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto documentation: no content, no PDF?
+Cc: yocto@yoctoproject.org
+Subject: Re: Layer index not updated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,42 +43,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Nov 2017 17:22:02 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 09 Nov 2017 19:32:46 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Wed, 8 Nov 2017 16:30:39 +0000
-"Burton, Ross" <ross.burton@intel.com> wrote:
+On Thursday, 9 November 2017 9:36:26 PM NZDT Andreas M=FCller wrote:
+> did not find any heads up here so: Layer index stopped updating ~1,5 mont=
+h.
+> Low priority - this is just notification & thanks in advance for taking
+> care :)
 
-> On 8 November 2017 at 15:41, Jerry Lian <jerry.lian@gmail.com> wrote:
-> 
-> > Just wondering:
-> > * As an active project, why yocto documentation does not provide a content
-> > (better be clickable)?
-> >  
-> 
-> The megamanual (Complete Documentation) doesn't have a top-level table of
-> contents as that basically exists to search globally.  The real docs (such
-> as Tasks Manual) have a top level table of contents.
-> 
-> * Or PDF format for easy printing.
-> >  
+I reported this to Michael a week or so ago but I think he's still battling=
+ an=20
+upgrade of the layer index code among other things. Michael, any updates?
 
-Try running
+Thanks,
+Paul
 
-make pdf DOC=ref-manual
+=2D-=20
 
-
-(then drink so coffee and wait) After it, the pdf manual is there. There are other manuals as well, this is just an example cmd.
-
-Leo
-
-> 
-> That would be massive.  The source is in git as docbook so it's fairly
-> simple to generate a PDF.
-
-
-
-> 
-> Ross
+Paul Eggleton
+Intel Open Source Technology Centre
 
