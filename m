@@ -1,6 +1,6 @@
 Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A809E00D14; Fri, 10 Nov 2017 02:50:47 -0800 (PST)
+	id A9A5BE00AD7; Fri, 10 Nov 2017 03:41:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.176 listed in list.dnswl.org]
+	*      [74.125.82.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,51 +20,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f176.google.com (mail-wr0-f176.google.com
-	[209.85.128.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63D39E00C59
-	for <yocto@yoctoproject.org>; Fri, 10 Nov 2017 02:50:45 -0800 (PST)
-Received: by mail-wr0-f176.google.com with SMTP id u97so8249221wrc.1
-	for <yocto@yoctoproject.org>; Fri, 10 Nov 2017 02:50:45 -0800 (PST)
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA596E00AD7
+	for <yocto@yoctoproject.org>; Fri, 10 Nov 2017 03:41:18 -0800 (PST)
+Received: by mail-wm0-f47.google.com with SMTP id t139so2157797wmt.1
+	for <yocto@yoctoproject.org>; Fri, 10 Nov 2017 03:41:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=MMck8VgnMTLOG5ag3uvZtKjNBxWVFLtwG9ThMgWaPvA=;
-	b=g+K84vnOL+KFm4ARWjav1FSJL4l0w1G7Iq/6AUmu14kJroAXWa4s1iWcl9DW1BFQSO
-	ao26KdcLcEpKz6goy5H5HT6dKcYfUkvQ5ZJAuRHkAKrcz3Izy0LIo0tu/jxC12eFGq2a
-	ieB0V/NgjbpIbhwKLjkq7EQvWdLABAQ+PxtWEKF6Q9LYniMhabadUrDLG3o080m63IQz
-	wIp6UqZ2PoiZ0eZPf9Woi7IKUGWUSHUckA/CnnpfuGoVfSzxi2ovAbUxnR0wKpfua2Z8
-	ExeZH/VYDmdjXjyxj6YN+SHSekFfPeCVsYaUVmARQBnI2CWAJfh4vnvEkTMEar0f6UIa
-	2snw==
+	:cc; bh=7vZgaIJ4kMUoAKtUDMx1uWgxmweiY8Iu5bszsHFiMMA=;
+	b=c4zmu1qlbu/o/KP60pnFlAuvHrcv98082fBXg320x28u+z2o0jPRFNraQsKG+MuZnd
+	itEshnQS/at1oH/d+sA0gFM2+aSTLm5vAl6DGpxKMRPx1q66u0IWMB3JYlL0FOSVNXbp
+	1w+Ffonq9ThTf3Wx2pfPhvPHxXZN07ZFkoqujBbTSNo63Jpl5ZJ5mQWQAKnx6iJNumei
+	qSuV4miTbw7xUWGNAH7oU+2wM5kw1/c4TeyFJxdAeqMwqa9WuPK2iqgeN7B1z/zsh7iF
+	o0L33qlWGdeukvQIr+FPwr//SGXUXDQ7Wkj5Kgu4BXUREPRS0mjmsUa7NcrRjAmFtRGp
+	bQFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=MMck8VgnMTLOG5ag3uvZtKjNBxWVFLtwG9ThMgWaPvA=;
-	b=oe6U3GoQFWkXSKAONeyJN/94YgDfaK2D0g6JyaKiI+Q5rglSnfck1xBamWU7qUgRnp
-	0NMFl/ke25TBmiuTlfhDnYi42ZGekUjlyWP4LWJ8ldjtK5cFidyM+whC9oEv97t4Cfc5
-	XGjzBfu3hfPMvVNyxi7j8Mhrb/xiA8bHMYFVochrS1TILyBS8i2UYFEYizz803NmWoCV
-	Jgzsw/n+QFjzaogTiT9yhmfgmjJ0PUbGZqWUoIBX/Y5Gu7x0/si8kxcDEJlZg0JGEflG
-	NCppd98x6LxkA0GW/pHHKCnpkxN0Xf3XsWHCbaDAlS2mAr37XoU+SiCZ+EpqrphU4+tp
-	1z2Q==
-X-Gm-Message-State: AJaThX5OC4BpIwPmYnKuIpw2cbqV948vmbZMN+euEXt8RZwnswcRxI7T
-	F1PNi4nzdY70Tyg/NGM3Rmf2de8VrgqKxEhIyQ4=
-X-Google-Smtp-Source: ABhQp+SyqtVxl6IHhV8PTCIDMGKOtXrxzPbwvAVuS64z8StS1WYmL5MwVIictc06D/SVyF6VcUl30fHRld6wnuW02Sg=
-X-Received: by 10.223.170.67 with SMTP id q3mr2743564wrd.193.1510311044453;
-	Fri, 10 Nov 2017 02:50:44 -0800 (PST)
+	bh=7vZgaIJ4kMUoAKtUDMx1uWgxmweiY8Iu5bszsHFiMMA=;
+	b=kw49ez1hSbCMj3bCJK76Sx6h1Ffsgej9U34IQ8mEp5q0FJF/eGAcdTeQmz4nWxU/M4
+	kK0vHqjABsMhKuHJY6DuvZW+6mkgT3eu6RYQtgCiZogwViGLkEgaUJ9lvWaP6Bc1OfOV
+	GRUSYA8uRwrD0PoPdsFTa8/GoNss769j6OolYT80NQJk6AKAVpWRRC0UWC+YLjnWapLx
+	z0ZqPkfr3BcTPa5Gr+Q1ZM3ZJGdB34o5rEbstOhsq6q7m5vN3vFr24Mpd48QcbwqNJYH
+	vi6zLB4REzH0VnPY7o0hcMRInAFZjmGdeRnVIRtFpHIqzNQL8/wG6b6h1G0z5Pe1qSwN
+	oXhg==
+X-Gm-Message-State: AJaThX5XSVoUEHVdaxecPaf2GCDPdVDdDdFHK6jIhno372NrVKZKuIVq
+	aGp0RYIIJYyLHWiTioHX9niMoN7UG4bsK0xvssQ=
+X-Google-Smtp-Source: AGs4zMaVyI0PXN2ihETOR/HZpNX3LRv/1qJaTUD6DLg3iNQAesczHyGFvbmshi/Q1p1Wy6Tc/tevGQWJuKoevTRZtxM=
+X-Received: by 10.28.165.4 with SMTP id o4mr58544wme.68.1510314077516; Fri, 10
+	Nov 2017 03:41:17 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.28.67.131 with HTTP; Fri, 10 Nov 2017 02:50:43 -0800 (PST)
-In-Reply-To: <CAJ2oMh+0YBDwjFLu+_1fUQ6XyC6=j0jC_yR_n9D1msxRK-qn4g@mail.gmail.com>
-References: <CAJ2oMhLQJGBZZW8uCG5C9HJDFU7=LiLB9f28Sv6D1Cm+wFiPWg@mail.gmail.com>
-	<CAJTo0LZ4WA8cRS3OcryYQubQTBFPyA=Gkf_e_Er1rV7T4wRdsA@mail.gmail.com>
-	<CAJ2oMhKQ=R615oVu2i-_verahERksqhMtxKq0RkjcxCmXnbKkQ@mail.gmail.com>
-	<CAJTo0LYW2tz6BryyNBLMpBkQPURB-VTqe_mW+a0+O8E7Uz+nng@mail.gmail.com>
-	<CAJ2oMh+0YBDwjFLu+_1fUQ6XyC6=j0jC_yR_n9D1msxRK-qn4g@mail.gmail.com>
+Received: by 10.28.67.131 with HTTP; Fri, 10 Nov 2017 03:41:16 -0800 (PST)
+In-Reply-To: <CAOT_U5ZjfZh3v387oXMqagiMdUEgzCAeDjTj-VnL6t3qHMDhbg@mail.gmail.com>
+References: <CAOT_U5ZjfZh3v387oXMqagiMdUEgzCAeDjTj-VnL6t3qHMDhbg@mail.gmail.com>
 From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Fri, 10 Nov 2017 11:50:43 +0100
-Message-ID: <CAGAf8LxtPVqPPS2qR-YQdQnPZN-aKdCYTzekafgLok=-4Y0ZyQ@mail.gmail.com>
-To: Ran Shalit <ranshalit@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: apt-get
+Date: Fri, 10 Nov 2017 12:41:16 +0100
+Message-ID: <CAGAf8Lyy=3OeSZQEiEKiVDNmWwvMan9=P8t2nuDwvL3Jk=kMaw@mail.gmail.com>
+To: Alan Martinovic <alan.martinovic@senic.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Using devtool for adding a systemd service
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,281 +71,290 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Nov 2017 10:50:47 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1cc5c84e18f6055d9eb1f1"
+X-List-Received-Date: Fri, 10 Nov 2017 11:41:20 -0000
+Content-Type: multipart/alternative; boundary="001a114bab7c16f808055d9f6689"
 
---94eb2c1cc5c84e18f6055d9eb1f1
+--001a114bab7c16f808055d9f6689
 Content-Type: text/plain; charset="UTF-8"
 
-> I've added in local.conf both:
-> PACKAGE_CLASSES = "package_rpm"
-> IMAGE_FEATURES += "package-management"
+It is, after all, interesting question, you posted here, Alan!
 
-I have the following in my poky x86-64 build. in .../poky/build/local.conf:
-PACKAGE_CLASSES ?= "package_rpm"
-EXTRA_IMAGE_FEATURES ?= "debug-tweaks package-management"
+I did something else, very different than you - I did the following!
 
-Should I add the line: IMAGE_FEATURES += "package-management"?
+[user@192 poky]$ pwd
+/home/user/YOCTO/oe_core_embedded/poky
+[user@192 poky]$ find . -name systemd*
+./scripts/lib/wic/canned-wks/systemd-bootdisk.wks
+./meta-yocto-bsp/lib/oeqa/selftest/cases/systemd_boot.py
+./build/tmp/sysroots-components/core2-64/at-spi2-core/usr/lib/systemd
+./build/tmp/sysroots-components/core2-64/rpm/usr/lib/rpm-plugins/systemd_
+inhibit.so
+./meta/lib/oeqa/runtime/cases/systemd.py
+./meta/classes/systemd.bbclass
+./meta/classes/systemd-boot.bbclass
+./meta/recipes-devtools/systemd-bootchart
+./meta/recipes-devtools/systemd-bootchart/systemd-bootchart_231.bb
+./meta/recipes-core/systemd
+./meta/recipes-core/systemd/systemd_234.bb
+./meta/recipes-core/systemd/systemd-machine-units_1.0.bb
+./meta/recipes-core/systemd/systemd-serialgetty
+./meta/recipes-core/systemd/systemd.inc
+./meta/recipes-core/systemd/systemd-boot_234.bb
+./meta/recipes-core/systemd/systemd-compat-units.bb
+./meta/recipes-core/systemd/systemd-systemctl-native.bb
+./meta/recipes-core/systemd/systemd
+./meta/recipes-core/systemd/systemd-systemctl
+./meta/recipes-core/systemd/systemd-serialgetty.bb
+[user@192 poky]$
 
-(extras: I do have dnf on my qemux86-64 target, since I am using master
-branch/master head - target indeed does respond correctly to my which dnf
-query (as /usr/bin/dnf).
+But we have there both packages??? We do, we do?!
 
-I don't think so, but I would like to know the logic/reasoning/mechanism
-behind these two variables: EXTRA_IMAGE_FEATURES and IMAGE_FEATURES (I hope
-other people would like to know to)?!
+*./meta/recipes-core/systemd/systemd*
+*./meta/recipes-core/systemd/systemd-systemctl*
+
+So, systemd is still present as package in basic poky master tree:
+./meta/recipes-core/systemd/systemd
+./meta/recipes-core/systemd/systemd-systemctl
+
+And, here are the heads from tree posted from the qemux86-64 target
+(/etc/build/):
+
+-----------------------
+Build Configuration:  |
+-----------------------
+DISTRO = poky
+DISTRO_VERSION = 2.4
+-----------------------
+Layer Revisions:      |
+-----------------------
+meta                  = rocko:65d23bd7986615fdfb0f1717b615534a2a14ab80 --
+modified
+meta-poky         = rocko:65d23bd7986615fdfb0f1717b615534a2a14ab80 --
+modified
+meta-yocto-bsp = rocko:65d23bd7986615fdfb0f1717b615534a2a14ab80 -- modified
+
+And, when I queried on the QEMU (qemux86-64) target both systemd and
+systemctl, I get nothing (at all), which is VERY strange!?
+Target CLI transcript follows:
+
+sh-4.4# uname -r
+4.12.12-yocto-standard
+sh-4.4# which systemd
+sh-4.4# which systemctl
+sh-4.4#
+
+Do we really have problem here, YOCTO maintainers??? Please, could you post
+sound and logical explanation for NOT having these services in the default
+YOCTO?
 
 Thank you,
 Zoran
 
-On Thu, Nov 9, 2017 at 3:56 PM, Ran Shalit <ranshalit@gmail.com> wrote:
-
-> I've added in local.conf both:
-> PACKAGE_CLASSES = "package_rpm"
-> IMAGE_FEATURES += "package-management"
->
-> Yet, I don't have yum command, only rpm command.
->
-> Regards,
-> Ran
->
-> On Thu, Nov 9, 2017 at 1:25 PM, Burton, Ross <ross.burton@intel.com>
+On Fri, Nov 10, 2017 at 11:07 AM, Alan Martinovic <alan.martinovic@senic.com
 > wrote:
-> > (adding yocto@ back to CC)
-> >
-> > I don't know where you saw that but that is very wrong.
-> >
-> > Set PACKAGE_CLASSES to the package manager that you want to use.  If you
-> > want to use opkg, then PACKAGE_CLASSES should be package_ipk (historical
-> > naming).  If you want opkg to be present in the images ensure
-> IMAGE_FEATURES
-> > contains package-management.
-> >
-> > PACKAGE_CLASSES controls what package formats are generated, and multiple
-> > are supported for flexibility and testing purposes.  For real world use
-> > there's no need to have more than one.  The first entry is the package
-> type
-> > that is actually used in the rootfs generation.
-> >
-> > package-management needs to be in IMAGE_FEATURES to both get the tools
-> > installed (opkg in your case, apt-get for dpkg, yum for rpm) and to keep
-> the
-> > package management database on the disk.  By removing package-management
-> > from IMAGE_FEATURES all traces of the package manager will be removed
-> from
-> > the rootfs, which is useful if you don't want to support on-target use of
-> > the package manager.
-> >
-> > Ross
-> >
-> > On 9 November 2017 at 06:45, Ran Shalit <ranshalit@gmail.com> wrote:
-> >>
-> >> Hi,
-> >>
-> >> We also consider using opkg.
-> >>
-> >> Now, I have some confusion as to how to install opkg.
-> >> I see in some documentation that it should be installed as following:
-> >>
-> >> PACKAGE_CLASSES ?= "package_rpm package_ipk"
-> >> IMAGE_INSTALL_append = " opkg "
-> >>
-> >> Does it mean there are 2 package managers active ?
-> >> How can we know which of them is active ?
-> >>
-> >>
-> >> If "?=" means that it shall be defined only if not defined previously,
-> >> so if it is already defined as  package_rpm , it might not install
-> >> package_ipk?
-> >> Doesn't it mean that "opkg" might be installed without the required
-> >> package_ipk ?
-> >>
-> >> Thank you,
-> >> Ran
-> >>
-> >> On Wed, Nov 8, 2017 at 9:26 PM, Burton, Ross <ross.burton@intel.com>
-> >> wrote:
-> >> > Set PACKAGE_CLASSES to package_deb, and then ensure IMAGE_FEATURES
-> >> > includes
-> >> > package-management.
-> >> >
-> >> > Ross
-> >> >
-> >> > On 8 November 2017 at 19:16, Ran Shalit <ranshalit@gmail.com> wrote:
-> >> >>
-> >> >> Hello,
-> >> >>
-> >> >> Is there a way to add "apt-get" command (and package manager) in
-> yocto
-> >> >> ?
-> >> >>
-> >> >> Thank you,
-> >> >> Ran
-> >> >> --
-> >> >> _______________________________________________
-> >> >> yocto mailing list
-> >> >> yocto@yoctoproject.org
-> >> >> https://lists.yoctoproject.org/listinfo/yocto
-> >> >
-> >> >
-> >
-> >
+
+> Hi,
+> I need to add a systemd service that needs no additional sources
+> compiled, but just needs an available command executed at boot.
+>
+> I've created a basis for the recipe in my layer:
+>
+> nrf52-usb-systemd/
+> |-- files
+> |   `-- btattach-nrf-acm.service
+> `-- nrf52-usb-systemd.bb
+>
+>
+> together with a recipe template (nrf52-usb-systemd.bb)
+> for which I don't know if works yet.
+>
+>   SUMMARY = "Writes patterns to the fb device"
+>   LICENSE = "MIT"
+>   LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=
+> 3da9cfbcb788c80a0384361b4de20420"
+>
+>   inherit systemd
+>
+>   REQUIRED_DISTRO_FEATURES= "systemd"
+>
+>   SRC_URI = "file://btattach-nrf-acm.service"
+>
+>   do_install () {
+>
+>       install -m 0644 ${WORKDIR}/btattach-nrf-acm.service
+> ${D}${sysconfdir}/systemd/system
+>    }
+>
+>   NATIVE_SYSTEMD_SUPPORT = "1"
+>   SYSTEMD_PACKAGES = "${PN}"
+>   SYSTEMD_SERVICE_${PN} = "fb-draw.service"
+>
+>
+> I'm not sure I got the install command right and
+> if the service file is making it way to the proper location.
+>
+> Instead of building the whole image, flashing and checking
+> it out, I would like to test how devtool could help here.
+>
+> I execute:
+>
+> devtool build nrf52-usb-systemd
+>
+> this results in a creation of a workspace with the sources files.
+> What I am not seeing is a creation of a device sysroot which would
+> show me that the do_install was correctly written.
+>
+> Given that the device sysroot directory on the host would be called
+> "sysroot" was hoping to be able do confirm that the following took
+> place
+>
+> ${D}${sysconfdir}/systemd/system -> .sysroot/etc/ssytemd/system
+>
+> and confirming there is a
+>
+> .sysroot/etc/ssytemd/system/btattach-nrf-acm.service
+>
+>
+> Is this possible with devtool, or am I misinterpreting
+> what it's purpose is?
+>
+>
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
+>
 
---94eb2c1cc5c84e18f6055d9eb1f1
+--001a114bab7c16f808055d9f6689
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span style=3D"font-size:12.8px">&gt; I&#39;ve added in lo=
-cal.conf both:</span><br style=3D"font-size:12.8px"><span style=3D"font-siz=
-e:12.8px">&gt; PACKAGE_CLASSES =3D &quot;package_rpm&quot;</span><br style=
-=3D"font-size:12.8px"><span style=3D"font-size:12.8px">&gt; IMAGE_FEATURES =
-+=3D &quot;package-management&quot;</span><br style=3D"font-size:12.8px"><d=
-iv><span style=3D"font-size:12.8px"><br></span></div><div><span style=3D"fo=
-nt-size:12.8px">I have the following in my poky x86-64 build. in .../poky/b=
-uild/local.conf:</span></div><div><div><span style=3D"font-size:12.8px">PAC=
-KAGE_CLASSES ?=3D &quot;package_rpm&quot;</span></div><div><span style=3D"f=
-ont-size:12.8px">EXTRA_IMAGE_FEATURES ?=3D &quot;debug-tweaks package-manag=
-ement&quot;</span><br></div></div><div><span style=3D"font-size:12.8px"><br=
-></span></div><div><span style=3D"font-size:12.8px">Should I add the line:=
-=C2=A0</span><span style=3D"font-size:12.8px">IMAGE_FEATURES +=3D &quot;pac=
-kage-management&quot;?</span></div><div><span style=3D"font-size:12.8px"><b=
-r></span></div><div><span style=3D"font-size:12.8px">(extras: I do have dnf=
- on my qemux86-64 target, since I am using master branch/master head - t</s=
-pan><span style=3D"font-size:12.8px">arget indeed does respond correctly to=
- my which dnf query (as /usr/bin/dnf).</span></div><div><span style=3D"font=
--size:12.8px"><br></span></div><div><span style=3D"font-size:12.8px">I don&=
-#39;t think so, but I would like to know the logic/reasoning/mechanism behi=
-nd these two variables:=C2=A0</span><span style=3D"font-size:12.8px">EXTRA_=
-IMAGE_FEATURES and=C2=A0</span><span style=3D"font-size:12.8px">IMAGE_FEATU=
-RES=C2=A0</span><span style=3D"font-size:12.8px">(I hope other people would=
- like to know to)?!</span></div><div><span style=3D"font-size:12.8px"><br><=
-/span></div><div><span style=3D"font-size:12.8px">Thank you,</span></div><d=
-iv><span style=3D"font-size:12.8px">Zoran</span></div></div><div class=3D"g=
-mail_extra"><br><div class=3D"gmail_quote">On Thu, Nov 9, 2017 at 3:56 PM, =
-Ran Shalit <span dir=3D"ltr">&lt;<a href=3D"mailto:ranshalit@gmail.com" tar=
-get=3D"_blank">ranshalit@gmail.com</a>&gt;</span> wrote:<br><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex">I&#39;ve added in local.conf both:<br>
-PACKAGE_CLASSES =3D &quot;package_rpm&quot;<br>
-IMAGE_FEATURES +=3D &quot;package-management&quot;<br>
-<br>
-Yet, I don&#39;t have yum command, only rpm command.<br>
-<br>
-Regards,<br>
-Ran<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-On Thu, Nov 9, 2017 at 1:25 PM, Burton, Ross &lt;<a href=3D"mailto:ross.bur=
-ton@intel.com">ross.burton@intel.com</a>&gt; wrote:<br>
-&gt; (adding yocto@ back to CC)<br>
-&gt;<br>
-&gt; I don&#39;t know where you saw that but that is very wrong.<br>
-&gt;<br>
-&gt; Set PACKAGE_CLASSES to the package manager that you want to use.=C2=A0=
- If you<br>
-&gt; want to use opkg, then PACKAGE_CLASSES should be package_ipk (historic=
-al<br>
-&gt; naming).=C2=A0 If you want opkg to be present in the images ensure IMA=
-GE_FEATURES<br>
-&gt; contains package-management.<br>
-&gt;<br>
-&gt; PACKAGE_CLASSES controls what package formats are generated, and multi=
-ple<br>
-&gt; are supported for flexibility and testing purposes.=C2=A0 For real wor=
-ld use<br>
-&gt; there&#39;s no need to have more than one.=C2=A0 The first entry is th=
-e package type<br>
-&gt; that is actually used in the rootfs generation.<br>
-&gt;<br>
-&gt; package-management needs to be in IMAGE_FEATURES to both get the tools=
-<br>
-&gt; installed (opkg in your case, apt-get for dpkg, yum for rpm) and to ke=
-ep the<br>
-&gt; package management database on the disk.=C2=A0 By removing package-man=
-agement<br>
-&gt; from IMAGE_FEATURES all traces of the package manager will be removed =
-from<br>
-&gt; the rootfs, which is useful if you don&#39;t want to support on-target=
- use of<br>
-&gt; the package manager.<br>
-&gt;<br>
-&gt; Ross<br>
-&gt;<br>
-&gt; On 9 November 2017 at 06:45, Ran Shalit &lt;<a href=3D"mailto:ranshali=
-t@gmail.com">ranshalit@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Hi,<br>
-&gt;&gt;<br>
-&gt;&gt; We also consider using opkg.<br>
-&gt;&gt;<br>
-&gt;&gt; Now, I have some confusion as to how to install opkg.<br>
-&gt;&gt; I see in some documentation that it should be installed as followi=
-ng:<br>
-&gt;&gt;<br>
-&gt;&gt; PACKAGE_CLASSES ?=3D &quot;package_rpm package_ipk&quot;<br>
-&gt;&gt; IMAGE_INSTALL_append =3D &quot; opkg &quot;<br>
-&gt;&gt;<br>
-&gt;&gt; Does it mean there are 2 package managers active ?<br>
-&gt;&gt; How can we know which of them is active ?<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; If &quot;?=3D&quot; means that it shall be defined only if not def=
-ined previously,<br>
-&gt;&gt; so if it is already defined as=C2=A0 package_rpm , it might not in=
-stall<br>
-&gt;&gt; package_ipk?<br>
-&gt;&gt; Doesn&#39;t it mean that &quot;opkg&quot; might be installed witho=
-ut the required<br>
-&gt;&gt; package_ipk ?<br>
-&gt;&gt;<br>
-&gt;&gt; Thank you,<br>
-&gt;&gt; Ran<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, Nov 8, 2017 at 9:26 PM, Burton, Ross &lt;<a href=3D"mailto=
-:ross.burton@intel.com">ross.burton@intel.com</a>&gt;<br>
-&gt;&gt; wrote:<br>
-&gt;&gt; &gt; Set PACKAGE_CLASSES to package_deb, and then ensure IMAGE_FEA=
-TURES<br>
-&gt;&gt; &gt; includes<br>
-&gt;&gt; &gt; package-management.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Ross<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; On 8 November 2017 at 19:16, Ran Shalit &lt;<a href=3D"mailto=
-:ranshalit@gmail.com">ranshalit@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Hello,<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Is there a way to add &quot;apt-get&quot; command (and pa=
-ckage manager) in yocto<br>
-&gt;&gt; &gt;&gt; ?<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Thank you,<br>
-&gt;&gt; &gt;&gt; Ran<br>
-&gt;&gt; &gt;&gt; --<br>
-&gt;&gt; &gt;&gt; ______________________________<wbr>_________________<br>
-&gt;&gt; &gt;&gt; yocto mailing list<br>
-&gt;&gt; &gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproj=
-ect.org</a><br>
-&gt;&gt; &gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto"=
- rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/l=
-istinfo/yocto</a><br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;<br>
-&gt;<br>
---<br>
+<div dir=3D"ltr">It is, after all, interesting question, you posted here, A=
+lan!<div><br></div><div>I did something else, very different than you - I d=
+id the following!</div><div><br></div><div>[user@192 poky]$ pwd<br></div><d=
+iv><div><div>/home/user/YOCTO/oe_core_<wbr>embedded/poky</div><div>[user@19=
+2 poky]$ find . -name systemd*</div><div>./scripts/lib/wic/canned-wks/<wbr>=
+systemd-bootdisk.wks</div><div>./meta-yocto-bsp/lib/oeqa/<wbr>selftest/case=
+s/systemd_boot.py</div><div>./build/tmp/sysroots-<wbr>components/core2-64/a=
+t-spi2-<wbr>core/usr/lib/systemd</div><div>./build/tmp/sysroots-<wbr>compon=
+ents/core2-64/rpm/usr/<wbr>lib/rpm-plugins/systemd_<wbr>inhibit.so</div><di=
+v>./meta/lib/oeqa/runtime/cases/<wbr>systemd.py</div><div>./meta/classes/sy=
+stemd.bbclass</div><div>./meta/classes/systemd-boot.<wbr>bbclass</div><div>=
+./meta/recipes-devtools/<wbr>systemd-bootchart</div><div>./meta/recipes-dev=
+tools/<wbr>systemd-bootchart/<a href=3D"http://systemd-bootchart_231.bb" ta=
+rget=3D"_blank">systemd-<wbr>bootchart_231.bb</a></div><div>./meta/recipes-=
+core/systemd</div><div>./meta/recipes-core/systemd/<a href=3D"http://system=
+d_234.bb" target=3D"_blank">sy<wbr>stemd_234.bb</a></div><div>./meta/recipe=
+s-core/systemd/<a href=3D"http://systemd-machine-units_1.0.bb" target=3D"_b=
+lank">sy<wbr>stemd-machine-units_1.0.bb</a></div><div>./meta/recipes-core/s=
+ystemd/<wbr>systemd-serialgetty</div><div>./meta/recipes-core/systemd/<wbr>=
+systemd.inc</div><div>./meta/recipes-core/systemd/<a href=3D"http://systemd=
+-boot_234.bb" target=3D"_blank">sy<wbr>stemd-boot_234.bb</a></div><div>./me=
+ta/recipes-core/systemd/<a href=3D"http://systemd-compat-units.bb" target=
+=3D"_blank">sy<wbr>stemd-compat-units.bb</a></div><div>./meta/recipes-core/=
+systemd/<a href=3D"http://systemd-systemctl-native.bb" target=3D"_blank">sy=
+<wbr>stemd-systemctl-native.bb</a></div><div>./meta/recipes-core/systemd/<w=
+br>systemd</div><div>./meta/recipes-core/systemd/<wbr>systemd-systemctl</di=
+v><div>./meta/recipes-core/systemd/<a href=3D"http://systemd-serialgetty.bb=
+" target=3D"_blank">sy<wbr>stemd-serialgetty.bb</a></div><div>[user@192 pok=
+y]$=C2=A0</div></div><div><br></div><div>But we have there both packages???=
+ We do, we do?!</div><div><b><i><u>./meta/recipes-core/systemd/<wbr>systemd=
+<br></u></i></b></div><div><b><i><u>./meta/recipes-core/systemd/<wbr>system=
+d-systemctl</u></i></b></div><div><br></div></div><div>So, systemd is still=
+ present as package in basic poky master tree:</div><div>./meta/recipes-cor=
+e/systemd/<wbr>systemd</div><div>./meta/recipes-core/systemd/<wbr>systemd-s=
+ystemctl</div><div><br></div><div>And, here are the heads from tree posted =
+from the qemux86-64 target (/etc/build/):</div><div><br></div><div><div cla=
+ss=3D"gmail_extra" style=3D"font-size:12.8px"><span style=3D"font-size:12.8=
+px">-----------------------</span><br style=3D"font-size:12.8px"><span styl=
+e=3D"font-size:12.8px">Build Configuration:=C2=A0 |</span><br style=3D"font=
+-size:12.8px"><span style=3D"font-size:12.8px">-----------------------</spa=
+n><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">DISTRO =
+=3D poky</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8=
+px">DISTRO_VERSION =3D 2.4</span><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px">-----------------------</span><br style=3D"font-size:=
+12.8px"><span style=3D"font-size:12.8px">Layer Revisions:=C2=A0 =C2=A0 =C2=
+=A0 |</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px"=
+>-----------------------</span><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px">meta=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =3D rocko:65d23bd7986615fdfb0f1717<wbr>b615534a2a14ab80 -- mo=
+dified</span><br></div><div class=3D"gmail_extra" style=3D"font-size:12.8px=
+">meta-poky=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D rocko:<span style=3D"font-=
+size:12.8px">65d23bd7986615fdfb0f1717<wbr>b615534a2a14ab80 -- modified</spa=
+n></div><div class=3D"gmail_extra" style=3D"font-size:12.8px">meta-yocto-bs=
+p =3D rocko:<span style=3D"font-size:12.8px">65d23bd7986615fdfb0f1717<wbr>b=
+615534a2a14ab80 -- modified</span></div></div><div class=3D"gmail_extra" st=
+yle=3D"font-size:12.8px"><span style=3D"font-size:12.8px"><br></span></div>=
+<div class=3D"gmail_extra" style=3D"font-size:12.8px"><span style=3D"font-s=
+ize:12.8px">And, when I queried on the QEMU (qemux86-64) target both system=
+d and systemctl, I get nothing (at all), which is VERY strange!?</span></di=
+v><div class=3D"gmail_extra" style=3D"font-size:12.8px"><span style=3D"font=
+-size:12.8px">Target CLI transcript follows:</span><br></div><div class=3D"=
+gmail_extra" style=3D"font-size:12.8px"><span style=3D"font-size:12.8px"><b=
+r></span></div><div class=3D"gmail_extra" style=3D"font-size:12.8px"><span =
+style=3D"font-size:12.8px">sh-4.4# uname -r</span></div><div class=3D"gmail=
+_extra" style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">4.12.12=
+-yocto-standard</span></div><div class=3D"gmail_extra" style=3D"font-size:1=
+2.8px"><span style=3D"font-size:12.8px">sh-4.4# which systemd</span></div><=
+div class=3D"gmail_extra" style=3D"font-size:12.8px"><span style=3D"font-si=
+ze:12.8px">sh-4.4# which systemctl</span></div><div class=3D"gmail_extra" s=
+tyle=3D"font-size:12.8px"><span style=3D"font-size:12.8px">sh-4.4#</span><s=
+pan style=3D"font-size:12.8px"><br></span></div><div><br></div><div>Do we r=
+eally have problem here, YOCTO maintainers??? Please, could you post sound =
+and logical explanation for NOT having these services in the default YOCTO?=
+</div><div><br></div><div>Thank you,</div><div>Zoran</div></div><div class=
+=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fri, Nov 10, 2017 at 11:=
+07 AM, Alan Martinovic <span dir=3D"ltr">&lt;<a href=3D"mailto:alan.martino=
+vic@senic.com" target=3D"_blank">alan.martinovic@senic.com</a>&gt;</span> w=
+rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi,<div>I need to =
+add a systemd service that needs no additional sources</div><div>compiled, =
+but just needs an available command executed at boot.=C2=A0</div><div><br><=
+/div><div>I&#39;ve created a basis for the recipe in my layer:</div><div><b=
+r></div><div><div>nrf52-usb-systemd/</div><div>|-- files</div><div>|=C2=A0 =
+=C2=A0`-- btattach-nrf-acm.service</div><div>`-- <a href=3D"http://nrf52-us=
+b-systemd.bb" target=3D"_blank">nrf52-usb-systemd.bb</a></div></div><div><b=
+r></div><div><br></div><div>together with a recipe template (<a href=3D"htt=
+p://nrf52-usb-systemd.bb" target=3D"_blank">nrf52-usb-systemd.bb</a>)</div>=
+<div> for which I don&#39;t know if works yet.</div><div><br></div><div><di=
+v>=C2=A0 SUMMARY =3D &quot;Writes patterns to the fb device&quot;</div><div=
+>=C2=A0 LICENSE =3D &quot;MIT&quot;</div><div>=C2=A0 LIC_FILES_CHKSUM =3D &=
+quot;file://COPYING.MIT;md5=3D<wbr>3da9cfbcb788c80a0384361b4de204<wbr>20&qu=
+ot;</div><div><br></div><div>=C2=A0 inherit systemd</div><div><br></div><di=
+v>=C2=A0 REQUIRED_DISTRO_FEATURES=3D &quot;systemd&quot;</div><div><br></di=
+v><div>=C2=A0 SRC_URI =3D &quot;file://btattach-nrf-acm.<wbr>service&quot;<=
+/div><div><br></div><div>=C2=A0 do_install () {<br></div><div><br></div><di=
+v>=C2=A0 =C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/btattach-nrf-acm.<wbr>ser=
+vice ${D}${sysconfdir}/systemd/<wbr>system</div><div>=C2=A0 =C2=A0}</div><d=
+iv><br></div><div>=C2=A0 NATIVE_SYSTEMD_SUPPORT =3D &quot;1&quot;</div><div=
+>=C2=A0 SYSTEMD_PACKAGES =3D &quot;${PN}&quot;</div><div>=C2=A0 SYSTEMD_SER=
+VICE_${PN} =3D &quot;fb-draw.service&quot;</div></div><div><br></div><div><=
+br></div><div>I&#39;m not sure I got the install command right and</div><di=
+v>if the service file is making it way to the proper location.</div><div><b=
+r></div><div>Instead of building the whole image, flashing and checking=C2=
+=A0</div><div>it out, I would like to test how devtool could help here.</di=
+v><div><br></div><div>I execute:</div><div><br></div><div>devtool build nrf=
+52-usb-systemd<br></div><div><br></div><div>this results in a creation of a=
+ workspace with the sources files.</div><div>What I am not seeing is a crea=
+tion of a device sysroot which would</div><div>show me that the do_install =
+was correctly written.<br></div><div><br></div><div>Given that the device s=
+ysroot directory on the host would be called</div><div>&quot;sysroot&quot; =
+was hoping to be able do confirm that the following took=C2=A0</div><div>pl=
+ace</div><div><br></div><div>${D}${sysconfdir}/systemd/<wbr>system -&gt; .s=
+ysroot/etc/ssytemd/system<br></div><div><br></div><div>and confirming there=
+ is a=C2=A0</div><div><br></div><div>.sysroot/etc/ssytemd/system/<wbr>btatt=
+ach-nrf-acm.service</div><div><br></div><div><br></div><div>Is this possibl=
+e with devtool, or am I misinterpreting=C2=A0</div><div>what it&#39;s purpo=
+se is?</div><div><br></div></div>
+<br>--<br>
 ______________________________<wbr>_________________<br>
 yocto mailing list<br>
 <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
 " target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
 br>
-</div></div></blockquote></div><br></div>
+<br></blockquote></div><br></div>
 
---94eb2c1cc5c84e18f6055d9eb1f1--
+--001a114bab7c16f808055d9f6689--
