@@ -1,33 +1,58 @@
-Return-Path: <fabien.lahoudere@collabora.co.uk>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C9C86E00D14; Fri, 10 Nov 2017 00:27:41 -0800 (PST)
+	id 1D1EEE00D14; Fri, 10 Nov 2017 02:07:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [74.125.82.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F832E00C59
-	for <yocto@yoctoproject.org>; Fri, 10 Nov 2017 00:27:40 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: aragua) with ESMTPSA id A8855260DB7
-Message-ID: <1510302457.5010.2.camel@collabora.co.uk>
-From: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-To: yocto@yoctoproject.org
-Date: Fri, 10 Nov 2017 09:27:37 +0100
-In-Reply-To: <CAJ2oMh+UWj9z5oKWQ-9KR4ktFXL-QcWyGg_5YL0dASQ0+jUt-g@mail.gmail.com>
-References: <CAJ2oMh+UWj9z5oKWQ-9KR4ktFXL-QcWyGg_5YL0dASQ0+jUt-g@mail.gmail.com>
-X-Mailer: Evolution 3.22.6-1+deb9u1 
-Mime-Version: 1.0
-Subject: Re: recipe name vs. package name
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ot0-f176.google.com (mail-ot0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80ABDE00C59
+	for <yocto@yoctoproject.org>; Fri, 10 Nov 2017 02:07:50 -0800 (PST)
+Received: by mail-ot0-f176.google.com with SMTP id u10so401381otc.12
+	for <yocto@yoctoproject.org>; Fri, 10 Nov 2017 02:07:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=5j82ErRsK6pwIxCR8ddiaRsum2WfMpT9MTZPE5HZGX4=;
+	b=dqXqe6mO0+DI0/4iU1YaBWYQ4cMHjRLuPtrTQQuVOBv+qH8jbC5aXmfiRXQBz8cU43
+	+AG+GPhytNuo72adLQCDvuHSape3vQ9QGzPjbPiWj7ZhymDpaa+8HaIe+MgwYzo6M1nr
+	7mYP2Vj0Dum3XzLM27k6tzwC/HWfel3Ad/JybQmFY0ZMEoMRGpAxVa18NRhS4xyJ/cMB
+	FAS/5Gpwc+bT5SiwlKPWeVVN6ydILFWG4wG5TT3PW6xJ/U6SZOJTevn9XtKj3ki8Ljsi
+	4gA2L1zsjDASbUJn0gmb8i0vTMEriTJ8JXSB7coCz5ZwvFXO97+S9y/Kv8kKQtT9q3FA
+	QSVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=5j82ErRsK6pwIxCR8ddiaRsum2WfMpT9MTZPE5HZGX4=;
+	b=A0RKeDmppA7iA6oeG3h0g/swKtXcC7qlLcTr7txPyt9oeWMI9dgA97lriVacg3PQTq
+	BzN6ftdg98lDxcN3nxVRE1JFhQHWTZRU8wkxIpe2Fyi2nrsU8cNGQdoekUqwcmYB/44Q
+	ODo+bK356TOzKu7kHjv2PnKh5JxO7Qs7s4dS7oeaCcMUvASzOfs7fn0kCQ7MYYHn57nr
+	rReBk5KX6qWgoQhmKIIdh+59vpkmX3vAcFXVYO3orJXiWYepx3Sx+RQzem/gauas5q8z
+	r3fwmFvpVGBAiRva5AJx8CIpefHZenWo/6qssnbaU19xuwntL2NlllkCyKyud8OA8FEP
+	0Qzw==
+X-Gm-Message-State: AJaThX4pk6l0DGS/LJ7eDF2Bj3Kwfyj7HflED4IFlAsDtN3rNCENQqcQ
+	j027zWxvR+m1Ib0OnNa5JJHjOR9utfMogmR7xxCrJrcJ
+X-Google-Smtp-Source: AGs4zMbmwuarmerJ7YP5G1XB4HlaylspAqknh7D1IBd3gABvTg8lM2tPHON4epMHk2PvNuWOj2H+73Yc0gl0ZHl5U2k=
+X-Received: by 10.157.65.204 with SMTP id v12mr2318509oti.365.1510308469505;
+	Fri, 10 Nov 2017 02:07:49 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.157.41.133 with HTTP; Fri, 10 Nov 2017 02:07:49 -0800 (PST)
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Fri, 10 Nov 2017 11:07:49 +0100
+Message-ID: <CAOT_U5ZjfZh3v387oXMqagiMdUEgzCAeDjTj-VnL6t3qHMDhbg@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Using devtool for adding a systemd service
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,37 +64,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Nov 2017 08:27:41 -0000
+X-List-Received-Date: Fri, 10 Nov 2017 10:07:51 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1bfce2d39801055d9e17f2"
+
+--94eb2c1bfce2d39801055d9e17f2
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
 Hi,
+I need to add a systemd service that needs no additional sources
+compiled, but just needs an available command executed at boot.
 
-On Fri, 2017-11-10 at 10:16 +0200, Ran Shalit wrote:
-> Hello,
-> 
-> I read somewhere that a recipe can contain more than one package and recipe name is not the same
-> as package name.
-> But in
-> https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_principles
-> I see that package name (used in IMAGE_INSTALL_append) is actually the same as recipe name, and I
-> also don't find inside recipe any mention of package name,
-> 
-> Can anyone help to understand where the package is actually named in recipes ?
-> 
+I've created a basis for the recipe in my layer:
 
-You can add more package in a recipe by appending new package name to PACKAGES in your recipe.
+nrf52-usb-systemd/
+|-- files
+|   `-- btattach-nrf-acm.service
+`-- nrf52-usb-systemd.bb
 
- https://www.yoctoproject.org/docs/2.4/mega-manual/mega-manual.html#var-PACKAGES
 
-Then in order to install your new package, You have to make your image to depend on it.
+together with a recipe template (nrf52-usb-systemd.bb)
+for which I don't know if works yet.
 
-$ grep -rn PACKAGES meta
+  SUMMARY = "Writes patterns to the fb device"
+  LICENSE = "MIT"
+  LIC_FILES_CHKSUM =
+"file://COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
-will show you a lot of recipes implementing this mechanism.
+  inherit systemd
 
-> Thank you,
-> Ran
--- 
-Fabien
+  REQUIRED_DISTRO_FEATURES= "systemd"
 
+  SRC_URI = "file://btattach-nrf-acm.service"
+
+  do_install () {
+
+      install -m 0644 ${WORKDIR}/btattach-nrf-acm.service
+${D}${sysconfdir}/systemd/system
+   }
+
+  NATIVE_SYSTEMD_SUPPORT = "1"
+  SYSTEMD_PACKAGES = "${PN}"
+  SYSTEMD_SERVICE_${PN} = "fb-draw.service"
+
+
+I'm not sure I got the install command right and
+if the service file is making it way to the proper location.
+
+Instead of building the whole image, flashing and checking
+it out, I would like to test how devtool could help here.
+
+I execute:
+
+devtool build nrf52-usb-systemd
+
+this results in a creation of a workspace with the sources files.
+What I am not seeing is a creation of a device sysroot which would
+show me that the do_install was correctly written.
+
+Given that the device sysroot directory on the host would be called
+"sysroot" was hoping to be able do confirm that the following took
+place
+
+${D}${sysconfdir}/systemd/system -> .sysroot/etc/ssytemd/system
+
+and confirming there is a
+
+.sysroot/etc/ssytemd/system/btattach-nrf-acm.service
+
+
+Is this possible with devtool, or am I misinterpreting
+what it's purpose is?
+
+--94eb2c1bfce2d39801055d9e17f2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div>I need to add a systemd service that needs no addi=
+tional sources</div><div>compiled, but just needs an available command exec=
+uted at boot.=C2=A0</div><div><br></div><div>I&#39;ve created a basis for t=
+he recipe in my layer:</div><div><br></div><div><div>nrf52-usb-systemd/</di=
+v><div>|-- files</div><div>|=C2=A0 =C2=A0`-- btattach-nrf-acm.service</div>=
+<div>`-- <a href=3D"http://nrf52-usb-systemd.bb">nrf52-usb-systemd.bb</a></=
+div></div><div><br></div><div><br></div><div>together with a recipe templat=
+e (<a href=3D"http://nrf52-usb-systemd.bb">nrf52-usb-systemd.bb</a>)</div><=
+div> for which I don&#39;t know if works yet.</div><div><br></div><div><div=
+>=C2=A0 SUMMARY =3D &quot;Writes patterns to the fb device&quot;</div><div>=
+=C2=A0 LICENSE =3D &quot;MIT&quot;</div><div>=C2=A0 LIC_FILES_CHKSUM =3D &q=
+uot;file://COPYING.MIT;md5=3D3da9cfbcb788c80a0384361b4de20420&quot;</div><d=
+iv><br></div><div>=C2=A0 inherit systemd</div><div><br></div><div>=C2=A0 RE=
+QUIRED_DISTRO_FEATURES=3D &quot;systemd&quot;</div><div><br></div><div>=C2=
+=A0 SRC_URI =3D &quot;file://btattach-nrf-acm.service&quot;</div><div><br><=
+/div><div>=C2=A0 do_install () {<br></div><div><br></div><div>=C2=A0 =C2=A0=
+ =C2=A0 install -m 0644 ${WORKDIR}/btattach-nrf-acm.service ${D}${sysconfdi=
+r}/systemd/system</div><div>=C2=A0 =C2=A0}</div><div><br></div><div>=C2=A0 =
+NATIVE_SYSTEMD_SUPPORT =3D &quot;1&quot;</div><div>=C2=A0 SYSTEMD_PACKAGES =
+=3D &quot;${PN}&quot;</div><div>=C2=A0 SYSTEMD_SERVICE_${PN} =3D &quot;fb-d=
+raw.service&quot;</div></div><div><br></div><div><br></div><div>I&#39;m not=
+ sure I got the install command right and</div><div>if the service file is =
+making it way to the proper location.</div><div><br></div><div>Instead of b=
+uilding the whole image, flashing and checking=C2=A0</div><div>it out, I wo=
+uld like to test how devtool could help here.</div><div><br></div><div>I ex=
+ecute:</div><div><br></div><div>devtool build nrf52-usb-systemd<br></div><d=
+iv><br></div><div>this results in a creation of a workspace with the source=
+s files.</div><div>What I am not seeing is a creation of a device sysroot w=
+hich would</div><div>show me that the do_install was correctly written.<br>=
+</div><div><br></div><div>Given that the device sysroot directory on the ho=
+st would be called</div><div>&quot;sysroot&quot; was hoping to be able do c=
+onfirm that the following took=C2=A0</div><div>place</div><div><br></div><d=
+iv>${D}${sysconfdir}/systemd/system -&gt; .sysroot/etc/ssytemd/system<br></=
+div><div><br></div><div>and confirming there is a=C2=A0</div><div><br></div=
+><div>.sysroot/etc/ssytemd/system/btattach-nrf-acm.service</div><div><br></=
+div><div><br></div><div>Is this possible with devtool, or am I misinterpret=
+ing=C2=A0</div><div>what it&#39;s purpose is?</div><div><br></div></div>
+
+--94eb2c1bfce2d39801055d9e17f2--
