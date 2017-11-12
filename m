@@ -1,64 +1,60 @@
-Return-Path: <89dragon@gmail.com>
+Return-Path: <ranshalit@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87B50E00D4E; Sun, 12 Nov 2017 00:18:48 -0800 (PST)
+	id 0BD90E00D4E; Sun, 12 Nov 2017 01:59:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (89dragon[at]gmail.com)
+	mail provider *      (ranshalit[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
+	*      [74.125.82.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [74.125.82.46 listed in dnsbl.sorbs.net]
-Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57A05E00D3A
-	for <yocto@yoctoproject.org>; Sun, 12 Nov 2017 00:18:46 -0800 (PST)
-Received: by mail-wm0-f46.google.com with SMTP id r68so9442743wmr.1
-	for <yocto@yoctoproject.org>; Sun, 12 Nov 2017 00:18:46 -0800 (PST)
+Received: from mail-wm0-f49.google.com (mail-wm0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8B01E00D3A
+	for <yocto@yoctoproject.org>; Sun, 12 Nov 2017 01:59:34 -0800 (PST)
+Received: by mail-wm0-f49.google.com with SMTP id l8so4219290wmg.4
+	for <yocto@yoctoproject.org>; Sun, 12 Nov 2017 01:59:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=D8b8xOwWV3uA6Ofq2oXbU1kBSxl2r+uyb/uqf0ogi8U=;
-	b=FeNpa6xzVjYL3Xm9PK8vmkHBkiRlm4co3i4KRJM4YP/K+la6DZM6PzXw3wPVMZmbrZ
-	QwWXLWzDfD8xyWWSefO683jIbxooRgOzTqiF6OHFbjB0EFvDVPjysUMvodGPkcrGrHWZ
-	wfz5v3Gmm34pQdN3bPZdixocbqzXw3wGgydwKk9BstRRl9so0QkPbYlAEmx5DJ8GbHKA
-	gQemPVZOrn3v/i0AyltqQvmG05J+zCGRVir45apqx6DGa0sdZztyYVaPc8AZuUDJcXFb
-	KQad/avibJ08t/SzOKc+yBVhUow9zerIJSnrJ7QJTohrDMs6Bxp9/Uf3XOo0uc0XtwnL
-	5xZg==
+	bh=nAGYD2GAc+qz42Rsa8/G3nPFfQtf7EXguYmpsWsVQXA=;
+	b=tGJHFVrOupPG9bOuqKrzohMnu0Qv3OGV2lm4axP7aGa+xClo5J2B5SzH//FlWKZwJe
+	tvjB5nk7q/3T2mMbZ+2o2IiUgnbesZ3fgCE4jkc5CbtzW08Fmac/Fpj/EG5LbFfvn08O
+	f2BjibMgr/9gjsBLQkqDx4/50mV9WT0wci1jMi4X5PZX/Zwp9mV4hQr/VEAvjjxUX5TY
+	tFBmIhLk5/97lLm36o7obmvWmnjuajDIcXFQG8IO42HjyKEVdguuR2np4H5zdSe/qi1f
+	YVq0vzfCmYpvIw/FxSfrTAXCDRRbBqyfQ07gyHy1KuYNDrd2X/ZIjiMb2+feTb8NoNlx
+	w8Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=D8b8xOwWV3uA6Ofq2oXbU1kBSxl2r+uyb/uqf0ogi8U=;
-	b=qAhITsorGeaj228598Xr0I0edxshlKm4XTDjkJgI8lbUOym29bxgqCJFqWN/L2NaD0
-	jN67dK+Ch7sbjbxu40lWrSPydulMuWbtC9UgomEnzeS1MVc03YDXYDgSdgZ8k4IiA+C5
-	waGj38H8PJHcNVXmI2ZByc7zevcBiy6OOHKEt8URsXbpp/KEsOkfC5yBFRYxdzyoaUmx
-	sYBfQGSPj+D5s+Lfxf8Buke8w/m/TLzsqjRAKcnwXUuiR7OAOAgHWpXvujF3RaKcejEF
-	0t3EDrK/1OhkVIRdzbrjPKS6gm/h1V9EFwKGkU01NQMJFk2aKHXcTpXuR/ifmOQyQsh8
-	ZvYQ==
-X-Gm-Message-State: AJaThX77sIvk2MKnDBHNAxoalIoue51usHUYJ5M8ZCp2ZPiskc8yA8kY
-	icVIalfkp0HaQ3ZxdHg3Sq5/aVE6IIOAqwvVOO1dpQ==
-X-Google-Smtp-Source: AGs4zMZYHQffNJ0SyGkdids4B93uU9Nc7PouC4LCM76SMo3No7c+B5noVEj456fJwn5bqG3pw1qejnKR/mEpP9vzXhE=
-X-Received: by 10.28.137.139 with SMTP id l133mr3422367wmd.123.1510474725612; 
-	Sun, 12 Nov 2017 00:18:45 -0800 (PST)
+	bh=nAGYD2GAc+qz42Rsa8/G3nPFfQtf7EXguYmpsWsVQXA=;
+	b=GwjiHCK0OVayhscpuEGW42kYy6hrQSXkWCMvNEahBfo/N6dQKHPDtNiHY0167tFUrn
+	knv9+Rc6y37VwXjrXhvHptBpyddZE9M0buFf8z8HEA5du5AXa5u8aSveq9l6JKn1mU1v
+	fdGF++gtH2JD/K4L0KCK64bQjMJE9QBHZO+3v+5t58MKMdc/PzM42C5yh0r4UbAGzemQ
+	wsGRtfEuBqgrTHgcefYNe8Ne+FfNtpTQV2YdBssr7l+qvxMB324oms7QXUL5OGBzkYTg
+	X44Sgi3eYLig5vuC/xH2g6obuhWyaoD5uUNRswngWUVfp57Go/4XNalbgpNtIyqbxiJ5
+	jHnQ==
+X-Gm-Message-State: AJaThX4ZQPskTqF06gYqLzMtPkqatU962ElWplqMKZgAeVgpa4ldhvbT
+	PB11yphXGjzaNlynvZNdpWVYrjRHpRL3aA1PZ/PZ+A==
+X-Google-Smtp-Source: AGs4zMaMh74lwHfKXIcrJuySIkGEiigDEy+6EaeuNpaLfymVqFUfiqltxTUU6+0+5WONhG0Fw1qMRshsk5rhpqXa3ZA=
+X-Received: by 10.80.218.72 with SMTP id a8mr8201337edk.221.1510480772770;
+	Sun, 12 Nov 2017 01:59:32 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.223.139.209 with HTTP; Sun, 12 Nov 2017 00:18:45 -0800 (PST)
-From: Chris Hughes <89dragon@gmail.com>
-Date: Sun, 12 Nov 2017 01:18:45 -0700
-Message-ID: <CAG8GRtgq1qPe78V+fu-C6Mb7WZ_+B6_8r9Z0u594PLNE0BWR4w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Bitbake fails when enabling tools-testapps
+Received: by 10.80.135.197 with HTTP; Sun, 12 Nov 2017 01:59:32 -0800 (PST)
+From: Ran Shalit <ranshalit@gmail.com>
+Date: Sun, 12 Nov 2017 11:59:32 +0200
+Message-ID: <CAJ2oMhKC0+nozu1p04mzPym1O4FNnJ0aoR2zxQvcsTL7sMt2dQ@mail.gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Can I force gstreamer into specific version with my image ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,213 +66,281 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 12 Nov 2017 08:18:48 -0000
-Content-Type: multipart/alternative; boundary="001a1144490a7660fd055dc4cd17"
-
---001a1144490a7660fd055dc4cd17
+X-List-Received-Date: Sun, 12 Nov 2017 09:59:37 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hoping this is the right place to get help with the following issue.
+hELLO,
 
-I'm using bitbake to build a custom image of the intel-aero / yocto sources.
+For some reason my image is installed with gstreamer 1.6, and I don't
+understnad why the image (fsl-image-qt5) prefer 1.6.
+Is there a way to force gsreamer specific version (1.8.2) ? I need
+specific version 1.8.2, because of required package openvivoe, which
+expects that version only:
+https://github.com/Openwide-Ingenierie/meta-openvivoe/tree/master/recipes-multimedia/gstreamer
 
-Having enabled the extra image feature 'tools-testapp' I'm given an error
-saying nothing provides ltp. I've tried including ltp as a dependency in
-many various places to try and get this build to work, but have so far been
-unsuccessful. Any help would be much appreciated.
 
-The full log is as follows
+This is what I see in my source recipes:
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+user@user-VirtualBox:/media/yocto/build_yocto/build$ cd ../sources/
+user@user-VirtualBox:/media/yocto/build_yocto/sources$ find . | grep gstre
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-ugly_1.6.0.bb
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/imx-gst1.0-plugin
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/imx-gst1.0-plugin/0001-MMFMWK-7167-Fix-http-streaming-memory-leakage.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_%.bbappend
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-rtsp-server_1.6.0.bb
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0/0004-gstbaseparse-Need-push-adapter-remainning-data-in-passthrough-mode.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0/0003-baseparse-unset-FLAG_DISCONT-when-push-to-adapter.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0/0001-handle-base-parse-error.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0/0002-Fix-crash-with-gst-inspect-Chris-Lord-chris-openedha.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/imx-gst1.0-plugin_4.0.9.bb
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-libav
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-libav/0001-Disable-yasm-for-libav-when-disable-yasm.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-libav/workaround-to-build-gst-libav-for-i586-with-gcc.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.6.0.bb
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-libav_1.6.0.bb
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.6.0.bb
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0003-Revert-pulsesink-uncork-if-needed-upon-commit.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-gstrtpmp4gpay-set-dafault-value-for-MPEG4-without-co.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-Fix-aacpase-error-tolerance-issue.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad.inc
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.6.%.bbappend
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0_1.6.0.bb
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0_%.bbappend
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.0.bb
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0023-glplugin-glupload-crash-in-glupload-with-a-gst-launc.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0019-glplugin-gl-wayland-fix-loop-test-hang-in-glimagesin.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0007-opencv-Add-video-stitching-support-based-on-Open-CV.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0021-glplugin-fix-gleffects-fisheye-shader-co.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0009-camerabin-Add-one-property-to-set-sink-element-for-v.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0020-glplugin-Fix-glimagesink-wayland-resize-showed-blurr.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-modifiy-the-videoparse-rank.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0018-glplugin-glwindow-fix-memory-leak-of-navigation-thre.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0013-glplugin-support-video-crop-for-glimagesink.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-intall-the-header-file-of-gstaggregator-and-gstvideo.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0008-Adding-some-fragment-shaders-for-glshader-plugin.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-mpegtsmux-Need-get-pid-when-create-streams.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0017-glplugin-Add-fps-print-in-glimagesink.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0016-Add-one-deinterlacing-fragment-shader-file.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0012-glplugin-Accelerate-gldownload-with-directviv-API.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-mpegvideoparse-Need-detect-picture-coding-type-when-.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0022-vidoeparse-Roll-back-h264parse-rank.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0014-glplugin-Support-fb-backend-for-gl-plugins.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0010-Fix-for-gl-plugin-not-built-in-wayland-backend.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-glfilter-Lost-frame-rate-info-when-fixate-caps.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0011-glplugin-Add-directviv-to-glimagesink-to-improve-playback-performance.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-mpeg4videoparse-Need-detect-picture-coding-type-when.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0015-glplugin-Change-wayland-default-res-to-1024x768.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0008-handle-audio-video-decoder-error.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0003-ssaparse-enhance-SSA-text-lines-parsing.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0005-encodebin-Need-more-buffers-in-output-queue-for-bett.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0002-gstplaysink-don-t-set-async-of-custom-text-sink-to-f.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0004-subparse-set-need_segment-after-sink-pad-received-GS.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0007-taglist-not-send-to-down-stream-if-all-the-frame-cor.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0012-MMFMWK-7030-Linux_MX6QP_ARD-IMXCameraApp-When-Enable.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0009-gstaudiobasesink-print-warning-istead-of-return-ERRO.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0006-ENGR00312515-get-caps-from-src-pad-when-query-caps.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0010-Disable-orc-optimization-for-lib-video-in-plugins-ba.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0011-convertframe-Support-video-crop-when-convert-frame.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-basetextoverlay-make-memory-copy-when-video-buffer-s.patch
+./meta-fsl-bsp-release/imx/meta-bsp/recipes-multimedia/pulseaudio/pulseaudio/0001-Fix-pulseaudio-mutex-issue-when-do-pause-in-gstreame.patch
+./meta-fsl-bsp-release/imx/meta-sdk/recipes-fsl/packagegroup/packagegroup-fsl-multimedia-gstreamer1.0-testapps.bb
+./meta-fsl-bsp-release/imx/meta-sdk/recipes-fsl/packagegroup/packagegroup-fsl-multimedia-gstreamer1.0-core.bb
+./meta-fsl-demos/recipes-fsl/packagegroups/packagegroup-fsl-gstreamer1.0-commercial.bb
+./meta-fsl-demos/recipes-fsl/packagegroups/packagegroup-fsl-gstreamer1.0.bb
+./meta-fsl-demos/recipes-fsl/packagegroups/packagegroup-fsl-gstreamer1.0-full.bb
+./meta-fsl-demos/recipes-graphics/fsl-gpu-sdk/fsl-gpu-sdk/0001-update-gstreamer1.0-include-directory.patch
+./poky/meta/recipes-multimedia/gstreamer
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-omx_1.2.0.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-libav.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-omx
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-omx/0001-omx-fixed-type-error-in-printf-call.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0/inputselector-sticky-events-haven-t-send-out-when-ac-1-4-1.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0/0001-gstinfo-Shorten-__FILE__-on-all-platforms.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0/0001-Fix-crash-with-gst-inspect.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0/0003-basesink-Shouldn-t-drop-buffer-when-sync-false.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0/0002-basesink-Fix-QoS-lateness-checking-if-subclass-imple.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_git.bb
+./poky/meta/recipes-multimedia/gstreamer/gst-player
+./poky/meta/recipes-multimedia/gstreamer/gst-player/filechooser.patch
+./poky/meta/recipes-multimedia/gstreamer/gst-player/gst-player.desktop
+./poky/meta/recipes-multimedia/gstreamer/gst-player/Add-error-signal-emission-for-missing-plugins.patch
+./poky/meta/recipes-multimedia/gstreamer/gst-player/gtk2.patch
+./poky/meta/recipes-multimedia/gstreamer/gst-player/Fix-pause-play.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_git.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_git.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-libav
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-libav/0001-Disable-yasm-for-libav-when-disable-yasm.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-libav/workaround-to-build-gst-libav-for-i586-with-gcc.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-meta-base.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.4.5.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-rtsp-server.inc
+./poky/meta/recipes-multimedia/gstreamer/gst-player_git.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/decrease_asteriskh263_rank.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-gstrtpmp4gpay-set-dafault-value-for-MPEG4-without-co.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0_git.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-ugly_git.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-ugly.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-ugly_1.4.5.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-omx_git.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0_1.4.5.bb
+./poky/meta/recipes-multimedia/gstreamer/gst-plugins-package.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.4.5.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-rtsp-server_1.4.5.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-glimagesink-Downrank-to-marginal.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/configure-allow-to-disable-libssh2.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gl-do-not-check-for-GL-GLU-EGL-GLES2-libs-if-disable.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-libav_1.4.5.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0003-ssaparse-enhance-SSA-text-lines-parsing.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/fix-id3demux-utf16-to-utf8-issue.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/do-not-change-eos-event-to-gap-event2.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/get-caps-from-src-pad-when-query-caps.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0002-gstplaysink-don-t-set-async-of-custom-text-sink-to-f.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0004-subparse-set-need_segment-after-sink-pad-received-GS.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/taglist-not-send-to-down-stream-if-all-the-frame-cor.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-video-frame-Don-t-ref-buffers-twice-when-mapping.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0003-videofilter-Use-new-GST_VIDEO_FRAME_MAP_FLAG_NO_REF.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/videoencoder-Keep-sticky-events-around-when-doing-a-soft-.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/handle-audio-video-decoder-error.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-basetextoverlay-make-memory-copy-when-video-buffer-s.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/do-not-change-eos-event-to-gap-event-if.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/do-not-change-eos-event-to-gap-event3.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/videobuffer_updata_alignment_update.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/encodebin-Need-more-buffers-in-output-queue-for-bett.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0002-video-frame-Add-GST_VIDEO_FRAME_MAP_FLAG_NO_REF.patch
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-omx.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-libav_git.bb
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base.inc
+./poky/meta/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.4.5.bb
+./meta-openvivoe/recipes-multimedia/gstreamer
+./meta-openvivoe/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.2.bbappend
+./meta-openvivoe/recipes-multimedia/gstreamer/files
+./meta-openvivoe/recipes-multimedia/gstreamer/files/0001-fix-multicast.patch
+./meta-fsl-arm/recipes-multimedia/gstreamer
+./meta-fsl-arm/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
+./meta-fsl-arm/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_%.bbappend
+./meta-fsl-arm/recipes-multimedia/gstreamer/gstreamer1.0-plugins-imx_0.12.1.bb
+./meta-fsl-arm/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad
+./meta-fsl-arm/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-PATCH-install-gstaggregator-and-gstvideoaggregator-h.patch
+./meta-fsl-arm/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base
+./meta-fsl-arm/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/gstplaybin-remove-flag-deinterlace.patch
+./meta-fsl-arm/recipes-multimedia/gstreamer/gst1.0-fsl-plugin_4.0.8.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer/gst123_0.3.1.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer/files
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer/files/display.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-rtsp_0.10.8.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-base-0.10.36
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-base-0.10.36/configure.ac-fix-subparse-plugin.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-base-0.10.36/gst-plugins-base-tremor.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-base-0.10.36/audioresample-Fix-build-on-x86-if-emmintrin.h-is-ava.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-good_0.10.31.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-meta-base_0.10.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-openmax_0.10.1.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gstreamer-0.10.36
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gstreamer-0.10.36/gstregistrybinary.h
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gstreamer-0.10.36/check_fix.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gstreamer-0.10.36/0001-parse-make-grammar.y-work-with-Bison-3.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gstreamer-0.10.36/0001-baseparse-Fix-self-comparison-always-evaluates-to-tr.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gstreamer-0.10.36/gstregistrybinary.c
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gstreamer-0.10.36/gst-inspect-check-error.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/python-gst
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/python-gst/python-path.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-fluendo-mpegdemux_0.10.85.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-bad
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-bad/buffer-overflow-mp4.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-gl
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-gl/0001-conditional-gl-framebuffer-undefined-use.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-good-0.10.31
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-good-0.10.31/0407-mulawdec-fix-integer-overrun.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-good-0.10.31/0001-v4l2-fix-build-with-recent-kernels-the-v4l2_buffer-i.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-good-0.10.31/0001-v4l2_calls-define-V4L2_CID_HCENTER-and-V4L2_CID_VCEN.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-gl_0.10.3.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-ugly_0.10.19.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg_0.10.13.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-ugly
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-ugly/0002-Fix-opencore-include-paths.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-ugly/0001-cdio-compensate-for-libcdio-s-recent-cd-text-api-cha.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-base_0.10.36.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/python-gst_0.10.22.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins.inc
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/lower-rank.diff
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-smackerdec-Check-that-the-last-indexes-are-within-th.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-8546.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-avcodec-rpza-Perform-pointer-advance-and-checks-befo.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-h264-skip-error-concealment-when-SPS-and-slices-are-.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-error_concealment-Check-that-the-picture-is-not-in-a.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-8547.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-9318.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-ffserver-set-oformat.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-7933.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-huffyuvdec-Check-init_vlc-return-codes.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0002-avcodec-mjpegdec-check-bits-per-pixel-for-changes-si.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-avcodec-dsputil-fix-signedness-in-sizeof-comparissio.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-8544.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-lavf-compute-probe-buffer-size-more-reliably.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-8543.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-CVE-2013-0855.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-avcodec-msrle-use-av_image_get_linesize-to-calculate.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/libav_e500mc.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-h264_sei-Fix-infinite-loop.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/libav-9.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-h264-correct-ref-count-check-and-limit-fix-out-of-ar.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-8542.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-eamad-fix-out-of-array-accesses.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-vqavideo-check-chunk-sizes-before-reading-chunks.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/libav_e5500.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-pgssubdec-check-RLE-size-before-copying.-Fix-out-of-.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-huffyuvdec-Skip-len-0-cases.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/configure-fix.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-pngdec-filter-dont-access-out-of-array-elements-at-t.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-h264-set-parameters-from-SPS-whenever-it-changes.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-avformat-mpegtsenc-Check-data-array-size-in-mpegts_w.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-qdm2-check-array-index-before-use-fix-out-of-array-a.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/h264_qpel_mmx.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-avcodec-smc-fix-off-by-1-error.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-roqvideodec-check-dimensions-validity.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-alsdec-check-block-length.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-alac-fix-nb_samples-order-case.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-8545.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-mjpegdec-check-SE.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-qdm2dec-fix-buffer-overflow.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2014-9603.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-vp3-Copy-all-3-frames-for-thread-updates.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-vp3-fix-oob-read-for-negative-tokens-and-memleaks-on.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-avcodec-parser-reset-indexes-on-realloc-failure.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-atrac3dec-Check-coding-mode-against-channels.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-aacdec-check-channel-count.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/0001-error-concealment-initialize-block-index.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-fix-CVE-2011-4352.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-ffmpeg-0.10.13/gst-ffmpeg-CVE-2013-3674.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-plugins-bad_0.10.23.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gstreamer_0.10.36.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-fluendo-mp3_0.10.31.bb
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-rtsp
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-rtsp/0001-change-deprecated-INCLUDES-to-AM_CPPFLAGS-for-automa.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-openmax
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-openmax/ptr-array.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-openmax/gcc_4.6.patch
+./meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer-0.10/gst-fluendo.inc
+user@user-VirtualBox:/media/yocto/build_yocto/sources$
 
-bitbake intel-aero-image
-Loading cache: 100%
-|#############################################################################################|
-Time: 0:00:00
-Loaded 2781 entries from dependency cache.
-Parsing recipes: 100%
-|###########################################################################################|
-Time: 0:00:02
-Parsing of 2021 .bb files complete (2014 cached, 7 parsed). 2786 targets,
-145 skipped, 1 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
 
-Build Configuration:
-BB_VERSION        = "1.34.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "universal"
-TARGET_SYS        = "x86_64-poky-linux"
-MACHINE           = "intel-aero"
-DISTRO            = "poky-aero"
-DISTRO_VERSION    = "1.6.0"
-TUNE_FEATURES     = "m64 corei7"
-TARGET_FPU        = ""
-meta
-meta-poky
-meta-yocto-bsp    = "HEAD:50cc15335ebcdfa2a2fc52c11fa01695dfdb9e26"
-meta-oe
-meta-python
-meta-networking
-meta-filesystems  = "HEAD:b2ce52334cf88e07f703cf25ced92302edd5b0e9"
-meta-virtualization = "HEAD:88277c84962e9d07ec777896a0ca8bd7db9ff5e2"
-meta-intel        = "HEAD:4cd63f57820ce0e4ebd598251d3a13b5a4b9b791"
-meta-intel-realsense = "HEAD:211ce75af387b65fe894f13b3468148d2b9ab23d"
-meta-intel-aero-base = "HEAD:0c9f7a359c71f3c8b9f47efede194da51ccaefd7"
-meta-intel-aero   = "HEAD:a96a8fed779d6c02119ad9965e66bd051ff75a07"
-workspace         = "HEAD:50cc15335ebcdfa2a2fc52c11fa01695dfdb9e26"
+Best Regards,
+Ran
 
-Initialising tasks: 100%
-|########################################################################################|
-Time: 0:00:19
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: intel-aero-image-1.0-r0 do_rootfs: Could not invoke dnf. Command
-'/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/recipe-sysroot-native/usr/bin/dnf
--y -c
-/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/rootfs/etc/dnf/dnf.conf
---setopt=reposdir=/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/rootfs/etc/yum.repos.d
---repofrompath=oe-repo,/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/oe-rootfs-repo
---installroot=/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/rootfs
---setopt=logdir=/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/temp
--x busybox-syslog,nfs-utils,at,tcp-wrappers,ed,libacpi,libnss-mdns
---nogpgcheck install locale-base-en-us locale-base-en-gb initscripts-aero
-packagegroup-core-tools-testapps dmidecode cockpit-docker
-packagegroup-airmap packagegroup-core-ssh-openssh camera-streaming-daemon
-gstreamer1.0-meta-base aero-bios aero-http-server packagegroup-docker
-packagegroup-core-tools gstreamer1.0-plugins-good
-fix-cameras-enumeration-order ltp valgrind cockpit ppp notify-led
-packagegroup-base-extended gstreamer1.0-plugins-base cockpit-dashboard
-jam-stapl run-postinsts packagegroup-core-x11-base ardupilot-fw
-aero-cockpit-plugins librealsense1 packagegroup-core-standalone-sdk-target
-movidius packagegroup-core-sdk gstreamer1.0-plugins-bad intel-aero-repo
-libva-intel-driver packagegroup-core-tools-debug rpm packagegroup-px4
-openssh-sftp-server dnf resolvconf gstreamer1.0-rtsp-server va-intel
-packagegroup-core-boot modemmanager librealsense-graphical-examples
-gstreamer1.0-vaapi coav-control packagegroup-core-buildessential wget
-cockpit-ws psplash mavlink-router os-release rsync libva rng-tools
-packagegroup-core-full-cmdline cockpit-bridge optical-flow libcoav0
-networkmanager px4-fw hostapd cockpit-system gstreamer1.0 opencv' returned
-1:
-Added oe-repo repo from
-/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/oe-rootfs-repo
-Last metadata expiration check: 0:00:00 ago on Sun Nov 12 07:47:41 2017 UTC.
-Error:
- Problem 1: conflicting requests
-  - nothing provides at needed by ltp-20170116-r0.corei7_64
- Problem 2: package packagegroup-core-tools-testapps-1.0-r2.intel_aero
-requires ltp, but none of the providers can be installed
-  - conflicting requests
-  - nothing provides at needed by ltp-20170116-r0.corei7_64
-(try to add '--allowerasing' to command line to replace conflicting
-packages)
-
-ERROR: intel-aero-image-1.0-r0 do_rootfs: Function failed: do_rootfs
-ERROR: Logfile of failure stored in:
-/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/temp/log.do_rootfs.14579
-ERROR: Task
-(/home/qb89dragon/intel_aero/poky/../meta-intel-aero/recipes-core/images/intel-aero-image.bb:do_rootfs)
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 8911 tasks of which 8910 didn't need to be
-rerun and 1 failed.
-
-Summary: 1 task failed:
-
-/home/qb89dragon/intel_aero/poky/../meta-intel-aero/recipes-core/images/intel-aero-image.bb:
-do_rootfs
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
---001a1144490a7660fd055dc4cd17
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hoping this is the right place to get help with the follow=
-ing issue.<div><br></div><div>I&#39;m using bitbake to build a custom image=
- of the intel-aero / yocto sources.</div><div><br></div><div>Having enabled=
- the extra image feature &#39;tools-testapp&#39; I&#39;m given an error say=
-ing nothing provides ltp. I&#39;ve tried including ltp as a dependency in m=
-any various places to try and get this build to work, but have so far been =
-unsuccessful. Any help would be much appreciated.</div><div><br></div><div>=
-The full log is as follows</div><div><br></div><div><div>bitbake intel-aero=
--image</div><div>Loading cache: 100% |#####################################=
-########################################################| Time: 0:00:00</di=
-v><div>Loaded 2781 entries from dependency cache.</div><div>Parsing recipes=
-: 100% |###################################################################=
-########################| Time: 0:00:02</div><div>Parsing of 2021 .bb files=
- complete (2014 cached, 7 parsed). 2786 targets, 145 skipped, 1 masked, 0 e=
-rrors.</div><div>NOTE: Resolving any missing task queue dependencies</div><=
-div><br></div><div>Build Configuration:</div><div>BB_VERSION=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =3D &quot;1.34.0&quot;</div><div>BUILD_SYS=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0=3D &quot;x86_64-linux&quot;</div><div>NATIVELSBSTRING=C2=
-=A0 =C2=A0=3D &quot;universal&quot;</div><div>TARGET_SYS=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =3D &quot;x86_64-poky-linux&quot;</div><div>MACHINE=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;intel-aero&quot;</div><div>DISTRO=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;poky-aero&quot;</div><div>=
-DISTRO_VERSION=C2=A0 =C2=A0 =3D &quot;1.6.0&quot;</div><div>TUNE_FEATURES=
-=C2=A0 =C2=A0 =C2=A0=3D &quot;m64 corei7&quot;</div><div>TARGET_FPU=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =3D &quot;&quot;</div><div>meta=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0</div><div>meta-poky=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0</div><div>meta-yocto-bsp=C2=A0 =C2=A0 =3D &quot;HEAD:50cc1533=
-5ebcdfa2a2fc52c11fa01695dfdb9e26&quot;</div><div>meta-oe=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0</div><div>meta-python=C2=A0 =C2=A0 =C2=A0 =C2=A0</=
-div><div>meta-networking=C2=A0 =C2=A0</div><div>meta-filesystems=C2=A0 =3D =
-&quot;HEAD:b2ce52334cf88e07f703cf25ced92302edd5b0e9&quot;</div><div>meta-vi=
-rtualization =3D &quot;HEAD:88277c84962e9d07ec777896a0ca8bd7db9ff5e2&quot;<=
-/div><div>meta-intel=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;HEAD:4cd63f57820c=
-e0e4ebd598251d3a13b5a4b9b791&quot;</div><div>meta-intel-realsense =3D &quot=
-;HEAD:211ce75af387b65fe894f13b3468148d2b9ab23d&quot;</div><div>meta-intel-a=
-ero-base =3D &quot;HEAD:0c9f7a359c71f3c8b9f47efede194da51ccaefd7&quot;</div=
-><div>meta-intel-aero=C2=A0 =C2=A0=3D &quot;HEAD:a96a8fed779d6c02119ad9965e=
-66bd051ff75a07&quot;</div><div>workspace=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=3D &quot;HEAD:50cc15335ebcdfa2a2fc52c11fa01695dfdb9e26&quot;</div><div><br=
-></div><div>Initialising tasks: 100% |#####################################=
-###################################################| Time: 0:00:19</div><di=
-v>NOTE: Executing SetScene Tasks</div><div>NOTE: Executing RunQueue Tasks</=
-div><div>ERROR: intel-aero-image-1.0-r0 do_rootfs: Could not invoke dnf. Co=
-mmand &#39;/home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-=
-linux/intel-aero-image/1.0-r0/recipe-sysroot-native/usr/bin/dnf -y -c /home=
-/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero=
--image/1.0-r0/rootfs/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/home/qb89drago=
-n/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0=
--r0/rootfs/etc/yum.repos.d --repofrompath=3Doe-repo,/home/qb89dragon/intel_=
-aero/poky/build/tmp/work/intel_aero-poky-linux/intel-aero-image/1.0-r0/oe-r=
-ootfs-repo --installroot=3D/home/qb89dragon/intel_aero/poky/build/tmp/work/=
-intel_aero-poky-linux/intel-aero-image/1.0-r0/rootfs --setopt=3Dlogdir=3D/h=
-ome/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-poky-linux/intel-a=
-ero-image/1.0-r0/temp -x busybox-syslog,nfs-utils,at,tcp-wrappers,ed,libacp=
-i,libnss-mdns --nogpgcheck install locale-base-en-us locale-base-en-gb init=
-scripts-aero packagegroup-core-tools-testapps dmidecode cockpit-docker pack=
-agegroup-airmap packagegroup-core-ssh-openssh camera-streaming-daemon gstre=
-amer1.0-meta-base aero-bios aero-http-server packagegroup-docker packagegro=
-up-core-tools gstreamer1.0-plugins-good fix-cameras-enumeration-order ltp v=
-algrind cockpit ppp notify-led packagegroup-base-extended gstreamer1.0-plug=
-ins-base cockpit-dashboard jam-stapl run-postinsts packagegroup-core-x11-ba=
-se ardupilot-fw aero-cockpit-plugins librealsense1 packagegroup-core-standa=
-lone-sdk-target movidius packagegroup-core-sdk gstreamer1.0-plugins-bad int=
-el-aero-repo libva-intel-driver packagegroup-core-tools-debug rpm packagegr=
-oup-px4 openssh-sftp-server dnf resolvconf gstreamer1.0-rtsp-server va-inte=
-l packagegroup-core-boot modemmanager librealsense-graphical-examples gstre=
-amer1.0-vaapi coav-control packagegroup-core-buildessential wget cockpit-ws=
- psplash mavlink-router os-release rsync libva rng-tools packagegroup-core-=
-full-cmdline cockpit-bridge optical-flow libcoav0 networkmanager px4-fw hos=
-tapd cockpit-system gstreamer1.0 opencv&#39; returned 1:</div><div>Added oe=
--repo repo from /home/qb89dragon/intel_aero/poky/build/tmp/work/intel_aero-=
-poky-linux/intel-aero-image/1.0-r0/oe-rootfs-repo</div><div>Last metadata e=
-xpiration check: 0:00:00 ago on Sun Nov 12 07:47:41 2017 UTC.</div><div>Err=
-or:=C2=A0</div><div>=C2=A0Problem 1: conflicting requests</div><div>=C2=A0 =
-- nothing provides at needed by ltp-20170116-r0.corei7_64</div><div>=C2=A0P=
-roblem 2: package packagegroup-core-tools-testapps-1.0-r2.intel_aero requir=
-es ltp, but none of the providers can be installed</div><div>=C2=A0 - confl=
-icting requests</div><div>=C2=A0 - nothing provides at needed by ltp-201701=
-16-r0.corei7_64</div><div>(try to add &#39;--allowerasing&#39; to command l=
-ine to replace conflicting packages)</div><div><br></div><div>ERROR: intel-=
-aero-image-1.0-r0 do_rootfs: Function failed: do_rootfs</div><div>ERROR: Lo=
-gfile of failure stored in: /home/qb89dragon/intel_aero/poky/build/tmp/work=
-/intel_aero-poky-linux/intel-aero-image/1.0-r0/temp/log.do_rootfs.14579</di=
-v><div>ERROR: Task (/home/qb89dragon/intel_aero/poky/../meta-intel-aero/rec=
-ipes-core/images/intel-aero-image.bb:do_rootfs) failed with exit code &#39;=
-1&#39;</div><div>NOTE: Tasks Summary: Attempted 8911 tasks of which 8910 di=
-dn&#39;t need to be rerun and 1 failed.</div><div><br></div><div>Summary: 1=
- task failed:</div><div>=C2=A0 /home/qb89dragon/intel_aero/poky/../meta-int=
-el-aero/recipes-core/images/intel-aero-image.bb:do_rootfs</div><div>Summary=
-: There were 2 ERROR messages shown, returning a non-zero exit code.</div><=
-/div><div><br></div></div>
-
---001a1144490a7660fd055dc4cd17--
