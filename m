@@ -1,35 +1,38 @@
-Return-Path: <martyn.welch@collabora.co.uk>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2F9B5E00CC4; Mon, 13 Nov 2017 11:25:51 -0800 (PST)
+	id F0770E00CC4; Mon, 13 Nov 2017 12:07:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-X-Greylist: delayed 347 seconds by postgrey-1.32 at yocto-www;
-	Mon, 13 Nov 2017 11:25:49 PST
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2204E00BEA
-	for <yocto@yoctoproject.org>; Mon, 13 Nov 2017 11:25:49 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: martyn) with ESMTPSA id 6D48526E9A6
-From: Martyn Welch <martyn.welch@collabora.co.uk>
-To: yocto@yoctoproject.org,
-	openembedded-core@lists.openembedded.org
-Date: Mon, 13 Nov 2017 19:19:48 +0000
-Message-Id: <1510600788-27455-2-git-send-email-martyn.welch@collabora.co.uk>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1510600788-27455-1-git-send-email-martyn.welch@collabora.co.uk>
-References: <1510600788-27455-1-git-send-email-martyn.welch@collabora.co.uk>
-Subject: [PATCH v2 2/2] ref-manual: Add documentation for prohibited-path QA test
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF753E00BEA
+	for <yocto@yoctoproject.org>; Mon, 13 Nov 2017 12:07:02 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	13 Nov 2017 12:07:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.44,389,1505804400"; 
+   d="scan'208";a="2215918"
+Received: from mintingh-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.249.67.199])
+	by fmsmga001.fm.intel.com with ESMTP; 13 Nov 2017 12:06:56 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 14 Nov 2017 09:06:52 +1300
+Message-ID: <2151349.y7FU02UkXM@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <CAJTo0LY8QPcMKQgPDYsRwRYBwy86g3XO34y2EzCkYWFDTHd2cQ@mail.gmail.com>
+References: <CAG8GRtgq1qPe78V+fu-C6Mb7WZ_+B6_8r9Z0u594PLNE0BWR4w@mail.gmail.com>
+	<CAJTo0LY8QPcMKQgPDYsRwRYBwy86g3XO34y2EzCkYWFDTHd2cQ@mail.gmail.com>
+MIME-Version: 1.0
+Subject: Re: Bitbake fails when enabling tools-testapps
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,74 +44,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Nov 2017 19:25:51 -0000
+X-List-Received-Date: Mon, 13 Nov 2017 20:07:05 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Add documentation for the prohibited-path QA test and associated
-PROHIBITED_PATH variable.
+On Tuesday, 14 November 2017 5:37:23 AM NZDT Burton, Ross wrote:
+> On 12 November 2017 at 08:18, Chris Hughes <89dragon@gmail.com> wrote:
+> 
+> >   - nothing provides at needed by ltp-20170116-r0.corei7_64
+> >
+> 
+> Well at is part of oe-core so that should have been built.  "bitbake at" to
+> see why, or if that works then rebuilding your image should work (although
+> it really should have been built already).
 
-Signed-off-by: Martyn Welch <martyn.welch@collabora.co.uk>
----
+Chris figured this out and reported back on the IRC channel - turns out that 
+in his configuration, "at" was in PACKAGE_EXCLUDE. Unfortunately dnf is not 
+being very clear about why the package is conflicting - of course it wouldn't 
+be able to say anything about PACKAGE_EXCLUDE itself, but nevertheless the 
+message is still pretty vague.
 
-Changes since v1:
- - Correcting author and SOB.
+Cheers,
+Paul
 
- documentation/ref-manual/ref-classes.xml   |  5 +++++
- documentation/ref-manual/ref-variables.xml | 25 +++++++++++++++++++++++++
- 2 files changed, 30 insertions(+)
-
-diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref-manual/ref-classes.xml
-index 5961d3e..15f5586 100644
---- a/documentation/ref-manual/ref-classes.xml
-+++ b/documentation/ref-manual/ref-classes.xml
-@@ -1714,6 +1714,11 @@
-                 <filename>FILES_${PN} = "xyz"</filename> effectively turn into
-                 <filename>FILES = "xyz"</filename>.
-                 </para></listitem>
-+            <listitem><para><emphasis><filename>prohibited-path:</filename></emphasis>
-+                Checks that a recipe does not package and files in locations
-+                specified in
-+                <link linkend='var-PROHIBITED_PATH'><filename>PROHIBITED_PATH</filename></link>.
-+                </para></listitem>
-            <listitem><para><emphasis><filename>rpaths:</filename></emphasis>
-                 Checks for rpaths in the binaries that contain build system paths such
-                 as <filename>TMPDIR</filename>.
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index e31aa21..0bdbbba 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -10820,6 +10820,31 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR = "${INC_PR}.3"
-             </glossdef>
-         </glossentry>
- 
-+        <glossentry id='var-PROHIBITED_PATH'><glossterm>PROHIBITED_PATH</glossterm>
-+            <info>
-+                PROHIBITED_PATH[doc] = "A list of paths in which recipes are prohibited from installing."
-+            </info>
-+            <glossdef>
-+                <para role="glossdeffirst">
-+<!--                <para role="glossdeffirst"><imagedata fileref="figures/define-generic.png" /> -->
-+                    A list of paths in which recipes are prohibited from
-+                    installing.
-+                    Paths can be provided for specific locations or may include
-+                    a wildcard asterisk at the end to ensure nothing is
-+                    installed under the path provided.
-+                </para>
-+
-+                <para>
-+                    For example, the following
-+                    <filename>PROHIBITED_PATH</filename> ensures no packages
-+                    install anything under <filename>/mnt</filename>:
-+                    <literallayout class='monospaced'>
-+     PROHIBITED_PATH += "/mnt/*"
-+                    </literallayout>
-+                </para>
-+            </glossdef>
-+        </glossentry>
-+
-         <glossentry id='var-PROVIDES'><glossterm>PROVIDES</glossterm>
-             <info>
-                 PROVIDES[doc] = "A list of aliases that a recipe also provides. These aliases are useful for satisfying dependencies of other recipes during the build as specified by DEPENDS."
 -- 
-2.1.4
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
