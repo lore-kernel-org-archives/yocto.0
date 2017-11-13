@@ -1,65 +1,37 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <tobias.olausson@pelagicore.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13A3FE00BEA; Mon, 13 Nov 2017 08:37:46 -0800 (PST)
+	id 3EAE5E00C45; Mon, 13 Nov 2017 09:14:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.47 listed in list.dnswl.org]
+	*      [109.166.244.23 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.214.47 listed in dnsbl.sorbs.net]
-Received: from mail-it0-f47.google.com (mail-it0-f47.google.com
-	[209.85.214.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47EC6E00928
-	for <yocto@yoctoproject.org>; Mon, 13 Nov 2017 08:37:44 -0800 (PST)
-Received: by mail-it0-f47.google.com with SMTP id 72so10129241itl.5
-	for <yocto@yoctoproject.org>; Mon, 13 Nov 2017 08:37:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=A+5uDDQ3QanteNFx1TZghpquatp4F3tgS2X83NqYLCs=;
-	b=gHoxFt7bhCFee7VcpDDfiYki1qKUeKmOo31utGBb5BlnrM7kiLArhzxxxITHnDqbnQ
-	R0ywL0YUf7FGajY13Id/1peUe4ts5YtUx1fxiseRlPs8AjOyLQwrJXDQOdXqRotoN4JA
-	0ZrNSKtANk0/eAyw/bmsi6/HhvpNj75AkiGG12oo0HsC2khJg8o9g50bCyVOGqxHMa/u
-	JByVQe/Z8/QjJfMDEVVTVgazV8zf7WV5r0Z07WjUs5OOhKbG7hjVpI5ndjsSaYbwTc+S
-	+YQ9h1HZblXtj1LwX3pmJWkcYfwdAVrq+hD99OnHU4cnU//m1dSG5/cTqqEwaSDlevo2
-	QVzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=A+5uDDQ3QanteNFx1TZghpquatp4F3tgS2X83NqYLCs=;
-	b=J9+iEZv03J9vuvXQyUmx12p46il90zw+VdYS4PUI/YwQRNLUvXxlwHgDV3/fg1dwX2
-	4aGlwpw9BmomioMrb2cedgMJbmQSgo90NinkAFSDuP6HY76Ul0XOra4YnvMCV3vFxX0l
-	iv00A/LC45De41B9bi4usOa276fTZBnV1i7R3FWZLpkQvEzW9tItU9O37Rk7uI+TV6q3
-	2tTUhwobMXGCsj6ThPZyKUdrQFiJL16jXMZSm/rcmyCPABXvBD9klTj/y9x3lcuP7Q5V
-	IVvtg1kX9ACyh/784ii+38EnIZMODlh2tG7hc7ojKPdNEN4zOGvpSK2Ew1fKwUJf9cN3
-	gWJQ==
-X-Gm-Message-State: AJaThX4y7GrEU04dbyrWocWXgo+T6uGEWs2EmpR0gy/4pO/Xr+U+f/4z
-	NUJ8pojr/M8poPs3vKLHUgQxtRobw2oh7cu4uUv+mg==
-X-Google-Smtp-Source: AGs4zMbfMB/eDnvtFX20GpTfh/whftKdnLUBr6kyvkQx6x7gWh97TaBvXVBgpLa+uUkvi6kAz/Vlc3qQs8KMXwUO5qM=
-X-Received: by 10.36.125.76 with SMTP id b73mr11283061itc.10.1510591064023;
-	Mon, 13 Nov 2017 08:37:44 -0800 (PST)
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Mon, 13 Nov 2017 09:14:48 PST
+Received: from ORO-EDGE-03.luxoft.com (oro-edge-03.luxoft.com [109.166.244.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3E72E00BEA
+	for <yocto@yoctoproject.org>; Mon, 13 Nov 2017 09:14:48 -0800 (PST)
+Received: from ORO-HUBT-01.luxoft.com (172.30.115.41) by
+	oro-edge-03.luxoft.com (172.30.19.23) with Microsoft SMTP Server (TLS)
+	id 14.3.319.2; Mon, 13 Nov 2017 19:13:42 +0200
+Received: from [172.31.241.70] (172.31.241.70) by ORO-HUBT-01.luxoft.com
+	(172.30.115.101) with Microsoft SMTP Server (TLS) id 14.3.319.2;
+	Mon, 13 Nov 2017 19:13:42 +0200
+To: <yocto@yoctoproject.org>
+From: Tobias Olausson <tobias.olausson@pelagicore.com>
+Organization: Pelagicore
+Message-ID: <13e28abd-e0b3-3203-2fbe-e0e3961a7d16@pelagicore.com>
+Date: Mon, 13 Nov 2017 18:13:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-Received: by 10.107.171.196 with HTTP; Mon, 13 Nov 2017 08:37:23 -0800 (PST)
-In-Reply-To: <CAG8GRtgq1qPe78V+fu-C6Mb7WZ_+B6_8r9Z0u594PLNE0BWR4w@mail.gmail.com>
-References: <CAG8GRtgq1qPe78V+fu-C6Mb7WZ_+B6_8r9Z0u594PLNE0BWR4w@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 13 Nov 2017 16:37:23 +0000
-Message-ID: <CAJTo0LY8QPcMKQgPDYsRwRYBwy86g3XO34y2EzCkYWFDTHd2cQ@mail.gmail.com>
-To: Chris Hughes <89dragon@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Bitbake fails when enabling tools-testapps
+X-Originating-IP: [172.31.241.70]
+Subject: rpm/dnf issues when building an SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,36 +43,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Nov 2017 16:37:46 -0000
-Content-Type: multipart/alternative; boundary="001a11444174c5c6c1055ddfe374"
+X-List-Received-Date: Mon, 13 Nov 2017 17:14:50 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---001a11444174c5c6c1055ddfe374
-Content-Type: text/plain; charset="UTF-8"
+Hey,
 
-On 12 November 2017 at 08:18, Chris Hughes <89dragon@gmail.com> wrote:
+I have a weird issue when generating an SDK for the image I'm building.
+Somehow, I end up with the following errors:
 
->   - nothing provides at needed by ltp-20170116-r0.corei7_64
->
+$ bitbake -c populate_sdk core-image-pelux-minimal
+ERROR: core-image-pelux-minimal-1.0-r0 do_populate_sdk: unable to place
+/home/vagrant/pelux_yocto/build/tmp/work/intel_corei7_64-pelux-linux/core-image-pelux-minimal/1.0-r0/sdk/image/etc/rpmrc
+in final SDK location
+ERROR: core-image-pelux-minimal-1.0-r0 do_populate_sdk: unable to place
+/home/vagrant/pelux_yocto/build/tmp/work/intel_corei7_64-pelux-linux/core-image-pelux-minimal/1.0-r0/sdk/image/etc/dnf/dnf.conf
+in final SDK location
 
-Well at is part of oe-core so that should have been built.  "bitbake at" to
-see why, or if that works then rebuilding your image should work (although
-it really should have been built already).
+I have no idea why, and re-running the populate_sdk step succeeds
+without any tasks being run, and even after those errors, an sdk is
+produced, but I end up with 2 errors and a non-zero exit code. A quick
+check easily reveals that the files it wanted to place in "final SDK
+location" are non-existent, so the error as such makes sense.
 
-Ross
+In my CI system I build this using vagrant with docker as the provider,
+and it's only then I notice this issue. When building locally (with
+docker or otherwise) there are no such issues. The CI system (and when I
+build locally) are ubuntu and debian, respectively. The error is present
+in the CI setup regardless of having rpm on the host machine or not.
 
---001a11444174c5c6c1055ddfe374
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I couldn't find any info on other people having the same problem, and I
+start feeling stuck on this because it only fails in some environments,
+it seems.
 
-<div dir=3D"ltr">On 12 November 2017 at 08:18, Chris Hughes <span dir=3D"lt=
-r">&lt;<a href=3D"mailto:89dragon@gmail.com" target=3D"_blank">89dragon@gma=
-il.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div class=3D"gm=
-ail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
-der-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div>=C2=A0=
- - nothing provides at needed by ltp-20170116-r0.corei7_64</div></div></div=
-></blockquote><div><br></div><div>Well at is part of oe-core so that should=
- have been built. =C2=A0&quot;bitbake at&quot; to see why, or if that works=
- then rebuilding your image should work (although it really should have bee=
-n built already).</div><div><br></div><div>Ross</div></div></div></div>
+Cheers,
 
---001a11444174c5c6c1055ddfe374--
+Tobias Olausson
+Software Engineer
+
+PELAGICORE | Experience Change
+http://www.pelagicore.com/
+
+Registered Office Gothenburg, Sweden
+Registration No. 556780-4199
+
+PELAGICORE a part of LUXOFT
+
