@@ -1,49 +1,39 @@
-Return-Path: <varekpaf@seznam.cz>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49809E00DCE; Tue, 14 Nov 2017 03:55:46 -0800 (PST)
+	id 60310E00DB6; Tue, 14 Nov 2017 04:47:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (varekpaf[at]seznam.cz)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [77.75.76.89 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mxb2.seznam.cz (mxb2.seznam.cz [77.75.76.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6F59E00D26
-	for <yocto@yoctoproject.org>; Tue, 14 Nov 2017 03:55:44 -0800 (PST)
-Received: from email.seznam.cz
-	by email-smtpc5b.ng.seznam.cz (email-smtpc5b.ng.seznam.cz
-	[10.23.13.135]) id 6d938cb7d6a405f76dce87fc;
-	Tue, 14 Nov 2017 12:55:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-	t=1510660539; bh=dMMUxUDQoseTA1yCKCC+B7nfFVQ2roDdtBopVhN44Tg=;
-	h=Received:From:To:Cc:Subject:Date:Message-Id:Mime-Version:X-Mailer:
-	Content-Type;
-	b=NGdh3oCT/vhSu3gAYD5A7nQjJb45J7eDHTSYfIwFonSCM4iBGmq4sS/0W27xahOjU
-	rtvfHbWX/ALCo6RFpK5INP0NBEcuZjD9+5ocdhCwPWiP439VqOteRGsliK8Z3UEyOg
-	JDI8YTF9gApE+ed3BBCwzt23E+2wM3QvXFVRQTRA=
-Received: from unknown ([::ffff:83.240.65.44])
-	by email.seznam.cz (szn-ebox-4.5.295) with HTTP;
-	Tue, 14 Nov 2017 12:55:32 +0100 (CET)
-From: "Pavlina Varekova" <varekpaf@seznam.cz>
-To: <yocto@yoctoproject.org>
-Date: Tue, 14 Nov 2017 12:55:32 +0100 (CET)
-Message-Id: <7bW.NNVD.1oNVEXa0zPC.1Q2jcq@seznam.cz>
-Mime-Version: 1.0 (szn-mime-2.0.33)
-X-Mailer: szn-ebox-4.5.295
-Subject: pseudo - problems with /dev/null
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1A5DE00D26
+	for <yocto@yoctoproject.org>; Tue, 14 Nov 2017 04:47:33 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	14 Nov 2017 04:47:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.44,393,1505804400"; 
+   d="scan'208";a="7468255"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by orsmga002.jf.intel.com with ESMTP; 14 Nov 2017 04:47:32 -0800
+To: Martyn Welch <martyn.welch@collabora.co.uk>, yocto@yoctoproject.org,
+	openembedded-core@lists.openembedded.org
+References: <1510600788-27455-1-git-send-email-martyn.welch@collabora.co.uk>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <ac750826-9931-85d1-35b4-106d774ee829@linux.intel.com>
+Date: Tue, 14 Nov 2017 14:47:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
+MIME-Version: 1.0
+In-Reply-To: <1510600788-27455-1-git-send-email-martyn.welch@collabora.co.uk>
+Subject: Re: [OE-core] [PATCH v2 1/2] package.bbclass: add prohibited-path qa test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,94 +45,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Nov 2017 11:55:46 -0000
-Content-Type: multipart/alternative;
-	boundary="=_619ae9cf2ae2786d1f8a2041=b90c1b1c-b3b3-574d-bbc1-bb77c7ce6609_="
+X-List-Received-Date: Tue, 14 Nov 2017 12:47:34 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---=_619ae9cf2ae2786d1f8a2041=b90c1b1c-b3b3-574d-bbc1-bb77c7ce6609_=
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+On 11/13/2017 09:19 PM, Martyn Welch wrote:
+> Sometimes we wish to ensure that packages don't install files or
+> directories somewhere that may prove detrimental to the operation of the
+> system. For example, this may be the case if files are placed in a
+> directory that is utilised as a mount point at run time, thus making them
+> inaccessible once when the mount point is being utilised.
+> 
+> Implement the prohibited-path QA test, which enables such locations to be
+> specified in a "PROHIBITED_PATH" variable. This implementation allows for
+> exact matches and simple wildcards (paths ending with an asterisk. An
+> error will be raised should a match be found, or in the case of a
+> wildcard, for any files added below the specificed location(s).
 
-Hi,
-/dev/null in pseudo with -r does not work as expected (see commands below)=
-. 
-For example fakechroot behaves as I expected (see below). Can I obtain 
-similar behavior like fakechroot using pseudo?
-Thank you.
-Pavlina
-------------------------------------------
-root# /root/ps_dir/ps3/pseudo/bin/pseudo=C2=A0 -r "/root/repos/repo05/rpm/=
-tests/
-testing" -P /root/ps_dir/ps3/pseudo/
+I think this situation is an image configuration problem, not a package 
+qa problem. If a package wants to install something in a location that 
+is deemed inappropriate by the local config, there's a reason behind it, 
+the fix may not be easy to develop, and will likely be useless or even 
+unacceptable to other users of the recipe. It's better to reconfigure 
+the mount points.
 
-bash-4.2# /bin/ls -la /dev/
-total 4
-drwxr-xr-x=C2=A0 2 root root=C2=A0=C2=A0 69 Nov 14 12:15 .
-drwxr-xr-x 13 root root 4096 Nov 14 12:15 ..
-lrwxrwxrwx=C2=A0 1 root root=C2=A0=C2=A0=C2=A0 9 Nov 14 12:15 null -> /dev=
-/null
-lrwxrwxrwx=C2=A0 1 root root=C2=A0=C2=A0 11 Nov 14 12:15 stderr -> /dev/st=
-derr
-lrwxrwxrwx=C2=A0 1 root root=C2=A0=C2=A0 10 Nov 14 12:15 stdin -> /dev/std=
-in
-lrwxrwxrwx=C2=A0 1 root root=C2=A0=C2=A0 11 Nov 14 12:15 stdout -> /dev/st=
-dout
-lrwxrwxrwx=C2=A0 1 root root=C2=A0=C2=A0 12 Nov 14 12:15 urandom -> /dev/u=
-random
+Can you perform this check using IMAGE_QA_COMMANDS please?
 
-bash-4.2# echo "ddddd" > /dev/null 
-bash: /dev/null: Is a directory
+On a broader note, we've had an open issue to improve image qa testing 
+for a long time, so maybe this could be a first step :)
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=10636
 
--------------------------------------------
-FAKECHROOT_BASE=3D"/root/repos/repo05/rpm/tests/testing" fakechroot
+Alex
 
-bash-4.2# /bin/ls -la /dev/
-total 4
-drwxr-xr-x.=C2=A0 2 root root=C2=A0=C2=A0 69 Nov 14 12:15 .
-drwxr-xr-x. 13 root root 4096 Nov 14 12:15 ..
-lrwxrwxrwx.=C2=A0 1 root root=C2=A0=C2=A0=C2=A0 9 Nov 14 12:15 null -> /de=
-v/null
-lrwxrwxrwx.=C2=A0 1 root root=C2=A0=C2=A0 11 Nov 14 12:15 stderr -> /dev/s=
-tderr
-lrwxrwxrwx.=C2=A0 1 root root=C2=A0=C2=A0 10 Nov 14 12:15 stdin -> /dev/st=
-din
-lrwxrwxrwx.=C2=A0 1 root root=C2=A0=C2=A0 11 Nov 14 12:15 stdout -> /dev/s=
-tdout
-lrwxrwxrwx.=C2=A0 1 root root=C2=A0=C2=A0 12 Nov 14 12:15 urandom -> /dev/=
-urandom
-
-bash-4.2# echo "ddd" > /dev/null 
-
---=_619ae9cf2ae2786d1f8a2041=b90c1b1c-b3b3-574d-bbc1-bb77c7ce6609_=
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><body>Hi,<br>/dev/null in pseudo with -r does not work as expected (=
-see commands below). For example fakechroot behaves as I expected (see bel=
-ow). Can I obtain similar behavior like fakechroot using pseudo?<br>Thank =
-you.<br>Pavlina<br>------------------------------------------<br>root# /ro=
-ot/ps_dir/ps3/pseudo/bin/pseudo&nbsp; -r "/root/repos/repo05/rpm/tests/tes=
-ting" -P /root/ps_dir/ps3/pseudo/<br><br>bash-4.2# /bin/ls -la /dev/<br>to=
-tal 4<br>drwxr-xr-x&nbsp; 2 root root&nbsp;&nbsp; 69 Nov 14 12:15 .<br>drw=
-xr-xr-x 13 root root 4096 Nov 14 12:15 ..<br>lrwxrwxrwx&nbsp; 1 root root&=
-nbsp;&nbsp;&nbsp; 9 Nov 14 12:15 null -&gt; /dev/null<br>lrwxrwxrwx&nbsp; =
-1 root root&nbsp;&nbsp; 11 Nov 14 12:15 stderr -&gt; /dev/stderr<br>lrwxrw=
-xrwx&nbsp; 1 root root&nbsp;&nbsp; 10 Nov 14 12:15 stdin -&gt; /dev/stdin<=
-br>lrwxrwxrwx&nbsp; 1 root root&nbsp;&nbsp; 11 Nov 14 12:15 stdout -&gt; /=
-dev/stdout<br>lrwxrwxrwx&nbsp; 1 root root&nbsp;&nbsp; 12 Nov 14 12:15 ura=
-ndom -&gt; /dev/urandom<br><br>bash-4.2# echo "ddddd" &gt; /dev/null <br>b=
-ash: /dev/null: Is a directory<br><br>------------------------------------=
--------<br>FAKECHROOT_BASE=3D"/root/repos/repo05/rpm/tests/testing" fakech=
-root<br><br>bash-4.2# /bin/ls -la /dev/<br>total 4<br>drwxr-xr-x.&nbsp; 2 =
-root root&nbsp;&nbsp; 69 Nov 14 12:15 .<br>drwxr-xr-x. 13 root root 4096 N=
-ov 14 12:15 ..<br>lrwxrwxrwx.&nbsp; 1 root root&nbsp;&nbsp;&nbsp; 9 Nov 14=
- 12:15 null -&gt; /dev/null<br>lrwxrwxrwx.&nbsp; 1 root root&nbsp;&nbsp; 1=
-1 Nov 14 12:15 stderr -&gt; /dev/stderr<br>lrwxrwxrwx.&nbsp; 1 root root&n=
-bsp;&nbsp; 10 Nov 14 12:15 stdin -&gt; /dev/stdin<br>lrwxrwxrwx.&nbsp; 1 r=
-oot root&nbsp;&nbsp; 11 Nov 14 12:15 stdout -&gt; /dev/stdout<br>lrwxrwxrw=
-x.&nbsp; 1 root root&nbsp;&nbsp; 12 Nov 14 12:15 urandom -&gt; /dev/urando=
-m<br><br>bash-4.2# echo "ddd" &gt; /dev/null <br><br></body></html>
-
---=_619ae9cf2ae2786d1f8a2041=b90c1b1c-b3b3-574d-bbc1-bb77c7ce6609_=--
