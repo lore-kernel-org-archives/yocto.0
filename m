@@ -1,44 +1,60 @@
-Return-Path: <obi@opendreambox.org>
+Return-Path: <ranshalit@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 670A1E00CC4; Tue, 14 Nov 2017 05:11:10 -0800 (PST)
+	id 7C6CCE00D07; Tue, 14 Nov 2017 09:40:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [82.149.226.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ranshalit[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 561 seconds by postgrey-1.32 at yocto-www;
-	Tue, 14 Nov 2017 05:11:08 PST
-Received: from mail.dream-property.net (mail.dream-property.net
-	[82.149.226.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B6FFE00928
-	for <yocto@yoctoproject.org>; Tue, 14 Nov 2017 05:11:08 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.dream-property.net (Postfix) with ESMTP id 6CC5831A6C15;
-	Tue, 14 Nov 2017 14:01:46 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail.dream-property.net
-Received: from mail.dream-property.net ([127.0.0.1])
-	by localhost (mail.dream-property.net [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with LMTP id AAMDBnDdLlmb; Tue, 14 Nov 2017 14:01:40 +0100 (CET)
-Received: from t460p (p57A61BB5.dip0.t-ipconnect.de [87.166.27.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.dream-property.net (Postfix) with ESMTPSA id 207D131A6BC2;
-	Tue, 14 Nov 2017 14:01:40 +0100 (CET)
-Date: Tue, 14 Nov 2017 14:01:34 +0100
-From: Andreas Oberritter <obi@opendreambox.org>
-To: Martyn Welch <martyn.welch@collabora.co.uk>
-Message-ID: <20171114140134.64914cb2@t460p>
-In-Reply-To: <1510600788-27455-1-git-send-email-martyn.welch@collabora.co.uk>
-References: <1510600788-27455-1-git-send-email-martyn.welch@collabora.co.uk>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.45 listed in list.dnswl.org]
+Received: from mail-wm0-f45.google.com (mail-wm0-f45.google.com [74.125.82.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D672EE00C84
+	for <yocto@yoctoproject.org>; Tue, 14 Nov 2017 09:40:20 -0800 (PST)
+Received: by mail-wm0-f45.google.com with SMTP id z3so13293332wme.3
+	for <yocto@yoctoproject.org>; Tue, 14 Nov 2017 09:40:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=uY5iRX63b4xBpt1Nv5XmpuYMGctZ2k80fLpkPzIY5UM=;
+	b=uSPkWpqotadJ2CDZfHaDbS7+VkeA1jSOtjwfCMU25/yZMqUsnwJZ/Kvk7rjPl3UgUD
+	F+Fnz3futloezXduFecoqycA9HnsO2nmI+/WXZk99sh/Nh6WW55ijgS7SoMa+pJy0mdi
+	y4f6cDAKzlpTijdY5P/OXyFLywsqziOgcTPICEo76cxi1l9bKm6Vy37KixHs9A/mkGkK
+	W1sAdK4p4dS3rMgIBdPLhX0NpbQqGovtOZGJ0WobJmr3DTTsmD2b+PxTKVkuhKRcMTQg
+	uqsh8bW6T9FD5BRo5STjBjV1GUMPBtDGh90vEOADFLlojEMdaa0CGTmVNQDbhdaDGdld
+	z7Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=uY5iRX63b4xBpt1Nv5XmpuYMGctZ2k80fLpkPzIY5UM=;
+	b=exKOvSbEUrggV5cCj1kbJoUdZ1kLNcJrSdziLt3f3Rg0MizmZBy9oFQB038i68BN89
+	NyEubhQUf/FjtsgRr+y7ZG1fxTbKv6/FUPR+3mZ2WC/H3bYxvbLPlT3pvHrZdIdM4pvK
+	ctXWbmmaRAwYyWTHHu0NUbe75TK9bBgJTeorhqX7jKY210R2BOQHz+f5yQISHXcBg4lj
+	9NPbz/sCkIOa5tvrVMaOG+uEVV8+M1i4YpEz/CWw2ySchgLiqL+iA350HHON3N2ata04
+	BgRVyUu9fSze4f6IMdfGcT6iqsfloQgvRqr44YBXW9uMfT4lqzuToWmthrEEn2DQr3MR
+	Z+YA==
+X-Gm-Message-State: AJaThX6/pJCSQzE6zNfz0Kxk28YvfNlOKUfV6XViOeknB+YQzWuT4Nq2
+	55cvN8iNceKiPdETmII1GYAFcRsZL/2lAzzsbcwznw==
+X-Google-Smtp-Source: AGs4zMb8+EIPsHeBvmKMMh/4V0TV5fRFJEj/uZbLUMVjec8Q7zLfBTiOlzWAtb9B3uqtkkpt5dQDlxx986AiwJuQPjs=
+X-Received: by 10.80.192.5 with SMTP id r5mr7395269edb.138.1510681219352; Tue,
+	14 Nov 2017 09:40:19 -0800 (PST)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: Re: [OE-core] [PATCH v2 1/2] package.bbclass: add prohibited-path qa test
+Received: by 10.80.135.197 with HTTP; Tue, 14 Nov 2017 09:40:18 -0800 (PST)
+From: Ran Shalit <ranshalit@gmail.com>
+Date: Tue, 14 Nov 2017 19:40:18 +0200
+Message-ID: <CAJ2oMhJr-p6SedTxBUGcSru-0t6=UEOa1F9KKr6WfHaMGd+pLw@mail.gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: two source folders for kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,80 +66,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Nov 2017 13:11:10 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 14 Nov 2017 17:40:21 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Martyn,
+Hello,
 
-On Mon, 13 Nov 2017 19:19:47 +0000
-Martyn Welch <martyn.welch@collabora.co.uk> wrote:
+I see that there are 2 source directory for linux, and I can't see any
+difference between them:
 
-> Sometimes we wish to ensure that packages don't install files or
-> directories somewhere that may prove detrimental to the operation of the
-> system. For example, this may be the case if files are placed in a
-> directory that is utilised as a mount point at run time, thus making them
-> inaccessible once when the mount point is being utilised.
-> 
-> Implement the prohibited-path QA test, which enables such locations to be
-> specified in a "PROHIBITED_PATH" variable. This implementation allows for
-> exact matches and simple wildcards (paths ending with an asterisk. An
-> error will be raised should a match be found, or in the case of a
-> wildcard, for any files added below the specificed location(s).
-> 
-> Signed-off-by: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.co.uk>
-> ---
-> 
-> Changes since v1:
->  - Correcting author and SOB.
-> 
->  meta/classes/insane.bbclass  |  2 +-
->  meta/classes/package.bbclass | 11 +++++++++++
->  2 files changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta/classes/insane.bbclass b/meta/classes/insane.bbclass
-> index def9c70..fb10681 100644
-> --- a/meta/classes/insane.bbclass
-> +++ b/meta/classes/insane.bbclass
-> @@ -33,7 +33,7 @@ ERROR_QA ?= "dev-so debug-deps dev-deps debug-files arch pkgconfig la \
->              perms dep-cmp pkgvarcheck perm-config perm-line perm-link \
->              split-strip packages-list pkgv-undefined var-undefined \
->              version-going-backwards expanded-d invalid-chars \
-> -            license-checksum dev-elf file-rdeps \
-> +            license-checksum dev-elf file-rdeps prohibited-path \
->              "
->  # Add usrmerge QA check based on distro feature
->  ERROR_QA_append = "${@bb.utils.contains('DISTRO_FEATURES', 'usrmerge', ' usrmerge', '', d)}"
-> diff --git a/meta/classes/package.bbclass b/meta/classes/package.bbclass
-> index 2053d46..721ca1e 100644
-> --- a/meta/classes/package.bbclass
-> +++ b/meta/classes/package.bbclass
-> @@ -1162,6 +1162,17 @@ python populate_packages () {
->                  continue
->              seen.append(file)
->  
-> +            prohibited_path = d.getVar('PROHIBITED_PATH')
-> +            if prohibited_path is not None:
-> +                for p in prohibited_path.split():
+build/tmp/work-shared/lec-imx6/kernel-source/
+build/tmp/work/lec_imx6-poky-linux-gnueabi/linux-imx/4.1.15-r0/git
 
-Paths may contain space characters. How about using colons as path separators
-like in $PATH and several other path variables in OE-Core?
-
-> +                    exactmatch = True
-> +                    if p.endswith("*"):
-> +                        p = p[:len(p)-1]
-> +                        exactmatch = False
-> +                    if file[1:].startswith(p) and ((file[1:] != p) or exactmatch) :
-> +                        msg = "%s is in a prohibited path.\n" % file[1:]
-> +                        package_qa_handle_error("prohibited-path", msg, d)
-> +
-
-You could use fnmatch to allow generic shell wildcards.
-
-Why don't you compare the first character? Saved mount points are usually
-absolute.
+Why do we need two , are both used  ?
 
 Regards,
-Andreas
+Ran
 
