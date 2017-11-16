@@ -1,78 +1,66 @@
-Return-Path: <otavio.salvador@ossystems.com.br>
+Return-Path: <pauldotknopf@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 92E8CE00CE2; Thu, 16 Nov 2017 09:58:53 -0800 (PST)
+	id E4423E00CE2; Thu, 16 Nov 2017 10:36:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.68 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.218.68 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pauldotknopf[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f68.google.com (mail-oi0-f68.google.com
-	[209.85.218.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F31E1E00AD7
-	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 09:58:52 -0800 (PST)
-Received: by mail-oi0-f68.google.com with SMTP id r128so18993721oig.9
-	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 09:58:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ossystems-com-br.20150623.gappssmtp.com; s=20150623;
-	h=from:mime-version:in-reply-to:references:date:message-id:subject:to
-	:cc; bh=AGyzC8qxW+R8VSD6z86NgVa2jSTfwLBKMk3D7gCdSF8=;
-	b=A2UEFvLyEmnApq4T5/6WR+6VaXYD4EoJ90nWvfr6rMRXwcxpbK9epRF7pLyy9WYNv+
-	G8vDow77N4v11+2lIdxGmfrV0VtXLtyP8iTHVxzJdX+C1khZ2xfhFeTefgHXn3uHsdTK
-	WURTMNZZr3av23Xtpe8wtZv7NyG7pBKo7rL3pgeJ2wkJUjiYqpIikQJWykusqe99ftWw
-	OMGtxdxEo/3bWb6ToFnndMob2HiyCuTdc2wxSo6QnMLVCys/OAEuWo7AkdcvqhBnTlxQ
-	bITsyFgA3B4NQZY7vuWgKReGOBmfL4mUtVZQjwakXzWY6qmwRow11OV1eHWyUZl+ASc1
-	DDqw==
+Received: from mail-lf0-f43.google.com (mail-lf0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCC48E00AD7
+	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 10:36:49 -0800 (PST)
+Received: by mail-lf0-f43.google.com with SMTP id f134so22993871lfg.8
+	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 10:36:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=xgu77AohVVgSjpvNPOMLguzkmcBsfjY4QAbDUhbfj5c=;
+	b=QFZfWJvSMCydiUEvk3oNwO3WsmR/8bmzBJpXr0LDDtvoLn3pFX6cNVlNFrabSikaAu
+	6cOPRkYoGbNAtIaqjUibtKr3y/O6CAr2pYCRiGsMcjd/g4FIg4/80+Bbdu2A6YF982Go
+	71LpvWRVm1hGnZv3wB+WdWah/+MJnWxBSYL3k416QbHfjMWCyhZGDzMumOHn1uu8d0yT
+	tKZ7s6J53chRU2KZgeGs2AXBqlpSvu5WJa+nPLBtdIl2ALCY/s0EGDsUr6EEileVquR8
+	tcZWQSIA5qlJ8rnv7a4FKgbex4wWkfTMvBU7BZaN3zFfV+K+jkkJdT3sKTMJnn4vuTXt
+	aOVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:mime-version:in-reply-to:references:date
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=AGyzC8qxW+R8VSD6z86NgVa2jSTfwLBKMk3D7gCdSF8=;
-	b=ZRjYC4KW7amk6woCXGLM68OlElbKhKDx2JbvMGP3znWiRb7Ynru6yS5NLFFVGJSyje
-	4V81nZvYVTx48v2ieKJ26Jzt4N7cL+NPKKmukNJ/ZLipmjV3KMoVnPO1qmwiMPiZ2k2g
-	2lgxvaJGMrg2ZYqe0wCtK3fiTbuY+5Zc7tsU/e/nChRHgMyn2/pjXnp5XngZQj6kymxp
-	mz5SJSkulKyrOJpdfUe4OcJX6ZtO3PV0/km1jt3wJe1IJOCaxhvb70BqyleK75V/qZNV
-	uLXNVVJnstpWY7yYXOs95BX1WuO0xHHjgF7WooIW5lC1hKRWDNhbi6rKo5RXyFQrJNYd
-	CHFw==
-X-Gm-Message-State: AJaThX7ZV1WExa9ZVuWb2EhMAE4MlTe1mPUoqLl73xh7JZo7b6tNyEtz
-	wWqYjUwsorLyToWt3E29ZRvwg7vI
-X-Google-Smtp-Source: AGs4zMZoDgdYzEf6j2rK2TflVL6HNkEPXyHM8lSaCpMRNq/HJj9RcDsx/rGImBBEaXFpz/dmjwTYQw==
-X-Received: by 10.202.63.196 with SMTP id m187mr475142oia.137.1510855131404;
-	Thu, 16 Nov 2017 09:58:51 -0800 (PST)
-Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com.
-	[209.85.218.49])
-	by smtp.gmail.com with ESMTPSA id l10sm675791oth.72.2017.11.16.09.58.49
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 16 Nov 2017 09:58:49 -0800 (PST)
-From: Otavio Salvador <otavio.salvador@ossystems.com.br>
-X-Google-Original-From: Otavio Salvador <otavio@ossystems.com.br>
-Received: by mail-oi0-f49.google.com with SMTP id r128so18993607oig.9
-	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 09:58:49 -0800 (PST)
-X-Received: by 10.202.55.132 with SMTP id e126mr1808069oia.216.1510855128878; 
-	Thu, 16 Nov 2017 09:58:48 -0800 (PST)
+	bh=xgu77AohVVgSjpvNPOMLguzkmcBsfjY4QAbDUhbfj5c=;
+	b=MwH69uvnC8+8fye5tdN2cMS8SqlMxxEOCv1wrGQqlDH6dxnr2HgfmYkDgZOdNgn/MP
+	jJPrO17D4POt6GifSUdDBlK78uaTGbzJ192VS8xMXRyX7kJQ1MF/XVnb2VwCIUP5ImzC
+	JDlh935GBCf7dd0jvI7clFgtQHaRrGC76slMeu3YBBTeoFLBaGJMomIaeAnXedSunt5/
+	RsMg1I91CZTPc8/iJzP/bwPL2Gym8U8Q3Ibi/+H8z5hPjJN22N1DcFWz3kyVnBAVdtiy
+	I2/UaLMgdUTr/xrpzX5P3h8VKkWSEKlreVT7BDT/3vrLoV9XqUstOWPq9vCzilyUNN5/
+	eQ1g==
+X-Gm-Message-State: AJaThX4w8SA/mdoUPfugLF6M3zdKJhXOeOXFk7v0r9dC/4Z88wacFdYU
+	2uOjmgnd266Jvb1agsi/q3MHpRZuTQWkMUhkY8Q=
+X-Google-Smtp-Source: AGs4zMY0qQt+0sD2XCocUnM561neADFij2yNwyL4rIF+uYquwj+d9cMcntCEf+YYzx0txoD0StIQ5tR9SPOhC0e1UF4=
+X-Received: by 10.46.0.23 with SMTP id 23mr1425237lja.187.1510857408517; Thu,
+	16 Nov 2017 10:36:48 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.157.17.210 with HTTP; Thu, 16 Nov 2017 09:58:48 -0800 (PST)
-In-Reply-To: <1510844758-20290-1-git-send-email-martyn.welch@collabora.co.uk>
-References: <1510844758-20290-1-git-send-email-martyn.welch@collabora.co.uk>
-Date: Thu, 16 Nov 2017 15:58:48 -0200
-X-Gmail-Original-Message-ID: <CAP9ODKo8OPv9RDv54sz+dWSUWqTBL-gEtf3eWzGGp7puCCq2zg@mail.gmail.com>
-Message-ID: <CAP9ODKo8OPv9RDv54sz+dWSUWqTBL-gEtf3eWzGGp7puCCq2zg@mail.gmail.com>
-To: Martyn Welch <martyn.welch@collabora.co.uk>
-Cc: yocto <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [PATCH v4 1/3] image.bbclass: add prohibited-paths QA test
+References: <CAKmWj-0jdV2UR3VTsw8w3=98CdH5_x7_e1Equ-GfFn8TzX3OOw@mail.gmail.com>
+	<20171116092717.4125ec08@lsandov1-mobl2.zpn.intel.com>
+In-Reply-To: <20171116092717.4125ec08@lsandov1-mobl2.zpn.intel.com>
+From: Paul Knopf <pauldotknopf@gmail.com>
+Date: Thu, 16 Nov 2017 18:36:38 +0000
+Message-ID: <CAKmWj-2JDOKVbVvZyFFT9HbX8fGPV5fEq0=C3LtTc0yKGvJKpg@mail.gmail.com>
+To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Detecting all AUTOREV usages in a build, for reproducible stable production builds.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,93 +72,189 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Nov 2017 17:58:53 -0000
+X-List-Received-Date: Thu, 16 Nov 2017 18:36:51 -0000
+Content-Type: multipart/alternative; boundary="001a1142c5ee24195c055e1de7e1"
+
+--001a1142c5ee24195c055e1de7e1
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Nov 16, 2017 at 1:05 PM, Martyn Welch
-<martyn.welch@collabora.co.uk> wrote:
-> Sometimes we wish to ensure that files or directories are not installed
-> somewhere that may prove detrimental to the operation of the system. For
-> example, this may be the case if files are placed in a directory that is
-> utilised as a mount point at run time, thus making them inaccessible once
-> when the mount point is being utilised.
+That is EXACTLY what I am looking for. Thanks!
+
+A "nice to have" would be a check to see if any AUTOREVs has snuck in since
+last srcrev.conf generation. I'd like to validate/ensure this with a build
+task on the build server.
+
+On Thu, Nov 16, 2017 at 10:18 AM Leonardo Sandoval <
+leonardo.sandoval.gonzalez@linux.intel.com> wrote:
+
+> On Thu, 16 Nov 2017 05:06:30 -0500
+> Paul Knopf <pauldotknopf@gmail.com> wrote:
 >
-> Implement the prohibited paths QA test, which enables such locations to be
-> specified in a "IMAGE_QA_PROHIBITED_PATHS" variable. This implementation
-> allows for a colon separated list of paths to be provided. Shell style
-> wildcards can be used.
+> > I want to store/fix AUTOREV values for production builds. I saw
+> > BB_CACHE_POLICY, but the format (sqllite) isn't something that can be
+> > checked in.
+> >
+> > Let's say I have an image:
+> >
+> > bitbake my-image
+> >
+> > How do I detect any dependency that is using AUTOREV?
+> >
 >
-> Signed-off-by: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.co.uk>
-> ---
-> Changes since v1:
->  - Correcting author and SOB.
 >
-> Changes since v2:
->  - Reimplemented as image rather than package level QA test.
->  - Changed variable from PROHIBITED_PATH to PROHIBITED_PATHS to better
->    reflect its use.
+> would this tool be useful for your needs? I do not fully grasp what you
+> want to do.
 >
-> Changes since v3:
->  - Rename variable to IMAGE_QA_PROHIBITED_PATHS.
->  - Use str.startswith().
->  - Simplify if statement.
 >
->  meta/classes/image.bbclass | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> ----
+> You can use the buildhistory-collect-srcrevs command with the -a option to
+> collect the stored SRCREV values from build history and report them in a
+> format suitable for use in global
+> configuration (e.g., local.conf or a distro include file) to override
+> floating AUTOREV values to a fixed set of revisions. Here is some example
+> output from this command:
 >
-> diff --git a/meta/classes/image.bbclass b/meta/classes/image.bbclass
-> index d93de02..9053ce3 100644
-> --- a/meta/classes/image.bbclass
-> +++ b/meta/classes/image.bbclass
-> @@ -296,6 +296,26 @@ python do_image_complete_setscene () {
->  }
->  addtask do_image_complete_setscene
 >
-> +python image_check_prohibited_paths () {
-> +    import glob
-> +    from oe.utils import ImageQAFailed
-> +
-> +    rootfs = d.getVar('IMAGE_ROOTFS')
-> +
-> +    path = (d.getVar('IMAGE_QA_PROHIBITED_PATHS') or "")
-> +    if path != "":
-> +        for p in path.split(':'):
-> +            if not p.startswith('/'):
-> +                raise ImageQAFailed("IMAGE_QA_PROHIBITED_PATHS \"%s\" must be an absolute path" % p, image_check_prohibited_paths)
-> +
-> +            match = glob.glob("%s%s" % (rootfs, p))
-> +            if match:
-> +                loc = ", ".join(item.replace(rootfs, '') for item in match)
-> +                raise ImageQAFailed("Match(es) for IMAGE_QA_PROHIBITED_PATHS \"%s\": %s" % (p, loc), image_check_prohibited_paths)
-> +}
-
-
-        for p in path.split(':'):
-            if not p.startswith('/'):
-
-so you can drop the if path != "".
-
-An empty list won't go inside the for. Each item needs to be tested.
-
-> +IMAGE_QA_COMMANDS += "image_check_prohibited_paths"
-> +
->  # Add image-level QA/sanity checks to IMAGE_QA_COMMANDS
->  #
->  # IMAGE_QA_COMMANDS += " \
-> --
-> 2.1.4
+>      $ buildhistory-collect-srcrevs -a
+>      # i586-poky-linux
+>      SRCREV_pn-glibc = "b8079dd0d360648e4e8de48656c5c38972621072"
+>      SRCREV_pn-glibc-initial = "b8079dd0d360648e4e8de48656c5c38972621072"
+>      SRCREV_pn-opkg-utils = "53274f087565fd45d8452c5367997ba6a682a37a"
+>      SRCREV_pn-kmod = "fd56638aed3fe147015bfa10ed4a5f7491303cb4"
+>      # x86_64-linux
+>      SRCREV_pn-gtk-doc-stub-native =
+> "1dea266593edb766d6d898c79451ef193eb17cfa"
+>      SRCREV_pn-dtc-native = "65cc4d2748a2c2e6f27f1cf39e07a5dbabd80ebf"
+>      SRCREV_pn-update-rc.d-native =
+> "eca680ddf28d024954895f59a241a622dd575c11"
+>      SRCREV_glibc_pn-cross-localedef-native =
+> "b8079dd0d360648e4e8de48656c5c38972621072"
+>      SRCREV_localedef_pn-cross-localedef-native =
+> "c833367348d39dad7ba018990bfdaffaec8e9ed3"
+>      SRCREV_pn-prelink-native = "faa069deec99bf61418d0bab831c83d7c1b797ca"
+>      SRCREV_pn-opkg-utils-native =
+> "53274f087565fd45d8452c5367997ba6a682a37a"
+>      SRCREV_pn-kern-tools-native =
+> "23345b8846fe4bd167efdf1bd8a1224b2ba9a5ff"
+>      SRCREV_pn-kmod-native = "fd56638aed3fe147015bfa10ed4a5f7491303cb4"
+>      # qemux86-poky-linux
+>      SRCREV_machine_pn-linux-yocto =
+> "38cd560d5022ed2dbd1ab0dca9642e47c98a0aa1"
+>      SRCREV_meta_pn-linux-yocto =
+> "a227f20eff056e511d504b2e490f3774ab260d6f"
+>      # all-poky-linux
+>      SRCREV_pn-update-rc.d = "eca680ddf28d024954895f59a241a622dd575c11"
 >
-> --
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+> Note
+> -----
+>
+>
+>
+>
+> > I'd like to generate a dynamic.conf file that fixes the SRCREV values for
+> > relevant packages.
+> >
+> > I guess I could do a normal build, then read the sqllite database, and
+> > generate a .conf from it. Does this sound feasible?
+> >
+> > Any other strategies?
+>
 
+--001a1142c5ee24195c055e1de7e1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">That is EXACTLY what I am looking for. Thanks!<div><br></d=
+iv><div>A &quot;nice to have&quot; would be a check to see if any AUTOREVs =
+has snuck in since last srcrev.conf generation. I&#39;d like to validate/en=
+sure this with a build task on the build server.</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr">On Thu, Nov 16, 2017 at 10:18 AM Leonardo=
+ Sandoval &lt;<a href=3D"mailto:leonardo.sandoval.gonzalez@linux.intel.com"=
+>leonardo.sandoval.gonzalez@linux.intel.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
+solid;padding-left:1ex">On Thu, 16 Nov 2017 05:06:30 -0500<br>
+Paul Knopf &lt;<a href=3D"mailto:pauldotknopf@gmail.com" target=3D"_blank">=
+pauldotknopf@gmail.com</a>&gt; wrote:<br>
+<br>
+&gt; I want to store/fix AUTOREV values for production builds. I saw<br>
+&gt; BB_CACHE_POLICY, but the format (sqllite) isn&#39;t something that can=
+ be<br>
+&gt; checked in.<br>
+&gt;<br>
+&gt; Let&#39;s say I have an image:<br>
+&gt;<br>
+&gt; bitbake my-image<br>
+&gt;<br>
+&gt; How do I detect any dependency that is using AUTOREV?<br>
+&gt;<br>
+<br>
+<br>
+would this tool be useful for your needs? I do not fully grasp what you wan=
+t to do.<br>
+<br>
+<br>
+----<br>
+You can use the buildhistory-collect-srcrevs command with the -a option to =
+collect the stored SRCREV values from build history and report them in a fo=
+rmat suitable for use in global<br>
+configuration (e.g., local.conf or a distro include file) to override float=
+ing AUTOREV values to a fixed set of revisions. Here is some example output=
+ from this command:<br>
+<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0$ buildhistory-collect-srcrevs -a<br>
+=C2=A0 =C2=A0 =C2=A0# i586-poky-linux<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-glibc =3D &quot;b8079dd0d360648e4e8de48656c5c=
+38972621072&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-glibc-initial =3D &quot;b8079dd0d360648e4e8de=
+48656c5c38972621072&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-opkg-utils =3D &quot;53274f087565fd45d8452c53=
+67997ba6a682a37a&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-kmod =3D &quot;fd56638aed3fe147015bfa10ed4a5f=
+7491303cb4&quot;<br>
+=C2=A0 =C2=A0 =C2=A0# x86_64-linux<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-gtk-doc-stub-native =3D &quot;1dea266593edb76=
+6d6d898c79451ef193eb17cfa&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-dtc-native =3D &quot;65cc4d2748a2c2e6f27f1cf3=
+9e07a5dbabd80ebf&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-update-rc.d-native =3D &quot;eca680ddf28d0249=
+54895f59a241a622dd575c11&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_glibc_pn-cross-localedef-native =3D &quot;b8079d=
+d0d360648e4e8de48656c5c38972621072&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_localedef_pn-cross-localedef-native =3D &quot;c8=
+33367348d39dad7ba018990bfdaffaec8e9ed3&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-prelink-native =3D &quot;faa069deec99bf61418d=
+0bab831c83d7c1b797ca&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-opkg-utils-native =3D &quot;53274f087565fd45d=
+8452c5367997ba6a682a37a&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-kern-tools-native =3D &quot;23345b8846fe4bd16=
+7efdf1bd8a1224b2ba9a5ff&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-kmod-native =3D &quot;fd56638aed3fe147015bfa1=
+0ed4a5f7491303cb4&quot;<br>
+=C2=A0 =C2=A0 =C2=A0# qemux86-poky-linux<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_machine_pn-linux-yocto =3D &quot;38cd560d5022ed2=
+dbd1ab0dca9642e47c98a0aa1&quot;<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_meta_pn-linux-yocto =3D &quot;a227f20eff056e511d=
+504b2e490f3774ab260d6f&quot;<br>
+=C2=A0 =C2=A0 =C2=A0# all-poky-linux<br>
+=C2=A0 =C2=A0 =C2=A0SRCREV_pn-update-rc.d =3D &quot;eca680ddf28d024954895f5=
+9a241a622dd575c11&quot;<br>
+<br>
+Note<br>
+-----<br>
+<br>
+<br>
+<br>
+<br>
+&gt; I&#39;d like to generate a dynamic.conf file that fixes the SRCREV val=
+ues for<br>
+&gt; relevant packages.<br>
+&gt;<br>
+&gt; I guess I could do a normal build, then read the sqllite database, and=
+<br>
+&gt; generate a .conf from it. Does this sound feasible?<br>
+&gt;<br>
+&gt; Any other strategies?<br>
+</blockquote></div>
 
--- 
-Otavio Salvador                             O.S. Systems
-http://www.ossystems.com.br        http://code.ossystems.com.br
-Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
-
+--001a1142c5ee24195c055e1de7e1--
