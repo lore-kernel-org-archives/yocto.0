@@ -1,6 +1,6 @@
 Return-Path: <martyn.welch@collabora.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16E65E00D48; Thu, 16 Nov 2017 07:06:30 -0800 (PST)
+	id 25101E00D5D; Thu, 16 Nov 2017 07:06:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,19 +15,19 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
 	lines
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 815B8E00D48
-	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 07:06:29 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B583FE00CE2
+	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 07:06:27 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: martyn) with ESMTPSA id E3CE926F185
+	(Authenticated sender: martyn) with ESMTPSA id 0D15126F185
 From: Martyn Welch <martyn.welch@collabora.co.uk>
 To: yocto@yoctoproject.org,
 	openembedded-core@lists.openembedded.org
-Date: Thu, 16 Nov 2017 15:05:58 +0000
-Message-Id: <1510844758-20290-3-git-send-email-martyn.welch@collabora.co.uk>
+Date: Thu, 16 Nov 2017 15:05:57 +0000
+Message-Id: <1510844758-20290-2-git-send-email-martyn.welch@collabora.co.uk>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1510844758-20290-1-git-send-email-martyn.welch@collabora.co.uk>
 References: <1510844758-20290-1-git-send-email-martyn.welch@collabora.co.uk>
-Subject: [PATCH v4 3/3] ref-manual: Add documentation for prohibited-path QA test
+Subject: [PATCH v4 2/3] core-image.bbclass: add default IMAGE_QA_PROHIBIT_PATHS variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,61 +41,36 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 16 Nov 2017 15:06:30 -0000
 
-Add documentation for the IMAGE_QA_PROHIBITED_PATHS variable and
-associated prohibited-path QA test
+Add a default IMAGE_QA_PROHIBIT_PATHS variable containing paths known to
+be mounted in the default fstab, which are known mount points or
+directories which should be populated at runtime.
 
+Suggested-by: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 Signed-off-by: Martyn Welch <martyn.welch@collabora.co.uk>
 ---
-Changes since v1:
- - Correcting author and SOB.
-
-Changes since v2:
- - Reimplemented as image rather than package level QA test, altering
-   documentation to suit.
- - Changed variable from PROHIBITED_PATH to PROHIBITED_PATHS to better
-   reflect its use.
 
 Changes since v3:
- - Variable changed from PROHIBITED_PATHS to IMAGE_QA_PROHIBITED_PATHS.
+ - This patch added.
 
- documentation/ref-manual/ref-variables.xml | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ meta/classes/core-image.bbclass | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index e31aa21..57f969f 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -6162,6 +6162,30 @@
-             </glossdef>
-         </glossentry>
+diff --git a/meta/classes/core-image.bbclass b/meta/classes/core-image.bbclass
+index a9a2cec..8d5fb97 100644
+--- a/meta/classes/core-image.bbclass
++++ b/meta/classes/core-image.bbclass
+@@ -56,6 +56,11 @@ IMAGE_FEATURES_REPLACES_ssh-server-openssh = "ssh-server-dropbear"
+ # IMAGE_FEATURES_CONFLICTS_foo = 'bar1 bar2'
+ # An error exception would be raised if both image features foo and bar1(or bar2) are included
  
-+        <glossentry id='var-IMAGE_QA_PROHIBITED_PATHS'><glossterm>IMAGE_QA_PROHIBITED_PATHS</glossterm>
-+            <info>
-+                IMAGE_QA_PROHIBITED_PATHS[doc] = "A colon separated list of paths in which recipes are prohibited from installing."
-+            </info>
-+            <glossdef>
-+                <para role="glossdeffirst">
-+<!--                <para role="glossdeffirst"><imagedata fileref="figures/define-generic.png" /> -->
-+                    A colon separated list of paths in which recipes are
-+                    prohibited from installing.
-+                    Shell-style wildcards can be used in paths. All paths need
-+                    to be absolute paths.
-+                </para>
++# IMAGE_QA_PROHIBITED_PATHS
++# Ensure images aren't including files in places that will be used as mount points or that are
++# reserved for runtime data.
++IMAGE_QA_PROHIBITED_PATHS ?= "/dev/pts/*:/media/*:/mnt/*:/proc/*:/run/*:/tmp/*:/var/run/*:/var/tmp/*:/var/volatile/*"
 +
-+                <para>
-+                    For example, the following
-+                    <filename>IMAGE_QA_PROHIBITED_PATHS</filename> ensures
-+                    nothing is installed under <filename>/mnt</filename>:
-+                    <literallayout class='monospaced'>
-+     IMAGE_QA_PROHIBITED_PATHS += "/mnt/*"
-+                    </literallayout>
-+                </para>
-+            </glossdef>
-+        </glossentry>
-+
-         <glossentry id='var-IMAGE_ROOTFS'><glossterm>IMAGE_ROOTFS</glossterm>
-             <info>
-                 IMAGE_ROOTFS[doc] = "The location of the root filesystem while it is under construction (i.e. during do_rootfs)."
+ MACHINE_HWCODECS ??= ""
+ 
+ CORE_IMAGE_BASE_INSTALL = '\
 -- 
 2.1.4
 
