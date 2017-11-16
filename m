@@ -1,62 +1,38 @@
-Return-Path: <pauldotknopf@gmail.com>
+Return-Path: <martyn.welch@collabora.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3926DE00D2E; Thu, 16 Nov 2017 02:06:33 -0800 (PST)
+	id 3D4F7E00D2E; Thu, 16 Nov 2017 02:19:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pauldotknopf[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.49 listed in list.dnswl.org]
-Received: from mail-lf0-f49.google.com (mail-lf0-f49.google.com
-	[209.85.215.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88EA7E00D07
-	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 02:06:32 -0800 (PST)
-Received: by mail-lf0-f49.google.com with SMTP id f134so21176216lfg.8
-	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 02:06:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=GKb/5zyXs2CminaySx33ue4c8l4nbbzcOWvcXRJroNg=;
-	b=f7cKp27GWUVPRSosQ3L5htafyio8TghcQI1Ny3Cvs6OUMNOPBnOa5lcat13LwJB+QZ
-	YrGaGjXJ7yLlFkNB9p7WMcCQMsNAPeGpa66djM5EV5LaB9rfs+VmgIVBhR4BZjI5mBSy
-	CZH3hxFq5Lc0J3i3aOhGxxmly3ENy49UkVuSAe9dQPk3H6Y7cy7SieEEus4eO8TruLRx
-	nAIlhaukgKZRFU7QgzPNUL8GBo1yDEy3LQClut3MDE02HGF49d8gTmOg2cAmFdDLO4+d
-	YhcYDIH7+olt9EFoViYL2Ba+UvWIT9kkBg0Vda/iYnZmBSQ5pUyvCAw/m9CgqKHyFPcP
-	Pi5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=GKb/5zyXs2CminaySx33ue4c8l4nbbzcOWvcXRJroNg=;
-	b=FnMkbmv5FhMsvoWQW6j//b1OyWQyh15c8eRt1PJe2D4MU7gGtMdi+yT5eVhkUboLQJ
-	5DPtkl4mq6eQHyPI07GzC4hxNhU8AXnzUWPRHGsOzx4AgG0uzvy76ayo0IJupErR1nIP
-	LFd8SpeyfGArTjUiIpZyc+pdfF7d69kmFh+OYMbKMQBxTlTChMxyvS+zgNcL23frvGVj
-	7+eLnNpYhvL8USKUTEe0GkP+yMxYO4s4CWFohaWc5wEhDuraEBLAAdlueiZAPj8zteWi
-	rIspdz3uSTVWSSZSDg9AzCUTJ56HHwGKusm4TKQpy/yZ3FsPl131uX7IXcJIkPItfk8w
-	BWFA==
-X-Gm-Message-State: AJaThX56bT4iiuZKiEkb/9n8uwOTfykfRDqZ1R0H5yIS0JRXgqcywRU3
-	V4rYZEVVlCA3Nrt30ilnY1nFtZzTe81tCIIEBQ4=
-X-Google-Smtp-Source: AGs4zMYupnJB1jqVBD8u75wAG50652z9XTFRx6M0HwfogGh17OWOSFVBz8h6fe2JvPLF74fZ5hNip7tkMznasyLS4aM=
-X-Received: by 10.46.0.23 with SMTP id 23mr620248lja.187.1510826791161; Thu,
-	16 Nov 2017 02:06:31 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.25.151.76 with HTTP; Thu, 16 Nov 2017 02:06:30 -0800 (PST)
-From: Paul Knopf <pauldotknopf@gmail.com>
-Date: Thu, 16 Nov 2017 05:06:30 -0500
-Message-ID: <CAKmWj-0jdV2UR3VTsw8w3=98CdH5_x7_e1Equ-GfFn8TzX3OOw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Detecting all AUTOREV usages in a build, for reproducible stable production builds.
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 595B2E00D07
+	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 02:19:04 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: martyn) with ESMTPSA id 2AD902607F2
+Message-ID: <1510827541.6402.25.camel@collabora.co.uk>
+From: Martyn Welch <martyn.welch@collabora.co.uk>
+To: Otavio Salvador <otavio.salvador@ossystems.com.br>
+Date: Thu, 16 Nov 2017 10:19:01 +0000
+In-Reply-To: <CAP9ODKq5HO3MtsCsJ+3o4cicrQD+9H-=yGf=TjE0i3riy+oK4w@mail.gmail.com>
+References: <1510758646-19268-1-git-send-email-martyn.welch@collabora.co.uk>
+	<CAP9ODKq5HO3MtsCsJ+3o4cicrQD+9H-=yGf=TjE0i3riy+oK4w@mail.gmail.com>
+Organization: Collabora Ltd
+X-Mailer: Evolution 3.12.9-1+b1 
+Mime-Version: 1.0
+Cc: yocto <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [PATCH v3 1/2] image.bbclass: add prohibited-paths QA test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,42 +44,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Nov 2017 10:06:33 -0000
-Content-Type: multipart/alternative; boundary="001a1142c5ee345270055e16c6c1"
-
---001a1142c5ee345270055e16c6c1
+X-List-Received-Date: Thu, 16 Nov 2017 10:19:06 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I want to store/fix AUTOREV values for production builds. I saw
-BB_CACHE_POLICY, but the format (sqllite) isn't something that can be
-checked in.
+On Wed, 2017-11-15 at 18:46 -0200, Otavio Salvador wrote:
+> On Wed, Nov 15, 2017 at 1:10 PM, Martyn Welch
+> <martyn.welch@collabora.co.uk> wrote:
+> > Sometimes we wish to ensure that files or directories are not installed
+> > somewhere that may prove detrimental to the operation of the system. For
+> > example, this may be the case if files are placed in a directory that is
+> > utilised as a mount point at run time, thus making them inaccessible once
+> > when the mount point is being utilised.
+> >
+> > Implement the prohibited paths QA test, which enables such locations to be
+> > specified in a "PROHIBITED_PATHS" variable. This implementation allows for
+> > a colon separated list of paths to be provided. Shell style wildcards can
+> > be used.
+> >
+> > Signed-off-by: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
+> > Signed-off-by: Martyn Welch <martyn.welch@collabora.co.uk>
+> > ---
+> > Changes since v1:
+> >  - Correcting author and SOB.
+> >
+> > Changes since v2:
+> >  - Reimplemented as image rather than package level QA test.
+> >  - Changed variable from PROHIBITED_PATH to PROHIBITED_PATHS to better
+> >    reflect its use.
+> >
+> >  meta/classes/image.bbclass | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >
+> > diff --git a/meta/classes/image.bbclass b/meta/classes/image.bbclass
+> > index d93de02..bebb363 100644
+> > --- a/meta/classes/image.bbclass
+> > +++ b/meta/classes/image.bbclass
+> > @@ -296,6 +296,26 @@ python do_image_complete_setscene () {
+> >  }
+> >  addtask do_image_complete_setscene
+> >
+> > +python image_check_prohibited_paths () {
+> > +    import glob
+> > +    from oe.utils import ImageQAFailed
+> > +
+> > +    rootfs = d.getVar('IMAGE_ROOTFS')
+> > +
+> > +    path = d.getVar('PROHIBITED_PATHS')
+> 
+> path = (d.getVar('PROHIBITED_PATHS') or "")
+> 
+> I'd use IMAGE_QA_PROHIBITED_PATHS as variable name. It makes easier to
+> know what it relates to.
+> 
+> > +    if path != None and path != "":
+> 
+> If can die.
+> 
 
-Let's say I have an image:
+OK, if is still needed, else the zero length path triggers the "not
+p.startswith('/')" error condition.
 
-bitbake my-image
+> > +        for p in path.split(':'):
+> > +            if p[0] != '/':
+> 
+> if not p.startswith('/'):
+> 
+> > +                raise ImageQAFailed("PROHIBITED_PATHS \"%s\" must be an absolute path" % p, image_check_prohibited_paths)
+> > +
+> > +            match = glob.glob("%s%s" % (rootfs, p))
+> > +            if match:
+> 
+> I'd use:
+> 
+> if glob.glob(...):
+> 
+> It is a single use so not sure it is worth the extra variable.
+> 
+> > +                loc = ", ".join(item.replace(rootfs, '') for item in match)
+> > +                raise ImageQAFailed("Match(es) for PROHIBITED_PATHS \"%s\": %s" % (p, loc), image_check_prohibited_paths)
+> > +}
+> 
 
-How do I detect any dependency that is using AUTOREV?
 
-I'd like to generate a dynamic.conf file that fixes the SRCREV values for
-relevant packages.
 
-I guess I could do a normal build, then read the sqllite database, and
-generate a .conf from it. Does this sound feasible?
-
-Any other strategies?
-
---001a1142c5ee345270055e16c6c1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I want to store/fix AUTOREV values for production bui=
-lds. I saw BB_CACHE_POLICY, but the format (sqllite) isn&#39;t something th=
-at can be checked in.</div><div><br></div>Let&#39;s say I have an image:<di=
-v><br></div><div>bitbake my-image</div><div><br></div><div>How do I detect =
-any dependency that is using AUTOREV?</div><div><br></div><div>I&#39;d like=
- to generate a dynamic.conf file that fixes the SRCREV values for relevant =
-packages.</div><div><br></div><div>I guess I could do a normal build, then =
-read the sqllite database, and generate a .conf from it. Does this sound fe=
-asible?</div><div><br></div><div>Any other strategies?</div></div>
-
---001a1142c5ee345270055e16c6c1--
