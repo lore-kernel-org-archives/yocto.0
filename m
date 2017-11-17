@@ -1,90 +1,65 @@
-Return-Path: <mschepers@telspandata.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87CEAE00C45; Thu, 16 Nov 2017 17:09:41 -0800 (PST)
+	id 51E7CE00CF5; Thu, 16 Nov 2017 22:27:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.38.60 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 9128 seconds by postgrey-1.32 at yocto-www;
-	Thu, 16 Nov 2017 17:09:39 PST
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
-	(mail-bl2nam02on0060.outbound.protection.outlook.com [104.47.38.60])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9D30E009CB
-	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 17:09:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=telspandata.onmicrosoft.com; s=selector1-telspandata-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=eFnL6QSOeA0TnqpQK8Td4SJrWNfEn+4NEiG7H5xBGOw=;
-	b=AFTWfHlC1+sHSzY6boBlGGuKLWMhoFeFZyvr4FXdXbYq7OCXd80B0ogHZb7MjHdJS4Il6753gu9Pqv7cnS33YKd7Ku/wO26BkvCRy7KuMSBJkJKVqP5cITGBwY6aK5TgvepDEco5keo2mYS4hZHcsL/MSClf9xzHbnHjcME9KZ4=
-Received: from CY4PR04MB1177.namprd04.prod.outlook.com (10.173.194.7) by
-	CY4PR04MB1174.namprd04.prod.outlook.com (10.173.193.141) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.218.12; Thu, 16 Nov 2017 22:37:29 +0000
-Received: from CY4PR04MB1177.namprd04.prod.outlook.com ([10.173.194.7]) by
-	CY4PR04MB1177.namprd04.prod.outlook.com ([10.173.194.7]) with mapi id
-	15.20.0218.015; Thu, 16 Nov 2017 22:37:29 +0000
-From: Matt Schepers <mschepers@telspandata.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Trying to filter out 2 strings from EXTRA_OECONF, why doesn't
-	this work?
-Thread-Index: AQHTXyq0cMM2sCYbvkWrsQLgw6PpgA==
-Date: Thu, 16 Nov 2017 22:37:28 +0000
-Message-ID: <CY4PR04MB11772AED5F3BDE6D4259158AB02E0@CY4PR04MB1177.namprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=mschepers@telspandata.com; 
-x-originating-ip: [96.69.169.201]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; CY4PR04MB1174;
-	6:GFuY1rWR8N8T9+OaNwZja8MoxRtB2YhH17xBB8FT2y54v2eoG4vBETpTUjNueta8CZpoRftSj+RmVi3RvAs33n1DevXHNCvqFz4rnW261n9p/AM0KFwqjVymwsxSDX89etQD6kdC0Lsmctm0w6LuiSvWUf6pn29NhDYKpCV1xN6ZFUC5ShZbo+mXsrE7e9gB0TBIFS5OL+YP80LTR+iC5OmVOCSIpVklhFaPMsIW5F2ePKoIfTHYqz2SvWtrAV+gASkLaLY23tco7mVrSqHRTqmCChyyc329fEmB+5NpV6NK/14bE4axOeDiRVcuFEKxtGk6ZCjtCeKr1rq0zSxqEHAn29bDbtt/vXpo0klja6o=;
-	5:enM9vx9X47c7LnmkbA/0wtc/L8huHcFKW6JN204zbIvfL1IF0lI3mY/xAlfjMSa2IQmY1Qx/Uh6v0mod9cOSB22HfEDRE88RgqCMlMOHqxbbHamFrB/uql8uE2HPo59aH+5xSX3XtuPwwHisIRnk3UzM1MIWReA7rKCicvD3n/0=;
-	24:EpCHmsBVM6oNYVUpXDUAMF0zMPfuqWw8usDPVGtm659syzeNjuqB0Lsa7Q//ac1eGchYdviMJK9fAQVRxlhEnYW4kpIPf2VS5xK/4OwIpb4=;
-	7:ckcgh+0U0OMcAKAMawxdih0VKXCqTr462T+wKsCk8p7sp0DsV/JCbN5a4zkoiPzaN+KT6aZlUSpRreB1kzI0qvl4yGwEU9aIM4EhovS1aNM9FDUycSQrpWQTUZU7AlhtP2+UyKoLGJX3aGq9pnXiekeBETBPBWSe1LNotraIwR2xd0GRdFPP2Sv3idwSwAcE2Ac5hTyPbONJFh75oMWzN6nBJCN0odZZCysIz7GMFLOosYMGTPY5CVVHKhtQmh2D
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 34caa379-1d79-4248-66c5-08d52d429e64
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(22001)(4534020)(4602075)(4603075)(4627115)(201702281549075)(2017052603258);
-	SRVR:CY4PR04MB1174; 
-x-ms-traffictypediagnostic: CY4PR04MB1174:
-x-microsoft-antispam-prvs: <CY4PR04MB1174BB664460803957E9AE62B02E0@CY4PR04MB1174.namprd04.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(8121501046)(5005006)(3002001)(10201501046)(93006095)(93001095)(3231022)(100000703101)(100105400095)(6041248)(20161123562025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(2016111802025)(20161123555025)(20161123560025)(20161123558100)(20161123564025)(6072148)(6043046)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
-	SRVR:CY4PR04MB1174; BCL:0; PCL:0;
-	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
-	SRVR:CY4PR04MB1174; 
-x-forefront-prvs: 0493852DA9
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(346002)(376002)(39830400002)(199003)(189002)(478600001)(68736007)(53936002)(54356999)(189998001)(316002)(55016002)(50986999)(1730700003)(25786009)(8936002)(97736004)(9686003)(2501003)(3846002)(81166006)(8676002)(81156014)(3280700002)(6916009)(2900100001)(3660700001)(2351001)(5640700003)(102836003)(14454004)(99286004)(2906002)(6116002)(33656002)(106356001)(66066001)(305945005)(105586002)(74316002)(6506006)(101416001)(7736002)(86362001)(6436002)(7696004)(77096006)(5660300001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR04MB1174;
-	H:CY4PR04MB1177.namprd04.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: telspandata.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7407FE00C82
+	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 22:27:29 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id y80so4280843wmd.0
+	for <yocto@yoctoproject.org>; Thu, 16 Nov 2017 22:27:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=sN0PkD4ivHvZcfl6KXGG0M4e4cr7yBoFKOm1/UVtUBE=;
+	b=jkgx/rBcwHK61EFoig5dXrNxan0lTqp2PLTvLpV9FWcT0LMBpvyIsW7jSHxCVNdgn5
+	Qd1I42p8IMng6RwE3uxsafXowg2b5nrwwLU5yJV2FgXKEPDJXV7gLiVT86LK2GGfpowg
+	upKtdlYJzgkMUMJQ5HsQMorg2JIASwfL9A43wFKairqFnUJBuklc+LQbWF53kgCgHPIH
+	/LhieNwp6Efgum6wWBPsonld983qs9Vohh+Q86qQrZoTIH5Orkqzkqk2mmMSUO46WCnr
+	KugUjZzG3nSSCZOZewiiuU6DRmQ7ZC2sccW+LU1PwQuADcigX90miGZ+fpo662QsaQGD
+	Cbsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=sN0PkD4ivHvZcfl6KXGG0M4e4cr7yBoFKOm1/UVtUBE=;
+	b=IHcql3Ic8Ias07sa0lYaqLY2r+CNyjgYy4MX+4FuiKjzMW1Q4W7G/Q4IQMCikEKs1+
+	Jd7kSE6BAfzSL3L+aTQ9rfsjPu/bruE/o0DusPXCmtLwXQkPrx567S6zpNdnA+/th44y
+	T5S5EyKBHukkvEG7AJ4MFzkVgWmtCrPyYrh2QeoRPR5PkQRjYHF9W3RKMmAUKksCxTHa
+	LqDIGILOdP68pPu7KAdm5r2bI/WPGDTcy+m5Uuph73ZL1qfSIXdcU0QfW8CYyZiU6zT0
+	z97zrje5UZhC4rvoDh3oOg7ViHsKY9a0fl7+fq9fMMrMFXyn3YfgeBV3vpIKxu3/wi0b
+	oKmQ==
+X-Gm-Message-State: AJaThX63DIUH5aBEIkyNM1ORD8aQNyW7v6Yn9PQ9ZRdw0Kwn8j6WWtlq
+	HlN8suK4f9ALtyuQDP7Z5fvBmRkRpl7vC0h4zGk=
+X-Google-Smtp-Source: AGs4zMbcAIEgPvUskWx0zdMwwcllrVPrqWmJI7sxANXOIsfhQw0nR2lh/a01P0CkBtu/GBHULMtHk/s/fArtZJnmzwU=
+X-Received: by 10.28.218.70 with SMTP id r67mr3003676wmg.14.1510900048260;
+	Thu, 16 Nov 2017 22:27:28 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: telspandata.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34caa379-1d79-4248-66c5-08d52d429e64
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Nov 2017 22:37:28.8765 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 980119cc-b60c-4c4d-84e8-5d25446e5dc3
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR04MB1174
-Subject: Trying to filter out 2 strings from EXTRA_OECONF, why doesn't this work?
+Received: by 10.28.97.215 with HTTP; Thu, 16 Nov 2017 22:27:27 -0800 (PST)
+In-Reply-To: <CAPb0b+PxnaZk5YugbYmf4xT0iFxRYAFzS0Lp_hTd7VtRRpHG6g@mail.gmail.com>
+References: <CAPb0b+PxnaZk5YugbYmf4xT0iFxRYAFzS0Lp_hTd7VtRRpHG6g@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Fri, 17 Nov 2017 07:27:27 +0100
+Message-ID: <CAGAf8Lwj_dyL9uEcUxWZ+Y-HjV-gqwmbGD1JoNKLjDowxYz26Q@mail.gmail.com>
+To: Sherif Omran <sherifomran2000@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: tiny-linux distribution with raspberrypi error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -96,58 +71,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Nov 2017 01:09:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 17 Nov 2017 06:27:30 -0000
+Content-Type: multipart/alternative; boundary="001a1145b934aaf584055e27d497"
+
+--001a1145b934aaf584055e27d497
+Content-Type: text/plain; charset="UTF-8"
+
+> DISTRO = "poky-tiny"  and i  get the following
+
+What is the difference between core-image-minimal and poky-tiny?
+
+Thank you,
+Zoran
+
+On Fri, Nov 17, 2017 at 2:05 AM, Sherif Omran <sherifomran2000@gmail.com>
+wrote:
+
+> hi
+>
+> i am trying to compile the yocto-tiny for raspberry pi by adding the
+> distro to my local.conf
+>
+> DISTRO = "poky-tiny"  and i  get the following
+>
+>
+> ERROR: nothing provides 'virtual/kernel'
+> ERROR: linux-yocto-tiny Provides virtual/kernel but was skipped:
+> incompatible with machine raspberrypi0-wifi (not in compatible_machine)
+> ERROR: linux-yocto-rt Provides virtual/kernel but was skipped:
+> incompatible with machine raspberrypi0-wifi (not in compatible_machine)
+> ERROR: linux-yocto Provides virtual/kernel but was skipped: incompatible
+> with machine raspberrypi0-wifi (not in compatible_machine)
+> ERROR: linux-yocto-dev Provides virtual/kernel but was skipped:
+> incompatible with machine raspberrypi0-wifi (not in compatible_machine)
+> ERROR: required build target 'rpi-basic-image' has no buildable providers.
+> Missing or unbuildable depency chain was: 'rpi-basic-image',
+> 'virtual/kernel'
+>
+>
+> any body has a clue to solve it?
+>
+> thanks
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a1145b934aaf584055e27d497
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I would like to filter out two configure flags from EXTRA_OECONF in a
-.bbappend. When I filter out only one everything works, when I do the same
-thing twice it doesn't.
+<div dir=3D"ltr"><div><span style=3D"font-size:12.8px">&gt; DISTRO =3D &quo=
+t;poky-tiny&quot;=C2=A0 and i=C2=A0 get the following</span><br></div><div>=
+<br></div>What is the difference between=C2=A0core-image-minimal and poky-t=
+iny?<div><br></div><div>Thank you,</div><div>Zoran</div></div><div class=3D=
+"gmail_extra"><br><div class=3D"gmail_quote">On Fri, Nov 17, 2017 at 2:05 A=
+M, Sherif Omran <span dir=3D"ltr">&lt;<a href=3D"mailto:sherifomran2000@gma=
+il.com" target=3D"_blank">sherifomran2000@gmail.com</a>&gt;</span> wrote:<b=
+r><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div><div><div><div>=
+<div><div><div><div>hi<br></div><br>i am trying to compile the yocto-tiny f=
+or raspberry pi by adding the distro to my local.conf<br><br>DISTRO =3D &qu=
+ot;poky-tiny&quot;=C2=A0 and i=C2=A0 get the following<br><br><br></div>ERR=
+OR: nothing provides &#39;virtual/kernel&#39;<br></div>ERROR:
+ linux-yocto-tiny Provides virtual/kernel but was skipped: incompatible=20
+with machine raspberrypi0-wifi (not in compatible_machine)<br></div>ERROR:
+ linux-yocto-rt Provides virtual/kernel but was skipped: incompatible=20
+with machine raspberrypi0-wifi (not in compatible_machine)<br></div>ERROR:
+ linux-yocto Provides virtual/kernel but was skipped: incompatible with=20
+machine raspberrypi0-wifi (not in compatible_machine)<br></div>ERROR:=20
+linux-yocto-dev Provides virtual/kernel but was skipped: incompatible=20
+with machine raspberrypi0-wifi (not in compatible_machine)<br></div>ERROR: =
+required build target &#39;rpi-basic-image&#39; has no buildable providers.=
+<br></div>Missing or unbuildable depency chain was: &#39;rpi-basic-image&#3=
+9;, &#39;virtual/kernel&#39;<br><br><br></div><div>any body has a clue to s=
+olve it?<br><br></div>thanks</div>
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
-Here is the .bbappend that works:
-    EXTRA_OECONF :=3D "${@oe_filter_out('--with-term=3Drxvt', '${EXTRA_OECO=
-NF}', d)}"
-    EXTRA_OECONF +=3D " --enable-256-color"
-
-Here is the .bbappend that doesn't work:
-    EXTRA_OECONF :=3D "${@oe_filter_out('--with-term=3Drxvt', '${EXTRA_OECO=
-NF}', d)}"
-    EXTRA_OECONF :=3D "${@oe_filter_out('--with-name=3Drxvt', '${EXTRA_OECO=
-NF}', d)}"
-    EXTRA_OECONF +=3D " --enable-256-color"
-
-Here is the error at the command line for the one doesn't work:
-    Loading cache: 100% |##################################################=
-###########################################################################=
-###########################################################################=
-###| Time: 0:00:00
-    Loaded 2806 entries from dependency cache.
-    ERROR: ExpansionError during parsing /home/matt/nitrogen6x/yocto/meta/p=
-oky/meta/recipes-sato/rxvt-unicode/rxvt-unicode_9.22.bb                    =
-                                                                           =
-  | ETA:  --:--:--
-    Traceback (most recent call last):
-    bb.data_smart.ExpansionError: Failure expanding variable EXTRA_OECONF[:=
-=3D], expression was ${@oe_filter_out('--with-name=3Drxvt', '${@oe_filter_o=
-ut('--with-term=3Drxvt', '--enable-xim 		--enable-utmp --enable-wtmp --enab=
-le-lastlog 	--with-term=3Drxvt --enable-keepscrolling 		--enable-xft --with=
--name=3Drxvt --enable-frills 		--enable-swapscreen --enable-transparency 		=
---with-codesets=3Deu --enable-pointer-blank 		--enable-text-blink --enable-=
-rxvt-scroll 		--enable-combining --disable-perl 		--with-x=3D/home/matt/nit=
-rogen6x/yocto/build/tmp/work/armv7at2hf-neon-fslc-linux-gnueabi/rxvt-unicod=
-e/%-r0/recipe-sysroot/usr --disable-static ${PACKAGECONFIG_CONFARGS}', d)} =
---disable-static ${PACKAGECONFIG_CONFARGS}', d)} which triggered exception =
-SyntaxError: invalid syntax (EXTRA_OECONF[:=3D], line 1)
-
-Question 1)
-    Why doesn't this work?
-
-Question 2)
-    What do I have to do to filter out BOTH configure flags. I realize I ca=
-n just write a new recipe, but I don't think that's the "correct" answer.
-
-Thank you.
-
-
-
+--001a1145b934aaf584055e27d497--
