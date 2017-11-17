@@ -1,36 +1,33 @@
-Return-Path: <martyn.welch@collabora.co.uk>
+Return-Path: <MaNo@hms.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1C6E3E00CF6; Fri, 17 Nov 2017 02:06:10 -0800 (PST)
+	id B4BB8E00CE2; Fri, 17 Nov 2017 03:47:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [46.235.227.227 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [88.131.56.164 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E9ABE00C82
-	for <yocto@yoctoproject.org>; Fri, 17 Nov 2017 02:06:08 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: martyn) with ESMTPSA id 41A3326F18A
-Message-ID: <1510913165.4514.3.camel@collabora.co.uk>
-From: Martyn Welch <martyn.welch@collabora.co.uk>
-To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
-Date: Fri, 17 Nov 2017 10:06:05 +0000
-In-Reply-To: <20171116172129.11b89562@lsandov1-mobl2.zpn.intel.com>
-References: <1510844758-20290-1-git-send-email-martyn.welch@collabora.co.uk>
-	<20171116172129.11b89562@lsandov1-mobl2.zpn.intel.com>
-Organization: Collabora Ltd
-X-Mailer: Evolution 3.12.9-1+b1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: Re: [PATCH v4 1/3] image.bbclass: add prohibited-paths QA test
+Received: from mail.hms.se (mail.hms.se [88.131.56.164])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19738E00BB7
+	for <yocto@yoctoproject.org>; Fri, 17 Nov 2017 03:47:44 -0800 (PST)
+Received: from APP-HST-WIN-044.hms.se (10.10.100.124) by
+	APP-HST-WIN-044.hms.se (10.10.100.124) with Microsoft SMTP Server (TLS)
+	id 15.0.1320.4; Fri, 17 Nov 2017 12:47:39 +0100
+Received: from DEV149-1.hms.se (10.10.13.119) by APP-HST-WIN-044.hms.se
+	(10.10.100.124) with Microsoft SMTP Server id 15.0.1320.4 via Frontend
+	Transport; Fri, 17 Nov 2017 12:47:39 +0100
+From: Martin Nordqvist <mano@hms.se>
+To: <yocto@yoctoproject.org>
+Date: Fri, 17 Nov 2017 12:47:30 +0100
+Message-ID: <1510919250-3757-1-git-send-email-mano@hms.se>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Cc: Martin Nordqvist <mano@hms.se>
+Subject: [meta-oracle-java][PATCH] Symlink jar and javah in bindir (native)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,94 +39,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Nov 2017 10:06:10 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 17 Nov 2017 11:47:46 -0000
+Content-Type: text/plain
 
-On Thu, 2017-11-16 at 17:21 -0600, Leonardo Sandoval wrote:
-> isn't it this class meta/classes/insane.bbclass for this type of checks?
-> 
+Create symlinks in bindir to jar and javah.
+If a recpie needs jar to create a jar file or javah for a JNI package,
+jar and javah needs to be in bindir.
+---
+ recipes-devtools/oracle-java/oracle-jse-jdk.inc | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I don't know. The logic for IMAGE_QA_COMMAND is in image.bbclass, as far
-as I can see the package QA tests are in package.bbclass, so
-image.bbclass seemed like a reasonable place to put the image QA test.
-
-If the consensus is that it should be in insane.bbclass, I'm more than
-happy to move it though.
-
-> 
-> On Thu, 16 Nov 2017 15:05:56 +0000
-> Martyn Welch <martyn.welch@collabora.co.uk> wrote:
-> 
-> > Sometimes we wish to ensure that files or directories are not installed
-> > somewhere that may prove detrimental to the operation of the system. For
-> > example, this may be the case if files are placed in a directory that is
-> > utilised as a mount point at run time, thus making them inaccessible once
-> > when the mount point is being utilised.
-> > 
-> > Implement the prohibited paths QA test, which enables such locations to be
-> > specified in a "IMAGE_QA_PROHIBITED_PATHS" variable. This implementation
-> > allows for a colon separated list of paths to be provided. Shell style
-> > wildcards can be used.
-> > 
-> > Signed-off-by: Fabien Lahoudere <fabien.lahoudere@collabora.co.uk>
-> > Signed-off-by: Martyn Welch <martyn.welch@collabora.co.uk>
-> > ---
-> > Changes since v1:
-> >  - Correcting author and SOB.
-> > 
-> > Changes since v2:
-> >  - Reimplemented as image rather than package level QA test.
-> >  - Changed variable from PROHIBITED_PATH to PROHIBITED_PATHS to better
-> >    reflect its use.
-> > 
-> > Changes since v3:
-> >  - Rename variable to IMAGE_QA_PROHIBITED_PATHS.
-> >  - Use str.startswith().
-> >  - Simplify if statement.
-> > 
-> >  meta/classes/image.bbclass | 20 ++++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> > 
-> > diff --git a/meta/classes/image.bbclass b/meta/classes/image.bbclass
-> > index d93de02..9053ce3 100644
-> > --- a/meta/classes/image.bbclass
-> > +++ b/meta/classes/image.bbclass
-> > @@ -296,6 +296,26 @@ python do_image_complete_setscene () {
-> >  }
-> >  addtask do_image_complete_setscene
-> >  
-> > +python image_check_prohibited_paths () {
-> > +    import glob
-> > +    from oe.utils import ImageQAFailed
-> > +
-> > +    rootfs = d.getVar('IMAGE_ROOTFS')
-> > +
-> > +    path = (d.getVar('IMAGE_QA_PROHIBITED_PATHS') or "")
-> > +    if path != "":
-> > +        for p in path.split(':'):
-> > +            if not p.startswith('/'):
-> > +                raise ImageQAFailed("IMAGE_QA_PROHIBITED_PATHS \"%s\" must be an absolute path" % p, image_check_prohibited_paths)
-> > +
-> > +            match = glob.glob("%s%s" % (rootfs, p))
-> > +            if match:
-> > +                loc = ", ".join(item.replace(rootfs, '') for item in match)
-> > +                raise ImageQAFailed("Match(es) for IMAGE_QA_PROHIBITED_PATHS \"%s\": %s" % (p, loc), image_check_prohibited_paths)
-> > +}
-> > +
-> > +IMAGE_QA_COMMANDS += "image_check_prohibited_paths"
-> > +
-> >  # Add image-level QA/sanity checks to IMAGE_QA_COMMANDS
-> >  #
-> >  # IMAGE_QA_COMMANDS += " \
-> > -- 
-> > 2.1.4
-> > 
-> > -- 
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+index a7210d9..6b3aabe 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+@@ -18,6 +18,8 @@ do_install_class-native() {
+ 	install -d				${D}${bindir}
+ 	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}
+ 	ln -sf ${JDK_HOME}/bin/javac		${D}${bindir}
++	ln -sf ${JDK_HOME}/bin/javah		${D}${bindir}
++	ln -sf ${JDK_HOME}/bin/jar		${D}${bindir}
+ 
+ 	install -d				${D}${JDK_HOME}/bin
+ 	ln -sf javah				${D}${JDK_HOME}/bin/gjavah
+-- 
+1.9.1
 
 
