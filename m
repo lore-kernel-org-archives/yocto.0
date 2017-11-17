@@ -1,76 +1,71 @@
-Return-Path: <otavio.salvador@ossystems.com.br>
+Return-Path: <prvs=1494d358d7=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E2C7E00CF5; Fri, 17 Nov 2017 03:56:43 -0800 (PST)
+	id 18109E00CF5; Fri, 17 Nov 2017 06:13:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.169.146.220 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
-	[209.85.218.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B94CDE00BB7
-	for <yocto@yoctoproject.org>; Fri, 17 Nov 2017 03:56:42 -0800 (PST)
-Received: by mail-oi0-f65.google.com with SMTP id l138so1459862oib.7
-	for <yocto@yoctoproject.org>; Fri, 17 Nov 2017 03:56:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ossystems-com-br.20150623.gappssmtp.com; s=20150623;
-	h=from:mime-version:in-reply-to:references:date:message-id:subject:to
-	:cc; bh=ekswkn9uPWftOmfsloPm3mAz5164wZ7BdaslfyTj/7Q=;
-	b=rqHsI/FQTEx5AzuvMw9j9YnhY/BiXO55e9sIudOE0XrAE3fU4Wo+seHx+ujuzMzzNw
-	M/UqDCcyIsZJDoyFY7nGPp0qL15jA9ahL7SmBUFXWqahJbH46kqTXrPKlvNoXpf3m95/
-	AnluYq9aJL5KkoPdLNTXY3ZRoWPKhd16aoqEmXMGfdNTBIhjqZ6jOpIUrezAZm4K08HU
-	aaAkCkA93xF1KvFIF2I4p0M+VOk2q4KQzUpuNEFQjvFDJBuhIOvowO1WFxhOtwpH8AOl
-	kT+iEkn/leJMbpUsTGClrpkHthmHJOieDkvXXIB+ExNn+HmyN8rDxzXWNsvFomPsE1Ln
-	PYaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:mime-version:in-reply-to:references:date
-	:message-id:subject:to:cc;
-	bh=ekswkn9uPWftOmfsloPm3mAz5164wZ7BdaslfyTj/7Q=;
-	b=f8IdNaeLlmPsc4hyXBQrm6J7WshR5ak/gncGnWTP4sMNjKDSS95BMaNzVXmFSvhASS
-	dTl12zm++dLpgoGC2mvDVLHOVv7bmrHih9+7yLsUllMHEuvXSpoudAzRfDhjNWkVI09I
-	CvSvI/PouEKqPgtUfKgPMAtrOT85tqVomeqoF5mAbaot/dqfG1KeuDeyLkWD12EZOkur
-	1lkcPSBxAyDVtQ4dNGLzStMqdt7R+MZvEd2NnY0idN3TI4bq66kXayWQpG0dC9KERaSN
-	k15OIRHw2iZg11bVeR4HbytXOVJ2Mn8rZ1a72xJh2RTa3QzY1wbtwPNx2e0QKgFx/JFG
-	DhBw==
-X-Gm-Message-State: AJaThX6LeCI1N38zp5xFTykZIR8T9CaJU3pjmzCGNTjxjsx/9ZIfSbk5
-	DJjLDg7yIwNcgA19bz5iY0AldyYr
-X-Google-Smtp-Source: AGs4zMYZLYEWWJpioS06lXy0cjLrnSXiFMXY5lWDGW/PvO+byjrsAIov+GyFs2B16HqSzDG5obHvCw==
-X-Received: by 10.202.208.196 with SMTP id j65mr971506oiy.185.1510919801611;
-	Fri, 17 Nov 2017 03:56:41 -0800 (PST)
-Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com.
-	[209.85.218.48]) by smtp.gmail.com with ESMTPSA id
-	q185sm433055oih.36.2017.11.17.03.56.40 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 17 Nov 2017 03:56:40 -0800 (PST)
-From: Otavio Salvador <otavio.salvador@ossystems.com.br>
-X-Google-Original-From: Otavio Salvador <otavio@ossystems.com.br>
-Received: by mail-oi0-f48.google.com with SMTP id y206so1467150oiy.4
-	for <yocto@yoctoproject.org>; Fri, 17 Nov 2017 03:56:40 -0800 (PST)
-X-Received: by 10.202.59.7 with SMTP id i7mr926529oia.166.1510919800064; Fri,
-	17 Nov 2017 03:56:40 -0800 (PST)
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47EF6E00C82
+	for <yocto@yoctoproject.org>; Fri, 17 Nov 2017 06:13:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1510928023;
+	s=domk; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Subject:Cc:To:From:Date;
+	bh=3XJQ3ipaHKBrWHI027ajgLP+ndRrI+dygLV4dlrBvCY=;
+	b=PgQC6aMpqgVJKCVLP/f5Nuo5iIMVOaBXzQF3C2GSg4M9TT451M5O2I301Au/pq8Vsh
+	3KEvyoO8+KFk3+7U7TnrvHwua9J7A3NzaDk/94LU0AwJIVz5OZ2MK1IwOQ5YA4zPQCdp
+	+sJfM6/AVPP+auAq28f9ByHEBbJAZkmOVXbYA=
+X-RZG-AUTH: :fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9mHNc01sePA6ZpTLlbQjW24Ox4tAEzehFWEFhgND+Y6+xCfvU=
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de
+	([2001:0:9d38:78cf:427:1a03:af6c:cbea])
+	by smtp.strato.de (RZmta 42.9 AUTH) with ESMTPSA id j0316etAHEDhXh3
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Fri, 17 Nov 2017 15:13:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1510928009; x=1511532809;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
+	User-Agent; bh=3XJQ3ipaHKBrWHI027ajgLP+ndRrI+dygLV4dlrBvCY=; b=W
+	hjqeOnXCZ4a1mcJ55Mmn1ePR6pzQTblCi/ixDq9jZyMTs94XQrZmazfrhfp9+mAS
+	1utvE2jlOnslvV/Zclo6TQNE1J30OMDajg/s4Db+DTeTABgAuVu92IydgLy20HoS
+	EsK7D+8zgctjbC0dCyTwkdo7ua2OMXvcQ5DyXU1l50=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v17.5.1) with ESMTPSA id
+	md50000020871.msg; Fri, 17 Nov 2017 15:13:28 +0100
+X-MDArrival-Date: Fri, 17 Nov 2017 15:13:28 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=1494d358d7=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+Date: Fri, 17 Nov 2017 15:13:07 +0100
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Message-ID: <20171117141306.zqh2yoxz3f7ioyz4@jholzmayr.localdomain>
+References: <CAPb0b+PxnaZk5YugbYmf4xT0iFxRYAFzS0Lp_hTd7VtRRpHG6g@mail.gmail.com>
+	<CAGAf8Lwj_dyL9uEcUxWZ+Y-HjV-gqwmbGD1JoNKLjDowxYz26Q@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.157.17.210 with HTTP; Fri, 17 Nov 2017 03:56:39 -0800 (PST)
-In-Reply-To: <1510913165.4514.3.camel@collabora.co.uk>
-References: <1510844758-20290-1-git-send-email-martyn.welch@collabora.co.uk>
-	<20171116172129.11b89562@lsandov1-mobl2.zpn.intel.com>
-	<1510913165.4514.3.camel@collabora.co.uk>
-Date: Fri, 17 Nov 2017 09:56:39 -0200
-X-Gmail-Original-Message-ID: <CAP9ODKrh6YxyYk9V6yKg1kC13LA5-CYTftc6ws=Rpx4QBUoRUQ@mail.gmail.com>
-Message-ID: <CAP9ODKrh6YxyYk9V6yKg1kC13LA5-CYTftc6ws=Rpx4QBUoRUQ@mail.gmail.com>
-To: Martyn Welch <martyn.welch@collabora.co.uk>
-Cc: yocto <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [PATCH v4 1/3] image.bbclass: add prohibited-paths QA test
+In-Reply-To: <CAGAf8Lwj_dyL9uEcUxWZ+Y-HjV-gqwmbGD1JoNKLjDowxYz26Q@mail.gmail.com>
+User-Agent: NeoMutt/20171013
+Cc: yocto@yoctoproject.org
+Subject: Re: tiny-linux distribution with raspberrypi error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,27 +77,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Nov 2017 11:56:43 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 17 Nov 2017 14:13:47 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Fri, Nov 17, 2017 at 8:06 AM, Martyn Welch
-<martyn.welch@collabora.co.uk> wrote:
-> On Thu, 2017-11-16 at 17:21 -0600, Leonardo Sandoval wrote:
->> isn't it this class meta/classes/insane.bbclass for this type of checks?
->>
->
-> I don't know. The logic for IMAGE_QA_COMMAND is in image.bbclass, as far
-> as I can see the package QA tests are in package.bbclass, so
-> image.bbclass seemed like a reasonable place to put the image QA test.
->
-> If the consensus is that it should be in insane.bbclass, I'm more than
-> happy to move it though.
+On Fri, Nov 17, 2017 at 07:27:27AM +0100, Zoran Stojsavljevic wrote:
+> > DISTRO = "poky-tiny"  and i  get the following
+> 
+> What is the difference between core-image-minimal and poky-tiny?
 
-If not in insane.bbclass, a new image-insane.bbclass. I dislike it
-being defined in multiple places.
+core-image-minimal is a IMAGE
 
--- 
-Otavio Salvador                             O.S. Systems
-http://www.ossystems.com.br        http://code.ossystems.com.br
-Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+poky-tiny is a DISTRO
+
+Its just different things.
+
+———————————————
+Josef Holzmayr
+Software Developer Embedded Systems
+
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
+
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548 
+
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
+
 
