@@ -1,55 +1,72 @@
-Return-Path: <chris@2net.co.uk>
+Return-Path: <artk2002@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25272E00D18; Sat, 18 Nov 2017 08:07:48 -0800 (PST)
+	id 068F7E00D18; Sat, 18 Nov 2017 10:24:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.227.126.135 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (artk2002[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B370EE00B1A
-	for <yocto@yoctoproject.org>; Sat, 18 Nov 2017 08:07:46 -0800 (PST)
-Received: from [192.168.159.12] ([88.109.27.80]) by mrelayeu.kundenserver.de
-	(mreue001 [212.227.15.163]) with ESMTPSA (Nemesis) id
-	0MEOE4-1eMhN70Liy-00FPZI; Sat, 18 Nov 2017 17:07:41 +0100
-To: cddatemp <cddatemp@163.com>
-References: <0b621d79-67cd-af97-d423-4cad61a8989d@2net.co.uk>
-	<5a1103fc.3a5d.15fcf939792.Coremail.cddatemp@163.com>
-From: Chris Simmonds <chris@2net.co.uk>
-Organization: 2net
-Message-ID: <2be7d6b2-584a-703d-5b7c-8911c4333902@2net.co.uk>
-Date: Sat, 18 Nov 2017 16:07:40 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f178.google.com (mail-pf0-f178.google.com
+	[209.85.192.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91E7CE00C97
+	for <yocto@yoctoproject.org>; Sat, 18 Nov 2017 10:24:06 -0800 (PST)
+Received: by mail-pf0-f178.google.com with SMTP id i15so4282608pfa.3
+	for <yocto@yoctoproject.org>; Sat, 18 Nov 2017 10:24:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=Fl36oanqwRbilA5MYiswkriGHgqw63BVZ/aS3nRUE0I=;
+	b=SrTf7lXpKYi329FycWvalzd2Wpt8SJblVUZV9Na4KGShW5WSIx9W0mig9MJ+ChwQ3V
+	THT9c/req3SATJIEI+LjJWa2hXfU7KAiyJ2ji8nc4F/9/e27rHRySKTa2hdiaA7gTXS5
+	5M9lXhcTVgbQhCePb5mQtsLcrIld4JQzivwwxxX8wduTFP37x96uOubi+0sZb+zdi3A+
+	aLHpGYt7fMYVAE9I9b1PUqFcOEYAp0z8REZDSH24kj0aBkoCB1VyOxF4UyEIuNtnhbFU
+	z586h4UprW5zAaMJxmE1t+E7n8ApjgUgp2hWDrDt7Uh321uWoPyT0xocHD1kOmtZucv+
+	uacg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=Fl36oanqwRbilA5MYiswkriGHgqw63BVZ/aS3nRUE0I=;
+	b=qsMndM9Fxfkjv7bE6+7w0fPCgTPXAbMvAmxT7dS3yIWqTtetRyXPP++NgsY4z4/FQB
+	nSaGI9marqH3gMm64tqHX2aFbImkLIroigDrXje26H+VLF7tgSNb04BWuc2/mdysm4tC
+	KgS/28KRRVBaQUoFDFbqtLw7ofI3AII82spSZw/KU4wzxWcO7tI82HuW7YS8WdFBbyE9
+	P9RvuufLqM5VF/U5hC1vEuXEoiIQdJjWI7mLqiAofTK6gXRK9yI63DFw3KuLbnDYLgRB
+	xkpvSamXLu+VjXCQh+ElWXxasZy5U69AaBeXFbgM4jhrfVCzqMiOlBimSsRnax3gT+gQ
+	nFdA==
+X-Gm-Message-State: AJaThX6Re3/fLoR59zgKCKTCY+82MMl9mhNAdHm1iPEVEwV0PWWLhfm8
+	yAbBj6bUzu5rvnNStoUvSGC2lQ==
+X-Google-Smtp-Source: AGs4zMYhYxIN0o+6y1439UekGWwvK7Obn4OA0e96tGQzQV7NQ0SybuwHxOruOaXMBvb9WAAQKkZvSw==
+X-Received: by 10.101.90.13 with SMTP id y13mr8907685pgs.235.1511029445772;
+	Sat, 18 Nov 2017 10:24:05 -0800 (PST)
+Received: from [192.168.1.201] (cpe-23-241-193-136.socal.res.rr.com.
+	[23.241.193.136]) by smtp.gmail.com with ESMTPSA id
+	a7sm10451548pgc.81.2017.11.18.10.24.05 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 18 Nov 2017 10:24:05 -0800 (PST)
+To: yocto@yoctoproject.org
+From: Art Kaufmann <artk2002@gmail.com>
+Message-ID: <d59efbe8-2445-d287-a5c1-f47d2b1238d8@gmail.com>
+Date: Sat, 18 Nov 2017 10:24:04 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <5a1103fc.3a5d.15fcf939792.Coremail.cddatemp@163.com>
-X-Provags-ID: V03:K0:PGUNI7R2gtSIF0REaULre31RurFqSxne2PRFpyduR9Zmd8YoBiO
-	dbvQ1hcvfewCuLPlQxIw4Zkmjd8DSamGi44kRncmbYM+XgSWGVy/xeZ+zEVvV3ektHP6RQa
-	WjHY34vxX0cx71t8bJLZmKA+ANezv0UfRXM6XCM3gpo+bb8cwzj6RnLIqbX852pPr3c3cfs
-	VWbJ2yP2xULpExa0zWcJg==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:d7Ksgcy/KWc=:L/bw2667swCvNQObMNERkc
-	F97HYUUWHaF0xSJ+jqNjMyti7xyI3PxI4yOzWuqCMKurTlADa/ya/hbmfMD7DshkVMqTfT0Qo
-	S/6zIzyVQSj2SeXdN5CGko4riZ8kCmQrDFA+90jD44mwafeKPfuVW9xPe8F2yfGuHzw7hW+tW
-	hCZCLujgbAZyPR0GU3fPsEzZfBLmZZmutQrePXKEHXxhpUIlB95oLAWssPRbtAtLZat6a6Rub
-	6dVcFo+E6uVaQF/eZnc1bgg5C6uOA6CrIlgIG2Cq7ngBZNQ9FUnAe274hMS4Tr2jZFFtYEJfD
-	fKweZ8AbvB5g1j+M+6nkTeEK0oHv9QdlL7+6FMxy0Ahhdj0SdBqgFMoX3clKmvyIujt/MiFby
-	byz0IFb8u9sLovysXlEewv7hTP/vxsQAdPFYDL44YDnms3n1f1Y6N7Nhd2A6N7XZ98JYjZdZT
-	NPkUTEnk2zUdeYmLcLa75N21xujOXWbpamTQWNfE+aEmzxqr0zvLs8C1Lr+sK5F92rK04v4Bm
-	n/EIa8k2dvFicQngWlhN6LmIjkDu0curBrVtpwFadGKsh/r9fCWXuAmrH4x4i6n8oE2kYgytk
-	IdTgrCgJue0ksL2Kvm3K+rr3036B/p4HB1XIGFahnGG5TVck0GrpZiRffE4c5pNFmsTmaCAjb
-	Z+ZV/mqn5pLjX86oybsniaXb0mQtj2j3rK7tORvY+yxu8hPamMgaWcZFtFjhQONzdNF8h6WJG
-	qqfUP8znFlknp2y2sv3tqEEqe8cfHkMIccJ5twmqgTdot4ESkwYtBrPM0HE=
-Cc: yocto@yoctoproject.org
-Subject: Re: Displaying buildcfg
+Subject: eclipse-poky: Rootfs includes not in CDT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: chris@2net.co.uk
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,44 +75,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Nov 2017 16:07:48 -0000
-Content-Type: text/plain; charset=gbk
-Content-Language: en-GB
+X-List-Received-Date: Sat, 18 Nov 2017 18:24:07 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Hi,
+Environment: Eclipse Neon 3 with the Yocto plug-in. Running on Fedora 24.
 
-On 18/11/17 14:41, cddatemp wrote:
-> At 2017-11-18 20:45:11, "Chris Simmonds" <chris@2net.co.uk> wrote:
->>Hi,
->>
->>At the start of a bitbake run it displays the current build
->>configuration before it starts to build anything:
->>
->>Build Configuration:
->>BB_VERSION        = "1.28.0"
->>BUILD_SYS         = "x86_64-linux"
->>[...]
->>
->>This information is useful, especially when you are swapping between
->>multiple projects with different versions. Is there a simple way to get
->>bitbake to print just this information, without going on to do build
->>anything?
-> 
-> Try this:
-> $ bitbake -n base-files
-> 
->>
->>Regards,
->>Chris
->>-- 
+I've built the SDK and configured Eclipse and the plug-in. The Hello 
+World autotools project builds, but, there's an issue. The CDT isn't 
+aware of the include directories so its checker is flagging my files 
+with missing includes errors. I *could* add ${SDKTARGETROOT}/usr/include 
+(and the appropriate sub-directories) to my project's configuration, but 
+I don't want to mess up the cross compiler which just uses the --rootfs 
+option and finds everything that it needs. How do I configure this to 
+get rid of the annoying errors? I like the help that the CDT provides 
+before compilation.
 
-Thanks,
-
-Thanks, that works.
-
-I can't help feeling that there should be a more direct way of dumping
-the buildcfg though. Anyone have an insight on this?
-
-Chris
 
