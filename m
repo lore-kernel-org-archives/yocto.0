@@ -1,62 +1,51 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <cddatemp@163.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0616E00D4D; Mon, 20 Nov 2017 06:17:02 -0800 (PST)
+	id 500BEE00D51; Mon, 20 Nov 2017 06:34:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (cddatemp[at]163.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f54.google.com (mail-it0-f54.google.com
-	[209.85.214.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00604E00D27
-	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 06:17:01 -0800 (PST)
-Received: by mail-it0-f54.google.com with SMTP id x13so2015832iti.4
-	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 06:17:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=c5ZDeUkCmo4yFwmmE+nTTTmFGoWFi/gcxJicfNOVyCA=;
-	b=J/6f77bFmDfgTSbxsCNNvckxgJKsp9G22pJ/256u4b3Al3MTjOLHczg9MvYk5JSQJU
-	CLkd8Id5gbZ/S9l0rSt0u9Rcww1xzBTjuYVgyiu+dh4i4GQVnY2qy48kk5DsZ/xQpXGW
-	YVGiQ7q7Kfkn9gCZ9sIYVeK5QLi02mtkkRfWi4CoBNl28QKWuRkN0/Y4xu81CZ2iFfev
-	X05UhyX+zmulV/gIJf4ZL7c5gidRCxQYLY/LBVCQ/2UFZ4G2bMk3MfZG5MgmvHcG93d/
-	Rk7PULSJh7f/xltENiz/oFEzFYIPmo2Zvu7VmrlBfiLqkiJmKqCPFowxkymw42wtx19g
-	52Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=c5ZDeUkCmo4yFwmmE+nTTTmFGoWFi/gcxJicfNOVyCA=;
-	b=rAtnv6pWraaZhsskozNTEThkPe6Wc1U8x1t8VrswaqxaHcJVwwJBJz98aNt6bX46DH
-	jokwI0h5in1zrK1P3tstWp6Iqy3FtIqcL0F1LzMw/pMEc577Qqg/0VY8hfWsk+kvj/Uq
-	UkBypS1BIw2fBld0oJqpT/BU0kF8JGD3JG7wnmTFIPDj+I//HVlzsZxUhLGbPCGmj0H2
-	XTQLESjc27uwSdrEMeJpZYEfuQ45j/xUC/iog31aUMd0YgKXf28wrZwahi961NxHl3NU
-	hnyMZNQ359kEutlqyag8oNpHV4SsglbfWJnWfMvyM9gD7nuBfdbxb3gRaDfMHLX7nf3z
-	bjkQ==
-X-Gm-Message-State: AJaThX6U+2L4H+WIm4upzNQZF4kgdyzzhXP8jLe7oI6LHqXcbpzERtJF
-	Zblesm/NtaHkZPws4fkhibRGDB4PxKrCRTcR571/ww==
-X-Google-Smtp-Source: AGs4zMZrdRZ34t4h3CH0VA/39WcAZgpxiFsIrIB5REAPPoyz0iHpC4+c6CdGyhhi0Oa37q/6ljpzC2VbRUWfSAL81/4=
-X-Received: by 10.36.147.198 with SMTP id y189mr18793472itd.6.1511187420593;
-	Mon, 20 Nov 2017 06:17:00 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.171.132 with HTTP; Mon, 20 Nov 2017 06:16:40 -0800 (PST)
-In-Reply-To: <2ff8d5c6.9fa8.15fd953d1ab.Coremail.cddatemp@163.com>
+Received: from m13-15.163.com (m13-15.163.com [220.181.13.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 429FCE00D48
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 06:34:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=9ImaG
+	rjZJv743I5WJc2trdRE7PpoNXwfVL+bDunezIs=; b=XEdBSNK+TFGKVZxOtyOP/
+	szS0AebxnbFluGlmuL4/XGp7a52bNcxmv2ZR6M+tuK5Z9HALo90virOzy6H6o0LA
+	B3eiPYloCd1kqfG0poTROQXDlvcXsQl4Po1h/HcGFvg8zKYAopMP8tn/qJ1JVY0y
+	kPd/UG1wWNpEekh/35TJag=
+Received: from cddatemp$163.com ( [182.201.118.68] ) by ajax-webmail-wmsvr15
+	(Coremail) ; Mon, 20 Nov 2017 22:34:30 +0800 (CST)
+X-Originating-IP: [182.201.118.68]
+Date: Mon, 20 Nov 2017 22:34:30 +0800 (CST)
+From: cddatemp <cddatemp@163.com>
+To: "Burton Ross" <ross.burton@intel.com>
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20160729(86883.8884) Copyright (c) 2002-2017 www.mailtech.cn 163com
+In-Reply-To: <CAJTo0LZOc4grvR0wKKmHyBx3tPg6Ae7y6Wp=+Vj7CQbo1=x5hQ@mail.gmail.com>
 References: <5644f58b.9cec.15fd93414cf.Coremail.cddatemp@163.com>
 	<CAJTo0LZUwFBBNDW3Whew-DjwV1frffRknAPOGsSZfZj=6tuRkQ@mail.gmail.com>
 	<2ff8d5c6.9fa8.15fd953d1ab.Coremail.cddatemp@163.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 20 Nov 2017 14:16:40 +0000
-Message-ID: <CAJTo0LZOc4grvR0wKKmHyBx3tPg6Ae7y6Wp=+Vj7CQbo1=x5hQ@mail.gmail.com>
-To: cddatemp <cddatemp@163.com>
+	<CAJTo0LZOc4grvR0wKKmHyBx3tPg6Ae7y6Wp=+Vj7CQbo1=x5hQ@mail.gmail.com>
+MIME-Version: 1.0
+Message-ID: <16de0d60.745.15fd9da1988.Coremail.cddatemp@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: D8GowABHXon25xJasE8KAA--.4713W
+X-CM-SenderInfo: pfggt3xhpsqiywtou0bp/1tbisAuWdFUMBNg7dQABsT
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to build a native python extension
 X-BeenThere: yocto@yoctoproject.org
@@ -70,100 +59,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Nov 2017 14:17:03 -0000
-Content-Type: multipart/alternative; boundary="94eb2c089e1464d8a2055e6abd6d"
+X-List-Received-Date: Mon, 20 Nov 2017 14:34:42 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_4557_518294018.1511188470152"
 
---94eb2c089e1464d8a2055e6abd6d
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_4557_518294018.1511188470152
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-There's numerous u-boot recipes out there, including on in oe-core. Ideally
-customise the u-boot in oe-core instead of writing your own recipe from
-scratch.
+5ZyoMjAxN+W5tDEx5pyIMjAgMjLml7YxNuWIhiwgIkJ1cnRvbiwgUm9zcyI8cm9zcy5idXJ0b25A
+aW50ZWwuY29tPuWGmemBkzoKPiBUaGVyZSdzIG51bWVyb3VzIHUtYm9vdCByZWNpcGVzIG91dCB0
+aGVyZSwgaW5jbHVkaW5nIG9uIGluIG9lLWNvcmUuIAo+IElkZWFsbHkgY3VzdG9taXNlIHRoZSB1
+LWJvb3QgaW4gb2UtY29yZSBpbnN0ZWFkIG9mIHdyaXRpbmcgeW91ciBvd24gcmVjaXBlIGZyb20g
+c2NyYXRjaC4KPgo+IFJvc3MKCgpUaGFua3MgZm9yIHlvdXIgaGVscCwgSSBmaW5hbGx5IHNvbHZl
+ZCB0aGlzIHByb2JsZW0gYXMgYmVsb3c6CgoKIyB1LWJvb3RfMjAxNy4wOS5iYmFwcGVuZAojIGJh
+c2UgcmVjaXBlOiBtZXRhL3JlY2lwZXMtYnNwL3UtYm9vdC91LWJvb3RfMjAxNy4wOS5iYgojIGJh
+c2UgYnJhbmNoOiByb2NrbwojCgoKaW5oZXJpdCBweXRob25uYXRpdmUKCgpERVBFTkRTICs9ICJz
+d2lnLW5hdGl2ZSIKCgpkb19jb21waWxlX3ByZXBlbmQoKSB7CiAgICBleHBvcnQgU1RBR0lOR19M
+SUJESVI9IiR7U1RBR0lOR19MSUJESVJfTkFUSVZFfSIKICAgIGV4cG9ydCBTVEFHSU5HX0lOQ0RJ
+Uj0iJHtTVEFHSU5HX0lOQ0RJUl9OQVRJVkV9Igp9CgoKVGhlbiBJIGNhbiBidWlsZCB1LWJvb3Qg
+Zm9yIGFsbHdpbm5lciBhMjAuCk1heWJlIHRoaXMgaXMgdXNlZnVsIGZvciB4ODYgdG9vIGFjY29y
+ZGluZyB0byBbMV0uCgoKWzFdIHUtYm9vdCBjb21taXQgZTM4ZmZjNDI2NzRmZWRjNzUwY2E4OTUw
+NDZiZTBiZDk4M2I1NmRkNQoKCkJlc3QgUmVnYXJkcwpjZGRhdGVtcAoKCj4gT24gMjAgTm92ZW1i
+ZXIgMjAxNyBhdCAxMjowNywgY2RkYXRlbXAgPGNkZGF0ZW1wQDE2My5jb20+IHdyb3RlOgo+PiBB
+dCAyMDE3LTExLTIwIDE5OjM1OjMxLCAiQnVydG9uLCBSb3NzIiA8cm9zcy5idXJ0b25AaW50ZWwu
+Y29tPiB3cm90ZToKPj4+IGluaGVyaXQgbmF0aXZlIHRvIG1ha2UgdGhlIHJlY2lwZSBuYXRpdmUu
+Cj4+Cj4+IEl0IHJlYWxseSBoZWxwLCB3aGVuIG15IHJlY2lwZSBpcyBqdXN0IGEgaGVsbG93b3Js
+ZCBweXRob24gZXh0ZW5zaW9uLgo+PiBVbmZvcnR1bmF0ZWx5LCB0aGlzIHJlY2lwZSBpcyB1LWJv
+b3QuCj4+IEl0IHdpbGwgY29tcGlsZSBhIG5hdGl2ZSBweXRob24gZXh0ZW5zaW9uIG5hbWVkICJs
+aWJmZHQiLCB0aGVuIHVzZSBpdCB0byBjb21waWxlIHUtYm9vdC4KPj4gU28gSSBjYW5ub3QgYWRk
+ICJpbmhlcml0IG5hdGl2ZSIgdG8gdGhlIHUtYm9vdCByZWNpcGUuCj4+Cj4+PiBSb3NzCj4+Pgo+
+Pj4gT24gMjAgTm92ZW1iZXIgMjAxNyBhdCAxMTozMywgY2RkYXRlbXAgPGNkZGF0ZW1wQDE2My5j
+b20+IHdyb3RlOgo+Pj4+IEhpLAo+Pj4+Cj4+Pj4gSSBhZGQgImluaGVyaXQgZGlzdHV0aWxzIiBp
+biBteSByZWNpcGUuCj4+Pj4gSXQgd2lsbCBtYWtlIG15IHJlY2lwZSBkZXBlbmRzIG9uICJweXRo
+b24tbmF0aXZlIiBhbmQgInB5dGhvbiIuCj4+Pj4gRmluYWxseSBpdCB1c2UgYXJtLWdjYyB0byBi
+dWlsZCB0aGUgcHl0aG9uIGV4dGVuc2lvbi4KPj4+PiBCdXQgSSB3YW50IHRvIHVzZSB4ODYtZ2Nj
+IHRvIGJ1aWxkIGEgbmF0aXZlIHB5dGhvbiBleHRlbnNpb24uCj4+Pj4gSG93IHRvIGRvIHRoaXM/
+Cj4+Pj4KPj4+PiBCZXN0IFJlZ2FyZHMKPj4+PiBjZGRhdGVtcAo+Pj4+Cj4+Pj4gLS0KPj4+PiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4+IHlvY3Rv
+IG1haWxpbmcgbGlzdAo+Pj4+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcKPj4+PiBodHRwczovL2xp
+c3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8KCg==
 
-Ross
+------=_Part_4557_518294018.1511188470152
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-On 20 November 2017 at 12:07, cddatemp <cddatemp@163.com> wrote:
+PGRpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVv
+dDs7Ij7lnKgyMDE35bm0MTHmnIgyMCAyMuaXtjE25YiGLCAiQnVydG9uLCBSb3NzIiZsdDtyb3Nz
+LmJ1cnRvbkBpbnRlbC5jb20mZ3Q75YaZ6YGTOjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxl
+PSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7IFRoZXJlJ3MgbnVt
+ZXJvdXMgdS1ib290IHJlY2lwZXMgb3V0IHRoZXJlLCBpbmNsdWRpbmcgb24gaW4gb2UtY29yZS4m
+bmJzcDs8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2Fu
+ZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyBJZGVhbGx5IGN1c3RvbWlzZSB0aGUgdS1ib290IGluIG9l
+LWNvcmUgaW5zdGVhZCBvZiB3cml0aW5nIHlvdXIgb3duIHJlY2lwZSBmcm9tIHNjcmF0Y2guPC9z
+cGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9u
+byZxdW90OzsiPiZndDs8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6
+ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyBSb3NzPC9zcGFuPjwvZGl2PjxkaXY+PGJy
+PjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZx
+dW90OzsiPlRoYW5rcyBmb3IgeW91ciBoZWxwLCBJIGZpbmFsbHkgc29sdmVkIHRoaXMgcHJvYmxl
+bSBhcyBiZWxvdzo8L3NwYW4+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0i
+Zm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+IyB1LWJvb3RfMjAxNy4wOS5i
+YmFwcGVuZDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7
+YW5kYWxlIG1vbm8mcXVvdDs7Ij4jIGJhc2UgcmVjaXBlOiBtZXRhL3JlY2lwZXMtYnNwL3UtYm9v
+dC91LWJvb3RfMjAxNy4wOS5iYjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZh
+bWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4jIGJhc2UgYnJhbmNoOiByb2Nrbzwvc3Bh
+bj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8m
+cXVvdDs7Ij4jPC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZv
+bnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPmluaGVyaXQgcHl0aG9ubmF0aXZl
+PC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPkRFUEVORFMgKz0gInN3aWctbmF0aXZlIjwvc3Bh
+bj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1
+b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij5kb19jb21waWxlX3ByZXBlbmQoKSB7PC9zcGFuPjwvZGl2
+PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90Ozsi
+PiZuYnNwOyAmbmJzcDsgZXhwb3J0IFNUQUdJTkdfTElCRElSPSIke1NUQUdJTkdfTElCRElSX05B
+VElWRX0iPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDth
+bmRhbGUgbW9ubyZxdW90OzsiPiZuYnNwOyAmbmJzcDsgZXhwb3J0IFNUQUdJTkdfSU5DRElSPSIk
+e1NUQUdJTkdfSU5DRElSX05BVElWRX0iPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZv
+bnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPn08L3NwYW4+PC9kaXY+PGRpdj48
+YnI+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25v
+JnF1b3Q7OyI+VGhlbiBJIGNhbiBidWlsZCB1LWJvb3QgZm9yIGFsbHdpbm5lciBhMjAuPC9zcGFu
+PjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZx
+dW90OzsiPk1heWJlIHRoaXMgaXMgdXNlZnVsIGZvciB4ODYgdG9vIGFjY29yZGluZyB0byBbMV0u
+PC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPlsxXSB1LWJvb3QgY29tbWl0IGUzOGZmYzQyNjc0
+ZmVkYzc1MGNhODk1MDQ2YmUwYmQ5ODNiNTZkZDU8L3NwYW4+PC9kaXY+PGRpdj48YnI+PC9kaXY+
+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+
+QmVzdCBSZWdhcmRzPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAm
+cXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPmNkZGF0ZW1wPC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwv
+ZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90
+OzsiPiZndDsgT24gMjAgTm92ZW1iZXIgMjAxNyBhdCAxMjowNywgY2RkYXRlbXAgJmx0O2NkZGF0
+ZW1wQDE2My5jb20mZ3Q7IHdyb3RlOjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250
+LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyBBdCAyMDE3LTExLTIw
+IDE5OjM1OjMxLCAiQnVydG9uLCBSb3NzIiAmbHQ7cm9zcy5idXJ0b25AaW50ZWwuY29tJmd0OyB3
+cm90ZTo8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2Fu
+ZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7IGluaGVyaXQgbmF0aXZlIHRvIG1ha2UgdGhl
+IHJlY2lwZSBuYXRpdmUuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7PC9zcGFuPjwvZGl2PjxkaXY+PHNw
+YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7
+IEl0IHJlYWxseSBoZWxwLCB3aGVuIG15IHJlY2lwZSBpcyBqdXN0IGEgaGVsbG93b3JsZCBweXRo
+b24gZXh0ZW5zaW9uLjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTog
+JnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyBVbmZvcnR1bmF0ZWx5LCB0aGlzIHJl
+Y2lwZSBpcyB1LWJvb3QuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7IEl0IHdpbGwgY29tcGlsZSBhIG5h
+dGl2ZSBweXRob24gZXh0ZW5zaW9uIG5hbWVkICJsaWJmZHQiLCB0aGVuIHVzZSBpdCB0byBjb21w
+aWxlIHUtYm9vdC48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZx
+dW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsgU28gSSBjYW5ub3QgYWRkICJpbmhlcml0
+IG5hdGl2ZSIgdG8gdGhlIHUtYm9vdCByZWNpcGUuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5
+bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7PC9zcGFu
+PjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZx
+dW90OzsiPiZndDsmZ3Q7Jmd0OyBSb3NzPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZv
+bnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7Jmd0Ozwvc3Bhbj48
+L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVv
+dDs7Ij4mZ3Q7Jmd0OyZndDsgT24gMjAgTm92ZW1iZXIgMjAxNyBhdCAxMTozMywgY2RkYXRlbXAg
+Jmx0O2NkZGF0ZW1wQDE2My5jb20mZ3Q7IHdyb3RlOjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0
+eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyZndDsm
+Z3Q7IEhpLDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7
+YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyZndDsmZ3Q7PC9zcGFuPjwvZGl2PjxkaXY+PHNw
+YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7
+Jmd0OyZndDsgSSBhZGQgImluaGVyaXQgZGlzdHV0aWxzIiBpbiBteSByZWNpcGUuPC9zcGFuPjwv
+ZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90
+OzsiPiZndDsmZ3Q7Jmd0OyZndDsgSXQgd2lsbCBtYWtlIG15IHJlY2lwZSBkZXBlbmRzIG9uICJw
+eXRob24tbmF0aXZlIiBhbmQgInB5dGhvbiIuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9
+ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7Jmd0OyZndDsg
+RmluYWxseSBpdCB1c2UgYXJtLWdjYyB0byBidWlsZCB0aGUgcHl0aG9uIGV4dGVuc2lvbi48L3Nw
+YW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25v
+JnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7Jmd0OyBCdXQgSSB3YW50IHRvIHVzZSB4ODYtZ2NjIHRvIGJ1
+aWxkIGEgbmF0aXZlIHB5dGhvbiBleHRlbnNpb24uPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5
+bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7Jmd0OyZn
+dDsgSG93IHRvIGRvIHRoaXM/PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
+aWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7Jmd0OyZndDs8L3NwYW4+PC9k
+aXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7
+OyI+Jmd0OyZndDsmZ3Q7Jmd0OyBCZXN0IFJlZ2FyZHM8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBz
+dHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7
+Jmd0OyBjZGRhdGVtcDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTog
+JnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyZndDsmZ3Q7PC9zcGFuPjwvZGl2Pjxk
+aXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZn
+dDsmZ3Q7Jmd0OyZndDsgLS08L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7Jmd0OyBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48L2Rpdj48ZGl2Pjxz
+cGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0
+OyZndDsmZ3Q7IHlvY3RvIG1haWxpbmcgbGlzdDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxl
+PSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyZndDsmZ3Q7
+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9u
+dC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7Jmd0OyBodHRw
+czovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG88L3NwYW4+PC9kaXY+PC9k
+aXY+PGRpdj48YnI+PC9kaXY+
 
-> At 2017-11-20 19:35:31, "Burton, Ross" <ross.burton@intel.com> wrote:
->
-> inherit native to make the recipe native.
->
-> It really help, when my recipe is just a helloworld python extension.
-> Unfortunately, this recipe is u-boot.
-> It will compile a native python extension named "libfdt", then use it to
-> compile u-boot.
-> So I cannot add "inherit native" to the u-boot recipe.
->
->
-> Ross
->
-> On 20 November 2017 at 11:33, cddatemp <cddatemp@163.com> wrote:
->
->> Hi,
->>
->> I add "inherit distutils" in my recipe.
->> It will make my recipe depends on "python-native" and "python".
->> Finally it use arm-gcc to build the python extension.
->> But I want to use x86-gcc to build a native python extension.
->> How to do this?
->>
->> Best Regards
->> cddatemp
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->
-
---94eb2c089e1464d8a2055e6abd6d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">There&#39;s numerous u-boot recipes out there, including o=
-n in oe-core. Ideally customise the u-boot in oe-core instead of writing yo=
-ur own recipe from scratch.<div><br></div><div>Ross</div></div><div class=
-=3D"gmail_extra"><br><div class=3D"gmail_quote">On 20 November 2017 at 12:0=
-7, cddatemp <span dir=3D"ltr">&lt;<a href=3D"mailto:cddatemp@163.com" targe=
-t=3D"_blank">cddatemp@163.com</a>&gt;</span> wrote:<br><blockquote class=3D=
-"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
--left:1ex"><div style=3D"line-height:1.7;color:#000000;font-size:14px;font-=
-family:Arial"><span class=3D"">At 2017-11-20 19:35:31, &quot;Burton, Ross&q=
-uot; &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.bu=
-rton@intel.com</a>&gt; wrote:<br> <blockquote id=3D"m_-382523914461252324is=
-ReplyContent" style=3D"PADDING-LEFT:1ex;MARGIN:0px 0px 0px 0.8ex;BORDER-LEF=
-T:#ccc 1px solid"><div dir=3D"ltr">inherit native to make the recipe native=
-.</div><div dir=3D"ltr"><br></div></blockquote><div></div></span><div>It re=
-ally help, when my recipe is just a helloworld python extension.</div><div>=
-Unfortunately, this recipe is u-boot.</div><div>It will compile a native py=
-thon extension named &quot;libfdt&quot;, then use it to compile u-boot.</di=
-v><div>So I cannot add &quot;inherit native&quot; to the u-boot recipe.</di=
-v><span class=3D""><div><br></div><blockquote style=3D"PADDING-LEFT:1ex;MAR=
-GIN:0px 0px 0px 0.8ex;BORDER-LEFT:#ccc 1px solid"><div dir=3D"ltr"><div><br=
-></div><div>Ross</div></div><div class=3D"gmail_extra"><br><div class=3D"gm=
-ail_quote">On 20 November 2017 at 11:33, cddatemp <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:cddatemp@163.com" target=3D"_blank">cddatemp@163.com</a>&gt;=
-</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
-8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-height:=
-1.7;color:#000000;font-size:14px;font-family:Arial"><div>Hi,</div><div><br>=
-</div><div>I add &quot;inherit distutils&quot; in my recipe.</div><div>It w=
-ill make my recipe depends on &quot;python-native&quot; and &quot;python&qu=
-ot;.</div><div>Finally it use arm-gcc to build the python extension.</div><=
-div>But I want to use x86-gcc to build a native python extension.</div><div=
->How to do this?</div><div><br></div><div>Best Regards</div><span class=3D"=
-m_-382523914461252324HOEnZb"><font color=3D"#888888"><div>cddatemp</div></f=
-ont></span></div><br>--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br></div>
-</blockquote></span></div></blockquote></div><br></div>
-
---94eb2c089e1464d8a2055e6abd6d--
+------=_Part_4557_518294018.1511188470152--
