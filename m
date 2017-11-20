@@ -1,53 +1,91 @@
-Return-Path: <cddatemp@163.com>
+Return-Path: <amit.gondaliya@einfochips.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 500BEE00D51; Mon, 20 Nov 2017 06:34:42 -0800 (PST)
+	id 9346BE00CC4; Mon, 20 Nov 2017 06:52:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (cddatemp[at]163.com)
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE, RCVD_IN_SORBS_WEB,
+	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.126.63 listed in list.dnswl.org]
+	*  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
+	*      [220.225.147.210 listed in dnsbl.sorbs.net]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from m13-15.163.com (m13-15.163.com [220.181.13.15])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 429FCE00D48
-	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 06:34:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=9ImaG
-	rjZJv743I5WJc2trdRE7PpoNXwfVL+bDunezIs=; b=XEdBSNK+TFGKVZxOtyOP/
-	szS0AebxnbFluGlmuL4/XGp7a52bNcxmv2ZR6M+tuK5Z9HALo90virOzy6H6o0LA
-	B3eiPYloCd1kqfG0poTROQXDlvcXsQl4Po1h/HcGFvg8zKYAopMP8tn/qJ1JVY0y
-	kPd/UG1wWNpEekh/35TJag=
-Received: from cddatemp$163.com ( [182.201.118.68] ) by ajax-webmail-wmsvr15
-	(Coremail) ; Mon, 20 Nov 2017 22:34:30 +0800 (CST)
-X-Originating-IP: [182.201.118.68]
-Date: Mon, 20 Nov 2017 22:34:30 +0800 (CST)
-From: cddatemp <cddatemp@163.com>
-To: "Burton Ross" <ross.burton@intel.com>
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	20160729(86883.8884) Copyright (c) 2002-2017 www.mailtech.cn 163com
-In-Reply-To: <CAJTo0LZOc4grvR0wKKmHyBx3tPg6Ae7y6Wp=+Vj7CQbo1=x5hQ@mail.gmail.com>
-References: <5644f58b.9cec.15fd93414cf.Coremail.cddatemp@163.com>
-	<CAJTo0LZUwFBBNDW3Whew-DjwV1frffRknAPOGsSZfZj=6tuRkQ@mail.gmail.com>
-	<2ff8d5c6.9fa8.15fd953d1ab.Coremail.cddatemp@163.com>
-	<CAJTo0LZOc4grvR0wKKmHyBx3tPg6Ae7y6Wp=+Vj7CQbo1=x5hQ@mail.gmail.com>
+Received: from APC01-PU1-obe.outbound.protection.outlook.com
+	(mail-pu1apc01on0063.outbound.protection.outlook.com [104.47.126.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 963CBE00BEA
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 06:52:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=eInfochipsIndia.onmicrosoft.com; s=selector1-einfochips-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=Gi+lJO97LKA0ojyrCWDbc/Xr/g559NXOor8e5lFrQW0=;
+	b=k2v3A0OipheVJ9gn8iMDHxxFTLOfs1o96vb8pvxAuNrkobq39Mq93qUzTIOpC937tp9Rr860DNk67AkskxcxfC4niVc2mT+7HP7OvPiTzc48Bkwv1+VVpv+bvMuOBfHzpTwSoaKwyyEqw5CG0IMn0LzJkXiestbDnC7SyO5uIHs=
+Received: from HK2PR02MB1155.apcprd02.prod.outlook.com (10.165.55.157) by
+	HK2PR02MB1155.apcprd02.prod.outlook.com (10.165.55.157) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.239.5; Mon, 20 Nov 2017 14:52:41 +0000
+Received: from HK2PR02MB1155.apcprd02.prod.outlook.com
+	([fe80::1bf:29b9:681:25cf]) by HK2PR02MB1155.apcprd02.prod.outlook.com
+	([fe80::1bf:29b9:681:25cf%14]) with mapi id 15.20.0239.009;
+	Mon, 20 Nov 2017 14:52:41 +0000
+From: Amit Gondaliya <amit.gondaliya@einfochips.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Build is using host x86_64 python2.7 instead of cross-compiled
+Thread-Index: AQHTYg83O/SFDqtSTEWbfBwnQ5xeNg==
+Date: Mon, 20 Nov 2017 14:52:41 +0000
+Message-ID: <HK2PR02MB11556DBBA901FAB12B35D192FE220@HK2PR02MB1155.apcprd02.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=amit.gondaliya@einfochips.com; 
+x-originating-ip: [220.225.147.210]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; HK2PR02MB1155;
+	6:ef687YUS9lzOvoTuBH8jVvRHQ1R3mTR6Im4oYtdf0Jh+TwmGAWtog+Ca+DCg+aCoRIjt6z4jxJT/PpdjwKvuPjtBOwMqDrnjg6fPOOvvAAS/3GDK970rBRyw3dNM7g1/5Eo5TQpUptBd6veUHCy+xcyqnhQ8vlwQ1XFzLGivVAL8tEaH+NPMvpw812SJ8j3OtQmL4Y+mtGyTlmnWz29Pj7ZVnNjT1abMgQSp9rjGrHMcMeWEmTVVaDyzNyXxK9Dresr182JeLaYuoxyGtxhxix+46SEGjVI9f619joDIMROvmyo9dSitGVdNjobejduf63iXKjcFQi160bOF4b1TQG54I5hqvO98l21Ao8S8oMY=;
+	5:Buj+Cioy9D79opmBFgfk14QWScOY+QdTP+V7VynYwDDEioFLK491oSNlzxsxrLjIdSiNV9FziGCD7K1vfq2gVGFPEL3MbjGqAFlG9p0uQPzJ1OGo0gnsExj4CUS18QUmj11QOWCn9shWTds5SL4aWKFUIrFIhA/RSFeSRao300Q=;
+	24:Nip2mmO5ToDGpPZlr20nxqvpuf3i8QkhOlNGumJMCkpRVLPh474zaLY9uqSc+eyMa3AEV8ETc1no38OomZzujvgtwHxJXJ7/bzHBt9aMV9A=;
+	7:w+2LiarZwpCMLY9Zp/NPOZ5drFpAl+K4Ue3Pv6QTJMdig/PJhaQH4P9xXQ9xq0mjhXSxxdajlUZnFHW5JOkgC7AKBtRLSkCMM99fJR/xLfxiVKrvw/rcdY/9Klf87d1Aq7E+tfdf8AGwCH/UpM5oRUFBMWClZJqJVEhZiqTYy0FRTA42bPHvpRF6oZeT8OgWooyrsXO20Rp+YHST3Y9aXVRu+sZ7xXRkk3cIZbb78HQZsM6Su1yYVehW2inJNmsH
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 11c3fd0b-9996-4507-36b2-08d5302659b8
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(4534020)(4602075)(4627115)(201703031133081)(201702281549075)(2017052603258);
+	SRVR:HK2PR02MB1155; 
+x-ms-traffictypediagnostic: HK2PR02MB1155:|HK2PR02MB1155:
+x-microsoft-antispam-prvs: <HK2PR02MB1155F9BA7D4B9F9A2357978BFE220@HK2PR02MB1155.apcprd02.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(5005006)(8121501046)(100000703101)(100105400095)(10201501046)(3231022)(3002001)(93006095)(93001095)(6041248)(20161123562025)(20161123555025)(20161123558100)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123560025)(20161123564025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:HK2PR02MB1155; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:HK2PR02MB1155; 
+x-forefront-prvs: 04976078F0
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(376002)(39830400002)(346002)(199003)(189002)(53754006)(5660300001)(189998001)(478600001)(7696004)(106356001)(2351001)(19627405001)(86362001)(316002)(2501003)(54356999)(74316002)(50986999)(97736004)(7736002)(81166006)(81156014)(1730700003)(8676002)(14454004)(5890100001)(55016002)(25786009)(9686003)(54896002)(68736007)(5640700003)(6916009)(5250100002)(6116002)(102836003)(3846002)(2906002)(6506006)(6436002)(101416001)(53936002)(6606003)(8936002)(2900100001)(33656002)(105586002)(3660700001)(66066001)(3280700002)(99286004);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:HK2PR02MB1155;
+	H:HK2PR02MB1155.apcprd02.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: einfochips.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Message-ID: <16de0d60.745.15fd9da1988.Coremail.cddatemp@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: D8GowABHXon25xJasE8KAA--.4713W
-X-CM-SenderInfo: pfggt3xhpsqiywtou0bp/1tbisAuWdFUMBNg7dQABsT
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to build a native python extension
+X-OriginatorOrg: einfochips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11c3fd0b-9996-4507-36b2-08d5302659b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2017 14:52:41.4459 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0adb040b-ca22-4ca6-9447-ab7b049a22ff
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR02MB1155
+Subject: Build is using host x86_64 python2.7 instead of cross-compiled
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,150 +97,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Nov 2017 14:34:42 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_4557_518294018.1511188470152"
+X-List-Received-Date: Mon, 20 Nov 2017 14:52:46 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_HK2PR02MB11556DBBA901FAB12B35D192FE220HK2PR02MB1155apcp_"
 
-------=_Part_4557_518294018.1511188470152
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+--_000_HK2PR02MB11556DBBA901FAB12B35D192FE220HK2PR02MB1155apcp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-5ZyoMjAxN+W5tDEx5pyIMjAgMjLml7YxNuWIhiwgIkJ1cnRvbiwgUm9zcyI8cm9zcy5idXJ0b25A
-aW50ZWwuY29tPuWGmemBkzoKPiBUaGVyZSdzIG51bWVyb3VzIHUtYm9vdCByZWNpcGVzIG91dCB0
-aGVyZSwgaW5jbHVkaW5nIG9uIGluIG9lLWNvcmUuIAo+IElkZWFsbHkgY3VzdG9taXNlIHRoZSB1
-LWJvb3QgaW4gb2UtY29yZSBpbnN0ZWFkIG9mIHdyaXRpbmcgeW91ciBvd24gcmVjaXBlIGZyb20g
-c2NyYXRjaC4KPgo+IFJvc3MKCgpUaGFua3MgZm9yIHlvdXIgaGVscCwgSSBmaW5hbGx5IHNvbHZl
-ZCB0aGlzIHByb2JsZW0gYXMgYmVsb3c6CgoKIyB1LWJvb3RfMjAxNy4wOS5iYmFwcGVuZAojIGJh
-c2UgcmVjaXBlOiBtZXRhL3JlY2lwZXMtYnNwL3UtYm9vdC91LWJvb3RfMjAxNy4wOS5iYgojIGJh
-c2UgYnJhbmNoOiByb2NrbwojCgoKaW5oZXJpdCBweXRob25uYXRpdmUKCgpERVBFTkRTICs9ICJz
-d2lnLW5hdGl2ZSIKCgpkb19jb21waWxlX3ByZXBlbmQoKSB7CiAgICBleHBvcnQgU1RBR0lOR19M
-SUJESVI9IiR7U1RBR0lOR19MSUJESVJfTkFUSVZFfSIKICAgIGV4cG9ydCBTVEFHSU5HX0lOQ0RJ
-Uj0iJHtTVEFHSU5HX0lOQ0RJUl9OQVRJVkV9Igp9CgoKVGhlbiBJIGNhbiBidWlsZCB1LWJvb3Qg
-Zm9yIGFsbHdpbm5lciBhMjAuCk1heWJlIHRoaXMgaXMgdXNlZnVsIGZvciB4ODYgdG9vIGFjY29y
-ZGluZyB0byBbMV0uCgoKWzFdIHUtYm9vdCBjb21taXQgZTM4ZmZjNDI2NzRmZWRjNzUwY2E4OTUw
-NDZiZTBiZDk4M2I1NmRkNQoKCkJlc3QgUmVnYXJkcwpjZGRhdGVtcAoKCj4gT24gMjAgTm92ZW1i
-ZXIgMjAxNyBhdCAxMjowNywgY2RkYXRlbXAgPGNkZGF0ZW1wQDE2My5jb20+IHdyb3RlOgo+PiBB
-dCAyMDE3LTExLTIwIDE5OjM1OjMxLCAiQnVydG9uLCBSb3NzIiA8cm9zcy5idXJ0b25AaW50ZWwu
-Y29tPiB3cm90ZToKPj4+IGluaGVyaXQgbmF0aXZlIHRvIG1ha2UgdGhlIHJlY2lwZSBuYXRpdmUu
-Cj4+Cj4+IEl0IHJlYWxseSBoZWxwLCB3aGVuIG15IHJlY2lwZSBpcyBqdXN0IGEgaGVsbG93b3Js
-ZCBweXRob24gZXh0ZW5zaW9uLgo+PiBVbmZvcnR1bmF0ZWx5LCB0aGlzIHJlY2lwZSBpcyB1LWJv
-b3QuCj4+IEl0IHdpbGwgY29tcGlsZSBhIG5hdGl2ZSBweXRob24gZXh0ZW5zaW9uIG5hbWVkICJs
-aWJmZHQiLCB0aGVuIHVzZSBpdCB0byBjb21waWxlIHUtYm9vdC4KPj4gU28gSSBjYW5ub3QgYWRk
-ICJpbmhlcml0IG5hdGl2ZSIgdG8gdGhlIHUtYm9vdCByZWNpcGUuCj4+Cj4+PiBSb3NzCj4+Pgo+
-Pj4gT24gMjAgTm92ZW1iZXIgMjAxNyBhdCAxMTozMywgY2RkYXRlbXAgPGNkZGF0ZW1wQDE2My5j
-b20+IHdyb3RlOgo+Pj4+IEhpLAo+Pj4+Cj4+Pj4gSSBhZGQgImluaGVyaXQgZGlzdHV0aWxzIiBp
-biBteSByZWNpcGUuCj4+Pj4gSXQgd2lsbCBtYWtlIG15IHJlY2lwZSBkZXBlbmRzIG9uICJweXRo
-b24tbmF0aXZlIiBhbmQgInB5dGhvbiIuCj4+Pj4gRmluYWxseSBpdCB1c2UgYXJtLWdjYyB0byBi
-dWlsZCB0aGUgcHl0aG9uIGV4dGVuc2lvbi4KPj4+PiBCdXQgSSB3YW50IHRvIHVzZSB4ODYtZ2Nj
-IHRvIGJ1aWxkIGEgbmF0aXZlIHB5dGhvbiBleHRlbnNpb24uCj4+Pj4gSG93IHRvIGRvIHRoaXM/
-Cj4+Pj4KPj4+PiBCZXN0IFJlZ2FyZHMKPj4+PiBjZGRhdGVtcAo+Pj4+Cj4+Pj4gLS0KPj4+PiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4+IHlvY3Rv
-IG1haWxpbmcgbGlzdAo+Pj4+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcKPj4+PiBodHRwczovL2xp
-c3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8KCg==
+Hello All,
 
-------=_Part_4557_518294018.1511188470152
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
 
-PGRpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVv
-dDs7Ij7lnKgyMDE35bm0MTHmnIgyMCAyMuaXtjE25YiGLCAiQnVydG9uLCBSb3NzIiZsdDtyb3Nz
-LmJ1cnRvbkBpbnRlbC5jb20mZ3Q75YaZ6YGTOjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxl
-PSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7IFRoZXJlJ3MgbnVt
-ZXJvdXMgdS1ib290IHJlY2lwZXMgb3V0IHRoZXJlLCBpbmNsdWRpbmcgb24gaW4gb2UtY29yZS4m
-bmJzcDs8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2Fu
-ZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyBJZGVhbGx5IGN1c3RvbWlzZSB0aGUgdS1ib290IGluIG9l
-LWNvcmUgaW5zdGVhZCBvZiB3cml0aW5nIHlvdXIgb3duIHJlY2lwZSBmcm9tIHNjcmF0Y2guPC9z
-cGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9u
-byZxdW90OzsiPiZndDs8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6
-ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyBSb3NzPC9zcGFuPjwvZGl2PjxkaXY+PGJy
-PjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZx
-dW90OzsiPlRoYW5rcyBmb3IgeW91ciBoZWxwLCBJIGZpbmFsbHkgc29sdmVkIHRoaXMgcHJvYmxl
-bSBhcyBiZWxvdzo8L3NwYW4+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0i
-Zm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+IyB1LWJvb3RfMjAxNy4wOS5i
-YmFwcGVuZDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7
-YW5kYWxlIG1vbm8mcXVvdDs7Ij4jIGJhc2UgcmVjaXBlOiBtZXRhL3JlY2lwZXMtYnNwL3UtYm9v
-dC91LWJvb3RfMjAxNy4wOS5iYjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZh
-bWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4jIGJhc2UgYnJhbmNoOiByb2Nrbzwvc3Bh
-bj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8m
-cXVvdDs7Ij4jPC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZv
-bnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPmluaGVyaXQgcHl0aG9ubmF0aXZl
-PC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
-OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPkRFUEVORFMgKz0gInN3aWctbmF0aXZlIjwvc3Bh
-bj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1
-b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij5kb19jb21waWxlX3ByZXBlbmQoKSB7PC9zcGFuPjwvZGl2
-PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90Ozsi
-PiZuYnNwOyAmbmJzcDsgZXhwb3J0IFNUQUdJTkdfTElCRElSPSIke1NUQUdJTkdfTElCRElSX05B
-VElWRX0iPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDth
-bmRhbGUgbW9ubyZxdW90OzsiPiZuYnNwOyAmbmJzcDsgZXhwb3J0IFNUQUdJTkdfSU5DRElSPSIk
-e1NUQUdJTkdfSU5DRElSX05BVElWRX0iPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZv
-bnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPn08L3NwYW4+PC9kaXY+PGRpdj48
-YnI+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25v
-JnF1b3Q7OyI+VGhlbiBJIGNhbiBidWlsZCB1LWJvb3QgZm9yIGFsbHdpbm5lciBhMjAuPC9zcGFu
-PjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZx
-dW90OzsiPk1heWJlIHRoaXMgaXMgdXNlZnVsIGZvciB4ODYgdG9vIGFjY29yZGluZyB0byBbMV0u
-PC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
-OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPlsxXSB1LWJvb3QgY29tbWl0IGUzOGZmYzQyNjc0
-ZmVkYzc1MGNhODk1MDQ2YmUwYmQ5ODNiNTZkZDU8L3NwYW4+PC9kaXY+PGRpdj48YnI+PC9kaXY+
-PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+
-QmVzdCBSZWdhcmRzPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAm
-cXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPmNkZGF0ZW1wPC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwv
-ZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90
-OzsiPiZndDsgT24gMjAgTm92ZW1iZXIgMjAxNyBhdCAxMjowNywgY2RkYXRlbXAgJmx0O2NkZGF0
-ZW1wQDE2My5jb20mZ3Q7IHdyb3RlOjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyBBdCAyMDE3LTExLTIw
-IDE5OjM1OjMxLCAiQnVydG9uLCBSb3NzIiAmbHQ7cm9zcy5idXJ0b25AaW50ZWwuY29tJmd0OyB3
-cm90ZTo8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2Fu
-ZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7IGluaGVyaXQgbmF0aXZlIHRvIG1ha2UgdGhl
-IHJlY2lwZSBuYXRpdmUuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
-OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7PC9zcGFuPjwvZGl2PjxkaXY+PHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7
-IEl0IHJlYWxseSBoZWxwLCB3aGVuIG15IHJlY2lwZSBpcyBqdXN0IGEgaGVsbG93b3JsZCBweXRo
-b24gZXh0ZW5zaW9uLjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTog
-JnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyBVbmZvcnR1bmF0ZWx5LCB0aGlzIHJl
-Y2lwZSBpcyB1LWJvb3QuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
-OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7IEl0IHdpbGwgY29tcGlsZSBhIG5h
-dGl2ZSBweXRob24gZXh0ZW5zaW9uIG5hbWVkICJsaWJmZHQiLCB0aGVuIHVzZSBpdCB0byBjb21w
-aWxlIHUtYm9vdC48L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZx
-dW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsgU28gSSBjYW5ub3QgYWRkICJpbmhlcml0
-IG5hdGl2ZSIgdG8gdGhlIHUtYm9vdCByZWNpcGUuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5
-bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7PC9zcGFu
-PjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZx
-dW90OzsiPiZndDsmZ3Q7Jmd0OyBSb3NzPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZv
-bnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7Jmd0Ozwvc3Bhbj48
-L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVv
-dDs7Ij4mZ3Q7Jmd0OyZndDsgT24gMjAgTm92ZW1iZXIgMjAxNyBhdCAxMTozMywgY2RkYXRlbXAg
-Jmx0O2NkZGF0ZW1wQDE2My5jb20mZ3Q7IHdyb3RlOjwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0
-eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyZndDsm
-Z3Q7IEhpLDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7
-YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyZndDsmZ3Q7PC9zcGFuPjwvZGl2PjxkaXY+PHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7
-Jmd0OyZndDsgSSBhZGQgImluaGVyaXQgZGlzdHV0aWxzIiBpbiBteSByZWNpcGUuPC9zcGFuPjwv
-ZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90
-OzsiPiZndDsmZ3Q7Jmd0OyZndDsgSXQgd2lsbCBtYWtlIG15IHJlY2lwZSBkZXBlbmRzIG9uICJw
-eXRob24tbmF0aXZlIiBhbmQgInB5dGhvbiIuPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9
-ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7Jmd0OyZndDsg
-RmluYWxseSBpdCB1c2UgYXJtLWdjYyB0byBidWlsZCB0aGUgcHl0aG9uIGV4dGVuc2lvbi48L3Nw
-YW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25v
-JnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7Jmd0OyBCdXQgSSB3YW50IHRvIHVzZSB4ODYtZ2NjIHRvIGJ1
-aWxkIGEgbmF0aXZlIHB5dGhvbiBleHRlbnNpb24uPC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5
-bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7Jmd0OyZn
-dDsgSG93IHRvIGRvIHRoaXM/PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZndDsmZ3Q7Jmd0OyZndDs8L3NwYW4+PC9k
-aXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7
-OyI+Jmd0OyZndDsmZ3Q7Jmd0OyBCZXN0IFJlZ2FyZHM8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBz
-dHlsZT0iZm9udC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7
-Jmd0OyBjZGRhdGVtcDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTog
-JnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyZndDsmZ3Q7PC9zcGFuPjwvZGl2Pjxk
-aXY+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiAmcXVvdDthbmRhbGUgbW9ubyZxdW90OzsiPiZn
-dDsmZ3Q7Jmd0OyZndDsgLS08L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
-bHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7Jmd0OyBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48L2Rpdj48ZGl2Pjxz
-cGFuIHN0eWxlPSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0
-OyZndDsmZ3Q7IHlvY3RvIG1haWxpbmcgbGlzdDwvc3Bhbj48L2Rpdj48ZGl2PjxzcGFuIHN0eWxl
-PSJmb250LWZhbWlseTogJnF1b3Q7YW5kYWxlIG1vbm8mcXVvdDs7Ij4mZ3Q7Jmd0OyZndDsmZ3Q7
-IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L3NwYW4+PC9kaXY+PGRpdj48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6ICZxdW90O2FuZGFsZSBtb25vJnF1b3Q7OyI+Jmd0OyZndDsmZ3Q7Jmd0OyBodHRw
-czovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG88L3NwYW4+PC9kaXY+PC9k
-aXY+PGRpdj48YnI+PC9kaXY+
+I am configuring one package and found the following error.
 
-------=_Part_4557_518294018.1511188470152--
+
+ File "/usr/lib/python2.7/subprocess.py", line 567, in check_output
+   process =3D Popen(stdout=3DPIPE, *popenargs, **kwargs)
+ File "/usr/lib/python2.7/subprocess.py", line 711, in __init__
+   errread, errwrite)
+ File "/usr/lib/python2.7/subprocess.py", line 1343, in _execute_child
+   raise child_exception
+OSError: [Errno 2] No such file or directory
+
+it is looking like bitbake is taking host (x86_64) python rather than using=
+ <package_name>/0.8-r1/recipe-sysroot/usr/lib/python2.7
+
+does anyone know why this is happening ..?
+
+
+
+
+Best Regards,
+Amit Gondaliya
+
+
+
+
+
+
+
+
+
+
+***************************************************************************=
+***************************************************************************=
+******* eInfochips Business Disclaimer: This e-mail message and all attachm=
+ents transmitted with it are intended solely for the use of the addressee a=
+nd may contain legally privileged and confidential information. If the read=
+er of this message is not the intended recipient, or an employee or agent r=
+esponsible for delivering this message to the intended recipient, you are h=
+ereby notified that any dissemination, distribution, copying, or other use =
+of this message or its attachments is strictly prohibited. If you have rece=
+ived this message in error, please notify the sender immediately by replyin=
+g to this message and please delete it from your computer. Any views expres=
+sed in this message are those of the individual sender unless otherwise sta=
+ted. Company has taken enough precautions to prevent the spread of viruses.=
+ However the company accepts no liability for any damage caused by any viru=
+s transmitted by this email. **********************************************=
+***************************************************************************=
+************************************
+
+--_000_HK2PR02MB11556DBBA901FAB12B35D192FE220HK2PR02MB1155apcp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:11pt;color:#006fc9;font=
+-family:Verdana,Geneva,sans-serif;" dir=3D"ltr">
+<p>Hello All,</p>
+<p><br>
+</p>
+<p>I am configuring one package and found the following error.</p>
+<p><br>
+</p>
+<p></p>
+<div><i>&nbsp;File &quot;/usr/lib/python2.7/subprocess.py&quot;, line 567, =
+in check_output<br>
+&nbsp;&nbsp; process =3D Popen(stdout=3DPIPE, *popenargs, **kwargs)<br>
+&nbsp;File &quot;/usr/lib/python2.7/subprocess.py&quot;, line 711, in __ini=
+t__<br>
+&nbsp;&nbsp; errread, errwrite)<br>
+&nbsp;File &quot;/usr/lib/python2.7/subprocess.py&quot;, line 1343, in _exe=
+cute_child<br>
+&nbsp;&nbsp; raise child_exception<br>
+OSError: [Errno 2] No such file or directory</i></div>
+<div><i><br>
+</i></div>
+<div>it is looking like bitbake is taking host (x86_64) python rather than =
+using <b>
+&lt;package_name&gt;<span>/0.8-r1/recipe-sysroot/usr/lib/python2.7</span></=
+b><br>
+</div>
+<div><br>
+</div>
+<div>does anyone know why this is happening ..?<br>
+</div>
+<br>
+<p></p>
+<p><br>
+</p>
+<p><br>
+</p>
+<div id=3D"Signature">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 11pt; colo=
+r: rgb(0, 0, 0); background-color: rgb(255, 255, 255); font-family: Calibri=
+, Arial, Helvetica, sans-serif, &quot;EmojiFont&quot;, &quot;Apple Color Em=
+oji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbo=
+l&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<span style=3D"font-family:&quot;Comic Sans MS&quot;,fantasy,cursive"></spa=
+n>
+<table style=3D"margin:0px; padding:0px; max-width:100%; border-collapse:co=
+llapse; border-spacing:0px; font-family:Arial,Helvetica,sans-serif" cellspa=
+cing=3D"0">
+<tbody style=3D"margin:0px; padding:0px">
+<tr style=3D"margin:0px; padding:0px">
+<td colspan=3D"2" style=3D"margin:0px; padding:0px; font-family:Calibri,san=
+s-serif; font-size:14px; color:rgb(0,75,118)">
+<b style=3D"margin:0px; padding:0px; border:0px; vertical-align:baseline; l=
+ine-height:19.6000003814697px"><span style=3D"font-family:Verdana,Geneva,sa=
+ns-serif; font-size:10pt">Best Regards,</span><br>
+<span style=3D"font-size:10pt"></span><span style=3D"font-family:Verdana,Ge=
+neva,sans-serif; font-size:10pt">Amit Gondaliya</span></b><br style=3D"marg=
+in:0px; padding:0px">
+</td>
+</tr>
+<tr style=3D"margin:0px; padding:0px">
+<td style=3D"margin:0px; padding:0px; font-size:13px" valign=3D"top"><br>
+</td>
+<td style=3D"margin:0px; padding:13px 0px 0px; font-family:Calibri,sans-ser=
+if; font-size:14px; color:rgb(0,75,118)" valign=3D"top">
+<br>
+</td>
+</tr>
+<tr style=3D"margin:0px; padding:0px">
+<td colspan=3D"2" style=3D"margin:0px; padding:0px; font-size:13px"><br>
+</td>
+</tr>
+<tr style=3D"margin:0px; padding:0px">
+<td colspan=3D"2" style=3D"margin:0px; padding:0px; font-family:Calibri,san=
+s-serif; font-size:14px; color:rgb(0,75,118)">
+<br>
+</td>
+</tr>
+<tr style=3D"margin:0px; padding:0px">
+<td colspan=3D"2" style=3D"margin:0px; padding:0px; font-family:Calibri,san=
+s-serif; font-size:14px; color:rgb(0,75,118)">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+***************************************************************************=
+***************************************************************************=
+******* eInfochips Business Disclaimer: This e-mail message and all attachm=
+ents transmitted with it are intended
+ solely for the use of the addressee and may contain legally privileged and=
+ confidential information. If the reader of this message is not the intende=
+d recipient, or an employee or agent responsible for delivering this messag=
+e to the intended recipient, you
+ are hereby notified that any dissemination, distribution, copying, or othe=
+r use of this message or its attachments is strictly prohibited. If you hav=
+e received this message in error, please notify the sender immediately by r=
+eplying to this message and please
+ delete it from your computer. Any views expressed in this message are thos=
+e of the individual sender unless otherwise stated. Company has taken enoug=
+h precautions to prevent the spread of viruses. However the company accepts=
+ no liability for any damage caused
+ by any virus transmitted by this email. **********************************=
+***************************************************************************=
+************************************************
+</body>
+</html>
+
+--_000_HK2PR02MB11556DBBA901FAB12B35D192FE220HK2PR02MB1155apcp_--
