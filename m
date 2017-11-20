@@ -1,47 +1,62 @@
-Return-Path: <cddatemp@163.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 379AAE00D2C; Mon, 20 Nov 2017 03:33:35 -0800 (PST)
+	id 0398AE00D48; Mon, 20 Nov 2017 03:35:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (cddatemp[at]163.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from m13-15.163.com (m13-15.163.com [220.181.13.15])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51CEEE00D00
-	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 03:33:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=pTAo6
-	6AoPm+0426Kix5qto2xe/h+Gi+2/mQ6rkHYrlA=; b=m91uvGHswl52rg+lIcYlN
-	i4D8FlVhSFuedYvdw2wt5DZTkddoe+RvxbE/+9+TpKuFzAymw/b3VdGX8TgZA2km
-	zVcRAzPJnP9hNxwNCKy+M8vPA/6NqwJhFpIv6x9Uvh4iudLACP3ijfsEH/EkIL/o
-	pTeUvy3tbcpcu73zgN46Ns=
-Received: from cddatemp$163.com ( [123.185.214.77] ) by ajax-webmail-wmsvr15
-	(Coremail) ; Mon, 20 Nov 2017 19:33:09 +0800 (CST)
-X-Originating-IP: [123.185.214.77]
-Date: Mon, 20 Nov 2017 19:33:09 +0800 (CST)
-From: cddatemp <cddatemp@163.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	20160729(86883.8884) Copyright (c) 2002-2017 www.mailtech.cn 163com
+Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66CDAE00D00
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 03:35:52 -0800 (PST)
+Received: by mail-io0-f180.google.com with SMTP id g73so15362035ioj.8
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 03:35:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=c4jgfzjJXpKYTDsHEYo+mNvJh9d3JzHLPU+KmnsWiRw=;
+	b=zz4w/WYl2aCCkbs8oWFC2kRb1RKMyPuZ1ehO5hKbuH3IG6kHrmjwrztNvIJPa2W+Lt
+	7/vFPpDVG3uwlOKCxyRPgB2IR7pQ7BI1sEFg2D7BvlLNtMTcVEoDK+qOpTHmMPPXrNAj
+	tCRZ6Tn1agjVpF2fxGX13DlUh5+R5NvriRROG3abIWpc0PsiHt2REj8TkPz9IWQ2kTcL
+	rPXFMvYpyTHVO2M287uz7c2UAgFfsmOzbt+WPFnicd8xNebL1DTUiCibTo/Hn422y27P
+	u1vJ5iviPS8UG85eOEVCfWgpgQ3M3vwKZqwwrgQ4YgdrJBHUHweVNC2MKJfazOw2S2T5
+	6CXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=c4jgfzjJXpKYTDsHEYo+mNvJh9d3JzHLPU+KmnsWiRw=;
+	b=qalQHxPDiasAhheD1p6WV/CTKtWF3EJtn6Y8w3+vneLtjVpdkWvTVBQeSNqfJFTddd
+	ZIV2rlrGuhAMXZhqTWF7x/a+UnhfDZWCeNC1ZNzY0FLWwPrulp4CVt1icFk3iRSe5Kue
+	0ssRLAIJhf8dotKeUK7TPv9BSv1CL7lBoZVFHuhAWjPhwk4COH3pq52WCER7q3A0n5xl
+	yI2wbXMHWne211Ct28hcE+H8HZ+baNc6rNsX76OGovf7lPS1Da5XqBjWktrDEEYcXmUy
+	NMEB4xHEXZEuD9aza0LusY0pjFCh5ZKDmOWkCi37qQsxae1TwlKmjcJuW61yUIdeOsrT
+	yzow==
+X-Gm-Message-State: AJaThX4ippi5iryBhecmIzPaPUyaYEdbCYCH+oF42xvEgkqSXYHIUzqL
+	BK/c26+nkQ5AkcNjxE8M5NECSTiD0NQgzKZxzx1PRg==
+X-Google-Smtp-Source: AGs4zMZ+IKAstIGduW0wslBlQZQV6kHghecXN3M4jt0uzCFxNeRu3CjrGcoPmCb0jdfm7cMZRNLqHUAOpsciSCmpSLk=
+X-Received: by 10.107.146.195 with SMTP id u186mr13349997iod.37.1511177752383; 
+	Mon, 20 Nov 2017 03:35:52 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <5644f58b.9cec.15fd93414cf.Coremail.cddatemp@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: D8GowABnfYh2vRJafjwKAA--.2237W
-X-CM-SenderInfo: pfggt3xhpsqiywtou0bp/1tbiux+WdFO-6VhD+wABsi
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Subject: How to build a native python extension
+Received: by 10.107.171.132 with HTTP; Mon, 20 Nov 2017 03:35:31 -0800 (PST)
+In-Reply-To: <5644f58b.9cec.15fd93414cf.Coremail.cddatemp@163.com>
+References: <5644f58b.9cec.15fd93414cf.Coremail.cddatemp@163.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 20 Nov 2017 11:35:31 +0000
+Message-ID: <CAJTo0LZUwFBBNDW3Whew-DjwV1frffRknAPOGsSZfZj=6tuRkQ@mail.gmail.com>
+To: cddatemp <cddatemp@163.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to build a native python extension
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,31 +68,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Nov 2017 11:33:35 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_147201_1729714499.1511177589967"
+X-List-Received-Date: Mon, 20 Nov 2017 11:35:55 -0000
+Content-Type: multipart/alternative; boundary="94eb2c0553b21fad1c055e687dc7"
 
-------=_Part_147201_1729714499.1511177589967
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: base64
+--94eb2c0553b21fad1c055e687dc7
+Content-Type: text/plain; charset="UTF-8"
 
-SGksCgoKSSBhZGQgImluaGVyaXQgZGlzdHV0aWxzIiBpbiBteSByZWNpcGUuCkl0IHdpbGwgbWFr
-ZSBteSByZWNpcGUgZGVwZW5kcyBvbiAicHl0aG9uLW5hdGl2ZSIgYW5kICJweXRob24iLgpGaW5h
-bGx5IGl0IHVzZSBhcm0tZ2NjIHRvIGJ1aWxkIHRoZSBweXRob24gZXh0ZW5zaW9uLgpCdXQgSSB3
-YW50IHRvIHVzZSB4ODYtZ2NjIHRvIGJ1aWxkIGEgbmF0aXZlIHB5dGhvbiBleHRlbnNpb24uCkhv
-dyB0byBkbyB0aGlzPwoKCkJlc3QgUmVnYXJkcwpjZGRhdGVtcA==
+inherit native to make the recipe native.
 
-------=_Part_147201_1729714499.1511177589967
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: base64
+Ross
 
-PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
-Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXY+SGksPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5JIGFk
-ZCAiaW5oZXJpdCBkaXN0dXRpbHMiIGluIG15IHJlY2lwZS48L2Rpdj48ZGl2Pkl0IHdpbGwgbWFr
-ZSBteSByZWNpcGUgZGVwZW5kcyBvbiAicHl0aG9uLW5hdGl2ZSIgYW5kICJweXRob24iLjwvZGl2
-PjxkaXY+RmluYWxseSBpdCB1c2UgYXJtLWdjYyB0byBidWlsZCB0aGUgcHl0aG9uIGV4dGVuc2lv
-bi48L2Rpdj48ZGl2PkJ1dCBJIHdhbnQgdG8gdXNlIHg4Ni1nY2MgdG8gYnVpbGQgYSBuYXRpdmUg
-cHl0aG9uIGV4dGVuc2lvbi48L2Rpdj48ZGl2PkhvdyB0byBkbyB0aGlzPzwvZGl2PjxkaXY+PGJy
-PjwvZGl2PjxkaXY+QmVzdCBSZWdhcmRzPC9kaXY+PGRpdj5jZGRhdGVtcDwvZGl2PjwvZGl2Pg==
+On 20 November 2017 at 11:33, cddatemp <cddatemp@163.com> wrote:
 
-------=_Part_147201_1729714499.1511177589967--
+> Hi,
+>
+> I add "inherit distutils" in my recipe.
+> It will make my recipe depends on "python-native" and "python".
+> Finally it use arm-gcc to build the python extension.
+> But I want to use x86-gcc to build a native python extension.
+> How to do this?
+>
+> Best Regards
+> cddatemp
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--94eb2c0553b21fad1c055e687dc7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">inherit native to make the recipe native.<div><br></div><d=
+iv>Ross</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote=
+">On 20 November 2017 at 11:33, cddatemp <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:cddatemp@163.com" target=3D"_blank">cddatemp@163.com</a>&gt;</span> w=
+rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-height:1.7;color=
+:#000000;font-size:14px;font-family:Arial"><div>Hi,</div><div><br></div><di=
+v>I add &quot;inherit distutils&quot; in my recipe.</div><div>It will make =
+my recipe depends on &quot;python-native&quot; and &quot;python&quot;.</div=
+><div>Finally it use arm-gcc to build the python extension.</div><div>But I=
+ want to use x86-gcc to build a native python extension.</div><div>How to d=
+o this?</div><div><br></div><div>Best Regards</div><span class=3D"HOEnZb"><=
+font color=3D"#888888"><div>cddatemp</div></font></span></div><br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
+
+--94eb2c0553b21fad1c055e687dc7--
