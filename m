@@ -1,43 +1,64 @@
-Return-Path: <sancelot@numalliance.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0D33E00D27; Mon, 20 Nov 2017 05:27:52 -0800 (PST)
+	id F0616E00D4D; Mon, 20 Nov 2017 06:17:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.54 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.numalliance.com (mail.numalliance.com [194.2.198.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC37EE00D27
-	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 05:27:50 -0800 (PST)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.numalliance.com (Postfix) with ESMTP id 4C51B211D58C
-	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 14:27:48 +0100 (CET)
-X-Amavis-Modified: Mail body modified (using disclaimer) by
-	mail.numalliance.com
-X-Virus-Scanned: Debian amavisd-new at mail.numalliance.com
-Received: from mail.numalliance.com ([127.0.0.1])
-	by localhost (mail.numalliance.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id 4Au13CZs3Dzf for <yocto@yoctoproject.org>;
-	Mon, 20 Nov 2017 14:27:39 +0100 (CET)
-Received: from [192.168.0.78] (unknown [192.168.0.78])
-	(Authenticated sender: sancelot@numalliance.com)
-	by mail.numalliance.com (Postfix) with ESMTPSA id 683C4211D582
-	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 14:27:39 +0100 (CET)
-To: yocto@yoctoproject.org
-References: <fb6cf52e-a919-0714-ac61-60f66f9055bc@numalliance.com>
-	<CAJTo0LZwDYTszOYURYKMqhyvbh_y6nN3-Eh3A5yMt3D14+KkHQ@mail.gmail.com>
-	<8737c239-17bb-2270-7651-f7ab547a515e@numalliance.com>
-From: =?UTF-8?Q?St=c3=a9phane_Ancelot?= <sancelot@numalliance.com>
-Message-ID: <f55ebed9-8fb9-4c3d-0edc-5b4f5ce4e08c@numalliance.com>
-Date: Mon, 20 Nov 2017 14:27:39 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f54.google.com (mail-it0-f54.google.com
+	[209.85.214.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00604E00D27
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 06:17:01 -0800 (PST)
+Received: by mail-it0-f54.google.com with SMTP id x13so2015832iti.4
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 06:17:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=c5ZDeUkCmo4yFwmmE+nTTTmFGoWFi/gcxJicfNOVyCA=;
+	b=J/6f77bFmDfgTSbxsCNNvckxgJKsp9G22pJ/256u4b3Al3MTjOLHczg9MvYk5JSQJU
+	CLkd8Id5gbZ/S9l0rSt0u9Rcww1xzBTjuYVgyiu+dh4i4GQVnY2qy48kk5DsZ/xQpXGW
+	YVGiQ7q7Kfkn9gCZ9sIYVeK5QLi02mtkkRfWi4CoBNl28QKWuRkN0/Y4xu81CZ2iFfev
+	X05UhyX+zmulV/gIJf4ZL7c5gidRCxQYLY/LBVCQ/2UFZ4G2bMk3MfZG5MgmvHcG93d/
+	Rk7PULSJh7f/xltENiz/oFEzFYIPmo2Zvu7VmrlBfiLqkiJmKqCPFowxkymw42wtx19g
+	52Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=c5ZDeUkCmo4yFwmmE+nTTTmFGoWFi/gcxJicfNOVyCA=;
+	b=rAtnv6pWraaZhsskozNTEThkPe6Wc1U8x1t8VrswaqxaHcJVwwJBJz98aNt6bX46DH
+	jokwI0h5in1zrK1P3tstWp6Iqy3FtIqcL0F1LzMw/pMEc577Qqg/0VY8hfWsk+kvj/Uq
+	UkBypS1BIw2fBld0oJqpT/BU0kF8JGD3JG7wnmTFIPDj+I//HVlzsZxUhLGbPCGmj0H2
+	XTQLESjc27uwSdrEMeJpZYEfuQ45j/xUC/iog31aUMd0YgKXf28wrZwahi961NxHl3NU
+	hnyMZNQ359kEutlqyag8oNpHV4SsglbfWJnWfMvyM9gD7nuBfdbxb3gRaDfMHLX7nf3z
+	bjkQ==
+X-Gm-Message-State: AJaThX6U+2L4H+WIm4upzNQZF4kgdyzzhXP8jLe7oI6LHqXcbpzERtJF
+	Zblesm/NtaHkZPws4fkhibRGDB4PxKrCRTcR571/ww==
+X-Google-Smtp-Source: AGs4zMZrdRZ34t4h3CH0VA/39WcAZgpxiFsIrIB5REAPPoyz0iHpC4+c6CdGyhhi0Oa37q/6ljpzC2VbRUWfSAL81/4=
+X-Received: by 10.36.147.198 with SMTP id y189mr18793472itd.6.1511187420593;
+	Mon, 20 Nov 2017 06:17:00 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <8737c239-17bb-2270-7651-f7ab547a515e@numalliance.com>
-Subject: Re: customising custom-image-sato
+Received: by 10.107.171.132 with HTTP; Mon, 20 Nov 2017 06:16:40 -0800 (PST)
+In-Reply-To: <2ff8d5c6.9fa8.15fd953d1ab.Coremail.cddatemp@163.com>
+References: <5644f58b.9cec.15fd93414cf.Coremail.cddatemp@163.com>
+	<CAJTo0LZUwFBBNDW3Whew-DjwV1frffRknAPOGsSZfZj=6tuRkQ@mail.gmail.com>
+	<2ff8d5c6.9fa8.15fd953d1ab.Coremail.cddatemp@163.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 20 Nov 2017 14:16:40 +0000
+Message-ID: <CAJTo0LZOc4grvR0wKKmHyBx3tPg6Ae7y6Wp=+Vj7CQbo1=x5hQ@mail.gmail.com>
+To: cddatemp <cddatemp@163.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to build a native python extension
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,184 +70,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Nov 2017 13:27:53 -0000
-Content-Type: multipart/alternative;
-	boundary="------------5F04F398FD097B5462457E5B"
-Content-Language: fr
+X-List-Received-Date: Mon, 20 Nov 2017 14:17:03 -0000
+Content-Type: multipart/alternative; boundary="94eb2c089e1464d8a2055e6abd6d"
 
---------------5F04F398FD097B5462457E5B
-Content-Type: text/plain; charset=utf-8; format=flowed
+--94eb2c089e1464d8a2055e6abd6d
+Content-Type: text/plain; charset="UTF-8"
+
+There's numerous u-boot recipes out there, including on in oe-core. Ideally
+customise the u-boot in oe-core instead of writing your own recipe from
+scratch.
+
+Ross
+
+On 20 November 2017 at 12:07, cddatemp <cddatemp@163.com> wrote:
+
+> At 2017-11-20 19:35:31, "Burton, Ross" <ross.burton@intel.com> wrote:
+>
+> inherit native to make the recipe native.
+>
+> It really help, when my recipe is just a helloworld python extension.
+> Unfortunately, this recipe is u-boot.
+> It will compile a native python extension named "libfdt", then use it to
+> compile u-boot.
+> So I cannot add "inherit native" to the u-boot recipe.
+>
+>
+> Ross
+>
+> On 20 November 2017 at 11:33, cddatemp <cddatemp@163.com> wrote:
+>
+>> Hi,
+>>
+>> I add "inherit distutils" in my recipe.
+>> It will make my recipe depends on "python-native" and "python".
+>> Finally it use arm-gcc to build the python extension.
+>> But I want to use x86-gcc to build a native python extension.
+>> How to do this?
+>>
+>> Best Regards
+>> cddatemp
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>
+
+--94eb2c089e1464d8a2055e6abd6d
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-hi,
+<div dir=3D"ltr">There&#39;s numerous u-boot recipes out there, including o=
+n in oe-core. Ideally customise the u-boot in oe-core instead of writing yo=
+ur own recipe from scratch.<div><br></div><div>Ross</div></div><div class=
+=3D"gmail_extra"><br><div class=3D"gmail_quote">On 20 November 2017 at 12:0=
+7, cddatemp <span dir=3D"ltr">&lt;<a href=3D"mailto:cddatemp@163.com" targe=
+t=3D"_blank">cddatemp@163.com</a>&gt;</span> wrote:<br><blockquote class=3D=
+"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
+-left:1ex"><div style=3D"line-height:1.7;color:#000000;font-size:14px;font-=
+family:Arial"><span class=3D"">At 2017-11-20 19:35:31, &quot;Burton, Ross&q=
+uot; &lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.bu=
+rton@intel.com</a>&gt; wrote:<br> <blockquote id=3D"m_-382523914461252324is=
+ReplyContent" style=3D"PADDING-LEFT:1ex;MARGIN:0px 0px 0px 0.8ex;BORDER-LEF=
+T:#ccc 1px solid"><div dir=3D"ltr">inherit native to make the recipe native=
+.</div><div dir=3D"ltr"><br></div></blockquote><div></div></span><div>It re=
+ally help, when my recipe is just a helloworld python extension.</div><div>=
+Unfortunately, this recipe is u-boot.</div><div>It will compile a native py=
+thon extension named &quot;libfdt&quot;, then use it to compile u-boot.</di=
+v><div>So I cannot add &quot;inherit native&quot; to the u-boot recipe.</di=
+v><span class=3D""><div><br></div><blockquote style=3D"PADDING-LEFT:1ex;MAR=
+GIN:0px 0px 0px 0.8ex;BORDER-LEFT:#ccc 1px solid"><div dir=3D"ltr"><div><br=
+></div><div>Ross</div></div><div class=3D"gmail_extra"><br><div class=3D"gm=
+ail_quote">On 20 November 2017 at 11:33, cddatemp <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:cddatemp@163.com" target=3D"_blank">cddatemp@163.com</a>&gt;=
+</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"line-height:=
+1.7;color:#000000;font-size:14px;font-family:Arial"><div>Hi,</div><div><br>=
+</div><div>I add &quot;inherit distutils&quot; in my recipe.</div><div>It w=
+ill make my recipe depends on &quot;python-native&quot; and &quot;python&qu=
+ot;.</div><div>Finally it use arm-gcc to build the python extension.</div><=
+div>But I want to use x86-gcc to build a native python extension.</div><div=
+>How to do this?</div><div><br></div><div>Best Regards</div><span class=3D"=
+m_-382523914461252324HOEnZb"><font color=3D"#888888"><div>cddatemp</div></f=
+ont></span></div><br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
+</blockquote></span></div></blockquote></div><br></div>
 
-I managed to customise it , using toaster interface. However, now I am=20
-on cmdline.
-
-What is the way to do the same thing from cmdline, which file to copy=20
-and rewrite ?
-
-Regards,
-
-S.Ancelot
-
-
-Le 20/10/2017 =C3=A0 10:46, St=C3=A9phane Ancelot a =C3=A9crit=C2=A0:
->
-> This works as expected, Thanks
->
->
-> Le 19/10/2017 =C3=A0 16:26, Burton, Ross a =C3=A9crit=C2=A0:
->> If you want a custom core-image-sato then the easiest (and right)=20
->> thing to do is to write a new image recipe.=C2=A0 Then you get to pick=
-=20
->> what you want in it and don't want in it.
->>
->> puzzles comes in via packagegroup-x11-sato-games, via -x11-sato=20
->> (which also depends on -x11-sato-base and -x11-sato-apps)..=C2=A0 Don'=
-t=20
->> install x11-sato but swap it for just x11-sato-base and you'll get=20
->> all the Sato environment but no games or apps.
->>
->> Ross
->>
->> On 19 October 2017 at 15:19, St=C3=A9phane Ancelot=20
->> <sancelot@numalliance.com <mailto:sancelot@numalliance.com>> wrote:
->>
->>     Hi,
->>
->>     I tried removing puzzles package using IMAGE_INSTALL_remove but
->>     it has not had any effect.
->>
->>
->>     Is there a way to remove unwanted packages ?
->>
->>     Regards,
->>
->>     S.Ancelot
->>
->>     --=20
->>     _______________________________________________
->>     yocto mailing list
->>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>     https://lists.yoctoproject.org/listinfo/yocto
->>     <https://lists.yoctoproject.org/listinfo/yocto>
->>
->>
->
->
->
-
-
-
---------------5F04F398FD097B5462457E5B
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
--8">
-  </head>
-  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p>hi, <br>
-    </p>
-    <p>I managed to customise it , using toaster interface. However, now
-      I am on cmdline. <br>
-    </p>
-    <p>What is the way to do the same thing from cmdline, which file to
-      copy and rewrite ?</p>
-    <p>Regards,</p>
-    <p>S.Ancelot<br>
-    </p>
-    <br>
-    <div class=3D"moz-cite-prefix">Le 20/10/2017 =C3=A0 10:46, St=C3=A9ph=
-ane Ancelot
-      a =C3=A9crit=C2=A0:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:8737c239-17bb-2270-7651-f7ab547a515e@numalliance.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Du=
-tf-8">
-      <p>This works as expected, Thanks<br>
-      </p>
-      <br>
-      <div class=3D"moz-cite-prefix">Le 19/10/2017 =C3=A0 16:26, Burton, =
-Ross a
-        =C3=A9crit=C2=A0:<br>
-      </div>
-      <blockquote type=3D"cite"
-cite=3D"mid:CAJTo0LZwDYTszOYURYKMqhyvbh_y6nN3-Eh3A5yMt3D14+KkHQ@mail.gmai=
-l.com">
-        <div dir=3D"ltr">If you want a custom core-image-sato then the
-          easiest (and right) thing to do is to write a new image
-          recipe.=C2=A0 Then you get to pick what you want in it and don'=
-t
-          want in it.
-          <div><br>
-          </div>
-          <div>puzzles comes in via packagegroup-x11-sato-games, via
-            -x11-sato (which also depends on -x11-sato-base and
-            -x11-sato-apps)..=C2=A0 Don't install x11-sato but swap it fo=
-r
-            just x11-sato-base and you'll get all the Sato environment
-            but no games or apps.</div>
-          <div><br>
-          </div>
-          <div>Ross</div>
-        </div>
-        <div class=3D"gmail_extra"><br>
-          <div class=3D"gmail_quote">On 19 October 2017 at 15:19, St=C3=A9=
-phane
-            Ancelot <span dir=3D"ltr">&lt;<a
-                href=3D"mailto:sancelot@numalliance.com" target=3D"_blank=
-"
-                moz-do-not-send=3D"true">sancelot@numalliance.com</a>&gt;=
-</span>
-            wrote:<br>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-              <br>
-              I tried removing puzzles package using
-              IMAGE_INSTALL_remove but it has not had any effect.<br>
-              <br>
-              <br>
-              Is there a way to remove unwanted packages ?<br>
-              <br>
-              Regards,<br>
-              <br>
-              S.Ancelot<span class=3D"HOEnZb"><font color=3D"#888888"><br=
->
-                  <br>
-                  -- <br>
-                  ______________________________<wbr>_________________<br=
->
-                  yocto mailing list<br>
-                  <a href=3D"mailto:yocto@yoctoproject.org"
-                    target=3D"_blank" moz-do-not-send=3D"true">yocto@yoct=
-oproject.org</a><br>
-                  <a
-                    href=3D"https://lists.yoctoproject.org/listinfo/yocto=
-"
-                    rel=3D"noreferrer" target=3D"_blank"
-                    moz-do-not-send=3D"true">https://lists.yoctoproject.o=
-rg<wbr>/listinfo/yocto</a><br>
-                </font></span></blockquote>
-          </div>
-          <br>
-        </div>
-      </blockquote>
-      <br>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  
-<br>=
-<!-- <img srv=3D"cid:disclaimer.png@05C39850.E4534190" /> -->=0A
-<br>=
-</body>
-</html>
-
---------------5F04F398FD097B5462457E5B--
+--94eb2c089e1464d8a2055e6abd6d--
