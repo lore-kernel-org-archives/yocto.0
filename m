@@ -1,50 +1,66 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <vincent.prince.fr@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE14AE00D83; Mon, 20 Nov 2017 07:36:40 -0800 (PST)
+	id 1A4DAE00CE8; Mon, 20 Nov 2017 09:53:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vincent.prince.fr[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 314CDE00D74
-	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 07:36:31 -0800 (PST)
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	20 Nov 2017 07:36:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.44,427,1505804400"; d="scan'208,217";a="3910714"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-	by fmsmga004.fm.intel.com with ESMTP; 20 Nov 2017 07:36:31 -0800
-Received: from fmsmsx123.amr.corp.intel.com (10.18.125.38) by
-	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 20 Nov 2017 07:36:30 -0800
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
-	fmsmsx123.amr.corp.intel.com ([169.254.7.170]) with mapi id
-	14.03.0319.002; Mon, 20 Nov 2017 07:36:30 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW47=9217?=
-Thread-Index: AdNiE+uMjF/H6i7ZR+6+RPIDMgrCyQ==
-Date: Mon, 20 Nov 2017 15:36:29 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC71D2023@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjkwYmE0ZGMtMDE0MS00NjZiLWIzNzUtNDczYTY2ODIyY2U2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6Ik5WWWVkc1RrQzBmd1ZjSlN3R0xTZzlVXC8xNTNNcjZwbVwvcVcra2ZcLzluQ2c9In0=
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
+	[209.85.214.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA349E00C0F
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 09:53:32 -0800 (PST)
+Received: by mail-it0-f45.google.com with SMTP id m191so12975074itg.2
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 09:53:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=MWTuuR6z5yKjJ7YdVCQcwhWZ5YRB0a/LO0jkxmM9Lxw=;
+	b=NDHIFdqZjUT8TrjDhzJ19NPKKzlz+Bh7ft/JfsGg/BL4GfIdz3HvKEpVtfWR2rZIDG
+	HVM1fpTTwPKl/pvTzYtkYCViD7o9KKj1UfEOEGdmh+Kvnn4PwjYrVZ/+8EDEpevRdGr1
+	+JnQ86+qF/cqrPZ8bv3cv4M588HN/if9m6tujx7BTwiFqh4fRQXFRNpydm/KIYP5dg/O
+	w0ZwQk6vSepWbj5H6CizU2r6DNscxJ2vhr54KUpf6nsTi6ylaCNSsWxYyB5RapWD4ehd
+	X1Z/xhHop5uAuBn5gy4jtd7BHucdy/C0QG1D7mbGXyoPogseEJv8+vjj88pi8vCXMwiX
+	Paxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=MWTuuR6z5yKjJ7YdVCQcwhWZ5YRB0a/LO0jkxmM9Lxw=;
+	b=c30YM1UJA0KwZY4XnXFenlgx+B95k+GAYFYpRvIIhAr2JYa+DG5L9zA2qZsp0eRXyR
+	xHSVF0k+m0hnsdqZxHdHJuz17W94nYF6Vyu4GVMMe7tarT/Pj2+EkUvEn5jl1wMNch4I
+	9xF/PLdZ+474mkGZJowpj1I83WCEs0vy7pa5hzB7TGFs0UacpNN+uUQ57cdSm5ihikpk
+	gIdC/ST+3FDk95tUR4yVg+f5TnZDQE25DBWV+Kr/0cep3KenBxAYqlVIT9dx5kseA5n0
+	/R5eJKRrc9pXgWNR/bKvhk0fx6bdlm7UPMnt2hCQQ2C36woAl/PeNUZ0hOcc5BWgSZj4
+	dGVA==
+X-Gm-Message-State: AJaThX78yXJZnjdHWdizVJj79dWr4fEmT2vZ0ZXxgd5p37VsDONXPAMK
+	gb0hEa7uXfDFVZh+o2Xnl9q5pI81roX8YFXy+WV2pQ==
+X-Google-Smtp-Source: AGs4zMbn0rjlC/TCUPTpr2Hmrb0zDQYk7JGhmwoAZbBcQMHEZH5taN0/jz7u4xlwe3anuw7J81I1r7EJ0OyAWD/RwWY=
+X-Received: by 10.36.117.87 with SMTP id y84mr5702543itc.124.1511200412007;
+	Mon, 20 Nov 2017 09:53:32 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1c0N+KAmTE3?=
+Received: by 10.2.90.200 with HTTP; Mon, 20 Nov 2017 09:53:11 -0800 (PST)
+In-Reply-To: <1510919250-3757-1-git-send-email-mano@hms.se>
+References: <1510919250-3757-1-git-send-email-mano@hms.se>
+From: Vincent Prince <vincent.prince.fr@gmail.com>
+Date: Mon, 20 Nov 2017 18:53:11 +0100
+Message-ID: <CAB2nKc99SFgPkdr_=cZGTjW-AxPxoTuVMkOgXuntfjXHX=VGBA@mail.gmail.com>
+To: Martin Nordqvist <mano@hms.se>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-oracle-java][PATCH] Symlink jar and javah in bindir (native)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,589 +72,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Nov 2017 15:36:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC71D2023fmsmsx111amrcor_"
+X-List-Received-Date: Mon, 20 Nov 2017 17:53:34 -0000
+Content-Type: multipart/alternative; boundary="001a114aa8cabe06ed055e6dc37a"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC71D2023fmsmsx111amrcor_
-Content-Type: text/plain; charset="Windows-1252"
+--001a114aa8cabe06ed055e6dc37a
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Martin,
+
+There is a warning with absolute path symlinking, I made a patch to replace
+all occurence of
+ln -sf ${JDK_HOME}/bin/*
+by
+ln -sf ../lib/jvm/${JDK_DIR}/bin/*
+but didn't get integrated.
+
+Best regards,
+Vincent
+
+2017-11-17 12:47 GMT+01:00 Martin Nordqvist <mano@hms.se>:
+
+> Create symlinks in bindir to jar and javah.
+> If a recpie needs jar to create a jar file or javah for a JNI package,
+> jar and javah needs to be in bindir.
+> ---
+>  recipes-devtools/oracle-java/oracle-jse-jdk.inc | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> index a7210d9..6b3aabe 100644
+> --- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+> @@ -18,6 +18,8 @@ do_install_class-native() {
+>         install -d                              ${D}${bindir}
+>         ln -sf ${JDK_HOME}/bin/java             ${D}${bindir}
+>         ln -sf ${JDK_HOME}/bin/javac            ${D}${bindir}
+> +       ln -sf ${JDK_HOME}/bin/javah            ${D}${bindir}
+> +       ln -sf ${JDK_HOME}/bin/jar              ${D}${bindir}
+>
+>         install -d                              ${D}${JDK_HOME}/bin
+>         ln -sf javah                            ${D}${JDK_HOME}/bin/gjavah
+> --
+> 1.9.1
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--001a114aa8cabe06ed055e6dc37a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Current Dev Position: YP 2.5 Planning and M1 development
+<div dir=3D"ltr">Hi Martin,=C2=A0<div><br></div><div>There is a warning wit=
+h absolute path symlinking, I made a patch to replace all occurence of=C2=
+=A0</div><div>ln -sf ${JDK_HOME}/bin/*<br></div><div>by</div><div>ln -sf ..=
+/lib/jvm/${JDK_DIR}/bin/*</div><div>but didn&#39;t get integrated.</div><di=
+v><br></div><div>Best regards,=C2=A0</div><div>Vincent=C2=A0</div></div><di=
+v class=3D"gmail_extra"><br><div class=3D"gmail_quote">2017-11-17 12:47 GMT=
++01:00 Martin Nordqvist <span dir=3D"ltr">&lt;<a href=3D"mailto:mano@hms.se=
+" target=3D"_blank">mano@hms.se</a>&gt;</span>:<br><blockquote class=3D"gma=
+il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
+t:1ex">Create symlinks in bindir to jar and javah.<br>
+If a recpie needs jar to create a jar file or javah for a JNI package,<br>
+jar and javah needs to be in bindir.<br>
+---<br>
+=C2=A0recipes-devtools/oracle-java/<wbr>oracle-jse-jdk.inc | 2 ++<br>
+=C2=A01 file changed, 2 insertions(+)<br>
+<br>
+diff --git a/recipes-devtools/oracle-<wbr>java/oracle-jse-jdk.inc b/recipes=
+-devtools/oracle-<wbr>java/oracle-jse-jdk.inc<br>
+index a7210d9..6b3aabe 100644<br>
+--- a/recipes-devtools/oracle-<wbr>java/oracle-jse-jdk.inc<br>
++++ b/recipes-devtools/oracle-<wbr>java/oracle-jse-jdk.inc<br>
+@@ -18,6 +18,8 @@ do_install_class-native() {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ${D}$=
+{bindir}<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ln -sf ${JDK_HOME}/bin/java=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0${D}${bindir}<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ln -sf ${JDK_HOME}/bin/javac=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 ${D}${bindir}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0ln -sf ${JDK_HOME}/bin/javah=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 ${D}${bindir}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0ln -sf ${JDK_HOME}/bin/jar=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ${D}${bindir}<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 install -d=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ${D}$=
+{JDK_HOME}/bin<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ln -sf javah=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ${D}${JDK_HO=
+ME}/bin/gjavah<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+1.9.1<br>
+<br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</font></span></blockquote></div><br></div>
 
-Next Deadline: YP 2.5 M1 cut off of 12/4/17
-
-
-SWAT team rotation: Juro -> Paul on Nov.17, 2017.
-
-SWAT team rotation: Paul -> Todor on Nov. 24, 2017.
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-=B7        There is no real change to the status from last week. We continu=
-e to suffer intermittent build failures and are continuing to attempt to de=
-bug these.
-
-=B7        Currently open issues are:
-
-o   qemuppc continues to demonstrate random hangs in boot  in userspace
-
-o   Issues with 4.13.10 host kernels booting kvm x86 guests on Tumbleweed (=
-Suse) and Fedora 26 (attempting to see if 4.13.12 helps)
-
-o   nfs inode count for the sstate/dldir share appears to break periodicall=
-y causing the disk monitor to halt the builds (bug 12267)
-
-o   a perf build race (bug 12302)
-
-o   An ext filesystem creation/sizing issue (bug 12304)
-
-=B7        Until we resolve these issues patches will continue to be slow t=
-o merge, if at all. This also blocks several core developers from doing any=
- feature work at this point in time (e.g. layer setup tool is on hold, agai=
-n).
-
-=B7        We can only continue to stress that unless others step up and he=
-lp to try and root cause these issues, things will stall with the project.
-
-
-Planned upcoming dot releases:
-
-YP 2.2.3 is planned and should be out in the next few weeks.
-
-YP 2.3.3 is planned, but date TBD during YP 2.5 planning.
-
-YP 2.4.1 is planned, but date TBD during YP 2.5 planning.
-
-
-Key YP 2.5 Dates are:
-
-YP 2.5 M1 cut off of 12/4/17
-
-YP 2.5 M1 release of 12/15/17
-
-YP 2.5 M2 cut off of 1/15/18
-
-YP 2.5 M2 release of 1/26/18
-
-YP 2.5 M3 cut off of 2/19/18
-
-YP 2.5 M3 release of 3/2/18
-
-YP 2.5 M4 cut off of 4/2/18
-
-YP 2.5 M4 release of 4/27/18
-
-
-Tracking Metrics:
-
-            WDD 2655 (last week 2640)
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features
-
-[If anyone has suggestions for other information you=92d like to see on thi=
-s weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-=95   Work Telephone:        (503) 712-0534
-=95    Cell:                              (208) 244-4460
-=95 Email:                            stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC71D2023fmsmsx111amrcor_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1114057376;
-	mso-list-template-ids:-674957818;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:1161702765;
-	mso-list-template-ids:-985757304;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
-on: YP 2.5 Planning and M1 development</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
-2.5 M1 cut off of 12/4/17</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
-: Juro -&gt; Paul on Nov.17, 2017.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
-: Paul -&gt; Todor on Nov. 24, 2017.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
-.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
-/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
-:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
-t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">There is no real change to the st=
-atus from last week. We continue to suffer intermittent build failures and =
-are continuing to attempt to debug these.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
-t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Currently open issues are:<o:p></=
-o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level2 lf=
-o3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
-ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
-font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">qemuppc continues to demonstrate =
-random hangs in boot &nbsp;in userspace<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level2 lf=
-o3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
-ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
-font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Issues with 4.13.10 host kernels =
-booting kvm x86 guests on Tumbleweed (Suse) and Fedora 26 (attempting to se=
-e if 4.13.12 helps)<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level2 lf=
-o3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
-ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
-font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">nfs inode count for the sstate/dl=
-dir share appears to break periodically causing the disk monitor to halt th=
-e builds (bug 12267)<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level2 lf=
-o3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
-ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
-font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">a perf build race (bug 12302)<o:p=
-></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:1.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level2 lf=
-o3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&quot;Cour=
-ier New&quot;;color:black"><span style=3D"mso-list:Ignore">o<span style=3D"=
-font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">An ext filesystem creation/sizing=
- issue (bug 12304)<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
-t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">Until we resolve these issues pat=
-ches will continue to be slow to merge, if at all. This also blocks several=
- core developers from doing any feature work
- at this point in time (e.g. layer setup tool is on hold, again).<o:p></o:p=
-></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
-3;vertical-align:baseline">
-<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
-or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
-t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
-&quot;Arial&quot;,sans-serif;color:black">We can only continue to stress th=
-at unless others step up and help to try and root cause these issues, thing=
-s will stall with the project.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Planned upcoming d=
-ot releases:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.3 is planne=
-d and should be out in the next few weeks.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3.3 is planne=
-d, but date TBD during YP 2.5 planning.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.4.1 is planne=
-d, but date TBD during YP 2.5 planning.</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.5 Dates a=
-re:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M1 cut off =
-of 12/4/17</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M1 release =
-of 12/15/17</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M2 cut off =
-of 1/15/18</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M2 release =
-of 1/26/18</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M3 cut off =
-of 2/19/18</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M3 release =
-of 3/2/18</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 cut off =
-of 4/2/18</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 release =
-of 4/27/18</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics:<=
-/span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;=
-color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;
-</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
-,sans-serif;color:black">WDD 2655 (last week 2640)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
-ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
-.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.y=
-octoproject.org/charts/combo.html</span></a><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:black">)</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
-or YP:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.5_Status"><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v2.5_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.5_Schedule"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_=
-Schedule</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.5_Features"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_=
-Features</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If anyone has sug=
-gestions for other information you=92d like to see on this weekly status up=
-date, let us know!]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
-rif;color:black"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
-rif;color:black">Thanks,</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
-=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
-"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;,serif;color:teal=
-">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-,serif;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><sp=
-an style=3D"font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,serif">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;,serif;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;,serif;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,serif">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;,serif;color:teal">:</span><span =
-lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;,=
-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;
- &nbsp;&nbsp;<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span=
-></u></span><span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;A=
-rial&quot;,sans-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC71D2023fmsmsx111amrcor_--
+--001a114aa8cabe06ed055e6dc37a--
