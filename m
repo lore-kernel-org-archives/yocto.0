@@ -1,73 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F41AE00D1B; Sat, 18 Nov 2017 17:59:37 -0800 (PST)
+	id 7D391E00D27; Sun, 19 Nov 2017 21:32:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, 
-	RCVD_IN_SORBS_SPAM autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
-	*  0.5 RCVD_IN_SORBS_SPAM RBL: SORBS: sender is a spam source
-	*      [209.85.192.195 listed in dnsbl.sorbs.net]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E1EAE00CEC
-	for <yocto@yoctoproject.org>; Sat, 18 Nov 2017 17:59:35 -0800 (PST)
-Received: by mail-pf0-f195.google.com with SMTP id u70so4714473pfa.7
-	for <yocto@yoctoproject.org>; Sat, 18 Nov 2017 17:59:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=NDizgzL5VDRg71dfUZJQytmg9Wqy6/YofQSZc9/DwVs=;
-	b=QaHru2C/ksIR/F9oUfh/DXhTOh01+VpHqv26ZnGagjjRDMZ5Fu8oA6Smtq/1NTIkXl
-	ADvKv/aTU9ffoMNJUnG4T7MxKXr/IaqIpuVBAw1rf/hcXf/1DHh3/0oRZ3r9dRs2LqWI
-	bG34UoNenHEep+/zh/nv2uk3Id1dIuQ3NTkCFbPbG60Nhpetj03eK5RzcjBaoFlJFrhx
-	VrHIX4LRz4/UcYLojGGuiXsZCn5ppS0zYvYVCz0o8F6xlCXLYJEJMFP0xBj4J/ntWC3/
-	0Mo9JJKFXTpelDxX/7ogrTnWSwzdXF4iVR3sTg+FihD2FecrL2M8dtrkcJScoSdsoYyH
-	cTNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=NDizgzL5VDRg71dfUZJQytmg9Wqy6/YofQSZc9/DwVs=;
-	b=pwbPa4uSwjQ2Bf2gkfU0dM9THWoGxl3qSdvYCdpmvNAKYUt5ggSC0QIQDSnuowwG0E
-	/cOOrb0lh/uDTbNvDAnFg0cPzwWefPuZn+9o8xsn70brCDfF1KZsajanjLgEkTQH2amf
-	tEaCUdRoLhEqhEFUkqjTyPJe9LIFNCUTWyNden6Pm/YhaQvqP0pWd+esooK15gGhywu7
-	LNCXaQzdX4AQzPaNP7+5Fxf2ovX7Vo/bcKryM84/CrdWUYTQR+953EDCyili/7OcbAWA
-	wFSAhWtkCSuF7+/BvO9iM0dpgWns4RZbfzKlgr9TF5Q1Ib2+oRD9B0S1LEYsnebyX8cv
-	kn/A==
-X-Gm-Message-State: AJaThX7Rc9p1c84Gx2nHmf4g8IAChgzGdq630ZZ1NyJglYmBzJpLi591
-	W85urT2Py4Cr890PGMbFs3T/J/6eFuOwTgQd/U3xdA==
-X-Google-Smtp-Source: AGs4zMb8B0Aj2GS6sVlEch0KPI3Lh6Hz4XvCcIHJcMUIaAJzpCZ0J2wq1WDv349vCi5+WnbfA4HIMVF8iUj8I6BsuZw=
-X-Received: by 10.98.105.134 with SMTP id e128mr6850975pfc.29.1511056775411;
-	Sat, 18 Nov 2017 17:59:35 -0800 (PST)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7885AE00D14
+	for <yocto@yoctoproject.org>; Sun, 19 Nov 2017 21:32:08 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 4A11980C5303
+	for <yocto@yoctoproject.org>; Mon, 20 Nov 2017 00:32:07 -0500 (EST)
 MIME-Version: 1.0
-Received: by 10.100.159.15 with HTTP; Sat, 18 Nov 2017 17:59:04 -0800 (PST)
-In-Reply-To: <CAPb0b+NOuo+mcV-nsHQ78TMCbNp+gGCYtwrDbF+N3jMD7_zM0g@mail.gmail.com>
-References: <CAPb0b+PxnaZk5YugbYmf4xT0iFxRYAFzS0Lp_hTd7VtRRpHG6g@mail.gmail.com>
-	<CALXw4G7YnNn=2ZmCAbUUNrvrvcii0_7tqB4-DAix+meh_SxFyQ@mail.gmail.com>
-	<CAMKF1srRXBQOPNxOUqSF=HjgRj6wO8i5pNKecFNqSyEXEtU4Aw@mail.gmail.com>
-	<CAPb0b+O6i=icrjgZ1XXLDUskpUx_qXukMaux2N7yWSaW5BufZw@mail.gmail.com>
-	<CAPb0b+NOuo+mcV-nsHQ78TMCbNp+gGCYtwrDbF+N3jMD7_zM0g@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 18 Nov 2017 17:59:04 -0800
-Message-ID: <CAMKF1sp8VxrjQTPmWCTH9Z5oc7Fnkvoip7z7rr6cTrznCJ=Wsw@mail.gmail.com>
-To: Sherif Omran <sherifomran2000@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: tiny-linux distribution with raspberrypi error
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 20 Nov 2017 05:32:07 -0000
+Message-ID: <20171120053207.671.92907@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,277 +32,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Nov 2017 01:59:37 -0000
-Content-Type: multipart/alternative; boundary="001a113b4984557ce2055e4c5221"
+X-List-Received-Date: Mon, 20 Nov 2017 05:32:09 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---001a113b4984557ce2055e4c5221
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This mail was sent out by Recipe reporting system.
 
-I think you can generate a SD card image which can be dd=E2=80=99ed into a =
-sd card
-=E2=80=8Bpoky tiny by default generates an initramfs image only. =E2=80=8B
-=E2=80=8B
-=E2=80=8Byou can add
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-IMAGE_FSTYPES_append =3D " rpi-sdimg=E2=80=8B"
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-=E2=80=8Bin local.conf and see if you get a rpi-sdimag=E2=80=8B
+You can check the detail information at:
+
+http://recipes.yoctoproject.org/
+
+Package               Version       Upstream version      Maintainer           NoUpgradeReason
+--------------------  ------------  --------------------  -------------------  ------------------------------
+python                2.7.13        2.7.14                Alejandro Hernandez
+eudev                 3.2.2         3.2.4                 Alejandro Hernandez
+python3-native        3.5.3         3.6.3                 Alejandro Hernandez
+python-native         2.7.13        2.7.14                Alejandro Hernandez
+python3               3.5.3         3.6.3                 Alejandro Hernandez
+librepo               1.7.20+gitX   1.8.1+gitAUTOINC+...  Alexander Kanavin
+openssl               1.1.0f        1.1.0g                Alexander Kanavin
+gtk-doc               1.25          1.26                  Alexander Kanavin
+mkelfimage            4.0+gitX      4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
+webkitgtk             2.16.6        2.18.3                Alexander Kanavin
+trace-cmd             2.6.1         2.6.2                 Alexander Kanavin
+gnome-desktop3        3.24.2        3.26.2                Alexander Kanavin
+libxslt               1.1.31        1.1.32                Alexander Kanavin
+dnf                   2.6.3         2.7.5                 Alexander Kanavin
+libdnf                0.9.3         0.11.1                Alexander Kanavin
+libnl                 3.2.29        3.4.0                 Alexander Kanavin
+libpciaccess          0.13.5        0.14                  Alexander Kanavin
+lighttpd              1.4.45        1.4.48                Alexander Kanavin
+blktrace              1.1.0+gitX    1.2.0+gitAUTOINC+...  Alexander Kanavin
+dtc                   1.4.4         7.4                   Alexander Kanavin
+expect                5.45          5.45.3                Alexander Kanavin
+gobject-introspec...  1.52.1        1.54.1                Alexander Kanavin
+psmisc                22.21         23.1                  Alexander Kanavin
+vala                  0.38.2        0.38.3                Alexander Kanavin
+btrfs-tools           4.13.2        4.13.3                Alexander Kanavin
+systemtap-uprobes     3.1           3.2                   Alexander Kanavin
+systemtap             3.1           3.2                   Alexander Kanavin
+kernelshark           2.6.1         2.6.2                 Alexander Kanavin
+ffmpeg                3.3.4         3.4                   Alexander Kanavin
+epiphany              3.24.3        3.26.2                Alexander Kanavin
+tiff                  4.0.8         4.0.9                 Alexander Kanavin
+icu                   59.1          60.1                  Alexander Kanavin
+apt                   1.2.24        1.4.8                 Aníbal Limón
+apt-native            1.2.24        1.4.8                 Aníbal Limón
+dpkg                  1.18.24       1.19.0.4              Aníbal Limón
+bind                  9.10.6        9.11.2                Armin Kuster
+curl                  7.54.1        7.56.1                Armin Kuster
+gnutls                3.5.16        3.6.1                 Armin Kuster
+nss                   3.33          3.34                  Armin Kuster
+kexec-tools           2.0.14        2.0.15                Armin Kuster
+libassuan             2.4.3         2.4.4                 Armin Kuster
+nettle                3.3           3.4                   Armin Kuster
+linux-libc-headers    4.12          4.14                  Bruce Ashfield
+libunwind             1.2           1.2.1                 Bruce Ashfield
+iproute2              4.11.0        4.14.1                Changhyeok Bae
+ethtool               4.11          4.13                  Changhyeok Bae
+sudo                  1.8.20p2      1.8.21p2              Chen Qi
+pciutils              3.5.5         3.5.6                 Chen Qi
+dbus                  1.10.20       1.12.2                Chen Qi
+coreutils             8.27          8.28                  Chen Qi
+cups                  2.2.4         2.2.6                 Chen Qi
+gawk                  4.1.4         4.2.0                 Chen Qi
+systemd               234           235                   Chen Qi
+dbus-test             1.10.20       1.12.2                Chen Qi
+sed                   4.2.2         4.4                   Chen Qi
+sysstat               11.5.7        11.7.1                Chen Qi
+systemd-boot          234           235                   Chen Qi
+systemd-bootchart     231+gitX      233+gitAUTOINC+fe...  Chen Qi
+flex                  2.6.0         2.6.4                 Chen Qi
+build-appliance-i...  15.0.0        18.0.0                Cristian Iorga
+lz4                   1.7.4         1.8.0                 Denys Dmytriyenko
+lzop                  1.03          1.04                  Denys Dmytriyenko
+mtd-utils             2.0.0         2.0.1                 Denys Dmytriyenko
+acpica                20170303      20171110              Fathi Boudra
+gnupg                 2.2.0         2.2.2                 Hongxu Jia
+apr-util              1.6.0         1.6.1                 Hongxu Jia
+apr                   1.6.2         1.6.3                 Hongxu Jia
+bash                  4.4           4.4.12                Hongxu Jia
+ghostscript           9.21          9.22                  Hongxu Jia
+ncurses               6.0+20170715  6.0+20170902          Hongxu Jia
+man-pages             4.11          4.13                  Hongxu Jia
+help2man-native       1.47.4        1.47.5                Hongxu Jia
+python-numpy          1.13.1        1.13.3                Jose Lamego
+python-scons          3.0.0         3.0.1                 Jose Lamego
+bc                    1.06          1.07.1                Jose Lamego
+python3-pygobject     3.26.0        3.26.1                Jose Lamego
+python-setuptools     36.5.0        36.8.0                Jose Lamego
+python3-setuptools    36.5.0        36.8.0                Jose Lamego
+python-scons-native   3.0.0         3.0.1                 Jose Lamego
+pango                 1.40.12       1.40.14               Jussi Kukkonen
+atk                   2.26.0        2.26.1                Jussi Kukkonen
+libinput              1.8.3         1.9.2                 Jussi Kukkonen
+libsoup-2.4           2.60.1        2.60.2                Jussi Kukkonen
+gtk-icon-utils-na...  3.22.17       3.22.26               Jussi Kukkonen
+at-spi2-atk           2.26.0        2.26.1                Jussi Kukkonen
+glib-2.0              2.52.3        2.54.2                Jussi Kukkonen
+glib-networking       2.50.0        2.54.1                Jussi Kukkonen
+vte                   0.50.1        0.50.2                Jussi Kukkonen
+gtk+3                 3.22.24       3.22.26               Jussi Kukkonen
+at-spi2-core          2.26.0        2.26.2                Jussi Kukkonen
+cross-localedef-n...  2.26          2.26.9000             Khem Raj
+ninja                 1.7.2         1.8.2                 Khem Raj
+glibc                 2.26          2.26.9000             Khem Raj
+mpfr                  3.1.5         3.1.6                 Khem Raj
+re2c                  0.16          1.0.1                 Khem Raj
+go-native             1.9           1.9.2                 Khem Raj
+go                    1.9           1.9.2                 Khem Raj
+binutils              2.29          2.29.1                Khem Raj
+gdb                   8.0           8.0.1                 Khem Raj
+libnsl2               1.0.5+gitX    1.2.0+gitAUTOINC+...  Khem Raj
+glibc-initial         2.26          2.26.9000             Khem Raj
+perl                  5.24.1        5.26.1                Leonardo Sandoval
+nfs-utils             2.1.1         2.2.1                 Leonardo Sandoval
+qemu                  2.10.1        2.11.0-rc1            Leonardo Sandoval
+perl-native           5.24.1        5.26.1                Leonardo Sandoval
+u-boot-fw-utils       2017.09       2017.11               Marek Vasut
+u-boot-mkimage        2017.09       2017.11               Marek Vasut
+u-boot                2017.09       2017.11               Marek Vasut
+rpm                   4.13.90+gitX  4.14.0+gitAUTOINC...  Mark Hatle
+ofono                 1.20          1.21                  Maxin B. John
+ifupdown              0.8.16        0.8.29                Maxin B. John
+libical               2.0.0         3.0.1                 Maxin B. John
+libproxy              0.4.14        0.4.15                Maxin B. John
+sqlite3               3.20.0        3.21.0                Maxin B. John
+harfbuzz              1.4.8         1.7.1                 Maxin B. John
+libsolv               0.6.29        0.6.30                Maxin B. John
+quota                 4.03          4.04                  Maxin B. John
+screen                4.6.1         4.6.2                 Maxin B. John
+libogg                1.3.2         1.3.3                 Maxin B. John
+go-cross-i586         1.9           1.9.2                 No maintainer
+go-crosssdk-x86_64    1.9           1.9.2                 No maintainer
+binutils-cross-ca...  2.29          2.29.1                No maintainer
+binutils-cross-i586   2.29          2.29.1                No maintainer
+binutils-crosssdk...  2.29          2.29.1                No maintainer
+systemtap-native      3.1           3.2                   No maintainer
+gcc-source-6.4.0      6.4.0         7.2.0                 No maintainer
+gdb-cross-canadia...  8.0           8.0.1                 No maintainer
+gdb-cross-i586        8.0           8.0.1                 No maintainer
+go-cross-canadian...  1.9           1.9.2                 No maintainer
+go-dep                0.3.1         0.3.2                 No maintainer
+go-runtime            1.9           1.9.2                 No maintainer
+pkgconf               1.3.7         1.3.10                No maintainer
+mesa                  17.2.4        17.2.5                Otavio Salvador
+cmake                 3.9.5         3.9.6                 Otavio Salvador
+cmake-native          3.9.5         3.9.6                 Otavio Salvador
+mesa-gl               17.2.4        17.2.5                Otavio Salvador
+tcf-agent             1.4.0+gitX    1.5+gitAUTOINC+5e...  Randy Witt
+subversion            1.9.6         1.9.7                 Richard Purdie
+lttng-tools           2.9.5         2.10.1                Richard Purdie
+lttng-ust             2.9.1         2.10.0                Richard Purdie
+lttng-modules         2.9.3         2.10.4                Richard Purdie
+liberror-perl         0.17024       0.17025               Robert Yang
+strace                4.18          4.20                  Robert Yang
+e2fsprogs             1.43.5        1.43.7                Robert Yang
+file                  5.31          5.32                  Robert Yang
+less                  487           529                   Robert Yang
+autoconf-archive      2016.09.16    2017.09.28            Robert Yang
+logrotate             3.12.3        3.13.0                Robert Yang
+debianutils           4.8.1.1       4.8.3                 Robert Yang
+time                  1.7           1.8                   Robert Yang
+git                   2.13.3        2.15.0                Robert Yang
+libsdl2               2.0.5         2.0.7                 Robert Yang
+base-passwd           3.5.29        3.5.44                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.72          9.78                  Ross Burton
+alsa-utils-scripts    1.1.4         1.1.5                 Tanu Kaskinen
+pulseaudio            10.0          11.1                  Tanu Kaskinen
+alsa-plugins          1.1.4         1.1.5                 Tanu Kaskinen
+alsa-lib              1.1.4.1       1.1.5                 Tanu Kaskinen
+alsa-tools            1.1.3         1.1.5                 Tanu Kaskinen
+alsa-utils            1.1.4         1.1.5                 Tanu Kaskinen
+lame                  3.99.5        3.100                 Tanu Kaskinen
+libva-utils           1.8.3         2.0.0                 Wei Tee Ng
+libva                 1.8.3         2.0.0                 Wei Tee Ng
+avahi-ui              0.6.32        0.7                   Yi Zhao
+avahi                 0.6.32        0.7                   Yi Zhao
+chkconfig             1.3.58        1.8                   Yi Zhao              Version 1.5 requires selinux
+json-glib             1.2.8         1.4.2                 Yi Zhao
+
+Upgradable count: 164
+Upgradable total count: 167
+
+The based commit is:
+
+commit a17f3ec910366e9e7551fa24fbc07929b9584341
+Author: Awais Belal <awais_belal@mentor.com>
+Date:   Wed Nov 8 12:58:41 2017 +0500
+
+    dhcp: fix build issue with libxml2 support
+    
+    A missing case breaks the build when libxml2 is
+    required and found appropriately. The third argument
+    to the function AC_SEARCH_LIB is action-if-found which
+    was mistakenly been used for the case where the library
+    is not found and hence breaks the configure phase
+    where it shoud actually pass.
+    We now pass on silently when action-if-found is
+    executed.
+    
+    Signed-off-by: Awais Belal <awais_belal@mentor.com>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
 
 
-
-On Sat, Nov 18, 2017 at 10:47 AM Sherif Omran <sherifomran2000@gmail.com>
-wrote:
-
-> I have it now being compiled and created a file called
-> rpi-basic-image-raspberrypi0-wifi-20171118102213.rootfs.cpio.gz
-> but how can i burn it? it is not an img file.
-> Any clue is appreciated.
->
-> On Sat, Nov 18, 2017 at 12:21 PM, Sherif Omran <sherifomran2000@gmail.com=
->
-> wrote:
->
->> it worked well with
->>
->> PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-tini"
->>
->> in local.conf. However i don't know if it will work with real time kerne=
-l
->> .. to be tested later
->>
->>  thank you
->>
->> On Sat, Nov 18, 2017 at 10:19 AM, Khem Raj <raj.khem@gmail.com> wrote:
->>
->>> On Fri, Nov 17, 2017 at 5:34 PM, Michael Gloff <mgloff@emacinc.com>
->>> wrote:
->>> > This looks to be because poky-tiny.conf does not allow overriding of
->>> the
->>> > kernel provider. You could try the below patch to use a different
->>> kernel.
->>> >
->>> > Michael Gloff
->>> >
->>> > diff --git a/meta-poky/conf/distro/poky-tiny.conf
->>> > b/meta-poky/conf/distro/poky-tiny.conf
->>> > index 2032bfde32..acafd9fef4 100644
->>> > --- a/meta-poky/conf/distro/poky-tiny.conf
->>> > +++ b/meta-poky/conf/distro/poky-tiny.conf
->>> > @@ -37,7 +37,7 @@ TCLIBC =3D "musl"
->>> >
->>> >  # Distro config is evaluated after the machine config, so we have to
->>> > explicitly
->>> >  # set the kernel provider to override a machine config.
->>> > -PREFERRED_PROVIDER_virtual/kernel =3D "linux-yocto-tiny"
->>> > +PREFERRED_PROVIDER_virtual/kernel ?=3D "linux-yocto-tiny"
->>> >  PREFERRED_VERSION_linux-yocto-tiny ?=3D "4.12%"
->>> >
->>>
->>> please submit this patch with sign off and git format, its good for
->>> inclusion upstream
->>>
->>> >  # We can use packagegroup-core-boot, but in the future we may need a
->>> new
->>> > packagegroup-core-tiny
->>> >
->>> >
->>> > On Thu, Nov 16, 2017 at 7:05 PM, Sherif Omran <
->>> sherifomran2000@gmail.com>
->>> > wrote:
->>> >>
->>> >> hi
->>> >>
->>> >> i am trying to compile the yocto-tiny for raspberry pi by adding the
->>> >> distro to my local.conf
->>> >>
->>> >> DISTRO =3D "poky-tiny"  and i  get the following
->>> >>
->>> >>
->>> >> ERROR: nothing provides 'virtual/kernel'
->>> >> ERROR: linux-yocto-tiny Provides virtual/kernel but was skipped:
->>> >> incompatible with machine raspberrypi0-wifi (not in
->>> compatible_machine)
->>> >> ERROR: linux-yocto-rt Provides virtual/kernel but was skipped:
->>> >> incompatible with machine raspberrypi0-wifi (not in
->>> compatible_machine)
->>> >> ERROR: linux-yocto Provides virtual/kernel but was skipped:
->>> incompatible
->>> >> with machine raspberrypi0-wifi (not in compatible_machine)
->>> >> ERROR: linux-yocto-dev Provides virtual/kernel but was skipped:
->>> >> incompatible with machine raspberrypi0-wifi (not in
->>> compatible_machine)
->>> >> ERROR: required build target 'rpi-basic-image' has no buildable
->>> providers.
->>> >> Missing or unbuildable depency chain was: 'rpi-basic-image',
->>> >> 'virtual/kernel'
->>> >>
->>> >>
->>> >> any body has a clue to solve it?
->>> >>
->>> >> thanks
->>> >>
->>> >> --
->>> >> _______________________________________________
->>> >> yocto mailing list
->>> >> yocto@yoctoproject.org
->>> >> https://lists.yoctoproject.org/listinfo/yocto
->>> >>
->>> >
->>> >
->>> > --
->>> > _______________________________________________
->>> > yocto mailing list
->>> > yocto@yoctoproject.org
->>> > https://lists.yoctoproject.org/listinfo/yocto
->>> >
->>>
->>
->>
->
->
-
---001a113b4984557ce2055e4c5221
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"auto">I think you can generate a SD card image=
- which can be dd=E2=80=99ed into a sd card</div><div dir=3D"auto"><span sty=
-le=3D"font-family:monospace,monospace"><div class=3D"gmail_default" style=
-=3D"font-family:monospace,monospace;display:inline">=E2=80=8Bpoky tiny by d=
-efault generates an initramfs image only. =E2=80=8B</div>=E2=80=8B</span><b=
-r></div><div dir=3D"auto"><div class=3D"gmail_default" style=3D"font-family=
-:monospace,monospace">=E2=80=8Byou can add</div><div class=3D"gmail_default=
-" style=3D"font-family:monospace,monospace"><br></div><div class=3D"gmail_d=
-efault" style=3D"font-family:monospace,monospace">IMAGE_FSTYPES_append =3D =
-&quot; rpi-sdimg=E2=80=8B&quot;</div><br></div><div dir=3D"auto"><div class=
-=3D"gmail_default" style=3D"font-family:monospace,monospace">=E2=80=8Bin lo=
-cal.conf and see if you get a rpi-sdimag=E2=80=8B</div><br></div><div dir=
-=3D"auto"><br></div><br><div class=3D"gmail_quote"><div>On Sat, Nov 18, 201=
-7 at 10:47 AM Sherif Omran &lt;<a href=3D"mailto:sherifomran2000@gmail.com"=
- target=3D"_blank">sherifomran2000@gmail.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div><div><div>I have it now be=
-ing compiled and created a file called rpi-basic-image-raspberrypi0-w<wbr>i=
-fi-20171118102213.rootfs.cpio<wbr>.gz<br></div>but how can i burn it? it is=
- not an img file.<br></div>Any clue is appreciated. <br></div><div class=3D=
-"gmail_extra"><br><div class=3D"gmail_quote">On Sat, Nov 18, 2017 at 12:21 =
-PM, Sherif Omran <span>&lt;<a href=3D"mailto:sherifomran2000@gmail.com" tar=
-get=3D"_blank">sherifomran2000@gmail.com</a>&gt;</span> wrote:<br><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex"><div><span><div>it worked well wit=
-h<br><br>PREFERRED_PROVIDER_virtual/ker<wbr>nel =3D &quot;linux-yocto-tini&=
-quot;<br><br></div></span>in local.conf. However i don&#39;t know if it wil=
-l work with real time kernel .. to be tested later<br><br>=C2=A0thank you</=
-div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote"><span>On Sat,=
- Nov 18, 2017 at 10:19 AM, Khem Raj <span>&lt;<a href=3D"mailto:raj.khem@gm=
-ail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br></sp=
-an><div><div class=3D"gmail-m_5577605016296185275m_3319031554831047341m_-35=
-21953229864195975h5"><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><spa=
-n>On Fri, Nov 17, 2017 at 5:34 PM, Michael Gloff &lt;<a href=3D"mailto:mglo=
-ff@emacinc.com" target=3D"_blank">mgloff@emacinc.com</a>&gt; wrote:<br>
-&gt; This looks to be because poky-tiny.conf does not allow overriding of t=
-he<br>
-&gt; kernel provider. You could try the below patch to use a different kern=
-el.<br>
-&gt;<br>
-&gt; Michael Gloff<br>
-&gt;<br>
-&gt; diff --git a/meta-poky/conf/distro/poky-t<wbr>iny.conf<br>
-&gt; b/meta-poky/conf/distro/poky-t<wbr>iny.conf<br>
-&gt; index 2032bfde32..acafd9fef4 100644<br>
-&gt; --- a/meta-poky/conf/distro/poky-t<wbr>iny.conf<br>
-&gt; +++ b/meta-poky/conf/distro/poky-t<wbr>iny.conf<br>
-&gt; @@ -37,7 +37,7 @@ TCLIBC =3D &quot;musl&quot;<br>
-&gt;<br>
-&gt;=C2=A0 # Distro config is evaluated after the machine config, so we hav=
-e to<br>
-&gt; explicitly<br>
-&gt;=C2=A0 # set the kernel provider to override a machine config.<br>
-&gt; -PREFERRED_PROVIDER_virtual/ke<wbr>rnel =3D &quot;linux-yocto-tiny&quo=
-t;<br>
-&gt; +PREFERRED_PROVIDER_virtual/ke<wbr>rnel ?=3D &quot;linux-yocto-tiny&qu=
-ot;<br>
-&gt;=C2=A0 PREFERRED_VERSION_linux-yocto-<wbr>tiny ?=3D &quot;4.12%&quot;<b=
-r>
-&gt;<br>
-<br>
-</span>please submit this patch with sign off and git format, its good for<=
-br>
-inclusion upstream<br>
-<div class=3D"gmail-m_5577605016296185275m_3319031554831047341m_-3521953229=
-864195975m_-8125658621375618980HOEnZb"><div class=3D"gmail-m_55776050162961=
-85275m_3319031554831047341m_-3521953229864195975m_-8125658621375618980h5"><=
-br>
-&gt;=C2=A0 # We can use packagegroup-core-boot, but in the future we may ne=
-ed a new<br>
-&gt; packagegroup-core-tiny<br>
-&gt;<br>
-&gt;<br>
-&gt; On Thu, Nov 16, 2017 at 7:05 PM, Sherif Omran &lt;<a href=3D"mailto:sh=
-erifomran2000@gmail.com" target=3D"_blank">sherifomran2000@gmail.com</a>&gt=
-;<br>
-&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; hi<br>
-&gt;&gt;<br>
-&gt;&gt; i am trying to compile the yocto-tiny for raspberry pi by adding t=
-he<br>
-&gt;&gt; distro to my local.conf<br>
-&gt;&gt;<br>
-&gt;&gt; DISTRO =3D &quot;poky-tiny&quot;=C2=A0 and i=C2=A0 get the followi=
-ng<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; ERROR: nothing provides &#39;virtual/kernel&#39;<br>
-&gt;&gt; ERROR: linux-yocto-tiny Provides virtual/kernel but was skipped:<b=
-r>
-&gt;&gt; incompatible with machine raspberrypi0-wifi (not in compatible_mac=
-hine)<br>
-&gt;&gt; ERROR: linux-yocto-rt Provides virtual/kernel but was skipped:<br>
-&gt;&gt; incompatible with machine raspberrypi0-wifi (not in compatible_mac=
-hine)<br>
-&gt;&gt; ERROR: linux-yocto Provides virtual/kernel but was skipped: incomp=
-atible<br>
-&gt;&gt; with machine raspberrypi0-wifi (not in compatible_machine)<br>
-&gt;&gt; ERROR: linux-yocto-dev Provides virtual/kernel but was skipped:<br=
->
-&gt;&gt; incompatible with machine raspberrypi0-wifi (not in compatible_mac=
-hine)<br>
-&gt;&gt; ERROR: required build target &#39;rpi-basic-image&#39; has no buil=
-dable providers.<br>
-&gt;&gt; Missing or unbuildable depency chain was: &#39;rpi-basic-image&#39=
-;,<br>
-&gt;&gt; &#39;virtual/kernel&#39;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; any body has a clue to solve it?<br>
-&gt;&gt;<br>
-&gt;&gt; thanks<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; ______________________________<wbr>_________________<br>
-&gt;&gt; yocto mailing list<br>
-&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@=
-yoctoproject.org</a><br>
-&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/y=
-octo</a><br>
-&gt;&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto=
-</a><br>
-&gt;<br>
-</div></div></blockquote></div></div></div><br></div>
-</blockquote></div><br><br></div>
-</blockquote></div></div>
-
---001a113b4984557ce2055e4c5221--
