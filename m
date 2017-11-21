@@ -1,76 +1,64 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7EC54E00A9C; Tue, 21 Nov 2017 12:10:34 -0800 (PST)
+	id E2C34E00A9C; Tue, 21 Nov 2017 13:25:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f44.google.com (mail-pg0-f44.google.com [74.125.83.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3636BE006CA
-	for <yocto@yoctoproject.org>; Tue, 21 Nov 2017 12:10:32 -0800 (PST)
-Received: by mail-pg0-f44.google.com with SMTP id u3so11029788pgn.7
-	for <yocto@yoctoproject.org>; Tue, 21 Nov 2017 12:10:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language;
-	bh=3uBFX+V7iqcYgZm/a0ftCZtMZoU3HnpQbZ/Tfog7sDw=;
-	b=K/Scvo4fwuKr7zAFhSDQXnCIV3e1DDE8y1wd1pTouv2j9HpLkUWAJmi8HQyryezDHe
-	vKNgVsqQDjbGi6iegZvjZG6g2sVRcieKAgD+B27S+ejOwCKD4OKlGYw8xcBAwLQr4aAu
-	+fAFUXKLVIG0tM4ykTOhtZy1YiYgC3xRpqJDzvEsbhrvx3WrVDVL8Ss5VrrNpHWYmYhK
-	vpsmvcuTrC1Xu/dTOdwBSyuc/6yqOOR3cevVA9popwCHUJ/dOVuc0a5sOJKKQ6KwxkIV
-	No6RC0D8fUG5KvSLix5LPa/icHBqiU2h0cw8azoXPvECWVpNOuKfkRXrtS1+ca/0wIfL
-	EnFg==
+Received: from mail-it0-f48.google.com (mail-it0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61526E006CA
+	for <yocto@yoctoproject.org>; Tue, 21 Nov 2017 13:25:19 -0800 (PST)
+Received: by mail-it0-f48.google.com with SMTP id 187so3806001iti.1
+	for <yocto@yoctoproject.org>; Tue, 21 Nov 2017 13:25:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=5UHW9nmL3QtbxIoB7MXVsHXVEG0mitCIrVHwG7ItEvo=;
+	b=H1tiBVSjDQDImZJ9nHTK5AXIvq6slOKYPwGp3zmCTtELO9V4438zqWby4xGPHiFpDN
+	NdSAM2XCBk0omFDCuA2lJ3+Xa5iMJMMRZuLJyyqFQXYmUBxkAZg7tLmapS8JBbVw2sz6
+	OcUb5fUSwQ87f4PUz6a/Sa+1VDeEx1KHoJA9ZHwkIrvj9jT551fvqFE8Q0dHfacEUpO9
+	HX4w+Uubw1peGmXGh1PFFK4hq9pY3zkCTEFTiem59DqypkbY2EzFpetfz5W16pjoPeMk
+	tac9hJnXhVeq9Et4hHidoyxbGGXMA2pa5lrLNiSw1U9ZgxFTitKncXw2Q0bxuzlh8/Lc
+	GOZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=3uBFX+V7iqcYgZm/a0ftCZtMZoU3HnpQbZ/Tfog7sDw=;
-	b=FksgT7wOa3TRnP3eI0LP16i7IyQJ95ZmLnPAx0o26MUZiFf664KlB2GsHPOeS723Ip
-	Ws1y7aRlJuy0H4QUaQ9ubVf1vyzIudVF8MjZIru67bNOcZLeqe+lBgE3Dk4xAduberY3
-	QNZS5BXel0/aueGaEwsDKqEiSIxsOtz3OUOh4iCYOOWEqh5IE54WvRTUb9QhWs4/t/1q
-	pegZuHSmsfzcE67SaSHQhR/uE92qh153Mb0htkuFivkCrDzEJIIj9cdrDFSNpaIUZlze
-	WCnhF7y4Lba1Du9vkgSl0vqL7RBrdfkuHfIE+G2Xt5oQgPJc2DLuyUmsCqhLrPiGhppO
-	NdEQ==
-X-Gm-Message-State: AJaThX4TyNsDpGrUj+788/UjW/NOJ6SDYJi5VhErTYNpjWsG+Eea6qdE
-	ctrNS08/foTcmVRRLW6vmsTdPQ==
-X-Google-Smtp-Source: AGs4zMaQyPO3cwxKWx2OskIIrfzuaC+xImmx8WUhlNWYOwEZIbHDwWLuBlNbyq/oM4wftEpCqCIW4A==
-X-Received: by 10.99.121.4 with SMTP id u4mr8711381pgc.235.1511295032542;
-	Tue, 21 Nov 2017 12:10:32 -0800 (PST)
-Received: from [10.43.100.234] (50-233-148-156-static.hfc.comcastbusiness.net.
-	[50.233.148.156]) by smtp.gmail.com with ESMTPSA id
-	s71sm27500531pfa.147.2017.11.21.12.10.31
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 21 Nov 2017 12:10:31 -0800 (PST)
-To: Hongxu Jia <hongxu.jia@windriver.com>, yocto@yoctoproject.org
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=5UHW9nmL3QtbxIoB7MXVsHXVEG0mitCIrVHwG7ItEvo=;
+	b=HX1zGwaRmdv1acEKcNGMw672S6CQGxqDe49Q8xN2ArJkhB1lIKqidxSoZpf+ohSx0S
+	UMgU/Rr/y3Fq0j/ZwspUOQ55Xlx2m4F2Qdu9QLjW1H6w39l5phMK4yIpCMZz17KzIsZI
+	ar+bO/QLx1U1ibwL6Dabz/yUrNTS1r8txa1lV1UyhRibdKaBN5J7ZHhzRxQgCADdLla8
+	GJr7X9SVSJqWoz0vWDSQMyoXKvXDJWKlZh4ylJveQQUhA9uggcgto9KgUuXWmlfjhdWp
+	Ps10QbH5xFS2XLjGUTRqAtzQ4A2ulykv0mIACaNqwwStNlXmd0XNSyu6EP3Uu/QLEJ10
+	hFww==
+X-Gm-Message-State: AJaThX7mp8KGocpDgkbPua6xAhX38kQVzi6txp7Ne8Xqkbxhpcsg3gIG
+	dupUPdtetm+n5Q5eSrcOTa63abbE6+E77bhuT3E2rw==
+X-Google-Smtp-Source: AGs4zMbj3pJWXRMl5oYWDaMKIHsS8/H0rTMIq/rmlDzQ/ckFeMYC0SOClQw19ix8ioFi+XptlsK38O4VFiFrjYhdvTs=
+X-Received: by 10.36.172.31 with SMTP id s31mr3906100ite.124.1511299519570;
+	Tue, 21 Nov 2017 13:25:19 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.107.171.132 with HTTP; Tue, 21 Nov 2017 13:24:59 -0800 (PST)
+In-Reply-To: <7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com>
 References: <bfbfad0b-af40-5448-4aed-fc70eeb95c6c@windriver.com>
 	<7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <37b787d0-ef5a-d821-0c09-a8547c58c52d@gmail.com>
-Date: Tue, 21 Nov 2017 12:10:31 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
-MIME-Version: 1.0
-In-Reply-To: <7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com>
-Cc: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	+lpd-cdc-core-dev <lpd-cdc-core-dev@windriver.com>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	"Yang, Zhangle \(Eric\)" <Zhangle.Yang@windriver.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 21 Nov 2017 21:24:59 +0000
+Message-ID: <CAJTo0LZfkd2SbTrXL6ggt9_NQbDUfEDVLTaaqc8sPwaUihfRUw@mail.gmail.com>
+To: Hongxu Jia <hongxu.jia@windriver.com>
+Cc: +lpd-cdc-core-dev <lpd-cdc-core-dev@windriver.com>, "Yang,
+	Zhangle \(Eric\)" <Zhangle.Yang@windriver.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Contribute meta-installer to yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -83,249 +71,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Nov 2017 20:10:34 -0000
-Content-Type: multipart/alternative;
-	boundary="------------BDACD15424B5B60F7AB658DB"
-Content-Language: en-US
+X-List-Received-Date: Tue, 21 Nov 2017 21:25:20 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1fc0f80381c5055e84d7ab"
 
---------------BDACD15424B5B60F7AB658DB
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--94eb2c1fc0f80381c5055e84d7ab
+Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+On 21 November 2017 at 08:55, Hongxu Jia <hongxu.jia@windriver.com> wrote:
 
-
-
-On 11/21/2017 12:55 AM, Hongxu Jia wrote:
-> Hi all,
->
-> Wind River has maintained meta-installer for several years,
-> and now we want to contribute it to yocto community.
->
-> This layer provides an installation program based on
-> OE platform. The installation program is anaconda from
-> fedora, which is the installer of distribution Fedora,
-> RedHat and Centos.
->
-> The version of anaconda in meta-installer is 26.21.11
-> which is based on Fedora 26.
->
-> The meta-insatller requires:
-> - systemd as init manager
-> - python3
-> - dnf2/rpm4
-> - gobject-introspection which requires qemu-usermode
->   in MACHINE_FEATURES
->
-> The meta-installer provides:
-> - graphic install and text install.
->
-> - package based (dnf/rpm) install and image (copy)
->   based install.
->
-> - package based (dnf/rpm) install from local and
->   remote rpm sources such as CDs and DVDs, images
->   stored on a hard drive, NFS, HTTP, and FTP.
->
-> - kickstart install which provides a fully unattended
->   installation that can be duplicated on scores of machines.
->
-> - install over VNC on headless machines.
->
-> - timezone setting.
->
-> - root password setting.
->
-> - user account creation.
->
-> - a variety of advanced storage devices including
->   LVM, Btrfs, Ext4, and filesystem encryption.
->
-> The repository of meta-installer is temporary on the github
-> for review:
-> https://github.com/jiahongxujia/meta-installer
->
-> In above github, the logo picture is undefined, if yocto
-> could accept this layer, I will update the picture with
-> "Yocto project Compatible".
->
-> The attachments are the snapshots of a package based
-> installation.
->
-> Hopefully it is helpful for yocto, and any feedback is
-> appreciated.
-
-I believe it can go beyond helping Yocto and help the overall OE community.
-
-CC'ing oe mailings lists
-
->
 > If yocto is interested in this layer and will accept it,
 > I could send pull request or some one directly fetch
 > from above github master branch.
-If Yocto isn't I am sure OE will be.
-
-Thank you Wind River for contributing your hard work for the greater
-good of the community.
-
-kind regards,
-Armin
->
-> //Hongxu
->
->
 
 
---------------BDACD15424B5B60F7AB658DB
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Are you asking for a git repo on git.yoctoproject.org?  If you want one I
+believe the process is to ask Michael Halstead.  There's no reason why it
+can't be maintained in this repository forever though,  just submit it to
+the layer index.
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hello,</p>
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 11/21/2017 12:55 AM, Hongxu Jia
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com">Hi
-      all,
-      <br>
-      <br>
-      Wind River has maintained meta-installer for several years,
-      <br>
-      and now we want to contribute it to yocto community.
-      <br>
-      <br>
-      This layer provides an installation program based on
-      <br>
-      OE platform. The installation program is anaconda from
-      <br>
-      fedora, which is the installer of distribution Fedora,
-      <br>
-      RedHat and Centos.
-      <br>
-      <br>
-      The version of anaconda in meta-installer is 26.21.11
-      <br>
-      which is based on Fedora 26.
-      <br>
-      <br>
-      The meta-insatller requires:
-      <br>
-      - systemd as init manager
-      <br>
-      - python3
-      <br>
-      - dnf2/rpm4
-      <br>
-      - gobject-introspection which requires qemu-usermode
-      <br>
-        in MACHINE_FEATURES
-      <br>
-      <br>
-      The meta-installer provides:
-      <br>
-      - graphic install and text install.
-      <br>
-      <br>
-      - package based (dnf/rpm) install and image (copy)
-      <br>
-        based install.
-      <br>
-      <br>
-      - package based (dnf/rpm) install from local and
-      <br>
-        remote rpm sources such as CDs and DVDs, images
-      <br>
-        stored on a hard drive, NFS, HTTP, and FTP.
-      <br>
-      <br>
-      - kickstart install which provides a fully unattended
-      <br>
-        installation that can be duplicated on scores of machines.
-      <br>
-      <br>
-      - install over VNC on headless machines.
-      <br>
-      <br>
-      - timezone setting.
-      <br>
-      <br>
-      - root password setting.
-      <br>
-      <br>
-      - user account creation.
-      <br>
-      <br>
-      - a variety of advanced storage devices including
-      <br>
-        LVM, Btrfs, Ext4, and filesystem encryption.
-      <br>
-      <br>
-      The repository of meta-installer is temporary on the github
-      <br>
-      for review:
-      <br>
-      <a class="moz-txt-link-freetext" href="https://github.com/jiahongxujia/meta-installer">https://github.com/jiahongxujia/meta-installer</a>
-      <br>
-      <br>
-      In above github, the logo picture is undefined, if yocto
-      <br>
-      could accept this layer, I will update the picture with
-      <br>
-      "Yocto project Compatible".
-      <br>
-      <br>
-      The attachments are the snapshots of a package based
-      <br>
-      installation.
-      <br>
-      <br>
-      Hopefully it is helpful for yocto, and any feedback is
-      <br>
-      appreciated.
-      <br>
-    </blockquote>
-    <br>
-    I believe it can go beyond helping Yocto and help the overall OE
-    community.<br>
-    <br>
-    CC'ing oe mailings lists<br>
-    <br>
-    <blockquote type="cite"
-      cite="mid:7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com">
-      <br>
-      If yocto is interested in this layer and will accept it,
-      <br>
-      I could send pull request or some one directly fetch
-      <br>
-      from above github master branch.
-      <br>
-    </blockquote>
-    If Yocto isn't I am sure OE will be.<br>
-    <br>
-    Thank you Wind River for contributing your hard work for the greater
-    good of the community.<br>
-    <br>
-    kind regards,<br>
-    Armin<br>
-    <blockquote type="cite"
-      cite="mid:7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com">
-      <br>
-      //Hongxu
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
+Ross
 
---------------BDACD15424B5B60F7AB658DB--
+--94eb2c1fc0f80381c5055e84d7ab
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">On 21 November 2017 at 08:55, Hongxu Jia <span dir=3D"ltr"=
+>&lt;<a href=3D"mailto:hongxu.jia@windriver.com" target=3D"_blank">hongxu.j=
+ia@windriver.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div c=
+lass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex">If yocto is interested =
+in this layer and will accept it,<br>
+I could send pull request or some one directly fetch<br>
+from above github master branch.</blockquote><div><br></div><div>Are you as=
+king for a git repo on <a href=3D"http://git.yoctoproject.org">git.yoctopro=
+ject.org</a>?=C2=A0 If you want one I believe the process is to ask Michael=
+ Halstead.=C2=A0 There&#39;s no reason why it can&#39;t be maintained in th=
+is repository forever though, =C2=A0just submit it to the layer index.</div=
+><div><br></div><div>Ross</div></div></div></div>
+
+--94eb2c1fc0f80381c5055e84d7ab--
