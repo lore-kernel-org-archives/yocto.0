@@ -1,6 +1,6 @@
 Return-Path: <pauldotknopf@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A4DBE00B48; Tue, 21 Nov 2017 22:12:56 -0800 (PST)
+	id 972B1E00A9C; Wed, 22 Nov 2017 00:10:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (pauldotknopf[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.44 listed in list.dnswl.org]
+	*      [209.85.215.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,43 +20,43 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f44.google.com (mail-lf0-f44.google.com
-	[209.85.215.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 804A0E008A4
-	for <yocto@yoctoproject.org>; Tue, 21 Nov 2017 22:12:55 -0800 (PST)
-Received: by mail-lf0-f44.google.com with SMTP id d10so5800959lfj.7
-	for <yocto@yoctoproject.org>; Tue, 21 Nov 2017 22:12:55 -0800 (PST)
+Received: from mail-lf0-f51.google.com (mail-lf0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D5F4E008A4
+	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 00:10:29 -0800 (PST)
+Received: by mail-lf0-f51.google.com with SMTP id k66so17180458lfg.3
+	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 00:10:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=nn1t3db6easg2h/ZipsmcOfXoL2l2WLU5nf2xKSRECw=;
-	b=YZZmFQXcem/7gmPbIl2zPbBgGn3AlBnVX9fhvW/n516Gx1vmWNE0eWkpfVtX//iOlU
-	B94GgOlVYoDoHR+3GmD+5OkHJFGnyMKB75wd47GVlfqULcuoGb7FMDbQc8AcDr6uWqtl
-	POcG0FX1pqMHO522gII4l4GM5L0RYe9zmSuHgQhSNV9fNON6goj9+x3gVQsFJpAZmAoE
-	hgGesZco+wlrlxPgtIPJ4x1pugpPqyTCpLqAG0r42vgIUbMCmGSQWwy1URp4v64CzXy2
-	dNwod8PjJcMjbqrM9wFKvhKwIDag8MugGSvTytkcAclM+gxWzGpuiSSnqdma8eZXU+c4
-	n0iA==
+	bh=z/mEIWDnixbERdq9XFojSTTICIMRKCw/vPSlEUK0SdY=;
+	b=b0rVHGQyEaMfo/inMeeJCONDR+k/ws+szQQFbWOHscnc/D8Y2CjDHJgHFVL+0KFpct
+	7j/hS+/bDp2q0ogTcMlevzhxiMJ7QZXxpipLiw6nufyJe6TgqaFHqsNvP0UY4BtsROzB
+	44zQ5BP5AjhdZWHcDYQEid3UBDMyAxC4FogyWOLmzmJ4eo8s70BlwpHl/gcce6rLQzUP
+	Vlu6iYO7jJnUKh4vnDsuD89KF/DQshaervl5RiF3X3f9ZqtBR2awW1TL5wM2Vc2HQUmL
+	jhvgGzV++a2rsYsdIBeFOQXXIxdvCk8zJ9v6nk/IH5AJQu2pcam8Oq9NikO85EvE236Q
+	TOYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=nn1t3db6easg2h/ZipsmcOfXoL2l2WLU5nf2xKSRECw=;
-	b=LGN6HtvUltoElYCA7gBNUvDzb/KnYOppzAIRJBbtqwRKPFMTwMQfPaUdplrYNnkFIc
-	h7EBZ8OM+3SxG++I52C1HRgvGYysERzUfbOWMp1jdROFto4ckjJzm+uY3soKALUk+Xn6
-	fCtOTgJrVid23vdX2kbnWEwJ8xjD0Vw/oawwjURcbcFq1IqQD2gcxH5my44HpcBO2fCn
-	ejeOEIKGLT0Bfdr2iAN8XGacNrR1CLTA8MkuENNLTehzPg7yNQZQ2jH9mguQ9PJiaB4o
-	MZKz8wxM0KdjJykYV383vZOog7/a98YQvhN1BLAy1iEOWAjNOGM2XsMinzAGrNlkhYHV
-	3bqg==
-X-Gm-Message-State: AJaThX6V7X7rt2OaMie/J/zrUAWrXFt5TktAdwhmWLhwaCib8d+2eF1D
-	EAKsRhwyEoQSBMLuEelw/oZ8+PuL3aPUw228X8YZQQ==
-X-Google-Smtp-Source: AGs4zMZjWG9ajGakcsa07YFtBytLu4N3wG48wqxoPBovQuzayp0Qp1vwdA7J2TH2bKnO1IXNYhmW+TM7iS0b27whMm8=
-X-Received: by 10.25.222.208 with SMTP id i77mr6120603lfl.151.1511331174189;
-	Tue, 21 Nov 2017 22:12:54 -0800 (PST)
+	bh=z/mEIWDnixbERdq9XFojSTTICIMRKCw/vPSlEUK0SdY=;
+	b=N32RQKYxx/KrBdU4wjjs8aqxn51bW78kt7XD2Nw2Xh9XbAaDZDyAJBGYFO08sHF66N
+	Cq+cARzpF+y/8dOwNjh+X1dN2CaeFrnR8IAHXaz7OaoU57RsVJq9cScX562wWUCb9rUa
+	ptu/Nu9LZYE3b18h8bhkt7y3a1nByZVHORHBRmsTTinfUBdCvL0FlvidWDeELMKA+R9s
+	cZk9mCMtBZLuAVJkIpxPLI/V7IcYirGVYpHd3nvN7UGxZj39F0MC/eYQlc8+2vfnVtet
+	6JoVsT3z1tQ6w2ep9ZdzF9sFdwfev63uzjoTxm5oQf0ETUFO/+Kcm9VDtSl0byZPQTMi
+	d3OA==
+X-Gm-Message-State: AJaThX7tzfSsLUzgQ71LSjOKc0NLECHl7z1n3p4JlXY0eRBapHFK7XcR
+	74uTu1UVwhUYXA37eRMwmNNWT4XmMM6J02PD323SxQ==
+X-Google-Smtp-Source: AGs4zMZyJLQOM0QPMsVHphCGLMrTGSSuX/mNvEsDuR/vz2HIR6HNS1NAMyWGCxD28m+urxh/sq5RLn1w5+3Bmurz0yI=
+X-Received: by 10.46.83.29 with SMTP id h29mr7410124ljb.144.1511338228909;
+	Wed, 22 Nov 2017 00:10:28 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.25.151.76 with HTTP; Tue, 21 Nov 2017 22:12:53 -0800 (PST)
+Received: by 10.25.151.76 with HTTP; Wed, 22 Nov 2017 00:10:28 -0800 (PST)
 From: Paul Knopf <pauldotknopf@gmail.com>
-Date: Wed, 22 Nov 2017 01:12:53 -0500
-Message-ID: <CAKmWj-1mYZcWzfVZdQe+QSahca8HoK7Ukk5wZoSejz2HqOhNGA@mail.gmail.com>
+Date: Wed, 22 Nov 2017 03:10:28 -0500
+Message-ID: <CAKmWj-13qwhLX54szaK5gvxdHfJOKS7Xa98UxiSibLJkxSDRnw@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: Forcing a single task to re-run each build, by default.
+Subject: When are file checksums gathered from files, for tasks? During recipe parsing?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,65 +68,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Nov 2017 06:12:56 -0000
-Content-Type: multipart/alternative; boundary="f403045fa50ec68e92055e8c351f"
+X-List-Received-Date: Wed, 22 Nov 2017 08:10:31 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1ce7fa450cc4055e8dda25"
 
---f403045fa50ec68e92055e8c351f
+--94eb2c1ce7fa450cc4055e8dda25
 Content-Type: text/plain; charset="UTF-8"
 
-I have a task that I would like to be forced to run for every build.
+I have a recipe that depends on a deployed output from an image.
 
-NOTE: I am aware of the deploy.bbclass, but I want to not use sstate.
-Assume I am not using deploy.bbclass.
+----------------------------------------------------------
+SRC_URI +=
+"file://${DEPLOY_DIR_IMAGE}/my-image-${MACHINE}.wic.update.tar.gz;subdir=update"
+do_fetch[depends] += "my-image:do_build"
+----------------------------------------------------------
 
-So, let's say I have this.
+Will the hash for "do_fetch" be computed after "my-image:do_build" is
+executed?
 
---------------------------------------------------------------------
-DEPLOYDIR = "${WORKDIR}/deploy-${PN}"
-do_deploy[dirs] = "${DEPLOYDIR} ${B}"
-do_deploy[vardeps] += "DATETIME"
+If not, how would you propose I do something like this?
 
-do_deploy() {
-    install -d ${DEPLOYDIR}
-    # custom stuff...
-}
-
-addtask do_deploy after do_install
---------------------------------------------------------------------
-
-Now, when I run this recipe, I get "non-deterministic" errors, which I get.
-Maybe I can get a DATETIME-ish variable that has the same random value
-throughout the entire bitbake process?
-
-Or, what about this?
-
---------------------------------------------------------------------
-#do_deploy[vardeps] += "DATETIME"
-do_deploy[stamp-extra-info] = "${DATETIME}"
---------------------------------------------------------------------
-
---f403045fa50ec68e92055e8c351f
+--94eb2c1ce7fa450cc4055e8dda25
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I have a task that I would like to be forced to run for ev=
-ery build.<div><br></div><div>NOTE: I am aware of the deploy.bbclass, but I=
- want to not use sstate. Assume I am not using deploy.bbclass.</div><div><b=
-r></div><div>So, let&#39;s say I have this.</div><div><br></div><div>------=
---------------------------------------------------------------<br></div><di=
-v><div>DEPLOYDIR =3D &quot;${WORKDIR}/deploy-${PN}&quot;</div><div>do_deplo=
-y[dirs] =3D &quot;${DEPLOYDIR} ${B}&quot;</div><div>do_deploy[vardeps] +=3D=
- &quot;DATETIME&quot;</div><div><br></div><div>do_deploy() {</div><div>=C2=
-=A0 =C2=A0 install -d ${DEPLOYDIR}</div><div>=C2=A0 =C2=A0 # custom stuff..=
-.</div><div>}</div><div><br></div><div>addtask do_deploy after do_install</=
-div></div><div>------------------------------------------------------------=
---------</div><div><br></div><div>Now, when I run this recipe, I get &quot;=
-non-deterministic&quot; errors, which I get. Maybe I can get a DATETIME-ish=
- variable that has the same random value throughout the entire bitbake proc=
-ess?</div><div><br></div><div>Or, what about this?<br><br>-----------------=
----------------------------------------------------</div><div>#do_deploy[va=
-rdeps] +=3D &quot;DATETIME&quot;<br>do_deploy[stamp-extra-info] =3D &quot;$=
-{DATETIME}&quot;<br></div><div>--------------------------------------------=
-------------------------<br></div></div>
+<div dir=3D"ltr">I have a recipe that depends on a deployed output from an =
+image.<div><br></div><div>-------------------------------------------------=
+---------</div><div><div>SRC_URI +=3D &quot;file://${DEPLOY_DIR_IMAGE}/my-i=
+mage-${MACHINE}.wic.update.tar.gz;subdir=3Dupdate&quot;</div><div>do_fetch[=
+depends] +=3D &quot;my-image:do_build&quot;</div></div><div>---------------=
+-------------------------------------------<br></div><div><br></div><div>Wi=
+ll the hash for &quot;do_fetch&quot; be computed after &quot;my-image:do_bu=
+ild&quot; is executed?</div><div><br></div><div>If not, how would you propo=
+se I do something like this?</div></div>
 
---f403045fa50ec68e92055e8c351f--
+--94eb2c1ce7fa450cc4055e8dda25--
