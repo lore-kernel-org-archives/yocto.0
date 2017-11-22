@@ -1,6 +1,6 @@
 Return-Path: <prvs=4927113d4=Martin.Hundeboll@prevas.dk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A87EE00A9C; Wed, 22 Nov 2017 00:53:27 -0800 (PST)
+	id 55E38E00B48; Wed, 22 Nov 2017 01:01:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [62.95.78.10 listed in list.dnswl.org]
+	*      [62.95.78.3 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -17,37 +17,37 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail02.prevas.se (mail02.prevas.se [62.95.78.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D32EE008A4
-	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 00:53:24 -0800 (PST)
+Received: from mail01.prevas.se (mail01.prevas.se [62.95.78.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3958E008A4
+	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 01:01:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=prevas.dk; i=@prevas.dk; l=1620; q=dns/txt;
-	s=ironport2; t=1511340806; x=1542876806;
+	d=prevas.dk; i=@prevas.dk; l=1252; q=dns/txt;
+	s=ironport1; t=1511341314; x=1542877314;
 	h=subject:to:references:from:message-id:date:mime-version:
 	in-reply-to:content-transfer-encoding;
-	bh=uAHEvMJsCNSQi5IXFDhZ+qu84s4iKg8mb1kml0VjP5E=;
-	b=XrHGmrc/A9/e+8U0zQW86aPnZUfR29EwP72PKbwNGQI/DIYVnCrd54YC
-	8RhPuODTvFZ42e7hyyQCi3k0FHdNzdWsN21iutZJ1EGAjKit8p5C609x0
-	PQJ4YH/8HEwk+WCh+9Pwv+jIdxdjPhqO9hCvkKsnj3YQ9lQPbXUmaq6L0 E=;
+	bh=OtvymhLSu3XJI+fuh/JnFl27hjRq4e9hz3+XpasHUwY=;
+	b=jUoYBzZDEpGAUP4yVmv3OQj85x9Zx+lkMXxx3FOvpX33fLJU3J7Vi9T7
+	n3qQ1Eevq2pLgVOuzY6N7I4kXn/uDKvOgsvp6/dSl6tvCSnIqp75HkGBP
+	ch4H1LLFr1xJ4lUDSzVPrOV38jBLC5W9mpOMNn4S/3mg5NOOv4ThimE24 8=;
 X-IronPort-AV: E=Sophos;i="5.44,436,1505772000"; 
-   d="scan'208";a="2712038"
+   d="scan'208";a="2852930"
 Received: from vmprevas4.prevas.se (HELO smtp.prevas.se) ([172.16.8.104])
-	by ironport2.prevas.se with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	22 Nov 2017 09:53:22 +0100
+	by ironport1.prevas.se with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	22 Nov 2017 10:01:51 +0100
 Received: from [172.16.11.15] (172.16.8.31) by smtp.prevas.se (172.16.8.104)
 	with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Wed, 22 Nov 2017 09:53:22 +0100
+	Wed, 22 Nov 2017 10:01:51 +0100
 To: Paul Knopf <pauldotknopf@gmail.com>, <yocto@yoctoproject.org>
-References: <CAKmWj-1mYZcWzfVZdQe+QSahca8HoK7Ukk5wZoSejz2HqOhNGA@mail.gmail.com>
-From: =?UTF-8?Q?Martin_Hundeb=c3=b8ll?= <martin.hundeboll@prevas.dk>
-Message-ID: <21664373-a625-570c-6143-018cee0e762a@prevas.dk>
-Date: Wed, 22 Nov 2017 09:53:21 +0100
+References: <CAKmWj-13qwhLX54szaK5gvxdHfJOKS7Xa98UxiSibLJkxSDRnw@mail.gmail.com>
+From: =?UTF-8?Q?Martin_Hundeb=c3=b8ll?= <mnhu@prevas.dk>
+Message-ID: <4a1624fa-f533-6f25-bcb7-88d035657d4f@prevas.dk>
+Date: Wed, 22 Nov 2017 10:01:50 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <CAKmWj-1mYZcWzfVZdQe+QSahca8HoK7Ukk5wZoSejz2HqOhNGA@mail.gmail.com>
+In-Reply-To: <CAKmWj-13qwhLX54szaK5gvxdHfJOKS7Xa98UxiSibLJkxSDRnw@mail.gmail.com>
 X-Originating-IP: [172.16.8.31]
-Subject: Re: Forcing a single task to re-run each build, by default.
+Subject: Re: When are file checksums gathered from files, for tasks? During recipe parsing?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,62 +59,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Nov 2017 08:53:27 -0000
+X-List-Received-Date: Wed, 22 Nov 2017 09:01:55 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 Hi Paul,
 
-On 2017-11-22 07:12, Paul Knopf wrote:
-> I have a task that I would like to be forced to run for every build.
+On 2017-11-22 09:10, Paul Knopf wrote:
+> I have a recipe that depends on a deployed output from an image.
 > 
-> NOTE: I am aware of the deploy.bbclass, but I want to not use sstate. 
-> Assume I am not using deploy.bbclass.
+> ----------------------------------------------------------
+> SRC_URI += 
+> "file://${DEPLOY_DIR_IMAGE}/my-image-${MACHINE}.wic.update.tar.gz;subdir=update"
+> do_fetch[depends] += "my-image:do_build"
+> ----------------------------------------------------------
 > 
-> So, let's say I have this.
-> 
-> --------------------------------------------------------------------
-> DEPLOYDIR = "${WORKDIR}/deploy-${PN}"
-> do_deploy[dirs] = "${DEPLOYDIR} ${B}"
-> do_deploy[vardeps] += "DATETIME"
-> 
-> do_deploy() {
->      install -d ${DEPLOYDIR}
->      # custom stuff...
-> }
-> 
-> addtask do_deploy after do_install
-> --------------------------------------------------------------------
-> 
-> Now, when I run this recipe, I get "non-deterministic" errors, which I 
-> get. Maybe I can get a DATETIME-ish variable that has the same random 
-> value throughout the entire bitbake process?
+> Will the hash for "do_fetch" be computed after "my-image:do_build" is 
+> executed?
 
-Yes, DATETIME includes the seconds, which changes during the build and 
-leads to tasks hashes changing from the initial recipe parsing to the 
-actual execution of the task.
+The "dependency" hash is based on the hash of the my-image recipe, so 
+that if you change the my-image.bb, then the hash of your dependent 
+recipe changes too.
 
-> Or, what about this?
-> 
-> --------------------------------------------------------------------
-> #do_deploy[vardeps] += "DATETIME"
-> do_deploy[stamp-extra-info] = "${DATETIME}"
-> --------------------------------------------------------------------
+> If not, how would you propose I do something like this?
 
-In our process we force redeployment of images with "nostamp":
+Don't put deployed images in SRC_URI, and don't put task dependencies in 
+do_fetch, as that messes with do_fetchall, should you ever need to run that.
 
-do_deploy[nostamp] += "1"
+Look at what other recipes are doing when using images from 
+DEPLOY_DIR_IMAGE. A reworked example from one of our recipes:
 
-I think that would work for you too.
+   do_image[depends] += "my-image:do_image_complete"
 
--- 
-MARTIN HUNDEBØLL, Prevas A/S
-Software Developer
+   IMAGE_PREPROCESS_COMMAND += "image_prepare"
+   image_prepare() {
+     install ${DEPLOY_DIR_IMAGE}/my-image-${MACHINE}.wic.update.tar.gz 
+${IMAGE_ROOTFS}/
+   }
 
-Hedeager 3, DK-8200 Aarhus N
-Phone +45 87438070
-Mobile +45 25562438
-Martin.Hundeboll@prevas.dk
-www.prevas.com
+
+I hope that helps!
+
+// Martin
 
