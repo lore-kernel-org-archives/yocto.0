@@ -1,64 +1,98 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Viraj.Mistry@einfochips.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DDBA4E00D04; Wed, 22 Nov 2017 07:54:26 -0800 (PST)
+	id 948D1E00A9C; Wed, 22 Nov 2017 01:12:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE, RCVD_IN_SORBS_WEB,
+	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.124.81 listed in list.dnswl.org]
+	*  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
+	*      [220.225.147.210 listed in dnsbl.sorbs.net]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f47.google.com (mail-pl0-f47.google.com
-	[209.85.160.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9634E00CF7
-	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 07:54:25 -0800 (PST)
-Received: by mail-pl0-f47.google.com with SMTP id 61so962983plf.4
-	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 07:54:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=i7RPi/0AnnqPo9iq0+m7GwM3suVPVGMrZjC7MBN0Xbw=;
-	b=pCcTlJC9WqRbENApO2Z0b5YaXiXz9Vpz+tdJp5CFnMsl8l4ybWjp0AqTCOz8i1lVQD
-	Mqlar3Z1J5AnxeNZXBUSyRnOMYKioRaySI8Ju7bNM5Hy5pkJWfcn8JImt23baazdy3/T
-	0UVwphJLoAflynaC7JRYB8N6TbY2w5Kp1HW5wdmMDVqKmXXYzzH3+9h4VTGu7aBiSZc/
-	9xmR8tm4T8C75+Xbu8qQ1F3k4VHmoOK3Yz8hp34ixX66ZEIxnnatlfm2zWy+kEmxWrhh
-	C50FfGBSPiuFs7XmH/57Lb8v6Xqn9PI1niqxmY9NCv5xn0xvnwzohjytVdvJVkYdoJaf
-	AKwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=i7RPi/0AnnqPo9iq0+m7GwM3suVPVGMrZjC7MBN0Xbw=;
-	b=DwDiIR3qYjXrnfrExolMrvaBNcvqzakLYqNGES08FsYui/P6NajbtEBxUCW5DRrWsO
-	EHHaZ6PbW6x69WNDK3yRMT70Buqns1wdvntjAYyMHusgkbIKRJY7OhWNRL31nc5GSpwd
-	Ytm57Zt7S/1SB+sMc6ic4JBh5cDzAe7RSQdEoT/yj1P2Lv2bc7CkZssXMMN3C3QSCG0d
-	6ksnnsuPOOLmN8DwDr3fe8OecE2cgxoCjqKs8fMho7hJg1eEkEme/0wey31bLFV8Zmua
-	5yj2+sYOdhsULmwvtUuoB6cLoOXS2spFUxG5Lm/wC0390iTX6CHtU9pX+97rydpR/uZA
-	7SPQ==
-X-Gm-Message-State: AJaThX5DbQovHhdMegxn6cavowS4jHQOHR3O/+AynRYpuiXeCr1RlkBX
-	0puEg4D8zbNZAioLuxyCHPiFtq0k3BOBLrO4uzw=
-X-Google-Smtp-Source: AGs4zMZHpxld+ITmCJO4ShfxSTV94Y70en7QtOlKM0GLRgfeLiX+Fnzb3BblEDUuu1RTvKld6irHKiqRKwVYyxC5f84=
-X-Received: by 10.84.252.4 with SMTP id x4mr20909590pll.99.1511366064985; Wed,
-	22 Nov 2017 07:54:24 -0800 (PST)
+X-Greylist: delayed 4732 seconds by postgrey-1.32 at yocto-www;
+	Wed, 22 Nov 2017 01:12:35 PST
+Received: from APC01-HK2-obe.outbound.protection.outlook.com
+	(mail-hk2apc01on0081.outbound.protection.outlook.com [104.47.124.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13F7EE008A4
+	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 01:12:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=eInfochipsIndia.onmicrosoft.com; s=selector1-einfochips-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=8C3rh4BeV0pAW2toLy7b+QJslcY9hOau2PSUIROCaDM=;
+	b=dW2ZioM4rI19/iMY0bTK2867XctOnSSjKydhjJUp/m6OH639tNivr4uBRYu/bFpkFoUKozyrgamXfVR/YXeFwN3a2R4Bby3Nhote7lYlFwWBfC1T68xseyDWMGQ5Xsx5bqtXUOmYV2Hp4Ogh9yjz7OfaEjLWrOvKx9QPun5ujKc=
+Received: from PS1PR02MB1625.apcprd02.prod.outlook.com (10.167.48.139) by
+	PS1PR02MB1163.apcprd02.prod.outlook.com (10.165.34.13) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.260.4; Wed, 22 Nov 2017 07:37:42 +0000
+Received: from PS1PR02MB1625.apcprd02.prod.outlook.com
+	([fe80::d65:5a09:20d9:31d5]) by PS1PR02MB1625.apcprd02.prod.outlook.com
+	([fe80::d65:5a09:20d9:31d5%14]) with mapi id 15.20.0260.004;
+	Wed, 22 Nov 2017 07:37:42 +0000
+From: Viraj Mistry <Viraj.Mistry@einfochips.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] DEPENDS python-xml not working in pyro2.3
+Thread-Index: AQHTYrnWp/pOQejp+0GGAUxlp4xIQKMfDosAgAD0ZHA=
+Date: Wed, 22 Nov 2017 07:37:41 +0000
+Message-ID: <PS1PR02MB16258175EBB61A98BAB3279EFF200@PS1PR02MB1625.apcprd02.prod.outlook.com>
+References: <HK2PR02MB1155068EF6C0F2371A6AFA2EFE230@HK2PR02MB1155.apcprd02.prod.outlook.com>
+	<CAMKF1so=wsy8mjwWS7nXfBYtODhu1T_oVYN8tJScUvucNJwriw@mail.gmail.com>
+In-Reply-To: <CAMKF1so=wsy8mjwWS7nXfBYtODhu1T_oVYN8tJScUvucNJwriw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Viraj.Mistry@einfochips.com; 
+x-originating-ip: [220.225.147.210]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; PS1PR02MB1163;
+	6:cVQQrHGu3t5AodPODvYlvguZVAME7WzSfBKhLzTYJZKkvpzGubDUTqK4hgVnFQsJoaHZN89xllntjkORDZT+bRzSau8Tq/w/3Q/RqLbXFQTUVx3IpiqsNVzZps0kYUiokoUU440pyuKbusbg+uviL8KLhxun99uTnBMVQPiHfmt7vTMh2z8pr01jChsn2x4MdLinU2yRX1aKWN/a4XHA4u6buRMc2uxmaCz4tf2huS6s2H7wqbrw8p1ZnRukfdnKmveAL4tLep9AnGNUCutQYk00Jsyyc4qal5SnA6idicZ+FpmHtN0lq6xhp0tQnXP3+qiA2JmH/mKoFEct1DQyOOXVuPkw0Z8ldxoQwAHTqfw=;
+	5:0tmvatkSTLdwlk4n1c/DZo9ZkKGavxh7zqDFzHpCVNkmSq2snJLeHJ2IxZbyidgWg1wRgpEw/KFxEw/4qQsAEKyYzCBjmtpJFt3Xw+BN9ZVbUCb5zYLEk8JQum/+LB7ehPGQxiwojR9PvondJdC3a9C2DXwSajZlfScYa/3heME=;
+	24:LF1Hq/ftmBqMDPxdLOuv8l72YgzPJuH7Y4EfgPliG1urUOiBKpJtR99GOVoZ/5qrto2azEjGriMMgbwFZEydRzPMKa9G4v3P18GjVL3hDvM=;
+	7:cqq0V8jgOtQOjIzXoYg+l6CZLVR1O2Lqi9PbQcb8VJrBoOrCXl1kFh69KclHYWDMPcp5myB6OFJQZw6ObQb+cj5ZcX9+iSpxv9ffTMW8sqV2itVSHb565VFCAm31ahrQsMPKOTO6wgXCxemwZw49P/rMCg8IGaRZC1g2CclKxzyJ0LErAw1jxCPtpTV46ZXUHInqeEjwqU6OnyfgO+hJiLEBbXtx+flDayOM4UhPC6YN3+Gpjhy4aIEGkxgVK+3w
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;SSOR;
+x-ms-office365-filtering-correlation-id: dddb6e8c-e047-460e-2644-08d5317bea18
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(22001)(4534020)(4602075)(4627115)(201703031133081)(201702281549075)(2017052603199);
+	SRVR:PS1PR02MB1163; 
+x-ms-traffictypediagnostic: PS1PR02MB1163:
+x-microsoft-antispam-prvs: <PS1PR02MB11636ACA01D8F920CAA00CDBFF200@PS1PR02MB1163.apcprd02.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(190756311086443)(69454984189310)(227612066756510)(21748063052155);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(6040450)(2401047)(8121501046)(5005006)(93006095)(93001095)(10201501046)(3002001)(3231022)(100000703101)(100105400095)(6041248)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123562025)(20161123560025)(20161123555025)(20161123558100)(20161123564025)(6072148)(201708071742011)(100000704101)(100105200095)(100000705101)(100105500095);
+	SRVR:PS1PR02MB1163; BCL:0; PCL:0;
+	RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);
+	SRVR:PS1PR02MB1163; 
+x-forefront-prvs: 0499DAF22A
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(39830400002)(376002)(346002)(24454002)(189002)(199003)(53754006)(229853002)(54896002)(236005)(316002)(9686003)(66066001)(5890100001)(54906003)(6506006)(345774005)(5250100002)(19609705001)(7696004)(14454004)(6246003)(6306002)(107886003)(99286004)(55016002)(106356001)(53386004)(2950100002)(105586002)(6916009)(5660300001)(72206003)(966005)(39060400002)(86362001)(97736004)(54356999)(33656002)(81166006)(3846002)(478600001)(606006)(76176999)(50986999)(4326008)(81156014)(8676002)(53546010)(8936002)(25786009)(2906002)(74316002)(2900100001)(68736007)(6436002)(53936002)(790700001)(6116002)(3660700001)(102836003)(7736002)(3280700002)(101416001)(189998001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:PS1PR02MB1163;
+	H:PS1PR02MB1625.apcprd02.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:3; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: einfochips.com does not designate
+	permitted sender hosts)
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.100.159.15 with HTTP; Wed, 22 Nov 2017 07:53:54 -0800 (PST)
-In-Reply-To: <CAKmWj-3WZc=K4KRwW3qO3zXUYK7qibkMdWwbE=baNiKhN9nKjg@mail.gmail.com>
-References: <CAKmWj-13qwhLX54szaK5gvxdHfJOKS7Xa98UxiSibLJkxSDRnw@mail.gmail.com>
-	<4a1624fa-f533-6f25-bcb7-88d035657d4f@prevas.dk>
-	<CAKmWj-3WZc=K4KRwW3qO3zXUYK7qibkMdWwbE=baNiKhN9nKjg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 22 Nov 2017 07:53:54 -0800
-Message-ID: <CAMKF1srPncHcBc5pu_2HgouUJbyBPb=yjKtT7BsqH9Re+5Bk7A@mail.gmail.com>
-To: Paul Knopf <pauldotknopf@gmail.com>
+X-OriginatorOrg: einfochips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dddb6e8c-e047-460e-2644-08d5317bea18
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Nov 2017 07:37:41.6920 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0adb040b-ca22-4ca6-9447-ab7b049a22ff
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PR02MB1163
+X-Mailman-Approved-At: Wed, 22 Nov 2017 08:07:12 -0800
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: When are file checksums gathered from files, for tasks? During recipe parsing?
+Subject: Re: DEPENDS python-xml not working in pyro2.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,82 +104,257 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Nov 2017 15:54:26 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 22 Nov 2017 09:12:38 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_PS1PR02MB16258175EBB61A98BAB3279EFF200PS1PR02MB1625apcp_"
 
-On Wed, Nov 22, 2017 at 5:51 AM, Paul Knopf <pauldotknopf@gmail.com> wrote:
-> This recipe is not an image recipe. It is a recipe that packages up our
-> image for deployment/updates in the field. Your method assumes I am editi=
-ng
-> the image recipe.
+--_000_PS1PR02MB16258175EBB61A98BAB3279EFF200PS1PR02MB1625apcp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-there are post/pre processing hooks for Extra operations on final
-image, if you were to use those to achieve the tasks specific for your
-deployment/field-update, it will fit well into workflow and you can
-leverage the dependency mechanisms stated above
+SGkgS2hlbVJhaiwNCg0KVGhhbmsgeW91IGZvciB1cGRhdGUuDQpZZXMgd2UgaGF2ZSBhZGRlZCBs
+aWJ4bWwyIHRvIERFUEVORFMgYnV0IHNhbWUgZXJyb3IuDQpCdXQgd2hhdCB3ZSBvYnNlcnZlIGlz
+IHdoZW4gd2UgaW5oZXJpdCBzZXR1cHRvb2xzIHRoZW4gaXQgaXMgc2hvd2luZyB0aGlzIGVycm9y
+IOKAnGNoZWNraW5nIHB5dGhvbiBtb2R1bGU6IGxpYnhtbDIuLi4gbm/igJ0uDQpCdXQgd2hlbiB3
+ZSBkb27igJl0IGluaGVyaXQgc2V0dXB0b29scyB0aGVuIGl0IHdpbGwgdGFrZSBQQ+KAmXMgbGli
+eG1sMiBwYWNrYWdlLiBIb3dldmVyIHdlIHdhbnQgdGFyZ2V0IGxpYnhtbDIgcGFja2FnZS4NCklu
+IGRhaXN5IHZlcnNpb24gd2UgdXNlZCBweXRob24teG1sIGFuZCBpdCByZXNvbHZlIG91ciBpc3N1
+ZS4gSG93ZXZlciBpbiBweXJvIHdlIGFyZSBmYWNpbmcgdGhpcyBpc3N1ZS4NCg0KUGxlYXNlIGhl
+bHAgdXMgaW4gdGhpcyBtYXR0ZXIuDQoNClJlZ2FyZHMsDQpWaXJhaiBNaXN0cnkNCg0KRnJvbTog
+S2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dDQpTZW50OiBUdWVzZGF5LCBOb3Zl
+bWJlciAyMSwgMjAxNyAxMDoyOSBQTQ0KVG86IEFtaXQgR29uZGFsaXlhIDxhbWl0LmdvbmRhbGl5
+YUBlaW5mb2NoaXBzLmNvbT4NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBWaXJhaiBNaXN0
+cnkgPFZpcmFqLk1pc3RyeUBlaW5mb2NoaXBzLmNvbT4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIERF
+UEVORFMgcHl0aG9uLXhtbCBub3Qgd29ya2luZyBpbiBweXJvMi4zDQoNCnlvdSBtaWdodCBuZWVk
+IHRvIGFkZCBsaWJ4bWwyIHRvIERFUEVORFMNCg0KT24gVHVlLCBOb3YgMjEsIDIwMTcgYXQgMzoy
+NiBBTSwgQW1pdCBHb25kYWxpeWEgPGFtaXQuZ29uZGFsaXlhQGVpbmZvY2hpcHMuY29tPG1haWx0
+bzphbWl0LmdvbmRhbGl5YUBlaW5mb2NoaXBzLmNvbT4+IHdyb3RlOg0KDQpIZWxsbyBBbGwsDQoN
+Cg0KDQpJIGFtIGNvbmZpZ3VyaW5nIG9uZSBwYWNrYWdlIHVzaW5nIHB5cm8gMi4zIEkgc3RpY2tl
+ZCBhdCBiZWxvdyBlcnJvci4uDQoNCg0KY2hlY2tpbmcgcHl0aG9uIG1vZHVsZTogbGlieG1sMi4u
+Lg0Kbm8NCmNvbmZpZ3VyZTogZXJyb3I6IGZhaWxlZCB0byBmaW5kIHJlcXVpcmVkIG1vZHVsZSBs
+aWJ4bWwyDQpjaGVja2luZyBweXRob24gbW9kdWxlOiBjdXJzZXMuLi4geWVzDQpjaGVja2luZyBw
+eXRob24gbW9kdWxlOiBsaWJ4bWwyLi4uIG5vDQpjb25maWd1cmU6IGVycm9yOiBmYWlsZWQgdG8g
+ZmluZCByZXF1aXJlZCBtb2R1bGUgbGlieG1sMg0KDQpJIGhhdmUgInB5dGhvbi14bWwiIGluIG15
+ICJhcHBsaWNhdGlvbi5iYjxodHRwOi8vYXBwbGljYXRpb24uYmI+IiBmaWxlIGFzIERFUEVORFMg
+dmFyaWFibGUsIHRoaXMgaXMgd29ya2luZyBmaW5lIHlvY3RvIGRhaXN5MS42LCBob3dldmVyIHRo
+aXMgaXMgbm90IHdvcmtpbmcgd2l0aCB5b2N0byBweXJvMi4zDQoNCkJlc3QgUmVnYXJkcywNCkFt
+aXQgR29uZGFsaXlhDQoNCg0KDQoNCg0KKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKiBlSW5mb2NoaXBzIEJ1c2luZXNzIERpc2NsYWltZXI6IFRoaXMgZS1tYWlsIG1l
+c3NhZ2UgYW5kIGFsbCBhdHRhY2htZW50cyB0cmFuc21pdHRlZCB3aXRoIGl0IGFyZSBpbnRlbmRl
+ZCBzb2xlbHkgZm9yIHRoZSB1c2Ugb2YgdGhlIGFkZHJlc3NlZSBhbmQgbWF5IGNvbnRhaW4gbGVn
+YWxseSBwcml2aWxlZ2VkIGFuZCBjb25maWRlbnRpYWwgaW5mb3JtYXRpb24uIElmIHRoZSByZWFk
+ZXIgb2YgdGhpcyBtZXNzYWdlIGlzIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBvciBhbiBl
+bXBsb3llZSBvciBhZ2VudCByZXNwb25zaWJsZSBmb3IgZGVsaXZlcmluZyB0aGlzIG1lc3NhZ2Ug
+dG8gdGhlIGludGVuZGVkIHJlY2lwaWVudCwgeW91IGFyZSBoZXJlYnkgbm90aWZpZWQgdGhhdCBh
+bnkgZGlzc2VtaW5hdGlvbiwgZGlzdHJpYnV0aW9uLCBjb3B5aW5nLCBvciBvdGhlciB1c2Ugb2Yg
+dGhpcyBtZXNzYWdlIG9yIGl0cyBhdHRhY2htZW50cyBpcyBzdHJpY3RseSBwcm9oaWJpdGVkLiBJ
+ZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIG1lc3NhZ2UgaW4gZXJyb3IsIHBsZWFzZSBub3RpZnkg
+dGhlIHNlbmRlciBpbW1lZGlhdGVseSBieSByZXBseWluZyB0byB0aGlzIG1lc3NhZ2UgYW5kIHBs
+ZWFzZSBkZWxldGUgaXQgZnJvbSB5b3VyIGNvbXB1dGVyLiBBbnkgdmlld3MgZXhwcmVzc2VkIGlu
+IHRoaXMgbWVzc2FnZSBhcmUgdGhvc2Ugb2YgdGhlIGluZGl2aWR1YWwgc2VuZGVyIHVubGVzcyBv
+dGhlcndpc2Ugc3RhdGVkLiBDb21wYW55IGhhcyB0YWtlbiBlbm91Z2ggcHJlY2F1dGlvbnMgdG8g
+cHJldmVudCB0aGUgc3ByZWFkIG9mIHZpcnVzZXMuIEhvd2V2ZXIgdGhlIGNvbXBhbnkgYWNjZXB0
+cyBubyBsaWFiaWxpdHkgZm9yIGFueSBkYW1hZ2UgY2F1c2VkIGJ5IGFueSB2aXJ1cyB0cmFuc21p
+dHRlZCBieSB0aGlzIGVtYWlsLiAqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqDQoNCi0tDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXw0KeW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5
+b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xp
+c3RpbmZvL3lvY3RvDQoNCg==
 
-then you could combine this with some extra image specific tasks to
-operate on rootfs during image creation.
+--_000_PS1PR02MB16258175EBB61A98BAB3279EFF200PS1PR02MB1625apcp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-In short, perhaps you should think about getting this done during the
-final image creation instead of creating another recipe.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+U2hydXRpOw0KCXBhbm9zZS0xOjIgMTEgNSAyIDQgMiA0IDIgMiAzO30NCkBmb250LWZhY2UNCgl7
+Zm9udC1mYW1pbHk6U2hydXRpOw0KCXBhbm9zZS0xOjIgMTEgNSAyIDQgMiA0IDIgMiAzO30NCkBm
+b250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIg
+NCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlZlcmRhbmE7DQoJcGFub3NlLTE6
+MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9y
+bWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4t
+Ym90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMg
+TmV3IFJvbWFuIixzZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHls
+ZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7
+fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlv
+cml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpw
+DQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCglt
+YXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1s
+ZWZ0OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9t
+YW4iLHNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFs
+LXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5
+N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9u
+dC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3Np
+emU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYu
+V29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBn
+dGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIx
+MDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpz
+aGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIg
+Lz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxh
+bmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRT
+ZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFG
+NDk3RCI+SGkgS2hlbVJhaiw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
+N0QiPlRoYW5rIHlvdSBmb3IgdXBkYXRlLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5ZZXMgd2UgaGF2ZSBh
+ZGRlZCBsaWJ4bWwyIHRvIERFUEVORFMgYnV0IHNhbWUgZXJyb3IuPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
+PkJ1dCB3aGF0IHdlIG9ic2VydmUgaXMgd2hlbiB3ZSBpbmhlcml0IHNldHVwdG9vbHMgdGhlbiBp
+dCBpcyBzaG93aW5nIHRoaXMgZXJyb3Ig4oCcPC9zcGFuPjxiPjxpPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtj
+b2xvcjojMDA2RkM5Ij5jaGVja2luZw0KIHB5dGhvbiBtb2R1bGU6IGxpYnhtbDIuLi4gbm/igJ08
+L3NwYW4+PC9pPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
+cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+LjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+MUY0OTdEIj5CdXQgd2hlbiB3ZSBkb27igJl0IGluaGVyaXQgc2V0dXB0b29scyB0aGVuIGl0IHdp
+bGwgdGFrZSBQQ+KAmXMgbGlieG1sMiBwYWNrYWdlLiBIb3dldmVyIHdlIHdhbnQgdGFyZ2V0IGxp
+YnhtbDIgcGFja2FnZS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SW4gZGFpc3kgdmVyc2lvbiB3ZSB1c2Vk
+DQo8Yj5weXRob24teG1sPC9iPiBhbmQgaXQgcmVzb2x2ZSBvdXIgaXNzdWUuIEhvd2V2ZXIgaW4g
+cHlybyB3ZSBhcmUgZmFjaW5nIHRoaXMgaXNzdWUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
+Zjtjb2xvcjojMUY0OTdEIj5QbGVhc2UgaGVscCB1cyBpbiB0aGlzIG1hdHRlci4NCjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xv
+cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+UmVnYXJkcyw8bzpwPjwvbzpw
+Pjwvc3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOiMxRjQ5N0QiPlZpcmFqIE1pc3RyeTxvOnA+PC9vOnA+PC9zcGFuPjwvYj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
+LXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gS2hlbSBSYWogW21haWx0
+bzpyYWoua2hlbUBnbWFpbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gVHVlc2RheSwgTm92ZW1i
+ZXIgMjEsIDIwMTcgMTA6MjkgUE08YnI+DQo8Yj5Ubzo8L2I+IEFtaXQgR29uZGFsaXlhICZsdDth
+bWl0LmdvbmRhbGl5YUBlaW5mb2NoaXBzLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlv
+Y3RvcHJvamVjdC5vcmc7IFZpcmFqIE1pc3RyeSAmbHQ7VmlyYWouTWlzdHJ5QGVpbmZvY2hpcHMu
+Y29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBERVBFTkRTIHB5dGhvbi14
+bWwgbm90IHdvcmtpbmcgaW4gcHlybzIuMzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcm
+cXVvdDsiPnlvdSBtaWdodCBuZWVkIHRvIGFkZCBsaWJ4bWwyIHRvIERFUEVORFM8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBUdWUsIE5vdiAy
+MSwgMjAxNyBhdCAzOjI2IEFNLCBBbWl0IEdvbmRhbGl5YSAmbHQ7PGEgaHJlZj0ibWFpbHRvOmFt
+aXQuZ29uZGFsaXlhQGVpbmZvY2hpcHMuY29tIiB0YXJnZXQ9Il9ibGFuayI+YW1pdC5nb25kYWxp
+eWFAZWluZm9jaGlwcy5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1
+b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3Bh
+ZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBp
+biI+DQo8ZGl2Pg0KPGRpdiBpZD0ibV8tNTIyNzM5NTE1OTMyMTcyMzQ3NmRpdnRhZ2RlZmF1bHR3
+cmFwcGVyIj4NCjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMDA2RkM5Ij5IZWxsbyBBbGwsPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMwMDZGQzkiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMDA2
+RkM5Ij5JIGFtIGNvbmZpZ3VyaW5nIG9uZSBwYWNrYWdlIHVzaW5nIHB5cm8gMi4zIEkgc3RpY2tl
+ZCBhdCBiZWxvdyBlcnJvci4uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiMwMDZGQzkiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxiPjxpPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjojMDA2RkM5Ij5jaGVja2luZyBweXRob24gbW9kdWxlOiBsaWJ4
+bWwyLi4uPGJyPg0Kbm88YnI+DQpjb25maWd1cmU6IGVycm9yOiBmYWlsZWQgdG8gZmluZCByZXF1
+aXJlZCBtb2R1bGUgbGlieG1sMjwvc3Bhbj48L2k+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+MDA2RkM5Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48Yj48aT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzAwNkZDOSI+Y2hlY2tpbmcg
+cHl0aG9uIG1vZHVsZTogY3Vyc2VzLi4uIHllczxicj4NCmNoZWNraW5nIHB5dGhvbiBtb2R1bGU6
+IGxpYnhtbDIuLi4gbm88YnI+DQpjb25maWd1cmU6IGVycm9yOiBmYWlsZWQgdG8gZmluZCByZXF1
+aXJlZCBtb2R1bGUgbGlieG1sMjwvc3Bhbj48L2k+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+MDA2RkM5Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzAwNkZDOSI+PG86cD4mbmJzcDs8L286
+cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90Oyxz
+YW5zLXNlcmlmO2NvbG9yOiMwMDZGQzkiPkkgaGF2ZSAmcXVvdDtweXRob24teG1sJnF1b3Q7IGlu
+IG15ICZxdW90OzxhIGhyZWY9Imh0dHA6Ly9hcHBsaWNhdGlvbi5iYiIgdGFyZ2V0PSJfYmxhbmsi
+PmFwcGxpY2F0aW9uLmJiPC9hPiZxdW90OyBmaWxlIGFzDQo8Yj5ERVBFTkRTPC9iPiB2YXJpYWJs
+ZSwgPGI+PGk+dGhpcyBpcyB3b3JraW5nIGZpbmUgeW9jdG8gZGFpc3kxLjYsIGhvd2V2ZXIgdGhp
+cyBpcyBub3Qgd29ya2luZyB3aXRoIHlvY3RvIHB5cm8yLjM8L2k+PC9iPjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1z
+ZXJpZjtjb2xvcjojMDA2RkM5Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjxkaXYgaWQ9Im1fLTUyMjczOTUxNTkzMjE3MjM0NzZTaWduYXR1cmUiPg0KPGRpdiBpZD0ibV8t
+NTIyNzM5NTE1OTMyMTcyMzQ3NmRpdnRhZ2RlZmF1bHR3cmFwcGVyIj4NCjx0YWJsZSBjbGFzcz0i
+TXNvTm9ybWFsVGFibGUiIGJvcmRlcj0iMCIgY2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIw
+IiBzdHlsZT0iYm9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlIj4NCjx0Ym9keT4NCjx0cj4NCjx0ZCBj
+b2xzcGFuPSIyIiBzdHlsZT0icGFkZGluZzowaW4gMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMwMDRCNzY7Ym9yZGVyOm5vbmUgd2lu
+ZG93dGV4dCAxLjBwdDtwYWRkaW5nOjBpbiI+QmVzdCBSZWdhcmRzLDwvc3Bhbj48L2I+PGI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOiMwMDRCNzY7Ym9yZGVyOm5vbmUgd2luZG93dGV4dCAxLjBwdDtw
+YWRkaW5nOjBpbiI+PGJyPg0KPC9zcGFuPjwvYj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+LjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzAw
+NEI3Njtib3JkZXI6bm9uZSB3aW5kb3d0ZXh0IDEuMHB0O3BhZGRpbmc6MGluIj5BbWl0IEdvbmRh
+bGl5YTwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMwMDRCNzYiPjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPHRyPg0KPHRkIHZhbGlnbj0idG9wIiBzdHlsZT0i
+cGFkZGluZzowaW4gMGluIDBpbiAwaW4iPjwvdGQ+DQo8dGQgdmFsaWduPSJ0b3AiIHN0eWxlPSJw
+YWRkaW5nOjkuNzVwdCAwaW4gMGluIDBpbiI+PC90ZD4NCjwvdHI+DQo8dHI+DQo8dGQgY29sc3Bh
+bj0iMiIgc3R5bGU9InBhZGRpbmc6MGluIDBpbiAwaW4gMGluIj48L3RkPg0KPC90cj4NCjx0cj4N
+Cjx0ZCBjb2xzcGFuPSIyIiBzdHlsZT0icGFkZGluZzowaW4gMGluIDBpbiAwaW4iPjwvdGQ+DQo8
+L3RyPg0KPHRyPg0KPHRkIGNvbHNwYW49IjIiIHN0eWxlPSJwYWRkaW5nOjBpbiAwaW4gMGluIDBp
+biI+PC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKiogZUluZm9jaGlwcyBCdXNpbmVzcyBEaXNjbGFpbWVyOiBUaGlzIGUtbWFpbCBt
+ZXNzYWdlIGFuZCBhbGwgYXR0YWNobWVudHMgdHJhbnNtaXR0ZWQNCiB3aXRoIGl0IGFyZSBpbnRl
+bmRlZCBzb2xlbHkgZm9yIHRoZSB1c2Ugb2YgdGhlIGFkZHJlc3NlZSBhbmQgbWF5IGNvbnRhaW4g
+bGVnYWxseSBwcml2aWxlZ2VkIGFuZCBjb25maWRlbnRpYWwgaW5mb3JtYXRpb24uIElmIHRoZSBy
+ZWFkZXIgb2YgdGhpcyBtZXNzYWdlIGlzIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBvciBh
+biBlbXBsb3llZSBvciBhZ2VudCByZXNwb25zaWJsZSBmb3IgZGVsaXZlcmluZyB0aGlzIG1lc3Nh
+Z2UgdG8gdGhlIGludGVuZGVkDQogcmVjaXBpZW50LCB5b3UgYXJlIGhlcmVieSBub3RpZmllZCB0
+aGF0IGFueSBkaXNzZW1pbmF0aW9uLCBkaXN0cmlidXRpb24sIGNvcHlpbmcsIG9yIG90aGVyIHVz
+ZSBvZiB0aGlzIG1lc3NhZ2Ugb3IgaXRzIGF0dGFjaG1lbnRzIGlzIHN0cmljdGx5IHByb2hpYml0
+ZWQuIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgbWVzc2FnZSBpbiBlcnJvciwgcGxlYXNlIG5v
+dGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGJ5IHJlcGx5aW5nIHRvIHRoaXMgbWVzc2FnZQ0K
+IGFuZCBwbGVhc2UgZGVsZXRlIGl0IGZyb20geW91ciBjb21wdXRlci4gQW55IHZpZXdzIGV4cHJl
+c3NlZCBpbiB0aGlzIG1lc3NhZ2UgYXJlIHRob3NlIG9mIHRoZSBpbmRpdmlkdWFsIHNlbmRlciB1
+bmxlc3Mgb3RoZXJ3aXNlIHN0YXRlZC4gQ29tcGFueSBoYXMgdGFrZW4gZW5vdWdoIHByZWNhdXRp
+b25zIHRvIHByZXZlbnQgdGhlIHNwcmVhZCBvZiB2aXJ1c2VzLiBIb3dldmVyIHRoZSBjb21wYW55
+IGFjY2VwdHMgbm8gbGlhYmlsaXR5IGZvciBhbnkNCiBkYW1hZ2UgY2F1c2VkIGJ5IGFueSB2aXJ1
+cyB0cmFuc21pdHRlZCBieSB0aGlzIGVtYWlsLiAqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqDQo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48YnI+DQotLTxicj4NCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KeW9jdG8gbWFpbGlu
+ZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KPGEgaHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0b3By
+b2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9saXN0cy55
+b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9j
+a3F1b3RlPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
->
-> On Wed, Nov 22, 2017 at 4:01 AM, Martin Hundeb=C3=B8ll <mnhu@prevas.dk> w=
-rote:
->>
->> Hi Paul,
->>
->> On 2017-11-22 09:10, Paul Knopf wrote:
->>>
->>> I have a recipe that depends on a deployed output from an image.
->>>
->>> ----------------------------------------------------------
->>> SRC_URI +=3D
->>> "file://${DEPLOY_DIR_IMAGE}/my-image-${MACHINE}.wic.update.tar.gz;subdi=
-r=3Dupdate"
->>> do_fetch[depends] +=3D "my-image:do_build"
->>> ----------------------------------------------------------
->>>
->>> Will the hash for "do_fetch" be computed after "my-image:do_build" is
->>> executed?
->>
->>
->> The "dependency" hash is based on the hash of the my-image recipe, so th=
-at
->> if you change the my-image.bb, then the hash of your dependent recipe
->> changes too.
->>
->>> If not, how would you propose I do something like this?
->>
->>
->> Don't put deployed images in SRC_URI, and don't put task dependencies in
->> do_fetch, as that messes with do_fetchall, should you ever need to run t=
-hat.
->>
->> Look at what other recipes are doing when using images from
->> DEPLOY_DIR_IMAGE. A reworked example from one of our recipes:
->>
->>   do_image[depends] +=3D "my-image:do_image_complete"
->>
->>   IMAGE_PREPROCESS_COMMAND +=3D "image_prepare"
->>   image_prepare() {
->>     install ${DEPLOY_DIR_IMAGE}/my-image-${MACHINE}.wic.update.tar.gz
->> ${IMAGE_ROOTFS}/
->>   }
->>
->>
->> I hope that helps!
->>
->> // Martin
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
+--_000_PS1PR02MB16258175EBB61A98BAB3279EFF200PS1PR02MB1625apcp_--
