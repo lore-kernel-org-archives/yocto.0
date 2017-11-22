@@ -1,66 +1,67 @@
-Return-Path: <vincent.prince.fr@gmail.com>
+Return-Path: <pauldotknopf@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1092E00B48; Wed, 22 Nov 2017 05:06:48 -0800 (PST)
+	id 881FCE00C0F; Wed, 22 Nov 2017 05:52:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vincent.prince.fr[at]gmail.com)
+	mail provider *      (pauldotknopf[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.196 listed in list.dnswl.org]
+	*      [209.85.215.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94B1EE006CA
-	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 05:06:47 -0800 (PST)
-Received: by mail-wr0-f196.google.com with SMTP id u40so14457758wrf.10
-	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 05:06:47 -0800 (PST)
+Received: from mail-lf0-f51.google.com (mail-lf0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44BB9E00A9C
+	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 05:52:00 -0800 (PST)
+Received: by mail-lf0-f51.google.com with SMTP id d10so7271328lfj.7
+	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 05:52:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=VoeNNWtusYBU1pHhFJ1eYXHPzIEcG+L0OxMRxxnyuU4=;
-	b=b9O07jqRvbZHljfXVxiipU6yfgtYSincmFWlZ+hDZWLLw73d/baGUgxS8LdC2P4cI7
-	TJs4bZlmQlxASbkTWtpFYcLAUcQPwOE/AtjD0oWLlCvU9ELpSO4HOF9xQAcX793Ngfn6
-	dxToIEPlaYjjm0ujdm5VEgw69UuqVs1MwUysXJkDh6LrRRADZl6MP0A3UmWfNEy6dbBd
-	K+cv3AmyYqWO/Jvk9PZI0Oh4riSvRC5EopqPN5gRWsK+I0sGfnAdrYJh9CZCkEQWSvxp
-	dlyrhjymSWLFnIKE4PT/QLvVTRDfOhgMYNmTzxFuAtQP5qSHUaMNZVTIFvRaDN1t8qyn
-	+gIA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hCwntfkDVzYRMkHAbYRIbjuHIOx+eWMuHgllAZOcnu8=;
+	b=qUO0fES1PNjTaSndsopNTYE5M3jg8/GMlOrpVKvRkKbbToFDPM6dQKFN8xTK5HVjhJ
+	FKoFdErssPQuV7FhrF1c0Dr0rHgqSLIds544vOS1SY32LFnyhrY2F015KgY1HxRyAmUu
+	I2Ouy9bHxLTQn0YM/XRdZ9eN4RwzHIYGyKg3w5PWxCTzwI7fpIsdEzauvCPiUKAc2S7+
+	6NAJQh5i23XD2JWj1eS20aiD1bVWkfwjW2ZjgeBpvr520c1W5oGJMrkC+BTZo7yBk1jj
+	gywfiSWbE692gxLAzcbYQcgUJZQOSlygEeJ6QZ11JFYL9Hp3uvsVSxLiY/Gy00lqw1Qv
+	1o6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=VoeNNWtusYBU1pHhFJ1eYXHPzIEcG+L0OxMRxxnyuU4=;
-	b=EaLeOHmFWSndvFOchgbcbUM/gjNf1sMAtFAqk89rWu1ZGl2OuDIWxtqRv6qMJ3phzt
-	1oXDxK3Hs7GchGiRCNn7RrqF4N9fyXrdsWr19Ydu8jb6D2nVCZ4II+TZvSD0thOWluji
-	h/m4F5xFrj2B0JV7Vo6sc0y4e5cV6cynAZbUAuUqpg8KXNkS/prqx2xUKeIfDBpKN0S5
-	e4WftFksg7XYXsCSH8854wJsM6jp6uWq+/WuNaOaWDxHFnO1bfrbg8W4S4iB0RPTgbhX
-	U2UqVhqaKS0dJ+85W2DEWeKnvT8Mr0HBWNi7hOIXpBLco6Q87756YziuIGkxxxEXyrRd
-	lWeA==
-X-Gm-Message-State: AJaThX5vNjA95SAMq2xOA/cEKRViUl2gTJuBJfnBStfafdYe5LfYxNyM
-	hR3V0jh7axZcLMv5W4PNwSNIWw==
-X-Google-Smtp-Source: AGs4zMagvx/h19siLF3VRIfayNjcZ7z1k5IxryVBhR+uUTC4ihJiaMWPK0+IJnPOfhmM5Z9Ro+paLw==
-X-Received: by 10.223.139.73 with SMTP id v9mr19502464wra.77.1511356006153;
-	Wed, 22 Nov 2017 05:06:46 -0800 (PST)
-Received: from VPR-VM.fra.hager.corp ([212.51.167.132])
-	by smtp.gmail.com with ESMTPSA id
-	y84sm2160104wmg.39.2017.11.22.05.06.45
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 22 Nov 2017 05:06:45 -0800 (PST)
-From: Vincent Prince <vincent.prince.fr@gmail.com>
-To: yocto@yoctoproject.org,
-	maxin.john@intel.com
-Date: Wed, 22 Nov 2017 14:05:48 +0100
-Message-Id: <1511355948-12929-1-git-send-email-vincent.prince.fr@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-oracle-java][PATCH] Fix warning in do_populate_sysroot: sstate found an absolute path symlink
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hCwntfkDVzYRMkHAbYRIbjuHIOx+eWMuHgllAZOcnu8=;
+	b=PrxAhRTpYvSqPWhz1IHwxmS0qmUD+h1zwir7ZWq817G4GpJWKsgFJEhlZ5i7h5U4si
+	UjFtdBAskwu2bikoOWN6t5uETLwqORm5hNWKY2UQvVcwlV+mzsPB5YsVl2775xmnfiRB
+	/2uRu4gx339T9de0lcecu+JEYG15yIgxBVzCMyRmOXuEcOthdAPzrW1l/3100RflWMLX
+	P8f9cW4efSwpZcrgdhC6WfSyp92Zqc+hOzZtqnV1Qte2QSCC5nU4hLYycYCWo7O4ANdm
+	pCfumgkBMNiJ/DJeXY1M48amYrK9y6JVcR3iF6SCIU5iTsnsHiKIZd/BKWxnKNvnaE2/
+	bpBQ==
+X-Gm-Message-State: AJaThX7DOXfXoU2SGYVOTHEnYwjb5MFXqsxMCTE6rkADWhBkQpCsSwNH
+	e4R9f8rpIwx+TogRaXQMe6DYSy44p4PTQhmbC5A=
+X-Google-Smtp-Source: AGs4zMYlii2rsC6JPLM8k4hEoBDGeBuBrQRBFB6QXlb7O2WI89rH8ykDPK0z6lIPjygBR5xjRH+rMAYlIVGUi0/uuWs=
+X-Received: by 10.46.83.29 with SMTP id h29mr7873757ljb.144.1511358719794;
+	Wed, 22 Nov 2017 05:51:59 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.25.151.76 with HTTP; Wed, 22 Nov 2017 05:51:59 -0800 (PST)
+In-Reply-To: <4a1624fa-f533-6f25-bcb7-88d035657d4f@prevas.dk>
+References: <CAKmWj-13qwhLX54szaK5gvxdHfJOKS7Xa98UxiSibLJkxSDRnw@mail.gmail.com>
+	<4a1624fa-f533-6f25-bcb7-88d035657d4f@prevas.dk>
+From: Paul Knopf <pauldotknopf@gmail.com>
+Date: Wed, 22 Nov 2017 08:51:59 -0500
+Message-ID: <CAKmWj-3WZc=K4KRwW3qO3zXUYK7qibkMdWwbE=baNiKhN9nKjg@mail.gmail.com>
+To: =?UTF-8?Q?Martin_Hundeb=C3=B8ll?= <mnhu@prevas.dk>
+Cc: yocto@yoctoproject.org
+Subject: Re: When are file checksums gathered from files, for tasks? During recipe parsing?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,33 +73,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Nov 2017 13:06:48 -0000
+X-List-Received-Date: Wed, 22 Nov 2017 13:52:02 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1ce7fa9f2189055e929f44"
 
-Signed-off-by: Vincent Prince <vincent.prince.fr@gmail.com>
----
- recipes-devtools/oracle-java/oracle-jse-jdk.inc | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+--94eb2c1ce7fa9f2189055e929f44
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-index 6b3aabe..1ec172f 100644
---- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-@@ -16,10 +16,10 @@ do_install_class-native() {
- 	cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE}	${D}${JDK_HOME}
- 
- 	install -d				${D}${bindir}
--	ln -sf ${JDK_HOME}/bin/java		${D}${bindir}
--	ln -sf ${JDK_HOME}/bin/javac		${D}${bindir}
--	ln -sf ${JDK_HOME}/bin/javah		${D}${bindir}
--	ln -sf ${JDK_HOME}/bin/jar		${D}${bindir}
-+	ln -sf ../lib/jvm/${JDK_DIR}/bin/java		${D}${bindir}
-+	ln -sf ../lib/jvm/${JDK_DIR}/bin/javac		${D}${bindir}
-+	ln -sf ../lib/jvm/${JDK_DIR}/bin/javah		${D}${bindir}
-+	ln -sf ../lib/jvm/${JDK_DIR}/bin/jar		${D}${bindir}
- 
- 	install -d				${D}${JDK_HOME}/bin
- 	ln -sf javah				${D}${JDK_HOME}/bin/gjavah
--- 
-2.7.4
+This recipe is not an image recipe. It is a recipe that packages up our
+image for deployment/updates in the field. Your method assumes I am editing
+the image recipe.
 
+On Wed, Nov 22, 2017 at 4:01 AM, Martin Hundeb=C3=B8ll <mnhu@prevas.dk> wro=
+te:
 
+> Hi Paul,
+>
+> On 2017-11-22 09:10, Paul Knopf wrote:
+>
+>> I have a recipe that depends on a deployed output from an image.
+>>
+>> ----------------------------------------------------------
+>> SRC_URI +=3D "file://${DEPLOY_DIR_IMAGE}/my-image-${MACHINE}.wic.update.
+>> tar.gz;subdir=3Dupdate"
+>> do_fetch[depends] +=3D "my-image:do_build"
+>> ----------------------------------------------------------
+>>
+>> Will the hash for "do_fetch" be computed after "my-image:do_build" is
+>> executed?
+>>
+>
+> The "dependency" hash is based on the hash of the my-image recipe, so tha=
+t
+> if you change the my-image.bb, then the hash of your dependent recipe
+> changes too.
+>
+> If not, how would you propose I do something like this?
+>>
+>
+> Don't put deployed images in SRC_URI, and don't put task dependencies in
+> do_fetch, as that messes with do_fetchall, should you ever need to run th=
+at.
+>
+> Look at what other recipes are doing when using images from
+> DEPLOY_DIR_IMAGE. A reworked example from one of our recipes:
+>
+>   do_image[depends] +=3D "my-image:do_image_complete"
+>
+>   IMAGE_PREPROCESS_COMMAND +=3D "image_prepare"
+>   image_prepare() {
+>     install ${DEPLOY_DIR_IMAGE}/my-image-${MACHINE}.wic.update.tar.gz
+> ${IMAGE_ROOTFS}/
+>   }
+>
+>
+> I hope that helps!
+>
+> // Martin
+>
+
+--94eb2c1ce7fa9f2189055e929f44
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">This recipe is not an image recipe. It is a recipe that pa=
+ckages up our image for deployment/updates in the field. Your method assume=
+s I am editing the image recipe.</div><div class=3D"gmail_extra"><br><div c=
+lass=3D"gmail_quote">On Wed, Nov 22, 2017 at 4:01 AM, Martin Hundeb=C3=B8ll=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:mnhu@prevas.dk" target=3D"_blank">=
+mnhu@prevas.dk</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi P=
+aul,<span class=3D""><br>
+<br>
+On 2017-11-22 09:10, Paul Knopf wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+I have a recipe that depends on a deployed output from an image.<br>
+<br>
+------------------------------<wbr>----------------------------<br>
+SRC_URI +=3D &quot;file://${DEPLOY_DIR_IMAGE}/my<wbr>-image-${MACHINE}.wic.=
+update.<wbr>tar.gz;subdir=3Dupdate&quot;<br>
+do_fetch[depends] +=3D &quot;my-image:do_build&quot;<br>
+------------------------------<wbr>----------------------------<br>
+<br>
+Will the hash for &quot;do_fetch&quot; be computed after &quot;my-image:do_=
+build&quot; is executed?<br>
+</blockquote>
+<br></span>
+The &quot;dependency&quot; hash is based on the hash of the my-image recipe=
+, so that if you change the <a href=3D"http://my-image.bb" rel=3D"noreferre=
+r" target=3D"_blank">my-image.bb</a>, then the hash of your dependent recip=
+e changes too.<span class=3D""><br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+If not, how would you propose I do something like this?<br>
+</blockquote>
+<br></span>
+Don&#39;t put deployed images in SRC_URI, and don&#39;t put task dependenci=
+es in do_fetch, as that messes with do_fetchall, should you ever need to ru=
+n that.<br>
+<br>
+Look at what other recipes are doing when using images from DEPLOY_DIR_IMAG=
+E. A reworked example from one of our recipes:<br>
+<br>
+=C2=A0 do_image[depends] +=3D &quot;my-image:do_image_complete&quot;<br>
+<br>
+=C2=A0 IMAGE_PREPROCESS_COMMAND +=3D &quot;image_prepare&quot;<br>
+=C2=A0 image_prepare() {<br>
+=C2=A0 =C2=A0 install ${DEPLOY_DIR_IMAGE}/my-image-$<wbr>{MACHINE}.wic.upda=
+te.tar.gz ${IMAGE_ROOTFS}/<br>
+=C2=A0 }<br>
+<br>
+<br>
+I hope that helps!<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+<br>
+// Martin<br>
+</font></span></blockquote></div><br></div>
+
+--94eb2c1ce7fa9f2189055e929f44--
