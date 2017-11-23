@@ -1,35 +1,62 @@
-Return-Path: <petter@technux.se>
+Return-Path: <ranshalit@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00F2DE00CF7; Wed, 22 Nov 2017 22:40:28 -0800 (PST)
+	id EF0A8E00C78; Thu, 23 Nov 2017 06:08:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [195.74.38.228 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ranshalit[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Wed, 22 Nov 2017 22:40:27 PST
-Received: from bin-vsp-out-01.atm.binero.net (bin-mail-out-05.binero.net
-	[195.74.38.228])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7670AE00B1A
-	for <yocto@yoctoproject.org>; Wed, 22 Nov 2017 22:40:27 -0800 (PST)
-X-Halon-ID: f2fc7df2-d018-11e7-aaf5-005056917a89
-Authorized-sender: petter@technux.se
-Received: from petterarch.localdomain (unknown [95.199.134.206])
-	by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPSA
-	id f2fc7df2-d018-11e7-aaf5-005056917a89;
-	Thu, 23 Nov 2017 07:38:50 +0100 (CET)
-From: =?UTF-8?q?Petter=20Mab=C3=A4cker?= <petter@technux.se>
-To: yocto@yoctoproject.org
-Date: Thu, 23 Nov 2017 07:38:48 +0100
-Message-Id: <20171123063848.11164-1-petter@technux.se>
-X-Mailer: git-send-email 2.14.2
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A436E00A62;
+	Thu, 23 Nov 2017 06:08:36 -0800 (PST)
+Received: by mail-wm0-f47.google.com with SMTP id x63so17084019wmf.2;
+	Thu, 23 Nov 2017 06:08:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=BETgWrRylBDcd4pnelF5yLaydM1wjBmi1bMo/0xVPas=;
+	b=YFi9t+zkiRvEg1zSyWwExLRwezinB36cIMrHzYn9xGI0PA0HW3BHD1/sEY5FiwDq9w
+	cpS4w+IPR+zmoSalQRIDzxrqsIyccqREV67jwfJXfHExjI/QSMQYhZB1xQWXL8M8xKMo
+	iC2he3+WCvuZIAHHwaLtdIoJaGRy5RrSYGQjkY4CyCzzTa59CwJaedHH3dp9TmRqcW8w
+	xvlU/r5q/VkH+pJ8ggW6piDYqwgTEa4sfEZEK1kW7ew5pSrY22dsc1NTatnfGlJS66IL
+	6AIjqSANeNkivFc4pGDCyH7OWDVeCvmSqADXIatsPtHKteigWr858FWbsmw8vpZsJ7g5
+	TUTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=BETgWrRylBDcd4pnelF5yLaydM1wjBmi1bMo/0xVPas=;
+	b=mOi3xCReyAAfcYUDr6mleGaWr9VeO2wogld5jTuNxVLCZhi33bihcRejU/ieGeq1nS
+	Q3t19RTyKAbAKtAyveDQFVpYbWHFKdsdeuN6tnQ54oCSMD+bxM66Aiw+vFOrurJ6/izA
+	9q1e8wyrT6fayERHe45TtxR4ytMHApv/MHIDVR1kSDCQMJF7WkizDwE+lZ4l4j2hWUGy
+	fu+7vc2av1vA65zyb4CPkGQtu0s/z6DB15Mj+PjKeySZ0wvQRYzRlY1cf+NFww6cP8DK
+	ZziI7ceE1PRNMZE2WQpq+MW/B2td6s4EJozcFgHiLfiGQ/MiFQKV2w1GkSXbO0XdKTWK
+	0rZg==
+X-Gm-Message-State: AJaThX5uP4e6cGvIMMnmug8cOjU+usveolH7MEN5Vg6HNi2lO8Xhc9fz
+	JblvksLhGDl72agCmqUKwF9rXldVMabkjV4wrsxzlA==
+X-Google-Smtp-Source: AGs4zMalsq0FVW+lRD6QCyd6sMrTswqaX5WM1NpxdclMg2nsebu1SM35miN3McWid6uSTvQ9ywwlxirbQ9JMaDLpQpo=
+X-Received: by 10.80.213.90 with SMTP id f26mr35249302edj.225.1511446115263;
+	Thu, 23 Nov 2017 06:08:35 -0800 (PST)
 MIME-Version: 1.0
-Subject: [meta-chip][PATCH] linux: remove usage of deprecated linux-dtb.inc
+Received: by 10.80.135.197 with HTTP; Thu, 23 Nov 2017 06:08:34 -0800 (PST)
+From: Ran Shalit <ranshalit@gmail.com>
+Date: Thu, 23 Nov 2017 16:08:34 +0200
+Message-ID: <CAJ2oMhKJyZnKSWEuMaMPC8g4jYGi4LC5kUatBY0mUrU480sBxw@mail.gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>, 
+	Development list for the linux-yocto repositories
+	<linux-yocto@yoctoproject.org>
+Subject: snmp is not installed, only snmpd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,28 +68,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Nov 2017 06:40:29 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 23 Nov 2017 14:08:38 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Petter Mabäcker <petter@technux.se>
----
- recipes-kernel/linux/linux-chip_git.bb | 1 -
- 1 file changed, 1 deletion(-)
+Hello,
 
-diff --git a/recipes-kernel/linux/linux-chip_git.bb b/recipes-kernel/linux/linux-chip_git.bb
-index 38df4ad..955d6e7 100644
---- a/recipes-kernel/linux/linux-chip_git.bb
-+++ b/recipes-kernel/linux/linux-chip_git.bb
-@@ -6,7 +6,6 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
- COMPATIBLE_MACHINE = "chip"
- 
- inherit kernel
--require recipes-kernel/linux/linux-dtb.inc
- 
- LINUX_VERSION ?= "4.3.0"
- PV = "${LINUX_VERSION}+git${SRCPV}"
--- 
-2.14.2
+Does anyone knows how I can add snmp to yocto, I manage to have
+/etc/snmp/snmpd.conf , but not snmp.conf.
 
+This is what I tried:
+I added CORE_IMAGE_EXTRA_INSTALL += "net-snmp net-snmp-server
+net-snmp-libs net-snmp-mibs" , yet snmp.conf is missing
+
+I also tried to restart snmp as following:
+root@imx6qsabresd:/etc/openvivoe# systemctl restart snmp.service
+Failed to restart snmp.service: Unit snmp.service not found.
+
+But snmpd service seems to exist in image:
+root@imx6qsabresd:/etc/openvivoe# systemctl restart snmpd.service
+
+Thank you for any idea,
+Ran
 
