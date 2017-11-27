@@ -1,45 +1,26 @@
-Return-Path: <Hongxu.Jia@windriver.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31CDBE00D1C; Sat, 25 Nov 2017 00:55:55 -0800 (PST)
+	id 359B8E00D55; Sun, 26 Nov 2017 21:34:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=unavailable version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15F4DE00D1C;
-	Sat, 25 Nov 2017 00:55:53 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vAP8tlMZ012455
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 25 Nov 2017 00:55:47 -0800 (PST)
-Received: from [128.224.162.151] (128.224.162.151) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Sat, 25 Nov 2017 00:55:46 -0800
-To: akuster808 <akuster808@gmail.com>, Khem Raj <raj.khem@gmail.com>,
-	"Burton, Ross" <ross.burton@intel.com>, Michael Halstead
-	<michael@yoctoproject.org>
-References: <cover.1511437793.git.hongxu.jia@windriver.com>
-	<CAJTo0La5+dpVjgmDnkqP3wX+M2L-1sk11-wxreL1+7xR1anYfg@mail.gmail.com>
-	<CAMKF1sp96uZ5JY9NDPg=+eEmx7qivCe=5sJ=2gSxjO83k98vqw@mail.gmail.com>
-	<aa13bf27-012d-1a09-fd47-1f36dd2742d1@windriver.com>
-	<6c10d513-d9f2-ccb8-c81d-47e66e457192@gmail.com>
-From: Hongxu Jia <hongxu.jia@windriver.com>
-Message-ID: <a4477d5e-ce73-7dfb-0f56-7424048c1b2d@windriver.com>
-Date: Sat, 25 Nov 2017 16:58:26 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 425E3E00D39
+	for <yocto@yoctoproject.org>; Sun, 26 Nov 2017 21:34:44 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 1A736875A6D0
+	for <yocto@yoctoproject.org>; Mon, 27 Nov 2017 00:34:43 -0500 (EST)
 MIME-Version: 1.0
-In-Reply-To: <6c10d513-d9f2-ccb8-c81d-47e66e457192@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
-Subject: Re: [oe] [PATCH 00/15] create meta-installer layer
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 27 Nov 2017 05:34:43 -0000
+Message-ID: <20171127053443.13482.62030@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,23 +32,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Nov 2017 08:55:55 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Mon, 27 Nov 2017 05:34:45 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 
-On 2017年11月25日 03:34, akuster808 wrote:
->
-> These are sitting in the meta-openembedded patch queue. Did I miss the 
-> reject request?
->
-> - armin
+This mail was sent out by Recipe reporting system.
 
-I marked them as `rejected' in OE's patch work, I have applied to submit
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-meta-anaconda to yocto as a standalone repository.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
+You can check the detail information at:
 
-//Hongxu
+http://recipes.yoctoproject.org/
+
+Package               Version       Upstream version      Maintainer           NoUpgradeReason
+--------------------  ------------  --------------------  -------------------  ------------------------------
+python3               3.5.3         3.6.3                 Alejandro Hernandez
+python                2.7.13        2.7.14                Alejandro Hernandez
+eudev                 3.2.2         3.2.5                 Alejandro Hernandez
+python3-native        3.5.3         3.6.3                 Alejandro Hernandez
+python-native         2.7.13        2.7.14                Alejandro Hernandez
+openssl               1.1.0f        1.1.0g                Alexander Kanavin
+usbutils              008           009                   Alexander Kanavin
+mkelfimage            4.0+gitX      4.6+gitAUTOINC+db...  Alexander Kanavin    mkelfimage has been removed...
+webkitgtk             2.16.6        2.18.3                Alexander Kanavin
+trace-cmd             2.6.1         2.6.2                 Alexander Kanavin
+gnome-desktop3        3.24.2        3.26.2                Alexander Kanavin
+libpciaccess          0.13.5        0.14                  Alexander Kanavin
+libxslt               1.1.31        1.1.32                Alexander Kanavin
+dnf                   2.6.3         2.7.5                 Alexander Kanavin
+libdnf                0.9.3         0.11.1                Alexander Kanavin
+libnl                 3.2.29        3.4.0                 Alexander Kanavin
+librepo               1.7.20+gitX   1.8.1+gitAUTOINC+...  Alexander Kanavin
+gtk-doc               1.25          1.26                  Alexander Kanavin
+ffmpeg                3.3.4         3.4                   Alexander Kanavin
+lighttpd              1.4.45        1.4.48                Alexander Kanavin
+blktrace              1.1.0+gitX    1.2.0+gitAUTOINC+...  Alexander Kanavin
+dtc                   1.4.4         7.4                   Alexander Kanavin
+expect                5.45          5.45.3                Alexander Kanavin
+gobject-introspec...  1.52.1        1.54.1                Alexander Kanavin
+psmisc                22.21         23.1                  Alexander Kanavin
+btrfs-tools           4.13.2        4.14                  Alexander Kanavin
+systemtap-uprobes     3.1           3.2                   Alexander Kanavin
+systemtap             3.1           3.2                   Alexander Kanavin
+kernelshark           2.6.1         2.6.2                 Alexander Kanavin
+iso-codes             3.76          3.77                  Alexander Kanavin
+epiphany              3.24.3        3.26.3                Alexander Kanavin
+tiff                  4.0.8         4.0.9                 Alexander Kanavin
+icu                   59.1          60.1                  Alexander Kanavin
+apt                   1.2.24        1.4.8                 Aníbal Limón
+apt-native            1.2.24        1.4.8                 Aníbal Limón
+dpkg                  1.18.24       1.19.0.4              Aníbal Limón
+bind                  9.10.6        9.11.2                Armin Kuster
+curl                  7.54.1        7.56.1                Armin Kuster
+gnutls                3.5.16        3.6.1                 Armin Kuster
+nss                   3.33          3.34                  Armin Kuster
+kexec-tools           2.0.15        2.0.16                Armin Kuster
+libassuan             2.4.3         2.4.4                 Armin Kuster
+nettle                3.3           3.4                   Armin Kuster
+linux-libc-headers    4.12          4.14.2                Bruce Ashfield
+libunwind             1.2           1.2.1                 Bruce Ashfield
+iproute2              4.13.0        4.14.1                Changhyeok Bae
+ethtool               4.11          4.13                  Changhyeok Bae
+dbus-test             1.10.20       1.12.2                Chen Qi
+pciutils              3.5.5         3.5.6                 Chen Qi
+dbus                  1.10.20       1.12.2                Chen Qi
+coreutils             8.27          8.28                  Chen Qi
+systemd               234           235                   Chen Qi
+sed                   4.2.2         4.4                   Chen Qi
+sysstat               11.6.1        11.7.1                Chen Qi
+systemd-boot          234           235                   Chen Qi
+systemd-bootchart     231+gitX      233+gitAUTOINC+fe...  Chen Qi
+flex                  2.6.0         2.6.4                 Chen Qi
+build-appliance-i...  15.0.0        18.0.0                Cristian Iorga
+lz4                   1.7.4         1.8.0                 Denys Dmytriyenko
+lzop                  1.03          1.04                  Denys Dmytriyenko
+mtd-utils             2.0.0         2.0.1                 Denys Dmytriyenko
+acpica                20170303      20171110              Fathi Boudra
+gnupg                 2.2.0         2.2.3                 Hongxu Jia
+apr-util              1.6.0         1.6.1                 Hongxu Jia
+apr                   1.6.2         1.6.3                 Hongxu Jia
+bash                  4.4           4.4.12                Hongxu Jia
+ghostscript           9.21          9.22                  Hongxu Jia
+ncurses               6.0+20170715  6.0+20171125          Hongxu Jia
+man-pages             4.11          4.14                  Hongxu Jia
+help2man-native       1.47.4        1.47.5                Hongxu Jia
+python-numpy          1.13.1        1.13.3                Jose Lamego
+python-scons          3.0.0         3.0.1                 Jose Lamego
+bc                    1.06          1.07.1                Jose Lamego
+python3-pygobject     3.26.0        3.26.1                Jose Lamego
+python-setuptools     36.5.0        38.2.1                Jose Lamego
+python3-setuptools    36.5.0        38.2.1                Jose Lamego
+python-scons-native   3.0.0         3.0.1                 Jose Lamego
+pango                 1.40.12       1.40.14               Jussi Kukkonen
+libinput              1.8.3         1.9.2                 Jussi Kukkonen
+libsoup-2.4           2.60.1        2.60.2                Jussi Kukkonen
+gtk-icon-utils-na...  3.22.17       3.22.26               Jussi Kukkonen
+atk                   2.26.0        2.26.1                Jussi Kukkonen
+glib-networking       2.50.0        2.54.1                Jussi Kukkonen
+vte                   0.50.1        0.50.2                Jussi Kukkonen
+gtk+3                 3.22.24       3.22.26               Jussi Kukkonen
+at-spi2-atk           2.26.0        2.26.1                Jussi Kukkonen
+at-spi2-core          2.26.0        2.26.2                Jussi Kukkonen
+cross-localedef-n...  2.26          2.26.9000             Khem Raj
+ninja                 1.7.2         1.8.2                 Khem Raj
+glibc                 2.26          2.26.9000             Khem Raj
+mpfr                  3.1.5         3.1.6                 Khem Raj
+re2c                  0.16          1.0.1                 Khem Raj
+go-native             1.9           1.9.2                 Khem Raj
+go                    1.9           1.9.2                 Khem Raj
+binutils              2.29          2.29.1                Khem Raj
+gdb                   8.0           8.0.1                 Khem Raj
+libnsl2               1.0.5+gitX    1.2.0+gitAUTOINC+...  Khem Raj
+glibc-initial         2.26          2.26.9000             Khem Raj
+perl                  5.24.1        5.26.1                Leonardo Sandoval
+nfs-utils             2.1.1         2.2.1                 Leonardo Sandoval
+qemu                  2.10.1        2.11.0-rc2            Leonardo Sandoval
+perl-native           5.24.1        5.26.1                Leonardo Sandoval
+u-boot-fw-utils       2017.09       2017.11               Marek Vasut
+u-boot-mkimage        2017.09       2017.11               Marek Vasut
+u-boot                2017.09       2017.11               Marek Vasut
+rpm                   4.13.90+gitX  4.14.0+gitAUTOINC...  Mark Hatle
+ifupdown              0.8.16        0.8.29                Maxin B. John
+libical               2.0.0         3.0.1                 Maxin B. John
+harfbuzz              1.6.3         1.7.1                 Maxin B. John
+libsolv               0.6.29        0.6.30                Maxin B. John
+screen                4.6.1         4.6.2                 Maxin B. John
+mc                    4.8.19        4.8.20                Maxin B. John
+libogg                1.3.2         1.3.3                 Maxin B. John
+orc                   0.4.27        0.4.28                Maxin B. John
+go-cross-i586         1.9           1.9.2                 No maintainer
+binutils-cross-ca...  2.29          2.29.1                No maintainer
+binutils-cross-i586   2.29          2.29.1                No maintainer
+binutils-crosssdk...  2.29          2.29.1                No maintainer
+systemtap-native      3.1           3.2                   No maintainer
+gcc-source-6.4.0      6.4.0         7.2.0                 No maintainer
+gdb-cross-canadia...  8.0           8.0.1                 No maintainer
+gdb-cross-i586        8.0           8.0.1                 No maintainer
+go-cross-canadian...  1.9           1.9.2                 No maintainer
+go-crosssdk-x86_64    1.9           1.9.2                 No maintainer
+go-runtime            1.9           1.9.2                 No maintainer
+pkgconf               1.3.7         1.3.10                No maintainer
+mesa                  17.2.5        17.2.6                Otavio Salvador
+cmake                 3.9.5         3.10.0                Otavio Salvador
+cmake-native          3.9.5         3.10.0                Otavio Salvador
+go-dep                0.3.1         0.3.2                 Otavio Salvador
+mesa-gl               17.2.5        17.2.6                Otavio Salvador
+tcf-agent             1.4.0+gitX    1.5+gitAUTOINC+5e...  Randy Witt
+subversion            1.9.6         1.9.7                 Richard Purdie
+lttng-tools           2.9.5         2.10.1                Richard Purdie
+lttng-ust             2.9.1         2.10.0                Richard Purdie
+lttng-modules         2.9.5         2.10.4                Richard Purdie
+debianutils           4.8.1.1       4.8.3                 Robert Yang
+strace                4.19          4.20                  Robert Yang
+less                  527           529                   Robert Yang
+autoconf-archive      2016.09.16    2017.09.28            Robert Yang
+time                  1.7           1.8                   Robert Yang
+base-passwd           3.5.29        3.5.44                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.72          9.78                  Ross Burton
+alsa-utils-scripts    1.1.4         1.1.5                 Tanu Kaskinen
+pulseaudio            10.0          11.1                  Tanu Kaskinen
+alsa-plugins          1.1.4         1.1.5                 Tanu Kaskinen
+alsa-lib              1.1.4.1       1.1.5                 Tanu Kaskinen
+alsa-tools            1.1.3         1.1.5                 Tanu Kaskinen
+alsa-utils            1.1.4         1.1.5                 Tanu Kaskinen
+lame                  3.99.5        3.100                 Tanu Kaskinen
+libva-utils           1.8.3         2.0.0                 Wei Tee Ng
+libva                 1.8.3         2.0.0                 Wei Tee Ng
+avahi-ui              0.6.32        0.7                   Yi Zhao
+avahi                 0.6.32        0.7                   Yi Zhao
+chkconfig             1.3.58        1.8                   Yi Zhao              Version 1.5 requires selinux
+json-glib             1.2.8         1.4.2                 Yi Zhao
+
+Upgradable count: 153
+Upgradable total count: 156
+
+The based commit is:
+
+commit 33418ed064fe9cff5b4803f09135a81d9170c189
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Tue Nov 21 17:56:40 2017 +0000
+
+    runqemu: Also specialcase resolution of '.' to the file's location
+    
+    Similarly to handling "../", handle "." to resovle to the qemuconf
+    file's current directory.
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
 
 
