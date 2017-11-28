@@ -1,35 +1,61 @@
-Return-Path: <Dengke.Du@windriver.com>
+Return-Path: <k4230r6@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2553DE00C45; Mon, 27 Nov 2017 22:02:35 -0800 (PST)
+	id 06407E00C0E; Tue, 28 Nov 2017 05:57:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (k4230r6[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE231E00BEA
-	for <yocto@yoctoproject.org>; Mon, 27 Nov 2017 22:02:33 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vAS62Vlc003175
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 27 Nov 2017 22:02:31 -0800 (PST)
-Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Mon, 27 Nov 2017 22:02:30 -0800
-From: Dengke Du <dengke.du@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 28 Nov 2017 01:02:29 -0500
-Message-ID: <1511848949-245110-1-git-send-email-dengke.du@windriver.com>
-X-Mailer: git-send-email 2.8.1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f181.google.com (mail-qt0-f181.google.com
+	[209.85.216.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1B44E00B1E
+	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 05:57:01 -0800 (PST)
+Received: by mail-qt0-f181.google.com with SMTP id r58so578086qtc.0
+	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 05:57:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=+cgQr/H/D9jQK6yYyIx+Xsv7ieVPyR5HCRa6OF7ok+A=;
+	b=XSCr8EYuCJlZyF+tMcxDVw6/o6RpajsVa2xcsp4JoLkO9oAozt9oCKvQSGHAt6VWbl
+	10lXdKMcEAJ2ZmU8jqSFKVqCmxo4+sRyLuMWO8oSE8KO/sYwF/UlT4cWzHGpgZkbJJd8
+	F54h/r588RL1AlOcTcDh5Fya/MH84PsccBxsMaerW+OLoh2pWlEdqhMtIbSq014v9C/R
+	peFaUOONAItkeq2EfNfo+hiafpjFbV9t94w0R0+ghsZafEUPwCwN1p4yxCuYV/ayC4vX
+	fDz1C541IAy8nTIxBh/2D7WNPwyWbjbYOEL7zSUjOvsabT1fh5Kr30fn+izs6T99yRJh
+	CMcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=+cgQr/H/D9jQK6yYyIx+Xsv7ieVPyR5HCRa6OF7ok+A=;
+	b=L+IsDLcm5SR4RHdRm5LP4cmBG6yQeWGEIcpzNyef+2CAjBrSklLbCgxTQEQ7cibJHu
+	bJ+LAo8LORNDWHOtM9aTVgbLgHBzeRdX1gQqttimyKWEjTMBIIT2XIpT6yzGxC0mWwzm
+	1iULGGluZeV6z4aEyfsj46iq8/21Q4fybu4TEIxd7I9kT+nLom3mEZriDPoZ0WALG5yg
+	6lXDO1S2i/fYbiMI+GfjQMna2QaGPnZA3M4QSAseD+M9fm0G2OxvstWVFHC7355HbxAh
+	GNIhlPbTAdHHCi37rgfYKk2XZmyKqaY7DT3lhkiP83qjd8PjCd2fpCXVqUaDgn7Huu1H
+	rkMw==
+X-Gm-Message-State: AJaThX6Nuxbp6J2J+W6EqTfnh8LwXCwXR/zIGktUqq3A315SdunE9QI1
+	/OIcbAUU12v7bHr24eU+HcMJ39HQSlpM55SZIeg4ew==
+X-Google-Smtp-Source: AGs4zMZ5dVIJKr8eOqd+XMWrqO0XQ9B7gnshZFaIK+o3s9SaE+IUwY1CEt5/HHIoNzIyqBYQ5iaoUaWl92+SkPskewM=
+X-Received: by 10.200.8.56 with SMTP id u53mr55115566qth.85.1511877420642;
+	Tue, 28 Nov 2017 05:57:00 -0800 (PST)
 MIME-Version: 1.0
-Cc: andrei@gherzan.com
-Subject: [meta-raspberrypi][PATCH V2] bluepy: add it
+Received: by 10.12.131.134 with HTTP; Tue, 28 Nov 2017 05:57:00 -0800 (PST)
+From: Christian Ege <k4230r6@gmail.com>
+Date: Tue, 28 Nov 2017 14:57:00 +0100
+Message-ID: <CAALGJZY3j17rTPo8r4iYxt6D1Gcy-5_dy79Ge7xg9=mqsDsS2g@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: How to generate SPDX Information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,108 +67,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Nov 2017 06:02:35 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 28 Nov 2017 13:57:03 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-The bluepy can let us programming bluetooth le application in python.
+Hello,
 
-Signed-off-by: Dengke Du <dengke.du@windriver.com>
----
- recipes-devtools/bluepy/bluepy_git.bb              | 48 ++++++++++++++++++++++
- ...compiling-get-the-cross-compiler-from-env.patch | 28 +++++++++++++
- 2 files changed, 76 insertions(+)
- create mode 100644 recipes-devtools/bluepy/bluepy_git.bb
- create mode 100644 recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cross-compiler-from-env.patch
+due to the fact there is a license troll who actively sue German
+companies. I did some research to comply ith the need to provide the
+copyright information within my YOCTO builds. My research ended up
+with the spdx.class which includes support for the fossology tool. But
+the current version of fossology does not support the spdx plugin used
+in the spdx.class anymore [1] This plugin is not updated since 4
+years. As an alternative there is the DoSOCSv2 tool [2] for which a
+Patch by Lei Maohui exists which was not accepted and Lei ended up in
+a separate layer called meta-spdxscanner [3].
 
-diff --git a/recipes-devtools/bluepy/bluepy_git.bb b/recipes-devtools/bluepy/bluepy_git.bb
-new file mode 100644
-index 0000000..3e2e7de
---- /dev/null
-+++ b/recipes-devtools/bluepy/bluepy_git.bb
-@@ -0,0 +1,48 @@
-+SUMMARY = "Python module for interfacing with BLE devices through Bluez"
-+HOMEPAGE = "https://github.com/IanHarvey/bluepy"
-+# WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best guesses - it is
-+# your responsibility to verify that the values are complete and correct.
-+#
-+# The following license files were not able to be identified and are
-+# represented as "Unknown" below, you will need to check them yourself:
-+#   LICENSE.txt
-+#   bluez-5.29/COPYING.LIB
-+#
-+# NOTE: multiple licenses have been detected; they have been separated with &
-+# in the LICENSE value for now since it is a reasonable assumption that all
-+# of the licenses apply. If instead there is a choice between the multiple
-+# licenses then you should change the value to separate the licenses with |
-+# instead of &. If there is any doubt, check the accompanying documentation
-+# to determine which situation is applicable.
-+LICENSE = "Unknown & GPLv2"
-+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=59e0d45ea684dda215889aa1b5acd001 \
-+                    file://bluez-5.29/COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e \
-+                    file://bluez-5.29/COPYING.LIB;md5=fb504b67c50331fc78734fed90fb0e09"
-+
-+SRC_URI = "git://github.com/IanHarvey/bluepy.git;protocol=https \
-+           file://0001-When-cross-compiling-get-the-cross-compiler-from-env.patch \
-+"
-+
-+# Modify these as desired
-+PV = "1.1.2+git${SRCPV}"
-+SRCREV = "b1178fba2729692532e02d95e7368c742814f725"
-+
-+S = "${WORKDIR}/git"
-+
-+inherit setuptools
-+
-+DEPENDS += " glib-2.0"
-+
-+# WARNING: the following rdepends are determined through basic analysis of the
-+# python sources, and might not be 100% accurate.
-+RDEPENDS_${PN} += "python-argparse python-core python-io python-json python-subprocess"
-+
-+# WARNING: We were unable to map the following python package/module
-+# dependencies to the bitbake packages which include them:
-+#    bluepy
-+#    bluepy.btle
-+#    bs4
-+#    requests
-+
-+INHIBIT_PACKAGE_STRIP = "1"
-+INSANE_SKIP_${PN} += "ldflags"
-diff --git a/recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cross-compiler-from-env.patch b/recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cross-compiler-from-env.patch
-new file mode 100644
-index 0000000..8799058
---- /dev/null
-+++ b/recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cross-compiler-from-env.patch
-@@ -0,0 +1,28 @@
-+From abf880ff4c276134564e1f1e63a3b6699060da7f Mon Sep 17 00:00:00 2001
-+From: Dengke Du <dengke.du@windriver.com>
-+Date: Mon, 27 Nov 2017 03:48:16 -0500
-+Subject: [PATCH] When cross compiling, get the cross compiler from environment
-+
-+Signed-off-by: Dengke Du <dengke.du@windriver.com>
-+---
-+ bluepy/Makefile | 4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/bluepy/Makefile b/bluepy/Makefile
-+index 76bafec..42f145b 100644
-+--- a/bluepy/Makefile
-++++ b/bluepy/Makefile
-+@@ -9,8 +9,8 @@ BLUEZ_SRCS += src/shared/io-glib.c src/shared/timeout-glib.c
-+ IMPORT_SRCS = $(addprefix $(BLUEZ_PATH)/, $(BLUEZ_SRCS))
-+ LOCAL_SRCS  = bluepy-helper.c
-+ 
-+-CC = gcc
-+-CFLAGS = -Os -g -Wall # -Werror
-++CC ?= gcc
-++CFLAGS ?= -Os -g -Wall # -Werror
-+ 
-+ CPPFLAGS = -DHAVE_CONFIG_H
-+ ifneq ($(DEBUGGING),)
-+-- 
-+2.8.1
-+
+So my specific question is, what are the recommended actions to comply
+to provide copyright information with the sourcecode/binary? What is
+the state of the art at the moment and how do the users of oe/yocto
+solve this requirement.
+
+Thanks in advance,
+Christian
+
 -- 
-2.8.1
-
+[1] https://github.com/FOSSology-SPDX/fossology-spdx
+[2] https://github.com/DoSOCSv2/DoSOCSv2
+[3] https://layers.openembedded.org/layerindex/branch/master/layer/meta-spdxscanner/
 
