@@ -1,67 +1,80 @@
-Return-Path: <jerry.lian@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36F7EE00B48; Tue, 28 Nov 2017 07:00:30 -0800 (PST)
+	id 3E52FE00BEA; Tue, 28 Nov 2017 07:45:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jerry.lian[at]gmail.com)
+	mail provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.173 listed in list.dnswl.org]
+	*      [209.85.160.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f173.google.com (mail-ot0-f173.google.com
-	[74.125.82.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7156BE00A9C
-	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:00:28 -0800 (PST)
-Received: by mail-ot0-f173.google.com with SMTP id h9so108081oti.0
-	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:00:28 -0800 (PST)
+Received: from mail-pl0-f52.google.com (mail-pl0-f52.google.com
+	[209.85.160.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B0EAE00A9C
+	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:45:25 -0800 (PST)
+Received: by mail-pl0-f52.google.com with SMTP id d21so145358pll.1
+	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:45:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=hHdTcNYD19NxPvwF46M4hAOim3xBANDsi6hs8Tfgyz4=;
-	b=H/1wkNijKNWeY9JlJH5zgXkUTcDz1BUMR71KZrC47plSKj08vGHf9j6rQesEKKUtLF
-	ADaoXHEqeWOImjKxQw7AM+kYVcmLhEvtzO1/ZKwENYrIw49OXXtbhvzkgXjpxhDALAFk
-	Z113nWbDOyoPKPTSdQzQnw7uk0iHKHM1PfgArHdtiTj8iT+z+tQyWQEL4+QUTHpRO4c1
-	Iy1SKpl/fvF9vmXM+28UsS2jmTBW/MFKst0fPZdVYWIGud++d1+8VIaFmX7Rdgeun5OL
-	odDRlttACzdyF4aBwM1nvMM1kvk6C+rveCo8Zl0mwbj/ElcJi4JRape20b/dEgOSuYHD
-	9ywA==
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-transfer-encoding:content-language;
+	bh=gdvUifTNqzi7cTAVpI0hlWhauwB3sKLcj+/LSdqMtY8=;
+	b=PbJWMXggXdO5Bpxda5hdgazjFgxQTKpxYvKSKoCRI+MDsWBfyGhB1p2jAwo5KmZ8YK
+	9LbpNas0YIcljx9HLu2/NKBWUhwWgFigV7GyafXp1xz9H/pYevGYoAzrSFnFsDH/bHZ7
+	OuDBf/x0HW+O0KfcnrBkVRizHY9dXSD6VPTBb/S9QWbZc1CY32yKqRiuYSKkUzVWFVy9
+	gNWQXFZ5R63g1pWciwFpfKatKdfkbR6tdtiLxzjN7JwKF76Ev4Buv+EpzCPOeZtMsebg
+	QNfDKW1P/jTVQrVfm8Oy92V3/5kw3x2XWnDE0TNeXFxaZDjZ5Mp9oEWS39cAMlPfp5rP
+	C4Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=hHdTcNYD19NxPvwF46M4hAOim3xBANDsi6hs8Tfgyz4=;
-	b=rppmWgaBPzAmROhT3NdZT0C5sk+FpJa/cU3OIPY5Pfm7o6MFrF3fxWR7VLXW0xtggM
-	5AVv00vaHINT5O53iXOe+j3pUVDNXLtSeCImzdpkW+PKoVZyGWJqZigUVH518+qnziww
-	dzQDRPQ2+0iono7j5QKqumjkRqNbkm63NIcgPdaycS/Ta6rmb9PxhOGOnTgLB0fU1rBI
-	JVhNNzqSx3Tf1A9vxDiMOebvjkz0FyKLVMHOPV5RCTBb+2/qVDjXvV826zdrxzk6CZn5
-	Rmk4ZM1gRoiJjuoeHgLmSEdaT4sfbpPPUHSB6oKqx5rBIWyGknTaoXJCjdM7GceVpypE
-	ZiTQ==
-X-Gm-Message-State: AJaThX7IIGxkF7kD1l0eQ0jXEOFa/XStdssXTHDh/DLgy16xzV4OmzWv
-	GaPYLkaTAIZ9HmMN2oUy+ECj2zwK45fT0OOxZ6k=
-X-Google-Smtp-Source: AGs4zMba/YyfsV/ML4wBapzmL+C/6wd7hVwIsalq09LiyFzJyqOngNSw4QHgciqBwLc21qRWCBfpjtCI1jOP1609f3E=
-X-Received: by 10.157.62.181 with SMTP id b50mr29190060otc.160.1511881228353; 
-	Tue, 28 Nov 2017 07:00:28 -0800 (PST)
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=gdvUifTNqzi7cTAVpI0hlWhauwB3sKLcj+/LSdqMtY8=;
+	b=iPw7GFrf6Lqo/5HXRFMneFkaRsXarVwvlIIpwIhBT1vGeyBurHmcK5uCfN6LMt99a1
+	Bw5uEX73BvJE9qVLZSgART/p7cj+mcmwm9uRgfqeTavtQFpoJgXHMy7rd98UcsIRl2IO
+	lKoFU4sne2ykbv323o+MP3fkaprrRamTeXS/GbHuwpmIE6f9G2a1pGgtLRRZik8DMedx
+	llV85NMgFAnd1MlxUVxz+WcaHAahyMoDdY8UzpsH15Dd4i38Yj0cWNF64W6H5spoQEyO
+	JuYwlm9zceBuYTFYMFJqq0CHoRCDgrOAJUHTfmfjmXdngY4hYRPyyVxeFfaZ7BlC3RJK
+	epyA==
+X-Gm-Message-State: AJaThX4kdtU7D2Za8hzqhVPOZO2qHwhcfh72g/9NTC35iV/RffR1Sc8Z
+	+HEsmklo3pq9eKAqIakTe2Q=
+X-Google-Smtp-Source: AGs4zMbwnIdvW16kRt/wPWySUylGcDMJtnLJhfZ0FdiUo1m5A1hHBCeUDHAEVJCHKg5UakXwMu9KPg==
+X-Received: by 10.84.133.164 with SMTP id f33mr16235796plf.241.1511883924841; 
+	Tue, 28 Nov 2017 07:45:24 -0800 (PST)
+Received: from ?IPv6:2601:202:4001:9ea0:2c7f:421f:20ad:ca14?
+	([2601:202:4001:9ea0:2c7f:421f:20ad:ca14])
+	by smtp.gmail.com with ESMTPSA id
+	t66sm17098696pfa.153.2017.11.28.07.45.23
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 28 Nov 2017 07:45:24 -0800 (PST)
+To: Mark Hatle <mark.hatle@windriver.com>,
+	"Burton, Ross" <ross.burton@intel.com>,
+	Hongxu Jia <hongxu.jia@windriver.com>
+References: <bfbfad0b-af40-5448-4aed-fc70eeb95c6c@windriver.com>
+	<7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com>
+	<CAJTo0LZfkd2SbTrXL6ggt9_NQbDUfEDVLTaaqc8sPwaUihfRUw@mail.gmail.com>
+	<6724ad48-b676-0de9-df72-453272f978f3@windriver.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <14ea1950-7cd7-c104-14a0-0f34d2bbbe1b@gmail.com>
+Date: Tue, 28 Nov 2017 07:45:23 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-Received: by 10.157.42.113 with HTTP; Tue, 28 Nov 2017 07:00:27 -0800 (PST)
-In-Reply-To: <CAOT_U5YEjzDEo=AUBdmkaQ0eLeV98YDuqrpxtOHCoZJqr1bvrQ@mail.gmail.com>
-References: <CAE0QtjN1jE1ci2J1cMC8sQ2Pw70AOTc5bP8rQsrN2fBRpbhGxw@mail.gmail.com>
-	<CAOT_U5YEjzDEo=AUBdmkaQ0eLeV98YDuqrpxtOHCoZJqr1bvrQ@mail.gmail.com>
-From: Jerry Lian <jerry.lian@gmail.com>
-Date: Tue, 28 Nov 2017 10:00:27 -0500
-Message-ID: <CAE0QtjPT5dnRYa+tcHPCi+K=Ej0aNOuaTYXufzpEch-452P26A@mail.gmail.com>
-To: Alan Martinovic <alan.martinovic@senic.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: How to add support for "usb WIFI dongle"?
+In-Reply-To: <6724ad48-b676-0de9-df72-453272f978f3@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Yang,
+	Zhangle \(Eric\)" <Zhangle.Yang@windriver.com>
+Subject: Re: Contribute meta-installer to yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,156 +86,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Nov 2017 15:00:30 -0000
-Content-Type: multipart/alternative; boundary="001a11407a8c8f03f4055f0c4753"
-
---001a11407a8c8f03f4055f0c4753
-Content-Type: text/plain; charset="UTF-8"
-
-Thanks Alan, I follow your instruction and it works eventually!
-
-But I got another question:
-
-   - I am using official Raspberry-PI WIFI dongle (BCM43143)
-   - I configure kernel so that driver "brcm80211" is enabled, however,
-   WIFI is not working.
-   - Then I add driver "ipw2x00", then WIFI works.
-   - So my question, why do we need both "ipw2x00" and "brcm80211" for
-   official Raspberry-PI WIFI dongle?
-   - (Sometimes the WIFI dongle works if I add drivers: "brcm80211,
-   iwlwifi, rt2x00", without "ipw2x00", so I am really confused!)
-
-Thanks!
-
-
-
-
-
-
-
-On Tue, Nov 21, 2017 at 12:04 PM, Alan Martinovic <alan.martinovic@senic.com
-> wrote:
-
-> Some hints on where to start at:
->
-> > What should I do to add support for "usb WIFI dongle"
->
-> Am guessing the dongle works with Raspbian or id gets detected
-> once you plug it into a desktop Linux machine.
-> Once you do that type:
->
->     dmesg
->
-> And it will list the kernel modules related to your dongle.
-> You can use those buzzwords to google for what does
-> enabling the dongle actually translates to in terms of kernel config.
->
-> After that (depending what linux you're using) figure out how to
-> run menuconfig. It might be something like:
->
->     bitbake your-kernel-package-name -c menuconfig
->
-> and try checking out the boxes that you found out
-> might be relevant to your wifi dongle.
-> Save it, build the image, and see if it got you somewhere.
->
->
->
->
->
->
->
-> On Tue, Nov 21, 2017 at 5:32 PM, Jerry Lian <jerry.lian@gmail.com> wrote:
-> > I am confused on adding support for "usb WIFI dongle":
-> > * My boards do NOT have WIFI capability, so I will add a "usb WIFI
-> dongle".
-> >   (I have two boards: Raspberri-PI-2, SIMATIC IOT-2020)
-> > * Suppose we start from "core-image-sato"
-> > * What should I do to add support for "usb WIFI dongle"
-> > * After we build/boot the image, how can we verify and bring the WIFI up?
-> >
-> > Thanks!
-> > Jerry
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
-
---001a11407a8c8f03f4055f0c4753
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Tue, 28 Nov 2017 15:45:26 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
 
-<div dir=3D"ltr">Thanks Alan, I follow your instruction and it works eventu=
-ally!<div><span class=3D"gmail-scrollOnMaxWidth"><p>But I got another quest=
-ion:</p><ul><li>I am using official Raspberry-PI WIFI dongle (BCM43143)</li=
-><li>I configure kernel so that driver &quot;brcm80211&quot; is enabled, ho=
-wever, WIFI is not working.</li><li>Then I add driver &quot;ipw2x00&quot;, =
-then WIFI works.</li><li>So my question, why do we need both &quot;ipw2x00&=
-quot; and &quot;brcm80211&quot; for official Raspberry-PI WIFI dongle?</li>=
-<li>(Sometimes the WIFI dongle works if I add drivers: &quot;brcm80211, iwl=
-wifi, rt2x00&quot;, without &quot;ipw2x00&quot;, so I am really confused!)<=
-/li></ul><p>Thanks!<br></p><p><br></p><p><br></p><p><br></p></span><div><br=
-></div><div><br></div></div></div><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">On Tue, Nov 21, 2017 at 12:04 PM, Alan Martinovic <span di=
-r=3D"ltr">&lt;<a href=3D"mailto:alan.martinovic@senic.com" target=3D"_blank=
-">alan.martinovic@senic.com</a>&gt;</span> wrote:<br><blockquote class=3D"g=
-mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
-eft:1ex">Some hints on where to start at:<br>
-<span class=3D""><br>
-&gt; What should I do to add support for &quot;usb WIFI dongle&quot;<br>
-<br>
-</span>Am guessing the dongle works with Raspbian or id gets detected<br>
-once you plug it into a desktop Linux machine.<br>
-Once you do that type:<br>
-<br>
-=C2=A0 =C2=A0 dmesg<br>
-<br>
-And it will list the kernel modules related to your dongle.<br>
-You can use those buzzwords to google for what does<br>
-enabling the dongle actually translates to in terms of kernel config.<br>
-<br>
-After that (depending what linux you&#39;re using) figure out how to<br>
-run menuconfig. It might be something like:<br>
-<br>
-=C2=A0 =C2=A0 bitbake your-kernel-package-name -c menuconfig<br>
-<br>
-and try checking out the boxes that you found out<br>
-might be relevant to your wifi dongle.<br>
-Save it, build the image, and see if it got you somewhere.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-On Tue, Nov 21, 2017 at 5:32 PM, Jerry Lian &lt;<a href=3D"mailto:jerry.lia=
-n@gmail.com">jerry.lian@gmail.com</a>&gt; wrote:<br>
-&gt; I am confused on adding support for &quot;usb WIFI dongle&quot;:<br>
-&gt; * My boards do NOT have WIFI capability, so I will add a &quot;usb WIF=
-I dongle&quot;.<br>
-&gt;=C2=A0 =C2=A0(I have two boards: Raspberri-PI-2, SIMATIC IOT-2020)<br>
-&gt; * Suppose we start from &quot;core-image-sato&quot;<br>
-&gt; * What should I do to add support for &quot;usb WIFI dongle&quot;<br>
-&gt; * After we build/boot the image, how can we verify and bring the WIFI =
-up?<br>
-&gt;<br>
-&gt; Thanks!<br>
-&gt; Jerry<br>
-&gt;<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
-&gt; ______________________________<wbr>_________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
-</a><br>
-&gt;<br>
-</font></span></blockquote></div><br></div>
 
---001a11407a8c8f03f4055f0c4753--
+
+On 11/27/2017 09:20 AM, Mark Hatle wrote:
+> On 11/21/17 3:24 PM, Burton, Ross wrote:
+>> On 21 November 2017 at 08:55, Hongxu Jia <hongxu.jia@windriver.com
+>> <mailto:hongxu.jia@windriver.com>> wrote:
+>>
+>>     If yocto is interested in this layer and will accept it,
+>>     I could send pull request or some one directly fetch
+>>     from above github master branch.
+>>
+>>
+>> Are you asking for a git repo on git.yoctoproject.org
+>> <http://git.yoctoproject.org>?=C2=A0 If you want one I believe the pro=
+cess is to ask
+>> Michael Halstead.=C2=A0 There's no reason why it can't be maintained i=
+n this
+>> repository forever though, =C2=A0just submit it to the layer index.
+> The request is for more then just a repository.  (We can get a reposito=
+ry
+> anywhere..)  What he is asking for is, is this something that the Yocto=
+ Project
+> itself wants to own.  He is still offering to be the maintainer of the =
+layer,
+> but the project being owned by the Yocto Project itself has more implic=
+ations.
+That is an interesting question.=C2=A0 Are you suggesting a discussion wi=
+th
+the YP membership=C2=A0 since they are the ones who are providing the
+resources for the Project?
+
+>
+> I.e. using the bugzilla, discussion on the @yoctoproject.org mailing li=
+sts,
+> etc... what happens if he is no longer able to willing to maintain the =
+layer.. etc.
+>
+> In addition, my understanding is a target based installer has places to=
+ insert
+> logos.  Currently these are blank.  If the Yocto Project wants to be th=
+e home
+> for this, then I would also hope that specific logos would be approved =
+for use
+> within the default installer instance.
+>
+> If this is outside of the scope of what the Yocto Project itself wants =
+to own,
+> then OpenEmbedded is the next place that might see value in this.... if=
+ not,
+> then a github project will be fine.
+
+
+Having an open discussion, like this is more in line with open source
+philosophy and I thank you.
+
+Kind regards,
+Armin
+>> Ross
+
+
+
