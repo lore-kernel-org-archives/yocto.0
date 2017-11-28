@@ -1,6 +1,6 @@
-Return-Path: <Hongxu.Jia@windriver.com>
+Return-Path: <Dengke.Du@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0ACC5E00C0E; Mon, 27 Nov 2017 17:16:32 -0800 (PST)
+	id 8852BE00C0E; Mon, 27 Nov 2017 17:48:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,33 +9,24 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E451E00B1E;
-	Mon, 27 Nov 2017 17:16:30 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CAF7E00B1E
+	for <yocto@yoctoproject.org>; Mon, 27 Nov 2017 17:48:16 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id vAS1GSXr028604
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id vAS1mFGT029200
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Mon, 27 Nov 2017 17:16:28 -0800
-Received: from [128.224.162.151] (128.224.162.151) by ALA-HCA.corp.ad.wrs.com
+	Mon, 27 Nov 2017 17:48:15 -0800
+Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Mon, 27 Nov 2017 17:16:27 -0800
-To: Mark Hatle <mark.hatle@windriver.com>, "Burton, Ross"
-	<ross.burton@intel.com>,
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <bfbfad0b-af40-5448-4aed-fc70eeb95c6c@windriver.com>
-	<7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com>
-	<CAJTo0LZfkd2SbTrXL6ggt9_NQbDUfEDVLTaaqc8sPwaUihfRUw@mail.gmail.com>
-	<6724ad48-b676-0de9-df72-453272f978f3@windriver.com>
-From: Hongxu Jia <hongxu.jia@windriver.com>
-Message-ID: <8de05b5e-bdbd-059e-780f-bb323d71c318@windriver.com>
-Date: Tue, 28 Nov 2017 09:19:04 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	Mon, 27 Nov 2017 17:48:14 -0800
+From: Dengke Du <dengke.du@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 27 Nov 2017 20:48:13 -0500
+Message-ID: <1511833693-177790-1-git-send-email-dengke.du@windriver.com>
+X-Mailer: git-send-email 2.8.1
 MIME-Version: 1.0
-In-Reply-To: <6724ad48-b676-0de9-df72-453272f978f3@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Yang,
-	Zhangle \(Eric\)" <Zhangle.Yang@windriver.com>
-Subject: Re: Contribute meta-installer to yocto
+Cc: andrei@gherzan.com
+Subject: [[meta-raspberrypi]][PATCH] bluepy: add it
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,54 +38,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Nov 2017 01:16:32 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 28 Nov 2017 01:48:18 -0000
+Content-Type: text/plain
 
-On 2017年11月28日 01:20, Mark Hatle wrote:
-> On 11/21/17 3:24 PM, Burton, Ross wrote:
->> On 21 November 2017 at 08:55, Hongxu Jia <hongxu.jia@windriver.com
->> <mailto:hongxu.jia@windriver.com>> wrote:
->>
->>      If yocto is interested in this layer and will accept it,
->>      I could send pull request or some one directly fetch
->>      from above github master branch.
->>
->>
->> Are you asking for a git repo on git.yoctoproject.org
->> <http://git.yoctoproject.org>?  If you want one I believe the process is to ask
->> Michael Halstead.  There's no reason why it can't be maintained in this
->> repository forever though,  just submit it to the layer index.
-> The request is for more then just a repository.  (We can get a repository
-> anywhere..)  What he is asking for is, is this something that the Yocto Project
-> itself wants to own.  He is still offering to be the maintainer of the layer,
-> but the project being owned by the Yocto Project itself has more implications.
->
-> I.e. using the bugzilla, discussion on the @yoctoproject.org mailing lists,
-> etc... what happens if he is no longer able to willing to maintain the layer.. etc.
->
-> In addition, my understanding is a target based installer has places to insert
-> logos.  Currently these are blank.  If the Yocto Project wants to be the home
-> for this, then I would also hope that specific logos would be approved for use
-> within the default installer instance.
->
-> If this is outside of the scope of what the Yocto Project itself wants to own,
-> then OpenEmbedded is the next place that might see value in this.... if not,
-> then a github project will be fine.
+The bluepy can let us programming bluetooth le application in python.
 
-Update the status:
+Signed-off-by: Dengke Du <dengke.du@windriver.com>
+---
+ recipes-devtools/bluepy/bluepy_git.bb              | 48 ++++++++++++++++++++++
+ ...compiling-get-the-cross-compiler-from-env.patch | 28 +++++++++++++
+ 2 files changed, 76 insertions(+)
+ create mode 100644 recipes-devtools/bluepy/bluepy_git.bb
+ create mode 100644 recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cross-compiler-from-env.patch
 
-I have applied the request to Michael, and he replied.
-
-As he asked, I submit the code to
-ssh://git@push.yoctoproject.org/meta-anaconda
-
-And Michael waits for Richard's approval.
-
-//Hongxu
-
->> Ross
->
+diff --git a/recipes-devtools/bluepy/bluepy_git.bb b/recipes-devtools/bluepy/bluepy_git.bb
+new file mode 100644
+index 0000000..3e2e7de
+--- /dev/null
++++ b/recipes-devtools/bluepy/bluepy_git.bb
+@@ -0,0 +1,48 @@
++SUMMARY = "Python module for interfacing with BLE devices through Bluez"
++HOMEPAGE = "https://github.com/IanHarvey/bluepy"
++# WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best guesses - it is
++# your responsibility to verify that the values are complete and correct.
++#
++# The following license files were not able to be identified and are
++# represented as "Unknown" below, you will need to check them yourself:
++#   LICENSE.txt
++#   bluez-5.29/COPYING.LIB
++#
++# NOTE: multiple licenses have been detected; they have been separated with &
++# in the LICENSE value for now since it is a reasonable assumption that all
++# of the licenses apply. If instead there is a choice between the multiple
++# licenses then you should change the value to separate the licenses with |
++# instead of &. If there is any doubt, check the accompanying documentation
++# to determine which situation is applicable.
++LICENSE = "Unknown & GPLv2"
++LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=59e0d45ea684dda215889aa1b5acd001 \
++                    file://bluez-5.29/COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e \
++                    file://bluez-5.29/COPYING.LIB;md5=fb504b67c50331fc78734fed90fb0e09"
++
++SRC_URI = "git://github.com/IanHarvey/bluepy.git;protocol=https \
++           file://0001-When-cross-compiling-get-the-cross-compiler-from-env.patch \
++"
++
++# Modify these as desired
++PV = "1.1.2+git${SRCPV}"
++SRCREV = "b1178fba2729692532e02d95e7368c742814f725"
++
++S = "${WORKDIR}/git"
++
++inherit setuptools
++
++DEPENDS += " glib-2.0"
++
++# WARNING: the following rdepends are determined through basic analysis of the
++# python sources, and might not be 100% accurate.
++RDEPENDS_${PN} += "python-argparse python-core python-io python-json python-subprocess"
++
++# WARNING: We were unable to map the following python package/module
++# dependencies to the bitbake packages which include them:
++#    bluepy
++#    bluepy.btle
++#    bs4
++#    requests
++
++INHIBIT_PACKAGE_STRIP = "1"
++INSANE_SKIP_${PN} += "ldflags"
+diff --git a/recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cross-compiler-from-env.patch b/recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cross-compiler-from-env.patch
+new file mode 100644
+index 0000000..8799058
+--- /dev/null
++++ b/recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cross-compiler-from-env.patch
+@@ -0,0 +1,28 @@
++From abf880ff4c276134564e1f1e63a3b6699060da7f Mon Sep 17 00:00:00 2001
++From: Dengke Du <dengke.du@windriver.com>
++Date: Mon, 27 Nov 2017 03:48:16 -0500
++Subject: [PATCH] When cross compiling, get the cross compiler from environment
++
++Signed-off-by: Dengke Du <dengke.du@windriver.com>
++---
++ bluepy/Makefile | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/bluepy/Makefile b/bluepy/Makefile
++index 76bafec..42f145b 100644
++--- a/bluepy/Makefile
+++++ b/bluepy/Makefile
++@@ -9,8 +9,8 @@ BLUEZ_SRCS += src/shared/io-glib.c src/shared/timeout-glib.c
++ IMPORT_SRCS = $(addprefix $(BLUEZ_PATH)/, $(BLUEZ_SRCS))
++ LOCAL_SRCS  = bluepy-helper.c
++ 
++-CC = gcc
++-CFLAGS = -Os -g -Wall # -Werror
+++CC ?= gcc
+++CFLAGS ?= -Os -g -Wall # -Werror
++ 
++ CPPFLAGS = -DHAVE_CONFIG_H
++ ifneq ($(DEBUGGING),)
++-- 
++2.8.1
++
+-- 
+2.8.1
 
 
