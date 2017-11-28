@@ -1,72 +1,67 @@
-Return-Path: <jpewhacker@gmail.com>
+Return-Path: <jerry.lian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49981E00C0E; Tue, 28 Nov 2017 06:29:26 -0800 (PST)
+	id 36F7EE00B48; Tue, 28 Nov 2017 07:00:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jpewhacker[at]gmail.com)
+	mail provider *      (jerry.lian[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.44 listed in list.dnswl.org]
+	*      [74.125.82.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f44.google.com (mail-it0-f44.google.com
-	[209.85.214.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD024E00B1E
-	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 06:29:25 -0800 (PST)
-Received: by mail-it0-f44.google.com with SMTP id b5so2105itc.3
-	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 06:29:25 -0800 (PST)
+Received: from mail-ot0-f173.google.com (mail-ot0-f173.google.com
+	[74.125.82.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7156BE00A9C
+	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:00:28 -0800 (PST)
+Received: by mail-ot0-f173.google.com with SMTP id h9so108081oti.0
+	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:00:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:message-id:subject:to:date:in-reply-to:references:mime-version
-	:content-transfer-encoding;
-	bh=bBPaxDlysex2x4vXTZQDvzECEqcydGIs3vFgVkwY5dY=;
-	b=FicC4hKWF54jGgSUrOcv4US6X5mByv6/+YQR4n6CLqblGZlyZ8Zcd0+aUzDDgHmISj
-	miCycgW5mS+MG+I9iilit96z9aFOGyK6JwMJnx6acmNIDrQbMm+1Mt4jgrBChbOFQkVT
-	kJ8Bev486jcFeizFnX3m8kQpPHO9wM58EzGypgCQAUiEsv37IaM2CL5HPINknOsfaGRm
-	wFyhaeaJJtU6hhA68uhurSIjjm+qdsr1kQk2NQXYx4LCspR+fpfK0TGBHVb74aeYeg2Q
-	Igpz4pt2zoNPmsMDaDljUkzpu7Izz5SjikKWJB126usBGojtX+4HTdjeLRhEkdbvPf5L
-	xH/w==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hHdTcNYD19NxPvwF46M4hAOim3xBANDsi6hs8Tfgyz4=;
+	b=H/1wkNijKNWeY9JlJH5zgXkUTcDz1BUMR71KZrC47plSKj08vGHf9j6rQesEKKUtLF
+	ADaoXHEqeWOImjKxQw7AM+kYVcmLhEvtzO1/ZKwENYrIw49OXXtbhvzkgXjpxhDALAFk
+	Z113nWbDOyoPKPTSdQzQnw7uk0iHKHM1PfgArHdtiTj8iT+z+tQyWQEL4+QUTHpRO4c1
+	Iy1SKpl/fvF9vmXM+28UsS2jmTBW/MFKst0fPZdVYWIGud++d1+8VIaFmX7Rdgeun5OL
+	odDRlttACzdyF4aBwM1nvMM1kvk6C+rveCo8Zl0mwbj/ElcJi4JRape20b/dEgOSuYHD
+	9ywA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:message-id:subject:to:date:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=bBPaxDlysex2x4vXTZQDvzECEqcydGIs3vFgVkwY5dY=;
-	b=rV+e3KSseQGjvxTq8j4/Cir+bFDJCU+QwYEdX2zSeLzdIrpZAhmQtnvwNfmMLGycs5
-	VUP2Vcw0Fosm4DrJiYFEiVXY08vQqYyMvKccJDXrnAxu+Nh+G+qcOG8Yv7h59UyAPVdx
-	wkoFMB56KAlEA+txs2JoMsSW2E59GClkUR9C9n99AhQzBM76BffblvAdfh/d16JAQl5M
-	2FgEVtIoVPnA4E6GrVfR0w5qGfLnY+PkNI6cs2QIT9MlmSN/KrCZziXYs8mh5JyY7vWq
-	cU8Ephn9/N3alZTDQJXS7aXpt1GIyD7rZ4N+UcRfHLrAbG3RX5USRSPcgnp3IEbQRPUj
-	5bBQ==
-X-Gm-Message-State: AJaThX5zsKj+rExfPdXGeFEmW4dbZtizkKgB85wwcbqj+8NmPVEaJaMC
-	TfrkDTGxvxURcUYVnZuRBUQ=
-X-Google-Smtp-Source: AGs4zMYwr/zazGwicq2vzKtw9wv8p/efBJMChq2+f7opRDhBP+agEnZKYxwY8hMOTtA8B3QuQScUtg==
-X-Received: by 10.36.37.138 with SMTP id g132mr2877962itg.72.1511879364893;
-	Tue, 28 Nov 2017 06:29:24 -0800 (PST)
-Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-	by smtp.googlemail.com with ESMTPSA id
-	g93sm10408569ioj.51.2017.11.28.06.29.24
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 28 Nov 2017 06:29:24 -0800 (PST)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-Message-ID: <1511879363.16998.16.camel@gmail.com>
-To: Christian Ege <k4230r6@gmail.com>, Yocto list discussion
-	<yocto@yoctoproject.org>
-Date: Tue, 28 Nov 2017 08:29:23 -0600
-In-Reply-To: <CAALGJZY3j17rTPo8r4iYxt6D1Gcy-5_dy79Ge7xg9=mqsDsS2g@mail.gmail.com>
-References: <CAALGJZY3j17rTPo8r4iYxt6D1Gcy-5_dy79Ge7xg9=mqsDsS2g@mail.gmail.com>
-X-Mailer: Evolution 3.26.2 (3.26.2-1.fc27) 
-Mime-Version: 1.0
-Subject: Re: How to generate SPDX Information
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hHdTcNYD19NxPvwF46M4hAOim3xBANDsi6hs8Tfgyz4=;
+	b=rppmWgaBPzAmROhT3NdZT0C5sk+FpJa/cU3OIPY5Pfm7o6MFrF3fxWR7VLXW0xtggM
+	5AVv00vaHINT5O53iXOe+j3pUVDNXLtSeCImzdpkW+PKoVZyGWJqZigUVH518+qnziww
+	dzQDRPQ2+0iono7j5QKqumjkRqNbkm63NIcgPdaycS/Ta6rmb9PxhOGOnTgLB0fU1rBI
+	JVhNNzqSx3Tf1A9vxDiMOebvjkz0FyKLVMHOPV5RCTBb+2/qVDjXvV826zdrxzk6CZn5
+	Rmk4ZM1gRoiJjuoeHgLmSEdaT4sfbpPPUHSB6oKqx5rBIWyGknTaoXJCjdM7GceVpypE
+	ZiTQ==
+X-Gm-Message-State: AJaThX7IIGxkF7kD1l0eQ0jXEOFa/XStdssXTHDh/DLgy16xzV4OmzWv
+	GaPYLkaTAIZ9HmMN2oUy+ECj2zwK45fT0OOxZ6k=
+X-Google-Smtp-Source: AGs4zMba/YyfsV/ML4wBapzmL+C/6wd7hVwIsalq09LiyFzJyqOngNSw4QHgciqBwLc21qRWCBfpjtCI1jOP1609f3E=
+X-Received: by 10.157.62.181 with SMTP id b50mr29190060otc.160.1511881228353; 
+	Tue, 28 Nov 2017 07:00:28 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.157.42.113 with HTTP; Tue, 28 Nov 2017 07:00:27 -0800 (PST)
+In-Reply-To: <CAOT_U5YEjzDEo=AUBdmkaQ0eLeV98YDuqrpxtOHCoZJqr1bvrQ@mail.gmail.com>
+References: <CAE0QtjN1jE1ci2J1cMC8sQ2Pw70AOTc5bP8rQsrN2fBRpbhGxw@mail.gmail.com>
+	<CAOT_U5YEjzDEo=AUBdmkaQ0eLeV98YDuqrpxtOHCoZJqr1bvrQ@mail.gmail.com>
+From: Jerry Lian <jerry.lian@gmail.com>
+Date: Tue, 28 Nov 2017 10:00:27 -0500
+Message-ID: <CAE0QtjPT5dnRYa+tcHPCi+K=Ej0aNOuaTYXufzpEch-452P26A@mail.gmail.com>
+To: Alan Martinovic <alan.martinovic@senic.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: How to add support for "usb WIFI dongle"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,71 +73,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Nov 2017 14:29:26 -0000
+X-List-Received-Date: Tue, 28 Nov 2017 15:00:30 -0000
+Content-Type: multipart/alternative; boundary="001a11407a8c8f03f4055f0c4753"
+
+--001a11407a8c8f03f4055f0c4753
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-On Tue, 2017-11-28 at 14:57 +0100, Christian Ege wrote:
-> Hello,
-> 
-> due to the fact there is a license troll who actively sue German
-> companies. I did some research to comply ith the need to provide the
-> copyright information within my YOCTO builds. My research ended up
-> with the spdx.class which includes support for the fossology tool.
-> But
-> the current version of fossology does not support the spdx plugin
-> used
-> in the spdx.class anymore [1] This plugin is not updated since 4
-> years. As an alternative there is the DoSOCSv2 tool [2] for which a
-> Patch by Lei Maohui exists which was not accepted and Lei ended up in
-> a separate layer called meta-spdxscanner [3].
-> 
-> So my specific question is, what are the recommended actions to
-> comply
-> to provide copyright information with the sourcecode/binary? What is
-> the state of the art at the moment and how do the users of oe/yocto
-> solve this requirement.
+Thanks Alan, I follow your instruction and it works eventually!
 
-Not sure if it is the best method, but we include all the license
-information in our (readonly) rootfs image by adding 
+But I got another question:
 
- COPY_LIC_MANIFEST = "1"
- COPY_LIC_DIRS = "1"
+   - I am using official Raspberry-PI WIFI dongle (BCM43143)
+   - I configure kernel so that driver "brcm80211" is enabled, however,
+   WIFI is not working.
+   - Then I add driver "ipw2x00", then WIFI works.
+   - So my question, why do we need both "ipw2x00" and "brcm80211" for
+   official Raspberry-PI WIFI dongle?
+   - (Sometimes the WIFI dongle works if I add drivers: "brcm80211,
+   iwlwifi, rt2x00", without "ipw2x00", so I am really confused!)
 
-to local.conf. Our UI application then parses /usr/share/common-
-licenses/license.manifest show a scrollable list of software with a
-short blurb for each like:
-"licensed under one or more of the following licence(s): ${SPDX list
-from license manifest}"
+Thanks!
 
-If the SPDX list contains the text "GPL" (and maybe some others, can't
-remember right now), we add "Source code may be downloaded from http://
-www.company.com/foss". We upload a monolithic tarball containing all
-the GPL code to this site every release. This tarball is generated by
-adding:
 
- INHERIT += "archiver"
- ARCHIVER_MODE[dumpdata] = "1"
- ARCHIVER_MODE[recipe] = "1"
 
-to local.conf, then filtering out the copyleft software with some post-
-processing scripts.
 
-Finally, for each package, we add the text from the actual licenses
-files for each package (from the directories under /usr/share/common-
-licenses/<PACKAGE>/ so that the user can see the full terms.
 
-Not sure if it is the best method, but it works for us. I think it
-covers all the license requirements (mainly, attribution and making the
-copyleft source available).
 
-> 
-> Thanks in advance,
-> Christian
-> 
-> -- 
-> [1] https://github.com/FOSSology-SPDX/fossology-spdx
-> [2] https://github.com/DoSOCSv2/DoSOCSv2
-> [3] https://layers.openembedded.org/layerindex/branch/master/layer/me
-> ta-spdxscanner/
 
+On Tue, Nov 21, 2017 at 12:04 PM, Alan Martinovic <alan.martinovic@senic.com
+> wrote:
+
+> Some hints on where to start at:
+>
+> > What should I do to add support for "usb WIFI dongle"
+>
+> Am guessing the dongle works with Raspbian or id gets detected
+> once you plug it into a desktop Linux machine.
+> Once you do that type:
+>
+>     dmesg
+>
+> And it will list the kernel modules related to your dongle.
+> You can use those buzzwords to google for what does
+> enabling the dongle actually translates to in terms of kernel config.
+>
+> After that (depending what linux you're using) figure out how to
+> run menuconfig. It might be something like:
+>
+>     bitbake your-kernel-package-name -c menuconfig
+>
+> and try checking out the boxes that you found out
+> might be relevant to your wifi dongle.
+> Save it, build the image, and see if it got you somewhere.
+>
+>
+>
+>
+>
+>
+>
+> On Tue, Nov 21, 2017 at 5:32 PM, Jerry Lian <jerry.lian@gmail.com> wrote:
+> > I am confused on adding support for "usb WIFI dongle":
+> > * My boards do NOT have WIFI capability, so I will add a "usb WIFI
+> dongle".
+> >   (I have two boards: Raspberri-PI-2, SIMATIC IOT-2020)
+> > * Suppose we start from "core-image-sato"
+> > * What should I do to add support for "usb WIFI dongle"
+> > * After we build/boot the image, how can we verify and bring the WIFI up?
+> >
+> > Thanks!
+> > Jerry
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
+
+--001a11407a8c8f03f4055f0c4753
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks Alan, I follow your instruction and it works eventu=
+ally!<div><span class=3D"gmail-scrollOnMaxWidth"><p>But I got another quest=
+ion:</p><ul><li>I am using official Raspberry-PI WIFI dongle (BCM43143)</li=
+><li>I configure kernel so that driver &quot;brcm80211&quot; is enabled, ho=
+wever, WIFI is not working.</li><li>Then I add driver &quot;ipw2x00&quot;, =
+then WIFI works.</li><li>So my question, why do we need both &quot;ipw2x00&=
+quot; and &quot;brcm80211&quot; for official Raspberry-PI WIFI dongle?</li>=
+<li>(Sometimes the WIFI dongle works if I add drivers: &quot;brcm80211, iwl=
+wifi, rt2x00&quot;, without &quot;ipw2x00&quot;, so I am really confused!)<=
+/li></ul><p>Thanks!<br></p><p><br></p><p><br></p><p><br></p></span><div><br=
+></div><div><br></div></div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Tue, Nov 21, 2017 at 12:04 PM, Alan Martinovic <span di=
+r=3D"ltr">&lt;<a href=3D"mailto:alan.martinovic@senic.com" target=3D"_blank=
+">alan.martinovic@senic.com</a>&gt;</span> wrote:<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex">Some hints on where to start at:<br>
+<span class=3D""><br>
+&gt; What should I do to add support for &quot;usb WIFI dongle&quot;<br>
+<br>
+</span>Am guessing the dongle works with Raspbian or id gets detected<br>
+once you plug it into a desktop Linux machine.<br>
+Once you do that type:<br>
+<br>
+=C2=A0 =C2=A0 dmesg<br>
+<br>
+And it will list the kernel modules related to your dongle.<br>
+You can use those buzzwords to google for what does<br>
+enabling the dongle actually translates to in terms of kernel config.<br>
+<br>
+After that (depending what linux you&#39;re using) figure out how to<br>
+run menuconfig. It might be something like:<br>
+<br>
+=C2=A0 =C2=A0 bitbake your-kernel-package-name -c menuconfig<br>
+<br>
+and try checking out the boxes that you found out<br>
+might be relevant to your wifi dongle.<br>
+Save it, build the image, and see if it got you somewhere.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+On Tue, Nov 21, 2017 at 5:32 PM, Jerry Lian &lt;<a href=3D"mailto:jerry.lia=
+n@gmail.com">jerry.lian@gmail.com</a>&gt; wrote:<br>
+&gt; I am confused on adding support for &quot;usb WIFI dongle&quot;:<br>
+&gt; * My boards do NOT have WIFI capability, so I will add a &quot;usb WIF=
+I dongle&quot;.<br>
+&gt;=C2=A0 =C2=A0(I have two boards: Raspberri-PI-2, SIMATIC IOT-2020)<br>
+&gt; * Suppose we start from &quot;core-image-sato&quot;<br>
+&gt; * What should I do to add support for &quot;usb WIFI dongle&quot;<br>
+&gt; * After we build/boot the image, how can we verify and bring the WIFI =
+up?<br>
+&gt;<br>
+&gt; Thanks!<br>
+&gt; Jerry<br>
+&gt;<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
+&gt; ______________________________<wbr>_________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto=
+</a><br>
+&gt;<br>
+</font></span></blockquote></div><br></div>
+
+--001a11407a8c8f03f4055f0c4753--
