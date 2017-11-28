@@ -1,80 +1,39 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <TOlausson@luxoft.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E52FE00BEA; Tue, 28 Nov 2017 07:45:26 -0800 (PST)
+	id 25B83E00BEA; Tue, 28 Nov 2017 07:02:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [109.166.244.22 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f52.google.com (mail-pl0-f52.google.com
-	[209.85.160.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B0EAE00A9C
-	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:45:25 -0800 (PST)
-Received: by mail-pl0-f52.google.com with SMTP id d21so145358pll.1
-	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:45:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding:content-language;
-	bh=gdvUifTNqzi7cTAVpI0hlWhauwB3sKLcj+/LSdqMtY8=;
-	b=PbJWMXggXdO5Bpxda5hdgazjFgxQTKpxYvKSKoCRI+MDsWBfyGhB1p2jAwo5KmZ8YK
-	9LbpNas0YIcljx9HLu2/NKBWUhwWgFigV7GyafXp1xz9H/pYevGYoAzrSFnFsDH/bHZ7
-	OuDBf/x0HW+O0KfcnrBkVRizHY9dXSD6VPTBb/S9QWbZc1CY32yKqRiuYSKkUzVWFVy9
-	gNWQXFZ5R63g1pWciwFpfKatKdfkbR6tdtiLxzjN7JwKF76Ev4Buv+EpzCPOeZtMsebg
-	QNfDKW1P/jTVQrVfm8Oy92V3/5kw3x2XWnDE0TNeXFxaZDjZ5Mp9oEWS39cAMlPfp5rP
-	C4Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=gdvUifTNqzi7cTAVpI0hlWhauwB3sKLcj+/LSdqMtY8=;
-	b=iPw7GFrf6Lqo/5HXRFMneFkaRsXarVwvlIIpwIhBT1vGeyBurHmcK5uCfN6LMt99a1
-	Bw5uEX73BvJE9qVLZSgART/p7cj+mcmwm9uRgfqeTavtQFpoJgXHMy7rd98UcsIRl2IO
-	lKoFU4sne2ykbv323o+MP3fkaprrRamTeXS/GbHuwpmIE6f9G2a1pGgtLRRZik8DMedx
-	llV85NMgFAnd1MlxUVxz+WcaHAahyMoDdY8UzpsH15Dd4i38Yj0cWNF64W6H5spoQEyO
-	JuYwlm9zceBuYTFYMFJqq0CHoRCDgrOAJUHTfmfjmXdngY4hYRPyyVxeFfaZ7BlC3RJK
-	epyA==
-X-Gm-Message-State: AJaThX4kdtU7D2Za8hzqhVPOZO2qHwhcfh72g/9NTC35iV/RffR1Sc8Z
-	+HEsmklo3pq9eKAqIakTe2Q=
-X-Google-Smtp-Source: AGs4zMbwnIdvW16kRt/wPWySUylGcDMJtnLJhfZ0FdiUo1m5A1hHBCeUDHAEVJCHKg5UakXwMu9KPg==
-X-Received: by 10.84.133.164 with SMTP id f33mr16235796plf.241.1511883924841; 
-	Tue, 28 Nov 2017 07:45:24 -0800 (PST)
-Received: from ?IPv6:2601:202:4001:9ea0:2c7f:421f:20ad:ca14?
-	([2601:202:4001:9ea0:2c7f:421f:20ad:ca14])
-	by smtp.gmail.com with ESMTPSA id
-	t66sm17098696pfa.153.2017.11.28.07.45.23
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 28 Nov 2017 07:45:24 -0800 (PST)
-To: Mark Hatle <mark.hatle@windriver.com>,
-	"Burton, Ross" <ross.burton@intel.com>,
-	Hongxu Jia <hongxu.jia@windriver.com>
-References: <bfbfad0b-af40-5448-4aed-fc70eeb95c6c@windriver.com>
-	<7bdd24ea-febf-86b4-e770-6f7533205d73@windriver.com>
-	<CAJTo0LZfkd2SbTrXL6ggt9_NQbDUfEDVLTaaqc8sPwaUihfRUw@mail.gmail.com>
-	<6724ad48-b676-0de9-df72-453272f978f3@windriver.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <14ea1950-7cd7-c104-14a0-0f34d2bbbe1b@gmail.com>
-Date: Tue, 28 Nov 2017 07:45:23 -0800
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Tue, 28 Nov 2017 07:02:17 PST
+Received: from ORO-EDGE-02.luxoft.com (oro-edge-02.luxoft.com [109.166.244.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D004E00B1E
+	for <yocto@yoctoproject.org>; Tue, 28 Nov 2017 07:02:17 -0800 (PST)
+Received: from ORO-HUBT-02.luxoft.com (172.30.115.36) by
+	oro-edge-02.luxoft.com (172.30.19.22) with Microsoft SMTP Server (TLS)
+	id 14.3.319.2; Tue, 28 Nov 2017 17:01:10 +0200
+Received: from [172.31.241.160] (172.31.241.160) by ORO-HUBT-02.luxoft.com
+	(172.30.115.101) with Microsoft SMTP Server (TLS) id 14.3.319.2;
+	Tue, 28 Nov 2017 17:01:11 +0200
+To: Tobias Olausson <tobias.olausson@pelagicore.com>, <yocto@yoctoproject.org>
+References: <13e28abd-e0b3-3203-2fbe-e0e3961a7d16@pelagicore.com>
+From: Tobias Olausson <TOlausson@luxoft.com>
+Message-ID: <b93cd9af-3de9-9d7a-6208-1f400d7ed83e@luxoft.com>
+Date: Tue, 28 Nov 2017 16:01:10 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <6724ad48-b676-0de9-df72-453272f978f3@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Yang,
-	Zhangle \(Eric\)" <Zhangle.Yang@windriver.com>
-Subject: Re: Contribute meta-installer to yocto
+In-Reply-To: <13e28abd-e0b3-3203-2fbe-e0e3961a7d16@pelagicore.com>
+X-Originating-IP: [172.31.241.160]
+X-Mailman-Approved-At: Tue, 28 Nov 2017 07:54:31 -0800
+Subject: Re: rpm/dnf issues when building an SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -86,69 +45,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Nov 2017 15:45:26 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Tue, 28 Nov 2017 15:02:20 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 Content-Language: en-US
 
+Hey all,
+
+Just for any future users that encounter the same issues, it's a bug in
+utils.py for bitbake, for which there is a patch submitted here:
+https://patchwork.openembedded.org/patch/144399/
+
+Applying the patch as follows:
+patch -d /path/to/poky -p1 <
+/path/to/0001-bitbake-lib-bb-utils-fix-movefile-copy-to-dir-fallba.patch
+
+Makes the SDK build succeed on all my machines.
+
+//Tobias
 
 
-On 11/27/2017 09:20 AM, Mark Hatle wrote:
-> On 11/21/17 3:24 PM, Burton, Ross wrote:
->> On 21 November 2017 at 08:55, Hongxu Jia <hongxu.jia@windriver.com
->> <mailto:hongxu.jia@windriver.com>> wrote:
->>
->>     If yocto is interested in this layer and will accept it,
->>     I could send pull request or some one directly fetch
->>     from above github master branch.
->>
->>
->> Are you asking for a git repo on git.yoctoproject.org
->> <http://git.yoctoproject.org>?=C2=A0 If you want one I believe the pro=
-cess is to ask
->> Michael Halstead.=C2=A0 There's no reason why it can't be maintained i=
-n this
->> repository forever though, =C2=A0just submit it to the layer index.
-> The request is for more then just a repository.  (We can get a reposito=
-ry
-> anywhere..)  What he is asking for is, is this something that the Yocto=
- Project
-> itself wants to own.  He is still offering to be the maintainer of the =
-layer,
-> but the project being owned by the Yocto Project itself has more implic=
-ations.
-That is an interesting question.=C2=A0 Are you suggesting a discussion wi=
-th
-the YP membership=C2=A0 since they are the ones who are providing the
-resources for the Project?
-
+On 11/13/2017 06:13 PM, Tobias Olausson wrote:
+> Hey,
 >
-> I.e. using the bugzilla, discussion on the @yoctoproject.org mailing li=
-sts,
-> etc... what happens if he is no longer able to willing to maintain the =
-layer.. etc.
+> I have a weird issue when generating an SDK for the image I'm building.
+> Somehow, I end up with the following errors:
 >
-> In addition, my understanding is a target based installer has places to=
- insert
-> logos.  Currently these are blank.  If the Yocto Project wants to be th=
-e home
-> for this, then I would also hope that specific logos would be approved =
-for use
-> within the default installer instance.
+> $ bitbake -c populate_sdk core-image-pelux-minimal
+> ERROR: core-image-pelux-minimal-1.0-r0 do_populate_sdk: unable to place
+> /home/vagrant/pelux_yocto/build/tmp/work/intel_corei7_64-pelux-linux/core=
+-image-pelux-minimal/1.0-r0/sdk/image/etc/rpmrc
+> in final SDK location
+> ERROR: core-image-pelux-minimal-1.0-r0 do_populate_sdk: unable to place
+> /home/vagrant/pelux_yocto/build/tmp/work/intel_corei7_64-pelux-linux/core=
+-image-pelux-minimal/1.0-r0/sdk/image/etc/dnf/dnf.conf
+> in final SDK location
 >
-> If this is outside of the scope of what the Yocto Project itself wants =
-to own,
-> then OpenEmbedded is the next place that might see value in this.... if=
- not,
-> then a github project will be fine.
+> I have no idea why, and re-running the populate_sdk step succeeds
+> without any tasks being run, and even after those errors, an sdk is
+> produced, but I end up with 2 errors and a non-zero exit code. A quick
+> check easily reveals that the files it wanted to place in "final SDK
+> location" are non-existent, so the error as such makes sense.
+>
+> In my CI system I build this using vagrant with docker as the provider,
+> and it's only then I notice this issue. When building locally (with
+> docker or otherwise) there are no such issues. The CI system (and when I
+> build locally) are ubuntu and debian, respectively. The error is present
+> in the CI setup regardless of having rpm on the host machine or not.
+>
+> I couldn't find any info on other people having the same problem, and I
+> start feeling stuck on this because it only fails in some environments,
+> it seems.
+>
+> Cheers,
+>
+> Tobias Olausson
+> Software Engineer
+>
+> PELAGICORE | Experience Change
+> http://www.pelagicore.com/
+>
+> Registered Office Gothenburg, Sweden
+> Registration No. 556780-4199
+>
+> PELAGICORE a part of LUXOFT
 
 
-Having an open discussion, like this is more in line with open source
-philosophy and I thank you.
+________________________________
 
-Kind regards,
-Armin
->> Ross
-
-
+This e-mail and any attachment(s) are intended only for the recipient(s) na=
+med above and others who have been specifically authorized to receive them.=
+ They may contain confidential information. If you are not the intended rec=
+ipient, please do not read this email or its attachment(s). Furthermore, yo=
+u are hereby notified that any dissemination, distribution or copying of th=
+is e-mail and any attachment(s) is strictly prohibited. If you have receive=
+d this e-mail in error, please immediately notify the sender by replying to=
+ this e-mail and then delete this e-mail and any attachment(s) or copies th=
+ereof from your system. Thank you.
 
