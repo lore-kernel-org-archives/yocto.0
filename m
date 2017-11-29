@@ -1,67 +1,31 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <bds@bsmucker.eu.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 81E10E00D03; Wed, 29 Nov 2017 11:24:44 -0800 (PST)
+	id E77B7E00CFF; Wed, 29 Nov 2017 11:52:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.51 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f51.google.com (mail-pg0-f51.google.com [74.125.83.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC045E00CC4
-	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 11:24:43 -0800 (PST)
-Received: by mail-pg0-f51.google.com with SMTP id e14so1919532pgr.9
-	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 11:24:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=NOr30BH0rjfyeTq1PvkBPJ8b4FmK1Fy/x4/3W/xrRNo=;
-	b=pcOt059KShr1Oui1D5HVIMThABMQS6GJ1bb7dDw+O0vw8pAmPxLlbCPB6zAt/ppOMz
-	hHCzgWXNjs7K61QDJyOTHYtyMHYc/lzYyb0upJTCzZVFmrJwz40JZnw7/ntnPXao2zp6
-	mK5/ZydD1axeeMLuWYgdQ75lRf8Gy2g5JX3y5AgA8wVwfozchJbku8TgKB0CQGhBtql6
-	94rdhT9puQ2Jk4fJEqH7/HRSK6GEkX0BLdt59lHNOlhnKS+K14k6QEU+xi/5EtjXj1pP
-	dakYW0pqtlyhs0FVwXtBkFYz5kkPZj8t6hUzHrJl1V6UzyTI3wGRKy/CQv44kRYq5eU3
-	g7kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=NOr30BH0rjfyeTq1PvkBPJ8b4FmK1Fy/x4/3W/xrRNo=;
-	b=CRdsxhkfYaFuAPVkVyLLgYHU46L9XHjuZTbEIn9iXXu9l8WSf4Es5HEC5PWjpwpT5F
-	N/Uz4tsxvoDP1W929UVOJHY90umUC0BJUS7uBHBvMP7nBkk6vGAasSv7jMMSbmjrnkjA
-	tRkx+bRn1+BxKVSJAOTwB1Yt/JUmDkp9qA0xSOVhs8FIDr/ioYrCYf4wxmEftvTAj2Rv
-	aMjYodQ/UvA43KopMJLeZMmJbio5eglsQVEVQUE+y3t79vTotn1oTJOf9G4u7IeUmpyB
-	hfe25SB/7zGufog7X4ofpClgBU5HC5mpZFtNmR69gbDU1o8oxxGTJ4/AR1Q5l0/pz/wX
-	JeQg==
-X-Gm-Message-State: AJaThX7Xkfoj575SJ4RqzmbRXWXipwkX3heBOxJEsJyw5ryt4jpSJsle
-	Svmr1Cy3sQJJeB2sExPneMA1Yvg29CM+uxXLt/A=
-X-Google-Smtp-Source: AGs4zMYdlHaiQKolqjG0ZpiYtBGWgwKS50kA979smOnuHfxEekSdYA4hRycRAWIPecdrkMNurIkM22Da5pAGCOGSsvk=
-X-Received: by 10.101.73.203 with SMTP id t11mr3800541pgs.446.1511983483102;
-	Wed, 29 Nov 2017 11:24:43 -0800 (PST)
+X-Greylist: delayed 2725 seconds by postgrey-1.32 at yocto-www;
+	Wed, 29 Nov 2017 11:52:16 PST
+Received: from smtp-out-2.mxes.net (smtp-out-2.mxes.net [67.222.241.249])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DF4BE00C97
+	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 11:52:16 -0800 (PST)
+Received: from [192.168.0.43] (unknown [172.76.103.231])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.mxes.net (Postfix) with ESMTPSA id 21C632754D
+	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 14:52:15 -0500 (EST)
+To: Yocto list discussion <yocto@yoctoproject.org>
+From: Brian Smucker <bds@bsmucker.eu.org>
+Message-ID: <d12bb827-2c89-3ed4-84f2-a63cf3e12147@bsmucker.eu.org>
+Date: Wed, 29 Nov 2017 11:52:13 -0800
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-Received: by 10.100.159.15 with HTTP; Wed, 29 Nov 2017 11:24:12 -0800 (PST)
-In-Reply-To: <c4fabc4627a75ef428c39d1686eb2565@mail.mxes.net>
-References: <7085a873-0594-f4e4-03ba-c72fc156d6c9@advancedtelematic.com>
-	<cbe07fed-c51d-d663-4914-6a247171b86e@linux.intel.com>
-	<68140500-7b0d-e7e2-8a6b-7317fb4a082b@advancedtelematic.com>
-	<c4fabc4627a75ef428c39d1686eb2565@mail.mxes.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 29 Nov 2017 11:24:12 -0800
-Message-ID: <CAMKF1sqqa9fNPVyG81Lb6LKCZoW-WgmdKFQAKX7CadxhjG3Zyw@mail.gmail.com>
-To: Brian Smucker <bds@bsmucker.eu.org>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Security upgrade stategy
+Subject: Security upgrade stategy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,45 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Nov 2017 19:24:44 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 29 Nov 2017 19:52:18 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-On Wed, Nov 29, 2017 at 11:06 AM, Brian Smucker <bds@bsmucker.eu.org> wrote:
-> Hello,
->
-> I have an older yocto-based image built with Danny.
->
-> We have a need to update two components, php and dropbear, to the most
-> modern versions for security purposes.
->
-> What is the preferred way to do this without moving the whole image to the
-> latest version of poky/yocto? That would be a big job, which would
-> necessitate migrating my linux dev environment to something newer, in
-> addition to other things.
->
-> Or is there  a preferred way? How do people handle this?
->
+Hello,
 
-We usually backport the needed fixes back into release branches.
-Version upgrades
-are usually not the norm. However, in your case where are on danny which might
-have stopped to receive any security fixes already, it might be
-something you can
-undertake in your distro to upgrade the versions. Take the new version
-from latest
-release or master and retrofit it into the release you are on then
-fix/integrate it into
-rest of your distro. However here you have forked and can keep
-following the same
-procedure for subsequent upgrades for these packages. Obviously, you might see
-integration issues but thats expected.
+I have an older yocto-based image built with Danny.
 
-> Thanks,
->
-> Brian
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+We have a need to update two components, php and dropbear, to the most 
+modern versions for security purposes.
+
+What is the preferred way to do this without moving the whole image to 
+the latest version of poky/yocto? That would be a big job, which would 
+necessitate migrating my linux dev environment to something newer, in 
+addition to other things.
+
+Or is there  a preferred way? How do people handle this?
+
+Thanks,
+
+Brian
+
 
