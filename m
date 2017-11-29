@@ -1,17 +1,16 @@
-Return-Path: <jerry.lian@gmail.com>
+Return-Path: <jpewhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 484D0E00D04; Wed, 29 Nov 2017 13:35:35 -0800 (PST)
+	id 6DDCDE00D04; Wed, 29 Nov 2017 13:52:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jerry.lian[at]gmail.com)
+	mail provider *      (jpewhacker[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -19,44 +18,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.218.43 listed in list.dnswl.org]
-Received: from mail-oi0-f43.google.com (mail-oi0-f43.google.com
-	[209.85.218.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADCC4E00CC4
-	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 13:35:34 -0800 (PST)
-Received: by mail-oi0-f43.google.com with SMTP id o64so3439890oia.9
-	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 13:35:34 -0800 (PST)
+	*      [209.85.223.195 listed in list.dnswl.org]
+Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
+	[209.85.223.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0123E00CC4
+	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 13:52:36 -0800 (PST)
+Received: by mail-io0-f195.google.com with SMTP id t196so5366365iof.0
+	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 13:52:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=ap0lRvpqCGYIun0n769tUeCWNXnLe8VYjLV9YWjG/xw=;
-	b=dYpibdZfzP/L5lYX9q3OGqN578SlvBqcRV48LmnOVGBE2ShlhIoeYQVGJQ5fbE7fS3
-	cOcI3aHmHNwSnYGlNf9q4ouarXQTMR/FqI+jpA4VsdIZp4WnggqSW5+gl0OF+61usj4Q
-	T5jm7HkFYGTaMBG9JoENP5RlOQfOTgxedZbC+eBX76dMO0cdH9gBjhiUiuX0XF2SMxsO
-	MGwbj9DS4aT7J5ZQDYPLjLYeQ3rWaaXMMflVviV74vf7yb4XvAvdkySwVEs6FNXKXp7i
-	gbz1Tm1Ux9hEVjN3zdEOr16Bm9AoTNG4rxiQNPodI7/DcnArxEU2gYX7kIeuiaUXnaBx
-	Rt7Q==
+	h=from:to:cc:subject:date:message-id;
+	bh=VBstLRUgEoiJGQEFL3fq0manneAU37lBEnRlwdK9WTo=;
+	b=AmhOH+mYLdUhqxnhGribaNdkDu0KtuNzipS8PsOfviWCnR56DOyBfcSj495mhrqyma
+	o9PF9MgbogmrO/Q0iSY0S1HtpcqI3Rse+qr4LAq5qGTqShn6Rffv/uNqRcdgr2irckgf
+	dceMbvMhxQqrpA1vGPNa25D2ITUoucRUqO4qEjP5jGP3Kg5GidMZsI6nN01OySgkc7LF
+	iFaAIEvxs+EiM7b3N1yXFCVfkfRQaV/QJ7xvUaWQJ1cxYeKoZ35aQHGLIzf0CYJWN2JN
+	nM1sN53Li/VO3xaGK6x0dnjK9t1qVYxj7ugdmSwItkRAqs8DNCIR7Zaygg2w79II5wjp
+	Zb5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=ap0lRvpqCGYIun0n769tUeCWNXnLe8VYjLV9YWjG/xw=;
-	b=X/CxX+JnBSDMQ5nj6UonjuTyf/jgM8n64AAwyUAB9CLfezmgD7kGDUREmkRXlJrdu2
-	cznk0vhEkD1WUo3nWtH2CPwSXGPTYakdT1u3LYW6LKEifNmtl+amUyvlFrRWwnp7s7Nx
-	3Qg2iwltOmL+vLHK+JBIrLvoQ4KCqOEPTUJuoFDS8aavTubPE5UfFaKhENNV7UUOpidV
-	Brj1+oChDc2l0z+3rNSKZXr5y+oVzVp+RvzGx7WNeUZj8nJvnfhfTTjR1kX2rKWwxIIm
-	MAv9MMFiUn5TU7P8lk1x1FZAboIy5JyOqUOEBT4jXNKhPXofZ999nwV5epkESoskgIEX
-	6qDA==
-X-Gm-Message-State: AJaThX4uXpD5IDjs4WVIHaU3/gW++iE6rxL9URvBuDS1TLpspN9lP1QF
-	QobnpAsfghHWyL5SI04Ie4PeouYy5S+e58TGsrw=
-X-Google-Smtp-Source: AGs4zMZazfxb8CDyA2VvvOsqJzc2Me9U5tCYJMYDUPS4qaUbuVVZGjeivDUk1QT8vO5hYKFqYd/qP3wnOBkzjpzFagQ=
-X-Received: by 10.202.64.65 with SMTP id n62mr3205687oia.110.1511991333270;
-	Wed, 29 Nov 2017 13:35:33 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.157.42.113 with HTTP; Wed, 29 Nov 2017 13:35:32 -0800 (PST)
-From: Jerry Lian <jerry.lian@gmail.com>
-Date: Wed, 29 Nov 2017 16:35:32 -0500
-Message-ID: <CAE0QtjOcjf8TL5Hx5WbpLOoZ4kMm84CbWcwYUZo+bM6CSzSnuw@mail.gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Concept clarification: can we deploy Yocto SDK to target?
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=VBstLRUgEoiJGQEFL3fq0manneAU37lBEnRlwdK9WTo=;
+	b=f29iMnGHl9PkDM75BY6mgGIZxLfTeEbwrs19X+MVu0ahvOLEiB6lXJaUc5RVxMCBUN
+	Yv4u033C/ZuN4BthBAwjqullSswr6fdbdNQ7hX08FEAuTSK3fQOYxlrCocIZYfKOXnp3
+	u5Vp8bFIkLEjK14UcxevDX/4wQ/21gqeREWoOpdlrLMPDGJFXBTUdS6rwp09YV/LKH6C
+	AHLaTPAHF3RB22ygQ473Bkvhu85LRa37/qv3zupPTcNdRP87adncV4naSInxFC57KQMH
+	Qj/t9+0SDQbhQsujMARKTZ8HA2jOCc0I5R+sWyW66sLxFT4VvCCgYDjPhf/YxntIswkK
+	0k5A==
+X-Gm-Message-State: AJaThX73JvwsdMfylf3MhxPKZchNUulEqAu6sJV+fQEHzsfo7bY4PKvp
+	zP3afM7DwBxHE6iP+ClqTjWIZpvT
+X-Google-Smtp-Source: AGs4zMYz5hRnPswTqDesz1J2JR+5l2qUpHNjxkmZ2/Z/f25agHA6EdltJbEgVDuE/Ke469AX89EE6Q==
+X-Received: by 10.107.160.145 with SMTP id j139mr4986645ioe.236.1511992355864; 
+	Wed, 29 Nov 2017 13:52:35 -0800 (PST)
+Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
+	by smtp.googlemail.com with ESMTPSA id
+	d1sm1487532iti.18.2017.11.29.13.52.35
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Wed, 29 Nov 2017 13:52:35 -0800 (PST)
+From: Joshua Watt <jpewhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 29 Nov 2017 15:52:29 -0600
+Message-Id: <20171129215229.2355-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.14.3
+Subject: [PATCH] dev-manual: Fix DEFAULTTUNE link
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,36 +72,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Nov 2017 21:35:35 -0000
-Content-Type: multipart/alternative; boundary="001a113dab0652ba67055f25eaed"
+X-List-Received-Date: Wed, 29 Nov 2017 21:52:37 -0000
 
---001a113dab0652ba67055f25eaed
-Content-Type: text/plain; charset="UTF-8"
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+---
+ documentation/dev-manual/dev-manual-common-tasks.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I am confused about the concept of Yocto SDK:
-* when we use "bitbake -c populate_sdk some_image", we obtain sysroots for
-both target and host.
-* But why do we need sysroot for host?
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
+index 2d6bdf5cd94..0f16fb0fbf9 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -6736,7 +6736,7 @@ Some notes from Cal:
+             you much of a performance difference across the other systems
+             as compared to using a more general tuning across all the builds
+             (e.g. setting
+-            <ulink url='var-DEFAULTTUNE'><filename>DEFAULTTUNE</filename></ulink>
++            <ulink url='&YOCTO_DOCS_REF_URL;#var-DEFAULTTUNE'><filename>DEFAULTTUNE</filename></ulink>
+             specifically for each machine's build).
+             Rather than "max out" each build's tunings, you can take steps that
+             cause the OpenEmbedded build system to reuse software across the
+-- 
+2.14.3
 
-* I know we can build application under target-sysroot (surely source the
-environment), with fast speed.
-* But can we deploy target-sysroot to hardware-target?
-(Yes, I do want to compile/build application inside hardware-target, even
-though it is slow)
 
-Thanks!
-
---001a113dab0652ba67055f25eaed
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I am confused about the concept of Yocto SDK:<div>* when w=
-e use &quot;bitbake -c populate_sdk some_image&quot;, we obtain sysroots fo=
-r both target and host.</div><div>* But why do we need sysroot for host?</d=
-iv><div><br></div><div>* I know we can build application under target-sysro=
-ot (surely source the environment), with fast speed.</div><div>* But can we=
- deploy target-sysroot to hardware-target?</div><div>(Yes, I do want to com=
-pile/build application inside hardware-target, even though it is slow)</div=
-><div><br></div><div>Thanks!</div></div>
-
---001a113dab0652ba67055f25eaed--
