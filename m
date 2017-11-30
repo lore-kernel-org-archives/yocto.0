@@ -1,61 +1,63 @@
 Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D05EAE00C84; Thu, 30 Nov 2017 09:11:46 -0800 (PST)
+	id 3937DE00C84; Thu, 30 Nov 2017 09:16:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,URIBL_SBL autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
+	*      [74.125.82.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93144E00AF2
-	for <yocto@yoctoproject.org>; Thu, 30 Nov 2017 09:11:45 -0800 (PST)
-Received: by mail-wm0-f65.google.com with SMTP id 64so13704368wme.3
-	for <yocto@yoctoproject.org>; Thu, 30 Nov 2017 09:11:45 -0800 (PST)
+	*  1.6 URIBL_SBL Contains an URL's NS IP listed in the SBL blocklist
+	*      [URIs: waveshare.com]
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17D55E00AF2
+	for <yocto@yoctoproject.org>; Thu, 30 Nov 2017 09:16:42 -0800 (PST)
+Received: by mail-wm0-f68.google.com with SMTP id t8so14401611wmc.3
+	for <yocto@yoctoproject.org>; Thu, 30 Nov 2017 09:16:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-transfer-encoding;
-	bh=afsjWhx4mfJ91D0PAbul41jz30hyl4dmnMF32kFmaiI=;
-	b=LCR48URnh1893/kcPkJeo6oIbg+rVNEYfveH0C5eiOdJc3jyTrCipZQ+S0LgJ6WQi6
-	7OjQE16uq0ikxLa1hJNDhLeeMPrFdHwA7REBYUNLcqiJJAOLkhrzy6y57hACo3uKusSy
-	+mbrQC9U2I37wQYUTEWAWeNkgVNLsMhPr+8N8pPjf0heSBsCHLOn18YZp3k2C+uUOFU7
-	KZxQP5Xl8IGKIhkAWDTUmQ9hx2yfRqlK1+CSUFlYNV1oWlyD0rl7XO8ncJ/pdp/KDRXj
-	yQ2Gg3DQ7k3ZY2CVz3iTrthF84pbYKWjXE6NZTf4rjgq9jBLfSbfK0ReXiats+8rPzub
-	47ew==
+	bh=AALoP3TURdP60YMGEckQm8rST2cACBNlM+x8UUf/Ruc=;
+	b=q2HKHa6jVKET8XNJZl8zgEUa0r/Gne7FKqoh7pKTkifanr3FfMJ97AH4xo/SQLAp7F
+	fW6bB66/F9F41Lncxb5+4PFtBljTc/Kgb2v+cUAs83VU2xnxKa0nuU5Kyf50lTev4XMj
+	Wck52wqEK+rut2IGmF6xt09crpIqEvNHeo6wLfSbTXyXso1nUVtBgBQOfZKyzeW1CYJg
+	o794lTvpmjlCJUjPqmKpqPYCZzdQCmZlFGzUYIojdgOO+00DeV2ZASLsVH9d09UeHZoi
+	o2+LLdhLBCOW+BsqjPmdOjAx8WEeDcraMzeYD+CeeW2mLJ/9VmxiViKNyENHkTaPdchx
+	fJBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=afsjWhx4mfJ91D0PAbul41jz30hyl4dmnMF32kFmaiI=;
-	b=MzyDM+QVDEvbNLkGujvQN4mQTIH/nU2rmGJVyXrjJelyOz+klHxf9kt6FzvnukKVWV
-	kAVihQzljuiOk0Yse8G1fOVANgRHdlZ9t6VbvKHx8ay5QthqVSsMLfACWOkDhNsQlYX0
-	fp6BOIYgUsmCR9nI4Yi38tHtEMWld6CHcmDXje94ph1WNeM8aByqmYdaf4PjmJcKYHSa
-	41fdJjuJp80za8nj7j2+DUo3GONR/Nv7DBrin+Yw1dqN6A3Nz54D1pLZztLLtRapnjsH
-	u0MH459AlVAglUGVSf7+f1kBf4NqI9vpTCk9nHB2LF3uHUstuMBoBl4ihfl03wqkFAeI
-	IdQQ==
-X-Gm-Message-State: AJaThX7QuR1rzjmdaAYL7Y2ESJ8PHdvXfiIs/rhHh289QydCRjCg+VLD
-	rZWK2BgP9lOi/XwnEoX1kpzMRIhiwtp1TqzNI7aloY6v
-X-Google-Smtp-Source: AGs4zMbfKO5DTfaL7CDGnmFRwELTjDURx7yrOEG7Q5I8LwTMBlRBLkxg/OQVV1LaQQUGiAuXAGPcx8CCQTjbGS9NVSM=
-X-Received: by 10.28.156.23 with SMTP id f23mr1325190wme.128.1512061904285;
-	Thu, 30 Nov 2017 09:11:44 -0800 (PST)
+	bh=AALoP3TURdP60YMGEckQm8rST2cACBNlM+x8UUf/Ruc=;
+	b=lCfPl6ULk7KEWz2PrV5xENWdll+TPMPncpbKDDo8+7c+HsZvuMxMee5RVs9msV/h8+
+	NDmMrAi8ydCQfA/JqddmXolmcR7ffQ+emeto4u43N3xsMYPObwLb8g5YbAPygWiZ9b9K
+	Q0moxY7nQ+cViSyyTL/gyh09cTUcYpAX4vA+oe6opk+FvTtcWNHbTMKHKvD1/3izVgm5
+	LLOmg52s8lRpgNktiFQlin4TZ9e4N+A/EvjC5dTv+cv32YouQ7jJvAdV4rVBW8w256we
+	GZgzECLxUJ1LdlLPgdJ5OWQDU4F2GWGp7FhuDDziooFsRjOpQkaebhH/nm0w3O6Jz602
+	Zbkw==
+X-Gm-Message-State: AJaThX6mHDM9GjThWHdjvpqiyxkIOzJ7GKQXw3YkVo34IrPEi+9bPhpt
+	s7sxnh+lO98SlMC9Fg3pIOX8+fgMt06o0OYwU/20VMWy
+X-Google-Smtp-Source: AGs4zMYTJxDtAvAuFAgoza4bqGQThlHVjSU8ulqSv7xbDg9DsX9mcUI/nooeJ1siPfLlLm776U/D1VwVvQh8hz8Qs7o=
+X-Received: by 10.28.48.150 with SMTP id w144mr2443200wmw.23.1512062201956;
+	Thu, 30 Nov 2017 09:16:41 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.223.199.199 with HTTP; Thu, 30 Nov 2017 09:11:43 -0800 (PST)
-In-Reply-To: <1511833693-177790-1-git-send-email-dengke.du@windriver.com>
-References: <1511833693-177790-1-git-send-email-dengke.du@windriver.com>
+Received: by 10.223.183.193 with HTTP; Thu, 30 Nov 2017 09:16:41 -0800 (PST)
+In-Reply-To: <1511994009-11240-1-git-send-email-drew.moseley@northern.tech>
+References: <1511994009-11240-1-git-send-email-drew.moseley@northern.tech>
 From: Paul Barker <pbarker@toganlabs.com>
-Date: Thu, 30 Nov 2017 17:11:43 +0000
-Message-ID: <CAPyrkgztW6nHWX_V0r1r1U_YCS4dcsjmBveaMt9ULmWOhWbMQw@mail.gmail.com>
-To: Dengke Du <dengke.du@windriver.com>
-Cc: yocto <yocto@yoctoproject.org>, andrei@gherzan.com
-Subject: Re: [[meta-raspberrypi]][PATCH] bluepy: add it
+Date: Thu, 30 Nov 2017 17:16:41 +0000
+Message-ID: <CAPyrkgz4w-EW6Q+Erv3DL391NTUSiCKG-DPrydDmX9NEapwrNg@mail.gmail.com>
+To: drew.moseley@northern.tech
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] rpi-config: Setup lcd_rotate for Raspberry Pi display
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,170 +69,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Nov 2017 17:11:46 -0000
+X-List-Received-Date: Thu, 30 Nov 2017 17:16:44 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 28, 2017 at 1:48 AM, Dengke Du <dengke.du@windriver.com> wrote:
-> The bluepy can let us programming bluetooth le application in python.
+On Wed, Nov 29, 2017 at 10:20 PM,  <drew.moseley@northern.tech> wrote:
+> From: Drew Moseley <drew.moseley@northern.tech>
 >
-> Signed-off-by: Dengke Du <dengke.du@windriver.com>
+> Signed-off-by: Drew Moseley <drew.moseley@northern.tech>
 > ---
->  recipes-devtools/bluepy/bluepy_git.bb              | 48 ++++++++++++++++=
-++++++
->  ...compiling-get-the-cross-compiler-from-env.patch | 28 +++++++++++++
->  2 files changed, 76 insertions(+)
->  create mode 100644 recipes-devtools/bluepy/bluepy_git.bb
->  create mode 100644 recipes-devtools/bluepy/files/0001-When-cross-compili=
-ng-get-the-cross-compiler-from-env.patch
+>  docs/extra-build-config.md              | 6 ++++++
+>  recipes-bsp/bootfiles/rpi-config_git.bb | 6 ++++++
+>  2 files changed, 12 insertions(+)
 >
-> diff --git a/recipes-devtools/bluepy/bluepy_git.bb b/recipes-devtools/blu=
-epy/bluepy_git.bb
-> new file mode 100644
-> index 0000000..3e2e7de
-> --- /dev/null
-> +++ b/recipes-devtools/bluepy/bluepy_git.bb
-> @@ -0,0 +1,48 @@
-> +SUMMARY =3D "Python module for interfacing with BLE devices through Blue=
-z"
-> +HOMEPAGE =3D "https://github.com/IanHarvey/bluepy"
-> +# WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best gu=
-esses - it is
-> +# your responsibility to verify that the values are complete and correct=
-.
-> +#
-> +# The following license files were not able to be identified and are
-> +# represented as "Unknown" below, you will need to check them yourself:
-> +#   LICENSE.txt
-> +#   bluez-5.29/COPYING.LIB
-> +#
-> +# NOTE: multiple licenses have been detected; they have been separated w=
-ith &
-> +# in the LICENSE value for now since it is a reasonable assumption that =
-all
-> +# of the licenses apply. If instead there is a choice between the multip=
-le
-> +# licenses then you should change the value to separate the licenses wit=
-h |
-> +# instead of &. If there is any doubt, check the accompanying documentat=
-ion
-> +# to determine which situation is applicable.
-> +LICENSE =3D "Unknown & GPLv2"
-
-You'll need to fix this as explained in the comment above (which the
-recipe generator has added) and then drop the comment.
-
-> +LIC_FILES_CHKSUM =3D "file://LICENSE.txt;md5=3D59e0d45ea684dda215889aa1b=
-5acd001 \
-> +                    file://bluez-5.29/COPYING;md5=3D12f884d2ae1ff87c09e5=
-b7ccc2c4ca7e \
-> +                    file://bluez-5.29/COPYING.LIB;md5=3Dfb504b67c50331fc=
-78734fed90fb0e09"
+> diff --git a/docs/extra-build-config.md b/docs/extra-build-config.md
+> index 380d969..0390eee 100644
+> --- a/docs/extra-build-config.md
+> +++ b/docs/extra-build-config.md
+> @@ -170,6 +170,12 @@ Screen LCD, HDMI interface (<http://www.waveshare.co=
+m/7inch-HDMI-LCD-C.htm>) Rev
+>
+>      WAVESHARE_1024X600_C_2_1 =3D "1"
+>
+> +If you would like to use the Raspberry Pi, 7 inch Capacitive Touch Scree=
+n
+> +LCD (https://www.raspberrypi.org/products/raspberry-pi-touch-display/), =
+please
+> +set the following in your local.conf:
 > +
-> +SRC_URI =3D "git://github.com/IanHarvey/bluepy.git;protocol=3Dhttps \
-> +           file://0001-When-cross-compiling-get-the-cross-compiler-from-=
-env.patch \
-> +"
+> +    RASPBERRYPI_DISPLAY =3D "1"
 > +
-> +# Modify these as desired
-
-You can drop this comment.
-
-> +PV =3D "1.1.2+git${SRCPV}"
-> +SRCREV =3D "b1178fba2729692532e02d95e7368c742814f725"
-
-Is there any reason for using this commit from git rather than the
-latest version on pypi (https://pypi.python.org/pypi/bluepy)? You can
-look at the recipe for rpi-gpio to see how to use the pypi bbclass to
-simplify fetching from pypi.
-
+>  ## Enable UART
+>
+>  RaspberryPi 0, 1, 2 and CM will have UART console enabled by default.
+> diff --git a/recipes-bsp/bootfiles/rpi-config_git.bb b/recipes-bsp/bootfi=
+les/rpi-config_git.bb
+> index ca4160b..e9a4fe2 100644
+> --- a/recipes-bsp/bootfiles/rpi-config_git.bb
+> +++ b/recipes-bsp/bootfiles/rpi-config_git.bb
+> @@ -127,6 +127,12 @@ do_deploy() {
+>          echo "hdmi_cvt 1024 600 60 6 0 0 0" >> ${DEPLOYDIR}/bcm2835-boot=
+files/config.txt
+>          echo "hdmi_drive=3D1" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.t=
+xt
+>      fi
 > +
-> +S =3D "${WORKDIR}/git"
-> +
-> +inherit setuptools
-> +
-> +DEPENDS +=3D " glib-2.0"
-> +
-> +# WARNING: the following rdepends are determined through basic analysis =
-of the
-> +# python sources, and might not be 100% accurate.
+> +    # Raspberry Pi 7" Display/Touch screen (https://www.raspberrypi.org/=
+products/raspberry-pi-touch-display/)
+> +    if [ "${RASPBERRYPI_DISPLAY}" =3D "1" ]; then
+> +        echo "# Raspberry Pi 7\" display/touch screen" >> ${DEPLOYDIR}/b=
+cm2835-bootfiles/config.txt
+> +        echo "lcd_rotate=3D2" >> ${DEPLOYDIR}/bcm2835-bootfiles/config.t=
+xt
+> +    fi
+>  }
+>
+>  do_deploy_append_raspberrypi3-64() {
 
-You can drop this comment if you've checked the RDEPENDS.
+This all looks good in general. Just a quick check though - are all
+users of this display going to want that lcd_rotate value? I've never
+used this display so not sure if that's specific to particular use
+cases or not.
 
-> +RDEPENDS_${PN} +=3D "python-argparse python-core python-io python-json p=
-ython-subprocess"
-> +
-> +# WARNING: We were unable to map the following python package/module
-> +# dependencies to the bitbake packages which include them:
-> +#    bluepy
-> +#    bluepy.btle
-> +#    bs4
-> +#    requests
-
-You can drop this comment if you've reviewed those modules and ensured
-that whatever provides them is in the dependencies.
-
-> +
-> +INHIBIT_PACKAGE_STRIP =3D "1"
-> +INSANE_SKIP_${PN} +=3D "ldflags"
-
-It's probably worth adding a couple of comments to say why these 2
-lines are needed.
-
-> diff --git a/recipes-devtools/bluepy/files/0001-When-cross-compiling-get-=
-the-cross-compiler-from-env.patch b/recipes-devtools/bluepy/files/0001-When=
--cross-compiling-get-the-cross-compiler-from-env.patch
-> new file mode 100644
-> index 0000000..8799058
-> --- /dev/null
-> +++ b/recipes-devtools/bluepy/files/0001-When-cross-compiling-get-the-cro=
-ss-compiler-from-env.patch
-> @@ -0,0 +1,28 @@
-> +From abf880ff4c276134564e1f1e63a3b6699060da7f Mon Sep 17 00:00:00 2001
-> +From: Dengke Du <dengke.du@windriver.com>
-> +Date: Mon, 27 Nov 2017 03:48:16 -0500
-> +Subject: [PATCH] When cross compiling, get the cross compiler from envir=
-onment
-> +
-> +Signed-off-by: Dengke Du <dengke.du@windriver.com>
-
-Please include an "Upstream-status" line as described in
-https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Hea=
-der_Recommendations.
-
-> +---
-> + bluepy/Makefile | 4 ++--
-> + 1 file changed, 2 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/bluepy/Makefile b/bluepy/Makefile
-> +index 76bafec..42f145b 100644
-> +--- a/bluepy/Makefile
-> ++++ b/bluepy/Makefile
-> +@@ -9,8 +9,8 @@ BLUEZ_SRCS +=3D src/shared/io-glib.c src/shared/timeout-=
-glib.c
-> + IMPORT_SRCS =3D $(addprefix $(BLUEZ_PATH)/, $(BLUEZ_SRCS))
-> + LOCAL_SRCS  =3D bluepy-helper.c
-> +
-> +-CC =3D gcc
-> +-CFLAGS =3D -Os -g -Wall # -Werror
-> ++CC ?=3D gcc
-> ++CFLAGS ?=3D -Os -g -Wall # -Werror
-> +
-> + CPPFLAGS =3D -DHAVE_CONFIG_H
-> + ifneq ($(DEBUGGING),)
-> +--
-> +2.8.1
-> +
-
-You might not need this patch. You can pass extra arguments to make by
-giving an EXTRA_OEMAKE value in the recipe - see the recipe for
-wiringpi for an example of how this can be used. I can't exactly
-remember the details of make assignment precedence so I'm not
-guaranteeing that will work, if it does work it would be the preferred
-approach though.
-
-Once you've addressed these comments you'll need to submit this as a
-pull request on github (https://github.com/agherzan/meta-raspberrypi).
+If you're happy that this is applicable for everyone could you submit
+this as a pull request on github
+(https://github.com/agherzan/meta-raspberrypi).
 
 Thanks,
 
