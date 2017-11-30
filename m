@@ -1,38 +1,53 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <stefan.roese@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EBD26E00D64; Wed, 29 Nov 2017 19:30:50 -0800 (PST)
+	id 4D3ABE00D48; Thu, 30 Nov 2017 00:09:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00, DATE_IN_PAST_03_06, 
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	*  1.6 DATE_IN_PAST_03_06 Date: is 3 to 6 hours before Received: date
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [80.241.60.215 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (stefan.roese[at]gmail.com)
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7749AE00D07
-	for <yocto@yoctoproject.org>; Wed, 29 Nov 2017 19:30:50 -0800 (PST)
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	29 Nov 2017 19:30:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,339,1508828400"; d="scan'208";a="179393084"
-Received: from tchin5-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.249.72.79])
-	by orsmga005.jf.intel.com with ESMTP; 29 Nov 2017 19:30:46 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Jerry Lian <jerry.lian@gmail.com>
-Date: Thu, 30 Nov 2017 12:03:27 +1300
-Message-ID: <21915543.uzsTMMMV9o@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <CAE0QtjOcjf8TL5Hx5WbpLOoZ4kMm84CbWcwYUZo+bM6CSzSnuw@mail.gmail.com>
-References: <CAE0QtjOcjf8TL5Hx5WbpLOoZ4kMm84CbWcwYUZo+bM6CSzSnuw@mail.gmail.com>
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+X-Greylist: delayed 319 seconds by postgrey-1.32 at yocto-www;
+	Thu, 30 Nov 2017 00:09:09 PST
+Received: from mx2.mailbox.org (mx2.mailbox.org [80.241.60.215])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E12F2E00D07
+	for <yocto@yoctoproject.org>; Thu, 30 Nov 2017 00:09:09 -0800 (PST)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx2.mailbox.org (Postfix) with ESMTPS id A8E824D6B9;
+	Thu, 30 Nov 2017 09:03:49 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from smtp1.mailbox.org ([80.241.60.240])
+	by hefe.heinlein-support.de (hefe.heinlein-support.de [91.198.250.172])
+	(amavisd-new, port 10030)
+	with ESMTP id Nml-xL2tT-gC; Thu, 30 Nov 2017 09:03:47 +0100 (CET)
+To: Ferry Toth <ftoth@telfort.nl>, yocto@yoctoproject.org
+References: <onj82v$64m$1@blaine.gmane.org>
+	<7b1dbafb-9cdb-c64b-aed7-37f6b26d8b50@gmail.com>
+	<onkni5$c4n$1@blaine.gmane.org> <onks4d$r7b$1@blaine.gmane.org>
+	<e516cd1c-786a-18f5-7ea6-09da77514d7c@gmail.com>
+	<onl099$de$1@blaine.gmane.org>
+	<c05477ea-cefe-7532-5694-8334566bd1a3@gmail.com>
+	<onptdo$u8l$1@blaine.gmane.org> <onq8ei$suh$1@blaine.gmane.org>
+	<ordl0n$kh6$1@blaine.gmane.org>
+From: Stefan Roese <stefan.roese@gmail.com>
+Message-ID: <f7643bd9-50ed-9b52-4138-1d6da7ccbd01@gmail.com>
+Date: Thu, 30 Nov 2017 09:03:46 +0100
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Concept clarification: can we deploy Yocto SDK to target?
+In-Reply-To: <ordl0n$kh6$1@blaine.gmane.org>
+Subject: Re: Solved : Re: Problems building U-Boot for x86_64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,42 +59,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Nov 2017 03:30:51 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 30 Nov 2017 08:09:11 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hi Jerry,
+Hi Ferry,
 
-On Thursday, 30 November 2017 10:35:32 AM NZDT Jerry Lian wrote:
-> I am confused about the concept of Yocto SDK:
-> * when we use "bitbake -c populate_sdk some_image", we obtain sysroots for
-> both target and host.
-> * But why do we need sysroot for host?
+On 08.10.2017 18:50, Ferry Toth wrote:
+> Op Fri, 25 Aug 2017 22:30:42 +0000, schreef Ferry Toth:
+> 
+>> Op Fri, 25 Aug 2017 21:22:40 +0200, schreef Ferry Toth:
+>>
+>>> Khem Raj wrote:
+>>>
+>>>
+>>>
+>>>>
+>>>> On 8/23/17 3:40 PM, Ferry Toth wrote:
+>>>>> Op Wed, 23 Aug 2017 14:51:55 -0700, schreef Khem Raj:
+>>>>>
+>>>>>> On 8/23/17 2:29 PM, Ferry Toth wrote:
+>>>>>>> Ferry Toth wrote:
+>>>>>>>
+>>>>>>>> Khem Raj wrote:
+>>>>>>>>
+>>>>>>>>> On 8/22/17 11:41 PM, Ferry Toth wrote:
+>>>>>>>>>> I am having trouble building a specific U-Boot version with
+>>>>>>>>>> Yocto. Outside of Yocto on 64 bit Ubuntu 17.04 with multilib it
+>>>>>>>>>> builds fine.
+>>>>>>>>>>
+>>>>>>>>>> I am extending meta-intel-edison to build a 64 bit Poke Morty,
+>>>>>>>>>> with a vanilla 64-bit kernel (4.12). This is working quite well.
+>>>>>>>>>>
+>>>>>>>>>> My host is x86_64, the target is core2 with tune=core-64.
+>>>>>>>>>>
+>>>>>>>>>> Without 64bit tune I can build U-Boot fine. With 64bit it can
+>>>>>>>>>> not link, appearently because it needs lbgcc.a
+>>>>>>>>>
+>>>>>>>>> what is exact error message ? is it while compiling host bits or
+>>>>>>>>> target bits ?
+>>>>>>>>
+>>>>>>>> The failing line is:
+>>>>>>>> x86_64-poky-linux-ld.bfd -Bsymbolic -Bsymbolic-functions -m
+>>>>>>>> elf_i386 --emit- relocs --wrap=__divdi3 --wrap=__udivdi3
+>>>>>>>> --wrap=__moddi3 --wrap=__umoddi3 -- gc-sections -pie -Bstatic
+>>>>>>>> --no-dynamic-linker -Ttext 0x01101000 -o u-boot -T u-boot.lds
+>>>>>>>> arch/x86/cpu/start.o --start-group arch/x86/cpu/built-in.o
+>>>>>>>> arch/x86/lib/built-in.o board/intel/edison/built-in.o
+>>>>>>>> cmd/built-in.o common/built-in.o disk/built-in.o
+>>>>>>>> drivers/built-in.o drivers/dma/built-in.o drivers/gpio/built-in.o
+>>>>>>>> drivers/i2c/built-in.o drivers/mmc/built-in.o
+>>>>>>>> drivers/mtd/built-in.o drivers/mtd/onenand/built-in.o
+>>>>>>>> drivers/mtd/spi/built- in.o drivers/net/built-in.o
+>>>>>>>> drivers/net/phy/built-in.o drivers/pci/built- in.o
+>>>>>>>> drivers/power/built-in.o drivers/power/battery/built-in.o
+>>>>>>>> drivers/power/domain/built-in.o
+>>>>>>>> drivers/power/fuel_gauge/built-in.o drivers/power/mfd/built-in.o
+>>>>>>>> drivers/power/pmic/built-in.o drivers/power/regulator/built-in.o
+>>>>>>>> drivers/serial/built-in.o drivers/spi/built-in.o
+>>>>>>>> drivers/usb/common/built-in.o drivers/usb/dwc3/built- in.o
+>>>>>>>> drivers/usb/emul/built-in.o drivers/usb/eth/built-in.o
+>>>>>>>> drivers/usb/gadget/built-in.o drivers/usb/gadget/udc/built-in.o
+>>>>>>>> drivers/usb/host/built-in.o drivers/usb/musb-new/built-in.o
+>>>>>>>> drivers/usb/musb/built-in.o drivers/usb/phy/built-in.o
+>>>>>>>> drivers/usb/ulpi/built-in.o dts/built-in.o fs/built-in.o
+>>>>>>>> lib/built-in.o net/built-in.o test/built-in.o test/dm/built-in.o
+>>>>>>>> --end-group arch/x86/lib/lib.a -Map u-boot.map ERROR: oe_runmake
+>>>>>>>> failed arch/x86/lib/built-in.o: In function `__wrap___udivdi3':
+>>>>>>>> /home/ferry/tmp/edison-intel/my/edison-
+>>>>>>>> morty/out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
+>>>>> v2017.03-
+>>>>>>>> r0/git/arch/x86/lib/gcc.c:25: undefined reference to
+>>>>>>>> `__normal___udivdi3'
+>>>>>>>
+>>>>>>> I as believe the missing lib is libgcc.a I just my sysroot and
+>>>>>>> found it here:
+>>>>>>
+>>>>>> the linker cmdline above does not link with libgcc and there might
+>>>>>> be a good reason for that, many standalone applications dont link
+>>>>>> with libgcc intentionally. You could look into the code and see if
+>>>>>> it can be written differently such that gcc does not have to invoke
+>>>>>> a helper function from gcc runtime. Another option is to link with
+>>>>>> libgcc explicitly
+>>>>>
+>>>>> If change my setup to build for a 32bit target, it build u-boot
+>>>>> without error.
+>>>>
+>>>> compiler may not be generating calls for the missing function.
+>>>>
+>>>>> When I build the same git outside yocto on 64bit with multilib
+>>>>> installed it also builds without error. In that case the make command
+>>>>> would be: make -j8 edison_defconfig
+>>>>
+>>>> same is possible. Can you do readelf -sW gcc.o and see if there is a
+>>>> undefined reference to __normal___udivdi3
+>>>
+>>>     20: 00000000    22 FUNC    GLOBAL HIDDEN     4 __wrap___divdi3 21:
+>>>     00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___divdi3 22:
+>>>     00000000    22 FUNC    GLOBAL HIDDEN     6 __wrap___udivdi3 23:
+>>>     00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___udivdi3 24:
+>>>     00000000    22 FUNC    GLOBAL HIDDEN     8 __wrap___moddi3 25:
+>>>     00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___moddi3 26:
+>>>     00000000    22 FUNC    GLOBAL HIDDEN    10 __wrap___umoddi3 27:
+>>>     00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___umoddi3
+>>
+>> AFAIKT when building for a 32-bit target is only that U-Boot makefile is
+>> called with CROSS_COMPILE=i686-poky-linux- CC=i686-poky-linux-gcc
+>> instead of CROSS_COMPILE=x86_64-poky-linux- CC=x86_64-poky-linux-gcc.
+>>
+>> Result from readelf -sW gcc.o built wuth i686:
+>>
+>> 20: 00000000    27 FUNC    GLOBAL HIDDEN     4 __wrap___divdi3 21:
+>> 00000000     0 NOTYPE  GLOBAL DEFAULT  UND __normal___divdi3 22:
+>> 00000000    27 FUNC    GLOBAL HIDDEN     6 __wrap___udivdi3 23: 00000000
+>>      0 NOTYPE  GLOBAL DEFAULT  UND __normal___udivdi3 24: 00000000    27
+>> FUNC    GLOBAL HIDDEN     8 __wrap___moddi3 25: 00000000     0 NOTYPE
+>> GLOBAL DEFAULT  UND __normal___moddi3 26: 00000000    27 FUNC    GLOBAL
+>> HIDDEN    10 __wrap___umoddi3 27: 00000000     0 NOTYPE  GLOBAL DEFAULT
+>> UND __normal___umoddi3
+>>
+>> The path to libs and incs is the same (x86_64...) and I can't find any
+>> libgcc.a there. Still it links in this case.
+>>
+>> Maybe in the 64-bit case I need to add i686-poky-linux-gcc to native and
+>> modify the recipe to use that?
+>>
+>>
+>>>>> My conclusion: I have some bb variable set to the wrong value or I
+>>>>> need to get multilib installed into /..../sysroots/x86_64-linux/lib.
+>>>>>
+>>>>> So how to do that?
+>>>>>
+>>>>>>> sysroots/lib32-edison/usr/lib/i686-pokymllib32-linux/6.2.0/
+>>>>>>> sysroots/lib32-edison-tcbootstrap/usr/lib/i686-pokymllib32-
+>> linux/6.2.0/
+>>>>>>> sysroots/edison/usr/lib64/x86_64-poky-linux/6.2.0/
+>>>>>>> sysroots/edison-tcbootstrap/usr/lib64/x86_64-poky-linux/6.2.0/
+>>>>>>>
+>>>>>>> How compile log shows:
+>>>>>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
+>>>>>>> CC=x86_64-poky-linux-gcc --sysroot=/..../sysroots/edison V=1
+>>>>>>> HOSTCC=gcc -isystem/..../sysroots/x86_64-linux/usr/include -O2
+>>>>>>> -pipe -L/..../sysroots/x86_64-linux/usr/lib
+>>>>>>> -L/..../sysroots/x86_64-linux/lib
+>>>>>>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/usr/lib
+>>>>>>> -Wl,-rpath-link,/..../sysroots/x86_64-linux/lib
+>>>>>>> -Wl,-rpath,/..../sysroots/x86_64-linux/usr/lib
+>>>>>>> -Wl,-rpath,/..../sysroots/x86_64-linux/lib -Wl,-O1 -C
+>>>>>>> /..../out/linux64/build/tmp/work/edison-poky-linux/u-boot/edison-
+>>>>>>> v2017.03-r0/git
+>>>>>>> O=/..../out/linux64/build/tmp/work/edison-poky-linux/u-
+>>>>>>> boot/edison-v2017.03-r0/build edison_defconfig
+>>>>>>>
+>>>>>>> (.... my edits to shorten the uninteresting part of the path)
+>>>>>>>
+>>>>>>> I would think: --sysroot points to /edison dir which actually
+>>>>>>> contains libgcc.a, but -i, _l and -W1 options point to host dirs
+>>>>>>> that don't have the lib.
+>>>>>>>
+>>>>>>>
+>>>>>>>>>> I attempted to add multilib, but although that immediately
+>>>>>>>>>> exposed bugs in other recipes but actually adds libgcc.a, it
+>>>>>>>>>> does that for the target sysroot only.
+>>>>>>>>>>
+>>>>>>>>>> And for some reason, U-Boot is built with the native gcc
+>>>>>>>>>> (x86_64-linux),
+>>>>>>>>>> and multilib does not add libgcc.a to that sysroot.
+>>>>>>>>>>
+>>>>>>>>>> So, how do I add multilib to -native sysroot, preferably only to
+>>>>>>>>>> -native and not to the target, as the target has not further use
+>>>>>>>>>> for it?
+>>>>>>>>>>
+>>>>>>>>>> Strangest thing is in u-boot.inc there is:
+>>>>>>>>>> EXTRA_OEMAKE = 'CROSS_COMPILE=${TARGET_PREFIX}
+>>>>>>>>>> CC="${TARGET_PREFIX}gcc ${TOOLCHAIN_OPTIONS}" V=1'
+>>>>>>>>>> EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS}
+>>>>>>>>>> ${BUILD_LDFLAGS}"'
+>>>>>>>>>>
+>>>>>>>>>> But when I check my log file:
+>>>>>>>>>> NOTE: make -j8 CROSS_COMPILE=x86_64-poky-linux-
+>>>>>>>>>> CC=x86_64-poky-linux- gcc  ......
+>>>>>>>>>>
+>>>>>>>>>> So TARGET_PREFIX resolves to x86_64-poky-linux, but I think my
+>>>>>>>>>> target is core2_64 (or something like that). Is that normal for
+>>>>>>>>>> U-Boot?
+>>>>>>>>>
+>>>>>>>>> thats ok.
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>>> I am a little lost, so any help would be greatly appreciated
+> 
+> I added multilib to the meta0intel-edison-bsp machine conf:
+> #multilib
+> require conf/multilib.conf
+> MULTILIBS = "multilib:lib32"
+> DEFAULTTUNE_virtclass-multilib-lib32 = "core2-32"
+> IMAGE_INSTALL_append = " lib32-libgcc"
+> 
+> This exposes a lot recipy bugs in other places that needed to be fixed
+> first.
+> 
+> Then I changed IMAGE_INSTALL += "u-boot" to "lib32_u-boot". Now it builds
+> without error.
+> 
+> Now I changed IMAGE_INSTALL tot EXTRA_IMAGEDEPENDS. I believe that will
+> prevent u-boot and the otherwise unecessary multilib to be installed on
+> the image. Not sure if that really works out as I hope.
+> 
+> All of this now causes populate_sdk to fail, but I will post that
+> seperately.
+> 
+> Thanks all for the usefull comments.
 
-The host sysroot actually contains the main part of the SDK - the cross-
-compiler and other tools that need to run on the host. The target part usually 
-doesn't include any executable binaries, only libraries and debugging symbols.
-  
-> * I know we can build application under target-sysroot (surely source the
-> environment), with fast speed.
-> * But can we deploy target-sysroot to hardware-target?
-> (Yes, I do want to compile/build application inside hardware-target, even
-> though it is slow)
+Just a quick update on this. I recently sent a patch to the U-Boot list,
+fixing this x86 toolchain dependency in mainline U-Boot:
 
-I would suggest an alternative - install the compiler and tools into your 
-image. You could do this when building the image, or alternatively if you 
-enable package management in the image you could install them after the fact. 
-At the image level there's a "tools-sdk" IMAGE_FEATURES item that will install 
-the appropriate packages; alternatively you can install packagegroup-core-sdk 
-which is effectively the same thing or for something a little more lightweight 
-there is packagegroup-core-buildessential (roughly equivalent to debian's 
-build-essential).
+https://patchwork.ozlabs.org/patch/842613/
 
-Cheers,
-Paul
+This patch will be included in the upcoming release (2018.01).
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Thanks,
+Stefan
 
