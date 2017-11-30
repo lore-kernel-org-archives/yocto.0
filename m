@@ -1,69 +1,41 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <Michael.Roeder@avnet.eu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78517E00C97; Thu, 30 Nov 2017 12:42:23 -0800 (PST)
+	id F1C0DE00C97; Thu, 30 Nov 2017 12:59:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [193.34.102.164 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45B4BE00B48
-	for <yocto@yoctoproject.org>; Thu, 30 Nov 2017 12:42:21 -0800 (PST)
-Received: by mail-wr0-f196.google.com with SMTP id l22so7927139wrc.11
-	for <yocto@yoctoproject.org>; Thu, 30 Nov 2017 12:42:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=YL3bfjXXmAo7lU8QRsB2gCNba9o/A28qu1P5bebqiOc=;
-	b=Z3Ri3J9TEVftvmDrSP+FWw1PgLWeBRU/gU+A+Fp5/FCH9EP17rIXLFiL6s5ePYln5j
-	3Uzv3IyvIQJrIF6452OqAQN2uAK8PYFj0x1fI4eSZqqQ94gq2sh2t0IL4lLmTegRUQ6d
-	tTWr9SLxJNghGlqoRL3nJQ4ZApaaNOlfZCiS3/zPZkiIX04WkQ234HiqLXoD8ucdl/tK
-	8eVm6JxxSmr/Zy3Phtr2UjjZKq/MkdTzsCIqWBvo/4z5OmkrzWF2+xCbx0ZPVk4iMNkx
-	VE9xw0JgD54V7mNDHRdojcq/soZYQk+JvNfAN6DqrXLPtknVoEuUjtoWB66lkXCfqePm
-	kdrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=YL3bfjXXmAo7lU8QRsB2gCNba9o/A28qu1P5bebqiOc=;
-	b=sk9Q+qkFq5zPqC1RCm2bctOegRRQGpZ5JIxHgAb7Hdv/3xcjjUDAMfM9f4K0yE4+nz
-	encEtHzYLF4UBhCRPji2O0uBbndQoivO/X2R+qPJFzeM5+X1RGP5g6yWY58gnP/9xIJq
-	VUl5EowB1WR9sct15AzRtK/3UabenQO8ImmiBeSKO8jiQyVVCusqnPN56hv3h38xpEYX
-	1L87bOMJqcjiPFDkzJChfDDwBa4OKgge37ZstC5L3a1hBjKrEjDXktNimTtlHvC/KPe5
-	0K5AJ0CsU+MmjR08aBbNIvB477Ope+g03jAEdigRnta4Eksc3r60zjQBhUUZ06zwax9d
-	VBJA==
-X-Gm-Message-State: AJaThX78NPQJHx4qSeBhQOnP4Wz7KB34emoSZLIKbbbPKDFvvVtsi2A2
-	V+K5gYxZTtXHw11+AA5NFhGlbx9PrZtoFAh7/Is=
-X-Google-Smtp-Source: AGs4zMa7DAfzMKVltWBEOTSr+n1zTJv1lhxd0xhdsg31UirkyIZqq0MF9Ke43SzqGunCljtM/Bj1Ohw/5HGbrpDGVZ4=
-X-Received: by 10.223.144.41 with SMTP id h38mr3235146wrh.228.1512074541141;
-	Thu, 30 Nov 2017 12:42:21 -0800 (PST)
+X-Greylist: delayed 901 seconds by postgrey-1.32 at yocto-www;
+	Thu, 30 Nov 2017 12:59:34 PST
+Received: from smtpemea2.avnet.com (smtpemea2.avnet.com [193.34.102.164])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 607D7E00B48
+	for <yocto@yoctoproject.org>; Thu, 30 Nov 2017 12:59:34 -0800 (PST)
+Received: from DEPOIY0MX08HT01.emea.avnet.com (Not Verified[172.23.125.187])
+	by smtpemea2.avnet.com with Trustwave SEG (v8, 0, 4,
+	10434) (using TLS: TLSv1, AES256-SHA)
+	id <B5a206db00001>; Thu, 30 Nov 2017 21:44:32 +0100
+Received: from depoiy0mx08mbx4.emea.avnet.com ([fe80::b03e:9daf:4e7a:9f5b]) by
+	DEPOIY0MX08HT01.emea.avnet.com ([fe80::396f:dba1:ed9a:af9d%12]) with
+	mapi id 14.03.0361.001; Thu, 30 Nov 2017 21:44:32 +0100
+From: "Roeder, Michael (Avnet Silica)" <Michael.Roeder@avnet.eu>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Kernel Crash when moving from Pyro to Rocko (or master):
+	change in kernel compile process or flags?
+Thread-Index: AdNqG8Oqr1j+qlxOTOa/ryzjsSENgA==
+Date: Thu, 30 Nov 2017 20:44:31 +0000
+Message-ID: <F845364119BAFA4C992B3CB245C60ADC28C797A0@depoiy0mx08mbx4.emea.avnet.com>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.23.125.44]
 MIME-Version: 1.0
-Received: by 10.223.133.68 with HTTP; Thu, 30 Nov 2017 12:42:20 -0800 (PST)
-In-Reply-To: <CAMKF1sqqa9fNPVyG81Lb6LKCZoW-WgmdKFQAKX7CadxhjG3Zyw@mail.gmail.com>
-References: <7085a873-0594-f4e4-03ba-c72fc156d6c9@advancedtelematic.com>
-	<cbe07fed-c51d-d663-4914-6a247171b86e@linux.intel.com>
-	<68140500-7b0d-e7e2-8a6b-7317fb4a082b@advancedtelematic.com>
-	<c4fabc4627a75ef428c39d1686eb2565@mail.mxes.net>
-	<CAMKF1sqqa9fNPVyG81Lb6LKCZoW-WgmdKFQAKX7CadxhjG3Zyw@mail.gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Thu, 30 Nov 2017 12:42:20 -0800
-Message-ID: <CAJ86T=VpE7FayjWku91hb=DnvZ80=JJXzQZ0WF+C8+LOgynbZQ@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Security upgrade stategy
+Subject: Kernel Crash when moving from Pyro to Rocko (or master): change in kernel compile process or flags?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,54 +47,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Nov 2017 20:42:23 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 30 Nov 2017 20:59:37 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 29, 2017 at 11:24 AM, Khem Raj <raj.khem@gmail.com> wrote:
-> On Wed, Nov 29, 2017 at 11:06 AM, Brian Smucker <bds@bsmucker.eu.org> wrote:
->> Hello,
->>
->> I have an older yocto-based image built with Danny.
->>
->> We have a need to update two components, php and dropbear, to the most
->> modern versions for security purposes.
->>
->> What is the preferred way to do this without moving the whole image to the
->> latest version of poky/yocto? That would be a big job, which would
->> necessitate migrating my linux dev environment to something newer, in
->> addition to other things.
->>
->> Or is there  a preferred way? How do people handle this?
->
-> We usually backport the needed fixes back into release branches.
-> Version upgrades
-> are usually not the norm. However, in your case where are on danny which might
-> have stopped to receive any security fixes already
+Hi,
+I am experiencing a Kernel crash when moving my system from Yocto 2.3 (Pyro=
+) to Rocko or Master.
+Target system is an ARMv7 (NXP Layerscape LS1021a, built on Cortex-A7).
+This is what I did:
+1) switched poky version
+2) re-built same image in a new, blank directory
 
-To avoid and doubt, danny has definitely stopped receiving any security fixes!
+Results:
+Root-FS works fine, the kernel crashes with an undefined instruction oops.
+Just exchanging the kernel zImage with the one compiled with Pyro (same rec=
+ipe), my system works fine again.
 
->, it might be
-> something you can
-> undertake in your distro to upgrade the versions. Take the new version
-> from latest
-> release or master and retrofit it into the release you are on then
-> fix/integrate it into
-> rest of your distro. However here you have forked and can keep
-> following the same
-> procedure for subsequent upgrades for these packages. Obviously, you might see
-> integration issues but thats expected.
->
->> Thanks,
->>
->> Brian
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+What I tried so far:
+1) checked and compared the kernel configs generated: 100% identical
+2) switched gcc back to the version used in Pyro (6.3) instead of 7.2: kern=
+el still crashes, same oops, no changes. So it's not related to GCC 7.2
+3) checked on different boards: same issue for the same board type, but the=
+ switch to rocko worked fine for a system based on Cortex-A9.
+
+I am using separate tmp directories and am not sharing sstate. I always sta=
+rted builds in blank build directories.
+The error is reproducible (100%)
+It was also present with all of the various snapshots of the master branch =
+I tried
+
+What I suspect: there are some changes in the ways that gcc is called from =
+pyro to rocko. Maybe one of the switches, or features, etc
+Before deep-diving into the trial and error phase of reproducing the CFLAGS=
+, etc:
+Is anyone experiencing the same issues?
+* What exactly has changed in the way the kernel build is called (methods, =
+compile/link flags, etc) between pyro and rocko? *
+* Is there a way to (easily) disable some of the features to test which one=
+ causes the issue? *
+* Any suspicions about what could cause this? *
+
+Pls. find a log of the crash below, and an excerpt of my kernel recipe and =
+machine configuration.
+
+Thanks in advance for your help,
+Best regards,
+Michael
+
+-------------
+VFS: Mounted root (ext4 filesystem) on device 179:1.
+devtmpfs: mounted
+Freeing unused kernel memory: 2048K
+Internal error: Oops - undefined instruction: 0 [#1] SMP THUMB2
+Modules linked in:
+CPU: 1 PID: 1 Comm: init Not tainted 4.14.2-avnet-nxp #2
+Hardware name: Freescale LS1021A
+task: bf0a0000 task.stack: bf09a000
+PC is at ret_fast_syscall+0x2/0x52
+LR is at SyS_brk+0x109/0x128
+pc : [<80205fc2>]    lr : [<802c513d>]    psr: 60000013
+sp : bf09bfa8  ip : 70c5387d  fp : 00001000
+r10: 00000000  r9 : bf09a000  r8 : 802061a4
+r7 : 0000002d  r6 : 76f71bac  r5 : 00010034  r4 : 00000009
+r3 : 000273c8  r2 : ffff0001  r1 : 00000000  r0 : 00028000
+Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
+Control: 70c5387d  Table: be7d1000  DAC: fffbfff3
+Process init (pid: 1, stack limit =3D 0xbf09a210)
+Stack: (0xbf09bfa8 to 0xbf09c000)
+bfa0:                   00000009 00010034 00000000 7ee86fea 00000000 000000=
+01
+bfc0: 00000009 00010034 76f71bac 0000002d 00000000 00000001 00000001 000010=
+00
+bfe0: 7ee86f14 7ee86e4c 76f87a58 76f88e88 60000010 00000000 00000000 000000=
+00
+Code: 20012000 0000bd08 00000000 b6720000 (2008f8d9)
+---[ end trace 7bab6dceda641aab ]---
+Kernel panic - not syncing: Attempted to kill init! exitcode=3D0x0000000b
+
+CPU0: stopping
+CPU: 0 PID: 0 Comm: swapper/0 Tainted: G      D         4.14.2-avnet-nxp #2
+Hardware name: Freescale LS1021A
+[<8020bbe9>] (unwind_backtrace) from [<80208e77>] (show_stack+0xb/0xc)
+[<80208e77>] (show_stack) from [<8066af19>] (dump_stack+0x69/0x78)
+[<8066af19>] (dump_stack) from [<8020b1d5>] (handle_IPI+0x261/0x274)
+[<8020b1d5>] (handle_IPI) from [<802012b1>] (gic_handle_irq+0x61/0x64)
+[<802012b1>] (gic_handle_irq) from [<8067d953>] (__irq_svc+0x53/0x7c)
+Exception stack(0x80e01f38 to 0x80e01f80)
+1f20:                                                       00000000 000027=
+d0
+1f40: 3eb79000 80212641 ffffe000 80e03cd0 80e03c74 80e7f3ab 8096e480 80e03c=
+40
+1f60: 80e8ce00 80c42a30 01400000 80e01f88 80206a3d 80206a3e 40000033 ffffff=
+ff
+[<8067d953>] (__irq_svc) from [<80206a3e>] (arch_cpu_idle+0x22/0x24)
+[<80206a3e>] (arch_cpu_idle) from [<802405bf>] (do_idle+0x9f/0xe4)
+[<802405bf>] (do_idle) from [<802407bb>] (cpu_startup_entry+0x13/0x14)
+[<802407bb>] (cpu_startup_entry) from [<80c00a05>] (start_kernel+0x305/0x31=
+0)
+---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=3D0x0=
+000000b
+-----------------------
+
+Excerpt from linux_xxx.bb:
+----
+DEPENDS_kernel-base   +=3D "kernel-devicetree"
+
+LINUX_VERSION           =3D "4.14-stable"
+S =3D "${WORKDIR}/git"
+PR =3D "r1"
+SRCREV =3D "8292fd8d726105abc01dae26d0a2cddcf53d4e0f"
+PV     =3D "4.14.2"
+SRC_URI =3D " \
+    git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;b=
+ranch=3Dmaster;protocol=3Dgit;nobranch=3D1 \
+"
+SRC_URI_append_ls1021a   =3D " file://defconfig "
+SRC_URI_append_ls1021a   =3D " file://pcie.cfg file://caam.cfg file://usb.c=
+fg file://bt.cfg "
+----
+
+Excerpt from machine.conf
+---
+SOC_FAMILY =3D "ls1021a"
+TARGET_ARCH =3D "arm"
+DEFAULTTUNE =3D "cortexa7hf-neon-vfpv4"
+IMAGE_INSTALL_append =3D " kernel-modules kernel-devicetree kernel-image"
+KERNEL_IMAGETYPE =3D "zImage"
+
+KERNEL_EXTRA_ARGS +=3D "LOADADDR=3D${UBOOT_ENTRYPOINT}"
+EXTRA_IMAGEDEPENDS +=3D "virtual/bootloader"
+----
 
