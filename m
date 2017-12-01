@@ -1,40 +1,62 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <jerry.lian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17FAAE00CCB; Fri,  1 Dec 2017 00:12:06 -0800 (PST)
+	id 5098BE00D26; Fri,  1 Dec 2017 06:07:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jerry.lian[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0A7AE00CBF
-	for <yocto@yoctoproject.org>; Fri,  1 Dec 2017 00:12:04 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	01 Dec 2017 00:12:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,344,1508828400"; d="scan'208";a="11778912"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga001.jf.intel.com with ESMTP; 01 Dec 2017 00:12:02 -0800
-To: Rail Shafigulin <rail@esenciatech.com>
-References: <CAOLNbFYR+Y9WsUu0Cw3KLtHdDyZ_giUQO00bj==58LKZ87DAeQ@mail.gmail.com>
-	<eed2b610-b2af-7ef1-de4d-c92109f1a144@linux.intel.com>
-	<CAOLNbFZMaR7-zY-u0QE45PppBUQQKKv0CuarKNrru1KOn+mRqg@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <7e45414a-664c-1b6f-dcd5-1e4faea34c12@linux.intel.com>
-Date: Fri, 1 Dec 2017 10:12:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ot0-f171.google.com (mail-ot0-f171.google.com
+	[74.125.82.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98BD5E00D04
+	for <yocto@yoctoproject.org>; Fri,  1 Dec 2017 06:07:41 -0800 (PST)
+Received: by mail-ot0-f171.google.com with SMTP id i1so9088788oth.9
+	for <yocto@yoctoproject.org>; Fri, 01 Dec 2017 06:07:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=B20+GJbvJ6DgvI8cBPMCBig+2+3u18nZZwBG6ifesWk=;
+	b=tR0o9M5G4AgMXlRjjYnyNkwFUmDAQN9aY1IZa98Hgw2hrKvDBcXO+ZbXmq5qmXIWxQ
+	WPqvOcrPKrdBxg5z3Ehla0VE3K2n7U2+zF3++sKWJVSK8nqdkOQLfaXqVUH/1ZWKqSWe
+	EboQY7dgDscrYUgmRNbXgbQWcM8xr9NTqXckbz8wmH/sompdqJyh7fGy3/EPl5QI27CH
+	l6RsvOvUc5hR6jP9YTGCiSnNv+QycLso7JUuOvyLEWOVBHRdtCqxQw30WKAjDV+diGQK
+	lOtqSrAQqFi2A8etwvBdZ3Ck6TYSwL/2kzS+2w4EzUGQ7e64eAg9PIi2WXJx/PKd4QT/
+	u60g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=B20+GJbvJ6DgvI8cBPMCBig+2+3u18nZZwBG6ifesWk=;
+	b=CpLrRzDFjl9+bye4CAl0tPgXFwUKPtX4mLRA/myYPCP8wzJCXiq84ZqCf/AW1i9Ms8
+	LnUad5XLujVZz2bU0NajtFzoZ5ynzpxhZNjSwojmAov3LLcospcA2v65uhYcL+8eqfdO
+	JLc4nSysJljEjrV/VXfVkZgWeAgimJd66KV3TF8qPXkG3CuJyPdBy6+b5Je+WymWh7i7
+	2JnechH7LfChMkJu5HQpArCWK5deRj9JiwBlabq8gSFVRolM2g40K4rVHs9sofQGALrx
+	dVI1S/5TowJy1LKXPtC+TztTMmHSeDtAotIvHcEUWIH2ZeVmUMMHqwu+iwYCRV//7hKX
+	Wczw==
+X-Gm-Message-State: AJaThX61ZyQi90XgU3fE0qx+gN8PSheTGfdnMt5sV3aUgvY4kSxrUMBC
+	gn9mTN21o2TLzY46iyezpS9LQR2Fg4sowmAdf/5zvg==
+X-Google-Smtp-Source: AGs4zMYDrBbyilQSbFWk0acJwb/YwU2M1oVCOuQD6A0oZ3awRSa0rK3kOowEI1azVuy0GPdSyr24vIQhE3sT3iL0nkE=
+X-Received: by 10.157.17.80 with SMTP id p16mr7650705otp.305.1512137260390;
+	Fri, 01 Dec 2017 06:07:40 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAOLNbFZMaR7-zY-u0QE45PppBUQQKKv0CuarKNrru1KOn+mRqg@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: dev package non-sym link
+Received: by 10.157.42.113 with HTTP; Fri, 1 Dec 2017 06:07:39 -0800 (PST)
+From: Jerry Lian <jerry.lian@gmail.com>
+Date: Fri, 1 Dec 2017 09:07:39 -0500
+Message-ID: <CAE0QtjP3GYLNDQHZaE1-M9pDvLuP6AtnAMD_xduv5ZwFJfZ9BQ@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Yocto SDK: how to deploy application with step "make install" to target?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,22 +68,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Dec 2017 08:12:06 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Dec 2017 14:07:42 -0000
+Content-Type: multipart/alternative; boundary="001a1134eba041e689055f47e468"
 
-On 11/30/2017 11:46 PM, Rail Shafigulin wrote:
-> do_install () {
->    install -d ${D}${libdir}/
->    install -m 0755 ${S}/libAnokiWave.so.1.0.1 ${D}${libdir}
->    ln -s ${D}${libdir}/libAnokiWave.so.1.0.1 ${D}${libdir}/libAnokiwave.so.1
->    ln -s ${D}${libdir}/libAnokiWave.so.1 ${D}${libdir}/libAnokiwave.so
-> }
+--001a1134eba041e689055f47e468
+Content-Type: text/plain; charset="UTF-8"
 
-You need to call 'ln -sr', then you'll get relative symlinks. Better 
-yet, add some build system support to the project (meson, cmake), then 
-it'll take care of these things for you.
+I am new to embedded linux, and some concepts confuse me:
+* I have downloaded an Autotools-based application to run on my board.
+* If I boot the board with original image/original SDK, I normally
+build/install it with steps:
+----- ./bootstrap
+----- ./configure
+----- make
+----- make install
+* Now if I boot the board with yocto image without SDK, how can I deploy
+the application?
+---- (surely I do "bitbake -c populate_sdk some-image", and source the
+environment!)
+----- ./bootstrap (Yocto SDK on host)
+----- ./configure (Yocto SDK on host)
+----- make         (Yocto SDK on host)
+----- make install (???)
 
-Alex
+* How to do "make install"? (I want to install it on target, but how?)
 
+Thanks!
+
+--001a1134eba041e689055f47e468
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I am new to embedded linux, and some concepts confuse me:<=
+div>* I have downloaded an Autotools-based application to run on my board.<=
+/div><div>* If I boot the board with original image/original SDK, I normall=
+y build/install it with steps:</div><div>----- ./bootstrap</div><div>----- =
+./configure</div><div>----- make</div><div>----- make install</div><div>* N=
+ow if I boot the board with yocto image without SDK, how can I deploy the a=
+pplication?</div><div>---- (surely I do &quot;bitbake -c populate_sdk some-=
+image&quot;, and source the environment!)</div><div><div>----- ./bootstrap =
+(Yocto SDK on host)</div><div>----- ./configure (Yocto SDK on host)</div><d=
+iv>----- make=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(Yocto SDK on host)</div><di=
+v>----- make install (???)=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0</div><div><br></div><div>* How to do &quot;make instal=
+l&quot;? (I want to install it on target, but how?)</div></div><div><br></d=
+iv><div>Thanks!</div></div>
+
+--001a1134eba041e689055f47e468--
