@@ -1,17 +1,14 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <menschel-d@posteo.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3E2FE00D68; Mon,  4 Dec 2017 11:44:41 -0800 (PST)
+	id 63D2CE00D69; Mon,  4 Dec 2017 13:12:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [185.67.36.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,47 +16,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88DA1E00D00
-	for <yocto@yoctoproject.org>; Mon,  4 Dec 2017 11:44:40 -0800 (PST)
-Received: by mail-pf0-f195.google.com with SMTP id j28so9304613pfk.8
-	for <yocto@yoctoproject.org>; Mon, 04 Dec 2017 11:44:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=EzIVd3loKMFQi7ruNkxx0dVgU1qTowL45YTEAog1WHQ=;
-	b=RDBbJwPeLp5jHp3OTBAtIcpqydmh/JQekOHbSYCQi2y3rBMFb/8ffLILznsqTUd8gv
-	z/cBxOu/hNuTkF+MkE7PVZ1Id/dEGGjbUNv4qEbrLvpsyY28HAjyAXM7x5F0Hc6YMtgV
-	cxNws/1wj1uK7Z/WYI/jB/YRae1T0QnJZ7jRwbByF+3yIQpsP7nPf8Ql0BqI1IN1TKCf
-	oY8qCmWB5qo29PnaMHDQ3mhM0bBtOddf9F3mX5e1qddbm2m0nHpiP7zB2MC5iMA980/k
-	TAY5yojIa+n//9eBuDDiXC62nYrH9VhDlUbq3LmHbqG5gpO7DJZxHL74ukowjvll5XiP
-	eQzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=EzIVd3loKMFQi7ruNkxx0dVgU1qTowL45YTEAog1WHQ=;
-	b=KCu3cZTt7Q5souHM9xwTMaxk7vBy1Luw9YgdeyU3ULtdGYl0ebEs+bmAAnw+AdSqtz
-	e02kUBIonrzvq9n/g3G4sZxFkBxJWZmXkxCmEXUZtEqk94awqm0MCxuNIuQnzpzbfaeU
-	ayjhZlvJjtNKRpttkjgXVkM4qsSNkGRIEas5wNF7GZlLkhUDbjd9lAyIcruPBH06AsRJ
-	CuJHnYdpEJvB+vUAqvIyEVQoZZ2U29IIQEy8eyqH9ebr3/MO4pjKnApaDbZo7DBPRoag
-	4Tqa8jETuSEncuwF9Tvpi8NmD9UY34Wn+tiUAYMS79TQdgO8maVwxCJS9GyDtGEqmqpV
-	iQFA==
-X-Gm-Message-State: AJaThX4hhOAQReFp1k9Q/mGmZu+/kw4Hys+qvBicjxttiEDc7j263PIW
-	OhWMFV5qF7DbkuVV44FfCqZUow==
-X-Google-Smtp-Source: AGs4zMZ+Wme6u9IbYDG0Y9MM2N+H4CN6CPipeEpxvqmSzKZnGMt7M2TV1AaILqyrokz/wHJfw0t7wg==
-X-Received: by 10.159.231.6 with SMTP id w6mr15444856plq.253.1512416679203;
-	Mon, 04 Dec 2017 11:44:39 -0800 (PST)
-Received: from e6520.guest-wifi.scl.liberty.com ([4.16.80.121])
-	by smtp.gmail.com with ESMTPSA id
-	y1sm22947965pge.27.2017.12.04.11.44.37
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 04 Dec 2017 11:44:37 -0800 (PST)
-From: Andre McCurdy <armccurdy@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon,  4 Dec 2017 11:44:31 -0800
-Message-Id: <1512416671-8219-1-git-send-email-armccurdy@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-gplv2][PATCH] elfutils_0.148: musl build fixes
+X-Greylist: delayed 379 seconds by postgrey-1.32 at yocto-www;
+	Mon, 04 Dec 2017 13:12:17 PST
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1603EE00D17
+	for <yocto@yoctoproject.org>; Mon,  4 Dec 2017 13:12:17 -0800 (PST)
+Received: from submission (posteo.de [89.146.220.130]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 9A0A520FA8
+	for <yocto@yoctoproject.org>; Mon,  4 Dec 2017 22:05:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+	t=1512421556; bh=UGPTISGxyPtGQQao/blrb7AeKj0JW8OtGRdBDnx0tyQ=;
+	h=From:Subject:To:Cc:Date:From;
+	b=RjoLjHXz2sy2PUCKtQx4dHKP4Vc86YbPWfq2T6ggJZrWq4UneJK1ZiWSMX8EBtRf1
+	DNco0XHkwulYrWzt0mVZpExxfy3iS7+DjrHJCRsJsYNWSKNG7A/4XNX+tqmnn/b3mh
+	u5v4GajmDs3SCTZNmKiUJgwpt4ZN87AlPvKy3lmUiXiHirCm4EfOXW4HsUe46/tQLR
+	GMkXkGSKW6FkjwuFp/CO20hHyqluK/RIJjm2cr1DrO0kLKCLifDoGR/YkZ3veB1TsB
+	t6qWQvW8/ZzF3DefRzOca1q4Jy714DA/kL57upL5WPNCDsJ/QnROkewTYDwie/Sq58
+	85nQ1RC11Jgng==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 3yrHTv3brkz9rxZ;
+	Mon,  4 Dec 2017 22:05:55 +0100 (CET)
+From: Dennis Menschel <menschel-d@posteo.de>
+To: Enrico Joerns <ejo@pengutronix.de>, yocto@yoctoproject.org
+References: <c8e75209-3fd2-925c-9245-3db1876b8bdc@posteo.de>
+	<558509cb-5d67-fa25-29c8-2725bad6b592@gmail.com>
+	<423fd5be-5867-fd62-89f6-aa7c0d5b2f57@pengutronix.de>
+Message-ID: <ba9291c5-07c8-f224-a31e-12a75d9ff3a0@posteo.de>
+Date: Mon, 4 Dec 2017 22:04:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.0
+MIME-Version: 1.0
+In-Reply-To: <423fd5be-5867-fd62-89f6-aa7c0d5b2f57@pengutronix.de>
+Subject: Re: New software layer for the barebox bootloader
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,184 +59,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Dec 2017 19:44:41 -0000
+X-List-Received-Date: Mon, 04 Dec 2017 21:12:19 -0000
+X-Groupsio-MsgNum: 38978
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="qCbv37wrkgg47mrrJlQ8Ux4i4AN6FhULn"
 
-Signed-off-by: Andre McCurdy <armccurdy@gmail.com>
----
- .../musl-support-for-elfutils-0.148.patch          | 133 +++++++++++++++++++++
- recipes-devtools/elfutils/elfutils_0.148.bb        |   9 +-
- 2 files changed, 140 insertions(+), 2 deletions(-)
- create mode 100644 recipes-devtools/elfutils/elfutils-0.148/musl-support-for-elfutils-0.148.patch
+--qCbv37wrkgg47mrrJlQ8Ux4i4AN6FhULn
+Content-Type: multipart/mixed; boundary="9OkM0fU7jK4j2MEL6UOsM4GOl8bGi6P8e";
+ protected-headers="v1"
+From: Dennis Menschel <menschel-d@posteo.de>
+To: Enrico Joerns <ejo@pengutronix.de>, yocto@yoctoproject.org
+Cc: Khem Raj <raj.khem@gmail.com>
+Message-ID: <ba9291c5-07c8-f224-a31e-12a75d9ff3a0@posteo.de>
+Subject: Re: [yocto] New software layer for the barebox bootloader
+References: <c8e75209-3fd2-925c-9245-3db1876b8bdc@posteo.de>
+ <558509cb-5d67-fa25-29c8-2725bad6b592@gmail.com>
+ <423fd5be-5867-fd62-89f6-aa7c0d5b2f57@pengutronix.de>
+In-Reply-To: <423fd5be-5867-fd62-89f6-aa7c0d5b2f57@pengutronix.de>
 
-diff --git a/recipes-devtools/elfutils/elfutils-0.148/musl-support-for-elfutils-0.148.patch b/recipes-devtools/elfutils/elfutils-0.148/musl-support-for-elfutils-0.148.patch
-new file mode 100644
-index 0000000..5a52d6d
---- /dev/null
-+++ b/recipes-devtools/elfutils/elfutils-0.148/musl-support-for-elfutils-0.148.patch
-@@ -0,0 +1,133 @@
-+From 8a6cefcd35fb0ba6e12afc6611cfeb600865ca17 Mon Sep 17 00:00:00 2001
-+From: Andre McCurdy <armccurdy@gmail.com>
-+Date: Wed, 27 Sep 2017 21:32:27 -0700
-+Subject: [PATCH] musl build fixes
-+
-+Upstream-Status: Inappropriate [legacy version]
-+
-+Signed-off-by: Andre McCurdy <armccurdy@gmail.com>
-+---
-+ lib/fixedsizehash.h   |  4 ++--
-+ lib/system.h          | 11 +++++++++++
-+ libelf/elf.h          |  8 ++++++--
-+ libelf/elf_begin.c    |  4 ++--
-+ libelf/elf_getarsym.c |  2 +-
-+ libelf/libelf.h       |  1 +
-+ 6 files changed, 23 insertions(+), 7 deletions(-)
-+
-+diff --git a/lib/fixedsizehash.h b/lib/fixedsizehash.h
-+index a686051..3118954 100644
-+--- a/lib/fixedsizehash.h
-++++ b/lib/fixedsizehash.h
-+@@ -51,12 +51,12 @@
-+ #include <errno.h>
-+ #include <stdlib.h>
-+ #include <string.h>
-+-#include <sys/cdefs.h>
-+ #include <sys/param.h>
-+ 
-+ #include <system.h>
-+ 
-+-#define CONCAT(t1,t2) __CONCAT (t1,t2)
-++#define CONCAT1(x,y) x##y
-++#define CONCAT(x,y) CONCAT1(x,y)
-+ 
-+ /* Before including this file the following macros must be defined:
-+ 
-+diff --git a/lib/system.h b/lib/system.h
-+index 10b4734..a9cb35e 100644
-+--- a/lib/system.h
-++++ b/lib/system.h
-+@@ -52,6 +52,17 @@
-+ #include <stddef.h>
-+ #include <stdint.h>
-+ 
-++#ifndef TEMP_FAILURE_RETRY
-++#define TEMP_FAILURE_RETRY(expression)			\
-++  (__extension__					\
-++    ({ long int __result;				\
-++       do __result = (long int) (expression);		\
-++       while (__result == -1L && errno == EINTR);	\
-++       __result; }))
-++#endif
-++
-++#define error(status, errno, ...) err(status, __VA_ARGS__)
-++
-+ extern void *xmalloc (size_t) __attribute__ ((__malloc__));
-+ extern void *xcalloc (size_t, size_t) __attribute__ ((__malloc__));
-+ extern void *xrealloc (void *, size_t) __attribute__ ((__malloc__));
-+diff --git a/libelf/elf.h b/libelf/elf.h
-+index 4158764..6d9af96 100644
-+--- a/libelf/elf.h
-++++ b/libelf/elf.h
-+@@ -23,7 +23,9 @@
-+ 
-+ #include <features.h>
-+ 
-+-__BEGIN_DECLS
-++#ifdef __cplusplus
-++extern "C" {
-++#endif
-+ 
-+ /* Standard ELF types.  */
-+ 
-+@@ -2909,6 +2911,8 @@ typedef Elf32_Addr Elf32_Conflict;
-+ #define R_M32R_NUM		256	/* Keep this the last entry. */
-+ 
-+ 
-+-__END_DECLS
-++#ifdef __cplusplus
-++}
-++#endif
-+ 
-+ #endif	/* elf.h */
-+diff --git a/libelf/elf_begin.c b/libelf/elf_begin.c
-+index 0b38991..9083736 100644
-+--- a/libelf/elf_begin.c
-++++ b/libelf/elf_begin.c
-+@@ -819,7 +819,7 @@ __libelf_next_arhdr_wrlock (elf)
-+     }
-+ 
-+   /* Copy the raw name over to a NUL terminated buffer.  */
-+-  *((char *) __mempcpy (elf->state.ar.raw_name, ar_hdr->ar_name, 16)) = '\0';
-++  *((char *) mempcpy (elf->state.ar.raw_name, ar_hdr->ar_name, 16)) = '\0';
-+ 
-+   elf_ar_hdr = &elf->state.ar.elf_ar_hdr;
-+ 
-+@@ -911,7 +911,7 @@ __libelf_next_arhdr_wrlock (elf)
-+       const char *string = ar_hdr->FIELD;				      \
-+       if (ar_hdr->FIELD[sizeof (ar_hdr->FIELD) - 1] != ' ')		      \
-+ 	{								      \
-+-	  *((char *) __mempcpy (buf, ar_hdr->FIELD, sizeof (ar_hdr->FIELD)))  \
-++	  *((char *) mempcpy (buf, ar_hdr->FIELD, sizeof (ar_hdr->FIELD)))    \
-+ 	    = '\0';							      \
-+ 	  string = buf;							      \
-+ 	}								      \
-+diff --git a/libelf/elf_getarsym.c b/libelf/elf_getarsym.c
-+index 9ff7f29..74339ce 100644
-+--- a/libelf/elf_getarsym.c
-++++ b/libelf/elf_getarsym.c
-+@@ -257,7 +257,7 @@ elf_getarsym (elf, ptr)
-+ 	      else
-+ 		arsym[cnt].as_off = file_data[cnt];
-+ 	      arsym[cnt].as_hash = _dl_elf_hash (str_data);
-+-	      str_data = rawmemchr (str_data, '\0') + 1;
-++	      str_data = memchr (str_data, '\0', SIZE_MAX) + 1;
-+ 	    }
-+ 	  /* At the end a special entry.  */
-+ 	  arsym[n].as_name = NULL;
-+diff --git a/libelf/libelf.h b/libelf/libelf.h
-+index b0b3a8d..ec15c43 100644
-+--- a/libelf/libelf.h
-++++ b/libelf/libelf.h
-+@@ -50,6 +50,7 @@
-+ #ifndef _LIBELF_H
-+ #define _LIBELF_H 1
-+ 
-++#include <fcntl.h>
-+ #include <sys/types.h>
-+ 
-+ /* Get the ELF types.  */
-+-- 
-+1.9.1
-+
-diff --git a/recipes-devtools/elfutils/elfutils_0.148.bb b/recipes-devtools/elfutils/elfutils_0.148.bb
-index 892a523..a03b74e 100644
---- a/recipes-devtools/elfutils/elfutils_0.148.bb
-+++ b/recipes-devtools/elfutils/elfutils_0.148.bb
-@@ -40,6 +40,10 @@ SRC_URI += "\
-         file://0001-Make-it-compile-with-GCC-7.patch \
-         file://0002-Make-it-build-with-GCC-7-and-compile-time-hardening-.patch \
- "
-+
-+# Only apply when building musl based target recipe
-+SRC_URI_append_libc-musl = " file://musl-support-for-elfutils-0.148.patch"
-+
- # Only apply when building uclibc based target recipe
- SRC_URI_append_libc-uclibc = " file://uclibc-support-for-elfutils-0.148.patch"
- 
-@@ -63,10 +67,11 @@ do_configure_prepend() {
-     cp ${WORKDIR}/*dis.h ${S}/libcpu
- }
- 
--# we can not build complete elfutils when using uclibc
-+# we can not build complete elfutils when using uclibc or musl
- # but some recipes e.g. gcc 4.5 depends on libelf so we
--# build only libelf for uclibc case
-+# build only libelf for uclibc and musl cases
- 
-+EXTRA_OEMAKE_libc-musl = "-C libelf"
- EXTRA_OEMAKE_libc-uclibc = "-C libelf"
- EXTRA_OEMAKE_class-native = ""
- EXTRA_OEMAKE_class-nativesdk = ""
--- 
-1.9.1
+--9OkM0fU7jK4j2MEL6UOsM4GOl8bGi6P8e
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi Enrico,
+
+Am 04.12.2017 um 15:22 schrieb Enrico Joerns:
+> [...]
+>
+> First of all, I also have thank you and say that it's great work you've=
+
+> done there! At the moment there are some recipes around and it is reall=
+y
+> worth concentrating the efforts. You did quite a lot work on writing an=
+d
+> documenting recipes.
+>=20
+> Barebox as a bootloader is a really fundamental piece of software to
+> bring up a board. Thus, from my point of view, we should push the
+> recipes forward to oe-core or at least meta-oe.
+>=20
+> People that currently have their own layers providing barebox might ten=
+d
+> to keep their own layers as long as they do not see any advantages in
+> using the meta-barebox layer.
+> Because each added meta-layer also means a bit more complexity, having =
+a
+> layer for more or less a single component (that is also supported by
+> other layers) might retain people from using it and this also increases=
+
+> the threshold for using barebox at all.
+>=20
+> Having barebox support in oe-core will allow people to throw away all
+> their custom solutions, will concentrate efforts on a single (set of)
+> recipes, will allow tighter integration with other components, and the
+> most important; it will ease using it and give the developers the
+> opportunity to choose their bootloader more freely, depending on their
+> individual hardware and software requirements.
+>=20
+> What do you think about that?
+>=20
+> [...]
+
+I would also love to see barebox in one of the official
+Yocto/OpenEmbedded layers. As already stated in the FAQ section of my
+meta-barebox layer's documentation:
+
+>> One of the goals of the meta-barebox layer is to define a clear and
+>> stable interface that covers the most important features of barebox.
+>> Such an interface still seems to be missing in the Yocto/OpenEmbedded
+>> landscape, which also prevents barebox from gaining popularity and
+>> being included in one of the official Yocto/OE layers. You can look
+>> at meta-barebox as an attempt to speed up this unification process.
+
+Integrating barebox into either oe-core or meta-oe (and thus having an
+official set of BitBake variables to configure barebox) would IMHO also
+increase the acceptance for BSP vendors to add barebox related variables
+into their machine configuration files. That way, BSP support for both
+u-boot and barebox could coexist in the same configuration files without
+the need to extend them via additional layers.
+
+Best regards,
+Dennis Menschel
 
 
+--9OkM0fU7jK4j2MEL6UOsM4GOl8bGi6P8e--
+
+--qCbv37wrkgg47mrrJlQ8Ux4i4AN6FhULn
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJaJbiJAAoJELoiXviItXXQ5iYP/RjrvV+qG0BivW4+IEei51BY
+l56h09X8b4ABfE4QrPX6dp47IkE4SJaCAnaEECjOuJR/LIfztMLg0uP23NLLvWZ/
+apinHzl152Yif7BJUmVcNOqCZegJ8oE6co0IFK+XqS1eelRoDM45BnXJJUMEgaM+
+KVQPY2J1G9kYN/VhGaly7Jiddo76ZtEe8LPuveZBoS7CqAJwGGQ5opPJRv0bg+c7
+Z8t8LzD9xsseY5V/r5WqVdLp9STxOuBiUFqXjcishqVPLWa8+9BU2xe7TdiPOlIs
+x2lyoS3XKl5pNEhymiNVPqwF0Wk55jc2L0ZEnj+N6skUB1os7t5n3MVs4w9OeGey
+QL61mmqsDY8pj/ZDNLkVQT1pxNtsMgfSzgKTjW4lh7d6kiN7XpGK7e+Ku57eTKzb
+jhfYrre+VoUxYD3cGwXyVLfoATFPfLaJDCYF6bjU0/p/vt995XnIYVBNJKCeUJAM
+h2mL7iv1LhJZfp43DB40ztTHsBLpHwDENtAkCpYxA0pefUMTHGbUSCO3UxPofQ7y
+qR+r08Ep2ed7CHtTWu9ZY6t/yCSZBNUQy8N/+WahJHg6FaNqeb4trluwHieZnvro
+ndUtkA1RX0UDVC42MmLRKiTox4G5b3jwDFy/FWyZbCOlB8QTj30UJ6b3ANCiuezm
+1DacZn9eQrZihG1rbe1p
+=qMsT
+-----END PGP SIGNATURE-----
+
+--qCbv37wrkgg47mrrJlQ8Ux4i4AN6FhULn--
