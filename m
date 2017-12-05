@@ -1,57 +1,61 @@
-Return-Path: <alan.martinovic@senic.com>
+Return-Path: <laurentiu.duca@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1FAADE00D6B; Tue,  5 Dec 2017 01:22:11 -0800 (PST)
+	id 0D08FE00CC4; Tue,  5 Dec 2017 06:21:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (laurentiu.duca[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f175.google.com (mail-ot0-f175.google.com
-	[74.125.82.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD0B0E00C97
-	for <yocto@yoctoproject.org>; Tue,  5 Dec 2017 01:22:10 -0800 (PST)
-Received: by mail-ot0-f175.google.com with SMTP id s4so17310617ote.4
-	for <yocto@yoctoproject.org>; Tue, 05 Dec 2017 01:22:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=senic-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-pf0-f169.google.com (mail-pf0-f169.google.com
+	[209.85.192.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB0F5E00B48
+	for <yocto@yoctoproject.org>; Tue,  5 Dec 2017 06:21:35 -0800 (PST)
+Received: by mail-pf0-f169.google.com with SMTP id d23so249929pfe.9
+	for <yocto@yoctoproject.org>; Tue, 05 Dec 2017 06:21:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=8l/ELnj6iJo7d5Hkd3PvxZUjC8wsmDxqN0mL53aXzdE=;
-	b=Tj8ACeIz31ObaT7YSgUkEOaSU5JHe7x6W9Ejnn6lzT8aGXrGscBafMlo0JjuLt5uwV
-	pBuUi3RYDkVnILGCKqy/8dkVbfVhyYEvtwrsTylO+SBoUDFkXdBgvb8HMr+j6bngkVzM
-	B0LcjbQPMyJeJXRxorQUavnspxvIpHVvAxSpIROqs6iPqa1U38fUgdl/woUwynXF62Jp
-	aw/pifM7B32L5L7pQ7ZPm5svHxKismQDxXxPsiuiUe+X45MxnfecuQixQrFw1lihfIr9
-	GDeTF3OdgyS8cYCBWEnYei/mpks4yxpmW4GokH0Qp+4IkZ79TvDFH4Gwu8mowYfTalQl
-	AFQA==
+	bh=kjkme7V7x5uUQiu/jd0kobHBcI8//WsftcBRh08uHOY=;
+	b=edc+JDRGGAEo7B2GF7+gIz3Imt80pmOBG3v3KoFTkecHffmE9eIlhpL29XrwAt6qqX
+	33vLQHX878TZja2vSQWgLw+5a93cIl3LM5F4Ffvw1wU590i6YwjiKPM0000vMTTNaQjt
+	0iH8f0MuYKonP3EqgaM3JzAtXEhbkD0artKeHIeYVMRtUy87Szvo4/BSpmq/5XpXhMom
+	9nsGlQ5NB2n9ZRGrBKh515SoPKxZuDBSooWDuiZDob60BvX5Ms1xcIyIlYY4EOccKJ4G
+	597VcdpxKJ+kXLD41CdlaXqFQPqDF+XKpyFMzHAExpHC4sYa5QSeeqn42sttCm595gGG
+	VayA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=8l/ELnj6iJo7d5Hkd3PvxZUjC8wsmDxqN0mL53aXzdE=;
-	b=aSYWpKohSqbiOVnVWnnCZmb6rkcJ3AQjfLH6j66pmwb2tC0IVNxapGKA2lUlt3TmRZ
-	+iNN960DW5VAgHyoATxk3xMZhZd1sOMo6Ghgh9nYkjOOCCZCOIrg01ZDvQDDgV4mgX0D
-	TCA+RHBA55cNm9g1LXWW3P9wz2QQZiT0rxaWY67+mvH3uEUP4dC7vvdiDkQk2iGvEwgm
-	s155zbZwhGEHMmJqzgmzpRIivr+DVfw65p45iF02MCxT17Hpk5DEnUQBePOZYTKT9iuT
-	S2Cz67Q/LAweCVzBi6Oy0jPGfGj8YF1RF6bP+dH/Vbu9JQpAwxbqOthLj4WVe3+kL0xg
-	3ORg==
-X-Gm-Message-State: AJaThX59Sa/QlMyaEthHRXhXCdkPcWrrR4pDYBDQB8U5qt53/+EySeFJ
-	j8g84fHX+wG+uDVWttFmsbVyCtl8tseZC2yTfBk6GIfg
-X-Google-Smtp-Source: AGs4zMZWu7K/delvI90Ct9FGm5kFrbZrs69cimiY6zBiNi/ec4g1LuVZCJ8/6LNjHHE8NwIJcubdTtSj/lXkuWlc1qA=
-X-Received: by 10.157.11.67 with SMTP id p3mr19318853otd.43.1512465729623;
-	Tue, 05 Dec 2017 01:22:09 -0800 (PST)
+	bh=kjkme7V7x5uUQiu/jd0kobHBcI8//WsftcBRh08uHOY=;
+	b=rh+r2/1ip0s8xWAp3XIvvSHoKez7O2Mnsfuwbfj2qmawAJS1nd+rX9Y8LBtRn+a36e
+	BThJUGz00wQLi6t8h0fovsUU/C1BWpiuwIPe61a+AKnIMcToRZoawJ+XqCsdFO38LgzU
+	OaqvIGUG0UC8OzmKJXU7zkYAm6s/0N//b4jzXb0Jp5gh7BwBSRWLvl7l/DEqnuWQZaFc
+	ngCy/zSDnu1P9NHw7VCfIPFI/7IOd6GfgBNElSqZBtfQIHD8KRUMUR1iJVkcy6xkRlAd
+	jFHeT+CiAmwP0focx4ZTVYWCkQXRY8Osp/e/q2thdrtw6jjJxw14obt7831e966oMtwX
+	my2A==
+X-Gm-Message-State: AJaThX79NnWmGGzhevd013pcCMa9+x3DpkENtpEj7gkBH/c8vbqrFiq6
+	At8SM1gowuMhWf5SDV1MYXxOuTO+cowx60iNjbU=
+X-Google-Smtp-Source: AGs4zMa3cBesBHNFRuFp7o2wkT0vaULY2UoQycs/iEl9XKBol2ZSJlFGgCHGzDK2dpqB9fkV/oWqogqrov/nHSB9RI4=
+X-Received: by 10.99.110.201 with SMTP id j192mr17798680pgc.70.1512483694876; 
+	Tue, 05 Dec 2017 06:21:34 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.157.42.194 with HTTP; Tue, 5 Dec 2017 01:22:09 -0800 (PST)
-From: Alan Martinovic <alan.martinovic@senic.com>
-Date: Tue, 5 Dec 2017 10:22:09 +0100
-Message-ID: <CAOT_U5ZfWRv=SYALeqFZui=974w3HaTZ1X+azg+U_jNV3axKJg@mail.gmail.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Changing device tree inside of the devshell
+Received: by 10.100.162.48 with HTTP; Tue, 5 Dec 2017 06:21:34 -0800 (PST)
+From: Laurentiu-Cristian Duca <laurentiu.duca@gmail.com>
+Date: Tue, 5 Dec 2017 16:21:34 +0200
+Message-ID: <CAPm8-H4f4XaMThA7V0kpUBoRCF_xDJdRkOenqyG9XTyMbvE+-A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Run application at system boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,30 +67,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Dec 2017 09:22:11 -0000
+X-List-Received-Date: Tue, 05 Dec 2017 14:21:37 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-I had to made some device tree changes inside of a devshell.
-Just changed the .dts file and exited the shell.
+Hello yocto community,
 
-I built the image after that and got the message:
+  I want to know a few things
+about how to configure yocto such that
+- a simple application (let's say a hello world C program
+from a new recipe) is run at boot time.
+- run a kernel module from a simple recipe at boot time
+and automatically build its "/dev/hello" interface file
+(which normally is done by hand using mknod).
 
-...do_compile is tainted from a forced run
-...do_deploy is tainted from a forced run
+  I appreciate any hint, example or tutorial regarding this questions.
 
-which made sense given the manual changes I've done.
-However, the changes haven't made their way into the image.
-
-Even when explicitly doing a deploy step (linux-senic is our kernel recipe):
-
-bitbake linux-senic -C deploy
-
-the correct .dtb doesn't find it's way into the image final image.
-
-My assumption was that any changes done in the devshell would
-be recognized and the required steps will be rerun automatically
-on a full image build.
-This ended false.
-Anyone knows where the error might lay?
+Thank you very much,
+Laurentiu
 
