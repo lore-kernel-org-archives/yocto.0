@@ -1,99 +1,62 @@
-Return-Path: <yannick.koehler@hpe.com>
+Return-Path: <jerry.lian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A67CE00D61; Wed,  6 Dec 2017 08:59:43 -0800 (PST)
+	id ED322E00D69; Wed,  6 Dec 2017 09:13:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [15.233.44.26 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jerry.lian[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 53044 seconds by postgrey-1.32 at yocto-www;
-	Wed, 06 Dec 2017 08:59:42 PST
-Received: from g2t2353.austin.hpe.com (g2t2353.austin.hpe.com [15.233.44.26])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 771C0E00D00
-	for <yocto@yoctoproject.org>; Wed,  6 Dec 2017 08:59:42 -0800 (PST)
-Received: from G4W9122.americas.hpqcorp.net (exchangepmrr1.us.hpecorp.net
-	[16.210.21.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by g2t2353.austin.hpe.com (Postfix) with ESMTPS id 5F253A6;
-	Wed,  6 Dec 2017 16:59:40 +0000 (UTC)
-Received: from G4W9122.americas.hpqcorp.net (2002:10d2:1511::10d2:1511) by
-	G4W9122.americas.hpqcorp.net (2002:10d2:1511::10d2:1511) with Microsoft
-	SMTP Server (TLS) id 15.0.1178.4; Wed, 6 Dec 2017 16:59:40 +0000
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (15.241.52.10) by
-	G4W9122.americas.hpqcorp.net (16.210.21.17) with Microsoft SMTP
-	Server (TLS)
-	id 15.0.1178.4 via Frontend Transport; Wed, 6 Dec 2017 16:59:40 +0000
-Received: from CS1PR8401MB0840.NAMPRD84.PROD.OUTLOOK.COM (10.169.16.20) by
-	AT5PR84MB0290.NAMPRD84.PROD.OUTLOOK.COM (10.162.138.24) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.302.9; Wed, 6 Dec 2017 16:59:38 +0000
-Received: from CS1PR8401MB0840.NAMPRD84.PROD.OUTLOOK.COM
-	([fe80::34ce:188c:7a83:f2fd]) by
-	CS1PR8401MB0840.NAMPRD84.PROD.OUTLOOK.COM
-	([fe80::34ce:188c:7a83:f2fd%18]) with mapi id 15.20.0282.012;
-	Wed, 6 Dec 2017 16:59:37 +0000
-From: "Koehler, Yannick" <yannick.koehler@hpe.com>
-To: "Magallon, Marcelo" <marcelo.magallon@hpe.com>
-Thread-Topic: [yocto] externalsrc + sstate why is not compatible?
-Thread-Index: AQHTbjedWgwnr0N2hk+XqKAyNmw3B6M2AS+AgABZ9+CAAAqxgIAAJHgA
-Date: Wed, 6 Dec 2017 16:59:37 +0000
-Message-ID: <CS1PR8401MB0840A114AD0B63DF969D818BED320@CS1PR8401MB0840.NAMPRD84.PROD.OUTLOOK.COM>
-References: <CS1PR8401MB0840E46EE333163758C5D9B3ED320@CS1PR8401MB0840.NAMPRD84.PROD.OUTLOOK.COM>
-	<d7cac90e-b07c-fe83-945f-82725ceeda81@linux.intel.com>
-	<CS1PR8401MB08404303F44A38D6603DE3B3ED320@CS1PR8401MB0840.NAMPRD84.PROD.OUTLOOK.COM>
-	<20171206144616.zlfpkmqgz2wsexol@nyx.americas.hpqcorp.net>
-In-Reply-To: <20171206144616.zlfpkmqgz2wsexol@nyx.americas.hpqcorp.net>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=yannick.koehler@hpe.com; 
-x-originating-ip: [15.219.163.10]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; AT5PR84MB0290;
-	6:cxnsYVwVW+nSE6GoAv9xJRbSL7h7CQGr+n1ooWHIzl2fSQzQed/gA3J8mLoPAaCTmmQizDhxWbsrDb/tA8Xmx91CCvlTihQyvGtIKviIuIw8/qnLu2mTmDTKkvVrdOo5n+LPoGDIiEwH2Sw4qOlagcGa7Ew43A6YHiJhe04lWd+JgHKNFHMGW9u1ctMx8hj4edkhA58d8V+z6xDWAfl6IVhSGINuH0+HATVk8k7YUq2BIajmETERcIoLqxkb1mF2DwYIZrDGyg1yPI6VH149xfRiutXlYKFiFGeJAgxc5LyDSyQvvfrBcp536T+eh+Y4WjImdU5yMRr3cuAbraCexLPNh12kyWbkWkIH8MnLRks=;
-	5:inwRIwLYCwSIYFOIbX1h/6c3jjuTQeb2jNFGCrHaRA0OXMoh8WjeG8EYNF7x37e+NJs3yZ2ltoXSKXbe/RBoG5arLEJcYp5uxcs2Lp+qJkZic+XQ5pUrR4s5+EupVn2ywtHYWLubGIHqwpoYPtQ87ST23o6Vcy/M+F2Te4OvI2Y=;
-	24:FDF3aPosr+m0PpbBZdNaTYnkFvGFURXMIKqVfuDMl9moeDzyFduU1Ge17w7+AEbnAKk0q6Iogg4E/Wkb7TF/mRroNXrmHAb75ASE/A8IKaw=;
-	7:Eg2qcqYrhkM0pUGaW/bGqm/PjMXbLA0MSCLQAwXYMnWlreZ2z0yrHL/cJdqNZ0Ep2/1t1M5GJNGSsTI/yO+9V1TxVuXOAVzV9+O4rPoqykhOVf4q+Lqf5OYTm/2WRXmD7oRcDBRCjajOoeeBlmIvmcOH8P+CBxEpLZsVNX9TJ19ZHojS1jvp5EUmeYVR4sg66lYNCcjDPbD58hs3lRnBkfEdpeUmhXDBuAEUdibUfhOqD0Z4UZmaVImjuyOhHvjV
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;SSOR;
-x-forefront-antispam-report: SFV:SKI; SCL:-1; SFV:NSPM;
-	SFS:(10019020)(366004)(376002)(346002)(39860400002)(55784002)(189003)(199004)(24454002)(6246003)(6636002)(6862004)(101416001)(106356001)(105586002)(99286004)(33656002)(4326008)(25786009)(55016002)(2900100001)(6436002)(6506006)(229853002)(68736007)(74316002)(7736002)(305945005)(8936002)(53936002)(9686003)(66066001)(478600001)(14454004)(3660700001)(5250100002)(81156014)(3280700002)(81166006)(8676002)(5660300001)(54906003)(2906002)(316002)(7696005)(93886005)(97736004)(76176011)(2950100002)(86362001)(3846002)(6116002)(102836003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:AT5PR84MB0290;
-	H:CS1PR8401MB0840.NAMPRD84.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-x-ms-office365-filtering-correlation-id: 72540433-6ac4-49c0-8ce5-08d53ccabc05
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:(222181515654134); BCL:0; PCL:0;
-	RULEID:(5600026)(4604075)(4534020)(4602075)(4627115)(8989060)(201703031133081)(201702281549075)(8990040)(48565401081)(2017052603286);
-	SRVR:AT5PR84MB0290; 
-x-ms-traffictypediagnostic: AT5PR84MB0290:
-x-microsoft-antispam-prvs: <AT5PR84MB02903928B743E49A727DE7DCED320@AT5PR84MB0290.NAMPRD84.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:(227479698468861)(222181515654134)(228905959029699); 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040450)(2401047)(8121501046)(5005006)(3231022)(93006095)(93001095)(10201501046)(3002001)(6055026)(6041248)(20161123562025)(20161123555025)(20161123564025)(20161123560025)(20161123558100)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(6072148)(201708071742011);
-	SRVR:AT5PR84MB0290; BCL:0; PCL:0;
-	RULEID:(100000803101)(100110400095); SRVR:AT5PR84MB0290; 
-x-forefront-prvs: 05134F8B4F
-received-spf: None (protection.outlook.com: hpe.com does not designate
-	permitted sender hosts)
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
+	[209.85.218.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D47DE00CE2
+	for <yocto@yoctoproject.org>; Wed,  6 Dec 2017 09:13:52 -0800 (PST)
+Received: by mail-oi0-f51.google.com with SMTP id j17so3034603oih.3
+	for <yocto@yoctoproject.org>; Wed, 06 Dec 2017 09:13:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=sXfv3cM8EzeiGnIe9LSeIonYYIZdUwo0OEzcCi0zpBw=;
+	b=T9L0w7uwP6tf4gAssJfUum8LtScdwLvHCpCRrKsmPNIOEnyLsqcDTtXZuUuoG09g58
+	qc8q/xL2zSFZw61jlo6wmhoi/LaQbUkuS8/XJSMRCKGUsKQH4nAqUAyoidVAgwnrscYm
+	oS9IH+ujK9bWAMU9YXW8mSPkGxYRogz5FY3tXVjL5ZtU1tqogJeXH+sd1Ee7KcJFQN09
+	2Ejl0utgxecuEvS0YBZvo2vUQGT1e41LW7oJcVMkryzTI7EPtJ8yJyqDBDrwfZfckXGx
+	gyNny+YKVl/IhJ7Ra2j9SakWtk7LqzCTfo6mas8AD6LaYkKdudapWPBiizRVZ45gwmNg
+	y8Xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=sXfv3cM8EzeiGnIe9LSeIonYYIZdUwo0OEzcCi0zpBw=;
+	b=YjzJqQ1P/9E9FXL89mQV2Gz8YNGfrfQ2fUjP7E2plfaSVX3F04wmqKvuGgOqoZn5hz
+	1hag09+fS+8eoGGRepc6YCIyHC0ofVf7rri05redFHJQrRtroO07JgnE3Qo20lSGyEf4
+	RubeVMztcwYroVF4Lfq8hkNt2UWX7eqDc08WX3y9MLVlN+O9HMLhjtgkkTlUnQJzyN74
+	fusrOA7mMYQXacGLvlIcvPiYmjItqdKOTHklhqcKoz/Uzuj3mgh1Psyr3ngwJJBssLiF
+	n1g6m5hABSvQHpktWwbw9AbJOft9HiPdiC+kFlQXdrRoqudsLp0tFiIUNa5L67ra/SFP
+	WzMg==
+X-Gm-Message-State: AJaThX52/CCpOnewJHYwaValhHzmHurOsN1goC8GCWZFdSCH5C/FJEci
+	s4VCWXDbZWrozT9v/hUGu/9YaT+ekOE1wPX7LHq7Iw==
+X-Google-Smtp-Source: AGs4zMbOMbQIwoWmmVhz+MjmGOxrpkibg3z6hIZpU16sqsZXz44wQXCdQutVR7xveGRf33XD8wQYHxvOysg/k4MkowE=
+X-Received: by 10.202.114.22 with SMTP id p22mr20690930oic.327.1512580431628; 
+	Wed, 06 Dec 2017 09:13:51 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72540433-6ac4-49c0-8ce5-08d53ccabc05
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2017 16:59:37.6772 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AT5PR84MB0290
-X-OriginatorOrg: hpe.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: externalsrc + sstate why is not compatible?
+Received: by 10.157.42.113 with HTTP; Wed, 6 Dec 2017 09:13:51 -0800 (PST)
+From: Jerry Lian <jerry.lian@gmail.com>
+Date: Wed, 6 Dec 2017 12:13:51 -0500
+Message-ID: <CAE0QtjMkS-hWknAiO1s0n8H=_6iA8YAJQqRCj7mDj4kGFum16A@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Build error: "u-boot-imx_2017.03.bb:do_compile" failed ( freescale I.MX 6 on Ubuntu 16.04) ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -105,54 +68,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Dec 2017 16:59:43 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 06 Dec 2017 17:13:55 -0000
+Content-Type: multipart/alternative; boundary="001a11352e52524d91055faf13d2"
+
+--001a11352e52524d91055faf13d2
+Content-Type: text/plain; charset="UTF-8"
+
+I got an error when trying to build for freescale I.MX6 on Ubuntu
+16.04.(see below)
+(I just follow the guide from http://freescale.github.io)
+
+Anybody got hints?
+
+Thanks!
+Jerry
+
+=======================================================================
+................
+| tools/libfdt_wrap.c:147:21: fatal error: Python.h: No such file or
+directory
+| compilation terminated.
+| error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+|
+/home/jerry/fsl-release-bsp/build-x11/tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-imx/2017.03-r0/git/tools/Makefile:123:
+recipe for target 'tools/_libfdt.so' failed
+| make[2]: *** [tools/_libfdt.so] Error 1
+|
+/home/jerry/fsl-release-bsp/build-x11/tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-imx/2017.03-r0/git/Makefile:1229:
+recipe for target 'tools' failed
+| make[1]: *** [tools] Error 2
+| make[1]: Leaving directory
+'/home/jerry/fsl-release-bsp/build-x11/tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-imx/2017.03-r0/build/mx6qsabresd_config'
+| Makefile:150: recipe for target 'sub-make' failed
+| make: *** [sub-make] Error 2
+| make: Leaving directory
+'/home/jerry/fsl-release-bsp/build-x11/tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-imx/2017.03-r0/git'
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_compile (log file is located at
+/home/jerry/fsl-release-bsp/build-x11/tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-imx/2017.03-r0/temp/log.do_compile.9339)
+ERROR: Task
+(/home/jerry/fsl-release-bsp/sources/meta-fsl-bsp-release/imx/meta-bsp/recipes-bsp/u-boot/u-boot-imx_2017.03.bb:do_compile)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 4851 tasks of which 3009 didn't need to be
+rerun and 1 failed.
+
+Summary: 1 task failed:
+
+/home/jerry/fsl-release-bsp/sources/meta-fsl-bsp-release/imx/meta-bsp/recipes-bsp/u-boot/u-boot-imx_2017.03.bb:
+do_compile
+..........................
+========================================================================
+
+--001a11352e52524d91055faf13d2
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Ok, will try that.  If that works, I may see if I can alter the file fetche=
-r to use symlinks, not sure if sstate subsystem will like that or not.
+<div dir=3D"ltr"><div><div>I got an error when trying to build for freescal=
+e I.MX6 on Ubuntu 16.04.(see below)<br></div><div>(I just follow the guide =
+from <a href=3D"http://freescale.github.io">http://freescale.github.io</a>)=
+<br><br></div>Anybody got hints?<br><br></div>Thanks!<br><div><div>Jerry<br=
+><br></div><div><div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<br>................<br>| tools/libfdt_wrap.c:147:21: fatal =
+error: Python.h: No such file or directory<br>| compilation terminated.<br>=
+| error: command &#39;x86_64-linux-gnu-gcc&#39; failed with exit status 1<b=
+r>| /home/jerry/fsl-release-bsp/build-x11/tmp/work/imx6qsabresd-poky-linux-=
+gnueabi/u-boot-imx/2017.03-r0/git/tools/Makefile:123: recipe for target &#3=
+9;tools/_libfdt.so&#39; failed<br>| make[2]: *** [tools/_libfdt.so] Error 1=
+<br>| /home/jerry/fsl-release-bsp/build-x11/tmp/work/imx6qsabresd-poky-linu=
+x-gnueabi/u-boot-imx/2017.03-r0/git/Makefile:1229: recipe for target &#39;t=
+ools&#39; failed<br>| make[1]: *** [tools] Error 2<br>| make[1]: Leaving di=
+rectory &#39;/home/jerry/fsl-release-bsp/build-x11/tmp/work/imx6qsabresd-po=
+ky-linux-gnueabi/u-boot-imx/2017.03-r0/build/mx6qsabresd_config&#39;<br>| M=
+akefile:150: recipe for target &#39;sub-make&#39; failed<br>| make: *** [su=
+b-make] Error 2<br>| make: Leaving directory &#39;/home/jerry/fsl-release-b=
+sp/build-x11/tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-imx/2017.03-r0=
+/git&#39;<br>| WARNING: exit code 1 from a shell command.<br>| ERROR: Funct=
+ion failed: do_compile (log file is located at /home/jerry/fsl-release-bsp/=
+build-x11/tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-imx/2017.03-r0/te=
+mp/log.do_compile.9339)<br>ERROR: Task (/home/jerry/fsl-release-bsp/sources=
+/meta-fsl-bsp-release/imx/meta-bsp/recipes-bsp/u-boot/u-boot-imx_2017.03.bb=
+:do_compile) failed with exit code &#39;1&#39;<br>NOTE: Tasks Summary: Atte=
+mpted 4851 tasks of which 3009 didn&#39;t need to be rerun and 1 failed.<br=
+><br>Summary: 1 task failed:<br>=C2=A0 /home/jerry/fsl-release-bsp/sources/=
+meta-fsl-bsp-release/imx/meta-bsp/recipes-bsp/u-boot/u-boot-imx_2017.03.bb:=
+do_compile<br>..........................<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br></div></div></div></div></div>
 
-If we do so, and someone change the file in /src/somedir will yocto redo th=
-e fetch/unpack pattern to recopy over the original content by itself?
-
---
-Yannick Koehler
-
------Message d'origine-----
-De=A0: Magallon, Marcelo=20
-Envoy=E9=A0: 6 d=E9cembre 2017 09:47
-=C0=A0: Koehler, Yannick <yannick.koehler@hpe.com>
-Cc=A0: Alexander Kanavin <alexander.kanavin@linux.intel.com>; yocto@yoctopr=
-oject.org
-Objet=A0: Re: [yocto] externalsrc + sstate why is not compatible?
-
-On Wed, Dec 06, 2017 at 02:13:26PM +0000, Koehler, Yannick wrote:
-
-> In regards to file fetcher, I will go check the code, I thought the=20
-> unpack would only occurs for tarball, not subdir.
-
-If you have:
-
-	SRC_URI :=3D "file://some-dir/"
-
-and your tree looks somewhat like this:
-
-	.git
-	poky
-	src/some-dir
-
-and you set things up so that bitbake will look in src/ (set FILESPATH), th=
-en it will copy "some-dir" to $WORKDIR/some-dir, and you can point S there.
-
-This satisfies your requirement as I understand it (single repo, all the so=
-urce code is there, including poky).
-
-The huge downside of this is that some-dir is copied and this confuses peop=
-le.
-
-I know the bitbake version in 2.4 has some differences that might help here=
-, but I haven't had the chance to investigate further.
-
-Marcelo
-
+--001a11352e52524d91055faf13d2--
