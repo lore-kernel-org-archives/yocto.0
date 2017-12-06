@@ -1,34 +1,60 @@
-Return-Path: <mircea.gliga@vitheia.com>
+Return-Path: <marekslomiany@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 24EA1E00D00; Wed,  6 Dec 2017 04:20:09 -0800 (PST)
+	id 2D091E00D69; Wed,  6 Dec 2017 05:44:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (marekslomiany[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.52 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A816CE00B5F
-	for <yocto@yoctoproject.org>; Wed,  6 Dec 2017 04:20:06 -0800 (PST)
-Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
-	(authenticated bits=0)
-	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id vB6CK4mm007615
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
-	verify=NO); Wed, 6 Dec 2017 14:20:04 +0200
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-References: <24c7418f-b077-f224-2cc8-ce399a2967db@vitheia.com>
-	<CAGAf8LwLZWp7x+O=wvyXb3Vm-7p0TT7hBaEkNCgrB80OYTN2bQ@mail.gmail.com>
-From: Mircea Gliga <mircea.gliga@vitheia.com>
-Message-ID: <5ffc9929-5b23-8146-5ae0-baacd73816ca@vitheia.com>
-Date: Wed, 6 Dec 2017 14:20:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f52.google.com (mail-pg0-f52.google.com [74.125.83.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA173E00D67
+	for <yocto@yoctoproject.org>; Wed,  6 Dec 2017 05:44:08 -0800 (PST)
+Received: by mail-pg0-f52.google.com with SMTP id k134so2207865pga.3
+	for <yocto@yoctoproject.org>; Wed, 06 Dec 2017 05:44:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=yaZ09KQ2/j/5sqn270xI721V0iWzONveH+DrCaFks6E=;
+	b=QXWa/BYCV70+RKs+clM+Lp76GVPMruNG5KtfTRTHxQd/yn3HqoFZ4OPpqjHmXchq6i
+	jvHDqEd0O27r+Su9iGsAtz6ek+dIV2kinTTQ89P5YBZcLQGCo9vuzJb+AWKyEy0efq9j
+	oXIZ85jIKSwZsbA41SoGN4Lbt1VJmTibiuXn2Iv/Ruc2tMcbACAZmWTKrVvLxY2ehcci
+	G45KgCwoEBsyLjY9QUXTqrp2XhCYQ5+Mjv+QRFzzioFyFU2Z4H82XyxjCxqDZW+5o3vb
+	pJ96B12oqc4M4AqjqNFP3jjUqjjVzpXqnv4m4vN5TGaZNiZW8Hqc+7AQrr2hzkO4C+JC
+	Dufw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=yaZ09KQ2/j/5sqn270xI721V0iWzONveH+DrCaFks6E=;
+	b=JQ2/f79ujd8Hwo5W9Qx0v6kHpQ94SDaDqhgLw0kcVnZ7dIN5VZE/m945S9nbno3Rfe
+	JOUTN3KTQrxnu3KnKcXT2QSf9ccPRXqLyLG4TVoJjm3XcGotrRPEcZf5LpN+Ic3HsmEa
+	844CMqGXJpv4wCypzhq1LfC90l32XDcDJ08prlCUV/bjclU4REM6M1JB/5EXMHAUeYFP
+	LN4MU/u+D1IHFTiCBq7Z38of5T0ikkRZe5QCN/LhM3X85I/BPRO5Cwov7yz0cfIbZdPe
+	qVxWqRpFbuFOGRoWs1Gtx6azjL9NCeKVR4grlhGyiyGoFFbK9EJWB6g9DtrBY5RnwlYO
+	fTyA==
+X-Gm-Message-State: AJaThX6rIbAV6OLOk02Prf4DFZd+1REThbsY3Lo1e+kFxgYMjuG5zCQw
+	DGuoB+6brqIqhCCDIUfVK1mqhJHxWjTsaSRzzKg=
+X-Google-Smtp-Source: AGs4zMbMsAbd9vDsbTCHEK4Qxk5YNOOqo+JXZwqHV8ghR/4C263hY5w5xTNH12AwrrkZ9lT+VIXJRCYHbXaTDAKrmdo=
+X-Received: by 10.99.168.5 with SMTP id o5mr21340539pgf.427.1512567847574;
+	Wed, 06 Dec 2017 05:44:07 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAGAf8LwLZWp7x+O=wvyXb3Vm-7p0TT7hBaEkNCgrB80OYTN2bQ@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: bitbake menuconfig fails
+From: =?UTF-8?Q?Marek_S=C5=82omiany?= <marekslomiany@gmail.com>
+Date: Wed, 06 Dec 2017 13:43:56 +0000
+Message-ID: <CAJCDnYaC1ouTS5g_disH5NkPMf_dy_K55G2nX-sqTxgrP+GPLA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to append to image, not machine?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,242 +66,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Dec 2017 12:20:09 -0000
-Content-Type: multipart/alternative;
-	boundary="------------F025EF03D493D21D1A7FACAD"
-Content-Language: en-US
+X-List-Received-Date: Wed, 06 Dec 2017 13:44:09 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1bec2640e2a5055fac25b8"
 
---------------F025EF03D493D21D1A7FACAD
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--94eb2c1bec2640e2a5055fac25b8
+Content-Type: text/plain; charset="UTF-8"
 
-Thanks Zoran
-What you say makes perfect sense.
-I also got the feeling that something doesn't match between the new 
-kernel and yocto.
-Maybe I should also upgrade yocto.
+Hi,
 
-Thanks again.
+I'm building system that has 2 cpu's which communicate via CSLIP over
+serial. On both ends it looks similar but the IP's has to be swapped for
+point-to-point communication. For example one will have:
+address 10.10.10.1
+pointopoint 10.10.10.2
 
-On 06/12/17 09:22, Zoran Stojsavljevic wrote:
-> Hello Mircea,
->
-> From my point of view:
->
-> /_> /usr/bin/ld: cannot find -lncursesw_/
-> > collect2: error: ld returned 1 exit status
-> > scripts/Makefile.host:111: recipe for target 'scripts/kconfig/mconf' failed
->
-> The first line explains it all. You could not configure 4.14, since 
-> for this you should have ncurses package. I would further say, the
-> YOCTO ncurses version you have, which is used for 4.8 is outdated, so 
-> you need newer (matching) YOCTO version for 4.14.
->
-> Why you are able to configure 4.14 outside of yocto? Because you use 
-> another version of ncurses, one which is host native to
-> Debian 8. YOCTO probably uses some other host based ncurses inside 
-> YOCTO (in Open Embedded/meta layer, my best guess).
->
-> Zoran
->
-> On Wed, Dec 6, 2017 at 7:31 AM, Mircea Gliga <mircea.gliga@vitheia.com 
-> <mailto:mircea.gliga@vitheia.com>> wrote:
->
->     Hello
->
->     We are using in our layer a kernel 4.8 recipe (linux-stable_4.8.bb
->     <http://linux-stable_4.8.bb>)- everything ok.
->     I'm trying to upgrade to 4.14, I created a new recipe
->     linux-stable_4.14.bb <http://linux-stable_4.14.bb>. They live side
->     by side, for now.
->     But with the 4.14 kernel when running `bitbake -c menuconfig
->     linux-stable`, the new terminal comes up and I get the following
->     error:
->
->       HOSTCC  scripts/basic/fixdep
->       GEN     ./Makefile
->       HOSTCC  scripts/kconfig/mconf.o
->       HOSTCC  scripts/kconfig/zconf.tab.o
->       HOSTCC  scripts/kconfig/lxdialog/checklist.o
->       HOSTCC  scripts/kconfig/lxdialog/util.o
->       HOSTCC  scripts/kconfig/lxdialog/inputbox.o
->       HOSTCC  scripts/kconfig/lxdialog/textbox.o
->       HOSTCC  scripts/kconfig/lxdialog/yesno.o
->       HOSTCC  scripts/kconfig/lxdialog/menubox.o
->       HOSTLD  scripts/kconfig/mconf
->     /usr/bin/ld: cannot find -lncursesw
->     collect2: error: ld returned 1 exit status
->     scripts/Makefile.host:111: recipe for target
->     'scripts/kconfig/mconf' failed
->     make[3]: *** [scripts/kconfig/mconf] Error 1
->     /media/mircea/ExtLinux/Adventure/testBuildServer/product-sama5-kernel/yocto/build/tmp/work-shared/cuxe/kernel-source/Makefile:548:
->     recipe for target 'menuconfig' failed
->     make[2]: *** [menuconfig] Error 2
->     Makefile:146: recipe for target 'sub-make' failed
->     make[1]: *** [sub-make] Error 2
->     Makefile:24: recipe for target '__sub-make' failed
->     make: *** [__sub-make] Error 2
->     Command failed.
->
->
->     If I rename linux-stable_4.14.bb <http://linux-stable_4.14.bb> to
->     linux-stable_4.14.bb___, then run bitbake again (now the build
->     system is working with the 4.8 kernel again) => menuconfig starts
->     and works as expected.
->
->     I'm using krogoth, 2.1.2, Debian 8 (jessie)
->
->     I also tried to config the kernel outside of yocto, downloaded
->     https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.4.tar.xz
->     <https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.4.tar.xz>,
->     extracted and run make menuconfig => works as expected
->
->     Any hints are appreciated.
->
->     Thanks
->     -- 
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->     <https://lists.yoctoproject.org/listinfo/yocto>
->
->
+and the other one:
+address 10.10.10.2
+pointopoint 10.10.10.1
 
+to replace /etc/network/interfaces file with my own, I have created
+a init-ifupdown_%.bbappend file which contains:
 
---------------F025EF03D493D21D1A7FACAD
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Thanks Zoran<br>
-    What you say makes perfect sense. <br>
-    I also got the feeling that something doesn't match between the new
-    kernel and yocto. <br>
-    Maybe I should also upgrade yocto.<br>
-    <br>
-    Thanks again.<br>
-    <br>
-    <div class="moz-cite-prefix">On 06/12/17 09:22, Zoran Stojsavljevic
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAGAf8LwLZWp7x+O=wvyXb3Vm-7p0TT7hBaEkNCgrB80OYTN2bQ@mail.gmail.com">
-      <div dir="ltr">Hello Mircea,
-        <div><br>
-        </div>
-        <div>From my point of view:</div>
-        <div><br>
-        </div>
-        <div><i><u>&gt; <span style="font-size:12.8px">/usr/bin/ld:
-                cannot find -lncursesw</span></u></i></div>
-        <span style="font-size:12.8px">&gt; collect2: error: ld returned
-          1 exit status</span><br style="font-size:12.8px">
-        <span style="font-size:12.8px">&gt; scripts/Makefile.host:111:
-          recipe for target 'scripts/kconfig/mconf' failed</span>
-        <div><span style="font-size:12.8px"><br>
-          </span></div>
-        <div><span style="font-size:12.8px">The first line explains it
-            all. You could not configure 4.14, since for this you should
-            have ncurses package. I would further say, the</span></div>
-        <div><span style="font-size:12.8px">YOCTO ncurses version you
-            have, which is used for 4.8 is outdated, so you need newer
-            (matching) YOCTO version for 4.14.</span></div>
-        <div><span style="font-size:12.8px"><br>
-          </span></div>
-        <div><span style="font-size:12.8px">Why you are able to
-            configure 4.14 outside of yocto? Because you use another
-            version of ncurses, one which is host native to</span></div>
-        <div><span style="font-size:12.8px">Debian 8. YOCTO probably
-            uses some other host based ncurses inside YOCTO (in Open
-            Embedded/meta layer, my best guess).</span></div>
-        <div><span style="font-size:12.8px"><br>
-          </span></div>
-        <div><span style="font-size:12.8px">Zoran</span></div>
-      </div>
-      <div class="gmail_extra"><br>
-        <div class="gmail_quote">On Wed, Dec 6, 2017 at 7:31 AM, Mircea
-          Gliga <span dir="ltr">&lt;<a
-              href="mailto:mircea.gliga@vitheia.com" target="_blank"
-              moz-do-not-send="true">mircea.gliga@vitheia.com</a>&gt;</span>
-          wrote:<br>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello<br>
-            <br>
-            We are using in our layer a kernel 4.8 recipe (<a
-              href="http://linux-stable_4.8.bb" rel="noreferrer"
-              target="_blank" moz-do-not-send="true">linux-stable_4.8.bb</a>)-
-            everything ok.<br>
-            I'm trying to upgrade to 4.14, I created a new recipe <a
-              href="http://linux-stable_4.14.bb" rel="noreferrer"
-              target="_blank" moz-do-not-send="true">linux-stable_4.14.bb</a>.
-            They live side by side, for now.<br>
-            But with the 4.14 kernel when running `bitbake -c menuconfig
-            linux-stable`, the new terminal comes up and I get the
-            following error:<br>
-            <br>
-              HOSTCC  scripts/basic/fixdep<br>
-              GEN     ./Makefile<br>
-              HOSTCC  scripts/kconfig/mconf.o<br>
-              HOSTCC  scripts/kconfig/zconf.tab.o<br>
-              HOSTCC  scripts/kconfig/lxdialog/check<wbr>list.o<br>
-              HOSTCC  scripts/kconfig/lxdialog/util.<wbr>o<br>
-              HOSTCC  scripts/kconfig/lxdialog/input<wbr>box.o<br>
-              HOSTCC  scripts/kconfig/lxdialog/textb<wbr>ox.o<br>
-              HOSTCC  scripts/kconfig/lxdialog/yesno<wbr>.o<br>
-              HOSTCC  scripts/kconfig/lxdialog/menub<wbr>ox.o<br>
-              HOSTLD  scripts/kconfig/mconf<br>
-            /usr/bin/ld: cannot find -lncursesw<br>
-            collect2: error: ld returned 1 exit status<br>
-            scripts/Makefile.host:111: recipe for target
-            'scripts/kconfig/mconf' failed<br>
-            make[3]: *** [scripts/kconfig/mconf] Error 1<br>
-            /media/mircea/ExtLinux/Adventu<wbr>re/testBuildServer/product-<wbr>sama5-kernel/yocto/build/tmp/<wbr>work-shared/cuxe/kernel-<wbr>source/Makefile:548:
-            recipe for target 'menuconfig' failed<br>
-            make[2]: *** [menuconfig] Error 2<br>
-            Makefile:146: recipe for target 'sub-make' failed<br>
-            make[1]: *** [sub-make] Error 2<br>
-            Makefile:24: recipe for target '__sub-make' failed<br>
-            make: *** [__sub-make] Error 2<br>
-            Command failed.<br>
-            <br>
-            <br>
-            If I rename <a href="http://linux-stable_4.14.bb"
-              rel="noreferrer" target="_blank" moz-do-not-send="true">linux-stable_4.14.bb</a>
-            to linux-stable_4.14.bb___, then run bitbake again (now the
-            build system is working with the 4.8 kernel again) =&gt;
-            menuconfig starts and works as expected.<br>
-            <br>
-            I'm using krogoth, 2.1.2, Debian 8 (jessie)<br>
-            <br>
-            I also tried to config the kernel outside of yocto,
-            downloaded <a
-              href="https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.14.4.tar.xz"
-              rel="noreferrer" target="_blank" moz-do-not-send="true">https://cdn.kernel.org/pub/lin<wbr>ux/kernel/v4.x/linux-4.14.4.<wbr>tar.xz</a>,
-            extracted and run make menuconfig =&gt; works as expected<br>
-            <br>
-            Any hints are appreciated.<br>
-            <br>
-            Thanks<span class="HOEnZb"><font color="#888888"><br>
-                -- <br>
-                ______________________________<wbr>_________________<br>
-                yocto mailing list<br>
-                <a href="mailto:yocto@yoctoproject.org" target="_blank"
-                  moz-do-not-send="true">yocto@yoctoproject.org</a><br>
-                <a href="https://lists.yoctoproject.org/listinfo/yocto"
-                  rel="noreferrer" target="_blank"
-                  moz-do-not-send="true">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><br>
-              </font></span></blockquote>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+SRC_URI_append = "\
+file://interfaces \
+"
 
---------------F025EF03D493D21D1A7FACAD--
+I could make two interfaces files in separate directories and add to
+SRC_URI_append_machine1 for each one, but I'm using same machine for both
+cpu's, but different images (one with qt, one without). Is there a similar
+method but binding append with image not a machine?
+
+Regards,
+Marek Slomiany
+
+--94eb2c1bec2640e2a5055fac25b8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m building system that has 2 =
+cpu&#39;s which communicate via CSLIP over serial. On both ends it looks si=
+milar but the IP&#39;s has to be swapped for point-to-point communication. =
+For example one will have:=C2=A0</div><div>address 10.10.10.1</div><div>poi=
+ntopoint 10.10.10.2</div><div><br></div><div>and the other one:</div><div>a=
+ddress 10.10.10.2</div><div>pointopoint 10.10.10.1</div><div><br></div><div=
+>to replace /etc/network/interfaces file with my own, I have created a=C2=
+=A0init-ifupdown_%.bbappend file which contains:</div><div><div><br></div><=
+div>FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;</div><div><b=
+r></div><div>SRC_URI_append =3D &quot;\</div><div><span style=3D"white-spac=
+e:pre">	</span>file://interfaces \</div><div>&quot;</div></div><div><br></d=
+iv><div>I could make two interfaces files in separate directories and add t=
+o SRC_URI_append_machine1 for each one, but I&#39;m using same machine for =
+both cpu&#39;s, but different images (one with qt, one without). Is there a=
+ similar method but binding append with image not a machine?</div><div><br>=
+</div><div>Regards,</div><div>Marek Slomiany</div></div>
+
+--94eb2c1bec2640e2a5055fac25b8--
