@@ -1,34 +1,37 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B7AB9E00D90; Wed,  6 Dec 2017 23:37:55 -0800 (PST)
+	id 26404E00DE5; Wed,  6 Dec 2017 23:38:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2FABE00D90
-	for <yocto@yoctoproject.org>; Wed,  6 Dec 2017 23:37:52 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 974C7E00DAB
+	for <yocto@yoctoproject.org>; Wed,  6 Dec 2017 23:37:54 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id vB77bqGg014553
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Wed, 6 Dec 2017 23:37:52 -0800
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vB77briu025474
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 6 Dec 2017 23:37:54 -0800 (PST)
 Received: from pek-lpg-core1.wrs.com (128.224.156.132) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.361.1; Wed, 6 Dec 2017 23:37:51 -0800
+	14.3.361.1; Wed, 6 Dec 2017 23:37:53 -0800
 From: Robert Yang <liezhi.yang@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Thu, 7 Dec 2017 15:37:12 +0800
-Message-ID: <c44f2717d1b7df1f49456f3fd348b6943169bb5c.1512630627.git.liezhi.yang@windriver.com>
+Date: Thu, 7 Dec 2017 15:37:13 +0800
+Message-ID: <e3cb41c1f86590e45d2cd6c253324b2bcd04e34e.1512630627.git.liezhi.yang@windriver.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <cover.1512630627.git.liezhi.yang@windriver.com>
 References: <cover.1512630627.git.liezhi.yang@windriver.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [PATCH 07/12] upgradehelper.py: always do upgrade when recipes are specified
+Subject: [PATCH 08/12] upgradehelper.py: clean repo only once when recipes are specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,50 +43,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Dec 2017 07:37:55 -0000
+X-List-Received-Date: Thu, 07 Dec 2017 07:38:00 -0000
 Content-Type: text/plain
 
-For example, first run:
-$ upgradehelper.py less -d 5
-It did the upgrade
+E.g.:
+$ upgradehelper.py less strace bash git
 
-Second run:
-$ upgradehelper.py less -d 5
-DEBUG: Skipping upgrade of less: is in history and not 30 days passed
-
-Let it always do the upgrade makes it easier to use when do upgrade locally.
-It will still do the check when the recipe is all.
+The commit is removed when failed, and kept when succeed, but it would be
+removed when next recipe runs, so only run clean_repo once can keep the commit,
+which is helpful for the user.
 
 Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
 ---
- upgradehelper.py | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ upgradehelper.py | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/upgradehelper.py b/upgradehelper.py
-index 70b9e8d..e38a281 100755
+index e38a281..ff27b97 100755
 --- a/upgradehelper.py
 +++ b/upgradehelper.py
-@@ -879,7 +879,7 @@ class UniverseUpdater(Updater):
-                 if not os.path.exists(last_checkpkg_file):
-                     last_checkpkg_file = None
+@@ -57,6 +57,7 @@ from utils.emailhandler import Email
+ from statistics import Statistics
+ from steps import upgrade_steps
+ from steps import compile
++from steps import clean_repo
+ from testimage import TestImage
  
--        if last_master_commit != cur_master_commit or last_date_checked != current_date or \
-+        if self.recipes or last_master_commit != cur_master_commit or last_date_checked != current_date or \
-                 last_checkpkg_file is None:
-             self._check_upstream_versions()
-             last_checkpkg_file = os.path.realpath(get_build_dir() + "/tmp/log/checkpkg.csv")
-@@ -889,7 +889,10 @@ class UniverseUpdater(Updater):
+ help_text = """Usage examples:
+@@ -419,6 +420,10 @@ class Updater(object):
+                 else:
+                     I(" %s: Save patch in directory: %s." %
+                         (pkg_ctx['PN'], pkg_ctx['workdir']))
++                    if pkg_ctx['error']:
++                        I(" %s: Remove it from repo since failed!" % pkg_ctx['PN'])
++                        self.git.reset_hard(1)
++
+         except Error as e:
+             msg = ''
  
-         pkgs_list = []
-         for pkg in self._parse_checkpkg_file(last_checkpkg_file):
--            if self._pkg_upgradable(pkg[0], pkg[1], pkg[2]):
-+            # Always do the upgrade if recipes are specified
-+            if self.recipes and pkg[0] in self.recipes:
-+                pkgs_list.append(pkg)
-+            elif self._pkg_upgradable(pkg[0], pkg[1], pkg[2]):
-                 pkgs_list.append(pkg)
- 
-         # Update last_checkpkg_run only after the version check has been completed
+@@ -569,6 +574,7 @@ class Updater(object):
+         succeeded_pkgs_ctx = []
+         failed_pkgs_ctx = []
+         attempted_pkgs = 0
++        repo_cleaned = False
+         for pn, _, _ in pkgs_to_upgrade:
+             pkg_ctx = pkgs_ctx[pn]
+             pkg_ctx['error'] = None
+@@ -581,6 +587,12 @@ class Updater(object):
+                     if step == compile and self.args.skip_compilation:
+                         W(" %s: Skipping compile by user choice" % pkg_ctx['PN'])
+                         continue
++                    if step == clean_repo and self.recipes:
++                        if repo_cleaned:
++                            I(" %s: Skipping clean_repo since it had been run by previous recipe" % pkg_ctx['PN'])
++                            continue
++                        else:
++                            repo_cleaned = True
+                     if msg is not None:
+                         I(" %s: %s" % (pkg_ctx['PN'], msg))
+                     step(self.bb, self.git, self.opts, pkg_ctx)
 -- 
 2.7.4
 
