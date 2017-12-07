@@ -1,6 +1,6 @@
 Return-Path: <limon.anibal@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 525B4E00D81; Thu,  7 Dec 2017 15:42:55 -0800 (PST)
+	id 587A4E00D84; Thu,  7 Dec 2017 15:42:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (limon.anibal[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.218.65 listed in list.dnswl.org]
+	*      [209.85.218.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,53 +19,53 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f65.google.com (mail-oi0-f65.google.com
-	[209.85.218.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C720E00D7B
-	for <yocto@yoctoproject.org>; Thu,  7 Dec 2017 15:42:54 -0800 (PST)
-Received: by mail-oi0-f65.google.com with SMTP id f69so6123793oig.10
-	for <yocto@yoctoproject.org>; Thu, 07 Dec 2017 15:42:54 -0800 (PST)
+Received: from mail-oi0-f66.google.com (mail-oi0-f66.google.com
+	[209.85.218.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9693E00D7B
+	for <yocto@yoctoproject.org>; Thu,  7 Dec 2017 15:42:55 -0800 (PST)
+Received: by mail-oi0-f66.google.com with SMTP id f69so6123821oig.10
+	for <yocto@yoctoproject.org>; Thu, 07 Dec 2017 15:42:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references
 	:mime-version:content-transfer-encoding;
-	bh=g+LQFZRAjBpZ8Sr4fW6ulBWYc6DLmnxA/pXZB1LkntE=;
-	b=O4xHNL8R9KNn0kiNk7Z+mz7CtR2SwxWLM4SQLJnvY6HsH6sriS4szrSQl5aIPe1mPd
-	+LSqqdfGAmw91m5i2tM9LHD8+nHRWGKsju/1wyyuqbpQFEnro9k3ib867ub8e8xDqypn
-	zwkPimxYhxl2XaVI5T/5BqXeVz3t3i29fLt6eEohiTxtaKj0/91irI+azZ2aQpV0ieH6
-	zRh2UwxmzptbuuPm6EkA3n/t9jd3YwZZw2DEL+0e9x+512irWrgJzQ6FYOLx0HS6cUC5
-	A43PnKCpJVLhRKTmkYZcGty5wTFDlpctWphceTPW8LblRYX/Nd6plb5mMCVQfq9EARAb
-	VPNA==
+	bh=GZswMkVN31oq+HfjP/5a3sw127/Zzr/HeKSftTMbRuM=;
+	b=dUzgKPEsZEGVGR0gYjOWXnFWJr/BiDiydaSK4zW2tUjcoWsTSICzdShoI/GwfFvxmN
+	yF1vCjeSk+tKXKAnjanxabg6u3IfotG7qEBV/tkbY6tl3covNB3HA0WzsoNnxXZ/Rhgo
+	slI1jjK4OVZXFOblJ7SITLrK7t9liNfZI+ioKIhB0pMgZULw3NXQoIrs60lszh/h0W2a
+	XXWbqJvOFUA+i49xsT82P95eHea0E20goGcWm6eR9UkroTJzoM5AWGc+g8TNNyDCtzq0
+	wdxcFD202HpDrTFbMI5k1ficuU+dmaCfE1mNFLO3gcZDQLS/wA9OFCyDHAx3NQVQ5G/B
+	fVlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references:mime-version:content-transfer-encoding;
-	bh=g+LQFZRAjBpZ8Sr4fW6ulBWYc6DLmnxA/pXZB1LkntE=;
-	b=WEy20XEtl9NpXnqw5I+uNUURbeqJ/pnnUN5tHLZ9Err3uSIver2uOe/DOrPKBW/Fp6
-	agc/T+jjZxvBQBDbqIowTy8T/7wV3Mlf13/+1FsN9F+sgfmvzAYpkqzTzLATycmFNIHQ
-	zgnYuXMla+m1D4mDGh700W3574OqejE2DXpgJ5og1HSa7mlK4GoWNd2Ntde2JmG5Lrv0
-	14dfxyxIFpRa1AmtXAOnSg5BBGLvD3BM47sZFrf19ipSf3+lnW0KNq92buEoyAAyoa3m
-	aiLNWTaAZ/FgblEuOAMsI6iVTHDxxTCt/X09sXnbInIi3IPO5VOp3od+009qCb4F8nrQ
-	g7+g==
-X-Gm-Message-State: AJaThX76mTibB5MkvSp11a+vKCChM572W8Q1KGLG4vfMg24Y/FUbbE8O
-	UPOfHObbkCoj1kwS2kMPm2zCT5nv
-X-Google-Smtp-Source: AGs4zMb01zs6udAjInbksZ6KDYir6MT+bYsGWpZCOuudwaM/pLnQ3ft+YBXtqMSGef5Hh5KN/mWeGA==
-X-Received: by 10.202.253.70 with SMTP id b67mr26105514oii.180.1512690173331; 
-	Thu, 07 Dec 2017 15:42:53 -0800 (PST)
+	bh=GZswMkVN31oq+HfjP/5a3sw127/Zzr/HeKSftTMbRuM=;
+	b=I+cfV6cYge3cXwSyP/Aem8m2dyzfLDrL/3AHBpO8AFw8so3bFmVQnJduIOAarT11pK
+	Y2M3vXxGcvN5sTEJxB4A2uG2j2J3rTcGAN2pJFpuZgcSAZj4sdpqTrgiKZD75w0ex5up
+	DH63H6V8zZjUNbEo7HMBt+f3u0hX3NmrYVsFGURYBCCAVkyiaYmPf2RK7zMAzzsTZ44o
+	C6XxSALj5s23MDPWNudS5RNFdp1w8N2J9Ad7eYBisQXbzz1pOIBJ1OcqNLR+8Z3olUJo
+	o2FCFUaKckaW//a0BWHfUQjis/KUmRrKrjvQzRD7HTM0l2rmg4bfzSKg9gITYY7prLMM
+	rrQQ==
+X-Gm-Message-State: AJaThX4rq1AtaMvy4NevuI+J504BwdZkd5WzXuxsBOBUNPZqxPQxIuC+
+	YjTql3hJ26OI1lNW4LrLClZXenDY
+X-Google-Smtp-Source: AGs4zMZS0u5yp0lTaw7yvysH0wl1oxxNkbbr3xIRmHks0Cr7MsNBEQCfbAY1OJcvl9yIRNyHIT7cYw==
+X-Received: by 10.202.197.133 with SMTP id v127mr23573522oif.224.1512690174829;
+	Thu, 07 Dec 2017 15:42:54 -0800 (PST)
 Received: from blackbox.Home (187-177-61-29.dynamic.axtel.net. [187.177.61.29])
-	by smtp.gmail.com with ESMTPSA id 68sm2780011oik.1.2017.12.07.15.42.51
+	by smtp.gmail.com with ESMTPSA id 68sm2780011oik.1.2017.12.07.15.42.53
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 07 Dec 2017 15:42:52 -0800 (PST)
+	Thu, 07 Dec 2017 15:42:54 -0800 (PST)
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <limon.anibal@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu,  7 Dec 2017 17:42:45 -0600
-Message-Id: <20171207234246.6364-2-limon.anibal@gmail.com>
+Date: Thu,  7 Dec 2017 17:42:46 -0600
+Message-Id: <20171207234246.6364-3-limon.anibal@gmail.com>
 X-Mailer: git-send-email 2.11.0
 In-Reply-To: <20171207234246.6364-1-limon.anibal@gmail.com>
 References: <20171207234246.6364-1-limon.anibal@gmail.com>
 MIME-Version: 1.0
 Cc: joshua.g.lock@intel.com,
 	=?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linaro.org>
-Subject: [ptest-runner][PATCHv2 2/3] Add support to avoid load/run twice a run_ptest script
+Subject: [ptest-runner][PATCHv2 3/3] README.md: Update to my current email
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,138 +77,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Dec 2017 23:42:55 -0000
+X-List-Received-Date: Thu, 07 Dec 2017 23:42:56 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Aníbal Limón <anibal.limon@linaro.org>
 
-In some ptest packages exists symlink in the ptest directory causing
-to load/run twice the same ptest,
-
-For example in perl5:
-
-/usr/lib/perl -> /usr/lib/perl5
-
 Signed-off-by: Aníbal Limón <anibal.limon@linaro.org>
 ---
- ptest_list.c       | 40 ++++++++++++++++++++++++++++++++++++++++
- ptest_list.h       |  3 +++
- tests/data/python3 |  1 +
- tests/utils.c      |  1 +
- utils.c            |  6 ++++++
- 5 files changed, 51 insertions(+)
- create mode 120000 tests/data/python3
+ README.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/ptest_list.c b/ptest_list.c
-index 2e1aa30..3e393d5 100644
---- a/ptest_list.c
-+++ b/ptest_list.c
-@@ -110,6 +110,46 @@ ptest_list_search(struct ptest_list *head, char *ptest)
- 	return q;
- }
+diff --git a/README.md b/README.md
+index fedab04..22b36a4 100644
+--- a/README.md
++++ b/README.md
+@@ -50,7 +50,7 @@ $ mtrace ./ptest-runner $(MALLOC_TRACE)
  
-+
-+struct ptest_list *
-+ptest_list_search_by_file(struct ptest_list *head, char *run_ptest, struct stat st_buf)
-+{
-+	struct ptest_list *q = NULL;
-+	struct ptest_list *p;
-+	struct stat st_buf_p;
-+
-+	VALIDATE_PTR_RNULL(head);
-+	VALIDATE_PTR_RNULL(run_ptest);
-+
-+	for (p = head; p != NULL; p = p->next) {
-+		if (p->ptest == NULL) 
-+			continue;
-+
-+		if (stat(p->run_ptest, &st_buf_p) == -1)
-+			continue;
-+
-+		if (strcmp(p->run_ptest, run_ptest) == 0) {
-+			q = p;
-+			break;
-+		}
-+
-+		/* *
-+		 * In some ptest packages exists symlink in the ptest directory
-+		 * causing to load/run twice the same ptest, 
-+		 *
-+		 * For example in perl5:
-+		 * /usr/lib/perl -> /usr/lib/perl5
-+		 * */
-+		if (st_buf.st_dev == st_buf_p.st_dev &&
-+		    st_buf.st_ino == st_buf_p.st_ino) {
-+			q = p;
-+			break;
-+		}
-+	}
-+
-+	return q;
-+}
-+
- struct ptest_list *
- ptest_list_add(struct ptest_list *head, char *ptest, char *run_ptest)
- {
-diff --git a/ptest_list.h b/ptest_list.h
-index 8b39485..03d7539 100644
---- a/ptest_list.h
-+++ b/ptest_list.h
-@@ -28,6 +28,8 @@
- #define PTEST_LIST_ITERATE_START(head, p) for (p = head->next; p != NULL; p = p->next) { 
- #define PTEST_LIST_ITERATE_END }
+ For contribute please send a patch with subject prefix "[ptest-runner]" to 
+ yocto@yoctoproject.org and cc the current maintainer that is Aníbal Limón 
+-<anibal.limon@linux.intel.com>.
++<anibal.limon@linaro.org>.
  
-+#include <sys/stat.h>
-+
- struct ptest_list {
- 	char *ptest;
- 	char *run_ptest;
-@@ -42,6 +44,7 @@ extern int ptest_list_free_all(struct ptest_list *);
+ ## Links
  
- extern int ptest_list_length(struct ptest_list *);
- extern struct ptest_list *ptest_list_search(struct ptest_list *, char *);
-+extern struct ptest_list *ptest_list_search_by_file(struct ptest_list *, char *, struct stat);
- extern struct ptest_list *ptest_list_add(struct ptest_list *, char *, char *);
- extern struct ptest_list *ptest_list_remove(struct ptest_list *, char *, int);
- 
-diff --git a/tests/data/python3 b/tests/data/python3
-new file mode 120000
-index 0000000..d8654aa
---- /dev/null
-+++ b/tests/data/python3
-@@ -0,0 +1 @@
-+python
-\ No newline at end of file
-diff --git a/tests/utils.c b/tests/utils.c
-index ecf3e8a..cf09379 100644
---- a/tests/utils.c
-+++ b/tests/utils.c
-@@ -48,6 +48,7 @@ static int ptests_found_length = 6;
- static char *ptests_not_found[] = {
- 	"busybox",
- 	"perl",
-+	"python3",
- 	NULL,
- };
- 
-diff --git a/utils.c b/utils.c
-index 933eced..ed2eff7 100644
---- a/utils.c
-+++ b/utils.c
-@@ -143,6 +143,12 @@ get_available_ptests(const char *dir)
- 				continue;
- 			}
- 
-+			if (ptest_list_search_by_file(head, run_ptest, st_buf)) {
-+				free(run_ptest);
-+				free(d_name);
-+				continue;
-+			}
-+
- 			struct ptest_list *p = ptest_list_add(head,
- 				d_name, run_ptest);
- 			CHECK_ALLOCATION(p, sizeof(struct ptest_list *), 0);
 -- 
 2.11.0
 
