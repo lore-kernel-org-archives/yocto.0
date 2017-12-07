@@ -1,39 +1,26 @@
-Return-Path: <joshua.g.lock@linux.intel.com>
+Return-Path: <pokybuild@ubuntu1704.yocto.io>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1057BE00D83; Fri,  8 Dec 2017 00:38:38 -0800 (PST)
+	id 3AD8BE00D6E; Thu,  7 Dec 2017 10:18:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51203E00D7B
-	for <yocto@yoctoproject.org>; Fri,  8 Dec 2017 00:38:36 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Dec 2017 00:38:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,377,1508828400"; d="scan'208";a="10144383"
-Received: from jlock-mobl3.ger.corp.intel.com ([10.252.19.44])
-	by FMSMGA003.fm.intel.com with ESMTP; 08 Dec 2017 00:38:35 -0800
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from ubuntu1704.yocto.io (unknown [198.145.29.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0155CE00C45;
+	Thu,  7 Dec 2017 10:18:02 -0800 (PST)
 To: yocto@yoctoproject.org
-References: <20171207185111.14402-1-limon.anibal@gmail.com>
-	<20171207185111.14402-3-limon.anibal@gmail.com>
-	<601e75fe-ab93-ebf8-a7de-d4e3af167c16@intel.com>
-	<CAPS-YPCHFLbJtkaO630GdXgVq5v_BD_Oa8H6O6EbwA0rVXPVbg@mail.gmail.com>
-From: Joshua Lock <joshua.g.lock@linux.intel.com>
-Message-ID: <959a04b3-0045-8786-5e35-42cc2289cae2@linux.intel.com>
-Date: Fri, 8 Dec 2017 08:38:33 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
-MIME-Version: 1.0
-In-Reply-To: <CAPS-YPCHFLbJtkaO630GdXgVq5v_BD_Oa8H6O6EbwA0rVXPVbg@mail.gmail.com>
-Subject: Re: [ptest-runner 3/3] README.md: Update to my current email
+Date: Thu, 7 Dec 2017 10:18:03 -0800
+From: pokybuild@ubuntu1704.yocto.io
+Message-Id: <1512670683.58136.30897@ubuntu1704.yocto.io>
+X-Mailman-Approved-At: Fri, 08 Dec 2017 02:01:57 -0800
+Cc: apoorv.sangal@intel.com, otavio@ossystems.com.br, joshua.g.lock@intel.com,
+	chin.huat.ang@intel.com, aaron.chun.yew.chan@intel.com,
+	ee.peng.yeoh@intel.com
+Subject: Release Candidate Build for yocto-2.4.1.rc1 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,86 +32,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Dec 2017 08:38:38 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 07 Dec 2017 18:18:05 -0000
 
 
+A release candidate build for yocto-2.4.1.rc1 is now available at:
 
-On 07/12/17 22:11, Anibal Limón wrote:
-> 
-> 
-> On Thu, Dec 7, 2017 at 4:00 PM, Joshua Lock <joshua.g.lock@intel.com 
-> <mailto:joshua.g.lock@intel.com>> wrote:
-> 
-> 
-> 
->     On 07/12/17 18:51, Aníbal Limón wrote:
-> 
->         From: Aníbal Limón <anibal.limon@linaro.org
->         <mailto:anibal.limon@linaro.org>>
-> 
->         Signed-off-by: Aníbal Limón <anibal.limon@linaro.org
->         <mailto:anibal.limon@linaro.org>>
->         ---
->            README.md | 2 +-
->            1 file changed, 1 insertion(+), 1 deletion(-)
-> 
->         diff --git a/README.md b/README.md
->         index fedab04..22b36a4 100644
->         --- a/README.md
->         +++ b/README.md
->         @@ -50,7 +50,7 @@ $ mtrace ./ptest-runner $(MALLOC_TRACE)
->              For contribute please send a patch with subject prefix
->         "[ptest-runner]" to
->         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org> and cc
->         the current maintainer that is Aníbal Limón
->         -<anibal.limon@linux.intel.com
->         <mailto:anibal.limon@linux.intel.com>>.
->         +<anibal.limon@linaro.org <mailto:anibal.limon@linaro.org>>.
-> 
-> 
->     I take this to mean that you'd still like to maintain ptest-runner?
-> 
->     We have patches on the list which could use review from someone more
->     familiar with ptest-runner than me…
-> 
-> 
-> Yes, i can look into that patches.
 
-Thanks!
+    https://autobuilder.yocto.io/pub/releases/yocto-2.4.1.rc1
 
-> Can you point me the patches?,
 
-Thread of submissions from Jiwei at WR here:
-https://lists.yoctoproject.org/pipermail/yocto/2017-September/038203.html
+Please begin QA on this build as soon as possible.
 
-I provided high-level review of some patches:
-https://lists.yoctoproject.org/pipermail/yocto/2017-October/038271.html
-https://lists.yoctoproject.org/pipermail/yocto/2017-October/038272.html
-https://lists.yoctoproject.org/pipermail/yocto/2017-October/038273.html
-https://lists.yoctoproject.org/pipermail/yocto/2017-October/038274.html
 
-Joshua
+Build hash information: 
+meta-intel : 5adbf6df4fd89e7531ccccfb9cec7a5314d635f0 
+meta-qt4 : f313dbee2ac3d5fcc9801407947d3cb6cfb90b5d 
+refkit : f24883b7d360de3eed89badce4b7fdaf7d6492c1 
+meta-mingw : a2c5fb82e5595d5bb56b579b7c93147c4fb065a5 
+meta-qt3 : f33b73a9563f2dfdfd0ee37b61d65d90197a456f 
+meta-gplv2 : c7f97f199a6dd54d3f369f0465a6bfd2cfa739b9 
+poky : c2b641c8a0c4fd71fcb477d788a740c2c26cddce 
 
-> Cheers,
-> Anibal
-> 
-> 
->     Joshua
->     ---------------------------------------------------------------------
->     Intel Corporation (UK) Limited
->     Registered No. 1134945 (England)
->     Registered Office: Pipers Way, Swindon SN3 1RJ
->     VAT No: 860 2173 47
-> 
->     This e-mail and any attachments may contain confidential material for
->     the sole use of the intended recipient(s). Any review or distribution
->     by others is strictly prohibited. If you are not the intended
->     recipient, please contact the sender and delete all copies.
-> 
-> 
-> 
-> 
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: joshua.g.lock@intel.com 
 
