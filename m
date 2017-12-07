@@ -1,38 +1,68 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <pauldotknopf@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48E18E00D74; Thu,  7 Dec 2017 12:17:17 -0800 (PST)
+	id DDEA7E00D75; Thu,  7 Dec 2017 12:22:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (pauldotknopf[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7D36E00D71
-	for <yocto@yoctoproject.org>; Thu,  7 Dec 2017 12:17:16 -0800 (PST)
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	07 Dec 2017 12:17:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,374,1508828400"; 
-   d="scan'208";a="779765"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by fmsmga008.fm.intel.com with ESMTP; 07 Dec 2017 12:17:15 -0800
-To: "Marcelo E. Magallon" <marcelo.magallon@hpe.com>, yocto@yoctoproject.org
-References: <20171207170850.ovivl4gtxi3bhxzg@nyx.americas.hpqcorp.net>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <3aa78879-1915-4c79-7ea2-dd9b92ab2325@linux.intel.com>
-Date: Thu, 7 Dec 2017 22:17:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f51.google.com (mail-it0-f51.google.com
+	[209.85.214.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B87BE00D71
+	for <yocto@yoctoproject.org>; Thu,  7 Dec 2017 12:22:03 -0800 (PST)
+Received: by mail-it0-f51.google.com with SMTP id f190so17270723ita.5
+	for <yocto@yoctoproject.org>; Thu, 07 Dec 2017 12:22:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=/gv/tRg0LpOfjkhWO6QvKyjqlNXH8Jg0m/35tTnd/qg=;
+	b=UE4oJEtOn/N3/nDe+/v/x2AhyDHu2Jg5Pdt5bOPHlY6EIG1RbCFwFljcG3pFEJwR/s
+	SA14fB70vEUx4XNLLHa5ogA0AYHFmqcgofUtqp1Mrr8/wI0/zMt1/L/jNd3JUiy54zZM
+	13U8zFgh8+6wKe/DYKY5uZA74zuOZofA1KkvypAoSx9Vn/wZacZvUubrRom/N3COGfbM
+	RpVq9cpiUFAFKicr9IlzUsUh7ODOJaGgnlf3Gl3vSjOp0fvweDJBaRPz5lHtGTU8LOpu
+	J7b3bvzgPHeJmONtl/txaIYTWm7cRvR5XsdgN820te6NyMAzIfsKD5koNqzEbaI/iYzm
+	7Lvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=/gv/tRg0LpOfjkhWO6QvKyjqlNXH8Jg0m/35tTnd/qg=;
+	b=nJqHAVx/EnKetyyBHPuxy6rBuL47Y/VfcUnl9B2jP2DXUZQnEXZTnBYptVSMkQN2un
+	W1AxInokSaGOJek7en5iHY5OJtD9qjDYocNpRwUuk4Me0g5t+ODNCux5Ew7hYciqAQSx
+	F0vj5uLzrUW4ZVSXavjA9tdVH6o02njEbIysw9NHwdA3a0hPwGwttwEH+z7WUmdsSu8T
+	cpjzcyMxXAV83Lo8MDTK5CeuKEsj085DlCEsJmmaqnAztIy8KeEgHm5iVJ4aKS8b5qz4
+	oGebSx2YMQGL+smcLl5mMeVNn17qyUVf27QDM4wep0xF8ezg8GR3349+C/D4sKazW87d
+	ERIw==
+X-Gm-Message-State: AKGB3mKH/CKbZB5UOZBZx/XeKT9L8hE9sx8u5YMQ2pS4pkExmDhJ2Ir0
+	TxmBcoY0C/jU2BbC1mqSaG4oPmZf//WU+gDWPOM=
+X-Google-Smtp-Source: AGs4zMazT8J3N644XtwgnZT2JgA+uPbLMffx3sWTE9cxaQjhQxCS6g2Svp4axGHoZLjyFPgeKjIEyZbGeXSUQG6gUEM=
+X-Received: by 10.107.190.1 with SMTP id o1mr5274037iof.274.1512678123442;
+	Thu, 07 Dec 2017 12:22:03 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20171207170850.ovivl4gtxi3bhxzg@nyx.americas.hpqcorp.net>
-Subject: Re: Good example of bbclass customization? maintainer
+Received: by 10.107.132.96 with HTTP; Thu, 7 Dec 2017 12:22:02 -0800 (PST)
+In-Reply-To: <95676e99-422b-8ab4-131f-de9878d3b3e8@linux.intel.com>
+References: <CAKmWj-1fwjsLE9SU05JBO0Q3BHXqRHdOYfN759=0D-OtYYXJrA@mail.gmail.com>
+	<CAKmWj-0_JS5WTDC+ih2oW9_MPTnZJZurHj0cRy4N1jXcH5vSPg@mail.gmail.com>
+	<95676e99-422b-8ab4-131f-de9878d3b3e8@linux.intel.com>
+From: Paul Knopf <pauldotknopf@gmail.com>
+Date: Thu, 7 Dec 2017 15:22:02 -0500
+Message-ID: <CAKmWj-1PzW29FUnWTeuJh6=hRghQ-7vi+PKst5K1cL4Tg1LQyw@mail.gmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Preventing a variable from being cached
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,27 +74,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Dec 2017 20:17:17 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 07 Dec 2017 20:22:04 -0000
+Content-Type: multipart/alternative; boundary="001a114f0292351555055fc5d2f8"
 
-On 12/07/2017 07:08 PM, Marcelo E. Magallon wrote:
-> My concern right now is a *different* case, where your goal is to modify
-> the class in order to affect all the recipes already inheriting from it.
-> For example, where there's a modification to a function in the class.
-> 
-> Is there a good example out there as to how to implement such a thing?
+--001a114f0292351555055fc5d2f8
+Content-Type: text/plain; charset="UTF-8"
 
-I don't know but in the interests of long-term maintainability I would 
-advise against it. If a recipe inherits a class that is in oe-core, it 
-would be reasonable to expect that there would not be any additional 
-hidden behaviour.
+I have all my meta-layers and build conf files checked into a single
+repository (submodules for layers). I want a recipe to look at the git
+repository, and place a file in the build. I'd like this repository to read
+the HEAD, and decide if it needs to be rebuilt (to put new file in image)
+based off of HEAD/branch location.
 
-You have two choices:
-1) copy the class into a new class and modify it as you please;
-2) submit your modifications to the original class upstream in a timely 
-manner
+On Thu, Dec 7, 2017 at 11:15 AM, Alexander Kanavin <
+alexander.kanavin@linux.intel.com> wrote:
 
-Alex
+> On 12/07/2017 05:47 PM, Paul Knopf wrote:
+>
+>> I take it that this is not possible?
+>>
+>
+> A recipe will rebuild if you change SRCREV or SRC_URI in it. What are you
+> trying to do?
+>
+> Alex
+>
 
+--001a114f0292351555055fc5d2f8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I have all my meta-layers and build conf files checked int=
+o a single repository (submodules for layers). I want a recipe to look at t=
+he git repository, and place a file in the build. I&#39;d like this reposit=
+ory to read the HEAD, and decide if it needs to be rebuilt (to put new file=
+ in image) based off of HEAD/branch location.</div><div class=3D"gmail_extr=
+a"><br><div class=3D"gmail_quote">On Thu, Dec 7, 2017 at 11:15 AM, Alexande=
+r Kanavin <span dir=3D"ltr">&lt;<a href=3D"mailto:alexander.kanavin@linux.i=
+ntel.com" target=3D"_blank">alexander.kanavin@linux.intel.com</a>&gt;</span=
+> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On 12/07/2017 0=
+5:47 PM, Paul Knopf wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+I take it that this is not possible?<br>
+</blockquote>
+<br></span>
+A recipe will rebuild if you change SRCREV or SRC_URI in it. What are you t=
+rying to do?<br>
+<br>
+Alex<br>
+</blockquote></div><br></div>
+
+--001a114f0292351555055fc5d2f8--
