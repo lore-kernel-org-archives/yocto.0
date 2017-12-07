@@ -1,34 +1,34 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E63B5E00D6A; Wed,  6 Dec 2017 23:47:24 -0800 (PST)
+	id 5FF6BE00D6C; Thu,  7 Dec 2017 00:54:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B625E00D61
-	for <yocto@yoctoproject.org>; Wed,  6 Dec 2017 23:47:23 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vB77lNJN026303
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 6 Dec 2017 23:47:23 -0800 (PST)
-Received: from localhost.corp.ad.wrs.com (128.224.162.229) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.361.1; Wed, 6 Dec 2017 23:47:22 -0800
-To: <yocto@yoctoproject.org>
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Thu, 07 Dec 2017 00:54:08 PST
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5B74E00D69
+	for <yocto@yoctoproject.org>; Thu,  7 Dec 2017 00:54:08 -0800 (PST)
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Dec 2017 00:53:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.45,372,1508828400"; 
+   d="scan'208";a="642817"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by fmsmga008.fm.intel.com with ESMTP; 07 Dec 2017 00:53:04 -0800
+To: Robert Yang <liezhi.yang@windriver.com>, yocto@yoctoproject.org
 References: <cover.1512630627.git.liezhi.yang@windriver.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <c1d40400-f9e7-b415-9093-ea5d9662a0cb@windriver.com>
-Date: Thu, 7 Dec 2017 15:46:57 +0800
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <9c2dc236-58dd-c3d5-0643-8860030477b5@linux.intel.com>
+Date: Thu, 7 Dec 2017 10:53:42 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	Thunderbird/52.4.0
 MIME-Version: 1.0
 In-Reply-To: <cover.1512630627.git.liezhi.yang@windriver.com>
 Cc: paul.eggleton@linux.intel.com
@@ -44,48 +44,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Dec 2017 07:47:24 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Thu, 07 Dec 2017 08:54:09 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-I had added alexander.kanavin@linux.intel.com in the cc list, but it was gone,
-looks strange, now add him again.
-
-// Robert
-
-On 12/07/2017 03:37 PM, Robert Yang wrote:
-> * Usages: (No settings is required by default)
->    - Upgrade one recipe:
->      $ upgradehelper.py less
-> 
->    - Upgrade multiple recipes:
->      $ upgradehelper.py less bash
-> 
->      The commit will be kept in the repo when *succeed*.
->      No commit when *failed* by default unless -f is used.
-> 
->    - Upgrade recipes and apply failed patches after the upgrade is done:
->      $ upgradehelper.py less bash -f
-> 
->    - Upgrade all recipes and send emails:
->      $ upgradehelper.py all -e
-> 
-> * Next:
->    - Auto fix do_fetch error when thera are more than one checksums, e.g., git repo.
->    - Add it into oe-core and suggest maintainer uses it ?
-> 
-> // Robert
-> 
-> The following changes since commit ccf93239c7def7b475fe20f8fcd91043bc59bd61:
-> 
->    upgradehelper.py: Layer mode do a full cleanup of poky (2017-06-05 16:14:23 -0500)
-> 
-> are available in the git repository at:
-> 
->    git://git.pokylinux.org/poky-contrib rbt/auh
->    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=rbt/auh
-> 
+On 12/07/2017 09:37 AM, Robert Yang wrote:
 > Robert Yang (12):
 >    upgradehelper.py: fix checking for do_checkpkg
 >    upgradehelper.py: support upgrade multiple recipes
@@ -99,9 +63,9 @@ On 12/07/2017 03:37 PM, Robert Yang wrote:
 >    upgradehelper.py: add --apply-failed option
 >    upgradehelper.py: print info when recipe is skipped to upgrade
 >    upgradehelper.py: don't build gcc-runtime when --skip-compilation
-> 
->   modules/steps.py |   4 --
->   upgradehelper.py | 118 ++++++++++++++++++++++++++++++++++---------------------
->   2 files changed, 73 insertions(+), 49 deletions(-)
-> 
+
+Thanks, these do make sense. I'll integrate them into my devtool (and 
+other fixes) work - hope to publish it in the next few days.
+
+Alex
 
