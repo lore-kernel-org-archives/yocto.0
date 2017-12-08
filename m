@@ -1,45 +1,67 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62C86E00D6E; Fri,  8 Dec 2017 06:18:10 -0800 (PST)
+	id 0EBBAE00D6F; Fri,  8 Dec 2017 08:20:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4AFBE00C45
-	for <yocto@yoctoproject.org>; Fri,  8 Dec 2017 06:18:09 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Dec 2017 06:18:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,377,1508828400"; 
-   d="scan'208";a="971509"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by fmsmga008.fm.intel.com with ESMTP; 08 Dec 2017 06:18:07 -0800
-To: Robert Yang <liezhi.yang@windriver.com>, yocto@yoctoproject.org
-References: <cover.1512630627.git.liezhi.yang@windriver.com>
-	<e3cb41c1f86590e45d2cd6c253324b2bcd04e34e.1512630627.git.liezhi.yang@windriver.com>
-	<b1f0b049-b78e-4009-20ac-979b82081b4e@linux.intel.com>
-	<d8a9adca-7374-64da-8613-059034082943@windriver.com>
-	<4af82364-f125-e6fd-ab12-8dd3a9f0dcbc@windriver.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <91939990-5880-aba7-7ec6-7d24809694aa@linux.intel.com>
-Date: Fri, 8 Dec 2017 16:18:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f65.google.com (mail-it0-f65.google.com
+	[209.85.214.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B392E00D19
+	for <yocto@yoctoproject.org>; Fri,  8 Dec 2017 08:20:56 -0800 (PST)
+Received: by mail-it0-f65.google.com with SMTP id d16so5862510itj.1
+	for <yocto@yoctoproject.org>; Fri, 08 Dec 2017 08:20:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=t+a0CW7o4JeDwDpDrsRit1cqTOK9vtNDKlfZHLbCEmY=;
+	b=QFoa6HH42cwn1ZJiXd8K/aIzk4Q0dcav+s7dYbUxmumroxh+RIXDM7zUAfQZ7DiBFc
+	ZCzg6eLomYjEJ83It0ltDyJyLfxDW1eff4qovIeBwaiFawFcXGIpeD1d7rQohXhsfIj7
+	uvdVU87jUbs/zs2OMf8echJp6rhogKF2m242HtVuE0T0RH8SCa5z/NfYOOE/8a/Xo5bS
+	keC+2pqpSAgRDBkI8ijo1BdPkW0dOvwFJHW/SOk76NMRMUTqoLvM0XJFjSfgx/LoMhH2
+	bCWZrrYflm/5uScni8eFP7P3iPMcw31v8+Sg8EdzyhtPVayEsGZvAMUXfFvqiuh7ZYhE
+	sjqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=t+a0CW7o4JeDwDpDrsRit1cqTOK9vtNDKlfZHLbCEmY=;
+	b=qO7wa8h0y/kOJvnwtbVPC7/10UxjE3zvmF4ijWGPYKRqFf3y79xqI8boNcPq9YuNvz
+	JiBy+zL9eeGdhAbq0Ml/Bb9/HMoLiclhX4VcN0SNt2h3jhMtmEnrgTynpvM1paJ1CwVv
+	+7fRl45c/FiKJaqK1bIqPsvqEaiyijWjgEHM1tN53PVTZM5DJ9yARQT6Hp7RFFxlZHvI
+	Gy/TtO/BHhxU7NpaGxyuKah/LK7V1JNe7fAdXnw0XvV7nSIW8QkRdc9GVqKyLG42E3jA
+	3Dp2yaW0DwZdGcI1uEQNiywLfj+bhHsPQa2F4gK2oxo7wbMAbbgVNHnLkxOFapPNrm5Y
+	wr+A==
+X-Gm-Message-State: AJaThX5sLB4s6stiaM6oroWO8d2tf4jZ9xGeUJ86uS6ziqouCtaZfYL+
+	/haaeVpV7upyBRmOsmXY4lipV1mCO1ZkH6/rMrI4fw==
+X-Google-Smtp-Source: AGs4zMbZF3s65O2DQ89BKYYSUeKGaWv+EsnesFtJPvp8cDBJvxnW/LVItbt3Jg3pm3y4YSaAe0NidMatgG5HQFkTeRA=
+X-Received: by 10.107.32.18 with SMTP id g18mr42762121iog.227.1512750056147;
+	Fri, 08 Dec 2017 08:20:56 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <4af82364-f125-e6fd-ab12-8dd3a9f0dcbc@windriver.com>
-Cc: paul.eggleton@linux.intel.com
-Subject: Re: [PATCH 08/12] upgradehelper.py: clean repo only once when recipes are specified
+Received: by 10.107.137.195 with HTTP; Fri, 8 Dec 2017 08:20:35 -0800 (PST)
+In-Reply-To: <20ca1f3c-d99b-089e-8806-82101fc1a6e1@linux.intel.com>
+References: <cover.1512630627.git.liezhi.yang@windriver.com>
+	<348a1df0689fa954c0a8da46751bd5f9b0666b87.1512630627.git.liezhi.yang@windriver.com>
+	<662dab3a-5e90-43a3-5962-07eed51bb7bc@linux.intel.com>
+	<bf1a9396-7796-aabc-afc9-69b1976751ae@windriver.com>
+	<20ca1f3c-d99b-089e-8806-82101fc1a6e1@linux.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 8 Dec 2017 16:20:35 +0000
+Message-ID: <CAJTo0LaRAFuMxp5WYFSKT2_ziG4ZR9bu9viL7US8qPOVp7Q8Nw@mail.gmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: [PATCH 09/12] upgradehelper.py: use git user in commit when recipes are specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,59 +73,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Dec 2017 14:18:10 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 08 Dec 2017 16:20:58 -0000
+Content-Type: multipart/alternative; boundary="001a1141b498bb286e055fd691e8"
 
-On 12/08/2017 04:00 AM, Robert Yang wrote:
-> 
->> I'm not sure, the logical *without* this patch is:
->> 1) Do the commit when succeed or failed.
->> 2) git format-patch
->> 3) Remove the commit if failed, and leave the commit there if succeed
-> 
-> Sorry, "remove the comit if failed" is added by this patch, and why I 
-> did this
-> was because:
-> $ auh glibc less bash gzip bzip2
-> 
-> All of them will be failed to upgrade if glibc fails since others 
-> depends on
-> glibc, so leave a failed commit in the repo would cause troubles when 
-> upgrade
-> multiple recipes, so we have to remove it when failed to let others can 
-> upgrade, and then apply the failed commit back (if -f is specified) 
-> after all of the
-> recipes are done.
+--001a1141b498bb286e055fd691e8
+Content-Type: text/plain; charset="UTF-8"
 
-In my branch I've changed the approach altogether. Here's how it works:
+On 8 December 2017 at 14:07, Alexander Kanavin <
+alexander.kanavin@linux.intel.com> wrote:
 
-1) attempt to upgrade the recipe using 'devtool upgrade'.
-2) If that failed (usually because custom patches couldn't be 
-auto-rebased), save the diagnostic info and move to the next recipe.
-3) if succeeded, create a commit with changes and try to build the recipe
-4) save the build diagnostic info (regardless of whether build succeeded 
-or failed) and move on to next recipe
-
-So two things happen:
-1) commits are never removed, only created, even if the recipe then 
-fails to build
-2) after AUH is done, it produces a sequence of update commits and 
-information on what couldn't be updated, and what couldn't be build. The 
-maintainer then can choose to fix the build failures, or take the 
-commits that cause build failures out of the branch or revert them. AUH 
-does not anymore manipulate branches or commits.
-
-I think it's a simpler and easier to understand approach. Yes, this 
-means that an updated recipe that is close to the root of dependency 
-tree can cause a cascade of build failures (e.g. glibc), but the update 
-commits for everything else will still be created, and the maintainer 
-can easily revert the failing updates, and re-run the build. What you think?
-
-I can publish the code for you to look at, even though it's still work 
-in progress, and I'd like to fix up a few more things first.
+> On 12/08/2017 03:51 AM, Robert Yang wrote:
+>
+> I'm not sure about this one. Commits shouldn't be created automatically on
+>>> a person's behalf and then also signed-off - I'd say you need to first look
+>>> at them.
+>>>
+>>
+>> IMHO, Auh is a helper, when user run:
+>> $ auh less
+>>
+>> It helps create commits, should be the same as user run "git commit", and
+>> the
+>> user should responsible for it. Or how about add a -S option:
+>>
+>> -S, --SOB    Use git user as the author and add SOB.
+>>
+>
+> Yeah, as long as maintainers don't send those raw commits straight to
+> mailing list, it's okay. It's rare that such an auto-created commit doesn't
+> need further work (e.g. to explain changes in patches or license, or other
+> adjustments).
 
 
-Alex
+The lack of a SOB was intentional for exactly this reason.  No SOB means a
+human didn't look at it *at all*/
 
+Ross
+
+--001a1141b498bb286e055fd691e8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">On 8 December 2017 at 14:07, Alexander Kanavin <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:alexander.kanavin@linux.intel.com" target=3D=
+"_blank">alexander.kanavin@linux.intel.com</a>&gt;</span> wrote:<br><div cl=
+ass=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
+x"><span class=3D"">On 12/08/2017 03:51 AM, Robert Yang wrote:<br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+I&#39;m not sure about this one. Commits shouldn&#39;t be created automatic=
+ally on a person&#39;s behalf and then also signed-off - I&#39;d say you ne=
+ed to first look at them.<br>
+</blockquote>
+<br>
+IMHO, Auh is a helper, when user run:<br>
+$ auh less<br>
+<br>
+It helps create commits, should be the same as user run &quot;git commit&qu=
+ot;, and the<br>
+user should responsible for it. Or how about add a -S option:<br>
+<br>
+-S, --SOB=C2=A0=C2=A0=C2=A0 Use git user as the author and add SOB.<br>
+</blockquote>
+<br></span>
+Yeah, as long as maintainers don&#39;t send those raw commits straight to m=
+ailing list, it&#39;s okay. It&#39;s rare that such an auto-created commit =
+doesn&#39;t need further work (e.g. to explain changes in patches or licens=
+e, or other adjustments).</blockquote><div><br></div><div>The lack of a SOB=
+ was intentional for exactly this reason.=C2=A0 No SOB means a human didn&#=
+39;t look at it *at all*/</div><div><br></div><div>Ross=C2=A0</div></div></=
+div></div>
+
+--001a1141b498bb286e055fd691e8--
