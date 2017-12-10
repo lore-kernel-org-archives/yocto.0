@@ -1,6 +1,6 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E42CE009EB; Sun, 10 Dec 2017 05:15:06 -0800 (PST)
+	id 1AD03E00D20; Sun, 10 Dec 2017 08:45:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,46 +20,47 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.177 listed in list.dnswl.org]
-Received: from mail-qk0-f177.google.com (mail-qk0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB9F8E00736
-	for <yocto@yoctoproject.org>; Sun, 10 Dec 2017 05:15:04 -0800 (PST)
-Received: by mail-qk0-f177.google.com with SMTP id c13so4060410qke.2
-	for <yocto@yoctoproject.org>; Sun, 10 Dec 2017 05:15:04 -0800 (PST)
+Received: from mail-wr0-f181.google.com (mail-wr0-f181.google.com
+	[209.85.128.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42979E008FB
+	for <yocto@yoctoproject.org>; Sun, 10 Dec 2017 08:45:44 -0800 (PST)
+Received: by mail-wr0-f181.google.com with SMTP id q9so15210955wre.7
+	for <yocto@yoctoproject.org>; Sun, 10 Dec 2017 08:45:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=Ma6da/+eYrSdz6Y9YJq8823hu7UiideJcZcvM7ieY2s=;
-	b=kVz+QaxEFUrQMPKHL3vkiF7wiRUh9UX2pO6417+KMviHSMcODm7Nuvsf+yfFvKaLdj
-	GXEwGNdvY3p58UjRH6ocYGH421uTJPDitLRa/5n0xamqNhsbHt9L/afQKqmTdobV/vF0
-	siPGk60gisUteZ+ePUkGJPjLKtAU40UkXO/3f+6lhExp9KcB9QeUJswIUAn+HaO2p/rg
-	nfW+L3ISUDl0YmMGnoFVPTYmleycKsCwbWVoHXvbODpPdmh6o8PdVVSrk3LkM9bWpnGr
-	UOvzmvCfkJjz1kFiIaefxARL3MpcNiykQRpVqm89PI6Qi17SYTmAwzXgt4+U8jXsQ6Qy
-	yaYQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=R7Ddaltk+WXfNjdqBL+YwYQcUoILMNE/cSt1ATSrlng=;
+	b=cLrS2BZ3em0qjHYMLNjwFlZnwp2SNxn3VAJS6gudEKaaxz7BLbDH3Axdq6+TMtD/pw
+	UbrykHNYTSzc2UT7cO3AxxkDoDagIyUiKWJw8OtFATGwZzu7lToUG1uLL5oO5W/fk6zx
+	isYBFNCG83wUGdWA0t7J09nQK/3mj0A/6d2/24O8XakVoikEPtSsFNSVEHrGIJEDqdtC
+	BNHCC5QbtHGyKcWzM8VwM4/cBykDGZesfk776gghKGm4ypawYI3ptPYIr9Uf8pUgO592
+	CAtpCko+LVJaunJPFYLoLeb/Fidpnc8PUYzIOpAq3sJG2EP8EWuOIveVbbTnzU0fs+Wl
+	bRRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Ma6da/+eYrSdz6Y9YJq8823hu7UiideJcZcvM7ieY2s=;
-	b=HVUSnteByBM6SRQhAjGj1ZNtqTPEN3NZMGfD6gA+TzXoc8uvFwaDDsATU+0ynwZQ0r
-	1OfaNaZIkQA3SCDkXJD6YjQJF2nL2sY5kZgdy0uVJsc2ZfTzg82CxXdXzpF9CfSNb9j3
-	UMAui2npkxwn5AFp9n5VxmXqB2Nj5LnDYfuWMne9kA+2wpipa+9ANsdG9kK/b0/66tMF
-	bqS2a4wgl2BYBq6goduAA6q44MLYv7sHU8sfU0zW3F8SqOC0vd1LgUj7pEQwVAJI5+sY
-	z1HKwvfGC9+d9cttdhTG3wWLSjcxwNyl5/cq8MVXqvv36Yd9Ao0pADhVUF+JKfVf+OS0
-	jVaw==
-X-Gm-Message-State: AKGB3mJDpL960pFJ0SuzPGF+wMtQJxm1FTDxQRgxDjijXekhrdTmxLYY
-	fdPQHOE33+J2QGNvozITOGqy2rClEQQQkFBc+o5nqA==
-X-Google-Smtp-Source: AGs4zMaymsFbbU32OUX/t/8Bx2iGM7Y0l6XyEUqln37rHNLumU2n3v9W7ZgoLb2pDFxOCJI0Wv/dzMfQPBjg0pft4Xs=
-X-Received: by 10.55.59.199 with SMTP id i190mr22680803qka.232.1512911703877; 
-	Sun, 10 Dec 2017 05:15:03 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=R7Ddaltk+WXfNjdqBL+YwYQcUoILMNE/cSt1ATSrlng=;
+	b=QBMy4bFV8Jd8kmh0epQyX/B9bFunEZpj/RhGJ8JOn5dYXwFEbrfMtAd4/OqPVcdY7l
+	xseF5+nY6hEbXnOd2UbrIj7lF/JuKpkYjlL99zOPFgyf++1yJQdH1+IQPPw5TECbSfJ8
+	IVIQmQHfGjSphgqLo2arLDCAmLG1FrBIHOOALONyCF9wqspHPeNT0QVBkx2BW2ejYkmn
+	BYEg/dOJojzcsZxGM0jtk3AXO/zg56LKS6dWXHvFDXzQUdhbvY7M+ROaRqmJKLbgdMWH
+	+j+/nDz7rd+kx6+DsF8HeScDnLkFcHViAJjUPloKwKki4IJ4uvQTlpZ2Xmk0wnlGorbX
+	mZYQ==
+X-Gm-Message-State: AJaThX53MamBIl6VCEQSr+py9OdiBg621vj9Vr6WQpmy0pczv66kA8zM
+	vf20wIYYiNekEuPaQBY5J0PtTpA6TXb1d4taxQo=
+X-Google-Smtp-Source: AGs4zMboGu6zljYketkAfIxZSgEl3qlVo66VwwCobpQhOzspAzK/Ximmb5DZ+8zooN2CwVDGlBOmK07byiLrmeE6/rA=
+X-Received: by 10.223.136.162 with SMTP id f31mr33162157wrf.130.1512924343732; 
+	Sun, 10 Dec 2017 08:45:43 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.21.241 with HTTP; Sun, 10 Dec 2017 05:15:03 -0800 (PST)
-From: "Daniel." <danielhilst@gmail.com>
-Date: Sun, 10 Dec 2017 11:15:03 -0200
-Message-ID: <CAF3SDA5n9M_fcVY-5GCC0WV3tGhyz7Fqa49iocUPurufBsrq+A@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: VPS for building and serving.
+Received: by 10.28.97.215 with HTTP; Sun, 10 Dec 2017 08:45:43 -0800 (PST)
+In-Reply-To: <CAPb0b+NJuuxBb3=VfHvYd8EzUb-O1WdPudCdSyDZ5zBO4bVoaQ@mail.gmail.com>
+References: <CAPb0b+NJuuxBb3=VfHvYd8EzUb-O1WdPudCdSyDZ5zBO4bVoaQ@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Sun, 10 Dec 2017 17:45:43 +0100
+Message-ID: <CAGAf8Lz_e6y-GU3apr_QCVzpjPhZZczUcxrs6sfhTJBhH_0YGA@mail.gmail.com>
+To: Sherif Omran <sherifomran2000@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: disable psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,34 +72,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Dec 2017 13:15:06 -0000
-Content-Type: multipart/alternative; boundary="001a1148c0caafb1e1055ffc34a7"
+X-List-Received-Date: Sun, 10 Dec 2017 16:45:46 -0000
+Content-Type: multipart/alternative; boundary="001a1146134c149073055fff263c"
 
---001a1148c0caafb1e1055ffc34a7
+--001a1146134c149073055fff263c
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+> As far as i understood, we can pass it from uboot, but how?
+https://community.nxp.com/thread/460796
 
-Is there anybody using VPS for building and serving packages? What plans
-you do recommend?
+Zoran
 
-Regards
---=20
-=E2=80=9CIf you're going to try, go all the way. Otherwise, don't even star=
-t. ..."
-  Charles Bukowski
+On Sun, Dec 10, 2017 at 1:02 PM, Sherif Omran <sherifomran2000@gmail.com>
+wrote:
 
---001a1148c0caafb1e1055ffc34a7
+> hi
+>
+> any body knows how to diable the psplash? as per documentation it says
+> pass psplash=false to the kernel. But how to pass it to the kernel? I tried
+> adding it to kernel.cfg but does not seem to be correct. As far as i
+> understood, we can pass it from uboot, but how?
+>
+> thanks for your help
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a1146134c149073055fff263c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hi,<br></div><div><br></div><div>Is there anybod=
-y using VPS for building and serving packages? What plans you do recommend?=
-</div><div><br></div><div>Regards<br></div></div><div><div><div>-- <br><div=
- class=3D"gmail_signature" data-smartmail=3D"gmail_signature">=E2=80=9CIf y=
-ou&#39;re going to try, go all the way. Otherwise, don&#39;t even start. ..=
-.&quot; <br>=C2=A0 Charles Bukowski</div>
-</div></div></div></div>
+<div dir=3D"ltr"><div><span style=3D"font-size:12.8px">&gt; As far as i und=
+erstood, we can pass it from uboot, but how?</span><br></div><a href=3D"htt=
+ps://community.nxp.com/thread/460796">https://community.nxp.com/thread/4607=
+96</a><br><div><br></div><div>Zoran</div></div><div class=3D"gmail_extra"><=
+br><div class=3D"gmail_quote">On Sun, Dec 10, 2017 at 1:02 PM, Sherif Omran=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:sherifomran2000@gmail.com" target=
+=3D"_blank">sherifomran2000@gmail.com</a>&gt;</span> wrote:<br><blockquote =
+class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
+;padding-left:1ex"><div dir=3D"ltr"><div><div>hi <br><br></div>any body kno=
+ws how to diable the psplash? as per documentation it says pass psplash=3Df=
+alse to the kernel. But how to pass it to the kernel? I tried adding it to =
+kernel.cfg but does not seem to be correct. As far as i understood, we can =
+pass it from uboot, but how?<br><br></div>thanks for your help<br></div>
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
---001a1148c0caafb1e1055ffc34a7--
+--001a1146134c149073055fff263c--
