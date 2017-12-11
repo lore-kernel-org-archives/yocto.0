@@ -1,41 +1,45 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAA1DE00D69; Sun, 10 Dec 2017 22:14:31 -0800 (PST)
+	id 98434E00D6B; Sun, 10 Dec 2017 22:15:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 226EEE00D32
-	for <yocto@yoctoproject.org>; Sun, 10 Dec 2017 22:14:30 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 208ECE00D32
+	for <yocto@yoctoproject.org>; Sun, 10 Dec 2017 22:15:11 -0800 (PST)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id vBB6ETjW009608
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Sun, 10 Dec 2017 22:14:29 -0800
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vBB6FAwf019846
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 10 Dec 2017 22:15:10 -0800 (PST)
 Received: from localhost.corp.ad.wrs.com (128.224.162.229) by
 	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.361.1; Sun, 10 Dec 2017 22:14:22 -0800
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>,
-	<yocto@yoctoproject.org>
+	14.3.361.1; Sun, 10 Dec 2017 22:15:03 -0800
+To: "Burton, Ross" <ross.burton@intel.com>, Alexander Kanavin
+	<alexander.kanavin@linux.intel.com>
 References: <cover.1512630627.git.liezhi.yang@windriver.com>
-	<e3cb41c1f86590e45d2cd6c253324b2bcd04e34e.1512630627.git.liezhi.yang@windriver.com>
-	<b1f0b049-b78e-4009-20ac-979b82081b4e@linux.intel.com>
-	<d8a9adca-7374-64da-8613-059034082943@windriver.com>
-	<4af82364-f125-e6fd-ab12-8dd3a9f0dcbc@windriver.com>
-	<91939990-5880-aba7-7ec6-7d24809694aa@linux.intel.com>
+	<348a1df0689fa954c0a8da46751bd5f9b0666b87.1512630627.git.liezhi.yang@windriver.com>
+	<662dab3a-5e90-43a3-5962-07eed51bb7bc@linux.intel.com>
+	<bf1a9396-7796-aabc-afc9-69b1976751ae@windriver.com>
+	<20ca1f3c-d99b-089e-8806-82101fc1a6e1@linux.intel.com>
+	<CAJTo0LaRAFuMxp5WYFSKT2_ziG4ZR9bu9viL7US8qPOVp7Q8Nw@mail.gmail.com>
 From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <91a7f9ef-b0c2-68c5-ad8f-07309a3a9585@windriver.com>
-Date: Mon, 11 Dec 2017 14:13:53 +0800
+Message-ID: <24700d85-61ad-0801-14e1-17b0bb3b7e31@windriver.com>
+Date: Mon, 11 Dec 2017 14:14:33 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.5.0
 MIME-Version: 1.0
-In-Reply-To: <91939990-5880-aba7-7ec6-7d24809694aa@linux.intel.com>
-Cc: paul.eggleton@linux.intel.com
-Subject: Re: [PATCH 08/12] upgradehelper.py: clean repo only once when recipes are specified
+In-Reply-To: <CAJTo0LaRAFuMxp5WYFSKT2_ziG4ZR9bu9viL7US8qPOVp7Q8Nw@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: [PATCH 09/12] upgradehelper.py: use git user in commit when recipes are specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,66 +51,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Dec 2017 06:14:31 -0000
+X-List-Received-Date: Mon, 11 Dec 2017 06:15:12 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 
 
-On 12/08/2017 10:18 PM, Alexander Kanavin wrote:
-> On 12/08/2017 04:00 AM, Robert Yang wrote:
->>
->>> I'm not sure, the logical *without* this patch is:
->>> 1) Do the commit when succeed or failed.
->>> 2) git format-patch
->>> 3) Remove the commit if failed, and leave the commit there if succeed
->>
->> Sorry, "remove the comit if failed" is added by this patch, and why I did this
->> was because:
->> $ auh glibc less bash gzip bzip2
->>
->> All of them will be failed to upgrade if glibc fails since others depends on
->> glibc, so leave a failed commit in the repo would cause troubles when upgrade
->> multiple recipes, so we have to remove it when failed to let others can 
->> upgrade, and then apply the failed commit back (if -f is specified) after all 
->> of the
->> recipes are done.
+On 12/09/2017 12:20 AM, Burton, Ross wrote:
+> On 8 December 2017 at 14:07, Alexander Kanavin 
+> <alexander.kanavin@linux.intel.com <mailto:alexander.kanavin@linux.intel.com>> 
+> wrote:
 > 
-> In my branch I've changed the approach altogether. Here's how it works:
+>     On 12/08/2017 03:51 AM, Robert Yang wrote:
 > 
-> 1) attempt to upgrade the recipe using 'devtool upgrade'.
-> 2) If that failed (usually because custom patches couldn't be auto-rebased), 
-> save the diagnostic info and move to the next recipe.
-> 3) if succeeded, create a commit with changes and try to build the recipe
-> 4) save the build diagnostic info (regardless of whether build succeeded or 
-> failed) and move on to next recipe
+>             I'm not sure about this one. Commits shouldn't be created
+>             automatically on a person's behalf and then also signed-off - I'd
+>             say you need to first look at them.
 > 
-> So two things happen:
-> 1) commits are never removed, only created, even if the recipe then fails to build
-> 2) after AUH is done, it produces a sequence of update commits and information 
-> on what couldn't be updated, and what couldn't be build. The maintainer then can 
-> choose to fix the build failures, or take the commits that cause build failures 
-> out of the branch or revert them. AUH does not anymore manipulate branches or 
-> commits.
 > 
-> I think it's a simpler and easier to understand approach. Yes, this means that 
-> an updated recipe that is close to the root of dependency tree can cause a 
-> cascade of build failures (e.g. glibc), but the update commits for everything 
-> else will still be created, and the maintainer can easily revert the failing 
-> updates, and re-run the build. What you think?
+>         IMHO, Auh is a helper, when user run:
+>         $ auh less
+> 
+>         It helps create commits, should be the same as user run "git commit",
+>         and the
+>         user should responsible for it. Or how about add a -S option:
+> 
+>         -S, --SOB    Use git user as the author and add SOB.
+> 
+> 
+>     Yeah, as long as maintainers don't send those raw commits straight to
+>     mailing list, it's okay. It's rare that such an auto-created commit doesn't
+>     need further work (e.g. to explain changes in patches or license, or other
+>     adjustments).
+> 
+> 
+> The lack of a SOB was intentional for exactly this reason.  No SOB means a human 
+> didn't look at it *at all*/
 
-Yes, since glibc would causes others failed to build, so I removed the commited
-during upgrading, and then apply it back, I think that this is more helpful than
-leave the failed commit there and causes others failed.
+Makes sense, so let's drop this patch.
 
 // Robert
 
+
 > 
-> I can publish the code for you to look at, even though it's still work in 
-> progress, and I'd like to fix up a few more things first.
-> 
-> 
-> Alex
-> 
+> Ross
 
