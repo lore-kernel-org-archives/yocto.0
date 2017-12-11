@@ -1,65 +1,34 @@
-Return-Path: <anton@advancedtelematic.com>
+Return-Path: <mircea.gliga@vitheia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4A42E00DC2; Mon, 11 Dec 2017 05:22:06 -0800 (PST)
+	id 156D8E00E07; Mon, 11 Dec 2017 05:23:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.179 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f179.google.com (mail-wr0-f179.google.com
-	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2BF7E00DB7
-	for <yocto@yoctoproject.org>; Mon, 11 Dec 2017 05:21:54 -0800 (PST)
-Received: by mail-wr0-f179.google.com with SMTP id q9so17550136wre.7
-	for <yocto@yoctoproject.org>; Mon, 11 Dec 2017 05:21:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=advancedtelematic.com; s=google;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding:content-language;
-	bh=CfOOpONw3lnrWgoyeBQKrQEesh5ujlpTyTK458lN4dA=;
-	b=CxGOcnh3Bz0H773hHJkU5Et3u7WQ16NQzNZaYgwtTgFW9ggC3sPsadhN/bI58ZiUa/
-	0j4eCK3NvvjOenU4m7/e+CiDUgK2vhJ8Y2xfzxA/tV4mEv+KDOuMd/Ou02ush02lBOui
-	fh0IBUeaEzh9Ia1GTFdqHoRrL0jwJWPcGCG1Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding:content-language;
-	bh=CfOOpONw3lnrWgoyeBQKrQEesh5ujlpTyTK458lN4dA=;
-	b=TOLzbKLr+rn6NaHCk+w1YCkXkeux6faPLY2hVMGFx5QrYwoQPG5OonwaVxzaZbV5GQ
-	TwYVirl5JE1pZQm5gSHTfNyDlL3+pUW8XNhSL+atTm9tq2mJJRnJ31Mb50nLsksX10Eu
-	SRNE2Ub17VHPGDtvRuGEYpZ+XdWfltE80FRFiOMP9yu22G4tTJ60rVP3EsTDUVpXxJ5J
-	v8/vP9c/D4qGtbsFkGY1dgc5WRhWVpI864KPivK8zPd3Mf3Zl0/J93PnBZkBnFzzz2Il
-	aCyjljfNE4LZDsfmoyhUDtUIrXHW9IDADFfoheMKTkCEUP5zf4NfofyU5ZTAyxaGQkFT
-	6KXg==
-X-Gm-Message-State: AKGB3mI/IdhEeninpOw/BhkMMJGSBZlwRUgE7pDz9PMFCqwPSZzzYvJt
-	eUgQd1a12d/rDEp3rV1m3urtX0+hVXU=
-X-Google-Smtp-Source: ACJfBoup7FIrlElVYEEkWUgsfdrvKsdhDve3j59UoqSwLkAf/B2Ud7ThRx4CD+XnQgGSJ4IDHdzh4w==
-X-Received: by 10.223.134.5 with SMTP id 5mr388487wrv.186.1512998513220;
-	Mon, 11 Dec 2017 05:21:53 -0800 (PST)
-Received: from [192.168.1.49] (p57bf9f95.dip0.t-ipconnect.de. [87.191.159.149])
-	by smtp.gmail.com with ESMTPSA id
-	o27sm16146790wro.9.2017.12.11.05.21.52 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 11 Dec 2017 05:21:52 -0800 (PST)
-To: Yocto list discussion <yocto@yoctoproject.org>
-From: Anton Gerasimov <anton@advancedtelematic.com>
-Message-ID: <0d5535cd-a057-5538-4fe7-c90af04b4b3d@advancedtelematic.com>
-Date: Mon, 11 Dec 2017 14:19:32 +0100
+Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFDF5E00DE2
+	for <yocto@yoctoproject.org>; Mon, 11 Dec 2017 05:22:50 -0800 (PST)
+Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
+	(authenticated bits=0)
+	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id vBBDMlt7006898
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NO); Mon, 11 Dec 2017 15:22:47 +0200
+To: Paul Barker <pbarker@toganlabs.com>
+References: <0e2a62dd-edac-65ae-b029-12d3b3934f66@vitheia.com>
+	<ebee1162-8afd-8966-33e1-9c0b95d3cec4@vitheia.com>
+	<CAPyrkgy=XPND1TVRFGoJzd=U_kyOfp1hUH5CsHSgd5cKvsz+rg@mail.gmail.com>
+From: Mircea Gliga <mircea.gliga@vitheia.com>
+Message-ID: <b889dbba-5d62-9f01-1049-ad60a2e2f0e5@vitheia.com>
+Date: Mon, 11 Dec 2017 15:22:47 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	Thunderbird/52.5.0
 MIME-Version: 1.0
-Subject: Checksum of an external file
+In-Reply-To: <CAPyrkgy=XPND1TVRFGoJzd=U_kyOfp1hUH5CsHSgd5cKvsz+rg@mail.gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Permission denied while building rocko on Debian 8 [was: rocko build fails]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,39 +40,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Dec 2017 13:22:06 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Dec 2017 13:23:00 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-Hi,
-
-my recipe takes a path to a file on user's file system as an input,
-processes it and stores on the device. Sometimes user wants to update
-this file and I'd like the recipe to be rebuilt every time the file
-itself changes, even if the file path didn't.
-
-So I had an illusion to understand how sstate cache works and wrote the
-following code:
-
-=C2=A0=C2=A0=C2=A0 def calculate_file_sha256(bb, d):
-=C2=A0 =C2=A0=C2=A0 =C2=A0=C2=A0 return bb.utils.sha256_file(d.getVar("PA=
-TH_TO_FILE"))
-
-=C2=A0=C2=A0=C2=A0 PATH_TO_FILE[vardepvalue] =3D "${@calculate_file_sha25=
-6(bb, d)}"
-
-Unfortunately this doesn't work as expected (the recipe doesn't get
-rebuilt when the file changes, looks like calculate_file_sha256 doesn't
-run unless PATH_TO_FILE has changed) and at the same time if I
-'cleanall' the recipe and change the file before rebuilding I get a lot
-of "metadata is not deterministic" errors.
-
-Is there a proper way to do that with bitbake?
-
-Thanks,
-Anton Gerasimov
 
 
+On 11/12/17 15:06, Paul Barker wrote:
+> On Mon, Dec 11, 2017 at 12:43 PM, Mircea Gliga <mircea.gliga@vitheia.com> wrote:
+>> So I went further and I tested in a VM running Debian 9 - there it works:
+>> It looks like I get a Permission denied while building rocko only on Debian
+>> 8, *not* on Debian 9.
+>>
+>> Debian 8 is listed as supported on Yocto Project Reference Manual  here:
+>> http://www.yoctoproject.org/docs/2.4/ref-manual/ref-manual.html#detailed-supported-distros
+>> Can somebody confirm this behavior ? It's a straight forward test:
+>>
+>> $ git clone -b rocko git://git.yoctoproject.org/poky.git
+>> $ source poky/oe-init-build-env
+>> $ bitbake core-image-minimal
+> This looks like a weird permission issue rather than something
+> Yocto-related. How are you running your Debian 8 system? Is it bare
+> metal, VM, container, some hosting providers VPS, etc?
+Debian 8 is running on a real system, no VM etc.
+I used netinstall with no desktop environment and without all the blows 
+and whistles and added just what I needed, when I needed it.
+This machine was used for the last 1,5 years or so for developing on 
+Krogoth.
+I was able to reproduce the problem on a second box, real machine, 
+running Debian 8
+
+Meanwhile I tried building rocko on another real machine, running Debian 
+9 - it works. ( in the prev email I tested in a Debian 9 VM)
+
+Thanks
+
+>>
+>> PS I've updated the thread subject to better reflect the problem.
+>>
+>> Thanks
+>>
+>> On 11/12/17 09:58, Mircea Gliga wrote:
+>>
+>> Hello,
+>>
+>> I have a working krogoth build - I build images etc, everything is fine.
+>> Then I wanted to try a rocko build, I installed the needed host packages:
+>> http://www.yoctoproject.org/docs/2.4/yocto-project-qs/yocto-project-qs.html#packages
+>> Then sourced env and bitbake core-image-minimal.
+>> So no extra layers involved, just poky.
+>> I get errors like this:
+>>
+>> ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_fetch: Build
+>> of do_fetch failed
+>> ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_fetch:
+>> Traceback (most recent call last):
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+>> line 644, in exec_task
+>>      return _exec_task(fn, task, d, quieterr)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+>> line 618, in _exec_task
+>>      event.fire(TaskSucceeded(task, logfn, localdata), localdata)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+>> line 222, in fire
+>>      fire_class_handlers(event, d)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+>> line 134, in fire_class_handlers
+>>      execute_handler(name, handler, event, d)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+>> line 106, in execute_handler
+>>      ret = handler(event)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 166, in run_buildstats
+>>      write_task_data("passed", os.path.join(taskdir, e.task), e, d)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 90, in write_task_data
+>>      cpu, iostats, resources, childres = get_process_cputime(os.getpid())
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 29, in get_process_cputime
+>>      with open("/proc/%d/io" % pid, "r") as f:
+>> PermissionError: [Errno 13] Permission denied: '/proc/1530/io'
+>>
+>> ERROR: Task
+>> (virtual:native:/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_fetch)
+>> failed with exit code '1'
+>> ERROR: autoconf-native-2.69-r11 do_fetch: Execution of event handler
+>> 'run_buildstats' failed
+>> Traceback (most recent call last):
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 166, in run_buildstats(e=<bb.build.TaskSucceeded object at
+>> 0x7f07f3f31898>):
+>>           elif isinstance(e, bb.build.TaskSucceeded):
+>>      >        write_task_data("passed", os.path.join(taskdir, e.task), e, d)
+>>               if e.task == "do_rootfs":
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 90, in write_task_data(status='passed',
+>> logfile='/media/mircea/ExtLinux/Adventure/repository/rocko/build/tmp/buildstats/20171211074610/autoconf-native-2.69-r11/do_fetch',
+>> e=<bb.build.TaskSucceeded object at 0x7f07f3f31898>,
+>> d=<bb.data_smart.DataSmart object at 0x7f07f23de2b0>):
+>>                   f.write(d.expand("Elapsed time: %0.2f seconds\n" %
+>> elapsedtime))
+>>      >            cpu, iostats, resources, childres =
+>> get_process_cputime(os.getpid())
+>>                   if cpu:
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 29, in get_process_cputime(pid=1543):
+>>           if os.path.isfile("/proc/%d/io" % pid):
+>>      >        with open("/proc/%d/io" % pid, "r") as f:
+>>                   while True:
+>> PermissionError: [Errno 13] Permission denied: '/proc/1543/io'
+>>
+>> ERROR: autoconf-native-2.69-r11 do_fetch: Build of do_fetch failed
+>> ERROR: autoconf-native-2.69-r11 do_fetch: Traceback (most recent call last):
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+>> line 644, in exec_task
+>>      return _exec_task(fn, task, d, quieterr)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+>> line 618, in _exec_task
+>>      event.fire(TaskSucceeded(task, logfn, localdata), localdata)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+>> line 222, in fire
+>>      fire_class_handlers(event, d)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+>> line 134, in fire_class_handlers
+>>      execute_handler(name, handler, event, d)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+>> line 106, in execute_handler
+>>      ret = handler(event)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 166, in run_buildstats
+>>      write_task_data("passed", os.path.join(taskdir, e.task), e, d)
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 90, in write_task_data
+>>      cpu, iostats, resources, childres = get_process_cputime(os.getpid())
+>>    File
+>> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+>> line 29, in get_process_cputime
+>>      with open("/proc/%d/io" % pid, "r") as f:
+>> PermissionError: [Errno 13] Permission denied: '/proc/1543/io'
+>>
+>> Any hints ?
+>>
+>> Thanks
+>>
+>>
+>>
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>
 
 
