@@ -1,62 +1,33 @@
-Return-Path: <pbarker@toganlabs.com>
+Return-Path: <mircea.gliga@vitheia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E060E00D55; Mon, 11 Dec 2017 04:20:34 -0800 (PST)
+	id 7B285E00D69; Mon, 11 Dec 2017 04:43:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.53 listed in list.dnswl.org]
-Received: from mail-wm0-f53.google.com (mail-wm0-f53.google.com [74.125.82.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 825CDE008FB
-	for <yocto@yoctoproject.org>; Mon, 11 Dec 2017 04:20:33 -0800 (PST)
-Received: by mail-wm0-f53.google.com with SMTP id f206so13675578wmf.5
-	for <yocto@yoctoproject.org>; Mon, 11 Dec 2017 04:20:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=3UQbdVTGEYnTS9+FFA1PjLXJRr0X+sT2w0t3BGAmqJk=;
-	b=RD2Ka3hcVmXppEAzrHNHNpieQK8QxMJOhg6PBApS2bz3eZyWbN1mjOGjKfOU9prUd4
-	8htw/MXYmQqT9Ax5YAJgXRsd3D/1bQPLgsJCWk2Xskg900+OcbXr5KB9MNaskibY+XTi
-	Qf38m7wOEHAjIHhWymITIBttBW4u8if1rJI3a3VPlek2kZdGLYD2vYmxAiVcOFmUe7T2
-	IEqzHCP94lmY47bzRpZ8bArMZUo25uBjKn4sqqYXVYyTQzATdijpUtV0voDehwOuka/x
-	DySxnMnLUYl4Ijg+XFSuCn1fH9k9Cl2MqFUOu82gcuUnhSSgT8oKWhhoqD5707Td5zCP
-	cEdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=3UQbdVTGEYnTS9+FFA1PjLXJRr0X+sT2w0t3BGAmqJk=;
-	b=p4kH1ZeFeuBGzg1daFelYTCunU0ZVfDAoeBes4Xh8MHrOcCy85Mz2t6J2C2I1S8SkY
-	PgoUfhq7OzzgSsRFCK1aHeeyZOPyJXFn0hXhfyLWkc2lk/+gQoCQL6mSUgvMwBLUA8LP
-	BSNHRQz9EQF97zpvZU2tYr6Ct4yQnCv5/PYFf/79MKzO0tyWkpqbwpDXy8yv/mxwzMLi
-	UDepjFe7M155BtXH4yD+LfJ7CSRn/bWUbmu1w5ZW0Gou2Dp29Mp6d+0K2Ahyg75FUkm3
-	N47MEU88WRU2WZ05J3oFaGMNdyrIDpsO2vSwlfehkiqNpmNMgfBm0E/I6+/Hgt/NHbZd
-	ouNA==
-X-Gm-Message-State: AKGB3mIJbqOC0swvQTBWP4suNlOwm8QOWXp4Xk5HfNs0Ah+LThTQbqyx
-	W99KMMZWE3fYx7UEDEosbv1bg1h36JZ2cI8FatWgEQ==
-X-Google-Smtp-Source: ACJfBos0031qHl31l7w1avromc46qT9qOALl33naSR0tWqQM/PMbrBNK1HUuFJDSsRfuNA/HW076FmVUQeH/xdKsJJQ=
-X-Received: by 10.28.26.139 with SMTP id a133mr637909wma.90.1512994832303;
-	Mon, 11 Dec 2017 04:20:32 -0800 (PST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F36EE008FB
+	for <yocto@yoctoproject.org>; Mon, 11 Dec 2017 04:43:16 -0800 (PST)
+Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
+	(authenticated bits=0)
+	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id vBBChE3a019206
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NO)
+	for <yocto@yoctoproject.org>; Mon, 11 Dec 2017 14:43:15 +0200
+To: yocto@yoctoproject.org
+References: <0e2a62dd-edac-65ae-b029-12d3b3934f66@vitheia.com>
+From: Mircea Gliga <mircea.gliga@vitheia.com>
+Message-ID: <ebee1162-8afd-8966-33e1-9c0b95d3cec4@vitheia.com>
+Date: Mon, 11 Dec 2017 14:43:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.0
 MIME-Version: 1.0
-Received: by 10.223.199.199 with HTTP; Mon, 11 Dec 2017 04:20:31 -0800 (PST)
-In-Reply-To: <CALw8SCXV1DotXLNLz3UH0Wswz6F-y=ZraT=e9HWtBWqbkqnzGg@mail.gmail.com>
-References: <CAPyrkgyNO2D6rO0gHb5bvDDa_PHEqeVy5HwN4WP8qm4HQxkM3A@mail.gmail.com>
-	<CALw8SCXV1DotXLNLz3UH0Wswz6F-y=ZraT=e9HWtBWqbkqnzGg@mail.gmail.com>
-From: Paul Barker <pbarker@toganlabs.com>
-Date: Mon, 11 Dec 2017 12:20:31 +0000
-Message-ID: <CAPyrkgxm5DAU+2X7nwSpENv7534e1gDzS3uA4BHq2SX2po8Z9Q@mail.gmail.com>
-To: Mirza Krak <mirza.krak@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Layer documentation for meta-raspberrypi
+In-Reply-To: <0e2a62dd-edac-65ae-b029-12d3b3934f66@vitheia.com>
+Subject: Re: Permission denied while building rocko on Debian 8 [was: rocko build fails]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,62 +39,327 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Dec 2017 12:20:34 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Dec 2017 12:43:19 -0000
+Content-Type: multipart/alternative;
+	boundary="------------8E9622163D3243B176B105B9"
+Content-Language: en-US
 
-On Mon, Dec 11, 2017 at 12:08 PM, Mirza Krak <mirza.krak@gmail.com> wrote:
-> 2017-12-11 12:55 GMT+01:00 Paul Barker <pbarker@toganlabs.com>:
->> Hi all,
->>
->> As a quick announcement, the layer documentation for meta-raspberrypi
->> is now available on Read the Docs:
->> http://meta-raspberrypi.readthedocs.io/en/latest/
->>
->> The latest documentation is shown by default and covers the master
->> branch. Using the version box in the bottom right corner of the page
->> you can also switch to the rocko or pyro versions. This is
->> automatically updated whenever changes are pushed to the documentation
->> in meta-raspberrypi.
->>
->> Raspberry Pi seems to be a very common platform for newcomers to
->> OE/Yocto and so I think it's really important that this layer is well
->> documented and is easy to use. Please submit pull requests or open
->> bugs if you think any of the documentation can be improved.
->>
->> We use Sphinx (http://www.sphinx-doc.org/) plus Read the Docs
->> (https://readthedocs.org/) integration for this which I think is a
->> pretty good setup for layer documentation in general. If anyone wants
->> more details so they can do something similar for another layer then
->> please let me know!
+--------------8E9622163D3243B176B105B9
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+So I went further and I tested in a VM running Debian 9 - there it works:
+It looks like I get a Permission denied while building rocko only on 
+Debian 8, *not* on Debian 9.
+
+Debian 8 is listed as supported on /Yocto Project Reference Manual/ 
+here: 
+http://www.yoctoproject.org/docs/2.4/ref-manual/ref-manual.html#detailed-supported-distros
+Can somebody confirm this behavior ? It's a straight forward test:
+
+$ git clone -b rocko git://git.yoctoproject.org/poky.git
+$ source poky/oe-init-build-env
+$ bitbake core-image-minimal
+
+
+PS I've updated the thread subject to better reflect the problem.
+
+Thanks
+
+On 11/12/17 09:58, Mircea Gliga wrote:
+> Hello,
 >
-> Great work and this will definitely be appreciated by all the
-> meta-raspberrypi users.
+> I have a working krogoth build - I build images etc, everything is fine.
+> Then I wanted to try a rocko build, I installed the needed host 
+> packages: 
+> http://www.yoctoproject.org/docs/2.4/yocto-project-qs/yocto-project-qs.html#packages
+> Then sourced env and /bitbake core-image-minimal/.
+> So no extra layers involved, just poky.
+> I get errors like this:
 >
-> One little thing though, the current "theme" used which I assume is
-> the default Sphinx theme is not optimal IMO.
+> ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_fetch: 
+> Build of do_fetch failed
+> ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_fetch: 
+> Traceback (most recent call last):
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py", 
+> line 644, in exec_task
+>     return _exec_task(fn, task, d, quieterr)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py", 
+> line 618, in _exec_task
+>     event.fire(TaskSucceeded(task, logfn, localdata), localdata)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+> line 222, in fire
+>     fire_class_handlers(event, d)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+> line 134, in fire_class_handlers
+>     execute_handler(name, handler, event, d)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+> line 106, in execute_handler
+>     ret = handler(event)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 166, in run_buildstats
+>     write_task_data("passed", os.path.join(taskdir, e.task), e, d)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 90, in write_task_data
+>     cpu, iostats, resources, childres = get_process_cputime(os.getpid())
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 29, in get_process_cputime
+>     with open("/proc/%d/io" % pid, "r") as f:
+> PermissionError: [Errno 13] Permission denied: '/proc/1530/io'
 >
-> readthedocs does apply its own default theme [1] if you do not provide
-> one in your custom conf which looks much better (that is the look that
-> docs.readthedocs.io has) which is easier to read and navigate. I
-> believe that most developers are familiar with it as many other
-> projects that host documentation on readthedocs use this theme
-> (including the Linux kernel and more).
+> ERROR: Task 
+> (virtual:native:/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_fetch) 
+> failed with exit code '1'
+> ERROR: autoconf-native-2.69-r11 do_fetch: Execution of event handler 
+> 'run_buildstats' failed
+> Traceback (most recent call last):
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 166, in run_buildstats(e=<bb.build.TaskSucceeded object at 
+> 0x7f07f3f31898>):
+>          elif isinstance(e, bb.build.TaskSucceeded):
+>     >        write_task_data("passed", os.path.join(taskdir, e.task), 
+> e, d)
+>              if e.task == "do_rootfs":
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 90, in write_task_data(status='passed', 
+> logfile='/media/mircea/ExtLinux/Adventure/repository/rocko/build/tmp/buildstats/20171211074610/autoconf-native-2.69-r11/do_fetch', 
+> e=<bb.build.TaskSucceeded object at 0x7f07f3f31898>, 
+> d=<bb.data_smart.DataSmart object at 0x7f07f23de2b0>):
+>                  f.write(d.expand("Elapsed time: %0.2f seconds\n" % 
+> elapsedtime))
+>     >            cpu, iostats, resources, childres = 
+> get_process_cputime(os.getpid())
+>                  if cpu:
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 29, in get_process_cputime(pid=1543):
+>          if os.path.isfile("/proc/%d/io" % pid):
+>     >        with open("/proc/%d/io" % pid, "r") as f:
+>                  while True:
+> PermissionError: [Errno 13] Permission denied: '/proc/1543/io'
 >
-> [1]. http://docs.readthedocs.io/en/latest/theme.html?highlight=3Dtheme
+> ERROR: autoconf-native-2.69-r11 do_fetch: Build of do_fetch failed
+> ERROR: autoconf-native-2.69-r11 do_fetch: Traceback (most recent call 
+> last):
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py", 
+> line 644, in exec_task
+>     return _exec_task(fn, task, d, quieterr)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py", 
+> line 618, in _exec_task
+>     event.fire(TaskSucceeded(task, logfn, localdata), localdata)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+> line 222, in fire
+>     fire_class_handlers(event, d)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+> line 134, in fire_class_handlers
+>     execute_handler(name, handler, event, d)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+> line 106, in execute_handler
+>     ret = handler(event)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 166, in run_buildstats
+>     write_task_data("passed", os.path.join(taskdir, e.task), e, d)
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 90, in write_task_data
+>     cpu, iostats, resources, childres = get_process_cputime(os.getpid())
+>   File 
+> "/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+> line 29, in get_process_cputime
+>     with open("/proc/%d/io" % pid, "r") as f:
+> PermissionError: [Errno 13] Permission denied: '/proc/1543/io'
+>
+> Any hints ?
+>
+> Thanks
+>
+>
 >
 
-Thanks for the feedback. The conf.py file we're using is just what was
-generated by sphinx-quickstart with minimal tweaks. It sets html_theme
-which is obviously overriding the default for read the docs.
 
-I think I should be able to get the right behaviour by commenting out
-the html_theme setting completely. I'll give that a go and see what
-happens.
+--------------8E9622163D3243B176B105B9
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Cheers,
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    So I went further and I tested in a VM running Debian 9 - there it
+    works:<br>
+    It looks like I get a Permission denied while building rocko only on
+    Debian 8, *not* on Debian 9.<br>
+    <br>
+    Debian 8 is listed as supported on <span class="emphasis"><em>Yocto
+        Project Reference Manual</em></span> 
+    here:
+<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.4/ref-manual/ref-manual.html#detailed-supported-distros">http://www.yoctoproject.org/docs/2.4/ref-manual/ref-manual.html#detailed-supported-distros</a><br>
+    Can somebody confirm this behavior ? It's a straight forward test:<br>
+    <br>
+    $ git clone -b rocko git://git.yoctoproject.org/poky.git<br>
+    $ source poky/oe-init-build-env<br>
+    $ bitbake core-image-minimal<br>
+    <br>
+    <br>
+    PS I've updated the thread subject to better reflect the problem.<br>
+    <br>
+    Thanks<br>
+    <br>
+    <div class="moz-cite-prefix">On 11/12/17 09:58, Mircea Gliga wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:0e2a62dd-edac-65ae-b029-12d3b3934f66@vitheia.com">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      Hello,<br>
+      <br>
+      I have a working krogoth build - I build images etc, everything is
+      fine.<br>
+      Then I wanted to try a rocko build, I installed the needed host
+      packages:
+      <a class="moz-txt-link-freetext"
+href="http://www.yoctoproject.org/docs/2.4/yocto-project-qs/yocto-project-qs.html#packages"
+        moz-do-not-send="true">http://www.yoctoproject.org/docs/2.4/yocto-project-qs/yocto-project-qs.html#packages</a><br>
+      Then sourced env and <i>bitbake core-image-minimal</i>.<br>
+      So no extra layers involved, just poky.<br>
+      I get errors like this: <br>
+      <br>
+      ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0
+      do_fetch: Build of do_fetch failed<br>
+      ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0
+      do_fetch: Traceback (most recent call last):<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+      line 644, in exec_task<br>
+          return _exec_task(fn, task, d, quieterr)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+      line 618, in _exec_task<br>
+          event.fire(TaskSucceeded(task, logfn, localdata), localdata)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+      line 222, in fire<br>
+          fire_class_handlers(event, d)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+      line 134, in fire_class_handlers<br>
+          execute_handler(name, handler, event, d)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+      line 106, in execute_handler<br>
+          ret = handler(event)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 166, in run_buildstats<br>
+          write_task_data("passed", os.path.join(taskdir, e.task), e, d)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 90, in write_task_data<br>
+          cpu, iostats, resources, childres =
+      get_process_cputime(os.getpid())<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 29, in get_process_cputime<br>
+          with open("/proc/%d/io" % pid, "r") as f:<br>
+      PermissionError: [Errno 13] Permission denied: '/proc/1530/io'<br>
+      <br>
+      ERROR: Task
+(virtual:native:/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_fetch)
+      failed with exit code '1'<br>
+      ERROR: autoconf-native-2.69-r11 do_fetch: Execution of event
+      handler 'run_buildstats' failed<br>
+      Traceback (most recent call last):<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 166, in run_buildstats(e=&lt;bb.build.TaskSucceeded object at
+      0x7f07f3f31898&gt;):<br>
+               elif isinstance(e, bb.build.TaskSucceeded):<br>
+          &gt;        write_task_data("passed", os.path.join(taskdir,
+      e.task), e, d)<br>
+                   if e.task == "do_rootfs":<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 90, in write_task_data(status='passed',
+logfile='/media/mircea/ExtLinux/Adventure/repository/rocko/build/tmp/buildstats/20171211074610/autoconf-native-2.69-r11/do_fetch',
+      e=&lt;bb.build.TaskSucceeded object at 0x7f07f3f31898&gt;,
+      d=&lt;bb.data_smart.DataSmart object at 0x7f07f23de2b0&gt;):<br>
+                       f.write(d.expand("Elapsed time: %0.2f seconds\n"
+      % elapsedtime))<br>
+          &gt;            cpu, iostats, resources, childres =
+      get_process_cputime(os.getpid())<br>
+                       if cpu:<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 29, in get_process_cputime(pid=1543):<br>
+               if os.path.isfile("/proc/%d/io" % pid):<br>
+          &gt;        with open("/proc/%d/io" % pid, "r") as f:<br>
+                       while True:<br>
+      PermissionError: [Errno 13] Permission denied: '/proc/1543/io'<br>
+      <br>
+      ERROR: autoconf-native-2.69-r11 do_fetch: Build of do_fetch failed<br>
+      ERROR: autoconf-native-2.69-r11 do_fetch: Traceback (most recent
+      call last):<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+      line 644, in exec_task<br>
+          return _exec_task(fn, task, d, quieterr)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+      line 618, in _exec_task<br>
+          event.fire(TaskSucceeded(task, logfn, localdata), localdata)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+      line 222, in fire<br>
+          fire_class_handlers(event, d)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+      line 134, in fire_class_handlers<br>
+          execute_handler(name, handler, event, d)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+      line 106, in execute_handler<br>
+          ret = handler(event)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 166, in run_buildstats<br>
+          write_task_data("passed", os.path.join(taskdir, e.task), e, d)<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 90, in write_task_data<br>
+          cpu, iostats, resources, childres =
+      get_process_cputime(os.getpid())<br>
+        File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+      line 29, in get_process_cputime<br>
+          with open("/proc/%d/io" % pid, "r") as f:<br>
+      PermissionError: [Errno 13] Permission denied: '/proc/1543/io'<br>
+      <br>
+      Any hints ?<br>
+      <br>
+      Thanks<br>
+      <br>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---=20
-Paul Barker
-Tog=C3=A1n Labs Ltd
-
+--------------8E9622163D3243B176B105B9--
