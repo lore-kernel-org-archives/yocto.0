@@ -1,45 +1,31 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <mircea.gliga@vitheia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98434E00D6B; Sun, 10 Dec 2017 22:15:12 -0800 (PST)
+	id CBFE5E00D69; Sun, 10 Dec 2017 23:58:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 208ECE00D32
-	for <yocto@yoctoproject.org>; Sun, 10 Dec 2017 22:15:11 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vBB6FAwf019846
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 10 Dec 2017 22:15:10 -0800 (PST)
-Received: from localhost.corp.ad.wrs.com (128.224.162.229) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.361.1; Sun, 10 Dec 2017 22:15:03 -0800
-To: "Burton, Ross" <ross.burton@intel.com>, Alexander Kanavin
-	<alexander.kanavin@linux.intel.com>
-References: <cover.1512630627.git.liezhi.yang@windriver.com>
-	<348a1df0689fa954c0a8da46751bd5f9b0666b87.1512630627.git.liezhi.yang@windriver.com>
-	<662dab3a-5e90-43a3-5962-07eed51bb7bc@linux.intel.com>
-	<bf1a9396-7796-aabc-afc9-69b1976751ae@windriver.com>
-	<20ca1f3c-d99b-089e-8806-82101fc1a6e1@linux.intel.com>
-	<CAJTo0LaRAFuMxp5WYFSKT2_ziG4ZR9bu9viL7US8qPOVp7Q8Nw@mail.gmail.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <24700d85-61ad-0801-14e1-17b0bb3b7e31@windriver.com>
-Date: Mon, 11 Dec 2017 14:14:33 +0800
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BEA9E00D32
+	for <yocto@yoctoproject.org>; Sun, 10 Dec 2017 23:58:25 -0800 (PST)
+Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
+	(authenticated bits=0)
+	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id vBB7wNHo014178
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NO)
+	for <yocto@yoctoproject.org>; Mon, 11 Dec 2017 09:58:23 +0200
+From: Mircea Gliga <mircea.gliga@vitheia.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Message-ID: <0e2a62dd-edac-65ae-b029-12d3b3934f66@vitheia.com>
+Date: Mon, 11 Dec 2017 09:58:23 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.5.0
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LaRAFuMxp5WYFSKT2_ziG4ZR9bu9viL7US8qPOVp7Q8Nw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: [PATCH 09/12] upgradehelper.py: use git user in commit when recipes are specified
+Subject: rocko build fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,49 +37,272 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Dec 2017 06:15:12 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Mon, 11 Dec 2017 07:58:27 -0000
+Content-Type: multipart/alternative;
+	boundary="------------E3738AD77450256982967241"
 Content-Language: en-US
+
+--------------E3738AD77450256982967241
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
+Hello,
+
+I have a working krogoth build - I build images etc, everything is fine.
+Then I wanted to try a rocko build, I installed the needed host 
+packages: 
+http://www.yoctoproject.org/docs/2.4/yocto-project-qs/yocto-project-qs.html#packages
+Then sourced env and /bitbake core-image-minimal/.
+So no extra layers involved, just poky.
+I get errors like this:
+
+ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_fetch: 
+Build of do_fetch failed
+ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_fetch: 
+Traceback (most recent call last):
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py", 
+line 644, in exec_task
+     return _exec_task(fn, task, d, quieterr)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py", 
+line 618, in _exec_task
+     event.fire(TaskSucceeded(task, logfn, localdata), localdata)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+line 222, in fire
+     fire_class_handlers(event, d)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+line 134, in fire_class_handlers
+     execute_handler(name, handler, event, d)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+line 106, in execute_handler
+     ret = handler(event)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 166, in run_buildstats
+     write_task_data("passed", os.path.join(taskdir, e.task), e, d)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 90, in write_task_data
+     cpu, iostats, resources, childres = get_process_cputime(os.getpid())
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 29, in get_process_cputime
+     with open("/proc/%d/io" % pid, "r") as f:
+PermissionError: [Errno 13] Permission denied: '/proc/1530/io'
+
+ERROR: Task 
+(virtual:native:/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_fetch) 
+failed with exit code '1'
+ERROR: autoconf-native-2.69-r11 do_fetch: Execution of event handler 
+'run_buildstats' failed
+Traceback (most recent call last):
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 166, in run_buildstats(e=<bb.build.TaskSucceeded object at 
+0x7f07f3f31898>):
+          elif isinstance(e, bb.build.TaskSucceeded):
+     >        write_task_data("passed", os.path.join(taskdir, e.task), e, d)
+              if e.task == "do_rootfs":
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 90, in write_task_data(status='passed', 
+logfile='/media/mircea/ExtLinux/Adventure/repository/rocko/build/tmp/buildstats/20171211074610/autoconf-native-2.69-r11/do_fetch', 
+e=<bb.build.TaskSucceeded object at 0x7f07f3f31898>, 
+d=<bb.data_smart.DataSmart object at 0x7f07f23de2b0>):
+                  f.write(d.expand("Elapsed time: %0.2f seconds\n" % 
+elapsedtime))
+     >            cpu, iostats, resources, childres = 
+get_process_cputime(os.getpid())
+                  if cpu:
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 29, in get_process_cputime(pid=1543):
+          if os.path.isfile("/proc/%d/io" % pid):
+     >        with open("/proc/%d/io" % pid, "r") as f:
+                  while True:
+PermissionError: [Errno 13] Permission denied: '/proc/1543/io'
+
+ERROR: autoconf-native-2.69-r11 do_fetch: Build of do_fetch failed
+ERROR: autoconf-native-2.69-r11 do_fetch: Traceback (most recent call last):
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py", 
+line 644, in exec_task
+     return _exec_task(fn, task, d, quieterr)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py", 
+line 618, in _exec_task
+     event.fire(TaskSucceeded(task, logfn, localdata), localdata)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+line 222, in fire
+     fire_class_handlers(event, d)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+line 134, in fire_class_handlers
+     execute_handler(name, handler, event, d)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py", 
+line 106, in execute_handler
+     ret = handler(event)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 166, in run_buildstats
+     write_task_data("passed", os.path.join(taskdir, e.task), e, d)
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 90, in write_task_data
+     cpu, iostats, resources, childres = get_process_cputime(os.getpid())
+   File 
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass", 
+line 29, in get_process_cputime
+     with open("/proc/%d/io" % pid, "r") as f:
+PermissionError: [Errno 13] Permission denied: '/proc/1543/io'
+
+Any hints ?
+
+Thanks
 
 
-On 12/09/2017 12:20 AM, Burton, Ross wrote:
-> On 8 December 2017 at 14:07, Alexander Kanavin 
-> <alexander.kanavin@linux.intel.com <mailto:alexander.kanavin@linux.intel.com>> 
-> wrote:
-> 
->     On 12/08/2017 03:51 AM, Robert Yang wrote:
-> 
->             I'm not sure about this one. Commits shouldn't be created
->             automatically on a person's behalf and then also signed-off - I'd
->             say you need to first look at them.
-> 
-> 
->         IMHO, Auh is a helper, when user run:
->         $ auh less
-> 
->         It helps create commits, should be the same as user run "git commit",
->         and the
->         user should responsible for it. Or how about add a -S option:
-> 
->         -S, --SOB    Use git user as the author and add SOB.
-> 
-> 
->     Yeah, as long as maintainers don't send those raw commits straight to
->     mailing list, it's okay. It's rare that such an auto-created commit doesn't
->     need further work (e.g. to explain changes in patches or license, or other
->     adjustments).
-> 
-> 
-> The lack of a SOB was intentional for exactly this reason.  No SOB means a human 
-> didn't look at it *at all*/
+--------------E3738AD77450256982967241
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Makes sense, so let's drop this patch.
+<html>
+  <head>
 
-// Robert
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Hello,<br>
+    <br>
+    I have a working krogoth build - I build images etc, everything is
+    fine.<br>
+    Then I wanted to try a rocko build, I installed the needed host
+    packages:
+<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/2.4/yocto-project-qs/yocto-project-qs.html#packages">http://www.yoctoproject.org/docs/2.4/yocto-project-qs/yocto-project-qs.html#packages</a><br>
+    Then sourced env and <i>bitbake core-image-minimal</i>.<br>
+    So no extra layers involved, just poky.<br>
+    I get errors like this: <br>
+    <br>
+    ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_fetch:
+    Build of do_fetch failed<br>
+    ERROR: gnu-config-native-20150728+gitAUTOINC+b576fa87c1-r0 do_fetch:
+    Traceback (most recent call last):<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+    line 644, in exec_task<br>
+        return _exec_task(fn, task, d, quieterr)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+    line 618, in _exec_task<br>
+        event.fire(TaskSucceeded(task, logfn, localdata), localdata)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+    line 222, in fire<br>
+        fire_class_handlers(event, d)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+    line 134, in fire_class_handlers<br>
+        execute_handler(name, handler, event, d)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+    line 106, in execute_handler<br>
+        ret = handler(event)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 166, in run_buildstats<br>
+        write_task_data("passed", os.path.join(taskdir, e.task), e, d)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 90, in write_task_data<br>
+        cpu, iostats, resources, childres =
+    get_process_cputime(os.getpid())<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 29, in get_process_cputime<br>
+        with open("/proc/%d/io" % pid, "r") as f:<br>
+    PermissionError: [Errno 13] Permission denied: '/proc/1530/io'<br>
+    <br>
+    ERROR: Task
+(virtual:native:/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/recipes-devtools/gnu-config/gnu-config_git.bb:do_fetch)
+    failed with exit code '1'<br>
+    ERROR: autoconf-native-2.69-r11 do_fetch: Execution of event handler
+    'run_buildstats' failed<br>
+    Traceback (most recent call last):<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 166, in run_buildstats(e=&lt;bb.build.TaskSucceeded object at
+    0x7f07f3f31898&gt;):<br>
+             elif isinstance(e, bb.build.TaskSucceeded):<br>
+        &gt;        write_task_data("passed", os.path.join(taskdir,
+    e.task), e, d)<br>
+                 if e.task == "do_rootfs":<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 90, in write_task_data(status='passed',
+logfile='/media/mircea/ExtLinux/Adventure/repository/rocko/build/tmp/buildstats/20171211074610/autoconf-native-2.69-r11/do_fetch',
+    e=&lt;bb.build.TaskSucceeded object at 0x7f07f3f31898&gt;,
+    d=&lt;bb.data_smart.DataSmart object at 0x7f07f23de2b0&gt;):<br>
+                     f.write(d.expand("Elapsed time: %0.2f seconds\n" %
+    elapsedtime))<br>
+        &gt;            cpu, iostats, resources, childres =
+    get_process_cputime(os.getpid())<br>
+                     if cpu:<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 29, in get_process_cputime(pid=1543):<br>
+             if os.path.isfile("/proc/%d/io" % pid):<br>
+        &gt;        with open("/proc/%d/io" % pid, "r") as f:<br>
+                     while True:<br>
+    PermissionError: [Errno 13] Permission denied: '/proc/1543/io'<br>
+    <br>
+    ERROR: autoconf-native-2.69-r11 do_fetch: Build of do_fetch failed<br>
+    ERROR: autoconf-native-2.69-r11 do_fetch: Traceback (most recent
+    call last):<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+    line 644, in exec_task<br>
+        return _exec_task(fn, task, d, quieterr)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/build.py",
+    line 618, in _exec_task<br>
+        event.fire(TaskSucceeded(task, logfn, localdata), localdata)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+    line 222, in fire<br>
+        fire_class_handlers(event, d)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+    line 134, in fire_class_handlers<br>
+        execute_handler(name, handler, event, d)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/bitbake/lib/bb/event.py",
+    line 106, in execute_handler<br>
+        ret = handler(event)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 166, in run_buildstats<br>
+        write_task_data("passed", os.path.join(taskdir, e.task), e, d)<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 90, in write_task_data<br>
+        cpu, iostats, resources, childres =
+    get_process_cputime(os.getpid())<br>
+      File
+"/media/mircea/ExtLinux/Adventure/repository/rocko/poky/meta/classes/buildstats.bbclass",
+    line 29, in get_process_cputime<br>
+        with open("/proc/%d/io" % pid, "r") as f:<br>
+    PermissionError: [Errno 13] Permission denied: '/proc/1543/io'<br>
+    <br>
+    Any hints ?<br>
+    <br>
+    Thanks<br>
+    <br>
+  </body>
+</html>
 
-
-> 
-> Ross
-
+--------------E3738AD77450256982967241--
