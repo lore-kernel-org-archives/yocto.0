@@ -1,47 +1,66 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <prvs=05197fe871=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E980E00D9A; Tue, 12 Dec 2017 04:25:35 -0800 (PST)
+	id 2FE38E00D03; Tue, 12 Dec 2017 05:26:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [46.165.232.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61A29E00D03
-	for <yocto@yoctoproject.org>; Tue, 12 Dec 2017 04:25:33 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Dec 2017 04:25:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,395,1508828400"; 
-   d="scan'208";a="1898269"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by fmsmga008.fm.intel.com with ESMTP; 12 Dec 2017 04:25:32 -0800
-To: Robert Yang <liezhi.yang@windriver.com>, yocto@yoctoproject.org
-References: <cover.1512630627.git.liezhi.yang@windriver.com>
-	<e3cb41c1f86590e45d2cd6c253324b2bcd04e34e.1512630627.git.liezhi.yang@windriver.com>
-	<b1f0b049-b78e-4009-20ac-979b82081b4e@linux.intel.com>
-	<d8a9adca-7374-64da-8613-059034082943@windriver.com>
-	<4af82364-f125-e6fd-ab12-8dd3a9f0dcbc@windriver.com>
-	<91939990-5880-aba7-7ec6-7d24809694aa@linux.intel.com>
-	<91a7f9ef-b0c2-68c5-ad8f-07309a3a9585@windriver.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <9c635c45-b01a-3896-ad89-34b7ded040f6@linux.intel.com>
-Date: Tue, 12 Dec 2017 14:26:16 +0200
+X-Greylist: delayed 1659 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Dec 2017 05:26:12 PST
+Received: from mx12-out5.antispamcloud.com (mx12-out5.antispamcloud.com
+	[46.165.232.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEE0DE00CEF
+	for <yocto@yoctoproject.org>; Tue, 12 Dec 2017 05:26:12 -0800 (PST)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx18.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1eOk8k-0000tJ-IK
+	for yocto@yoctoproject.org; Tue, 12 Dec 2017 13:58:32 +0100
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 12 Dec 2017 13:58:27 +0100
+To: <yocto@yoctoproject.org>
+References: <CAPb0b+M+P8-EjoBz+YXBD3pzhJ0CwHPi10HsFxvBewkr_kvqFQ@mail.gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <7ace9fbf-b13d-5097-fe44-ac74c55abdd6@topic.nl>
+Date: Tue, 12 Dec 2017 13:58:27 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <91a7f9ef-b0c2-68c5-ad8f-07309a3a9585@windriver.com>
-Cc: paul.eggleton@linux.intel.com
-Subject: Re: [PATCH 08/12] upgradehelper.py: clean repo only once when recipes are specified
+In-Reply-To: <CAPb0b+M+P8-EjoBz+YXBD3pzhJ0CwHPi10HsFxvBewkr_kvqFQ@mail.gmail.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Originating-IP: 37.74.225.130
+X-AntiSpamCloud-Domain: topic.nl
+X-AntiSpamCloud-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-AntiSpamCloud-Outgoing-Class: unsure
+X-AntiSpamCloud-Outgoing-Evidence: Combined (0.15)
+X-Recommended-Action: accept
+X-Filter-ID: EX5BVjFpneJeBchSMxfU5imvYJkwVPwJJuI+ewyEUrQXv9krsgRhBn0ayn6qsUc7w6SccWMDC+EB
+	BTuK3o3KEyQlGLPaobytuzUKW+xz+P7knsgxO8QU5XhJXv6Xg0nrBMmyNbDn7R5kilAhwr3KtIuk
+	b+536l3+pqAIhIa/zGXJ2IbOs1PpEthBRUy/wV+RvmOVq23tbQw2LZ3RX+IyZmptLDQVVEkr0fd3
+	TM0QBRM62G/U67cKaa0HbaH2D8o8DZ7dAk4PIDlJHa9u6GsEq/Ke8s8utGHT8Q5pJWi2MVr7Evam
+	8tYC7wyZQ4fzB8++QUwbiOFfV2Jvu+B3DrH1MxO3mU2z2ywUcjN7x2PlCANg9et9Fj8PSGjy/Yn8
+	oAWNeQ26l+6g7IYTcpkQV1OwCLwqyT5p50x81ZKcmzCu2U325+uTFUuzvo8URmhDaMaDm2krverQ
+	RYVy3aYXqZGE8/jHXabDECB8Ge2rA5iD/Uv1GXxLJFjVApPQIqy2JQrfHOhaDqil5cRRI+xFj+oA
+	aa2tYl3CnIdPpOBhNFPr8dEWvMnx1+mLfQonsX6FaGpjrpQXAF/CEbfyvTJrNDLq4CiOtfKsJtTc
+	Fd/j3b5mo/Tw6L+Rha4vSYxtpQn4lvqg0zzExxL5NoVI8mgIHlVDMHgJbFyUOzItj2jBqKA2zYwd
+	R2pqSBkha+GyzfuUg0ZdofQ2vwh0WDCoPRLYWedbrWbjO41FyBEqIaDudcVplPFkPlJ6qSDW+aCQ
+	chArcU2JTgWCa86y+gZU09fkvMjUtC30rbiheRb0a5mYj9Pl7r9IRfX5T90jmhx2+8Di+QhQ3jR5
+	NeVaJQBh0uawl0Cg8sgK3Hz6uYkg1EcSzONQTDOJeknspp2QYhsLurZRnM70j9ygHhVolbJAfiYw
+	jWOIY7HB7wpa5NZ74b9REdJZQ0k=
+X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
+Subject: Re: recipe to clean up files from rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,29 +72,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Dec 2017 12:25:35 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 12 Dec 2017 13:26:14 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: nl
+Content-Transfer-Encoding: quoted-printable
 
-On 12/11/2017 08:13 AM, Robert Yang wrote:
+=EF=BB=BFOn 11-12-17 15:18, Sherif Omran wrote:
+> i want to create a recipe to clean some files from the rootfile system, b=
+ut i=20
+> don't know how to let this recipe run the last one before building the=20
+> rootfile system.
 
->> I think it's a simpler and easier to understand approach. Yes, this 
->> means that an updated recipe that is close to the root of dependency 
->> tree can cause a cascade of build failures (e.g. glibc), but the 
->> update commits for everything else will still be created, and the 
->> maintainer can easily revert the failing updates, and re-run the 
->> build. What you think?
-> 
-> Yes, since glibc would causes others failed to build, so I removed the 
-> commited
-> during upgrading, and then apply it back, I think that this is more 
-> helpful than
-> leave the failed commit there and causes others failed.
+You can use ROOTFS_POSTPROCESS_COMMAND in your image recipe to do some=20
+last-minute filesystem cleanup.
 
-How about simply issuing 'git revert' after a build has failed? That's 
-easier to implement than rearranging the order of commits, and the 
-commit message can include a link to the build failure logs.
+However, in most cases it's much better to determine what recipe puts the=20
+files there and modify the recipe or remove the package. It would help a lo=
+t=20
+if you would reveal what files you want to remove and why.
 
-Alex
+
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
 
