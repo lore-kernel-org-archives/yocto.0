@@ -1,64 +1,64 @@
-Return-Path: <sherifomran2000@gmail.com>
+Return-Path: <prvs=052031cdc2=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A34CE00CEF; Tue, 12 Dec 2017 22:14:40 -0800 (PST)
+	id 377D4E00CEF; Tue, 12 Dec 2017 22:22:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sherifomran2000[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [95.211.2.200 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f43.google.com (mail-pg0-f43.google.com [74.125.83.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C131E00B5F
-	for <yocto@yoctoproject.org>; Tue, 12 Dec 2017 22:14:38 -0800 (PST)
-Received: by mail-pg0-f43.google.com with SMTP id j4so869012pgp.1
-	for <yocto@yoctoproject.org>; Tue, 12 Dec 2017 22:14:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=DViipjiBsI280jkQGZa3q4VfmehLo/IKp1FHqX362Hk=;
-	b=Uyk/ZwHzYG6eZwKsEce9cReZ4Q9RyYa53yFne1v7I8QRnTlyLY223K7kEDXvR5BDMY
-	WTh9U5dMA8CuEf2BE1IVNKxZ+f6UyvQN30NoAv/QHiuxJbFhTFio/asGL5MMIWHN3LsO
-	Pc41E5gsxXBJ355NJ+pfxvyU/itjmJhgcpOaaZ5zCHC+wjtLAQJuC+DWnuUXEBGemVUv
-	Ft2O+Qg78L2NuuYjqDi8GXbh+EeV9Owhe1p273aPAoV3uMzD/VAaAJrj/Rcx1WnrvORU
-	3EnOyyeVvzXdclOFALYnwbXy81wiETYFeJWbNPrX/EYCG9lWdow+UPczoaULboxILspc
-	flMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=DViipjiBsI280jkQGZa3q4VfmehLo/IKp1FHqX362Hk=;
-	b=cN+EFrOS/DdnS43pES1pS1UtltqXW2SEwbRFAVIoR2soDCNfvqG/LZICL4ReW1O0yf
-	9acup2DUhYYwJwcNHN9gPMppZvArgyGcVG/DDYXX+WVKL1HIT2A/SGgcvWUTYvSvPEu2
-	V0beu6lKE1+zmOw9EP2gPWCPUZcSf5PxzBNbAOe1vTCkB4w24meDJzcbmGGhtF10Gv0S
-	xv8MktmALTIjv1WKcxaODi3X2UBUDpuCwNnU4DzafzysyYlC1DRrQO+76350HCisvNku
-	pjy+CeEgdNOCcVpome6uyN9aid4xbpGjmSUvIYaOXWB32qtYeude1sHspq/tfvC2Zc9Y
-	+chw==
-X-Gm-Message-State: AKGB3mJelj7nti3HTYQAEsqYN57CFjKStYaTSnJ1bWtfUdmY1+8m2EcP
-	IADITprVaKI3nc+qarYMe0WmWNM9GEjZ3FWnh6c=
-X-Google-Smtp-Source: ACJfBovVmatkBbGtf5eHbWdtBDNZXPR0T1d11cKWLmddoNcJrwf0L3Wva8dzyD8UONFbq1QzwEbL8ZWe5LCS2HMskiA=
-X-Received: by 10.99.130.74 with SMTP id w71mr4283205pgd.31.1513145678556;
-	Tue, 12 Dec 2017 22:14:38 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.100.138.69 with HTTP; Tue, 12 Dec 2017 22:14:38 -0800 (PST)
-In-Reply-To: <7ace9fbf-b13d-5097-fe44-ac74c55abdd6@topic.nl>
+Received: from mx6-out9.antispamcloud.com (mx6-out9.antispamcloud.com
+	[95.211.2.200])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41841E00B5F
+	for <yocto@yoctoproject.org>; Tue, 12 Dec 2017 22:22:18 -0800 (PST)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx44.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1eP0Qq-0008LN-OI; Wed, 13 Dec 2017 07:22:17 +0100
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 13 Dec 2017 07:22:15 +0100
+To: Sherif Omran <sherifomran2000@gmail.com>
 References: <CAPb0b+M+P8-EjoBz+YXBD3pzhJ0CwHPi10HsFxvBewkr_kvqFQ@mail.gmail.com>
 	<7ace9fbf-b13d-5097-fe44-ac74c55abdd6@topic.nl>
-From: Sherif Omran <sherifomran2000@gmail.com>
-Date: Wed, 13 Dec 2017 07:14:38 +0100
-Message-ID: <CAPb0b+PBqB5qJr0cinXNBNnr4Sm9Kkayr6Voa8Bd=MF_dHJAMw@mail.gmail.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>
+	<CAPb0b+PBqB5qJr0cinXNBNnr4Sm9Kkayr6Voa8Bd=MF_dHJAMw@mail.gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <084c90b0-1b18-d85f-3418-4b43e2b64d61@topic.nl>
+Date: Wed, 13 Dec 2017 07:22:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
+MIME-Version: 1.0
+In-Reply-To: <CAPb0b+PBqB5qJr0cinXNBNnr4Sm9Kkayr6Voa8Bd=MF_dHJAMw@mail.gmail.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Originating-IP: 37.74.225.130
+X-AntiSpamCloud-Domain: topic.nl
+X-AntiSpamCloud-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-AntiSpamCloud-Outgoing-Class: ham
+X-AntiSpamCloud-Outgoing-Evidence: Combined (0.05)
+X-Recommended-Action: accept
+X-Filter-ID: EX5BVjFpneJeBchSMxfU5hgGKOEbhwLAAcdDVznw7sLj1g3/PwYZaTCzSym8uE9HkHA9/xDKDHqr
+	Jh4Qpex1MCIm22Igb9wwO43+YCPGONBWShQ0+uJXiDSCp280tJFsz4bEVfjlFj4AoBLkOOE4qL3F
+	8D4YQCQr+3+aHYIePeKfI3EVhqxj8Nu1voFLyLyTVa/Hj/lpqf8vwAdisrIBgyPQ3mdUGkYAU/w8
+	y7kGQNG1CfKDfndv9WApXzTp2SEvw+pJdu/U5y6mAHsHsNznwGNYhEhifhAWrDKpmZJBan+sAL96
+	EgU4J4J3tsW/5DkwosefbE1jmWEp5zI0N9cLxVT08VH0yijnhbv6KoiGRjf+UQxZAG43pqG5cKuM
+	24FNE7eZTbPbLBRyM3vHY+UIA73N8ewPjo1YBjYJp8Klqr0JJq9AGs+hqARd9nbXQLHxvCrJPmnn
+	THzVkpybMK7ZTWXSksuvpDYZ94t4kYX7zQObaSu96tBFhXLdphepkYTzNYq0tP1ZHnujFS9GLGNp
+	1xinUAdR3CX/nLpL0A1FsI6u1NuTlJAoXPPS2uTLHY7EmLtTMekk71CtEMGhrP03LKc6T/SEFTXC
+	BmjHHHfHJ0Jipm9ZGQrzDr/oWwAZSnWeNWAsE0Te1gPeb/02qtEcysxTSSkRtGrNs5JTMkgwIxMN
+	lyxN3RLueUBsuZU4NZidZOGmBFme224ssPTWl18pUirAyJRl88UFFV7I/Yb04fpmP5uaz+4OQH4v
+	H0cKPC6bPAlbDjazCbhs7qBpykynMlTdMoUSH1VFHFHEYroxwxZ6jL3BPbZvTfn+FNLHrc2aPcz6
+	t3WaABx3xFR6ZuaR8luDQEdKm65cTUbfWaDAny7l+30jPRYO1eVGeLkcIIkz1C+Wj1RXu91a22x7
+	C1cqjBoQ7rna6j7rEdUSfjeCXT07DlvSF/91CX3fipIinoHejADe9oHwrL30QtqvwfeDAw==
+X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: recipe to clean up files from rootfs
 X-BeenThere: yocto@yoctoproject.org
@@ -72,119 +72,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Dec 2017 06:14:40 -0000
-Content-Type: multipart/alternative; boundary="94eb2c116966a9f342056032ae56"
-
---94eb2c116966a9f342056032ae56
-Content-Type: text/plain; charset="UTF-8"
-
-hi Mike,
-i could not get it to work, if you have a recipe that works, please share
-it. ROOTFS_POSTPROCESS_COMMAND seems to be buggy.
-
-thank you
-
->
->
-On Tue, Dec 12, 2017 at 1:58 PM, Mike Looijmans <mike.looijmans@topic.nl>
-wrote:
-
-> On 11-12-17 15:18, Sherif Omran wrote:
->
->> i want to create a recipe to clean some files from the rootfile system,
->> but i don't know how to let this recipe run the last one before building
->> the rootfile system.
->>
->
-> You can use ROOTFS_POSTPROCESS_COMMAND in your image recipe to do some
-> last-minute filesystem cleanup.
->
-> However, in most cases it's much better to determine what recipe puts the
-> files there and modify the recipe or remove the package. It would help a
-> lot if you would reveal what files you want to remove and why.
->
->
-> Kind regards,
->
-> Mike Looijmans
-> System Expert
->
-> TOPIC Products
-> Materiaalweg 4, NL-5681 RJ Best
-> Postbus 440, NL-5680 AK Best
-> Telefoon: +31 (0) 499 33 69 79
-> E-mail: mike.looijmans@topicproducts.com
-> Website: www.topicproducts.com
->
-> Please consider the environment before printing this e-mail
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---94eb2c116966a9f342056032ae56
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Wed, 13 Dec 2017 06:22:20 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: nl
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>hi Mike,<br></div>i could not get it to work, if=
- you have a recipe that works, please share it. ROOTFS_POSTPROCESS_COMMAND =
-seems to be buggy.<br><br></div>thank you<br><div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex"><br></blockquote></div></div><div class=3D"gmail_e=
-xtra"><br><div class=3D"gmail_quote">On Tue, Dec 12, 2017 at 1:58 PM, Mike =
-Looijmans <span dir=3D"ltr">&lt;<a href=3D"mailto:mike.looijmans@topic.nl" =
-target=3D"_blank">mike.looijmans@topic.nl</a>&gt;</span> wrote:<br><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
-olid;padding-left:1ex"><span class=3D"">On 11-12-17 15:18, Sherif Omran wro=
-te:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-i want to create a recipe to clean some files from the rootfile system, but=
- i don&#39;t know how to let this recipe run the last one before building t=
-he rootfile system.<br>
-</blockquote>
-<br></span>
-You can use ROOTFS_POSTPROCESS_COMMAND in your image recipe to do some last=
--minute filesystem cleanup.<br>
-<br>
-However, in most cases it&#39;s much better to determine what recipe puts t=
-he files there and modify the recipe or remove the package. It would help a=
- lot if you would reveal what files you want to remove and why.<br>
-<br>
-<br>
-Kind regards,<br>
-<br>
-Mike Looijmans<br>
-System Expert<br>
-<br>
-TOPIC Products<br>
-Materiaalweg 4, NL-5681 RJ Best<br>
-Postbus 440, NL-5680 AK Best<br>
-Telefoon: <a href=3D"tel:%2B31%20%280%29%20499%2033%2069%2079" value=3D"+31=
-499336979" target=3D"_blank">+31 (0) 499 33 69 79</a><br>
-E-mail: <a href=3D"mailto:mike.looijmans@topicproducts.com" target=3D"_blan=
-k">mike.looijmans@topicproducts.c<wbr>om</a><br>
-Website: <a href=3D"http://www.topicproducts.com" rel=3D"noreferrer" target=
-=3D"_blank">www.topicproducts.com</a><br>
-<br>
-Please consider the environment before printing this e-mail<span class=3D"H=
-OEnZb"><font color=3D"#888888"><br>
-<br>
-<br>
-<br>
--- <br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br></div>
+=EF=BB=BFWell, start by sharing yours first.
 
---94eb2c116966a9f342056032ae56--
+Be careful when naming your shell routine, sometimes OE considers parts beh=
+ind=20
+the underscore as overrides and then it cannot find it.
+
+
+On 13-12-17 07:14, Sherif Omran wrote:
+> hi Mike,
+> i could not get it to work, if you have a recipe that works, please share=
+ it.=20
+> ROOTFS_POSTPROCESS_COMMAND seems to be buggy.
+>=20
+> thank you
+>=20
+>=20
+>=20
+> On Tue, Dec 12, 2017 at 1:58 PM, Mike Looijmans <mike.looijmans@topic.nl=
+=20
+> <mailto:mike.looijmans@topic.nl>> wrote:
+>=20
+>     On 11-12-17 15:18, Sherif Omran wrote:
+>=20
+>         i want to create a recipe to clean some files from the rootfile
+>         system, but i don't know how to let this recipe run the last one
+>         before building the rootfile system.
+>=20
+>=20
+>     You can use ROOTFS_POSTPROCESS_COMMAND in your image recipe to do som=
+e
+>     last-minute filesystem cleanup.
+>=20
+>     However, in most cases it's much better to determine what recipe puts=
+ the
+>     files there and modify the recipe or remove the package. It would hel=
+p a
+>     lot if you would reveal what files you want to remove and why.
+>=20
+>=20
+>     Kind regards,
+>=20
+>     Mike Looijmans
+>     System Expert
+>=20
+>     TOPIC Products
+>     Materiaalweg 4, NL-5681 RJ Best
+>     Postbus 440, NL-5680 AK Best
+>     Telefoon: +31 (0) 499 33 69 79 <tel:%2B31%20%280%29%20499%2033%2069%2=
+079>
+>     E-mail: mike.looijmans@topicproducts.com
+>     <mailto:mike.looijmans@topicproducts.com>
+>     Website: www.topicproducts.com <http://www.topicproducts.com>
+>=20
+>     Please consider the environment before printing this e-mail
+>=20
+>=20
+>=20
+>     --=20
+>    =20
+
+Kind regards,
+
+Mike Looijmans
+System Expert
+
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
+_______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>     <https://lists.yoctoproject.org/listinfo/yocto>
+>=20
+>=20
+
+
