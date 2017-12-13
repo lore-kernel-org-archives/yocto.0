@@ -1,68 +1,122 @@
-Return-Path: <prvs=052031cdc2=mike.looijmans@topicproducts.com>
+Return-Path: <mkelly@xevo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31922E00CEF; Wed, 13 Dec 2017 06:01:55 -0800 (PST)
+	id 908EBE00D69; Wed, 13 Dec 2017 10:40:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [95.211.2.203 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.33.51 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx6-out12.antispamcloud.com (mx6-out12.antispamcloud.com
-	[95.211.2.203])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FC65E008FB
-	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 06:01:52 -0800 (PST)
-Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
-	by mx35.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
-	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1eP6h5-00071u-LZ; Wed, 13 Dec 2017 14:03:33 +0100
-Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 13 Dec 2017 14:03:25 +0100
-To: Sherif Omran <sherifomran2000@gmail.com>
-References: <CAPb0b+M+P8-EjoBz+YXBD3pzhJ0CwHPi10HsFxvBewkr_kvqFQ@mail.gmail.com>
-	<7ace9fbf-b13d-5097-fe44-ac74c55abdd6@topic.nl>
-	<CAPb0b+PBqB5qJr0cinXNBNnr4Sm9Kkayr6Voa8Bd=MF_dHJAMw@mail.gmail.com>
-	<084c90b0-1b18-d85f-3418-4b43e2b64d61@topic.nl>
-	<CAPb0b+MZzZFS+goVDWpX1Wm7+RSM1+AxH-zONm+x+C5diNLMcg@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <20181cde-bfa7-aeee-96b9-dba232ae0179@topic.nl>
-Date: Wed, 13 Dec 2017 14:03:25 +0100
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 880 seconds by postgrey-1.32 at yocto-www;
+	Wed, 13 Dec 2017 10:40:54 PST
+Received: from NAM01-BN3-obe.outbound.protection.outlook.com
+	(mail-bn3nam01on0051.outbound.protection.outlook.com [104.47.33.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B297BE00C59
+	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 10:40:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=uievolution.onmicrosoft.com; s=selector1-xevo-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=Ik5AQjbOyv57I0HTtn1wm8HKDJEo2NC6JM8J1Sd361I=;
+	b=U/kr1N2u6MHmihIxZGaNf8SdRdN71R45C3QwE4RZ3mLcihO4GELxfVAQqG7yKUPOgjuAGiy/k6xWrJwvurog+sroCoOPwa4gEENq3HQKD5RtepmE6mWmo15gGWsbW0DOvy/cxQ428OQ0cDlotKEHTCAlZlTTCr6V4aPt38HuNWg=
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=mkelly@xevo.com; 
+Received: from [192.168.0.3] (71.35.172.156) by
+	BN6PR0101MB2931.prod.exchangelabs.com (10.174.87.140) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.302.9; Wed, 13 Dec 2017 18:26:11 +0000
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Martin Kelly <mkelly@xevo.com>
+Message-ID: <13c0ade8-e1fe-d4e7-a73b-67ea4c425321@xevo.com>
+Date: Wed, 13 Dec 2017 10:26:04 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	Thunderbird/52.5.0
 MIME-Version: 1.0
-In-Reply-To: <CAPb0b+MZzZFS+goVDWpX1Wm7+RSM1+AxH-zONm+x+C5diNLMcg@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Originating-IP: 37.74.225.130
-X-AntiSpamCloud-Domain: topic.nl
-X-AntiSpamCloud-Username: 37.74.225.128/28
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=37.74.225.128/28@topic.nl
-X-AntiSpamCloud-Outgoing-Class: ham
-X-AntiSpamCloud-Outgoing-Evidence: Combined (0.08)
-X-Recommended-Action: accept
-X-Filter-ID: EX5BVjFpneJeBchSMxfU5qBR+JyedFgFeOAgkiXGzSzj1g3/PwYZaTCzSym8uE9HkHA9/xDKDHqr
-	Jh4Qpex1MCIm22Igb9wwO43+YCPGONBWShQ0+uJXiDSCp280tJFsz4bEVfjlFj4AoBLkOOE4qM8d
-	O+xgXNt99qI9YYgjZV2fI3EVhqxj8Nu1voFLyLyTVa/Hj/lpqf8vwAdisrIBg2I7rzc7nYGst0KN
-	zT4J6hy1CfKDfndv9WApXzTp2SEvw+pJdu/U5y6mAHsHsNznwGNYhEhifhAWrDKpmZJBan+sAL96
-	EgU4J4J3tsW/5DkwosefbE1jmWEp5zI0N9cLxVT08VH0yijnhbv6KoiGRjf+UQxZAG43pqG5cKuM
-	24FNE7eZTbPbLBRyM3vHY+UIA73N8ewPjo1YBjYJp8Klqr0JJq9AGs+hqARd9nbXQLHxvCrJPmnn
-	THzVkpybMK7ZTWXSksuvpDYZ94t4kYX7zQObaSu96tBFhXLdphepkYTzNYq0tP1ZHnujFS9GLGNp
-	1xinUAdR3CX/nLpL0A1FsI6u1NuTlJAoXPPS2uTLHY7E8GwE6qL83Y7Y1LQg0DSGSDvAy92Qhy/5
-	J1xUGQUc1RxWqVzJfFQC0dWOJf7e/BXAkyRhEwd9RAcCE+V2HvVAG6IF28qb//NlVRgvyFwDRNmo
-	g79yJeaPat2AcF1mPnBSB9cRUjozhGFkskTqWntrK7Yt0cu7uiGPocyYuyf/X0WM1U0T4hT0eexp
-	qncFjpZKctgzcDoFd+96Xw4QUNtTnYBE6ltHgV0E/8MEqtDQu5uPmCuwBz+y+0mFrmb6z6oZceZr
-	Ekeh70qXMtLHWocjF2J8UMoS6qj7LtIzksqaWqRCTYcG6SWU394FkPgYZsWwJP920wiz8uo5T2Fn
-	+/fWhHODtCCm6ZDGBPghwp4CV/KM8hALgRf3rwz0t4mCnb6TeZ+9Jfj2BSPiPrw3mwELeQ==
-X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: recipe to clean up files from rootfs
+X-Originating-IP: [71.35.172.156]
+X-ClientProxiedBy: DM5PR2201CA0033.namprd22.prod.outlook.com (10.174.180.150)
+	To BN6PR0101MB2931.prod.exchangelabs.com (10.174.87.140)
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: af67f260-3aeb-412d-3a12-08d54256fd30
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(4534020)(4602075)(4627115)(201703031133081)(201702281549075)(5600026)(4604075)(2017052603307);
+	SRVR:BN6PR0101MB2931; 
+X-Microsoft-Exchange-Diagnostics: 1; BN6PR0101MB2931;
+	3:+VnxWzXCIbHpbZsyuml6Em/osmbqvm4rm2m8/S2X/DJO/EpQMNvECh4jlZ14uXhU6to4GdogTzExqyjnXZn0eQsOFcjBIOIRBgO0eKzuFOU317wW4XGLMJ6REP+FuZjOiiYg6NdSLdTj64Y1+qfIQW4RD7IqcOMf8yB15aI/0/fTlzg2+X4X300NF53swS6/AOyIr9thc7trSKP6DxgBPyg1hHtW/VmWzkJ/DPOUIr4Kg8Kiq2vOZwLhTVNfEcIl;
+	25:0KpLWLqYnShqV1FPDoQ2yGL4TztYahNDV7yxHOuhdI+J/9rz+Da0bpYGFk70KTOWBsIWk92XGkZrnhUYo2RJ6spifLoHcNRBvIgXvx4UvnVuqnUAqcAsVFgsNJtFZDI2XAw/u7V4C8D4ShQLPDj0ubs5HXB59JH4s9ec/1A44tyu3RoMNuZdp2Luq/xx9tYywpoA88fnRUKOTWt69kr1cmi4bKgARjS8uUQTkWAgXjvKadwtMayhL13kzqzDS0oBQsUrBM+nsnP1sO3OI3bkw+7jfo2u6cDW6oFU3cPyFaTyUHvXbcXcx82B53fsHYc8dahgyOaaV4HgFjJ9y3qUcg==;
+	31:mbqTHZVfwCGAOF8GhRs4NYh/qw8toXNqC+6P5C23hbx1GIAMZGABGTUdsRt1OFwEO1sk3cTP7ilddEq0KRJvzzHuVv32I6uxRstNVwvDNWsWxxvCZMA1OnxWq/jnRPmZMu3FdtESda4Ic7TVGd5mQE41qa9SVRMXWhEq9klcHNZ/E11zfTRTfvlPxxPemsrFzokRa5LbB8CUN0bd5qS0iIPIPwvswH43nKxf3c7iEHk=
+X-MS-TrafficTypeDiagnostic: BN6PR0101MB2931:
+X-Microsoft-Exchange-Diagnostics: 1; BN6PR0101MB2931;
+	20:MzJEEQFgh4BYMT3Ykf0FMBaV8Bn3R/JMX/bMRh8/QMHCO/cb57uBUezzzLxxWeP04V66R4LLSgsTnkuCalcfrfrz0L4wtKTMP+cmJrUJycza013tSB52YhUYCXkayk5tQ0XVaYV9JPLjJOHHvaXiRU1ksJNUFxwdGi8kPNDXl9PHwH0vv66aa7B/kP0gIV9Gc6PgKWEavZHfvTqGNLNI44Km/DU1bybJ/pOv4bIng67b6Dx9/0JbDYetD5nkXO/jiIx5DQUr1ozp51e2GUwcARC+TfRFrgyIRC1tbx43FtYE273uYQRQ7rivHf5n06TqTOWDxXnzWe0Mu1VjMWVi09W+EItYLqDhnxHvJd1c3BvjNB5Y/s0bzwNkUshlRIexiF1/nKA00H4kT6Ftkldy+tCu6rNwjgNbkz/8FfAYD8M=;
+	4:DYmTsESiEQ6qLdpFdDRIr06ROSv4xSzn8xJ1zB5MycaNLXOASAM/GblK0EiCiK1jBZwM6K4Tinq5uvQi9/jFkGLi+zVlmaNLBTiScHpLnAvk4vmDaDlC7o9+5F8DVqmmNoe5UIJu41SILPEu6tENez+fLdTk32scNE5Qb2p2CuOfULW28COQcGfjUv81NXovnio+t/kRGUZWan0v/6rX+cbp4+73Ihv9TMl4FF2kkJRuXuL7CnVZqqsZjKAkWAViIG4RhuQCHrOfh+cac+NcxxIinG9LmthvQYLsMaKNPc5YYYVvmLbtB832FftNSePb
+X-Microsoft-Antispam-PRVS: <BN6PR0101MB2931CC68FFBC92F49B472B36AB350@BN6PR0101MB2931.prod.exchangelabs.com>
+X-Exchange-Antispam-Report-Test: UriScan:(166708455590820);
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040450)(2401047)(5005006)(8121501046)(3002001)(3231023)(93006095)(93001095)(10201501046)(6041248)(20161123558100)(20161123562025)(20161123560025)(20161123564025)(201703131423075)(201702281528075)(201703061421075)(201703061406153)(20161123555025)(6072148)(201708071742011);
+	SRVR:BN6PR0101MB2931; BCL:0; PCL:0;
+	RULEID:(100000803101)(100110400095); SRVR:BN6PR0101MB2931; 
+X-Forefront-PRVS: 052017CAF1
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10009020)(6049001)(376002)(346002)(366004)(189003)(199004)(4326008)(7116003)(8936002)(3480700004)(53936002)(36756003)(65826007)(5660300001)(106356001)(2351001)(65806001)(83506002)(67846002)(58126008)(16576012)(25786009)(105586002)(2501003)(65956001)(316002)(47776003)(66066001)(6666003)(6916009)(52116002)(31686004)(77096006)(558084003)(966005)(2906002)(6486002)(90366009)(478600001)(5640700003)(2486003)(97736004)(68736007)(31696002)(81166006)(16526018)(50466002)(86362001)(230700001)(3846002)(52146003)(23676004)(81156014)(305945005)(6116002)(7736002)(64126003)(1730700003)(117156002)(6306002)(8676002)(386003);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR0101MB2931; H:[192.168.0.3];
+	FPR:; SPF:None; PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+Received-SPF: None (protection.outlook.com: xevo.com does not designate
+	permitted sender hosts)
+X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtCTjZQUjAxMDFNQjI5MzE7MjM6TDRCTlJCN3M3bWUxeTJYeUh0SERJdzl1?=
+	=?utf-8?B?QlZvdWNTaGd3S09TamFBR0xjTko3MmdaVWZTOVlpZVRwYTA0UC9aNFl4Znkw?=
+	=?utf-8?B?eTgwLzZjditaVHJxY0JrQWRoamhkRzhMaGlwamN6TEZQeW1ZQi9rQnVwQWd5?=
+	=?utf-8?B?MXJUK1Nad2JackFLbkNoQXYxbkJNbnJHZ3dqOGVGWW5BZlJsazFtRUF1OGVy?=
+	=?utf-8?B?K2lGVVNPL3VjTDlMY3BLZ0hEY3BKSHhiZlZoVkxjK0pXZ1U0bk8wWU9HT2ky?=
+	=?utf-8?B?NERYS051Wm1NVis1QUFWdlFkTEMxL3A2bE1wRHovM0lYSnZXMnArRHZvWTFD?=
+	=?utf-8?B?d0hFNTZ5RzNVWFN3M2l3L3cwUTVObEM0aGxvWVVIRU1YYWZHTHk3VXNyMFE2?=
+	=?utf-8?B?SXp4SlNSUFFLOXgra3BBcDZXUkdwa2pwWjQxUXNmNmhwWWp0eUVlZkh1dGVC?=
+	=?utf-8?B?M1ZqaHV5djJrdGpFMFVUSENKYVAwQlRwOEM3Q0FId2VIb3NEYUMvTURhdlNi?=
+	=?utf-8?B?Z1laVzc0RWYxVVF5YThkQmJmckp6STUzQnNPS01hOXBQTWhTeDB0N2dRZHRM?=
+	=?utf-8?B?NXJRTGs3NmxZemtscm1SbjhIUG9hQVk4WEU3ZkVhWUFBNUVBZjB1N0hvOFNh?=
+	=?utf-8?B?dG1FaG04NzczNVZOZG9UbS9QNVBOMzQ0TE1FaklHaWFyZlhibXJKNHVhTHJx?=
+	=?utf-8?B?WjFQVHljSnFtR1MzSDBVSGZqaFEzRWkzTzR2cExCOUpCTmp0OFpxNUI5MnMr?=
+	=?utf-8?B?MXRmcHRjODdSTnRobjhUc05ZenlwQkhMbzlscS9zeE81Z29KVm9HMzIyZHVG?=
+	=?utf-8?B?eHg1cnVjM1hSY00vcWZhMUR3WGdBcFBmZzR3ZHZnR2xYQkxpT2tYNG96WVM0?=
+	=?utf-8?B?aGVZTVRGT3huN2VQTlp3bHA3cGtrbXdIa01HWEFxZHh1OS82NUR4cFRoVk5J?=
+	=?utf-8?B?SDhoQU1UL0tybDJsMW5rdVdWbFR4NVVqbS9pQmNjOS9BRU45aXJ2VjhJWU93?=
+	=?utf-8?B?TVhDTW0wR2gyOGRQNUFyQW1sZ2k1dVd2RzIxSElJMXIyeldhNlc5aUdBTGtB?=
+	=?utf-8?B?aFlQOU52TzdVSjVudUg5UVRlOTVIK1phWHpPT0lVTm9ERUw1QSsxQnFxZSs0?=
+	=?utf-8?B?bHl2Q25DVzEyTVZQNnpnNVcrRFlITExhcWxqakUwVnY0Y1djRmZiYXVuNytZ?=
+	=?utf-8?B?dTRHdEptdGVMOW0ybkR3RHJYQzVsMkN0WDVjUXhVMzNoeExQNFl0L2RDeXlp?=
+	=?utf-8?B?TzZZU2x0YmNaNlkxVWM5ZytFYTVUb1FCS1lldUpXU201UFZTbUgxYzZ3MnIr?=
+	=?utf-8?B?RDB6cHhWU1dFc1JEVGFTNWl3RG5yWGVKRjllRVZPVC9tSWF3c1hpeTh5dTN6?=
+	=?utf-8?B?K3I0MEVLMm5LOGgwOGNOTGxDSk8xN2ZSVXhnMUw2cHk0M0k5Ump6dnJSOTQv?=
+	=?utf-8?B?ZkhuZjJLekF6Ni94MHoyMlIxWi9OWnd5L0FnaHdPN1pPVlNvR01NSmxvZTRB?=
+	=?utf-8?B?WENnbEoxcU10MGZjYm04N3Y0MG41SFFMSFZnWGtlZ2l5QWVYb2JmL3Nya096?=
+	=?utf-8?B?TnkyK21nS1NmUlFJNE5NaE13TDIxbGhtOFYwMzFja0NsRm9KZGphZGdHczNL?=
+	=?utf-8?B?L2YzWjRFUmJOSTE3eitvbGF0NlBOZ2t0bzhReEdQTDBqZzl5eXZvOHRyR0c2?=
+	=?utf-8?B?bS9MTmt0S29xZjFhRFdBKzdBRWp6cVVPWXIrS3VvRFdkNWc2TVlqRnhHeXlY?=
+	=?utf-8?B?WGk1NlFmV3pPZ3laWWtnYUJLMCtqODNSL05sTTFOZUc1ZVVBMnlNUDJFYTJj?=
+	=?utf-8?B?SE5hRzZ1ZmZac0tHZ3hEWDdGWm4zWVZFUDVjRzZacVBGRFB3R3did000TDBn?=
+	=?utf-8?Q?heb+pVDbndfDMaSKXRGyYloS+vQrn7hJeY?=
+X-Microsoft-Exchange-Diagnostics: 1; BN6PR0101MB2931;
+	6:IUdUSKlyHbU/QfUXE0JDlaDs964UspXCe9f6/wGOFHt0APe55b5JDAIuAABrByCpPCT0r61yOWF79UrF5ovAQEsSj36gO0QSsGO4RDGhOy7js5W6mEzpH5ejDelsHziX6BLm7JJvCiXyxOfX170qIRAJnbX9fHDSDPQLrMoiyyBQRi+ETONGL+/SzsiyhCDz0/a5iS7Z5wOxmhG17g7NWIP12Pq2vvZzmqI6OSES2AtW3sacd++kYBqhVjf0IkqCPEjx6SzdbKUoOuWXdb1TLpTF4809KYeHlUaZQaHr0KdIVX3/Jm8IPFpHGeICy0weHVEmj2/M+o2ImLNe8heYkXCJOR2yV08S+DPJuYSGACM=;
+	5:plDR1fCKaTpOP7yZdSmZtfKUEbaREe06CuqJKoUs1D2IbBlTW+fUxS+POWMIhkiaJ3mcpaOvnO0SaGEAuX6aE6NwheD57ewNOuqJVarxuy8qlLb3VrZbRQFEvY1PBrNbp/NIPhXt2bvwqRCK08yf3OIwYEjhmnyI0xlPDWm2Tbk=;
+	24:+E4yKz7wCzvBjaaRGLMSIJskucFTAlik+3BQx58Rp+1kWMVgu26HPmCVuQ96i/CX49xF5pdNTpGP3xVvZbAtO1Fe3VX4PbF3mi0gQyll9zc=;
+	7:Ez+xbMl/a5VOiOVQL7k/713DzIMDxKpZhMU4wFPrEoL/yNum/vBcP/PtVwyKuVSp4PY99CldrzmP98poU10n5DwpR5C/01zoNYcjLkRdSJIgbJt/iWmbCeKRv0DWvPKZLk38KA43UvUuHSZOI3deGAe7/kvXVXqfM8w0dW/2MieRRDivNkKQ2ddRsNACPeTht7jZNoegRpab8HNug//6mbri4JCBUdgQ6i4PBSeCy5OU5xLalNF15QyIwn5g4KqE
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: xevo.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2017 18:26:11.1928 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: af67f260-3aeb-412d-3a12-08d54256fd30
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR0101MB2931
+Cc: brian avery <brian.avery@intel.com>
+Subject: CROPS status?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,181 +128,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Dec 2017 14:01:55 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: nl
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 13 Dec 2017 18:40:55 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-=EF=BB=BF${D} won't work here, grep on ROOTFS_POSTPROCESS_COMMAND for recip=
-es that get=20
-it right.
+Hi,
 
-And, much much much better would be to just not install psplash into your i=
-mage!
+I recently discovered the CROPS project at 
+https://github.com/crops/crops. It looks like a great idea, but I see it 
+hasn't had a commit since June 23, 2016. Is the project still active?
 
-On 13-12-17 09:10, Sherif Omran wrote:
-> here is my recipe, the aim was to remove some files from the init.d folde=
-r and=20
-> tweek before creating the image
->=20
-> #
-> # This file was derived from the 'Hello World!' example recipe in the
-> # Yocto Project Development Manual.
-> #
->=20
-> SUMMARY =3D "This recipe removes any missing files from the filesystem be=
-fore=20
-> finalinzing it"
-> SECTION =3D "base"
-> LICENSE =3D "MIT"
-> LIC_FILES_CHKSUM =3D=20
-> "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0bcf8506ecda2f7b4f302"
->=20
-> #SRC_URI =3D "file://*"
->=20
-> S =3D "${WORKDIR}"
-> BB_STRICT_CHECKSUM =3D"0"
-> ALLOW_EMPTY_${PN}=3D"1"
->=20
->=20
-> #IMAGE_INSTALL =3D "packagegroup-core-boot packagegroup-base-extended=20
-> ${CORE_IMAGE_EXTRA_INSTALL}"
-> #IMAGE_INSTALL =3D "${CORE_IMAGE}"
->=20
-> #inherit core-image
->=20
-> my_postprocess_function() {
->  =C2=A0rm -r ${D}${bindir}/init.d/psplash.sh
-> }
->=20
-> ROOTFS_POSTPROCESS_COMMAND +=3D "my_postprocess_function; "
->=20
-> On Wed, Dec 13, 2017 at 7:22 AM, Mike Looijmans <mike.looijmans@topic.nl=
-=20
-> <mailto:mike.looijmans@topic.nl>> wrote:
->=20
->     Well, start by sharing yours first.
->=20
->     Be careful when naming your shell routine, sometimes OE considers par=
-ts
->     behind the underscore as overrides and then it cannot find it.
->=20
->=20
->     On 13-12-17 07:14, Sherif Omran wrote:
->=20
->         hi Mike,
->         i could not get it to work, if you have a recipe that works, plea=
-se
->         share it. ROOTFS_POSTPROCESS_COMMAND seems to be buggy.
->=20
->         thank you
->=20
->=20
->=20
->         On Tue, Dec 12, 2017 at 1:58 PM, Mike Looijmans
->         <mike.looijmans@topic.nl <mailto:mike.looijmans@topic.nl>
->         <mailto:mike.looijmans@topic.nl <mailto:mike.looijmans@topic.nl>>=
-> wrote:
->=20
->          =C2=A0 =C2=A0 On 11-12-17 15:18, Sherif Omran wrote:
->=20
->          =C2=A0 =C2=A0 =C2=A0 =C2=A0 i want to create a recipe to clean s=
-ome files from the rootfile
->          =C2=A0 =C2=A0 =C2=A0 =C2=A0 system, but i don't know how to let =
-this recipe run the last one
->          =C2=A0 =C2=A0 =C2=A0 =C2=A0 before building the rootfile system.
->=20
->=20
->          =C2=A0 =C2=A0 You can use ROOTFS_POSTPROCESS_COMMAND in your ima=
-ge recipe to do
->         some
->          =C2=A0 =C2=A0 last-minute filesystem cleanup.
->=20
->          =C2=A0 =C2=A0 However, in most cases it's much better to determi=
-ne what recipe
->         puts the
->          =C2=A0 =C2=A0 files there and modify the recipe or remove the pa=
-ckage. It would
->         help a
->          =C2=A0 =C2=A0 lot if you would reveal what files you want to rem=
-ove and why.
->=20
->=20
->          =C2=A0 =C2=A0 Kind regards,
->=20
->          =C2=A0 =C2=A0 Mike Looijmans
->          =C2=A0 =C2=A0 System Expert
->=20
->          =C2=A0 =C2=A0 TOPIC Products
->          =C2=A0 =C2=A0 Materiaalweg 4, NL-5681 RJ Best
->          =C2=A0 =C2=A0 Postbus 440, NL-5680 AK Best
->          =C2=A0 =C2=A0 Telefoon: +31 (0) 499 33 69 79
->         <tel:%2B31%20%280%29%20499%2033%2069%2079>
->         <tel:%2B31%20%280%29%20499%2033%2069%2079>
->          =C2=A0 =C2=A0 E-mail: mike.looijmans@topicproducts.com
->         <mailto:mike.looijmans@topicproducts.com>
->          =C2=A0 =C2=A0 <mailto:mike.looijmans@topicproducts.com
->         <mailto:mike.looijmans@topicproducts.com>>
->          =C2=A0 =C2=A0 Website: www.topicproducts.com <http://www.topicpr=
-oducts.com>
->         <http://www.topicproducts.com>
->=20
->          =C2=A0 =C2=A0 Please consider the environment before printing th=
-is e-mail
->=20
->=20
->=20
->          =C2=A0 =C2=A0 --
->=20
->=20
->     Kind regards,
->=20
->     Mike Looijmans
->     System Expert
->=20
->     TOPIC Products
->     Materiaalweg 4, NL-5681 RJ Best
->     Postbus 440, NL-5680 AK Best
->     Telefoon: +31 (0) 499 33 69 79 <tel:%2B31%20%280%29%20499%2033%2069%2=
-079>
->     E-mail: mike.looijmans@topicproducts.com
->     <mailto:mike.looijmans@topicproducts.com>
->     Website: www.topicproducts.com <http://www.topicproducts.com>
->=20
->     Please consider the environment before printing this e-mail
->=20
->=20
->=20
->    =20
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Products
-Materiaalweg 4, NL-5681 RJ Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-
-_______________________________________________
->=20
->          =C2=A0 =C2=A0 yocto mailing list
->         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->         <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>
->         https://lists.yoctoproject.org/listinfo/yocto
->         <https://lists.yoctoproject.org/listinfo/yocto>
->          =C2=A0 =C2=A0 <https://lists.yoctoproject.org/listinfo/yocto
->         <https://lists.yoctoproject.org/listinfo/yocto>>
->=20
->=20
->=20
->=20
-
+Thanks,
+Martin
 
