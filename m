@@ -1,64 +1,46 @@
-Return-Path: <rail@esenciatech.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9A29E00C0F; Tue, 12 Dec 2017 11:14:16 -0800 (PST)
+	id 52B64E00C0F; Tue, 12 Dec 2017 17:16:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.217.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f175.google.com (mail-ua0-f175.google.com
-	[209.85.217.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B04C9E008FB
-	for <yocto@yoctoproject.org>; Tue, 12 Dec 2017 11:14:15 -0800 (PST)
-Received: by mail-ua0-f175.google.com with SMTP id p33so15162941uag.9
-	for <yocto@yoctoproject.org>; Tue, 12 Dec 2017 11:14:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=esenciatech-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=pOWesRa+CtEihXScAYlQ9bku6bRSNAG1k3XZCo21kUs=;
-	b=nwIZ3q5bHfrgXNBf741UvdPb12VjOoBwpjw0OGZn32M6Ad5oPx6mg+sgrNr4OGzyzq
-	I9DzfgZTqgBVrDwVNePt9GiAH0ucf5xXxn6Jr/QB/JO48RlaUGS7DVfu/pJ6NtbIFdxL
-	BklqZQzihPQNwx6hfuUli6XUSwoWv1wD4HBERr/PHh/N59MVb7FGpiEewst5+iF0z0Nr
-	yrntrbXirsKzT0YB/UKG/zjQBoJH5Ij+x1brN40oewMqUxkdN9iCWlgvWpehpFc8Fhwc
-	j3bxBHPR7yLAbpooHqJhKeLKYzfH99h7aenVNytKA7ri/cX9tNRykhMYNjPNe2WHECmU
-	k2dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=pOWesRa+CtEihXScAYlQ9bku6bRSNAG1k3XZCo21kUs=;
-	b=N34evpMPp29aI0eaM3KSRyHxGkF07pccbRCo9NW1d8Qt7kFWWvY25hDrlniBZvVojy
-	0LMuJt/OVp5IYOy2P0rElviJ4IzhjXq1PPDegZlYSJe9jp3TJcVIaZBv8g+ivm4vjged
-	oOJi3JYBnS6jJ3q9xAfJuA5m0/Xcnq1J+L8QCzXoaIbpB5VIVs/uLx7VnCaHZCuSX/JH
-	kVoNdsCJYDfKL8Dqg+PqyQq1yzUQQc3ZmCGfrPhb6ebqY93p1Lep8UdvVvlDOTzQ7y8I
-	BbIsHFgBH0ag0LhNFizZbDwoz+6Ay1Fov/6oc1zusVHfzpY5xHP+tLsBB/2gcrdFSKuQ
-	el8A==
-X-Gm-Message-State: AKGB3mJxhSNTEIjMCudTk8ImeBsLKScEFNR7XUzYfxR3X+LMhZmTZlFJ
-	RevJIBuRKYPJc93FgcmguZKG6+3+2AjMBbFJyyLnXMxSTBfujeUDsSBwqf8yw76brPe5d6bDnKg
-	vHHUKMQ3qR0GIaMoxqFw0CNY=
-X-Google-Smtp-Source: ACJfBosYy//aocdF+oIvaVwjCzOBZzvbfMdyg7jpev1bS1fGhfDgyadBygEopykuk0NRWrJzpnlKiWlO+KSb1ARQyWI=
-X-Received: by 10.159.48.9 with SMTP id h9mr5567391uab.191.1513106053728; Tue,
-	12 Dec 2017 11:14:13 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA01FE008FB
+	for <yocto@yoctoproject.org>; Tue, 12 Dec 2017 17:16:53 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id vBD1GppD018764
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 12 Dec 2017 17:16:51 -0800 (PST)
+Received: from localhost.corp.ad.wrs.com (128.224.162.229) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.361.1; Tue, 12 Dec 2017 17:16:45 -0800
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>,
+	<yocto@yoctoproject.org>
+References: <cover.1512630627.git.liezhi.yang@windriver.com>
+	<e3cb41c1f86590e45d2cd6c253324b2bcd04e34e.1512630627.git.liezhi.yang@windriver.com>
+	<b1f0b049-b78e-4009-20ac-979b82081b4e@linux.intel.com>
+	<d8a9adca-7374-64da-8613-059034082943@windriver.com>
+	<4af82364-f125-e6fd-ab12-8dd3a9f0dcbc@windriver.com>
+	<91939990-5880-aba7-7ec6-7d24809694aa@linux.intel.com>
+	<91a7f9ef-b0c2-68c5-ad8f-07309a3a9585@windriver.com>
+	<9c635c45-b01a-3896-ad89-34b7ded040f6@linux.intel.com>
+From: Robert Yang <liezhi.yang@windriver.com>
+Message-ID: <fb02ebb5-ba03-aab6-da5d-1a1194001edb@windriver.com>
+Date: Wed, 13 Dec 2017 09:16:13 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.0
 MIME-Version: 1.0
-Received: by 10.176.95.198 with HTTP; Tue, 12 Dec 2017 11:14:13 -0800 (PST)
-In-Reply-To: <5c9ed8b3-48dc-eca5-250f-972da6df9810@xilinx.com>
-References: <CAOLNbFanXur1zRF7KtVpdN4n6Pyx5JW7P2xhfc+74UmTabyicA@mail.gmail.com>
-	<fffb74b4-80b5-60fb-0b4b-71878e29a622@mvista.com>
-	<5c9ed8b3-48dc-eca5-250f-972da6df9810@xilinx.com>
-From: Rail Shafigulin <rail@esenciatech.com>
-Date: Tue, 12 Dec 2017 11:14:13 -0800
-Message-ID: <CAOLNbFZKm3UG7UFDoHk4ynrkAm4aDMuKm0WahT34xWcOujoDqw@mail.gmail.com>
-To: Vineeth Karumanchi <vineethchowz.chowdary@xilinx.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: executable depends on the library that is built in the same recipe
+In-Reply-To: <9c635c45-b01a-3896-ad89-34b7ded040f6@linux.intel.com>
+Cc: paul.eggleton@linux.intel.com
+Subject: Re: [PATCH 08/12] upgradehelper.py: clean repo only once when recipes are specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,35 +52,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Dec 2017 19:14:16 -0000
-Content-Type: text/plain; charset="UTF-8"
-
-On Mon, Dec 11, 2017 at 8:18 PM, Vineeth Karumanchi
-<vineethchowz.chowdary@xilinx.com> wrote:
-> using this might help
->
-> oe_libinstall -so
->
-
-Can you elaborate more on this? I'm not quite sure what it does.
-
-
--- 
-Rail Shafigulin
-Software Engineer
-Esencia Technologies
-
--- 
+X-List-Received-Date: Wed, 13 Dec 2017 01:16:54 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
 
 
+On 12/12/2017 08:26 PM, Alexander Kanavin wrote:
+> On 12/11/2017 08:13 AM, Robert Yang wrote:
+> 
+>>> I think it's a simpler and easier to understand approach. Yes, this means 
+>>> that an updated recipe that is close to the root of dependency tree can cause 
+>>> a cascade of build failures (e.g. glibc), but the update commits for 
+>>> everything else will still be created, and the maintainer can easily revert 
+>>> the failing updates, and re-run the build. What you think?
+>>
+>> Yes, since glibc would causes others failed to build, so I removed the commited
+>> during upgrading, and then apply it back, I think that this is more helpful than
+>> leave the failed commit there and causes others failed.
+> 
+> How about simply issuing 'git revert' after a build has failed? That's easier to 
+> implement than rearranging the order of commits, and the commit message can 
+> include a link to the build failure logs.
 
-*ESENCIA TECHNOLOGIES, INC.*3945 Freedom Circle, Suite #360,
-Santa Clara CA 95054
-________________________________________________________
+Sounds reasonable to me, I will update the patch.
 
-Phone: +1 408 736 8284 Fax: +1 408 519 3475 
-http://www.esenciatech.com | http://www.lnttechservices.com
+// Robert
 
-
+> 
+> Alex
+> 
 
