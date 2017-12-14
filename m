@@ -1,61 +1,34 @@
-Return-Path: <sherifomran2000@gmail.com>
+Return-Path: <Ovidiu.Panait@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8897DE00D71; Thu, 14 Dec 2017 00:17:55 -0800 (PST)
+	id 6CEBDE00D75; Thu, 14 Dec 2017 00:39:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sherifomran2000[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f53.google.com (mail-pg0-f53.google.com [74.125.83.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E460FE00D71
-	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 00:17:54 -0800 (PST)
-Received: by mail-pg0-f53.google.com with SMTP id k134so2958559pga.3
-	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 00:17:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=aVtG9hwCub97GUgdjRALdBghfuHtmoMq/RB7Nvpjv2Y=;
-	b=U7yzqKMBC/JWZJ/2LMIPrcNjl8D7n3H3DbfUmX5lCgOgEU5Ce33fVBa38IWO7GTE6M
-	LGtUmJb1XChl1DYOcet8kAPMltdff3HWmsmG4V4kx6SztbaHcbGhht9gK3Tb5WQlDba0
-	EpAYS5UVvcrQTa9/svYG9XuBV5FQEZpGQq6uGGcrRrODjZZAXlgpuSOBvC6ACmKLtqMI
-	poB4F3bg9FK97R67N1Mykoxour4PqsnD16EPT/5EH2BBMejZKDBVc1jcYNu6Oj0AIRS6
-	7b5xS7umV8AOfKK/KmZXEF3qHOZkEgn9LDZTg3ds6VrKC3AdB2laRAzJCcjSjojbhKq/
-	3I6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=aVtG9hwCub97GUgdjRALdBghfuHtmoMq/RB7Nvpjv2Y=;
-	b=H6lUPm0cMf3JOH7JTmmEYCFbH8Plysagl1YCjfpyFFgku0V6khx5xZ0IhuSX6ERquP
-	gA9t+zh1NL0GpTQYcFRFSL8SSTDtqfEo6cWZMynUMBJh5YbjhJCTxlNpjZZ3Ll5DujQP
-	AkfQtcg3OFMqD1GPlIyzWuA9xDkANzPSI9+Hc6u8xvchjpUUE5PDyr/5FV0ccZn5degD
-	ePXPJFIOoJNNQYa+ujqf5khZwIthkDVkM+pxR/+vHMSHdw0EVuhShvjdLbpAjFDk3Z6u
-	xGxt7Ah9ls3/kKSrUUFfCDKhwCaBm1Gp20W/D6kgOd/X/ekkHCv9MxPFlAle2p5nfBec
-	/MKQ==
-X-Gm-Message-State: AKGB3mJRZlzuoRmKsqWSJHIHNUJEJlj2c0l4ld04dY+/lJabIAxFI7ra
-	rJaqT3HWH6ullSZyG3cK3vfEQUN6YtK4W+5FBXg=
-X-Google-Smtp-Source: ACJfBovxxRiBkmMZhTFmNbDUJcQM3nRhxVIRZvWw9kykcGzM2TJJvC0YMI1jZ3ZBvdmvMkmFcdPGchXV5xdv6ZhXeEA=
-X-Received: by 10.99.124.23 with SMTP id x23mr7821784pgc.189.1513239474065;
-	Thu, 14 Dec 2017 00:17:54 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0D7EE00D71
+	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 00:39:40 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id vBE8ddDh013124
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 00:39:40 -0800 (PST)
+Received: from otp-linux01.wrs.com (128.224.126.17) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
+	Thu, 14 Dec 2017 00:39:39 -0800
+From: Ovidiu Panait <ovidiu.panait@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 14 Dec 2017 10:39:38 +0200
+Message-ID: <20171214083938.257782-1-ovidiu.panait@windriver.com>
+X-Mailer: git-send-email 2.10.2
 MIME-Version: 1.0
-Received: by 10.100.138.69 with HTTP; Thu, 14 Dec 2017 00:17:53 -0800 (PST)
-From: Sherif Omran <sherifomran2000@gmail.com>
-Date: Thu, 14 Dec 2017 09:17:53 +0100
-Message-ID: <CAPb0b+PDjLvr22oYuNFnhw_hzQz0J0fU0f5k2T6tdTcP5wRySQ@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi] bluetooth device not available with rpi0w
+Subject: [meta-security][PATCH] xmlsec1: fix invalid paths in target xmlsec1Conf.sh
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,30 +40,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Dec 2017 08:17:55 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1b50a24fd6af05604885ab"
+X-List-Received-Date: Thu, 14 Dec 2017 08:39:41 -0000
+Content-Type: text/plain
 
---94eb2c1b50a24fd6af05604885ab
-Content-Type: text/plain; charset="UTF-8"
+Remove build host paths from target xmlsec1Conf.sh script.
 
-guys,
-i tried to get the bluetooth to work but i get no default controller
-available
-hciconfig hci0 -> does not find the device
-i installed it with rpi-basic-image
+Signed-off-by: Catalin Enache <catalin.enache@windriver.com>
+Signed-off-by: Ovidiu Panait <ovidiu.panait@windriver.com>
+---
+ recipes-security/xmlsec1/xmlsec1_1.2.24.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-do i need to flash the bluetooth intell firmware?
+diff --git a/recipes-security/xmlsec1/xmlsec1_1.2.24.bb b/recipes-security/xmlsec1/xmlsec1_1.2.24.bb
+index 9798ce2..1f7fbd3 100644
+--- a/recipes-security/xmlsec1/xmlsec1_1.2.24.bb
++++ b/recipes-security/xmlsec1/xmlsec1_1.2.24.bb
+@@ -46,6 +46,7 @@ do_compile_ptest () {
+ 
+ do_install_append() {
+     sed -i -e "s@${STAGING_DIR_HOST}@@g" ${D}${bindir}/xmlsec1-config
++    sed -e "s@${STAGING_DIR_HOST}@@g" -i ${D}${libdir}/xmlsec1Conf.sh
+ }
+ 
+ do_install_ptest () {
+-- 
+2.10.2
 
-could you please help !
 
---94eb2c1b50a24fd6af05604885ab
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div>guys, <br></div>i tried to get th=
-e bluetooth to work but i get no default controller available<br></div>hcic=
-onfig hci0 -&gt; does not find the device<br></div>i installed it with rpi-=
-basic-image<br></div><br>do i need to flash the bluetooth intell firmware?<=
-br><br></div>could you please help !<br><br><br><div><br></div></div>
-
---94eb2c1b50a24fd6af05604885ab--
