@@ -1,6 +1,6 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1C382E00D70; Wed, 13 Dec 2017 18:30:49 -0800 (PST)
+	id 1E405E00D6F; Wed, 13 Dec 2017 21:31:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.220.169 listed in list.dnswl.org]
+	*      [74.125.82.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,50 +20,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB8F6E00D6D
-	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 18:30:44 -0800 (PST)
-Received: by mail-qk0-f169.google.com with SMTP id 84so4566913qks.8
-	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 18:30:44 -0800 (PST)
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 750F0E00D6F
+	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 21:31:47 -0800 (PST)
+Received: by mail-wm0-f42.google.com with SMTP id g130so24700725wme.0
+	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 21:31:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=E4nEy3WCX1p4/fMO5a/Vklijo+HQgq1CC6A5WmX0Jbo=;
-	b=PqRFQSKiSRGmmRthS23/NCPyIAAA4V95ws+vJF2+3QLfxEvHWhmnGQVafu/UqctYFB
-	O9e14yzDtCIozPvApPqRtebMg8q0oy8H1YYSzri/9Sq0fa4Qy8bVMuokS39LJmbs3QYt
-	ESc59ml84pLO9pCRhHdT8+sfRNoGtpmUIdh5gH2+zD3HdUGaZbKm6dUJwe6mmvVjqPpw
-	Vne8nPxMw6YCQmljRlt+bGb5ubwZl8SBxX02UjvQm64iyk/9PT462hJB+ajAnHqU6K/T
-	Uq2R0du219nIsIqXiAP0q6Qwo/1UBy9fvTp7u2WRlZDlM7t/lXUWKKcurVNwQ+1FYuen
-	rk2Q==
+	:cc; bh=+80ZiHMRjI+ZJbT6ppWJLiIGXfjp7gfiuRp95VisumM=;
+	b=JXQJ42HUHIJC7uDNVp13Lc6VxyN1WR92sW3rwcUkhI58dW5nQWjF5H91qx8sjQnft6
+	o9in+iE6zkygN+r8PZ5hm29GI00owjIICApTqDwiZ2lvrD8dNNgIR8DIxmnbbUnMzbC+
+	UdZehn4zkNT852tPbqdA1Li9yEGLBy1CeecZXAEuuNpKn24kYbTu3idtBT7/OV5QK2o4
+	ITWJst7xlCFbRQ9gt+56NDSXT3PPPropuwXxN+e/2u7v8LaLz7AfG6qfX8miXzdAyVPl
+	NH24oQuF+vyTB/hH4HDTA2Xlb9IVomPR69xq6qIXahSyjj7kXJTG+HHkIpsFuozg4PO/
+	q7gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=E4nEy3WCX1p4/fMO5a/Vklijo+HQgq1CC6A5WmX0Jbo=;
-	b=fDch/I69vp6A2csLDGGRw0ePXOX4Q5/rn1A6OWK93jFx/Wco2gcdI/uYfzMtSYIr3+
-	4d53cqHBPwfWqKcDg/ziwJMZORM+uHACP3HViRqNfqxqEPLK3T/YOLuPFmYzx5rzrvYO
-	unwVJsC2NkI6S+taoPw8kXmjZsNO8UfTcA8pzh3mz3lzdhT86DshMlmpGeteJpGNA+97
-	udUNvYzEjHApiX2XgLwGwAUhKPWsqWcgflevDjw3fq3PfOK+1D39lBq3ti8gvnuOX0xV
-	0b/XZdmpR409urVwx8n/wWNBvROCI+y8T6UPvocMsbAq4usebdrtJBvCTVGQhuOOFx2/
-	NCqw==
-X-Gm-Message-State: AKGB3mLlxwpJr/TAF03OqziRoidayS7Ike0OHQGQcl8Ieiq5VQQ49PPF
-	fOmQulUII9wRFaqsRhQlS5kjQnbpYzRfvScL1hs=
-X-Google-Smtp-Source: ACJfBouAq8nz+uMPUVCtNjySA9DjGepVeRvMQVzppPyygxrdIuqNBchwd86+MgsmoksvgoL3+cZohGGmA4lpHFz580c=
-X-Received: by 10.55.245.19 with SMTP id l19mr14254617qkk.157.1513218644085;
-	Wed, 13 Dec 2017 18:30:44 -0800 (PST)
+	bh=+80ZiHMRjI+ZJbT6ppWJLiIGXfjp7gfiuRp95VisumM=;
+	b=Rl5oWNS6Xzg5BNy7QQOeusvcCGkCq6O+ZGZ5UO9s9v3crbcckKDllF1wpb1w1d4Sg9
+	qX3VO/K0iFWek1mYB9A02bgZ2g3PH7grcMf7DlgHntirMzz+I5j4jtkt5tNm+79Gx+XZ
+	ORTltxhN8S7PM/y237BOAtL5bi7Z6qXhQYWxejHpBK0FLOdMz62aZgPcORFiBppP1cBR
+	F3hi5hIma6xtQ6Xn9krhSbv2a79t1KRipDcBtHdElB/TloJcEUfjnp1If2QQcZzxSEws
+	TgiccI36V1asoaEsXLiALhvfSyxHydlPYgWAJd755kizUU3H4RkIdpZYBvVbBqCBsG2d
+	bSUA==
+X-Gm-Message-State: AKGB3mIN9i1pivv+7rdFdzrkEhLu4FTUXvC9YJlO3YisL5syFJnXN4L6
+	ykA8mVAZuJzDk9Qoa1YruLiqmaKe+lptSrQ9GYw=
+X-Google-Smtp-Source: ACJfBoubiQr40nZN43HjtJHu2NzLaNcVryoAy1L2SG2Y1YsFmvuW7E2doZ3/tHppCuOaBT3xhnIxAxfBaSTDSl/QgSg=
+X-Received: by 10.28.194.139 with SMTP id s133mr1023284wmf.14.1513229506914;
+	Wed, 13 Dec 2017 21:31:46 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.21.241 with HTTP; Wed, 13 Dec 2017 18:30:43 -0800 (PST)
-In-Reply-To: <CAF3SDA4WQgM7Gvj2tGAPeCmK-eEoN-uAeKwuP2OrEW-Qto-j6w@mail.gmail.com>
+Received: by 10.28.97.215 with HTTP; Wed, 13 Dec 2017 21:31:46 -0800 (PST)
+In-Reply-To: <CAF3SDA61uYo3jYxWBzhTUs0ywyXMtQGWpBAWb3VmJT5CFU9F=g@mail.gmail.com>
 References: <CAF3SDA6zXJyGF-cBSXXr=D2kY59VCyj8c6TbgDkVK0NB7DmQZA@mail.gmail.com>
 	<CAPyrkgxkcO+3UW4jqy9Uh0pVSRwFH9Pss5d2ihVBtRZ3Y+B08A@mail.gmail.com>
 	<CAF3SDA7qCEUGNfmoJ0MXM4OAMSsC=rgnx3xPira7cZSch0ATMQ@mail.gmail.com>
 	<CAF3SDA61uYo3jYxWBzhTUs0ywyXMtQGWpBAWb3VmJT5CFU9F=g@mail.gmail.com>
-	<CAF3SDA4WQgM7Gvj2tGAPeCmK-eEoN-uAeKwuP2OrEW-Qto-j6w@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-Date: Thu, 14 Dec 2017 00:30:43 -0200
-Message-ID: <CAF3SDA7qVtOQz2EP+A5vd1W8c5M=WioZ+ug4Nr+hkxBMU1Zp2A@mail.gmail.com>
-To: Paul Barker <pbarker@toganlabs.com>
-Cc: yocto@yoctoproject.org
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Thu, 14 Dec 2017 06:31:46 +0100
+Message-ID: <CAGAf8LzQcHY_rgue5oc_hurCE6yn6kMxB20tJ1=i8-eDrvUhWw@mail.gmail.com>
+To: "Daniel." <danielhilst@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: .kernel-meta/configs folder missing make linux-raspberrypi to fail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -76,153 +74,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Dec 2017 02:30:49 -0000
-Content-Type: multipart/alternative; boundary="089e082d9698bf8f89056043ab89"
+X-List-Received-Date: Thu, 14 Dec 2017 05:31:49 -0000
+Content-Type: multipart/alternative; boundary="001a114b0a663930d70560463317"
 
---089e082d9698bf8f89056043ab89
+--001a114b0a663930d70560463317
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-PS: I just notice now that I have meta-python duplicated at bblayers.conf,
+> Also is worth noting that I'm running Fedora 27 which wasn't tested...
 
-2017-12-14 0:27 GMT-02:00 Daniel. <danielhilst@gmail.com>:
+You should start from here your investigation, since you are on not tested
+YOCTO host distribution. And Fedoras are
+different from release to release, certainly!
 
-> Okay, sorry for the late reply!
+So either you should downgrade your fedora 27 to 26 (which I doubt it is
+possible), better to build brand new Fedora 26
+using exactly the same packages.
+
+Here is a bit of help: to port all the packages to fresh installed Fedora
+26, use the following command to retrieve
+packages from Fedora 27: rpm -qa --qf "%{name}.%{arch}\n" >
+packages-list.txt
+
+Zoran
+
+On Mon, Dec 11, 2017 at 12:34 PM, Daniel. <danielhilst@gmail.com> wrote:
+
+> I can anticipate some info for you. I'm on version 2.4 Rocko. Building
+> rpi-hwup-image for MACHINE=3Drasbiberrypi3-64. Also is worth noting that =
+I'm
+> running Fedora 27 which wasn't tested...
 >
-> I could reproduce the same error again, I just cleanall and then build
-> linux-raspberrypi again. Let's go to the logs:
+> I'll try to get the full log tonight and let you know
 >
-> The whole output: https://pastebin.com/zHLpPf5V
-> My config: https://pastebin.com/mKJb2tyJ
-> Configured layers: https://pastebin.com/7UakkhHJ
-> https://pastebin.com/xKRd8rDr
-> The layers commits: https://pastebin.com/9pJCrdh4
+> Regards
 >
-> I'll let it stay in this state, so if you need any other information just
-> let me know and I gather it for you. Again, I'm on fedora 27, kernel
-> 4.14.3-300.fc27.x86_64, i3, 8GB ram. I think this is it.
+> On Dec 11, 2017 9:26 AM, "Daniel." <danielhilst@gmail.com> wrote:
 >
-> Regards!
->
->
-> 2017-12-11 9:34 GMT-02:00 Daniel. <danielhilst@gmail.com>:
->
->> I can anticipate some info for you. I'm on version 2.4 Rocko. Building
->> rpi-hwup-image for MACHINE=3Drasbiberrypi3-64. Also is worth noting that=
- I'm
->> running Fedora 27 which wasn't tested...
+>> Yeah but I got to face the error again, maybe tonight when I get home :)
 >>
->> I'll try to get the full log tonight and let you know
+>> On Dec 11, 2017 9:17 AM, "Paul Barker" <pbarker@toganlabs.com> wrote:
 >>
->> Regards
->>
->> On Dec 11, 2017 9:26 AM, "Daniel." <danielhilst@gmail.com> wrote:
->>
->>> Yeah but I got to face the error again, maybe tonight when I get home :=
-)
+>>> On Sun, Dec 10, 2017 at 5:14 PM, Daniel. <danielhilst@gmail.com> wrote:
+>>> > Hi everybody,
+>>> >
+>>> > I'm building a vanilla image for MACHINE=3Draspberrypi3-64. I'm doing=
+ the
+>>> > build for the first time and faced an error at
+>>> > linux-raspberrypi:do_kernel_configme. I found that
+>>> .kernel-meta/configs
+>>> > folder was missing, so I fired a devshell and created it. After that
+>>> > everything works as expected and linux-raspberrypi build fines.
+>>> >
+>>> > The solution I got is palliative, what would be the real solution and
+>>> what
+>>> > is this .kernel-meta folder? I had never seem this folder before.
 >>>
->>> On Dec 11, 2017 9:17 AM, "Paul Barker" <pbarker@toganlabs.com> wrote:
+>>> I have seen this issue occasionally when the do_kernel_configme task
+>>> is re-executed. A "bitbake virtual/kernel -c clean" has always
+>>> resolved this for me, allowing the next build to succeed. It doesn't
+>>> occur on my autobuild systems though so I figure it's an edge case I'm
+>>> hitting when building locally as I'm hacking around on recipes.
 >>>
->>>> On Sun, Dec 10, 2017 at 5:14 PM, Daniel. <danielhilst@gmail.com> wrote=
-:
->>>> > Hi everybody,
->>>> >
->>>> > I'm building a vanilla image for MACHINE=3Draspberrypi3-64. I'm doin=
-g
->>>> the
->>>> > build for the first time and faced an error at
->>>> > linux-raspberrypi:do_kernel_configme. I found that
->>>> .kernel-meta/configs
->>>> > folder was missing, so I fired a devshell and created it. After that
->>>> > everything works as expected and linux-raspberrypi build fines.
->>>> >
->>>> > The solution I got is palliative, what would be the real solution an=
-d
->>>> what
->>>> > is this .kernel-meta folder? I had never seem this folder before.
->>>>
->>>> I have seen this issue occasionally when the do_kernel_configme task
->>>> is re-executed. A "bitbake virtual/kernel -c clean" has always
->>>> resolved this for me, allowing the next build to succeed. It doesn't
->>>> occur on my autobuild systems though so I figure it's an edge case I'm
->>>> hitting when building locally as I'm hacking around on recipes.
->>>>
->>>> I've never seen this on the first build of the kernel though.
->>>>
->>>> Which version of Yocto are you using? Could you send us the build
->>>> configuration summary and the full error messages printed by bitbake?
->>>>
->>>> Thanks,
->>>>
->>>> --
->>>> Paul Barker
->>>> Tog=C3=A1n Labs Ltd
->>>>
+>>> I've never seen this on the first build of the kernel though.
 >>>
->
->
+>>> Which version of Yocto are you using? Could you send us the build
+>>> configuration summary and the full error messages printed by bitbake?
+>>>
+>>> Thanks,
+>>>
+>>> --
+>>> Paul Barker
+>>> Tog=C3=A1n Labs Ltd
+>>>
+>>
 > --
-> =E2=80=9CIf you're going to try, go all the way. Otherwise, don't even st=
-art. ..."
->   Charles Bukowski
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 >
 
-
-
---=20
-=E2=80=9CIf you're going to try, go all the way. Otherwise, don't even star=
-t. ..."
-  Charles Bukowski
-
---089e082d9698bf8f89056043ab89
+--001a114b0a663930d70560463317
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">PS: I just notice now that I have meta-python duplicated a=
-t bblayers.conf, <br></div><div class=3D"gmail_extra"><br><div class=3D"gma=
-il_quote">2017-12-14 0:27 GMT-02:00 Daniel. <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:danielhilst@gmail.com" target=3D"_blank">danielhilst@gmail.com</=
-a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
-8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div=
-><div><div><div><div><div>Okay, sorry for the late reply!<br><br></div>I co=
-uld reproduce the same error again, I just cleanall and then build linux-ra=
-spberrypi again. Let&#39;s go to the logs:<br><br></div>The whole output: <=
-a href=3D"https://pastebin.com/zHLpPf5V" target=3D"_blank">https://pastebin=
-.com/zHLpPf5V</a><br></div>My config: <a href=3D"https://pastebin.com/mKJb2=
-tyJ" target=3D"_blank">https://pastebin.com/mKJb2tyJ</a> <br></div>Configur=
-ed layers: <a href=3D"https://pastebin.com/7UakkhHJ" target=3D"_blank">http=
-s://pastebin.com/7UakkhHJ</a> <a href=3D"https://pastebin.com/xKRd8rDr" tar=
-get=3D"_blank">https://pastebin.com/xKRd8rDr</a><br></div>The layers commit=
-s: <a href=3D"https://pastebin.com/9pJCrdh4" target=3D"_blank">https://past=
-ebin.com/9pJCrdh4</a><br><br></div>I&#39;ll let it stay in this state, so i=
-f you need any other information just let me know and I gather it for you. =
-Again, I&#39;m on fedora 27, kernel 4.14.3-300.fc27.x86_64, i3, 8GB ram. I =
-think this is it.<br><br></div>Regards!<br><div><div><div><div><div><div><d=
-iv><div><br></div></div></div></div></div></div></div></div></div><div clas=
-s=3D"gmail_extra"><div><div class=3D"h5"><br><div class=3D"gmail_quote">201=
-7-12-11 9:34 GMT-02:00 Daniel. <span dir=3D"ltr">&lt;<a href=3D"mailto:dani=
-elhilst@gmail.com" target=3D"_blank">danielhilst@gmail.com</a>&gt;</span>:<=
-br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
-:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">I can anticipate some i=
-nfo for you. I&#39;m on version 2.4 Rocko. Building rpi-hwup-image for MACH=
-INE=3Drasbiberrypi3-64. Also is worth noting that I&#39;m running Fedora 27=
- which wasn&#39;t tested...=C2=A0<div dir=3D"auto"><br></div><div dir=3D"au=
-to">I&#39;ll try to get the full log tonight and let you know<br><div dir=
-=3D"auto"><br></div><div dir=3D"auto">Regards</div></div></div><div class=
-=3D"m_-6295305271528483421HOEnZb"><div class=3D"m_-6295305271528483421h5"><=
-div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Dec 11, 2017 9:=
-26 AM, &quot;Daniel.&quot; &lt;<a href=3D"mailto:danielhilst@gmail.com" tar=
-get=3D"_blank">danielhilst@gmail.com</a>&gt; wrote:<br type=3D"attribution"=
-><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex"><div dir=3D"auto">Yeah but I got to face th=
-e error again, maybe tonight when I get home :)</div><div class=3D"gmail_ex=
-tra"><br><div class=3D"gmail_quote">On Dec 11, 2017 9:17 AM, &quot;Paul Bar=
-ker&quot; &lt;<a href=3D"mailto:pbarker@toganlabs.com" target=3D"_blank">pb=
-arker@toganlabs.com</a>&gt; wrote:<br type=3D"attribution"><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex">On Sun, Dec 10, 2017 at 5:14 PM, Daniel. &lt;<a href=3D"mail=
-to:danielhilst@gmail.com" target=3D"_blank">danielhilst@gmail.com</a>&gt; w=
-rote:<br>
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">&gt; Also is worth noting=
+ that I&#39;m running Fedora 27 which wasn&#39;t tested...=C2=A0</span><br>=
+<div><span style=3D"font-size:12.8px"><br></span></div><div><span style=3D"=
+font-size:12.8px">You should start from here your investigation, since you =
+are on not tested YOCTO host distribution. And Fedoras are</span></div><div=
+><span style=3D"font-size:12.8px">different from release to release, certai=
+nly!</span></div><div><span style=3D"font-size:12.8px"><br></span></div><di=
+v><span style=3D"font-size:12.8px">So either you should downgrade your fedo=
+ra 27 to 26 (which I doubt it is possible), better to build brand new Fedor=
+a 26</span></div><div><span style=3D"font-size:12.8px">using=C2=A0</span><s=
+pan style=3D"font-size:12.8px">exactly the same packages.</span></div><div>=
+<span style=3D"font-size:12.8px"><br></span></div><div><span style=3D"font-=
+size:12.8px">Here is a bit of help: to port all the packages to fresh insta=
+lled Fedora 26, use the following command to retrieve</span></div><div><spa=
+n style=3D"font-size:12.8px">packages=C2=A0</span><span style=3D"font-size:=
+12.8px">from Fedora 27:=C2=A0</span><span style=3D"font-size:12.8px">rpm -q=
+a --qf &quot;%{name}.%{arch}\n&quot; &gt; packages-list.txt</span></div><di=
+v><span style=3D"font-size:12.8px"><br></span></div><div><span style=3D"fon=
+t-size:12.8px">Zoran</span></div></div><div class=3D"gmail_extra"><br><div =
+class=3D"gmail_quote">On Mon, Dec 11, 2017 at 12:34 PM, Daniel. <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:danielhilst@gmail.com" target=3D"_blank">dan=
+ielhilst@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<div dir=3D"auto">I can anticipate some info for you. I&#39;m on version 2.=
+4 Rocko. Building rpi-hwup-image for MACHINE=3Drasbiberrypi3-64. Also is wo=
+rth noting that I&#39;m running Fedora 27 which wasn&#39;t tested...=C2=A0<=
+div dir=3D"auto"><br></div><div dir=3D"auto">I&#39;ll try to get the full l=
+og tonight and let you know<br><div dir=3D"auto"><br></div><div dir=3D"auto=
+">Regards</div></div></div><div class=3D"HOEnZb"><div class=3D"h5"><div cla=
+ss=3D"gmail_extra"><br><div class=3D"gmail_quote">On Dec 11, 2017 9:26 AM, =
+&quot;Daniel.&quot; &lt;<a href=3D"mailto:danielhilst@gmail.com" target=3D"=
+_blank">danielhilst@gmail.com</a>&gt; wrote:<br type=3D"attribution"><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex"><div dir=3D"auto">Yeah but I got to face the error=
+ again, maybe tonight when I get home :)</div><div class=3D"gmail_extra"><b=
+r><div class=3D"gmail_quote">On Dec 11, 2017 9:17 AM, &quot;Paul Barker&quo=
+t; &lt;<a href=3D"mailto:pbarker@toganlabs.com" target=3D"_blank">pbarker@t=
+oganlabs.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-le=
+ft:1ex">On Sun, Dec 10, 2017 at 5:14 PM, Daniel. &lt;<a href=3D"mailto:dani=
+elhilst@gmail.com" target=3D"_blank">danielhilst@gmail.com</a>&gt; wrote:<b=
+r>
 &gt; Hi everybody,<br>
 &gt;<br>
 &gt; I&#39;m building a vanilla image for MACHINE=3Draspberrypi3-64. I&#39;=
@@ -259,16 +238,13 @@ Paul Barker<br>
 Tog=C3=A1n Labs Ltd<br>
 </blockquote></div></div>
 </blockquote></div></div>
-</div></div></blockquote></div><br><br clear=3D"all"><br></div></div><span =
-class=3D"">-- <br><div class=3D"m_-6295305271528483421gmail_signature" data=
--smartmail=3D"gmail_signature">=E2=80=9CIf you&#39;re going to try, go all =
-the way. Otherwise, don&#39;t even start. ...&quot; <br>=C2=A0 Charles Buko=
-wski</div>
-</span></div>
-</blockquote></div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail_sig=
-nature" data-smartmail=3D"gmail_signature">=E2=80=9CIf you&#39;re going to =
-try, go all the way. Otherwise, don&#39;t even start. ...&quot; <br>=C2=A0 =
-Charles Bukowski</div>
-</div>
+</div></div><br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
---089e082d9698bf8f89056043ab89--
+--001a114b0a663930d70560463317--
