@@ -1,6 +1,6 @@
 Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB3B6E00DB5; Thu, 14 Dec 2017 08:35:45 -0800 (PST)
+	id 05A38E00DB1; Thu, 14 Dec 2017 08:35:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82A55E00DA8
-	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 08:35:45 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5060E00DA8
+	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 08:35:46 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
 	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	14 Dec 2017 08:35:45 -0800
+	14 Dec 2017 08:35:46 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.45,400,1508828400"; 
-   d="scan'208";a="2726655"
+   d="scan'208";a="2726656"
 Received: from kanavin-desktop.fi.intel.com ([10.237.68.161])
-	by orsmga007.jf.intel.com with ESMTP; 14 Dec 2017 08:35:44 -0800
+	by orsmga007.jf.intel.com with ESMTP; 14 Dec 2017 08:35:45 -0800
 From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 14 Dec 2017 18:35:58 +0200
-Message-Id: <d097906bbd3ad2d4f8fe75f79d907916beed927d.1513269061.git.alexander.kanavin@linux.intel.com>
+Date: Thu, 14 Dec 2017 18:35:59 +0200
+Message-Id: <15cf2159fce007e1af8963c1dcb619d80ba0890e.1513269061.git.alexander.kanavin@linux.intel.com>
 X-Mailer: git-send-email 2.15.0
 In-Reply-To: <cover.1513269061.git.alexander.kanavin@linux.intel.com>
 References: <cover.1513269061.git.alexander.kanavin@linux.intel.com>
-Subject: [auh][PATCH 18/20] upgradehelper.py: when attempting to commit changes do not discard previous errors
+Subject: [auh][PATCH 19/20] upgradehelper.py: when recovering from upgrade error, do not refer to a dict entry that may not exist
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,51 +43,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Dec 2017 16:35:45 -0000
+X-List-Received-Date: Thu, 14 Dec 2017 16:35:47 -0000
 
 From: Alexander Kanavin <alex.kanavin@gmail.com>
 
 Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
 ---
- upgradehelper.py | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
+ upgradehelper.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/upgradehelper.py b/upgradehelper.py
-index d1f441c..3c41012 100755
+index 3c41012..58fa0a6 100755
 --- a/upgradehelper.py
 +++ b/upgradehelper.py
-@@ -397,7 +397,6 @@ class Updater(object):
-             f.write("\n%s\n" % msg_body)
+@@ -510,7 +510,7 @@ class Updater(object):
  
-     def commit_changes(self, pkg_ctx):
--        fail = False
-         try:
-             pkg_ctx['patch_file'] = None
+                     E(" %s: %s" % (pkg_ctx['PN'], e.message))
  
-@@ -411,8 +410,7 @@ class Updater(object):
-             if not pkg_ctx['patch_file']:
-                 msg = "Patch file not generated."
-                 E(" %s: %s\n %s" % (pkg_ctx['PN'], msg, stdout))
--                pkg_ctx['error'] = Error(msg, stdout)
--                fail = True
-+                raise Error(msg, stdout)
-             else:
-                 I(" %s: Save patch in directory: %s." %
-                     (pkg_ctx['PN'], pkg_ctx['workdir']))
-@@ -425,12 +423,7 @@ class Updater(object):
-                     I(" %s: %s" % (pkg_ctx['PN'], msg))
+-                    if os.listdir(pkg_ctx['workdir']):
++                    if 'workdir' in pkg_ctx and os.listdir(pkg_ctx['workdir']):
+                         E(" %s: Upgrade FAILED! Logs and/or file diffs are available in %s"
+                             % (pkg_ctx['PN'], pkg_ctx['workdir']))
  
-             I(" %s: %s" % (pkg_ctx['PN'], e.stdout))
--
--            pkg_ctx['error'] = Error(msg, e.stdout)
--            fail = True
--
--        if fail:
--            raise pkg_ctx['error']
-+            raise e
- 
-     def send_status_mail(self, statistics_summary):
-         if "status_recipients" not in settings:
 -- 
 2.15.0
 
