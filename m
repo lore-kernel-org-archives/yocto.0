@@ -1,6 +1,6 @@
 Return-Path: <sherifomran2000@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4037E00D7B; Thu, 14 Dec 2017 00:11:05 -0800 (PST)
+	id 3631AE00D7B; Thu, 14 Dec 2017 00:14:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -24,38 +24,38 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mail-pf0-f182.google.com (mail-pf0-f182.google.com
 	[209.85.192.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C024BE00D71
-	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 00:11:03 -0800 (PST)
-Received: by mail-pf0-f182.google.com with SMTP id e3so3105424pfi.10
-	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 00:11:03 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3C15E00D71
+	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 00:14:07 -0800 (PST)
+Received: by mail-pf0-f182.google.com with SMTP id l24so3115743pfj.6
+	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 00:14:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=pF9Ad5z74bZd6Q9MpsD9Fe72jhzvUATUCtUuJWU2n+8=;
-	b=FBA7x7+P+KIzhuHTdRSwfvMjyGthT5lPT9HxfvtpJUq1EQzNZN81wxP6FghSJculJW
-	zgHntfaaLLL+3WEDYpKBpSerbzZVn92X4BV+qf8ThFj3BM96gR/jF+8oKqesBvZ/CWlJ
-	QuVz3M6nxnPvZyBlKStjmXLwKDrJXd3BU7rif6HdEdLuq/ynpkHZ4FDmLIT8Z7/bX7AW
-	hlDW7z/V8ldtqHxXSHkWJv9iRiJ6h447PK+yxapCwALut1uBa3CEf20pBz6024sbHbPH
-	6s+mo3WQqeDOLoyGsGG9nAXbedUyvFc4zgAXM+DsIokYMnuBj+SYKlYW/KpOkzDZGTub
-	6xtw==
+	bh=RTrqcjxmyRAOMITo8Vdy2y5g0jWKSOAS7zEZyry9W6o=;
+	b=TRVuFYQUYOKjq0JQTnAV5vxac9kWSkL0Q9y3puskXzgZjfYlTReg8V1WQkiSHwjv1i
+	3vdX+053+yLdUSlWh9XjvGq0RDvHezNl3TDxWb8TDt7YEQA545ntuUpBnyJppdhY8BVT
+	bIoFZFTZbvWii567CTcRGhcDaSUx+yEhKwjkCuyaDjRJLzBWrL0pf+j6a5w1mo0wi5kx
+	bWM+1IzEQPwt+cLjNDrHuDrqguqPm6sOwKpt3k3ELi+m25jrKPzFS7AD0GNQZM5HCg50
+	FJkCglHSTKIAT3Kj4PQDoeydSZ0zT7+8I2RT+PmhI/NEHI5ZXyzjNoN6OtXFVzoiYNUF
+	hl+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to;
-	bh=pF9Ad5z74bZd6Q9MpsD9Fe72jhzvUATUCtUuJWU2n+8=;
-	b=WSXGBASdoRDw8xZi3SM9zbrRCrq9+QG31pQdX6rYgV/R5o73VBbKy/flZyKdQyRAs0
-	ic7w0T+KwQGkKJ7Uk9tGSkeGhVWPQKXz5wJ/CCZG73JgLXJiV0wSW+3AUhnU5T35kCED
-	VpDA5c81BdwU2Mxi3CSHHmQk06dX4dQqbz23NVpi8ivGPwNpSUjrFkgELgfuMYe+Nmj8
-	54Z1N9ONyZpKbZ+k4R/ddksN/QYPP4223RaZDXPc2pOBOHfHTtg4IGbrY2wWWv8fCdB9
-	3+XL2+rHoW6oYptYttnBzSmpmTzICeCQd4K6fQ/nqdvEWlzG/0+w3ilNUu7dcLV/Z5fa
-	SWTQ==
-X-Gm-Message-State: AKGB3mKbhKnPVG9HX1DLy89ZTObByj6s+Kp+2IGEBomNMvhPkDJyVgGg
-	/RuSWgb28Qt57i14483Z2Q/j89UrxjcFse7L2kc=
-X-Google-Smtp-Source: ACJfBouhXYuFL+Wg88CUhlLNTVlF8QTUYeozua3WJ30j6pgS+3lzZN6OeudDIzpAelZ42dPPwS8WIEEZrOYGRTxQLC4=
-X-Received: by 10.159.247.134 with SMTP id e6mr8462112pls.279.1513239062401;
-	Thu, 14 Dec 2017 00:11:02 -0800 (PST)
+	bh=RTrqcjxmyRAOMITo8Vdy2y5g0jWKSOAS7zEZyry9W6o=;
+	b=iMDOtwPzUifTyEcdw0VhBqWSynsgkvcXYsL1RgRQfdumRM5MsrwX5s+Ht8eQ0CS4I+
+	mhk2465II8rZGLOp0VAUaVWxWbLkSkxfogDDnAezdVijMz7BvjpeXM36EtRFhm1xKpgK
+	NO+iw5w7sVgyj6MPZFCl77ZNOrQ1BFyEbTzO8XxUiyNY9ZxfE1TrwT85zXZ43KpN7IzO
+	NazIKeBIzobzbKQ04sq716vawKU6TBBrw0lkbUk0zT9gceFJmxayCRf0wPpXolPpmUGy
+	Bn425kRTj82o0LKKgN+EYSXWVoboM+PbJ3Ak4xCLzV01Wzc0DiK8l90E82wpZkjJCHDr
+	YLFw==
+X-Gm-Message-State: AKGB3mJ36zQ0ojMhhwEpvhGDXuwUtwdi82ZR8SaSJQzGmI13A5n3orNZ
+	irt9Y93e3q2VduyKcTOiqhUt/ucfD4SXOo2jKHk=
+X-Google-Smtp-Source: ACJfBouL8dh2PMmtH9pUUESMYlVRe4jJgWMOyqmTXo7BlzUYwCh/pnh9SXDxueLxHAFW32xv0tTQi8qy2NgxWKUDT1M=
+X-Received: by 10.99.124.23 with SMTP id x23mr7813719pgc.189.1513239247222;
+	Thu, 14 Dec 2017 00:14:07 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.100.138.69 with HTTP; Thu, 14 Dec 2017 00:11:01 -0800 (PST)
-In-Reply-To: <976da55e-da9f-6173-98b3-444b6deb5e34@prevas.dk>
+Received: by 10.100.138.69 with HTTP; Thu, 14 Dec 2017 00:14:06 -0800 (PST)
+In-Reply-To: <CAPb0b+POo0Oz=GDRFDZDSEW=3iGxGGJfZ7DSFL4xcR05CM3y8g@mail.gmail.com>
 References: <CAPb0b+M+P8-EjoBz+YXBD3pzhJ0CwHPi10HsFxvBewkr_kvqFQ@mail.gmail.com>
 	<7ace9fbf-b13d-5097-fe44-ac74c55abdd6@topic.nl>
 	<CAPb0b+PBqB5qJr0cinXNBNnr4Sm9Kkayr6Voa8Bd=MF_dHJAMw@mail.gmail.com>
@@ -64,11 +64,11 @@ References: <CAPb0b+M+P8-EjoBz+YXBD3pzhJ0CwHPi10HsFxvBewkr_kvqFQ@mail.gmail.com>
 	<20181cde-bfa7-aeee-96b9-dba232ae0179@topic.nl>
 	<CAPb0b+OCpt2Y4UmcPsnmFA18hn16zkKpLkPfzUjCivDe+B6aRw@mail.gmail.com>
 	<976da55e-da9f-6173-98b3-444b6deb5e34@prevas.dk>
+	<CAPb0b+POo0Oz=GDRFDZDSEW=3iGxGGJfZ7DSFL4xcR05CM3y8g@mail.gmail.com>
 From: Sherif Omran <sherifomran2000@gmail.com>
-Date: Thu, 14 Dec 2017 09:11:01 +0100
-Message-ID: <CAPb0b+POo0Oz=GDRFDZDSEW=3iGxGGJfZ7DSFL4xcR05CM3y8g@mail.gmail.com>
-To: =?UTF-8?Q?Martin_Hundeb=C3=B8ll?= <Martin.Hundeboll@prevas.dk>, 
-	Yocto discussion list <yocto@yoctoproject.org>
+Date: Thu, 14 Dec 2017 09:14:06 +0100
+Message-ID: <CAPb0b+NLDCprreUT7-Pac10cid9OO+=aKY9WHVvQWBGTh+av5A@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: recipe to clean up files from rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -81,267 +81,291 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Dec 2017 08:11:05 -0000
-Content-Type: multipart/alternative; boundary="089e082bf120c658b70560486c76"
+X-List-Received-Date: Thu, 14 Dec 2017 08:14:09 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1b50a2ca7bdc0560487755"
 
---089e082bf120c658b70560486c76
+--94eb2c1b50a2ca7bdc0560487755
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-hi Martin,
+hi Andre
+thank you for your mail. I tried to remove this package but i don't know
+where it is installed from, i can not find it and got lost.
 
-thank you for help .. well done .. it should now work..
+On Thu, Dec 14, 2017 at 9:11 AM, Sherif Omran <sherifomran2000@gmail.com>
+wrote:
 
-On Thu, Dec 14, 2017 at 8:17 AM, Martin Hundeb=C3=B8ll <
-Martin.Hundeboll@prevas.dk> wrote:
+> hi Martin,
+>
+> thank you for help .. well done .. it should now work..
+>
+> On Thu, Dec 14, 2017 at 8:17 AM, Martin Hundeb=C3=B8ll <
+> Martin.Hundeboll@prevas.dk> wrote:
+>
+>> Hi Sherif,
+>>
+>> On 2017-12-14 08:06, Sherif Omran wrote:
+>>
+>>> Here is my recipe, it runs suceeds but does not delete the files
+>>>
+>>> mypostprocesfunction() {
+>>> rm -r ${IMAGE_ROOTFS}/etc/init.d/psplash.sh
+>>> rm -r ${IMAGE_ROOTFS}/usr/bin/psplash*
+>>> }
+>>>
+>>> ROOTFS_POSTPROCESS_COMMAND +=3D "mypostprocessfunction; "
+>>>
+>>
+>> Unless you did a copy-paste error, there's a typo in the function name:
+>> mypostprocesfunction
+>> mypostprocessfunction
+>>
+>> // Martin
+>>
+>>
+>>> On Wed, Dec 13, 2017 at 2:03 PM, Mike Looijmans <mike.looijmans@topic.n=
+l
+>>> <mailto:mike.looijmans@topic.nl>> wrote:
+>>>
+>>>     ${D} won't work here, grep on ROOTFS_POSTPROCESS_COMMAND for recipe=
+s
+>>>     that get it right.
+>>>
+>>>     And, much much much better would be to just not install psplash int=
+o
+>>>     your image!
+>>>
+>>>     On 13-12-17 09:10, Sherif Omran wrote:
+>>>
+>>>         here is my recipe, the aim was to remove some files from the
+>>>         init.d folder and tweek before creating the image
+>>>
+>>>         #
+>>>         # This file was derived from the 'Hello World!' example recipe
+>>>         in the
+>>>         # Yocto Project Development Manual.
+>>>         #
+>>>
+>>>         SUMMARY =3D "This recipe removes any missing files from the
+>>>         filesystem before finalinzing it"
+>>>         SECTION =3D "base"
+>>>         LICENSE =3D "MIT"
+>>>         LIC_FILES_CHKSUM =3D
+>>>         "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0bcf8506ecd
+>>> a2f7b4f302"
+>>>
+>>>         #SRC_URI =3D "file://*"
+>>>
+>>>         S =3D "${WORKDIR}"
+>>>         BB_STRICT_CHECKSUM =3D"0"
+>>>         ALLOW_EMPTY_${PN}=3D"1"
+>>>
+>>>
+>>>         #IMAGE_INSTALL =3D "packagegroup-core-boot
+>>>         packagegroup-base-extended ${CORE_IMAGE_EXTRA_INSTALL}"
+>>>         #IMAGE_INSTALL =3D "${CORE_IMAGE}"
+>>>
+>>>         #inherit core-image
+>>>
+>>>         my_postprocess_function() {
+>>>            rm -r ${D}${bindir}/init.d/psplash.sh
+>>>         }
+>>>
+>>>         ROOTFS_POSTPROCESS_COMMAND +=3D "my_postprocess_function; "
+>>>
+>>>         On Wed, Dec 13, 2017 at 7:22 AM, Mike Looijmans
+>>>         <mike.looijmans@topic.nl <mailto:mike.looijmans@topic.nl>
+>>>         <mailto:mike.looijmans@topic.nl
+>>>         <mailto:mike.looijmans@topic.nl>>> wrote:
+>>>
+>>>              Well, start by sharing yours first.
+>>>
+>>>              Be careful when naming your shell routine, sometimes OE
+>>>         considers parts
+>>>              behind the underscore as overrides and then it cannot find
+>>> it.
+>>>
+>>>
+>>>              On 13-12-17 07:14, Sherif Omran wrote:
+>>>
+>>>                  hi Mike,
+>>>                  i could not get it to work, if you have a recipe that
+>>>         works, please
+>>>                  share it. ROOTFS_POSTPROCESS_COMMAND seems to be buggy=
+.
+>>>
+>>>                  thank you
+>>>
+>>>
+>>>
+>>>                  On Tue, Dec 12, 2017 at 1:58 PM, Mike Looijmans
+>>>                  <mike.looijmans@topic.nl
+>>>         <mailto:mike.looijmans@topic.nl> <mailto:mike.looijmans@topic.n=
+l
+>>>         <mailto:mike.looijmans@topic.nl>>
+>>>                  <mailto:mike.looijmans@topic.nl
+>>>         <mailto:mike.looijmans@topic.nl> <mailto:mike.looijmans@topic.n=
+l
+>>>         <mailto:mike.looijmans@topic.nl>>>> wrote:
+>>>
+>>>                       On 11-12-17 15:18, Sherif Omran wrote:
+>>>
+>>>                           i want to create a recipe to clean some files
+>>>         from the rootfile
+>>>                           system, but i don't know how to let this
+>>>         recipe run the last one
+>>>                           before building the rootfile system.
+>>>
+>>>
+>>>                       You can use ROOTFS_POSTPROCESS_COMMAND in your
+>>>         image recipe to do
+>>>                  some
+>>>                       last-minute filesystem cleanup.
+>>>
+>>>                       However, in most cases it's much better to
+>>>         determine what recipe
+>>>                  puts the
+>>>                       files there and modify the recipe or remove the
+>>>         package. It would
+>>>                  help a
+>>>                       lot if you would reveal what files you want to
+>>>         remove and why.
+>>>
+>>>
+>>>                       Kind regards,
+>>>
+>>>                       Mike Looijmans
+>>>                       System Expert
+>>>
+>>>                       TOPIC Products
+>>>                       Materiaalweg 4, NL-5681 RJ Best
+>>>                       Postbus 440, NL-5680 AK Best
+>>>                       Telefoon: +31 (0) 499 33 69 79
+>>>         <tel:%2B31%20%280%29%20499%2033%2069%2079>
+>>>                  <tel:%2B31%20%280%29%20499%2033%2069%2079>
+>>>                  <tel:%2B31%20%280%29%20499%2033%2069%2079>
+>>>                       E-mail: mike.looijmans@topicproducts.com
+>>>         <mailto:mike.looijmans@topicproducts.com>
+>>>                  <mailto:mike.looijmans@topicproducts.com
+>>>         <mailto:mike.looijmans@topicproducts.com>>
+>>>                       <mailto:mike.looijmans@topicproducts.com
+>>>         <mailto:mike.looijmans@topicproducts.com>
+>>>
+>>>                  <mailto:mike.looijmans@topicproducts.com
+>>>         <mailto:mike.looijmans@topicproducts.com>>>
+>>>                       Website: www.topicproducts.com
+>>>         <http://www.topicproducts.com> <http://www.topicproducts.com>
+>>>                  <http://www.topicproducts.com>
+>>>
+>>>                       Please consider the environment before printing
+>>>         this e-mail
+>>>
+>>>
+>>>
+>>>                       --
+>>>
+>>>
+>>>              Kind regards,
+>>>
+>>>              Mike Looijmans
+>>>              System Expert
+>>>
+>>>              TOPIC Products
+>>>              Materiaalweg 4, NL-5681 RJ Best
+>>>              Postbus 440, NL-5680 AK Best
+>>>              Telefoon: +31 (0) 499 33 69 79
+>>>         <tel:%2B31%20%280%29%20499%2033%2069%2079>
+>>>         <tel:%2B31%20%280%29%20499%2033%2069%2079>
+>>>              E-mail: mike.looijmans@topicproducts.com
+>>>         <mailto:mike.looijmans@topicproducts.com>
+>>>              <mailto:mike.looijmans@topicproducts.com
+>>>         <mailto:mike.looijmans@topicproducts.com>>
+>>>              Website: www.topicproducts.com
+>>>         <http://www.topicproducts.com> <http://www.topicproducts.com>
+>>>
+>>>              Please consider the environment before printing this e-mai=
+l
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>     Kind regards,
+>>>
+>>>     Mike Looijmans
+>>>     System Expert
+>>>
+>>>     TOPIC Products
+>>>     Materiaalweg 4, NL-5681 RJ Best
+>>>     Postbus 440, NL-5680 AK Best
+>>>     Telefoon: +31 (0) 499 33 69 79
+>>>     <tel:%2B31%20%280%29%20499%2033%2069%2079>
+>>>     E-mail: mike.looijmans@topicproducts.com
+>>>     <mailto:mike.looijmans@topicproducts.com>
+>>>     Website: www.topicproducts.com <http://www.topicproducts.com>
+>>>
+>>>     Please consider the environment before printing this e-mail
+>>>
+>>>
+>>>
+>>>     _______________________________________________
+>>>
+>>>
+>>>                       yocto mailing list
+>>>         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>>         <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>
+>>>                  <mailto:yocto@yoctoproject.org
+>>>         <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org
+>>>         <mailto:yocto@yoctoproject.org>>>
+>>>         https://lists.yoctoproject.org/listinfo/yocto
+>>>         <https://lists.yoctoproject.org/listinfo/yocto>
+>>>                  <https://lists.yoctoproject.org/listinfo/yocto
+>>>         <https://lists.yoctoproject.org/listinfo/yocto>>
+>>>                       <https://lists.yoctoproject.org/listinfo/yocto
+>>>         <https://lists.yoctoproject.org/listinfo/yocto>
+>>>                  <https://lists.yoctoproject.org/listinfo/yocto
+>>>         <https://lists.yoctoproject.org/listinfo/yocto>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>> --
+>> MARTIN HUNDEB=C3=98LL, Prevas A/S
+>> Software Developer
+>>
+>> Hedeager 3, DK-8200 Aarhus N
+>> Phone +45 87438070
+>> Mobile +45 25562438
+>> Martin.Hundeboll@prevas.dk
+>> www.prevas.com
+>>
+>
+>
 
-> Hi Sherif,
->
-> On 2017-12-14 08:06, Sherif Omran wrote:
->
->> Here is my recipe, it runs suceeds but does not delete the files
->>
->> mypostprocesfunction() {
->> rm -r ${IMAGE_ROOTFS}/etc/init.d/psplash.sh
->> rm -r ${IMAGE_ROOTFS}/usr/bin/psplash*
->> }
->>
->> ROOTFS_POSTPROCESS_COMMAND +=3D "mypostprocessfunction; "
->>
->
-> Unless you did a copy-paste error, there's a typo in the function name:
-> mypostprocesfunction
-> mypostprocessfunction
->
-> // Martin
->
->
->> On Wed, Dec 13, 2017 at 2:03 PM, Mike Looijmans <mike.looijmans@topic.nl
->> <mailto:mike.looijmans@topic.nl>> wrote:
->>
->>     ${D} won't work here, grep on ROOTFS_POSTPROCESS_COMMAND for recipes
->>     that get it right.
->>
->>     And, much much much better would be to just not install psplash into
->>     your image!
->>
->>     On 13-12-17 09:10, Sherif Omran wrote:
->>
->>         here is my recipe, the aim was to remove some files from the
->>         init.d folder and tweek before creating the image
->>
->>         #
->>         # This file was derived from the 'Hello World!' example recipe
->>         in the
->>         # Yocto Project Development Manual.
->>         #
->>
->>         SUMMARY =3D "This recipe removes any missing files from the
->>         filesystem before finalinzing it"
->>         SECTION =3D "base"
->>         LICENSE =3D "MIT"
->>         LIC_FILES_CHKSUM =3D
->>         "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0bcf8506ecd
->> a2f7b4f302"
->>
->>         #SRC_URI =3D "file://*"
->>
->>         S =3D "${WORKDIR}"
->>         BB_STRICT_CHECKSUM =3D"0"
->>         ALLOW_EMPTY_${PN}=3D"1"
->>
->>
->>         #IMAGE_INSTALL =3D "packagegroup-core-boot
->>         packagegroup-base-extended ${CORE_IMAGE_EXTRA_INSTALL}"
->>         #IMAGE_INSTALL =3D "${CORE_IMAGE}"
->>
->>         #inherit core-image
->>
->>         my_postprocess_function() {
->>            rm -r ${D}${bindir}/init.d/psplash.sh
->>         }
->>
->>         ROOTFS_POSTPROCESS_COMMAND +=3D "my_postprocess_function; "
->>
->>         On Wed, Dec 13, 2017 at 7:22 AM, Mike Looijmans
->>         <mike.looijmans@topic.nl <mailto:mike.looijmans@topic.nl>
->>         <mailto:mike.looijmans@topic.nl
->>         <mailto:mike.looijmans@topic.nl>>> wrote:
->>
->>              Well, start by sharing yours first.
->>
->>              Be careful when naming your shell routine, sometimes OE
->>         considers parts
->>              behind the underscore as overrides and then it cannot find
->> it.
->>
->>
->>              On 13-12-17 07:14, Sherif Omran wrote:
->>
->>                  hi Mike,
->>                  i could not get it to work, if you have a recipe that
->>         works, please
->>                  share it. ROOTFS_POSTPROCESS_COMMAND seems to be buggy.
->>
->>                  thank you
->>
->>
->>
->>                  On Tue, Dec 12, 2017 at 1:58 PM, Mike Looijmans
->>                  <mike.looijmans@topic.nl
->>         <mailto:mike.looijmans@topic.nl> <mailto:mike.looijmans@topic.nl
->>         <mailto:mike.looijmans@topic.nl>>
->>                  <mailto:mike.looijmans@topic.nl
->>         <mailto:mike.looijmans@topic.nl> <mailto:mike.looijmans@topic.nl
->>         <mailto:mike.looijmans@topic.nl>>>> wrote:
->>
->>                       On 11-12-17 15:18, Sherif Omran wrote:
->>
->>                           i want to create a recipe to clean some files
->>         from the rootfile
->>                           system, but i don't know how to let this
->>         recipe run the last one
->>                           before building the rootfile system.
->>
->>
->>                       You can use ROOTFS_POSTPROCESS_COMMAND in your
->>         image recipe to do
->>                  some
->>                       last-minute filesystem cleanup.
->>
->>                       However, in most cases it's much better to
->>         determine what recipe
->>                  puts the
->>                       files there and modify the recipe or remove the
->>         package. It would
->>                  help a
->>                       lot if you would reveal what files you want to
->>         remove and why.
->>
->>
->>                       Kind regards,
->>
->>                       Mike Looijmans
->>                       System Expert
->>
->>                       TOPIC Products
->>                       Materiaalweg 4, NL-5681 RJ Best
->>                       Postbus 440, NL-5680 AK Best
->>                       Telefoon: +31 (0) 499 33 69 79
->>         <tel:%2B31%20%280%29%20499%2033%2069%2079>
->>                  <tel:%2B31%20%280%29%20499%2033%2069%2079>
->>                  <tel:%2B31%20%280%29%20499%2033%2069%2079>
->>                       E-mail: mike.looijmans@topicproducts.com
->>         <mailto:mike.looijmans@topicproducts.com>
->>                  <mailto:mike.looijmans@topicproducts.com
->>         <mailto:mike.looijmans@topicproducts.com>>
->>                       <mailto:mike.looijmans@topicproducts.com
->>         <mailto:mike.looijmans@topicproducts.com>
->>
->>                  <mailto:mike.looijmans@topicproducts.com
->>         <mailto:mike.looijmans@topicproducts.com>>>
->>                       Website: www.topicproducts.com
->>         <http://www.topicproducts.com> <http://www.topicproducts.com>
->>                  <http://www.topicproducts.com>
->>
->>                       Please consider the environment before printing
->>         this e-mail
->>
->>
->>
->>                       --
->>
->>
->>              Kind regards,
->>
->>              Mike Looijmans
->>              System Expert
->>
->>              TOPIC Products
->>              Materiaalweg 4, NL-5681 RJ Best
->>              Postbus 440, NL-5680 AK Best
->>              Telefoon: +31 (0) 499 33 69 79
->>         <tel:%2B31%20%280%29%20499%2033%2069%2079>
->>         <tel:%2B31%20%280%29%20499%2033%2069%2079>
->>              E-mail: mike.looijmans@topicproducts.com
->>         <mailto:mike.looijmans@topicproducts.com>
->>              <mailto:mike.looijmans@topicproducts.com
->>         <mailto:mike.looijmans@topicproducts.com>>
->>              Website: www.topicproducts.com
->>         <http://www.topicproducts.com> <http://www.topicproducts.com>
->>
->>              Please consider the environment before printing this e-mail
->>
->>
->>
->>
->>
->>     Kind regards,
->>
->>     Mike Looijmans
->>     System Expert
->>
->>     TOPIC Products
->>     Materiaalweg 4, NL-5681 RJ Best
->>     Postbus 440, NL-5680 AK Best
->>     Telefoon: +31 (0) 499 33 69 79
->>     <tel:%2B31%20%280%29%20499%2033%2069%2079>
->>     E-mail: mike.looijmans@topicproducts.com
->>     <mailto:mike.looijmans@topicproducts.com>
->>     Website: www.topicproducts.com <http://www.topicproducts.com>
->>
->>     Please consider the environment before printing this e-mail
->>
->>
->>
->>     _______________________________________________
->>
->>
->>                       yocto mailing list
->>         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>         <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>
->>                  <mailto:yocto@yoctoproject.org
->>         <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org
->>         <mailto:yocto@yoctoproject.org>>>
->>         https://lists.yoctoproject.org/listinfo/yocto
->>         <https://lists.yoctoproject.org/listinfo/yocto>
->>                  <https://lists.yoctoproject.org/listinfo/yocto
->>         <https://lists.yoctoproject.org/listinfo/yocto>>
->>                       <https://lists.yoctoproject.org/listinfo/yocto
->>         <https://lists.yoctoproject.org/listinfo/yocto>
->>                  <https://lists.yoctoproject.org/listinfo/yocto
->>         <https://lists.yoctoproject.org/listinfo/yocto>>>
->>
->>
->>
->>
->>
->>
->>
->>
->>
-> --
-> MARTIN HUNDEB=C3=98LL, Prevas A/S
-> Software Developer
->
-> Hedeager 3, DK-8200 Aarhus N
-> Phone +45 87438070
-> Mobile +45 25562438
-> Martin.Hundeboll@prevas.dk
-> www.prevas.com
->
-
---089e082bf120c658b70560486c76
+--94eb2c1b50a2ca7bdc0560487755
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>hi Martin,<br><br></div>thank you for help .. well do=
-ne .. it should now work..<br></div><div class=3D"gmail_extra"><br><div cla=
-ss=3D"gmail_quote">On Thu, Dec 14, 2017 at 8:17 AM, Martin Hundeb=C3=B8ll <=
-span dir=3D"ltr">&lt;<a href=3D"mailto:Martin.Hundeboll@prevas.dk" target=
-=3D"_blank">Martin.Hundeboll@prevas.dk</a>&gt;</span> wrote:<br><blockquote=
- class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc soli=
-d;padding-left:1ex">Hi Sherif,<span class=3D""><br>
+<div dir=3D"ltr"><div>hi Andre<br></div>thank you for your mail. I tried to=
+ remove this package but i don&#39;t know where it is installed from, i can=
+ not find it and got lost.<br></div><div class=3D"gmail_extra"><br><div cla=
+ss=3D"gmail_quote">On Thu, Dec 14, 2017 at 9:11 AM, Sherif Omran <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:sherifomran2000@gmail.com" target=3D"_blank"=
+>sherifomran2000@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-le=
+ft:1ex"><div dir=3D"ltr"><div>hi Martin,<br><br></div>thank you for help ..=
+ well done .. it should now work..<br></div><div class=3D"HOEnZb"><div clas=
+s=3D"h5"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, =
+Dec 14, 2017 at 8:17 AM, Martin Hundeb=C3=B8ll <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:Martin.Hundeboll@prevas.dk" target=3D"_blank">Martin.Hundeboll@=
+prevas.dk</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi Sheri=
+f,<span><br>
 <br>
 On 2017-12-14 08:06, Sherif Omran wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
@@ -364,7 +388,8 @@ mypostprocessfunction<br>
 // Martin<br>
 <br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div><div class=3D"h5">
+x #ccc solid;padding-left:1ex"><div><div class=3D"m_-3542005801761690590h5"=
+>
 <br>
 On Wed, Dec 13, 2017 at 2:03 PM, Mike Looijmans &lt;<a href=3D"mailto:mike.=
 looijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.nl</a> &lt;mailt=
@@ -431,7 +456,7 @@ ocess_function; &quot;<br>
 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;<a href=3D"mailto:mike.looijmans@topic.nl" =
 target=3D"_blank">mike.looijmans@topic.nl</a> &lt;mailto:<a href=3D"mailto:=
 mike.looijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.n<wbr>l</a>=
-&gt;<br></div></div><div><div class=3D"h5">
+&gt;<br></div></div><div><div class=3D"m_-3542005801761690590h5">
 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;mailto:<a href=3D"mailto:mike.looijmans@top=
 ic.nl" target=3D"_blank">mike.looijmans@topic.n<wbr>l</a><br>
 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;mailto:<a href=3D"mailto:mike.looijmans@top=
@@ -654,7 +679,7 @@ products.com</a>&gt;<br>
 r>
 <br>
 <br>
-<br></div></div><span class=3D"">
+<br></div></div><span>
 =C2=A0 =C2=A0 ______________________________<wbr>_________________<br>
 <br>
 <br>
@@ -709,7 +734,8 @@ ect.or<wbr>g/listinfo/yocto</a>&gt;&gt;&gt;<br>
 <br>
 <br>
 <br>
-</span></blockquote><span class=3D"HOEnZb"><font color=3D"#888888">
+</span></blockquote><span class=3D"m_-3542005801761690590HOEnZb"><font colo=
+r=3D"#888888">
 <br>
 -- <br>
 MARTIN HUNDEB=C3=98LL, Prevas A/S<br>
@@ -725,5 +751,6 @@ eboll@prevas.dk</a><br>
 <a href=3D"http://www.prevas.com" rel=3D"noreferrer" target=3D"_blank">www.=
 prevas.com</a><br>
 </font></span></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
 
---089e082bf120c658b70560486c76--
+--94eb2c1b50a2ca7bdc0560487755--
