@@ -1,37 +1,51 @@
 Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08EBDE00DC9; Thu, 14 Dec 2017 08:35:50 -0800 (PST)
+	id 4B3EFE00D41; Thu, 14 Dec 2017 08:38:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1887E00D9D
-	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 08:35:47 -0800 (PST)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96629E00E07
+	for <yocto@yoctoproject.org>; Thu, 14 Dec 2017 08:37:46 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	14 Dec 2017 08:35:47 -0800
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	14 Dec 2017 08:37:45 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.45,400,1508828400"; 
-   d="scan'208";a="2726684"
-Received: from kanavin-desktop.fi.intel.com ([10.237.68.161])
-	by orsmga007.jf.intel.com with ESMTP; 14 Dec 2017 08:35:46 -0800
+   d="scan'208";a="2727030"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by orsmga007.jf.intel.com with ESMTP; 14 Dec 2017 08:37:44 -0800
+To: Robert Yang <liezhi.yang@windriver.com>, yocto@yoctoproject.org
+References: <cover.1512630627.git.liezhi.yang@windriver.com>
+	<e3cb41c1f86590e45d2cd6c253324b2bcd04e34e.1512630627.git.liezhi.yang@windriver.com>
+	<b1f0b049-b78e-4009-20ac-979b82081b4e@linux.intel.com>
+	<d8a9adca-7374-64da-8613-059034082943@windriver.com>
+	<4af82364-f125-e6fd-ab12-8dd3a9f0dcbc@windriver.com>
+	<91939990-5880-aba7-7ec6-7d24809694aa@linux.intel.com>
+	<91a7f9ef-b0c2-68c5-ad8f-07309a3a9585@windriver.com>
+	<9c635c45-b01a-3896-ad89-34b7ded040f6@linux.intel.com>
+	<fb02ebb5-ba03-aab6-da5d-1a1194001edb@windriver.com>
+	<f625cfd2-4f41-c287-284a-25a8469922f6@linux.intel.com>
+	<6accc7dc-76b0-e132-40de-40ebe32c72e6@windriver.com>
 From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 14 Dec 2017 18:36:00 +0200
-Message-Id: <fbccfa00967305bb3866d0f610cd4b83b8b7a28c.1513269061.git.alexander.kanavin@linux.intel.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <cover.1513269061.git.alexander.kanavin@linux.intel.com>
-References: <cover.1513269061.git.alexander.kanavin@linux.intel.com>
-Subject: [auh][PATCH 20/20] upgradehelper.py: revert commits that failed to build
+Message-ID: <95063787-5c17-3059-07cd-623e96273073@linux.intel.com>
+Date: Thu, 14 Dec 2017 18:38:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
+MIME-Version: 1.0
+In-Reply-To: <6accc7dc-76b0-e132-40de-40ebe32c72e6@windriver.com>
+Cc: paul.eggleton@linux.intel.com
+Subject: Re: [PATCH 08/12] upgradehelper.py: clean repo only once when recipes are specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,48 +57,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Dec 2017 16:35:50 -0000
+X-List-Received-Date: Thu, 14 Dec 2017 16:38:00 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-From: Alexander Kanavin <alex.kanavin@gmail.com>
+On 12/14/2017 04:13 AM, Robert Yang wrote:
 
-This helps avoid 'cascading build failures' where one failed update
-holds up everything else.
+>>>> How about simply issuing 'git revert' after a build has failed? 
+>>>> That's easier to implement than rearranging the order of commits, 
+>>>> and the commit message can include a link to the build failure logs.
+>>>
+>>> Sounds reasonable to me, I will update the patch.
+>>
+>> Wait until I publish my devtool port, then if you could rebase on 
+>> that, that'd be great!
+> 
+> Got it, thanks.
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- modules/utils/git.py | 3 +++
- upgradehelper.py     | 3 +++
- 2 files changed, 6 insertions(+)
+I just sent the patches to yocto@ ML and published them on github - 
+please do try them out, and rebase your patchset on top (some of it may 
+no longer be relevant).
 
-diff --git a/modules/utils/git.py b/modules/utils/git.py
-index 0e812b9..749d24d 100644
---- a/modules/utils/git.py
-+++ b/modules/utils/git.py
-@@ -61,6 +61,9 @@ class Git(object):
-         else:
-             return self._cmd("commit -a --author=\"" + author + "\" -m \"" + commit_message + "\"")
- 
-+    def revert(self, commit):
-+        return self._cmd("revert --no-edit " + commit)
-+
-     def create_patch(self, out_dir):
-         return self._cmd("format-patch -M10 -1 -o " + out_dir)
- 
-diff --git a/upgradehelper.py b/upgradehelper.py
-index 58fa0a6..71ee0b0 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -414,6 +414,9 @@ class Updater(object):
-             else:
-                 I(" %s: Save patch in directory: %s." %
-                     (pkg_ctx['PN'], pkg_ctx['workdir']))
-+            if pkg_ctx['error'] is not None:
-+                I("Due to build errors, the commit will also be reverted to avoid cascading upgrade failures.")
-+                self.git.revert("HEAD")
-         except Error as e:
-             msg = ''
- 
--- 
-2.15.0
 
+Alex
 
