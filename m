@@ -1,62 +1,48 @@
-Return-Path: <sherifomran2000@gmail.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B158CE00D71; Wed, 13 Dec 2017 17:58:15 -0800 (PST)
+	id D8505E00D70; Wed, 13 Dec 2017 18:14:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sherifomran2000[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f173.google.com (mail-pf0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 748BEE00D6D
-	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 17:58:15 -0800 (PST)
-Received: by mail-pf0-f173.google.com with SMTP id p84so2556080pfd.3
-	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 17:58:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=FuoDrnUoxVk4LwYSTb9VGRpGhP/fGKFWvL/68VcAX6A=;
-	b=bDHJyv2Help/yVLyA2e5e2tepEcIrOHv5r0Cn3VOqKVrP1iV3R3nY/G0CYKd0Jaz0N
-	tSbh9jUK9ddya3he5P4v3rhXBoWNQ2EK9XTnS9w2NLxe/1fiGUecxpOW3vycUkq4ux8s
-	UIdsRbisb0Rycq4FH1dK6B3UruAqpNaYZjPowV0+g9j27gjhfEzqT+uPoVuqm+WpkMrN
-	Z/QFn0YxR+5NzEqQu0dlAq2hsmHZ+aaHVCjFeRorcW4RKN/msTvkPjpCA49Bz7JtO0oX
-	gy76ppM5zhvcI7W/ZXHMfvZwoOr0tAuq0ywClSCoS8y1Ho+NXUZAxJAfZVfacA/3Q4I0
-	oRzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=FuoDrnUoxVk4LwYSTb9VGRpGhP/fGKFWvL/68VcAX6A=;
-	b=CjedXmc8iVu2sksNA4Gbr/g1Wm0zul4SM5m9/tOT6kozLb0O0fBFvmUFy+kXgP91M9
-	a/m+RFEF2Pd1kx5JOjiNYvCyOgo4QgrpZuUlcHSrzrzqmMbvqBE6SKCH4rTvzzPPHZmW
-	P4mqqjjrOMqgZfa4Lfnx8K8Cnns+q7oDMkM89vZAFY6W9lL1J5ChttrUGnAtMo4GeEzu
-	70AZwNHqKKww0uykM20VId17riQlF5NCLBaelE02zhAA1QBRbdaPnaObJNMz3r7HBh7V
-	ISJBSkvywJze6mQNcJntfQbU23oH7zRAq9teGtkYFnR5RcMmYMEohgrqWEwoT/hsVsKe
-	LFsg==
-X-Gm-Message-State: AKGB3mKgBKpWz4WgNrOynlakYHLAkrgrQkFuDQgnemqXKB3mpn2DpRPn
-	eNa+kx8q6Q08wwGwfk9ypfUboAQhubSfqNp5Uhc=
-X-Google-Smtp-Source: ACJfBos0KdLV/jlaqAZQ9Am0qphbzopXd3/2YIU2BsYGOogYSXLFP3Tr2dlE59bcDvz8MVwgXItRUVYRnAlfogJCTec=
-X-Received: by 10.98.238.8 with SMTP id e8mr7945072pfi.23.1513216694403; Wed,
-	13 Dec 2017 17:58:14 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FF24E00D6D
+	for <yocto@yoctoproject.org>; Wed, 13 Dec 2017 18:14:01 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id vBE2E0WZ001493
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 13 Dec 2017 18:14:00 -0800 (PST)
+Received: from localhost.corp.ad.wrs.com (128.224.162.229) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.361.1; Wed, 13 Dec 2017 18:14:00 -0800
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>,
+	<yocto@yoctoproject.org>
+References: <cover.1512630627.git.liezhi.yang@windriver.com>
+	<e3cb41c1f86590e45d2cd6c253324b2bcd04e34e.1512630627.git.liezhi.yang@windriver.com>
+	<b1f0b049-b78e-4009-20ac-979b82081b4e@linux.intel.com>
+	<d8a9adca-7374-64da-8613-059034082943@windriver.com>
+	<4af82364-f125-e6fd-ab12-8dd3a9f0dcbc@windriver.com>
+	<91939990-5880-aba7-7ec6-7d24809694aa@linux.intel.com>
+	<91a7f9ef-b0c2-68c5-ad8f-07309a3a9585@windriver.com>
+	<9c635c45-b01a-3896-ad89-34b7ded040f6@linux.intel.com>
+	<fb02ebb5-ba03-aab6-da5d-1a1194001edb@windriver.com>
+	<f625cfd2-4f41-c287-284a-25a8469922f6@linux.intel.com>
+From: Robert Yang <liezhi.yang@windriver.com>
+Message-ID: <6accc7dc-76b0-e132-40de-40ebe32c72e6@windriver.com>
+Date: Thu, 14 Dec 2017 10:13:27 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.0
 MIME-Version: 1.0
-Received: by 10.100.138.69 with HTTP; Wed, 13 Dec 2017 17:58:13 -0800 (PST)
-From: Sherif Omran <sherifomran2000@gmail.com>
-Date: Thu, 14 Dec 2017 02:58:13 +0100
-Message-ID: <CAPb0b+MTepwNFB6KEybbdH9kYaox-N54=gFsuyWa9Xn+zK2MoQ@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi] linux kernel rt
+In-Reply-To: <f625cfd2-4f41-c287-284a-25a8469922f6@linux.intel.com>
+Cc: paul.eggleton@linux.intel.com
+Subject: Re: [PATCH 08/12] upgradehelper.py: clean repo only once when recipes are specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,23 +54,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Dec 2017 01:58:15 -0000
-Content-Type: multipart/alternative; boundary="f403043bfcc489c79f056043372d"
+X-List-Received-Date: Thu, 14 Dec 2017 02:14:02 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---f403043bfcc489c79f056043372d
-Content-Type: text/plain; charset="UTF-8"
 
-hey guys,
 
-any body tried the real time kernel? I get an error, it is snot in the
-compatibility list.
-can we skip it?
+On 12/13/2017 09:18 PM, Alexander Kanavin wrote:
+> On 12/13/2017 03:16 AM, Robert Yang wrote:
+> 
+>>> How about simply issuing 'git revert' after a build has failed? That's easier 
+>>> to implement than rearranging the order of commits, and the commit message 
+>>> can include a link to the build failure logs.
+>>
+>> Sounds reasonable to me, I will update the patch.
+> 
+> Wait until I publish my devtool port, then if you could rebase on that, that'd 
+> be great!
 
-thanks
+Got it, thanks.
 
---f403043bfcc489c79f056043372d
-Content-Type: text/html; charset="UTF-8"
+// Robert
 
-<div dir="ltr"><div><div><div>hey guys,<br><br></div>any body tried the real time kernel? I get an error, it is snot in the compatibility list.<br></div>can we skip it?<br><br></div>thanks<br></div>
+> 
+> Alex
+> 
 
---f403043bfcc489c79f056043372d--
