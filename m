@@ -1,54 +1,53 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34227E00CE8; Fri, 15 Dec 2017 05:34:55 -0800 (PST)
+	id DD53BE00D91; Fri, 15 Dec 2017 05:41:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.227.126.187 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C969CE00AD7
-	for <yocto@yoctoproject.org>; Fri, 15 Dec 2017 05:34:54 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	15 Dec 2017 05:34:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,404,1508828400"; 
-   d="scan'208";a="2972535"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga007.jf.intel.com with ESMTP; 15 Dec 2017 05:34:52 -0800
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-To: Robert Yang <liezhi.yang@windriver.com>, yocto@yoctoproject.org
-References: <cover.1512630627.git.liezhi.yang@windriver.com>
-	<e3cb41c1f86590e45d2cd6c253324b2bcd04e34e.1512630627.git.liezhi.yang@windriver.com>
-	<b1f0b049-b78e-4009-20ac-979b82081b4e@linux.intel.com>
-	<d8a9adca-7374-64da-8613-059034082943@windriver.com>
-	<4af82364-f125-e6fd-ab12-8dd3a9f0dcbc@windriver.com>
-	<91939990-5880-aba7-7ec6-7d24809694aa@linux.intel.com>
-	<91a7f9ef-b0c2-68c5-ad8f-07309a3a9585@windriver.com>
-	<9c635c45-b01a-3896-ad89-34b7ded040f6@linux.intel.com>
-	<fb02ebb5-ba03-aab6-da5d-1a1194001edb@windriver.com>
-	<f625cfd2-4f41-c287-284a-25a8469922f6@linux.intel.com>
-	<6accc7dc-76b0-e132-40de-40ebe32c72e6@windriver.com>
-	<95063787-5c17-3059-07cd-623e96273073@linux.intel.com>
-Message-ID: <01e7cd60-6e6b-f22f-00e5-cd28268c9486@linux.intel.com>
-Date: Fri, 15 Dec 2017 15:35:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
+	Fri, 15 Dec 2017 05:41:11 PST
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58889E00D69
+	for <yocto@yoctoproject.org>; Fri, 15 Dec 2017 05:41:11 -0800 (PST)
+Received: from LNSYSCH3 ([81.130.69.98]) by mrelayeu.kundenserver.de (mreue005
+	[212.227.15.163]) with ESMTPSA (Nemesis) id 0LZjNw-1etQDr30iS-00lToN
+	for <yocto@yoctoproject.org>; Fri, 15 Dec 2017 14:36:07 +0100
+From: <colin.helliwell@ln-systems.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 15 Dec 2017 13:36:07 -0000
+Organization: LN Systems Limited
+Message-ID: <02f301d375a9$aa394880$feabd980$@ln-systems.com>
 MIME-Version: 1.0
-In-Reply-To: <95063787-5c17-3059-07cd-623e96273073@linux.intel.com>
-Subject: Re: [PATCH 08/12] upgradehelper.py: clean repo only once when recipes are specified
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdN1qI2WkDe/pQfoQ1m/asKxuyoE9Q==
+X-Provags-ID: V03:K0:XlLmR8YQrmdhBExsJ1hG73+XKRYnM9ptJde8wfnahscYvi680uN
+	2QLw24fhEeoDVtnUYrBYe0hhRTUlt8fJjnw6+49BxcVg/uKf/coocqIftHkb3MXVU+YvTg4
+	6HaCLFQ04uFwJYAcsI4CPMWnzE5DAtSn4yoI4tWjUP8eCB7PmpkejZ/tJbrf08PUadOXWlp
+	wrUq5rNAJo5h+xJTt06tw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:SKo/NYPrlyQ=:WLXkmJ0kB765aZU70Y9XCp
+	ujvVqxJo9Bwpa/km8KBTUldmbe2/FwKwl0n5hIXRBkueFaYVHD1xeiyZ3nLJhA7yntq/AbIqF
+	NY7L+AsGZcTqPNRUYSsfBe1vdjjTA9xiSRoNR+JG5Dk4HwnYD+ctYK2y9siOzrBfsFAabjujH
+	kaxcz4WhWzsusSrbOSBYTkIrB0ImUesoMTt5A9m7W/fTBhAl16wDsIZA+flIEogWsqbYL7cNX
+	6aApYMxDcgLij/iuJBG1nOZ9/z4tLnG4tjMgYjaUkGixKxbbXJ9nP4d+IZUgE/DsgpPV6jfzr
+	oYbM2ZNuZ5feD0/XANAv+RU5fnn/cPhiG11OHsnOB/hA0R0MG4FmSrcVb6PkcCQaUWEwbNiIp
+	irJwemfjHx3jRnyZ3khY16+MFiQXlqiLTHF5vSxUumAMnQA7wSsf2OLl+7uh9p3XF9/LNKSEj
+	Q8bIBnFr1Ir36gUSOAk+Lk+Mrq7Lsg1ZTs7RXj9xnYKDeO3Ryi7NP6I3mrOVzIvSZUC7vBCx+
+	CJHJfMo3OPN4ra/wmjr1yczIWT0Tb0MBZukQvblGwMwyrGiNmeY5LwrEH790M1QWHm6zDhFry
+	hiBosE5AdAlfZL4917ceCrY3QXmmtOBxyilMK1/iVPUw4OQBTJ1oUQ1j8SrgIBX0ct/gHZ0MU
+	aaQ1zLZ7mWyZeepAJ+oeOUyrgx7QQqFkUuM8rYE4qUcBmkwAg595R8iVm+2gqTUTNJDgvNvso
+	gcmYUDEv0qKceb2KupvV1cQMLb9LVj/4gADcUrgwzKdLk+Faf/o+pM/UA7c=
+Subject: Using a poky recipe's files in a custom recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: colin.helliwell@ln-systems.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,23 +56,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Dec 2017 13:34:55 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+X-List-Received-Date: Fri, 15 Dec 2017 13:41:13 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Language: en-gb
 
-On 12/14/2017 06:38 PM, Alexander Kanavin wrote:
+The current Poky I'm using (krogoth) has a recipe for dropbear, but I want
+to upgrade to use the latest version of dropbear.
+For source control reasons, I don't want to modify what's in
+meta/recipes-core/dropbear and therefore want to have my own recipe in my
+own layer. Yet for cleanliness I'd also prefer not to have to replicate all
+its .inc file etc in my own layer.
+Is there a clean way to be able to include meta's files within my own
+recipe? Is it a case of some sort of FILESEXTRAPATHS entry, and what would
+be the best way to cross reference to the poky layer?
 
->> Got it, thanks.
-> 
-> I just sent the patches to yocto@ ML and published them on github - 
-> please do try them out, and rebase your patchset on top (some of it may 
-> no longer be relevant).
 
-I did the rebase myself, and pushed the result here - please check and 
-feel free to add anything else that you deem useful:
 
-http://git.yoctoproject.org/cgit/cgit.cgi/auto-upgrade-helper/log/?h=devel
-
-Alex
 
