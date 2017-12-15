@@ -1,62 +1,73 @@
-Return-Path: <ranshalit@gmail.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9FE96E00CE8; Fri, 15 Dec 2017 07:39:11 -0800 (PST)
+	id B1E1EE00D19; Fri, 15 Dec 2017 08:08:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ranshalit[at]gmail.com)
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+	*      [209.85.128.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F4C1E008CA;
-	Fri, 15 Dec 2017 07:39:10 -0800 (PST)
-Received: by mail-wm0-f47.google.com with SMTP id i11so18309298wmf.4;
-	Fri, 15 Dec 2017 07:39:10 -0800 (PST)
+Received: from mail-wr0-f178.google.com (mail-wr0-f178.google.com
+	[209.85.128.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DA11E00D41
+	for <yocto@yoctoproject.org>; Fri, 15 Dec 2017 08:08:21 -0800 (PST)
+Received: by mail-wr0-f178.google.com with SMTP id o2so8470479wro.5
+	for <yocto@yoctoproject.org>; Fri, 15 Dec 2017 08:08:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=zEe9+nr18zjPjBNlQ3xH8wHELY4S2fWl8V+VgfBj4gI=;
-	b=IqrccRrdOOT9gFn8e/Jt7dfpM1cEqfPl81HMp9spX0UEyZ6Mjf1iDNMYrfWu2u23+j
-	62zPMKJyHgAinQfGYYqfog1npyTcFP0DEb1fScW7wOfHpigoxkqFZjqh3hSWzbJh7JfU
-	8yohGuhdp0FrGCQgbYohRef1VEGmzRKSnjaimlP6pepo1OEQw+nAUCZ1hVDdR88zyce9
-	d2tKar78x5T+0LNYS/+vN6IPrCGNTYGA0ufmLqgouOSg7+sPKknaJ9QfpDFEMi+gOvw9
-	2UxxmDQolT56MIcBY8om2C9/v3HX2I6MtNHxwj6cTvuVE37rOV3TkV5hGq9WozSluvNX
-	wwyw==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=/GlH8nKIF1uzICka1j2Gjk0QL51L5ZBddGCCPK42WWI=;
+	b=e2gm6j4A7vqBi2nKh1CMTcU7aUvMMwLOcMjUfbqEoQ/OVfsKQoZsa9JS+M1WY3peEl
+	t42+kTkFc/kks0ptIzZ/Ju6MHmZH8BmTuDdF2nz/SInM7rbw0JUu4NQyzR6Tt3S4f5Tg
+	dosS/eEaXlwNuP4+qCJKiFfO3wKYZR/Hl4DOpyTrlDvmFj6T/o3GzDAkbfC7kXgbEZL3
+	vIiJtWW3lI5mVZ1qk5e8ugus2nYoePH+RwQr0/gR0eEmxzAPx9GYrNVgjJ3Tz6TU8gMU
+	p337ErfZbiIa2utKKAniAwtA3jzyZ67fg2Yo7Q3h9pORLZ4vjg2v2b9mcLso4OwMnpS1
+	UibQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=zEe9+nr18zjPjBNlQ3xH8wHELY4S2fWl8V+VgfBj4gI=;
-	b=KglTC7D9iFC+Qw67j4k5wAW3t5GlOyOOJdgFXkknTmYumFtq1K2Y681X9A3WOWWD0+
-	nJ9AUT1Kp6tgfKUh2xmQ8bYyQjiE1fRiwHEBFhqDJtK8DUyTabwXG8iELskWs5YFLAQk
-	c/mbCXRi4aXTCTI+kX68oe19ZCFhaFMbtfvA9HjaAHlwIt9SS5LX8dcId0FUJ1UT+H9n
-	Tih0JqxXUbqixumOaP+aKcOJkYBhCawt+qJYa6x1cmdstRUPQikf+3rvmdS3pPA1NBWP
-	atcLtFoxik2oQBNxmDXphDLdW7sIyvOZ5DyFJmbRNP6paZ08x92+RXRPqXuYP0ysEFCw
-	S1qQ==
-X-Gm-Message-State: AKGB3mLmFUnO84m4IS+MR0Q//S9kEZ2O40VumzuSs7AE3z+g//FjAVkT
-	WVfgdLDkO00HmGKyKpbHNlM0Uw61AZWIUuwEoyfBDg==
-X-Google-Smtp-Source: ACJfBosnmEE4je+vYaHIpgJABEXVncEKKhjkXFehiwbhsZ/RziDZ0JXPV6/er2AWSYtTVAcyBuX9xl5Wdk/BGNai6HU=
-X-Received: by 10.80.216.202 with SMTP id y10mr17862084edj.221.1513352349750; 
-	Fri, 15 Dec 2017 07:39:09 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=/GlH8nKIF1uzICka1j2Gjk0QL51L5ZBddGCCPK42WWI=;
+	b=sj6PaX/cLIgtfdq/blFr1vY2wUBsccnfhmVuaK68A60teaDdCYU7w3ekl93/fWIzmn
+	EigAiBChdplCtp1sPexmxqaXM0iOTQ22EnxjFi+b/CFXyfRdlcHV5BP3oNXWU1D0a5Uk
+	IooO2Ab6xgLtkqYa4G9fRzyPbC35aVtOglOwcSsoldER9F2SAxU7W0mAJzHjOvtTD5TV
+	XvGMR4hTo5nBoJ2bCnc7vITsLHnQZT7UTEY4x8irQ4xQ/ZEt2QDbYuqQbT1/8benGiEZ
+	JTvqUBEaj2L7QoLLOdu46bYAVBCm5EW4q+CjlcKtN/I2DS87c9S5lv8awEw7PDHc1g4Q
+	CryA==
+X-Gm-Message-State: AKGB3mKZwwttDiqXTKG8niFPyK1i86FF6290zrjKvDpeeJSiDmj/VOYQ
+	JSj8XKAl3J8Mba44c5yNdvFTVElw3qrdLp4th+E=
+X-Google-Smtp-Source: ACJfBovVuhuMp2DkxBSYeWli8QHVsbvWQguBM3ks6CX4bFSfVHr9IM992Ht9Oj+eqyzLRxkHXpEx9C2AcOr5WcBf0tc=
+X-Received: by 10.223.153.151 with SMTP id y23mr2612986wrb.130.1513354100353; 
+	Fri, 15 Dec 2017 08:08:20 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.80.135.197 with HTTP; Fri, 15 Dec 2017 07:39:09 -0800 (PST)
-From: Ran Shalit <ranshalit@gmail.com>
-Date: Fri, 15 Dec 2017 17:39:09 +0200
-Message-ID: <CAJ2oMhK-aJoFPK3YiQQ53+t_QFw+gA2+Up9V_Lqj_u=UzbmRpQ@mail.gmail.com>
-To: Yocto Project Discussion <yocto@yoctoproject.org>, 
-	Development list for the linux-yocto repositories
-	<linux-yocto@yoctoproject.org>
-Subject: x11 and gstreamer compete on same display ?
+Received: by 10.28.97.215 with HTTP; Fri, 15 Dec 2017 08:08:19 -0800 (PST)
+In-Reply-To: <1513349714.15290.36.camel@genivi.org>
+References: <CAF3SDA6zXJyGF-cBSXXr=D2kY59VCyj8c6TbgDkVK0NB7DmQZA@mail.gmail.com>
+	<CAPyrkgxkcO+3UW4jqy9Uh0pVSRwFH9Pss5d2ihVBtRZ3Y+B08A@mail.gmail.com>
+	<CAF3SDA7qCEUGNfmoJ0MXM4OAMSsC=rgnx3xPira7cZSch0ATMQ@mail.gmail.com>
+	<CAF3SDA61uYo3jYxWBzhTUs0ywyXMtQGWpBAWb3VmJT5CFU9F=g@mail.gmail.com>
+	<CAGAf8LzQcHY_rgue5oc_hurCE6yn6kMxB20tJ1=i8-eDrvUhWw@mail.gmail.com>
+	<1513343351.15290.25.camel@genivi.org>
+	<CAF3SDA7qxvPZvLh6-JRRZpEAncb7ywmw2-ULpskveYXFMZn+hw@mail.gmail.com>
+	<1513349714.15290.36.camel@genivi.org>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Fri, 15 Dec 2017 17:08:19 +0100
+Message-ID: <CAGAf8LyvZhOzFQg-FC_2CFS42CD3FYhpJcjiTqnqDOfJSHTTfg@mail.gmail.com>
+To: Gunnar Andersson <gandersson@genivi.org>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: .kernel-meta/configs folder missing make linux-raspberrypi to fail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,35 +79,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Dec 2017 15:39:11 -0000
+X-List-Received-Date: Fri, 15 Dec 2017 16:08:23 -0000
+Content-Type: multipart/alternative; boundary="f403045f54b4922e1b056063351c"
+
+--f403045f54b4922e1b056063351c
 Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+> I just reacted to Zoran's suggestion, with what I find to at least be a
+better alternative for controlling the build host.
 
-I use yocto x11 distro, and it works well with various application
-including qt5.
-On trying to use gstreamer, it seems that it does not function OK, I
-first suspected that it only has to do with high resolution, but now
-it seems that various distortions happens only in low resolution.
+Gunnar,
 
-I suspect that x11 output compete with gstreamer output.
-I think that maybe most of embedded applications which use gstreamer
-probably used fb disro instead of x11 distro, and maybe that can
-explain why I did not find any information of this issue in internet.
+You (probably) did not read Martin's (Jansa) comment on my initial, and my
+reply. I already reverted my decision on
+downgrading Fedora and other distros.
 
-I also see that when I stop the gstreamer pipeline , then x11 always pop in.
-I tried to disable x11 with:
-systemctl set-default multi-user.target
+Zoran
 
-It seems to work find, but the xterm terminal show on the hdmi, and
-trying to kill it won't help.
-So, I guess that I better move to distro fb instead of distro x11.
+On Fri, Dec 15, 2017 at 3:55 PM, Gunnar Andersson <gandersson@genivi.org>
+wrote:
 
-I would like to ask if my suspicion sound reasonable, and if both x11
-and gstreamer compete on the same display ?
+> On Fri, 2017-12-15 at 12:50 -0200, Daniel. wrote:
+> > As I told before, by pass this is a simple matter of running devshell,
+> > creating the folder and running running the build again,
+> >
+> > Paul ask me for more information and so I did, I'll remove that
+> duplicated
+> > layer and fire `bitbake -fc cleanall linux-raspberry && bitbake linux-
+> > rapsberry` again, if I hit this I may try some digging. I don't think
+> this
+> > has to do with Fedora version, anyway, sooner or latter this version will
+> > be tested, so this same error may arise, and at that time we'll be doing
+> > the same questions, so, why to wait?
+>
+> Agreed!  It would seem strange if it's a host problem, and even if it were,
+> it's better to get to the bottom of it, so that the latest popular distros
+> work as intended.  I just reacted to Zoran's suggestion, with what I find
+> to
+> at least be a better alternative for controlling the build host.
+>
+> Good luck!
+>
+> - Gunnar
+>
+> >
+> > Regards,
+>
+>
+>
 
-I use yocto morti with imx6.
+--f403045f54b4922e1b056063351c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Best Regards.
-Ran
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">&gt; I just reacted to Zo=
+ran&#39;s suggestion, with what I find to=C2=A0</span><span style=3D"font-s=
+ize:12.8px">at least be a better alternative for controlling the build host=
+.</span><br><div><span style=3D"font-size:12.8px"><br></span></div><div><sp=
+an style=3D"font-size:12.8px">Gunnar,</span></div><div><span style=3D"font-=
+size:12.8px"><br></span></div><div><span style=3D"font-size:12.8px">You (pr=
+obably) did not read Martin&#39;s (Jansa) comment on my initial, and my rep=
+ly. I already reverted my decision on</span></div><div><span style=3D"font-=
+size:12.8px">downgrading Fedora and other distros.</span></div><div><span s=
+tyle=3D"font-size:12.8px"><br></span></div><div><span style=3D"font-size:12=
+.8px">Zoran</span></div></div><div class=3D"gmail_extra"><br><div class=3D"=
+gmail_quote">On Fri, Dec 15, 2017 at 3:55 PM, Gunnar Andersson <span dir=3D=
+"ltr">&lt;<a href=3D"mailto:gandersson@genivi.org" target=3D"_blank">gander=
+sson@genivi.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><sp=
+an class=3D"">On Fri, 2017-12-15 at 12:50 -0200, Daniel. wrote:<br>
+&gt; As I told before, by pass this is a simple matter of running devshell,=
+<br>
+&gt; creating the folder and running running the build again,<br>
+&gt;<br>
+&gt; Paul ask me for more information and so I did, I&#39;ll remove that du=
+plicated<br>
+&gt; layer and fire `bitbake -fc cleanall linux-raspberry &amp;&amp; bitbak=
+e linux-<br>
+&gt; rapsberry` again, if I hit this I may try some digging. I don&#39;t th=
+ink this<br>
+&gt; has to do with Fedora version, anyway, sooner or latter this version w=
+ill<br>
+&gt; be tested, so this same error may arise, and at that time we&#39;ll be=
+ doing<br>
+&gt; the same questions, so, why to wait?=C2=A0<br>
+<br>
+</span>Agreed!=C2=A0 It would seem strange if it&#39;s a host problem, and =
+even if it were,<br>
+it&#39;s better to get to the bottom of it, so that the latest popular dist=
+ros<br>
+work as intended.=C2=A0 I just reacted to Zoran&#39;s suggestion, with what=
+ I find to<br>
+at least be a better alternative for controlling the build host.<br>
+<br>
+Good luck!<br>
+<br>
+- Gunnar<br>
+<br>
+&gt;<br>
+&gt; Regards,<br>
+<br>
+<br>
+</blockquote></div><br></div>
 
+--f403045f54b4922e1b056063351c--
