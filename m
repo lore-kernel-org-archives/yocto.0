@@ -1,62 +1,61 @@
-Return-Path: <sherifomran2000@gmail.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E04AE00CE8; Mon, 18 Dec 2017 04:08:08 -0800 (PST)
+	id 8A842E00D6B; Mon, 18 Dec 2017 06:15:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sherifomran2000[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.42 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f42.google.com (mail-pl0-f42.google.com
-	[209.85.160.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47A23E00B99
-	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 04:08:07 -0800 (PST)
-Received: by mail-pl0-f42.google.com with SMTP id 1so3234558plv.0
-	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 04:08:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=aurdq22YB21QSa6OsYpw/XhGpr2LA8GnuC7f61MF2/w=;
-	b=FC31SmkThV2W0+wGbNKMOoGkA3KbDtUyreMBHwg2E3Xp5woaZ3ZzASN1k2jezGhGs4
-	i6kjNtpIdcabro2unSCchWx0ojnmurHJdS+x/kEMulfgGtFsD/ACT+Tl/VZb6EXVUlSB
-	RhibqW+MMLw+83/5kCW+TceL8IE8Q65gIss27pShI46vEGznn3A8h3YF1MiGt1eCKV+W
-	cW05MVHvLceMDT+1e2uy9FZX8fhijy0rrYZpKqzRe9kiORQqxZlmc9J8xiBkOgdaBC0k
-	17U2sBsvi3YGmhI+0aqJlKJdsYCzwrq2aTLWdcSYHCW23Q5nXeXols9HkCnEHgzXF9Vu
-	wI6Q==
+Received: from mail-ot0-f193.google.com (mail-ot0-f193.google.com
+	[74.125.82.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E5C6E00D39
+	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 06:15:55 -0800 (PST)
+Received: by mail-ot0-f193.google.com with SMTP id n18so4125351otd.1
+	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 06:15:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=DQvJ2z1yLBtVauO1ua9f0WTFpzpnrZfMdY/r41s1g8k=;
+	b=Qy9C7S5f7qNef+LprurcAwRIGn7+O0YZ/tE+I+7ykGrF8E9mYi6cw7uO18d9m+A6QR
+	jjfCDDBCNeaPN2lpKkKwFMWBLhI5xediw4PhkkNOy+rRpkgQdeA1e5OvmpU1zmQ58VL+
+	E33an5YTZQ8kjs7YZ3AEy0ivGslv3HmOVFecVfX+O6rTf5/WTN2m1JS8stepy6U38w2B
+	O1dk8u5zPUldCe4ZNpC+SYO7RuTPU8ktVYTeJBUyEMrWTM23SGYiKxjxoiy0wb0r87QE
+	VF0jD351sLcyTNvLX1txCHBYtbK/9Z1p9uq/1vdvAovfCuUnFUKpOCBxxnihUkeU5Dht
+	bPpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=aurdq22YB21QSa6OsYpw/XhGpr2LA8GnuC7f61MF2/w=;
-	b=OtNIyDsTPj8ssbUAn3wTfWZglivc8DUrcrr4sI//STDvNM40H2KwziF8b0HIa0hImt
-	hizQrgJ+Cf/ZCHg0Xyc07IyuT9GXvnCcgic4wUgJxLXoTLh7QpqMrQ3niAN5V0bGPuz2
-	3aVYS9KJN4kmr8+oV+Y93xsftsR8B0nwQREnlC7jPWtam7ciWVF3hlcmyLiSHvmi/v7k
-	iplgbJCSe83oOi3gHIjiMS1sy0qsBalDtWGaMDwKVbblV1So5STtIAlHLFvh6dA+fEcy
-	WesdhoAOrmZiRWm+l73XK5zKV54oYhwJj9Gzry7mOSlnFX5vdsxfCcMxVw163N8Egdhh
-	xUWg==
-X-Gm-Message-State: AKGB3mIfQ4Tk1WFGHGoi+NPoROkl+9EvEZiwuov7iOmdCJiN5Sr2sW/5
-	g9KIsR7n6g16Vq05Olf71lbx0ULbYncrrFcdzu4=
-X-Google-Smtp-Source: ACJfBouvh+Y+2Z+UdmdgleBke3SjpKxp15B+zl0dO4l/2uv1Ki2u+as6ZEO8dJoeUMjUt6QRO4dRuLxaV4bxEXrXu6M=
-X-Received: by 10.84.130.37 with SMTP id 34mr6627674plc.379.1513598887382;
-	Mon, 18 Dec 2017 04:08:07 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=DQvJ2z1yLBtVauO1ua9f0WTFpzpnrZfMdY/r41s1g8k=;
+	b=Bz58YRnB+59/OBpAKQMDsG4GIh7OASm4kWK3Xd0YpAh0RdxchSR/lRp4FNi1wr3G+b
+	Knt2iKOlQYmON929DCmcBH3M1/dM1ucnoDyds4u4/hF+8IyfrctJ3LobiOGlHEWpDIRv
+	4pRIRj44k/h819oBLrIAJaz6bqdD1x62P5lCiAXby4ZREP15sXrss0qn0tQxQdhmpQ9M
+	bsESr8yvd2X2pWj83Zl0w7pWdDAm6V1/Af6BJ3IJUsWQ1Ns2Z9NARwIJNY/8F+xYwFzt
+	qk1Vz6TLvjquF9xwOEoM5cE4mgoRMEPSbGea3pm/kpp8Jy+6eVjCVlrQD8tp44gFfwG0
+	TGtA==
+X-Gm-Message-State: AKGB3mL77L935/J5YDbc/ikGWmVP4W3Tmw6/Gb6tZViDsOfH4whAOr3E
+	851LAZtHj66QwvTzO24cnwBJGfNiF3F4fPt7Xsy4LA==
+X-Google-Smtp-Source: ACJfBoslpYR5gv0QILafFh8XgUOwqiLosRKG7GMYl9JFaAx4ICV6CHIUVBE6vfK08oIeA6YnXMng7oM0K+fouSRpnJw=
+X-Received: by 10.157.41.147 with SMTP id n19mr23155otb.132.1513606554480;
+	Mon, 18 Dec 2017 06:15:54 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.100.138.69 with HTTP; Mon, 18 Dec 2017 04:08:06 -0800 (PST)
-From: Sherif Omran <sherifomran2000@gmail.com>
-Date: Mon, 18 Dec 2017 13:08:06 +0100
-Message-ID: <CAPb0b+OL92PGuv7qwxX9h9570cu=V7VPCNAgdNxwc09j1aWnwA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: replace hciattach with a compiled binary
+Received: by 10.157.42.194 with HTTP; Mon, 18 Dec 2017 06:15:53 -0800 (PST)
+In-Reply-To: <CAPb0b+OL92PGuv7qwxX9h9570cu=V7VPCNAgdNxwc09j1aWnwA@mail.gmail.com>
+References: <CAPb0b+OL92PGuv7qwxX9h9570cu=V7VPCNAgdNxwc09j1aWnwA@mail.gmail.com>
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Mon, 18 Dec 2017 15:15:53 +0100
+Message-ID: <CAOT_U5ZeA2x_9q9fZU749jnf_8nHApnME+xib1fLdtxh582EVA@mail.gmail.com>
+To: Sherif Omran <sherifomran2000@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: replace hciattach with a compiled binary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,30 +67,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Dec 2017 12:08:08 -0000
-Content-Type: multipart/alternative; boundary="94eb2c12f8ee03d30405609c34e6"
-
---94eb2c12f8ee03d30405609c34e6
+X-List-Received-Date: Mon, 18 Dec 2017 14:15:58 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-hello guys,
+Hi,
+with the risk of being off topic,
+the hciattach has been deprecated by btattach.
+I'm successfully using it with bluez5.
 
-i am working with Bluetooth, and thus installed Bluez5.
-But the installed hciattach file has size of 108760 and does not work,
-where as the one from raspbian has size of 120636 and is working.
+On Mon, Dec 18, 2017 at 1:08 PM, Sherif Omran <sherifomran2000@gmail.com> wrote:
+> hello guys,
+>
+> i am working with Bluetooth, and thus installed Bluez5.
+> But the installed hciattach file has size of 108760 and does not work, where
+> as the one from raspbian has size of 120636 and is working.
+>
+> is there a way to replace it?
+>
+> thanks
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-is there a way to replace it?
-
-thanks
-
---94eb2c12f8ee03d30405609c34e6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div>hello guys,<br><br></div>i am wor=
-king with Bluetooth, and thus installed Bluez5. <br></div>But the installed=
- hciattach file has size of 108760 and does not work, where as the one from=
- raspbian has size of 120636 and is working. <br></div><br></div>is there a=
- way to replace it?<br><br></div>thanks<br></div>
-
---94eb2c12f8ee03d30405609c34e6--
