@@ -1,66 +1,57 @@
-Return-Path: <mirza.krak@gmail.com>
+Return-Path: <Aaron_Wright@selinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08DFAE00CFF; Mon, 18 Dec 2017 14:18:04 -0800 (PST)
+	id 7912CE00CFF; Mon, 18 Dec 2017 14:20:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mirza.krak[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.181 listed in list.dnswl.org]
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.117.214.142 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f181.google.com (mail-qk0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37FC4E00A9C
-	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 14:18:02 -0800 (PST)
-Received: by mail-qk0-f181.google.com with SMTP id d66so20307256qkg.1
-	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 14:18:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=0yoO8AhOCmm9hJ1eHxCk+gFlAyAetgHBzqzvU1sKc9U=;
-	b=vX5dbAbicpGcp0wwm9P8I/p6Xe7RtJD2U89rUEimhavvGCc/CDaxMJpDDFcjGckALC
-	TxydWtEOIbHyB1zyFvqP6aoa8sISjYXmefTv6/ETsEa5MrDgJJkVW1HmzOBZvWXAQHQW
-	jGqxh6oE/h5OKdQj7ShYQ54toFFIawj9+h/ktv4FQgEcu85Fd2OtprUt2HfEtb1g6Pgq
-	eMIXyZ+KYjYiKZOoa12XhIo1XpCO5IYqOmw16s+U1K+iZ0e0ObwiqJRSKQ9ipToCjeqs
-	XCGQmpcPZ75eJ6GvjQIFCa469VYEz6p/HhXoATWiuiVEL6ycIkbnmoaBV5OEqC3agS9o
-	ri5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=0yoO8AhOCmm9hJ1eHxCk+gFlAyAetgHBzqzvU1sKc9U=;
-	b=SWXSljjjn50G8YlbXDnoUiHZGZlcCynLnR0WNBLWnxKUUt9MsjYsLtYG7f7vCL6g/H
-	GqE/4DBwVBdINX4rOpMjWVihxiSRoVR4CNbC/2Y0lE5ketNso+xr/k+PytwNKBGOx2ZX
-	ywcMdiAR/lqNj8BiBePyegwckqCTsxgECCWenAEEn2K54wOzt6yLQVgUiIE2jfOjOiuF
-	uIwgWos+ZC4xfd4/N5FYcuJkSbIWx7bQ5m8NretftmwMMkJlAzXhHUb8BbBTgG9Ly481
-	Axnfhz3x8z5MmX2xTlfAVgSFMH48DZnK+UlNmRBOmE7L1h8E0j/VWDUNykmPSvNspQpb
-	v4Ng==
-X-Gm-Message-State: AKGB3mKOA6u/9StJ6E3KU3/keTgFJkJIsARjjiLRnfZgsixMu4McYP3L
-	S4hqVRuz5bUypQikm3dTjFf+i2ZoPtzR3PRqYIg=
-X-Google-Smtp-Source: ACJfBovQ2KDZEjREqygK0gCxPn/DBer0pFmyjSCb6dSJAYlRMcwTw/3Bs1OEpqQ8BIUIa22HxrafAb8+vRlhMooitHI=
-X-Received: by 10.233.235.133 with SMTP id b127mr1992936qkg.137.1513635482219; 
-	Mon, 18 Dec 2017 14:18:02 -0800 (PST)
+Received: from scamp.selinc.com (scamp.selinc.com [74.117.214.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAC01E00A9C
+	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 14:20:44 -0800 (PST)
+Received: from pps.filterd (scamp.selinc.com [127.0.0.1])
+	by scamp.selinc.com (8.16.0.21/8.16.0.21) with SMTP id vBIMBVGr008431
+	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 14:20:44 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=selinc.com;
+	h=to : mime-version :
+	subject : message-id : from : date : content-type; s=SELinc2017;
+	bh=7v2WOZ13lFnp23LiKzL1xtfWJVFKu4M5RrjabCXfYBs=;
+	b=b8vZnlraABNt+TCKmGiFYUm1+J1lmvk9j5yQF6xsMVSsrRJgtFB0+AItB4iHxUHZPPtd
+	Q40luaipQdUf53iyVqx4wz0/AYpnhVWIbM/epHxG4tt+ybXOwEPc5iiXeTwOXdMUgCDa
+	RF+lwZUSBRWAcVSlAq4fr2Xbb6AxJc/GH5g1w4M6/BL3M49bouze8SpXwDopsv6Sc+X3
+	yuvT7TwT1bDp3KLq2QVq2jtU17U6k7b+CrQBQnQV9ycymcAqTPGGuNqXIPOTB0hUaGYL
+	bn3soSor+MSvrv8z/JEIatoRIuHaGOoZs6kc8OlJmdKAANZ/p+gTqjXwG1PLAHa7xTsO
+	iQ== 
+Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
+	by scamp.selinc.com with ESMTP id 2ew2b2wfrf-1
+	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 14:20:44 -0800
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-Received: by 10.200.15.141 with HTTP; Mon, 18 Dec 2017 14:18:01 -0800 (PST)
-In-Reply-To: <F1033569E865F34DB22FEDAEDE3F7246C14A6E@elys7052.corp.knorr-bremse.com>
-References: <F1033569E865F34DB22FEDAEDE3F7246C14A6E@elys7052.corp.knorr-bremse.com>
-From: Mirza Krak <mirza.krak@gmail.com>
-Date: Mon, 18 Dec 2017 23:18:01 +0100
-Message-ID: <CALw8SCXH7K_Ac-MJf2vL-7ewqEykVa9KMB3hHR_Fa94CJq=2yA@mail.gmail.com>
-To: "Greer, Charles (ext)" <Charles.Greer@bendix.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to disable a linux virtual terminal...
+X-KeepSent: A1764F43:186958F6-882581FA:00780D74;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0.1FP6 April 21, 2016
+Message-ID: <OFA1764F43.186958F6-ON882581FA.00780D74-882581FA.007ABF6E@selinc.com>
+From: Aaron_Wright@selinc.com
+Date: Mon, 18 Dec 2017 14:20:43 -0800
+X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP9 HF139|October
+	06, 2017) at 12/18/2017 02:20:43 PM,
+	Serialize complete at 12/18/2017 02:20:43 PM
+X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=8749
+	signatures=668649
+Subject: How to use iconv natively in do_compile?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,89 +63,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Dec 2017 22:18:04 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 18 Dec 2017 22:20:45 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 007ABF6E882581FA_="
 
-2017-12-14 22:51 GMT+01:00 Greer, Charles (ext) <Charles.Greer@bendix.com>:
-> Hi all,
->
->
->
-> Would anyone know how to disable the virtual terminals in linux?  I am us=
-ing
-> Yocto, Morty version on an i.MX6 processor.  Even though our base
-> distribution is Yocto, unfortunately we have diverged from building it wi=
-th
-> recipes, so this is more of a straight linux question than Yocto=E2=80=A6
->
->
->
-> To give some detail as to my problem:  It is for an embedded device that =
-has
-> an HDMI port - when I attach a terminal to the HDMI port it shows the Lin=
-ux
-> Penguin logo, a getty service and blanks out after 600 seconds.  I just w=
-ant
-> to use the hdmi port as an output with nothing displayed on the output an=
-d I
-> want it to stay on all the time.
->
->
->
-> I have found that the hdmi port maps to /dev/tty1 =E2=80=93 when I type: =
- echo
-> =E2=80=9Casdfasdf=E2=80=9D > /dev/tty1 I see the characters output to the=
- monitor.
->
->
->
-> Here are a few things I have tried to no avail =E2=80=93 a lot of these a=
-re not
-> needed if I can figure out how to disable it as a virtual terminal=E2=80=
-=A6
->
->
->
-> =C2=B7         I figured out how to disable the getty service but a curso=
-r still
-> blinks.   I don=E2=80=99t even want a cursor to show
+--=_alternative 007ABF6E882581FA_=
+Content-Type: text/plain; charset="US-ASCII"
 
-Normally you disable the cursor with a kernel argument:
+I'm on pyro, and I have a do_compile step that converts some files to 
+UTF8. I use iconv to do this.
 
-    vt.global_cursor_default=3D0
+According to `oe-pkgdata-util find-path /usr/bin/iconv`, iconv is provided 
+by the glibc-utils package. So I tried adding glibc-native or glibc to my 
+DEPENDS, but that didn't work. 
 
-You probably also need to remove "console=3Dtty1" from kernel arguments
-to avoid to getting "boot prints"
+I also tried virtual/libiconv-native without any luck. virtual/libiconv is 
+listed in ASSUME_PROVIDED but iconv isn't in HOSTTOOLS. I'm not 100% sure 
+how those variables are supposed to work.
 
-< snip >
+What do I put in my DEPENDS so that iconv is natively available during 
+do_compile?
 
-> Disabling the logo or console blanking would not be necessary if I could
-> just figure out how to disable that port as a terminal=E2=80=A6
->
->
->
-> So does anyone have pointers or things I could try?  I am relatively new
-> (returning after 10 years - I worked with DNX 10 years ago v2.6 and it se=
-ems
-> everything I knew about init is fairly obsolete lol) to linux so I am sur=
-e I
-> am missing a lot=E2=80=A6
+--=_alternative 007ABF6E882581FA_=
+Content-Type: text/html; charset="US-ASCII"
 
-Well it sounds to me that you would like to disable the framebuffer
-console completely.
+<font size=2 face="sans-serif">I'm on pyro, and I have a do_compile step
+that converts some files to UTF8. I use iconv to do this.</font>
+<br>
+<br><font size=2 face="sans-serif">According to `oe-pkgdata-util find-path
+/usr/bin/iconv`, iconv is provided by the glibc-utils package. So I tried
+adding glibc-native or glibc to my DEPENDS, but that didn't work. </font>
+<br>
+<br><font size=2 face="sans-serif">I also tried virtual/libiconv-native
+without any luck. virtual/libiconv is listed in ASSUME_PROVIDED but iconv
+isn't in HOSTTOOLS. I'm not 100% sure how those variables are supposed
+to work.</font>
+<br>
+<br><font size=2 face="sans-serif">What do I put in my DEPENDS so that
+iconv is natively available during do_compile?</font>
+<br>
 
-Removing (=3Dn) the
-
-    CONFIG_FRAMEBUFFER_CONSOLE
-
-config should definitely get rid of most of the things that you
-mentioned. But normally you would not disable it completely if you
-would like to display a "boot screen" / splashscreen but if you do not
-want it you can safely remove that option.
-
---=20
-Med V=C3=A4nliga H=C3=A4lsningar / Best Regards
-
-Mirza Krak
-
+--=_alternative 007ABF6E882581FA_=--
