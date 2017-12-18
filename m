@@ -1,26 +1,60 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <marekslomiany@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAC28E00D64; Sun, 17 Dec 2017 21:33:21 -0800 (PST)
+	id 72DE4E00D8C; Mon, 18 Dec 2017 03:11:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (marekslomiany[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FEA4E00CE1
-	for <yocto@yoctoproject.org>; Sun, 17 Dec 2017 21:33:20 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 71CCA8713E27
-	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 00:33:19 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f43.google.com (mail-pg0-f43.google.com [74.125.83.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 617D6E00CE1
+	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 03:11:57 -0800 (PST)
+Received: by mail-pg0-f43.google.com with SMTP id k15so9023962pgr.7
+	for <yocto@yoctoproject.org>; Mon, 18 Dec 2017 03:11:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=nzsRHfnX5AMFYng/z6QXAU05iCUh6prV7aOEvrZ/Y3k=;
+	b=SS4v9qkE1rCaDX+y0y8Asqs0AesoxcBVvZhUexvUCiKwJXY5sP81lPqrRtcyuTuDcY
+	G9pWd0Hx+s4BLv9685om1E4MGxss110DdgIlli3guvYQJa2cLBe47OW1rhenlA9iiYhz
+	N6DfTKQ0ZJK5MSSn96cC/Lyo8pIs45DyuZN9FvKeswCeZN3qMh3e66w90a35BKZ8SI1b
+	kOjtztCYvxN9X+1Lf+xOmdkCMHwDID19SqjGYd8GfAMajuoQMMAkHcgkEw0MDoJCTeTg
+	lzPWtcJxPq7tILqsmjR18g2CCK8If2jJL6r88n9Rz8O4qfT/zWsG9KuLr7EF5UkSyWVA
+	jIdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=nzsRHfnX5AMFYng/z6QXAU05iCUh6prV7aOEvrZ/Y3k=;
+	b=W9dsn412DrLi3ORmsBN62AlZZs/QIEH+xfmXN5KqUfLFsOTPcmZBY441KO2zLcajMs
+	ELqN47wc0wueYhKVzGzBcKX3z1NWuDsvDNqamysWHgzpChbmMm04vh0WWBQvqz9eZkNa
+	b2NP6HHlv1tQReDqwdf8mBgfEzm7KVxoswi/f71kwbv+g44z70QDmdy80bzRXf2ShbDQ
+	0W3b/8lUp8sOmfcooXD+T8MBQlKsvxmwTyFMlkTflxGm90d7EhdC6gJmI+gcXlXxAHSy
+	pwSRvTAuRtGFZxBbX3blCWrx/shhQN69JiQpgfnmso18L0vIkBThS1I9//hG0EHHQ/bT
+	LfRg==
+X-Gm-Message-State: AKGB3mLknsNwozOvg3C8dEsFxZcNERFfcMqRgp4X0D3Jhia0RW/m9FIx
+	O1nwUeR1tgKtLo9NnyJZ6EIx358GMMjzJwIrKss=
+X-Google-Smtp-Source: ACJfBotBkrbJ6SW4fDT//fluqO2tF4bS5wMYMpqAILiTrJBaMCwExtuiuU0kgYmvVQ3lrtxb3+5GfiH9MutWI4oyqGA=
+X-Received: by 10.99.125.71 with SMTP id m7mr19844285pgn.349.1513595516220;
+	Mon, 18 Dec 2017 03:11:56 -0800 (PST)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 18 Dec 2017 05:33:19 -0000
-Message-ID: <20171218053319.16662.38022@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+From: =?UTF-8?Q?Marek_S=C5=82omiany?= <marekslomiany@gmail.com>
+Date: Mon, 18 Dec 2017 11:11:45 +0000
+Message-ID: <CAJCDnYYgN=nFYwOz5inC3W5jZojj1QdAG9ck90rXAiPZ1b0xCg@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: wrong distro name in toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,222 +66,172 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Dec 2017 05:33:21 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 18 Dec 2017 11:11:58 -0000
+Content-Type: multipart/alternative; boundary="f403045e2fba13f9dd05609b6b3c"
 
-This mail was sent out by Recipe reporting system.
+--f403045e2fba13f9dd05609b6b3c
+Content-Type: text/plain; charset="UTF-8"
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi, I'm having problem while building Qt application inside of yocto and
+using generated SDK.
+I have bypassed it when using generated SDK, which I describe here.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+My setup in short:
+I'm using for Qt this layer git://github.com/meta-qt5/meta-qt5.git in rocko
+branch
+beside Qt, other layers that might be important:
+meta-poky (rocko)
+meta-oe (morty)
+meta-python (morty)
+meta-networking (morty)
+meta-ti (morty)
 
-You can check the detail information at:
+The platform is am335x
+distro name is "etos"
 
-http://recipes.yoctoproject.org/
+I had some problems with sdk (at first I added Qt to my build but
+applications were developped and build by my coleagues using external
+toolchains).
+Recently I've added recipes for those apps to my layer.
+To test if code I got from my team is building fine, I have generated SDK
+using "bitbake <image-name> -c populate_sdk" and deployed it in default
+path which is /opt/etos/1.0/. When I have sourced it and tried to configure
+I got:
 
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-python                2.7.13           2.7.14                Alejandro Hernandez
-python3               3.5.3            3.6.3                 Alejandro Hernandez
-python3-native        3.5.3            3.6.3                 Alejandro Hernandez
-python-native         2.7.13           2.7.14                Alejandro Hernandez
-usbutils              008              009                   Alexander Kanavin
-gtk-doc               1.25             1.27                  Alexander Kanavin
-webkitgtk             2.16.6           2.18.3                Alexander Kanavin
-dnf                   2.6.3            2.7.5                 Alexander Kanavin
-libwebp               0.6.0            0.6.1                 Alexander Kanavin
-libdnf                0.9.3            0.11.1                Alexander Kanavin
-librepo               1.7.20+gitX      1.8.1                 Alexander Kanavin
-blktrace              1.1.0+gitX       1.2.0                 Alexander Kanavin
-gobject-introspec...  1.52.1           1.54.1                Alexander Kanavin
-systemtap-uprobes     3.1              3.2                   Alexander Kanavin
-systemtap             3.1              3.2                   Alexander Kanavin
-kernelshark           2.6.1            2.6.2                 Alexander Kanavin
-trace-cmd             2.6.1            2.6.2                 Alexander Kanavin
-ffmpeg                3.3.4            3.4.1                 Alexander Kanavin
-tiff                  4.0.8            4.0.9                 Alexander Kanavin
-mkelfimage            4.0+gitX         4.6                   Alexander Kanavin    mkelfimage has been removed...
-mpg123                1.25.7           1.25.8                Alexander Kanavin
-libnl                 3.2.29           3.4.0                 Alexander Kanavin
-icu                   60.1             60.2                  Alexander Kanavin
-epiphany              3.24.3           3.26.5                Alexander Kanavin
-vala                  0.38.2           0.38.4                Alexander Kanavin
-btrfs-tools           4.13.3           4.14                  Alexander Kanavin
-psmisc                22.21            23.1                  Alexander Kanavin
-iso-codes             3.76             3.77                  Alexander Kanavin
-apt                   1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.4              Aníbal Limón
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-bind                  9.10.6           9.11.2                Armin Kuster
-libxcursor            1.1.14           1.1.15                Armin Kuster
-libxfont2             2.0.2            2.0.3                 Armin Kuster
-libxfont              1.5.3            1.5.4                 Armin Kuster
-libxkbcommon          0.7.2            0.8.0                 Armin Kuster
-curl                  7.54.1           7.57.0                Armin Kuster
-libassuan             2.4.4            2.5.1                 Armin Kuster
-nss                   3.34             3.34.1                Armin Kuster
-pinentry              1.0.0            1.1.0                 Armin Kuster
-kexec-tools           2.0.15           2.0.16                Armin Kuster
-libunwind             1.2              1.2.1                 Bruce Ashfield
-linux-yocto           4.12.14+gitX     4.12.16               Bruce Ashfield
-linux-yocto-tiny      4.12.14+gitX     4.12.16               Bruce Ashfield
-linux-libc-headers    4.12             4.14.7                Bruce Ashfield
-linux-yocto-rt        4.12.14+gitX     4.12.16               Bruce Ashfield
-iproute2              4.13.0           4.14.1                Changhyeok Bae
-dbus-test             1.10.20          1.12.2                Chen Qi
-dbus                  1.10.20          1.12.2                Chen Qi
-systemd               234              236                   Chen Qi
-systemd-boot          234              236                   Chen Qi
-systemd-bootchart     231+gitX         233                   Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-coreutils             8.27             8.28                  Chen Qi
-sed                   4.2.2            4.4                   Chen Qi
-sysstat               11.6.1           11.7.1                Chen Qi
-tar                   1.29             1.30                  Chen Qi
-build-appliance-i...  15.0.0           18.0.0                Cristian Iorga
-lzop                  1.03             1.04                  Denys Dmytriyenko
-mtd-utils             2.0.0            2.0.1                 Denys Dmytriyenko
-lz4                   1.7.4            1.8.0                 Denys Dmytriyenko
-acpica                20170303         20171215              Fathi Boudra
-gnupg                 2.2.0            2.2.3                 Hongxu Jia
-bash                  4.4              4.4.12                Hongxu Jia
-ncurses               6.0+20170715     6.0+20171125          Hongxu Jia
-apr-util              1.6.0            1.6.1                 Hongxu Jia
-apr                   1.6.2            1.6.3                 Hongxu Jia
-gpgme                 1.9.0            1.10.0                Hongxu Jia
-libgcrypt             1.8.1            1.8.2                 Hongxu Jia
-ghostscript           9.21             9.22                  Hongxu Jia
-man-pages             4.11             4.14                  Hongxu Jia
-help2man-native       1.47.4           1.47.5                Hongxu Jia
-python3-git           2.1.7            2.1.8                 Jose Lamego
-python3-numpy         1.13.3           1.14.0rc1             Jose Lamego
-python3-pycairo       1.15.3           1.15.4                Jose Lamego
-python-numpy          1.13.1           1.14.0rc1             Jose Lamego
-python3-pygobject     3.26.0           3.26.1                Jose Lamego
-bc                    1.06             1.07.1                Jose Lamego
-pango                 1.40.12          1.40.14               Jussi Kukkonen
-piglit                1.0+gitrX        1.0-new-commits-a...  Jussi Kukkonen
-libinput              1.8.4            1.9.4                 Jussi Kukkonen
-gtk-icon-utils-na...  3.22.17          3.22.26               Jussi Kukkonen
-at-spi2-core          2.26.0           2.26.2                Jussi Kukkonen
-at-spi2-atk           2.26.0           2.26.1                Jussi Kukkonen
-assimp                4.0.1            4.1.0                 Jussi Kukkonen
-vulkan-demos          git              git-new-commits-a...  Jussi Kukkonen
-puzzles               0.0+gitX         0.0-new-commits-a...  Jussi Kukkonen
-atk                   2.26.0           2.26.1                Jussi Kukkonen
-vte                   0.50.1           0.50.2                Jussi Kukkonen
-adwaita-icon-theme    3.26.0           3.26.1                Jussi Kukkonen
-gtk+3                 3.22.24          3.22.26               Jussi Kukkonen
-librsvg               2.40.19          2.40.20               Jussi Kukkonen
-cairo                 1.14.10          1.14.12               Jussi Kukkonen
-fontconfig            2.12.6           2.12.91               Jussi Kukkonen
-glibc-initial         2.26             2.26.9000             Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-gdb                   8.0              8.0.1                 Khem Raj
-llvm                  5.0              5.0-new-commits-a...  Khem Raj
-ninja                 1.7.2            1.8.2                 Khem Raj
-mpfr                  3.1.5            3.1.6                 Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-go-native             1.9              1.10beta1             Khem Raj
-go                    1.9              1.10beta1             Khem Raj
-binutils              2.29             2.29.1                Khem Raj
-cross-localedef-n...  2.26             2.26.9000             Khem Raj
-glibc                 2.26             2.26.9000             Khem Raj
-ruby                  2.4.2            2.4.3                 Leonardo Sandoval
-nfs-utils             2.1.1            2.2.1                 Leonardo Sandoval
-perl                  5.24.1           5.26.1                Leonardo Sandoval
-qemu                  2.10.1           2.11.0                Leonardo Sandoval
-ptest-runner          2.1+gitX         2.1.1                 Leonardo Sandoval
-perl-native           5.24.1           5.26.1                Leonardo Sandoval
-prelink               1.0+gitX         1.0-new-commits-a...  Mark Hatle
-rpm                   4.13.90+gitX     4.14.0                Mark Hatle
-gstreamer1.0          1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-rtsp...  1.12.3           1.12.4                Maxin B. John
-i2c-tools             3.1.2            4.0                   Maxin B. John
-orc                   0.4.27           0.4.28                Maxin B. John
-libical               2.0.0            3.0.1                 Maxin B. John
-gstreamer1.0-libav    1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
-libunistring          0.9.7            0.9.8                 Maxin B. John
-gstreamer1.0-omx      1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-python   1.12.3           1.12.4                Maxin B. John
-libsolv               0.6.29           0.6.30                Maxin B. John
-ifupdown              0.8.16           0.8.29                Maxin B. John
-screen                4.6.1            4.6.2                 Maxin B. John
-mc                    4.8.19           4.8.20                Maxin B. John
-gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
-harfbuzz              1.7.0            1.7.2                 Maxin B. John
-libjpeg-turbo         1.5.2            1.5.3                 Maxin B. John
-gcc-source-6.4.0      6.4.0            7.2.0                 No maintainer
-gdb-cross-canadia...  8.0              8.0.1                 No maintainer
-gdb-cross-i586        8.0              8.0.1                 No maintainer
-go-cross-canadian...  1.9              1.10beta1             No maintainer
-binutils-cross-ca...  2.29             2.29.1                No maintainer
-binutils-cross-i586   2.29             2.29.1                No maintainer
-binutils-crosssdk...  2.29             2.29.1                No maintainer
-systemtap-native      3.1              3.2                   No maintainer
-go-cross-i586         1.9              1.10beta1             No maintainer
-go-crosssdk-x86_64    1.9              1.10beta1             No maintainer
-go-runtime            1.9              1.10beta1             No maintainer
-pkgconf               1.3.7            1.3.90                No maintainer
-mesa                  17.2.5           17.3.0                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.9.5            3.10.1                Otavio Salvador
-go-dep                0.3.1            0.3.2                 Otavio Salvador
-cmake-native          3.9.5            3.10.1                Otavio Salvador
-libdrm                2.4.88           2.4.89                Otavio Salvador
-mesa-gl               17.2.5           17.3.0                Otavio Salvador
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-tcf-agent             1.4.0+gitX       1.6.0                 Randy Witt
-lttng-modules         2.9.5            2.10.4                Richard Purdie
-lttng-tools           2.9.5            2.10.1                Richard Purdie
-lttng-ust             2.9.1            2.10.1                Richard Purdie
-nasm                  2.13.01          2.13.02               Richard Purdie
-subversion            1.9.6            1.9.7                 Richard Purdie
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-autoconf-archive      2016.09.16       2017.09.28            Robert Yang
-git                   2.15.0           2.15.1                Robert Yang
-debianutils           4.8.1.1          4.8.3                 Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.19             4.20                  Robert Yang
-less                  527              529                   Robert Yang
-time                  1.7              1.8                   Robert Yang
-base-passwd           3.5.29           3.5.44                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.72             9.78                  Ross Burton
-libva-utils           1.8.3            2.0.0                 Wei Tee Ng
-gstreamer1.0-vaapi    1.12.3           1.12.4                Wei Tee Ng
-libva                 1.8.3            2.0.0                 Wei Tee Ng
-avahi                 0.6.32           0.7                   Yi Zhao
-avahi-ui              0.6.32           0.7                   Yi Zhao
-json-glib             1.2.8            1.4.2                 Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
+  CMake Error at
+/opt/etos/1.0/sysroots/armv7ahf-neon-etos-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake:32
+(message):
+  The imported target "Qt5::Core" references the file
 
-Upgradable count: 173
-Upgradable total count: 176
+ "/opt/etos/1.0/sysroots/armv7ahf-neon-etos-linux-gnueabi/../x86_64-oesdk-linux/usr/bin/qt5/qmake"
+  but this file does not exist.  Possible reasons include:
+  * The file was deleted, renamed, or moved to another location.
+  * An install or uninstall procedure did not complete successfully.
+  * The installation package was faulty and contained
 
-The based commit is:
+ "/opt/etos/1.0/sysroots/armv7ahf-neon-etos-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake"
+  but not all the files it references.
 
-commit cf5c44ac611c2c2657e6fd3c1f723bcb20b812dd
-Author: Tim Orling <timothy.t.orling@linux.intel.com>
-Date:   Sat Nov 18 18:28:56 2017 -0800
+To solve that problem I coppied the
+/opt/etos/1.0/sysroots/x86_64-etossdk-linux/ to
+/opt/etos/1.0/sysroots/x86_64-oesdk-linux/ with all its content.
+Even if that's not the right solution, it worked.
+But now I wat to add the recipe to my image. I get something similar:
 
-    python-scons: upgrade to v3.0.1; use pypi.bbclass
-    
-    * Simplify recipe by using pypi.bbclass
-    * Drop patch for __future__ print_function
-      - fixed upstream:
-    https://github.com/SConsProject/scons/pull/1/commits/4c199d06e76afb9379e76942d0f68caa57f42509
-    
-    Signed-off-by: Tim Orling <timothy.t.orling@linux.intel.com>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
+Log data follows:
+| DEBUG: Executing python function sysroot_cleansstate
+| DEBUG: Python function sysroot_cleansstate finished
+| DEBUG: Executing shell function do_configure
+| CMake Error at
+/home/mslomiany/linux-dev/poky/build/tmp/sysroots/x86_64-linux/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake:20
+(message):
+|   The imported target "Qt5::Core" references the file
+|      "/../x86_64-oesdk-linux/usr/bin/qt5/qmake"
+|   but this file does not exist.  Possible reasons include:
+|   * The file was deleted, renamed, or moved to another location.
+|   * An install or uninstall procedure did not complete successfully.
+|   * The installation package was faulty and contained
+|
+ "/home/mslomiany/linux-dev/poky/build/tmp/sysroots/x86_64-linux/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake"
+|   but not all the files it references.
+|
+| Call Stack (most recent call first):
+|
+/home/mslomiany/linux-dev/poky/build/tmp/sysroots/x86_64-linux/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake:6
+(_qt5_Core_check_file_exists)
+|
+/home/mslomiany/linux-dev/poky/build/tmp/sysroots/x86_64-linux/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake:177
+(include)
+|
+/home/mslomiany/linux-dev/poky/build/tmp/sysroots/x86_64-linux/usr/lib/cmake/Qt5/Qt5Config.cmake:33
+(find_package)
+|   deps/CMake/Qt.cmake:23 (find_package)
+|   deps/GuiCore/src/CMakeLists.txt:3 (include)
+|
+| -- Configuring incomplete, errors occurred!
+| See also
+"/home/mslomiany/linux-dev/poky/build/tmp/work/armv7ahf-neon-etos-linux-gnueabi/Gui/0.1-r0/build/CMakeFiles/CMakeOutput.log".
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_configure (log file is located at
+/home/mslomiany/linux-dev/poky/build/tmp/work/armv7ahf-neon-etos-linux-gnueabi/Gui/0.1-r0/temp/log.do_configure.11780)
 
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
+It seems like my aproach is not making any difference. I might be trying to
+copy wrong directories in ./build/tmp subdirectories.
+Can you tell me if all those problems are caused by my mistake or is it
+something wrong in yocto/openembedded scripts?
 
+Kind Regards,
+Marek
 
+--f403045e2fba13f9dd05609b6b3c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi, I&#39;m having problem while building Qt applicat=
+ion inside of yocto and using generated SDK.=C2=A0</div><div>I have bypasse=
+d it when using generated SDK, which I describe here.</div><div><br></div><=
+div>My setup in short:</div><div>I&#39;m using for Qt this layer git://<a h=
+ref=3D"http://github.com/meta-qt5/meta-qt5.git">github.com/meta-qt5/meta-qt=
+5.git</a> in rocko branch</div><div>beside Qt, other layers that might be i=
+mportant:</div><div>meta-poky (rocko)</div><div>meta-oe (morty)</div><div>m=
+eta-python (morty)</div><div>meta-networking (morty)</div><div>meta-ti (mor=
+ty)</div><div><br></div><div>The platform is am335x</div><div>distro name i=
+s &quot;etos&quot;</div><div><br></div><div>I had some problems with sdk (a=
+t first I added Qt to my build but applications were developped and build b=
+y my coleagues using external toolchains).=C2=A0</div><div>Recently I&#39;v=
+e added recipes for those apps to my layer.</div><div>To test if code I got=
+ from my team is building fine, I have generated SDK using &quot;bitbake &l=
+t;image-name&gt; -c populate_sdk&quot; and deployed it in default path whic=
+h is /opt/etos/1.0/. When I have sourced it and tried to configure I got:</=
+div><div><br></div><div>=C2=A0 CMake Error at /opt/etos/1.0/sysroots/armv7a=
+hf-neon-etos-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake:32 (me=
+ssage):</div><div>=C2=A0 The imported target &quot;Qt5::Core&quot; referenc=
+es the file</div><div>=C2=A0 =C2=A0 =C2=A0&quot;/opt/etos/1.0/sysroots/armv=
+7ahf-neon-etos-linux-gnueabi/../x86_64-oesdk-linux/usr/bin/qt5/qmake&quot;<=
+/div><div>=C2=A0 but this file does not exist.=C2=A0 Possible reasons inclu=
+de:</div><div>=C2=A0 * The file was deleted, renamed, or moved to another l=
+ocation.</div><div>=C2=A0 * An install or uninstall procedure did not compl=
+ete successfully.</div><div>=C2=A0 * The installation package was faulty an=
+d contained</div><div>=C2=A0 =C2=A0 =C2=A0&quot;/opt/etos/1.0/sysroots/armv=
+7ahf-neon-etos-linux-gnueabi/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmak=
+e&quot;</div><div>=C2=A0 but not all the files it references.</div><div><br=
+></div><div>To solve that problem I coppied the /opt/etos/1.0/sysroots/x86_=
+64-etossdk-linux/ to /opt/etos/1.0/sysroots/x86_64-oesdk-linux/ with all it=
+s content.</div><div>Even if that&#39;s not the right solution, it worked.<=
+/div><div>But now I wat to add the recipe to my image. I get something simi=
+lar:</div><div><br></div><div>Log data follows:</div><div>| DEBUG: Executin=
+g python function sysroot_cleansstate</div><div>| DEBUG: Python function sy=
+sroot_cleansstate finished</div><div>| DEBUG: Executing shell function do_c=
+onfigure</div><div>| CMake Error at /home/mslomiany/linux-dev/poky/build/tm=
+p/sysroots/x86_64-linux/usr/lib/cmake/Qt5Core/Qt5CoreConfig.cmake:20 (messa=
+ge):</div><div>| =C2=A0 The imported target &quot;Qt5::Core&quot; reference=
+s the file</div><div>| =C2=A0 =C2=A0 =C2=A0&quot;/../x86_64-oesdk-linux/usr=
+/bin/qt5/qmake&quot;</div><div>| =C2=A0 but this file does not exist.=C2=A0=
+ Possible reasons include:</div><div>| =C2=A0 * The file was deleted, renam=
+ed, or moved to another location.</div><div>| =C2=A0 * An install or uninst=
+all procedure did not complete successfully.</div><div>| =C2=A0 * The insta=
+llation package was faulty and contained</div><div>| =C2=A0 =C2=A0 =C2=A0&q=
+uot;/home/mslomiany/linux-dev/poky/build/tmp/sysroots/x86_64-linux/usr/lib/=
+cmake/Qt5Core/Qt5CoreConfigExtras.cmake&quot;</div><div>| =C2=A0 but not al=
+l the files it references.</div><div>|=C2=A0</div><div>| Call Stack (most r=
+ecent call first):</div><div>| =C2=A0 /home/mslomiany/linux-dev/poky/build/=
+tmp/sysroots/x86_64-linux/usr/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake:6=
+ (_qt5_Core_check_file_exists)</div><div>| =C2=A0 /home/mslomiany/linux-dev=
+/poky/build/tmp/sysroots/x86_64-linux/usr/lib/cmake/Qt5Core/Qt5CoreConfig.c=
+make:177 (include)</div><div>| =C2=A0 /home/mslomiany/linux-dev/poky/build/=
+tmp/sysroots/x86_64-linux/usr/lib/cmake/Qt5/Qt5Config.cmake:33 (find_packag=
+e)</div><div>| =C2=A0 deps/CMake/Qt.cmake:23 (find_package)</div><div>| =C2=
+=A0 deps/GuiCore/src/CMakeLists.txt:3 (include)</div><div>|=C2=A0</div><div=
+>| -- Configuring incomplete, errors occurred!</div><div>| See also &quot;/=
+home/mslomiany/linux-dev/poky/build/tmp/work/armv7ahf-neon-etos-linux-gnuea=
+bi/Gui/0.1-r0/build/CMakeFiles/CMakeOutput.log&quot;.</div><div>| WARNING: =
+exit code 1 from a shell command.</div><div>| ERROR: Function failed: do_co=
+nfigure (log file is located at /home/mslomiany/linux-dev/poky/build/tmp/wo=
+rk/armv7ahf-neon-etos-linux-gnueabi/Gui/0.1-r0/temp/log.do_configure.11780)=
+</div><div><br></div><div>It seems like my aproach is not making any differ=
+ence. I might be trying to copy wrong directories in ./build/tmp subdirecto=
+ries.</div><div>Can you tell me if all those problems are caused by my mist=
+ake or is it something wrong in yocto/openembedded scripts?</div><div><br><=
+/div><div>Kind Regards,</div><div>Marek</div><div><br></div></div>
+
+--f403045e2fba13f9dd05609b6b3c--
