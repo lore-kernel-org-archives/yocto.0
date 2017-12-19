@@ -1,68 +1,68 @@
-Return-Path: <mirza.krak@gmail.com>
+Return-Path: <sherifomran2000@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27A46E00DC2; Tue, 19 Dec 2017 02:31:04 -0800 (PST)
+	id 508C6E00D81; Tue, 19 Dec 2017 04:17:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mirza.krak[at]gmail.com)
+	mail provider *      (sherifomran2000[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.216.171 listed in list.dnswl.org]
+	*      [209.85.160.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f171.google.com (mail-qt0-f171.google.com
-	[209.85.216.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8941AE00D7E
-	for <yocto@yoctoproject.org>; Tue, 19 Dec 2017 02:31:03 -0800 (PST)
-Received: by mail-qt0-f171.google.com with SMTP id k19so23529807qtj.6
-	for <yocto@yoctoproject.org>; Tue, 19 Dec 2017 02:31:03 -0800 (PST)
+Received: from mail-pl0-f50.google.com (mail-pl0-f50.google.com
+	[209.85.160.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70346E00CE2
+	for <yocto@yoctoproject.org>; Tue, 19 Dec 2017 04:17:08 -0800 (PST)
+Received: by mail-pl0-f50.google.com with SMTP id b96so6843234pli.2
+	for <yocto@yoctoproject.org>; Tue, 19 Dec 2017 04:17:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=geAhr3ZX2a21LDdRtKP+cBcRog5atCOjNvMPCAgaBU8=;
-	b=HjlqM+4o2biMPIgpDwBwUtcHg/CfKfqQU/fUmaSXvZzweN/akfXda+aNQsIr8kx6BC
-	yjefmg8dmuVmJ5r8HZ0ko4HpJuKaZkmv3g+31M6qOP4OHwg3QjUS1NggCJ3xMJnkfBPz
-	8DsKFoMbZDZ5bnmUSPFGKB2kjTkHfQShLPKEG5u9K6NdxRwBXx5KelY1tTD83pRjTBfu
-	My3gbpxN7RsbOMq0ySg7aUTEKMNbV/faJzirB4QO7VdJn4fGom1ch7uf+I+nP20pzN6/
-	or1UJHjmZ0tAxvYTrxYvIfskSNPlys2BS6ptQWA7KZImPnKNWUF6Ax4gkkcJ3hEqByPE
-	48eQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=kWyA5I2JMDIKhY+dLaDz4F2/Gfvq27O5Ch4+e6QSGO0=;
+	b=CoWZEsFS+HU4Ad92vI53SE95ICLyq7qRK16/FCocfNKwYihEoBLQPUhDjrUu51f9Ys
+	kNpJ5x0ydxjOGV79a9nP9F+lSk87+FyABUE4RPbu07PgVZtWWCP4zaQbpG79oPW9adNR
+	BAanpVX9Mg4/cn5iqArw7ZaZWL0Shv8+/yUrT8FHaMeluPbI6975OYp5YZZIAuRrR4NW
+	MwYN3Fo1gKshBNhpJfW8mGluJqgbCE/TVdxxQf6//2y+ZHn7pB9e/Am1LwtHKkZSiGoI
+	LesqxA4PSNe6qKcGZHFaMQwHpg0pZyiqRoxGRf9rSSG2mvTXlJQBmClRjAjl1cEJHEK5
+	SLXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=geAhr3ZX2a21LDdRtKP+cBcRog5atCOjNvMPCAgaBU8=;
-	b=mgkoDTpLtbM/QJhqvIYPo4VOivGT6QWOmSbrP+Bsz6mq5wM4BD2XIrfaFe1TcusEN5
-	ZMe9RQAJC1hW/Bhuc0cDEPYaUF/nbG2YmMGexWuzMmCgxA4SQyG7w+JK9WezX2O9LQ1J
-	kUSa5axu4LAh56eEHgnXTfIudt8m40s+Ryy+vKUxh80kYE2ummkOmFXGKKLZM3Cd4X7g
-	ZUI3W6MlUWQExfB/gFYhEI3BhvCCV5nqkvDZLDoiw12A1vJQ6owkExHK+JPVkqSCk3on
-	/A6R9AKnV0QUhW9y+3+MhRsj4pUaNx6jvw0Xq/tKG9iz18Ij5sxKi1fXRA7FbqCfdT8a
-	/1Sw==
-X-Gm-Message-State: AKGB3mLFMKEa3laaIcFkHDnNqm/Lzxfh6xx84Jk6cOebN+FLOACdR2VM
-	sPuYFobdz71ZeiSKGSBEQIiYSgblv2+iluKGhm0=
-X-Google-Smtp-Source: ACJfBotpoyIWrWu6zqluV2ehnYpYDA8U6bWa8eXLfZ6gPd9KdS2lNWjuQ10FgXylYpE2diHBshJQMUmRRy2P0CfT8d8=
-X-Received: by 10.200.4.44 with SMTP id v44mr4214728qtg.80.1513679462676; Tue,
-	19 Dec 2017 02:31:02 -0800 (PST)
+	:message-id:subject:to;
+	bh=kWyA5I2JMDIKhY+dLaDz4F2/Gfvq27O5Ch4+e6QSGO0=;
+	b=ibiL/vFM0Y5TsppWfJauAU0NX+CsnxIke9ByMABmBI5ULaFLkhfkFiV7nBBQhO21b9
+	qGS2JclN4gMBsUNpDR3m9P89tdy7/jYU0ekCIDXadE6LztVIHpcTOarjSU80xz7IsU+Q
+	M4JyuzlRwNIfjXPBhG9S2R13W9wRPLSosCiQYcBoWI9hmALYESU4VSs3lnieERWeGjUB
+	iwQ7sCG8EkCg0tkQDjl6YbsWPbYtdAGxN6NzxDf7gp7srCsvv0jvekyHIU2Iry/wjh7K
+	r4lFzrh2JPL5bSLonUAOJcQNj3JTF6CsH/DkTkBYL3wu+xf3cYVI+WbhcohOPeI9VNN3
+	e5BA==
+X-Gm-Message-State: AKGB3mKYtzR/MSU8EKPC+cag3oRtkXK77HwXkFfrpmpQq/Eezd28bBbn
+	nlbkqgnLwZHU1QaEjG7lRVj3/zsOFggG8DWZXb8=
+X-Google-Smtp-Source: ACJfBotuS6Ji83M3PQwTdtob/NEIWVO3QdtXjX96j/3OUIB7IxHzKhx9/NlqcnvyNJ4boyup2Q5oO7mDL5QziSbj/vc=
+X-Received: by 10.159.247.134 with SMTP id e6mr2988735pls.279.1513685828534;
+	Tue, 19 Dec 2017 04:17:08 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.200.15.141 with HTTP; Tue, 19 Dec 2017 02:31:02 -0800 (PST)
-In-Reply-To: <CAJCDnYafdTDa6NR1hNJrepwcDaTWuwvP6KKLucQ3RZGZnQz8GQ@mail.gmail.com>
-References: <CAJCDnYYgN=nFYwOz5inC3W5jZojj1QdAG9ck90rXAiPZ1b0xCg@mail.gmail.com>
-	<CALw8SCV2M54g94qCYA2Xa7nVYCTOgzkzNkt6u7qefCdpwvVurw@mail.gmail.com>
-	<CAJCDnYafdTDa6NR1hNJrepwcDaTWuwvP6KKLucQ3RZGZnQz8GQ@mail.gmail.com>
-From: Mirza Krak <mirza.krak@gmail.com>
-Date: Tue, 19 Dec 2017 11:31:02 +0100
-Message-ID: <CALw8SCU0ze0LH46R-mSL7tSn=tSZbfUcAvzAxkBNaFZyvTrHsA@mail.gmail.com>
-To: =?UTF-8?Q?Marek_S=C5=82omiany?= <marekslomiany@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: wrong distro name in toolchain
+Received: by 10.100.138.69 with HTTP; Tue, 19 Dec 2017 04:17:08 -0800 (PST)
+In-Reply-To: <CAPb0b+OAp8Bu9GvqyQfa893viP=LwVrSFCdBak-5KZ8DhGm0Ew@mail.gmail.com>
+References: <CAPb0b+Oz5aKuCurvAdTu9PbRRtz=e17fczLucHfn4dEDcHTRow@mail.gmail.com>
+	<CAK18fxEjpoNyrCEQyZAk250OSmNimVWF=Y0UKZ235hQr8UGtoQ@mail.gmail.com>
+	<CAPb0b+OAp8Bu9GvqyQfa893viP=LwVrSFCdBak-5KZ8DhGm0Ew@mail.gmail.com>
+From: Sherif Omran <sherifomran2000@gmail.com>
+Date: Tue, 19 Dec 2017 13:17:08 +0100
+Message-ID: <CAPb0b+MTLdxt80ZbPr01gTCYdjDriXcYKtyT-qqiuyWnzzR48Q@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>,
+	Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] core-image-minimal vs rpi-hwup-image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,85 +74,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Dec 2017 10:31:04 -0000
+X-List-Received-Date: Tue, 19 Dec 2017 12:17:11 -0000
+Content-Type: multipart/alternative; boundary="089e082bf1201c872f0560b0722a"
+
+--089e082bf1201c872f0560b0722a
 Content-Type: text/plain; charset="UTF-8"
+
+hi Andrei,
+
+but when i do core-image-minimal and use the linux-firmware-bcm43430
+i get the following:
+configuring network interfaces : sucessfully initialized wpa_supplicant
+rfkill : cannot open rfkill control device
+could not read interface wlan0 flags: no such device
+WEXT: could not set interface wlan0 up.
+
+it looks like additional packages are mandatory
+
+thanks
+
+
+On Wed, Dec 13, 2017 at 3:38 PM, Sherif Omran <sherifomran2000@gmail.com>
+wrote:
+
+> to include it, I added
+> IMAGE_INSTALL += "linux-firmware-bcm43430"
+>
+> is there a bluetooth driver to be added as well?
+>
+> in raspberrzpi0-wifi.conf : the line SERIAL_CONSOLE is causing respawning
+> too fast. is it needed for bluetooth communication?
+>
+> thank you
+>
+> On Wed, Dec 13, 2017 at 12:54 PM, Andrei Gherzan <andrei@gherzan.ro>
+> wrote:
+>
+>> Hi,
+>> On Wed, Dec 13, 2017 at 6:12 AM, Sherif Omran <sherifomran2000@gmail.com>
+>> wrote:
+>>
+>>> hello guys,
+>>>
+>>> Core-image-minimal has 75 MB and boots in max 12 sec but lacks wifi
+>>> drivers.
+>>> rpi-hwup-image has 142.MB and boots in 18 sec.
+>>>
+>>> how to add wifi drivers to core-image-minimal?
+>>>
+>>
+>> All you need to do is include in core-image-minimal the package
+>> linux-firmware-bcm43430 .
+>>
+>> --
+>> Andrei Gherzan
+>>
+>
+>
+
+--089e082bf1201c872f0560b0722a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-2017-12-19 10:42 GMT+01:00 Marek S=C5=82omiany <marekslomiany@gmail.com>:
-> About mixing branches - I have recreated the problem on new location to
-> check that the problem persist. Here is new setup:
-> BB_VERSION           =3D "1.36.0"
-> BUILD_SYS            =3D "x86_64-linux"
-> NATIVELSBSTRING      =3D "universal"
-> TARGET_SYS           =3D "arm-poky-linux-gnueabi"
-> MACHINE              =3D "am335x-evm"
-> DISTRO               =3D "poky"
-> DISTRO_VERSION       =3D "2.4.1"
-> TUNE_FEATURES        =3D "arm armv7a vfp thumb neon callconvention-hard"
-> TARGET_FPU           =3D "hard"
-> meta                 =3D "rocko:abec40e5ebc6f1b804cf698e365737224a57c41d"
-> meta-oe              =3D "rocko:6e3fc5b8d904d06e3aa77e9ec9968ab37a798188"
-> meta-et              =3D "rocko:abec40e5ebc6f1b804cf698e365737224a57c41d"
-> meta-ti              =3D "master:8fcd2f60720acf46555b45a1a48ad1fa0c52b75a=
-"
-> meta-qt5             =3D "rocko:d87335a50a9dd35d890786edbd79b8953fdaa11a"
-> meta-poky
-> meta-yocto-bsp       =3D "rocko:abec40e5ebc6f1b804cf698e365737224a57c41d"
->
-> meta-poky is in rocko too - I don't know why it didn't show but I have
-> double checked it.
-> meta-ti does'nt have rocko, so it is in master.
->
-> This time, as I am using poky, after deploying and sourcing sdk I had to
-> copy ./sysroots/x86_64-pokysdk-linux/ to ./sysroots/x86_64-oesdk-linux/ s=
-o
-> it's basicly the same and it doesn't make difference if I build it with
-> "bitbake <image> -c populate_sdk" or "bitbake meta-toolchain-qt5" - resul=
-t
-> is the same (not counting that second option doesn't give me additional l=
-ibs
-> from my image).
-> Recipe with our own applications has same issue as on my previous setup.
-> As I have written - the problem is not in generated sdk that I use for
-> out-of-yocto build, but it is when I build my code within yocto with reci=
-pe
-> and image.
-> To answer your question about image - on my setup I have my own image
-> recipe, now on this test setup i used core-image-minimal with additional =
-qt
-> packages added via local.conf file.
->
-> To sum up: There are two problems: first is when using generated sdk - th=
-e
-> problem is that in sdk subdirectories there is x86_64-pokysdk-linux, but
-> cmake is looking for x86_64-oesdk-linux. This can by bypassed copying
-> *pokysdk* to *oesdk*.
-> second problem is when building from recipe - it looks similar, but I can=
-'t
-> find proper directories to try out solution which I just described in fir=
-st
-> problem.
->
-> I hope it is now clearer what my problem is.
+<div dir=3D"ltr"><div><div><div><div><div><div><div><div>hi Andrei,<br><br>=
+</div>but when i do core-image-minimal and use the linux-firmware-bcm43430<=
+br></div>i get the following:<br></div>configuring network interfaces : suc=
+essfully initialized wpa_supplicant<br></div>rfkill : cannot open rfkill co=
+ntrol device<br></div>could not read interface wlan0 flags: no such device<=
+br></div>WEXT: could not set interface wlan0 up.<br><br></div>it looks like=
+ additional packages are mandatory<br><br></div>thanks<br><div><div><br></d=
+iv></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On=
+ Wed, Dec 13, 2017 at 3:38 PM, Sherif Omran <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:sherifomran2000@gmail.com" target=3D"_blank">sherifomran2000@gma=
+il.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"=
+ltr"><div><div>to include it, I added <br>IMAGE_INSTALL +=3D &quot;linux-fi=
+rmware-bcm43430&quot; <br></div><br></div><div>is there a bluetooth driver =
+to be added as well?<br><br></div><div>in raspberrzpi0-wifi.conf : the line=
+ SERIAL_CONSOLE is causing respawning too fast. is it needed for bluetooth =
+communication?<br></div><div><br></div>thank you<br></div><div class=3D"HOE=
+nZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=3D"gmail_q=
+uote">On Wed, Dec 13, 2017 at 12:54 PM, Andrei Gherzan <span dir=3D"ltr">&l=
+t;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro<=
+/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi=
+,<br><div><span><div class=3D"gmail_extra"><div class=3D"gmail_quote">On We=
+d, Dec 13, 2017 at 6:12 AM, Sherif Omran <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:sherifomran2000@gmail.com" target=3D"_blank">sherifomran2000@gmail.co=
+m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div dir=3D"ltr"><div><div><div><div>hello guys,<br><br></div>Core-image-=
+minimal has 75 MB and boots in max 12 sec but lacks wifi drivers.<br></div>=
+rpi-hwup-image has 142.MB and boots in 18 sec.<br><br></div>how to add wifi=
+ drivers to core-image-minimal?<br></div></div></blockquote></div></div><di=
+v class=3D"gmail_extra"><br></div></span><div class=3D"gmail_extra">All you=
+ need to do is include in core-image-minimal the package linux-firmware-bcm=
+43430 .<br></div><div class=3D"gmail_extra"><br clear=3D"all"><div><div cla=
+ss=3D"m_-8841031750570009803m_-1643188493997472279gmail_signature"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div>--</div>Andrei Gherzan</div></div></div=
+></div></div></div></div></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
 
-Very much so :).
-
-Can you build other Qt applications without error, e.g "bitbake quitbattery=
-".
-
-If above works then you probably have some hardcoded path in your
-cmake files of your custom application.
-
-You could also "hack" the SDK name by adjusting the
-
-     SDK_VENDOR
-
-variable, but I believe that there are some assumptions somewhere that
-have a hard-coded name of "oesdk" which is wrong to make such
-assumptions.
-
---=20
-Med V=C3=A4nliga H=C3=A4lsningar / Best Regards
-
-Mirza Krak
-
+--089e082bf1201c872f0560b0722a--
