@@ -1,62 +1,56 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <matthias.schoepfer@identpro.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3D630E00D7F; Wed, 20 Dec 2017 02:23:01 -0800 (PST)
+	id 8EA67E00D7F; Wed, 20 Dec 2017 02:29:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.172 listed in list.dnswl.org]
+	*      [217.72.192.74 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BE27E00C0F
-	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 02:22:58 -0800 (PST)
-Received: by mail-io0-f172.google.com with SMTP id o2so16774980ioe.8
-	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 02:22:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+vmUPSF4iF5lhZbhMXXrTV+JpIXA0o2uZW/5FWssmaI=;
-	b=W/Yhi9S1It+PA1GXvy7jbD+kEmDQ4HIhax9ORcn1/2+YEvbIq6N2VTFqLkTXgdhJ28
-	Tqvs/xm1AOYrxf8JfyTREFZSlAoFZJJ0XQbr3B4JqKbjh4cSZtm5pcMROQ/PqCeTiP8A
-	EkiIgfef4JpNBLWm6Obow0s2WiHet4xds7VFzrv1pkktHLzrcIc5ZrW7PEl6Fli4XNat
-	6M8Ze1Rp8SArEiEqF8zLh/LiJq+U6fd33ctdfrD6M0xMQwnkKufaJgDwbxcq6Nlyn4sY
-	tkOObJjEWaGiZCt+QxW1C98QA3hYQY2u353A0KTQdkQEZR1ZdpAYUWyWI3EsMDvgqr1C
-	r2Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=+vmUPSF4iF5lhZbhMXXrTV+JpIXA0o2uZW/5FWssmaI=;
-	b=WXQg0VpHkY0MPuoEoQ6oS3kFGUQOzzcY6tOU44R8TzcGxl1+S/72iGPfDnsTQ4jfis
-	CpelsAsI44o40tjrDqnzJfgsRj3WeCIe7oo6xVGixay5vjKDsJjzrNaTSihXQ9VMbw2Y
-	gysJm6TYq0hkzglF/f5VkpHM8ooaKN1iqiTO4IKpWxEK37Y8PQzGkxL8Vy9qB4K9EL1Y
-	liP8si11Ql3LHsK13TlHPlaac95CnlDj6vRFo/W2V0WoxBLzQL9XWhhGJUzUranFniec
-	KCX3fGcJs9N7TW6tNzbQMIKzTUz6mpSCdapnhtO0ube4ya8dsvuYGCJg0TpWsDyVRdX9
-	H92Q==
-X-Gm-Message-State: AKGB3mJqYqSAxmz1WagCrL0MEWexCABBb98V1l10uvM/CTA8/kROkBcF
-	copySNwV9pXC/9cxBLcZ7hk0qNGSDxJPlv7RcHW3wQ==
-X-Google-Smtp-Source: ACJfBotTtDNfpMgT2HzaHr3C4GvZgTS6f7cfOE6cp383rppUkC5WUcXJURT9k9buk3H5t8XE2RVUlVMBTRSYwvn9ghQ=
-X-Received: by 10.107.83.19 with SMTP id h19mr7703399iob.208.1513765378508;
-	Wed, 20 Dec 2017 02:22:58 -0800 (PST)
+X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
+	Wed, 20 Dec 2017 02:29:00 PST
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 664E9E00C0F
+	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 02:28:59 -0800 (PST)
+Received: from SBS-IDENTPRO.intranet.identpro.net ([176.95.137.65]) by
+	mrelayeu.kundenserver.de (mreue105 [212.227.15.183]) with ESMTPSA
+	(Nemesis) id 0LqU2T-1ewncb1XP7-00e28N for <yocto@yoctoproject.org>;
+	Wed, 20 Dec 2017 11:23:56 +0100
+Received: from SBS-IDENTPRO.intranet.identpro.net ([192.168.27.6]) by
+	SBS-IDENTPRO.intranet.identpro.net ([192.168.27.6]) with mapi id
+	14.01.0438.000; Wed, 20 Dec 2017 11:23:55 +0100
+From: =?Windows-1252?Q?Matthias_Sch=F6pfer?= <matthias.schoepfer@identpro.de>
+To: Yocto Project <yocto@yoctoproject.org>
+Thread-Topic: libgfortran or cross compiling a fortran application
+Thread-Index: AdN5fKLYee7rnJs5SmOgIVemj5BdSA==
+Date: Wed, 20 Dec 2017 10:23:54 +0000
+Message-ID: <C44683C49AD51C4AB28DA746E48E3587F5D7A2@SBS-IDENTPRO.intranet.identpro.net>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [176.95.137.65]
 MIME-Version: 1.0
-Received: by 10.107.141.20 with HTTP; Wed, 20 Dec 2017 02:22:37 -0800 (PST)
-In-Reply-To: <CABLseQ6EPUVz6=UUQpycQfushowDLeKBYyCNeN+DXkehM-NzZQ@mail.gmail.com>
-References: <CABLseQ6EPUVz6=UUQpycQfushowDLeKBYyCNeN+DXkehM-NzZQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 20 Dec 2017 10:22:37 +0000
-Message-ID: <CAJTo0LaTbUbDi_+X8=14v7ZdqE8OG4YSYCcUGXAcKMPoOBm0og@mail.gmail.com>
-To: Barry Grussling <barry@grussling.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Rocko and Circular Dependencies
+X-Provags-ID: V03:K0:9AdVrk1cDAhjMPZ6S5qihosNdPbTb0d8BPHGmc70IwRUkbJpUpt
+	oGkQLwUaRnMC/GOJP7GwUQKVhUr2UQCyuEKkH+yE6WGkEmbOzeRavcxOPVC0qEldjeNGR+3
+	aCLOB91yWAIPbHFz6PpxZv9iwxWjSiySEcnj+ZJteYq2bKN9ZwIIgRgMmotRLCMfPzKmmdQ
+	/LVi/bnbctCLs752RqNAw==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:eh5ebT9nyo4=:gn9YHMx86TQ9u5K+LL07dW
+	uNCvYhrzRiq3EoQS3BghS3kFko2pH9tG0h5if14aPgl3dp7HyeZpIYT+YId2/cTyb/qj5sFdl
+	+w7jkKdiZWz1VEWRy1onnczLNP/JNGL43bCTIvziYPgkS2A91kWQ7PFIsc8WadiDmdEAggfPd
+	WM5W2hv7Z0FiPcKjaTQE+J1Tt8Rh/xxHMEEOgWdgiYgmYaQ21nznl0WGB4qLpsUXzJyX1Z0d9
+	AdN8egt7JsDeNe3oxoubsGQV3+dxlzWCSr4QcEA+subzx1WHd3F5J5+EXmCTLQrIRmoNdnoHi
+	hhiOfraqJVybWcnlkZNXY+mPqsnLGeWH3lgDbBTsud4vmnx/dlVfz5v1WlqJT5xFKPbJWQraG
+	xbJr/42UlJQyPhilefdQBRTQ2NRZFzejy9n5vlAdzB9mfZqFslQSCglGSTxGKL81RIk3nfo0j
+	Et8t6ADIWmZSr3eHCA0hxmxrPP7Hb+3rfRLMtn1WszTEdu+G1+baddsX+01ldO3StM8xdPzwb
+	FrnZq+j8xf1pbkd/EvESwO71qjyvNk78LIhljKnlOECt9saWvHLyn0Ip6qnhVUUm5QvtaCFbF
+	ammETabgUJz3rgPfqKoxAJW/xtrZQ1yL7eQAHeKxzzGyS+ZoG/hMt3TDgr8aTCqNVj9nuCU3c
+	nyPcZDLVm6KLGzrj1XvAEGkGHmWSR+z1dx/3HfwL2WO+P/qiFnIxgEVsRG5AKanXvRVL2k6FK
+	LLEguWWnOHVGvoz0nnpPFc9Zy3ZTxHkGaHJCU9Hzr4gFrHNIna5vX9VV39o=
+Subject: libgfortran or cross compiling a fortran application
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,475 +62,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Dec 2017 10:23:01 -0000
-Content-Type: multipart/alternative; boundary="089e08265ff8a8e2f80560c2f7e1"
-
---089e08265ff8a8e2f80560c2f7e1
-Content-Type: text/plain; charset="UTF-8"
-
-Nobody else has seen this as far as I'm aware, and the autobuilder doesn't
-see it.
-
-Is that a pure oe-core/bitbake or Poky, or do you have custom layers?  Can
-you replicate with a stock configuration?
-
-On 20 December 2017 at 03:02, Barry Grussling <barry@grussling.com> wrote:
-
-> Hello all,
->
-> I am trying to move one of my builds from Krogoth to Rocko.  I am
-> attempting to build
-> on 1c61ba0a3f bitbake: tinfoil: Ensure we clean up loggers.
->
-> Generally, I can start the first build fine.  Unfortunately, some of
-> my code/recipes will usually fail
-> to build due to the new compilers.  When I re-run bitbake to continue
-> the build, most of
-> the time I experience a build failure of circular dependencies such as:
->
-> Dependency loop #1 found:
->   Task /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:
-> do_package
-> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
-> 'gcc-runtime_7.2.bb:do_packagedata', 'glibc_2.26.bb:do_packagedata',
-> 'rpm_git.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_install',
-> 'dpkg_1.18.24.bb:do_packagedata',
-> 'libtool-cross_2.4.6.bb:do_packagedata'])
->   Task /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:
-> do_packagedata
-> (dependent Tasks ['ncurses_6.0+20170715.bb:do_package'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_package
-> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
-> 'gcc-runtime_7.2.bb:do_packagedata', 'perl_5.24.1.bb:do_packagedata',
-> 'glibc_2.26.bb:do_packagedata', 'rpm_git.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_packagedata',
-> 'bzip2_1.0.6.bb:do_packagedata', 'dpkg_1.18.24.bb:do_install',
-> 'zlib_1.2.11.bb:do_packagedata',
-> 'libtool-cross_2.4.6.bb:do_packagedata',
-> 'xz_5.2.3.bb:do_packagedata'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_packagedata
-> (dependent Tasks ['dpkg_1.18.24.bb:do_package'])
->
-> Dependency loop #2 found:
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_package
-> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
-> 'gcc-runtime_7.2.bb:do_packagedata', 'perl_5.24.1.bb:do_packagedata',
-> 'glibc_2.26.bb:do_packagedata', 'rpm_git.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_packagedata',
-> 'bzip2_1.0.6.bb:do_packagedata', 'dpkg_1.18.24.bb:do_install',
-> 'zlib_1.2.11.bb:do_packagedata',
-> 'libtool-cross_2.4.6.bb:do_packagedata',
-> 'xz_5.2.3.bb:do_packagedata'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_packagedata
-> (dependent Tasks ['dpkg_1.18.24.bb:do_package'])
->   Task /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:
-> do_package
-> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
-> 'gcc-runtime_7.2.bb:do_packagedata', 'glibc_2.26.bb:do_packagedata',
-> 'rpm_git.bb:do_populate_sysroot', 'dpkg_1.18.24.bb:do_packagedata',
-> 'libtool-cross_2.4.6.bb:do_packagedata', 'bzip2_1.0.6.bb:do_install'])
->   Task /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:
-> do_packagedata
-> (dependent Tasks ['bzip2_1.0.6.bb:do_package'])
->
-> Dependency loop #3 found:
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_compile
-> (dependent Tasks ['dpkg_1.18.24.bb:do_configure'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_install
-> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
-> 'dpkg_1.18.24.bb:do_compile'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_populate_sysroot
-> (dependent Tasks ['dpkg_1.18.24.bb:do_install',
-> 'binutils-cross_2.29.bb:do_populate_sysroot'])
->   Task /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:
-> do_prepare_recipe_sysroot
-> (dependent Tasks ['libtool-cross_2.4.6.bb:do_populate_sysroot',
-> 'glibc_2.26.bb:do_populate_sysroot', 'bzip2_1.0.6.bb:do_fetch',
-> 'libtool-native_2.4.6.bb:do_populate_sysroot',
-> 'dpkg_1.18.24.bb:do_populate_sysroot',
-> 'gcc-runtime_7.2.bb:do_populate_sysroot',
-> 'gnu-config_git.bb:do_populate_sysroot',
-> 'gcc-cross_7.2.bb:do_populate_sysroot',
-> 'automake_1.15.1.bb:do_populate_sysroot',
-> 'autoconf_2.69.bb:do_populate_sysroot'])
->   Task /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:
-> do_configure
-> (dependent Tasks ['bzip2_1.0.6.bb:do_patch',
-> 'bzip2_1.0.6.bb:do_prepare_recipe_sysroot'])
->   Task /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:
-> do_compile
-> (dependent Tasks ['bzip2_1.0.6.bb:do_configure'])
->   Task /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:
-> do_install
-> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
-> 'bzip2_1.0.6.bb:do_compile'])
->   Task /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:
-> do_populate_sysroot
-> (dependent Tasks ['binutils-cross_2.29.bb:do_populate_sysroot',
-> 'bzip2_1.0.6.bb:do_install'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_prepare_recipe_sysroot
-> (dependent Tasks ['libtool-cross_2.4.6.bb:do_populate_sysroot',
-> 'bzip2_1.0.6.bb:do_populate_sysroot',
-> 'glibc_2.26.bb:do_populate_sysroot',
-> 'libtool-native_2.4.6.bb:do_populate_sysroot',
-> 'dpkg_1.18.24.bb:do_fetch', 'perl_5.24.1.bb:do_populate_sysroot',
-> 'gettext_0.19.8.1.bb:do_populate_sysroot',
-> 'pkgconfig_git.bb:do_populate_sysroot',
-> 'perl-native_5.24.1.bb:do_populate_sysroot',
-> 'gcc-runtime_7.2.bb:do_populate_sysroot',
-> 'xz_5.2.3.bb:do_populate_sysroot',
-> 'systemd-systemctl-native.bb:do_populate_sysroot',
-> 'gnu-config_git.bb:do_populate_sysroot',
-> 'zlib_1.2.11.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_populate_sysroot',
-> 'gcc-cross_7.2.bb:do_populate_sysroot',
-> 'automake_1.15.1.bb:do_populate_sysroot',
-> 'autoconf_2.69.bb:do_populate_sysroot'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_configure
-> (dependent Tasks ['dpkg_1.18.24.bb:do_prepare_recipe_sysroot',
-> 'dpkg_1.18.24.bb:do_patch'])
->
-> Dependency loop #4 found:
->   Task /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:
-> do_compile
-> (dependent Tasks ['ncurses_6.0+20170715.bb:do_configure'])
->   Task /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:
-> do_install
-> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_compile'])
->   Task /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:
-> do_populate_sysroot
-> (dependent Tasks ['binutils-cross_2.29.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_install'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_prepare_recipe_sysroot
-> (dependent Tasks ['libtool-cross_2.4.6.bb:do_populate_sysroot',
-> 'bzip2_1.0.6.bb:do_populate_sysroot',
-> 'glibc_2.26.bb:do_populate_sysroot',
-> 'libtool-native_2.4.6.bb:do_populate_sysroot',
-> 'dpkg_1.18.24.bb:do_fetch', 'perl_5.24.1.bb:do_populate_sysroot',
-> 'gettext_0.19.8.1.bb:do_populate_sysroot',
-> 'pkgconfig_git.bb:do_populate_sysroot',
-> 'perl-native_5.24.1.bb:do_populate_sysroot',
-> 'gcc-runtime_7.2.bb:do_populate_sysroot',
-> 'xz_5.2.3.bb:do_populate_sysroot',
-> 'systemd-systemctl-native.bb:do_populate_sysroot',
-> 'gnu-config_git.bb:do_populate_sysroot',
-> 'zlib_1.2.11.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_populate_sysroot',
-> 'gcc-cross_7.2.bb:do_populate_sysroot',
-> 'automake_1.15.1.bb:do_populate_sysroot',
-> 'autoconf_2.69.bb:do_populate_sysroot'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_configure
-> (dependent Tasks ['dpkg_1.18.24.bb:do_prepare_recipe_sysroot',
-> 'dpkg_1.18.24.bb:do_patch'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_compile
-> (dependent Tasks ['dpkg_1.18.24.bb:do_configure'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_install
-> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
-> 'dpkg_1.18.24.bb:do_compile'])
->   Task /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:
-> do_populate_sysroot
-> (dependent Tasks ['dpkg_1.18.24.bb:do_install',
-> 'binutils-cross_2.29.bb:do_populate_sysroot'])
->   Task /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:
-> do_prepare_recipe_sysroot
-> (dependent Tasks ['libtool-cross_2.4.6.bb:do_populate_sysroot',
-> 'glibc_2.26.bb:do_populate_sysroot',
-> 'pkgconfig_git.bb:do_populate_sysroot',
-> 'libtool-native_2.4.6.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_fetch',
-> 'dpkg_1.18.24.bb:do_populate_sysroot',
-> 'gcc-runtime_7.2.bb:do_populate_sysroot',
-> 'ncurses_6.0+20170715.bb:do_populate_sysroot',
-> 'gnu-config_git.bb:do_populate_sysroot',
-> 'gcc-cross_7.2.bb:do_populate_sysroot',
-> 'automake_1.15.1.bb:do_populate_sysroot',
-> 'autoconf_2.69.bb:do_populate_sysroot'])
->   Task /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:
-> do_configure
-> (dependent Tasks ['ncurses_6.0+20170715.bb:do_prepare_recipe_sysroot',
-> 'ncurses_6.0+20170715.bb:do_patch'])
->
-> After hitting this state, multiple re-invocations of the bitbake will
-> all fail with the same type of errors.  If I clean all state
-> and remove the tmp folder and start again, the build will usually work
-> (until I hit my next compilation issue).  Needless to say, this
-> gets old fast.  I am hitting this style of issue regardless of the
-> value of PACKAGE_CLASSES.
->
-> I _never_ had issues with circular dependencies in krogoth.  Is anyone
-> else hitting this?  Any caveats to be aware of?
->
-> Thanks,
->
-> Barry
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---089e08265ff8a8e2f80560c2f7e1
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Wed, 20 Dec 2017 10:29:01 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Nobody else has seen this as far as I&#39;m aware, and the=
- autobuilder doesn&#39;t see it.<div><br></div><div>Is that a pure oe-core/=
-bitbake or Poky, or do you have custom layers?=C2=A0 Can you replicate with=
- a stock configuration?=C2=A0</div></div><div class=3D"gmail_extra"><br><di=
-v class=3D"gmail_quote">On 20 December 2017 at 03:02, Barry Grussling <span=
- dir=3D"ltr">&lt;<a href=3D"mailto:barry@grussling.com" target=3D"_blank">b=
-arry@grussling.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-Hello all,<br>
-<br>
-I am trying to move one of my builds from Krogoth to Rocko.=C2=A0 I am<br>
-attempting to build<br>
-on 1c61ba0a3f bitbake: tinfoil: Ensure we clean up loggers.<br>
-<br>
-Generally, I can start the first build fine.=C2=A0 Unfortunately, some of<b=
-r>
-my code/recipes will usually fail<br>
-to build due to the new compilers.=C2=A0 When I re-run bitbake to continue<=
-br>
-the build, most of<br>
-the time I experience a build failure of circular dependencies such as:<br>
-<br>
-Dependency loop #1 found:<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>core/ncurses/ncurses_6.0+<wbr>=
-20170715.bb:do_package<br>
-(dependent Tasks [&#39;pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;gcc-runtime_7.2.bb:do_<wbr>packagedata&#39;, &#39;glibc_2.26.bb:do_pac=
-kagedata&#39;<wbr>,<br>
-&#39;rpm_git.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>install&#39;,<br>
-&#39;dpkg_1.18.24.bb:do_<wbr>packagedata&#39;,<br>
-&#39;libtool-cross_2.4.6.bb:do_<wbr>packagedata&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>core/ncurses/ncurses_6.0+<wbr>=
-20170715.bb:do_packagedata<br>
-(dependent Tasks [&#39;ncurses_6.0+20170715.bb:do_<wbr>package&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_package<br>
-(dependent Tasks [&#39;pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;gcc-runtime_7.2.bb:do_<wbr>packagedata&#39;, &#39;perl_5.24.1.bb:do_<w=
-br>packagedata&#39;,<br>
-&#39;glibc_2.26.bb:do_packagedata&#39;<wbr>, &#39;rpm_git.bb:do_populate_<w=
-br>sysroot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>packagedata&#39;,<br>
-&#39;bzip2_1.0.6.bb:do_<wbr>packagedata&#39;, &#39;dpkg_1.18.24.bb:do_insta=
-ll&#39;,<br>
-&#39;zlib_1.2.11.bb:do_<wbr>packagedata&#39;,<br>
-&#39;libtool-cross_2.4.6.bb:do_<wbr>packagedata&#39;,<br>
-&#39;xz_5.2.3.bb:do_packagedata&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_packagedata<br>
-(dependent Tasks [&#39;dpkg_1.18.24.bb:do_package&#39;]<wbr>)<br>
-<br>
-Dependency loop #2 found:<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_package<br>
-(dependent Tasks [&#39;pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;gcc-runtime_7.2.bb:do_<wbr>packagedata&#39;, &#39;perl_5.24.1.bb:do_<w=
-br>packagedata&#39;,<br>
-&#39;glibc_2.26.bb:do_packagedata&#39;<wbr>, &#39;rpm_git.bb:do_populate_<w=
-br>sysroot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>packagedata&#39;,<br>
-&#39;bzip2_1.0.6.bb:do_<wbr>packagedata&#39;, &#39;dpkg_1.18.24.bb:do_insta=
-ll&#39;,<br>
-&#39;zlib_1.2.11.bb:do_<wbr>packagedata&#39;,<br>
-&#39;libtool-cross_2.4.6.bb:do_<wbr>packagedata&#39;,<br>
-&#39;xz_5.2.3.bb:do_packagedata&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_packagedata<br>
-(dependent Tasks [&#39;dpkg_1.18.24.bb:do_package&#39;]<wbr>)<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>extended/bzip2/<a href=3D"http=
-://bzip2_1.0.6.bb">bzip2_1.0.6.bb</a>:<wbr>do_package<br>
-(dependent Tasks [&#39;pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;gcc-runtime_7.2.bb:do_<wbr>packagedata&#39;, &#39;glibc_2.26.bb:do_pac=
-kagedata&#39;<wbr>,<br>
-&#39;rpm_git.bb:do_populate_<wbr>sysroot&#39;, &#39;dpkg_1.18.24.bb:do_<wbr=
->packagedata&#39;,<br>
-&#39;libtool-cross_2.4.6.bb:do_<wbr>packagedata&#39;, &#39;bzip2_1.0.6.bb:d=
-o_install&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>extended/bzip2/<a href=3D"http=
-://bzip2_1.0.6.bb">bzip2_1.0.6.bb</a>:<wbr>do_packagedata<br>
-(dependent Tasks [&#39;bzip2_1.0.6.bb:do_package&#39;])<br>
-<br>
-Dependency loop #3 found:<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_compile<br>
-(dependent Tasks [&#39;dpkg_1.18.24.bb:do_<wbr>configure&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_install<br>
-(dependent Tasks [&#39;pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;dpkg_1.18.24.bb:do_compile&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_populate_sysroot<br>
-(dependent Tasks [&#39;dpkg_1.18.24.bb:do_install&#39;,<br>
-&#39;binutils-cross_2.29.bb:do_<wbr>populate_sysroot&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>extended/bzip2/<a href=3D"http=
-://bzip2_1.0.6.bb">bzip2_1.0.6.bb</a>:<wbr>do_prepare_recipe_sysroot<br>
-(dependent Tasks [&#39;libtool-cross_2.4.6.bb:do_<wbr>populate_sysroot&#39;=
-,<br>
-&#39;glibc_2.26.bb:do_populate_<wbr>sysroot&#39;, &#39;bzip2_1.0.6.bb:do_fe=
-tch&#39;,<br>
-&#39;libtool-native_2.4.6.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;dpkg_1.18.24.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;gcc-runtime_7.2.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;gnu-config_git.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;gcc-cross_7.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;automake_1.15.1.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;autoconf_2.69.bb:do_populate_<wbr>sysroot&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>extended/bzip2/<a href=3D"http=
-://bzip2_1.0.6.bb">bzip2_1.0.6.bb</a>:<wbr>do_configure<br>
-(dependent Tasks [&#39;bzip2_1.0.6.bb:do_patch&#39;,<br>
-&#39;bzip2_1.0.6.bb:do_prepare_<wbr>recipe_sysroot&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>extended/bzip2/<a href=3D"http=
-://bzip2_1.0.6.bb">bzip2_1.0.6.bb</a>:<wbr>do_compile<br>
-(dependent Tasks [&#39;bzip2_1.0.6.bb:do_configure&#39;<wbr>])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>extended/bzip2/<a href=3D"http=
-://bzip2_1.0.6.bb">bzip2_1.0.6.bb</a>:<wbr>do_install<br>
-(dependent Tasks [&#39;pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;bzip2_1.0.6.bb:do_compile&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>extended/bzip2/<a href=3D"http=
-://bzip2_1.0.6.bb">bzip2_1.0.6.bb</a>:<wbr>do_populate_sysroot<br>
-(dependent Tasks [&#39;binutils-cross_2.29.bb:do_<wbr>populate_sysroot&#39;=
-,<br>
-&#39;bzip2_1.0.6.bb:do_install&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_prepare_recipe_sysroot<br>
-(dependent Tasks [&#39;libtool-cross_2.4.6.bb:do_<wbr>populate_sysroot&#39;=
-,<br>
-&#39;bzip2_1.0.6.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;glibc_2.26.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;libtool-native_2.4.6.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;dpkg_1.18.24.bb:do_fetch&#39;, &#39;perl_5.24.1.bb:do_populate_<wbr>sy=
-sroot&#39;,<br>
-&#39;gettext_0.19.8.1.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;pkgconfig_git.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;perl-native_5.24.1.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;gcc-runtime_7.2.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;xz_5.2.3.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;systemd-systemctl-native.bb:d<wbr>o_populate_sysroot&#39;,<br>
-&#39;gnu-config_git.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;zlib_1.2.11.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;gcc-cross_7.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;automake_1.15.1.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;autoconf_2.69.bb:do_populate_<wbr>sysroot&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_configure<br>
-(dependent Tasks [&#39;dpkg_1.18.24.bb:do_prepare_<wbr>recipe_sysroot&#39;,=
-<br>
-&#39;dpkg_1.18.24.bb:do_patch&#39;])<br>
-<br>
-Dependency loop #4 found:<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>core/ncurses/ncurses_6.0+<wbr>=
-20170715.bb:do_compile<br>
-(dependent Tasks [&#39;ncurses_6.0+20170715.bb:do_<wbr>configure&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>core/ncurses/ncurses_6.0+<wbr>=
-20170715.bb:do_install<br>
-(dependent Tasks [&#39;pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>compile&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>core/ncurses/ncurses_6.0+<wbr>=
-20170715.bb:do_populate_<wbr>sysroot<br>
-(dependent Tasks [&#39;binutils-cross_2.29.bb:do_<wbr>populate_sysroot&#39;=
-,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>install&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_prepare_recipe_sysroot<br>
-(dependent Tasks [&#39;libtool-cross_2.4.6.bb:do_<wbr>populate_sysroot&#39;=
-,<br>
-&#39;bzip2_1.0.6.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;glibc_2.26.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;libtool-native_2.4.6.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;dpkg_1.18.24.bb:do_fetch&#39;, &#39;perl_5.24.1.bb:do_populate_<wbr>sy=
-sroot&#39;,<br>
-&#39;gettext_0.19.8.1.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;pkgconfig_git.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;perl-native_5.24.1.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;gcc-runtime_7.2.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;xz_5.2.3.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;systemd-systemctl-native.bb:d<wbr>o_populate_sysroot&#39;,<br>
-&#39;gnu-config_git.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;zlib_1.2.11.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;gcc-cross_7.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;automake_1.15.1.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;autoconf_2.69.bb:do_populate_<wbr>sysroot&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_configure<br>
-(dependent Tasks [&#39;dpkg_1.18.24.bb:do_prepare_<wbr>recipe_sysroot&#39;,=
-<br>
-&#39;dpkg_1.18.24.bb:do_patch&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_compile<br>
-(dependent Tasks [&#39;dpkg_1.18.24.bb:do_<wbr>configure&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_install<br>
-(dependent Tasks [&#39;pseudo_1.8.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;dpkg_1.18.24.bb:do_compile&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>devtools/dpkg/<a href=3D"http:=
-//dpkg_1.18.24.bb">dpkg_1.18.24.bb</a>:<wbr>do_populate_sysroot<br>
-(dependent Tasks [&#39;dpkg_1.18.24.bb:do_install&#39;,<br>
-&#39;binutils-cross_2.29.bb:do_<wbr>populate_sysroot&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>core/ncurses/ncurses_6.0+<wbr>=
-20170715.bb:do_prepare_recipe_<wbr>sysroot<br>
-(dependent Tasks [&#39;libtool-cross_2.4.6.bb:do_<wbr>populate_sysroot&#39;=
-,<br>
-&#39;glibc_2.26.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;pkgconfig_git.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;libtool-native_2.4.6.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>fetch&#39;,<br>
-&#39;dpkg_1.18.24.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;gcc-runtime_7.2.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;gnu-config_git.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;gcc-cross_7.2.bb:do_populate_<wbr>sysroot&#39;,<br>
-&#39;automake_1.15.1.bb:do_<wbr>populate_sysroot&#39;,<br>
-&#39;autoconf_2.69.bb:do_populate_<wbr>sysroot&#39;])<br>
-=C2=A0 Task /srv/BLD/yocto/meta/recipes-<wbr>core/ncurses/ncurses_6.0+<wbr>=
-20170715.bb:do_configure<br>
-(dependent Tasks [&#39;ncurses_6.0+20170715.bb:do_<wbr>prepare_recipe_sysro=
-ot&#39;,<br>
-&#39;ncurses_6.0+20170715.bb:do_<wbr>patch&#39;])<br>
-<br>
-After hitting this state, multiple re-invocations of the bitbake will<br>
-all fail with the same type of errors.=C2=A0 If I clean all state<br>
-and remove the tmp folder and start again, the build will usually work<br>
-(until I hit my next compilation issue).=C2=A0 Needless to say, this<br>
-gets old fast.=C2=A0 I am hitting this style of issue regardless of the<br>
-value of PACKAGE_CLASSES.<br>
-<br>
-I _never_ had issues with circular dependencies in krogoth.=C2=A0 Is anyone=
-<br>
-else hitting this?=C2=A0 Any caveats to be aware of?<br>
-<br>
-Thanks,<br>
-<br>
-Barry<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br></div>
+Hi there,=0A=
+=0A=
+I am trying to cross compile a fortran library (lapack), which fails=0A=
+because it cannot find libgfortran.=0A=
+=0A=
+So I am trying to build libgfortran. I added:=0A=
+=0A=
+FORTRAN_forcevariable =3D ",fortran"=0A=
+=0A=
+to enable support for fortran cross compile in local conf. Anyhow,=0A=
+bitbake libgfortran still fails:=0A=
+=0A=
+| /bin/sh ./libtool  --tag=3DCC   --mode=3Dcompile x86_64-idp-linux-gcc=0A=
+-m64 -march=3Dcore2 -mtune=3Dcore2 -msse3 -mfpmath=3Dsse=0A=
+--sysroot=3D/home/mschoepf/identpro/yocto/ros-devel/tmp/work/core2-64-idp-l=
+inux/libgfortran/7.2.0-r0/recipe-sysroot=0A=
+-DHAVE_CONFIG_H -I.=0A=
+-I../../../../../../../../work-shared/gcc-7.2.0-r0/gcc-7.2.0/libgfortran=0A=
+ -iquote../../../../../../../../work-shared/gcc-7.2.0-r0/gcc-7.2.0/libgfort=
+ran/io -I../../../../../../../../work-shared/gcc-7.2.0-r0/gcc-7.2.0/libgfor=
+tran/../gcc -I../../../../../../../../work-shared/gcc-7.2.0-r0/gcc-7.2.0/li=
+bgfortran/../gcc/config  -I/home/mschoepf/identpro/yocto/ros-devel/tmp/work=
+/core2-64-idp-linux/libgfortran/7.2.0-r0/gcc-7.2.0/build.x86_64-idp-linux.x=
+86_64-idp-linux/x86_64-idp-linux/libgfortran/../.././gcc -I../../../../../.=
+./../../work-shared/gcc-7.2.0-r0/gcc-7.2.0/libgfortran/../libgcc -I/home/ms=
+choepf/identpro/yocto/ros-devel/tmp/work/core2-64-idp-linux/libgfortran/7.2=
+.0-r0/gcc-7.2.0/build.x86_64-idp-linux.x86_64-idp-linux/x86_64-idp-linux/li=
+bgfortran/../libgcc -I../../../../../../../../work-shared/gcc-7.2.0-r0/gcc-=
+7.2.0/libgfortran/../libbacktrace -I/home/mschoepf/identpro/yocto/ros-devel=
+/tmp/work/core2-64-idp-linux/libgfortran/7.2.0-r0/gcc-7.2.0/build.x86_64-id=
+p-linux.x86_64-idp-linux/x86_64-idp-linux/libgfortran/../libbacktrace -I../=
+libbacktrace  -std=3Dgnu11 -Wall -Wstrict-prototypes -Wmissing-prototypes -=
+Wold-style-definition -Wextra -Wwrite-strings -Werror=3Dimplicit-function-d=
+eclaration -Werror=3Dvla -fcx-fortran-rules -ffunction-sections -fdata-sect=
+ions   -std=3Dgnu11  -O2 -pipe -g -feliminate-unused-debug-types -fdebug-pr=
+efix-map=3D/home/mschoepf/identpro/yocto/ros-devel/tmp/work/core2-64-idp-li=
+nux/libgfortran/7.2.0-r0=3D/usr/src/debug/libgfortran/7.2.0-r0 -fdebug-pref=
+ix-map=3D/home/mschoepf/identpro/yocto/ros-devel/tmp/work/core2-64-idp-linu=
+x/libgfortran/7.2.0-r0/recipe-sysroot-native=3D -fdebug-prefix-map=3D/home/=
+mschoepf/identpro/yocto/ros-devel/tmp/work/core2-64-idp-linux/libgfortran/7=
+.2.0-r0/recipe-sysroot=3D  -Wunknown-pragmas -c -o main.lo `test -f 'runtim=
+e/main.c' || echo '../../../../../../../../work-shared/gcc-7.2.0-r0/gcc-7.2=
+.0/libgfortran/'`runtime/main.c=0A=
+|=0A=
+../../../../../../../../work-shared/gcc-7.2.0-r0/gcc-7.2.0/libgfortran/runt=
+ime/backtrace.c:36:10:=0A=
+fatal error: backtrace-supported.h: No such file or directory=0A=
+|  #include "backtrace-supported.h"=0A=
+|           ^~~~~~~~~~~~~~~~~~~~~~~=0A=
+| compilation terminated.=0A=
+=0A=
+Any help, hints and wild guesses are welcome.=0A=
+=0A=
+Regards,=0A=
+=0A=
+	Matthias=0A=
+=0A=
+-- =0A=
+Dr.-Ing. Matthias Sch=F6pfer=0A=
+=0A=
+Softwareentwicklung=0A=
+=0A=
+____________________________________=0A=
+=0A=
+IdentPro GmbH=0A=
+Camp-Spich-Str. 4=0A=
+53842 Troisdorf=0A=
+=0A=
+Tel:   +49 (0)2241 / 866 392 46=0A=
+Fax:   +49 (0)2241 / 866 392 99=0A=
+eMail: matthias.schoepfer@identpro.de=0A=
+=0A=
+http://www.identpro.de=0A=
+=0A=
+identplus=AE =96 Das 3D Staplerleitsystem mit enormen Sparpotenzial: z. B.=
+=0A=
+=FCber 67.000 EUR pro Jahr bei 500 Transporten t=E4glich! Berechnen Sie das=
+=0A=
+Einsparpotenzial f=FCr Ihr Lager mit dem identplus=AE Potenzialrechner.=0A=
+=0A=
+identplus=AE live erleben: Vereinbaren Sie jetzt einen Termin!=0A=
+=0A=
+---------------------------------=0A=
+IdentPro GmbH=0A=
+Member of Dr. Wack Holding GmbH & Co.KG=0A=
+Sitz und Registergericht: St. Augustin, HRB 9770 Siegburg=0A=
+Gesch=E4ftsf=FChrer: Michael Wack=0A=
+Umsatzsteuer-ID-Nr.: DE 254 824 945=0A=
+WEEE-Reg.-Nr. DE 79026890=0A=
 
---089e08265ff8a8e2f80560c2f7e1--
