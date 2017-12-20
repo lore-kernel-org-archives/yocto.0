@@ -1,70 +1,66 @@
 Return-Path: <patrick.ohly@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 837B4E00D7C; Wed, 20 Dec 2017 07:50:38 -0800 (PST)
+	id D14ECE00DD2; Wed, 20 Dec 2017 07:51:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,LONGWORDS,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.174 listed in list.dnswl.org]
+	*      [209.85.128.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f174.google.com (mail-wr0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5496BE00D7C
-	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 07:50:37 -0800 (PST)
-Received: by mail-wr0-f174.google.com with SMTP id l41so10485992wre.11
-	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 07:50:37 -0800 (PST)
+	*  2.0 LONGWORDS Long string of long words
+Received: from mail-wr0-f182.google.com (mail-wr0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B041CE00DD2
+	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 07:51:18 -0800 (PST)
+Received: by mail-wr0-f182.google.com with SMTP id w68so10233319wrc.10
+	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 07:51:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:organization:mime-version:content-transfer-encoding;
-	bh=s2roeO8tLJj4pYuyya1kAyiZpXm0fPDzYkZQ4lbwZ1E=;
-	b=RXwIjGH66yJAVqYomu7I9wQmvPXDgcL8RitDzqzPC6vLgcheYUUeV3Iq6qtBAB6fsf
-	B6AOlvQXRcJYEtPpprdJLE1A/tARHGHD3oatbKMLi3dttIem3PHv3UXy62AigR2c95qR
-	BbpwSzPEIuBYW2ZZ0qznAalqOflb/Ix9mC8BRCdpO5q7ExpBT8K9yBhoHbaOXHw0Lun0
-	qMxkK3jnLF/rEnIIpEp44CbtiAQBJqKDMjoaa86bID6zrhJ66IqOZsscMcZlK86TCuRj
-	p9W2DfMCUhcH6aBX3zARPOuuB9kAcRD3JjY/1g7jg2Y42koh24z7CevKAiNqJ75zqxur
-	8idw==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=ze6ztWA5XEmhfT5evwOme634i4PDkZG7WwTJLp3z040=;
+	b=w86lakk8fpWqRl2pqECMvdTRLp3XEOLCPJCu+zyfNIYMdp/QJGm2bzaWWw3tpdwDiH
+	HD+SkJE1NTXejK+LmxNJHBpZl5MruwW1ErKHAcOc/PEqvO3PPWOlRZkHSVSpQ1m8mtDv
+	G4BGwRmv6H+/bAlMGTGbIT4jVjKGmrRR0XXJEeb7T2Z0a8BxIiujbD6riz6om0OyknTB
+	gC2ftvImmNwKwyQt6YP4Y6yE6lXmhkKjj8zPW3ll+tsXa1HV8bmYgEgySE8962qMUMuM
+	dM7a4cdcm82wnrMiUyZmmmm9zkv5paGtyptMBZO/P1l4K/uwNFStqrfN1WJG1ZOGETgG
+	9tVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:organization:mime-version:content-transfer-encoding;
-	bh=s2roeO8tLJj4pYuyya1kAyiZpXm0fPDzYkZQ4lbwZ1E=;
-	b=NEhn/XtDMcC3P6wCHFDqpCXJCoscSVm/ha3rwWoq67I271CS2ve4939qL7PM4dAUDC
-	WbTAqigKxnZyiUBog9rPJ6qWaRUIAqx4tbWgcEb6lKMJdEOIqjidfZImrzr4p5zKksfb
-	OPLP3v7eUurhO5Aq4IuYaW53D4VlK9I6UvYP8ZFOlestPwA0b+OHx57fZwg9A6EVEq1/
-	gcUEYT6ptr8KIf4cEGaHZY7BfnYhpeJfOJBda4EtsOhZg31H0GTvA8uO1oJ3c6xqCTe8
-	drAL0x9I1R/CB54qOv4a1gZTxd1m2AX1hJWbWa8PeKtTxpM+KUEdNm2wf3tuUQDwL1fH
-	/zSA==
-X-Gm-Message-State: AKGB3mIgmXE849DVg7FeyZBInoPNUY5mAf8Rw8fWW9hXVdJDtRS0fDeq
-	pmGVjLH6WqLcB0AtRgmJKFJj
-X-Google-Smtp-Source: ACJfBouUk9AxvnV6/AcUXTPzxBH9FHJ6/7GLgGXZHgUVVOMzHfJyH3Pfv/wXqjfxi9PQsFK8Whn7Ig==
-X-Received: by 10.223.150.108 with SMTP id c41mr8808369wra.119.1513785036394; 
-	Wed, 20 Dec 2017 07:50:36 -0800 (PST)
-Received: from pohly-mobl1 (p54BD58F7.dip0.t-ipconnect.de. [84.189.88.247])
-	by smtp.gmail.com with ESMTPSA id
-	i65sm13288260wme.20.2017.12.20.07.50.35
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Wed, 20 Dec 2017 07:50:35 -0800 (PST)
-Message-ID: <1513785034.5979.256.camel@intel.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=ze6ztWA5XEmhfT5evwOme634i4PDkZG7WwTJLp3z040=;
+	b=sc7gmt3qttABt3/+q4HdVZA0wxkRT0iKK3jyxnvEklvNGZUA9xiy2fCVZlbVWsPZpB
+	G+xBQ8jk6HKJnQr4njjQDySR7D9N3DLKM15RlQYRvarCvEa1wxqVq6p3JB+F2JUBEadR
+	B72BTxS3IZmh1O/8GOikEtXiEfmzFM7mlCRAa19sydlgRDQUiiwOKD/w4qXx91qwhAR/
+	C4nK+M+yVvunL2avKQemJgC+RZ19K+m7RR3G/kqyKw2310mhKw+mCwaDwoYei1MA7NFm
+	dtaSATq0EuYPJZcfVVZvxHfdxGGAq4Sj4XSuJP8v3mxs7Sd2muxFxemDMKIr7/YAaR0a
+	J9+w==
+X-Gm-Message-State: AKGB3mId2Y1j4sjWU5XlIHiMsG1Nbu9wsKewBQrnntVthRy45DvYvNcP
+	Y96f6Fr7tqanO5jC1Xiurpz71mc=
+X-Google-Smtp-Source: ACJfBovl0XpUTJTTtK+tsIPbSyQJ4vCsgTzY8qZ/zEvd8/Z8QNKN5Ag8YevC0EFY05jCXxvhqO9CNA==
+X-Received: by 10.223.132.163 with SMTP id 32mr1904301wrg.283.1513785077486;
+	Wed, 20 Dec 2017 07:51:17 -0800 (PST)
+Received: from pohly-desktop.fritz.box (p54BD58F7.dip0.t-ipconnect.de.
+	[84.189.88.247]) by smtp.gmail.com with ESMTPSA id
+	i65sm13291363wme.20.2017.12.20.07.51.15
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 20 Dec 2017 07:51:16 -0800 (PST)
 From: Patrick Ohly <patrick.ohly@intel.com>
-To: Ingo Flaschberger <ingo.flaschberger@gmail.com>
-Date: Wed, 20 Dec 2017 16:50:34 +0100
-In-Reply-To: <6ed440d1-6667-bd18-c9e2-58ac1461b571@gmail.com>
-References: <edfa3cda-2c3e-d8d0-aeb8-c2ce30931ce4@gmail.com>
-	<1490346252.6396.262.camel@intel.com>
-	<6ed440d1-6667-bd18-c9e2-58ac1461b571@gmail.com>
-Organization: Intel GmbH, Dornacher Strasse 1, D-85622 Feldkirchen/Munich
-X-Mailer: Evolution 3.22.6-1+deb9u1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-swupd] allow username/password encoded in SWUPD_VERSION_URL and SWUPD_CONTENT_URL
+To: yocto@yoctoproject.org
+Date: Wed, 20 Dec 2017 16:50:58 +0100
+Message-Id: <20171220155058.8961-1-patrick.ohly@intel.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <1513785034.5979.256.camel@intel.com>
+References: <1513785034.5979.256.camel@intel.com>
+Cc: ingo.flaschberger@gmail.com
+Subject: [meta-swupd][PATCH 1/1] bundles.py: allow username/password encoded in URLs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,128 +72,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Dec 2017 15:50:38 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 20 Dec 2017 15:51:23 -0000
 
-Hello Ingo!
+Downloading content and version information via HTTP may need a
+username/password for basic authentication. To support this,
+SWUPD_VERSION_URL and SWUPD_CONTENT_URL can now contain URLs of the
+form http(s)://<user>:<password>@<host>/.
 
-Sorry for the late reply. There were quite a few things in the patch
-that needed further discussion, so I kept postponing dealing with it.
-That, and I am not sure due to staffing questions whether I am really
-supposed to maintain meta-swupd at the moment :-/
+Original patch from: Ingo Flaschberger <ingo.flaschberger@gmail.com>
 
-Right now I refrain from applying patches to it until that gets
-clarified.
+Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
+---
+ lib/swupd/bundles.py | 26 ++++++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
-On Sat, 2017-03-25 at 21:14 +0100, Ingo Flaschberger wrote:
-> requested patch attached
-
-Instead of attaching patches, please use "git send-email" to send the
-patch directly. I needs a proper commit message, too:
-https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Headers_and_Commit_Messages
-
-> From f2526a7ed47b3f3c8f0cb893eadb5e6981255d4c Mon Sep 17 00:00:00
-> 2001
-> From: ingo <ingo.flaschberger@gmail.com>
-> Date: Sat, 25 Mar 2017 21:13:33 +0100
-> Subject: [PATCH] bundles.py: allow username/password encoded into
-> HTTP server
->  URLs example: https://user:password@server/path
-> 
-> ---
->  lib/swupd/bundles.py | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/lib/swupd/bundles.py b/lib/swupd/bundles.py
-> index b4c6f49..223fd3c 100644
-> --- a/lib/swupd/bundles.py
-> +++ b/lib/swupd/bundles.py
-> @@ -4,6 +4,8 @@ import subprocess
->  import shutil
->  import urllib.request
->  import urllib.error
-> +import urllib.parse
-> +import re
->  from bb.utils import export_proxies
->  from oe.package_manager import RpmPM
->  from oe.package_manager import OpkgPM
-> @@ -164,6 +166,15 @@ def download_manifests(content_url, version,
-> component, to_dir):
->      base_versions = set()
->      if not os.path.exists(target):
->          bb.debug(1, 'Downloading %s -> %s' % (source, target))
-> +        parsed_source = urllib.parse.urlsplit(source)
-> +        if( parsed_source.username != None):
-> +            new_source = ( parsed_source.scheme, re.sub( re.escape(
-> parsed_source.username+':'+parsed_source.password+'@'),
-> '',parsed_source.netloc), parsed_source.path, parsed_source.query,
-> parsed_source.fragment)
-
-Wouldn't it be simpler to do this?
-   parsed_source.netloc = parsed_source.hostname
-
-We want the original URL, just with a simpler netloc part. Mucking
-around with a regex to achieve that seems overly complicated when
-urllib.parse() has already done the parsing for us.
-
-> +            source = urllib.parse.urlunsplit( new_source)
-> +            manager =
-> urllib.request.HTTPPasswordMgrWithDefaultRealm()
-> +            manager.add_password(None, new_source,
-> parsed_source.username, parsed_source.password)
-> +            authHandler =
-> urllib.request.HTTPBasicAuthHandler(manager)
-> +            opener = urllib.request.build_opener(authHandler)
-> +            urllib.request.install_opener(opener)
-
-This opener gets installed over and over again, each time some URL
-derived from content_url is used. Isn't it enough to check content_url
-once and then use a simpler version of it for constructing URLs?
-
->          response = urllib.request.urlopen(source)
->          archive = response.read()
->          bb.utils.mkdirhier(to_dir)
-> @@ -228,6 +239,15 @@ def download_old_versions(d):
->      for format in range(3, current_format + 1):
->          try:
->              url = '%s/version/format%d/latest' % (content_url,
-> format)
-> +            parsed_url = urllib.parse.urlsplit(url)
-> +            if( parsed_url.username != None):
-> +                new_url = ( parsed_url.scheme, re.sub( re.escape(
-> parsed_url.username+':'+parsed_url.password+'@'),
-> '',parsed_url.netloc), parsed_url.path, parsed_url.query,
-> parsed_url.fragment)
-> +                url = urllib.parse.urlunsplit( new_url)
-> +                manager =
-> urllib.request.HTTPPasswordMgrWithDefaultRealm()
-> +                manager.add_password(None, new_url,
-> parsed_url.username, parsed_url.password)
-> +                authHandler =
-> urllib.request.HTTPBasicAuthHandler(manager)
-> +                opener = urllib.request.build_opener(authHandler)
-> +                urllib.request.install_opener(opener)
-
-Cut-and-paste... this should be in a helper function.
-
-I tried to come up with a cleaner patch that implements the same
-behavior. But I don't have a way to test it. Can you perhaps try out
-the patch that I will post as a followup?
-
-Note that it applies cleanly only on top of
-https://github.com/pohly/meta-swupd/tree/master
-
-You can also check out the patch from
-https://github.com/pohly/meta-swupd/tree/basic_auth
-
+diff --git a/lib/swupd/bundles.py b/lib/swupd/bundles.py
+index e1eec5a..48c7455 100644
+--- a/lib/swupd/bundles.py
++++ b/lib/swupd/bundles.py
+@@ -5,6 +5,7 @@ import subprocess
+ import shutil
+ import urllib.request
+ import urllib.error
++import urllib.parse
+ from bb.utils import export_proxies
+ from oe.package_manager import RpmPM
+ from oe.package_manager import OpkgPM
+@@ -153,6 +154,27 @@ def copy_bundle_contents(d):
+     for bndl in bundles:
+         stage_empty_bundle(d, bndl)
+ 
++def handle_plain_auth(url):
++    """
++    Check for special urls with username/password (as in http://user:password@host/),
++    extract those and install an auth handler which will provide them
++    to the HTTP server when needed. Returns the URL that is to be instead of the original one.
++    """
++    parsed_url = urllib.parse.urlsplit(url)
++    if parsed_url.username != None:
++        # Use the netloc with just the hostname, without username/password.
++        parsed_url.netloc = parsed_url.hostname
++        # The username/password are installed permanently in the urllib.request module
++        # for future use with all URLs beneath url.
++        manager = urllib.request.HTTPPasswordMgrWithDefaultRealm()
++        manager.add_password(None, parsed_url, parsed_url.username, parsed_url.password)
++        authHandler = urllib.request.HTTPBasicAuthHandler(manager)
++        opener = urllib.request.build_opener(authHandler)
++        urllib.request.install_opener(opener)
++        return urllib.parse.urlunsplit(new_source)
++    else:
++        return url
++
+ def download_manifests(content_url, version, component, to_dir):
+     """
+     Download one manifest file and recursively all manifests referenced by it.
+@@ -204,8 +226,8 @@ def download_old_versions(d):
+     a normal build and thus is not on the critical path.
+     """
+ 
+-    content_url = d.getVar('SWUPD_CONTENT_BUILD_URL', True)
+-    version_url = d.getVar('SWUPD_VERSION_BUILD_URL', True)
++    content_url = handle_plain_auth(d.getVar('SWUPD_CONTENT_BUILD_URL', True))
++    version_url = handle_plain_auth(d.getVar('SWUPD_VERSION_BUILD_URL', True))
+     current_format = int(d.getVar('SWUPD_FORMAT', True))
+     deploy_dir = d.getVar('DEPLOY_DIR_SWUPD', True)
+     www_dir = os.path.join(deploy_dir, 'www')
 -- 
-Best Regards, Patrick Ohly
-
-The content of this message is my personal opinion only and although
-I am an employee of Intel, the statements I make here in no way
-represent Intel's position on the issue, nor am I authorized to speak
-on behalf of Intel on this matter.
-
+2.11.0
 
 
