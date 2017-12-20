@@ -1,34 +1,68 @@
-Return-Path: <mircea.gliga@vitheia.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E6A0E00D86; Wed, 20 Dec 2017 01:37:22 -0800 (PST)
+	id 2F292E00D7F; Wed, 20 Dec 2017 02:18:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFFFEE00C0F
-	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 01:37:18 -0800 (PST)
-Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
-	(authenticated bits=0)
-	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id vBK9bArC025881
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
-	verify=NO); Wed, 20 Dec 2017 11:37:10 +0200
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <753da0b1-9a45-6ce7-3016-502689f2330a@vitheia.com>
-	<CAJTo0LZk7TGDC4_Dc8ofO2_HCs3nGfK7htV9TjWv72xVSXFsmw@mail.gmail.com>
-From: Mircea Gliga <mircea.gliga@vitheia.com>
-Message-ID: <fa866786-a078-1c28-7686-143a86df0046@vitheia.com>
-Date: Wed, 20 Dec 2017 11:37:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
+	[209.85.128.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C9FEE00C0F
+	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 02:18:40 -0800 (PST)
+Received: by mail-wr0-f196.google.com with SMTP id l19so9458414wrc.2
+	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 02:18:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=/UOx2NCFppkJ8IOziancqsZnwJcmcmh+d8UjXytRQwA=;
+	b=hmU22zOZ10fmVmY1hXVkJwy0dLEFOkErkRsKSU0MSdlT6j6iQXtLF2SfjhTWiWlPfp
+	lZV0ji49RLkk1fbECfago5R1cEerpd5EDsPCltL6J7DH0XRWXxwR9p8e1tIXLe8IKMs8
+	Gh1gewZg2ctwKMP4GEZLSQUhYU1EpB/8l49Yr0Hn/VuHIqljMMbArJjvqs9khnj8NfOK
+	PWR9eZnVYarOdTMWdRO7NLlwyUI375Wn8xjDg8oyIf5+0b5RQ3bPgYaeCW4Ds5OhXYMJ
+	EnD6JotwCzsZBDcAIClrTg0HG+rJCnfwmuOqDiKPE1cBL/uMIkrixtT/ni2Yf5m5KRmd
+	Js5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=/UOx2NCFppkJ8IOziancqsZnwJcmcmh+d8UjXytRQwA=;
+	b=rZjyocH2WDM0o0ypdmrzd2nNqSwDfYSA2ibAKRHEHw0G9pMFjRW/8i/5UZSJhEpqs3
+	bXqAy9tg8sVrw6ZeP76PXFASz74tekmXoBApMe4O4D84msoyyADPgxbCaXCwtMmwGatr
+	UrM9LOeQJMKVGh9gO2fFdWHVYudymS0z2Y+CSafNmsOWLd/AqBrT/CT68dEMqhdlaaBi
+	8Efbff6P0GXmJhWPnNs+9OL03KcqBRJ/zEWTECGNVT42T5n9r2OrS/LeHamU3dGEGZ9D
+	R9Ac/ByzNKh+5PhHX2x694uDQeewvYK9boFqGGCK5AiDoGoSjugHVj4IPKPmsRgkbEMq
+	oZVw==
+X-Gm-Message-State: AKGB3mIOmh4LX5KMFuFC6mxoRkG8f7/CSbZve7kiYtIpn2R0qMs4fdXw
+	rWzeAME1QncizNc9irO9yb3Dmp1WD7o1XTJd7bOG7A==
+X-Google-Smtp-Source: ACJfBotnJHw9cykzNRwpohhhPxCpzfSKI2DUwcm9U7IVKhYqZ2yQ7LfSRb943cBDR4SN+TsF8EAQQgG5RIm58m02h2A=
+X-Received: by 10.223.162.204 with SMTP id t12mr8280160wra.258.1513765119284; 
+	Wed, 20 Dec 2017 02:18:39 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZk7TGDC4_Dc8ofO2_HCs3nGfK7htV9TjWv72xVSXFsmw@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: call custom sh script in do_compile
+Received: by 10.28.97.215 with HTTP; Wed, 20 Dec 2017 02:18:38 -0800 (PST)
+In-Reply-To: <CAGAf8LzbvdQ3HaYnkojw3TrQdUdOgZQ123kfZqe_8D+nw7YzwA@mail.gmail.com>
+References: <CAPb0b+OT2_4F8mcXmw=bBMxFQgOHW0wBtWY2R_P4=JxWa-seNg@mail.gmail.com>
+	<CAPb0b+ODNZ1k2rH6+CJYbCPzLtXFmHB76NnWK4yVSDEQ68skdA@mail.gmail.com>
+	<CAGAf8LzbvdQ3HaYnkojw3TrQdUdOgZQ123kfZqe_8D+nw7YzwA@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 20 Dec 2017 11:18:38 +0100
+Message-ID: <CAGAf8LwXHuc6NEm+w6J40AZnSpspce=cvzzxbs956FSpq_vHUw@mail.gmail.com>
+To: Sherif Omran <sherifomran2000@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: rfkill cannot open control device
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,180 +74,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Dec 2017 09:37:22 -0000
-Content-Type: multipart/alternative;
-	boundary="------------8A9A69B2A833E1A966295BAC"
-Content-Language: en-US
+X-List-Received-Date: Wed, 20 Dec 2017 10:18:41 -0000
+Content-Type: multipart/alternative; boundary="f403045ea6a4355adb0560c2e8d1"
 
---------------8A9A69B2A833E1A966295BAC
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--f403045ea6a4355adb0560c2e8d1
+Content-Type: text/plain; charset="UTF-8"
 
-I'm trying to figure the proper way that the script *should* expect 
-parameters...
-Some excerpt:
+> IMAGE_INSTALL_append += "rfkill" (my best guess, easiest way).
 
-function buildConfiguration {
-     CONFIGURATION=${1}
-     BINARY_TYPE=${2}
-     MACHINE=${3}
-     DTB=${4}
-     KEY_DIR=${5}
-     MAKE_OPTIONS="-j 8 VERBOSE=1 V=1"
-     MAKE="make"
-     echo ""
-     echo "compiling u-boot configuration ${CONFIGURATION} ${DTB} 
-version: ${UBOOT_BUILD_VERSION}"
+My bad! :-(
 
-     ${MAKE} ${MAKE_OPTIONS} HOSTCC="$HOSTCC"  clean VERBOSE=1
-     ${MAKE} ${MAKE_OPTIONS} VERBOSE=1 HOSTCC="$HOSTCC" ${CONFIGURATION} 
-VERBOSE=1
-     ${MAKE} ${MAKE_OPTIONS} HOSTCC="$HOSTCC"  tools VERBOSE=1
-     if [ "${DTB}" != "" ]; then
-         compileDts ../arch/arm/dts/at91-${MACHINE} ${KEY_DIR}
-     fi
+Should read: IMAGE_INSTALL_append += "Bluez5"
 
-     ${MAKE} ${MAKE_OPTIONS} HOSTCC="$HOSTCC" VERBOSE=1
+Zoran
 
-     mkdir -p ${3}/binaries/
-     mv u-boot${DTB}.bin 
-${3}/binaries/${MACHINE}-u-boot-${BINARY_TYPE}${DTB}.bin
-}
+On Wed, Dec 20, 2017 at 10:25 AM, Zoran Stojsavljevic <
+zoran.stojsavljevic@gmail.com> wrote:
 
-
-buildConfiguration first_defconfig   "debug"   "first" "-dtb" "prod_keys"
-buildConfiguration second_defconfig   "loader"   "first" "-dtb"  ""
-buildConfiguration [...]
-buildConfiguration [...]
-
-
-On 20/12/17 11:20, Burton, Ross wrote:
-> On 20 December 2017 at 09:08, Mircea Gliga <mircea.gliga@vitheia.com 
-> <mailto:mircea.gliga@vitheia.com>> wrote:
+> Inside poky distro (.../poky/meta/recipes-connectivity):
 >
->     Hello
+> [user@localhost recipes-connectivity]$ pwd
+> /home/user/YOCTO/oe_core_embedded/poky/meta/recipes-connectivity
+> [user@localhost recipes-connectivity]$ ls -al
+> total 96
+> drwxrwxr-x. 24 user user 4096 Oct 18 12:49 .
+> drwxrwxr-x. 19 user user 4096 Nov 18 15:13 ..
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 avahi
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 bind
+> *drwxrwxr-x.  3 user user 4096 Oct 18 12:49 bluez5*
+> drwxrwxr-x.  5 user user 4096 Oct 18 12:49 connman
+> drwxrwxr-x.  4 user user 4096 Oct 18 12:49 dhcp
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 iproute2
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 irda-utils
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 iw
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 libnss-mdns
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 libpcap
+> drwxrwxr-x.  2 user user 4096 Oct 18 12:49 mobile-broadband-provider-info
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 neard
+> drwxrwxr-x.  5 user user 4096 Oct 18 12:49 nfs-utils
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 ofono
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 openssh
+> drwxrwxr-x.  4 user user 4096 Oct 18 12:49 openssl
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 ppp
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 ppp-dialin
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 resolvconf
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 socat
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 wireless-tools
+> drwxrwxr-x.  3 user user 4096 Oct 18 12:49 wpa-supplicant
+> [user@localhost recipes-connectivity]$
 >
->     I have a build.sh script used to build outside yocto, after
->     sourcing the build environment.
->     I want to use the same build.sh script inside the recipe, in the
->     do_compile task, something like:
+> Or:
 >
->     do_compile () {
+> https://git.yoctoproject.org/cgit.cgi/poky/plain/meta/
+> recipes-connectivity/bluez5/
 >
->      ./build.sh ${MACHINE}
->     }
+> You should add it in .../conf/local.conf as:
 >
->     The build.sh script eventually calls make for several targets,
->     release debug etc...
->     The idea with this script is to be used both inside yocto and
->     outside (after sourcing
->     build/tmp/environment-setup-cortexa5hf-neon-poky-linux-gnueabi),
->     by reusing the code.
+> IMAGE_INSTALL_append += "rfkill" (my best guess, easiest way).
 >
->     What is the proper way to use a custom shell script to build things ?
->     How to pass info from oe_runmake/EXTRA_OEMAKE ?
+> Zoran
+> _______
 >
+> On Tue, Dec 19, 2017 at 7:03 PM, Sherif Omran <sherifomran2000@gmail.com>
+> wrote:
 >
-> This depends on how build.sh expects to be given extra make arguments.
+>> how can i add rfkill recipe?
+>>
+>> On Tue, Dec 19, 2017 at 4:23 PM, Sherif Omran <sherifomran2000@gmail.com>
+>> wrote:
+>>
+>>> i used core-image-minimal for a raspberry pi 0w. But i get rfkill can
+>>> not open control device. when i give rfkill , i get the syntanx output,
+>>> this means it exists.
+>>> the wifi driver is installed.
+>>>
+>>> What is the rfkill device? is it /dev/rfkill ?
+>>>
+>>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
 >
-> Ross
 
+--f403045ea6a4355adb0560c2e8d1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------8A9A69B2A833E1A966295BAC
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">&gt; IMAGE_INSTALL_append=
+ +=3D &quot;rfkill&quot; (my best guess, easiest way).</span><br><div><span=
+ style=3D"font-size:12.8px"><br></span></div><div><span style=3D"font-size:=
+12.8px">My bad! :-(</span></div><div><span style=3D"font-size:12.8px"><br><=
+/span></div><div><span style=3D"font-size:12.8px">Should read:=C2=A0</span>=
+<span style=3D"font-size:12.8px">IMAGE_INSTALL_append +=3D &quot;Bluez5&quo=
+t;</span></div><div><span style=3D"font-size:12.8px"><br></span></div><div>=
+<span style=3D"font-size:12.8px">Zoran</span></div></div><div class=3D"gmai=
+l_extra"><br><div class=3D"gmail_quote">On Wed, Dec 20, 2017 at 10:25 AM, Z=
+oran Stojsavljevic <span dir=3D"ltr">&lt;<a href=3D"mailto:zoran.stojsavlje=
+vic@gmail.com" target=3D"_blank">zoran.stojsavljevic@gmail.com</a>&gt;</spa=
+n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
+order-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div>Insi=
+de poky distro (.../poky/meta/recipes-<wbr>connectivity):<br></div><div><br=
+></div><div>[user@localhost recipes-connectivity]$ pwd</div><div>/home/user=
+/YOCTO/oe_core_<wbr>embedded/poky/meta/recipes-<wbr>connectivity</div><div>=
+[user@localhost recipes-connectivity]$ ls -al</div><div>total 96</div><div>=
+drwxrwxr-x. 24 user user 4096 Oct 18 12:49 .</div><div>drwxrwxr-x. 19 user =
+user 4096 Nov 18 15:13 ..</div><div>drwxrwxr-x.=C2=A0 3 user user 4096 Oct =
+18 12:49 avahi</div><div>drwxrwxr-x.=C2=A0 3 user user 4096 Oct 18 12:49 bi=
+nd</div><div><i><b><u>drwxrwxr-x.=C2=A0 3 user user 4096 Oct 18 12:49 bluez=
+5</u></b></i></div><div>drwxrwxr-x.=C2=A0 5 user user 4096 Oct 18 12:49 con=
+nman</div><div>drwxrwxr-x.=C2=A0 4 user user 4096 Oct 18 12:49 dhcp</div><d=
+iv>drwxrwxr-x.=C2=A0 3 user user 4096 Oct 18 12:49 iproute2</div><div>drwxr=
+wxr-x.=C2=A0 3 user user 4096 Oct 18 12:49 irda-utils</div><div>drwxrwxr-x.=
+=C2=A0 3 user user 4096 Oct 18 12:49 iw</div><div>drwxrwxr-x.=C2=A0 3 user =
+user 4096 Oct 18 12:49 libnss-mdns</div><div>drwxrwxr-x.=C2=A0 3 user user =
+4096 Oct 18 12:49 libpcap</div><div>drwxrwxr-x.=C2=A0 2 user user 4096 Oct =
+18 12:49 mobile-broadband-provider-info</div><div>drwxrwxr-x.=C2=A0 3 user =
+user 4096 Oct 18 12:49 neard</div><div>drwxrwxr-x.=C2=A0 5 user user 4096 O=
+ct 18 12:49 nfs-utils</div><div>drwxrwxr-x.=C2=A0 3 user user 4096 Oct 18 1=
+2:49 ofono</div><div>drwxrwxr-x.=C2=A0 3 user user 4096 Oct 18 12:49 openss=
+h</div><div>drwxrwxr-x.=C2=A0 4 user user 4096 Oct 18 12:49 openssl</div><d=
+iv>drwxrwxr-x.=C2=A0 3 user user 4096 Oct 18 12:49 ppp</div><div>drwxrwxr-x=
+.=C2=A0 3 user user 4096 Oct 18 12:49 ppp-dialin</div><div>drwxrwxr-x.=C2=
+=A0 3 user user 4096 Oct 18 12:49 resolvconf</div><div>drwxrwxr-x.=C2=A0 3 =
+user user 4096 Oct 18 12:49 socat</div><div>drwxrwxr-x.=C2=A0 3 user user 4=
+096 Oct 18 12:49 wireless-tools</div><div>drwxrwxr-x.=C2=A0 3 user user 409=
+6 Oct 18 12:49 wpa-supplicant</div><div>[user@localhost recipes-connectivit=
+y]$=C2=A0</div></div><div><br></div><div>Or:</div><div><br></div><div><a hr=
+ef=3D"https://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipes-connect=
+ivity/bluez5/" target=3D"_blank">https://git.yoctoproject.org/<wbr>cgit.cgi=
+/poky/plain/meta/<wbr>recipes-connectivity/bluez5/</a><br></div><div><br></=
+div><div>You should add it in .../conf/local.conf as:</div><div><br></div><=
+div>IMAGE_INSTALL_append +=3D &quot;rfkill&quot; (my best guess, easiest wa=
+y).<br></div><div><br></div><div>Zoran</div><div>_______</div></div><div cl=
+ass=3D"gmail_extra"><br><div class=3D"gmail_quote"><div><div class=3D"h5">O=
+n Tue, Dec 19, 2017 at 7:03 PM, Sherif Omran <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:sherifomran2000@gmail.com" target=3D"_blank">sherifomran2000@gma=
+il.com</a>&gt;</span> wrote:<br></div></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<div><div class=3D"h5"><div dir=3D"ltr">how can i add rfkill recipe?<br></d=
+iv><div class=3D"m_7880567471075345777HOEnZb"><div class=3D"m_7880567471075=
+345777h5"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue,=
+ Dec 19, 2017 at 4:23 PM, Sherif Omran <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:sherifomran2000@gmail.com" target=3D"_blank">sherifomran2000@gmail.com<=
+/a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><d=
+iv><div><div>i used core-image-minimal for a raspberry pi 0w. But i get rfk=
+ill can not open control device. when i give rfkill , i get the syntanx out=
+put, this means it exists. <br></div>the wifi driver is installed.<br><br><=
+/div>What is the rfkill device? is it /dev/rfkill ?<br></div><br></div>
+</blockquote></div><br></div>
+</div></div><br></div></div><span class=3D"">--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+<br></span></blockquote></div><br></div>
+</blockquote></div><br></div>
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    I'm trying to figure the proper way that the script *should* expect
-    parameters...<br>
-    Some excerpt:<br>
-    <br>
-    function buildConfiguration {<br>
-        CONFIGURATION=${1}<br>
-        BINARY_TYPE=${2}<br>
-        MACHINE=${3}<br>
-        DTB=${4}<br>
-        KEY_DIR=${5}<br>
-        MAKE_OPTIONS="-j 8 VERBOSE=1 V=1"<br>
-        MAKE="make"<br>
-        echo ""<br>
-        echo "compiling u-boot configuration ${CONFIGURATION} ${DTB}
-    version: ${UBOOT_BUILD_VERSION}"<br>
-        <br>
-        ${MAKE} ${MAKE_OPTIONS} HOSTCC="$HOSTCC"  clean VERBOSE=1<br>
-        ${MAKE} ${MAKE_OPTIONS} VERBOSE=1 HOSTCC="$HOSTCC" 
-    ${CONFIGURATION} VERBOSE=1<br>
-        ${MAKE} ${MAKE_OPTIONS} HOSTCC="$HOSTCC"  tools VERBOSE=1<br>
-        if [ "${DTB}" != "" ]; then<br>
-            compileDts ../arch/arm/dts/at91-${MACHINE} ${KEY_DIR}<br>
-        fi<br>
-    <br>
-        ${MAKE} ${MAKE_OPTIONS} HOSTCC="$HOSTCC" VERBOSE=1<br>
-    <br>
-        mkdir -p ${3}/binaries/<br>
-        mv u-boot${DTB}.bin
-    ${3}/binaries/${MACHINE}-u-boot-${BINARY_TYPE}${DTB}.bin<br>
-    } <br>
-    <br>
-    <br>
-    buildConfiguration first_defconfig   "debug"   "first" "-dtb" 
-    "prod_keys"<br>
-    buildConfiguration second_defconfig   "loader"   "first" "-dtb"  ""<br>
-    buildConfiguration [...]<br>
-    buildConfiguration [...]<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 20/12/17 11:20, Burton, Ross wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAJTo0LZk7TGDC4_Dc8ofO2_HCs3nGfK7htV9TjWv72xVSXFsmw@mail.gmail.com">
-      <div dir="ltr">On 20 December 2017 at 09:08, Mircea Gliga <span
-          dir="ltr">&lt;<a href="mailto:mircea.gliga@vitheia.com"
-            target="_blank" moz-do-not-send="true">mircea.gliga@vitheia.com</a>&gt;</span>
-        wrote:<br>
-        <div class="gmail_extra">
-          <div class="gmail_quote">
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello<br>
-              <br>
-              I have a build.sh script used to build outside yocto,
-              after sourcing the build environment.<br>
-              I want to use the same build.sh script inside the recipe,
-              in the do_compile task, something like:<br>
-              <br>
-              do_compile () {<br>
-              <br>
-               ./build.sh ${MACHINE}<br>
-              }<br>
-              <br>
-              The build.sh script eventually calls make for several
-              targets, release debug etc...<br>
-              The idea with this script is to be used both inside yocto
-              and outside (after sourcing<br>
-              build/tmp/environment-setup-co<wbr>rtexa5hf-neon-poky-linux-gnuea<wbr>bi),
-              by reusing the code.<br>
-              <br>
-              What is the proper way to use a custom shell script to
-              build things ?<br>
-              How to pass info from oe_runmake/EXTRA_OEMAKE ?<br>
-            </blockquote>
-            <div><br>
-            </div>
-            <div>This depends on how build.sh expects to be given extra
-              make arguments.</div>
-            <div><br>
-            </div>
-            <div>Ross</div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------8A9A69B2A833E1A966295BAC--
+--f403045ea6a4355adb0560c2e8d1--
