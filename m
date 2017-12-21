@@ -1,63 +1,30 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <fzhang@sgl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4600E00D9C; Thu, 21 Dec 2017 07:51:05 -0800 (PST)
+	id C46A8E00D9C; Thu, 21 Dec 2017 07:53:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.217.195 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f195.google.com (mail-ua0-f195.google.com
-	[209.85.217.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CFE3E00D07
-	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 07:51:03 -0800 (PST)
-Received: by mail-ua0-f195.google.com with SMTP id i92so17794851uad.7
-	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 07:51:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=HXmpb/fBThS1x3Kvj1NVGQMcOaxgA2rSNC2szt+H9GY=;
-	b=vx8G9mjM6VYUTptKg05XvJ/+4EAKbK+ve/wbIruy4UaoxNWqAfeXHscrNZwIpRJs/T
-	yEiKcx2VEKn9J57b53f5gDKICd+SEvRyHo0Qc2jPmW8qN05XC+f6uw7sY/PaGg/7mgR6
-	hyI/S0bkUM4h32FPCCjU7vAusRkC36N6yN0cBt4nhv7HgHD5HJVhNBsq1/CIj9WPddP7
-	nZmB+br8yaQIBeVZillImolNObZJT14v6UacWZroqhs4t0d4kSMz00VTlp0xx70GUKa7
-	NLmzjEA47QNkPKlQRi+lJT8imE58qp8bvOjVFoyxIs/T/KdiuLLJBQC8pOPatlsIfZuY
-	aebA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=HXmpb/fBThS1x3Kvj1NVGQMcOaxgA2rSNC2szt+H9GY=;
-	b=k63Okp7V7ElAkw/EXqPmB6ErLA0HN+Dh7Su21mlF0non3V3MIKE6wxvSdxX0U4AwsG
-	qzoTindhkOkcNa0v5cKIF7ZcXaqI7OZUhzwQW/2EeGZpdOykzeNJR4+W5BagSBQj79ks
-	6/PtHNjs7OipNY21A+MT6LNfImDBhi2BHy/Doo8Pz2CMChbfBuSV6EH8nr4vqviM7KaE
-	p0THfwSJwM8OED5P/TEFXfV0/JIizWJ5zxX5Y8REPu+qg2dnY0SAtkBgJp+79kmj5yXX
-	zlAMP+Hyy72aoBDKxtT5rJNTw03h35BUqEwRXdJBFfCdUc7l0BUT/P8EHpr4pXaVqgU+
-	oK6g==
-X-Gm-Message-State: AKGB3mKx/eWMBu8dpA1RtPHoBbHM3noOQQSvHV8ol9ipG3B8JWqCs27a
-	qvdGuxSU0iUzyH0YKespvhfQG0iTsWkjjkFJJakZyaZu
-X-Google-Smtp-Source: ACJfBov1NgZqHftVXTk7FSdM5W+Exen/+pbw7cIoHRrnoCYlDYm//JpuMmZ3yNpeFscGy7yiGvSIde8RSjrIv6sWemg=
-X-Received: by 10.176.4.226 with SMTP id 89mr11554076uaw.43.1513871463260;
-	Thu, 21 Dec 2017 07:51:03 -0800 (PST)
+X-Greylist: delayed 1267 seconds by postgrey-1.32 at yocto-www;
+	Thu, 21 Dec 2017 07:53:31 PST
+Received: from webmail.sgl.com (mail1.sgl.com [209.87.231.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58F5CE00D07
+	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 07:53:31 -0800 (PST)
+Received: from [10.1.20.15] (unknown [10.1.20.15])
+	by webmail.sgl.com (Postfix) with ESMTP id F0DB91D76F04D
+	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 10:29:16 -0500 (EST)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Fan Zhang <fzhang@sgl.com>
+Message-ID: <f5f50e1c-defb-149f-f795-921f4c1e648b@sgl.com>
+Date: Thu, 21 Dec 2017 10:32:21 -0500
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.0
 MIME-Version: 1.0
-Received: by 10.176.22.41 with HTTP; Thu, 21 Dec 2017 07:50:22 -0800 (PST)
-X-Originating-IP: [86.140.154.13]
-In-Reply-To: <aefbfb07-78ea-4a73-ea08-1fd5b2b35fe0@moseleynet.net>
-References: <aefbfb07-78ea-4a73-ea08-1fd5b2b35fe0@moseleynet.net>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 21 Dec 2017 15:50:22 +0000
-Message-ID: <CAK18fxFDSNhr_5NVqaRkq3Hz-6iP_OHpdsKNiU1GXspocAChzA@mail.gmail.com>
-To: Drew Moseley <drew@moseleynet.net>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] How to modify KERNEL_DEVICETREE?
+Subject: How to config kernel in my own meta layer?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,97 +36,285 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Dec 2017 15:51:05 -0000
-Content-Type: multipart/alternative; boundary="94eb2c125906cdb9750560dbaaee"
+X-List-Received-Date: Thu, 21 Dec 2017 15:53:32 -0000
+X-Groupsio-MsgNum: 39288
+Content-Type: multipart/mixed; boundary="------------22AFB6C77A7285B492B9A46C"
+Content-Language: en-US
 
---94eb2c125906cdb9750560dbaaee
-Content-Type: text/plain; charset="UTF-8"
+--------------22AFB6C77A7285B492B9A46C
+Content-Type: multipart/alternative;
+ boundary="------------52FEAA35E07090F15F7897E5"
 
-Hi,
+--------------52FEAA35E07090F15F7897E5
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-You need to make that variable available in both sdcard generation code
-which resides in the image recipe and in the kernel recipe. You can do this
-by modifying that variable from local.conf (distro would work too I think
-but it doesn't sounds like the right place to be).
+Greetings,
 
---
-Andrei Gherzan
+I have a recipes that requires 128MB of CMA allocation for DMA. I 
+followed the instruction in 
+http://www.yoctoproject.org/docs/1.6/kernel-dev/kernel-dev.html#changing-the-configuration 
+and did the following:
 
-On Sun, Dec 17, 2017 at 6:36 PM, Drew Moseley <drew@moseleynet.net> wrote:
+My recipes structure:
 
-> I'm trying to figure out how to properly modify the KERNEL_DEVICETREE
-> variable.  It seems that the meta-raspberrypi layer uses that variable
-> in the sdcard_image-rpi.bbclass and defines it in the machine conf
-> layer.  In poky, the variable is set and appended to in the various
-> linux-yocto recipes. If I make a similar change in a linux-raspberrypi
-> bbappend file, it works fine for the build of the linux-raspberrypi
-> recipe but when it is trying to package up the rpi-sdimg file, the
-> changes from the kernel recipe are not available and generally the build
-> will fail since the files expected during the image creation will not
-> have been created during the kernel build.
->
-> I can envision several different workarounds here but I'm struggling to
-> come up with a solid fix. Does anyone have any suggestions?
->
-> It also looks like the meta-freescale layer will have a similar issue.
->
-> Drew
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+meta-mylayer\recipes-my\uio-test\
 
---94eb2c125906cdb9750560dbaaee
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+1. Then in uio-test folder, I have uio-test.bb that created by 
+recipetool (in general) with some modification. uio-test.bb looks like 
+this:
 
-<div dir=3D"ltr">Hi,<br><br>You need to make that variable available in bot=
-h sdcard generation code which resides in the image recipe and in the kerne=
-l recipe. You can do this by modifying that variable from local.conf (distr=
-o would work too I think but it doesn&#39;t sounds like the right place to =
-be).<br></div><div class=3D"gmail_extra"><br clear=3D"all"><div><div class=
-=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><d=
-iv><div dir=3D"ltr"><div>--</div>Andrei Gherzan</div></div></div></div></di=
-v>
-<br><div class=3D"gmail_quote">On Sun, Dec 17, 2017 at 6:36 PM, Drew Mosele=
-y <span dir=3D"ltr">&lt;<a href=3D"mailto:drew@moseleynet.net" target=3D"_b=
-lank">drew@moseleynet.net</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
-il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
-t:1ex">I&#39;m trying to figure out how to properly modify the KERNEL_DEVIC=
-ETREE<br>
-variable.=C2=A0 It seems that the meta-raspberrypi layer uses that variable=
-<br>
-in the sdcard_image-rpi.bbclass and defines it in the machine conf<br>
-layer.=C2=A0 In poky, the variable is set and appended to in the various<br=
->
-linux-yocto recipes. If I make a similar change in a linux-raspberrypi<br>
-bbappend file, it works fine for the build of the linux-raspberrypi<br>
-recipe but when it is trying to package up the rpi-sdimg file, the<br>
-changes from the kernel recipe are not available and generally the build<br=
->
-will fail since the files expected during the image creation will not<br>
-have been created during the kernel build.<br>
-<br>
-I can envision several different workarounds here but I&#39;m struggling to=
-<br>
-come up with a solid fix. Does anyone have any suggestions?<br>
-<br>
-It also looks like the meta-freescale layer will have a similar issue.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Drew<br>
-<br>
-<br>
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br></div>
+#------------------------------------------------------------------
 
---94eb2c125906cdb9750560dbaaee--
+# Recipe created by recipetool
+# This is the basis of a recipe and may need further editing in order to 
+be fully functional.
+# (Feel free to remove these comments when editing.)
+
+# Unable to find any files that looked like license statements. Check 
+the accompanying
+# documentation and source headers and set LICENSE and LIC_FILES_CHKSUM 
+accordingly.
+#
+# NOTE: LICENSE is being set to "CLOSED" to allow you to at least start 
+building - if
+# this is not accurate with respect to the licensing of the software 
+being built (it
+# will not be in most cases) you must specify the correct value before 
+using this
+# recipe for anything other than initial testing/development!
+LICENSE = "CLOSED"
+LIC_FILES_CHKSUM = ""
+
+# No information for SRC_URI yet (only an external source tree was 
+specified)
+PV = "2.0.2"
+SRC_URI = "file://src"
+
+# NOTE: this is a Makefile-only piece of software, so we cannot generate 
+much of the
+# recipe automatically - you will need to examine the Makefile yourself 
+and ensure
+# that the appropriate arguments are passed in.
+
+do_configure () {
+     # Specify any needed configure commands here
+     :
+}
+
+do_compile () {
+     # You will almost certainly need to add additional arguments here
+     cd ${WORKDIR}/src
+     oe_runmake
+}
+
+FILES_${PN} = "/www/pages /etc/lighttpd.d"
+do_install () {
+     # This is a guess; additional arguments may be required
+     cd ${WORKDIR}/src
+     oe_runmake install 'DESTDIR=${D}'
+}
+
+DEPENDS = "libgcc boost"
+RDEPENDS_${PN} = "libgcc boost-thread boost-system lighttpd 
+lighttpd-module-cgi"
+#------------------------------------------------------------------
+
+2. Also in uio-test folder, I have uio-test.bbappend file with these 
+contents:
+
+#------------------------------------------------------------------
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SRC_URI += "file://uio-test.cfg"
+
+#----------------------^^^^^^^^^^^^^^^^^^^-------------------------
+
+3. In uio-test/files folder, I have uio-test.cfg with the following 
+contents:
+
+
+#------------------------------------------------------------------
+
+CONFIG_CMA_ALIGNMENT=8
+CONFIG_CMA=y
+CONFIG_CMA_AREAS=7
+CONFIG_DMA_CMA=y
+CONFIG_CMA_SIZE_MBYTES=128
+CONFIG_CMA_SIZE_SEL_MBYTES=y
+CONFIG_DMADEVICES=y
+CONFIG_DMA_ENGINE=y
+CONFIG_DMA_OF=y
+CONFIG_XILINX_DMA_ENGINES=y
+CONFIG_XILINX_DMA=y
+CONFIG_DMA_API_DEBUG=y
+CONFIG_HAS_DMA=y
+CONFIG_NEED_DMA_MAP_STATE=y
+CONFIG_HAVE_DMA_CONTIGUOUS=y
+CONFIG_HAVE_DMA_API_DEBUG=y
+CONFIG_HAVE_GENERIC_DMA_COHERENT=y
+CONFIG_ARM_DMA_MEM_BUFFERABLE=y
+CONFIG_ZONE_DMA_FLAG=0
+#----------------------^^^^^^^^^^^^^^^^^^^-------------------------
+
+My question: I think the cfg file is being parsed because if I change 
+the folder name files to something else, bitbake will complaint about 
+not being able to find uio-test.cfg. However, the final .config in built 
+do not have the CMA allocated. My meta layer does have a priority higher 
+than the upstream layers. What else can cause the problem here? Any 
+suggestions? Thanks.
+
+Fan Zhang
+
+
+--------------52FEAA35E07090F15F7897E5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>Greetings,</p>
+    <p>I have a recipes that requires 128MB of CMA allocation for DMA. I
+      followed the instruction in  <a moz-do-not-send="true"
+href="http://www.yoctoproject.org/docs/1.6/kernel-dev/kernel-dev.html#changing-the-configuration">http://www.yoctoproject.org/docs/1.6/kernel-dev/kernel-dev.html#changing-the-configuration</a>
+      and did the following:</p>
+    <p>My recipes structure: <br>
+    </p>
+    <p>meta-mylayer\recipes-my\uio-test\</p>
+    <p>1. Then in uio-test folder, I have uio-test.bb that created by
+      recipetool (in general) with some modification. uio-test.bb looks
+      like this: <br>
+    </p>
+    <p><font size="-1" face="Batang">#------------------------------------------------------------------<br>
+      </font></p>
+    <p><font size="-1" face="Batang"># Recipe created by recipetool</font><font
+        face="Batang"><br>
+        <font size="-1"># This is the basis of a recipe and may need
+          further editing in order to be fully functional.</font><br>
+        <font size="-1"># (Feel free to remove these comments when
+          editing.)</font><br>
+        <br>
+        <font size="-1"># Unable to find any files that looked like
+          license statements. Check the accompanying</font><br>
+        <font size="-1"># documentation and source headers and set
+          LICENSE and LIC_FILES_CHKSUM accordingly.</font><br>
+        <font size="-1">#</font><br>
+        <font size="-1"># NOTE: LICENSE is being set to "CLOSED" to
+          allow you to at least start building - if</font><br>
+        <font size="-1"># this is not accurate with respect to the
+          licensing of the software being built (it</font><br>
+        <font size="-1"># will not be in most cases) you must specify
+          the correct value before using this</font><br>
+        <font size="-1"># recipe for anything other than initial
+          testing/development!</font><br>
+        <font size="-1">LICENSE = "CLOSED"</font><br>
+        <font size="-1">LIC_FILES_CHKSUM = ""</font><br>
+        <br>
+        <font size="-1"># No information for SRC_URI yet (only an
+          external source tree was specified)</font><br>
+        <font size="-1">PV = "2.0.2"</font><br>
+        <font size="-1">SRC_URI = <a class="moz-txt-link-rfc2396E" href="file://src">"file://src"</a></font><br>
+        <br>
+        <font size="-1"># NOTE: this is a Makefile-only piece of
+          software, so we cannot generate much of the</font><br>
+        <font size="-1"># recipe automatically - you will need to
+          examine the Makefile yourself and ensure</font><br>
+        <font size="-1"># that the appropriate arguments are passed in.</font><br>
+        <br>
+        <font size="-1">do_configure () {</font><br>
+        <font size="-1">    # Specify any needed configure commands here</font><br>
+        <font size="-1">    :</font><br>
+        <font size="-1">}</font><br>
+        <br>
+        <font size="-1">do_compile () {</font><br>
+        <font size="-1">    # You will almost certainly need to add
+          additional arguments here</font><br>
+        <font size="-1">    cd ${WORKDIR}/src</font><br>
+        <font size="-1">    oe_runmake</font><br>
+        <font size="-1">}</font><br>
+        <br>
+        <font size="-1">FILES_${PN} = "/www/pages /etc/lighttpd.d"</font><br>
+        <font size="-1">do_install () {</font><br>
+        <font size="-1">    # This is a guess; additional arguments may
+          be required</font><br>
+        <font size="-1">    cd ${WORKDIR}/src</font><br>
+        <font size="-1">    oe_runmake install 'DESTDIR=${D}'</font><br>
+        <font size="-1">}</font><br>
+        <br>
+        <font size="-1">DEPENDS = "libgcc boost"</font><br>
+        <font size="-1">RDEPENDS_${PN} = "libgcc boost-thread
+          boost-system lighttpd lighttpd-module-cgi"</font><br>
+        <font size="-1">#------------------------------------------------------------------</font></font><br>
+      <br>
+    </p>
+    <p>2. Also in uio-test folder, I have uio-test.bbappend file with
+      these contents:</p>
+    <p><font size="-1" face="Batang">#------------------------------------------------------------------</font></p>
+    <p><font face="Batang">FILESEXTRAPATHS_prepend :=
+        "${THISDIR}/files:"<br>
+        SRC_URI += <a class="moz-txt-link-rfc2396E" href="file://uio-test.cfg">"file://uio-test.cfg"</a></font></p>
+    <p><font size="-1" face="Batang">#----------------------^^^^^^^^^^^^^^^^^^^-------------------------</font></p>
+    <p>3. In uio-test/files folder, I have uio-test.cfg with the
+      following contents: <font size="-1"><br>
+      </font><font size="-1" face="Batang"></font></p>
+    <p><br>
+      <font size="-1" face="Batang"><font size="-1" face="Batang">#------------------------------------------------------------------</font></font></p>
+    <p><font size="-1" face="Batang">CONFIG_CMA_ALIGNMENT=8<br>
+        CONFIG_CMA=y<br>
+        CONFIG_CMA_AREAS=7<br>
+        CONFIG_DMA_CMA=y<br>
+        CONFIG_CMA_SIZE_MBYTES=128<br>
+        CONFIG_CMA_SIZE_SEL_MBYTES=y<br>
+        CONFIG_DMADEVICES=y<br>
+        CONFIG_DMA_ENGINE=y<br>
+        CONFIG_DMA_OF=y<br>
+        CONFIG_XILINX_DMA_ENGINES=y<br>
+        CONFIG_XILINX_DMA=y<br>
+        CONFIG_DMA_API_DEBUG=y<br>
+        CONFIG_HAS_DMA=y<br>
+        CONFIG_NEED_DMA_MAP_STATE=y<br>
+        CONFIG_HAVE_DMA_CONTIGUOUS=y<br>
+        CONFIG_HAVE_DMA_API_DEBUG=y<br>
+        CONFIG_HAVE_GENERIC_DMA_COHERENT=y<br>
+        CONFIG_ARM_DMA_MEM_BUFFERABLE=y<br>
+        CONFIG_ZONE_DMA_FLAG=0</font><br>
+      <font size="-1" face="Batang"><font size="-1" face="Batang">#----------------------^^^^^^^^^^^^^^^^^^^-------------------------</font></font></p>
+    <p>My question: I think the cfg file is being parsed because if I
+      change the folder name files to something else, bitbake will
+      complaint about not being able to find uio-test.cfg. However, the
+      final .config in built do not have the CMA allocated. My meta
+      layer does have a priority higher than the upstream layers. What
+      else can cause the problem here? Any suggestions? Thanks. <font
+        size="-1" face="Batang"><font size="-1" face="Batang"><br>
+        </font></font></p>
+    <p><font size="-1" face="Batang"><font size="-1" face="Batang">Fan
+          Zhang<br>
+        </font></font></p>
+  </body>
+</html>
+
+--------------52FEAA35E07090F15F7897E5--
+
+--------------22AFB6C77A7285B492B9A46C
+Content-Type: text/x-vcard; charset=utf-8;
+ name="fzhang.vcf"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="fzhang.vcf"
+
+begin:vcard
+fn:Fan Zhang
+n:Zhang;Fan
+org:Sander Geophysics Ltd. 
+email;internet:fzhang@sgl.com
+title:Electronics Design Engineer
+tel;work:(613)521-9626
+version:2.1
+end:vcard
+
+
+--------------22AFB6C77A7285B492B9A46C--
