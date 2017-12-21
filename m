@@ -1,6 +1,6 @@
 Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8AC09E00E88; Thu, 21 Dec 2017 08:33:17 -0800 (PST)
+	id 1E921E00EAD; Thu, 21 Dec 2017 08:33:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,25 +12,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EE07E00E82
-	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 08:33:17 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41057E00E82
+	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 08:33:18 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
 	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Dec 2017 08:33:16 -0800
+	21 Dec 2017 08:33:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,436,1508828400"; d="scan'208";a="160761429"
+X-IronPort-AV: E=Sophos;i="5.45,436,1508828400"; d="scan'208";a="160761442"
 Received: from kanavin-desktop.fi.intel.com ([10.237.68.161])
-	by orsmga004.jf.intel.com with ESMTP; 21 Dec 2017 08:33:16 -0800
+	by orsmga004.jf.intel.com with ESMTP; 21 Dec 2017 08:33:17 -0800
 From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Dec 2017 18:27:20 +0200
-Message-Id: <578e67a2c752b84ae52e7b46e05e961dc38220f3.1513873401.git.alexander.kanavin@linux.intel.com>
+Date: Thu, 21 Dec 2017 18:27:21 +0200
+Message-Id: <e8c77b46015785676a777c9707f279c5443ee280.1513873401.git.alexander.kanavin@linux.intel.com>
 X-Mailer: git-send-email 2.15.1
+MIME-Version: 1.0
 In-Reply-To: <cover.1513873401.git.alexander.kanavin@linux.intel.com>
 References: <cover.1513873401.git.alexander.kanavin@linux.intel.com>
-Subject: [auh][PATCH 12/21] Add support for compiling against non-default C libraries
+Subject: [auh][PATCH 13/21] Add protection measures and information against running with existing build directories.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,64 +43,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Dec 2017 16:33:17 -0000
+X-List-Received-Date: Thu, 21 Dec 2017 16:33:19 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Particularly, musl is a notorious source of failures and so it's
-very useful to do at least one build against it by default.
+This should help e.g. with the following issue:
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=7174
 
 Signed-off-by: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 ---
- README                   | 4 +++-
- modules/utils/bitbake.py | 7 ++++++-
- upgradehelper.py         | 2 +-
- 3 files changed, 10 insertions(+), 3 deletions(-)
+ README           | 12 ++++++++----
+ upgradehelper.py | 14 ++++++++++++++
+ weeklyjob.sh     |  2 +-
+ 3 files changed, 23 insertions(+), 5 deletions(-)
 
 diff --git a/README b/README
-index 20b2e5d..fabde5c 100644
+index fabde5c..27b0977 100644
 --- a/README
 +++ b/README
-@@ -65,7 +65,9 @@ clean_sstate=yes
- clean_tmp=yes
+@@ -17,10 +17,14 @@ Setup
+    $ git config --global user.name "Some Name"
+    $ git config --global user.email "somename@somedomain.com"
  
- # machines to test build with
--machines=qemux86 qemux86-64 qemuarm qemumips qemuppc
-+# append _libc-name to test with alternative C library implementations
-+# e.g. qemux86_musl
-+machines=qemux86 qemux86_musl qemux86-64 qemuarm qemumips qemuppc
+-1. Ensure you have a working copy of the build system that is configured
+-   and ready to run, i.e. you've run the oe-init-build-env script to
+-   create a build directory and edited local.conf / bblayers.conf as
+-   desired.
++1. Run the oe-init-build-env script to create a fresh build directory, solely
++   for the purpose of running AUH:
++
++   $ . ./oe-init-build-env build-auh
++
++   Re-using existing build directories and configurations is not recommended
++   as they may contains tweaks that will break AUH or make it behave in
++   undesirable ways.
  
- # optional features
- buildhistory=no
-diff --git a/modules/utils/bitbake.py b/modules/utils/bitbake.py
-index 8b7c5ed..2ae3a1c 100644
---- a/modules/utils/bitbake.py
-+++ b/modules/utils/bitbake.py
-@@ -121,7 +121,12 @@ class Bitbake(object):
-         return self._cmd(recipe, "-c cleansstate")
- 
-     def complete(self, recipe, machine):
--        return self._cmd(recipe, env_var="MACHINE=" + machine)
-+        if "_" in machine:
-+            machine, libc = machine.split("_")
-+            env = "MACHINE={} TCLIBC={}".format(machine, libc)
-+        else:
-+            env = "MACHINE={}".format(machine)
-+        return self._cmd(recipe, env_var=env)
- 
-     def dependency_graph(self, package_list):
-         return self._cmd(package_list, "-g")
+ 2. Prepare a configuration file, by default in $BUILDDIR/upgrade-helper/
+    upgrade-helper.conf, as below:
 diff --git a/upgradehelper.py b/upgradehelper.py
-index 4623199..a33a3bf 100755
+index a33a3bf..9110efc 100755
 --- a/upgradehelper.py
 +++ b/upgradehelper.py
-@@ -171,7 +171,7 @@ class Updater(object):
-             self.git = Git(os.path.dirname(os.getenv('PATH', False).split(':')[0]))
-             self.poky_git = None
-             self.opts['machines'] = settings.get('machines',
--                'qemux86 qemux86-64 qemuarm qemumips qemuppc').split()
-+                'qemux86 qemux86-64 qemuarm qemumips qemuppc qemux86_musl').split()
+@@ -788,6 +788,8 @@ if __name__ == "__main__":
  
-         self.opts['send_email'] = self.args.send_emails
-         self.opts['author'] = "Upgrade Helper <%s>" % \
+     if not os.getenv('BUILDDIR', False):
+         E(" You must source oe-init-build-env before running this script!\n")
++        E(" It is recommended to create a fresh build directory with it:\n")
++        E(" $ . oe-init-build-env build-auh\n")
+         exit(1)
+ 
+     devnull = open(os.devnull, 'wb')
+@@ -796,6 +798,18 @@ if __name__ == "__main__":
+         E(" Git isn't configured please configure user name and email\n")
+         exit(1)
+ 
++    with open(os.getenv('BUILDDIR')+"/conf/local.conf") as f:
++        import re
++        for line in f.readlines():
++            if re.match(r"^MACHINE\s*=", line):
++                E(" The following line found in local.conf - please use ?= or ?== instead as otherwise AUH will not be able to set the desired target machine\n")
++                E(" {}".format(line))
++                exit(1)
++            if re.match(r"^TCLIBC\s*=", line):
++                E(" The following line found in local.conf - please use ?= or ?== instead as otherwise AUH will not be able to set the desired C library\n")
++                E(" {}".format(line))
++                exit(1)
++
+     signal.signal(signal.SIGINT, close_child_processes)
+ 
+     debug_levels = [log.CRITICAL, log.ERROR, log.WARNING, log.INFO, log.DEBUG]
+diff --git a/weeklyjob.sh b/weeklyjob.sh
+index 8dd0a1c..ac50461 100755
+--- a/weeklyjob.sh
++++ b/weeklyjob.sh
+@@ -10,7 +10,7 @@
+ # Re-assign these to match your setup!
+ auh_dir=~/auto-upgrade-helper
+ poky_dir=~/poky
+-build_dir=~/build
++build_dir=~/build-tmp-auh-upgrades
+ sstate_dir=~/sstate-cache
+ 
+ pushd $poky_dir
 -- 
 2.15.1
 
