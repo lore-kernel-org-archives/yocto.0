@@ -1,61 +1,58 @@
-Return-Path: <barry@grussling.com>
+Return-Path: <libertad.cruz@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 063FAE00D6D; Wed, 20 Dec 2017 19:50:37 -0800 (PST)
+	id 65043E00CE8; Wed, 20 Dec 2017 20:25:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F15C4E00B5F
-	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 19:50:35 -0800 (PST)
-Received: by mail-wm0-f41.google.com with SMTP id 9so13435293wme.4
-	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 19:50:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=grussling-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Hy62CllpdUTC8T4D9GCutUK5uzbr10xPk8BGYaqk5vo=;
-	b=hPZu9oIadjf6pqKkH2Buinmbo/0MknH5ENyj+O/oG5WKR9TahPwhg1RXObyGoUMVdr
-	fwXXqmC/d74W+KRMm9+NKygM7PgzzBB+jW3ryWGx4HZXUSDKmettwda4FgBhTEFO7o1X
-	xo9er6ehc8TBIQWcWnx2W+W7q1emg/yHvFJf1vJwfeUocLFL7OKsNQb01xLUPjEkld8G
-	PTG+/shjzHdXQ2Q9zYodeNGkIFHT1yP+04IS8GPLc4u1uSELF4JAoyml5g0fiYFWKOiP
-	GFbnLCeFEMVGfcIROaij/BbaZkbtp8RYVWPbJED2+PewbBw0rUfayY8A7ojvmQJnGWyo
-	FzTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Hy62CllpdUTC8T4D9GCutUK5uzbr10xPk8BGYaqk5vo=;
-	b=S4/G0jCsE9ST7DJPuDIs1WfgUDTfk6yT5wwRfSaKXr0wJFaiXtEkdJWMs3tWTBkBNz
-	VjZJANWkhJBGs0Z5fJB6t6uBZB2L2abh8klx7SddS3Sr5MUWIdLX5xnnmcaAkS7B9/PE
-	eHjYa7349gUKbjDKbPjtf+lzpYwnDWX4z2sLHai1vM9BzUWbKK+/Vr6JE3/0loV0YkFM
-	VteOMcnv/tBdhWbz2V59cGnKbR6S7RhtUP9wZ4pHoz5qWaIaVzOPZkXGdS7HXcpWA3NW
-	nWeB3xLlU/Xuuy8dZYasVcN2uRaDS59MKht+HaAEeSgGLMZZCkv+SsrTJi7qJ1eUDOo3
-	NSug==
-X-Gm-Message-State: AKGB3mJkLgO07xk6Ds47Cf0T5AtlvcrD4/ZTurP2xwzZvPweV5Wqi/EJ
-	CC1G5bm8vv725Iuh3J8h+CgsgFFj04NMZBtMeqDo8Qwu
-X-Google-Smtp-Source: ACJfBot2WIb5zf21AmzkHFwdyIGUNv59sS/eUYbs2gz9Sb5VbBcBYuZ/06ubC7KIgmVzgmiBB6puQ7Wi8jpWrnHf5F8=
-X-Received: by 10.80.151.36 with SMTP id c33mr8345534edb.8.1513828234681; Wed,
-	20 Dec 2017 19:50:34 -0800 (PST)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C03B1E00B5F
+	for <yocto@yoctoproject.org>; Wed, 20 Dec 2017 20:25:16 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	20 Dec 2017 20:25:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.45,434,1508828400"; 
+   d="scan'208";a="3615315"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Dec 2017 20:25:15 -0800
+Received: from fmsmsx111.amr.corp.intel.com (10.18.116.5) by
+	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Wed, 20 Dec 2017 20:25:15 -0800
+Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.59]) by
+	fmsmsx111.amr.corp.intel.com ([10.18.116.5]) with mapi id
+	14.03.0319.002; Wed, 20 Dec 2017 20:25:14 -0800
+From: "Cruz, Libertad" <libertad.cruz@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Lock, Joshua G" <joshua.g.lock@intel.com>, 
+	"Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>
+Thread-Topic: QA cycle report for 2.3.3 RC1
+Thread-Index: AdN6AciR9idPrllZSQ6ed0xJ1DH7/w==
+Date: Thu, 21 Dec 2017 04:25:14 +0000
+Message-ID: <58D9E2E50A021A45AD740492365FCDC532A48868@fmsmsx107.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZDIzYmU4MGMtMTMxNS00MmVjLThkMzgtMTYzNTg5NTIzYjYyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJFWm50QnJQekZmNmlPMjdIbDFwN1h6Y1wvOGljUmdjVTZxZGlrbEZQMXcxOXJNb2ptNFBvMDhHaWtXVjJ1b1ppeiJ9
+x-ctpclassification: CTP_IC
+dlp-product: dlpe-windows
+dlp-version: 11.0.0.116
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.106]
 MIME-Version: 1.0
-Received: by 10.80.132.6 with HTTP; Wed, 20 Dec 2017 19:50:34 -0800 (PST)
-In-Reply-To: <CAJTo0LaTbUbDi_+X8=14v7ZdqE8OG4YSYCcUGXAcKMPoOBm0og@mail.gmail.com>
-References: <CABLseQ6EPUVz6=UUQpycQfushowDLeKBYyCNeN+DXkehM-NzZQ@mail.gmail.com>
-	<CAJTo0LaTbUbDi_+X8=14v7ZdqE8OG4YSYCcUGXAcKMPoOBm0og@mail.gmail.com>
-From: Barry Grussling <barry@grussling.com>
-Date: Wed, 20 Dec 2017 19:50:34 -0800
-Message-ID: <CABLseQ462KdpDHWN56XYQbyC7dqSDD2DFSUf0_byWv1Y0OsgvQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Rocko and Circular Dependencies
+Cc: "Sangal, Apoorv" <apoorv.sangal@intel.com>, "Perez Carranza,
+	Jose" <jose.perez.carranza@intel.com>, "Yeoh,
+	Ee Peng" <ee.peng.yeoh@intel.com>
+Subject: QA cycle report for 2.3.3 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,236 +64,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Dec 2017 03:50:37 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 21 Dec 2017 04:25:17 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-It does have a custom layer in it.  I am also using meta-linaro.  I have tried
-to reproduce it in the stock configuration and have not been successful.
+Hello All,
+Enjoy viewing the full Report for 2.3.3 RC1:=A0 https://wiki.yoctoproject.o=
+rg/wiki/WW51_-_2017-12-20-_Full_Test_Cycle_-_2.3.3_rc1
 
-It isn't yet obvious to me what I am doing in my layer that is causing
-the cirular reference in the base layers.  I will keep digging and see
-what I can
-learn.  I am not adding any custom tasks (add task) or anything like that.
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
 
-I will work on adding my layer back in piece by piece and see if I can figure
-out what the trigger criteria is.
+The QA cycle for release 2.3.3 RC1 is complete.=A0 There are 4 new bugs fro=
+m which so far none of them are high. QA has two big concerns:
 
-On Wed, Dec 20, 2017 at 2:22 AM, Burton, Ross <ross.burton@intel.com> wrote:
-> Nobody else has seen this as far as I'm aware, and the autobuilder doesn't
-> see it.
->
-> Is that a pure oe-core/bitbake or Poky, or do you have custom layers?  Can
-> you replicate with a stock configuration?
->
-> On 20 December 2017 at 03:02, Barry Grussling <barry@grussling.com> wrote:
->>
->> Hello all,
->>
->> I am trying to move one of my builds from Krogoth to Rocko.  I am
->> attempting to build
->> on 1c61ba0a3f bitbake: tinfoil: Ensure we clean up loggers.
->>
->> Generally, I can start the first build fine.  Unfortunately, some of
->> my code/recipes will usually fail
->> to build due to the new compilers.  When I re-run bitbake to continue
->> the build, most of
->> the time I experience a build failure of circular dependencies such as:
->>
->> Dependency loop #1 found:
->>   Task
->> /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:do_package
->> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
->> 'gcc-runtime_7.2.bb:do_packagedata', 'glibc_2.26.bb:do_packagedata',
->> 'rpm_git.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_install',
->> 'dpkg_1.18.24.bb:do_packagedata',
->> 'libtool-cross_2.4.6.bb:do_packagedata'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:do_packagedata
->> (dependent Tasks ['ncurses_6.0+20170715.bb:do_package'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_package
->> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
->> 'gcc-runtime_7.2.bb:do_packagedata', 'perl_5.24.1.bb:do_packagedata',
->> 'glibc_2.26.bb:do_packagedata', 'rpm_git.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_packagedata',
->> 'bzip2_1.0.6.bb:do_packagedata', 'dpkg_1.18.24.bb:do_install',
->> 'zlib_1.2.11.bb:do_packagedata',
->> 'libtool-cross_2.4.6.bb:do_packagedata',
->> 'xz_5.2.3.bb:do_packagedata'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_packagedata
->> (dependent Tasks ['dpkg_1.18.24.bb:do_package'])
->>
->> Dependency loop #2 found:
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_package
->> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
->> 'gcc-runtime_7.2.bb:do_packagedata', 'perl_5.24.1.bb:do_packagedata',
->> 'glibc_2.26.bb:do_packagedata', 'rpm_git.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_packagedata',
->> 'bzip2_1.0.6.bb:do_packagedata', 'dpkg_1.18.24.bb:do_install',
->> 'zlib_1.2.11.bb:do_packagedata',
->> 'libtool-cross_2.4.6.bb:do_packagedata',
->> 'xz_5.2.3.bb:do_packagedata'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_packagedata
->> (dependent Tasks ['dpkg_1.18.24.bb:do_package'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:do_package
->> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
->> 'gcc-runtime_7.2.bb:do_packagedata', 'glibc_2.26.bb:do_packagedata',
->> 'rpm_git.bb:do_populate_sysroot', 'dpkg_1.18.24.bb:do_packagedata',
->> 'libtool-cross_2.4.6.bb:do_packagedata', 'bzip2_1.0.6.bb:do_install'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:do_packagedata
->> (dependent Tasks ['bzip2_1.0.6.bb:do_package'])
->>
->> Dependency loop #3 found:
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_compile
->> (dependent Tasks ['dpkg_1.18.24.bb:do_configure'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_install
->> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
->> 'dpkg_1.18.24.bb:do_compile'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_populate_sysroot
->> (dependent Tasks ['dpkg_1.18.24.bb:do_install',
->> 'binutils-cross_2.29.bb:do_populate_sysroot'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:do_prepare_recipe_sysroot
->> (dependent Tasks ['libtool-cross_2.4.6.bb:do_populate_sysroot',
->> 'glibc_2.26.bb:do_populate_sysroot', 'bzip2_1.0.6.bb:do_fetch',
->> 'libtool-native_2.4.6.bb:do_populate_sysroot',
->> 'dpkg_1.18.24.bb:do_populate_sysroot',
->> 'gcc-runtime_7.2.bb:do_populate_sysroot',
->> 'gnu-config_git.bb:do_populate_sysroot',
->> 'gcc-cross_7.2.bb:do_populate_sysroot',
->> 'automake_1.15.1.bb:do_populate_sysroot',
->> 'autoconf_2.69.bb:do_populate_sysroot'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:do_configure
->> (dependent Tasks ['bzip2_1.0.6.bb:do_patch',
->> 'bzip2_1.0.6.bb:do_prepare_recipe_sysroot'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:do_compile
->> (dependent Tasks ['bzip2_1.0.6.bb:do_configure'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:do_install
->> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
->> 'bzip2_1.0.6.bb:do_compile'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-extended/bzip2/bzip2_1.0.6.bb:do_populate_sysroot
->> (dependent Tasks ['binutils-cross_2.29.bb:do_populate_sysroot',
->> 'bzip2_1.0.6.bb:do_install'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_prepare_recipe_sysroot
->> (dependent Tasks ['libtool-cross_2.4.6.bb:do_populate_sysroot',
->> 'bzip2_1.0.6.bb:do_populate_sysroot',
->> 'glibc_2.26.bb:do_populate_sysroot',
->> 'libtool-native_2.4.6.bb:do_populate_sysroot',
->> 'dpkg_1.18.24.bb:do_fetch', 'perl_5.24.1.bb:do_populate_sysroot',
->> 'gettext_0.19.8.1.bb:do_populate_sysroot',
->> 'pkgconfig_git.bb:do_populate_sysroot',
->> 'perl-native_5.24.1.bb:do_populate_sysroot',
->> 'gcc-runtime_7.2.bb:do_populate_sysroot',
->> 'xz_5.2.3.bb:do_populate_sysroot',
->> 'systemd-systemctl-native.bb:do_populate_sysroot',
->> 'gnu-config_git.bb:do_populate_sysroot',
->> 'zlib_1.2.11.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_populate_sysroot',
->> 'gcc-cross_7.2.bb:do_populate_sysroot',
->> 'automake_1.15.1.bb:do_populate_sysroot',
->> 'autoconf_2.69.bb:do_populate_sysroot'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_configure
->> (dependent Tasks ['dpkg_1.18.24.bb:do_prepare_recipe_sysroot',
->> 'dpkg_1.18.24.bb:do_patch'])
->>
->> Dependency loop #4 found:
->>   Task
->> /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:do_compile
->> (dependent Tasks ['ncurses_6.0+20170715.bb:do_configure'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:do_install
->> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_compile'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:do_populate_sysroot
->> (dependent Tasks ['binutils-cross_2.29.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_install'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_prepare_recipe_sysroot
->> (dependent Tasks ['libtool-cross_2.4.6.bb:do_populate_sysroot',
->> 'bzip2_1.0.6.bb:do_populate_sysroot',
->> 'glibc_2.26.bb:do_populate_sysroot',
->> 'libtool-native_2.4.6.bb:do_populate_sysroot',
->> 'dpkg_1.18.24.bb:do_fetch', 'perl_5.24.1.bb:do_populate_sysroot',
->> 'gettext_0.19.8.1.bb:do_populate_sysroot',
->> 'pkgconfig_git.bb:do_populate_sysroot',
->> 'perl-native_5.24.1.bb:do_populate_sysroot',
->> 'gcc-runtime_7.2.bb:do_populate_sysroot',
->> 'xz_5.2.3.bb:do_populate_sysroot',
->> 'systemd-systemctl-native.bb:do_populate_sysroot',
->> 'gnu-config_git.bb:do_populate_sysroot',
->> 'zlib_1.2.11.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_populate_sysroot',
->> 'gcc-cross_7.2.bb:do_populate_sysroot',
->> 'automake_1.15.1.bb:do_populate_sysroot',
->> 'autoconf_2.69.bb:do_populate_sysroot'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_configure
->> (dependent Tasks ['dpkg_1.18.24.bb:do_prepare_recipe_sysroot',
->> 'dpkg_1.18.24.bb:do_patch'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_compile
->> (dependent Tasks ['dpkg_1.18.24.bb:do_configure'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_install
->> (dependent Tasks ['pseudo_1.8.2.bb:do_populate_sysroot',
->> 'dpkg_1.18.24.bb:do_compile'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-devtools/dpkg/dpkg_1.18.24.bb:do_populate_sysroot
->> (dependent Tasks ['dpkg_1.18.24.bb:do_install',
->> 'binutils-cross_2.29.bb:do_populate_sysroot'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:do_prepare_recipe_sysroot
->> (dependent Tasks ['libtool-cross_2.4.6.bb:do_populate_sysroot',
->> 'glibc_2.26.bb:do_populate_sysroot',
->> 'pkgconfig_git.bb:do_populate_sysroot',
->> 'libtool-native_2.4.6.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_fetch',
->> 'dpkg_1.18.24.bb:do_populate_sysroot',
->> 'gcc-runtime_7.2.bb:do_populate_sysroot',
->> 'ncurses_6.0+20170715.bb:do_populate_sysroot',
->> 'gnu-config_git.bb:do_populate_sysroot',
->> 'gcc-cross_7.2.bb:do_populate_sysroot',
->> 'automake_1.15.1.bb:do_populate_sysroot',
->> 'autoconf_2.69.bb:do_populate_sysroot'])
->>   Task
->> /srv/BLD/yocto/meta/recipes-core/ncurses/ncurses_6.0+20170715.bb:do_configure
->> (dependent Tasks ['ncurses_6.0+20170715.bb:do_prepare_recipe_sysroot',
->> 'ncurses_6.0+20170715.bb:do_patch'])
->>
->> After hitting this state, multiple re-invocations of the bitbake will
->> all fail with the same type of errors.  If I clean all state
->> and remove the tmp folder and start again, the build will usually work
->> (until I hit my next compilation issue).  Needless to say, this
->> gets old fast.  I am hitting this style of issue regardless of the
->> value of PACKAGE_CLASSES.
->>
->> I _never_ had issues with circular dependencies in krogoth.  Is anyone
->> else hitting this?  Any caveats to be aware of?
->>
->> Thanks,
->>
->> Barry
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
+        1.  Performance report shows an increase of 30% build time on the e=
+SDK in fedora 23, bug has not been created until further investigation with=
+ setup outside of the GDC environment.=20
+        2.  ptest comparison script is giving wrong results, bug 12441 was =
+opened.=20
+
+
+-----
+
+ptest
+
+Package slang show 0% pass rate in 2.3.3 rc1, the results need to be valida=
+ted, because bug 12441 impacts the comparison script.
+
+-----
+
+Toaster
+Exploratory testing was executed in this release.
+
+-----
+Performance
+
+The performance results showed regression on some of the measurements compa=
+red to 2.3.2rc1 info showed below, the most important one is on building eS=
+DK that is taking around 30% of increase on fedora machine.
+
+
+Ubuntu 15                          Test       2.3.2 rc1              2.3.3 =
+rc1              %
+                                             sato       1:12:11            =
+    1:16:29                +5.96
+                                             rootfs    2:49                =
+      2:53                      +2.37
+                                             rmwork 1:04:15                =
+1:06:47                +3.94
+                                             kernel    5:21                =
+      5:25                      +1.25
+                                             eSDK      2:46                =
+      2:46                      0.00
+                                                                          =
+=20
+                                                                          =
+=20
+Fedora 23                           Test       2.3.2 rc1              2.3.3=
+ rc1              %
+                                             sato       1:14:51            =
+    1:21:20                +8.66
+                                             rootfs    2:45                =
+      2:44                      -0.61
+                                             rmwork 1:07:47                =
+1:14:54                +10.50
+                                             kernel    5:56                =
+      6:04                      +2.25
+                                             eSDK      3:06                =
+      4:12                      +35.48
+
+
+https://wiki.yoctoproject.org/wiki/WW51_-_2017-12-20-_Full_Test_Cycle_-_2.3=
+.3_rc1#Performance_Charts
+
+=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+The build is stable enough to be released, provided the following results a=
+re checked and investigated:
+
+    1. Performance needs to be executed in an environment outside of GDC in=
+ another fedora 23, volunteers?
+    2. QA asks ptest for slang package be checked by development to verify =
+that it is executing.
+
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+
+=A0=A0=A0=A0=A0=A0 New Bugs
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -12440[1] test_qemu_efi (oeqa.selftest.wi=
+c.Wic) fails on Fedora26
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0-12441[2] ptest comparison script is no=
+t showing correct results
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0-12436[3] [Test Case 1958] Project name=
+s cannot be blank
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -12437[4] [Test Case 1958] Toaster explor=
+atory testingin the test run.
+
+=A0=A0=A0=A0=A0=A0 Not new M+ bugs
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -12022[5] signing.Signing.test_signing_pa=
+ckages hangs on ubuntu1704.yocto.io
+
+Full Bug Report:  https://wiki.yoctoproject.org/wiki/WW51_-_2017-12-20-_Ful=
+l_Test_Cycle_-_2.3.3_rc1#Bugs_Found_during_QA_Test
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
+=A0=A0=A0 1.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
+2440[1]=20
+
+=A0=A0=A0 2.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
+2441[2]=20
+
+=A0=A0=A0 3.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
+2436[3]=20
+
+=A0=A0=A0 4.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
+2437[4]=20
+
+=A0=A0=A0 5.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
+2022 [5]=20
+=A0=A0=A0
+
+Regards
+Libertad G.
+
+
 
