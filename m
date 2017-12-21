@@ -1,6 +1,6 @@
-Return-Path: <libertad.cruz@intel.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CEBA7E00DA4; Thu, 21 Dec 2017 08:25:29 -0800 (PST)
+	id E1B85E00E3F; Thu, 21 Dec 2017 08:33:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,49 +8,27 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D7C4E00D9C
-	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 08:25:27 -0800 (PST)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5506FE00D9C
+	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 08:33:05 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Dec 2017 08:25:27 -0800
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	21 Dec 2017 08:33:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,436,1508828400"; 
-   d="scan'208";a="4364600"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
-	by fmsmga008.fm.intel.com with ESMTP; 21 Dec 2017 08:25:27 -0800
-Received: from fmsmsx119.amr.corp.intel.com (10.18.124.207) by
-	FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Thu, 21 Dec 2017 08:25:27 -0800
-Received: from fmsmsx107.amr.corp.intel.com ([169.254.6.59]) by
-	FMSMSX119.amr.corp.intel.com ([169.254.14.129]) with mapi id
-	14.03.0319.002; Thu, 21 Dec 2017 08:25:27 -0800
-From: "Cruz, Libertad" <libertad.cruz@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: QA cycle report for 2.3.3 RC1
-Thread-Index: AdN6AciR9idPrllZSQ6ed0xJ1DH7/wAq2SiAAABzVYAADbI5UA==
-Date: Thu, 21 Dec 2017 16:25:26 +0000
-Message-ID: <58D9E2E50A021A45AD740492365FCDC532A4897B@fmsmsx107.amr.corp.intel.com>
-References: <58D9E2E50A021A45AD740492365FCDC532A48868@fmsmsx107.amr.corp.intel.com>
-	<1513867433.16507.94.camel@intel.com>
-	<736f1bcb-4842-1193-8f25-a1592683812e@intel.com>
-In-Reply-To: <736f1bcb-4842-1193-8f25-a1592683812e@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiOGFmNjFjMjMtZDc5Ny00NDJiLTk2MzMtMTdkYzRhZDMzNjBkIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJsdVQ3WE1NUmtHWEhJN2p4OG1lbUJLWlg4UmlGZUxBQlBybnRoNVwvRHZIdWVKM2E3QUdvVUZvVzdCejNtNmdMMiJ9
-x-ctpclassification: CTP_IC
-dlp-product: dlpe-windows
-dlp-version: 11.0.0.116
-dlp-reaction: no-action
-x-originating-ip: [10.1.200.106]
-MIME-Version: 1.0
-Subject: FW: QA cycle report for 2.3.3 RC1
+X-IronPort-AV: E=Sophos;i="5.45,436,1508828400"; d="scan'208";a="160761280"
+Received: from kanavin-desktop.fi.intel.com ([10.237.68.161])
+	by orsmga004.jf.intel.com with ESMTP; 21 Dec 2017 08:33:02 -0800
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 21 Dec 2017 18:27:08 +0200
+Message-Id: <cover.1513873401.git.alexander.kanavin@linux.intel.com>
+X-Mailer: git-send-email 2.15.1
+Subject: [auh][PATCH 00/21] Further enhancements to automatic upgrade helper
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,40 +40,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Dec 2017 16:25:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 21 Dec 2017 16:33:07 -0000
 
-TWFjaGluZSB3YXMgcmVib290ZWQNCg0KbGFzdCB3ZWVrIDEyLzEyDQoNCi0kIHdobyAtYg0KICAg
-ICAgICAgIHN5c3RlbSBib290ICAyMDE3LTEyLTEyIDA5OjE4DQoNCi0kIHVwdGltZSAtcw0KICAg
-ICAgICAgIDIwMTctMTItMTIgMDk6MTk6MjgNCg0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
-LS0tDQpGcm9tOiBQZXJleiBDYXJyYW56YSwgSm9zZSANClNlbnQ6IFRodXJzZGF5LCBEZWNlbWJl
-ciAyMSwgMjAxNyA4OjU3IEFNDQpUbzogUHVyZGllLCBSaWNoYXJkIDxyaWNoYXJkLnB1cmRpZUBp
-bnRlbC5jb20+OyBDcnV6LCBMaWJlcnRhZCA8bGliZXJ0YWQuY3J1ekBpbnRlbC5jb20+OyB5b2N0
-b0B5b2N0b3Byb2plY3Qub3JnOyBMb2NrLCBKb3NodWEgRyA8am9zaHVhLmcubG9ja0BpbnRlbC5j
-b20+OyBKb2xsZXksIFN0ZXBoZW4gSyA8c3RlcGhlbi5rLmpvbGxleUBpbnRlbC5jb20+OyBaaGFu
-ZywgSmVzc2ljYSA8amVzc2ljYS56aGFuZ0BpbnRlbC5jb20+DQpDYzogU2FuZ2FsLCBBcG9vcnYg
-PGFwb29ydi5zYW5nYWxAaW50ZWwuY29tPjsgWWVvaCwgRWUgUGVuZyA8ZWUucGVuZy55ZW9oQGlu
-dGVsLmNvbT4NClN1YmplY3Q6IFJlOiBRQSBjeWNsZSByZXBvcnQgZm9yIDIuMy4zIFJDMQ0KDQoN
-Ck9uIDEyLzIxLzIwMTcgMDg6NDMgQU0sIFJpY2hhcmQgUHVyZGllIHdyb3RlOg0KPiBPbiBXZWQs
-IDIwMTctMTItMjAgYXQgMjA6MjUgLTA4MDAsIENydXosIExpYmVydGFkIHdyb3RlOg0KPj4gSGVs
-bG8gQWxsLA0KPj4gRW5qb3kgdmlld2luZyB0aGUgZnVsbCBSZXBvcnQgZm9yIDIuMy4zIFJDMTrC
-oCBodHRwczovL3dpa2kueW9jdG9wcm9qZQ0KPj4gY3Qub3JnL3dpa2kvV1c1MV8tXzIwMTctMTIt
-MjAtX0Z1bGxfVGVzdF9DeWNsZV8tXzIuMy4zX3JjMQ0KPj4NCj4+ID09PT09PT0gU3VtbWFyeSA9
-PT09PT09PQ0KPj4NCj4+IFRoZSBRQSBjeWNsZSBmb3IgcmVsZWFzZSAyLjMuMyBSQzEgaXMgY29t
-cGxldGUuwqAgVGhlcmUgYXJlIDQgbmV3IGJ1Z3MgDQo+PiBmcm9tIHdoaWNoIHNvIGZhciBub25l
-IG9mIHRoZW0gYXJlIGhpZ2guIFFBIGhhcyB0d28gYmlnIGNvbmNlcm5zOg0KPj4NCj4+ICDCoMKg
-wqDCoMKgwqDCoMKgMS7CoMKgUGVyZm9ybWFuY2UgcmVwb3J0IHNob3dzIGFuIGluY3JlYXNlIG9m
-IDMwJSBidWlsZCB0aW1lIA0KPj4gb24gdGhlIGVTREsgaW4gZmVkb3JhIDIzLCBidWcgaGFzIG5v
-dCBiZWVuIGNyZWF0ZWQgdW50aWwgZnVydGhlciANCj4+IGludmVzdGlnYXRpb24gd2l0aCBzZXR1
-cCBvdXRzaWRlIG9mIHRoZSBHREMgZW52aXJvbm1lbnQuDQo+IENvdWxkIHlvdSBjb25maXJtIHdo
-ZW4gdGhlIHBlcmZvcm1hbmNlIHRlc3QgbWFjaGluZXMgd2VyZSBsYXN0IA0KPiByZWJvb3RlZD8g
-V2UndmUgaGFkIGlzc3VlcyBiZWZvcmUgd2hlcmUgdGhlIGJlbmNobWFya3MgZHJpZnQgd2l0aCAN
-Cj4gbWFjaGluZSB1cHRpbWUuIElmIHRoZSd2ZSBiZWVuIHJ1bm5pbmcgZm9yIG1vcmUgdGhhbiBh
-Ym91dCAzIHdlZWtzIEknZCANCj4gbGlrZSB0byBydW4gdGhlIGJlbmNobWFya3MgYWdhaW4gYWZ0
-ZXIgYSByZWJvb3QuDQpJdCB3YXMgbGFzdCB3ZWVrIDEyLzEyDQoNCi0kIHdobyAtYg0KIMKgwqDC
-oMKgwqDCoMKgwqAgc3lzdGVtIGJvb3TCoCAyMDE3LTEyLTEyIDA5OjE4DQoNCi0kIHVwdGltZSAt
-cw0KIMKgwqDCoMKgwqDCoMKgwqAgMjAxNy0xMi0xMiAwOToxOToyOA0KDQo+IFRoYW5rcyENCj4N
-Cj4gUmljaGFyZA0KDQotLQ0KU2FsdWRvcw0KSm9zw6kNCg0K
+Particularly:
+1) Rebase and integrate (most of) Robert's patches
+2) Add musl testing support (a notorious source of failures)
+3) Rework testimage support to be more straigtforward and usable locally
+by maintainers
+4) Other things :)
+
+The following changes since commit fbccfa00967305bb3866d0f610cd4b83b8b7a28c:
+
+  upgradehelper.py: revert commits that failed to build (2017-12-14 18:13:11 +0200)
+
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/auto-upgrade-helper devel
+  http://git.yoctoproject.org/cgit.cgi/auto-upgrade-helper/log/?h=devel
+
+Alexander Kanavin (13):
+  upgradehelper.py: drop automatic mode
+  upgradehelper.py: replace the confusing 'maintainer' command line
+    option
+  weeklyjob.sh: set up a temporary branch and clean up afterwards
+  Add support for compiling against non-default C libraries
+  Add protection measures and information against running with existing
+    build directories.
+  upgradehelper.py: do not include absolute paths in the generated
+    tarball
+  Do not require configuration options that aren't necessary for running
+    ptests
+  upgradehelper.py: do not include testimage information in maintainer
+    email messages
+  testimage.py: clarify what arguments are passed to class constructor
+  testimage.py: run even if no packages were upgraded
+  testimage.py: remove all iterations (over machines, over failing
+    recipes)
+  testimage.py: rewrite the logic for building and running testimages
+  testimage.py: collect and write out logs from bitbake and testimage
+
+Robert Yang (8):
+  upgradehelper.py: fix checking for do_checkpkg
+  upgradehelper.py: support upgrade multiple recipes
+  upgradehelper.py: use UniverseUpdater for all cases
+  modules/steps.py: fix warn when skip compilation
+  upgradehelper.py: only check email settings when -e is specified
+  upgradehelper.py: always do upgrade when recipes are specified
+  upgradehelper.py: print info when recipe is skipped to upgrade
+  upgradehelper.py: don't build gcc-runtime when --skip-compilation
+
+ README                   |  40 +++++---
+ modules/steps.py         |   2 +-
+ modules/testimage.py     | 256 ++++++++---------------------------------------
+ modules/utils/bitbake.py |   7 +-
+ upgradehelper.py         | 144 +++++++++++---------------
+ weeklyjob.sh             |  16 ++-
+ 6 files changed, 142 insertions(+), 323 deletions(-)
+
+-- 
+2.15.1
+
 
