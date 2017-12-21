@@ -1,6 +1,6 @@
 Return-Path: <philippe.coval@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 181C7E00CE8; Thu, 21 Dec 2017 04:08:20 -0800 (PST)
+	id 37927E00D24; Thu, 21 Dec 2017 04:08:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,28 +10,28 @@ X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from osg.samsung.com (osg.samsung.com [64.30.133.232])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44342E00D24
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4596FE00D6D
 	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 04:08:16 -0800 (PST)
 Received: from localhost (localhost [127.0.0.1])
-	by osg.samsung.com (Postfix) with ESMTP id 5968818814;
-	Thu, 21 Dec 2017 04:03:03 -0800 (PST)
+	by osg.samsung.com (Postfix) with ESMTP id 3D069187F2;
+	Thu, 21 Dec 2017 04:02:48 -0800 (PST)
 X-Virus-Scanned: Debian amavisd-new at dev.s-opensource.com
 Received: from osg.samsung.com ([127.0.0.1])
 	by localhost (localhost [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id gnlMChE_vyv4; Thu, 21 Dec 2017 04:02:48 -0800 (PST)
+	with ESMTP id x188Ar_HlaHj; Thu, 21 Dec 2017 04:02:32 -0800 (PST)
 Received: from WSF-1127.8.8.8.8 (unknown [82.236.136.171])
-	by osg.samsung.com (Postfix) with ESMTPSA id 54C34187CC;
-	Thu, 21 Dec 2017 04:02:30 -0800 (PST)
+	by osg.samsung.com (Postfix) with ESMTPSA id 5A058187B6;
+	Thu, 21 Dec 2017 04:02:25 -0800 (PST)
 From: Philippe Coval <philippe.coval@osg.samsung.com>
 To: kishen.maloor@intel.com
-Date: Thu, 21 Dec 2017 13:02:18 +0100
-Message-Id: <1513857738-29097-5-git-send-email-philippe.coval@osg.samsung.com>
+Date: Thu, 21 Dec 2017 13:02:15 +0100
+Message-Id: <1513857738-29097-2-git-send-email-philippe.coval@osg.samsung.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1513857738-29097-1-git-send-email-philippe.coval@osg.samsung.com>
 References: <1513857738-29097-1-git-send-email-philippe.coval@osg.samsung.com>
 Cc: iotivity-dev@lists.iotivity.org, yocto@yoctoproject.org,
 	Philippe Coval <philippe.coval@osg.samsung.com>
-Subject: [meta-oic][PATCH 5/5] Add recipe for IoTivity 1.3.1
+Subject: [meta-oic][PATCH 2/5] Add recipe for IoTivity 1.3.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,36 +45,82 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 21 Dec 2017 12:08:20 -0000
 
-Note that fail on warning flag has been added,
-and can be used in .bbappend if needed after reporting bugs:
-http://wiki.iotivity.org/report
+Note that SECURITY is now enabled but might cause issues on some examples.
 
 Bug: https://jira.iotivity.org/browse/IOT-2651
 Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
 ---
- README                                  |   2 +-
- recipes-core/iotivity/iotivity_1.3.1.bb | 469 ++++++++++++++++++++++++++++++++
- 2 files changed, 470 insertions(+), 1 deletion(-)
- create mode 100644 recipes-core/iotivity/iotivity_1.3.1.bb
+ README                                             |   2 +-
+ ...ging-Return-false-boolean-instead-of-enum.patch |  40 ++
+ recipes-core/iotivity/iotivity_1.3.0.bb            | 471 +++++++++++++++++++++
+ 3 files changed, 512 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-core/iotivity/files/0099-bridging-Return-false-boolean-instead-of-enum.patch
+ create mode 100644 recipes-core/iotivity/iotivity_1.3.0.bb
 
 diff --git a/README b/README
-index 085dbdc..ca0c762 100644
+index ef202dd..085dbdc 100644
 --- a/README
 +++ b/README
 @@ -1,6 +1,6 @@
  meta-oic
  ========
--This layer contains recipes for the IoTivity Project (v1.3.0)
-+This layer contains recipes for the IoTivity Project (v1.3.1)
+-This layer contains recipes for the IoTivity Project (v1.2.1)
++This layer contains recipes for the IoTivity Project (v1.3.0)
  , sample applications and related components for any Yocto target.
  
  Contents
-diff --git a/recipes-core/iotivity/iotivity_1.3.1.bb b/recipes-core/iotivity/iotivity_1.3.1.bb
+diff --git a/recipes-core/iotivity/files/0099-bridging-Return-false-boolean-instead-of-enum.patch b/recipes-core/iotivity/files/0099-bridging-Return-false-boolean-instead-of-enum.patch
 new file mode 100644
-index 0000000..c7b9163
+index 0000000..101588d
 --- /dev/null
-+++ b/recipes-core/iotivity/iotivity_1.3.1.bb
-@@ -0,0 +1,469 @@
++++ b/recipes-core/iotivity/files/0099-bridging-Return-false-boolean-instead-of-enum.patch
+@@ -0,0 +1,40 @@
++From 45a915954650b0c2f5752ae9e958a194d2483852 Mon Sep 17 00:00:00 2001
++From: Philippe Coval <philippe.coval@osg.samsung.com>
++Date: Wed, 28 Jun 2017 04:54:05 +0200
++Subject: [PATCH 099/169] bridging: Return false boolean instead of enum
++
++Small Fix to support g++-7.1.0
++
++It was tested on yocto poky master on iotivity-1.3.0 (and later):
++
++  bridging/plugins/nest_plugin/nest_objects/nest.cpp: \
++  In member function 'bool Nest::isAuthorized()':
++  bridging/plugins/nest_plugin/nest_objects/nest.cpp:95:16: \
++  error: enum constant in boolean context [-Werror=int-in-bool-context]
++
++
++Signed-off-by: Philippe Coval <philippe.coval@osg.samsung.com>
++Reviewed-on: https://gerrit.iotivity.org/gerrit/21071
++Tested-by: jenkins-iotivity <jenkins@iotivity.org>
++Reviewed-by: Dan Mihai <Daniel.Mihai@microsoft.com>
++Reviewed-by: Todd Malsbary <todd.malsbary@intel.com>
++---
++ bridging/plugins/nest_plugin/nest_objects/nest.cpp | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/bridging/plugins/nest_plugin/nest_objects/nest.cpp b/bridging/plugins/nest_plugin/nest_objects/nest.cpp
++index 780d6e9..8b40848 100644
++--- a/bridging/plugins/nest_plugin/nest_objects/nest.cpp
+++++ b/bridging/plugins/nest_plugin/nest_objects/nest.cpp
++@@ -92,7 +92,7 @@ bool Nest::isAuthorized()
++     if (curlCode != MPM_RESULT_OK)
++     {
++         OIC_LOG_V(ERROR, TAG, "Curl GET Request operation failed. Error code %d", curlCode);
++-        return MPM_RESULT_INTERNAL_ERROR;
+++        return false;
++     }
++ 
++     if (MPM_RESULT_OK != parseStructureJsonResponse(response, m_metaInfo))
++-- 
++1.9.1
++
+diff --git a/recipes-core/iotivity/iotivity_1.3.0.bb b/recipes-core/iotivity/iotivity_1.3.0.bb
+new file mode 100644
+index 0000000..b1490dd
+--- /dev/null
++++ b/recipes-core/iotivity/iotivity_1.3.0.bb
+@@ -0,0 +1,471 @@
 +SUMMARY = "IoTivity framework and SDK sponsored by the Open Connectivity Foundation."
 +DESCRIPTION = "IoTivity is an open source software framework enabling seamless device-to-device connectivity to address the emerging needs of the Internet of Things."
 +HOMEPAGE = "https://www.iotivity.org/"
@@ -87,9 +133,11 @@ index 0000000..c7b9163
 +LIC_FILES_CHKSUM = "file://LICENSE.md;md5=22bf216f3077c279aed7b36b1fa9e6d1"
 +
 +branch_iotivity ?= "1.3-rel"
-+SRCREV ?= "633dc231b8d9967520627528a92506efca7cebcd"
++SRCREV ?= "443b33a031f275380d1a50ac8c2ac20b80292fb1"
 +url_iotivity ?= "git://github.com/iotivity/iotivity.git;destsuffix=${S};branch=${branch_iotivity};protocol=http"
 +SRC_URI += "${url_iotivity}"
++SRC_URI += "file://0189-resource-Include-functional-header-for-g-7.1.0.patch"
++SRC_URI += "file://0099-bridging-Return-false-boolean-instead-of-enum.patch"
 +
 +url_tinycbor = "git://github.com/01org/tinycbor.git"
 +SRCREV_tinycbor = "31c7f81d45d115d2007b1c881cbbd3a19618465c"
@@ -124,7 +172,6 @@ index 0000000..c7b9163
 +    EXTRA_OESCONS += " TARGET_OS=yocto TARGET_ARCH=" + IOTIVITY_TARGET_ARCH + " RELEASE=1"
 +    EXTRA_OESCONS += " VERBOSE=1"
 +    # Aligned to default configuration, but features can be changed here (at your own risk):
-+#   EXTRA_OESCONS += " ERROR_ON_WARN=False"
 +    # EXTRA_OESCONS += " ROUTING=GW"
 +    # EXTRA_OESCONS += " SECURED=0"
 +    # EXTRA_OESCONS += " TCP=1"
@@ -134,6 +181,7 @@ index 0000000..c7b9163
 +
 +IOTIVITY_BIN_DIR = "/opt/${PN}"
 +IOTIVITY_BIN_DIR_D = "${D}${IOTIVITY_BIN_DIR}"
++LDFLAGS_append = " -Wl,-rpath-link=\\$$ORIGIN"
 +
 +
 +do_compile_prepend() {
@@ -323,7 +371,7 @@ index 0000000..c7b9163
 +    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/unittests/rcs_client_test ${IOTIVITY_BIN_DIR_D}/tests/service/resource-encapsulation
 +    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/resourceBroker/unittest/broker_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/resource-broker
 +    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/resourceCache/unittests/cache_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/resource-cache
-+    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/common/primitiveResource/unittests/rcs_common_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/common
++    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/common/rcs_common_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/common
 +    copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/service/resource-encapsulation/src/serverBuilder/rcs_server_test ${IOTIVITY_BIN_DIR_D}/examples/service/resource-encapsulation/server-builder
 +
 +    #Resource directory
