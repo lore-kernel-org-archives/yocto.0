@@ -1,30 +1,66 @@
-Return-Path: <fzhang@sgl.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C46A8E00D9C; Thu, 21 Dec 2017 07:53:32 -0800 (PST)
+	id 130E1E00D9E; Thu, 21 Dec 2017 08:08:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.217.194 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 1267 seconds by postgrey-1.32 at yocto-www;
-	Thu, 21 Dec 2017 07:53:31 PST
-Received: from webmail.sgl.com (mail1.sgl.com [209.87.231.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58F5CE00D07
-	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 07:53:31 -0800 (PST)
-Received: from [10.1.20.15] (unknown [10.1.20.15])
-	by webmail.sgl.com (Postfix) with ESMTP id F0DB91D76F04D
-	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 10:29:16 -0500 (EST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Fan Zhang <fzhang@sgl.com>
-Message-ID: <f5f50e1c-defb-149f-f795-921f4c1e648b@sgl.com>
-Date: Thu, 21 Dec 2017 10:32:21 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
+	[209.85.217.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44932E00D07
+	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 08:08:47 -0800 (PST)
+Received: by mail-ua0-f194.google.com with SMTP id q22so5921150uaa.9
+	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 08:08:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=S1MHu8HUmDEATiZ7MsPauWpU9vQL2K8fV1YH92ZOGU8=;
+	b=H+PzNqn2leRfYwP8JJIFUwZj75oWpi4gItXkDWQkz6LrN7mRBHH69XWxBHCEjL/FmO
+	FxIqj5fKyC6YNG7FPo6kfbEZH4U7UcatxW4W8+EQFQWhi7WYPYFgBrCHGR/Y8j8DkhIy
+	qYGW0x88iIHZinCbkVV2r6U4Uq2eyB+yImzBdYvId1FXMy6lPPxlq17kNVHVH0sOmd3+
+	aKaTcsUwWn7xs9ttlkxZAgWiuFXvRJHFLOvjzgiGH1Ylbb7I6WEPD0z0ZmyXKMkviiYN
+	JK506LaEZkruij7pEjB77SNAW0xrTMpQX6ciVr0tfVpaxsCRWVhgEhSzDKd+nN8EAeqa
+	bgmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=S1MHu8HUmDEATiZ7MsPauWpU9vQL2K8fV1YH92ZOGU8=;
+	b=FEEewYKByKHBO+z5IeOGwZkxIozzea/Ytnnn2P7aJ/5Bg1Ft8HTklWUvmt2Eld3JNM
+	9n7jQzivbyrc4lAXKON7QPJCkMRbLtbmq02beoMYJshwoGPfHrVDxoNzTjeFs/b8R2fj
+	C8vjmZd0mQMJvADfC/ZqPOi5XUufbxRfPYcdashwJcMbbUfcnvRPvX8srj6bThdTkc47
+	fM5fdza2jUENjRpItk7HllBhfkWfh0vSBDQJ0VMBBBf9ELQwic7KJE/5anwqKvy2J18h
+	ugedb2K1stgPf9TAZALOKCYx2AKJ+UrAqpGwsfYHQSqnsUItzHTB9Af1wVQ8RSGYtJ5/
+	ITvQ==
+X-Gm-Message-State: AKGB3mJHk1a95+wtCJc0r9Y/Zh1UqyJKjOgfH4umTKtB7HlBGZIDak7I
+	T2uWFuFaXoSLMjORmopxQKncwDH7onia9PPdtzW7Ew==
+X-Google-Smtp-Source: ACJfBotljgTCeg3pg/PKy8/iRnCfAeLNssmOmuDQ4rxoFW0DerdbsqSygLR24xEChcFhXTFq73lW5gRlRU1sgXGqhbE=
+X-Received: by 10.159.57.195 with SMTP id p3mr12301795uag.39.1513872527069;
+	Thu, 21 Dec 2017 08:08:47 -0800 (PST)
 MIME-Version: 1.0
-Subject: How to config kernel in my own meta layer?
+Received: by 10.176.22.41 with HTTP; Thu, 21 Dec 2017 08:08:06 -0800 (PST)
+X-Originating-IP: [86.140.154.13]
+In-Reply-To: <CALbNGRTXT084ZC3cD4URao28SWTo0E-Lkr6FLjici5Pb9MppJg@mail.gmail.com>
+References: <CAPb0b+MTepwNFB6KEybbdH9kYaox-N54=gFsuyWa9Xn+zK2MoQ@mail.gmail.com>
+	<CALbNGRRGxLOPojWhFis7Ew0TOx1R_kx2_Rhp7AFJEa5GYuh=AQ@mail.gmail.com>
+	<CALw8SCVP_pE=yyJcO0gULT+1J1T1E_pF0y3nQuShWi3feKBFdQ@mail.gmail.com>
+	<CALbNGRTXT084ZC3cD4URao28SWTo0E-Lkr6FLjici5Pb9MppJg@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Thu, 21 Dec 2017 16:08:06 +0000
+Message-ID: <CAK18fxFrW4LDvxneQv1VEcB6anirbtYgfGuWHQSzxQTC4Oo0CQ@mail.gmail.com>
+To: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] linux kernel rt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,285 +72,181 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Dec 2017 15:53:32 -0000
-X-Groupsio-MsgNum: 39288
-Content-Type: multipart/mixed; boundary="------------22AFB6C77A7285B492B9A46C"
-Content-Language: en-US
+X-List-Received-Date: Thu, 21 Dec 2017 16:08:49 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1a24923636d10560dbeabd"
 
---------------22AFB6C77A7285B492B9A46C
-Content-Type: multipart/alternative;
- boundary="------------52FEAA35E07090F15F7897E5"
+--94eb2c1a24923636d10560dbeabd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------52FEAA35E07090F15F7897E5
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Hi all,
 
-Greetings,
+On Thu, Dec 14, 2017 at 12:09 PM, Andreas M=C3=BCller <schnitzeltony@gmail.=
+com>
+wrote:
 
-I have a recipes that requires 128MB of CMA allocation for DMA. I 
-followed the instruction in 
-http://www.yoctoproject.org/docs/1.6/kernel-dev/kernel-dev.html#changing-the-configuration 
-and did the following:
+> On Thu, Dec 14, 2017 at 11:40 AM, Mirza Krak <mirza.krak@gmail.com> wrote=
+:
+>
+>> 2017-12-14 9:41 GMT+01:00 Andreas M=C3=BCller <schnitzeltony@gmail.com>:
+>> > On Thu, Dec 14, 2017 at 2:58 AM, Sherif Omran <
+>> sherifomran2000@gmail.com>
+>> > wrote:
+>> >>
+>> >> hey guys,
+>> >>
+>> >> any body tried the real time kernel? I get an error, it is snot in th=
+e
+>> >> compatibility list.
+>> >> can we skip it?
+>> >>
+>> >> thanks
+>> >>
+>> >> --
+>> >
+>> > Good news: I use RT kernel only together with VC4 graphics and have
+>> lots of
+>> > fun on PI2/3.
+>> > Bad news: As far as I know it is not in meta-raspberrypi but in my for=
+k
+>> [1].
+>> > There were attempts to land the RT-patches in meta-raspberrypi but tha=
+t
+>> was
+>> > denied for huge patch size :(
+>>
+>> If the patch size was the only problem one can pull it by doing the
+>> following in the recipe:
+>>
+>> SRC_URI +=3D " \
+>>     https://cdn.kernel.org/pub/linux/kernel/projects/rt/4.9/patc
+>> h-4.9.65-rt56.patch.gz;name=3Drt-patch
+>> \
+>> "
+>>
+>> SRC_URI[rt-patch.md5sum] =3D "9caa7b541d8c84c2d5c5f58985982e95"
+>> SRC_URI[rt-patch.sha256sum] =3D
+>> "47dfb518c78d8cbaafd4ab9130eb26fe0170be9189b580ab26209ef679309539"
+>>
+>> Note that above sums are "random" and not the for the actually file
+>> but are there for reference.
+>>
+>> That way you do not need to keep a copy of it in meta-raspberrypi.
+>>
+>> --
+>>
+> Hi Mirza,
+>
+> Problem is that patches need alignments sometimes either caused by
+> Raspberry-Pi-specific adjustments or versions not matching exactly - RT
+> kernel patch updates are less frequent than kernel updates. Anyway: git i=
+s
+> very good at maintaining huge text content and this should not be a probl=
+em
+> these days. Another discussion about RT kernel was to have an extra kerne=
+l
+> for it and I never understood why. To me that seems nothing but an extra
+> maintenance burden.
+>
+> However - just wrote to Paul: I plan to be at FOSDEM and we can discuss
+> there how to get back to one layer only (not mine!) making everybody happ=
+y
+> :)
+>
+>
+I remember the discussion. Indeed that was the reason and the
+recommendation was to maintain a separate linux-raspberry fork where
+whoever has interest in this will maintain on top of linux-raspberrypi this
+patch. Obviously that didn't happen but I'd like to see it landing.
 
-My recipes structure:
+--
+Andrei Gherzan
 
-meta-mylayer\recipes-my\uio-test\
+--94eb2c1a24923636d10560dbeabd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-1. Then in uio-test folder, I have uio-test.bb that created by 
-recipetool (in general) with some modification. uio-test.bb looks like 
-this:
+<div dir=3D"ltr">Hi all,<br><div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Thu, Dec 14, 2017 at 12:09 PM, Andreas M=C3=BCller <spa=
+n dir=3D"ltr">&lt;<a href=3D"mailto:schnitzeltony@gmail.com" target=3D"_bla=
+nk">schnitzeltony@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><di=
+v class=3D"gmail_quote"><div><div class=3D"gmail-h5">On Thu, Dec 14, 2017 a=
+t 11:40 AM, Mirza Krak <span dir=3D"ltr">&lt;<a href=3D"mailto:mirza.krak@g=
+mail.com" target=3D"_blank">mirza.krak@gmail.com</a>&gt;</span> wrote:<br><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><span class=3D"gmail-m_-55=
+82613679932633661gmail-">2017-12-14 9:41 GMT+01:00 Andreas M=C3=BCller &lt;=
+<a href=3D"mailto:schnitzeltony@gmail.com" target=3D"_blank">schnitzeltony@=
+gmail.com</a>&gt;:<br>
+&gt; On Thu, Dec 14, 2017 at 2:58 AM, Sherif Omran &lt;<a href=3D"mailto:sh=
+erifomran2000@gmail.com" target=3D"_blank">sherifomran2000@gmail.com</a>&gt=
+;<br>
+&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; hey guys,<br>
+&gt;&gt;<br>
+&gt;&gt; any body tried the real time kernel? I get an error, it is snot in=
+ the<br>
+&gt;&gt; compatibility list.<br>
+&gt;&gt; can we skip it?<br>
+&gt;&gt;<br>
+&gt;&gt; thanks<br>
+&gt;&gt;<br>
+&gt;&gt; --<br>
+&gt;<br>
+&gt; Good news: I use RT kernel only together with VC4 graphics and have lo=
+ts of<br>
+&gt; fun on PI2/3.<br>
+&gt; Bad news: As far as I know it is not in meta-raspberrypi but in my for=
+k [1].<br>
+&gt; There were attempts to land the RT-patches in meta-raspberrypi but tha=
+t was<br>
+&gt; denied for huge patch size :(<br>
+<br>
+</span>If the patch size was the only problem one can pull it by doing the<=
+br>
+following in the recipe:<br>
+<br>
+SRC_URI +=3D &quot; \<br>
+=C2=A0 =C2=A0 <a href=3D"https://cdn.kernel.org/pub/linux/kernel/projects/r=
+t/4.9/patch-4.9.65-rt56.patch.gz;name=3Drt-patch" rel=3D"noreferrer" target=
+=3D"_blank">https://cdn.kernel.org/pub/lin<wbr>ux/kernel/projects/rt/4.9/pa=
+tc<wbr>h-4.9.65-rt56.patch.gz;name=3D<wbr>rt-patch</a><br>
+\<br>
+&quot;<br>
+<br>
+SRC_URI[rt-patch.md5sum] =3D &quot;9caa7b541d8c84c2d5c5f58985982<wbr>e95&qu=
+ot;<br>
+SRC_URI[rt-patch.sha256sum] =3D<br>
+&quot;47dfb518c78d8cbaafd4ab9130eb2<wbr>6fe0170be9189b580ab26209ef6793<wbr>=
+09539&quot;<br>
+<br>
+Note that above sums are &quot;random&quot; and not the for the actually fi=
+le<br>
+but are there for reference.<br>
+<br>
+That way you do not need to keep a copy of it in meta-raspberrypi.<br>
+<span class=3D"gmail-m_-5582613679932633661gmail-HOEnZb"><font color=3D"#88=
+8888"><br>
+--</font></span><br></blockquote></div></div><div>Hi Mirza,<br></div><div>=
+=C2=A0</div></div>Problem is that patches need alignments sometimes either =
+caused by Raspberry-Pi-specific adjustments or versions not matching exactl=
+y - RT kernel patch updates are less frequent than kernel updates. Anyway: =
+git is very good at maintaining huge text content and this should not be a =
+problem these days. Another discussion about RT kernel was to have an extra=
+ kernel for it and I never understood why. To me that seems nothing but an =
+extra maintenance burden.<br></div><div class=3D"gmail_extra"><br></div><di=
+v class=3D"gmail_extra">However - just wrote to Paul: I plan to be at FOSDE=
+M and we can discuss there how to get back to one layer only (not mine!) ma=
+king everybody happy :)<span class=3D"gmail-HOEnZb"></span><br></div></div>=
+<br></blockquote><div><br></div><div>I remember the discussion. Indeed that=
+ was the reason and the recommendation was to maintain a separate linux-ras=
+pberry fork where whoever has interest in this will maintain on top of linu=
+x-raspberrypi this patch. Obviously that didn&#39;t happen but I&#39;d like=
+ to see it landing.<br></div><div><br clear=3D"all"><div><div class=3D"gmai=
+l_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>--</div>Andrei Ghe=
+rzan</div></div></div></div></div>=C2=A0</div></div><br></div></div></div>
 
-#------------------------------------------------------------------
-
-# Recipe created by recipetool
-# This is the basis of a recipe and may need further editing in order to 
-be fully functional.
-# (Feel free to remove these comments when editing.)
-
-# Unable to find any files that looked like license statements. Check 
-the accompanying
-# documentation and source headers and set LICENSE and LIC_FILES_CHKSUM 
-accordingly.
-#
-# NOTE: LICENSE is being set to "CLOSED" to allow you to at least start 
-building - if
-# this is not accurate with respect to the licensing of the software 
-being built (it
-# will not be in most cases) you must specify the correct value before 
-using this
-# recipe for anything other than initial testing/development!
-LICENSE = "CLOSED"
-LIC_FILES_CHKSUM = ""
-
-# No information for SRC_URI yet (only an external source tree was 
-specified)
-PV = "2.0.2"
-SRC_URI = "file://src"
-
-# NOTE: this is a Makefile-only piece of software, so we cannot generate 
-much of the
-# recipe automatically - you will need to examine the Makefile yourself 
-and ensure
-# that the appropriate arguments are passed in.
-
-do_configure () {
-     # Specify any needed configure commands here
-     :
-}
-
-do_compile () {
-     # You will almost certainly need to add additional arguments here
-     cd ${WORKDIR}/src
-     oe_runmake
-}
-
-FILES_${PN} = "/www/pages /etc/lighttpd.d"
-do_install () {
-     # This is a guess; additional arguments may be required
-     cd ${WORKDIR}/src
-     oe_runmake install 'DESTDIR=${D}'
-}
-
-DEPENDS = "libgcc boost"
-RDEPENDS_${PN} = "libgcc boost-thread boost-system lighttpd 
-lighttpd-module-cgi"
-#------------------------------------------------------------------
-
-2. Also in uio-test folder, I have uio-test.bbappend file with these 
-contents:
-
-#------------------------------------------------------------------
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-SRC_URI += "file://uio-test.cfg"
-
-#----------------------^^^^^^^^^^^^^^^^^^^-------------------------
-
-3. In uio-test/files folder, I have uio-test.cfg with the following 
-contents:
-
-
-#------------------------------------------------------------------
-
-CONFIG_CMA_ALIGNMENT=8
-CONFIG_CMA=y
-CONFIG_CMA_AREAS=7
-CONFIG_DMA_CMA=y
-CONFIG_CMA_SIZE_MBYTES=128
-CONFIG_CMA_SIZE_SEL_MBYTES=y
-CONFIG_DMADEVICES=y
-CONFIG_DMA_ENGINE=y
-CONFIG_DMA_OF=y
-CONFIG_XILINX_DMA_ENGINES=y
-CONFIG_XILINX_DMA=y
-CONFIG_DMA_API_DEBUG=y
-CONFIG_HAS_DMA=y
-CONFIG_NEED_DMA_MAP_STATE=y
-CONFIG_HAVE_DMA_CONTIGUOUS=y
-CONFIG_HAVE_DMA_API_DEBUG=y
-CONFIG_HAVE_GENERIC_DMA_COHERENT=y
-CONFIG_ARM_DMA_MEM_BUFFERABLE=y
-CONFIG_ZONE_DMA_FLAG=0
-#----------------------^^^^^^^^^^^^^^^^^^^-------------------------
-
-My question: I think the cfg file is being parsed because if I change 
-the folder name files to something else, bitbake will complaint about 
-not being able to find uio-test.cfg. However, the final .config in built 
-do not have the CMA allocated. My meta layer does have a priority higher 
-than the upstream layers. What else can cause the problem here? Any 
-suggestions? Thanks.
-
-Fan Zhang
-
-
---------------52FEAA35E07090F15F7897E5
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Greetings,</p>
-    <p>I have a recipes that requires 128MB of CMA allocation for DMA. I
-      followed the instruction in  <a moz-do-not-send="true"
-href="http://www.yoctoproject.org/docs/1.6/kernel-dev/kernel-dev.html#changing-the-configuration">http://www.yoctoproject.org/docs/1.6/kernel-dev/kernel-dev.html#changing-the-configuration</a>
-      and did the following:</p>
-    <p>My recipes structure: <br>
-    </p>
-    <p>meta-mylayer\recipes-my\uio-test\</p>
-    <p>1. Then in uio-test folder, I have uio-test.bb that created by
-      recipetool (in general) with some modification. uio-test.bb looks
-      like this: <br>
-    </p>
-    <p><font size="-1" face="Batang">#------------------------------------------------------------------<br>
-      </font></p>
-    <p><font size="-1" face="Batang"># Recipe created by recipetool</font><font
-        face="Batang"><br>
-        <font size="-1"># This is the basis of a recipe and may need
-          further editing in order to be fully functional.</font><br>
-        <font size="-1"># (Feel free to remove these comments when
-          editing.)</font><br>
-        <br>
-        <font size="-1"># Unable to find any files that looked like
-          license statements. Check the accompanying</font><br>
-        <font size="-1"># documentation and source headers and set
-          LICENSE and LIC_FILES_CHKSUM accordingly.</font><br>
-        <font size="-1">#</font><br>
-        <font size="-1"># NOTE: LICENSE is being set to "CLOSED" to
-          allow you to at least start building - if</font><br>
-        <font size="-1"># this is not accurate with respect to the
-          licensing of the software being built (it</font><br>
-        <font size="-1"># will not be in most cases) you must specify
-          the correct value before using this</font><br>
-        <font size="-1"># recipe for anything other than initial
-          testing/development!</font><br>
-        <font size="-1">LICENSE = "CLOSED"</font><br>
-        <font size="-1">LIC_FILES_CHKSUM = ""</font><br>
-        <br>
-        <font size="-1"># No information for SRC_URI yet (only an
-          external source tree was specified)</font><br>
-        <font size="-1">PV = "2.0.2"</font><br>
-        <font size="-1">SRC_URI = <a class="moz-txt-link-rfc2396E" href="file://src">"file://src"</a></font><br>
-        <br>
-        <font size="-1"># NOTE: this is a Makefile-only piece of
-          software, so we cannot generate much of the</font><br>
-        <font size="-1"># recipe automatically - you will need to
-          examine the Makefile yourself and ensure</font><br>
-        <font size="-1"># that the appropriate arguments are passed in.</font><br>
-        <br>
-        <font size="-1">do_configure () {</font><br>
-        <font size="-1">    # Specify any needed configure commands here</font><br>
-        <font size="-1">    :</font><br>
-        <font size="-1">}</font><br>
-        <br>
-        <font size="-1">do_compile () {</font><br>
-        <font size="-1">    # You will almost certainly need to add
-          additional arguments here</font><br>
-        <font size="-1">    cd ${WORKDIR}/src</font><br>
-        <font size="-1">    oe_runmake</font><br>
-        <font size="-1">}</font><br>
-        <br>
-        <font size="-1">FILES_${PN} = "/www/pages /etc/lighttpd.d"</font><br>
-        <font size="-1">do_install () {</font><br>
-        <font size="-1">    # This is a guess; additional arguments may
-          be required</font><br>
-        <font size="-1">    cd ${WORKDIR}/src</font><br>
-        <font size="-1">    oe_runmake install 'DESTDIR=${D}'</font><br>
-        <font size="-1">}</font><br>
-        <br>
-        <font size="-1">DEPENDS = "libgcc boost"</font><br>
-        <font size="-1">RDEPENDS_${PN} = "libgcc boost-thread
-          boost-system lighttpd lighttpd-module-cgi"</font><br>
-        <font size="-1">#------------------------------------------------------------------</font></font><br>
-      <br>
-    </p>
-    <p>2. Also in uio-test folder, I have uio-test.bbappend file with
-      these contents:</p>
-    <p><font size="-1" face="Batang">#------------------------------------------------------------------</font></p>
-    <p><font face="Batang">FILESEXTRAPATHS_prepend :=
-        "${THISDIR}/files:"<br>
-        SRC_URI += <a class="moz-txt-link-rfc2396E" href="file://uio-test.cfg">"file://uio-test.cfg"</a></font></p>
-    <p><font size="-1" face="Batang">#----------------------^^^^^^^^^^^^^^^^^^^-------------------------</font></p>
-    <p>3. In uio-test/files folder, I have uio-test.cfg with the
-      following contents: <font size="-1"><br>
-      </font><font size="-1" face="Batang"></font></p>
-    <p><br>
-      <font size="-1" face="Batang"><font size="-1" face="Batang">#------------------------------------------------------------------</font></font></p>
-    <p><font size="-1" face="Batang">CONFIG_CMA_ALIGNMENT=8<br>
-        CONFIG_CMA=y<br>
-        CONFIG_CMA_AREAS=7<br>
-        CONFIG_DMA_CMA=y<br>
-        CONFIG_CMA_SIZE_MBYTES=128<br>
-        CONFIG_CMA_SIZE_SEL_MBYTES=y<br>
-        CONFIG_DMADEVICES=y<br>
-        CONFIG_DMA_ENGINE=y<br>
-        CONFIG_DMA_OF=y<br>
-        CONFIG_XILINX_DMA_ENGINES=y<br>
-        CONFIG_XILINX_DMA=y<br>
-        CONFIG_DMA_API_DEBUG=y<br>
-        CONFIG_HAS_DMA=y<br>
-        CONFIG_NEED_DMA_MAP_STATE=y<br>
-        CONFIG_HAVE_DMA_CONTIGUOUS=y<br>
-        CONFIG_HAVE_DMA_API_DEBUG=y<br>
-        CONFIG_HAVE_GENERIC_DMA_COHERENT=y<br>
-        CONFIG_ARM_DMA_MEM_BUFFERABLE=y<br>
-        CONFIG_ZONE_DMA_FLAG=0</font><br>
-      <font size="-1" face="Batang"><font size="-1" face="Batang">#----------------------^^^^^^^^^^^^^^^^^^^-------------------------</font></font></p>
-    <p>My question: I think the cfg file is being parsed because if I
-      change the folder name files to something else, bitbake will
-      complaint about not being able to find uio-test.cfg. However, the
-      final .config in built do not have the CMA allocated. My meta
-      layer does have a priority higher than the upstream layers. What
-      else can cause the problem here? Any suggestions? Thanks. <font
-        size="-1" face="Batang"><font size="-1" face="Batang"><br>
-        </font></font></p>
-    <p><font size="-1" face="Batang"><font size="-1" face="Batang">Fan
-          Zhang<br>
-        </font></font></p>
-  </body>
-</html>
-
---------------52FEAA35E07090F15F7897E5--
-
---------------22AFB6C77A7285B492B9A46C
-Content-Type: text/x-vcard; charset=utf-8;
- name="fzhang.vcf"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="fzhang.vcf"
-
-begin:vcard
-fn:Fan Zhang
-n:Zhang;Fan
-org:Sander Geophysics Ltd. 
-email;internet:fzhang@sgl.com
-title:Electronics Design Engineer
-tel;work:(613)521-9626
-version:2.1
-end:vcard
-
-
---------------22AFB6C77A7285B492B9A46C--
+--94eb2c1a24923636d10560dbeabd--
