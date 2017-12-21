@@ -1,6 +1,6 @@
 Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1B85E00E3F; Thu, 21 Dec 2017 08:33:06 -0800 (PST)
+	id 0E847E00E38; Thu, 21 Dec 2017 08:33:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,23 +12,25 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5506FE00D9C
-	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 08:33:05 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E103E00E14
+	for <yocto@yoctoproject.org>; Thu, 21 Dec 2017 08:33:06 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
 	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Dec 2017 08:33:03 -0800
+	21 Dec 2017 08:33:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,436,1508828400"; d="scan'208";a="160761280"
+X-IronPort-AV: E=Sophos;i="5.45,436,1508828400"; d="scan'208";a="160761294"
 Received: from kanavin-desktop.fi.intel.com ([10.237.68.161])
-	by orsmga004.jf.intel.com with ESMTP; 21 Dec 2017 08:33:02 -0800
+	by orsmga004.jf.intel.com with ESMTP; 21 Dec 2017 08:33:03 -0800
 From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 21 Dec 2017 18:27:08 +0200
-Message-Id: <cover.1513873401.git.alexander.kanavin@linux.intel.com>
+Date: Thu, 21 Dec 2017 18:27:09 +0200
+Message-Id: <c92784689e100b6cab05330f2423b76a47ad20d4.1513873401.git.alexander.kanavin@linux.intel.com>
 X-Mailer: git-send-email 2.15.1
-Subject: [auh][PATCH 00/21] Further enhancements to automatic upgrade helper
+In-Reply-To: <cover.1513873401.git.alexander.kanavin@linux.intel.com>
+References: <cover.1513873401.git.alexander.kanavin@linux.intel.com>
+Subject: [auh][PATCH 01/21] upgradehelper.py: fix checking for do_checkpkg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,61 +44,32 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 21 Dec 2017 16:33:07 -0000
 
-Particularly:
-1) Rebase and integrate (most of) Robert's patches
-2) Add musl testing support (a notorious source of failures)
-3) Rework testimage support to be more straigtforward and usable locally
-by maintainers
-4) Other things :)
+From: Robert Yang <liezhi.yang@windriver.com>
 
-The following changes since commit fbccfa00967305bb3866d0f610cd4b83b8b7a28c:
+The error message in the log is:
+Initialising tasks...ERROR: Task do_checkpkg does not exist for target strace [snip]
 
-  upgradehelper.py: revert commits that failed to build (2017-12-14 18:13:11 +0200)
+So line.find("ERROR: Task do_checkpkg does not exist") == 0 doesn't
+work, use != -1 to fix the problem.
 
-are available in the Git repository at:
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+---
+ upgradehelper.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-  git://git.yoctoproject.org/auto-upgrade-helper devel
-  http://git.yoctoproject.org/cgit.cgi/auto-upgrade-helper/log/?h=devel
-
-Alexander Kanavin (13):
-  upgradehelper.py: drop automatic mode
-  upgradehelper.py: replace the confusing 'maintainer' command line
-    option
-  weeklyjob.sh: set up a temporary branch and clean up afterwards
-  Add support for compiling against non-default C libraries
-  Add protection measures and information against running with existing
-    build directories.
-  upgradehelper.py: do not include absolute paths in the generated
-    tarball
-  Do not require configuration options that aren't necessary for running
-    ptests
-  upgradehelper.py: do not include testimage information in maintainer
-    email messages
-  testimage.py: clarify what arguments are passed to class constructor
-  testimage.py: run even if no packages were upgraded
-  testimage.py: remove all iterations (over machines, over failing
-    recipes)
-  testimage.py: rewrite the logic for building and running testimages
-  testimage.py: collect and write out logs from bitbake and testimage
-
-Robert Yang (8):
-  upgradehelper.py: fix checking for do_checkpkg
-  upgradehelper.py: support upgrade multiple recipes
-  upgradehelper.py: use UniverseUpdater for all cases
-  modules/steps.py: fix warn when skip compilation
-  upgradehelper.py: only check email settings when -e is specified
-  upgradehelper.py: always do upgrade when recipes are specified
-  upgradehelper.py: print info when recipe is skipped to upgrade
-  upgradehelper.py: don't build gcc-runtime when --skip-compilation
-
- README                   |  40 +++++---
- modules/steps.py         |   2 +-
- modules/testimage.py     | 256 ++++++++---------------------------------------
- modules/utils/bitbake.py |   7 +-
- upgradehelper.py         | 144 +++++++++++---------------
- weeklyjob.sh             |  16 ++-
- 6 files changed, 142 insertions(+), 323 deletions(-)
-
+diff --git a/upgradehelper.py b/upgradehelper.py
+index 71ee0b0..4797fd8 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -646,7 +646,7 @@ class UniverseUpdater(Updater):
+             self.bb.checkpkg(recipe)
+         except Error as e:
+             for line in e.stdout.split('\n'):
+-                if line.find("ERROR: Task do_checkpkg does not exist") == 0:
++                if line.find("ERROR: Task do_checkpkg does not exist") != -1:
+                     C(" \"distrodata.bbclass\" not inherited. Consider adding "
+                       "the following to your local.conf:\n\n"
+                       "INHERIT =+ \"distrodata\"\n")
 -- 
 2.15.1
 
