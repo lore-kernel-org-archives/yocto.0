@@ -1,55 +1,62 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA879E00DAA; Fri, 22 Dec 2017 01:40:28 -0800 (PST)
+	id DB39FE00D7F; Fri, 22 Dec 2017 02:38:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AB6FE00D94
-	for <yocto@yoctoproject.org>; Fri, 22 Dec 2017 01:40:27 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	22 Dec 2017 01:40:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.45,440,1508828400"; 
-   d="scan'208";a="4828033"
-Received: from kmsmsx153.gar.corp.intel.com ([172.21.73.88])
-	by orsmga008.jf.intel.com with ESMTP; 22 Dec 2017 01:40:26 -0800
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.19]) by
-	KMSMSX153.gar.corp.intel.com ([169.254.5.76]) with mapi id
-	14.03.0319.002; Fri, 22 Dec 2017 17:40:25 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "Cruz, Libertad" <libertad.cruz@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "Purdie, Richard" <richard.purdie@intel.com>, 
-	"Lock, Joshua G" <joshua.g.lock@intel.com>, "Jolley, Stephen K"
-	<stephen.k.jolley@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>
-Thread-Topic: QA cycle report for 2.4.1 RC1
-Thread-Index: AdN7B3X8v1JLMI/SSVmwVL5lCzPA+A==
-Date: Fri, 22 Dec 2017 09:40:25 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335D94DFF@PGSMSX109.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_IC
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZDIzYmU4MGMtMTMxNS00MmVjLThkMzgtMTYzNTg5NTIzYjYyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IjU1VFRrR1k2dkt1c0NJYWt4OWV1UGRGWXFKcXVxd0U0b1wvbnYwaUVQSmhvPSJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.0.116
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.205]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 651B9E00B5F
+	for <yocto@yoctoproject.org>; Fri, 22 Dec 2017 02:38:28 -0800 (PST)
+Received: by mail-io0-f182.google.com with SMTP id g70so11601502ioj.6
+	for <yocto@yoctoproject.org>; Fri, 22 Dec 2017 02:38:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=D7idTRI7SvgUPWryNjuy77hlBUQKnk7luN4NzVeCbCE=;
+	b=Q1aqNAP2Cw8Erqv/F6kU6Ze+VAXPOzkTKM6YW7N0DAXnBiKd0Ns3fBo80w7hcVKNlV
+	r0udErDvoz3RIoQCJSzm7UZBgAnLYVK6kU4MzHgf8Cu3o8ahTJfWbMVTZxaR5EvHfiZV
+	8MSbVWAyzQuzDMPA0Biias5NioqSE6NDooow0rRw8Mn+gfTCtpWC926ekZxnSrTdZ9N9
+	E0toJVROK/FceLiFZqvtBwPR3s82Zu343n68bW8/s6nzYK/5td1Da8h1bDsklWOiUNv8
+	de/W2tvNZ1Pvm5nMIKxprXkwD9l7fKjdEpOTx3yWJvO6QGBNmaGpOOCcqGWs8eiDcAQR
+	qPVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=D7idTRI7SvgUPWryNjuy77hlBUQKnk7luN4NzVeCbCE=;
+	b=lXpVZ3VfKgYJFmQ5ctaMRzhuFD3PH1AV+p0fnG4Fh5qMGchWnZvt9ccepqMboZtjz3
+	B5sbLNSiuhyRlAcFUtmeYvRx7wdSytdVvv3RteYVeO8Ida7bFj+3QT1e8W8D3weGiVic
+	vA3SS7DO8SjajX05sCwckG6M0YXJTHkjIzTMCAzStZcODduRKotIqnpv/HjIjqq0qEb7
+	RilXI1MlSJStkRySZKA+QyNX2o78GpMtgn3iU4s5OI8ebiudSBOnZ0Jhav+pb53AgWZK
+	ODmDUYCDqgDFbL/Ny2WWpDnzocJJDrM2jcF9D9RUEEsmV8/uI0QQ5FCHaL2oVprtsjl/
+	owZA==
+X-Gm-Message-State: AKGB3mLWNIDZAZ3sCf4NEAgZteacZyzQVgBasHCoDySvlQS2bJ31p9Kd
+	br4TZ6281aTk4Gkaow745mb1QyIWiiT1oD87kHRl6g==
+X-Google-Smtp-Source: ACJfBouNKYWs+zrA3mGXY46XJsvmGMaPe8UfViD4MwoliTz5IkkFrTXShrBuqZJfZzdFF+wCtZl/oBix83e475AbBeE=
+X-Received: by 10.107.146.9 with SMTP id u9mr16350802iod.37.1513939108543;
+	Fri, 22 Dec 2017 02:38:28 -0800 (PST)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 22 Dec 2017 02:31:34 -0800
-Cc: "Sangal, Apoorv" <apoorv.sangal@intel.com>, "Perez Carranza,
-	Jose" <jose.perez.carranza@intel.com>
-Subject: QA cycle report for 2.4.1 RC1
+Received: by 10.107.34.140 with HTTP; Fri, 22 Dec 2017 02:38:08 -0800 (PST)
+In-Reply-To: <CACfi_Z063vTrALm+dHjiP4U0S6nazioCaR0yKJyfNX=5fg51Ug@mail.gmail.com>
+References: <CACfi_Z063vTrALm+dHjiP4U0S6nazioCaR0yKJyfNX=5fg51Ug@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 22 Dec 2017 10:38:08 +0000
+Message-ID: <CAJTo0LbTL4YVczXnUms_=r5jYruS24YBpHFJih7zY_KPjjT5VA@mail.gmail.com>
+To: Davis Roman <davis.roman84@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: how to deal with the dependency explosion caused by enabling x11vnc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,70 +68,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Dec 2017 09:40:28 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 22 Dec 2017 10:38:29 -0000
+Content-Type: multipart/alternative; boundary="94eb2c05b10ac6d6f30560eb6a8e"
+
+--94eb2c05b10ac6d6f30560eb6a8e
+Content-Type: text/plain; charset="UTF-8"
+
+On 22 December 2017 at 02:53, Davis Roman <davis.roman84@gmail.com> wrote:
+>
+> Hello,
+>
+>  I'd like to put a vnc server on my target.
+>
+> My embedded target has an onboard display and runs an application that
+> drives the display directly via the framebuffer. ( no xorg onboard )
+>
+> I would like to use x11vnc ( with the --rawfb option ) however I'm
+> having a hard time justifying the load of dependencies that it brings
+> along with it. (Almost 100MB.)
+>
+> With the --rawfb option, x11vnc does not require a X server ( just
+> libX11) to be onboard however I'm required to add x11 to
+> DISTRO_FEATURES otherwise x11vnc won't compile.
+>
+> (x11vnc even drags gtk3 along with it which seems unnecessary.)
+>
+> My goal is to only add the minimum number of x11vnc depencies.
+>
+> Any advice on how to slim this down would be appreciated.
+
+
+From glancing at https://github.com/LibVNC/x11vnc/blob/master/configure.ac
+it appears that you can tell it to build without X:
+
+If you want to build x11vnc without X support (e.g. for -rawfb use only
+> or for native Mac OS X), specify the --without-x configure option.
+
+
+I'd use PACKAGECONFIG to respect the x11 DISTRO_FEATURE and enable/disable
+building with X.
+
+Ross
+
+--94eb2c05b10ac6d6f30560eb6a8e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
-Enjoy viewing the full Report for 2.4.1 RC1:  https://wiki.yoctoproject.org=
-/wiki/WW51_-_2017-12-21-_Full_Test_Cycle_-_2.4.1_rc1
+<div dir=3D"ltr">On 22 December 2017 at 02:53, Davis Roman &lt;<a href=3D"m=
+ailto:davis.roman84@gmail.com">davis.roman84@gmail.com</a>&gt; wrote:<br>&g=
+t;<br>&gt; Hello,<br>&gt;<br>&gt; =C2=A0I&#39;d like to put a vnc server on=
+ my target.<br>&gt;<br>&gt; My embedded target has an onboard display and r=
+uns an application that<br>&gt; drives the display directly via the framebu=
+ffer. ( no xorg onboard )<br>&gt;<br>&gt; I would like to use x11vnc ( with=
+ the --rawfb option ) however I&#39;m<br>&gt; having a hard time justifying=
+ the load of dependencies that it brings<br>&gt; along with it. (Almost 100=
+MB.)<br>&gt;<br>&gt; With the --rawfb option, x11vnc does not require a X s=
+erver ( just<br>&gt; libX11) to be onboard however I&#39;m required to add =
+x11 to<br>&gt; DISTRO_FEATURES otherwise x11vnc won&#39;t compile.<br>&gt;<=
+br>&gt; (x11vnc even drags gtk3 along with it which seems unnecessary.)<br>=
+&gt;<br>&gt; My goal is to only add the minimum number of x11vnc depencies.=
+<br>&gt;<br>&gt; Any advice on how to slim this down would be appreciated.<=
+br><br><br>From glancing at <a href=3D"https://github.com/LibVNC/x11vnc/blo=
+b/master/configure.ac">https://github.com/LibVNC/x11vnc/blob/master/configu=
+re.ac</a> it appears that you can tell it to build without X:<br><br><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-w=
+idth:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding=
+-left:1ex">If you want to build x11vnc without X support (e.g. for -rawfb u=
+se only<br>or for native Mac OS X), specify the --without-x configure optio=
+n.</blockquote><br>I&#39;d use PACKAGECONFIG to respect the x11 DISTRO_FEAT=
+URE and enable/disable building with X.<br><br>Ross<br>=C2=A0<br></div>
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-
-The QA cycle for release 2.4.1 RC1 is complete.=A0 There are 5 new bugs fro=
-m which so far none of them are high. QA has 1 concern on the performance t=
-esting.
-
-Performance report shows an increase of 23% build time on the eSDK in fedor=
-a 23, bug has not been created until further investigation with setup outsi=
-de of the GDC environment.=20
-
-https://wiki.yoctoproject.org/wiki/WW51_-_2017-12-21-_Full_Test_Cycle_-_2.4=
-.1_rc1#Build_Performance_Test
-
-=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
-
-The build is stable enough to be released, provided the performance issue i=
-s investigated and root-cause identified.
-
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-
-=A0=A0=A0=A0=A0=A0 New Bugs
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -12444 [1] [Test Case 1542] test_2_logrot=
-ate fails in MinnowMax with core-image-lsb-sdk-genericx86-64 image
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0-12417 [2] Eclipse installer steps only=
- apply to latest Eclipse release
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0-12416 [3] autobuilder.yocto.io directo=
-ry index does not display the full long filename
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -12443 [4] [Test Case 312,313] Bitbake fa=
-iled after using yocto-kernel add patch
-            -12445 [5] [Test Case 309,310,311] Bitbake fails after add laye=
-r with yocto-bsp create
-
-Full Bug Report:  https://wiki.yoctoproject.org/wiki/WW51_-_2017-12-21-_Ful=
-l_Test_Cycle_-_2.4.1_rc1#Bugs_Found_during_QA_Test
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
-=A0=A0=A0 1.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
-2444 [1]=20
-
-=A0=A0=A0 2.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
-2417 [2]=20
-
-=A0=A0=A0 3.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
-2416 [3]=20
-
-=A0=A0=A0 4.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
-2443 [4]
-
-=A0=A0=A0 5.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
-2445 [5]=20
-=A0=A0=A0
-
-Regards
-Ee Peng=20
-
-
-
+--94eb2c05b10ac6d6f30560eb6a8e--
