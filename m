@@ -1,65 +1,60 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 903C1E00D9D; Fri, 22 Dec 2017 06:21:08 -0800 (PST)
+	id A5AA5E00D9D; Fri, 22 Dec 2017 09:10:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f175.google.com (mail-qt0-f175.google.com
-	[209.85.216.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42B62E00D94
-	for <yocto@yoctoproject.org>; Fri, 22 Dec 2017 06:21:06 -0800 (PST)
-Received: by mail-qt0-f175.google.com with SMTP id e2so36476925qti.0
-	for <yocto@yoctoproject.org>; Fri, 22 Dec 2017 06:21:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=AJVKZMdoIge+yTUVo6vLXV6tTLmEezhv8jlefcg9Tb0=;
-	b=jJXCLEildl83twKWGbKGyi+Ag5QiKIATc+oWiJXlMCRfSIF467hKpZhWxqx1MQLcen
-	Y+8k9I+Yh1+RFkWbhb68mt0OsjdKvtoN51eUjtjdcuORnmr75FU5TgsRA4+pdYWLM/3o
-	4lHuHIITCwFa6ZvQzCI4cRyL1iTwYcbGwG58Rfh3RvP/zZix8/8njZ/su9DReb/dHJ+D
-	B6ttr/GNZr1sl5dC9Q4sggF7sdxeBq+B5oOPlAAzXovgvWfMk1dGnT2dmaXYR6AdTLBT
-	1PmC5PpLiokrlus/08D+JCrCbGZAPhGISgsb0Varmv47iAimkHfK5Yy5GkqbL7DlaO9E
-	KaqA==
+Received: from mail-oi0-f50.google.com (mail-oi0-f50.google.com
+	[209.85.218.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00EF1E00D1C
+	for <yocto@yoctoproject.org>; Fri, 22 Dec 2017 09:10:27 -0800 (PST)
+Received: by mail-oi0-f50.google.com with SMTP id t81so19320674oih.13
+	for <yocto@yoctoproject.org>; Fri, 22 Dec 2017 09:10:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=ZE1bf1dZvXAxfNEi8B4diijBCig9cLpo2c9z9I1Nguc=;
+	b=Be4nE1KSbKC3HHnWRRwp8v7qp1oO9DVxo4sboIEmk7wfcjKinpiMG/6RypqdhliE6V
+	/n0pxcHMbvXvBByAvfT02GBF8vKtl0rpqniAHSLAt3VZsiGi2N5RmJvPgeF1oBd6w/6j
+	Ab5U7U5eNhfX5QfsdQ7FvjN510X8YU+h6gGxFZp9CYQC2exmFTA6q8lXoPG+eCaoWoCa
+	EQJsJFwj4ouIQqod94RvcFv1Btbu4JdtcA/aEI7NDr+bJxAKL1YTCwqrTI98uMYeQ3xq
+	roOvZFlC9EV6sxZmsTgIXYJ1zJ296eBaFCmATkL+2V63xsMzttsdZBVmqT/DMEuh7qgc
+	6U+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=AJVKZMdoIge+yTUVo6vLXV6tTLmEezhv8jlefcg9Tb0=;
-	b=t+ayZ6IP4ik/uNAGVI/72xMOapJ2ARqlZ5zU1qa9HpgHuDH6gUMM8fLgcD7maE6P0v
-	jMZ0u5a5er0N1YY59eCI8qmqx08Lo0EmyaeORWfPaUkFIGOeDuhJ1/R70oIDhGgdjVB5
-	r1lpJ6kc30ONqB7It5UEyHPmuRwiCsCpIbfs61MIfrNXmGDGvJz4gmCP4kLd8LsXdGGk
-	0GXBzO00GDU8qc+NxQOM21sJJ2RejiYF9NxUOvdI4Zn8mFVM7teOpKkVJsnH9ODBu7Tx
-	R7p+hGlatIRHTjW2oLd/vv5IDB7k5vWXNv+41Ia4FCF/iZPnhaPBBbrRvY3I81rI6WUJ
-	I0lQ==
-X-Gm-Message-State: AKGB3mI4K1zyeCbF1wUncuagLlnWfuTeZg8EaewGUI8AaNbJlM7zbjLI
-	ByQaTAqZTN4tYECmpmXozDQlOxzh/zhYLybjuwE=
-X-Google-Smtp-Source: ACJfBou3g7X9Un+FAlHWNbcQLrlnklYTk/I+g8Pbkbe+m/+2u212LFaPfwrPEDkCsZXdL1LiF0A3ZOlXdlXuNaMEb5E=
-X-Received: by 10.237.33.130 with SMTP id l2mr19926227qtc.120.1513952466047;
-	Fri, 22 Dec 2017 06:21:06 -0800 (PST)
+	:message-id:subject:to;
+	bh=ZE1bf1dZvXAxfNEi8B4diijBCig9cLpo2c9z9I1Nguc=;
+	b=ml55jcO7Xta6SdsVR7OBqirgN/5gWWPibbpydHVwzsj+I2sldvUqKBgPxDPlW2o0D8
+	KMWsB6WDl4OLsE+Xd+vbXivtIervBGvWkqKGwSBbVQsUbVG4LTHwDFnVC6EwRa0kLdeY
+	XxlPo3Do2R3NhB+SeAmLkewc4iYcRNrrjT7tHVU3aWAwBABigEtYn4Y1VJhu+QAk/ZQ1
+	eamUuKPM/uz2xO1P86aPgQ4cz38GR5u3WYZBq8aGJZfTziU0Mf4+ZxUj7wc9fJW28mn8
+	mZzW+D3ceyUdzXLRI+VkMgvS/0KRVoHcliXJGxVgqRTXgbII3DfkSBTFlojM7paLTp+e
+	IgWw==
+X-Gm-Message-State: AKGB3mL93Y8G17gOHTxE8t6MvMQ3IH/s/VKXMR1hDkp67gBJ+0/HJ5yD
+	bziD7NkkbUTA5uXRzBmh5T8Ik8C2yJcy9c0XCON6WxEf
+X-Google-Smtp-Source: ACJfBosiERrK86ekHtcwMNOWmO1Kpl4WuyNI9U4emAdhIJzkG0V7mkVST+b2BrBdaSpJjDic84derb0FmUoosW2JA2c=
+X-Received: by 10.202.243.198 with SMTP id r189mr10508631oih.198.1513962626916;
+	Fri, 22 Dec 2017 09:10:26 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.12.182.96 with HTTP; Fri, 22 Dec 2017 06:21:05 -0800 (PST)
-In-Reply-To: <f5f50e1c-defb-149f-f795-921f4c1e648b@sgl.com>
-References: <f5f50e1c-defb-149f-f795-921f4c1e648b@sgl.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Fri, 22 Dec 2017 10:21:05 -0400
-Message-ID: <CADkTA4O6+qeRdQyV_jYd+BAwnU_n8+ZsAshMM034s0qeUhjQFw@mail.gmail.com>
-To: Fan Zhang <fzhang@sgl.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to config kernel in my own meta layer?
+Received: by 10.157.42.194 with HTTP; Fri, 22 Dec 2017 09:10:26 -0800 (PST)
+In-Reply-To: <CAOT_U5Zb+aMyseXVPpjYxG_9TPD2nxa_Rvgu_z7N6qS1kBFGMg@mail.gmail.com>
+References: <CAOT_U5Zb+aMyseXVPpjYxG_9TPD2nxa_Rvgu_z7N6qS1kBFGMg@mail.gmail.com>
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Fri, 22 Dec 2017 18:10:26 +0100
+Message-ID: <CAOT_U5YOPe5_sSDu7Kn_9_8znPXJd4=VvdW6FiTeLxc9Pjoi-g@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Python cryptography failing due to undefined symbol: pthread_atfork
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,151 +66,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Dec 2017 14:21:08 -0000
+X-List-Received-Date: Fri, 22 Dec 2017 17:10:28 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Dec 21, 2017 at 11:32 AM, Fan Zhang <fzhang@sgl.com> wrote:
-> Greetings,
->
-> I have a recipes that requires 128MB of CMA allocation for DMA. I followed
-> the instruction in
-> http://www.yoctoproject.org/docs/1.6/kernel-dev/kernel-dev.html#changing-the-configuration
-> and did the following:
->
-> My recipes structure:
->
-> meta-mylayer\recipes-my\uio-test\
->
-> 1. Then in uio-test folder, I have uio-test.bb that created by recipetool
-> (in general) with some modification. uio-test.bb looks like this:
->
-> #------------------------------------------------------------------
->
-> # Recipe created by recipetool
-> # This is the basis of a recipe and may need further editing in order to be
-> fully functional.
-> # (Feel free to remove these comments when editing.)
->
-> # Unable to find any files that looked like license statements. Check the
-> accompanying
-> # documentation and source headers and set LICENSE and LIC_FILES_CHKSUM
-> accordingly.
-> #
-> # NOTE: LICENSE is being set to "CLOSED" to allow you to at least start
-> building - if
-> # this is not accurate with respect to the licensing of the software being
-> built (it
-> # will not be in most cases) you must specify the correct value before using
-> this
-> # recipe for anything other than initial testing/development!
-> LICENSE = "CLOSED"
-> LIC_FILES_CHKSUM = ""
->
-> # No information for SRC_URI yet (only an external source tree was
-> specified)
-> PV = "2.0.2"
-> SRC_URI = "file://src"
->
-> # NOTE: this is a Makefile-only piece of software, so we cannot generate
-> much of the
-> # recipe automatically - you will need to examine the Makefile yourself and
-> ensure
-> # that the appropriate arguments are passed in.
->
-> do_configure () {
->     # Specify any needed configure commands here
->     :
-> }
->
-> do_compile () {
->     # You will almost certainly need to add additional arguments here
->     cd ${WORKDIR}/src
->     oe_runmake
-> }
->
-> FILES_${PN} = "/www/pages /etc/lighttpd.d"
-> do_install () {
->     # This is a guess; additional arguments may be required
->     cd ${WORKDIR}/src
->     oe_runmake install 'DESTDIR=${D}'
-> }
->
-> DEPENDS = "libgcc boost"
-> RDEPENDS_${PN} = "libgcc boost-thread boost-system lighttpd
-> lighttpd-module-cgi"
-> #------------------------------------------------------------------
->
-> 2. Also in uio-test folder, I have uio-test.bbappend file with these
-> contents:
->
-> #------------------------------------------------------------------
->
-> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> SRC_URI += "file://uio-test.cfg"
->
-> #----------------------^^^^^^^^^^^^^^^^^^^-------------------------
->
-> 3. In uio-test/files folder, I have uio-test.cfg with the following
-> contents:
->
->
-> #------------------------------------------------------------------
->
-> CONFIG_CMA_ALIGNMENT=8
-> CONFIG_CMA=y
-> CONFIG_CMA_AREAS=7
-> CONFIG_DMA_CMA=y
-> CONFIG_CMA_SIZE_MBYTES=128
-> CONFIG_CMA_SIZE_SEL_MBYTES=y
-> CONFIG_DMADEVICES=y
-> CONFIG_DMA_ENGINE=y
-> CONFIG_DMA_OF=y
-> CONFIG_XILINX_DMA_ENGINES=y
-> CONFIG_XILINX_DMA=y
-> CONFIG_DMA_API_DEBUG=y
-> CONFIG_HAS_DMA=y
-> CONFIG_NEED_DMA_MAP_STATE=y
-> CONFIG_HAVE_DMA_CONTIGUOUS=y
-> CONFIG_HAVE_DMA_API_DEBUG=y
-> CONFIG_HAVE_GENERIC_DMA_COHERENT=y
-> CONFIG_ARM_DMA_MEM_BUFFERABLE=y
-> CONFIG_ZONE_DMA_FLAG=0
-> #----------------------^^^^^^^^^^^^^^^^^^^-------------------------
->
-> My question: I think the cfg file is being parsed because if I change the
-> folder name files to something else, bitbake will complaint about not being
-> able to find uio-test.cfg. However, the final .config in built do not have
-> the CMA allocated. My meta layer does have a priority higher than the
-> upstream layers. What else can cause the problem here? Any suggestions?
-> Thanks.
+I have confirmed that no `-pthread` flags are being set for building
+python-cryptography.
 
-The question is ... which kernel is it ? If the kernel recipe you are
-using doesn't
-inherit linux-yocto, the fragments won't be applied.
+Running the following:
 
-And a second question, what release/branch are you using ?
+    bitbake python-cryptography -c do_compile
+    bitbake python-cryptography -c devshell
+    grep pthread ../temp/run.do_compile
 
-On that note, I actually have a patch completed to move the core of the fragment
-support to kernel.bbclass, so any kernel could use it. So if you
-aren't linux-yocto
-and would like to test a patch, I could send it along.
+gives no returns.
+Also there isn't a mention of it when doing a build in full
+verbose:
 
-Bruce
-
->
-> Fan Zhang
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+    bitbake python-cryptography -c cleanall
+    bitbake python-cryptography -vvv | vi -
 
 
+On the target the symbol is identified as missing (NOTYPE):
 
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+    ~# readelf -a
+/usr/lib/python3.5/site-packages/cryptography/hazmat/bindings/_openssl.abi3.so
+| grep pthread_atfork
+    000aebb4  0002d916 R_ARM_JUMP_SLOT   00000000   pthread_atfork
+       729: 00000000     0 NOTYPE  GLOBAL DEFAULT  UND pthread_atfork
+
+
+My current goal is to extend the recipe with the `-pthread` so that
+it's there when
+the '_openssl' extension is being built.
+Still open to suggestions.
+
+
+A thing that seems to be underlying my assumption is that the recipe
+for python-cryptography
+hasn't actually changed between Morty (where it worked) and Rocko...
+
+On Thu, Dec 21, 2017 at 6:17 PM, Alan Martinovic
+<alan.martinovic@senic.com> wrote:
+> Hi there,
+> just did a migration to Rocko and am witnessing"
+>
+>     root@device:~# python3
+>     Python 3.5.3 (default, Dec 20 2017, 02:02:22)
+>     [GCC 7.2.0] on linux
+>     Type "help", "copyright", "credits" or "license" for more information.
+>     >>> from cryptography.hazmat.bindings._openssl import ffi, lib
+>     Traceback (most recent call last):
+>       File "<stdin>", line 1, in <module>
+>     ImportError:
+> /usr/lib/python3.5/site-packages/cryptography/hazmat/bindings/_openssl.abi3.so:
+> undefined symbol: pthread_atfork
+>
+>
+> Have tried both the recipe that comes with Rocko
+> and master of meta-openembedded.
+>
+> Seems to be the same bug as this one:
+>
+> https://bugs.gentoo.org/630578
+>
+> resolved with this patch:
+>
+> https://gitweb.gentoo.org/repo/gentoo.git/commit/?id=c824d1c44fcf4556de21d2c8b8ae3732b0fc0c5b
+>
+> Can someone provide hints on what would that translate to
+>  for the python cryptography recipe?
 
