@@ -1,40 +1,27 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8815BE00D85; Sat, 23 Dec 2017 19:31:36 -0800 (PST)
+	id 76480E00D69; Sun, 24 Dec 2017 21:34:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,HEXHASH_WORD,
+	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CEEBE00ACD
-	for <yocto@yoctoproject.org>; Sat, 23 Dec 2017 19:31:34 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id vBO3TudO022229
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sat, 23 Dec 2017 19:29:56 -0800 (PST)
-Received: from [128.224.22.8] (128.224.22.8) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.361.1;
-	Sat, 23 Dec 2017 19:29:38 -0800
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <a56c815971a74fedaf7f9676840447f1@sakuraus.com>
-	<3d3ef818-08f3-f706-45ae-264cc7cf7fff@windriver.com>
-	<8acdc20521304e4aaf197d661e63b7fd@sakuraus.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <8e9d6bf9-b92f-e0f4-10d6-10db758c66a1@windriver.com>
-Date: Sat, 23 Dec 2017 23:29:37 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7624CE00CD9
+	for <yocto@yoctoproject.org>; Sun, 24 Dec 2017 21:34:41 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 4E7C78714912
+	for <yocto@yoctoproject.org>; Mon, 25 Dec 2017 00:34:40 -0500 (EST)
 MIME-Version: 1.0
-In-Reply-To: <8acdc20521304e4aaf197d661e63b7fd@sakuraus.com>
-Subject: Re: Kernel configuration problem/confusion
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 25 Dec 2017 05:34:40 -0000
+Message-ID: <20171225053440.31353.43868@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,147 +33,233 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Dec 2017 03:31:36 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
+X-List-Received-Date: Mon, 25 Dec 2017 05:34:42 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
+This mail was sent out by Recipe reporting system.
 
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-On 12/22/2017 6:17 PM, Greg Wilson-Lindberg wrote:
-> Hi Bruce,
-> First, thanks for the unbelievably quick response.
-> 
-> I searched the Yocto sources and didn't find anything that was trying to 
-> manipulate either of the variables except my .cfg.
-> 
-> The memuconfig search for MAX9768 results in:
-> Symbol: SND_SOC_MAX9768 [=n]
->  † † Type† : tristate
->  † † † Defined at sound/soc/codecs/Kconfig:917
->  † † † Depends on: SOUND [=y] && !M68K && !UML && SND [=m] && SND_SOC [=m]
->  † † † Selected by: SND_SOC_ALL_CODECS [=n] && SOUND [=y] && !M68K && 
-> !UML && SND [=m] && SND_SOC [=m] && COMPILE_TEST [=n] && I2C [=y]
-> To my (untrained) eye it seems that I need†SND_SOC_ALL_CODECS 
-> &†COMPILE_TEST. I tried setting†them but I get a similar†error 
-> for†COMPILE_TEST. A search for it yields:
->  †Symbol: COMPILE_TEST [=n]
->  † † Type† : boolean
->  † † Prompt: Compile also drivers which will not load
->  † † † Location:
->  † † (1) -> General setup
->  † † † Defined at init/Kconfig:56
-> Which doesn't seem to suggest that there should be any problems setting it.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
+You can check the detail information at:
 
-True, but since SND_SOC_MAX9768 doesn't have any help text (aka
-a prompt in Kconfig speak) then it isn't something that you can
-actually reach by menuconfig and by extension .. it must be selected
-by other code. So you are on the right track. Either those symbols
-are also missing dependencies, or MAX9768 itself is missing a
-dependency.
+http://recipes.yoctoproject.org/
 
-> 
-> The search for MAX1363 yields:
->  †Symbol: MAX1363 [=n]
->  † † Type† : tristate
->  † † †Prompt: Maxim max1363 ADC driver
->  † † † Location:
->  † † † † -> Device Drivers
->  † † † † † -> Industrial I/O support (IIO [=m])
->  † † (1)† † †-> Analog to digital converters
->  † † † Defined at drivers/iio/adc/Kconfig:218
->  † † † Depends on: IIO [=m] && I2C [=y]
->  † † † Selects: IIO_BUFFER [=y] && IIO_TRIGGERED_BUFFER [=n]
-> Which doesn't seem to mereveal any reason that I shouldn't be able to 
-> set it.
+Package               Version          Upstream version      Maintainer           NoUpgradeReason
+--------------------  ---------------  --------------------  -------------------  ------------------------------
+python3               3.5.3            3.6.4                 Alejandro Hernandez
+python                2.7.13           2.7.14                Alejandro Hernandez
+eudev                 3.2.2            3.2.5                 Alejandro Hernandez
+python3-native        3.5.3            3.6.4                 Alejandro Hernandez
+python-native         2.7.13           2.7.14                Alejandro Hernandez
+usbutils              008              009                   Alexander Kanavin
+gtk-doc               1.25             1.27                  Alexander Kanavin
+webkitgtk             2.18.3           2.18.4                Alexander Kanavin
+bjam-native           1.65.1           1.66.0                Alexander Kanavin
+dnf                   2.6.3            2.7.5                 Alexander Kanavin
+libdnf                0.9.3            0.11.1                Alexander Kanavin
+librepo               1.7.20+gitX      1.8.1                 Alexander Kanavin
+ffmpeg                3.4              3.4.1                 Alexander Kanavin
+btrfs-tools           4.13.3           4.14                  Alexander Kanavin
+systemtap-uprobes     3.1              3.2                   Alexander Kanavin
+systemtap             3.1              3.2                   Alexander Kanavin
+kernelshark           2.6.1            2.6.2                 Alexander Kanavin
+trace-cmd             2.6.1            2.6.2                 Alexander Kanavin
+mpg123                1.25.7           1.25.8                Alexander Kanavin
+tiff                  4.0.8            4.0.9                 Alexander Kanavin
+epiphany              3.24.3           3.26.5.1              Alexander Kanavin
+boost                 1.65.1           1.66.0                Alexander Kanavin
+vala                  0.38.2           0.38.4                Alexander Kanavin
+libnl                 3.2.29           3.4.0                 Alexander Kanavin
+blktrace              1.1.0+gitX       1.2.0                 Alexander Kanavin
+icu                   60.1             60.2                  Alexander Kanavin
+mkelfimage            4.0+gitX         4.6                   Alexander Kanavin    mkelfimage has been removed...
+iso-codes             3.76             3.77                  Alexander Kanavin
+libwebp               0.6.0            0.6.1                 Alexander Kanavin
+apt                   1.2.24           1.4.8                 An√≠bal Lim√≥n
+dpkg                  1.18.24          1.19.0.4              An√≠bal Lim√≥n
+apt-native            1.2.24           1.4.8                 An√≠bal Lim√≥n
+bind                  9.10.6           9.11.2                Armin Kuster
+libxcursor            1.1.14           1.1.15                Armin Kuster
+libxfont2             2.0.2            2.0.3                 Armin Kuster
+libxfont              1.5.3            1.5.4                 Armin Kuster
+libxkbcommon          0.7.2            0.8.0                 Armin Kuster
+xserver-xorg          1.19.5           1.19.6                Armin Kuster
+curl                  7.54.1           7.57.0                Armin Kuster
+nss                   3.34             3.34.1                Armin Kuster
+pinentry              1.0.0            1.1.0                 Armin Kuster
+kexec-tools           2.0.15           2.0.16                Armin Kuster
+libassuan             2.4.4            2.5.1                 Armin Kuster
+libunwind             1.2              1.2.1                 Bruce Ashfield
+linux-libc-headers    4.12             4.14.8                Bruce Ashfield
+iproute2              4.13.0           4.14.1                Changhyeok Bae
+systemd               234              236                   Chen Qi
+util-linux            2.31             2.31.1                Chen Qi
+systemd-boot          234              236                   Chen Qi
+systemd-bootchart     231+gitX         233                   Chen Qi
+flex                  2.6.0            2.6.4                 Chen Qi
+sed                   4.2.2            4.4                   Chen Qi
+sysstat               11.6.1           11.7.1                Chen Qi
+tar                   1.29             1.30                  Chen Qi
+build-appliance-i...  15.0.0           18.0.0                Cristian Iorga
+lzop                  1.03             1.04                  Denys Dmytriyenko
+mtd-utils             2.0.0            2.0.1                 Denys Dmytriyenko
+lz4                   1.7.4            1.8.0                 Denys Dmytriyenko
+acpica                20170303         20171215              Fathi Boudra
+gnupg                 2.2.0            2.2.4                 Hongxu Jia
+bash                  4.4              4.4.12                Hongxu Jia
+ncurses               6.0+20170715     6.0+20171125          Hongxu Jia
+apr-util              1.6.0            1.6.1                 Hongxu Jia
+apr                   1.6.2            1.6.3                 Hongxu Jia
+gpgme                 1.9.0            1.10.0                Hongxu Jia
+libgcrypt             1.8.1            1.8.2                 Hongxu Jia
+ghostscript           9.21             9.22                  Hongxu Jia
+man-pages             4.11             4.14                  Hongxu Jia
+help2man-native       1.47.4           1.47.5                Hongxu Jia
+python-setuptools     38.2.4           38.2.5                Jose Lamego
+python3-git           2.1.7            2.1.8                 Jose Lamego
+python3-numpy         1.13.3           1.14.0rc1             Jose Lamego
+python3-pycairo       1.15.3           1.15.4                Jose Lamego
+python-numpy          1.13.1           1.14.0rc1             Jose Lamego
+python3-pygobject     3.26.0           3.26.1                Jose Lamego
+bc                    1.06             1.07.1                Jose Lamego
+python3-setuptools    38.2.4           38.2.5                Jose Lamego
+pango                 1.40.12          1.40.14               Jussi Kukkonen
+piglit                1.0+gitrX        1.0-new-commits-a...  Jussi Kukkonen
+libinput              1.8.4            1.9.4                 Jussi Kukkonen
+gtk-icon-utils-na...  3.22.17          3.22.26               Jussi Kukkonen
+at-spi2-core          2.26.0           2.26.2                Jussi Kukkonen
+assimp                4.0.1            4.1.0                 Jussi Kukkonen
+vulkan-demos          git              git-new-commits-a...  Jussi Kukkonen
+puzzles               0.0+gitX         0.0-new-commits-a...  Jussi Kukkonen
+at-spi2-atk           2.26.0           2.26.1                Jussi Kukkonen
+atk                   2.26.0           2.26.1                Jussi Kukkonen
+vte                   0.50.1           0.50.2                Jussi Kukkonen
+vulkan                1.0.61.1         1.0.65.1              Jussi Kukkonen
+adwaita-icon-theme    3.26.0           3.26.1                Jussi Kukkonen
+gtk+3                 3.22.24          3.22.26               Jussi Kukkonen
+librsvg               2.40.19          2.40.20               Jussi Kukkonen
+cairo                 1.14.10          1.14.12               Jussi Kukkonen
+fontconfig            2.12.6           2.12.91               Jussi Kukkonen
+glibc-initial         2.26             2.26.9000             Khem Raj
+glibc                 2.26             2.26.9000             Khem Raj
+libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
+gdb                   8.0              8.0.1                 Khem Raj
+llvm                  5.0              5.0-new-commits-a...  Khem Raj
+ninja                 1.7.2            1.8.2                 Khem Raj
+mpfr                  3.1.5            3.1.6                 Khem Raj
+re2c                  0.16             1.0.1                 Khem Raj
+go-native             1.9              1.10beta1             Khem Raj
+go                    1.9              1.10beta1             Khem Raj
+binutils              2.29             2.29.1                Khem Raj
+cross-localedef-n...  2.26             2.26.9000             Khem Raj
+ruby                  2.4.2            2.4.3                 Leonardo Sandoval
+nfs-utils             2.1.1            2.3.1                 Leonardo Sandoval
+perl                  5.24.1           5.26.1                Leonardo Sandoval
+qemu                  2.10.1           2.11.0                Leonardo Sandoval
+ptest-runner          2.1+gitX         2.1.1                 Leonardo Sandoval
+perl-native           5.24.1           5.26.1                Leonardo Sandoval
+rpm                   4.13.90+gitX     4.14.0                Mark Hatle
+gstreamer1.0          1.12.3           1.12.4                Maxin B. John
+ifupdown              0.8.16           0.8.29                Maxin B. John
+gstreamer1.0-rtsp...  1.12.3           1.12.4                Maxin B. John
+i2c-tools             3.1.2            4.0                   Maxin B. John
+gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
+libical               2.0.0            3.0.1                 Maxin B. John
+gstreamer1.0-libav    1.12.3           1.12.4                Maxin B. John
+gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
+gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
+gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
+gstreamer1.0-omx      1.12.3           1.12.4                Maxin B. John
+gstreamer1.0-python   1.12.3           1.12.4                Maxin B. John
+libsolv               0.6.29           0.6.30                Maxin B. John
+screen                4.6.1            4.6.2                 Maxin B. John
+pkgconf               1.3.7            1.3.90                Maxin B. John
+libatomic-ops         7.6.0+gitX       7.6.2                 Maxin B. John
+harfbuzz              1.7.0            1.7.4                 Maxin B. John
+libjpeg-turbo         1.5.2            1.5.3                 Maxin B. John
+gdb-cross-canadia...  8.0              8.0.1                 No maintainer
+gdb-cross-i586        8.0              8.0.1                 No maintainer
+go-cross-canadian...  1.9              1.10beta1             No maintainer
+binutils-cross-i586   2.29             2.29.1                No maintainer
+binutils-crosssdk...  2.29             2.29.1                No maintainer
+systemtap-native      3.1              3.2                   No maintainer
+binutils-cross-ca...  2.29             2.29.1                No maintainer
+go-cross-i586         1.9              1.10beta1             No maintainer
+go-crosssdk-x86_64    1.9              1.10beta1             No maintainer
+go-runtime            1.9              1.10beta1             No maintainer
+mesa                  17.2.6           17.3.1                Otavio Salvador
+linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
+cmake                 3.9.5            3.10.1                Otavio Salvador
+go-dep                0.3.1            0.3.2                 Otavio Salvador
+cmake-native          3.9.5            3.10.1                Otavio Salvador
+libdrm                2.4.88           2.4.89                Otavio Salvador
+mesa-gl               17.2.6           17.3.1                Otavio Salvador
+build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
+tcf-agent             1.4.0+gitX       1.6.0                 Randy Witt
+lttng-modules         2.9.5            2.10.4                Richard Purdie
+lttng-tools           2.9.5            2.10.1                Richard Purdie
+lttng-ust             2.9.1            2.10.1                Richard Purdie
+nasm                  2.13.01          2.13.02               Richard Purdie
+subversion            1.9.6            1.9.7                 Richard Purdie
+gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
+autoconf-archive      2016.09.16       2017.09.28            Robert Yang
+git                   2.15.0           2.15.1                Robert Yang
+debianutils           4.8.1.1          4.8.3                 Robert Yang
+squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
+strace                4.19             4.20                  Robert Yang
+tcl                   8.6.7            8.6.8                 Robert Yang
+less                  527              529                   Robert Yang
+time                  1.7              1.8                   Robert Yang
+base-passwd           3.5.29           3.5.44                Ross Burton          Version 3.5.38 requires cde...
+lsbinitscripts        9.72             9.78                  Ross Burton
+libva-utils           1.8.3            2.0.0                 Wei Tee Ng
+libva                 1.8.3            2.0.0                 Wei Tee Ng
+gstreamer1.0-vaapi    1.12.3           1.12.4                Wei Tee Ng
+avahi                 0.6.32           0.7                   Yi Zhao
+avahi-ui              0.6.32           0.7                   Yi Zhao
+json-glib             1.2.8            1.4.2                 Yi Zhao
+chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
 
-At a glance, I'm also not seeing the reason. Did you try forcing
-IIO=y and seeing if there's a difference ? =m should satisfy that
-Kconfig dependency, but it is worth checking.
+Upgradable count: 170
+Upgradable total count: 173
 
-Is this a mainline kernel ? or something else that I could build ?
-Maybe with a quick test here, it would be more obvious.
+The based commit is:
 
-Bruce
+commit 3cf8bda5e4d4a345793aa72be97e94c41520ec01
+Author: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date:   Thu Dec 21 10:49:20 2017 -0500
 
-> 
-> Regards,
-> Greg
-> ------------------------------------------------------------------------
-> *From:* Bruce Ashfield <bruce.ashfield@windriver.com>
-> *Sent:* Friday, December 22, 2017 12:27:22 PM
-> *To:* Greg Wilson-Lindberg; yocto@yoctoproject.org
-> *Subject:* Re: [yocto] Kernel configuration problem/confusion
-> 
-> 
-> On 12/22/2017 3:51 PM, Greg Wilson-Lindberg wrote:
->> I'm trying to add some kernel configuration to a Raspberry pi3 yocto 
->> build.† I've got the .cfg fragment being read in, but I'm getting 
->> warnings that indicate that they are not making the desired changes.
->> 
->> 
->> The first one is CONFIG_SND_SOC_MAX9768. This is a sound codec and the 
->> Kconfig file has it in a long list of select's. the one for the MAX9768 is:
->> 
->>† † † select CONFIG_SND_SOC_MAX9768 if I2C
->> 
->> I2C is set, but CONFIG_SND_SOC_MAX9768 ends up undefined. the warning 
->> I'm getting is:
->> 
->> ---------- CONFIG_SND_SOC_MAX9768 -----------------
->> Config: CONFIG_SND_SOC_MAX9768
->> From: 
->> /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/work-shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
->> Requested value:† CONFIG_SND_SOC_MAX9768=y
->> Actual value:
->> 
->> Config 'SND_SOC_MAX9768' has the following conditionals:
->> Dependency values are:
->> 
->> SND_SOC_MAX9768 ends up not being selected even though I try to set it 
->> ti 'y'
->> 
->> 
->> The second one is CONFIG_MAX1363, this is an ADC that I'm trying to set, 
->> the warning is:
->> 
->> ---------- CONFIG_MAX1363 -----------------
->> Config: CONFIG_MAX1363
->> From: 
->> /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/work-shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
->> Requested value:† CONFIG_MAX1363=y
->> Actual value:† † †# CONFIG_MAX1363 is not set
->> 
->> Config 'MAX1363' has the following conditionals:
->>† † I2C (value: "y")
->> Dependency values are:
->>† † I2C [y]
->> 
->> It ends up being not set. In both cases the value that I'm trying to set 
->> is ignored. Any insight would be greatly appreciated.
-> 
-> The python library that tries to detangle the Kconfig dependencies
-> isn't perfect (but I do have an update for it pending), so you might
-> not be getting the entire story in that information dumb.
-> 
-> Two things to check:
-> 
->  † - there are no other fragments that are disabling the same option
->  † - use menuconfig in the kernel to search the option and see what it
->  ††† reports for the dependencies.
-> 
-> There's some constraint or overriding command that is not allowing the
-> option into the final config, we just need to track it down.
-> 
-> Bruce
-> 
->> 
->> 
->> Regards,
->> 
->> Greg
->> 
->> 
->> 
+    linux-yocto/4.12: CQM and kmemleak fixes
+    
+    Integrating the following commits for kmemleak fixes and CQM
+    backports:
+    
+       58fe84d691a mm: kmemleak: treat vm_struct as alternative reference to vmalloc'ed objects
+       5babb9c8f695 mm: kmemleak: factor object reference updating out of scan_block()
+       8c22ef5ee138 mm: kmemleak: slightly reduce the size of some structures on 64-bit architectures
+       7ea6b560ef4c netfilter: conntrack: do not enable connection tracking unless needed
+       4fdf0a5a0863 netfilter: nf_ct_dccp/sctp: fix memory leak after netns cleanup
+       85385ffd1e9b netfilter: move table iteration out of netns exit paths
+       c95b3f8e1cbc netfilter: conntrack: add nf_ct_iterate_destroy
+       753c83b98a1e netfilter: conntrack: don't call iter for non-confirmed conntracks
+       bcf21cba7fd5 netfilter: conntrack: rename nf_ct_iterate_cleanup
+       f5c3a4c19075 perf/x86/intel/uncore: Fix missing marker for skx_uncore_cha_extra_regs
+       c44ebea2f116 perf/x86/intel/uncore: Fix SKX CHA event extra regs
+       1d70f7feb408 perf/x86/intel/uncore: Remove invalid Skylake server CHA filter field
+       eb3059e9e0ea perf/x86/intel/uncore: Fix Skylake server CHA LLC_LOOKUP event umask
+       3514c02c7bff perf/x86/intel/uncore: Fix Skylake server PCU PMU event format
+       804530f02515 perf/x86/intel/uncore: Fix Skylake UPI PMU event masks
+    
+    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
+
 
