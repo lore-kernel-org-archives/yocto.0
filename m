@@ -1,68 +1,48 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <Yong_Hou@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4884E00DB6; Wed, 27 Dec 2017 20:38:39 -0800 (PST)
+	id D6FC1E00DB6; Wed, 27 Dec 2017 21:15:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.178 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f178.google.com (mail-qt0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C13DE00D84
-	for <yocto@yoctoproject.org>; Wed, 27 Dec 2017 20:38:37 -0800 (PST)
-Received: by mail-qt0-f178.google.com with SMTP id i40so49989651qti.8
-	for <yocto@yoctoproject.org>; Wed, 27 Dec 2017 20:38:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=Xo8ops6KgNUwSl3FbkLtmA0Cn2L60eIGypipqDKITBc=;
-	b=hOEGU79TPh7iiE240NIBVz9/au8v8BkACKoNIVqfbQGwR3wWOE94pDBhjn/Lv4n+qD
-	Rtl8qf+p6FHZlzF8UgkpicZb0W0Wbx1LLbBQDxIl5HRYbqCqfxgXzxIeqIpF5z0a4Eb5
-	9pbdYvqTeywoOZ0g1Rf2iLZ6fqawTPDpBBma3NSWs6m+9MOPOs7iCtzpKG18jx+O2Gf5
-	vlwxqyntlGuMQkPWHtAAKE85VFnNJjLyzF/lnapgZjGRFPKPDYXRtyCimvawMm8i+/9l
-	VcVbTK60UaLJ9Ayi6dId/REOGpyAiIe6TR3J+a0lOJvX1pTpS4nQRWktUX6iBLT7hm0p
-	sadQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=Xo8ops6KgNUwSl3FbkLtmA0Cn2L60eIGypipqDKITBc=;
-	b=Dw4xIfpQHJaT9LDlCE8qmRHGF2hb2qWxpgUXzZL4WYC7f62d14GnC2Cu+ATmTjIMGk
-	UQT6p4FI+FCWaZeoioy8iVyGg/f2GLLX0e+XQzAgK3Z2uD2YBLqnil7z0nRjT68/FUQn
-	wxM1aIfgHfxOkdTvurWQ6EJZ0rfH/Mf/4ipKFwuLnQlN7O6FmqiZIn9c1ltLHBoRZp5J
-	JGy7fyWkiDa69p49nx1mYYt5yOyOFzNpZ7fA6X9gB+l0EjpOczKFw1Z9nCV3VTNVLpjt
-	POtIrWfjjbtRagkB4Mv3/jqcyViyAzhjXC+ofISuo/9jA5Z9/4FSkUEwlNaEiDRtbMa2
-	MwpQ==
-X-Gm-Message-State: AKGB3mJLq3o1glLjgtDlGrvRE6Dw3qxTGWBvyubOP3wxUHyRaMakdV2O
-	2cGFmJBU3lSDXLu2Q5tpxFVcFEGo6i3vw+GhQwE=
-X-Google-Smtp-Source: ACJfBot3/KnIdEmcrBL7+imsd3lLDeB6eLuAijvlD9EHxc1ryEZtM7DW7N4yAjq82djp16aGtAb7LFoO9OFg3av8cYw=
-X-Received: by 10.200.35.28 with SMTP id a28mr43931468qta.51.1514435916170;
-	Wed, 27 Dec 2017 20:38:36 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.12.202.146 with HTTP; Wed, 27 Dec 2017 20:38:35 -0800 (PST)
-In-Reply-To: <1514430824343.14258@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A29CEE00D84
+	for <yocto@yoctoproject.org>; Wed, 27 Dec 2017 21:15:31 -0800 (PST)
+Received: from svr-orw-mbx-02.mgc.mentorg.com ([147.34.90.202])
+	by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+	id 1eUQXS-0003GI-U2 from Yong_Hou@mentor.com ;
+	Wed, 27 Dec 2017 21:15:30 -0800
+Received: from svr-orw-mbx-04.mgc.mentorg.com (147.34.90.204) by
+	svr-orw-mbx-02.mgc.mentorg.com (147.34.90.202) with Microsoft SMTP
+	Server (TLS) id 15.0.1320.4; Wed, 27 Dec 2017 21:15:28 -0800
+Received: from svr-orw-mbx-04.mgc.mentorg.com ([fe80::4967:8f7f:4a15:68a4]) by
+	SVR-ORW-MBX-04.mgc.mentorg.com ([fe80::4967:8f7f:4a15:68a4%22]) with
+	mapi id 15.00.1320.000; Wed, 27 Dec 2017 21:15:28 -0800
+From: "Hou, Yong" <Yong_Hou@mentor.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Thread-Topic: =?gb2312?B?tPC4tDogW3lvY3RvXSBGZXRjaGVyIGZhaWx1cmUgZm9yIFVSTA==?=
+Thread-Index: AQHTfflGp5kMsTEwRE2X0QjuKlBR76NV12WAgAI95p2AAKBQgP//gK3G
+Date: Thu, 28 Dec 2017 05:15:28 +0000
+Message-ID: <1514438126832.39665@mentor.com>
 References: <1514259762045.11906@mentor.com>
 	<CAGAf8LzA1NqKmSf=Fm3wq+r3v-+wgmuLoXDzTR5dqDP-vp3zpg@mail.gmail.com>
-	<1514430824343.14258@mentor.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 28 Dec 2017 05:38:35 +0100
-Message-ID: <CAGAf8LzvLKrD5woxk_g7ND=w7cp73NN3Xuk2JUUaT68-tKPs1w@mail.gmail.com>
-To: "Hou, Yong" <Yong_Hou@mentor.com>
+	<1514430824343.14258@mentor.com>,
+	<CAGAf8LzvLKrD5woxk_g7ND=w7cp73NN3Xuk2JUUaT68-tKPs1w@mail.gmail.com>
+In-Reply-To: <CAGAf8LzvLKrD5woxk_g7ND=w7cp73NN3Xuk2JUUaT68-tKPs1w@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [147.34.91.1]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: =?UTF-8?B?UmU6IOetlOWkjTogRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw=?=
+Subject: =?UTF-8?B?562U5aSNOiDnrZTlpI06IEZldGNoZXIgZmFpbHVyZSBmb3IgVVJM?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,332 +54,243 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Dec 2017 04:38:39 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 28 Dec 2017 05:15:32 -0000
+Content-Language: zh-CN
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-> I suspect  error may be caused by the "protocol=3Dhttps",  then I changed=
- to
-> "git://github.com/GENIVI/dlt-daemon.git;branch=3Dmaster"...
-
-Good observation. I use clones as close as to the latest HEAD (span
-from few days to several weeks).
-
-Which does not explain what are the differences between poky distro
-2.0.2 (used by you) and latest 2.4. In most cases, developers are
-using much more stable releases. So this mystery is still unsolved.
-With respect to the Real World out there.
-
-Zoran
-
-On Thu, Dec 28, 2017 at 4:13 AM, Hou, Yong <Yong_Hou@mentor.com> wrote:
-> hello Zoran,
->
-> thanks for your reply. I tried with your bb file, but there is still same=
- problem.
-> I suspect  error may be caused by the "protocol=3Dhttps",  then I changed=
- to
-> "git://github.com/GENIVI/dlt-daemon.git;branch=3Dmaster" ,
-> Fortunately there is no problem any more . Following is the result by usi=
-ng this change:
-> But i do not know the real root cause, if some one can let me understand =
-it it will be very nice.
->
-> Myproject/build/tmp/work/corei7-64-poky-linux/dlt-daemon/2.15.0-r0/git$ l=
-s -al
-> total 156
-> drwxr-xr-x 14 yong yong  4096 12=E6=9C=88 28 10:55 .
-> drwxrwxr-x 13 yong yong  4096 12=E6=9C=88 28 10:56 ..
-> -rw-r--r--  1 yong yong   555 12=E6=9C=88 28 10:55 AUTHORS
-> -rw-r--r--  1 yong yong   209 12=E6=9C=88 28 10:55 automotive-dlt-c++.pc.=
-in
-> -rw-r--r--  1 yong yong   789 12=E6=9C=88 28 10:55 automotive-dlt.pc.in
-> -rw-r--r--  1 yong yong  3694 12=E6=9C=88 28 10:55 automotive-dlt.spec.in
-> drwxr-xr-x  2 yong yong  4096 12=E6=9C=88 28 10:55 cmake
-> -rw-r--r--  1 yong yong 10593 12=E6=9C=88 28 10:55 CMakeLists.txt
-> -rw-r--r--  1 yong yong   460 12=E6=9C=88 28 10:55 COPYING
-> -rw-r--r--  1 yong yong   426 12=E6=9C=88 28 10:55 distfiles
-> drwxr-xr-x  3 yong yong  4096 12=E6=9C=88 28 10:55 doc
-> drwxr-xr-x  6 yong yong  4096 12=E6=9C=88 28 10:55 examples
-> drwxr-xr-x  8 yong yong  4096 12=E6=9C=88 28 10:55 .git
-> -rw-r--r--  1 yong yong   127 12=E6=9C=88 28 10:55 .gitignore
-> drwxr-xr-x 16 yong yong  4096 12=E6=9C=88 28 10:55 gtest-1.7.0
-> drwxr-xr-x  3 yong yong  4096 12=E6=9C=88 28 10:55 include
-> -rw-r--r--  1 yong yong  7441 12=E6=9C=88 28 10:55 INSTALL
-> -rw-r--r--  3 yong yong 16726 12=E6=9C=88 28 10:55 LICENSE
-> drwxrwxr-x  2 yong yong  4096 12=E6=9C=88 28 10:55 patches
-> drwxrwxr-x  9 yong yong  4096 12=E6=9C=88 28 10:55 .pc
-> -rw-r--r--  1 yong yong  2629 12=E6=9C=88 28 10:55 README
-> -rw-r--r--  1 yong yong 27180 12=E6=9C=88 28 10:55 ReleaseNotes.txt
-> drwxr-xr-x 15 yong yong  4096 12=E6=9C=88 28 10:55 src
-> drwxr-xr-x  3 yong yong  4096 12=E6=9C=88 28 10:55 systemd
-> drwxr-xr-x  3 yong yong  4096 12=E6=9C=88 28 10:55 tests
-> drwxr-xr-x  4 yong yong  4096 12=E6=9C=88 28 10:55 testscripts
->
-> ________________________________________
-> =E5=8F=91=E4=BB=B6=E4=BA=BA: Zoran Stojsavljevic <zoran.stojsavljevic@gma=
-il.com>
-> =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2017=E5=B9=B412=E6=9C=8826=E6=97=A5=
- 16:50
-> =E6=94=B6=E4=BB=B6=E4=BA=BA: Hou, Yong
-> =E6=8A=84=E9=80=81: yocto@yoctoproject.org
-> =E4=B8=BB=E9=A2=98: Re: [yocto] Fetcher failure for URL
->
->> Inside the bb file, there are following descriptions for this URL:
->>
->> SRC_URI =3D "git://github.com/GENIVI/dlt-daemon.git;protocol=3Dhttps"
->> SRCREV =3D "e9a486a08fff6d3cc7133a350cec3ee10f463207"
->
-> Interesting problem, for the sake of expertise/exercise I wanted to
-> reproduce it in poky/referent YOCTO Project distro.
->
-> So I did create the dlp-daemon entry in my meta-mylayer, added layer
-> on the top of poky 3 layers for such of the experiment:
->
-> user@localhost recipes-example]$ pwd
-> /home/user/YOCTO/oe_core_embedded/poky/meta-mylayer/recipes-example
-> [user@localhost recipes-example]$ ls -al
-> total 16
-> drwxrwxr-x. 4 user user 4096 Dec 26 08:55 .
-> drwxrwxr-x. 4 user user 4096 Nov 19 13:15 ..
-> drwxrwxr-x. 2 user user 4096 Dec 26 08:59 dlt-daemon
-> drwxrwxr-x. 3 user user 4096 Dec 26 07:37 script
-> [user@localhost recipes-example]$ cd dlt-daemon/
-> [user@localhost dlt-daemon]$ ls -al
-> total 16
-> drwxrwxr-x. 2 user user 4096 Dec 26 08:59 .
-> drwxrwxr-x. 4 user user 4096 Dec 26 08:55 ..
-> -rw-rw-r--. 1 user user 1370 Dec 26 08:59 dlt-daemon_2.15.0.bb
-> [user@localhost dlt-daemon]$
->
-> The bb recipe I took from:
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/tree/meta-ivi/recipes-=
-extended/dlt-daemon/dlt-daemon_2.15.0.bb?h=3Dmaster
->
-> And I did modify it, in order for disable some inheritance I do not
-> have. Concisely I know it will not configure, but the aim was just to
-> see if I can
-> download it via bitbake script.
->
-> With the following in my modified recipe:
->
-> HOMEPAGE =3D "https://www.genivi.org/"
-> SECTION =3D "console/utils"
-> LICENSE =3D "MPLv2"
-> LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D8184208060df880fe3137b93eb88ae=
-ea"
->
-> DEPENDS =3D "dbus zlib"
->
-> SRCREV =3D "e9a486a08fff6d3cc7133a350cec3ee10f463207"
-> SRC_URI =3D "git://github.com/GENIVI/${BPN}.git;protocol=3Dhttps"
-> S =3D "${WORKDIR}/git"
->
-> ## inherit gzipnative autotools gettext cmake systemd
-> inherit autotools gettext cmake systemd
->
-> PACKAGES +=3D "${PN}-systemd"
-> SYSTEMD_PACKAGES =3D "${PN} ${PN}-systemd"
-> SYSTEMD_SERVICE_${PN} =3D "dlt-system.service dlt.service"
-> SYSTEMD_AUTO_ENABLE_${PN} =3D "enable"
-> SYSTEMD_SERVICE_${PN}-systemd =3D "dlt-example-user.service \
->     dlt-dbus.service \
->     dlt-adaptor-udp.service \
->     dlt-receive.service"
-> SYSTEMD_AUTO_ENABLE_${PN}-systemd =3D "disable"
->
-> EXTRA_OECMAKE =3D "-DWITH_SYSTEMD=3DON"
->
-> FILES_${PN}-doc +=3D "/usr/share/dlt-filetransfer"
->
-> do_install_append() {
->    rm -f ${D}${bindir}/dlt-test-*
-> }
->
-> It did indeed downloaded (CLI follows below as proof), but failed to
-> configure (understandable, gzipnative does not exist in reference
-> poky):
->
-> [user@localhost 2.15.0-r0]$ pwd
-> /home/user/YOCTO/oe_core_embedded/poky/build/tmp/work/core2-64-poky-linux=
-/dlt-daemon/2.15.0-r0
-> [user@localhost 2.15.0-r0]$ cd git
-> [user@localhost git]$ ls -al
-> total 148
-> drwxr-xr-x. 12 user user  4096 Dec 26 09:00 .
-> drwxrwxr-x. 11 user user  4096 Dec 26 09:04 ..
-> -rw-r--r--.  1 user user   555 Dec 26 09:00 AUTHORS
-> -rw-r--r--.  1 user user   209 Dec 26 09:00 automotive-dlt-c++.pc.in
-> -rw-r--r--.  1 user user   789 Dec 26 09:00 automotive-dlt.pc.in
-> -rw-r--r--.  1 user user  3694 Dec 26 09:00 automotive-dlt.spec.in
-> drwxr-xr-x.  2 user user  4096 Dec 26 09:00 cmake
-> -rw-r--r--.  1 user user 10616 Dec 26 09:00 CMakeLists.txt
-> -rw-r--r--.  1 user user   460 Dec 26 09:00 COPYING
-> -rw-r--r--.  1 user user   426 Dec 26 09:00 distfiles
-> drwxr-xr-x.  3 user user  4096 Dec 26 09:00 doc
-> drwxr-xr-x.  6 user user  4096 Dec 26 09:00 examples
-> drwxr-xr-x.  8 user user  4096 Dec 26 09:00 .git
-> -rw-r--r--.  1 user user   127 Dec 26 09:00 .gitignore
-> drwxr-xr-x. 16 user user  4096 Dec 26 09:00 gtest-1.7.0
-> drwxr-xr-x.  3 user user  4096 Dec 26 09:00 include
-> -rw-r--r--.  1 user user  7441 Dec 26 09:00 INSTALL
-> -rw-r--r--.  3 user user 16726 Dec 26 09:00 LICENSE
-> -rw-r--r--.  1 user user  2629 Dec 26 09:00 README
-> -rw-r--r--.  1 user user 27180 Dec 26 09:00 ReleaseNotes.txt
-> drwxr-xr-x. 15 user user  4096 Dec 26 09:00 src
-> drwxr-xr-x.  3 user user  4096 Dec 26 09:00 systemd
-> drwxr-xr-x.  3 user user  4096 Dec 26 09:00 tests
-> drwxr-xr-x.  4 user user  4096 Dec 26 09:00 testscripts
-> [user@localhost git]$
->
-> The download problem become visible with the original master recipe:
->
-> SRCREV =3D "e9a486a08fff6d3cc7133a350cec3ee10f463207"
-> SRC_URI =3D "git://github.com/GENIVI/${BPN}.git;protocol=3Dhttps \
->     file://0002-Don-t-execute-processes-as-a-specific-user.patch \
->     file://0004-Modify-systemd-config-directory.patch \
->     "
-> S =3D "${WORKDIR}/git"
->
-> Patch 0002 did not download. The same as you had for the original URI,
-> but, in my case, it was just a 0002. ... .patch.
->
-> Hope this helps.
->
-> Zoran
->
-> On Tue, Dec 26, 2017 at 4:42 AM, Hou, Yong <Yong_Hou@mentor.com> wrote:
->> Hello all,
->>
->>
->> When i build the project based on yocto 2.0.2 using bitbake tool, i
->> encountered one fetch error :
->>
->>  "Failed to fetch URL git://github.com/GENIVI/dlt-daemon.git;protocol=3D=
-https,
->> attempting MIRRORS if available"
->>
->>
->> Inside the bb file, there are following descriptions for this URL:
->>
->> SRC_URI =3D "git://github.com/GENIVI/dlt-daemon.git;protocol=3Dhttps"
->> SRCREV =3D "e9a486a08fff6d3cc7133a350cec3ee10f463207"
->>
->>
->> Then i tried to fetch it manually as below, source code can be downloade=
-d
->> successfully and commit id is also correct.
->> myproject$git clone git://github.com/GENIVI/dlt-daemon.git
->>
->> myproject/dlt-daemon$ git -c core.fsyncobjectfiles=3D0 branch --contains
->> e9a486a08fff6d3cc7133a350cec3ee10f463207
->> * master
->>
->>
->> I have no idea why such issue occurred for this URL when i use bitbake f=
-or
->> build.
->>
->> Thanks for help.
->>
->>
->> Following is the detail error log:
->>
->>
->> NOTE: recipe gnome-common-native-3.14.0-r0: task do_compile: Started
->> NOTE: recipe gnome-common-native-3.14.0-r0: task do_compile: Succeeded
->> NOTE: Running task 687 of 5699 (ID: 5344,
->> virtual:native:/home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_=
-RC1-DOM0/poky/meta/recipes-gnome/gnome/gnome-common_3.14.0.bb,
->> do_install)
->> NOTE: recipe gnome-common-native-3.14.0-r0: task do_install: Started
->> NOTE: recipe gnome-common-native-3.14.0-r0: task do_install: Succeeded
->> NOTE: Running task 688 of 5699 (ID: 5345,
->> virtual:native:/home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_=
-RC1-DOM0/poky/meta/recipes-gnome/gnome/gnome-common_3.14.0.bb,
->> do_populate_sysroot)
->> NOTE: recipe gnome-common-native-3.14.0-r0: task do_populate_sysroot:
->> Started
->> NOTE: recipe gnome-common-native-3.14.0-r0: task do_populate_sysroot:
->> Succeeded
->> NOTE: Running task 689 of 5699 (ID: 569,
->> /home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_RC1-DOM0/poky/.=
-./meta-ias-ivi-adapt/recipes-extended/dlt-daemon/dlt-daemon_2.15.0.bb,
->> do_fetch)
->> NOTE: recipe dlt-daemon-2.15.0-r0: task do_fetch: Started
->> WARNING: Failed to fetch URL
->> git://github.com/GENIVI/dlt-daemon.git;protocol=3Dhttps, attempting MIRR=
-ORS if
->> available
->> ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
->> Cloning into bare repository
->> '/home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_RC1-DOM0/build=
-/downloads/git2/github.com.GENIVI.dlt-daemon.git'...
->> fatal: Unable to find remote helper for 'https'
->>
->> ERROR: Function failed: Fetcher failure for URL:
->> 'git://github.com/GENIVI/dlt-daemon.git;protocol=3Dhttps'. Unable to fet=
-ch URL
->> from any source.
->> ERROR: Logfile of failure stored in:
->> /home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_RC1-DOM0/build/=
-tmp/work/corei7-64-poky-linux/dlt-daemon/2.15.0-r0/temp/log.do_fetch.14762
->> NOTE: recipe dlt-daemon-2.15.0-r0: task do_fetch: Failed
->> ERROR: Task 569
->> (/home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_RC1-DOM0/poky/=
-../meta-ias-ivi-adapt/recipes-extended/dlt-daemon/dlt-daemon_2.15.0.bb,
->> do_fetch) failed with exit code '1'
->> NOTE: Running task 690 of 5699 (ID: 3025,
->> /home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_RC1-DOM0/poky/m=
-eta/recipes-devtools/cmake/cmake-native_3.3.1.bb,
->> do_fetch)
->> NOTE: recipe cmake-native-3.3.1-r0: task do_fetch: Started
->> NOTE: recipe cmake-native-3.3.1-r0: task do_fetch: Succeeded
->> WARNING: Checksum failure encountered with download of
->> http://www.w3.org/XML/Test/xmlts20080827.tar.gz;name=3Dtesttar - will at=
-tempt
->> other sources if available
->> WARNING: Renaming
->> /home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_RC1-DOM0/build/=
-downloads/xmlts20080827.tar.gz
->> to
->> /home/yong/MEL/android/Oreo/2017ww45/VM0/Xen_GVTG_EC1746_RC1-DOM0/build/=
-downloads/xmlts20080827.tar.gz_bad-checksum_3a944b972f2da90b97d8a57c6f939fa=
-8
->> NOTE: recipe libxml2-2.9.2-r0: task do_fetch: Succeeded
->> NOTE: recipe libxml2-native-2.9.2-r0: task do_fetch: Succeeded
->> NOTE: recipe glibc-initial-2.22-r0: task do_fetch: Succeeded
->> NOTE: recipe glibc-2.22-r0: task do_fetch: Succeeded
->> NOTE: recipe cairo-1.14.2-r1: task do_fetch: Succeeded
->> NOTE: recipe binutils-cross-x86_64-2.25.1-r0: task do_fetch: Succeeded
->> NOTE: Sending SIGTERM to remaining 1 tasks
->>
->>
->> SRC_URI =3D "git://github.com/GENIVI/dlt-daemon.git;protocol=3Dhttps \
->>            file://0004-Modify-systemd-config-directory.patch \
->>
->> file://0005-Rework-of-initialization-cleanup-of-user-library.patch \
->>            file://0006-Fix-buffer-overflow-in-dlt_message_payload.patch =
-\
->>
->> file://0007-Fix-segfault-when-calling-DLT_LOG-on-an-uninitialize.patch \
->>            file://0008-Header-and-payload-logging-fixed.patch \
->>            file://0009-Enabled-mutex-priority-inheritance.patch \
->>            file://0010-Fix-SEGFAULT-in-write_-utf8_-string.patch \
->>            file://10-tmp-dlt.conf \
->>            "
->> SRCREV =3D "e9a486a08fff6d3cc7133a350cec3ee10f463207"
->>
->>
->> regards
->>
->> Yong
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+SSB0aGluayBpIGdvdCB0aGUgcm9vdCBjYXVzZSB0aGF0IGluIG15IGVudmlyb25tZW50ICIgaHR0
+cHMgcHJvdG9jb2wiIGRvZXMgbm90IGxpbmsgdG8gZ2l0LXJlbW90ZS1odHRwcyB0b29sICwgSSBl
+ZGl0IG15IGJhc2ggcHJvZmlsZSBmaWxlIGluIH4vLmJhc2hfcHJvZmlsZSA6CiJQQVRIPSRQQVRI
+Oi91c3IvbGliL2dpdC1jb3JlIiAgd2hlcmUgdGhlIGdpdC1yZW1vdGUtaHR0cHMgaW5zdGFsbGVk
+LgphbmQgdGhlIGlzc3VlIGlzIHJlc29sdmVkIGNvbXBsZXRlbHkuCgpzbyB0aGUgY29uY2x1c2lv
+biBpczogIHRoZSBnaXQgdG9vbCBlbnZpcm9ubWVudCBzaGFsbCBiZSBwcmVwYXJlZCBwcm9wZXJs
+eSBpbiBvcmRlciB0byBmZXRjaCBjb2RlIGJhc2VkIGh0dHBzIHByb3RvY29sLgoKcmVnYXJkcwpZ
+b25nCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCreivP7IyzogWm9y
+YW4gU3RvanNhdmxqZXZpYyA8em9yYW4uc3RvanNhdmxqZXZpY0BnbWFpbC5jb20+Creiy83Ksbzk
+OiAyMDE3xOoxMtTCMjjI1SAxMjozOArK1bz+yMs6IEhvdSwgWW9uZwqzrcvNOiB5b2N0b0B5b2N0
+b3Byb2plY3Qub3JnCtb3zOI6IFJlOiC08Li0OiBbeW9jdG9dIEZldGNoZXIgZmFpbHVyZSBmb3Ig
+VVJMCgo+IEkgc3VzcGVjdCAgZXJyb3IgbWF5IGJlIGNhdXNlZCBieSB0aGUgInByb3RvY29sPWh0
+dHBzIiwgIHRoZW4gSSBjaGFuZ2VkIHRvCj4gImdpdDovL2dpdGh1Yi5jb20vR0VOSVZJL2RsdC1k
+YWVtb24uZ2l0O2JyYW5jaD1tYXN0ZXIiLi4uCgpHb29kIG9ic2VydmF0aW9uLiBJIHVzZSBjbG9u
+ZXMgYXMgY2xvc2UgYXMgdG8gdGhlIGxhdGVzdCBIRUFEIChzcGFuCmZyb20gZmV3IGRheXMgdG8g
+c2V2ZXJhbCB3ZWVrcykuCgpXaGljaCBkb2VzIG5vdCBleHBsYWluIHdoYXQgYXJlIHRoZSBkaWZm
+ZXJlbmNlcyBiZXR3ZWVuIHBva3kgZGlzdHJvCjIuMC4yICh1c2VkIGJ5IHlvdSkgYW5kIGxhdGVz
+dCAyLjQuIEluIG1vc3QgY2FzZXMsIGRldmVsb3BlcnMgYXJlCnVzaW5nIG11Y2ggbW9yZSBzdGFi
+bGUgcmVsZWFzZXMuIFNvIHRoaXMgbXlzdGVyeSBpcyBzdGlsbCB1bnNvbHZlZC4KV2l0aCByZXNw
+ZWN0IHRvIHRoZSBSZWFsIFdvcmxkIG91dCB0aGVyZS4KClpvcmFuCgpPbiBUaHUsIERlYyAyOCwg
+MjAxNyBhdCA0OjEzIEFNLCBIb3UsIFlvbmcgPFlvbmdfSG91QG1lbnRvci5jb20+IHdyb3RlOgo+
+IGhlbGxvIFpvcmFuLAo+Cj4gdGhhbmtzIGZvciB5b3VyIHJlcGx5LiBJIHRyaWVkIHdpdGggeW91
+ciBiYiBmaWxlLCBidXQgdGhlcmUgaXMgc3RpbGwgc2FtZSBwcm9ibGVtLgo+IEkgc3VzcGVjdCAg
+ZXJyb3IgbWF5IGJlIGNhdXNlZCBieSB0aGUgInByb3RvY29sPWh0dHBzIiwgIHRoZW4gSSBjaGFu
+Z2VkIHRvCj4gImdpdDovL2dpdGh1Yi5jb20vR0VOSVZJL2RsdC1kYWVtb24uZ2l0O2JyYW5jaD1t
+YXN0ZXIiICwKPiBGb3J0dW5hdGVseSB0aGVyZSBpcyBubyBwcm9ibGVtIGFueSBtb3JlIC4gRm9s
+bG93aW5nIGlzIHRoZSByZXN1bHQgYnkgdXNpbmcgdGhpcyBjaGFuZ2U6Cj4gQnV0IGkgZG8gbm90
+IGtub3cgdGhlIHJlYWwgcm9vdCBjYXVzZSwgaWYgc29tZSBvbmUgY2FuIGxldCBtZSB1bmRlcnN0
+YW5kIGl0IGl0IHdpbGwgYmUgdmVyeSBuaWNlLgo+Cj4gTXlwcm9qZWN0L2J1aWxkL3RtcC93b3Jr
+L2NvcmVpNy02NC1wb2t5LWxpbnV4L2RsdC1kYWVtb24vMi4xNS4wLXIwL2dpdCQgbHMgLWFsCj4g
+dG90YWwgMTU2Cj4gZHJ3eHIteHIteCAxNCB5b25nIHlvbmcgIDQwOTYgMTLUwiAyOCAxMDo1NSAu
+Cj4gZHJ3eHJ3eHIteCAxMyB5b25nIHlvbmcgIDQwOTYgMTLUwiAyOCAxMDo1NiAuLgo+IC1ydy1y
+LS1yLS0gIDEgeW9uZyB5b25nICAgNTU1IDEy1MIgMjggMTA6NTUgQVVUSE9SUwo+IC1ydy1yLS1y
+LS0gIDEgeW9uZyB5b25nICAgMjA5IDEy1MIgMjggMTA6NTUgYXV0b21vdGl2ZS1kbHQtYysrLnBj
+LmluCj4gLXJ3LXItLXItLSAgMSB5b25nIHlvbmcgICA3ODkgMTLUwiAyOCAxMDo1NSBhdXRvbW90
+aXZlLWRsdC5wYy5pbgo+IC1ydy1yLS1yLS0gIDEgeW9uZyB5b25nICAzNjk0IDEy1MIgMjggMTA6
+NTUgYXV0b21vdGl2ZS1kbHQuc3BlYy5pbgo+IGRyd3hyLXhyLXggIDIgeW9uZyB5b25nICA0MDk2
+IDEy1MIgMjggMTA6NTUgY21ha2UKPiAtcnctci0tci0tICAxIHlvbmcgeW9uZyAxMDU5MyAxMtTC
+IDI4IDEwOjU1IENNYWtlTGlzdHMudHh0Cj4gLXJ3LXItLXItLSAgMSB5b25nIHlvbmcgICA0NjAg
+MTLUwiAyOCAxMDo1NSBDT1BZSU5HCj4gLXJ3LXItLXItLSAgMSB5b25nIHlvbmcgICA0MjYgMTLU
+wiAyOCAxMDo1NSBkaXN0ZmlsZXMKPiBkcnd4ci14ci14ICAzIHlvbmcgeW9uZyAgNDA5NiAxMtTC
+IDI4IDEwOjU1IGRvYwo+IGRyd3hyLXhyLXggIDYgeW9uZyB5b25nICA0MDk2IDEy1MIgMjggMTA6
+NTUgZXhhbXBsZXMKPiBkcnd4ci14ci14ICA4IHlvbmcgeW9uZyAgNDA5NiAxMtTCIDI4IDEwOjU1
+IC5naXQKPiAtcnctci0tci0tICAxIHlvbmcgeW9uZyAgIDEyNyAxMtTCIDI4IDEwOjU1IC5naXRp
+Z25vcmUKPiBkcnd4ci14ci14IDE2IHlvbmcgeW9uZyAgNDA5NiAxMtTCIDI4IDEwOjU1IGd0ZXN0
+LTEuNy4wCj4gZHJ3eHIteHIteCAgMyB5b25nIHlvbmcgIDQwOTYgMTLUwiAyOCAxMDo1NSBpbmNs
+dWRlCj4gLXJ3LXItLXItLSAgMSB5b25nIHlvbmcgIDc0NDEgMTLUwiAyOCAxMDo1NSBJTlNUQUxM
+Cj4gLXJ3LXItLXItLSAgMyB5b25nIHlvbmcgMTY3MjYgMTLUwiAyOCAxMDo1NSBMSUNFTlNFCj4g
+ZHJ3eHJ3eHIteCAgMiB5b25nIHlvbmcgIDQwOTYgMTLUwiAyOCAxMDo1NSBwYXRjaGVzCj4gZHJ3
+eHJ3eHIteCAgOSB5b25nIHlvbmcgIDQwOTYgMTLUwiAyOCAxMDo1NSAucGMKPiAtcnctci0tci0t
+ICAxIHlvbmcgeW9uZyAgMjYyOSAxMtTCIDI4IDEwOjU1IFJFQURNRQo+IC1ydy1yLS1yLS0gIDEg
+eW9uZyB5b25nIDI3MTgwIDEy1MIgMjggMTA6NTUgUmVsZWFzZU5vdGVzLnR4dAo+IGRyd3hyLXhy
+LXggMTUgeW9uZyB5b25nICA0MDk2IDEy1MIgMjggMTA6NTUgc3JjCj4gZHJ3eHIteHIteCAgMyB5
+b25nIHlvbmcgIDQwOTYgMTLUwiAyOCAxMDo1NSBzeXN0ZW1kCj4gZHJ3eHIteHIteCAgMyB5b25n
+IHlvbmcgIDQwOTYgMTLUwiAyOCAxMDo1NSB0ZXN0cwo+IGRyd3hyLXhyLXggIDQgeW9uZyB5b25n
+ICA0MDk2IDEy1MIgMjggMTA6NTUgdGVzdHNjcmlwdHMKPgo+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KPiC3orz+yMs6IFpvcmFuIFN0b2pzYXZsamV2aWMgPHpvcmFu
+LnN0b2pzYXZsamV2aWNAZ21haWwuY29tPgo+ILeiy83KsbzkOiAyMDE3xOoxMtTCMjbI1SAxNjo1
+MAo+IMrVvP7IyzogSG91LCBZb25nCj4gs63LzTogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZwo+INb3
+zOI6IFJlOiBbeW9jdG9dIEZldGNoZXIgZmFpbHVyZSBmb3IgVVJMCj4KPj4gSW5zaWRlIHRoZSBi
+YiBmaWxlLCB0aGVyZSBhcmUgZm9sbG93aW5nIGRlc2NyaXB0aW9ucyBmb3IgdGhpcyBVUkw6Cj4+
+Cj4+IFNSQ19VUkkgPSAiZ2l0Oi8vZ2l0aHViLmNvbS9HRU5JVkkvZGx0LWRhZW1vbi5naXQ7cHJv
+dG9jb2w9aHR0cHMiCj4+IFNSQ1JFViA9ICJlOWE0ODZhMDhmZmY2ZDNjYzcxMzNhMzUwY2VjM2Vl
+MTBmNDYzMjA3Igo+Cj4gSW50ZXJlc3RpbmcgcHJvYmxlbSwgZm9yIHRoZSBzYWtlIG9mIGV4cGVy
+dGlzZS9leGVyY2lzZSBJIHdhbnRlZCB0bwo+IHJlcHJvZHVjZSBpdCBpbiBwb2t5L3JlZmVyZW50
+IFlPQ1RPIFByb2plY3QgZGlzdHJvLgo+Cj4gU28gSSBkaWQgY3JlYXRlIHRoZSBkbHAtZGFlbW9u
+IGVudHJ5IGluIG15IG1ldGEtbXlsYXllciwgYWRkZWQgbGF5ZXIKPiBvbiB0aGUgdG9wIG9mIHBv
+a3kgMyBsYXllcnMgZm9yIHN1Y2ggb2YgdGhlIGV4cGVyaW1lbnQ6Cj4KPiB1c2VyQGxvY2FsaG9z
+dCByZWNpcGVzLWV4YW1wbGVdJCBwd2QKPiAvaG9tZS91c2VyL1lPQ1RPL29lX2NvcmVfZW1iZWRk
+ZWQvcG9reS9tZXRhLW15bGF5ZXIvcmVjaXBlcy1leGFtcGxlCj4gW3VzZXJAbG9jYWxob3N0IHJl
+Y2lwZXMtZXhhbXBsZV0kIGxzIC1hbAo+IHRvdGFsIDE2Cj4gZHJ3eHJ3eHIteC4gNCB1c2VyIHVz
+ZXIgNDA5NiBEZWMgMjYgMDg6NTUgLgo+IGRyd3hyd3hyLXguIDQgdXNlciB1c2VyIDQwOTYgTm92
+IDE5IDEzOjE1IC4uCj4gZHJ3eHJ3eHIteC4gMiB1c2VyIHVzZXIgNDA5NiBEZWMgMjYgMDg6NTkg
+ZGx0LWRhZW1vbgo+IGRyd3hyd3hyLXguIDMgdXNlciB1c2VyIDQwOTYgRGVjIDI2IDA3OjM3IHNj
+cmlwdAo+IFt1c2VyQGxvY2FsaG9zdCByZWNpcGVzLWV4YW1wbGVdJCBjZCBkbHQtZGFlbW9uLwo+
+IFt1c2VyQGxvY2FsaG9zdCBkbHQtZGFlbW9uXSQgbHMgLWFsCj4gdG90YWwgMTYKPiBkcnd4cnd4
+ci14LiAyIHVzZXIgdXNlciA0MDk2IERlYyAyNiAwODo1OSAuCj4gZHJ3eHJ3eHIteC4gNCB1c2Vy
+IHVzZXIgNDA5NiBEZWMgMjYgMDg6NTUgLi4KPiAtcnctcnctci0tLiAxIHVzZXIgdXNlciAxMzcw
+IERlYyAyNiAwODo1OSBkbHQtZGFlbW9uXzIuMTUuMC5iYgo+IFt1c2VyQGxvY2FsaG9zdCBkbHQt
+ZGFlbW9uXSQKPgo+IFRoZSBiYiByZWNpcGUgSSB0b29rIGZyb206Cj4gaHR0cDovL2dpdC55b2N0
+b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kvbWV0YS1pdmkvdHJlZS9tZXRhLWl2aS9yZWNpcGVz
+LWV4dGVuZGVkL2RsdC1kYWVtb24vZGx0LWRhZW1vbl8yLjE1LjAuYmI/aD1tYXN0ZXIKPgo+IEFu
+ZCBJIGRpZCBtb2RpZnkgaXQsIGluIG9yZGVyIGZvciBkaXNhYmxlIHNvbWUgaW5oZXJpdGFuY2Ug
+SSBkbyBub3QKPiBoYXZlLiBDb25jaXNlbHkgSSBrbm93IGl0IHdpbGwgbm90IGNvbmZpZ3VyZSwg
+YnV0IHRoZSBhaW0gd2FzIGp1c3QgdG8KPiBzZWUgaWYgSSBjYW4KPiBkb3dubG9hZCBpdCB2aWEg
+Yml0YmFrZSBzY3JpcHQuCj4KPiBXaXRoIHRoZSBmb2xsb3dpbmcgaW4gbXkgbW9kaWZpZWQgcmVj
+aXBlOgo+Cj4gSE9NRVBBR0UgPSAiaHR0cHM6Ly93d3cuZ2VuaXZpLm9yZy8iCj4gU0VDVElPTiA9
+ICJjb25zb2xlL3V0aWxzIgo+IExJQ0VOU0UgPSAiTVBMdjIiCj4gTElDX0ZJTEVTX0NIS1NVTSA9
+ICJmaWxlOi8vTElDRU5TRTttZDU9ODE4NDIwODA2MGRmODgwZmUzMTM3YjkzZWI4OGFlZWEiCj4K
+PiBERVBFTkRTID0gImRidXMgemxpYiIKPgo+IFNSQ1JFViA9ICJlOWE0ODZhMDhmZmY2ZDNjYzcx
+MzNhMzUwY2VjM2VlMTBmNDYzMjA3Igo+IFNSQ19VUkkgPSAiZ2l0Oi8vZ2l0aHViLmNvbS9HRU5J
+VkkvJHtCUE59LmdpdDtwcm90b2NvbD1odHRwcyIKPiBTID0gIiR7V09SS0RJUn0vZ2l0Igo+Cj4g
+IyMgaW5oZXJpdCBnemlwbmF0aXZlIGF1dG90b29scyBnZXR0ZXh0IGNtYWtlIHN5c3RlbWQKPiBp
+bmhlcml0IGF1dG90b29scyBnZXR0ZXh0IGNtYWtlIHN5c3RlbWQKPgo+IFBBQ0tBR0VTICs9ICIk
+e1BOfS1zeXN0ZW1kIgo+IFNZU1RFTURfUEFDS0FHRVMgPSAiJHtQTn0gJHtQTn0tc3lzdGVtZCIK
+PiBTWVNURU1EX1NFUlZJQ0VfJHtQTn0gPSAiZGx0LXN5c3RlbS5zZXJ2aWNlIGRsdC5zZXJ2aWNl
+Igo+IFNZU1RFTURfQVVUT19FTkFCTEVfJHtQTn0gPSAiZW5hYmxlIgo+IFNZU1RFTURfU0VSVklD
+RV8ke1BOfS1zeXN0ZW1kID0gImRsdC1leGFtcGxlLXVzZXIuc2VydmljZSBcCj4gICAgIGRsdC1k
+YnVzLnNlcnZpY2UgXAo+ICAgICBkbHQtYWRhcHRvci11ZHAuc2VydmljZSBcCj4gICAgIGRsdC1y
+ZWNlaXZlLnNlcnZpY2UiCj4gU1lTVEVNRF9BVVRPX0VOQUJMRV8ke1BOfS1zeXN0ZW1kID0gImRp
+c2FibGUiCj4KPiBFWFRSQV9PRUNNQUtFID0gIi1EV0lUSF9TWVNURU1EPU9OIgo+Cj4gRklMRVNf
+JHtQTn0tZG9jICs9ICIvdXNyL3NoYXJlL2RsdC1maWxldHJhbnNmZXIiCj4KPiBkb19pbnN0YWxs
+X2FwcGVuZCgpIHsKPiAgICBybSAtZiAke0R9JHtiaW5kaXJ9L2RsdC10ZXN0LSoKPiB9Cj4KPiBJ
+dCBkaWQgaW5kZWVkIGRvd25sb2FkZWQgKENMSSBmb2xsb3dzIGJlbG93IGFzIHByb29mKSwgYnV0
+IGZhaWxlZCB0bwo+IGNvbmZpZ3VyZSAodW5kZXJzdGFuZGFibGUsIGd6aXBuYXRpdmUgZG9lcyBu
+b3QgZXhpc3QgaW4gcmVmZXJlbmNlCj4gcG9reSk6Cj4KPiBbdXNlckBsb2NhbGhvc3QgMi4xNS4w
+LXIwXSQgcHdkCj4gL2hvbWUvdXNlci9ZT0NUTy9vZV9jb3JlX2VtYmVkZGVkL3Bva3kvYnVpbGQv
+dG1wL3dvcmsvY29yZTItNjQtcG9reS1saW51eC9kbHQtZGFlbW9uLzIuMTUuMC1yMAo+IFt1c2Vy
+QGxvY2FsaG9zdCAyLjE1LjAtcjBdJCBjZCBnaXQKPiBbdXNlckBsb2NhbGhvc3QgZ2l0XSQgbHMg
+LWFsCj4gdG90YWwgMTQ4Cj4gZHJ3eHIteHIteC4gMTIgdXNlciB1c2VyICA0MDk2IERlYyAyNiAw
+OTowMCAuCj4gZHJ3eHJ3eHIteC4gMTEgdXNlciB1c2VyICA0MDk2IERlYyAyNiAwOTowNCAuLgo+
+IC1ydy1yLS1yLS0uICAxIHVzZXIgdXNlciAgIDU1NSBEZWMgMjYgMDk6MDAgQVVUSE9SUwo+IC1y
+dy1yLS1yLS0uICAxIHVzZXIgdXNlciAgIDIwOSBEZWMgMjYgMDk6MDAgYXV0b21vdGl2ZS1kbHQt
+YysrLnBjLmluCj4gLXJ3LXItLXItLS4gIDEgdXNlciB1c2VyICAgNzg5IERlYyAyNiAwOTowMCBh
+dXRvbW90aXZlLWRsdC5wYy5pbgo+IC1ydy1yLS1yLS0uICAxIHVzZXIgdXNlciAgMzY5NCBEZWMg
+MjYgMDk6MDAgYXV0b21vdGl2ZS1kbHQuc3BlYy5pbgo+IGRyd3hyLXhyLXguICAyIHVzZXIgdXNl
+ciAgNDA5NiBEZWMgMjYgMDk6MDAgY21ha2UKPiAtcnctci0tci0tLiAgMSB1c2VyIHVzZXIgMTA2
+MTYgRGVjIDI2IDA5OjAwIENNYWtlTGlzdHMudHh0Cj4gLXJ3LXItLXItLS4gIDEgdXNlciB1c2Vy
+ICAgNDYwIERlYyAyNiAwOTowMCBDT1BZSU5HCj4gLXJ3LXItLXItLS4gIDEgdXNlciB1c2VyICAg
+NDI2IERlYyAyNiAwOTowMCBkaXN0ZmlsZXMKPiBkcnd4ci14ci14LiAgMyB1c2VyIHVzZXIgIDQw
+OTYgRGVjIDI2IDA5OjAwIGRvYwo+IGRyd3hyLXhyLXguICA2IHVzZXIgdXNlciAgNDA5NiBEZWMg
+MjYgMDk6MDAgZXhhbXBsZXMKPiBkcnd4ci14ci14LiAgOCB1c2VyIHVzZXIgIDQwOTYgRGVjIDI2
+IDA5OjAwIC5naXQKPiAtcnctci0tci0tLiAgMSB1c2VyIHVzZXIgICAxMjcgRGVjIDI2IDA5OjAw
+IC5naXRpZ25vcmUKPiBkcnd4ci14ci14LiAxNiB1c2VyIHVzZXIgIDQwOTYgRGVjIDI2IDA5OjAw
+IGd0ZXN0LTEuNy4wCj4gZHJ3eHIteHIteC4gIDMgdXNlciB1c2VyICA0MDk2IERlYyAyNiAwOTow
+MCBpbmNsdWRlCj4gLXJ3LXItLXItLS4gIDEgdXNlciB1c2VyICA3NDQxIERlYyAyNiAwOTowMCBJ
+TlNUQUxMCj4gLXJ3LXItLXItLS4gIDMgdXNlciB1c2VyIDE2NzI2IERlYyAyNiAwOTowMCBMSUNF
+TlNFCj4gLXJ3LXItLXItLS4gIDEgdXNlciB1c2VyICAyNjI5IERlYyAyNiAwOTowMCBSRUFETUUK
+PiAtcnctci0tci0tLiAgMSB1c2VyIHVzZXIgMjcxODAgRGVjIDI2IDA5OjAwIFJlbGVhc2VOb3Rl
+cy50eHQKPiBkcnd4ci14ci14LiAxNSB1c2VyIHVzZXIgIDQwOTYgRGVjIDI2IDA5OjAwIHNyYwo+
+IGRyd3hyLXhyLXguICAzIHVzZXIgdXNlciAgNDA5NiBEZWMgMjYgMDk6MDAgc3lzdGVtZAo+IGRy
+d3hyLXhyLXguICAzIHVzZXIgdXNlciAgNDA5NiBEZWMgMjYgMDk6MDAgdGVzdHMKPiBkcnd4ci14
+ci14LiAgNCB1c2VyIHVzZXIgIDQwOTYgRGVjIDI2IDA5OjAwIHRlc3RzY3JpcHRzCj4gW3VzZXJA
+bG9jYWxob3N0IGdpdF0kCj4KPiBUaGUgZG93bmxvYWQgcHJvYmxlbSBiZWNvbWUgdmlzaWJsZSB3
+aXRoIHRoZSBvcmlnaW5hbCBtYXN0ZXIgcmVjaXBlOgo+Cj4gU1JDUkVWID0gImU5YTQ4NmEwOGZm
+ZjZkM2NjNzEzM2EzNTBjZWMzZWUxMGY0NjMyMDciCj4gU1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIu
+Y29tL0dFTklWSS8ke0JQTn0uZ2l0O3Byb3RvY29sPWh0dHBzIFwKPiAgICAgZmlsZTovLzAwMDIt
+RG9uLXQtZXhlY3V0ZS1wcm9jZXNzZXMtYXMtYS1zcGVjaWZpYy11c2VyLnBhdGNoIFwKPiAgICAg
+ZmlsZTovLzAwMDQtTW9kaWZ5LXN5c3RlbWQtY29uZmlnLWRpcmVjdG9yeS5wYXRjaCBcCj4gICAg
+ICIKPiBTID0gIiR7V09SS0RJUn0vZ2l0Igo+Cj4gUGF0Y2ggMDAwMiBkaWQgbm90IGRvd25sb2Fk
+LiBUaGUgc2FtZSBhcyB5b3UgaGFkIGZvciB0aGUgb3JpZ2luYWwgVVJJLAo+IGJ1dCwgaW4gbXkg
+Y2FzZSwgaXQgd2FzIGp1c3QgYSAwMDAyLiAuLi4gLnBhdGNoLgo+Cj4gSG9wZSB0aGlzIGhlbHBz
+Lgo+Cj4gWm9yYW4KPgo+IE9uIFR1ZSwgRGVjIDI2LCAyMDE3IGF0IDQ6NDIgQU0sIEhvdSwgWW9u
+ZyA8WW9uZ19Ib3VAbWVudG9yLmNvbT4gd3JvdGU6Cj4+IEhlbGxvIGFsbCwKPj4KPj4KPj4gV2hl
+biBpIGJ1aWxkIHRoZSBwcm9qZWN0IGJhc2VkIG9uIHlvY3RvIDIuMC4yIHVzaW5nIGJpdGJha2Ug
+dG9vbCwgaQo+PiBlbmNvdW50ZXJlZCBvbmUgZmV0Y2ggZXJyb3IgOgo+Pgo+PiAgIkZhaWxlZCB0
+byBmZXRjaCBVUkwgZ2l0Oi8vZ2l0aHViLmNvbS9HRU5JVkkvZGx0LWRhZW1vbi5naXQ7cHJvdG9j
+b2w9aHR0cHMsCj4+IGF0dGVtcHRpbmcgTUlSUk9SUyBpZiBhdmFpbGFibGUiCj4+Cj4+Cj4+IElu
+c2lkZSB0aGUgYmIgZmlsZSwgdGhlcmUgYXJlIGZvbGxvd2luZyBkZXNjcmlwdGlvbnMgZm9yIHRo
+aXMgVVJMOgo+Pgo+PiBTUkNfVVJJID0gImdpdDovL2dpdGh1Yi5jb20vR0VOSVZJL2RsdC1kYWVt
+b24uZ2l0O3Byb3RvY29sPWh0dHBzIgo+PiBTUkNSRVYgPSAiZTlhNDg2YTA4ZmZmNmQzY2M3MTMz
+YTM1MGNlYzNlZTEwZjQ2MzIwNyIKPj4KPj4KPj4gVGhlbiBpIHRyaWVkIHRvIGZldGNoIGl0IG1h
+bnVhbGx5IGFzIGJlbG93LCBzb3VyY2UgY29kZSBjYW4gYmUgZG93bmxvYWRlZAo+PiBzdWNjZXNz
+ZnVsbHkgYW5kIGNvbW1pdCBpZCBpcyBhbHNvIGNvcnJlY3QuCj4+IG15cHJvamVjdCRnaXQgY2xv
+bmUgZ2l0Oi8vZ2l0aHViLmNvbS9HRU5JVkkvZGx0LWRhZW1vbi5naXQKPj4KPj4gbXlwcm9qZWN0
+L2RsdC1kYWVtb24kIGdpdCAtYyBjb3JlLmZzeW5jb2JqZWN0ZmlsZXM9MCBicmFuY2ggLS1jb250
+YWlucwo+PiBlOWE0ODZhMDhmZmY2ZDNjYzcxMzNhMzUwY2VjM2VlMTBmNDYzMjA3Cj4+ICogbWFz
+dGVyCj4+Cj4+Cj4+IEkgaGF2ZSBubyBpZGVhIHdoeSBzdWNoIGlzc3VlIG9jY3VycmVkIGZvciB0
+aGlzIFVSTCB3aGVuIGkgdXNlIGJpdGJha2UgZm9yCj4+IGJ1aWxkLgo+Pgo+PiBUaGFua3MgZm9y
+IGhlbHAuCj4+Cj4+Cj4+IEZvbGxvd2luZyBpcyB0aGUgZGV0YWlsIGVycm9yIGxvZzoKPj4KPj4K
+Pj4gTk9URTogcmVjaXBlIGdub21lLWNvbW1vbi1uYXRpdmUtMy4xNC4wLXIwOiB0YXNrIGRvX2Nv
+bXBpbGU6IFN0YXJ0ZWQKPj4gTk9URTogcmVjaXBlIGdub21lLWNvbW1vbi1uYXRpdmUtMy4xNC4w
+LXIwOiB0YXNrIGRvX2NvbXBpbGU6IFN1Y2NlZWRlZAo+PiBOT1RFOiBSdW5uaW5nIHRhc2sgNjg3
+IG9mIDU2OTkgKElEOiA1MzQ0LAo+PiB2aXJ0dWFsOm5hdGl2ZTovaG9tZS95b25nL01FTC9hbmRy
+b2lkL09yZW8vMjAxN3d3NDUvVk0wL1hlbl9HVlRHX0VDMTc0Nl9SQzEtRE9NMC9wb2t5L21ldGEv
+cmVjaXBlcy1nbm9tZS9nbm9tZS9nbm9tZS1jb21tb25fMy4xNC4wLmJiLAo+PiBkb19pbnN0YWxs
+KQo+PiBOT1RFOiByZWNpcGUgZ25vbWUtY29tbW9uLW5hdGl2ZS0zLjE0LjAtcjA6IHRhc2sgZG9f
+aW5zdGFsbDogU3RhcnRlZAo+PiBOT1RFOiByZWNpcGUgZ25vbWUtY29tbW9uLW5hdGl2ZS0zLjE0
+LjAtcjA6IHRhc2sgZG9faW5zdGFsbDogU3VjY2VlZGVkCj4+IE5PVEU6IFJ1bm5pbmcgdGFzayA2
+ODggb2YgNTY5OSAoSUQ6IDUzNDUsCj4+IHZpcnR1YWw6bmF0aXZlOi9ob21lL3lvbmcvTUVML2Fu
+ZHJvaWQvT3Jlby8yMDE3d3c0NS9WTTAvWGVuX0dWVEdfRUMxNzQ2X1JDMS1ET00wL3Bva3kvbWV0
+YS9yZWNpcGVzLWdub21lL2dub21lL2dub21lLWNvbW1vbl8zLjE0LjAuYmIsCj4+IGRvX3BvcHVs
+YXRlX3N5c3Jvb3QpCj4+IE5PVEU6IHJlY2lwZSBnbm9tZS1jb21tb24tbmF0aXZlLTMuMTQuMC1y
+MDogdGFzayBkb19wb3B1bGF0ZV9zeXNyb290Ogo+PiBTdGFydGVkCj4+IE5PVEU6IHJlY2lwZSBn
+bm9tZS1jb21tb24tbmF0aXZlLTMuMTQuMC1yMDogdGFzayBkb19wb3B1bGF0ZV9zeXNyb290Ogo+
+PiBTdWNjZWVkZWQKPj4gTk9URTogUnVubmluZyB0YXNrIDY4OSBvZiA1Njk5IChJRDogNTY5LAo+
+PiAvaG9tZS95b25nL01FTC9hbmRyb2lkL09yZW8vMjAxN3d3NDUvVk0wL1hlbl9HVlRHX0VDMTc0
+Nl9SQzEtRE9NMC9wb2t5Ly4uL21ldGEtaWFzLWl2aS1hZGFwdC9yZWNpcGVzLWV4dGVuZGVkL2Rs
+dC1kYWVtb24vZGx0LWRhZW1vbl8yLjE1LjAuYmIsCj4+IGRvX2ZldGNoKQo+PiBOT1RFOiByZWNp
+cGUgZGx0LWRhZW1vbi0yLjE1LjAtcjA6IHRhc2sgZG9fZmV0Y2g6IFN0YXJ0ZWQKPj4gV0FSTklO
+RzogRmFpbGVkIHRvIGZldGNoIFVSTAo+PiBnaXQ6Ly9naXRodWIuY29tL0dFTklWSS9kbHQtZGFl
+bW9uLmdpdDtwcm90b2NvbD1odHRwcywgYXR0ZW1wdGluZyBNSVJST1JTIGlmCj4+IGF2YWlsYWJs
+ZQo+PiBFUlJPUjogRmV0Y2hlciBmYWlsdXJlOiBGZXRjaCBjb21tYW5kIGZhaWxlZCB3aXRoIGV4
+aXQgY29kZSAxMjgsIG91dHB1dDoKPj4gQ2xvbmluZyBpbnRvIGJhcmUgcmVwb3NpdG9yeQo+PiAn
+L2hvbWUveW9uZy9NRUwvYW5kcm9pZC9PcmVvLzIwMTd3dzQ1L1ZNMC9YZW5fR1ZUR19FQzE3NDZf
+UkMxLURPTTAvYnVpbGQvZG93bmxvYWRzL2dpdDIvZ2l0aHViLmNvbS5HRU5JVkkuZGx0LWRhZW1v
+bi5naXQnLi4uCj4+IGZhdGFsOiBVbmFibGUgdG8gZmluZCByZW1vdGUgaGVscGVyIGZvciAnaHR0
+cHMnCj4+Cj4+IEVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6IEZldGNoZXIgZmFpbHVyZSBmb3IgVVJM
+Ogo+PiAnZ2l0Oi8vZ2l0aHViLmNvbS9HRU5JVkkvZGx0LWRhZW1vbi5naXQ7cHJvdG9jb2w9aHR0
+cHMnLiBVbmFibGUgdG8gZmV0Y2ggVVJMCj4+IGZyb20gYW55IHNvdXJjZS4KPj4gRVJST1I6IExv
+Z2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46Cj4+IC9ob21lL3lvbmcvTUVML2FuZHJvaWQvT3Jl
+by8yMDE3d3c0NS9WTTAvWGVuX0dWVEdfRUMxNzQ2X1JDMS1ET00wL2J1aWxkL3RtcC93b3JrL2Nv
+cmVpNy02NC1wb2t5LWxpbnV4L2RsdC1kYWVtb24vMi4xNS4wLXIwL3RlbXAvbG9nLmRvX2ZldGNo
+LjE0NzYyCj4+IE5PVEU6IHJlY2lwZSBkbHQtZGFlbW9uLTIuMTUuMC1yMDogdGFzayBkb19mZXRj
+aDogRmFpbGVkCj4+IEVSUk9SOiBUYXNrIDU2OQo+PiAoL2hvbWUveW9uZy9NRUwvYW5kcm9pZC9P
+cmVvLzIwMTd3dzQ1L1ZNMC9YZW5fR1ZUR19FQzE3NDZfUkMxLURPTTAvcG9reS8uLi9tZXRhLWlh
+cy1pdmktYWRhcHQvcmVjaXBlcy1leHRlbmRlZC9kbHQtZGFlbW9uL2RsdC1kYWVtb25fMi4xNS4w
+LmJiLAo+PiBkb19mZXRjaCkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJwo+PiBOT1RFOiBSdW5u
+aW5nIHRhc2sgNjkwIG9mIDU2OTkgKElEOiAzMDI1LAo+PiAvaG9tZS95b25nL01FTC9hbmRyb2lk
+L09yZW8vMjAxN3d3NDUvVk0wL1hlbl9HVlRHX0VDMTc0Nl9SQzEtRE9NMC9wb2t5L21ldGEvcmVj
+aXBlcy1kZXZ0b29scy9jbWFrZS9jbWFrZS1uYXRpdmVfMy4zLjEuYmIsCj4+IGRvX2ZldGNoKQo+
+PiBOT1RFOiByZWNpcGUgY21ha2UtbmF0aXZlLTMuMy4xLXIwOiB0YXNrIGRvX2ZldGNoOiBTdGFy
+dGVkCj4+IE5PVEU6IHJlY2lwZSBjbWFrZS1uYXRpdmUtMy4zLjEtcjA6IHRhc2sgZG9fZmV0Y2g6
+IFN1Y2NlZWRlZAo+PiBXQVJOSU5HOiBDaGVja3N1bSBmYWlsdXJlIGVuY291bnRlcmVkIHdpdGgg
+ZG93bmxvYWQgb2YKPj4gaHR0cDovL3d3dy53My5vcmcvWE1ML1Rlc3QveG1sdHMyMDA4MDgyNy50
+YXIuZ3o7bmFtZT10ZXN0dGFyIC0gd2lsbCBhdHRlbXB0Cj4+IG90aGVyIHNvdXJjZXMgaWYgYXZh
+aWxhYmxlCj4+IFdBUk5JTkc6IFJlbmFtaW5nCj4+IC9ob21lL3lvbmcvTUVML2FuZHJvaWQvT3Jl
+by8yMDE3d3c0NS9WTTAvWGVuX0dWVEdfRUMxNzQ2X1JDMS1ET00wL2J1aWxkL2Rvd25sb2Fkcy94
+bWx0czIwMDgwODI3LnRhci5nego+PiB0bwo+PiAvaG9tZS95b25nL01FTC9hbmRyb2lkL09yZW8v
+MjAxN3d3NDUvVk0wL1hlbl9HVlRHX0VDMTc0Nl9SQzEtRE9NMC9idWlsZC9kb3dubG9hZHMveG1s
+dHMyMDA4MDgyNy50YXIuZ3pfYmFkLWNoZWNrc3VtXzNhOTQ0Yjk3MmYyZGE5MGI5N2Q4YTU3YzZm
+OTM5ZmE4Cj4+IE5PVEU6IHJlY2lwZSBsaWJ4bWwyLTIuOS4yLXIwOiB0YXNrIGRvX2ZldGNoOiBT
+dWNjZWVkZWQKPj4gTk9URTogcmVjaXBlIGxpYnhtbDItbmF0aXZlLTIuOS4yLXIwOiB0YXNrIGRv
+X2ZldGNoOiBTdWNjZWVkZWQKPj4gTk9URTogcmVjaXBlIGdsaWJjLWluaXRpYWwtMi4yMi1yMDog
+dGFzayBkb19mZXRjaDogU3VjY2VlZGVkCj4+IE5PVEU6IHJlY2lwZSBnbGliYy0yLjIyLXIwOiB0
+YXNrIGRvX2ZldGNoOiBTdWNjZWVkZWQKPj4gTk9URTogcmVjaXBlIGNhaXJvLTEuMTQuMi1yMTog
+dGFzayBkb19mZXRjaDogU3VjY2VlZGVkCj4+IE5PVEU6IHJlY2lwZSBiaW51dGlscy1jcm9zcy14
+ODZfNjQtMi4yNS4xLXIwOiB0YXNrIGRvX2ZldGNoOiBTdWNjZWVkZWQKPj4gTk9URTogU2VuZGlu
+ZyBTSUdURVJNIHRvIHJlbWFpbmluZyAxIHRhc2tzCj4+Cj4+Cj4+IFNSQ19VUkkgPSAiZ2l0Oi8v
+Z2l0aHViLmNvbS9HRU5JVkkvZGx0LWRhZW1vbi5naXQ7cHJvdG9jb2w9aHR0cHMgXAo+PiAgICAg
+ICAgICAgIGZpbGU6Ly8wMDA0LU1vZGlmeS1zeXN0ZW1kLWNvbmZpZy1kaXJlY3RvcnkucGF0Y2gg
+XAo+Pgo+PiBmaWxlOi8vMDAwNS1SZXdvcmstb2YtaW5pdGlhbGl6YXRpb24tY2xlYW51cC1vZi11
+c2VyLWxpYnJhcnkucGF0Y2ggXAo+PiAgICAgICAgICAgIGZpbGU6Ly8wMDA2LUZpeC1idWZmZXIt
+b3ZlcmZsb3ctaW4tZGx0X21lc3NhZ2VfcGF5bG9hZC5wYXRjaCBcCj4+Cj4+IGZpbGU6Ly8wMDA3
+LUZpeC1zZWdmYXVsdC13aGVuLWNhbGxpbmctRExUX0xPRy1vbi1hbi11bmluaXRpYWxpemUucGF0
+Y2ggXAo+PiAgICAgICAgICAgIGZpbGU6Ly8wMDA4LUhlYWRlci1hbmQtcGF5bG9hZC1sb2dnaW5n
+LWZpeGVkLnBhdGNoIFwKPj4gICAgICAgICAgICBmaWxlOi8vMDAwOS1FbmFibGVkLW11dGV4LXBy
+aW9yaXR5LWluaGVyaXRhbmNlLnBhdGNoIFwKPj4gICAgICAgICAgICBmaWxlOi8vMDAxMC1GaXgt
+U0VHRkFVTFQtaW4td3JpdGVfLXV0ZjhfLXN0cmluZy5wYXRjaCBcCj4+ICAgICAgICAgICAgZmls
+ZTovLzEwLXRtcC1kbHQuY29uZiBcCj4+ICAgICAgICAgICAgIgo+PiBTUkNSRVYgPSAiZTlhNDg2
+YTA4ZmZmNmQzY2M3MTMzYTM1MGNlYzNlZTEwZjQ2MzIwNyIKPj4KPj4KPj4gcmVnYXJkcwo+Pgo+
+PiBZb25nCj4+Cj4+Cj4+IC0tCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCj4+IHlvY3RvIG1haWxpbmcgbGlzdAo+PiB5b2N0b0B5b2N0b3Byb2plY3Qu
+b3JnCj4+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bwo+Pgo=
 
