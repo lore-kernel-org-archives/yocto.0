@@ -1,62 +1,31 @@
-Return-Path: <dafna3@gmail.com>
+Return-Path: <andrew.stuart@supercoders.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8F158E00D39; Sat, 30 Dec 2017 09:26:10 -0800 (PST)
+	id BB5DDE00D39; Sat, 30 Dec 2017 12:25:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dafna3[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f172.google.com (mail-qt0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 670A1E006D3
-	for <yocto@yoctoproject.org>; Sat, 30 Dec 2017 09:26:09 -0800 (PST)
-Received: by mail-qt0-f172.google.com with SMTP id g9so57167997qth.9
-	for <yocto@yoctoproject.org>; Sat, 30 Dec 2017 09:26:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=RjOE1Xnwhb6K36N47sfXp8ok4OVhntUHu1YQxzBm0jI=;
-	b=CJMD7TaufB5zOuhD+v7o9Vhxj52HR/K2suHCN1Z1iiNQU75+u6wRhhkLwecnBs+qUc
-	7Xy2i6c2cIYc+Ho57iFALbvjRns69RGJEMxMekbGcRLwG0cg5lq9fOSfaGIqOMEl42DM
-	dmuOF02qJzvI6ME7E7PW1T8eTcWxMtbFSCqSrZ8LQQQcbaAXyQQyHnyuFQw+tcc5zQdB
-	K7APaTMehzX7DC8rkFDE463coW7XBwQ+BfUGr+RkrfHkN/VsyIIP0+q0qkZTDNAtzkew
-	sPvYkBOlPjkh0K7IhYZ9XjgzgY28RqCIZMEIi3JnYIKjPu5x78ZTmWueO4tgItLUPFmR
-	yJ7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=RjOE1Xnwhb6K36N47sfXp8ok4OVhntUHu1YQxzBm0jI=;
-	b=d7qy1bVSE8OKazwQIUhcLPj7pLuhBuVNkRcm3pzj6J+jtvjax1ie77URd6gfkOiuz0
-	ywgP1iLV4fG/l5Mcv6K4v5cz6mFte5ULY0/mBVGbYa9odi/tRaOQhbK3W4Tfe3fu6ygz
-	xOCX22D9hPqN7Y5/SE6+EyLVz8CFBPJnTVufDv+beMZnWCOYei2iR9YvODyv/wrYKqNH
-	zx3ChfWWfTeN8oCqpjGJvrvGxRgN6pEXqiaGh1sTENqAxvkJpXM0XSefy7+H5N+hxGBP
-	itbXPKb/vI7WXhex/v7N3EebhogGzKHzPHWxKrScQIW5bsTORVkQl27rTV1Bw++Vv31A
-	XwFQ==
-X-Gm-Message-State: AKGB3mLNw0OVZXge7mEMTsakVhcvXVktBbPrxJFuTbxa6xiNfyBvUodV
-	3f42HAhCCpxA+f+UWByNUlI5op1H4kG8dWee5/EFmg==
-X-Google-Smtp-Source: ACJfBotglR+3WGPvZux0UgJTK98qiyxMmcpBrqMIFXjpg8O3fHhWGBCaY4kjcvbfKevSEbrOVx1uyEsguFieCNTkwr4=
-X-Received: by 10.200.24.58 with SMTP id q55mr53547467qtj.184.1514654768242;
-	Sat, 30 Dec 2017 09:26:08 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.44.117 with HTTP; Sat, 30 Dec 2017 09:25:47 -0800 (PST)
-From: Dafna Hirschfeld <dafna3@gmail.com>
-Date: Sat, 30 Dec 2017 19:25:47 +0200
-Message-ID: <CAJ1myNTqQiSk-v+XcHrUY1NfgShKoNdAandDgD8tD04imHL_fQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: setting DEPENDS variable to specific package version
+Received: from mail.supercoders.com.au (mail.supercoders.com.au [54.215.13.78])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C6EDE006D3
+	for <yocto@yoctoproject.org>; Sat, 30 Dec 2017 12:25:52 -0800 (PST)
+Received: from [192.168.1.126] (CPE-144-136-188-55.sa.bigpond.net.au
+	[144.136.188.55])
+	by mail.supercoders.com.au (Postfix) with ESMTPS id 797B6602F7;
+	Sat, 30 Dec 2017 20:25:51 +0000 (UTC)
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+From: Andrew Stuart <andrew.stuart@supercoders.com.au>
+In-Reply-To: <CAGAf8LwzcmgW-y518ojeT+zcy5LGa=wheYfwp2dnC9-BHwcKTg@mail.gmail.com>
+Date: Sun, 31 Dec 2017 07:25:47 +1100
+Message-Id: <67432EFA-A4E5-41BD-AB01-108C67DB32C2@supercoders.com.au>
+References: <13F990CF-EDDD-4DE1-B0B6-A4A310C996B4@supercoders.com.au>
+	<CAGAf8LwzcmgW-y518ojeT+zcy5LGa=wheYfwp2dnC9-BHwcKTg@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+X-Mailer: Apple Mail (2.3273)
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: How to build pure initramfs run from ram Yocto with some packages in initramfs?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,105 +37,518 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Dec 2017 17:26:10 -0000
-Content-Type: multipart/alternative; boundary="f403045d62526b264b0561920b49"
-
---f403045d62526b264b0561920b49
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-I want to add the vlc package , which has "lua" package in it's DEPNENDS
-variable.
-But vlc needs lua5.2 and the default is lua5.3
-So when running vlc on the target I get "undefined symbol" in the
-liblua_plugin.so
-So how do I set the packages in DEPENDS to be in specific version ?
-
-I added lua_5.2.2.bb found in this repo
-https://git.congatec.com/yocto/meta-openembedded.git to
-meta-openembedded/meta-oe/recipes-devtools/lua/
-
-and added
-
-PREFERRED_VERSION_lua = "5.2%"
-
-to meta-openembedded/meta-multimedia/recipes-multimedia/vlc/vlc.inc
-
-but this didn't have any effect.
-
-thanks
-
---f403045d62526b264b0561920b49
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Sat, 30 Dec 2017 20:25:54 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail-linestyle1 gmail-colourline" style=3D"=
-font-family:Consolas,&quot;Lucida Console&quot;,monospace;padding-left:7px;=
-word-wrap:break-word;color:rgb(0,0,0);font-size:12.8px"><span style=3D"font=
--size:12.8px">Hi,</span></div><div class=3D"gmail-linestyle1 gmail-colourli=
-ne" style=3D"font-family:Consolas,&quot;Lucida Console&quot;,monospace;padd=
-ing-left:7px;word-wrap:break-word;color:rgb(0,0,0);font-size:12.8px"><span =
-style=3D"font-size:12.8px"><br></span></div><div class=3D"gmail-linestyle1 =
-gmail-colourline" style=3D"font-family:Consolas,&quot;Lucida Console&quot;,=
-monospace;padding-left:7px;word-wrap:break-word;color:rgb(0,0,0);font-size:=
-12.8px"><span style=3D"font-size:12.8px">I want to add the vlc package , wh=
-ich has &quot;lua&quot; package in it&#39;s DEPNENDS variable.</span><br></=
-div><div class=3D"gmail-linestyle2 gmail-colourline" style=3D"font-family:C=
-onsolas,&quot;Lucida Console&quot;,monospace;padding-left:7px;word-wrap:bre=
-ak-word;color:rgb(0,0,0);font-size:12.8px">But vlc needs lua5.2 and the def=
-ault is lua5.3</div><div class=3D"gmail-linestyle2 gmail-colourline" style=
-=3D"padding-left:7px;word-wrap:break-word"><font color=3D"#000000" face=3D"=
-Consolas, Lucida Console, monospace"><span style=3D"font-size:12.8px">So wh=
-en running vlc on the target I get &quot;undefined symbol&quot; in the libl=
-ua_plugin.so</span></font><br></div><div class=3D"gmail-linestyle2 gmail-co=
-lourline" style=3D"padding-left:7px;word-wrap:break-word"><font color=3D"#0=
-00000" face=3D"Consolas, Lucida Console, monospace"><span style=3D"font-siz=
-e:12.8px">So how do I set the packages in DEPENDS to be in specific version=
- ?</span></font><br></div><div class=3D"gmail-linestyle2 gmail-colourline" =
-style=3D"padding-left:7px;word-wrap:break-word"><font color=3D"#000000" fac=
-e=3D"Consolas, Lucida Console, monospace"><span style=3D"font-size:12.8px">=
-<br></span></font></div><div class=3D"gmail-linestyle2 gmail-colourline" st=
-yle=3D"padding-left:7px;word-wrap:break-word"><font color=3D"#000000" face=
-=3D"Consolas, Lucida Console, monospace"><span style=3D"font-size:12.8px">I=
- added <a href=3D"http://lua_5.2.2.bb">lua_5.2.2.bb</a> found in this repo =
-<a href=3D"https://git.congatec.com/yocto/meta-openembedded.git">https://gi=
-t.congatec.com/yocto/meta-openembedded.git</a>=C2=A0to meta-openembedded/me=
-ta-oe/recipes-devtools/lua/</span></font></div><div class=3D"gmail-linestyl=
-e2 gmail-colourline" style=3D"padding-left:7px;word-wrap:break-word"><font =
-color=3D"#000000" face=3D"Consolas, Lucida Console, monospace"><span style=
-=3D"font-size:12.8px"><br></span></font></div><div class=3D"gmail-linestyle=
-2 gmail-colourline" style=3D"padding-left:7px;word-wrap:break-word"><font c=
-olor=3D"#000000" face=3D"Consolas, Lucida Console, monospace"><span style=
-=3D"font-size:12.8px">and added=C2=A0</span></font></div><div class=3D"gmai=
-l-linestyle2 gmail-colourline" style=3D"padding-left:7px;word-wrap:break-wo=
-rd"><font color=3D"#000000" face=3D"Consolas, Lucida Console, monospace"><s=
-pan style=3D"font-size:12.8px"><br></span></font></div><div class=3D"gmail-=
-linestyle2 gmail-colourline" style=3D"padding-left:7px;word-wrap:break-word=
-"><font color=3D"#000000" face=3D"Consolas, Lucida Console, monospace"><spa=
-n style=3D"font-size:12.8px">PREFERRED_VERSION_lua =3D &quot;5.2%&quot;</sp=
-an><br></font></div><div class=3D"gmail-linestyle2 gmail-colourline" style=
-=3D"padding-left:7px;word-wrap:break-word"><font color=3D"#000000" face=3D"=
-Consolas, Lucida Console, monospace"><span style=3D"font-size:12.8px"><br><=
-/span></font></div><div class=3D"gmail-linestyle2 gmail-colourline" style=
-=3D"padding-left:7px;word-wrap:break-word"><font color=3D"#000000" face=3D"=
-Consolas, Lucida Console, monospace"><span style=3D"font-size:12.8px">to=C2=
-=A0</span></font><span style=3D"color:rgb(0,0,0);font-family:Consolas,&quot=
-;Lucida Console&quot;,monospace;font-size:12.8px">meta-openembedded/</span>=
-<span style=3D"font-size:12.8px;color:rgb(0,0,0);font-family:Consolas,&quot=
-;Lucida Console&quot;,monospace">meta-multimedia/recipes-multimedia/vlc/vlc=
-.inc</span></div><div class=3D"gmail-linestyle2 gmail-colourline" style=3D"=
-padding-left:7px;word-wrap:break-word"><span style=3D"font-size:12.8px;colo=
-r:rgb(0,0,0);font-family:Consolas,&quot;Lucida Console&quot;,monospace"><br=
-></span></div><div class=3D"gmail-linestyle2 gmail-colourline" style=3D"pad=
-ding-left:7px;word-wrap:break-word"><span style=3D"font-size:12.8px;color:r=
-gb(0,0,0);font-family:Consolas,&quot;Lucida Console&quot;,monospace">but th=
-is didn&#39;t have any effect.</span></div><div class=3D"gmail-linestyle2 g=
-mail-colourline" style=3D"padding-left:7px;word-wrap:break-word"><font colo=
-r=3D"#000000" face=3D"Consolas, Lucida Console, monospace"><span style=3D"f=
-ont-size:12.8px"><br></span></font></div><div class=3D"gmail-linestyle2 gma=
-il-colourline" style=3D"padding-left:7px;word-wrap:break-word"><font color=
-=3D"#000000" face=3D"Consolas, Lucida Console, monospace"><span style=3D"fo=
-nt-size:12.8px">thanks</span></font></div></div>
+>> Did not understand this requirement?! Wouldn't be better to have the =
+following: runs entirely from RAM after initial booting from flash?
 
---f403045d62526b264b0561920b49--
+Hi Zoran,
+
+The work I am doing is focused on implementing run from RAM operating =
+systems that run on cloud servers (EC2/Google/Digital Ocean).  The cloud =
+servers boot from disk and do not have flash, so I want Yocto to boot =
+initially from hard disk but run purely from RAM.
+
+I=E2=80=99m stuck getting Yocto to run purely from initramfs
+
+These are the steps I am following (without success):
+
+# Instructions (assuming running on Ubuntu)
+
+#Goal:
+Yocto Linux booting from hard disk
+entire root file system running from initramfs
+openssh server
+ICS dhclient
+nginx
+
+# Important:
+Run the Yocto build process on a machine with at least 4 gig RAM and 100 =
+gig hard disk space, but the faster the machine the better.  It'll take =
+all day on a slow machine.
+
+sudo apt-get update
+sudo apt-get install build-essential chrpath diffstat texinfo git
+wget =
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4/poky-rocko-18.0=
+.0.tar.bz2
+tar xvjf poky-rocko-18.0.0.tar.bz2
+cd poky-rocko-18.0.0/
+git clone git://git.yoctoproject.org/meta-virtualization
+git clone git://github.com/openembedded/openembedded-core.git
+git clone git://github.com/openembedded/meta-openembedded.git
+git clone git://github.com/errordeveloper/oe-meta-go.git
+source oe-init-build-env
+
+# set the machine type in local.conf
+vi /home/ubuntu/poky-rocko-18.0.0/build/conf/local.conf
+MACHINE =3D "qemux86-64"
+
+# for blank root password in ssh, in local.conf:
+vi /home/ubuntu/poky-rocko-18.0.0/build/conf/local.conf
+EXTRA_IMAGE_FEATURES =3D "debug-tweaks"
+
+#for kernel to run on EC2, in local.conf:
+vi /home/ubuntu/poky-rocko-18.0.0/build/conf/local.conf
+DISTRO_FEATURES_append=3D" xen"
+
+#for ability to boot on cloud servers:
+vi /home/ubuntu/poky-rocko-18.0.0/build/conf/local.conf
+DISTRO_FEATURES_append =3D " virtualization"
+
+#for openssh server, in local.conf:
+vi /home/ubuntu/poky-rocko-18.0.0/build/conf/local.conf
+CORE_IMAGE_EXTRA_INSTALL +=3D "openssh"
+IMAGE_INSTALL_append =3D " openssh"
+
+#for ISC dhclient , in local.conf:
+vi /home/ubuntu/poky-rocko-18.0.0/build/conf/local.conf
+CORE_IMAGE_EXTRA_INSTALL +=3D "dhcp-client"
+IMAGE_INSTALL_append =3D " dhcp-client"
+
+# update bblayers to include the layers we need
+vi /home/ubuntu/poky-rocko-18.0.0/build/conf/bblayers.conf
+
+BBLAYERS ?=3D " \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-filesystems =
+\
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-networking \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-webserver \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-oe \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-python \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/openembedded-core/meta \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-poky \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-virtualization \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-yocto-bsp \
+  /mnt/home/ubuntu/poky-rocko-18.0.0/oe-meta-go \
+  =E2=80=9C
+
+bitbake core-image-minimal-initramfs
+
+At this point, after the build is done, there is an initramfs, but it =
+does not contain openssh sshd, dhclient or nginx
+
+
+Any help greatly appreciated!
+
+Andrew
+
+
+
+
+On 30 Dec 2017, at 7:48 pm, Zoran Stojsavljevic =
+<zoran.stojsavljevic@gmail.com> wrote:
+
+> 1: kernel plus initramfs only - runs entirely from RAM after initial =
+booting from disk.
+
+Did not understand this requirement?! Wouldn't be better to have the
+following: runs entirely from RAM after initial booting from flash?
+
+Zoran
+_______
+
+On Sat, Dec 30, 2017 at 8:18 AM, Andrew Stuart
+<andrew.stuart@supercoders.com.au> wrote:
+> Hi folks,
+>=20
+> With Tiny Core Linux I am able to have a kernel file plus an initramfs =
+that boots
+>=20
+> My goal is to configure Yocto to these requirements:
+>=20
+> 1: kernel plus initramfs only - runs entirely from RAM after initial =
+booting from disk.
+> 2: openssh server installed
+> 3: nginx installed
+> 4: isc dhcp client installed
+> 5: virtualization drivers installed for *both* Xen and KVM - so the =
+same code can boot on either virtualization type
+>=20
+>=20
+> I=E2=80=99ve spent all day fiddling with every possible variation of =
+core-image-minimal-initramfs local.conf and bblayers.conf but nothing I =
+do will install any of the packages above into the initramfs that is =
+created after running 'bitbake core-image-minimal-initramfs=E2=80=99
+>=20
+> I=E2=80=99m out of ideas. Can anyone point me in the right direction =
+please?
+>=20
+> thanks!!
+>=20
+> Here=E2=80=99s my conf/bblayers.conf and conf.local.conf
+>=20
+> ubuntu@ip-10-0-0-63:/opt/mountpoint/poky-rocko-18.0.0/build$ cat =
+conf/bblayers.conf
+> # POKY_BBLAYERS_CONF_VERSION is increased each time =
+build/conf/bblayers.conf
+> # changes incompatibly
+> POKY_BBLAYERS_CONF_VERSION =3D "2"
+>=20
+> BBPATH =3D "${TOPDIR}"
+> BBFILES ?=3D ""
+>=20
+> BBLAYERS ?=3D " \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-filesystems =
+\
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-networking =
+\
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-webserver \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-oe \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-openembedded/meta-python \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/openembedded-core/meta \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-poky \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-virtualization \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/meta-yocto-bsp \
+>  /mnt/home/ubuntu/poky-rocko-18.0.0/oe-meta-go \
+>  "
+>=20
+> ubuntu@ip-10-0-0-63:/opt/mountpoint/poky-rocko-18.0.0/build$
+>=20
+>=20
+> ubuntu@ip-10-0-0-63:/opt/mountpoint/poky-rocko-18.0.0/build$ cat =
+conf/local.conf
+> #
+> # This file is your local configuration file and is where all local =
+user settings
+> # are placed. The comments in this file give some guide to the options =
+a new user
+> # to the system might want to change but pretty much any configuration =
+option can
+> # be set in this file. More adventurous users can look at =
+local.conf.extended
+> # which contains other examples of configuration which can be placed =
+in this file
+> # but new users likely won't need any of them initially.
+> #
+> # Lines starting with the '#' character are commented out and in some =
+cases the
+> # default values are provided as comments to show people example =
+syntax. Enabling
+> # the option is a question of removing the # character and making any =
+change to the
+> # variable as required.
+>=20
+> #
+> # Machine Selection
+> #
+> # You need to select a specific machine to target the build with. =
+There are a selection
+> # of emulated machines available which can boot and run in the QEMU =
+emulator:
+> #
+> #MACHINE ?=3D "qemuarm"
+> #MACHINE ?=3D "qemuarm64"
+> #MACHINE ?=3D "qemumips"
+> #MACHINE ?=3D "qemumips64"
+> #MACHINE ?=3D "qemuppc"
+> #MACHINE ?=3D "qemux86"
+> MACHINE ?=3D "qemux86-64"
+> #
+> # There are also the following hardware board target machines included =
+for
+> # demonstration purposes:
+> #
+> #MACHINE ?=3D "beaglebone"
+> #MACHINE ?=3D "genericx86"
+> #MACHINE ?=3D "genericx86-64"
+> #MACHINE ?=3D "mpc8315e-rdb"
+> #MACHINE ?=3D "edgerouter"
+> #
+> # This sets the default machine to be qemux86 if no other machine is =
+selected:
+> #MACHINE ??=3D "qemux86"
+> DISTRO_FEATURES_append =3D " xen"
+> EXTRA_IMAGE_FEATURES =3D "debug-tweaks"
+> DISTRO_FEATURES_append =3D " virtualization"
+> #CORE_IMAGE_EXTRA_INSTALL +=3D "openssh-sshd"
+> #CORE_IMAGE_EXTRA_INSTALL +=3D "dhcp-client"
+> #CORE_IMAGE_EXTRA_INSTALL +=3D "dropbear"
+> #CORE_IMAGE_EXTRA_INSTALL +=3D "dropbear"
+> #IMAGE_INSTALL_append =3D " dropbear"
+> #IMAGE_INSTALL_append =3D " packagegroup-core-ssh-openssh"
+> IMAGE_INSTALL_append =3D " ssh-server-openssh"
+> IMAGE_INSTALL_append =3D " dhcp-client"
+> IMAGE_INSTALL_append =3D " nginx"
+>=20
+> #
+> # Where to place downloads
+> #
+> # During a first build the system will download many different source =
+code tarballs
+> # from various upstream projects. This can take a while, particularly =
+if your network
+> # connection is slow. These are all stored in DL_DIR. When wiping and =
+rebuilding you
+> # can preserve this directory to speed up this part of subsequent =
+builds. This directory
+> # is safe to share between multiple builds on the same machine too.
+> #
+> # The default is a downloads directory under TOPDIR which is the build =
+directory.
+> #
+> #DL_DIR ?=3D "${TOPDIR}/downloads"
+>=20
+> #
+> # Where to place shared-state files
+> #
+> # BitBake has the capability to accelerate builds based on previously =
+built output.
+> # This is done using "shared state" files which can be thought of as =
+cache objects
+> # and this option determines where those files are placed.
+> #
+> # You can wipe out TMPDIR leaving this directory intact and the build =
+would regenerate
+> # from these files if no changes were made to the configuration. If =
+changes were made
+> # to the configuration, only shared state files where the state was =
+still valid would
+> # be used (done using checksums).
+> #
+> # The default is a sstate-cache directory under TOPDIR.
+> #
+> #SSTATE_DIR ?=3D "${TOPDIR}/sstate-cache"
+>=20
+> #
+> # Where to place the build output
+> #
+> # This option specifies where the bulk of the building work should be =
+done and
+> # where BitBake should place its temporary files and output. Keep in =
+mind that
+> # this includes the extraction and compilation of many applications =
+and the toolchain
+> # which can use Gigabytes of hard disk space.
+> #
+> # The default is a tmp directory under TOPDIR.
+> #
+> #TMPDIR =3D "${TOPDIR}/tmp"
+>=20
+> #
+> # Default policy config
+> #
+> # The distribution setting controls which policy settings are used as =
+defaults.
+> # The default value is fine for general Yocto project use, at least =
+initially.
+> # Ultimately when creating custom policy, people will likely end up =
+subclassing
+> # these defaults.
+> #
+> DISTRO ?=3D "poky"
+> # As an example of a subclass there is a "bleeding" edge policy =
+configuration
+> # where many versions are set to the absolute latest code from the =
+upstream
+> # source control systems. This is just mentioned here as an example, =
+its not
+> # useful to most new users.
+> # DISTRO ?=3D "poky-bleeding"
+>=20
+> #
+> # Package Management configuration
+> #
+> # This variable lists which packaging formats to enable. Multiple =
+package backends
+> # can be enabled at once and the first item listed in the variable =
+will be used
+> # to generate the root filesystems.
+> # Options are:
+> #  - 'package_deb' for debian style deb files
+> #  - 'package_ipk' for ipk files are used by opkg (a debian style =
+embedded package manager)
+> #  - 'package_rpm' for rpm style packages
+> # E.g.: PACKAGE_CLASSES ?=3D "package_rpm package_deb package_ipk"
+> # We default to rpm:
+> PACKAGE_CLASSES ?=3D "package_rpm"
+>=20
+> #
+> # SDK target architecture
+> #
+> # This variable specifies the architecture to build SDK items for and =
+means
+> # you can build the SDK packages for architectures other than the =
+machine you are
+> # running the build on (i.e. building i686 packages on an x86_64 =
+host).
+> # Supported values are i686 and x86_64
+> #SDKMACHINE ?=3D "i686"
+>=20
+> #
+> # Extra image configuration defaults
+> #
+> # The EXTRA_IMAGE_FEATURES variable allows extra packages to be added =
+to the generated
+> # images. Some of these options are added to certain image types =
+automatically. The
+> # variable can contain the following options:
+> #  "dbg-pkgs"       - add -dbg packages for all installed packages
+> #                     (adds symbol information for =
+debugging/profiling)
+> #  "dev-pkgs"       - add -dev packages for all installed packages
+> #                     (useful if you want to develop against libs in =
+the image)
+> #  "ptest-pkgs"     - add -ptest packages for all ptest-enabled =
+packages
+> #                     (useful if you want to run the package test =
+suites)
+> #  "tools-sdk"      - add development tools (gcc, make, pkgconfig =
+etc.)
+> #  "tools-debug"    - add debugging tools (gdb, strace)
+> #  "eclipse-debug"  - add Eclipse remote debugging support
+> #  "tools-profile"  - add profiling tools (oprofile, lttng, valgrind)
+> #  "tools-testapps" - add useful testing tools (ts_print, aplay, =
+arecord etc.)
+> #  "debug-tweaks"   - make an image suitable for development
+> #                     e.g. ssh root access has a blank password
+> # There are other application targets that can be used here too, see
+> # meta/classes/image.bbclass and meta/classes/core-image.bbclass for =
+more details.
+> # We default to enabling the debugging tweaks.
+> EXTRA_IMAGE_FEATURES ?=3D "debug-tweaks"
+>=20
+> #
+> # Additional image features
+> #
+> # The following is a list of additional classes to use when building =
+images which
+> # enable extra features. Some available options which can be included =
+in this variable
+> # are:
+> #   - 'buildstats' collect build statistics
+> #   - 'image-mklibs' to reduce shared library files size for an image
+> #   - 'image-prelink' in order to prelink the filesystem image
+> # NOTE: if listing mklibs & prelink both, then make sure mklibs is =
+before prelink
+> # NOTE: mklibs also needs to be explicitly enabled for a given image, =
+see local.conf.extended
+> USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
+>=20
+> #
+> # Runtime testing of images
+> #
+> # The build system can test booting virtual machine images under qemu =
+(an emulator)
+> # after any root filesystems are created and run tests against those =
+images. To
+> # enable this uncomment this line. See =
+classes/testimage(-auto).bbclass for
+> # further details.
+> #TEST_IMAGE =3D "1"
+> #
+> # Interactive shell configuration
+> #
+> # Under certain circumstances the system may need input from you and =
+to do this it
+> # can launch an interactive shell. It needs to do this since the build =
+is
+> # multithreaded and needs to be able to handle the case where more =
+than one parallel
+> # process may require the user's attention. The default is iterate =
+over the available
+> # terminal types to find one that works.
+> #
+> # Examples of the occasions this may happen are when resolving patches =
+which cannot
+> # be applied, to use the devshell or the kernel menuconfig
+> #
+> # Supported values are auto, gnome, xfce, rxvt, screen, konsole (KDE =
+3.x only), none
+> # Note: currently, Konsole support only works for KDE 3.x due to the =
+way
+> # newer Konsole versions behave
+> #OE_TERMINAL =3D "auto"
+> # By default disable interactive patch resolution (tasks will just =
+fail instead):
+> PATCHRESOLVE =3D "noop"
+>=20
+> #
+> # Disk Space Monitoring during the build
+> #
+> # Monitor the disk space during the build. If there is less that 1GB =
+of space or less
+> # than 100K inodes in any key build location (TMPDIR, DL_DIR, =
+SSTATE_DIR), gracefully
+> # shutdown the build. If there is less that 100MB or 1K inodes, =
+perform a hard abort
+> # of the build. The reason for this is that running completely out of =
+space can corrupt
+> # files and damages the build in ways which may not be easily =
+recoverable.
+> # It's necesary to monitor /tmp, if there is no space left the build =
+will fail
+> # with very exotic errors.
+> BB_DISKMON_DIRS =3D "\
+>    STOPTASKS,${TMPDIR},1G,100K \
+>    STOPTASKS,${DL_DIR},1G,100K \
+>    STOPTASKS,${SSTATE_DIR},1G,100K \
+>    STOPTASKS,/tmp,100M,100K \
+>    ABORT,${TMPDIR},100M,1K \
+>    ABORT,${DL_DIR},100M,1K \
+>    ABORT,${SSTATE_DIR},100M,1K \
+>    ABORT,/tmp,10M,1K"
+>=20
+> #
+> # Shared-state files from other locations
+> #
+> # As mentioned above, shared state files are prebuilt cache data =
+objects which can
+> # used to accelerate build time. This variable can be used to =
+configure the system
+> # to search other mirror locations for these objects before it builds =
+the data itself.
+> #
+> # This can be a filesystem directory, or a remote url such as http or =
+ftp. These
+> # would contain the sstate-cache results from previous builds =
+(possibly from other
+> # machines). This variable works like fetcher MIRRORS/PREMIRRORS and =
+points to the
+> # cache locations to check for the shared objects.
+> # NOTE: if the mirror uses the same structure as SSTATE_DIR, you need =
+to add PATH
+> # at the end as shown in the examples below. This will be substituted =
+with the
+> # correct path within the directory structure.
+> #SSTATE_MIRRORS ?=3D "\
+> #file://.* =
+http://someserver.tld/share/sstate/PATH;downloadfilename=3DPATH \n \
+> #file://.* file:///some/local/dir/sstate/PATH"
+>=20
+>=20
+> #
+> # Qemu configuration
+> #
+> # By default qemu will build with a builtin VNC server where graphical =
+output can be
+> # seen. The two lines below enable the SDL backend too. By default =
+libsdl-native will
+> # be built, if you want to use your host's libSDL instead of the =
+minimal libsdl built
+> # by libsdl-native then uncomment the ASSUME_PROVIDED line below.
+> PACKAGECONFIG_append_pn-qemu-native =3D " sdl"
+> PACKAGECONFIG_append_pn-nativesdk-qemu =3D " sdl"
+> #ASSUME_PROVIDED +=3D "libsdl-native"
+>=20
+> # CONF_VERSION is increased each time build/conf/ changes incompatibly =
+and is used to
+> # track the version of this file when it was generated. This can =
+safely be ignored if
+> # this doesn't mean anything to you.
+> CONF_VERSION =3D "1"
+> ubuntu@ip-10-0-0-63:/opt/mountpoint/poky-rocko-18.0.0/build$
+>=20
+>=20
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
