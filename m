@@ -1,44 +1,52 @@
-Return-Path: <john.ernberg@actia.se>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DAB31E00CBE; Mon,  1 Jan 2018 05:12:42 -0800 (PST)
+	id A7858E00D24; Mon,  1 Jan 2018 09:05:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00, HTML_FONT_FACE_BAD, 
-	HTML_MESSAGE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,HEXHASH_WORD,
+	HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.0 HTML_FONT_FACE_BAD BODY: HTML font face is not a word
-Received: from mail.actia.se (mail.actia.se [195.67.112.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A21B8E00A84
-	for <yocto@yoctoproject.org>; Mon,  1 Jan 2018 05:12:41 -0800 (PST)
-Received: from S036ANL.actianordic.se (192.168.16.117) by
-	S035ANL.actianordic.se (192.168.16.116) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1415.2; Mon, 1 Jan 2018 14:12:39 +0100
-Received: from S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69]) by
-	S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69%3]) with mapi id
-	15.01.1415.002; Mon, 1 Jan 2018 14:12:39 +0100
-From: John Ernberg <john.ernberg@actia.se>
-To: Dafna Hirschfeld <dafna3@gmail.com>
-Thread-Topic: [yocto] setting DEPENDS variable to specific package version
-Thread-Index: AQHTgZN1yi4JcqvcXkin6z8y5jiSXaNe4+4AgAAJ7gCAAAKfgA==
-Date: Mon, 1 Jan 2018 13:12:39 +0000
-Message-ID: <d684ce1e-5433-0309-ecd1-c3f55fe54c9b@actia.se>
-References: <CAJ1myNTqQiSk-v+XcHrUY1NfgShKoNdAandDgD8tD04imHL_fQ@mail.gmail.com>
-	<f6706ba2-6e01-956d-d4c1-a8261b756d17@actia.se>
-	<CAJ1myNTX=ovnMEMg1p0PVuuveFWCFDcsbbRdFr5nEsP_Yqk_XA@mail.gmail.com>
-In-Reply-To: <CAJ1myNTX=ovnMEMg1p0PVuuveFWCFDcsbbRdFr5nEsP_Yqk_XA@mail.gmail.com>
-Accept-Language: en-US, sv-SE
+	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 404A9E0095C
+	for <yocto@yoctoproject.org>; Mon,  1 Jan 2018 09:05:18 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	01 Jan 2018 09:05:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.45,492,1508828400"; 
+	d="scan'208,217";a="191568677"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+	by fmsmga006.fm.intel.com with ESMTP; 01 Jan 2018 09:05:17 -0800
+Received: from fmsmsx154.amr.corp.intel.com (10.18.116.70) by
+	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 1 Jan 2018 09:05:17 -0800
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.120]) by
+	FMSMSX154.amr.corp.intel.com ([169.254.6.52]) with mapi id
+	14.03.0319.002; Mon, 1 Jan 2018 09:05:17 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Reminder: Yocto Project Technical Team Meeting
+Thread-Index: AdNX3caAww21d0MTSfaaQziSmZ3bgw==
+Date: Mon, 1 Jan 2018 17:05:16 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC720FD9E@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.15.7]
-x-esetresult: clean, is OK
-x-esetid: 37303A29B7F8896C6C7465
+x-originating-ip: [10.1.200.108]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjJhOGI1YzUtODkxMS00ZGY5LTg5ZmMtMmY0Y2EwMjZhMTU0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IjZJQ3NzeWRJazAzcDhXRHlqRFFXNXlrdThqdmdLTzRZTjdSNGg5YnY3ejA9In0=
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: setting DEPENDS variable to specific package version
+Subject: Reminder: Yocto Project Technical Team Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,197 +58,575 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jan 2018 13:12:42 -0000
+X-List-Received-Date: Mon, 01 Jan 2018 17:05:20 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_d684ce1e54330309ecd1c3f55fe54c9bactiase_"
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC720FD9Efmsmsx111amrcor_"
 
---_000_d684ce1e54330309ecd1c3f55fe54c9bactiase_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC720FD9Efmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgRGFmbmEsDQoNCk9uIDAxLzAxLzIwMTggMDI6MDMgUE0sIERhZm5hIEhpcnNjaGZlbGQgd3Jv
-dGU6DQpIaSwNCnRoYW5rcywNCkkgd29yayBhbG9uZSwgYW5kIGhhdmUgbm8gcGVvcGxlIEkga25v
-dyB0byBjb25zdWx0IHdpdGguDQpEb2VzIHRoZSBQUkVGRVJSRURfVkVSU0lPTiBpbmZsdWVuY2Ug
-c3RhdGljIGxpbmtpbmcgb25seSA/IFNvIHRoYXQgdGhlIHBhY2thZ2UgdmVyc2lvbiBpbiB0aGUg
-REVQRU5EUyBsaXN0IGlzIGRlY2lkZWQgYWNjb3JkaW5nIHRvIHRoYXQgdmFyaWFibGUgPw0KSWYg
-c28sIHdoeSBjYW4ndCBpdCBiZSBhIHJlY2lwZSBzcGVjaWZpYyA/DQpJZiBJIHdhbnQgcGFja2Fn
-ZSBBIHRvIHN0YXRpY2FsbHkgbGluayB3aXRoIGx1YTUuMyBhbmQgcGFja2FnZSBCIHRvIGJlIHN0
-YXRpY2FsbHkgbGlua2VkIHdpdGggbHVhNS4yIC4gSG93IGNhbiBJIGRvIHRoYXQgPw0KDQpUaGFu
-a3MNCg0KDQpPbiBNb24sIEphbiAxLCAyMDE4IGF0IDI6MjcgUE0sIEpvaG4gRXJuYmVyZyA8am9o
-bi5lcm5iZXJnQGFjdGlhLnNlPG1haWx0bzpqb2huLmVybmJlcmdAYWN0aWEuc2U+PiB3cm90ZToN
-Cg0KSGkgRGFmbmEsDQoNCk9uIDEyLzMwLzIwMTcgMDY6MjUgUE0sIERhZm5hIEhpcnNjaGZlbGQg
-d3JvdGU6DQpIaSwNCg0KSSB3YW50IHRvIGFkZCB0aGUgdmxjIHBhY2thZ2UgLCB3aGljaCBoYXMg
-Imx1YSIgcGFja2FnZSBpbiBpdCdzIERFUE5FTkRTIHZhcmlhYmxlLg0KQnV0IHZsYyBuZWVkcyBs
-dWE1LjIgYW5kIHRoZSBkZWZhdWx0IGlzIGx1YTUuMw0KU28gd2hlbiBydW5uaW5nIHZsYyBvbiB0
-aGUgdGFyZ2V0IEkgZ2V0ICJ1bmRlZmluZWQgc3ltYm9sIiBpbiB0aGUgbGlibHVhX3BsdWdpbi5z
-bw0KU28gaG93IGRvIEkgc2V0IHRoZSBwYWNrYWdlcyBpbiBERVBFTkRTIHRvIGJlIGluIHNwZWNp
-ZmljIHZlcnNpb24gPw0KDQpJIGFkZGVkIGx1YV81LjIuMi5iYjxodHRwOi8vbHVhXzUuMi4yLmJi
-PiBmb3VuZCBpbiB0aGlzIHJlcG8gaHR0cHM6Ly9naXQuY29uZ2F0ZWMuY29tL3lvY3RvL21ldGEt
-b3BlbmVtYmVkZGVkLmdpdCB0byBtZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW9lL3JlY2lwZXMtZGV2
-dG9vbHMvbHVhLw0KDQphbmQgYWRkZWQNCg0KUFJFRkVSUkVEX1ZFUlNJT05fbHVhID0gIjUuMiUi
-DQoNCnRvIG1ldGEtb3BlbmVtYmVkZGVkL21ldGEtbXVsdGltZWRpYS9yZWNpcGVzLW11bHRpbWVk
-aWEvdmxjL3ZsYy5pbmMNCg0KYnV0IHRoaXMgZGlkbid0IGhhdmUgYW55IGVmZmVjdC4NCg0KdGhh
-bmtzDQoNCg0KUFJFRkVSUkVEX1ZFUlNJT04gaXMgYSBjb25maWctdmFyaWFibGUsIHRyeSBzZXR0
-aW5nIGl0IGluIHlvdXIgbG9jYWwuY29uZi4NCg0KQmVzdCByZWdhcmRzIC8vIEpvaG4NCg0KSWYg
-eW91IHdhbnQgYm90aCBpbiB5b3VyIGZpbGVzeXN0ZW0geW91IG5lZWQgdG8gZ2l2ZSB0aGUgcGFj
-a2FnZXMgdW5pcXVlIG5hbWVzIHNvIHRoYXQgdGhlIHBhY2thZ2VzIGNhbiBjby1leGl0IGFsb25n
-c2lkZSBlYWNoIG90aGVyIGluIFlvY3RvLiBOYW1lIHRoZSBsdWFfNS4yLjIgcmVjaXBlIGluIGEg
-d2F5IHRoYXQgaXQgY2FuIGJlIGluc3RhbGxlZCB3aXRob3V0IG9wdGluZyBvdXQgb2YgTHVhIDUu
-MyAoZS5nLiBsdWE1Ml81LjIuMiksIHRoZW4gYWRkIHRoZSBuZXcgcGFja2FnZSB0byB5b3VyIGlt
-YWdlLiBZb3UgbWlnaHQgbmVlZCB0byBkbyBzb21lIHBhdGNoaW5nIGZvciB0aGlzIHRvIHdvcmss
-IGluIHdoaWNoIGNhc2UgaXQncyB1c3VhbGx5IGVhc2llciB0byBwYXRjaCB0aGUgcGFja2FnZSB3
-aXRoIHRoZSBwcm9ibGVtIGRlcGVuZGVuY3kgdG8gd29yayB3aXRoIHRoZSBhbHJlYWR5IHByb3Zp
-ZGVkIHBhY2thZ2VzIGluc3RlYWQuIChlLmcuIHBhdGNoIFZMQyB0byB3b3JrIHdpdGggTHVhIDUu
-MykuDQoNCkJlc3QgcmVnYXJkcyAvLyBKb2huDQo=
+YPTM will be Jan. 2, 2018 at 8am PST.
 
---_000_d684ce1e54330309ecd1c3f55fe54c9bactiase_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <EA5C8CCF4AB7DE45A671486ECAA7F014@actia.se>
-Content-Transfer-Encoding: base64
+We encourage people attending the meeting to logon and announce themselves =
+on the Yocto Project IRC chancel during the meeting (optional):
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IiNGRkZG
-RkYiIHRleHQ9IiMwMDAwMDAiPg0KPHA+SGkgRGFmbmEsPGJyPg0KPC9wPg0KPGJyPg0KPGRpdiBj
-bGFzcz0ibW96LWNpdGUtcHJlZml4Ij5PbiAwMS8wMS8yMDE4IDAyOjAzIFBNLCBEYWZuYSBIaXJz
-Y2hmZWxkIHdyb3RlOjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSIgY2l0ZT0i
-bWlkOkNBSjFteU5UWD1vdm5NRU1nMXAwUFZ1dXZlRldDRkRjc2JiUmRGcjVuRXNQX1lxa19YQUBt
-YWlsLmdtYWlsLmNvbSI+DQo8ZGl2IGRpcj0ibHRyIj5IaSwmbmJzcDsNCjxkaXY+dGhhbmtzLDwv
-ZGl2Pg0KPGRpdj5JIHdvcmsgYWxvbmUsIGFuZCBoYXZlIG5vIHBlb3BsZSBJIGtub3cgdG8gY29u
-c3VsdCB3aXRoLjwvZGl2Pg0KPGRpdj5Eb2VzIHRoZSZuYnNwOzxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTIuOHB4Ij5QUkVGRVJSRURfVkVSU0lPTiBpbmZsdWVuY2UmbmJzcDtzdGF0aWMgbGlua2lu
-ZyBvbmx5ID8gU28gdGhhdCB0aGUgcGFja2FnZSB2ZXJzaW9uIGluIHRoZSBERVBFTkRTIGxpc3Qg
-aXMgZGVjaWRlZCBhY2NvcmRpbmcgdG8gdGhhdCB2YXJpYWJsZSA/PC9zcGFuPjwvZGl2Pg0KPGRp
-dj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+SWYgc28sIHdoeSBjYW4ndCBpdCBiZSBh
-IHJlY2lwZSBzcGVjaWZpYyA/PC9zcGFuPjwvZGl2Pg0KPGRpdj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjEyLjhweCI+SWYgSSB3YW50IHBhY2thZ2UgQSB0byBzdGF0aWNhbGx5Jm5ic3A7bGluayB3
-aXRoIGx1YTUuMyBhbmQgcGFja2FnZSBCIHRvIGJlIHN0YXRpY2FsbHkmbmJzcDtsaW5rZWQgd2l0
-aCBsdWE1LjIgLiBIb3cgY2FuIEkgZG8gdGhhdCA/PC9zcGFuPjwvZGl2Pg0KPGRpdj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEyLjhweCI+PGJyPg0KPC9zcGFuPjwvZGl2Pg0KPGRpdj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEyLjhweCI+VGhhbmtzPC9zcGFuPjwvZGl2Pg0KPGRpdj48YnI+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPjxicj4NCjxkaXYgY2xhc3M9
-ImdtYWlsX3F1b3RlIj5PbiBNb24sIEphbiAxLCAyMDE4IGF0IDI6MjcgUE0sIEpvaG4gRXJuYmVy
-ZyA8c3BhbiBkaXI9Imx0ciI+DQombHQ7PGEgaHJlZj0ibWFpbHRvOmpvaG4uZXJuYmVyZ0BhY3Rp
-YS5zZSIgdGFyZ2V0PSJfYmxhbmsiIG1vei1kby1ub3Qtc2VuZD0idHJ1ZSI+am9obi5lcm5iZXJn
-QGFjdGlhLnNlPC9hPiZndDs8L3NwYW4+IHdyb3RlOjxicj4NCjxibG9ja3F1b3RlIGNsYXNzPSJn
-bWFpbF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowIDAgMA0KICAgICAgICAgICAgLjhleDtib3JkZXIt
-bGVmdDoxcHggI2NjYyBzb2xpZDtwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXYgYmdjb2xvcj0iI0ZG
-RkZGRiIgdGV4dD0iIzAwMDAwMCI+DQo8cD5IaSBEYWZuYSw8L3A+DQo8ZGl2Pg0KPGRpdiBjbGFz
-cz0iaDUiPg0KPGRpdiBjbGFzcz0ibV82ODAyMjYzODE0MDkyNzAxNTc5bW96LWNpdGUtcHJlZml4
-Ij5PbiAxMi8zMC8yMDE3IDA2OjI1IFBNLCBEYWZuYSBIaXJzY2hmZWxkIHdyb3RlOjxicj4NCjwv
-ZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgY2xh
-c3M9Im1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWxpbmVzdHlsZTENCiAgICAgICAgICAgICAg
-ICAgICAgICAgIG1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWNvbG91cmxpbmUiPg0KPHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPkhpLDwvc3Bhbj48L2Rpdj4NCjxkaXYgY2xhc3M9Im1f
-NjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWxpbmVzdHlsZTENCiAgICAgICAgICAgICAgICAgICAg
-ICAgIG1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWNvbG91cmxpbmUiPg0KPHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMi44cHgiPjxicj4NCjwvc3Bhbj48L2Rpdj4NCjxkaXYgY2xhc3M9Im1fNjgw
-MjI2MzgxNDA5MjcwMTU3OWdtYWlsLWxpbmVzdHlsZTENCiAgICAgICAgICAgICAgICAgICAgICAg
-IG1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWNvbG91cmxpbmUiPg0KPHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMi44cHgiPkkgd2FudCB0byBhZGQgdGhlIHZsYyBwYWNrYWdlICwgd2hpY2ggaGFz
-ICZxdW90O2x1YSZxdW90OyBwYWNrYWdlIGluIGl0J3MgREVQTkVORFMgdmFyaWFibGUuPC9zcGFu
-Pjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0ibV82ODAyMjYzODE0MDkyNzAxNTc5Z21haWwtbGlu
-ZXN0eWxlMg0KICAgICAgICAgICAgICAgICAgICAgICAgbV82ODAyMjYzODE0MDkyNzAxNTc5Z21h
-aWwtY29sb3VybGluZSI+DQpCdXQgdmxjIG5lZWRzIGx1YTUuMiBhbmQgdGhlIGRlZmF1bHQgaXMg
-bHVhNS4zPC9kaXY+DQo8ZGl2IGNsYXNzPSJtXzY4MDIyNjM4MTQwOTI3MDE1NzlnbWFpbC1saW5l
-c3R5bGUyDQogICAgICAgICAgICAgICAgICAgICAgICBtXzY4MDIyNjM4MTQwOTI3MDE1NzlnbWFp
-bC1jb2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3JkLXdyYXA6YnJlYWstd29y
-ZCI+DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMsIEx1Y2lkYQ0KICAgICAg
-ICAgICAgICAgICAgICAgICAgICBDb25zb2xlLCBtb25vc3BhY2UiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTIuOHB4Ij5TbyB3aGVuIHJ1bm5pbmcgdmxjIG9uIHRoZSB0YXJnZXQgSSBnZXQgJnF1
-b3Q7dW5kZWZpbmVkIHN5bWJvbCZxdW90OyBpbiB0aGUgbGlibHVhX3BsdWdpbi5zbzwvc3Bhbj48
-L2ZvbnQ+PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJtXzY4MDIyNjM4MTQwOTI3MDE1NzlnbWFp
-bC1saW5lc3R5bGUyDQogICAgICAgICAgICAgICAgICAgICAgICBtXzY4MDIyNjM4MTQwOTI3MDE1
-NzlnbWFpbC1jb2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3JkLXdyYXA6YnJl
-YWstd29yZCI+DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMsIEx1Y2lkYQ0K
-ICAgICAgICAgICAgICAgICAgICAgICAgICBDb25zb2xlLCBtb25vc3BhY2UiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTIuOHB4Ij5TbyBob3cgZG8gSSBzZXQgdGhlIHBhY2thZ2VzIGluIERFUEVO
-RFMgdG8gYmUgaW4gc3BlY2lmaWMgdmVyc2lvbiA/PC9zcGFuPjwvZm9udD48YnI+DQo8L2Rpdj4N
-CjxkaXYgY2xhc3M9Im1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWxpbmVzdHlsZTINCiAgICAg
-ICAgICAgICAgICAgICAgICAgIG1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWNvbG91cmxpbmUi
-IHN0eWxlPSJwYWRkaW5nLWxlZnQ6N3B4O3dvcmQtd3JhcDpicmVhay13b3JkIj4NCjxmb250IGNv
-bG9yPSIjMDAwMDAwIiBmYWNlPSJDb25zb2xhcywgTHVjaWRhDQogICAgICAgICAgICAgICAgICAg
-ICAgICAgIENvbnNvbGUsIG1vbm9zcGFjZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgi
-Pjxicj4NCjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2IGNsYXNzPSJtXzY4MDIyNjM4MTQwOTI3
-MDE1NzlnbWFpbC1saW5lc3R5bGUyDQogICAgICAgICAgICAgICAgICAgICAgICBtXzY4MDIyNjM4
-MTQwOTI3MDE1NzlnbWFpbC1jb2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3Jk
-LXdyYXA6YnJlYWstd29yZCI+DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMs
-IEx1Y2lkYQ0KICAgICAgICAgICAgICAgICAgICAgICAgICBDb25zb2xlLCBtb25vc3BhY2UiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij5JIGFkZGVkDQo8YSBocmVmPSJodHRwOi8vbHVh
-XzUuMi4yLmJiIiB0YXJnZXQ9Il9ibGFuayIgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIj5sdWFfNS4y
-LjIuYmI8L2E+IGZvdW5kIGluIHRoaXMgcmVwbw0KPGEgaHJlZj0iaHR0cHM6Ly9naXQuY29uZ2F0
-ZWMuY29tL3lvY3RvL21ldGEtb3BlbmVtYmVkZGVkLmdpdCIgdGFyZ2V0PSJfYmxhbmsiIG1vei1k
-by1ub3Qtc2VuZD0idHJ1ZSI+DQpodHRwczovL2dpdC5jb25nYXRlYy5jb20vPHdicj55b2N0by9t
-ZXRhLW9wZW5lbWJlZGRlZC5naXQ8L2E+Jm5ic3A7dG8gbWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1v
-ZS88d2JyPnJlY2lwZXMtZGV2dG9vbHMvbHVhLzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2IGNs
-YXNzPSJtXzY4MDIyNjM4MTQwOTI3MDE1NzlnbWFpbC1saW5lc3R5bGUyDQogICAgICAgICAgICAg
-ICAgICAgICAgICBtXzY4MDIyNjM4MTQwOTI3MDE1NzlnbWFpbC1jb2xvdXJsaW5lIiBzdHlsZT0i
-cGFkZGluZy1sZWZ0OjdweDt3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8Zm9udCBjb2xvcj0iIzAw
-MDAwMCIgZmFjZT0iQ29uc29sYXMsIEx1Y2lkYQ0KICAgICAgICAgICAgICAgICAgICAgICAgICBD
-b25zb2xlLCBtb25vc3BhY2UiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij48YnI+DQo8
-L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdiBjbGFzcz0ibV82ODAyMjYzODE0MDkyNzAxNTc5Z21h
-aWwtbGluZXN0eWxlMg0KICAgICAgICAgICAgICAgICAgICAgICAgbV82ODAyMjYzODE0MDkyNzAx
-NTc5Z21haWwtY29sb3VybGluZSIgc3R5bGU9InBhZGRpbmctbGVmdDo3cHg7d29yZC13cmFwOmJy
-ZWFrLXdvcmQiPg0KPGZvbnQgY29sb3I9IiMwMDAwMDAiIGZhY2U9IkNvbnNvbGFzLCBMdWNpZGEN
-CiAgICAgICAgICAgICAgICAgICAgICAgICAgQ29uc29sZSwgbW9ub3NwYWNlIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjEyLjhweCI+YW5kIGFkZGVkJm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4N
-CjxkaXYgY2xhc3M9Im1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWxpbmVzdHlsZTINCiAgICAg
-ICAgICAgICAgICAgICAgICAgIG1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWNvbG91cmxpbmUi
-IHN0eWxlPSJwYWRkaW5nLWxlZnQ6N3B4O3dvcmQtd3JhcDpicmVhay13b3JkIj4NCjxmb250IGNv
-bG9yPSIjMDAwMDAwIiBmYWNlPSJDb25zb2xhcywgTHVjaWRhDQogICAgICAgICAgICAgICAgICAg
-ICAgICAgIENvbnNvbGUsIG1vbm9zcGFjZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgi
-Pjxicj4NCjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2IGNsYXNzPSJtXzY4MDIyNjM4MTQwOTI3
-MDE1NzlnbWFpbC1saW5lc3R5bGUyDQogICAgICAgICAgICAgICAgICAgICAgICBtXzY4MDIyNjM4
-MTQwOTI3MDE1NzlnbWFpbC1jb2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3Jk
-LXdyYXA6YnJlYWstd29yZCI+DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMs
-IEx1Y2lkYQ0KICAgICAgICAgICAgICAgICAgICAgICAgICBDb25zb2xlLCBtb25vc3BhY2UiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij5QUkVGRVJSRURfVkVSU0lPTl9sdWEgPSAmcXVv
-dDs1LjIlJnF1b3Q7PC9zcGFuPjxicj4NCjwvZm9udD48L2Rpdj4NCjxkaXYgY2xhc3M9Im1fNjgw
-MjI2MzgxNDA5MjcwMTU3OWdtYWlsLWxpbmVzdHlsZTINCiAgICAgICAgICAgICAgICAgICAgICAg
-IG1fNjgwMjI2MzgxNDA5MjcwMTU3OWdtYWlsLWNvbG91cmxpbmUiIHN0eWxlPSJwYWRkaW5nLWxl
-ZnQ6N3B4O3dvcmQtd3JhcDpicmVhay13b3JkIj4NCjxmb250IGNvbG9yPSIjMDAwMDAwIiBmYWNl
-PSJDb25zb2xhcywgTHVjaWRhDQogICAgICAgICAgICAgICAgICAgICAgICAgIENvbnNvbGUsIG1v
-bm9zcGFjZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPjxicj4NCjwvc3Bhbj48L2Zv
-bnQ+PC9kaXY+DQo8ZGl2IGNsYXNzPSJtXzY4MDIyNjM4MTQwOTI3MDE1NzlnbWFpbC1saW5lc3R5
-bGUyDQogICAgICAgICAgICAgICAgICAgICAgICBtXzY4MDIyNjM4MTQwOTI3MDE1NzlnbWFpbC1j
-b2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3JkLXdyYXA6YnJlYWstd29yZCI+
-DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMsIEx1Y2lkYQ0KICAgICAgICAg
-ICAgICAgICAgICAgICAgICBDb25zb2xlLCBtb25vc3BhY2UiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTIuOHB4Ij50byZuYnNwOzwvc3Bhbj48L2ZvbnQ+PHNwYW4+bWV0YS1vcGVuZW1iZWRkZWQv
-PC9zcGFuPjxzcGFuPm1ldGEtPHdicj5tdWx0aW1lZGlhL3JlY2lwZXMtbXVsdGltZWRpYS88d2Jy
-PnZsYy92bGMuaW5jPC9zcGFuPjwvZGl2Pg0KPGRpdiBjbGFzcz0ibV82ODAyMjYzODE0MDkyNzAx
-NTc5Z21haWwtbGluZXN0eWxlMg0KICAgICAgICAgICAgICAgICAgICAgICAgbV82ODAyMjYzODE0
-MDkyNzAxNTc5Z21haWwtY29sb3VybGluZSIgc3R5bGU9InBhZGRpbmctbGVmdDo3cHg7d29yZC13
-cmFwOmJyZWFrLXdvcmQiPg0KPHNwYW4+PGJyPg0KPC9zcGFuPjwvZGl2Pg0KPGRpdiBjbGFzcz0i
-bV82ODAyMjYzODE0MDkyNzAxNTc5Z21haWwtbGluZXN0eWxlMg0KICAgICAgICAgICAgICAgICAg
-ICAgICAgbV82ODAyMjYzODE0MDkyNzAxNTc5Z21haWwtY29sb3VybGluZSIgc3R5bGU9InBhZGRp
-bmctbGVmdDo3cHg7d29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPHNwYW4+YnV0IHRoaXMgZGlkbid0
-IGhhdmUgYW55IGVmZmVjdC48L3NwYW4+PC9kaXY+DQo8ZGl2IGNsYXNzPSJtXzY4MDIyNjM4MTQw
-OTI3MDE1NzlnbWFpbC1saW5lc3R5bGUyDQogICAgICAgICAgICAgICAgICAgICAgICBtXzY4MDIy
-NjM4MTQwOTI3MDE1NzlnbWFpbC1jb2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3
-b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29s
-YXMsIEx1Y2lkYQ0KICAgICAgICAgICAgICAgICAgICAgICAgICBDb25zb2xlLCBtb25vc3BhY2Ui
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij48YnI+DQo8L3NwYW4+PC9mb250PjwvZGl2
-Pg0KPGRpdiBjbGFzcz0ibV82ODAyMjYzODE0MDkyNzAxNTc5Z21haWwtbGluZXN0eWxlMg0KICAg
-ICAgICAgICAgICAgICAgICAgICAgbV82ODAyMjYzODE0MDkyNzAxNTc5Z21haWwtY29sb3VybGlu
-ZSIgc3R5bGU9InBhZGRpbmctbGVmdDo3cHg7d29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGZvbnQg
-Y29sb3I9IiMwMDAwMDAiIGZhY2U9IkNvbnNvbGFzLCBMdWNpZGENCiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgQ29uc29sZSwgbW9ub3NwYWNlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjhw
-eCI+dGhhbmtzPC9zcGFuPjwvZm9udD48L2Rpdj4NCjwvZGl2Pg0KPGJyPg0KPGZpZWxkc2V0IGNs
-YXNzPSJtXzY4MDIyNjM4MTQwOTI3MDE1NzltaW1lQXR0YWNobWVudEhlYWRlciI+PC9maWVsZHNl
-dD4gPGJyPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NClBSRUZFUlJFRF9WRVJTSU9O
-IGlzIGEgY29uZmlnLXZhcmlhYmxlLCB0cnkgc2V0dGluZyBpdCBpbiB5b3VyIGxvY2FsLmNvbmYu
-PGJyPg0KPGJyPg0KQmVzdCByZWdhcmRzIC8vIEpvaG48YnI+DQo8L2Rpdj4NCjwvYmxvY2txdW90
-ZT4NCjwvZGl2Pg0KPGJyPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQpJZiB5b3Ugd2FudCBib3Ro
-IGluIHlvdXIgZmlsZXN5c3RlbSB5b3UgbmVlZCB0byBnaXZlIHRoZSBwYWNrYWdlcyB1bmlxdWUg
-bmFtZXMgc28gdGhhdCB0aGUgcGFja2FnZXMgY2FuIGNvLWV4aXQgYWxvbmdzaWRlIGVhY2ggb3Ro
-ZXIgaW4gWW9jdG8uIE5hbWUgdGhlIGx1YV81LjIuMiByZWNpcGUgaW4gYSB3YXkgdGhhdCBpdCBj
-YW4gYmUgaW5zdGFsbGVkIHdpdGhvdXQgb3B0aW5nIG91dCBvZiBMdWEgNS4zIChlLmcuIGx1YTUy
-XzUuMi4yKSwgdGhlbg0KIGFkZCB0aGUgbmV3IHBhY2thZ2UgdG8geW91ciBpbWFnZS4gWW91IG1p
-Z2h0IG5lZWQgdG8gZG8gc29tZSBwYXRjaGluZyBmb3IgdGhpcyB0byB3b3JrLCBpbiB3aGljaCBj
-YXNlIGl0J3MgdXN1YWxseSBlYXNpZXIgdG8gcGF0Y2ggdGhlIHBhY2thZ2Ugd2l0aCB0aGUgcHJv
-YmxlbSBkZXBlbmRlbmN5IHRvIHdvcmsgd2l0aCB0aGUgYWxyZWFkeSBwcm92aWRlZCBwYWNrYWdl
-cyBpbnN0ZWFkLiAoZS5nLiBwYXRjaCBWTEMgdG8gd29yayB3aXRoIEx1YQ0KIDUuMykuPGJyPg0K
-PGJyPg0KQmVzdCByZWdhcmRzIC8vIEpvaG48YnI+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
 
---_000_d684ce1e54330309ecd1c3f55fe54c9bactiase_--
+https://www.yoctoproject.org/tools-resources/community/weekly-technical-cal=
+l
+
+Conference Details:
+Company:           WIND RIVER SYS
+- dial into: 1-800-262-0778/404-397-1527
+- enter the bridge number: 88748961#
+
+The international numbers are:
+
+United States Toll      404-397-1527
+US & Canada Toll Free   800-262-0778
+Albania dial 008000010+ 8558142509
+Angola dial 808000011+  8558142510
+Anguilla Toll Free      18003004779
+Argentina Toll  +541159844583
+Argentina Toll Free     08004446354
+Australia Toll  +610386580431
+Australia Toll Free     1800347095
+Austria Toll Free       080088668498
+Bahamas Toll Free       18003890740
+Bahrain Toll Free       80006770
+Bangladesh dial 1570011+        8558142505
+Barbados Toll Free      18002070056
+Belarus Toll Free       882000110813
+Belgium Toll    +3227925498
+Belgium Toll Free       080029896
+Belize Toll Free        18000130907
+Bermuda Toll free       18002072792
+Botswana Toll Free      002698003004981
+Brazil Toll     +5501149497489
+Brazil Toll Free        08008919885
+British Virgin Islands Toll Free        18002075710
+Brunei Toll Free        8014373
+Bulgaria Toll   +359024916371
+Bulgaria Toll Free      008001201170
+Cambodia Toll Free      1800209578
+Cambodia Toll Free      1800209361
+Canada Toll     +14169810101
+Cayman islands Toll Free        18444305771
+Chile Toll      +56442080836
+Chile Toll Free 12300206143
+China Toll Free 4000342070
+China Toll Free 8008709853
+China Toll Free 4008877140
+China Toll Free 8008768605
+Colombia Toll   +5714864720
+Colombia Toll Free      18000129671
+Costa Rica Toll 40017415
+Croatia Toll    +38517776838
+Croatia Toll Free       08009975
+Cuba dial 2935+ 8558142540
+Cyprus Toll Free        80096877
+Czech Republic Toll Free        0800701476
+Denmark Toll    +4536927940
+Denmark Toll Free       80251209
+Dominica Toll Free      18003004904
+Dominican Republic Toll Free    18887514588
+Ecuador Toll Free       1800000314
+Egypt Toll Free 08000009493
+Estonia Toll    +3726867092
+Estonia Toll Free       8000100708
+Finland Toll    +3580923195770
+Finland Toll Free       0800774585
+France Toll     +33272249926
+France Toll Free        0800947235
+French Guiana Toll Free 0800910113
+Germany Toll    +4930700150733
+Germany Toll Free       08007238960
+Ghana dial 0242426004+  8553944954
+Greece Toll     +302111983414
+Greece Toll Free        0080016122059757
+Grenada Toll Free       18003004905
+Guatemala dial 0019999190+      8553944634
+Honduras Toll Free      80027919493
+Hong Kong Toll  +85230507540
+Hong Kong Toll Free     800961673
+Hungary Toll    +40017789124
+Hungary Toll Free       0680015494
+India Toll      +914466747384
+India Toll Free 18002090252
+Indonesia Toll Free     0078030114912
+Ireland Toll    +35316539376
+Ireland Toll Free       1800948436
+Israel Toll     +97233762260
+Israel Toll Free        1809458778
+Italy Toll      +390200617793
+Italy Toll Free 0800187234
+Jamaica Toll Free       18002196874
+Japan Toll      +810345786573
+Japan Toll Free 0120525303
+Jordan Toll Free        080022545
+Kenya Toll Free 0800723004
+Latvia Toll Free        8002601
+Lebanon dial 01426801+  8558142511
+Lithuania Toll  +37052054804
+Lithuania Toll Free     880031895
+Luxembourg Toll +35228264835
+Luxembourg Toll Free    80023986
+Macedonia Toll Free     080094382
+Malaysia Toll   +600377248228
+Malta Toll      +35627781438
+Malta Toll Free 80062568
+Martinique Toll Free    0800910664
+Mauritius Toll Free     8020440157
+Mexico Toll     +52015515001053
+Mexico Toll Free        018002530547
+Moldavia Toll Free      080062305
+Monaco Toll Free        80094215
+Morocco dial 002110011+ 8558142537
+Netherlands Toll        +310107994621
+Netherlands Toll Free   08000200244
+New Zealand Toll        +64042806288
+New Zealand Toll Free   0800441743
+Norway Toll     +4721034359
+Norway Toll Free        80058604
+Oman Toll Free  80074218
+Pakistan Toll   +924238108753
+Panama Toll     +5078323301
+Panama Toll Free        008002267987
+Paraguay Toll Free      009800110233
+Peru Toll       +51017017728
+Peru Toll Free  080078493
+Philippines Toll        +6322312145
+Philippines Toll Free   180011101073
+Poland Toll     +480223060270
+Poland Toll Free        800080328
+Portugal Toll   +351707201563
+Portugal Toll Free      800788629
+Qatar Toll Free 00800100142
+Romania Toll    +40215291752
+Romania Toll Free       0800400068
+Russia Toll     +74993504823
+Russia Toll Free        81080026895011
+Saudi Arabia Toll Free  8008442574
+Saudi Arabia Toll Free  8008500370
+Senegal dial 800103072+ 8558842521
+Serbia Toll Free        0800190975
+Singapore Toll  +6563494173
+Singapore Toll Free     18005792882
+Slovakia Toll   +4210268622038
+Slovakia Toll Free      0800606692
+Slovenia Toll   +38618281644
+Slovenia Toll Free      080081438
+South Africa Toll       +270214277972
+South Africa Toll Free  0800994623
+South Korea Toll        +827074882482
+South Korea Toll Free   00308132034
+Spain Mobile    900-828-467
+Spain Toll      +34935451755
+Spain Toll Free 900828467
+Sri Lanka Toll  +94720910363
+Sweden Toll     +460114966619
+Sweden Toll Free        0201409738
+Switzerland Toll        +41434569403
+Switzerland Toll Free   800740310
+Taiwan Toll     +8860287933075
+Taiwan Toll Free        0800868159
+Thailand Toll   +6621040574
+Thailand Toll Free      0018001562038778
+Trinidad and Tobago Toll Free   18002038778
+Turkey Toll     +902129003723
+Turks & Caicos Toll Free        18003000086
+UK Toll +442030144000
+UK Toll Free    08005283819
+Ukraine Toll    +380893240452
+Ukraine Toll Free       0800503625
+United Arab Emirates Toll Free  800035703321
+Uruguay Toll Free       00040190461
+Venezuela Toll Free     08001004189
+Vietnam Toll Free       12065242
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC720FD9Efmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:10pt;">
+<div><font color=3D"#1F497D">YPTM will be Jan. 2, 2018 at 8am PST.</font></=
+div>
+<div><font color=3D"#1F497D">&nbsp;</font></div>
+<div>We encourage people attending the meeting to logon and announce themse=
+lves on the Yocto Project IRC chancel during the meeting (optional):</div>
+<div>&nbsp;</div>
+<div>Yocto IRC: <a href=3D"http://webchat.freenode.net/?channels=3D#yocto">=
+<font color=3D"blue"><u>http://webchat.freenode.net/?channels=3D#yocto</u><=
+/font></a></div>
+<div>IRC Tutorial: <a href=3D"http://www.irchelp.org/irchelp/irctutorial.ht=
+ml"><font color=3D"blue"><u>http://www.irchelp.org/irchelp/irctutorial.html=
+</u></font></a> </div>
+<div>&nbsp;</div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;"><a href=3D"https://ww=
+w.yoctoproject.org/tools-resources/community/weekly-technical-call"><font s=
+ize=3D"2" color=3D"blue"><span style=3D"font-size:10pt;"><u>https://www.yoc=
+toproject.org/tools-resources/community/weekly-technical-call</u></span></f=
+ont></a></span></font></div>
+<div>&nbsp;</div>
+<div>Conference Details:</div>
+<div>Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; W=
+IND RIVER SYS</div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">- dial into: 1-800-26=
+2-0778/404-397-1527</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">- enter the bridge nu=
+mber: 88748961#</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">&nbsp;</span></font><=
+/div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">The international num=
+bers are:</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">&nbsp;</span></font><=
+/div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">United States Toll&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 404-397-1527</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">US &amp; Canada Toll =
+Free&nbsp;&nbsp; 800-262-0778</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Albania dial 00800001=
+0&#43; 8558142509</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Angola dial 808000011=
+&#43;&nbsp; 8558142510</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Anguilla Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 18003004779</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Argentina Toll&nbsp; =
+&#43;541159844583</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Argentina Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 08004446354</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Australia Toll&nbsp; =
+&#43;610386580431</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Australia Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 1800347095</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Austria Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080088668498</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Bahamas Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18003890740</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Bahrain Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80006770</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Bangladesh dial 15700=
+11&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8558142505</span></font><=
+/div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Barbados Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 18002070056</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Belarus Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 882000110813</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Belgium Toll&nbsp;&nb=
+sp;&nbsp; &#43;3227925498</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Belgium Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080029896</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Belize Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18000130907</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Bermuda Toll free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18002072792</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Botswana Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 002698003004981</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Brazil Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;5501149497489</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Brazil Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 08008919885</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">British Virgin Island=
+s Toll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18002075710</span></f=
+ont></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Brunei Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8014373</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Bulgaria Toll&nbsp;&n=
+bsp; &#43;359024916371</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Bulgaria Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 008001201170</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Cambodia Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 1800209578</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Cambodia Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 1800209361</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Canada Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;14169810101</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Cayman islands Toll F=
+ree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18444305771</span></font></di=
+v>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Chile Toll&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; &#43;56442080836</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Chile Toll Free 12300=
+206143</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">China Toll Free 40003=
+42070</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">China Toll Free 80087=
+09853</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">China Toll Free 40088=
+77140</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">China Toll Free 80087=
+68605</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Colombia Toll&nbsp;&n=
+bsp; &#43;5714864720</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Colombia Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 18000129671</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Costa Rica Toll 40017=
+415</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Croatia Toll&nbsp;&nb=
+sp;&nbsp; &#43;38517776838</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Croatia Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 08009975</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Cuba dial 2935&#43; 8=
+558142540</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Cyprus Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80096877</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Czech Republic Toll F=
+ree&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800701476</span></font></div=
+>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Denmark Toll&nbsp;&nb=
+sp;&nbsp; &#43;4536927940</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Denmark Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80251209</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Dominica Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 18003004904</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Dominican Republic To=
+ll Free&nbsp;&nbsp;&nbsp; 18887514588</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Ecuador Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800000314</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Egypt Toll Free 08000=
+009493</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Estonia Toll&nbsp;&nb=
+sp;&nbsp; &#43;3726867092</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Estonia Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8000100708</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Finland Toll&nbsp;&nb=
+sp;&nbsp; &#43;3580923195770</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Finland Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800774585</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">France Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;33272249926</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">France Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800947235</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">French Guiana Toll Fr=
+ee 0800910113</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Germany Toll&nbsp;&nb=
+sp;&nbsp; &#43;4930700150733</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Germany Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 08007238960</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Ghana dial 0242426004=
+&#43;&nbsp; 8553944954</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Greece Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;302111983414</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Greece Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0080016122059757</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Grenada Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18003004905</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Guatemala dial 001999=
+9190&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8553944634</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Honduras Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 80027919493</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Hong Kong Toll&nbsp; =
+&#43;85230507540</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Hong Kong Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 800961673</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Hungary Toll&nbsp;&nb=
+sp;&nbsp; &#43;40017789124</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Hungary Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0680015494</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">India Toll&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; &#43;914466747384</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">India Toll Free 18002=
+090252</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Indonesia Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 0078030114912</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Ireland Toll&nbsp;&nb=
+sp;&nbsp; &#43;35316539376</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Ireland Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1800948436</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Israel Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;97233762260</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Israel Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1809458778</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Italy Toll&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; &#43;390200617793</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Italy Toll Free 08001=
+87234</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Jamaica Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18002196874</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Japan Toll&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; &#43;810345786573</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Japan Toll Free 01205=
+25303</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Jordan Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 080022545</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Kenya Toll Free 08007=
+23004</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Latvia Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8002601</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Lebanon dial 01426801=
+&#43;&nbsp; 8558142511</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Lithuania Toll&nbsp; =
+&#43;37052054804</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Lithuania Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 880031895</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Luxembourg Toll &#43;=
+35228264835</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Luxembourg Toll Free&=
+nbsp;&nbsp;&nbsp; 80023986</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Macedonia Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 080094382</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Malaysia Toll&nbsp;&n=
+bsp; &#43;600377248228</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Malta Toll&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; &#43;35627781438</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Malta Toll Free 80062=
+568</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Martinique Toll Free&=
+nbsp;&nbsp;&nbsp; 0800910664</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Mauritius Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 8020440157</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Mexico Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;52015515001053</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Mexico Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 018002530547</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Moldavia Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 080062305</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Monaco Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80094215</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Morocco dial 00211001=
+1&#43; 8558142537</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Netherlands Toll&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;310107994621</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Netherlands Toll Free=
+&nbsp;&nbsp; 08000200244</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">New Zealand Toll&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;64042806288</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">New Zealand Toll Free=
+&nbsp;&nbsp; 0800441743</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Norway Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;4721034359</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Norway Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80058604</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Oman Toll Free&nbsp; =
+80074218</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Pakistan Toll&nbsp;&n=
+bsp; &#43;924238108753</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Panama Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;5078323301</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Panama Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 008002267987</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Paraguay Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 009800110233</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Peru Toll&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; &#43;51017017728</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Peru Toll Free&nbsp; =
+080078493</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Philippines Toll&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;6322312145</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Philippines Toll Free=
+&nbsp;&nbsp; 180011101073</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Poland Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;480223060270</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Poland Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 800080328</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Portugal Toll&nbsp;&n=
+bsp; &#43;351707201563</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Portugal Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 800788629</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Qatar Toll Free 00800=
+100142</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Romania Toll&nbsp;&nb=
+sp;&nbsp; &#43;40215291752</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Romania Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800400068</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Russia Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;74993504823</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Russia Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 81080026895011</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Saudi Arabia Toll Fre=
+e&nbsp; 8008442574</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Saudi Arabia Toll Fre=
+e&nbsp; 8008500370</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Senegal dial 80010307=
+2&#43; 8558842521</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Serbia Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800190975</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Singapore Toll&nbsp; =
+&#43;6563494173</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Singapore Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 18005792882</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Slovakia Toll&nbsp;&n=
+bsp; &#43;4210268622038</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Slovakia Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 0800606692</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Slovenia Toll&nbsp;&n=
+bsp; &#43;38618281644</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Slovenia Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 080081438</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">South Africa Toll&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;270214277972</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">South Africa Toll Fre=
+e&nbsp; 0800994623</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">South Korea Toll&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;827074882482</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">South Korea Toll Free=
+&nbsp;&nbsp; 00308132034</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Spain Mobile&nbsp;&nb=
+sp;&nbsp; 900-828-467</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Spain Toll&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; &#43;34935451755</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Spain Toll Free 90082=
+8467</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Sri Lanka Toll&nbsp; =
+&#43;94720910363</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Sweden Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;460114966619</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Sweden Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0201409738</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Switzerland Toll&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#43;41434569403</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Switzerland Toll Free=
+&nbsp;&nbsp; 800740310</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Taiwan Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;8860287933075</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Taiwan Toll Free&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800868159</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Thailand Toll&nbsp;&n=
+bsp; &#43;6621040574</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Thailand Toll Free&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 0018001562038778</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Trinidad and Tobago T=
+oll Free&nbsp;&nbsp; 18002038778</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Turkey Toll&nbsp;&nbs=
+p;&nbsp;&nbsp; &#43;902129003723</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Turks &amp; Caicos To=
+ll Free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 18003000086</span></font>=
+</div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">UK Toll &#43;44203014=
+4000</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">UK Toll Free&nbsp;&nb=
+sp;&nbsp; 08005283819</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Ukraine Toll&nbsp;&nb=
+sp;&nbsp; &#43;380893240452</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Ukraine Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0800503625</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">United Arab Emirates =
+Toll Free&nbsp; 800035703321</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Uruguay Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 00040190461</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Venezuela Toll Free&n=
+bsp;&nbsp;&nbsp;&nbsp; 08001004189</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">Vietnam Toll Free&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12065242<font size=3D"2"><span style=3D"fo=
+nt-size:10pt;">&nbsp;</span></font></span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:11pt;">&nbsp;</span></font><=
+/div>
+</span></font>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC720FD9Efmsmsx111amrcor_--
