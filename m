@@ -1,27 +1,43 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <john.ernberg@actia.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8F03E00D69; Sun, 31 Dec 2017 21:31:31 -0800 (PST)
+	id 36173E00CBE; Mon,  1 Jan 2018 04:42:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,HEXHASH_WORD,
-	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82A4BE00C02
-	for <yocto@yoctoproject.org>; Sun, 31 Dec 2017 21:31:30 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 4F2EE8086CA0
-	for <yocto@yoctoproject.org>; Mon,  1 Jan 2018 00:31:29 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
+	Mon, 01 Jan 2018 04:42:49 PST
+Received: from mail.actia.se (mail.actia.se [195.67.112.82])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35315E00A84
+	for <yocto@yoctoproject.org>; Mon,  1 Jan 2018 04:42:49 -0800 (PST)
+Received: from S036ANL.actianordic.se (192.168.16.117) by
+	S035ANL.actianordic.se (192.168.16.116) with Microsoft SMTP Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+	15.1.1415.2; Mon, 1 Jan 2018 13:27:44 +0100
+Received: from S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69]) by
+	S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69%3]) with mapi id
+	15.01.1415.002; Mon, 1 Jan 2018 13:27:44 +0100
+From: John Ernberg <john.ernberg@actia.se>
+To: Dafna Hirschfeld <dafna3@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] setting DEPENDS variable to specific package version
+Thread-Index: AQHTgZN1yi4JcqvcXkin6z8y5jiSXaNe4+4A
+Date: Mon, 1 Jan 2018 12:27:44 +0000
+Message-ID: <f6706ba2-6e01-956d-d4c1-a8261b756d17@actia.se>
+References: <CAJ1myNTqQiSk-v+XcHrUY1NfgShKoNdAandDgD8tD04imHL_fQ@mail.gmail.com>
+In-Reply-To: <CAJ1myNTqQiSk-v+XcHrUY1NfgShKoNdAandDgD8tD04imHL_fQ@mail.gmail.com>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.15.7]
+x-esetresult: clean, is OK
+x-esetid: 37303A29B7F8896C6C7465
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 01 Jan 2018 05:31:29 -0000
-Message-ID: <20180101053129.6163.78880@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Subject: Re: setting DEPENDS variable to specific package version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,235 +49,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jan 2018 05:31:31 -0000
+X-List-Received-Date: Mon, 01 Jan 2018 12:42:52 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_f6706ba26e01956dd4c1a8261b756d17actiase_"
+
+--_000_f6706ba26e01956dd4c1a8261b756d17actiase_
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: base64
 
-This mail was sent out by Recipe reporting system.
+SGkgRGFmbmEsDQoNCk9uIDEyLzMwLzIwMTcgMDY6MjUgUE0sIERhZm5hIEhpcnNjaGZlbGQgd3Jv
+dGU6DQpIaSwNCg0KSSB3YW50IHRvIGFkZCB0aGUgdmxjIHBhY2thZ2UgLCB3aGljaCBoYXMgImx1
+YSIgcGFja2FnZSBpbiBpdCdzIERFUE5FTkRTIHZhcmlhYmxlLg0KQnV0IHZsYyBuZWVkcyBsdWE1
+LjIgYW5kIHRoZSBkZWZhdWx0IGlzIGx1YTUuMw0KU28gd2hlbiBydW5uaW5nIHZsYyBvbiB0aGUg
+dGFyZ2V0IEkgZ2V0ICJ1bmRlZmluZWQgc3ltYm9sIiBpbiB0aGUgbGlibHVhX3BsdWdpbi5zbw0K
+U28gaG93IGRvIEkgc2V0IHRoZSBwYWNrYWdlcyBpbiBERVBFTkRTIHRvIGJlIGluIHNwZWNpZmlj
+IHZlcnNpb24gPw0KDQpJIGFkZGVkIGx1YV81LjIuMi5iYjxodHRwOi8vbHVhXzUuMi4yLmJiPiBm
+b3VuZCBpbiB0aGlzIHJlcG8gaHR0cHM6Ly9naXQuY29uZ2F0ZWMuY29tL3lvY3RvL21ldGEtb3Bl
+bmVtYmVkZGVkLmdpdCB0byBtZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW9lL3JlY2lwZXMtZGV2dG9v
+bHMvbHVhLw0KDQphbmQgYWRkZWQNCg0KUFJFRkVSUkVEX1ZFUlNJT05fbHVhID0gIjUuMiUiDQoN
+CnRvIG1ldGEtb3BlbmVtYmVkZGVkL21ldGEtbXVsdGltZWRpYS9yZWNpcGVzLW11bHRpbWVkaWEv
+dmxjL3ZsYy5pbmMNCg0KYnV0IHRoaXMgZGlkbid0IGhhdmUgYW55IGVmZmVjdC4NCg0KdGhhbmtz
+DQoNCg0KUFJFRkVSUkVEX1ZFUlNJT04gaXMgYSBjb25maWctdmFyaWFibGUsIHRyeSBzZXR0aW5n
+IGl0IGluIHlvdXIgbG9jYWwuY29uZi4NCg0KQmVzdCByZWdhcmRzIC8vIEpvaG4NCg==
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+--_000_f6706ba26e01956dd4c1a8261b756d17actiase_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <472B07E0630A484BB30150777CA1493A@actia.se>
+Content-Transfer-Encoding: base64
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGJnY29sb3I9IiNGRkZG
+RkYiIHRleHQ9IiMwMDAwMDAiPg0KPHA+SGkgRGFmbmEsPC9wPg0KPGRpdiBjbGFzcz0ibW96LWNp
+dGUtcHJlZml4Ij5PbiAxMi8zMC8yMDE3IDA2OjI1IFBNLCBEYWZuYSBIaXJzY2hmZWxkIHdyb3Rl
+Ojxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSIgY2l0ZT0ibWlkOkNBSjFteU5U
+cVFpU2stdiYjNDM7WGNIclVZMU5mZ1NoS29OZEFhbmREZ0Q4dEQwNGltSExfZlFAbWFpbC5nbWFp
+bC5jb20iPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGNsYXNzPSJnbWFpbC1saW5lc3R5bGUxIGdt
+YWlsLWNvbG91cmxpbmUiIHN0eWxlPSJmb250LWZhbWlseTpDb25zb2xhcywmcXVvdDtMdWNpZGEN
+CkNvbnNvbGUmcXVvdDssbW9ub3NwYWNlO3BhZGRpbmctbGVmdDo3cHg7d29yZC13cmFwOmJyZWFr
+LXdvcmQ7Y29sb3I6cmdiKDAsMCwwKTtmb250LXNpemU6MTIuOHB4Ij4NCjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTIuOHB4Ij5IaSw8L3NwYW4+PC9kaXY+DQo8ZGl2IGNsYXNzPSJnbWFpbC1saW5l
+c3R5bGUxIGdtYWlsLWNvbG91cmxpbmUiIHN0eWxlPSJmb250LWZhbWlseTpDb25zb2xhcywmcXVv
+dDtMdWNpZGENCkNvbnNvbGUmcXVvdDssbW9ub3NwYWNlO3BhZGRpbmctbGVmdDo3cHg7d29yZC13
+cmFwOmJyZWFrLXdvcmQ7Y29sb3I6cmdiKDAsMCwwKTtmb250LXNpemU6MTIuOHB4Ij4NCjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij48YnI+DQo8L3NwYW4+PC9kaXY+DQo8ZGl2IGNsYXNz
+PSJnbWFpbC1saW5lc3R5bGUxIGdtYWlsLWNvbG91cmxpbmUiIHN0eWxlPSJmb250LWZhbWlseTpD
+b25zb2xhcywmcXVvdDtMdWNpZGENCkNvbnNvbGUmcXVvdDssbW9ub3NwYWNlO3BhZGRpbmctbGVm
+dDo3cHg7d29yZC13cmFwOmJyZWFrLXdvcmQ7Y29sb3I6cmdiKDAsMCwwKTtmb250LXNpemU6MTIu
+OHB4Ij4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij5JIHdhbnQgdG8gYWRkIHRoZSB2
+bGMgcGFja2FnZSAsIHdoaWNoIGhhcyAmcXVvdDtsdWEmcXVvdDsgcGFja2FnZSBpbiBpdCdzIERF
+UE5FTkRTIHZhcmlhYmxlLjwvc3Bhbj48YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9ImdtYWlsLWxp
+bmVzdHlsZTIgZ21haWwtY29sb3VybGluZSIgc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzLCZx
+dW90O0x1Y2lkYQ0KQ29uc29sZSZxdW90Oyxtb25vc3BhY2U7cGFkZGluZy1sZWZ0OjdweDt3b3Jk
+LXdyYXA6YnJlYWstd29yZDtjb2xvcjpyZ2IoMCwwLDApO2ZvbnQtc2l6ZToxMi44cHgiPg0KQnV0
+IHZsYyBuZWVkcyBsdWE1LjIgYW5kIHRoZSBkZWZhdWx0IGlzIGx1YTUuMzwvZGl2Pg0KPGRpdiBj
+bGFzcz0iZ21haWwtbGluZXN0eWxlMiBnbWFpbC1jb2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1s
+ZWZ0OjdweDt3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFj
+ZT0iQ29uc29sYXMsIEx1Y2lkYSBDb25zb2xlLCBtb25vc3BhY2UiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTIuOHB4Ij5TbyB3aGVuIHJ1bm5pbmcgdmxjIG9uIHRoZSB0YXJnZXQgSSBnZXQgJnF1
+b3Q7dW5kZWZpbmVkIHN5bWJvbCZxdW90OyBpbiB0aGUgbGlibHVhX3BsdWdpbi5zbzwvc3Bhbj48
+L2ZvbnQ+PGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJnbWFpbC1saW5lc3R5bGUyIGdtYWlsLWNv
+bG91cmxpbmUiIHN0eWxlPSJwYWRkaW5nLWxlZnQ6N3B4O3dvcmQtd3JhcDpicmVhay13b3JkIj4N
+Cjxmb250IGNvbG9yPSIjMDAwMDAwIiBmYWNlPSJDb25zb2xhcywgTHVjaWRhIENvbnNvbGUsIG1v
+bm9zcGFjZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPlNvIGhvdyBkbyBJIHNldCB0
+aGUgcGFja2FnZXMgaW4gREVQRU5EUyB0byBiZSBpbiBzcGVjaWZpYyB2ZXJzaW9uID88L3NwYW4+
+PC9mb250Pjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iZ21haWwtbGluZXN0eWxlMiBnbWFpbC1j
+b2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3JkLXdyYXA6YnJlYWstd29yZCI+
+DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMsIEx1Y2lkYSBDb25zb2xlLCBt
+b25vc3BhY2UiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij48YnI+DQo8L3NwYW4+PC9m
+b250PjwvZGl2Pg0KPGRpdiBjbGFzcz0iZ21haWwtbGluZXN0eWxlMiBnbWFpbC1jb2xvdXJsaW5l
+IiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8Zm9udCBj
+b2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMsIEx1Y2lkYSBDb25zb2xlLCBtb25vc3BhY2Ui
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij5JIGFkZGVkDQo8YSBocmVmPSJodHRwOi8v
+bHVhXzUuMi4yLmJiIiBtb3otZG8tbm90LXNlbmQ9InRydWUiPmx1YV81LjIuMi5iYjwvYT4gZm91
+bmQgaW4gdGhpcyByZXBvDQo8YSBocmVmPSJodHRwczovL2dpdC5jb25nYXRlYy5jb20veW9jdG8v
+bWV0YS1vcGVuZW1iZWRkZWQuZ2l0IiBtb3otZG8tbm90LXNlbmQ9InRydWUiPg0KaHR0cHM6Ly9n
+aXQuY29uZ2F0ZWMuY29tL3lvY3RvL21ldGEtb3BlbmVtYmVkZGVkLmdpdDwvYT4mbmJzcDt0byBt
+ZXRhLW9wZW5lbWJlZGRlZC9tZXRhLW9lL3JlY2lwZXMtZGV2dG9vbHMvbHVhLzwvc3Bhbj48L2Zv
+bnQ+PC9kaXY+DQo8ZGl2IGNsYXNzPSJnbWFpbC1saW5lc3R5bGUyIGdtYWlsLWNvbG91cmxpbmUi
+IHN0eWxlPSJwYWRkaW5nLWxlZnQ6N3B4O3dvcmQtd3JhcDpicmVhay13b3JkIj4NCjxmb250IGNv
+bG9yPSIjMDAwMDAwIiBmYWNlPSJDb25zb2xhcywgTHVjaWRhIENvbnNvbGUsIG1vbm9zcGFjZSI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPjxicj4NCjwvc3Bhbj48L2ZvbnQ+PC9kaXY+
+DQo8ZGl2IGNsYXNzPSJnbWFpbC1saW5lc3R5bGUyIGdtYWlsLWNvbG91cmxpbmUiIHN0eWxlPSJw
+YWRkaW5nLWxlZnQ6N3B4O3dvcmQtd3JhcDpicmVhay13b3JkIj4NCjxmb250IGNvbG9yPSIjMDAw
+MDAwIiBmYWNlPSJDb25zb2xhcywgTHVjaWRhIENvbnNvbGUsIG1vbm9zcGFjZSI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMi44cHgiPmFuZCBhZGRlZCZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+
+DQo8ZGl2IGNsYXNzPSJnbWFpbC1saW5lc3R5bGUyIGdtYWlsLWNvbG91cmxpbmUiIHN0eWxlPSJw
+YWRkaW5nLWxlZnQ6N3B4O3dvcmQtd3JhcDpicmVhay13b3JkIj4NCjxmb250IGNvbG9yPSIjMDAw
+MDAwIiBmYWNlPSJDb25zb2xhcywgTHVjaWRhIENvbnNvbGUsIG1vbm9zcGFjZSI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMi44cHgiPjxicj4NCjwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2IGNs
+YXNzPSJnbWFpbC1saW5lc3R5bGUyIGdtYWlsLWNvbG91cmxpbmUiIHN0eWxlPSJwYWRkaW5nLWxl
+ZnQ6N3B4O3dvcmQtd3JhcDpicmVhay13b3JkIj4NCjxmb250IGNvbG9yPSIjMDAwMDAwIiBmYWNl
+PSJDb25zb2xhcywgTHVjaWRhIENvbnNvbGUsIG1vbm9zcGFjZSI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMi44cHgiPlBSRUZFUlJFRF9WRVJTSU9OX2x1YSA9ICZxdW90OzUuMiUmcXVvdDs8L3Nw
+YW4+PGJyPg0KPC9mb250PjwvZGl2Pg0KPGRpdiBjbGFzcz0iZ21haWwtbGluZXN0eWxlMiBnbWFp
+bC1jb2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3JkLXdyYXA6YnJlYWstd29y
+ZCI+DQo8Zm9udCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMsIEx1Y2lkYSBDb25zb2xl
+LCBtb25vc3BhY2UiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij48YnI+DQo8L3NwYW4+
+PC9mb250PjwvZGl2Pg0KPGRpdiBjbGFzcz0iZ21haWwtbGluZXN0eWxlMiBnbWFpbC1jb2xvdXJs
+aW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8Zm9u
+dCBjb2xvcj0iIzAwMDAwMCIgZmFjZT0iQ29uc29sYXMsIEx1Y2lkYSBDb25zb2xlLCBtb25vc3Bh
+Y2UiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij50byZuYnNwOzwvc3Bhbj48L2ZvbnQ+
+PHNwYW4gc3R5bGU9ImNvbG9yOnJnYigwLDAsMCk7Zm9udC1mYW1pbHk6Q29uc29sYXMsJnF1b3Q7
+THVjaWRhDQogICAgICAgICAgICBDb25zb2xlJnF1b3Q7LG1vbm9zcGFjZTtmb250LXNpemU6MTIu
+OHB4Ij5tZXRhLW9wZW5lbWJlZGRlZC88L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi44
+cHg7Y29sb3I6cmdiKDAsMCwwKTtmb250LWZhbWlseTpDb25zb2xhcywmcXVvdDtMdWNpZGENCiAg
+ICAgICAgICAgIENvbnNvbGUmcXVvdDssbW9ub3NwYWNlIj5tZXRhLW11bHRpbWVkaWEvcmVjaXBl
+cy1tdWx0aW1lZGlhL3ZsYy92bGMuaW5jPC9zcGFuPjwvZGl2Pg0KPGRpdiBjbGFzcz0iZ21haWwt
+bGluZXN0eWxlMiBnbWFpbC1jb2xvdXJsaW5lIiBzdHlsZT0icGFkZGluZy1sZWZ0OjdweDt3b3Jk
+LXdyYXA6YnJlYWstd29yZCI+DQo8c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjhweDtjb2xvcjpy
+Z2IoMCwwLDApO2ZvbnQtZmFtaWx5OkNvbnNvbGFzLCZxdW90O0x1Y2lkYQ0KICAgICAgICAgICAg
+Q29uc29sZSZxdW90Oyxtb25vc3BhY2UiPjxicj4NCjwvc3Bhbj48L2Rpdj4NCjxkaXYgY2xhc3M9
+ImdtYWlsLWxpbmVzdHlsZTIgZ21haWwtY29sb3VybGluZSIgc3R5bGU9InBhZGRpbmctbGVmdDo3
+cHg7d29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi44cHg7
+Y29sb3I6cmdiKDAsMCwwKTtmb250LWZhbWlseTpDb25zb2xhcywmcXVvdDtMdWNpZGENCiAgICAg
+ICAgICAgIENvbnNvbGUmcXVvdDssbW9ub3NwYWNlIj5idXQgdGhpcyBkaWRuJ3QgaGF2ZSBhbnkg
+ZWZmZWN0Ljwvc3Bhbj48L2Rpdj4NCjxkaXYgY2xhc3M9ImdtYWlsLWxpbmVzdHlsZTIgZ21haWwt
+Y29sb3VybGluZSIgc3R5bGU9InBhZGRpbmctbGVmdDo3cHg7d29yZC13cmFwOmJyZWFrLXdvcmQi
+Pg0KPGZvbnQgY29sb3I9IiMwMDAwMDAiIGZhY2U9IkNvbnNvbGFzLCBMdWNpZGEgQ29uc29sZSwg
+bW9ub3NwYWNlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+PGJyPg0KPC9zcGFuPjwv
+Zm9udD48L2Rpdj4NCjxkaXYgY2xhc3M9ImdtYWlsLWxpbmVzdHlsZTIgZ21haWwtY29sb3VybGlu
+ZSIgc3R5bGU9InBhZGRpbmctbGVmdDo3cHg7d29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGZvbnQg
+Y29sb3I9IiMwMDAwMDAiIGZhY2U9IkNvbnNvbGFzLCBMdWNpZGEgQ29uc29sZSwgbW9ub3NwYWNl
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+dGhhbmtzPC9zcGFuPjwvZm9udD48L2Rp
+dj4NCjwvZGl2Pg0KPGJyPg0KPGZpZWxkc2V0IGNsYXNzPSJtaW1lQXR0YWNobWVudEhlYWRlciI+
+PC9maWVsZHNldD4gPGJyPg0KPC9ibG9ja3F1b3RlPg0KUFJFRkVSUkVEX1ZFUlNJT04gaXMgYSBj
+b25maWctdmFyaWFibGUsIHRyeSBzZXR0aW5nIGl0IGluIHlvdXIgbG9jYWwuY29uZi48YnI+DQo8
+YnI+DQpCZXN0IHJlZ2FyZHMgLy8gSm9objxicj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-python3               3.5.3            3.6.4                 Alejandro Hernandez
-python                2.7.13           2.7.14                Alejandro Hernandez
-eudev                 3.2.2            3.2.5                 Alejandro Hernandez
-python3-native        3.5.3            3.6.4                 Alejandro Hernandez
-python-native         2.7.13           2.7.14                Alejandro Hernandez
-usbutils              008              009                   Alexander Kanavin
-gtk-doc               1.25             1.27                  Alexander Kanavin
-webkitgtk             2.18.3           2.18.4                Alexander Kanavin
-bjam-native           1.65.1           1.66.0                Alexander Kanavin
-dnf                   2.6.3            2.7.5                 Alexander Kanavin
-libdnf                0.9.3            0.11.1                Alexander Kanavin
-librepo               1.7.20+gitX      1.8.1                 Alexander Kanavin
-blktrace              1.1.0+gitX       1.2.0                 Alexander Kanavin
-btrfs-tools           4.13.3           4.14                  Alexander Kanavin
-systemtap-uprobes     3.1              3.2                   Alexander Kanavin
-systemtap             3.1              3.2                   Alexander Kanavin
-kernelshark           2.6.1            2.6.2                 Alexander Kanavin
-trace-cmd             2.6.1            2.6.2                 Alexander Kanavin
-mpg123                1.25.7           1.25.8                Alexander Kanavin
-tiff                  4.0.8            4.0.9                 Alexander Kanavin
-epiphany              3.24.3           3.26.5.1              Alexander Kanavin
-boost                 1.65.1           1.66.0                Alexander Kanavin
-vala                  0.38.2           0.38.4                Alexander Kanavin
-libnl                 3.2.29           3.4.0                 Alexander Kanavin
-ffmpeg                3.4              3.4.1                 Alexander Kanavin
-icu                   60.1             60.2                  Alexander Kanavin
-mkelfimage            4.0+gitX         4.6                   Alexander Kanavin    mkelfimage has been removed...
-iso-codes             3.76             3.77                  Alexander Kanavin
-libwebp               0.6.0            0.6.1                 Alexander Kanavin
-apt                   1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.4              Aníbal Limón
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-bind                  9.10.6           9.11.2                Armin Kuster
-libxcursor            1.1.14           1.1.15                Armin Kuster
-libxfont2             2.0.2            2.0.3                 Armin Kuster
-libxfont              1.5.3            1.5.4                 Armin Kuster
-libxkbcommon          0.7.2            0.8.0                 Armin Kuster
-xserver-xorg          1.19.5           1.19.6                Armin Kuster
-curl                  7.54.1           7.57.0                Armin Kuster
-nss                   3.34             3.34.1                Armin Kuster
-pinentry              1.0.0            1.1.0                 Armin Kuster
-kexec-tools           2.0.15           2.0.16                Armin Kuster
-libassuan             2.4.4            2.5.1                 Armin Kuster
-libunwind             1.2              1.2.1                 Bruce Ashfield
-linux-libc-headers    4.12             4.14.10               Bruce Ashfield
-systemd               234              236                   Chen Qi
-util-linux            2.31             2.31.1                Chen Qi
-systemd-boot          234              236                   Chen Qi
-systemd-bootchart     231+gitX         233                   Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-coreutils             8.28             8.29                  Chen Qi
-sed                   4.2.2            4.4                   Chen Qi
-sysstat               11.6.1           11.7.1                Chen Qi
-tar                   1.29             1.30                  Chen Qi
-build-appliance-i...  15.0.0           18.0.0                Cristian Iorga
-lzop                  1.03             1.04                  Denys Dmytriyenko
-mtd-utils             2.0.0            2.0.1                 Denys Dmytriyenko
-lz4                   1.7.4            1.8.0                 Denys Dmytriyenko
-acpica                20170303         20171215              Fathi Boudra
-gnupg                 2.2.0            2.2.4                 Hongxu Jia
-bash                  4.4              4.4.12                Hongxu Jia
-ncurses               6.0+20170715     6.0+20171125          Hongxu Jia
-apr-util              1.6.0            1.6.1                 Hongxu Jia
-apr                   1.6.2            1.6.3                 Hongxu Jia
-gpgme                 1.9.0            1.10.0                Hongxu Jia
-libgcrypt             1.8.1            1.8.2                 Hongxu Jia
-ghostscript           9.21             9.22                  Hongxu Jia
-man-pages             4.11             4.14                  Hongxu Jia
-pigz                  2.3.4            2.4                   Hongxu Jia
-help2man-native       1.47.4           1.47.5                Hongxu Jia
-python-setuptools     38.2.4           38.2.5                Jose Lamego
-python3-git           2.1.7            2.1.8                 Jose Lamego
-python3-numpy         1.13.3           1.14.0rc1             Jose Lamego
-python3-pycairo       1.15.3           1.15.4                Jose Lamego
-python-numpy          1.13.1           1.14.0rc1             Jose Lamego
-python3-pygobject     3.26.0           3.26.1                Jose Lamego
-bc                    1.06             1.07.1                Jose Lamego
-python3-setuptools    38.2.4           38.2.5                Jose Lamego
-pango                 1.40.12          1.40.14               Jussi Kukkonen
-piglit                1.0+gitrX        1.0-new-commits-a...  Jussi Kukkonen
-libinput              1.8.4            1.9.4                 Jussi Kukkonen
-gtk-icon-utils-na...  3.22.17          3.22.26               Jussi Kukkonen
-at-spi2-core          2.26.0           2.26.2                Jussi Kukkonen
-assimp                4.0.1            4.1.0                 Jussi Kukkonen
-vulkan-demos          git              git-new-commits-a...  Jussi Kukkonen
-puzzles               0.0+gitX         0.0-new-commits-a...  Jussi Kukkonen
-at-spi2-atk           2.26.0           2.26.1                Jussi Kukkonen
-atk                   2.26.0           2.26.1                Jussi Kukkonen
-vte                   0.50.1           0.50.2                Jussi Kukkonen
-vulkan                1.0.61.1         1.0.65.1              Jussi Kukkonen
-adwaita-icon-theme    3.26.0           3.26.1                Jussi Kukkonen
-gtk+3                 3.22.24          3.22.26               Jussi Kukkonen
-librsvg               2.40.19          2.40.20               Jussi Kukkonen
-cairo                 1.14.10          1.14.12               Jussi Kukkonen
-fontconfig            2.12.6           2.12.91               Jussi Kukkonen
-glibc-initial         2.26             2.26.9000             Khem Raj
-glibc                 2.26             2.26.9000             Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-gdb                   8.0              8.0.1                 Khem Raj
-llvm                  5.0              5.0-new-commits-a...  Khem Raj
-ninja                 1.7.2            1.8.2                 Khem Raj
-mpfr                  3.1.5            4.0.0                 Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-go-native             1.9              1.10beta1             Khem Raj
-go                    1.9              1.10beta1             Khem Raj
-binutils              2.29             2.29.1                Khem Raj
-cross-localedef-n...  2.26             2.26.9000             Khem Raj
-ruby                  2.4.2            2.5.0                 Leonardo Sandoval
-nfs-utils             2.1.1            2.3.1                 Leonardo Sandoval
-perl                  5.24.1           5.26.1                Leonardo Sandoval
-qemu                  2.10.1           2.11.0                Leonardo Sandoval
-ptest-runner          2.1+gitX         2.1.1                 Leonardo Sandoval
-perl-native           5.24.1           5.26.1                Leonardo Sandoval
-rpm                   4.13.90+gitX     4.14.0                Mark Hatle
-gstreamer1.0          1.12.3           1.12.4                Maxin B. John
-bluez5                5.47             5.48                  Maxin B. John
-ifupdown              0.8.16           0.8.29                Maxin B. John
-gstreamer1.0-rtsp...  1.12.3           1.12.4                Maxin B. John
-i2c-tools             3.1.2            4.0                   Maxin B. John
-gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
-libical               2.0.0            3.0.1                 Maxin B. John
-gstreamer1.0-libav    1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-plug...  1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-omx      1.12.3           1.12.4                Maxin B. John
-gstreamer1.0-python   1.12.3           1.12.4                Maxin B. John
-libsolv               0.6.29           0.6.30                Maxin B. John
-screen                4.6.1            4.6.2                 Maxin B. John
-pkgconf               1.3.7            1.3.90                Maxin B. John
-libatomic-ops         7.6.0+gitX       7.6.2                 Maxin B. John
-harfbuzz              1.7.0            1.7.4                 Maxin B. John
-libjpeg-turbo         1.5.2            1.5.3                 Maxin B. John
-gdb-cross-canadia...  8.0              8.0.1                 No maintainer
-gdb-cross-i586        8.0              8.0.1                 No maintainer
-go-cross-canadian...  1.9              1.10beta1             No maintainer
-binutils-cross-i586   2.29             2.29.1                No maintainer
-binutils-crosssdk...  2.29             2.29.1                No maintainer
-systemtap-native      3.1              3.2                   No maintainer
-binutils-cross-ca...  2.29             2.29.1                No maintainer
-go-cross-i586         1.9              1.10beta1             No maintainer
-go-crosssdk-x86_64    1.9              1.10beta1             No maintainer
-go-runtime            1.9              1.10beta1             No maintainer
-mesa                  17.2.6           17.3.1                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.9.5            3.10.1                Otavio Salvador
-go-dep                0.3.1            0.3.2                 Otavio Salvador
-cmake-native          3.9.5            3.10.1                Otavio Salvador
-libdrm                2.4.88           2.4.89                Otavio Salvador
-mesa-gl               17.2.6           17.3.1                Otavio Salvador
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-tcf-agent             1.4.0+gitX       1.6.0                 Randy Witt
-lttng-modules         2.9.5            2.10.4                Richard Purdie
-lttng-tools           2.9.5            2.10.1                Richard Purdie
-lttng-ust             2.9.1            2.10.1                Richard Purdie
-nasm                  2.13.01          2.13.02               Richard Purdie
-subversion            1.9.6            1.9.7                 Richard Purdie
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-autoconf-archive      2016.09.16       2017.09.28            Robert Yang
-git                   2.15.0           2.15.1                Robert Yang
-debianutils           4.8.1.1          4.8.4                 Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.19             4.20                  Robert Yang
-tcl                   8.6.7            8.6.8                 Robert Yang
-less                  527              529                   Robert Yang
-time                  1.7              1.8                   Robert Yang
-base-passwd           3.5.29           3.5.44                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.72             9.78                  Ross Burton
-libva-utils           1.8.3            2.0.0                 Wei Tee Ng
-libva                 1.8.3            2.0.0                 Wei Tee Ng
-gstreamer1.0-vaapi    1.12.3           1.12.4                Wei Tee Ng
-avahi                 0.6.32           0.7                   Yi Zhao
-avahi-ui              0.6.32           0.7                   Yi Zhao
-json-glib             1.2.8            1.4.2                 Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
-
-Upgradable count: 172
-Upgradable total count: 175
-
-The based commit is:
-
-commit 3cf8bda5e4d4a345793aa72be97e94c41520ec01
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Thu Dec 21 10:49:20 2017 -0500
-
-    linux-yocto/4.12: CQM and kmemleak fixes
-    
-    Integrating the following commits for kmemleak fixes and CQM
-    backports:
-    
-       58fe84d691a mm: kmemleak: treat vm_struct as alternative reference to vmalloc'ed objects
-       5babb9c8f695 mm: kmemleak: factor object reference updating out of scan_block()
-       8c22ef5ee138 mm: kmemleak: slightly reduce the size of some structures on 64-bit architectures
-       7ea6b560ef4c netfilter: conntrack: do not enable connection tracking unless needed
-       4fdf0a5a0863 netfilter: nf_ct_dccp/sctp: fix memory leak after netns cleanup
-       85385ffd1e9b netfilter: move table iteration out of netns exit paths
-       c95b3f8e1cbc netfilter: conntrack: add nf_ct_iterate_destroy
-       753c83b98a1e netfilter: conntrack: don't call iter for non-confirmed conntracks
-       bcf21cba7fd5 netfilter: conntrack: rename nf_ct_iterate_cleanup
-       f5c3a4c19075 perf/x86/intel/uncore: Fix missing marker for skx_uncore_cha_extra_regs
-       c44ebea2f116 perf/x86/intel/uncore: Fix SKX CHA event extra regs
-       1d70f7feb408 perf/x86/intel/uncore: Remove invalid Skylake server CHA filter field
-       eb3059e9e0ea perf/x86/intel/uncore: Fix Skylake server CHA LLC_LOOKUP event umask
-       3514c02c7bff perf/x86/intel/uncore: Fix Skylake server PCU PMU event format
-       804530f02515 perf/x86/intel/uncore: Fix Skylake UPI PMU event masks
-    
-    Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
-
-
+--_000_f6706ba26e01956dd4c1a8261b756d17actiase_--
