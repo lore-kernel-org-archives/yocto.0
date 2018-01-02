@@ -1,57 +1,38 @@
-Return-Path: <alan.martinovic@senic.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56067E00CBE; Mon,  1 Jan 2018 18:48:34 -0800 (PST)
+	id B2BACE00D6B; Tue,  2 Jan 2018 03:26:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f172.google.com (mail-ot0-f172.google.com
-	[74.125.82.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8975CE0095C
-	for <yocto@yoctoproject.org>; Mon,  1 Jan 2018 18:48:32 -0800 (PST)
-Received: by mail-ot0-f172.google.com with SMTP id v40so31955531ote.13
-	for <yocto@yoctoproject.org>; Mon, 01 Jan 2018 18:48:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=senic-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=Di0KuasP3Do7GPsmhYcpTcZAnETf7QVqac6VKUhnvh4=;
-	b=ZcGc2aYOILzx1Je7iTwy/XG7dMZo3wxkL6egTYt5FPosHkbjsCKL+Mn3xmBqLp5TU4
-	K7EBe7nVEdGPkAZ6vQ8INY0AazMKWNsKt0wvd2wguIG4VpQ7S8u7jb3tpGSESK89Q1Mp
-	+JJlC4A77QvfjH3Y1NL+6oPAIhWcXV7XeS4LWHsVkcKJ86kFhyo071XQaWFfPYuqYd3N
-	I8Y5RA2ITy2Gug9RE8TjX4agBn+I8H7/KV/mYkEgDs+RdizQwU5aHuuNf+r6Aio7hGPK
-	CjanZGs1XT9zJ0Ixk1t1XZuj6X0pebSdwlqfxnlwp+nJZHClysYShYUdKdDeVIQJNntl
-	Xt1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Di0KuasP3Do7GPsmhYcpTcZAnETf7QVqac6VKUhnvh4=;
-	b=tkfMgTL/REZhZdLdlQA+Y2+jp3EUJSYRg96HjmXWbyYyh5i2oJO0tvKqOMf0NpS1d6
-	BWW/Gpw07f3/Q98Xd8cu9OCDqgS/O0BOgX6fnmV2HyjF+4bVLlTzmU970ZwN2g5yPlsO
-	kVNQLvqW5uRRI/FZAJRIxTMRxqmlES+JgSGirnVFXCntRWqi+DLfeEUIj3YNXHYuuqPL
-	z4Z2Swwxz6nuupZTXcuOrwbon4jxO8lCTLlcyC/Zt0Wkpxsaxk3yBBeFP8VUTsH9LnOz
-	fB49/gbht9IDn33630GTDUpGwkUSSuP+3PdrvX+z86uhs08D94ehWHuABVUEkREiBDWW
-	10/g==
-X-Gm-Message-State: AKGB3mLZO03PzaiNyJZNzQUIofr6u/AcVYH+VAVvfZDX8NorAzrE0hk/
-	ODY0o719sFs7iGMBDYUcRaw1Ozqz36pWKwX8zL7frr9I
-X-Google-Smtp-Source: ACJfBouQPrSpX5CG8Kq8fSzVuU7K1zeEh3RZFwr5JhvxjP0g6nOoj0Tc+Hv2+woszoOy+WQuUu4BjpXdUDDvpvb9W48=
-X-Received: by 10.157.41.147 with SMTP id n19mr36238466otb.132.1514861312240; 
-	Mon, 01 Jan 2018 18:48:32 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.157.58.101 with HTTP; Mon, 1 Jan 2018 18:48:31 -0800 (PST)
-From: Alan Martinovic <alan.martinovic@senic.com>
-Date: Tue, 2 Jan 2018 03:48:31 +0100
-Message-ID: <CAOT_U5ZGes4LpufyUn94UZ2-rApSNjR68=On67j_km0+1Jc7=A@mail.gmail.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Installing python packages from a git repository
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D9C0E0095C
+	for <yocto@yoctoproject.org>; Tue,  2 Jan 2018 03:26:39 -0800 (PST)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.15.2/8.15.2/Debian-3) with ESMTPSA id
+	w02BQXBl026435
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NOT); Tue, 2 Jan 2018 11:26:34 GMT
+Message-ID: <1514892393.5525.69.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Cruz, Libertad"
+	<libertad.cruz@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "Lock, Joshua G" <joshua.g.lock@intel.com>,
+	"Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>
+Date: Tue, 02 Jan 2018 11:26:33 +0000
+In-Reply-To: <9DDD2658D1FE414E99172D2DB1E4D04335D94DFF@PGSMSX109.gar.corp.intel.com>
+References: <9DDD2658D1FE414E99172D2DB1E4D04335D94DFF@PGSMSX109.gar.corp.intel.com>
+X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
+Mime-Version: 1.0
+X-Virus-Scanned: clamav-milter 0.99.2 at dan
+X-Virus-Status: Clean
+Cc: "Sangal, Apoorv" <apoorv.sangal@intel.com>, "Perez Carranza,
+	Jose" <jose.perez.carranza@intel.com>
+Subject: Re: QA cycle report for 2.4.1 RC1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,29 +44,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jan 2018 02:48:34 -0000
+X-List-Received-Date: Tue, 02 Jan 2018 11:26:41 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
 Hi,
-in the setup I've inherited we're hosting our own devpi server
-for the purpose of embedding apps in our os image.
 
-We went for this option, instead of directly pushing to PyPI
-as to not pollute the public repo with development and
-unstable eggs.
+On Fri, 2017-12-22 at 01:40 -0800, Yeoh, Ee Peng wrote:
+> Enjoy viewing the full Report for 2.4.1
+> RC1:  https://wiki.yoctoproject.org/wiki/WW51_-_2017-12-21-
+> _Full_Test_Cycle_-_2.4.1_rc1
+> 
+> ======= Summary ========
+> 
+> The QA cycle for release 2.4.1 RC1 is complete.  There are 5 new bugs
+> from which so far none of them are high. QA has 1 concern on the
+> performance testing.
+> 
+> Performance report shows an increase of 23% build time on the eSDK in
+> fedora 23, bug has not been created until further investigation with
+> setup outside of the GDC environment. 
 
-This came with a price of needing to extend the pypi.bbclass
-to point to the correct server, occasional URL errors and another
-server to maintain.
+Was there any further update on this?
 
-I am secretly hoping that it isn't a horrible idea to have yocto install
-a python app directly from the git repo (with the existence of a proper
-setup.py). The expected result being less things to worry about.
+It may be worth running the test for 2.4.0 and checking that you get
+the same result as we had at time of release, just to double check
+there isn't some other contributing cause here...
 
-What are the approaches you're using to install a custom python apps
-into the build?
+Cheers,
 
-
-Be Well :)
-Alan
+Richard
 
