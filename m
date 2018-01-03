@@ -1,56 +1,37 @@
-Return-Path: <j_r.cash@yahoo.de>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8EE5AE00DA3; Wed,  3 Jan 2018 08:07:22 -0800 (PST)
+	id A9A65E00DA3; Wed,  3 Jan 2018 09:29:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (j_r.cash[at]yahoo.de)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [87.248.110.59 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from sonic307-34.consmr.mail.ir2.yahoo.com
-	(sonic307-34.consmr.mail.ir2.yahoo.com [87.248.110.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2BBEE00D20
-	for <yocto@yoctoproject.org>; Wed,  3 Jan 2018 08:07:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.de; s=s2048;
-	t=1514995640; bh=6hXG1z/z59dXrlX/ZzkvBjD1/7znewaI5uIoVuoYuOc=;
-	h=To:From:Subject:Date:From:Subject;
-	b=PkFnfsB4JCeVeV19SFoaSKRSbpjA8QvorqUNvQQKkYjE1WdBD9rPZsAzypFbs0apD+0EZVnI+VBcFEoNHls3vcgcqPqQ3Us469ie7Fc5SsHRuWHEesqXFGmtp++n7p06agKa6U/msx9B+HE9tp0PI+UBKJnRWpw9g/5Psw3+QKfxOXQLqcBFAmF5pfG6QvOdwH7sI0j9lAmkxiyJhMklw8fyMykcu3blzx+f3rxBJQttp292YEvczrahSYqxzFEQgpmMNXGqwdDIFBAKB6A5avK9Hd9jR40Xi/Hp1xdPyYR5cokyYnUoDoXKyE3/djBf5jXf4ld3t7+LfvqTLm0PTw==
-X-YMail-OSG: m51MpUoVM1lmkM8bEA1ogK60QK2d9f8VnOhMM8baMmtesRodCEXva0ZC1oEBfXD
-	h7_i_xjORt2Y88Uc5_hIBVe6mdysOhYTa2Y5_Lhvy1Yddd9IY5fnhIMHHN8E0td5mw7Dk7paYAti
-	sYuuW1rMwEGrFq75jirhQrA2ybKF7rt73NkxxhMVqlbgb4Ttoq1ntUjzFNWapXaiIWcc5bL_s64o
-	AGuHoSRSLk1M4U0Wm1k7Ah16MzjcVoDFmjr3.zoq3I1.cM8cY7jkWnpWgq29saXqVx719ynQSICJ
-	d24vM6dXOlBNQ.3gUr5q4hlQk8q_SGSrOgW8siJiXupRgM_x5oA9U.WFpSTReACkwGlV7kpempEi
-	JRm2mxUr.eZrcTIRJuVle4qz2nNcQR3yXFicZwKp3zAKi3g3uI5n_h6p.7R9MEgZp.aMSwh1mWSe
-	gKxTkLT2hXZjC88ePlydnmTm.62.YW5RfbjYInc5XEGJgW2dY0e62RLDg2ELqQbG9b6PT5crh4um
-	Po_nT6Dtf8..JGBf3Uw.SSgc-
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic307.consmr.mail.ir2.yahoo.com with HTTP;
-	Wed, 3 Jan 2018 16:07:20 +0000
-Received: from smtp157.mail.ir2.yahoo.com (EHLO [172.16.11.152])
-	([46.228.39.120])
-	by smtp401.mail.ir2.yahoo.com (JAMES SMTP Server ) with ESMTPA ID
-	d0f006485b09b0a2262243540d4f3fd7 for <yocto@yoctoproject.org>;
-	Wed, 03 Jan 2018 16:03:19 +0000 (UTC)
-To: yocto@yoctoproject.org
-From: Johnny R Cash <j_r.cash@yahoo.de>
-Message-ID: <f899db3d-d08e-8f30-c181-11c437995ec4@yahoo.de>
-Date: Wed, 3 Jan 2018 17:03:25 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	*      [216.168.135.166 listed in list.dnswl.org]
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A16A7E00D20
+	for <yocto@yoctoproject.org>; Wed,  3 Jan 2018 09:29:27 -0800 (PST)
+Received: (qmail 20027 invoked by uid 1003); 3 Jan 2018 17:29:26 -0000
+Received: from unknown (HELO ?192.168.11.142?)
+	(philip@opensdr.com@108.44.109.186)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	3 Jan 2018 17:29:26 -0000
+To: openembedded-members@lists.openembedded.org,
+	Paul Barker <pbarker@toganlabs.com>,
+	OE-core <openembedded-core@lists.openembedded.org>,
+	openembedded-devel@lists.openembedded.org, yocto <yocto@yoctoproject.org>
+References: <CAPyrkgxupO+=0+bmA=+JO+zs=t_i=Pm06GJyRFvYfTb5sXjSBA@mail.gmail.com>
+From: Philip Balister <philip@balister.org>
+Message-ID: <1a0bbfc2-7b0a-c347-23eb-7cb1087ffb33@balister.org>
+Date: Wed, 3 Jan 2018 12:29:25 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.0
 MIME-Version: 1.0
-Subject: Test, please ignore
+In-Reply-To: <CAPyrkgxupO+=0+bmA=+JO+zs=t_i=Pm06GJyRFvYfTb5sXjSBA@mail.gmail.com>
+Subject: Re: Slideshow for FOSDEM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,13 +43,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jan 2018 16:07:22 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Wed, 03 Jan 2018 17:29:28 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
 
-Just a test, as previous mail didnt get through after 2 hours, nor did a 
-moderation mail arrive.
+On 01/03/2018 09:47 AM, Paul Barker wrote:
+> Hi all,
+> 
+> As we've only got one table at FOSDEM this year we're not going to
+> have space for as many bits of hardware as usual. I'd still like us to
+> show off the project and what people are building with OpenEmbedded &
+> Yocto Project though. Given the limited space I think the best way to
+> do this would be to put a slideshow on my laptop.
+> 
+> I've made a start on this here:
+> https://docs.google.com/presentation/d/1KYxhsxO-8GxhAreE0GKnTOCPdY6_4uXYIEp6Lc55MB8/edit?usp=sharing
+> 
+> I've made this publicly editable so please feel free to add slides for
+> any OE features you want to show off and any projects (professional or
+> hobbyist) built with OE. If anyone can add a slide on project history
+> that would also be great. I'd also like a slide on the latest release
+> and the new features added. Photos of hardware projects using OE and
+> features like Toaster would be especially welcome!
+> 
+> I'll give this a final edit before FOSDEM and the put it on rotation
+> on a laptop at the stand. Hopefully it will be useful for future
+> events as well.
 
+Can we build a small board with a largish screen so we can run the show
+on a device running an image built by OpenEmbedded?
 
+Philip
+
+> 
+> Thanks all,
+> 
 
