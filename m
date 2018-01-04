@@ -1,65 +1,98 @@
-Return-Path: <rail@esenciatech.com>
+Return-Path: <toonheyrman@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E923E0095C; Thu,  4 Jan 2018 12:39:32 -0800 (PST)
+	id 36A12E00CE2; Thu,  4 Jan 2018 20:03:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.217.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (toonheyrman[at]hotmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [40.92.70.48 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f182.google.com (mail-ua0-f182.google.com
-	[209.85.217.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BCEEE0085E
-	for <yocto@yoctoproject.org>; Thu,  4 Jan 2018 12:39:30 -0800 (PST)
-Received: by mail-ua0-f182.google.com with SMTP id e19so1909117uam.6
-	for <yocto@yoctoproject.org>; Thu, 04 Jan 2018 12:39:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=esenciatech-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=RZiKX3KRRUkBdHacTFz+JuC4fctfx24NcrkD59A9TUw=;
-	b=IscmlIxn1t9wQzCm8bnsYui6IHe9nfGyQGWdWBiCpdEWjwyN+l4dI7/u9q0QHllZqv
-	x15P1K74tu4DEFjIZcrgfXAcRgy20kNrp886p6K8GIwHexQSnt3OP5NbAWfaESIp7Bus
-	UeaDHl4lMpXpVn9sAi3KalAI+gRZXa116zDUXo2QcvV+uEDqas9ZuQzf8IpHbmxhsXIx
-	nFPqDHjTgxJ7YF4dCSF0ibrwsfg/lnoNG2XuoCukj9G6nIhmmiPCWD7bqjGXWsoX8U4d
-	A0nJEFIbI+r4MXwtUy4BeA0+K4YO7fne32zmNfbnsB8yXVBqT2CZgN6CRElTTKbruogx
-	S6yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=RZiKX3KRRUkBdHacTFz+JuC4fctfx24NcrkD59A9TUw=;
-	b=gJIpU5AA+IiBRy2/bhhn29jhwmNAb9tmyGN3A87e40hYyzyQtMjpWM/5c+HphXQ68T
-	ov6d2ciWsTxnWFcikZsZix7RBiqoMRKlmFWR2ZtrpcGHiIAVvfIV1pkNKjKdE71xo1wm
-	ehoCAMlRoMTDuWLjC7Gj7GfmXUi12HRHqGbSCQEr5gPX2c1Ude1QsLHhVjPQaQiWXgxy
-	5EqnHzGDy6kHEC7HanWKNfeD9/7bAzaQ3/txjubliFNvkQYm0Op/Z1bTLq+bu7hRnUWN
-	TAdD/YfKgtVd+zDXxGEM2hDLU8ZlwsDiJckvVEscd8kROlKpQqy/C6n+M1EeMZBwlktK
-	pYOg==
-X-Gm-Message-State: AKwxytcWoS93IsMKupLoqSx3OYXZ8Qdfd14gmHB5biKaK3Bn1JSBrulE
-	eBsBh7jkmzMWDqjCy5+7NFSiqLCrnIDqmH+4SNsImqUVFs/hClQEAE/hpQ4dIgnmbTXmGpjaaSD
-	k5EHF+aWrwAXqCFmJcM4qTlU=
-X-Google-Smtp-Source: ACJfBovrCkI5N0Djobt1fzOCcWknpUgBLZnJGRDw01RyqK3bt2Hx9xul8p0T1Upl3Vsx3zNd5vSTlsZcBLt7thv77v4=
-X-Received: by 10.159.51.209 with SMTP id y17mr846798uab.175.1515098370026;
-	Thu, 04 Jan 2018 12:39:30 -0800 (PST)
+X-Greylist: delayed 35858 seconds by postgrey-1.32 at yocto-www;
+	Thu, 04 Jan 2018 20:03:54 PST
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com
+	(mail-oln040092070048.outbound.protection.outlook.com [40.92.70.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3B66E0095C
+	for <yocto@yoctoproject.org>; Thu,  4 Jan 2018 20:03:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=ws5Au0vFQYH5Chxy0IETu/OHH65cdJJYlMTc52/NOCM=;
+	b=DlQAjGfE0Hyiqn+nGkP0ZaT7zpA0YY1+BhiVBZRz2wI1rWlR2JygPBghIoy7Jy5HJY9jp/9nilraKVwHhaPnMbXchUldOXn5Ui1V/cn97mGwMaaLkJB/Dexqq9Vn9yGJnTYrcpezyWFHc9ecWy2kYrGuaHMCTIapVnUZb1oCC+Wq8deRk5eh0qOeEZ7wets7wqmcVzH9C8xrP30ie9sjoLBEJ8KSltfdsv/2O+STRrSzuRsrVD0dDLB5mp8ENnK6lBmeIEs3z1B/Kky/6eYmw/xzpV5peGhmzt+9kVaqmrIZyGBh3NiI/0W7Ee03pC++yvnG7P4YnYyGjQywEqOBSQ==
+Received: from AM5EUR03FT046.eop-EUR03.prod.protection.outlook.com
+	(10.152.16.60) by AM5EUR03HT231.eop-EUR03.prod.protection.outlook.com
+	(10.152.17.97) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.345.12;
+	Thu, 4 Jan 2018 15:31:32 +0000
+Received: from DB6PR02MB3141.eurprd02.prod.outlook.com (10.152.16.54) by
+	AM5EUR03FT046.mail.protection.outlook.com (10.152.16.164) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.20.345.12 via Frontend Transport; Thu, 4 Jan 2018 15:31:32 +0000
+Received: from DB6PR02MB3141.eurprd02.prod.outlook.com
+	([fe80::6c33:4a71:cc83:99b9]) by
+	DB6PR02MB3141.eurprd02.prod.outlook.com
+	([fe80::6c33:4a71:cc83:99b9%13]) with mapi id 15.20.0386.006;
+	Thu, 4 Jan 2018 15:31:32 +0000
+From: Toon Heyrman <toonheyrman@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Debugging some c code on target via yocto
+Thread-Index: AQHThXCZFgXzPvHttkWpDuk9rv6YLw==
+Date: Thu, 4 Jan 2018 15:31:32 +0000
+Message-ID: <DB6PR02MB314123229861C5BC10B5F4CDB11F0@DB6PR02MB3141.eurprd02.prod.outlook.com>
+Accept-Language: nl-BE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:F3D751AB547371989F84870697EE795D7918477C0E31F938152131EACB25FEBB;
+	UpperCasedChecksum:157568C3572F1AB4065E264E96B84E3D28FFB8F9101DC3360AB888A312ECC902;
+	SizeAsReceived:6890; Count:44
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [SDeIq0YznVrB+UZP4s/B8X0FHzDpP5pP]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; AM5EUR03HT231;
+	6:Z3GZEL4maWv1AxAxbSeCS7csV0U+zxRzQtXYy7IL/bR6S3OOl5Nw1iDtITe0HEOvHkOSwoC1QGLFLie3Pm6XVDkOQ8NLWNizYTBc7fXR1Ka4bL/YE38x9tPYe0pZUphGa1yA8TMTjsHKln8QlpDHZthpciOWzQyvktHRONAT2chnVFWVT3e7JeRNhjuvAjSZps/eoyxkX6Dtw3FKPDYYyS8BnwwMbYQZM/ddP/GQ50qvM6FDkVzQzzTSr83kqByClMl/etn8dX0f1f0upgPar+UNpz+OVRbB8q62Gft1Xp/Ni5k6aBclwgbqxmBCrbv+vWqyUbCsF8Pt1BgtznW7vQ+8tIVzKcXsLf9QnMYsSKw=;
+	5:JI3EGuTZAjBBlZfShFLXYmjAVBYbprGBXqvU77KJc174qQ48PI2FSOJxgZgxEwc391vWv2cBBbLETvWrhkzfFgwNQ7+vMVXiKA7DhQR/5PY87oq9saPQpa8Lkoy+B5k00uAjM5+V5WJ3Mu6XLsxXgCb+wSKr0KtkX/yTK6+bJXA=;
+	24:mSOjHM82/UwZHI2qChCaOM4TqPPZHXV8fonGbJXVdhwzV/B7XGGooxjs8jBgozgn7u+kdShaJL0WlTK2k6smeulaneIUahnJVnZg82I1GM0=;
+	7:lkbv06dyrv+agwSmPzm8DKuwJMa8HLgCEPRIjRd2Cd6q433x/4KqYjfUzJZyyBVyqm3rnqBDMs1s8WGnHgNR2JBSxAQgtdvFwO0x4YPP82lf1Sh5MTOw4E8ahwtC++z/ppgqmCGytNOWlRU/fAIql6v5qNWs7RTG05VqbC+SLYc0P/gbCraJOlTwuD3j89/dG/nACSxNr7+/6U6wWBlBf4xrEaQGgljNaSSNbtQYLtqnJbzSU+7cP0tk26gnH5P+
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125374)(1701031045);
+	SRVR:AM5EUR03HT231; 
+x-ms-traffictypediagnostic: AM5EUR03HT231:
+x-ms-office365-filtering-correlation-id: 3e8fdeba-1420-409d-4df3-08d553883b84
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:AM5EUR03HT231; BCL:0; PCL:0;
+	RULEID:(100000803101)(100110400095); SRVR:AM5EUR03HT231; 
+x-forefront-prvs: 054231DC40
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:AM5EUR03HT231;
+	H:DB6PR02MB3141.eurprd02.prod.outlook.com; FPR:; SPF:None; LANG:;
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.176.28.74 with HTTP; Thu, 4 Jan 2018 12:39:29 -0800 (PST)
-In-Reply-To: <CAJTo0LZzwePmfR1jMFaE30i-963GJrd90bTBwa7pOnxuiWaZxQ@mail.gmail.com>
-References: <CAOLNbFYp+U3gJbkWuw-7ViGHzsbLFSEb01P5QREjPPgHb1CV=Q@mail.gmail.com>
-	<CAJTo0LZBqz2YrH5YFBcdOyK98_ngoEMSKpD=i1iimuy6tb2BgA@mail.gmail.com>
-	<CAOLNbFa3bmtTmUEszDF4OQABgY411ieT3+0iJC1zkekk80CWfg@mail.gmail.com>
-	<CAJTo0LZzwePmfR1jMFaE30i-963GJrd90bTBwa7pOnxuiWaZxQ@mail.gmail.com>
-From: Rail Shafigulin <rail@esenciatech.com>
-Date: Thu, 4 Jan 2018 12:39:29 -0800
-Message-ID: <CAOLNbFZQKNih2yhYFpDg_nK3=Znka1g-cK4aVMjVvv3RLttC7Q@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: running autoreconf during a configuration step
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e8fdeba-1420-409d-4df3-08d553883b84
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jan 2018 15:31:32.1196 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR03HT231
+Subject: Debugging some c code on target via yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,84 +104,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Jan 2018 20:39:32 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 05 Jan 2018 04:03:56 -0000
+Content-Language: nl-BE
+Content-Type: multipart/alternative;
+	boundary="_000_DB6PR02MB314123229861C5BC10B5F4CDB11F0DB6PR02MB3141eurp_"
 
-Ross,
+--_000_DB6PR02MB314123229861C5BC10B5F4CDB11F0DB6PR02MB3141eurp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the help. Really appreciate it.
-
-On Thu, Jan 4, 2018 at 8:35 AM, Burton, Ross <ross.burton@intel.com> wrote:
-> If you look at autotools.bbclass you'll see it already passes -i.
->
-> Ross
->
-> On 4 January 2018 at 16:20, Rail Shafigulin <rail@esenciatech.com> wrote:
->>
->> How do I add parameters to it? I need to run autoreconf -i. Didn't
->> find any EXTRA_OE<something> variables.
->>
->> On Thu, Jan 4, 2018 at 8:15 AM, Burton, Ross <ross.burton@intel.com>
->> wrote:
->> > On 4 January 2018 at 15:45, Rail Shafigulin <rail@esenciatech.com>
->> > wrote:
->> >>
->> >> I'm somewhat new to Yocto. Trying to build libsoc,
->> >> https://github.com/jackmitch/libsoc. The steps are outlined here,
->> >> https://github.com/jackmitch/libsoc#manually-building. The first one
->> >> is to run autoreconf -i. I've been looking through documentation but
->> >> didn't find anything on how to do it. Is there an EXTRA_OE<something>
->> >> variable? I did run bitbake -e | grep EXTRA_OE but didn't the only one
->> >> that is remotely related to it is EXTRA_OECONFIG, but it is for
->> >> ./configure step. I would appreciate any help with it.
->> >
->> >
->> > The autotools class will run autoreconf and then configure, so you just
->> > need
->> > to inherit that class.
->> >
->> > Ross
->>
->>
->>
->> --
->> Rail Shafigulin
->> Software Engineer
->> Esencia Technologies
->>
->> --
->>
->>
->>
->>
->> *ESENCIA TECHNOLOGIES, INC.*3945 Freedom Circle, Suite #360,
->> Santa Clara CA 95054
->> ________________________________________________________
->>
->> Phone: +1 408 736 8284 Fax: +1 408 519 3475
->> http://www.esenciatech.com | http://www.lnttechservices.com
->>
->>
->
+Hi,
 
 
-
--- 
-Rail Shafigulin
-Software Engineer
-Esencia Technologies
-
--- 
+I'm using Yocto for creating my image for a linux device. I wrote a c appli=
+cation for it and I want to debug it.
 
 
+I followed the instructions here https://www.yoctoproject.org/docs/latest/d=
+ev-manual/dev-manual.html#platdev-gdb-remotedebug
 
 
-*ESENCIA TECHNOLOGIES, INC.*3945 Freedom Circle, Suite #360,
-Santa Clara CA 95054
-________________________________________________________
+This is by using bitbake and so on. In the past I was using the SDK or devt=
+ool to test my applications. This was fast without much manual work.
 
-Phone: +1 408 736 8284 Fax: +1 408 519 3475 
-http://www.esenciatech.com | http://www.lnttechservices.com
+Is there a possible way to do debugging via devtool or so?
 
 
+Kind regards,
 
+
+Toon
+
+--_000_DB6PR02MB314123229861C5BC10B5F4CDB11F0DB6PR02MB3141eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Hi,</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
+</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">I'm using Yocto for creat=
+ing my image for a linux device. I wrote a c application for it and I want =
+to debug it.
+</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
+</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">I followed the instructio=
+ns here <a class=3D"OWAAutoLink" id=3D"LPlnk655506" href=3D"https://www.yoc=
+toproject.org/docs/latest/dev-manual/dev-manual.html#platdev-gdb-remotedebu=
+g" previewremoved=3D"true">
+https://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#platdev=
+-gdb-remotedebug</a>&nbsp;</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
+</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">This is by using bitbake =
+and so on. In the past I was using the SDK or devtool to test my applicatio=
+ns. This was fast without much manual work.</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Is there a possible way t=
+o do debugging via devtool or so?</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
+</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Kind regards,</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
+</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Toon<br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_DB6PR02MB314123229861C5BC10B5F4CDB11F0DB6PR02MB3141eurp_--
