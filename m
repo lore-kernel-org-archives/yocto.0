@@ -1,44 +1,40 @@
-Return-Path: <joshua.g.lock@intel.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E2D3E00C02; Fri,  5 Jan 2018 02:47:10 -0800 (PST)
+	id DD6C3E00C02; Fri,  5 Jan 2018 07:02:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6F09E008FB
-	for <yocto@yoctoproject.org>; Fri,  5 Jan 2018 02:47:08 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68348E00C02
+	for <yocto@yoctoproject.org>; Fri,  5 Jan 2018 07:02:38 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	05 Jan 2018 02:47:07 -0800
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	05 Jan 2018 07:02:37 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.46,318,1511856000"; 
-   d="scan'208";a="7609717"
-Received: from jlock-mobl3.ger.corp.intel.com ([10.252.7.236])
-	by fmsmga008.fm.intel.com with ESMTP; 05 Jan 2018 02:47:04 -0800
-To: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <9DDD2658D1FE414E99172D2DB1E4D04335D9BA05@PGSMSX109.gar.corp.intel.com>
-From: Joshua Lock <joshua.g.lock@intel.com>
-Message-ID: <37f785c5-373d-e188-a5d7-d8dc654b952a@intel.com>
-Date: Fri, 5 Jan 2018 10:47:03 +0000
+   d="scan'208";a="8348417"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by orsmga008.jf.intel.com with ESMTP; 05 Jan 2018 07:02:36 -0800
+To: Kirill Kondrashov <kondrashovks1989@gmail.com>, yocto@yoctoproject.org
+References: <CACm3r4pXMHtKg53xBTPkLZ=Pnf8sBRrd6GTQsHi+zJ+CZXphPg@mail.gmail.com>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <8113993a-10a7-1fee-6784-86a8de8c495b@linux.intel.com>
+Date: Fri, 5 Jan 2018 17:02:38 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <9DDD2658D1FE414E99172D2DB1E4D04335D9BA05@PGSMSX109.gar.corp.intel.com>
-Cc: "Sangal, Apoorv" <apoorv.sangal@intel.com>, "Perez Carranza,
-	Jose" <jose.perez.carranza@intel.com>,
-	"otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>
-Subject: Re: yocto-2.5_M1.rc3 failed at runqemu for x86
+In-Reply-To: <CACm3r4pXMHtKg53xBTPkLZ=Pnf8sBRrd6GTQsHi+zJ+CZXphPg@mail.gmail.com>
+Subject: Re: Smart Project Manager
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,100 +46,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Jan 2018 10:47:10 -0000
-Content-Language: en-GB
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 05 Jan 2018 15:02:38 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-SGkgRWUgUGVuZywNCg0KVGhhdCBmYWlsdXJlIHdhcyBub3QgZXhwZWN0ZWQgYnV0IGFzIGl0IGlz
-IGEga25vd24gaXNzdWUgd2Ugc2hvdWxkIA0KcHJvY2VlZCB0byBRQSBNMSByYzMuDQoNClBsZWFz
-ZSBkbyBpbml0aWFsaXNlIFFBIGZvciB0aGlzIHJjMy4NCg0KVGhhbmsgeW91LA0KSm9zaHVhDQoN
-Ck9uIDA1LzAxLzE4IDAwOjU0LCBZZW9oLCBFZSBQZW5nIHdyb3RlOg0KPiBIaSBKb3NodWEsDQo+
-IA0KPiBJIG5vdGljZWQgZm9yIDIuNSBNMSByYzMsIG5pZ2h0bHkteDg2IGZhaWxlZCBkdXJpbmcg
-dGVzdGltYWdlIChTYW5pdHkgVGVzdCksIGR1ZSB0byBydW5xZW11IGVycm9yLiBJcyB0aGlzIGV4
-cGVjdGVkPyBTaGFsbCBRQSBtb3ZlIG9uIHRvIGluaXRpYWxpemUgdGhlIFFBIGZvciB0aGlzIHJj
-Mz8NCj4gDQo+IFRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgYXR0ZW50aW9uIGFuZCBoZWxw
-IQ0KPiANCj4gVGhhbmtzLA0KPiBZZW9oIEVlIFBlbmcNCj4gDQo+IGh0dHBzOi8vYXV0b2J1aWxk
-ZXIueW9jdG8uaW8vYnVpbGRlcnMvbmlnaHRseS14ODYvYnVpbGRzLzcwMw0KPiANCj4gRVJST1I6
-IGNvcmUtaW1hZ2Utc2F0by1zZGstMS4wLXIwIGRvX3Rlc3RpbWFnZTogUWVtdSBwaWQgZGlkbid0
-IGFwcGVhciBpbiAxMjAgc2Vjb25kcyAoMDEvMDQvMTggMTc6NTQ6NDUpDQo+IEVSUk9SOiBjb3Jl
-LWltYWdlLXNhdG8tMS4wLXIwIGRvX3Rlc3RpbWFnZTogUWVtdSBwaWQgZGlkbid0IGFwcGVhciBp
-biAxMjAgc2Vjb25kcyAoMDEvMDQvMTggMTc6NTQ6NDUpDQo+IFdBUk5JTkc6IGNvcmUtaW1hZ2Ut
-c2F0by1zZGstMS4wLXIwIGRvX3Rlc3RpbWFnZTogUWVtdSBlbmRlZCB1bmV4cGVjdGVkbHksIGR1
-bXAgZGF0YSBmcm9tIGhvc3QgaXMgaW4gL3RtcC9vZS1zYXZlZC10ZXN0cy8yMDE4MDEwNDE3NTRf
-cWVtdQ0KPiBXQVJOSU5HOiBjb3JlLWltYWdlLXNhdG8tMS4wLXIwIGRvX3Rlc3RpbWFnZTogUWVt
-dSBlbmRlZCB1bmV4cGVjdGVkbHksIGR1bXAgZGF0YSBmcm9tIGhvc3QgaXMgaW4gL3RtcC9vZS1z
-YXZlZC10ZXN0cy8yMDE4MDEwNDE3NTRfcWVtdQ0KPiBFUlJPUjogY29yZS1pbWFnZS1zYXRvLXNk
-ay0xLjAtcjAgZG9fdGVzdGltYWdlOiBPdXRwdXQgZnJvbSBydW5xZW11Og0KPiBydW5xZW11IC0g
-SU5GTyAtIENvbnRpbnVpbmcgd2l0aCB0aGUgZm9sbG93aW5nIHBhcmFtZXRlcnM6DQo+IA0KPiBy
-dW5xZW11IC0gSU5GTyAtIEFjcXVpcmluZyBsb2NrZmlsZSAvdG1wL3FlbXUtdGFwLWxvY2tzL3Rh
-cDAubG9jayBmYWlsZWQ6IFtFcnJubyAxMV0gUmVzb3VyY2UgdGVtcG9yYXJpbHkgdW5hdmFpbGFi
-bGUNCj4gcnVucWVtdSAtIElORk8gLSBBY3F1aXJpbmcgbG9ja2ZpbGUgL3RtcC9xZW11LXRhcC1s
-b2Nrcy90YXAxLmxvY2sgZmFpbGVkOiBbRXJybm8gMTFdIFJlc291cmNlIHRlbXBvcmFyaWx5IHVu
-YXZhaWxhYmxlDQo+IHJ1bnFlbXUgLSBJTkZPIC0gVXNpbmcgcHJlY29uZmlndXJlZCB0YXAgZGV2
-aWNlIHRhcDINCj4gcnVucWVtdSAtIElORk8gLSBJZiB0aGlzIGlzIG5vdCBpbnRlbmRlZCwgdG91
-Y2ggL3RtcC9xZW11LXRhcC1sb2Nrcy90YXAyLnNraXAgdG8gbWFrZSBydW5xZW11IHNraXAgdGFw
-Mi4NCj4gcnVucWVtdSAtIElORk8gLSBOZXR3b3JrIGNvbmZpZ3VyYXRpb246IDE5Mi4xNjguNy42
-OjoxOTIuMTY4LjcuNToyNTUuMjU1LjI1NS4wDQo+IHJ1bnFlbXUgLSBJTkZPIC0gUnVubmluZyAv
-aG9tZS9wb2t5YnVpbGQveW9jdG8tYXV0b2J1aWxkZXIveW9jdG8td29ya2VyL25pZ2h0bHkteDg2
-L2J1aWxkL2J1aWxkL3RtcC93b3JrL3g4Nl82NC1saW51eC9xZW11LWhlbHBlci1uYXRpdmUvMS4w
-LXIxL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluL3FlbXUtc3lzdGVtLWkzODYgLWRldmlj
-ZSB2aXJ0aW8tbmV0LXBjaSxuZXRkZXY9bmV0MCxtYWM9NTI6NTQ6MDA6MTI6MzQ6MDYgLW5ldGRl
-diB0YXAsaWQ9bmV0MCxpZm5hbWU9dGFwMixzY3JpcHQ9bm8sZG93bnNjcmlwdD1ubyAtZHJpdmUg
-ZmlsZT0vaG9tZS9wb2t5YnVpbGQveW9jdG8tYXV0b2J1aWxkZXIveW9jdG8td29ya2VyL25pZ2h0
-bHkteDg2L2J1aWxkL2J1aWxkL3RtcC9kZXBsb3kvaW1hZ2VzL3FlbXV4ODYvY29yZS1pbWFnZS1z
-YXRvLXNkay1xZW11eDg2LmV4dDQsaWY9dmlydGlvLGZvcm1hdD1yYXcgLXZnYSB2bXdhcmUgLXNo
-b3ctY3Vyc29yIC11c2IgLWRldmljZSB1c2ItdGFibGV0IC1kZXZpY2UgdmlydGlvLXJuZy1wY2kg
-IC1zZXJpYWwgdGNwOjEyNy4wLjAuMTo1NzAzMyAtcGlkZmlsZSBwaWRmaWxlXzMyODMzICAtY3B1
-IHBlbnRpdW0yIC1lbmFibGUta3ZtIC1tIDI1NiAtc2VyaWFsIHRjcDoxMjcuMC4wLjE6MzM5OTkg
-LXNuYXBzaG90IC1rZXJuZWwgL2hvbWUvcG9reWJ1aWxkL3lvY3RvLWF1dG9idWlsZGVyL3lvY3Rv
-LXdvcmtlci9uaWdodGx5LXg4Ni9idWlsZC9idWlsZC90bXAvZGVwbG95L2ltYWdlcy9xZW11eDg2
-L2J6SW1hZ2UtLTQuMTIuMTgrZ2l0MCtiNjZhNGY5NzMwXzU1OGZlODRkNjktcjAuMi1xZW11eDg2
-LTIwMTgwMTAyMTc0NjU4LmJpbiAtYXBwZW5kICdyb290PS9kZXYvdmRhIHJ3IGhpZ2hyZXM9b2Zm
-ICBjbG9ja3NvdXJjZT1rdm0tY2xvY2sgaHBldD1kaXNhYmxlIG5vYXBpYyBub2xhcGljIG1lbT0y
-NTZNIGlwPTE5Mi4xNjguNy42OjoxOTIuMTY4LjcuNToyNTUuMjU1LjI1NS4wIHZnYT0wIHV2ZXNh
-ZmIubW9kZV9vcHRpb249NjQweDQ4MC0zMiBvcHJvZmlsZS50aW1lcj0xIHV2ZXNhZmIudGFza190
-aW1lb3V0PS0xIGNvbnNvbGU9dHR5MSBjb25zb2xlPXR0eVMwLDExNTIwMG44IHByaW50ay50aW1l
-PTEnDQo+IA0KPiBydW5xZW11IC0gRVJST1IgLSBGYWlsZWQgdG8gcnVuIHFlbXU6IGlvY3RsKEtW
-TV9DUkVBVEVfVk0pIGZhaWxlZDogMTIgQ2Fubm90IGFsbG9jYXRlIG1lbW9yeQ0KPiBxZW11LXN5
-c3RlbS1pMzg2OiBmYWlsZWQgdG8gaW5pdGlhbGl6ZSBLVk06IENhbm5vdCBhbGxvY2F0ZSBtZW1v
-cnkNCj4gDQo+IA0KPiANCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206
-IExvY2ssIEpvc2h1YSBHDQo+IFNlbnQ6IFRodXJzZGF5LCBKYW51YXJ5IDQsIDIwMTggMTE6NDIg
-UE0NCj4gVG86IHBva3lidWlsZEBkZWJpYW44LnlvY3RvLmlvOyB5b2N0b0B5b2N0b3Byb2plY3Qu
-b3JnDQo+IENjOiBwaWRnZUB0b2dhbmxhYnMuY29tOyBQZXJleiBDYXJyYW56YSwgSm9zZSA8am9z
-ZS5wZXJlei5jYXJyYW56YUBpbnRlbC5jb20+OyBDcnV6LCBMaWJlcnRhZCA8bGliZXJ0YWQuY3J1
-ekBpbnRlbC5jb20+OyBvdGF2aW9Ab3NzeXN0ZW1zLmNvbS5icjsgWmhhbywgWWkgKFdpbmQgUml2
-ZXIpIDx5aS56aGFvQHdpbmRyaXZlci5jb20+OyBHcmF5ZG9uLCBUcmFjeSA8dHJhY3kuZ3JheWRv
-bkBpbnRlbC5jb20+OyBTYW5nYWwsIEFwb29ydiA8YXBvb3J2LnNhbmdhbEBpbnRlbC5jb20+OyBZ
-ZW9oLCBFZSBQZW5nIDxlZS5wZW5nLnllb2hAaW50ZWwuY29tPjsgQ2hhbiwgQWFyb24gQ2h1biBZ
-ZXcgPGFhcm9uLmNodW4ueWV3LmNoYW5AaW50ZWwuY29tPjsgQ2hhbmcsIFJlYmVjY2EgU3dlZSBG
-dW4gPHJlYmVjY2Euc3dlZS5mdW4uY2hhbmdAaW50ZWwuY29tPjsgQW5nLCBDaGluIEh1YXQgPGNo
-aW4uaHVhdC5hbmdAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBSZTogUmVsZWFzZSBDYW5kaWRhdGUg
-QnVpbGQgZm9yIHlvY3RvLTIuNV9NMS5yYzIgbm93IGF2YWlsYWJsZS4NCj4gDQo+IFRoaXMgYnVp
-bGQgaGFkIGEgY291cGxlIG9mIGZhaWx1cmVzLCBJJ20gZ29pbmcgdG8gc3BpbiBhbm90aGVyIHJj
-Lg0KPiANCj4gUUE6IHBsZWFzZSBkb24ndCB0YWtlIGFueSBhY3Rpb24gd2l0aCB0aGlzIGJ1aWxk
-Lg0KPiANCj4gSm9zaHVhDQo+IA0KPiBPbiAwNC8wMS8xOCAxNTozNSwgcG9reWJ1aWxkQGRlYmlh
-bjgueW9jdG8uaW8gd3JvdGU6DQo+Pg0KPj4gQSByZWxlYXNlIGNhbmRpZGF0ZSBidWlsZCBmb3Ig
-eW9jdG8tMi41X00xLnJjMiBpcyBub3cgYXZhaWxhYmxlIGF0Og0KPj4NCj4+DQo+PiAgICAgICBo
-dHRwczovL2F1dG9idWlsZGVyLnlvY3RvLmlvL3B1Yi9yZWxlYXNlcy95b2N0by0yLjVfTTEucmMy
-DQo+Pg0KPj4NCj4+IFBsZWFzZSBiZWdpbiBRQSBvbiB0aGlzIGJ1aWxkIGFzIHNvb24gYXMgcG9z
-c2libGUuDQo+Pg0KPj4NCj4+IEJ1aWxkIGhhc2ggaW5mb3JtYXRpb246DQo+PiBtZXRhLWludGVs
-IDogMTU4MDkxMzY3NGJjODRjOGU2YzEwY2Y4NTVkYmYzOGQyZWU4ZjNkMg0KPj4gbWV0YS1xdDQg
-OiBmMzEzZGJlZTJhYzNkNWZjYzk4MDE0MDc5NDdkM2NiNmNmYjkwYjVkDQo+PiBtZXRhLW1pbmd3
-IDogYTJjNWZiODJlNTU5NWQ1YmI1NmI1NzliN2M5MzE0N2M0ZmIwNjVhNQ0KPj4gbWV0YS1xdDMg
-OiBmMzNiNzNhOTU2M2YyZGZkZmQwZWUzN2I2MWQ2NWQ5MDE5N2E0NTZmDQo+PiBtZXRhLWdwbHYy
-IDogYTBmODcxNmQwNzMyNGU5NDVmMDQ2MmI4MmY5MzA5ZmEwOTM0YWYxNw0KPj4gcG9reSA6IDhm
-NDM2YWY5NDY0OGM4YzE0MjQ0YjcxMTgzZTdkYTVmNmNkMDk4MTMNCj4+DQo+Pg0KPj4gVGhpcyBp
-cyBhbiBhdXRvbWF0ZWQgbWVzc2FnZSBmcm9tDQo+PiBUaGUgWW9jdG8gUHJvamVjdCBBdXRvYnVp
-bGRlcg0KPj4gR2l0OiBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy95b2N0by1hdXRvYnVpbGRl
-cg0KPj4gRW1haWw6IGpvc2h1YS5nLmxvY2tAaW50ZWwuY29tDQo+Pg0KLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCklu
-dGVsIENvcnBvcmF0aW9uIChVSykgTGltaXRlZApSZWdpc3RlcmVkIE5vLiAxMTM0OTQ1IChFbmds
-YW5kKQpSZWdpc3RlcmVkIE9mZmljZTogUGlwZXJzIFdheSwgU3dpbmRvbiBTTjMgMVJKClZBVCBO
-bzogODYwIDIxNzMgNDcKClRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVudHMgbWF5IGNvbnRh
-aW4gY29uZmlkZW50aWFsIG1hdGVyaWFsIGZvcgp0aGUgc29sZSB1c2Ugb2YgdGhlIGludGVuZGVk
-IHJlY2lwaWVudChzKS4gQW55IHJldmlldyBvciBkaXN0cmlidXRpb24KYnkgb3RoZXJzIGlzIHN0
-cmljdGx5IHByb2hpYml0ZWQuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZApyZWNpcGllbnQs
-IHBsZWFzZSBjb250YWN0IHRoZSBzZW5kZXIgYW5kIGRlbGV0ZSBhbGwgY29waWVzLgo=
+On 12/28/2017 01:37 PM, Kirill Kondrashov wrote:
+> Is there some existing C/C++ API for smart pm? I have to interface it 
+> from Qt software and wonder if there's some other way rather then just 
+> intercepting python scripts output.
 
+Upgrade to a recent yocto release, which has replaced dnf with smart. 
+Then you can use the official dnf API, although I'm not sure how 
+accessible Python APIs are nowadays from C(++).
+
+Alex
 
