@@ -1,76 +1,68 @@
-Return-Path: <Jose.DiazdeGrenu@digi.com>
+Return-Path: <schnitzeltony@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D68CE00DFE; Mon,  8 Jan 2018 03:51:04 -0800 (PST)
+	id DF768E00DF2; Mon,  8 Jan 2018 04:14:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.82.243.203 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 376 seconds by postgrey-1.32 at yocto-www;
-	Mon, 08 Jan 2018 03:51:02 PST
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.203])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EF57E00A00
-	for <yocto@yoctoproject.org>; Mon,  8 Jan 2018 03:51:02 -0800 (PST)
-Received: from [216.82.242.35] (using TLSv1.2 with cipher
-	DHE-RSA-AES256-GCM-SHA384 (256 bits))
-	by server-11.bemta-8.messagelabs.com id 45/14-06017-DA9535A5;
-	Mon, 08 Jan 2018 11:44:45 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBKsWRWlGSWpSXmKPExsXi5LtOQHdtZHC
-	UweQ1Yhb/H29js5j0cg2bA5PHvJOBHu0n+tgCmKJYM/OS8isSWDPezXzPXHCBs+JST1QD4wHO
-	LkYuDiGBVYwS0+93s0M4qxkl3nVtYoVwFjNKfPy5Dcjh5GATMJeYdvggSxcjB4eIQK7E6h4Dk
-	LCwgIfEt7WNTCC2iICnxP9TzawQtpXEzwd3mEFsFgEViebpE8BqeAV8JXr3z2CBmN/KKPHmzw
-	uwBk4BZ4njvz+C2YwCshIrz59mBLGZBcQlbj2ZD9YsISAgsWTPeWYIW1Ti5eN/rBC2osTdJ2e
-	ZQW5jFtCUWL9LH6JVUWJK90N2iL2CEidnPmEBsYUE1CTa5kxgnsAoOgvJhlkI3bOQdM9C0r2A
-	kWUVo0ZxalFZapGuiZFeUlFmekZJbmJmjq6hgYVebmpxcWJ6ak5iUrFecn7uJkZg/NQzMDDuY
-	Hy5LPoQoyQHk5Ior6hzQJQQX1J+SmVGYnFGfFFpTmrxIUYZDg4lCV7JiOAoIcGi1PTUirTMHG
-	Akw6QlOHiURHjNQdK8xQWJucWZ6RCpU4zGHE+uzfvLxPFs5usGZiGWvPy8VClx3hKQUgGQ0oz
-	SPLhBsARziVFWSpiXkYGBQYinILUoN7MEVf4VozgHo5IwrzDIFJ7MvBK4fa+ATmECOuXdvkCQ
-	U0oSEVJSDYxun+p8r9fzZeWe5FuiZ2YbWMA1b12yXfiEz7Oa9DZ+PLGx7+Gf3CY/V0UPJ83ud
-	VcmvRPP2bi6SPpNrmL1Wrl5kycIxr7UUXQI5TSyvnbyo3ubWZyX6xyVQ+v6fmT9ztN4+vKq+W
-	eJL8kFbpsP8uxwvLXxa5sGS9m8P8+eJr74/2jhr5ebvKqVWIozEg21mIuKEwGEtq4OKwMAAA=
-	=
-X-Env-Sender: Jose.DiazdeGrenu@digi.com
-X-Msg-Ref: server-9.tower-75.messagelabs.com!1515411885!33727071!1
-X-Originating-IP: [66.77.174.16]
-X-StarScan-Received: 
-X-StarScan-Version: 9.4.45; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 41711 invoked from network); 8 Jan 2018 11:44:45 -0000
-Received: from owa.digi.com (HELO MCL-VMS-XCH01.digi.com) (66.77.174.16)
-	by server-9.tower-75.messagelabs.com with SMTP;
-	8 Jan 2018 11:44:45 -0000
-Received: from MTK-SMS-XCH04.digi.com (10.10.8.198) by MCL-VMS-XCH01.digi.com
-	(10.5.8.49) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Mon, 8 Jan 2018 05:44:42 -0600
-Received: from DOR-VMS-XCH01.digi.com (10.49.8.98) by MTK-SMS-XCH04.digi.com
-	(10.10.8.198) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Mon, 8 Jan 2018 05:44:42 -0600
-Received: from DOR-SMS-XCH01.digi.com ([fe80::894b:3bdc:74ae:6efc]) by
-	DOR-VMS-XCH01.digi.com ([::1]) with mapi id 14.03.0361.001;
-	Mon, 8 Jan 2018 12:44:40 +0100
-From: "Diaz de Grenu, Jose" <Jose.DiazdeGrenu@digi.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Postinstallation script warnings in Yocto 2.4 Rocko
-Thread-Index: AdOIYQlF3trmw5fqTDOXmOVi9/TopwACpYQAAAKIhvA=
-Date: Mon, 8 Jan 2018 11:44:40 +0000
-Message-ID: <0B2EBCD48D33654381E736352034C70C01B5D3AC@dor-sms-xch01.digi.com>
-References: <0B2EBCD48D33654381E736352034C70C01B5781A@dor-sms-xch01.digi.com>
-	<5aa601c6-2947-c890-eb37-ed9b33bd8677@linux.intel.com>
-In-Reply-To: <5aa601c6-2947-c890-eb37-ed9b33bd8677@linux.intel.com>
-Accept-Language: es-ES, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.101.11.101]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yb0-f177.google.com (mail-yb0-f177.google.com
+	[209.85.213.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6F06E00A00
+	for <yocto@yoctoproject.org>; Mon,  8 Jan 2018 04:14:06 -0800 (PST)
+Received: by mail-yb0-f177.google.com with SMTP id 65so238246ybz.6
+	for <yocto@yoctoproject.org>; Mon, 08 Jan 2018 04:14:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=1kD+x4BCx1dPA6DxjyLFs2FBTes2PWStqLYdFsfgSTs=;
+	b=qoA+lltN1B/WXP7EjOGojpifmN6+gHEgUqzwPxpNR6wHuJbzIeXQDnE3Rhyd86rOhF
+	ufV1wkRU8v5o8kPD1eU8hsS5c1Ag6hyiqx2g7Ig1XdV6rcufN9HdZthWTLk3rmuvH+33
+	GDpX87XodvHhNCHQvVovrGt+sgWcwoqZx6P0xjZEq/IoDcSJx7PEqBjjiFZN8WlC533Z
+	ADJVdyBvrBHyaVoZD8T+Xu4QvaAPaN+vF7/She5zvu9TuwFe1lHShxsrz0CXmHOQpa9W
+	j+zFkO4VSDAj8gzpFgk6P6QUllMt1fvhuO3xsuX96cFHJ7uDWu6urxCMOZ07tH0II5zh
+	5zMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=1kD+x4BCx1dPA6DxjyLFs2FBTes2PWStqLYdFsfgSTs=;
+	b=c+WhnzT3mkD2QgxnwmvyZjuPPUr2xZJpyWpOVjjv+5QllFp4IfVtNJhBHFIiYs7WOs
+	hsOP0A8BKwYst/1cJlSeG+jgMmTLoYXHvOm0oRHAIbqwCClXHvue0RJ+7rpk5jcqb21p
+	9gUPvoYoVifHF3wZj0kvUb2aaaUB6KHf9QTXa/j2H21pkM7QAznt4PQyU7Pbl6x0M3sW
+	zTnS4sEmAI04cY5QtcWOm+t6I2DwHsWp7AYbtYDh9uNhZk6zHK8O0NYLvaTI/XtmOxpi
+	TWdhJKN+OyOMVZxZCWyyVIGb7UITNvgEeresmwc0JqrH0CHjlXIwPUtUWFGlOj+Ns/xL
+	vqFg==
+X-Gm-Message-State: AKGB3mI/JixyuXEYjX8h6gEb6abNXw4bp3opajRHzsDQ8KGspAYoITab
+	heZEJlSnh9GT90nK3WXmItBy+krb2qE6yeYEOG0=
+X-Google-Smtp-Source: ACJfBouKJEbjQjjui3fTwpinsR9LZL0A+RFC0NcNuCbVxFeinwdh2CiWcIFz228xyPRbUk2Im3CKyeZj5PjQppz2CH0=
+X-Received: by 10.37.133.143 with SMTP id x15mr10541366ybk.253.1515413645853; 
+	Mon, 08 Jan 2018 04:14:05 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: Postinstallation script warnings in Yocto 2.4 Rocko
+Received: by 10.37.130.136 with HTTP; Mon, 8 Jan 2018 04:14:05 -0800 (PST)
+In-Reply-To: <4652517.ZQGAsBVoUS@peggleto-mobl.ger.corp.intel.com>
+References: <CALbNGRRKv72-BPBKKeEMwCiGUf5VkqCE6gSYf91pUPySX=eK_A@mail.gmail.com>
+	<16972162.Agi7Apa5Ls@peggleto-mobl.ger.corp.intel.com>
+	<4652517.ZQGAsBVoUS@peggleto-mobl.ger.corp.intel.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
+Date: Mon, 8 Jan 2018 13:14:05 +0100
+Message-ID: <CALbNGRTWb-EhnVQnVgTOLZpNXfTuFLzCvpfO9hdUcGFERyCqHQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Layer index not updated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,25 +74,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jan 2018 11:51:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 08 Jan 2018 12:14:07 -0000
+Content-Type: multipart/alternative; boundary="089e08329d3c0c877a056242bc8c"
 
-DQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogQWxleGFuZGVyIEthbmF2aW4gW21h
-aWx0bzphbGV4YW5kZXIua2FuYXZpbkBsaW51eC5pbnRlbC5jb21dIA0KT24gMDEvMDgvMjAxOCAx
-MToxNCBBTSwgRGlheiBkZSBHcmVudSwgSm9zZSB3cm90ZToNCg0KPiBOb3BlLCAnZXhpdCAxJyBp
-cyB0aGUgY3VycmVudGx5IGNvcnJlY3Qgd2F5IHRvIGRlZmVyIHRvIGZpcnN0IGJvb3QuIE9uIHRo
-ZSBvdGhlciBoYW5kLCBpdCdzIGFsc28gYSBjb3JyZWN0IHdheSB0byBpbmRpY2F0ZSB0aGF0IHRo
-ZSBzY3JpcHQgaGFzIGZhaWxlZCwgYW5kIHJwbSBpcyByaWdodCBpbiByZXBvcnRpbmcgaXQgYXMg
-c3VjaC4gIFRoaXMgaXMgYSBkZXNpZ24gZGVmZWN0IGluIFlvY3RvLCBhbmQgSSBwbGFuIHRvIGZp
-eCBpdCwgc28gdGhhdCBpbnN0ZWFkIHlvdSB3b3VsZCBzaW1wbHkgd3JpdGUgeW91ciBmcmFnbWVu
-dCBhcyBmb2xsb3dzOg0KPg0KPg0KPiBwa2dfcG9zdGluc3Rfb250YXJnZXRfUEFDS0FHRU5BTUUo
-KSB7DQo+ICAgICAgICAjIEFjdGlvbnMgdG8gY2Fycnkgb3V0IG9uIHRoZSBkZXZpY2UgZ28gaGVy
-ZQ0KPiAgICAgICAgLi4uLg0KPiB9DQoNClRoYW5rcyBmb3IgdGhlIGluZm9ybWF0aW9uLiBJIGd1
-ZXNzIHRoaXMgZml4IHdpbGwgYmUgZm9yIFlvY3RvIDIuNT8NCg0KVGhlIHByb2JsZW0gaXMgdGhh
-dCBpbiBZb2N0byAyLjQgdGhlbiBhbnkgYnVpbGQgd2hpY2ggcmVxdWlyZXMgb24tdGFyZ2V0IHBv
-c3RpbnN0YWxsYXRpb24gc2NyaXB0IGlzIGdvaW5nIHRvIHRyaWdnZXIgd2FybmluZywgZXZlbiBp
-ZiBpdCBpcyBjb21wbGV0ZWx5IGNvcnJlY3QuIElzIHRoZXJlIG5vIHdheSBhcm91bmQgdGhpcz8g
-SXMgdGhlcmUgYSB3YXkgdG8gYXQgbGVhc3QgaGlkZSB0aGVtPw0KDQpUaGFua3MgYWdhaW4uDQo=
+--089e08329d3c0c877a056242bc8c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Nov 20, 2017 at 9:12 PM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
+
+> On Friday, 10 November 2017 8:32:36 AM NZDT Paul Eggleton wrote:
+> > On Thursday, 9 November 2017 9:36:26 PM NZDT Andreas M=C3=BCller wrote:
+> > > did not find any heads up here so: Layer index stopped updating ~1,5
+> month.
+> > > Low priority - this is just notification & thanks in advance for taki=
+ng
+> > > care :)
+> >
+> > I reported this to Michael a week or so ago but I think he's still
+> battling an
+> > upgrade of the layer index code among other things. Michael, any update=
+s?
+>
+> Looks like the layer index updates are still broken - Michael?
+>
+> Ping?
+
+--089e08329d3c0c877a056242bc8c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On M=
+on, Nov 20, 2017 at 9:12 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linu=
+x.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span c=
+lass=3D"">On Friday, 10 November 2017 8:32:36 AM NZDT Paul Eggleton wrote:<=
+br>
+&gt; On Thursday, 9 November 2017 9:36:26 PM NZDT Andreas M=C3=BCller wrote=
+:<br>
+&gt; &gt; did not find any heads up here so: Layer index stopped updating ~=
+1,5 month.<br>
+&gt; &gt; Low priority - this is just notification &amp; thanks in advance =
+for taking<br>
+&gt; &gt; care :)<br>
+&gt;<br>
+&gt; I reported this to Michael a week or so ago but I think he&#39;s still=
+ battling an<br>
+&gt; upgrade of the layer index code among other things. Michael, any updat=
+es?<br>
+<br>
+</span>Looks like the layer index updates are still broken - Michael?<br>
+<br></blockquote></div>Ping?<br></div></div>
+
+--089e08329d3c0c877a056242bc8c--
