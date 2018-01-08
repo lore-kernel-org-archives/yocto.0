@@ -1,26 +1,62 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <mathewkunjumontharakan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 37C5FE00DEF; Sun,  7 Jan 2018 21:34:03 -0800 (PST)
+	id D4279E00DE6; Sun,  7 Jan 2018 22:14:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mathewkunjumontharakan[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.176 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32DA3E00DEB
-	for <yocto@yoctoproject.org>; Sun,  7 Jan 2018 21:34:02 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 0E45287550AE
-	for <yocto@yoctoproject.org>; Mon,  8 Jan 2018 00:34:01 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yb0-f176.google.com (mail-yb0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 874ADE00D6E
+	for <yocto@yoctoproject.org>; Sun,  7 Jan 2018 22:14:38 -0800 (PST)
+Received: by mail-yb0-f176.google.com with SMTP id 5so4108407ybp.4
+	for <yocto@yoctoproject.org>; Sun, 07 Jan 2018 22:14:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=jxTEEINLg4ZrsGlNs0F1EzihIFMPbWvF1wGFz+uxItc=;
+	b=TqM4Jf9/yy0m4lHj4odkOo5EEGsWm1NRWPLifvpQulwpDGVzr+dKYq7c+vMOtRVx1W
+	C4m4J+4v0ce8OuL0YGzjjJGoWH5D6L0701jFVe/QlXzjpB1RqAtYBrexETJpRExZO/Hk
+	XeYH1ZZjkBp9dLnUnfZAn0ShBSCK2L6ttcVw7jZidbxCU9N7Mgw4lU+g+o7mTZEBI3qX
+	tIyIu+xna1e0TEKh/FxSRV+Yvg4oqEi2R8aEAIKhj2VxgaA2QtpIG4MrWeb2vB9pDZvg
+	6P3rg9ZKEB3zpuHmh7Dxl40CatjgIi/Xw5P7YHw++C4h+NqKHZdBX+2i+uZYYKPBwUqU
+	QpBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=jxTEEINLg4ZrsGlNs0F1EzihIFMPbWvF1wGFz+uxItc=;
+	b=jFQ7+r8xy7MX6ISKdk/k93UZ2ZYOe73D4eEiCXyorr/M1n3RlL3U5Rbo0X1nrsWo5z
+	dynhZxV/0WXl1w2fz/gQOp5NZXFSJw2+DY+OPrMBhehgoUYwE0d6Rk8PR8KXieGqc6yc
+	ShvjauVPe2xzejhc0DsXch+mgNEB3vlMXSqfUF9+1aif/Y+3bV0366t4cI9UOfzMLOwp
+	NYGhe0PkTi/1b5vycYCdsEsLdgJL8YVxb6Piw3auoQTifjgDZMqqdBnYixo/aBjnnGZT
+	7NvYIdkZUAOIqweyj6wFsWusKXd2/eXWXHyombAlzMR7SuhUm1BgzU35RU6+nPbrEmr5
+	F3Pg==
+X-Gm-Message-State: AKGB3mJC3tSDHinWi805YnRa1LBDxBjbhBMkG+8PS7vsa0EQSJfhyrbT
+	YXqy6KtOvkgmrpsZqdBGCTooxksn9Qz38z1czA+Wtg==
+X-Google-Smtp-Source: ACJfBotND3xHTJeXnjjHmF03SnqbNosPOAsQcG7Jt+HFvKThiHQmcFXNx2qYSUPPjJkXGNoSAaF0IdaXouATQOs40W4=
+X-Received: by 10.37.102.78 with SMTP id z14mr10461376ybm.43.1515392077472;
+	Sun, 07 Jan 2018 22:14:37 -0800 (PST)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
+Received: by 10.37.231.197 with HTTP; Sun, 7 Jan 2018 22:14:37 -0800 (PST)
+From: Mathew K Tharakan <mathewkunjumontharakan@gmail.com>
+Date: Mon, 8 Jan 2018 11:44:37 +0530
+Message-ID: <CA+JFif35T7yDxkeX3OAjjw079fxWOVqH4wnet8_GwNM3_9LRSw@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 08 Jan 2018 05:34:00 -0000
-Message-ID: <20180108053400.17670.73248@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Subject: Reg: Yocto python library updation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,185 +68,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jan 2018 05:34:03 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 08 Jan 2018 06:14:38 -0000
+Content-Type: multipart/alternative; boundary="089e0828d1b079286c05623db67b"
 
-This mail was sent out by Recipe reporting system.
+--089e0828d1b079286c05623db67b
+Content-Type: text/plain; charset="UTF-8"
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+Hi,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+I'm working with iMX6ULL yocto (version 2.1)project. I would like to add
+following python libraries along with the image. I tried adding .bb file
+but the packages are not getting integrated. Please reply some possible
+ways to solve this.
 
-You can check the detail information at:
+Python libraries to be added,
 
-http://recipes.yoctoproject.org/
+SciPy - 0.18.1
+NumPy - 1.11.1
+Pandas - 0.18.1
+Scikit-learn - 0.17.1
+math - 0.19
+Memory-profiler - 0.45
 
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-eudev                 3.2.2            3.2.5                 Alejandro Hernandez
-epiphany              3.24.3           3.26.5.1              Alexander Kanavin
-usbutils              008              009                   Alexander Kanavin
-systemtap             3.1              3.2                   Alexander Kanavin
-gtk-doc               1.25             1.27                  Alexander Kanavin
-boost                 1.65.1           1.66.0                Alexander Kanavin
-trace-cmd             2.6.1            2.6.2                 Alexander Kanavin
-gdbm                  1.13             1.14.1                Alexander Kanavin
-vala                  0.38.2           0.38.4                Alexander Kanavin
-libwebp               0.6.0            0.6.1                 Alexander Kanavin
-libnl                 3.2.29           3.4.0                 Alexander Kanavin
-ffmpeg                3.4              3.4.1                 Alexander Kanavin
-webkitgtk             2.18.3           2.18.4                Alexander Kanavin
-blktrace              1.1.0+gitX       1.2.0                 Alexander Kanavin
-icu                   60.1             60.2                  Alexander Kanavin
-bjam-native           1.65.1           1.66.0                Alexander Kanavin
-btrfs-tools           4.13.3           4.14.1                Alexander Kanavin
-systemtap-uprobes     3.1              3.2                   Alexander Kanavin
-kernelshark           2.6.1            2.6.2                 Alexander Kanavin
-mpg123                1.25.7           1.25.8                Alexander Kanavin
-iso-codes             3.76             3.77                  Alexander Kanavin
-tiff                  4.0.8            4.0.9                 Alexander Kanavin
-apt                   1.2.24           1.4.8                 Aníbal Limón
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.4              Aníbal Limón
-bind                  9.10.6           9.11.2                Armin Kuster
-curl                  7.54.1           7.57.0                Armin Kuster
-busybox               1.27.2           1.28.0                Armin Kuster
-linux-libc-headers    4.12             4.14.12               Bruce Ashfield
-libunwind             1.2              1.2.1                 Bruce Ashfield
-iproute2              4.13.0           4.14.1                Changhyeok Bae
-iw                    4.9              4.14                  Changhyeok Bae
-coreutils             8.28             8.29                  Chen Qi
-systemd-boot          234              236                   Chen Qi
-systemd               234              236                   Chen Qi
-util-linux            2.31             2.31.1                Chen Qi
-sed                   4.2.2            4.4                   Chen Qi
-sysstat               11.6.1           11.7.1                Chen Qi
-tar                   1.29             1.30                  Chen Qi
-systemd-bootchart     231+gitX         233                   Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-build-appliance-i...  15.0.0           18.0.0                Cristian Iorga
-lz4                   1.7.4            1.8.0                 Denys Dmytriyenko
-lzop                  1.03             1.04                  Denys Dmytriyenko
-gzip                  1.8              1.9                   Denys Dmytriyenko
-hdparm                9.52             9.53                  Denys Dmytriyenko
-mtd-utils             2.0.0            2.0.1                 Denys Dmytriyenko
-python-numpy          1.13.1           1.14.0rc1             Derek Straka
-python                2.7.13           2.7.14                Derek Straka
-python3-numpy         1.13.3           1.14.0rc1             Derek Straka
-python3-setuptools    38.2.5           38.4.0                Derek Straka
-python-setuptools     38.2.5           38.4.0                Derek Straka
-python3-native        3.5.3            3.6.4                 Derek Straka
-python-native         2.7.13           2.7.14                Derek Straka
-python3               3.5.3            3.6.4                 Derek Straka
-acpica                20170303         20180105              Fathi Boudra
-gnupg                 2.2.0            2.2.4                 Hongxu Jia
-ncurses               6.0+20170715     6.0+20171125          Hongxu Jia
-apr-util              1.6.0            1.6.1                 Hongxu Jia
-gpgme                 1.9.0            1.10.0                Hongxu Jia
-libgcrypt             1.8.1            1.8.2                 Hongxu Jia
-bash                  4.4              4.4.12                Hongxu Jia
-ghostscript           9.21             9.22                  Hongxu Jia
-man-pages             4.11             4.14                  Hongxu Jia
-pigz                  2.3.4            2.4                   Hongxu Jia
-help2man-native       1.47.4           1.47.5                Hongxu Jia
-apr                   1.6.2            1.6.3                 Hongxu Jia
-bc                    1.06             1.07.1                Jose Lamego
-pango                 1.40.12          1.40.14               Jussi Kukkonen
-piglit                1.0+gitrX        1.0-new-commits-a...  Jussi Kukkonen
-libinput              1.8.4            1.9.4                 Jussi Kukkonen
-vulkan-demos          git              git-new-commits-a...  Jussi Kukkonen
-cairo                 1.14.10          1.14.12               Jussi Kukkonen
-puzzles               0.0+gitX         0.0-new-commits-a...  Jussi Kukkonen
-atk                   2.26.0           2.26.1                Jussi Kukkonen
-gtk-icon-utils-na...  3.22.17          3.22.26               Jussi Kukkonen
-vte                   0.50.1           0.50.2                Jussi Kukkonen
-vulkan                1.0.61.1         1.0.65.1              Jussi Kukkonen
-assimp                4.0.1            4.1.0                 Jussi Kukkonen
-adwaita-icon-theme    3.26.0           3.26.1                Jussi Kukkonen
-gtk+3                 3.22.24          3.22.26               Jussi Kukkonen
-fontconfig            2.12.6           2.12.91               Jussi Kukkonen
-librsvg               2.40.19          2.40.20               Jussi Kukkonen
-llvm                  5.0              5.0-new-commits-a...  Khem Raj
-cross-localedef-n...  2.26             2.26.9000             Khem Raj
-glibc-initial         2.26             2.26.9000             Khem Raj
-ninja                 1.7.2            1.8.2                 Khem Raj
-mpfr                  3.1.5            4.0.0                 Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-go-native             1.9              1.10beta1             Khem Raj
-go                    1.9              1.10beta1             Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-glibc                 2.26             2.26.9000             Khem Raj
-perl                  5.24.1           5.26.1                Leonardo Sandoval
-ruby                  2.4.2            2.5.0                 Leonardo Sandoval
-nfs-utils             2.1.1            2.3.1                 Leonardo Sandoval
-qemu                  2.10.1           2.11.0                Leonardo Sandoval
-perl-native           5.24.1           5.26.1                Leonardo Sandoval
-bluez5                5.47             5.48                  Maxin B. John
-libical               2.0.0            3.0.1                 Maxin B. John
-gst-examples          0.0.1+gitX       0.0.1-new-commits...  Maxin B. John
-libsolv               0.6.29           0.6.30                Maxin B. John
-ifupdown              0.8.16           0.8.29                Maxin B. John
-screen                4.6.1            4.6.2                 Maxin B. John
-pkgconf               1.3.7            1.4.0                 Maxin B. John
-i2c-tools             3.1.2            4.0                   Maxin B. John
-go-crosssdk-x86_64    1.9              1.10beta1             No maintainer
-systemtap-native      3.1              3.2                   No maintainer
-go-cross-canadian...  1.9              1.10beta1             No maintainer
-go-cross-i586         1.9              1.10beta1             No maintainer
-go-runtime            1.9              1.10beta1             No maintainer
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.9.5            3.10.1                Otavio Salvador
-cmake-native          3.9.5            3.10.1                Otavio Salvador
-go-dep                0.3.1            0.3.2                 Otavio Salvador
-libdrm                2.4.88           2.4.89                Otavio Salvador
-tcf-agent             1.4.0+gitX       1.6.0                 Randy Witt
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-subversion            1.9.6            1.9.7                 Richard Purdie
-lttng-tools           2.9.5            2.10.1                Richard Purdie
-lttng-ust             2.9.1            2.10.1                Richard Purdie
-lttng-modules         2.9.5            2.10.4                Richard Purdie
-nasm                  2.13.01          2.13.02               Richard Purdie
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-debianutils           4.8.1.1          4.8.4                 Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.19             4.20                  Robert Yang
-tcl                   8.6.7            8.6.8                 Robert Yang
-autoconf-archive      2016.09.16       2017.09.28            Robert Yang
-less                  527              529                   Robert Yang
-e2fsprogs             1.43.7           1.43.8                Robert Yang
-time                  1.7              1.8                   Robert Yang
-git                   2.15.0           2.15.1                Robert Yang
-base-passwd           3.5.29           3.5.44                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.72             9.79                  Ross Burton
-libva-utils           1.8.3            2.0.0                 Wei Tee Ng
-libva                 1.8.3            2.0.0                 Wei Tee Ng
-chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
-json-glib             1.2.8            1.4.2                 Yi Zhao
+Thanks and Regards
+Mathew. K. Tharakan
 
-Upgradable count: 137
-Upgradable total count: 139
+--089e0828d1b079286c05623db67b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The based commit is:
+<div dir=3D"ltr"><div><div><div><div>Hi,<br><br></div>I&#39;m working with =
+iMX6ULL yocto (version 2.1)project. I would like to add following python li=
+braries along with the image. I tried adding .bb file but the packages are =
+not getting integrated. Please reply some possible ways to solve this.<br><=
+br></div>Python libraries to be added,<br><div><br></div><div>SciPy - 0.18.=
+1</div><div>NumPy - 1.11.1</div><div>Pandas - 0.18.1</div><div>Scikit-learn=
+ - 0.17.1</div><div>math - 0.19</div>Memory-profiler - 0.45<br><br></div>Th=
+anks and Regards<br></div>Mathew. K. Tharakan<br></div>
 
-commit e0a4e78b879eeacff8ef6803c1345056abf018e7
-Author: Ross Burton <ross.burton@intel.com>
-Date:   Wed Dec 20 13:03:03 2017 +0000
-
-    gstreamer: use a patch instead of sed to fix gtk-doc makefiles
-    
-    seds can get stale without warning and repeated application can cause problems,
-    so move the gtk-doc seds into a patch.
-    
-    (From OE-Core rev: a704411ab0f1e5f8cbf57ff54b36d60ccaf0d223)
-    
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
-
-
+--089e0828d1b079286c05623db67b--
