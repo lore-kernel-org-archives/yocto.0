@@ -1,63 +1,68 @@
-Return-Path: <alan.martinovic@senic.com>
+Return-Path: <Jose.DiazdeGrenu@digi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5797E00DED; Mon,  8 Jan 2018 00:23:22 -0800 (PST)
+	id C4424E00DC2; Mon,  8 Jan 2018 01:21:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
+	*      [216.82.251.2 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57393E00D92
-	for <yocto@yoctoproject.org>; Mon,  8 Jan 2018 00:23:20 -0800 (PST)
-Received: by mail-lf0-f45.google.com with SMTP id e27so11176114lfb.9
-	for <yocto@yoctoproject.org>; Mon, 08 Jan 2018 00:23:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=senic-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=58ku7Wal+0DO4KhS5erGYPIlTL5LQMe17byqvTv6Tmo=;
-	b=lPrUs1oRfr18KyTjK8o2ev71VZvoMhkNeSgw0o6t2SbVB95XMce8fPJSwr1aNQ6NyS
-	SwjXXJWThHQ4F988CkS1RfXue+WmXMiYlM8gMV5rYjyikxWeMfjVAHzHjTJqUf/bOyho
-	kmTXpux+7u3H1OIZj1HY0/ghMz9J7I52c7vLsoG4S80/9OEva/5nQuy+Z0wBPzfl++/Y
-	Zgs+ReRcgu7RU+9w3qIqHaHImB/bH5HmtjSbvMBZ7q8PMfqgtQUbPD88oZ3EqCjzJMmL
-	hNl1I0Niiaz/UWSHtJS+xJP84cakEwZvzeJbaz/JSga6dL2JHxSdJP0xX5YV2qSB7a6F
-	3TsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=58ku7Wal+0DO4KhS5erGYPIlTL5LQMe17byqvTv6Tmo=;
-	b=BQfDVG56/oWVwk0cBepUZKyyLIaIYTVPZdkVXHJoy6XNek1KWU2YIEpFMMDpgxtbUz
-	dXMXVmXnsgIdSoQRu0bwSkk0K2S+gl4+Kq5Xq2ACTZst4dMxjkCl89GnchO2oFHoSowC
-	vTkb1eT8TXJstK9oZ+hEzF8Kcqsj2Z9ygCcDjzlE1cAFMSQ2Mv3xbQPNiv5dxS0wGcUw
-	Z8AIvvdOeEayWPlUcg+ZUakpka3EmDIHnPx/QjfpbOKyLkemPMXf0qAzuOKNItLwcuOu
-	U7n1iSYUkDSGdwA48p/imZgsgvYPYpXNJbED6rDLimHdmYmlwTZBH+HRIczVyrYN3A1e
-	XUtw==
-X-Gm-Message-State: AKwxytfy//xUGDYSLEpQeIQzRbVE4snPW+DgaarDlsmGHv+wKvMfN4o0
-	wC212QAQTrkay4WVN3/w3K+eFT0+GK6/RQszLn68aw==
-X-Google-Smtp-Source: ACJfBouh2j/RDU4mcUv6epk23LUVsDV3cF2Jz8wtAW1JVRdUNPYuYAaAMowwtP2Jea/KaW9fEctRb8FworPeQbB8HKE=
-X-Received: by 10.46.97.1 with SMTP id v1mr6267759ljb.84.1515399799967; Mon,
-	08 Jan 2018 00:23:19 -0800 (PST)
+X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
+	Mon, 08 Jan 2018 01:21:02 PST
+Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
+	[216.82.251.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A57D5E00D92
+	for <yocto@yoctoproject.org>; Mon,  8 Jan 2018 01:21:02 -0800 (PST)
+Received: from [216.82.249.147] (using TLSv1.2 with cipher
+	DHE-RSA-AES256-GCM-SHA384 (256 bits))
+	by server-2.bemta-12.messagelabs.com id AB/BB-31148-F66335A5;
+	Mon, 08 Jan 2018 09:14:23 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrOIsWRWlGSWpSXmKPExsXi5LtOQDffLDj
+	KYM8fRotJL9ewOTB6tJ/oYwtgjGLNzEvKr0hgzdh58gRjwXOOirctH1kbGOezdzFycQgJrGSU
+	6Js0hQXCWcwo8XXuLqAMJwebgLnEtMMHWUBsEQFTiRfHvrCB2MICNhKru08wQsQdJbZuvMIKY
+	etJdGxqBetlEVCRuNxwDczmFfCV+P/mP1gNo4CsxMrzp8F6mQXEJe5N6QGLSwgISCzZc54Zwh
+	aVePn4H1RcXuLw/3VQ9ToSC3Z/YoOwtSWWLXzNDDFfUOLkzCdgdwoJqEm0zZnAPIFRaBaSFbO
+	QtM9C0j4LSfsCRpZVjBrFqUVlqUW6hpZ6SUWZ6RkluYmZObqGhkZ6uanFxYnpqTmJScV6yfm5
+	mxiBgV7PwMC4g3FKo9chRkkOJiVRXlHngCghvqT8lMqMxOKM+KLSnNTiQ4wyHBxKErzSpsFRQ
+	oJFqempFWmZOcCYg0lLcPAoifAeNwFK8xYXJOYWZ6ZDpE4x6nI8m/m6gVmIJS8/L1VKnFcZZI
+	YASFFGaR7cCFj8X2KUlRLmZWRgYBDiKUgtys0sQZV/xSjOwagkzCsDMoUnM68EbtMroCOYgI5
+	4ty8Q5IiSRISUVAOj1XveiKwnC/suzbz7NNB34XupuZsWb/zStv05S/lSHYO8uod3n0xlM7xd
+	qnT2bVSOys+TGc/jdnkGypSv9LFZf1ixwuzU6ZCPh68fcMz+E73y6x/tjXNTn5VZxf2qsvXo6
+	3ZvYzRtXes3KW9huNEJQ93LAe3z9R7YcVW7K6hPtLqWvJ/jrqyaEktxRqKhFnNRcSIAmRbIjP
+	oCAAA=
+X-Env-Sender: Jose.DiazdeGrenu@digi.com
+X-Msg-Ref: server-14.tower-29.messagelabs.com!1515402862!74914265!1
+X-Originating-IP: [66.77.174.16]
+X-StarScan-Received: 
+X-StarScan-Version: 9.4.45; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 20015 invoked from network); 8 Jan 2018 09:14:22 -0000
+Received: from owa.digi.com (HELO MCL-VMS-XCH01.digi.com) (66.77.174.16)
+	by server-14.tower-29.messagelabs.com with SMTP;
+	8 Jan 2018 09:14:22 -0000
+Received: from DOR-VMS-XCH01.digi.com (10.49.8.98) by MCL-VMS-XCH01.digi.com
+	(10.5.8.49) with Microsoft SMTP Server (TLS) id 14.3.361.1;
+	Mon, 8 Jan 2018 03:14:19 -0600
+Received: from DOR-SMS-XCH01.digi.com ([fe80::894b:3bdc:74ae:6efc]) by
+	DOR-VMS-XCH01.digi.com ([::1]) with mapi id 14.03.0361.001;
+	Mon, 8 Jan 2018 10:14:07 +0100
+From: "Diaz de Grenu, Jose" <Jose.DiazdeGrenu@digi.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Postinstallation script warnings in Yocto 2.4 Rocko
+Thread-Index: AdOIYQlF3trmw5fqTDOXmOVi9/Topw==
+Date: Mon, 8 Jan 2018 09:14:07 +0000
+Message-ID: <0B2EBCD48D33654381E736352034C70C01B5781A@dor-sms-xch01.digi.com>
+Accept-Language: es-ES, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.101.2.92]
 MIME-Version: 1.0
-Received: by 10.25.87.193 with HTTP; Mon, 8 Jan 2018 00:23:19 -0800 (PST)
-In-Reply-To: <CA+JFif17HGmrSTKYESP1hnVJAwX7kZwmA5K8-irFv7NHSarLUw@mail.gmail.com>
-References: <CA+JFif35T7yDxkeX3OAjjw079fxWOVqH4wnet8_GwNM3_9LRSw@mail.gmail.com>
-	<CAOT_U5Yt8XpFir0TTXDPTqLA8Z20WeRFAjw=JNOo7O6w7bRUaQ@mail.gmail.com>
-	<CA+JFif17HGmrSTKYESP1hnVJAwX7kZwmA5K8-irFv7NHSarLUw@mail.gmail.com>
-From: Alan Martinovic <alan.martinovic@senic.com>
-Date: Mon, 8 Jan 2018 09:23:19 +0100
-Message-ID: <CAOT_U5Y10EZimeJXzOFh3c1xf4gCbJcFc=Y0ju5JfqDpvzLYtg@mail.gmail.com>
-To: Mathew K Tharakan <mathewkunjumontharakan@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Reg: Yocto python library updation
+Subject: Postinstallation script warnings in Yocto 2.4 Rocko
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,51 +74,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jan 2018 08:23:22 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 08 Jan 2018 09:21:03 -0000
+Content-Language: es-ES
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Try checking this helps you:
-http://www.yoctoproject.org/docs/2.4/mega-manual/mega-manual.html#var-IMAGE_INSTALL
-
-On Mon, Jan 8, 2018 at 8:13 AM, Mathew K Tharakan
-<mathewkunjumontharakan@gmail.com> wrote:
-> No
->
->
-> On Mon, Jan 8, 2018 at 12:40 PM, Alan Martinovic <alan.martinovic@senic.com>
-> wrote:
->>
->> Have you added them also to the image?
->>
->> On Mon, Jan 8, 2018 at 7:14 AM, Mathew K Tharakan
->> <mathewkunjumontharakan@gmail.com> wrote:
->> > Hi,
->> >
->> > I'm working with iMX6ULL yocto (version 2.1)project. I would like to add
->> > following python libraries along with the image. I tried adding .bb file
->> > but
->> > the packages are not getting integrated. Please reply some possible ways
->> > to
->> > solve this.
->> >
->> > Python libraries to be added,
->> >
->> > SciPy - 0.18.1
->> > NumPy - 1.11.1
->> > Pandas - 0.18.1
->> > Scikit-learn - 0.17.1
->> > math - 0.19
->> > Memory-profiler - 0.45
->> >
->> > Thanks and Regards
->> > Mathew. K. Tharakan
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->> >
->
->
+Hi,=0A=
+=0A=
+I posted this question in the poky mailing list, but I realize now that thi=
+s may be the correct place for it. Sorry for reposting.=0A=
+=0A=
+I am trying to create a recipe with a post installation script. I am using =
+the following fragment of code (as documented in http://www.yoctoproject.or=
+g/docs/2.4/mega-manual/mega-manual.html#new-recipe-post-installation-script=
+s ):=0A=
+=0A=
+=0A=
+pkg_postinst_PACKAGENAME() {=0A=
+     if [ x"$D" =3D "x" ]; then=0A=
+          # Actions to carry out on the device go here=0A=
+     else=0A=
+          exit 1=0A=
+     fi=0A=
+}=0A=
+=0A=
+This was working fine in Yocto 2.2, but now in Yocto 2.4 I am getting these=
+ warnings:=0A=
+=0A=
+WARNING: core-image-base-1.0-r0 do_rootfs: [log_check] core-image-base: fou=
+nd 3 warning messages in the logfile:=0A=
+[log_check] warning: %post(init-ifupdown-1.0-r7.0.cortexa7hf_neon) scriptle=
+t failed, exit status 1=0A=
+=0A=
+How can I clean these warnings in Yocto 2.4? Is that still the correct =0A=
+way to create post installation script that must run on the target? =0A=
+Should I just replace 'exit 1' by 'exit 0'?=0A=
+=0A=
+Thanks=
 
