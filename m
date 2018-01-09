@@ -1,44 +1,62 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <davis.roman84@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0F24E00DCA; Mon,  8 Jan 2018 11:38:46 -0800 (PST)
+	id C7907E00DE4; Mon,  8 Jan 2018 16:44:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (davis.roman84[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91EF2E008FB
-	for <yocto@yoctoproject.org>; Mon,  8 Jan 2018 11:38:43 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w08JcTVW031523
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Mon, 8 Jan 2018 11:38:29 -0800
-Received: from server.local (128.224.22.131) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.361.1;
-	Mon, 8 Jan 2018 11:38:28 -0800
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <a56c815971a74fedaf7f9676840447f1@sakuraus.com>
-	<3d3ef818-08f3-f706-45ae-264cc7cf7fff@windriver.com>
-	<8acdc20521304e4aaf197d661e63b7fd@sakuraus.com>
-	<8e9d6bf9-b92f-e0f4-10d6-10db758c66a1@windriver.com>
-	<b53033627c9a435e8919289e32b4d167@sakuraus.com>
-	<9f114a5a-119a-b471-fd2f-fd0618938fa8@windriver.com>
-	<7794576a179e456683fff4ed8cc86b67@sakuraus.com>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <1f44db95-a8c1-5fcf-3974-d2af45e7bcdc@windriver.com>
-Date: Mon, 8 Jan 2018 14:38:26 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.5.2
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62EA9E008FB
+	for <yocto@yoctoproject.org>; Mon,  8 Jan 2018 16:44:15 -0800 (PST)
+Received: by mail-qk0-f179.google.com with SMTP id d18so6164687qke.7
+	for <yocto@yoctoproject.org>; Mon, 08 Jan 2018 16:44:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=d2nCfWm5jDo1GZT/Rfix8Jpf1uYVgeD70BSKz2k0LKc=;
+	b=i8/g5YNDF0YHOzfLpW7K4oTIBQuWYJV/bPl7xZUQ9XjQWMileLYukIT1W6ez1y1kZB
+	p0cvhlvGdetzxyd4DeyzrAcr0oK/e6ZrXcRp9mVEtmcWTOH1DA9U5grGuzucQuhBbGU8
+	6TUQpUtvIpdoy6Qfji5+WlaK5AI3aKcs+zmpBOJPREPUm1Vk+YOvXs7K2g+b7pvkVhyZ
+	IgNY1P9MLdzIl+mK5RDCBveU2uyYSt9WgXSgbXCC1YlTVWvKprkWJRKARDy+1/WJWVUw
+	1aWyfIa7192sPMbe4tdjwFaKzu56s/JACXE8X6GsoBYEnRF9YnwVFGseJRHR4Ddc2i1B
+	NSDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=d2nCfWm5jDo1GZT/Rfix8Jpf1uYVgeD70BSKz2k0LKc=;
+	b=fNwHKGst9Mex6b1LE/bZSebPyem8i5mPDdxX7UFNFa6C9sHQv2C0yQ3+hLBAbvgKQb
+	BwfjPAyJg35vGIJuE4+89ayC3zjm0XZVmuV9L8DZpy2JvwyNdN/HrQ4zqwu2kJviDvCq
+	fpjttKhm3GTO4ZnPrT/22UuuIytx7buG2FJoXpbpLkBL4x3+itXxKhd87DGo+3RgpP24
+	uN1tsDYKQc2zsjvtlVH+40vLnEhf52/w89ORCsdH8pWHIIGPlmI3SpWOe4VpwlZyJZOP
+	3JECLB4HMco+e5ltboU8jsNYWtZKPbucppJulf1tUu9v28H9z2pjqSDwmbDTQmj1PmCI
+	I9rw==
+X-Gm-Message-State: AKwxytdxBuB4/M2PRFIXCUGyewrE/Xz9CZ0dVqeqGrBHJHPou/VUH+w5
+	s7sry3Shm6qDD3s+Ck/W7Jc4y2f2EYGknBwor++1pg==
+X-Google-Smtp-Source: ACJfBou8I7lj73JPTC1b3u3n16I1fCN+mXVvev9tRZAXqlsg7S2cctyTMSvRjScsPMm0voGrKHsQWEUCdGN91dv+aGU=
+X-Received: by 10.55.105.194 with SMTP id e185mr19335743qkc.192.1515458654100; 
+	Mon, 08 Jan 2018 16:44:14 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <7794576a179e456683fff4ed8cc86b67@sakuraus.com>
-Subject: Re: Kernel configuration problem/confusion
+Received: by 10.233.239.137 with HTTP; Mon, 8 Jan 2018 16:44:13 -0800 (PST)
+From: Davis Roman <davis.roman84@gmail.com>
+Date: Mon, 8 Jan 2018 19:44:13 -0500
+Message-ID: <CACfi_Z3Z1wWCO17nwzGNGatboFT=cEo-LjJoMJFE7gQrLA5yXQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: backporting u-boot fit changes and how to properly capture the changes in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,233 +68,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jan 2018 19:38:46 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 09 Jan 2018 00:44:15 -0000
+Content-Type: multipart/alternative; boundary="001a11487d54bfe09305624d36c0"
 
-Hi Greg,
+--001a11487d54bfe09305624d36c0
+Content-Type: text/plain; charset="UTF-8"
 
-I'm back at things now, and will fire up a build!
+Hello,
 
-Bruce
+I'm running yocto Krogoth and I had to backport some updates related to
+u-boot FIT from the latest yocto version into my version of yocto.
 
-On 2018-01-04 11:39 AM, Greg Wilson-Lindberg wrote:
-> Hi Bruce,
-> 
-> Yes I'm still having problems with this. I've attached both my bblayers 
-> and local configuration files. Thanks for your help.
-> 
-> Regards,
-> 
-> Greg
-> 
-> ------------------------------------------------------------------------
-> *From:* Bruce Ashfield <bruce.ashfield@windriver.com>
-> *Sent:* Wednesday, January 3, 2018 6:30:52 PM
-> *To:* Greg Wilson-Lindberg; yocto@yoctoproject.org
-> *Subject:* Re: [yocto] Kernel configuration problem/confusion
-> On 2017-12-27 12:11 PM, Greg Wilson-Lindberg wrote:
->> Hi Bruce,
->> 
->> First, the kernel is 4.4.50, the recipe is linux-raspberrypi_4.4.bb in 
->> meta-raspberrypi. My image recipe is based on one from Qt, but it is 
->> using the kernel recipe in meta-raspberry.
->> 
->> 
->> I changed my .bbappend to:
->> 
->> # Scribe additions to kernel configuration
->> 
->> # Enable MAX9768
->> #CONFIG_SOC_ALL_CODECS=m
->> #CONFIG_COMPILE_TEST=y
->> #CONFIG_SND_SOC_MAX9768=m
->> 
->> # Enable MAX11606
->> IIO=y
->> CONFIG_MAX1363=m
->> 
->> and I get:
->> 
->> WARNING: linux-raspberrypi-1_4.4.50+gitAUTOINC+04c8e47067-r0 
->> do_kernel_configcheck: [kernel config]: specified values did not make it 
->> into the kernel's final configuration:
->> 
->> ---------- CONFIG_MAX1363 -----------------
->> Config: CONFIG_MAX1363
->> From: 
->> /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/work-shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
->> Requested value:  CONFIG_MAX1363=m
->> Actual value:     # CONFIG_MAX1363 is not set
->> 
->> Config 'MAX1363' has the following conditionals:
->>    I2C (value: "y")
->> Dependency values are:
->>    I2C [y]
->> 
->> It's acting like there is some hidden dependency that it is not telling 
->> us about. I tried running menuconfig and that allows me so set it 
->> without any problems.
-> 
-> Sorry for the slow reply. I've been out of the office (and will be
-> until the 8th).
-> 
-> Are you still looking into this ? Rather than me make mistakes in
-> the exact configuration, can you send me (offlist, or here, doesn't
-> really matter) your bblayers to make sure I'm building exactly the
-> same thing ?
-> 
-> Bruce
-> 
->> 
->> Regards,
->> Greg
->> 
->> 
->> ------------------------------------------------------------------------
->> *From:* Bruce Ashfield <bruce.ashfield@windriver.com>
->> *Sent:* Saturday, December 23, 2017 7:29 PM
->> *To:* Greg Wilson-Lindberg; yocto@yoctoproject.org
->> *Subject:* Re: [yocto] Kernel configuration problem/confusion
->> 
->> 
->> On 12/22/2017 6:17 PM, Greg Wilson-Lindberg wrote:
->>> Hi Bruce,
->>> First, thanks for the unbelievably quick response.
->>> 
->>> I searched the Yocto sources and didn't find anything that was trying to 
->>> manipulate either of the variables except my .cfg.
->>> 
->>> The memuconfig search for MAX9768 results in:
->>> Symbol: SND_SOC_MAX9768 [=n]
->>>      Type  : tristate
->>>        Defined at sound/soc/codecs/Kconfig:917
->>>        Depends on: SOUND [=y] && !M68K && !UML && SND [=m] && SND_SOC [=m]
->>>        Selected by: SND_SOC_ALL_CODECS [=n] && SOUND [=y] && !M68K && 
->>> !UML && SND [=m] && SND_SOC [=m] && COMPILE_TEST [=n] && I2C [=y]
->>> To my (untrained) eye it seems that I need SND_SOC_ALL_CODECS 
->>> & COMPILE_TEST. I tried setting them but I get a similar error 
->>> for COMPILE_TEST. A search for it yields:
->>>   Symbol: COMPILE_TEST [=n]
->>>      Type  : boolean
->>>      Prompt: Compile also drivers which will not load
->>>        Location:
->>>      (1) -> General setup
->>>        Defined at init/Kconfig:56
->>> Which doesn't seem to suggest that there should be any problems setting it.
->> 
->> 
->> True, but since SND_SOC_MAX9768 doesn't have any help text (aka
->> a prompt in Kconfig speak) then it isn't something that you can
->> actually reach by menuconfig and by extension .. it must be selected
->> by other code. So you are on the right track. Either those symbols
->> are also missing dependencies, or MAX9768 itself is missing a
->> dependency.
->> 
->>> 
->>> The search for MAX1363 yields:
->>>   Symbol: MAX1363 [=n]
->>>      Type  : tristate
->>>       Prompt: Maxim max1363 ADC driver
->>>        Location:
->>>          -> Device Drivers
->>>            -> Industrial I/O support (IIO [=m])
->>>      (1)     -> Analog to digital converters
->>>        Defined at drivers/iio/adc/Kconfig:218
->>>        Depends on: IIO [=m] && I2C [=y]
->>>        Selects: IIO_BUFFER [=y] && IIO_TRIGGERED_BUFFER [=n]
->>> Which doesn't seem to mereveal any reason that I shouldn't be able to 
->>> set it.
->> 
->> At a glance, I'm also not seeing the reason. Did you try forcing
->> IIO=y and seeing if there's a difference ? =m should satisfy that
->> Kconfig dependency, but it is worth checking.
->> 
->> Is this a mainline kernel ? or something else that I could build ?
->> Maybe with a quick test here, it would be more obvious.
->> 
->> Bruce
->> 
->>> 
->>> Regards,
->>> Greg
->>> ------------------------------------------------------------------------
->>> *From:* Bruce Ashfield <bruce.ashfield@windriver.com>
->>> *Sent:* Friday, December 22, 2017 12:27:22 PM
->>> *To:* Greg Wilson-Lindberg; yocto@yoctoproject.org
->>> *Subject:* Re: [yocto] Kernel configuration problem/confusion
->>> 
->>> 
->>> On 12/22/2017 3:51 PM, Greg Wilson-Lindberg wrote:
->>>> I'm trying to add some kernel configuration to a Raspberry pi3 yocto 
->>>> build.  I've got the .cfg fragment being read in, but I'm getting 
->>>> warnings that indicate that they are not making the desired changes.
->>>> 
->>>> 
->>>> The first one is CONFIG_SND_SOC_MAX9768. This is a sound codec and the 
->>>> Kconfig file has it in a long list of select's. the one for the MAX9768 is:
->>>> 
->>>>      select CONFIG_SND_SOC_MAX9768 if I2C
->>>> 
->>>> I2C is set, but CONFIG_SND_SOC_MAX9768 ends up undefined. the warning 
->>>> I'm getting is:
->>>> 
->>>> ---------- CONFIG_SND_SOC_MAX9768 -----------------
->>>> Config: CONFIG_SND_SOC_MAX9768
->>>> From: 
->>>> /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/work-shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
->>>> Requested value:  CONFIG_SND_SOC_MAX9768=y
->>>> Actual value:
->>>> 
->>>> Config 'SND_SOC_MAX9768' has the following conditionals:
->>>> Dependency values are:
->>>> 
->>>> SND_SOC_MAX9768 ends up not being selected even though I try to set it 
->>>> ti 'y'
->>>> 
->>>> 
->>>> The second one is CONFIG_MAX1363, this is an ADC that I'm trying to set, 
->>>> the warning is:
->>>> 
->>>> ---------- CONFIG_MAX1363 -----------------
->>>> Config: CONFIG_MAX1363
->>>> From: 
->>>> /home/gwilson/Qt-5.9/Yocto-build-RPi3/build-raspberrypi3/tmp/work-shared/raspberrypi3/kernel-source/.kernel-meta/configs/Scribe.cfg
->>>> Requested value:  CONFIG_MAX1363=y
->>>> Actual value:     # CONFIG_MAX1363 is not set
->>>> 
->>>> Config 'MAX1363' has the following conditionals:
->>>>    I2C (value: "y")
->>>> Dependency values are:
->>>>    I2C [y]
->>>> 
->>>> It ends up being not set. In both cases the value that I'm trying to set 
->>>> is ignored. Any insight would be greatly appreciated.
->>> 
->>> The python library that tries to detangle the Kconfig dependencies
->>> isn't perfect (but I do have an update for it pending), so you might
->>> not be getting the entire story in that information dumb.
->>> 
->>> Two things to check:
->>> 
->>>    - there are no other fragments that are disabling the same option
->>>    - use menuconfig in the kernel to search the option and see what it
->>>      reports for the dependencies.
->>> 
->>> There's some constraint or overriding command that is not allowing the
->>> option into the final config, we just need to track it down.
->>> 
->>> Bruce
->>> 
->>>> 
->>>> 
->>>> Regards,
->>>> 
->>>> Greg
->>>> 
->>>> 
->>>> 
-> 
+The changes are located in: *poky/meta/classes/kernel-fitimage.bbclass*
 
+I'd much prefer to put these changes into my own layer so that these
+changes don't contaminate my existing version of poky.
 
+Can I make a bbappend for a bbclass and store it in my layer?
+
+Any suggestions would be appreciated.
+
+Also, unfortunately, due to the current state of our project, upgrading to
+the latest yocto version is not an option at the moment.
+
+Thank you,
+
+Davis
+
+--001a11487d54bfe09305624d36c0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<div><br></div><div>I&#39;m running yocto Krogoth an=
+d I had to backport some updates related to u-boot FIT from the latest yoct=
+o version into my version of yocto.</div><div><br></div><div>The changes ar=
+e located in: <b>poky/meta/classes/kernel-fitimage.bbclass</b></div><div><b=
+><br></b></div><div>I&#39;d much prefer to put these changes into my own la=
+yer so that these changes don&#39;t contaminate my existing version of poky=
+.</div><div><br></div><div>Can I make a bbappend for a bbclass and store it=
+ in my layer?=C2=A0</div><div><br></div><div>Any suggestions would be appre=
+ciated.</div><div><br></div><div>Also, unfortunately, due to the current st=
+ate of our project, upgrading to the latest yocto version is not an option =
+at the moment.</div><div><br></div><div>Thank you,</div><div><br>Davis</div=
+><div><br></div><div><br></div></div>
+
+--001a11487d54bfe09305624d36c0--
