@@ -1,74 +1,91 @@
-Return-Path: <ingo.flaschberger@gmail.com>
+Return-Path: <mschepers@telspandata.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A3E75E00DD1; Tue,  9 Jan 2018 10:28:13 -0800 (PST)
+	id 7C1B0E00DE0; Tue,  9 Jan 2018 10:45:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ingo.flaschberger[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.40.56 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f44.google.com (mail-wm0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39785E00C78
-	for <yocto@yoctoproject.org>; Tue,  9 Jan 2018 10:28:11 -0800 (PST)
-Received: by mail-wm0-f44.google.com with SMTP id g1so4371330wmg.2
-	for <yocto@yoctoproject.org>; Tue, 09 Jan 2018 10:28:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding:content-language;
-	bh=G5dDzlqJwYH1X2X5ajinlzimg4CLZvfRnbksGGELERE=;
-	b=c51azaQGY3/CF6P+6KVA0Nqmn+Q0UtCV9WHvl8Srfg57n1FIICida0AWLtjCVEzzaQ
-	ouy1N2j9VfAPIg2Q7ZXUatL1H59Bc4x1dTps3LjMBEs85z/VTmVWXD1LOrfAjJ9sOyFK
-	8Z1d1TF4MX1LcHJAPdw0DPnbU+vg7I0JxjgDfON0P4GNliwOXbgLQbGRpNg8CvOAZT4J
-	EMVoJvqJLHIj1InQLv1A4/XfPTBLRskDpCvUdeUA9NFA8+R8MvkIL06HkWGEEb76jTq5
-	M3LbUp3ilR4A7fkV0c6+ATMNUMy6MnivOwILngERTp7cyc2rQ4u5l58WqHt89zDmi+1N
-	bSNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=G5dDzlqJwYH1X2X5ajinlzimg4CLZvfRnbksGGELERE=;
-	b=Oon1if8F2qDCC3cGxVdQBZ8Ctvcu4DPkrMCYPupPE/tp1f1KXhQH61ND3q7mjBw7DH
-	TKmNErQuFIvuT856yq4d9dmaSH6vTRlsLVwQbLYI0CSZPinu0Yvyx0yL+4ta3wQxASaf
-	agTFSL16FMK0awEO+kMdI3DPb63AYpcQSel9dDoR0hdOtAfBfH42qS1ysxysQameNH0R
-	9HyVB/bFtw7V7sf8sJ6FxzFDB61gLeM4gx/aFZ0l7rNLFSnsLY/eS6DHFKCGE8NFNPyd
-	QRVUfNdP6717Dd7FklkR3kzCtjK2U72ubxIVYt0zp2D0+ZmQBjHqEBWwir4+EgpIglnV
-	4u5w==
-X-Gm-Message-State: AKGB3mKEYQR/QXe3kmMX/bRJJu0VUB71w6/sYTTcQ3PePp36v8R6n2mF
-	Xg61Npvnax+Nc33YxltccASw6D9Q
-X-Google-Smtp-Source: ACJfBotfpdnjI5zU7zKoQwikMtt2Om7b+hy5MnuMxleayvInwxCPtkNgNd4zmPd2A4Wj1Hcaxgabow==
-X-Received: by 10.28.66.15 with SMTP id p15mr13528849wma.51.1515522490856;
-	Tue, 09 Jan 2018 10:28:10 -0800 (PST)
-Received: from [192.168.10.100] (80-110-71-214.cgn.dynamic.surfer.at.
-	[80.110.71.214]) by smtp.gmail.com with ESMTPSA id
-	o18sm14935100wrg.59.2018.01.09.10.28.09
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 09 Jan 2018 10:28:10 -0800 (PST)
-To: Patrick Ohly <patrick.ohly@intel.com>, yocto@yoctoproject.org
-References: <1513785034.5979.256.camel@intel.com>
-	<20171220155058.8961-1-patrick.ohly@intel.com>
-	<8524e767-204b-2e4f-9971-d0c51862de0c@gmail.com>
-	<1515517050.6718.15.camel@intel.com>
-From: Ingo Flaschberger <ingo.flaschberger@gmail.com>
-Message-ID: <4e7d3d4d-12b5-3e5c-94be-084fbbc22daf@gmail.com>
-Date: Tue, 9 Jan 2018 19:28:07 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+	(mail-co1nam03on0056.outbound.protection.outlook.com [104.47.40.56])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C68D6E00CE8
+	for <yocto@yoctoproject.org>; Tue,  9 Jan 2018 10:45:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=telspandata.onmicrosoft.com; s=selector1-telspandata-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=dphViEL3LvHzcYknpgUbfq/l3pgNAzL/gzmk/lDoHO8=;
+	b=o1WbSdd2RilO9LP+zb8XJWbdxx7bQL9INLlSgbcyfneaqyPV8AQevmd/poixuxo+jb0UeYqB0yCaD9Y5tdIDPRvlObGAOwFobzS4NdFXMILp21qX2IkdMLpzH7L/cKRHYa7CvpmzkU4O6PsdK9Mw7RwKwOizdUj0EOxPUE6+GEg=
+Received: from CY1PR0401MB1340.namprd04.prod.outlook.com (10.161.213.20) by
+	CY1PR0401MB1337.namprd04.prod.outlook.com (10.161.213.17) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.386.5; Tue, 9 Jan 2018 18:45:02 +0000
+Received: from CY1PR0401MB1340.namprd04.prod.outlook.com ([10.161.213.20]) by
+	CY1PR0401MB1340.namprd04.prod.outlook.com ([10.161.213.20]) with
+	mapi id 15.20.0386.008; Tue, 9 Jan 2018 18:45:02 +0000
+From: Matt Schepers <mschepers@telspandata.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Thread-Topic: [yocto] rdepends = "python3-modules" in recipe does not install
+	python3-modules in image
+Thread-Index: AQHThkNHEfNse791uk6L+QtsR952xqNlnByAgAGH36aAATCWAIADkfzX
+Date: Tue, 9 Jan 2018 18:45:02 +0000
+Message-ID: <CY1PR0401MB13409392C7732CE7F482D774B0100@CY1PR0401MB1340.namprd04.prod.outlook.com>
+References: <CY1PR0401MB1340EE57B6571F238B64B7DFB01C0@CY1PR0401MB1340.namprd04.prod.outlook.com>
+	<51e6ac82-e6f3-2bc4-8758-ac1c0fdcaacf@linux.intel.com>
+	<63A4BEEE-D99F-4B1F-A18F-9D5085B4917E@telspandata.com>,
+	<8e0714cd-97e9-6980-2128-1ce6fb0c7b4a@linux.intel.com>
+In-Reply-To: <8e0714cd-97e9-6980-2128-1ce6fb0c7b4a@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=mschepers@telspandata.com; 
+x-originating-ip: [96.69.169.201]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; CY1PR0401MB1337;
+	7:hYAI/WBZabrow21fEVo9numRyQb7a0FLgdFrSTTVcHiVS52W1fn2o3ZCqgnjfVcchQrWUyE1PvXDNFAueZJ0qaqkWUDHJQV6rzDPgse9tTTsNLy3hqCWczB645rzc11Z6wlTEV7wE08TlfKqhKYge4qumxAzVhHl8liaRhFlgY5KMSS+9C8THoNayrxB3wiTxgcR5hPrd5bC/UXaFDu30TAIPZnLwhmxqJcYKMjCoA6OvgWLUrAUzhWiKXpVJhUx
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 5aad2d15-315d-48a0-650f-08d5579117eb
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(5600026)(4604075)(3008032)(4534020)(4602075)(4603075)(4627115)(201702281549075)(2017052603307)(7153060)(7193020);
+	SRVR:CY1PR0401MB1337; 
+x-ms-traffictypediagnostic: CY1PR0401MB1337:
+x-microsoft-antispam-prvs: <CY1PR0401MB133740B166A82EAC014D1BAFB0100@CY1PR0401MB1337.namprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(228905959029699);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040470)(2401047)(8121501046)(5005006)(3002001)(93006095)(93001095)(3231023)(944501075)(10201501046)(6041268)(20161123564045)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123560045)(2016111802025)(6043046)(6072148)(201708071742011);
+	SRVR:CY1PR0401MB1337; BCL:0; PCL:0;
+	RULEID:(100000803101)(100110400095); SRVR:CY1PR0401MB1337; 
+x-forefront-prvs: 0547116B72
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(346002)(39380400002)(396003)(39830400003)(366004)(376002)(24454002)(189003)(199004)(7696005)(4326008)(229853002)(25786009)(77096006)(33656002)(6436002)(6246003)(5660300001)(6916009)(97736004)(2950100002)(55016002)(6506007)(9686003)(7736002)(76176011)(102836004)(305945005)(316002)(74316002)(53546011)(93886005)(53936002)(99286004)(14454004)(478600001)(106356001)(105586002)(3660700001)(8676002)(3280700002)(86362001)(6116002)(3846002)(68736007)(8936002)(66066001)(81156014)(81166006)(2900100001)(2906002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY1PR0401MB1337;
+	H:CY1PR0401MB1340.namprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: telspandata.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: gF34ONE3a1GXik1aTe4KNC3HPfI8kB2MWqTdRImgF5NINdrEGLjkyWNFS3o+SSz5cIF/Ut5ilZAVVntPTWOVVQ==
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-In-Reply-To: <1515517050.6718.15.camel@intel.com>
-Subject: Re: [meta-swupd][PATCH 1/1] bundles.py: allow username/password encoded in URLs
+X-OriginatorOrg: telspandata.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5aad2d15-315d-48a0-650f-08d5579117eb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jan 2018 18:45:02.0814 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 980119cc-b60c-4c4d-84e8-5d25446e5dc3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0401MB1337
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: rdepends = "python3-modules" in recipe does not install python3-modules in image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,118 +97,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jan 2018 18:28:13 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: de-AT
+X-List-Received-Date: Tue, 09 Jan 2018 18:45:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Dear Patrick,
+For this recipe the base package is called users.rpm and I can see it in th=
+e RPM. Using 'bitbake users -e | grep PN' I was able to find that PN is als=
+o set to users, which seems correct.
 
-it works if you replace:
-     manager.add_password(None, parsed_url, parsed_url.username, 
-parsed_url.password)
-with:
-      manager.add_password(None, new_url, parsed_url.username, 
-parsed_url.password)
+However the recipe does not install python3-modules even though it's specif=
+ied in RDEPENDS. I can get it to work by forcing python3-modules in the IMA=
+GE_INSTALL variable, but this is not how I expect yocto to work based on th=
+e documentation.
 
-Kind regards,
-     Ingo Flaschberger
+________________________________________
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Sent: Sunday, January 7, 2018 5:10:46 AM
+To: Matt Schepers
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] rdepends =3D "python3-modules" in recipe does not inst=
+all python3-modules in image
 
-Am 09.01.2018 um 17:57 schrieb Patrick Ohly:
-> On Thu, 2017-12-21 at 00:18 +0100, Ingo Flaschberger wrote:
->> Dear Patrick,
->>
->> this doesn't work:
->>        0162:    """
->>        0163:    parsed_url = urllib.parse.urlsplit(url)
->>        0164:    if parsed_url.username != None:
->>        0165:        # Use the netloc with just the hostname, without
->> username/password.
->>    *** 0166:        parsed_url.netloc = parsed_url.hostname
->>        0167:        # The username/password are installed permanently
->> in
->> the urllib.request module
->>        0168:        # for future use with all URLs beneath url.
->>        0169:        manager =
->> urllib.request.HTTPPasswordMgrWithDefaultRealm()
->>        0170:        manager.add_password(None, parsed_url,
->> parsed_url.username, parsed_url.password)
->> Exception: AttributeError: can't set attribute
-> Looks like netloc is a read-only attribute. That means one has to
-> construct a new urllib.parse.SplitResult instead of updating the old
-> one.
->
->> Using hostname as netloc will also remove an additional portnumber -
->> could this be a problem?
-> Yes, that's also something that needs to be fixed.
->
-> Can you update the patch as shown below, test it, and it if works send
-> the final version to the list? Obviously I am not doing a good job with
-> posting code that I can't test :-/
->
-> Am 20.12.2017 um 16:50 schrieb Patrick Ohly:
->>> Downloading content and version information via HTTP may need a
->>> username/password for basic authentication. To support this,
->>> SWUPD_VERSION_URL and SWUPD_CONTENT_URL can now contain URLs of the
->>> form http(s)://<user>:<password>@<host>/.
->>>
->>> Original patch from: Ingo Flaschberger <ingo.flaschberger@gmail.com
->>> Signed-off-by: Patrick Ohly <patrick.ohly@intel.com>
->>> ---
->>>    lib/swupd/bundles.py | 26 ++++++++++++++++++++++++--
->>>    1 file changed, 24 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/lib/swupd/bundles.py b/lib/swupd/bundles.py
->>> index e1eec5a..48c7455 100644
->>> --- a/lib/swupd/bundles.py
->>> +++ b/lib/swupd/bundles.py
->>> @@ -5,6 +5,7 @@ import subprocess
->>>    import shutil
->>>    import urllib.request
->>>    import urllib.error
->>> +import urllib.parse
->>>    from bb.utils import export_proxies
->>>    from oe.package_manager import RpmPM
->>>    from oe.package_manager import OpkgPM
->>> @@ -153,6 +154,27 @@ def copy_bundle_contents(d):
->>>        for bndl in bundles:
->>>            stage_empty_bundle(d, bndl)
->>>    
->>> +def handle_plain_auth(url):
->>> +    """
->>> +    Check for special urls with username/password (as in http://us
->>> er:password@host/),
->>> +    extract those and install an auth handler which will provide
->>> them
->>> +    to the HTTP server when needed. Returns the URL that is to be
->>> instead of the original one.
->>> +    """
->>> +    parsed_url = urllib.parse.urlsplit(url)
->>> +    if parsed_url.username != None:
->>> +        # Use the netloc with just the hostname, without
->>> username/password.
->>> +        parsed_url.netloc = parsed_url.hostname
-> Instead:
->
-> netloc = parsed_url.hostname
-> if parsed_url.port is not None:
->      netloc += ":%d" % parsed_url.port
-> new_url = urllib.parse.SplitResult(parsed_url.scheme, netloc, parsed_url.path, parsed_url.query, parsed_url.fragment)
->
->>> +        # The username/password are installed permanently in the
->>> urllib.request module
->>> +        # for future use with all URLs beneath url.
->>> +        manager = urllib.request.HTTPPasswordMgrWithDefaultRealm()
->>> +        manager.add_password(None, parsed_url,
->>> parsed_url.username, parsed_url.password)
->>> +        authHandler = urllib.request.HTTPBasicAuthHandler(manager)
->>> +        opener = urllib.request.build_opener(authHandler)
->>> +        urllib.request.install_opener(opener)
->>> +        return urllib.parse.urlunsplit(new_source)
-> Instead:
->
-> return urllib.parse.urlunsplit(new_url)
->
->
+On 01/06/2018 08:00 PM, Matt Schepers wrote:
+> How do I check what PN is set to? I can see users-dbg.rpm and
+> users-doc.rpm in the rpm folder. The recipe name is users.bb
 
+If the recipe is named users, then PN is most likely users as well.
+
+-doc and -dbg are supplementary packages. What is the main package
+called? You can look for it in the rpm directory for example.
+
+Alex
 
