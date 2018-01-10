@@ -1,62 +1,59 @@
-Return-Path: <ngthanh.vu94@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0F5CE00DE3; Wed, 10 Jan 2018 07:49:17 -0800 (PST)
+	id 5EA06E00DF7; Wed, 10 Jan 2018 09:08:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ngthanh.vu94[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.66 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f66.google.com (mail-it0-f66.google.com
-	[209.85.214.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E9B9E00D97
-	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 07:49:17 -0800 (PST)
-Received: by mail-it0-f66.google.com with SMTP id x42so12721233ita.4
-	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 07:49:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=DRPwyzmRpab1xLgms1M6m8LsnayTLLMAqhVDedE/41I=;
-	b=FrdjKY+IShFx23emhwOytBfb6JeL6Sm6gZbbTnSsuAM0dM6CYZAGMb9OK7cU8g2kX3
-	ldCSn0Qvo12W2ZvqYJi56MOJq9/q3oxlZ159rtHGARbwGnlpBuvSHqwKlNuPqkBqBjYb
-	t6Szc3iAya0T4uQehx6f3BggK8yVgR/6E39rRNwTfAPrkaPNnuCk9T0XRFkhVn1afDs3
-	1ctbOiiYvTA+h1dPArtSxWVoGgjsk1ECUDAGnzOCVxZAw8CSD4AtwQeH4H9HQyAH/IJB
-	pqLqx1eiUDE/ZMUb1w4TZFzDRPC5FDo/LQ+7OlZHFxKS0tmzN43aujoKhdd5aUDD3Rxa
-	TVcw==
+Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9669E00DC9
+	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 09:08:55 -0800 (PST)
+Received: by mail-wm0-f65.google.com with SMTP id i186so333948wmi.4
+	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 09:08:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=Sb/3iPWN5o/2ZvvHWPFdgExcBQxK7ES6CIf70MDnXQc=;
+	b=YNkB1e0aWVZ1+VZP9xpbtjDcPz2KncT1LeHSIeM8MIgTlOQIcbSJKAKOH0wt4QL2eX
+	ZUlLMyDMKxhds/26XuPsQG75I20VL6262QsvSTZ4pv6X1XB2ouClYONQBccrPrmNw0LE
+	2LcViypdAm1+XbzTf/L3gbr3QoYEDiY4U7GAnSYdisbSKxStIQn9KTot5QkmToDx4DQu
+	xO0WRyc7a1ClMD258+3ULMO84IWcPN2qdhJVnnIeqlkINcFpCzGS6LlVgHsxVEGpJNeS
+	yyOfvDksoTPkH3+FvavXnRa2xwyirnbfdCxP+ppiCjOoEyTbto7is1E6Pk9qcg9zX0Tm
+	aLKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=DRPwyzmRpab1xLgms1M6m8LsnayTLLMAqhVDedE/41I=;
-	b=rx7iPq1FNUUG257cHXRI0eNfz8lzjyvW66dOfZCVJHwjs90Gj5VbZ/i04ru4VpKwhs
-	Gsi86TKwyOg/L2c5ZfCPURV5n2EEFL+CntlCdggMYiUt+9RE+FRTCsLm0Ui19i0D8frd
-	ov0R5uEm932hT7+m3cxDrfQ1YpKO/o30FSVQKhdhT3cjMx7y/DcuBCKVz6xBzdm2yyVu
-	dbWfEmceRglIisGlyi9lHW2qKFn1f9NDiw1AwIlUM01957Qw4kEcRSiH01r5pQIx+FvH
-	Y5UJtOUNmpnq/9+kv5r9yQaTeov4OP6vNTLzDGhq+3RBCKdfhB0y86U3vmpBmJySLgh9
-	kayg==
-X-Gm-Message-State: AKGB3mJLTIDcgrJbM/HWRINlm9Pw70TUcUgwFxVu/w6gyqb80xtKxWcq
-	WSV/YiYiu4K+Ikq7W+OWSt0jtK0+6fuZKWuYC2KIew==
-X-Google-Smtp-Source: ACJfBouDdYem+LPpZgmyteWLRMZVxfujaoMflTZ+RBmeuHmRTSRIxRgZo3tm4GMH/FOul6bTnyCY+cd35BH57R3G6SE=
-X-Received: by 10.36.173.26 with SMTP id c26mr19250788itf.15.1515599356464;
-	Wed, 10 Jan 2018 07:49:16 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.107.44.21 with HTTP; Wed, 10 Jan 2018 07:49:15 -0800 (PST)
-From: =?UTF-8?B?Tmd1eeG7hW4gVGhhbmggVsWpIA==?= <ngthanh.vu94@gmail.com>
-Date: Wed, 10 Jan 2018 16:49:15 +0100
-Message-ID: <CAGJSYq=RcTxi900fO7hnV83jwOZnTDE1KnGwB7efTMtT_+Mxow@mail.gmail.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=Sb/3iPWN5o/2ZvvHWPFdgExcBQxK7ES6CIf70MDnXQc=;
+	b=CvSxpXmD0PMO8YaudsCxywKFJvz5/0nUJr3ZgGXpHzCMNP4MQPRT/ya7giFDO+8FIT
+	fI/5AjgzVxYj2qxwJAFvtuUSseRACl4mo1DT2Q8jqe1U0u2w5B56abMD7V2VLxWOvvkR
+	NJhZglSnxQFBCxjahR2xFrrM83oecW4cgNfONPyYGI0pwZH3ThBJoCeOc6Gu/YPWSNez
+	RA7HcPwjDGuLORn+L/tSQU5XE7iW1qQlDbOWjv2Q1JpXB2geBnQURNAfSe+pKB6dXQ+E
+	jcaeaZCiCk/tOxSm6YMFIKgD1h2hi73g2ELoPQspRqYcx8FD3SfzDl/PxKv7h4YUwce+
+	MajA==
+X-Gm-Message-State: AKGB3mJFAqbSaNnQTgrxlseGrx9eTVeD/pzKRJUeee8nYALxrRun/L43
+	tvlEqsl5nad/GLmJJCAORWrzLQ0s
+X-Google-Smtp-Source: ACJfBou2m0Ai5HYszyDq0Kg7u8UTW9WTg/YeiBGGNTMbPcf+Qf/QfxhoWjcdK4mDQkiwcdlABv3+9g==
+X-Received: by 10.28.20.69 with SMTP id 66mr14206235wmu.97.1515604134175;
+	Wed, 10 Jan 2018 09:08:54 -0800 (PST)
+Received: from flashheart.burtonini.com (home.burtonini.com. [81.2.106.35])
+	by smtp.gmail.com with ESMTPSA id p32sm6590075wrc.9.2018.01.10.09.08.53
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 10 Jan 2018 09:08:53 -0800 (PST)
+From: Ross Burton <ross.burton@intel.com>
 To: yocto@yoctoproject.org
-Subject: Where to further modify or remove some elements in the zImage and rootfs of the core-image-minimal build?
+Date: Wed, 10 Jan 2018 17:08:50 +0000
+Message-Id: <20180110170850.17345-1-ross.burton@intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [PATCH][meta-mingw] machine-sdk: use gettext for libintl, not mingw-runtime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,29 +65,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jan 2018 15:49:18 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1fc05043950105626df96f"
+X-List-Received-Date: Wed, 10 Jan 2018 17:08:56 -0000
 
---94eb2c1fc05043950105626df96f
-Content-Type: text/plain; charset="UTF-8"
+The MinGW runtime doesn't provide libintl, so set gettext as the preferred
+provider for libintl.
 
-I'm currently trying to build a very small image for my imx freescale board
-by further reducing the size of core-image-minimal build to make it boot
-faster. However, I do not know where the recipes for building the zImage
-(and rootfs) locate inside the yocto directory (fsl-release-bsp) to start
-modifying. For example, the networking/drivers/sound part in the kernel
-(net/built-in.o , sound/built-in.o ....). Can anyone give me some hints?
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ conf/machine-sdk/i686-mingw32.conf   | 3 +--
+ conf/machine-sdk/x86_64-mingw32.conf | 3 +--
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
---94eb2c1fc05043950105626df96f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+diff --git a/conf/machine-sdk/i686-mingw32.conf b/conf/machine-sdk/i686-mingw32.conf
+index d426fe3..cb08bee 100644
+--- a/conf/machine-sdk/i686-mingw32.conf
++++ b/conf/machine-sdk/i686-mingw32.conf
+@@ -6,7 +6,7 @@ GCCTHREADS_mingw32 = "win32"
+ PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-for-gcc_mingw32 = "nativesdk-mingw-w64-runtime"
+ PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-initial_mingw32 = "nativesdk-mingw-w64-runtime"
+ PREFERRED_PROVIDER_virtual/nativesdk-libc = "nativesdk-mingw-w64-runtime"
+-PREFERRED_PROVIDER_virtual/nativesdk-libintl = "nativesdk-mingw-w64-runtime"
++PREFERRED_PROVIDER_virtual/nativesdk-libintl = "nativesdk-gettext"
+ PREFERRED_PROVIDER_virtual/nativesdk-libiconv = "nativesdk-libiconv"
+ 
+ USE_NLS_mingw32 = "no"
+@@ -33,4 +33,3 @@ BB_HASHBASE_WHITELIST_append = " WINDRES RC"
+ 
+ # Needed to override no-static-libs.inc
+ DISABLE_STATIC_mingw32 = ""
+-
+diff --git a/conf/machine-sdk/x86_64-mingw32.conf b/conf/machine-sdk/x86_64-mingw32.conf
+index b9706f9..8786413 100644
+--- a/conf/machine-sdk/x86_64-mingw32.conf
++++ b/conf/machine-sdk/x86_64-mingw32.conf
+@@ -6,7 +6,7 @@ GCCTHREADS_mingw32 = "win32"
+ PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-for-gcc_mingw32 = "nativesdk-mingw-w64-runtime"
+ PREFERRED_PROVIDER_virtual/nativesdk-${SDK_PREFIX}libc-initial_mingw32 = "nativesdk-mingw-w64-runtime"
+ PREFERRED_PROVIDER_virtual/nativesdk-libc = "nativesdk-mingw-w64-runtime"
+-PREFERRED_PROVIDER_virtual/nativesdk-libintl = "nativesdk-mingw-w64-runtime"
++PREFERRED_PROVIDER_virtual/nativesdk-libintl = "nativesdk-gettext"
+ PREFERRED_PROVIDER_virtual/nativesdk-libiconv = "nativesdk-libiconv"
+ 
+ USE_NLS_mingw32 = "no"
+@@ -33,4 +33,3 @@ BB_HASHBASE_WHITELIST_append = " WINDRES RC"
+ 
+ # Needed to override no-static-libs.inc
+ DISABLE_STATIC_mingw32 = ""
+-
+-- 
+2.11.0
 
-<div dir=3D"ltr">I&#39;m currently trying to build a very small image for m=
-y imx freescale board by further reducing the size of core-image-minimal bu=
-ild to make it boot faster. However, I do not know where the recipes for bu=
-ilding the zImage (and rootfs) locate inside the yocto directory (fsl-relea=
-se-bsp) to start modifying. For example, the networking/drivers/sound part =
-in the kernel (net/built-in.o , sound/built-in.o ....). Can anyone give me =
-some hints?<br></div>
 
---94eb2c1fc05043950105626df96f--
