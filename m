@@ -1,39 +1,62 @@
-Return-Path: <anuj.mittal@intel.com>
+Return-Path: <parkch98@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A5CCE00E49; Wed, 10 Jan 2018 17:04:10 -0800 (PST)
+	id D0ED9E00D9A; Wed, 10 Jan 2018 17:31:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (parkch98[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37882E00DA4
-	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 17:04:08 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	10 Jan 2018 17:04:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,342,1511856000"; d="scan'208";a="20641834"
-Received: from anmitta2-mobl1.gar.corp.intel.com (HELO [10.221.21.145])
-	([10.221.21.145])
-	by fmsmga001.fm.intel.com with ESMTP; 10 Jan 2018 17:04:07 -0800
-To: yocto@yoctoproject.org
-References: <5ea24980c9c34e419e5d6fc535bfbaaf@ERDCSEXCH01.SMITHSSII.NET>
-From: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <4f0b0659-23da-aa36-3f58-46ab20930738@intel.com>
-Date: Thu, 11 Jan 2018 09:04:06 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f182.google.com (mail-wr0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4533E00D9A
+	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 17:31:04 -0800 (PST)
+Received: by mail-wr0-f182.google.com with SMTP id 16so755508wry.12
+	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 17:31:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=yYAoj1CiWhAl5b4obrszTsatNlIhGjsRzENk5/VTNR0=;
+	b=C0qhnTlSgJMoLPVbARN6eGPyilDwuln7+XEF2lcFjQqf+8vog96GyK1c7EOjVYeDip
+	g3au5AxgtfR8YGPNRFlgHkTacYbKE0zxgKI+bX0hy8TEfB7OJwBoZXtSMQpdkfOrKIql
+	9SAKuxDjKtLwUFrtZ6OA7k3CoANZZgrC5/N/bJvQdaIDE6Or2yya6HcnON37Z10an2Rn
+	6omYrFcwXnXm7AD0Uf1XmlMJJhbg03fybYD9FtHaEB+xIrgzaw7FBsm0ku/U8d515gi8
+	Nk51XwmaDl3gqBWjvYas8sctbZJJva2xgZ8LcgcEddvSxwFPP9CQOUpscWXMbu8M5+6N
+	C5vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=yYAoj1CiWhAl5b4obrszTsatNlIhGjsRzENk5/VTNR0=;
+	b=l/SRxVesVYs1KeH3cPoN7mOi623kaayy5+eKhSsGqCVt7ycq4kqlMuEC7RBlRrGmz1
+	8ADcsCntXemercpCoZ/OaYUKOQDOFxqsQe4eQmk244/Sr/iPrKjSqxRNjKWCNXCjDXC4
+	qzgYKOz2RZh1ow0uNOvvLVzlsqUWQp/GZJRo6q2PxTRVwQqOgIaXIWALyuKob15eiHpM
+	LfBBTBKFH6SY16fTawVwI1LSvgxX/Adx8MKovqIjRNGxhKu1InffgAH1XOe9mHGJkK1C
+	1sz7FXvBnA8Ufw8Vp1NxfLBImWZrhxEQnC7ehJyT2Q/n0EM8uGEt9lP/4nuufVJUCikE
+	OtdA==
+X-Gm-Message-State: AKGB3mKxsAU0mUyuAw7aCVuFvdcg2hFv4aYJmquvGYRYmNFN4hKxje5u
+	6xV7s/d1cTHWq3OB2pkUsBrNbKE3nOkP5KY+b8s=
+X-Google-Smtp-Source: ACJfBovVe1qGZn37UPLrLdE0ondbWd+NUIFUeLDPa7l5BJRoBFcfRYQq59TlkQtw+DlLFJ3CqaN9z58/87SCGo3w6a0=
+X-Received: by 10.223.134.26 with SMTP id 26mr17519596wrv.218.1515634263618;
+	Wed, 10 Jan 2018 17:31:03 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <5ea24980c9c34e419e5d6fc535bfbaaf@ERDCSEXCH01.SMITHSSII.NET>
-Subject: Re: Change initscript level
+From: Chanho Park <parkch98@gmail.com>
+Date: Thu, 11 Jan 2018 01:30:53 +0000
+Message-ID: <CAPTzV16hShVj_HsC4Ykd-HC_J+hGewG+DQYyB+=kD1mgsu56gA@mail.gmail.com>
+To: "philippe.coval@osg.samsung.com" <philippe.coval@osg.samsung.com>,
+	yocto@yoctoproject.org
+Subject: [meta-oic] Question about Iotivity 1.3.0/1 and fixes status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,97 +68,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jan 2018 01:04:10 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 11 Jan 2018 01:31:05 -0000
+Content-Type: multipart/alternative; boundary="001a1146b7b8e479da05627619c9"
 
-On 01/11/2018 03:49 AM, Bishop, Mark (STRT) wrote:
-> I am just trying to change modutils.sh to run from
-> /etc/rcS.d/S05modutils.sh to /etc/rcS.d/S15modutils.sh
-> 
->  
-> 
-> I can’t figure this out.  I have modified the
-> yocto/source/arm/layers/core/meta/recipes-kernel/modutils-initscripts.bb
-> 
->  
-> 
-> From: INITSCRIPT_PARAMS = "start 05 S ."
-> 
-> To: INITSCRIPT_PARAMS = "start 10 S ."
-> 
->  
-> 
-> And I still only have S05modutils.sh
-> 
-> 
-> The pkg_postinst_modutils-initscripts still has “start 05 S .” in
-> build/tmp/work/cortexa9hf-neon-xilinx-linux-gnueabi/modutils-initscripts/1.0-r7/pkgdata/runtime/modutils-initscripts
+--001a1146b7b8e479da05627619c9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I tried this and I can see the correct values. Which version of
-poky/OE-core are you using? Can you try to bitbake -c cleansstate and
-build modutils-initscripts again?
+Hi Philippe,
 
-> 
->  
-> 
-> It’s quite apparent that I don’t know what I’m doing here and I could
-> use some sage advice on how to move these startup levels around. 
-> 
->  
-> 
-> Thank you.
-> 
->  
-> 
-> *Mark Bishop*
-> 
-> *Sr. Firmware/Software Engineer – Microwave Subsystems***
-> 
-> * *
-> 
-> cid:image001.png@01D281ED.A45F0A90**
-> 
-> 4726 Eisenhower Blvd.
-> 
-> Tampa, FL 33634
-> 
-> USA
-> 
-> 	
-> 
->  
-> 
-> T  +1 813 901 7293
-> 
-> *mbishop@smithsinterconnectinc.com
-> <mailto:mbishop@smithsinterconnectinc.com>*
-> 
-> 	
-> 
-> *smithsinterconnect.com* <http://www.smithsinterconnect.com/>
-> 
-> *TRAK MICROWAVE IS NOW SMITHS INTERCONNECT!***
-> 
->  
-> 
->  
-> 
-> 
-> This e-mail contains proprietary information some or all of which may be
-> legally privileged. It is intended for the recipient only. If an
-> addressing or transmission error has misdirected this e-mail, please
-> notify the authority by replying to this e-mail. If you are not the
-> intended recipient you must not use, disclose, distribute, copy, print,
-> or rely on this e-mail. In addition, information contained in or
-> attached to this e-mail may be subject to either 22 C.F.R. Parts
-> 120?130, or 15 C.F.R. Parts 730-774. These regulations prohibit the
-> release or disclosure of certain information contained herein to anyone
-> who is not a U.S. citizen or permanent resident alien, without a license
-> first having been issued. Failure to observe such requirements is a
-> violation of U.S. law that carries serious penalties.   ­­  
-> 
-> 
+I found you already prepared iotivity 1.3.0, 1.3.1 recipes and fixes in
+your github tree[1].
+I wonder why you don=E2=80=99t post them in the meta-oic. Do you have a pla=
+n to
+upstream them?
 
+Best Regards,
+Chanho Park
 
+[1]:
+https://github.com/TizenTeam/meta-oic/tree/sandbox/pcoval/on/master/review
+
+--001a1146b7b8e479da05627619c9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Philippe,</div><div dir=3D"auto"><br></div><div dir=3D=
+"auto">I found you already prepared iotivity 1.3.0, 1.3.1 recipes and fixes=
+ in your github tree[1].</div><div dir=3D"auto">I wonder why you don=E2=80=
+=99t post them in the meta-oic. Do you have a plan to upstream them?</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">Best Regards,</div><div dir=3D=
+"auto">Chanho Park</div><div dir=3D"auto"><br></div><div dir=3D"auto">[1]:=
+=C2=A0<a href=3D"https://github.com/TizenTeam/meta-oic/tree/sandbox/pcoval/=
+on/master/review">https://github.com/TizenTeam/meta-oic/tree/sandbox/pcoval=
+/on/master/review</a></div>
+
+--001a1146b7b8e479da05627619c9--
