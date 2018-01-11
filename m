@@ -1,6 +1,6 @@
-Return-Path: <sbabic@denx.de>
+Return-Path: <prvs=05492bd55b=mike.looijmans@topicproducts.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 460D6E00DA9; Thu, 11 Jan 2018 03:59:45 -0800 (PST)
+	id A1D69E00E92; Thu, 11 Jan 2018 07:41:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,55 +8,57 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [212.18.0.10 listed in list.dnswl.org]
+	*      [95.211.2.203 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A9D2E008FB
-	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 03:59:44 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3zHPZ725cfz1qvnW;
-	Thu, 11 Jan 2018 12:59:43 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 3zHPZ71mCyz1qsvB;
-	Thu, 11 Jan 2018 12:59:43 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
-	port 10024)
-	with ESMTP id aNztcLbV-C5n; Thu, 11 Jan 2018 12:59:42 +0100 (CET)
-Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
-	[88.217.136.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPS;
-	Thu, 11 Jan 2018 12:59:42 +0100 (CET)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id 0E4494540448;
-	Thu, 11 Jan 2018 12:59:42 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([127.0.0.1])
-	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id LXWPDVxks6pN; Thu, 11 Jan 2018 12:59:39 +0100 (CET)
-Received: from [192.168.178.132] (papero.fritz.box [192.168.178.132])
-	by babic.homelinux.org (Postfix) with ESMTP id B1D4045403C0;
-	Thu, 11 Jan 2018 12:59:39 +0100 (CET)
-To: Mircea Gliga <mircea.gliga@vitheia.com>,
-	Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-References: <d0f37752-e921-9ed5-47cb-dadd737b5b0e@vitheia.com>
-	<CAGAf8LxNUgWsCSTT6_oH+WaysN6nxvTR5Q=5qLhFCuVYgKfE=w@mail.gmail.com>
-	<aa4ae0f3-f8b8-2ee9-29b4-5d4ab7cd3feb@denx.de>
-	<1ac69a4c-188b-875d-8000-944cc6e04510@vitheia.com>
-From: Stefano Babic <sbabic@denx.de>
-Message-ID: <a6cc2b39-0001-4922-68d9-bcd0e1406dd9@denx.de>
-Date: Thu, 11 Jan 2018 12:59:39 +0100
+Received: from mx6-out12.antispamcloud.com (mx6-out12.antispamcloud.com
+	[95.211.2.203])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55414E00D32
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 07:41:17 -0800 (PST)
+Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
+	by mx35.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
+	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
+	id 1eZZU0-00049n-3m
+	for yocto@yoctoproject.org; Thu, 11 Jan 2018 10:49:12 +0100
+Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
+	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 11 Jan 2018 10:49:09 +0100
+To: <yocto@yoctoproject.org>
+References: <CAGMdoFkPU8cyvNftjRXtmc0GyYXi0LNMh9TJ=A8cgrSjKRecBA@mail.gmail.com>
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: TOPIC
+Message-ID: <6b540d61-dac4-0fe7-f1d4-2f428ceecf39@topic.nl>
+Date: Thu, 11 Jan 2018 10:49:09 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <1ac69a4c-188b-875d-8000-944cc6e04510@vitheia.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: libgcc.a size
+In-Reply-To: <CAGMdoFkPU8cyvNftjRXtmc0GyYXi0LNMh9TJ=A8cgrSjKRecBA@mail.gmail.com>
+X-Originating-IP: [192.168.80.121]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+X-Originating-IP: 37.74.225.130
+X-AntiSpamCloud-Domain: topic.nl
+X-AntiSpamCloud-Username: 37.74.225.128/28
+Authentication-Results: antispamcloud.com;
+	auth=pass smtp.auth=37.74.225.128/28@topic.nl
+X-AntiSpamCloud-Outgoing-Class: unsure
+X-AntiSpamCloud-Outgoing-Evidence: Combined (0.16)
+X-Recommended-Action: accept
+X-Filter-ID: EX5BVjFpneJeBchSMxfU5sbW+O8Tk3tdcM8bPu1yW/YXv9krsgRhBn0ayn6qsUc7w6SccWMDC+EB
+	BTuK3o3KEyQlGLPaobytuzUKW+xz+P7PAjZ7O57DDW7DOa/HBoJsBMmyNbDn7R5kilAhwr3KtIuk
+	b+536l3+pqAIhIa/zGXEwTmvXfAfWNAj7jnT7D41vmOVq23tbQw2LZ3RX+IyZmptLDQVVEkr0fd3
+	TM0QBRM62G/U67cKaa0HbaH2D8o8DZ7dAk4PIDlJHa9u6GsEq/Ke8s8utGHT8Q5pJWi2MVr7Evam
+	8tYC7wyZQ4fzB8++QUwbiOFfV2Jvu+B3DrH1MxO3mU2z2ywUcjN7x2PlCANg9et9Fj8PSGjy/Yn8
+	oAWNeQ26l+6g7IYTcpkQV1OwCLwqyT5p50x81ZKcmzCu2U325+uTFUuzvo8URmhDaMaDm2krverQ
+	RYVy3aYXqZGE8/jHXabDECB8Ge2rA5iD/Uv1GXxLJFjVApPQIqy2JQrfHOhaDqil5cRRI+xFj+oA
+	aV41o9VrjAeNJ9smtTtXQ0oDM3MqXJNR3HP/1Yc3NvMZe+wSBz2Jns4L1GvpZhMBg6pNOztXlWSK
+	pkGC4CGlNdMT+ku21JaTB5qStahrKVgPVgPnVJ/XVzeYFcmG/F6Ke3busEYbN8ZHbA2aDQoPs14F
+	1eyLQy2w9z09mYJgvrgM3KAiKBVOlKRdIMRGU1PzqHLYM3A6BXfvel8OEFDbU51o20LdLIBDdLpb
+	1+HIem1e7wJBYp+ZsNNJP+E7eBiykSAO2w7cJBbO0Dp55x3tfB5ifFDKEuqo+y7SM5LKmlqkoFOu
+	sSFNODEeaAGGwf+43yv5Ak2qvu+ROAO1/CQ6vNXkaefkrOKu/tjx3ISz3q2wkvFcgTxJ6GKpm6ms
+	GRxItWOYB+g+5a8O5B8fYHZUAk0=
+X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
+Subject: Re: fstab entry not mounting at boot-up
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,33 +70,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jan 2018 11:59:45 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Jan 2018 15:41:19 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: nl
+Content-Transfer-Encoding: quoted-printable
 
-Hi Mircea,
+=EF=BB=BFOn 05-01-18 20:43, Edward Wingate wrote:
+> My system has a USB-SSD drive and I added this to my fstab:
+> /dev/sda1  /mnt/drive    auto   defaults,nonempty  0 0
+>=20
+> But it doesn't get mounted on start-up.  I can use "mount -a" after
+> start-up and it mounts successfully.
+>=20
+> Everything else in fstab gets mounted on boot.  Does anyone know why
+> my new entry doesn't?
 
-On 11/01/2018 12:54, Mircea Gliga wrote:
-> Hi guys
-> 
->>libgcc.a is "out-f-the-box" in rocko 25MB, but why should it be
-> integrated in rootfs ?
-> 
-> I asked myself the same question. Not clear for me yet how and why it
-> gets in the rootfs.
+Wild guess: "/mnt/drive" does not exist yet when the fstab is processed dur=
+ing=20
+startup. That will cause mount to fail.
 
-It is not - I have not in my -rocko projects.
 
-I guess you have some setup in your local.conf, like you added
-"dev-pkgs" or "staticdev-pkgs" somewhere.
+Kind regards,
 
-Stefano
+Mike Looijmans
+System Expert
 
--- 
-=====================================================================
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
+TOPIC Products
+Materiaalweg 4, NL-5681 RJ Best
+Postbus 440, NL-5680 AK Best
+Telefoon: +31 (0) 499 33 69 79
+E-mail: mike.looijmans@topicproducts.com
+Website: www.topicproducts.com
+
+Please consider the environment before printing this e-mail
+
+
+
 
