@@ -1,38 +1,62 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <ngthanh.vu94@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B430EE00E04; Wed, 10 Jan 2018 21:45:31 -0800 (PST)
+	id 20040E00E0F; Thu, 11 Jan 2018 00:05:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ngthanh.vu94[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AA1EE00DA9
-	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 21:45:30 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w0B5jOGw027836
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 10 Jan 2018 21:45:26 -0800 (PST)
-Received: from localhost.corp.ad.wrs.com (128.224.162.229) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.361.1; Wed, 10 Jan 2018 21:45:18 -0800
-To: Martin Siegumfeldt <mns@gomspace.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <HE1PR0402MB332361FF0CE06D405DE24AADC4110@HE1PR0402MB3323.eurprd04.prod.outlook.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <0fe12bc8-d43e-1d1a-2177-4a4a3d3ba04e@windriver.com>
-Date: Thu, 11 Jan 2018 13:45:29 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.195 listed in list.dnswl.org]
+Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
+	[209.85.223.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03EBEE00DB5
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 00:05:08 -0800 (PST)
+Received: by mail-io0-f195.google.com with SMTP id 25so2327226ioj.9
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 00:05:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=FQhvWKZfvnzrWa4vAfU4dM2sE7SSOp34iCcMFclz2O4=;
+	b=tP02muIVv+IYZyoSKI+0cGg5RFBsv3k7reF8MTMiyES8r1Ds5IaWICYB5WGFyeXinw
+	g4lvTFYboLlybuDqF9d/dTSPabD/gfjSfQA2W5+09BlfFBWfiMp1sSK4XyVaI3SeNX7o
+	EHY9+eEFhk4LJIpPPK5hS7tIUD3vySli1WzQOp5W977pWVdSzQ49lWnMklycdcqo3CZn
+	vNfCZLDZ8W3/Gt1vfVrksIy4KuetX03+K2p6xefMzzRrnT9YhMqt/uZL6PzU9NVGkRrf
+	CziotCeoFj7c69urNPIFUYvyZCKbUWtapUIC9PT4rTVieqPUBwsQ5CXZDk/PV+9myYkA
+	G2dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=FQhvWKZfvnzrWa4vAfU4dM2sE7SSOp34iCcMFclz2O4=;
+	b=Rca46mLMKBQ2aaDIAHpiYA3N0AIIFeYsuwjyh6RreSCXsbx0PYw7yi8rLUgRblQR0f
+	yBCPOcL+FxfZI0DpdgvyacCW3rBCppq76C3hm2G6ywFiakF4aBXGOGQCA4SHicWvu9XH
+	CLV1wvnHYzoOR5e7NRVkqy4IR2DSiTXFtOWTx60aWpfVsQpEyMIZI2/PfENMGmFCXOvF
+	QkKpoqvKVGa+O5gpVM5BHEhKOSX6c4JUN8qtEjT4tQutXOUCux+1gJdTzvDGHiSPxb4h
+	uiuwNgotuOQ+swSmDZRPIx/42frQwci01+rPCxbV9rnVJ0x/p4x7rYjOH4Nk8IK2O3fx
+	NRsQ==
+X-Gm-Message-State: AKGB3mJsWRDVrS8YBUyC/RAu9gwanFdKo+rEYqhY6kDLA6WiWL9D0PXi
+	7df7YcNcppE7wS8ElWqp1HAdeMDq2NXb01gVYbqx2Q==
+X-Google-Smtp-Source: ACJfBot7FvMzCS2n1mDbERfDCza6DLJwph5zcRL77bdI3usZ679h0eE3gTE/OplT6R9RNXYnyyYTH4w/OCkeH78WcmI=
+X-Received: by 10.107.158.4 with SMTP id h4mr20357069ioe.129.1515657907524;
+	Thu, 11 Jan 2018 00:05:07 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <HE1PR0402MB332361FF0CE06D405DE24AADC4110@HE1PR0402MB3323.eurprd04.prod.outlook.com>
-Subject: Re: Issues building Extensible SDK
+Received: by 10.107.44.21 with HTTP; Thu, 11 Jan 2018 00:05:06 -0800 (PST)
+From: =?UTF-8?B?Tmd1eeG7hW4gVGhhbmggVsWpIA==?= <ngthanh.vu94@gmail.com>
+Date: Thu, 11 Jan 2018 15:05:06 +0700
+Message-ID: <CAGJSYqmyc+yZm9vi4OG8C2KU0=6RUv+Wfpx66yPqFCaze_AWCQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: How can I change the default ext4 or etx3 of the rootfs to ext2 or jffs2 in yocto build?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,92 +68,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jan 2018 05:45:31 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Jan 2018 08:05:10 -0000
+Content-Type: multipart/alternative; boundary="001a1140e9ac2dd91705627b9b59"
 
-Hi Martin,
+--001a1140e9ac2dd91705627b9b59
+Content-Type: text/plain; charset="UTF-8"
 
-Try:
+I want to minimize the size of the image built in core-image-minimal.
+However, I have no idea how to change the local.conf file or recipe file.
+Can anyone help me?
 
-$ bitbake -e | grep '^INHERIT=.*uninative'
+--001a1140e9ac2dd91705627b9b59
+Content-Type: text/html; charset="UTF-8"
 
-If there is nothing, then add the following line to conf/local.conf:
+<div dir="ltr">I want to minimize the size of the image built in core-image-minimal. However, I have no idea how to change the local.conf file or recipe file. Can anyone help me?</div>
 
-INHERIT += "uninative"
-
-// Robert
-
-On 01/10/2018 03:46 PM, Martin Siegumfeldt wrote:
-> Hi,
-> 
-> We have a custom piece of (Zynq based) HW that we render a custom distro using Yocto. I am trying to build the extensible SDK but run into the below error:
-> 
-> pokyuser@03c19f8798ba:/workdir/krogoth/build$ bitbake core-image-minimal -c populate_sdk_ext
-> Loading cache: 100% |################################################################################################################################################################################################################################################| Time: 0:00:00
-> Loaded 2675 entries from dependency cache.
-> Parsing recipes: 100% |##############################################################################################################################################################################################################################################| Time: 0:00:01
-> Parsing of 1915 .bb files complete (1913 cached, 2 parsed). 2677 targets, 377 skipped, 0 masked, 0 errors.
-> NOTE: Resolving any missing task queue dependencies
-> 
-> Build Configuration:
-> BB_VERSION        = "1.34.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "ubuntu-16.04"
-> TARGET_SYS        = "arm-oe-linux-gnueabi"
-> MACHINE           = "zynq-soft-z7000-mb-v2"
-> DISTRO            = "gomspace"
-> DISTRO_VERSION    = "2.0"
-> TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa9"
-> TARGET_FPU        = "hard"
-> meta              = "pyro:9c75151116aa293dc8567c237d7e4da5bdec90e3"
-> meta-xilinx       = "pyro:18097af3120a394a8e6933b7abc85e73e508c7e3"
-> meta-oe
-> meta-filesystems
-> meta-networking
-> meta-python       = "pyro:dfbdd28d206a74bf264c2f7ee0f7b3e5af587796"
-> meta-z7000        = "pyro:b255ea4575b40d77a2f5dc9200de0718f979f175"
-> 
-> Initialising tasks: 100% |###########################################################################################################################################################################################################################################| Time: 0:00:03
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> ERROR: core-image-minimal-1.0-r0 do_populate_sdk_ext: Error executing a python function in exec_python_func() autogenerated:
-> 
-> The stack trace of python calls that resulted in this exception/failure was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->       0001:
->   *** 0002:copy_buildsystem(d)
->       0003:
-> File: '/workdir/krogoth/openembedded-core/meta/classes/populate_sdk_ext.bbclass', lineno: 298, function: copy_buildsystem
->       0294:            f.write('TCLIBCAPPEND = ""\n')
->       0295:            f.write('DL_DIR = "${TOPDIR}/downloads"\n')
->       0296:
->       0297:            f.write('INHERIT += "%s"\n' % 'uninative')
->   *** 0298:            f.write('UNINATIVE_CHECKSUM[%s] = "%s"\n\n' % (d.getVar('BUILD_ARCH'), uninative_checksum))
->       0299:            f.write('CONF_VERSION = "%s"\n\n' % d.getVar('CONF_VERSION', False))
->       0300:
->       0301:            # Some classes are not suitable for SDK, remove them from INHERIT
->       0302:            f.write('INHERIT_remove = "%s"\n' % d.getVar('SDK_INHERIT_BLACKLIST', False))
-> Exception: UnboundLocalError: local variable 'uninative_checksum' referenced before assignment
-> 
-> ERROR: core-image-minimal-1.0-r0 do_populate_sdk_ext: Function failed: copy_buildsystem
-> ERROR: Logfile of failure stored in: /workdir/krogoth/build/tmp-glibc/work/zynq_soft_z7000_mb_v2-oe-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_populate_sdk_ext.8408
-> ERROR: Task (/workdir/krogoth/openembedded-core/meta/recipes-core/images/core-image-minimal.bb:do_populate_sdk_ext) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 2214 tasks of which 2210 didn't need to be rerun and 1 failed.
-> 
-> Summary: 1 task failed:
->    /workdir/krogoth/openembedded-core/meta/recipes-core/images/core-image-minimal.bb:do_populate_sdk_ext
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-> 
-> 
-> The standard SDK builds successfully all the way back from Fido throughout Rocko, however we would now like to build the Extensible SDK. Krogoth version builds it successfully, but Pyro and Rocko throws the above error (haven't tested Morty).
-> 
-> I am unable to reproduce using Poky and thus assume it to be related to the configuration of our distro/image. Any suggestions are highly appreciated.
-> 
-> Thanks,
-> Martin
-> 
-> 
-> 
-
+--001a1140e9ac2dd91705627b9b59--
