@@ -1,62 +1,53 @@
-Return-Path: <ngthanh.vu94@gmail.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20040E00E0F; Thu, 11 Jan 2018 00:05:10 -0800 (PST)
+	id 515B9E00DD1; Thu, 11 Jan 2018 00:23:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ngthanh.vu94[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.195 listed in list.dnswl.org]
-Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
-	[209.85.223.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03EBEE00DB5
-	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 00:05:08 -0800 (PST)
-Received: by mail-io0-f195.google.com with SMTP id 25so2327226ioj.9
-	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 00:05:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=FQhvWKZfvnzrWa4vAfU4dM2sE7SSOp34iCcMFclz2O4=;
-	b=tP02muIVv+IYZyoSKI+0cGg5RFBsv3k7reF8MTMiyES8r1Ds5IaWICYB5WGFyeXinw
-	g4lvTFYboLlybuDqF9d/dTSPabD/gfjSfQA2W5+09BlfFBWfiMp1sSK4XyVaI3SeNX7o
-	EHY9+eEFhk4LJIpPPK5hS7tIUD3vySli1WzQOp5W977pWVdSzQ49lWnMklycdcqo3CZn
-	vNfCZLDZ8W3/Gt1vfVrksIy4KuetX03+K2p6xefMzzRrnT9YhMqt/uZL6PzU9NVGkRrf
-	CziotCeoFj7c69urNPIFUYvyZCKbUWtapUIC9PT4rTVieqPUBwsQ5CXZDk/PV+9myYkA
-	G2dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=FQhvWKZfvnzrWa4vAfU4dM2sE7SSOp34iCcMFclz2O4=;
-	b=Rca46mLMKBQ2aaDIAHpiYA3N0AIIFeYsuwjyh6RreSCXsbx0PYw7yi8rLUgRblQR0f
-	yBCPOcL+FxfZI0DpdgvyacCW3rBCppq76C3hm2G6ywFiakF4aBXGOGQCA4SHicWvu9XH
-	CLV1wvnHYzoOR5e7NRVkqy4IR2DSiTXFtOWTx60aWpfVsQpEyMIZI2/PfENMGmFCXOvF
-	QkKpoqvKVGa+O5gpVM5BHEhKOSX6c4JUN8qtEjT4tQutXOUCux+1gJdTzvDGHiSPxb4h
-	uiuwNgotuOQ+swSmDZRPIx/42frQwci01+rPCxbV9rnVJ0x/p4x7rYjOH4Nk8IK2O3fx
-	NRsQ==
-X-Gm-Message-State: AKGB3mJsWRDVrS8YBUyC/RAu9gwanFdKo+rEYqhY6kDLA6WiWL9D0PXi
-	7df7YcNcppE7wS8ElWqp1HAdeMDq2NXb01gVYbqx2Q==
-X-Google-Smtp-Source: ACJfBot7FvMzCS2n1mDbERfDCza6DLJwph5zcRL77bdI3usZ679h0eE3gTE/OplT6R9RNXYnyyYTH4w/OCkeH78WcmI=
-X-Received: by 10.107.158.4 with SMTP id h4mr20357069ioe.129.1515657907524;
-	Thu, 11 Jan 2018 00:05:07 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4A8BE00D6E
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 00:23:35 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	11 Jan 2018 00:23:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,343,1511856000"; d="scan'208,217";a="9544497"
+Received: from irsmsx105.ger.corp.intel.com ([163.33.3.28])
+	by orsmga007.jf.intel.com with ESMTP; 11 Jan 2018 00:23:34 -0800
+Received: from irsmsx103.ger.corp.intel.com ([169.254.3.138]) by
+	irsmsx105.ger.corp.intel.com ([169.254.7.236]) with mapi id
+	14.03.0319.002; Thu, 11 Jan 2018 08:23:27 +0000
+From: "John, Maxin" <maxin.john@intel.com>
+To: "ngthanh.vu94@gmail.com" <ngthanh.vu94@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] How can I change the default ext4 or etx3 of the
+	rootfs to ext2 or jffs2 in yocto build?
+Thread-Index: AQHTirL+lmayH7o+NEqjm/MwbldPzqNuU63g
+Date: Thu, 11 Jan 2018 08:23:26 +0000
+Message-ID: <61C0517EAD808B429A1DE2DD9164D400326686DC@IRSMSX103.ger.corp.intel.com>
+References: <CAGJSYqmyc+yZm9vi4OG8C2KU0=6RUv+Wfpx66yPqFCaze_AWCQ@mail.gmail.com>
+In-Reply-To: <CAGJSYqmyc+yZm9vi4OG8C2KU0=6RUv+Wfpx66yPqFCaze_AWCQ@mail.gmail.com>
+Accept-Language: fi-FI, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.0.0.116
+dlp-reaction: no-action
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiN2YxNmMwM2MtODBkOS00MDkxLThkMWMtZDliN2Q0ZGU3YmMxIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJaSDUxQlJhXC9Hc2ZqUWhkVzRtcXhaa25IVHRMditxKzBlMjVrZW5Jdk15czBqVmJ4YTRYUUh3TkJcL3ZraW9qNnYifQ==
+x-ctpclassification: CTP_NT
+x-originating-ip: [163.33.239.182]
 MIME-Version: 1.0
-Received: by 10.107.44.21 with HTTP; Thu, 11 Jan 2018 00:05:06 -0800 (PST)
-From: =?UTF-8?B?Tmd1eeG7hW4gVGhhbmggVsWpIA==?= <ngthanh.vu94@gmail.com>
-Date: Thu, 11 Jan 2018 15:05:06 +0700
-Message-ID: <CAGJSYqmyc+yZm9vi4OG8C2KU0=6RUv+Wfpx66yPqFCaze_AWCQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: How can I change the default ext4 or etx3 of the rootfs to ext2 or jffs2 in yocto build?
+Subject: Re: How can I change the default ext4 or etx3 of the rootfs to ext2 or jffs2 in yocto build?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,19 +59,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jan 2018 08:05:10 -0000
-Content-Type: multipart/alternative; boundary="001a1140e9ac2dd91705627b9b59"
+X-List-Received-Date: Thu, 11 Jan 2018 08:23:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_61C0517EAD808B429A1DE2DD9164D400326686DCIRSMSX103gercor_"
 
---001a1140e9ac2dd91705627b9b59
-Content-Type: text/plain; charset="UTF-8"
+--_000_61C0517EAD808B429A1DE2DD9164D400326686DCIRSMSX103gercor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I want to minimize the size of the image built in core-image-minimal.
-However, I have no idea how to change the local.conf file or recipe file.
-Can anyone help me?
+SGksDQoNCkFuIGVhc3kgd2F5IHdpbGwgYmUgdG8gcmVmZXIgWW9jdG8gZG9jdW1lbnRhdGlvbjoN
+Cmh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2N1cnJlbnQveW9jdG8tcHJvamVjdC1x
+cy95b2N0by1wcm9qZWN0LXFzLmh0bWwNCg0KYW5kIGZvciByZXF1aXJlZCByb290ZnMgY2hhbmdl
+cywgdXNlIElNQUdFX0ZTVFlQRVM6DQpodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8y
+LjQvbWVnYS1tYW51YWwvbWVnYS1tYW51YWwuaHRtbCN2YXItSU1BR0VfRlNUWVBFUw0KDQo+RnJv
+bTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91bmNlc0B5
+b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgTmd1eT9uIFRoYW5oIFZ1DQo+U2VudDogVGh1
+cnNkYXksIEphbnVhcnkgMTEsIDIwMTggMTA6MDUgQU0NCj5UbzogeW9jdG9AeW9jdG9wcm9qZWN0
+Lm9yZw0KPlN1YmplY3Q6IFt5b2N0b10gSG93IGNhbiBJIGNoYW5nZSB0aGUgZGVmYXVsdCBleHQ0
+IG9yIGV0eDMgb2YgdGhlIHJvb3RmcyB0byBleHQyIG9yIGpmZnMyIGluIHlvY3RvIGJ1aWxkPw0K
+DQo+SSB3YW50IHRvIG1pbmltaXplIHRoZSBzaXplIG9mIHRoZSBpbWFnZSBidWlsdCBpbiBjb3Jl
+LWltYWdlLW1pbmltYWwuIEhvd2V2ZXIsIEkgaGF2ZSBubyBpZGVhIGhvdyB0byBjaGFuZ2UgdGhl
+ID5sb2NhbC5jb25mIGZpbGUgb3IgcmVjaXBlIGZpbGUuIENhbiBhbnlvbmUgaGVscCBtZT8NCg0K
+QmVzdCBSZWdhcmRzLA0KTWF4aW4NCg0K
 
---001a1140e9ac2dd91705627b9b59
-Content-Type: text/html; charset="UTF-8"
+--_000_61C0517EAD808B429A1DE2DD9164D400326686DCIRSMSX103gercor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-<div dir="ltr">I want to minimize the size of the image built in core-image-minimal. However, I have no idea how to change the local.conf file or recipe file. Can anyone help me?</div>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBz
+cGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxl
+MTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
+cmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
+Zjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2lu
+OjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcyLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6
+V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpz
+aGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5k
+aWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRp
+dCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48
+L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSIjMDU2
+M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkhpLDxicj4NCjxh
+IG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PGJyPg0KQW4gZWFzeSB3YXkgd2lsbCBiZSB0byByZWZl
+ciBZb2N0byBkb2N1bWVudGF0aW9uOjxvOnA+PC9vOnA+PC9hPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48YSBocmVmPSJodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy9j
+dXJyZW50L3lvY3RvLXByb2plY3QtcXMveW9jdG8tcHJvamVjdC1xcy5odG1sIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWYiPmh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2N1cnJlbnQveW9jdG8tcHJv
+amVjdC1xcy95b2N0by1wcm9qZWN0LXFzLmh0bWw8L3NwYW4+PC9hPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtj
+b2xvcjojMUY0OTdEIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
+PmFuZCBmb3IgcmVxdWlyZWQgcm9vdGZzIGNoYW5nZXMsIHVzZSBJTUFHRV9GU1RZUEVTOjxicj4N
+Cjwvc3Bhbj48YSBocmVmPSJodHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjQvbWVn
+YS1tYW51YWwvbWVnYS1tYW51YWwuaHRtbCN2YXItSU1BR0VfRlNUWVBFUyI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmIj5odHRwOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy8yLjQvbWVnYS1tYW51YWwvbWVn
+YS1tYW51YWwuaHRtbCN2YXItSU1BR0VfRlNUWVBFUzwvc3Bhbj48L2E+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOiMxRjQ5N0QiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBuYW1lPSJfX19fX3JlcGx5c2VwYXJhdG9y
+Ij48L2E+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4mZ3Q7RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
+ZXJpZiI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5j
+ZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBPZiA8L2I+Tmd1eT9uIFRoYW5oIFZ1
+IDxicj4NCjxiPiZndDtTZW50OjwvYj4gVGh1cnNkYXksIEphbnVhcnkgMTEsIDIwMTggMTA6MDUg
+QU08YnI+DQo8Yj4mZ3Q7VG86PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+Jmd0
+O1N1YmplY3Q6PC9iPiBbeW9jdG9dIEhvdyBjYW4gSSBjaGFuZ2UgdGhlIGRlZmF1bHQgZXh0NCBv
+ciBldHgzIG9mIHRoZSByb290ZnMgdG8gZXh0MiBvciBqZmZzMiBpbiB5b2N0byBidWlsZD88bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFG
+NDk3RCI+Jmd0Ozwvc3Bhbj5JIHdhbnQgdG8gbWluaW1pemUgdGhlIHNpemUgb2YgdGhlIGltYWdl
+IGJ1aWx0IGluIGNvcmUtaW1hZ2UtbWluaW1hbC4gSG93ZXZlciwgSSBoYXZlIG5vIGlkZWEgaG93
+IHRvIGNoYW5nZSB0aGUNCjxzcGFuIHN0eWxlPSJjb2xvcjojMUY0OTdEIj4mZ3Q7PC9zcGFuPmxv
+Y2FsLmNvbmYgZmlsZSBvciByZWNpcGUgZmlsZS4gQ2FuIGFueW9uZSBoZWxwIG1lPzxzcGFuIHN0
+eWxlPSJjb2xvcjojMUY0OTdEIj48YnI+DQo8YnI+DQpCZXN0IFJlZ2FyZHMsPGJyPg0KTWF4aW48
+YnI+DQo8YnI+DQo8L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5
+Pg0KPC9odG1sPg0K
 
---001a1140e9ac2dd91705627b9b59--
+--_000_61C0517EAD808B429A1DE2DD9164D400326686DCIRSMSX103gercor_--
