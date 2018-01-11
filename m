@@ -1,64 +1,58 @@
-Return-Path: <prvs=05492bd55b=mike.looijmans@topicproducts.com>
+Return-Path: <steve.bedford@timesys.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1D69E00E92; Thu, 11 Jan 2018 07:41:19 -0800 (PST)
+	id 4A5E5E00E83; Thu, 11 Jan 2018 07:52:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [95.211.2.203 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.220.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx6-out12.antispamcloud.com (mx6-out12.antispamcloud.com
-	[95.211.2.203])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55414E00D32
-	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 07:41:17 -0800 (PST)
-Received: from [37.74.225.130] (helo=TOP-EX01.TOPIC.LOCAL)
-	by mx35.antispamcloud.com with esmtps (TLSv1:ECDHE-RSA-AES128-SHA:128)
-	(Exim 4.89) (envelope-from <mike.looijmans@topicproducts.com>)
-	id 1eZZU0-00049n-3m
-	for yocto@yoctoproject.org; Thu, 11 Jan 2018 10:49:12 +0100
-Received: from [192.168.80.121] (192.168.80.121) by webmail.topic.nl
-	(192.168.10.102) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 11 Jan 2018 10:49:09 +0100
-To: <yocto@yoctoproject.org>
-References: <CAGMdoFkPU8cyvNftjRXtmc0GyYXi0LNMh9TJ=A8cgrSjKRecBA@mail.gmail.com>
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-Message-ID: <6b540d61-dac4-0fe7-f1d4-2f428ceecf39@topic.nl>
-Date: Thu, 11 Jan 2018 10:49:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f174.google.com (mail-qk0-f174.google.com
+	[209.85.220.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B30F4E00D32
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 07:52:24 -0800 (PST)
+Received: by mail-qk0-f174.google.com with SMTP id d21so4855524qkj.3
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 07:52:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=timesys-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=oPHVXH3vIMcoaK4H49fo5ZCSrSMD72ZCVHyb9DNvPd8=;
+	b=yJTQOlXaunaybVNARqnTMtbumCyEwajFVkjHrEzAfhvlT3RO9hAzbsUxp41iCon1ii
+	0KxTLy8iAI+nTO10s/gQgJN3afqyby7hnIhyj6z9I2tQK5K4nchaTox9fwAS9EKNT5Ap
+	gNnxy7nJQ7FEZ4lITtmyPcL4ZolsJF/D4TgIQBz11Yot8jjbPtKTfWorpSHlo0If1m7l
+	2vPvojeHN7LTanr0MDygy7ur6j4VbkbnYsEEw0RfesDUoYK3PfX6YtajqDS74w6P7V1O
+	dDtiy9sRb89fB68iM97A0QGhokui+6dc8VcDu5qpfH9YwuzZEWcsOqCLuQDWUuI0dcQr
+	unHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=oPHVXH3vIMcoaK4H49fo5ZCSrSMD72ZCVHyb9DNvPd8=;
+	b=G3Lgm+NCbnMYSfQw7XNiun5Rj40l1hc4Cr3k+/xRBwPzk7+oIVoTK4NqM1Dpu0OHSe
+	BFZX7Zp5WSgVBXHSZWc9AmfWqdUo2UNCzzmtwXDuAnbJD4uFfPUDNjABiPz3B6wrt9JT
+	GIj20NvRxIzp1eCObWBvo7l2QbGd4CZKJjioUOYK9Nkvv8arsN+TyAE9PrCrHRlNRN4E
+	6HFMYC2VqHXxD/eYVhIuQB4MbY9kSmwqOA/UqATId4CqEqt8HPyijZJ9acOxefCNjHW2
+	3GhRQ8vrQljK7V/+PSh8XyveAG0db5UO5qlG0qqBU19WyRHq97PfyL7W2+jEDPhwCKJu
+	0NHw==
+X-Gm-Message-State: AKwxytcIOrogaVQrhG90mxIGfqA1sEwcs+DdpwAQj6R8tZbfG0lCa9hY
+	nesDVcxUTC0jK5lwJZDQopzg9xmUC87Lx8SA0zyHbw==
+X-Google-Smtp-Source: ACJfBotWs+lDyn0cJ8vuA38WVaaeFh/XXt+LAihN1ArKmxrlFCf8phKR2ZaFwW8QwreH2MpDTbh/K2buXQMloOvjaN8=
+X-Received: by 10.233.220.130 with SMTP id q124mr16314448qkf.170.1515685943778;
+	Thu, 11 Jan 2018 07:52:23 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAGMdoFkPU8cyvNftjRXtmc0GyYXi0LNMh9TJ=A8cgrSjKRecBA@mail.gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-X-Originating-IP: 37.74.225.130
-X-AntiSpamCloud-Domain: topic.nl
-X-AntiSpamCloud-Username: 37.74.225.128/28
-Authentication-Results: antispamcloud.com;
-	auth=pass smtp.auth=37.74.225.128/28@topic.nl
-X-AntiSpamCloud-Outgoing-Class: unsure
-X-AntiSpamCloud-Outgoing-Evidence: Combined (0.16)
-X-Recommended-Action: accept
-X-Filter-ID: EX5BVjFpneJeBchSMxfU5sbW+O8Tk3tdcM8bPu1yW/YXv9krsgRhBn0ayn6qsUc7w6SccWMDC+EB
-	BTuK3o3KEyQlGLPaobytuzUKW+xz+P7PAjZ7O57DDW7DOa/HBoJsBMmyNbDn7R5kilAhwr3KtIuk
-	b+536l3+pqAIhIa/zGXEwTmvXfAfWNAj7jnT7D41vmOVq23tbQw2LZ3RX+IyZmptLDQVVEkr0fd3
-	TM0QBRM62G/U67cKaa0HbaH2D8o8DZ7dAk4PIDlJHa9u6GsEq/Ke8s8utGHT8Q5pJWi2MVr7Evam
-	8tYC7wyZQ4fzB8++QUwbiOFfV2Jvu+B3DrH1MxO3mU2z2ywUcjN7x2PlCANg9et9Fj8PSGjy/Yn8
-	oAWNeQ26l+6g7IYTcpkQV1OwCLwqyT5p50x81ZKcmzCu2U325+uTFUuzvo8URmhDaMaDm2krverQ
-	RYVy3aYXqZGE8/jHXabDECB8Ge2rA5iD/Uv1GXxLJFjVApPQIqy2JQrfHOhaDqil5cRRI+xFj+oA
-	aV41o9VrjAeNJ9smtTtXQ0oDM3MqXJNR3HP/1Yc3NvMZe+wSBz2Jns4L1GvpZhMBg6pNOztXlWSK
-	pkGC4CGlNdMT+ku21JaTB5qStahrKVgPVgPnVJ/XVzeYFcmG/F6Ke3busEYbN8ZHbA2aDQoPs14F
-	1eyLQy2w9z09mYJgvrgM3KAiKBVOlKRdIMRGU1PzqHLYM3A6BXfvel8OEFDbU51o20LdLIBDdLpb
-	1+HIem1e7wJBYp+ZsNNJP+E7eBiykSAO2w7cJBbO0Dp55x3tfB5ifFDKEuqo+y7SM5LKmlqkoFOu
-	sSFNODEeaAGGwf+43yv5Ak2qvu+ROAO1/CQ6vNXkaefkrOKu/tjx3ISz3q2wkvFcgTxJ6GKpm6ms
-	GRxItWOYB+g+5a8O5B8fYHZUAk0=
-X-Report-Abuse-To: spam@quarantine2.antispamcloud.com
-Subject: Re: fstab entry not mounting at boot-up
+Received: by 10.233.237.198 with HTTP; Thu, 11 Jan 2018 07:52:23 -0800 (PST)
+From: Steve Bedford <steve.bedford@timesys.com>
+Date: Thu, 11 Jan 2018 10:52:23 -0500
+Message-ID: <CALRpHvKDyjyynB7oaEWoWDfnwv7sDpq1DcUdHAOsbdoFKxcEWw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: [layerindex-web] Updating layers?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,40 +64,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jan 2018 15:41:19 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: nl
+X-List-Received-Date: Thu, 11 Jan 2018 15:52:25 -0000
+Content-Type: multipart/alternative; boundary="94eb2c044bea453a1d056282227b"
+
+--94eb2c044bea453a1d056282227b
+Content-Type: text/plain; charset="UTF-8"
+
+Hello!
+
+Is the layerindex not running the update script?  I see end of September as
+last updates, and a bunch of branches in our layer (meta-timesys) were
+never picked up.
+
+Or is there another way for maintainers to add branches / trigger an update?
+
+
+Thanks,
+-- 
+Steve Bedford
+Timesys Corporation
+
+--94eb2c044bea453a1d056282227b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-=EF=BB=BFOn 05-01-18 20:43, Edward Wingate wrote:
-> My system has a USB-SSD drive and I added this to my fstab:
-> /dev/sda1  /mnt/drive    auto   defaults,nonempty  0 0
->=20
-> But it doesn't get mounted on start-up.  I can use "mount -a" after
-> start-up and it mounts successfully.
->=20
-> Everything else in fstab gets mounted on boot.  Does anyone know why
-> my new entry doesn't?
+<div dir=3D"ltr">Hello!<div><br></div><div>Is the layerindex not running th=
+e update script?=C2=A0 I see end of September as last updates, and a bunch =
+of branches in our layer (meta-timesys) were never picked up.</div><div><br=
+></div><div>Or is there another way for maintainers to add branches / trigg=
+er an update?</div><div><br></div><div><br></div><div>Thanks,</div><div>-- =
+<br><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div>Steve Bedford</div><div>Timesys Corp=
+oration</div></div></div></div></div>
+</div></div>
 
-Wild guess: "/mnt/drive" does not exist yet when the fstab is processed dur=
-ing=20
-startup. That will cause mount to fail.
-
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Products
-Materiaalweg 4, NL-5681 RJ Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-
-
-
+--94eb2c044bea453a1d056282227b--
