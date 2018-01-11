@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B2C6E00D17; Thu, 11 Jan 2018 10:22:27 -0800 (PST)
+	id A5F33E00E38; Thu, 11 Jan 2018 11:45:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (marek.belisko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.54 listed in list.dnswl.org]
+	*      [74.125.82.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,48 +19,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f54.google.com (mail-pg0-f54.google.com [74.125.83.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E12BE0056D
-	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 10:22:26 -0800 (PST)
-Received: by mail-pg0-f54.google.com with SMTP id 136so2169645pgd.8
-	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 10:22:26 -0800 (PST)
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95BFBE008FB
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 11:45:16 -0800 (PST)
+Received: by mail-wm0-f42.google.com with SMTP id f140so7559324wmd.2
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 11:45:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=THIkiXvHLy75kN4D2KaEHYaKVBvif+nUsfG+zHAFvmc=;
-	b=UU6F4Y+QQ9SafstY9QFbiWadWaOoM4h8pmyMpGC8cYdbmeZbd5iWbKZYop/gUVEM/U
-	8VuwmvJXakMzSHsrBHfotWmSSmQ0I+z6xktJlDdi3XI6GTlJUc23SN/lYE2/Y6vc37dc
-	m6MhC30fg4JUKbEkFFe4RM0HtxhnP7Cgjeysai4kDWTjqcvZkoX5WKGEVP8k2TbZbVgJ
-	9iyuW17qQsfnDhkYa94u7Ht5lqyRKUspkU9yfx/14jlSRNgsHmru8T5VJXtsQtwlqPJP
-	xlz1Fa6vz36piNCzD5sG7eUvmNiwI66PO0f/4OQIkB8P26TlCTQeTKwlPTk7dD1NlfHw
-	gC5g==
+	h=mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=3lK57gHuXwf1ss5WL/Qd49X6b99ygMsu/iU8pBco5xo=;
+	b=FKl7IPDuZCikH0QnQRSYbGhw5FN2LW7Y6yMknQAWLzwCAqX7G+hLGkSi0iy45vtB4h
+	NlNqBV/LrgUsk55fDhFAzDWJVos3ywfNknU+C/22iweNYALAunb2uKU/6SMW8aegXuR9
+	QPkmukAniIX6847XjCsMvOXox1F8rGI5NzxlIvM8a+UKKBiakTA+JS+/MT472c02ZMVh
+	THbw0iHjswYkEuR1+J7LDmCnmuhR4MkuO+7/+SXIPmjha7qrqEitfAJjVE4VimeZEbA3
+	uvDOsUPErpSdEwxd+ZLPtLwJDtkCXfqySpdd+Nz2jj3QRf4ZSfmG9LlNPwc0Pw1NL7QA
+	htmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=THIkiXvHLy75kN4D2KaEHYaKVBvif+nUsfG+zHAFvmc=;
-	b=cCSc2weNaCDi7XIMJ8WR+zvzupF0TivdmxhrwJJ36pekKjfYZpIYh0+RQypCwIyRv9
-	gRoeWAtSKqjjHTnvNHrWuUw7hslXRPUis6jaMKkboHo9fxi2uZRTyc+yt9l0QoB1B2Cm
-	sKMZP9iH7V6e4eY/kmNhFMyqp6buPoqqE/GMDr4VZP8vQBHtdG7NsGRkw4Jdrbqzg3SE
-	D11eX2BmI/axzeQBxfvMb6uyPJflMju8q3bdT4N1jPZL/rbxTWn6ZEMWxKstg3DBjQuu
-	NUvwZBwKeeZ32tPMH8vhlGWlgj/a8jqvXH50N8RK9+d25FOqHavuhCpo3j/U+4AEjDjp
-	mfog==
-X-Gm-Message-State: AKGB3mJ7eLtVurOS6EBqWFTgvfxHiGSqIOdhh8fjZK1H+m8eowVSR13n
-	bT5s1IN7T+F5IL1IzhnaeofI2/9ZXFavKhgb9SI=
-X-Google-Smtp-Source: ACJfBou2ssms/mMK5TgxBsO5qoS25P4JeQyPQWFu9AK/jeL4FpRywtoNi3sMNdoR2C3dIekX3rx41moUVWBA+bexGdI=
-X-Received: by 10.101.102.79 with SMTP id z15mr18666758pgv.25.1515694945272;
-	Thu, 11 Jan 2018 10:22:25 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=3lK57gHuXwf1ss5WL/Qd49X6b99ygMsu/iU8pBco5xo=;
+	b=Tdx+VnO2+Uh4ghirOKA3FipEyXEG/KMv0V8sLvvo5vEGub5CR/kWe8AsjbkI3VxeMb
+	rjrIhdWaARMgcfYWEPQJrpoWN2+YMFkq6wFaqhLpp8/mSyzcDxkVqUMgLBFjrdpYI3fL
+	Tbjz+LmenBvzbU9IUoRFh79DV1g4zwzJGYbUyI0ws2aqqbZ6shA4FyEGBLpYU3jZf2QS
+	6446/Zpqk1wkmlQN8wPuwm50x9CCN+VrQgLhzlMiOOoRkRsWpc7pzZWoK/G40cQ1e7fa
+	iO48V7AtZn57Wdlf31a1eZNBZQkuBCjkEJ4FanR3l+LTw8S3pxRIRm2arZSyNKFlIw8G
+	lCfQ==
+X-Gm-Message-State: AKwxytesNFS3sn3wJWW9fCWAgE1vd0yw8m0TWt9EKjjA/awdi3J8rlgD
+	l0F0ncM15hsFSu8NRsSRaQmrYx8Ue4K25hBd0N2WTg==
+X-Google-Smtp-Source: ACJfBovw3hOwjiRH4pv9VKff8mTHhZHJRUBrA2hkG3VWp3RkeDS049t+AuUzcx+QlxlSXD0L5aYV90o4Rdb1dPp2Dls=
+X-Received: by 10.28.147.81 with SMTP id v78mr2029666wmd.118.1515699914861;
+	Thu, 11 Jan 2018 11:45:14 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.100.159.15 with HTTP; Thu, 11 Jan 2018 10:21:54 -0800 (PST)
-In-Reply-To: <HE1PR0402MB3323AD56FD3FB5861E61E42AC4160@HE1PR0402MB3323.eurprd04.prod.outlook.com>
-References: <HE1PR0402MB332361FF0CE06D405DE24AADC4110@HE1PR0402MB3323.eurprd04.prod.outlook.com>
-	<0fe12bc8-d43e-1d1a-2177-4a4a3d3ba04e@windriver.com>
-	<HE1PR0402MB3323AD56FD3FB5861E61E42AC4160@HE1PR0402MB3323.eurprd04.prod.outlook.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 11 Jan 2018 10:21:54 -0800
-Message-ID: <CAMKF1sqYLAaTUdo87UdYEoSTJW=TXSsFFb7s3-bNxTSMv=YR+A@mail.gmail.com>
-To: Martin Siegumfeldt <mns@gomspace.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Issues building Extensible SDK
+Received: by 10.28.97.85 with HTTP; Thu, 11 Jan 2018 11:45:13 -0800 (PST)
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Thu, 11 Jan 2018 20:45:13 +0100
+Message-ID: <CAAfyv37XU7O3xgTxYCYHQGugJ4_H12svGsj+rTRiV+cZ3hH6ow@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: wic error during creating sdimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,155 +68,261 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jan 2018 18:22:27 -0000
+X-List-Received-Date: Thu, 11 Jan 2018 19:45:18 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 11, 2018 at 12:56 AM, Martin Siegumfeldt <mns@gomspace.com> wrote:
-> Hi Robert,
->
->
-> Thank you very much, adding the lines
->
->
-> require conf/distro/include/yocto-uninative.inc
-> INHERIT += "uninative"
->
-> to the distro configuration enables the build to succeed.
->
+Hi,
 
-I thought uninative was optional. Is it mandatory for SDK now ?
+below error is from wic when creating SD image. I have no clue where
+error can be. I'm portin mender to orangepi and already asked for
+support but seems nobody really understand what is going on. Any help
+appreciated.
 
->
-> Br,
->
-> Martin
->
-> ________________________________
-> From: Robert Yang <liezhi.yang@windriver.com>
-> Sent: Thursday, January 11, 2018 6:45:29 AM
-> To: Martin Siegumfeldt; yocto@yoctoproject.org
-> Subject: Re: [yocto] Issues building Extensible SDK
->
-> Hi Martin,
->
-> Try:
->
-> $ bitbake -e | grep '^INHERIT=.*uninative'
->
-> If there is nothing, then add the following line to conf/local.conf:
->
-> INHERIT += "uninative"
->
-> // Robert
->
-> On 01/10/2018 03:46 PM, Martin Siegumfeldt wrote:
->> Hi,
->>
->> We have a custom piece of (Zynq based) HW that we render a custom distro
->> using Yocto. I am trying to build the extensible SDK but run into the below
->> error:
->>
->> pokyuser@03c19f8798ba:/workdir/krogoth/build$ bitbake core-image-minimal
->> -c populate_sdk_ext
->> Loading cache: 100%
->> |################################################################################################################################################################################################################################################|
->> Time: 0:00:00
->> Loaded 2675 entries from dependency cache.
->> Parsing recipes: 100%
->> |##############################################################################################################################################################################################################################################|
->> Time: 0:00:01
->> Parsing of 1915 .bb files complete (1913 cached, 2 parsed). 2677 targets,
->> 377 skipped, 0 masked, 0 errors.
->> NOTE: Resolving any missing task queue dependencies
->>
->> Build Configuration:
->> BB_VERSION        = "1.34.0"
->> BUILD_SYS         = "x86_64-linux"
->> NATIVELSBSTRING   = "ubuntu-16.04"
->> TARGET_SYS        = "arm-oe-linux-gnueabi"
->> MACHINE           = "zynq-soft-z7000-mb-v2"
->> DISTRO            = "gomspace"
->> DISTRO_VERSION    = "2.0"
->> TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard
->> cortexa9"
->> TARGET_FPU        = "hard"
->> meta              = "pyro:9c75151116aa293dc8567c237d7e4da5bdec90e3"
->> meta-xilinx       = "pyro:18097af3120a394a8e6933b7abc85e73e508c7e3"
->> meta-oe
->> meta-filesystems
->> meta-networking
->> meta-python       = "pyro:dfbdd28d206a74bf264c2f7ee0f7b3e5af587796"
->> meta-z7000        = "pyro:b255ea4575b40d77a2f5dc9200de0718f979f175"
->>
->> Initialising tasks: 100%
->> |###########################################################################################################################################################################################################################################|
->> Time: 0:00:03
->> NOTE: Executing SetScene Tasks
->> NOTE: Executing RunQueue Tasks
->> ERROR: core-image-minimal-1.0-r0 do_populate_sdk_ext: Error executing a
->> python function in exec_python_func() autogenerated:
->>
->> The stack trace of python calls that resulted in this exception/failure
->> was:
->> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->>       0001:
->>   *** 0002:copy_buildsystem(d)
->>       0003:
->> File:
->> '/workdir/krogoth/openembedded-core/meta/classes/populate_sdk_ext.bbclass',
->> lineno: 298, function: copy_buildsystem
->>       0294:            f.write('TCLIBCAPPEND = ""\n')
->>       0295:            f.write('DL_DIR = "${TOPDIR}/downloads"\n')
->>       0296:
->>       0297:            f.write('INHERIT += "%s"\n' % 'uninative')
->>   *** 0298:            f.write('UNINATIVE_CHECKSUM[%s] = "%s"\n\n' %
->> (d.getVar('BUILD_ARCH'), uninative_checksum))
->>       0299:            f.write('CONF_VERSION = "%s"\n\n' %
->> d.getVar('CONF_VERSION', False))
->>       0300:
->>       0301:            # Some classes are not suitable for SDK, remove
->> them from INHERIT
->>       0302:            f.write('INHERIT_remove = "%s"\n' %
->> d.getVar('SDK_INHERIT_BLACKLIST', False))
->> Exception: UnboundLocalError: local variable 'uninative_checksum'
->> referenced before assignment
->>
->> ERROR: core-image-minimal-1.0-r0 do_populate_sdk_ext: Function failed:
->> copy_buildsystem
->> ERROR: Logfile of failure stored in:
->> /workdir/krogoth/build/tmp-glibc/work/zynq_soft_z7000_mb_v2-oe-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_populate_sdk_ext.8408
->> ERROR: Task
->> (/workdir/krogoth/openembedded-core/meta/recipes-core/images/core-image-minimal.bb:do_populate_sdk_ext)
->> failed with exit code '1'
->> NOTE: Tasks Summary: Attempted 2214 tasks of which 2210 didn't need to be
->> rerun and 1 failed.
->>
->> Summary: 1 task failed:
->>
->> /workdir/krogoth/openembedded-core/meta/recipes-core/images/core-image-minimal.bb:do_populate_sdk_ext
->> Summary: There were 2 ERROR messages shown, returning a non-zero exit
->> code.
->>
->>
->> The standard SDK builds successfully all the way back from Fido throughout
->> Rocko, however we would now like to build the Extensible SDK. Krogoth
->> version builds it successfully, but Pyro and Rocko throws the above error
->> (haven't tested Morty).
->>
->> I am unable to reproduce using Poky and thus assume it to be related to
->> the configuration of our distro/image. Any suggestions are highly
->> appreciated.
->>
->> Thanks,
->> Martin
->>
->>
->>
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+error log:
+
+DEBUG: Executing python function set_image_size
+DEBUG: Python function set_image_size finished
+DEBUG: Executing python function extend_recipe_sysroot
+NOTE: Direct dependencies are
+['virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/m=
+eta/recipes-devtools/dosfstools/dosfstools_4.1.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-extended/parted/parted_3.2.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-devtools/rsync/rsync_3.1.2.bb:do_populate_sysroot',
+'/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-kern=
+el/kmod/depmodwrapper-cross_1.0.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-devtools/prelink/prelink_git.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-devtools/fdisk/gptfdisk_1.0.3.bb:do_populate_sysroot',
+'/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-devt=
+ools/mklibs/mklibs-native_0.1.43.bb:do_populate_sysroot',
+'/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-core=
+/meta/wic-tools.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-devtools/pseudo/pseudo_1.8.2.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-core/update-rc.d/update-rc.d_0.7.bb:do_populate_sysroot',
+'/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-devt=
+ools/qemu/qemuwrapper-cross_1.0.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-devtools/mtools/mtools_4.0.18.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-devtools/opkg-utils/opkg-utils_0.3.5.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-devtools/opkg/opkg_0.3.5.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-devtools/makedevs/makedevs_1.0.1.bb:do_populate_sysroot',
+'/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-core=
+/glibc/ldconfig-native_2.12.1.bb:do_populate_sysroot',
+'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/me=
+ta/recipes-extended/pigz/pigz_2.3.4.bb:do_populate_sysroot']
+NOTE: Installed into sysroot: ['dosfstools-native', 'parted-native',
+'rsync-native', 'gptfdisk-native', 'wic-tools', 'mtools-native',
+'acl-native']
+NOTE: Skipping as already exists in sysroot: ['depmodwrapper-cross',
+'prelink-native', 'mklibs-native', 'pseudo-native',
+'update-rc.d-native', 'qemuwrapper-cross', 'opkg-utils-native',
+'opkg-native', 'makedevs-native', 'ldconfig-native', 'pigz-native',
+'gnu-config-native', 'pkgconfig-native', 'quilt-native',
+'autoconf-native', 'xz-native', 'automake-native', 'libtool-native',
+'systemd-systemctl-native', 'readline-native', 'util-linux-native',
+'texinfo-dummy-native', 'gettext-minimal-native', 'ncurses-native',
+'shadow-native', 'popt-native', 'attr-native', 'nss-native',
+'elfutils-native', 'binutils-native', 'zlib-native', 'openssl-native',
+'debianutils-native', 'qemu-native', 'kmod-native',
+'libarchive-native', 'libsolv-native', 'm4-native', 'lzo-native',
+'sqlite3-native', 'nspr-native', 'flex-native', 'bison-native',
+'cryptodev-linux-native', 'makedepend-native', 'pixman-native',
+'libsdl-native', 'glib-2.0-native', 'alsa-lib-native', 'dtc-native',
+'gtk-doc-native', 'bzip2-native', 'e2fsprogs-native', 'cmake-native',
+'expat-native', 'rpm-native', 'util-macros-native', 'xproto-native',
+'libpng-native', 'libx11-native', 'libxext-native',
+'libxrandr-native', 'libxrender-native', 'libffi-native',
+'gettext-native', 'libpcre-native', 'python3-native', 'curl-native',
+'db-native', 'dbus-native', 'file-native', 'xtrans-native',
+'inputproto-native', 'xextproto-native', 'kbproto-native',
+'libxcb-native', 'randrproto-native', 'renderproto-native',
+'libxdmcp-native', 'xcb-proto-native', 'libpthread-stubs-native',
+'libxau-native']
+DEBUG: Python function extend_recipe_sysroot finished
+DEBUG: Executing shell function do_image_sdimg
++ mkdir -p /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
+ibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0
++ mkdir -p /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
+ibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/rootfs
++ rm -rf /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glib=
+c/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data
++ mkdir -p /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
+ibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data
++ '[' -n '' ']'
++ '[' -f /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glib=
+c/deploy/images/orange-pi-pc-plus/data.tar
+']'
++ cd /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/wo=
+rk/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0
++ tar xf /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glib=
+c/deploy/images/orange-pi-pc-plus/data.tar
++ mkdir -p /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
+ibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data/m=
+ender
++ echo device_type=3Dorange-pi-pc-plus
++ chmod 0444 /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-=
+glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data=
+/mender/device_type
++ dd if=3D/dev/zero
+of=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/wo=
+rk/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data.ext4
+count=3D0 bs=3D1M seek=3D128
+0+0 records in
+0+0 records out
+0 bytes copied, 8.1218e-05 s, 0.0 kB/s
++ mkfs.ext4 -F /home/marek/projects/orangepi_plus/orange-pi-distro/build/tm=
+p-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/da=
+ta.ext4
+-d /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work=
+/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data
+-L data
+mke2fs 1.43.5 (04-Aug-2017)
+Discarding device blocks: done
+Creating filesystem with 131072 1k blocks and 32768 inodes
+Filesystem UUID: a622b529-a817-44f1-9754-f119e6939f64
+Superblock backups stored on blocks:
+8193, 24577, 40961, 57345, 73729
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (4096 blocks): done
+Copying files into the device: done
+Writing superblocks and filesystem accounting information: done
+
++ wks=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc=
+/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/mender-sd=
+img.wks
++ rm -f /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc=
+/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/mender-sd=
+img.wks
++ '[' -n '' ']'
++ true
++ '[' -n 8388608 ']'
+++ expr 8388608 / 1024
++ boot_env_align_kb=3D8192
++ cat
++ cat
++ echo '### Contents of wks file ###'
+### Contents of wks file ###
++ cat /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/w=
+ork/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/mender-sdim=
+g.wks
+part --source rawcopy
+--sourceparams=3D"file=3D/home/marek/projects/orangepi_plus/orange-pi-distr=
+o/build/tmp-glibc/deploy/images/orange-pi-pc-plus/uboot.env"
+--ondisk mmcblk0 --align 8192 --no-table
+part --source bootimg-partition --ondisk mmcblk0 --fstype=3Dvfat --label
+boot --align 8192 --active --fixed-size 16
+part --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label primary
+--align 8192 --fixed-size 425984k
+part --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label secondary
+--align 8192 --fixed-size 425984k
+part --source rawcopy
+--sourceparams=3Dfile=3D"/home/marek/projects/orangepi_plus/orange-pi-distr=
+o/build/tmp-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal=
+/1.0-r0/data.ext4"
+--ondisk mmcblk0 --fstype=3Dext4 --label data --align 8192 --fixed-size
+128
+bootloader --ptable msdos
++ echo '### End of contents of wks file ###'
+### End of contents of wks file ###
++ outimgname=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tm=
+p-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/de=
+ploy-opipcplus-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-2=
+0180104184416.sdimg
++ wicout=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
+ibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy=
+-opipcplus-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-20180=
+104184416-sdimg
++ BUILDDIR=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build
++ wic create /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-=
+glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/mend=
+er-sdimg.wks
+--vars /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/=
+sysroots/orange-pi-pc-plus/imgdata/
+-e opipcplus-minimal -o
+/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work/or=
+ange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy-opipcplus-=
+minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-20180104184416-s=
+dimg/
+INFO: Creating image(s)...
+
+WARNING: overhead-factor was specified, but size was not, so bitbake
+variables will be used for the size. In this case both
+IMAGE_OVERHEAD_FACTOR and --overhead-factor will be applied
+ERROR: _exec_cmd: export
+PATH=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/=
+work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/recipe-sys=
+root-native/sbin:/home/marek/projects/orangepi_plus/orange-pi-distro/build/=
+tmp-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/=
+recipe-sysroot-native/usr/sbin:/home/marek/projects/orangepi_plus/orange-pi=
+-distro/build/tmp-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-m=
+inimal/1.0-r0/recipe-sysroot-native/usr/bin:$PATH;mcopy
+-i /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work=
+/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy-opipcpl=
+us-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-2018010418441=
+6-sdimg/tmp.wic.kkfh96cr/rootfs_boot.2.vfat
+-s /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work=
+/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy-opipcpl=
+us-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-2018010418441=
+6-sdimg/tmp.wic.kkfh96cr/boot.2/*
+::/ returned '1' instead of 0
+output: /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc=
+/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy-op=
+ipcplus-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-20180104=
+184416-sdimg/tmp.wic.kkfh96cr/boot.2/*:
+No such file or directory
+
++ bb_exit_handler
++ ret=3D1
++ case $ret in
++ case $BASH_VERSION in
++ echo 'WARNING:
+/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work/or=
+ange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/temp/run.do_image=
+_sdimg.31516:1
+exit 1 from '\''BUILDDIR=3D"/home/marek/projects/orangepi_plus/orange-pi-di=
+stro/build"
+wic create "$wks" --vars
+"/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/sysroo=
+ts/orange-pi-pc-plus/imgdata/"
+-e "opipcplus-minimal" -o "$wicout/"'\'''
+WARNING: /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glib=
+c/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/temp/run=
+.do_image_sdimg.31516:1
+exit 1 from 'BUILDDIR=3D"/home/marek/projects/orangepi_plus/orange-pi-distr=
+o/build"
+wic create "$wks" --vars
+"/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/sysroo=
+ts/orange-pi-pc-plus/imgdata/"
+-e "opipcplus-minimal" -o "$wicout/"'
++ exit 1
+ERROR: Function failed: do_image_sdimg (log file is located at
+/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work/or=
+ange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/temp/log.do_image=
+_sdimg.31516)
+
+BR,
+
+marek
+--=20
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
