@@ -1,63 +1,62 @@
-Return-Path: <nathan.roberts@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE406E00DBD; Wed, 10 Jan 2018 12:57:52 -0800 (PST)
+	id 05D13E00DA8; Thu, 11 Jan 2018 09:35:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (nathan.roberts[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f173.google.com (mail-qk0-f173.google.com
-	[209.85.220.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE6B3E00A00
-	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 12:57:51 -0800 (PST)
-Received: by mail-qk0-f173.google.com with SMTP id l64so860830qke.13
-	for <yocto@yoctoproject.org>; Wed, 10 Jan 2018 12:57:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=FaL0nH9XbYULVaI7gGy1kXFWc6PgoyA2YC+DOM6vxe8=;
-	b=jSXHHuNPvAaik4IGDBXDnSK7Uiqu+SwICQbZyfaeFEkfTsVAZZqxs+VBGADRoB/R4o
-	6TbNV7Lw71tBUkyH7Xu1gOolybzuUUj6q9txxaou/Y75DHol292Lijvlu7Fjxz6ssJ26
-	L9dM1+Y3gvxPJfddjNYDxqrg3ggZWO9IGGFqLE+TYcH19GBoOp6j+chrlZPHw932/HVF
-	+dA9Z/pL/0zmGVch6KbKm5uvSOaEG/YgEbFQbYnVKxu/5IJsIOo9BB4HOq6wVZ0MoMNy
-	oZXiKyN9WM0px3QwUm6EcO9TCiAbFA7Ph7m9ObQriduMzAt1s8miUXfjiq/X/TKUawTz
-	+bLA==
+Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 830A7E0085E
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 09:35:12 -0800 (PST)
+Received: by mail-io0-f176.google.com with SMTP id f6so2814933ioh.8
+	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 09:35:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=/oxmZZUYr7tPlK5edT8qWMtlxGNOxP7w5gTDb14aIlQ=;
+	b=UyrBG+Ej7+Tt3ISxBDmaFbX99HOMUf6Wsdfl0qNWxC5GBKlJ+Jr/WJEYs9C8zWIc1f
+	KA8z7goJEeERZpjRoLV27uaXz4yz1Av3jbebj9zZFDhjRokK1rZHahvgvoGeVNUzB3Uj
+	dh2WMsOWRDeUXP0NcqcRj+Ni5vx5YD8fnKBlmLRGka1149axpyBdIhGuP8G3LqwnZkuy
+	WwZ/LBkerRimGJtNrQ89m4AN3jG8OfQOk74WqaTZwR+kwHGLv4wuUx4vlZAj00l55jKi
+	1KKviZ+2HVus7GGoHZvvQ4dEdUoVbilDFNDW48gJctcsJIjWJyL86ybsVISQV/SsqxYN
+	/kDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=FaL0nH9XbYULVaI7gGy1kXFWc6PgoyA2YC+DOM6vxe8=;
-	b=IjqIFKs22wmiLh+6aTfO2AIjNtyNki0iufFxF06o0X188Olf1hbPs58f+O6I+VPFtQ
-	Fjd9mTii/xovn/bs4imUR8pScosJGsakAL9bh20SlvQWPV3UhRov7XMbNidyadMjb829
-	alqVrAhsb8JWjxeJX11OZEgUGrLBsEfKhNWWvn8lZHIMLEMnOMuq3hEhGEUR5znbk4hE
-	2En5e4kS+KjQQbVp9JE+uDVVFTdG9wkMxvP1i0Xz5sHOwOt+AG1XOWl7SF871OgszlhR
-	fL7g03f2NcRyHLeWR/Rx6m3mIjSEmwnXFOuGtGeA/Cg9KamoPcg8W5lZ9dsP0zcqN4my
-	V6VQ==
-X-Gm-Message-State: AKwxytcE9O8IQpGmgrowHa792Mf7V4dY27iSAmQ6PBd9UlbKG1QGA0sV
-	Xisw2Z4gKVp9OTCoz+0uNkVAZRZnJ/a+xqhfyhkluw==
-X-Google-Smtp-Source: ACJfBosdpvqPRBVtguPu9lXoGNIABPuNOBVWpvtIEZPVKj21fZGfq1gxW6pu92IcVz3LDk762PyU5TnWT9V6y7+3OjI=
-X-Received: by 10.200.43.141 with SMTP id m13mr28532219qtm.72.1515617870746;
-	Wed, 10 Jan 2018 12:57:50 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=/oxmZZUYr7tPlK5edT8qWMtlxGNOxP7w5gTDb14aIlQ=;
+	b=eZZfMWAYYgyiA1FDkJQildaP2JRAhXiyivfxqcs5ht7TCCsu4m1yoWczGuhDf7Zvvg
+	G3gtqj6tp466M+/LN4SjLukDf+EXJPWW9HsPsMLPTaI/WHaZPjETq44eVL7tyBNr9XuW
+	bqczQf9TJSxgtvgT2LUEriBARn2uvFhhz8keaJ3ICjZ2eF4fU0ACUxz9HnfDVl01YMB9
+	wlFKI7xJXWgd/4XkUKz6lh1HTcOlaAXCfRNjZHEBsnbyRnwRM4usaqvrgsc419CKZNnT
+	Y19kiAMx2+h/nIdCsVuKajlqz2OBo6k6fqM9m1ZLGse6uVDSNIrLJA4tvF2Xk+E8ZfHW
+	RRdg==
+X-Gm-Message-State: AKGB3mIZiYaL45QM0Dz+qPLd+uJJaTSxFKffZXMqIsnnC+U2e/am6aQs
+	6AoLoZP2UXf+0y9h6mRdukrdVf6zPqgQw6mkjDiNSA==
+X-Google-Smtp-Source: ACJfBotUyk16fTw+2cMtPTAJY2IUQrKvda3mPzJvwglVcGFsRIERacw9/2GETM+dEilrUJdtQS6DzVV9DsJIlpQGnDw=
+X-Received: by 10.107.102.25 with SMTP id a25mr21858321ioc.217.1515692112527; 
+	Thu, 11 Jan 2018 09:35:12 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.36.147 with HTTP; Wed, 10 Jan 2018 12:57:50 -0800 (PST)
-From: Nathan Roberts <nathan.roberts@gmail.com>
-Date: Wed, 10 Jan 2018 20:57:50 +0000
-Message-ID: <CAGkqu_uJC_jUYACWfzaSEn4N9a5M6pvxUxA6mhMkM-OxSdEjgA@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Thu, 11 Jan 2018 09:16:41 -0800
-Subject: Recipe for JNI Wrapper (libusb4java)
+Received: by 10.107.147.193 with HTTP; Thu, 11 Jan 2018 09:34:51 -0800 (PST)
+In-Reply-To: <20180109155456.GA19053@localhost>
+References: <20180109155456.GA19053@localhost>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 11 Jan 2018 17:34:51 +0000
+Message-ID: <CAJTo0LYfpUa+A-A5ib6zOobo6hoKSJRKmvXcwoe+RrWcmMiZgQ@mail.gmail.com>
+To: Vadim Intelegator <v.intelegator@sirinsoftware.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: applying patches depending on the image's name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,78 +68,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jan 2018 20:57:52 -0000
-Content-Type: multipart/alternative; boundary="001a11410898cd16b2056272482f"
+X-List-Received-Date: Thu, 11 Jan 2018 17:35:14 -0000
+Content-Type: multipart/alternative; boundary="089e082d0780f4d7eb05628391eb"
 
---001a11410898cd16b2056272482f
+--089e082d0780f4d7eb05628391eb
 Content-Type: text/plain; charset="UTF-8"
 
-I'm trying to create a recipe for libusb4Java (
-https://github.com/usb4java/libusb4java/).
+No, because images are built from packages, and the packages have already
+been built by the time the image is considered.
 
-I have the following recipe
+Using master you can build two different kernels in the same build and have
+different kernels in different images.
 
-SUMMARY = "Native library support for usb4java"
-HOMEPAGE = "http://usb4java.org"
-BUGTRACKER = "https://github.com/usb4java/libusb4java/issues"
-SECTION = "libs"
-DEPENDS = "libusb"
-LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENSE.md;md5=4c49d7fe1fc7a6ebad3b4e6b849a0052"
-BBCLASSEXTEND = "native nativesdk"
-SRCREV = "396d642a57678a0d9663b062c980fe100cc0ea1e"
-SRC_URI = "git://github.com/usb4java/libusb4java.git"
+Ross
 
-S = "${WORKDIR}/git"
-#need to change following ref http://usb4java.org/nativelibs.html
-D = "/tmp"
-export JAVA_HOME="${STAGING_DIR_NATIVE}/usr/bin/java"
-inherit cmake java-library
+On 9 January 2018 at 15:54, Vadim Intelegator <
+v.intelegator@sirinsoftware.com> wrote:
 
+> Hello,
+>
+> I have several images (image-a.bb and image-b.bb) in a yocto layer and
+> want to apply different patches to the kernel depending on the current
+> image name.
+> How can that be done?
+>
+> Thank you in advance.
+>
+> --
+> Vadim
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-local.conf has the following added:
-BB_ENV_EXTRAWHITE += "JAVA_HOME"
-
-
-I get the following error:
-checking if
-/home/ubuntu/yocto/poky/build/tmp/work/x86_64-linux/classpath-native/0.99-r6.0/recipe-sysroot-native/usr/bin/ecj-initial
-works... configure: error: The Java compiler
-/home/ubuntu/yocto/poky/build/tmp/work/x86_64-linux/classpath-native/0.99-r6.0/recipe-sysroot-native/usr/bin/ecj-initial
-failed (see config.log, check the CLASSPATH?)
-
-So I appear to have a classpath problem, but I'm unsure how to resolve this?
-
-Any advice appreciated.
-
---001a11410898cd16b2056272482f
+--089e082d0780f4d7eb05628391eb
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I&#39;m trying to create a recipe for libusb4Java (<a=
- href=3D"https://github.com/usb4java/libusb4java/">https://github.com/usb4j=
-ava/libusb4java/</a>).<br><br>I have the following recipe<br><br>SUMMARY =
-=3D &quot;Native library support for usb4java&quot;<br>HOMEPAGE =3D &quot;<=
-a href=3D"http://usb4java.org">http://usb4java.org</a>&quot;<br>BUGTRACKER =
-=3D &quot;<a href=3D"https://github.com/usb4java/libusb4java/issues">https:=
-//github.com/usb4java/libusb4java/issues</a>&quot;<br>SECTION =3D &quot;lib=
-s&quot;<br>DEPENDS =3D &quot;libusb&quot;<br>LICENSE =3D &quot;MIT&quot;<br=
->LIC_FILES_CHKSUM =3D &quot;file://LICENSE.md;md5=3D4c49d7fe1fc7a6ebad3b4e6=
-b849a0052&quot;<br>BBCLASSEXTEND =3D &quot;native nativesdk&quot;<br>SRCREV=
- =3D &quot;396d642a57678a0d9663b062c980fe100cc0ea1e&quot;<br>SRC_URI =3D &q=
-uot;git://<a href=3D"http://github.com/usb4java/libusb4java.git">github.com=
-/usb4java/libusb4java.git</a>&quot;<br><br>S =3D &quot;${WORKDIR}/git&quot;=
-<br>#need to change following ref <a href=3D"http://usb4java.org/nativelibs=
-.html">http://usb4java.org/nativelibs.html</a><br>D =3D &quot;/tmp&quot;<br=
->export JAVA_HOME=3D&quot;${STAGING_DIR_NATIVE}/usr/bin/java&quot;<br>inher=
-it cmake java-library<br><br><br>local.conf has the following added:<br>BB_=
-ENV_EXTRAWHITE +=3D &quot;JAVA_HOME&quot;<br><br><br>I get the following er=
-ror:<br>checking if /home/ubuntu/yocto/poky/build/tmp/work/x86_64-linux/cla=
-sspath-native/0.99-r6.0/recipe-sysroot-native/usr/bin/ecj-initial works... =
-configure: error: The Java compiler /home/ubuntu/yocto/poky/build/tmp/work/=
-x86_64-linux/classpath-native/0.99-r6.0/recipe-sysroot-native/usr/bin/ecj-i=
-nitial failed (see config.log, check the CLASSPATH?)<br><br>So I appear to =
-have a classpath problem, but I&#39;m unsure how to resolve this?<br><br>An=
-y advice appreciated.<br></div><div><br></div></div>
+<div dir=3D"ltr">No, because images are built from packages, and the packag=
+es have already been built by the time the image is considered.<div><br></d=
+iv><div>Using master you can build two different kernels in the same build =
+and have different kernels in different images.</div><div><br></div><div>Ro=
+ss</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On =
+9 January 2018 at 15:54, Vadim Intelegator <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:v.intelegator@sirinsoftware.com" target=3D"_blank">v.intelegator@si=
+rinsoftware.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hel=
+lo,<br>
+<br>
+I have several images (<a href=3D"http://image-a.bb" rel=3D"noreferrer" tar=
+get=3D"_blank">image-a.bb</a> and <a href=3D"http://image-b.bb" rel=3D"nore=
+ferrer" target=3D"_blank">image-b.bb</a>) in a yocto layer and want to appl=
+y different patches to the kernel depending on the current image name.<br>
+How can that be done?<br>
+<br>
+Thank you in advance.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+Vadim<br>
+</font></span><br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
---001a11410898cd16b2056272482f--
+--089e082d0780f4d7eb05628391eb--
