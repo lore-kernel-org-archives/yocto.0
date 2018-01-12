@@ -1,64 +1,36 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20D76E00DD3; Thu, 11 Jan 2018 13:05:43 -0800 (PST)
+	id 7BD5EE00E46; Thu, 11 Jan 2018 17:04:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDEA0E0085E
-	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 13:05:41 -0800 (PST)
-Received: by mail-wm0-f42.google.com with SMTP id i11so7927758wmf.4
-	for <yocto@yoctoproject.org>; Thu, 11 Jan 2018 13:05:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=affW8whTGEqCQ8WnC1X2Tc3uFictCJBHrWKD38+UTIQ=;
-	b=YVLuUc8tFOIiTLJvy0VE7++td6femsqAIiyGu2X/pkAto3yHD2Cq9ybpgRSf6Ii2Ui
-	XBpjTZgA7FAuFz8bhSjOv0kh/t7wPTnIhzY5pKJXgJi+FBXS7OPppXD6C/dZg6kSe4hN
-	9OdumNJlEuG563/besnsH8p2+Lm4IEmTT5VqmxUMlDe9PSbxCrD+si/5bdBI4Ei83b2f
-	+0IPtGDk1BzowA/QrQwUDI/aj4ZcXzkwNjwrCw+I9EQAJYDVyGJZv5NS+TFbQTmJN6Tr
-	uvcnygxHUoQlfbXBcoFJ9hWXlP+gewWr4Ad3pYqeQFykju45HReEM5IZF2mOAg0M8Q9s
-	+AtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:content-transfer-encoding;
-	bh=affW8whTGEqCQ8WnC1X2Tc3uFictCJBHrWKD38+UTIQ=;
-	b=smXFMzgGLMBdnrrOg8jdwyz1wPtAKmkGE58IKKhIbbFL1rezn/y9qgG9pVXZ4EJc6c
-	2y9GbtgfU6vfBLethfjnfrdQR0vds7/7h3UI+169Z83FGB3Zf/Gsk8407hmZLT36e29r
-	M9FHNvuK+Iv/wC3/k9nbrg8AFbLhXdVgJWEMkfhj13pYYgKoCIxTo297cL9BwrWluvTu
-	1WyhVLQ0Gd+WsZDu5qHRtRfsjegUWtZfrW9Ogb+1/+ibxptExj5d7jk+I/IqhMy2WBM2
-	pJV2z5+k1Y5VeoksCEODWW8+oF2/Vm0hP8CIJ8RJ1xivuBeqXvqTu9IVXAnLn8/La+N+
-	cplg==
-X-Gm-Message-State: AKwxytct5nXkQ/NbMO+OpzEXAJTR9agmJMxIm+bKbOm2PV5VR+/XnFVj
-	QTpoeEcQQVCgwBMokLURj+2JrRBU3/zVvNi6VyA=
-X-Google-Smtp-Source: ACJfBotYFfpHSZTm0rZEid4xnmFgkoUHq4kcBcz4gM6YX8OYzp1RT/U5agAx67jibWUnaxkHmaxK2FKKZy1jSYF7bXs=
-X-Received: by 10.28.147.81 with SMTP id v78mr2164220wmd.118.1515704740189;
-	Thu, 11 Jan 2018 13:05:40 -0800 (PST)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FCEBE0056D;
+	Thu, 11 Jan 2018 17:04:35 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	11 Jan 2018 17:04:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,346,1511856000"; d="scan'208";a="10601227"
+Received: from maggyibr-mobl.amr.corp.intel.com ([10.255.66.37])
+	by orsmga006.jf.intel.com with ESMTP; 11 Jan 2018 17:04:34 -0800
+To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
+From: Tracy Graydon <tracy.graydon@intel.com>
+Message-ID: <aeafceb8-e84b-a52f-299c-a73240346a1f@intel.com>
+Date: Thu, 11 Jan 2018 17:04:33 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+	Gecko/20100101 Thunderbird/45.1.0
 MIME-Version: 1.0
-Received: by 10.28.97.85 with HTTP; Thu, 11 Jan 2018 13:05:39 -0800 (PST)
-In-Reply-To: <CAAfyv37XU7O3xgTxYCYHQGugJ4_H12svGsj+rTRiV+cZ3hH6ow@mail.gmail.com>
-References: <CAAfyv37XU7O3xgTxYCYHQGugJ4_H12svGsj+rTRiV+cZ3hH6ow@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Thu, 11 Jan 2018 22:05:39 +0100
-Message-ID: <CAAfyv35_AEGEAg-=owrDN9-ci=42onLnKXOeAYxstsMp0B071Q@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: Re: wic error during creating sdimg
+Subject: [ANNOUNCEMENT] Yocto Project 2.3.3 (pyro 17.0.3) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,283 +42,206 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jan 2018 21:05:43 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 12 Jan 2018 01:04:37 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hello,
 
-seems to be caused by empty IMAGE_BOOT_FILES. When added to
-machine.conf everything works as expected. Sorry for noise.
+The latest release of the Yocto Project 2.3.3 (pyro-17.0.3) is now available for download at:
 
-On Thu, Jan 11, 2018 at 8:45 PM, Belisko Marek <marek.belisko@gmail.com> wr=
-ote:
-> Hi,
->
-> below error is from wic when creating SD image. I have no clue where
-> error can be. I'm portin mender to orangepi and already asked for
-> support but seems nobody really understand what is going on. Any help
-> appreciated.
->
-> error log:
->
-> DEBUG: Executing python function set_image_size
-> DEBUG: Python function set_image_size finished
-> DEBUG: Executing python function extend_recipe_sysroot
-> NOTE: Direct dependencies are
-> ['virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky=
-/meta/recipes-devtools/dosfstools/dosfstools_4.1.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-extended/parted/parted_3.2.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-devtools/rsync/rsync_3.1.2.bb:do_populate_sysroot',
-> '/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-ke=
-rnel/kmod/depmodwrapper-cross_1.0.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-devtools/prelink/prelink_git.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-devtools/fdisk/gptfdisk_1.0.3.bb:do_populate_sysroot',
-> '/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-de=
-vtools/mklibs/mklibs-native_0.1.43.bb:do_populate_sysroot',
-> '/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-co=
-re/meta/wic-tools.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-devtools/pseudo/pseudo_1.8.2.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-core/update-rc.d/update-rc.d_0.7.bb:do_populate_sysroot',
-> '/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-de=
-vtools/qemu/qemuwrapper-cross_1.0.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-devtools/mtools/mtools_4.0.18.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-devtools/opkg-utils/opkg-utils_0.3.5.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-devtools/opkg/opkg_0.3.5.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-devtools/makedevs/makedevs_1.0.1.bb:do_populate_sysroot',
-> '/home/marek/projects/orangepi_plus/orange-pi-distro/poky/meta/recipes-co=
-re/glibc/ldconfig-native_2.12.1.bb:do_populate_sysroot',
-> 'virtual:native:/home/marek/projects/orangepi_plus/orange-pi-distro/poky/=
-meta/recipes-extended/pigz/pigz_2.3.4.bb:do_populate_sysroot']
-> NOTE: Installed into sysroot: ['dosfstools-native', 'parted-native',
-> 'rsync-native', 'gptfdisk-native', 'wic-tools', 'mtools-native',
-> 'acl-native']
-> NOTE: Skipping as already exists in sysroot: ['depmodwrapper-cross',
-> 'prelink-native', 'mklibs-native', 'pseudo-native',
-> 'update-rc.d-native', 'qemuwrapper-cross', 'opkg-utils-native',
-> 'opkg-native', 'makedevs-native', 'ldconfig-native', 'pigz-native',
-> 'gnu-config-native', 'pkgconfig-native', 'quilt-native',
-> 'autoconf-native', 'xz-native', 'automake-native', 'libtool-native',
-> 'systemd-systemctl-native', 'readline-native', 'util-linux-native',
-> 'texinfo-dummy-native', 'gettext-minimal-native', 'ncurses-native',
-> 'shadow-native', 'popt-native', 'attr-native', 'nss-native',
-> 'elfutils-native', 'binutils-native', 'zlib-native', 'openssl-native',
-> 'debianutils-native', 'qemu-native', 'kmod-native',
-> 'libarchive-native', 'libsolv-native', 'm4-native', 'lzo-native',
-> 'sqlite3-native', 'nspr-native', 'flex-native', 'bison-native',
-> 'cryptodev-linux-native', 'makedepend-native', 'pixman-native',
-> 'libsdl-native', 'glib-2.0-native', 'alsa-lib-native', 'dtc-native',
-> 'gtk-doc-native', 'bzip2-native', 'e2fsprogs-native', 'cmake-native',
-> 'expat-native', 'rpm-native', 'util-macros-native', 'xproto-native',
-> 'libpng-native', 'libx11-native', 'libxext-native',
-> 'libxrandr-native', 'libxrender-native', 'libffi-native',
-> 'gettext-native', 'libpcre-native', 'python3-native', 'curl-native',
-> 'db-native', 'dbus-native', 'file-native', 'xtrans-native',
-> 'inputproto-native', 'xextproto-native', 'kbproto-native',
-> 'libxcb-native', 'randrproto-native', 'renderproto-native',
-> 'libxdmcp-native', 'xcb-proto-native', 'libpthread-stubs-native',
-> 'libxau-native']
-> DEBUG: Python function extend_recipe_sysroot finished
-> DEBUG: Executing shell function do_image_sdimg
-> + mkdir -p /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-=
-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0
-> + mkdir -p /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-=
-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/root=
-fs
-> + rm -rf /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
-ibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data
-> + mkdir -p /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-=
-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data
-> + '[' -n '' ']'
-> + '[' -f /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
-ibc/deploy/images/orange-pi-pc-plus/data.tar
-> ']'
-> + cd /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/=
-work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0
-> + tar xf /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
-ibc/deploy/images/orange-pi-pc-plus/data.tar
-> + mkdir -p /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-=
-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data=
-/mender
-> + echo device_type=3Dorange-pi-pc-plus
-> + chmod 0444 /home/marek/projects/orangepi_plus/orange-pi-distro/build/tm=
-p-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/da=
-ta/mender/device_type
-> + dd if=3D/dev/zero
-> of=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/=
-work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data.ext4
-> count=3D0 bs=3D1M seek=3D128
-> 0+0 records in
-> 0+0 records out
-> 0 bytes copied, 8.1218e-05 s, 0.0 kB/s
-> + mkfs.ext4 -F /home/marek/projects/orangepi_plus/orange-pi-distro/build/=
-tmp-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/=
-data.ext4
-> -d /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/wo=
-rk/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/data
-> -L data
-> mke2fs 1.43.5 (04-Aug-2017)
-> Discarding device blocks: done
-> Creating filesystem with 131072 1k blocks and 32768 inodes
-> Filesystem UUID: a622b529-a817-44f1-9754-f119e6939f64
-> Superblock backups stored on blocks:
-> 8193, 24577, 40961, 57345, 73729
->
-> Allocating group tables: done
-> Writing inode tables: done
-> Creating journal (4096 blocks): done
-> Copying files into the device: done
-> Writing superblocks and filesystem accounting information: done
->
-> + wks=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gli=
-bc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/mender-=
-sdimg.wks
-> + rm -f /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gli=
-bc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/mender-=
-sdimg.wks
-> + '[' -n '' ']'
-> + true
-> + '[' -n 8388608 ']'
-> ++ expr 8388608 / 1024
-> + boot_env_align_kb=3D8192
-> + cat
-> + cat
-> + echo '### Contents of wks file ###'
-> ### Contents of wks file ###
-> + cat /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc=
-/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/mender-sd=
-img.wks
-> part --source rawcopy
-> --sourceparams=3D"file=3D/home/marek/projects/orangepi_plus/orange-pi-dis=
-tro/build/tmp-glibc/deploy/images/orange-pi-pc-plus/uboot.env"
-> --ondisk mmcblk0 --align 8192 --no-table
-> part --source bootimg-partition --ondisk mmcblk0 --fstype=3Dvfat --label
-> boot --align 8192 --active --fixed-size 16
-> part --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label primary
-> --align 8192 --fixed-size 425984k
-> part --source rootfs --ondisk mmcblk0 --fstype=3Dext4 --label secondary
-> --align 8192 --fixed-size 425984k
-> part --source rawcopy
-> --sourceparams=3Dfile=3D"/home/marek/projects/orangepi_plus/orange-pi-dis=
-tro/build/tmp-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minim=
-al/1.0-r0/data.ext4"
-> --ondisk mmcblk0 --fstype=3Dext4 --label data --align 8192 --fixed-size
-> 128
-> bootloader --ptable msdos
-> + echo '### End of contents of wks file ###'
-> ### End of contents of wks file ###
-> + outimgname=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/=
-tmp-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/=
-deploy-opipcplus-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus=
--20180104184416.sdimg
-> + wicout=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-=
-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/depl=
-oy-opipcplus-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-201=
-80104184416-sdimg
-> + BUILDDIR=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build
-> + wic create /home/marek/projects/orangepi_plus/orange-pi-distro/build/tm=
-p-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/me=
-nder-sdimg.wks
-> --vars /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glib=
-c/sysroots/orange-pi-pc-plus/imgdata/
-> -e opipcplus-minimal -o
-> /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work/=
-orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy-opipcplu=
-s-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-20180104184416=
--sdimg/
-> INFO: Creating image(s)...
->
-> WARNING: overhead-factor was specified, but size was not, so bitbake
-> variables will be used for the size. In this case both
-> IMAGE_OVERHEAD_FACTOR and --overhead-factor will be applied
-> ERROR: _exec_cmd: export
-> PATH=3D/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glib=
-c/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/recipe-s=
-ysroot-native/sbin:/home/marek/projects/orangepi_plus/orange-pi-distro/buil=
-d/tmp-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r=
-0/recipe-sysroot-native/usr/sbin:/home/marek/projects/orangepi_plus/orange-=
-pi-distro/build/tmp-glibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus=
--minimal/1.0-r0/recipe-sysroot-native/usr/bin:$PATH;mcopy
-> -i /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/wo=
-rk/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy-opipc=
-plus-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-20180104184=
-416-sdimg/tmp.wic.kkfh96cr/rootfs_boot.2.vfat
-> -s /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/wo=
-rk/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy-opipc=
-plus-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-20180104184=
-416-sdimg/tmp.wic.kkfh96cr/boot.2/*
-> ::/ returned '1' instead of 0
-> output: /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gli=
-bc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/deploy-=
-opipcplus-minimal-image-complete/opipcplus-minimal-orange-pi-pc-plus-201801=
-04184416-sdimg/tmp.wic.kkfh96cr/boot.2/*:
-> No such file or directory
->
-> + bb_exit_handler
-> + ret=3D1
-> + case $ret in
-> + case $BASH_VERSION in
-> + echo 'WARNING:
-> /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work/=
-orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/temp/run.do_ima=
-ge_sdimg.31516:1
-> exit 1 from '\''BUILDDIR=3D"/home/marek/projects/orangepi_plus/orange-pi-=
-distro/build"
-> wic create "$wks" --vars
-> "/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/sysr=
-oots/orange-pi-pc-plus/imgdata/"
-> -e "opipcplus-minimal" -o "$wicout/"'\'''
-> WARNING: /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-gl=
-ibc/work/orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/temp/r=
-un.do_image_sdimg.31516:1
-> exit 1 from 'BUILDDIR=3D"/home/marek/projects/orangepi_plus/orange-pi-dis=
-tro/build"
-> wic create "$wks" --vars
-> "/home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/sysr=
-oots/orange-pi-pc-plus/imgdata/"
-> -e "opipcplus-minimal" -o "$wicout/"'
-> + exit 1
-> ERROR: Function failed: do_image_sdimg (log file is located at
-> /home/marek/projects/orangepi_plus/orange-pi-distro/build/tmp-glibc/work/=
-orange_pi_pc_plus-oe-linux-gnueabi/opipcplus-minimal/1.0-r0/temp/log.do_ima=
-ge_sdimg.31516)
->
-> BR,
->
-> marek
-> --
-> as simple and primitive as possible
-> -------------------------------------------------
-> Marek Belisko - OPEN-NANDRA
-> Freelance Developer
->
-> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> Tel: +421 915 052 184
-> skype: marekwhite
-> twitter: #opennandra
-> web: http://open-nandra.com
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/poky-pyro-17.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/poky-pyro-17.0.3.tar.bz2
+
+A gpg signed version of these release notes is available at:
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/RELEASENOTES
+
+Full pass test report is available at:
+
+https://wiki.yoctoproject.org/wiki/WW51_-_2017-12-20-_Full_Test_Cycle_-_2.3.3_rc1
+
+Thank you to everyone for your contributions to this release!
+
+Tracy Graydon
+Yocto Project Build and Release
+tracy.graydon@intel.com
 
 
+------------------
+yocto-2.3.3 Errata
+------------------
 
---=20
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+Release Name:  eclipse-poky-neon-pyro-17.0.3
+Branch: pyro
+Tag: pyro-17.0.3
+Hash:  83e0083ef3a71e10039ace7d18057dddc154408b
+md5: d6720856accbf2352f2af096a623b916  eclipse-poky-neon-pyro-17.0.3.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/eclipse-poky-neon-pyro-17.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/eclipse-poky-neon-pyro-17.0.3.tar.bz2
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+Release Name:  eclipse-poky-oxygen-pyro-17.0.3
+Branch: pyro
+Tag: pyro-17.0.3
+Hash:  126e707a6de212feeaaf093edc170aaa74192ce7
+md5: 76fafcbc3e6652056a12de050652143d  eclipse-poky-oxygen-pyro-17.0.3.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/eclipse-poky-oxygen-pyro-17.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/eclipse-poky-oxygen-pyro-17.0.3.tar.bz2
+
+Release Name:  meta-qt3-pyro-17.0.3
+Branch: pyro
+Tag: pyro-17.0.3
+Hash:  f33b73a9563f2dfdfd0ee37b61d65d90197a456f
+md5: 9fc77e78dda20002c522f4bc17fab3a5  meta-qt3-pyro-17.0.3.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/meta-qt3-pyro-17.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/meta-qt3-pyro-17.0.3.tar.bz2
+
+Release Name:  meta-qt4-pyro-17.0.3
+Branch: pyro
+Tag: pyro-17.0.3
+Hash:  88989ae3abe98b30089e7518d3adabe990c40a10
+md5: e32fa92d28944161e168ed1c4b4e73cf  meta-qt4-pyro-17.0.3.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/meta-qt4-pyro-17.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/meta-qt4-pyro-17.0.3.tar.bz2
+
+Release Name:  poky-pyro-17.0.3
+Branch: pyro
+Tag: pyro-17.0.3
+Hash:  022df4653576c72752156bef8fda0e1aa46733d2
+md5: e9f90fc73e26ba613a78a755d600029d  poky-pyro-17.0.3.tar.bz2
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/poky-pyro-17.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/poky-pyro-17.0.3.tar.bz2
+
+---------------
+ Known Issues
+---------------
+N/A
+
+--------------
+Security Fixes
+--------------
+bluez5: fix out-of-bounds access in SDP server (CVE-2017-1000250)
+binutls: Security fixes for CVE-2017-9955, CVE-2017-9954, CVE-2017-9756, CVE-2017-9755, CVE-2017-9753, CVE-2017-9752, CVE-2017-9751, CVE-2017-9750, CVE-2017-9749, CVE-2017-9748, CVE-2017-9747, CVE-2017-9746, CVE-2017-9745, CVE-2017-9744, CVE-2017-9742, CVE-2017-9040, CVE-2017-9042, CVE-2017-9039, CVE-2017-9038, CVE-2017-9044, CVE-2017-8421, CVE-2017-8398, CVE-2017-8396, CVE-2017-8397, CVE-2017-8395, CVE-2017-8394, CVE-2017-8393, CVE-2017-7614, CVE-2017-7223
+ruby: Security fixed for CVE-2017-14064
+curl: Security fix for CVE-2017-1000101 and CVE-2017-1000100
+tiff: Security fixes for CVE-2017-7593, CVE-2017-7602, CVE-2017-7601, CVE-2017-7598, CVE-2017-7596, CVE-2017-7595, CVE-2017-7594, CVE-2017-7592, CVE-2016-10270, CVE-2016-10269, CVE-2016-10267, CVE-2016-10266, CVE-2016-10268, CVE-2016-10093, CVE-2016-10271
+linuux-yocto/4.1: update to 4.1.43 plus bluetooth CVE-2017-1000251
+linux-yocto/4.9: bluetooth: CVE-2017-1000251
+linux-yocto/4.4: bluetooth: CVE-2017-1000251
+linux-yocto/4.10: bluetooth: CVE-2017-1000251
+
+------
+Fixes
+------
+ovmf: Fix build with gcc7
+portmaper: checkuri fails.
+linux-firmware: Remove iwlwifi-8000C-19 SRC_URI
+diffstat: use HTTP mirror for SRC_URI
+liburi-perl: update SRC_URI to yoctoproject mirror
+v86d: take tarball from debian
+staging.bbclass: handle postinst-useradd-* fixmes
+runqemu: Add workaround for APIC hang on pre 4.15 kernels on qemux86
+cross.bbclass: Remove usage of host flags for cross-compilation
+archiver: preserve sysroot paths in configured mode
+archiver: avoid archiving source for glibc-locale
+archiver.bbclass: adapt do_unpack_and_patch to RSS
+archiver.bbclass: fix do_ar_original error for matchbox-desktop
+archiver.bbclass: do not cause kernel rebuilds
+archiver.bbclass: various fixes for original+diff mode
+archiver.bbclass: enhance do_ar_recipe task signature
+archiver: Escape recipe name in regex
+classes: drop image dependencies on TOPDIR variable
+image.bbclass: drop initramfs bundle related code
+local.conf.sample: Weakly set BB_DISKMON_DIRS
+documenation: Prepared docs for a 2.3.3 point release
+build-appliance-image: Update to pyro head revision
+poky: Update version to 2.3.3
+cross-localedef-native: Include locale_t.h
+glibc_2.25: fix building for x86 with -Os (or -fno-omit-frame-pointer)
+weston: add patch to set pitch correctly for subsampled textures
+lib/oe/terminal.py: use an absolute path to execute oe-gnome-terminal-phonehome
+gcc: Use libssp_nonshared linker specs only for ppc/musl
+dpkg: Add missing RDEPENDS for dpkg-perl
+dpkg: Fix perl modules by moving them to the versioned perl directory
+cpan-base.bbclass: Move PERLVERSION and get_perl_version to a new file
+populate_sdk_ext: Use prebuilt uninative tarball
+bitbake: toaster: allow dots in user path names
+bitbake: toaster: reserve HEAD from imported layers
+valgrind: enable on mips soft-float
+oeqa/sdk: Replace buildiptables for buildlzip tests
+oeqa/runtime: Replace buildiptables for buildlzip on runtime tests
+image_types.bbclass: Make u-boot signed images more versatile
+openssh: Fix key generation with systemd
+json-c: backport patch to fix gcc7 compilation
+useradd-staticids: don't create username-group if gid is specified
+curl: enable threaded resolver
+kernel-fitimage: support MIPS (compressed)
+kernel-uboot: support compressed kernel on MIPS
+kernel-uimage: optimise UBOOT_ENTRYSYMBOL support
+kernel-fitimage: unbreak UBOOT_ENTRYSYMBOL support
+kernel-fitimage: sanitize dtb section name (unbreak MIPS)
+kernel-uimage.bbclass: Fix up generation of uImage from vmlinux
+ca-certificates: Fix postinst dependency issues
+debianutils: Add a native version (for run-parts)
+copyleft_filter.bbclass: restore possiblity to filter on type
+selftest/archiver: only execute deploy_archives task
+selftest/archiver: add tests for recipe type filtering
+openssh: allow to override OpenSSL HostKeys when read-only-rootfs
+busybox: add backported patch to support iproute 'scope'
+busybox: fix a linking issue
+gdb: fix gdbserver not working in musl/mips context
+oe-pkgdata-util: package-info: Allow extra variables to be displayed
+binutils: apply mingw fix only for binutils-cross-canadian
+oe-build-perf-report: use correct x-axis max value in html charts
+oe-build-perf-report: allow slashes in {branch} field in tag names
+oe-build-perf-report: accept parenthesis in tag names
+oeqa/selftest/recipetool: use stable tarball for recipetool create test
+wic: accept '-' in bitbake variables
+useradd: don't override pseudo environment
+bitbake: tests/fetch: handle network failures gracefully
+bitbake: bitbake: Fix return value checks from subprocess.call()'s
+bitbake: Replace deprecated git branch parameter "--set-upstream"
+goarch.bbclass: Replace logic for setting GOARM
+wpa_supplicant: fix WPA2 key replay security bug
+bitbake: toaster/highlight.pack.js: Fix corrupted file
+bitbake: toaster: Remove prettify
+image.bbclass: Sorted ctypes to avoid basehash error
+bitbake: cooker: add BB_CMDLINE to enable access to UI command line with memres
+linux-yocto/4.1: generix86* bsp fix perf issue with gcc >=7
+linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.1
+meta-yocto-bsp: bump 4.1 to latest linux stable kernel for the non-x86 BSPs
+linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.9
+linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.10
+linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.4
+linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.1
+gcc-6.3.inc: Use ucontext_t not struct ucontext.
+libproxy: use stable download URL
+linux-yocto/4.9: update to v4.9.49
+linux-yocto/4.4: update to v4.4.87
+(PRE)MIRRORS: fix pattern for npm:// without slash
+waffle: fix REQUIRED_DISTRO_FEATURES and PACKAGECONFIG virtual/libgl dependencies
+rootfs-postcommands: add test for unsatisfied RRECOMMENDS
+rootfs-postcommands: remove empty line
+rootfs-postcommands.bbclass: Filter out dangling symlinks in ssh_allow_empty_password()
+alsa-utils: Do not hardcode path to /lib/udev
+package_rpm.bbclass: disable generation of .build-id links
+package_rpm.bbclass: use multithreaded xz compression
+rpm: allow arch-dependent binaries in noarch packages
+bitbake: cooker.py: Fix layer priority processing
+bitbake: toaster: recipe links broken for default layers
+bitbake: toaster: edit column list not sorted
+bitbake: toaster: set default pokydirname if no external layers
+bitbake: toaster: debug message for lists layers missing separators
+bitbake: toaster: Order column in Tasks selectable
+bitbake: toaster: display error when the fstype select is empty
+bitbake: cooker: ensure monkey-patching in collect_bbfiles() gets undone on error
+bitbake: cooker: fix watching empty directories
+bitbake: cooker: Track directories searched for bbappend/bb files
+bitbake.conf: add bzr to HOSTTOOLS_NONFATAL
+glibc-locale: add runtime dependency on glibc
 
