@@ -1,6 +1,6 @@
 Return-Path: <tracy.graydon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7BD5EE00E46; Thu, 11 Jan 2018 17:04:37 -0800 (PST)
+	id 6CFA8E00E4F; Thu, 11 Jan 2018 17:05:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,29 +8,29 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FCEBE0056D;
-	Thu, 11 Jan 2018 17:04:35 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94B29E00E46;
+	Thu, 11 Jan 2018 17:04:59 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	11 Jan 2018 17:04:35 -0800
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	11 Jan 2018 17:04:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,346,1511856000"; d="scan'208";a="10601227"
+X-IronPort-AV: E=Sophos;i="5.46,346,1511856000"; d="scan'208";a="10601271"
 Received: from maggyibr-mobl.amr.corp.intel.com ([10.255.66.37])
-	by orsmga006.jf.intel.com with ESMTP; 11 Jan 2018 17:04:34 -0800
+	by orsmga006.jf.intel.com with ESMTP; 11 Jan 2018 17:04:58 -0800
 To: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
 From: Tracy Graydon <tracy.graydon@intel.com>
-Message-ID: <aeafceb8-e84b-a52f-299c-a73240346a1f@intel.com>
-Date: Thu, 11 Jan 2018 17:04:33 -0800
+Message-ID: <dde01a3d-5194-228a-2265-c9f06445adf4@intel.com>
+Date: Thu, 11 Jan 2018 17:04:57 -0800
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
 	Gecko/20100101 Thunderbird/45.1.0
 MIME-Version: 1.0
-Subject: [ANNOUNCEMENT] Yocto Project 2.3.3 (pyro 17.0.3) Released
+Subject: [ANNOUNCEMENT] Yocto Project 2.4.1 (rocko-18.0.1) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,24 +42,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jan 2018 01:04:37 -0000
+X-List-Received-Date: Fri, 12 Jan 2018 01:05:01 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
 Hello,
 
-The latest release of the Yocto Project 2.3.3 (pyro-17.0.3) is now available for download at:
+The latest release of the Yocto Project 2.4.1 (rocko-18.0.1) is now available for download at:
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/poky-pyro-17.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/poky-pyro-17.0.3.tar.bz2
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.1/poky-rocko-18.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.1/poky-rocko-18.0.1.tar.bz2
 
 A gpg signed version of these release notes is available at:
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/RELEASENOTES
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.1/RELEASENOTES
 
 Full pass test report is available at:
 
-https://wiki.yoctoproject.org/wiki/WW51_-_2017-12-20-_Full_Test_Cycle_-_2.3.3_rc1
+https://wiki.yoctoproject.org/wiki/WW51_-_2017-12-21-_Full_Test_Cycle_-_2.4.1_rc1
 
 Thank you to everyone for your contributions to this release!
 
@@ -69,53 +69,53 @@ tracy.graydon@intel.com
 
 
 ------------------
-yocto-2.3.3 Errata
+yocto-2.4.1 Errata
 ------------------
 
-Release Name:  eclipse-poky-neon-pyro-17.0.3
-Branch: pyro
-Tag: pyro-17.0.3
+Release Name:  eclipse-poky-neon-rocko-18.0.1
+Branch: rocko
+Tag: rocko-18.0.1
 Hash:  83e0083ef3a71e10039ace7d18057dddc154408b
-md5: d6720856accbf2352f2af096a623b916  eclipse-poky-neon-pyro-17.0.3.tar.bz2
+md5: e60acf5e3804f4f1c2bf00aa5a185931  eclipse-poky-neon-rocko-18.0.1.tar.bz2
 Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/eclipse-poky-neon-pyro-17.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/eclipse-poky-neon-pyro-17.0.3.tar.bz2
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.1/eclipse-poky-neon-rocko-18.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.1/eclipse-poky-neon-rocko-18.0.1.tar.bz2
 
-Release Name:  eclipse-poky-oxygen-pyro-17.0.3
-Branch: pyro
-Tag: pyro-17.0.3
+Release Name:  eclipse-poky-oxygen-rocko-18.0.1
+Branch: rocko
+Tag: rocko-18.0.1
 Hash:  126e707a6de212feeaaf093edc170aaa74192ce7
-md5: 76fafcbc3e6652056a12de050652143d  eclipse-poky-oxygen-pyro-17.0.3.tar.bz2
+md5: 5691fe17276e8c9932b8d384569d07da  eclipse-poky-oxygen-rocko-18.0.1.tar.bz2
 Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/eclipse-poky-oxygen-pyro-17.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/eclipse-poky-oxygen-pyro-17.0.3.tar.bz2
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.1/eclipse-poky-oxygen-rocko-18.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.1/eclipse-poky-oxygen-rocko-18.0.1.tar.bz2
 
-Release Name:  meta-qt3-pyro-17.0.3
-Branch: pyro
-Tag: pyro-17.0.3
+Release Name:  meta-qt3-rocko-18.0.1
+Branch: rocko
+Tag: rocko-18.0.1
 Hash:  f33b73a9563f2dfdfd0ee37b61d65d90197a456f
-md5: 9fc77e78dda20002c522f4bc17fab3a5  meta-qt3-pyro-17.0.3.tar.bz2
+md5: 5cb7e7218605001c06072592b72502f1  meta-qt3-rocko-18.0.1.tar.bz2
 Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/meta-qt3-pyro-17.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/meta-qt3-pyro-17.0.3.tar.bz2
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.1/meta-qt3-rocko-18.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.1/meta-qt3-rocko-18.0.1.tar.bz2
 
-Release Name:  meta-qt4-pyro-17.0.3
-Branch: pyro
-Tag: pyro-17.0.3
-Hash:  88989ae3abe98b30089e7518d3adabe990c40a10
-md5: e32fa92d28944161e168ed1c4b4e73cf  meta-qt4-pyro-17.0.3.tar.bz2
+Release Name:  meta-qt4-rocko-18.0.1
+Branch: rocko
+Tag: rocko-18.0.1
+Hash:  f313dbee2ac3d5fcc9801407947d3cb6cfb90b5d
+md5: defef8f6b49b5b622f094deb2e47514b  meta-qt4-rocko-18.0.1.tar.bz2
 Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/meta-qt4-pyro-17.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/meta-qt4-pyro-17.0.3.tar.bz2
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.1/meta-qt4-rocko-18.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.1/meta-qt4-rocko-18.0.1.tar.bz2
 
-Release Name:  poky-pyro-17.0.3
-Branch: pyro
-Tag: pyro-17.0.3
-Hash:  022df4653576c72752156bef8fda0e1aa46733d2
-md5: e9f90fc73e26ba613a78a755d600029d  poky-pyro-17.0.3.tar.bz2
+Release Name:  poky-rocko-18.0.1
+Branch: rocko
+Tag: rocko-18.0.1
+Hash:  c2b641c8a0c4fd71fcb477d788a740c2c26cddce
+md5: 8790dcd97f8a594987d419eeefadef8b  poky-rocko-18.0.1.tar.bz2
 Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-2.3.3/poky-pyro-17.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-2.3.3/poky-pyro-17.0.3.tar.bz2
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.4.1/poky-rocko-18.0.1.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.4.1/poky-rocko-18.0.1.tar.bz2
 
 ---------------
  Known Issues
@@ -125,123 +125,277 @@ N/A
 --------------
 Security Fixes
 --------------
-bluez5: fix out-of-bounds access in SDP server (CVE-2017-1000250)
-binutls: Security fixes for CVE-2017-9955, CVE-2017-9954, CVE-2017-9756, CVE-2017-9755, CVE-2017-9753, CVE-2017-9752, CVE-2017-9751, CVE-2017-9750, CVE-2017-9749, CVE-2017-9748, CVE-2017-9747, CVE-2017-9746, CVE-2017-9745, CVE-2017-9744, CVE-2017-9742, CVE-2017-9040, CVE-2017-9042, CVE-2017-9039, CVE-2017-9038, CVE-2017-9044, CVE-2017-8421, CVE-2017-8398, CVE-2017-8396, CVE-2017-8397, CVE-2017-8395, CVE-2017-8394, CVE-2017-8393, CVE-2017-7614, CVE-2017-7223
-ruby: Security fixed for CVE-2017-14064
-curl: Security fix for CVE-2017-1000101 and CVE-2017-1000100
-tiff: Security fixes for CVE-2017-7593, CVE-2017-7602, CVE-2017-7601, CVE-2017-7598, CVE-2017-7596, CVE-2017-7595, CVE-2017-7594, CVE-2017-7592, CVE-2016-10270, CVE-2016-10269, CVE-2016-10267, CVE-2016-10266, CVE-2016-10268, CVE-2016-10093, CVE-2016-10271
-linuux-yocto/4.1: update to 4.1.43 plus bluetooth CVE-2017-1000251
-linux-yocto/4.9: bluetooth: CVE-2017-1000251
-linux-yocto/4.4: bluetooth: CVE-2017-1000251
-linux-yocto/4.10: bluetooth: CVE-2017-1000251
+icu: CVE-2017-14952
+curl: Security Advisory - curl - CVE-2017-1000254
 
-------
+-----
 Fixes
-------
-ovmf: Fix build with gcc7
-portmaper: checkuri fails.
-linux-firmware: Remove iwlwifi-8000C-19 SRC_URI
-diffstat: use HTTP mirror for SRC_URI
-liburi-perl: update SRC_URI to yoctoproject mirror
-v86d: take tarball from debian
-staging.bbclass: handle postinst-useradd-* fixmes
+-----
+oeqa/runtime/buildcpio: Use our own mirror for source
+binutils: Convert SRC_URI and SRCREV to weak defines
+binutils: update to 2.29.1
+acpica: fix build with x32
+boost: fix build with x32 and musl
 runqemu: Add workaround for APIC hang on pre 4.15 kernels on qemux86
-cross.bbclass: Remove usage of host flags for cross-compilation
-archiver: preserve sysroot paths in configured mode
-archiver: avoid archiving source for glibc-locale
-archiver.bbclass: adapt do_unpack_and_patch to RSS
-archiver.bbclass: fix do_ar_original error for matchbox-desktop
-archiver.bbclass: do not cause kernel rebuilds
-archiver.bbclass: various fixes for original+diff mode
-archiver.bbclass: enhance do_ar_recipe task signature
-archiver: Escape recipe name in regex
-classes: drop image dependencies on TOPDIR variable
-image.bbclass: drop initramfs bundle related code
+glib-2.0: Add python3 modules required by gdbus-codegen
+lib/oe/patch: add missing import
+bmap-tools: fix RDEPENDS and update SRC_URI
+rm_work: remove debugging statements
+kernel-fitimage: Fix bad image type replacement for aarch64
+image-live.bbclass: add MLPREFIX to core-image-minimal-initramfs
+image-live.bbclass: print warn when initramfs is invalid
+wic: Fix a path to a psuedo state directory (PSEUDO_LOCALSTATEDIR).
+waf.bbclass: explicitly pass bindir and libdir if supported
+kernel.bbclass: Fix do_sizecheck behaviour
+image_types: btrfs use sparse file creation
+rm_work: Handle race with -inital tasks
+linux-yocto/4.12: CQM and kmemleak fixes
+linux-yocto/4.12: common-pc*: enable X2APIC by default
+linux-yocto/4.12: update to v.4.12.18
+linux-yocto/4.12: bug fixes and feature backports
+linux-yocto/4.x: configuration updates
+linux-yocto/4.12: ipv4 stable backport and config changes
+linux-yocto/4.12: bug fixes and VRF feature addition
+linux-yocto/4.12: update to v4.12.16
+systemd: fix segfault when terminating systemd --test
+recipetool: create: fix conflict between SRCREV and tag
+libxslt: use HTTP instead of FTP in SRC_URI
+ovmf: Fix build failure for PARALLEL_MAKE with no space
+kernel-yocto: ensure that only a single defconfig is processed
+kernel-yocto: Stop the build if defconfig is missing
+kernel-yocto: ensure sccs variable is set when using KBUILD_DEFCONFIG
+linux-yocto/4.9: update to v4.9.65
+linux-yocto/4.12: iwlwifi calltrace fixes and configuration warning cleanups
+linux-yocto/4.9: update to v4.9.61
+rootfs-postcommands.bbclass: ensure that rootfs gets mounted ro
+connman.inc: do not check IMAGE_FEATURES
+templates/layer.conf: remove backslash to enable bbappend setting
+systemd: allow dots in arguments to template units
+package_manager: force dnf to refresh the cache
+meta-selftest: fix upstream version checks for devtool test recipes
+mtd-utils: fix flash_eraseall installation conflict
+wpa-supplicant: add a missing WPA_COMMON_CTRL_IFACE definition
+update-alternatives.bbclass: refuse to manage SysV init scripts
+Revert "classes: Fix alternatives and rc.d ordering"
+initscripts: rrecommend initscripts-functions
+lsbinitscripts: don't use update-alternatives
+initscripts: don't use update-alternatives
+sysklogd: don't use update-alternatives
+install*.sh: add short sleep after parted commands
+init-install: fix grub-install command
+initramfs-module-install: Remove allarch and FILESEXTRAPATHS
+initramfs-framework: add install module
+initramfs-module-install-efi: update summary
+initramfs-module-install-efi: point to original copy and delete new file
+wic: support filesystem label for rawcopy
+openssl: fix runtime errors with Thumb2 when using binutils 2.29
+openssl: Upgrade 1.1.0f -> 1.1.0g
+openssl10: fix runtime errors with Thumb2 when using binutils 2.29
+openssl10: Upgrade 1.0.2l -> 1.0.2m
+python[3]-setuptools: inherit setuptools
 local.conf.sample: Weakly set BB_DISKMON_DIRS
-documenation: Prepared docs for a 2.3.3 point release
-build-appliance-image: Update to pyro head revision
-poky: Update version to 2.3.3
-cross-localedef-native: Include locale_t.h
-glibc_2.25: fix building for x86 with -Os (or -fno-omit-frame-pointer)
-weston: add patch to set pitch correctly for subsampled textures
-lib/oe/terminal.py: use an absolute path to execute oe-gnome-terminal-phonehome
-gcc: Use libssp_nonshared linker specs only for ppc/musl
-dpkg: Add missing RDEPENDS for dpkg-perl
-dpkg: Fix perl modules by moving them to the versioned perl directory
-cpan-base.bbclass: Move PERLVERSION and get_perl_version to a new file
+documentation: Prepped manual set for a 2.4.1 point release
+bitbake: toaster: add 'nobuild' option to Toaster
+bitbake: toaster: landing page show cmdline capture
+bitbake: toaster: enable custom env support for shell calls
+bitbake: toaster: some recipe events do not include packages
+bitbake: toaster: update Toaster for Django 1.11
+bitbake: toaster: unset BBPATH before starting bbserver for backwards compatibility
 populate_sdk_ext: Use prebuilt uninative tarball
-bitbake: toaster: allow dots in user path names
-bitbake: toaster: reserve HEAD from imported layers
-valgrind: enable on mips soft-float
-oeqa/sdk: Replace buildiptables for buildlzip tests
-oeqa/runtime: Replace buildiptables for buildlzip on runtime tests
-image_types.bbclass: Make u-boot signed images more versatile
-openssh: Fix key generation with systemd
-json-c: backport patch to fix gcc7 compilation
-useradd-staticids: don't create username-group if gid is specified
-curl: enable threaded resolver
-kernel-fitimage: support MIPS (compressed)
-kernel-uboot: support compressed kernel on MIPS
-kernel-uimage: optimise UBOOT_ENTRYSYMBOL support
-kernel-fitimage: unbreak UBOOT_ENTRYSYMBOL support
-kernel-fitimage: sanitize dtb section name (unbreak MIPS)
-kernel-uimage.bbclass: Fix up generation of uImage from vmlinux
-ca-certificates: Fix postinst dependency issues
-debianutils: Add a native version (for run-parts)
-copyleft_filter.bbclass: restore possiblity to filter on type
-selftest/archiver: only execute deploy_archives task
-selftest/archiver: add tests for recipe type filtering
-openssh: allow to override OpenSSL HostKeys when read-only-rootfs
-busybox: add backported patch to support iproute 'scope'
-busybox: fix a linking issue
-gdb: fix gdbserver not working in musl/mips context
-oe-pkgdata-util: package-info: Allow extra variables to be displayed
-binutils: apply mingw fix only for binutils-cross-canadian
-oe-build-perf-report: use correct x-axis max value in html charts
-oe-build-perf-report: allow slashes in {branch} field in tag names
-oe-build-perf-report: accept parenthesis in tag names
-oeqa/selftest/recipetool: use stable tarball for recipetool create test
-wic: accept '-' in bitbake variables
-useradd: don't override pseudo environment
-bitbake: tests/fetch: handle network failures gracefully
-bitbake: bitbake: Fix return value checks from subprocess.call()'s
-bitbake: Replace deprecated git branch parameter "--set-upstream"
-goarch.bbclass: Replace logic for setting GOARM
-wpa_supplicant: fix WPA2 key replay security bug
-bitbake: toaster/highlight.pack.js: Fix corrupted file
-bitbake: toaster: Remove prettify
-image.bbclass: Sorted ctypes to avoid basehash error
-bitbake: cooker: add BB_CMDLINE to enable access to UI command line with memres
-linux-yocto/4.1: generix86* bsp fix perf issue with gcc >=7
-linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.1
-meta-yocto-bsp: bump 4.1 to latest linux stable kernel for the non-x86 BSPs
-linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.9
-linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.10
-linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.4
-linux-yocto: Update genericx86* SRCREVs for linux-yocto 4.1
-gcc-6.3.inc: Use ucontext_t not struct ucontext.
-libproxy: use stable download URL
-linux-yocto/4.9: update to v4.9.49
-linux-yocto/4.4: update to v4.4.87
-(PRE)MIRRORS: fix pattern for npm:// without slash
-waffle: fix REQUIRED_DISTRO_FEATURES and PACKAGECONFIG virtual/libgl dependencies
-rootfs-postcommands: add test for unsatisfied RRECOMMENDS
-rootfs-postcommands: remove empty line
-rootfs-postcommands.bbclass: Filter out dangling symlinks in ssh_allow_empty_password()
-alsa-utils: Do not hardcode path to /lib/udev
-package_rpm.bbclass: disable generation of .build-id links
-package_rpm.bbclass: use multithreaded xz compression
-rpm: allow arch-dependent binaries in noarch packages
-bitbake: cooker.py: Fix layer priority processing
-bitbake: toaster: recipe links broken for default layers
-bitbake: toaster: edit column list not sorted
-bitbake: toaster: set default pokydirname if no external layers
-bitbake: toaster: debug message for lists layers missing separators
-bitbake: toaster: Order column in Tasks selectable
-bitbake: toaster: display error when the fstype select is empty
-bitbake: cooker: ensure monkey-patching in collect_bbfiles() gets undone on error
-bitbake: cooker: fix watching empty directories
-bitbake: cooker: Track directories searched for bbappend/bb files
-bitbake.conf: add bzr to HOSTTOOLS_NONFATAL
-glibc-locale: add runtime dependency on glibc
+makefile: Removed "yocto-environment.png" from tar list of mega-manual
+ref-manual: Fixed redundant link for "build system"
+ref-manual: Added new terms to Yocto Project Terms section.
+dev-manual: Updated bitbake-layers overview section.
+ref-manual: 2.4 Migration Revisions
+ref-manual: 2.4 Migration Revisions
+build-appliance: Fix branch name
+build-appliance-image: Update to rocko head revision
+poky: Update to version 2.4.1
+go: ensure use of BUILD_CC when building bootstrap tools
+go: Use right dynamic linker on musl
+Revert "go: Fix build with PIE on musl"
+bitbake: tinfoil: Ensure we clean up loggers
+bitbake: event: Ensure we clean up loggers
+bitbake: tests/fetch: Add ftp test url
+bitbake: tests/fetch: use subtests in the wget tests
+bitbake: tests/fetch: Switch gnu.org urls from ftp -> http/https
+bitbake: bitbake: be more explicit when warning about locale choice
+bitbake: tests/fetch: skip network tests the idiomatic way
+bitbake: fetch2: Fix missing logger import in repo fetcher
+gstreamer1.0-plugins: disable introspection on mips64
+sudo: improve reproducibility
+x11perf: improve reproducibility
+grub-efi_2.02.bb: improve reproducibility
+libnsl2: fix installed-vs-shipped QA issue
+nss: pay attention to CFLAGS
+qemu.inc: let linux-yocto-rt also provide nfs server kernel module
+systemd: fix duplication of CACHED_CONFIGUREVARS
+systemd: use consistent indenting and coding style in do_install()
+systemd: sort PACKAGECONFIG options
+systemd: use consistent approach for musl PACKAGECONFIG options
+systemd: remove musl specific control of ldconfig PACKAGECONFIG
+tclibc-musl.inc: disable ldconfig distro feature
+runqemu: print command search result when not found
+runqemu: Also specialcase resolution of '.' to the file's location
+image_types: Add debugging code to ext4 fs creation
+qemurunner: Simplify binary data handling
+qemuboot: Improve relative path handling
+runqemu: Improve relative path handling in qemuconf files
+qemu: Add patch to avoid qemuppc boot hangs
+runqemu: Ensure we process all tap devices
+base: add automatic dependency on xz-native for .txz SRC_URI
+net-tools: correctly set COPTS and LOPTS
+recipetool: create: fix failure handling included dicts
+linux-firmware: Remove iwlwifi-8000C-19 SRC_URI
+gcc: backport patch to fix miscompilation on mips64
+gcc7: Fix unaligned STRD issue on ARM
+lttng-modules: Upgrade to 2.9.5 release
+sbc: fix license
+sbc: move examples to their own package
+ca-certificates: Add /etc to SYSROOT_DIRS
+go: Fix build with PIE on musl
+dhcp: fix build issue with libxml2 support
+dhcp: use ${BPN} instead of ${PN} for user
+package_ipk.bbclass: handle only whitespace in PACKAGE_EXCLUDE
+initramfs-live-install: Add aarch64 arch to COMPATIBLE_HOST.
+base.bbclass: increase indent in get_layers_branch_rev() and buildcfg_vars()
+lib/oe/recipeutils: fix line splitting in patch_recipe_*
+lib/oe/recipeutils: fix find_layerdir() to return absolute paths
+recipetool: ignore incidental kernel module source
+recipetool: pass absolute source tree path to plugins
+systemd: Fix build with musl/mips64
+oeqa/runner: Pass the value of buffer, don't force to True
+oeqa: Markup further tests for stdout/stderr buffering
+testimage: Ensure full logs are shown for failures
+maintainers.inc: add Otavio Salvador for go-dep
+maintainers.inc: add Khem Raj for libmnl
+gtk-doc.bbclass: correctly make the list of directories with shared libraries
+oeqa/target/ssh: Drop command/output logging to debug level
+oeqa: Clean up logger handling
+testimage: Pass the logger into OERuntimeTestContextExecutor.getTarget()
+oeqa/qemurunner: Use logger.debug, not logger.info
+oeqa/targetcontrol: Drop unused get_target_controller function
+oeqa/runqemu: Only show stdout/stderr upon test failure
+qemurunner: Ensure logging handler is removed
+systemd: Fix build on musl
+e2fsprogs-ptest: improve reproducibility
+oe-build-perf-report-email.py: add images as MIME objects
+gobject-introspection: improve reproducibility
+wic: Update canned-wks for systemd to use UUID everywhere
+wic: When using --use-uuid make sure that we update the fstab with PARTUUID
+systemctl-native: add target.wants to target regex
+dpkg: use snapshot.debian.org
+curl_7.54.1.bb: improve reproducibility
+systemd: remove useless options for mips4
+rpm: remove --sysroot from macros on target
+libsolv: fix a kernel-devsrc installation issue
+grub_2.02.bb: improve reproducibility
+python: add PACKAGECONFIG for Berkeley DB module
+db: change types to avoid headers changing between architectures
+bash-completion: remove rfkill file that util-linux provides
+sshcontrol.py: in copy_to() always use scp
+masterimage.py: rename parameter "params" in start() to "extra_bootparams"
+masterimage.py: fix stop()
+masterimage.py: fix issue with calling reboot on masterimage/DUT
+selftest/imagefeatures: add basic test for useradd-staticids
+oeqa/core/loader: Make _built_modules_dict() support packages correctly
+oeqa/selftest/runtime_test: use console in postinst_rootfs_and_boot
+image.bbclass: let do_image depend on do_populate_lic of EXTRA_IMAGEDEPENDS
+externalsrc: fix ExpansionError if the source dir does not exist yet
+image.bbclass: Fix 'vardepsexclude' mechanism for image_cmd_${FSTYPE}
+useradd-staticids: explain how to fix the the problem
+useradd-staticids: skip recipes without static IDs
+feature-arm-vfp.inc: drop unnecessary extra space from TUNE_CCARGS
+maintainers.inc: update maintainership
+oeqa/selftest/runtime_test: fix postinst_rootfs_and_boot
+lib/oe/sstatesig: fix wildcard matching wrong task signature files
+nativesdk-packagegroup-sdk-host: remove redundant LICENSE
+oeqa/selftest/runtime: force empty root password, use helpers to access qemu
+wic: misc.py: Use mmd from mtools instead of syslinux
+goarch: There is no GOARCH defined for mips64-n32
+kexec-tools: add systemd support for kdump
+lib/oe/terminal.py: use an absolute path to execute oe-gnome-terminal-phonehome
+useradd.bbclass: print a warn when useradd not found
+bind: Convert from ftp to https urls
+runqemu: correct rootfs setup to boot an ide hddimg
+tzdata: update 2017c
+tzcode-native: update to 2017c
+qemurunner: fix bad indentation in serial login
+util-linux-ptest: various fixes
+wic: misc.py: Added more mtools binaries
+mdadm: Fix build with gcc < 7
+openssl: force soft link to avoid rare race
+nettle-ptest: fix a failing test
+gawk-ptest: fix a failing test
+tcl: remove host path from tclConfig.sh
+elfutils: Fix missing library on linker cmdline
+perl-native: Provide correct lddlflags
+curl: add 'enable-ares' packageconfig option
+linux-yocto/4.12: ide:ide-cd: fix kernel panic resulting from missing scsi_req_init
+linux-yocto/4.12: configuration fragment updates
+linux-yocto/4.9: update to v4.9.57
+kern-tools: make fuzzy matching optional
+linux-yocto/4.12: stable backports and bug fixes
+linux-yocto/4.12: update to v4.12.14
+linux-yocto/4.4: update to v4.4.93
+linux-yocto/4.12: configuration and feature updates
+rng-tools: Fix crazy defaults
+oe-buildenv-internal: Fix finding build directory
+wic: add 'part-name' argument for naming GPT partitions
+bitbake: main: Give a user readable error if we can't locate topdir
+bitbake: cooker: fix watching directories with Python 3.6+
+bitbake: bitbake: Update version to 1.36.0 for stable release
+ref-manual: Updates to "Image Generation" section.
+dev-manual, kernel-dev: Replaced yocto-layers with bitbake-layers command
+ref-manual: First draft of the 2.4 Migration section
+documentation: Updated title page notes and author group
+ref-manual, mega-manual: Updated Index of Releases figure
+ref-manual, mega-manual: Updated example source repo figure
+ref-manual: Updated "Build Image" section for do_image<type>[depends]
+sdk-manual: Updated title page note for manual information.
+sdk-manual: Minor wording update in title page note.
+ref-manual: Updated links to the sdk-manual
+yocto-project-qs: Updated references to the sdk-manual
+kernel-dev: Updated links to the SDK manual.
+sdk-manual: Changed name of the manual.
+dev-manual: Updated links to SDK manual.
+sdk-manual: Split the Eclipse section into a separate chapter
+ref-manual: Added links for do_image and do_image_complete tasks
+ref-manual: Replaced "vmdk" with "wic.vmdk"
+dev-manual: Updated run QEMU basic syntax step
+ref-manual: Updated EFI_PROVIDER variable description
+ref-manual: Cleaned up multiple notes for the IMAGE_FSTYPES variable
+ref-manual: Clarified build history as creating a single commit per build.
+dev-manual: Changed location of maintainers.inc file to meta/conf
+dev-manual: Removed a couple instances of "meta-yocto"
+ref-manual: Removed "unsafe-references-in-scripts" test from insane class
+mega-manual: Added new dev-manual title .PNG file to Figures folder.
+mega-manual: Updated author line.
+mega-manual.sed: Changed title of dev-manual.
+yocto-project-qs: Minor edits for readability
+dev-manual: Updated title .PNG file
+documentation: Updates to change dev-manual title
+yocto-project-qs: Changed links to dev-manual due to title changing.
+toaster-manual: Fixed external links
+sdk-manual: Fixed two links to changed dev-manual title.
+sdk-manual: Converted external links to internal and fixed dev-title link
+sdk-manual: Converted external links to internal links.
+sdk-manual: Fixed links to dev-manual for changed dev-manual title.
+sdk-manual: Fixed link to dev-manual for new title of dev-manual.
+ref-manual: Converted external links to internal and fixed dev-manual links
+ref-manual: Converted 4 external links to internal links.
+ref-manual: Updated links to dev-manual.
+ref-manual: Converted two external links to internal links.
+ref-manual: Fixed dev-manual links.
+ref-manual: Converted two external links to internal links.
+ref-manual: Fixed internal links and links to dev-manual
+ref-manual: Fixed two internal links.
+ref-manual: Fixed local links and links to dev-manual
+ref-manual: Changed dev-manual title and fixed links
+ref-manual: Fixed "Oe-Core" links and links to dev-manual.
+ref-manual: Fixed "Oe-Core" reference links.
+ref-manual: Fixed links for "Oe-Core" term.
+kernel-dev: Updated dev-manual title
+bsp-guide: Changed dev-manual title name
+toaster-manual: Updated "Defining the Default Distro and Other Values"
 
