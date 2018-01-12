@@ -1,73 +1,102 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <stephen.lawrence@renesas.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 414B3E00E84; Fri, 12 Jan 2018 07:45:10 -0800 (PST)
+	id F08BCE00D1C; Fri, 12 Jan 2018 10:44:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [210.160.252.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f52.google.com (mail-pg0-f52.google.com [74.125.83.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF1F5E0085E
-	for <yocto@yoctoproject.org>; Fri, 12 Jan 2018 07:45:09 -0800 (PST)
-Received: by mail-pg0-f52.google.com with SMTP id d6so4800665pgv.2
-	for <yocto@yoctoproject.org>; Fri, 12 Jan 2018 07:45:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language;
-	bh=+6rZlep06AS+xuh0FZiDhDs1RXWD/7+oVc9p5yIwx54=;
-	b=Wo2cuNULjnFxAIOljpxHsbvSdwdY23il4TX99obMX/m99DpUsTfI1AudZhcGGe2RoR
-	1K/ubLOZuX3HVS9TH1IJp2yhdl6qrVARTHbWxLl5pdGsFvecA9t23i/Jpkad0DkVnAoV
-	IJK2R0OfIYKOfxcT8oqHXj8tGphc0lqNXzgaJjkCcwAymy+zqtTbwp16ZhKmS0b1akUq
-	TCD6/6gpeTEIHxfqjgNvTBO3nt2PlUw4hZghVfAvy43o35LmKpJEBDA3906Qflsxwytd
-	lQmwPPJofI8a6MHtt5vBiPOz3jNGD6poS9zWeTU7137hqGWJNkoquxsVbeu4PVrYIvSA
-	facw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=+6rZlep06AS+xuh0FZiDhDs1RXWD/7+oVc9p5yIwx54=;
-	b=J+vzEp97iAHr3cvDxtKKlN9v7/QYUyMmR22Jrw4pmQwyGAKXwNm5OKxB4uNPvV96Rc
-	a3LG9aIFcOMxxGol0GNRUVLYIOsZB/6eUWrVrJALcmk+PEQmmDxdCYU14eiEiPTKBjja
-	ptgAok3nhdErML0HWXHE4tsZJlD9zs8sWf43ETFkFAlpmaoKXw4+LcEpjjHPA/6/thyu
-	bpWcc5cbJV2/5dFIqdnfYxBCheLVSC0hiRstTglTxV1WFkylWosrZvUh5BhFcnKFYywe
-	jM12nJph/s0W+G7DB++XwD/1M3iDGgjW+2srdVKY8mm58WSyvgu394FkH7SaXfi3TeqQ
-	MlcA==
-X-Gm-Message-State: AKGB3mIg3xh4QuG4Z7aFrJXRIY1y3JQSA6U+uTQrYLK2/mNSWoXpdApp
-	LlznvJR7UAc8z76gkqRvKakShQ==
-X-Google-Smtp-Source: ACJfBouaMYgRBMJkF4j3GuyM8mnG8pQKPSdGmhX5xxPc9DH/+LDAH3QFmN+dZwWsj/NruGohkRnAQg==
-X-Received: by 10.124.25.17 with SMTP id c17mr21033572plz.90.1515771908815;
-	Fri, 12 Jan 2018 07:45:08 -0800 (PST)
-Received: from ?IPv6:2601:202:4000:1184:4919:4069:d400:47fb?
-	([2601:202:4000:1184:4919:4069:d400:47fb])
-	by smtp.gmail.com with ESMTPSA id
-	e12sm19513248pgq.8.2018.01.12.07.45.07
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 12 Jan 2018 07:45:08 -0800 (PST)
-To: Paulo Neves <ptsneves@gmail.com>,
-	Yocto list discussion <yocto@yoctoproject.org>
-References: <CAJO0J4hRZ5xuD6Nd8uu=9P1a1ew9W=PMQDvuK6NJGwwi34v2BA@mail.gmail.com>
-From: akuster808 <akuster808@gmail.com>
-Message-ID: <45b77fca-aa3e-6df2-634a-03339602b53b@gmail.com>
-Date: Fri, 12 Jan 2018 07:45:06 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www;
+	Fri, 12 Jan 2018 10:44:26 PST
+Received: from relmlie1.idc.renesas.com (relmlor2.renesas.com
+	[210.160.252.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D66C2E006CA
+	for <yocto@yoctoproject.org>; Fri, 12 Jan 2018 10:44:26 -0800 (PST)
+Received: from unknown (HELO relmlir3.idc.renesas.com) ([10.200.68.153])
+	by relmlie1.idc.renesas.com with ESMTP; 13 Jan 2018 03:39:23 +0900
+Received: from relmlii1.idc.renesas.com (relmlii1.idc.renesas.com
+	[10.200.68.65])
+	by relmlir3.idc.renesas.com (Postfix) with ESMTP id 3087740EA0;
+	Sat, 13 Jan 2018 03:39:23 +0900 (JST)
+X-IronPort-AV: E=Sophos;i="5.46,350,1511794800"; d="scan'208";a="268097787"
+Received: from mail-hk2apc01lp0216.outbound.protection.outlook.com (HELO
+	APC01-HK2-obe.outbound.protection.outlook.com) ([65.55.88.216])
+	by relmlii1.idc.renesas.com with ESMTP/TLS/AES256-SHA256;
+	13 Jan 2018 03:39:22 +0900
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=renesasgroup.onmicrosoft.com; s=selector1-renesas-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=ryxNMueFMbgGPEGTTAtorLz6HeltEotrEktydVAevXA=;
+	b=HJBCfbn84nY/xJmg9dpG9Q2Ljn8hCGUiThslQmDPUXiryJlreHPHUaYf2gC8LKSZEfUM2qm1RaoLNpPn9pjK5H40ApT7mm7XAehy9HPNDSlOGnmbyjn913YmAui9Gqua5giCr2SZH1xDQyWoaKrbtkI6OF48Fbi2uVniEbV4arU=
+Received: from HK2PR0601MB2020.apcprd06.prod.outlook.com (10.170.151.17) by
+	HK2PR0601MB2019.apcprd06.prod.outlook.com (10.170.151.16) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.386.5; Fri, 12 Jan 2018 18:39:21 +0000
+Received: from HK2PR0601MB2020.apcprd06.prod.outlook.com
+	([fe80::c5d6:4bcb:a63:c74a]) by
+	HK2PR0601MB2020.apcprd06.prod.outlook.com
+	([fe80::c5d6:4bcb:a63:c74a%18]) with mapi id 15.20.0386.009;
+	Fri, 12 Jan 2018 18:39:21 +0000
+From: Stephen Lawrence <stephen.lawrence@renesas.com>
+To: Peter Spierenburg <peter.spierenburg@nautel.com>
+Thread-Topic: What is the procedure for creating a board support package?
+Thread-Index: AQHTiXfFeRFwFm8k+UqsqeyHh7zOG6NwlWIQ
+Date: Fri, 12 Jan 2018 18:39:21 +0000
+Message-ID: <HK2PR0601MB20208272162DE2EC9D4B1EB992170@HK2PR0601MB2020.apcprd06.prod.outlook.com>
+References: <MWHPR13MB1584B447167EE2B7AE940AC49E100@MWHPR13MB1584.namprd13.prod.outlook.com>
+In-Reply-To: <MWHPR13MB1584B447167EE2B7AE940AC49E100@MWHPR13MB1584.namprd13.prod.outlook.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=stephen.lawrence@renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; HK2PR0601MB2019;
+	7:1Om0MgtYBBUfBMr5DkCl2yfAaOfSruXSKN+UNRfd9bh7go7MZSp2Ly0B5TDd6LDWXywyWQasjKoQa2hp7/dZLxMaegr9lV3/MPM3MIdvhhYgdiSC6ILeeMqNNIngT2JJOA6iELZ4uFIr1Lc/IwJgghu8cLrLVN0veWY25ZOGGm6L1+s/fyqsD15bYynPIZlU/l5rTRKEaAlEuUEh0f8C2Y2g52J8k2jq71VD7YGN1MYSRFUlEGub8KdQffxa1pEa;
+	20:RlTeTrCmab85CCrByTiD3z30P0PEMNJksAK7JYIeVpUfXnue+EgnXN1K+CFsAO9bzDrGV1WfiDt4RovovbPU5QAy3+l8nSZsmYIynY7I/5oT6NFsDovAqzLkUc7vCUEtnxRa83Za2NNr6x02f+/orOFWC5S0KjuhErW/CJArkUs=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 9d6eaf1a-4210-4d13-129b-08d559ebcbf8
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020085)(4652020)(5600026)(4604075)(3008032)(48565401081)(4534115)(4602075)(4627211)(201703031133081)(201702281549075)(2017052603307)(7153060)(7193020);
+	SRVR:HK2PR0601MB2019; 
+x-ms-traffictypediagnostic: HK2PR0601MB2019:
+x-microsoft-antispam-prvs: <HK2PR0601MB20193045050EC8FF990F169C92170@HK2PR0601MB2019.apcprd06.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(209352067349851);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040470)(2401047)(5005006)(8121501046)(93006095)(93001095)(3002001)(3231023)(944501146)(10201501046)(6055026)(6041268)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123562045)(20161123564045)(20161123560045)(6072148)(201708071742011);
+	SRVR:HK2PR0601MB2019; BCL:0; PCL:0;
+	RULEID:(100000803101)(100110400095); SRVR:HK2PR0601MB2019; 
+x-forefront-prvs: 0550778858
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(39380400002)(366004)(346002)(376002)(396003)(39860400002)(189003)(199004)(6506007)(59450400001)(5250100002)(99286004)(5890100001)(25786009)(7736002)(305945005)(76176011)(7696005)(55016002)(6246003)(2900100001)(6116002)(86362001)(68736007)(8656006)(2950100002)(102836004)(4326008)(6916009)(3846002)(6306002)(97736004)(229853002)(8676002)(14454004)(2906002)(3660700001)(9686003)(33656002)(53936002)(3280700002)(53546011)(74316002)(316002)(8936002)(81166006)(478600001)(6436002)(5660300001)(81156014)(966005)(106356001)(105586002)(66066001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HK2PR0601MB2019;
+	H:HK2PR0601MB2020.apcprd06.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: renesas.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: oePkNcAffvRbgfnSiDMNLnqgnWhZXaqSbYDziDk3wbxkZytFV1S6JC9RM+JcyzXJaQYO3BKIZUFNqVtxsheFjQ==
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-In-Reply-To: <CAJO0J4hRZ5xuD6Nd8uu=9P1a1ew9W=PMQDvuK6NJGwwi34v2BA@mail.gmail.com>
-Subject: Re: COMPATIBLE_MACHINE not honored in native extended recipes
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d6eaf1a-4210-4d13-129b-08d559ebcbf8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jan 2018 18:39:21.6699 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0601MB2019
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: What is the procedure for creating a board support package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,139 +108,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jan 2018 15:45:10 -0000
-Content-Type: multipart/alternative;
-	boundary="------------8805AFBA8A964E6B1301C461"
+X-List-Received-Date: Fri, 12 Jan 2018 18:44:28 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
---------------8805AFBA8A964E6B1301C461
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Hi Peter,
 
+As Petter said your MACHINE variable might not be set correctly.
 
+As an aside the Yocto Project used to maintain a BSP tutorial alongside the=
+ documentation. I've not looked at it for some versions but if that is stil=
+l true you might find that useful in your education. An online search shoul=
+d turn it up.
 
-On 01/12/2018 07:14 AM, Paulo Neves wrote:
-> Hello I am having a problem where I want a recipe, along with its
-> -native version to only be available when allowed by compatible
-> machine.
+Cheers
 
- This change should go to the openembedded-core mailing list with a
-particular subject line format.
+Steve
 
-please try:
-git send-email -1 -M --to  openembedded-core@lists.openembedded.org
---subject-prefix=PATCH
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Peter Spierenburg
+Sent: 09 January 2018 18:39
+To: yocto@yoctoproject.org
+Subject: [yocto] What is the procedure for creating a board support package=
+?
 
-Thanks for the fix.
+I'm trying to follow the instructions at:
 
-Regards,
-Armin
+http://www.yoctoproject.org/docs/current/bsp-guide/bsp-guide.html#creating-=
+a-new-bsp-layer-using-the-yocto-bsp-script
 
-> In the non native case, COMPATIBLE_MACHINE is correctly honored. But
-> in the -native version the COMPATIBLE_MACHINE is not honored because
-> in the native.bbclass there is:
->
-> MACHINEOVERRIDES = ""
->
-> This change was introduced in d09e6d883042e5d094cd08d829327c4bbbfae135.
-> While the explanation provided by the commit is accurate for specific
-> case mentioned it also breaks the COMPATIBLE_MACHINE mechanism which
-> relies on the MACHINEOVERRIDES variable.
->
-> Further evidence that this was not intended is that the exception text is false:
->
-> ERROR: Nothing PROVIDES 'x-filter-native'
-> x-filter-native was skipped: incompatible with machine m1 (not in
-> COMPATIBLE_MACHINE)
->
-> And the x-filter-native'.bb recipe header contains:
->
-> COMPATIBLE_MACHINE = "^m1$"
->
->
-> So the exception uses ${MACHINE} to report that a ${MACHINEOVERRIDE}
-> was not matched with the COMPATIBLE_MACHINE, which is a false
-> statement.
->
-> My solution is very simple and does not break the fix that
-> d09e6d883042e5d094cd08d829327c4bbbfae135 did:
->
->
+I followed the prompts exactly as specified (although the SMP support promp=
+t did not appear), and I chose the default 4.12 kernel (presumably the guid=
+e is slightly out of date).
 
+I=A0included the generated bsp in bblayers.conf as indicated.
 
---------------8805AFBA8A964E6B1301C461
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+I invoked:
+bitbake core-image-minimal
+However, the resulting build was intel based, and not arm as one might expe=
+ct since I asked for ARM when prompted by the yocto-bsp script.
+Is there a more hands-on document that I could be following?
+Peter.
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 01/12/2018 07:14 AM, Paulo Neves
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAJO0J4hRZ5xuD6Nd8uu=9P1a1ew9W=PMQDvuK6NJGwwi34v2BA@mail.gmail.com">
-      <pre wrap="">Hello I am having a problem where I want a recipe, along with its
--native version to only be available when allowed by compatible
-machine.
-</pre>
-    </blockquote>
-    <br>
-     This change should go to the openembedded-core mailing list with a
-    particular subject line format.<br>
-    <br>
-    please try:<br>
-    git send-email -1 -M --to  <a class="moz-txt-link-abbreviated" href="mailto:openembedded-core@lists.openembedded.org">openembedded-core@lists.openembedded.org</a>
-    --subject-prefix=PATCH<br>
-    <br>
-    Thanks for the fix.<br>
-    <br>
-    Regards,<br>
-    Armin<br>
-    <br>
-    <blockquote type="cite"
-cite="mid:CAJO0J4hRZ5xuD6Nd8uu=9P1a1ew9W=PMQDvuK6NJGwwi34v2BA@mail.gmail.com">
-      <pre wrap="">
-In the non native case, COMPATIBLE_MACHINE is correctly honored. But
-in the -native version the COMPATIBLE_MACHINE is not honored because
-in the native.bbclass there is:
+This communication, including any attached documentation, is intended only =
+for the person or entity to which it is addressed, and may contain confiden=
+tial, personal, and/or privileged information. Any unauthorized disclosure,=
+ copying, or taking action on the contents is strictly prohibited. If you h=
+ave received this message in error, please contact us immediately so we may=
+ correct our records. Please then delete or destroy the original transmissi=
+on and any subsequent reply. Thank you.=20
 
-MACHINEOVERRIDES = ""
-
-This change was introduced in d09e6d883042e5d094cd08d829327c4bbbfae135.
-While the explanation provided by the commit is accurate for specific
-case mentioned it also breaks the COMPATIBLE_MACHINE mechanism which
-relies on the MACHINEOVERRIDES variable.
-
-Further evidence that this was not intended is that the exception text is false:
-
-ERROR: Nothing PROVIDES 'x-filter-native'
-x-filter-native was skipped: incompatible with machine m1 (not in
-COMPATIBLE_MACHINE)
-
-And the x-filter-native'.bb recipe header contains:
-
-COMPATIBLE_MACHINE = "^m1$"
-
-
-So the exception uses ${MACHINE} to report that a ${MACHINEOVERRIDE}
-was not matched with the COMPATIBLE_MACHINE, which is a false
-statement.
-
-My solution is very simple and does not break the fix that
-d09e6d883042e5d094cd08d829327c4bbbfae135 did:
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------8805AFBA8A964E6B1301C461--
