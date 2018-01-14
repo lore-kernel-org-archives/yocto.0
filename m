@@ -1,65 +1,62 @@
-Return-Path: <maxin.john@gmail.com>
+Return-Path: <ngthanh.vu94@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51587E00E73; Sun, 14 Jan 2018 04:39:15 -0800 (PST)
+	id 391ADE00B1A; Sun, 14 Jan 2018 06:49:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (maxin.john[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.68 listed in list.dnswl.org]
+	mail provider *      (ngthanh.vu94[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f68.google.com (mail-lf0-f68.google.com
-	[209.85.215.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71C3AE008A4
-	for <yocto@yoctoproject.org>; Sun, 14 Jan 2018 04:39:13 -0800 (PST)
-Received: by mail-lf0-f68.google.com with SMTP id g72so4913848lfg.5
-	for <yocto@yoctoproject.org>; Sun, 14 Jan 2018 04:39:13 -0800 (PST)
+Received: from mail-it0-f54.google.com (mail-it0-f54.google.com
+	[209.85.214.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9EBDE00A75
+	for <yocto@yoctoproject.org>; Sun, 14 Jan 2018 06:49:58 -0800 (PST)
+Received: by mail-it0-f54.google.com with SMTP id m11so6134697iti.1
+	for <yocto@yoctoproject.org>; Sun, 14 Jan 2018 06:49:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=8sfyVKTsKuYygskUPCWfXoLIbhN5t9QG8oohkGQJHXs=;
-	b=ncueI91u4CHrwB8sEINqno8sSqDjG5dvE9RH0NYoCsFPj/Zox4/7XsaKsGFvZiohJx
-	S3vJCyUu1be2FMHgv1MrxO+DFM+GRqBod9sa0iRUgfls+5TLNvjyJqZLKv3jYk0Fx5Ce
-	UHADp+MoHpQeyZtPwiOQftIZPUIdyVPL+GYlBSeWj27JUbwE4VFHUCaYGEoC/oI0iBtb
-	PrW4IlQiwFMSw8z3Re1i2QBSXLVzr/6P07ZsejyKex//xAJ9zd/kSH9uEbJOyRDJ7e7u
-	63mETWI5UWY0c18C2xSwfipvx5U6Gaz2uqLUA3u6syz4h+F+bCLfQxvQDG+Ez3jbhhz6
-	NNhQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=R4KdR2GSb2s6ZxC0Imu2KDrC/vi7nRr231wRj+SDwRg=;
+	b=DCtB5UdAO5RYxSMsKQDfcRLe8e7lgkZxkZRDBnNSiSPlf3VAke1DclrVDgdql5z09C
+	Kz44PvoIc0QqDQUhWmSql9agOOcJ8hgKW1SBAaBoDbsrrWfBpRFYXkatYBlTIbDKhAGV
+	00rP0cQpBOkFSv1Mq1FOTAUo/xvgbGu9LjtpOIkXsRzHDHPSF3wzpSP7O3x1Udg2yGDZ
+	SJBw1FpiLZ+gE8p5KD/9kzBoNCPTal4ANHITFadSa6QCUXlv+DDjOIyXNzr+XWftm8a2
+	aIHL1SVKcnRMh8zc499lVXolgtO6qiUY5G04hMHESrz5WaT9PLgcoOgNnkxIl/gf6vgw
+	Ofpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=8sfyVKTsKuYygskUPCWfXoLIbhN5t9QG8oohkGQJHXs=;
-	b=h/+n/BLHLn08GkEOkw4d/lOn1P311E81x9mH+jVCuRJ3/lxWM7+0zFAN7IknmZTyK0
-	dLt7dMm65Bily+LPtHaSKhHaewq3/wpMC52E9d51tsxqRhvZl7OBeN5ClihMDtmjbO16
-	h2c1aLkJJA6WDColtTooYDt7e2NkXGMQe55uG3uaunkdJKJxv+rOgfTcZGSqNDvEPiha
-	tX9j71dpSbZTwaPUJfVS0L6EF8Vd6UrFlu5rNMfXs2YVwCC9BYtUmixvhz+yK2ppFsOa
-	Lqfz02cj8RmFWPp16JzE5uD55LNbfE6wDfFyymB+2+3heLmLuXc0wuIHpebSzW37eQHq
-	1sBA==
-X-Gm-Message-State: AKwxytepOGpWxl3JAL8+DfmEw4OmFuUYu2HWY7hCYt8mgyrPcl3SjvMH
-	3c22rkpPsO4c/RS+5EWL4kJHs+h7ILxrw6/S65Q=
-X-Google-Smtp-Source: ACJfBovPLv9RfSJTbqx75KqZSdxgiBkKCG9vseAFPHlhb+xrfGHYyAZF+M5bb0DhvUm82grlfUDqmxGQaa9ya4/y6rQ=
-X-Received: by 10.25.162.142 with SMTP id l136mr15801630lfe.43.1515933553130; 
-	Sun, 14 Jan 2018 04:39:13 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=R4KdR2GSb2s6ZxC0Imu2KDrC/vi7nRr231wRj+SDwRg=;
+	b=XID6ONS4cbbe+Cuar1oQlTfjPpsp5iNBin554p8Q3UwCTGrdG1YmQxWZD5T1xvZsHz
+	a6trSTp/NnQUs45st5GkafRIir+gMu4nlGhX3XLDbn4BEqhmaODYiJQ8Msub3PouYxCk
+	2F00PJUGgtx9kOd0zmiB+YLyfBvExP4ZJx2rqmN/3vbl4eFkCAPWlIknDZJdCJdANO9p
+	0EPuZ3VyejOAnIOAdMl/e/Ki8sDzlr+1lQzeDQ/LWEq/Lu1oBhxVC7KiVeFNYwoF/6UK
+	F4I5H0AUCPCROw5MkU1jZWKCC2XWlq6YOFdbNpXonqkLB4JCVYxiBuf7+bnprWrmUP6g
+	LCFw==
+X-Gm-Message-State: AKwxytcgE+f14rXXGPSMHzLTuOExs2jdDp8DIcUQ5L0aoyu7rINChJj2
+	CLq6ge/BOvmb9VJNumCx5K4/SS1YgPiyhBgrs6w+2Q==
+X-Google-Smtp-Source: ACJfBossvPPSs3xAghIzuzsh85ywRGAJkK7qbg1W5iPvdAOxS+v55wchFwSChJZSZmNF4sF8LmwLOLCC47HPjAuGlAc=
+X-Received: by 10.36.137.67 with SMTP id s64mr10782645itd.90.1515941397930;
+	Sun, 14 Jan 2018 06:49:57 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.46.114.2 with HTTP; Sun, 14 Jan 2018 04:39:12 -0800 (PST)
-In-Reply-To: <CA+JFif0Zqz-jbq=Mq9Vs=D3Ft-_mkJtuZCFU32_XPpwF3BcWYA@mail.gmail.com>
-References: <CA+JFif0Zqz-jbq=Mq9Vs=D3Ft-_mkJtuZCFU32_XPpwF3BcWYA@mail.gmail.com>
-From: "Maxin B. John" <maxin.john@gmail.com>
-Date: Sun, 14 Jan 2018 14:39:12 +0200
-Message-ID: <CAMhs6YyxOwTkme_7aq1me1pudJpY4e+J=NVNNwtGBFyca=_=Ew@mail.gmail.com>
-To: Mathew K Tharakan <mathewkunjumontharakan@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: Reg: SPI enabling in imx6ull
+Received: by 10.107.162.16 with HTTP; Sun, 14 Jan 2018 06:49:57 -0800 (PST)
+From: =?UTF-8?B?Tmd1eeG7hW4gVGhhbmggVsWpIA==?= <ngthanh.vu94@gmail.com>
+Date: Sun, 14 Jan 2018 21:49:57 +0700
+Message-ID: <CAGJSYqnh8q8CBgRQSJ5pPhqhEfxqb+KvFa1k_M-aPVDpNN0ugw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to correctly understand "selects" and "selected by" in menuconfig to properly configure the kernel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,27 +68,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 14 Jan 2018 12:39:15 -0000
+X-List-Received-Date: Sun, 14 Jan 2018 14:49:59 -0000
+Content-Type: multipart/alternative; boundary="94eb2c05eee68626a60562bd9c45"
+
+--94eb2c05eee68626a60562bd9c45
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Mathew,
+I'm currently trying to remove the networking components from the kernel
+using menuconfig. However, it seems that there are a lot of dependencies
+when I choose to exclude the networking component (error when bitbake build
+after reconfiguring). I think it has something to do with the "selects" and
+selected by". Please tell me if I'm wrong here:
+- If we select a component, the modules in "selects" section will
+automatically be selected to . So, how about when we deselect a component,
+will those modules be automatically deselected?
+- How about the modules in "selected by" when we select or deselect a
+component?
 
-On Sat, Jan 13, 2018 at 8:20 AM, Mathew K Tharakan
-<mathewkunjumontharakan@gmail.com> wrote:
-> Hi,
->
-> I'm unable found spidev in /dev, I have done necessary changes in .dts file.
-> I'm working with iMX6ULL evk
+Thanks,
+Vu.
 
-We need the kernel configuration to enable spi support along with your
-.dts file changes. It will be better to
-check this documentation to update your kernel configs:
+--94eb2c05eee68626a60562bd9c45
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://www.yoctoproject.org/docs/2.4/kernel-dev/kernel-dev.html#changing-the-configuration
+<div dir=3D"ltr">I&#39;m currently trying to remove the networking componen=
+ts from the kernel using menuconfig. However, it seems that there are a lot=
+ of dependencies when I choose to exclude the networking component (error w=
+hen bitbake build after reconfiguring). I think it has something to do with=
+ the &quot;selects&quot; and selected by&quot;. Please tell me if I&#39;m w=
+rong here:<div>- If we select a component, the modules in &quot;selects&quo=
+t; section will automatically be selected to . So, how about when we desele=
+ct a component, will those modules be automatically deselected?</div><div>-=
+ How about the modules in &quot;selected by&quot; when we select or deselec=
+t a component?</div><div><br></div><div>Thanks,</div><div>Vu.</div></div>
 
-> Thanks
-> Mathew
-
-Best Regards,
-Maxin
-
+--94eb2c05eee68626a60562bd9c45--
