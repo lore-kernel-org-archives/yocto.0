@@ -1,91 +1,62 @@
-Return-Path: <MANJUKUM@xilinx.com>
+Return-Path: <satya.2891@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 75A76E00DE3; Sun, 14 Jan 2018 22:52:55 -0800 (PST)
+	id 23749E00D17; Mon, 15 Jan 2018 00:21:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=unavailable
-	version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.40.85 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (satya.2891[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1092 seconds by postgrey-1.32 at yocto-www;
-	Sun, 14 Jan 2018 22:52:53 PST
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
-	(mail-co1nam03on0085.outbound.protection.outlook.com [104.47.40.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3348AE00A75
-	for <yocto@yoctoproject.org>; Sun, 14 Jan 2018 22:52:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=DuUU+CdV3YNUF1zvq4ZHNeUIsHuTp5aLic+df3XsiM4=;
-	b=P8we9orcjoOzRDz36vs183wZzgneU3QPGvB9Qd39P18AtbpMB2bi2fYV8cuOL+qFkR4QxEu3TAObWSIrtSo5/Cxdcxp+QOwQY1uljsQQ7WBxUI37Yne5feVesQabJaX2GZIH+3Wzb4WEElXhl/MRqv37Tz9ZJNCtAfSjmvRb3xg=
-Received: from BY2PR02MB347.namprd02.prod.outlook.com (10.141.140.149) by
-	BY2PR02MB443.namprd02.prod.outlook.com (10.141.144.147) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.386.5; Mon, 15 Jan 2018 06:20:29 +0000
-Received: from BY2PR02MB347.namprd02.prod.outlook.com ([10.141.140.149]) by
-	BY2PR02MB347.namprd02.prod.outlook.com ([10.141.140.149]) with mapi id
-	15.20.0407.009; Mon, 15 Jan 2018 06:20:29 +0000
-From: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>
-To: "openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "meta-xilinx@yoctoproject.org"
-	<meta-xilinx@yoctoproject.org>
-Thread-Topic: liblzma: Memory allocation failed on do_package_rpm 
-Thread-Index: AdONyO7F0CbDbyZMTvmUCBS8jdjlFQ==
-Date: Mon, 15 Jan 2018 06:20:28 +0000
-Message-ID: <BY2PR02MB347697DA9F50BFD39015C3BB9EB0@BY2PR02MB347.namprd02.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=MANJUKUM@xilinx.com; 
-x-originating-ip: [73.231.161.32]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BY2PR02MB443;
-	7:MX6D0wrLV3GN6TepZXyXY3G5aOHG9dlFnMmOPbWwG+7HGneDarRAYE792SMftDHnZ+km87yRddCbHGNu9S6Dk0jWUiqDbHC8q8yQvFQ/D+s52q7YOh09QOObZo8tKNFsXOGRG9aNNSXfrTMUYaiBq1fWxR6vrogNXb84tSY3AxLhIkBiAjYNQJ6cmPi4qWlELl6N0emjd9gk/vOcPjqduhMGpgBHcblxOE5VYRkhLKjaiP7BimbEyR+dIFvFkG5Y
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 851e7e0d-7acf-40d2-a986-08d55be012e0
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(48565401081)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
-	SRVR:BY2PR02MB443; 
-x-ms-traffictypediagnostic: BY2PR02MB443:
-x-microsoft-antispam-prvs: <BY2PR02MB443CC0AC4EC5EFB3162CDD6B9EB0@BY2PR02MB443.namprd02.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040470)(2401047)(5005006)(8121501046)(93006095)(93001095)(3002001)(3231023)(944501161)(10201501046)(6055026)(6041268)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123564045)(20161123560045)(20161123562045)(6072148)(201708071742011);
-	SRVR:BY2PR02MB443; BCL:0; PCL:0;
-	RULEID:(100000803101)(100110400095); SRVR:BY2PR02MB443; 
-x-forefront-prvs: 0553CBB77A
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(366004)(396003)(39860400002)(376002)(39380400002)(346002)(189003)(199004)(105586002)(6436002)(74316002)(68736007)(81166006)(81156014)(14454004)(9686003)(72206003)(110136005)(4743002)(106356001)(478600001)(55016002)(66066001)(99286004)(2501003)(5890100001)(2201001)(86362001)(305945005)(77096006)(8676002)(316002)(102836004)(25786009)(6506007)(6116002)(3846002)(7736002)(7696005)(33656002)(3660700001)(97736004)(2906002)(59450400001)(5660300001)(53936002)(3280700002)(8936002)(2900100001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BY2PR02MB443;
-	H:BY2PR02MB347.namprd02.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: xilinx.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: z5awPFAMYy+FuFZL6/uc4dTlcd0RKHf0UlUHzniLtknpO4cVX7XLuqjoVuoJRL3KgaXxHxHDKXC5TBhFaFW/Rg==
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-pl0-f49.google.com (mail-pl0-f49.google.com
+	[209.85.160.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0B04E00AF2
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 00:21:30 -0800 (PST)
+Received: by mail-pl0-f49.google.com with SMTP id t4so360834plo.0
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 00:21:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=4OiazBRfQRlas1P0JSNniYlib4fVc7wUMnRu9Wd55uo=;
+	b=nUbmUUcFp0z9noLCKr1B8GkcO8YF1sVKUrwL+Yf5y8pufe2yfDu/nErzzeTKaNslaU
+	8XeQY9/wL/oQl1duPFTW34erTB0AuTZ9jhwRSc67FNFw83hen6fd+Sn7+oqPLdlqFXrt
+	beVbWvjF6pwtwBxF/6ilfNmFnJfKmHdHS5ZP+B/unzpTUOpXnmSQVfwLgtY2ZH4iLsF4
+	yTxpNNVHg94mhXyBGqykcxLODNcSPrgC1s2VgZCHJBj0yodqdoc83QBLQeKdBQCcvKsz
+	ydPQVM2Yv7GN/1I/v9iqHBiND5UBeA/uz8Ni8TwVf5H2LlHutdjyNUxDNk6ojTDVBR6i
+	njpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=4OiazBRfQRlas1P0JSNniYlib4fVc7wUMnRu9Wd55uo=;
+	b=k2BaMuvfNtONgfDCSgIguv36OH1YlL02pFAv/Ys0KdiX6ow0PXdxPio2Byr1NKPIDn
+	w8wIPakwfuuW/WymQOrHtjxMJpoIiYF0FOpTGkOfuU4r3AtGv26fEeqcehEa2XmGVgVY
+	em6mqymZ6b3BvmgHY9SXsaVEac9VwbptEhB6sz4WHrNymonlahzLIJlybWrevYrPnMwo
+	qoHVzlbK0PSLKOzIs1d1JkMlHxDNM3+NeGhq2f099bj2jFYWDdbirtOyx2ockNdmUBsN
+	05iuV86K5WCrMFnztOAT/W+Mm5+FbeGI74g4TyN8I8Dz64Rcrj1dCVlILF2WKhNxj9wB
+	vYYw==
+X-Gm-Message-State: AKGB3mL8l1bE/9IAsRtkKYPnwCpgEgptEpVU8TkxYNV9OFDSMaBxNOcS
+	+ogO5w/C4wNf1wOCWMyQ/VXF+5pMAVLOJ9Fjgu2E2A==
+X-Google-Smtp-Source: ACJfBot2nLbL5ZMXlTtRNvf6y6IBwXaAD5tKoUuXjA/vfXPR2NJEBCVJp8eAdqo3IQjzwNl6MYxWTjEfF7/WS3hIsC8=
+X-Received: by 10.159.242.198 with SMTP id x6mr29222558plw.340.1516004489570; 
+	Mon, 15 Jan 2018 00:21:29 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 851e7e0d-7acf-40d2-a986-08d55be012e0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2018 06:20:28.8433 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR02MB443
-Subject: liblzma: Memory allocation failed on do_package_rpm
+Received: by 10.100.243.69 with HTTP; Mon, 15 Jan 2018 00:21:29 -0800 (PST)
+From: Satya Sampangi <satya.2891@gmail.com>
+Date: Mon, 15 Jan 2018 13:51:29 +0530
+Message-ID: <CAF1M0z6g24OyAwtWeZ+WL7Dz3J9KEN_6Xm1hBR4ZXFDA-4Tjig@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: meta-ti layer failed with Daisy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -97,50 +68,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jan 2018 06:52:55 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 15 Jan 2018 08:21:31 -0000
+Content-Type: multipart/alternative; boundary="089e082c01b4142e220562cc4d63"
+
+--089e082c01b4142e220562cc4d63
+Content-Type: text/plain; charset="UTF-8"
+
+Dear All,
+
+I am building the core-image-minimal for Daisy with meta-ti layer included
+in bblayers.conf file after removing meta-yocto-bsp layer. I am getting the
+error shown below,
+
+[Satya]~/Yocto-Daisy-Labs/poky/build
+bitbake core-image-minimal
+Loading cache: 100%
+|#########################################################################################################################################|
+ETA:  00:00:00
+Loaded 1446 entries from dependency cache.
+ERROR: No recipes available for:
+
+/home/satya/Yocto-Daisy-Labs/poky/meta-ti/recipes-core/udev/eudev_%.bbappend
+ERROR: Command execution failed: Exited with 1
+
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+[Satya]~/Yocto-Daisy-Labs/poky/build
+
+Could anyone help me here, what to do?
+
+Thanks in Advance,
+satya
+
+--089e082c01b4142e220562cc4d63
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-All,
+<div dir=3D"ltr">Dear All,<div><br></div><div>I am building the core-image-=
+minimal for Daisy with meta-ti layer included in bblayers.conf file after r=
+emoving meta-yocto-bsp layer. I am getting the error shown below,</div><div=
+><br></div><div><div>[Satya]~/Yocto-Daisy-Labs/poky/build</div><div>bitbake=
+ core-image-minimal</div><div>Loading cache: 100% |########################=
+###########################################################################=
+######################################| ETA: =C2=A000:00:00</div><div>Loade=
+d 1446 entries from dependency cache.</div><div>ERROR: No recipes available=
+ for:</div><div>=C2=A0 /home/satya/Yocto-Daisy-Labs/poky/meta-ti/recipes-co=
+re/udev/eudev_%.bbappend</div><div>ERROR: Command execution failed: Exited =
+with 1</div><div><br></div><div>Summary: There were 2 ERROR messages shown,=
+ returning a non-zero exit code.</div><div>[Satya]~/Yocto-Daisy-Labs/poky/b=
+uild</div></div><div><br></div><div>Could anyone help me here, what to do?<=
+/div><div><br></div><div>Thanks in Advance,</div><div>satya</div></div>
 
-Has anybody seen this error?
-
-Finished binary package job, result 0, filename (null)
-error: create archive failed: cpio: write failed - Cannot allocate memory
-error: liblzma: Memory allocation failederror: liblzma: Memory allocation f=
-ailedFinished binary package job, result 2,
-
-.......
-
-RPM build errors:
-|     Deprecated external dependency generator is used!
-|     Deprecated external dependency generator is used!
-|     Deprecated external dependency generator is used!
-|     Deprecated external dependency generator is used!
-|     Deprecated external dependency generator is used!
-|     Deprecated external dependency generator is used!
-|     Deprecated external dependency generator is used!
-|     Deprecated external dependency generator is used!
-|     Deprecated external dependency generator is used!
-|     liblzma: Memory allocation failed    liblzma: Memory allocation faile=
-d    liblzma: Memory allocation failed    liblzma: Memory allocation failed=
-    liblzma: Memory allocation failed    liblzma: Memory allocation failed
-
-This happens in do_package_rpm task on various recipes, coreutils/libgpg/di=
-ffutils etc.
-
-The host machine has good amount on memory, 256G to be exact. When I see th=
-e error and issue free -h command, I still see ~120G free memory available.
-This is a RHEL 7.2 machine and I am running rocko baseline.
-
-Any reason why this would happen? Where should I look to fix this issue?
-
-Thanks,
-Manju
-This email and any attachments are intended for the sole use of the named r=
-ecipient(s) and contain(s) confidential information that may be proprietary=
-, privileged or copyrighted under applicable law. If you are not the intend=
-ed recipient, do not read, copy, or forward this email message or any attac=
-hments. Delete this email message and any attachments immediately.
-
+--089e082c01b4142e220562cc4d63--
