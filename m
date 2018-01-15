@@ -1,69 +1,61 @@
-Return-Path: <vincent.prince.fr@gmail.com>
+Return-Path: <nickaein.i@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83720E00D75; Mon, 15 Jan 2018 03:03:36 -0800 (PST)
+	id BF33DE00B1E; Mon, 15 Jan 2018 03:15:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_IMAGE_ONLY_24,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,T_REMOTE_IMAGE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vincent.prince.fr[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.177 listed in list.dnswl.org]
+	mail provider *      (nickaein.i[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.6 HTML_IMAGE_ONLY_24 BODY: HTML: images with 2000-2400 bytes of
-	words *  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB5ABE00B5F
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 03:03:35 -0800 (PST)
-Received: by mail-io0-f177.google.com with SMTP id k18so12656279ioc.11
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 03:03:35 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.169 listed in list.dnswl.org]
+Received: from mail-qt0-f169.google.com (mail-qt0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C354AE00B5F
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 03:15:40 -0800 (PST)
+Received: by mail-qt0-f169.google.com with SMTP id u42so13684431qte.7
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 03:15:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=q4VK2bNQJ+oaG93DbJDCDUEkAfU2VmtbwqLPLkFnetI=;
-	b=hSZqSny+Lw8HQ+a5/BlGMEFOH4gjGJat/GDUDZrAJkzBwsewD6bradT6j/yTo5HqYT
-	X6gzTwS4SSV0SUtOYiMOoz4LbjlGYFt0FGZ0qKJUACw9EJ1q6FauOzFD5JX0xDDehMVO
-	EDmLgvt80eN6eyiIV8pYIWAAbKNmafwsl/aeaQfXA+GjBbSWEU3F7jXOy36AyIzSsrTZ
-	cPB9S28n7Rtag+llJgUGqU3dUx2yzEtPK+CrLzqVjtt33Kf5wkPgykNGvTvCEWLNKgeN
-	EjIZZpuW9ksNaLkSJjlrBzJUsfR/j6WB7hooC1RGXmtDZ2aDZyQUW5parwO/EXc6utT7
-	1XFw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=xHYRt9TORg+qKrGU4qi+NfYSFOQRRVTM3IKAmnwqstw=;
+	b=k82ETJvZ7V4FnrdUWqPwiYSO363I2ZZ/k+SdArIcSgRNvvOIENyQgfcHQVdd0upYYP
+	XtMeto38kCjcag8Qr/4M2LfE/jJwjk0UrKwaQ/T10gJ2BkT4E0JtsaLJ/wEmAx92cuS0
+	JkLwx6F4ahv4qJ7+Bwcq61ptEzH3hxfuYPB5wfVcT0pogvngPS16VcGUHTRm0xPEjNVp
+	rgh8iUi8sSJetb7CpHMxUJtle3STcnNUujU1TslUeHi0hcv73qDyDSVI0RT6V5bHFa/z
+	fUF5PxFctdqEkSvkIqc+Q4jFSz25v4+cjHBW35Ve+CdD52CNW+BJcdcD8eX8+R4eTTDN
+	MTjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=q4VK2bNQJ+oaG93DbJDCDUEkAfU2VmtbwqLPLkFnetI=;
-	b=ZFpEIXrEXjhmrMSPQXVkFAdHXHBOx1n2cdfThSlMy5inM5pxmlutfaK0FqLObyvDYA
-	hopDB1sKZ1o+o32v19lpi1l2LNRG3YV1QbTreO3Q5qxGpxSkAew78B5FiFC7B/bopxeX
-	A7cBOV77+q5lfPHEQNir+EGimMsmAFhEpUa1AKLWWj4asTSCWeOXP9d/gBI6OYgHvDLz
-	Xfo55m4PemuLcuUsdw0eMyl9kT4CdcHJ+qe32rikM6+W0goIQA2MrbcBZxJEzHYI50v1
-	emoHChpxZPsAyNuDHfxC+hz7PVL22PUNADtE1r5IymkhuWLusGKJNEX2mHNUkX5niYPS
-	9TMw==
-X-Gm-Message-State: AKwxytfvdbJFO3LDwL+QRhX65MyikPo4vN1E0zEP5Cf11WmDUDDEeLCD
-	V92h+00NPOIKfG9k2/9fPBlDi5rzSAfTBtZ3dI4=
-X-Google-Smtp-Source: ACJfBotIY0x6H8805FJjsaS2dUVPmvq8Ej52KKH3vzMZebVRL4jju4nJWslMFOFEcrWRj4i8RjFG2Aibbhq+5jFwivE=
-X-Received: by 10.107.187.197 with SMTP id l188mr11317046iof.301.1516014214924;
-	Mon, 15 Jan 2018 03:03:34 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=xHYRt9TORg+qKrGU4qi+NfYSFOQRRVTM3IKAmnwqstw=;
+	b=OKPnf9QJsCHPYOaD/u7jAnN+Nz3B6XpohwaaPk/QYYg63tEOo8XyG36knbfy/iq93B
+	BRFggRmQnnngFTUHIeUDxo7XqXh5oDqBkhqoDxH+SazTWOExFeKwFiRUne4Q3TAo8x22
+	T9fxAGEaYvJMKtda9dQcsUAtAV+I5vGQX4T2UP2Q6Gu9o6Z0IgmllBlbcyC4jCuJnGQa
+	/+3AkAr7HoC5ws/L8jHPtO0k532sz6c9VETCmzygG9dwvjaq/won/gBBTaVXwdvtlNYl
+	QfMnUyTonQ+YDflwrbJXqQvISLo/+A5cwpTFHTjMpSydZ/3QxuUMpzklcQVLSHgtaIix
+	fgLA==
+X-Gm-Message-State: AKwxytdbA6vRjbKtB2SaGspXeFaXIV93kB8N25w52Mls63ppXp8dAy6n
+	b3EfbFRjUulRAIJ8JhoTAsUYsN6IpORxNRGSvlznocfr
+X-Google-Smtp-Source: ACJfBosGm6o0BrwldhtllSBiJ5BiG5tiH29PPiVdwzgkOj9yxjyEu2A4tJKBZ7Km620F3mCUfnphzdVls/3EYaB3Cd4=
+X-Received: by 10.237.54.8 with SMTP id e8mr51481079qtb.25.1516014939492; Mon,
+	15 Jan 2018 03:15:39 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.2.118.75 with HTTP; Mon, 15 Jan 2018 03:03:14 -0800 (PST)
-In-Reply-To: <CA+JFif1FFgmeqYtiw35ap1KksSE5imrxkdUJLhzrdVeGPAKPOg@mail.gmail.com>
-References: <CA+JFif1FFgmeqYtiw35ap1KksSE5imrxkdUJLhzrdVeGPAKPOg@mail.gmail.com>
-From: Vincent Prince <vincent.prince.fr@gmail.com>
-Date: Mon, 15 Jan 2018 12:03:14 +0100
-Message-ID: <CAB2nKc9ko52qxVLbuk9nZWh1QsKZsO_=GuRfSe+1qGgV67GGOA@mail.gmail.com>
-To: Mathew K Tharakan <mathewkunjumontharakan@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: GPIO configuration in imx6ull
+Received: by 10.12.214.82 with HTTP; Mon, 15 Jan 2018 03:15:09 -0800 (PST)
+From: Isaac Nickaein <nickaein.i@gmail.com>
+Date: Mon, 15 Jan 2018 14:45:09 +0330
+Message-ID: <CA+NJmkf11LvaSksv_6x=Ft6GSW==8UgMNuo6pX_K02p5n4tY3g@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Moving all meta-* directories inside a parent directory like "layers"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,85 +67,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jan 2018 11:03:36 -0000
-Content-Type: multipart/alternative; boundary="94eb2c05d48cc14c360562ce9087"
-
---94eb2c05d48cc14c360562ce9087
+X-List-Received-Date: Mon, 15 Jan 2018 11:15:42 -0000
 Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-Are you aware of pin-muxing subject?
+I've clone the Poky on rocko branch from http://git.yoctoproject.org/git/poky
 
-You can change GPIO settings in U-boot with gpio_* functions.
-You can change them in DTS with gpio-edm driver from Wandboard kernel (
-https://github.com/wandboard-org/linux/blob/4.1-2.0.x-imx/drivers/input/keyboard/gpio_edm.c
-)
-You can also change them in running Linux environment, i found this
-resource quite complete
-http://www.variwiki.com/index.php?title=DART-6UL_GPIO
+By default, it gives a directory structure in which all meta-* layers
+are scattered inside the root directory.
 
-Best Regards,
-Vincent
+A more clean approach is to move all meta-* directories in a dedicated
+directory for layers
+e.g. "layers" directory like what Toradex BSP does, or "sources"
+directory like Freescale BSP.
 
-2018-01-13 5:55 GMT+01:00 Mathew K Tharakan <
-mathewkunjumontharakan@gmail.com>:
+However, doing a simple move essentially break the poky git repository
+and causes trouble in syncing
+poky recipes with the upstream later.
 
-> Hi,
->
-> I'm using iMX6ULL evk. I would like to change direction and value of some
-> gpios. How to do that?? Could you help me in this, since I'm completely new
-> to BSP.
->
-> Thanks and Regards
-> Mathew. K. Tharakan
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+Is there any way to do this without breaking anything?
 
---94eb2c05d48cc14c360562ce9087
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+What is your recommendation?
 
-<div dir=3D"ltr">Hi,<div><br></div><div>Are you aware of pin-muxing subject=
-?</div><div><br></div><div>You can change GPIO settings in U-boot with gpio=
-_* functions.</div><div>You can change them in DTS with gpio-edm driver fro=
-m Wandboard kernel (<a href=3D"https://github.com/wandboard-org/linux/blob/=
-4.1-2.0.x-imx/drivers/input/keyboard/gpio_edm.c">https://github.com/wandboa=
-rd-org/linux/blob/4.1-2.0.x-imx/drivers/input/keyboard/gpio_edm.c</a>)</div=
-><div>You can also change them in running Linux environment, i found this r=
-esource quite complete=C2=A0<a href=3D"http://www.variwiki.com/index.php?ti=
-tle=3DDART-6UL_GPIO">http://www.variwiki.com/index.php?title=3DDART-6UL_GPI=
-O</a></div><div><br></div><div>Best Regards,</div><div>Vincent</div><div></=
-div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2018-01=
--13 5:55 GMT+01:00 Mathew K Tharakan <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:mathewkunjumontharakan@gmail.com" target=3D"_blank">mathewkunjumontharaka=
-n@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"l=
-tr"><div><div><div>Hi,<br><br></div>I&#39;m using iMX6ULL evk. I would like=
- to=20
-change direction and value of some gpios. How to do that?? Could you=20
-help me in this, since I&#39;m completely new to BSP.<br><br></div>Thanks a=
-nd Regards<div class=3D"m_8318821900523574819gmail-yj6qo m_8318821900523574=
-819gmail-ajU"><div id=3D"m_8318821900523574819gmail-:jz" class=3D"m_8318821=
-900523574819gmail-ajR"><img class=3D"m_8318821900523574819gmail-ajT" src=3D=
-"https://ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif"></div></div>=
-<span class=3D"HOEnZb"><font color=3D"#888888"><span class=3D"m_83188219005=
-23574819gmail-HOEnZb m_8318821900523574819gmail-adL"><font color=3D"#888888=
-"><span style=3D"color:rgb(0,0,0)">Mathew. K. Tharakan</span><br></font></s=
-pan></font></span></div></div>
-<br>--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br></div>
 
---94eb2c05d48cc14c360562ce9087--
+Here is the current root poky directory:
+
+octo@yocto-server:/opt/yocto/rocko-poky/poky$ ls -l
+total 100
+drwxrwxr-x  6 yocto yocto 4096 Jan  9 15:59 bitbake
+drwxrwxr-x  7 yocto yocto 4096 Jan 15 14:26 build-saba
+drwxrwxr-x  6 yocto yocto 4096 Jan 15 14:25 build-colibri-imx6
+drwxrwxr-x 14 yocto yocto 4096 Jan 14 19:55 documentation
+-rw-rw-r--  1 yocto yocto  515 Jan  9 15:59 LICENSE
+drwxrwxr-x 19 yocto yocto 4096 Jan  9 15:59 meta
+drwxrwxr-x 22 yocto yocto 4096 Jan 10 15:37 meta-freescale
+drwxrwxr-x  7 yocto yocto 4096 Jan  9 18:32 meta-freescale-3rdparty
+drwxrwxr-x  7 yocto yocto 4096 Jan 13 12:25 meta-freescale-distro
+drwxrwxr-x 14 yocto yocto 4096 Jan 10 16:50 meta-openembedded
+drwxrwxr-x  5 yocto yocto 4096 Jan 10 16:33 meta-poky
+drwxrwxr-x 13 yocto yocto 4096 Jan 10 17:31 meta-qt5
+drwxrwxr-x  7 yocto yocto 4096 Jan 15 14:20 meta-my-layer
+drwxrwxr-x  8 yocto yocto 4096 Jan  9 15:59 meta-selftest
+drwxrwxr-x  7 yocto yocto 4096 Jan  9 15:59 meta-skeleton
+drwxrwxr-x 10 yocto yocto 4096 Jan 10 16:46 meta-swupdate
+drwxrwxr-x 13 yocto yocto 4096 Jan  9 18:28 meta-toradex-bsp-common
+drwxrwxr-x 11 yocto yocto 4096 Jan  9 18:28 meta-toradex-nxp
+drwxrwxr-x  8 yocto yocto 4096 Jan 14 19:55 meta-yocto-bsp
+-rwxrwxr-x  1 yocto yocto 1754 Jan  9 15:59 oe-init-build-env
+lrwxrwxrwx  1 yocto yocto   30 Jan  9 15:59 README.hardware ->
+meta-yocto-bsp/README.hardware
+-rw-rw-r--  1 yocto yocto 1173 Jan  9 15:59 README.LSB
+lrwxrwxrwx  1 yocto yocto   21 Jan  9 15:59 README.poky -> meta-poky/README.poky
+-rw-rw-r--  1 yocto yocto  529 Jan  9 15:59 README.qemu
+drwxrwxr-x  8 yocto yocto 4096 Jan 14 19:55 scripts
+yocto@yocto-server:/opt/yocto/rocko-poky/poky$
+
