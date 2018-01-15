@@ -1,62 +1,65 @@
-Return-Path: <jerry.lian@gmail.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9817EE00DA5; Mon, 15 Jan 2018 09:06:39 -0800 (PST)
+	id B659BE00E14; Mon, 15 Jan 2018 12:01:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jerry.lian[at]gmail.com)
+	mail provider *      (armccurdy[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.177 listed in list.dnswl.org]
+	*      [209.85.128.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f177.google.com (mail-ot0-f177.google.com
-	[74.125.82.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40C39E008A4
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 09:06:38 -0800 (PST)
-Received: by mail-ot0-f177.google.com with SMTP id 44so10318620otk.8
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 09:06:38 -0800 (PST)
+Received: from mail-wr0-f174.google.com (mail-wr0-f174.google.com
+	[209.85.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF956E00E1E
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 12:01:16 -0800 (PST)
+Received: by mail-wr0-f174.google.com with SMTP id f11so2454737wre.4
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 12:01:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=4DpoWse5RrxPNsE1qinQR7aaG8Q7o+sDzXdUyzC37IQ=;
-	b=DOOWAXruJknoqqCY0SrN2GS7MtRbo1TilgY6PBg1r8v/5QcKPoTxFVKe+GZ/FJDAgn
-	MMSbK9dI1aNnCHH33rxCSs71SzKvA+AuBmriVir9b5ddLKcLVX3P6xT7VoZ1ggrblBtf
-	OlXi5ACHk+/9c5BvHDfQt28ocsZQ7P7Ug7QSJwwUCvPAuFuXb2F4yjGA+Tdb8Dc94Blx
-	DJ4/wxg8ZQYriwZ0vz2AvEFHxoBsNwt6OV635/LryfOu54Q5ONVpM9YdWo09Ic7xUqHP
-	H9izls6g+aWBQ+qp0qcQ8pQwhsHOGb1v9ttbKGBU5pZQ00hywPZgBlByfPFP2GGeOPZA
-	EFbQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=6Gv9yvoEDFOwiKg7mLSj3abFwNB19pr5YJJKILJS7rk=;
+	b=va5zx0ISe1YcqzbhCnomSH/Vu59mzlNySOjxZzethHqHLvdR0o6mVyk2O4kOzFJNk1
+	cLknPkzGFS1tZ9gFjlntznJgtN7tswkxzErUStcLuBYIE/kFqcbWLn8ppiLuXaX7WeP0
+	EBb21DqEAYHFxUsjld3+5sKNTejgG0ZaGsbXsP5UX7coEJe/Y/dIJP5/1OMAyKxlG7TJ
+	4gMQlTTIjp5FGCYtGApCJ6rM+QIwinDwN+WzWy1h3RSNBbgZv54nas6JOol6HeVZ/lrl
+	qUsecQkkptYclpDDekKHSzBiQb+Q0wJDTSqinqdchkDtZnRCSsggHO9PPfb78PvY3EVt
+	d85Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=4DpoWse5RrxPNsE1qinQR7aaG8Q7o+sDzXdUyzC37IQ=;
-	b=tZZkQqzwnuo1GmwPYVJrk3fr8ZFEMPbI0fSCCnm32n8u7P1+KvYK9yxL73V3SyQtrT
-	IPcDHLmTdNR+fxyjgY+9djRGrH4n+Rsw/169sL83GojETvYo2zONhsW2hBHOp9fwXQmu
-	oXbZCSub7txI9ckmwnSG7Nhcdvw4tFOmcnWxJvp+ibfrmu/h+szOdn3Wk8v/zwDPWvVE
-	mcCvNCdus7ONNHIWdcg77VellBv8jaC5empx3bzrzqmPD5Z5ph32TWsHTV+fF3UKRRpb
-	k9HGJhRmzixlcjk0g4qx6iwB8SYRLK8lVzlG9q/TZI1VkwvwMG0Dhk0zCEyOczaEbckE
-	TsiQ==
-X-Gm-Message-State: AKwxytdWv4cygtnT6MqyxUiiuxHtrO8v88Nzt0lU+/pbvRGGTDfOrIU9
-	ozkPtzxJpWaAn9vxeQ7PR29SAqXdPw/YagnyKlyjDw==
-X-Google-Smtp-Source: ACJfBotSsrDhbgHUP9C8Rgqk0UcLfM4zcgZKt+pugKryite1Nkc1CctojXa12GnDyrWz7Rut+qE2s6Zg39iAqaL8bek=
-X-Received: by 10.157.80.170 with SMTP id b42mr8150265oth.305.1516035998005;
-	Mon, 15 Jan 2018 09:06:38 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=6Gv9yvoEDFOwiKg7mLSj3abFwNB19pr5YJJKILJS7rk=;
+	b=VV9hY87RrepeBoPpRzJJK7R6gLO4bERYXhUmMP+AOJ9zcjU6nYzkAkqxt3Un5IkuWH
+	+HIysahzhDhq5fRt9WFs2EWK14ibWKda0Tl2NlgZDWCkaplht+w/J+gDIxpQRBvfzLFz
+	yVA+ENJy4AMoOEmB6TfZLvqinpSXfQ5urvj8n2ncwE2T1XHgUd0MehF7VoZ+AvqfoMLk
+	kiBxiyPT4JnsZ9aVHDai288QeWumyObhTBui9pLIVgkx3BfVJDL3/V2+RHzlDQlyVFDT
+	cwtvE0p1YAn+1Yo1qU71kzcfLqEOdox50jB3uo9Xr2CmTTTDUM/hOWb+JyC+u7hlYxna
+	Lmmg==
+X-Gm-Message-State: AKwxytdk8IDD2eNxe8M9FQjZfmk7OkfTT5ISxX80IZb9C2ldrjTvUECa
+	1WrO3ms1xgFj+9qEIyN7UKThmUDz7X0RjR5gwFU=
+X-Google-Smtp-Source: ACJfBotyq0QgrKf6v2fbf6QfTL7xFfcelOQ8cgMYeHX5FNPJTy6mShS2jXHDRzb4USLvfS909dnLOHeuZoHqxZ0jd3U=
+X-Received: by 10.223.188.18 with SMTP id s18mr10883111wrg.226.1516046475466; 
+	Mon, 15 Jan 2018 12:01:15 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.157.4.33 with HTTP; Mon, 15 Jan 2018 09:06:37 -0800 (PST)
-From: Jerry Lian <jerry.lian@gmail.com>
-Date: Mon, 15 Jan 2018 12:06:37 -0500
-Message-ID: <CAE0QtjMS74TXxcKHV-2877kcnqSzKcw1hktGvecnAmJ6-1e+2w@mail.gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Yocto SDK: how to rebuild *.dtb? (fatal error: dt-bindings/gpio/gpio.h: No such file or directory)
+Received: by 10.223.190.132 with HTTP; Mon, 15 Jan 2018 12:01:14 -0800 (PST)
+In-Reply-To: <092e01d38e13$32290bf0$967b23d0$@ln-systems.com>
+References: <092e01d38e13$32290bf0$967b23d0$@ln-systems.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Mon, 15 Jan 2018 12:01:14 -0800
+Message-ID: <CAJ86T=V6f6UzzQcj9PFcGLmUaUxWAUY_Hrn0VSabvZ076152pQ@mail.gmail.com>
+To: Colin Helliwell <colin.helliwell@ln-systems.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: PROVIDES problem building u-boot variants
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,30 +71,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jan 2018 17:06:39 -0000
-Content-Type: multipart/alternative; boundary="f40304395ad820c36b0562d3a374"
-
---f40304395ad820c36b0562d3a374
+X-List-Received-Date: Mon, 15 Jan 2018 20:01:25 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-I installed yocto SDK for my beaglebone black.
-But when I try to rebuild am335x-boneblack.dtb, I got error:
+On Mon, Jan 15, 2018 at 7:12 AM,  <colin.helliwell@ln-systems.com> wrote:
+> Let's see if I can explain this well...
+>
+> I created a recipe to build a u-boot variant (for prod'n programming) -
+> "u-boot-PLATFORM-mfg-sec.bb" - which has :
+>
+> require u-boot-PLATFORM.inc
+> UBOOT_MACHINE = "tx6s-8035_mfg_sec_config"
+> SRC_URI += "file://tx6s-8035_mfg_sec_defconfig"
+>
+> And 'bitbake u-boot-PLATFORM-mfg-sec' works ok with this.
+>
+> Now I want to split this out into two different variants, for different
+> cpu's.
+>
+> So I begin by renaming the recipe to "u-boot-PLATFORM_tx6s-mfg-sec.bb",
+> But 'bitbake u-boot-PLATFORM_tx6s-mfg-sec'  throws:
+>    "Nothing PROVIDES 'u-boot- PLATFORM_tx6s-mfg-sec'"
+>
+> Can't spot why this simple renaming is breaking things...?
 
-"arch/arm/boot/dts/am33xx.dtsi:11:10: fatal error:
-dt-bindings/gpio/gpio.h: No such file or directory"
+You tried to use an underscore in the recipe name.
 
-Any hint? Thanks!
+u-boot-PLATFORM_tx6s-mfg-sec.bb will be treated as version
+"tx6s-mfg-sec" of the "u-boot-PLATFORM" recipe.
 
-Jerry
-
---f40304395ad820c36b0562d3a374
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><pre>I installed yocto SDK for my beaglebone black.<br>But=
- when I try to rebuild am335x-boneblack.dtb, I got error:<br><br>&quot;arch=
-/arm/boot/dts/am33xx.dtsi:11:10: fatal error: dt-bindings/gpio/gpio.h: No s=
-uch file or directory&quot;<br><br></pre><pre>Any hint? Thanks!<br></pre><p=
-re>Jerry<br></pre></div>
-
---f40304395ad820c36b0562d3a374--
