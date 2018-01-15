@@ -1,61 +1,52 @@
-Return-Path: <nickaein.i@gmail.com>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3055CE00D7B; Mon, 15 Jan 2018 03:18:38 -0800 (PST)
+	id 7CFA7E00DB5; Mon, 15 Jan 2018 04:30:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (nickaein.i[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A29ABE00A75
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 03:18:37 -0800 (PST)
-Received: by mail-qk0-f176.google.com with SMTP id l29so6757254qkj.8
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 03:18:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=DofeI2t+6VGrrGD9pifCz1RmlVVOZt8C5SE/K2x4MQ8=;
-	b=MpwmKgnQgN6e6liM3cNr3Sg9NyUZrWsjn3vKzGZ4x7XI/Xg7yy/mlHlNfmMbYmS8NU
-	RcS92OxAno145oFVotQ5436eWX1i5HubUodVAQLNhJnXZzaTh0m36wtUecatOu/ncjNp
-	cIK2SaTjBHWCGW9XCgSH+t6Pve+wmke4Y5ZwSTP5TqBf7uk6zC1zzwytPS38O2DN0eCg
-	zF2oNWKMHuiXlSdC/0hES9FNW86FHRFc9cOfo6NgSztbmJ/c6GpAjC1POh3VxjM1InfD
-	aJyIYjM/eEebd3tCmk0T9fdT/bzOviFpaJ9WW4xYKkTlzi9emJsOz7ds42dxos8rqC+c
-	aCUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=DofeI2t+6VGrrGD9pifCz1RmlVVOZt8C5SE/K2x4MQ8=;
-	b=bAvOSEMJj0/59B+HsZ+9i15vlslbflx8F0VFsgz6ks+cFIp0wHnOmjGXZM4CaK3jN5
-	cts7xhfvd+ESR4qdY756vMatY0hHwzRwhn0REYgstq7MYLXGDUYkN8a6pDewuALHzmO5
-	5HZXQ0W3TiohHFZX4PiZc2veqvKNEib1S1uT9UMMhQOIaa1hGn90wCKtEsJqYdHdmODK
-	YntnptHZE7lE6NWj+7Mxa/dv+bAhZFqhl2olvReprVpxQoqPpPdcUAzr8qufmNN5MEnJ
-	xkXu4wClBLMrclLLsFJyrsB7DLjiC3dFyN9zc2DvBSIB0pSnfNt0eHeb38JJIVeqU4nQ
-	72Fg==
-X-Gm-Message-State: AKwxyte9gP6w5pzVKZy/my1ulzFUIGqulV5u/g6k0TA+trf65+qglWRb
-	dc629zew0D0pMOjGqDEfG/FmQeMuVQ/LGwz8VTHl/CwG
-X-Google-Smtp-Source: ACJfBosLjBLFpaaVLfFUVzt+SJe15jaGO1w4yTtau6VpCJY8SKBXv0VyrFaywM+sTXW9/G9L1hYtb8nLrWrw6QGJL6o=
-X-Received: by 10.55.119.68 with SMTP id s65mr46375478qkc.357.1516015116694;
-	Mon, 15 Jan 2018 03:18:36 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9DC9E0085E
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 04:30:49 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	15 Jan 2018 04:30:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,363,1511856000"; d="scan'208";a="22280136"
+Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
+	by fmsmga001.fm.intel.com with ESMTP; 15 Jan 2018 04:30:47 -0800
+Received: from pgsmsx105.gar.corp.intel.com ([169.254.4.167]) by
+	PGSMSX101.gar.corp.intel.com ([169.254.1.141]) with mapi id
+	14.03.0319.002; Mon, 15 Jan 2018 20:30:46 +0800
+From: "Mittal, Anuj" <anuj.mittal@intel.com>
+To: Isaac Nickaein <nickaein.i@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] conf/machine/<machine.conf> in my custom layer doesn't
+	get	parsed
+Thread-Index: AQHTjfLrkBRdoE0vFU6qKvvsXqG3w6N03MVg
+Date: Mon, 15 Jan 2018 12:30:45 +0000
+Message-ID: <C0207330DF60C5409302EC78C3FE68F34B0AAD@PGSMSX105.gar.corp.intel.com>
+References: <CA+NJmkd7Rzt47Uv=orAaLvgS8RC9=Ok_gk8hoZaBgxMRsJMXtw@mail.gmail.com>
+In-Reply-To: <CA+NJmkd7Rzt47Uv=orAaLvgS8RC9=Ok_gk8hoZaBgxMRsJMXtw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.0.0.116
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiN2RiZjdlZTAtMjljNC00ZGE0LTgyZjUtYjU5MTFkNTY0NmNhIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJLdURxaHFBVGdYbFNBQnpmcDNoVGlKd25NTHlOdkpycUFUbzZ5MTUxbGJJSGxMbWVYQitEcVRhMDhkUVUwS1wvOCJ9
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-Received: by 10.12.214.82 with HTTP; Mon, 15 Jan 2018 03:18:06 -0800 (PST)
-From: Isaac Nickaein <nickaein.i@gmail.com>
-Date: Mon, 15 Jan 2018 14:48:06 +0330
-Message-ID: <CA+NJmkd7Rzt47Uv=orAaLvgS8RC9=Ok_gk8hoZaBgxMRsJMXtw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: conf/machine/<machine.conf> in my custom layer doesn't get parsed
+Subject: Re: conf/machine/<machine.conf> in my custom layer doesn't get	parsed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,33 +58,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jan 2018 11:18:38 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 15 Jan 2018 12:30:50 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Issac,
+=20
+> I've created a custom meta layer over poky rocko and added it to bblayer.=
+conf. I've
+> also set the appropriate MACHINE value in
+> conf/local.conf:
+>=20
+> MACHINE =3D "colibri-imx6"
+>=20
+> There is a machine specific conf file in this meta layer, but it doesn't =
+get parsed. This
+> file is located at "conf/machine/colibri-imx6.conf" inside the meta layer=
+.
+>=20
+> By checking the output of
+>=20
+> bitbake -e
+>=20
+> it seems that other machine-specific conf files like "meta-freescale-
+> 3rdparty/conf/machine/colibri-imx6.conf" are referenced and parsed. But t=
+here is not
+> even a reference to my machine-specific conf file.
 
-I've created a custom meta layer over poky rocko and added it to
-bblayer.conf. I've also set the appropriate MACHINE value in
-conf/local.conf:
+Have you defined BBPATH in your layer.conf correctly?
 
-MACHINE = "colibri-imx6"
+Thanks,
+Anuj
 
-There is a machine specific conf file in this meta layer, but it
-doesn't get parsed. This file is located at
-"conf/machine/colibri-imx6.conf" inside the meta layer.
-
-By checking the output of
-
-bitbake -e
-
-it seems that other machine-specific conf files like
-"meta-freescale-3rdparty/conf/machine/colibri-imx6.conf" are
-referenced and parsed. But there is not even a reference to my
-machine-specific conf file.
-
-Should I set some variables that hint the bitbake to parse machine
-specific files in my layer?
-
-Bests,
-Isaac
+>=20
+> Should I set some variables that hint the bitbake to parse machine specif=
+ic files in my
+> layer?
+>=20
+> Bests,
+> Isaac
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
