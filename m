@@ -1,58 +1,65 @@
-Return-Path: <farzanemostafa@yahoo.com>
+Return-Path: <jerry.lian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5ECD5E00DD1; Sat, 13 Jan 2018 11:32:57 -0800 (PST)
+	id 9817EE00DA5; Mon, 15 Jan 2018 09:06:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (farzanemostafa[at]yahoo.com)
+	mail provider *      (jerry.lian[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.6.135.43 listed in list.dnswl.org]
+	*      [74.125.82.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from sonic302-4.consmr.mail.bf2.yahoo.com
-	(sonic302-4.consmr.mail.bf2.yahoo.com [74.6.135.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3378E006D2
-	for <yocto@yoctoproject.org>; Sat, 13 Jan 2018 11:32:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1515871975; bh=iAZk/zQpMyu0hSnJMu4CGQxrn0igkeuHEUEIZ2x9Q+0=;
-	h=Date:From:Reply-To:To:Subject:References:From:Subject;
-	b=GUuRgh9X3GujCthhzPlZAwuf1cG51S6VvQH2nNcCdF/xJxoCbJCqnFzTLdnmEASCF103s9hgL+wojnIck5uWj3tm0fd/8BltNjPMfDcsoGT/3FcWefnVVopmV1UqrLyJ58MRbg1HUnV/ebaYB1tjumEYOeFxvzCYY+Q1HzgZ0CTNXy1aLbCVfUXILeV+p9swpwJIOke/5ZZClY8v8unFfl2LPzKooNFh8EDllFVAFbw2iS0D9u9S4Cxvx2cOXDvQwkUXbLuUOVMT+k1u4/k6ewcoHkKrLbyot/0l0SD89kEeUe3s9/HfW5Pdm70QGTlbtV1b7SfU0jIO0Vs4JsU+Gw==
-X-YMail-OSG: 8x2zMHAVM1ms67k4ICbC_Ks3_A0AZaHd5Ahoe_P0LOrskfRGTcebwedg3vNUpKF
-	YQlOShG9c6H0Nzqok2FVtwlMs25TYlpgSCeb2tR4z2spG0qX9BgY29w0Bwy08fXZ2lGEPONG0uyN
-	m0Zwosxqmi2N4lhD.CdZtWci0Zjix7wHuOBEAjBwhJ97ZR2i6U3lPxqJqGewNvOiGSKhU6AACVR9
-	XvIUL_hX9RSefwVJ.T_asr1cbREAmKzryuCfSGEekVqOOKLSxYZU.1yOlqOuKzA3bKopo1QUJx3Z
-	7sQ5E2OUkqdrPX6a_BZOKMbu.7ouokNEWxpxG0bjKRuC1nJelOgu6IBXGbZMoqmDjx8DAFniQYiw
-	oZZpoDoo0XqX4mSgOplPps1Bj46kLJJIXkHKLkTQ5U9DiHQCFcaj0ELn_HIrhDQWYO1S5VVak0ZJ
-	9x2FHocnl3OjaO1h3Aoc1kK49wrx0XhrrnF9lXRu.lPp6cIOlyEgvdFWIxono8w2QL79.43ZWb6j
-	5TV7iSiLCHkq50FwqIvDVK3AA
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic302.consmr.mail.bf2.yahoo.com with HTTP;
-	Sat, 13 Jan 2018 19:32:55 +0000
-Date: Sat, 13 Jan 2018 19:32:54 +0000 (UTC)
-From: Mostafa Farzane <farzanemostafa@yahoo.com>
-To: <yocto@yoctoproject.org>
-Message-ID: <1970961286.255227.1515871974890@mail.yahoo.com>
+Received: from mail-ot0-f177.google.com (mail-ot0-f177.google.com
+	[74.125.82.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40C39E008A4
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 09:06:38 -0800 (PST)
+Received: by mail-ot0-f177.google.com with SMTP id 44so10318620otk.8
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 09:06:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=4DpoWse5RrxPNsE1qinQR7aaG8Q7o+sDzXdUyzC37IQ=;
+	b=DOOWAXruJknoqqCY0SrN2GS7MtRbo1TilgY6PBg1r8v/5QcKPoTxFVKe+GZ/FJDAgn
+	MMSbK9dI1aNnCHH33rxCSs71SzKvA+AuBmriVir9b5ddLKcLVX3P6xT7VoZ1ggrblBtf
+	OlXi5ACHk+/9c5BvHDfQt28ocsZQ7P7Ug7QSJwwUCvPAuFuXb2F4yjGA+Tdb8Dc94Blx
+	DJ4/wxg8ZQYriwZ0vz2AvEFHxoBsNwt6OV635/LryfOu54Q5ONVpM9YdWo09Ic7xUqHP
+	H9izls6g+aWBQ+qp0qcQ8pQwhsHOGb1v9ttbKGBU5pZQ00hywPZgBlByfPFP2GGeOPZA
+	EFbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=4DpoWse5RrxPNsE1qinQR7aaG8Q7o+sDzXdUyzC37IQ=;
+	b=tZZkQqzwnuo1GmwPYVJrk3fr8ZFEMPbI0fSCCnm32n8u7P1+KvYK9yxL73V3SyQtrT
+	IPcDHLmTdNR+fxyjgY+9djRGrH4n+Rsw/169sL83GojETvYo2zONhsW2hBHOp9fwXQmu
+	oXbZCSub7txI9ckmwnSG7Nhcdvw4tFOmcnWxJvp+ibfrmu/h+szOdn3Wk8v/zwDPWvVE
+	mcCvNCdus7ONNHIWdcg77VellBv8jaC5empx3bzrzqmPD5Z5ph32TWsHTV+fF3UKRRpb
+	k9HGJhRmzixlcjk0g4qx6iwB8SYRLK8lVzlG9q/TZI1VkwvwMG0Dhk0zCEyOczaEbckE
+	TsiQ==
+X-Gm-Message-State: AKwxytdWv4cygtnT6MqyxUiiuxHtrO8v88Nzt0lU+/pbvRGGTDfOrIU9
+	ozkPtzxJpWaAn9vxeQ7PR29SAqXdPw/YagnyKlyjDw==
+X-Google-Smtp-Source: ACJfBotSsrDhbgHUP9C8Rgqk0UcLfM4zcgZKt+pugKryite1Nkc1CctojXa12GnDyrWz7Rut+qE2s6Zg39iAqaL8bek=
+X-Received: by 10.157.80.170 with SMTP id b42mr8150265oth.305.1516035998005;
+	Mon, 15 Jan 2018 09:06:38 -0800 (PST)
 MIME-Version: 1.0
-References: <1970961286.255227.1515871974890.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.11214 YahooMailBasic Mozilla/5.0 (Linux; Android 6.0.1;
-	ASUS_Z00LD Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko)
-	Chrome/56.0.2924.87 Mobile Safari/537.36
-X-Mailman-Approved-At: Mon, 15 Jan 2018 08:05:32 -0800
-Subject: How to install dtb file to boot directory
+Received: by 10.157.4.33 with HTTP; Mon, 15 Jan 2018 09:06:37 -0800 (PST)
+From: Jerry Lian <jerry.lian@gmail.com>
+Date: Mon, 15 Jan 2018 12:06:37 -0500
+Message-ID: <CAE0QtjMS74TXxcKHV-2877kcnqSzKcw1hktGvecnAmJ6-1e+2w@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Yocto SDK: how to rebuild *.dtb? (fatal error: dt-bindings/gpio/gpio.h: No such file or directory)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Mostafa Farzane <farzanemostafa@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,9 +68,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Jan 2018 19:32:57 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 15 Jan 2018 17:06:39 -0000
+Content-Type: multipart/alternative; boundary="f40304395ad820c36b0562d3a374"
 
-I sucssesfully installed kernel to boot directory by comment out RDEPENDS_kernel-base="" line in local.conf. now i need to install dtb file to boot directory as well. I tried use do_install_append in my kernel recipe but no success. Any suggestion?
+--f40304395ad820c36b0562d3a374
+Content-Type: text/plain; charset="UTF-8"
 
+I installed yocto SDK for my beaglebone black.
+But when I try to rebuild am335x-boneblack.dtb, I got error:
+
+"arch/arm/boot/dts/am33xx.dtsi:11:10: fatal error:
+dt-bindings/gpio/gpio.h: No such file or directory"
+
+Any hint? Thanks!
+
+Jerry
+
+--f40304395ad820c36b0562d3a374
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><pre>I installed yocto SDK for my beaglebone black.<br>But=
+ when I try to rebuild am335x-boneblack.dtb, I got error:<br><br>&quot;arch=
+/arm/boot/dts/am33xx.dtsi:11:10: fatal error: dt-bindings/gpio/gpio.h: No s=
+uch file or directory&quot;<br><br></pre><pre>Any hint? Thanks!<br></pre><p=
+re>Jerry<br></pre></div>
+
+--f40304395ad820c36b0562d3a374--
