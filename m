@@ -1,34 +1,91 @@
-Return-Path: <Kai.Kang@windriver.com>
+Return-Path: <MANJUKUM@xilinx.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62D66E00B5F; Sun, 14 Jan 2018 22:06:28 -0800 (PST)
+	id 75A76E00DE3; Sun, 14 Jan 2018 22:52:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=unavailable
+	version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.40.85 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50937E007B7
-	for <yocto@yoctoproject.org>; Sun, 14 Jan 2018 22:06:26 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w0F66Q1v019262
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 14 Jan 2018 22:06:26 -0800 (PST)
-Received: from pek-hostel-deb02.wrs.com (128.224.153.152) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.361.1; Sun, 14 Jan 2018 22:06:21 -0800
-From: <kai.kang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 15 Jan 2018 13:44:44 +0800
-Message-ID: <20180115054444.4866-1-kai.kang@windriver.com>
-X-Mailer: git-send-email 2.14.1
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 1092 seconds by postgrey-1.32 at yocto-www;
+	Sun, 14 Jan 2018 22:52:53 PST
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+	(mail-co1nam03on0085.outbound.protection.outlook.com [104.47.40.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3348AE00A75
+	for <yocto@yoctoproject.org>; Sun, 14 Jan 2018 22:52:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=DuUU+CdV3YNUF1zvq4ZHNeUIsHuTp5aLic+df3XsiM4=;
+	b=P8we9orcjoOzRDz36vs183wZzgneU3QPGvB9Qd39P18AtbpMB2bi2fYV8cuOL+qFkR4QxEu3TAObWSIrtSo5/Cxdcxp+QOwQY1uljsQQ7WBxUI37Yne5feVesQabJaX2GZIH+3Wzb4WEElXhl/MRqv37Tz9ZJNCtAfSjmvRb3xg=
+Received: from BY2PR02MB347.namprd02.prod.outlook.com (10.141.140.149) by
+	BY2PR02MB443.namprd02.prod.outlook.com (10.141.144.147) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.386.5; Mon, 15 Jan 2018 06:20:29 +0000
+Received: from BY2PR02MB347.namprd02.prod.outlook.com ([10.141.140.149]) by
+	BY2PR02MB347.namprd02.prod.outlook.com ([10.141.140.149]) with mapi id
+	15.20.0407.009; Mon, 15 Jan 2018 06:20:29 +0000
+From: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>
+To: "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "meta-xilinx@yoctoproject.org"
+	<meta-xilinx@yoctoproject.org>
+Thread-Topic: liblzma: Memory allocation failed on do_package_rpm 
+Thread-Index: AdONyO7F0CbDbyZMTvmUCBS8jdjlFQ==
+Date: Mon, 15 Jan 2018 06:20:28 +0000
+Message-ID: <BY2PR02MB347697DA9F50BFD39015C3BB9EB0@BY2PR02MB347.namprd02.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=MANJUKUM@xilinx.com; 
+x-originating-ip: [73.231.161.32]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; BY2PR02MB443;
+	7:MX6D0wrLV3GN6TepZXyXY3G5aOHG9dlFnMmOPbWwG+7HGneDarRAYE792SMftDHnZ+km87yRddCbHGNu9S6Dk0jWUiqDbHC8q8yQvFQ/D+s52q7YOh09QOObZo8tKNFsXOGRG9aNNSXfrTMUYaiBq1fWxR6vrogNXb84tSY3AxLhIkBiAjYNQJ6cmPi4qWlELl6N0emjd9gk/vOcPjqduhMGpgBHcblxOE5VYRkhLKjaiP7BimbEyR+dIFvFkG5Y
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 851e7e0d-7acf-40d2-a986-08d55be012e0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(48565401081)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
+	SRVR:BY2PR02MB443; 
+x-ms-traffictypediagnostic: BY2PR02MB443:
+x-microsoft-antispam-prvs: <BY2PR02MB443CC0AC4EC5EFB3162CDD6B9EB0@BY2PR02MB443.namprd02.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040470)(2401047)(5005006)(8121501046)(93006095)(93001095)(3002001)(3231023)(944501161)(10201501046)(6055026)(6041268)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123564045)(20161123560045)(20161123562045)(6072148)(201708071742011);
+	SRVR:BY2PR02MB443; BCL:0; PCL:0;
+	RULEID:(100000803101)(100110400095); SRVR:BY2PR02MB443; 
+x-forefront-prvs: 0553CBB77A
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(366004)(396003)(39860400002)(376002)(39380400002)(346002)(189003)(199004)(105586002)(6436002)(74316002)(68736007)(81166006)(81156014)(14454004)(9686003)(72206003)(110136005)(4743002)(106356001)(478600001)(55016002)(66066001)(99286004)(2501003)(5890100001)(2201001)(86362001)(305945005)(77096006)(8676002)(316002)(102836004)(25786009)(6506007)(6116002)(3846002)(7736002)(7696005)(33656002)(3660700001)(97736004)(2906002)(59450400001)(5660300001)(53936002)(3280700002)(8936002)(2900100001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BY2PR02MB443;
+	H:BY2PR02MB347.namprd02.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: xilinx.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: z5awPFAMYy+FuFZL6/uc4dTlcd0RKHf0UlUHzniLtknpO4cVX7XLuqjoVuoJRL3KgaXxHxHDKXC5TBhFaFW/Rg==
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Subject: [meta-cgl][PATCH] cluster-glue: update EXTRA_OECONF and RDEPENDS
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 851e7e0d-7acf-40d2-a986-08d55be012e0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2018 06:20:28.8433 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR02MB443
+Subject: liblzma: Memory allocation failed on do_package_rpm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,41 +97,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jan 2018 06:06:28 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 15 Jan 2018 06:52:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Kai Kang <kai.kang@windriver.com>
+All,
 
-cluster-glue refers to some resources located in $OCF_ROOT_DIR which is
-provided by package cluster-resource-agents. But these resources are
-installed to ${libdir}/ocf by previous commit. So update EXTRA_OECONF to
-set OCF_ROOT_DIR with ${libdir}/ocf too.
+Has anybody seen this error?
 
-Update RDEPENDS of ${PN}-lrmtest as well.
+Finished binary package job, result 0, filename (null)
+error: create archive failed: cpio: write failed - Cannot allocate memory
+error: liblzma: Memory allocation failederror: liblzma: Memory allocation f=
+ailedFinished binary package job, result 2,
 
-Signed-off-by: Kai Kang <kai.kang@windriver.com>
----
- meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb | 2 ++
- 1 file changed, 2 insertions(+)
+.......
 
-diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
-index dfd6a14..c8a3ff6 100644
---- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
-+++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
-@@ -38,6 +38,7 @@ PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir},
- EXTRA_OECONF = "--with-daemon-user=${HA_USER} \
-                 --with-daemon-group=${HA_GROUP} \
-                 --disable-fatal-warnings \
-+                --with-ocf-root=${libdir}/ocf \
-                "
- 
- CACHED_CONFIGUREVARS="ac_cv_path_XML2CONFIG=0"
-@@ -135,3 +136,4 @@ RDEPENDS_${PN} += "perl"
- RDEPENDS_${PN}-plugin-stonith2 += "bash"
- RDEPENDS_${PN}-plugin-stonith-external += "bash python perl"
- RDEPENDS_${PN}-plugin-stonith2-ribcl += "python"
-+RDEPENDS_${PN}-lrmtest += "${VIRTUAL-RUNTIME_getopt} ${PN}-plugin-raexec"
--- 
-2.14.1
+RPM build errors:
+|     Deprecated external dependency generator is used!
+|     Deprecated external dependency generator is used!
+|     Deprecated external dependency generator is used!
+|     Deprecated external dependency generator is used!
+|     Deprecated external dependency generator is used!
+|     Deprecated external dependency generator is used!
+|     Deprecated external dependency generator is used!
+|     Deprecated external dependency generator is used!
+|     Deprecated external dependency generator is used!
+|     liblzma: Memory allocation failed    liblzma: Memory allocation faile=
+d    liblzma: Memory allocation failed    liblzma: Memory allocation failed=
+    liblzma: Memory allocation failed    liblzma: Memory allocation failed
 
+This happens in do_package_rpm task on various recipes, coreutils/libgpg/di=
+ffutils etc.
+
+The host machine has good amount on memory, 256G to be exact. When I see th=
+e error and issue free -h command, I still see ~120G free memory available.
+This is a RHEL 7.2 machine and I am running rocko baseline.
+
+Any reason why this would happen? Where should I look to fix this issue?
+
+Thanks,
+Manju
+This email and any attachments are intended for the sole use of the named r=
+ecipient(s) and contain(s) confidential information that may be proprietary=
+, privileged or copyrighted under applicable law. If you are not the intend=
+ed recipient, do not read, copy, or forward this email message or any attac=
+hments. Delete this email message and any attachments immediately.
 
