@@ -1,6 +1,6 @@
-Return-Path: <colin.helliwell@ln-systems.com>
+Return-Path: <prvs=0554c38a12=alan.levy@plextek.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D09EEE00E0B; Mon, 15 Jan 2018 23:21:07 -0800 (PST)
+	id 02E1CE00E22; Mon, 15 Jan 2018 23:51:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,51 +8,39 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [212.227.17.10 listed in list.dnswl.org]
+	*      [62.254.222.163 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 304 seconds by postgrey-1.32 at yocto-www;
-	Mon, 15 Jan 2018 23:21:06 PST
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F12BE00B5F
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 23:21:05 -0800 (PST)
-Received: from null ([172.19.246.16]) by mrelayeu.kundenserver.de (mreue103
-	[212.227.15.179]) with ESMTPSA (Nemesis) id 0MhO2U-1eFyrq1DsI-00Mals;
-	Tue, 16 Jan 2018 08:16:00 +0100
-Date: Tue, 16 Jan 2018 07:16:00 +0000 (GMT)
-From: Colin Helliwell <colin.helliwell@ln-systems.com>
-To: Andre McCurdy <armccurdy@gmail.com>
-Message-ID: <305199908.149295.1516086960139@email.1and1.co.uk>
-In-Reply-To: <CAJ86T=V6f6UzzQcj9PFcGLmUaUxWAUY_Hrn0VSabvZ076152pQ@mail.gmail.com>
-References: <092e01d38e13$32290bf0$967b23d0$@ln-systems.com>
-	<CAJ86T=V6f6UzzQcj9PFcGLmUaUxWAUY_Hrn0VSabvZ076152pQ@mail.gmail.com>
+X-Greylist: delayed 122 seconds by postgrey-1.32 at yocto-www;
+	Mon, 15 Jan 2018 23:51:00 PST
+Received: from mailgate.plextek.co.uk (mailgate.plextek.co.uk [62.254.222.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7610E00C0E
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 23:51:00 -0800 (PST)
+Received: from plextek-exch1.plextek.lan ([10.10.0.152]:39070)
+	by mailgate.plextek.co.uk with esmtps (TLSv1:AES256-SHA:256)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <alan.levy@plextek.com>)
+	id 1ebLzE-0001zn-0o; Tue, 16 Jan 2018 07:48:48 +0000
+Received: from PLEXTEK-EXCH1.plextek.lan (10.10.0.152) by
+	PLEXTEK-EXCH1.plextek.lan (10.10.0.152) with Microsoft SMTP Server
+	(TLS) id 15.0.847.32; Tue, 16 Jan 2018 07:48:47 +0000
+Received: from PLEXTEK-EXCH1.plextek.lan ([fe80::35f8:d18b:b59a:bd7e]) by
+	PLEXTEK-EXCH1.plextek.lan ([fe80::35f8:d18b:b59a:bd7e%18]) with mapi id
+	15.00.0847.030; Tue, 16 Jan 2018 07:48:29 +0000
+From: Alan Levy <alan.levy@plextek.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Halt problem
+Thread-Index: AdOOnJE2kZrNM/jgRjKxm66IfZXxSw==
+Date: Tue, 16 Jan 2018 07:48:29 +0000
+Message-ID: <c6a26befa32d4285a034c49304494f61@PLEXTEK-EXCH1.plextek.lan>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.10.11.254]
 MIME-Version: 1.0
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.8.4-Rev20
-X-Originating-Client: open-xchange-appsuite
-X-Provags-ID: V03:K0:ruUBsg8BIYxaEWREiQMgcnkpFRDu94qku8m9YUFHHb7mVdB16Mm
-	Ps1bRV+b1+JcHtsiN4Ni9JsG5IHnINTbAFftnIUQD1FyNcFbOtkdhStHhUCyusIB64UFQT1
-	yoJ3krj4SAaMrRjP/er+tlHpFQl+CMJ54zj5qdgPd1Z6KcQz9tMKXer/+QxiOwH7G6CW/tp
-	li41rpQNB5QqeZa+DEqjg==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:WvCmDfdyiHw=:9FyqBq1nnlj/cwdbnDE9lO
-	GITrwrHmLCxbKaNeaBMB1PvOi0iiD4Oz6yrfxg4dYzMYu+QZ45OC0jO4lKlb5LBJ40IpkYq2B
-	O7zlBz3/adCE0jdDz/RGmVKteCSVgwgFn0zOk20ScmH0lgExd+T/LiHj1OoVe8f6kuL0X6HkA
-	saDkmK4V+HVSYXhMNa3qrDmvDMnOOx4ngq14gkfFgWhmyPX0PD4LBK402LlFU1trwx+X40588
-	tiQ+PCyhJ1DKQXht3eUHlDK+rShyPtTlBUHhVBd/LjhHsUcNUOatXCxfMHPpqrJZZcGE5/St+
-	iw6pZ/HXHFMvxTPWMAB/CFR2ohVv+zYDONZML431n7lTi1UDF62WoNx2K5FF1shwCbQxNrrUi
-	xMeXyf/dg3r5iYeRUYVdYZ7DV6tLNqvHB/26YGlkn3N3nimWErJlOAFURCZcGKzHUGr1srhpO
-	P3ZIEG7DH0QwtBbzdndNWLeHHfV8H6fo/SLS8P+pk/UsxOWZS9e0kIKjaG4GWbDQWqY5xpFGl
-	KlV531njMv2yTWzYMn8Ir+R3Yb6lWKxRoNBsfe4+3eERE09Fqvgxp/Y7vvwPovF7ixZVRdYAo
-	RdJLhKNTzRfR1DFgHyQwwLcuSH0bB9hRY1CbAGpqYGvdg3gx/mTvukhAe37RaPHIyE686fX1M
-	EQtdLOnSy4HZPGGzFhG6Bx6uxzON+sNA1UrOfbZXM85/WRevuRnN0Bjhhx4pAAOJMAmb2PZnp
-	+wFxS4wPVzoYYBU8+QH97zXoO8tcvfTsUoz0FZki2n5rMyfKGy6xY6CX130=
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: PROVIDES problem building u-boot variants
+Subject: Re: Halt problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Colin Helliwell <colin.helliwell@ln-systems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,39 +49,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 07:21:07 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 16 Jan 2018 07:51:02 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Shutdown is supposed to terminate all processes/threads so it's probably no=
+t about the watchdog daemon. It sounds more like the classic distro was dis=
+abling the hardware watchdog during shutdown and your new distro doesn't do=
+ that. Try comparing the kernel watchdog drivers in the two distros because=
+ that's the most likely culprit.
+
+=3D=3D=3D
+ALAN LEVY, Lead Consultant, Embedded Systems
+
+Plextek Consulting, The Plextek Building, London Road, Great Chesterford, S=
+affron Walden, CB10 1NY, UK
+T: +44 (0) 1799 533200    E: alan.levy@plextek.com  W: www.plextek.com
 
 
-> On 15 January 2018 at 20:01 Andre McCurdy wrote:
-> 
-> 
-> On Mon, Jan 15, 2018 at 7:12 AM, wrote:
-> > Let's see if I can explain this well...
-> > 
-> > I created a recipe to build a u-boot variant (for prod'n programming) -
-> > "u-boot-PLATFORM-mfg-sec.bb" - which has :
-> > 
-> > require u-boot-PLATFORM.inc
-> > UBOOT_MACHINE = "tx6s-8035_mfg_sec_config"
-> > SRC_URI += "file://tx6s-8035_mfg_sec_defconfig"
-> > 
-> > And 'bitbake u-boot-PLATFORM-mfg-sec' works ok with this.
-> > 
-> > Now I want to split this out into two different variants, for different
-> > cpu's.
-> > 
-> > So I begin by renaming the recipe to "u-boot-PLATFORM_tx6s-mfg-sec.bb",
-> > But 'bitbake u-boot-PLATFORM_tx6s-mfg-sec' throws:
-> >  "Nothing PROVIDES 'u-boot- PLATFORM_tx6s-mfg-sec'"
-> > 
-> > Can't spot why this simple renaming is breaking things...?
-> 
-> You tried to use an underscore in the recipe name.
-> 
-> u-boot-PLATFORM_tx6s-mfg-sec.bb will be treated as version
-> "tx6s-mfg-sec" of the "u-boot-PLATFORM" recipe.
+-----Original Message-----
 
-Ah, of course. Thanks.
+>Date: Mon, 15 Jan 2018 16:39:40 +0100
+>From: Ryan Meulenkamp <Ryan.Meulenkamp@nedap.com>
+>To: yocto@yoctoproject.org
+>Subject: [yocto] Halt problem
+>Message-ID: <f635d9dd-76fb-fc81-5dc0-fda98d50f35e@nedap.com>
+>Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed
+>
+>Hi y'all,
+>
+>I ran into a problem using shutdown -h (or halt) on an openembedded-core
+> (yocto) distro running on the Atmel at91sam9g45.
+>
+>We used to run an openembedded-classic (angstr?m) based OS with kernel ver=
+sion 2.6.35.14+. Here, halting the system would cause it to shutdown withou=
+t resetting, or >turning the power off, to await a manual reset.
+>
+>Now we are building a new distro based on openembedded-core and yocto.=20
+>Halting the system now causes a watchdog intervention. I tried all differe=
+nt arguments for both the shutdown and the halt command. It looks if though=
+ the classic based >distro left the watchdog daemon running during a halt.
+>
+>What could be the cause of this problem? In what direction should I look (=
+e.g. kernel config, sysvinit config, openembedded config, processor specifi=
+c code etc.)?
+>
+>I'm not sure if this is the right mailing list to ask this question, but I=
+ guess one of you could point me in the right direction.
+>
+>Thanks in advance and kind regards,
+>
+>Ryan Meulenkamp
+
 
