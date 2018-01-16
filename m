@@ -1,6 +1,6 @@
 Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF33BE00DCA; Mon, 15 Jan 2018 17:51:31 -0800 (PST)
+	id 678FFE00D7E; Mon, 15 Jan 2018 17:52:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,31 +8,30 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 549BBE008A4
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 17:51:30 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47993E00E89
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 17:52:31 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w0G1pTBr018372
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w0G1qUjI010016
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 15 Jan 2018 17:51:29 -0800 (PST)
+	Mon, 15 Jan 2018 17:52:30 -0800 (PST)
 Received: from localhost.corp.ad.wrs.com (128.224.162.229) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.361.1; Mon, 15 Jan 2018 17:51:29 -0800
+	14.3.361.1; Mon, 15 Jan 2018 17:52:29 -0800
 To: <yocto@yoctoproject.org>, <paul.eggleton@linux.intel.com>
-References: <cover.1514957938.git.liezhi.yang@windriver.com>
-	<4642b69fffb6ec6ee24cf5e2af1f8d7473c04e0e.1514957938.git.liezhi.yang@windriver.com>
+References: <cover.1514957220.git.liezhi.yang@windriver.com>
 From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <cd0474cc-e848-d55b-d79c-9facb104b465@windriver.com>
-Date: Tue, 16 Jan 2018 09:51:35 +0800
+Message-ID: <3d21ce1d-ee48-4645-8161-96edab751d54@windriver.com>
+Date: Tue, 16 Jan 2018 09:52:35 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.5.0
 MIME-Version: 1.0
-In-Reply-To: <4642b69fffb6ec6ee24cf5e2af1f8d7473c04e0e.1514957938.git.liezhi.yang@windriver.com>
-Subject: Re: [layerindex-web][PATCH 1/5] utils.py: fix remove obsolete dependencies
+In-Reply-To: <cover.1514957220.git.liezhi.yang@windriver.com>
+Subject: Re: [layerindex-web][PATCH 0/5] update.py: performance improve and 2 fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,53 +43,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 01:51:31 -0000
+X-List-Received-Date: Tue, 16 Jan 2018 01:52:51 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
 Hi Paul,
 
-Do you have any comments, please ?
+Sorry, this is the cover letter, I should reply to this one just now.
 
 // Robert
 
 On 01/03/2018 01:42 PM, Robert Yang wrote:
-> The obsolete dependency is the one which is in database but not in
-> conf/layer.conf anymore. The old code had a problem for newly created
-> layerbranch, the new layerbranch has no dependencies, so no need remove. And it
-> had a side effect was that when need_remove was cleaned up, it would be set
-> again in the next for loop, thus might wrongly remove dependencies. This patch
-> can fix the problem.
+> Hi Paul,
 > 
-> Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
-> ---
->   layerindex/utils.py | 6 ++----
->   1 file changed, 2 insertions(+), 4 deletions(-)
+> This email contains two parts:
+> - The first 2 are bug fixes
+> - The other 3 are performance improvements, I have 124 layers,
+>    the "update.py -b <branch>" needs about 9m20s to finish the running when everything is
+>    update, and we have several branches, we need them to run in periodically
+>    (e.g., per 30 mins, the short the better), so one branch 9m20s is really a problem.
+>    Only about 1m43s are needed with these improvements when set PARALLEL_JOBS to 10:
+>    update.py: fetch repos parallelly # Saved 2 mins
+>    update_layer.py: use it as a module # Saved 5 mins
+>    update_layer.py: only call init_parser when needed # Saved 1 min
 > 
-> diff --git a/layerindex/utils.py b/layerindex/utils.py
-> index e58d8f6..08a4001 100644
-> --- a/layerindex/utils.py
-> +++ b/layerindex/utils.py
-> @@ -122,7 +122,7 @@ def _add_dependency(var, name, layerbranch, config_data, logger=None, required=T
->           logger.debug('Error parsing %s_%s for %s\n%s' % (var, var_name, layer_name, str(vse)))
->           return
->   
-> -    need_remove = None
-> +    need_remove = LayerDependency.objects.filter(layerbranch=layerbranch).filter(required=required)
->       for dep, ver_list in list(dep_dict.items()):
->           ver_str = None
->           if ver_list:
-> @@ -142,9 +142,7 @@ def _add_dependency(var, name, layerbranch, config_data, logger=None, required=T
->                   continue
->   
->           # Preparing to remove obsolete ones
-> -        if not need_remove:
-> -            need_remove = LayerDependency.objects.filter(layerbranch=layerbranch).filter(required=required).exclude(dependency=dep_layer)
-> -        else:
-> +        if need_remove:
->               need_remove = need_remove.exclude(dependency=dep_layer)
->   
->           # Skip existing entries.
+> // Robert
+> 
+> The following changes since commit fa0b01082fb0596959841e95af8c516ae3f267a7:
+> 
+>    admin: fix dependency display and search (2017-12-21 16:14:17 +1300)
+> 
+> are available in the git repository at:
+> 
+>    git://git.pokylinux.org/poky-contrib rbt/LI
+>    http://git.pokylinux.org/cgit.cgi//log/?h=rbt/LI
+> 
+> Robert Yang (5):
+>    utils.py: fix remove obsolete dependencies
+>    update.py: make sure oe-core is fetched
+>    update.py: fetch repos parallelly
+>    update_layer.py: use it as a module
+>    update_layer.py: only call init_parser when needed
+> 
+>   layerindex/update.py       | 176 +++++++++++++++++++++++----------------------
+>   layerindex/update_layer.py | 146 +++++++++++--------------------------
+>   layerindex/utils.py        |   6 +-
+>   settings.py                |   2 +
+>   4 files changed, 137 insertions(+), 193 deletions(-)
 > 
 
