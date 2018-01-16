@@ -1,39 +1,70 @@
-Return-Path: <anuj.mittal@intel.com>
+Return-Path: <ka6sox@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C113E00DD2; Mon, 15 Jan 2018 19:14:54 -0800 (PST)
+	id 30AE4E00E22; Mon, 15 Jan 2018 19:57:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ka6sox[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.42 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FDDFE008A4
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 19:14:52 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	15 Jan 2018 19:14:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,366,1511856000"; d="scan'208";a="10531456"
-Received: from anmitta2-mobl1.png.intel.com (HELO [10.221.21.145])
-	([10.221.21.145])
-	by fmsmga007.fm.intel.com with ESMTP; 15 Jan 2018 19:14:52 -0800
-To: yocto@yoctoproject.org
-References: <066501d38c90$f0151890$d03f49b0$@ln-systems.com>
-From: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <51fda8a8-ee11-ebf7-1fb2-b25b9f35a9b9@intel.com>
-Date: Tue, 16 Jan 2018 11:14:51 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f42.google.com (mail-it0-f42.google.com
+	[209.85.214.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E2AAE008A4
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 19:57:49 -0800 (PST)
+Received: by mail-it0-f42.google.com with SMTP id x42so3268057ita.4
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 19:57:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=82sJ9c0xvLXvltD6fnPM4MNYoURttfjEKhqOkrOD/Dc=;
+	b=Vhw8rTVAlRNraDCLcW9THXnB8FflXwROdSaAlvcPO4+3yjvMbeiVVQkqJW2a8EFaWs
+	pOfTaglyeNIZzGJnaBFC+03MME0etCPNwurnMIB4fyRvdFPmuKYbEJhXWjuA7PaPmUjG
+	qFg9oykOyUzT5AVV1HfGpc+K4qIUtg9Kpx928LikRVIiQm8XKTxA4Ws495SDNguBVAKr
+	c+eNCbXeoNMnnsZsVvG8ZD5tM/nFYeONHAL9n0KYgAZODVqEtyQurA0C8dQNTfIBaEel
+	HeSNb82+fp+BhIf4Hajk+tXvBla0LTuIC0O40WjfiT1Hj19vD35h7p5GrxGM3hmWVFIf
+	+mDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=82sJ9c0xvLXvltD6fnPM4MNYoURttfjEKhqOkrOD/Dc=;
+	b=nWtQmSADQ5OwLc1BQjzpMC3lxL+gdVAslN5YXQMx+vn/j5VNTU5J6jv7xmZC+TUYMG
+	wySxEoRcNw0M4+5YlMPnA6j+ekvE5PZ8GBvImGyZDiURqmCabzBly4VLgZiBYQzZgS/l
+	4b5ymJQV3meddWTgJX2+74aZNI9p1YNBsmVeBkYEXCxc4wGySfgMeEBiE36WVYXcRdU2
+	bKLqOtWNRKlVLtQyXYmBInokU8Bv5SbadbLk7mhoq91kYX/EXc9ERkNVlJjx3Lw1QSrK
+	MoI7YR0VxK1DJvgnikwSEf3V+7fZnccgYXdQNFij4cEhRZnewOQ3cYBGebGD74QrlrWV
+	TRpg==
+X-Gm-Message-State: AKwxytc/0SoQo8KkJ9PXEfqmcoJdSsochBe4tno97p9xXFpKqVi+YHIx
+	9+tuA9zK+cVp5w2QS5/nwREtA4OgkkLT9lLicfU=
+X-Google-Smtp-Source: ACJfBos6kS8CuHmhi9RIrajtghoFAIQExEVDMLdhADOfgDzYdXxYPXiNWr8CzSmc/blC/P7Sq8l5ldL+KaZt5i7c6cE=
+X-Received: by 10.36.28.20 with SMTP id c20mr17135227itc.142.1516075068990;
+	Mon, 15 Jan 2018 19:57:48 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <066501d38c90$f0151890$d03f49b0$@ln-systems.com>
-Subject: Re: Specifying MACHINE when setting up build environment
+Received: by 10.36.26.5 with HTTP; Mon, 15 Jan 2018 19:57:48 -0800 (PST)
+In-Reply-To: <CAGAf8Lws8HfvDvMvdpgXyTvKaVpmf5a1UUTbBc2OrTpw=mgPNA@mail.gmail.com>
+References: <137d31ae-329e-53ff-f495-259168b787d5@balister.org>
+	<CAGAf8Lws8HfvDvMvdpgXyTvKaVpmf5a1UUTbBc2OrTpw=mgPNA@mail.gmail.com>
+From: Tom King <ka6sox@gmail.com>
+Date: Mon, 15 Jan 2018 19:57:48 -0800
+Message-ID: <CAHQecY5FEt0jMY97Cfq7tR4KAETqied0t3zfFgXw=J5YBSz53A@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: openembedded-core <openembedded-core@lists.openembedded.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: OpenEmbedded developer meeting Sunday before ELC in Portland
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,23 +76,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 03:14:54 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 16 Jan 2018 03:57:50 -0000
+Content-Type: multipart/alternative; boundary="001a1144b54af0a9b90562dcbb1e"
 
-On 01/14/2018 01:07 AM, colin.helliwell@ln-systems.com wrote:
-> Is there a way to specify what MACHINE is put into local.conf when first
-> setting up the build directory with oe-init-build-env?
-> I have my own TEMPLATECONF which I use, but I'd like to be able to set the
-> MACHINE on the command line rather than having to then modify local.conf
-> 
-> 
+--001a1144b54af0a9b90562dcbb1e
+Content-Type: text/plain; charset="UTF-8"
 
-You can specify a local.conf.sample and have TEMPLATECONF point to the
-directory with that file in it. Please see scripts/oe-setup-builddir in
-poky/meta to see how it is picked up.
+What time...a number of us are headed up from SCaLE sunday morning to ELC...
 
-Thanks,
-Anuj
+its only about 2.5hrs to get there but early will leave a number of us late.
 
+T
+
+On Mon, Jan 15, 2018 at 3:41 PM, Zoran Stojsavljevic <
+zoran.stojsavljevic@gmail.com> wrote:
+
+> > March 11, 2108, Portland
+>
+> I guess, by this date yocto community will experience release 24.7 or
+> similar... If?! ;-)
+>
+> Zoran
+> _______
+>
+> On Mon, Jan 15, 2018 at 11:30 PM, Philip Balister <philip@balister.org>
+> wrote:
+>
+>> We are setting up an OpenEmbedded developer meeting on the Sunday before
+>> ELC. More information to follow, I just wanted to make sure everyone had
+>> the date before making ELC travel arrangements.
+>>
+>> March 11, 2108, Portland
+>>
+>> Philip
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a1144b54af0a9b90562dcbb1e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">What time...a number of us are headed up from SCaLE sunday=
+ morning to ELC...<div><br></div><div>its only about 2.5hrs to get there bu=
+t early will leave a number of us late.</div><div><br></div><div>T</div></d=
+iv><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Jan 15=
+, 2018 at 3:41 PM, Zoran Stojsavljevic <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojsavljevic@gm=
+ail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D=
+"ltr"><div><div>&gt; March 11, 2108, Portland<br><br></div>I guess, by this=
+ date yocto community will experience release 24.7 or similar... If?! ;-)<b=
+r><br></div>Zoran<br>_______<br></div><div class=3D"gmail_extra"><br><div c=
+lass=3D"gmail_quote"><span class=3D"">On Mon, Jan 15, 2018 at 11:30 PM, Phi=
+lip Balister <span dir=3D"ltr">&lt;<a href=3D"mailto:philip@balister.org" t=
+arget=3D"_blank">philip@balister.org</a>&gt;</span> wrote:<br></span><block=
+quote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc=
+ solid;padding-left:1ex"><span class=3D"">We are setting up an OpenEmbedded=
+ developer meeting on the Sunday before<br>
+ELC. More information to follow, I just wanted to make sure everyone had<br=
+>
+the date before making ELC travel arrangements.<br>
+<br>
+March 11, 2108, Portland<br>
+</span><span class=3D"m_2291923091251816416HOEnZb"><font color=3D"#888888">=
+<br>
+Philip<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
+br>
+</font></span></font></span></blockquote></div><br></div>
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
+
+--001a1144b54af0a9b90562dcbb1e--
