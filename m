@@ -1,43 +1,58 @@
-Return-Path: <petter@technux.se>
+Return-Path: <colin.helliwell@ln-systems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E230AE00DC9; Mon, 15 Jan 2018 22:40:36 -0800 (PST)
+	id D09EEE00E0B; Mon, 15 Jan 2018 23:21:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [195.74.38.227 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.227.17.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from bin-vsp-out-01.atm.binero.net (vsp-unauthed02.binero.net
-	[195.74.38.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF858E00B5F
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 22:40:34 -0800 (PST)
-X-Halon-ID: 0a581246-fa88-11e7-ab1b-005056917a89
-Authorized-sender: petter@technux.se
-Received: from webmail.binero.se (unknown [195.74.38.9])
-	by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
-	id 0a581246-fa88-11e7-ab1b-005056917a89;
-	Tue, 16 Jan 2018 07:39:45 +0100 (CET)
+X-Greylist: delayed 304 seconds by postgrey-1.32 at yocto-www;
+	Mon, 15 Jan 2018 23:21:06 PST
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F12BE00B5F
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 23:21:05 -0800 (PST)
+Received: from null ([172.19.246.16]) by mrelayeu.kundenserver.de (mreue103
+	[212.227.15.179]) with ESMTPSA (Nemesis) id 0MhO2U-1eFyrq1DsI-00Mals;
+	Tue, 16 Jan 2018 08:16:00 +0100
+Date: Tue, 16 Jan 2018 07:16:00 +0000 (GMT)
+From: Colin Helliwell <colin.helliwell@ln-systems.com>
+To: Andre McCurdy <armccurdy@gmail.com>
+Message-ID: <305199908.149295.1516086960139@email.1and1.co.uk>
+In-Reply-To: <CAJ86T=V6f6UzzQcj9PFcGLmUaUxWAUY_Hrn0VSabvZ076152pQ@mail.gmail.com>
+References: <092e01d38e13$32290bf0$967b23d0$@ln-systems.com>
+	<CAJ86T=V6f6UzzQcj9PFcGLmUaUxWAUY_Hrn0VSabvZ076152pQ@mail.gmail.com>
 MIME-Version: 1.0
-Date: Tue, 16 Jan 2018 07:40:24 +0100
-From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
-To: Yocto <yocto@yoctoproject.org>, <ngthanh.vu94@gmail.com>
-Organization: Technux
-Mail-Reply-To: <petter@technux.se>
-In-Reply-To: <CAGJSYqmEzCchhkysMB9ruCEzcJ6H7eSeuu3=LbcaLR_Jwe8KHg@mail.gmail.com>
-References: <CAGJSYqmEzCchhkysMB9ruCEzcJ6H7eSeuu3=LbcaLR_Jwe8KHg@mail.gmail.com>
-Message-ID: <475569826765f982629209ea5ba3e068@technux.se>
-X-Sender: petter@technux.se
-User-Agent: Binero Webmail/0.8.4
-Subject: Re: Remove libjpeg.so (default built even in core-image-minimal) from the rootfs when build yocto
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.4-Rev20
+X-Originating-Client: open-xchange-appsuite
+X-Provags-ID: V03:K0:ruUBsg8BIYxaEWREiQMgcnkpFRDu94qku8m9YUFHHb7mVdB16Mm
+	Ps1bRV+b1+JcHtsiN4Ni9JsG5IHnINTbAFftnIUQD1FyNcFbOtkdhStHhUCyusIB64UFQT1
+	yoJ3krj4SAaMrRjP/er+tlHpFQl+CMJ54zj5qdgPd1Z6KcQz9tMKXer/+QxiOwH7G6CW/tp
+	li41rpQNB5QqeZa+DEqjg==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:WvCmDfdyiHw=:9FyqBq1nnlj/cwdbnDE9lO
+	GITrwrHmLCxbKaNeaBMB1PvOi0iiD4Oz6yrfxg4dYzMYu+QZ45OC0jO4lKlb5LBJ40IpkYq2B
+	O7zlBz3/adCE0jdDz/RGmVKteCSVgwgFn0zOk20ScmH0lgExd+T/LiHj1OoVe8f6kuL0X6HkA
+	saDkmK4V+HVSYXhMNa3qrDmvDMnOOx4ngq14gkfFgWhmyPX0PD4LBK402LlFU1trwx+X40588
+	tiQ+PCyhJ1DKQXht3eUHlDK+rShyPtTlBUHhVBd/LjhHsUcNUOatXCxfMHPpqrJZZcGE5/St+
+	iw6pZ/HXHFMvxTPWMAB/CFR2ohVv+zYDONZML431n7lTi1UDF62WoNx2K5FF1shwCbQxNrrUi
+	xMeXyf/dg3r5iYeRUYVdYZ7DV6tLNqvHB/26YGlkn3N3nimWErJlOAFURCZcGKzHUGr1srhpO
+	P3ZIEG7DH0QwtBbzdndNWLeHHfV8H6fo/SLS8P+pk/UsxOWZS9e0kIKjaG4GWbDQWqY5xpFGl
+	KlV531njMv2yTWzYMn8Ir+R3Yb6lWKxRoNBsfe4+3eERE09Fqvgxp/Y7vvwPovF7ixZVRdYAo
+	RdJLhKNTzRfR1DFgHyQwwLcuSH0bB9hRY1CbAGpqYGvdg3gx/mTvukhAe37RaPHIyE686fX1M
+	EQtdLOnSy4HZPGGzFhG6Bx6uxzON+sNA1UrOfbZXM85/WRevuRnN0Bjhhx4pAAOJMAmb2PZnp
+	+wFxS4wPVzoYYBU8+QH97zXoO8tcvfTsUoz0FZki2n5rMyfKGy6xY6CX130=
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: PROVIDES problem building u-boot variants
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: petter@technux.se
+Reply-To: Colin Helliwell <colin.helliwell@ln-systems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -46,101 +61,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 06:40:37 -0000
-Content-Type: multipart/alternative;
-	boundary="=_377c932d929e7ba593a89b2e8bfc1b3b"
-
---=_377c932d929e7ba593a89b2e8bfc1b3b
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 16 Jan 2018 07:21:07 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
- 
 
-2018-01-16 05:28 skrev Nguyễn Thanh Vũ: 
-
-> I have statically linked
-the libjpeg of my own to the exe file, so I do not need the libjpeg.so
-default built in the /lib of rootfs. How can I modify or specify in the
-local.conf file so that I can remove that component? It takes quite a
-lot of space. 
+> On 15 January 2018 at 20:01 Andre McCurdy wrote:
 > 
-> Thank you.
+> 
+> On Mon, Jan 15, 2018 at 7:12 AM, wrote:
+> > Let's see if I can explain this well...
+> > 
+> > I created a recipe to build a u-boot variant (for prod'n programming) -
+> > "u-boot-PLATFORM-mfg-sec.bb" - which has :
+> > 
+> > require u-boot-PLATFORM.inc
+> > UBOOT_MACHINE = "tx6s-8035_mfg_sec_config"
+> > SRC_URI += "file://tx6s-8035_mfg_sec_defconfig"
+> > 
+> > And 'bitbake u-boot-PLATFORM-mfg-sec' works ok with this.
+> > 
+> > Now I want to split this out into two different variants, for different
+> > cpu's.
+> > 
+> > So I begin by renaming the recipe to "u-boot-PLATFORM_tx6s-mfg-sec.bb",
+> > But 'bitbake u-boot-PLATFORM_tx6s-mfg-sec' throws:
+> >  "Nothing PROVIDES 'u-boot- PLATFORM_tx6s-mfg-sec'"
+> > 
+> > Can't spot why this simple renaming is breaking things...?
+> 
+> You tried to use an underscore in the recipe name.
+> 
+> u-boot-PLATFORM_tx6s-mfg-sec.bb will be treated as version
+> "tx6s-mfg-sec" of the "u-boot-PLATFORM" recipe.
 
-Hi Nguyễn, 
+Ah, of course. Thanks.
 
-If you want (and no
-dependencies dissallow it), you can remove the entire package providing
-libjpeg.so from being installed with PACKAGE_EXCLUDE
-(http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-PACKAGE_EXCLUDE).
-
-
-If that`s not working you can for example use
-ROOTFS_POSTPROCESS_COMMAND
-(http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-ROOTFS_POSTPROCESS_COMMAND).
-However that will require more work then just update a line in
-local.conf. 
-
-If you want to try it out you can simply append the image
-recipe in a custom layer with below. 
-
- my_postprocess_function() {
- rm
--f ${IMAGE_ROOTFS}/path/to/libjpeg.so
- }
- ROOTFS_POSTPROCESS_COMMAND +=
-"my_postprocess_function; "
-
-BR Petter 
-
-Petter Mabäcker
-
-Technux
-<petter@technux.se>
-www.technux.se
- 
-
---=_377c932d929e7ba593a89b2e8bfc1b3b
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
-<p>2018-01-16 05:28 skrev Nguy=E1=BB=85n Thanh V=C5=A9:</p>
-<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
-x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
-d --><!-- meta ignored -->
-<div dir=3D"ltr">I have statically linked the libjpeg of my own to the exe =
-file, so I do not need the libjpeg.so default built in the /lib of rootfs=
-=2E How can I modify or specify in the local.conf file so that I can remove=
- that component? It takes quite a lot of space.
-<div>&nbsp;</div>
-<div>Thank you.</div>
-</div>
-</blockquote>
-<p>Hi Nguy=E1=BB=85n,</p>
-<p>If you want (and no dependencies dissallow it), you can remove the entir=
-e package providing libjpeg.so from being installed with PACKAGE_EXCLUDE (h=
-ttp://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-PACK=
-AGE_EXCLUDE).</p>
-<p>If that`s not working you can for example use ROOTFS_POSTPROCESS_COMMAND=
- (http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-R=
-OOTFS_POSTPROCESS_COMMAND). However that will require more work then just u=
-pdate a line in local.conf.<span class=3D"permalink"></span></p>
-<p>If you want to try it out you can simply append the image recipe in a cu=
-stom layer with below.</p>
-<pre class=3D"literallayout">     my_postprocess_function() {
-        rm -f  ${IMAGE_ROOTFS}/path/to/libjpeg.so
-     }
-     ROOTFS_POSTPROCESS_COMMAND +=3D "my_postprocess_function; "</pre>
-<p>&nbsp;</p>
-<p>BR Petter</p>
-<p>&nbsp;</p>
-<div>
-<pre>Petter Mab&auml;cker
-
-Technux &lt;petter@technux.se&gt;
-www.technux.se</pre>
-</div>
-</body></html>
-
---=_377c932d929e7ba593a89b2e8bfc1b3b--
