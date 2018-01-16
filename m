@@ -1,70 +1,43 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C50A5E00DE3; Mon, 15 Jan 2018 21:20:38 -0800 (PST)
+	id E230AE00DC9; Mon, 15 Jan 2018 22:40:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [195.74.38.227 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.48 listed in list.dnswl.org]
-Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D01FE00C02
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 21:20:37 -0800 (PST)
-Received: by mail-lf0-f48.google.com with SMTP id m8so15837599lfc.6
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 21:20:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=qbthGgCjpRRMZUO1ts59y3AD3MtT1a8zTpt3XTD3EhQ=;
-	b=A8gq1lxFLJRUbyDipIM60hTkJTn3AXA/7XCfNPmvfAiYZtfhDlXeS9SHTRvRefTa1S
-	EticbXINjVv0oN4elFHl4/iHwvwSi0YBUjZdgL62jVtR5gvrW9Ed2tbNTtGjE/+rbt9a
-	erJk7d1/fFba5UTV78R29RONysXdWHWaifLOjI+UQGoEpXzT9CdXQRhQXNS33AqnrQLo
-	r7tQSffhA0Zam6m+SP+lJw+3rdgvaOBVCkK9RiPJTu5e3iihfjWw6pnxbu2eRfhiZEpL
-	/vy07n3vFfFEHKqz1J792/D8RxRVsDqN3+DnxmadawrJtSNXNH30FzJYvvinnAXs6ECL
-	kelQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=qbthGgCjpRRMZUO1ts59y3AD3MtT1a8zTpt3XTD3EhQ=;
-	b=sn500tbWZA6RCysNAKyi8fk6R2oZLAHvAYrYLGkuOw6wDKYxHz19QQ+/VlsftQji+x
-	ZgcgrwthnvHYeHZPawfKCNe8yF3tCMvDnGJfw2bwSV91NQro5Fq/6MCL5Zz9+DylwbbW
-	kNzrhsCfytjikq+C2QZImnCeJAXKSA7nEw7OYoQE+ebyM0efFZ8A6fqUUKKW0nLq6Sdq
-	O0RttPQp3ywep4wSaJOslDD/mEryub09Z8NSKkP0IguSYQ2meoxfR9JgTTEFXgRbmN97
-	koJqBqXUFajlfhaXMWvdZqnL3+s06Lz4rOy42yMBU6gTgv3Q73cRZVGARZHoueqUeDB3
-	/qiA==
-X-Gm-Message-State: AKwxytf/7ywva9MfG76tQISQqA8I4qCkoWKXoIr8SVrpCVNmZwjELKcx
-	B7RoSCUBwBT2EA19VQqjZyKDC3dGk/MErifXGqwxfw==
-X-Google-Smtp-Source: ACJfBosZ7JDF6mECFdO3ugQA5Gxy2878i1rUJMHKE/g31vZ6JK0fEH9f3vy4BkLaVYURcK40Wb8L6WIgzgSoPeU4sAY=
-X-Received: by 10.25.42.197 with SMTP id q66mr11589621lfq.25.1516080036269;
-	Mon, 15 Jan 2018 21:20:36 -0800 (PST)
+Received: from bin-vsp-out-01.atm.binero.net (vsp-unauthed02.binero.net
+	[195.74.38.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF858E00B5F
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 22:40:34 -0800 (PST)
+X-Halon-ID: 0a581246-fa88-11e7-ab1b-005056917a89
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
+	id 0a581246-fa88-11e7-ab1b-005056917a89;
+	Tue, 16 Jan 2018 07:39:45 +0100 (CET)
 MIME-Version: 1.0
-Received: by 10.25.83.210 with HTTP; Mon, 15 Jan 2018 21:20:35 -0800 (PST)
-In-Reply-To: <5e8d8895-3d01-02d9-2481-27f400834670@windriver.com>
-References: <CACfi_Z1iHtpMLTNnQO=FPpFVu+ZYaXrRLVSk6HkrrsSbt+CBkA@mail.gmail.com>
-	<CACfi_Z1-wtH0iVO6Q3vg2Q661tWSHF1ZFQuGU_QVyCtijxW58Q@mail.gmail.com>
-	<5e8d8895-3d01-02d9-2481-27f400834670@windriver.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Tue, 16 Jan 2018 00:20:35 -0500
-Message-ID: <CAHUNapS5pP1EHg0Qqxwx_J9Z5Ts3u+EvgEN34gGppp0ojLF8Cw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: [poky] Fwd: How to make the os-release package work with local walltime instead of GMT?
+Date: Tue, 16 Jan 2018 07:40:24 +0100
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: Yocto <yocto@yoctoproject.org>, <ngthanh.vu94@gmail.com>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <CAGJSYqmEzCchhkysMB9ruCEzcJ6H7eSeuu3=LbcaLR_Jwe8KHg@mail.gmail.com>
+References: <CAGJSYqmEzCchhkysMB9ruCEzcJ6H7eSeuu3=LbcaLR_Jwe8KHg@mail.gmail.com>
+Message-ID: <475569826765f982629209ea5ba3e068@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Subject: Re: Remove libjpeg.so (default built even in core-image-minimal) from the rootfs when build yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -73,31 +46,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 05:20:38 -0000
-Content-Type: multipart/alternative; boundary="94eb2c14aa280353bd0562dde498"
+X-List-Received-Date: Tue, 16 Jan 2018 06:40:37 -0000
+Content-Type: multipart/alternative;
+	boundary="=_377c932d929e7ba593a89b2e8bfc1b3b"
 
---94eb2c14aa280353bd0562dde498
-Content-Type: text/plain; charset="UTF-8"
+--=_377c932d929e7ba593a89b2e8bfc1b3b
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
 
-On Thu, Jan 11, 2018 at 12:26 AM, Robert Yang <liezhi.yang@windriver.com>
-wrote:
+ 
 
-> BUILD_ID = "${@time.strftime('%Y-%m-%d %H:%M:%S',time.localtime())}"
->
+2018-01-16 05:28 skrev Nguyễn Thanh Vũ: 
 
-Brilliant! Why isn't this the default?
+> I have statically linked
+the libjpeg of my own to the exe file, so I do not need the libjpeg.so
+default built in the /lib of rootfs. How can I modify or specify in the
+local.conf file so that I can remove that component? It takes quite a
+lot of space. 
+> 
+> Thank you.
 
---94eb2c14aa280353bd0562dde498
-Content-Type: text/html; charset="UTF-8"
+Hi Nguyễn, 
+
+If you want (and no
+dependencies dissallow it), you can remove the entire package providing
+libjpeg.so from being installed with PACKAGE_EXCLUDE
+(http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-PACKAGE_EXCLUDE).
+
+
+If that`s not working you can for example use
+ROOTFS_POSTPROCESS_COMMAND
+(http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-ROOTFS_POSTPROCESS_COMMAND).
+However that will require more work then just update a line in
+local.conf. 
+
+If you want to try it out you can simply append the image
+recipe in a custom layer with below. 
+
+ my_postprocess_function() {
+ rm
+-f ${IMAGE_ROOTFS}/path/to/libjpeg.so
+ }
+ ROOTFS_POSTPROCESS_COMMAND +=
+"my_postprocess_function; "
+
+BR Petter 
+
+Petter Mabäcker
+
+Technux
+<petter@technux.se>
+www.technux.se
+ 
+
+--=_377c932d929e7ba593a89b2e8bfc1b3b
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On T=
-hu, Jan 11, 2018 at 12:26 AM, Robert Yang <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:liezhi.yang@windriver.com" target=3D"_blank">liezhi.yang@windriver.c=
-om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">BUILD_ID =3D &qu=
-ot;${@time.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;,time.localtime())}&quot;<br=
-></blockquote><div><br></div><div>Brilliant! Why isn&#39;t this the default=
-? <br></div></div></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>2018-01-16 05:28 skrev Nguy=E1=BB=85n Thanh V=C5=A9:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<div dir=3D"ltr">I have statically linked the libjpeg of my own to the exe =
+file, so I do not need the libjpeg.so default built in the /lib of rootfs=
+=2E How can I modify or specify in the local.conf file so that I can remove=
+ that component? It takes quite a lot of space.
+<div>&nbsp;</div>
+<div>Thank you.</div>
+</div>
+</blockquote>
+<p>Hi Nguy=E1=BB=85n,</p>
+<p>If you want (and no dependencies dissallow it), you can remove the entir=
+e package providing libjpeg.so from being installed with PACKAGE_EXCLUDE (h=
+ttp://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-PACK=
+AGE_EXCLUDE).</p>
+<p>If that`s not working you can for example use ROOTFS_POSTPROCESS_COMMAND=
+ (http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-R=
+OOTFS_POSTPROCESS_COMMAND). However that will require more work then just u=
+pdate a line in local.conf.<span class=3D"permalink"></span></p>
+<p>If you want to try it out you can simply append the image recipe in a cu=
+stom layer with below.</p>
+<pre class=3D"literallayout">     my_postprocess_function() {
+        rm -f  ${IMAGE_ROOTFS}/path/to/libjpeg.so
+     }
+     ROOTFS_POSTPROCESS_COMMAND +=3D "my_postprocess_function; "</pre>
+<p>&nbsp;</p>
+<p>BR Petter</p>
+<p>&nbsp;</p>
+<div>
+<pre>Petter Mab&auml;cker
 
---94eb2c14aa280353bd0562dde498--
+Technux &lt;petter@technux.se&gt;
+www.technux.se</pre>
+</div>
+</body></html>
+
+--=_377c932d929e7ba593a89b2e8bfc1b3b--
