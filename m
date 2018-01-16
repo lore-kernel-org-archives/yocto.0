@@ -1,34 +1,34 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <maciej.pijanowski@3mdeb.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 37631E00E66; Tue, 16 Jan 2018 00:54:37 -0800 (PST)
+	id 55CA7E00D7E; Tue, 16 Jan 2018 01:32:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DBF4E00D7B
-	for <yocto@yoctoproject.org>; Tue, 16 Jan 2018 00:54:35 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w0G8sZXR021085
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 16 Jan 2018 00:54:35 -0800 (PST)
-Received: from pek-lpg-core1.wrs.com (128.224.156.132) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.361.1; Tue, 16 Jan 2018 00:54:34 -0800
-From: Robert Yang <liezhi.yang@windriver.com>
-To: <yocto@yoctoproject.org>, <mark.hatle@windriver.com>
-Date: Tue, 16 Jan 2018 16:54:56 +0800
-Message-ID: <1516092896-43980-1-git-send-email-liezhi.yang@windriver.com>
-X-Mailer: git-send-email 2.7.4
+X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
+	Tue, 16 Jan 2018 01:32:40 PST
+Received: from cloudserver096301.home.pl (cloudserver096301.home.pl
+	[79.96.179.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D85A0E00A9C
+	for <yocto@yoctoproject.org>; Tue, 16 Jan 2018 01:32:40 -0800 (PST)
+Received: from 109241231046.gdansk.vectranet.pl (109.241.231.46) (HELO
+	[192.168.3.103])
+	by serwer1539010.home.pl (79.96.179.35) with SMTP (IdeaSmtpServer 0.82)
+	id 150481a57194d8c8; Tue, 16 Jan 2018 10:25:59 +0100
+To: Mostafa Farzane <farzanemostafa@yahoo.com>, yocto@yoctoproject.org
+References: <1970961286.255227.1515871974890.ref@mail.yahoo.com>
+	<1970961286.255227.1515871974890@mail.yahoo.com>
+From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+Message-ID: <8436a6a8-89b6-efe7-ec4c-71d1feb45ca7@3mdeb.com>
+Date: Tue, 16 Jan 2018 10:29:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.0
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH] conf/layer.conf: set BBFILES to known layers
+In-Reply-To: <1970961286.255227.1515871974890@mail.yahoo.com>
+Subject: Re: How to install dtb file to boot directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,49 +40,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 08:54:37 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 16 Jan 2018 09:32:42 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-The previous code add all BBFILE_COLLECTIONS/recipes*/*/*.bbappend to BBFILES,
-which causes the parsing very slow when there are many layers, e.g., I have 87
-layers:
 
-* Before:
-$ rm -fr tmp-glibc/ cache; time bitbake -p
-real    0m45.173s
-user    0m0.560s
-sys     0m0.060s
 
-* After:
-$ rm -fr tmp-glibc/ cache; time bitbake -p
-real    0m25.542s
-user    0m0.572s
-sys     0m0.040s
+On 13.01.2018 20:32, Mostafa Farzane wrote:
+> I sucssesfully installed kernel to boot directory by comment out RDEPENDS_kernel-base="" line in local.conf. now i need to install dtb file to boot directory as well. I tried use do_install_append in my kernel recipe but no success. Any suggestion?
 
-It cost 20s which isn't worth (The host has 128 threads, it should cost more
-time on less power host), only set BBFILES according to known layers (currently:
-meta-python, networking-layer and virtualization-layer) can fix the problem.
+I may suggest installing packages `kernel-image` and `kernel-devicetree` 
+to install both kernel image and
+devicetree in rootfs.
 
-Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
----
- conf/layer.conf | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+To do that you would need to add:
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index f773dc3..0ad766c 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -8,7 +8,8 @@ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
- # Let us add layer-specific bbappends which are only applied when that
- # layer is included in our configuration
- BBFILES += "${@' '.join('${LAYERDIR}/%s/recipes*/*/*.bbappend' % layer \
--               for layer in BBFILE_COLLECTIONS.split())}"
-+               for layer in set(BBFILE_COLLECTIONS.split()) & \
-+               set(['meta-python', 'networking-layer', 'virtualization-layer']))}"
- 
- BBFILE_COLLECTIONS += "selinux"
- BBFILE_PATTERN_selinux = "^${LAYERDIR}/"
+IMAGE_INSTALL_append = " kernel-image kernel-devicetree" in your's image 
+recipe or local.conf.
+
+Let me know if this is any help for you.
+
 -- 
-2.7.4
+Maciej Pijanowski
+Embedded Systems Engineer
+http://3mdeb.com | @3mdeb_com
 
 
