@@ -1,37 +1,39 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 678FFE00D7E; Mon, 15 Jan 2018 17:52:51 -0800 (PST)
+	id 0C113E00DD2; Mon, 15 Jan 2018 19:14:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47993E00E89
-	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 17:52:31 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w0G1qUjI010016
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 15 Jan 2018 17:52:30 -0800 (PST)
-Received: from localhost.corp.ad.wrs.com (128.224.162.229) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.361.1; Mon, 15 Jan 2018 17:52:29 -0800
-To: <yocto@yoctoproject.org>, <paul.eggleton@linux.intel.com>
-References: <cover.1514957220.git.liezhi.yang@windriver.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <3d21ce1d-ee48-4645-8161-96edab751d54@windriver.com>
-Date: Tue, 16 Jan 2018 09:52:35 +0800
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FDDFE008A4
+	for <yocto@yoctoproject.org>; Mon, 15 Jan 2018 19:14:52 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	15 Jan 2018 19:14:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,366,1511856000"; d="scan'208";a="10531456"
+Received: from anmitta2-mobl1.png.intel.com (HELO [10.221.21.145])
+	([10.221.21.145])
+	by fmsmga007.fm.intel.com with ESMTP; 15 Jan 2018 19:14:52 -0800
+To: yocto@yoctoproject.org
+References: <066501d38c90$f0151890$d03f49b0$@ln-systems.com>
+From: Anuj Mittal <anuj.mittal@intel.com>
+Message-ID: <51fda8a8-ee11-ebf7-1fb2-b25b9f35a9b9@intel.com>
+Date: Tue, 16 Jan 2018 11:14:51 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.5.0
 MIME-Version: 1.0
-In-Reply-To: <cover.1514957220.git.liezhi.yang@windriver.com>
-Subject: Re: [layerindex-web][PATCH 0/5] update.py: performance improve and 2 fixes
+In-Reply-To: <066501d38c90$f0151890$d03f49b0$@ln-systems.com>
+Subject: Re: Specifying MACHINE when setting up build environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,53 +45,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 01:52:51 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Tue, 16 Jan 2018 03:14:54 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-Hi Paul,
+On 01/14/2018 01:07 AM, colin.helliwell@ln-systems.com wrote:
+> Is there a way to specify what MACHINE is put into local.conf when first
+> setting up the build directory with oe-init-build-env?
+> I have my own TEMPLATECONF which I use, but I'd like to be able to set the
+> MACHINE on the command line rather than having to then modify local.conf
+> 
+> 
 
-Sorry, this is the cover letter, I should reply to this one just now.
+You can specify a local.conf.sample and have TEMPLATECONF point to the
+directory with that file in it. Please see scripts/oe-setup-builddir in
+poky/meta to see how it is picked up.
 
-// Robert
-
-On 01/03/2018 01:42 PM, Robert Yang wrote:
-> Hi Paul,
-> 
-> This email contains two parts:
-> - The first 2 are bug fixes
-> - The other 3 are performance improvements, I have 124 layers,
->    the "update.py -b <branch>" needs about 9m20s to finish the running when everything is
->    update, and we have several branches, we need them to run in periodically
->    (e.g., per 30 mins, the short the better), so one branch 9m20s is really a problem.
->    Only about 1m43s are needed with these improvements when set PARALLEL_JOBS to 10:
->    update.py: fetch repos parallelly # Saved 2 mins
->    update_layer.py: use it as a module # Saved 5 mins
->    update_layer.py: only call init_parser when needed # Saved 1 min
-> 
-> // Robert
-> 
-> The following changes since commit fa0b01082fb0596959841e95af8c516ae3f267a7:
-> 
->    admin: fix dependency display and search (2017-12-21 16:14:17 +1300)
-> 
-> are available in the git repository at:
-> 
->    git://git.pokylinux.org/poky-contrib rbt/LI
->    http://git.pokylinux.org/cgit.cgi//log/?h=rbt/LI
-> 
-> Robert Yang (5):
->    utils.py: fix remove obsolete dependencies
->    update.py: make sure oe-core is fetched
->    update.py: fetch repos parallelly
->    update_layer.py: use it as a module
->    update_layer.py: only call init_parser when needed
-> 
->   layerindex/update.py       | 176 +++++++++++++++++++++++----------------------
->   layerindex/update_layer.py | 146 +++++++++++--------------------------
->   layerindex/utils.py        |   6 +-
->   settings.py                |   2 +
->   4 files changed, 137 insertions(+), 193 deletions(-)
-> 
+Thanks,
+Anuj
 
