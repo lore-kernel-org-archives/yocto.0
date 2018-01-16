@@ -1,49 +1,94 @@
-Return-Path: <ed.bartosh@linux.intel.com>
+Return-Path: <mns@gomspace.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22683E00D5F; Tue, 16 Jan 2018 03:39:49 -0800 (PST)
+	id 73173E00E7D; Tue, 16 Jan 2018 06:10:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.110 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DEF5E00A9C
-	for <yocto@yoctoproject.org>; Tue, 16 Jan 2018 03:39:47 -0800 (PST)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	16 Jan 2018 03:39:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,368,1511856000"; d="scan'208";a="10933694"
-Received: from linux.intel.com ([10.54.29.200])
-	by orsmga006.jf.intel.com with ESMTP; 16 Jan 2018 03:39:47 -0800
-Received: from linux.intel.com (vmed.fi.intel.com [10.237.72.38])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTPS id 3A01E580328;
-	Tue, 16 Jan 2018 03:39:46 -0800 (PST)
-Date: Tue, 16 Jan 2018 11:58:13 +0200
-From: Ed Bartosh <ed.bartosh@linux.intel.com>
-To: Martin Siegumfeldt <mns@gomspace.com>
-Message-ID: <20180116095813.zpydtrfdpvwo3coe@linux.intel.com>
-References: <HE1PR0402MB3323F718FF6A3560C625ADCCC4EA0@HE1PR0402MB3323.eurprd04.prod.outlook.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0110.outbound.protection.outlook.com [104.47.2.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE90CE00AF2
+	for <yocto@yoctoproject.org>; Tue, 16 Jan 2018 06:10:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gomspace01.onmicrosoft.com; s=selector1-gomspace-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=o8J7PN05XQlZVmOaL7yyxJyC61JbnLJrz3w7Fr82oGg=;
+	b=GRwrZ7ale/+ODLm/gJuE52G642+vqOevZKiAXsCqKebXFaA7PBQOnDybbLklsaiYkAy1OLz8eTpZhUxNNGIs6pez0ku7pCT6uv3FJgo4L4cFRyltK028oePiKYXVeXe1nSdDk+TmNQKGO2sS2hyxZ43UNjPu+PRWrJHeFp7uRgI=
+Received: from HE1PR0402MB3323.eurprd04.prod.outlook.com (10.167.125.20) by
+	HE1PR0402MB3323.eurprd04.prod.outlook.com (10.167.125.20) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.407.7; Tue, 16 Jan 2018 14:10:23 +0000
+Received: from HE1PR0402MB3323.eurprd04.prod.outlook.com
+	([fe80::70c2:d51e:8aee:c95]) by
+	HE1PR0402MB3323.eurprd04.prod.outlook.com
+	([fe80::70c2:d51e:8aee:c95%13]) with mapi id 15.20.0407.012;
+	Tue, 16 Jan 2018 14:10:23 +0000
+From: Martin Siegumfeldt <mns@gomspace.com>
+To: "ed.bartosh@linux.intel.com" <ed.bartosh@linux.intel.com>
+Thread-Topic: [yocto] wic- optimizing an image containing a large empty
+	partition
+Thread-Index: AQHTjqeApFOiQxc2S0WL9gLmL+jBl6N2Q7yAgABCNsU=
+Date: Tue, 16 Jan 2018 14:10:23 +0000
+Message-ID: <HE1PR0402MB33236EF042A584480D9E584DC4EA0@HE1PR0402MB3323.eurprd04.prod.outlook.com>
+References: <HE1PR0402MB3323F718FF6A3560C625ADCCC4EA0@HE1PR0402MB3323.eurprd04.prod.outlook.com>,
+	<20180116095813.zpydtrfdpvwo3coe@linux.intel.com>
+In-Reply-To: <20180116095813.zpydtrfdpvwo3coe@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=mns@gomspace.com; 
+x-originating-ip: [79.171.149.172]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; HE1PR0402MB3323;
+	7:beci6eBll84XDq1qzk2L+IVKGo6Gvr4KIN26OUsWycqSfGuV0Yy6By+/UNnNBWNQZ5hVsN8SqDj3P/irF91hqYAs/EiU7FjkIxBWeTE84slm7BC7f0kWhBS0Dwb4+SgWV5aCEBLewXSpKZxUxLaGeEsCnGhFu8LLwqZOuo90qi+63RQkvhlHbsu2CoTF5D7MKOhKlrDFK4B150d+RIXgvhsZQkPmZ9+IbBxI+6EhrmicUUlHz7eG0Tun1LwvZS4z
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 6227c2d2-194e-486d-c4ca-08d55ceae29a
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(7021125)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
+	SRVR:HE1PR0402MB3323; 
+x-ms-traffictypediagnostic: HE1PR0402MB3323:
+x-microsoft-antispam-prvs: <HE1PR0402MB33238BDDAA66B69D28494A76C4EA0@HE1PR0402MB3323.eurprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(131327999870524)(42262312472803)(228905959029699); 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040470)(2401047)(5005006)(8121501046)(3231023)(944501161)(93006095)(93001095)(10201501046)(3002001)(6041268)(2016111802025)(20161123558120)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(20161123564045)(20161123560045)(6043046)(6072148)(201708071742011);
+	SRVR:HE1PR0402MB3323; BCL:0; PCL:0;
+	RULEID:(100000803101)(100110400095); SRVR:HE1PR0402MB3323; 
+x-forefront-prvs: 0554B1F54F
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(366004)(346002)(39380400002)(376002)(396003)(39840400004)(54094003)(24454002)(199004)(189003)(99286004)(575784001)(105586002)(86362001)(25786009)(4326008)(6246003)(2900100001)(106356001)(3846002)(3280700002)(2906002)(3660700001)(53376002)(316002)(2950100002)(6916009)(6116002)(2351001)(66066001)(5660300001)(7696005)(966005)(2501003)(5640700003)(14454004)(7736002)(229853002)(55016002)(76176011)(9686003)(305945005)(478600001)(6306002)(561944003)(97736004)(102836004)(53546011)(6506007)(26005)(33656002)(74316002)(81166006)(81156014)(53936002)(68736007)(8676002)(5250100002)(8936002)(6436002)(2004002)(42262002)(19607625011);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HE1PR0402MB3323;
+	H:HE1PR0402MB3323.eurprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: gomspace.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: sHKJEjGbY0e5l1A0tyzokl74KJYUN9roS0nvLWJ2nUpw/yidZtqfdygkzR4m5LtEoC6svdKeAtQci7/1FOIJIg==
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-In-Reply-To: <HE1PR0402MB3323F718FF6A3560C625ADCCC4EA0@HE1PR0402MB3323.eurprd04.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: NeoMutt/20170421 (1.8.2)
+X-OriginatorOrg: gomspace.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6227c2d2-194e-486d-c4ca-08d55ceae29a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jan 2018 14:10:23.5439 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 91ed1e54-6d8b-4599-84d8-65fe75fda3d1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB3323
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: wic- optimizing an image containing a large empty partition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ed.bartosh@linux.intel.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,128 +97,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 11:39:49 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 16 Jan 2018 14:10:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, Jan 16, 2018 at 09:22:07AM +0000, Martin Siegumfeldt wrote:
-> Hi,
-> 
-> 
-> I am trying to optimize an image having a fairly large empty partition with regards to file size - wks file:
-> 
-> 
-> martin@martin-Precision-5510:~/work/z7000-distro_wic/meta-z7000$ cat scripts/lib/wic/canned-wks/gs-boot-rootfs.wks
-> part --ondisk mmcblk --size 4
-> part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 64 --fsoptions ro
-> part / --source rootfs --ondisk mmcblk --fstype=ext4 --label root --align 4096
-> part /mnt/data --ondisk mmcblk0 --fstype=ext4 --label data --size 1024
-> 
-> Now, generating the map file indicates that bmap-tools is capable of significantly reducing the data transfer:
-> 
-> martin@martin-Precision-5510:~/work/z7000-distro_wic/build/tmp-glibc/deploy/images/zynq-soft-zedboard$ cat  z7000-base-image-zynq-soft-zedboard.wic.bmap
-> <?xml version="1.0" ?>
-> <!-- This file contains the block map for an image file, which is basically
->      a list of useful (mapped) block numbers in the image file. In other words,
->      it lists only those blocks which contain data (boot sector, partition
->      table, file-system metadata, files, directories, extents, etc). These
->      blocks have to be copied to the target device. The other blocks do not
->      contain any useful data and do not have to be copied to the target
->      device.
-> 
->      The block map an optimization which allows to copy or flash the image to
->      the image quicker than copying of flashing the entire image. This is
->      because with bmap less data is copied: <MappedBlocksCount> blocks instead
->      of <BlocksCount> blocks.
-> 
->      Besides the machine-readable data, this file contains useful commentaries
->      which contain human-readable information like image size, percentage of
->      mapped data, etc.
-> 
->      The 'version' attribute is the block map file format version in the
->      'major.minor' format. The version major number is increased whenever an
->      incompatible block map format change is made. The minor number changes
->      in case of minor backward-compatible changes. -->
-> 
-> <bmap version="2.0">
->     <!-- Image size in bytes: 1.2 GiB -->
->     <ImageSize> 1257452544 </ImageSize>
-> 
->     <!-- Size of a block in bytes -->
->     <BlockSize> 4096 </BlockSize>
-> 
->     <!-- Count of blocks in the image file -->
->     <BlocksCount> 306996 </BlocksCount>
-> 
->     <!-- Count of mapped blocks: 42.1 MiB or 3.5%    -->
->     <MappedBlocksCount> 10765  </MappedBlocksCount>
-> 
->     <!-- Type of checksum used in this file -->
->     <ChecksumType> sha256 </ChecksumType>
-> 
->     <!-- The checksum of this bmap file. When it is calculated, the value of
->          the checksum has be zero (all ASCII "0" symbols).  -->
->     <BmapFileChecksum> d41d210e8efdf32597e566360a2f701e706f3b04bcf2418bb0c50a1f8a8d6c72 </BmapFileChecksum>
-> 
->     <!-- The block map which consists of elements which may either be a
->          range of blocks or a single block. The 'chksum' attribute
->          (if present) is the checksum of this blocks range. -->
->     <BlockMap>
->         <Range chksum="4e1c836ffaf1a23f316382f5d7eff44a0fc5a43ac681fa11e100e55b73e8bc7b"> 0-6 </Range>
->         <Range chksum="b795c68a5cde6a8ab0b7b541f2094792f4746fb0f9e5b794024895b5c72a42ea"> 2048-2347 </Range>
->         <Range chksum="073c303254e96b44400b7df159fdd8cfcc48cad90f77ab14cf157eaaaf94d810"> 23552-23620 </Range>
->         <Range chksum="b34201ffa94456444c5bc8e546e3805fc58961403c0a444ce039f21eb894c05c"> 23622-23688 </Range>
->         <Range chksum="731c02b87191f90e37683778e6c8817c03cf2b3e6ac1159c1bb7934700709e8b"> 23957-25600 </Range>
->         <Range chksum="e1dd56bc7566dda92807ce28582f3f5ead589d7dfbf4beca9c6f928238f73ede"> 25664-29696 </Range>
->         <Range chksum="2ccb999e7b63cad77d1891c93424d301cff5dd1c2f25813b96f243d425592770"> 29760-31744 </Range>
->         <Range chksum="06986ccd4f1319028200fbfb9dccb72fabd4e18abf4195cfbe288ac09436630c"> 32768-33792 </Range>
->         <Range chksum="8cdfec001877d4b6bb41d1caf814aadfc67cabef160a0a442fbb98dfc4190424"> 33856-35389 </Range>
->         <Range chksum="f9ca40694ee8b587e20fcfb2a803055f16a6cb1b348a90badae9c13860cff8a0"> 37888 </Range>
->         <Range chksum="b05058de59ab0182064323d297a3c6fba42772f3da4f48fa9f60dc58f4b386e3"> 41984 </Range>
->         <Range chksum="2abc48348f9551bd05258553014f8c389970d30381e3dc64547a0a7b6f48af14"> 44851-44917 </Range>
->         <Range chksum="71899ad8e3fa013443678f384e219f1064e74687fb34861036aa8e4567e12e9a"> 44920-44921 </Range>
->         <Range chksum="cc80e24228a48b279bcd626dae16181c317b56acfb8fc56dc7b1f83463966166"> 44923-44925 </Range>
->         <Range chksum="3efa6bcb59cd77722327d11d040bf51e983e004c8d826e4ddf7f9b94b0cc754b"> 44932-44933 </Range>
->         <Range chksum="3c3ea8e0f3eb5a88321bde760d9328826b1cd87df92260cd3bac65d8bfa094e0"> 53124-53130 </Range>
->         <Range chksum="74ad14376b2177e6fea86a2784711a8f8b78beb9766b958271b9fb1bf7cec3a5"> 77619-77621 </Range>
->         <Range chksum="1196698d6f64c5e133a6f91030a245f16ee741acbf59e469d23137d502f50e22"> 143155-143157 </Range>
->         <Range chksum="d5fda096a9876c5afec2744a95bb4583ce30adf58d64b47f4bf5f69309d4603e"> 175923-175924 </Range>
->         <Range chksum="78019a98ed57a2c423406c7e5e97f4615e1ace27be573c0526d0e5b9221b07de"> 208691-208693 </Range>
->         <Range chksum="c7e487ba8a927afdc9ea5edd468afc4875cfed37f4587636b1b253a1005b82e1"> 274227-274229 </Range>
->         <Range chksum="7784ef4f0c425eb5578559102faaa99c4fba0ab2c2ff7dbe5fcc3c9e731a97a7"> 306992-306995 </Range>
->     </BlockMap>
-> </bmap>
-> 
-> Unfortunately, my HW does not integrate an SD card (that could have been flashed using bmap-tools) and we currently flash the soldered eMMC using dfu-util. In this case all 1.2 GB are transferred, which I consider fairly suboptimal compared to the above reported 42 MB 😞.
->
-After briefly looking around at dfu-util and .dfu format description I'd
-suggest to convert wic images into .dfu using either information from
-.bmap or wic filemap API(wrapper around FIEMAP ioctl or the 'SEEK_HOLE
-/ SEEK_DATA' features of the file seek syscall) and then use dfu-util to
-upload an image to the target media.
-
-> In the past we maintained a custom image class that simply skipped creating the empty ext4 partition and left it to be created upon the first boot. I could probably live with this approach, but I don't really see an easy way of achieveing this using wic - perhaps I missed it? However, if possible, my preference would be to generate the partition during the build and not at runtime.
-
-Can you elaborate on this a bit more? My guess is that you want to create unformatted
-partition, but I'm not sure I understand how that can help in this
-particular case.
-
-> 
-> I see some history of sparse images related to wic,  but the works appears reverted?
->
-Can you point me out to the reverted commits?
-
-wic images are sparse. Here is an example of 94M sparse image with
-allocated size 16M:
-
-$ ls -lhs
-./tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-20180116091809.rootfs.wic
-16M -rw-r--r-- 2 ed users 94M Jan 16 11:22
-./tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64-20180116091809.rootfs.wic
-
-
---
-Regards,
-Ed
+VGhhbmtzIEVkLCB5b3UgYXJlIHJpZ2h0IC0gbXkgaW1hZ2UgaXMgaW5kZWVkIGdlbmVyYXRlZCBh
+cyBhwqBzcGFyc2UgaW1hZ2U6DQoNCm1hcnRpbkBtYXJ0aW4tUHJlY2lzaW9uLTU1MTA6fi93b3Jr
+L3o3MDAwLWRpc3Ryb193aWMvYnVpbGQvdG1wLWdsaWJjL2RlcGxveS9pbWFnZXMvenlucS1zb2Z0
+LXplZGJvYXJkJCBscyAtTGxocyB6NzAwMC1iYXNlLWltYWdlLXp5bnEtc29mdC16ZWRib2FyZC53
+aWPCoA0KNDNNIC1ydy1yLS1yLS0gMSBtYXJ0aW4gbWFydGluIDEsMkcgSmFuIDE2IDE1OjAwIHo3
+MDAwLWJhc2UtaW1hZ2UtenlucS1zb2Z0LXplZGJvYXJkLndpYw0KDQpJIGFwcGVhcnMgaG93ZXZl
+ciwgdGhhdCBkZnUtdXRpbCBkb2VzIG5vdCBkaXJlY3RseSBzdXBwb3J0IHRoaXMgKGFzIGNvcnJl
+Y3RseSBzdGF0ZWQgZnJvbSB3aXRoaW4gYm1hcC10b29scyBsaXN0KToNCg0KbWFydGluQG1hcnRp
+bi1QcmVjaXNpb24tNTUxMDp+L3dvcmsvejcwMDAtZGlzdHJvX3dpYy9idWlsZC90bXAtZ2xpYmMv
+ZGVwbG95L2ltYWdlcy96eW5xLXNvZnQtemVkYm9hcmQkIGRmdS11dGlsIC1EIHo3MDAwLWJhc2Ut
+aW1hZ2UtenlucS1zb2Z0LXplZGJvYXJkLndpYyAtYSBlbW1jDQpkZnUtdXRpbCAwLjkNCg0KQ29w
+eXJpZ2h0IDIwMDUtMjAwOSBXZXN0b24gU2NobWlkdCwgSGFyYWxkIFdlbHRlIGFuZCBPcGVuTW9r
+byBJbmMuDQpDb3B5cmlnaHQgMjAxMC0yMDE2IFRvcm1vZCBWb2xkZW4gYW5kIFN0ZWZhbiBTY2ht
+aWR0DQpUaGlzIHByb2dyYW0gaXMgRnJlZSBTb2Z0d2FyZSBhbmQgaGFzIEFCU09MVVRFTFkgTk8g
+V0FSUkFOVFkNClBsZWFzZSByZXBvcnQgYnVncyB0byBodHRwOi8vc291cmNlZm9yZ2UubmV0L3Av
+ZGZ1LXV0aWwvdGlja2V0cy8NCg0KZGZ1LXV0aWw6IEludmFsaWQgREZVIHN1ZmZpeCBzaWduYXR1
+cmUNCmRmdS11dGlsOiBBIHZhbGlkIERGVSBzdWZmaXggd2lsbCBiZSByZXF1aXJlZCBpbiBhIGZ1
+dHVyZSBkZnUtdXRpbCByZWxlYXNlISEhDQpPcGVuaW5nIERGVSBjYXBhYmxlIFVTQiBkZXZpY2Uu
+Li4NCklEIDAzZmQ6MDMwMA0KUnVuLXRpbWUgZGV2aWNlIERGVSB2ZXJzaW9uIDAxMTANCkNsYWlt
+aW5nIFVTQiBERlUgSW50ZXJmYWNlLi4uDQpTZXR0aW5nIEFsdGVybmF0ZSBTZXR0aW5nICMwIC4u
+Lg0KRGV0ZXJtaW5pbmcgZGV2aWNlIHN0YXR1czogc3RhdGUgPSBkZnVJRExFLCBzdGF0dXMgPSAw
+DQpkZnVJRExFLCBjb250aW51aW5nDQpERlUgbW9kZSBkZXZpY2UgREZVIHZlcnNpb24gMDExMA0K
+RGV2aWNlIHJldHVybmVkIHRyYW5zZmVyIHNpemUgNDA5Ng0KQ29weWluZyBkYXRhIGZyb20gUEMg
+dG8gREZVIGRldmljZQ0KRG93bmxvYWTCoCDCoCDCoCDCoCBbPT09PT09PT09PT09PT09PT09PT09
+PT09PV0gMTAwJcKgIMKgMTI1NzQ1MjU0NCBieXRlcw0KRG93bmxvYWQgZG9uZS4NCnN0YXRlKDcp
+ID0gZGZ1TUFOSUZFU1QsIHN0YXR1cygwKSA9IE5vIGVycm9yIGNvbmRpdGlvbiBpcyBwcmVzZW50
+DQpzdGF0ZSgyKSA9IGRmdUlETEUsIHN0YXR1cygwKSA9IE5vIGVycm9yIGNvbmRpdGlvbiBpcyBw
+cmVzZW50DQpEb25lIQ0KDQpJJ2xsIGxvb2sgaW50byB5b3VyIGFib3ZlIHByb3Bvc2FsIC0gSSB3
+b25kZXIgaWYgZmFzdGJvb3QgaXMgY2FwYWJsZSBvZiB0aGlzIHdpdGhvdXQgZnVydGhlciBlZmZv
+cnQ/DQoNClRoYW5rcywNCk1hcnRpbg0KDQoNCkZyb206IEVkIEJhcnRvc2ggPGVkLmJhcnRvc2hA
+bGludXguaW50ZWwuY29tPg0KU2VudDogVHVlc2RheSwgSmFudWFyeSAxNiwgMjAxOCAxMDo1OA0K
+VG86IE1hcnRpbiBTaWVndW1mZWxkdA0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1Ympl
+Y3Q6IFJlOiBbeW9jdG9dIHdpYy0gb3B0aW1pemluZyBhbiBpbWFnZSBjb250YWluaW5nIGEgbGFy
+Z2UgZW1wdHkgcGFydGl0aW9uDQrCoCANCg0KT24gVHVlLCBKYW4gMTYsIDIwMTggYXQgMDk6MjI6
+MDdBTSArMDAwMCwgTWFydGluIFNpZWd1bWZlbGR0IHdyb3RlOg0KPiBIaSwNCj4gDQo+IA0KPiBJ
+IGFtIHRyeWluZyB0byBvcHRpbWl6ZSBhbiBpbWFnZSBoYXZpbmcgYSBmYWlybHkgbGFyZ2UgZW1w
+dHkgcGFydGl0aW9uIHdpdGggcmVnYXJkcyB0byBmaWxlIHNpemUgLSB3a3MgZmlsZToNCj4gDQo+
+IA0KPiBtYXJ0aW5AbWFydGluLVByZWNpc2lvbi01NTEwOn4vd29yay96NzAwMC1kaXN0cm9fd2lj
+L21ldGEtejcwMDAkIGNhdCBzY3JpcHRzL2xpYi93aWMvY2FubmVkLXdrcy9ncy1ib290LXJvb3Rm
+cy53a3MNCj4gcGFydCAtLW9uZGlzayBtbWNibGsgLS1zaXplIDQNCj4gcGFydCAvYm9vdCAtLXNv
+dXJjZSBib290aW1nLXBhcnRpdGlvbiAtLW9uZGlzayBtbWNibGswIC0tZnN0eXBlPXZmYXQgLS1s
+YWJlbCBib290IC0tYWN0aXZlIC0tYWxpZ24gNDA5NiAtLXNpemUgNjQgLS1mc29wdGlvbnMgcm8N
+Cj4gcGFydCAvIC0tc291cmNlIHJvb3RmcyAtLW9uZGlzayBtbWNibGsgLS1mc3R5cGU9ZXh0NCAt
+LWxhYmVsIHJvb3QgLS1hbGlnbiA0MDk2DQo+IHBhcnQgL21udC9kYXRhIC0tb25kaXNrIG1tY2Js
+azAgLS1mc3R5cGU9ZXh0NCAtLWxhYmVsIGRhdGEgLS1zaXplIDEwMjQNCj4gDQo+IE5vdywgZ2Vu
+ZXJhdGluZyB0aGUgbWFwIGZpbGUgaW5kaWNhdGVzIHRoYXQgYm1hcC10b29scyBpcyBjYXBhYmxl
+IG9mIHNpZ25pZmljYW50bHkgcmVkdWNpbmcgdGhlIGRhdGEgdHJhbnNmZXI6DQo+IA0KPiBtYXJ0
+aW5AbWFydGluLVByZWNpc2lvbi01NTEwOn4vd29yay96NzAwMC1kaXN0cm9fd2ljL2J1aWxkL3Rt
+cC1nbGliYy9kZXBsb3kvaW1hZ2VzL3p5bnEtc29mdC16ZWRib2FyZCQgY2F0wqAgejcwMDAtYmFz
+ZS1pbWFnZS16eW5xLXNvZnQtemVkYm9hcmQud2ljLmJtYXANCj4gPD94bWwgdmVyc2lvbj0iMS4w
+IiA/Pg0KPiA8IS0tIFRoaXMgZmlsZSBjb250YWlucyB0aGUgYmxvY2sgbWFwIGZvciBhbiBpbWFn
+ZSBmaWxlLCB3aGljaCBpcyBiYXNpY2FsbHkNCj7CoMKgwqDCoMKgIGEgbGlzdCBvZiB1c2VmdWwg
+KG1hcHBlZCkgYmxvY2sgbnVtYmVycyBpbiB0aGUgaW1hZ2UgZmlsZS4gSW4gb3RoZXIgd29yZHMs
+DQo+wqDCoMKgwqDCoCBpdCBsaXN0cyBvbmx5IHRob3NlIGJsb2NrcyB3aGljaCBjb250YWluIGRh
+dGEgKGJvb3Qgc2VjdG9yLCBwYXJ0aXRpb24NCj7CoMKgwqDCoMKgIHRhYmxlLCBmaWxlLXN5c3Rl
+bSBtZXRhZGF0YSwgZmlsZXMsIGRpcmVjdG9yaWVzLCBleHRlbnRzLCBldGMpLiBUaGVzZQ0KPsKg
+wqDCoMKgwqAgYmxvY2tzIGhhdmUgdG8gYmUgY29waWVkIHRvIHRoZSB0YXJnZXQgZGV2aWNlLiBU
+aGUgb3RoZXIgYmxvY2tzIGRvIG5vdA0KPsKgwqDCoMKgwqAgY29udGFpbiBhbnkgdXNlZnVsIGRh
+dGEgYW5kIGRvIG5vdCBoYXZlIHRvIGJlIGNvcGllZCB0byB0aGUgdGFyZ2V0DQo+wqDCoMKgwqDC
+oCBkZXZpY2UuDQo+IA0KPsKgwqDCoMKgwqAgVGhlIGJsb2NrIG1hcCBhbiBvcHRpbWl6YXRpb24g
+d2hpY2ggYWxsb3dzIHRvIGNvcHkgb3IgZmxhc2ggdGhlIGltYWdlIHRvDQo+wqDCoMKgwqDCoCB0
+aGUgaW1hZ2UgcXVpY2tlciB0aGFuIGNvcHlpbmcgb2YgZmxhc2hpbmcgdGhlIGVudGlyZSBpbWFn
+ZS4gVGhpcyBpcw0KPsKgwqDCoMKgwqAgYmVjYXVzZSB3aXRoIGJtYXAgbGVzcyBkYXRhIGlzIGNv
+cGllZDogPE1hcHBlZEJsb2Nrc0NvdW50PiBibG9ja3MgaW5zdGVhZA0KPsKgwqDCoMKgwqAgb2Yg
+PEJsb2Nrc0NvdW50PiBibG9ja3MuDQo+IA0KPsKgwqDCoMKgwqAgQmVzaWRlcyB0aGUgbWFjaGlu
+ZS1yZWFkYWJsZSBkYXRhLCB0aGlzIGZpbGUgY29udGFpbnMgdXNlZnVsIGNvbW1lbnRhcmllcw0K
+PsKgwqDCoMKgwqAgd2hpY2ggY29udGFpbiBodW1hbi1yZWFkYWJsZSBpbmZvcm1hdGlvbiBsaWtl
+IGltYWdlIHNpemUsIHBlcmNlbnRhZ2Ugb2YNCj7CoMKgwqDCoMKgIG1hcHBlZCBkYXRhLCBldGMu
+DQo+IA0KPsKgwqDCoMKgwqAgVGhlICd2ZXJzaW9uJyBhdHRyaWJ1dGUgaXMgdGhlIGJsb2NrIG1h
+cCBmaWxlIGZvcm1hdCB2ZXJzaW9uIGluIHRoZQ0KPsKgwqDCoMKgwqAgJ21ham9yLm1pbm9yJyBm
+b3JtYXQuIFRoZSB2ZXJzaW9uIG1ham9yIG51bWJlciBpcyBpbmNyZWFzZWQgd2hlbmV2ZXIgYW4N
+Cj7CoMKgwqDCoMKgIGluY29tcGF0aWJsZSBibG9jayBtYXAgZm9ybWF0IGNoYW5nZSBpcyBtYWRl
+LiBUaGUgbWlub3IgbnVtYmVyIGNoYW5nZXMNCj7CoMKgwqDCoMKgIGluIGNhc2Ugb2YgbWlub3Ig
+YmFja3dhcmQtY29tcGF0aWJsZSBjaGFuZ2VzLiAtLT4NCj4gDQo+IDxibWFwIHZlcnNpb249IjIu
+MCI+DQo+wqDCoMKgwqAgPCEtLSBJbWFnZSBzaXplIGluIGJ5dGVzOiAxLjIgR2lCIC0tPg0KPsKg
+wqDCoMKgIDxJbWFnZVNpemU+IDEyNTc0NTI1NDQgPC9JbWFnZVNpemU+DQo+IA0KPsKgwqDCoMKg
+IDwhLS0gU2l6ZSBvZiBhIGJsb2NrIGluIGJ5dGVzIC0tPg0KPsKgwqDCoMKgIDxCbG9ja1NpemU+
+IDQwOTYgPC9CbG9ja1NpemU+DQo+IA0KPsKgwqDCoMKgIDwhLS0gQ291bnQgb2YgYmxvY2tzIGlu
+IHRoZSBpbWFnZSBmaWxlIC0tPg0KPsKgwqDCoMKgIDxCbG9ja3NDb3VudD4gMzA2OTk2IDwvQmxv
+Y2tzQ291bnQ+DQo+IA0KPsKgwqDCoMKgIDwhLS0gQ291bnQgb2YgbWFwcGVkIGJsb2NrczogNDIu
+MSBNaUIgb3IgMy41JcKgwqDCoCAtLT4NCj7CoMKgwqDCoCA8TWFwcGVkQmxvY2tzQ291bnQ+IDEw
+NzY1wqAgPC9NYXBwZWRCbG9ja3NDb3VudD4NCj4gDQo+wqDCoMKgwqAgPCEtLSBUeXBlIG9mIGNo
+ZWNrc3VtIHVzZWQgaW4gdGhpcyBmaWxlIC0tPg0KPsKgwqDCoMKgIDxDaGVja3N1bVR5cGU+IHNo
+YTI1NiA8L0NoZWNrc3VtVHlwZT4NCj4gDQo+wqDCoMKgwqAgPCEtLSBUaGUgY2hlY2tzdW0gb2Yg
+dGhpcyBibWFwIGZpbGUuIFdoZW4gaXQgaXMgY2FsY3VsYXRlZCwgdGhlIHZhbHVlIG9mDQo+wqDC
+oMKgwqDCoMKgwqDCoMKgIHRoZSBjaGVja3N1bSBoYXMgYmUgemVybyAoYWxsIEFTQ0lJICIwIiBz
+eW1ib2xzKS7CoCAtLT4NCj7CoMKgwqDCoCA8Qm1hcEZpbGVDaGVja3N1bT4gZDQxZDIxMGU4ZWZk
+ZjMyNTk3ZTU2NjM2MGEyZjcwMWU3MDZmM2IwNGJjZjI0MThiYjBjNTBhMWY4YThkNmM3MiA8L0Jt
+YXBGaWxlQ2hlY2tzdW0+DQo+IA0KPsKgwqDCoMKgIDwhLS0gVGhlIGJsb2NrIG1hcCB3aGljaCBj
+b25zaXN0cyBvZiBlbGVtZW50cyB3aGljaCBtYXkgZWl0aGVyIGJlIGENCj7CoMKgwqDCoMKgwqDC
+oMKgwqAgcmFuZ2Ugb2YgYmxvY2tzIG9yIGEgc2luZ2xlIGJsb2NrLiBUaGUgJ2Noa3N1bScgYXR0
+cmlidXRlDQo+wqDCoMKgwqDCoMKgwqDCoMKgIChpZiBwcmVzZW50KSBpcyB0aGUgY2hlY2tzdW0g
+b2YgdGhpcyBibG9ja3MgcmFuZ2UuIC0tPg0KPsKgwqDCoMKgIDxCbG9ja01hcD4NCj7CoMKgwqDC
+oMKgwqDCoMKgIDxSYW5nZSBjaGtzdW09IjRlMWM4MzZmZmFmMWEyM2YzMTYzODJmNWQ3ZWZmNDRh
+MGZjNWE0M2FjNjgxZmExMWUxMDBlNTViNzNlOGJjN2IiPiAwLTYgPC9SYW5nZT4NCj7CoMKgwqDC
+oMKgwqDCoMKgIDxSYW5nZSBjaGtzdW09ImI3OTVjNjhhNWNkZTZhOGFiMGI3YjU0MWYyMDk0Nzky
+ZjQ3NDZmYjBmOWU1Yjc5NDAyNDg5NWI1YzcyYTQyZWEiPiAyMDQ4LTIzNDcgPC9SYW5nZT4NCj7C
+oMKgwqDCoMKgwqDCoMKgIDxSYW5nZSBjaGtzdW09IjA3M2MzMDMyNTRlOTZiNDQ0MDBiN2RmMTU5
+ZmRkOGNmY2M0OGNhZDkwZjc3YWIxNGNmMTU3ZWFhYWY5NGQ4MTAiPiAyMzU1Mi0yMzYyMCA8L1Jh
+bmdlPg0KPsKgwqDCoMKgwqDCoMKgwqAgPFJhbmdlIGNoa3N1bT0iYjM0MjAxZmZhOTQ0NTY0NDRj
+NWJjOGU1NDZlMzgwNWZjNTg5NjE0MDNjMGE0NDRjZTAzOWYyMWViODk0YzA1YyI+IDIzNjIyLTIz
+Njg4IDwvUmFuZ2U+DQo+wqDCoMKgwqDCoMKgwqDCoCA8UmFuZ2UgY2hrc3VtPSI3MzFjMDJiODcx
+OTFmOTBlMzc2ODM3NzhlNmM4ODE3YzAzY2YyYjNlNmFjMTE1OWMxYmI3OTM0NzAwNzA5ZThiIj4g
+MjM5NTctMjU2MDAgPC9SYW5nZT4NCj7CoMKgwqDCoMKgwqDCoMKgIDxSYW5nZSBjaGtzdW09ImUx
+ZGQ1NmJjNzU2NmRkYTkyODA3Y2UyODU4MmYzZjVlYWQ1ODlkN2RmYmY0YmVjYTljNmY5MjgyMzhm
+NzNlZGUiPiAyNTY2NC0yOTY5NiA8L1JhbmdlPg0KPsKgwqDCoMKgwqDCoMKgwqAgPFJhbmdlIGNo
+a3N1bT0iMmNjYjk5OWU3YjYzY2FkNzdkMTg5MWM5MzQyNGQzMDFjZmY1ZGQxYzJmMjU4MTNiOTZm
+MjQzZDQyNTU5Mjc3MCI+IDI5NzYwLTMxNzQ0IDwvUmFuZ2U+DQo+wqDCoMKgwqDCoMKgwqDCoCA8
+UmFuZ2UgY2hrc3VtPSIwNjk4NmNjZDRmMTMxOTAyODIwMGZiZmI5ZGNjYjcyZmFiZDRlMThhYmY0
+MTk1Y2ZiZTI4OGFjMDk0MzY2MzBjIj4gMzI3NjgtMzM3OTIgPC9SYW5nZT4NCj7CoMKgwqDCoMKg
+wqDCoMKgIDxSYW5nZSBjaGtzdW09IjhjZGZlYzAwMTg3N2Q0YjZiYjQxZDFjYWY4MTRhYWRmYzY3
+Y2FiZWYxNjBhMGE0NDJmYmI5OGRmYzQxOTA0MjQiPiAzMzg1Ni0zNTM4OSA8L1JhbmdlPg0KPsKg
+wqDCoMKgwqDCoMKgwqAgPFJhbmdlIGNoa3N1bT0iZjljYTQwNjk0ZWU4YjU4N2UyMGZjZmIyYTgw
+MzA1NWYxNmE2Y2IxYjM0OGE5MGJhZGFlOWMxMzg2MGNmZjhhMCI+IDM3ODg4IDwvUmFuZ2U+DQo+
+wqDCoMKgwqDCoMKgwqDCoCA8UmFuZ2UgY2hrc3VtPSJiMDUwNThkZTU5YWIwMTgyMDY0MzIzZDI5
+N2EzYzZmYmE0Mjc3MmYzZGE0ZjQ4ZmE5ZjYwZGM1OGY0YjM4NmUzIj4gNDE5ODQgPC9SYW5nZT4N
+Cj7CoMKgwqDCoMKgwqDCoMKgIDxSYW5nZSBjaGtzdW09IjJhYmM0ODM0OGY5NTUxYmQwNTI1ODU1
+MzAxNGY4YzM4OTk3MGQzMDM4MWUzZGM2NDU0N2EwYTdiNmY0OGFmMTQiPiA0NDg1MS00NDkxNyA8
+L1JhbmdlPg0KPsKgwqDCoMKgwqDCoMKgwqAgPFJhbmdlIGNoa3N1bT0iNzE4OTlhZDhlM2ZhMDEz
+NDQzNjc4ZjM4NGUyMTlmMTA2NGU3NDY4N2ZiMzQ4NjEwMzZhYThlNDU2N2UxMmU5YSI+IDQ0OTIw
+LTQ0OTIxIDwvUmFuZ2U+DQo+wqDCoMKgwqDCoMKgwqDCoCA8UmFuZ2UgY2hrc3VtPSJjYzgwZTI0
+MjI4YTQ4YjI3OWJjZDYyNmRhZTE2MTgxYzMxN2I1NmFjZmI4ZmM1NmRjN2IxZjgzNDYzOTY2MTY2
+Ij4gNDQ5MjMtNDQ5MjUgPC9SYW5nZT4NCj7CoMKgwqDCoMKgwqDCoMKgIDxSYW5nZSBjaGtzdW09
+IjNlZmE2YmNiNTljZDc3NzIyMzI3ZDExZDA0MGJmNTFlOTgzZTAwNGM4ZDgyNmU0ZGRmN2Y5Yjk0
+YjBjYzc1NGIiPiA0NDkzMi00NDkzMyA8L1JhbmdlPg0KPsKgwqDCoMKgwqDCoMKgwqAgPFJhbmdl
+IGNoa3N1bT0iM2MzZWE4ZTBmM2ViNWE4ODMyMWJkZTc2MGQ5MzI4ODI2YjFjZDg3ZGY5MjI2MGNk
+M2JhYzY1ZDhiZmEwOTRlMCI+IDUzMTI0LTUzMTMwIDwvUmFuZ2U+DQo+wqDCoMKgwqDCoMKgwqDC
+oCA8UmFuZ2UgY2hrc3VtPSI3NGFkMTQzNzZiMjE3N2U2ZmVhODZhMjc4NDcxMWE4ZjhiNzhiZWI5
+NzY2Yjk1ODI3MWI5ZmIxYmY3Y2VjM2E1Ij4gNzc2MTktNzc2MjEgPC9SYW5nZT4NCj7CoMKgwqDC
+oMKgwqDCoMKgIDxSYW5nZSBjaGtzdW09IjExOTY2OThkNmY2NGM1ZTEzM2E2ZjkxMDMwYTI0NWYx
+NmVlNzQxYWNiZjU5ZTQ2OWQyMzEzN2Q1MDJmNTBlMjIiPiAxNDMxNTUtMTQzMTU3IDwvUmFuZ2U+
+DQo+wqDCoMKgwqDCoMKgwqDCoCA8UmFuZ2UgY2hrc3VtPSJkNWZkYTA5NmE5ODc2YzVhZmVjMjc0
+NGE5NWJiNDU4M2NlMzBhZGY1OGQ2NGI0N2Y0YmY1ZjY5MzA5ZDQ2MDNlIj4gMTc1OTIzLTE3NTky
+NCA8L1JhbmdlPg0KPsKgwqDCoMKgwqDCoMKgwqAgPFJhbmdlIGNoa3N1bT0iNzgwMTlhOThlZDU3
+YTJjNDIzNDA2YzdlNWU5N2Y0NjE1ZTFhY2UyN2JlNTczYzA1MjZkMGU1YjkyMjFiMDdkZSI+IDIw
+ODY5MS0yMDg2OTMgPC9SYW5nZT4NCj7CoMKgwqDCoMKgwqDCoMKgIDxSYW5nZSBjaGtzdW09ImM3
+ZTQ4N2JhOGE5MjdhZmRjOWVhNWVkZDQ2OGFmYzQ4NzVjZmVkMzdmNDU4NzYzNmIxYjI1M2ExMDA1
+YjgyZTEiPiAyNzQyMjctMjc0MjI5IDwvUmFuZ2U+DQo+wqDCoMKgwqDCoMKgwqDCoCA8UmFuZ2Ug
+Y2hrc3VtPSI3Nzg0ZWY0ZjBjNDI1ZWI1NTc4NTU5MTAyZmFhYTk5YzRmYmEwYWIyYzJmZjdkYmU1
+ZmNjM2M5ZTczMWE5N2E3Ij4gMzA2OTkyLTMwNjk5NSA8L1JhbmdlPg0KPsKgwqDCoMKgIDwvQmxv
+Y2tNYXA+DQo+IDwvYm1hcD4NCj4gDQo+IFVuZm9ydHVuYXRlbHksIG15IEhXIGRvZXMgbm90IGlu
+dGVncmF0ZSBhbiBTRCBjYXJkICh0aGF0IGNvdWxkIGhhdmUgYmVlbiBmbGFzaGVkIHVzaW5nIGJt
+YXAtdG9vbHMpIGFuZCB3ZSBjdXJyZW50bHkgZmxhc2ggdGhlIHNvbGRlcmVkIGVNTUMgdXNpbmcg
+ZGZ1LXV0aWwuIEluIHRoaXMgY2FzZSBhbGwgMS4yIEdCIGFyZSB0cmFuc2ZlcnJlZCwgd2hpY2gg
+SSBjb25zaWRlciBmYWlybHkgc3Vib3B0aW1hbCBjb21wYXJlZCB0byB0aGUgYWJvdmUgcmVwb3J0
+ZWQgIDQyIE1CIPCfmJ4uDQo+DQpBZnRlciBicmllZmx5IGxvb2tpbmcgYXJvdW5kIGF0IGRmdS11
+dGlsIGFuZCAuZGZ1IGZvcm1hdCBkZXNjcmlwdGlvbiBJJ2QNCnN1Z2dlc3QgdG8gY29udmVydCB3
+aWMgaW1hZ2VzIGludG8gLmRmdSB1c2luZyBlaXRoZXIgaW5mb3JtYXRpb24gZnJvbQ0KLmJtYXAg
+b3Igd2ljIGZpbGVtYXAgQVBJKHdyYXBwZXIgYXJvdW5kIEZJRU1BUCBpb2N0bCBvciB0aGUgJ1NF
+RUtfSE9MRQ0KLyBTRUVLX0RBVEEnIGZlYXR1cmVzIG9mIHRoZSBmaWxlIHNlZWsgc3lzY2FsbCkg
+YW5kIHRoZW4gdXNlIGRmdS11dGlsIHRvDQp1cGxvYWQgYW4gaW1hZ2UgdG8gdGhlIHRhcmdldCBt
+ZWRpYS4NCg0KPiBJbiB0aGUgcGFzdCB3ZSBtYWludGFpbmVkIGEgY3VzdG9tIGltYWdlIGNsYXNz
+IHRoYXQgc2ltcGx5IHNraXBwZWQgY3JlYXRpbmcgdGhlIGVtcHR5IGV4dDQgcGFydGl0aW9uIGFu
+ZCBsZWZ0IGl0IHRvIGJlIGNyZWF0ZWQgdXBvbiB0aGUgZmlyc3QgYm9vdC4gSSBjb3VsZCBwcm9i
+YWJseSBsaXZlIHdpdGggdGhpcyBhcHByb2FjaCwgYnV0IEkgZG9uJ3QgcmVhbGx5IHNlZSBhbiBl
+YXN5IHdheSBvZiBhY2hpZXZlaW5nIHRoaXMgdXNpbmcgd2ljIC0gIHBlcmhhcHMgSSBtaXNzZWQg
+aXQ/IEhvd2V2ZXIsIGlmIHBvc3NpYmxlLCBteSBwcmVmZXJlbmNlIHdvdWxkIGJlIHRvIGdlbmVy
+YXRlIHRoZSBwYXJ0aXRpb24gZHVyaW5nIHRoZSBidWlsZCBhbmQgbm90IGF0IHJ1bnRpbWUuDQoN
+CkNhbiB5b3UgZWxhYm9yYXRlIG9uIHRoaXMgYSBiaXQgbW9yZT8gTXkgZ3Vlc3MgaXMgdGhhdCB5
+b3Ugd2FudCB0byBjcmVhdGUgdW5mb3JtYXR0ZWQNCnBhcnRpdGlvbiwgYnV0IEknbSBub3Qgc3Vy
+ZSBJIHVuZGVyc3RhbmQgaG93IHRoYXQgY2FuIGhlbHAgaW4gdGhpcw0KcGFydGljdWxhciBjYXNl
+Lg0KDQo+IA0KPiBJIHNlZSBzb21lIGhpc3Rvcnkgb2Ygc3BhcnNlIGltYWdlcyByZWxhdGVkIHRv
+IHdpYyzCoCBidXQgdGhlIHdvcmtzIGFwcGVhcnMgcmV2ZXJ0ZWQ/DQo+DQpDYW4geW91IHBvaW50
+IG1lIG91dCB0byB0aGUgcmV2ZXJ0ZWQgY29tbWl0cz8NCg0Kd2ljIGltYWdlcyBhcmUgc3BhcnNl
+LiBIZXJlIGlzIGFuIGV4YW1wbGUgb2YgOTRNIHNwYXJzZSBpbWFnZSB3aXRoDQphbGxvY2F0ZWQg
+c2l6ZSAxNk06DQoNCiQgbHMgLWxocw0KLi90bXAvZGVwbG95L2ltYWdlcy9xZW11eDg2LTY0L2Nv
+cmUtaW1hZ2UtbWluaW1hbC1xZW11eDg2LTY0LTIwMTgwMTE2MDkxODA5LnJvb3Rmcy53aWMNCjE2
+TSAtcnctci0tci0tIDIgZWQgdXNlcnMgOTRNIEphbiAxNiAxMToyMg0KLi90bXAvZGVwbG95L2lt
+YWdlcy9xZW11eDg2LTY0L2NvcmUtaW1hZ2UtbWluaW1hbC1xZW11eDg2LTY0LTIwMTgwMTE2MDkx
+ODA5LnJvb3Rmcy53aWMNCg0KDQotLQ0KUmVnYXJkcywNCkVkDQogICAg
 
