@@ -1,67 +1,62 @@
-Return-Path: <rudnik.mathias@googlemail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D492CE00DEE; Wed, 17 Jan 2018 04:46:36 -0800 (PST)
+	id B67C4E00D75; Wed, 17 Jan 2018 04:53:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudnik.mathias[at]googlemail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 124FAE008A4
-	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 04:46:35 -0800 (PST)
-Received: by mail-wm0-f54.google.com with SMTP id g1so14921341wmg.2
-	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 04:46:35 -0800 (PST)
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1C7FE008A4
+	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 04:53:37 -0800 (PST)
+Received: by mail-io0-f173.google.com with SMTP id f89so12674258ioj.4
+	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 04:53:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=from:mime-version:subject:message-id:date:to;
-	bh=hspFuVPHb2tShOq+pnV+HNflgs0oMm20DzgpC+9lUac=;
-	b=vYxKu96jD5zr7GQuJ6F+NxbYGG7u0iQk+0Pzvp+LjesVCQRG17XMQSl1f6FvsJn4mP
-	WLvkpgal37IRj7m7toXdVMGvSMak+6/rxgMHckf9DhkB3fOEJz+YqWBQqkgUgFLY0U7B
-	38+s+8U5Urk7xogrkTsjKTN6snkHyCuALdbVcInu7PZGKt/eSOeBBFpzhx3HxtCI51eN
-	/F89vBf9fUApvH4UAUnUwm6Y7lPwU6e4SocF3sTiZzir0uElbMqcJP4UDMUXZKqf6acn
-	9MqA+T03s8H+wi/cyCBBSRnO3ztGZVw4ASmOrL8LsyzTHm+L1epi+9whj1A5J1YoMO+a
-	xknQ==
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=CVAguHTrWMDSkpl3pSOAsi7NUHm/mtN0cUU/DQGbIq0=;
+	b=I6h+xVOhTIqNUDuDfSdKFBvTHbPc6AatU9UpdIhqzUvfduGUePrsPw8oBZg3Xtc17K
+	SfCvfW1EmEwWdpdMcb4TQvDNZ2FEQZkx8q9KZu3r72fOuLhZAKbtv0Z46aLYpByZkZmY
+	i6EC/vBuWUamu+DvNiXTNwWUacoMlbnuAOSXfpJA+JTIWq8biY5Ut8RMpxDkGZjEQNgb
+	YvFkZKN96xOtTARLGqhV6f2kMCovGa+lHvTUENBvkcgApgJmelvOD1rOn8viB5t/Ykpx
+	FWfXPkT/gUwMc8iamA23FUbUV00idEh5KgDTx+HfrLU+sDSWksaSzxLr9xu29jlCpQTG
+	jsgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:mime-version:subject:message-id:date:to;
-	bh=hspFuVPHb2tShOq+pnV+HNflgs0oMm20DzgpC+9lUac=;
-	b=I/u+DoQKhqaONKYCE3iqbHbJrofORysssC13oNLfLX9HhaTJZIcSUEygrw8Rrr7IQC
-	CIe4lNpuZZb7JZW35qwHjfREVCieZqnfwrvcJN2AZt6W/V1eY+AMH6fRUFzLf1k246b2
-	3678u6tgPzjEh+L7DP9sVrbzA+w+ueiixS0w0pN5jd8YokCIHdIrnv4sL4+8EPMnWjoj
-	mZ/kCHfMVWBXGSXcbIku4ZfUupmFs3Dis39c8QoY5OV5OZwcPKy8m6SlXePO2+NmUQsZ
-	uLBFf3A8lb8fu5nHw2KYJWcr/6SqovxPeHt0DjaHKPz5EDCiKgmYujIIAWu5Fva5AhVK
-	2TWw==
-X-Gm-Message-State: AKwxytfXYBc7azEmrGUbP/qEWOt/vwGZ2lKvLfUFtNXo3YNLIKRNWNm+
-	KnFjG7qjzjqiIoVd9u0HaPsnsL3D
-X-Google-Smtp-Source: ACJfBouFrNibTqlULmLRcq6Fh5vKVLWeCLgitM6QLG8y1YzjSIxuR3uRobI2C3/yXioe1H1n8duvDg==
-X-Received: by 10.28.1.210 with SMTP id 201mr1939216wmb.120.1516193194568;
-	Wed, 17 Jan 2018 04:46:34 -0800 (PST)
-Received: from [192.168.43.147] (ip-109-41-66-213.web.vodafone.de.
-	[109.41.66.213]) by smtp.googlemail.com with ESMTPSA id
-	m45sm3534418wrf.75.2018.01.17.04.46.33 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 17 Jan 2018 04:46:34 -0800 (PST)
-From: Mathias Rudnik <rudnik.mathias@googlemail.com>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Message-Id: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
-Date: Wed, 17 Jan 2018 13:46:32 +0100
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3273)
-Subject: Error do_compile libepoxy
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=CVAguHTrWMDSkpl3pSOAsi7NUHm/mtN0cUU/DQGbIq0=;
+	b=EkWbK/jiOqnWnX0GxKZTm8Z/vVWto0it1ZoQ1370qxjuJChhab/3h0ZGcmOxknfhtQ
+	HsgezXPDFsiuhWH1uMC/XU3T3NNox+1lTZBkRESRECmEdCXYGZ57FDw9fiV66ysahqRS
+	x+AWedWzcMQnnPyNSzUXtT4mK053p+PbVMvv6UaI1l2dnZi3Yoo/F6Q7XC8zdWkF2cp1
+	trW46cdDsiXCQvoKocbRX+kgDHvb/By506dojfFycVkz6ehu8nNaSx6kzxuNyCXrqQPy
+	ssCK5DYTLwiNk9Cy/QoM5Ggt5l7084LpiUvSA1lVgEFkyIPFQlan9CeOxP+sDouZImhL
+	x0ng==
+X-Gm-Message-State: AKwxyteaX8Lw7lCKM6xZhq2zj5v92E2aDFbyheQTH60bRtvGKX032R/B
+	2x/mUnnizHmZz8lBUcMNhzhCTdUhzJCPpjoPRymhcQ==
+X-Google-Smtp-Source: ACJfBotcGPxzgk2BJb4X3StF5BdXq/i56hkEXSUWfDrOSNI+cpA1o9OQYv5tywRy8qX/62AVx8PbLe8hUTqA1iKN8qI=
+X-Received: by 10.107.133.75 with SMTP id h72mr10682846iod.227.1516193616727; 
+	Wed, 17 Jan 2018 04:53:36 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.107.157.202 with HTTP; Wed, 17 Jan 2018 04:53:16 -0800 (PST)
+In-Reply-To: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 17 Jan 2018 12:53:16 +0000
+Message-ID: <CAJTo0LbMJL+2-K03MRhPDjRfC8oBJ1fc1D+-w+HCQgB4UJrFeQ@mail.gmail.com>
+To: Mathias Rudnik <rudnik.mathias@googlemail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Error do_compile libepoxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,143 +68,161 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jan 2018 12:46:36 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_1BDA17A6-1F02-463B-B957-7D7A493FA636"
+X-List-Received-Date: Wed, 17 Jan 2018 12:53:38 -0000
+Content-Type: multipart/alternative; boundary="001a113ec5e4efbbf60562f8559d"
 
---Apple-Mail=_1BDA17A6-1F02-463B-B957-7D7A493FA636
+--001a113ec5e4efbbf60562f8559d
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
-Hello,
+I suggest you ask the upstream maintainers of libepoxy.
+
+Ross
+
+On 17 January 2018 at 12:46, Mathias Rudnik <rudnik.mathias@googlemail.com>
+wrote:
+
+> Hello,
+>
+> I am trying to build libepoxy but the do_compile tasks breaks.
+> I found following error messages in the logs:
+>
+> arm-poky-linux-gnueabi-gcc -march=3Darmv6 -mfpu=3Dvfp -mfloat-abi=3Dhard =
+-mtune=3Darm1176jzf-s -mfpu=3Dvfp --sysroot=3D/hdd_gold1/mathias/git/poky/r=
+pi-build/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4.3-r0/re=
+cipe-sysroot '-Itest/egl_common at sta <http://lists.openembedded.org/mailm=
+an/listinfo/openembedded-core>' '-Itest' '-Iinclude/epoxy' '-I../libepoxy-1=
+.4.3/test' '-Iinclude' '-I../libepoxy-1.4.3/include' '-Isrc' '-I../libepoxy=
+-1.4.3/src' '-fdiagnostics-color=3Dalways' '-pipe' '-D_FILE_OFFSET_BITS=3D6=
+4' '-Wall' '-Winvalid-pch' '-std=3Dgnu99' '-O2' '-g' '-O2' '-g' '-feliminat=
+e-unused-debug-types' '-fdebug-prefix-map=3D/hdd_gold1/mathias/git/poky/rpi=
+-build/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4.3-r0=3D/u=
+sr/src/debug/libepoxy/1.4.3-r0' '-fdebug-prefix-map=3D/hdd_gold1/mathias/gi=
+t/poky/rpi-build/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4=
+.3-r0/recipe-sysroot-native=3D' '-fdebug-prefix-map=3D/hdd_gold1/mathias/gi=
+t/poky/rpi-build/tmp/work/arm1176jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4=
+.3-r0/recipe-sysroot=3D' '-lEGL' '-fPIC' '-Wpointer-arith' '-Wmissing-decla=
+rations' '-Wformat=3D2' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wnes=
+ted-externs' '-Wbad-function-cast' '-Wold-style-definition' '-Wdeclaration-=
+after-statement' '-Wunused' '-Wuninitialized' '-Wshadow' '-Wmissing-noretur=
+n' '-Wmissing-format-attribute' '-Wredundant-decls' '-Wlogical-op' '-Werror=
+=3Dimplicit' '-Werror=3Dnonnull' '-Werror=3Dinit-self' '-Werror=3Dmain' '-W=
+error=3Dmissing-braces' '-Werror=3Dsequence-point' '-Werror=3Dreturn-type' =
+'-Werror=3Dtrigraphs' '-Werror=3Darray-bounds' '-Werror=3Dwrite-strings' '-=
+Werror=3Daddress' '-Werror=3Dint-to-pointer-cast' '-Werror=3Dpointer-to-int=
+-cast' '-fno-strict-aliasing' '-Wno-int-conversion' '-MMD' '-MQ' 'test/egl_=
+common at sta <http://lists.openembedded.org/mailman/listinfo/openembedded-=
+core>/egl_common.c.o' '-MF' 'test/egl_common at sta <http://lists.openembed=
+ded.org/mailman/listinfo/openembedded-core>/egl_common.c.o.d' -o 'test/egl_=
+common at sta <http://lists.openembedded.org/mailman/listinfo/openembedded-=
+core>/egl_common.c.o' -c ../libepoxy-1.4.3/test/egl_common.c
+> ../libepoxy-1.4.3/test/egl_common.c: In function 'get_egl_display_or_skip=
+':
+> ../libepoxy-1.4.3/test/egl_common.c:36:5: error: unknown type name 'Displ=
+ay'; did you mean 'EGLDisplay'?
+>      Display *dpy =3D XOpenDisplay(NULL);
+>      ^~~~~~~
+>      EGLDisplay
+> ../libepoxy-1.4.3/test/egl_common.c:36:20: error: implicit declaration of=
+ function 'XOpenDisplay'; did you mean 'eglGetDisplay'? [-Werror=3Dimplicit=
+-function-declaration]
+>      Display *dpy =3D XOpenDisplay(NULL);
+>                     ^~~~~~~~~~~~
+>                     eglGetDisplay
+> ../libepoxy-1.4.3/test/egl_common.c:36:20: warning: nested extern declara=
+tion of 'XOpenDisplay' [-Wnested-externs]
+> cc1: some warnings being treated as errors
+>
+> Does anybody know what i am doing wrong?
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a113ec5e4efbbf60562f8559d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I suggest you ask the upstream maintainers of libepoxy.<di=
+v><br></div><div>Ross</div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On 17 January 2018 at 12:46, Mathias Rudnik <span dir=3D"l=
+tr">&lt;<a href=3D"mailto:rudnik.mathias@googlemail.com" target=3D"_blank">=
+rudnik.mathias@googlemail.com</a>&gt;</span> wrote:<br><blockquote class=3D=
+"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
+-left:1ex"><div style=3D"word-wrap:break-word"><pre style=3D"white-space:pr=
+e-wrap;font-variant-ligatures:normal">Hello,
 
 I am trying to build libepoxy but the do_compile tasks breaks.
 I found following error messages in the logs:
 
-arm-poky-linux-gnueabi-gcc -march=3Darmv6 -mfpu=3Dvfp -mfloat-abi=3Dhard =
--mtune=3Darm1176jzf-s -mfpu=3Dvfp =
---sysroot=3D/hdd_gold1/mathias/git/poky/rpi-build/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot =
-'-Itest/egl_common at sta =
-<http://lists.openembedded.org/mailman/listinfo/openembedded-core>' =
-'-Itest' '-Iinclude/epoxy' '-I../libepoxy-1.4.3/test' '-Iinclude' =
-'-I../libepoxy-1.4.3/include' '-Isrc' '-I../libepoxy-1.4.3/src' =
-'-fdiagnostics-color=3Dalways' '-pipe' '-D_FILE_OFFSET_BITS=3D64' =
-'-Wall' '-Winvalid-pch' '-std=3Dgnu99' '-O2' '-g' '-O2' '-g' =
-'-feliminate-unused-debug-types' =
-'-fdebug-prefix-map=3D/hdd_gold1/mathias/git/poky/rpi-build/tmp/work/arm11=
-76jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4.3-r0=3D/usr/src/debug/libepox=
-y/1.4.3-r0' =
-'-fdebug-prefix-map=3D/hdd_gold1/mathias/git/poky/rpi-build/tmp/work/arm11=
-76jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot-native=3D=
-' =
-'-fdebug-prefix-map=3D/hdd_gold1/mathias/git/poky/rpi-build/tmp/work/arm11=
-76jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot=3D' =
-'-lEGL' '-fPIC' '-Wpointer-arith' '-Wmissing-declarations' '-Wformat=3D2' =
-'-Wstrict-prototypes' '-Wmissing-prototypes' '-Wnested-externs' =
-'-Wbad-function-cast' '-Wold-style-definition' =
-'-Wdeclaration-after-statement' '-Wunused' '-Wuninitialized' '-Wshadow' =
-'-Wmissing-noreturn' '-Wmissing-format-attribute' '-Wredundant-decls' =
-'-Wlogical-op' '-Werror=3Dimplicit' '-Werror=3Dnonnull' =
-'-Werror=3Dinit-self' '-Werror=3Dmain' '-Werror=3Dmissing-braces' =
-'-Werror=3Dsequence-point' '-Werror=3Dreturn-type' '-Werror=3Dtrigraphs' =
-'-Werror=3Darray-bounds' '-Werror=3Dwrite-strings' '-Werror=3Daddress' =
-'-Werror=3Dint-to-pointer-cast' '-Werror=3Dpointer-to-int-cast' =
-'-fno-strict-aliasing' '-Wno-int-conversion' '-MMD' '-MQ' =
-'test/egl_common at sta =
-<http://lists.openembedded.org/mailman/listinfo/openembedded-core>/egl_com=
-mon.c.o' '-MF' 'test/egl_common at sta =
-<http://lists.openembedded.org/mailman/listinfo/openembedded-core>/egl_com=
-mon.c.o.d' -o 'test/egl_common at sta =
-<http://lists.openembedded.org/mailman/listinfo/openembedded-core>/egl_com=
-mon.c.o' -c ../libepoxy-1.4.3/test/egl_common.c
-../libepoxy-1.4.3/test/egl_common.c: In function =
-'get_egl_display_or_skip':
-../libepoxy-1.4.3/test/egl_common.c:36:5: error: unknown type name =
-'Display'; did you mean 'EGLDisplay'?
+arm-poky-linux-gnueabi-gcc -march=3Darmv6 -mfpu=3Dvfp -mfloat-abi=3Dhard -m=
+tune=3Darm1176jzf-s -mfpu=3Dvfp --sysroot=3D/hdd_gold1/mathias/<wbr>git/pok=
+y/rpi-build/tmp/work/<wbr>arm1176jzfshf-vfp-poky-linux-<wbr>gnueabi/libepox=
+y/1.4.3-r0/<wbr>recipe-sysroot &#39;-Itest/<a href=3D"http://lists.openembe=
+dded.org/mailman/listinfo/openembedded-core" target=3D"_blank">egl_common a=
+t sta</a>&#39; &#39;-Itest&#39; &#39;-Iinclude/epoxy&#39; &#39;-I../libepox=
+y-1.4.3/test&#39; &#39;-Iinclude&#39; &#39;-I../libepoxy-1.4.3/include&#39;=
+ &#39;-Isrc&#39; &#39;-I../libepoxy-1.4.3/src&#39; &#39;-fdiagnostics-color=
+=3Dalways&#39; &#39;-pipe&#39; &#39;-D_FILE_OFFSET_BITS=3D64&#39; &#39;-Wal=
+l&#39; &#39;-Winvalid-pch&#39; &#39;-std=3Dgnu99&#39; &#39;-O2&#39; &#39;-g=
+&#39; &#39;-O2&#39; &#39;-g&#39; &#39;-feliminate-unused-debug-<wbr>types&#=
+39; &#39;-fdebug-prefix-map=3D/hdd_<wbr>gold1/mathias/git/poky/rpi-<wbr>bui=
+ld/tmp/work/arm1176jzfshf-<wbr>vfp-poky-linux-gnueabi/<wbr>libepoxy/1.4.3-r=
+0=3D/usr/src/<wbr>debug/libepoxy/1.4.3-r0&#39; &#39;-fdebug-prefix-map=3D/h=
+dd_<wbr>gold1/mathias/git/poky/rpi-<wbr>build/tmp/work/arm1176jzfshf-<wbr>v=
+fp-poky-linux-gnueabi/<wbr>libepoxy/1.4.3-r0/recipe-<wbr>sysroot-native=3D&=
+#39; &#39;-fdebug-prefix-map=3D/hdd_<wbr>gold1/mathias/git/poky/rpi-<wbr>bu=
+ild/tmp/work/arm1176jzfshf-<wbr>vfp-poky-linux-gnueabi/<wbr>libepoxy/1.4.3-=
+r0/recipe-<wbr>sysroot=3D&#39; &#39;-lEGL&#39; &#39;-fPIC&#39; &#39;-Wpoint=
+er-arith&#39; &#39;-Wmissing-declarations&#39; &#39;-Wformat=3D2&#39; &#39;=
+-Wstrict-prototypes&#39; &#39;-Wmissing-prototypes&#39; &#39;-Wnested-exter=
+ns&#39; &#39;-Wbad-function-cast&#39; &#39;-Wold-style-definition&#39; &#39=
+;-Wdeclaration-after-<wbr>statement&#39; &#39;-Wunused&#39; &#39;-Wuninitia=
+lized&#39; &#39;-Wshadow&#39; &#39;-Wmissing-noreturn&#39; &#39;-Wmissing-f=
+ormat-attribute&#39; &#39;-Wredundant-decls&#39; &#39;-Wlogical-op&#39; &#3=
+9;-Werror=3Dimplicit&#39; &#39;-Werror=3Dnonnull&#39; &#39;-Werror=3Dinit-s=
+elf&#39; &#39;-Werror=3Dmain&#39; &#39;-Werror=3Dmissing-braces&#39; &#39;-=
+Werror=3Dsequence-point&#39; &#39;-Werror=3Dreturn-type&#39; &#39;-Werror=
+=3Dtrigraphs&#39; &#39;-Werror=3Darray-bounds&#39; &#39;-Werror=3Dwrite-str=
+ings&#39; &#39;-Werror=3Daddress&#39; &#39;-Werror=3Dint-to-pointer-cast&#3=
+9; &#39;-Werror=3Dpointer-to-int-cast&#39; &#39;-fno-strict-aliasing&#39; &=
+#39;-Wno-int-conversion&#39; &#39;-MMD&#39; &#39;-MQ&#39; &#39;test/<a href=
+=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core" targe=
+t=3D"_blank">egl_common at sta</a>/egl_common.c.o&#39; &#39;-MF&#39; &#39;t=
+est/<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-=
+core" target=3D"_blank">egl_common at sta</a>/egl_common.c.o.d&#39; -o &#39=
+;test/<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedde=
+d-core" target=3D"_blank">egl_common at sta</a>/egl_common.c.o&#39; -c ../l=
+ibepoxy-1.4.3/test/egl_<wbr>common.c
+../libepoxy-1.4.3/test/egl_<wbr>common.c: In function &#39;get_egl_display_=
+or_skip&#39;:
+../libepoxy-1.4.3/test/egl_<wbr>common.c:36:5: error: unknown type name &#3=
+9;Display&#39;; did you mean &#39;EGLDisplay&#39;?
      Display *dpy =3D XOpenDisplay(NULL);
      ^~~~~~~
      EGLDisplay
-../libepoxy-1.4.3/test/egl_common.c:36:20: error: implicit declaration =
-of function 'XOpenDisplay'; did you mean 'eglGetDisplay'? =
-[-Werror=3Dimplicit-function-declaration]
+../libepoxy-1.4.3/test/egl_<wbr>common.c:36:20: error: implicit declaration=
+ of function &#39;XOpenDisplay&#39;; did you mean &#39;eglGetDisplay&#39;? =
+[-Werror=3Dimplicit-function-<wbr>declaration]
      Display *dpy =3D XOpenDisplay(NULL);
                     ^~~~~~~~~~~~
                     eglGetDisplay
-../libepoxy-1.4.3/test/egl_common.c:36:20: warning: nested extern =
-declaration of 'XOpenDisplay' [-Wnested-externs]
+../libepoxy-1.4.3/test/egl_<wbr>common.c:36:20: warning: nested extern decl=
+aration of &#39;XOpenDisplay&#39; [-Wnested-externs]
 cc1: some warnings being treated as errors
 
-Does anybody know what i am doing wrong?=
+Does anybody know what i am doing wrong?</pre></div><br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
---Apple-Mail=_1BDA17A6-1F02-463B-B957-7D7A493FA636
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><pre class=3D"" style=3D"white-space: pre-wrap; =
-font-variant-ligatures: normal; orphans: 2; widows: 2;">Hello,
-
-I am trying to build libepoxy but the do_compile tasks breaks.
-I found following error messages in the logs:
-
-arm-poky-linux-gnueabi-gcc -march=3Darmv6 -mfpu=3Dvfp -mfloat-abi=3Dhard =
--mtune=3Darm1176jzf-s -mfpu=3Dvfp =
---sysroot=3D/hdd_gold1/mathias/git/poky/rpi-build/tmp/work/arm1176jzfshf-v=
-fp-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot '-Itest/<a =
-href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core" =
-class=3D"">egl_common at sta</a>' '-Itest' '-Iinclude/epoxy' =
-'-I../libepoxy-1.4.3/test' '-Iinclude' '-I../libepoxy-1.4.3/include' =
-'-Isrc' '-I../libepoxy-1.4.3/src' '-fdiagnostics-color=3Dalways' '-pipe' =
-'-D_FILE_OFFSET_BITS=3D64' '-Wall' '-Winvalid-pch' '-std=3Dgnu99' '-O2' =
-'-g' '-O2' '-g' '-feliminate-unused-debug-types' =
-'-fdebug-prefix-map=3D/hdd_gold1/mathias/git/poky/rpi-build/tmp/work/arm11=
-76jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4.3-r0=3D/usr/src/debug/libepox=
-y/1.4.3-r0' =
-'-fdebug-prefix-map=3D/hdd_gold1/mathias/git/poky/rpi-build/tmp/work/arm11=
-76jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot-native=3D=
-' =
-'-fdebug-prefix-map=3D/hdd_gold1/mathias/git/poky/rpi-build/tmp/work/arm11=
-76jzfshf-vfp-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot=3D' =
-'-lEGL' '-fPIC' '-Wpointer-arith' '-Wmissing-declarations' '-Wformat=3D2' =
-'-Wstrict-prototypes' '-Wmissing-prototypes' '-Wnested-externs' =
-'-Wbad-function-cast' '-Wold-style-definition' =
-'-Wdeclaration-after-statement' '-Wunused' '-Wuninitialized' '-Wshadow' =
-'-Wmissing-noreturn' '-Wmissing-format-attribute' '-Wredundant-decls' =
-'-Wlogical-op' '-Werror=3Dimplicit' '-Werror=3Dnonnull' =
-'-Werror=3Dinit-self' '-Werror=3Dmain' '-Werror=3Dmissing-braces' =
-'-Werror=3Dsequence-point' '-Werror=3Dreturn-type' '-Werror=3Dtrigraphs' =
-'-Werror=3Darray-bounds' '-Werror=3Dwrite-strings' '-Werror=3Daddress' =
-'-Werror=3Dint-to-pointer-cast' '-Werror=3Dpointer-to-int-cast' =
-'-fno-strict-aliasing' '-Wno-int-conversion' '-MMD' '-MQ' 'test/<a =
-href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core" =
-class=3D"">egl_common at sta</a>/egl_common.c.o' '-MF' 'test/<a =
-href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core" =
-class=3D"">egl_common at sta</a>/egl_common.c.o.d' -o 'test/<a =
-href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core" =
-class=3D"">egl_common at sta</a>/egl_common.c.o' -c =
-../libepoxy-1.4.3/test/egl_common.c
-../libepoxy-1.4.3/test/egl_common.c: In function =
-'get_egl_display_or_skip':
-../libepoxy-1.4.3/test/egl_common.c:36:5: error: unknown type name =
-'Display'; did you mean 'EGLDisplay'?
-     Display *dpy =3D XOpenDisplay(NULL);
-     ^~~~~~~
-     EGLDisplay
-../libepoxy-1.4.3/test/egl_common.c:36:20: error: implicit declaration =
-of function 'XOpenDisplay'; did you mean 'eglGetDisplay'? =
-[-Werror=3Dimplicit-function-declaration]
-     Display *dpy =3D XOpenDisplay(NULL);
-                    ^~~~~~~~~~~~
-                    eglGetDisplay
-../libepoxy-1.4.3/test/egl_common.c:36:20: warning: nested extern =
-declaration of 'XOpenDisplay' [-Wnested-externs]
-cc1: some warnings being treated as errors
-
-Does anybody know what i am doing wrong?</pre></body></html>=
-
---Apple-Mail=_1BDA17A6-1F02-463B-B957-7D7A493FA636--
+--001a113ec5e4efbbf60562f8559d--
