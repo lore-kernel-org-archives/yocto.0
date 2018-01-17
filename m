@@ -1,44 +1,57 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <brgl@bgdev.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E125E00E97; Wed, 17 Jan 2018 09:39:00 -0800 (PST)
+	id 8B7B2E00DC6; Wed, 17 Jan 2018 11:30:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.218.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42606E00C0E
-	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 09:38:58 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 Jan 2018 09:38:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,372,1511856000"; d="scan'208";a="20539524"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by FMSMGA003.fm.intel.com with ESMTP; 17 Jan 2018 09:38:56 -0800
-To: "Diaz de Grenu, Jose" <Jose.DiazdeGrenu@digi.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <0B2EBCD48D33654381E736352034C70C01B5781A@dor-sms-xch01.digi.com>
-	<5aa601c6-2947-c890-eb37-ed9b33bd8677@linux.intel.com>
-	<0B2EBCD48D33654381E736352034C70C01B5D3AC@dor-sms-xch01.digi.com>
-	<3814c4b4-4787-1e7e-6791-a69856254831@linux.intel.com>
-	<0B2EBCD48D33654381E736352034C70C01B7E03C@dor-sms-xch01.digi.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <7d49ffb2-8a17-2488-c987-64586bb3b3c2@linux.intel.com>
-Date: Wed, 17 Jan 2018 19:32:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
+	[209.85.218.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B598E00C0E
+	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 11:30:22 -0800 (PST)
+Received: by mail-oi0-f54.google.com with SMTP id e144so13967618oib.4
+	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 11:30:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=WQBfNAC1aXzQvMcGtv+B6GmrXHqwqu8EFjXoQHcKA0Q=;
+	b=np5v0PyOAZeXTvdSRsBAudQG9sVHj841/A6qQcAaMfdkzf46Q6U5VHuJJbFo2ySmAv
+	GutboL63Gk4asCT5rlBJ8xk035UCrJ/lkJ1BW0J6MLUCFrWVF41aUEvrVr/bf4NijAb+
+	EDgpd2i1D50fI6ifiQs7eLaoKUujcO23v/oHWHQzl75kotdHQZXW/hxIjg+TnqK2nmuN
+	JS40+HcDRyPSigf1DT+KpnRy6cyHpx85STY8uh42Of3ovROXjzwjU0L+gJvROkQDyu4/
+	JaxbdIu236aDiGPiGZPEeYLgI4VhMUaoIHokN/Jp+rGigyO14WvseVCDKIrqwkrLGisF
+	0RJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=WQBfNAC1aXzQvMcGtv+B6GmrXHqwqu8EFjXoQHcKA0Q=;
+	b=oPLoUfCgkDqcHsTiUPUjJ7FP5T9FGGQBjG3YnXC+8Fz48tYm757xxH+tYSh9ItKBfY
+	U1AAX1LDP7qqloPwjbOw831ayKzVuox3+mMN90gAiK0RA0R5YCtE+Xsuu7Hdn9FHca9y
+	ghUegy5s4RnkxbHi3nikVfUNBvXY4dbsb1GcjPqRlimc8YWjg+5sncmxx6ilvQu0kifu
+	tZdDxXghiFao2ZnqEHM3bId3JuWoxguXoR6uuyhXWgIUbl4GprRyzePeMZxbzTuK1+z7
+	cgVTRLcRNwS27Un6v63obXUw9MhLn6HxPbGYDNjixM1Vgxhi/+P6MWhdr/jnEkq+NERQ
+	7tgw==
+X-Gm-Message-State: AKwxytdLGMKgkwnrCDZo9WQ5IU16aEIX7Prqf4V7VJke3pAqvK8K1T+O
+	7m4uxAbgfn3AoAg75td7LLSHQ0cZqsaVT9X4qMjRXaDOCVQ=
+X-Google-Smtp-Source: ACJfBouj08R2vEb1weNUhCtSz6uBG6STvcmG71n/KwIMurd2HSw6L3/GV+C+PePCXFXTuG3RijROSflD+YNd0pxUX74=
+X-Received: by 10.202.4.198 with SMTP id 189mr1711670oie.262.1516217421991;
+	Wed, 17 Jan 2018 11:30:21 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <0B2EBCD48D33654381E736352034C70C01B7E03C@dor-sms-xch01.digi.com>
-Subject: Re: Postinstallation script warnings in Yocto 2.4 Rocko
+Received: by 10.157.26.51 with HTTP; Wed, 17 Jan 2018 11:30:21 -0800 (PST)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 17 Jan 2018 20:30:21 +0100
+Message-ID: <CAMRc=Mf5j0r2A=R22RmAQ08XoPyspSMV9M-TBXkYm+Y8aPUwgQ@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Running cmake in the SDK environment from a script fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,27 +63,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jan 2018 17:39:00 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Jan 2018 19:30:24 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 01/17/2018 07:10 PM, Diaz de Grenu, Jose wrote:
->
-> The patches work, but I was wondering if we really need to mark this behavior as a WARNING. From my point of view, this may be confusing for a user, as it could lead to think that something is wrong. But I think that, even if image post processing during the build is preferable, there are some image post processing that just cannot be done there. Think for example of any HW identifier, like a MAC address that you might want to use.
-> 
-> I think a bb.note should be enough. At least an option per recipe to skip the warning, so that expected on-target-postprocessing warnings can be hidden.
+Hi,
 
-I agree, I'll change it to a note. The excessive use of bb.warn 
-pre-dates my patchset though. I'll resend the patchset tomorrow.
+I'm working on a project in which a base linux distribution is built
+using yocto while a set of proprietary components is built with the
+generated SDK (-c populate_sdk).
 
-> Also, is there any chance this could end up in rocky? As it is, any postprocessing for the target causes ugly WARNINGS with '-1 error code' messages.
-> 
-> Thanks again for the patches!
+These components use cmake for building. While they build just fine
+when the 'cmake' command is invoked from command-line, as soon as
+there's a fork() and execve() in between (e.g. when cmake is invoked
+from a script or even when I tried tracing it with strace), the build
+fails on finding any external library:
 
-First, let's get it to master. I had a bit of trouble convincing the 
-community that this needs to be done last time (about one year ago), so 
-I appreciate the support :)
+-- Could NOT find ZLIB (missing:  ZLIB_LIBRARY) (found version "1.2.8")
+CMake Error at cmake/external_dependencies.cmake:10 (message):
+  Could not find zlib
+Call Stack (most recent call first):
+  CMakeLists.txt:109 (include)
 
-Alex
+The 'found' message is there because it eventually 'found' my host's
+header as visible in the strace output[1].
+
+The target arch is core2-64 while the host is x86_64. Both host and
+target dirs are present in sysroots/.
+
+What's clear when browsing the strace output is that the headers are
+not searched for in the right directory which would in this case be
+sysroots/core2-64-poky-linux/usr/include/ but in
+/sysroots/x86_64-pokysdk-linux/ instead.
+
+I initially thought this to be a problem with the project's
+CMakeLists.txt but it seems fine given the fact that it builds when
+used manually.
+
+Any idea what could be the culprit here?
+
+Best regards,
+Bartosz Golaszewski
+
+[1] https://pastebin.com/1pqmbh7R
 
