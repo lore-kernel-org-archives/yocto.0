@@ -1,39 +1,67 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <jerry.lian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E683E00CF1; Wed, 17 Jan 2018 08:19:00 -0800 (PST)
+	id 1E90AE00DB6; Wed, 17 Jan 2018 08:28:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jerry.lian[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB3E6E008A4
-	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 08:18:59 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	17 Jan 2018 08:18:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,372,1511856000"; d="scan'208";a="20522439"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by FMSMGA003.fm.intel.com with ESMTP; 17 Jan 2018 08:18:58 -0800
-To: philippe gislard <philippe.gislard@gmail.com>, yocto@yoctoproject.org
-References: <CAM0bAiVtPQOif+srytHn4XGrd-=i+4ud9rvDsYUOE41HZpUBnA@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <3bb57de7-f27d-ac9a-200f-c4b4c01d973b@linux.intel.com>
-Date: Wed, 17 Jan 2018 18:13:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.41 listed in list.dnswl.org]
+Received: from mail-oi0-f41.google.com (mail-oi0-f41.google.com
+	[209.85.218.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E119E008A4
+	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 08:28:19 -0800 (PST)
+Received: by mail-oi0-f41.google.com with SMTP id o64so13526329oia.9
+	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 08:28:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=8WG3M0d//f4rOY22DEyYOqJ0KjaVQf6hzo81XuaDMX4=;
+	b=L/WAGqdL1npW9xzzUntrpE8V18MnSsuQxyLwJoS1rot80JMqKOX1fKxSGPaTH1sEw9
+	G6ZlAtHvLpmoiVNyz7KPcepad6+Ea0lZc4VKNiWD/T0Fjj5Cmzm6Y/7te6OqGSetF8Sp
+	vfBnnEEW8apVAMGVJvUEh3b9pmDfMR9GpjaTWDz27Mawp59cnz7wqNonHVwyZu0KLqAh
+	Gn0YyvrHxhmE99lwxvitc21T+9MP9G45hVN43EM8l/8ICkXwHCygZEhQzJKDD0nbu7nW
+	AUe+d8jLDp7yEsAyfgzymthMdndXNOEuC+n0GfLVcyntjTspGeXPGH6LRdw/sZMIZf1g
+	4wbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=8WG3M0d//f4rOY22DEyYOqJ0KjaVQf6hzo81XuaDMX4=;
+	b=dc4CdSedLUN9QOgV9Cdk2zL+WtboXt9nzKuBmfjMTTbvKXKxfLR9PMentYCJH+QpXW
+	4npTTYNd8kkxe5Q94ctKasKWnWbF7XSRy47vNsC8JdPfadY2FpPZwhmaVbJBCig7DcVF
+	EfDOfyFGEuQ4Qwzggv1D9aIGaXX5yX3UgBKUVJmE4A5vvv5j0UcuEyeTKaA+LqdZtpxn
+	tIBrE1tLOV60i5Oe2ewnacpPBMQUO99u7mzU7TJZuyYpBv+bejsdOXWQacW2397MOXcw
+	K+Xs6bpnpAwz2E9L30mkYwS8Zsx5oTF4nogk5LrN2ANUC7n2Bq4HzfCEGYNCLkN+IQXv
+	+Npw==
+X-Gm-Message-State: AKwxyte9jYqjCrBufzRMoFIsaMIkkBTvFN8DDuDiECZeX0SEPx+WACQw
+	ybA6h6LqztcHSn8GLXic4dOZyNN8LcCJOo9+t+0=
+X-Google-Smtp-Source: ACJfBou8XLJUe/JLWoJojXgV/7aImSrv0g+JpR2L6Y/964bWa/nyaNNd5cMWw/WJRPVkj83Dk6PvSJZQTwmBBfTWQvs=
+X-Received: by 10.202.5.5 with SMTP id 5mr1447497oif.110.1516206499340; Wed,
+	17 Jan 2018 08:28:19 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAM0bAiVtPQOif+srytHn4XGrd-=i+4ud9rvDsYUOE41HZpUBnA@mail.gmail.com>
-Subject: Re: [Pyro] Multiple toolchains
+Received: by 10.157.4.33 with HTTP; Wed, 17 Jan 2018 08:28:18 -0800 (PST)
+In-Reply-To: <307dddf7-0406-5564-fd97-e507207c1a2c@3mdeb.com>
+References: <CAE0QtjNmUFGm0o_w0Wd12=h6r=JeYp2dEh9PPtMSY_29U0ninA@mail.gmail.com>
+	<307dddf7-0406-5564-fd97-e507207c1a2c@3mdeb.com>
+From: Jerry Lian <jerry.lian@gmail.com>
+Date: Wed, 17 Jan 2018 11:28:18 -0500
+Message-ID: <CAE0QtjPwWuj7qnXb5Btkov+AqJYW_q9CDWG7yOi_w5Av+N9RRg@mail.gmail.com>
+To: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Editor (viewer) for device tree *.dts file? (I mean syntax highlighting)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,31 +73,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jan 2018 16:19:00 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Jan 2018 16:28:21 -0000
+Content-Type: multipart/alternative; boundary="94eb2c18d080cca6c20562fb55c4"
 
-On 01/17/2018 05:59 PM, philippe gislard wrote:
-> We are updating our BSP from Krogoth to Pyro.
-> We are using a kernel designed and patched specifically for our
-> hardware (3.10.40) that does not compile with GCC 5.x or GCC6.x.
-> AFAIK, Pyro is qualified with GCC 5.x and GCC6.x (not with earlier versions).
-> 
-> What is the easiest way to use two toolchains?
-> - GCC 4.9 for the kernel.
-> - GCC 6.3 for the other packages.
+--94eb2c18d080cca6c20562fb55c4
+Content-Type: text/plain; charset="UTF-8"
 
-YP releases do not support this scenario. You might just about get away 
-with it, if you add the recipes for the old gcc, and set KERNEL_CC in 
-kernel-arch.bbclass to point to them, but you're on your own here.
+Thanks Maciej, vim works well as expected!
 
-The easiest way - in the long run - is to find a way to forward port the 
-kernel patches to a newer, supported kernel release (and maybe even 
-upstream them); also explain the concept of 'technical debt' to your 
-management:
 
-https://en.wikipedia.org/wiki/Technical_debt
 
-Alex
 
+
+On Wed, Jan 17, 2018 at 10:46 AM, Maciej Pijanowski <
+maciej.pijanowski@3mdeb.com> wrote:
+
+> I'm just using vim for everything. It highlights dts syntax.
+>
+> On 17.01.2018 16:37, Jerry Lian wrote:
+>
+> Sorry that this question is not related to Yocto, but just wondering if
+> anybody knows:
+> * are there editors/viewers (with syntax highlighting) for device tree
+> *.dts file?
+>
+> Thanks,
+> Jerry
+>
+>
+>
+> --
+> Maciej Pijanowski
+> Embedded Systems Engineerhttp://3mdeb.com | @3mdeb_com
+>
+>
+
+--94eb2c18d080cca6c20562fb55c4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks Maciej, vim works well as expected!<br><br><br><br>=
+<br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed,=
+ Jan 17, 2018 at 10:46 AM, Maciej Pijanowski <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:maciej.pijanowski@3mdeb.com" target=3D"_blank">maciej.pijanowski=
+@3mdeb.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p>I&#39;m just using vim for everything. It highlights dts syntax.<br>
+    </p><div><div class=3D"h5">
+    <br>
+    <div class=3D"m_-8983823208581093881moz-cite-prefix">On 17.01.2018 16:3=
+7, Jerry Lian wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div>
+          <div>
+            <div>Sorry that this question is not related to Yocto, but
+              just wondering if anybody knows: <br>
+            </div>
+            <div>* are there editors/viewers (with syntax highlighting)
+              for device tree *.dts file? <br>
+            </div>
+            <br>
+          </div>
+          Thanks,<br>
+        </div>
+        Jerry<br>
+      </div>
+      <br>
+      <fieldset class=3D"m_-8983823208581093881mimeAttachmentHeader"></fiel=
+dset>
+      <br>
+    </blockquote>
+    <br>
+    </div></div><span class=3D"HOEnZb"><font color=3D"#888888"><pre class=
+=3D"m_-8983823208581093881moz-signature" cols=3D"72">--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+<a class=3D"m_-8983823208581093881moz-txt-link-freetext" href=3D"http://3md=
+eb.com" target=3D"_blank">http://3mdeb.com</a> | @3mdeb_com</pre>
+  </font></span></div>
+
+</blockquote></div><br></div>
+
+--94eb2c18d080cca6c20562fb55c4--
