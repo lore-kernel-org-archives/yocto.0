@@ -1,57 +1,69 @@
-Return-Path: <brgl@bgdev.pl>
+Return-Path: <jefro.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8B7B2E00DC6; Wed, 17 Jan 2018 11:30:24 -0800 (PST)
+	id E238FE00E46; Wed, 17 Jan 2018 22:05:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.218.54 listed in list.dnswl.org]
+	*      [74.125.82.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
-	[209.85.218.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B598E00C0E
-	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 11:30:22 -0800 (PST)
-Received: by mail-oi0-f54.google.com with SMTP id e144so13967618oib.4
-	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 11:30:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=WQBfNAC1aXzQvMcGtv+B6GmrXHqwqu8EFjXoQHcKA0Q=;
-	b=np5v0PyOAZeXTvdSRsBAudQG9sVHj841/A6qQcAaMfdkzf46Q6U5VHuJJbFo2ySmAv
-	GutboL63Gk4asCT5rlBJ8xk035UCrJ/lkJ1BW0J6MLUCFrWVF41aUEvrVr/bf4NijAb+
-	EDgpd2i1D50fI6ifiQs7eLaoKUujcO23v/oHWHQzl75kotdHQZXW/hxIjg+TnqK2nmuN
-	JS40+HcDRyPSigf1DT+KpnRy6cyHpx85STY8uh42Of3ovROXjzwjU0L+gJvROkQDyu4/
-	JaxbdIu236aDiGPiGZPEeYLgI4VhMUaoIHokN/Jp+rGigyO14WvseVCDKIrqwkrLGisF
-	0RJA==
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BA55E008A4
+	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 22:05:05 -0800 (PST)
+Received: by mail-wm0-f48.google.com with SMTP id r78so20349662wme.0
+	for <yocto@yoctoproject.org>; Wed, 17 Jan 2018 22:05:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc;
+	bh=foeeyFrzAbA0bGrBWd/LR+oyEu0lRN0WX6PhKCEVV8o=;
+	b=u6sRjZ70hJ/RXLPwn7ErG2LFLHzC+iHDao1keVjOYre2MPzxdZA63uBlXa48CAR/LP
+	SUmVA19uk3VUk9VflxU3Q7o/JSuAG49uiTZ/+coePzQ4g0NKDaQS2M8PU0VEE9V5EjYN
+	Eo2KnXFZb+775djaHVLnIoyBkFJ/FEp1/VOwQur4vq0gjUVHOCvh6SbYcQ7xvGLVNZLg
+	6UeWPS21II5kzDU1sq4SrftxN7dYgVLfiv0FAMeOyO653DnxQAp+4u+rcO4f+aDaRKgA
+	ywa5BFI2iXgM0gJXzqGcqzhdiyTx05/Iv1B6IaqJzLAW1aTH9/VLR7JOvbTpPL/sFvQN
+	nkug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=WQBfNAC1aXzQvMcGtv+B6GmrXHqwqu8EFjXoQHcKA0Q=;
-	b=oPLoUfCgkDqcHsTiUPUjJ7FP5T9FGGQBjG3YnXC+8Fz48tYm757xxH+tYSh9ItKBfY
-	U1AAX1LDP7qqloPwjbOw831ayKzVuox3+mMN90gAiK0RA0R5YCtE+Xsuu7Hdn9FHca9y
-	ghUegy5s4RnkxbHi3nikVfUNBvXY4dbsb1GcjPqRlimc8YWjg+5sncmxx6ilvQu0kifu
-	tZdDxXghiFao2ZnqEHM3bId3JuWoxguXoR6uuyhXWgIUbl4GprRyzePeMZxbzTuK1+z7
-	cgVTRLcRNwS27Un6v63obXUw9MhLn6HxPbGYDNjixM1Vgxhi/+P6MWhdr/jnEkq+NERQ
-	7tgw==
-X-Gm-Message-State: AKwxytdLGMKgkwnrCDZo9WQ5IU16aEIX7Prqf4V7VJke3pAqvK8K1T+O
-	7m4uxAbgfn3AoAg75td7LLSHQ0cZqsaVT9X4qMjRXaDOCVQ=
-X-Google-Smtp-Source: ACJfBouj08R2vEb1weNUhCtSz6uBG6STvcmG71n/KwIMurd2HSw6L3/GV+C+PePCXFXTuG3RijROSflD+YNd0pxUX74=
-X-Received: by 10.202.4.198 with SMTP id 189mr1711670oie.262.1516217421991;
-	Wed, 17 Jan 2018 11:30:21 -0800 (PST)
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
+	:date:message-id:subject:to:cc;
+	bh=foeeyFrzAbA0bGrBWd/LR+oyEu0lRN0WX6PhKCEVV8o=;
+	b=b2Y+FWyg8/Xg2RTuvETLa4f67Fpz/eGUxBtepFAmKIZ8StDvCT4cW/Xm+G+Ie6tW2k
+	XPwT5lmYrnHCocZOpSI77J+uEcMjiJNZQwz4oh+Iokn/ZFWv7IFyvQuakcTM8+ppLL23
+	GYBPdz4j24/rH9Mv/JVqX4g8jJQLeTs4xX08xIvitR7fUnmRm+22qIzxq4u0Xf6usKQP
+	mHLSc0w0DHtc6qQBwJx7miSaeUa4EQylm4ifoH4NN8ewkbOj1RB1rPYSynchT5zHhlkP
+	jO0TM09acu8gxvOBkDfCrB4om8B1AwpbtSs0o5P43RPMtUPiX6O8gZ4mkH2uqL8SbO4L
+	LKeQ==
+X-Gm-Message-State: AKwxytewhonGbX5onXR6O6mcaXF+duHFDSIkwp64TQ562J7DfafcTwNR
+	VjjAGtxnwGdrt5SZHdK6S5chKJOfFnL/iZiegMM=
+X-Google-Smtp-Source: ACJfBovIbJoD/qJT38/Go7qXMn5qzeKb+khmibsYPdqj3GJCaQkWlGykHrgfuQm6mUUsGA2SpcJtEg+yhNmR2lFkq3g=
+X-Received: by 10.28.154.67 with SMTP id c64mr4287142wme.125.1516255504235;
+	Wed, 17 Jan 2018 22:05:04 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.157.26.51 with HTTP; Wed, 17 Jan 2018 11:30:21 -0800 (PST)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 17 Jan 2018 20:30:21 +0100
-Message-ID: <CAMRc=Mf5j0r2A=R22RmAQ08XoPyspSMV9M-TBXkYm+Y8aPUwgQ@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Running cmake in the SDK environment from a script fails
+Sender: jefro.net@gmail.com
+Received: by 10.223.149.145 with HTTP; Wed, 17 Jan 2018 22:04:43 -0800 (PST)
+In-Reply-To: <f94fc2c7-032a-651a-a0d2-d5860f133b6c@balister.org>
+References: <137d31ae-329e-53ff-f495-259168b787d5@balister.org>
+	<CAGAf8Lws8HfvDvMvdpgXyTvKaVpmf5a1UUTbBc2OrTpw=mgPNA@mail.gmail.com>
+	<CAHQecY5FEt0jMY97Cfq7tR4KAETqied0t3zfFgXw=J5YBSz53A@mail.gmail.com>
+	<f94fc2c7-032a-651a-a0d2-d5860f133b6c@balister.org>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Wed, 17 Jan 2018 22:04:43 -0800
+X-Google-Sender-Auth: rR4E8ZDRt7Wf5Piywj-vVtMBxU4
+Message-ID: <CA+YB3rZ2ZthR+bV0RZR-Af4q4X1OhEWo4oy9YhizVbHDnw+=ug@mail.gmail.com>
+To: Philip Balister <philip@balister.org>
+Cc: openembedded-core <openembedded-core@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>
+Subject: Re: [oe] OpenEmbedded developer meeting Sunday before ELC in Portland
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,46 +75,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jan 2018 19:30:24 -0000
+X-List-Received-Date: Thu, 18 Jan 2018 06:05:06 -0000
+Content-Type: multipart/alternative; boundary="001a114b458eb80258056306bea7"
+
+--001a114b458eb80258056306bea7
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+> We know. It is painful. YP Dev Day is the Thursday after, and I suspect
+> we would lose people waiting until Friday.
+>
 
-I'm working on a project in which a base linux distribution is built
-using yocto while a set of proprietary components is built with the
-generated SDK (-c populate_sdk).
+SCaLE doesn't usually coincide the week before ELC, so this year was just
+bad timing from the universe.
 
-These components use cmake for building. While they build just fine
-when the 'cmake' command is invoked from command-line, as soon as
-there's a fork() and execve() in between (e.g. when cmake is invoked
-from a script or even when I tried tracing it with strace), the build
-fails on finding any external library:
+I propose we start with the board meeting at 9:30 and plan OEDAM to start
+at 10:30 to enable people to get there. We can have lunch late and go until
+6 if needed.
 
--- Could NOT find ZLIB (missing:  ZLIB_LIBRARY) (found version "1.2.8")
-CMake Error at cmake/external_dependencies.cmake:10 (message):
-  Could not find zlib
-Call Stack (most recent call first):
-  CMakeLists.txt:109 (include)
+--001a114b458eb80258056306bea7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The 'found' message is there because it eventually 'found' my host's
-header as visible in the strace output[1].
+<div dir=3D"ltr"><div><br></div><div class=3D"gmail_extra"><div class=3D"gm=
+ail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">We know. It is=
+ painful. YP Dev Day is the Thursday after, and I suspect<br>
+we would lose people waiting until Friday.<br></blockquote><div><br></div>S=
+CaLE doesn&#39;t usually coincide the week before ELC, so this year was jus=
+t bad timing from the universe.=C2=A0<div><br></div><div>I propose we start=
+ with the board meeting at 9:30 and plan OEDAM to start at 10:30 to enable =
+people to get there. We can have lunch late and go until 6 if needed.=C2=A0=
+<br></div><div>=C2=A0</div></div>
+</div></div>
 
-The target arch is core2-64 while the host is x86_64. Both host and
-target dirs are present in sysroots/.
-
-What's clear when browsing the strace output is that the headers are
-not searched for in the right directory which would in this case be
-sysroots/core2-64-poky-linux/usr/include/ but in
-/sysroots/x86_64-pokysdk-linux/ instead.
-
-I initially thought this to be a problem with the project's
-CMakeLists.txt but it seems fine given the fact that it builds when
-used manually.
-
-Any idea what could be the culprit here?
-
-Best regards,
-Bartosz Golaszewski
-
-[1] https://pastebin.com/1pqmbh7R
-
+--001a114b458eb80258056306bea7--
