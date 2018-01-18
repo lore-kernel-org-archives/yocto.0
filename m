@@ -1,6 +1,6 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mgloff@emacinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04A13E00E92; Thu, 18 Jan 2018 06:52:03 -0800 (PST)
+	id D35BAE00DC6; Thu, 18 Jan 2018 07:06:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,55 +8,60 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.47 listed in list.dnswl.org]
+	*      [209.85.216.196 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f47.google.com (mail-it0-f47.google.com
-	[209.85.214.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DB7CE009E6
-	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 06:52:01 -0800 (PST)
-Received: by mail-it0-f47.google.com with SMTP id 196so13824472iti.5
-	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 06:52:01 -0800 (PST)
+Received: from mail-qt0-f196.google.com (mail-qt0-f196.google.com
+	[209.85.216.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB814E009E6
+	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 07:06:10 -0800 (PST)
+Received: by mail-qt0-f196.google.com with SMTP id m59so30914908qte.11
+	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 07:06:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	d=emacinc-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=4NGsD2uqABU8jWlsisWxF0i4bfokGMCJksaMGaYDytc=;
-	b=a5/Gyr1Ri4f+6uz0PxnZNQDjPUw2aWzDrfjJZDtvdVcaQ2HakP51zUOIpPNWCOgZg6
-	AC/K+QRjH1Ug7W8zVrpl/ERw6BeLEXf8n5pqsKp54NzS55NuDd/XSj09XEd1qEDV1wir
-	dKRqXLfv+PKzqrGFxDko/ET9N/4O6d4Yv59P74Y8f06PB1mqMbishPuXVYnwm857A7iu
-	VPZTCW0g0jj7b2z3OaeP0ehxn/N9+Pb9UjqLTJB5LU4sAGgpphYPzOnejhSLkflhC//e
-	lONWTWYJO1P/1VokzW+Atrw4PhwZCCDb/HSMVOvmEfqRSSIO4ZK8TL8U4g4GU8HpAxHc
-	7+KQ==
+	:cc; bh=JbXa088ckkQygNQgmnRK2A2MvwSIVRaRv0+8DkhSoHs=;
+	b=IVroNcpntVEBjjHpT0NWUc7FUACiItS9LjWa7dEPPhbrZQKauTSybqW1d5hd1R4/BG
+	OMcdfOPsY/ZQmSNUHcqwRoeUP5PhSlq7vtSWhcoUckOtSfCVd2r5/fqWqrKjffiZRGHU
+	zhw9l0Uy9NZr15jG5gIgvIw6+YrhYpDEbOsshl8abqOB+xZBAMs5bLBWngKmOC4XfRep
+	sUaTNdoq5cFTFET6j8/OxDZwzy5n8AbiRIO0B2qkQaMrXavyKqGQL0eUes8QYfnS7gtl
+	L47oBccRhCqjQ8HUhABV59TOdnFXzv3qlJNRMkcy+xI+Atxn16nj6YiFkpLOlSwpyj2R
+	UTxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=4NGsD2uqABU8jWlsisWxF0i4bfokGMCJksaMGaYDytc=;
-	b=KJA6t+GZRnfD5opuVWy+xlYk408D1Ie1wNCUWNDU8mwCEZs5H2TUjkOpyTSJrY89pG
-	gwuecghV2xRIKpwJQpKhaw5tRb3QHtGviHh/9YJSB+HS0UMwfYg7fqTGNQKrDxPqQxr+
-	j9At3NgVUKc0JuKW4WCjWyNVgBovnwKbkfU7tMw1fBbUMFZSLiX0q9vSOUh3zcJo1FGV
-	jiB3VPetCdilZKdIgJwsHJEOvoDj+r54jtkbTg+08vO3fPWABalm7XdGolQDZUkF+HkL
-	GdR6f3nYu4oiKYttdXwHPUAShg6kFmFd9Ol0Uvi7P58HvStGPD60hxVmUpNXD8sNi6sG
-	Xspg==
-X-Gm-Message-State: AKwxytfsrjs44cP/Q8sjH08av3ByZZf6iW3rCnb/thceeCxlNOyyRKT7
-	o3ica2fbd8zpjMlr0JgbuX4zsTmQzu5mu7ftcRkUjA==
-X-Google-Smtp-Source: ACJfBota+1gQnO3aCZWGXk3Veg4rsw4CU5akhVApSHgXBJoxVxC2zJ8ZuQwlecLOfGZSrvF8FN6HeiA1QCziHGUAOUw=
-X-Received: by 10.36.85.206 with SMTP id e197mr20381607itb.124.1516287121325; 
-	Thu, 18 Jan 2018 06:52:01 -0800 (PST)
+	bh=JbXa088ckkQygNQgmnRK2A2MvwSIVRaRv0+8DkhSoHs=;
+	b=FeV+00ZZTc44dStybwxGlrBZg66TGr+jxUbVSjRXstQGzeSpBKprI+pI8CigXrBspB
+	CUe/AM/wBnqTa4RXnT2H+jFA9CkabQr+EeE/Ms+tERE1OS2vK8A9WuCL8g1ZZQTJ1+Mf
+	o3xHhZcNeq8UtZuTi8oY4bYjaE5IFEG93UB8JefRnNiyPeF8itIgrSCzx14/x6pvd1nx
+	5n/VehSyVP4e6xC6/0ZkbE1wD5CMZWulK6/spmqWFi8VXdjmR4B5tFPa/tcbRaMbQrtz
+	ey/psKH6dKLZzfA/xWtWSiAMmLg3RJOuwkXzeMd5nnDcaZvLWt4/6he2ucaRLJjINvJR
+	/bsw==
+X-Gm-Message-State: AKwxytdfc+4emtpASNqt4QYzLGd3bBF4zKMX2BxauJHSiCwAiL4bPCwJ
+	4PT7PWEIGHA3+7oloaJrtCC9hSIUCT8TMBCeWzw7BA==
+X-Google-Smtp-Source: ACJfBoukb9/AJ26AgKQlit9AJCrARNWBlRhJp5wGYRAkFV3Cjicbqsf7QaiD1cBkPffJ53fgWIHdG48nvYZKdtwCpUA=
+X-Received: by 10.200.18.136 with SMTP id y8mr33757714qti.175.1516287969707;
+	Thu, 18 Jan 2018 07:06:09 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.157.202 with HTTP; Thu, 18 Jan 2018 06:51:40 -0800 (PST)
-In-Reply-To: <CAOT_U5b3f-S98tpuhOuB6W7R8Cv+J4qph1ObXh+5dgETMh2cNg@mail.gmail.com>
-References: <CAOT_U5b3f-S98tpuhOuB6W7R8Cv+J4qph1ObXh+5dgETMh2cNg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 18 Jan 2018 14:51:40 +0000
-Message-ID: <CAJTo0Lajne5k2-PzpXzh502f5CsTZ102WtLbs4ExFrkY2Ojjrg@mail.gmail.com>
-To: Alan Martinovic <alan.martinovic@senic.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: do_roots braking after a SRCREV update for non master branch
+Received: by 10.200.6.141 with HTTP; Thu, 18 Jan 2018 07:05:29 -0800 (PST)
+In-Reply-To: <CAHUNapTu4HeiwwdHLFcyNpQV2+F5gw2oQWZWCcSiqLy47hHuyQ@mail.gmail.com>
+References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+	<CAC+thW1kL2F2LKxpnLMTd-YfWZV8KNzDSqpF8q2KdOBENBjt4g@mail.gmail.com>
+	<CAC+thW0xBGsXZz-GJQU5f-LbVtUVWmzt5ReUwZr-SG4gvw-eVA@mail.gmail.com>
+	<20d47e1b-c33b-d7f6-1b9e-f7a6f1e779a0@linux.intel.com>
+	<CAHUNapTu4HeiwwdHLFcyNpQV2+F5gw2oQWZWCcSiqLy47hHuyQ@mail.gmail.com>
+From: Michael Gloff <mgloff@emacinc.com>
+Date: Thu, 18 Jan 2018 09:05:29 -0600
+Message-ID: <CALXw4G6g+OPJPMrCZbdXYi+fU2CgV=z8ZUdGhH6z6+__hNJ9iw@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Mathias Rudnik <rudnik.mathias@googlemail.com>,
+	Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Error do_compile libepoxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,152 +73,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jan 2018 14:52:03 -0000
-Content-Type: multipart/alternative; boundary="001a113992423e9b5405630e1b1d"
+X-List-Received-Date: Thu, 18 Jan 2018 15:06:11 -0000
+Content-Type: multipart/alternative; boundary="089e08289ffccfe2fa05630e4d6c"
 
---001a113992423e9b5405630e1b1d
+--089e08289ffccfe2fa05630e4d6c
 Content-Type: text/plain; charset="UTF-8"
 
-I'd check (using oe-pkgdata-util and/or buildhistory-diff) that the new
-package is building the same files and packages as the old one.  If PN
-wasn't being generated, that would explain why the provides isn't working.
+I can confirm adding #include <X11/Xlib.h> to test/egl_common.c gets past
+the original error, but then fails with:
 
-Ross
 
-On 18 January 2018 at 14:46, Alan Martinovic <alan.martinovic@senic.com>
-wrote:
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| [1/2] Compiling c object 'test/glx_beginend@exe/glx_beginend.c.o'
+| [2/2] Linking target test/glx_beginend
+| FAILED: test/glx_beginend
+| arm-poky-linux-gnueabi-gcc  -o test/glx_beginend
+'test/glx_beginend@exe/glx_beginend.c.o'
+'-Wl,--no-undefined' '-Wl,--as-needed' '-O2' '-pipe' '-g'
+'-feliminate-unused-debug-types'
+'-fdebug-prefix-map=/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0=/usr/src/debug/libepoxy/1.4.3-r0'
+'-fdebug-prefix-map=/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot-native='
+'-fdebug-prefix-map=/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot='
+'-Wl,-O1' '-Wl,--hash-style=gnu' '-Wl,--as-needed' 'test/libglx_common.a'
+'src/libepoxy.so.0.0.0' 'src/libepoxy.so.0.0.0' 'src/libepoxy.so.0.0.0'
+'-ldl' '-lX11' '-ldl'
+'-Wl,-rpath,/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0/build/src'
+-march=armv7ve -marm -mfpu=neon-vfpv4 -mfloat-abi=hard -mcpu=cortex-a7
+--sysroot=/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot
+-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed
+| test/glx_beginend@exe/glx_beginend.c.o: In function `test_without_epoxy':
+| /usr/src/debug/libepoxy/1.4.3-r0/libepoxy-1.4.3/test/glx_beginend.c:70:
+undefined reference to `glBegin'
+| /usr/src/debug/libepoxy/1.4.3-r0/libepoxy-1.4.3/test/glx_beginend.c:85:
+undefined reference to `glEnd'
+| collect2: error: ld returned 1 exit status
+| ninja: build stopped: subcommand failed.
+| WARNING:
+/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0/temp/run.do_compile.2610:1
+exit 1 from 'ninja -j 8'
+| ERROR: Function failed: do_compile (log file is located at
+/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0/temp/log.do_compile.2610)
+ERROR: Task
+(/home/michael/oe/recipes/poky/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb:do_compile)
+failed with exit code '1'
 
-> Hi,
-> I've updated my recipe to use a review from a non master branch:
+Michael Gloff
+
+
+On Thu, Jan 18, 2018 at 8:08 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+
+> On Thu, Jan 18, 2018 at 4:05 AM, Alexander Kanavin <
+> alexander.kanavin@linux.intel.com> wrote:
 >
-> Old version [python3-senichub_git.bb]:
+>> On 01/18/2018 10:58 AM, Andrea Galbusera wrote:
+>>
+>>>
+>>> Looks like my first guess was not that bad. Reverting below commit,
+>>> which switched to meson build system brought my build back to green.
+>>> Also CC-ing the patch author who might suggest further investigations.
+>>>
+>>>      libepoxy: convert to meson build
+>>>
+>>>
+>> There's probably a missing header include
+>>
+>>
 >
->     inherit setuptools3
->
->     PROVIDES += "python3-senic-hub"
->     RPROVIDES_${PN} += "python3-senic-hub"
->
->     S = "${WORKDIR}/git"
->     SRC_URI = "git://github.com/getsenic/senic-hub.git;"
->     SRCREV = "01fd5bd8725add5e73d3cc35a169f0dc837daefa"
->     PV = "git-${SRCPV}"
->
->     RDEPENDS_${PN} = "python3-nuimo python3-lightify"
->
-> New version [python3-senichub_git.bb]:
->
->     inherit setuptools3
->
->     PROVIDES += "python3-senic-hub"
->     RPROVIDES_${PN} += "python3-senic-hub"
->
->     S = "${WORKDIR}/git"
->     SRC_URI = "git://github.com/getsenic/senic-hub.git;branch=improve-
-> logging;"
->     SRCREV = "ad6c082a8a990291c6128f54ea0c0d185081704e"
->     PV = "git-${SRCPV}"
->
->     RDEPENDS_${PN} = "python3-nuimo python3-lightify"
+> The original error:
 >
 >
-> So the only changes is the SRCREV, and a specific
-> branch in the SRC_URI.
-> The package alone builds successfully.
-> But when building the image it fails on the do_rootfs:
+> ../libepoxy-1.4.3/test/egl_common.c:36:20: error: implicit declaration of function 'XOpenDisplay'; did you mean 'eglGetDisplay'? [-Werror=implicit-function-declaration]
+>      Display *dpy = XOpenDisplay(NULL);
 >
->     opkg_prepare_url_for_install: Couldn't find anything to satisfy
-> 'python3-senic-hub'.
+> implies a missing #include <X11/Xlib.h>
 >
-> I can't really make the causes of it. There are some legacy
-> naming inconsistencies with a dash, but there is an explicit
-> PROVIDES and RPROVIDES in both recipes, one fails the
-> other passes.
 >
-> Any ideas?
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
+>
 
---001a113992423e9b5405630e1b1d
+--089e08289ffccfe2fa05630e4d6c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I&#39;d check (using oe-pkgdata-util and/or buildhistory-d=
-iff) that the new package is building the same files and packages as the ol=
-d one.=C2=A0 If PN wasn&#39;t being generated, that would explain why the p=
-rovides isn&#39;t working.<div><br></div><div>Ross</div></div><div class=3D=
-"gmail_extra"><br><div class=3D"gmail_quote">On 18 January 2018 at 14:46, A=
-lan Martinovic <span dir=3D"ltr">&lt;<a href=3D"mailto:alan.martinovic@seni=
-c.com" target=3D"_blank">alan.martinovic@senic.com</a>&gt;</span> wrote:<br=
-><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex">Hi,<br>
-I&#39;ve updated my recipe to use a review from a non master branch:<br>
+<div dir=3D"ltr"><div>I can confirm adding #include &lt;X11/Xlib.h&gt; to t=
+est/egl_common.c gets past the original error, but then fails with:<br><br>=
+<br>Log data follows:<br>| DEBUG: Executing shell function do_compile<br>| =
+[1/2] Compiling c object &#39;test/glx_beginend@exe/glx_beginend.c.o&#39;<b=
+r>| [2/2] Linking target test/glx_beginend<br>| FAILED: test/glx_beginend<b=
+r>| arm-poky-linux-gnueabi-gcc=C2=A0 -o test/glx_beginend &#39;test/glx_beg=
+inend@exe/glx_beginend.c.o&#39; &#39;-Wl,--no-undefined&#39; &#39;-Wl,--as-=
+needed&#39; &#39;-O2&#39; &#39;-pipe&#39; &#39;-g&#39; &#39;-feliminate-unu=
+sed-debug-types&#39; &#39;-fdebug-prefix-map=3D/home/michael/oe/recipes/rpi=
+-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0=
+=3D/usr/src/debug/libepoxy/1.4.3-r0&#39; &#39;-fdebug-prefix-map=3D/home/mi=
+chael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueab=
+i/libepoxy/1.4.3-r0/recipe-sysroot-native=3D&#39; &#39;-fdebug-prefix-map=
+=3D/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-l=
+inux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot=3D&#39; &#39;-Wl,-O1&#39; &#3=
+9;-Wl,--hash-style=3Dgnu&#39; &#39;-Wl,--as-needed&#39; &#39;test/libglx_co=
+mmon.a&#39; &#39;src/libepoxy.so.0.0.0&#39; &#39;src/libepoxy.so.0.0.0&#39;=
+ &#39;src/libepoxy.so.0.0.0&#39; &#39;-ldl&#39; &#39;-lX11&#39; &#39;-ldl&#=
+39; &#39;-Wl,-rpath,/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-=
+neon-vfpv4-poky-linux-gnueabi/libepoxy/1.4.3-r0/build/src&#39; -march=3Darm=
+v7ve -marm -mfpu=3Dneon-vfpv4 -mfloat-abi=3Dhard -mcpu=3Dcortex-a7 --sysroo=
+t=3D/home/michael/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-=
+linux-gnueabi/libepoxy/1.4.3-r0/recipe-sysroot -Wl,-O1 -Wl,--hash-style=3Dg=
+nu -Wl,--as-needed<br>| test/glx_beginend@exe/glx_beginend.c.o: In function=
+ `test_without_epoxy&#39;:<br>| /usr/src/debug/libepoxy/1.4.3-r0/libepoxy-1=
+.4.3/test/glx_beginend.c:70: undefined reference to `glBegin&#39;<br>| /usr=
+/src/debug/libepoxy/1.4.3-r0/libepoxy-1.4.3/test/glx_beginend.c:85: undefin=
+ed reference to `glEnd&#39;<br>| collect2: error: ld returned 1 exit status=
+<br>| ninja: build stopped: subcommand failed.<br>| WARNING: /home/michael/=
+oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/libe=
+poxy/1.4.3-r0/temp/run.do_compile.2610:1 exit 1 from &#39;ninja -j 8&#39;<b=
+r>| ERROR: Function failed: do_compile (log file is located at /home/michae=
+l/oe/recipes/rpi-build/tmp/work/cortexa7hf-neon-vfpv4-poky-linux-gnueabi/li=
+bepoxy/1.4.3-r0/temp/log.do_compile.2610)<br>ERROR: Task (/home/michael/oe/=
+recipes/poky/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb:do_compile) f=
+ailed with exit code &#39;1&#39;<br><br></div>Michael Gloff<br><div><br></d=
+iv></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, =
+Jan 18, 2018 at 8:08 AM, Trevor Woerner <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:twoerner@gmail.com" target=3D"_blank">twoerner@gmail.com</a>&gt;</span=
+> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"g=
+mail_extra"><div class=3D"gmail_quote">On Thu, Jan 18, 2018 at 4:05 AM, Ale=
+xander Kanavin <span dir=3D"ltr">&lt;<a href=3D"mailto:alexander.kanavin@li=
+nux.intel.com" target=3D"_blank">alexander.kanavin@linux.<wbr>intel.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><sp=
+an class=3D"m_1427214448837679676gmail-">On 01/18/2018 10:58 AM, Andrea Gal=
+busera wrote:<br>
+</span><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><span class=3D"m_1=
+427214448837679676gmail-">
 <br>
-Old version [<a href=3D"http://python3-senichub_git.bb" rel=3D"noreferrer" =
-target=3D"_blank">python3-senichub_git.bb</a>]:<br>
+Looks like my first guess was not that bad. Reverting below commit,<br>
+which switched to meson build system brought my build back to green.<br>
+Also CC-ing the patch author who might suggest further investigations.<br>
+<br></span><span class=3D"m_1427214448837679676gmail-">
+=C2=A0 =C2=A0 =C2=A0libepoxy: convert to meson build<br>
 <br>
-=C2=A0 =C2=A0 inherit setuptools3<br>
+</span></blockquote>
 <br>
-=C2=A0 =C2=A0 PROVIDES +=3D &quot;python3-senic-hub&quot;<br>
-=C2=A0 =C2=A0 RPROVIDES_${PN} +=3D &quot;python3-senic-hub&quot;<br>
-<br>
-=C2=A0 =C2=A0 S =3D &quot;${WORKDIR}/git&quot;<br>
-=C2=A0 =C2=A0 SRC_URI =3D &quot;git://<a href=3D"http://github.com/getsenic=
-/senic-hub.git" rel=3D"noreferrer" target=3D"_blank">github.com/getsenic/<w=
-br>senic-hub.git</a>;&quot;<br>
-=C2=A0 =C2=A0 SRCREV =3D &quot;<wbr>01fd5bd8725add5e73d3cc35a169f0<wbr>dc83=
-7daefa&quot;<br>
-=C2=A0 =C2=A0 PV =3D &quot;git-${SRCPV}&quot;<br>
-<br>
-=C2=A0 =C2=A0 RDEPENDS_${PN} =3D &quot;python3-nuimo python3-lightify&quot;=
-<br>
-<br>
-New version [<a href=3D"http://python3-senichub_git.bb" rel=3D"noreferrer" =
-target=3D"_blank">python3-senichub_git.bb</a>]:<br>
-<br>
-=C2=A0 =C2=A0 inherit setuptools3<br>
-<br>
-=C2=A0 =C2=A0 PROVIDES +=3D &quot;python3-senic-hub&quot;<br>
-=C2=A0 =C2=A0 RPROVIDES_${PN} +=3D &quot;python3-senic-hub&quot;<br>
-<br>
-=C2=A0 =C2=A0 S =3D &quot;${WORKDIR}/git&quot;<br>
-=C2=A0 =C2=A0 SRC_URI =3D &quot;git://<a href=3D"http://github.com/getsenic=
-/senic-hub.git;branch=3Dimprove-logging" rel=3D"noreferrer" target=3D"_blan=
-k">github.com/getsenic/<wbr>senic-hub.git;branch=3Dimprove-<wbr>logging</a>=
-;&quot;<br>
-=C2=A0 =C2=A0 SRCREV =3D &quot;<wbr>ad6c082a8a990291c6128f54ea0c0d<wbr>1850=
-81704e&quot;<br>
-=C2=A0 =C2=A0 PV =3D &quot;git-${SRCPV}&quot;<br>
-<br>
-=C2=A0 =C2=A0 RDEPENDS_${PN} =3D &quot;python3-nuimo python3-lightify&quot;=
-<br>
-<br>
-<br>
-So the only changes is the SRCREV, and a specific<br>
-branch in the SRC_URI.<br>
-The package alone builds successfully.<br>
-But when building the image it fails on the do_rootfs:<br>
-<br>
-=C2=A0 =C2=A0 opkg_prepare_url_for_install: Couldn&#39;t find anything to s=
-atisfy<br>
-&#39;python3-senic-hub&#39;.<br>
-<br>
-I can&#39;t really make the causes of it. There are some legacy<br>
-naming inconsistencies with a dash, but there is an explicit<br>
-PROVIDES and RPROVIDES in both recipes, one fails the<br>
-other passes.<br>
-<br>
-Any ideas?<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+There&#39;s probably a missing header include<br><br></blockquote><div><br>=
+=C2=A0</div></div>The original error:<br><br></div><div class=3D"gmail_extr=
+a"><br></div><div class=3D"gmail_extra"><pre style=3D"white-space:pre-wrap;=
+font-variant-ligatures:normal">../libepoxy-1.4.3/test/egl_com<wbr>mon.c:36:=
+20: error: implicit declaration of function &#39;XOpenDisplay&#39;; did you=
+ mean &#39;eglGetDisplay&#39;? [-Werror=3Dimplicit-function-dec<wbr>laratio=
+n]
+     Display *dpy =3D XOpenDisplay(NULL);<br><br><font size=3D"2"><span sty=
+le=3D"font-family:arial,helvetica,sans-serif">implies a missing #include &l=
+t;X11/Xlib.h&gt;</span></font></pre></div></div>
+<br>--<br>
 ______________________________<wbr>_________________<br>
 yocto mailing list<br>
 <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
 " target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
 br>
-</font></span></blockquote></div><br></div>
+<br></blockquote></div><br></div>
 
---001a113992423e9b5405630e1b1d--
+--089e08289ffccfe2fa05630e4d6c--
