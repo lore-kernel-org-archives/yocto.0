@@ -1,42 +1,71 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE5ACE00E55; Thu, 18 Jan 2018 19:04:17 -0800 (PST)
+	id 1799DE00DF1; Thu, 18 Jan 2018 19:29:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.68 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 609A8E00D7F
-	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 19:04:16 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w0J34GHX026033
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 19:04:16 -0800 (PST)
-Received: from ALA-MBC.corp.ad.wrs.com ([169.254.1.62]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0361.001;
-	Thu, 18 Jan 2018 19:04:16 -0800
-From: "Huang, Jie (Jackie)" <Jackie.Huang@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [opkg-utils PATCH] update-alternatives: fix the sed
-	pattern	in remove_alt
-Thread-Index: AQHTkNE5kynq8rnRf02HysutM46jt6N6gkgA
-Date: Fri, 19 Jan 2018 03:04:15 +0000
-Message-ID: <1B858668EC6A94408DCA5225FDFA85AA01566DA1EA@ALA-MBC.corp.ad.wrs.com>
-References: <20180119025413.553-1-jackie.huang@windriver.com>
-In-Reply-To: <20180119025413.553-1-jackie.huang@windriver.com>
-Accept-Language: en-US, zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.224.177.48]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f68.google.com (mail-wm0-f68.google.com [74.125.82.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76251E00D7F
+	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 19:29:19 -0800 (PST)
+Received: by mail-wm0-f68.google.com with SMTP id v71so807976wmv.2
+	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 19:29:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=YF9QiqsFwqkXfKYVkk+IDC3yfKtxHqwsN0TFz//0/Lk=;
+	b=gbDMuN+n6Lte1Kgysezf9sv24IorIG4Mo19KUAgqdAui6eW0gmM921AfV7zfnY8scp
+	q4jzANNOZOUXrCMjGntRvQ9Rx0JfZ4JEqWIvU1ySLKL9n4D0suZ32bjLWhjHeLer09Vs
+	BVARQfdGOufS4PkK0S0bzLiZjF8z+sy2yACCiU0583d15oWnhOJbwDwtUYsiSD7m3Tpr
+	H9DDydFzyOgLAy6MFXO6n/xopQ2hfKDKLRtBRoYw+JGCID7/wONMGvkrn94QyjpJ8s6e
+	YVYhsRQfUXcU8nK3AYz+QNA3au61gD/y6w8NJ44PGEb7ElvNeG8qxNzFhwzYO+VJkQ50
+	Zz6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=YF9QiqsFwqkXfKYVkk+IDC3yfKtxHqwsN0TFz//0/Lk=;
+	b=ed1fjuzjkhCg6Wx1PjsnF1RYVTFndQASA+b5dsAC+oyhh5SCf8+LW5IAZt0d555V2N
+	tGSw3GpfwmGoaABDbN97E4iPsCjx6Xln4kcPq505s3GgUp7Ap6JPz1e0pJEPf5I6qFG4
+	APzTYd5ZhVbHv7dgpQI0S2jjLYjXp5byVbaMot9jD+1gRs4j1OVUBYdejs52xchjSnJn
+	1iGNGxcOBcZfyX26ZF2oeRJPKoHzU4JijoNWIHFmy/xMzMKJeSNqp3MIe/wpshMYhLLS
+	5ceK79KBzxTCQ8w/xPMhg+wKqzZtUrgHfnFfRwKkNHB0+udI3NawvLiDnSru8knjJ10z
+	kc+A==
+X-Gm-Message-State: AKwxytd06Dxz5sNKpXz/CjWZMe5zE2ETSXSKThXfCXJu4qVSpOjaCtiJ
+	of0tNHPJhMBPv87LQ/rS1Zo1uir9AD9BM+Q6DCY=
+X-Google-Smtp-Source: ACJfBoskacsr7eNNDQrZKAtlCrzzkm5Y0rutCyR7pmQh3NbF9Tt0a3AmjVl8uQ99sWbCwkQwFUWknVvjdOpxXUxJGRM=
+X-Received: by 10.28.40.195 with SMTP id o186mr7610344wmo.136.1516332559269;
+	Thu, 18 Jan 2018 19:29:19 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [opkg-utils PATCH] update-alternatives: fix the sed pattern	in remove_alt
+Received: by 10.223.190.132 with HTTP; Thu, 18 Jan 2018 19:29:18 -0800 (PST)
+In-Reply-To: <24fffbce-1f44-dba6-aed2-913af75ba525@linux.intel.com>
+References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+	<CAC+thW1kL2F2LKxpnLMTd-YfWZV8KNzDSqpF8q2KdOBENBjt4g@mail.gmail.com>
+	<CAC+thW0xBGsXZz-GJQU5f-LbVtUVWmzt5ReUwZr-SG4gvw-eVA@mail.gmail.com>
+	<20d47e1b-c33b-d7f6-1b9e-f7a6f1e779a0@linux.intel.com>
+	<CAEHkU3WSqGih6myuVDZCrWjszPA7yaj6p_BWuEqin53LBh_tsA@mail.gmail.com>
+	<CAC+thW0g-Sc+K7yNp6BU6ia31RX1Gy4N0v6LQ1qFcTjiXniDTQ@mail.gmail.com>
+	<24fffbce-1f44-dba6-aed2-913af75ba525@linux.intel.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Thu, 18 Jan 2018 19:29:18 -0800
+Message-ID: <CAJ86T=U4m-J8WLdRP6UFP7T=FxyRRMsc7uXzpOyU9uCoimA1_g@mail.gmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Cc: Mathias Rudnik <rudnik.mathias@googlemail.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Error do_compile libepoxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,57 +77,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jan 2018 03:04:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 19 Jan 2018 03:29:21 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Sorry I forgot adding opkg-devel, so I just re-sent with opkg-devel added i=
-n.
+On Thu, Jan 18, 2018 at 5:49 AM, Alexander Kanavin
+<alexander.kanavin@linux.intel.com> wrote:
+> On 01/18/2018 03:41 PM, Andrea Galbusera wrote:
+>>
+>> Yes, this is coherent with what Alexander's commit message says. We
+>> started building stuff in test/ while switching to meson...
+>> If we can't easily fix the upstream ourself and/or reproduce outside
+>> of OE to ask for help from upstream devels, IMO we should temporarily
+>> prevent meson from building the tests.
+>
+> Note that this same test does build fine in poky, so disabling the tests is
+> not a good fix. You should figure out what is about the non-poky EGL headers
+> that is causing the failure, and whether you need to configure the provider
+> of those headers differently, or add missing dependencies etc.
 
-Thanks,
-Jackie
+Upstream documents that the test suite relies on X11:
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of jackie.huang@windriver.com
-> Sent: Friday, January 19, 2018 10:54
-> To: yocto@yoctoproject.org
-> Subject: [yocto] [opkg-utils PATCH] update-alternatives: fix the sed patt=
-ern in
-> remove_alt
->=20
-> From: Jackie Huang <jackie.huang@windriver.com>
->=20
-> '\>' is to matches the end of a word, but the executable is
-> not always a 'word', e.g. /usr/lib64/busybox/usr/bin/[
->=20
-> then such alternatives can not be removed.
->=20
-> So change to use '\s' in the pattern since the following
-> character of the $path is whitespace.
->=20
-> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-> ---
->  update-alternatives | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/update-alternatives b/update-alternatives
-> index ffad853..ce7d66c 100644
-> --- a/update-alternatives
-> +++ b/update-alternatives
-> @@ -80,7 +80,7 @@ remove_alt() {
->  	[ ! -f $ad/$name ] && return 0
->=20
->  	path=3D`echo $path | protect_slashes | protect_special_character`
-> -	sed -ne "/^$path\>.*/!p" $ad/$name > $ad/$name.new
-> +	sed -ne "/^$path\s.*/!p" $ad/$name > $ad/$name.new
->  	mv $ad/$name.new $ad/$name
->  }
->=20
-> --
-> 2.7.4
->=20
+  https://github.com/anholt/libepoxy/blob/1.4.3/README.md#building
+
+So disabling the test suite for targets without X11 seems like a
+perfectly reasonable approach.
+
+> Alex
+>
 > --
 > _______________________________________________
 > yocto mailing list
