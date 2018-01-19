@@ -1,31 +1,31 @@
 Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0719E00EC0; Thu, 18 Jan 2018 18:56:39 -0800 (PST)
+	id 22045E00DE3; Thu, 18 Jan 2018 19:02:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62B27E00D6A
-	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 18:56:38 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w0J2ubA4017111
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK)
-	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 18:56:38 -0800
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94CACE00D7F
+	for <yocto@yoctoproject.org>; Thu, 18 Jan 2018 19:02:24 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w0J32HKR000651
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 18 Jan 2018 19:02:22 -0800 (PST)
 Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.361.1; Thu, 18 Jan 2018 18:56:36 -0800
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.361.1; Thu, 18 Jan 2018 19:02:20 -0800
 From: <jackie.huang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 19 Jan 2018 10:54:13 +0800
-Message-ID: <20180119025413.553-1-jackie.huang@windriver.com>
+To: <yocto@yoctoproject.org>, <opkg-devel@googlegroups.com>
+Date: Fri, 19 Jan 2018 10:59:56 +0800
+Message-ID: <20180119025956.851-1-jackie.huang@windriver.com>
 X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
 Subject: [opkg-utils PATCH] update-alternatives: fix the sed pattern in remove_alt
@@ -40,7 +40,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jan 2018 02:56:40 -0000
+X-List-Received-Date: Fri, 19 Jan 2018 03:02:25 -0000
 Content-Type: text/plain
 
 From: Jackie Huang <jackie.huang@windriver.com>
