@@ -1,42 +1,50 @@
-Return-Path: <erik.boto@pelagicore.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AC31E00E81; Fri, 19 Jan 2018 03:14:12 -0800 (PST)
+	id 8AC21E00E55; Fri, 19 Jan 2018 04:38:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [109.166.244.22 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ORO-EDGE-02.luxoft.com (oro-edge-02.luxoft.com [109.166.244.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04279E00CF5
-	for <yocto@yoctoproject.org>; Fri, 19 Jan 2018 03:14:10 -0800 (PST)
-Received: from ORO-HUBT-01.luxoft.com (172.30.115.41) by
-	oro-edge-02.luxoft.com (172.30.19.22) with Microsoft SMTP Server (TLS)
-	id 14.3.319.2; Fri, 19 Jan 2018 13:14:07 +0200
-Received: from ORO-MBOX-05.luxoft.com ([fe80::1137:8dc2:bce5:c3fc]) by
-	ORO-HUBT-01.luxoft.com ([::1]) with mapi id 14.03.0319.002;
-	Fri, 19 Jan 2018 13:14:07 +0200
-From: "Boto, Erik (Pelagicore)" <erik.boto@pelagicore.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>, "Boto, Erik
-	(Pelagicore)" <erik.boto@pelagicore.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Automated license incompatibility checks
-Thread-Index: AdOQ46r/mE/iOrysQniIAklh/nuMvgAEwtgAAAfn47A=
-Date: Fri, 19 Jan 2018 11:14:06 +0000
-Message-ID: <AB2C775B0A414B47856169E3372B9DF202210D05@ORO-MBOX-05.luxoft.com>
-References: <AB2C775B0A414B47856169E3372B9DF202210B21@ORO-MBOX-05.luxoft.com>
-	<b36addbb-1afa-0619-c125-48675e7a2ce8@linux.intel.com>
-In-Reply-To: <b36addbb-1afa-0619-c125-48675e7a2ce8@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [83.218.80.243]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D015E0085E
+	for <yocto@yoctoproject.org>; Fri, 19 Jan 2018 04:38:37 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Jan 2018 04:38:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,381,1511856000"; d="scan'208";a="21043469"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by FMSMGA003.fm.intel.com with ESMTP; 19 Jan 2018 04:38:35 -0800
+To: Andrea Galbusera <gizero@gmail.com>
+References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+	<CAC+thW1kL2F2LKxpnLMTd-YfWZV8KNzDSqpF8q2KdOBENBjt4g@mail.gmail.com>
+	<CAC+thW0xBGsXZz-GJQU5f-LbVtUVWmzt5ReUwZr-SG4gvw-eVA@mail.gmail.com>
+	<20d47e1b-c33b-d7f6-1b9e-f7a6f1e779a0@linux.intel.com>
+	<CAEHkU3WSqGih6myuVDZCrWjszPA7yaj6p_BWuEqin53LBh_tsA@mail.gmail.com>
+	<CAC+thW0g-Sc+K7yNp6BU6ia31RX1Gy4N0v6LQ1qFcTjiXniDTQ@mail.gmail.com>
+	<24fffbce-1f44-dba6-aed2-913af75ba525@linux.intel.com>
+	<CAJ86T=U4m-J8WLdRP6UFP7T=FxyRRMsc7uXzpOyU9uCoimA1_g@mail.gmail.com>
+	<28c69ac5-219a-8718-83f6-5f7f2b51bf10@linux.intel.com>
+	<CAC+thW07t_5w-g9aWDTSWeqN_V0zH=mEZBDLrUO_5LD97JG5-A@mail.gmail.com>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <cf336aca-3cb1-4e1f-e7fc-601311a7d87b@linux.intel.com>
+Date: Fri, 19 Jan 2018 14:32:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-Subject: Re: Automated license incompatibility checks
+In-Reply-To: <CAC+thW07t_5w-g9aWDTSWeqN_V0zH=mEZBDLrUO_5LD97JG5-A@mail.gmail.com>
+Cc: Mathias Rudnik <rudnik.mathias@googlemail.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Error do_compile libepoxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,32 +56,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jan 2018 11:14:12 -0000
+X-List-Received-Date: Fri, 19 Jan 2018 12:38:38 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBBbGV4YW5kZXIgS2FuYXZpbiBb
-bWFpbHRvOmFsZXhhbmRlci5rYW5hdmluQGxpbnV4LmludGVsLmNvbV0NCj4gU2VudDogZGVuIDE5
-IGphbnVhcmkgMjAxOCAxMDoyNg0KPiBUbzogQm90bywgRXJpayAoUGVsYWdpY29yZSkgPGVyaWsu
-Ym90b0BwZWxhZ2ljb3JlLmNvbT47DQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gQ2M6IENs
-ZW1lbnMuTGFuZ0BibXctY2FyaXQuZGUNCj4gU3ViamVjdDogUmU6IFt5b2N0b10gQXV0b21hdGVk
-IGxpY2Vuc2UgaW5jb21wYXRpYmlsaXR5IGNoZWNrcw0KPiANCj4gT24gMDEvMTkvMjAxOCAwNzoy
-MSBBTSwgQm90bywgRXJpayAoUGVsYWdpY29yZSkgd3JvdGU6DQo+ID4gSSB3YXMgbG9va2luZyBm
-b3IgYSB3YXkgdG8gYW5hbHl6ZSBpbiBtb3JlIGRldGFpbCBob3cgcGFja2FnZXMgb2YNCj4gPiBk
-aWZmZXJlbnQgbGljZW5zZXMgd2FzIHVzZWQgaW4gYW4gaW1hZ2UsIGFuZCBzdHVtYmxlZCB1cG9u
-IHRoaXMgb2xkDQo+ID4gbWFpbC10aHJlYWQ6DQo+ID4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
-Y3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE1LUphbnVhcnkvMDIzMzA3Lmh0bQ0KPiA+IGwNCj4g
-Pg0KPiA+IE15IGVuZCBnb2FsIGlzIHByZXR0eSBtdWNoIHRoZSBzYW1lIGFzIENsZW1lbnMsIHRo
-YXQgSSB3YW50IHRvIGJlIGFibGUgdG8NCj4gaGF2ZSBjaGVja3MvcnVsZXMgZm9yIHdoaWNoIGxp
-Y2Vuc2VzIGFyZSBvayB0byBoYXZlIHdoZW4gbGlua2luZw0KPiBkeW5hbWljYWxseS9zdGF0aWNh
-bGx5IHRvIG90aGVyIGxpYnJhcmllcy4gRG9lcyBhbnlvbmUga25vdyBpZiB0aGlzIHdvcmsgZXZl
-cg0KPiBnb3QgcHVibGlzaGVkIHNvbWV3aGVyZT8gSXQgc2VlbXMgbGlrZSBhIHZlcnkgbmljZSBm
-dW5jdGlvbmFsaXR5IHRvIGhhdmUuDQo+IA0KPiBZb3UgcHJvYmFibHkgbmVlZCB0byBhc2sgdGhp
-cyBkaXJlY3RseSBmcm9tIENsZW1lbnMuIEV2ZW4gaWYgdGhlIGNvZGUgaXMNCj4gZ29uZSwgb3Ig
-Qk1XIGRvZXMgbm90IHdhbnQgdG8gbWFrZSBpdCBwdWJsaWMgOiksIGl0IHNob3VsZG4ndCBiZSB0
-aGF0IGhhcmQgdG8NCj4gcmUtaW1wbGVtZW50IGl0IGZyb20gdGhlIGRlc2NyaXB0aW9uLg0KPiAN
-Cj4gQWxleA0KDQpZZXMsIEkgaW5jbHVkZWQgQ2xlbWVucyBvbiBDQyBidXQgd2FudGVkIHRvIGtl
-ZXAgdGhlIGRpc2N1c3Npb24gcHVibGljIHNvIHRoYXQgaXQgY2FuIGJlbmVmaXQgb3RoZXJzIGFz
-IHdlbGwuDQoNCkNoZWVycywNCkVyaWsNCg==
+
+> I'll try to recap a little bit but, please, forgive my ignorance in
+> graphics stacks and libraries.
+> Disclaimer: mostly working on headless systems... my bad!
+> This is what I think I understand here (remember I test building poky
+> + meta-raspberrypi):
+> * libepoxy recipe in poky uses PACKAGECONFIG to conditionally depend
+> on virtual/X11 when this is available in DISTRO_FEATURE
+> * the latter is the case for poky which is the DISTRO I'm building
+> for. This gives i.e. a populated recipe-sysroot/usr/include/X11
+> * upstream meson.build conditionally builds tests if X11 is
+> available... so we expect they should build fine in this case
+> * compile fails on test/egl_common.c which does not explicitly include
+> X11/Xlib.h by itself. Doing so moves things forward but, to me, does
+> not seem to be the right thing to do.
+> 
+> Is this correct to assume that the upstream tested usecases are
+> probably getting the include otherwise, maybe conditionally as Alex
+> initially suggested. If so, where should we look for the missing
+> pieces?
+
+I'm similarly ignorant about this stuff (our resident graphics stack 
+expert Jussi Kukkonen left a few months ago), but let's consider the 
+build files:
+
+- the offending tests are wrapped in "if build_egl and build_x11_tests"
+
+- build_egl is controlled by a PACKAGECONFIG, and I guess you do have it 
+available
+
+- "build_x11_tests = build_glx and x11_dep.found()" - build_glx is 
+similarly controlled by a PACKAGECONFIG, and enabled if x11 is in 
+DISTRO_FEATURES:
+
+PACKAGECONFIG[x11] = "-Denable-glx=yes, -Denable-glx=no, virtual/libx11"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} egl"
+
+This is where I think the configuration is not quite right. Instead of 
+virtual/libx11, it should say virtual/libgl. And if that dependency 
+cannot be satisfied, then the x11 option should be altogether disabled 
+in the distro/local config (in poky mesa provides virtual/libgl). At 
+least that's how it's configured in many other recipes throughout oe-core.
+
+Can you try:
+a) disabling x11 PACKAGECONFIG in your local config and see if things build?
+b) changing the dependency in that option to virtual/libgl and see what 
+kind of error you get, if any. I guess this is the right fix after all.
+
+Alex
 
