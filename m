@@ -1,62 +1,74 @@
-Return-Path: <alan.martinovic@senic.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00DF0E00DED; Fri, 19 Jan 2018 01:54:06 -0800 (PST)
+	id F3AE1E00E22; Fri, 19 Jan 2018 02:45:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.215.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f46.google.com (mail-lf0-f46.google.com
-	[209.85.215.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84328E0085E
-	for <yocto@yoctoproject.org>; Fri, 19 Jan 2018 01:54:05 -0800 (PST)
-Received: by mail-lf0-f46.google.com with SMTP id t79so1387311lfe.3
-	for <yocto@yoctoproject.org>; Fri, 19 Jan 2018 01:54:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.67 listed in list.dnswl.org]
+Received: from mail-vk0-f67.google.com (mail-vk0-f67.google.com
+	[209.85.213.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB05EE0085E
+	for <yocto@yoctoproject.org>; Fri, 19 Jan 2018 02:45:41 -0800 (PST)
+Received: by mail-vk0-f67.google.com with SMTP id t4so676536vkb.9
+	for <yocto@yoctoproject.org>; Fri, 19 Jan 2018 02:45:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=6t39QnA1PH+M9oixI1pyLpbf4dXbec4rJIli/rlGaNA=;
-	b=XbwqRvsNkNV331NQq7hSfX3eTehpi2oyRJFMpCS7bLEbu8UGpp2opnj+T14WV9dRZh
-	WXIKCBGbE2WR6cYO/TkU2SzYq7+zHJ59Cy85BKLZOPpSd6UXhrSZYyyzyR4Pca9OQIWV
-	xTD3soi7bmdusVOCBvzymcHJztcrG/mPJw8p/u2pmADajTNbba0Z2nItA25yyeZsZ3ne
-	i/R70ZlN+Og1fSTaQyG6zAFwrLIWNAySP5jrzQG0Cn6AZcZ52LYR0aYt26suIuTUyR2a
-	uxegnKOR6BclzKbQxcLovZ7OeclbHDt4FLujq/oUUOrNPRZqwlhaIkTM3Jv0DfzNy+j9
-	MbAA==
+	:cc; bh=qKeHLKXwqFYZC9CFdt9Z/vGUVj/Xmspm01q7ZuPBU3I=;
+	b=YcKDGYUA0UQmKCCYYQ77ZLmq+2sZ1EaOUM4nKcmcopn/wMGkELdg0a758/UmYqcFaX
+	8gYnb2M+Nmm6DbmnZiuZFH15hkZBtXv7wA/uDuiz/GggZEh9iNkRPsJ2TqaqKsHMMDWu
+	YqKL5nsLyG9clXrS3vZJ2YYNdMZVoivKolK0KQ7ADDj72MCZIq0AeSPoTfpHtISLKotx
+	fflP9cU4mW0hmBjfzD6RN1EEcfN6B/S7A4hbA5FKcYyyYZnclK3fsomRu/M7KOv6s32B
+	iWaAENahBX0W9jBwjzEewLhhoTNwf6EUBnk/CqqsP8PPYRCISE74RF8Qr6piSZxm0hMq
+	ng5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=6t39QnA1PH+M9oixI1pyLpbf4dXbec4rJIli/rlGaNA=;
-	b=hcnrG1shgv7tGNWKjxvU6SVpJhtgoIoxJtee+BE+zVU3qnukn2R1Ic46pIoMcuTSZu
-	ALN+XO2i5YBBbiOW8Gq37P26TnYvsd5c9w+pHjIIsxBcWlKOVmlmSCr9yIho8aJQQRWn
-	aINRcv95mAWntZUcnkLftIkN9Oh5ph7xgsoanRt4f+XR/KF54A1XWpvDS05/vL776nf6
-	4nBpr5zDmCkcSdUPBN6KPqmG9UhS/w9eLUUvdFfgwzSFupd0SA5hBy2f4c9g1vyFazkr
-	yCU6rmuksBGd4AQxumyWfTMZ+Wszdtw25oV2pTLWPh9gcVU+FhowFiJJsvql9PvWfZzg
-	5U7Q==
-X-Gm-Message-State: AKwxyteEAmm6qWbN2IITCxMOyGdH3sBcd+9NaCZLibXSLksbF+wHvKz2
-	kNATCK5aVsg6h3gHXU6+uA3wgGUbclMOxOn29ovKcA==
-X-Google-Smtp-Source: ACJfBotHFFDsOQ0L65m3AM4mfjAHmOnv5EBjw3Jijr815+1qgdf6v+6Z0W6OwRefyLBLM3+uJKWaanBVgoAKI8zm54Q=
-X-Received: by 10.46.60.10 with SMTP id j10mr3259037lja.111.1516355644306;
-	Fri, 19 Jan 2018 01:54:04 -0800 (PST)
+	bh=qKeHLKXwqFYZC9CFdt9Z/vGUVj/Xmspm01q7ZuPBU3I=;
+	b=n5R2NYHn1w8ZzeNLbyMvS/XHZ1gcl36UILwUGaqYm8Wc8F6Mi5l9dwGM8i8F5PwUng
+	2ASi4vT0o2qGFbUDtlGEzSu7OJv11E0Yvt37kKlOq/bI3SqArj2UNt0/78DNomuEt3bS
+	jjhpxUjEPmrSRgE9/T+Icc0bi1y+6ceD7ckKvzXdWMZbu6ldm4vxMzgZ6n/ZXWBLIGH/
+	Cbi3WxQOEZE2r3JPMI35jP2JjQywzf8O1eg7xliHaiisNGrHLxRCFloWHBWZjbi+TMXI
+	TGvVljMVM3+pHkYxboJwgc/8oD0/uc34t9zLEheJhNqpFaxNvyu6a6jYteIdP2S5FKgD
+	d8pQ==
+X-Gm-Message-State: AKwxytfXLeuE8+9kybEqGGiiPO71tHyD2OzpWaRDtCpdnb3UXDYKLNHr
+	Di5djG2GBT9aa1cbfoE7fCrA4zJkeJS2UMzvR5Y=
+X-Google-Smtp-Source: ACJfBovsypt8vAFFQfztQAEc0GFdpGBMoZ8iR7ndJMLDZ6uT5qPJu1jPzItoFztqpxIPOqAj+aB3km0ysBoQ0yHRq3Q=
+X-Received: by 10.31.85.193 with SMTP id j184mr6401031vkb.152.1516358740586;
+	Fri, 19 Jan 2018 02:45:40 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.25.28.4 with HTTP; Fri, 19 Jan 2018 01:54:03 -0800 (PST)
-In-Reply-To: <CAJTo0Lajne5k2-PzpXzh502f5CsTZ102WtLbs4ExFrkY2Ojjrg@mail.gmail.com>
-References: <CAOT_U5b3f-S98tpuhOuB6W7R8Cv+J4qph1ObXh+5dgETMh2cNg@mail.gmail.com>
-	<CAJTo0Lajne5k2-PzpXzh502f5CsTZ102WtLbs4ExFrkY2Ojjrg@mail.gmail.com>
-From: Alan Martinovic <alan.martinovic@senic.com>
-Date: Fri, 19 Jan 2018 10:54:03 +0100
-Message-ID: <CAOT_U5YeUkc1c0vVG9rF==_Nvpwpq+ZmsVkidx1KVtAdu=QJuQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: do_roots braking after a SRCREV update for non master branch
+Received: by 10.176.77.169 with HTTP; Fri, 19 Jan 2018 02:45:40 -0800 (PST)
+In-Reply-To: <28c69ac5-219a-8718-83f6-5f7f2b51bf10@linux.intel.com>
+References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+	<CAC+thW1kL2F2LKxpnLMTd-YfWZV8KNzDSqpF8q2KdOBENBjt4g@mail.gmail.com>
+	<CAC+thW0xBGsXZz-GJQU5f-LbVtUVWmzt5ReUwZr-SG4gvw-eVA@mail.gmail.com>
+	<20d47e1b-c33b-d7f6-1b9e-f7a6f1e779a0@linux.intel.com>
+	<CAEHkU3WSqGih6myuVDZCrWjszPA7yaj6p_BWuEqin53LBh_tsA@mail.gmail.com>
+	<CAC+thW0g-Sc+K7yNp6BU6ia31RX1Gy4N0v6LQ1qFcTjiXniDTQ@mail.gmail.com>
+	<24fffbce-1f44-dba6-aed2-913af75ba525@linux.intel.com>
+	<CAJ86T=U4m-J8WLdRP6UFP7T=FxyRRMsc7uXzpOyU9uCoimA1_g@mail.gmail.com>
+	<28c69ac5-219a-8718-83f6-5f7f2b51bf10@linux.intel.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Fri, 19 Jan 2018 11:45:40 +0100
+Message-ID: <CAC+thW07t_5w-g9aWDTSWeqN_V0zH=mEZBDLrUO_5LD97JG5-A@mail.gmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Cc: Mathias Rudnik <rudnik.mathias@googlemail.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Error do_compile libepoxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,83 +80,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jan 2018 09:54:07 -0000
+X-List-Received-Date: Fri, 19 Jan 2018 10:45:43 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Thanks for the great references.
-
-I ended up going for the best practices and renaming
-python3-senichub_git.bb -> python3-senic-hub_git.bb
-
-Which solved the issue and obsoleted:
-    PROVIDES += "python3-senic-hub"
-    RPROVIDES_${PN} += "python3-senic-hub"
-
-
-
-
-On Thu, Jan 18, 2018 at 3:51 PM, Burton, Ross <ross.burton@intel.com> wrote:
-> I'd check (using oe-pkgdata-util and/or buildhistory-diff) that the new
-> package is building the same files and packages as the old one.  If PN
-> wasn't being generated, that would explain why the provides isn't working.
->
-> Ross
->
-> On 18 January 2018 at 14:46, Alan Martinovic <alan.martinovic@senic.com>
-> wrote:
->>
->> Hi,
->> I've updated my recipe to use a review from a non master branch:
->>
->> Old version [python3-senichub_git.bb]:
->>
->>     inherit setuptools3
->>
->>     PROVIDES += "python3-senic-hub"
->>     RPROVIDES_${PN} += "python3-senic-hub"
->>
->>     S = "${WORKDIR}/git"
->>     SRC_URI = "git://github.com/getsenic/senic-hub.git;"
->>     SRCREV = "01fd5bd8725add5e73d3cc35a169f0dc837daefa"
->>     PV = "git-${SRCPV}"
->>
->>     RDEPENDS_${PN} = "python3-nuimo python3-lightify"
->>
->> New version [python3-senichub_git.bb]:
->>
->>     inherit setuptools3
->>
->>     PROVIDES += "python3-senic-hub"
->>     RPROVIDES_${PN} += "python3-senic-hub"
->>
->>     S = "${WORKDIR}/git"
->>     SRC_URI =
->> "git://github.com/getsenic/senic-hub.git;branch=improve-logging;"
->>     SRCREV = "ad6c082a8a990291c6128f54ea0c0d185081704e"
->>     PV = "git-${SRCPV}"
->>
->>     RDEPENDS_${PN} = "python3-nuimo python3-lightify"
+On Fri, Jan 19, 2018 at 8:45 AM, Alexander Kanavin
+<alexander.kanavin@linux.intel.com> wrote:
+> On 01/19/2018 05:29 AM, Andre McCurdy wrote:
+>>>
+>>> Note that this same test does build fine in poky, so disabling the tests
+>>> is
+>>> not a good fix. You should figure out what is about the non-poky EGL
+>>> headers
+>>> that is causing the failure, and whether you need to configure the
+>>> provider
+>>> of those headers differently, or add missing dependencies etc.
 >>
 >>
->> So the only changes is the SRCREV, and a specific
->> branch in the SRC_URI.
->> The package alone builds successfully.
->> But when building the image it fails on the do_rootfs:
+>> Upstream documents that the test suite relies on X11:
 >>
->>     opkg_prepare_url_for_install: Couldn't find anything to satisfy
->> 'python3-senic-hub'.
+>>    https://github.com/anholt/libepoxy/blob/1.4.3/README.md#building
 >>
->> I can't really make the causes of it. There are some legacy
->> naming inconsistencies with a dash, but there is an explicit
->> PROVIDES and RPROVIDES in both recipes, one fails the
->> other passes.
->>
->> Any ideas?
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+>> So disabling the test suite for targets without X11 seems like a
+>> perfectly reasonable approach.
 >
 >
+> The meson.build files already have guards for lack of X11 around the test
+> files that are failing here. It looks like in this particular configuration
+> meson erroneously detects that X11 is present, when it's not.
+>
+> Alex
+
+I'll try to recap a little bit but, please, forgive my ignorance in
+graphics stacks and libraries.
+Disclaimer: mostly working on headless systems... my bad!
+This is what I think I understand here (remember I test building poky
++ meta-raspberrypi):
+* libepoxy recipe in poky uses PACKAGECONFIG to conditionally depend
+on virtual/X11 when this is available in DISTRO_FEATURE
+* the latter is the case for poky which is the DISTRO I'm building
+for. This gives i.e. a populated recipe-sysroot/usr/include/X11
+* upstream meson.build conditionally builds tests if X11 is
+available... so we expect they should build fine in this case
+* compile fails on test/egl_common.c which does not explicitly include
+X11/Xlib.h by itself. Doing so moves things forward but, to me, does
+not seem to be the right thing to do.
+
+Is this correct to assume that the upstream tested usecases are
+probably getting the include otherwise, maybe conditionally as Alex
+initially suggested. If so, where should we look for the missing
+pieces?
+
+Andrea
 
