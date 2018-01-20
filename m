@@ -1,6 +1,6 @@
-Return-Path: <rudnik.mathias@googlemail.com>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F07FCE00DFD; Sat, 20 Jan 2018 08:42:13 -0800 (PST)
+	id E26BFE00DC9; Sat, 20 Jan 2018 09:07:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudnik.mathias[at]googlemail.com)
+	mail provider *      (gizero[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,52 +19,59 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
-Received: from mail-wm0-f41.google.com (mail-wm0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53CD6E0083E
-	for <yocto@yoctoproject.org>; Sat, 20 Jan 2018 08:42:12 -0800 (PST)
-Received: by mail-wm0-f41.google.com with SMTP id i186so8802101wmi.4
-	for <yocto@yoctoproject.org>; Sat, 20 Jan 2018 08:42:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=from:content-transfer-encoding:mime-version:subject:message-id:date
-	:to; bh=Q4d2KP44/TgQkmDFs0l7FzP2pY9YUM9Ivp8rtqvznn8=;
-	b=HIuYaYfwviC6HvKusmU+MVGvo5uOfcPzrhROsonelGjS6eQzabBLE7ghH8ixWhxnrK
-	0r273CXPaEjWdG8kk7L9C2fVqU20NefecpNmCLgtdKmgzSq5r/WFJy6c4BaOjVKaKr5A
-	WeF0+8bSgonrraRPradgifRDB358gzQaTFqI0m/KYxmn4QqQuZRCbk0MVAiDhdSunRfr
-	Fxg4OV2aOsZQ2UTvbHGeeyTiJj5RnMf174EEFPlGFqNidJmnab0I+a2m2mjiWl4DsUSx
-	4ufc7MGifxRANRZ+445gYC2oS+1k16JWBDL/ApxCYSAvSy+Y9z78yTfbGbqab6kGCRU2
-	VRnw==
+Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
+	[209.85.213.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B53BEE0083E
+	for <yocto@yoctoproject.org>; Sat, 20 Jan 2018 09:07:03 -0800 (PST)
+Received: by mail-vk0-f53.google.com with SMTP id g83so2739050vki.4
+	for <yocto@yoctoproject.org>; Sat, 20 Jan 2018 09:07:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=w9s6aiadHEsrikdWkMC6FHQF+YcAl+N2NCaZ2U+tvSI=;
+	b=Q55Br3+4gEILvgT5ZrmYodKYi8yltbMV/6l/vDxXRzZ8qf4cM+7xiMaTnMuYHm3VM8
+	qI1RAR50SUoCPgzq1eSTtFDQySCIjdRKM6jtM2/stBxhJb66MhZG0cmSIMX9knX/acaY
+	dI3Sxc/IPpEELIn/DPYTI79ZSeUewJZB+7dIjASxv68pQlYKrXVwOhqGQPRQhfLWSMRV
+	alcwCkKhycvyQNd6HFo58JthgCPQ4OjDHnjUP/qoYEDMA4sYuHP6ZBlo6ZAK7w5rLbub
+	tU76qwDT1ka5Zd5k4GWIOo4a1bdFowvpibZ8gsCvj9ShVBiLakUGCE8Mb6DNTmYmLtg9
+	bioQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:content-transfer-encoding:mime-version
-	:subject:message-id:date:to;
-	bh=Q4d2KP44/TgQkmDFs0l7FzP2pY9YUM9Ivp8rtqvznn8=;
-	b=TcCfMXsxMjlQ7Yd7sNfVD9QJ5Jv8JIIBHcsJOXr16xvBmY+fXpjTawA9TzHdLu9iJy
-	1FrsqjRJpehIqvun9Mzi6f/GLeAjzituojWHWvqYgSppAL0BLk3rQUbaVCfgHII3N+r0
-	9ntHFYIAzOJEDNat9tdOEyGkJfNHu84oTNYX65uRoGjgDzuoHSVFBDwbQl23M3FYgWfl
-	UKXM4k5+roGw4afAUOa5CrF9V3VIUCt/SZ471o19Esv9aZAa9aBbUCfh+6Io85H2iLgz
-	Ho0DNzN84DnPUOclupyvRL3Wf+12J7byc+I2p4Z7jqFQCP+1PVOay3/3kW5zBIV0WfNS
-	QLtQ==
-X-Gm-Message-State: AKwxyteS/xoJvHR3lsCXiEzvgVCeG9aNhKKFiDBzxH7hMSKoVSEO071T
-	zz3XGYQWGGC+sNcJun+s7Hp/EVr5
-X-Google-Smtp-Source: AH8x224L2HH18f0zDQKqewlYFL3I8VwQQ3SWkiOwJbws/fqW/OmadVxiGzVDFO0BrvSAhgsJidRquw==
-X-Received: by 10.80.180.210 with SMTP id x18mr3654420edd.126.1516466531785;
-	Sat, 20 Jan 2018 08:42:11 -0800 (PST)
-Received: from [192.168.0.14] (ip1f12feb4.dynamic.kabel-deutschland.de.
-	[31.18.254.180]) by smtp.googlemail.com with ESMTPSA id
-	y5sm8584905ede.71.2018.01.20.08.42.11 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 20 Jan 2018 08:42:11 -0800 (PST)
-From: Mathias Rudnik <rudnik.mathias@googlemail.com>
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-Message-Id: <63AABC0B-CEA2-4DAC-AC42-4BCF6720BFA9@googlemail.com>
-Date: Sat, 20 Jan 2018 17:42:10 +0100
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3273)
-Subject: Installing python package from wheel file
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=w9s6aiadHEsrikdWkMC6FHQF+YcAl+N2NCaZ2U+tvSI=;
+	b=EyTLZkMc1wYxsN0CAPGF/UL0oLOPAQReJXhLWxaSfWRmmp8/JIUgJQVUX1PGsV/7Yt
+	ItkteOyCr3jzVqsR7/wYztHJc/0znclDi/2/3mQEVY0jXXaoUmxHX8OdpP0Fhj1nDvgS
+	b3pNmjcGKzPLM3kgjKFyypEZGCj2+cMvjBc2L4A3Jq5IEDqRZu/PKNU5FQSZUjQaYCUc
+	1ROWlrpNvM0d3bzNtdPEyotAjh2BwRcLJRPtAGU1VvqEdNDHbSxm1qQTS9jp/y4kWoV7
+	Zdd/YJGhKwtLpL7ZkP21pQtYcAMGF3TIU36x8XQufBMo+KbjDncD9mqP3fwH8Mo8x/73
+	k8mg==
+X-Gm-Message-State: AKwxytc27hpmjf6J7du51EIwxSWhwjB/Ou01UA1l/RX44hIkCiRYHsmk
+	jKOhTpUbMJ/AQRlR4cUDYbV7slpg7wjFyYDdc4U=
+X-Google-Smtp-Source: AH8x225KlTj0rz5KsnGbue5Bj7LnpZjV08t+pTf+UAmgUkEzz2e9yg496aWIw5O06hBrN/EpTWGtkjqAMCS15cbsh2U=
+X-Received: by 10.31.78.194 with SMTP id c185mr1361645vkb.19.1516468022538;
+	Sat, 20 Jan 2018 09:07:02 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.176.77.169 with HTTP; Sat, 20 Jan 2018 09:07:01 -0800 (PST)
+In-Reply-To: <21d74a6f-8833-ac0b-c2e7-72063cdf809c@intel.com>
+References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+	<CAC+thW1kL2F2LKxpnLMTd-YfWZV8KNzDSqpF8q2KdOBENBjt4g@mail.gmail.com>
+	<CAC+thW0xBGsXZz-GJQU5f-LbVtUVWmzt5ReUwZr-SG4gvw-eVA@mail.gmail.com>
+	<20d47e1b-c33b-d7f6-1b9e-f7a6f1e779a0@linux.intel.com>
+	<CAEHkU3WSqGih6myuVDZCrWjszPA7yaj6p_BWuEqin53LBh_tsA@mail.gmail.com>
+	<CAC+thW0g-Sc+K7yNp6BU6ia31RX1Gy4N0v6LQ1qFcTjiXniDTQ@mail.gmail.com>
+	<24fffbce-1f44-dba6-aed2-913af75ba525@linux.intel.com>
+	<CAJ86T=U4m-J8WLdRP6UFP7T=FxyRRMsc7uXzpOyU9uCoimA1_g@mail.gmail.com>
+	<28c69ac5-219a-8718-83f6-5f7f2b51bf10@linux.intel.com>
+	<CAC+thW07t_5w-g9aWDTSWeqN_V0zH=mEZBDLrUO_5LD97JG5-A@mail.gmail.com>
+	<cf336aca-3cb1-4e1f-e7fc-601311a7d87b@linux.intel.com>
+	<21d74a6f-8833-ac0b-c2e7-72063cdf809c@intel.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Sat, 20 Jan 2018 18:07:01 +0100
+Message-ID: <CAC+thW30_2-svZ_KUVfxdAgde0rhgLkSnD4kyUVA75FCr5jiAg@mail.gmail.com>
+To: Anuj Mittal <anuj.mittal@intel.com>
+Cc: Mathias Rudnik <rudnik.mathias@googlemail.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Error do_compile libepoxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,25 +83,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Jan 2018 16:42:14 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 20 Jan 2018 17:07:05 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+On Sat, Jan 20, 2018 at 10:29 AM, Anuj Mittal <anuj.mittal@intel.com> wrote:
+> On 01/19/2018 08:32 PM, Alexander Kanavin wrote:
+>>
+>>> I'll try to recap a little bit but, please, forgive my ignorance in
+>>> graphics stacks and libraries.
+>>> Disclaimer: mostly working on headless systems... my bad!
+>>> This is what I think I understand here (remember I test building poky
+>>> + meta-raspberrypi):
+>>> * libepoxy recipe in poky uses PACKAGECONFIG to conditionally depend
+>>> on virtual/X11 when this is available in DISTRO_FEATURE
+>>> * the latter is the case for poky which is the DISTRO I'm building
+>>> for. This gives i.e. a populated recipe-sysroot/usr/include/X11
+>>> * upstream meson.build conditionally builds tests if X11 is
+>>> available... so we expect they should build fine in this case
+>>> * compile fails on test/egl_common.c which does not explicitly include
+>>> X11/Xlib.h by itself. Doing so moves things forward but, to me, does
+>>> not seem to be the right thing to do.
+>>>
+>>> Is this correct to assume that the upstream tested usecases are
+>>> probably getting the include otherwise, maybe conditionally as Alex
+>>> initially suggested. If so, where should we look for the missing
+>>> pieces?
+>>
+>> I'm similarly ignorant about this stuff (our resident graphics stack
+>> expert Jussi Kukkonen left a few months ago), but let's consider the
+>> build files:
+>>
+>> - the offending tests are wrapped in "if build_egl and build_x11_tests"
+>>
+>> - build_egl is controlled by a PACKAGECONFIG, and I guess you do have it
+>> available
+>>
+>> - "build_x11_tests = build_glx and x11_dep.found()" - build_glx is
+>> similarly controlled by a PACKAGECONFIG, and enabled if x11 is in
+>> DISTRO_FEATURES:
+>>
+>> PACKAGECONFIG[x11] = "-Denable-glx=yes, -Denable-glx=no, virtual/libx11"
+>> PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} egl"
+>>
+>> This is where I think the configuration is not quite right. Instead of
+>> virtual/libx11, it should say virtual/libgl. And if that dependency
+>> cannot be satisfied, then the x11 option should be altogether disabled
+>> in the distro/local config (in poky mesa provides virtual/libgl). At
+>> least that's how it's configured in many other recipes throughout oe-core.
+>>
+>> Can you try:
+>> a) disabling x11 PACKAGECONFIG in your local config and see if things build?
+>> b) changing the dependency in that option to virtual/libgl and see what
+>> kind of error you get, if any. I guess this is the right fix after all.
+>
+> Yes, glx in libepoxy should be disabled if it is not in DISTRO_FEATURES.
+> glx depends on gl and x11 so if it is to be enabled, both of them should
+> be present.
+>
+> However, x11 without glx and just egl should still be valid configuration.
+>
+> I think the correct configuration should be:
+>
+>
+> diff --git a/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
+> b/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
+> index 72167a2..0043bec 100644
+> --- a/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
+> +++ b/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
+> @@ -15,12 +15,14 @@ UPSTREAM_CHECK_URI =
+> "https://github.com/anholt/libepoxy/releases"
+>
+>  inherit meson pkgconfig distro_features_check
+>
+> -REQUIRED_DISTRO_FEATURES = "opengl"
+> -
+>  DEPENDS = "util-macros"
+>
+> +REQUIRED_DISTRO_FEATURES = "${@bb.utils.contains('PACKAGECONFIG',
+> 'glx', 'x11', '', d)}"
+> +PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'glx x11', d)} \
 
-does anyone know how to install a python package from a .whl file?
+Did you mean 'opengl x11' or is glx a valid distro feature? I don't
+see it mentioned anywhere else...
 
-I tried it using a recipe that contains:
+> +                   ${@bb.utils.contains('DISTRO_FEATURES', 'opengl',
+> 'egl', '', d)}"
+> +
+>  PACKAGECONFIG[egl] = "-Denable-egl=yes, -Denable-egl=no, virtual/egl"
+> -PACKAGECONFIG[x11] = "-Denable-glx=yes, -Denable-glx=no, virtual/libx11"
+> -PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} egl"
+> +PACKAGECONFIG[glx] = "-Denable-glx=yes, -Denable-glx=no, virtual/libgl"
+> +PACKAGECONFIG[x11] = ",, virtual/libx11"
+>
+>  EXTRA_OEMESON_append_libc-musl = " -Dhas-dlvsym=false "
+>
+> I didn't test this on all combinations. Perhaps someone can help test on
+> rpi?
 
-	inherit pypi setuptools
-	=
-PYPI_SRC_URI=3D"http://ci.tensorflow.org/view/Nightly/job/nightly-pi-zero/=
-lastSuccessfulBuild/artifact/output-artifacts/tensorflow-1.5.0rc1-cp27-non=
-e-any.whl=E2=80=9C
-
-When installing .whl files directly onto the target system one would =
-type the following:
-	pip install <path-to-whl-file>
-
-Thank you for your support=
+Thanks, I volunteer to keep testing with rpi configurations, but I
+don't understand the realm enough to judge the patch effect on other
+scenarios.
 
