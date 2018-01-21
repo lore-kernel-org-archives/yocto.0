@@ -1,77 +1,108 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <prvs=0559451169=alejandro.delcastillo@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E26BFE00DC9; Sat, 20 Jan 2018 09:07:04 -0800 (PST)
+	id 74FB8E00E34; Sun, 21 Jan 2018 04:13:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [148.163.156.75 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f53.google.com (mail-vk0-f53.google.com
-	[209.85.213.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B53BEE0083E
-	for <yocto@yoctoproject.org>; Sat, 20 Jan 2018 09:07:03 -0800 (PST)
-Received: by mail-vk0-f53.google.com with SMTP id g83so2739050vki.4
-	for <yocto@yoctoproject.org>; Sat, 20 Jan 2018 09:07:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=w9s6aiadHEsrikdWkMC6FHQF+YcAl+N2NCaZ2U+tvSI=;
-	b=Q55Br3+4gEILvgT5ZrmYodKYi8yltbMV/6l/vDxXRzZ8qf4cM+7xiMaTnMuYHm3VM8
-	qI1RAR50SUoCPgzq1eSTtFDQySCIjdRKM6jtM2/stBxhJb66MhZG0cmSIMX9knX/acaY
-	dI3Sxc/IPpEELIn/DPYTI79ZSeUewJZB+7dIjASxv68pQlYKrXVwOhqGQPRQhfLWSMRV
-	alcwCkKhycvyQNd6HFo58JthgCPQ4OjDHnjUP/qoYEDMA4sYuHP6ZBlo6ZAK7w5rLbub
-	tU76qwDT1ka5Zd5k4GWIOo4a1bdFowvpibZ8gsCvj9ShVBiLakUGCE8Mb6DNTmYmLtg9
-	bioQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=w9s6aiadHEsrikdWkMC6FHQF+YcAl+N2NCaZ2U+tvSI=;
-	b=EyTLZkMc1wYxsN0CAPGF/UL0oLOPAQReJXhLWxaSfWRmmp8/JIUgJQVUX1PGsV/7Yt
-	ItkteOyCr3jzVqsR7/wYztHJc/0znclDi/2/3mQEVY0jXXaoUmxHX8OdpP0Fhj1nDvgS
-	b3pNmjcGKzPLM3kgjKFyypEZGCj2+cMvjBc2L4A3Jq5IEDqRZu/PKNU5FQSZUjQaYCUc
-	1ROWlrpNvM0d3bzNtdPEyotAjh2BwRcLJRPtAGU1VvqEdNDHbSxm1qQTS9jp/y4kWoV7
-	Zdd/YJGhKwtLpL7ZkP21pQtYcAMGF3TIU36x8XQufBMo+KbjDncD9mqP3fwH8Mo8x/73
-	k8mg==
-X-Gm-Message-State: AKwxytc27hpmjf6J7du51EIwxSWhwjB/Ou01UA1l/RX44hIkCiRYHsmk
-	jKOhTpUbMJ/AQRlR4cUDYbV7slpg7wjFyYDdc4U=
-X-Google-Smtp-Source: AH8x225KlTj0rz5KsnGbue5Bj7LnpZjV08t+pTf+UAmgUkEzz2e9yg496aWIw5O06hBrN/EpTWGtkjqAMCS15cbsh2U=
-X-Received: by 10.31.78.194 with SMTP id c185mr1361645vkb.19.1516468022538;
-	Sat, 20 Jan 2018 09:07:02 -0800 (PST)
+X-Greylist: delayed 325 seconds by postgrey-1.32 at yocto-www;
+	Sun, 21 Jan 2018 04:13:25 PST
+Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com
+	[148.163.156.75])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F7F8E00D99
+	for <yocto@yoctoproject.org>; Sun, 21 Jan 2018 04:13:25 -0800 (PST)
+Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
+	by mx0a-00010702.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
+	w0LC6Cev004516; Sun, 21 Jan 2018 06:07:58 -0600
+Received: from nam03-dm3-obe.outbound.protection.outlook.com
+	(mail-dm3nam03lp0023.outbound.protection.outlook.com [207.46.163.23])
+	by mx0a-00010702.pphosted.com with ESMTP id 2fm2p1j322-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Sun, 21 Jan 2018 06:07:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nio365.onmicrosoft.com; s=selector1-ni-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=50Q5hkVRa2asSWyI3HYiJ++Qnsiln2zoK2dikF1c344=;
+	b=CFbJxwqMSAS3K4TtaybJ4xUEwP5odpXByoTF/dkj0dG+5e95aeSJIjT9I1+/7HAf8gBpa3kdg3RL7z0LXsTbM8qu9EM0KQzJk7eUNOKWtnZOu4QFff3aX9w6H9NR3D3hWz2o8+dM2U6LyDuQF6W4vm4t6p95dwvxywMjzOxjrI8=
+Received: from DM2PR0401MB1326.namprd04.prod.outlook.com (10.160.220.13) by
+	DM2PR0401MB1455.namprd04.prod.outlook.com (10.160.222.23) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.407.7; Sun, 21 Jan 2018 12:07:55 +0000
+Received: from DM2PR0401MB1326.namprd04.prod.outlook.com
+	([fe80::35f7:b3f2:bffe:73a8]) by
+	DM2PR0401MB1326.namprd04.prod.outlook.com
+	([fe80::35f7:b3f2:bffe:73a8%17]) with mapi id 15.20.0407.015;
+	Sun, 21 Jan 2018 12:07:55 +0000
+From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"opkg-devel@googlegroups.com" <opkg-devel@googlegroups.com>
+Thread-Topic: [opkg-devel] [opkg-utils PATCH] update-alternatives: fix the sed
+	pattern in remove_alt
+Thread-Index: AQHTkNHxxFBSFfuU+0SSaPOzjLSP+aN+Py2M
+Date: Sun, 21 Jan 2018 12:07:55 +0000
+Message-ID: <DM2PR0401MB1326A38ED0631F146233C36286ED0@DM2PR0401MB1326.namprd04.prod.outlook.com>
+References: <20180119025956.851-1-jackie.huang@windriver.com>
+In-Reply-To: <20180119025956.851-1-jackie.huang@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [130.164.62.70]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DM2PR0401MB1455;
+	6:9saqCF1n+go6Q98fgmjJW/UalNVL85ky8+Ma2EBeEYNmCM381uhQFspqL/uii7YAlPVaEsskCSYRqcPUydQi7y/opQv7v8gUQGx5VJpoUQXueALNuiqbPe3KdKy7imEACDJdd/qrSz+869yo5I5rknvDK1XS5ceR9MlGaWPFqhIvaIxzIvOEJ4wZmOKy+p9qROn4re3jMujVzGZtVh0KqvkEZYh1p33NlZeUeEKsgtGYw7hdmw2R/qhwR+vYGbLwarsI8fhEtKmv2LEvIbjgS/HrsWipEIAGVjbk3mPzRR8R8qlEPj17gHan1cYUiTHr+HAtjujqIofLM2wjuHskNuQXlaOldjuNA/e/wfMy4+bwC3CfoCIrMet86roI2qFi;
+	5:t0YN6xJEyLmkEzD+Os+Mp/E0D8XFw/bGEviVJLemNVwIJLwoLpr2EweUkjnFTXlS0RYPZ91tIOz3vkRZWgAXbCCY9MVyFZORZw8kKe4p6QWantWrjey+25MR1Kh1CpYX3RHfM43WS9R2YVUSq8oAXFqy6wcaxrQxLarwWt1QWB4=;
+	24:D9azri8hANQwtqGn1yipbKWUTqp9P6JzBfyhdoxO+RZogqZqgSPY/IafgZ65y5mSLkIZVcBkRXw3hg2IhlH+aYr7lgsFLfR/T+vpgy4eY3s=;
+	7:R1UYLwIDShoICn5M5AVQFGkRYIXrsjjuczpE/WtlblBr+NMpQCZLJhBU4zAw5tRHI8ukmKzCfdUCj5GQWWQH/grhbKxVJnABDI065Xbp/s36f7RXyPBqG8Z5fXYPSDgdB0FtS9AzsRN4pT9QzwRiP4J6RZcUN3ug5YSCJ/HgqiPahrjWP/BXCezLSi5lAdiUxT1DdSh3pV2W8H6QXPO20PHXyV17PsriF2jBt/NCl1o0d91nrp6crOkg7rT00uIN
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 4edcbcc0-8af1-4243-d2cc-08d560c79ab0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
+	SRVR:DM2PR0401MB1455; 
+x-ms-traffictypediagnostic: DM2PR0401MB1455:
+x-microsoft-antispam-prvs: <DM2PR0401MB14554BA40513800F8952998486ED0@DM2PR0401MB1455.namprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(215639381216008)(10436049006162)(211936372134217); 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040501)(2401047)(8121501046)(5005006)(3231023)(2400081)(944501161)(3002001)(93006095)(93001095)(10201501046)(6041288)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123564045)(20161123560045)(6072148)(201708071742011);
+	SRVR:DM2PR0401MB1455; BCL:0; PCL:0;
+	RULEID:(100000803101)(100110400095); SRVR:DM2PR0401MB1455; 
+x-forefront-prvs: 0559FB9674
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(346002)(376002)(396003)(366004)(39850400004)(39380400002)(189003)(199004)(25786009)(3846002)(97736004)(105586002)(6306002)(9686003)(81166006)(81156014)(966005)(8676002)(6116002)(2900100001)(110136005)(478600001)(6436002)(15650500001)(86362001)(8936002)(53936002)(2906002)(316002)(305945005)(74316002)(575784001)(229853002)(66066001)(26005)(2501003)(6246003)(33656002)(68736007)(7736002)(53546011)(2950100002)(14454004)(102836004)(3660700001)(7696005)(6506007)(3280700002)(106356001)(76176011)(5660300001)(5250100002)(55016002)(99286004)(59450400001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DM2PR0401MB1455;
+	H:DM2PR0401MB1326.namprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: ni.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: wFIk2KWCFvwJp0GQBeqnsOnLgJ9KHVbIGiPgeX5wzY6/Mx/sAVDYL8r4P5JLwJ/CoN87yGTMzJttl1i16ef5mw==
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.176.77.169 with HTTP; Sat, 20 Jan 2018 09:07:01 -0800 (PST)
-In-Reply-To: <21d74a6f-8833-ac0b-c2e7-72063cdf809c@intel.com>
-References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
-	<CAC+thW1kL2F2LKxpnLMTd-YfWZV8KNzDSqpF8q2KdOBENBjt4g@mail.gmail.com>
-	<CAC+thW0xBGsXZz-GJQU5f-LbVtUVWmzt5ReUwZr-SG4gvw-eVA@mail.gmail.com>
-	<20d47e1b-c33b-d7f6-1b9e-f7a6f1e779a0@linux.intel.com>
-	<CAEHkU3WSqGih6myuVDZCrWjszPA7yaj6p_BWuEqin53LBh_tsA@mail.gmail.com>
-	<CAC+thW0g-Sc+K7yNp6BU6ia31RX1Gy4N0v6LQ1qFcTjiXniDTQ@mail.gmail.com>
-	<24fffbce-1f44-dba6-aed2-913af75ba525@linux.intel.com>
-	<CAJ86T=U4m-J8WLdRP6UFP7T=FxyRRMsc7uXzpOyU9uCoimA1_g@mail.gmail.com>
-	<28c69ac5-219a-8718-83f6-5f7f2b51bf10@linux.intel.com>
-	<CAC+thW07t_5w-g9aWDTSWeqN_V0zH=mEZBDLrUO_5LD97JG5-A@mail.gmail.com>
-	<cf336aca-3cb1-4e1f-e7fc-601311a7d87b@linux.intel.com>
-	<21d74a6f-8833-ac0b-c2e7-72063cdf809c@intel.com>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Sat, 20 Jan 2018 18:07:01 +0100
-Message-ID: <CAC+thW30_2-svZ_KUVfxdAgde0rhgLkSnD4kyUVA75FCr5jiAg@mail.gmail.com>
-To: Anuj Mittal <anuj.mittal@intel.com>
-Cc: Mathias Rudnik <rudnik.mathias@googlemail.com>,
-	Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Error do_compile libepoxy
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4edcbcc0-8af1-4243-d2cc-08d560c79ab0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2018 12:07:55.1424 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR0401MB1455
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2018-01-21_04:, , signatures=0
+X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
+	score=30
+	priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0
+	bulkscore=0
+	spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=999 adultscore=0 classifier=spam adjust=30 reason=mlx
+	scancount=1 engine=8.0.1-1711220000 definitions=main-1801210178
+Subject: Re: [opkg-devel] [opkg-utils PATCH] update-alternatives: fix the sed pattern in remove_alt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,104 +114,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Jan 2018 17:07:05 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sun, 21 Jan 2018 12:13:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jan 20, 2018 at 10:29 AM, Anuj Mittal <anuj.mittal@intel.com> wrote:
-> On 01/19/2018 08:32 PM, Alexander Kanavin wrote:
->>
->>> I'll try to recap a little bit but, please, forgive my ignorance in
->>> graphics stacks and libraries.
->>> Disclaimer: mostly working on headless systems... my bad!
->>> This is what I think I understand here (remember I test building poky
->>> + meta-raspberrypi):
->>> * libepoxy recipe in poky uses PACKAGECONFIG to conditionally depend
->>> on virtual/X11 when this is available in DISTRO_FEATURE
->>> * the latter is the case for poky which is the DISTRO I'm building
->>> for. This gives i.e. a populated recipe-sysroot/usr/include/X11
->>> * upstream meson.build conditionally builds tests if X11 is
->>> available... so we expect they should build fine in this case
->>> * compile fails on test/egl_common.c which does not explicitly include
->>> X11/Xlib.h by itself. Doing so moves things forward but, to me, does
->>> not seem to be the right thing to do.
->>>
->>> Is this correct to assume that the upstream tested usecases are
->>> probably getting the include otherwise, maybe conditionally as Alex
->>> initially suggested. If so, where should we look for the missing
->>> pieces?
->>
->> I'm similarly ignorant about this stuff (our resident graphics stack
->> expert Jussi Kukkonen left a few months ago), but let's consider the
->> build files:
->>
->> - the offending tests are wrapped in "if build_egl and build_x11_tests"
->>
->> - build_egl is controlled by a PACKAGECONFIG, and I guess you do have it
->> available
->>
->> - "build_x11_tests = build_glx and x11_dep.found()" - build_glx is
->> similarly controlled by a PACKAGECONFIG, and enabled if x11 is in
->> DISTRO_FEATURES:
->>
->> PACKAGECONFIG[x11] = "-Denable-glx=yes, -Denable-glx=no, virtual/libx11"
->> PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} egl"
->>
->> This is where I think the configuration is not quite right. Instead of
->> virtual/libx11, it should say virtual/libgl. And if that dependency
->> cannot be satisfied, then the x11 option should be altogether disabled
->> in the distro/local config (in poky mesa provides virtual/libgl). At
->> least that's how it's configured in many other recipes throughout oe-core.
->>
->> Can you try:
->> a) disabling x11 PACKAGECONFIG in your local config and see if things build?
->> b) changing the dependency in that option to virtual/libgl and see what
->> kind of error you get, if any. I guess this is the right fix after all.
->
-> Yes, glx in libepoxy should be disabled if it is not in DISTRO_FEATURES.
-> glx depends on gl and x11 so if it is to be enabled, both of them should
-> be present.
->
-> However, x11 without glx and just egl should still be valid configuration.
->
-> I think the correct configuration should be:
->
->
-> diff --git a/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
-> b/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
-> index 72167a2..0043bec 100644
-> --- a/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
-> +++ b/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
-> @@ -15,12 +15,14 @@ UPSTREAM_CHECK_URI =
-> "https://github.com/anholt/libepoxy/releases"
->
->  inherit meson pkgconfig distro_features_check
->
-> -REQUIRED_DISTRO_FEATURES = "opengl"
-> -
->  DEPENDS = "util-macros"
->
-> +REQUIRED_DISTRO_FEATURES = "${@bb.utils.contains('PACKAGECONFIG',
-> 'glx', 'x11', '', d)}"
-> +PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'glx x11', d)} \
+merged
 
-Did you mean 'opengl x11' or is glx a valid distro feature? I don't
-see it mentioned anywhere else...
+________________________________________
+From: opkg-devel@googlegroups.com <opkg-devel@googlegroups.com> on behalf o=
+f jackie.huang@windriver.com <jackie.huang@windriver.com>
+Sent: Thursday, January 18, 2018 8:59 PM
+To: yocto@yoctoproject.org; opkg-devel@googlegroups.com
+Subject: [opkg-devel] [opkg-utils PATCH] update-alternatives: fix the sed p=
+attern in remove_alt
 
-> +                   ${@bb.utils.contains('DISTRO_FEATURES', 'opengl',
-> 'egl', '', d)}"
-> +
->  PACKAGECONFIG[egl] = "-Denable-egl=yes, -Denable-egl=no, virtual/egl"
-> -PACKAGECONFIG[x11] = "-Denable-glx=yes, -Denable-glx=no, virtual/libx11"
-> -PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} egl"
-> +PACKAGECONFIG[glx] = "-Denable-glx=yes, -Denable-glx=no, virtual/libgl"
-> +PACKAGECONFIG[x11] = ",, virtual/libx11"
->
->  EXTRA_OEMESON_append_libc-musl = " -Dhas-dlvsym=false "
->
-> I didn't test this on all combinations. Perhaps someone can help test on
-> rpi?
+From: Jackie Huang <jackie.huang@windriver.com>
 
-Thanks, I volunteer to keep testing with rpi configurations, but I
-don't understand the realm enough to judge the patch effect on other
-scenarios.
+'\>' is to matches the end of a word, but the executable is
+not always a 'word', e.g. /usr/lib64/busybox/usr/bin/[
+
+then such alternatives can not be removed.
+
+So change to use '\s' in the pattern since the following
+character of the $path is whitespace.
+
+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+---
+ update-alternatives | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/update-alternatives b/update-alternatives
+index ffad853..ce7d66c 100644
+--- a/update-alternatives
++++ b/update-alternatives
+@@ -80,7 +80,7 @@ remove_alt() {
+        [ ! -f $ad/$name ] && return 0
+
+        path=3D`echo $path | protect_slashes | protect_special_character`
+-       sed -ne "/^$path\>.*/!p" $ad/$name > $ad/$name.new
++       sed -ne "/^$path\s.*/!p" $ad/$name > $ad/$name.new
+        mv $ad/$name.new $ad/$name
+ }
+
+--
+2.7.4
+
+--
+You received this message because you are subscribed to the Google Groups "=
+opkg-devel" group.
+To unsubscribe from this group and stop receiving emails from it, send an e=
+mail to opkg-devel+unsubscribe@googlegroups.com.
+For more options, visit https://urldefense.proofpoint.com/v2/url?u=3Dhttps-=
+3A__groups.google.com_d_optout&d=3DDwIBaQ&c=3DI_0YwoKy7z5LMTVdyO6YCiE2uzI1j=
+jZZuIPelcSjixA&r=3DwNcrL2akRn6jfxhHaKavUrJB_C9JAMXtynjLd8ZzgXQ&m=3DyP6B3nYh=
+5DMMS7JjJioLfn3jVyH-4GTPElZp4VeNx-Q&s=3DzO7LsP7fVT0yerk7aCY5q3_lclpvVYcHsT8=
+gWG3B29g&e=3D.
 
