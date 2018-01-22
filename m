@@ -1,57 +1,62 @@
-Return-Path: <Aaron_Wright@selinc.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36173E00DD2; Mon, 22 Jan 2018 09:51:24 -0800 (PST)
+	id F19B6E00E10; Mon, 22 Jan 2018 11:49:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.117.214.143 listed in list.dnswl.org]
-Received: from volare.selinc.com (volare.selinc.com [74.117.214.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA0F3E00B1E
-	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 09:51:23 -0800 (PST)
-Received: from pps.filterd (volare.selinc.com [127.0.0.1])
-	by volare.selinc.com (8.16.0.22/8.16.0.22) with SMTP id w0MHpID7013985
-	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 09:51:23 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=selinc.com;
-	h=to : mime-version :
-	subject : message-id : from : date : content-type; s=SELinc2017;
-	bh=K7xNZhMDAQcGbBJT/3Yl7eEjjpDi4VPNRyjJDcWpAQY=;
-	b=xjVd1LQiaBxwvnfIM82RYje8WBzmWDMF2dBBN3QeDRtgE02/6DGgA3noGEMmNaKedkjK
-	ThwbjhvmtONFVeuAVv4UxDCb4YbATVJ8vebjnV2wboYvMDnBpus7/Pw3t32rI6HeGwUS
-	6gl/nr5U/WqgrLIseTXftfmje1wSNI0fXn3Uj6NMX6Iy/0CGVo8kLO7+cPKUOZ81qGjk
-	wADLSAAVAnmYjTfBnpP+HHZ3euZ5r8/H4VmPDqxmjQ5R0s3LrC+oaYNig7UuWfQooI+q
-	/Ru+hviIRBJ4V/4w1+y5rzpU+WHnX0KYl2Cpo30l/UIgpSaywKNRXOy9qAGwJYL0cPdy
-	2g== 
-Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
-	by volare.selinc.com with ESMTP id 2fm26r2d77-1
-	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 09:51:23 -0800
-To: yocto@yoctoproject.org
+Received: from mail-it0-f50.google.com (mail-it0-f50.google.com
+	[209.85.214.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7029CE0085E
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 11:49:11 -0800 (PST)
+Received: by mail-it0-f50.google.com with SMTP id c16so11222412itc.5
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 11:49:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Rys46YY3BlBRBh0+5R16BS+w+h6nqrGtzh/O0tuVJ94=;
+	b=j0Tn5gdQAbVObfbJdTs3SNb3bjKkM54mHMGVzKfV6fxpEdiOiBWxeUsvY17gt/KAAM
+	V8ghLkSdYPkVhJbQFK0l78KF5S5X+howRCWSEMMzfMT/cbinnm4F0+mV6Uvvg60isAxm
+	gJMO8G/FChYfB3422FoOjmmRZnh2M63renoQQZMb3riMh7gjulFDEqCeahQFnMsN3n5/
+	SZWAcLf3cbNz2eXBsefiDglslvdrAmljL3DT+GnNoH/pNNeOeqk8xRS73JigvZB5anvP
+	DP5CQkkW2O5cZh6IF14auHBGQtgQAc/RqJIV+dkvM1piPZNqF1+I0dzEXbfX7hbh5wVW
+	0GHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Rys46YY3BlBRBh0+5R16BS+w+h6nqrGtzh/O0tuVJ94=;
+	b=eFDd7SzqJekqZEvpjTGdv+7BoaGGSSAS4L4Jjl54w7tfXlTsrX8+Y2JkfYMarcIUu1
+	VxC+ix++xkEpCV57SZWNPDveX7WzjKHBfQXQ1z6ao2cKd5uka8pjzaCK8MdHdny7NvoQ
+	0xQ1VxA6BExE+v+xtsGseJ+UybqTFz6ER0o0q80yhH5pade4GaGgRpgF/chq+hMvbALG
+	g3SofxssfXdkk+jKTZuXMy5QwNUMeeJZkz04fI2mcdcPRXfJLmGCqpFW1NOoAjSr9zti
+	kP30aimX0tjmfOv9IUNDieeVjbLMRphyddWhJCX8XmipWaU92mL+pa6SAd60IqIXUNBv
+	1QFA==
+X-Gm-Message-State: AKwxytfKGuougpOcd99L3vJ2qEab3frmVKhGa2pPwRgZvxiTUY4fJCvs
+	EtZXyjnBJ5mc1Qn5N03NI2E3wzjGc+gVg3PuGtQsMA==
+X-Google-Smtp-Source: AH8x227MN5jcltExS/2BP/fs7DYK8Ljg+A/esf3CGjQ5d7tEX8AhTBj8d15MAJAp4z0n0Lh4HtmLnDCpWBxh9z+FZ3U=
+X-Received: by 10.36.215.69 with SMTP id y66mr23700itg.10.1516650551550; Mon,
+	22 Jan 2018 11:49:11 -0800 (PST)
 MIME-Version: 1.0
-X-KeepSent: 8E876F7E:8921135E-8825821D:00614B7D;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0.1FP6 April 21, 2016
-Message-ID: <OF8E876F7E.8921135E-ON8825821D.00614B7D-8825821D.00621688@selinc.com>
-From: Aaron_Wright@selinc.com
-Date: Mon, 22 Jan 2018 09:51:22 -0800
-X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP9 HF139|October
-	06, 2017) at 01/22/2018 09:51:23 AM,
-	Serialize complete at 01/22/2018 09:51:23 AM
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=8782
-	signatures=668655
-Subject: eSDK and Multilib
+Received: by 10.107.17.206 with HTTP; Mon, 22 Jan 2018 11:48:51 -0800 (PST)
+In-Reply-To: <OF8E876F7E.8921135E-ON8825821D.00614B7D-8825821D.00621688@selinc.com>
+References: <OF8E876F7E.8921135E-ON8825821D.00614B7D-8825821D.00621688@selinc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 22 Jan 2018 19:48:51 +0000
+Message-ID: <CAJTo0LaiDm7poqH1ktntmu2xsOf9T831LUEcUVid8fj91i+v4w@mail.gmail.com>
+To: Aaron_Wright@selinc.com
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: eSDK and Multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,33 +68,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jan 2018 17:51:24 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 006216888825821D_="
+X-List-Received-Date: Mon, 22 Jan 2018 19:49:13 -0000
+Content-Type: multipart/alternative; boundary="94eb2c0afc445fc184056362b910"
 
---=_alternative 006216888825821D_=
-Content-Type: text/plain; charset="US-ASCII"
+--94eb2c0afc445fc184056362b910
+Content-Type: text/plain; charset="UTF-8"
 
- I'm running pyro, and I'm struggling to create an eSDK for multilib 
-custom image. I keep running into FileExistsError errors during the 
-do_sdk_depends task.
+Don't install both into the SDK?  If you must, oe_multlib_header might help.
 
-It seems as though the lib32 and non-lib32 versions of a recipe are both 
-creating a -dev package that tries to install the same headers.
+Ross
 
-Am I missing an easy solution to this?
+On 22 January 2018 at 17:51, <Aaron_Wright@selinc.com> wrote:
 
---=_alternative 006216888825821D_=
-Content-Type: text/html; charset="US-ASCII"
+>  I'm running pyro, and I'm struggling to create an eSDK for multilib
+> custom image. I keep running into FileExistsError errors during the
+> do_sdk_depends task.
+>
+> It seems as though the lib32 and non-lib32 versions of a recipe are both
+> creating a -dev package that tries to install the same headers.
+>
+> Am I missing an easy solution to this?
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-<font size=2 face="sans-serif">&nbsp;I'm running pyro, and I'm struggling
-to create an eSDK for multilib custom image. I keep running into FileExistsError
+--94eb2c0afc445fc184056362b910
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Don&#39;t install both into the SDK?=C2=A0 If you must, oe=
+_multlib_header might help.<div><br></div><div>Ross</div></div><div class=
+=3D"gmail_extra"><br><div class=3D"gmail_quote">On 22 January 2018 at 17:51=
+,  <span dir=3D"ltr">&lt;<a href=3D"mailto:Aaron_Wright@selinc.com" target=
+=3D"_blank">Aaron_Wright@selinc.com</a>&gt;</span> wrote:<br><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex"><font size=3D"2" face=3D"sans-serif">=C2=A0I&#39;m running=
+ pyro, and I&#39;m struggling
+to create an eSDK for multilib custom image. I keep running into FileExists=
+Error
 errors during the do_sdk_depends task.</font>
 <br>
-<br><font size=2 face="sans-serif">It seems as though the lib32 and non-lib32
+<br><font size=3D"2" face=3D"sans-serif">It seems as though the lib32 and n=
+on-lib32
 versions of a recipe are both creating a -dev package that tries to install
 the same headers.</font>
 <br>
-<br><font size=2 face="sans-serif">Am I missing an easy solution to this?</font>
+<br><font size=3D"2" face=3D"sans-serif">Am I missing an easy solution to t=
+his?</font><br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
---=_alternative 006216888825821D_=--
+--94eb2c0afc445fc184056362b910--
