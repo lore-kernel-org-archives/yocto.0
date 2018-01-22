@@ -1,6 +1,6 @@
 Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC654E00E3D; Mon, 22 Jan 2018 13:12:54 -0800 (PST)
+	id E9958E00DAB; Mon, 22 Jan 2018 14:05:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,40 +9,40 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.0.105 listed in list.dnswl.org]
+	*      [104.47.0.122 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 4020 seconds by postgrey-1.32 at yocto-www;
-	Mon, 22 Jan 2018 13:12:51 PST
+X-Greylist: delayed 30409 seconds by postgrey-1.32 at yocto-www;
+	Mon, 22 Jan 2018 14:05:47 PST
 Received: from EUR01-HE1-obe.outbound.protection.outlook.com
-	(mail-he1eur01on0105.outbound.protection.outlook.com [104.47.0.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02274E0085E
-	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 13:12:51 -0800 (PST)
+	(mail-he1eur01on0122.outbound.protection.outlook.com [104.47.0.122])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0FBBE0083E
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 14:05:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Enea.onmicrosoft.com; 
 	s=selector1-enea-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=ia22HJrtlxa4UHDYPSNacWAFB4P4jAHvJnIJknOZtTY=;
-	b=qCeAGetzZjvjWGBPuAszBuBgry7O+j1JTjZf7ZfB5+u/AYop2gbADMGQoogcAHm0qNy9PjS6t5EthWihtMM2VSjXm5WDCnDIvspOhI7inomVZS/pDUuhjzJw/j9aUBLS9RzoQV1ZlJsGCMgmsdgxDDN/wYb7vPW4J17IFdV4Oe4=
+	bh=cVJJ5vsPMdd0vmX3rcNguJxFEHEKPc8aD2nNJQO+G9k=;
+	b=gXnMlukeyxu+UhmQ4ilyJfMzovXtlF1LXxb8/O9A37iPKQIDNzOBM4QcNHYp9XFz9rhEbN2Pp9Bv4XRyyIKB0RV2WTr3qfbhG5C8G4SdFWdnUfa7gQoestby6ufiW9jgu5TK8/OzNbrq7pUBt76acMqh+W/OFMdWvh4DZeh02hg=
 Received: from AM5PR0701MB1780.eurprd07.prod.outlook.com (10.167.215.151) by
-	AM5PR0701MB2561.eurprd07.prod.outlook.com (10.173.92.17) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.407.1; Mon, 22 Jan 2018 13:38:56 +0000
+	AM5PR0701MB2388.eurprd07.prod.outlook.com (10.169.152.150) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.444.5;
+	Mon, 22 Jan 2018 14:33:03 +0000
 Received: from AM5PR0701MB1780.eurprd07.prod.outlook.com
 	([fe80::c1b4:b5ac:e04b:e25d]) by
 	AM5PR0701MB1780.eurprd07.prod.outlook.com
 	([fe80::c1b4:b5ac:e04b:e25d%14]) with mapi id 15.20.0444.008;
-	Mon, 22 Jan 2018 13:38:56 +0000
+	Mon, 22 Jan 2018 14:33:02 +0000
 From: Adrian Dudau <Adrian.Dudau@enea.com>
-To: yocto <yocto@yoctoproject.org>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: dev-pkgs not installed in Extensible SDK
-Thread-Index: AQHTk4Q/qY0BArszm0iDB3PSXUL34Q==
-Date: Mon, 22 Jan 2018 13:38:56 +0000
-Message-ID: <AM5PR0701MB1780C91D8E1E33DFD61A9730E4EC0@AM5PR0701MB1780.eurprd07.prod.outlook.com>
+Thread-Index: AQHTk43oBLwXK6pwcka6PmKYrEG9ZA==
+Date: Mon, 22 Jan 2018 14:33:02 +0000
+Message-ID: <1516631581.10186.2.camel@enea.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -50,39 +50,39 @@ authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=Adrian.Dudau@enea.com; 
 x-originating-ip: [192.36.1.252]
 x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; AM5PR0701MB2561;
-	7:WPbT07zVZ86mQDdcGrfm7fkclY6W0YUjn+q34ypCnYxDarEOBfYZmPUr3wBlFL4s3UHlHLo3LWI3M4lTlQXHedt8cjZ/95ef32Vq9I662qoWay+41OuF0THPHut1pHFR75u0EzPL6xSBl+4aX7sKUE6gDkA6bHHK5KV1zfEJPrsBMJHVxcI9RJfh1elA+miswrLp4OoJ7ejZ2R8eBD3Xhef96jMuzEsi5XGsRstp8QV1OSoWV7KjMZeJRcnZ0DF+;
-	20:BJ/npusglJci8DooasMYmE44IgbR4kadi5Q67sxVXh0X270pECogDkUIStELKaSHvg7uEDYSOwCi5+vE9e/yk3hQ0N/XSAbaM2PRU6BiB3sCzQZa45cOd4krZQa/SF6uT7u18Kg4StBC9HRumyNwcL1hFqpr/GKrfEmd4U6uY0k=
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: fe6e2f1a-e78b-4cf8-1306-08d5619d7c20
+x-microsoft-exchange-diagnostics: 1; AM5PR0701MB2388;
+	7:PxdGCf5L+Koo7LSbeLAkm7JSFZU+wiM8K5FDcXozZdLvGRGHgc7/OYVkIh1qDiEdqDsvNIXOX5eAgpi9nOGxId74TbDH9JcGY763LpfSe7YlBN7GLT5LYTIdJmERNfkjp0bzuH5M88nYLLu0fWHeea0cSCuCXLiEHmpW7MaAZjpnYI+jF13E/h2eVBimAimVLzr/Ebm5WUd57Fm5/gQIeKsPxUo3Hrcu/PHOtUTS6XCeq5+/kg9CuGONevL2fnTe;
+	20:9lH423RzOUPy3+rX1h+MMTLP5MkJ0W7p8h+rSvPwvb8IKapUumnbHWo1L65FQGUqCu7UbIjHO3VKOEgZrpidCyl/QuL+PfbIqGssHAgz4gmHqe9GisYAA/tW8h5StkDeWam8TRGIoqptPZvTAc6IyD79CqXO8PDAHnJbdxmUXOs=
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;SSOR;
+x-forefront-antispam-report: SFV:SKI; SCL:-1; SFV:NSPM;
+	SFS:(10019020)(346002)(39840400004)(39380400002)(396003)(366004)(376002)(189003)(199004)(6116002)(25786009)(8936002)(14454004)(66066001)(2351001)(72206003)(478600001)(106356001)(5660300001)(3846002)(6916009)(6506007)(5250100002)(2501003)(97736004)(102836004)(8676002)(99286004)(81166006)(1730700003)(3660700001)(316002)(86362001)(7736002)(5640700003)(6436002)(6486002)(105586002)(68736007)(6512007)(2900100001)(53936002)(26005)(551544002)(81156014)(103116003)(3280700002)(305945005)(2906002)(36756003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:AM5PR0701MB2388;
+	H:AM5PR0701MB1780.eurprd07.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+x-ms-office365-filtering-correlation-id: f17e3b29-469b-4397-476c-08d561a50b20
 x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(4534125)(4602075)(4627221)(201703031133081)(201702281549075)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
-	SRVR:AM5PR0701MB2561; 
-x-ms-traffictypediagnostic: AM5PR0701MB2561:
-x-microsoft-antispam-prvs: <AM5PR0701MB2561750A82DFB20EF2F11D4BE4EC0@AM5PR0701MB2561.eurprd07.prod.outlook.com>
+	RULEID:(7020095)(4652020)(5600026)(4604075)(3008032)(4534125)(4602075)(4627221)(201703031133081)(201702281549075)(2017052603307)(7153060)(7193020);
+	SRVR:AM5PR0701MB2388; 
+x-ms-traffictypediagnostic: AM5PR0701MB2388:
+x-microsoft-antispam-prvs: <AM5PR0701MB23886C093B3559F93404907DE4EC0@AM5PR0701MB2388.eurprd07.prod.outlook.com>
 x-exchange-antispam-report-test: UriScan:(278428928389397);
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040501)(2401047)(8121501046)(5005006)(3002001)(93006095)(93001095)(10201501046)(3231023)(2400081)(944501161)(6041288)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123560045)(20161123564045)(20161123558120)(6072148)(201708071742011);
-	SRVR:AM5PR0701MB2561; BCL:0; PCL:0;
-	RULEID:(100000803101)(100110400095); SRVR:AM5PR0701MB2561; 
+	RULEID:(6040501)(2401047)(8121501046)(5005006)(93006095)(93001095)(10201501046)(3002001)(3231023)(2400081)(944501161)(6041288)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(20161123558120)(20161123564045)(6072148)(201708071742011);
+	SRVR:AM5PR0701MB2388; BCL:0; PCL:0;
+	RULEID:(100000803101)(100110400095); SRVR:AM5PR0701MB2388; 
 x-forefront-prvs: 0560A2214D
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39380400002)(366004)(396003)(346002)(376002)(39840400004)(199004)(189003)(68736007)(3280700002)(97736004)(81156014)(99286004)(53936002)(6506007)(316002)(8676002)(551544002)(7696005)(6916009)(3660700001)(5250100002)(9686003)(5660300001)(81166006)(8936002)(66066001)(26005)(102836004)(7736002)(105586002)(2906002)(86362001)(478600001)(33656002)(25786009)(55016002)(6116002)(106356001)(3846002)(74316002)(6436002)(305945005)(2900100001)(14454004)(72206003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:AM5PR0701MB2561;
-	H:AM5PR0701MB1780.eurprd07.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
 received-spf: None (protection.outlook.com: enea.com does not designate
 	permitted sender hosts)
-x-microsoft-antispam-message-info: crkR6x66kEYMVvN9lT1xBTSOxrr3kVw5I1E2Xrn6mrzBxmB7vpvh81D9Zf6/yo/+rwzZVGFjfC6WSTtrMScqJg==
+x-microsoft-antispam-message-info: 6SHNLuN4kP5drqAWxm2r5ZXUPdO24ZGhD1/9P+uKbyjStTbIWCuXs93e58t4csw0CF3abmLgB1pU3kL5udokAg==
 spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
 X-OriginatorOrg: enea.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe6e2f1a-e78b-4cf8-1306-08d5619d7c20
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2018 13:38:56.2404 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f17e3b29-469b-4397-476c-08d561a50b20
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2018 14:33:02.5706 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 8cdaed89-c47e-40b8-90b5-f28ad2c3fdca
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0701MB2561
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0701MB2388
 Subject: dev-pkgs not installed in Extensible SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -95,73 +95,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jan 2018 21:12:55 -0000
+X-List-Received-Date: Mon, 22 Jan 2018 22:05:50 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B3018351FCAE3249835AA8F6D6ED3735@eurprd07.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-Adding dev-pkgs to SDKIMAGE_FEATURES I expected that the -dev packages woul=
-d be installed in the sysroot in the eSDK, but it seems that is valid only =
-for the standard SDK.
-
-I have my own image that inherits core-image with various additions. In the=
- standard SDK, the debug folder under rpi_standard/sysroots/aarch64-enea-li=
-nux/usr/src/debug shows like this:
-acl          expat        less           libtirpc            make          =
-   rpcbind
-atk          file         libaio         libtool             mingetty      =
-   rpm
-attr         findutils    libarchive     libunistring        mpfr          =
-   rsync
-babeltrace   fontconfig   libassuan      liburcu             ncurses       =
-   shadow
-base-passwd  freetype     libcap         libx11              nettle        =
-   shared-mime-info
-bash         fuse         libcheck       libxau              nfs-utils     =
-   slang
-bc           gcc-runtime  libcomps       libxcb              nspr          =
-   sqlite3
-blktrace     gdbm         libdnf         libxcomposite       nss           =
-   strace
-busybox      gdk-pixbuf   libevent       libxcursor          openssh       =
-   systemd
-bzip2        gettext      libffi         libxdamage          openssl       =
-   systemtap
-cairo        glib-2.0     libgcc         libxdmcp            pango         =
-   tcf-agent
-ccache       glibc        libgpg-error   libxext             patch         =
-   tcl
-coreutils    gmp          libidn         libxfixes           pciutils      =
-   tcp-wrappers
-curl         gnutls       libjpeg-turbo  libxft              perl          =
-   trace-cmd
-db           gpgme        libmpc         libxml2             pixman        =
-   util-linux
-dbus         gtk+         libnfsidmap    libxml-parser-perl  pkgconfig     =
-   xz
-dhcp         harfbuzz     libnl          libxrandr           popt          =
-   zlib
-diffstat     json-c       libpcre        libxrender          powertop
-diffutils    kbd          libpng         lttng-tools         python3
-e2fsprogs    kmod         librepo        lttng-ust           python3-pygpgm=
-e
-elfutils     latencytop   libsolv        m4                  readline
-
-
-In the extensible SDK, I only have this under rpi/sysroots/aarch64-enea-lin=
-ux/usr/src/debug:
-bash  bc  glibc  ncurses
-
-
-I tried building both SDKs based on a vanilla core-image-minimal, and the s=
-tandard SDK has the sources installed as expected, but the ext SDK has no d=
-ebug folder containing sources. I tried=20
-
-I tried looking into the populate_sdk* classes, but the code there is very =
-hard to understand at a first view. So I guess question is: Is this intende=
-d by design or is it a bug? If intended, what is the development worklfow f=
-or a user wanting to remote debug applications using shared libraries?=20
-
-Best regards,
---Adrian
+QWRkaW5nIGRldi1wa2dzIHRvIFNES0lNQUdFX0ZFQVRVUkVTIEkgZXhwZWN0ZWQgdGhhdCB0aGUg
+LWRldiBwYWNrYWdlcw0Kd291bGQgYmUgaW5zdGFsbGVkIGluIHRoZSBzeXNyb290IGluIHRoZSBl
+U0RLLCBidXQgaXQgc2VlbXMgdGhhdCBpcw0KdmFsaWQgb25seSBmb3IgdGhlIHN0YW5kYXJkIFNE
+Sy4NCg0KSSBoYXZlIG15IG93biBpbWFnZSB0aGF0IGluaGVyaXRzIGNvcmUtaW1hZ2Ugd2l0aCB2
+YXJpb3VzIGFkZGl0aW9ucy4gSW4NCnRoZSBzdGFuZGFyZCBTREssIHRoZSBkZWJ1ZyBmb2xkZXIg
+dW5kZXIgcnBpX3N0YW5kYXJkL3N5c3Jvb3RzL2FhcmNoNjQtDQplbmVhLWxpbnV4L3Vzci9zcmMv
+ZGVidWcgc2hvd3MgbGlrZSB0aGlzOg0KYWNswqDCoMKgwqDCoMKgwqDCoMKgwqBleHBhdMKgwqDC
+oMKgwqDCoMKgwqBsZXNzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxpYnRpcnBjwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgbWFrZcKgwqDCoMKgwqDCoA0KwqDCoMKgwqDCoMKgwqBycGNiaW5kDQphdGvC
+oMKgwqDCoMKgwqDCoMKgwqDCoGZpbGXCoMKgwqDCoMKgwqDCoMKgwqBsaWJhaW/CoMKgwqDCoMKg
+wqDCoMKgwqBsaWJ0b29swqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtaW5nZXR0ecKgwqANCsKg
+wqDCoMKgwqDCoMKgcnBtDQphdHRywqDCoMKgwqDCoMKgwqDCoMKgZmluZHV0aWxzwqDCoMKgwqBs
+aWJhcmNoaXZlwqDCoMKgwqDCoGxpYnVuaXN0cmluZ8KgwqDCoMKgwqDCoMKgwqBtcGZywqDCoMKg
+wqDCoMKgDQrCoMKgwqDCoMKgwqDCoHJzeW5jDQpiYWJlbHRyYWNlwqDCoMKgZm9udGNvbmZpZ8Kg
+wqDCoGxpYmFzc3VhbsKgwqDCoMKgwqDCoGxpYnVyY3XCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oG5jdXJzZXPCoMKgwqANCsKgwqDCoMKgwqDCoMKgc2hhZG93DQpiYXNlLQ0KcGFzc3dkwqDCoGZy
+ZWV0eXBlwqDCoMKgwqDCoGxpYmNhcMKgwqDCoMKgwqDCoMKgwqDCoGxpYngxMcKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqBuZXR0bGXCoMKgwqDCoMKgwqDCoMKgwqANCsKgwqBzaGFyZWQtbWlt
+ZS1pbmZvDQpiYXNowqDCoMKgwqDCoMKgwqDCoMKgZnVzZcKgwqDCoMKgwqDCoMKgwqDCoGxpYmNo
+ZWNrwqDCoMKgwqDCoMKgwqBsaWJ4YXXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbmZzLQ0K
+dXRpbHPCoMKgwqDCoMKgwqDCoMKgc2xhbmcNCmJjwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdjYy0N
+CnJ1bnRpbWXCoMKgbGliY29tcHPCoMKgwqDCoMKgwqDCoGxpYnhjYsKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqBuc3BywqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzcWxpdGUzDQpibGt0cmFj
+ZcKgwqDCoMKgwqBnZGJtwqDCoMKgwqDCoMKgwqDCoMKgbGliZG5mwqDCoMKgwqDCoMKgwqDCoMKg
+bGlieGNvbXBvc2l0ZcKgwqDCoMKgwqDCoMKgbnNzwqDCoMKgwqDCoMKgwqANCsKgwqDCoMKgwqDC
+oMKgc3RyYWNlDQpidXN5Ym94wqDCoMKgwqDCoMKgZ2RrLQ0KcGl4YnVmwqDCoMKgbGliZXZlbnTC
+oMKgwqDCoMKgwqDCoGxpYnhjdXJzb3LCoMKgwqDCoMKgwqDCoMKgwqDCoG9wZW5zc2jCoMKgwqDC
+oMKgwqDCoMKgwqDCoHN5c3RlbWQNCmJ6aXAywqDCoMKgwqDCoMKgwqDCoGdldHRleHTCoMKgwqDC
+oMKgwqBsaWJmZmnCoMKgwqDCoMKgwqDCoMKgwqBsaWJ4ZGFtYWdlwqDCoMKgwqDCoMKgwqDCoMKg
+wqBvcGVuc3NswqDCoMKgDQrCoMKgwqDCoMKgwqDCoHN5c3RlbXRhcA0KY2Fpcm/CoMKgwqDCoMKg
+wqDCoMKgZ2xpYi0NCjIuMMKgwqDCoMKgwqBsaWJnY2PCoMKgwqDCoMKgwqDCoMKgwqBsaWJ4ZG1j
+cMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHBhbmdvwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdGNm
+LWFnZW50DQpjY2FjaGXCoMKgwqDCoMKgwqDCoGdsaWJjwqDCoMKgwqDCoMKgwqDCoGxpYmdwZy0N
+CmVycm9ywqDCoMKgbGlieGV4dMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcGF0Y2jCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqB0Y2wNCmNvcmV1dGlsc8KgwqDCoMKgZ21wwqDCoMKgwqDCoMKgwqDC
+oMKgwqBsaWJpZG7CoMKgwqDCoMKgwqDCoMKgwqBsaWJ4Zml4ZXPCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgcGNpdXRpbHPCoMKgDQrCoMKgwqDCoMKgwqDCoHRjcC13cmFwcGVycw0KY3VybMKgwqDCoMKg
+wqDCoMKgwqDCoGdudXRsc8KgwqDCoMKgwqDCoMKgbGlianBlZy0NCnR1cmJvwqDCoGxpYnhmdMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwZXJswqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0
+cmFjZS1jbWQNCmRiwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdwZ21lwqDCoMKgwqDCoMKgwqDCoGxp
+Ym1wY8KgwqDCoMKgwqDCoMKgwqDCoGxpYnhtbDLCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHBp
+eG1hbsKgwqDCoMKgDQrCoMKgwqDCoMKgwqDCoHV0aWwtbGludXgNCmRidXPCoMKgwqDCoMKgwqDC
+oMKgwqBndGsrwqDCoMKgwqDCoMKgwqDCoMKgbGlibmZzaWRtYXDCoMKgwqDCoGxpYnhtbC1wYXJz
+ZXItDQpwZXJswqDCoHBrZ2NvbmZpZ8KgwqDCoMKgwqDCoMKgwqB4eg0KZGhjcMKgwqDCoMKgwqDC
+oMKgwqDCoGhhcmZidXp6wqDCoMKgwqDCoGxpYm5swqDCoMKgwqDCoMKgwqDCoMKgwqBsaWJ4cmFu
+ZHLCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcG9wdMKgwqDCoMKgwqDCoA0KwqDCoMKgwqDCoMKgwqB6
+bGliDQpkaWZmc3RhdMKgwqDCoMKgwqBqc29uLWPCoMKgwqDCoMKgwqDCoGxpYnBjcmXCoMKgwqDC
+oMKgwqDCoMKgbGlieHJlbmRlcsKgwqDCoMKgwqDCoMKgwqDCoMKgcG93ZXJ0b3ANCmRpZmZ1dGls
+c8KgwqDCoMKga2JkwqDCoMKgwqDCoMKgwqDCoMKgwqBsaWJwbmfCoMKgwqDCoMKgwqDCoMKgwqBs
+dHRuZy10b29sc8KgwqDCoMKgwqDCoMKgwqDCoHB5dGhvbjMNCmUyZnNwcm9nc8KgwqDCoMKga21v
+ZMKgwqDCoMKgwqDCoMKgwqDCoGxpYnJlcG/CoMKgwqDCoMKgwqDCoMKgbHR0bmctdXN0wqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHB5dGhvbjMtDQpweWdwZ21lDQplbGZ1dGlsc8KgwqDCoMKgwqBsYXRl
+bmN5dG9wwqDCoMKgbGlic29sdsKgwqDCoMKgwqDCoMKgwqBtNMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHJlYWRsaW5lDQoNCg0KSW4gdGhlIGV4dGVuc2libGUgU0RLLCBJIG9u
+bHkgaGF2ZSB0aGlzIHVuZGVyIHJwaS9zeXNyb290cy9hYXJjaDY0LQ0KZW5lYS1saW51eC91c3Iv
+c3JjL2RlYnVnOg0KYmFzaMKgwqBiY8KgwqBnbGliY8KgwqBuY3Vyc2VzDQoNCg0KSSB0cmllZCBi
+dWlsZGluZyBib3RoIFNES3MgYmFzZWQgb24gYSB2YW5pbGxhIGNvcmUtaW1hZ2UtbWluaW1hbCwg
+YW5kDQp0aGUgc3RhbmRhcmQgU0RLIGhhcyB0aGUgc291cmNlcyBpbnN0YWxsZWQgYXMgZXhwZWN0
+ZWQsIGJ1dCB0aGUgZXh0IFNESw0KaGFzIG5vIGRlYnVnIGZvbGRlciBjb250YWluaW5nIHNvdXJj
+ZXMuIEkgdHJpZWQNCg0KSSB0cmllZCBsb29raW5nIGludG8gdGhlIHBvcHVsYXRlX3NkayogY2xh
+c3NlcywgYnV0IHRoZSBjb2RlIHRoZXJlIGlzDQp2ZXJ5IGhhcmQgdG8gdW5kZXJzdGFuZCBhdCBh
+IGZpcnN0IHZpZXcuIFNvIEkgZ3Vlc3MgcXVlc3Rpb24gaXM6IElzDQp0aGlzIGludGVuZGVkIGJ5
+IGRlc2lnbiBvciBpcyBpdCBhIGJ1Zz8gSWYgaW50ZW5kZWQsIHdoYXQgaXMgdGhlDQpkZXZlbG9w
+bWVudCB3b3JrbGZvdyBmb3IgYSB1c2VyIHdhbnRpbmcgdG8gcmVtb3RlIGRlYnVnIGFwcGxpY2F0
+aW9ucw0KdXNpbmcgc2hhcmVkIGxpYnJhcmllcz8NCg0KQmVzdCByZWdhcmRzLA0KLS1BZHJpYW4=
 
