@@ -1,26 +1,79 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D7DDE00E22; Sun, 21 Jan 2018 21:34:18 -0800 (PST)
+	id A24A5E00DE5; Mon, 22 Jan 2018 01:12:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8124CE006D3
-	for <yocto@yoctoproject.org>; Sun, 21 Jan 2018 21:34:16 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 1A3928753E67
-	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 00:34:15 -0500 (EST)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f175.google.com (mail-ua0-f175.google.com
+	[209.85.217.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41FE6E006D3
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 01:12:29 -0800 (PST)
+Received: by mail-ua0-f175.google.com with SMTP id i5so5322902uai.10
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 01:12:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=nLJMrYJ31+y5z6rNfBAmJGjjc8MXzYgvSXvN5THvzr4=;
+	b=hEwBjdK6XjthccGuqk7mbJySHziWXEBPzVJWQ9QEK4Zj/g4DkKBRp7eB65CjV6AySv
+	V1m5O3ujY6FIf2QXlNjBpfVlEAmIi2rzBk0dUqFTvtYOnv1ot29SIdFxuteGJmE3FlAU
+	adLKDRhQFnqTo3feC7Jfk880ZaVK+0lduDhDa72KEVJRtpvzvl2RFSBXpii9XKCbQk7Y
+	YmyyoTU4NfKZzIYZZ/ja8M8yP04DEyLhJ78TUbBzY3yjhFm+JfjLAg0edSU4UG0YGk16
+	g61CcodaaBqBsqVYIr85Ye6gzZNmv7tDpZXPBaQga26i4JwO4p2M+/q5ED/qfZkEXs3I
+	zrMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=nLJMrYJ31+y5z6rNfBAmJGjjc8MXzYgvSXvN5THvzr4=;
+	b=uFFzfOIDXMr2L0b4moyRMNYHniOAn6p10xmriX5JNkgM1QO426hbSqEugr3iKm70RR
+	hirnvKtzyaSjrqkkyJ2NPUH4wKJqE5WUKkAKfusjyAsofIv+LOanCAkCv9e8ifE3PK+6
+	8jYmabe8F8NH0V7E2eCHo6WfOKv3BsBZMECA3sM4WfjfUIETQ33Vb1M1DoeFDufIqHcs
+	nKiJbjnOThqjnlrXiSh2DIPfurVgVTlaeZgz6v0mFSIM2aCHRAjLwh1osmjLqbJ//cBd
+	r8b6Qr1Rl5UG7bew2txSdiPrR+C0Z6Zp9k+6cnTn1QSt/fBn073yWMn9QtX1Dqvoxvnl
+	zniQ==
+X-Gm-Message-State: AKwxytf9IpXAZceDqnI+GcYVXCST4sDKWzrI/c+r5sXwZsiaUAzCptJp
+	FHNTu4Pt+XquEtYrtHI9H+faaZkmOl6KvTc5lrk=
+X-Google-Smtp-Source: AH8x226bSzLNTH0PxFAcjYHTX46KZ64qrOUpe9EozdUplypfKO3MEsPRJZFXS3R+ozg/OVb2KsAl0MFyUN0534/ztzM=
+X-Received: by 10.176.83.76 with SMTP id y12mr5542493uay.109.1516612348250;
+	Mon, 22 Jan 2018 01:12:28 -0800 (PST)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 22 Jan 2018 05:34:15 -0000
-Message-ID: <20180122053415.17189.90524@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Received: by 10.176.77.169 with HTTP; Mon, 22 Jan 2018 01:12:27 -0800 (PST)
+In-Reply-To: <584f5dbb-68f9-c856-8145-9c49d6551855@intel.com>
+References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+	<CAC+thW1kL2F2LKxpnLMTd-YfWZV8KNzDSqpF8q2KdOBENBjt4g@mail.gmail.com>
+	<CAC+thW0xBGsXZz-GJQU5f-LbVtUVWmzt5ReUwZr-SG4gvw-eVA@mail.gmail.com>
+	<20d47e1b-c33b-d7f6-1b9e-f7a6f1e779a0@linux.intel.com>
+	<CAEHkU3WSqGih6myuVDZCrWjszPA7yaj6p_BWuEqin53LBh_tsA@mail.gmail.com>
+	<CAC+thW0g-Sc+K7yNp6BU6ia31RX1Gy4N0v6LQ1qFcTjiXniDTQ@mail.gmail.com>
+	<24fffbce-1f44-dba6-aed2-913af75ba525@linux.intel.com>
+	<CAJ86T=U4m-J8WLdRP6UFP7T=FxyRRMsc7uXzpOyU9uCoimA1_g@mail.gmail.com>
+	<28c69ac5-219a-8718-83f6-5f7f2b51bf10@linux.intel.com>
+	<CAC+thW07t_5w-g9aWDTSWeqN_V0zH=mEZBDLrUO_5LD97JG5-A@mail.gmail.com>
+	<cf336aca-3cb1-4e1f-e7fc-601311a7d87b@linux.intel.com>
+	<21d74a6f-8833-ac0b-c2e7-72063cdf809c@intel.com>
+	<CAC+thW30_2-svZ_KUVfxdAgde0rhgLkSnD4kyUVA75FCr5jiAg@mail.gmail.com>
+	<584f5dbb-68f9-c856-8145-9c49d6551855@intel.com>
+From: Andrea Galbusera <gizero@gmail.com>
+Date: Mon, 22 Jan 2018 10:12:27 +0100
+Message-ID: <CAC+thW3CtPLOQK1W28T2vUoHzC+6Z+5HowTrW5nEQ-JPD9YQCw@mail.gmail.com>
+To: Anuj Mittal <anuj.mittal@intel.com>
+Cc: Mathias Rudnik <rudnik.mathias@googlemail.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Error do_compile libepoxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,180 +85,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jan 2018 05:34:18 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 22 Jan 2018 09:12:30 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-This mail was sent out by Recipe reporting system.
+Hi Anuj,
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+On Sun, Jan 21, 2018 at 4:23 PM, Anuj Mittal <anuj.mittal@intel.com> wrote:
+> On 01/21/2018 01:07 AM, Andrea Galbusera wrote:
+>> On Sat, Jan 20, 2018 at 10:29 AM, Anuj Mittal <anuj.mittal@intel.com> wrote:
+>>> On 01/19/2018 08:32 PM, Alexander Kanavin wrote:
+>>>>
+>>>>> I'll try to recap a little bit but, please, forgive my ignorance in
+>>>>> graphics stacks and libraries.
+>>>>> Disclaimer: mostly working on headless systems... my bad!
+>>>>> This is what I think I understand here (remember I test building poky
+>>>>> + meta-raspberrypi):
+>>>>> * libepoxy recipe in poky uses PACKAGECONFIG to conditionally depend
+>>>>> on virtual/X11 when this is available in DISTRO_FEATURE
+>>>>> * the latter is the case for poky which is the DISTRO I'm building
+>>>>> for. This gives i.e. a populated recipe-sysroot/usr/include/X11
+>>>>> * upstream meson.build conditionally builds tests if X11 is
+>>>>> available... so we expect they should build fine in this case
+>>>>> * compile fails on test/egl_common.c which does not explicitly include
+>>>>> X11/Xlib.h by itself. Doing so moves things forward but, to me, does
+>>>>> not seem to be the right thing to do.
+>>>>>
+>>>>> Is this correct to assume that the upstream tested usecases are
+>>>>> probably getting the include otherwise, maybe conditionally as Alex
+>>>>> initially suggested. If so, where should we look for the missing
+>>>>> pieces?
+>>>>
+>>>> I'm similarly ignorant about this stuff (our resident graphics stack
+>>>> expert Jussi Kukkonen left a few months ago), but let's consider the
+>>>> build files:
+>>>>
+>>>> - the offending tests are wrapped in "if build_egl and build_x11_tests"
+>>>>
+>>>> - build_egl is controlled by a PACKAGECONFIG, and I guess you do have it
+>>>> available
+>>>>
+>>>> - "build_x11_tests = build_glx and x11_dep.found()" - build_glx is
+>>>> similarly controlled by a PACKAGECONFIG, and enabled if x11 is in
+>>>> DISTRO_FEATURES:
+>>>>
+>>>> PACKAGECONFIG[x11] = "-Denable-glx=yes, -Denable-glx=no, virtual/libx11"
+>>>> PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} egl"
+>>>>
+>>>> This is where I think the configuration is not quite right. Instead of
+>>>> virtual/libx11, it should say virtual/libgl. And if that dependency
+>>>> cannot be satisfied, then the x11 option should be altogether disabled
+>>>> in the distro/local config (in poky mesa provides virtual/libgl). At
+>>>> least that's how it's configured in many other recipes throughout oe-core.
+>>>>
+>>>> Can you try:
+>>>> a) disabling x11 PACKAGECONFIG in your local config and see if things build?
+>>>> b) changing the dependency in that option to virtual/libgl and see what
+>>>> kind of error you get, if any. I guess this is the right fix after all.
+>>>
+>>> Yes, glx in libepoxy should be disabled if it is not in DISTRO_FEATURES.
+>>> glx depends on gl and x11 so if it is to be enabled, both of them should
+>>> be present.
+>>>
+>>> However, x11 without glx and just egl should still be valid configuration.
+>>>
+>>> I think the correct configuration should be:
+>>>
+>>>
+>>> diff --git a/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
+>>> b/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
+>>> index 72167a2..0043bec 100644
+>>> --- a/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
+>>> +++ b/meta/recipes-graphics/libepoxy/libepoxy_1.4.3.bb
+>>> @@ -15,12 +15,14 @@ UPSTREAM_CHECK_URI =
+>>> "https://github.com/anholt/libepoxy/releases"
+>>>
+>>>  inherit meson pkgconfig distro_features_check
+>>>
+>>> -REQUIRED_DISTRO_FEATURES = "opengl"
+>>> -
+>>>  DEPENDS = "util-macros"
+>>>
+>>> +REQUIRED_DISTRO_FEATURES = "${@bb.utils.contains('PACKAGECONFIG',
+>>> 'glx', 'x11', '', d)}"
+>>> +PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'glx x11', d)} \
+>>
+>> Did you mean 'opengl x11' or is glx a valid distro feature? I don't
+>> see it mentioned anywhere else...
+>
+> Oh yes, you're right. I was trying something out & didn't clean before
+> sending. It should be:
+>
+> bb.utils.contains('DISTRO_FEATURES', 'x11 opengl', 'glx', d)
+>
+> However, I think it'll probably still fail for rpi because I think this
+> test depends on Xlib.h being included from EGL/eglplatform.h but in case
+> of "userland", doesn't happen because that include is probably not there.
+>
+> Can you try an explicit include of Xlib.h in egl_common.c after patching
+> this recipe? You shouldn't get the GL linking errors after that since we
+> have now added explicit dependency on virtual/libgl when glx is enabled.
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+The updated patch seems to work here! libepoxy builds fine along with
+tests for raspberrypi3 default configs. All my build turned back to
+green. A cascaded failure on gtk+3 I was seeing with the previous
+version of your patch went away. Of course, I had to explicitly
+include the Xlib.h as you suggested to get past the compile error.
+EGL/eglplatform.h from userland has already been causing issues with
+missing declarations in the past (see [1] and [2] for some context).
+Once more, looking at Khronos registry [3], which I learned being the
+right upstream reference for such an header, expected X11 includes are
+there, while, as said, they are missing in userland eglplatform.h.
+Unfortunately userland community does not seem to be very keen to
+update their includes even though Khronos published more up to date
+versions. I'll try to follow up with a patch to meta-raspberrypi and
+possibly upstream to userland. In the end, I don't think libepoxy is
+the right place to explicitly put the change. What's your opinion
+here?
 
-You can check the detail information at:
+I don't have other builds with graphics stacks enabled at hand that I
+can test your patch against. Do you think further testing will be
+needed before you can submit this patch to oe-core?
 
-http://recipes.yoctoproject.org/
+[1] https://www.mail-archive.com/openembedded-core@lists.openembedded.org/msg98209.html
+[2] https://github.com/raspberrypi/userland/pull/407
+[3] https://www.khronos.org/registry/EGL/api/EGL/eglplatform.h
 
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-eudev                 3.2.2            3.2.5                 Alejandro Hernandez
-boost                 1.65.1           1.66.0                Alexander Kanavin
-vala                  0.38.2           0.38.5                Alexander Kanavin
-libwebp               0.6.0            0.6.1                 Alexander Kanavin
-libnl                 3.2.29           3.4.0                 Alexander Kanavin
-ffmpeg                3.4              3.4.1                 Alexander Kanavin
-gtk-doc               1.25             1.27                  Alexander Kanavin
-gdbm                  1.13             1.14.1                Alexander Kanavin
-blktrace              1.1.0+gitX       1.2.0                 Alexander Kanavin
-dtc                   1.4.5            1.4.6                 Alexander Kanavin
-bjam-native           1.65.1           1.66.0                Alexander Kanavin
-btrfs-tools           4.13.3           4.14.1                Alexander Kanavin
-mpg123                1.25.7           1.25.8                Alexander Kanavin
-iso-codes             3.76             3.77                  Alexander Kanavin
-epiphany              3.24.3           3.26.5.1              Alexander Kanavin
-apt                   1.2.24           1.4.8                 Aníbal Limón
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.5              Aníbal Limón
-tzcode-native         2017c            2018b                 Armin Kuster
-bind                  9.10.6           9.11.2-P1             Armin Kuster
-curl                  7.54.1           7.57.0                Armin Kuster
-busybox               1.27.2           1.28.0                Armin Kuster
-tzdata                2017c            2018b                 Armin Kuster
-nspr                  4.17             4.18                  Armin Kuster
-libunwind             1.2              1.2.1                 Bruce Ashfield
-linux-libc-headers    4.12             4.14.14               Bruce Ashfield
-iw                    4.9              4.14                  Changhyeok Bae
-kmod-native           24+gitX          25                    Chen Qi
-sudo                  1.8.21p2         1.8.22                Chen Qi
-systemd-boot          234              236                   Chen Qi
-systemd               234              236                   Chen Qi
-util-linux            2.31             2.31.1                Chen Qi
-kmod                  24+gitX          25                    Chen Qi
-sed                   4.2.2            4.4                   Chen Qi
-sysstat               11.6.1           11.7.1                Chen Qi
-tar                   1.29             1.30                  Chen Qi
-systemd-bootchart     231+gitX         233                   Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-build-appliance-i...  15.0.0           18.0.1                Cristian Iorga
-lz4                   1.7.4            1.8.1.2               Denys Dmytriyenko
-lzop                  1.03             1.04                  Denys Dmytriyenko
-gzip                  1.8              1.9                   Denys Dmytriyenko
-hdparm                9.52             9.53                  Denys Dmytriyenko
-mtd-utils             2.0.0            2.0.1                 Denys Dmytriyenko
-python-numpy          1.13.1           1.14.0rc1             Derek Straka
-python                2.7.13           2.7.14                Derek Straka
-python3-setuptools    38.2.5           38.4.0                Derek Straka
-python-setuptools     38.2.5           38.4.0                Derek Straka
-python3-numpy         1.13.3           1.14.0rc1             Derek Straka
-python3-native        3.5.3            3.6.4                 Derek Straka
-python-native         2.7.13           2.7.14                Derek Straka
-python3               3.5.3            3.6.4                 Derek Straka
-acpica                20170303         20180105              Fathi Boudra
-ncurses               6.0+20170715     6.0+20171125          Hongxu Jia
-apr                   1.6.2            1.6.3                 Hongxu Jia
-gpgme                 1.9.0            1.10.0                Hongxu Jia
-bash                  4.4              4.4.12                Hongxu Jia
-ghostscript           9.21             9.22                  Hongxu Jia
-man-pages             4.11             4.14                  Hongxu Jia
-pigz                  2.3.4            2.4                   Hongxu Jia
-help2man-native       1.47.4           1.47.5                Hongxu Jia
-apr-util              1.6.0            1.6.1                 Hongxu Jia
-bc                    1.06             1.07.1                Jose Lamego
-glibc-initial         2.26             2.26.9000             Khem Raj
-ninja                 1.7.2            1.8.2                 Khem Raj
-mpfr                  3.1.5            4.0.0                 Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-go-native             1.9              1.10beta2             Khem Raj
-go                    1.9              1.10beta2             Khem Raj
-cross-localedef-n...  2.26             2.26.9000             Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-llvm                  5.0              5.0-new-commits-a...  Khem Raj
-glibc                 2.26             2.26.9000             Khem Raj
-u-boot-fw-utils       2017.11          2018.01               Marek Vasut
-u-boot-mkimage        2017.11          2018.01               Marek Vasut
-u-boot                2017.11          2018.01               Marek Vasut
-rpm                   4.14.0           4.14.1                Mark Hatle
-pango                 1.40.12          1.40.14               Maxin B. John
-piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
-liburi-perl           1.72             1.73                  Maxin B. John
-libinput              1.8.4            1.9.901               Maxin B. John
-vulkan-demos          git              git-new-commits-a...  Maxin B. John
-perl                  5.24.1           5.26.1                Maxin B. John
-gtk-icon-utils-na...  3.22.17          3.22.26               Maxin B. John
-ruby                  2.4.2            2.5.0                 Maxin B. John
-puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
-atk                   2.26.0           2.26.1                Maxin B. John
-libtasn1              4.12             4.13                  Maxin B. John
-glib-2.0              2.54.2           2.54.3                Maxin B. John
-ofono                 1.21             1.22                  Maxin B. John
-vte                   0.50.1           0.50.2                Maxin B. John
-vulkan                1.0.61.1         1.0.65.2              Maxin B. John
-libsoup-2.4           2.60.2           2.60.3                Maxin B. John
-libsolv               0.6.29           0.6.30                Maxin B. John
-assimp                4.0.1            4.1.0                 Maxin B. John
-ifupdown              0.8.16           0.8.29                Maxin B. John
-screen                4.6.1            4.6.2                 Maxin B. John
-adwaita-icon-theme    3.26.0           3.26.1                Maxin B. John
-gtk+3                 3.22.24          3.22.26               Maxin B. John
-gtk+                  2.24.31          2.24.32               Maxin B. John
-fontconfig            2.12.6           2.12.91               Maxin B. John
-freetype              2.8.1            2.9                   Maxin B. John
-libical               2.0.0            3.0.1                 Maxin B. John
-perl-native           5.24.1           5.26.1                Maxin B. John
-librsvg               2.40.19          2.42.0                Maxin B. John
-go-cross-canadian...  1.9              1.10beta2             No maintainer
-go-cross-i586         1.9              1.10beta2             No maintainer
-go-crosssdk-x86_64    1.9              1.10beta2             No maintainer
-go-runtime            1.9              1.10beta2             No maintainer
-mesa                  17.3.2           17.3.3                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.10.1           3.10.2                Otavio Salvador
-cmake-native          3.10.1           3.10.2                Otavio Salvador
-mesa-gl               17.3.2           17.3.3                Otavio Salvador
-tcf-agent             1.4.0+gitX       1.6.0                 Randy Witt
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-lttng-tools           2.9.5            2.10.1                Richard Purdie
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-git                   2.15.0           2.16.0                Robert Yang
-nfs-utils             2.1.1            2.3.1                 Robert Yang
-debianutils           4.8.1.1          4.8.4                 Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.19             4.20                  Robert Yang
-tcl                   8.6.7            8.6.8                 Robert Yang
-autoconf-archive      2016.09.16       2017.09.28            Robert Yang
-less                  527              529                   Robert Yang
-ccache                3.3.4            3.3.5                 Robert Yang
-e2fsprogs             1.43.7           1.43.8                Robert Yang
-time                  1.7              1.8                   Robert Yang
-wget                  1.19.2           1.19.4                Robert Yang
-base-passwd           3.5.29           3.5.44                Ross Burton          Version 3.5.38 requires cde...
-lsbinitscripts        9.72             9.79                  Ross Burton
-libva-utils           1.8.3            2.0.0                 Wei Tee Ng
-libva                 1.8.3            2.0.0                 Wei Tee Ng
-chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
-ltp                   20170929         20180118              Yi Zhao
-
-Upgradable count: 134
-Upgradable total count: 136
-
-The based commit is:
-
-commit 3328211afdef8ffb00dd4dff1143959d5412b075
-Author: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-Date:   Fri Aug 4 14:14:02 2017 -0700
-
-    python: fix RDEPENDS on several recipes, due to non-existent packages
-    
-    The packaging has been altered slightly so ensure the dependencies are all still
-    valid.
-    
-    Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
-
+>
+>>
+>>> +                   ${@bb.utils.contains('DISTRO_FEATURES', 'opengl',
+>>> 'egl', '', d)}"
+>>> +
+>>>  PACKAGECONFIG[egl] = "-Denable-egl=yes, -Denable-egl=no, virtual/egl"
+>>> -PACKAGECONFIG[x11] = "-Denable-glx=yes, -Denable-glx=no, virtual/libx11"
+>>> -PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} egl"
+>>> +PACKAGECONFIG[glx] = "-Denable-glx=yes, -Denable-glx=no, virtual/libgl"
+>>> +PACKAGECONFIG[x11] = ",, virtual/libx11"
+>>>
+>>>  EXTRA_OEMESON_append_libc-musl = " -Dhas-dlvsym=false "
+>>>
+>>> I didn't test this on all combinations. Perhaps someone can help test on
+>>> rpi?
+>>
+>> Thanks, I volunteer to keep testing with rpi configurations, but I
+>> don't understand the realm enough to judge the patch effect on other
+>> scenarios.
+>>
+>
 
