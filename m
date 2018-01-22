@@ -1,42 +1,52 @@
-Return-Path: <eric.di-schiena@thalesgroup.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F7C6E00D92; Fri, 19 Jan 2018 07:01:02 -0800 (PST)
+	id 1B25DE00E10; Mon, 22 Jan 2018 05:14:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.54.144.131 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 142 seconds by postgrey-1.32 at yocto-www;
-	Fri, 19 Jan 2018 07:01:00 PST
-Received: from thsbbfxrt01p.thalesgroup.com (thsbbfxrt01p.thalesgroup.com
-	[192.54.144.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB42AE0056D
-	for <yocto@yoctoproject.org>; Fri, 19 Jan 2018 07:01:00 -0800 (PST)
-Received: from thsbbfxrt01p.thalesgroup.com (localhost [127.0.0.1])
-	by localhost (Postfix) with SMTP id 3zNP8t0VqyzX96
-	for <yocto@yoctoproject.org>; Fri, 19 Jan 2018 15:58:38 +0100 (CET)
-From: DI SCHIENA Eric <eric.di-schiena@thalesgroup.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 19 Jan 2018 15:58:36 +0100
-Thread-Topic: Build rpi-basic-image Pi3 with kernel-devsrc error :
-	conflicting requests nothing provides /bin/awk needed by
-	kernel-devsrc-1.0-r0.raspberrypi3
-Thread-Index: AdORNNMm/gobHRU4TVyW3N6xhSUVzQ==
-Message-ID: <967D67AEC428424E83B5D1DABFB91AA3863884FA53@THSONEA01CMS13P.one.grp>
-Accept-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: fr-FR
-x-pmwin-version: 3.1.3.0, Antivirus-Engine: 3.69.2, Antivirus-Data: 5.47
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AEBCE00B1A
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 05:13:59 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	22 Jan 2018 05:13:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,396,1511856000"; d="scan'208";a="21608804"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by FMSMGA003.fm.intel.com with ESMTP; 22 Jan 2018 05:13:56 -0800
+To: Andrea Galbusera <gizero@gmail.com>
+References: <FBE5527A-743B-468F-9CEA-FC1732314AFE@googlemail.com>
+	<CAC+thW1kL2F2LKxpnLMTd-YfWZV8KNzDSqpF8q2KdOBENBjt4g@mail.gmail.com>
+	<CAC+thW0xBGsXZz-GJQU5f-LbVtUVWmzt5ReUwZr-SG4gvw-eVA@mail.gmail.com>
+	<20d47e1b-c33b-d7f6-1b9e-f7a6f1e779a0@linux.intel.com>
+	<CAEHkU3WSqGih6myuVDZCrWjszPA7yaj6p_BWuEqin53LBh_tsA@mail.gmail.com>
+	<CAC+thW0g-Sc+K7yNp6BU6ia31RX1Gy4N0v6LQ1qFcTjiXniDTQ@mail.gmail.com>
+	<24fffbce-1f44-dba6-aed2-913af75ba525@linux.intel.com>
+	<CAJ86T=U4m-J8WLdRP6UFP7T=FxyRRMsc7uXzpOyU9uCoimA1_g@mail.gmail.com>
+	<28c69ac5-219a-8718-83f6-5f7f2b51bf10@linux.intel.com>
+	<CAC+thW07t_5w-g9aWDTSWeqN_V0zH=mEZBDLrUO_5LD97JG5-A@mail.gmail.com>
+	<cf336aca-3cb1-4e1f-e7fc-601311a7d87b@linux.intel.com>
+	<CAC+thW1JpGq4p+OhWg-mtxBHwacULiJCvWY7jtxHV5vFkXFDvw@mail.gmail.com>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <842fae0b-8d4d-2ffd-dbb7-bcd960973400@linux.intel.com>
+Date: Mon, 22 Jan 2018 15:08:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 22 Jan 2018 02:21:21 -0800
-Subject: Build rpi-basic-image Pi3 with kernel-devsrc error : conflicting requests nothing provides /bin/awk needed by kernel-devsrc-1.0-r0.raspberrypi3
+In-Reply-To: <CAC+thW1JpGq4p+OhWg-mtxBHwacULiJCvWY7jtxHV5vFkXFDvw@mail.gmail.com>
+Cc: Mathias Rudnik <rudnik.mathias@googlemail.com>,
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Error do_compile libepoxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,132 +58,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jan 2018 15:01:02 -0000
-Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_967D67AEC428424E83B5D1DABFB91AA3863884FA53THSONEA01CMS1_"
+X-List-Received-Date: Mon, 22 Jan 2018 13:14:00 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---_000_967D67AEC428424E83B5D1DABFB91AA3863884FA53THSONEA01CMS1_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 01/19/2018 06:36 PM, Andrea Galbusera wrote:
 
-Hello,
-I'have tried to generate rpi-basic-image for a Pi3 using Rocko branch of po=
-ky.
-I succeeded doing it but when I added the following variable in my conf/loc=
-al.conf:
+>> This is where I think the configuration is not quite right. Instead of
+>> virtual/libx11, it should say virtual/libgl. And if that dependency cannot
+>> be satisfied, then the x11 option should be altogether disabled in the
+>> distro/local config (in poky mesa provides virtual/libgl). At least that's
+>> how it's configured in many other recipes throughout oe-core.
+> 
+> Can you point to any in particular so I can have a look at the pattern?
 
+Basically anything that mentions 'virtual/libgl' - you can grep the 
+oe-core layer for it.
 
-TOOLCHAIN_TARGET_TASK_append =3D " kernel-devsrc"
+>> b) changing the dependency in that option to virtual/libgl and see what kind
+>> of error you get, if any. I guess this is the right fix after all.
+> 
+> Nope, below change has no effect. The error is the same as in the
+> original post (missing symbols from X11/Xlib.h)
 
-Then I got following issue:
+Before producing any patches, I'd really like you to establish the 
+difference between working and failing build in a systematic way - we've 
+all been doing 'shotgun debugging based on guessing' up to now to be 
+honest. Here's how:
 
-Problem: conflicting requests
-  - nothing provides /bin/awk needed by kernel-devsrc-1.0-r0.raspberrypi3
+1. Do not make any changes to libepoxy recipe, use it as it is now in 
+oe-core.
 
-My host is an Ubuntu 14.04LTS (under VirtualBox)
+2. Build libepoxy with a default plain-poky config, it should succeed. 
+Copy the working directory of libepoxy somewhere safe for later comparison.
 
-I spent quite a lot of time to found out what happens by googling  but unfo=
-rtunately I did not find a solution.
-Can anybody help me ?
+3. Build libepoxy with raspberry config that makes it fail.
 
-Regards
+4. Carefully compare the working directory of libepoxy with the one that 
+you saved. What are the differences? How do the configure and compile 
+steps differ (particularly the output of meson at do_configure stage, 
+ninja build files, and compiler flags)? How do the sysroots differ, 
+particularly in what gets installed to /usr/include? It would be great 
+to establish the specific root cause of the failure vs success and work 
+out a fix from there.
 
+Alex
 
-
-
-
---_000_967D67AEC428424E83B5D1DABFB91AA3863884FA53THSONEA01CMS1_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 14 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"Pr\00E9format\00E9 HTML Car";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";
-	color:black;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.PrformatHTMLCar
-	{mso-style-name:"Pr\00E9format\00E9 HTML Car";
-	mso-style-priority:99;
-	mso-style-link:"Pr\00E9format\00E9 HTML";
-	font-family:"Courier New";
-	color:black;
-	mso-fareast-language:FR;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DFR link=3Dblue vlink=
-=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-US=
->Hello,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I&#821=
-7;have tried to generate rpi-basic-image for a Pi3 using Rocko branch of po=
-ky.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I succeede=
-d doing it but when I added the following variable in my conf/local.conf:<o=
-:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:=
-p></span></p><pre style=3D'margin-left:35.4pt'><span lang=3DEN-US>TOOLCHAIN=
-_TARGET_TASK_append =3D &quot; kernel-devsrc&quot;<o:p></o:p></span></pre><=
-p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=
-=3DMsoNormal><span lang=3DEN-US>Then I got following issue:<o:p></o:p></spa=
-n></p><p class=3DMsoNormal style=3D'margin-left:35.4pt'><span lang=3DEN-US =
-style=3D'color:red'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal style=
-=3D'margin-left:35.4pt'><span lang=3DEN-US style=3D'color:red'>Problem: con=
-flicting requests<o:p></o:p></span></p><p class=3DMsoNormal style=3D'margin=
--left:35.4pt'><span lang=3DEN-US style=3D'color:red'>&nbsp; - nothing provi=
-des /bin/awk needed by kernel-devsrc-1.0-r0.raspberrypi3<o:p></o:p></span><=
-/p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p c=
-lass=3DMsoNormal><span lang=3DEN-US>My host is an Ubuntu 14.04LTS (under Vi=
-rtualBox)<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p=
->&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I spent qui=
-te a lot of time to found out what happens by googling &nbsp;but unfortunat=
-ely I did not find a solution.<o:p></o:p></span></p><p class=3DMsoNormal><s=
-pan lang=3DEN-US>Can anybody help me ?<o:p></o:p></span></p><p class=3DMsoN=
-ormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><=
-span lang=3DEN-US>Regards<o:p></o:p></span></p><p class=3DMsoNormal><span l=
-ang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DE=
-N-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o=
-:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbs=
-p;</o:p></span></p></div></body></html>=
-
---_000_967D67AEC428424E83B5D1DABFB91AA3863884FA53THSONEA01CMS1_--
