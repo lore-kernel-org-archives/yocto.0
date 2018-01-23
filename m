@@ -1,95 +1,61 @@
-Return-Path: <MANJUKUM@xilinx.com>
+Return-Path: <Aaron_Wright@selinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20BB8E00DB6; Mon, 22 Jan 2018 14:56:34 -0800 (PST)
+	id BEE19E00E22; Mon, 22 Jan 2018 16:35:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=unavailable
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.33.84 listed in list.dnswl.org]
+	*      [74.117.214.143 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 959 seconds by postgrey-1.32 at yocto-www;
-	Mon, 22 Jan 2018 14:56:31 PST
-Received: from NAM01-BN3-obe.outbound.protection.outlook.com
-	(mail-bn3nam01on0084.outbound.protection.outlook.com [104.47.33.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E69A0E006D2
-	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 14:56:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=xilinx.onmicrosoft.com; s=selector1-xilinx-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=DOUtaJzSpo6vAsqau73su5WaP0wioDQsS44e3GAyvVo=;
-	b=daeaqOs6HLZl6MuUILeXMhscKB1hlU1rxDDlPPXO11vVOqkYtuicCLEbQXdBuItcEN2kvnqoYF2CgKPP623lBYfjNFDhpWq5RMm4zians6+Gm4tobkJUqe46NV7ZdxeObweZrpBav1qr/8oc00vGiCukMrkLuhjRS5OTR/gOYBg=
-Received: from BY2PR02MB347.namprd02.prod.outlook.com (10.141.140.149) by
-	BY2PR02MB1736.namprd02.prod.outlook.com (10.163.27.146) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.428.17; Mon, 22 Jan 2018 22:40:28 +0000
-Received: from BY2PR02MB347.namprd02.prod.outlook.com ([10.141.140.149]) by
-	BY2PR02MB347.namprd02.prod.outlook.com ([10.141.140.149]) with mapi id
-	15.20.0428.019; Mon, 22 Jan 2018 22:40:26 +0000
-From: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>
-To: Alejandro Enedino Hernandez Samaniego <alejandr@xilinx.com>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "meta-xilinx@yoctoproject.org"
-	<meta-xilinx@yoctoproject.org>
-Thread-Topic: [meta-xilinx] liblzma: Memory allocation failed on do_package_rpm
-Thread-Index: AdONyO7F0CbDbyZMTvmUCBS8jdjlFQAzpWQwAU6AxyA=
-Date: Mon, 22 Jan 2018 22:40:26 +0000
-Message-ID: <BY2PR02MB347FB0D073B441A3049A88BB9EC0@BY2PR02MB347.namprd02.prod.outlook.com>
-References: <BY2PR02MB347697DA9F50BFD39015C3BB9EB0@BY2PR02MB347.namprd02.prod.outlook.com>
-	<MWHPR0201MB34015DEC8B70EA929C25084EACEA0@MWHPR0201MB3401.namprd02.prod.outlook.com>
-In-Reply-To: <MWHPR0201MB34015DEC8B70EA929C25084EACEA0@MWHPR0201MB3401.namprd02.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=MANJUKUM@xilinx.com; 
-x-originating-ip: [149.199.62.254]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BY2PR02MB1736;
-	7:EWJduuXMA88W7SQvyM7D2NGrIFf3LwEEBekpydsyDb4QnbJEpO9xqDwd7FG0NuAPBZcxcgTakTlakyONyXP8n5TbgCN+0jovdhW3DdAIlmKb/Eor55DPT9VxvoABIbHBS19MzuqtNsO3/Ba07C9GiHIvcVc8hX0elv8MOGuARPl56wa4WS4OCePtiMUj6V79+Jz0si3ppm3b2cdg29E3BpVe/f4B6do80QklXk/k14BKiFc60vYZY4Ahn2NdpJn+
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;SSOR;
-x-forefront-antispam-report: SFV:SKI; SCL:-1; SFV:NSPM;
-	SFS:(10009020)(376002)(366004)(346002)(39860400002)(396003)(39380400002)(53754006)(13464003)(189003)(199004)(9686003)(110136005)(7696005)(6506007)(3280700002)(7736002)(77096007)(8676002)(106356001)(76176011)(66066001)(2900100001)(74316002)(14454004)(102836004)(53936002)(26005)(305945005)(6436002)(8936002)(97736004)(229853002)(316002)(25786009)(81166006)(81156014)(55016002)(105586002)(86362001)(68736007)(6116002)(2950100002)(5660300001)(3846002)(6246003)(2906002)(478600001)(33656002)(2501003)(53546011)(72206003)(99286004)(3660700001)(2201001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BY2PR02MB1736;
-	H:BY2PR02MB347.namprd02.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-x-ms-office365-filtering-correlation-id: 089f12a5-16e2-468c-1adf-08d561e92213
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(5600026)(4604075)(3008032)(48565401081)(2017052603307)(7153060)(7193020);
-	SRVR:BY2PR02MB1736; 
-x-ms-traffictypediagnostic: BY2PR02MB1736:
-x-microsoft-antispam-prvs: <BY2PR02MB17361FA3B9404C7C69F657C6B9EC0@BY2PR02MB1736.namprd02.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(158342451672863)(264703809997249)(192813158149592); 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040501)(2401047)(8121501046)(5005006)(93006095)(93001095)(10201501046)(3002001)(3231023)(2400081)(944501161)(6055026)(6041288)(20161123564045)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123562045)(6072148)(201708071742011);
-	SRVR:BY2PR02MB1736; BCL:0; PCL:0;
-	RULEID:(100000803101)(100110400095); SRVR:BY2PR02MB1736; 
-x-forefront-prvs: 0560A2214D
-received-spf: None (protection.outlook.com: xilinx.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: dnycBvlvyQm7zh3zNdQEoGrrqaJNIpOpHHtQUnNAvB42uthOtsDlLb8oCdK0vifo3fckVSpabIh/3lNYPzMsSQ==
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from volare.selinc.com (volare.selinc.com [74.117.214.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77D20E006D2
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 16:35:53 -0800 (PST)
+Received: from pps.filterd (volare.selinc.com [127.0.0.1])
+	by volare.selinc.com (8.16.0.22/8.16.0.22) with SMTP id w0N0RDP8013450
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 16:35:52 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=selinc.com;
+	h=in-reply-to :
+	references : to : mime-version : subject : message-id : from : date :
+	content-type; s=SELinc2017;
+	bh=t3l6e93jzOAnkTg82ZVLSUDKoRKlOmcgCTi/F/LU7+w=;
+	b=f4hAoIkCyrsB9Pr8bF6njYtbBKgq1i5WFXanr0kdWHWz0Wpv9Fd3hj8rA4Fi5is+l1Ub
+	FFn7N2aY/DmGcMqjcyuYtb/4j8TR2MhttOVrzOkeDnKJBwszQ8bU8e+v1dARwH44TByo
+	iU8MFwP24mHlfrZeU5QG0bRjDTN+/BiSHSjq/IezsQG1vgupR4IUaeKXasbpDJUk8T5h
+	FG/1wnD2tg0oIToISecKMc05d05dWJ5dEiLUGWhPMtW3gdtP6GA2HpUUA42Uuj/yfBBd
+	Iw+MDhhz0sTKPzqkcK494OfsnnwzMVQAr8TDrhT5l8m9RTHkEnPwCsa762HV9C68+fvr
+	UQ== 
+Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
+	by volare.selinc.com with ESMTP id 2fm26r2rv8-1
+	for <yocto@yoctoproject.org>; Mon, 22 Jan 2018 16:35:52 -0800
+In-Reply-To: <CAJTo0LaiDm7poqH1ktntmu2xsOf9T831LUEcUVid8fj91i+v4w@mail.gmail.com>
+References: <OF8E876F7E.8921135E-ON8825821D.00614B7D-8825821D.00621688@selinc.com>
+	<CAJTo0LaiDm7poqH1ktntmu2xsOf9T831LUEcUVid8fj91i+v4w@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 089f12a5-16e2-468c-1adf-08d561e92213
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2018 22:40:26.7401 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR02MB1736
-Subject: Re: [meta-xilinx] liblzma: Memory allocation failed on do_package_rpm
+X-KeepSent: 8482DB83:158B5EC1-8825821E:00028EC1;
+ type=4; name=$KeepSent
+X-Mailer: IBM Notes Release 9.0.1FP6 April 21, 2016
+Message-ID: <OF8482DB83.158B5EC1-ON8825821E.00028EC1-8825821E.000348E9@selinc.com>
+From: Aaron_Wright@selinc.com
+Date: Mon, 22 Jan 2018 16:35:52 -0800
+X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP9 HF139|October
+	06, 2017) at 01/22/2018 04:35:52 PM,
+	Serialize complete at 01/22/2018 04:35:52 PM
+X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=8782
+	signatures=668655
+Subject: Re: eSDK and Multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -101,89 +67,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jan 2018 22:56:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 23 Jan 2018 00:35:53 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 000348E98825821E_="
 
-Hi All,
+--=_alternative 000348E98825821E_=
+Content-Type: text/plain; charset="US-ASCII"
 
-> -----Original Message-----
-> From: Alejandro Enedino Hernandez Samaniego
-> Sent: Monday, January 15, 2018 11:00 PM
-> To: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>; openembedded-
-> core@lists.openembedded.org; yocto@yoctoproject.org; meta-
-> xilinx@yoctoproject.org
-> Subject: RE: [meta-xilinx] liblzma: Memory allocation failed on do_packag=
-e_rpm
->=20
-> Hey Manju,
->=20
-> I'd like to see if I can reproduce this, could you please send the the st=
-eps you
-> followed?
->=20
-> Thanks!
->=20
-> Alejandro
->=20
-> -----Original Message-----
-> From: meta-xilinx-bounces@yoctoproject.org [mailto:meta-xilinx-
-> bounces@yoctoproject.org] On Behalf Of Manjukumar Harthikote Matha
-> Sent: Sunday, January 14, 2018 10:20 PM
-> To: openembedded-core@lists.openembedded.org; yocto@yoctoproject.org;
-> meta-xilinx@yoctoproject.org
-> Subject: [meta-xilinx] liblzma: Memory allocation failed on do_package_rp=
-m
->=20
-> All,
->=20
-> Has anybody seen this error?
->=20
-> Finished binary package job, result 0, filename (null)
-> error: create archive failed: cpio: write failed - Cannot allocate memory
-> error: liblzma: Memory allocation failederror: liblzma: Memory allocation
-> failedFinished binary package job, result 2,
->=20
-> .......
->=20
-> RPM build errors:
-> |     Deprecated external dependency generator is used!
-> |     Deprecated external dependency generator is used!
-> |     Deprecated external dependency generator is used!
-> |     Deprecated external dependency generator is used!
-> |     Deprecated external dependency generator is used!
-> |     Deprecated external dependency generator is used!
-> |     Deprecated external dependency generator is used!
-> |     Deprecated external dependency generator is used!
-> |     Deprecated external dependency generator is used!
-> |     liblzma: Memory allocation failed    liblzma: Memory allocation fai=
-led    liblzma:
-> Memory allocation failed    liblzma: Memory allocation failed    liblzma:=
- Memory
-> allocation failed    liblzma: Memory allocation failed
->=20
-> This happens in do_package_rpm task on various recipes, coreutils/libgpg/=
-diffutils
-> etc.
->=20
-> The host machine has good amount on memory, 256G to be exact. When I see =
-the
-> error and issue free -h command, I still see ~120G free memory available.
-> This is a RHEL 7.2 machine and I am running rocko baseline.
->=20
-> Any reason why this would happen? Where should I look to fix this issue?
->=20
+> Don't install both into the SDK? 
 
+Interesting, I assumed the populate_sdk_ext was building both lib32 and 
+non-lib32 versions of the recipes on its own.
 
-This seems to happen if your server configuration has (not a standard confi=
-guration)
-vm.overcommit_memory =3D 2
-vm.overcommit_ratio =3D 90
+I'll have to double check my image definition for recipes that are having 
+both variants pulled in.
 
-And probably this as well
-kernel.unknown_nmi_panic =3D 1
+Thanks for the idea.
 
-Thanks,
-Manju
+> If you must, oe_multlib_header might help.
+> 
+> Ross
+> 
+>>  I'm running pyro, and I'm struggling to create an eSDK for multilib
+>> custom image. I keep running into FileExistsError errors during the 
+>> do_sdk_depends task. 
+>> 
+>> It seems as though the lib32 and non-lib32 versions of a recipe are 
+>> both creating a -dev package that tries to install the same headers. 
+>> 
+>> Am I missing an easy solution to this?
 
+--=_alternative 000348E98825821E_=
+Content-Type: text/html; charset="US-ASCII"
+
+<tt><font size=2>&gt; Don't install both into the SDK?&nbsp;</font></tt>
+<br>
+<br><font size=2 face="sans-serif">Interesting, I assumed the populate_sdk_ext
+was building both lib32 and non-lib32 versions of the recipes on its own.</font>
+<br>
+<br><font size=2 face="sans-serif">I'll have to double check my image definition
+for recipes that are having both variants pulled in.</font>
+<br>
+<br><font size=2 face="sans-serif">Thanks for the idea.</font>
+<br>
+<br><tt><font size=2>&gt; If you must, oe_multlib_header might help.</font></tt>
+<br><tt><font size=2>&gt; <br>
+&gt; Ross</font></tt>
+<br><tt><font size=2>&gt; </font></tt>
+<br><tt><font size=2>&gt;&gt; &nbsp;I'm running pyro, and I'm struggling
+to create an eSDK for multilib<br>
+&gt;&gt; custom image. I keep running into FileExistsError errors during
+the <br>
+&gt;&gt; do_sdk_depends task. <br>
+&gt;&gt; <br>
+&gt;&gt; It seems as though the lib32 and non-lib32 versions of a recipe
+are <br>
+&gt;&gt; both creating a -dev package that tries to install the same headers.
+<br>
+&gt;&gt; <br>
+&gt;&gt; Am I missing an easy solution to this?<br>
+</font></tt>
+
+--=_alternative 000348E98825821E_=--
