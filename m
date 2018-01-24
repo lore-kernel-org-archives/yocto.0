@@ -1,39 +1,72 @@
-Return-Path: <timothy.t.orling@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5044E00D75; Tue, 23 Jan 2018 17:16:39 -0800 (PST)
+	id 5FE9EE00DE6; Tue, 23 Jan 2018 21:40:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5785E006D3
-	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 17:16:38 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	23 Jan 2018 17:16:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,404,1511856000"; d="scan'208";a="24920361"
-Received: from ttorling-mac01.jf.intel.com ([10.24.14.190])
-	by fmsmga001.fm.intel.com with ESMTP; 23 Jan 2018 17:16:38 -0800
-Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
-From: Tim Orling <timothy.t.orling@linux.intel.com>
-In-Reply-To: <CAM0bAiVaoaTHmF7C6hVKF=TneeQQwxmZf7UvPBJFBr+r8_xpaw@mail.gmail.com>
-Date: Tue, 23 Jan 2018 17:16:37 -0800
-Message-Id: <65727F92-DE39-444C-BF00-09852F6FE847@linux.intel.com>
-References: <CAM0bAiUQ05Z0R=MN-nLCFjCE5eu29bs6rTORJSKeia9Vj19wTw@mail.gmail.com>
-	<CAM0bAiVaoaTHmF7C6hVKF=TneeQQwxmZf7UvPBJFBr+r8_xpaw@mail.gmail.com>
-To: philippe gislard <philippe.gislard@gmail.com>
-X-Mailer: Apple Mail (2.3273)
-Cc: yocto@yoctoproject.org
-Subject: Re: [Eclipse Yocto Plugin] Standalone pre-built toolchain
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.218.48 listed in list.dnswl.org]
+Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
+	[209.85.218.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D252FE00D6E
+	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 21:40:28 -0800 (PST)
+Received: by mail-oi0-f48.google.com with SMTP id m83so2052647oik.8
+	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 21:40:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language:content-transfer-encoding;
+	bh=GfhLcLgtfCGBP+OkxNj29/JseadNi9c6dOIXnEyqn2M=;
+	b=R3sU5LR3OvzDfx3pVpDBBxL3t7MobOAzqRkNKrP7vAp2ihcOgjchXfT8JghC9EjtRn
+	Fr/4CPjI2YMYdSsW386XxEgGwP16z7ru6di9bbNp93RHcPP4ZBPzfImVyG+QzORZzsLu
+	2mhzM6PelAegUwK8cN0CmNorC+DqVkLp/k8uHmCzFwlsqiLh+vSnf7xj7d2ugoUBF8QB
+	0rraFqxLSYtuXTmqOgsqQgjOmn4yA6ii3qybo172d9S4E7uD2unSgX0mQV+NecbNH30e
+	qcpBN8dk0Q6GzoqVgtIMXdpjA8BRxZH6nZms1FyG20b/YPjora7tbtNGKTTLX8G7yMHV
+	WnYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=GfhLcLgtfCGBP+OkxNj29/JseadNi9c6dOIXnEyqn2M=;
+	b=kKoL7uAA4keIU+v7ShyE+j5c8Vjy1ZtA4558oWyu4S93fS1CnUQnjquY+gKki44lei
+	hZlVGvnZVIB/vz+x8G9ZAlbZ9Y6VwpkPFxjrMN/wLm+hVUHMAB3wFLEaehQjdO3Kq8nE
+	EQ6DFfXKAh1BqD+yg/tVbFRMPJb2wrWNivFfxA6lLwHsVdProAFr0U69AV5K78tETd+e
+	qfEIndgKALoxOWKSxE0mQHYhVCydRflBWka4apPWwywvPJuxkSNvGHGabNsE4ZpCiANE
+	k5ExI4++h/fYWlDsPghwCnvVCLMuVAg3OTYvEMABKlgitxHyrfmUmf1S1G7omrdJnNdD
+	OgGA==
+X-Gm-Message-State: AKwxytfvp2BWmyA6wrMCXTQpidP+WXibl3OIlw2RAv7sREDHcFEMb2IG
+	4FGxqAR8dUs3ExdovkryPLyHjtk+
+X-Google-Smtp-Source: AH8x226u9KlmthlGtY0+LlB3YEGTPoTcMP3KkVMx5qwb1HDKGC0TffwvNQMm58DKzKqEQC3REKs0Vw==
+X-Received: by 10.202.98.139 with SMTP id w133mr6912073oib.282.1516772427415; 
+	Tue, 23 Jan 2018 21:40:27 -0800 (PST)
+Received: from [172.20.1.220] (207-91-160-20.nstci.net. [207.91.160.20])
+	by smtp.gmail.com with ESMTPSA id
+	i45sm1075201otd.59.2018.01.23.21.40.26 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 23 Jan 2018 21:40:26 -0800 (PST)
+To: yocto@yoctoproject.org
+References: <CAE5v_r+PO5h7KLXasQcLVxybF+zR2PbtX=48GkHyPREd9iF9bg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Message-ID: <334eac34-d33b-4bef-5e0a-8bb2c875e9c2@gmail.com>
+Date: Tue, 23 Jan 2018 23:40:24 -0600
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)
+	Gecko/20100101 Thunderbird/58.0
+MIME-Version: 1.0
+In-Reply-To: <CAE5v_r+PO5h7KLXasQcLVxybF+zR2PbtX=48GkHyPREd9iF9bg@mail.gmail.com>
+Subject: Re: issue with clang-native when building with bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,70 +78,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jan 2018 01:16:39 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 24 Jan 2018 05:40:29 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
+On 12/19/17 10:36 AM, Tomasz Michalski wrote:
+> Hi
+> When I build image I get such error and build stops:
+> 
+> ERROR: Nothing PROVIDES 'clang-native'. Close matches:
+> ....
+> NOTE: Runtime target 'lib32-ty' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['lib32-ty', 'clang-native']
+> NOTE: Runtime target 'lib32-duma' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['lib32-duma', 'lib32-ty',
+> 'clang-native']
+> 
+> So I grep all my repository with command
+> "grep -r "*clang-native*" ./ 
+> and I don't see any recipe/anything which inherits or depends on
+> clang-native. In fact nothing is found for keyword "*clang-native*".
+> Nevertheless I debugged that clang is connected with 
+> meta-openembedded and there is meta-clang available
+> on https://github.com/kraj/meta-clang so I downloaded meta-clang dir and
+> placed it in meta-openembedded directory but nothing changes, still the
+> error is the same.
+> 
 
-> On Jan 23, 2018, at 10:31 AM, philippe gislard =
-<philippe.gislard@gmail.com> wrote:
->=20
-> 2018-01-19 20:54 GMT+01:00 philippe gislard =
-<philippe.gislard@gmail.com>:
->> Hello,
->>=20
->> I tried to follow this wiki:
->> =
-https://wiki.yoctoproject.org/wiki/TipsAndTricks/RunningEclipseAgainstBuil=
-tImage
->> But with Eclipse Oxygen and the corresponding Yocto plugin.
->>=20
->> The Plugin won't let me save the Standalone pre-built toolchain.
->> Clicking on "save as ..." or "Rename" has no effect when the radio
->> button is set to "Standalone pre-built toolchain"
->> When I close and reopen the seting window, my settings are lost.
->> Clicking on "save as ..." or "Rename" works well when the radio =
-button
->> is set to "Build system derived toolchain" and my settings are saved.
->>=20
->> Am I missing something ?
->>=20
->> Also, when I try to setup the "Standalone pre-built toolchain" it
->> seems I have to rename the sysroot/host_folder in the sdk =
-installation
->> directory.
->> By default it is named with: ${SDK_ARCH}${SDK_VENDOR}-${SDK_OS}
->> It seems that if SDK_VENDOR contains the word "sdk" the plugin won't
->> accept the directory (ex: "i686-mysdk-linux").
->> It displays a "Toolchain and host arch mismatch." error.
->>=20
->> Should I downgrade to a previous eclipse version ? Neon, Mars ?
->>=20
->> --
->> Philippe GISLARD
->=20
-> I'm ashamed... My SDKMACHINE was not set properly.
->=20
-> Sorry for the bother.
->=20
+you also need to add the layer to your bblayers.conf
+maybe you can use bitbake-layers add-layer </path/to/meta-clang> to do that
 
-Glad you figured it out. Thank you for letting us know.
+> Could someone give some hints how to debug such problem? The strange
+> thing is that nothing is found for keyword "clang-native" in yocto
+> project. lib32-ty doesn't depend on clang-native despite the output from
+> console is: 
+> Missing or unbuildable dependency chain was: ['lib32-ty', 'clang-native']
+> I checked lib32-ty recipe.
+> In fact I don't need clang at all, however it is no matter for me, if I
+> have to I can add this to my project.
 
-By the way, we have just created a new mailing list specifically for =
-eclipse-poky:
+you can see if its setting the dependency explicitly. you can remove the
+dependency on clang-native too.
 
-https://lists.yoctoproject.org/listinfo/eclipse-poky
-
-The development team will be using this list for development =
-discussions, but users are also welcome to make inquiries and =
-participate in the discussion on the list.
-
-> --=20
-> Philippe GISLARD
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> 
+> Thanks in advance for hints
+> Tomek
+> 
+> 
 
 
