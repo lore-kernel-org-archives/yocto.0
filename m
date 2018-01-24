@@ -1,73 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <timothy.t.orling@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3145DE00DE5; Tue, 23 Jan 2018 15:03:41 -0800 (PST)
+	id C5044E00D75; Tue, 23 Jan 2018 17:16:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [192.55.52.120 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.196 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f196.google.com (mail-ot0-f196.google.com
-	[74.125.82.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1E82E00D7B
-	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 15:03:40 -0800 (PST)
-Received: by mail-ot0-f196.google.com with SMTP id x4so1969011otg.7
-	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 15:03:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=E/OZkFyd06gSS+kri6Ktr1qDmBGIY3MHRmZ4OE/ZoXE=;
-	b=SUEOGFDKT9N4Vo8kXuOmznIfzuvKfKlh+TvZ6WdGEmsDNCt8Xyhgdo/7tIOUryaktS
-	UPwSF0vqjUC2Ok3hFDd/aWp+Tua7LMQZxkzxV1hH9fT5mliZUpfax3Y5x6Jn7ToVY04S
-	D9ZcRflvnH1xjYUzWavBMtugNAELA7CL9xeIT+kLzCPERu8TocYnor6Nm3xrUshvD5Xf
-	mTaZICFjamV2M7tfVe+/JZOzF8jFwLXS/OWbdUeILkVsL3DC7NhcgoYPL+YqSfUZqFhv
-	xn91M01A20xovdUHe7PTK2jHC9LGki3MdICxVet3Ggiz2tXN+CTlPgFGqzoGQg85yTO6
-	aYjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=E/OZkFyd06gSS+kri6Ktr1qDmBGIY3MHRmZ4OE/ZoXE=;
-	b=cz4MWkHCc7I9+1Y2iXpn2SqmNYRfEl8r8b0AkPWbB3qdqdJZzDEQ3JuBf4FrTOxviL
-	+pn24DsRjCaQOGIUyAOVWgBxk4gYsGZ3xDuLCNCoGn8ZxhxhdRwwMuP1Ys11N7W3IN7Z
-	LtQcM/ir+3XHHFGmzbShp54zuctqcLcdxF8TKWgesBLHuB5e3SmuedEb8xYUVP9WubnC
-	yw2fzA1xCXoEzG+B/Y4ipmgrHVKPF0EdQAU8jPk2K3wZ51rkwTtE9dkSu3jUbO+sDHGd
-	kUyPJ0zrKfgCWTczV21XNUJXCgBqso5VA+IDgauSHh8gw7I5fgoblwf09NQeEF50AiCH
-	hMpQ==
-X-Gm-Message-State: AKwxytfdF49WLzRh90p16a7Kdl5dI+30Cmxhg+5vwu60S1gFeU0BjFWZ
-	+JXQYVCbQbocylvzHLWxhvibLMgh
-X-Google-Smtp-Source: AH8x2261qWy6bknRcAsKavSm9UasHOWfFCWzIvz3TGgYurQe6MA/egDB+1VkyhYWEomeR6YjEMwYbw==
-X-Received: by 10.157.89.162 with SMTP id u34mr8832317oth.302.1516748619295;
-	Tue, 23 Jan 2018 15:03:39 -0800 (PST)
-Received: from [172.27.88.30] ([217.140.111.136])
-	by smtp.gmail.com with ESMTPSA id
-	125sm1632276oih.57.2018.01.23.15.03.38 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 23 Jan 2018 15:03:38 -0800 (PST)
-To: yocto@yoctoproject.org
-References: <c6a26befa32d4285a034c49304494f61@PLEXTEK-EXCH1.plextek.lan>
-	<377a1d56-4c93-90d1-c806-4f9436508a7f@nedap.com>
-From: Khem Raj <raj.khem@gmail.com>
-Message-ID: <a8cd4f7f-235b-c734-12ff-2cb586e82042@gmail.com>
-Date: Tue, 23 Jan 2018 17:03:37 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)
-	Gecko/20100101 Thunderbird/58.0
-MIME-Version: 1.0
-In-Reply-To: <377a1d56-4c93-90d1-c806-4f9436508a7f@nedap.com>
-Subject: Re: Halt problem
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5785E006D3
+	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 17:16:38 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	23 Jan 2018 17:16:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,404,1511856000"; d="scan'208";a="24920361"
+Received: from ttorling-mac01.jf.intel.com ([10.24.14.190])
+	by fmsmga001.fm.intel.com with ESMTP; 23 Jan 2018 17:16:38 -0800
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+From: Tim Orling <timothy.t.orling@linux.intel.com>
+In-Reply-To: <CAM0bAiVaoaTHmF7C6hVKF=TneeQQwxmZf7UvPBJFBr+r8_xpaw@mail.gmail.com>
+Date: Tue, 23 Jan 2018 17:16:37 -0800
+Message-Id: <65727F92-DE39-444C-BF00-09852F6FE847@linux.intel.com>
+References: <CAM0bAiUQ05Z0R=MN-nLCFjCE5eu29bs6rTORJSKeia9Vj19wTw@mail.gmail.com>
+	<CAM0bAiVaoaTHmF7C6hVKF=TneeQQwxmZf7UvPBJFBr+r8_xpaw@mail.gmail.com>
+To: philippe gislard <philippe.gislard@gmail.com>
+X-Mailer: Apple Mail (2.3273)
+Cc: yocto@yoctoproject.org
+Subject: Re: [Eclipse Yocto Plugin] Standalone pre-built toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,32 +45,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jan 2018 23:03:41 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Jan 2018 01:16:39 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 1/16/18 2:46 AM, Ryan Meulenkamp wrote:
-> 
-> Hi Alan,
-> 
-> On 01/16/2018 08:48 AM, Alan Levy wrote:
->> Shutdown is supposed to terminate all processes/threads so it's
->> probably not about the watchdog daemon. It sounds more like the
->> classic distro was disabling the hardware watchdog during shutdown and
->> your new distro doesn't do that. Try comparing the kernel watchdog
->> drivers in the two distros because that's the most likely culprit.
-> 
-> I tried that, but I think the hardware watchdog can only be enabled on
-> the at91sam9m10. I'll compare the drivers anyway.
 
-are you upgrading kernel as well as part of this ? if yes then which
-version and see how it handles watchdog. Secondly, perhaps record the
-shutdown sequence. that might give you more insights.
+> On Jan 23, 2018, at 10:31 AM, philippe gislard =
+<philippe.gislard@gmail.com> wrote:
+>=20
+> 2018-01-19 20:54 GMT+01:00 philippe gislard =
+<philippe.gislard@gmail.com>:
+>> Hello,
+>>=20
+>> I tried to follow this wiki:
+>> =
+https://wiki.yoctoproject.org/wiki/TipsAndTricks/RunningEclipseAgainstBuil=
+tImage
+>> But with Eclipse Oxygen and the corresponding Yocto plugin.
+>>=20
+>> The Plugin won't let me save the Standalone pre-built toolchain.
+>> Clicking on "save as ..." or "Rename" has no effect when the radio
+>> button is set to "Standalone pre-built toolchain"
+>> When I close and reopen the seting window, my settings are lost.
+>> Clicking on "save as ..." or "Rename" works well when the radio =
+button
+>> is set to "Build system derived toolchain" and my settings are saved.
+>>=20
+>> Am I missing something ?
+>>=20
+>> Also, when I try to setup the "Standalone pre-built toolchain" it
+>> seems I have to rename the sysroot/host_folder in the sdk =
+installation
+>> directory.
+>> By default it is named with: ${SDK_ARCH}${SDK_VENDOR}-${SDK_OS}
+>> It seems that if SDK_VENDOR contains the word "sdk" the plugin won't
+>> accept the directory (ex: "i686-mysdk-linux").
+>> It displays a "Toolchain and host arch mismatch." error.
+>>=20
+>> Should I downgrade to a previous eclipse version ? Neon, Mars ?
+>>=20
+>> --
+>> Philippe GISLARD
+>=20
+> I'm ashamed... My SDKMACHINE was not set properly.
+>=20
+> Sorry for the bother.
+>=20
 
-> 
-> Thanks, and with kind regards,
-> 
-> Ryan Meulenkamp
+Glad you figured it out. Thank you for letting us know.
+
+By the way, we have just created a new mailing list specifically for =
+eclipse-poky:
+
+https://lists.yoctoproject.org/listinfo/eclipse-poky
+
+The development team will be using this list for development =
+discussions, but users are also welcome to make inquiries and =
+participate in the discussion on the list.
+
+> --=20
+> Philippe GISLARD
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
