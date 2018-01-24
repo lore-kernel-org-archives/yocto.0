@@ -1,6 +1,6 @@
 Return-Path: <texier.pj2@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 706FDE00E21; Tue, 23 Jan 2018 23:41:36 -0800 (PST)
+	id A0003E00E21; Tue, 23 Jan 2018 23:58:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (texier.pj2[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
+	*      [74.125.82.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,43 +20,45 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F537E00D8D
-	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 23:41:34 -0800 (PST)
-Received: by mail-wm0-f42.google.com with SMTP id r71so6533289wmd.1
-	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 23:41:34 -0800 (PST)
+Received: from mail-wm0-f48.google.com (mail-wm0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56EF3E00CE8
+	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 23:58:36 -0800 (PST)
+Received: by mail-wm0-f48.google.com with SMTP id j21so16778033wmh.1
+	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 23:58:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=DtjKJvsvSp40DDD5ZMpkTQa7cS86IIdMYwvmzvZmrsk=;
-	b=WgYQyVR2IgAts6g7OIY59RQPguynwV1VmSpyj91bv+jWi6ESkDToKo41EPKXkGxxh+
-	ZKsz/IiKBDjHfty5alfPcaGScZIrCPDaJ5b81VzIY9hoNzDlkDr1wcgtGXV9qfTuVaZw
-	+spXBz82XCgkaA34VLHoBkixs2fifX6gKbH2Nb/DpBMxnIN8iyuQ5bWMlk8ORdcLbMZE
-	lyLi7GUZ3UOAsA3i2YpZdmoeCbIGydNrCuu76PEyzf8FlrsTSNP4CWnYvm7x4tMPnNGc
-	sk7dAeGlnt4lXPAcCCHlJoMiF1/iyUKOQLGBN68xHmSHiCAxEmBQwB1Vzx9ojdQMDGef
-	Begg==
+	:cc; bh=MWfROaTA5CrB1qilKZIkyh7n/zd548hHJ3k9XNWd3qk=;
+	b=NNg7Y7t83P2myTq5HF5Z4+VjQbaU4FFXB5XT71dRzmusHr9ss8g+YKwmHpqDQokP7s
+	gmNL+ifJ+Bw0wpobpmcfXSk3NGdKSNLRU3enit+7I8gb+zVQBxMxGIyQjO/Dym3cehL4
+	L+Hn7BDGubutJtc2QmdXLhp2i6OdaiVvkxNPewFQSSuryp9twx4ApPjvdyIdOBeMERaa
+	WFoG8Z8BoeZV+CNDyprb9uza00lsvtkW1LjPoSdfzR9Crhs60DCMuglma8Gp0MmMVIyI
+	iFeOHz9maC5gGMDwWtTiRjj0Z6cfLHUcOpLg0rUPk3ExVYXhkyH3cYxzyDNbCMf84s0J
+	2CQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=DtjKJvsvSp40DDD5ZMpkTQa7cS86IIdMYwvmzvZmrsk=;
-	b=ewStZ/+xGcAwEa5451Jnqxa8iVXub2TNyQa/czkzvhkirbubo+tcCDOBI+LT1/L9CB
-	V984Gmfw/3a2fEiEpNyXUIl7uqowyy6u3y1o7jTCu7yFL2qrNs8yj41r+OHxQN+9lRVy
-	fKPqKjpg38OTgsVmP+cwxGAeIMoYHUPt+ufBRXEvnLdVJyXCnNF5HJDrC+uXZUPvzjLC
-	RoyUrmostSINXTfgSuOULkWH8gK0nu+SV57dacTQgHdYz7AxzUJGQK1dJGg/PHK3Fm0L
-	S93xIe/FyR5Lfq51LFBhOa8uGUJp0F0bMzuc9UFGXZkx7Vcar6EMvks2jfTe/zq2trwf
-	J+NA==
-X-Gm-Message-State: AKwxytfjLlfoN3LhpZ6lMbsfNzJMT/4sAbD30Lb7Z+II12+4s+nFfhVm
-	RsPHqKaZffovvHNyzMcHNI3iOIrFq0J3qLcAnQwoOQ==
-X-Google-Smtp-Source: AH8x2266q+3hIxrZMxEPT55DO1gH5gsDM6jVcmSR+YM2L9ZM5nw/7ePFb9JAKNZp3FfL1kcydZk9I0iAWOwgDzbvSIw=
-X-Received: by 10.80.182.181 with SMTP id d50mr23301842ede.116.1516779693989; 
-	Tue, 23 Jan 2018 23:41:33 -0800 (PST)
+	bh=MWfROaTA5CrB1qilKZIkyh7n/zd548hHJ3k9XNWd3qk=;
+	b=XEPScZfaYcIujdHQnfHAhmMQr9HNCMPQBFBVkO1TblOpVzqPhBBPy9m1XZ+LQOX/TY
+	ba5cSUbHKmMCTEsbYU7pFA3IUF7Jbk3YFI/jKqxoUab+C3UypziWOStV91znj4BfG+Vc
+	RMvUhxcaFncRhSxK7RaosSKWcIfi+UG/B14FoAZb03sLgjEv1QSRd3o1ki4gyxxshfcK
+	ueyzGNtHXkjsvLhzAJS/yeWjmhk3L8p1frXsFsu3wUUB23xAkZ5ALt1wyEwWyWcuQJIu
+	JkX1EEyscijc8kfDcqwny89s7ncLgpJJMkAydnoD+qWD52baaK145Ax2UtcAktfjD/LE
+	DAUg==
+X-Gm-Message-State: AKwxytflQNolMcc9TukJfdy+Lhb3mbb0izSojBlhPcMiv5o4yA4YPv+0
+	KO68woUV9vvkD2yemrw0X3eYXSkUwacMLv2Yayk3J+YT
+X-Google-Smtp-Source: AH8x227fXJata/DCEZFOIpgUQUpp0pr2ftJsRCgjT0zO3sgtn9P4GQQuDj+Ftqoml6yIiwZjDUgNaZgKuADBo7YwzKU=
+X-Received: by 10.80.135.156 with SMTP id a28mr22860615eda.51.1516780715219;
+	Tue, 23 Jan 2018 23:58:35 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.80.175.66 with HTTP; Tue, 23 Jan 2018 23:41:33 -0800 (PST)
-In-Reply-To: <008f01d394e1$23ddfea0$6b99fbe0$@co.kr>
+Received: by 10.80.175.66 with HTTP; Tue, 23 Jan 2018 23:58:34 -0800 (PST)
+In-Reply-To: <00ad01d394e8$003cbb60$00b63220$@co.kr>
 References: <008f01d394e1$23ddfea0$6b99fbe0$@co.kr>
+	<CALRtUqsqyDYDSW0QjKHfOa_JL8nyJJyYi8F3qHmvDeEWLRnWgw@mail.gmail.com>
+	<00ad01d394e8$003cbb60$00b63220$@co.kr>
 From: TEXIER Pierre-Jean <texier.pj2@gmail.com>
-Date: Wed, 24 Jan 2018 08:41:33 +0100
-Message-ID: <CALRtUqsqyDYDSW0QjKHfOa_JL8nyJJyYi8F3qHmvDeEWLRnWgw@mail.gmail.com>
+Date: Wed, 24 Jan 2018 08:58:34 +0100
+Message-ID: <CALRtUqsdJXLxAJeqTs0zcQ0rNO0PP7ZiE_Ud-7uHceOhKD=SBA@mail.gmail.com>
 To: =?UTF-8?B?6rWs64+Z7ZiE?= <dhkoo@m2i.co.kr>
 Cc: yocto@yoctoproject.org
 Subject: Re: libQt5Core.so.5 not found
@@ -71,21 +73,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jan 2018 07:41:36 -0000
-X-Groupsio-MsgNum: 39653
-Content-Type: multipart/related; boundary="f403045c0d3edcfd2c056380caa3"
+X-List-Received-Date: Wed, 24 Jan 2018 07:58:38 -0000
+X-Groupsio-MsgNum: 39654
+Content-Type: multipart/related; boundary="f403045c11debbb9c605638107de"
 
---f403045c0d3edcfd2c056380caa3
-Content-Type: multipart/alternative; boundary="f403045c0d3edcfd2a056380caa2"
+--f403045c11debbb9c605638107de
+Content-Type: multipart/alternative; boundary="f403045c11debbb9c405638107dd"
 
---f403045c0d3edcfd2a056380caa2
+--f403045c11debbb9c405638107dd
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-2018-01-24 8:01 GMT+01:00 =EA=B5=AC=EB=8F=99=ED=98=84 <dhkoo@m2i.co.kr>:
+2018-01-24 8:50 GMT+01:00 =EA=B5=AC=EB=8F=99=ED=98=84 <dhkoo@m2i.co.kr>:
 
+> Hello Pierre.
+>
+>
+>
+> I'm using 3.8 Kernel.
+>
+>
+>
+> Thanks for your reply.
+>
+>
+> from Koo.
+>
+
+it seems old kernels (<3.17) have a problem with the getentropy feature
+with qtbase.
+Try to add the line below in your qtbase_git.bbappend:
+
+QT_CONFIG_FLAGS +=3D "--no-feature-getentropy"  (see example
+<https://github.com/B2Qt/b2qt/blob/74e070d149f2bb8aaf3bf2d7889c21d8467748b5=
+/meta-tegra-extras/recipes/qt5/qtbase_git.bbappend>
+)
+
+---
+Pierre-Jean
+
+
+> *From:* TEXIER Pierre-Jean [mailto:texier.pj2@gmail.com]
+> *Sent:* Wednesday, January 24, 2018 4:42 PM
+> *To:* =EA=B5=AC=EB=8F=99=ED=98=84
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] libQt5Core.so.5 not found
+>
+>
+>
+> Hi,
+>
+>
+>
+> 2018-01-24 8:01 GMT+01:00 =EA=B5=AC=EB=8F=99=ED=98=84 <dhkoo@m2i.co.kr>:
+>
 > Hi.
 >
 >
@@ -128,13 +171,18 @@ m
 > by using Qt 5.9.2, but you know, some latest skills like Qt MQTT can only
 > be used after Qt 5.10.
 >
-
-What is your Kernel version ?
-
----
-Pierre-Jean Texier
-
-
+>
+>
+> What is your Kernel version ?
+>
+>
+>
+> ---
+>
+> Pierre-Jean Texier
+>
+>
+>
 >
 >
 > Is there any ideas?
@@ -162,6 +210,7 @@ co.kr
 >
 >
 >
+>
 > --
 > _______________________________________________
 > yocto mailing list
@@ -169,17 +218,18 @@ co.kr
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 >
+>
 
---f403045c0d3edcfd2a056380caa2
+--f403045c11debbb9c405638107dd
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,<br></div><div class=3D"gmail_extra"><br><div clas=
-s=3D"gmail_quote">2018-01-24 8:01 GMT+01:00 =EA=B5=AC=EB=8F=99=ED=98=84 <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:dhkoo@m2i.co.kr" target=3D"_blank">dhk=
-oo@m2i.co.kr</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left-color:rgb(204,204,204=
-);border-left-width:1px;border-left-style:solid">
+<div dir=3D"ltr">Hi,<br><div class=3D"gmail_extra"><br><div class=3D"gmail_=
+quote">2018-01-24 8:50 GMT+01:00 =EA=B5=AC=EB=8F=99=ED=98=84 <span dir=3D"l=
+tr">&lt;<a href=3D"mailto:dhkoo@m2i.co.kr" target=3D"_blank">dhkoo@m2i.co.k=
+r</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;padding-left:1ex;border-left-color:rgb(204,204,204);border-le=
+ft-width:1px;border-left-style:solid">
 
 
 
@@ -189,73 +239,217 @@ margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left-color:rgb(204,204,204=
 
 
 
-<div lang=3D"KO" vlink=3D"purple" link=3D"blue">
+<div lang=3D"KO">
 
-<div class=3D"m_5274363018362467074Section1">
+<div class=3D"gmail-m_-2474747025413343862Section1">
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:rgb(31,73,125);f=
+ont-family:&quot;\00b9d1\00c740  \00ace0\00b515&quot;;font-size:10pt">Hello=
+ Pierre.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:rgb(31,73,125);f=
+ont-family:&quot;\00b9d1\00c740  \00ace0\00b515&quot;;font-size:10pt"><u></=
+u>=C2=A0<u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:rgb(31,73,125);f=
+ont-family:&quot;\00b9d1\00c740  \00ace0\00b515&quot;;font-size:10pt">I&#39=
+;m using 3.8 Kernel.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:rgb(31,73,125);f=
+ont-family:&quot;\00b9d1\00c740  \00ace0\00b515&quot;;font-size:10pt"><u></=
+u>=C2=A0<u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:rgb(31,73,125);f=
+ont-family:&quot;\00b9d1\00c740  \00ace0\00b515&quot;;font-size:10pt">Thank=
+s for your reply.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:rgb(31,73,125);f=
+ont-family:&quot;\00b9d1\00c740  \00ace0\00b515&quot;;font-size:10pt"><br>
+from Koo.</span></p></div></div></blockquote><div><br></div><div><font face=
+=3D"arial,helvetica,sans-serif">it seems old kernels (&lt;3.17) have a prob=
+lem with the getentropy feature with qtbase. </font></div><div><font face=
+=3D"arial,helvetica,sans-serif">Try to add the line below in your qtbase_gi=
+t.bbappend:</font></div><div><font face=3D"arial,helvetica,sans-serif"></fo=
+nt></div><div><font face=3D"arial,helvetica,sans-serif"><br></font></div><d=
+iv><span style=3D"color:rgb(36,41,46);text-transform:none;text-indent:0px;l=
+etter-spacing:normal;font-size:12px;font-style:normal;font-weight:400;word-=
+spacing:0px;float:none;display:inline;white-space:pre;background-color:rgb(=
+255,255,255)"><font face=3D"arial,helvetica,sans-serif">QT_CONFIG_FLAGS +=
+=3D &quot;--no-feature-getentropy&quot;=C2=A0 (see </font><a href=3D"https:=
+//github.com/B2Qt/b2qt/blob/74e070d149f2bb8aaf3bf2d7889c21d8467748b5/meta-t=
+egra-extras/recipes/qt5/qtbase_git.bbappend"><font face=3D"arial,helvetica,=
+sans-serif">example</font></a><font face=3D"arial,helvetica,sans-serif">)<d=
+iv><br></div><span style=3D"color:rgb(36,41,46);text-transform:none;text-in=
+dent:0px;letter-spacing:normal;font-size:12px;font-style:normal;font-weight=
+:400;word-spacing:0px;float:none;display:inline;white-space:pre;background-=
+color:rgb(255,255,255)"><font face=3D"arial,helvetica,sans-serif">---<br></=
+font></span></font></span></div></div></div><div class=3D"gmail_quote"><spa=
+n style=3D"color:rgb(36,41,46);text-transform:none;text-indent:0px;letter-s=
+pacing:normal;font-family:SFMono-Regular,Consolas,&quot;Liberation Mono&quo=
+t;,Menlo,Courier,monospace;font-size:12px;font-style:normal;font-weight:400=
+;word-spacing:0px;float:none;display:inline;white-space:pre;background-colo=
+r:rgb(255,255,255)"><font face=3D"arial,helvetica,sans-serif"><font face=3D=
+"arial,helvetica,sans-serif">Pierre-Jean</font><br></font></span></div><div=
+ class=3D"gmail_quote">=C2=A0</div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left-color:rgb(204,204=
+,204);border-left-width:1px;border-left-style:solid"><div lang=3D"KO"><div =
+class=3D"gmail-m_-2474747025413343862Section1"><p class=3D"MsoNormal"><span=
+ lang=3D"EN-US" style=3D"color:rgb(31,73,125);font-family:&quot;\00b9d1\00c=
+740  \00ace0\00b515&quot;;font-size:10pt"><u></u><u></u></span></p>
+
+<div style=3D"border-width:1pt medium medium;border-style:solid none none;b=
+order-color:rgb(181,196,223) currentColor currentColor;padding:3pt 0cm 0cm"=
+>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-family:&quot;T=
+ahoma&quot;,&quot;sans-serif&quot;;font-size:10pt">From:</span></b><span la=
+ng=3D"EN-US" style=3D"font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;=
+;font-size:10pt"> TEXIER Pierre-Jean
+[mailto:<a href=3D"mailto:texier.pj2@gmail.com" target=3D"_blank">texier.pj=
+2@gmail.com</a>] <br>
+<b>Sent:</b> Wednesday, January 24, 2018 4:42 PM<br>
+<b>To:</b> </span><span style=3D"font-size:10pt">=EA=B5=AC=EB=8F=99=ED=98=
+=84</span><span lang=3D"EN-US" style=3D"font-family:&quot;Tahoma&quot;,&quo=
+t;sans-serif&quot;;font-size:10pt"><br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] libQt5Core.so.5 not found<u></u><u></u></span><=
+/p>
+
+</div><div><div class=3D"gmail-h5">
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+
+<div>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<u></u><u></u></span></p>
+
+</div>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">2018-01-24 8:01 GMT+01:00 </spa=
+n>=EA=B5=AC=EB=8F=99=ED=98=84<span lang=3D"EN-US"> &lt;<a href=3D"mailto:dh=
+koo@m2i.co.kr" target=3D"_blank">dhkoo@m2i.co.kr</a>&gt;:<u></u><u></u></sp=
+an></p>
+
+<div>
+
+<div>
 
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Hi.<u></u><u></u></span></p>
 
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Since last year, I worked with =
-Qt5 with
-Yocto, exactly 5.9.2.<u></u><u></u></span></p>
+Qt5 with Yocto, exactly 5.9.2.<u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><span lang=3D"EN-US">And few days ago, I lost whole =
-working
-environment. So I should re-download openembedded layers, include meta-qt5.=
-<u></u><u></u></span></p>
+working environment. So I should
+re-download openembedded layers, include meta-qt5.<u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><span lang=3D"EN-US">After that, when I going to use=
- Qt5
-applications, Kernel prints error likes below<u></u><u></u></span></p>
+ Qt5 applications, Kernel prints
+error likes below<u></u><u></u></span></p>
 
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><b><span lang=3D"EN-US"># error while loading shared=
- libraries:
-libQt5Core.so.5: cannot open shared object file: No such file or directory<=
-u></u><u></u></span></b></p>
+ libraries: libQt5Core.so.5: cannot open
+shared object file: No such file or directory</span></b><span lang=3D"EN-US=
+"><u></u><u></u></span></p>
 
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><span lang=3D"EN-US">And here is ldd message of Qt5.=
 <u></u><u></u></span></p>
 
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Widgets.so.5 =3D&gt;
-/usr/lib/libQt5Widgets.so.5 (0xb6ab8000)<u></u><u></u></span></b></p>
-
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Gui.so.5 =3D&gt;
-/usr/lib/libQt5Gui.so.5 (0xb665c000)<u></u><u></u></span></b></p>
-
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Core.so.5 =3D&gt; not =
-found<u></u><u></u></span></b></p>
-
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-
-<p class=3D"MsoNormal"><span lang=3D"EN-US">As you see, every Qt5 library l=
-inked
-successfully except libQt5Core.so.5.<u></u><u></u></span></p>
-
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I checked meta-qt5 repository, =
-and found It
-upgraded to 5.10.0 at 17. Dec. 2017.<u></u><u></u></span></p>
-
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-
-<p class=3D"MsoNormal"><span lang=3D"EN-US">If I downgrade Qt5 to 5.9.2, th=
-is error not
-occurs. I can solve my problem by using Qt 5.9.2, but you know, some latest
-skills like Qt MQTT can only be used after Qt 5.10.</span></p></div></div><=
-/blockquote><div><br></div><div>What is your Kernel version ?</div><div><br=
-></div><div>---</div><div>Pierre-Jean Texier</div><div>=C2=A0</div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;padding-left:1e=
-x;border-left-color:rgb(204,204,204);border-left-width:1px;border-left-styl=
-e:solid"><div lang=3D"KO" vlink=3D"purple" link=3D"blue"><div class=3D"m_52=
-74363018362467074Section1"><p class=3D"MsoNormal"><span lang=3D"EN-US"><u><=
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Widgets.so.5 =3D&gt; /=
+usr/lib/libQt5Widgets.so.5 (0xb6ab8000)</span></b><span lang=3D"EN-US"><u><=
 /u><u></u></span></p>
 
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Gui.so.5 =3D&gt; /usr/=
+lib/libQt5Gui.so.5 (0xb665c000)</span></b><span lang=3D"EN-US"><u></u><u></=
+u></span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Core.so.5 =3D&gt; not =
+found</span></b><span lang=3D"EN-US"><u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">As you see, every Qt5 library l=
+inked successfully except
+libQt5Core.so.5.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I checked meta-qt5 repository, =
+and found It upgraded to 5.10.0 at
+17. Dec. 2017.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">If I downgrade Qt5 to 5.9.2, th=
+is error not occurs. I can solve my
+problem by using Qt 5.9.2, but you know, some latest skills like Qt MQTT ca=
+n
+only be used after Qt 5.10.<u></u><u></u></span></p>
+
+</div>
+
+</div>
+
+<div>
+
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+
+</div>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">What is your Kernel version ?<u=
+></u><u></u></span></p>
+
+</div>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+
+</div>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">---<u></u><u></u></span></p>
+
+</div>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Pierre-Jean Texier<u></u><u></u=
+></span></p>
+
+</div>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
+
+</div>
+
+<blockquote style=3D"border-width:medium medium medium 1pt;border-style:non=
+e none none solid;border-color:currentColor currentColor currentColor rgb(2=
+04,204,204);padding:0cm 0cm 0cm 6pt;margin-right:0cm;margin-left:4.8pt">
+
+<div>
+
+<div>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Is there any ideas?<u></u><u></=
 u></span></p>
@@ -265,41 +459,59 @@ u></span></p>
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><img width=3D"311" height=3D"76=
-" id=3D"m_5274363018362467074=EA=B7=B8=EB=A6=BC_x0020_1" alt=3D"=EA=B5=AC=
-=EB=8F=99=ED=98=84(=ED=95=9C=EA=B8=80)" src=3D"cid:image001.jpg@01D3952C.92=
-EA61D0"><u></u><u></u></span></p>
+" id=3D"gmail-m_-2474747025413343862m_5274363018362467074=EA=B7=B8=EB=A6=BC=
+_x0020_1" alt=3D"=EA=B5=AC=EB=8F=99=ED=98=84(=ED=95=9C=EA=B8=80)" src=3D"ci=
+d:image001.jpg@01D39533.70017210" border=3D"0"><u></u><u></u></span></p>
 
-<p align=3D"left" class=3D"MsoNormal" style=3D"text-align:left"><b><span la=
-ng=3D"EN-US" style=3D"color:black;font-size:10.5pt">(</span></b><b><span st=
-yle=3D"color:black;font-size:10.5pt">=EC=A3=BC<span lang=3D"EN-US">)</span>=
-=EC=97=A0=ED=88=AC=EC=95=84=EC=9D=B4=EC=BD=94=ED=8D=BC=EB=A0=88=EC=9D=B4=EC=
-=85=98<span lang=3D"EN-US"> / </span></span></b><b><span lang=3D"EN-US" sty=
-le=3D"color:black;font-size:9pt"><a href=3D"http://www.m2i.co.kr" target=3D=
-"_blank"><span style=3D"color:blue">http://www.m2i.co.kr</span></a></span><=
-/b><b><span lang=3D"EN-US" style=3D"color:black;font-size:10.5pt"><u></u><u=
-></u></span></b></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"color:black;font-si=
+ze:10.5pt">(</span></b><b><span style=3D"color:black;font-size:10.5pt">=EC=
+=A3=BC<span lang=3D"EN-US">)</span>=EC=97=A0=ED=88=AC=EC=95=84=EC=9D=B4=EC=
+=BD=94=ED=8D=BC=EB=A0=88=EC=9D=B4=EC=85=98<span lang=3D"EN-US"> / </span></=
+span></b><b><span lang=3D"EN-US" style=3D"color:black;font-size:9pt"><a hre=
+f=3D"http://www.m2i.co.kr" target=3D"_blank">http://www.m2i.co.kr</a></span=
+></b><span lang=3D"EN-US"><u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><b><span style=3D"color:black;font-size:9pt">=EC=8B=
 =A0<span lang=3D"EN-US">) (14086) </span>=EA=B2=BD=EA=B8=B0 =EC=95=88=EC=96=
-=91=EC=8B=9C =EB=A7=8C=EC=95=88=EA=B5=AC =EC=A0=84=ED=8C=8C=EB=A1=9C<span l=
-ang=3D"EN-US">24</span>=EB=B2=88=EA=B8=B8<span lang=3D"EN-US"> 35-11(</span=
->=EC=95=88=EC=96=91=EB=8F=99<span lang=3D"EN-US">) </span>=EC=97=A0=ED=88=
-=AC=EC=95=84=EC=9D=B4=EB=B9=8C=EB=94=A9 <span lang=3D"EN-US"><u></u><u></u>=
-</span></span></b></p>
+=91=EC=8B=9C =EB=A7=8C=EC=95=88=EA=B5=AC
+=EC=A0=84=ED=8C=8C=EB=A1=9C<span lang=3D"EN-US">24</span>=EB=B2=88=EA=B8=B8=
+<span lang=3D"EN-US"> 35-11(</span>=EC=95=88=EC=96=91=EB=8F=99<span lang=3D=
+"EN-US">) </span>=EC=97=A0=ED=88=AC=EC=95=84=EC=9D=B4=EB=B9=8C=EB=94=A9 </s=
+pan></b><span lang=3D"EN-US"><u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><b><span style=3D"color:black;font-size:9pt">=EA=B5=
 =AC<span lang=3D"EN-US">) (14086) </span>=EA=B2=BD=EA=B8=B0 =EC=95=88=EC=96=
-=91=EC=8B=9C =EB=A7=8C=EC=95=88=EA=B5=AC =EC=95=88=EC=96=91<span lang=3D"EN=
--US">7</span>=EB=8F=99<span lang=3D"EN-US"> 196-38 </span>=EC=97=A0=ED=88=
-=AC=EC=95=84=EC=9D=B4=EB=B9=8C=EB=94=A9<span lang=3D"EN-US"><u></u><u></u><=
-/span></span></b></p>
+=91=EC=8B=9C =EB=A7=8C=EC=95=88=EA=B5=AC
+=EC=95=88=EC=96=91<span lang=3D"EN-US">7</span>=EB=8F=99<span lang=3D"EN-US=
+"> 196-38 </span>=EC=97=A0=ED=88=AC=EC=95=84=EC=9D=B4=EB=B9=8C=EB=94=A9</sp=
+an></b><span lang=3D"EN-US"><u></u><u></u></span></p>
 
 <p class=3D"MsoNormal"><b><span style=3D"color:black">=EC=A7=81=ED=86=B5<sp=
-an lang=3D"EN-US">.
-070-4844-3624=C2=A0 Fax. 031-465-3355=C2=A0 E-mail: <a href=3D"http://syjan=
-g@m2i.co.kr" target=3D"_blank"><span style=3D"color:blue">dhkoo@m2i.co.kr</=
-span></a></span></span></b><b><span lang=3D"EN-US" style=3D"color:black"><u=
-></u><u></u></span></b></p>
+an lang=3D"EN-US">. 070-4844-3624=C2=A0 Fax.
+031-465-3355=C2=A0 E-mail: <a href=3D"http://syjang@m2i.co.kr" target=3D"_b=
+lank">dhkoo@m2i.co.kr</a></span></span></b><span lang=3D"EN-US"><u></u><u><=
+/u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
+
+</div>
+
+</div>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><span lang=3D"EN-US"><b=
+r>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><u></u><u></u></span=
+></p>
+
+</blockquote>
+
+</div>
 
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 
@@ -307,24 +519,21 @@ span></a></span></span></b><b><span lang=3D"EN-US" style=3D"color:black"><u=
 
 </div>
 
+</div></div></div>
 
-<br>--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
- rel=3D"noreferrer">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br></div></div>
+</div>
 
---f403045c0d3edcfd2a056380caa2--
 
---f403045c0d3edcfd2c056380caa3
+</blockquote><div class=3D"gmail_extra"><br></div></div>
+
+--f403045c11debbb9c405638107dd--
+
+--f403045c11debbb9c605638107de
 Content-Type: image/jpeg; name="image001.jpg"
 Content-Disposition: inline; filename="image001.jpg"
 Content-Transfer-Encoding: base64
-Content-ID: <image001.jpg@01D3952C.92EA61D0>
-X-Attachment-Id: 3a55a307cf953a82_0.0.1
+Content-ID: <image001.jpg@01D39533.70017210>
+X-Attachment-Id: fd5df764e7b7df39_0.1
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIf
 IiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7
@@ -416,4 +625,4 @@ KUSnlp7+tROR6KmHdW9AAzQEPkHwr6lpSFBSdiOlWC0jT06VxoD2s82Mr0ioPI9FTk9CO7FeKAic
 j0VLQ4UNpQpvKcdaK7p+gKAjOMR1DUjzVd2muSg6trQvKk56mp+B4V5c+jQFdyPRRyPRUuigJFfa
 KKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKA//2Q==
 
---f403045c0d3edcfd2c056380caa3--
+--f403045c11debbb9c605638107de--
