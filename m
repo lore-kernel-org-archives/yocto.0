@@ -1,45 +1,65 @@
-Return-Path: <dhkoo@m2i.co.kr>
+Return-Path: <texier.pj2@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 546F3E00E21; Tue, 23 Jan 2018 23:08:00 -0800 (PST)
+	id 706FDE00E21; Tue, 23 Jan 2018 23:41:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [121.254.168.204 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (texier.pj2[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
-	Tue, 23 Jan 2018 23:07:58 PST
-Received: from smtp1.hiworks.co.kr (smtp1.hiworks.co.kr [121.254.168.204])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0FDBE006D3
-	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 23:07:58 -0800 (PST)
-Received: (qmail 103049 invoked from network); 24 Jan 2018 16:01:17 +0900
-Received: from unknown (HELO hiworks.co.kr) (192.168.10.218)
-	by 0 (qmail 1.03 + ejcp v14) with SMTP; 24 Jan 2018 16:01:17 +0900
-Received: (qmail 32170 invoked by uid 504); 24 Jan 2018 16:01:17 +0900
-Received: from unknown (HELO dhkooPC) (dhkoo@m2i.co.kr@112.216.145.10)
-	by 0 (qmail 1.03 + ejcp v14) with SMTP; 24 Jan 2018 16:01:17 +0900
-X-Authinfo: HIWORKS SMTP authenticated <dhkoo@m2i.co.kr>
-From: =?ks_c_5601-1987?B?sbi1v8f2?= <dhkoo@m2i.co.kr>
-To: <yocto@yoctoproject.org>
-Date: Wed, 24 Jan 2018 16:01:21 +0900
-Message-ID: <008f01d394e1$23ddfea0$6b99fbe0$@co.kr>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f42.google.com (mail-wm0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F537E00D8D
+	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 23:41:34 -0800 (PST)
+Received: by mail-wm0-f42.google.com with SMTP id r71so6533289wmd.1
+	for <yocto@yoctoproject.org>; Tue, 23 Jan 2018 23:41:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=DtjKJvsvSp40DDD5ZMpkTQa7cS86IIdMYwvmzvZmrsk=;
+	b=WgYQyVR2IgAts6g7OIY59RQPguynwV1VmSpyj91bv+jWi6ESkDToKo41EPKXkGxxh+
+	ZKsz/IiKBDjHfty5alfPcaGScZIrCPDaJ5b81VzIY9hoNzDlkDr1wcgtGXV9qfTuVaZw
+	+spXBz82XCgkaA34VLHoBkixs2fifX6gKbH2Nb/DpBMxnIN8iyuQ5bWMlk8ORdcLbMZE
+	lyLi7GUZ3UOAsA3i2YpZdmoeCbIGydNrCuu76PEyzf8FlrsTSNP4CWnYvm7x4tMPnNGc
+	sk7dAeGlnt4lXPAcCCHlJoMiF1/iyUKOQLGBN68xHmSHiCAxEmBQwB1Vzx9ojdQMDGef
+	Begg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=DtjKJvsvSp40DDD5ZMpkTQa7cS86IIdMYwvmzvZmrsk=;
+	b=ewStZ/+xGcAwEa5451Jnqxa8iVXub2TNyQa/czkzvhkirbubo+tcCDOBI+LT1/L9CB
+	V984Gmfw/3a2fEiEpNyXUIl7uqowyy6u3y1o7jTCu7yFL2qrNs8yj41r+OHxQN+9lRVy
+	fKPqKjpg38OTgsVmP+cwxGAeIMoYHUPt+ufBRXEvnLdVJyXCnNF5HJDrC+uXZUPvzjLC
+	RoyUrmostSINXTfgSuOULkWH8gK0nu+SV57dacTQgHdYz7AxzUJGQK1dJGg/PHK3Fm0L
+	S93xIe/FyR5Lfq51LFBhOa8uGUJp0F0bMzuc9UFGXZkx7Vcar6EMvks2jfTe/zq2trwf
+	J+NA==
+X-Gm-Message-State: AKwxytfjLlfoN3LhpZ6lMbsfNzJMT/4sAbD30Lb7Z+II12+4s+nFfhVm
+	RsPHqKaZffovvHNyzMcHNI3iOIrFq0J3qLcAnQwoOQ==
+X-Google-Smtp-Source: AH8x2266q+3hIxrZMxEPT55DO1gH5gsDM6jVcmSR+YM2L9ZM5nw/7ePFb9JAKNZp3FfL1kcydZk9I0iAWOwgDzbvSIw=
+X-Received: by 10.80.182.181 with SMTP id d50mr23301842ede.116.1516779693989; 
+	Tue, 23 Jan 2018 23:41:33 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdOU4SMD8bh2V6VxRFajAi6xJhpwdA==
-x-cr-hashedpuzzle: ACwm AMZA APd0 A9dH Beyj EImi Eou+ E2GJ F8wc Gkuz G9RY H0bL
-	IWde IdRJ KX4m KaCh; 1;
-	eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {34B57AB9-4604-4318-818E-28CE3B97EA85};
-	ZABoAGsAbwBvAEAAbQAyAGkALgBjAG8ALgBrAHIA;
-	Wed, 24 Jan 2018 07:01:20 GMT;
-	bABpAGIAUQB0ADUAQwBvAHIAZQAuAHMAbwAuADUAIABuAG8AdAAgAGYAbwB1AG4AZAA=
-x-cr-puzzleid: {34B57AB9-4604-4318-818E-28CE3B97EA85}
-Subject: libQt5Core.so.5 not found
+Received: by 10.80.175.66 with HTTP; Tue, 23 Jan 2018 23:41:33 -0800 (PST)
+In-Reply-To: <008f01d394e1$23ddfea0$6b99fbe0$@co.kr>
+References: <008f01d394e1$23ddfea0$6b99fbe0$@co.kr>
+From: TEXIER Pierre-Jean <texier.pj2@gmail.com>
+Date: Wed, 24 Jan 2018 08:41:33 +0100
+Message-ID: <CALRtUqsqyDYDSW0QjKHfOa_JL8nyJJyYi8F3qHmvDeEWLRnWgw@mail.gmail.com>
+To: =?UTF-8?B?6rWs64+Z7ZiE?= <dhkoo@m2i.co.kr>
+Cc: yocto@yoctoproject.org
+Subject: Re: libQt5Core.so.5 not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,313 +71,260 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jan 2018 07:08:00 -0000
-X-Groupsio-MsgNum: 39652
-Content-Type: multipart/related;
-	boundary="----=_NextPart_000_0090_01D3952C.93C5A6A0"
-Content-Language: ko
+X-List-Received-Date: Wed, 24 Jan 2018 07:41:36 -0000
+X-Groupsio-MsgNum: 39653
+Content-Type: multipart/related; boundary="f403045c0d3edcfd2c056380caa3"
 
-------=_NextPart_000_0090_01D3952C.93C5A6A0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_0091_01D3952C.93C5A6A0"
+--f403045c0d3edcfd2c056380caa3
+Content-Type: multipart/alternative; boundary="f403045c0d3edcfd2a056380caa2"
 
-------=_NextPart_001_0091_01D3952C.93C5A6A0
-Content-Type: text/plain;
-	charset="ks_c_5601-1987"
+--f403045c0d3edcfd2a056380caa2
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi.
+Hi,
 
-=20
+2018-01-24 8:01 GMT+01:00 =EA=B5=AC=EB=8F=99=ED=98=84 <dhkoo@m2i.co.kr>:
 
-Since last year, I worked with Qt5 with Yocto, exactly 5.9.2.
+> Hi.
+>
+>
+>
+> Since last year, I worked with Qt5 with Yocto, exactly 5.9.2.
+>
+> And few days ago, I lost whole working environment. So I should
+> re-download openembedded layers, include meta-qt5.
+>
+> After that, when I going to use Qt5 applications, Kernel prints error
+> likes below
+>
+>
+>
+> *# error while loading shared libraries: libQt5Core.so.5: cannot open
+> shared object file: No such file or directory*
+>
+>
+>
+> And here is ldd message of Qt5.
+>
+> *libQt5Widgets.so.5 =3D> /usr/lib/libQt5Widgets.so.5 (0xb6ab8000)*
+>
+> *libQt5Gui.so.5 =3D> /usr/lib/libQt5Gui.so.5 (0xb665c000)*
+>
+> *libQt5Core.so.5 =3D> not found*
+>
+>
+>
+> As you see, every Qt5 library linked successfully except libQt5Core.so.5.
+>
+> I checked meta-qt5 repository, and found It upgraded to 5.10.0 at 17. Dec=
+.
+> 2017.
+>
+>
+>
+> If I downgrade Qt5 to 5.9.2, this error not occurs. I can solve my proble=
+m
+> by using Qt 5.9.2, but you know, some latest skills like Qt MQTT can only
+> be used after Qt 5.10.
+>
 
-And few days ago, I lost whole working environment. So I should =
-re-download
-openembedded layers, include meta-qt5.
+What is your Kernel version ?
 
-After that, when I going to use Qt5 applications, Kernel prints error =
-likes
-below
-
-=20
-
-# error while loading shared libraries: libQt5Core.so.5: cannot open =
-shared
-object file: No such file or directory
-
-=20
-
-And here is ldd message of Qt5.
-
-libQt5Widgets.so.5 =3D> /usr/lib/libQt5Widgets.so.5 (0xb6ab8000)
-
-libQt5Gui.so.5 =3D> /usr/lib/libQt5Gui.so.5 (0xb665c000)
-
-libQt5Core.so.5 =3D> not found
-
-=20
-
-As you see, every Qt5 library linked successfully except =
-libQt5Core.so.5.
-
-I checked meta-qt5 repository, and found It upgraded to 5.10.0 at 17. =
-Dec.
-2017.
-
-=20
-
-If I downgrade Qt5 to 5.9.2, this error not occurs. I can solve my =
-problem
-by using Qt 5.9.2, but you know, some latest skills like Qt MQTT can =
-only
-be used after Qt 5.10.
-
-=20
-
-Is there any ideas?
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-=B1=B8=B5=BF=C7=F6(=C7=D1=B1=DB)
-
-(=C1=D6)=BF=A5=C5=F5=BE=C6=C0=CC=C4=DA=C6=DB=B7=B9=C0=CC=BC=C7 /  =
-<http://www.m2i.co.kr> http://www.m2i.co.kr
-
-=BD=C5) (14086) =B0=E6=B1=E2 =BE=C8=BE=E7=BD=C3 =B8=B8=BE=C8=B1=B8 =
-=C0=FC=C6=C4=B7=CE24=B9=F8=B1=E6 35-11(=BE=C8=BE=E7=B5=BF) =
-=BF=A5=C5=F5=BE=C6=C0=CC=BA=F4=B5=F9=20
-
-=B1=B8) (14086) =B0=E6=B1=E2 =BE=C8=BE=E7=BD=C3 =B8=B8=BE=C8=B1=B8 =
-=BE=C8=BE=E77=B5=BF 196-38 =BF=A5=C5=F5=BE=C6=C0=CC=BA=F4=B5=F9
-
-=C1=F7=C5=EB. 070-4844-3624  Fax. 031-465-3355  E-mail: dhkoo@m2i.co.kr
-
-=20
+---
+Pierre-Jean Texier
 
 
-------=_NextPart_001_0091_01D3952C.93C5A6A0
-Content-Type: text/html;
-	charset="ks_c_5601-1987"
+>
+>
+> Is there any ideas?
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
+> [image: =EA=B5=AC=EB=8F=99=ED=98=84(=ED=95=9C=EA=B8=80)]
+>
+> *(**=EC=A3=BC)=EC=97=A0=ED=88=AC=EC=95=84=EC=9D=B4=EC=BD=94=ED=8D=BC=EB=
+=A0=88=EC=9D=B4=EC=85=98 / **http://www.m2i.co.kr <http://www.m2i.co.kr>*
+>
+> *=EC=8B=A0) (14086) =EA=B2=BD=EA=B8=B0 =EC=95=88=EC=96=91=EC=8B=9C =EB=A7=
+=8C=EC=95=88=EA=B5=AC =EC=A0=84=ED=8C=8C=EB=A1=9C24=EB=B2=88=EA=B8=B8 35-11=
+(=EC=95=88=EC=96=91=EB=8F=99) =EC=97=A0=ED=88=AC=EC=95=84=EC=9D=B4=EB=B9=8C=
+=EB=94=A9 *
+>
+> *=EA=B5=AC) (14086) =EA=B2=BD=EA=B8=B0 =EC=95=88=EC=96=91=EC=8B=9C =EB=A7=
+=8C=EC=95=88=EA=B5=AC =EC=95=88=EC=96=917=EB=8F=99 196-38 =EC=97=A0=ED=88=
+=AC=EC=95=84=EC=9D=B4=EB=B9=8C=EB=94=A9*
+>
+> *=EC=A7=81=ED=86=B5. 070-4844-3624  Fax. 031-465-3355  E-mail: dhkoo@m2i.=
+co.kr
+> <http://syjang@m2i.co.kr>*
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--f403045c0d3edcfd2a056380caa2
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40">
+<div dir=3D"ltr"><div>Hi,<br></div><div class=3D"gmail_extra"><br><div clas=
+s=3D"gmail_quote">2018-01-24 8:01 GMT+01:00 =EA=B5=AC=EB=8F=99=ED=98=84 <sp=
+an dir=3D"ltr">&lt;<a href=3D"mailto:dhkoo@m2i.co.kr" target=3D"_blank">dhk=
+oo@m2i.co.kr</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;padding-left:1ex;border-left-color:rgb(204,204,204=
+);border-left-width:1px;border-left-style:solid">
 
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dks_c_5601-1987">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<!--[if !mso]>
-<style>
-v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style>
-<![endif]-->
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"=C7=B3=BC=B1 =B5=B5=BF=F2=B8=BB =C5=D8=BD=BA=C6=AE =
-Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:9.0pt;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	color:windowtext;}
-span.Char
-	{mso-style-name:"=C7=B3=BC=B1 =B5=B5=BF=F2=B8=BB =C5=D8=BD=BA=C6=AE =
-Char";
-	mso-style-priority:99;
-	mso-style-link:"=C7=B3=BC=B1 =B5=B5=BF=F2=B8=BB =C5=D8=BD=BA=C6=AE";
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
- /* Page Definitions */
- @page Section1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.Section1
-	{page:Section1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"2050" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
 
-<body lang=3DKO link=3Dblue vlink=3Dpurple>
 
-<div class=3DSection1>
 
-<p class=3DMsoNormal><span lang=3DEN-US>Hi.<o:p></o:p></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>Since last year, I worked with =
+
+
+
+<div lang=3D"KO" vlink=3D"purple" link=3D"blue">
+
+<div class=3D"m_5274363018362467074Section1">
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Since last year, I worked with =
 Qt5 with
-Yocto, exactly 5.9.2.<o:p></o:p></span></p>
+Yocto, exactly 5.9.2.<u></u><u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>And few days ago, I lost whole =
+<p class=3D"MsoNormal"><span lang=3D"EN-US">And few days ago, I lost whole =
 working
-environment. So I should re-download openembedded layers, include =
-meta-qt5.<o:p></o:p></span></p>
+environment. So I should re-download openembedded layers, include meta-qt5.=
+<u></u><u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>After that, when I going to use =
-Qt5
-applications, Kernel prints error likes below<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">After that, when I going to use=
+ Qt5
+applications, Kernel prints error likes below<u></u><u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 
-<p class=3DMsoNormal><b><span lang=3DEN-US># error while loading shared =
-libraries:
-libQt5Core.so.5: cannot open shared object file: No such file or =
-directory<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US"># error while loading shared=
+ libraries:
+libQt5Core.so.5: cannot open shared object file: No such file or directory<=
+u></u><u></u></span></b></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>And here is ldd message of =
-Qt5.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">And here is ldd message of Qt5.=
+<u></u><u></u></span></p>
 
-<p class=3DMsoNormal><b><span lang=3DEN-US>libQt5Widgets.so.5 =3D&gt;
-/usr/lib/libQt5Widgets.so.5 (0xb6ab8000)<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Widgets.so.5 =3D&gt;
+/usr/lib/libQt5Widgets.so.5 (0xb6ab8000)<u></u><u></u></span></b></p>
 
-<p class=3DMsoNormal><b><span lang=3DEN-US>libQt5Gui.so.5 =3D&gt;
-/usr/lib/libQt5Gui.so.5 (0xb665c000)<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Gui.so.5 =3D&gt;
+/usr/lib/libQt5Gui.so.5 (0xb665c000)<u></u><u></u></span></b></p>
 
-<p class=3DMsoNormal><b><span lang=3DEN-US>libQt5Core.so.5 =3D&gt; not =
-found<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">libQt5Core.so.5 =3D&gt; not =
+found<u></u><u></u></span></b></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>As you see, every Qt5 library =
-linked
-successfully except libQt5Core.so.5.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">As you see, every Qt5 library l=
+inked
+successfully except libQt5Core.so.5.<u></u><u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>I checked meta-qt5 repository, =
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I checked meta-qt5 repository, =
 and found It
-upgraded to 5.10.0 at 17. Dec. 2017.<o:p></o:p></span></p>
+upgraded to 5.10.0 at 17. Dec. 2017.<u></u><u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>If I downgrade Qt5 to 5.9.2, =
-this error not
-occurs. I can solve my problem by using Qt 5.9.2, but you know, some =
-latest
-skills like Qt MQTT can only be used after Qt =
-5.10.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">If I downgrade Qt5 to 5.9.2, th=
+is error not
+occurs. I can solve my problem by using Qt 5.9.2, but you know, some latest
+skills like Qt MQTT can only be used after Qt 5.10.</span></p></div></div><=
+/blockquote><div><br></div><div>What is your Kernel version ?</div><div><br=
+></div><div>---</div><div>Pierre-Jean Texier</div><div>=C2=A0</div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;padding-left:1e=
+x;border-left-color:rgb(204,204,204);border-left-width:1px;border-left-styl=
+e:solid"><div lang=3D"KO" vlink=3D"purple" link=3D"blue"><div class=3D"m_52=
+74363018362467074Section1"><p class=3D"MsoNormal"><span lang=3D"EN-US"><u><=
+/u><u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US>Is there any =
-ideas?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Is there any ideas?<u></u><u></=
+u></span></p>
 
-<p class=3DMsoNormal><span =
-lang=3DEN-US>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p=
-></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<u></u><u></u></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US><img width=3D311 height=3D76 =
-id=3D"=B1=D7=B8=B2_x0020_1"
-src=3D"cid:image001.jpg@01D3952C.92EA61D0" =
-alt=3D"=B1=B8=B5=BF=C7=F6(=C7=D1=B1=DB)"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><img width=3D"311" height=3D"76=
+" id=3D"m_5274363018362467074=EA=B7=B8=EB=A6=BC_x0020_1" alt=3D"=EA=B5=AC=
+=EB=8F=99=ED=98=84(=ED=95=9C=EA=B8=80)" src=3D"cid:image001.jpg@01D3952C.92=
+EA61D0"><u></u><u></u></span></p>
 
-<p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><b><span =
-lang=3DEN-US
-style=3D'font-size:10.5pt;color:black'>(</span></b><b><span =
-style=3D'font-size:
-10.5pt;color:black'>=C1=D6<span =
-lang=3DEN-US>)</span>=BF=A5=C5=F5=BE=C6=C0=CC=C4=DA=C6=DB=B7=B9=C0=CC=BC=C7=
-<span lang=3DEN-US> / </span></span></b><b><span
-lang=3DEN-US style=3D'font-size:9.0pt;color:black'><a =
-href=3D"http://www.m2i.co.kr"><span
-style=3D'color:blue'>http://www.m2i.co.kr</span></a></span></b><b><span
-lang=3DEN-US =
-style=3D'font-size:10.5pt;color:black'><o:p></o:p></span></b></p>
+<p align=3D"left" class=3D"MsoNormal" style=3D"text-align:left"><b><span la=
+ng=3D"EN-US" style=3D"color:black;font-size:10.5pt">(</span></b><b><span st=
+yle=3D"color:black;font-size:10.5pt">=EC=A3=BC<span lang=3D"EN-US">)</span>=
+=EC=97=A0=ED=88=AC=EC=95=84=EC=9D=B4=EC=BD=94=ED=8D=BC=EB=A0=88=EC=9D=B4=EC=
+=85=98<span lang=3D"EN-US"> / </span></span></b><b><span lang=3D"EN-US" sty=
+le=3D"color:black;font-size:9pt"><a href=3D"http://www.m2i.co.kr" target=3D=
+"_blank"><span style=3D"color:blue">http://www.m2i.co.kr</span></a></span><=
+/b><b><span lang=3D"EN-US" style=3D"color:black;font-size:10.5pt"><u></u><u=
+></u></span></b></p>
 
-<p class=3DMsoNormal><b><span =
-style=3D'font-size:9.0pt;color:black'>=BD=C5<span
-lang=3DEN-US>) (14086) </span>=B0=E6=B1=E2 =BE=C8=BE=E7=BD=C3 =
-=B8=B8=BE=C8=B1=B8 =C0=FC=C6=C4=B7=CE<span =
-lang=3DEN-US>24</span>=B9=F8=B1=E6<span
-lang=3DEN-US> 35-11(</span>=BE=C8=BE=E7=B5=BF<span lang=3DEN-US>) =
-</span>=BF=A5=C5=F5=BE=C6=C0=CC=BA=F4=B5=F9 <span =
-lang=3DEN-US><o:p></o:p></span></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:black;font-size:9pt">=EC=8B=
+=A0<span lang=3D"EN-US">) (14086) </span>=EA=B2=BD=EA=B8=B0 =EC=95=88=EC=96=
+=91=EC=8B=9C =EB=A7=8C=EC=95=88=EA=B5=AC =EC=A0=84=ED=8C=8C=EB=A1=9C<span l=
+ang=3D"EN-US">24</span>=EB=B2=88=EA=B8=B8<span lang=3D"EN-US"> 35-11(</span=
+>=EC=95=88=EC=96=91=EB=8F=99<span lang=3D"EN-US">) </span>=EC=97=A0=ED=88=
+=AC=EC=95=84=EC=9D=B4=EB=B9=8C=EB=94=A9 <span lang=3D"EN-US"><u></u><u></u>=
+</span></span></b></p>
 
-<p class=3DMsoNormal><b><span =
-style=3D'font-size:9.0pt;color:black'>=B1=B8<span
-lang=3DEN-US>) (14086) </span>=B0=E6=B1=E2 =BE=C8=BE=E7=BD=C3 =
-=B8=B8=BE=C8=B1=B8 =BE=C8=BE=E7<span lang=3DEN-US>7</span>=B5=BF<span
-lang=3DEN-US> 196-38 </span>=BF=A5=C5=F5=BE=C6=C0=CC=BA=F4=B5=F9<span =
-lang=3DEN-US><o:p></o:p></span></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:black;font-size:9pt">=EA=B5=
+=AC<span lang=3D"EN-US">) (14086) </span>=EA=B2=BD=EA=B8=B0 =EC=95=88=EC=96=
+=91=EC=8B=9C =EB=A7=8C=EC=95=88=EA=B5=AC =EC=95=88=EC=96=91<span lang=3D"EN=
+-US">7</span>=EB=8F=99<span lang=3D"EN-US"> 196-38 </span>=EC=97=A0=ED=88=
+=AC=EC=95=84=EC=9D=B4=EB=B9=8C=EB=94=A9<span lang=3D"EN-US"><u></u><u></u><=
+/span></span></b></p>
 
-<p class=3DMsoNormal><b><span style=3D'color:black'>=C1=F7=C5=EB<span =
-lang=3DEN-US>.
-070-4844-3624&nbsp; Fax. 031-465-3355&nbsp; E-mail: <a =
-href=3D"syjang@m2i.co.kr"><span
-style=3D'color:blue'>dhkoo@m2i.co.kr</span></a></span></span></b><b><span=
+<p class=3D"MsoNormal"><b><span style=3D"color:black">=EC=A7=81=ED=86=B5<sp=
+an lang=3D"EN-US">.
+070-4844-3624=C2=A0 Fax. 031-465-3355=C2=A0 E-mail: <a href=3D"http://syjan=
+g@m2i.co.kr" target=3D"_blank"><span style=3D"color:blue">dhkoo@m2i.co.kr</=
+span></a></span></span></b><b><span lang=3D"EN-US" style=3D"color:black"><u=
+></u><u></u></span></b></p>
 
-lang=3DEN-US style=3D'color:black'><o:p></o:p></span></b></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 
 </div>
 
-</body>
+</div>
 
-</html>
 
-------=_NextPart_001_0091_01D3952C.93C5A6A0--
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+ rel=3D"noreferrer">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div></div>
 
-------=_NextPart_000_0090_01D3952C.93C5A6A0
-Content-Type: image/jpeg;
-	name="image001.jpg"
+--f403045c0d3edcfd2a056380caa2--
+
+--f403045c0d3edcfd2c056380caa3
+Content-Type: image/jpeg; name="image001.jpg"
+Content-Disposition: inline; filename="image001.jpg"
 Content-Transfer-Encoding: base64
 Content-ID: <image001.jpg@01D3952C.92EA61D0>
+X-Attachment-Id: 3a55a307cf953a82_0.0.1
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIf
 IiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7
@@ -449,4 +416,4 @@ KUSnlp7+tROR6KmHdW9AAzQEPkHwr6lpSFBSdiOlWC0jT06VxoD2s82Mr0ioPI9FTk9CO7FeKAic
 j0VLQ4UNpQpvKcdaK7p+gKAjOMR1DUjzVd2muSg6trQvKk56mp+B4V5c+jQFdyPRRyPRUuigJFfa
 KKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKKA//2Q==
 
-------=_NextPart_000_0090_01D3952C.93C5A6A0--
+--f403045c0d3edcfd2c056380caa3--
