@@ -1,69 +1,52 @@
-Return-Path: <venkataravi.eluri@gmail.com>
+Return-Path: <smith-f@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 966A6E00E0A; Wed, 24 Jan 2018 22:48:31 -0800 (PST)
+	id BC564E00EAB; Thu, 25 Jan 2018 04:17:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE, MIME_HTML_ONLY,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (venkataravi.eluri[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.195 listed in list.dnswl.org]
+	mail provider *      (smith-f[at]gmx.de)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.227.17.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
-	[209.85.223.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE088E00CE8
-	for <yocto@yoctoproject.org>; Wed, 24 Jan 2018 22:48:30 -0800 (PST)
-Received: by mail-io0-f195.google.com with SMTP id f4so7517128ioh.8
-	for <yocto@yoctoproject.org>; Wed, 24 Jan 2018 22:48:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:subject:to:cc:message-id:date:user-agent:mime-version
-	:content-language:content-transfer-encoding;
-	bh=XWR0eIXPtqJxOlcnj6MvsFlj6qM2Tb1bOkR/ZMVLi7s=;
-	b=MEWB0Hd4lyt6ydK94QCxVTihUTxU2uHuiJajLnywDkkEqVSIvBN7bVC6+fyTb8UMlE
-	Eg3NUp0Pdr/Vo6oEvjCuDo+StAjh6G2TS4Z/7WJY4MUi5P6TDDdxlXJjzuJXJ9a/12e5
-	am+aGrBrhA+oXLlBaTaCbWKlW8gHVxbTPvsbSR/c3tEHHnbwEr2e68Nx3gkZYsne9ZM2
-	/cFhP+Qepr77XfR2TARt6vYHJhidiXQLVXWIwDm0j5xqB8XW3zRJC4YFU+Tw0iCQH5Ha
-	eusUORNbTiT3J/AA47V1Vjupvv3Z85mPV2P5evorN/Fo6AP/fRvxYW3yHe5fYoLQ/6+9
-	7Biw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:subject:to:cc:message-id:date:user-agent
-	:mime-version:content-language:content-transfer-encoding;
-	bh=XWR0eIXPtqJxOlcnj6MvsFlj6qM2Tb1bOkR/ZMVLi7s=;
-	b=P5kouRVJ4SmP7KHpVdaa3lYHC91/5RkGOQ8XQm+IVJL0KhacitIFQ5erHcdV126jzj
-	hS7Ltyakpmx3o9j11e7vkuC416WugW4lLrsKRFZkuQKdzNORMYUYIC12VnRO+1UJ2Obd
-	e0gm8jRJhsd6s6Xb40c6BOskyIsjkh3pQKISLAgemrrRJHcTly9xWXNcUsbr6DUg3ZDi
-	/AN4Z8ZStKWKjdaJdBgHqKxt386igb6+huRXdVtG5QszaTI/iBiSeHxwxgSZpjZWCH9x
-	IVTV25OHq2eIJZ0QRnizKwr6o7OiLpXlJuB5C7Zi5EKA1LIubiFbUVgWIYQ55KrCpqnm
-	FBIg==
-X-Gm-Message-State: AKwxyteNVZhXs8FfYo+Yp2knjoHSvWPNvbkwi5vLjhvdmQNAfHnDjqhi
-	F7z2kf5LvlNqhPPvYk2gjNodOHk=
-X-Google-Smtp-Source: AH8x226lB03uDh9x9t2aC3RJZyxWzVNXM1+9yvi/QCLArpoLa5AqOOPOpN+/8Hekk7r2hjTS72dVnw==
-X-Received: by 10.107.29.200 with SMTP id d191mr12108540iod.106.1516862910136; 
-	Wed, 24 Jan 2018 22:48:30 -0800 (PST)
-Received: from [192.168.137.251] ([117.246.166.37])
-	by smtp.gmail.com with ESMTPSA id p68sm384508itc.26.2018.01.24.22.48.28
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 24 Jan 2018 22:48:29 -0800 (PST)
-From: ravi <venkataravi.eluri@gmail.com>
-To: yocto@yoctoproject.org
-Message-ID: <42929a2a-b057-a00b-65d9-2d27b18cf767@gmail.com>
-Date: Thu, 25 Jan 2018 12:18:25 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	*      [score: 0.0007]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
+	Thu, 25 Jan 2018 04:16:59 PST
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03BBCE00B5F
+	for <yocto@yoctoproject.org>; Thu, 25 Jan 2018 04:16:59 -0800 (PST)
+Received: from [213.182.151.226] ([213.182.151.226]) by
+	3c-app-gmx-bs06.server.lan (via HTTP); Thu, 25 Jan 2018 13:11:55 +0100
 MIME-Version: 1.0
+Message-ID: <trinity-1a344deb-921e-4874-8498-d8ed6d57f28c-1516882315349@3c-app-gmx-bs06>
+From: "Frank Smith" <smith-f@gmx.de>
+To: yocto@yoctoproject.org
+Date: Thu, 25 Jan 2018 13:11:55 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:P5wxVbygR7q0dt2Jp+N1EK0ZEBFvjJFURAHEs+1rsr+
+	geYSspEsdDoseqWWuHPEftut6GD6t2mXharRs5g+3o0mjG4RA5
+	HhHBxolQ1LuncO4h6r08YJOi75Y3UssFG/S+7aCknGzCYyS1kL
+	srIlJroE8ZWB5RcIPuywD+cQtalaPHr9BUOFMi4/6RadrcW2hX
+	EbWsX4b4RwTgG8z+jelYZwzxfhoVHAxwOCLvrPzhJYaqiFgffS
+	CrpcvacvkrFFk3f/y3VfG00di01A409cDgCUTYa5oeNLIazKCj 7V9Hgo=
+X-UI-Out-Filterresults: notjunk:1;V01:K0:dsNYHxpjyvA=:BusR/rJvb7PKNQkFUi5PgM
+	I8uIe4I+owF4+A7e6Y1gmO2iaHKk/qBwpQfvBG45dEoqv7X5WuTVCWNKH0RWkQB+WHzdwkgr4
+	X28kqkN5SBE4jqG9zsed87+NqQmWghliYgdfHURJLeD8XPHDxM8GYMzhb4v3Y8IBzKnhkaxH1
+	nfsjuddTbd/neLd3S+AGG/HQcyEdiv8z39TXuqC4xbR/XZgVSN3zJab7U1MaX7dv9hld+Eswz
+	0x8JXSo6r+p7XvHLjVYOwGORBTUBT6+ZQ50IDmESQrTowoHoUBsWBF76Mgw8lUWrigfFQjYTt
+	p/ptOwM4mQr5G8eBez/ZCvT+K6UNqCERC3vV6RxgIlD0T/NeMhWHVZH/04lBjOYXC3u67Sr8h
+	6qttXBI/mTi5EOIGUSDw0egaeuwvkbfaaZOUPFwJ0w+cTCwfQ4lKVboKxTDSwIrPTLHCReaDe
+	P9zEKaOEIKlu+QqQ3kOZNv9dX7r2Hdum5Cw1LJVLUI1YUZa1SK9Z
 X-Mailman-Approved-At: Tue, 30 Jan 2018 08:54:36 -0800
-Subject: : (snappy:763): clutter-CRITICAL **: Unable to initialize clutter: Unable to initialize the clutter backend: no available drivers found
+Subject: KBUILD_DEFCONFIG_KMACHINE ?= defconfig_file does not work as expected
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,51 +58,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jan 2018 06:48:31 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 25 Jan 2018 12:17:00 -0000
+Content-Type: text/html; charset=UTF-8
 
-My main objective is to run snappy player 
-(https://wiki.gnome.org/Snappy) on target machine (BeagleBone Black) so, 
-I wrote a recipe for Snappy player(snappy_1.0.bb) as below
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div class="post-text" itemprop="text">
+<p><code>KBUILD_DEFCONFIG_KMACHINE ?= defconfig_file</code> does not work as I expected.</p>
 
+<p><strong>First lesson I learned: <code>defconfig != .config</code></strong></p>
 
-     LICENSE = "GPLv2"
-     LIC_FILES_CHKSUM = 
-"file://COPYING;md5=686e6cb566fd6382c9fcc7a557bf4544"
-     SRCREV = "e73fabce4c397b40d490c74f6a6a0de000804f42"
-     SRC_URI = "git://git.gnome.org/snappy"
-     S = "${WORKDIR}/git"
-     RDEPENDS_${PN} = "gtk+3 gstreamer1.0 glib-2.0 clutter-1.0 
-gstreamer1.0-plugins-base libxtst clutter-gst-3.0 clutter-gtk-1.0 libx11 
-cairo gdk-pixbuf"
-     # inherit line
-     inherit pkgconfig autotools
-     FILES_${PN} += "${datadir}/*"
+<p>A new defconfig file below <code>arch/arm/config/xy_defconfig</code> created by <code>make savedefconfig</code> is not equal to the <code>.config</code> file. I assume the linux kernel expand some symbols and create the final <code>.config</code>.</p>
 
+<p>Here comes the issue: yocto&#39;s in-tree defconfig only works with the full list of config symbols. The xy_defconfig below <code>arch/arm/configs</code> does not have all symbols. So the kernel is not as expected. Any suggestions if it is a bug or a feature? And how to force a make xy_defconfig before build?</p>
 
+<p>Best, Frank</p>
+</div>
 
-Added this recipe name in local.conf
-     IMAGE_INSTALL_append = " snappy"
-
-
-The build (bitbake core-image-sato) was successful, when I ran "snappy" 
-on target(BeagleBone Black) I am getting below error response.
-
-
-     sh-4.4# snappy
-     libEGL warning: DRI2: failed to authenticate
-     libEGL warning: DRI2: failed to authenticate
-     libEGL warning: DRI2: failed to authenticate
-     (snappy:763): clutter-CRITICAL **: Unable to initialize clutter: 
-Unable to initialize the clutter backend: no available drivers found.
-
-
-As per my Understanding in my recipe I have resolved all dependencies 
-for Snappy player (such as clutter, gstreamer, gtk etc.).
-I'm unable to figure out why snappy player is throwing error?
-
-Regards,
-Ravi
+<div>&nbsp;</div></div></body></html>
 
