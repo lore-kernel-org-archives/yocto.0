@@ -1,34 +1,42 @@
-Return-Path: <maciej.pijanowski@3mdeb.com>
+Return-Path: <tsarrazin@otonomy-aviation.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2696E00E7D; Thu, 25 Jan 2018 05:37:44 -0800 (PST)
+	id B339EE00DFD; Thu, 25 Jan 2018 06:10:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [46.105.58.91 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from cloudserver096301.home.pl (cloudserver096301.home.pl
-	[79.96.179.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F4183E00B66
-	for <yocto@yoctoproject.org>; Thu, 25 Jan 2018 05:37:42 -0800 (PST)
-Received: from 109241231046.gdansk.vectranet.pl (109.241.231.46) (HELO
-	[192.168.3.103])
-	by serwer1539010.home.pl (79.96.179.35) with SMTP (IdeaSmtpServer 0.82)
-	id 8d887390e28138fe; Thu, 25 Jan 2018 14:37:40 +0100
-To: Peter Spierenburg <peter.spierenburg@nautel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <MWHPR13MB1584C1139309858BD0E22C089EE20@MWHPR13MB1584.namprd13.prod.outlook.com>
-	<MWHPR13MB1584687F1F31126DF1FCA1CA9EE10@MWHPR13MB1584.namprd13.prod.outlook.com>
-From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-Message-ID: <94ea0e3c-29d4-40a1-19db-f716ddcd4dde@3mdeb.com>
-Date: Thu, 25 Jan 2018 14:37:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+X-Greylist: delayed 373 seconds by postgrey-1.32 at yocto-www;
+	Thu, 25 Jan 2018 06:10:37 PST
+Received: from 7.mo178.mail-out.ovh.net (7.mo178.mail-out.ovh.net
+	[46.105.58.91])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5E2BE00D32
+	for <yocto@yoctoproject.org>; Thu, 25 Jan 2018 06:10:37 -0800 (PST)
+Received: from player715.ha.ovh.net (b9.ovh.net [213.186.33.59])
+	by mo178.mail-out.ovh.net (Postfix) with ESMTP id 9CA97733EF
+	for <yocto@yoctoproject.org>; Thu, 25 Jan 2018 15:04:23 +0100 (CET)
+Received: from [192.168.1.146]
+	(LStLambert-658-1-124-250.w217-128.abo.wanadoo.fr [217.128.22.250])
+	(Authenticated sender: tsarrazin@otonomy-aviation.com)
+	by player715.ha.ovh.net (Postfix) with ESMTPSA id 5C3271C00FD
+	for <yocto@yoctoproject.org>; Thu, 25 Jan 2018 15:04:23 +0100 (CET)
+To: yocto@yoctoproject.org
+From: Thibaut SARRAZIN <tsarrazin@otonomy-aviation.com>
+Message-ID: <cf230c0b-0025-726c-5920-5c899dd0df65@otonomy-aviation.com>
+Date: Thu, 25 Jan 2018 15:04:22 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-In-Reply-To: <MWHPR13MB1584687F1F31126DF1FCA1CA9EE10@MWHPR13MB1584.namprd13.prod.outlook.com>
-Subject: Re: How do I generate a dtb for my board support package?
+X-Ovh-Tracer-Id: 16422094567324420265
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedtvddrudelgdefvdculddtuddrgedtuddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemuceftddtnecu
+Subject: log4cpp-1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,67 +48,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jan 2018 13:37:44 -0000
-Content-Type: multipart/alternative;
-	boundary="------------E261601ECD48B89C29EFFECA"
-Content-Language: en-US
-
---------------E261601ECD48B89C29EFFECA
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 25 Jan 2018 14:10:40 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: fr
 
 
+good morning everyone,
 
-On 25.01.2018 14:16, Peter Spierenburg wrote:
-> | make[2]: *** No rule to make target `sc589-ezkit.dts'.  Stop.
-You are building linux-yocto. You need to either add a patch to SRC_URI 
-which adds this
-dtb target to linux source, or build from a different repository, where 
-this support is already
-included. I would check from which linux tree they build kernel in 
-buildroot BSP.
-You will also need proper kernel configuration file for your board.
+i have a problem with the recipe log4cpp, i added layer log4cpp-1.1.1.bb 
+to my recipe. but when i look in my rootfs i have the log4cpp.so.5 
+library but not the include ones.
 
--- 
-Maciej Pijanowski
-Embedded Systems Engineer
-http://3mdeb.com | @3mdeb_com
+I can integrate them manually but I would like to add them in a .bbappend
+
+could you help me?
+
+thank you in advance
 
 
---------------E261601ECD48B89C29EFFECA
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=windows-1252">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 25.01.2018 14:16, Peter Spierenburg
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:MWHPR13MB1584687F1F31126DF1FCA1CA9EE10@MWHPR13MB1584.namprd13.prod.outlook.com"><span
-        style="font-family:Consolas,Courier,monospace">| make[2]: *** No
-        rule to make target `sc589-ezkit.dts'.  Stop.<br>
-      </span></blockquote>
-    You are building linux-yocto. You need to either add a patch to
-    SRC_URI which adds this<br>
-    dtb target to linux source, or build from a different repository,
-    where this support is already<br>
-    included. I would check from which linux tree they build kernel in
-    buildroot BSP.<br>
-    You will also need proper kernel configuration file for your board.<br>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-Maciej Pijanowski
-Embedded Systems Engineer
-<a class="moz-txt-link-freetext" href="http://3mdeb.com">http://3mdeb.com</a> | @3mdeb_com</pre>
-  </body>
-</html>
-
---------------E261601ECD48B89C29EFFECA--
