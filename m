@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <mtownsend1973@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E7C5E00E15; Fri, 26 Jan 2018 10:29:29 -0800 (PST)
+	id 07437E00DD9; Fri, 26 Jan 2018 10:52:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,66 +8,54 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
+	mail provider *      (mtownsend1973[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.47 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 040A9E00D1C
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 10:29:28 -0800 (PST)
-Received: by mail-pf0-f195.google.com with SMTP id a88so787892pfe.12
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 10:29:28 -0800 (PST)
+Received: from mail-lf0-f47.google.com (mail-lf0-f47.google.com
+	[209.85.215.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 750F5E00D6D
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 10:52:53 -0800 (PST)
+Received: by mail-lf0-f47.google.com with SMTP id a204so1915031lfa.2
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 10:52:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=ZbttAyZyTJeTqstmXzbVB7WaateciOEjGfuTAuIP8Zw=;
-	b=ltbDlSJUC+jUdFL2P7nMRklzRWjH3QGqokkUtWxsop3GamI7gZ4SK8tUhVNooWl8rR
-	xHW4BJG7LL1toGumBWVejFhraMvzVcgxFFtVMpRjS9oZUVbqhIXTwoz0CFeAB/EF0PbM
-	rqh3TbD4O8u6IWUOXbB7ELRxwaDgxOhlKGQ60OraC1iKwEOt9/2/qnPKcmFrbUhqwMBp
-	noBCaBIA6YYKBt+ewlLAGLtLkYvhbEnxRGyRVx/bhrkTkIvAzw6X6F0Nm1EmH6VOlicq
-	9Cfa3ZecMVAWkjm0sP1YCeFVNPfCUqv+AulQ5v9S6jz/YfirG61nPV9G5tAFbRgR1LXS
-	ihbQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=84+jbnp3D+WAg2F2V+n/W+W1N8L3iSkJP4I+xQBsXH0=;
+	b=MV+YLphY42rEwj/R7oAKegvpJKjwNezRJNryOWJPqMAgYKXQ8imB3d2rE70Q5zDBXz
+	6THvvHMQ/BFd5+MON8km43TPgTdWCzn7HseAAT7r+sVIH20ZC/BXeojXYW8KsL5xJThm
+	NufgN/4jYgUAgDJHy1j5Vsnn2C0m07ZBv7kmsWvf7UnIl9en/5eWYYSatMZJkjid+oSJ
+	MitopUzPQpJaZSnb467XABcNSTLHuiNGDQOwMuq7oXF90pPgR9PKUP6wniSqmqX3uqj4
+	V6fjNhI7ZPPf9EcKFzdKLQ9Hak5GJhoWbskMm+EQSpyxdgtHPP0oL4dQUcPTuNM3r0xQ
+	vvNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=ZbttAyZyTJeTqstmXzbVB7WaateciOEjGfuTAuIP8Zw=;
-	b=Mm4HcNkRpPgU6cLHY8+zFPsNyBN1eLPmb2WIB1uNKHmD7VoUdgNnRg00c8DigBn9sq
-	EVIAFJwS6bZ6H0DhUvftP2EFmaZwAK/1y5yvXDFGwwH17IO9dXRGaB0tow2+jpZBMqAm
-	JRrAJAc1K9e+i+NQx23lzRlrtzjYQsckssW/1gRIwY9X6tJbxM+PEMoAC44fEsHZvpyc
-	sRkZTmbZFNtcTbRmyOyXU3o7sWFh8CBbtm8BVD0yYuQ8O++AcvBW11Zbf1/U3OIaE0tJ
-	F3VYv5VrKu0+rW001tN3H3r+zNdox/pZOOLoeKuDudDQduqIwy1xhGEs9dnAQQc9eL3o
-	gGeg==
-X-Gm-Message-State: AKwxytcJRxxhM2lqpcPF+e3BVgo0qUGYox95wotuUKU+L3SpecWi8NnV
-	nRFEM8PHUqjr2ESNOuMVX4Jx7J3M
-X-Google-Smtp-Source: AH8x224CScvHbfuVI/gV58WGMvzbGbLNhNo+sOBA1HwZksaJCudnU8nbH7RWjyGrUaQZgtS7nAfFKA==
-X-Received: by 10.101.90.138 with SMTP id c10mr15160999pgt.6.1516991368039;
-	Fri, 26 Jan 2018 10:29:28 -0800 (PST)
-Received: from ?IPv6:2601:647:4c00:6cf9:bcb1:558b:44dd:74b6?
-	([2601:647:4c00:6cf9:bcb1:558b:44dd:74b6])
-	by smtp.gmail.com with ESMTPSA id
-	f21sm7525728pgv.42.2018.01.26.10.29.27 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 26 Jan 2018 10:29:27 -0800 (PST)
-To: yocto@yoctoproject.org
-References: <trinity-6b2e8095-aa74-42f3-960c-b26c140fbc44-1516988853978@3c-app-gmx-bs56>
-From: Khem Raj <raj.khem@gmail.com>
-Message-ID: <8cf76e0f-e81b-d83e-c8cf-25e7d73549c6@gmail.com>
-Date: Fri, 26 Jan 2018 10:29:26 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)
-	Gecko/20100101 Thunderbird/58.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=84+jbnp3D+WAg2F2V+n/W+W1N8L3iSkJP4I+xQBsXH0=;
+	b=ibJSWIZ3sbtHQiImtQ15cXzBNAqy4uveSd0MEsqt4s0ZGAxqqIJctubl3L8EbKqwBi
+	xspogke8xMvT2ZQtaiCtIrgGAtm86Mn4xWQeMLeSBOaQw1h+i5yDM9L4eisCcgT1P2Ui
+	doaxlFYuo0c3rZSMuizoUJb26CbN6PsMCxYfadSZMVPoeDpLJ4zx6PZGsTzmbCcwU6zQ
+	IBfuXru/Hie9Ae0Pik4+9TkAJJRRhXC508Knv2zYb3kVOyhyeijXa795jTzYDWVf06Sm
+	hTViEuLLwfRlkUb8Q3NExy6F5Qz0UuFRwvuW6vqgHuKGQDgRCE4Z1bCA2+PlB1G4EE7K
+	rduQ==
+X-Gm-Message-State: AKwxytcIAawx/2FN71zQSlbGSCpqG0Qhf7io6JwubewLlMtDX5gJ96ZY
+	5Bbp3K+ruKp3/DX/uBcvMwS2sFOs9frbXA4YogcQ/how
+X-Google-Smtp-Source: AH8x227G/XDFaqo5zUw9h9DUp45wSuXiTx9lsAxVZ4jHdS+GbNRhUgbMHkWS6mSdrUIvdegKXjUH3lDiO5boWsjDQq8=
+X-Received: by 10.25.225.84 with SMTP id y81mr9157678lfg.96.1516992772061;
+	Fri, 26 Jan 2018 10:52:52 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <trinity-6b2e8095-aa74-42f3-960c-b26c140fbc44-1516988853978@3c-app-gmx-bs56>
-Subject: Re: populate_sdk won't work
+Received: by 10.25.72.15 with HTTP; Fri, 26 Jan 2018 10:52:50 -0800 (PST)
+From: Martin Townsend <mtownsend1973@gmail.com>
+Date: Fri, 26 Jan 2018 18:52:50 +0000
+Message-ID: <CABatt_yonV4oU48rbZrQay+iYe_P-AYVZdgV5-_EL1AwvxkVqg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: image inheritance problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,27 +67,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jan 2018 18:29:29 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 26 Jan 2018 18:52:55 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 1/26/18 9:47 AM, John Smith wrote:
-> Hi list,
->  
-> bitbake my-core-image -c populate_sdk does not work and fails
-> at: x86_64-nativesdk-pokysdk-linux/nativesdk-libgcc
->  
-> Please see the log for further details: https://pastebin.com/w604z66S
->  
-> bitbake myimage works perfect except the sdk.
->  
-> Any suggestions?
->  
+Hi,
 
-what is your build host OS/arch
+I have an image say
 
-> Best kkl
-> 
+my-image-minimal.bb in one layer and and append this
+(my-image-minimal.bbappend) in another layer.  In this append I'm adding
+IMAGE_INSTALL += "kernel-modules"
+for example.
 
+Now if I run
+bitbake my-image-minimal -e | grep ^IMAGE_INSTALL
+I see kernel-modules
+
+So bbappend is working, now I have another image
+
+my-image which has
+requires /core/images/my-image-minimal.bb
+...
+
+But kernel-modules is not appearing in this image and
+bitbake my-image -e | grep ^IMAGE_INSTALL
+
+confirms this.
+
+Any ideas as to what I'm doing wrong, I assume bitbake supports this.
+
+I'm using the Krogoth release.
+
+Many Thanks in advance,
+Martin.
 
