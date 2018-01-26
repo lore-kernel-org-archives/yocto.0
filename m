@@ -1,62 +1,41 @@
-Return-Path: <pinganddu90@gmail.com>
+Return-Path: <jakob.hasse@smart-home-technology.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67527E00D6D; Fri, 26 Jan 2018 01:06:42 -0800 (PST)
+	id E439EE00DD9; Fri, 26 Jan 2018 04:12:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pinganddu90[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.26.49.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f177.google.com (mail-ot0-f177.google.com
-	[74.125.82.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBF4FE00CF1
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 01:06:41 -0800 (PST)
-Received: by mail-ot0-f177.google.com with SMTP id t20so9544757ote.11
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 01:06:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=IhMkeAGJBLibrKjJNFQSvbKgWMPv1H3zOom2bb4oaJ8=;
-	b=tm3RZmV02fAPH1ltYsmzJIZIDwonUanfqY5vY900mUvSrU44OGL78XvFCSDAKgNoO9
-	yJg1/r1nebOdVskoW4Dp5ttoirOkvvIsS1sYmm3WqMjFstrbbda7k91zCtcXAA7VDzJ2
-	gnym4fNR/ddQkNV9tW9zc+73mfm/TTE2V3RuBqEWYWfC2FRRK2uHgheB9/sJgtHrRlwm
-	4t2zQestN0WEZdGMd7VmgAygY08CyaLfBNb2jlFm/kMtL9EfKNwzOPXAa1y72bxjWxsN
-	JOwhI14BMQl6WxdcuZ21v36hWSqLLR5wU7lG8GMfPcfl0xOkAAbEAWmC51OnS6Q2GCW6
-	Tm1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=IhMkeAGJBLibrKjJNFQSvbKgWMPv1H3zOom2bb4oaJ8=;
-	b=IZH3lU7TY3Fn8kT4Wr/LAKEOJUJ6hmLaoAM4HD6ArIdKwg9YLWYTBO7Ns4mYOIcvP1
-	jC88TXVdQ1IIL/9MQAnqdvB6+7C3ucJxc8Jzum4zvcJgXt+TPgU8OGOdM/vA5pNNSZht
-	TDYAePss9rNzC107y+IHSoyhrWxGU1kQgyKz7nEqAEI/aCzuhsQFNUcVY68oOO4UQmxf
-	0FmOn0K9T56okLmCJQfpFQuCXL5CioPqtZv5IELbItrf/yvPK8CbzODUrHSeU6SMYwvq
-	4I4AqJC7O8SQZ4MbcN7QvVON+xhvkfUW1+JsyALTqojDoQ/bEfd4vWIjziSoYk60F438
-	SztQ==
-X-Gm-Message-State: AKwxytdrUz/Nn+U3d/mubYItouSzjEDuBkuB1dUvyJWbZ1wJjoeR2s4L
-	fUs+DYGtu0ZOC2jD5BOCTTLb+oUMGriYWorz/JIeyQ==
-X-Google-Smtp-Source: AH8x224CfTBKwL0OMLn+Y39Hx7aLG0QBuENgVq8uFoAp+TpE/W3wmkqglb04l8htUM0aLvXfYdbx5i4fDRTSzNeI6Rc=
-X-Received: by 10.157.87.101 with SMTP id x34mr13138974oti.171.1516957601069; 
-	Fri, 26 Jan 2018 01:06:41 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.74.173.139 with HTTP; Fri, 26 Jan 2018 01:06:40 -0800 (PST)
-From: kk <pinganddu90@gmail.com>
-Date: Fri, 26 Jan 2018 17:06:40 +0800
-Message-ID: <CAKHP1ds6nvjVUMEvYk-_RDQ968N6X+EMWbgi2hveKJnaALk0iA@mail.gmail.com>
+X-Greylist: delayed 1230 seconds by postgrey-1.32 at yocto-www;
+	Fri, 26 Jan 2018 04:12:51 PST
+Received: from mxout014.mail.hostpoint.ch (mxout014.mail.hostpoint.ch
+	[217.26.49.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5ADDBE00DA3
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 04:12:51 -0800 (PST)
+Received: from [10.0.2.45] (helo=asmtp012.mail.hostpoint.ch)
+	by mxout014.mail.hostpoint.ch with esmtp (Exim 4.90 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1ef2YO-00096R-Gu
+	for yocto@yoctoproject.org; Fri, 26 Jan 2018 12:52:20 +0100
+Received: from [2a02:168:68c8:1:a46c:fdeb:84c6:6f6d]
+	by asmtp012.mail.hostpoint.ch with esmtpa (Exim 4.90 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1ef2YO-000IOj-Db
+	for yocto@yoctoproject.org; Fri, 26 Jan 2018 12:52:20 +0100
+X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
 To: yocto@yoctoproject.org
-Subject: [meta-raspberrypi] how the linux-raspberry skip the do_kernel_metadata?
+From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
+Message-ID: <aa633a5b-a067-b6e8-4097-740c1b6dbab6@smart-home-technology.ch>
+Date: Fri, 26 Jan 2018 12:52:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.0
+MIME-Version: 1.0
+Subject: adding meta-virtualization gives bitbake error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,26 +47,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jan 2018 09:06:42 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1c002ef37e620563aa3698"
+X-List-Received-Date: Fri, 26 Jan 2018 12:12:54 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: de-DE
 
---94eb2c1c002ef37e620563aa3698
-Content-Type: text/plain; charset="UTF-8"
+Hello,
 
-I see the linux-raspberrypi_4.9.bb recipe didn't use the
-yocto-kernel-cache, and add configure in linux-raspberrypi.inc, I am
-interested in how the linux-raspberry skip the do_kernel_metadata?
+we're trying to include meta-virtualization in to our project, in 
+particular, we want to use docker. However, as soon as I include the 
+layer in to our project, bitbake complains:
 
-Thanks!
+bitbake -C compile core-image-base
+NOTE: Started PRServer with DBfile: 
+/home/jakob/workspace/beerstation/cache/prserv.sqlite3, IP: 127.0.0.1, 
+PORT: 46136, PID: 5713
+ERROR: Execution of event handler 'virt_bbappend_distrocheck' failed
+Traceback (most recent call last):
+   File 
+"/usr/local/dey-2.2/sources/meta-virtualization/classes/sanity-meta-virt.bbclass", 
+line 4, in virt_bbappend_distrocheck(e=<bb.event.SanityCheck object at 
+0x7f945e05d3c8>):
+      python virt_bbappend_distrocheck() {
+     >    skip_check = e.data.getVar('SKIP_META_VIRT_SANITY_CHECK') == "1"
+          if 'virtualization' not in 
+e.data.getVar('DISTRO_FEATURES').split() and not skip_check:
+TypeError: getVar() missing 1 required positional argument: 'expand'
 
---94eb2c1c002ef37e620563aa3698
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ERROR: Command execution failed: Traceback (most recent call last):
+   File "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/command.py", 
+line 101, in runAsyncCommand
+     self.cooker.updateCache()
+   File "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/cooker.py", line 
+1627, in updateCache
+     bb.event.fire(bb.event.SanityCheck(False), 
+self.databuilder.mcdata[mc])
+   File "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
+201, in fire
+     fire_class_handlers(event, d)
+   File "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
+124, in fire_class_handlers
+     execute_handler(name, handler, event, d)
+   File "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
+96, in execute_handler
+     ret = handler(event)
+   File 
+"/usr/local/dey-2.2/sources/meta-virtualization/classes/sanity-meta-virt.bbclass", 
+line 4, in virt_bbappend_distrocheck
+     skip_check = e.data.getVar('SKIP_META_VIRT_SANITY_CHECK') == "1"
+TypeError: getVar() missing 1 required positional argument: 'expand'
 
-<div dir=3D"ltr">I see the=C2=A0<a href=3D"http://linux-raspberrypi_4.9.bb"=
->linux-raspberrypi_4.9.bb</a> recipe didn&#39;t use the yocto-kernel-cache,=
- and add configure in=C2=A0linux-raspberrypi.inc, I am interested in how th=
-e linux-raspberry skip the do_kernel_metadata?<div><br></div><div>Thanks!</=
-div></div>
 
---94eb2c1c002ef37e620563aa3698--
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+
+Do we need to checkout a specific branch or so (though I can't find one 
+right now)?
+Do we need to change some kernel configuration? I added all 
+virtualization drivers in the "drivers" section of the kernel config 
+already.
+
+We're using DIGI embedded Yocto 2.2 (poky).
+
+Thanks and all the best,
+Jakob
+
+-- 
+Jakob Hasse
+Software Developement
+
+E: jakob.hasse@smart-home-technology.ch
+T: +41 44 552 02 66
+
+Smart Home Technology GmbH
+www.smart-home-technology.ch
+
+
