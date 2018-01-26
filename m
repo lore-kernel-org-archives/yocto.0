@@ -1,68 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <timothy.t.orling@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88830E00D8D; Fri, 26 Jan 2018 12:46:56 -0800 (PST)
+	id 4098EE00DF3; Fri, 26 Jan 2018 15:12:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f174.google.com (mail-pf0-f174.google.com
-	[209.85.192.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC476E00D5F
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 12:46:55 -0800 (PST)
-Received: by mail-pf0-f174.google.com with SMTP id i66so1023483pfd.7
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 12:46:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=mFulm96+N8fvcP3KhDxpYOyVQfJbdUEQLZqyY+AMP6E=;
-	b=MATlzsRVRaUnS5sTwhm4ZyNE4d5df+cBckSb1vWIiyrVzx7HwBMccqUp7IjBJkj36t
-	ivCAoPMk4KuNCuNoYeESb4uR1UObKMyOw9wMFHFhWdNo8nEu9gA2/OYrqur/8nhvGwP3
-	JBPGuyc+jhTec3Kx49e6VD6d1vD33F0ilQxU0i81PweadWGtLkPNBpfaTI9Jatdb2YqY
-	DSXTUyT/JK+hPweyOvoxTOuoNWCT/sy2HtWKLqriMgcFRW/QXSCmoWP6Zm/I6WLYq6Qz
-	i/WxVRbp8O++6uSKXQaa68Rjqj7NITShq+WFqxk5bMLtctQq4ZZvqoAf8dvngIw4Vq4a
-	rZgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=mFulm96+N8fvcP3KhDxpYOyVQfJbdUEQLZqyY+AMP6E=;
-	b=FTXS5zQm8pUFUlLLR0d3IG0N96ekmtEnJ2JF5xDbJFFWesJiokbHBlMDWYoULEnuPz
-	hFts6hWZgZE92vznUfE+laYQhU3gzVlkiFeHD7oCZg47MTHoUPbvWJeBlZ9cZOqtJZRT
-	4haBSRat6C9NH/Tnv48esVWO52Oi6iJyJJOslFbZLx76RNmFh0ZhCGDFlaa2EZAVyo1E
-	qPss5vsNNb92zwwMSnGoKJVAv39gAvbSbUcIcVAsLMRXh6T30oQbW09Xxsxb5OEBvvEr
-	ulDfodKAd+JJ9lvY1WzWyZQ+81lZC2l2r9P5vBVcYa2OqBTwTCwiyXCz5MsVYA1/GktQ
-	fiyg==
-X-Gm-Message-State: AKwxytdg7rQX+jcuC6olxAOO+nsY3799vZvhRH1cObFhX7jsi1Ls9rY3
-	fkQbms+5Y90C7P5FMmYXe3IPvsEs6PjnX/E5IRU=
-X-Google-Smtp-Source: AH8x227ruMdJ6P+Yb12ghbL9GfUWBQ3HTbkEYfdDMspI9CFMimwgh2Dc8SSaSHH9Knx8lWpvjF7/uMA7tTG26Ruhf90=
-X-Received: by 10.98.189.8 with SMTP id a8mr20145563pff.125.1516999614952;
-	Fri, 26 Jan 2018 12:46:54 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.100.161.170 with HTTP; Fri, 26 Jan 2018 12:46:24 -0800 (PST)
-In-Reply-To: <CABatt_xMTTykx4ZV_QzNN3Pij_eR6hSvk8dmzbcCQ3PFPcpJeQ@mail.gmail.com>
-References: <CABatt_yonV4oU48rbZrQay+iYe_P-AYVZdgV5-_EL1AwvxkVqg@mail.gmail.com>
-	<5717e72a-4379-18b7-b92f-c17044e288cb@gmail.com>
-	<CABatt_yzTO62VKww7u7STAuxOGM10vEUSEMAcyOHyvUL01xvUw@mail.gmail.com>
-	<CABatt_xMTTykx4ZV_QzNN3Pij_eR6hSvk8dmzbcCQ3PFPcpJeQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 26 Jan 2018 12:46:24 -0800
-Message-ID: <CAMKF1sqZdmgwEPB76re8-ndD-Do8JY591kLRN3a9SVPqPF=Leg@mail.gmail.com>
-To: Martin Townsend <mtownsend1973@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: image inheritance problem
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76CFBE00DD5
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 15:12:21 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	26 Jan 2018 15:12:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,419,1511856000"; d="scan'208";a="13299248"
+Received: from ttorling-mac01.jf.intel.com ([10.24.14.220])
+	by fmsmga007.fm.intel.com with ESMTP; 26 Jan 2018 15:12:20 -0800
+From: Tim Orling <timothy.t.orling@linux.intel.com>
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+Date: Fri, 26 Jan 2018 15:12:20 -0800
+References: <20180126033303.6842-1-timothy.t.orling@linux.intel.com>
+	<20180126033303.6842-2-timothy.t.orling@linux.intel.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <20180126033303.6842-2-timothy.t.orling@linux.intel.com>
+Message-Id: <AE32E7E0-2B18-443F-AFAA-19A0CB470680@linux.intel.com>
+X-Mailer: Apple Mail (2.3273)
+Subject: Re: [eclipse-poky][oxygen][PATCH v2 2/2] setup.sh: show versions availables and version installed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,75 +44,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jan 2018 20:46:56 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 26 Jan 2018 23:12:22 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 26, 2018 at 11:49 AM, Martin Townsend
-<mtownsend1973@gmail.com> wrote:
-> On Fri, Jan 26, 2018 at 7:17 PM, Martin Townsend
-> <mtownsend1973@gmail.com> wrote:
->> Hi Khem,
->>
->> On Fri, Jan 26, 2018 at 6:57 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>> On 1/26/18 10:52 AM, Martin Townsend wrote:
->>>> Hi,
->>>>
->>>> I have an image say
->>>>
->>>> my-image-minimal.bb in one layer and and append this
->>>> (my-image-minimal.bbappend) in another layer.  In this append I'm adding
->>>> IMAGE_INSTALL += "kernel-modules"
->>>> for example.
->>>>
->>>> Now if I run
->>>> bitbake my-image-minimal -e | grep ^IMAGE_INSTALL
->>>> I see kernel-modules
->>>>
->>>> So bbappend is working, now I have another image
->>>>
->>>> my-image which has
->>>> requires /core/images/my-image-minimal.bb
->>>> ...
->>>>
->>>> But kernel-modules is not appearing in this image and
->>>> bitbake my-image -e | grep ^IMAGE_INSTALL
->>>>
->>>> confirms this.
->>>>
->>>> Any ideas as to what I'm doing wrong, I assume bitbake supports this.
->>>>
->>>
->>> in second case you are including the .bb file so its behaving as an
->>> include file.
->>> bbappend only applies to parsed recipes not include files.
->>>
->>
->> Thanks for the swift reply and clarifications on how requires/include works.
->>
->> Don't suppose you know of the best way of handling this situation?
->
-> Not sure if it's the best way but I converted the bbappend to an image
-> recipe my-minimal-image-xxx.bb
-> and then include this as well as include will ignore it if the layer
-> doesn't exist. Seems to work :)
+I am going to go ahead and merge these as other work is depending on =
+these changes.
 
-thats probably ok. you can call it a .inc file and use include instead
-of require to include it
-that way you can include it in multiple image recipes or bbappends in
-your own layers.
+=E2=80=94Tim
 
+> On Jan 25, 2018, at 7:33 PM, Tim Orling =
+<timothy.t.orling@linux.intel.com> wrote:
+>=20
+> From: Chin Huat Ang <chin.huat.ang@intel.com>
+>=20
+> Signed-off-by: Chin Huat Ang <chin.huat.ang@intel.com>
+> Signed-off-by: Tim Orling <timothy.t.orling@linux.intel.com>
+> ---
+> scripts/setup.sh | 26 +++++++++++++++-----------
+> 1 file changed, 15 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/scripts/setup.sh b/scripts/setup.sh
+> index 024596bfb1e..e3da101cbe5 100755
+> --- a/scripts/setup.sh
+> +++ b/scripts/setup.sh
+> @@ -219,9 +219,13 @@ update_feature_remote()
+>   [ $# -lt 3 ] && err_exit 1 "update_feature_remote: invalid =
+parameters, $*"
+>   check_local_version $2 $3 $4 && echo "Feature $2 is already =
+installed" && return 0
+>   local installIU=3D""
+> +  local all_versions=3D$(get_version $1 $2 'all')
+> +
+> +  echo "Feature $2 versions available: $all_versions"
+> +
+>   if [ "x$4" !=3D "x" ]; then
+>       #has max version requirement
+> -      for i in "`get_version $1 $2 'all'`"; do
+> +      for i in $all_versions; do
+>         if [ "$i" \> "$3" ] || [ "$i" =3D "$3" ] && [ "$i" \< "$4" ]; =
+then
+>           [ "$i" \> "$installIU" ] && installIU=3D$i
+>         fi
+> @@ -264,51 +268,51 @@ fi
+> UPDATE_SITE=3D"http://download.eclipse.org/eclipse/updates/4.7"
+>=20
+> #CDT related
+> -echo -e "\nPlease wait. Installing CDT.SDK.FEATURE.GROUP"
+> CDTFEAT=3D"9.4.0"
+> +echo -e "\nPlease wait. Installing CDT.SDK.FEATURE.GROUP ${CDTFEAT}"
+> update_feature_remote ${MAIN_SITE} org.eclipse.cdt.sdk.feature.group =
+${CDTFEAT}
+>=20
+> -echo -e "\nPlease wait. Installing CDT.LAUNCH.REMOTE.FEATURE.GROUP"
+> CDTREMOTEVER=3D"9.4.0"
+> +echo -e "\nPlease wait. Installing CDT.LAUNCH.REMOTE.FEATURE.GROUP =
+${CDTREMOTEVER}"
+> update_feature_remote ${MAIN_SITE} =
+org.eclipse.cdt.launch.remote.feature.group ${CDTREMOTEVER}
+>=20
+> #AUTOTOOLS
+> -echo -e "\nPlease wait. Installing AUTOTOOLS.FEATURE.GROUP"
+> ATVER=3D"9.4.0"
+> +echo -e "\nPlease wait. Installing AUTOTOOLS.FEATURE.GROUP ${ATVER}"
+> update_feature_remote ${MAIN_SITE} =
+org.eclipse.cdt.autotools.feature.group ${ATVER}
+>=20
+> #TM Terminal (was RSE) related
+> -echo -e "\nPlease wait. Installing TM.TERMINAL.FEATURE.FEATURE.GROUP"
+> TMTERMVER=3D"4.3.0"
+> +echo -e "\nPlease wait. Installing TM.TERMINAL.FEATURE.FEATURE.GROUP =
+${TMTERMVER}"
+> update_feature_remote ${MAIN_SITE} =
+org.eclipse.tm.terminal.feature.feature.group ${TMTERMVER}
+>=20
+> -echo -e "\nPlease wait. Installing =
+TM.TERMINAL.VIEW.RSE.FEATURE.GROUP"
+> TMTERMVIEWRSEVER=3D"4.3.0"
+> +echo -e "\nPlease wait. Installing TM.TERMINAL.VIEW.RSE.FEATURE.GROUP =
+${TMTERMVIEWRSEVER}"
+> update_feature_remote ${MAIN_SITE} =
+org.eclipse.tm.terminal.view.rse.feature.feature.group =
+${TMTERMVIEWRSEVER}
+>=20
+> -echo -e "\nPlease wait. Installing TM.TERMINAL.CONTROL.FEATURE.GROUP"
+> TMCONTROLVER=3D"4.3.0"
+> +echo -e "\nPlease wait. Installing TM.TERMINAL.CONTROL.FEATURE.GROUP =
+${TMCONTROLVER}"
+> update_feature_remote ${MAIN_SITE} =
+org.eclipse.tm.terminal.control.feature.feature.group ${TMCONTROLVER}
+>=20
+> #RSE_SDK
+> -echo -e "\nPlease wait. Installing RSE.SDK.FEATURE.GROUP"
+> RSESDKVER=3D"3.7.0"
+> +echo -e "\nPlease wait. Installing RSE.SDK.FEATURE.GROUP =
+${RSESDKVER}"
+> update_feature_remote ${TM_SITE} org.eclipse.rse.sdk.feature.group =
+${RSESDKVER}
+> #echo -e "\nSkipping RSE.SDK.FEATURE.GROUP"
+>=20
+> #RSE_TERMINALS
+> -echo -e "\nPlease wait. Installing RSE.TERMINALS.FEATURE.GROUP"
+> RSETERMVER=3D"3.8.0"
+> +echo -e "\nPlease wait. Installing RSE.TERMINALS.FEATURE.GROUP =
+${RSETERMVER}"
+> update_feature_remote ${TM_SITE} =
+org.eclipse.rse.terminals.feature.group ${RSETERMVER}
+> #echo -e "\nSkipping RSE.TERMINALS.FEATURE.GROUP"
+>=20
+> #Lttng2
+> TMF_CTF_REL=3D"3.2.0"
+> -echo -e "\nPlease wait. Installing =
+TRACECOMPASS.LTTNG2.UST.FEATURE.GROUP"
+> +echo -e "\nPlease wait. Installing =
+TRACECOMPASS.LTTNG2.UST.FEATURE.GROUP ${TMF_CTF_REL}"
+> update_feature_remote ${MAIN_SITE} =
+org.eclipse.tracecompass.lttng2.ust.feature.group ${TMF_CTF_REL}
+>=20
+> -echo -e "\nPlease wait. Installing =
+OSGI.COMPATIBILITY.PLUGINS.FEATURE.FEATURE.GROUP"
+> COMPAT_VER=3D"1.1.1"
+> +echo -e "\nPlease wait. Installing =
+OSGI.COMPATIBILITY.PLUGINS.FEATURE.FEATURE.GROUP ${COMPAT_VER}"
+> update_feature_remote ${UPDATE_SITE} =
+org.eclipse.osgi.compatibility.plugins.feature.feature.group =
+${COMPAT_VER}
+>=20
+> echo -e "\nYour build environment is successfully created."
+> --=20
+> 2.13.6
+>=20
 
->
->>
->>>> I'm using the Krogoth release.
->>>>
->>>> Many Thanks in advance,
->>>> Martin.
->>>>
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
 
