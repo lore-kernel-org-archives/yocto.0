@@ -1,6 +1,6 @@
 Return-Path: <mtownsend1973@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD522E00E13; Fri, 26 Jan 2018 11:17:28 -0800 (PST)
+	id 807D3E00E15; Fri, 26 Jan 2018 11:49:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (mtownsend1973[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.66 listed in list.dnswl.org]
+	*      [209.85.215.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,45 +19,46 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f66.google.com (mail-lf0-f66.google.com
-	[209.85.215.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13B89E00D6D
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 11:17:27 -0800 (PST)
-Received: by mail-lf0-f66.google.com with SMTP id h92so1973014lfi.7
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 11:17:27 -0800 (PST)
+Received: from mail-lf0-f46.google.com (mail-lf0-f46.google.com
+	[209.85.215.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D944AE00D6D
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 11:49:29 -0800 (PST)
+Received: by mail-lf0-f46.google.com with SMTP id f136so2058198lff.8
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 11:49:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=1aZLCPg50nyj8h4v2mXf9T2v2ncA0IY5EaOhyrSDiCU=;
-	b=Pxo0q/yh97Dx4M0UJzCgzyhef+Y9TRcbxMOo9rkxccurtp+x40zyGunCb7RlpQmeGE
-	h0KqlW047jd0hggRoy6c/XW8J7VjxjuS4mNqYxU0PtR5W4O+0rLtWWrZVQ9/6Ban5dNc
-	AimAhaOSUXuMB8v6HLVSoNh3H2tJsZp3MAefmht4n99Mv5oaZouHmHS5b5JJkdrmiMiI
-	LQbdMfTGhJ6llVYfwbIJ/HsPbVfPE/zldscu5sXVLqNSUz5T46lQSVE6skpLR2fN9Zn1
-	ChkRcTGkz0bHs7oun8tkdT4l63phpePxviL10K5rJC8UJjWcJdWOng19VKJtjB8ZSp9q
-	dCng==
+	:cc; bh=ggD+xkXRFho7Jk7ZBnqvLI7vLIys4xqU7nyyuZwAXJ8=;
+	b=YPnEGjiDinJG0S95icBORP1NsvKO7H3kg+5QE8ek8W7HBUrHRI1Zw0boCDORJA/iuR
+	Ck/grGtt7ka1dKTZh5jYi7gLnjTUjLUxygJwi/adaPbgo6j9VbUsWwpdq5DTQDBZb+r/
+	+Hv3YsTFwGgWWpx1Of82oxXfUSx7A2rE9b0ET9NAIUyxIRPZwbf7j5UJfxwoTxv8oNjJ
+	nmwGGs12h34L+rw+VNc5G5wXufUlrMqsUmx90ffZaZUT7+f80GOKwbYez+7pN+Ksk3sn
+	40SBYpdDNxgm0p4LDBgvEG5YDL7YngbcxXUcP48a8o+0WRHCFUJElqRxrC98aznZ4g7m
+	VAKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=1aZLCPg50nyj8h4v2mXf9T2v2ncA0IY5EaOhyrSDiCU=;
-	b=eiS+p5cM7/rTvcWs4WevPPSh3lT1BDfZ+yH1fG5oKPdR8HqSuwJ91z7GlIHzUx++IP
-	a6QEycFF843RQEc/Ysh/1WqDRxqkvgiLOcUudhECVuCWOU2D2s/TJnR0g4kvE6WiZqQJ
-	8NMvJlBrKSb949ih9dLYuUPaadoC9uuoWbDppEdz+Xcs82guxfyyt9cMwx2FD1Wyt/8e
-	7tOZMnSQEBW3jw5vpEYqH3rCU//SgkvZf5exiWXbqFAoQ+KP8dCPWKk3dZ0glIIvIdp5
-	wlBA6Gefx/pk69nCkb9t1cWK/07yRX/G+2cYc0w0r70WY54B5FnIkxp6i79hUOP4Zq/v
-	nF1g==
-X-Gm-Message-State: AKwxytdHm/+B47XNNXwfJqfE/6aOCKxUiqYiSS2Na71e/hDZeC1GzBt8
-	q0eVNVfOLw0ms050ifUFQarnrGGDpKiARC6k0H0=
-X-Google-Smtp-Source: AH8x2270T/brxpmJOWlqzaG90PVQFd6voixVifn7pRDiymCykqLv8zWQWcTmqR6WSu1BfJpnit9/qFjeBnfWBlbdW8k=
-X-Received: by 10.25.224.17 with SMTP id x17mr8667367lfg.91.1516994246873;
-	Fri, 26 Jan 2018 11:17:26 -0800 (PST)
+	bh=ggD+xkXRFho7Jk7ZBnqvLI7vLIys4xqU7nyyuZwAXJ8=;
+	b=kS5+PsPTEiLhUuzim/qxBCF0q18F7DU0Q4+89sXJ4reP6HNic5NRfyxEenlRO48DnI
+	mXhQWsoP5lg/wVOiBOTBxBCEYwD4GZjWnYQJaG81aVJG6pDUzVo0rBorKPxU714C4buZ
+	EAKgzWYFJEhsC2J0KWbrZiRERWS1aDMuH8o5S2CjjR6WZBHWHBsrLfj/6OW7ziV44J7s
+	6J1++glLyKY7sPZeGcz9J73rklNh90WLh8/kCBf6FAUputOlxuQg//M1l1p8OZdynbE/
+	JQZwSgmGIf1ql7Faquhsn+ap+571ThNMRPpsZ1NTAjyF7RWqyo6wDfxczrURSaffPZDa
+	zApw==
+X-Gm-Message-State: AKwxytdfkm8KZbHE08gphDlhiyFKDu/ojeDk8WwuKIP+bM51tfc7tjqv
+	YePSYZPeU6SUH8q3foZ46syGVTQ2WzUNUnlKBJc=
+X-Google-Smtp-Source: AH8x226OscShXWPbQd3J6U7SggTw/iNIJdm0dj8sZYVa4GiKcl+s/weD4BfeR10+52oAm/6/Bclb7UnRKjojtj4XcKM=
+X-Received: by 10.46.29.83 with SMTP id d80mr6098716ljd.95.1516996168813; Fri,
+	26 Jan 2018 11:49:28 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.25.222.87 with HTTP; Fri, 26 Jan 2018 11:17:26 -0800 (PST)
-In-Reply-To: <5717e72a-4379-18b7-b92f-c17044e288cb@gmail.com>
+Received: by 10.25.222.87 with HTTP; Fri, 26 Jan 2018 11:49:28 -0800 (PST)
+In-Reply-To: <CABatt_yzTO62VKww7u7STAuxOGM10vEUSEMAcyOHyvUL01xvUw@mail.gmail.com>
 References: <CABatt_yonV4oU48rbZrQay+iYe_P-AYVZdgV5-_EL1AwvxkVqg@mail.gmail.com>
 	<5717e72a-4379-18b7-b92f-c17044e288cb@gmail.com>
+	<CABatt_yzTO62VKww7u7STAuxOGM10vEUSEMAcyOHyvUL01xvUw@mail.gmail.com>
 From: Martin Townsend <mtownsend1973@gmail.com>
-Date: Fri, 26 Jan 2018 19:17:26 +0000
-Message-ID: <CABatt_yzTO62VKww7u7STAuxOGM10vEUSEMAcyOHyvUL01xvUw@mail.gmail.com>
+Date: Fri, 26 Jan 2018 19:49:28 +0000
+Message-ID: <CABatt_xMTTykx4ZV_QzNN3Pij_eR6hSvk8dmzbcCQ3PFPcpJeQ@mail.gmail.com>
 To: Khem Raj <raj.khem@gmail.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: image inheritance problem
@@ -72,58 +73,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jan 2018 19:17:28 -0000
+X-List-Received-Date: Fri, 26 Jan 2018 19:49:30 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Khem,
-
-On Fri, Jan 26, 2018 at 6:57 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> On 1/26/18 10:52 AM, Martin Townsend wrote:
->> Hi,
+On Fri, Jan 26, 2018 at 7:17 PM, Martin Townsend
+<mtownsend1973@gmail.com> wrote:
+> Hi Khem,
+>
+> On Fri, Jan 26, 2018 at 6:57 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>> On 1/26/18 10:52 AM, Martin Townsend wrote:
+>>> Hi,
+>>>
+>>> I have an image say
+>>>
+>>> my-image-minimal.bb in one layer and and append this
+>>> (my-image-minimal.bbappend) in another layer.  In this append I'm adding
+>>> IMAGE_INSTALL += "kernel-modules"
+>>> for example.
+>>>
+>>> Now if I run
+>>> bitbake my-image-minimal -e | grep ^IMAGE_INSTALL
+>>> I see kernel-modules
+>>>
+>>> So bbappend is working, now I have another image
+>>>
+>>> my-image which has
+>>> requires /core/images/my-image-minimal.bb
+>>> ...
+>>>
+>>> But kernel-modules is not appearing in this image and
+>>> bitbake my-image -e | grep ^IMAGE_INSTALL
+>>>
+>>> confirms this.
+>>>
+>>> Any ideas as to what I'm doing wrong, I assume bitbake supports this.
+>>>
 >>
->> I have an image say
->>
->> my-image-minimal.bb in one layer and and append this
->> (my-image-minimal.bbappend) in another layer.  In this append I'm adding
->> IMAGE_INSTALL += "kernel-modules"
->> for example.
->>
->> Now if I run
->> bitbake my-image-minimal -e | grep ^IMAGE_INSTALL
->> I see kernel-modules
->>
->> So bbappend is working, now I have another image
->>
->> my-image which has
->> requires /core/images/my-image-minimal.bb
->> ...
->>
->> But kernel-modules is not appearing in this image and
->> bitbake my-image -e | grep ^IMAGE_INSTALL
->>
->> confirms this.
->>
->> Any ideas as to what I'm doing wrong, I assume bitbake supports this.
+>> in second case you are including the .bb file so its behaving as an
+>> include file.
+>> bbappend only applies to parsed recipes not include files.
 >>
 >
-> in second case you are including the .bb file so its behaving as an
-> include file.
-> bbappend only applies to parsed recipes not include files.
+> Thanks for the swift reply and clarifications on how requires/include works.
 >
+> Don't suppose you know of the best way of handling this situation?
 
-Thanks for the swift reply and clarifications on how requires/include works.
+Not sure if it's the best way but I converted the bbappend to an image
+recipe my-minimal-image-xxx.bb
+and then include this as well as include will ignore it if the layer
+doesn't exist. Seems to work :)
 
-Don't suppose you know of the best way of handling this situation?
-
->> I'm using the Krogoth release.
->>
->> Many Thanks in advance,
->> Martin.
->>
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>>> I'm using the Krogoth release.
+>>>
+>>> Many Thanks in advance,
+>>> Martin.
+>>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
