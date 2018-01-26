@@ -1,65 +1,77 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D226BE00E0A; Fri, 26 Jan 2018 05:11:32 -0800 (PST)
+	id A4D22E00DA9; Fri, 26 Jan 2018 06:09:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.216.194 listed in list.dnswl.org]
+	*      [209.85.215.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f194.google.com (mail-qt0-f194.google.com
-	[209.85.216.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B08FCE00D6E
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 05:11:31 -0800 (PST)
-Received: by mail-qt0-f194.google.com with SMTP id x27so1040512qtm.12
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 05:11:31 -0800 (PST)
+Received: from mail-lf0-f66.google.com (mail-lf0-f66.google.com
+	[209.85.215.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13068E00CF1
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 06:09:41 -0800 (PST)
+Received: by mail-lf0-f66.google.com with SMTP id a204so853590lfa.2
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 06:09:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=h0W3bPCsBTmjBwhwll+IdaaCKXSux6ZqBqkgy7biMMw=;
-	b=J3US0lvMSuFEmGPblHio+4aPFzGqQ85lANK1KkfoMQeqCVlGULa29AS8zt4PvGPC3o
-	IeSG88agLwzLDatp0kjNEWPH15h7pKXxzsy73fN0RiIpgKGF/lvcnW1NC3y1QqUjEtg2
-	mzAViszLxtSTycgvazv/ZcGaqmg15nBKIDOauWAhYTBNchvc9xEM4DfV+VtWyMOTIbe/
-	Std71HoMZvNeQnByj3IVXXNNNhJu0cEfAY6b+MFdsshQxvhWBe6IvLuueZi42BUN/TyE
-	JFljjRiAp7UXS/V03IQwdbIghwBrh6ssK9QADWCzewApA/dx16Y8rV15PUF8dCpPAN/u
-	ImOQ==
+	:cc; bh=d4UxG2a56N55nszm2ioDASDlOpwOt43orZW7ITBmQk4=;
+	b=piqHmQNAIzk7ufzjms2Yf73svzPCMbTgqdIrYW9C/dqETDP17SP4E1cpZBaoKUL+V9
+	VG4ml023+XY+l/QWdrn7jddlYm7rkkjBaxiEnU8WGxy9/soB4NMh/+8gZoeXoEaLpqC/
+	nh5dE08Ov9U/wu31N4ycy53WkCHC6yQVjPLUiIdJtQfM1shX7qJmKMCW28OAaUSIhVg7
+	RvOR8lklXARmPaEEIcxFizzhDfqWu/bI3AzUAfvFq7hJRe5FgTQz43VcRmQUU76L7AIo
+	fLkZg3LgOP7VD95BJIUQc1tGSq7vcVsZD/xYaGND+tnO9XUlDYwKAzjCNW+BWAqGy1xy
+	6i+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=h0W3bPCsBTmjBwhwll+IdaaCKXSux6ZqBqkgy7biMMw=;
-	b=NzMcABMVuMJ4BC3ZA1JDH1mQKMaFKcOSzCEhPP1D+ISOBgF6Ij/6+OftgAQ3LZPVE8
-	nIKi7/xjTvgmz1aCmDl3euzifbs2NHHCeBljykvsXVqL2IoVVDLnXYY3wnm0JScoxwxJ
-	AuF5zDkgajrgWOM+t4khoNuTPFtkFLhFi/XQMTbL6+CKLsl2Ww6OGknxt0uzJXUTHH1k
-	8a5W81cIFXYnXjpcyXjyOkhWJ90Z3LBi/AuQPymt4AG86acCJTvkqEv6mMi+he4qCrYF
-	SUI7YCsu0GvhKvLmKet4mbE9PZY9c+NHuZsoVNJEFDrh85DxTtLPj6XTMVZKUgisIrPe
-	/HWQ==
-X-Gm-Message-State: AKwxytdszkd35V7IOLgviRPR3h4cazt1ucz1B+0VRve1nqxO790RX0a+
-	Pb5nTLtHEhjhMantQ1+2Mg5skfoB+W6FmP8VLj0=
-X-Google-Smtp-Source: AH8x224g+sxdkXPesIeDFpluF2tHSeswqfZ2xQKPZddJF08iP852B1MdwClyoVlkJZUg5M4YukfaWp6yYCuN59aAwbg=
-X-Received: by 10.55.214.22 with SMTP id t22mr19664285qki.19.1516972290603;
-	Fri, 26 Jan 2018 05:11:30 -0800 (PST)
+	bh=d4UxG2a56N55nszm2ioDASDlOpwOt43orZW7ITBmQk4=;
+	b=uDIGd1gOG/Bi70QFB+aZEyBJOXSM1HI22CQtT1/npCWPkO97zIEF/L75J4qv+d2VRN
+	XoGzBDVduhH1uBi2EordqOOKWdnpv4KmiJrCLPXYIox29X4y27n2ZAkGC6kmVIYWDx1c
+	ZcrZAnEclFL21z+iQnqiLZpvy5QM2+jimKGVMikjbGr+JW2PER4l81BDlRqZGpT+YkM/
+	Nzl20F/ZdIlbKkiZwnPqthnRRznQ4Nfa8wSgX83fL5r6bh2gudMGTbjsd3jfgVodhqlJ
+	45r48E+hXMqrflJDfXEqDtZOGJOf4z4IK6Y3QMnS1u+x/35CoQbNi4SCrCt5zY0HbEm4
+	TtSA==
+X-Gm-Message-State: AKwxytcogssCfziYUsldbzG5O8L7NqfluUIlWUQLYVOQOmz9IE+TvbWJ
+	L0oZFlypd3xrrK/YMCVN1eJxfku3HPAd1iDHnQc=
+X-Google-Smtp-Source: AH8x226UG87bXlBYf4vmt7sGDC+M4quq/79ogX46AcuNx8ZVlXOhawq88TsYiq1GKPGp5yjNZ4tcN89W5STHOazyfz0=
+X-Received: by 10.46.124.11 with SMTP id x11mr8710213ljc.99.1516975780908;
+	Fri, 26 Jan 2018 06:09:40 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.12.177.26 with HTTP; Fri, 26 Jan 2018 05:11:30 -0800 (PST)
-In-Reply-To: <CAKHP1ds6nvjVUMEvYk-_RDQ968N6X+EMWbgi2hveKJnaALk0iA@mail.gmail.com>
-References: <CAKHP1ds6nvjVUMEvYk-_RDQ968N6X+EMWbgi2hveKJnaALk0iA@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Fri, 26 Jan 2018 08:11:30 -0500
-Message-ID: <CADkTA4P0GMw-zL9=mNMvc+qC=QX-_qwHtLX3dkgK8aAw9uJoew@mail.gmail.com>
-To: kk <pinganddu90@gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] how the linux-raspberry skip the do_kernel_metadata?
+Received: by 10.25.217.21 with HTTP; Fri, 26 Jan 2018 06:09:40 -0800 (PST)
+In-Reply-To: <b4c91bca-5d86-7a02-c1b0-e53a41ff3d45@prevas.dk>
+References: <CAPb0b+MTepwNFB6KEybbdH9kYaox-N54=gFsuyWa9Xn+zK2MoQ@mail.gmail.com>
+	<CALbNGRRGxLOPojWhFis7Ew0TOx1R_kx2_Rhp7AFJEa5GYuh=AQ@mail.gmail.com>
+	<CALw8SCVP_pE=yyJcO0gULT+1J1T1E_pF0y3nQuShWi3feKBFdQ@mail.gmail.com>
+	<CALbNGRTXT084ZC3cD4URao28SWTo0E-Lkr6FLjici5Pb9MppJg@mail.gmail.com>
+	<CAK18fxFrW4LDvxneQv1VEcB6anirbtYgfGuWHQSzxQTC4Oo0CQ@mail.gmail.com>
+	<CALbNGRR4GVLtkE+AjVwv0BRvPUnXSduibbjB9qkM9awZn+LEJw@mail.gmail.com>
+	<CAK18fxF5=v4fJsRG7Kkcmu10UEeDecjJKatVw+Z5kwZ8qdn_Qg@mail.gmail.com>
+	<CALbNGRRwt8c_QkPnEsTiVFssaqnUUH9inAzjXrK=Pi80t_sGmQ@mail.gmail.com>
+	<CAPyrkgyJRsHEe9PrQ8nvE66D7wixfv760QaM0pbVoOreHdfbuw@mail.gmail.com>
+	<CALbNGRSckHk37r9QqKXuQ3TGqA_oBPoEu4eFxDoM-5ZG9N2XWQ@mail.gmail.com>
+	<e6dcc7ba-cc7e-2e98-7bcb-0fc21dc06415@gmail.com>
+	<b4c91bca-5d86-7a02-c1b0-e53a41ff3d45@prevas.dk>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Fri, 26 Jan 2018 09:09:40 -0500
+Message-ID: <CAHUNapRYzSZpzzJghmWDG5o2MDJVC=dDO8Gf=M1U52EX0DU4Xw@mail.gmail.com>
+To: =?UTF-8?Q?Martin_Hundeb=C3=B8ll?= <martin.hundeboll@prevas.dk>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] linux kernel rt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,38 +83,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jan 2018 13:11:32 -0000
+X-List-Received-Date: Fri, 26 Jan 2018 14:09:42 -0000
+Content-Type: multipart/alternative; boundary="f4f5e8072a808dd24c0563ae7256"
+
+--f4f5e8072a808dd24c0563ae7256
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 26, 2018 at 4:06 AM, kk <pinganddu90@gmail.com> wrote:
-> I see the linux-raspberrypi_4.9.bb recipe didn't use the yocto-kernel-cache,
-> and add configure in linux-raspberrypi.inc, I am interested in how the
-> linux-raspberry skip the do_kernel_metadata?
-
-That task does more than just enable the kernel-cache data, but in theory you
-could just delete the task yourself and see what breaks.
-
-(i.e. make a bbappend to the kernel recipe and use something like
-"deltask kernel_metadata" to remove the task).
-
-What problem is that step causing in your build ? Maybe there's a better way
-to fix things if it's a performance issue or some sort of other bug.
-
-Bruce
+On Fri, Jan 26, 2018 at 3:43 AM, Martin Hundeb=C3=B8ll <
+martin.hundeboll@prevas.dk> wrote:
 
 >
-> Thanks!
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> On 2018-01-26 04:51, Khem Raj wrote:
 >
+>>
+>> Secondly, I wonder how good is upstream mainline kernel for rpi now a
+>> days, we could always have a mainline recipe as an option and use it as
+>> base for things like rt.
+>>
+>
+> Apart from runtime device tree overlay support for RPi hats/extension
+> boards, mainline linux fully supports each RPi revision.
+>
+> I guess linux-yocto-rt would be just fine...
+>
+>
+Does anyone know if the FIQ bug has been fixed upstream? The last time I
+looked into PREEMPT_RT on the RPi, the only way to make it work/stable was
+to patch the FIQ issue, or disable FIQ altogether (not ideal). This patch
+was outside both the kernel and the PREEMPT_RT patch.
 
+--f4f5e8072a808dd24c0563ae7256
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On F=
+ri, Jan 26, 2018 at 3:43 AM, Martin Hundeb=C3=B8ll <span dir=3D"ltr">&lt;<a=
+ href=3D"mailto:martin.hundeboll@prevas.dk" target=3D"_blank">martin.hundeb=
+oll@prevas.dk</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span=
+ class=3D""><br>
+<br>
+On 2018-01-26 04:51, Khem Raj wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<br>
+Secondly, I wonder how good is upstream mainline kernel for rpi now a days,=
+ we could always have a mainline recipe as an option and use it as base for=
+ things like rt.<br>
+</blockquote>
+<br></span>
+Apart from runtime device tree overlay support for RPi hats/extension board=
+s, mainline linux fully supports each RPi revision.<br>
+<br>
+I guess linux-yocto-rt would be just fine...<span class=3D"HOEnZb"><font co=
+lor=3D"#888888"><br>
+<br></font></span></blockquote></div><br></div><div class=3D"gmail_extra">D=
+oes anyone know if the FIQ bug has been fixed upstream? The last time I loo=
+ked into PREEMPT_RT on the RPi, the only way to make it work/stable was to =
+patch the FIQ issue, or disable FIQ altogether (not ideal). This patch was =
+outside both the kernel and the PREEMPT_RT patch.<br></div></div>
 
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
-
+--f4f5e8072a808dd24c0563ae7256--
