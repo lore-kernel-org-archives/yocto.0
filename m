@@ -1,88 +1,91 @@
-Return-Path: <carlos.bejar-colonia@philips.com>
+Return-Path: <peter.spierenburg@nautel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FD98E00D99; Fri, 26 Jan 2018 12:06:27 -0800 (PST)
+	id 25A2DE00D99; Fri, 26 Jan 2018 12:08:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.99 listed in list.dnswl.org]
+	*      [104.47.36.119 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0099.outbound.protection.outlook.com [104.47.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE63BE00D6D
-	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 12:06:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=philips.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=V/nRj+Bt8Zu1wC7/cEhc9TI70XyBYv1Xa1CfwRffNXw=;
-	b=MA7EuOZXvRDfktiO3z1JnVmHhVyvpoPZCVIqHe9aIDeskvKRkE9Dn+NW7x11wPWqS4vvX2S3GcU8NmwkIOvh+h3dYuWji/PMdHHyyc2Ib1b0aJba3fpblnwYaZN7WQMMzW4W/4Xv5oLut7JAAhkXKHepK4ToKIXEVG3KlAF/pec=
-Received: from AM4P122MB0068.EURP122.PROD.OUTLOOK.COM (129.75.167.87) by
-	AM4P122MB0068.EURP122.PROD.OUTLOOK.COM (129.75.167.87) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.428.22; Fri, 26 Jan 2018 20:06:21 +0000
-Received: from AM4P122MB0068.EURP122.PROD.OUTLOOK.COM
-	([fe80::e019:bb93:23dd:9300]) by AM4P122MB0068.EURP122.PROD.OUTLOOK.COM
-	([fe80::e019:bb93:23dd:9300%17]) with mapi id 15.20.0428.025;
-	Fri, 26 Jan 2018 20:06:21 +0000
-From: "Bejar-Colonia, Carlos" <carlos.bejar-colonia@philips.com>
+X-Greylist: delayed 100226 seconds by postgrey-1.32 at yocto-www;
+	Fri, 26 Jan 2018 12:08:31 PST
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+	(mail-sn1nam02on0119.outbound.protection.outlook.com [104.47.36.119])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F825E00DD9
+	for <yocto@yoctoproject.org>; Fri, 26 Jan 2018 12:08:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nautel.onmicrosoft.com; s=selector1-nautel-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=hOe7QN0y+7XxL2pjw/F/kDhCZzLpA7akQunsQGnvrSE=;
+	b=r7HnP/zevkJ3TeDwz/FPDpJA8pPZ/EkI0riN3DeYLNYYMd24c8djfuo7duGpWp6c0R4HNSENs7CmP12+Uj9xsU9h4Autq5fGBcXSAlWxkgkfO6UOViosZBElSbguMs9jZ3MUvRqJuqhm37glVxUQTZPHQbg4mt0mvNd7U91Kd8o=
+Received: from MWHPR13MB1584.namprd13.prod.outlook.com (10.175.140.149) by
+	MWHPR13MB1293.namprd13.prod.outlook.com (10.173.120.7) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+	15.20.464.6; Fri, 26 Jan 2018 20:08:29 +0000
+Received: from MWHPR13MB1584.namprd13.prod.outlook.com ([10.175.140.149]) by
+	MWHPR13MB1584.namprd13.prod.outlook.com ([10.175.140.149]) with mapi id
+	15.20.0444.013; Fri, 26 Jan 2018 20:08:30 +0000
+From: Peter Spierenburg <peter.spierenburg@nautel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Extensible SDK fails to install (build in Ubuntu 16.04 and
-	install in Ubuntu 14.04)
-Thread-Index: AdOW35YnR83mPqIoRBCqJwPfBJhPow==
-Date: Fri, 26 Jan 2018 20:06:21 +0000
-Message-ID: <AM4P122MB00689A68360B23261185EE0BD6E00@AM4P122MB0068.EURP122.PROD.OUTLOOK.COM>
-Accept-Language: en-US
+Thread-Topic: [yocto] How do I generate a dtb for my board support package?
+Thread-Index: AQHTlUrMuQ9+EGnL006VzjvxSSjFpKOETgX+gABKvACAABJ5AYAB7F8H
+Date: Fri, 26 Jan 2018 20:08:29 +0000
+Message-ID: <MWHPR13MB1584919EBCDC94E7E7DAEFE19EE00@MWHPR13MB1584.namprd13.prod.outlook.com>
+References: <MWHPR13MB1584C1139309858BD0E22C089EE20@MWHPR13MB1584.namprd13.prod.outlook.com>
+	<MWHPR13MB1584687F1F31126DF1FCA1CA9EE10@MWHPR13MB1584.namprd13.prod.outlook.com>,
+	<94ea0e3c-29d4-40a1-19db-f716ddcd4dde@3mdeb.com>,
+	<MWHPR13MB15846CB2C0E778AEA074BA4F9EE10@MWHPR13MB1584.namprd13.prod.outlook.com>
+In-Reply-To: <MWHPR13MB15846CB2C0E778AEA074BA4F9EE10@MWHPR13MB1584.namprd13.prod.outlook.com>
+Accept-Language: en-CA, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=carlos.bejar-colonia@philips.com; 
-x-originating-ip: [192.101.81.235]
+	smtp.mailfrom=peter.spierenburg@nautel.com; 
+x-originating-ip: [24.222.2.222]
 x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; AM4P122MB0068;
-	7:4OZws/vm/+KMbF+Cz0RMwbwUQ1JkvL39/EzPPt1iNTQmEmljY6zr2GOeKSjWl8koB+mfDchYFIcWdMByf6U9tL7+Ngy+MMuyoC4aF7NJWuf4zkuKRmdW5Fyc1N07BN0tbG9u6XdYoyg7NEclFxIN/ZpcjDyiqCny/e2VsZw/1unni8iHyXMatQaaN8/gmbNVrjXgOMxLubLKtAO3ab2ILmF2xsHkca8d0WXzQYEcEWdCnL4Ejl9rImvwfhEg9R2j
+x-microsoft-exchange-diagnostics: 1; MWHPR13MB1293;
+	7:M0b5QtAvPC9RO67V9AXme4VTGRhcGKPAlMUSdhXtwTTcx4J7I+gGbiR9hONDM26l1gDLyZjYB1ckEAQlKxJR3VRvXPtXxW/1/ELhlu9DxUwVrFLmvRSyA0Ndz+pKEAHZkQ9MSChodl48JrpcM1yTLrRzjrYB6zuRp/ULAQk4ARCdpEjPpO54NeIwnMDW/zAsAVIrdSl4q/FmViiybM335X+z6p0rVxukP8sFBuBLuCMGEughcdnsEbv1azxuzZR8
 x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: c32335aa-64d0-4e50-1755-08d564f84527
+x-ms-office365-filtering-correlation-id: 48350e6c-105d-47fe-0822-08d564f89197
 x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(4534165)(4627221)(201703031133081)(201702281549075)(48565401081)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
-	SRVR:AM4P122MB0068; 
-x-ms-traffictypediagnostic: AM4P122MB0068:
-x-microsoft-antispam-prvs: <AM4P122MB00688FF8689EB2D72DE9F60BD6E00@AM4P122MB0068.EURP122.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
+	RULEID:(7020095)(4652020)(4534165)(4627221)(201703031133081)(201702281549075)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
+	SRVR:MWHPR13MB1293; 
+x-ms-traffictypediagnostic: MWHPR13MB1293:
+x-microsoft-antispam-prvs: <MWHPR13MB1293E2026433CF3D30F01C929EE00@MWHPR13MB1293.namprd13.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(265313219721884);
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040501)(2401047)(5005006)(8121501046)(10201501046)(93006095)(93001095)(3231076)(2400081)(944501161)(3002001)(6055026)(6041288)(20161123562045)(20161123558120)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(20161123560045)(6072148)(201708071742011);
-	SRVR:AM4P122MB0068; BCL:0; PCL:0; RULEID:; SRVR:AM4P122MB0068; 
+	RULEID:(6040501)(2401047)(8121501046)(5005006)(3231023)(2400081)(944501161)(93006095)(93001095)(3002001)(10201501046)(6041288)(20161123558120)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123560045)(20161123564045)(6072148)(201708071742011);
+	SRVR:MWHPR13MB1293; BCL:0; PCL:0; RULEID:; SRVR:MWHPR13MB1293; 
 x-forefront-prvs: 05641FD966
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39380400002)(396003)(366004)(346002)(39860400002)(376002)(199004)(189003)(55904004)(374574003)(85714005)(5640700003)(8936002)(55016002)(68736007)(6306002)(53936002)(54896002)(6436002)(66066001)(9326002)(9686003)(3660700001)(26005)(2351001)(3280700002)(7696005)(102836004)(6506007)(59450400001)(2906002)(3846002)(790700001)(6116002)(106356001)(8676002)(81166006)(81156014)(1730700003)(5660300001)(6916009)(5630700001)(7736002)(74316002)(33656002)(105586002)(14454004)(575784001)(86362001)(316002)(97736004)(25786009)(99286004)(478600001)(5250100002)(186003)(2900100001)(2501003);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:AM4P122MB0068;
-	H:AM4P122MB0068.EURP122.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: philips.com does not designate
+	SFS:(10019020)(39840400004)(366004)(346002)(396003)(39380400002)(376002)(189003)(199004)(59450400001)(53936002)(53546011)(6506007)(97736004)(102836004)(99286004)(93886005)(25786009)(53376002)(53386004)(6246003)(26005)(606006)(316002)(6916009)(76176011)(74316002)(3660700001)(3280700002)(53366004)(7066003)(5660300001)(2900100001)(6606003)(2950100002)(105586002)(55016002)(5640700003)(54896002)(6436002)(6306002)(9686003)(236005)(7736002)(2501003)(229853002)(8676002)(5890100001)(1730700003)(66066001)(478600001)(81166006)(81156014)(7696005)(14454004)(19627405001)(2351001)(8936002)(966005)(33656002)(68736007)(86362001)(186003)(6116002)(2906002)(106356001)(3846002)(77096007)(10090945008);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:MWHPR13MB1293;
+	H:MWHPR13MB1584.namprd13.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: nautel.com does not designate
 	permitted sender hosts)
-x-microsoft-antispam-message-info: VMkS3vQkGxMnQ9rkj+j0BmSRT26TLStohwiqJf+uvIi5BfRNb5cNOLhk2Jl00cBRJ4vzx3ftSg10KIWwEID2Sg==
+x-microsoft-antispam-message-info: ik/+4+ah1xnCCXzNtFSxxHU0qzTxz5porbvKr+pxPJ5llbnOEuVJRXU/o3xbsyAwUR2hIbj5XPfnvWXxT/1zrQ==
 spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-X-OriginatorOrg: philips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c32335aa-64d0-4e50-1755-08d564f84527
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2018 20:06:21.6712 (UTC)
+X-OriginatorOrg: nautel.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48350e6c-105d-47fe-0822-08d564f89197
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2018 20:08:29.8023 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1a407a2d-7675-4d17-8692-b3ac285306e4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM4P122MB0068
-Subject: Extensible SDK fails to install (build in Ubuntu 16.04 and install in Ubuntu 14.04)
+X-MS-Exchange-CrossTenant-id: 656f830c-eb88-49fe-90f1-433363ec7ccf
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR13MB1293
+Subject: Re: How do I generate a dtb for my board support package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -94,194 +97,232 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jan 2018 20:06:27 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 26 Jan 2018 20:08:38 -0000
+Content-Language: en-CA
 Content-Type: multipart/alternative;
-	boundary="_000_AM4P122MB00689A68360B23261185EE0BD6E00AM4P122MB0068EURP_"
+	boundary="_000_MWHPR13MB1584919EBCDC94E7E7DAEFE19EE00MWHPR13MB1584namp_"
 
---_000_AM4P122MB00689A68360B23261185EE0BD6E00AM4P122MB0068EURP_
+--_000_MWHPR13MB1584919EBCDC94E7E7DAEFE19EE00MWHPR13MB1584namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+I've discovered the problem. It looks like my SRC_URI entries aren't placin=
+g my .dts and .dtsi files in the correct locations. If I manually copy thos=
+e files to: poky/build/tmp/work-shared/adzs-sc589-ezlite/kernel-source/arch=
+/arm/boot/dts then the build will produce a .dtb file as expected.
 
-I am building Yocto using Atmel BSP, Poky and OE version: Morty.
-The eSDK installer builds fine (bitbake -c populate_sdk_ext core-image-mini=
-mal). Build machine x86_64, Ubuntu 16.04 LTS
-If I install the eSDK in the same machine where it was build, it works fine=
-.
-However, when I try to install the eSDK in a different machine (x86_64, Ubu=
-ntu 14.04) I get these errors:
 
-Proceed[Y/n]?
-Extracting SDK...................................................done
-Setting it up...
-Extracting buildtools...
-Preparing build system...
-Parsing recipes: 100% |####################################################=
-####| Time: 0:00:51
-Initialising tasks: 100% |#################################################=
-####| Time: 0:00:03
-ERROR: Sstate artifact unavailable for gettext-minimal-native.do_populate_s=
-ysrootETA:  0:00:00
-ERROR: Sstate artifact unavailable for quilt-native.do_populate_sysroot    =
-    | ETA:  0:00:00
-ERROR: Sstate artifact unavailable for u-boot-mkimage-native.do_populate_sy=
-sroot ETA:  0:00:00
-ERROR: Sstate artifact unavailable for libxml-parser-perl-native.do_populat=
-e_sysroot:  0:00:00
-ERROR: Sstate artifact unavailable for file-native.do_populate_sysroot     =
-    | ETA:  0:00:00
+How do I alter the SRC_URI instruction in my .bbappend file to specify the =
+correct destination directory?
 
-I don't see this behavior if I use Poky Morty, commit: 6da3e0a0abf1251db243=
-548639979f8d74e99766
-I see this behavior with Poky Morty commit: 759a8085afee51abbe36b0bbfe5bf84=
-5f41e0971
 
-Is the install suppose to fail due the lower OS version? I searched in the =
-bug tracker, but didn't find anything related to this.
-NOTE: I tried the other way: build eSDK in Ubuntu 14.04 and install eSDK in=
- Ubuntu 16.04. This works fine.
+________________________________
+From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
+half of Peter Spierenburg <peter.spierenburg@nautel.com>
+Sent: January 25, 2018 10:46:05 AM
+To: yocto@yoctoproject.org
+Subject: Re: [yocto] How do I generate a dtb for my board support package?
 
-Thanks,
-Carlos
 
+This sender failed our fraud detection checks and may not be who they appea=
+r to be. Learn about spoofing<http://aka.ms/LearnAboutSpoofing>
+        Feedback<http://aka.ms/SafetyTipsFeedback>
+
+Thanks Maciej,
+
+
+I did add a patch to SRC_URI in my linux-yocto_4.12.bbappend file. Does the=
+ entry belong somewhere else instead?
+
+
+Peter.
 
 
 
 ________________________________
-The information contained in this message may be confidential and legally p=
-rotected under applicable law. The message is intended solely for the addre=
-ssee(s). If you are not the intended recipient, you are hereby notified tha=
-t any use, forwarding, dissemination, or reproduction of this message is st=
-rictly prohibited and may be unlawful. If you are not the intended recipien=
-t, please contact the sender by return e-mail and destroy all copies of the=
- original message.
+From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+Sent: January 25, 2018 9:37:40 AM
+To: Peter Spierenburg; yocto@yoctoproject.org
+Subject: Re: [yocto] How do I generate a dtb for my board support package?
 
---_000_AM4P122MB00689A68360B23261185EE0BD6E00AM4P122MB0068EURP_
+
+
+On 25.01.2018 14:16, Peter Spierenburg wrote:
+| make[2]: *** No rule to make target `sc589-ezkit.dts'.  Stop.
+You are building linux-yocto. You need to either add a patch to SRC_URI whi=
+ch adds this
+dtb target to linux source, or build from a different repository, where thi=
+s support is already
+included. I would check from which linux tree they build kernel in buildroo=
+t BSP.
+You will also need proper kernel configuration file for your board.
+
+
+--
+Maciej Pijanowski
+Embedded Systems Engineer
+http://3mdeb.com | @3mdeb_com
+
+This communication, including any attached documentation, is intended only =
+for the person or entity to which it is addressed, and may contain confiden=
+tial, personal, and/or privileged information. Any unauthorized disclosure,=
+ copying, or taking action on the contents is strictly prohibited. If you h=
+ave received this message in error, please contact us immediately so we may=
+ correct our records. Please then delete or destroy the original transmissi=
+on and any subsequent reply. Thank you.
+This communication, including any attached documentation, is intended only =
+for the person or entity to which it is addressed, and may contain confiden=
+tial, personal, and/or privileged information. Any unauthorized disclosure,=
+ copying, or taking action on the contents is strictly prohibited. If you h=
+ave received this message in error, please contact us immediately so we may=
+ correct our records. Please then delete or destroy the original transmissi=
+on and any subsequent reply. Thank you.
+
+--_000_MWHPR13MB1584919EBCDC94E7E7DAEFE19EE00MWHPR13MB1584namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Lucida Console";
-	panose-1:2 11 6 9 4 5 4 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am building Yocto using Atmel BSP, Poky and OE ver=
-sion: Morty.<o:p></o:p></p>
-<p class=3D"MsoNormal">The eSDK installer builds fine (bitbake &#8211;c pop=
-ulate_sdk_ext core-image-minimal). Build machine x86_64, Ubuntu 16.04 LTS<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">If I install the eSDK in the same machine where it w=
-as build, it works fine.<o:p></o:p></p>
-<p class=3D"MsoNormal">However, when I try to install the eSDK in a differe=
-nt machine (x86_64, Ubuntu 14.04) I get these errors:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Proceed[Y/n]?<o:p></o:p></p>
-<p class=3D"MsoNormal">Extracting SDK......................................=
-.............done<o:p></o:p></p>
-<p class=3D"MsoNormal">Setting it up...<o:p></o:p></p>
-<p class=3D"MsoNormal">Extracting buildtools...<o:p></o:p></p>
-<p class=3D"MsoNormal">Preparing build system...<o:p></o:p></p>
-<p class=3D"MsoNormal">Parsing recipes: 100% |#############################=
-###########################| Time: 0:00:51<o:p></o:p></p>
-<p class=3D"MsoNormal">Initialising tasks: 100% |##########################=
-###########################| Time: 0:00:03<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Sstate artifact unavailable for gettext-minim=
-al-native.do_populate_sysrootETA:&nbsp; 0:00:00<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Sstate artifact unavailable for quilt-native.=
-do_populate_sysroot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | ETA:&nbsp; =
-0:00:00<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Sstate artifact unavailable for u-boot-mkimag=
-e-native.do_populate_sysroot ETA:&nbsp; 0:00:00<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Sstate artifact unavailable for libxml-parser=
--perl-native.do_populate_sysroot:&nbsp; 0:00:00<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Sstate artifact unavailable for file-native.d=
-o_populate_sysroot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | ETA:&n=
-bsp; 0:00:00<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I don&#8217;t see this behavior if I use Poky Morty,=
- commit: 6da3e0a0abf1251db243548639979f8d74e99766<span style=3D"font-size:1=
-0.0pt;font-family:&quot;Lucida Console&quot;;color:#BFBF00"><o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal">I see this behavior with Poky Morty commit: 759a8085=
-afee51abbe36b0bbfe5bf845f41e0971<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is the install suppose to fail due the lower OS vers=
-ion? I searched in the bug tracker, but didn&#8217;t find anything related =
-to this.<o:p></o:p></p>
-<p class=3D"MsoNormal">NOTE: I tried the other way: build eSDK in Ubuntu 14=
-.04 and install eSDK in Ubuntu 16.04. This works fine.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Carlos<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">I've discovered the problem. It l=
+ooks like my SRC_URI entries aren't placing my .dts and .dtsi files in the =
+correct locations. If I manually copy those files to:&nbsp;<span>poky/build=
+/tmp/work-shared/adzs-sc589-ezlite/kernel-source/arch/arm/boot/dts
+ then the build will produce a .dtb file as expected.</span></p>
+<p style=3D"margin-top:0;margin-bottom:0"><span><br>
+</span></p>
+<p style=3D"margin-top:0;margin-bottom:0"><span>How do I alter the SRC_URI =
+instruction in my .bbappend file to specify the correct destination directo=
+ry?</span></p>
+<p style=3D"margin-top:0;margin-bottom:0"><span><br>
+</span></p>
 </div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> yocto-bounces@yoctopr=
+oject.org &lt;yocto-bounces@yoctoproject.org&gt; on behalf of Peter Spieren=
+burg &lt;peter.spierenburg@nautel.com&gt;<br>
+<b>Sent:</b> January 25, 2018 10:46:05 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] How do I generate a dtb for my board support pa=
+ckage?</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<table id=3D"msexchangesafetytips;17f8b7e9-25b3-46c0-164e-08d5642019b2;R:en=
+-CA" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" align=
+=3D"left" style=3D"border:0; display:table; width:100%; table-layout:fixed;=
+ border-collapse:seperate; float:none">
+<tbody>
+<tr>
+<td valign=3D"middle" width=3D"1px" bgcolor=3D"#910A19" cellpadding=3D"7px =
+2px 7px 2px" style=3D"padding:7px 2px 7px 2px; background-color:#910A19">
+</td>
+<td valign=3D"middle" width=3D"100%" bgcolor=3D"#FDF2F4" cellpadding=3D"7px=
+ 5px 7px 15px" color=3D"#212121" style=3D"width:100%; background-color:#FDF=
+2F4; padding:7px 5px 7px 15px; font-family:wf_segoe-ui_normal,Segoe UI,Sego=
+e WP,Tahoma,Arial,sans-serif; font-size:12px; font-weight:normal; color:#21=
+2121; text-align:left; word-wrap:break-word">
+<div>This&nbsp;sender&nbsp;failed&nbsp;our&nbsp;fraud&nbsp;detection&nbsp;c=
+hecks&nbsp;and&nbsp;may&nbsp;not&nbsp;be&nbsp;who&nbsp;they&nbsp;appear&nbs=
+p;to&nbsp;be.&nbsp;Learn&nbsp;about&nbsp;<a href=3D"http://aka.ms/LearnAbou=
+tSpoofing">spoofing</a></div>
+</td>
+<td valign=3D"middle" align=3D"left" width=3D"75px" bgcolor=3D"#FDF2F4" cel=
+lpadding=3D"7px 5px 7px 5px" color=3D"#212121" style=3D"width:75px; backgro=
+und-color:#FDF2F4; padding:7px 5px 7px 5px; font-family:wf_segoe-ui_normal,=
+Segoe UI,Segoe WP,Tahoma,Arial,sans-serif; font-size:12px; font-weight:norm=
+al; color:#212121; text-align:left; word-wrap:break-word">
+<a href=3D"http://aka.ms/SafetyTipsFeedback">Feedback</a></td>
+</tr>
+</tbody>
+</table>
+<div>
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p style=3D"margin-top:0; margin-bottom:0">Thanks Maciej,</p>
+<p style=3D"margin-top:0; margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0; margin-bottom:0">I did add a patch to SRC_URI in =
+my&nbsp;<span>linux-yocto_4.12.bbappend file. Does the entry belong somewhe=
+re else instead?</span></p>
+<p style=3D"margin-top:0; margin-bottom:0"><span><br>
+</span></p>
+<p style=3D"margin-top:0; margin-bottom:0"><span>Peter.</span></p>
+<p style=3D"margin-top:0; margin-bottom:0"><span><br>
+</span></p>
+<p style=3D"margin-top:0; margin-bottom:0"><span><br>
+</span></p>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Maciej Pijanowski &=
+lt;maciej.pijanowski@3mdeb.com&gt;<br>
+<b>Sent:</b> January 25, 2018 9:37:40 AM<br>
+<b>To:</b> Peter Spierenburg; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] How do I generate a dtb for my board support pa=
+ckage?</font>
+<div>&nbsp;</div>
+</div>
+<div style=3D"background-color:#FFFFFF">
+<p><br>
+</p>
 <br>
-<hr>
-<font face=3D"Arial" color=3D"Gray" size=3D"1">The information contained in=
- this message may be confidential and legally protected under applicable la=
-w. The message is intended solely for the addressee(s). If you are not the =
-intended recipient, you are hereby notified
- that any use, forwarding, dissemination, or reproduction of this message i=
-s strictly prohibited and may be unlawful. If you are not the intended reci=
-pient, please contact the sender by return e-mail and destroy all copies of=
- the original message.<br>
-</font>
+<div class=3D"x_x_moz-cite-prefix">On 25.01.2018 14:16, Peter Spierenburg w=
+rote:<br>
+</div>
+<blockquote type=3D"cite"><span style=3D"font-family:Consolas,Courier,monos=
+pace">| make[2]: *** No rule to make target `sc589-ezkit.dts'.&nbsp; Stop.<=
+br>
+</span></blockquote>
+You are building linux-yocto. You need to either add a patch to SRC_URI whi=
+ch adds this<br>
+dtb target to linux source, or build from a different repository, where thi=
+s support is already<br>
+included. I would check from which linux tree they build kernel in buildroo=
+t BSP.<br>
+You will also need proper kernel configuration file for your board.<br>
+<br>
+<pre class=3D"x_x_moz-signature" cols=3D"72">--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+<a class=3D"x_x_moz-txt-link-freetext" href=3D"http://3mdeb.com">http://3md=
+eb.com</a> | @3mdeb_com</pre>
+</div>
+This communication, including any attached documentation, is intended only =
+for the person or entity to which it is addressed, and may contain confiden=
+tial, personal, and/or privileged information. Any unauthorized disclosure,=
+ copying, or taking action on the
+ contents is strictly prohibited. If you have received this message in erro=
+r, please contact us immediately so we may correct our records. Please then=
+ delete or destroy the original transmission and any subsequent reply. Than=
+k you.
+</div>
+</div>
+This communication, including any attached documentation, is intended only =
+for the person or entity to which it is addressed, and may contain confiden=
+tial, personal, and/or privileged information. Any unauthorized disclosure,=
+ copying, or taking action on the
+ contents is strictly prohibited. If you have received this message in erro=
+r, please contact us immediately so we may correct our records. Please then=
+ delete or destroy the original transmission and any subsequent reply. Than=
+k you.
 </body>
 </html>
 
---_000_AM4P122MB00689A68360B23261185EE0BD6E00AM4P122MB0068EURP_--
+--_000_MWHPR13MB1584919EBCDC94E7E7DAEFE19EE00MWHPR13MB1584namp_--
