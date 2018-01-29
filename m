@@ -1,59 +1,65 @@
-Return-Path: <prvs=156785dc31=alejandro.delcastillo@ni.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8DD9E00E17; Mon, 29 Jan 2018 02:22:56 -0800 (PST)
+	id 00BFAE00E36; Mon, 29 Jan 2018 04:32:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [148.163.156.75 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com
-	[148.163.156.75])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23FC4E00DA8
-	for <yocto@yoctoproject.org>; Mon, 29 Jan 2018 02:22:55 -0800 (PST)
-Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
-	by mx0a-00010702.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
-	w0TAMCIo019158; Mon, 29 Jan 2018 04:22:54 -0600
-Received: from ni.com (skprod3.natinst.com [130.164.80.24])
-	by mx0a-00010702.pphosted.com with ESMTP id 2frpb24av6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT); Mon, 29 Jan 2018 04:22:53 -0600
-Received: from us-aus-exch2.ni.corp.natinst.com
-	(us-aus-exch2.ni.corp.natinst.com [130.164.68.12])
-	by us-aus-skprod3.natinst.com (8.16.0.22/8.16.0.21) with ESMTPS id
-	w0TAMrjW032250
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jan 2018 04:22:53 -0600
-Received: from us-aus-exch7.ni.corp.natinst.com (130.164.68.17) by
-	us-aus-exch2.ni.corp.natinst.com (130.164.68.12) with Microsoft SMTP
-	Server (TLS) id 15.0.1156.6; Mon, 29 Jan 2018 04:22:52 -0600
-Received: from us-aus-exhub2.ni.corp.natinst.com (130.164.68.32) by
-	us-aus-exch7.ni.corp.natinst.com (130.164.68.17) with Microsoft SMTP
-	Server (TLS) id 15.0.1156.6; Mon, 29 Jan 2018 04:22:52 -0600
-Received: from delcastillo3.amer.corp.natinst.com (130.164.49.7) by
-	us-aus-exhub2.ni.corp.natinst.com (130.164.68.32) with Microsoft SMTP
-	Server
-	id 15.0.1156.6 via Frontend Transport; Mon, 29 Jan 2018 04:22:52 -0600
-From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
-To: <opkg-devel@googlegroups.com>, <yocto@yoctoproject.org>
-Date: Mon, 29 Jan 2018 04:23:15 -0600
-Message-ID: <20180129102315.29220-1-alejandro.delcastillo@ni.com>
-X-Mailer: git-send-email 2.15.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0401DE0084D
+	for <yocto@yoctoproject.org>; Mon, 29 Jan 2018 04:32:26 -0800 (PST)
+Received: by mail-io0-f178.google.com with SMTP id b198so7439036iof.6
+	for <yocto@yoctoproject.org>; Mon, 29 Jan 2018 04:32:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=x19dYJD8FD45H3qwcLao9HVhDhwRGFx23Ud5oCowpl0=;
+	b=ACk6o0t2z/g6yKk7djJFwOPcpDpnBl0mjBHRTy9r1L9y9fhepeiSP1NgButpqyleHB
+	BgGfXxZ6buX3yPljTeURCFNpGAre0vAOIH6YsYWWpOplkuSO8zCb24KBaiqPqd7TDxrW
+	I2XTvtTWQfNG1hywjCow2GuWHcPI1N+ZF3NdeA6kFDFExUS0gDqQ/5d23cJhB2QaDgmn
+	7xYpwS0+WaO+9E4oxUMfJvyZglNG20YSBIcE9ARI+CTwVJWwq3BErCnNz5n/YQBFkZIP
+	JlBKtw1BBfSPUtRFsEdd3K3thS4CzqX2E3/pLua+BA8U8naXnviIqQeq69MD1Dl189Gg
+	Ftig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=x19dYJD8FD45H3qwcLao9HVhDhwRGFx23Ud5oCowpl0=;
+	b=n7/kf+ty+PRSNlHbS8oLvuJp6XZVCa79MFNUiQwvDqpMSIQokt/4xu0YlpmcaZMbn/
+	lVBejjjZp3EPn2JVCDKYuWa3/UXOyKi/c7yAmKoaGLpbcOUm9BKJ8ZMruFyFPguUO1kc
+	K1GJul+jQu5fjr/elgdMd/jT1grWsjxA/StDXEatx1fj6B532bhyRePcI1wTAvW3+LRb
+	rQJY2OzHErJJWR71E3zr1S6hEJZNr4WxtHfpUqLR7nkY7aorGk+bwA2iKtJIwy9ZEfNa
+	R+l8SgdS8Qa2EnVOirfNkqn3D4CfxpTv6UNhgkTXYZWRR4aRspW5Nwa0ui90FKST/m5v
+	l2Sg==
+X-Gm-Message-State: AKwxytcE+3Z/0ryy8yHe0ecGzYY4mvPWrePxrB87zvvVZM3MPSABkec1
+	Iz1Cef1pKUyKIY827vA4XVTW2M4AqIJWNl1739dbiw==
+X-Google-Smtp-Source: AH8x225srYkrjqeQOszTnUHKTOTyIKkoav0pLlNH3Jkgy12qtsGY63zKJOOk2ccMSNtqmVrhuhFAYu99fgrFGknRy+8=
+X-Received: by 10.107.133.75 with SMTP id h72mr25190582iod.227.1517229146116; 
+	Mon, 29 Jan 2018 04:32:26 -0800 (PST)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2018-01-29_06:, , signatures=0
-X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
-	score=30
-	priorityscore=1501 malwarescore=0 suspectscore=2 phishscore=0
-	bulkscore=0
-	spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=999 adultscore=0 classifier=spam adjust=30 reason=mlx
-	scancount=1 engine=8.0.1-1711220000 definitions=main-1801290140
-Subject: [PATCH] opkg-build: improve package reproducibility
+Received: by 10.107.17.206 with HTTP; Mon, 29 Jan 2018 04:32:05 -0800 (PST)
+In-Reply-To: <CAGAf8LyPoW5XORJ=uCBOVT8S2zWvQW6wkzU7yctKwR26We=aGA@mail.gmail.com>
+References: <45db0f72-d93f-ebbd-83aa-80ceaeabc083@gmail.com>
+	<CAGAf8LyPoW5XORJ=uCBOVT8S2zWvQW6wkzU7yctKwR26We=aGA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 29 Jan 2018 12:32:05 +0000
+Message-ID: <CAJTo0LZqeXy9FPJwi19T6f9haWKHj3nVS6dRnfhMje1KAaD5-g@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	OE-core <openembedded-core@lists.openembedded.org>,
+	openembedded-devel <openembedded-devel@lists.openembedded.org>
+Subject: Re: [RFT] Glibc 2.27
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,76 +71,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jan 2018 10:22:56 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 29 Jan 2018 12:32:28 -0000
+Content-Type: multipart/alternative; boundary="001a113ec5e44c2f740563e97019"
 
-Implements some of the recommendations by reproducible-build.org [1]
+--001a113ec5e44c2f740563e97019
+Content-Type: text/plain; charset="UTF-8"
 
-- Set modification time to SOURCE_DATE_EPOCH env variable
-- Enable deterministic sorting of directory entries
-- Do not save timestamp on gzip compressed archive
+On 29 January 2018 at 07:45, Zoran Stojsavljevic <
+zoran.stojsavljevic@gmail.com> wrote:
 
-bugzilla #11242
+> This one will be tough to integrate. Most of the packages depend on
+> this one, which is critical one. On the very bottom. I would say, this
+> is a big step, since here somewhere you should draw clear line. And
+> this line will be the following: which releases you/YOCTO crew will
+> support (back-port to) with Glibc 2.27, and which not?!
+>
 
-[1] https://reproducible-builds.org/docs/archives/
+This one will be easy to integrate: it goes into master and none of the
+stable releases.  Stable releases only get upgrades after release is very
+limited situations.
 
-Signed-off-by: Alejandro del Castillo <alejandro.delcastillo@ni.com>
----
- opkg-build | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+Ross
 
-diff --git a/opkg-build b/opkg-build
-index 0fe513a..7bfdd99 100755
---- a/opkg-build
-+++ b/opkg-build
-@@ -149,6 +149,7 @@ outer=ar
- noclean=0
- opkext=0
- compressor=gzip
-+compressorargs="-9n"
- 
- # Determine if tar supports the --format argument by checking the help output.
- #
-@@ -222,6 +223,15 @@ done
- 
- cext=$(compressor_ext $compressor)
- 
-+if [ $compressor = "gzip" ] ; then
-+	# pgzip requires -T to avoid timestamps on the gzip archive
-+	if gzip --help 2>&1 | grep -- "-T" > /dev/null; then
-+		compressorargs="-9nT"
-+	fi
-+else
-+	compressorargs=""
-+fi
-+
- shift $(($OPTIND - 1))
- 
- # continue on to process additional arguments
-@@ -267,9 +277,11 @@ fi
- tmp_dir=$dest_dir/IPKG_BUILD.$$
- mkdir $tmp_dir
- 
-+build_date="$(date --utc --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y-%m-%d)"
-+
- echo $CONTROL > $tmp_dir/tarX
--( cd $pkg_dir && tar $ogargs -X $tmp_dir/tarX -c --$compressor $tarformat -f $tmp_dir/data.tar.$cext . )
--( cd $pkg_dir/$CONTROL && tar $ogargs -cz $tarformat -f $tmp_dir/control.tar.gz . )
-+( cd $pkg_dir && tar $ogargs --sort=name --mtime=$build_date -X $tmp_dir/tarX -c $tarformat . | $compressor $compressorargs > $tmp_dir/data.tar.$cext )
-+( cd $pkg_dir/$CONTROL && tar $ogargs --sort=name --mtime=$build_date -c $tarformat . | gzip $compressorargs > $tmp_dir/control.tar.gz )
- rm $tmp_dir/tarX
- 
- echo "2.0" > $tmp_dir/debian-binary
-@@ -284,7 +296,7 @@ rm -f $pkg_file
- if [ "$outer" = "ar" ] ; then
-   ( cd $tmp_dir && ar -crf $pkg_file ./debian-binary ./control.tar.gz ./data.tar.$cext )
- else
--  ( cd $tmp_dir && tar -cz $tarformat -f $pkg_file ./debian-binary ./control.tar.gz ./data.tar.$cext )
-+  ( cd $tmp_dir && tar -c --sort=name --mtime=$build_date $tarformat ./debian-binary ./control.tar.gz ./data.tar.$cext | gzip $compressorargs > $pkg_file )
- fi
- 
- rm $tmp_dir/debian-binary $tmp_dir/data.tar.$cext $tmp_dir/control.tar.gz
--- 
-2.15.1
+--001a113ec5e44c2f740563e97019
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">On 29 January 2018 at 07:45, Zoran Stojsavljevic <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_bl=
+ank">zoran.stojsavljevic@gmail.com</a>&gt;</span> wrote:<br><div class=3D"g=
+mail_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">This =
+one will be tough to integrate. Most of the packages depend on<br>
+this one, which is critical one. On the very bottom. I would say, this<br>
+is a big step, since here somewhere you should draw clear line. And<br>
+this line will be the following: which releases you/YOCTO crew will<br>
+support (back-port to) with Glibc 2.27, and which not?!<br></blockquote><di=
+v><br></div><div>This one will be easy to integrate: it goes into master an=
+d none of the stable releases.=C2=A0 Stable releases only get upgrades afte=
+r release is very limited situations.</div><div><br></div><div>Ross=C2=A0</=
+div></div></div></div>
 
+--001a113ec5e44c2f740563e97019--
