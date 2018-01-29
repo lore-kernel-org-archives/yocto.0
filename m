@@ -1,39 +1,59 @@
-Return-Path: <anuj.mittal@intel.com>
+Return-Path: <prvs=156785dc31=alejandro.delcastillo@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EFC59E00DAE; Mon, 29 Jan 2018 01:18:27 -0800 (PST)
+	id C8DD9E00E17; Mon, 29 Jan 2018 02:22:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [148.163.156.75 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 600D5E00971
-	for <yocto@yoctoproject.org>; Mon, 29 Jan 2018 01:18:26 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	29 Jan 2018 01:18:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,429,1511856000"; d="scan'208";a="13867263"
-Received: from anmitta2-mobl1.png.intel.com (HELO [10.221.23.92])
-	([10.221.23.92])
-	by fmsmga008.fm.intel.com with ESMTP; 29 Jan 2018 01:18:26 -0800
-To: yocto@yoctoproject.org
-References: <8d42e6cb-a90f-3d6d-0e49-c7a5a6a731fb@gmail.com>
-From: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <b2b0ecb4-ac6c-e362-5baa-8a3d5b973a56@intel.com>
-Date: Mon, 29 Jan 2018 17:18:25 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com
+	[148.163.156.75])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23FC4E00DA8
+	for <yocto@yoctoproject.org>; Mon, 29 Jan 2018 02:22:55 -0800 (PST)
+Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
+	by mx0a-00010702.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
+	w0TAMCIo019158; Mon, 29 Jan 2018 04:22:54 -0600
+Received: from ni.com (skprod3.natinst.com [130.164.80.24])
+	by mx0a-00010702.pphosted.com with ESMTP id 2frpb24av6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Mon, 29 Jan 2018 04:22:53 -0600
+Received: from us-aus-exch2.ni.corp.natinst.com
+	(us-aus-exch2.ni.corp.natinst.com [130.164.68.12])
+	by us-aus-skprod3.natinst.com (8.16.0.22/8.16.0.21) with ESMTPS id
+	w0TAMrjW032250
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2018 04:22:53 -0600
+Received: from us-aus-exch7.ni.corp.natinst.com (130.164.68.17) by
+	us-aus-exch2.ni.corp.natinst.com (130.164.68.12) with Microsoft SMTP
+	Server (TLS) id 15.0.1156.6; Mon, 29 Jan 2018 04:22:52 -0600
+Received: from us-aus-exhub2.ni.corp.natinst.com (130.164.68.32) by
+	us-aus-exch7.ni.corp.natinst.com (130.164.68.17) with Microsoft SMTP
+	Server (TLS) id 15.0.1156.6; Mon, 29 Jan 2018 04:22:52 -0600
+Received: from delcastillo3.amer.corp.natinst.com (130.164.49.7) by
+	us-aus-exhub2.ni.corp.natinst.com (130.164.68.32) with Microsoft SMTP
+	Server
+	id 15.0.1156.6 via Frontend Transport; Mon, 29 Jan 2018 04:22:52 -0600
+From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+To: <opkg-devel@googlegroups.com>, <yocto@yoctoproject.org>
+Date: Mon, 29 Jan 2018 04:23:15 -0600
+Message-ID: <20180129102315.29220-1-alejandro.delcastillo@ni.com>
+X-Mailer: git-send-email 2.15.1
 MIME-Version: 1.0
-In-Reply-To: <8d42e6cb-a90f-3d6d-0e49-c7a5a6a731fb@gmail.com>
-Subject: Re: clutter-CRITICAL **: Unable to initialize clutter: Unable to Initialize the clutter backend: no available drivers found.
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2018-01-29_06:, , signatures=0
+X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
+	score=30
+	priorityscore=1501 malwarescore=0 suspectscore=2 phishscore=0
+	bulkscore=0
+	spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=999 adultscore=0 classifier=spam adjust=30 reason=mlx
+	scancount=1 engine=8.0.1-1711220000 definitions=main-1801290140
+Subject: [PATCH] opkg-build: improve package reproducibility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,67 +65,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jan 2018 09:18:28 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 29 Jan 2018 10:22:56 -0000
+Content-Type: text/plain
 
-On 01/29/2018 01:05 PM, kishorepasupula wrote:
-> 
-> Hi,
-> 
-> My main objective is to run snappy player 
-> (https://wiki.gnome.org/Snappy) on target machine (BeagleBone Black) so, 
-> I wrote a recipe for Snappy player(snappy_1.0.bb) as below
-> 
-> LICENSE = "GPLv2"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=686e6cb566fd6382c9fcc7a557bf4544"
-> 
-> SRCREV = "e73fabce4c397b40d490c74f6a6a0de000804f42"
-> SRC_URI = "git://git.gnome.org/snappy"
-> S = "${WORKDIR}/git"
-> 
-> RDEPENDS_${PN} = "gtk+3 gstreamer1.0 glib-2.0 clutter-1.0 
-> gstreamer1.0-plugins-base libxtst clutter-gst-3.0 clutter-gtk-1.0 libx11 
-> cairo gdk-pixbuf"
-> 
-> # inherit line
-> inherit pkgconfig autotools
-> 
-> FILES_${PN} += "${datadir}/*"
-> Added this recipe name in local.conf
-> 
-> IMAGE_INSTALL_append = " snappy"
-> The build (bitbake core-image-sato) was successful, when I ran "snappy" 
-> on target(BeagleBone Black) I am getting below error response.
-> 
-> sh-4.4# snappy
-> libEGL warning: DRI2: failed to authenticate
-> libEGL warning: DRI2: failed to authenticate
-> libEGL warning: DRI2: failed to authenticate
-> 
-> (snappy:763): clutter-CRITICAL **: Unable to initialize clutter: Unable 
-> to Initialize the clutter backend: no available drivers found.
-> 
-> As per my Understanding in my recipe I have resolved all dependencies 
-> for Snappy player (such as clutter, gstreamer, gtk etc.). I'm unable to 
-> figure out why snappy player is throwing error? Can any one guide me on 
-> this?
-> 
-> PS: Also tried adding  PREFERRED_PROVIDER_virtual/egl ?= "mesa" in 
-> local.conf but still I'm getting the same error response.
+Implements some of the recommendations by reproducible-build.org [1]
 
-Are you using proprietary drivers? If libegl is coming from mesa, it
-will probably not work with proprietary drivers. Can you provide more
-details about your setup? Which layer(s) are you using etc. and where
-are the graphics recipes/drivers coming from?
+- Set modification time to SOURCE_DATE_EPOCH env variable
+- Enable deterministic sorting of directory entries
+- Do not save timestamp on gzip compressed archive
 
-Thanks,
-Anuj
+bugzilla #11242
 
-> 
-> Regards,
-> Kk.
-> 
+[1] https://reproducible-builds.org/docs/archives/
+
+Signed-off-by: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+---
+ opkg-build | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/opkg-build b/opkg-build
+index 0fe513a..7bfdd99 100755
+--- a/opkg-build
++++ b/opkg-build
+@@ -149,6 +149,7 @@ outer=ar
+ noclean=0
+ opkext=0
+ compressor=gzip
++compressorargs="-9n"
+ 
+ # Determine if tar supports the --format argument by checking the help output.
+ #
+@@ -222,6 +223,15 @@ done
+ 
+ cext=$(compressor_ext $compressor)
+ 
++if [ $compressor = "gzip" ] ; then
++	# pgzip requires -T to avoid timestamps on the gzip archive
++	if gzip --help 2>&1 | grep -- "-T" > /dev/null; then
++		compressorargs="-9nT"
++	fi
++else
++	compressorargs=""
++fi
++
+ shift $(($OPTIND - 1))
+ 
+ # continue on to process additional arguments
+@@ -267,9 +277,11 @@ fi
+ tmp_dir=$dest_dir/IPKG_BUILD.$$
+ mkdir $tmp_dir
+ 
++build_date="$(date --utc --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y-%m-%d)"
++
+ echo $CONTROL > $tmp_dir/tarX
+-( cd $pkg_dir && tar $ogargs -X $tmp_dir/tarX -c --$compressor $tarformat -f $tmp_dir/data.tar.$cext . )
+-( cd $pkg_dir/$CONTROL && tar $ogargs -cz $tarformat -f $tmp_dir/control.tar.gz . )
++( cd $pkg_dir && tar $ogargs --sort=name --mtime=$build_date -X $tmp_dir/tarX -c $tarformat . | $compressor $compressorargs > $tmp_dir/data.tar.$cext )
++( cd $pkg_dir/$CONTROL && tar $ogargs --sort=name --mtime=$build_date -c $tarformat . | gzip $compressorargs > $tmp_dir/control.tar.gz )
+ rm $tmp_dir/tarX
+ 
+ echo "2.0" > $tmp_dir/debian-binary
+@@ -284,7 +296,7 @@ rm -f $pkg_file
+ if [ "$outer" = "ar" ] ; then
+   ( cd $tmp_dir && ar -crf $pkg_file ./debian-binary ./control.tar.gz ./data.tar.$cext )
+ else
+-  ( cd $tmp_dir && tar -cz $tarformat -f $pkg_file ./debian-binary ./control.tar.gz ./data.tar.$cext )
++  ( cd $tmp_dir && tar -c --sort=name --mtime=$build_date $tarformat ./debian-binary ./control.tar.gz ./data.tar.$cext | gzip $compressorargs > $pkg_file )
+ fi
+ 
+ rm $tmp_dir/debian-binary $tmp_dir/data.tar.$cext $tmp_dir/control.tar.gz
+-- 
+2.15.1
 
 
