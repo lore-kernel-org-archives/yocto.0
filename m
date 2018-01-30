@@ -1,66 +1,61 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1D7BE00E27; Tue, 30 Jan 2018 05:31:04 -0800 (PST)
+	id C64ECE00E54; Tue, 30 Jan 2018 07:29:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.128.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f65.google.com (mail-wm0-f65.google.com [74.125.82.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C371E00DE1
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 30 Jan 2018 05:31:03 -0800 (PST)
-Received: by mail-wm0-f65.google.com with SMTP id j21so3675127wmh.1
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 30 Jan 2018 05:31:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-wr0-f195.google.com (mail-wr0-f195.google.com
+	[209.85.128.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7BE2E006D3
+	for <yocto@yoctoproject.org>; Tue, 30 Jan 2018 07:29:00 -0800 (PST)
+Received: by mail-wr0-f195.google.com with SMTP id s5so11615290wra.0
+	for <yocto@yoctoproject.org>; Tue, 30 Jan 2018 07:28:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id;
-	bh=Lu2NEFUWvTv2IxbrUPWODycVAt4WemH2CaK/iJfGz8k=;
-	b=X2m3cNMwMqM1duDmBRKctykvLcvEEhSTfSe/K9yn9cSe1iWgkGe0Z6A78e0D8++Gdt
-	Q3IsP821t4O4uRFpWn4Y/VjsUnDaYRH5gsGTDV7pliatVa1pRcJiLET6WNUjrZRnXM+F
-	10OXTtZHGf3NlYUCO6Aqm4UVRO2wM8Eb3yGAuTLSLBJGNiSmDzvXS5/3SjMs5snip8M6
-	ne8jbwgTHNeko66Ft4M1tnfrsqSyY7rhMLzKR/PGSGrQwbaodU0MRgRntBdOqpGyzBsx
-	XjuLhnWPSYHjmdpIGqXkMSfDFf/x4GhtqY9+u/0Jw9g/VQDqtybWHESUurPVwErpvZG7
-	bEWQ==
+	bh=UCb1gjLaNtFdKtthVF9LMouN9nISQljlQNQNHFgl57E=;
+	b=W4ih6c9klYHshmLnC8cXx5sIpAUp/vKc2C/0cqgLGD5fVDITWyCX/hnP4vbjCBcMZe
+	gzMm9HxLWUq/JVuAV0OEuqFDk+uXN0jl/+GkMMftDtXvE7UUS/0iyJ2V2WOWiCrtvrel
+	GLJ/b3zGNBOlNRi2NJ0I3grV5RCm1i6JLhR94BNOvQQFc7IfUQg/juldChLYerZkYBR/
+	ksu3ymlWHSN5UNidopaHgFvoNuDqH6UzTK6BZI+CsPF0NwGMc7HJrtIsrfGhiUEGhy+0
+	9t4VU7PvJ/u1tO8m5cxcu5MxMXIVKbL4Jy59k/DRBGUMF55YjH3xRac2i2h9EEXxWW4O
+	3Jkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=Lu2NEFUWvTv2IxbrUPWODycVAt4WemH2CaK/iJfGz8k=;
-	b=jRgpJa2RD3Vp/kxIGcVRh7AdOSvuqonwKBzaLWAJvnzL8TYBNqixVf1y8RSlhJ7d2v
-	Q9ELR8WdcOLmNXqzQdRA4tt5tStT7W6SIWkbzZkvKTvDX3yF6EGhYCaXrxatyAO8r4Ao
-	n1efqsdwZDoDra46mz+z9anW92vFLzwJ0wWiPVkcyUePPmijhkacRUiTSaaOJF5TtXdE
-	KtHxNtRhfhbHBtyJ9NQNrdZVy971OIJkUgOX6O94ad/AfDQaD5whfyTxQyRdBcao+cIO
-	IM/cvGHdGgS17SAZXxhyrM+vQXSqPRcFsRJT6lJuioacQpE7nNf5sv0LzDdA5NK5jr7G
-	QeoA==
-X-Gm-Message-State: AKwxytdBB67HJoJSxMXq3s6xmky+bB3M/oOqD1Auqn23iqax+vR1p3Pa
-	CIzX3dbZ6c7bkzXr0aloHCjRIA==
-X-Google-Smtp-Source: AH8x225Wsu3UIKVuIojnGWDHHfB2z2Cm7u1/p8dZ4irbMz00ghktEmohznJ69P3AG6ruFdg4THIsGQ==
-X-Received: by 10.28.170.71 with SMTP id t68mr20029001wme.31.1517319062365;
-	Tue, 30 Jan 2018 05:31:02 -0800 (PST)
-Received: from localhost ([217.30.68.212]) by smtp.gmail.com with ESMTPSA id
-	62sm12308387wrg.57.2018.01.30.05.31.01
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 30 Jan 2018 05:31:01 -0800 (PST)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-To: yocto@lists.yoctoproject.org
-Date: Tue, 30 Jan 2018 13:31:00 +0000
-Message-Id: <20180130133100.1288-1-Martin.Jansa@gmail.com>
-X-Mailer: git-send-email 2.15.1
-Subject: [meta-raspberrypi][PATCH] recipes: use oe.utils.conditional instead of deprecated base_conditional
+	bh=UCb1gjLaNtFdKtthVF9LMouN9nISQljlQNQNHFgl57E=;
+	b=uHFoLRZMQneBn3kDPvjIurdBn2scOJBelOfcHOrRAExqZAcMu8USwAEnWyf7T9PcdD
+	7YhAD81ltWnU4O4dvZKtEyfT9PFd4Z2vylE4S4lJkl5CJFbmmYlqn4Y2kcr3nZW57RS0
+	F7DKXDZowVs9zP2ag6RiOlFn7MQ+zRPBsKeV37zexjc/rDvHKdz77i5su1MUc/LwWBtg
+	livcpxO9atcqDI62F2GqdyW9vS0ro+1rPZWQBYhwnGUTwGJ0/S3hVGIOqYSFa0viXils
+	QUbhJAHVyj/BEqAQwb3DnYG/2htqwUL+sKi4znA+6U6gxNglGRey2KafI4j3SZWm6On8
+	0Obw==
+X-Gm-Message-State: AKwxytc9c+i5/is6quvToXOEyQCR4OTTTcV1SvRpvVRom/NR04zQxmwK
+	HAGK4RwsRKbXWeN2yWjvhIdzA0oA
+X-Google-Smtp-Source: AH8x225ZHk2+BZcerecQU21o3yibyml5dAuF6P5vtAzhiUI72yG7MZCFVJBRABvhDq+OBMwlcGtBxA==
+X-Received: by 10.223.142.164 with SMTP id q33mr14295906wrb.267.1517326138652; 
+	Tue, 30 Jan 2018 07:28:58 -0800 (PST)
+Received: from flashheart.burtonini.com (home.burtonini.com. [81.2.106.35])
+	by smtp.gmail.com with ESMTPSA id
+	v186sm12604518wmf.17.2018.01.30.07.28.57
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 30 Jan 2018 07:28:57 -0800 (PST)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 30 Jan 2018 15:28:54 +0000
+Message-Id: <20180130152854.17612-1-ross.burton@intel.com>
+X-Mailer: git-send-email 2.11.0
+Subject: [PATCH][meta-mingw] gcc-crosssdk: use _remove instead of oe.utils.str_filter_out
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,40 +67,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jan 2018 13:31:05 -0000
+X-List-Received-Date: Tue, 30 Jan 2018 15:29:01 -0000
 
-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+Signed-off-by: Ross Burton <ross.burton@intel.com>
 ---
- recipes-kernel/linux/linux-raspberrypi.inc | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ recipes-devtools/gcc/gcc-crosssdk_%.bbappend | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-index df3a3d7..a1c4e52 100644
---- a/recipes-kernel/linux/linux-raspberrypi.inc
-+++ b/recipes-kernel/linux/linux-raspberrypi.inc
-@@ -22,10 +22,10 @@ KBUILD_DEFCONFIG_raspberrypi3-64 ?= "bcmrpi3_defconfig"
- CMDLINE ?= "dwc_otg.lpm_enable=0 console=serial0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait"
- 
- # Add the kernel debugger over console kernel command line option if enabled
--CMDLINE_append = ' ${@base_conditional("ENABLE_KGDB", "1", "kgdboc=serial0,115200", "", d)}'
-+CMDLINE_append = ' ${@oe.utils.conditional("ENABLE_KGDB", "1", "kgdboc=serial0,115200", "", d)}'
- 
- # Disable rpi logo on boot
--CMDLINE_append += ' ${@base_conditional("DISABLE_RPI_BOOT_LOGO", "1", "logo.nologo", "", d)}'
-+CMDLINE_append += ' ${@oe.utils.conditional("DISABLE_RPI_BOOT_LOGO", "1", "logo.nologo", "", d)}'
- 
- # You can define CMDLINE_DEBUG as "debug" in your local.conf or distro.conf
- # to enable kernel debugging.
-@@ -124,7 +124,7 @@ do_configure_prepend() {
-         kernel_configure_variable ROOT_NFS y
-         kernel_configure_variable CMDLINE "\"${CMDLINE_NFSROOT_USB}\""
-     fi
--    if [ "${@base_conditional('INITRAMFS_IMAGE_BUNDLE', '1', 'True', 'False', d)}" ]; then
-+    if [ "${@oe.utils.conditional('INITRAMFS_IMAGE_BUNDLE', '1', 'True', 'False', d)}" ]; then
-         kernel_configure_variable BLK_DEV_INITRD y
-         kernel_configure_variable INITRAMFS_SOURCE ""
-         kernel_configure_variable RD_GZIP y
+diff --git a/recipes-devtools/gcc/gcc-crosssdk_%.bbappend b/recipes-devtools/gcc/gcc-crosssdk_%.bbappend
+index d52a16b..3411946 100644
+--- a/recipes-devtools/gcc/gcc-crosssdk_%.bbappend
++++ b/recipes-devtools/gcc/gcc-crosssdk_%.bbappend
+@@ -1,4 +1,3 @@
+-EXTRA_OECONF_mingw32 := "${@oe.utils.str_filter_out('--with-linker-hash-style=${LINKER_HASH_STYLE}', '${EXTRA_OECONF}', d)}"
+ PACKAGECONFIG_CONFARGS ?= ""
+-EXTRA_OECONF_remove_mingw32 = "--enable-initfini-array"
++EXTRA_OECONF_remove_mingw32 = "--enable-initfini-array --with-linker-hash-style=${LINKER_HASH_STYLE}"
+ EXTRA_OECONF_append_mingw32 = " --disable-initfini-array"
 -- 
-2.15.1
+2.11.0
 
 
