@@ -1,17 +1,20 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <pieter.cardoen@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0005BE00DA4; Wed, 31 Jan 2018 04:31:23 -0800 (PST)
+	id A9570E00D41; Wed, 31 Jan 2018 10:39:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FORGED_HOTMAIL_RCVD2,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	mail provider *      (pieter.cardoen[at]hotmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.216.172 listed in list.dnswl.org]
+	*      [40.92.67.100 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,47 +22,74 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f172.google.com (mail-qt0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CF3DE00D91
-	for <yocto@yoctoproject.org>; Wed, 31 Jan 2018 04:31:22 -0800 (PST)
-Received: by mail-qt0-f172.google.com with SMTP id x27so21519345qtm.12
-	for <yocto@yoctoproject.org>; Wed, 31 Jan 2018 04:31:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=nr8XOXa+obp4a+yywS7gh46/r04+/9I359PUiIBJW9M=;
-	b=cIeL2CGucm8jGoeDwKMML0HuzyzLY2nTGbxkTbvN7vU+6I6jQk6K2pulETgYwzOc8u
-	lUoOD2R49+L32z1Q12t3O+pSmfb/qklCT366p+j1L5ILZc6JSoOYXl8ga2eXnOyYY3LN
-	sHH394+Wa60/RzU2OSPQpwpHBTjqJIOOfk9WKGJiT3EiHgawVZBs85VZsjyN/a5pnUQR
-	xQsHqVqZA6howzV6zOmLHk52OeKpE1+uMNc9FIdGxw6gAblixnE6k2qSFxtRQhqJEiFK
-	8weCkqyNIPeikeGvb+suwd/gdULbjIub2zTbsXuvVENIPMJs5wWWD8mEqC2UjxOert1y
-	/NIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=nr8XOXa+obp4a+yywS7gh46/r04+/9I359PUiIBJW9M=;
-	b=lK2GAKhdtFrfylIucqf/hVp1DB7mN/HG7QJmyFbXEZUgBfYT6MLkF0so8WOb/EB5P7
-	VOLs/pvZHvdivhQ7EzHzMdg02sP8yAbVks4B/6pM/g0JngmcVrBc68mx6j6hCcloxoeR
-	iGRRSus2dXzympkrXPItdw5WpELfJ7YbfI3mrlSofG3uO0hWtUaXMMOqtICCXMpIJIYe
-	OF6pS4kdkloI8hsR0oOhAfPY2BLHo43o0nBe4bdWHwyQ2DUz5PPqHrQ2bg5HgrSm/du+
-	4xk25FlCniN9jaEXBCxjSLfCpX5/2yy56un5/oZaapDGQM0pIM2YTbLlcZd0x3oD51cV
-	L8Lw==
-X-Gm-Message-State: AKwxytcwpiX31TbNLZ9aB7aaBRgU5t87qFsXsK9mVjgbqmxcVovfTz8L
-	eXL9szJodoVP1A8+4eT3FWnhqNg3afiiyeGt6vo=
-X-Google-Smtp-Source: AH8x225iGYuSL85QD6HEVp/WNL5HL+AYGI4LyRBf2Rr+edJ8AiPxTUhA6syOuINPDXpYmJThtwDYEnT2wMNfqiXqWXE=
-X-Received: by 10.200.44.251 with SMTP id 56mr53834151qtx.55.1517401881444;
-	Wed, 31 Jan 2018 04:31:21 -0800 (PST)
+X-Greylist: delayed 3599 seconds by postgrey-1.32 at yocto-www;
+	Wed, 31 Jan 2018 10:39:10 PST
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com
+	(mail-oln040092067100.outbound.protection.outlook.com [40.92.67.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46968E0085E
+	for <yocto@yoctoproject.org>; Wed, 31 Jan 2018 10:39:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=YRDzLOiWb/1MQ1jUsFobn2Ec/SJppmmTrwTdSA5dh+c=;
+	b=m9FNtE77f5VFZosP8+cQzOYnxYrDBemATxVOAosMjvUOcRzT0fCwW0fGHT32E6QeESsbhvt+rN11xRHLmjO29taNK6zGHzX47W/hGfeXmpxT27SYfMJI+6SoyGB9bvPK+FwMVcf/ArB7vzaDB4khoScjhwZEVkxuLQl1M+qzPkWvXFP81mAuOyGGu4ubufQy2xp5tRWOQZZyApDRnI66VM/IphJbpF8kODBPfl9LvPA7EgKb1gtYionNCVaqvXLHgH+eDvLbFYQqxCTlJxyTqid5XgSMu0NcJZCas/5ooCbm8xPZ8XEg1wn4z0W33kRYFH8ObhBf1hpELMmkOJ1uSQ==
+Received: from VE1EUR02FT014.eop-EUR02.prod.protection.outlook.com
+	(10.152.12.51) by VE1EUR02HT034.eop-EUR02.prod.protection.outlook.com
+	(10.152.13.73) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.444.13;
+	Wed, 31 Jan 2018 15:06:59 +0000
+Received: from AM4PR08MB2899.eurprd08.prod.outlook.com (10.152.12.56) by
+	VE1EUR02FT014.mail.protection.outlook.com (10.152.12.148) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+	15.20.444.13 via Frontend Transport; Wed, 31 Jan 2018 15:06:58 +0000
+Received: from AM4PR08MB2899.eurprd08.prod.outlook.com
+	([fe80::59ea:637e:20f4:3629]) by
+	AM4PR08MB2899.eurprd08.prod.outlook.com
+	([fe80::59ea:637e:20f4:3629%13]) with mapi id 15.20.0444.016;
+	Wed, 31 Jan 2018 15:06:59 +0000
+From: Pieter Cardoen <pieter.cardoen@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: gcc leak-sanitizer on arm target
+Thread-Index: AQHTmqOYPgAv7p01o0mHhRtkfr5ToQ==
+Date: Wed, 31 Jan 2018 15:06:59 +0000
+Message-ID: <AM4PR08MB289977F5166DA17908D660498EFB0@AM4PR08MB2899.eurprd08.prod.outlook.com>
+Accept-Language: nl-BE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:6BC32DF90E6F56A2C19879D8D383DDC8316D0E3916B7DAC139A7A956CA81E741;
+	UpperCasedChecksum:AD800FBEE3D62112C0A5E534BE99E3A0E1A078575827FA7E52BCB10B82A68A10;
+	SizeAsReceived:6880; Count:44
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [FjQK/t0Zt4lavk73Mwes/TMcYQO2XgCJ]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; VE1EUR02HT034;
+	6:4BlKyLFSZQO58peycF5X6ydIz7GXP8S8KGojITw6TozTY+E0AGvGnH3bNWQsfaJzinAWieFmPwA/TNWWYIwFG9/VvrAgRuT96K230ogPUGT33JbBn+jmtz9eU/fThkB6lOb3xjEZMQb85tRgiRaUBtTsHOTFs/bubVMqZVMS3pX1KoYPHFrA2oP0ka5qZ7Y1fJmefpam6P/8mCdaGPF7zjgE3VIX51lRS5QdJO9Qgjsrx6G/16vxjjgYaTOeeXTFJ/vp50WxM0Fpawu99Fu+yXjTNYTPFAOTtDv0YQs9EmcdEsitPrIWmBLFxLTUpZwhMexqXCLi9BEvgc7XYWSy8HUUET6wmZchHRY9dAaxaT4=;
+	5:qRm9yIRz0Od3a7lcMhdNoXPuR3HZfJ4hAc6bzf1XJfg7GIcB7Qm3NfGc1WXreVDUmxzCfgtNZDpS2+0UoHnFUSvoJPqWeNhG1buSyR6m0W7UXW0WsdN8ERDd/+eDIOLe0ypgmGjZDZ+dedXKbSwLQAP1JGGWHFTxSZuNrciw264=;
+	24:/2zqEnAIZ0MZ563dLYnTh0hOsZ30MDY1KrVHRcnY0dpN45gSrygcsCTNQ/4AM6Z/4t5Ph/tQtGbYSJ5YY7hL8hGk+/YXJP2T9xCBqWecuMY=;
+	7:ZSq8ASOBk1ohAa0hU3CZ3NDf95guxBgpql0JvXXm0GsUhw7cs7A9oaeOPVxGW5GRdJZbK0WeKiaiK8WeFwSeAXKNQXVFJnDjvW+lngeb+A6akHPN8OdGDnj/BeA9HDpJZPzFomSH18+fBWr1WWINOkM/b53m1/IJal8al4OWtCiR3hhoRpN5qgA9nfyLdXomcf6rcYGKqf8vOpy3qdzoeyxHvzxbI26E03JVNj6Ej4YmIiwsUtuALfCQKk9hjwia
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125374)(1701031045);
+	SRVR:VE1EUR02HT034; 
+x-ms-traffictypediagnostic: VE1EUR02HT034:
+x-ms-office365-filtering-correlation-id: 20ec1cb3-ac5f-4713-35db-08d568bc46c2
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(444000031);
+	SRVR:VE1EUR02HT034; BCL:0; PCL:0; RULEID:; SRVR:VE1EUR02HT034; 
+x-forefront-prvs: 056929CBB8
+x-forefront-antispam-report: SFV:NSPM; SFS:(7070007)(98901004); DIR:OUT;
+	SFP:1901; SCL:1; SRVR:VE1EUR02HT034;
+	H:AM4PR08MB2899.eurprd08.prod.outlook.com; FPR:; SPF:None; LANG:;
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Received: by 10.12.130.66 with HTTP; Wed, 31 Jan 2018 04:31:20 -0800 (PST)
-In-Reply-To: <CAE_REAvLSX=QE=8dhf0EeOATfJKJTOn_cB=o71c5VCDhu6R9Gw@mail.gmail.com>
-References: <CAE_REAvLSX=QE=8dhf0EeOATfJKJTOn_cB=o71c5VCDhu6R9Gw@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 31 Jan 2018 13:31:20 +0100
-Message-ID: <CAGAf8LyQJKTyvTEfXjUgHYTz12wBbyozNKLwTnhspFSyneeWew@mail.gmail.com>
-To: Gaurang Shastri <gmshastri@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>, cip-dev@lists.cip-project.org
-Subject: Re: Generating Yocto SDK as .deb (Debian) pacakge
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20ec1cb3-ac5f-4713-35db-08d568bc46c2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2018 15:06:59.1972 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR02HT034
+Subject: gcc leak-sanitizer on arm target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,33 +101,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jan 2018 12:31:24 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 31 Jan 2018 18:39:12 -0000
+Content-Language: nl-BE
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I'll add here another list, since these people might be interested in
-this thread/topic.
+Dear
 
-Best Regards,
-Zoran
-_______
+I am having trouble to enable leak sanitizer and thread sanitizer for my ar=
+m target. If I enable gcc-sanitizers, I only have these libraries on the ta=
+rget rootfs:
+* libasan.so.3
+* libasan.so.3.0.0
+* libsanitizer.spec
+* libubsan.so.0
+* libubsan.so.0.0.0
 
-On Wed, Jan 31, 2018 at 9:05 AM, Gaurang Shastri <gmshastri@gmail.com> wrote:
-> Hi Team,
->
-> How can I generate Yocto generated SDK as .deb package? Currently it is in
-> the form of installable shell script but I want to generate it as .deb
-> package so that I can directly install it on my Ubuntu VM using "apt-get"
-> command.
->
-> Is this supported? Any documentation?
->
-> Regards,
-> Gaurang
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+liblsan.so.* and libtsan.so.* is missing.
+
+I took a look into the build directory:
+tmp/work/cortexa9hf-neon-poky-linux-gnueabi/gcc-sanitizers/6.2.0-r0/gcc-6.2=
+.0/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/libsanitizer/
+
+in file asan/Makefile, I find "toolexeclib_LTLIBRARIES =3D libasan.la"
+while in file lsan/Makefiel, it is commented out: "#toolexeclib_LTLIBRARIES=
+ =3D liblsan.la"
+
+Is it possible to compile the leak and thread sanitizer library for arm?
+
+Thanks
+Pieter=
 
