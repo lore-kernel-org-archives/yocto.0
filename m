@@ -1,35 +1,64 @@
-Return-Path: <dhkoo@m2i.co.kr>
+Return-Path: <philippe.gislard@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 892DAE00DC3; Thu,  1 Feb 2018 00:32:52 -0800 (PST)
+	id 14B0FE00DF3; Thu,  1 Feb 2018 01:10:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [121.254.168.204 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (philippe.gislard[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp1.hiworks.co.kr (smtp1.hiworks.co.kr [121.254.168.204])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10648E00B5F
-	for <yocto@yoctoproject.org>; Thu,  1 Feb 2018 00:32:49 -0800 (PST)
-Received: (qmail 42055 invoked from network); 1 Feb 2018 17:32:47 +0900
-Received: from unknown (HELO hiworks.co.kr) (192.168.10.218)
-	by 0 (qmail 1.03 + ejcp v14) with SMTP; 1 Feb 2018 17:32:47 +0900
-Received: (qmail 16122 invoked by uid 504); 1 Feb 2018 17:32:47 +0900
-Received: from unknown (HELO dhkooPC) (dhkoo@m2i.co.kr@112.216.145.10)
-	by 0 (qmail 1.03 + ejcp v14) with SMTP; 1 Feb 2018 17:32:47 +0900
-X-Authinfo: HIWORKS SMTP authenticated <dhkoo@m2i.co.kr>
-From: "dhkoo" <dhkoo@m2i.co.kr>
-To: <yocto@yoctoproject.org>
-Date: Thu, 1 Feb 2018 17:32:52 +0900
-Message-ID: <000901d39b37$40706290$c15127b0$@co.kr>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.43 listed in list.dnswl.org]
+Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CB31E00D41
+	for <yocto@yoctoproject.org>; Thu,  1 Feb 2018 01:10:03 -0800 (PST)
+Received: by mail-wm0-f43.google.com with SMTP id g1so4304660wmg.2
+	for <yocto@yoctoproject.org>; Thu, 01 Feb 2018 01:10:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=drVjXZOaG4jEQfLD2N283ZtwQlKKsEHb3HAQcZlrV/8=;
+	b=okmo2XpizjhhHAnik8cduG9UKstdoOIJf6BdCAdbs5cNrV+IJOO+opb/ySRH292j5W
+	UVg+ZfVmJwJ/h0oQQ29NfymUF7Bym3PgZdSB7uzw81kdN5T+/V4vUE/eAOjg4TjJvbzM
+	IIwouojIAp2NX7qF8yFlRVSsONv9u9NcqJD75Ncc4Odywrd3qfQVm53sHIhFSIugzuwz
+	yCVYtJkkLOp/1hD2hQmmrdShAJhzVZ1lnTgSkDSaX5svAsLQU/A6cVmyp9ixRsMF2wOH
+	xnAKgn7Z/4Tnf3i0RWetMPzrf/hc9forJdEXKfpg8RlPpSy5XMIJeqDn0WeJdS4QA7Sj
+	DyNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=drVjXZOaG4jEQfLD2N283ZtwQlKKsEHb3HAQcZlrV/8=;
+	b=TnsehY2qpytBT2ty0GJZp4upUcF1Ay57FIJgAD3hUWY86j0FL6ItOCzDXDBrPVqjP/
+	3zUe0MZMzpTL4w5POE+5D2uMyR65H1/VLN+UY/zRMn5s5E8Mv2FvOHr/wN4H4l8G0RX2
+	PXDJ8rap4AikQ0Bkyu01c3RbkjEn2YiTKwdp3U4s46y6YfXSftQhQl+4gu+koIiYslyw
+	eM3puX4avnKB/n9lbXQl2jy74Kx+NOZmDDGuJuxkLZnUnI2mtbcEMxK76hvCpoRBdjCy
+	cauPt4N7xd5RrC9y5R9edeHvF+B94jX41y3PFrQHXTNfjFz0W0ZX39EadofZUvxDDQpN
+	MLpQ==
+X-Gm-Message-State: AKwxyte+TVXe7aeAwwZLSN9av/py/qrB0DPq7u1AN0Vs37Cp4t/hNGUh
+	7xIOPBMjah2Jxr2eV50Aki1DTPgMvhrZQjRwXmlEDW1M
+X-Google-Smtp-Source: AH8x227m941dpmpw44GlcenwCo0L6ztL/m3+CAvQ3WRQW3+uv89oSRiqUr3Oo6cav0JhY2W8cRVuxXU28/NeGBBTkeE=
+X-Received: by 10.28.29.81 with SMTP id d78mr28050487wmd.65.1517476202116;
+	Thu, 01 Feb 2018 01:10:02 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdObNz/3OssXwX3OTEyAoj+o4FMKjQ==
-Subject: error: impossible constraint in 'asm'
+Received: by 10.223.168.37 with HTTP; Thu, 1 Feb 2018 01:09:41 -0800 (PST)
+In-Reply-To: <000901d39b37$40706290$c15127b0$@co.kr>
+References: <000901d39b37$40706290$c15127b0$@co.kr>
+From: philippe gislard <philippe.gislard@gmail.com>
+Date: Thu, 1 Feb 2018 10:09:41 +0100
+Message-ID: <CAM0bAiXYBuso2ffCJdwhME5HdYFY_0LW6sU_QMue1JaP-vrf4Q@mail.gmail.com>
+To: dhkoo <dhkoo@m2i.co.kr>
+Cc: yocto@yoctoproject.org
+Subject: Re: error: impossible constraint in 'asm'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,419 +70,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Feb 2018 08:32:52 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_000A_01D39B82.B0580A90"
-Content-Language: ko
+X-List-Received-Date: Thu, 01 Feb 2018 09:10:06 -0000
+Content-Type: text/plain; charset="UTF-8"
+
+2018-02-01 9:32 GMT+01:00 dhkoo <dhkoo@m2i.co.kr>:
+> Hi.
+>
+>
+>
+> Recently, I'm work on mplayer that media player for my custom system.
+>
+> My Kernel version is 3.8, and mplayer version is 1.3.0.
+>
+>
+>
+> And when I perform bitbake, there's error on do_compile process. The
+> messages says like below.
+>
+> [...]
+>
+> | arm-poky-linux-gnueabi-gcc  -march=armv7-a -marm -mfpu=vfp
+> -mfloat-abi=hard
+> --sysroot=/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mplayer/1.3.0-r0/recipe-sysroot
+> -MMD -MP -Wundef  -Wstrict-prototypes -Wmissing-prototypes
+> -Wdisabled-optimization -Wno-pointer-sign -Wdeclaration-after-statement
+> -std=gnu99  -D_POSIX_C_SOURCE=200112 -D_XOPEN_SOURCE=600 -D_ISOC99_SOURCE
+> -I. -Iffmpeg  -fexpensive-optimizations -fomit-frame-pointer
+> -frename-registers -O4 -ffast-math -fno-tree-vectorize
+> -fno-asynchronous-unwind-tables -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+> -D_LARGEFILE64_SOURCE -mcpu=cortex-a9 -mfpu=neon   -D_REENTRANT -DZLIB_CONST
+> -c -o m_config.o m_config.c
+>
+> | m_config.c: In function 'm_config_add_option':
+>
+> | m_config.c:326:14: warning: assignment discards 'const' qualifier from
+> pointer target type [-Wdiscarded-qualifiers]
+>
+> |      co->name = arg->name;
+>
+> |               ^
+>
+> | cpudetect.c: In function 'do_cpuid':
+>
+> | cpudetect.c:258:5: error: impossible constraint in 'asm'
+>
+> |      __asm__ volatile
+>
+> |      ^~~~~~~
+>
+> [...]
+>
+
+Hi dhkoo,
+
+I'm not sure, but the cpudetect.c file from the official website
+should be preprocessed so that all it's content is not compile when
+using ARCH_ARM.
+All the code from the file is included in a
+#if ARCH_X86
+preprocessor statement
+
+Regarding the line 258:
+It's using embedded assembly code which I understand is specific for
+the X86 architecture.
+
+Hope this helps.
+
+
+-- 
+Philippe GISLARD
 
-------=_NextPart_000_000A_01D39B82.B0580A90
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hi.
-
- 
-
-Recently, I'm work on mplayer that media player for my custom system.
-
-My Kernel version is 3.8, and mplayer version is 1.3.0.
-
- 
-
-And when I perform bitbake, there's error on do_compile process. The
-messages says like below.
-
-ERROR: mplayer-1.3.0-r0 do_compile: oe_runmake failed
-
-ERROR: mplayer-1.3.0-r0 do_compile: Function failed: do_compile (log file is
-located at
-/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mplayer/1.3.0-
-r0/temp/log.do_compile.2960)
-
-ERROR: Logfile of failure stored in:
-/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mplayer/1.3.0-
-r0/temp/log.do_compile.2960
-
-Log data follows:
-
-| DEBUG: Executing shell function do_compile
-
-| NOTE: make -j 4
-
-| ./codec-cfg etc/codecs.conf > codecs.conf.h
-
-| arm-poky-linux-gnueabi-gcc  -march=armv7-a -marm -mfpu=vfp
--mfloat-abi=hard
---sysroot=/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mpla
-yer/1.3.0-r0/recipe-sysroot -MMD -MP -Wundef  -Wstrict-prototypes
--Wmissing-prototypes -Wdisabled-optimization -Wno-pointer-sign
--Wdeclaration-after-statement -std=gnu99  -D_POSIX_C_SOURCE=200112
--D_XOPEN_SOURCE=600 -D_ISOC99_SOURCE -I. -Iffmpeg  -fexpensive-optimizations
--fomit-frame-pointer -frename-registers -O4 -ffast-math -fno-tree-vectorize
--fno-asynchronous-unwind-tables -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
--D_LARGEFILE64_SOURCE -mcpu=cortex-a9 -mfpu=neon   -D_REENTRANT -DZLIB_CONST
--c -o cpudetect.o cpudetect.c
-
-| arm-poky-linux-gnueabi-gcc  -march=armv7-a -marm -mfpu=vfp
--mfloat-abi=hard
---sysroot=/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mpla
-yer/1.3.0-r0/recipe-sysroot -MMD -MP -Wundef  -Wstrict-prototypes
--Wmissing-prototypes -Wdisabled-optimization -Wno-pointer-sign
--Wdeclaration-after-statement -std=gnu99  -D_POSIX_C_SOURCE=200112
--D_XOPEN_SOURCE=600 -D_ISOC99_SOURCE -I. -Iffmpeg  -fexpensive-optimizations
--fomit-frame-pointer -frename-registers -O4 -ffast-math -fno-tree-vectorize
--fno-asynchronous-unwind-tables -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
--D_LARGEFILE64_SOURCE -mcpu=cortex-a9 -mfpu=neon   -D_REENTRANT -DZLIB_CONST
--c -o edl.o edl.c
-
-| arm-poky-linux-gnueabi-gcc  -march=armv7-a -marm -mfpu=vfp
--mfloat-abi=hard
---sysroot=/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mpla
-yer/1.3.0-r0/recipe-sysroot -MMD -MP -Wundef  -Wstrict-prototypes
--Wmissing-prototypes -Wdisabled-optimization -Wno-pointer-sign
--Wdeclaration-after-statement -std=gnu99  -D_POSIX_C_SOURCE=200112
--D_XOPEN_SOURCE=600 -D_ISOC99_SOURCE -I. -Iffmpeg  -fexpensive-optimizations
--fomit-frame-pointer -frename-registers -O4 -ffast-math -fno-tree-vectorize
--fno-asynchronous-unwind-tables -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
--D_LARGEFILE64_SOURCE -mcpu=cortex-a9 -mfpu=neon   -D_REENTRANT -DZLIB_CONST
--c -o fmt-conversion.o fmt-conversion.c
-
-| Reading optional codecs config file etc/codecs.conf: 224 audio & 451 video
-codecs
-
-| arm-poky-linux-gnueabi-gcc  -march=armv7-a -marm -mfpu=vfp
--mfloat-abi=hard
---sysroot=/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mpla
-yer/1.3.0-r0/recipe-sysroot -MMD -MP -Wundef  -Wstrict-prototypes
--Wmissing-prototypes -Wdisabled-optimization -Wno-pointer-sign
--Wdeclaration-after-statement -std=gnu99  -D_POSIX_C_SOURCE=200112
--D_XOPEN_SOURCE=600 -D_ISOC99_SOURCE -I. -Iffmpeg  -fexpensive-optimizations
--fomit-frame-pointer -frename-registers -O4 -ffast-math -fno-tree-vectorize
--fno-asynchronous-unwind-tables -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
--D_LARGEFILE64_SOURCE -mcpu=cortex-a9 -mfpu=neon   -D_REENTRANT -DZLIB_CONST
--c -o m_config.o m_config.c
-
-| m_config.c: In function 'm_config_add_option':
-
-| m_config.c:326:14: warning: assignment discards 'const' qualifier from
-pointer target type [-Wdiscarded-qualifiers]
-
-|      co->name = arg->name;
-
-|               ^
-
-| cpudetect.c: In function 'do_cpuid':
-
-| cpudetect.c:258:5: error: impossible constraint in 'asm'
-
-|      __asm__ volatile
-
-|      ^~~~~~~
-
-| Makefile:726: recipe for target 'cpudetect.o' failed
-
-| make: *** [cpudetect.o] Error 1
-
-| make: *** Waiting for unfinished jobs....
-
-| ERROR: oe_runmake failed
-
-| WARNING: exit code 1 from a shell command.
-
-| ERROR: Function failed: do_compile (log file is located at
-/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mplayer/1.3.0-
-r0/temp/log.do_compile.2960)
-
-ERROR: Task
-(/home/ku/yocto/meta-top/recipes-top/mplayer/mplayer_1.3.0.bb:do_compile)
-failed with exit code '1'
-
-NOTE: Tasks Summary: Attempted 1475 tasks of which 1474 didn't need to be
-rerun and 1 failed.
-
- 
-
-Does anyone has an idea??
-
-
-------=_NextPart_000_000A_01D39B82.B0580A90
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40">
-
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"Malgun Gothic";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8 Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:9.0pt;
-	font-family:"Malgun Gothic";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Malgun Gothic";
-	color:windowtext;}
-span.Char
-	{mso-style-name:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8 Char";
-	mso-style-priority:99;
-	mso-style-link:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8";
-	font-family:"Malgun Gothic";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
- /* Page Definitions */
- @page Section1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.Section1
-	{page:Section1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-
-<body lang=3DKO link=3Dblue vlink=3Dpurple>
-
-<div class=3DSection1>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Hi.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Recently, I'm work on mplayer =
-that media
-player for my custom system.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>My Kernel version is 3.8, and =
-mplayer
-version is 1.3.0.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>And when I perform bitbake, =
-there's error
-on do_compile process. The messages says like below.<br>
-<br>
-ERROR: mplayer-1.3.0-r0 do_compile: oe_runmake =
-failed<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>ERROR: mplayer-1.3.0-r0 =
-do_compile:
-Function failed: do_compile (log file is located at
-/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mplayer/1.3=
-.0-r0/temp/log.do_compile.2960)<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>ERROR: Logfile of failure stored =
-in:
-/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mplayer/1.3=
-.0-r0/temp/log.do_compile.2960<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Log data =
-follows:<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| DEBUG: Executing shell =
-function
-do_compile<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| NOTE: make -j =
-4<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| ./codec-cfg etc/codecs.conf =
-&gt;
-codecs.conf.h<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| =
-arm-poky-linux-gnueabi-gcc&nbsp;
--march=3Darmv7-a -marm -mfpu=3Dvfp -mfloat-abi=3Dhard
---sysroot=3D/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi=
-/mplayer/1.3.0-r0/recipe-sysroot
--MMD -MP -Wundef&nbsp; -Wstrict-prototypes -Wmissing-prototypes
--Wdisabled-optimization -Wno-pointer-sign -Wdeclaration-after-statement
--std=3Dgnu99&nbsp; -D_POSIX_C_SOURCE=3D200112 -D_XOPEN_SOURCE=3D600 =
--D_ISOC99_SOURCE
--I. -Iffmpeg&nbsp; -fexpensive-optimizations -fomit-frame-pointer =
--frename-registers
--O4 -ffast-math -fno-tree-vectorize -fno-asynchronous-unwind-tables
--D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=3D64 -D_LARGEFILE64_SOURCE
--mcpu=3Dcortex-a9 -mfpu=3Dneon&nbsp;&nbsp; -D_REENTRANT -DZLIB_CONST -c =
--o
-cpudetect.o cpudetect.c<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| =
-arm-poky-linux-gnueabi-gcc&nbsp; -march=3Darmv7-a
--marm -mfpu=3Dvfp -mfloat-abi=3Dhard
---sysroot=3D/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi=
-/mplayer/1.3.0-r0/recipe-sysroot
--MMD -MP -Wundef&nbsp; -Wstrict-prototypes -Wmissing-prototypes
--Wdisabled-optimization -Wno-pointer-sign -Wdeclaration-after-statement
--std=3Dgnu99&nbsp; -D_POSIX_C_SOURCE=3D200112 -D_XOPEN_SOURCE=3D600 =
--D_ISOC99_SOURCE
--I. -Iffmpeg&nbsp; -fexpensive-optimizations -fomit-frame-pointer
--frename-registers -O4 -ffast-math -fno-tree-vectorize
--fno-asynchronous-unwind-tables -D_LARGEFILE_SOURCE =
--D_FILE_OFFSET_BITS=3D64
--D_LARGEFILE64_SOURCE -mcpu=3Dcortex-a9 -mfpu=3Dneon&nbsp;&nbsp; =
--D_REENTRANT
--DZLIB_CONST -c -o edl.o edl.c<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| =
-arm-poky-linux-gnueabi-gcc&nbsp;
--march=3Darmv7-a -marm -mfpu=3Dvfp -mfloat-abi=3Dhard
---sysroot=3D/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi=
-/mplayer/1.3.0-r0/recipe-sysroot
--MMD -MP -Wundef&nbsp; -Wstrict-prototypes -Wmissing-prototypes
--Wdisabled-optimization -Wno-pointer-sign -Wdeclaration-after-statement
--std=3Dgnu99&nbsp; -D_POSIX_C_SOURCE=3D200112 -D_XOPEN_SOURCE=3D600 =
--D_ISOC99_SOURCE
--I. -Iffmpeg&nbsp; -fexpensive-optimizations -fomit-frame-pointer
--frename-registers -O4 -ffast-math -fno-tree-vectorize
--fno-asynchronous-unwind-tables -D_LARGEFILE_SOURCE =
--D_FILE_OFFSET_BITS=3D64
--D_LARGEFILE64_SOURCE -mcpu=3Dcortex-a9 -mfpu=3Dneon&nbsp;&nbsp; =
--D_REENTRANT -DZLIB_CONST
--c -o fmt-conversion.o fmt-conversion.c<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| Reading optional codecs config =
-file
-etc/codecs.conf: 224 audio &amp; 451 video codecs<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| =
-arm-poky-linux-gnueabi-gcc&nbsp;
--march=3Darmv7-a -marm -mfpu=3Dvfp -mfloat-abi=3Dhard
---sysroot=3D/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi=
-/mplayer/1.3.0-r0/recipe-sysroot
--MMD -MP -Wundef&nbsp; -Wstrict-prototypes -Wmissing-prototypes
--Wdisabled-optimization -Wno-pointer-sign -Wdeclaration-after-statement
--std=3Dgnu99&nbsp; -D_POSIX_C_SOURCE=3D200112 -D_XOPEN_SOURCE=3D600 =
--D_ISOC99_SOURCE
--I. -Iffmpeg&nbsp; -fexpensive-optimizations -fomit-frame-pointer
--frename-registers -O4 -ffast-math -fno-tree-vectorize
--fno-asynchronous-unwind-tables -D_LARGEFILE_SOURCE =
--D_FILE_OFFSET_BITS=3D64
--D_LARGEFILE64_SOURCE -mcpu=3Dcortex-a9 -mfpu=3Dneon&nbsp;&nbsp; =
--D_REENTRANT
--DZLIB_CONST -c -o m_config.o m_config.c<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| m_config.c: In function
-'m_config_add_option':<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| m_config.c:326:14: warning: =
-assignment
-discards 'const' qualifier from pointer target type =
-[-Wdiscarded-qualifiers]<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-co-&gt;name
-=3D arg-&gt;name;<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span =
-lang=3DEN-US>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| cpudetect.c: In function =
-'do_cpuid':<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| cpudetect.c:258:5: error: =
-impossible
-constraint in 'asm'<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-__asm__
-volatile<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-^~~~~~~<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| Makefile:726: recipe for =
-target
-'cpudetect.o' failed<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| make: *** [cpudetect.o] Error =
-1<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| make: *** Waiting for =
-unfinished jobs....<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| ERROR: oe_runmake =
-failed<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| WARNING: exit code 1 from a =
-shell
-command.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>| ERROR: Function failed: =
-do_compile (log
-file is located at
-/home/ku/yocto/build/tmp/work/armv7ahf-vfp-poky-linux-gnueabi/mplayer/1.3=
-.0-r0/temp/log.do_compile.2960)<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>ERROR: Task
-(/home/ku/yocto/meta-top/recipes-top/mplayer/mplayer_1.3.0.bb:do_compile)=
-
-failed with exit code '1'<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>NOTE: Tasks Summary: Attempted =
-1475 tasks
-of which 1474 didn't need to be rerun and 1 =
-failed.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Does anyone has an =
-idea??<o:p></o:p></span></p>
-
-</div>
-
-</body>
-
-</html>
-
-------=_NextPart_000_000A_01D39B82.B0580A90--
