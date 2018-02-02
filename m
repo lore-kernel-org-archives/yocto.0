@@ -1,71 +1,117 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <vishwanath.m@samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 301E8E00EBE; Tue,  6 Feb 2018 07:44:10 -0800 (PST)
+	id 873FBE00D1C; Fri,  2 Feb 2018 14:54:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_NONE,
-	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.195 listed in list.dnswl.org]
-	*  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
-	*      [223.196.115.131 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [211.189.100.12 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f195.google.com (mail-pf0-f195.google.com
-	[209.85.192.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B538E00EB9
-	for <yocto@yoctoproject.org>; Tue,  6 Feb 2018 07:44:04 -0800 (PST)
-Received: by mail-pf0-f195.google.com with SMTP id a14so764397pfi.7
-	for <yocto@yoctoproject.org>; Tue, 06 Feb 2018 07:44:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=PYuEvztJMFLnYGm+/f9yx6/lsRC7Qc7zUStiGkLfvrM=;
-	b=ccQU4+ZzBfE0WBq++kuFsA8Ey1HfX7ACQyyvM3BVytwrMCMcjH5lfUFKUnB8kYippp
-	3/53963xr4PCjRchubAfF5NlJlrKDo37NnaPwCDKgpTnWRLTE5CdkxJaqXCngfUxQbXS
-	B2F5RbSZGe3WxbPWFwri3YmIyP0rj777ND1tP+RaxS1+1V4DaZUGtVK44cxp/s3mu7OI
-	8/TaXBwIKNy+Q3xPuw9ailHHJj6zYyyGDGXyO6NuTxGVT//1d3noVl6aJpUmMy143lAk
-	kiySfQZxOLlo/naKYp3/WJIuk5gL3aXoYZWAiYlA2vhz17ghIfQkOdq0Z66Ttx/a48jP
-	QDRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=PYuEvztJMFLnYGm+/f9yx6/lsRC7Qc7zUStiGkLfvrM=;
-	b=PbYTi/V+7u6qkXcwZdJWHKeuwFO6hx1Bl4plZzRI2NNLvnPxI3E+W1F6v9K11vXOqC
-	ROLeBDbkaCo6qmekDChfPsq5bvWi8aHkM3iPgAVTUvYgVMMQ13QZZ0wJsomJqR1ybjXi
-	yCYzBZAxdk9JDEUq4CrmZNDUuzCsvDRqHait5ckSius8IGcCD4SD90EUst6tDzFJzlcE
-	XnRMYdocoqUMkr3Vwapa6Zk+X8aSNsnvykRFpd0AKBC/DYGErW9KqVLWM8i9GQl0Sv0l
-	/YnHn4G9Qt1FzmWenk8h4L8eM9pfxyFOD+n/k8bXAl1iHJGuk3If/6GnsF3Gl2K1r17x
-	3kdQ==
-X-Gm-Message-State: APf1xPCytqJWpCOaQxcC3Cscy4OhUD1Mdfw8o3U2/TYZ+5gVU+qc54rA
-	yxGjg0HFX/O5VHMQBH4rlMA=
-X-Google-Smtp-Source: AH8x224O6FZkOdZ7QSyHhGYqxP7TP7hH4Z0tXSVklEIhEbGtQFY99Xyacix8ZameYA5zHQi3ytvKZQ==
-X-Received: by 10.101.85.76 with SMTP id t12mr2309314pgr.60.1517931844120;
-	Tue, 06 Feb 2018 07:44:04 -0800 (PST)
-Received: from localhost.localdomain ([223.196.115.131])
-	by smtp.gmail.com with ESMTPSA id
-	a6sm16558140pgq.56.2018.02.06.07.44.02
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 06 Feb 2018 07:44:03 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: akuster@mvista.com,
-	yocto@yoctoproject.org
-Date: Tue,  6 Feb 2018 21:13:33 +0530
-Message-Id: <1517931813-13010-12-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1517931813-13010-1-git-send-email-akuster808@gmail.com>
-References: <1517931813-13010-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 12/12] tpm2.0-tss: update to 1.3.0
+X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
+	Fri, 02 Feb 2018 14:54:39 PST
+Received: from mailout2.w2.samsung.com (mailout2.w2.samsung.com
+	[211.189.100.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BE90E005A2;
+	Fri,  2 Feb 2018 14:54:39 -0800 (PST)
+Received: from uscas1p2.samsung.com (unknown [182.198.245.207])
+	by mailout2.w2.samsung.com (KnoxPortal) with ESMTP id
+	20180202224759usoutp02a2f0a246f41d3014ee29cbf5fb386ba6~Po8gjH26O0593905939usoutp02z;
+	Fri,  2 Feb 2018 22:47:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w2.samsung.com
+	20180202224759usoutp02a2f0a246f41d3014ee29cbf5fb386ba6~Po8gjH26O0593905939usoutp02z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1517611679;
+	bh=a+B2d4l63JsP1YwpDsJXIrUNmxxOyADftvTbtSZBBkM=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=rwAZsIGSYjVKlxdUwW9sbaSJ7vd7u6j0CKKU6fFBoThqd1AnHpHTRyD50JAop4/hw
+	qeEpxB7uedHdmSC3J7ISWBYld0GmH2ZFWafwe+eAInwdSqLhOLzzNA7PsTFLcN5AOS
+	Qg4DkhckzTdvRQFwN2S61inRMmw2F4S2sD8FVTxs=
+Received: from ussmges4.samsung.com (u114.gpu85.samsung.co.kr
+	[203.254.195.114]) by uscas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20180202224758uscas1p1406cb50261f4d43e697bfb587465778b~Po8gId3j70233202332uscas1p1D;
+	Fri,  2 Feb 2018 22:47:58 +0000 (GMT)
+Received: from uscas1p1.samsung.com ( [182.198.245.206]) by
+	ussmges4.samsung.com (USCPEMTA) with SMTP id A7.52.00495.E9AE47A5;
+	Fri,  2 Feb 2018 17:47:58 -0500 (EST)
+Received: from ussmgxs4.samsung.com (u125.gpu85.samsung.co.kr
+	[203.254.195.125]) by uscas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20180202224758uscas1p22647f0205832cd5924c02dbce842085b~Po8fxLA4A3219032190uscas1p2H;
+	Fri,  2 Feb 2018 22:47:58 +0000 (GMT)
+X-AuditID: cbfec372-f79b46d0000001ef-c8-5a74ea9ef0a2
+Received: from usmmp2.samsung.com ( [203.254.195.78]) by
+	ussmgxs4.samsung.com (USCPEXMTA) with SMTP id 30.B0.02085.E9AE47A5;
+	Fri,  2 Feb 2018 17:47:58 -0500 (EST)
+Received: from SSI-EX3.ssi.samsung.com ([105.128.2.146]) by
+	usmmp2.samsung.com (Oracle Communications Messaging Server 7.0.5.31.0
+	64bit
+	(built May 5 2014)) with ESMTP id <0P3J0024RONXNT10@usmmp2.samsung.com>;
+	Fri, 02 Feb 2018 17:47:58 -0500 (EST)
+Received: from SSI-EX3.ssi.samsung.com (105.128.2.228) by
+	SSI-EX3.ssi.samsung.com (105.128.2.228) with Microsoft SMTP Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+	15.1.669.32; Fri, 2 Feb 2018 14:47:57 -0800
+Received: from SSI-EX3.ssi.samsung.com ([fe80::8d80:5816:c578:8c36]) by
+	SSI-EX3.ssi.samsung.com ([fe80::8d80:5816:c578:8c36%3]) with mapi id
+	15.01.0669.032; Fri, 2 Feb 2018 14:47:57 -0800
+From: "Vish (Vishwanath) Maram" <vishwanath.m@samsung.com>
+To: "meta-virtualization@yoctoproject.org"
+	<meta-virtualization@yoctoproject.org>
+Thread-topic: Yocto Recipe for LibRXE.
+Thread-index: AdOcd6s2DO009wdSRq6zn1uZDqs7ng==
+Date: Fri, 02 Feb 2018 22:47:57 +0000
+Message-id: <46a92ec39f8e4fb3876199915c29f351@samsung.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+X-Originating-IP: [105.128.2.176]
+MIME-version: 1.0
+X-CFilter-Loop: Reflected
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrAKsWRmVeSWpSXmKPExsWy7djXc7rzXpVEGcz7ZWJx+8ARZotJL9ew
+	OTB5tJ/oYwtgjOKySUnNySxLLdK3S+DKeHk5oWCXeMXR1dfZGxg3i3QxcnBICJhI/P8Y3cXI
+	CWSKSVy4t56ti5GLQ0hgGaPEph/r2CGcFiaJCf/OM0FUmUhsXDWPHa7q8561rBDOX0aJ+V+v
+	M0E4Hxglvq3/CeXsZ5T4cm4fI0g/m4CVxMPXV1lBbBGBYIn3y+6wgBzCLGAqsXZGKUhYWEBR
+	YtLZThaIEjWJCVP+sIGUiAjoSey5LwsSZhFQlbjbv5oVJMwLNLG/OQwkzAj0wvdTa8AOZRYQ
+	l2huvckCcbSgxKLZe5hh3vy36yEbhK0o8bzlJCNEfZLEu22L2UFsXqD6H5PvQfVKShxccQPK
+	vs8m0XNYEcJ2kbj8aSfUTGGJV8e3sEPYMhKrPz9mBvlcQuAeo8SjBR3sEM4/RokN726wQlRZ
+	S3x7/ZtxAqPqLCTHzkJyyCwkh0DEdSQW7P7EBmFrSyxb+JoZxj5z4DETsvgCRvZVjCKlxcW5
+	6anFJnrFibnFpXnpesn5uZsYgenm9L/DRTsYn22wOsQowMGoxMN7I70kSog1say4MvcQowQH
+	s5II77a1QCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8CjNXRwoJpCeWpGanphakFsFkmTg4pRoY
+	rQs0rleG5a1hFMpbFfDnz3s7seL2p7o2B6X4tq5nfK+1QkhdcpWRxRNp1fD6u7tVL286qTk1
+	5eiLNQ+zVZ9lt8mXLXgeZ79l2klTA/smdrXEXptn6w77V+xlc92q1Glh8Miqz8Zlq+lmbmkH
+	S//A7aXcKoHF1aau8sxJFzzNMt02Vzm1SSuxFGckGmoxFxUnAgAuhLjwMwMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCIsWRmVeSWpSXmKPExsVy+t9hP915r0qiDF5ukrW4feAIs8Wkl2vY
+	HJg82k/0sQUwRnHZpKTmZJalFunbJXBlvLycULBLvOLo6uvsDYybRboYOTkkBEwkNq6axw5h
+	i0lcuLeerYuRi0NIYAmjxIHD65kgnL+MEv/OLGaEcD4wSmyYO5UdwtnPKLHk0D9WkH42ASuJ
+	h6+vAtkcHCICwRL/myxATGYBU4m1M0pBKoQFFCUmne1kAbFFBNQkJkz5wwZRrSex574sSJhF
+	QFXibv9qsCG8QAP7m8NAwoxAt30/tYYJxGYWEJdobr3JAnGzgMSSPeeZIWxRiZePIW6RANr0
+	vOUkI0R9gsSto6fBbF4BQYkfk+9B9UpKHFxxg2UCo9gsJGNnIWmZhaQFIq4jsWD3JzYIW1ti
+	2cLXzDD2mQOPmZDFFzCyr2IUKS0uzk2vKDbRK07MLS7NS9dLzs/dxAiJu9odjPe/2hxiFOBg
+	VOLhvZFeEiXEmlhWXJl7iFGCg1lJhHfbWqAQb0piZVVqUX58UWlOavEhRmkOFiVx3o17VkcK
+	CaQnlqRmp6YWpBbBZJk4OKUaGGtFb137ESASGBl4dX1/+5ICjY/L1r+0b4rYGBbiybv2yJId
+	f05zcF9JCt4SKbu2S817etDvrVrVLcVr5Q+oJQdNWe1wXid7569l1446NQj+ltzjZKH2oYVH
+	JeLo0p9FFrJLNucaXuu5MuUdT5LNhN/djfKyaTNNVwmm+F+cfFj1UnrixMSl4UosxRmJhlrM
+	RcWJAHaU3jC3AgAA
+X-CMS-MailID: 20180202224758uscas1p22647f0205832cd5924c02dbce842085b
+X-Msg-Generator: CA
+CMS-TYPE: 301P
+X-CMS-RootMailID: 20180202224758uscas1p22647f0205832cd5924c02dbce842085b
+X-RootMTR: 20180202224758uscas1p22647f0205832cd5924c02dbce842085b
+References: <CGME20180202224758uscas1p22647f0205832cd5924c02dbce842085b@uscas1p2.samsung.com>
+X-Mailman-Approved-At: Tue, 06 Feb 2018 08:01:32 -0800
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Yocto Recipe for LibRXE.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,70 +123,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Feb 2018 15:44:10 -0000
+X-List-Received-Date: Fri, 02 Feb 2018 22:54:40 -0000
+Content-language: en-US
+Content-type: multipart/alternative;
+	boundary="_000_46a92ec39f8e4fb3876199915c29f351samsungcom_"
 
-change recipe to PV style
+--_000_46a92ec39f8e4fb3876199915c29f351samsungcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../tpm2.0-tss/{tpm2.0-tss_git.bb => tpm2.0-tss_1.3.0.bb} | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
- rename meta-tpm/recipes-tpm/tpm2.0-tss/{tpm2.0-tss_git.bb => tpm2.0-tss_1.3.0.bb} (81%)
+Hi,
 
-diff --git a/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb b/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_1.3.0.bb
-similarity index 81%
-rename from meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
-rename to meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_1.3.0.bb
-index fd5ace8..b673c2b 100644
---- a/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_git.bb
-+++ b/meta-tpm/recipes-tpm/tpm2.0-tss/tpm2.0-tss_1.3.0.bb
-@@ -6,16 +6,16 @@ SECTION = "tpm"
- 
- DEPENDS = "autoconf-archive pkgconfig"
- 
--SRCREV = "30794affab01598bbacfe1f167be7c068a0c0476"
-+SRCREV = "b1d9ece8c6bea2e3043943b2edfaebcdca330c38"
- 
- SRC_URI = " \
--    git://github.com/01org/TPM2.0-TSS.git;protocol=git;branch=master;name=TPM2.0-TSS;destsuffix=TPM2.0-TSS \
-+    git://github.com/tpm2-software/tpm2-tss.git;branch=1.x \
-     file://ax_pthread.m4 \
- "
- 
- inherit autotools pkgconfig systemd
- 
--S = "${WORKDIR}/${@d.getVar('BPN',d).upper()}"
-+S = "${WORKDIR}/git"
- 
- do_configure_prepend () {
- 	mkdir -p ${S}/m4
-@@ -37,19 +37,22 @@ SYSTEMD_PACKAGES = "resourcemgr"
- SYSTEMD_SERVICE_resourcemgr = "resourcemgr.service"
- SYSTEMD_AUTO_ENABLE_resourcemgr = "enable"
- 
--do_patch[postfuncs] += "fix_systemd_unit"
-+do_patch[postfuncs] += "${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','fix_systemd_unit','', d)}"
- fix_systemd_unit () {
-     sed -i -e 's;^ExecStart=.*/resourcemgr;ExecStart=${sbindir}/resourcemgr;' ${S}/contrib/resourcemgr.service
- }
- 
- do_install_append() {
--    install -d ${D}${systemd_system_unitdir}
--    install -m0644 ${S}/contrib/resourcemgr.service ${D}${systemd_system_unitdir}/resourcemgr.service
-+    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-+        install -d ${D}${systemd_system_unitdir}
-+        install -m0644 ${S}/contrib/resourcemgr.service ${D}${systemd_system_unitdir}/resourcemgr.service
-+    fi
- }
- 
- PROVIDES = "${PACKAGES}"
- PACKAGES = " \
-     ${PN}-dbg \
-+    ${PN}-doc \
-     libtss2 \
-     libtss2-dev \
-     libtss2-staticdev \
--- 
-2.7.4
+I am looking for a yocto recipe of librxe? Right now I was able to get libr=
+dmacm and libibverbs, but librxe yocto is not there. Can someone help me in=
+ getting this?
 
+Highly appreciate if I can get some info on the same.
 
+Thanks,
+-Vish
+
+--_000_46a92ec39f8e4fb3876199915c29f351samsungcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am looking for a yocto recipe of librxe? Right now=
+ I was able to get librdmacm and libibverbs, but librxe yocto is not there.=
+ Can someone help me in getting this?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Highly appreciate if I can get some info on the same=
+.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">-Vish<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_46a92ec39f8e4fb3876199915c29f351samsungcom_--
