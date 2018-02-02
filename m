@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5780EE00D91; Fri,  2 Feb 2018 12:56:50 -0800 (PST)
+	id 183AAE00E1E; Fri,  2 Feb 2018 13:26:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,55 +8,55 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.174 listed in list.dnswl.org]
+	*      [209.85.223.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75100E005B1
-	for <yocto@yoctoproject.org>; Fri,  2 Feb 2018 12:56:49 -0800 (PST)
-Received: by mail-io0-f174.google.com with SMTP id c17so24276554iod.1
-	for <yocto@yoctoproject.org>; Fri, 02 Feb 2018 12:56:49 -0800 (PST)
+Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
+	[209.85.223.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D04FE005B1
+	for <yocto@yoctoproject.org>; Fri,  2 Feb 2018 13:26:52 -0800 (PST)
+Received: by mail-io0-f177.google.com with SMTP id m11so24372002iob.2
+	for <yocto@yoctoproject.org>; Fri, 02 Feb 2018 13:26:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=MvwokQM5E/iaDa1ueRilJk4j7BAWuloMG+nPXyFPFlM=;
-	b=fJfYMwDn75YxURw3YNMdeS82Qz4xobLqzrSJV2no3NJ90fIiqU7Aoyf+QQZXrJW9pl
-	DtrNsYokAajI6jsdpWZKBPs04VYz2VGZ9I3IdESk8mWmwkZRGeboQs6YYSP+PWeVy/3d
-	bajxdLAYLZkrvKcraTW61Q2gr4fVULr52yYfqRJFOeo6z5gXPJM14eWZW5akQLP+yXmN
-	ttuoq671o7wIa+pJ7YjxdvglOgib5OzJdUO/BnTXhcik7AZRTUWgzjeKtZtuZwdNn5fh
-	NoqffqNXuoOR++OsuLBG+628G1VxvqO9YGv5soIt0xQowUBzcX0jvfRCTrIMG2howd5c
-	mqhA==
+	:cc; bh=PO1kRDkiH4aC9UrVAn8BgZgcyBPaYXSOya3qumAriaI=;
+	b=ynGFY3bgoFwlokkTuAWaF8FAtDTj9ovR5FmbqAT96UHvEYkrjYdtH+Tjh5RN++IwOO
+	fm6dJIDTMv/HWsBnONJ+OzUWSNoXI2lz+hxyFoGiivTlt7zSPrpoZX2lMa7mNqjP59Vx
+	GBUjbuzpNYMUzgMY9Bp8TGlw4je4lDh+n44sQU9PJLHc8YYZJNbAQPoKtBHwyDAX9tsm
+	41AiWyoNmVMF9F+dodmZmm+/wDnK6/jc6ZugcwYOhY6Tox5arf638YhZ/CxuB8IsIDs6
+	nvUUNkE7tn1yExlOGmej+18S25mYfA+U1P1c2W5cOG8Qcy6arJ4d+9WrYjwVe040N19l
+	4//A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=MvwokQM5E/iaDa1ueRilJk4j7BAWuloMG+nPXyFPFlM=;
-	b=g4hAC6CBIfPLx8RnNzlylW+X/4MESq7lJP3dN6DTSQ3zfbyZ5lVQikLHdJ90soakh8
-	HV78tnhG+TDHUr5jNl3jVm9NaMOCl9GMCszX3cW2r/kyy9MDQW7lIMyC3W6iJ1TZSutP
-	FyVLplhdXvaSPSPlw7wSL24R6jwFpEPM3skabF3iNJ/twdcDwXHhXyIKVnSJThx+hOI6
-	ZVPZH5a9xQSw409visBgGiBy0p3LCH7VGTceUW3W6i5N7/asgzxQ0zH9azMwaHkjwU+R
-	HwWWYN11MowY+nCmhVZdpPrVRp8ybrxo3KNzO4ViT06ipkTmc/zwWlg85RlL1BkeACau
-	5z4w==
-X-Gm-Message-State: APf1xPBJOjx/K1oJZEo+I6hQj+VGLdoUOm87714gOT+lvlUEEUIL3fMd
-	9Dyt6l6L9BJaYZGaXUm2TyzXyEdauMeqGAdJe+Yeww==
-X-Google-Smtp-Source: AH8x226jNQKMGB9GmADTp+j2jDEgSgm8QXXDRwN+1kzUKbLRxwowwNIyhQpqRQW8MKj4rGbE0reLzY7nYwk6p9f6FNo=
-X-Received: by 10.107.9.154 with SMTP id 26mr147135ioj.52.1517605008643; Fri,
-	02 Feb 2018 12:56:48 -0800 (PST)
+	bh=PO1kRDkiH4aC9UrVAn8BgZgcyBPaYXSOya3qumAriaI=;
+	b=Iv3rdsPWIVwT8o/GtTed63YSvSfLqPGGpPUktg+UHcHEpPSn5khH5x26OionRC9L91
+	Wu00hK6P0hOR7nBBcPdovj+skdjavGpMNvBUhdHtzfzg1aRY4DbSD41629DuWmekZQDO
+	avH7koQcsWAmJi6ATrYphV4b9Y33N063vy0493faRP1q0aeY3TwAKffvo2VXFrttVMG/
+	AnxwYx877UkI3NKZFnLxJIdLjFA4E81BmXVQfRRlow5tylTPfHGaPxhc4xX5ab+9gik7
+	yujQoJKSdHxzB6DHnlNpYIU7ndp9a/iU+ZX1W3An1hsI//N50lr+wuj+s1QyGzGM6h6u
+	U3bg==
+X-Gm-Message-State: AKwxytdTXDRnfkm+yJNIVAeL0iznmxcjMdIdLtt/ENlcdG+N10ubqAB3
+	Rdqg5g8xlyQ2B6TmHscn5Nq3m9dDse8x07ScgAWXtA==
+X-Google-Smtp-Source: AH8x226Lqa9X8Xyd65+B3dex/e6bt20POn+i3crR8ezNlMDCEWbNeCBoE4jHeIVLpeUBcqpsx/wHuuPYsmY5XuYwUvc=
+X-Received: by 10.107.32.19 with SMTP id g19mr44075834iog.217.1517606812561;
+	Fri, 02 Feb 2018 13:26:52 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.17.206 with HTTP; Fri, 2 Feb 2018 12:56:28 -0800 (PST)
-In-Reply-To: <trinity-0d7d4d84-eeb2-4307-a506-329382201d9c-1517486579687@3c-app-gmx-bs66>
-References: <trinity-0d7d4d84-eeb2-4307-a506-329382201d9c-1517486579687@3c-app-gmx-bs66>
+Received: by 10.107.17.206 with HTTP; Fri, 2 Feb 2018 13:26:32 -0800 (PST)
+In-Reply-To: <ae397a5a4a71435ebc45de0e88ed40b6@atgrzsw1693.avl01.avlcorp.lan>
+References: <ae397a5a4a71435ebc45de0e88ed40b6@atgrzsw1693.avl01.avlcorp.lan>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 2 Feb 2018 20:56:28 +0000
-Message-ID: <CAJTo0La3T3FULBJeQkap_TeXKv=ATGeRXVvXAo+ryi9j9wprAQ@mail.gmail.com>
-To: Frank Smith <smith-f@gmx.de>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: How to create lighttpd with minimal configure options?
+Date: Fri, 2 Feb 2018 21:26:32 +0000
+Message-ID: <CAJTo0LaQpDBgZ5GUdDZvk45j_f+MJcmn8kL6k8as+64nGxwO5A@mail.gmail.com>
+To: "Staffa, Christian AVL/DE" <Christian.Staffa@avl.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: db-native fetching error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,112 +68,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Feb 2018 20:56:50 -0000
-Content-Type: multipart/alternative; boundary="001a113ea2b6732d44056440f304"
+X-List-Received-Date: Fri, 02 Feb 2018 21:26:54 -0000
+Content-Type: multipart/alternative; boundary="001a1141a2a4f8bf7d0564415eda"
 
---001a113ea2b6732d44056440f304
+--001a1141a2a4f8bf7d0564415eda
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1 February 2018 at 12:02, Frank Smith <smith-f@gmx.de> wrote:
+On 2 February 2018 at 14:44, Staffa, Christian AVL/DE <
+Christian.Staffa@avl.com> wrote:
 
-> I want to create a minimal lighttpd package as small as possible.
-> Therefore I created a bbappendfile with extra configure flags. As follows.
-> But the changes seems to not have any effect at all. The size of my minimal
-> rootfs.jffs2 increases from 3MB to 5.1MB.
+> I am trying to setup a yocto build environment. I am using win 10 with WS=
+L
+> and an ubuntu environment.
 >
-> meta-iris/recipes-extended/lighttpd/lighttpd_%.bbappend
+> After coping with the company proxy to route the traffic properly I have
+> an error with db-native package now
 >
-> LICENSE = "BSD"
->
-> EXTRA_OECONF += "--enable-ipv6"
-> EXTRA_OECONF += "--with-zlib"
-> EXTRA_OECONF += "--without-openssl"
->
-> How to build a minimal lighttpd package? I was also thinking about
-> disabling unused modules, but how?
->
-> Maybe I did not really understand, how to enable the ./configure options.
-> Is this the right way to configure with an option?
->
-> PACKAGECONFIG ??= "openssl pcre zlib \
->     [..]
-> "
-> PACKAGECONFIG[openssl] = "--with-openssl,--without-openssl,openssl"
->
-> EXTRA_OECONF += "--without-openssl"
+> ERROR: db-native-1_5.3.28-r1 do_fetch: Checksum failure fetching
+> http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz
+> ERROR: db-native-1_5.3.28-r1 do_fetch: Fetcher failure for URL: '
+> http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz'. Checksum
+> mismatch!
+> File: '/home/cs/dev/poky/build/downloads/db-5.3.28.tar.gz' has md5
+> checksum 73ef4c55d184a55807bee8d4c4a5cd40 when
+> b99454564d5b4479750567031d66fe24 was expected
 >
 
-No, that's not how to use PACKAGECONFIG.
+$ wget http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz
+...
+2018-02-02 21:22:47 (2.10 MB/s) - =E2=80=98db-5.3.28.tar.gz=E2=80=99 saved
+[35090431/35090431]
 
-See the manual for an explanation of PACKAGECONFIG and how to use it:
+$ md5sum db-5.3.28.tar.gz
+b99454564d5b4479750567031d66fe24  db-5.3.28.tar.gz
 
-http://www.yoctoproject.org/docs/2.5/ref-manual/ref-manual.html#var-PACKAGECONFIG
+Works for me.  I blame either your corporate proxy (wouldn't be the first
+time a proxy has rewritten files as they get transferred) or some weird
+interaction with WSL.
+
+Isolate the parts.  If you download that file with a Windows browser, what
+is the md5?  What if you download it using wget in WSL? Use WSL on another
+network that doesn't use your corporate proxy to see what md5 that file has=
+.
 
 Ross
 
---001a113ea2b6732d44056440f304
+--001a1141a2a4f8bf7d0564415eda
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On 1 February 2018 at 12:02, Frank Smith <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:smith-f@gmx.de" target=3D"_blank">smith-f@gmx.de</a>=
-&gt;</span> wrote:<br><div class=3D"gmail_extra"><div class=3D"gmail_quote"=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);=
-padding-left:1ex"><div><div style=3D"font-family:Verdana;font-size:12px"><d=
-iv style=3D"font-family:Verdana;font-size:12px">
-<div>I want to create a minimal lighttpd package as small as possible. Ther=
-efore I created a bbappendfile with extra configure flags. As follows. But =
-the changes seems to not have any effect at all. The size of my minimal roo=
-tfs.jffs2 increases from 3MB to 5.1MB.</div>
+<div dir=3D"ltr">On 2 February 2018 at 14:44, Staffa, Christian AVL/DE <spa=
+n dir=3D"ltr">&lt;<a href=3D"mailto:Christian.Staffa@avl.com" target=3D"_bl=
+ank">Christian.Staffa@avl.com</a>&gt;</span> wrote:<br><div class=3D"gmail_=
+extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;=
+border-left-color:rgb(204,204,204);padding-left:1ex">I am trying to setup a=
+ yocto build environment. I am using win 10 with WSL and an ubuntu environm=
+ent.<br>
+<br>
+After coping with the company proxy to route the traffic properly I have an=
+ error with db-native package now<br><br>ERROR: db-native-1_5.3.28-r1 do_fe=
+tch: Checksum failure fetching <a href=3D"http://download.oracle.com/berkel=
+ey-db/db-5.3.28.tar.gz" rel=3D"noreferrer" target=3D"_blank">http://downloa=
+d.oracle.com/<wbr>berkeley-db/db-5.3.28.tar.gz</a><br>
+ERROR: db-native-1_5.3.28-r1 do_fetch: Fetcher failure for URL: &#39;<a hre=
+f=3D"http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz" rel=3D"norefe=
+rrer" target=3D"_blank">http://download.oracle.com/<wbr>berkeley-db/db-5.3.=
+28.tar.gz</a>&#39;. Checksum mismatch!<br>
+File: &#39;/home/cs/dev/poky/build/<wbr>downloads/db-5.3.28.tar.gz&#39; has=
+ md5 checksum 73ef4c55d184a55807bee8d4c4a5cd<wbr>40 when b99454564d5b447975=
+0567031d66fe<wbr>24 was expected<br></blockquote><div><br></div><div>$ wget=
+ <a href=3D"http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz">http:/=
+/download.oracle.com/berkeley-db/db-5.3.28.tar.gz</a></div><div>...</div><d=
+iv>2018-02-02 21:22:47 (2.10 MB/s) - =E2=80=98db-5.3.28.tar.gz=E2=80=99 sav=
+ed [35090431/35090431]</div><div><br></div><div>$ md5sum db-5.3.28.tar.gz<b=
+r></div><div>b99454564d5b4479750567031d66fe24 =C2=A0db-5.3.28.tar.gz=C2=A0<=
+/div><div><br></div><div>Works for me.=C2=A0 I blame either your corporate =
+proxy (wouldn&#39;t be the first time a proxy has rewritten files as they g=
+et transferred) or some weird interaction with WSL.</div><div><br></div><di=
+v>Isolate the parts.=C2=A0 If you download that file with a Windows browser=
+, what is the md5?=C2=A0 What if you download it using wget in WSL? Use WSL=
+ on another network that doesn&#39;t use your corporate proxy to see what m=
+d5 that file has.</div><div><br></div><div>Ross</div></div></div></div>
 
-<div>=C2=A0</div>
-
-<div>meta-iris/recipes-extended/<wbr>lighttpd/lighttpd_%.bbappend</div>
-
-<div>=C2=A0</div>
-
-<div>
-<div>LICENSE =3D &quot;BSD&quot;</div>
-
-<div>=C2=A0</div>
-
-<div>EXTRA_OECONF +=3D &quot;--enable-ipv6&quot;<br>
-EXTRA_OECONF +=3D &quot;--with-zlib&quot;<br>
-EXTRA_OECONF +=3D &quot;--without-openssl&quot;</div>
-
-<div>=C2=A0</div>
-
-<div>How to build a minimal lighttpd package? I was also thinking about dis=
-abling unused modules, but how?</div>
-
-<div>=C2=A0</div>
-
-<div>Maybe I did not really understand, how to enable the ./configure optio=
-ns. Is this the right way to configure with an option?</div>
-
-<div>=C2=A0</div>
-
-<div>PACKAGECONFIG ??=3D &quot;openssl pcre zlib \<br>
-=C2=A0=C2=A0=C2=A0 [..]<br>
-&quot;</div>
-
-<div>PACKAGECONFIG[openssl] =3D &quot;--with-openssl,--without-<wbr>openssl=
-,openssl&quot;</div>
-
-<div>=C2=A0</div>
-
-<div>EXTRA_OECONF +=3D &quot;--without-openssl&quot;</div>
-</div>
-</div></div></div>
-</blockquote></div><br></div><div class=3D"gmail_extra">No, that&#39;s not =
-how to use PACKAGECONFIG.</div><div class=3D"gmail_extra"><br></div><div cl=
-ass=3D"gmail_extra">See the manual for an explanation of PACKAGECONFIG and =
-how to use it:</div><div class=3D"gmail_extra"><br></div><div class=3D"gmai=
-l_extra"><a href=3D"http://www.yoctoproject.org/docs/2.5/ref-manual/ref-man=
-ual.html#var-PACKAGECONFIG">http://www.yoctoproject.org/docs/2.5/ref-manual=
-/ref-manual.html#var-PACKAGECONFIG</a><br></div><div class=3D"gmail_extra">=
-<br></div><div class=3D"gmail_extra">Ross</div><div class=3D"gmail_extra"><=
-br></div></div>
-
---001a113ea2b6732d44056440f304--
+--001a1141a2a4f8bf7d0564415eda--
