@@ -1,44 +1,42 @@
-Return-Path: <jakob.hasse@smart-home-technology.ch>
+Return-Path: <stephano.cetola@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F19DE00E01; Mon,  5 Feb 2018 13:58:11 -0800 (PST)
+	id D1C86E00E15; Mon,  5 Feb 2018 15:05:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [217.26.49.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,HEXHASH_WORD,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mxout014.mail.hostpoint.ch (mxout014.mail.hostpoint.ch
-	[217.26.49.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90C03E00D6D
-	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 13:58:08 -0800 (PST)
-Received: from [10.0.2.45] (helo=asmtp012.mail.hostpoint.ch)
-	by mxout014.mail.hostpoint.ch with esmtp (Exim 4.90 (FreeBSD))
-	(envelope-from <jakob.hasse@smart-home-technology.ch>)
-	id 1eiom6-000KVK-NC; Mon, 05 Feb 2018 22:58:06 +0100
-Received: from [2a02:168:68c8:1:2166:34c1:c1f:6a26]
-	by asmtp012.mail.hostpoint.ch with esmtpa (Exim 4.90 (FreeBSD))
-	(envelope-from <jakob.hasse@smart-home-technology.ch>)
-	id 1eiom6-000MVc-Jn; Mon, 05 Feb 2018 22:58:06 +0100
-X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, yocto@yoctoproject.org
-References: <aa633a5b-a067-b6e8-4097-740c1b6dbab6@smart-home-technology.ch>
-	<384be7fc-2992-0654-0bcb-54080d95c608@windriver.com>
-	<80d24e33-0efa-4c2c-ce9d-a2dfd16eadbe@smart-home-technology.ch>
-	<9456defc-e475-2072-555f-078e0932cead@windriver.com>
-	<23cfe332-36a8-eabd-2db2-2c756266107f@smart-home-technology.ch>
-	<2e1d0375-9b85-37c6-7c9c-119ac8ad513c@windriver.com>
-From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
-Message-ID: <d1acc1a7-a602-da62-03d4-16b35a3ea04e@smart-home-technology.ch>
-Date: Mon, 5 Feb 2018 22:58:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C08CCE00E02
+	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 15:05:50 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	05 Feb 2018 15:05:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,466,1511856000"; d="scan'208";a="15517957"
+Received: from linux.intel.com ([10.54.29.200])
+	by fmsmga007.fm.intel.com with ESMTP; 05 Feb 2018 15:05:49 -0800
+Received: from enpicket-mobl3.amr.corp.intel.com (unknown [10.252.139.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTPS id 9F6C6580438
+	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 15:05:49 -0800 (PST)
+To: yocto@yoctoproject.org
+From: Stephano Cetola <stephano.cetola@linux.intel.com>
+Message-ID: <da12212e-2b78-a093-b607-f545cc4e66f5@linux.intel.com>
+Date: Mon, 5 Feb 2018 15:05:49 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.6.0
 MIME-Version: 1.0
-In-Reply-To: <2e1d0375-9b85-37c6-7c9c-119ac8ad513c@windriver.com>
-Subject: Re: Running Docker
+Subject: Reminder: Yocto Project Technical Team Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,212 +48,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Feb 2018 21:58:11 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: de-DE
+X-List-Received-Date: Mon, 05 Feb 2018 23:05:51 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hello Bruce,
+YPTM will be Feb. 6, 2018 at 8am PST.
 
-Thanks for the reply!
-No, the interpreter seems to be different, other executables are e.g.:
+We encourage people attending the meeting to logon and announce
+themselves on the Yocto Project IRC chancel during the meeting (optional):
 
-# file /usr/bin/python2.7
-/usr/bin/python2.7: ELF 32-bit LSB executable, ARM, EABI5 version 1 
-(SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for 
-GNU/Linux 3.2.0, BuildID[sha1]=b7d18ea9c9088e4b238dc8aeaaf47d6d4941079c, 
-stripped
+Yocto IRC: http://webchat.freenode.net/?channels=#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
 
-# file /usr/bin/udevadm
-/usr/bin/udevadm: ELF 32-bit LSB executable, ARM, EABI5 version 1 
-(SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for 
-GNU/Linux 3.2.0, BuildID[sha1]=cf639576658cfa150a456672666c2560d58c5f1b, 
-stripped
+https://www.yoctoproject.org/tools-resources/community/weekly-technical-call
 
-custom app:
-# file /usr/bin/goms
-/usr/bin/goms: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), 
-dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 
-3.2.0, BuildID[sha1]=2d6df18a0b70632a94caee30d4e21c35da235d34, stripped
+Conference Details:
+Company:           WIND RIVER SYS
+- dial into: 1-800-262-0778/404-397-1527
+- enter the bridge number: 88748961#
 
-All the Best,
-Jakob
+The international numbers are:
 
-On 05.02.2018 19:05, Bruce Ashfield wrote:
-> On 02/02/2018 11:21 AM, Jakob Hasse wrote:
->> Hello,
->>
->> file says:
->> # file /usr/bin/docker
->> /usr/bin/docker: ELF 32-bit LSB executable, ARM, EABI5 version 1 
->> (SYSV), dynamically linked, interpreter /lib/ld-linux.so.3, for 
->> GNU/Linux 3.2.0, 
->> BuildID[sha1]=87db889a25d481762a8d2c7aaa1bd52af2458915, not stripped
->>
->
-> Sorry for the slow reply, I was away for a bit.
->
-> And does that description match your target (and the other executables)
-> that do work ? If the kernel doesn't recognize the binary interpreter
-> of an executable, the message you are seeing is what you get.
->
-> Cheers,
->
-> Bruce
->
->> Regards,
->> Jakob
->>
->> On 02.02.2018 17:14, Bruce Ashfield wrote:
->>> On 2018-02-02 10:57 AM, Jakob Hasse wrote:
->>>> Hello Bruce,
->>>>
->>>> Thank you for the advice with the morty branch, this worked perfectly.
->>>>
->>>> Now, however, docker is installed on my Yocto-system but I can't 
->>>> run it:
->>>>
->>>> ~# docker
->>>> -sh: /usr/bin/docker: No such file or directory
->>>
->>> I've seen this before. It normally means that the executable isn't
->>> in a format that your target recognizes. It could very well be the
->>> go support in the older branch isn't building the right thing.
->>>
->>> What does 'file' say about the executable ?
->>>
->>> Bruce
->>>
->>>>
->>>> Is "docker" the client to control and run containers (e.g. "docker 
->>>> run hello-world")?
->>>> On my Ubuntu machine, this works, I installed docker and docker.io 
->>>> via apt, then I could run "docker run hello-world".
->>>>
->>>> All the Best and many thanks in advance!
->>>> Jakob
->>>>
->>>> On 26.01.2018 14:05, Bruce Ashfield wrote:
->>>>> On 2018-01-26 6:52 AM, Jakob Hasse wrote:
->>>>>> Hello,
->>>>>>
->>>>>> we're trying to include meta-virtualization in to our project, in 
->>>>>> particular, we want to use docker. However, as soon as I include 
->>>>>> the layer in to our project, bitbake complains:
->>>>>>
->>>>>> bitbake -C compile core-image-base
->>>>>> NOTE: Started PRServer with DBfile: 
->>>>>> /home/jakob/workspace/beerstation/cache/prserv.sqlite3, IP: 
->>>>>> 127.0.0.1, PORT: 46136, PID: 5713
->>>>>> ERROR: Execution of event handler 'virt_bbappend_distrocheck' failed
->>>>>> Traceback (most recent call last):
->>>>>>    File 
->>>>>> "/usr/local/dey-2.2/sources/meta-virtualization/classes/sanity-meta-virt.bbclass", 
->>>>>> line 4, in virt_bbappend_distrocheck(e=<bb.event.SanityCheck 
->>>>>> object at 0x7f945e05d3c8>):
->>>>>>       python virt_bbappend_distrocheck() {
->>>>>>      >    skip_check = 
->>>>>> e.data.getVar('SKIP_META_VIRT_SANITY_CHECK') == "1"
->>>>>>           if 'virtualization' not in 
->>>>>> e.data.getVar('DISTRO_FEATURES').split() and not skip_check:
->>>>>> TypeError: getVar() missing 1 required positional argument: 'expand'
->>>>>>
->>>>>> ERROR: Command execution failed: Traceback (most recent call last):
->>>>>>    File 
->>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/command.py", line 
->>>>>> 101, in runAsyncCommand
->>>>>>      self.cooker.updateCache()
->>>>>>    File 
->>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/cooker.py", line 
->>>>>> 1627, in updateCache
->>>>>>      bb.event.fire(bb.event.SanityCheck(False), 
->>>>>> self.databuilder.mcdata[mc])
->>>>>>    File 
->>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
->>>>>> 201, in fire
->>>>>>      fire_class_handlers(event, d)
->>>>>>    File 
->>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
->>>>>> 124, in fire_class_handlers
->>>>>>      execute_handler(name, handler, event, d)
->>>>>>    File 
->>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
->>>>>> 96, in execute_handler
->>>>>>      ret = handler(event)
->>>>>>    File 
->>>>>> "/usr/local/dey-2.2/sources/meta-virtualization/classes/sanity-meta-virt.bbclass", 
->>>>>> line 4, in virt_bbappend_distrocheck
->>>>>>      skip_check = e.data.getVar('SKIP_META_VIRT_SANITY_CHECK') == 
->>>>>> "1"
->>>>>> TypeError: getVar() missing 1 required positional argument: 'expand'
->>>>>>
->>>>>>
->>>>>> Summary: There were 2 ERROR messages shown, returning a non-zero 
->>>>>> exit code.
->>>>>>
->>>>>>
->>>>>> Do we need to checkout a specific branch or so (though I can't 
->>>>>> find one right now)?
->>>>>> Do we need to change some kernel configuration? I added all 
->>>>>> virtualization drivers in the "drivers" section of the kernel 
->>>>>> config already.
->>>>>>
->>>>>> We're using DIGI embedded Yocto 2.2 (poky).
->>>>>>
->>>>>
->>>>> You need to check out the matching branch to the release you've
->>>>> been given as an enablement, since some of the APIs, etc, have
->>>>> changed and the meta-virt sanity check that was added later than
->>>>> the 2.2 release isn't working.
->>>>>
->>>>> 2.2 was the 'morty' release, and meta-virt does have a branch for
->>>>> that:
->>>>>
->>>>> ----------
->>>>> % git whatchanged origin/morty
->>>>>
->>>>> commit eb6b5129561eda9ea1f47e85ab9ed9e5a6b8f64c
->>>>> Author: Fabio Berton <fabio.berton@ossystems.com.br>
->>>>> Date:   Tue Nov 28 09:15:59 2017 -0200
->>>>>
->>>>>     python-*: use https for pypi URLs
->>>>>
->>>>>     Several of the recipes here were using http URLs for source 
->>>>> hosted on
->>>>>     pypi - pypi apparently no longer supports http so switch to https
->>>>>     instead.
->>>>>
->>>>>     Apply this commit [1] to morty branch.
->>>>>     [1] 
->>>>> https://www.mail-archive.com/meta-virtualization@yoctoproject.org/msg02821.html 
->>>>>
->>>>>
->>>>>     Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
->>>>>     Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
->>>>> ---------
->>>>>
->>>>> So check out the morty branch and you'll have better luck.
->>>>>
->>>>> Bruce
->>>>>
->>>>>
->>>>>> Thanks and all the best,
->>>>>> Jakob
->>>>>>
->>>>>
->>>>
->>>
->>
->
-
--- 
-Jakob Hasse
-Software Developement
-
-E: jakob.hasse@smart-home-technology.ch
-T: +41 44 552 02 66
-
-Smart Home Technology GmbH
-www.smart-home-technology.ch
-
+United States Toll      404-397-1527
+US & Canada Toll Free   800-262-0778
+Albania dial 008000010+ 8558142509
+Angola dial 808000011+  8558142510
+Anguilla Toll Free      18003004779
+Argentina Toll  +541159844583
+Argentina Toll Free     08004446354
+Australia Toll  +610386580431
+Australia Toll Free     1800347095
+Austria Toll Free       080088668498
+Bahamas Toll Free       18003890740
+Bahrain Toll Free       80006770
+Bangladesh dial 1570011+        8558142505
+Barbados Toll Free      18002070056
+Belarus Toll Free       882000110813
+Belgium Toll    +3227925498
+Belgium Toll Free       080029896
+Belize Toll Free        18000130907
+Bermuda Toll free       18002072792
+Botswana Toll Free      002698003004981
+Brazil Toll     +5501149497489
+Brazil Toll Free        08008919885
+British Virgin Islands Toll Free        18002075710
+Brunei Toll Free        8014373
+Bulgaria Toll   +359024916371
+Bulgaria Toll Free      008001201170
+Cambodia Toll Free      1800209578
+Cambodia Toll Free      1800209361
+Canada Toll     +14169810101
+Cayman islands Toll Free        18444305771
+Chile Toll      +56442080836
+Chile Toll Free 12300206143
+China Toll Free 4000342070
+China Toll Free 8008709853
+China Toll Free 4008877140
+China Toll Free 8008768605
+Colombia Toll   +5714864720
+Colombia Toll Free      18000129671
+Costa Rica Toll 40017415
+Croatia Toll    +38517776838
+Croatia Toll Free       08009975
+Cuba dial 2935+ 8558142540
+Cyprus Toll Free        80096877
+Czech Republic Toll Free        0800701476
+Denmark Toll    +4536927940
+Denmark Toll Free       80251209
+Dominica Toll Free      18003004904
+Dominican Republic Toll Free    18887514588
+Ecuador Toll Free       1800000314
+Egypt Toll Free 08000009493
+Estonia Toll    +3726867092
+Estonia Toll Free       8000100708
+Finland Toll    +3580923195770
+Finland Toll Free       0800774585
+France Toll     +33272249926
+France Toll Free        0800947235
+French Guiana Toll Free 0800910113
+Germany Toll    +4930700150733
+Germany Toll Free       08007238960
+Ghana dial 0242426004+  8553944954
+Greece Toll     +302111983414
+Greece Toll Free        0080016122059757
+Grenada Toll Free       18003004905
+Guatemala dial 0019999190+      8553944634
+Honduras Toll Free      80027919493
+Hong Kong Toll  +85230507540
+Hong Kong Toll Free     800961673
+Hungary Toll    +40017789124
+Hungary Toll Free       0680015494
+India Toll      +914466747384
+India Toll Free 18002090252
+Indonesia Toll Free     0078030114912
+Ireland Toll    +35316539376
+Ireland Toll Free       1800948436
+Israel Toll     +97233762260
+Israel Toll Free        1809458778
+Italy Toll      +390200617793
+Italy Toll Free 0800187234
+Jamaica Toll Free       18002196874
+Japan Toll      +810345786573
+Japan Toll Free 0120525303
+Jordan Toll Free        080022545
+Kenya Toll Free 0800723004
+Latvia Toll Free        8002601
+Lebanon dial 01426801+  8558142511
+Lithuania Toll  +37052054804
+Lithuania Toll Free     880031895
+Luxembourg Toll +35228264835
+Luxembourg Toll Free    80023986
+Macedonia Toll Free     080094382
+Malaysia Toll   +600377248228
+Malta Toll      +35627781438
+Malta Toll Free 80062568
+Martinique Toll Free    0800910664
+Mauritius Toll Free     8020440157
+Mexico Toll     +52015515001053
+Mexico Toll Free        018002530547
+Moldavia Toll Free      080062305
+Monaco Toll Free        80094215
+Morocco dial 002110011+ 8558142537
+Netherlands Toll        +310107994621
+Netherlands Toll Free   08000200244
+New Zealand Toll        +64042806288
+New Zealand Toll Free   0800441743
+Norway Toll     +4721034359
+Norway Toll Free        80058604
+Oman Toll Free  80074218
+Pakistan Toll   +924238108753
+Panama Toll     +5078323301
+Panama Toll Free        008002267987
+Paraguay Toll Free      009800110233
+Peru Toll       +51017017728
+Peru Toll Free  080078493
+Philippines Toll        +6322312145
+Philippines Toll Free   180011101073
+Poland Toll     +480223060270
+Poland Toll Free        800080328
+Portugal Toll   +351707201563
+Portugal Toll Free      800788629
+Qatar Toll Free 00800100142
+Romania Toll    +40215291752
+Romania Toll Free       0800400068
+Russia Toll     +74993504823
+Russia Toll Free        81080026895011
+Saudi Arabia Toll Free  8008442574
+Saudi Arabia Toll Free  8008500370
+Senegal dial 800103072+ 8558842521
+Serbia Toll Free        0800190975
+Singapore Toll  +6563494173
+Singapore Toll Free     18005792882
+Slovakia Toll   +4210268622038
+Slovakia Toll Free      0800606692
+Slovenia Toll   +38618281644
+Slovenia Toll Free      080081438
+South Africa Toll       +270214277972
+South Africa Toll Free  0800994623
+South Korea Toll        +827074882482
+South Korea Toll Free   00308132034
+Spain Mobile    900-828-467
+Spain Toll      +34935451755
+Spain Toll Free 900828467
+Sri Lanka Toll  +94720910363
+Sweden Toll     +460114966619
+Sweden Toll Free        0201409738
+Switzerland Toll        +41434569403
+Switzerland Toll Free   800740310
+Taiwan Toll     +8860287933075
+Taiwan Toll Free        0800868159
+Thailand Toll   +6621040574
+Thailand Toll Free      0018001562038778
+Trinidad and Tobago Toll Free   18002038778
+Turkey Toll     +902129003723
+Turks & Caicos Toll Free        18003000086
+UK Toll +442030144000
+UK Toll Free    08005283819
+Ukraine Toll    +380893240452
+Ukraine Toll Free       0800503625
+United Arab Emirates Toll Free  800035703321
+Uruguay Toll Free       00040190461
+Venezuela Toll Free     08001004189
+Vietnam Toll Free       12065242
 
