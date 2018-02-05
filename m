@@ -1,43 +1,62 @@
-Return-Path: <dhkoo@m2i.co.kr>
+Return-Path: <gigitekwork@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A24A1E00E65; Mon,  5 Feb 2018 02:19:56 -0800 (PST)
+	id 1619DE005BB; Mon,  5 Feb 2018 03:25:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [121.254.168.205 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gigitekwork[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp3.hiworks.co.kr (smtp3.hiworks.co.kr [121.254.168.205])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4986DE007D1
-	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 02:19:54 -0800 (PST)
-Received: (qmail 193968 invoked from network); 5 Feb 2018 19:19:51 +0900
-Received: from unknown (HELO hiworks.co.kr) (192.168.10.37)
-	by 0 (qmail 1.03 + ejcp v14) with SMTP; 5 Feb 2018 19:19:51 +0900
-Received: (qmail 153194 invoked from network); 5 Feb 2018 19:19:51 +0900
-Received: from unknown (HELO dhkooPC) (dhkoo@m2i.co.kr@112.216.145.10)
-	by 0 (qmail 1.03 + ejcp v14) with SMTP; 5 Feb 2018 19:19:51 +0900
-X-Authinfo: HIWORKS SMTP authenticated <dhkoo@m2i.co.kr>
-From: "dhkoo" <dhkoo@m2i.co.kr>
-To: <yocto@yoctoproject.org>
-Date: Mon, 5 Feb 2018 19:19:52 +0900
-Message-ID: <007101d39e6a$dc891650$959b42f0$@co.kr>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CA95E005BB
+	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 03:25:46 -0800 (PST)
+Received: by mail-lf0-f45.google.com with SMTP id a204so41208493lfa.2
+	for <yocto@yoctoproject.org>; Mon, 05 Feb 2018 03:25:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=1x1lInKTwk/8ANFLl+6LPSRvFsUA74KdshtVwfd8Kgo=;
+	b=qYI0wSXb/BXv2lugLli3ynwb75Dm8olCgjwYxtpODzJkNFRKX2FMuwx+/hc94m3z/T
+	upohuAqcImrFBsXJ2PyhtlYq6wSSoCHS3JjrsuqxioDvID8fnEioRUZlUVCbifburq75
+	jrMArtwpABd8KF6vTKaJFLdY/PEnjl1qHIvpoRZRjjvEWvYB4nbRMdta2ROjVw8yYWIN
+	vhvU4xgYWhR7CV7MVrLZCstXxQcujQ4dCqici2ESxeWnssOUNnW3Bci2++SS5EV0CZgd
+	3lmLoMywx1bXn8yM4qVO9MmqWexD1vaGk/oY1ze1WjknYyQYTNAVTlt2R3xuhhMFkS9Y
+	12Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=1x1lInKTwk/8ANFLl+6LPSRvFsUA74KdshtVwfd8Kgo=;
+	b=XGtM5m773T9FO3mmw+/VukXWIiYG3q63eGlSViQcw3zHr4KEYPOw+J5XnN5zlyFEhi
+	1ujfRRQKJ4InpGIQZitGWSLDCIP9+Pa42AaGa1HZ+q2XwDyuJ71Et80RjnLD7Fwn02f1
+	01e/sVbvByHpxboVE+VHqx/0xsQPc/OHRi1csrisgX1h+2IgWq0ke607tqv4fe04YqSz
+	2sQvt3PgEz2X7iexJDisSFyDy4CTA1gMjfYBoPkyS+bT2iHkYqpU7ZuZiSB3HVi4pgHL
+	K5ZppnW5pdbJTPhauJn+abN/CXmoy+a/F/Xuc9RCI4gfNkgMSZkolGDlqiz6mhg7cKAf
+	4ZTw==
+X-Gm-Message-State: APf1xPAcbRCsR/N/UCMvqTB7rf9ko/gBb0EYjCzlN1Rs29fMGh0Iq54v
+	Bp7bS+75b26Kvek4iQ2FB6Y8utT1zhWmfvDUS0Qp9A==
+X-Google-Smtp-Source: AH8x2244DABsn3AvNI3ND/NpK1vllc9Cabo07b4Ijb0iqAJ73ye2Eke6JQFoMWZ/7g56GyMlndfFjM6zYqhpWYaI0Ps=
+X-Received: by 10.46.84.2 with SMTP id i2mr3657680ljb.83.1517829945108; Mon,
+	05 Feb 2018 03:25:45 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 12.0
-Thread-Index: AdOeatuq6TQaThtJQO61KY+bIJvacg==
-x-cr-hashedpuzzle: A6Nf BVfC Ba0/ Bjnm DUBJ EpVC F4lW GcbP GpKj G9hc HPM2 JEuW
-	JX5j Jr7L JwXt KhRI; 1;
-	eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {8C0E5504-8090-4B0E-A2FD-F52D5C1F08D2};
-	ZABoAGsAbwBvAEAAbQAyAGkALgBjAG8ALgBrAHIA;
-	Mon, 05 Feb 2018 10:19:51 GMT;
-	SABvAHcAIAB0AG8AIABkAG8AXwBwAG8AcAB1AGwAYQB0AGUAXwBzAGQAawAgAHcAaQB0AGgAbwB1AHQAIABRAEUATQBVAA==
-x-cr-puzzleid: {8C0E5504-8090-4B0E-A2FD-F52D5C1F08D2}
-Subject: How to do_populate_sdk without QEMU
+Received: by 10.46.31.1 with HTTP; Mon, 5 Feb 2018 03:25:44 -0800 (PST)
+From: Gigi Work <gigitekwork@gmail.com>
+Date: Mon, 5 Feb 2018 13:25:44 +0200
+Message-ID: <CAAm399QPwZssmXYXCh7RYQeZ7O3+1RobA5oRFOzXh-HcGOCjSg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Build directory toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,170 +68,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Feb 2018 10:19:56 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0072_01D39EB6.4C70BE50"
-Content-Language: ko
+X-List-Received-Date: Mon, 05 Feb 2018 11:25:47 -0000
+Content-Type: multipart/alternative; boundary="f403045fb994b52af80564755232"
 
-------=_NextPart_000_0072_01D39EB6.4C70BE50
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--f403045fb994b52af80564755232
+Content-Type: text/plain; charset="UTF-8"
 
-Hello.
+What is the correct/official way to setup a toolchain derived from the
+build directory - if it has everything in there and my app compiles fine
+using bitbake, I don't want to create a toolchain installer and install
+separately.
 
- 
+My recipe compiles successfully using "bitbake my-recipe", but compiling
+outside, fails:
 
-I'm working with Rocko 2.4.1, and as my work reaches to the last stage, I'm
-beating my head to distribute SDK for my colleagues.
-I found that command "do_populate_sdk" can make SDK environment easily, but
-the problem is SDK's capacity is too huge.
+First I run "bitbake meta-ide-support" and then source the environment
+(build/tmp/environment-setup-cortexa5hf-neon-poky-linux-gnueabi)
+It fails because it cannot find cmake.
 
- 
+I'm using the rocko branch.
 
-Of course there's many reasons for that, but I guess the QEMU is one of the
-reason.(I suppose many binaries are used for QEMU.)
+Any help is appreciated !
+Thanks
 
-We has no plan to use QEMU, so I want exclude QEMU from my SDK.
-
- 
-
-but I have no idea where to begin.
-Is there any idea to exclude QEMU?
-
- 
-
-
-Koo.
-
-
-------=_NextPart_000_0072_01D39EB6.4C70BE50
-Content-Type: text/html;
-	charset="us-ascii"
+--f403045fb994b52af80564755232
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40">
+<div dir=3D"ltr"><div>What is the correct/official way to setup a toolchain=
+ derived from the build directory - if it has everything in there and my ap=
+p compiles fine using bitbake, I don&#39;t want to create a toolchain insta=
+ller and install separately.<br><br>My recipe compiles successfully using &=
+quot;bitbake my-recipe&quot;, but compiling outside, fails:<br><br>First I =
+run &quot;bitbake meta-ide-support&quot; and then source the environment (b=
+uild/tmp/environment-setup-cortexa5hf-neon-poky-linux-gnueabi)<br>It fails =
+because it cannot find cmake.<br><br></div><div>I&#39;m using the rocko bra=
+nch.<br></div><div><br></div><div>Any help is appreciated !<br></div><div>T=
+hanks<br></div></div>
 
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"Malgun Gothic";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8 Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:9.0pt;
-	font-family:"Malgun Gothic";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Malgun Gothic";
-	color:windowtext;}
-span.Char
-	{mso-style-name:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8 Char";
-	mso-style-priority:99;
-	mso-style-link:"\D48D\C120 \B3C4\C6C0\B9D0 \D14D\C2A4\D2B8";
-	font-family:"Malgun Gothic";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
- /* Page Definitions */
- @page Section1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.Section1
-	{page:Section1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-
-<body lang=3DKO link=3Dblue vlink=3Dpurple>
-
-<div class=3DSection1>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Hello.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>I'm working with Rocko 2.4.1, =
-and as my
-work reaches to the last stage, I'm beating my head to distribute SDK =
-for my colleagues.<br>
-I found that command &quot;do_populate_sdk&quot; can make SDK =
-environment
-easily, but the problem is SDK's capacity is too =
-huge.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Of course there's many reasons =
-for that,
-but I guess the QEMU is one of the reason.(I suppose many binaries are =
-used for
-QEMU.)<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>We has no plan to use QEMU, so I =
-want exclude
-QEMU from my SDK.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>but I have no idea where to =
-begin.<br>
-Is there any idea to exclude QEMU?<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><br>
-Koo.<o:p></o:p></span></p>
-
-</div>
-
-</body>
-
-</html>
-
-------=_NextPart_000_0072_01D39EB6.4C70BE50--
+--f403045fb994b52af80564755232--
