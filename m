@@ -1,58 +1,55 @@
-Return-Path: <ryan.harkin@linaro.org>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9BA09E005BB; Mon,  5 Feb 2018 05:29:55 -0800 (PST)
+	id 219E7E00E66; Mon,  5 Feb 2018 07:59:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f182.google.com (mail-qt0-f182.google.com
-	[209.85.216.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C787E00B1A
-	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 05:29:53 -0800 (PST)
-Received: by mail-qt0-f182.google.com with SMTP id t25so5941258qtg.3
-	for <yocto@yoctoproject.org>; Mon, 05 Feb 2018 05:29:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=UyAUGaQ07X5WiVo6wJuTddDoDJUrtxInnj0OaZ7uaTY=;
-	b=eNbEbfXFF1c3j6mce5tOSHiOkcMyVHGRWKq4OnkJe5t9P/eaFw4BEZ5vfkMwXly8Dx
-	IAztbPVO4ABwX3gohoQtuzThaMdkjEi29bza1UqNiaGBoHiOG2P/71SGCIcKKS7e4CIa
-	H8e70TZPz6DQ5mJGN2D63YFVAyyHx5ETit9KI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=UyAUGaQ07X5WiVo6wJuTddDoDJUrtxInnj0OaZ7uaTY=;
-	b=Z7haIwq3/JCRbGoGmtKj7wCHFqCxP30ZaTl+yjXx0t3nYMx93qjwsyhpPcZtQ40poE
-	LJEvBz17aMtntqe4OtxZTTbEfN/tvq8kOsp17eMVDQ8oxF7SCrFmlK4Nc4NSLpqUToOg
-	2uCL4IcKJOGs3OBEv8PNKwTsV6yQXxR0Ibn7aqaHqEzvuDKcKe9uVmvg2GdBgVJ45Ogq
-	7InYgIKyH3kLtfQK+3otUmrS6aWu6Iy/0wlCl8i07WNZAjnyuZooM0MNx6oGDLxnEA7f
-	kYdmEloF8uCFNUBFjWpL/+gFsIsgAjeoqhWXrZO0mas2av1dtj6rWFG7DHIVgWFbHaw0
-	Qoiw==
-X-Gm-Message-State: APf1xPAQ4izFCff6gBKbWfgqEIughBP3s7jSccwHA7AHkvMSVstyUACr
-	HcjhRtGnvIb6KgmCXV0STSUrqx/9ME2No5+f2hJcqbi0IBo=
-X-Google-Smtp-Source: AH8x225CZURH5jMkojC6B+NBLoJCH90E56KsnAIlBuiCOgwCUZMXe4T4BVhnzmWg15kRPDMqR3AmTIoPe20w7AnzsFw=
-X-Received: by 10.237.61.71 with SMTP id h7mr12529642qtf.54.1517837393064;
-	Mon, 05 Feb 2018 05:29:53 -0800 (PST)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED48EE007D1
+	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 07:59:00 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	05 Feb 2018 07:58:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,465,1511856000"; d="scan'208,217";a="24820292"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by orsmga003.jf.intel.com with ESMTP; 05 Feb 2018 07:58:59 -0800
+Received: from fmsmsx121.amr.corp.intel.com (10.18.125.36) by
+	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Mon, 5 Feb 2018 07:58:59 -0800
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.79]) by
+	fmsmsx121.amr.corp.intel.com ([169.254.6.69]) with mapi id
+	14.03.0319.002; Mon, 5 Feb 2018 07:58:57 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW06=9218?=
+Thread-Index: AdOemVhU3EDC1PZEQFyJawe3IdMTfQ==
+Date: Mon, 5 Feb 2018 15:58:56 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC724C740@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.106]
+x-ctpclassification: CTP_IC
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjkwYmE0ZGMtMDE0MS00NjZiLWIzNzUtNDczYTY2ODIyY2U2IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX0lDIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJwaTlLOW53N3dtSGsyWSszTEpqcjdIbEZXMDk3czd1TGlTODcxV2M2a3l1eTZjbU42dUo3dEN4YjkrQUgwYWcxIn0=
+dlp-product: dlpe-windows
+dlp-version: 11.0.0.116
+dlp-reaction: no-action
 MIME-Version: 1.0
-Received: by 10.140.86.19 with HTTP; Mon, 5 Feb 2018 05:29:52 -0800 (PST)
-From: Ryan Harkin <ryan.harkin@linaro.org>
-Date: Mon, 5 Feb 2018 13:29:52 +0000
-Message-ID: <CAD0U-h+74_o_2dQG+OoBDq-t2o3P0H-CUJCtHd+5D5M5f969wg@mail.gmail.com>
-To: yocto@yoctoproject.org, meta-freescale@yoctoproject.org, 
-	phil@raspberrypi.org, andrei@gherzan.com, arend.vanspriel@broadcom.com
-Subject: brcmfmac43430-sdio.bin and BCM43430A1.hcd and upstream linux-firmware
+Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1cwNuKAmTE4?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,180 +61,540 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Feb 2018 13:29:55 -0000
-Content-Type: multipart/alternative; boundary="001a113da7eaa40a5a0564770eb7"
+X-List-Received-Date: Mon, 05 Feb 2018 15:59:02 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC724C740fmsmsx111amrcor_"
 
---001a113da7eaa40a5a0564770eb7
-Content-Type: text/plain; charset="UTF-8"
-
-Hello,
-
-I'm sure there's a lot of history around this topic, so I'm sorry if this
-is opening up old wounds. I'm sure it's not straight forward.
-
-First, a bit of background:
-
-I'm using an NXP WaRP7 board. It has a Murata LBEE5KL1DX WiFi/Bluetooth
-chip, which is in turn has a Cypress CYW4343W chipset.
-
-I use meta-freescale*, but I use a 4.14 kernel, so I have various bbappend
-over-rides for that in my own layer that I'm developing.
-
-One big difference between 4.1 and 4.14 is the CYW4343W firmware. The 4.1
-kernel from meta-freescale uses an older firmware for these components and
-they don't work for my 4.14 setup.
-
-As I'm also building for RaspberryPi3 and have meta-raspberrypi in my
-environment, it's been convenient for me to use a bbappend in my own layer
-to get the firmware from meta-raspberrypi into my WaRP7 build.
-
-But this no longer works well since a recent commit to lock down the recipe
-[3]. I've created bbappends for both wifi and BT firmware as a workaround.
-But this isn't really a nice approach, I think.
-
-It seems better to have both the WiFi and BT firmware upstream in
-linux-firmware and take it from the regular linux-firmware.bb.
-
-Currently, there is an old version of the WiFi firmware upstream [4] but
-nothing for BT, to my knowledge.
-
-There is a newer version of the wifi f/w available publicly [1] and on
-meta-freescale [2], but this hasn't been sent upstream. I'm sure this is a
-complex situation and it's not clear to me where this firmware came from
-and what licensing restrictions it comes with other than Phil Elwell's
-comment [1] from almost 5 months ago:
-
-"Cypress are happy for that firmware and nvram.txt to be redistributed,
-They are in the process of investigating a few issues for us, but I would
-expect that firmware or a further update to it to eventually appear in the
-linux-firmware repo."
-
-Who, if anyone, is responsible for this or who can I contact to try to get
-both of these upstream in linux-firmware?
-
-I don't think it's appropriate for me to try to send it there, saying as I
-don't know the origin or licensing terms that come with either blob. But if
-nobody else wants to do it...
-
-Or is there another way I should be getting this firmware, like getting it
-copy from Cypress and hosting it in my own layer? (Hosting it myself seems
-very wrong, saying as it's a component used on many boards and I see many
-others struggling with this same issue).
-
-Finally, the brcmfmac43430-sdio.txt configuration file appears to be a
-separate delivery from the .bin file and isn't in linux-firmware. I presume
-there's some sensible reason for that, like board specific values, etc...
-But for my purposes, I need a place to pull it from where its provenance is
-known, or a version I can legally host and redistribute.
-
-Again the licensing terms of the files in meta-raspberrypi aren't clear to
-me and I don't want to tread on any toes. So where am I supposed to get
-that file from in a way that I can be sure I'm permitted to redistribute it?
-
-Regards,
-Ryan.
-
-[1] XECDesign tell Andrei Gherzan they were given permission to
-redistribute 7.45.41.46 firmware with raspbian
-https://github.com/RPi-Distro/repo/issues/88
-
-[2] Andrei Gherzan updates meta-raspberrypi to use WiFi firmware 7.45.41.46
-https://github.com/agherzan/meta-raspberrypi/commit/acd58692356df2bbdc3aa1d6b15f44c104ad3b45
-
-[3] Martin Kelly's commit to change linux-firmware_%bbappend to be rpi
-specific:
-https://github.com/agherzan/meta-raspberrypi/commit/61c2a965a21cfc927b817dc517100d31c07ffa95
-
-[4] Arend van Spriel adds 7.45.41.26 to linux-firmware
-https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/brcm/brcmfmac43430-sdio.bin?id=c4c07a8d1128d50a5c2885ceea1abbebaa82f820
-
-[5] Tom Doehring adds the BT firware
-https://github.com/agherzan/meta-raspberrypi/commit/1317a894faa671c82193c1f18074d84db2cb9e35
-
-[6] Andrei Gherzan updates the BT firmware from Raspbian
-https://github.com/agherzan/meta-raspberrypi/commit/f864b1068fada7c70d409e4aad7075dd6f78569e
-
---001a113da7eaa40a5a0564770eb7
-Content-Type: text/html; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC724C740fmsmsx111amrcor_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello,<br><br>I&#39;m sure there&#39;s a lot of history ar=
-ound this topic, so I&#39;m sorry if this is opening up old wounds. I&#39;m=
- sure it&#39;s not straight forward.<br><br>First, a bit of background:<br>=
-<br>I&#39;m using an NXP WaRP7 board. It has a Murata LBEE5KL1DX WiFi/Bluet=
-ooth chip, which is in turn has a Cypress CYW4343W chipset.<br><br>I use me=
-ta-freescale*, but I use a 4.14 kernel, so I have various bbappend over-rid=
-es for that in my own layer that I&#39;m developing.<br><br>One big differe=
-nce between 4.1 and 4.14 is the <span style=3D"color:rgb(34,34,34);font-fam=
-ily:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatur=
-es:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;te=
-xt-align:start;text-indent:0px;text-transform:none;white-space:normal;word-=
-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial=
-;text-decoration-color:initial;float:none;display:inline">CYW4343W</span> f=
-irmware. The 4.1 kernel from meta-freescale uses an older firmware for thes=
-e components and they don&#39;t work for my 4.14 setup.<br><br>As I&#39;m a=
-lso building for RaspberryPi3 and have meta-raspberrypi in my environment, =
-it&#39;s been convenient for me to use a bbappend in my own layer to get th=
-e firmware from meta-raspberrypi into my WaRP7 build.<br><br>But this no lo=
-nger works well since a recent commit to lock down the recipe [3]. I&#39;ve=
- created bbappends for both wifi and BT firmware as a workaround. But this =
-isn&#39;t really a nice approach, I think.<br><br>It seems better to have b=
-oth the WiFi and BT firmware upstream in linux-firmware and take it from th=
-e regular <a href=3D"http://linux-firmware.bb">linux-firmware.bb</a>.<br><b=
-r>Currently, there is an old version of the WiFi firmware upstream [4] but =
-nothing for BT, to my knowledge.<br><br>There is a newer version of the wif=
-i f/w available publicly [1] and on meta-freescale [2], but this hasn&#39;t=
- been sent upstream. I&#39;m sure this is a complex situation and it&#39;s =
-not clear to me where this firmware came from and what licensing restrictio=
-ns it comes with other than Phil Elwell&#39;s comment [1] from almost 5 mon=
-ths ago:<br><br>&quot;Cypress are happy for that firmware and nvram.txt to =
-be redistributed, They are in the process of investigating a few issues for=
- us, but I would expect that firmware or a further update to it to eventual=
-ly appear in the linux-firmware repo.&quot;<br><br>Who, if anyone, is respo=
-nsible for this or who can I contact to try to get both of these upstream i=
-n linux-firmware?<br><br>I don&#39;t think it&#39;s appropriate for me to t=
-ry to send it there, saying as I don&#39;t know the origin or licensing ter=
-ms that come with either blob. But if nobody else wants to do it...<br><br>=
-Or is there another way I should be getting this firmware, like getting it =
-copy from Cypress and hosting it in my own layer? (Hosting it myself seems =
-very wrong, saying as it&#39;s a component used on many boards and I see ma=
-ny others struggling with this same issue).<br><br>Finally, the brcmfmac434=
-30-sdio.txt configuration file appears to be a separate delivery from the .=
-bin file and isn&#39;t in linux-firmware. I presume there&#39;s some sensib=
-le reason for that, like board specific values, etc... But for my purposes,=
- I need a place to pull it <span style=3D"color:rgb(34,34,34);font-family:a=
-rial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:no=
-rmal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-al=
-ign:start;text-indent:0px;text-transform:none;white-space:normal;word-spaci=
-ng:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text=
--decoration-color:initial;float:none;display:inline">from<span>=C2=A0</span=
-></span>where its provenance is known, or a version I can legally host and =
-redistribute.<br><br>Again the licensing terms of the files in meta-raspber=
-rypi aren&#39;t clear to me and I don&#39;t want to tread on any toes. So w=
-here am I supposed to get that file from in a way that I can be sure I&#39;=
-m permitted to redistribute it?<br><br>Regards,<br>Ryan.<br><br>[1] XECDesi=
-gn tell Andrei Gherzan they were given permission to redistribute 7.45.41.4=
-6 firmware with raspbian<br><a href=3D"https://github.com/RPi-Distro/repo/i=
-ssues/88">https://github.com/RPi-Distro/repo/issues/88</a><br><br>[2] Andre=
-i Gherzan updates meta-raspberrypi to use WiFi firmware 7.45.41.46<br><a hr=
-ef=3D"https://github.com/agherzan/meta-raspberrypi/commit/acd58692356df2bbd=
-c3aa1d6b15f44c104ad3b45">https://github.com/agherzan/meta-raspberrypi/commi=
-t/acd58692356df2bbdc3aa1d6b15f44c104ad3b45</a><br><br>[3] Martin Kelly&#39;=
-s commit to change linux-firmware_%bbappend to be rpi specific:<br><a href=
-=3D"https://github.com/agherzan/meta-raspberrypi/commit/61c2a965a21cfc927b8=
-17dc517100d31c07ffa95">https://github.com/agherzan/meta-raspberrypi/commit/=
-61c2a965a21cfc927b817dc517100d31c07ffa95</a><br><br>[4] Arend van Spriel ad=
-ds 7.45.41.26 to linux-firmware<br><a href=3D"https://git.kernel.org/pub/sc=
-m/linux/kernel/git/firmware/linux-firmware.git/commit/brcm/brcmfmac43430-sd=
-io.bin?id=3Dc4c07a8d1128d50a5c2885ceea1abbebaa82f820">https://git.kernel.or=
-g/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/brcm/brcmfmac=
-43430-sdio.bin?id=3Dc4c07a8d1128d50a5c2885ceea1abbebaa82f820</a><br><br>[5]=
- Tom Doehring adds the BT firware<br><a href=3D"https://github.com/agherzan=
-/meta-raspberrypi/commit/1317a894faa671c82193c1f18074d84db2cb9e35">https://=
-github.com/agherzan/meta-raspberrypi/commit/1317a894faa671c82193c1f18074d84=
-db2cb9e35</a><br><br>[6] Andrei Gherzan updates the BT firmware from Raspbi=
-an<br><a href=3D"https://github.com/agherzan/meta-raspberrypi/commit/f864b1=
-068fada7c70d409e4aad7075dd6f78569e">https://github.com/agherzan/meta-raspbe=
-rrypi/commit/f864b1068fada7c70d409e4aad7075dd6f78569e</a><br></div>
+Current Dev Position: YP 2.5 M3 development
 
---001a113da7eaa40a5a0564770eb7--
+Next Deadline: YP 2.5 M3 cut off was 2/19/18
+
+
+SWAT team rotation: Juro -> Paul on Feb. 2, 2018.
+
+SWAT team rotation: Paul -> Tracy on Feb. 9, 2018.
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+
+Key Status/Updates:
+
+=B7         YP 2.5 M2 has been built and is pending QA. The M2 milestone co=
+ntains the linux-yocto kernel backports and gcc upgrade for the spectre and=
+ meltdown security issues.
+
+=B7         YP 2.2.3 is mostly through QA, some issues have been identified=
+ with newer host distro releases; however, these are likely something we=92=
+d address with 2.2.4.
+
+=B7         autobuilder.yoctoproject.org continues to be unavailable as we =
+continue to develop the new autobuilder codebase to replace the current hea=
+vily customized buildbot one.
+
+=B7         There are some changes to runqueue in bitbake about to land (cu=
+rrently in -next) which bring some risk of dependency problems in recrdepta=
+sk and recideptask handling, it's worth keeping in mind if task dependencie=
+s issues appear shortly after those merge.
+
+
+Planned upcoming dot releases:
+
+YP 2.4.2 (Rocko) will be built shortly, once there is QA bandwidth availabl=
+e.
+
+YP 2.3.4 (Pyro) will be built when a stable version of the spectre/meltdown=
+ patches are ready.
+
+YP 2.2.3 (Morty) rc2 is in QA, see https://wiki.yoctoproject.org/wiki/2.2_Q=
+A_Status.  This will not contain the spectre/meltdown patches as they=92re =
+not ready yet.
+
+
+Key YP 2.5 Dates are:
+
+YP 2.5 M2 cut off is past, it is in QA.
+
+YP 2.5 M2 release of 1/26/18
+
+YP 2.5 M3 cut off of 2/19/18
+
+YP 2.5 M3 release of 3/2/18
+
+YP 2.5 M4 cut off of 4/2/18
+
+YP 2.5 M4 release of 4/27/18
+
+
+Tracking Metrics: WDD 2638 (last week 2630) (https://wiki.yoctoproject.org/=
+charts/combo.html)
+
+
+Key Status Links for YP:
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features
+
+
+The Status reports are now stored on the wiki at: https://wiki.yoctoproject=
+.org/wiki/Weekly_Status
+
+
+[If anyone has suggestions for other information you=92d like to see on thi=
+s weekly status update, let us know!]
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+=95   Work Telephone:        (503) 712-0534
+=95    Cell:                              (208) 244-4460
+=95 Email:                            stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC724C740fmsmsx111amrcor_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.apple-tab-span
+	{mso-style-name:apple-tab-span;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:421069859;
+	mso-list-template-ids:-1502021698;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:1540632819;
+	mso-list-template-ids:581739896;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Current Dev Positi=
+on: YP 2.5 M3 development</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Next Deadline: YP =
+2.5 M3 cut off was 2/19/18</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
+: Juro -&gt; Paul on Feb. 2, 2018.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT team rotation=
+: Paul -&gt; Tracy on Feb. 9, 2018.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
+.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
+/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status/Updates=
+:</span><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M2 has been built and is p=
+ending QA. The M2 milestone contains the linux-yocto kernel backports and g=
+cc upgrade for the spectre and meltdown security
+ issues.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">YP 2.2.3 is mostly through QA, so=
+me issues have been identified with newer host distro releases; however, th=
+ese are likely something we=92d address with 2.2.4.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">autobuilder.yoctoproject.org cont=
+inues to be unavailable as we continue to develop the new autobuilder codeb=
+ase to replace the current heavily customized
+ buildbot one.<o:p></o:p></span></p>
+<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
+n-left:.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l1 level1 lfo=
+3;vertical-align:baseline">
+<![if !supportLists]><span style=3D"font-size:10.0pt;font-family:Symbol;col=
+or:black"><span style=3D"mso-list:Ignore">=B7<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style=3D"font-size:11.0pt;font-family:=
+&quot;Arial&quot;,sans-serif;color:black">There are some changes to runqueu=
+e in bitbake about to land (currently in -next) which bring some risk of de=
+pendency problems in recrdeptask and recideptask
+ handling, it's worth keeping in mind if task dependencies issues appear sh=
+ortly after those merge.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Planned upcoming d=
+ot releases:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.4.2 (Rocko) w=
+ill be built shortly, once there is QA bandwidth available.</span><o:p></o:=
+p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.3.4 (Pyro) wi=
+ll be built when a stable version of the spectre/meltdown patches are ready=
+.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.2.3 (Morty) r=
+c2 is in QA, see
+</span><a href=3D"https://wiki.yoctoproject.org/wiki/2.2_QA_Status"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#11=
+55CC">https://wiki.yoctoproject.org/wiki/2.2_QA_Status</span></a><span styl=
+e=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black"=
+>.
+ &nbsp;This will not contain the spectre/meltdown patches as they=92re not =
+ready yet.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key YP 2.5 Dates a=
+re:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M2 cut off =
+is past, it is in QA.</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M2 release =
+of 1/26/18</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M3 cut off =
+of 2/19/18</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M3 release =
+of 3/2/18</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 cut off =
+of 4/2/18</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 release =
+of 4/27/18</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking Metrics: =
+WDD 2638 (last week 2630)
+</span><span style=3D"font-size:11.0pt;font-family:Consolas;color:black">(<=
+/span><a href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span sty=
+le=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#1155=
+CC">https://wiki.yoctoproject.org/charts/combo.html</span></a><span style=
+=3D"font-size:11.0pt;font-family:Consolas;color:black">)</span><o:p></o:p><=
+/p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">Key Status Links f=
+or YP:</span><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_Project_v2.5_Status"><span style=3D"font-size:11.0pt=
+;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
+to_Project_v2.5_Status</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.5_Schedule"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_=
+Schedule</span></a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
+project.org/wiki/Yocto_2.5_Features"><span style=3D"font-size:11.0pt;font-f=
+amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_=
+Features</span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">The Status reports=
+ are now stored on the wiki at:
+</span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#11=
+55CC">https://wiki.yoctoproject.org/wiki/Weekly_Status</span></a><o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif;color:black">[If anyone has sug=
+gestions for other information you=92d like to see on this weekly status up=
+date, let us know!]</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:black"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:black">Thanks,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,serif;color:purple">Stephen K. Jolley</span></i></b><b><i><span style=
+=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,sans-serif;color:purple=
+"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span=
+></u></span><span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;A=
+rial&quot;,sans-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155EC724C740fmsmsx111amrcor_--
