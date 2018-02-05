@@ -1,40 +1,65 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <marekslomiany@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D9EBE00E14; Sun,  4 Feb 2018 17:46:22 -0800 (PST)
+	id 85E3CE00E40; Mon,  5 Feb 2018 00:26:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (marekslomiany[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71648E007D1
-	for <yocto@yoctoproject.org>; Sun,  4 Feb 2018 17:46:21 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w151kKc5026672
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 4 Feb 2018 17:46:20 -0800 (PST)
-Received: from localhost.localdomain (128.224.163.240) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.361.1; Sun, 4 Feb 2018 17:46:17 -0800
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <cover.1514957938.git.liezhi.yang@windriver.com>
-	<9babe5f0cf160cd76f3e43ad5a54e3636ff8706c.1514957938.git.liezhi.yang@windriver.com>
-	<5502074.ej4IJUuzR4@peggleto-mobl.ger.corp.intel.com>
-From: Robert Yang <liezhi.yang@windriver.com>
-Message-ID: <c024d8f1-ac25-956b-16d5-2504b07a06fc@windriver.com>
-Date: Mon, 5 Feb 2018 09:46:34 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f44.google.com (mail-pg0-f44.google.com [74.125.83.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C40F3E007D1
+	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 00:26:38 -0800 (PST)
+Received: by mail-pg0-f44.google.com with SMTP id 141so7266178pgd.8
+	for <yocto@yoctoproject.org>; Mon, 05 Feb 2018 00:26:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=6RVhb0rxg3T6XuEGQXyIa8IzYbbHLk+g0+UGyb3hKmo=;
+	b=VwqJoQQJOpxfuEp/bf7pErsZJ7dK7x3pDF4+WY6ea6s81sIr3569F74tUjr1v0F0vA
+	ZLrMWu1u0hrUEyXKTQzncFAafTjPuMzfBWxI4/yoO4C4hm5elou6703mUzEBjrwiALzn
+	zvCJ48HXQ4JGDGKzFteNiAWu1bmeOZMoOdfpmYMo/lZuRNM/cGbvNAXBnGzXMKdoN+LQ
+	XIiqqvl8abRBlyK2AGew/Xh8K3QwokNaBwJ9uw8EuY1zsXm1d8odLpBQUWYFDuY4duwH
+	oHlEA/OzsANqTvxkBwoh56igluIy+HJCRN3UVkaxJbZ3Uste7RcWfO+ECNaK0txKE5xZ
+	rqKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=6RVhb0rxg3T6XuEGQXyIa8IzYbbHLk+g0+UGyb3hKmo=;
+	b=MEFpo/u3oIJ7kevX8LbmJS7jSgTQSxU7EN3qmMFNn7mQ1WfQTBOUfj6ykct9jqsXIl
+	UK9mlsmF3y1udTzMoyk1K5hUFq7lasEofyFtpHnlUAouTljoarYGRrhzQBWc0LkOeap3
+	afYSUbFV/PhU3pr5/rEGNGGKYnfqoNPoXi5WENfoxvOd/zL0WopEdQLeusr4Y0PqXNba
+	X/FqKYI+r2N8Hkjl/hvBdT0ITZWE7M8dx5QWCHtxPt70Nf3A5YxLGVPmzZWR/IUCfF28
+	BRlyZAdllqnIKMb+tAJtSIpPPxdbFov9GgoeES0+MQ7nsGHieN+Ldt7/xXo6pnbnFbPJ
+	3W/A==
+X-Gm-Message-State: AKwxyteYm9xrymuUHarUnDurM3Qhl6lRsz0QkF8yOO49YKUyoohyYrpg
+	5Zcu/Q+jpBZapDLFnsMO/tNiBCLSVec9gHE/8fY=
+X-Google-Smtp-Source: AH8x2255w+l+6LXjF+v4HsMmoekavSnU8K18wjtNeMcPza2RDj9OOjTELe8lxAMcIAYZaJ3M6EfnWqjqF0UZEKJIlOY=
+X-Received: by 10.101.86.201 with SMTP id w9mr14466439pgs.434.1517819197961;
+	Mon, 05 Feb 2018 00:26:37 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <5502074.ej4IJUuzR4@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [layerindex-web][PATCH 4/5] update_layer.py: use it as a module
+References: <CAJCDnYZcUuLvG-70Tg_m_Rr968hH0A2OizkCcYOO014jkvK=1A@mail.gmail.com>
+	<5f8210bc-278f-078b-0fee-2424dc21c4d9@linux.intel.com>
+In-Reply-To: <5f8210bc-278f-078b-0fee-2424dc21c4d9@linux.intel.com>
+From: =?UTF-8?Q?Marek_S=C5=82omiany?= <marekslomiany@gmail.com>
+Date: Mon, 05 Feb 2018 08:26:27 +0000
+Message-ID: <CAJCDnYazZouE=0=TrHQYRNPzU_+uXBeTrP+29upq3bGKKvi-dw@mail.gmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Remove nfs packages from image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,172 +71,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Feb 2018 01:46:22 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 05 Feb 2018 08:26:39 -0000
+Content-Type: multipart/alternative; boundary="089e08264dd820bb9a056472d2dd"
 
-Hi Paul,
+--089e08264dd820bb9a056472d2dd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thank you very much, and please see my comments inline.
+I have managed to track down what was including nfs-utils.
+What I have done is, I think, worth to mention for future:
+I have added BBMASK in my conf/local.conf to mask nfs-utils.bb recipe, than
+tried to build my image.
+As expected, build failed because nfs-utils recipe was required but not
+found.
+In the failure log the chain of includes/inherits was shown and the thing
+that required nfs-utils was packagegroup-core-full-cmdline.
+Thanks for your help.
 
-On 02/05/2018 07:27 AM, Paul Eggleton wrote:
-> Hi Robert,
-> 
-> On Wednesday, 3 January 2018 6:42:25 PM NZDT Robert Yang wrote:
->> It had been split to a separate tool and use subprocess to run it to avoid
->> tinfoil issues (e.g., can't be shutdown correctly in old version), but the
->> utils.setup_django() cost a lot of time which made it a little slow, use
->> mulitprocessing.Process() to run it as function can avoid both issues (tinfoil
->> and slow issues).
->>
->> And remove bitbake modules when swith branch since it is may not be compatible
->> between branches.
->>
->> This can save about 5 minutes in my testing when "update.py -b <branch>",
->> with parallel fetch and this, we can reduce the time from more than 9mins to
->> less than 3 mins.
->>
->> Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
->> ---
->>   layerindex/update.py       | 115 +++++++++++++++++++--------------------------
->>   layerindex/update_layer.py | 103 +++++++++-------------------------------
->>   2 files changed, 70 insertions(+), 148 deletions(-)
->>
->> diff --git a/layerindex/update.py b/layerindex/update.py
->> index d6488f0..e13c9ab 100755
->> --- a/layerindex/update.py
->> +++ b/layerindex/update.py
->> @@ -21,6 +21,9 @@ import utils
->>   import operator
->>   import re
->>   import multiprocessing
->> +import update_layer
->> +import copy
->> +import imp
->>   
->>   import warnings
->>   warnings.filterwarnings("ignore", category=DeprecationWarning)
->> @@ -34,61 +37,15 @@ except ImportError:
->>       logger.error("Please install PythonGit 0.3.1 or later in order to use this script")
->>       sys.exit(1)
->>   
->> -
->> -def reenable_sigint():
->> -    signal.signal(signal.SIGINT, signal.SIG_DFL)
->> -
->> -def run_command_interruptible(cmd):
->> -    """
->> -    Run a command with output displayed on the console, but ensure any Ctrl+C is
->> -    processed only by the child process.
->> -    """
->> -    signal.signal(signal.SIGINT, signal.SIG_IGN)
->> +def call_update_layer(options, queue):
->> +    ret = 1
->> +    output = ""
->>       try:
->> -        process = subprocess.Popen(
->> -            cmd, cwd=os.path.dirname(sys.argv[0]), shell=True, preexec_fn=reenable_sigint, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
->> -        )
->> -
->> -        reader = codecs.getreader('utf-8')(process.stdout, errors='surrogateescape')
->> -        buf = ''
->> -        while True:
->> -            out = reader.read(1, 1)
->> -            if out:
->> -                sys.stdout.write(out)
->> -                sys.stdout.flush()
->> -                buf += out
->> -            elif out == '' and process.poll() != None:
->> -                break
->> -
->> +        ret, output = update_layer.main(options, queue)
->> +    except Exception:
->> +        raise
->>       finally:
->> -        signal.signal(signal.SIGINT, signal.SIG_DFL)
->> -    return process.returncode, buf
->> -
->> -
->> -def prepare_update_layer_command(options, branch, layer, initial=False):
->> -    """Prepare the update_layer.py command line"""
->> -    if branch.update_environment:
->> -        cmdprefix = branch.update_environment.get_command()
->> -    else:
->> -        cmdprefix = 'python3'
->> -    cmd = '%s update_layer.py -l %s -b %s' % (cmdprefix, layer.name, branch.name)
->> -    if options.reload:
->> -        cmd += ' --reload'
->> -    if options.fullreload:
->> -        cmd += ' --fullreload'
->> -    if options.nocheckout:
->> -        cmd += ' --nocheckout'
->> -    if options.dryrun:
->> -        cmd += ' -n'
->> -    if initial:
->> -        cmd += ' -i'
->> -    if options.loglevel == logging.DEBUG:
->> -        cmd += ' -d'
->> -    elif options.loglevel == logging.ERROR:
->> -        cmd += ' -q'
->> -    if options.keep_temp:
->> -        cmd += ' --keep-temp'
->> -    return cmd
->> +        queue.put([ret, output])
->>   
->>   def update_actual_branch(layerquery, fetchdir, branch, options, update_bitbake, bitbakepath):
->>       """Update actual branch for layers and bitbake in database"""
->> @@ -266,6 +223,7 @@ def main():
->>       try:
->>           lockfn = os.path.join(fetchdir, "layerindex.lock")
->>           lockfile = utils.lock_file(lockfn)
->> +        update_log_path = update_layer.update_log_path
->>           if not lockfile:
->>               logger.error("Layer index lock timeout expired")
->>               sys.exit(1)
->> @@ -315,8 +273,15 @@ def main():
->>               # We now do this by calling out to a separate script; doing otherwise turned out to be
->>               # unreliable due to leaking memory (we're using bitbake internals in a manner in which
->>               # they never get used during normal operation).
->> +            update_layer_options = copy.copy(options)
->>               last_rev = {}
->>               for branch in branches:
->> +                # The bitbake modules are not compatible between branches, so
->> +                # remove them, they will be imported again when needed.
->> +                for name, module in sys.modules.copy().items():
->> +                    if '__file__' in module.__dict__ and module.__file__.startswith(bitbakepath):
->> +                        logger.debug('Removing module %s' % name)
->> +                        del sys.modules[name]
-> 
-> This part worried me, so I did some quick searching and came across this:
-> 
->    http://justus.science/blog/2015/04/19/sys.modules-is-dangerous.html
-> 
-> Relying upon removing old modules from memory just seems fraught with
-> danger to me. I'd really rather not go back to debugging the contamination
-> issues we dealt with earlier for the sake of saving a few minutes.
-> 
-> Another problem with this is it breaks supporting python 2 and python 3 in the
-> same parse - in the OE layer index we actually still enable parsing back to fido
-> (1.8). I honestly don't know how many updates those branches actually see,
-> and we should probably disable parsing for fido and perhaps jethro, but I suspect
-> at least krogoth (2.1) still gets some usage. Until we disable parsing of all of
-> the python 2 based branches we need the ability to handle both versions and
-> that requires update_layer.py to be run separately.
-> 
-> I do agree in general that performance of the update process could be
-> improved - one particularly poor area is where we collect the variable values
-> for each layer, that part is very slow and we're doing it regardless of whether
-> the layer has changed or not which seems wasteful. That would be my
-> recommendation for where to look next (assuming you have time).
+Kind regards,
+Marek
 
-I understand that python2 is a problem. I've sent patches to oe-core to improve
-parsing time. And I will look at your recommendations.
+pt., 2 lut 2018 o 14:43 u=C5=BCytkownik Alexander Kanavin <
+alexander.kanavin@linux.intel.com> napisa=C5=82:
 
-// Robert
+> On 02/02/2018 03:23 PM, Marek S=C5=82omiany wrote:
+>
+> > It's still on target:
+> > root@target# opkg list |grep nfs
+> > libnfsidmap0 - 0.25-r0
+> > nfs-utils - 2.1.1-r0
+> > nfs-utils-client - 2.1.1-r0
+> > nfs-utils-mount - 2.1.1-r0
+> >
+> > While checking for any nfs-things using "bitbake <image> -e |grep -v ^#
+> > |grep -i nfs" the only interesting thing I got is this:
+> > EXCLUDE_FROM_WORLD_pn-unfs3_libc-musl=3D"1"
+> > FEATURE_PACKAGES_nfs-client=3D"packagegroup-core-nfs-client"
+> > FEATURE_PACKAGES_nfs-server=3D"packagegroup-core-nfs-server"
+> >
+> > from which first one is not the thing, and two following are
+> > from /meta/classes/core-image.bbclass and if I'm correct it's just
+> > defining what will happen when I add nfs-client or nfs-server to
+> > IMAGE_FEATURES.
+> > Maybe I should delete manually some sstate or something?
+>
+> I'd say first inspect log.do_rootfs for your image, and maybe there are
+> clues in it as to why these packages get pulled in. You might have a
+> depdendency on them somewhere else.
+>
+> Alex
+>
 
-> 
-> Cheers,
-> Paul
-> 
+--089e08264dd820bb9a056472d2dd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">I have managed to track down what was including nfs-utils.=
+<div>What I have done is, I think, worth to mention for future:</div><div>I=
+ have added BBMASK in my conf/local.conf to mask <a href=3D"http://nfs-util=
+s.bb">nfs-utils.bb</a> recipe, than tried to build my image.</div><div>As e=
+xpected, build failed because nfs-utils recipe was required but not found.=
+=C2=A0</div><div>In the failure log the chain of includes/inherits was show=
+n and the thing that required nfs-utils was=C2=A0packagegroup-core-full-cmd=
+line.</div><div>Thanks for your help.</div><div><br></div><div>Kind regards=
+,</div><div>Marek</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+">pt., 2 lut 2018 o 14:43=C2=A0u=C5=BCytkownik Alexander Kanavin &lt;<a hre=
+f=3D"mailto:alexander.kanavin@linux.intel.com">alexander.kanavin@linux.inte=
+l.com</a>&gt; napisa=C5=82:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On 02/0=
+2/2018 03:23 PM, Marek S=C5=82omiany wrote:<br>
+<br>
+&gt; It&#39;s still on target:<br>
+&gt; root@target# opkg list |grep nfs<br>
+&gt; libnfsidmap0 - 0.25-r0<br>
+&gt; nfs-utils - 2.1.1-r0<br>
+&gt; nfs-utils-client - 2.1.1-r0<br>
+&gt; nfs-utils-mount - 2.1.1-r0<br>
+&gt;<br>
+&gt; While checking for any nfs-things using &quot;bitbake &lt;image&gt; -e=
+ |grep -v ^#<br>
+&gt; |grep -i nfs&quot; the only interesting thing I got is this:<br>
+&gt; EXCLUDE_FROM_WORLD_pn-unfs3_libc-musl=3D&quot;1&quot;<br>
+&gt; FEATURE_PACKAGES_nfs-client=3D&quot;packagegroup-core-nfs-client&quot;=
+<br>
+&gt; FEATURE_PACKAGES_nfs-server=3D&quot;packagegroup-core-nfs-server&quot;=
+<br>
+&gt;<br>
+&gt; from which first one is not the thing, and two following are<br>
+&gt; from=C2=A0/meta/classes/core-image.bbclass and if I&#39;m correct it&#=
+39;s just<br>
+&gt; defining what will happen when I add nfs-client or nfs-server to<br>
+&gt; IMAGE_FEATURES.<br>
+&gt; Maybe I should delete manually some sstate or something?<br>
+<br>
+I&#39;d say first inspect log.do_rootfs for your image, and maybe there are=
+<br>
+clues in it as to why these packages get pulled in. You might have a<br>
+depdendency on them somewhere else.<br>
+<br>
+Alex<br>
+</blockquote></div>
+
+--089e08264dd820bb9a056472d2dd--
