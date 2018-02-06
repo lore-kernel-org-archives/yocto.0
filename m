@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A3B0E00E2F; Tue,  6 Feb 2018 07:43:54 -0800 (PST)
+	id 586BAE00E2F; Tue,  6 Feb 2018 07:43:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,6 +12,9 @@ X-Spam-HAM-Report: * 1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable
 	*      [223.196.115.131 listed in dnsbl.sorbs.net]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.66 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,54 +22,50 @@ X-Spam-HAM-Report: * 1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.193 listed in list.dnswl.org]
-Received: from mail-pf0-f193.google.com (mail-pf0-f193.google.com
-	[209.85.192.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51E1CE00E2F
-	for <yocto@yoctoproject.org>; Tue,  6 Feb 2018 07:43:50 -0800 (PST)
-Received: by mail-pf0-f193.google.com with SMTP id b62so762408pfk.10
-	for <yocto@yoctoproject.org>; Tue, 06 Feb 2018 07:43:50 -0800 (PST)
+Received: from mail-pg0-f66.google.com (mail-pg0-f66.google.com [74.125.83.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C4E9E00E82
+	for <yocto@yoctoproject.org>; Tue,  6 Feb 2018 07:43:54 -0800 (PST)
+Received: by mail-pg0-f66.google.com with SMTP id o1so1233614pgn.4
+	for <yocto@yoctoproject.org>; Tue, 06 Feb 2018 07:43:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=EIxXIuFkTGuIU9Yd/pAVgC3m/tkqV4NUrrcZjFEDhU8=;
-	b=acngcslc5ewLLqSR0EH8xi7quurs4m1P2bdK82KQNVborqWe6IFZJbMGL0RwAPdBZi
-	Y1hEAcu6VoBra6eO9riIKJQca+NQhdm1B4GpFSecfIR2zjh1USN0wYgumebNz8y3SqgF
-	RJ7rPY59I+jPoxo1V43cbcseJ3G+AshX6/w+LTn0MFiUgN0RE3BJ8TR/G6L2nCHr++Xy
-	hdF5GiILkfeDgOUnYEbTXisUoSDNWNqT21oE6A/J1Z9wc1QQaDFpaNyLZklvWmHdsUlm
-	b0MHxWVseVWPOgIb03bRG8xvyPhMSRYHtJ3A91TTmClPY/qjjm0H84qvGpqFG7S0udP3
-	BEIA==
+	bh=Pk64X1uv6DIoDE956U0h1d+TmFM7mYMRq1QdJenBTAE=;
+	b=hXSY29eDX+hdMg3F0U6ehfqwDzEyLFZSQwBknrCHhFBQqpnp4m20EH3E/rnsnIZai+
+	Vm4BzwDNXemmH/Ov6SnYch6FxwbZwhKdUm+vCIBGUpzmZ8WaJIjcDEaUiUkkUVuy03xM
+	e/X4s/McSJwepR+BHJxzcAJcyZNpFnpjnRRBYoud4dvOJvnTIZtm7ocY2hkaTBwXtcjU
+	rOuNdGi0XJOaa9MA9ibqXBWT4uK6lMUx3JOB3bl4zGHo3z+S/WHygUbZJV99NFwJwAIg
+	P5QFg2Ox5pQD9Xgpi/kLAJIQlzcjWveShxhI1ZxLjkIxo5maVbg+66OdzgYbXGlEg/kQ
+	TWwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=EIxXIuFkTGuIU9Yd/pAVgC3m/tkqV4NUrrcZjFEDhU8=;
-	b=OY7BHQEqUQYvIqxKg+g9ZmiuyEtnwbs2Ag38S4Cl5ZdYzwlBrtGrnJTLtZPhTjIxi9
-	U9Mu4YrN//jP3VQwVeLwoRW3rG/HilEpOhsxez1c02iCWhRKelSsJpAbWY30u3qDUtfo
-	SRZnFcP+I0l7h5ucQbzuB9HuKLIXnlTljz8zYwyGlhnMcS+aND8s1O1aqnLGhtTtr3nF
-	MZOKGwnuNdPuAmbNcW38G93DwO1PObrbfmkGvVqZVPLziYtgoVWgaDeqqLMHyvlRQnC3
-	ULMoMeNHrRdJzfrmUA+WHwnNy73+Dy0TAUQ0pGjJJb9FoeHuJXCxhZfIykCvEhMi7lPe
-	oBjA==
-X-Gm-Message-State: APf1xPAlYCFydqb4REl0LCK9FRFhmcQ8qhJaIRPtrYFggXB0HpsAmUnF
-	hgFeifDLWX8QM2LhqrZp6vk=
-X-Google-Smtp-Source: AH8x227D960C/KiLCrfdSyjb9sC4qO44Su9oh4ne+EC4C7n84Z2Zmn9AycHkvQx/p+6mGIEnK1c0rw==
-X-Received: by 10.98.30.1 with SMTP id e1mr2850814pfe.37.1517931830605;
-	Tue, 06 Feb 2018 07:43:50 -0800 (PST)
+	bh=Pk64X1uv6DIoDE956U0h1d+TmFM7mYMRq1QdJenBTAE=;
+	b=XPyjq00PAUDwcSMGvLv7N5KNsiiSNy2cU2T59PBd9T+wWlRqiDOAHZ27gYRt/8/jnE
+	A5oKIJD5yRCtpw0aoy8vMxQ06WYDIT7NlAJ3um3iIfYNEs37N/4G1pxa1k7WdxqIj741
+	h+V1CHo/wJb2SdmGHA6pTa2PyzdFCRJtrAmpv5SNvevgvRTHj9XDz/iUrIWS4wdfxHWB
+	SrTuEwuz7zTSwOilRDHhuq8qzQNC4LsceB+GrwOgQLR1J8yO+zx7IFOWFgN9aWJihfY9
+	Wb9c2Veqw2yomdxOlP+TPvAJGDC4uKUVsfNIZaOe6QyZyXExO8bXGH8pYTfgwlfqFn/2
+	GsmQ==
+X-Gm-Message-State: APf1xPDbrDBwXrPhlIjvbDrdDLiu7XPM0kUxvC1RMjirHOpvuPLri0aJ
+	BvZ4ifN8t9rLf680OIYk558=
+X-Google-Smtp-Source: AH8x225qgMukPLFLjB63AGRRX4tsKoEXsHcDFzrh1j80pNULxD+/Bp02JEVaS5ZFrWCUlo0oDga2Bg==
+X-Received: by 10.101.69.141 with SMTP id o13mr2342458pgq.204.1517931834468;
+	Tue, 06 Feb 2018 07:43:54 -0800 (PST)
 Received: from localhost.localdomain ([223.196.115.131])
 	by smtp.gmail.com with ESMTPSA id
-	a6sm16558140pgq.56.2018.02.06.07.43.49
+	a6sm16558140pgq.56.2018.02.06.07.43.52
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 06 Feb 2018 07:43:50 -0800 (PST)
+	Tue, 06 Feb 2018 07:43:54 -0800 (PST)
 From: Armin Kuster <akuster808@gmail.com>
 To: akuster@mvista.com,
 	yocto@yoctoproject.org
-Date: Tue,  6 Feb 2018 21:13:26 +0530
-Message-Id: <1517931813-13010-5-git-send-email-akuster808@gmail.com>
+Date: Tue,  6 Feb 2018 21:13:28 +0530
+Message-Id: <1517931813-13010-7-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1517931813-13010-1-git-send-email-akuster808@gmail.com>
 References: <1517931813-13010-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 05/12] smack: update to 1.3.1
+Subject: [meta-security][PATCH 07/12] xmlsec1: Update to 1.2.25
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,40 +77,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Feb 2018 15:43:54 -0000
-
-drop git hash from PV
-Use master branch
+X-List-Received-Date: Tue, 06 Feb 2018 15:43:57 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/smack/{smack_1.3.0.bb => smack_1.3.1.bb} | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- rename recipes-security/smack/{smack_1.3.0.bb => smack_1.3.1.bb} (92%)
+ recipes-security/xmlsec1/{xmlsec1_1.2.24.bb => xmlsec1_1.2.25.bb} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename recipes-security/xmlsec1/{xmlsec1_1.2.24.bb => xmlsec1_1.2.25.bb} (91%)
 
-diff --git a/recipes-security/smack/smack_1.3.0.bb b/recipes-security/smack/smack_1.3.1.bb
-similarity index 92%
-rename from recipes-security/smack/smack_1.3.0.bb
-rename to recipes-security/smack/smack_1.3.1.bb
-index 4c41f6c..246562a 100644
---- a/recipes-security/smack/smack_1.3.0.bb
-+++ b/recipes-security/smack/smack_1.3.1.bb
-@@ -5,13 +5,13 @@ LICENSE = "LGPL-2.1"
+diff --git a/recipes-security/xmlsec1/xmlsec1_1.2.24.bb b/recipes-security/xmlsec1/xmlsec1_1.2.25.bb
+similarity index 91%
+rename from recipes-security/xmlsec1/xmlsec1_1.2.24.bb
+rename to recipes-security/xmlsec1/xmlsec1_1.2.25.bb
+index a34539b..d351dd2 100644
+--- a/recipes-security/xmlsec1/xmlsec1_1.2.24.bb
++++ b/recipes-security/xmlsec1/xmlsec1_1.2.25.bb
+@@ -20,8 +20,8 @@ SRC_URI = "http://www.aleksey.com/xmlsec/download/${BP}.tar.gz \
+     file://run-ptest \
+     "
  
- LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
+-SRC_URI[md5sum] = "2f4944356b69ea14c18814d9248fbbd8"
+-SRC_URI[sha256sum] = "99a8643f118bb1261a72162f83e2deba0f4f690893b4b90e1be4f708e8d481cc"
++SRC_URI[md5sum] = "dbbef1efc69e61bc4629650205a05b41"
++SRC_URI[sha256sum] = "967ca83edf25ccb5b48a3c4a09ad3405a63365576503bf34290a42de1b92fcd2"
  
--SRCREV = "478f68d182c5070f510482194d3e097b11c21907"
-+SRCREV = "4a102c7584b39ce693995ffb65e0918a9df98dd8"
- SRC_URI = " \
--	git://github.com/smack-team/smack.git;branch=v1.3.x \
-+	git://github.com/smack-team/smack.git \
- 	file://smack_generator_make_fixup.patch \
- 	file://run-ptest"
- 
--PV = "1.3.0+git${SRCPV}"
-+PV = "1.3.1"
- 
- inherit autotools update-rc.d pkgconfig ptest ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
+ inherit autotools-brokensep ptest pkgconfig
  
 -- 
 2.7.4
