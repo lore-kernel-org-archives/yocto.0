@@ -1,42 +1,74 @@
-Return-Path: <stephano.cetola@linux.intel.com>
+Return-Path: <hgovind@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1C86E00E15; Mon,  5 Feb 2018 15:05:51 -0800 (PST)
+	id 09EB8E00E4F; Mon,  5 Feb 2018 16:47:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,HEXHASH_WORD,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+	*      [173.37.142.88 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
+	white-list
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C08CCE00E02
-	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 15:05:50 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	05 Feb 2018 15:05:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,466,1511856000"; d="scan'208";a="15517957"
-Received: from linux.intel.com ([10.54.29.200])
-	by fmsmga007.fm.intel.com with ESMTP; 05 Feb 2018 15:05:49 -0800
-Received: from enpicket-mobl3.amr.corp.intel.com (unknown [10.252.139.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTPS id 9F6C6580438
-	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 15:05:49 -0800 (PST)
-To: yocto@yoctoproject.org
-From: Stephano Cetola <stephano.cetola@linux.intel.com>
-Message-ID: <da12212e-2b78-a093-b607-f545cc4e66f5@linux.intel.com>
-Date: Mon, 5 Feb 2018 15:05:49 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Mon, 05 Feb 2018 16:47:48 PST
+Received: from alln-iport-1.cisco.com (alln-iport-1.cisco.com [173.37.142.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA914E00CF1
+	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 16:47:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=24571; q=dns/txt;
+	s=iport; t=1517878068; x=1519087668;
+	h=from:to:cc:subject:date:message-id:mime-version;
+	bh=pOuUM9qo3AlMuPCG0g1y5lsRCZ9qBJGcYdnZU3rmiKo=;
+	b=N2q3YOnJDABWL/ElKAzNd6fw9k+MN5rPfvu3PSXa/8iKRYwPZPYLI905
+	ktk7KesAV5izBSNMbQXX/Hg+ziqw2qcHLeNYkclyVqtfV8AZoyEFWs+aJ
+	5kYbXcWxHF7nN2x6DLKelTgRl1smiCP6c0tvGP7T7/qpxfSTHr8/4Gt0X 4=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0C2AAAD+nha/4YNJK1dGQEBAQEBAQEBA?=
+	=?us-ascii?q?QEBAQcBAQEBAYJZeGZwKAqNf44wmUqCGAobhSCCT1QYAQEBAQEBAQECayiFV0w?=
+	=?us-ascii?q?SARomQBcPAQQODYlJZL4DiHyBeAEBAQEBAQEBAQEBAQEBAQEBAQEBAR2EaoIVg?=
+	=?us-ascii?q?VeEYIF/hBeFPgWKX4lbj2sCiBeNT4InZ4U/i3OXSQIRGQGBOwEfOYFQcBWDAwm?=
+	=?us-ascii?q?EbniOCoEXAQEB?=
+X-IronPort-AV: E=Sophos;i="5.46,467,1511827200"; d="scan'208,217";a="66750632"
+Received: from alln-core-12.cisco.com ([173.36.13.134])
+	by alln-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Feb 2018 00:46:45 +0000
+Received: from XCH-RTP-001.cisco.com (xch-rtp-001.cisco.com [64.101.220.141])
+	by alln-core-12.cisco.com (8.14.5/8.14.5) with ESMTP id
+	w160kjpI012840
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
+	Tue, 6 Feb 2018 00:46:45 GMT
+Received: from xch-rtp-003.cisco.com (64.101.220.143) by XCH-RTP-001.cisco.com
+	(64.101.220.141) with Microsoft SMTP Server (TLS) id 15.0.1320.4;
+	Mon, 5 Feb 2018 19:46:44 -0500
+Received: from xch-rtp-003.cisco.com ([64.101.220.143]) by
+	XCH-RTP-003.cisco.com ([64.101.220.143]) with mapi id 15.00.1320.000;
+	Mon, 5 Feb 2018 19:46:44 -0500
+From: "Harshal Govind (hgovind)" <hgovind@cisco.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [Yocto] Building openjdk for ppc(PPC464)
+Thread-Index: AdOe0avPOLRhk+eeT0e8WO1L0Jx6rg==
+Date: Tue, 6 Feb 2018 00:46:44 +0000
+Message-ID: <16a874cb7f20497595a7957943015fa4@XCH-RTP-003.cisco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.156.154.34]
 MIME-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Building openjdk for ppc(PPC464)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,187 +80,477 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Feb 2018 23:05:51 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Tue, 06 Feb 2018 00:47:52 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative;
+	boundary="_000_16a874cb7f20497595a7957943015fa4XCHRTP003ciscocom_"
 
-YPTM will be Feb. 6, 2018 at 8am PST.
+--_000_16a874cb7f20497595a7957943015fa4XCHRTP003ciscocom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-We encourage people attending the meeting to logon and announce
-themselves on the Yocto Project IRC chancel during the meeting (optional):
+HI Raj,
 
-Yocto IRC: http://webchat.freenode.net/?channels=#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+I am building a yocto project for my target platform which is PowerPC archi=
+tecture and machine is PPC464. While building the target image, I am facing=
+ following two issues.
 
-https://www.yoctoproject.org/tools-resources/community/weekly-technical-call
 
-Conference Details:
-Company:           WIND RIVER SYS
-- dial into: 1-800-262-0778/404-397-1527
-- enter the bridge number: 88748961#
+1.       Building openjdk
+I am building the openjdk-8 and openjre-8 for PowerPC (PPC464) with yocto-2=
+.1.1 and getting this error:
 
-The international numbers are:
+| + echo /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp=
+/work/464-poky-linux/openjre-8/102b14-r0/build/hotspot/linux_ppc_compiler2/=
+product
+| make[5]: *** No rule to make target '/home/hgovind/projects/test-sdk/ie4k=
+-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0/jdk8=
+u-bf0932d3e0f8/hotspot/make/linux/makefiles/.make'.  Stop.
+| /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/4=
+64-poky-linux/openjre-8/102b14-r0/jdk8u-bf0932d3e0f8/hotspot/make/linux/Mak=
+efile:297: recipe for target 'product' failed
+| make[4]: *** [product] Error 2
+| Makefile:230: recipe for target 'generic_build2' failed
+| make[3]: *** [generic_build2] Error 2
+| Makefile:177: recipe for target 'product' failed
+| make[2]: *** [product] Error 2
+| make[1]: *** [/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core=
+/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0/build/hotspot/_hotspot.time=
+stamp] Error 2
+| HotspotWrapper.gmk:44: recipe for target '/home/hgovind/projects/test-sdk=
+/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0=
+/build/hotspot/_hotspot.timestamp' failed
+| /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/4=
+64-poky-linux/openjre-8/102b14-r0/jdk8u-bf0932d3e0f8//make/Main.gmk:108: re=
+cipe for target 'hotspot-only' failed
+| make: *** [hotspot-only] Error 2
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (log file is located at /home/hgovind/=
+projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/op=
+enjre-8/102b14-r0/temp/log.do_compile.4023)
 
-United States Toll      404-397-1527
-US & Canada Toll Free   800-262-0778
-Albania dial 008000010+ 8558142509
-Angola dial 808000011+  8558142510
-Anguilla Toll Free      18003004779
-Argentina Toll  +541159844583
-Argentina Toll Free     08004446354
-Australia Toll  +610386580431
-Australia Toll Free     1800347095
-Austria Toll Free       080088668498
-Bahamas Toll Free       18003890740
-Bahrain Toll Free       80006770
-Bangladesh dial 1570011+        8558142505
-Barbados Toll Free      18002070056
-Belarus Toll Free       882000110813
-Belgium Toll    +3227925498
-Belgium Toll Free       080029896
-Belize Toll Free        18000130907
-Bermuda Toll free       18002072792
-Botswana Toll Free      002698003004981
-Brazil Toll     +5501149497489
-Brazil Toll Free        08008919885
-British Virgin Islands Toll Free        18002075710
-Brunei Toll Free        8014373
-Bulgaria Toll   +359024916371
-Bulgaria Toll Free      008001201170
-Cambodia Toll Free      1800209578
-Cambodia Toll Free      1800209361
-Canada Toll     +14169810101
-Cayman islands Toll Free        18444305771
-Chile Toll      +56442080836
-Chile Toll Free 12300206143
-China Toll Free 4000342070
-China Toll Free 8008709853
-China Toll Free 4008877140
-China Toll Free 8008768605
-Colombia Toll   +5714864720
-Colombia Toll Free      18000129671
-Costa Rica Toll 40017415
-Croatia Toll    +38517776838
-Croatia Toll Free       08009975
-Cuba dial 2935+ 8558142540
-Cyprus Toll Free        80096877
-Czech Republic Toll Free        0800701476
-Denmark Toll    +4536927940
-Denmark Toll Free       80251209
-Dominica Toll Free      18003004904
-Dominican Republic Toll Free    18887514588
-Ecuador Toll Free       1800000314
-Egypt Toll Free 08000009493
-Estonia Toll    +3726867092
-Estonia Toll Free       8000100708
-Finland Toll    +3580923195770
-Finland Toll Free       0800774585
-France Toll     +33272249926
-France Toll Free        0800947235
-French Guiana Toll Free 0800910113
-Germany Toll    +4930700150733
-Germany Toll Free       08007238960
-Ghana dial 0242426004+  8553944954
-Greece Toll     +302111983414
-Greece Toll Free        0080016122059757
-Grenada Toll Free       18003004905
-Guatemala dial 0019999190+      8553944634
-Honduras Toll Free      80027919493
-Hong Kong Toll  +85230507540
-Hong Kong Toll Free     800961673
-Hungary Toll    +40017789124
-Hungary Toll Free       0680015494
-India Toll      +914466747384
-India Toll Free 18002090252
-Indonesia Toll Free     0078030114912
-Ireland Toll    +35316539376
-Ireland Toll Free       1800948436
-Israel Toll     +97233762260
-Israel Toll Free        1809458778
-Italy Toll      +390200617793
-Italy Toll Free 0800187234
-Jamaica Toll Free       18002196874
-Japan Toll      +810345786573
-Japan Toll Free 0120525303
-Jordan Toll Free        080022545
-Kenya Toll Free 0800723004
-Latvia Toll Free        8002601
-Lebanon dial 01426801+  8558142511
-Lithuania Toll  +37052054804
-Lithuania Toll Free     880031895
-Luxembourg Toll +35228264835
-Luxembourg Toll Free    80023986
-Macedonia Toll Free     080094382
-Malaysia Toll   +600377248228
-Malta Toll      +35627781438
-Malta Toll Free 80062568
-Martinique Toll Free    0800910664
-Mauritius Toll Free     8020440157
-Mexico Toll     +52015515001053
-Mexico Toll Free        018002530547
-Moldavia Toll Free      080062305
-Monaco Toll Free        80094215
-Morocco dial 002110011+ 8558142537
-Netherlands Toll        +310107994621
-Netherlands Toll Free   08000200244
-New Zealand Toll        +64042806288
-New Zealand Toll Free   0800441743
-Norway Toll     +4721034359
-Norway Toll Free        80058604
-Oman Toll Free  80074218
-Pakistan Toll   +924238108753
-Panama Toll     +5078323301
-Panama Toll Free        008002267987
-Paraguay Toll Free      009800110233
-Peru Toll       +51017017728
-Peru Toll Free  080078493
-Philippines Toll        +6322312145
-Philippines Toll Free   180011101073
-Poland Toll     +480223060270
-Poland Toll Free        800080328
-Portugal Toll   +351707201563
-Portugal Toll Free      800788629
-Qatar Toll Free 00800100142
-Romania Toll    +40215291752
-Romania Toll Free       0800400068
-Russia Toll     +74993504823
-Russia Toll Free        81080026895011
-Saudi Arabia Toll Free  8008442574
-Saudi Arabia Toll Free  8008500370
-Senegal dial 800103072+ 8558842521
-Serbia Toll Free        0800190975
-Singapore Toll  +6563494173
-Singapore Toll Free     18005792882
-Slovakia Toll   +4210268622038
-Slovakia Toll Free      0800606692
-Slovenia Toll   +38618281644
-Slovenia Toll Free      080081438
-South Africa Toll       +270214277972
-South Africa Toll Free  0800994623
-South Korea Toll        +827074882482
-South Korea Toll Free   00308132034
-Spain Mobile    900-828-467
-Spain Toll      +34935451755
-Spain Toll Free 900828467
-Sri Lanka Toll  +94720910363
-Sweden Toll     +460114966619
-Sweden Toll Free        0201409738
-Switzerland Toll        +41434569403
-Switzerland Toll Free   800740310
-Taiwan Toll     +8860287933075
-Taiwan Toll Free        0800868159
-Thailand Toll   +6621040574
-Thailand Toll Free      0018001562038778
-Trinidad and Tobago Toll Free   18002038778
-Turkey Toll     +902129003723
-Turks & Caicos Toll Free        18003000086
-UK Toll +442030144000
-UK Toll Free    08005283819
-Ukraine Toll    +380893240452
-Ukraine Toll Free       0800503625
-United Arab Emirates Toll Free  800035703321
-Uruguay Toll Free       00040190461
-Venezuela Toll Free     08001004189
-Vietnam Toll Free       12065242
+Is this issue observed before? Is openjdk and Openjre tested for powerpc in=
+ yocto? Please let me know if you need full log file for reference
 
+
+2.       Building gobject-introspection
+
+so /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/sysro=
+ots/ie4k-lxc/usr/lib/libpcre.so -lpthread /home/hgovind/projects/test-sdk/i=
+e4k-yocto-2.1/iox-sdk-core/yp/tmp/sysroots/ie4k-lxc/usr/lib/libffi.so -pthr=
+ead
+| Invalid instruction
+| NIP f67d93f8   LR f67c9ee8 CTR 00000001 XER 00000008 CPU#0
+| MSR 00006040 HID0 00000000  HF 00006000 idx 0
+| TB 00593997 2551198052011780
+| GPR00 00000000f67c115c 00000000f6ffc910 0000000000000000 00000000f67dbdb0
+| GPR04 0000000000000000 0000000000000000 0000000069203d3d 0000000009824250
+| GPR08 0000000000000000 0000000010002260 00000000f67d7d6c 0000000000000000
+| GPR12 0000000028000882 0000000000000000 00000000f67db438 0000000000000000
+| GPR16 0000000000000000 00000000f67db468 00000000f6ffc978 00000000f6ffca28
+| GPR20 0000000000000000 00000000f67fd310 00000000f6ffcf58 00000000f67dbdb0
+| GPR24 0000000020000000 00000000f67dbdb0 0000000000000000 00000000f67fd310
+| GPR28 0000000000000000 0000000000000000 00000000f67fdff0 00000000f6ffc960
+| CR 24000484  [ E  G  -  -  -  G  L  G  ]             RES ffffffff
+| FPR00 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+| FPR04 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+| FPR08 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+| FPR12 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+| FPR16 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+| FPR20 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+| FPR24 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+| FPR28 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+| FPSCR 00000000
+| qemu: uncaught target signal 4 (Illegal instruction) - core dumped
+| Illegal instruction (core dumped)
+| If the above error message is about missing .so libraries, then setting u=
+p GIR_EXTRA_LIBS_PATH in the recipe should help.
+| (typically like this: GIR_EXTRA_LIBS_PATH=3D"${B}/something/.libs" )
+| Command '['/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp=
+/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/build/g-ir-scanner=
+-qemuwrapper', '/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core=
+/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/build/tmp-intro=
+spectELxvx9/GLib-2.0', '--introspect-dump=3D/home/hgovind/projects/test-sdk=
+/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspecti=
+on/1.46.0-r0/build/tmp-introspectELxvx9/functions.txt,/home/hgovind/project=
+s/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-i=
+ntrospection/1.46.0-r0/build/tmp-introspectELxvx9/dump.xml']' returned non-=
+zero exit status 1
+| make[2]: *** [GLib-2.0.gir] Error 1
+| make[2]: Leaving directory `/home/hgovind/projects/test-sdk/ie4k-yocto-2.=
+1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/b=
+uild'
+| make[1]: *** [all-recursive] Error 1
+| make[1]: Leaving directory `/home/hgovind/projects/test-sdk/ie4k-yocto-2.=
+1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/b=
+uild'
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (log file is located at /home/hgovind/=
+projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/go=
+bject-introspection/1.46.0-r0/temp/log.do_compile.16778)
+
+Here Yocto tries to build a target binary in qemu environment which is fail=
+ing with the error 'illigal instruction' .
+Is there necessity to use the emulation(qemu) to build a target binary or c=
+an we enable the cross compilation?
+
+
+
+Thanks,
+Harshal
+
+
+
+
+--_000_16a874cb7f20497595a7957943015fa4XCHRTP003ciscocom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:868493147;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1307899266 67698703 67698713 67698715 67698703 67698=
+713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">HI Raj,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am building a yocto project for my target platform=
+ which is PowerPC architecture and machine is PPC464. While building the ta=
+rget image, I am facing following two issues.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><b><span style=3D"mso-list:Ignore">1.<span sty=
+le=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;
+</span></span></b><![endif]><b>Building openjdk<o:p></o:p></b></p>
+<p class=3D"MsoNormal">I am building the openjdk-8 and openjre-8 for PowerP=
+C (PPC464) with yocto-2.1.1 and getting this error:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| &#43; echo /home/hgovind=
+/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/o=
+penjre-8/102b14-r0/build/hotspot/linux_ppc_compiler2/product<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[5]: *** No rule to =
+make target '/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp=
+/tmp/work/464-poky-linux/openjre-8/102b14-r0/jdk8u-bf0932d3e0f8/hotspot/mak=
+e/linux/makefiles/.make'.&nbsp;
+ Stop.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| /home/hgovind/projects/t=
+est-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/10=
+2b14-r0/jdk8u-bf0932d3e0f8/hotspot/make/linux/Makefile:297:
+ recipe for target 'product' failed<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[4]: *** [product] E=
+rror 2<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Makefile:230: recipe for=
+ target 'generic_build2' failed<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[3]: *** [generic_bu=
+ild2] Error 2<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Makefile:177: recipe for=
+ target 'product' failed<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[2]: *** [product] E=
+rror 2<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[1]: *** [/home/hgov=
+ind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linu=
+x/openjre-8/102b14-r0/build/hotspot/_hotspot.timestamp]
+ Error 2<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| HotspotWrapper.gmk:44: r=
+ecipe for target '/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-co=
+re/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0/build/hotspot/_hotspot.ti=
+mestamp'
+ failed<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| /home/hgovind/projects/t=
+est-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/10=
+2b14-r0/jdk8u-bf0932d3e0f8//make/Main.gmk:108: recipe
+ for target 'hotspot-only' failed<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make: *** [hotspot-only]=
+ Error 2<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| ERROR: oe_runmake failed=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| ERROR: Function failed: =
+do_compile (log file is located at /home/hgovind/projects/test-sdk/ie4k-yoc=
+to-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0/temp/log=
+.do_compile.4023)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is this issue observed before? Is openjdk and Openjr=
+e tested for powerpc in yocto? Please let me know if you need full log file=
+ for reference
+<b><o:p></o:p></b></p>
+<p class=3D"MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><b><span style=3D"mso-list:Ignore">2.<span sty=
+le=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;
+</span></span></b><![endif]><b>Building gobject-introspection<o:p></o:p></b=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">so /home/hgovind/projects/=
+test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/sysroots/ie4k-lxc/usr/lib/libpc=
+re.so -lpthread /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core=
+/yp/tmp/sysroots/ie4k-lxc/usr/lib/libffi.so
+ -pthread<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Invalid instruction<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| NIP f67d93f8&nbsp;&nbsp;=
+ LR f67c9ee8 CTR 00000001 XER 00000008 CPU#0<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| MSR 00006040 HID0 000000=
+00&nbsp; HF 00006000 idx 0<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| TB 00593997 255119805201=
+1780<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR00 00000000f67c115c 0=
+0000000f6ffc910 0000000000000000 00000000f67dbdb0<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR04 0000000000000000 0=
+000000000000000 0000000069203d3d 0000000009824250<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR08 0000000000000000 0=
+000000010002260 00000000f67d7d6c 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR12 0000000028000882 0=
+000000000000000 00000000f67db438 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR16 0000000000000000 0=
+0000000f67db468 00000000f6ffc978 00000000f6ffca28<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR20 0000000000000000 0=
+0000000f67fd310 00000000f6ffcf58 00000000f67dbdb0<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR24 0000000020000000 0=
+0000000f67dbdb0 0000000000000000 00000000f67fd310<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR28 0000000000000000 0=
+000000000000000 00000000f67fdff0 00000000f6ffc960<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| CR 24000484&nbsp; [ E&nb=
+sp; G&nbsp; -&nbsp; -&nbsp; -&nbsp; G&nbsp; L&nbsp; G&nbsp; ]&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RES ffffffff<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR00 0000000000000000 0=
+000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR04 0000000000000000 0=
+000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR08 0000000000000000 0=
+000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR12 0000000000000000 0=
+000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR16 0000000000000000 0=
+000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR20 0000000000000000 0=
+000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR24 0000000000000000 0=
+000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR28 0000000000000000 0=
+000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPSCR 00000000<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| qemu: uncaught target si=
+gnal 4 (Illegal instruction) - core dumped<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Illegal instruction (cor=
+e dumped)<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| If the above error messa=
+ge is about missing .so libraries, then setting up GIR_EXTRA_LIBS_PATH in t=
+he recipe should help.<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| (typically like this: GI=
+R_EXTRA_LIBS_PATH=3D&quot;${B}/something/.libs&quot; )<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Command '['/home/hgovind=
+/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/g=
+object-introspection/1.46.0-r0/build/g-ir-scanner-qemuwrapper',
+ '/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/4=
+64-poky-linux/gobject-introspection/1.46.0-r0/build/tmp-introspectELxvx9/GL=
+ib-2.0', '--introspect-dump=3D/home/hgovind/projects/test-sdk/ie4k-yocto-2.=
+1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/b=
+uild/tmp-introspectELxvx9/functions.txt,/home/hgovind/projects/test-sdk/ie4=
+k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1=
+.46.0-r0/build/tmp-introspectELxvx9/dump.xml']'
+ returned non-zero exit status 1<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[2]: *** [GLib-2.0.g=
+ir] Error 1<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[2]: Leaving directo=
+ry `/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work=
+/464-poky-linux/gobject-introspection/1.46.0-r0/build'<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[1]: *** [all-recurs=
+ive] Error 1<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[1]: Leaving directo=
+ry `/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work=
+/464-poky-linux/gobject-introspection/1.46.0-r0/build'<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make: *** [all] Error 2<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| ERROR: oe_runmake failed=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Lucida Console&quot;">| ERROR: Function failed: =
+do_compile (log file is located at /home/hgovind/projects/test-sdk/ie4k-yoc=
+to-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0=
+-r0/temp/log.do_compile.16778)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here Yocto tries to build a target binary in qemu en=
+vironment which is failing with the error &#8216;illigal instruction&#8217;=
+ .<o:p></o:p></p>
+<p class=3D"MsoNormal">Is there necessity to use the emulation(qemu) to bui=
+ld a target binary or can we enable the cross compilation?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Harshal &nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_16a874cb7f20497595a7957943015fa4XCHRTP003ciscocom_--
