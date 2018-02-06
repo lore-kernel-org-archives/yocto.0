@@ -1,74 +1,44 @@
-Return-Path: <hgovind@cisco.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09EB8E00E4F; Mon,  5 Feb 2018 16:47:52 -0800 (PST)
+	id D4C60E00E00; Mon,  5 Feb 2018 17:15:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [173.37.142.88 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Mon, 05 Feb 2018 16:47:48 PST
-Received: from alln-iport-1.cisco.com (alln-iport-1.cisco.com [173.37.142.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA914E00CF1
-	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 16:47:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=24571; q=dns/txt;
-	s=iport; t=1517878068; x=1519087668;
-	h=from:to:cc:subject:date:message-id:mime-version;
-	bh=pOuUM9qo3AlMuPCG0g1y5lsRCZ9qBJGcYdnZU3rmiKo=;
-	b=N2q3YOnJDABWL/ElKAzNd6fw9k+MN5rPfvu3PSXa/8iKRYwPZPYLI905
-	ktk7KesAV5izBSNMbQXX/Hg+ziqw2qcHLeNYkclyVqtfV8AZoyEFWs+aJ
-	5kYbXcWxHF7nN2x6DLKelTgRl1smiCP6c0tvGP7T7/qpxfSTHr8/4Gt0X 4=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0C2AAAD+nha/4YNJK1dGQEBAQEBAQEBA?=
-	=?us-ascii?q?QEBAQcBAQEBAYJZeGZwKAqNf44wmUqCGAobhSCCT1QYAQEBAQEBAQECayiFV0w?=
-	=?us-ascii?q?SARomQBcPAQQODYlJZL4DiHyBeAEBAQEBAQEBAQEBAQEBAQEBAQEBAR2EaoIVg?=
-	=?us-ascii?q?VeEYIF/hBeFPgWKX4lbj2sCiBeNT4InZ4U/i3OXSQIRGQGBOwEfOYFQcBWDAwm?=
-	=?us-ascii?q?EbniOCoEXAQEB?=
-X-IronPort-AV: E=Sophos;i="5.46,467,1511827200"; d="scan'208,217";a="66750632"
-Received: from alln-core-12.cisco.com ([173.36.13.134])
-	by alln-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	06 Feb 2018 00:46:45 +0000
-Received: from XCH-RTP-001.cisco.com (xch-rtp-001.cisco.com [64.101.220.141])
-	by alln-core-12.cisco.com (8.14.5/8.14.5) with ESMTP id
-	w160kjpI012840
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
-	Tue, 6 Feb 2018 00:46:45 GMT
-Received: from xch-rtp-003.cisco.com (64.101.220.143) by XCH-RTP-001.cisco.com
-	(64.101.220.141) with Microsoft SMTP Server (TLS) id 15.0.1320.4;
-	Mon, 5 Feb 2018 19:46:44 -0500
-Received: from xch-rtp-003.cisco.com ([64.101.220.143]) by
-	XCH-RTP-003.cisco.com ([64.101.220.143]) with mapi id 15.00.1320.000;
-	Mon, 5 Feb 2018 19:46:44 -0500
-From: "Harshal Govind (hgovind)" <hgovind@cisco.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [Yocto] Building openjdk for ppc(PPC464)
-Thread-Index: AdOe0avPOLRhk+eeT0e8WO1L0Jx6rg==
-Date: Tue, 6 Feb 2018 00:46:44 +0000
-Message-ID: <16a874cb7f20497595a7957943015fa4@XCH-RTP-003.cisco.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.156.154.34]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1AC8E00CF1
+	for <yocto@yoctoproject.org>; Mon,  5 Feb 2018 17:15:57 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w161FkOo009660
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 5 Feb 2018 17:15:46 -0800 (PST)
+Received: from server.local (128.224.23.93) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.361.1;
+	Mon, 5 Feb 2018 17:15:43 -0800
+To: Jakob Hasse <jakob.hasse@smart-home-technology.ch>,
+	<yocto@yoctoproject.org>
+References: <aa633a5b-a067-b6e8-4097-740c1b6dbab6@smart-home-technology.ch>
+	<384be7fc-2992-0654-0bcb-54080d95c608@windriver.com>
+	<80d24e33-0efa-4c2c-ce9d-a2dfd16eadbe@smart-home-technology.ch>
+	<9456defc-e475-2072-555f-078e0932cead@windriver.com>
+	<23cfe332-36a8-eabd-2db2-2c756266107f@smart-home-technology.ch>
+	<2e1d0375-9b85-37c6-7c9c-119ac8ad513c@windriver.com>
+	<d1acc1a7-a602-da62-03d4-16b35a3ea04e@smart-home-technology.ch>
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Message-ID: <560f3b7c-8d65-be23-7456-0847253e889e@windriver.com>
+Date: Mon, 5 Feb 2018 20:15:45 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
+	Gecko/20100101 Thunderbird/52.6.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Building openjdk for ppc(PPC464)
+In-Reply-To: <d1acc1a7-a602-da62-03d4-16b35a3ea04e@smart-home-technology.ch>
+Subject: Re: Running Docker
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,477 +50,215 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Feb 2018 00:47:52 -0000
+X-List-Received-Date: Tue, 06 Feb 2018 01:15:58 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_16a874cb7f20497595a7957943015fa4XCHRTP003ciscocom_"
+Content-Transfer-Encoding: 8bit
 
---_000_16a874cb7f20497595a7957943015fa4XCHRTP003ciscocom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 2018-02-05 4:58 PM, Jakob Hasse wrote:
+> Hello Bruce,
+> 
+> Thanks for the reply!
+> No, the interpreter seems to be different, other executables are e.g.:
+> 
+> # file /usr/bin/python2.7
+> /usr/bin/python2.7: ELF 32-bit LSB executable, ARM, EABI5 version 1 
+> (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for 
+> GNU/Linux 3.2.0, BuildID[sha1]=b7d18ea9c9088e4b238dc8aeaaf47d6d4941079c, 
+> stripped
+> 
+> # file /usr/bin/udevadm
+> /usr/bin/udevadm: ELF 32-bit LSB executable, ARM, EABI5 version 1 
+> (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for 
+> GNU/Linux 3.2.0, BuildID[sha1]=cf639576658cfa150a456672666c2560d58c5f1b, 
+> stripped
+> 
+> custom app:
+> # file /usr/bin/goms
+> /usr/bin/goms: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), 
+> dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 
+> 3.2.0, BuildID[sha1]=2d6df18a0b70632a94caee30d4e21c35da235d34, stripped
+> 
 
-HI Raj,
+So this is what Khem was saying, docker is built with softfloat
+while the rest of the system is hard float.
 
-I am building a yocto project for my target platform which is PowerPC archi=
-tecture and machine is PPC464. While building the target image, I am facing=
- following two issues.
+Given that this is an older branch, the go build infrastructure
+is different, but you'll need to look at the arch that is being
+exported in the recipe and make sure that it is arm hard float, not
+soft.
+
+Bruce
+
+> All the Best,
+> Jakob
+> 
+> On 05.02.2018 19:05, Bruce Ashfield wrote:
+>> On 02/02/2018 11:21 AM, Jakob Hasse wrote:
+>>> Hello,
+>>>
+>>> file says:
+>>> # file /usr/bin/docker
+>>> /usr/bin/docker: ELF 32-bit LSB executable, ARM, EABI5 version 1 
+>>> (SYSV), dynamically linked, interpreter /lib/ld-linux.so.3, for 
+>>> GNU/Linux 3.2.0, 
+>>> BuildID[sha1]=87db889a25d481762a8d2c7aaa1bd52af2458915, not stripped
+>>>
+>>
+>> Sorry for the slow reply, I was away for a bit.
+>>
+>> And does that description match your target (and the other executables)
+>> that do work ? If the kernel doesn't recognize the binary interpreter
+>> of an executable, the message you are seeing is what you get.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>> Regards,
+>>> Jakob
+>>>
+>>> On 02.02.2018 17:14, Bruce Ashfield wrote:
+>>>> On 2018-02-02 10:57 AM, Jakob Hasse wrote:
+>>>>> Hello Bruce,
+>>>>>
+>>>>> Thank you for the advice with the morty branch, this worked perfectly.
+>>>>>
+>>>>> Now, however, docker is installed on my Yocto-system but I can't 
+>>>>> run it:
+>>>>>
+>>>>> ~# docker
+>>>>> -sh: /usr/bin/docker: No such file or directory
+>>>>
+>>>> I've seen this before. It normally means that the executable isn't
+>>>> in a format that your target recognizes. It could very well be the
+>>>> go support in the older branch isn't building the right thing.
+>>>>
+>>>> What does 'file' say about the executable ?
+>>>>
+>>>> Bruce
+>>>>
+>>>>>
+>>>>> Is "docker" the client to control and run containers (e.g. "docker 
+>>>>> run hello-world")?
+>>>>> On my Ubuntu machine, this works, I installed docker and docker.io 
+>>>>> via apt, then I could run "docker run hello-world".
+>>>>>
+>>>>> All the Best and many thanks in advance!
+>>>>> Jakob
+>>>>>
+>>>>> On 26.01.2018 14:05, Bruce Ashfield wrote:
+>>>>>> On 2018-01-26 6:52 AM, Jakob Hasse wrote:
+>>>>>>> Hello,
+>>>>>>>
+>>>>>>> we're trying to include meta-virtualization in to our project, in 
+>>>>>>> particular, we want to use docker. However, as soon as I include 
+>>>>>>> the layer in to our project, bitbake complains:
+>>>>>>>
+>>>>>>> bitbake -C compile core-image-base
+>>>>>>> NOTE: Started PRServer with DBfile: 
+>>>>>>> /home/jakob/workspace/beerstation/cache/prserv.sqlite3, IP: 
+>>>>>>> 127.0.0.1, PORT: 46136, PID: 5713
+>>>>>>> ERROR: Execution of event handler 'virt_bbappend_distrocheck' failed
+>>>>>>> Traceback (most recent call last):
+>>>>>>>    File 
+>>>>>>> "/usr/local/dey-2.2/sources/meta-virtualization/classes/sanity-meta-virt.bbclass", 
+>>>>>>> line 4, in virt_bbappend_distrocheck(e=<bb.event.SanityCheck 
+>>>>>>> object at 0x7f945e05d3c8>):
+>>>>>>>       python virt_bbappend_distrocheck() {
+>>>>>>>      >    skip_check = 
+>>>>>>> e.data.getVar('SKIP_META_VIRT_SANITY_CHECK') == "1"
+>>>>>>>           if 'virtualization' not in 
+>>>>>>> e.data.getVar('DISTRO_FEATURES').split() and not skip_check:
+>>>>>>> TypeError: getVar() missing 1 required positional argument: 'expand'
+>>>>>>>
+>>>>>>> ERROR: Command execution failed: Traceback (most recent call last):
+>>>>>>>    File 
+>>>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/command.py", line 
+>>>>>>> 101, in runAsyncCommand
+>>>>>>>      self.cooker.updateCache()
+>>>>>>>    File 
+>>>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/cooker.py", line 
+>>>>>>> 1627, in updateCache
+>>>>>>>      bb.event.fire(bb.event.SanityCheck(False), 
+>>>>>>> self.databuilder.mcdata[mc])
+>>>>>>>    File 
+>>>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
+>>>>>>> 201, in fire
+>>>>>>>      fire_class_handlers(event, d)
+>>>>>>>    File 
+>>>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
+>>>>>>> 124, in fire_class_handlers
+>>>>>>>      execute_handler(name, handler, event, d)
+>>>>>>>    File 
+>>>>>>> "/usr/local/dey-2.2/sources/poky/bitbake/lib/bb/event.py", line 
+>>>>>>> 96, in execute_handler
+>>>>>>>      ret = handler(event)
+>>>>>>>    File 
+>>>>>>> "/usr/local/dey-2.2/sources/meta-virtualization/classes/sanity-meta-virt.bbclass", 
+>>>>>>> line 4, in virt_bbappend_distrocheck
+>>>>>>>      skip_check = e.data.getVar('SKIP_META_VIRT_SANITY_CHECK') == 
+>>>>>>> "1"
+>>>>>>> TypeError: getVar() missing 1 required positional argument: 'expand'
+>>>>>>>
+>>>>>>>
+>>>>>>> Summary: There were 2 ERROR messages shown, returning a non-zero 
+>>>>>>> exit code.
+>>>>>>>
+>>>>>>>
+>>>>>>> Do we need to checkout a specific branch or so (though I can't 
+>>>>>>> find one right now)?
+>>>>>>> Do we need to change some kernel configuration? I added all 
+>>>>>>> virtualization drivers in the "drivers" section of the kernel 
+>>>>>>> config already.
+>>>>>>>
+>>>>>>> We're using DIGI embedded Yocto 2.2 (poky).
+>>>>>>>
+>>>>>>
+>>>>>> You need to check out the matching branch to the release you've
+>>>>>> been given as an enablement, since some of the APIs, etc, have
+>>>>>> changed and the meta-virt sanity check that was added later than
+>>>>>> the 2.2 release isn't working.
+>>>>>>
+>>>>>> 2.2 was the 'morty' release, and meta-virt does have a branch for
+>>>>>> that:
+>>>>>>
+>>>>>> ----------
+>>>>>> % git whatchanged origin/morty
+>>>>>>
+>>>>>> commit eb6b5129561eda9ea1f47e85ab9ed9e5a6b8f64c
+>>>>>> Author: Fabio Berton <fabio.berton@ossystems.com.br>
+>>>>>> Date:   Tue Nov 28 09:15:59 2017 -0200
+>>>>>>
+>>>>>>     python-*: use https for pypi URLs
+>>>>>>
+>>>>>>     Several of the recipes here were using http URLs for source 
+>>>>>> hosted on
+>>>>>>     pypi - pypi apparently no longer supports http so switch to https
+>>>>>>     instead.
+>>>>>>
+>>>>>>     Apply this commit [1] to morty branch.
+>>>>>>     [1] 
+>>>>>> https://www.mail-archive.com/meta-virtualization@yoctoproject.org/msg02821.html 
+>>>>>>
+>>>>>>
+>>>>>>     Signed-off-by: Fabio Berton <fabio.berton@ossystems.com.br>
+>>>>>>     Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+>>>>>> ---------
+>>>>>>
+>>>>>> So check out the morty branch and you'll have better luck.
+>>>>>>
+>>>>>> Bruce
+>>>>>>
+>>>>>>
+>>>>>>> Thanks and all the best,
+>>>>>>> Jakob
+>>>>>>>
+>>>>>>
+>>>>>
+>>>>
+>>>
+>>
+> 
 
 
-1.       Building openjdk
-I am building the openjdk-8 and openjre-8 for PowerPC (PPC464) with yocto-2=
-.1.1 and getting this error:
-
-| + echo /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp=
-/work/464-poky-linux/openjre-8/102b14-r0/build/hotspot/linux_ppc_compiler2/=
-product
-| make[5]: *** No rule to make target '/home/hgovind/projects/test-sdk/ie4k=
--yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0/jdk8=
-u-bf0932d3e0f8/hotspot/make/linux/makefiles/.make'.  Stop.
-| /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/4=
-64-poky-linux/openjre-8/102b14-r0/jdk8u-bf0932d3e0f8/hotspot/make/linux/Mak=
-efile:297: recipe for target 'product' failed
-| make[4]: *** [product] Error 2
-| Makefile:230: recipe for target 'generic_build2' failed
-| make[3]: *** [generic_build2] Error 2
-| Makefile:177: recipe for target 'product' failed
-| make[2]: *** [product] Error 2
-| make[1]: *** [/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core=
-/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0/build/hotspot/_hotspot.time=
-stamp] Error 2
-| HotspotWrapper.gmk:44: recipe for target '/home/hgovind/projects/test-sdk=
-/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0=
-/build/hotspot/_hotspot.timestamp' failed
-| /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/4=
-64-poky-linux/openjre-8/102b14-r0/jdk8u-bf0932d3e0f8//make/Main.gmk:108: re=
-cipe for target 'hotspot-only' failed
-| make: *** [hotspot-only] Error 2
-| ERROR: oe_runmake failed
-| ERROR: Function failed: do_compile (log file is located at /home/hgovind/=
-projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/op=
-enjre-8/102b14-r0/temp/log.do_compile.4023)
-
-Is this issue observed before? Is openjdk and Openjre tested for powerpc in=
- yocto? Please let me know if you need full log file for reference
-
-
-2.       Building gobject-introspection
-
-so /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/sysro=
-ots/ie4k-lxc/usr/lib/libpcre.so -lpthread /home/hgovind/projects/test-sdk/i=
-e4k-yocto-2.1/iox-sdk-core/yp/tmp/sysroots/ie4k-lxc/usr/lib/libffi.so -pthr=
-ead
-| Invalid instruction
-| NIP f67d93f8   LR f67c9ee8 CTR 00000001 XER 00000008 CPU#0
-| MSR 00006040 HID0 00000000  HF 00006000 idx 0
-| TB 00593997 2551198052011780
-| GPR00 00000000f67c115c 00000000f6ffc910 0000000000000000 00000000f67dbdb0
-| GPR04 0000000000000000 0000000000000000 0000000069203d3d 0000000009824250
-| GPR08 0000000000000000 0000000010002260 00000000f67d7d6c 0000000000000000
-| GPR12 0000000028000882 0000000000000000 00000000f67db438 0000000000000000
-| GPR16 0000000000000000 00000000f67db468 00000000f6ffc978 00000000f6ffca28
-| GPR20 0000000000000000 00000000f67fd310 00000000f6ffcf58 00000000f67dbdb0
-| GPR24 0000000020000000 00000000f67dbdb0 0000000000000000 00000000f67fd310
-| GPR28 0000000000000000 0000000000000000 00000000f67fdff0 00000000f6ffc960
-| CR 24000484  [ E  G  -  -  -  G  L  G  ]             RES ffffffff
-| FPR00 0000000000000000 0000000000000000 0000000000000000 0000000000000000
-| FPR04 0000000000000000 0000000000000000 0000000000000000 0000000000000000
-| FPR08 0000000000000000 0000000000000000 0000000000000000 0000000000000000
-| FPR12 0000000000000000 0000000000000000 0000000000000000 0000000000000000
-| FPR16 0000000000000000 0000000000000000 0000000000000000 0000000000000000
-| FPR20 0000000000000000 0000000000000000 0000000000000000 0000000000000000
-| FPR24 0000000000000000 0000000000000000 0000000000000000 0000000000000000
-| FPR28 0000000000000000 0000000000000000 0000000000000000 0000000000000000
-| FPSCR 00000000
-| qemu: uncaught target signal 4 (Illegal instruction) - core dumped
-| Illegal instruction (core dumped)
-| If the above error message is about missing .so libraries, then setting u=
-p GIR_EXTRA_LIBS_PATH in the recipe should help.
-| (typically like this: GIR_EXTRA_LIBS_PATH=3D"${B}/something/.libs" )
-| Command '['/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp=
-/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/build/g-ir-scanner=
--qemuwrapper', '/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core=
-/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/build/tmp-intro=
-spectELxvx9/GLib-2.0', '--introspect-dump=3D/home/hgovind/projects/test-sdk=
-/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspecti=
-on/1.46.0-r0/build/tmp-introspectELxvx9/functions.txt,/home/hgovind/project=
-s/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-i=
-ntrospection/1.46.0-r0/build/tmp-introspectELxvx9/dump.xml']' returned non-=
-zero exit status 1
-| make[2]: *** [GLib-2.0.gir] Error 1
-| make[2]: Leaving directory `/home/hgovind/projects/test-sdk/ie4k-yocto-2.=
-1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/b=
-uild'
-| make[1]: *** [all-recursive] Error 1
-| make[1]: Leaving directory `/home/hgovind/projects/test-sdk/ie4k-yocto-2.=
-1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/b=
-uild'
-| make: *** [all] Error 2
-| ERROR: oe_runmake failed
-| ERROR: Function failed: do_compile (log file is located at /home/hgovind/=
-projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/go=
-bject-introspection/1.46.0-r0/temp/log.do_compile.16778)
-
-Here Yocto tries to build a target binary in qemu environment which is fail=
-ing with the error 'illigal instruction' .
-Is there necessity to use the emulation(qemu) to build a target binary or c=
-an we enable the cross compilation?
-
-
-
-Thanks,
-Harshal
-
-
-
-
---_000_16a874cb7f20497595a7957943015fa4XCHRTP003ciscocom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Lucida Console";
-	panose-1:2 11 6 9 4 5 4 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:868493147;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1307899266 67698703 67698713 67698715 67698703 67698=
-713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">HI Raj,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am building a yocto project for my target platform=
- which is PowerPC architecture and machine is PPC464. While building the ta=
-rget image, I am facing following two issues.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><b><span style=3D"mso-list:Ignore">1.<span sty=
-le=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;
-</span></span></b><![endif]><b>Building openjdk<o:p></o:p></b></p>
-<p class=3D"MsoNormal">I am building the openjdk-8 and openjre-8 for PowerP=
-C (PPC464) with yocto-2.1.1 and getting this error:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| &#43; echo /home/hgovind=
-/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/o=
-penjre-8/102b14-r0/build/hotspot/linux_ppc_compiler2/product<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[5]: *** No rule to =
-make target '/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp=
-/tmp/work/464-poky-linux/openjre-8/102b14-r0/jdk8u-bf0932d3e0f8/hotspot/mak=
-e/linux/makefiles/.make'.&nbsp;
- Stop.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| /home/hgovind/projects/t=
-est-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/10=
-2b14-r0/jdk8u-bf0932d3e0f8/hotspot/make/linux/Makefile:297:
- recipe for target 'product' failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[4]: *** [product] E=
-rror 2<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Makefile:230: recipe for=
- target 'generic_build2' failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[3]: *** [generic_bu=
-ild2] Error 2<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Makefile:177: recipe for=
- target 'product' failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[2]: *** [product] E=
-rror 2<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[1]: *** [/home/hgov=
-ind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linu=
-x/openjre-8/102b14-r0/build/hotspot/_hotspot.timestamp]
- Error 2<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| HotspotWrapper.gmk:44: r=
-ecipe for target '/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-co=
-re/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0/build/hotspot/_hotspot.ti=
-mestamp'
- failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| /home/hgovind/projects/t=
-est-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/10=
-2b14-r0/jdk8u-bf0932d3e0f8//make/Main.gmk:108: recipe
- for target 'hotspot-only' failed<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make: *** [hotspot-only]=
- Error 2<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| ERROR: oe_runmake failed=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| ERROR: Function failed: =
-do_compile (log file is located at /home/hgovind/projects/test-sdk/ie4k-yoc=
-to-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/openjre-8/102b14-r0/temp/log=
-.do_compile.4023)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this issue observed before? Is openjdk and Openjr=
-e tested for powerpc in yocto? Please let me know if you need full log file=
- for reference
-<b><o:p></o:p></b></p>
-<p class=3D"MsoNormal"><b><o:p>&nbsp;</o:p></b></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><b><span style=3D"mso-list:Ignore">2.<span sty=
-le=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;
-</span></span></b><![endif]><b>Building gobject-introspection<o:p></o:p></b=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">so /home/hgovind/projects/=
-test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/sysroots/ie4k-lxc/usr/lib/libpc=
-re.so -lpthread /home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core=
-/yp/tmp/sysroots/ie4k-lxc/usr/lib/libffi.so
- -pthread<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Invalid instruction<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| NIP f67d93f8&nbsp;&nbsp;=
- LR f67c9ee8 CTR 00000001 XER 00000008 CPU#0<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| MSR 00006040 HID0 000000=
-00&nbsp; HF 00006000 idx 0<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| TB 00593997 255119805201=
-1780<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR00 00000000f67c115c 0=
-0000000f6ffc910 0000000000000000 00000000f67dbdb0<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR04 0000000000000000 0=
-000000000000000 0000000069203d3d 0000000009824250<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR08 0000000000000000 0=
-000000010002260 00000000f67d7d6c 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR12 0000000028000882 0=
-000000000000000 00000000f67db438 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR16 0000000000000000 0=
-0000000f67db468 00000000f6ffc978 00000000f6ffca28<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR20 0000000000000000 0=
-0000000f67fd310 00000000f6ffcf58 00000000f67dbdb0<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR24 0000000020000000 0=
-0000000f67dbdb0 0000000000000000 00000000f67fd310<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| GPR28 0000000000000000 0=
-000000000000000 00000000f67fdff0 00000000f6ffc960<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| CR 24000484&nbsp; [ E&nb=
-sp; G&nbsp; -&nbsp; -&nbsp; -&nbsp; G&nbsp; L&nbsp; G&nbsp; ]&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RES ffffffff<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR00 0000000000000000 0=
-000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR04 0000000000000000 0=
-000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR08 0000000000000000 0=
-000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR12 0000000000000000 0=
-000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR16 0000000000000000 0=
-000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR20 0000000000000000 0=
-000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR24 0000000000000000 0=
-000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPR28 0000000000000000 0=
-000000000000000 0000000000000000 0000000000000000<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| FPSCR 00000000<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| qemu: uncaught target si=
-gnal 4 (Illegal instruction) - core dumped<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Illegal instruction (cor=
-e dumped)<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| If the above error messa=
-ge is about missing .so libraries, then setting up GIR_EXTRA_LIBS_PATH in t=
-he recipe should help.<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| (typically like this: GI=
-R_EXTRA_LIBS_PATH=3D&quot;${B}/something/.libs&quot; )<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| Command '['/home/hgovind=
-/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/g=
-object-introspection/1.46.0-r0/build/g-ir-scanner-qemuwrapper',
- '/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work/4=
-64-poky-linux/gobject-introspection/1.46.0-r0/build/tmp-introspectELxvx9/GL=
-ib-2.0', '--introspect-dump=3D/home/hgovind/projects/test-sdk/ie4k-yocto-2.=
-1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0-r0/b=
-uild/tmp-introspectELxvx9/functions.txt,/home/hgovind/projects/test-sdk/ie4=
-k-yocto-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1=
-.46.0-r0/build/tmp-introspectELxvx9/dump.xml']'
- returned non-zero exit status 1<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[2]: *** [GLib-2.0.g=
-ir] Error 1<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[2]: Leaving directo=
-ry `/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work=
-/464-poky-linux/gobject-introspection/1.46.0-r0/build'<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[1]: *** [all-recurs=
-ive] Error 1<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make[1]: Leaving directo=
-ry `/home/hgovind/projects/test-sdk/ie4k-yocto-2.1/iox-sdk-core/yp/tmp/work=
-/464-poky-linux/gobject-introspection/1.46.0-r0/build'<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| make: *** [all] Error 2<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| ERROR: oe_runmake failed=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Lucida Console&quot;">| ERROR: Function failed: =
-do_compile (log file is located at /home/hgovind/projects/test-sdk/ie4k-yoc=
-to-2.1/iox-sdk-core/yp/tmp/work/464-poky-linux/gobject-introspection/1.46.0=
--r0/temp/log.do_compile.16778)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Here Yocto tries to build a target binary in qemu en=
-vironment which is failing with the error &#8216;illigal instruction&#8217;=
- .<o:p></o:p></p>
-<p class=3D"MsoNormal">Is there necessity to use the emulation(qemu) to bui=
-ld a target binary or can we enable the cross compilation?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Harshal &nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_16a874cb7f20497595a7957943015fa4XCHRTP003ciscocom_--
