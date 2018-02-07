@@ -1,77 +1,62 @@
-Return-Path: <yocto.user.mailinglist@gmail.com>
+Return-Path: <janez.svetokravsky@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE762E00DE5; Wed,  7 Feb 2018 08:58:24 -0800 (PST)
+	id 91A12E00DF8; Wed,  7 Feb 2018 10:48:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yocto.user.mailinglist[at]gmail.com)
+	mail provider *      (janez.svetokravsky[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.195 listed in list.dnswl.org]
-Received: from mail-wr0-f195.google.com (mail-wr0-f195.google.com
-	[209.85.128.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 767C6E007E1
-	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 08:58:23 -0800 (PST)
-Received: by mail-wr0-f195.google.com with SMTP id s5so1818788wra.0
-	for <yocto@yoctoproject.org>; Wed, 07 Feb 2018 08:58:23 -0800 (PST)
+Received: from mail-it0-f43.google.com (mail-it0-f43.google.com
+	[209.85.214.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22418E007E1
+	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 10:48:11 -0800 (PST)
+Received: by mail-it0-f43.google.com with SMTP id e1so3436988ita.0
+	for <yocto@yoctoproject.org>; Wed, 07 Feb 2018 10:48:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=5/9U3eCziCfugTaKk112358OUTUB3Ekrlh6gtwxzrXk=;
-	b=cRinfHjuGsS8Ly05QdTbAUZmO3KshK7rU5rx2gTQx6a8xugMr1miEoq6LQIj7Kq3QZ
-	YNGOMEghjXjxjthFkM2o7NbG/VN+MmBFrijZPdJfWVw1TtZcs0RIchR1LhXhpjRN4c61
-	TZADyaRi/txVvQ2G7olBM/b+OiE2uWWK9FvAsK2KuL2kF1ek3q70sxrfRmR6MHJ1PhdZ
-	tlYdTqt1FnFue0Ej5iDBmcTSUVWzdcIWPO+45q0H1i+TBPMVld3xhVx8iSxAi/+/9rWq
-	3wG0upot+MccGjTKFwgFJLJOXBpJVHQ1EIjqjjBb62tdpWyjTbk9UFnsMSnr8/oFltVp
-	qsFQ==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=kFcFdA+j13PwwIRSYTdrRcbsJ4d31vayWmfAdT/LExg=;
+	b=NmPYKDOsnYs1oo3sEpGukLFQlufHx4JNSsQkyikAMo+9Uz8TLFtgQ3lFosrYqC3QuH
+	lAsxjaTpvX4hoUanb4Fm7JMcVy69lSsKI9Yr8j4gsONwybzcidQGW2mzBd0mqRLEb+ij
+	NsbkaFUFDs2brChGJqjPlnJW5OlvDgOkXJPV62YI78pq5iJq5HdsIbPExMrmXJVBkjSa
+	r7898XcclZzdou2/ErflVf81uVipX3ElCH3ExYimIO6Zhpq2ZX5dNHEYst0DPSu01Rii
+	mUn3G/C5Ymyzex9Ug09bmwXQxbFNZ2pTLxaEe4pYHTo/4sVmLD4dRgMQ7qo1mfavw1mG
+	ndRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=5/9U3eCziCfugTaKk112358OUTUB3Ekrlh6gtwxzrXk=;
-	b=K+nNpCIcUdxGHecaCu8IF7D6SnGvP09EXSz3aDjyAOAMzjs+Idf1zRQfgGGUmTjDSN
-	Mm+yGQMThgsfdQrKl7G8qeLMxMRKzOs9XyEZo/a9pyVALbx8I+pqsymDLgqRzaTmx407
-	7MtcwjwGS7HthnS9a013TSyHjXTWzrs2xIZrKx6lAI50il7Ysr7Mlx8TSscR7Sz6BfCe
-	d7Fore5o3WLl6KJzaUFZJW2wFO51srwPdSfXeKfaaBvgArwcVmaG3q4swNh0wmvINckm
-	Xm71B17KZJ2WpPECO/uDCEP6OfZC6SAnytQ5126r/lvkTdTEsNYjIwYGlwkxpAziH2Ig
-	hm8w==
-X-Gm-Message-State: APf1xPDhQl/+pAz55DkHglB5Sy2PImKNHBhEXT3eQ7EXQp0DKDO5gYN5
-	M6Eu3YAmfQRqgf7CGPtFyyUij5Oy
-X-Google-Smtp-Source: AH8x224JnLp/hAZ/hfhVvMgS4sTVkD7yaWDMolMnDx5W0XdvI51Sq/SuDWr5niJOv08Zt3PSc7Logw==
-X-Received: by 10.223.170.142 with SMTP id h14mr6255449wrc.26.1518022703024;
-	Wed, 07 Feb 2018 08:58:23 -0800 (PST)
-Received: from [192.168.42.50] (ppp-2-86-138-178.home.otenet.gr.
-	[2.86.138.178]) by smtp.gmail.com with ESMTPSA id
-	l92sm2929788wrc.31.2018.02.07.08.58.21
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 07 Feb 2018 08:58:22 -0800 (PST)
-To: Mircea Gliga <mircea.gliga@vitheia.com>,
-	Yocto Project <yocto@yoctoproject.org>
-References: <ac8ff7de-889b-f948-87ba-cac758900512@vitheia.com>
-	<4662d7ee-4215-e81e-58aa-a98a42c5ad56@gmail.com>
-	<b2a06fdc-c5b5-42be-e1e9-1005c5c531e6@vitheia.com>
-	<f14fc372-f394-2d32-4c95-c8b71fa43a51@gmail.com>
-	<e412b2d0-6e14-983e-b7cc-63938705344a@vitheia.com>
-From: Robert Berger <yocto.user.mailinglist@gmail.com>
-Message-ID: <01e6a2b9-5a4f-a5ad-5729-4d3e915422f6@gmail.com>
-Date: Wed, 7 Feb 2018 18:58:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=kFcFdA+j13PwwIRSYTdrRcbsJ4d31vayWmfAdT/LExg=;
+	b=Gw578dlpwYYaZ5v4aJJKqryBT6Npi59VjFgfwOFkowZ7tNCH3D35RVE5T48eMjMszE
+	hP9zRFRpXYCqQpQNf76JbjAW52WqEx/BuudiEweBBwz4LDvGpeXe8kvqK8kZRqWHALIK
+	TsSqHNBB4eTpmQRjOVlbNaEzFAIfNA8gXUjAq3AoxGu2h1z8V0sSnZ+K/CEIGTfWOEBG
+	XuPcA8d3zJXWwBXCTGSfIzvSIpFqwR8PhJXrU1Lss1a4E30FBmkbTAOqwZnJP3BSs1IM
+	YxcwsfoLmYFL2Bbt5HfLoQBDovuGIs/dqnK+77MGBJ8x1YQmOS6NhePdWd3fcR0m3/zP
+	BCpg==
+X-Gm-Message-State: APf1xPA3tJovNB1LoAF9AhBN8+zvHmSP++i4zP9pLX1aU+L8aHdL3fnc
+	J0GbvBA+OOLxCv1PILLG2ErJtK3AHnOuVdA3MfQ+UA==
+X-Google-Smtp-Source: AH8x227XkpkIQQaXAKZQ8HcY6TD6PVyTpwZAd4JQ0bYqf41+oCZnK3Fvb4SHqoLOQ9a94rUma9N8QxRHuus8qcf3RJk=
+X-Received: by 10.36.29.81 with SMTP id 78mr9267458itj.53.1518029291152; Wed,
+	07 Feb 2018 10:48:11 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <e412b2d0-6e14-983e-b7cc-63938705344a@vitheia.com>
-Subject: Re: static libraries missing from sdk
+Received: by 10.79.203.197 with HTTP; Wed, 7 Feb 2018 10:48:10 -0800 (PST)
+From: Janez Svetokravsky <janez.svetokravsky@gmail.com>
+Date: Wed, 7 Feb 2018 19:48:10 +0100
+Message-ID: <CACy3EUChjZSqN+5Vw1uUDYiLbx_cipsF3dpZ2HG=z_0YEw4Kbw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Changing gcc version and arch for single yocto recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,26 +68,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Feb 2018 16:58:24 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 07 Feb 2018 18:48:12 -0000
+Content-Type: multipart/alternative; boundary="001a1143e172a8690f0564a3bc23"
 
-Hi,
+--001a1143e172a8690f0564a3bc23
+Content-Type: text/plain; charset="UTF-8"
 
-On 2018-02-07 16:01, Mircea Gliga wrote:
+Hello,
 
-With this line you try to add -dev (.so), -dbg and staticdev (.a) for 
-**all** packages:
+I have just stumbled upon interesting problem, which i do not know how to
+solve. I am using yocto to build image for ARM cortex-A9 CPU. default gcc
+used is version 5.2
 
->      SDKIMAGE_FEATURES += "dev-pkgs dbg-pkgs staticdev-pkgs"
+Beside ARM cortex-A9 there is cortex-m0plus chip, which is located on the
+same board. From now on i will use abbreviations A9 and M0. Occasionally A9
+is used to upgrade software on M0, therefor upgrade image for M0 is located
+in rootfs which is accessed by A9. Until now, i used different
+compiler/environment to compile firmware for M0 and afterwards copied M0
+image to A9 rootfs.
 
-I am not sure it makes sense to build and add both the static and 
-dynamic libs to an SDK.
+I would like to move compiling of M0 firmware into yocto. gcc version used
+for M0 firmware is different and must not be changed, same goes for A9. So
+my question is: Is it possible to specify different version of gcc and
+different architecture, for single yocto recipe?
 
-Do you really want this?
+--001a1143e172a8690f0564a3bc23
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
+<div dir=3D"ltr"><span style=3D"font-style:normal;font-variant-ligatures:no=
+rmal;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;text=
+-align:start;text-indent:0px;text-transform:none;white-space:normal;word-sp=
+acing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;t=
+ext-decoration-color:initial;color:rgb(0,0,0);font-family:Helvetica;font-si=
+ze:12px;float:none;display:inline">Hello,</span><div style=3D"font-style:no=
+rmal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:nor=
+mal;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:n=
+one;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);t=
+ext-decoration-style:initial;text-decoration-color:initial;color:rgb(0,0,0)=
+;font-family:Helvetica;font-size:12px"><br></div><div style=3D"font-style:n=
+ormal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:no=
+rmal;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:=
+none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);=
+text-decoration-style:initial;text-decoration-color:initial;color:rgb(0,0,0=
+);font-family:Helvetica;font-size:12px">I have just stumbled upon interesti=
+ng problem, which i do not know how to solve. I am using yocto to build ima=
+ge for ARM cortex-A9 CPU. default gcc used is version 5.2</div><div style=
+=3D"font-style:normal;font-variant-ligatures:normal;font-variant-caps:norma=
+l;font-weight:normal;letter-spacing:normal;text-align:start;text-indent:0px=
+;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
+gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
+;color:rgb(0,0,0);font-family:Helvetica;font-size:12px"><br></div><div styl=
+e=3D"font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:normal;letter-spacing:normal;text-align:start;text-indent:0p=
+x;text-transform:none;white-space:normal;word-spacing:0px;background-color:=
+rgb(255,255,255);text-decoration-style:initial;text-decoration-color:initia=
+l;color:rgb(0,0,0);font-family:Helvetica;font-size:12px">Beside ARM cortex-=
+A9 there is cortex-m0plus chip, which is located on the same board. From no=
+w on i will use abbreviations A9 and M0. Occasionally A9 is used to upgrade=
+ software on M0, therefor upgrade image for M0 is located in rootfs which i=
+s accessed by A9. Until now, i used different compiler/environment to compi=
+le firmware for M0 and afterwards copied M0 image to A9 rootfs.</div><div s=
+tyle=3D"font-style:normal;font-variant-ligatures:normal;font-variant-caps:n=
+ormal;font-weight:normal;letter-spacing:normal;text-align:start;text-indent=
+:0px;text-transform:none;white-space:normal;word-spacing:0px;background-col=
+or:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:ini=
+tial;color:rgb(0,0,0);font-family:Helvetica;font-size:12px"><br></div><div =
+style=3D"font-style:normal;font-variant-ligatures:normal;font-variant-caps:=
+normal;font-weight:normal;letter-spacing:normal;text-align:start;text-inden=
+t:0px;text-transform:none;white-space:normal;word-spacing:0px;background-co=
+lor:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:in=
+itial;color:rgb(0,0,0);font-family:Helvetica;font-size:12px">I would like t=
+o move compiling of M0 firmware into yocto. gcc version used for M0 firmwar=
+e is different and must not be changed, same goes for A9. So my question is=
+: Is it possible to specify different version of gcc and different architec=
+ture, for single yocto recipe?</div><br></div>
 
-Robert
-
+--001a1143e172a8690f0564a3bc23--
