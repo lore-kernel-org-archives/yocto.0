@@ -1,77 +1,62 @@
-Return-Path: <yocto.user.mailinglist@gmail.com>
+Return-Path: <matetuske@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 538F8E00DFD; Wed,  7 Feb 2018 10:57:00 -0800 (PST)
+	id 73436E00E0B; Wed,  7 Feb 2018 12:44:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yocto.user.mailinglist[at]gmail.com)
+	mail provider *      (matetuske[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.175 listed in list.dnswl.org]
+	*      [209.85.220.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f175.google.com (mail-wr0-f175.google.com
-	[209.85.128.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD991E00D91
-	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 10:56:58 -0800 (PST)
-Received: by mail-wr0-f175.google.com with SMTP id w50so2203159wrc.2
-	for <yocto@yoctoproject.org>; Wed, 07 Feb 2018 10:56:58 -0800 (PST)
+Received: from mail-qk0-f181.google.com (mail-qk0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 446D0E00D91
+	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 12:44:11 -0800 (PST)
+Received: by mail-qk0-f181.google.com with SMTP id x127so2884389qkb.12
+	for <yocto@yoctoproject.org>; Wed, 07 Feb 2018 12:44:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=d1kW8uc4gpjdF93axsGeY6CQLM3tzAB0zHc2yGWvDEQ=;
-	b=YNK27IK12NraZTw95DOaIgp3mBq7LJ7NCy3Zl9AFW3pdULRQThDVhDVKCfn90lxv72
-	t6giuAp5JfAspE7huEBCwhJwFB+2xXJRKVBV21ySnSAFaT8bVuTF6TrPojN+cHLl0PUb
-	RAphMvL6pfxjLYOmVfVxz2WzI2jnf6V1ImWJl8C8E7/SjUTg1cm6Mls6mCVX9C9sXpJ/
-	qCqxwRx7TkmJS77pSeIj///NTRc/giGsFSF7G42AUbO8ieSLI8UiqqhpT8SWsgptIqpY
-	idkA9PkhP0ArkArj+xO7IZzetO+k0g0iyIomWYkXBKzxQ00XKgZ8ZU4Kp33gaY4yyd3Q
-	0UHw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=DnmNSUvaJsok/rSpmXHwAc3iPb8ODeaMVRyw1okSZ1Y=;
+	b=YUQAGSZFNP79VEXsA4keLBP3WwPY1dUscdchvIj6AR6m3zaboYTQLQn4PlLS7UE6wk
+	d8Z9rouBYmEDEUkpogUg18uJhJ/QWKEc5M7AEMfU8Vpik0CMRPbE8UyWCqElKS8LkuWa
+	FtPM8vL4iEEpOyRtBikTy9dWyr1bJ/Q8cZjG6cI8E3H9d1Y2DZFKlWhdcFUTiLxwHsg/
+	2M77s+qSYwWSQLgJ/QMXxhwNbtzIys0kXOI55FU+t6s9ytlUpCHoqPzJ1B61ii95j/VN
+	TvaBsNeM/vtBAHikQ2zA++OB3YYQahbU4B2pilHF4h0fko8DrV9PA+mI0IG4k+7WNadP
+	BsMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=d1kW8uc4gpjdF93axsGeY6CQLM3tzAB0zHc2yGWvDEQ=;
-	b=DkxfgIaLYJPVRObi6zRlklfJgy5J44U0sS+wB40mNsehwgmAwM1JfNodYIwf7xYBIZ
-	kk4aapQLOXPD17X/598ur1oQ6OWEb3TEx1+dLAAIrQZNk5bnpgZ+DlZ9SRILtG53h2yn
-	BWXWBvDlqdQCu6HBnS0TuoYWGzmRpktCHlFf23HLdlCOISfAar4uCjAOiUDqaWDLvgpe
-	5rNM4b7PZOF9T+347Ji1HqXBwTYsWIoup7Jwk5f1SEi6JzJ7/68yJ7FuEt0Az6I6fsAL
-	60rovgyLDsKxhbJxskMRbIVywjQxoIBjYIeQ6Dq16Hv5H/ir1W1xq22TfrOhO7kDslfb
-	7i3g==
-X-Gm-Message-State: APf1xPAVC0NH//qpFcM+omzzHnSB7gEHzMnhGJLi2SqKvBXa3jOP/LvE
-	YvxBGuSUhHkEvG/MuQZX5TxCsj0a
-X-Google-Smtp-Source: AH8x225vUu4LwY/+G2BCSvWAsaMS4uDu3GLy12Wc2j0WkhcuYraVcYSjaQhqe5pEJRRWv63FD32jaw==
-X-Received: by 10.223.196.216 with SMTP id o24mr6898007wrf.101.1518029817605; 
-	Wed, 07 Feb 2018 10:56:57 -0800 (PST)
-Received: from [192.168.42.50] (ppp-2-86-138-178.home.otenet.gr.
-	[2.86.138.178]) by smtp.gmail.com with ESMTPSA id
-	w50sm1719033wrb.33.2018.02.07.10.56.56
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 07 Feb 2018 10:56:56 -0800 (PST)
-To: Mircea Gliga <mircea.gliga@vitheia.com>,
-	Yocto Project <yocto@yoctoproject.org>
-References: <ac8ff7de-889b-f948-87ba-cac758900512@vitheia.com>
-	<4662d7ee-4215-e81e-58aa-a98a42c5ad56@gmail.com>
-	<b2a06fdc-c5b5-42be-e1e9-1005c5c531e6@vitheia.com>
-	<f14fc372-f394-2d32-4c95-c8b71fa43a51@gmail.com>
-	<e412b2d0-6e14-983e-b7cc-63938705344a@vitheia.com>
-From: Robert Berger <yocto.user.mailinglist@gmail.com>
-Message-ID: <903d7ec1-c04d-99a6-285b-edcd65b93778@gmail.com>
-Date: Wed, 7 Feb 2018 20:56:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=DnmNSUvaJsok/rSpmXHwAc3iPb8ODeaMVRyw1okSZ1Y=;
+	b=MhLTVnaoSWMWRK94mZZpMXjwNO1xAT52ThfknOxVFDRl6v1CG7XyWSuOpz9o4lIvOP
+	3IAp686MlXfKR4T0PWHeYDXR/tmdtJdFUkodB9/J1LaW0GXqKUIK1nuFgnF43L3pwzl+
+	i4XyMf5ydVHESoyTHZWQ6hOBx//L1dvCRIJtfzRA2buCdZdMsrdCa5FG+cFX6r0x0JML
+	6Rh97QV4ATj+yjG75hh9cuYShTnQj1LfJxtMuFUnsbg9KDalM5dbT2ruj7kWk3lXQUNj
+	YD6vCYMVoytis7nWHUAc3+v3tlJky+oiV7eUKGG6oONy+9otvyOmLJ/kCPaXX0zlmNyy
+	Y94Q==
+X-Gm-Message-State: APf1xPD2X89s/XymFCbZhZtWNldXs0hp4sgxR1Laft/MbOOgGnku9gGl
+	Jeknp/GPbxCZ/gwadgBULsXbrbDjw1nJyeyEmzUbgFW1
+X-Google-Smtp-Source: AH8x224X+HObad9Mnu7frcre0CKkaGQ2T3JMHvFatNL6hma+7abgDfLItoRM3DwPq9hj/S1+Fqdyc3tyvgtwC9mbkKg=
+X-Received: by 10.233.221.197 with SMTP id r188mr11276375qkf.107.1518036250843;
+	Wed, 07 Feb 2018 12:44:10 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <e412b2d0-6e14-983e-b7cc-63938705344a@vitheia.com>
-Subject: Re: static libraries missing from sdk
+Received: by 10.12.173.91 with HTTP; Wed, 7 Feb 2018 12:43:40 -0800 (PST)
+From: =?UTF-8?B?TcOhdMOpIFTDvHNrZQ==?= <matetuske@gmail.com>
+Date: Wed, 7 Feb 2018 21:43:40 +0100
+Message-ID: <CAMm5SjSds4Fs=4vu=owwfKpJo_EYbOe5MzAdNesgzzMhJ2ytxg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: mono build issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,48 +68,182 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Feb 2018 18:57:00 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 07 Feb 2018 20:44:13 -0000
+Content-Type: multipart/alternative; boundary="94eb2c04429e7ce0e40564a55bcc"
+
+--94eb2c04429e7ce0e40564a55bcc
+Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-I played around a bit with my autotooled lib, which produces only a 
-static lib.
+I try to build custom image with mono. Previously I did it successfully,
+but now I ran into some issue and I cannot solve it.
 
-1) My preferred approach is this:
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/3.5-api/Microsoft.Build.Engine.dll contained in package
+mono-libs-3.5 requires mono(System.Xml), but no providers found in
+RDEPENDS_mono-libs-3.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/3.5-api/Microsoft.Build.Utilities.v3.5.dll contained in
+package mono-libs-3.5 requires mono(System), but no providers found in
+RDEPENDS_mono-libs-3.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/3.5-api/Microsoft.Build.Engine.dll contained in package
+mono-libs-3.5 requires mono(mscorlib), but no providers found in
+RDEPENDS_mono-libs-3.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/mono-configuration-crypto/4.5/Mono.Configuration.Crypto.dll
+contained in package mono-configuration-crypto requires
+mono(mscorlib), but no providers found in
+RDEPENDS_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/mono-configuration-crypto/4.5/Mono.Configuration.Crypto.dll
+contained in package mono-configuration-crypto requires
+mono(System.Xml), but no providers found in
+RDEPENDS_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/mono-configuration-crypto/4.5/Mono.Configuration.Crypto.dll
+contained in package mono-configuration-crypto requires mono(System),
+but no providers found in RDEPENDS_mono-configuration-crypto?
+[file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/mono-configuration-crypto/4.5/Mono.Configuration.Crypto.dll
+contained in package mono-configuration-crypto requires
+mono(System.Configuration), but no providers found in
+RDEPENDS_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/mono-configuration-crypto/4.5/Mono.Configuration.Crypto.dll
+contained in package mono-configuration-crypto requires
+mono(Mono.Security), but no providers found in
+RDEPENDS_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/4.6-api/Mono.Debugger.Soft.dll contained in package
+mono-api-4.6 requires mono(Mono.Cecil), but no providers found in
+RDEPENDS_mono-api-4.6? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/4.6.2-api/Mono.Debugger.Soft.dll contained in package
+mono-api-4.6.2 requires mono(Mono.Cecil), but no providers found in
+RDEPENDS_mono-api-4.6.2? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/4.7-api/Mono.Debugger.Soft.dll contained in package
+mono-api-4.7 requires mono(Mono.Cecil), but no providers found in
+RDEPENDS_mono-api-4.7? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/xbuild/Microsoft/NuGet/Microsoft.NuGet.Build.Tasks.dll
+contained in package mono-xbuild requires mono(mscorlib), but no
+providers found in RDEPENDS_mono-xbuild? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/4.6.1-api/Mono.Debugger.Soft.dll contained in package
+mono-api-4.6.1 requires mono(Mono.Cecil), but no providers found in
+RDEPENDS_mono-api-4.6.1? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/gac/Mono.Messaging.RabbitMQ/4.0.0.0__0738eb9f132ed756/Mono.Messaging.RabbitMQ.dll
+contained in package mono-gac requires mono(mscorlib), but no
+providers found in RDEPENDS_mono-gac? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue:
+/usr/lib/mono/4.5/Microsoft.CodeAnalysis.Scripting.dll contained in
+package mono-libs-4.5 requires mono(System.Runtime.Loader), but no
+providers found in RDEPENDS_mono-libs-4.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA run found fatal errors.
+Please consider fixing them.
+ERROR: mono-5.4.1.6-r0 do_package_qa: Function failed: do_package_qa
 
-I add to local.conf:
+Can you help me with this?
 
-TOOLCHAIN_TARGET_TASK_append = " libhw-a-staticdev libhw-a-dev"
 
-The recipe looks like this:
+regards,
 
-https://pastebin.com/YLUvQSSx
+Matthew
 
-2) But your approach works as well:
+--94eb2c04429e7ce0e40564a55bcc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I add to local.conf:
+<div dir=3D"ltr">Hi,<div><br></div><div>I try to build custom image with mo=
+no. Previously I did it successfully, but now I ran into some issue and I c=
+annot solve it.</div><pre id=3D"gmail-hterm:copy-to-clipboard-source" style=
+=3D"color:rgb(0,0,0);font-style:normal;font-variant-ligatures:normal;font-v=
+ariant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;t=
+ext-indent:0px;text-transform:none;word-spacing:0px;text-decoration-style:i=
+nitial;text-decoration-color:initial">ERROR: mono-5.4.1.6-r0 do_package_qa:=
+ QA Issue: /usr/lib/mono/3.5-api/Microsoft.Build.Engine.dll contained in pa=
+ckage mono-libs-3.5 requires mono(System.Xml), but no providers found in RD=
+EPENDS_mono-libs-3.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/Micro=
+soft.Build.Utilities.v3.5.dll contained in package mono-libs-3.5 requires m=
+ono(System), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/Micro=
+soft.Build.Engine.dll contained in package mono-libs-3.5 requires mono(msco=
+rlib), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-configur=
+ation-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-co=
+nfiguration-crypto requires mono(mscorlib), but no providers found in RDEPE=
+NDS_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-configur=
+ation-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-co=
+nfiguration-crypto requires mono(System.Xml), but no providers found in RDE=
+PENDS_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-configur=
+ation-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-co=
+nfiguration-crypto requires mono(System), but no providers found in RDEPEND=
+S_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-configur=
+ation-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-co=
+nfiguration-crypto requires mono(System.Configuration), but no providers fo=
+und in RDEPENDS_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-configur=
+ation-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-co=
+nfiguration-crypto requires mono(Mono.Security), but no providers found in =
+RDEPENDS_mono-configuration-crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6-api/Mono.=
+Debugger.Soft.dll contained in package mono-api-4.6 requires mono(Mono.Ceci=
+l), but no providers found in RDEPENDS_mono-api-4.6? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.2-api/Mon=
+o.Debugger.Soft.dll contained in package mono-api-4.6.2 requires mono(Mono.=
+Cecil), but no providers found in RDEPENDS_mono-api-4.6.2? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.7-api/Mono.=
+Debugger.Soft.dll contained in package mono-api-4.7 requires mono(Mono.Ceci=
+l), but no providers found in RDEPENDS_mono-api-4.7? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/xbuild/Micros=
+oft/NuGet/Microsoft.NuGet.Build.Tasks.dll contained in package mono-xbuild =
+requires mono(mscorlib), but no providers found in RDEPENDS_mono-xbuild? [f=
+ile-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.1-api/Mon=
+o.Debugger.Soft.dll contained in package mono-api-4.6.1 requires mono(Mono.=
+Cecil), but no providers found in RDEPENDS_mono-api-4.6.1? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/gac/Mono.Mess=
+aging.RabbitMQ/4.0.0.0__0738eb9f132ed756/Mono.Messaging.RabbitMQ.dll contai=
+ned in package mono-gac requires mono(mscorlib), but no providers found in =
+RDEPENDS_mono-gac? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.5/Microsoft=
+.CodeAnalysis.Scripting.dll contained in package mono-libs-4.5 requires mon=
+o(System.Runtime.Loader), but no providers found in RDEPENDS_mono-libs-4.5?=
+ [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA run found fatal errors. Please con=
+sider fixing them.
+ERROR: mono-5.4.1.6-r0 do_package_qa: Function failed: do_package_qa<br></p=
+re><div><pre id=3D"gmail-hterm:copy-to-clipboard-source" style=3D"color:rgb=
+(0,0,0);font-style:normal;font-variant-ligatures:normal;font-variant-caps:n=
+ormal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0p=
+x;text-transform:none;word-spacing:0px;text-decoration-style:initial;text-d=
+ecoration-color:initial"><span style=3D"font-family:arial,sans-serif;color:=
+rgb(34,34,34)">Can you help me with this?</span>
+</pre><pre id=3D"gmail-hterm:copy-to-clipboard-source" style=3D"color:rgb(0=
+,0,0);font-style:normal;font-variant-ligatures:normal;font-variant-caps:nor=
+mal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;=
+text-transform:none;word-spacing:0px;text-decoration-style:initial;text-dec=
+oration-color:initial"><span style=3D"font-family:arial,sans-serif;color:rg=
+b(34,34,34)"><br></span></pre><pre id=3D"gmail-hterm:copy-to-clipboard-sour=
+ce" style=3D"color:rgb(0,0,0);font-style:normal;font-variant-ligatures:norm=
+al;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-alig=
+n:start;text-indent:0px;text-transform:none;word-spacing:0px;text-decoratio=
+n-style:initial;text-decoration-color:initial"><span style=3D"font-family:a=
+rial,sans-serif;color:rgb(34,34,34)">regards,</span></pre><pre id=3D"gmail-=
+hterm:copy-to-clipboard-source" style=3D"color:rgb(0,0,0);font-style:normal=
+;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;let=
+ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wor=
+d-spacing:0px;text-decoration-style:initial;text-decoration-color:initial">=
+<span style=3D"font-family:arial,sans-serif;color:rgb(34,34,34)">Matthew</s=
+pan></pre></div></div>
 
-# we need to add the empty package to the rootfs for
-# IMAGE_FEATURES_append to work:
-IMAGE_INSTALL_append = " libhw-a"
-# add all -dev, -dbg, -staticdev pkgs to the SDK (only):
-SDKIMAGE_FEATURES_append = " dev-pkgs dbg-pkgs staticdev-pkgs"
-
-The recipe looks like this:
-(needed to slightly modify my original recipe)
-
-https://pastebin.com/VcsqNuMf
-
-On the rootfs there is nothing with respect to this recipe.
-
-In the SDK are:
-./opt/poky/2.4/sysroots/armv7a-neon-poky-linux-gnueabi/usr/lib/libhw.a
-./opt/poky/2.4/sysroots/armv7a-neon-poky-linux-gnueabi/usr/include/lib_hw.h
-
-Regards,
-
-Robert
-
+--94eb2c04429e7ce0e40564a55bcc--
