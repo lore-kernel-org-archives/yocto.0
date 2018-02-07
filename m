@@ -1,75 +1,57 @@
-Return-Path: <yocto.user.mailinglist@gmail.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 89F38E00E6A; Wed,  7 Feb 2018 04:12:55 -0800 (PST)
+	id 20A82E00E3C; Wed,  7 Feb 2018 04:17:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yocto.user.mailinglist[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.181 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f181.google.com (mail-wr0-f181.google.com
-	[209.85.128.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE7B3E00D91
-	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 04:12:54 -0800 (PST)
-Received: by mail-wr0-f181.google.com with SMTP id v31so757250wrc.11
-	for <yocto@yoctoproject.org>; Wed, 07 Feb 2018 04:12:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=yqGvn2PAvj/xEm0A2XbooOLxf0uDHPIPPoscy9gAyeg=;
-	b=mgxHsu9FBnKKCcAXC17STdy4P8c2q+NAJ8R4O0B2+jYoeQd95BstQdnRp1AOLue013
-	/L3HVcFcffe0ndF3IHFfK1koRpzXd9r/xOsh3pYS1i37Zu52szKCMR0CTEcxb42SEOcV
-	aofeM8csnk8R9ZM33nFf/venBHt+ww+7uZrSOm7koNcASc9iBOrjX+ldKokQKb3jZgzn
-	hcJS3N/hMznm+Q7CQIKR/CtBnIJN/4xRn0ISPiuhh77ICnCr7obB/0ywyqOOSUKpkuqx
-	HrMkPcAaknddxaajWDjvn+T5OnQjLpTrroD+k/WT2RCPlUpOVozsKBoYsMm7R/uYTkDs
-	iICw==
+Received: from mail-lf0-f51.google.com (mail-lf0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EF73E00A44
+	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 04:17:22 -0800 (PST)
+Received: by mail-lf0-f51.google.com with SMTP id t139so1053793lff.0
+	for <yocto@yoctoproject.org>; Wed, 07 Feb 2018 04:17:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=WJbPcCmwh+vELhVM3VoQGPAjoT96Ncogsg0eeD5JOIk=;
+	b=acFo3sWYs3w6Md98PtBpZxA/jXqwU75dTJf93eiyLMX96VmJnPhxWdf7ISWioV/xfx
+	+9L9u6vB7/7gSLhjhQa+6MkCsU5JkKsNWMIogt7SdQd8qbQsG4KEhTZ6C0B9GrQn3ARA
+	30s/PnDbhD6HgiI6ErvyZRi+acB+GkbA9dHMUutjqjgQZEIN+KVdfnsKjQ3ceMuZBUsz
+	j4PVOxyaoVGHsb2mYa3Ty1c9XLY2hJ+EcJcPwXeUw4HJfQ9WF0Re5PT18SKBNynIXluN
+	joDjgpYzDNBI0LVxhSiA78svRHuEtNlTs8hgokZx29iu7Lqgg4bUycna6dQYaYWZUEhp
+	Yn9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=yqGvn2PAvj/xEm0A2XbooOLxf0uDHPIPPoscy9gAyeg=;
-	b=q2q4JqpPu+7QzaZvFEO+80tDY6b9tQ8Ac2LD4ukfaaU57vu4vbU3inbt+9uLelWOFP
-	1Uv9f91HaBFw5yITDVJAlxyuZ4M3bzxFfwjhvM77slVNTVpDvUsqiiADnUf6KKFesh6P
-	5L3GzXleqgwloHwZ/NF/SwXSw5D2TxiyO5L9I2KFKEHZJFiVJ3atdQHG8M/IXPT1ELzo
-	+5oDn2Tkc4aB5GslHq++fBBYFzuu5aCWHG9vx4LyN20r16pMDbDH4p8Tgj6yxU1S/qME
-	KTW8PZ+EB5YsqFRH5+KE/oG89J4LspqAGlPFg6siRe2NYg5a7NgqsPiDZAAyc+CVjd9+
-	BxLw==
-X-Gm-Message-State: APf1xPB9zmBQeClMTN9/0NwXg13fXfC/0cVmZtbeudZlTwR0pjJzvgHs
-	5gecpB8BAyNcv0CuzCKevimM6BaZ
-X-Google-Smtp-Source: AH8x227z2NhI02Poefcz6t9siSxoHzOIV4nLeIkFtz+1n5KlRRY8PsTZrQzcsDA9QAcu9m8vSmvEsQ==
-X-Received: by 10.223.182.71 with SMTP id i7mr5299658wre.166.1518005573600;
-	Wed, 07 Feb 2018 04:12:53 -0800 (PST)
-Received: from [192.168.42.50] (ppp-2-86-138-178.home.otenet.gr.
-	[2.86.138.178])
-	by smtp.gmail.com with ESMTPSA id 19sm1066626wrx.73.2018.02.07.04.12.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 07 Feb 2018 04:12:52 -0800 (PST)
-To: Mircea Gliga <mircea.gliga@vitheia.com>,
-	Yocto Project <yocto@yoctoproject.org>
-References: <ac8ff7de-889b-f948-87ba-cac758900512@vitheia.com>
-	<4662d7ee-4215-e81e-58aa-a98a42c5ad56@gmail.com>
-	<b2a06fdc-c5b5-42be-e1e9-1005c5c531e6@vitheia.com>
-From: Robert Berger <yocto.user.mailinglist@gmail.com>
-Message-ID: <f14fc372-f394-2d32-4c95-c8b71fa43a51@gmail.com>
-Date: Wed, 7 Feb 2018 14:12:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=WJbPcCmwh+vELhVM3VoQGPAjoT96Ncogsg0eeD5JOIk=;
+	b=PkgUHQoyod7zqlzOZylLqClt1dMvHtl64+logOfdtCa6XOfblZ3fnYJNn7MXej4/gG
+	L7vE6CbAcQVot0BAiNPk0bw2vfPP0aP603+FL8dbT9o+vcGkT8LD02oo1zGNTBQA3ePJ
+	tivNBbBDqD25XnuUVHATk4x14BAzb9p92UFliE3aSB/C/or0UZux6F5d33HWMVowt1j3
+	meqx3oWZL7FesA9f0qP6mJCR7K0krgTwUXmRGvcqzHchGjMeMYmLG8ZjcrGZ4UE4e1xE
+	c4CmtIqfAd1/vq2vBWrSBo4J6wgZVS6S28npenKtkeU2JXk8fKALz00/xE71XgXfr7lI
+	4kCw==
+X-Gm-Message-State: APf1xPDxxoBvQaDvR9WUsGQgbcurOvcxDZuxn1L/xMsQJK46DrZsIGVC
+	WHficI/bJ5+B5zlif+T+MkWhfGLUFeVqPI+L89SAsKRx
+X-Google-Smtp-Source: AH8x225gAcl7W2+3GvqzsXxtJc0rfBbgprsSe520Hq0SpqKRFSwbI31n7L3au6NxfM0rHKTRyC2+URLrXokaN9w8OYc=
+X-Received: by 10.25.157.141 with SMTP id g135mr3765442lfe.142.1518005841811; 
+	Wed, 07 Feb 2018 04:17:21 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <b2a06fdc-c5b5-42be-e1e9-1005c5c531e6@vitheia.com>
-Subject: Re: static libraries missing from sdk
+Received: by 10.25.28.4 with HTTP; Wed, 7 Feb 2018 04:17:21 -0800 (PST)
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Wed, 7 Feb 2018 13:17:21 +0100
+Message-ID: <CAOT_U5a_cTCpAHHqPfozcH0Lxu=O1BFYgVa-FkdZcR0-+X8QQQ@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Creating a python recipe with devtool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,86 +63,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Feb 2018 12:12:55 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 07 Feb 2018 12:17:24 -0000
+Content-Type: text/plain; charset="UTF-8"
 
 Hi,
+I need to add a python package available on pypi:
+    https://pypi.python.org/pypi/multiprocessing-logging/
 
-On 2018-02-07 09:46, Mircea Gliga wrote:
-> Thanks for your answer.
-> I already have the ALLOW_EMPTY_${PN} = "1" in the recipe
-> 
-> What I still don't get is why the -dev gets installed but the -staticdev 
-> doesn't, even though the dependency is satisfied (the empty pkg exists).
-> 
-> 
-Just to understand what you are trying to do:
+Instead of manually creating the bb file, I'd like to add
+it using the devtool flow.
 
-Would like to have both .a and .so files for your library in your SDK?
+In my build directory I execute:
 
-What should be on the rootfs? I guess the .so
+    devtool create-workspace
+    devtool build-image my-image
+    devtool add
+https://pypi.python.org/packages/65/eb/1c3db9596eddb2bd1d1f8153dcaf2d9f2c7e144f4832d1b1449f681a0a7a/multiprocessing_logging-0.2.6-py2.py3-none-any.whl#md5=b7783a8c449135e5bb344b3f0caa3522
 
-You can check the contents of your packages with:
+That is the URL for the sources listed here:
+     https://pypi.python.org/pypi/multiprocessing-logging/
 
-oe-pkgdata-util list-pkg-files -p <package-name>
+That ends up with an error:
 
-How do you build your stuff? autotools?
+    NOTE: Tasks Summary: Attempted 2 tasks of which 0 didn't need to
+be rerun and all succeeded.
+    Traceback (most recent call last):
+      File "/home/alan/senic-os/oe/scripts/recipetool", line 121, in <module>
+        ret = main()
+      File "/home/alan/senic-os/oe/scripts/recipetool", line 110, in main
+        ret = args.func(args)
+      File "/home/alan/senic-os/oe/scripts/lib/recipetool/create.py",
+line 512, in create_recipe
+        check_single_file(dirlist[0], fetchuri)
+      File "/home/alan/senic-os/oe/scripts/lib/recipetool/create.py",
+line 917, in check_single_file
+        with open(fn, 'r', errors='surrogateescape') as f:
+    FileNotFoundError: [Errno 2] No such file or directory:
+'multiprocessing_logging-0.2.6-py2.py3-none-any.whl'
 
-I needed to do the following in my recipe with autotools:
-
-# By default EXTRA_OECONF is set to --disable-static ...
-# Let's get rid of this
-DISABLE_STATIC = ""
-EXTRA_OECONF := "${@oe_filter_out('--disable-static', '${EXTRA_OECONF}', 
-d)}"
-# enable static and disable shared (for fun)
-EXTRA_OECONF += "--enable-static --enable-shared"
-
-----
-
-I added this to local.conf:
-
-# -->
-IMAGE_INSTALL_append = " libhw-so-a"
-# add libhw-so-a-dev and libhw-so-a-staticdev to SDK:
-TOOLCHAIN_TARGET_TASK_append = " libhw-so-a-staticdev libhw-so-a-dev"
-# <--
-
-That's the content of the packages produced:
-
-libhw-so-a:
-         /usr/lib/libhw.so.0
-         /usr/lib/libhw.so.0.0.0
-libhw-so-a-dbg:
-         /usr/lib/debug/usr/lib/libhw.so.0.0.0.debug
-         /usr/src/debug/libhw-so-a/1.0-r0/libhw-so-a-1.0/lib/lib_hw1.c
-         /usr/src/debug/libhw-so-a/1.0-r0/libhw-so-a-1.0/lib/lib_hw2.c
-libhw-so-a-dev:
-         /usr/include/lib_hw.h
-         /usr/lib/libhw.so
-libhw-so-a-staticdev:
-         /usr/lib/libhw.a
-
-in the rootfs:
-
-./usr/lib/libhw.so.0
-./usr/lib/libhw.so.0.0.0
-
-in the SDK:
-
-./opt/poky/2.4/sysroots/armv7a-neon-poky-linux-gnueabi/usr/lib/libhw.so
-./opt/poky/2.4/sysroots/armv7a-neon-poky-linux-gnueabi/usr/lib/libhw.a
-./opt/poky/2.4/sysroots/armv7a-neon-poky-linux-gnueabi/usr/lib/libhw.so.0
-./opt/poky/2.4/sysroots/armv7a-neon-poky-linux-gnueabi/usr/lib/libhw.so.0.0.0
-./opt/poky/2.4/sysroots/armv7a-neon-poky-linux-gnueabi/usr/include/lib_hw.h
-
-Can you cook up an example where we can see/reproduce your problem?
-
-----
-
-Regards,
-
-Robert
+What am I missing?
+Is the correct URL used?
 
