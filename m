@@ -1,85 +1,67 @@
-Return-Path: <peter.spierenburg@nautel.com>
+Return-Path: <matetuske@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0585FE00E5C; Thu,  8 Feb 2018 07:16:51 -0800 (PST)
+	id 689E3E00E36; Thu,  8 Feb 2018 07:49:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE, SPF_HELO_PASS,
-	T_REMOTE_IMAGE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.38.135 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (matetuske[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.193 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
-	(mail-bl2nam02on0135.outbound.protection.outlook.com [104.47.38.135])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17D83E00D6D
-	for <yocto@yoctoproject.org>; Thu,  8 Feb 2018 07:16:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=nautel.onmicrosoft.com; s=selector1-nautel-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=fUFKrPl6v7sjPfcUSmEDn8l5wCtT7rRyAGLxamcrLOo=;
-	b=g2YCzeU1FYNmzgn4I4lwNe79Alum1PLMa4U0Jr5YipXEfsLB1ZKDjA7y2yI2KzdgJDTrSIqzbjUn0lUiBO4E7H0ztQyaeH4K1aMTHA2ABYB2tojwPjOllsGX/4UpaUXjWNJBsNgW2tIaqL+3FRtZThndfiPWc5Dc9nNx87tHStI=
-Received: from MWHPR13MB1584.namprd13.prod.outlook.com (10.175.140.149) by
-	MWHPR13MB0957.namprd13.prod.outlook.com (10.169.206.148) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.485.3; Thu, 8 Feb 2018 13:43:05 +0000
-Received: from MWHPR13MB1584.namprd13.prod.outlook.com ([10.175.140.149]) by
-	MWHPR13MB1584.namprd13.prod.outlook.com ([10.175.140.149]) with mapi id
-	15.20.0485.009; Thu, 8 Feb 2018 13:43:05 +0000
-From: Peter Spierenburg <peter.spierenburg@nautel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Here is my BSP for the adzs-sc589-ezlite eval board.
-Thread-Index: AQHToOJ2NAKx9/c8hEGhOiYD+7HFag==
-Date: Thu, 8 Feb 2018 13:43:05 +0000
-Message-ID: <MWHPR13MB1584BDB6AC757E1A07976D2E9EF30@MWHPR13MB1584.namprd13.prod.outlook.com>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [100.42.252.129]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; MWHPR13MB0957;
-	7:s2y8brJskpvXZ/0EciZwZnz13hIAW0pUhVe0mT64UAUXeBaFL49m/LldqldHMF8U7ELE8c26DtCjSTG4k1jnN6CsJR+VlXfq3aoz9RGYnO0lTzRZpzagJC+BhZeKWxFtIy9koKjxZtvTMouOzPoOEWni+vc+EBCWb3c7AfFoQFxwbM/f59HXFp3c6okcNRI75J9xdtIur8z1LqzdSHNX/9F+jgGC/yoFnVg5C8GobZmMzYHVdIj5T/BqC3jB6E7D
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 02c68cd7-5320-4cff-329b-08d56ef9e17f
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(4534165)(4627221)(201703031133081)(201702281549075)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
-	SRVR:MWHPR13MB0957; 
-x-ms-traffictypediagnostic: MWHPR13MB0957:
-x-microsoft-antispam-prvs: <MWHPR13MB09573179E43B60D42AA14B479EF30@MWHPR13MB0957.namprd13.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(166708455590820);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040501)(2401047)(8121501046)(5005006)(93006095)(93001095)(3231101)(2400082)(944501161)(10201501046)(3002001)(6041288)(20161123558120)(20161123564045)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(6072148)(201708071742011);
-	SRVR:MWHPR13MB0957; BCL:0; PCL:0; RULEID:; SRVR:MWHPR13MB0957; 
-x-forefront-prvs: 0577AD41D6
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39840400004)(376002)(396003)(366004)(346002)(39380400002)(199004)(189003)(74316002)(861006)(2900100001)(7736002)(5890100001)(3846002)(2501003)(33656002)(19627405001)(2351001)(6116002)(5660300001)(7696005)(6506007)(86362001)(106356001)(59450400001)(99286004)(6436002)(102836004)(66066001)(55016002)(6306002)(54896002)(5640700003)(316002)(9686003)(2906002)(236005)(53936002)(733005)(966005)(6916009)(77096007)(26005)(6346003)(6606003)(186003)(8676002)(1730700003)(81166006)(81156014)(478600001)(8936002)(105586002)(97736004)(3660700001)(25786009)(3280700002)(14454004)(68736007)(606006);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:MWHPR13MB0957;
-	H:MWHPR13MB1584.namprd13.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: nautel.com does not designate
-	permitted sender hosts)
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=peter.spierenburg@nautel.com; 
-x-microsoft-antispam-message-info: ++bCVDEnhNff1hJzKnVjJAJQxd79HBNvsOqFZqWSEdrIOQEWs50ehWEymhULHnfFbmkUqqOZPdBzRFU1W/f0/A==
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-qt0-f193.google.com (mail-qt0-f193.google.com
+	[209.85.216.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAB87E00D5F
+	for <yocto@yoctoproject.org>; Thu,  8 Feb 2018 07:49:29 -0800 (PST)
+Received: by mail-qt0-f193.google.com with SMTP id t25so6721486qtg.3
+	for <yocto@yoctoproject.org>; Thu, 08 Feb 2018 07:49:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=LPhLu7Ct/baFL4ZXiOxepNjdLGobwrE8DxikZa2dEq0=;
+	b=cI+vhZEk9dlP/YKCm0yFo8ihPi+KRooenlOUYu0VIIaMCb79eNUTzwwfvSuiIRQz9L
+	nECm67T1nTv8eCpfptteuApSuOpvGJGQiw57eSUdgj0jlv0WDxwvuUTUdqWNNF8TaBXs
+	Fxm12bnbqqRwJI9+XQK1qXcaFU1iZjTEz35uwe9MM+eRo4FTiFhXJWd4i9oz35lTRtSq
+	wmiZX7jYHF67UIrQi1kw5LZTeVzp6p3sBvfzkfmjkWMwu7Oc8hsA+jQ0HUjLJg9uq3Mh
+	aMbXILjsLqegCpNY14M9NPsxEUwdu8UgTwg3vvo8gSKZKMSubzOnQ580mAlvoRdneOIa
+	guJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=LPhLu7Ct/baFL4ZXiOxepNjdLGobwrE8DxikZa2dEq0=;
+	b=KhrRbfaUBvq9Zii4LFIhaSzm11vRm19TzOG+/z8gDz/NET5Yur8ZZ68q8dxPFLE5vr
+	rI7xLIFHC9bsIVCIUyH6Ki3D7DN2KRuHg2lfSTWX8/q8NC+T3U9+0HHNc6UzwDHQt8nz
+	Hop6BPPQ3hvE8z3acJFmXyHq49FYf9pufedMyvA49e8IssOeGlbuPCyKxMAGedVcfu6I
+	DwzGbJr/cs/WyU7GU86wwprqnUE/vV3HyjPaMtM3jMAw6UvRcwt6LYkyLbInw2XSQJev
+	lXO0Ma9omJb0HitcDJ6oe/xhb8M1WU9OsShNFUoNosVYl/vmtN2h+AihndwhFATVqxJ0
+	P92Q==
+X-Gm-Message-State: APf1xPCZNgVq1mhht9qHBUBUh98FwQNbE9eJKjYtOE9DcmqWvFjSng3Z
+	spojZ4Z4VvvB1Lsgf0W8KPL1QuPfqnwr4xee7A5zK7sq
+X-Google-Smtp-Source: AH8x2279nNxmzSI8sH5GlZC1XDFD7RcGtuDccf+FFZ46p8frjz7/5VFU2pA/acxanzIjAZCS0ViiJoGQ30JRi9PLWW4=
+X-Received: by 10.200.46.73 with SMTP id s9mr1768192qta.317.1518104968795;
+	Thu, 08 Feb 2018 07:49:28 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: nautel.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02c68cd7-5320-4cff-329b-08d56ef9e17f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Feb 2018 13:43:05.0196 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 656f830c-eb88-49fe-90f1-433363ec7ccf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR13MB0957
-Subject: Here is my BSP for the adzs-sc589-ezlite eval board.
+Received: by 10.12.173.91 with HTTP; Thu, 8 Feb 2018 07:48:58 -0800 (PST)
+In-Reply-To: <5DDA13F5-FD4C-4A18-8A8D-5A311097EEF2@dynamicdevices.co.uk>
+References: <CAMm5SjSds4Fs=4vu=owwfKpJo_EYbOe5MzAdNesgzzMhJ2ytxg@mail.gmail.com>
+	<5DDA13F5-FD4C-4A18-8A8D-5A311097EEF2@dynamicdevices.co.uk>
+From: =?UTF-8?B?TcOhdMOpIFTDvHNrZQ==?= <matetuske@gmail.com>
+Date: Thu, 8 Feb 2018 16:48:58 +0100
+Message-ID: <CAMm5SjRp-DE_7mVw2rCeTLSc50HJneZDrdbGNn9j04ReOz=9fg@mail.gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: yocto@yoctoproject.org
+Subject: Re: mono build issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -91,142 +73,301 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Feb 2018 15:16:51 -0000
-Content-Language: en-CA
-Content-Type: multipart/alternative;
-	boundary="_000_MWHPR13MB1584BDB6AC757E1A07976D2E9EF30MWHPR13MB1584namp_"
+X-List-Received-Date: Thu, 08 Feb 2018 15:49:31 -0000
+Content-Type: multipart/alternative; boundary="001a113d673e659a250564b55b32"
 
---_000_MWHPR13MB1584BDB6AC757E1A07976D2E9EF30MWHPR13MB1584namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a113d673e659a250564b55b32
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Greetings all,
+Hi,
 
+thank you for the help. Here are some information about the configuration
 
-I've created a board support package for the adzs-sc589-ezlite evaluation b=
-oard from Analog Devices. I would be very interested in hearing about how i=
-t can be improved.
+Build Configuration:
+BB_VERSION           =3D "1.36.0"
+BUILD_SYS            =3D "x86_64-linux"
+NATIVELSBSTRING      =3D "universal"
+TARGET_SYS           =3D "arm-poky-linux-gnueabi"
+MACHINE              =3D "raspberrypi"
+DISTRO               =3D "poky"
+DISTRO_VERSION       =3D "2.4.1"
+TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs callconvention-hard"
+TARGET_FPU           =3D "hard"
+meta
+meta-poky            =3D "rocko:21ba45aa77e4d43a93cd96d859707a4758e8b64b"
+meta-oe
+meta-multimedia
+meta-networking
+meta-perl
+meta-python          =3D "rocko:a65c1acb1822966c3553de9fc98d8bb6be705c4e"
+meta-qt5             =3D "rocko:db881bb4917628ad3eb1fa7c4f27915cf2ae60f4"
+meta-raspberrypi     =3D "rocko:510009f0c825cd7992d2d37e9ed0007f6c3be723"
+meta-security        =3D "rocko:3d4183b6b4d4ac530c232bcff338af6a9158f8df"
+meta-rpi             =3D "rocko:ef2d1e76fb91859eb5de322b71df9bcb2a17ff61"
+meta-icontrall       =3D "rocko:21ba45aa77e4d43a93cd96d859707a4758e8b64b"
+meta-mono            =3D "rocko:9c9d3a5ba5196595915b0ebfd1e6acaffb640c0a"
 
+The problem still exists sadly.
 
-Take a look at it here:
+Matthew
 
+On Thu, Feb 8, 2018 at 8:13 AM, Alex J Lennon <ajlennon@dynamicdevices.co.u=
+k
+> wrote:
 
-https://github.com/spierepf/meta-adzs-sc589-ezlite
+>
+>
+> On 7 Feb 2018, at 22:43, M=C3=A1t=C3=A9 T=C3=BCske <matetuske@gmail.com> =
+wrote:
+>
+> Hi,
+>
+> I try to build custom image with mono. Previously I did it successfully,
+> but now I ran into some issue and I cannot solve it.
+>
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/Mic=
+rosoft.Build.Engine.dll contained in package mono-libs-3.5 requires mono(Sy=
+stem.Xml), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/Mic=
+rosoft.Build.Utilities.v3.5.dll contained in package mono-libs-3.5 requires=
+ mono(System), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdep=
+s]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/Mic=
+rosoft.Build.Engine.dll contained in package mono-libs-3.5 requires mono(ms=
+corlib), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
+uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
+configuration-crypto requires mono(mscorlib), but no providers found in RDE=
+PENDS_mono-configuration-crypto? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
+uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
+configuration-crypto requires mono(System.Xml), but no providers found in R=
+DEPENDS_mono-configuration-crypto? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
+uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
+configuration-crypto requires mono(System), but no providers found in RDEPE=
+NDS_mono-configuration-crypto? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
+uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
+configuration-crypto requires mono(System.Configuration), but no providers =
+found in RDEPENDS_mono-configuration-crypto? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
+uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
+configuration-crypto requires mono(Mono.Security), but no providers found i=
+n RDEPENDS_mono-configuration-crypto? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6-api/Mon=
+o.Debugger.Soft.dll contained in package mono-api-4.6 requires mono(Mono.Ce=
+cil), but no providers found in RDEPENDS_mono-api-4.6? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.2-api/M=
+ono.Debugger.Soft.dll contained in package mono-api-4.6.2 requires mono(Mon=
+o.Cecil), but no providers found in RDEPENDS_mono-api-4.6.2? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.7-api/Mon=
+o.Debugger.Soft.dll contained in package mono-api-4.7 requires mono(Mono.Ce=
+cil), but no providers found in RDEPENDS_mono-api-4.7? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/xbuild/Micr=
+osoft/NuGet/Microsoft.NuGet.Build.Tasks.dll contained in package mono-xbuil=
+d requires mono(mscorlib), but no providers found in RDEPENDS_mono-xbuild? =
+[file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.1-api/M=
+ono.Debugger.Soft.dll contained in package mono-api-4.6.1 requires mono(Mon=
+o.Cecil), but no providers found in RDEPENDS_mono-api-4.6.1? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/gac/Mono.Me=
+ssaging.RabbitMQ/4.0.0.0__0738eb9f132ed756/Mono.Messaging.RabbitMQ.dll cont=
+ained in package mono-gac requires mono(mscorlib), but no providers found i=
+n RDEPENDS_mono-gac? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.5/Microso=
+ft.CodeAnalysis.Scripting.dll contained in package mono-libs-4.5 requires m=
+ono(System.Runtime.Loader), but no providers found in RDEPENDS_mono-libs-4.=
+5? [file-rdeps]
+> ERROR: mono-5.4.1.6-r0 do_package_qa: QA run found fatal errors. Please c=
+onsider fixing them.
+> ERROR: mono-5.4.1.6-r0 do_package_qa: Function failed: do_package_qa
+>
+> Can you help me with this?
+>
+>
+> regards,
+>
+> Matthew
+>
+> Hi,
+>
+> I=E2=80=99m in the middle of the Red Sea at the moment but if you can pro=
+vide your
+> build configuration I=E2=80=99ll take a look next week (assuming this has=
+n=E2=80=99t been
+> resolved in the meantime)
+>
+> Cheers,
+>
+> Alex
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-[https://avatars2.githubusercontent.com/u/548990?s=3D400&v=3D4]<https://git=
-hub.com/spierepf/meta-adzs-sc589-ezlite>
-
-spierepf/meta-adzs-sc589-ezlite<https://github.com/spierepf/meta-adzs-sc589=
--ezlite>
-github.com
-meta-adzs-sc589-ezlite - bsp for Analod Devices' adzs-sc589-ezlite eval boa=
-rd
-
-
-
-
-This communication, including any attached documentation, is intended only =
-for the person or entity to which it is addressed, and may contain confiden=
-tial, personal, and/or privileged information. Any unauthorized disclosure,=
- copying, or taking action on the contents is strictly prohibited. If you h=
-ave received this message in error, please contact us immediately so we may=
- correct our records. Please then delete or destroy the original transmissi=
-on and any subsequent reply. Thank you.
-
---_000_MWHPR13MB1584BDB6AC757E1A07976D2E9EF30MWHPR13MB1584namp_
-Content-Type: text/html; charset="iso-8859-1"
+--001a113d673e659a250564b55b32
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p style=3D"margin-top:0;margin-bottom:0">Greetings all,</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">I've created a board support pack=
-age for the adzs-sc589-ezlite evaluation board from Analog Devices. I would=
- be very interested in hearing about how it can be improved.</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0">Take a look at it here:</p>
-<p style=3D"margin-top:0;margin-bottom:0"><br>
-</p>
-<p style=3D"margin-top:0;margin-bottom:0"><a href=3D"https://github.com/spi=
-erepf/meta-adzs-sc589-ezlite" class=3D"OWAAutoLink" id=3D"LPlnk999182" prev=
-iewremoved=3D"true">https://github.com/spierepf/meta-adzs-sc589-ezlite</a><=
-/p>
-<div id=3D"LPBorder_GT_15180973219040.5328026521543765" style=3D"margin-bot=
-tom: 20px; overflow: auto; width: 100%; text-indent: 0px;">
-<table id=3D"LPContainer_15180973218960.9644220628355962" role=3D"presentat=
-ion" cellspacing=3D"0" style=3D"width: 90%; background-color: rgb(255, 255,=
- 255); position: relative; overflow: auto; padding-top: 20px; padding-botto=
-m: 20px; margin-top: 20px; border-top: 1px dotted rgb(200, 200, 200); borde=
-r-bottom: 1px dotted rgb(200, 200, 200);">
-<tbody>
-<tr valign=3D"top" style=3D"border-spacing: 0px;">
-<td id=3D"ImageCell_15180973218980.27709374529519293" colspan=3D"1" style=
-=3D"width: 250px; position: relative; display: table-cell; padding-right: 2=
-0px;">
-<div id=3D"LPImageContainer_15180973218990.272738823292507" style=3D"backgr=
-ound-color: rgb(255, 255, 255); height: 250px; position: relative; margin: =
-auto; display: table; width: 250px;">
-<a id=3D"LPImageAnchor_15180973218990.4000631134716144" href=3D"https://git=
-hub.com/spierepf/meta-adzs-sc589-ezlite" target=3D"_blank" style=3D"display=
-: table-cell; text-align: center;"><img id=3D"LPThumbnailImageID_1518097321=
-9000.4166694607638828" width=3D"250" height=3D"250" style=3D"display: inlin=
-e-block; max-width: 250px; max-height: 250px; height: 250px; width: 250px; =
-border-width: 0px; vertical-align: bottom;" src=3D"https://avatars2.githubu=
-sercontent.com/u/548990?s=3D400&amp;v=3D4"></a></div>
-</td>
-<td id=3D"TextCell_15180973219010.1077780686083245" colspan=3D"2" style=3D"=
-vertical-align: top; position: relative; padding: 0px; display: table-cell;=
-">
-<div id=3D"LPRemovePreviewContainer_15180973219010.1718732682380011"></div>
-<div id=3D"LPTitle_15180973219010.434723542906331" style=3D"top: 0px; color=
-: rgb(0, 120, 215); font-weight: 400; font-size: 21px; font-family: wf_sego=
-e-ui_light, &quot;Segoe UI Light&quot;, &quot;Segoe WP Light&quot;, &quot;S=
-egoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; line-height=
-: 21px;">
-<a id=3D"LPUrlAnchor_15180973219010.1123742228067337" href=3D"https://githu=
-b.com/spierepf/meta-adzs-sc589-ezlite" target=3D"_blank" style=3D"text-deco=
-ration: none;">spierepf/meta-adzs-sc589-ezlite</a></div>
-<div id=3D"LPMetadata_15180973219020.2476256718065455" style=3D"margin: 10p=
-x 0px 16px; color: rgb(102, 102, 102); font-weight: 400; font-family: wf_se=
-goe-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, s=
-ans-serif; font-size: 14px; line-height: 14px;">
-github.com</div>
-<div id=3D"LPDescription_15180973219030.6317996373865715" style=3D"display:=
- block; color: rgb(102, 102, 102); font-weight: 400; font-family: wf_segoe-=
-ui_normal, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-=
-serif; font-size: 14px; line-height: 20px; max-height: 100px; overflow: hid=
-den;">
-meta-adzs-sc589-ezlite - bsp for Analod Devices' adzs-sc589-ezlite eval boa=
-rd</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<br>
-<br>
-<p></p>
-</div>
-This communication, including any attached documentation, is intended only =
-for the person or entity to which it is addressed, and may contain confiden=
-tial, personal, and/or privileged information. Any unauthorized disclosure,=
- copying, or taking action on the
- contents is strictly prohibited. If you have received this message in erro=
-r, please contact us immediately so we may correct our records. Please then=
- delete or destroy the original transmission and any subsequent reply. Than=
-k you.
-</body>
-</html>
+<div dir=3D"ltr">Hi,<div><br></div><div>thank you for the help. Here are so=
+me information about the configuration</div><div><pre id=3D"gmail-hterm:cop=
+y-to-clipboard-source" style=3D"color:rgb(0,0,0);font-style:normal;font-var=
+iant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spaci=
+ng:normal;text-align:start;text-indent:0px;text-transform:none;word-spacing=
+:0px;text-decoration-style:initial;text-decoration-color:initial"><pre id=
+=3D"gmail-hterm:copy-to-clipboard-source" style=3D"color:rgb(0,0,0);font-st=
+yle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weig=
+ht:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transfor=
+m:none;word-spacing:0px;text-decoration-style:initial;text-decoration-color=
+:initial">Build Configuration:
+BB_VERSION           =3D &quot;1.36.0&quot;
+BUILD_SYS            =3D &quot;x86_64-linux&quot;
+NATIVELSBSTRING      =3D &quot;universal&quot;
+TARGET_SYS           =3D &quot;arm-poky-linux-gnueabi&quot;
+MACHINE              =3D &quot;raspberrypi&quot;
+DISTRO               =3D &quot;poky&quot;
+DISTRO_VERSION       =3D &quot;2.4.1&quot;
+TUNE_FEATURES        =3D &quot;arm armv6 vfp arm1176jzfs callconvention-har=
+d&quot;
+TARGET_FPU           =3D &quot;hard&quot;
+meta
+meta-poky            =3D &quot;rocko:21ba45aa77e4d43a93cd96d859707a4758e8b6=
+4b&quot;
+meta-oe
+meta-multimedia
+meta-networking
+meta-perl
+meta-python          =3D &quot;rocko:a65c1acb1822966c3553de9fc98d8bb6be705c=
+4e&quot;
+meta-qt5             =3D &quot;rocko:db881bb4917628ad3eb1fa7c4f27915cf2ae60=
+f4&quot;
+meta-raspberrypi     =3D &quot;rocko:510009f0c825cd7992d2d37e9ed0007f6c3be7=
+23&quot;
+meta-security        =3D &quot;rocko:3d4183b6b4d4ac530c232bcff338af6a9158f8=
+df&quot;
+meta-rpi             =3D &quot;rocko:ef2d1e76fb91859eb5de322b71df9bcb2a17ff=
+61&quot;
+meta-icontrall       =3D &quot;rocko:21ba45aa77e4d43a93cd96d859707a4758e8b6=
+4b&quot;
+meta-mono            =3D &quot;rocko:9c9d3a5ba5196595915b0ebfd1e6acaffb640c=
+0a&quot;</pre></pre></div><div>The problem still exists sadly.</div><div><b=
+r></div><div>Matthew</div></div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Thu, Feb 8, 2018 at 8:13 AM, Alex J Lennon <span dir=3D=
+"ltr">&lt;<a href=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank=
+">ajlennon@dynamicdevices.co.uk</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"auto"><div><div class=3D"h5"><div></div><div><br>=
+</div><div><br>On 7 Feb 2018, at 22:43, M=C3=A1t=C3=A9 T=C3=BCske &lt;<a hr=
+ef=3D"mailto:matetuske@gmail.com" target=3D"_blank">matetuske@gmail.com</a>=
+&gt; wrote:<br><br></div><blockquote type=3D"cite"><div><div dir=3D"ltr">Hi=
+,<div><br></div><div>I try to build custom image with mono. Previously I di=
+d it successfully, but now I ran into some issue and I cannot solve it.</di=
+v><pre id=3D"m_-8009293542037944502gmail-hterm:copy-to-clipboard-source" st=
+yle=3D"color:rgb(0,0,0);font-style:normal;font-variant-ligatures:normal;fon=
+t-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:star=
+t;text-indent:0px;text-transform:none;word-spacing:0px;text-decoration-styl=
+e:initial;text-decoration-color:initial">ERROR: mono-5.4.1.6-r0 do_package_=
+qa: QA Issue: /usr/lib/mono/3.5-api/<wbr>Microsoft.Build.Engine.dll contain=
+ed in package mono-libs-3.5 requires mono(System.Xml), but no providers fou=
+nd in RDEPENDS_mono-libs-3.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/<wbr>=
+Microsoft.Build.Utilities.v3.<wbr>5.dll contained in package mono-libs-3.5 =
+requires mono(System), but no providers found in RDEPENDS_mono-libs-3.5? [f=
+ile-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/<wbr>=
+Microsoft.Build.Engine.dll contained in package mono-libs-3.5 requires mono=
+(mscorlib), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
+figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
+ge mono-configuration-crypto requires mono(mscorlib), but no providers foun=
+d in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
+figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
+ge mono-configuration-crypto requires mono(System.Xml), but no providers fo=
+und in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
+figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
+ge mono-configuration-crypto requires mono(System), but no providers found =
+in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
+figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
+ge mono-configuration-crypto requires mono(System.Configuration), but no pr=
+oviders found in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
+figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
+ge mono-configuration-crypto requires mono(Mono.Security), but no providers=
+ found in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6-api/Mono.=
+<wbr>Debugger.Soft.dll contained in package mono-api-4.6 requires mono(Mono=
+.Cecil), but no providers found in RDEPENDS_mono-api-4.6? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.2-api/Mon=
+o.<wbr>Debugger.Soft.dll contained in package mono-api-4.6.2 requires mono(=
+Mono.Cecil), but no providers found in RDEPENDS_mono-api-4.6.2? [file-rdeps=
+]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.7-api/Mono.=
+<wbr>Debugger.Soft.dll contained in package mono-api-4.7 requires mono(Mono=
+.Cecil), but no providers found in RDEPENDS_mono-api-4.7? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/xbuild/<wbr>M=
+icrosoft/NuGet/Microsoft.<wbr>NuGet.Build.Tasks.dll contained in package mo=
+no-xbuild requires mono(mscorlib), but no providers found in RDEPENDS_mono-=
+xbuild? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.1-api/Mon=
+o.<wbr>Debugger.Soft.dll contained in package mono-api-4.6.1 requires mono(=
+Mono.Cecil), but no providers found in RDEPENDS_mono-api-4.6.1? [file-rdeps=
+]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/gac/Mono.<wbr=
+>Messaging.RabbitMQ/4.0.0.0__<wbr>0738eb9f132ed756/Mono.<wbr>Messaging.Rabb=
+itMQ.dll contained in package mono-gac requires mono(mscorlib), but no prov=
+iders found in RDEPENDS_mono-gac? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.5/Microsoft=
+.<wbr>CodeAnalysis.Scripting.dll contained in package mono-libs-4.5 require=
+s mono(System.Runtime.Loader), but no providers found in RDEPENDS_mono-libs=
+-4.5? [file-rdeps]
+ERROR: mono-5.4.1.6-r0 do_package_qa: QA run found fatal errors. Please con=
+sider fixing them.
+ERROR: mono-5.4.1.6-r0 do_package_qa: Function failed: do_package_qa<br></p=
+re><div><pre id=3D"m_-8009293542037944502gmail-hterm:copy-to-clipboard-sour=
+ce" style=3D"color:rgb(0,0,0);font-style:normal;font-variant-ligatures:norm=
+al;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-alig=
+n:start;text-indent:0px;text-transform:none;word-spacing:0px;text-decoratio=
+n-style:initial;text-decoration-color:initial"><span style=3D"font-family:a=
+rial,sans-serif;color:rgb(34,34,34)">Can you help me with this?</span>
+</pre><pre id=3D"m_-8009293542037944502gmail-hterm:copy-to-clipboard-source=
+" style=3D"color:rgb(0,0,0);font-style:normal;font-variant-ligatures:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;word-spacing:0px;text-decoration-=
+style:initial;text-decoration-color:initial"><span style=3D"font-family:ari=
+al,sans-serif;color:rgb(34,34,34)"><br></span></pre><pre id=3D"m_-800929354=
+2037944502gmail-hterm:copy-to-clipboard-source" style=3D"color:rgb(0,0,0);f=
+ont-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
+t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
+ansform:none;word-spacing:0px;text-decoration-style:initial;text-decoration=
+-color:initial"><span style=3D"font-family:arial,sans-serif;color:rgb(34,34=
+,34)">regards,</span></pre><pre id=3D"m_-8009293542037944502gmail-hterm:cop=
+y-to-clipboard-source" style=3D"color:rgb(0,0,0);font-style:normal;font-var=
+iant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spaci=
+ng:normal;text-align:start;text-indent:0px;text-transform:none;word-spacing=
+:0px;text-decoration-style:initial;text-decoration-color:initial"><span sty=
+le=3D"font-family:arial,sans-serif;color:rgb(34,34,34)">Matthew</span></pre=
+></div></div>
+</div></blockquote></div></div><div>Hi,</div><div><br></div><div>I=E2=80=99=
+m in the middle of the Red Sea at the moment but if you can provide your bu=
+ild configuration I=E2=80=99ll take a look next week (assuming this hasn=E2=
+=80=99t been resolved in the meantime)</div><div><br></div><div>Cheers,</di=
+v><div><br></div><div>Alex</div><span class=3D"HOEnZb"><font color=3D"#8888=
+88"><div><br></div><br><blockquote type=3D"cite"><div><span>-- </span><br><=
+span>______________________________<wbr>_________________</span><br><span>y=
+octo mailing list</span><br><span><a href=3D"mailto:yocto@yoctoproject.org"=
+ target=3D"_blank">yocto@yoctoproject.org</a></span><br><span><a href=3D"ht=
+tps://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">https://list=
+s.yoctoproject.<wbr>org/listinfo/yocto</a></span><br></div></blockquote></f=
+ont></span></div></blockquote></div><br></div>
 
---_000_MWHPR13MB1584BDB6AC757E1A07976D2E9EF30MWHPR13MB1584namp_--
+--001a113d673e659a250564b55b32--
