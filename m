@@ -1,60 +1,39 @@
-Return-Path: <bluehills7@comcast.net>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD496E00E39; Wed,  7 Feb 2018 17:18:09 -0800 (PST)
+	id 426E1E00EE3; Wed,  7 Feb 2018 22:29:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	MIME_QP_LONG_LINE, 
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bluehills7[at]comcast.net)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [69.252.207.44 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
-	Wed, 07 Feb 2018 17:18:09 PST
-Received: from resqmta-ch2-12v.sys.comcast.net
-	(resqmta-ch2-12v.sys.comcast.net [69.252.207.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 163E2E0085E
-	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 17:18:09 -0800 (PST)
-Received: from resomta-ch2-11v.sys.comcast.net ([69.252.207.107])
-	by resqmta-ch2-12v.sys.comcast.net with ESMTP
-	id jaopeTkSPVJDNjapoe973s; Thu, 08 Feb 2018 01:17:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=q20161114; t=1518052628;
-	bh=7AdSHSnHyyC1x6SKbhWTBtQNhmdYz4CVVYBJpLExjn8=;
-	h=Received:Received:From:Content-Type:Mime-Version:Subject:
-	Message-Id:Date:To;
-	b=fvj9XLfpQtzHpCHvr/s63TN6rfUqhxpv/aivcy+A0FyTfK+/Pl2BWp6vIVzYGbTzS
-	IHWY2ddPF0Q2xbpKVMmTk5IRvLw3G/04nCU4FnLsQQ43wDZSbVCuzq1AilUYkReQLp
-	VLYob7VoL5GidpLyw8SkbG2HzciLZtygyV8zF64HwSZ2wfGPPzLVV+jwOu64sr5CKj
-	1AX8A388k2KPxZQA2QUFgtNEUT39uj1LOWIGQ4DSJmPRakaE8sXUxtQ9dZ6cCjmnRg
-	NnVlywAjWPP6UnblU587kA0w9SWEYH0uC0o7JVF2RBtggfmYKh8fXITgx9CnycmNOC
-	FesVFqV6+odfQ==
-Received: from [IPv6:2601:18f:880:9aeb:d8be:ae1e:3d9a:e7e6]
-	([IPv6:2601:18f:880:9aeb:d8be:ae1e:3d9a:e7e6])
-	by resomta-ch2-11v.sys.comcast.net with SMTP
-	id japneG3NCEcHBjapoer7Ar; Thu, 08 Feb 2018 01:17:08 +0000
-From: Russell Peterson <bluehills7@comcast.net>
-Mime-Version: 1.0 (Mac OS X Mail 11.2 \(3445.5.20\))
-Message-Id: <1B4071C2-44F7-452F-A62A-EF163C7231BE@comcast.net>
-Date: Wed, 7 Feb 2018 20:17:07 -0500
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3445.5.20)
-X-CMAE-Envelope: MS4wfK0qpvMlBkTkpkwufSsKJFZ2raGNaXYXEj9u1NFb1lKpzcCfDrDmKIkyb3cT1hwlYNt+prrkdb1aQlU8ZmqZsy2yhJ4s14qfOPmbp7JMTI9c4ndhj599
-	7UU8kxQJje/I4VyNrGZq+ufeR5rAEmFvms5dKF+tkDfz2GZaNLbsuXFmyHnN/EKd59ZoD9aYMd5CrBCC1WZ9M5fraHnkxQeKxKE=
-Subject: dnf error
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2358EE00E44
+	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 22:29:50 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Feb 2018 22:29:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,477,1511856000"; d="scan'208";a="16207687"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
+	([10.237.68.161])
+	by fmsmga007.fm.intel.com with ESMTP; 07 Feb 2018 22:29:47 -0800
+To: Janez Svetokravsky <janez.svetokravsky@gmail.com>, yocto@yoctoproject.org
+References: <CACy3EUChjZSqN+5Vw1uUDYiLbx_cipsF3dpZ2HG=z_0YEw4Kbw@mail.gmail.com>
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Message-ID: <c276a07d-0e78-0ab3-cbb3-9d39098f95ac@linux.intel.com>
+Date: Thu, 8 Feb 2018 08:23:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
+MIME-Version: 1.0
+In-Reply-To: <CACy3EUChjZSqN+5Vw1uUDYiLbx_cipsF3dpZ2HG=z_0YEw4Kbw@mail.gmail.com>
+Subject: Re: Changing gcc version and arch for single yocto recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,91 +45,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Feb 2018 01:18:09 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_A5DC1E98-CF77-4A9B-B721-6487709679D5"
+X-List-Received-Date: Thu, 08 Feb 2018 06:29:52 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---Apple-Mail=_A5DC1E98-CF77-4A9B-B721-6487709679D5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-Hello,
-
-I am upgrading from pyro to rocko and see something I can=E2=80=99t =
-figure out (see error below).
-
-I can=E2=80=99t tell if this is dnf telling me there are multiple =
-sources for python or something else.  Not sure what =E2=80=9Cconflicting=E2=
-=80=9D means.  I do know that the rpm produced by the of ofa-kernel =
-recipe has some python scripts in it and thus requires python.  and =
-RDEPENDS for python did not solve it.  I just have no idea why the image =
-class or dnf thinks the hosttools =E2=80=9Cprovide=E2=80=9D anything.  =
-The python in hosttools is certainly there but I assume that is just =
-found using PATH.
-
-Any advice would be welcome.
-
-Regards,
-
-Russell
+On 02/07/2018 08:48 PM, Janez Svetokravsky wrote:
+> I have just stumbled upon interesting problem, which i do not know how 
+> to solve. I am using yocto to build image for ARM cortex-A9 CPU. default 
+> gcc used is version 5.2
+> 
+> Beside ARM cortex-A9 there is cortex-m0plus chip, which is located on 
+> the same board. From now on i will use abbreviations A9 and M0. 
+> Occasionally A9 is used to upgrade software on M0, therefor upgrade 
+> image for M0 is located in rootfs which is accessed by A9. Until now, i 
+> used different compiler/environment to compile firmware for M0 and 
+> afterwards copied M0 image to A9 rootfs.
+> 
+> I would like to move compiling of M0 firmware into yocto. gcc version 
+> used for M0 firmware is different and must not be changed, same goes for 
+> A9. So my question is: Is it possible to specify different version of 
+> gcc and different architecture, for single yocto recipe?
 
 
-core-image-initramfs-1.0-r0 do_rootfs: Could not invoke dnf
-=20
-Last metadata expiration check: 0:00:00 ago on Thu 08 Feb 2018 12:07:06 =
-AM UTC.
-Error:=20
- Problem: conflicting requests
-  - nothing provides <xxxxxxx>/hosttools/python needed by =
-ofa-kernel-4.2-r0.mymachine
-=20
-ERROR: core-image-initramfs-1.0-r0 do_rootfs: Function failed: do_rootfs=
+You can build any recipe for a different machine in the same build 
+directory:
 
---Apple-Mail=_A5DC1E98-CF77-4A9B-B721-6487709679D5
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
+MACHINE=someothermachine bitbake <firmware>
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" =
-class=3D"">Hello,<div class=3D""><br class=3D""></div><div class=3D"">I =
-am upgrading from pyro to rocko and see something I can=E2=80=99t figure =
-out (see error below).</div><div class=3D""><br class=3D""></div><div =
-class=3D"">I can=E2=80=99t tell if this is dnf telling me there are =
-multiple sources for python or something else. &nbsp;Not sure what =
-=E2=80=9Cconflicting=E2=80=9D means. &nbsp;I do know that the rpm =
-produced by the of ofa-kernel recipe has some python scripts in it and =
-thus requires python. &nbsp;and RDEPENDS for python did not solve it. =
-&nbsp;I just have no idea why the image class or dnf thinks the =
-hosttools =E2=80=9Cprovide=E2=80=9D anything. &nbsp;The python in =
-hosttools is certainly there but I assume that is just found using =
-PATH.</div><div class=3D""><br class=3D""></div><div class=3D"">Any =
-advice would be welcome.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Regards,</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Russell</div><div class=3D""><br class=3D""></div><div =
-class=3D""><br class=3D""></div><div class=3D""><div style=3D"margin: =
-0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">core-image-initramfs-1.0-r0 do_rootfs: Could not invoke =
-dnf<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">Last =
-metadata expiration check: 0:00:00 ago on Thu 08 Feb 2018 12:07:06 AM =
-UTC.<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">Error:&nbsp;<o:p class=3D""></o:p></div><div style=3D"margin: =
-0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">&nbsp;Problem: conflicting requests<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">&nbsp; - =
-nothing provides &lt;xxxxxxx&gt;/hosttools/python needed by =
-ofa-kernel-4.2-r0.mymachine<o:p class=3D""></o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><o:p class=3D"">&nbsp;</o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">ERROR: core-image-initramfs-1.0-r0 =
-do_rootfs: Function failed: do_rootfs</div></div></body></html>=
+You will find the packages in deploy dir.
 
---Apple-Mail=_A5DC1E98-CF77-4A9B-B721-6487709679D5--
+Or just set up a separate build directory, and build there. Then use any 
+suitable way to copy the result over (such as a recipe that pulls the 
+ready-built firmware in).
+
+Alex
+
