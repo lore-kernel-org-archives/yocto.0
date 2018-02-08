@@ -1,39 +1,36 @@
 Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 426E1E00EE3; Wed,  7 Feb 2018 22:29:52 -0800 (PST)
+	id 2EA20E00ECB; Wed,  7 Feb 2018 22:32:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2358EE00E44
-	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 22:29:50 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E542E00E02
+	for <yocto@yoctoproject.org>; Wed,  7 Feb 2018 22:32:30 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	07 Feb 2018 22:29:49 -0800
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Feb 2018 22:32:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,477,1511856000"; d="scan'208";a="16207687"
+X-IronPort-AV: E=Sophos;i="5.46,477,1511856000"; d="scan'208";a="16208101"
 Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
 	([10.237.68.161])
-	by fmsmga007.fm.intel.com with ESMTP; 07 Feb 2018 22:29:47 -0800
-To: Janez Svetokravsky <janez.svetokravsky@gmail.com>, yocto@yoctoproject.org
-References: <CACy3EUChjZSqN+5Vw1uUDYiLbx_cipsF3dpZ2HG=z_0YEw4Kbw@mail.gmail.com>
+	by fmsmga007.fm.intel.com with ESMTP; 07 Feb 2018 22:32:29 -0800
+To: Russell Peterson <bluehills7@comcast.net>, yocto@yoctoproject.org
+References: <1B4071C2-44F7-452F-A62A-EF163C7231BE@comcast.net>
 From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <c276a07d-0e78-0ab3-cbb3-9d39098f95ac@linux.intel.com>
-Date: Thu, 8 Feb 2018 08:23:34 +0200
+Message-ID: <5c999223-a181-fbb1-17fd-3e0dc81096dc@linux.intel.com>
+Date: Thu, 8 Feb 2018 08:26:15 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.6.0
 MIME-Version: 1.0
-In-Reply-To: <CACy3EUChjZSqN+5Vw1uUDYiLbx_cipsF3dpZ2HG=z_0YEw4Kbw@mail.gmail.com>
-Subject: Re: Changing gcc version and arch for single yocto recipe
+In-Reply-To: <1B4071C2-44F7-452F-A62A-EF163C7231BE@comcast.net>
+Subject: Re: dnf error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,39 +42,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Feb 2018 06:29:52 -0000
+X-List-Received-Date: Thu, 08 Feb 2018 06:32:32 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/07/2018 08:48 PM, Janez Svetokravsky wrote:
-> I have just stumbled upon interesting problem, which i do not know how 
-> to solve. I am using yocto to build image for ARM cortex-A9 CPU. default 
-> gcc used is version 5.2
+On 02/08/2018 03:17 AM, Russell Peterson wrote:
+> core-image-initramfs-1.0-r0 do_rootfs: Could not invoke dnf
+> Last metadata expiration check: 0:00:00 ago on Thu 08 Feb 2018 12:07:06 
+> AM UTC.
+> Error:
+>   Problem: conflicting requests
+>    - nothing provides <xxxxxxx>/hosttools/python needed by 
+> ofa-kernel-4.2-r0.mymachine
+> ERROR: core-image-initramfs-1.0-r0 do_rootfs: Function failed: do_rootfs
 > 
-> Beside ARM cortex-A9 there is cortex-m0plus chip, which is located on 
-> the same board. From now on i will use abbreviations A9 and M0. 
-> Occasionally A9 is used to upgrade software on M0, therefor upgrade 
-> image for M0 is located in rootfs which is accessed by A9. Until now, i 
-> used different compiler/environment to compile firmware for M0 and 
-> afterwards copied M0 image to A9 rootfs.
-> 
-> I would like to move compiling of M0 firmware into yocto. gcc version 
-> used for M0 firmware is different and must not be changed, same goes for 
-> A9. So my question is: Is it possible to specify different version of 
-> gcc and different architecture, for single yocto recipe?
 
 
-You can build any recipe for a different machine in the same build 
-directory:
+Something in ofa-kernel rpm package is erroneously referring to 
+.../hosttools/python. Rpm takes that as a dependency that must be satisfied.
 
-MACHINE=someothermachine bitbake <firmware>
-
-You will find the packages in deploy dir.
-
-Or just set up a separate build directory, and build there. Then use any 
-suitable way to copy the result over (such as a recipe that pulls the 
-ready-built firmware in).
+Find out what it is and how it happens.
 
 Alex
 
