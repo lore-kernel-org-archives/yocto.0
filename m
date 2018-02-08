@@ -1,67 +1,144 @@
-Return-Path: <matetuske@gmail.com>
+Return-Path: <giordon.holtsberg.stark@cern.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 689E3E00E36; Thu,  8 Feb 2018 07:49:31 -0800 (PST)
+	id 26E4FE00E1E; Thu,  8 Feb 2018 09:39:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (matetuske[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.193 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.47 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f193.google.com (mail-qt0-f193.google.com
-	[209.85.216.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAB87E00D5F
-	for <yocto@yoctoproject.org>; Thu,  8 Feb 2018 07:49:29 -0800 (PST)
-Received: by mail-qt0-f193.google.com with SMTP id t25so6721486qtg.3
-	for <yocto@yoctoproject.org>; Thu, 08 Feb 2018 07:49:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=LPhLu7Ct/baFL4ZXiOxepNjdLGobwrE8DxikZa2dEq0=;
-	b=cI+vhZEk9dlP/YKCm0yFo8ihPi+KRooenlOUYu0VIIaMCb79eNUTzwwfvSuiIRQz9L
-	nECm67T1nTv8eCpfptteuApSuOpvGJGQiw57eSUdgj0jlv0WDxwvuUTUdqWNNF8TaBXs
-	Fxm12bnbqqRwJI9+XQK1qXcaFU1iZjTEz35uwe9MM+eRo4FTiFhXJWd4i9oz35lTRtSq
-	wmiZX7jYHF67UIrQi1kw5LZTeVzp6p3sBvfzkfmjkWMwu7Oc8hsA+jQ0HUjLJg9uq3Mh
-	aMbXILjsLqegCpNY14M9NPsxEUwdu8UgTwg3vvo8gSKZKMSubzOnQ580mAlvoRdneOIa
-	guJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=LPhLu7Ct/baFL4ZXiOxepNjdLGobwrE8DxikZa2dEq0=;
-	b=KhrRbfaUBvq9Zii4LFIhaSzm11vRm19TzOG+/z8gDz/NET5Yur8ZZ68q8dxPFLE5vr
-	rI7xLIFHC9bsIVCIUyH6Ki3D7DN2KRuHg2lfSTWX8/q8NC+T3U9+0HHNc6UzwDHQt8nz
-	Hop6BPPQ3hvE8z3acJFmXyHq49FYf9pufedMyvA49e8IssOeGlbuPCyKxMAGedVcfu6I
-	DwzGbJr/cs/WyU7GU86wwprqnUE/vV3HyjPaMtM3jMAw6UvRcwt6LYkyLbInw2XSQJev
-	lXO0Ma9omJb0HitcDJ6oe/xhb8M1WU9OsShNFUoNosVYl/vmtN2h+AihndwhFATVqxJ0
-	P92Q==
-X-Gm-Message-State: APf1xPCZNgVq1mhht9qHBUBUh98FwQNbE9eJKjYtOE9DcmqWvFjSng3Z
-	spojZ4Z4VvvB1Lsgf0W8KPL1QuPfqnwr4xee7A5zK7sq
-X-Google-Smtp-Source: AH8x2279nNxmzSI8sH5GlZC1XDFD7RcGtuDccf+FFZ46p8frjz7/5VFU2pA/acxanzIjAZCS0ViiJoGQ30JRi9PLWW4=
-X-Received: by 10.200.46.73 with SMTP id s9mr1768192qta.317.1518104968795;
-	Thu, 08 Feb 2018 07:49:28 -0800 (PST)
+X-Greylist: delayed 10830 seconds by postgrey-1.32 at yocto-www;
+	Thu, 08 Feb 2018 09:39:10 PST
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0047.outbound.protection.outlook.com [104.47.2.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A45CE00D6A
+	for <yocto@yoctoproject.org>; Thu,  8 Feb 2018 09:39:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cern.onmicrosoft.com; 
+	s=selector1-cern-ch;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=NRBhOncOVOCeLVPzI6JsWbvGNN7W1WEXELpLdhtaI9s=;
+	b=AQzGOHLhNrBQbqEVftg4n689Q1NiDvuR6lhE245bn4UGg4vZ9XrcBOqdzLJJIYSZtzH+/L6ZRGSWNT2arr4B5yNesF6Oi4m/diVC4VuQFfjIH7HZoblNWC9QcED4yNFTiFUdDmyy9rAMuyTEu7L+E+MhPEBl5JzUMKjkoRIpeLA=
+Received: from AM5PR0602CA0005.eurprd06.prod.outlook.com
+	(2603:10a6:203:a3::15) by AM6PR0602MB3511.eurprd06.prod.outlook.com
+	(2603:10a6:209:d::32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.464.11;
+	Thu, 8 Feb 2018 14:05:23 +0000
+Received: from VE1EUR02FT058.eop-EUR02.prod.protection.outlook.com
+	(2a01:111:f400:7e06::209) by AM5PR0602CA0005.outlook.office365.com
+	(2603:10a6:203:a3::15) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.485.10 via
+	Frontend Transport; Thu, 8 Feb 2018 14:05:23 +0000
+Authentication-Results: spf=pass (sender IP is 188.184.36.46)
+	smtp.mailfrom=cern.ch; yoctoproject.org; dkim=none (message not signed)
+	header.d=none;yoctoproject.org; dmarc=bestguesspass action=none
+	header.from=cern.ch;
+Received-SPF: Pass (protection.outlook.com: domain of cern.ch designates
+	188.184.36.46 as permitted sender) receiver=protection.outlook.com;
+	client-ip=188.184.36.46; helo=cernmxgwlb4.cern.ch;
+Received: from cernmxgwlb4.cern.ch (188.184.36.46) by
+	VE1EUR02FT058.mail.protection.outlook.com (10.152.13.52) with Microsoft
+	SMTP Server (version=TLS1_0,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384) id
+	15.20.464.8 via Frontend Transport; Thu, 8 Feb 2018 14:05:22 +0000
+Received: from cernfe03.cern.ch (188.184.36.39) by cernmxgwlb4.cern.ch
+	(188.184.36.46) with Microsoft SMTP Server (TLS) id 14.3.319.2;
+	Thu, 8 Feb 2018 15:05:10 +0100
+Received: from mail-it0-f44.google.com (209.85.214.44) by smtp.cern.ch
+	(188.184.36.52) with Microsoft SMTP Server (TLS) id 14.3.319.2;
+	Thu, 8 Feb 2018 15:05:09 +0100
+Received: by mail-it0-f44.google.com with SMTP id o13so6642060ito.2 for
+	<yocto@yoctoproject.org>; Thu, 08 Feb 2018 06:05:09 -0800 (PST)
+X-Gm-Message-State: APf1xPCgvwm+jeIv9AsjJcA9rWa9KmwbbdFjcTuHDw62GCgWAWXegh/2
+	+S0DMa8jQucYQXtmhxVGGMA0BPVUkH6vP3qKnkY=
+X-Google-Smtp-Source: AH8x2275MelmnMdQP2KCX4k675OJj48DJU4kNZy1jmp6W2jFxTkotkW9rkmwjyOFtQXN4dRmaB8MRi15ZIoFOgK5kqQ=
+X-Received: by 10.36.118.21 with SMTP id z21mr1485744itb.116.1518098708260;
+	Thu, 08 Feb 2018 06:05:08 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.12.173.91 with HTTP; Thu, 8 Feb 2018 07:48:58 -0800 (PST)
-In-Reply-To: <5DDA13F5-FD4C-4A18-8A8D-5A311097EEF2@dynamicdevices.co.uk>
-References: <CAMm5SjSds4Fs=4vu=owwfKpJo_EYbOe5MzAdNesgzzMhJ2ytxg@mail.gmail.com>
-	<5DDA13F5-FD4C-4A18-8A8D-5A311097EEF2@dynamicdevices.co.uk>
-From: =?UTF-8?B?TcOhdMOpIFTDvHNrZQ==?= <matetuske@gmail.com>
-Date: Thu, 8 Feb 2018 16:48:58 +0100
-Message-ID: <CAMm5SjRp-DE_7mVw2rCeTLSc50HJneZDrdbGNn9j04ReOz=9fg@mail.gmail.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Cc: yocto@yoctoproject.org
-Subject: Re: mono build issue
+References: <CAOT_U5a_cTCpAHHqPfozcH0Lxu=O1BFYgVa-FkdZcR0-+X8QQQ@mail.gmail.com>
+	<9fd5ab57-6634-c619-e0ba-a16fab765de0@linux.intel.com>
+	<CAOT_U5ZCxWFQGAWgt9rfv=FLxDr8=c3xaa0TNqnDNbHWLY4=LA@mail.gmail.com>
+In-Reply-To: <CAOT_U5ZCxWFQGAWgt9rfv=FLxDr8=c3xaa0TNqnDNbHWLY4=LA@mail.gmail.com>
+From: Giordon Stark <gstark@cern.ch>
+Date: Thu, 8 Feb 2018 14:04:57 +0000
+X-Gmail-Original-Message-ID: <CAFzUWGnqxFak4naXMWMJMpqucZuBdiYbvs3uFzt64usN82OA4Q@mail.gmail.com>
+Message-ID: <CAFzUWGnqxFak4naXMWMJMpqucZuBdiYbvs3uFzt64usN82OA4Q@mail.gmail.com>
+To: Alan Martinovic <alan.martinovic@senic.com>
+X-Originating-IP: [209.85.214.44]
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:188.184.36.46; IPV:NLI; CTRY:CH; EFV:NLI;
+	SFV:NSPM;
+	SFS:(10009020)(346002)(396003)(376002)(39380400002)(39860400002)(2980300002)(438002)(189003)(199004)(42186006)(16586007)(76176011)(316002)(84326002)(106466001)(4326008)(55446002)(8936002)(54906003)(575784001)(8676002)(2906002)(6246003)(5660300001)(6862004)(54206008)(786003)(8576002)(356003)(246002)(305945005)(7636002)(7736002)(106002)(2950100002)(606006)(6666003)(186003)(74482002)(478600001)(26005)(53546011)(6116002)(3846002)(229853002)(336011)(33964004)(59450400001)(33896004)(61266001)(966005)(498394004)(66066001)(59536001)(61726006)(95326003)(9686003)(6306002)(236005)(93516011)(55456009)(47845001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:AM6PR0602MB3511;
+	H:cernmxgwlb4.cern.ch; FPR:; SPF:Pass; PTR:cernmx13.cern.ch;
+	MX:1; A:1; LANG:en; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 323b4b98-fae1-4224-a8af-08d56efcff02
+X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(4534165)(4627221)(201703031133081)(201702281549075)(5600026)(4604075)(4608076)(2017052603307)(7153060)(7193020);
+	SRVR:AM6PR0602MB3511; 
+X-MS-TrafficTypeDiagnostic: AM6PR0602MB3511:
+X-Microsoft-Exchange-Diagnostics: 1; AM6PR0602MB3511;
+	20:9nh4MEVUgZEeRbN+7wIvxCr3Ni2uCjf1X9RjLWbho3a+RYjaEKpxlQR3G3GPCD2QUNFIfBi7M5TT9jEv8N60aeGvrBFVzw6pn8OSqCtgKPlV14OVCYDa3ZK68gIaI4TTJcQXAhki6NDKnrhIcJ1vi6vuKgq77hWLnYtJsXq0qx1BWYY0l3DtnXVoiL/yuq7JmmaCtJwLswtV4KJvuivP6KypjV5OVELFcVWXAOsmrj819NIhCM9a6af+2f5DD1imRmY48X+2DAxh8MIGZP70fD+Bao5DJIQXV9H1ZI+gelc43DafOesLPbsP/E+uKfwe3NZ2OS6OGUoqEiVVSn5E8zpBb9R62fePlid5mfNV7TQXQmbhRnfyq5y6zoP6e6qtQmbRDNudSXp+YxrI7DKAbKk6v4u0aSScVZif8HYWxy8no+NP1+lIvYwFmzpo0671vGJlpD3E4ZxEhhUQHJ4Mo7J/JynBlotz//OfuerZTTYim2ORnepOVwk0Dy2q8pC5;
+	4:aTbM3lC4cszjW4Tc43igU6TdnbOLoa8Bd0ba+/sllTyhh4Rv8fGF6bXw7lOgByndijrq8nl1aiUAgpXJqNPd62y6ueP/R7NsggtpNkrjubOGsu80yw/ua5/FVRJzSZ4PpT6o3sL+EfKs37NsIyumqII/voFc/crMzYWC2cxaH18JwNtn99U3JazyS+X51uadEymWrERyY+SxgHcpwKBpWhkM314jClyj6mmpuMy3ietdnSsLHAHs5OraNXP8pqxOgqaMdfJCPCl2mi3P08p8H8cxqorAsv2O5OkqDkvfS9Mf51Q6vWX9ZcsBo4FN5Kq+WkdhE0/EHJ5hCWqlqGYcYTkaA0sjMAjrubxEtJpNnpnJ+rTcCnHjpSUEiwnuh1l3DuF98YsJcEZF96ummHomMQnd+5dE1Z8w+5wq139LIFI=
+X-Microsoft-Antispam-PRVS: <AM6PR0602MB3511CBFA5655D822D62B7924B2F30@AM6PR0602MB3511.eurprd06.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:(158342451672863)(166708455590820)(251646265452963)(228905959029699);
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
+	RULEID:(6040501)(2401047)(5005006)(8121501046)(10201501046)(3002001)(93006095)(93004095)(3231101)(2400082)(944501161)(6041288)(20161123558120)(20161123560045)(201703131423095)(201702281529075)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(20161123564045)(6072148)(201708071742011);
+	SRVR:AM6PR0602MB3511; BCL:0; PCL:0; RULEID:;
+	SRVR:AM6PR0602MB3511; 
+X-Forefront-PRVS: 0577AD41D6
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1; AM6PR0602MB3511;
+	23:7XVvsS6Oj9qYC3PjKLVxSN0rmByhtjJI7HLZBrU?=
+	=?us-ascii?Q?SEPbsjeIbzWAK+omGQFCrfU8Jsz9etiWqFs+Z3flgqPPDaMXphx26X8bnXbt?=
+	=?us-ascii?Q?R9JcF+cdtiUfi4q4AOpWfCxldEdI28g3gjKvJFiIKuGixa3wxIZ03WDa48oj?=
+	=?us-ascii?Q?xQnFHvlcRh+2JQlhXG8JRWVcOcUKYD79PUTmcI5e2TTIml8AGgv/+b8vSYIW?=
+	=?us-ascii?Q?QVf8pEt1RT35bJ9ezKLsQUpxfrnRVo7ysa65TDA8/uOoVFXl7VD0GNmPQJG1?=
+	=?us-ascii?Q?XLR1TH8sA2LyzKT90rwFq3tsErlVCeR4LgwDhQ4rr3xzHi25h3aYrBBrR6CT?=
+	=?us-ascii?Q?pyvAfgSVINzDp60QHd79casBEJIVUYNS/sbXroZleNAn9lIXRytXfDAvBM3m?=
+	=?us-ascii?Q?QeahuR3Nu7oiK2fS8yw0haxGQ1hcv0sS+DlVaM4X6FYVmVKNmDBHaKKoqm9E?=
+	=?us-ascii?Q?9c+YsVHyT8nlQL1B6P0eFf9b9BQSshW4PDKlyrp5YUAHwMYX9mzkUCg26SK2?=
+	=?us-ascii?Q?OqbRlDGV/V4DtmBeF7kcbMl/HU+2+gveNUcETW9ltIa8kINs/xs9ZY1yzVvq?=
+	=?us-ascii?Q?Q728VARrdZAV8htxvXcGog+0IaibacBaOKhiJlsA5Z3lezFbrk8mThaJG/JI?=
+	=?us-ascii?Q?Vf/56T8RZs20//JwKU+pFhO55EMxZsf+OQfsL5O0QNkVLBbJw2Emqu4tJjcb?=
+	=?us-ascii?Q?QYhamVq41twqG0I7MDfIA2SZFuuO5/UAK8HRUp7N6gauJMTiJ2tmkhoyQHJN?=
+	=?us-ascii?Q?g/AyJdPUoQyDMq3K6xlFUw64dxlNKwO6ZhNT3erE9bNu/lMZpvjUDjS4v6h8?=
+	=?us-ascii?Q?2lppeUSWGeA76WhZLgRanhmDHmuBemusqiLUsF+6Ea7GF8OLhsqILoLfvhd/?=
+	=?us-ascii?Q?+UWwSTb638IV7d0ANvU2F6I3NwrZJ/uNgU9Buimbne0yl0FTsRKhL0ndPGYN?=
+	=?us-ascii?Q?kXEvgKTmjevv3jYJI4qNtW+pPVG2Qu8e7tbaaHLODsOqGydaGq2RvVnRoRzi?=
+	=?us-ascii?Q?jbTZ3Rg/3lhSyHvz79yyEAzFNdK7v8ufJuzPh2m9LzWy7jtuuVzr28r1PX75?=
+	=?us-ascii?Q?3sBLXxTdr2HchUT94+BgIY203ZTaqtj1AOUaPDeFjt3dEdto8Pn1wHSCgOcT?=
+	=?us-ascii?Q?6+1NVvdsA6ilbHcZVAax3TYc/hWYv3SFxq861F+mSQLvHrRbzaV3I8ZWdP64?=
+	=?us-ascii?Q?rvB/XGSe5s5EDGr8OM77tNuRYE22p6bKCPJeGEDJawSar+IR1/1gnhg41dow?=
+	=?us-ascii?Q?g8uSqcMju+OW5KAZH3PSjmrvoUEraceOFFMDXy+FS0OhKbggWesv+iWPVxWd?=
+	=?us-ascii?Q?a+g5Ab6bVn91j+h2YAW9PAONDWajm8rTo/Z27l7yBrgG98Dx4+7MI2+ldOQX?=
+	=?us-ascii?Q?LnqbU4HXsLHpcQV2Er1Ek7jwZaqg=3D?=
+X-Microsoft-Exchange-Diagnostics: 1; AM6PR0602MB3511;
+	6:DZhJNSBNqD3Yje214cxO+XLZmx4cNVJd7JtQXuGmTYrSWmdhYP1NDomWSEGulJG7gdCVQVNgjzumt9iZEAM/EYmiarkcTTcQtczGDuNnt5UmWvsmDurrYc0c1BZ0QwFbYpZyzlIdsUATiB8iAJQ9SDCYD/eSEcPQa+uskLwPSm118yEBxVXTcbUP++viTQkizmFvU1/Z6qbJ4snZNp+wLEBKB2RpiJchTwfpHulluRONuEDDEqp4nBYFtWTeKeBhZmckrZhgiBkzOahnRJAvzyeODs22As1fIgGTLuz6TdSHsxQ21OAXmKTlK8KQ7k3I8YUjP1p0guKpuJ7/Bz1emQeJ3+9R8xDFCNdcJNxIXO4=;
+	5:Qttsjsg8ipGmhyHkMClE8FMLwOYkCBhM9XTvaZXL13f0VRe2gx0D2RP33nGrXSrtubaKTDFRjbTCTUohk7/9qWfdgKvmd9suULi65jnZsgn7PcVB5QNPzF8XfHwE3XAPtK8BvuEVNGEJLA73W+AqAPYdjyN4c5gsHjZCG9R3GA8=;
+	24:P9irM/FpTisYFyKEFfSYKLx3b49PM+pcCd0BjmglcOXNCnbNMNhhZW3n1Lbj8IQtcAqpVZPJ34u2CqpkOA0zPsOpGWrMB94+jA4fnZTc0mM=;
+	7:4BQL0NsLRrUuPXodvtIHhDbCpBqR1CTKbzbf3/SNX2qHYOBpeAror5sypy72LbzOnC/qQa3Jc97pXQywQisZSx35se303oLA4zQm+PDELoxpl4oS4asCNvVa/S7JhJRdJolz7pgA+1oYtgthb3VFKh9ORMG8o9I5YU6O6JhI7uYsJRJBugef2ou7tNyUouks4Yf/LeXXl/lhOdpHGwoqtVCBkSkPKpWx59GBlzqDa4yzebvm195baSrE5PFRp5wx
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: cern.ch
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2018 14:05:22.9315 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 323b4b98-fae1-4224-a8af-08d56efcff02
+X-MS-Exchange-CrossTenant-Id: c80d3499-4a40-4a8c-986e-abce017d6b19
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=c80d3499-4a40-4a8c-986e-abce017d6b19;
+	Ip=[188.184.36.46]; Helo=[cernmxgwlb4.cern.ch]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0602MB3511
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Creating a python recipe with devtool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,301 +150,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Feb 2018 15:49:31 -0000
-Content-Type: multipart/alternative; boundary="001a113d673e659a250564b55b32"
+X-List-Received-Date: Thu, 08 Feb 2018 17:39:13 -0000
+Content-Type: multipart/alternative; boundary="001a1143fc483d95de0564b3e6bc"
 
---001a113d673e659a250564b55b32
+--001a1143fc483d95de0564b3e6bc
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+This also works with the tarball URLs from pypi which is a bit easier to
+manage (version-wise).
 
-thank you for the help. Here are some information about the configuration
+Giordon
 
-Build Configuration:
-BB_VERSION           =3D "1.36.0"
-BUILD_SYS            =3D "x86_64-linux"
-NATIVELSBSTRING      =3D "universal"
-TARGET_SYS           =3D "arm-poky-linux-gnueabi"
-MACHINE              =3D "raspberrypi"
-DISTRO               =3D "poky"
-DISTRO_VERSION       =3D "2.4.1"
-TUNE_FEATURES        =3D "arm armv6 vfp arm1176jzfs callconvention-hard"
-TARGET_FPU           =3D "hard"
-meta
-meta-poky            =3D "rocko:21ba45aa77e4d43a93cd96d859707a4758e8b64b"
-meta-oe
-meta-multimedia
-meta-networking
-meta-perl
-meta-python          =3D "rocko:a65c1acb1822966c3553de9fc98d8bb6be705c4e"
-meta-qt5             =3D "rocko:db881bb4917628ad3eb1fa7c4f27915cf2ae60f4"
-meta-raspberrypi     =3D "rocko:510009f0c825cd7992d2d37e9ed0007f6c3be723"
-meta-security        =3D "rocko:3d4183b6b4d4ac530c232bcff338af6a9158f8df"
-meta-rpi             =3D "rocko:ef2d1e76fb91859eb5de322b71df9bcb2a17ff61"
-meta-icontrall       =3D "rocko:21ba45aa77e4d43a93cd96d859707a4758e8b64b"
-meta-mono            =3D "rocko:9c9d3a5ba5196595915b0ebfd1e6acaffb640c0a"
-
-The problem still exists sadly.
-
-Matthew
-
-On Thu, Feb 8, 2018 at 8:13 AM, Alex J Lennon <ajlennon@dynamicdevices.co.u=
-k
-> wrote:
-
->
->
-> On 7 Feb 2018, at 22:43, M=C3=A1t=C3=A9 T=C3=BCske <matetuske@gmail.com> =
+On Wed, Feb 7, 2018 at 7:10 AM Alan Martinovic <alan.martinovic@senic.com>
 wrote:
+
+> Thanks, that worked!
 >
-> Hi,
+> Steps:
 >
-> I try to build custom image with mono. Previously I did it successfully,
-> but now I ran into some issue and I cannot solve it.
+> # On the build server
+> devtool create-workspace
+> devtool add  https://github.com/jruere/multiprocessing-logging
+> devtool
+> devtool edit-recipe multiprocessing-logging
+>     # Change for building for python3
+>        inherit setuptools -> inherit setuptools3
+>     # delete the RDEPENDS that were wrongly detected
+> devtool build multiprocessing-logging
+> #Prerequisit: ssh root@10.10.10.100
+> devtool deploy-target multiprocessing-logging root@10.10.10.100
 >
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/Mic=
-rosoft.Build.Engine.dll contained in package mono-libs-3.5 requires mono(Sy=
-stem.Xml), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/Mic=
-rosoft.Build.Utilities.v3.5.dll contained in package mono-libs-3.5 requires=
- mono(System), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdep=
-s]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/Mic=
-rosoft.Build.Engine.dll contained in package mono-libs-3.5 requires mono(ms=
-corlib), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
-uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
-configuration-crypto requires mono(mscorlib), but no providers found in RDE=
-PENDS_mono-configuration-crypto? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
-uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
-configuration-crypto requires mono(System.Xml), but no providers found in R=
-DEPENDS_mono-configuration-crypto? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
-uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
-configuration-crypto requires mono(System), but no providers found in RDEPE=
-NDS_mono-configuration-crypto? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
-uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
-configuration-crypto requires mono(System.Configuration), but no providers =
-found in RDEPENDS_mono-configuration-crypto? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-config=
-uration-crypto/4.5/Mono.Configuration.Crypto.dll contained in package mono-=
-configuration-crypto requires mono(Mono.Security), but no providers found i=
-n RDEPENDS_mono-configuration-crypto? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6-api/Mon=
-o.Debugger.Soft.dll contained in package mono-api-4.6 requires mono(Mono.Ce=
-cil), but no providers found in RDEPENDS_mono-api-4.6? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.2-api/M=
-ono.Debugger.Soft.dll contained in package mono-api-4.6.2 requires mono(Mon=
-o.Cecil), but no providers found in RDEPENDS_mono-api-4.6.2? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.7-api/Mon=
-o.Debugger.Soft.dll contained in package mono-api-4.7 requires mono(Mono.Ce=
-cil), but no providers found in RDEPENDS_mono-api-4.7? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/xbuild/Micr=
-osoft/NuGet/Microsoft.NuGet.Build.Tasks.dll contained in package mono-xbuil=
-d requires mono(mscorlib), but no providers found in RDEPENDS_mono-xbuild? =
-[file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.1-api/M=
-ono.Debugger.Soft.dll contained in package mono-api-4.6.1 requires mono(Mon=
-o.Cecil), but no providers found in RDEPENDS_mono-api-4.6.1? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/gac/Mono.Me=
-ssaging.RabbitMQ/4.0.0.0__0738eb9f132ed756/Mono.Messaging.RabbitMQ.dll cont=
-ained in package mono-gac requires mono(mscorlib), but no providers found i=
-n RDEPENDS_mono-gac? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.5/Microso=
-ft.CodeAnalysis.Scripting.dll contained in package mono-libs-4.5 requires m=
-ono(System.Runtime.Loader), but no providers found in RDEPENDS_mono-libs-4.=
-5? [file-rdeps]
-> ERROR: mono-5.4.1.6-r0 do_package_qa: QA run found fatal errors. Please c=
-onsider fixing them.
-> ERROR: mono-5.4.1.6-r0 do_package_qa: Function failed: do_package_qa
+> #On the 10.10.10.100 device
+> python3
+> import python3-multiprocessing_logging
 >
-> Can you help me with this?
+> #On the build server. Finishing
+> devtool finish multiprocessing-logging
+> /home/alan/meta-myproject/recipes-devtools/python
 >
->
-> regards,
->
-> Matthew
->
-> Hi,
->
-> I=E2=80=99m in the middle of the Red Sea at the moment but if you can pro=
-vide your
-> build configuration I=E2=80=99ll take a look next week (assuming this has=
-n=E2=80=99t been
-> resolved in the meantime)
->
-> Cheers,
->
-> Alex
->
->
+> On Wed, Feb 7, 2018 at 1:25 PM, Alexander Kanavin
+> <alexander.kanavin@linux.intel.com> wrote:
+> > On 02/07/2018 02:17 PM, Alan Martinovic wrote:
+> >>
+> >>      devtool add
+> >>
+> >>
+> https://pypi.python.org/packages/65/eb/1c3db9596eddb2bd1d1f8153dcaf2d9f2c7e144f4832d1b1449f681a0a7a/multiprocessing_logging-0.2.6-py2.py3-none-any.whl#md5=b7783a8c449135e5bb344b3f0caa3522
+> >
+> >
+> > I don't think we support .whl format at the moment. You need to fetch
+> > sources directly from github.
+> >
+> >
+> > Alex
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
->
+-- 
+Giordon Stark
 
---001a113d673e659a250564b55b32
+--001a1143fc483d95de0564b3e6bc
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>thank you for the help. Here are so=
-me information about the configuration</div><div><pre id=3D"gmail-hterm:cop=
-y-to-clipboard-source" style=3D"color:rgb(0,0,0);font-style:normal;font-var=
-iant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spaci=
-ng:normal;text-align:start;text-indent:0px;text-transform:none;word-spacing=
-:0px;text-decoration-style:initial;text-decoration-color:initial"><pre id=
-=3D"gmail-hterm:copy-to-clipboard-source" style=3D"color:rgb(0,0,0);font-st=
-yle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weig=
-ht:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transfor=
-m:none;word-spacing:0px;text-decoration-style:initial;text-decoration-color=
-:initial">Build Configuration:
-BB_VERSION           =3D &quot;1.36.0&quot;
-BUILD_SYS            =3D &quot;x86_64-linux&quot;
-NATIVELSBSTRING      =3D &quot;universal&quot;
-TARGET_SYS           =3D &quot;arm-poky-linux-gnueabi&quot;
-MACHINE              =3D &quot;raspberrypi&quot;
-DISTRO               =3D &quot;poky&quot;
-DISTRO_VERSION       =3D &quot;2.4.1&quot;
-TUNE_FEATURES        =3D &quot;arm armv6 vfp arm1176jzfs callconvention-har=
-d&quot;
-TARGET_FPU           =3D &quot;hard&quot;
-meta
-meta-poky            =3D &quot;rocko:21ba45aa77e4d43a93cd96d859707a4758e8b6=
-4b&quot;
-meta-oe
-meta-multimedia
-meta-networking
-meta-perl
-meta-python          =3D &quot;rocko:a65c1acb1822966c3553de9fc98d8bb6be705c=
-4e&quot;
-meta-qt5             =3D &quot;rocko:db881bb4917628ad3eb1fa7c4f27915cf2ae60=
-f4&quot;
-meta-raspberrypi     =3D &quot;rocko:510009f0c825cd7992d2d37e9ed0007f6c3be7=
-23&quot;
-meta-security        =3D &quot;rocko:3d4183b6b4d4ac530c232bcff338af6a9158f8=
-df&quot;
-meta-rpi             =3D &quot;rocko:ef2d1e76fb91859eb5de322b71df9bcb2a17ff=
-61&quot;
-meta-icontrall       =3D &quot;rocko:21ba45aa77e4d43a93cd96d859707a4758e8b6=
-4b&quot;
-meta-mono            =3D &quot;rocko:9c9d3a5ba5196595915b0ebfd1e6acaffb640c=
-0a&quot;</pre></pre></div><div>The problem still exists sadly.</div><div><b=
-r></div><div>Matthew</div></div><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">On Thu, Feb 8, 2018 at 8:13 AM, Alex J Lennon <span dir=3D=
-"ltr">&lt;<a href=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank=
-">ajlennon@dynamicdevices.co.uk</a>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><div dir=3D"auto"><div><div class=3D"h5"><div></div><div><br>=
-</div><div><br>On 7 Feb 2018, at 22:43, M=C3=A1t=C3=A9 T=C3=BCske &lt;<a hr=
-ef=3D"mailto:matetuske@gmail.com" target=3D"_blank">matetuske@gmail.com</a>=
-&gt; wrote:<br><br></div><blockquote type=3D"cite"><div><div dir=3D"ltr">Hi=
-,<div><br></div><div>I try to build custom image with mono. Previously I di=
-d it successfully, but now I ran into some issue and I cannot solve it.</di=
-v><pre id=3D"m_-8009293542037944502gmail-hterm:copy-to-clipboard-source" st=
-yle=3D"color:rgb(0,0,0);font-style:normal;font-variant-ligatures:normal;fon=
-t-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:star=
-t;text-indent:0px;text-transform:none;word-spacing:0px;text-decoration-styl=
-e:initial;text-decoration-color:initial">ERROR: mono-5.4.1.6-r0 do_package_=
-qa: QA Issue: /usr/lib/mono/3.5-api/<wbr>Microsoft.Build.Engine.dll contain=
-ed in package mono-libs-3.5 requires mono(System.Xml), but no providers fou=
-nd in RDEPENDS_mono-libs-3.5? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/<wbr>=
-Microsoft.Build.Utilities.v3.<wbr>5.dll contained in package mono-libs-3.5 =
-requires mono(System), but no providers found in RDEPENDS_mono-libs-3.5? [f=
-ile-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/3.5-api/<wbr>=
-Microsoft.Build.Engine.dll contained in package mono-libs-3.5 requires mono=
-(mscorlib), but no providers found in RDEPENDS_mono-libs-3.5? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
-figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
-ge mono-configuration-crypto requires mono(mscorlib), but no providers foun=
-d in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
-figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
-ge mono-configuration-crypto requires mono(System.Xml), but no providers fo=
-und in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
-figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
-ge mono-configuration-crypto requires mono(System), but no providers found =
-in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
-figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
-ge mono-configuration-crypto requires mono(System.Configuration), but no pr=
-oviders found in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/mono-<wbr>con=
-figuration-crypto/4.5/Mono.<wbr>Configuration.Crypto.dll contained in packa=
-ge mono-configuration-crypto requires mono(Mono.Security), but no providers=
- found in RDEPENDS_mono-configuration-<wbr>crypto? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6-api/Mono.=
-<wbr>Debugger.Soft.dll contained in package mono-api-4.6 requires mono(Mono=
-.Cecil), but no providers found in RDEPENDS_mono-api-4.6? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.2-api/Mon=
-o.<wbr>Debugger.Soft.dll contained in package mono-api-4.6.2 requires mono(=
-Mono.Cecil), but no providers found in RDEPENDS_mono-api-4.6.2? [file-rdeps=
-]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.7-api/Mono.=
-<wbr>Debugger.Soft.dll contained in package mono-api-4.7 requires mono(Mono=
-.Cecil), but no providers found in RDEPENDS_mono-api-4.7? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/xbuild/<wbr>M=
-icrosoft/NuGet/Microsoft.<wbr>NuGet.Build.Tasks.dll contained in package mo=
-no-xbuild requires mono(mscorlib), but no providers found in RDEPENDS_mono-=
-xbuild? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.6.1-api/Mon=
-o.<wbr>Debugger.Soft.dll contained in package mono-api-4.6.1 requires mono(=
-Mono.Cecil), but no providers found in RDEPENDS_mono-api-4.6.1? [file-rdeps=
-]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/gac/Mono.<wbr=
->Messaging.RabbitMQ/4.0.0.0__<wbr>0738eb9f132ed756/Mono.<wbr>Messaging.Rabb=
-itMQ.dll contained in package mono-gac requires mono(mscorlib), but no prov=
-iders found in RDEPENDS_mono-gac? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA Issue: /usr/lib/mono/4.5/Microsoft=
-.<wbr>CodeAnalysis.Scripting.dll contained in package mono-libs-4.5 require=
-s mono(System.Runtime.Loader), but no providers found in RDEPENDS_mono-libs=
--4.5? [file-rdeps]
-ERROR: mono-5.4.1.6-r0 do_package_qa: QA run found fatal errors. Please con=
-sider fixing them.
-ERROR: mono-5.4.1.6-r0 do_package_qa: Function failed: do_package_qa<br></p=
-re><div><pre id=3D"m_-8009293542037944502gmail-hterm:copy-to-clipboard-sour=
-ce" style=3D"color:rgb(0,0,0);font-style:normal;font-variant-ligatures:norm=
-al;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-alig=
-n:start;text-indent:0px;text-transform:none;word-spacing:0px;text-decoratio=
-n-style:initial;text-decoration-color:initial"><span style=3D"font-family:a=
-rial,sans-serif;color:rgb(34,34,34)">Can you help me with this?</span>
-</pre><pre id=3D"m_-8009293542037944502gmail-hterm:copy-to-clipboard-source=
-" style=3D"color:rgb(0,0,0);font-style:normal;font-variant-ligatures:normal=
-;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
-start;text-indent:0px;text-transform:none;word-spacing:0px;text-decoration-=
-style:initial;text-decoration-color:initial"><span style=3D"font-family:ari=
-al,sans-serif;color:rgb(34,34,34)"><br></span></pre><pre id=3D"m_-800929354=
-2037944502gmail-hterm:copy-to-clipboard-source" style=3D"color:rgb(0,0,0);f=
-ont-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;word-spacing:0px;text-decoration-style:initial;text-decoration=
--color:initial"><span style=3D"font-family:arial,sans-serif;color:rgb(34,34=
-,34)">regards,</span></pre><pre id=3D"m_-8009293542037944502gmail-hterm:cop=
-y-to-clipboard-source" style=3D"color:rgb(0,0,0);font-style:normal;font-var=
-iant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spaci=
-ng:normal;text-align:start;text-indent:0px;text-transform:none;word-spacing=
-:0px;text-decoration-style:initial;text-decoration-color:initial"><span sty=
-le=3D"font-family:arial,sans-serif;color:rgb(34,34,34)">Matthew</span></pre=
-></div></div>
-</div></blockquote></div></div><div>Hi,</div><div><br></div><div>I=E2=80=99=
-m in the middle of the Red Sea at the moment but if you can provide your bu=
-ild configuration I=E2=80=99ll take a look next week (assuming this hasn=E2=
-=80=99t been resolved in the meantime)</div><div><br></div><div>Cheers,</di=
-v><div><br></div><div>Alex</div><span class=3D"HOEnZb"><font color=3D"#8888=
-88"><div><br></div><br><blockquote type=3D"cite"><div><span>-- </span><br><=
-span>______________________________<wbr>_________________</span><br><span>y=
-octo mailing list</span><br><span><a href=3D"mailto:yocto@yoctoproject.org"=
- target=3D"_blank">yocto@yoctoproject.org</a></span><br><span><a href=3D"ht=
-tps://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">https://list=
-s.yoctoproject.<wbr>org/listinfo/yocto</a></span><br></div></blockquote></f=
-ont></span></div></blockquote></div><br></div>
+<div dir=3D"ltr">This also works with the tarball URLs from pypi which is a=
+ bit easier to manage (version-wise).<div><br></div><div>Giordon</div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr">On Wed, Feb 7, 2018 at 7:1=
+0 AM Alan Martinovic &lt;<a href=3D"mailto:alan.martinovic@senic.com">alan.=
+martinovic@senic.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
+>Thanks, that worked!<br>
+<br>
+Steps:<br>
+<br>
+# On the build server<br>
+devtool create-workspace<br>
+devtool add=C2=A0 <a href=3D"https://github.com/jruere/multiprocessing-logg=
+ing" rel=3D"noreferrer" target=3D"_blank">https://github.com/jruere/multipr=
+ocessing-logging</a><br>
+devtool<br>
+devtool edit-recipe multiprocessing-logging<br>
+=C2=A0 =C2=A0 # Change for building for python3<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0inherit setuptools -&gt; inherit setuptools3<br>
+=C2=A0 =C2=A0 # delete the RDEPENDS that were wrongly detected<br>
+devtool build multiprocessing-logging<br>
+#Prerequisit: ssh <a href=3D"mailto:root@10.10.10.100" target=3D"_blank">ro=
+ot@10.10.10.100</a><br>
+devtool deploy-target multiprocessing-logging <a href=3D"mailto:root@10.10.=
+10.100" target=3D"_blank">root@10.10.10.100</a><br>
+<br>
+#On the 10.10.10.100 device<br>
+python3<br>
+import python3-multiprocessing_logging<br>
+<br>
+#On the build server. Finishing<br>
+devtool finish multiprocessing-logging<br>
+/home/alan/meta-myproject/recipes-devtools/python<br>
+<br>
+On Wed, Feb 7, 2018 at 1:25 PM, Alexander Kanavin<br>
+&lt;<a href=3D"mailto:alexander.kanavin@linux.intel.com" target=3D"_blank">=
+alexander.kanavin@linux.intel.com</a>&gt; wrote:<br>
+&gt; On 02/07/2018 02:17 PM, Alan Martinovic wrote:<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0 =C2=A0 devtool add<br>
+&gt;&gt;<br>
+&gt;&gt; <a href=3D"https://pypi.python.org/packages/65/eb/1c3db9596eddb2bd=
+1d1f8153dcaf2d9f2c7e144f4832d1b1449f681a0a7a/multiprocessing_logging-0.2.6-=
+py2.py3-none-any.whl#md5=3Db7783a8c449135e5bb344b3f0caa3522" rel=3D"norefer=
+rer" target=3D"_blank">https://pypi.python.org/packages/65/eb/1c3db9596eddb=
+2bd1d1f8153dcaf2d9f2c7e144f4832d1b1449f681a0a7a/multiprocessing_logging-0.2=
+.6-py2.py3-none-any.whl#md5=3Db7783a8c449135e5bb344b3f0caa3522</a><br>
+&gt;<br>
+&gt;<br>
+&gt; I don&#39;t think we support .whl format at the moment. You need to fe=
+tch<br>
+&gt; sources directly from github.<br>
+&gt;<br>
+&gt;<br>
+&gt; Alex<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
+martmail=3D"gmail_signature"><div dir=3D"ltr">Giordon Stark</div></div>
 
---001a113d673e659a250564b55b32--
+--001a1143fc483d95de0564b3e6bc--
