@@ -1,33 +1,65 @@
-Return-Path: <mircea.gliga@vitheia.com>
+Return-Path: <texier.pj2@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5CE1DE00DE3; Fri,  9 Feb 2018 04:35:40 -0800 (PST)
+	id C261EE00E04; Fri,  9 Feb 2018 06:01:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (texier.pj2[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.50 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95668E00D5F
-	for <yocto@yoctoproject.org>; Fri,  9 Feb 2018 04:35:37 -0800 (PST)
-Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
-	(authenticated bits=0)
-	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id w19CZYDN017327
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
-	verify=NO)
-	for <yocto@yoctoproject.org>; Fri, 9 Feb 2018 14:35:35 +0200
-To: yocto@yoctoproject.org
-References: <cfe8feff-815d-cf8c-3b7e-0a88f4a215c2@vitheia.com>
-From: Mircea Gliga <mircea.gliga@vitheia.com>
-Message-ID: <bbe31259-5819-7457-da4e-bb7f33f22423@vitheia.com>
-Date: Fri, 9 Feb 2018 14:35:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f50.google.com (mail-wm0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62BAAE00D91
+	for <yocto@yoctoproject.org>; Fri,  9 Feb 2018 06:01:36 -0800 (PST)
+Received: by mail-wm0-f50.google.com with SMTP id 141so16380083wme.3
+	for <yocto@yoctoproject.org>; Fri, 09 Feb 2018 06:01:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=L6KGWSezq2EEUMlQ/EhOLbyY2IENXk7sbUluqr7+KCg=;
+	b=sP1WqFfNtW77wP88tRegW4w7IPosZcjvO4e9VbfI8Q1RykGoTkhfCIqIwzwcopl5wE
+	4t8iTtAbld7onL8lTylMVbVoHvtG0mzKMUAsEam08EML3qbpaRLEWAmhBy4wxBOJuYad
+	KcLIng0AmdN8ukjq0ScMk/sMD6kqki8PuAja6c46JCHhW5gOfhf1fmhgwBb2PtdAWdbr
+	jkQw3mFcoWrD7j/cLq/qMv0BIvKl3FWDkZWm9J+XcXiPZw3kOkC7k/wEjLf3awFKvi0e
+	+qkQEEKqxkSw8F5cj5iGUyyIjDDu/ygFt/j8r3M+FiU1pFlqkx6uD2CyQ/4Pq+9JAYx+
+	6sng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=L6KGWSezq2EEUMlQ/EhOLbyY2IENXk7sbUluqr7+KCg=;
+	b=QKAxPLTmFN4igxxNGJ3/KlHOYxwr/7ile8FjAQX0VIOBtP9YxVmhX+pjFNaqz0i668
+	xyZ4FhUcmfGdjxRXHmXekDGo0PLOArq8+CHuQ8nQp6uV95RYs9681t8ql2YHKA3Q5ec0
+	KdrXsznLZh+ns3IdcnyPV6vdoDFft5gJ3z2nnX9e0b/arw6+klSia/T7c3c6eTB6944k
+	ZKnPDMtFLliNtUUTChpttlyrQlRERdJEEXIzDn2JITXj/maGYsr261rY1hJfzyRPiRCs
+	N6GymwGAhvKcAzak9kHkDJtjeGHBqWXdy35iinPuIlAL4jGshlyjdc5ej7CCBb3GMfd3
+	f9Ng==
+X-Gm-Message-State: APf1xPBPQ9ffECFZDYibaJkRTV+e1Ya3GzSlXeZEKvSpjTzWFDEUgnLr
+	6+JpcVHZYDZ7KuIgGrfDUYQa1dQDEIfGSQq+Y+c=
+X-Google-Smtp-Source: AH8x224W3vX5tP4TaffaX5NCwbfSL69g9Mwhw/nXpd0WOcqk+N50xQKxkvICNzPWSaoliLBCZHPx7/fj3hRFgznAIPA=
+X-Received: by 10.80.187.101 with SMTP id y92mr3863911ede.251.1518184895232;
+	Fri, 09 Feb 2018 06:01:35 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <cfe8feff-815d-cf8c-3b7e-0a88f4a215c2@vitheia.com>
-Subject: Re: meta-ide-support toolchain & Recipe-specific Sysroots
+Received: by 10.80.175.66 with HTTP; Fri, 9 Feb 2018 06:01:34 -0800 (PST)
+In-Reply-To: <CANMO+isJ734rzQwj5mYD9-pAVMEFcekc=5fx+o4UyRUZFfq-Pw@mail.gmail.com>
+References: <CANMO+isJ734rzQwj5mYD9-pAVMEFcekc=5fx+o4UyRUZFfq-Pw@mail.gmail.com>
+From: TEXIER Pierre-Jean <texier.pj2@gmail.com>
+Date: Fri, 9 Feb 2018 15:01:34 +0100
+Message-ID: <CALRtUquAHWAkGOzU7t99X+UfW6CvEwsC_cCq3Wm8Z_GZ5xjwSQ@mail.gmail.com>
+To: Pehen Azam <pehen.azam@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Add a module/library to meta-toolchain-qt5 sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,170 +71,265 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Feb 2018 12:35:40 -0000
-Content-Type: multipart/alternative;
-	boundary="------------22DCA83A717FCA30858B0B7C"
-Content-Language: en-US
+X-List-Received-Date: Fri, 09 Feb 2018 14:01:37 -0000
+Content-Type: multipart/alternative; boundary="94eb2c19d83a623e5e0564c7f797"
 
---------------22DCA83A717FCA30858B0B7C
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--94eb2c19d83a623e5e0564c7f797
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-Hi
+SGkgUGVuZWgsDQoNCjIwMTgtMDItMDkgMTI6MzkgR01UKzAxOjAwIFBlaGVuIEF6YW0gPHBlaGVu
+LmF6YW1AZ21haWwuY29tPjoNCg0KPiBIaSwNCj4gSSB0cnkgdG8gYWRkIHF0Y2hhcnRzIHRvIG1l
+dGEtdG9vbGNoYWluLXF0NS4gTXkgcXVlc3Rpb24gaXMgdG8gd2hpY2gNCj4gcmVjaXBlcy9maWxl
+cyBzaG91bGQgSSBhZGQgcXRjaGFydHMgdG8gaGF2ZSBxdGNoYXJ0cyBvbiBtZXRhLXRvb2xjaGFp
+bi1xdDUNCj4gc2RrPw0KPiBJIG5lZWQgdG8gY29tcGlsZSBteSBwcm9ncmFtIHdpdGggcW1ha2Ug
+YXQgYC9vcHQvbXlpbWFnZS8yLjEuMi9zeXNyb290cy8NCj4geDg2XzY0LXBva3lzZGstbGludXgv
+dXNyL2Jpbi9xdDUvcW1ha2VgDQo+IEkgYW0gbm90IHN1cmUgd2hlcmUgc2hvdWxkIEkgcHV0IHRo
+ZSBxdGNoYXJ0cy4gVW5kZXIgbWV0YS1xdDUgb3INCj4gbWV0YS1teWFwcGxpY2F0aW9uL3JlY2lw
+ZXMtcXQgb3Igc29tZXdoZXJlIGVsc2UNCj4gIGhlcmUgaXMgcG9reSBkaXJlY3Rvcnk6DQo+IHBv
+a3kkIHRyZWUgLUwgMg0KPg0KPiAuDQo+DQo+IOKUnOKUgOKUgCBiaXRiYWtlDQo+DQo+IOKUgiAg
+IOKUlOKUgOKUgCAuLi4NCj4NCj4g4pSc4pSA4pSAIGJ1aWxkDQo+DQo+IOKUgiAgIOKUlOKUgOKU
+gCAuLi4NCj4NCj4g4pSc4pSA4pSAIG1ldGENCj4NCj4g4pSCICAg4pSU4pSA4pSAIC4uLg0KPg0K
+PiDilJzilIDilIAgbWV0YS1mcmVlc2NhbGUtZGlzdHJvDQo+DQo+IOKUgiAgIOKUlOKUgOKUgCAu
+Li4NCj4NCj4g4pSc4pSA4pSAIG1ldGEtZnNsLWFybQ0KPg0KPiDilIIgICDilJTilIDilIAgLi4u
+DQo+DQo+IOKUnOKUgOKUgCBtZXRhLW15cXRhcHBsaWNhdGlvbg0KPg0KPiDilIIgICDilJzilIDi
+lIAgY2xhc3Nlcw0KPg0KPiDilIIgICDilJzilIDilIAgY29uZg0KPg0KPiDilIIgICDilJzilIDi
+lIAgRE9DDQo+DQo+IOKUgiAgIOKUnOKUgOKUgCBsaWNlbnNlcw0KPg0KPiDilIIgICDilJzilIDi
+lIAgbWV0YS1wYXRjaA0KPg0KPiDilIIgICDilJzilIDilIAgUkVBRE1FLm1kDQo+DQo+IOKUgiAg
+IOKUnOKUgOKUgCByZWNpcGVzLWFwcHMNCj4NCj4g4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtYnNw
+DQo+DQo+IOKUgiAgIOKUnOKUgOKUgCByZWNpcGVzLWNvbm5lY3Rpdml0eQ0KPg0KPiDilIIgICDi
+lJzilIDilIAgcmVjaXBlcy1jb3JlDQo+DQo+IOKUgiAgIOKUnOKUgOKUgCByZWNpcGVzLWtlcm5l
+bA0KPg0KPiDilIIgICDilJTilIDilIAgcmVjaXBlcy1xdA0KPg0KPiDilJzilIDilIAgbWV0YS1v
+cGVuZW1iZWRkZWQNCj4NCj4g4pSCICAg4pSU4pSA4pSAIC4uLg0KPg0KPiDilJzilIDilIAgbWV0
+YS1wb2t5DQo+DQo+IOKUgiAgIOKUlOKUgOKUgCAuLi4NCj4NCj4g4pSc4pSA4pSAIG1ldGEtcXQ1
+DQo+DQo+IOKUgiAgIOKUnOKUgOKUgCBjbGFzc2VzDQo+DQo+IOKUgiAgIOKUnOKUgOKUgCBjb25m
+DQo+DQo+IOKUgiAgIOKUnOKUgOKUgCBDT1BZSU5HLk1JVA0KPg0KPiDilIIgICDilJzilIDilIAg
+ZmlsZXMNCj4NCj4g4pSCICAg4pSc4pSA4pSAIGxpYg0KPg0KPiDilIIgICDilJzilIDilIAgbGlj
+ZW5zZXMNCj4NCj4g4pSCICAg4pSc4pSA4pSAIFJFQURNRQ0KPg0KPiDilIIgICDilJzilIDilIAg
+cmVjaXBlcy1jb25uZWN0aXZpdHkNCj4NCj4g4pSCICAg4pSc4pSA4pSAIHJlY2lwZXMtZGV2dG9v
+bHMNCj4NCj4g4pSCICAg4pSU4pSA4pSAIHJlY2lwZXMtcXQNCj4NCj4g4pSc4pSA4pSAIG1ldGEt
+c2VsZnRlc3QNCj4NCj4g4pSc4pSA4pSAIG1ldGEtc2tlbGV0b24NCj4NCj4g4pSc4pSA4pSAIG1l
+dGEteW9jdG8NCj4NCj4g4pSc4pSA4pSAIG1ldGEteW9jdG8tYnNwDQo+DQo+IFJlZ2FyZHMsDQo+
+IFBlbmVoDQo+DQoNCg0KSWYgeW91IHdhbnQgdG8gd29yayB3aXRoIHF0Y2hhcnRzIGFuZCBtZXRh
+LXRvb2xjaGFpbi1xdDUgKHRvIGhhdmUgYSBjb3JyZWN0DQpzeXNyb290KSwNCnlvdSBtdXN0IGFk
+ZCB0aGlzIG1vZHVsZSB0byB0aGUgZm9sbG93aW5nIGZpbGU6IDxtZXRhLXF0NT4NCi9yZWNpcGVz
+LXF0L3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLXF0NS10b29sY2hhaW4tdGFyZ2V0LmJiLg0K
+DQpGWUksIEkgcHVzaGVkIGEgcGF0Y2ggbGFzdCB3ZWRuZXNkYXkgdG8gc3VwcG9ydCBxdGNoYXJ0
+cyBhbmQgcXRtcXR0Og0KaHR0cHM6Ly9wYXRjaHdvcmsub3BlbmVtYmVkZGVkLm9yZy9wYXRjaC8x
+NDc5NjIvDQoNClJlZ2FyZHMNCg0KLS0tDQpQaWVycmUtSmVhbg0KDQo+DQo+DQo+DQo+DQo+IC0t
+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IHlv
+Y3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IGh0dHBzOi8vbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KPg0KPg0K
 
-I ended up not to use meta-ide-support, but instead I've added the 
-support of generating the toolchain to my own recipe (my component): 
-that is my final intention, to be able to also build my component 
-outside Yocto.
-So when I do a `bitbake my-component` beside building the component, the 
-toolchain necessary to build the component outside Yocto is also generated.
+--94eb2c19d83a623e5e0564c7f797
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-In my recipe I've added some of the code from the meta-ide-support:
+PGRpdiBkaXI9Imx0ciI+SGkgUGVuZWgsPGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPjxicj48ZGl2
+IGNsYXNzPSJnbWFpbF9xdW90ZSI+MjAxOC0wMi0wOSAxMjozOSBHTVQrMDE6MDAgUGVoZW4gQXph
+bSA8c3BhbiBkaXI9Imx0ciI+Jmx0OzxhIGhyZWY9Im1haWx0bzpwZWhlbi5hemFtQGdtYWlsLmNv
+bSIgdGFyZ2V0PSJfYmxhbmsiPnBlaGVuLmF6YW1AZ21haWwuY29tPC9hPiZndDs8L3NwYW4+Ojxi
+cj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4IDBweCAw
+cHggMC44ZXg7cGFkZGluZy1sZWZ0OjFleDtib3JkZXItbGVmdC1jb2xvcjpyZ2IoMjA0LDIwNCwy
+MDQpO2JvcmRlci1sZWZ0LXdpZHRoOjFweDtib3JkZXItbGVmdC1zdHlsZTpzb2xpZCI+PGRpdiBk
+aXI9Imx0ciI+PGRpdiBzdHlsZT0iY29sb3I6cmdiKDM0LDM0LDM0KTt0ZXh0LXRyYW5zZm9ybTpu
+b25lO3RleHQtaW5kZW50OjBweDtsZXR0ZXItc3BhY2luZzpub3JtYWw7Zm9udC1mYW1pbHk6YXJp
+YWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTIuOHB4O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtd2Vp
+Z2h0OjQwMDt3b3JkLXNwYWNpbmc6MHB4O3doaXRlLXNwYWNlOm5vcm1hbDtiYWNrZ3JvdW5kLWNv
+bG9yOnJnYigyNTUsMjU1LDI1NSkiPkhpLDwvZGl2PjxkaXYgc3R5bGU9ImNvbG9yOnJnYigzNCwz
+NCwzNCk7dGV4dC10cmFuc2Zvcm06bm9uZTt0ZXh0LWluZGVudDowcHg7bGV0dGVyLXNwYWNpbmc6
+bm9ybWFsO2ZvbnQtZmFtaWx5OmFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEyLjhweDtmb250
+LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDo0MDA7d29yZC1zcGFjaW5nOjBweDt3aGl0ZS1zcGFj
+ZTpub3JtYWw7YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj5JIHRyeSB0byBhZGQg
+cXRjaGFydHMgdG8gbWV0YS10b29sY2hhaW4tcXQ1LiBNeSBxdWVzdGlvbiBpczxzcGFuIGNsYXNz
+PSJnbWFpbC1tXzE4MTg4ODUzNTc4NjE1ODMzNTNnbWFpbC1jb21tZW50LWNvcHkiPsKgdG8gd2hp
+Y2ggcmVjaXBlcy9maWxlcyBzaG91bGQgSSBhZGQgDQpxdGNoYXJ0cyB0byBoYXZlIHF0Y2hhcnRz
+IG9uIG1ldGEtdG9vbGNoYWluLXF0NSBzZGs/PC9zcGFuPjwvZGl2PjxkaXYgc3R5bGU9ImNvbG9y
+OnJnYigzNCwzNCwzNCk7dGV4dC10cmFuc2Zvcm06bm9uZTt0ZXh0LWluZGVudDowcHg7bGV0dGVy
+LXNwYWNpbmc6bm9ybWFsO2ZvbnQtZmFtaWx5OmFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEy
+LjhweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDo0MDA7d29yZC1zcGFjaW5nOjBweDt3
+aGl0ZS1zcGFjZTpub3JtYWw7YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj48c3Bh
+biBjbGFzcz0iZ21haWwtbV8xODE4ODg1MzU3ODYxNTgzMzUzZ21haWwtY29tbWVudC1jb3B5Ij5J
+IG5lZWQgDQp0byBjb21waWxlIG15IHByb2dyYW0gd2l0aCBxbWFrZSBhdCBgPGNvZGU+L29wdC9t
+eWltYWdlLzIuMS4yL3N5c3Jvb3RzLzx3YnI+eDg2XzY0LXBva3lzZGstbGludXgvdXNyL2Jpbi88
+d2JyPnF0NS9xbWFrZTwvY29kZT48L3NwYW4+YDwvZGl2PjxkaXYgc3R5bGU9ImNvbG9yOnJnYigz
+NCwzNCwzNCk7dGV4dC10cmFuc2Zvcm06bm9uZTt0ZXh0LWluZGVudDowcHg7bGV0dGVyLXNwYWNp
+bmc6bm9ybWFsO2ZvbnQtZmFtaWx5OmFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEyLjhweDtm
+b250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDo0MDA7d29yZC1zcGFjaW5nOjBweDt3aGl0ZS1z
+cGFjZTpub3JtYWw7YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjEyLjhweCI+SSBhbSBub3Qgc3VyZSB3aGVyZSBzaG91bGQgSSBwdXQgdGhl
+IHF0Y2hhcnRzLiBVbmRlciBtZXRhLXF0NSBvciBtZXRhLW15YXBwbGljYXRpb24vcmVjaXBlcy1x
+dCBvciBzb21ld2hlcmUgZWxzZTwvc3Bhbj48L2Rpdj48ZGl2IHN0eWxlPSJjb2xvcjpyZ2IoMzQs
+MzQsMzQpO3RleHQtdHJhbnNmb3JtOm5vbmU7dGV4dC1pbmRlbnQ6MHB4O2xldHRlci1zcGFjaW5n
+Om5vcm1hbDtmb250LWZhbWlseTphcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMi44cHg7Zm9u
+dC1zdHlsZTpub3JtYWw7Zm9udC13ZWlnaHQ6NDAwO3dvcmQtc3BhY2luZzowcHg7d2hpdGUtc3Bh
+Y2U6bm9ybWFsO2JhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMi44cHgiPsKgaGVyZSBpcyBwb2t5IGRpcmVjdG9yeTo8L3NwYW4+PGJyPjwv
+ZGl2PjxkaXYgc3R5bGU9ImNvbG9yOnJnYigzNCwzNCwzNCk7dGV4dC10cmFuc2Zvcm06bm9uZTt0
+ZXh0LWluZGVudDowcHg7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO2ZvbnQtZmFtaWx5OmFyaWFsLHNh
+bnMtc2VyaWY7Zm9udC1zaXplOjEyLjhweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDo0
+MDA7d29yZC1zcGFjaW5nOjBweDt3aGl0ZS1zcGFjZTpub3JtYWw7YmFja2dyb3VuZC1jb2xvcjpy
+Z2IoMjU1LDI1NSwyNTUpIj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij5wb2t5JCB0cmVl
+IC1MIDLCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYg
+c3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPi7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6
+ZToxMi44cHgiPuKUnOKUgOKUgCBiaXRiYWtlwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilILC
+oCDCoOKUlOKUgOKUgCAuLi7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKUnOKUgOKUgCBidWls
+ZMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPC9kaXY+
+PGRpdiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+4pSCwqAgwqDilJTilIDilIAgLi4uwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8L2Rpdj48ZGl2IHN0eWxl
+PSJmb250LXNpemU6MTIuOHB4Ij7ilJzilIDilIAgbWV0YcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6
+MTIuOHB4Ij7ilILCoCDCoOKUlOKUgOKUgCAuLi7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKU
+nOKUgOKUgCBtZXRhLWZyZWVzY2FsZS1kaXN0cm/CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwv
+ZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKUgsKgIMKg4pSU4pSA4pSAIC4uLsKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPC9kaXY+PGRpdiBz
+dHlsZT0iZm9udC1zaXplOjEyLjhweCI+4pSc4pSA4pSAIG1ldGEtZnNsLWFybcKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6
+MTIuOHB4Ij7ilILCoCDCoOKUlOKUgOKUgCAuLi7CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKU
+nOKUgOKUgCBtZXRhLW15cXRhcHBsaWNhdGlvbsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8
+L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilILCoCDCoOKUnOKUgOKUgCBjbGFz
+c2VzwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8L2Rpdj48ZGl2IHN0
+eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilILCoCDCoOKUnOKUgOKUgCBjb25mwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQt
+c2l6ZToxMi44cHgiPuKUgsKgIMKg4pSc4pSA4pSAIERPQ8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOjEyLjhw
+eCI+4pSCwqAgwqDilJzilIDilIAgbGljZW5zZXPCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoMKgPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+4pSCwqAgwqDi
+lJzilIDilIAgbWV0YS1wYXRjaMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8
+L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilILCoCDCoOKUnOKUgOKUgCBSRUFE
+TUUubWTCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYgc3R5
+bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKUgsKgIMKg4pSc4pSA4pSAIHJlY2lwZXMtYXBwc8KgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6
+MTIuOHB4Ij7ilILCoCDCoOKUnOKUgOKUgCByZWNpcGVzLWJzcMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+4pSCwqAg
+wqDilJzilIDilIAgcmVjaXBlcy1jb25uZWN0aXZpdHnCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9k
+aXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+4pSCwqAgwqDilJzilIDilIAgcmVjaXBl
+cy1jb3JlwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqDCoDwvZGl2PjxkaXYgc3R5bGU9
+ImZvbnQtc2l6ZToxMi44cHgiPuKUgsKgIMKg4pSc4pSA4pSAIHJlY2lwZXMta2VybmVswqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44
+cHgiPuKUgsKgIMKg4pSU4pSA4pSAIHJlY2lwZXMtcXTCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoMKgPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+4pSc4pSA4pSA
+IG1ldGEtb3BlbmVtYmVkZGVkwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqA8L2Rpdj48
+ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilILCoCDCoOKUlOKUgOKUgCAuLi7CoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYgc3R5bGU9
+ImZvbnQtc2l6ZToxMi44cHgiPuKUnOKUgOKUgCBtZXRhLXBva3nCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44
+cHgiPuKUgsKgIMKg4pSU4pSA4pSAIC4uLsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOjEyLjhweCI+4pSc4pSA
+4pSAIG1ldGEtcXQ1wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqDC
+oDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKUgsKgIMKg4pSc4pSA4pSAIGNs
+YXNzZXPCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYg
+c3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKUgsKgIMKg4pSc4pSA4pSAIGNvbmbCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdiBzdHlsZT0iZm9u
+dC1zaXplOjEyLjhweCI+4pSCwqAgwqDilJzilIDilIAgQ09QWUlORy5NSVTCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgi
+PuKUgsKgIMKg4pSc4pSA4pSAIGZpbGVzwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilILCoCDCoOKU
+nOKUgOKUgCBsaWLCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKUgsKgIMKg4pSc4pSA4pSAIGxp
+Y2Vuc2VzwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqDCoDwvZGl2PjxkaXYg
+c3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKUgsKgIMKg4pSc4pSA4pSAIFJFQURNRcKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8L2Rpdj48ZGl2IHN0eWxlPSJmb250
+LXNpemU6MTIuOHB4Ij7ilILCoCDCoOKUnOKUgOKUgCByZWNpcGVzLWNvbm5lY3Rpdml0ecKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgwqA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilILC
+oCDCoOKUnOKUgOKUgCByZWNpcGVzLWRldnRvb2xzwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqDC
+oDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMi44cHgiPuKUgsKgIMKg4pSU4pSA4pSAIHJl
+Y2lwZXMtcXTCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoMKgPC9kaXY+PGRpdiBz
+dHlsZT0iZm9udC1zaXplOjEyLjhweCI+4pSc4pSA4pSAIG1ldGEtc2VsZnRlc3TCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoDwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZTox
+Mi44cHgiPuKUnOKUgOKUgCBtZXRhLXNrZWxldG9uwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqA8L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilJzilIDilIAg
+bWV0YS15b2N0b8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgwqA8L2Rp
+dj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij7ilJzilIDilIAgbWV0YS15b2N0by1ic3A8
+L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTIuOHB4Ij48YnI+PC9kaXY+PC9kaXY+PGRpdiBz
+dHlsZT0iY29sb3I6cmdiKDM0LDM0LDM0KTt0ZXh0LXRyYW5zZm9ybTpub25lO3RleHQtaW5kZW50
+OjBweDtsZXR0ZXItc3BhY2luZzpub3JtYWw7Zm9udC1mYW1pbHk6YXJpYWwsc2Fucy1zZXJpZjtm
+b250LXNpemU6MTIuOHB4O2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtd2VpZ2h0OjQwMDt3b3JkLXNw
+YWNpbmc6MHB4O3doaXRlLXNwYWNlOm5vcm1hbDtiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1
+LDI1NSkiPlJlZ2FyZHMsPC9kaXY+PGRpdiBzdHlsZT0iY29sb3I6cmdiKDM0LDM0LDM0KTt0ZXh0
+LXRyYW5zZm9ybTpub25lO3RleHQtaW5kZW50OjBweDtsZXR0ZXItc3BhY2luZzpub3JtYWw7Zm9u
+dC1mYW1pbHk6YXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTIuOHB4O2ZvbnQtc3R5bGU6bm9y
+bWFsO2ZvbnQtd2VpZ2h0OjQwMDt3b3JkLXNwYWNpbmc6MHB4O3doaXRlLXNwYWNlOm5vcm1hbDti
+YWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPlBlbmVoPC9kaXY+PC9kaXY+PC9ibG9j
+a3F1b3RlPjxkaXY+PGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SWYgeW91IHdhbnQgdG8g
+d29yayB3aXRoIHF0Y2hhcnRzIGFuZCBtZXRhLXRvb2xjaGFpbi1xdDUgKHRvIGhhdmUgYSBjb3Jy
+ZWN0IHN5c3Jvb3QpLDxicj55b3UgbXVzdCBhZGQgdGhpcyBtb2R1bGUgdG8gdGhlIGZvbGxvd2lu
+ZyBmaWxlOiAmbHQ7bWV0YS1xdDUmZ3Q7IC9yZWNpcGVzLXF0L3BhY2thZ2Vncm91cHMvPGEgaHJl
+Zj0iaHR0cDovL3BhY2thZ2Vncm91cC1xdDUtdG9vbGNoYWluLXRhcmdldC5iYiI+cGFja2FnZWdy
+b3VwLXF0NS10b29sY2hhaW4tdGFyZ2V0LmJiPC9hPi48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
+PkZZSSwgSSBwdXNoZWQgYSBwYXRjaCBsYXN0IHdlZG5lc2RheSB0byBzdXBwb3J0IHF0Y2hhcnRz
+IGFuZCBxdG1xdHQ6IDxhIGhyZWY9Imh0dHBzOi8vcGF0Y2h3b3JrLm9wZW5lbWJlZGRlZC5vcmcv
+cGF0Y2gvMTQ3OTYyLyI+aHR0cHM6Ly9wYXRjaHdvcmsub3BlbmVtYmVkZGVkLm9yZy9wYXRjaC8x
+NDc5NjIvPC9hPsKgPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5SZWdhcmRzPC9kaXY+PGRpdj48
+YnI+PC9kaXY+PGRpdj4tLS08L2Rpdj48ZGl2PlBpZXJyZS1KZWFuPC9kaXY+PGJsb2NrcXVvdGUg
+Y2xhc3M9ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4O3BhZGRp
+bmctbGVmdDoxZXg7Ym9yZGVyLWxlZnQtY29sb3I6cmdiKDIwNCwyMDQsMjA0KTtib3JkZXItbGVm
+dC13aWR0aDoxcHg7Ym9yZGVyLWxlZnQtc3R5bGU6c29saWQiPjxkaXYgZGlyPSJsdHIiPjxkaXYg
+c3R5bGU9ImNvbG9yOnJnYigzNCwzNCwzNCk7dGV4dC10cmFuc2Zvcm06bm9uZTt0ZXh0LWluZGVu
+dDowcHg7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO2ZvbnQtZmFtaWx5OmFyaWFsLHNhbnMtc2VyaWY7
+Zm9udC1zaXplOjEyLjhweDtmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDo0MDA7d29yZC1z
+cGFjaW5nOjBweDt3aGl0ZS1zcGFjZTpub3JtYWw7YmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1
+NSwyNTUpIj48YnI+PC9kaXY+PGRpdiBjbGFzcz0iZ21haWwtbV8xODE4ODg1MzU3ODYxNTgzMzUz
+Z21haWwteWo2cW8iIHN0eWxlPSJjb2xvcjpyZ2IoMzQsMzQsMzQpO3RleHQtdHJhbnNmb3JtOm5v
+bmU7dGV4dC1pbmRlbnQ6MHB4O2xldHRlci1zcGFjaW5nOm5vcm1hbDtmb250LWZhbWlseTphcmlh
+bCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMi44cHg7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC13ZWln
+aHQ6NDAwO3dvcmQtc3BhY2luZzowcHg7d2hpdGUtc3BhY2U6bm9ybWFsO2JhY2tncm91bmQtY29s
+b3I6cmdiKDI1NSwyNTUsMjU1KSI+PC9kaXY+PGJyIGNsYXNzPSJnbWFpbC1tXzE4MTg4ODUzNTc4
+NjE1ODMzNTNnbWFpbC1BcHBsZS1pbnRlcmNoYW5nZS1uZXdsaW5lIj48YnI+PC9kaXY+DQo8YnI+
+LS08YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX188d2JyPl9fX19fX19fX19fX19f
+X19fPGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJyPg0KPGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlv
+Y3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPg0KPGEgaHJlZj0i
+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiB0YXJnZXQ9Il9i
+bGFuayIgcmVsPSJub3JlZmVycmVyIj5odHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC48d2JyPm9y
+Zy9saXN0aW5mby95b2N0bzwvYT48YnI+DQo8YnI+PC9ibG9ja3F1b3RlPjwvZGl2Pjxicj48L2Rp
+dj48L2Rpdj4NCg==
 
-     inherit toolchain-scripts
-
-     do_populate_ide_support () {
-       toolchain_create_tree_env_script
-     }
-     addtask populate_ide_support before do_build after do_install
-
-And now when I build my recipe I also get a environment-setup script in 
-the build/tmp/ directory - same location as the meta-ide-toolchain used 
-before.
-Now everything is setup correctly:
-OECORE_NATIVE_SYSROOT is set to 
-[...]/build/tmp/work/cortexa5hf-neon-poky-linux-gnueabi/component/1.0/recipe-sysroot-native 
-
-Also all the dependencies are there.
-
-Cheers.
-
-
-On 01/02/18 13:39, Mircea Gliga wrote:
-> I have a problem starting from the rocko upgrade and related to the 
-> Recipe-specific Sysroots introduced in Yocto 2.3
->
-> Our project uses cmake. So out recipe has:
-> DEPENDS = "cmake-native [...]"
->
-> So cmake ends up in 
-> build/tmp/work/cortexa5hf-neon-poky-linux-gnueabi/component/1.0-r0/recipe-sysroot-native/usr/bin/cmake
-> So when building inside yocto everything is ok.
->
-> When we build outside yocto, we use the cross-toolchain generated and 
-> populated within the Build Directory:
->   $ bitbake meta-ide-toolchain
-> and then source the environment:
->   $ source build/tmp/environment-setup-cortexa5hf-neon-poky-linux-gnueabi
->
-> On rocko OECORE_NATIVE_SYSROOT is set to 
-> [...]/build/tmp/work/cortexa5hf-neon-poky-linux-gnueabi/meta-ide-support/1.0-r3/recipe-sysroot-native 
-> - which doesn't have cmake:
->   $ which cmake
->   $ /no cmake found/
->
-> And on Krogoth it was build/tmp/sysroots/x86_64-linux - cmake is there:
->   $ which cmake
->   <full path>/build/tmp/sysroots/x86_64-linux/usr/bin/cmake
->
->
-> How can I add it to my toolchain so that I can also build outside yocto ?
->
-> Thanks in advance !
->
-> Regards
->
->
->
-
-
---------------22DCA83A717FCA30858B0B7C
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi<br>
-    <br>
-    I ended up not to use meta-ide-support, but instead I've added the
-    support of generating the toolchain to my own recipe (my component):
-    that is my final intention, to be able to also build my component
-    outside Yocto.<br>
-    So when I do a `bitbake my-component` beside building the component,
-    the toolchain necessary to build the component outside Yocto is also
-    generated.<br>
-    <br>
-    In my recipe I've added some of the code from the meta-ide-support:<br>
-    <br>
-        inherit toolchain-scripts<br>
-    <br>
-        do_populate_ide_support () {<br>
-          toolchain_create_tree_env_script<br>
-        }<br>
-        addtask populate_ide_support before do_build after do_install<br>
-    <br>
-    And now when I build my recipe I also get a environment-setup script
-    in the build/tmp/ directory - same location as the
-    meta-ide-toolchain used before.<br>
-    Now everything is setup correctly:<br>
-    OECORE_NATIVE_SYSROOT is set to
-[...]/build/tmp/work/cortexa5hf-neon-poky-linux-gnueabi/component/1.0/recipe-sysroot-native
-    <br>
-    Also all the dependencies are there.<br>
-    <br>
-    Cheers.<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 01/02/18 13:39, Mircea Gliga wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:cfe8feff-815d-cf8c-3b7e-0a88f4a215c2@vitheia.com">
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-      I have a problem starting from the rocko upgrade and related to
-      the Recipe-specific Sysroots introduced in Yocto 2.3<br>
-      <br>
-      Our project uses cmake. So out recipe has:<br>
-      DEPENDS = "cmake-native [...]"<br>
-      <br>
-      So cmake ends up in
-build/tmp/work/cortexa5hf-neon-poky-linux-gnueabi/component/1.0-r0/recipe-sysroot-native/usr/bin/cmake<br>
-      So when building inside yocto everything is ok.<br>
-      <br>
-      When we build outside yocto, we use the cross-toolchain generated
-      and populated within the Build Directory: <br>
-        $ bitbake meta-ide-toolchain<br>
-      and then source the environment:<br>
-        $ source
-      build/tmp/environment-setup-cortexa5hf-neon-poky-linux-gnueabi<br>
-      <br>
-      On rocko OECORE_NATIVE_SYSROOT is set to
-[...]/build/tmp/work/cortexa5hf-neon-poky-linux-gnueabi/meta-ide-support/1.0-r3/recipe-sysroot-native
-      - which doesn't have cmake:<br>
-        $ which cmake<br>
-        $ <i>no cmake found</i><br>
-      <br>
-      And on Krogoth it was build/tmp/sysroots/x86_64-linux - cmake is
-      there:<br>
-        $ which cmake<br>
-        &lt;full path&gt;/build/tmp/sysroots/x86_64-linux/usr/bin/cmake<br>
-      <br>
-      <br>
-      How can I add it to my toolchain so that I can also build outside
-      yocto ? <br>
-      <br>
-      Thanks in advance !<br>
-      <br>
-      Regards<br>
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------22DCA83A717FCA30858B0B7C--
+--94eb2c19d83a623e5e0564c7f797--
