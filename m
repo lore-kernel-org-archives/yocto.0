@@ -1,66 +1,31 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87CB3E00DD0; Mon, 12 Feb 2018 07:21:58 -0800 (PST)
+	id A15C8E00E41; Mon, 12 Feb 2018 07:47:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8A62E009BB
-	for <yocto@yoctoproject.org>; Mon, 12 Feb 2018 07:21:57 -0800 (PST)
-Received: by mail-lf0-f45.google.com with SMTP id k19so20935451lfj.1
-	for <yocto@yoctoproject.org>; Mon, 12 Feb 2018 07:21:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=IFdH70BBw4eUurLofFMVB4eRAe1uchi7++OECP0AVdM=;
-	b=V5xUb9CglSwoJYd1aimIbVbtcFdQKPY1bR5HNGP5PSo1jkj1eA7N9Ll3BXRWc99L/Q
-	BYW1G33X+Xio4+DhC0TSW89ACpLuBzzNVs5nR2FrWWFAsxnp9rNy3cCnokyTPXrfcwVv
-	FB09o+NwpaqhzhrECQTJocVmoppW6z2M6dK/8CXY/EEwmEBRnw43j12Ybxq9gA01qLWB
-	QWnMBFmZDgxsu4wS9DCSIyn3h1bQonlvxnNrDzSVFeJtrC8OpJkmmXLcKpW9TDT73gsS
-	eUTcI+dFB56TxmQS3RJ2gQ3Om1vNsEgcwIdIVvu8nz1qxHqumspVkUjlbpWLxz8KpyeV
-	24cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=IFdH70BBw4eUurLofFMVB4eRAe1uchi7++OECP0AVdM=;
-	b=G6keugIBg4LLKE8eH9ilCJwvF/yg90Qz5ewdPe2pKB/ibiMR8D7qOqqhDzeHcG6XCf
-	Xxj1itsRJUfObonu3vwiSJDHatRh4O1NLwQ+g6oCi9aGDW0qfK+tEDGmm3I00esfqm67
-	lHCa3DnU1oKvUXBLDzuc5qOKbiUFQeCLnDevcWzxaW7AyR2zgAAcdEAHyA+Urcn9h92e
-	qOM+LHYPpwIeF/nw1KWnoe+GKE9Kda8EQ74FvxQxgjfAtx9nULiiw5JNEbirp34dC7m8
-	YQt5oOz/0CVdW55HSdXzCiQQPnxw3TaScgy4Xdm0+GsH1BfyyzphDqXRRv8IRjK+cOlj
-	VGCQ==
-X-Gm-Message-State: APf1xPB4mZu8pcdsM4Wpv8Pt0ifiX9jqTRLYefRDrgCfi8tzLogmL9ha
-	OiJsFXbt+ZR/791HUffuNp53kPyA2G1SepdUNSU+mA+I
-X-Google-Smtp-Source: AH8x224ezFvn+iYFGpAeiE0vdyNMnYy+xMDVJBvSFtAYgQyk0po0E1pWTvEIZMP5v7wW+093DYVC701Ue3TcoYLqAvo=
-X-Received: by 10.25.78.79 with SMTP id c76mr7129044lfb.98.1518448916536; Mon,
-	12 Feb 2018 07:21:56 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.25.217.21 with HTTP; Mon, 12 Feb 2018 07:21:55 -0800 (PST)
-In-Reply-To: <MWHPR13MB1584BDB6AC757E1A07976D2E9EF30@MWHPR13MB1584.namprd13.prod.outlook.com>
-References: <MWHPR13MB1584BDB6AC757E1A07976D2E9EF30@MWHPR13MB1584.namprd13.prod.outlook.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Mon, 12 Feb 2018 10:21:55 -0500
-Message-ID: <CAHUNapS3e9mG1Z2nfUFG0zQNGn_oTABWX9NqbN+d1hf-pFp0RQ@mail.gmail.com>
-To: Peter Spierenburg <peter.spierenburg@nautel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Here is my BSP for the adzs-sc589-ezlite eval board.
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91A82E00D1C
+	for <yocto@yoctoproject.org>; Mon, 12 Feb 2018 07:47:10 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	12 Feb 2018 07:47:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.46,501,1511856000"; d="scan'208";a="29396508"
+Received: from kanavin-desktop.fi.intel.com ([10.237.68.161])
+	by fmsmga004.fm.intel.com with ESMTP; 12 Feb 2018 07:47:08 -0800
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 12 Feb 2018 17:40:50 +0200
+Message-Id: <20180212154051.17855-1-alexander.kanavin@linux.intel.com>
+X-Mailer: git-send-email 2.15.1
+Subject: [PATCH][auh 1/2] upgrade-helper.conf: add a template for easy deployment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,38 +37,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Feb 2018 15:21:58 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1ce15c47a1ec05650570f2"
+X-List-Received-Date: Mon, 12 Feb 2018 15:47:11 -0000
 
---94eb2c1ce15c47a1ec05650570f2
-Content-Type: text/plain; charset="UTF-8"
+From: Chang Rebecca Swee Fun <rebecca.swee.fun.chang@intel.com>
 
-On Thu, Feb 8, 2018 at 8:43 AM, Peter Spierenburg <
-peter.spierenburg@nautel.com> wrote:
+Settings mentioned in the README have been ported over and now users
+are able to copy and start modifying for personal use cases.
+This file will served as a reference to minimize errors when users
+trying to create a new conf file by following the README.
 
-> I've created a board support package for the adzs-sc589-ezlite evaluation
-> board from Analog Devices.
->
+Signed-off-by: Chang Rebecca Swee Fun <rebecca.swee.fun.chang@intel.com>
+---
+ upgrade-helper.conf | 70 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 upgrade-helper.conf
 
-Would you consider adding it to the layer index?
-http://layers.openembedded.org/layerindex/submit/
+diff --git a/upgrade-helper.conf b/upgrade-helper.conf
+new file mode 100644
+index 0000000..c9cc150
+--- /dev/null
++++ b/upgrade-helper.conf
+@@ -0,0 +1,70 @@
++#
++# This file is your upgrade-helper configuration files and is where all local user
++# settings specifically for AUH are placed. The comments in this file provide some
++# guidelines to the options a new user to AUH tool might want to change.
++#
++# This file should be placed inside your BUILDDIR/upgrade-helper after initializing
++# the OE build environment.
++#
++# Lines starting with the '#' character are commented out and in some cases the
++# default values are provided as comments to show people example syntax. Enabling
++# the option is a question of removing the # character and making any change to the
++# variable as required.
++
++[maintainer_override]
++# mails for recipe upgrades will go to john.doe instead of jane.doe, etc
++# see also the global_maintainer_override option
++jane.doe@doe.com=john.doe@doe.com
++johhny.bravo@bravo.com=john.doe@doe.com
++
++[settings]
++# recipes in blacklist will be skipped
++blacklist=python glibc gcc
++
++# only recipes belonging to maintainers in whitelist will be attempted
++maintainers_whitelist=jane.doe@doe.com john.doe@doe.com johhny.bravo@bravo.com
++
++# email for all recipe upgrades will go to john.doe, except those listed
++# in specific maintainer_override entries above
++global_maintainer_override=john.doe@doe.com
++
++# SMTP server
++# Optional if your are running AUH locally
++smtp=smtp.my-server.com:25
++
++# from whom should the mails arrive
++from=upgrade.helper@my-server.com
++
++# who should get the status mail with statistics, at the end
++status_recipients=john.doe@doe.com
++
++# specify the directory where work (patches) will be saved (optional)
++#workdir=
++
++# publish url to use in statistics summary (optional)
++#publish_work_url=http://auh.somehost.com/work
++
++# clean sstate directory before upgrading
++clean_sstate=yes
++
++# clean tmp directory before upgrading
++clean_tmp=yes
++
++# Machines to test build with.
++# Append _libc-name to test with alternative C library implementations
++# e.g. qemux86_musl.
++#
++# Buildhistory and testimages will be created only for the first
++# machine in the list, as otherwise it adds enormously to AUH run time.
++machines=qemux86 qemux86_musl qemux86-64 qemuarm qemumips qemuppc
++
++# optional features
++buildhistory=no
++testimage=no
++testimage_name=image-custom # defaults to core-image-sato
++
++# to enable upgrade recipes in a layer example for meta-intel
++layer_mode=False
++layer_name=meta-intel
++layer_dir=DIR/meta-intel
++layer_machines=intel-core2-32 intel-corei7-64 intel-quark
+-- 
+2.15.1
 
---94eb2c1ce15c47a1ec05650570f2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On T=
-hu, Feb 8, 2018 at 8:43 AM, Peter Spierenburg <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:peter.spierenburg@nautel.com" target=3D"_blank">peter.spierenbur=
-g@nautel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"ltr"><div id=3D"gmail-m_-3942684795950657604divtag=
-defaultwrapper" style=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibr=
-i,Helvetica,sans-serif" dir=3D"ltr"><p style=3D"margin-top:0px;margin-botto=
-m:0px">I&#39;ve created a board support package for the adzs-sc589-ezlite e=
-valuation board from Analog Devices.<br></p></div></div></blockquote><div><=
-br>Would you consider adding it to the layer index?<br><a href=3D"http://la=
-yers.openembedded.org/layerindex/submit/">http://layers.openembedded.org/la=
-yerindex/submit/</a><br><br>=C2=A0</div></div></div></div>
-
---94eb2c1ce15c47a1ec05650570f2--
