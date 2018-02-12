@@ -1,41 +1,60 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 35834E00E36; Mon, 12 Feb 2018 03:47:00 -0800 (PST)
+	id B556FE00DD7; Mon, 12 Feb 2018 07:16:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE,WEIRD_PORT autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.48 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6CE6E0097D
-	for <yocto@yoctoproject.org>; Mon, 12 Feb 2018 03:46:59 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Feb 2018 03:46:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,501,1511856000"; d="scan'208";a="17796982"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga006.jf.intel.com with ESMTP; 12 Feb 2018 03:46:57 -0800
-To: "Diaz de Grenu, Jose" <Jose.DiazdeGrenu@digi.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <0B2EBCD48D33654381E736352034C70C01B5781A@dor-sms-xch01.digi.com>
-	<5aa601c6-2947-c890-eb37-ed9b33bd8677@linux.intel.com>
-	<0B2EBCD48D33654381E736352034C70C01B5D3AC@dor-sms-xch01.digi.com>
-	<3814c4b4-4787-1e7e-6791-a69856254831@linux.intel.com>
-	<0B2EBCD48D33654381E736352034C70C01C85287@dor-sms-xch01.digi.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <e85018cb-fe82-fcb0-05c6-1e4ee909f8bb@linux.intel.com>
-Date: Mon, 12 Feb 2018 13:40:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75533E009BB
+	for <yocto@yoctoproject.org>; Mon, 12 Feb 2018 07:16:40 -0800 (PST)
+Received: by mail-lf0-f48.google.com with SMTP id g72so20881173lfg.5
+	for <yocto@yoctoproject.org>; Mon, 12 Feb 2018 07:16:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=txuhdximDuY4U7AKZzRHB8Ok7u2453AFQAKknKQ0RL8=;
+	b=vHmnuCNIImi3QuOls3TJYu4ztsLkojWDeCJbZkh0EuTIu95LeaEjBSljoBrJ9/Ixop
+	G5fGFV2SzH+EyUGhrgQwAeZIX2LbVS6rnrqRi7N9mtm+lYJo+qZyvgPZi4T/diXf7BG/
+	bLRhW50pgLJ5g4Wm10V8CjO1RjbQvXVWCZ6qMoDC62b7ogB3rrPZQ9EWqIElOJ40vafa
+	dFIfJUsbysqUj+EbXqWTckz2UBDEwKUztqq+o0SrpzTODRh4PnhPm1tK8vVV2uiHeDOP
+	BsAXHzBIBDLpNGzP8LKk3Lg3DtOryTSpennY/DXZr255l550pzfLjy4RuW5x1VJFmRtz
+	ebmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=txuhdximDuY4U7AKZzRHB8Ok7u2453AFQAKknKQ0RL8=;
+	b=BQIIfALCztkkCqRRhEZoIVGbJPsgnonZGRhn8CuYpafHLCV7KWpVRVjYCaUEBmukjc
+	n/v+yyu3VqAmMNb4P23KTyhoki1AX9XUsZ7DudfwtcGDyUjIavKT8grWGcPHVEs+JG/a
+	fYDi500KUGneJ64wUoOKDtsN4Ot+qgaXe+pNFz0H4EfFY5JXW9T75c3fj7ly6uUo9os9
+	eivKSSWyFOVDjAvzHVpqCkLeBTxv6jp5drRKC+M3TD4F0KWuCrTHBbbTDNUsQ5NJId4v
+	A/19o0QYpOKIv4c0xnXncXV5cu4DQ63APlBtADAWx7DWZgIkOI7ygXQ9YsO0E1e9Pcsr
+	f33w==
+X-Gm-Message-State: APf1xPCXQuZXadNIVDXqtAtE+p7N5SXkIOgRZjNY8GjYo0BBYgfRyWQ/
+	bceusWanBynvssamhThS7JGe/inB25m0ej2gwd1NLKRG
+X-Google-Smtp-Source: AH8x227d4hNvyo0ct2F+UrCIV9CgmF9JnaRBq6vDObuBGzyXw+v/aHn/5uw6HqY8NHGols6hAnVkG+t3qpl1Y3E72ys=
+X-Received: by 10.46.50.5 with SMTP id y5mr8228847ljy.111.1518448598640; Mon,
+	12 Feb 2018 07:16:38 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <0B2EBCD48D33654381E736352034C70C01C85287@dor-sms-xch01.digi.com>
-Subject: Re: Postinstallation script warnings in Yocto 2.4 Rocko
+Received: by 10.25.28.4 with HTTP; Mon, 12 Feb 2018 07:16:38 -0800 (PST)
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Mon, 12 Feb 2018 16:16:38 +0100
+Message-ID: <CAOT_U5ZjK_AUOdDAjNUWVNKe0Jrk_aGyenQADAWk2yfC3Z_gQg@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Printing DISTRO_NAME during OS boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,21 +66,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Feb 2018 11:47:00 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 12 Feb 2018 15:16:41 -0000
+Content-Type: multipart/alternative; boundary="f4f5e807fcd85524ff0565055dbb"
 
-On 02/12/2018 01:40 PM, Diaz de Grenu, Jose wrote:
-> Can you detail how this would be done?
-> 
-> Is it possible to append to 'log_check_expected_regex' from the .bb recipe that generates the warning? Or the only option is to patch the poky layer?
-> 
-> Is there any way to remove these warnings in rocko without modifying the poky layer? (I cannot modify community layers)
+--f4f5e807fcd85524ff0565055dbb
+Content-Type: text/plain; charset="UTF-8"
 
-You need to patch the layer, yes. But you can also send the patch to 
-oe-core list, and it would be much less invasive than backporting the 
-postinst_intercept stuff.
+Hi,
+I have two images defined, one is secure stripped and intended
+for production, and the other one extends the production one by adding
+different development tools.
 
-Alex
+They are both built using the same distro so the name printed during boot
+is always the same.
 
+    Welcome to senic 0.1.9-1-g1692cb1!
+    ...
+    senic 0.1.9-1-g1692cb1 senic-hub ttyS0
+
+I would like to be able to easily distinguish which image has been
+flashed and booted.
+
+I've identified that the variable responsible for those prints is
+$DISTRO_NAME.
+So I've extended both of my image recipes with:
+
+    IMAGE_NAME =
+"${IMAGE_BASENAME}-${MACHINE}-${DISTRO_VERSION}-${DATETIME}"
+    DISTRO_NAME = "${IMAGE_NAME}"
+
+However that failed to end up in my image.
+The checking the -e for the image shows the variable has
+been correctly renamed:
+
+    # $DISTRO_NAME [5 operations]
+    #   set /home/alan/senic-os/oe/meta/conf/bitbake.conf:715
+    #     [_defaultval] "OpenEmbedded"
+    #   set /home/alan/senic-os/oe/../meta-senic/conf/distro/senic.conf:1
+    #     "senic"
+    #   set /home/alan/senic-os/oe/meta/conf/documentation.conf:143
+    #     [doc] "The long name of the distribution."
+    #   set /home/alan/senic-os/oe/../meta-senic/recipes-core/images/
+senic-os.bb:11
+    #     "${IMAGE_NAME}"
+    #   set /home/alan/senic-os/oe/../meta-senic/recipes-core/images/
+senic-os-dev.bb:6
+    #     "${IMAGE_NAME}"
+    # pre-expansion value:
+    #   "${IMAGE_NAME}"
+    DISTRO_NAME="senic-os-dev-senic-hub-0.1.9-1-g1692cb1-20180212151325"
+
+But the "Welcome to ... " remains the same.
+I've grepped for "Welcome to" in all the layers without success.
+
+Any ideas on how to achieve this?
+
+--f4f5e807fcd85524ff0565055dbb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div>I have two images defined, one is secure stripped =
+and intended</div><div>for production, and the other one extends the produc=
+tion one by adding</div><div>different development tools.</div><div><br></d=
+iv><div>They are both built using the same distro so the name printed durin=
+g boot</div><div>is always the same.</div><div><br></div><div>=C2=A0 =C2=A0=
+ Welcome to senic 0.1.9-1-g1692cb1!<br></div><div>=C2=A0 =C2=A0 ...</div><d=
+iv><div>=C2=A0 =C2=A0 senic 0.1.9-1-g1692cb1 senic-hub ttyS0</div><div><br>=
+</div></div><div>I would like to be able to easily distinguish which image =
+has been</div><div>flashed and booted.</div><div><br></div><div>I&#39;ve id=
+entified that the variable responsible for those prints is $DISTRO_NAME.<br=
+>So I&#39;ve extended both of my image recipes with:</div><div><br></div><d=
+iv><div>=C2=A0 =C2=A0 IMAGE_NAME =3D &quot;${IMAGE_BASENAME}-${MACHINE}-${D=
+ISTRO_VERSION}-${DATETIME}&quot;</div><div>=C2=A0 =C2=A0 DISTRO_NAME =3D &q=
+uot;${IMAGE_NAME}&quot;</div></div><div><br></div><div>However that failed =
+to end up in my image.</div><div>The checking the -e for the image shows th=
+e variable has=C2=A0</div><div>been correctly renamed:</div><div><br></div>=
+<div><div>=C2=A0 =C2=A0 # $DISTRO_NAME [5 operations]</div><div>=C2=A0 =C2=
+=A0 #=C2=A0 =C2=A0set /home/alan/senic-os/oe/meta/conf/bitbake.conf:715</di=
+v><div>=C2=A0 =C2=A0 #=C2=A0 =C2=A0 =C2=A0[_defaultval] &quot;OpenEmbedded&=
+quot;</div><div>=C2=A0 =C2=A0 #=C2=A0 =C2=A0set /home/alan/senic-os/oe/../m=
+eta-senic/conf/distro/senic.conf:1</div><div>=C2=A0 =C2=A0 #=C2=A0 =C2=A0 =
+=C2=A0&quot;senic&quot;</div><div>=C2=A0 =C2=A0 #=C2=A0 =C2=A0set /home/ala=
+n/senic-os/oe/meta/conf/documentation.conf:143</div><div>=C2=A0 =C2=A0 #=C2=
+=A0 =C2=A0 =C2=A0[doc] &quot;The long name of the distribution.&quot;</div>=
+<div>=C2=A0 =C2=A0 #=C2=A0 =C2=A0set /home/alan/senic-os/oe/../meta-senic/r=
+ecipes-core/images/<a href=3D"http://senic-os.bb:11">senic-os.bb:11</a></di=
+v><div>=C2=A0 =C2=A0 #=C2=A0 =C2=A0 =C2=A0&quot;${IMAGE_NAME}&quot;</div><d=
+iv>=C2=A0 =C2=A0 #=C2=A0 =C2=A0set /home/alan/senic-os/oe/../meta-senic/rec=
+ipes-core/images/<a href=3D"http://senic-os-dev.bb:6">senic-os-dev.bb:6</a>=
+</div><div>=C2=A0 =C2=A0 #=C2=A0 =C2=A0 =C2=A0&quot;${IMAGE_NAME}&quot;</di=
+v><div>=C2=A0 =C2=A0 # pre-expansion value:</div><div>=C2=A0 =C2=A0 #=C2=A0=
+ =C2=A0&quot;${IMAGE_NAME}&quot;</div><div>=C2=A0 =C2=A0 DISTRO_NAME=3D&quo=
+t;senic-os-dev-senic-hub-0.1.9-1-g1692cb1-20180212151325&quot;</div></div><=
+div><br></div><div>But the &quot;Welcome to ... &quot; remains the same.</d=
+iv><div>I&#39;ve grepped for &quot;Welcome to&quot; in all the layers witho=
+ut success.</div><div><br></div><div>Any ideas on how to achieve this?</div=
+><div><br></div></div>
+
+--f4f5e807fcd85524ff0565055dbb--
