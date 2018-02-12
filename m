@@ -1,67 +1,26 @@
-Return-Path: <davis.roman84@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67B99E00E40; Sun, 11 Feb 2018 20:24:10 -0800 (PST)
+	id 99BA5E00DB1; Sun, 11 Feb 2018 21:35:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (davis.roman84[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.220.181 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f181.google.com (mail-qk0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23A46E00D7B
-	for <yocto@yoctoproject.org>; Sun, 11 Feb 2018 20:24:08 -0800 (PST)
-Received: by mail-qk0-f181.google.com with SMTP id 15so17009695qkl.3
-	for <yocto@yoctoproject.org>; Sun, 11 Feb 2018 20:24:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=9pv5g7UPABxjSE8GfCV2IR5PPrPJWeCxBR+oEdiClwQ=;
-	b=D6i6ORtipdb+Fyp6YRcdcvxnb1gvvDme9koG5krf7svL87aOBttcxXyoLPdXauz+Gz
-	kJHPmHlOjHEIseYzxQFs50Ojsgeyr/dRj5wLw4eGhE3Iib+TxHPo3A+6KwqQKA7NjIYZ
-	/Ep3q/M4mom5pfFs1T8TL2F5Jgi0kZm6Cs/LbAfTOQKPlzODW01QG1T0aGIBFNm1r+72
-	9sWWlMl0VTX+jZh+/D8d6jErv19xe7Yt0DJHi4ps6jX5c6Ve990u7H0Nan+AZskyWAwI
-	ZAa2xthu1bXB72M+eBxvVWbROWIjmVNruvo1jwTSi0+j6aIbz8X9LYtCWkSPTF8o4CNQ
-	eHjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=9pv5g7UPABxjSE8GfCV2IR5PPrPJWeCxBR+oEdiClwQ=;
-	b=McGo8beqMsYKD3rzBO/iVsKQsjICx0yOl9zhxXIO9ffnirSU+4/uXhmKPEmofA/GH6
-	rOrjy7wR/bbIe9yHOCuNP6vKrgl9Ntcsd09wkrc+aXymXdLsrjGR5wckPiLog+Koye+o
-	Jp0HFkejKjSAlRbySg9R3yo+pdz9amGRj+fcsn5tGzhaqJXBLyEqstQtJm/usM2iYxv4
-	mKNTt4hXiGCIC4b6SJcFlnq/M/SqDyr+k5GI9yn4Ukk8+sNE7qan9s+GF6PK4R1xJaQw
-	l5rI2W2H0wjS+J6XpeOlOLmsc0wOoYmi0Vi1jlKKuY2/aaLREEUozZ4+muWTnj04R6LB
-	wHRQ==
-X-Gm-Message-State: APf1xPDrRSpsfofIu0+R4TRYKPSwuBDaUxBOUHShpFg7oAwoSOHxz6h6
-	sPZi1mAYKw9eUe+M7GW3I+4iA7pcBagZc73A67pIrw==
-X-Google-Smtp-Source: AH8x225olb+tfuyrpcBPxjfOmkmxG0funAGAxYUcwk7OlL6k5w8Yll95/bSbwmZc8NZT4laCNJcmyYSweHjok/J2o9o=
-X-Received: by 10.55.105.129 with SMTP id e123mr16373645qkc.192.1518409447870; 
-	Sun, 11 Feb 2018 20:24:07 -0800 (PST)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD43BE009BB
+	for <yocto@yoctoproject.org>; Sun, 11 Feb 2018 21:35:34 -0800 (PST)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id B2E99875BF90
+	for <yocto@yoctoproject.org>; Mon, 12 Feb 2018 00:35:33 -0500 (EST)
 MIME-Version: 1.0
-Received: by 10.55.103.210 with HTTP; Sun, 11 Feb 2018 20:24:07 -0800 (PST)
-In-Reply-To: <CAHUNapSPmr7N5ZGbX5-hDewtjwLuU5tQEdOofz29wwBMSkuKaw@mail.gmail.com>
-References: <CACfi_Z3y+gdLH04Ta3j+oGy4TU9J7YfFWoz=qavQfo6ntBmmSg@mail.gmail.com>
-	<CAHUNapSPmr7N5ZGbX5-hDewtjwLuU5tQEdOofz29wwBMSkuKaw@mail.gmail.com>
-From: Davis Roman <davis.roman84@gmail.com>
-Date: Sun, 11 Feb 2018 23:24:07 -0500
-Message-ID: <CACfi_Z1=eAT2QUF1Ws+iCdU=wb_gP_MhuKfSdoVyDnVQp+PWPw@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Yocto uses UTC time for DATETIME instead of localtime
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 12 Feb 2018 05:35:33 -0000
+Message-ID: <20180212053533.22426.66755@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,196 +32,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Feb 2018 04:24:10 -0000
-Content-Type: multipart/alternative; boundary="001a114872bac3992f0564fc3f32"
+X-List-Received-Date: Mon, 12 Feb 2018 05:35:36 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---001a114872bac3992f0564fc3f32
-Content-Type: text/plain; charset="UTF-8"
+This mail was sent out by Recipe reporting system.
 
-Hi Trevor,
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade at this time, they can fill
+RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
+until newer upstream version was detected.
 
-Thank you for taking the time to reply.
+Example:
+RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
 
-You are correct. I did ask this question this question before and
-unfortunately the issue is not so much that the answer was incorrect but
-that I realized that the answer did not entirely fix my original problem in
-a global manner. ( BTW, I acknowledge that I should have asked the question
-in this manner to begin with instead of just asking the same question all
-over again. My apologizes.)
+You can check the detail information at:
 
-So the solution that I last received was the following:
+http://recipes.yoctoproject.org/
+
+Package               Version          Upstream version      Maintainer           NoUpgradeReason
+--------------------  ---------------  --------------------  -------------------  ------------------------------
+eudev                 3.2.2            3.2.5                 Alejandro Hernandez
+trace-cmd             2.6.2            2.7                   Alexander Kanavin
+expect                5.45.3           5.45.4                Alexander Kanavin
+ffmpeg                3.4.1            3.4.2                 Alexander Kanavin
+dtc                   1.4.5            1.4.6                 Alexander Kanavin
+btrfs-tools           4.13.3           4.15                  Alexander Kanavin
+vala                  0.38.6           0.38.7                Alexander Kanavin
+kernelshark           2.6.2            2.7                   Alexander Kanavin
+epiphany              3.24.3           3.26.5.1              Alexander Kanavin
+apt                   1.2.24           1.4.8                 Aníbal Limón
+apt-native            1.2.24           1.4.8                 Aníbal Limón
+dpkg                  1.18.24          1.19.0.5              Aníbal Limón
+bind                  9.10.6           9.12.0                Armin Kuster
+curl                  7.57.0           7.58.0                Armin Kuster
+busybox               1.27.2           1.28.0                Armin Kuster
+xkeyboard-config      2.22             2.23.1                Armin Kuster
+nss                   3.34.1           3.35                  Armin Kuster
+kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
+linux-libc-headers    4.14.13          4.15.2                Bruce Ashfield
+kmscube               git              git-new-commits-a...  Carlos Rafael Giani
+iproute2              4.14.1           4.15.0                Changhyeok Bae
+ethtool               4.13             4.15                  Changhyeok Bae
+iptables              1.6.1            1.6.2                 Changhyeok Bae
+systemd-boot          234              237                   Chen Qi
+dbus                  1.12.2           1.12.4                Chen Qi
+systemd               234              237                   Chen Qi
+util-linux            2.31             2.31.1                Chen Qi
+dbus-test             1.12.2           1.12.4                Chen Qi
+sed                   4.2.2            4.4                   Chen Qi
+sudo                  1.8.21p2         1.8.22                Chen Qi
+flex                  2.6.0            2.6.4                 Chen Qi
+dbus-glib             0.108            0.110                 Chen Qi
+build-appliance-i...  15.0.0           18.0.1                Cristian Iorga
+lz4                   1.7.4            1.8.1.2               Denys Dmytriyenko
+lzop                  1.03             1.04                  Denys Dmytriyenko
+hdparm                9.53             9.54                  Denys Dmytriyenko
+mtd-utils             2.0.0            2.0.1                 Denys Dmytriyenko
+python3-dbus          1.2.4            1.2.6                 Derek Straka
+python-numpy          1.13.1           1.14.0rc1             Derek Straka
+python3               3.5.4            3.6.4                 Derek Straka
+python3-setuptools    38.4.0           38.5.1                Derek Straka
+python3-numpy         1.13.3           1.14.0rc1             Derek Straka
+python-setuptools     38.4.0           38.5.1                Derek Straka
+python3-pycairo       1.15.6           1.16.2                Derek Straka
+python3-native        3.5.4            3.6.4                 Derek Straka
+acpica                20170303         20180209              Fathi Boudra
+patch                 2.7.5            2.7.6                 Hongxu Jia
+dhcp                  4.3.6            4.4.0                 Hongxu Jia
+bash                  4.4.12           4.4.18                Hongxu Jia
+ghostscript           9.21             9.22                  Hongxu Jia
+ncurses               6.0+20171125     6.1                   Hongxu Jia
+man-pages             4.14             4.15                  Hongxu Jia
+bc                    1.06             1.07.1                Jose Lamego
+gdb                   8.0.1            8.1                   Khem Raj
+libmpc                1.0.3            1.1.0                 Khem Raj
+glibc-initial         2.26             2.27.9000             Khem Raj
+glibc                 2.26             2.27.9000             Khem Raj
+llvm                  5.0              5.0-new-commits-a...  Khem Raj
+mpfr                  3.1.5            4.0.1                 Khem Raj
+re2c                  0.16             1.0.1                 Khem Raj
+go-native             1.9              1.10rc2               Khem Raj
+go                    1.9              1.10rc2               Khem Raj
+binutils              2.29.1           2.30                  Khem Raj
+cross-localedef-n...  2.26             2.27.9000             Khem Raj
+libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
+piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
+libinput              1.9.4            1.9.902               Maxin B. John
+vulkan-demos          git              git-new-commits-a...  Maxin B. John
+perl                  5.24.1           5.26.1                Maxin B. John
+puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
+ifupdown              0.8.16           0.8.29                Maxin B. John
+harfbuzz              1.7.4            1.7.5                 Maxin B. John
+vulkan                1.0.65.2         1.0.68.0              Maxin B. John
+libevdev              1.5.7            1.5.8                 Maxin B. John
+glib-2.0              2.54.2           2.54.3                Maxin B. John
+pkgconf               1.4.0            1.4.1                 Maxin B. John
+fontconfig            2.12.6           2.12.91               Maxin B. John
+libical               2.0.0            3.0.1                 Maxin B. John
+perl-native           5.24.1           5.26.1                Maxin B. John
+librsvg               2.40.20          2.42.2                Maxin B. John
+binutils-cross-ca...  2.29.1           2.30                  No maintainer
+binutils-crosssdk...  2.29.1           2.30                  No maintainer
+binutils-cross-i586   2.29.1           2.30                  No maintainer
+gdb-cross-canadia...  8.0.1            8.1                   No maintainer
+gdb-cross-i586        8.0.1            8.1                   No maintainer
+go-cross-canadian...  1.9              1.10rc2               No maintainer
+go-cross-i586         1.9              1.10rc2               No maintainer
+go-crosssdk-x86_64    1.9              1.10rc2               No maintainer
+go-runtime            1.9              1.10rc2               No maintainer
+linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
+cmake                 3.10.1           3.10.2                Otavio Salvador
+cmake-native          3.10.1           3.10.2                Otavio Salvador
+go-dep                0.3.2            0.4.1                 Otavio Salvador
+tcf-agent             1.4.0+gitX       1.6.0                 Randy Witt
+build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
+lttng-tools           2.9.5            2.10.2                Richard Purdie
+lttng-modules         2.10.4           2.10.5                Richard Purdie
+nasm                  2.13.02          2.13.03               Richard Purdie
+gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
+git                   2.15.0           2.16.1                Robert Yang
+nfs-utils             2.1.1            2.3.1                 Robert Yang
+squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
+strace                4.19             4.20                  Robert Yang
+autoconf-archive      2016.09.16       2017.09.28            Robert Yang
+ccache                3.3.4            3.4.1                 Robert Yang
+e2fsprogs             1.43.8           1.43.9                Robert Yang
+time                  1.7              1.8                   Robert Yang
+base-passwd           3.5.29           3.5.44                Ross Burton          Version 3.5.38 requires cde...
+libva                 1.8.3            2.0.0                 Wei Tee Ng
+libva-utils           1.8.3            2.1.0                 Wei Tee Ng
+chkconfig             1.3.58           1.8                   Yi Zhao              Version 1.5 requires selinux
+libcap-ng             0.7.8            0.7.9                 Yi Zhao
+
+Upgradable count: 110
+Upgradable total count: 112
+
+The based commit is:
+
+commit 4a4eff9b9e3c614ff41b17cbec359b72dcbd41bd
+Author: Jackie Huang <jackie.huang@windriver.com>
+Date:   Fri Feb 2 15:10:34 2018 +0800
+
+    e2fsprogs: fix the hardcoded paths for ptest
+    
+    Fix the hardcoded paths in test scripts and expect
+    files to avoid issue like:
+    | cat: ../e2fsck/e2fsck: No such file or directory
+    
+    Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
 
 
-
-*You can try to add this to conf/local.conf or redefine it in os-release.bb
-<http://os-release.bb/>:BUILD_ID = "${@time.strftime('%Y-%m-%d
-%H:%M:%S',time.localtime())}"*
-
-
-And this did in fact produce a BUILD_ID in /etc/os-release that reflected
-my local time however I later realized that the swu files produced by my
-swupdate image recipe was still using the GMT version of DATETIME. This
-lead me to believe that the original fix was not global enough and so
-swupdate called DATETIME again and it got the GMT version.
-
-And so I was worse off than before because my builds were producing
-artifacts with timestamps that made it confused for my application
-developers so I ended up removing the original fix in order to, at the very
-least, have timestamps that were consistent.
-
-
-After a bit of diggigin, i see that in poky/meta/conf/bitbake.conf,
-DATETIME is defined as follows:
-
-155 ##################################################################
-156 # Date/time variables.
-157 ##################################################################
-158
-159 DATE := "${@time.strftime('%Y%m%d',time.gmtime())}"
-160 TIME := "${@time.strftime('%H%M%S',time.gmtime())}"
-161 DATETIME = "${DATE}${TIME}"
-
-I recall trying to putting the following my local.conf hoping this would
-make the change global but it didn't seem to work.
-
-DATE := "${@time.strftime('%Y%m%d',time.localtime())}"
-TIME := "${@time.strftime('%H%M%S',time.localtime())}"
-
-
-Can you suggest a different way of making this change?
-
-Thank you,
-
-Davis
-
-
-On Sun, Feb 11, 2018 at 10:12 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-
-> On Sun, Feb 11, 2018 at 7:30 PM, Davis Roman <davis.roman84@gmail.com>
-> wrote:
->
->> I'm using the DATETIME variable to generate timestamps for my final
->> images however I see that yocto is using UTC time.
->>
->> I'd much prefer if yocto used localtime.
->>
->> Any suggestions on how to change this?
->>
->>
-> You asked this same question almost exactly a month ago, and it was
-> answered then. Was there something wrong with that answer?
->
-
---001a114872bac3992f0564fc3f32
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Trevor,<div><br></div><div>Thank you for taking the tim=
-e to reply.</div><div><br></div><div>You are correct. I did ask this questi=
-on this question before and unfortunately the issue is not so much that the=
- answer was incorrect but that I realized that the answer did not entirely =
-fix my original problem in a global manner. ( BTW, I acknowledge that I sho=
-uld have asked the question in this manner to begin with instead of just as=
-king the same question all over again. My apologizes.)</div><div><br></div>=
-<div>So the solution that I last received was the following:</div><div><br>=
-</div><div><br></div><div><i><span style=3D"color:rgb(34,34,34);font-family=
-:arial,sans-serif;font-size:12.8px;font-variant-ligatures:normal;font-varia=
-nt-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-=
-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backgrou=
-nd-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-col=
-or:initial;float:none;display:inline">You can try to add this to conf/local=
-.conf or redefine it in=C2=A0</span><a href=3D"http://os-release.bb/" rel=
-=3D"noreferrer" target=3D"_blank" style=3D"color:rgb(17,85,204);font-family=
-:arial,sans-serif;font-size:12.8px;font-variant-ligatures:normal;font-varia=
-nt-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-=
-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backgrou=
-nd-color:rgb(255,255,255)">os-release.bb</a><span style=3D"color:rgb(34,34,=
-34);font-family:arial,sans-serif;font-size:12.8px;font-variant-ligatures:no=
-rmal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-al=
-ign:start;text-indent:0px;text-transform:none;white-space:normal;word-spaci=
-ng:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text=
--decoration-color:initial;float:none;display:inline">:</span><br style=3D"c=
-olor:rgb(34,34,34);font-family:arial,sans-serif;font-size:12.8px;font-varia=
-nt-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing=
-:normal;text-align:start;text-indent:0px;text-transform:none;white-space:no=
-rmal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-sty=
-le:initial;text-decoration-color:initial"><span style=3D"color:rgb(34,34,34=
-);font-family:arial,sans-serif;font-size:12.8px;font-variant-ligatures:norm=
-al;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-alig=
-n:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing=
-:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-d=
-ecoration-color:initial;float:none;display:inline">BUILD_ID =3D &quot;${@ti=
-me.strftime(&#39;%Y-%m-%d %H:%M:%S&#39;,time.localtime())}&quot;</span></i>=
-<br></div><div><i><span style=3D"color:rgb(34,34,34);font-family:arial,sans=
--serif;font-size:12.8px;font-variant-ligatures:normal;font-variant-caps:nor=
-mal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;=
-text-transform:none;white-space:normal;word-spacing:0px;background-color:rg=
-b(255,255,255);text-decoration-style:initial;text-decoration-color:initial;=
-float:none;display:inline"><br></span></i></div><div><i><span style=3D"colo=
-r:rgb(34,34,34);font-family:arial,sans-serif;font-size:12.8px;font-variant-=
-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
-rmal;text-align:start;text-indent:0px;text-transform:none;white-space:norma=
-l;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:=
-initial;text-decoration-color:initial;float:none;display:inline"><br></span=
-></i></div><div><span style=3D"font-size:12.8px">And this did in fact produ=
-ce a BUILD_ID in /etc/os-release that reflected my local time however I lat=
-er realized that the swu files produced by my swupdate image recipe was sti=
-ll using the GMT version of DATETIME. This lead me to believe that the orig=
-inal fix was not global enough and so swupdate called DATETIME again and it=
- got the GMT version.</span></div><div><span style=3D"font-size:12.8px"><br=
-></span></div><div><span style=3D"font-size:12.8px">And so I was worse off =
-than before because my builds were producing artifacts with timestamps that=
- made it confused for my application developers so I ended up removing the =
-original fix in order to, at the very least, have timestamps that were cons=
-istent.</span></div><div><span style=3D"font-size:12.8px"><br></span></div>=
-<div><span style=3D"font-size:12.8px"><br></span></div><div><span style=3D"=
-font-size:12.8px">After a bit of diggigin, i see that in poky/meta/conf/bit=
-bake.conf, DATETIME is defined as follows:</span></div><div><span style=3D"=
-font-size:12.8px"><br></span></div><div><div><span style=3D"font-size:12.8p=
-x">155 ##################################################################</=
-span></div><div><span style=3D"font-size:12.8px">156 # Date/time variables.=
-</span></div><div><span style=3D"font-size:12.8px">157 ####################=
-##############################################</span></div><div><span style=
-=3D"font-size:12.8px">158=C2=A0</span></div><div><span style=3D"font-size:1=
-2.8px">159 DATE :=3D &quot;${@time.strftime(&#39;%Y%m%d&#39;,time.gmtime())=
-}&quot;</span></div><div><span style=3D"font-size:12.8px">160 TIME :=3D &qu=
-ot;${@time.strftime(&#39;%H%M%S&#39;,time.gmtime())}&quot;</span></div><div=
-><span style=3D"font-size:12.8px">161 DATETIME =3D &quot;${DATE}${TIME}&quo=
-t;</span></div><div><span style=3D"font-size:12.8px"><br></span></div><div>=
-I recall trying to putting the following my local.conf hoping this would ma=
-ke the change global but it didn&#39;t seem to work.</div><div><br></div><d=
-iv><div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size=
-:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
-rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
-;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
-gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
-"><span style=3D"font-size:12.8px">DATE :=3D &quot;${@time.strftime(&#39;%Y=
-%m%d&#39;,time.localtime())}&quot;</span></div><div style=3D"color:rgb(34,3=
-4,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-v=
-ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
-cing:normal;text-align:start;text-indent:0px;text-transform:none;white-spac=
-e:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration=
--style:initial;text-decoration-color:initial"><span style=3D"font-size:12.8=
-px">TIME :=3D &quot;${@time.strftime(&#39;%H%M%S&#39;,time.localtime())}&qu=
-ot;</span></div><br></div><div><br></div><div>Can you suggest a different w=
-ay of making this change?</div><div><br></div><div>Thank you,</div><div><br=
-></div><div>Davis</div><div><br></div></div></div><div class=3D"gmail_extra=
-"><br><div class=3D"gmail_quote">On Sun, Feb 11, 2018 at 10:12 PM, Trevor W=
-oerner <span dir=3D"ltr">&lt;<a href=3D"mailto:twoerner@gmail.com" target=
-=3D"_blank">twoerner@gmail.com</a>&gt;</span> wrote:<br><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gma=
-il_quote"><span class=3D"">On Sun, Feb 11, 2018 at 7:30 PM, Davis Roman <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:davis.roman84@gmail.com" target=3D"_bl=
-ank">davis.roman84@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr">I&#39;m using the DATETIME va=
-riable to generate timestamps for my final images however I see that yocto =
-is using UTC time.<div><br></div><div>I&#39;d much prefer if yocto used loc=
-altime.</div><div><br></div><div>Any suggestions on how to change this?</di=
-v><br></div></blockquote></span><div><br>You asked this same question almos=
-t exactly a month ago, and it was answered then. Was there something wrong =
-with that answer? <br></div></div></div></div>
-</blockquote></div><br></div>
-
---001a114872bac3992f0564fc3f32--
