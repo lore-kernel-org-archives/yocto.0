@@ -1,50 +1,30 @@
-Return-Path: <plamenedelchev1988@abv.bg>
+Return-Path: <mircea.gliga@vitheia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D319E00E7B; Tue, 13 Feb 2018 01:13:25 -0800 (PST)
+	id 56F8EE00DB5; Tue, 13 Feb 2018 02:00:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (plamenedelchev1988[at]abv.bg)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [194.153.145.99 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 445 seconds by postgrey-1.32 at yocto-www;
-	Tue, 13 Feb 2018 01:13:23 PST
-Received: from smtp-out.abv.bg (smtp-out.abv.bg [194.153.145.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD10FE00D41
-	for <yocto@yoctoproject.org>; Tue, 13 Feb 2018 01:13:23 -0800 (PST)
-Received: from nm81.abv.bg (nm81.ni.bg [192.168.151.111])
-	by smtp-out.abv.bg (Postfix) with ESMTP id 08DF35B2C
-	for <yocto@yoctoproject.org>; Tue, 13 Feb 2018 11:05:57 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abv.bg; s=smtp-out;
-	t=1518512757; bh=eMu8DXBKg0AqgmzO+gZ3W4eov2r1f2NxlpCXR+BFWl4=;
-	h=Date:From:To:Subject:From;
-	b=noohTuqhNPWVjZYZt1EuOzaCl3uor1stIGm4bHqMCUScDiSADzqYZf7EGCIO4mm6C
-	cOEwuKKnGhVyvv3JeuwmzrCyxhFARSieoMEQee+u6c9J0uFo3XjO/UJE1hGBF0lNcG
-	CLX9x3y3NDOuLt3IqpdfcwwvXgRWO2SGsAuI4tjo=
-Received: from nm81.abv.bg (localhost [127.0.0.1])
-	by nm81.abv.bg (Postfix) with ESMTP id DB0A01201C5
-	for <yocto@yoctoproject.org>; Tue, 13 Feb 2018 11:05:56 +0200 (EET)
-Date: Tue, 13 Feb 2018 11:05:55 +0200 (EET)
-From: plamen nedelchev <plamenedelchev1988@abv.bg>
-To: yocto@yoctoproject.org
-Message-ID: <1819807010.92684.1518512756895.JavaMail.apache@nm81.abv.bg>
+Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7981E00D41
+	for <yocto@yoctoproject.org>; Tue, 13 Feb 2018 02:00:31 -0800 (PST)
+Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
+	(authenticated bits=0)
+	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id w1DA0TMg029936
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NO)
+	for <yocto@yoctoproject.org>; Tue, 13 Feb 2018 12:00:29 +0200
+From: Mircea Gliga <mircea.gliga@vitheia.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Message-ID: <a30a7713-3a76-6a6e-9292-8f64569bf9f7@vitheia.com>
+Date: Tue, 13 Feb 2018 12:00:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-X-Mailer: AbvMail 3.0
-X-Originating-IP: 78.90.78.219
-Subject: deby fails with sanity check
+Subject: kernel fragment not applied while other fragments are applied
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,34 +36,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Feb 2018 09:13:25 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_92681_1105225454.1518512755453"
-
-------=_Part_92681_1105225454.1518512755453
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Tue, 13 Feb 2018 10:00:34 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Hello Yocto project, I am not sure if this is the right place to ask about this(it's my first time posting), so I will shoot straight.  I am trying to build a raspi-basic-image using as distro DEBY.  As soon as i start to build it fails one me with " TMPDIR has changed its layout version number (12 to 8)  
- "  How can i fix this ?  
-  Thank you so much
- 
+Hi
 
-------=_Part_92681_1105225454.1518512755453
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Short story: I'm using rocko and have a recipe for Linux kernel 4.14.14 
+based on linux-yocto.inc, some kernel fragments end up in the resulting 
+.config, other don't, if regenerate fragments using menuconfig + 
+diffconfig seems ok.
 
-<HTML><BODY>
-Hello Yocto project,<div>I am not sure if this is the right place to ask ab=
-out this(it's my first time posting), so I will shoot straight.</div><div>I=
- am trying to build a raspi-basic-image using as distro DEBY.</div><div>As =
-soon as i start to build it fails one me with "<span style=3D"background-co=
-lor: rgb(240, 247, 255); font-family: Consolas, &quot;Lucida Console&quot;,=
- monospace; font-size: 12.8px; text-indent: -7px;">TMPDIR has changed its l=
-ayout version number (12 to 8)</span><span style=3D"background-color: rgb(2=
-40, 247, 255); font-family: Consolas, &quot;Lucida Console&quot;, monospace=
-; font-size: 12.8px; text-indent: -7px;">&nbsp;</span>"</div><div>How can i=
- fix this ?</div><div><br></div><div>Thank you so much&nbsp;</div></BODY></=
-HTML>
+Long story:
+In my recipe linux-stable_4.14.bb I have an inc file:
+     [...]
+     require linux-stable.inc
+     [...]
 
-------=_Part_92681_1105225454.1518512755453--
+linux-stable.inc :
+
+     inherit kernel
+     require recipes-kernel/linux/linux-yocto.inc
+     [...]
+     SRC_URI += "file://defconfig \
+                 file://kernel_fragments/netfilter.cfg \
+                 file://kernel_fragments/overlayfs.cfg \
+                 file://kernel_fragments/verity.cfg \
+                 file://kernel_fragments/squashfs.cfg \
+                 file://kernel_fragments/modem.cfg \
+                 file://kernel_fragments/led_oneshot.cfg \
+                 file://kernel_fragments/ipsec.cfg \
+                 file://kernel_fragments/netbridge.cfg \
+                 file://kernel_fragments/atmel_hw_sha.cfg \
+
+
+I have a set of kernel fragments. During `bitbake linux-stable -c 
+kernel_configme -f` some of them end up in the .config file while others 
+don't:
+led_oneshot.cfg and overlayfs.cfg are not applied in the resulting 
+.config while verity.cfg is applied.
+They are all generated using menuconfig to config the kernel, then 
+diffconfig to generate the fragment.
+
+$ cat led_oneshot.cfg
+CONFIG_LEDS_TRIGGER_ONESHOT=y
+
+$ cat verity.cfg
+CONFIG_MD=y
+# CONFIG_BLK_DEV_MD is not set
+# CONFIG_BCACHE is not set
+CONFIG_BLK_DEV_DM_BUILTIN=y
+CONFIG_BLK_DEV_DM=y
+# CONFIG_DM_MQ_DEFAULT is not set
+# CONFIG_DM_DEBUG is not set
+CONFIG_DM_BUFIO=y
+# CONFIG_DM_DEBUG_BLOCK_MANAGER_LOCKING is not set
+CONFIG_DM_CRYPT=y
+# CONFIG_DM_SNAPSHOT is not set
+# CONFIG_DM_THIN_PROVISIONING is not set
+# CONFIG_DM_CACHE is not set
+# CONFIG_DM_ERA is not set
+# CONFIG_DM_MIRROR is not set
+# CONFIG_DM_RAID is not set
+# CONFIG_DM_ZERO is not set
+# CONFIG_DM_MULTIPATH is not set
+# CONFIG_DM_DELAY is not set
+# CONFIG_DM_UEVENT is not set
+# CONFIG_DM_FLAKEY is not set
+CONFIG_DM_VERITY=y
+# CONFIG_DM_VERITY_FEC is not set
+# CONFIG_DM_SWITCH is not set
+# CONFIG_DM_LOG_WRITES is not set
+# CONFIG_DM_INTEGRITY is not set
+
+$ cat overlayfs.cfg
+CONFIG_OVERLAY_FS=y
+# CONFIG_OVERLAY_FS_REDIRECT_DIR is not set
+# CONFIG_OVERLAY_FS_INDEX is not set
+
+$
+
+Now, if I go in menuconfig I can see that CONFIG_OVERLAY_FS is indeed 
+not enabled, I then enable it and generate a new fragment, 
+fragmentOverlay.cfg:
+$ cat fragmentOverlay.cfg
+CONFIG_OVERLAY_FS=y
+# CONFIG_OVERLAY_FS_REDIRECT_DIR is not set
+# CONFIG_OVERLAY_FS_INDEX is not set
+
+$ md5sum *verlay*
+14f88a8b2dcb256c38f6362161045831  fragmentOverlay.cfg
+14f88a8b2dcb256c38f6362161045831  overlayfs.cfg
+
+The new fragment is identical to the overlayfs.cfg (which is not applied).
+I let both files in the SCR_URI:
+
+SRC_URI += "[...]
+                 file://kernel_fragments/overlayfs.cfg \
+                 file://kernel_fragments/fragmentOverlay.cfg \
+                 [...]"
+
+And now after `bitbake linux-stable -c kernel_configme -f` the resulting 
+.config has the overlay_fs enabled:
+
+$ cat .config | grep OVERLAY_FS
+CONFIG_OVERLAY_FS=y
+# CONFIG_OVERLAY_FS_REDIRECT_DIR is not set
+# CONFIG_OVERLAY_FS_INDEX is not set
+
+$ cat .config |grep CONFIG_LEDS_TRIGGER_ONESHOT
+# CONFIG_LEDS_TRIGGER_ONESHOT is not set
+
+
+Same contents in the fragments, one is applied while the other is not ...
+
+Do you have any hints ?
+
+Thanks and regards!
+
+
+
+
+
+
