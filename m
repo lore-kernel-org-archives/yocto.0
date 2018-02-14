@@ -1,55 +1,58 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BEB1BE00E88; Wed, 14 Feb 2018 00:59:12 -0800 (PST)
+	id A72F9E00DE1; Wed, 14 Feb 2018 01:04:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD50BE00E83
-	for <yocto@yoctoproject.org>; Wed, 14 Feb 2018 00:59:11 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	14 Feb 2018 00:59:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,511,1511856000"; d="scan'208";a="18001498"
-Received: from kmsmsx156.gar.corp.intel.com ([172.21.138.133])
-	by orsmga008.jf.intel.com with ESMTP; 14 Feb 2018 00:59:10 -0800
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.206]) by
-	KMSMSX156.gar.corp.intel.com ([169.254.1.225]) with mapi id
-	14.03.0319.002; Wed, 14 Feb 2018 16:59:08 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "Cruz, Libertad" <libertad.cruz@intel.com>, "'yocto@yoctoproject.org'"
-	<yocto@yoctoproject.org>, "Purdie, Richard" <richard.purdie@intel.com>, 
-	"Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Jordan, Robin L"
-	<robin.l.jordan@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>, 
-	"Lock, Joshua G" <joshua.g.lock@intel.com>, "Eggleton, Paul"
-	<paul.eggleton@intel.com>
-Thread-Topic: Preliminary QA cycle report for 2.5 M2 RC1
-Thread-Index: AdOlcXdWZuX+ngxaQoemhIj7g7nwvw==
-Date: Wed, 14 Feb 2018 08:59:08 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335DBC09B@PGSMSX109.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNTFlZTM4YjctZGFkZi00MGJkLWI3Y2UtYzY0ODQyN2U3ZDE0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6IkJtTnR6dUNmV3hsdytoaldsOWJcL2c0S1VlYWpjb2hnckhhcDZFcGp6RGRRPSJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.0.116
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.206]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lf0-f44.google.com (mail-lf0-f44.google.com
+	[209.85.215.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03994E00CF1
+	for <yocto@yoctoproject.org>; Wed, 14 Feb 2018 01:04:17 -0800 (PST)
+Received: by mail-lf0-f44.google.com with SMTP id q194so28435905lfe.13
+	for <yocto@yoctoproject.org>; Wed, 14 Feb 2018 01:04:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=VHerOiD2wpJdc2AU2RRaa2FOwwP4BYXKPU3WCA41Zag=;
+	b=B4OuirTE1Uxleykje2Cgywy+yhm5liGB4v76zYnqTWNCcthp/P01dSlacaTO6geA6+
+	XJTWKcLmDVB5JtmFUjkF0nczJBxZIq7GP6KugWOgxqg00IMThbl1cMAuL1+DDOw1jyp2
+	eXxzqR4SJ6z8XY/5LGdS7dN8Vy+SlbAQet7Hor8btDEu5LR7YKZRPKvOxpUpQWBkehQO
+	n7H8LQNkjAQ2M5gc54Np0YLA9jTSzuX0nD/Vv9zYc3GwwPZYdJYdKkAl7TbSOtJaBVzp
+	jZvf8T/R15OvRujtXHCPRqKywGkE0KooxUQa4afrTwpFDvZqFWP8Bkv66TllPlkUknZx
+	oecA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=VHerOiD2wpJdc2AU2RRaa2FOwwP4BYXKPU3WCA41Zag=;
+	b=d0Fdk21Yg11l/uqIcxM1f8Y43vXgzeG14Y7cOrU2K/6ratq2rXhwEbEBK4xCzWKX/e
+	6xjPyvOdhTrVWs3m3wZk3SOt2N/QPDIKCigFpV05f1UM8Q740vkgHlDPKu72wouibpLS
+	TfOKq2i4izhbjCHeZC3vb2t6QsnAEvYApwUhcYL/+YHh4D9MItLIgQz5OgkIaeIZ6IIC
+	CWgl6LjtVE9F9n37EZ8LCoMSEuiNa/f3SBafDmvAE7FxpUPP+tR4yQcyiIynHX5rugzl
+	iNjJIRgtuQ3fR3aoVEJw7fjNNrn16Oxi5CDcSNx7UQ2seah0bke+KZ5apSCe4ZdkL/L1
+	bquw==
+X-Gm-Message-State: APf1xPAgi9HtamynLq0hwhUKhbLT/aO/X7s5X5P6+c7aAFcvjD8RPVSB
+	F/Z+HeFDUd+QjSrR5F+Eex3s59XQWUF5PBzf5PFwkgf6
+X-Google-Smtp-Source: AH8x225OSSRdwpeCJ8ey7ljEMExx3A4loTWh+KsI2Y3thZXAkA5fq9kvW4j3PuNxzphfHMMivDrAjB+5ehOog1pttKY=
+X-Received: by 10.46.50.5 with SMTP id y5mr2996565ljy.111.1518599056329; Wed,
+	14 Feb 2018 01:04:16 -0800 (PST)
 MIME-Version: 1.0
-Cc: "Sangal, Apoorv" <apoorv.sangal@intel.com>, "Perez Carranza,
-	Jose" <jose.perez.carranza@intel.com>
-Subject: Preliminary QA cycle report for 2.5 M2 RC1
+Received: by 10.25.28.4 with HTTP; Wed, 14 Feb 2018 01:04:15 -0800 (PST)
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Wed, 14 Feb 2018 10:04:15 +0100
+Message-ID: <CAOT_U5anf1LNGxrY6SGTV4Up8vUzanggHjL3_B3FkthmNiJM9A@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: How did you separate release and development builds?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,46 +64,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Feb 2018 08:59:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 14 Feb 2018 09:04:18 -0000
+Content-Type: multipart/alternative; boundary="f4f5e807fcd84f2c8a0565286564"
+
+--f4f5e807fcd84f2c8a0565286564
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+I'm assuming separating development and release builds
+is a fairly common use case.
+The release build would be something like:
+
+- has all the funcions for production
+- attack surface is limited (no ssh, only the required apps)
+- config files set with real endpoints (logging or crash servers etc.)
+
+But that's not an image you can really develop on given all the constrains.
+So there is also a need for a development image:
+
+- inherits the funcions available on production image
+- developer convinence over security (debuggers, ssh access etc.)
+- configs set not to depend on payed cloud services
+
+
+Our curent approach is to solve this by having two different
+image recipes.
+
+Pros:
+    * Simple to implement (dev inherits production and just adds packages)
+    * You can build both at the same time with the same version
+
+Cons:
+    * They have the same runtime name (cause they are the same distro)
+    * Separating config files is not yet clear
+      (one way to have two versions of recipes, which was a lot of
+duplication.
+       Now we're chacking how to solve it by introducing external
+templating (jinja))
+
+How did you apprach it?
+Would like to hear you ideas and from the field experiences.
+
+Be Well,
+Alan
+
+--f4f5e807fcd84f2c8a0565286564
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
-This is the preliminary report for 2.5 M2 RC1 (while waiting for performanc=
-e test data to be ready): =20
-https://wiki.yoctoproject.org/wiki/WW07_-_2018-02-14-_Full_Test_Cycle_-_2.5=
-_M2_rc1
+<div dir=3D"ltr"><div>Hi,</div><div>I&#39;m assuming separating development=
+ and release builds</div><div>is a fairly common use case.=C2=A0</div><div>=
+The release build would be something like:</div><div><br></div><div>- has a=
+ll the funcions for production</div><div>- attack surface is limited (no ss=
+h, only the required apps)</div><div>- config files set with real endpoints=
+ (logging or crash servers etc.)</div><div><br></div><div>But that&#39;s no=
+t an image you can really develop on given all the constrains.</div><div>So=
+ there is also a need for a development image:</div><div><br></div><div>- i=
+nherits the funcions available on production image</div><div>- developer co=
+nvinence over security (debuggers, ssh access etc.)</div><div>- configs set=
+ not to depend on payed cloud services</div><div><br></div><div><br></div><=
+div>Our curent approach is to solve this by having two different</div><div>=
+image recipes.</div><div><br></div><div>Pros:</div><div>=C2=A0 =C2=A0 * Sim=
+ple to implement (dev inherits production and just adds packages)</div><div=
+>=C2=A0 =C2=A0 * You can build both at the same time with the same version<=
+/div><div><br></div><div>Cons:=C2=A0</div><div>=C2=A0 =C2=A0 * They have th=
+e same runtime name (cause they are the same distro)</div><div>=C2=A0 =C2=
+=A0 * Separating config files is not yet clear=C2=A0</div><div>=C2=A0 =C2=
+=A0 =C2=A0 (one way to have two versions of recipes, which was a lot of dup=
+lication.</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0Now we&#39;re chacking how t=
+o solve it by introducing external templating (jinja))</div><div><br></div>=
+<div>How did you apprach it?</div><div>Would like to hear you ideas and fro=
+m the field experiences.</div><div><br></div><div>Be Well,</div><div>Alan</=
+div></div>
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-
-The QA cycle for release 2.5 M2 RC1 was completed except performance test.=
-=A0 Team had discovered a new bug [1] where sdk toolchain downloaded from P=
-ublic Autobuilder failed when executing runqemu command. =20
-
-YP QA recently requested the performance host machines from linux foundatio=
-n to replace old machines, where initial setup completed at WW06 and going =
-through testing. Currently, running performance testing trial run to collec=
-t data. Expected data collection for regression and 2.5 M2 rc1 to be comple=
-ted by WW08.1.=20
-
-=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
-
-Waiting performance test data to be ready, the build is stable, need to fix=
- the sdk toolchain bug in order to enable runqemu.
-
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-
-=A0=A0=A0=A0=A0=A0 New Bugs
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 - 12545 [1] [2.5 M2 RC1] SDK runqemu fail=
-ed with python import logging
-
-=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
-=A0=A0=A0 1.=A0=A0=A0 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D1=
-2545 [1]=20
-
-Regards
-Ee Peng=20
-
-
-
+--f4f5e807fcd84f2c8a0565286564--
