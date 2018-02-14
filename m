@@ -1,65 +1,63 @@
-Return-Path: <alex.kiernan@gmail.com>
+Return-Path: <jefro.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC7C7E00E1F; Wed, 14 Feb 2018 11:10:15 -0800 (PST)
+	id DB708E00DD9; Wed, 14 Feb 2018 12:58:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alex.kiernan[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f51.google.com (mail-vk0-f51.google.com
-	[209.85.213.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FB4AE007E1
-	for <yocto@yoctoproject.org>; Wed, 14 Feb 2018 11:10:14 -0800 (PST)
-Received: by mail-vk0-f51.google.com with SMTP id b132so6597390vke.9
-	for <yocto@yoctoproject.org>; Wed, 14 Feb 2018 11:10:14 -0800 (PST)
+Received: from mail-wm0-f46.google.com (mail-wm0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07605E007E1
+	for <yocto@yoctoproject.org>; Wed, 14 Feb 2018 12:58:14 -0800 (PST)
+Received: by mail-wm0-f46.google.com with SMTP id r78so24333445wme.0
+	for <yocto@yoctoproject.org>; Wed, 14 Feb 2018 12:58:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=+sH474RbinAWAr9BeNSazE9+D6U6TUTAYu7VCfwlAzQ=;
-	b=deCRZD7vGvFsIfeQ13oLoGegqjoMp77qcVwL4qSXpPhgPRjaFYvh2d7SPz7AThAxK5
-	ocMGS5/fRZ/ED8RNjW4W1Wh/xSVZK/4IraGfkTf93+AFRxK+VF2ueErow6flJIDjuqSP
-	4iFmOziER555LkPVRsnus5unmyok6Eb9njZzutHuZAB2TFtxlfuhaPKvKwUdgDABSQb7
-	AZwTn5CEKDylEXMRDMai7Btqclt33XWCU7Kt8i7FXtuX01Z2gC16TWyfA0YaCRyseBaQ
-	Ls+9VzE9RFTKVVDlPOMy6g9dhDYkMuf+99fi9HIwB/r0WZP3/rzTOI/Y9Gdg0z42VNHj
-	Hj5A==
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc;
+	bh=/xmhvejJELPqbzqQHCJPuphjtb4M+w7p3FCHwojy/CE=;
+	b=sCdZ6FonZQzX0Akajumg6G968+HXK9BNdtgYIf2BkXEIrixVKArDXTgVghZWqaJjpp
+	2c1Sbd83EQ0hnykV33XQUZh4MeAnIWiYpDI0BUN74iyyad14NHSioCS8HeeizkgyLcNW
+	aNYwzxPXzC5kQgyqGpE6eNOA5q+6H8fhqDgEBUDh7+t3WCqVAulHbwlrbIzpbSt3QStJ
+	F7Llf/29/AvJ3pDBax9ovL15uSzCmJFB7+QaHXCC2lW6XsvOnZO+CRBPSdxkyweCbqTM
+	uEIO5iDsNG1CFEpxHJBrKAit2Pb6Qp7Y+Su4e1//XdcOM4iACFO3HYNhkqZlRigazpac
+	ucjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=+sH474RbinAWAr9BeNSazE9+D6U6TUTAYu7VCfwlAzQ=;
-	b=YNp0aVBV6j4T5c6iE517CA8SIJ1VUafd2xhY6LqvmIHQ+Ofdgi3JvpKkSBi0cq1Xt5
-	s7deXJE+HN0JcFYiJhjsnLl5NI+oWGQRwAQqY35knSfjF0xaHapk6xwcNhhJ2GimLT5a
-	ZTx5E0nb0LkC6/n+ZjmRROnFispWh1EA5O7MygM2gubZEkq6NNAZyAsyn/wOBMpolk2b
-	mhWW5qKEmsmT0oPF2DJJWFQlo+csc9KxW+vNvoFrRh5MK6UHWFJvVDkNa5ixD3Oucmg5
-	P/cMdGShpqrBxBdfROQuq5KC0je8kvlnOaVyBOoTOH2LZLTIkknKGgYalrk/YkXWn84O
-	T6tQ==
-X-Gm-Message-State: APf1xPDdlAH9+ITiWj6vxU0qr5+DoxtsN0zKIOdqBNniV7lTQKTn8hFD
-	pJzELES0kXM+dyOBymiyc23Ez3ZXoc3eNSdxQFhZF4Uk
-X-Google-Smtp-Source: AH8x225N2Jqz5QYmZdkxPgnFaaONJJJuWwMsqB8e2rx4uHto2T+0mqqKS8e0CIuWem3JDD6U5VV5/znmtYNNk5xfZyM=
-X-Received: by 10.31.204.131 with SMTP id c125mr235758vkg.127.1518635414252;
-	Wed, 14 Feb 2018 11:10:14 -0800 (PST)
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
+	:date:message-id:subject:to:cc;
+	bh=/xmhvejJELPqbzqQHCJPuphjtb4M+w7p3FCHwojy/CE=;
+	b=rHkCsShZeWo/L2tHuAbjd/wmuXu6ygpuVH+3M+36P+tpPw7j7STyhAHS4nKnhbQWAT
+	NqT+8VeLNGKOs8xAEogEupfhnZWt1RyMd3SrT17VfBbSTyB60mWhEdCJJXufnv/Nqtyc
+	csxTLmqdWAbRqYTfpb+g+OmRYkNmboZVX9n3g3ywyBC1gcE/QRH26VElNnROulm6ye0+
+	5FifQN6t4ypeWSe8a8JxRCorD1jIPRA6q8SL+cz7Xx7UspxoP9lBjEwqo51qy9EP8C4M
+	7Y/UI0QMnQBqOb25YKLSNivnCSonwxR/xHSSL59cbVrSokF5NiUVdPyug90q+NIkHGmy
+	eaZA==
+X-Gm-Message-State: APf1xPAC5smUN+44spyJucxDKGN9qQj04WTwJ2o12MRiLOmDhl9PhV2d
+	9BYxlhVJIXMcXGbzZhgm06PlujbZQNiG0L9NHBk=
+X-Google-Smtp-Source: AH8x227d5tjuiNP7wm538uCsm3V6svA981prD6v41+xAkLpcQ/RMJAL7V+ayhWPbEIIeQKST4RsH8xsOz1qGye1q/fw=
+X-Received: by 10.28.154.67 with SMTP id c64mr292569wme.125.1518641893693;
+	Wed, 14 Feb 2018 12:58:13 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.176.89.240 with HTTP; Wed, 14 Feb 2018 11:10:13 -0800 (PST)
-In-Reply-To: <CAOT_U5anf1LNGxrY6SGTV4Up8vUzanggHjL3_B3FkthmNiJM9A@mail.gmail.com>
-References: <CAOT_U5anf1LNGxrY6SGTV4Up8vUzanggHjL3_B3FkthmNiJM9A@mail.gmail.com>
-From: Alex Kiernan <alex.kiernan@gmail.com>
-Date: Wed, 14 Feb 2018 19:10:13 +0000
-Message-ID: <CAO5Uq5Sn8pQ2hTgjKnhi3ETjhSmLyd-bETDqkgUjJ4tgCvt0-A@mail.gmail.com>
-To: Alan Martinovic <alan.martinovic@senic.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: How did you separate release and development builds?
+Sender: jefro.net@gmail.com
+Received: by 10.223.134.15 with HTTP; Wed, 14 Feb 2018 12:57:53 -0800 (PST)
+In-Reply-To: <CAEv37YucHQ7Oa8YzngU0kQOKrMBEez1_udeAcWqrX7D4-C6jmg@mail.gmail.com>
+References: <CAEv37YucHQ7Oa8YzngU0kQOKrMBEez1_udeAcWqrX7D4-C6jmg@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Wed, 14 Feb 2018 12:57:53 -0800
+X-Google-Sender-Auth: DFEW9JV_UGImHEbTXob_QjoaFw4
+Message-ID: <CA+YB3rZST=NZTGC14w1_wD9t5bYH+_Z5dv-ApBwt=CLbO4BrMw@mail.gmail.com>
+To: Jean-Pierre Sainfeld <jean-pierre@anki.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: useradd-example.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,54 +69,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Feb 2018 19:10:15 -0000
+X-List-Received-Date: Wed, 14 Feb 2018 20:58:15 -0000
+Content-Type: multipart/alternative; boundary="001a114b458e9d60fd0565325ee8"
+
+--001a114b458e9d60fd0565325ee8
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Feb 14, 2018 at 9:04 AM, Alan Martinovic
-<alan.martinovic@senic.com> wrote:
+Can anyone help Jean-Pierre? This seems at first like a simple issue during
+do_populate.
+
+On Tue, Feb 13, 2018 at 1:32 PM, Jean-Pierre Sainfeld <jean-pierre@anki.com>
+wrote:
+
 > Hi,
-> I'm assuming separating development and release builds
-> is a fairly common use case.
-> The release build would be something like:
+> I am working on yocto system at the jethro rev level.
+> I am looking to use the meta-skeleton useradd-example.bb recipe
+> So far I have been successful in adding the required users and group
+> and creating files in the /usr/share directory
+> The current issue I am facing is the ownership of the created file
+> I see the right permissions at the do_install() time
+> however when the image is loaded in the target
+> those files are reverted to the root:root permissions
 >
-> - has all the funcions for production
-> - attack surface is limited (no ssh, only the required apps)
-> - config files set with real endpoints (logging or crash servers etc.)
+> The requirement of our platform is that we can create specific users and
+> make some specific processes  and data files having the proper uid and
+> ueid.
 >
-> But that's not an image you can really develop on given all the constrains.
-> So there is also a need for a development image:
+> I have been able to do all this successfully on the target
+> but not through the yocto build system
 >
-> - inherits the funcions available on production image
-> - developer convinence over security (debuggers, ssh access etc.)
-> - configs set not to depend on payed cloud services
+> Any assistance in this regard would be fantastic and very cool :-)
 >
 >
-> Our curent approach is to solve this by having two different
-> image recipes.
 >
-> Pros:
->     * Simple to implement (dev inherits production and just adds packages)
->     * You can build both at the same time with the same version
+> --
+> Jean-Pierre Sainfeld
+> 408-508-1741 <(408)%20508-1741>
 >
-> Cons:
->     * They have the same runtime name (cause they are the same distro)
->     * Separating config files is not yet clear
->       (one way to have two versions of recipes, which was a lot of
-> duplication.
->        Now we're chacking how to solve it by introducing external templating
-> (jinja))
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
-> How did you apprach it?
-> Would like to hear you ideas and from the field experiences.
 >
 
-The image-mode bbclass from Intel:
-
-https://github.com/intel/intel-iot-refkit/blob/master/meta-refkit-core/classes/image-mode.bbclass
-
-Then just add additional packages in your image recipe based on the
-variant you're building.
 
 -- 
-Alex Kiernan
+Jeff Osier-Mixon - Open Source Community Manager, Intel Corporation
 
+--001a114b458e9d60fd0565325ee8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Can anyone help Jean-Pierre? This seems at first like a si=
+mple issue during do_populate.<br></div><div class=3D"gmail_extra"><br><div=
+ class=3D"gmail_quote">On Tue, Feb 13, 2018 at 1:32 PM, Jean-Pierre Sainfel=
+d <span dir=3D"ltr">&lt;<a href=3D"mailto:jean-pierre@anki.com" target=3D"_=
+blank">jean-pierre@anki.com</a>&gt;</span> wrote:<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex"><div dir=3D"ltr">Hi,<div>I am working on yocto system at the jethr=
+o rev level.=C2=A0</div><div>I am looking to use the meta-skeleton <a href=
+=3D"http://useradd-example.bb" target=3D"_blank">useradd-example.bb</a> rec=
+ipe</div><div>So far I have been successful in adding the required users an=
+d group=C2=A0</div><div>and creating files in the /usr/share directory=C2=
+=A0</div><div>The current issue I am facing is the ownership of the created=
+ file=C2=A0</div><div>I see the right permissions at the do_install() time=
+=C2=A0</div><div>however when the image is loaded in the target=C2=A0</div>=
+<div>those files are reverted to the root:root permissions=C2=A0</div><div>=
+<br></div><div>The requirement of our platform is that we can create specif=
+ic users and=C2=A0</div><div>make some specific processes=C2=A0 and data fi=
+les having the proper uid and ueid.</div><div><br></div><div>I have been ab=
+le to do all this successfully on the target=C2=A0</div><div>but not throug=
+h the yocto build system=C2=A0</div><div><br></div><div>Any assistance in t=
+his regard would be fantastic and very cool :-)</div><span class=3D"HOEnZb"=
+><font color=3D"#888888"><div><br></div><div><br></div><div><div><br></div>=
+-- <br><div class=3D"m_3168566518044118465gmail_signature" data-smartmail=
+=3D"gmail_signature"><div dir=3D"ltr">Jean-Pierre Sainfeld<div><a href=3D"t=
+el:(408)%20508-1741" value=3D"+14085081741" target=3D"_blank">408-508-1741<=
+/a></div></div></div>
+</div></font></span></div>
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail=
+_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div>Jeff O=
+sier-Mixon - Open Source Community Manager, Intel Corporation</div></div></=
+div>
+</div>
+
+--001a114b458e9d60fd0565325ee8--
