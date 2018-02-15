@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78E25E00E84; Thu, 15 Feb 2018 02:55:15 -0800 (PST)
+	id 165E2E00DB1; Thu, 15 Feb 2018 03:13:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,57 +9,56 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.42 listed in list.dnswl.org]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f42.google.com (mail-it0-f42.google.com
-	[209.85.214.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F5CAE007E1
-	for <yocto@yoctoproject.org>; Thu, 15 Feb 2018 02:55:13 -0800 (PST)
-Received: by mail-it0-f42.google.com with SMTP id y16so11681itc.0
-	for <yocto@yoctoproject.org>; Thu, 15 Feb 2018 02:55:13 -0800 (PST)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.223.170 listed in list.dnswl.org]
+Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E487AE007E1
+	for <yocto@yoctoproject.org>; Thu, 15 Feb 2018 03:13:57 -0800 (PST)
+Received: by mail-io0-f170.google.com with SMTP id d13so50174iog.5
+	for <yocto@yoctoproject.org>; Thu, 15 Feb 2018 03:13:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=lX5RM1k/lCHjb8Pyw7pU69I96xoLLTkxVihf8oCuROw=;
-	b=ajuaHYFiIFSH7s5GtDtJwe51QvH+n1cf7twBdq2LXLNsokqPQikkbPkCGSd4pDKhsD
-	OX9eqq+dJXj6zSy7i7SSxVNrSTjZ9fE6L0++xLwcGa8Y3j9kzlDS45XPYtoWAfJeo4MU
-	dt3fh5p5W2k2W4aWoU0d/8PPe4+b0bqqiFGGgcZgS8d1n1aoEyprW+In0XVpog/qKo/D
-	KqFzRX2DgmGz71FJJlFN3txY/eor7OEHQsxa2uH/RYKLndjA8d620YmKwSOb+YyOqZWj
-	oNzJvKsINsKO8A9oCUwgmCHACdvLivbiM+/uvmf9cYEoM6iR+Jt6qK7hi7hMr1O6HK9d
-	a4gw==
+	:cc; bh=JgeKnJWJSycC49N+oqjs19fJKeq65p+71agw6vR+rcM=;
+	b=ZU26q9UBVqDFadbR3F7KtVQx5hjlFI+o7gQiKFbGivzNtMUkmtFkmX/87tfAZo1f3o
+	Y3M4EveE0JnpUhVUwT1vUZONEP/OwkMN8xCT9n/XYbuIWb/apc0eXR+hjGC01BEDbYt/
+	0GayV2+TnfuSLrjS83bSAFDzZsqJgbhjSJ2/+fipdtaI7ALsyEI8qOuZvBw3Ch4Rqk8Q
+	fYqraPwgkJlMuFvT88B66NxPgOmasvbhEXQJi/udJrUE1s5TIWFFPq5Ge9vmfFfMdKkP
+	n6KGGNU+nc0GGubVdtbW3E6weXLWn2aRQ8UDDnK8mDETQAoYBqbqYiMaRjAydR/xBaO8
+	avWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=lX5RM1k/lCHjb8Pyw7pU69I96xoLLTkxVihf8oCuROw=;
-	b=MnAk1HiZDMIuU0zWcQfW1HIsYp6zfmlsXbhTpWJsE9atiz9T7EG8e7saUgVdUPgaRE
-	3QrK3CAMTEq7GGhF8NH9uhzBbg6OqPyPQ/mbS10SZ4deLdieWoxRJWBeTUpt5jvhrL3L
-	nDxI7lYUjd9bakc111JyH4JpiTNh2X/CHY7CPO9obwdWLpi4OQgnj996186AGxbpF44Y
-	5DzPQN1r5meONy3rrzmOJPu/FA82NrMzAdx4bSa3/SeAt+Mi/EB5kBobM3IziF4xgeLu
-	F4mGISKiMFy8/TaOxeaoQI929x/7Oskv/F59ebKhuvjWCZFRaLXzps8OHjR1jRAGYIsK
-	9AdA==
-X-Gm-Message-State: APf1xPAL08lJ7GBj3zpl13HAzkatmQX9cWz7IWQEIK6kdH1pFLeD0CAy
-	2gsrPBlc/ckIH5CSEXXp+357z2Rf3OL5aEGyaomfMg==
-X-Google-Smtp-Source: AH8x224kc4PYxc7n3YoLavq5EOKEN9ByTFntNhdrSfxkQYvo3TpsQ+i5l4SG5zRmP4SgW0Ir4OE8Y9efhuFKtbr8bMA=
-X-Received: by 10.36.134.6 with SMTP id u6mr78589itd.10.1518692113331; Thu, 15
-	Feb 2018 02:55:13 -0800 (PST)
+	bh=JgeKnJWJSycC49N+oqjs19fJKeq65p+71agw6vR+rcM=;
+	b=e+OfI0Wq2I5RshBwVh5iuOGke9F48ZWCXkd7vjjjR9QC9NP7dm9xkJiV1aLGm91mgo
+	iOy4wnuoAFXOBCBddQv+5kwXNH7QsPFlehTAzSVpn0s6B9AulHHCwO3MBKTfOVQM76Sh
+	UoA7RMug/8EoyqWQ+oXwT0onyoCRRDQk707UD1bZ1oCH1IZQvEgOy7DrPRmI027AOB+e
+	v3tQ+Uw8tZRJZ437l+61eGAxa25ra5V5RAjenfXxVO9sNOwbh9tJfnfWcAlReDCNGwRR
+	8v4Ox5aWg2RwSa1Jun9p2kiXV/L/2PCZK7RxZseQtc4ZTIHvvpz73K9S0PADXypVIXQB
+	sq3g==
+X-Gm-Message-State: APf1xPCt9BgVBBzuxH/gIp4uNlVwCG4e3QvrPEyRR+t9Sn5K1nxQo843
+	2JWUUTYEGdFdfTRro7wVInPNJt56u4/Tq28NMT0PBw==
+X-Google-Smtp-Source: AH8x225OnRkMNiM8ERva/4/q2u5LHvNDQUUL9ZM+Ewb7zVcni9YE6cv1AJoZdAbvxLCzZBJtKagONIr8I+jktb0Kcqk=
+X-Received: by 10.107.4.65 with SMTP id 62mr2883788ioe.52.1518693237098; Thu,
+	15 Feb 2018 03:13:57 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.107.17.200 with HTTP; Thu, 15 Feb 2018 02:54:52 -0800 (PST)
-In-Reply-To: <7303d2119528406d838e7922fbadfa95@samsung.com>
-References: <CGME20180207174332uscas1p2c4d6e2933f469bb5e6d0cb2fe97e8b5a@uscas1p2.samsung.com>
-	<7303d2119528406d838e7922fbadfa95@samsung.com>
+Received: by 10.107.17.200 with HTTP; Thu, 15 Feb 2018 03:13:36 -0800 (PST)
+In-Reply-To: <CACfi_Z1=eAT2QUF1Ws+iCdU=wb_gP_MhuKfSdoVyDnVQp+PWPw@mail.gmail.com>
+References: <CACfi_Z3y+gdLH04Ta3j+oGy4TU9J7YfFWoz=qavQfo6ntBmmSg@mail.gmail.com>
+	<CAHUNapSPmr7N5ZGbX5-hDewtjwLuU5tQEdOofz29wwBMSkuKaw@mail.gmail.com>
+	<CACfi_Z1=eAT2QUF1Ws+iCdU=wb_gP_MhuKfSdoVyDnVQp+PWPw@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 15 Feb 2018 10:54:52 +0000
-Message-ID: <CAJTo0La3_s=XkzVB0PRF3FB4VwY7LQ3kTQT1oQqVF+-gWMcOkw@mail.gmail.com>
-To: "Vish (Vishwanath) Maram" <vishwanath.m@samsung.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"meta-virtualization@yoctoproject.org"
-	<meta-virtualization@yoctoproject.org>
-Subject: Re: Yocto Recipe for LibRXE.
+Date: Thu, 15 Feb 2018 11:13:36 +0000
+Message-ID: <CAJTo0LZiKseLuN-G23oYReX4QA989j-fi5-t=xOvwP7xX723yw@mail.gmail.com>
+To: Davis Roman <davis.roman84@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Yocto uses UTC time for DATETIME instead of localtime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,67 +70,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Feb 2018 10:55:15 -0000
-Content-Type: multipart/alternative; boundary="94eb2c08972af061e305653e0f09"
+X-List-Received-Date: Thu, 15 Feb 2018 11:13:59 -0000
+Content-Type: multipart/alternative; boundary="001a113efc88eba28e05653e5240"
 
---94eb2c08972af061e305653e0f09
+--001a113efc88eba28e05653e5240
 Content-Type: text/plain; charset="UTF-8"
 
-It's not in the layer index (
-http://layers.openembedded.org/layerindex/branch/master/recipes/?q=librxe),
-so I suggest you start with devtool to create a new recipe.
+On 12 February 2018 at 04:24, Davis Roman <davis.roman84@gmail.com> wrote:
+
+> DATE := "${@time.strftime('%Y%m%d',time.localtime())}"
+> TIME := "${@time.strftime('%H%M%S',time.localtime())}"
+>
+>
+> Can you suggest a different way of making this change?
+>
+
+Use bitbake -e to see if there's a good reason why that didn't work.
+Possibly inherit order means the local.conf value is being overriden.
 
 Ross
 
-On 7 February 2018 at 17:43, Vish (Vishwanath) Maram <
-vishwanath.m@samsung.com> wrote:
-
-> Hi,
->
-> I am looking for a yocto recipe of librxe? Right now I was able to get
-> librdmacm and libibverbs, but librxe yocto is not there. Can someone help
-> me in getting this?
->
-> Highly appreciate if I can get some info on the same.
->
-> Thanks,
-> -Vish
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---94eb2c08972af061e305653e0f09
+--001a113efc88eba28e05653e5240
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">It&#39;s not in the layer index (<a href=3D"http://layers.=
-openembedded.org/layerindex/branch/master/recipes/?q=3Dlibrxe">http://layer=
-s.openembedded.org/layerindex/branch/master/recipes/?q=3Dlibrxe</a>), so I =
-suggest you start with devtool to create a new recipe.<div><br></div><div>R=
-oss</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On=
- 7 February 2018 at 17:43, Vish (Vishwanath) Maram <span dir=3D"ltr">&lt;<a=
- href=3D"mailto:vishwanath.m@samsung.com" target=3D"_blank">vishwanath.m@sa=
-msung.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-<br>
-I am looking for a yocto recipe of librxe? Right now I was able to get libr=
-dmacm and libibverbs, but librxe yocto is not there. Can someone help me in=
- getting this?<br>
-<br>
-Highly appreciate if I can get some info on the same.<br>
-<br>
-Thanks,<br>
--Vish<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br></div>
+<div dir=3D"ltr">On 12 February 2018 at 04:24, Davis Roman <span dir=3D"ltr=
+">&lt;<a href=3D"mailto:davis.roman84@gmail.com" target=3D"_blank">davis.ro=
+man84@gmail.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div cl=
+ass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><d=
+iv><div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size=
+:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
+rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
+;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
+gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
+"><span style=3D"font-size:12.8px">DATE :=3D &quot;${@time.strftime(&#39;%Y=
+%m%d&#39;,<wbr>time.localtime())}&quot;</span></div><div style=3D"color:rgb=
+(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;f=
+ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;lette=
+r-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white=
+-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decor=
+ation-style:initial;text-decoration-color:initial"><span style=3D"font-size=
+:12.8px">TIME :=3D &quot;${@time.strftime(&#39;%H%M%S&#39;,<wbr>time.localt=
+ime())}&quot;</span></div><br></div><div><br></div><div>Can you suggest a d=
+ifferent way of making this change?</div></div></div></blockquote><div><br>=
+</div><div>Use bitbake -e to see if there&#39;s a good reason why that didn=
+&#39;t work.=C2=A0 Possibly inherit order means the local.conf value is bei=
+ng overriden.</div><div><br></div><div>Ross</div></div></div></div>
 
---94eb2c08972af061e305653e0f09--
+--001a113efc88eba28e05653e5240--
