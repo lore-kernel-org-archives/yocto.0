@@ -1,89 +1,120 @@
-Return-Path: <Iain.Worlock@bluechiip.com>
+Return-Path: <vishwanath.m@samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 910ADE00E34; Thu, 15 Feb 2018 21:19:39 -0800 (PST)
+	id 02E51E00DFA; Fri, 16 Feb 2018 08:49:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.117.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_HI,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [211.189.100.11 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 936 seconds by postgrey-1.32 at yocto-www;
-	Thu, 15 Feb 2018 21:19:36 PST
-Received: from AUS01-SY3-obe.outbound.protection.outlook.com
-	(mail-sy3aus01on0065.outbound.protection.outlook.com [104.47.117.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FE25E00D99
-	for <yocto@yoctoproject.org>; Thu, 15 Feb 2018 21:19:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=bluechiip.onmicrosoft.com; s=selector1-bluechiip-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=RXUd4ubnD/aQ5Xn5QzRebZL+PUGJQm27NvLf3lt8pP8=;
-	b=ci0nWIhfKsiEnAxTLNUTD10CLsep/nQSb3/JCcaa2SN8ZhRSx+7CaI6hGBxDcFDxEQDgiwkQm2AGhtg3LdrnmeV6exWq5zaAPtp3CB0mzVNlpMqLmn5V6ZUMMOs4N81lSEq7ftoCzasf41TFN+bJVFC8rucHlXXfJlgosXHJcJs=
-Received: from MEAPR01MB2872.ausprd01.prod.outlook.com (52.134.200.13) by
-	MEAPR01MB2485.ausprd01.prod.outlook.com (52.134.197.12) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.485.10; Fri, 16 Feb 2018 05:03:48 +0000
-Received: from MEAPR01MB2872.ausprd01.prod.outlook.com
-	([fe80::a447:e6bd:a184:1f0b]) by
-	MEAPR01MB2872.ausprd01.prod.outlook.com
-	([fe80::a447:e6bd:a184:1f0b%13]) with mapi id 15.20.0485.020;
-	Fri, 16 Feb 2018 05:03:48 +0000
-From: Iain Worlock <Iain.Worlock@bluechiip.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-qt5] UnicodeDecodeError suddenly appeared
-Thread-Index: AQHTpuOHP0vIE8r1UkiE/AA073QTbg==
-Date: Fri, 16 Feb 2018 05:03:48 +0000
-Message-ID: <D6ACB162.28E3%iain.worlock@bluechiip.com>
-Accept-Language: en-AU, en-US
+Received: from mailout1.w2.samsung.com (mailout1.w2.samsung.com
+	[211.189.100.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A583E00DD0;
+	Fri, 16 Feb 2018 08:49:56 -0800 (PST)
+Received: from uscas1p1.samsung.com (unknown [182.198.245.206])
+	by mailout1.w2.samsung.com (KnoxPortal) with ESMTP id
+	20180216164954usoutp014449a7d97b7b08aea383f196e599d287~T3F3HgtrT1513315133usoutp01Z;
+	Fri, 16 Feb 2018 16:49:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w2.samsung.com
+	20180216164954usoutp014449a7d97b7b08aea383f196e599d287~T3F3HgtrT1513315133usoutp01Z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1518799794;
+	bh=/EPwqU9WQbY5AEwEOKzcQAlBE9WzGi26DNB3LLBggQE=;
+	h=From:To:Cc:Subject:Date:In-reply-to:References:From;
+	b=X3oEuGNEtnZDLPI3Ctb1yUAfJu6ZLmCt4PqHqa6J8zMWieJT57MTDv49quyemrDuX
+	daDIjT7goRNySyL1/2odB7xC2wYk5pobaUcIaRUUBTkeeZcJ/irSphQAJLGCSlZjKk
+	tUURbe2b0UCcoY9mx6HlLv97+9FmGMXW/4NbXbGY=
+Received: from ussmges5.samsung.com (u115.gpu85.samsung.co.kr
+	[203.254.195.115]) by uscas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20180216164954uscas1p24dcec13ef34039e7a003530114d039ec~T3F2v3WMn2325423254uscas1p2R;
+	Fri, 16 Feb 2018 16:49:54 +0000 (GMT)
+Received: from uscas1p2.samsung.com ( [182.198.245.207]) by
+	ussmges5.samsung.com (USCPEMTA) with SMTP id 43.00.00408.2BB078A5;
+	Fri, 16 Feb 2018 11:49:54 -0500 (EST)
+Received: from ussmgxs4.samsung.com (u125.gpu85.samsung.co.kr
+	[203.254.195.125]) by uscas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20180216164953uscas1p29a8f084754ee774070b5e0ffbab69072~T3F2bVFeq2325423254uscas1p2Q;
+	Fri, 16 Feb 2018 16:49:53 +0000 (GMT)
+X-AuditID: cbfec373-f79ba6d000000198-28-5a870bb202fb
+Received: from usmmp1.samsung.com ( [203.254.195.77]) by
+	ussmgxs4.samsung.com (USCPEXMTA) with SMTP id 7A.50.02085.1BB078A5;
+	Fri, 16 Feb 2018 11:49:53 -0500 (EST)
+Received: from SSI-EX4.ssi.samsung.com ([105.128.2.146]) by
+	usmmp1.samsung.com (Oracle Communications Messaging Server 7.0.5.31.0
+	64bit
+	(built May 5 2014)) with ESMTP id <0P490019Z5F52G20@usmmp1.samsung.com>;
+	Fri, 16 Feb 2018 11:49:53 -0500 (EST)
+Received: from SSI-EX3.ssi.samsung.com (105.128.2.228) by
+	SSI-EX4.ssi.samsung.com (105.128.2.229) with Microsoft SMTP Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+	15.1.669.32; Fri, 16 Feb 2018 08:49:52 -0800
+Received: from SSI-EX3.ssi.samsung.com ([fe80::8d80:5816:c578:8c36]) by
+	SSI-EX3.ssi.samsung.com ([fe80::8d80:5816:c578:8c36%3]) with mapi id
+	15.01.0669.032; Fri, 16 Feb 2018 08:49:52 -0800
+From: "Vish (Vishwanath) Maram" <vishwanath.m@samsung.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-topic: [yocto] Yocto Recipe for LibRXE.
+Thread-index: AdOgOyWlgtjKAqLnTiOPwQEKnL+v7AGU1BkAAC3hDQA=
+Date: Fri, 16 Feb 2018 16:49:52 +0000
+Message-id: <f2355f750bd24ceaa0fa24eaf750e16e@samsung.com>
+In-reply-to: <CAJTo0La3_s=XkzVB0PRF3FB4VwY7LQ3kTQT1oQqVF+-gWMcOkw@mail.gmail.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Iain.Worlock@bluechiip.com; 
-x-originating-ip: [203.17.42.144]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; MEAPR01MB2485;
-	7:SsR+0aDTYbmfQ+k4M7J5YvGiHN7sbpuJwqfS1OkS3Hf6TnoUdHSW5sZ50+yy5HFBZ3guSNhlEsNZROW9HOY/f6orhxwxKXWydopyvGI8Cib+kJ1H/18cfgFeKmO5E/dZQifH1kqmOWCLxkdZUvNO+2oQEecmNjDChOVbVmoxSdhbwmH43rXxAXLIgRpdGa5loqNo8tEJMnVqxwiZzB0mgg22v0MNdc3k7UPbwNZzLN181EhJzcqgPk88Z7/mDm02
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 62847fae-507a-40e7-6a58-08d574faaa12
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(7021125)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(5600026)(4604075)(3008032)(2017052603307)(7153060)(7193020);
-	SRVR:MEAPR01MB2485; 
-x-ms-traffictypediagnostic: MEAPR01MB2485:
-x-microsoft-antispam-prvs: <MEAPR01MB248503D37F8C44AA94C50F6E90CB0@MEAPR01MB2485.ausprd01.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040501)(2401047)(5005006)(8121501046)(3231101)(2400082)(944501161)(10201501046)(93006095)(93001095)(3002001)(6041288)(20161123562045)(20161123558120)(20161123560045)(20161123564045)(2016111802025)(6043046)(6072148)(201708071742011);
-	SRVR:MEAPR01MB2485; BCL:0; PCL:0; RULEID:; SRVR:MEAPR01MB2485; 
-x-forefront-prvs: 0585417D7B
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(366004)(39380400002)(346002)(376002)(39830400003)(396003)(199004)(189003)(2351001)(66066001)(99286004)(106356001)(8936002)(36756003)(53936002)(575784001)(86362001)(6512007)(8676002)(3660700001)(81156014)(6916009)(14454004)(3280700002)(1730700003)(81166006)(54896002)(97736004)(6436002)(105586002)(6506007)(7736002)(186003)(5250100002)(2501003)(26005)(478600001)(68736007)(72206003)(59450400001)(25786009)(102836004)(6486002)(1857600001)(3846002)(6116002)(5660300001)(5640700003)(2906002)(2900100001)(316002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:MEAPR01MB2485;
-	H:MEAPR01MB2872.ausprd01.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: bluechiip.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: fufX6ons50K34+9G/Ff+gOmrw5D6P2c+0400K1DOP4OA9LfkfN45ETijPpfbrQopxXzAmgImuzoX2g5I3FRONg==
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-MIME-Version: 1.0
-X-OriginatorOrg: bluechiip.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62847fae-507a-40e7-6a58-08d574faaa12
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Feb 2018 05:03:48.2241 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 34fdffe6-c5ae-485a-9f02-abb3d8b4d895
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MEAPR01MB2485
+X-Originating-IP: [105.128.2.176]
+MIME-version: 1.0
+X-CFilter-Loop: Reflected
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SbUhTURjm7O7juloc52hvFpGDLEVngeYSMTEhyX4E/RCNqJm3aW0quyoq
+	JCuXipGmCeEyFQ1JXWxtYtMUdH6lOZZhYgXDqaBTiixk/nG17Wrs3/N13vc8h0MSQj0nlMzL
+	L6LU+XKlhMtn909u26NNB6qzzph3+bLvI+OErNVyQdbo0nOTibTOIRcrrfpDHfcqK4ufmEMp
+	80oodUzSLX6ueWkIFTpTS+ttbo4GuVJqEUkCjoXRnRu1KMgLD8Mnh4Fbi/ikEHchsLf0cHyG
+	EGtZ4DBG7+fnbfh/xlxXzWbILgKT7gmHIVsIHg6s7pERLxlZZftGcXECODe/+MeKcCTYNlcI
+	X4jANQjmGnd4PiMER8Pu59+ICUmhb2qZYHAC2Ksd/sNsfBJmHrzn+rDAq68/c/gXBOFr0Pzc
+	49eRt5B7Rs/yYQKLofLRVzZTNBg6XgwR+6U9g04ug8NgTTuNmHw2DPQs8Jj5wbCzNx/wERh9
+	vejvDLieB1vdbg5jpMJk3xiPwSGwMdW3h49B7x+mJWAHguX2Gh5DPAiMPxc5T1G4LuCGuoDt
+	uoDtOu/rEzgCDIMxTCQMmh47eQw+DY9aXvIC9XbE60GiYppWKSg6TkrLVXRxvkJ6u0BlQt4/
+	9NEzRlvQujHBijCJJAcFSytVWUKOvIQuU1kRkIREJFjzSYIceVk5pS64qS5WUrQVHSXZErHg
+	RHNvphAr5EXUPYoqpNT7LosMCtWgxGHVxeHcX7Nl6SZZVBchjTNnhvabxBnTeZ4Fy49Xyb1J
+	WmPD5Pn4+1KWtWJJHxul+5ahsKdXhs+1hW1ONJSLm1M630asaAZc2W11tvg3FXdnty5tWy9P
+	lHLTrmwcF2mq5v+iaYf7kEFkGLtuedfadCql9s657gyxUtuW3DEuYdO58rORhJqW/wOgM7TB
+	PwMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJIsWRmVeSWpSXmKPExsVy+t9hX92N3O1RBs/mG1vcPnCE2WLeDnuL
+	SS/XsDkweyze85LJo/1EH1sAUxSXTUpqTmZZapG+XQJXxuYHexgLHrpU9J/9ztrA+NKpi5GD
+	Q0LAROLKWYEuRk4gU0ziwr31bF2MXBxCAksYJaa3zmADSQgJ/GWU6GuogEh8ZJR4+WA6C4Rz
+	gFHi/ZHbLCBVbAJWEg9fX2UFsUUEtCTOvn7MDFLELNDBKHG/+yhYQlhAV+LvpU+MEEV6EluO
+	P2KGsK0kzrffA6thEVCVONW4G2w1L1D8xeR7UNuuM0qc37UQrIhTIFhi5rzjTCA2I9Dh30+t
+	AbOZBcQlmltvskA8JCCxZM95ZghbVOLl43+sELaixPOWk4wQ9QkSS45uY4ZYJijxA2wZSI2k
+	xMEVN1gmMErMQjJ2FpKWWUhaZgGDkllAU2L9Ln2IEkWJKd0P2SFsDYnWOXPZkcUXMLKvYhQp
+	LS7OTa8oNtErTswtLs1L10vOz93ECIng2h2M97/aHGIU4GBU4uF98LgtSog1say4MvcQowQH
+	s5II73OQEG9KYmVValF+fFFpTmrxIUZpDhYlcd6Ne1ZHCgmkJ5akZqemFqQWwWSZODilGhj9
+	Qju63XgPCypqz1u8kTn9K3fsgg07mYV54/R8VS8c+v6uZMNhuzV/Xi2Si9yY6CR6lI2/5sbr
+	zCdWXZO5wtlecG9s5U3T3Xm2m0kijdnkXcaTjKIbG09rHbv2LfPcwX0mHhyrlcJuz+JI9ONa
+	8clDQtFK5/RzplPGb5o+MPw2+dYUf0U30UuJpTgj0VCLuag4EQCulaiJ3AIAAA==
+X-CMS-MailID: 20180216164953uscas1p29a8f084754ee774070b5e0ffbab69072
+X-Msg-Generator: CA
+CMS-TYPE: 301P
+X-CMS-RootMailID: 20180207174332uscas1p2c4d6e2933f469bb5e6d0cb2fe97e8b5a
+X-RootMTR: 20180207174332uscas1p2c4d6e2933f469bb5e6d0cb2fe97e8b5a
+References: <CGME20180207174332uscas1p2c4d6e2933f469bb5e6d0cb2fe97e8b5a@uscas1p2.samsung.com>
+	<7303d2119528406d838e7922fbadfa95@samsung.com>
+	<CAJTo0La3_s=XkzVB0PRF3FB4VwY7LQ3kTQT1oQqVF+-gWMcOkw@mail.gmail.com>
 X-Mailman-Approved-At: Tue, 20 Feb 2018 08:19:05 -0800
-Subject: [meta-qt5] UnicodeDecodeError suddenly appeared
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"meta-virtualization@yoctoproject.org"
+	<meta-virtualization@yoctoproject.org>
+Subject: Re: Yocto Recipe for LibRXE.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -95,407 +126,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Feb 2018 05:19:39 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_D6ACB16228E3iainworlockbluechiipcom_"
+X-List-Received-Date: Fri, 16 Feb 2018 16:49:58 -0000
+Content-language: en-US
+Content-type: multipart/alternative;
+	boundary="_000_f2355f750bd24ceaa0fa24eaf750e16esamsungcom_"
 
---_000_D6ACB16228E3iainworlockbluechiipcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_f2355f750bd24ceaa0fa24eaf750e16esamsungcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Bit of a strange one here, this exact configuration used to build just fine=
-, but now fails. I have no custom bbappends in my qt5 layers, so it should =
-really just be a vanilla build from meta-qt5.
+Um9zcywNCg0KQ2FuIHlvdSBwb2ludCBtZSB0byB3aGF0IGRldnRvb2wgeW91IGFyZSB0YWxraW5n
+IGFib3V0IHRvIGdlbmVyYXRlIHRoZSByZWNpcGU/IEkgYW0gaW4gcHJvY2VzcyBvZiBsZWFybmlu
+ZyB0b29scyBvbiBGUEdBLCBub3Qgc3VyZSBvbiBob3cgdG8gZ2VuZXJhdGUgYXMgd2VsbD8NCg0K
+LVZpc2gNCg0KRnJvbTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29t
+XQ0KU2VudDogVGh1cnNkYXksIEZlYnJ1YXJ5IDE1LCAyMDE4IDI6NTUgQU0NClRvOiBWaXNoIChW
+aXNod2FuYXRoKSBNYXJhbSA8dmlzaHdhbmF0aC5tQHNhbXN1bmcuY29tPg0KQ2M6IG1ldGEtdmly
+dHVhbGl6YXRpb25AeW9jdG9wcm9qZWN0Lm9yZzsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3Vi
+amVjdDogUmU6IFt5b2N0b10gWW9jdG8gUmVjaXBlIGZvciBMaWJSWEUuDQoNCkl0J3Mgbm90IGlu
+IHRoZSBsYXllciBpbmRleCAoaHR0cDovL2xheWVycy5vcGVuZW1iZWRkZWQub3JnL2xheWVyaW5k
+ZXgvYnJhbmNoL21hc3Rlci9yZWNpcGVzLz9xPWxpYnJ4ZSksIHNvIEkgc3VnZ2VzdCB5b3Ugc3Rh
+cnQgd2l0aCBkZXZ0b29sIHRvIGNyZWF0ZSBhIG5ldyByZWNpcGUuDQoNClJvc3MNCg0KT24gNyBG
+ZWJydWFyeSAyMDE4IGF0IDE3OjQzLCBWaXNoIChWaXNod2FuYXRoKSBNYXJhbSA8dmlzaHdhbmF0
+aC5tQHNhbXN1bmcuY29tPG1haWx0bzp2aXNod2FuYXRoLm1Ac2Ftc3VuZy5jb20+PiB3cm90ZToN
+CkhpLA0KDQpJIGFtIGxvb2tpbmcgZm9yIGEgeW9jdG8gcmVjaXBlIG9mIGxpYnJ4ZT8gUmlnaHQg
+bm93IEkgd2FzIGFibGUgdG8gZ2V0IGxpYnJkbWFjbSBhbmQgbGliaWJ2ZXJicywgYnV0IGxpYnJ4
+ZSB5b2N0byBpcyBub3QgdGhlcmUuIENhbiBzb21lb25lIGhlbHAgbWUgaW4gZ2V0dGluZyB0aGlz
+Pw0KDQpIaWdobHkgYXBwcmVjaWF0ZSBpZiBJIGNhbiBnZXQgc29tZSBpbmZvIG9uIHRoZSBzYW1l
+Lg0KDQpUaGFua3MsDQotVmlzaA0KLS0NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJvamVjdC5v
+cmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRwczovL2xpc3RzLnlvY3RvcHJv
+amVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
 
-Failure looks like this:
+--_000_f2355f750bd24ceaa0fa24eaf750e16esamsungcom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-$ bitbake meta-toolchain-qt5
-NOTE: Started PRServer with DBfile: /media/parallels/build/cache/prserv.sql=
-ite3, IP: 127.0.0.1, PORT: 38360, PID: 18679
-Loading cache: 100% |######################################################=
-###########################################################################=
-##################| ETA:  00:00:00
-Loaded 2898 entries from dependency cache.
-Parsing recipes: 100% |####################################################=
-###########################################################################=
-##################| Time: 00:00:01
-Parsing of 2362 .bb files complete (2359 cached, 3 parsed). 2900 targets, 1=
-56 skipped, 9 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OiJNYWxndW4gR290aGljIjsNCglwYW5vc2UtMToyIDExIDUgMyAy
+IDAgMCAyIDAgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3Nl
+LTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEBN
+YWxndW4gR290aGljIjsNCglwYW5vc2UtMToyIDExIDUgMyAyIDAgMCAyIDAgNDt9DQovKiBTdHls
+ZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1h
+bA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIu
+MHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bh
+bi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJ
+dGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5r
+Rm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0
+LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uaG9lbnpiDQoJe21zby1zdHlsZS1uYW1lOmhv
+ZW56Yjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBs
+eTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30N
+Ci5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjgu
+NWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRT
+ZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1z
+byA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIg
+Lz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVs
+YXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8
+L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJF
+Ti1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlv
+bjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
+PlJvc3MsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
+YW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5DYW4geW91
+IHBvaW50IG1lIHRvIHdoYXQgZGV2dG9vbCB5b3UgYXJlIHRhbGtpbmcgYWJvdXQgdG8gZ2VuZXJh
+dGUgdGhlIHJlY2lwZT8gSSBhbSBpbiBwcm9jZXNzIG9mIGxlYXJuaW5nIHRvb2xzIG9uIEZQR0Es
+IG5vdCBzdXJlIG9uIGhvdyB0byBnZW5lcmF0ZSBhcyB3ZWxsPzxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+LVZpc2g8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gQnVydG9uLCBSb3NzIFttYWls
+dG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBG
+ZWJydWFyeSAxNSwgMjAxOCAyOjU1IEFNPGJyPg0KPGI+VG86PC9iPiBWaXNoIChWaXNod2FuYXRo
+KSBNYXJhbSAmbHQ7dmlzaHdhbmF0aC5tQHNhbXN1bmcuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4g
+bWV0YS12aXJ0dWFsaXphdGlvbkB5b2N0b3Byb2plY3Qub3JnOyB5b2N0b0B5b2N0b3Byb2plY3Qu
+b3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIFlvY3RvIFJlY2lwZSBmb3IgTGli
+UlhFLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkl0J3Mgbm90IGluIHRo
+ZSBsYXllciBpbmRleCAoPGEgaHJlZj0iaHR0cDovL2xheWVycy5vcGVuZW1iZWRkZWQub3JnL2xh
+eWVyaW5kZXgvYnJhbmNoL21hc3Rlci9yZWNpcGVzLz9xPWxpYnJ4ZSI+aHR0cDovL2xheWVycy5v
+cGVuZW1iZWRkZWQub3JnL2xheWVyaW5kZXgvYnJhbmNoL21hc3Rlci9yZWNpcGVzLz9xPWxpYnJ4
+ZTwvYT4pLCBzbyBJIHN1Z2dlc3QgeW91IHN0YXJ0IHdpdGggZGV2dG9vbCB0byBjcmVhdGUNCiBh
+IG5ldyByZWNpcGUuPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5Sb3NzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPk9uIDcgRmVicnVhcnkgMjAxOCBhdCAxNzo0MywgVmlzaCAoVmlzaHdhbmF0aCkgTWFyYW0g
+Jmx0OzxhIGhyZWY9Im1haWx0bzp2aXNod2FuYXRoLm1Ac2Ftc3VuZy5jb20iIHRhcmdldD0iX2Js
+YW5rIj52aXNod2FuYXRoLm1Ac2Ftc3VuZy5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwv
+cD4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0ND
+Q0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFy
+Z2luLXJpZ2h0OjBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSw8YnI+DQo8YnI+DQpJIGFt
+IGxvb2tpbmcgZm9yIGEgeW9jdG8gcmVjaXBlIG9mIGxpYnJ4ZT8gUmlnaHQgbm93IEkgd2FzIGFi
+bGUgdG8gZ2V0IGxpYnJkbWFjbSBhbmQgbGliaWJ2ZXJicywgYnV0IGxpYnJ4ZSB5b2N0byBpcyBu
+b3QgdGhlcmUuIENhbiBzb21lb25lIGhlbHAgbWUgaW4gZ2V0dGluZyB0aGlzPzxicj4NCjxicj4N
+CkhpZ2hseSBhcHByZWNpYXRlIGlmIEkgY2FuIGdldCBzb21lIGluZm8gb24gdGhlIHNhbWUuPGJy
+Pg0KPGJyPg0KVGhhbmtzLDxicj4NCi1WaXNoPGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+PHNw
+YW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgiPi0tPC9zcGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0iY29s
+b3I6Izg4ODg4OCI+PGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+X19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PGJyPg0KPHNwYW4gY2xhc3M9Imhv
+ZW56YiI+eW9jdG8gbWFpbGluZyBsaXN0PC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIi
+PjxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj55b2N0b0B5b2N0b3Byb2pl
+Y3Qub3JnPC9hPjwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpiIj48YSBocmVmPSJodHRw
+czovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8iIHRhcmdldD0iX2JsYW5r
+Ij5odHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG88L2E+PC9zcGFu
+Pjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5
+Pg0KPC9odG1sPg0K
 
-Build Configuration:
-BB_VERSION        =3D "1.26.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "Ubuntu-14.04"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "overo"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.8"
-TUNE_FEATURES     =3D "arm armv7a vfp neon callconvention-hard cortexa8"
-TARGET_FPU        =3D "vfp-neon"
-meta
-meta-yocto        =3D "(nobranch):83aa565d93aacae484976562ef1ae8dbbb6b2bc0"
-meta-gnome
-meta-oe
-meta-xfce
-meta-systemd
-meta-networking
-meta-multimedia
-meta-python       =3D "(nobranch):10d3c8f85280a0bf867a8e4f84bcda81c290d28e"
-meta-gumstix      =3D "(nobranch):68e4b5771aef2d11fcf04bb8759fecd409de1ac3"
-meta-gumstix-extras =3D "(nobranch):0ee78d47ff3082000e9e087b1ec0d56df13457d=
-9"
-meta-bluechiip    =3D "HHR-STREAM4:a60b5fb37479e2ff1348ab100c0f3735713a730c=
-"
-meta-ros          =3D "(nobranch):d465a23c0a96e651419d46b29ab7c0c3663da314"
-meta-ti           =3D "(nobranch):03cb3ff15f3b8535ca409ce682f44ec1b81da0c3"
-meta-java         =3D "(nobranch):66c97ae7461f4c1a13917131787bb76dc34e6b6f"
-meta-qt5          =3D "(nobranch):90919b9d86988e7da01fa2c0a07246b5b5600a5d"
-
-NOTE: Preparing RunQueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: Unable to install packages. Command '/media/parallels/build/tmp/sysr=
-oots/x86_64-linux/usr/bin/smart --quiet --data-dir=3D/media/parallels/build=
-/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/=
-sdk/image/opt/poky/1.8/sysroots/cortexa8hf-vfp-neon-poky-linux-gnueabi/var/=
-lib/smart install -y packagegroup-core-standalone-sdk-target-dbg@all packag=
-egroup-core-standalone-sdk-target@all packagegroup-qt5-toolchain-target@all=
-' returned 1:
-Traceback (most recent call last):
-  File "/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/=
-site-packages/smart/backends/rpm/pm.py", line 358, in __call__
-    self._process_rpmout()
-  File "/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/=
-site-packages/smart/backends/rpm/pm.py", line 343, in _process_rpmout
-    output =3D self.rpmout.read()
-  File "/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/=
-codecs.py", line 474, in read
-    newchars, decodedbytes =3D self.decode(data, self.errors)
-UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 4948: =
-ordinal not in range(128)
-
-ERROR: Function failed: do_populate_sdk
-ERROR: Logfile of failure stored in: /media/parallels/build/tmp/work/cortex=
-a8hf-vfp-neon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/temp/log.do_popu=
-late_sdk.18850
-ERROR: Task 7 (/home/parallels/yocto/poky/meta-qt5/recipes-qt/meta/meta-too=
-lchain-qt5.bb, do_populate_sdk) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 4705 tasks of which 4704 didn't need to be r=
-erun and 1 failed.
-No currently running tasks (4704 of 4706)
-
-
-(A bit more verbosity on the exact point of failure...)
-
-$ bitbake -v -c populate_sdk meta-toolchain-qt5
-<snip>
-NOTE: Executing '/media/parallels/build/tmp/sysroots/x86_64-linux/usr/bin/c=
-reaterepo --dbpath /media/parallels/build/tmp/work/cortexa8hf-vfp-neon-poky=
--linux-gnueabi/meta-toolchain-qt5/1.0-r0/rpmdb/cortexa8hf_vfp_neon --update=
- -q /media/parallels/build/tmp/deploy/rpm/cortexa8hf_vfp_neon' ...
-NOTE: Executing '/media/parallels/build/tmp/sysroots/x86_64-linux/usr/bin/c=
-reaterepo --dbpath /media/parallels/build/tmp/work/cortexa8hf-vfp-neon-poky=
--linux-gnueabi/meta-toolchain-qt5/1.0-r0/rpmdb/x86_64_nativesdk --update -q=
- /media/parallels/build/tmp/deploy/rpm/x86_64_nativesdk' ...
-NOTE: Installing the following packages: packagegroup-core-standalone-sdk-t=
-arget-dbg packagegroup-core-standalone-sdk-target packagegroup-qt5-toolchai=
-n-target
-NOTE: to be installed: packagegroup-core-standalone-sdk-target-dbg@all pack=
-agegroup-core-standalone-sdk-target@all packagegroup-qt5-toolchain-target@a=
-ll
-NOTE: /media/parallels/build/tmp/sysroots/x86_64-linux/usr/bin/smart --quie=
-t --data-dir=3D/media/parallels/build/tmp/work/cortexa8hf-vfp-neon-poky-lin=
-ux-gnueabi/meta-toolchain-qt5/1.0-r0/sdk/image/opt/poky/1.8/sysroots/cortex=
-a8hf-vfp-neon-poky-linux-gnueabi/var/lib/smart install -y packagegroup-core=
--standalone-sdk-target-dbg@all packagegroup-core-standalone-sdk-target@all =
-packagegroup-qt5-toolchain-target@all
-ERROR: Unable to install packages. Command '/media/parallels/build/tmp/sysr=
-oots/x86_64-linux/usr/bin/smart --quiet --data-dir=3D/media/parallels/build=
-/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/=
-sdk/image/opt/poky/1.8/sysroots/cortexa8hf-vfp-neon-poky-linux-gnueabi/var/=
-lib/smart install -y packagegroup-core-standalone-sdk-target-dbg@all packag=
-egroup-core-standalone-sdk-target@all packagegroup-qt5-toolchain-target@all=
-' returned 1:
-Output from udev-cache-182-r9.0.0@cortexa8hf_vfp_neon:
- Removing any system startup links for udev-cache ...
- Adding system startup for /media/parallels/build/tmp/work/cortexa8hf-vfp-n=
-eon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/sdk/image/opt/poky/1.8/sys=
-roots/cortexa8hf-vfp-neon-poky-linux-gnueabi/etc/init.d/udev-cache.
-Traceback (most recent call last):
-  File "/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/=
-site-packages/smart/backends/rpm/pm.py", line 358, in __call__
-    self._process_rpmout()
-  File "/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/=
-site-packages/smart/backends/rpm/pm.py", line 343, in _process_rpmout
-    output =3D self.rpmout.read()
-  File "/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/=
-codecs.py", line 474, in read
-    newchars, decodedbytes =3D self.decode(data, self.errors)
-UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 4948: =
-ordinal not in range(128)
-
-ERROR: Function failed: do_populate_sdk
-ERROR: Logfile of failure stored in: /media/parallels/build/tmp/work/cortex=
-a8hf-vfp-neon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/temp/log.do_popu=
-late_sdk.344
-ERROR: Task 6 (/home/parallels/yocto/poky/meta-qt5/recipes-qt/meta/meta-too=
-lchain-qt5.bb, do_populate_sdk) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 3582 tasks of which 3581 didn't need to be r=
-erun and 1 failed.
-
-
-My reading of this is that the package manager expected only ascii characte=
-rs in the packages packagegroup-core-standalone-sdk-target-dbg packagegroup=
--core-standalone-sdk-target & packagegroup-qt5-toolchain-target and encount=
-ered an out-of-range value (195 / 0xc3). Presumably smart is expecting the =
-wrong encoding. If this is correct, how can an alternate encoding be specif=
-ied for the installation of these packages & how could I determine what the=
- correct encoding should be?
-
-I am a little surprised that this has suddenly become an issue as my build =
-is pointing at exactly the same sources as its previous, working state - it=
- could be something else entirely. The only other thing that occurs to me i=
-s that I did run an apt-get update between the build working and this failu=
-re, so it's entirely possible that the version of one of the build tools ma=
-y have changed.
-
-Any advice on how to proceed would be most gratefully received, please let =
-me know if I can provide any more data...
-
---_000_D6ACB16228E3iainworlockbluechiipcom_
-Content-Type: text/html; charset="us-ascii"
-Content-ID: <EA4AA8CAF95D0342AB0B91A3F011A1C0@ausprd01.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-lin=
-e-break: after-white-space; color: rgb(0, 0, 0); font-size: 14px; font-fami=
-ly: Calibri, sans-serif;">
-<div>
-<p style=3D"margin: 0px 0px 1em; padding: 0px; border: 0px; font-stretch: i=
-nherit; font-size: 15px; line-height: inherit; font-family: Arial, 'Helveti=
-ca Neue', Helvetica, sans-serif; vertical-align: baseline; box-sizing: inhe=
-rit; clear: both; color: rgb(36, 39, 41); orphans: 2; widows: 2; background=
--color: rgb(255, 255, 255);">
-Bit of a strange one here, this exact configuration used to build just fine=
-, but now fails. I have no custom bbappends in my qt5 layers, so it should =
-really just be a vanilla build from meta-qt5.</p>
-<p style=3D"margin: 0px 0px 1em; padding: 0px; border: 0px; font-stretch: i=
-nherit; font-size: 15px; line-height: inherit; font-family: Arial, 'Helveti=
-ca Neue', Helvetica, sans-serif; vertical-align: baseline; box-sizing: inhe=
-rit; clear: both; color: rgb(36, 39, 41); orphans: 2; widows: 2; background=
--color: rgb(255, 255, 255);">
-Failure looks like this:</p>
-<pre style=3D"margin-top: 0px; padding: 5px; border: 0px; font-stretch: inh=
-erit; font-size: 13px; line-height: inherit; font-family: Consolas, Menlo, =
-Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream=
- Vera Sans Mono', 'Courier New', monospace, sans-serif; vertical-align: bas=
-eline; box-sizing: inherit; width: auto; max-height: 600px; overflow: auto;=
- background-color: rgb(239, 240, 241); word-wrap: normal; color: rgb(36, 39=
-, 41); orphans: 2; widows: 2;"><code style=3D"margin: 0px; padding: 0px; bo=
-rder: 0px; font-style: inherit; font-variant: inherit; font-stretch: inheri=
-t; line-height: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida Cons=
-ole', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'C=
-ourier New', monospace, sans-serif; vertical-align: baseline; box-sizing: i=
-nherit; white-space: inherit;">$ bitbake meta-toolchain-qt5
-NOTE: Started PRServer with DBfile: /media/parallels/build/cache/prserv.sql=
-ite3, IP: 127.0.0.1, PORT: 38360, PID: 18679
-Loading cache: 100% |######################################################=
-###########################################################################=
-##################| ETA:  00:00:00
-Loaded 2898 entries from dependency cache.
-Parsing recipes: 100% |####################################################=
-###########################################################################=
-##################| Time: 00:00:01
-Parsing of 2362 .bb files complete (2359 cached, 3 parsed). 2900 targets, 1=
-56 skipped, 9 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
-
-Build Configuration:
-BB_VERSION        =3D &quot;1.26.0&quot;
-BUILD_SYS         =3D &quot;x86_64-linux&quot;
-NATIVELSBSTRING   =3D &quot;Ubuntu-14.04&quot;
-TARGET_SYS        =3D &quot;arm-poky-linux-gnueabi&quot;
-MACHINE           =3D &quot;overo&quot;
-DISTRO            =3D &quot;poky&quot;
-DISTRO_VERSION    =3D &quot;1.8&quot;
-TUNE_FEATURES     =3D &quot;arm armv7a vfp neon callconvention-hard cortexa=
-8&quot;
-TARGET_FPU        =3D &quot;vfp-neon&quot;
-meta             =20
-meta-yocto        =3D &quot;(nobranch):83aa565d93aacae484976562ef1ae8dbbb6b=
-2bc0&quot;
-meta-gnome       =20
-meta-oe          =20
-meta-xfce        =20
-meta-systemd     =20
-meta-networking  =20
-meta-multimedia  =20
-meta-python       =3D &quot;(nobranch):10d3c8f85280a0bf867a8e4f84bcda81c290=
-d28e&quot;
-meta-gumstix      =3D &quot;(nobranch):68e4b5771aef2d11fcf04bb8759fecd409de=
-1ac3&quot;
-meta-gumstix-extras =3D &quot;(nobranch):0ee78d47ff3082000e9e087b1ec0d56df1=
-3457d9&quot;
-meta-bluechiip    =3D &quot;HHR-STREAM4:a60b5fb37479e2ff1348ab100c0f3735713=
-a730c&quot;
-meta-ros          =3D &quot;(nobranch):d465a23c0a96e651419d46b29ab7c0c3663d=
-a314&quot;
-meta-ti           =3D &quot;(nobranch):03cb3ff15f3b8535ca409ce682f44ec1b81d=
-a0c3&quot;
-meta-java         =3D &quot;(nobranch):66c97ae7461f4c1a13917131787bb76dc34e=
-6b6f&quot;
-meta-qt5          =3D &quot;(nobranch):90919b9d86988e7da01fa2c0a07246b5b560=
-0a5d&quot;
-
-NOTE: Preparing RunQueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: Unable to install packages. Command '/media/parallels/build/tmp/sysr=
-oots/x86_64-linux/usr/bin/smart --quiet --data-dir=3D/media/parallels/build=
-/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/=
-sdk/image/opt/poky/1.8/sysroots/cortexa8hf-vfp-neon-poky-linux-gnueabi/var/=
-lib/smart install -y packagegroup-core-standalone-sdk-target-dbg@all packag=
-egroup-core-standalone-sdk-target@all packagegroup-qt5-toolchain-target@all=
-' returned 1:
-Traceback (most recent call last):
-  File &quot;/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/pytho=
-n2.7/site-packages/smart/backends/rpm/pm.py&quot;, line 358, in __call__
-    self._process_rpmout()
-  File &quot;/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/pytho=
-n2.7/site-packages/smart/backends/rpm/pm.py&quot;, line 343, in _process_rp=
-mout
-    output =3D self.rpmout.read()
-  File &quot;/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/pytho=
-n2.7/codecs.py&quot;, line 474, in read
-    newchars, decodedbytes =3D self.decode(data, self.errors)
-UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 4948: =
-ordinal not in range(128)
-
-ERROR: Function failed: do_populate_sdk
-ERROR: Logfile of failure stored in: /media/parallels/build/tmp/work/cortex=
-a8hf-vfp-neon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/temp/log.do_popu=
-late_sdk.18850
-ERROR: Task 7 (/home/parallels/yocto/poky/meta-qt5/recipes-qt/meta/meta-too=
-lchain-qt5.bb, do_populate_sdk) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 4705 tasks of which 4704 didn't need to be r=
-erun and 1 failed.
-No currently running tasks (4704 of 4706)
-</code></pre>
-<p style=3D"margin: 0px 0px 1em; padding: 0px; border: 0px; font-stretch: i=
-nherit; font-size: 15px; line-height: inherit; font-family: Arial, 'Helveti=
-ca Neue', Helvetica, sans-serif; vertical-align: baseline; box-sizing: inhe=
-rit; clear: both; color: rgb(36, 39, 41); orphans: 2; widows: 2; background=
--color: rgb(255, 255, 255);">
-(A bit more verbosity on the exact point of failure...)</p>
-<pre style=3D"margin-top: 0px; padding: 5px; border: 0px; font-stretch: inh=
-erit; font-size: 13px; line-height: inherit; font-family: Consolas, Menlo, =
-Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream=
- Vera Sans Mono', 'Courier New', monospace, sans-serif; vertical-align: bas=
-eline; box-sizing: inherit; width: auto; max-height: 600px; overflow: auto;=
- background-color: rgb(239, 240, 241); word-wrap: normal; color: rgb(36, 39=
-, 41); orphans: 2; widows: 2;"><code style=3D"margin: 0px; padding: 0px; bo=
-rder: 0px; font-style: inherit; font-variant: inherit; font-stretch: inheri=
-t; line-height: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida Cons=
-ole', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'C=
-ourier New', monospace, sans-serif; vertical-align: baseline; box-sizing: i=
-nherit; white-space: inherit;">$ bitbake -v -c populate_sdk meta-toolchain-=
-qt5
-&lt;snip&gt;
-NOTE: Executing '/media/parallels/build/tmp/sysroots/x86_64-linux/usr/bin/c=
-reaterepo --dbpath /media/parallels/build/tmp/work/cortexa8hf-vfp-neon-poky=
--linux-gnueabi/meta-toolchain-qt5/1.0-r0/rpmdb/cortexa8hf_vfp_neon --update=
- -q /media/parallels/build/tmp/deploy/rpm/cortexa8hf_vfp_neon' ...
-NOTE: Executing '/media/parallels/build/tmp/sysroots/x86_64-linux/usr/bin/c=
-reaterepo --dbpath /media/parallels/build/tmp/work/cortexa8hf-vfp-neon-poky=
--linux-gnueabi/meta-toolchain-qt5/1.0-r0/rpmdb/x86_64_nativesdk --update -q=
- /media/parallels/build/tmp/deploy/rpm/x86_64_nativesdk' ...
-NOTE: Installing the following packages: packagegroup-core-standalone-sdk-t=
-arget-dbg packagegroup-core-standalone-sdk-target packagegroup-qt5-toolchai=
-n-target
-NOTE: to be installed: packagegroup-core-standalone-sdk-target-dbg@all pack=
-agegroup-core-standalone-sdk-target@all packagegroup-qt5-toolchain-target@a=
-ll
-NOTE: /media/parallels/build/tmp/sysroots/x86_64-linux/usr/bin/smart --quie=
-t --data-dir=3D/media/parallels/build/tmp/work/cortexa8hf-vfp-neon-poky-lin=
-ux-gnueabi/meta-toolchain-qt5/1.0-r0/sdk/image/opt/poky/1.8/sysroots/cortex=
-a8hf-vfp-neon-poky-linux-gnueabi/var/lib/smart install -y packagegroup-core=
--standalone-sdk-target-dbg@all packagegroup-core-standalone-sdk-target@all =
-packagegroup-qt5-toolchain-target@all
-ERROR: Unable to install packages. Command '/media/parallels/build/tmp/sysr=
-oots/x86_64-linux/usr/bin/smart --quiet --data-dir=3D/media/parallels/build=
-/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/=
-sdk/image/opt/poky/1.8/sysroots/cortexa8hf-vfp-neon-poky-linux-gnueabi/var/=
-lib/smart install -y packagegroup-core-standalone-sdk-target-dbg@all packag=
-egroup-core-standalone-sdk-target@all packagegroup-qt5-toolchain-target@all=
-' returned 1:
-Output from udev-cache-182-r9.0.0@cortexa8hf_vfp_neon:
- Removing any system startup links for udev-cache ...
- Adding system startup for /media/parallels/build/tmp/work/cortexa8hf-vfp-n=
-eon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/sdk/image/opt/poky/1.8/sys=
-roots/cortexa8hf-vfp-neon-poky-linux-gnueabi/etc/init.d/udev-cache.
-Traceback (most recent call last):
-  File &quot;/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/pytho=
-n2.7/site-packages/smart/backends/rpm/pm.py&quot;, line 358, in __call__
-    self._process_rpmout()
-  File &quot;/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/pytho=
-n2.7/site-packages/smart/backends/rpm/pm.py&quot;, line 343, in _process_rp=
-mout
-    output =3D self.rpmout.read()
-  File &quot;/media/parallels/build/tmp/sysroots/x86_64-linux/usr/lib/pytho=
-n2.7/codecs.py&quot;, line 474, in read
-    newchars, decodedbytes =3D self.decode(data, self.errors)
-UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 4948: =
-ordinal not in range(128)
-
-ERROR: Function failed: do_populate_sdk
-ERROR: Logfile of failure stored in: /media/parallels/build/tmp/work/cortex=
-a8hf-vfp-neon-poky-linux-gnueabi/meta-toolchain-qt5/1.0-r0/temp/log.do_popu=
-late_sdk.344
-ERROR: Task 6 (/home/parallels/yocto/poky/meta-qt5/recipes-qt/meta/meta-too=
-lchain-qt5.bb, do_populate_sdk) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 3582 tasks of which 3581 didn't need to be r=
-erun and 1 failed.
-</code></pre>
-<p style=3D"margin: 0px 0px 1em; padding: 0px; border: 0px; font-stretch: i=
-nherit; font-size: 15px; line-height: inherit; font-family: Arial, 'Helveti=
-ca Neue', Helvetica, sans-serif; vertical-align: baseline; box-sizing: inhe=
-rit; clear: both; color: rgb(36, 39, 41); orphans: 2; widows: 2; background=
--color: rgb(255, 255, 255);">
-My reading of this is that the package manager expected only ascii characte=
-rs in the packages packagegroup-core-standalone-sdk-target-dbg packagegroup=
--core-standalone-sdk-target &amp; packagegroup-qt5-toolchain-target and enc=
-ountered an out-of-range value (195
- / 0xc3). Presumably smart is expecting the wrong encoding. If this is corr=
-ect, how can an alternate encoding be specified for the installation of the=
-se packages &amp; how could I determine what the correct encoding should be=
-?</p>
-<p style=3D"margin: 0px 0px 1em; padding: 0px; border: 0px; font-stretch: i=
-nherit; font-size: 15px; line-height: inherit; font-family: Arial, 'Helveti=
-ca Neue', Helvetica, sans-serif; vertical-align: baseline; box-sizing: inhe=
-rit; clear: both; color: rgb(36, 39, 41); orphans: 2; widows: 2; background=
--color: rgb(255, 255, 255);">
-I am a little surprised that this has suddenly become an issue as my build =
-is pointing at exactly the same sources as its previous, working state - it=
- could be something else entirely. The only other thing that occurs to me i=
-s that I did run an apt-get update
- between the build working and this failure, so it's entirely possible that=
- the version of one of the build tools may have changed.</p>
-<p style=3D"margin: 0px 0px 1em; padding: 0px; border: 0px; font-stretch: i=
-nherit; font-size: 15px; line-height: inherit; font-family: Arial, 'Helveti=
-ca Neue', Helvetica, sans-serif; vertical-align: baseline; box-sizing: inhe=
-rit; clear: both; color: rgb(36, 39, 41); orphans: 2; widows: 2; background=
--color: rgb(255, 255, 255);">
-Any advice on how to proceed would be most gratefully received, please let =
-me know if I can provide any more data...</p>
-</div>
-</body>
-</html>
-
---_000_D6ACB16228E3iainworlockbluechiipcom_--
+--_000_f2355f750bd24ceaa0fa24eaf750e16esamsungcom_--
