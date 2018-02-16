@@ -1,58 +1,65 @@
-Return-Path: <Aaron_Wright@selinc.com>
+Return-Path: <bkylerussell@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9AE1E00D7B; Fri, 16 Feb 2018 10:03:43 -0800 (PST)
+	id 383D5E00EBD; Fri, 16 Feb 2018 13:41:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, HTTPS_HTTP_MISMATCH,
-	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.117.214.141 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  2.0 HTTPS_HTTP_MISMATCH BODY: HTTPS_HTTP_MISMATCH
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bkylerussell[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from valiant.selinc.com (valiant.selinc.com [74.117.214.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5020CE00DF3
-	for <yocto@yoctoproject.org>; Fri, 16 Feb 2018 10:03:41 -0800 (PST)
-Received: from pps.filterd (valiant.selinc.com [127.0.0.1])
-	by valiant.selinc.com (8.16.0.22/8.16.0.22) with SMTP id w1GI1i9t013519
-	for <yocto@yoctoproject.org>; Fri, 16 Feb 2018 10:03:41 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=selinc.com;
-	h=to : subject :
-	message-id : from : date : content-type : mime-version; s=SELinc2017;
-	bh=SKLVEoz1SDnloKk43Qy4iRjHMgAUeYPgwZmZWJyv1e8=;
-	b=qBKWztpZm30Oh+7+/yWQ1aFF7Vl6DntdqkZ+2GRkHq3uTiE7RZyzs90Vq5JOTec577hi
-	iQsi6EPxfO4/eU007+J8h67mrDaJe2BNSvXqbJLCmNGvP+glUdS0yBUy4xPx7JGqVryS
-	4VZqgEJ66UprYsroZXofXS1Gbbw5GSkiQJ3x6vScPa701cwygzAOuCYyXbOY3PEQd0+T
-	NIl/GoZhql7LYTbeLWQ+2A79/elRDUmPjCBPxR3dA9s8vHV2n94UtPtG44GSUmfJ2F6e
-	uEBzGvnG1fzKkq6rV14yQzupKsPhQoyK4ipaFquQuBAIvfmwGEaecYtSxunpOpiB2nPu
-	MQ== 
-Received: from edison.ad.selinc.com (edison.ad.selinc.com [10.100.0.15])
-	by valiant.selinc.com with ESMTP id 2g5kcehena-1
-	for <yocto@yoctoproject.org>; Fri, 16 Feb 2018 10:03:41 -0800
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-X-KeepSent: D5E0FD88:8B22924C-88258236:006274F6;
- type=4; name=$KeepSent
-X-Mailer: IBM Notes Release 9.0.1FP5 Octobe4, 2013
-Message-ID: <OFD5E0FD88.8B22924C-ON88258236.006274F6-88258236.006336A5@selinc.com>
-From: Aaron_Wright@selinc.com
-Date: Fri, 16 Feb 2018 10:03:41 -0800
-X-MIMETrack: Serialize by Router on Edison/SEL(Release 9.0.1FP9 HF139|October
-	06, 2017) at 02/16/2018 10:03:41 AM,
-	Serialize complete at 02/16/2018 10:03:41 AM
-MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=8807
-	signatures=668673
-Subject: How to patch local source files
+Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD965E00CE8
+	for <yocto@yoctoproject.org>; Fri, 16 Feb 2018 13:41:41 -0800 (PST)
+Received: by mail-pg0-f65.google.com with SMTP id l4so1258865pgp.11
+	for <yocto@yoctoproject.org>; Fri, 16 Feb 2018 13:41:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=WgfxGDKy3Q9D4QB9VjsodmxaScQSspyULWQfFLemEsc=;
+	b=BtVWsG/wU7TiTS4l1XlU4uPTlaJSYj3uZ6vBNxEPQ+szgocZE16jx3kgJX0TMGSS9D
+	6Bp9DaQq5JXI0VLMVqPMp4G/dh/eqDNpagrTFzpfhdMBzxcvJW9tJjESG0w0Vcd6cYB9
+	4JaHtM/Xt9yuXdQdL3a5O9M3rF01Ux+AlcL1W6gLNjYuQXlNpiM3gz6urgxV0KbV7Ht2
+	8/IrV1kGCZ6493s//hw6O8GuHAohTTVvWrgRKJFsgnyLtGobLHiKmxBh97AxTQU2i6Kv
+	NGpM3CUgPk69W5jOQau6FL6j2LNaj8WXHqfdn7vU3WomiCSeQT92/Qs9g9MmWMWck9GK
+	FuOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=WgfxGDKy3Q9D4QB9VjsodmxaScQSspyULWQfFLemEsc=;
+	b=S3FQw56bE8xSmlhkZfrkTELN3Ke5ZZBQaXmr8hgj4dWIJAmMgMlngDXsp8tA9um5x1
+	/bQ70poIsp/GFp2YbW2e/PUGhnk86ciDbyV6r9Uha7H13a4Hq2T4VjkgpTMtE4VNyGAA
+	6o6T6TSdHrMbou54qAWaBzew2JmE7SVRCtKN5ex5vMMrzQ/a1znHnenOwNsqq+d1kNxD
+	foV0noO/fjgho4OFBUsdy8UEJJfk8+4O9UOjoObH/yNemOyASrWGBevfcAcSZkUfQTG7
+	BJFIA0XAIvn6v7JVdpy09zrrS7AuLn0GQwx5hyHH8uvkPD8Sk6eFIBRE/pq/nbpywxWE
+	RlJg==
+X-Gm-Message-State: APf1xPDtOrjW0qoqSf7TfjWRIj1alPGUGTuBhVJoBCpVqAgmc3Fx+dYn
+	h0sgHEZPRdwb6rfkv3ETXUNZMQ==
+X-Google-Smtp-Source: AH8x224hu1uaD4JDgXq8Nm7NCavGdeGVc/bLQR83JK8J2g1qpG5eMC/qZYtPrgRwOvy9fTW1rB/lhw==
+X-Received: by 10.99.167.75 with SMTP id w11mr6293985pgo.246.1518817300667;
+	Fri, 16 Feb 2018 13:41:40 -0800 (PST)
+Received: from brrussell-Latitude-E6530.dhcp.lexmark.com ([192.146.101.90])
+	by smtp.gmail.com with ESMTPSA id
+	y90sm45319153pfi.34.2018.02.16.13.41.37
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 16 Feb 2018 13:41:40 -0800 (PST)
+From: Kyle Russell <bkylerussell@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 16 Feb 2018 16:41:23 -0500
+Message-Id: <1518817283-31382-1-git-send-email-bkylerussell@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Cc: Kyle Russell <bkylerussell@gmail.com>
+Subject: [meta][PATCH] ptest.bbclass: fix path for multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,77 +71,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Feb 2018 18:03:43 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 006336A588258236_="
+X-List-Received-Date: Fri, 16 Feb 2018 21:41:42 -0000
 
---=_alternative 006336A588258236_=
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: Quoted-printable
+ptest-runner always looks at /usr/lib, so make this arch independent.
 
-I've been using "devtool modify/update-recipe" in order to generate=20
-patches in bbappends in my layer. However, I've run into a problem that=20
-seems like it should be easy, but it isn't.
+Signed-off-by: Kyle Russell <bkylerussell@gmail.com>
+---
+ meta/classes/ptest.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I want to patch a local source file. As in, a file referenced in SRC_URI=20
-that isn't the source code but more like a configuration file or init=20
-script.=20
+diff --git a/meta/classes/ptest.bbclass b/meta/classes/ptest.bbclass
+index c19f65b..62b3621 100644
+--- a/meta/classes/ptest.bbclass
++++ b/meta/classes/ptest.bbclass
+@@ -2,7 +2,7 @@ SUMMARY_${PN}-ptest ?= "${SUMMARY} - Package test files"
+ DESCRIPTION_${PN}-ptest ?= "${DESCRIPTION}  \
+ This package contains a test directory ${PTEST_PATH} for package test purposes."
+ 
+-PTEST_PATH ?= "${libdir}/${BPN}/ptest"
++PTEST_PATH ?= "${nonarch_libdir}/${BPN}/ptest"
+ FILES_${PN}-ptest = "${PTEST_PATH}"
+ SECTION_${PN}-ptest = "devel"
+ ALLOW_EMPTY_${PN}-ptest = "1"
+-- 
+2.7.4
 
-Using the devtool method I get a copy of the file in my layer, but that=20
-seems like that would cause maintenance problems down the road when=20
-upstream changes the file as I won't automatically pick up the changes.=20
-This seems to be the intended behavior though, as this patch[1] says, "We=20
-don't want to create patches against the local source files but rather=20
-update them directly. Thus, 'oe-local-file' directory is ignored in patch=20
-generation when doing update-recipe..." This seems completely opposite of=20
-what I want. Why would I want a copy of the file if I changed one line,=20
-causing maintenance issues in the future?
 
-Am I understanding this right? Is there a workflow that allows for=20
-patching local source files?
-
-[1] https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__patchwork.openem=
-bedded.org_patch_104075_&d=3DDwIBAg&c=3DzVFQZQ67ypsA9mYKSCqWmQHiVkCCaN-Gb60=
-_N6TVnLk&r=3DIZ3mUDA8X9CZR4hNctKngDDYs_BhK3qVNLG-nWGbW2E&m=3D8pcye74JGQLQcB=
-V99bh9bpRb7bX3WqHFUiIq157bDY4&s=3DXLqetQZfaf9jTNco2uT4jCN6FbQ1tHD9F_ZJQvBou=
-JI&e=3D
-
---=_alternative 006336A588258236_=
-Content-Type: text/html; charset="US-ASCII"
-Content-Transfer-Encoding: Quoted-printable
-
-<font size=3D2 face=3D"sans-serif">I've been using &quot;devtool modify/upd=
-ate-recipe&quot;
-in order to generate patches in bbappends in my layer. However, I've run
-into a problem that seems like it should be easy, but it isn't.</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">I want to patch a local source file.
-As in, a file referenced in SRC_URI that isn't the source code but more
-like a configuration file or init script. </font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Using the devtool method I get a copy
-of the file in my layer, but that seems like that would cause maintenance
-problems down the road when upstream changes the file as I won't automatica=
-lly
-pick up the changes. This seems to be the intended behavior though, as
-this patch[1] says, &quot;We don't want to create patches against the local
-source files but rather update them directly. Thus, 'oe-local-file' directo=
-ry
-is ignored in patch generation when doing update-recipe...&quot; This seems
-completely opposite of what I want. Why would I want a copy of the file
-if I changed one line, causing maintenance issues in the future?</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">Am I understanding this right? Is th=
-ere
-a workflow that allows for patching local source files?</font>
-<br>
-<br><font size=3D2 face=3D"sans-serif">[1] </font><a href=3D"https://urldef=
-ense.proofpoint.com/v2/url?u=3Dhttps-3A__patchwork.openembedded.org_patch_1=
-04075_&d=3DDwMBAg&c=3DzVFQZQ67ypsA9mYKSCqWmQHiVkCCaN-Gb60_N6TVnLk&r=3DIZ3mU=
-DA8X9CZR4hNctKngDDYs_BhK3qVNLG-nWGbW2E&m=3D8pcye74JGQLQcBV99bh9bpRb7bX3WqHF=
-UiIq157bDY4&s=3DXLqetQZfaf9jTNco2uT4jCN6FbQ1tHD9F_ZJQvBouJI&e=3D"><font siz=
-e=3D2 color=3Dblue face=3D"sans-serif">https://patchwork.openembedded.org/p=
-atch/104075/</font>[patchwork.openembedded.org]</a>
-<br>=
-
---=_alternative 006336A588258236_=--
