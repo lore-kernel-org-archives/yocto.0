@@ -1,26 +1,61 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <icastell@nayarsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10BF0E00EC5; Sun, 18 Feb 2018 21:35:40 -0800 (PST)
+	id E5EE7E00A61; Mon, 19 Feb 2018 00:35:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5580DE00E0B
-	for <yocto@yoctoproject.org>; Sun, 18 Feb 2018 21:35:39 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 3511F802E187
-	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 00:35:38 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B70AE00D91
+	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 00:35:21 -0800 (PST)
+Received: by mail-io0-f174.google.com with SMTP id p188so10476628ioe.12
+	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 00:35:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nayarsystems.com; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=1ZL+UoO/nJPGoDiLCwDOvuurRrVJfli/AS5r0bT+9b0=;
+	b=SdUYbqT44wUY8i+CRZugmqoVkAoG/HT4rK97nFSZgmA9D25Iovpe4K6NK/O6ne3Rwq
+	3KHV82mx5yika66S6u9gnNrJ+yXeBhbdP8PKSowrRnQ6+MroKZ5tccpjbh2qrP6gvjNi
+	tsp91LQHUreKFrPzXf/Mh3PJCVEMamWJr+19s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=1ZL+UoO/nJPGoDiLCwDOvuurRrVJfli/AS5r0bT+9b0=;
+	b=bWF6JKd0EEbiHcZIXuP6Ld8AAnB+DPKO4IDqtU2gKegtq0m2f3I9Qmgixz2PQ7/dUK
+	wukiC8tLDJOx2xTN52Z9TIA50gJw4xJVLjEa+PRNqSLZO3zOprGvr30Iepy1jBSGbB6W
+	hzzbxl8zNRIrWiJ7LTBx/MwpXP5nYJC8Jzsb0ffuYktOclPxgK+YTnJV0EPVJaXZPbQC
+	89G71qdXt9yNi1sSzhwF6EsJ9uB9H8YHN3UNWDVddTKnyoGU+U6p1PcCK4n54P0VnEXt
+	Ajk8aKd3Uza/HtQRJ5vZssRVDP8F2+eJKwi1+4QZijrTGDqKwXQKedx6h3dcBo+TN5H2
+	0jjA==
+X-Gm-Message-State: APf1xPCLKRr4rCF3HmtlkgGi8xzC0T/Tx8mq9+uHSNEC4iVT76QPMCGY
+	m2vZRpjMMvlvSrepzHJDCH6oPWylhND3OWCuH5VdZfGa
+X-Google-Smtp-Source: AH8x225jHCkdLAGxPPRhkx4HfUuIpQ4N1AkkGttmo+SYbgIdI9Mlmo0eFmZg6fX4VLkkMUwbv1us4d3/dTc6p8fnBMw=
+X-Received: by 10.107.78.11 with SMTP id c11mr11541985iob.229.1519029320758;
+	Mon, 19 Feb 2018 00:35:20 -0800 (PST)
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
+Received: by 10.2.36.84 with HTTP; Mon, 19 Feb 2018 00:35:20 -0800 (PST)
+In-Reply-To: <CAALXFYz4Zp4+FTj=VvNVNWOHqnK180YhOBykLEiZ2nTCLF6kig@mail.gmail.com>
+References: <CAALXFYz4Zp4+FTj=VvNVNWOHqnK180YhOBykLEiZ2nTCLF6kig@mail.gmail.com>
+From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
+Date: Mon, 19 Feb 2018 09:35:20 +0100
+Message-ID: <CAALXFYy7nN1ZahoR_+mCLeD4U7z4zEoiNwv+mzwT8dEf+e-pmg@mail.gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 19 Feb 2018 05:35:38 -0000
-Message-ID: <20180219053538.5876.32402@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Subject: Re: Removing busybox completely from the generated image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,166 +67,289 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Feb 2018 05:35:40 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 19 Feb 2018 08:35:22 -0000
+Content-Type: multipart/alternative; boundary="f403043cc168114f4b05658c9393"
 
-This mail was sent out by Recipe reporting system.
+--f403043cc168114f4b05658c9393
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+I have tried breaking apart packagegroup-core-boot, making a copy in my
+custom layer, removing the line referencing busybox:
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+    ## VIRTUAL-RUNTIME_login_manager ?=3D "busybox"
 
-You can check the detail information at:
+But now bitbake complains with an error message:
 
-http://recipes.yoctoproject.org/
+    ERROR: Nothing RPROVIDES '${VIRTUAL-RUNTIME_login_manager}'
 
-Package               Version          Upstream version      Maintainer            NoUpgradeReason
---------------------  ---------------  --------------------  --------------------  ------------------------------
-expect                5.45.3           5.45.4                Alexander Kanavin
-ffmpeg                3.4.1            3.4.2                 Alexander Kanavin
-dtc                   1.4.5            1.4.6                 Alexander Kanavin
-vala                  0.38.6           0.38.8                Alexander Kanavin
-btrfs-tools           4.13.3           4.15.1                Alexander Kanavin
-kernelshark           2.6.2            2.7                   Alexander Kanavin
-trace-cmd             2.6.2            2.7                   Alexander Kanavin
-epiphany              3.26.5.1         3.26.6                Alexander Kanavin
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-apt                   1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.5              Aníbal Limón
-gst-validate          1.12.4           1.13.1                Anuj Mittal
-libva-utils           2.0.0            2.1.0                 Anuj Mittal
-libva                 2.0.0            2.1.0                 Anuj Mittal
-xf86-video-vesa       2.3.4            2.4.0                 Armin Kuster
-bind                  9.10.6           9.12.0                Armin Kuster
-curl                  7.57.0           7.58.0                Armin Kuster
-busybox               1.27.2           1.28.1                Armin Kuster
-gnutls                3.6.1            3.6.2                 Armin Kuster
-xkeyboard-config      2.22             2.23.1                Armin Kuster
-nss                   3.34.1           3.35                  Armin Kuster
-libpcre2              10.30            10.31                 Armin Kuster
-kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
-linux-libc-headers    4.15             4.15.4                Bruce Ashfield
-linux-yocto           4.15+gitX        4.15.3                Bruce Ashfield
-linux-yocto-rt        4.15+gitX        4.15.3                Bruce Ashfield
-linux-yocto-tiny      4.15+gitX        4.15.3                Bruce Ashfield
-kmscube               git              git-new-commits-a...  Carlos Rafael Giani
-iproute2              4.14.1           4.15.0                Changhyeok Bae
-ethtool               4.13             4.15                  Changhyeok Bae
-iptables              1.6.1            1.6.2                 Changhyeok Bae
-base-passwd           3.5.29           3.5.44                Chang Rebecca Swe...  Version 3.5.38 requires cde...
-sudo                  1.8.21p2         1.8.22                Chen Qi
-systemd-boot          234              237                   Chen Qi
-dbus-glib             0.108            0.110                 Chen Qi
-systemd               234              237                   Chen Qi
-util-linux            2.31             2.31.1                Chen Qi
-dbus-test             1.12.2           1.12.4                Chen Qi
-dbus                  1.12.2           1.12.4                Chen Qi
-sed                   4.2.2            4.4                   Chen Qi
-sysstat               11.7.1           11.7.2                Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-build-appliance-i...  15.0.0           18.0.1                Cristian Iorga
-lz4                   1.7.4            1.8.1.2               Denys Dmytriyenko
-lzop                  1.03             1.04                  Denys Dmytriyenko
-hdparm                9.53             9.54                  Denys Dmytriyenko
-mtd-utils             2.0.0            2.0.1                 Denys Dmytriyenko
-lzip                  1.19             1.20                  Denys Dmytriyenko
-python3-dbus          1.2.4            1.2.6                 Derek Straka
-python-numpy          1.13.1           1.14.0                Derek Straka
-python3               3.5.4            3.6.4                 Derek Straka
-python3-setuptools    38.4.0           38.5.1                Derek Straka
-python3-numpy         1.13.3           1.14.0                Derek Straka
-python-setuptools     38.4.0           38.5.1                Derek Straka
-python3-pycairo       1.15.6           1.16.2                Derek Straka
-python3-native        3.5.4            3.6.4                 Derek Straka
-acpica                20170303         20180209              Fathi Boudra
-patch                 2.7.5            2.7.6                 Hongxu Jia
-dhcp                  4.3.6            4.4.0                 Hongxu Jia
-bash                  4.4.12           4.4.18                Hongxu Jia
-ghostscript           9.21             9.22                  Hongxu Jia
-ncurses               6.0+20171125     6.1                   Hongxu Jia
-man-pages             4.14             4.15                  Hongxu Jia
-bc                    1.06             1.07.1                Jose Lamego
-qemu                  2.11.0           2.11.1                Juro Bystricky
-gdb                   8.0.1            8.1                   Khem Raj
-glibc-initial         2.26             2.27.9000             Khem Raj
-glibc                 2.26             2.27.9000             Khem Raj
-libmpc                1.0.3            1.1.0                 Khem Raj
-llvm                  5.0              5.0-new-commits-a...  Khem Raj
-mpfr                  3.1.5            4.0.1                 Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-go-native             1.9              1.10                  Khem Raj
-go                    1.9              1.10                  Khem Raj
-binutils              2.29.1           2.30                  Khem Raj
-cross-localedef-n...  2.26             2.27.9000             Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
-libinput              1.9.4            1.10.0                Maxin B. John
-vulkan-demos          git              git-new-commits-a...  Maxin B. John
-perl                  5.24.1           5.26.1                Maxin B. John
-gtk-icon-utils-na...  3.22.26          3.22.28               Maxin B. John
-puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
-ifupdown              0.8.16           0.8.29                Maxin B. John
-vulkan                1.0.65.2         1.0.68.0              Maxin B. John
-libsolv               0.6.31           0.6.32                Maxin B. John
-libxml-sax-perl       0.99             1.00                  Maxin B. John
-glib-2.0              2.54.2           2.54.3                Maxin B. John
-gtk+3                 3.22.26          3.22.28               Maxin B. John
-pkgconf               1.4.0            1.4.2                 Maxin B. John
-libical               2.0.0            3.0.2                 Maxin B. John
-perl-native           5.24.1           5.26.1                Maxin B. John
-mmc-utils             0.1              0.1-new-commits-a...  Maxin B. John
-librsvg               2.40.20          2.42.2                Maxin B. John
-binutils-cross-ca...  2.29.1           2.30                  No maintainer
-binutils-crosssdk...  2.29.1           2.30                  No maintainer
-binutils-cross-i586   2.29.1           2.30                  No maintainer
-gdb-cross-canadia...  8.0.1            8.1                   No maintainer
-gdb-cross-i586        8.0.1            8.1                   No maintainer
-go-cross-canadian...  1.9              1.10                  No maintainer
-go-cross-i586         1.9              1.10                  No maintainer
-go-crosssdk-x86_64    1.9              1.10                  No maintainer
-go-runtime            1.9              1.10                  No maintainer
-mesa                  17.3.3           17.3.4                Otavio Salvador
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.10.1           3.10.2                Otavio Salvador
-cmake-native          3.10.1           3.10.2                Otavio Salvador
-go-dep                0.3.2            0.4.1                 Otavio Salvador
-libdrm                2.4.89           2.4.90                Otavio Salvador
-mesa-gl               17.3.3           17.3.4                Otavio Salvador
-tcf-agent             1.4.0+gitX       1.7.0                 Randy Witt
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-git                   2.15.0           2.16.2                Robert Yang
-nfs-utils             2.1.1            2.3.1                 Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.20             4.21                  Robert Yang
-autoconf-archive      2016.09.16       2017.09.28            Robert Yang
-ccache                3.3.5            3.4.1                 Robert Yang
-e2fsprogs             1.43.8           1.43.9                Robert Yang
-time                  1.7              1.8                   Robert Yang
-chkconfig             1.3.58           1.8                   Yi Zhao               Version 1.5 requires selinux
-less                  529              530                   Yi Zhao
-libcap-ng             0.7.8            0.7.9                 Yi Zhao
+It seems "VIRTUAL-RUNTIME_login_manager" needs to be defined with a valid
+option. I have tested with the option "tinylogin" but that options seems
+not implemented in "rocko" branch, because I'm getting this error:
 
-Upgradable count: 122
-Upgradable total count: 124
+    ERROR: Nothing RPROVIDES 'tinylogin'
 
-The based commit is:
+Is there some valid alternative available? Where are these alternatives
+defined?
 
-commit cf355518a479b75f3cbf57770ba0f699f85678d8
-Author: Anders Roxell <anders.roxell@linaro.org>
-Date:   Thu Feb 8 18:34:59 2018 +0100
-
-    ltp: fix knob to control numa support
-    
-    Reported-by: Yi Zhao <yi.zhao@windriver.com>
-    Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
+In general, is it posible to build yocto images without using busybox at
+all?
 
 
+2018-02-16 16:56 GMT+01:00 Iv=C3=A1n Castell <icastell@nayarsystems.com>:
+
+> Hello forum!
+>
+> I'm trying to build a yocto image without busybox and without any busybox
+> applet deployed.
+>
+> I have tried that configuring my distro.conf file in this way:
+>
+>     DISTRO_FEATURES_remove =3D " busybox"
+>     VIRTUAL-RUNTIME_base-utils =3D ""
+>     PREFERRED_PROVIDER_virtual/base-utils =3D ""
+>
+> Nonetheless, busybox binary and two related applets (syslog and udhcpc)
+> are installed in the generated image:
+>
+>     $ rpm -qa | grep busybox
+>     busybox-syslog-1.24.1-r0.corei7_64
+>     busybox-1.24.1-r0.corei7_64
+>     busybox-udhcpc-1.24.1-r0.corei7_64
+>
+> I have tried disabling syslog applet appending to my distro.conf file:
+>
+>     VIRTUAL-RUNTIME_syslog ?=3D ""
+>
+> But syslogd applet is still installed:
+>
+>     # ls -l /sbin/syslogd
+>     lrwxrwxrwx 1 root root 19 Feb 15 14:03 /sbin/syslogd ->
+> /bin/busybox.nosuid
+>
+> Is there some way to remove busybox completely from the generated image?
+>
+> Thank you in advance! :-)
+>
+
+--f403043cc168114f4b05658c9393
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I have tried breaking apart packagegroup-core-boot, m=
+aking a copy in my custom layer, removing the line referencing busybox:<br>=
+</div><div><br></div><div><span style=3D"color:rgb(34,34,34);font-family:ar=
+ial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-ali=
+gn:start;text-indent:0px;text-transform:none;white-space:normal;word-spacin=
+g:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-=
+decoration-color:initial;float:none;display:inline">=C2=A0 =C2=A0 ## VIRTUA=
+L-RUNTIME_login_manager ?=3D &quot;busybox&quot;</span><br></div><div><span=
+ style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;=
+font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fo=
+nt-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-t=
+ransform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,=
+255,255);text-decoration-style:initial;text-decoration-color:initial;float:=
+none;display:inline"><br></span></div><div><span style=3D"color:rgb(34,34,3=
+4);font-family:arial,sans-serif;font-size:small;font-style:normal;font-vari=
+ant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacin=
+g:normal;text-align:start;text-indent:0px;text-transform:none;white-space:n=
+ormal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-st=
+yle:initial;text-decoration-color:initial;float:none;display:inline"><span =
+style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;f=
+ont-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
+t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
+ansform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,2=
+55,255);text-decoration-style:initial;text-decoration-color:initial;float:n=
+one;display:inline">But now bitbake complains with an error message:</span>=
+</span></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sans=
+-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;font=
+-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start=
+;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;ba=
+ckground-color:rgb(255,255,255);text-decoration-style:initial;text-decorati=
+on-color:initial;float:none;display:inline"><span style=3D"color:rgb(34,34,=
+34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-var=
+iant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spaci=
+ng:normal;text-align:start;text-indent:0px;text-transform:none;white-space:=
+normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-s=
+tyle:initial;text-decoration-color:initial;float:none;display:inline"><br><=
+/span></span></div><div><span style=3D"color:rgb(34,34,34);font-family:aria=
+l,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:norma=
+l;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align=
+:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:=
+0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-de=
+coration-color:initial;float:none;display:inline"><span style=3D"color:rgb(=
+34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;fo=
+nt-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter=
+-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-=
+space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decora=
+tion-style:initial;text-decoration-color:initial;float:none;display:inline"=
+>=C2=A0 =C2=A0 ERROR: Nothing RPROVIDES &#39;${VIRTUAL-RUNTIME_login_manage=
+r}&#39;<span>=C2=A0</span></span><br></span></div><div><span style=3D"color=
+:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:norm=
+al;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;l=
+etter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;w=
+hite-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-d=
+ecoration-style:initial;text-decoration-color:initial;float:none;display:in=
+line"><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-=
+size:small;font-style:normal;font-variant-ligatures:normal;font-variant-cap=
+s:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent=
+:0px;text-transform:none;white-space:normal;word-spacing:0px;background-col=
+or:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:ini=
+tial;float:none;display:inline"><span><br></span></span></span></div><div><=
+span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sm=
+all;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norma=
+l;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;te=
+xt-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(=
+255,255,255);text-decoration-style:initial;text-decoration-color:initial;fl=
+oat:none;display:inline"><span style=3D"color:rgb(34,34,34);font-family:ari=
+al,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:norm=
+al;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-alig=
+n:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing=
+:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-d=
+ecoration-color:initial;float:none;display:inline"><span><span style=3D"col=
+or:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:no=
+rmal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400=
+;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none=
+;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text=
+-decoration-style:initial;text-decoration-color:initial;float:none;display:=
+inline">It seems &quot;VIRTUAL-RUNTIME_login_manager&quot; needs to be defi=
+ned with a valid option. I have tested with the option &quot;tinylogin&quot=
+; but that options seems not implemented in &quot;rocko&quot; branch, becau=
+se I&#39;m getting this error:</span></span></span></span></div><div><span =
+style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;f=
+ont-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
+t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
+ansform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,2=
+55,255);text-decoration-style:initial;text-decoration-color:initial;float:n=
+one;display:inline"><span style=3D"color:rgb(34,34,34);font-family:arial,sa=
+ns-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;fo=
+nt-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:sta=
+rt;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;=
+background-color:rgb(255,255,255);text-decoration-style:initial;text-decora=
+tion-color:initial;float:none;display:inline"><span><span style=3D"color:rg=
+b(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;=
+font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;lett=
+er-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whit=
+e-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-deco=
+ration-style:initial;text-decoration-color:initial;float:none;display:inlin=
+e"><br></span></span></span></span></div><div><span style=3D"color:rgb(34,3=
+4,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-v=
+ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:start;text-indent:0px;text-transform:none;white-spac=
+e:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration=
+-style:initial;text-decoration-color:initial;float:none;display:inline"><sp=
+an style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:smal=
+l;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;=
+font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text=
+-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(25=
+5,255,255);text-decoration-style:initial;text-decoration-color:initial;floa=
+t:none;display:inline"><span><span style=3D"color:rgb(34,34,34);font-family=
+:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:=
+normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
+align:start;text-indent:0px;text-transform:none;white-space:normal;word-spa=
+cing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;te=
+xt-decoration-color:initial;float:none;display:inline">=C2=A0 =C2=A0 ERROR:=
+ Nothing RPROVIDES &#39;tinylogin&#39;</span></span></span></span></div><di=
+v><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size=
+:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
+rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
+;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
+gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
+;float:none;display:inline"><span style=3D"color:rgb(34,34,34);font-family:=
+arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:n=
+ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
+lign:start;text-indent:0px;text-transform:none;white-space:normal;word-spac=
+ing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;tex=
+t-decoration-color:initial;float:none;display:inline"><span><span style=3D"=
+color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style=
+:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:=
+400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:n=
+one;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);t=
+ext-decoration-style:initial;text-decoration-color:initial;float:none;displ=
+ay:inline"><br></span></span></span></span></div><div><span style=3D"color:=
+rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:norma=
+l;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;le=
+tter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;wh=
+ite-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-de=
+coration-style:initial;text-decoration-color:initial;float:none;display:inl=
+ine"><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-s=
+ize:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps=
+:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:=
+0px;text-transform:none;white-space:normal;word-spacing:0px;background-colo=
+r:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:init=
+ial;float:none;display:inline"><span><span style=3D"color:rgb(34,34,34);fon=
+t-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-li=
+gatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:norm=
+al;text-align:start;text-indent:0px;text-transform:none;white-space:normal;=
+word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:in=
+itial;text-decoration-color:initial;float:none;display:inline">Is there som=
+e valid alternative available? Where are these alternatives defined?</span>=
+<br></span></span></span></div><div><span style=3D"color:rgb(34,34,34);font=
+-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-lig=
+atures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:norma=
+l;text-align:start;text-indent:0px;text-transform:none;white-space:normal;w=
+ord-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:ini=
+tial;text-decoration-color:initial;float:none;display:inline"><span style=
+=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-s=
+tyle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-wei=
+ght:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transfo=
+rm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,25=
+5);text-decoration-style:initial;text-decoration-color:initial;float:none;d=
+isplay:inline"><span><span style=3D"color:rgb(34,34,34);font-family:arial,s=
+ans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;f=
+ont-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:st=
+art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
+;background-color:rgb(255,255,255);text-decoration-style:initial;text-decor=
+ation-color:initial;float:none;display:inline"><br></span></span></span></s=
+pan></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sans-se=
+rif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-va=
+riant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;te=
+xt-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backg=
+round-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-=
+color:initial;float:none;display:inline"><span style=3D"color:rgb(34,34,34)=
+;font-family:arial,sans-serif;font-size:small;font-style:normal;font-varian=
+t-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:=
+normal;text-align:start;text-indent:0px;text-transform:none;white-space:nor=
+mal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-styl=
+e:initial;text-decoration-color:initial;float:none;display:inline"><span><s=
+pan style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sma=
+ll;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal=
+;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;tex=
+t-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(2=
+55,255,255);text-decoration-style:initial;text-decoration-color:initial;flo=
+at:none;display:inline">In general, is it posible to build yocto images wit=
+hout using busybox at all?</span></span></span></span></div><div><br></div>=
+<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2018-02-16 16:56 =
+GMT+01:00 Iv=C3=A1n Castell <span dir=3D"ltr">&lt;<a href=3D"mailto:icastel=
+l@nayarsystems.com" target=3D"_blank">icastell@nayarsystems.com</a>&gt;</sp=
+an>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>Hello forum!</=
+div><div><br></div><div>I&#39;m trying to build a yocto image without busyb=
+ox and without any busybox applet deployed.</div><div><br></div><div>I have=
+ tried that configuring my distro.conf file in this way:</div><div><br></di=
+v><div>=C2=A0 =C2=A0 DISTRO_FEATURES_remove =3D &quot; busybox&quot;<br></d=
+iv><div>=C2=A0 =C2=A0 VIRTUAL-RUNTIME_base-utils =3D &quot;&quot;<br></div>=
+<div>=C2=A0 =C2=A0 PREFERRED_PROVIDER_virtual/<wbr>base-utils =3D &quot;&qu=
+ot;<br></div><div><br></div><div>Nonetheless, busybox binary and two relate=
+d applets (syslog and=C2=A0udhcpc) are installed in the generated image:</d=
+iv><div><br></div><div>=C2=A0 =C2=A0 $ rpm -qa | grep busybox</div><div><di=
+v>=C2=A0 =C2=A0 busybox-syslog-1.24.1-r0.<wbr>corei7_64</div><div>=C2=A0 =
+=C2=A0 busybox-1.24.1-r0.corei7_64</div><div>=C2=A0 =C2=A0 busybox-udhcpc-1=
+.24.1-r0.<wbr>corei7_64</div></div><div><br></div><div>I have tried disabli=
+ng syslog applet appending to my distro.conf file:</div><div><br></div><div=
+>=C2=A0 =C2=A0=C2=A0<span style=3D"color:rgb(34,34,34);font-family:arial,sa=
+ns-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;fo=
+nt-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:sta=
+rt;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;=
+background-color:rgb(255,255,255);text-decoration-style:initial;text-decora=
+tion-color:initial;float:none;display:inline">VIRTUAL-RUNTIME_syslog ?=3D &=
+quot;&quot;</span></div><div><br></div><div>But syslogd applet is still ins=
+talled:<br></div><div><br></div><div><div>=C2=A0 =C2=A0 # ls -l /sbin/syslo=
+gd=C2=A0</div><div>=C2=A0 =C2=A0 lrwxrwxrwx 1 root root 19 Feb 15 14:03 /sb=
+in/syslogd -&gt; /bin/busybox.nosuid</div></div><div><br></div><div>Is ther=
+e some way to remove busybox completely from the generated image?</div><div=
+><br></div><div>Thank you in advance! :-)</div></div></blockquote></div>
+</div></div>
+
+--f403043cc168114f4b05658c9393--
