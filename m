@@ -1,40 +1,37 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <maxin.john@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ECD64E00D6D; Mon, 19 Feb 2018 02:27:23 -0800 (PST)
+	id CD321E00816; Mon, 19 Feb 2018 07:15:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2789E00823
-	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 02:27:23 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B927FE00816
+	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 07:15:38 -0800 (PST)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Feb 2018 02:27:22 -0800
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Feb 2018 07:15:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,534,1511856000"; d="scan'208";a="202171415"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga005.jf.intel.com with ESMTP; 19 Feb 2018 02:27:21 -0800
-To: =?UTF-8?Q?Iv=c3=a1n_Castell?= <icastell@nayarsystems.com>,
-	yocto@yoctoproject.org
+X-IronPort-AV: E=Sophos;i="5.46,535,1511856000"; d="scan'208";a="21316578"
+Received: from mbabyjoh-desk.fi.intel.com (HELO
+	mbabyjoh-desk.ger.corp.intel.com) ([10.237.72.84])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Feb 2018 07:15:36 -0800
+Date: Mon, 19 Feb 2018 17:18:19 +0200
+From: "Maxin B. John" <maxin.john@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20180219151819.GA38294@mbabyjoh-desk.ger.corp.intel.com>
 References: <CAALXFYz4Zp4+FTj=VvNVNWOHqnK180YhOBykLEiZ2nTCLF6kig@mail.gmail.com>
 	<CAALXFYy7nN1ZahoR_+mCLeD4U7z4zEoiNwv+mzwT8dEf+e-pmg@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <b0964351-08e1-952a-84c6-2bd99c996161@linux.intel.com>
-Date: Mon, 19 Feb 2018 12:21:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	<CAMKF1sqrDFkVB0brWidTvARLpsKGHC6NFCQhP-yF25vtS_WxYA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAALXFYy7nN1ZahoR_+mCLeD4U7z4zEoiNwv+mzwT8dEf+e-pmg@mail.gmail.com>
+In-Reply-To: <CAMKF1sqrDFkVB0brWidTvARLpsKGHC6NFCQhP-yF25vtS_WxYA@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Removing busybox completely from the generated image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -47,26 +44,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Feb 2018 10:27:24 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+X-List-Received-Date: Mon, 19 Feb 2018 15:15:39 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-On 02/19/2018 10:35 AM, Iván Castell wrote:
-> I have tried breaking apart packagegroup-core-boot, making a copy in my 
-> custom layer, removing the line referencing busybox:
-> 
->      ## VIRTUAL-RUNTIME_login_manager ?= "busybox"
-> 
-> But now bitbake complains with an error message:
-> 
->      ERROR: Nothing RPROVIDES '${VIRTUAL-RUNTIME_login_manager}'
+Hi,
 
-You need to remove the reference to VIRTUAL-RUNTIME_login_manager from 
-the list of packages to be installed, not the definition that points to 
-busybox. If the resulting image breaks, you get to keep the pieces. I'm 
-not sure what function busyybox performs here, but oe-core does not have 
-an alternative now - you are welcome to provide one.
+On Mon, Feb 19, 2018 at 02:17:38AM -0800, Khem Raj wrote:
+> On Mon, Feb 19, 2018 at 12:35 AM, Iv�n Castell
+> <icastell@nayarsystems.com> wrote:
+> > I have tried breaking apart packagegroup-core-boot, making a copy in my
+> > custom layer, removing the line referencing busybox:
+> >
+> >     ## VIRTUAL-RUNTIME_login_manager ?= "busybox"
 
-Alex
+Have you considered "toybox" ? It probably wouldn't work right-away. Still,
+toybox was designed to provide a replacement for busybox. It is available
+in "meta-oe"
+
+http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-core/toybox/toybox_0.7.5.bb
+
+> > But now bitbake complains with an error message:
+> >
+<snip>
+
+Hope this helps,
+Maxin
 
