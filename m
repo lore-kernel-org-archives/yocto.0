@@ -1,41 +1,35 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67676E00EC0; Mon, 19 Feb 2018 12:59:19 -0800 (PST)
+	id C071EE00F22; Mon, 19 Feb 2018 19:46:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F6B7E00823
-	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 12:59:18 -0800 (PST)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4527EE00D6D
+	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 19:46:39 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Feb 2018 12:59:18 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Feb 2018 19:46:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,536,1511856000"; d="scan'208";a="18814481"
-Received: from ypsusan-mobl3.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.165.15])
-	by fmsmga007.fm.intel.com with ESMTP; 19 Feb 2018 12:59:15 -0800
+X-IronPort-AV: E=Sophos;i="5.46,537,1511856000"; d="scan'208";a="28405908"
+Received: from ngorski-mobl.amr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.160.197])
+	by FMSMGA003.fm.intel.com with ESMTP; 19 Feb 2018 19:46:36 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?Iv=E1n?= Castell <icastell@nayarsystems.com>
-Date: Tue, 20 Feb 2018 09:59:11 +1300
-Message-ID: <3938142.OxtRUscMjn@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-In-Reply-To: <b0964351-08e1-952a-84c6-2bd99c996161@linux.intel.com>
-References: <CAALXFYz4Zp4+FTj=VvNVNWOHqnK180YhOBykLEiZ2nTCLF6kig@mail.gmail.com>
-	<CAALXFYy7nN1ZahoR_+mCLeD4U7z4zEoiNwv+mzwT8dEf+e-pmg@mail.gmail.com>
-	<b0964351-08e1-952a-84c6-2bd99c996161@linux.intel.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Removing busybox completely from the generated image
+To: yocto@yoctoproject.org
+Date: Tue, 20 Feb 2018 16:45:53 +1300
+Message-Id: <20180220034558.14341-1-paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 2.14.3
+Subject: [layerindex-web][PATCH 1/6] update.py: fix Ctrl+C behaviour
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,42 +41,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Feb 2018 20:59:19 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 20 Feb 2018 03:46:40 -0000
 
-On Monday, 19 February 2018 11:21:20 PM NZDT Alexander Kanavin wrote:
-> On 02/19/2018 10:35 AM, Iv=E1n Castell wrote:
-> > I have tried breaking apart packagegroup-core-boot, making a copy in my=
-=20
-> > custom layer, removing the line referencing busybox:
-> >=20
-> >      ## VIRTUAL-RUNTIME_login_manager ?=3D "busybox"
-> >=20
-> > But now bitbake complains with an error message:
-> >=20
-> >      ERROR: Nothing RPROVIDES '${VIRTUAL-RUNTIME_login_manager}'
->=20
-> You need to remove the reference to VIRTUAL-RUNTIME_login_manager from=20
-> the list of packages to be installed, not the definition that points to=20
-> busybox. If the resulting image breaks, you get to keep the pieces. I'm=20
-> not sure what function busyybox performs here, but oe-core does not have=
-=20
-> an alternative now - you are welcome to provide one.
+If the user hit Ctrl+C during the initial info gathering then it didn't
+break out of the loop in update.py, so you had to hit Ctrl+C for as many
+layers as were involved in the update. Look for exit code 254 from
+update_layer.py and stop if it is returned since that indicates Ctrl+C
+has been used.
 
-I think the more full-featured alternative would be the "login" implementat=
-ion=20
-provided by shadow, so you would set:
+Additionally, ensure we return exit code 254 and print a message from
+the main update script when it is interrupted in this way.
 
-VIRTUAL-RUNTIME_login_manager =3D "shadow"
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+---
+ layerindex/update.py | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-Cheers,
-Paul
-
-=2D-=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+diff --git a/layerindex/update.py b/layerindex/update.py
+index 5c83b00..f60b943 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -337,7 +337,11 @@ def main():
+                     logger.debug('Running layer update command: %s' % cmd)
+                     ret, output = run_command_interruptible(cmd)
+                     logger.debug('output: %s' % output)
+-                    if ret != 0:
++                    if ret == 254:
++                        # Interrupted by user, break out of loop
++                        logger.info('Update interrupted, exiting')
++                        sys.exit(254)
++                    elif ret != 0:
+                         continue
+                     col = re.search("^BBFILE_COLLECTIONS = \"(.*)\"", output, re.M).group(1) or ''
+                     ver = re.search("^LAYERVERSION = \"(.*)\"", output, re.M).group(1) or ''
+@@ -418,10 +422,14 @@ def main():
+ 
+                     if ret == 254:
+                         # Interrupted by user, break out of loop
+-                        break
++                        logger.info('Update interrupted, exiting')
++                        sys.exit(254)
+         finally:
+             utils.unlock_file(lockfile)
+ 
++    except KeyboardInterrupt:
++        logger.info('Update interrupted, exiting')
++        sys.exit(254)
+     finally:
+         update.log = ''.join(listhandler.read())
+         update.finished = datetime.now()
+-- 
+2.14.3
 
 
