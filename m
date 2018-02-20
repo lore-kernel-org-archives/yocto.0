@@ -1,37 +1,62 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A70FE00F78; Mon, 19 Feb 2018 19:46:54 -0800 (PST)
+	id 100CBE00F45; Mon, 19 Feb 2018 22:33:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEB31E00F6C
-	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 19:46:53 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Feb 2018 19:46:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.46,537,1511856000"; d="scan'208";a="28405933"
-Received: from ngorski-mobl.amr.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.160.197])
-	by FMSMGA003.fm.intel.com with ESMTP; 19 Feb 2018 19:46:51 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Tue, 20 Feb 2018 16:45:58 +1300
-Message-Id: <20180220034558.14341-6-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.14.3
-In-Reply-To: <20180220034558.14341-1-paul.eggleton@linux.intel.com>
-References: <20180220034558.14341-1-paul.eggleton@linux.intel.com>
-Subject: [layerindex-web][PATCH 6/6] README: update dependency versions
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f180.google.com (mail-qt0-f180.google.com
+	[209.85.216.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C50D1E00D5F
+	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 22:33:24 -0800 (PST)
+Received: by mail-qt0-f180.google.com with SMTP id d26so15150894qtj.4
+	for <yocto@yoctoproject.org>; Mon, 19 Feb 2018 22:33:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=c7QB/PkZwNxfXqRpszr+YTKrWZtSbyJK8iOgIAWLnvg=;
+	b=bspqYx+6qgmjt9IVOJDDVbmrug1B4stG7p0o7k6PxvK1aRJ2+voDF4T9t+1OwOjTIi
+	Vmq4rf5ypu9Pd1pJmrB0orAks0nC+GoIzNlfc3YTGmAJNVbjfVvuo/R+SxirxVL1MfRr
+	HNXrAbdfFIJZ06XbeLW707iSKteEmcyBNpHx5G76j2Mhxm9dnZcX949LHfoMUNEv4wo5
+	LAz7/SVihE+1q7Dje9onmH/xVNOQnuMbozLwPnblYskED00thPkV4GfKgurvQfzBYSmA
+	4nDM/Z5UYM5vkAoZl60eEz/Vg88Un5BZuhuPrBo73APxCNs0crnI8N5dp1sIH1pSuT6U
+	x5Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=c7QB/PkZwNxfXqRpszr+YTKrWZtSbyJK8iOgIAWLnvg=;
+	b=Mh19QWqa10zReYyMf/NmskjpJuPs/QSokJAWNTaKlwLtFOKCNCfLIe24lW+H4Yovo2
+	eDWkBgggkA8zWeO1pSUzu4Emcd8G4iVt3GBZdI3lr4iQmuapLvaWxIQ+0irCTWcwWtGN
+	YvkyY4uMAjdpUjWu5theq2uqblVfDRRBIgm86KN0PYHg8/ezcn/esOJLD7/YfofvspLh
+	1jFWjcOEhxQLLKCDfBsj07tOh9l4GJUlQopvbTRrvJhL5tCOV7N9vEvGXL/xzHFuKfyn
+	IOgDNeYOd5YFusxSD/1f9Dfm/GLHku4+XT3g/AH9OZXgUttCaSde3YSpnFIineXksV9t
+	ZORg==
+X-Gm-Message-State: APf1xPAK8lYn/2yvJdC7C/dZaS4gH7OtaojwSLpkNIcz+swa5iERMRaX
+	sm2TAsrzGscaNIOKL4Ktte60Gal7mviY9FO0NEMsDw==
+X-Google-Smtp-Source: AH8x227BSlkGlSvBUZz3QU97QLFjqQ+N4qIdDCoGv12lVRhvPCWNfV2q1dAem+gPy0bejw8rFx2wCg1teOBXwSEiIaM=
+X-Received: by 10.200.27.122 with SMTP id p55mr28407920qtk.254.1519108403371; 
+	Mon, 19 Feb 2018 22:33:23 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.12.130.66 with HTTP; Mon, 19 Feb 2018 22:33:22 -0800 (PST)
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Tue, 20 Feb 2018 07:33:22 +0100
+Message-ID: <CAGAf8LzVXn02A=USYyg6sA00Lew1c-+9SD0WzjSB-0q5KL6b+g@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Small documentation issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,49 +68,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Feb 2018 03:46:54 -0000
+X-List-Received-Date: Tue, 20 Feb 2018 06:33:26 -0000
+Content-Type: multipart/alternative; boundary="94eb2c0b29f6c2241105659efc25"
 
-Update the minor version of Django, and replace the list of dependencies
-with a pointer to requirements.txt since there's not much point
-maintaining that in two places (and the README wasn't complete anyway).
+--94eb2c0b29f6c2241105659efc25
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- README | 13 ++++---------
- 1 file changed, 4 insertions(+), 9 deletions(-)
+Hello,
 
-diff --git a/README b/README
-index c7f7409..970c267 100644
---- a/README
-+++ b/README
-@@ -12,7 +12,7 @@ Setup
- In order to make use of this application you will need:
- 
- * Python 3.4+
--* Django 1.8.x - tested with 1.8.17; newer versions may work, but
-+* Django 1.8.x - tested with 1.8.18; newer versions may work, but
-   the application has not been tested with 1.9 or newer.
- * RabbitMQ 3.6.x - tested with 3.6.10.
- * For production usage, a web server set up to host Django applications
-@@ -20,14 +20,9 @@ In order to make use of this application you will need:
- * A database supported by Django (SQLite, MySQL, etc.). Django takes
-   care of creating the database itself, you just need to ensure that the
-   database server (if not using SQLite) is configured and running.
--* The following third-party Django modules (tested versions listed):
--  * django-registration (2.1)
--  * django-reversion (1.9.3)
--  * django-reversion-compare (0.5.6)
--  * django-simple-captcha (0.4.6)
--  * django-nvd3 (0.14.2)
--  * djangorestframework (3.2.5)
--  * django-cors-headers (1.1.0)
-+* Third-party Django/python modules as detailed by requirements.txt.
-+  If you're using pip, you can install these by running:
-+    pip install -r requirements.txt
- * On the machine that will run the backend update script (which does not
-   have to be the same machine as the web server, however it does still
-   have to have Django installed, have the same or similar configuration
--- 
-2.14.3
+Just to point to the documentation issue on YOCTO Projects wiki page:
+https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_change_the_root_password
 
+This line:
+inherit extrausers
 
+Should be changed as:
+INHERIT += "extrausers"
+
+To be inline with bitbake syntax. It is somehow confusing.
+
+Thank you,
+Zoran
+
+--94eb2c0b29f6c2241105659efc25
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<div><br></div><div>Just to point to the documentati=
+on issue on YOCTO Projects wiki page:</div><div><a href=3D"https://wiki.yoc=
+toproject.org/wiki/FAQ:How_do_I_set_or_change_the_root_password">https://wi=
+ki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_change_the_root_password</a><b=
+r></div><div><br></div><div>This line:</div><div>inherit extrausers</div><d=
+iv><br></div><div>Should be changed as:</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+2.8px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:nor=
+mal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;=
+text-transform:none;white-space:normal;word-spacing:0px;background-color:rg=
+b(255,255,255);text-decoration-style:initial;text-decoration-color:initial;=
+float:none;display:inline">INHERIT +=3D &quot;extrausers&quot;</span>
+
+<br></div><div><br></div><div>To be inline with bitbake syntax. It is someh=
+ow confusing.</div><div><br></div><div>Thank you,</div><div>Zoran</div><div=
+><br></div></div>
+
+--94eb2c0b29f6c2241105659efc25--
