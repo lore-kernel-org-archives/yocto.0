@@ -1,34 +1,63 @@
-Return-Path: <mircea.gliga@vitheia.com>
+Return-Path: <christian.staffa@avl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD24EE00D91; Wed, 21 Feb 2018 00:25:56 -0800 (PST)
+	id 7A7E4E00DF8; Wed, 21 Feb 2018 05:23:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [94.199.88.76 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E5A4E00816
-	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 00:25:54 -0800 (PST)
-Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
-	(authenticated bits=0)
-	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id w1L8PpNO000939
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
-	verify=NO)
-	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 10:25:52 +0200
-References: <cd5aff60-6c1d-e695-2e59-d18ae2558e6c@vitheia.com>
-To: Yocto Project <yocto@yoctoproject.org>
-From: Mircea Gliga <mircea.gliga@vitheia.com>
-X-Forwarded-Message-Id: <cd5aff60-6c1d-e695-2e59-d18ae2558e6c@vitheia.com>
-Message-ID: <b58753b6-33a0-448a-e6e6-94a3b4db6ab8@vitheia.com>
-Date: Wed, 21 Feb 2018 10:25:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+X-Greylist: delayed 565 seconds by postgrey-1.32 at yocto-www;
+	Wed, 21 Feb 2018 05:23:56 PST
+Received: from mailout11.rmx.de (mailout11.rmx.de [94.199.88.76])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02019E00816
+	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 05:23:56 -0800 (PST)
+Received: from cryptout03.retarus.com (unknown [172.19.21.159])
+	by mailout11.rmx.de (Postfix) with ESMTP id 3zmdHS54vYz3yrl
+	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 14:14:28 +0100 (CET)
+Received: from cryptout03.dmz2.retloc (localhost [127.0.0.1])
+	by cryptout03.retarus.com (Postfix) with ESMTP id 3zmdHS4nK8z4CV05
+	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 14:14:28 +0100 (CET)
+Received: from mailcc14.dmz2.retloc (mailcc14.retarus.de [172.19.21.14])
+	by cryptout03.retarus.com (Postfix) with SMTP id 3zmdHS482nz4CTfx
+	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 14:14:28 +0100 (CET)
+Received: from unknown (unknown [10.12.64.114])
+	by kdin04 (Postfix) with SMTP id 3zmdHN046NzxNmX;
+	Wed, 21 Feb 2018 14:14:26 +0100 (CET)
+Received: from atgrzsw1693.avl01.avlcorp.lan (10.12.64.114) by
+	atgrzsw1693.avl01.avlcorp.lan (10.12.64.114) with Microsoft SMTP Server
+	(TLS) id 15.0.1347.2; Wed, 21 Feb 2018 14:11:55 +0100
+Received: from atgrzsw1693.avl01.avlcorp.lan ([172.18.42.157]) by
+	atgrzsw1693.avl01.avlcorp.lan ([172.18.42.157]) with mapi id
+	15.00.1347.000; Wed, 21 Feb 2018 14:11:55 +0100
+From: "Staffa, Christian AVL/DE" <Christian.Staffa@avl.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: behind corporate proxy
+Thread-Index: AdOrFDhcf232TjljRuu/hoKrVRO3oA==
+Date: Wed, 21 Feb 2018 13:11:54 +0000
+Message-ID: <cc0b03a0ba51424bb8245fd4fbbe9ba3@atgrzsw1693.avl01.avlcorp.lan>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.12.100.12]
+x-exclaimer-md-config: f9e74532-fb7d-4806-8539-2b9574eafa9a
 MIME-Version: 1.0
-In-Reply-To: <cd5aff60-6c1d-e695-2e59-d18ae2558e6c@vitheia.com>
-Subject: Integrity checking fails with Atmel SHA hw accelerator enabled
+X-RMX-RATE-D: exceeded: [sendingMtaHostAddr:/10.12.64.114] : 2 req/s, n=3,
+	id=20180221-141426-3zmdHN046NzxNmX-1054@localhost/3zmdHN046NzxNmX
+X-RMX-ID: 20180221-141424-3zmdHN046NzxNmX-0@kdin04
+X-RMX-TRACE: 2018-02-21 14:14:26 KdIn2013@kdin04/mailcc07 [2.1s]
+	20180221-141424-3zmdHN046NzxNmX-0@kdin04 0:00:02
+X-RMX-TRACE: 2018-02-21 14:14:26 RmxMSO@kdin04/mailcc01 [0.1s]
+	20180221-141424-3zmdHN046NzxNmX-0@kdin04 0:00:02
+X-RMX-TRACE: 2018-02-21 14:14:26 LIVERmxSTO@kdin04/mailcc01 [0.2s]
+	20180221-141424-3zmdHN046NzxNmX-0@kdin04 0:00:02
+Subject: behind corporate proxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,171 +69,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Feb 2018 08:25:56 -0000
-Content-Type: multipart/alternative;
-	boundary="------------3E23CD373A6136C6908FD859"
+X-List-Received-Date: Wed, 21 Feb 2018 13:23:58 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_cc0b03a0ba51424bb8245fd4fbbe9ba3atgrzsw1693avl01avlcorp_"
 
---------------3E23CD373A6136C6908FD859
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_cc0b03a0ba51424bb8245fd4fbbe9ba3atgrzsw1693avl01avlcorp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi
+Hi all
 
-I'm having some trouble using dm-verity for a squashfs root file system 
-that seems to be related to the
-Atmel SHA hw accelerator in the kernel, CONFIG_CRYPTO_DEV_ATMEL_SHA
+I have got a problem with proxy settings and the yocto build system.
 
-Some info about my setup:
-* I'm using a board with a SAMA5D4 CPU.
-* I'm using Yocto rocko for building an image for that device.
+I already read the 'Behind a Proxy Guide' and generally it works.
+But when it comes to build the linux-yocto package the buildsystem tries to=
+ clone a repo with the git:// scheme.
+This results in connecting to git.yoctoproject.org:9418 but this port is bl=
+ocked by the corporate proxy and causes the build to fail.
 
-The idea is that Using the 4.14.14 Kernel, Integrity checking using 
-Kernel crypto fails with Atmel SHA hw accelerator enabled in kernel.
-By disabling it, `CONFIG_CRYPTO_DEV_ATMEL_SHA=n`, and using the software 
-sha256 algo, integrity checking works as expected.
-This is my kernel config: 
-https://gist.githubusercontent.com/gmircea/6e1cc029ef5ed7a16b0fedb8b9524f66/raw/eece8a8faadd2de9373e150ef1daf3cf25f4135c/.config
+Had anyone the same problem? Is there a way to fetch the repo via http(s)?
 
-Using the 4.8.4 Kernel and Atmel SHA hw accelerator enabled, everything 
-was ok.
+Regards
+Chris
 
-So it looks like the new commits, from 4.8.4 to 4.14.14, on atmel-sha.c 
-(or at least I assume that may be a possible source of the problem) 
-changes the behavior and breaks our use case:
+--_000_cc0b03a0ba51424bb8245fd4fbbe9ba3atgrzsw1693avl01avlcorp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/log/drivers/crypto/atmel-sha.c?h=v4.8.4
-
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/log/drivers/crypto/atmel-sha.c?h=v4.14.14
-
-This is what triggers the error during verified boot:
-
-status=`veritysetup create vroot $root_dev $verity_dev --hash-offset 
-$hashoffset $root_hash`
-
-     mount /dev/mapper/vroot /mnt/
-     mount_ok=`cat /proc/mounts | grep mnt`
-     if [ -z "$mount_ok" ] ; then
-         echo "Failed to mount $root_dev on mnt/"
-     else
-         echo "Switch rootfs"
-         exec switch_root -c /dev/console /mnt /sbin/init
-     fi
-
-The mount operation fails:
-
-device-mapper: verity: 179:4: metadata block 2 is corrupted
-EXT4-fs (dm-0): unable to read superblock
-device-mapper: verity: 179:4: metadata block 2 is corrupted
-EXT4-fs (dm-0): unable to read superblock
-device-mapper: verity: 179:4: metadata block 2 is corrupted
-EXT4-fs (dm-0): unable to read superblock
-device-mapper: verity: 179:4: metadata block 2 is corrupted
-SQUASHFS error: squashfs_read_data failed to read block 0x0
-squashfs: SQUASHFS error: unable to read squashfs_super_block
-device-mapper: verity: 179:4: metadata block 2 is corrupted
-FAT-fs (dm-0): unable to read boot sector
-mount: mounting /dev/mapper/vroot on /mnt/ failed: Input/output error
-Failed to mount /dev/mmcblk0p4 on mnt/
-Smartcom initramfs init failed
-reboot: Restarting system
-Reboot failed -- System halted
-
-Using veritysetup to verify the integrity against the hashes is 
-successful, as it's not using the kernel for that ...
-
-Any help is appreciated !
-
-Thanks in advanced and have a nice day.
-
-Mircea
-
-
---------------3E23CD373A6136C6908FD859
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi <br>
-    <div class="moz-forward-container"> <br>
-      I'm having some trouble using dm-verity for a squashfs root file
-      system that seems to be related to the <br>
-      Atmel SHA hw accelerator in the kernel,
-      CONFIG_CRYPTO_DEV_ATMEL_SHA<br>
-      <br>
-      Some info about my setup: <br>
-      * I'm using a board with a SAMA5D4 CPU.<br>
-      * I'm using Yocto rocko for building an image for that device.<br>
-      <br>
-      The idea is that Using the 4.14.14 Kernel, Integrity checking
-      using Kernel crypto fails with Atmel SHA hw accelerator enabled in
-      kernel.<br>
-      By disabling it, `CONFIG_CRYPTO_DEV_ATMEL_SHA=n`, and using the
-      software sha256 algo, integrity checking works as expected.<br>
-      This is my kernel config:
-      <a class="moz-txt-link-freetext"
-href="https://gist.githubusercontent.com/gmircea/6e1cc029ef5ed7a16b0fedb8b9524f66/raw/eece8a8faadd2de9373e150ef1daf3cf25f4135c/.config"
-        moz-do-not-send="true">https://gist.githubusercontent.com/gmircea/6e1cc029ef5ed7a16b0fedb8b9524f66/raw/eece8a8faadd2de9373e150ef1daf3cf25f4135c/.config</a><br>
-      <br>
-      Using the 4.8.4 Kernel and Atmel SHA hw accelerator enabled,
-      everything was ok.<br>
-      <br>
-      So it looks like the new commits, from 4.8.4 to 4.14.14, on
-      atmel-sha.c (or at least I assume that may be a possible source of
-      the problem) changes the behavior and breaks our use case:
-      <p><a
-href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/log/drivers/crypto/atmel-sha.c?h=v4.8.4"
-          class="external-link" rel="nofollow" title="Follow link"
-          moz-do-not-send="true">https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/log/drivers/crypto/atmel-sha.c?h=v4.8.4</a></p>
-      <p><a
-href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/log/drivers/crypto/atmel-sha.c?h=v4.14.14"
-          class="external-link" rel="nofollow" title="Follow link"
-          moz-do-not-send="true">https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/log/drivers/crypto/atmel-sha.c?h=v4.14.14</a></p>
-      <p>This is what triggers the error during verified boot:</p>
-      <p>status=`veritysetup create vroot $root_dev $verity_dev
-        --hash-offset $hashoffset $root_hash`<br>
-        <br>
-            mount /dev/mapper/vroot /mnt/<br>
-            mount_ok=`cat /proc/mounts | grep mnt`<br>
-            if [ -z "$mount_ok" ] ; then<br>
-                echo "Failed to mount $root_dev on mnt/"<br>
-            else<br>
-                echo "Switch rootfs"<br>
-                exec switch_root -c /dev/console /mnt /sbin/init<br>
-            fi<br>
-      </p>
-      <p>The mount operation fails:</p>
-      <p>device-mapper: verity: 179:4: metadata block 2 is corrupted<br>
-        EXT4-fs (dm-0): unable to read superblock<br>
-        device-mapper: verity: 179:4: metadata block 2 is corrupted<br>
-        EXT4-fs (dm-0): unable to read superblock<br>
-        device-mapper: verity: 179:4: metadata block 2 is corrupted<br>
-        EXT4-fs (dm-0): unable to read superblock<br>
-        device-mapper: verity: 179:4: metadata block 2 is corrupted<br>
-        SQUASHFS error: squashfs_read_data failed to read block 0x0<br>
-        squashfs: SQUASHFS error: unable to read squashfs_super_block<br>
-        device-mapper: verity: 179:4: metadata block 2 is corrupted<br>
-        FAT-fs (dm-0): unable to read boot sector<br>
-        mount: mounting /dev/mapper/vroot on /mnt/ failed: Input/output
-        error<br>
-        Failed to mount /dev/mmcblk0p4 on mnt/<br>
-        Smartcom initramfs init failed<br>
-        reboot: Restarting system<br>
-        Reboot failed -- System halted<br>
-      </p>
-      <p>Using veritysetup to verify the integrity against the hashes is
-        successful, as it's not using the kernel for that ...</p>
-      <p>Any help is appreciated !</p>
-      <p>Thanks in advanced and have a nice day.</p>
-      <p>Mircea<br>
-      </p>
-    </div>
-  </body>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cordia New";
+	panose-1:2 11 3 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@DengXian";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Arial",sans-serif;
+	color:windowtext;
+	font-weight:normal;
+	font-style:normal;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:70.85pt 70.85pt 56.7pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Hi all<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">I have got a problem with proxy settings and the yoct=
+o build system.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">I already read the &#8216;Behind a Proxy Guide&#8217;=
+ and generally it works.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">But when it comes to build the linux-yocto package th=
+e buildsystem tries to clone a repo with the git:// scheme.<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">This results in connecting to git.yoctoproject.org:94=
+18 but this port is blocked by the corporate proxy and causes the build to =
+fail.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Had anyone the same problem? Is there a way to fetch =
+the repo via http(s)?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Regards<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Chris<o:p></o:p></span></p>
+</div>
+</body>
 </html>
 
---------------3E23CD373A6136C6908FD859--
+--_000_cc0b03a0ba51424bb8245fd4fbbe9ba3atgrzsw1693avl01avlcorp_--
