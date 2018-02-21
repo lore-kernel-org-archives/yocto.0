@@ -1,66 +1,58 @@
-Return-Path: <philippe.gislard@gmail.com>
+Return-Path: <icastell@nayarsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AE7FE00816; Wed, 21 Feb 2018 05:45:40 -0800 (PST)
+	id AE180E00E47; Wed, 21 Feb 2018 07:50:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (philippe.gislard[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.193 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f193.google.com (mail-wr0-f193.google.com
-	[209.85.128.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52AB3E00816
-	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 05:45:38 -0800 (PST)
-Received: by mail-wr0-f193.google.com with SMTP id n7so4646824wrn.5
-	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 05:45:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=KW7E7Btn1YeBeLeH1nkaTEfF2Jc/UjJThzZHBgvfjW0=;
-	b=jndAk3pWX7OSw9jffYnFeakrRx41Dtc5UsXdD01dFXZqatS6keZh1ViLqrihu9BPLG
-	yO9e9Hnf00InN/6OOg9RUBXuZ6bE9+w4EjCs3/O9nLJYOsxwQF7kPm83Ecx3lSfhcNu/
-	Hq8NaYu3QNxQhOvKwIQUV+8cB7yA6bE0ouF8voIrGnyrnhjOqhY2QgIqUXt/qddy3Zcv
-	zCf/kErFGN3s0kdHVW/EI6ZQzPIl34fhb5LAwAxy2onhKi0JMRJEF98afJOBVBwcaN9A
-	AeiJltey+nKu7Xfl98FGem5iO8Sg/jn+IJmjOR0HIZhFCKPmPHO6zU5pbP4eQ3B3wPHc
-	96lA==
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9776EE00B1A
+	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 07:50:05 -0800 (PST)
+Received: by mail-io0-f174.google.com with SMTP id l12so2580650ioc.10
+	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 07:50:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nayarsystems.com; s=google;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=QTLX2VZIbGEm9sLQdBRaYIx2fs2Jl7Iyx5zAGShIgjc=;
+	b=ejQ22Lyqu3U5g9CjoiFLnd3csVHVxsiV10BgkPw+YWn6WydWoaaRwv8B0mnGj241IU
+	OBuqkaeNFRIDoNwGZbxxHb+QfUztwRlbEHB8xoLXmRKuMsRQ5JwSrYRw5bcMLYcXSVMV
+	OE7Co0CnA8yrtaGKvc5QGEkZ9MptkAiw9LbIk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=KW7E7Btn1YeBeLeH1nkaTEfF2Jc/UjJThzZHBgvfjW0=;
-	b=j40XMTHofVTvx+e2fKMPmW2UD3vuV/sftjLek/UsTXqMtgb+uSZjQGViamAOlbgND1
-	sjeyk2s2J54oWqayIWkreD52gzp7N2YlzoZHBTx5a8HmcoROBo5T8nH2D7F8ezQufUTI
-	EoswX01V0F8zRZ32KLK0CvI5V2aq/ZdO/qBcbU/lA0MNSFlHBnrDfC6o8NDAJtH98NA5
-	RcmJ3I90OOp2+yOFFxm6h2K9ba7QxOFuOPimO5GB5+BT3BhU40kfIFRF1Nb0lLdLTmkb
-	rUNxT+KABSrF6+qDmP0B6UCCRpwApGNfX9gIjNW8MMWj/Eulh+dg8cm+NGvoI7GeGbtu
-	xLqQ==
-X-Gm-Message-State: APf1xPCpAUS+9B2gXlwJtlMvHVtmr3sJ968vB7CFKuKXaBXxesprfoDY
-	4gpNRAyx4ElHvomcTXhhiyg2BfRTTYMa5q78Uwc=
-X-Google-Smtp-Source: AH8x2261Bj9lDgig6dmuyN7ZZJCySLYELpUUa3t68YdMP4pbKvDtzmF2lFncP+9lZaBNUmegMk6Xa5FBlb8+7MUalvE=
-X-Received: by 10.28.122.12 with SMTP id v12mr2036843wmc.66.1519220737806;
-	Wed, 21 Feb 2018 05:45:37 -0800 (PST)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=QTLX2VZIbGEm9sLQdBRaYIx2fs2Jl7Iyx5zAGShIgjc=;
+	b=Bjt2DhzS/ulZBveyMcWoXQ6nrJJ0rOFdklK7tPitpe++RmisO0VMQscJr8u4F++/h1
+	bZLZXzfPrwyt8VsaMObCFnNtPk7V/sRpb5TnWq5WbMJsmFBSXLgq3N2RNOS+ZUQXxpcH
+	G5hSujDJxzG6Yk/t6UV5yrh4e75uJsdNH169I+xDIul+uZiAkH1s/HRdQQdqpKFLvyBW
+	ctdUX/Ny4W9cPHDdBX4SbK5RQtNrPVSMVrKdGDT9EshoquFNsqn7H06z4mDvAreWbC89
+	7MudC/9/g8uI1BCGg6HJy3ZtY4TgbSbl1MZ0h5csvcRdD+zAAOQyDhlDL3lv9CKxMuOK
+	O7QQ==
+X-Gm-Message-State: APf1xPA01APhYLBxxstNrt3NM5Dm14RTXISg6fG8qbRRtweVIzLxmUdq
+	FVwqMx+6Pjr2R62VTBurmv277Qe+Dh2KINC9iiXJO4JM
+X-Google-Smtp-Source: AH8x225XjIQkwjTRpFBhTdsmec1aQLDD2YBGSgcxda3xzDUJm9pydOZEmlcmWpQ9nrvb6RkszwAWb/XmMwAnBNoH8No=
+X-Received: by 10.107.156.213 with SMTP id f204mr1068214ioe.229.1519228205317; 
+	Wed, 21 Feb 2018 07:50:05 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.223.192.139 with HTTP; Wed, 21 Feb 2018 05:45:17 -0800 (PST)
-In-Reply-To: <cc0b03a0ba51424bb8245fd4fbbe9ba3@atgrzsw1693.avl01.avlcorp.lan>
-References: <cc0b03a0ba51424bb8245fd4fbbe9ba3@atgrzsw1693.avl01.avlcorp.lan>
-From: philippe gislard <philippe.gislard@gmail.com>
-Date: Wed, 21 Feb 2018 14:45:17 +0100
-Message-ID: <CAM0bAiWkiBmwrqw7TrRj3L1bCiY0VH3H3oqc4DvkQpevOBnSQw@mail.gmail.com>
-To: "Staffa, Christian AVL/DE" <Christian.Staffa@avl.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: behind corporate proxy
+Received: by 10.2.36.84 with HTTP; Wed, 21 Feb 2018 07:50:04 -0800 (PST)
+From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
+Date: Wed, 21 Feb 2018 16:50:04 +0100
+Message-ID: <CAALXFYwsMACwdPf+QQNTwROGeqXD_FiBo4o=9kw=bV4JKrJfaw@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Expansion of variables inside do_package_prepend task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,66 +64,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Feb 2018 13:45:40 -0000
+X-List-Received-Date: Wed, 21 Feb 2018 15:50:07 -0000
+Content-Type: multipart/alternative; boundary="001a1140bd0482d6230565bae1d6"
+
+--001a1140bd0482d6230565bae1d6
 Content-Type: text/plain; charset="UTF-8"
+
+Hello forum.
+
+I have a question regarding the expansion of variables in a recipe. Suppose
+I have a recipe with this "do_install" task defined:
+
+    do_install() {
+        BBB = ${WORKDIR}
+    }
+
+Variable BBB expands to the proper working directory.
+
+    $ bitbake -e <myrecipe> | grep BBB
+    BBB = /path/to/working/directory
+
+
+However, suppose now I have a recipe with this "do_package_prepend" task
+defined:
+
+    do_package_prepend() {
+        AAA = ${WORKDIR}
+    }
+
+Variable AAA doesn't expand to the expected working directory. In fact, it
+generates an error:
+
+    $ bitbake -e <myrecipe> | grep AAA
+    AAA = ${WORKDIR}
+          ^
+    SyntaxError: invalid syntax
+
+
+It seems the expansion of variables is not working inside the
+do_package_prepend task.
+What is going wrong with that?
+
+Thank you in advance! :-)
+
+--001a1140bd0482d6230565bae1d6
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-2018-02-21 14:11 GMT+01:00 Staffa, Christian AVL/DE <Christian.Staffa@avl.c=
-om>:
-> Hi all
->
->
->
-> I have got a problem with proxy settings and the yocto build system.
->
->
->
-> I already read the =E2=80=98Behind a Proxy Guide=E2=80=99 and generally i=
-t works.
->
-> But when it comes to build the linux-yocto package the buildsystem tries =
-to
-> clone a repo with the git:// scheme.
->
-> This results in connecting to git.yoctoproject.org:9418 but this port is
-> blocked by the corporate proxy and causes the build to fail.
->
->
->
-> Had anyone the same problem? Is there a way to fetch the repo via http(s)=
-?
->
->
->
-> Regards
->
-> Chris
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+<div dir=3D"ltr"><div>Hello forum.<br></div><div><br></div><div>I have a qu=
+estion regarding the expansion of variables in a recipe. Suppose I have a r=
+ecipe with this &quot;do_install&quot; task defined:</div><div><br></div><d=
+iv>=C2=A0 =C2=A0 do_install() {<br></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 B=
+BB =3D ${WORKDIR}</div><div>=C2=A0 =C2=A0 }</div><div><br></div><div><div>V=
+ariable BBB expands to the proper working directory.=C2=A0<br></div></div><=
+div><br></div><div>=C2=A0 =C2=A0 $ bitbake -e &lt;myrecipe&gt; | grep BBB</=
+div><div>=C2=A0 =C2=A0 BBB =3D /path/to/working/directory</div><div><br></d=
+iv><div><br></div><div><span style=3D"color:rgb(34,34,34);font-family:arial=
+,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0=
+px;background-color:rgb(255,255,255);text-decoration-style:initial;text-dec=
+oration-color:initial;float:none;display:inline">However, suppose now I hav=
+e a recipe with this &quot;do_package_prepend&quot; task defined:</span></d=
+iv><div><br></div><div><span style=3D"color:rgb(34,34,34);font-family:arial=
+,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0=
+px;background-color:rgb(255,255,255);text-decoration-style:initial;text-dec=
+oration-color:initial;float:none;display:inline"><div style=3D"color:rgb(34=
+,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font=
+-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-s=
+pacing:normal;text-align:start;text-indent:0px;text-transform:none;white-sp=
+ace:normal;word-spacing:0px;text-decoration-style:initial;text-decoration-c=
+olor:initial"><div>=C2=A0 =C2=A0 do_package_prepend() {<br></div></div><div=
+ style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;=
+font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fo=
+nt-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-t=
+ransform:none;white-space:normal;word-spacing:0px;text-decoration-style:ini=
+tial;text-decoration-color:initial">=C2=A0 =C2=A0 =C2=A0 =C2=A0 AAA =3D ${W=
+ORKDIR}<br></div><div style=3D"color:rgb(34,34,34);font-family:arial,sans-s=
+erif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-v=
+ariant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;t=
+ext-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text=
+-decoration-style:initial;text-decoration-color:initial">=C2=A0 =C2=A0 }<br=
+></div><br class=3D"gmail-Apple-interchange-newline">Variable AAA doesn&#39=
+;t expand to the expected working directory. In fact, it generates an error=
+:<br></span></div><div><br></div><div><span style=3D"color:rgb(34,34,34);fo=
+nt-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-l=
+igatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:nor=
+mal;text-align:start;text-indent:0px;text-transform:none;white-space:normal=
+;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:i=
+nitial;text-decoration-color:initial;float:none;display:inline">=C2=A0 =C2=
+=A0 $ bitbake -e &lt;myrecipe&gt; | grep AAA</span><br></div><div><div>=C2=
+=A0 =C2=A0 AAA =3D ${WORKDIR}</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+^</div><div>=C2=A0 =C2=A0 SyntaxError: invalid syntax</div></div><div><br><=
+/div><div><br></div><div>It seems the expansion of variables is not working=
+ inside the do_package_prepend task.=C2=A0</div><div>What is going wrong wi=
+th that?<br></div><div><br></div><div>Thank you in advance! :-)</div><div><=
+br></div>
+</div>
 
-Hi Chris,
-
-I had the same kind of problem.
-I fixed it this way (not sure it's the best solution):
-=3D=3D=3D
-$ cat ./meta/recipes-bsp/firmware-imx_%.bbappend
-SRC_URI_remove =3D
-"git://git.freescale.com/imx/imx-firmware.git;branch=3D${SRCBRANCH};destsuf=
-fix=3D${S}/git"
-SRC_URI_append =3D
-"git://git.freescale.com/imx/imx-firmware.git;branch=3D${SRCBRANCH};destsuf=
-fix=3D${S}/git;protocole=3Dhttp"
-=3D=3D=3D
-
-Note: the git server must support the http (or maybe https) protocole.
-
-
---=20
-Philippe GISLARD
-
+--001a1140bd0482d6230565bae1d6--
