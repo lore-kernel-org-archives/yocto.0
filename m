@@ -1,17 +1,15 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <icastell@nayarsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77AAAE00EE3; Tue, 20 Feb 2018 23:34:14 -0800 (PST)
+	id B6A67E00E81; Wed, 21 Feb 2018 00:14:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,48 +18,48 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f179.google.com (mail-qt0-f179.google.com
-	[209.85.216.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBDBAE00CF1
-	for <yocto@yoctoproject.org>; Tue, 20 Feb 2018 23:34:13 -0800 (PST)
-Received: by mail-qt0-f179.google.com with SMTP id d8so830987qtm.0
-	for <yocto@yoctoproject.org>; Tue, 20 Feb 2018 23:34:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-it0-f49.google.com (mail-it0-f49.google.com
+	[209.85.214.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66FA1E00CF1
+	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 00:14:16 -0800 (PST)
+Received: by mail-it0-f49.google.com with SMTP id o9so1302180itc.1
+	for <yocto@yoctoproject.org>; Wed, 21 Feb 2018 00:14:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nayarsystems.com; s=google;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=/Z799cXPuk+dWKXo7M3l0eoEZ4JQNUMGuUNbwzyS5mQ=;
-	b=rX/29PWF1sO9OQFT3FMauOCANVpRzn7yjT+1fkGWECSPWF6PleOkmcpANZ27WYU2cP
-	KAGQLvGG3QDaZR+mAdR9VpKLG6wsfuaKRooPO7WJYf5zDxmnMK9QHyHd6eCug5CFJGNc
-	xqBzmIBRLx9Of9CWgyF24ZCMNqzwZdEusR4zvuVQCytwUCRhZOWkVOJ3sHzBPlK9R1yD
-	XBzWchVAir6Jn9wfmfwhLbc3+A9l3hQPeSNSYJ9YTqqgMW9TwXJSet1vy1FAiFDjiiVZ
-	TX0Nr4F3oEmS9k+ZVQSVJBM5z/TEH4TIREoEyuzHlDyWau7oKBAy/317dqZjUWlEOgfU
-	6SdA==
+	:cc; bh=oGDPxgaa/yt09mWmXrNy4bIllp6DwD5ZzmP4aOG8OUM=;
+	b=OlZVlIh/7SrcIpdr+V6AregXoAPupXCZrJYBJ31A4u0/BNigNkiSHsLF3dw/8G5rQD
+	gzEeV68b2H0dru2blZQ9XGXIM1DmSpd5BEo0QopmCuPwtm3pMrBHN1Er9BjI6aPz30xB
+	6hP9R9flbAzpvm7zfylbJcaiHOdOJip6ggHIY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=/Z799cXPuk+dWKXo7M3l0eoEZ4JQNUMGuUNbwzyS5mQ=;
-	b=lDMjKq7aFBoAVCQ+3/jAGZjuUnWwWn0dzNrdrWqmseqfRM5g8Q1ddOzsmhAaSzTRIw
-	3f2LotV2ZoQXH8on6fxYOgBfn4AR0N8KGstVYAHih0tTzJpjc3mc957IOCqqMVWs2Ye3
-	ET3cRToW8ak1K30by0bnwOHmB05R5wwsbmVdnuxaHbvGCGdE6nabWD7BhqH9xvaWMDlH
-	/gqXx3D0icuv8BBrDZ/ur+UVKLA+ePllgb/65XGQE67bhGGcqZQtzCSoDdNZ38ihUsQG
-	uvlEr4x4PREYKVshdDsw//aURFefZYfwW9B9hsMoZ0xYXq7ONBlCV0ZFqSdZ+Oh00M9N
-	mHNg==
-X-Gm-Message-State: APf1xPCPi29fH1rgtf2DWP3jetEhLnOJD+PJX/RtPQh1lhfbF10pXanZ
-	S/TiW+1kRUEjNnib3hWEv0X/QojpWlOJde3nGXw=
-X-Google-Smtp-Source: AH8x224qYevXD+j8fAZvIWQMKPnAqtdyjytaMBNq8o/8b7oQuy2n6uUDE+9SxqhlM5rT7arOsgqOzcTvw/kn5vKBFB0=
-X-Received: by 10.200.52.41 with SMTP id u38mr3848641qtb.172.1519198452743;
-	Tue, 20 Feb 2018 23:34:12 -0800 (PST)
+	bh=oGDPxgaa/yt09mWmXrNy4bIllp6DwD5ZzmP4aOG8OUM=;
+	b=SR8Ne2fAWsSItKvtVBjmlOVZ9DxzztJ5qn/8O444I0+VhyAesV1jFn5LnYj30ivykb
+	3VxCygKcn0f1TmDQbG4jiEL6iTJh0NECOG4mpJ51FkB9HQX3WkFjBoal+kAfFw9ij6X7
+	a7XAEqmONu0XDK9TBYHO4REAIasLv6bAwCs4uXFDJFntTRlZ+m9/oMZiUH410CJvPriy
+	85CLmWws12i5k7/lQOMeeikgXhGvzEBW7Y8EYkwoipkzs7bdrOciM0gQcNaaWMKJ9Emu
+	fHlJR+kr/zndpyrVs0rfAzubDl02zLC3nQjHCww5TrlJzipo01h/oPK1j87s33a/wLqS
+	M32g==
+X-Gm-Message-State: APf1xPAkHrQ2XB5J6TLGtaOMaD+6IhqluN1P/or0qoApiFCI2yfsenAE
+	yxx1yFSLPW+M/Z4ORvEDhvJflu8patmkaE0NT6TPyw==
+X-Google-Smtp-Source: AH8x225VPmgpZIBBF1KWFdW92S2JJ5+5mo8EMZQxrHtgLr0IebOpeau8/hpJTzQb6aGxSa8hXfFQ1n9aIYSy3DllWJM=
+X-Received: by 10.36.31.67 with SMTP id d64mr2170643itd.127.1519200855661;
+	Wed, 21 Feb 2018 00:14:15 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.12.130.66 with HTTP; Tue, 20 Feb 2018 23:34:12 -0800 (PST)
-In-Reply-To: <f23012dc-3a08-ff2e-55a5-1b900ee3bf71@intel.com>
-References: <CAGAf8LzVXn02A=USYyg6sA00Lew1c-+9SD0WzjSB-0q5KL6b+g@mail.gmail.com>
-	<f23012dc-3a08-ff2e-55a5-1b900ee3bf71@intel.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 21 Feb 2018 08:34:12 +0100
-Message-ID: <CAGAf8Ly6h21keLFCpEz_S6mO6OtzG4TSb-HG=fy1XYMHbwOyyg@mail.gmail.com>
-To: Anuj Mittal <anuj.mittal@intel.com>
+Received: by 10.2.36.84 with HTTP; Wed, 21 Feb 2018 00:14:15 -0800 (PST)
+In-Reply-To: <9932000.ggXYnGUaR3@peggleto-mobl.ger.corp.intel.com>
+References: <CAALXFYz4Zp4+FTj=VvNVNWOHqnK180YhOBykLEiZ2nTCLF6kig@mail.gmail.com>
+	<de7a5512-c5bf-8a67-f454-a85c788ef2b6@prevas.dk>
+	<CAALXFYxaYh=cEaNGOzZsjN50zVd-6MsUNKySwiDc+isCKgsBVQ@mail.gmail.com>
+	<9932000.ggXYnGUaR3@peggleto-mobl.ger.corp.intel.com>
+From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
+Date: Wed, 21 Feb 2018 09:14:15 +0100
+Message-ID: <CAALXFYw-9FyihybcBa5WatNKbK0cr0vT=yzdxBBD3WJS2nK=GQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Small documentation issue
+Subject: Re: Removing busybox completely from the generated image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,109 +71,303 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Feb 2018 07:34:14 -0000
-Content-Type: multipart/alternative; boundary="001a114778761e82320565b3f474"
+X-List-Received-Date: Wed, 21 Feb 2018 08:14:17 -0000
+Content-Type: multipart/alternative; boundary="001a1144990e584ef10565b48354"
 
---001a114778761e82320565b3f474
+--001a1144990e584ef10565b48354
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Sorry, Anuj, I did not reply to you in the same email. :-(
+2018-02-21 4:01 GMT+01:00 Paul Eggleton <paul.eggleton@linux.intel.com>:
 
-I'll look into the pointers you have sent to me, but over the weekend (I am
-very busy over the week).
-
-Thank you,
-Zoran
-_______
-
-On Wed, Feb 21, 2018 at 3:09 AM, Anuj Mittal <anuj.mittal@intel.com> wrote:
-
-> On 02/20/2018 02:33 PM, Zoran Stojsavljevic wrote:
-> > Hello,
+> On Tuesday, 20 February 2018 9:26:49 PM NZDT Iv=C3=A1n Castell wrote:
+> > 2018-02-20 7:45 GMT+01:00 Martin Hundeb=C3=B8ll <mnhu@prevas.dk>:
+> > >> Thank you for the information, I will take into account that tool fo=
+r
+> > >> future embedded projects. However, the focus of this issue was to
+> remove
+> > >> completely busybox from the image, not replacing it by another
+> > >> application box.
+> > >>
+> > >> I have created a bbappend with a fragment of the busybox configurati=
+on
+> > >> disabling syslog and udhcpc applets. It works. However the busybox
+> binary
+> > >> and a lot of applets are still there (adduser, unzip, fbset,
+> traceroute,
+> > >> and more).
+> > >>
+> > >> Disabling all different applets and installing native tools instead
+> could
+> > >> be the right way to procede. Not a nice solution, but at least it
+> should
+> > >> work...
+> > >>
+> > >
+> > > Here's what we have in our distro config to disable busybox:
+> > >
+> > > > # Disable busybox
+> > > > VIRTUAL-RUNTIME_base-utils =3D ""
+> > > > ALTERNATIVE_PRIORITY_pn-busybox =3D "1"
+> > >
+> > > The priority setting make bitbake pull in alternatives from util-linu=
+x
+> /
+> > > coreutils when appropriate.
 > >
-> > Just to point to the documentation issue on YOCTO Projects wiki page:
-> > https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_
-> change_the_root_password
-> >
-> > This line:
-> > inherit extrausers
-> >
-> > Should be changed as:
-> > INHERIT += "extrausers"
+> > Yes!! That was the trick. It works like a charm!! Thank you so much Mr.
+> > Martin!! :-)
 >
-> This shows how to do it from a recipe. For a more up-to-date documentation:
+> I will note that the priority currently set in busybox.inc is 50, which i=
+s
+> lower than coreutils 100 (or 90 for hostname), so that part shouldn't be
+> needed for coreutils. There are one or two other recipes that set a
+> priority
+> lower than 50 for reasons that are not immediately clear to me.
 >
-> https://www.yoctoproject.org/docs/latest/ref-manual/ref-
-> manual.html#ref-classes-extrausers
+> Additionally, ALTERNATIVE_PRIORITY won't do anything to control what goes
+> into
+> the image - it only controls which binary is selected at runtime when mor=
+e
+> than one providing the same binary is installed. Thus I can only assume
+> that
+> it was the VIRTUAL-RUNTIME_base-utils =3D "" that finally removed the
+> packages
+> you wished removed.
 >
-> INHERIT is used in a configuration file.
->
-> http://www.yoctoproject.org/docs/2.5/bitbake-user-manual/
-> bitbake-user-manual.html#inherit-configuration-directive
->
-> "inherit" on the other hand is used in a recipe or class.
->
-> http://www.yoctoproject.org/docs/2.5/bitbake-user-manual/
-> bitbake-user-manual.html#inherit-directive
->
-> Thanks,
-> Anuj
+> Cheers,
+> Paul
 >
 
---001a114778761e82320565b3f474
+
+I have tested your suggestion, disabling the ALTERNATIVE_PRIORITY
+declaration:
+
+    VIRTUAL-RUNTIME_base-utils =3D ""
+    # ALTERNATIVE_PRIORITY =3D
+
+And effectively the generated image contains any reference to busybox
+toolbox at all. Thank you very much for the clarification, Mr Paul!! :-)
+
+I want to add that, if your custom image installs packagegroup-core-boot,
+then you also need to set VIRTUAL-RUNTIME_login_manager variable with a
+valid value different from "busybox". My custom image includes that
+packagegroup, so to achieve my goal, I define in my distro.conf this
+variable:
+
+    VIRTUAL-RUNTIME_login_manager =3D "shadow"
+
+Hope this helps to somebody else.
+
+Thank you for all your support! :-)
+
+--001a1144990e584ef10565b48354
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>Sorry, Anuj, I did not reply to you in the =
-same email. :-(<br><br></div>I&#39;ll look into the pointers you have sent =
-to me, but over the weekend (I am very busy over the week).<br><br></div>Th=
-ank you,<br></div>Zoran<br>_______<br></div><div class=3D"gmail_extra"><br>=
-<div class=3D"gmail_quote">On Wed, Feb 21, 2018 at 3:09 AM, Anuj Mittal <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:anuj.mittal@intel.com" target=3D"_blan=
-k">anuj.mittal@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex"><span class=3D"">On 02/20/2018 02:33 PM, Zoran Stojsavljevic wrote:<b=
-r>
-&gt; Hello,<br>
-&gt;<br>
-&gt; Just to point to the documentation issue on YOCTO Projects wiki page:<=
+<div dir=3D"ltr"><div><span style=3D"color:rgb(34,34,34);font-family:arial,=
+sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0=
+px;background-color:rgb(255,255,255);text-decoration-style:initial;text-dec=
+oration-color:initial;float:none;display:inline"><br></span></div><div><spa=
+n style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12.8p=
+x;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;=
+font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text=
+-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(25=
+5,255,255);text-decoration-style:initial;text-decoration-color:initial;floa=
+t:none;display:inline"><br></span></div><div><span style=3D"color:rgb(34,34=
+,34);font-family:arial,sans-serif;font-size:12.8px;font-style:normal;font-v=
+ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:start;text-indent:0px;text-transform:none;white-spac=
+e:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration=
+-style:initial;text-decoration-color:initial;float:none;display:inline"><br=
+></span></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">201=
+8-02-21 4:01 GMT+01:00 Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailt=
+o:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.inte=
+l.com</a><wbr>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><span class=3D"gmail-m_7623664020883888147gmail-">On Tuesday, 20 Febru=
+ary 2018 9:26:49 PM NZDT Iv=C3=A1n Castell wrote:<br>
+&gt; 2018-02-20 7:45 GMT+01:00 Martin Hundeb=C3=B8ll &lt;<a href=3D"mailto:=
+mnhu@prevas.dk" target=3D"_blank">mnhu@prevas.dk</a>&gt;:<br>
+</span><span class=3D"gmail-m_7623664020883888147gmail-">&gt; &gt;&gt; Than=
+k you for the information, I will take into account that tool for<br>
+&gt; &gt;&gt; future embedded projects. However, the focus of this issue wa=
+s to remove<br>
+&gt; &gt;&gt; completely busybox from the image, not replacing it by anothe=
+r<br>
+&gt; &gt;&gt; application box.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; I have created a bbappend with a fragment of the busybox conf=
+iguration<br>
+&gt; &gt;&gt; disabling syslog and udhcpc applets. It works. However the bu=
+sybox binary<br>
+&gt; &gt;&gt; and a lot of applets are still there (adduser, unzip, fbset, =
+traceroute,<br>
+&gt; &gt;&gt; and more).<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; Disabling all different applets and installing native tools i=
+nstead could<br>
+&gt; &gt;&gt; be the right way to procede. Not a nice solution, but at leas=
+t it should<br>
+&gt; &gt;&gt; work...<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;<br>
+&gt; &gt; Here&#39;s what we have in our distro config to disable busybox:<=
 br>
-&gt; <a href=3D"https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_chan=
-ge_the_root_password" rel=3D"noreferrer" target=3D"_blank">https://wiki.yoc=
-toproject.org/<wbr>wiki/FAQ:How_do_I_set_or_<wbr>change_the_root_password</=
-a><br>
+&gt; &gt;<br>
+&gt; &gt; &gt; # Disable busybox<br>
+&gt; &gt; &gt; VIRTUAL-RUNTIME_base-utils =3D &quot;&quot;<br>
+&gt; &gt; &gt; ALTERNATIVE_PRIORITY_pn-busybo<wbr>x =3D &quot;1&quot;<br>
+&gt; &gt;<br>
+&gt; &gt; The priority setting make bitbake pull in alternatives from util-=
+linux /<br>
+&gt; &gt; coreutils when appropriate.<br>
 &gt;<br>
-&gt; This line:<br>
-&gt; inherit extrausers<br>
-&gt;<br>
-&gt; Should be changed as:<br>
-&gt; INHERIT +=3D &quot;extrausers&quot;<br>
+</span><span class=3D"gmail-m_7623664020883888147gmail-">&gt; Yes!! That wa=
+s the trick. It works like a charm!! Thank you so much Mr.<br>
+&gt; Martin!! :-)<br>
 <br>
-</span>This shows how to do it from a recipe. For a more up-to-date documen=
-tation:<br>
+</span>I will note that the priority currently set in busybox.inc is 50, wh=
+ich is<br>
+lower than coreutils 100 (or 90 for hostname), so that part shouldn&#39;t b=
+e<br>
+needed for coreutils. There are one or two other recipes that set a priorit=
+y<br>
+lower than 50 for reasons that are not immediately clear to me.<br>
 <br>
-<a href=3D"https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.h=
-tml#ref-classes-extrausers" rel=3D"noreferrer" target=3D"_blank">https://ww=
-w.yoctoproject.org/<wbr>docs/latest/ref-manual/ref-<wbr>manual.html#ref-cla=
-sses-<wbr>extrausers</a><br>
-<br>
-INHERIT is used in a configuration file.<br>
-<br>
-<a href=3D"http://www.yoctoproject.org/docs/2.5/bitbake-user-manual/bitbake=
--user-manual.html#inherit-configuration-directive" rel=3D"noreferrer" targe=
-t=3D"_blank">http://www.yoctoproject.org/<wbr>docs/2.5/bitbake-user-manual/=
-<wbr>bitbake-user-manual.html#<wbr>inherit-configuration-<wbr>directive</a>=
-<br>
-<br>
-&quot;inherit&quot; on the other hand is used in a recipe or class.<br>
-<br>
-<a href=3D"http://www.yoctoproject.org/docs/2.5/bitbake-user-manual/bitbake=
--user-manual.html#inherit-directive" rel=3D"noreferrer" target=3D"_blank">h=
-ttp://www.yoctoproject.org/<wbr>docs/2.5/bitbake-user-manual/<wbr>bitbake-u=
-ser-manual.html#<wbr>inherit-directive</a><br>
-<br>
-Thanks,<br>
-Anuj<br>
-</blockquote></div><br></div>
+Additionally, ALTERNATIVE_PRIORITY won&#39;t do anything to control what go=
+es into<br>
+the image - it only controls which binary is selected at runtime when more<=
+br>
+than one providing the same binary is installed. Thus I can only assume tha=
+t<br>
+it was the VIRTUAL-RUNTIME_base-utils =3D &quot;&quot; that finally removed=
+ the packages<br>
+you wished removed.<br>
+<div class=3D"gmail-m_7623664020883888147gmail-HOEnZb"><div class=3D"gmail-=
+m_7623664020883888147gmail-h5"><br>
+Cheers,<br>
+Paul<br></div></div></blockquote><div><br></div><div><br></div><div>I have =
+tested your suggestion,=C2=A0disabling the ALTERNATIVE_PRIORITY declaration=
+:<br></div><div><div style=3D"text-align:start;text-indent:0px;text-decorat=
+ion-style:initial;text-decoration-color:initial"><div style=3D"color:rgb(34=
+,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font=
+-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-s=
+pacing:normal;text-transform:none;white-space:normal;word-spacing:0px"><br>=
+</div><div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-s=
+ize:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps=
+:normal;font-weight:400;letter-spacing:normal;text-transform:none;white-spa=
+ce:normal;word-spacing:0px">=C2=A0 =C2=A0 VIRTUAL-RUNTIME_base-utils =3D &q=
+uot;&quot;</div><div style=3D"color:rgb(34,34,34);font-family:arial,sans-se=
+rif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-va=
+riant-caps:normal;font-weight:400;letter-spacing:normal;text-transform:none=
+;white-space:normal;word-spacing:0px"><span style=3D"color:rgb(34,34,34);fo=
+nt-family:arial,sans-serif;font-size:12.8px;font-style:normal;font-variant-=
+ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
+rmal;text-align:start;text-indent:0px;text-transform:none;white-space:norma=
+l;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:=
+initial;text-decoration-color:initial;float:none;display:inline">=C2=A0 =C2=
+=A0 # ALTERNATIVE_PRIORITY =3D</span></div><div style=3D"color:rgb(34,34,34=
+);font-family:arial,sans-serif;font-size:small;font-style:normal;font-varia=
+nt-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing=
+:normal;text-transform:none;white-space:normal;word-spacing:0px"><span styl=
+e=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12.8px;font=
+-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-w=
+eight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-trans=
+form:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,=
+255);text-decoration-style:initial;text-decoration-color:initial;float:none=
+;display:inline"><br></span></div><div><span style=3D"text-align:start;text=
+-indent:0px;background-color:rgb(255,255,255);text-decoration-style:initial=
+;text-decoration-color:initial;float:none;display:inline"><div style=3D"col=
+or:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:no=
+rmal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400=
+;letter-spacing:normal;text-transform:none;white-space:normal;word-spacing:=
+0px;text-align:start;text-indent:0px;background-color:rgb(255,255,255);text=
+-decoration-style:initial;text-decoration-color:initial"><span style=3D"fon=
+t-size:12.8px">And effectively t</span><span style=3D"font-size:12.8px">he =
+generated image contains any reference to busybox toolbox at all.=C2=A0</sp=
+an><span style=3D"font-size:12.8px">Thank you very much for the clarificati=
+on, Mr Paul!! :-)</span></div><div style=3D"color:rgb(34,34,34);font-family=
+:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:=
+normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
+transform:none;white-space:normal;word-spacing:0px;text-align:start;text-in=
+dent:0px;background-color:rgb(255,255,255);text-decoration-style:initial;te=
+xt-decoration-color:initial"><span style=3D"font-size:12.8px"><br></span></=
+div><div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-sty=
+le:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weigh=
+t:400;letter-spacing:normal;text-transform:none;white-space:normal;word-spa=
+cing:0px;text-align:start;text-indent:0px;background-color:rgb(255,255,255)=
+;text-decoration-style:initial;text-decoration-color:initial"><div style=3D=
+"font-size:small;color:rgb(34,34,34);font-family:arial,sans-serif;font-styl=
+e:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight=
+:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:=
+none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);=
+text-decoration-style:initial;text-decoration-color:initial"><span style=3D=
+"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12.8px;font-sty=
+le:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weigh=
+t:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform=
+:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255)=
+;text-decoration-style:initial;text-decoration-color:initial;float:none;dis=
+play:inline">I want to add that, if<span style=3D"color:rgb(34,34,34);font-=
+family:arial,sans-serif;font-size:12.8px;font-style:normal;font-variant-lig=
+atures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:norma=
+l;text-align:start;text-indent:0px;text-transform:none;white-space:normal;w=
+ord-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:ini=
+tial;text-decoration-color:initial;float:none;display:inline">=C2=A0your cu=
+stom image installs packagegroup-core-boot, then you also need to set </spa=
+n></span><span style=3D"font-size:12.8px">VIRTUAL-RUNTIME_login_<wbr>manage=
+r variable with a valid value different from &quot;busybox&quot;.=C2=A0</sp=
+an><span style=3D"font-size:12.8px">My custom image includes that packagegr=
+oup, so to achieve my goal, I define in my distro.conf=C2=A0</span><span st=
+yle=3D"font-size:12.8px">this variable:</span></div><div style=3D"font-size=
+:small;color:rgb(34,34,34);font-family:arial,sans-serif;font-style:normal;f=
+ont-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;lette=
+r-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white=
+-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decor=
+ation-style:initial;text-decoration-color:initial"><span style=3D"font-size=
+:12.8px"><br></span></div><div style=3D"font-size:small;color:rgb(34,34,34)=
+;font-family:arial,sans-serif;font-style:normal;font-variant-ligatures:norm=
+al;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-alig=
+n:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing=
+:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-d=
+ecoration-color:initial"><span style=3D"font-size:12.8px">=C2=A0 =C2=A0 VIR=
+TUAL-RUNTIME_login_manager =3D &quot;shadow&quot;</span><br></div><div styl=
+e=3D"font-size:small;color:rgb(34,34,34);font-family:arial,sans-serif;font-=
+style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-we=
+ight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transf=
+orm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,2=
+55);text-decoration-style:initial;text-decoration-color:initial"><span styl=
+e=3D"font-size:12.8px"><br></span></div><div style=3D"color:rgb(34,34,34);f=
+ont-family:arial,sans-serif;font-style:normal;font-variant-ligatures:normal=
+;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:=
+start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0=
+px;background-color:rgb(255,255,255);text-decoration-style:initial;text-dec=
+oration-color:initial"><span style=3D"font-size:12.8px">Hope this helps to =
+somebody else.</span></div><div style=3D"color:rgb(34,34,34);font-family:ar=
+ial,sans-serif;font-style:normal;font-variant-ligatures:normal;font-variant=
+-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-in=
+dent:0px;text-transform:none;white-space:normal;word-spacing:0px;background=
+-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color=
+:initial"><span style=3D"font-size:12.8px"><br></span></div><div style=3D"c=
+olor:rgb(34,34,34);font-family:arial,sans-serif;font-style:normal;font-vari=
+ant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacin=
+g:normal;text-align:start;text-indent:0px;text-transform:none;white-space:n=
+ormal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-st=
+yle:initial;text-decoration-color:initial"><span style=3D"font-size:12.8px"=
+>Thank you for all your support! :-)</span></div><div style=3D"color:rgb(34=
+,34,34);font-family:arial,sans-serif;font-style:normal;font-variant-ligatur=
+es:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;te=
+xt-align:start;text-indent:0px;text-transform:none;white-space:normal;word-=
+spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial=
+;text-decoration-color:initial"><span style=3D"font-size:12.8px"><br></span=
+></div><div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-=
+style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-we=
+ight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transf=
+orm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,2=
+55);text-decoration-style:initial;text-decoration-color:initial"><br></div>=
+</div></span></div></div></div></div>
+</div></div>
 
---001a114778761e82320565b3f474--
+--001a1144990e584ef10565b48354--
