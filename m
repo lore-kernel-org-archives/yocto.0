@@ -1,138 +1,72 @@
-Return-Path: <prvs=1591333edf=alejandro.delcastillo@ni.com>
+Return-Path: <drew.moseley@northern.tech>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00775E00DE1; Thu, 22 Feb 2018 10:21:52 -0800 (PST)
+	id 53402E00E83; Thu, 22 Feb 2018 12:34:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.54 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [148.163.158.57 listed in list.dnswl.org]
-X-Greylist: delayed 574 seconds by postgrey-1.32 at yocto-www;
-	Thu, 22 Feb 2018 10:21:51 PST
-Received: from mx0b-00010702.pphosted.com (mx0b-00010702.pphosted.com
-	[148.163.158.57])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9C1AE00D32
-	for <yocto@yoctoproject.org>; Thu, 22 Feb 2018 10:21:51 -0800 (PST)
-Received: from pps.filterd (m0098779.ppops.net [127.0.0.1])
-	by mx0b-00010702.pphosted.com (8.16.0.22/8.16.0.22) with SMTP id
-	w1MIC4NZ023920; Thu, 22 Feb 2018 12:12:15 -0600
-Received: from nam02-cy1-obe.outbound.protection.outlook.com
-	(mail-cys01nam02lp0054.outbound.protection.outlook.com
-	[207.46.163.54])
-	by mx0b-00010702.pphosted.com with ESMTP id 2g6k3635sn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Thu, 22 Feb 2018 12:12:15 -0600
+Received: from mail-pg0-f54.google.com (mail-pg0-f54.google.com [74.125.83.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53C54E00B1A
+	for <yocto@yoctoproject.org>; Thu, 22 Feb 2018 12:34:04 -0800 (PST)
+Received: by mail-pg0-f54.google.com with SMTP id f6so2449771pgs.10
+	for <yocto@yoctoproject.org>; Thu, 22 Feb 2018 12:34:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=nio365.onmicrosoft.com; s=selector1-ni-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=sy9xMW8gRldVqpnaV6Z96XZAw5epCLkTWUb9HogUnr0=;
-	b=UtXpts0fFosY0u8Q1gmSe9qZiWG5tUYahA/WGp8S01rmZ/oFVdotQzXh6n+qwdoffW/ZyMmHiys0kkpgUjCa6Ma16uF8hWsuVuWpkVFhVMBxlDui/GPvTZ/TREzE9uGK2HKDF3TuL70CXXQv7widiTySRQy/07/EpHckOBT2Y9g=
-Received: from [10.2.65.57] (130.164.62.135) by
-	CY1PR0401MB1321.namprd04.prod.outlook.com (10.161.213.13) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.506.18; Thu, 22 Feb 2018 18:12:12 +0000
-References: <7a70895b-bee2-9051-7aa8-d5f23bf13311@ni.com>
-To: opkg-devel@googlegroups.com,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
-X-Forwarded-Message-Id: <7a70895b-bee2-9051-7aa8-d5f23bf13311@ni.com>
-Message-ID: <d0a74145-75cd-3f3f-3cbb-8f3c6603b4b3@ni.com>
-Date: Thu, 22 Feb 2018 12:12:45 -0600
+	d=northern.tech; s=google;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=6pY6qojsU/B+BtplD4n5kJuemknRF+I6xUc+HaFSHmk=;
+	b=Caj0aZlWEQDHzvptgcsvkC+cLEWyUGW0gvr5ilJzF+dUd62PBLjJZRHOhorDEb+17c
+	xjNwTa3QRv5g1ctnwdSOiClmI9ha4GdRixUa/RgRNUU9lWbTVgtIhw6HjziskZwSAV/R
+	Xc1GAxymSa+sLDBmlY0cKmmEJkrfitDZUK7jBJohNi+6mQBIOrIz73s9ZSKGyYqLsJ2o
+	2kiM6drv06OPGtbfV6Ho6OZ88F8Nm8iaeUfXnEmMeEW45nCwG3jvZm8/M28W1lQemtUV
+	xUFrPyQ248oPy0zB7icdz93N8+HWzgygnQMZD2BF60cBEAGNiFFFD7IoSrdAyyzpPPVq
+	qCOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=6pY6qojsU/B+BtplD4n5kJuemknRF+I6xUc+HaFSHmk=;
+	b=gd+LJSKnMdZxJQcQO/C16Nklwd2PhqaS7PDOcczEZiKueN1wZwGB+Fu2mMM8Yq6o77
+	FewGRWg4m11iZrhkXie9K+kLgNK+rGdUhknVOswL7RvAlovlDlzT8HZQvN5ejD0LwxK+
+	25tOO+8cKn7XE8OozfYeGa3/zN5EDcV8n40UP3wwBIrDRC+fvw837SspIho0LpWgCkbM
+	TdjgNAk+XrHhAtuUGApOsv9vInvTVk+NL98uftDATvw8b5/Fl2KWp6siA+DMt3qH8Svm
+	22PHbXH3iG6S+wvWLoVGUKZseiFWoC3gsXEmfjFBmefvH/T5Cp5ZR9Vh49zJQ3nr43+2
+	a4zw==
+X-Gm-Message-State: APf1xPCECNmYh3PH+DykGCbF/Ci3iPaHEJga0BGtprVR4dBPnB7wiAAE
+	Hz7jTEtUxOAnnDZNYfZ3aOAH3RGu1Ns=
+X-Google-Smtp-Source: AH8x227LxIdRyq9Fk7T4sstAXtHglThB9GYqpo8hTlTU7ARgw5gH1uIamML0l6Zk7sy1vvpH/Uhafg==
+X-Received: by 10.98.152.205 with SMTP id d74mr8132042pfk.115.1519331643986;
+	Thu, 22 Feb 2018 12:34:03 -0800 (PST)
+Received: from [192.168.1.37] ([173.168.237.167])
+	by smtp.gmail.com with ESMTPSA id
+	e22sm1056029pgn.50.2018.02.22.12.34.02
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 22 Feb 2018 12:34:03 -0800 (PST)
+To: Andrei Gherzan <andrei@gherzan.ro>
+References: <66f47867-75c2-0f93-589c-f1e32e512611@northern.tech>
+	<CAK18fxHP8sN8d_ogtfOedNTaO1LB7Fcjxekj-wx6-GhYQ0NSHQ@mail.gmail.com>
+From: Drew Moseley <drew.moseley@northern.tech>
+Message-ID: <82c9a9a7-8139-703c-7818-a4f5ede4cf71@northern.tech>
+Date: Thu, 22 Feb 2018 15:34:00 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.6.0
 MIME-Version: 1.0
-In-Reply-To: <7a70895b-bee2-9051-7aa8-d5f23bf13311@ni.com>
-X-Originating-IP: [130.164.62.135]
-X-ClientProxiedBy: CY4PR04CA0029.namprd04.prod.outlook.com (10.172.133.15) To
-	CY1PR0401MB1321.namprd04.prod.outlook.com (10.161.213.13)
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ba717134-9b11-4a1d-6816-08d57a1fcc31
-X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(5600026)(4604075)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603307)(7153060)(7193020);
-	SRVR:CY1PR0401MB1321; 
-X-Microsoft-Exchange-Diagnostics: 1; CY1PR0401MB1321;
-	3:lcWOrEEk46IFKUmMWdLkEhCGwt/jcTqx3SFWlVx19z4Qku/b9L0zns5faKcj7pHUjG0UwwgV+rZVHowR7By/KyusBnWcucDrPImD1yXAXBBqR8RMeIMtrqs0yN156KboVuklvHfozsNfgAQGV6rpw3FBIaRY8eWQlLwfa0McyPXuo2vhFDTlwiDu4tiJd2Jn3RwBx+4qZxC8q1ZgTuV8nIcX6yitiGMJ7BA/qfiW9Df/4vnPvIBry2dJnEQOIVyX;
-	25:CNWQ5KC9rRW67RkrIUit/imUpeEUpGB8+lBM83hFInrx6wDsN7MHiVpslaS3SOGkht4Vk4ybCg1eb2UhBusYI1rQofk2XJiZ+ER4pp+swxmdaIm51lMzJxuKI4Hw4EFenVFMREXZokig0nN3tfhiQv7t/CHADij55+zw3uwQALMO8SZoRm3XuNPmVMhQezz+KEW7VVcrXU/xOQzLKD5o439vkUk3ux+s23VJNZAHv8EVZrF3HROU2U2bQ10CAqa0z7cTIfnAstzyKGGNmfrV1S5lKaanWe+5ly4wM0Uv6J22jpL2JDB2gk6T4u3+Qz4HkFNF7U6fY5rXyz4dMLLTeA==;
-	31:XkcdWPuopazsZ5D5FkWyJEgVQG5pZrTpbY3mmtU90TX8NW1e56gMmuh9hTSD6p+9aGKSycfKrOqxACy/Ww+WpwkcxRjZkWqZ8bCv7rA1eebr6XJHZyqZUtzxT7EnsSA1p7k/e2ogn/rJacIAKXlOZnX64h9rJY4tiVEr3yG8hkBYtMFP1mmHFF5oil5Xvix6CclKbwgZTyNjntfIM7B/yQP1DkIsjq6P4wvQurN5eTY=
-X-MS-TrafficTypeDiagnostic: CY1PR0401MB1321:
-X-Microsoft-Exchange-Diagnostics: 1; CY1PR0401MB1321;
-	20:w599LDaesjbaSQO/cscml2IHRPrTOTCvheMqrrKe41CQGR3syrRNLTnifz4pAqR4VpxTfLoOPFacyfSvQ3tyL7px2MtJfltJK/+IAs0Y7HDiS6Cn29SkeB2O5/Wxvrx8JJDl9pKN4lMS1WpyN+67cjvniaEvNc89wtOhZb8cyhEdq4YDB7Q9ONOe02ZqSyYsO/E/eJUZ/6HFY1LkN/9esegVfEpGfOUowtkgjBB1MfuREY4ow+Sv1HK5D65d1ZpSR/iHZ34HD+cPNx9B0G+dhA+I59isp4vft34gleAeYqQbkkm2dfndF9fcTRrc/F3vov2WnqSeRzTnLSGBuQZZYwatzv6A367AXHrPtNlfQEgT4qQswCFcZgSXSg4At7GfEvYrujKeM9fZnpwLPMGBltRnpoDvGrs50EbsScHXBsl7oJM6t078BPDIJ/G32b93H3W8+1EfM6QBQ1/CcMQs0/AkIF7/LshLWfqDGpywrYMg9n+WW73NrtWCKE9Kum2A9Aa053D42SQGT4Mg7JpyQNFY3NW7GNY9FSTZEbfET8XUfpg/78nxb4OAYlYdF+d5lWTBWpeUo0ERmg4qGrqIubyzsz8F+h59Z2pd1mf70Xg=;
-	4:qUfQ+Pj5+tL71Y2jI1b1W8qWYDO/k71pcfAwp59C3adKvk4927V/MjkyOuIV9ItW2UCZHFLRBRhzSNpLEfOo6CmAugYOxARvmVaKIkRPvagkpuf+rjrcKxeFL7ll1R44iLEyCVvNDzzZkY2xdOrw+bu2TVtKqXZUqzqpjgqv5VX5B6jI5oS2pR95NqziTa8jZHgUOtQ4mhTqckpdfU/yaBNo4/SrKbkLsPHmaO43+6WDgRY3TuB9bUPSCBD4211RnvNQKDRzhpygwT1BO/THog==
-X-Microsoft-Antispam-PRVS: <CY1PR0401MB1321AC3ACA89534F58E19DF086CD0@CY1PR0401MB1321.namprd04.prod.outlook.com>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(8211001082)(6040501)(2401047)(8121501046)(5005006)(3231101)(944501161)(93006095)(93001095)(3002001)(10201501046)(6041288)(20161123562045)(20161123564045)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(6072148)(201708071742011);
-	SRVR:CY1PR0401MB1321; BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0401MB1321; 
-X-Forefront-PRVS: 059185FE08
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10019020)(6049001)(39860400002)(376002)(366004)(346002)(39380400002)(396003)(199004)(189003)(53754006)(67846002)(7736002)(53936002)(25786009)(2486003)(52146003)(66066001)(65956001)(65806001)(305945005)(31696002)(5660300001)(230700001)(3846002)(6116002)(2906002)(36756003)(65826007)(86362001)(76176011)(52116002)(478600001)(316002)(6666003)(2950100002)(58126008)(6916009)(23676004)(16576012)(50466002)(68736007)(64126003)(97736004)(106356001)(47776003)(26005)(77096007)(16526019)(2501003)(186003)(6486002)(59450400001)(90366009)(386003)(8676002)(81166006)(8936002)(81156014)(105586002)(31686004);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CY1PR0401MB1321; H:[10.2.65.57];
-	FPR:; SPF:None; PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-Received-SPF: None (protection.outlook.com: ni.com does not designate
-	permitted sender hosts)
-X-Microsoft-Exchange-Diagnostics: =?utf-8?B?MTtDWTFQUjA0MDFNQjEzMjE7MjM6dXY3RWx3b2tEczZ3TFpVTjV3cXRwWGNC?=
-	=?utf-8?B?ekdjZGZoRWp4cE9IdEFlUVdlcTF3YnRMOVhvUXVmRklzRW9hTjFzdHpMQlM1?=
-	=?utf-8?B?ZUlZZ3BLelpoRVg3cVUrVUhFVGhFQVhvblNZSUNwZEhnRUxibmxIL3ZWckVD?=
-	=?utf-8?B?Z2FOYkdxOTBDVmJRb0xSMFprSnJ1Uk9SRytWWEFPRzNqU0hPNm5xZVdUd01U?=
-	=?utf-8?B?VmtFQkFDS0lKN1ZXTk9oWFd2elFJVTEya2RSOTFqSzFjN200bGppMURjV0JM?=
-	=?utf-8?B?K1VSOVRydXdXcVIvYy9maEVFK2VIUlJGbk5oWHIvQ1p3aVJQVnY3aXUzMklF?=
-	=?utf-8?B?b01sZUlKSWkyZUNvSGtRcFBlb0dJenp6bW9YVjVHYmpDTHdqbWJyclU4OW9w?=
-	=?utf-8?B?eEwwNklIb0thcURaSDJ6ZzRyTWNzM1YvZi9rYS81ODRkV0NBTGx1dWpnVEdZ?=
-	=?utf-8?B?Y21JYzMvTHlKOEFoWmdVWTMyZEFJM2ZIV2RybVdYTVZWZkJFemczaDVyTGN0?=
-	=?utf-8?B?S29SVmxZWGlGWUdpcndEa1o2a3ZwcGVnN2c2b1FqTlNpYUlrcW96bDhiQjd1?=
-	=?utf-8?B?T0R6UVF6b01Xd09MRENVTnNNOUNESUhuWFZSYjlnZlB3a2hYWDZtZjhFRzRG?=
-	=?utf-8?B?cmY5aFA5MlBGUUhtNjBqWlRsYUNWYk02Z3piTG9SWEFGa0JlZitFaEliTEpG?=
-	=?utf-8?B?Zk9ieFBrNU1qY0owZ3NjWjM0MXdNcUFzU1c3M2orTGNEdGFSUFdUL1hVc21o?=
-	=?utf-8?B?Znh5elkvV3ZkK3Z6UzAvSWQwN1pwaUsrOHAyZFZnOEVoZHlKWEVTMlhwRm9T?=
-	=?utf-8?B?Y1owVVZqR3Z0aWVlaEdyYmNyQjhlUVF2WVpQazRVekI4dk1ld2RCNXdPeTJ2?=
-	=?utf-8?B?V2d6aGc0YkttTG9udzNyelNnd3RSWERjWVQ1RElkYThaOE9GNHdNblBVeVBP?=
-	=?utf-8?B?K2lWUHJaSkd0TUt4Z0xSdlVGdmxNZWhGTHVqZ29kR1k0bk9maVhiWGtkNTc0?=
-	=?utf-8?B?ZDJQNERqNnZuU3dSZHV2U1MxSjVRQkN1SSswQi9wZVN5c2RYa2FhSG5JWFd5?=
-	=?utf-8?B?T3htVFhsU3FZR0dIS2crZEJaaGFMM1M3bjZMT29UU1lrbkxsRkw3bHNuUFp5?=
-	=?utf-8?B?c0xwS1p3ZzNIVFV6eU1ZZjZjWTNReUM0ZStWVldMR1Bub2RMOGQ3dVBQVWNw?=
-	=?utf-8?B?dDd5NTBhb3RFYjVrL0hRQnJSOVNhcVdLVllLVDFRWE8wQ1FycS94V0hJRG05?=
-	=?utf-8?B?d1RiaE1aazFQVSsxV1gzUU04amRvdFBoWm1rR0c3L3ZlcjlVMi9jZTQ5Z1Nl?=
-	=?utf-8?B?MTAyU3g1d25xKzR3NGN3YmIzejBpV0VaRnJydVZJamU4RGtBcFoxN1pyYkVt?=
-	=?utf-8?B?a1ozRjJZcjl0UHhUTG5NTldua0FyQTVpcW15Y2tjL2FrZ2JESzBYd05XUWlk?=
-	=?utf-8?B?bjhVM2hxT0JkaG9JbzUrak8vVDN0VERSWnBHVEk3Q3pQRys2UzZDVDRKQUcy?=
-	=?utf-8?B?SWQxTHBMRTNpYk5nVWM0eXlvby9WNjJ3ZHF0SHgvbjZXZTZWcitXOEc3WTVL?=
-	=?utf-8?B?MkdsYlg0d0RIdWJyc0RqdkFNNGVFV1JWVmhwdHhnSmJNUStXL1h0czNVZEJu?=
-	=?utf-8?B?UjVGVW9yNHVxVUpyckJXV05ncUxXR0x2R2ZQbUpLSmdOZkdRZGFpQmFHaWxl?=
-	=?utf-8?B?NHIrVVlydjZCMCtCeDNCU1Jwa0xoSzI5TDJ1VVc5aTZxb2dmaDBGWm1GT25S?=
-	=?utf-8?B?L3NZOXVocjNEMGRlQWpEaGhWWVg3ZGtGWEFoY1pXQzM2ejJRM2VCcU5PUjNX?=
-	=?utf-8?B?dlJiRmdUS0lJSTYrZFdCREpNeThUdWtHcjdGbnVRb0tuc045QT09?=
-X-Microsoft-Exchange-Diagnostics: 1; CY1PR0401MB1321;
-	6:wMuAEBYTNGvBsSq9BJjGUwXvOznS8qi7KS+6NpKfdpyAcVg/z/4weAqXb8GKerkCZ1FwS2vppxslXsSqbamEXfOxIss99pGmQMvqIXP3whyluChwIS4BuROESllibmCLJqRLuGmH/vthL0gwCncPVtywFhw7hNE/h+L5q/YUkr8T6/DrJTo08Wb4EThbaLexre4ctJmzSfm4EGai+wv9cx1qn2Q9HCD9dWT8XHhKUdhm3eORv+Q8Rz9nsT3VYwL90os77CLqxd02ax4P4jb5efD4deBrVL/QCOlYFN8DEZhpsEPbf1UogwDcXDeViX+M2xugenYE15+VutaaX2iZyXybvLUjX11JPCBrainomkk=;
-	5:g+06eHF+TJ4ky8prss9ihDFnX5uR7z9QXaF+q8q3GPFgJYcU/1KbZtgLOYQ5HbSvmX4ghsIYEQHoxL1q89UdfCGSiQLmCxMaIScUvmj8XARNS19WgOtj0a04Tepu2kyrkufA4w4WCA+TRXu4APG1M0jugTAAW7mNmjzYpT72cpk=;
-	24:/uGpjCvmZyM61kfDpHnItl6iF1jcLdAoiOORJnUK8S0ccuRGY4OO7RopbaMtieqBpXD4CxJLogNH5KLsbguw/F0++BDBLAyKg5ZULW4hW9k=;
-	7:JxltUw0e+1YJGTIg02j7xki4DlSUqvfRkMZzE2VKyIW42FiH7VYQC8JMzHuWuSmgpdjiq8aKLyrka174I3S7nhw46HL0fkxJh8H6abvmFAyWtG00eWK/XQye8JJm4gIrLmQecSB58aWN0uQAHwVX6O2hYwbS7+tzQ9j0o9JCY3ius8mW610CMnQi4U/JRzzefUUncPH6z/my/HwHb7JGaf4US/MzjMeoUoYEFYVir7h/81Dhg1RU1av5h4pZXG3M
-SpamDiagnosticOutput: 1:99
-SpamDiagnosticMetadata: NSPM
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2018 18:12:12.9439 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba717134-9b11-4a1d-6816-08d57a1fcc31
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR0401MB1321
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2018-02-22_06:, , signatures=0
-X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
-	score=30
-	priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0
-	bulkscore=0
-	spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=999 adultscore=0 classifier=spam adjust=30 reason=mlx
-	scancount=1 engine=8.0.1-1711220000 definitions=main-1802220228
-Subject: opkg-utils 0.3.6
+In-Reply-To: <CAK18fxHP8sN8d_ogtfOedNTaO1LB7Fcjxekj-wx6-GhYQ0NSHQ@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-chip] Wifi driver on CHIP boards?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -144,40 +78,204 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Feb 2018 18:21:53 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Thu, 22 Feb 2018 20:34:06 -0000
+Content-Type: multipart/alternative;
+	boundary="------------53F3634DB004104A9FD34231"
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 
-Hi all,
+--------------53F3634DB004104A9FD34231
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-I am please to announce the 0.3.6 release of opkg-utils. In this 
-release, we had 10 commits, contributed by 7 developers:
+On 09/04/2017 06:17 AM, Andrei Gherzan wrote:
+> On Wed, Aug 30, 2017 at 11:44 PM, Drew Moseley
+> <drew.moseley@northern.tech <mailto:drew.moseley@northern.tech>> wrote:
+>
+>     Has anyone managed to use the onboard WIFI for the CHIP boards in the
+>     current meta-chip repo?  I added the kernel-module-r8723bs and
+>     rtl8723bs
+>     packages to my build and setup a wpa_supplicant.conf that works on
+>     other
+>     boards but I get error messages about power save. A few google
+>     searches
+>     suggested some power save changes but nothing I tried worked.
+>
+>     root@chip:~# ifup wlan0
+>     Successfully initialized wpa_supplicant
+>     [  172.875000] rtl8723bs: accquire FW from
+>     file:rtlwifi/rtl8723bs_nic.bin
+>     [  174.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+>     [  174.235000] RTL8723BS: set bssid:00:00:00:00:00:00
+>     ioctl[SIOCSIWAP]: Operation not permitted
+>     udhcpc (v1.24.1) started
+>     Sending discover...
+>     [  175.855000] RTL8723BS: nolinked power save enter
+>     Sending discover...
+>     Sending discover...
+>     No lease, forking to background
+>     root@chip:~# [  184.580000] RTL8723BS: nolinked power save leave
+>     [  184.800000] RTL8723BS: set bssid:20:c9:d0:18:7a:95
+>     [  184.810000] RTL8723BS: set ssid [caribbean] fw_state = 0x00000088
+>     [  194.605000] RTL8723BS: nolinked power save enter
+>     [  195.850000] RTL8723BS: nolinked power save leave
+>     [  196.060000] RTL8723BS: set bssid:00:00:00:00:00:00
+>
+>
+> We use the same packages in resinos to add wifi support and everything
+> seems sane. However we only tested with NM not directly with wpa.  
+>
+> ref: https://github.com/resin-os/resin-chip/pull/23
+>
+> Andrei
 
-Jeffrey Pautler		3
-Alejandro del Castillo 	3
-Zhu Mumu		1
-Adam Trhon 		1
-Jackie Huang		1
-Juro Bystricky		1
+Andrei,
 
-Jeffrey, Zhu, Adam, Jackie, Juro, thanks for your contributions!
+Are you certain this is working in resinos currently?  I modified my
+config to use NetworkManager and it has similar behavior.  The "nolinked
+power save" messages are evidently debug so I ignore them but I do get
+the following:
 
-Changes included on this release:
+[  246.050000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
+0x00000008
+[  246.145000] RTL8723BS: start auth
+[  246.150000] RTL8723BS: auth success, start assoc
+[  249.225000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
+0x00000008
+[  249.420000] RTL8723BS: start auth
+[  249.430000] RTL8723BS: auth success, start assoc
+[  252.885000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
+0x00000008
+[  253.105000] RTL8723BS: start auth
+[  253.115000] RTL8723BS: auth success, start assoc
+[  257.075000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
+0x00000008
+[  257.305000] RTL8723BS: start auth
+[  257.315000] RTL8723BS: auth success, start assoc
+[  268.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
 
-- opkg-build: make Section, Priority and Source fields optional
-- opkg.py: add compatibility with ipks which outer is tar
-- opkg-build{package}: fix error message
-- opkg.py: remove brittle formatting of description field
-- opkg-make-index: add option to include all fields on index file
-- update-alternatives: fix the sed pattern in remove_alt
-- update-alternatives: add support for link renames (issue 8344)
-- opkg-build: improve package reproducibility (issue 11242)
+and then no connection.  I even disabled encryption temporarily on my
+wifi and was unable to connect.
 
-looking forward to the 0.4.0 release cycle!
+I tried to build a resinos image for CHIP to try it but was
+unsuccessful.  Do you have any binaries I can try?
 
--- 
-Cheers,
+Also, I installed the stock debian from flash.getchip.com and it was
+able to connect so my hardware seems solid.
 
-Alejandro
+Drew
 
+
+--------------53F3634DB004104A9FD34231
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    On 09/04/2017 06:17 AM, Andrei Gherzan wrote:<br>
+    <blockquote type="cite"
+cite="mid:CAK18fxHP8sN8d_ogtfOedNTaO1LB7Fcjxekj-wx6-GhYQ0NSHQ@mail.gmail.com">
+      <div dir="ltr">
+        <div class="gmail_extra">
+          <div class="gmail_quote">On Wed, Aug 30, 2017 at 11:44 PM,
+            Drew Moseley <span dir="ltr">&lt;<a
+                href="mailto:drew.moseley@northern.tech" target="_blank"
+                moz-do-not-send="true">drew.moseley@northern.tech</a>&gt;</span>
+            wrote:<br>
+            <blockquote class="gmail_quote" style="margin:0px 0px 0px
+              0.8ex;border-left:1px solid
+              rgb(204,204,204);padding-left:1ex">Has anyone managed to
+              use the onboard WIFI for the CHIP boards in the<br>
+              current meta-chip repo?  I added the kernel-module-r8723bs
+              and rtl8723bs<br>
+              packages to my build and setup a wpa_supplicant.conf that
+              works on other<br>
+              boards but I get error messages about power save. A few
+              google searches<br>
+              suggested some power save changes but nothing I tried
+              worked.<br>
+              <br>
+              root@chip:~# ifup wlan0<br>
+              Successfully initialized wpa_supplicant<br>
+              [  172.875000] rtl8723bs: accquire FW from
+              <a class="moz-txt-link-freetext" href="file:rtlwifi/rtl8723bs_nic.bin">file:rtlwifi/rtl8723bs_nic.bin</a><br>
+              [  174.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is
+              not ready<br>
+              [  174.235000] RTL8723BS: set bssid:00:00:00:00:00:00<br>
+              ioctl[SIOCSIWAP]: Operation not permitted<br>
+              udhcpc (v1.24.1) started<br>
+              Sending discover...<br>
+              [  175.855000] RTL8723BS: nolinked power save enter<br>
+              Sending discover...<br>
+              Sending discover...<br>
+              No lease, forking to background<br>
+              root@chip:~# [  184.580000] RTL8723BS: nolinked power save
+              leave<br>
+              [  184.800000] RTL8723BS: set bssid:20:c9:d0:18:7a:95<br>
+              [  184.810000] RTL8723BS: set ssid [caribbean] fw_state =
+              0x00000088<br>
+              [  194.605000] RTL8723BS: nolinked power save enter<br>
+              [  195.850000] RTL8723BS: nolinked power save leave<br>
+              [  196.060000] RTL8723BS: set bssid:00:00:00:00:00:00<br>
+              <span class="gmail-HOEnZb"><font color="#888888"><br>
+                </font></span></blockquote>
+            <div><br>
+            </div>
+            <div>We use the same packages in resinos to add wifi support
+              and everything seems sane. However we only tested with NM
+              not directly with wpa.  </div>
+            <div><br>
+            </div>
+            <div>ref: <a
+                href="https://github.com/resin-os/resin-chip/pull/23"
+                moz-do-not-send="true">https://github.com/resin-os/resin-chip/pull/23</a></div>
+            <div><br>
+            </div>
+            <div>Andrei</div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    Andrei,<br>
+    <br>
+    Are you certain this is working in resinos currently?  I modified my
+    config to use NetworkManager and it has similar behavior.  The
+    "nolinked power save" messages are evidently debug so I ignore them
+    but I do get the following:<br>
+    <br>
+    [  246.050000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
+    0x00000008<br>
+    [  246.145000] RTL8723BS: start auth<br>
+    [  246.150000] RTL8723BS: auth success, start assoc<br>
+    [  249.225000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
+    0x00000008<br>
+    [  249.420000] RTL8723BS: start auth<br>
+    [  249.430000] RTL8723BS: auth success, start assoc<br>
+    [  252.885000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
+    0x00000008<br>
+    [  253.105000] RTL8723BS: start auth<br>
+    [  253.115000] RTL8723BS: auth success, start assoc<br>
+    [  257.075000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
+    0x00000008<br>
+    [  257.305000] RTL8723BS: start auth<br>
+    [  257.315000] RTL8723BS: auth success, start assoc<br>
+    [  268.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br>
+    <br>
+    and then no connection.  I even disabled encryption temporarily on
+    my wifi and was unable to connect.<br>
+    <br>
+    I tried to build a resinos image for CHIP to try it but was
+    unsuccessful.  Do you have any binaries I can try?<br>
+    <br>
+    Also, I installed the stock debian from flash.getchip.com and it was
+    able to connect so my hardware seems solid.<br>
+    <br>
+    Drew<br>
+    <br>
+  </body>
+</html>
+
+--------------53F3634DB004104A9FD34231--
