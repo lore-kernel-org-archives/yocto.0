@@ -1,72 +1,54 @@
-Return-Path: <drew.moseley@northern.tech>
+Return-Path: <ee.peng.yeoh@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53402E00E83; Thu, 22 Feb 2018 12:34:06 -0800 (PST)
+	id 5F18CE00E7D; Thu, 22 Feb 2018 18:18:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f54.google.com (mail-pg0-f54.google.com [74.125.83.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53C54E00B1A
-	for <yocto@yoctoproject.org>; Thu, 22 Feb 2018 12:34:04 -0800 (PST)
-Received: by mail-pg0-f54.google.com with SMTP id f6so2449771pgs.10
-	for <yocto@yoctoproject.org>; Thu, 22 Feb 2018 12:34:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=northern.tech; s=google;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language;
-	bh=6pY6qojsU/B+BtplD4n5kJuemknRF+I6xUc+HaFSHmk=;
-	b=Caj0aZlWEQDHzvptgcsvkC+cLEWyUGW0gvr5ilJzF+dUd62PBLjJZRHOhorDEb+17c
-	xjNwTa3QRv5g1ctnwdSOiClmI9ha4GdRixUa/RgRNUU9lWbTVgtIhw6HjziskZwSAV/R
-	Xc1GAxymSa+sLDBmlY0cKmmEJkrfitDZUK7jBJohNi+6mQBIOrIz73s9ZSKGyYqLsJ2o
-	2kiM6drv06OPGtbfV6Ho6OZ88F8Nm8iaeUfXnEmMeEW45nCwG3jvZm8/M28W1lQemtUV
-	xUFrPyQ248oPy0zB7icdz93N8+HWzgygnQMZD2BF60cBEAGNiFFFD7IoSrdAyyzpPPVq
-	qCOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=6pY6qojsU/B+BtplD4n5kJuemknRF+I6xUc+HaFSHmk=;
-	b=gd+LJSKnMdZxJQcQO/C16Nklwd2PhqaS7PDOcczEZiKueN1wZwGB+Fu2mMM8Yq6o77
-	FewGRWg4m11iZrhkXie9K+kLgNK+rGdUhknVOswL7RvAlovlDlzT8HZQvN5ejD0LwxK+
-	25tOO+8cKn7XE8OozfYeGa3/zN5EDcV8n40UP3wwBIrDRC+fvw837SspIho0LpWgCkbM
-	TdjgNAk+XrHhAtuUGApOsv9vInvTVk+NL98uftDATvw8b5/Fl2KWp6siA+DMt3qH8Svm
-	22PHbXH3iG6S+wvWLoVGUKZseiFWoC3gsXEmfjFBmefvH/T5Cp5ZR9Vh49zJQ3nr43+2
-	a4zw==
-X-Gm-Message-State: APf1xPCECNmYh3PH+DykGCbF/Ci3iPaHEJga0BGtprVR4dBPnB7wiAAE
-	Hz7jTEtUxOAnnDZNYfZ3aOAH3RGu1Ns=
-X-Google-Smtp-Source: AH8x227LxIdRyq9Fk7T4sstAXtHglThB9GYqpo8hTlTU7ARgw5gH1uIamML0l6Zk7sy1vvpH/Uhafg==
-X-Received: by 10.98.152.205 with SMTP id d74mr8132042pfk.115.1519331643986;
-	Thu, 22 Feb 2018 12:34:03 -0800 (PST)
-Received: from [192.168.1.37] ([173.168.237.167])
-	by smtp.gmail.com with ESMTPSA id
-	e22sm1056029pgn.50.2018.02.22.12.34.02
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 22 Feb 2018 12:34:03 -0800 (PST)
-To: Andrei Gherzan <andrei@gherzan.ro>
-References: <66f47867-75c2-0f93-589c-f1e32e512611@northern.tech>
-	<CAK18fxHP8sN8d_ogtfOedNTaO1LB7Fcjxekj-wx6-GhYQ0NSHQ@mail.gmail.com>
-From: Drew Moseley <drew.moseley@northern.tech>
-Message-ID: <82c9a9a7-8139-703c-7818-a4f5ede4cf71@northern.tech>
-Date: Thu, 22 Feb 2018 15:34:00 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFB56E00DB1
+	for <yocto@yoctoproject.org>; Thu, 22 Feb 2018 18:18:53 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	22 Feb 2018 18:18:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.47,381,1515484800"; d="scan'208";a="30019556"
+Received: from pgsmsx108.gar.corp.intel.com ([10.221.44.103])
+	by orsmga003.jf.intel.com with ESMTP; 22 Feb 2018 18:18:52 -0800
+Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.166]) by
+	PGSMSX108.gar.corp.intel.com ([169.254.8.87]) with mapi id
+	14.03.0319.002; Fri, 23 Feb 2018 10:18:51 +0800
+From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
+To: "Cruz, Libertad" <libertad.cruz@intel.com>, "'yocto@yoctoproject.org'"
+	<yocto@yoctoproject.org>, "Purdie, Richard" <richard.purdie@intel.com>, 
+	"Jolley, Stephen K" <stephen.k.jolley@intel.com>, "Jordan, Robin L"
+	<robin.l.jordan@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>, 
+	"Lock, Joshua G" <joshua.g.lock@intel.com>, "Eggleton, Paul"
+	<paul.eggleton@intel.com>
+Thread-Topic: QA cycle report for 2.2.3 RC2
+Thread-Index: AdOsSKyqyZ2hJD1PQP6GYR7PN5Pe4A==
+Date: Fri, 23 Feb 2018 02:18:50 +0000
+Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335DD6FD8@PGSMSX109.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjQ2MzYwMDctZTE2OS00ZWQ1LTgwNDMtOWQ3OTJkNzlmNmRiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImU5cmNhNmt3YkR5NmV4N3JRXC81bGlNbFB5c2tsZkFRc1llQ2g1ZWRpUTFrPSJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.0.116
+dlp-reaction: no-action
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-In-Reply-To: <CAK18fxHP8sN8d_ogtfOedNTaO1LB7Fcjxekj-wx6-GhYQ0NSHQ@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-chip] Wifi driver on CHIP boards?
+Cc: "Perez Carranza, Jose" <jose.perez.carranza@intel.com>
+Subject: QA cycle report for 2.2.3 RC2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,204 +60,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Feb 2018 20:34:06 -0000
-Content-Type: multipart/alternative;
-	boundary="------------53F3634DB004104A9FD34231"
+X-List-Received-Date: Fri, 23 Feb 2018 02:18:54 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
---------------53F3634DB004104A9FD34231
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Hello All,
+This is the full report for 2.2.3.RC2: =20
+https://wiki.yoctoproject.org/wiki/WW06_-_2018-02-08_-_Full_Point_Release_T=
+est_Cycle_2.2.3_rc2
 
-On 09/04/2017 06:17 AM, Andrei Gherzan wrote:
-> On Wed, Aug 30, 2017 at 11:44 PM, Drew Moseley
-> <drew.moseley@northern.tech <mailto:drew.moseley@northern.tech>> wrote:
->
->     Has anyone managed to use the onboard WIFI for the CHIP boards in the
->     current meta-chip repo?  I added the kernel-module-r8723bs and
->     rtl8723bs
->     packages to my build and setup a wpa_supplicant.conf that works on
->     other
->     boards but I get error messages about power save. A few google
->     searches
->     suggested some power save changes but nothing I tried worked.
->
->     root@chip:~# ifup wlan0
->     Successfully initialized wpa_supplicant
->     [  172.875000] rtl8723bs: accquire FW from
->     file:rtlwifi/rtl8723bs_nic.bin
->     [  174.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
->     [  174.235000] RTL8723BS: set bssid:00:00:00:00:00:00
->     ioctl[SIOCSIWAP]: Operation not permitted
->     udhcpc (v1.24.1) started
->     Sending discover...
->     [  175.855000] RTL8723BS: nolinked power save enter
->     Sending discover...
->     Sending discover...
->     No lease, forking to background
->     root@chip:~# [  184.580000] RTL8723BS: nolinked power save leave
->     [  184.800000] RTL8723BS: set bssid:20:c9:d0:18:7a:95
->     [  184.810000] RTL8723BS: set ssid [caribbean] fw_state = 0x00000088
->     [  194.605000] RTL8723BS: nolinked power save enter
->     [  195.850000] RTL8723BS: nolinked power save leave
->     [  196.060000] RTL8723BS: set bssid:00:00:00:00:00:00
->
->
-> We use the same packages in resinos to add wifi support and everything
-> seems sane. However we only tested with NM not directly with wpa.  
->
-> ref: https://github.com/resin-os/resin-chip/pull/23
->
-> Andrei
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
 
-Andrei,
+The QA cycle for release 2.2.3.RC2 was completed.=A0 Team had discovered 3 =
+new bugs. =20
 
-Are you certain this is working in resinos currently?  I modified my
-config to use NetworkManager and it has similar behavior.  The "nolinked
-power save" messages are evidently debug so I ignore them but I do get
-the following:
+Performance tests executed on GDC show that eSDK time was longer than expec=
+ted on both Fedora and Ubuntu machines, where GDC Fedora machine was identi=
+fied to be causing longer eSDK time previously in 2.5 M1 rc3.  Suspect that=
+ GDC Ubuntu machine was facing same issue as the Fedora machine which causi=
+ng the longer than expected eSDK time. =20
 
-[  246.050000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
-0x00000008
-[  246.145000] RTL8723BS: start auth
-[  246.150000] RTL8723BS: auth success, start assoc
-[  249.225000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
-0x00000008
-[  249.420000] RTL8723BS: start auth
-[  249.430000] RTL8723BS: auth success, start assoc
-[  252.885000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
-0x00000008
-[  253.105000] RTL8723BS: start auth
-[  253.115000] RTL8723BS: auth success, start assoc
-[  257.075000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
-0x00000008
-[  257.305000] RTL8723BS: start auth
-[  257.315000] RTL8723BS: auth success, start assoc
-[  268.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
 
-and then no connection.  I even disabled encryption temporarily on my
-wifi and was unable to connect.
+The build is stable enough to be released, need to rerun performance tests =
+on new machines from Linux Foundation.=20
 
-I tried to build a resinos image for CHIP to try it but was
-unsuccessful.  Do you have any binaries I can try?
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
 
-Also, I installed the stock debian from flash.getchip.com and it was
-able to connect so my hardware seems solid.
+New Bugs
+	- 12519 [1] [2.2.3 rc2] ccache-native-3.2.5-r0: oe-runmake failed
+	- 12520 [2] [2.2.3 rc2] grub-efi-native-2.00-r3 oe_runmake failed
+	- 12521 [3] [2.2.3 rc2] setUpClass - gpg fail to build skey array skipping=
+ testcases (auto)
 
-Drew
+=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
+1.  https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12519  [1]=20
+2.  https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12520  [2]
+3.  https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12521  [3]
+
+Regards
+Ee Peng=20
 
 
---------------53F3634DB004104A9FD34231
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    On 09/04/2017 06:17 AM, Andrei Gherzan wrote:<br>
-    <blockquote type="cite"
-cite="mid:CAK18fxHP8sN8d_ogtfOedNTaO1LB7Fcjxekj-wx6-GhYQ0NSHQ@mail.gmail.com">
-      <div dir="ltr">
-        <div class="gmail_extra">
-          <div class="gmail_quote">On Wed, Aug 30, 2017 at 11:44 PM,
-            Drew Moseley <span dir="ltr">&lt;<a
-                href="mailto:drew.moseley@northern.tech" target="_blank"
-                moz-do-not-send="true">drew.moseley@northern.tech</a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0px 0px 0px
-              0.8ex;border-left:1px solid
-              rgb(204,204,204);padding-left:1ex">Has anyone managed to
-              use the onboard WIFI for the CHIP boards in the<br>
-              current meta-chip repo?  I added the kernel-module-r8723bs
-              and rtl8723bs<br>
-              packages to my build and setup a wpa_supplicant.conf that
-              works on other<br>
-              boards but I get error messages about power save. A few
-              google searches<br>
-              suggested some power save changes but nothing I tried
-              worked.<br>
-              <br>
-              root@chip:~# ifup wlan0<br>
-              Successfully initialized wpa_supplicant<br>
-              [  172.875000] rtl8723bs: accquire FW from
-              <a class="moz-txt-link-freetext" href="file:rtlwifi/rtl8723bs_nic.bin">file:rtlwifi/rtl8723bs_nic.bin</a><br>
-              [  174.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is
-              not ready<br>
-              [  174.235000] RTL8723BS: set bssid:00:00:00:00:00:00<br>
-              ioctl[SIOCSIWAP]: Operation not permitted<br>
-              udhcpc (v1.24.1) started<br>
-              Sending discover...<br>
-              [  175.855000] RTL8723BS: nolinked power save enter<br>
-              Sending discover...<br>
-              Sending discover...<br>
-              No lease, forking to background<br>
-              root@chip:~# [  184.580000] RTL8723BS: nolinked power save
-              leave<br>
-              [  184.800000] RTL8723BS: set bssid:20:c9:d0:18:7a:95<br>
-              [  184.810000] RTL8723BS: set ssid [caribbean] fw_state =
-              0x00000088<br>
-              [  194.605000] RTL8723BS: nolinked power save enter<br>
-              [  195.850000] RTL8723BS: nolinked power save leave<br>
-              [  196.060000] RTL8723BS: set bssid:00:00:00:00:00:00<br>
-              <span class="gmail-HOEnZb"><font color="#888888"><br>
-                </font></span></blockquote>
-            <div><br>
-            </div>
-            <div>We use the same packages in resinos to add wifi support
-              and everything seems sane. However we only tested with NM
-              not directly with wpa.  </div>
-            <div><br>
-            </div>
-            <div>ref: <a
-                href="https://github.com/resin-os/resin-chip/pull/23"
-                moz-do-not-send="true">https://github.com/resin-os/resin-chip/pull/23</a></div>
-            <div><br>
-            </div>
-            <div>Andrei</div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    Andrei,<br>
-    <br>
-    Are you certain this is working in resinos currently?  I modified my
-    config to use NetworkManager and it has similar behavior.  The
-    "nolinked power save" messages are evidently debug so I ignore them
-    but I do get the following:<br>
-    <br>
-    [  246.050000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
-    0x00000008<br>
-    [  246.145000] RTL8723BS: start auth<br>
-    [  246.150000] RTL8723BS: auth success, start assoc<br>
-    [  249.225000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
-    0x00000008<br>
-    [  249.420000] RTL8723BS: start auth<br>
-    [  249.430000] RTL8723BS: auth success, start assoc<br>
-    [  252.885000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
-    0x00000008<br>
-    [  253.105000] RTL8723BS: start auth<br>
-    [  253.115000] RTL8723BS: auth success, start assoc<br>
-    [  257.075000] RTL8723BS: rtw_set_802_11_connect(wlan0)  fw_state =
-    0x00000008<br>
-    [  257.305000] RTL8723BS: start auth<br>
-    [  257.315000] RTL8723BS: auth success, start assoc<br>
-    [  268.225000] IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready<br>
-    <br>
-    and then no connection.  I even disabled encryption temporarily on
-    my wifi and was unable to connect.<br>
-    <br>
-    I tried to build a resinos image for CHIP to try it but was
-    unsuccessful.  Do you have any binaries I can try?<br>
-    <br>
-    Also, I installed the stock debian from flash.getchip.com and it was
-    able to connect so my hardware seems solid.<br>
-    <br>
-    Drew<br>
-    <br>
-  </body>
-</html>
-
---------------53F3634DB004104A9FD34231--
