@@ -1,50 +1,43 @@
-Return-Path: <Anders.Montonen@iki.fi>
+Return-Path: <stephano.cetola@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E78ABE00EAB; Sat, 24 Feb 2018 10:49:43 -0800 (PST)
+	id 5D82EE00E66; Sat, 24 Feb 2018 12:11:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [83.102.40.152 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 393 seconds by postgrey-1.32 at yocto-www;
-	Sat, 24 Feb 2018 10:49:42 PST
-Received: from sinikuusama2.dnainternet.net (sinikuusama2.dnainternet.net
-	[83.102.40.152])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12D67E00E54
-	for <yocto@yoctoproject.org>; Sat, 24 Feb 2018 10:49:42 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by sinikuusama2.dnainternet.net (Postfix) with ESMTP id 6BA7AF626;
-	Sat, 24 Feb 2018 20:43:07 +0200 (EET)
-X-Virus-Scanned: DNA Internet at dnainternet.net
-Received: from sinikuusama2.dnainternet.net ([83.102.40.152])
-	by localhost (sinikuusama2.dnainternet.net [127.0.0.1]) (DNA Internet,
-	port 10041)
-	with ESMTP id jrnLSj7-APU5; Sat, 24 Feb 2018 20:43:06 +0200 (EET)
-Received: from kirsikkapuu2.dnainternet.net (kirsikkapuu2.dnainternet.net
-	[83.102.40.52])
-	by sinikuusama2.dnainternet.net (Postfix) with ESMTP id C74E2F4B2;
-	Sat, 24 Feb 2018 20:43:06 +0200 (EET)
-Received: from [192.168.1.22] (89-27-78-236.bb.dnainternet.fi [89.27.78.236])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
-	bits)) (No client certificate requested)
-	by kirsikkapuu2.dnainternet.net (Postfix) with ESMTPS id A3FDC3BAF;
-	Sat, 24 Feb 2018 20:43:04 +0200 (EET)
-Mime-Version: 1.0 (Mac OS X Mail 11.2 \(3445.5.20\))
-From: Anders Montonen <Anders.Montonen@iki.fi>
-In-Reply-To: <fdd3c867-fe60-c536-24d5-bdca7bde7f09@windriver.com>
-Date: Sat, 24 Feb 2018 20:43:04 +0200
-Message-Id: <43C018F7-7634-4EF2-9C7D-BE63AB1696A3@iki.fi>
-References: <alpine.DEB.2.11.1802231833140.22513@lakka.kapsi.fi>
-	<fdd3c867-fe60-c536-24d5-bdca7bde7f09@windriver.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-X-Mailer: Apple Mail (2.3445.5.20)
-Cc: yocto@yoctoproject.org
-Subject: Re: useradd-staticids
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1D31E006F3
+	for <yocto@yoctoproject.org>; Sat, 24 Feb 2018 12:11:51 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	24 Feb 2018 12:11:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.47,389,1515484800"; d="scan'208";a="33344007"
+Received: from linux.intel.com ([10.54.29.200])
+	by fmsmga001.fm.intel.com with ESMTP; 24 Feb 2018 12:11:50 -0800
+Received: from elorhamm-mobl4.ger.corp.intel.com (unknown [10.254.109.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTPS id 8B2305803CB
+	for <yocto@yoctoproject.org>; Sat, 24 Feb 2018 12:11:50 -0800 (PST)
+To: yocto@yoctoproject.org
+References: <dcad044fec2b4e0ab2efbaea4043fe76@MXPA2FGAW.fgremc.it>
+From: Stephano Cetola <stephano.cetola@linux.intel.com>
+Message-ID: <ddd36ecb-c3cf-e247-64a5-d11e4949f46b@linux.intel.com>
+Date: Sat, 24 Feb 2018 12:11:56 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
+	Gecko/20100101 Thunderbird/52.6.0
+MIME-Version: 1.0
+In-Reply-To: <dcad044fec2b4e0ab2efbaea4043fe76@MXPA2FGAW.fgremc.it>
+Subject: Re: Problem in the building phase - Yocto 2.4.1 for Siemens IoT 2040 (Intel Quark)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,31 +49,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Feb 2018 18:49:44 -0000
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 24 Feb 2018 20:11:52 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-On 23 Feb 2018, at 19:30, Mark Hatle <mark.hatle@windriver.com> wrote:
-> On 2/23/18 10:37 AM, Anders Montonen wrote:
->> I'm looking into using the useradd-staticids class for reproducible=20=
+On 2/22/18 3:59 AM, Pulizzotto Alessio (COMAU) wrote:
+> Hello,
+>
+> I’m writing you because I have some problems with the building of an
+> 2.4.1 image of the Yocto.
+>
+> I am using a Siemens IoT 2040 hardware witch have an intel quark cpu.
+> 
+> My error is the follow, in the “bitbake name-image”:
+> 
+> “ExpansionError during parsing
+> ***/poky/meta-java/recipies-extended/xmlpull/xmlpull_1.1.3.4c.bb”
+> 
+> And at the end:
+> 
+> “module bb.data has no attribute ‘getVar’”
+> 
 
->> builds. Is there any way to delay the warning/error about missing ids=20=
+I am currently building for a product using Quark + Java running YP
+2.4.1. Here are the SHAs that are working for me:
 
->> until a recipe is actually built rather than getting them during =
-parsing?=20
->> Having to generate tons of ids for packages you're not even using =
-seems a=20
->> bit nuts.
-> The system used to do that, but then people started complaining that =
-whenever
-> they added items to their image they'd get more warnings -- and why =
-don't we
-> just tell them up-front.  :/
+meta-yocto-bsp
+yocto-2.4.1
+c2b641c8a0c4fd71fcb477d788a740c2c26cddce
 
-Thanks for the explanation. It=E2=80=99s not a huge deal, just a bit =
-unexpected.
+meta-intel
+8.0-rocko-2.4
+d68dda959b5bf6f90aa8e5c2f027be324bb68e14
 
-Regards,
-Anders=
+meta-java
+master
+03e35bf64f97980652ac532cca0ea96e730a551c
+
+Cheers,
+Stephano
+
 
