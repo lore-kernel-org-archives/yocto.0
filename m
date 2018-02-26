@@ -1,107 +1,77 @@
-Return-Path: <robin.l.jordan@intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC805E00E22; Mon, 26 Feb 2018 08:13:11 -0800 (PST)
+	id 884F5E00EE7; Mon, 26 Feb 2018 09:09:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE3F6E0074C
-	for <yocto@yoctoproject.org>; Mon, 26 Feb 2018 08:13:10 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	26 Feb 2018 08:13:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.47,397,1515484800"; d="scan'208,217";a="32923064"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
-	by fmsmga004.fm.intel.com with ESMTP; 26 Feb 2018 08:13:09 -0800
-Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
-	FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 26 Feb 2018 08:13:09 -0800
-Received: from FMSEDG001.ED.cps.intel.com (10.1.192.133) by
-	FMSMSX113.amr.corp.intel.com (10.18.116.7) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 26 Feb 2018 08:13:08 -0800
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com (207.46.163.83)
-	by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 26 Feb 2018 08:13:09 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
-	s=selector1-intel-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=XjMfAUIf1w7aYA5+iysx41wlz9ty//pSsUkNqZus4ic=;
-	b=auAI2OzSBL0IGDSqA3XWV5RU916YIyuOgcf7lndB2cU16QEjzVau955b1aSovHxzcCd1tAXaCgcZMK+XMq2R9Ouc6tqj19rUCiYODCTBaH4WqqI0JDEEeiqSCl6XDm6lQ+ZBqIBcVEmp8KRmQLIBI0KqwhIL0OZdc61qpN/Ux74=
-Received: from CY4PR11MB1766.namprd11.prod.outlook.com (10.175.81.12) by
-	CY4PR11MB1558.namprd11.prod.outlook.com (10.172.70.137) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.527.15; Mon, 26 Feb 2018 16:13:05 +0000
-Received: from CY4PR11MB1766.namprd11.prod.outlook.com
-	([fe80::d5aa:f45c:2a01:3524]) by
-	CY4PR11MB1766.namprd11.prod.outlook.com
-	([fe80::d5aa:f45c:2a01:3524%18]) with mapi id 15.20.0527.021;
-	Mon, 26 Feb 2018 16:13:05 +0000
-From: "Jordan, Robin L" <robin.l.jordan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+Received: from mail-pl0-f53.google.com (mail-pl0-f53.google.com
+	[209.85.160.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9663AE00843
+	for <yocto@yoctoproject.org>; Mon, 26 Feb 2018 09:09:33 -0800 (PST)
+Received: by mail-pl0-f53.google.com with SMTP id 31so9609634ple.9
+	for <yocto@yoctoproject.org>; Mon, 26 Feb 2018 09:09:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language;
+	bh=bmVOPZkvkZo+gQcmZAGrpVi+UwFdjQc6TYLV8X/Wa2A=;
+	b=IGbz3fL0MkjqFMk/EHPy41DLi06OyaM+F1hE4tWhlfAp40Gg5yh4vrKRFbsPL8pC4D
+	YMAhGiFPC/AyYzaJPF7dQxlqZ156qDQZfUueM8biDwlN66UznN06sV6gjeuz5EFdM9vW
+	eZdYzsqV0n1nUsbdJMmQFWXN9ZiVuEd58I2ox1WUEjwdEgFnfwuKTUdLhtv4sqL8wJZL
+	KYVuXZNTOY0ZtXJLCScP1fUHR0eV3d8+7zA2kLV+oauIk7VhZS7kP6wU4SYvh/DIlMiE
+	1QBgMR7uaQbTn2+xvaLTJzonITN99WNzlZzFrjM2CpQ5Jm2OxuTf15t2kxGrWne9kCDw
+	rhCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=bmVOPZkvkZo+gQcmZAGrpVi+UwFdjQc6TYLV8X/Wa2A=;
+	b=qq4vVKF7dH6aF6ewukZ6r2V1Eu0SXcqGZDiWZtz+bZpxrFKuqQkMNthOym1x/8OtLZ
+	WA3ibTKwHky65ZvcWioHTDgbmAdq9IdEuPnvdbFSsBpxdb+AUGOF0+nS+UZtz5+/eDzx
+	lO321mnIvfJoEGOZHihf0lGJoliKdBxpQN/PmGrU5ySILjsgXBAXqILghYiXuUNcR59d
+	5I0KUr8a+8cidYtKxMkNU8CUHYC3Bze0dAm8V60E70xmMnjab4vfwBQg1beR4fvlP9jY
+	EzqW6k3Tql6IcxaAxO262ass5/miwM70wSyi7VYty6h8he86W5a1PLpVeg+IpCYYKNeo
+	HA6g==
+X-Gm-Message-State: APf1xPB4iyqRktnwDw5lPJ8NUYuBRmJjfNDBOxSP8nghTo5jmFFoEtXW
+	95lkTV79WkmiOjFS2soOgKs=
+X-Google-Smtp-Source: AH8x227aj72mWUjtipoSAIa7LAhzdZrdvZRiLABZ4XYzdzD1CfbzsY7OS256EA6UzLpt/AqXEFDN3Q==
+X-Received: by 2002:a17:902:8215:: with SMTP id
+	x21-v6mr11455659pln.164.1519664972711; 
+	Mon, 26 Feb 2018 09:09:32 -0800 (PST)
+Received: from ?IPv6:2601:202:4000:1184:c195:e6de:d325:c161?
+	([2601:202:4000:1184:c195:e6de:d325:c161])
+	by smtp.gmail.com with ESMTPSA id
+	k23sm8970647pfi.79.2018.02.26.09.09.31
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 26 Feb 2018 09:09:32 -0800 (PST)
+To: "Jordan, Robin L" <robin.l.jordan@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"openembedded-core@lists.openembedded.org"
 	<openembedded-core@lists.openembedded.org>
-Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW09=9218?=
-Thread-Index: AdOvHIe9U1xdEPVfQLqa0mtv8Q/8sg==
-Importance: high
-X-Priority: 1
-Date: Mon, 26 Feb 2018 16:13:05 +0000
-Message-ID: <CY4PR11MB1766EFA2B012B4750100AD09C7C10@CY4PR11MB1766.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.0.116
-dlp-reaction: no-action
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=robin.l.jordan@intel.com; 
-x-originating-ip: [134.134.136.219]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; CY4PR11MB1558;
-	7:z5Ig7zFbi2vG07mbR34HYcizTi5hOM4EkTabADvhjv5WEjauXQCHT/P3XgDHtUK9/cdIe/M0lVVxroigy1wJtckUO2kPHOSL2PJZvgpLxP4wJlFYq0PIL9QFY9pS0lg1nIbHNjRpScn4q7NFv8cDr8NfLRGviZ8g1k3tUZDoVaU5prIKg+Qz3B7VxUst5V3S7Gz6pm3x++5xoVoIkXxFHsh9dsIFMM0BMeBfanjjEwSiB3Dn1RCpkLnxrdpMAsO7
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 5666b5af-9686-4d8f-fe81-08d57d33d190
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(5600026)(4604075)(3008032)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603307)(7153060)(7193020);
-	SRVR:CY4PR11MB1558; 
-x-ms-traffictypediagnostic: CY4PR11MB1558:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <CY4PR11MB15589622317A006C94B187E7C7C10@CY4PR11MB1558.namprd11.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(20558992708506)(21748063052155); 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040501)(2401047)(8121501046)(5005006)(3002001)(3231220)(944501161)(52105095)(93006095)(93001095)(10201501046)(6041288)(20161123560045)(20161123562045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(20161123558120)(6072148)(201708071742011);
-	SRVR:CY4PR11MB1558; BCL:0; PCL:0; RULEID:; SRVR:CY4PR11MB1558; 
-x-forefront-prvs: 05954A7C45
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(39840400004)(366004)(376002)(346002)(39380400002)(189003)(199004)(966005)(81686011)(74316002)(86362001)(6506007)(81166006)(7736002)(81156014)(2501003)(25786009)(68736007)(97736004)(790700001)(3846002)(6116002)(606006)(478600001)(33656002)(3660700001)(3280700002)(2906002)(8936002)(2900100001)(105586002)(110136005)(7696005)(66066001)(55016002)(54896002)(6306002)(9686003)(236005)(316002)(106356001)(14454004)(5250100002)(186003)(26005)(102836004)(53936002)(59450400001)(5660300001)(99286004)(6436002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CY4PR11MB1558;
-	H:CY4PR11MB1766.namprd11.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-x-microsoft-antispam-message-info: cCbJA7oWT7R2p88ZSi0rFPKDM7a9vo0Inqe0uZZKLwmj0LtLUtLegwh+h2OdbPK7SVd+SmlyFWV87vJe14ep4QTf3n57FaZlrsWq94e5Vw0bR6NBLGpOgvarXHJ9PJV1XJkbUGyW9Cnsp62Ztn28+R00kwe4UHcG9U3t64yXxTA=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+References: <CY4PR11MB1766EFA2B012B4750100AD09C7C10@CY4PR11MB1766.namprd11.prod.outlook.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <6d1dffd4-c39e-72d5-b628-b2050bfed0f7@gmail.com>
+Date: Mon, 26 Feb 2018 09:09:30 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5666b5af-9686-4d8f-fe81-08d57d33d190
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2018 16:13:05.2256 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1558
-X-OriginatorOrg: intel.com
-Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1cwOeKAmTE4?=
+In-Reply-To: <CY4PR11MB1766EFA2B012B4750100AD09C7C10@CY4PR11MB1766.namprd11.prod.outlook.com>
+Subject: =?UTF-8?B?UmU6IFlvY3RvIFByb2plY3QgU3RhdHVzIFdXMDnigJkxOA==?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -113,119 +83,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Feb 2018 16:13:11 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 26 Feb 2018 17:09:34 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_CY4PR11MB1766EFA2B012B4750100AD09C7C10CY4PR11MB1766namp_"
+	boundary="------------C395CA76801F07B9ABE2985E"
+Content-Language: en-US
 
---_000_CY4PR11MB1766EFA2B012B4750100AD09C7C10CY4PR11MB1766namp_
-Content-Type: text/plain; charset="Windows-1252"
+--------------C395CA76801F07B9ABE2985E
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Current Dev Position: YP 2.5 M3 development
-
-Next Deadline: YP 2.5 M3 cut off was 2/19/18
-
-*** FEATURE FREEZE for 2.5 has passed ***
 
 
-SWAT team rotation: Stephano -> Maxin John on Feb. 23, 2018
+On 02/26/2018 08:13 AM, Jordan, Robin L wrote:
+>
+> Current Dev Position: YP 2.5 M3 development
+>
+> Next Deadline: YP 2.5 M3 cut off was 2/19/18
+>
+> *** FEATURE FREEZE for 2.5 has passed ***
+>
+> =A0
+>
+> SWAT team rotation: Stephano -> Maxin John on Feb. 23, 2018
+>
+> SWAT team rotation: Maxin -> Rebecca on March 2, 2018
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+>
+> =A0
+>
+> Key Status/Updates:
+>
+>   * YP 2.5 M2 is through QA and likely to be released early this week.
+>   * YP 2.2.3 is through QA and likely to be released early this week.
+>   * YP 2.4.2 rc2 was successfully built and is undergoing QA.
+>   * YP 2.5 M3 is feature freeze. After discussions with various people
+>     we concluded that we need:
+>       o the 2.27 glibc upgrade
+>       o kernel-devsrc size changes
+>       o to resolve some of the outstanding pseudo bugs
+>       o to resolve the multilib SDK patch series
+>       o the package feed filtering patch series (the multilib SDK
+>         series depends on it)
+>       o image EFI configuration rework
+>   * We plan to defer:
+>       o pkg-conf vs. pkgconfig issues/discussion
+>       o profile guided optimisation for python (patch series)
+>       o oe-selftest parallelization
+>   * We=92re continuing to work on the autobuilder changes and for
+>     various reasons (inc. changes in people). =A0We would be in much
+>     better shape to switch to the new codebase before release, rather
+>     than waiting until early 2.6 to pick this work up again by which
+>     time we=92d have lost people and context. If we are to switch, we
+>     need to build M3 with the new infrastructure. We=92ll have to make =
+a
+>     decision on whether we do this during this week.
+>
 
-SWAT team rotation: Maxin -> Rebecca on March 2, 2018
+I recommend updating to new code base on the old cluster for debug. We
+can fallback to the .io and/or use them in parallel.
 
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+Will the new code base work on stable branches?
 
+>  *
+>
+> =A0
+>
+> Planned upcoming dot releases:
+>
+> YP 2.4.2 (Rocko) is currently in QA 82% complete. =A0=A0See:
+> https://wiki.yoctoproject.org/wiki/2.4_QA_Status
+>
+stable/rocko-next: clean build last night
 
-Key Status/Updates:
-
-  *   YP 2.5 M2 is through QA and likely to be released early this week.
-  *   YP 2.2.3 is through QA and likely to be released early this week.
-  *   YP 2.4.2 rc2 was successfully built and is undergoing QA.
-  *   YP 2.5 M3 is feature freeze. After discussions with various people we=
- concluded that we need:
-     *   the 2.27 glibc upgrade
-     *   kernel-devsrc size changes
-     *   to resolve some of the outstanding pseudo bugs
-     *   to resolve the multilib SDK patch series
-     *   the package feed filtering patch series (the multilib SDK series d=
-epends on it)
-     *   image EFI configuration rework
-  *   We plan to defer:
-     *   pkg-conf vs. pkgconfig issues/discussion
-     *   profile guided optimisation for python (patch series)
-     *   oe-selftest parallelization
-  *   We=92re continuing to work on the autobuilder changes and for various=
- reasons (inc. changes in people).  We would be in much better shape to swi=
-tch to the new codebase before release, rather than waiting until early 2.6=
- to pick this work up again by which time we=92d have lost people and conte=
-xt. If we are to switch, we need to build M3 with the new infrastructure. W=
-e=92ll have to make a decision on whether we do this during this week.
-
-
-Planned upcoming dot releases:
-
-YP 2.4.2 (Rocko) is currently in QA 82% complete.   See: https://wiki.yocto=
-project.org/wiki/2.4_QA_Status
-
-YP 2.3.4 (Pyro) will be built when we figure out gcc backports.
-
-YP 2.2.3 (Morty) rc2 has passed QA and is being prepared for release
-
-YP 2.2.4 (Morty) will be built when we figure out gcc backports.
-
-
-Key YP 2.5 Dates are:
-
-YP 2.5 M2 has passed QA and is being prepared for release.
-
-YP 2.5 M3 is in feature freeze.  See status above.
-
-YP 2.5 M3 release of 3/2/18
-
-YP 2.5 M4 cut off of 4/2/18
-
-YP 2.5 M4 release of 4/27/18
-
-
-Tracking Metrics:
-
-            WDD 2646 (last week   2648)
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features
+> YP 2.3.4 (Pyro) will be built when we figure out gcc backports.
+>
+stable/pyro-next: Mostly clean. GCC update pulled out for V2. V2 not
+merged back.
 
 
-The Status reports are now stored on the wiki at: https://wiki.yoctoproject=
-.org/wiki/Weekly_Status
+> YP 2.2.3 (Morty) rc2 has passed QA and is being prepared for release
+>
+> YP 2.2.4 (Morty) will be built when we figure out gcc backports.
+>
+stable/morty-next: Getting cleaner. recommend updating to version in pyro=
+=2E
+
+- armin
+>
+> =A0
+>
+> Key YP 2.5 Dates are:
+>
+> YP 2.5 M2 has passed QA and is being prepared for release.
+>
+> YP 2.5 M3 is in feature freeze. =A0See status above.
+>
+> YP 2.5 M3 release of 3/2/18
+>
+> YP 2.5 M4 cut off of 4/2/18
+>
+> YP 2.5 M4 release of 4/27/18
+>
+> =A0
+>
+> Tracking Metrics:
+>
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 WDD 2646 (last week =A0=A02648)
+>
+> (https://wiki.yoctoproject.org/charts/combo.html)
+>
+> =A0
+>
+> Key Status Links for YP:
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features
+>
+> =A0
+>
+> The Status reports are now stored on the wiki at:
+> https://wiki.yoctoproject.org/wiki/Weekly_Status
+>
+> =A0
+>
+> [If anyone has suggestions for other information you=92d like to see on=
+
+> this weekly status update, let us know!]
+>
+> =A0
+>
+> Robin Jordan
+>
+> Yocto Project Program Manager
+>
+>
+>
 
 
-[If anyone has suggestions for other information you=92d like to see on thi=
-s weekly status update, let us know!]
+--------------C395CA76801F07B9ABE2985E
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Robin Jordan
-Yocto Project Program Manager
-
---_000_CY4PR11MB1766EFA2B012B4750100AD09C7C10CY4PR11MB1766namp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 02/26/2018 08:13 AM, Jordan, Robin L
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB1766EFA2B012B4750100AD09C7C10@CY4PR11MB1766.namprd11.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Wingdings;
@@ -352,197 +373,272 @@ ol
 ul
 	{margin-bottom:0in;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+<o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Current Dev Position: YP 2.5 M3 dev=
-elopment</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Next Deadline: YP 2.5 M3 cut off wa=
-s 2/19/18</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">*** FEATURE FREEZE for 2.5 has pass=
-ed ***</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Stephano -&gt; =
-Maxin John on Feb. 23, 2018</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Maxin -&gt; Reb=
-ecca on March 2, 2018</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-family:=
-Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Build_Fail=
-ure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key Status/Updates:</span><o:p></o:=
-p></p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
-01pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">YP 2.5 M2 is throu=
-gh QA and likely to be released early this week.<o:p></o:p></span></li><li =
-style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt=
-;mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">YP 2.2.3 is throug=
-h QA and likely to be released early this week.<o:p></o:p></span></li><li s=
-tyle=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;=
-mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">YP 2.4.2 rc2 was s=
-uccessfully built and is undergoing QA.<o:p></o:p></span></li><li style=3D"=
-color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list=
-:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">YP 2.5 M3 is featu=
-re freeze. After discussions with various people we concluded that we need:=
-<o:p></o:p></span>
-<ul style=3D"margin-top:0in" type=3D"circle">
-<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
-01pt;mso-list:l0 level2 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">the 2.27 glibc upg=
-rade<o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;margin-b=
-ottom:0in;margin-bottom:.0001pt;mso-list:l0 level2 lfo1;vertical-align:base=
-line">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">kernel-devsrc size=
- changes<o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;marg=
-in-bottom:0in;margin-bottom:.0001pt;mso-list:l0 level2 lfo1;vertical-align:=
-baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">to resolve some of=
- the outstanding pseudo bugs<o:p></o:p></span></li><li style=3D"color:black=
-;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0 level2 =
-lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">to resolve the mul=
-tilib SDK patch series<o:p></o:p></span></li><li style=3D"color:black;margi=
-n-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0 level2 lfo1;v=
-ertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">the package feed f=
-iltering patch series (the multilib SDK series depends on it)<o:p></o:p></s=
-pan></li><li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-b=
-ottom:.0001pt;mso-list:l0 level2 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">image EFI configur=
-ation rework<o:p></o:p></span></li></ul>
-</li><li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-botto=
-m:.0001pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">We plan to defer:<=
-o:p></o:p></span>
-<ul style=3D"margin-top:0in" type=3D"circle">
-<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
-01pt;mso-list:l0 level2 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">pkg-conf vs. pkgco=
-nfig issues/discussion<o:p></o:p></span></li><li style=3D"color:black;margi=
-n-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0 level2 lfo1;v=
-ertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">profile guided opt=
-imisation for python (patch series)<o:p></o:p></span></li><li style=3D"colo=
-r:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0 =
-level2 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">oe-selftest parall=
-elization<o:p></o:p></span></li></ul>
-</li><li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-botto=
-m:.0001pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">We=92re continuing=
- to work on the autobuilder changes and for various reasons (inc. changes i=
-n people). &nbsp;We would be in much better shape to switch to the new code=
-base before release, rather than waiting until early
- 2.6 to pick this work up again by which time we=92d have lost people and c=
-ontext. If we are to switch, we need to build M3 with the new infrastructur=
-e. We=92ll have to make a decision on whether we do this during this week.<=
-o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Planned upcoming dot releases:</spa=
-n><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.4.2 (Rocko) is currently in QA=
- 82% complete. &nbsp;&nbsp;See:
-</span><a href=3D"https://wiki.yoctoproject.org/wiki/2.4_QA_Status"><span s=
-tyle=3D"font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wik=
-i.yoctoproject.org/wiki/2.4_QA_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.3.4 (Pyro) will be built when =
-we figure out gcc backports.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.2.3 (Morty) rc2 has passed QA =
-and is being prepared for release</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.2.4 (Morty) will be built when=
- we figure out gcc backports.</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key YP 2.5 Dates are:</span><o:p></=
-o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M2 has passed QA and is bein=
-g prepared for release.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M3 is in feature freeze. &nb=
-sp;See status above.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M3 release of 3/2/18</span><=
-o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 cut off of 4/2/18</span><=
-o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 release of 4/27/18</span>=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Tracking Metrics:</span><o:p></o:p>=
-</p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color=
-:black">WDD 2646 (last week &nbsp;&nbsp;2648)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-family:Consolas;color:black">(</span><a href=3D"https://wiki.yocto=
-project.org/charts/combo.html"><span style=3D"font-family:&quot;Arial&quot;=
-,sans-serif;color:#1155CC">https://wiki.yoctoproject.org/charts/combo.html<=
-/span></a><span style=3D"font-family:Consolas;color:black">)</span><o:p></o=
-:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key Status Links for YP:</span><o:p=
-></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.5_Status"><span style=3D"font-family:Cons=
-olas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_S=
-tatus</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.5_Schedule"><span style=3D"font-family:Consolas;co=
-lor:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule</span></=
-a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.5_Features"><span style=3D"font-family:Consolas;co=
-lor:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features</span></=
-a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">The Status reports are now stored o=
-n the wiki at:
-</span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span s=
-tyle=3D"font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wik=
-i.yoctoproject.org/wiki/Weekly_Status</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">[If anyone has suggestions for othe=
-r information you=92d like to see on this weekly status update, let us know=
-!]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Robin Jordan<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt">Yocto Project Progr=
-am Manager<o:p></o:p></span></p>
-</div>
-</body>
+      <div class="WordSection1">
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">Current
+            Dev Position: YP 2.5 M3 development</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">Next
+            Deadline: YP 2.5 M3 cut off was 2/19/18</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">***
+            FEATURE FREEZE for 2.5 has passed ***</span><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT
+            team rotation: Stephano -&gt; Maxin John on Feb. 23, 2018</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">SWAT
+            team rotation: Maxin -&gt; Rebecca on March 2, 2018</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><a
+            href="https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team"
+            moz-do-not-send="true"><span
+              style="font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">Key
+            Status/Updates:</span><o:p></o:p></p>
+        <ul style="margin-top:0in" type="disc">
+          <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+            level1 lfo1;vertical-align:baseline">
+            <span style="font-family:&quot;Arial&quot;,sans-serif">YP
+              2.5 M2 is through QA and likely to be released early this
+              week.<o:p></o:p></span></li>
+          <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+            level1 lfo1;vertical-align:baseline">
+            <span style="font-family:&quot;Arial&quot;,sans-serif">YP
+              2.2.3 is through QA and likely to be released early this
+              week.<o:p></o:p></span></li>
+          <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+            level1 lfo1;vertical-align:baseline">
+            <span style="font-family:&quot;Arial&quot;,sans-serif">YP
+              2.4.2 rc2 was successfully built and is undergoing QA.<o:p></o:p></span></li>
+          <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+            level1 lfo1;vertical-align:baseline">
+            <span style="font-family:&quot;Arial&quot;,sans-serif">YP
+              2.5 M3 is feature freeze. After discussions with various
+              people we concluded that we need:<o:p></o:p></span>
+            <ul style="margin-top:0in" type="circle">
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">the
+                  2.27 glibc upgrade<o:p></o:p></span></li>
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">kernel-devsrc
+                  size changes<o:p></o:p></span></li>
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">to
+                  resolve some of the outstanding pseudo bugs<o:p></o:p></span></li>
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">to
+                  resolve the multilib SDK patch series<o:p></o:p></span></li>
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">the
+                  package feed filtering patch series (the multilib SDK
+                  series depends on it)<o:p></o:p></span></li>
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">image
+                  EFI configuration rework<o:p></o:p></span></li>
+            </ul>
+          </li>
+          <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+            level1 lfo1;vertical-align:baseline">
+            <span style="font-family:&quot;Arial&quot;,sans-serif">We
+              plan to defer:<o:p></o:p></span>
+            <ul style="margin-top:0in" type="circle">
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">pkg-conf
+                  vs. pkgconfig issues/discussion<o:p></o:p></span></li>
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">profile
+                  guided optimisation for python (patch series)<o:p></o:p></span></li>
+              <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+                level2 lfo1;vertical-align:baseline">
+                <span style="font-family:&quot;Arial&quot;,sans-serif">oe-selftest
+                  parallelization<o:p></o:p></span></li>
+            </ul>
+          </li>
+          <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+            level1 lfo1;vertical-align:baseline">
+            <span style="font-family:&quot;Arial&quot;,sans-serif">We’re
+              continuing to work on the autobuilder changes and for
+              various reasons (inc. changes in people).  We would be in
+              much better shape to switch to the new codebase before
+              release, rather than waiting until early 2.6 to pick this
+              work up again by which time we’d have lost people and
+              context. If we are to switch, we need to build M3 with the
+              new infrastructure. We’ll have to make a decision on
+              whether we do this during this week.</span></li>
+        </ul>
+      </div>
+    </blockquote>
+    <br>
+    I recommend updating to new code base on the old cluster for debug.
+    We can fallback to the .io and/or use them in parallel. <br>
+    <br>
+    Will the new code base work on stable branches?<br>
+    <br>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB1766EFA2B012B4750100AD09C7C10@CY4PR11MB1766.namprd11.prod.outlook.com">
+      <div class="WordSection1">
+        <ul style="margin-top:0in" type="disc">
+          <li
+style="color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l0
+            level1 lfo1;vertical-align:baseline"><span
+              style="font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></li>
+        </ul>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">Planned
+            upcoming dot releases:</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.4.2 (Rocko) is currently in QA 82% complete.   See:
+          </span><a
+            href="https://wiki.yoctoproject.org/wiki/2.4_QA_Status"
+            moz-do-not-send="true"><span
+              style="font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.yoctoproject.org/wiki/2.4_QA_Status</span></a></p>
+      </div>
+    </blockquote>
+    stable/rocko-next: clean build last night<br>
+    <br>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB1766EFA2B012B4750100AD09C7C10@CY4PR11MB1766.namprd11.prod.outlook.com">
+      <div class="WordSection1">
+        <p style="margin:0in;margin-bottom:.0001pt"><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.3.4 (Pyro) will be built when we figure out gcc backports.</span></p>
+      </div>
+    </blockquote>
+    stable/pyro-next: Mostly clean. GCC update pulled out for V2. V2 not
+    merged back.<br>
+    <br>
+    <br>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB1766EFA2B012B4750100AD09C7C10@CY4PR11MB1766.namprd11.prod.outlook.com">
+      <div class="WordSection1">
+        <p style="margin:0in;margin-bottom:.0001pt"><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.2.3 (Morty) rc2 has passed QA and is being prepared for
+            release</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.2.4 (Morty) will be built when we figure out gcc
+            backports.</span></p>
+      </div>
+    </blockquote>
+    stable/morty-next: Getting cleaner. recommend updating to version in
+    pyro.<br>
+    <br>
+    - armin<br>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB1766EFA2B012B4750100AD09C7C10@CY4PR11MB1766.namprd11.prod.outlook.com">
+      <div class="WordSection1">
+        <p style="margin:0in;margin-bottom:.0001pt"><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">Key
+            YP 2.5 Dates are:</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.5 M2 has passed QA and is being prepared for release.</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.5 M3 is in feature freeze.  See status above.</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.5 M3 release of 3/2/18</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.5 M4 cut off of 4/2/18</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">YP
+            2.5 M4 release of 4/27/18</span><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">Tracking
+            Metrics:</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            class="apple-tab-span"><span
+              style="font-family:&quot;Arial&quot;,sans-serif;color:black">           
+            </span></span><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">WDD
+            2646 (last week   2648)</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span
+            style="font-family:Consolas;color:black">(</span><a
+            href="https://wiki.yoctoproject.org/charts/combo.html"
+            moz-do-not-send="true"><span
+              style="font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.yoctoproject.org/charts/combo.html</span></a><span
+            style="font-family:Consolas;color:black">)</span><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">Key
+            Status Links for YP:</span><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><a
+            href="https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status"
+            moz-do-not-send="true"><span
+              style="font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status</span></a><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><a
+            href="https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule"
+            moz-do-not-send="true"><span
+              style="font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule</span></a><o:p></o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><a
+            href="https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features"
+            moz-do-not-send="true"><span
+              style="font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features</span></a><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">The
+            Status reports are now stored on the wiki at:
+          </span><a
+            href="https://wiki.yoctoproject.org/wiki/Weekly_Status"
+            moz-do-not-send="true"><span
+              style="font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wiki.yoctoproject.org/wiki/Weekly_Status</span></a><o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p style="margin:0in;margin-bottom:.0001pt"><span
+            style="font-family:&quot;Arial&quot;,sans-serif;color:black">[If
+            anyone has suggestions for other information you’d like to
+            see on this weekly status update, let us know!]</span><o:p></o:p></p>
+        <p class="MsoNormal"><span style="font-size:14.0pt"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:14.0pt">Robin Jordan<o:p></o:p></span></p>
+        <p class="MsoNormal"><span style="font-size:14.0pt">Yocto
+            Project Program Manager<o:p></o:p></span></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_CY4PR11MB1766EFA2B012B4750100AD09C7C10CY4PR11MB1766namp_--
+--------------C395CA76801F07B9ABE2985E--
