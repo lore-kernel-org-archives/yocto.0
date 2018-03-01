@@ -1,56 +1,81 @@
-Return-Path: <qinlaigui@126.com>
+Return-Path: <schnitzeltony@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B066FE00EBF; Thu,  1 Mar 2018 05:44:26 -0800 (PST)
+	id ABDBEE00ED4; Thu,  1 Mar 2018 05:59:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
-	version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (qinlaigui[at]126.com)
+	mail provider *      (schnitzeltony[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.213.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1873 seconds by postgrey-1.32 at yocto-www;
-	Thu, 01 Mar 2018 05:44:24 PST
-Received: from m15-52.126.com (m15-52.126.com [220.181.15.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45E55E00DCA
-	for <yocto@yoctoproject.org>; Thu,  1 Mar 2018 05:44:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=3xQ22
-	eroI1Bd2lYJHmmB+26RssBS9jme/DUmmp0XfXg=; b=QSff+h18T6RGVtOFpEyxT
-	nqO03WvAyG6ThSmTnRork8qnTZ8Y8TKQ9Q+zQN3zqDaZQrRLv/+dnkKPrHinhM0p
-	23UBGGcNRkpllUEJEilQsQiCAWCN43YuqaUPVvcUlwMzeoQieiRu6ehmBhWNSrbD
-	NlkdA0t5TK5R3rMlD2XYb8=
-Received: from qinlaigui$126.com ( [222.65.127.254] ) by
-	ajax-webmail-wmsvr52 (Coremail) ; Thu, 1 Mar 2018 21:12:57 +0800 (CST)
-X-Originating-IP: [222.65.127.254]
-Date: Thu, 1 Mar 2018 21:12:57 +0800 (CST)
-From: "Laigui Qin" <qinlaigui@126.com>
-To: "Alexander Kanavin" <alexander.kanavin@linux.intel.com>
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
-	20160729(86883.8884) Copyright (c) 2002-2018 www.mailtech.cn 126com
-In-Reply-To: <b23ebcac-8b34-69c8-98ec-d0f839aca71c@linux.intel.com>
-References: <4225ccb9.2bcb.161cd3007f8.Coremail.qinlaigui@126.com>
-	<798b595e-d2d2-ac15-84c9-1c21d2050ceb@yahoo.de>
-	<552c44f.9421.161d276e79a.Coremail.qinlaigui@126.com>
-	<b23ebcac-8b34-69c8-98ec-d0f839aca71c@linux.intel.com>
-X-CM-CTRLDATA: LQs8YmZvb3Rlcl9odG09MTM5Njo1Ng==
+Received: from mail-yb0-f194.google.com (mail-yb0-f194.google.com
+	[209.85.213.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55934E00DF0
+	for <yocto@yoctoproject.org>; Thu,  1 Mar 2018 05:59:32 -0800 (PST)
+Received: by mail-yb0-f194.google.com with SMTP id 7-v6so418244ybc.5
+	for <yocto@yoctoproject.org>; Thu, 01 Mar 2018 05:59:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=J1iRfFrOuuDMQ6G3XcMcUzXRWRXp6G7KdADWGuicVvo=;
+	b=JFfae41CoW9JqTlqT/co3CgQgrxXeamlHTLjZZLIcX7bI+u0N+Vwof5gNIreU4lnRj
+	+iw+9nj2hiySI7J26VHeMrz9qPMhJIEzBd35DvC5WDwKvYujcHY+apqzdaXSb2OCk4N4
+	suD/vKIQ/2hHUcOBXlzTsll+JCJIT4p+6XXk+Ww9DZm2kN0n9u1lF/OloqLS1FYjdfwm
+	Jxe/BOlf1FZmSuc685gxM7bNKbYQth9n5Rh0RvK6dC90IwZj+bOPbY4lC0mcFwVGtSJS
+	r+DXsSaj8wh8gfSsve30jEismSqRO15ty6KDFAd8pX6CnH1plTYA12dcbbIifVfrkw7l
+	NNhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=J1iRfFrOuuDMQ6G3XcMcUzXRWRXp6G7KdADWGuicVvo=;
+	b=hbhQB65R2zUNHb01R0v/1+O7gv5HfFwA8KPrkV+z2y3ziSkVxhIlA53hOUJJf6aax/
+	ifqr2Fi3VgfeISusxoWvEBMh2n1TOV6aFeZdfjS9kX7tMvFJOQMDS88mZZJM9kI52nIj
+	n43A0DZf3LxFMXle17cjhl1EwNuQC1JZdk3NTTRiB3SYEYWqn9vCyhwcn7SVuuKAJAxA
+	Vg6NMUOxeEOP953P1uQLBBk3mw8pQNVxs1Bp3guMdZCPzLTJHG0QLDRRti+08+/wy6j1
+	3zUHjs71IN0CPdAzuEmUS4L4cF75mxS0QnLenDYeoU9/YAa5aOsuPf8ljx8GfZ0Uan6Z
+	rg0g==
+X-Gm-Message-State: APf1xPDJvfarFvb+MF88yQeV/5/6MNukZP4PpIIyIvUlh8B59v7dy9do
+	zpOWO2aiDL05KNQwt0nDP7j6i4I7E/9xCXpgJLY=
+X-Google-Smtp-Source: AG47ELtwFHwCuz7QYKKP0qnHqIWOCu0I7tM8PqvleAVLl+HXaBFjCFG0fIyH7vE7zmHn6G/rLkzoiebwOw3yvcg63vc=
+X-Received: by 2002:a25:be8c:: with SMTP id
+	i12-v6mr1139648ybk.185.1519912772298; 
+	Thu, 01 Mar 2018 05:59:32 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <104577bf.a183.161e1b1be34.Coremail.qinlaigui@126.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: NMqowACn+mla_JdahiygAA--.10360W
-X-CM-SenderInfo: xtlqztpljxxqqrswhudrp/1tbiIRf7pVpD46oUgAABst
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Cc: yocto@yoctoproject.org
-Subject: Re: [Meta-Raspberrypi] Yocto apt sources.list for Raspberry Pi
+Received: by 2002:a25:c787:0:0:0:0:0 with HTTP;
+	Thu, 1 Mar 2018 05:59:31 -0800 (PST)
+In-Reply-To: <CAHUNapRYzSZpzzJghmWDG5o2MDJVC=dDO8Gf=M1U52EX0DU4Xw@mail.gmail.com>
+References: <CAPb0b+MTepwNFB6KEybbdH9kYaox-N54=gFsuyWa9Xn+zK2MoQ@mail.gmail.com>
+	<CALbNGRRGxLOPojWhFis7Ew0TOx1R_kx2_Rhp7AFJEa5GYuh=AQ@mail.gmail.com>
+	<CALw8SCVP_pE=yyJcO0gULT+1J1T1E_pF0y3nQuShWi3feKBFdQ@mail.gmail.com>
+	<CALbNGRTXT084ZC3cD4URao28SWTo0E-Lkr6FLjici5Pb9MppJg@mail.gmail.com>
+	<CAK18fxFrW4LDvxneQv1VEcB6anirbtYgfGuWHQSzxQTC4Oo0CQ@mail.gmail.com>
+	<CALbNGRR4GVLtkE+AjVwv0BRvPUnXSduibbjB9qkM9awZn+LEJw@mail.gmail.com>
+	<CAK18fxF5=v4fJsRG7Kkcmu10UEeDecjJKatVw+Z5kwZ8qdn_Qg@mail.gmail.com>
+	<CALbNGRRwt8c_QkPnEsTiVFssaqnUUH9inAzjXrK=Pi80t_sGmQ@mail.gmail.com>
+	<CAPyrkgyJRsHEe9PrQ8nvE66D7wixfv760QaM0pbVoOreHdfbuw@mail.gmail.com>
+	<CALbNGRSckHk37r9QqKXuQ3TGqA_oBPoEu4eFxDoM-5ZG9N2XWQ@mail.gmail.com>
+	<e6dcc7ba-cc7e-2e98-7bcb-0fc21dc06415@gmail.com>
+	<b4c91bca-5d86-7a02-c1b0-e53a41ff3d45@prevas.dk>
+	<CAHUNapRYzSZpzzJghmWDG5o2MDJVC=dDO8Gf=M1U52EX0DU4Xw@mail.gmail.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
+Date: Thu, 1 Mar 2018 14:59:31 +0100
+Message-ID: <CALbNGRS9Ve6VYycqWscWxi+aOD_4Ucm5LbZ=4e7V8f_jP-LczQ@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: =?UTF-8?Q?Martin_Hundeb=C3=B8ll?= <martin.hundeboll@prevas.dk>,
+	Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] linux kernel rt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,63 +87,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2018 13:44:26 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_151138_1061672492.1519909977652"
+X-List-Received-Date: Thu, 01 Mar 2018 13:59:35 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-------=_Part_151138_1061672492.1519909977652
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: base64
+On Fri, Jan 26, 2018 at 3:09 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+> On Fri, Jan 26, 2018 at 3:43 AM, Martin Hundeb=C3=B8ll
+> <martin.hundeboll@prevas.dk> wrote:
+>>
+>>
+>>
+>> On 2018-01-26 04:51, Khem Raj wrote:
+>>>
+>>>
+>>> Secondly, I wonder how good is upstream mainline kernel for rpi now a
+>>> days, we could always have a mainline recipe as an option and use it as=
+ base
+>>> for things like rt.
+>>
+>>
+>> Apart from runtime device tree overlay support for RPi hats/extension
+>> boards, mainline linux fully supports each RPi revision.
+>>
+>> I guess linux-yocto-rt would be just fine...
+>>
+>
+> Does anyone know if the FIQ bug has been fixed upstream? The last time I
+> looked into PREEMPT_RT on the RPi, the only way to make it work/stable wa=
+s
+> to patch the FIQ issue, or disable FIQ altogether (not ideal). This patch
+> was outside both the kernel and the PREEMPT_RT patch.
+>
+> --
+Seems RPi.org made some progress on this[1].
 
-SGkgQWxleCwKCgpUaGFua3MgZm9yIHRoZSBleHBsYW5hdGlvbi4gSXQgbWFrZXMgbXVjaCBtb3Jl
-IHNlbnNlIGZvciB0aGUgZGlmZmVyZW5jZS4KCgpCUiwKTWlrZQoKCgpBdCAyMDE4LTAzLTAxIDAw
-OjAyOjM2LCAiQWxleGFuZGVyIEthbmF2aW4iIDxhbGV4YW5kZXIua2FuYXZpbkBsaW51eC5pbnRl
-bC5jb20+IHdyb3RlOgo+T24gMDIvMjYvMjAxOCAwNDoxNCBQTSwgTGFpZ3VpIFFpbiB3cm90ZToK
-Pj4gSSB3b3VsZCBsaWtlIHRvIHRoaW5rIHRoZXJlIGlzIGEgd2VsbCBtYWludGFpbmVkIFlvY3Rv
-L1Bva3kgcmVwb3NpdG9yeSAKPj4gc29tZXdoZXJlIGluIHRoZSB3b3JsZCBsaWtlIHRoZSBkZWJp
-YW4vUmFzcGJpYW4gZGViIHNvdXJjZSB0byBsZXZlcmFnZSAKPj4gKGJ1aWxkIGFuZCBtYWludGFp
-biBteSBvd24gcmVwbyBpcyBub3QgbXkgcHVycG9zZS4pIExvb2tzIGxpa2UgdGhlcmUgaXMgCj4+
-IG5vdCBzdWNoIHJlcG8gYXZhaWxhYmxlLi4uCj4KPlBsZWFzZSBjb25zaWRlciB0aGF0IFlvY3Rv
-IGlzIG5vdCBhIGRpc3RyaWJ1dGlvbi4gSXQncyBhIHRvb2xraXQgZm9yIAo+Y3JlYXRpbmcgZGlz
-dHJpYnV0aW9ucyBhaW1lZCBhdCBlbWJlZGRlZCB1c2UgY2FzZXMuIFdoaWxlIFBva3kgaXMgYSAK
-PnJlZmVyZW5jZSBkaXN0cm8gY3JlYXRlZCB1c2luZyBZb2N0byBjb21wb25lbnRzLCBpdCBoYXMg
-YSBmYWlybHkgbGltaXRlZCAKPnNldCBvZiBzdXBwb3J0ZWQgaGFyZHdhcmUsIHdoaWNoIGlzIG1v
-c3RseSB2YXJpb3VzIFFFTVUgZW11bGF0b3IgCj5tYWNoaW5lcy4gQWxtb3N0IGFueW9uZSBlbHNl
-IHdpbGwgaGF2ZSBhIGRpZmZlcmVudCBtYWNoaW5lLCBkaWZmZXJlbnQgCj5kaXN0cmlidXRpb24g
-ZmVhdHVyZXMsIGFuZCB2YXJpb3VzIG90aGVyIGN1c3RvbWl6YXRpb25zLiBTbyBhbnkgYXR0ZW1w
-dCAKPnRvIHByb3ZpZGUgYW4gJ29mZmljYWwnIHBhY2thZ2UgZmVlZCBmcm9tIFlvY3RvIGl0c2Vs
-ZiB3aWxsIGp1c3QgY2F1c2UgCj5jb25mdXNpb24gYW5kIGJyZWFrYWdlLCBhbmQgd2lsbCB0aWUg
-dXAgdGhlIGxpbWl0ZWQgbWFucG93ZXIgd2UgaGF2ZSAKPmV2ZW4gbW9yZS4KPgo+Cj5BbGV4Cg==
+If I only had some time left to give this a try...
 
-------=_Part_151138_1061672492.1519909977652
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: base64
+[1] https://github.com/raspberrypi/linux/issues/2244#issuecomment-369597357
 
-PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
-Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXY+SGkgQWxleCw8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
-PlRoYW5rcyBmb3IgdGhlIGV4cGxhbmF0aW9uLiBJdCBtYWtlcyBtdWNoIG1vcmUgc2Vuc2UgZm9y
-IHRoZSBkaWZmZXJlbmNlLjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+QlIsPC9kaXY+PGRpdj5N
-aWtlPC9kaXY+PGRpdiBzdHlsZT0icG9zaXRpb246cmVsYXRpdmU7em9vbToxIj48L2Rpdj48ZGl2
-IGlkPSJkaXZOZXRlYXNlTWFpbENhcmQiPjwvZGl2Pjxicj48cHJlPjxicj5BdCAyMDE4LTAzLTAx
-IDAwOjAyOjM2LCAiQWxleGFuZGVyIEthbmF2aW4iICZsdDthbGV4YW5kZXIua2FuYXZpbkBsaW51
-eC5pbnRlbC5jb20mZ3Q7IHdyb3RlOgomZ3Q7T24gMDIvMjYvMjAxOCAwNDoxNCBQTSwgTGFpZ3Vp
-IFFpbiB3cm90ZToKJmd0OyZndDsgSSB3b3VsZCBsaWtlIHRvIHRoaW5rIHRoZXJlIGlzIGEgd2Vs
-bCBtYWludGFpbmVkIFlvY3RvL1Bva3kgcmVwb3NpdG9yeSAKJmd0OyZndDsgc29tZXdoZXJlIGlu
-IHRoZSB3b3JsZCBsaWtlIHRoZSBkZWJpYW4vUmFzcGJpYW4gZGViIHNvdXJjZSB0byBsZXZlcmFn
-ZSAKJmd0OyZndDsgKGJ1aWxkIGFuZCBtYWludGFpbiBteSBvd24gcmVwbyBpcyBub3QgbXkgcHVy
-cG9zZS4pIExvb2tzIGxpa2UgdGhlcmUgaXMgCiZndDsmZ3Q7IG5vdCBzdWNoIHJlcG8gYXZhaWxh
-YmxlLi4uCiZndDsKJmd0O1BsZWFzZSBjb25zaWRlciB0aGF0IFlvY3RvIGlzIG5vdCBhIGRpc3Ry
-aWJ1dGlvbi4gSXQncyBhIHRvb2xraXQgZm9yIAomZ3Q7Y3JlYXRpbmcgZGlzdHJpYnV0aW9ucyBh
-aW1lZCBhdCBlbWJlZGRlZCB1c2UgY2FzZXMuIFdoaWxlIFBva3kgaXMgYSAKJmd0O3JlZmVyZW5j
-ZSBkaXN0cm8gY3JlYXRlZCB1c2luZyBZb2N0byBjb21wb25lbnRzLCBpdCBoYXMgYSBmYWlybHkg
-bGltaXRlZCAKJmd0O3NldCBvZiBzdXBwb3J0ZWQgaGFyZHdhcmUsIHdoaWNoIGlzIG1vc3RseSB2
-YXJpb3VzIFFFTVUgZW11bGF0b3IgCiZndDttYWNoaW5lcy4gQWxtb3N0IGFueW9uZSBlbHNlIHdp
-bGwgaGF2ZSBhIGRpZmZlcmVudCBtYWNoaW5lLCBkaWZmZXJlbnQgCiZndDtkaXN0cmlidXRpb24g
-ZmVhdHVyZXMsIGFuZCB2YXJpb3VzIG90aGVyIGN1c3RvbWl6YXRpb25zLiBTbyBhbnkgYXR0ZW1w
-dCAKJmd0O3RvIHByb3ZpZGUgYW4gJ29mZmljYWwnIHBhY2thZ2UgZmVlZCBmcm9tIFlvY3RvIGl0
-c2VsZiB3aWxsIGp1c3QgY2F1c2UgCiZndDtjb25mdXNpb24gYW5kIGJyZWFrYWdlLCBhbmQgd2ls
-bCB0aWUgdXAgdGhlIGxpbWl0ZWQgbWFucG93ZXIgd2UgaGF2ZSAKJmd0O2V2ZW4gbW9yZS4KJmd0
-OwomZ3Q7CiZndDtBbGV4CjwvcHJlPjwvZGl2Pjxicj48YnI+PHNwYW4gdGl0bGU9Im5ldGVhc2Vm
-b290ZXIiPjxwPiZuYnNwOzwvcD48L3NwYW4+
+Andreas
 
-------=_Part_151138_1061672492.1519909977652--
