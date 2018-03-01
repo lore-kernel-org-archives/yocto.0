@@ -1,80 +1,65 @@
-Return-Path: <schnitzeltony@gmail.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ABDBEE00ED4; Thu,  1 Mar 2018 05:59:35 -0800 (PST)
+	id 9D6DDE00ED4; Thu,  1 Mar 2018 06:17:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]gmail.com)
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.213.194 listed in list.dnswl.org]
+	*      [209.85.220.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yb0-f194.google.com (mail-yb0-f194.google.com
-	[209.85.213.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55934E00DF0
-	for <yocto@yoctoproject.org>; Thu,  1 Mar 2018 05:59:32 -0800 (PST)
-Received: by mail-yb0-f194.google.com with SMTP id 7-v6so418244ybc.5
-	for <yocto@yoctoproject.org>; Thu, 01 Mar 2018 05:59:32 -0800 (PST)
+Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 199E1E00DF0
+	for <yocto@yoctoproject.org>; Thu,  1 Mar 2018 06:17:12 -0800 (PST)
+Received: by mail-qk0-f180.google.com with SMTP id y137so7685079qka.4
+	for <yocto@yoctoproject.org>; Thu, 01 Mar 2018 06:17:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=J1iRfFrOuuDMQ6G3XcMcUzXRWRXp6G7KdADWGuicVvo=;
-	b=JFfae41CoW9JqTlqT/co3CgQgrxXeamlHTLjZZLIcX7bI+u0N+Vwof5gNIreU4lnRj
-	+iw+9nj2hiySI7J26VHeMrz9qPMhJIEzBd35DvC5WDwKvYujcHY+apqzdaXSb2OCk4N4
-	suD/vKIQ/2hHUcOBXlzTsll+JCJIT4p+6XXk+Ww9DZm2kN0n9u1lF/OloqLS1FYjdfwm
-	Jxe/BOlf1FZmSuc685gxM7bNKbYQth9n5Rh0RvK6dC90IwZj+bOPbY4lC0mcFwVGtSJS
-	r+DXsSaj8wh8gfSsve30jEismSqRO15ty6KDFAd8pX6CnH1plTYA12dcbbIifVfrkw7l
-	NNhw==
+	:cc; bh=KMQ9fiZ9ZhrGkw7zCgbVsihI40DrunuN1m/e9zRMdYs=;
+	b=ZDdJOk6tpyKrdUeT7b7UxjfYU/JYbAkFa3FGVNCV9sETA+fpNQIeiyQs3nj6CAubP/
+	QIlfP/1Z3/ath0djCy8bN3YFwrmcYT9uQ9y2P7qCfcBeZ2wOrBG54ZfAsQxeNLh7Mwox
+	KkSo7JwOiqgf9ITGoydQNgdwOyx44uhzdf2VbV09J3Yt/3/ItGBOAq8Vu0WD5LlBZRW2
+	vodn0P7dylIrlt+8u5oN/J83b3NNPPctzmjRRC13TUkrwnk9SN3K0UMGHDR9J+WQpCN/
+	IJKs4j8u+3Xb936hN8jWWIasDUhtsPJZ2bXX1+dRsEhxHxYWza2rZXsKox+PwvhAbWc7
+	Odjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=J1iRfFrOuuDMQ6G3XcMcUzXRWRXp6G7KdADWGuicVvo=;
-	b=hbhQB65R2zUNHb01R0v/1+O7gv5HfFwA8KPrkV+z2y3ziSkVxhIlA53hOUJJf6aax/
-	ifqr2Fi3VgfeISusxoWvEBMh2n1TOV6aFeZdfjS9kX7tMvFJOQMDS88mZZJM9kI52nIj
-	n43A0DZf3LxFMXle17cjhl1EwNuQC1JZdk3NTTRiB3SYEYWqn9vCyhwcn7SVuuKAJAxA
-	Vg6NMUOxeEOP953P1uQLBBk3mw8pQNVxs1Bp3guMdZCPzLTJHG0QLDRRti+08+/wy6j1
-	3zUHjs71IN0CPdAzuEmUS4L4cF75mxS0QnLenDYeoU9/YAa5aOsuPf8ljx8GfZ0Uan6Z
-	rg0g==
-X-Gm-Message-State: APf1xPDJvfarFvb+MF88yQeV/5/6MNukZP4PpIIyIvUlh8B59v7dy9do
-	zpOWO2aiDL05KNQwt0nDP7j6i4I7E/9xCXpgJLY=
-X-Google-Smtp-Source: AG47ELtwFHwCuz7QYKKP0qnHqIWOCu0I7tM8PqvleAVLl+HXaBFjCFG0fIyH7vE7zmHn6G/rLkzoiebwOw3yvcg63vc=
-X-Received: by 2002:a25:be8c:: with SMTP id
-	i12-v6mr1139648ybk.185.1519912772298; 
-	Thu, 01 Mar 2018 05:59:32 -0800 (PST)
+	:message-id:subject:to:cc;
+	bh=KMQ9fiZ9ZhrGkw7zCgbVsihI40DrunuN1m/e9zRMdYs=;
+	b=stpWCBEwRuB/fzqNU7vnU9GZkLy+QGzb3xpDbM9NEXPd/o/+vitsIflJf8X7iYglyM
+	U6uCxaYfoDxzn1Ujb09OIyaz4+T/WsWxOFiU+51vClaUkIUXZIPRcS3KlV5UJS6p8usX
+	2/5cV1k+snIiEi9dLfxTWnfUc//DpTw8XanS128dzjYxy50SiNDH2f8Q6dQcfmyv0Rh+
+	IsLug8la5FAR3CyqEvawef7FPymXAx6fG6jnr7nZfO6rLBkbr7oDROHSHquYCjIpqeUY
+	MLchsMZCE4Uk9qCCEYBQ+NOnDdWO+ss7cQzGNQliibD5GwePVsnDfGgeUpyAxJlp5STq
+	jNlw==
+X-Gm-Message-State: AElRT7HYUiL2SLZ8xykojezPOhAx41rZ+8GQbuWzn7rgpcDS7Dx+FcGi
+	el47ZzLkgY1k786ibJWe0iBcUWVRs4aif6EH/hM=
+X-Google-Smtp-Source: AG47ELtFqH8x75hmYyBAlRdNMBF3SB2Lrn4Irb0uC8opyZR0D3HXDL9cN2WQD34ib+FJwYwPKsyR2ENbKmQ5XhS4Xfw=
+X-Received: by 10.55.57.135 with SMTP id g129mr2966490qka.212.1519913831941;
+	Thu, 01 Mar 2018 06:17:11 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a25:c787:0:0:0:0:0 with HTTP;
-	Thu, 1 Mar 2018 05:59:31 -0800 (PST)
-In-Reply-To: <CAHUNapRYzSZpzzJghmWDG5o2MDJVC=dDO8Gf=M1U52EX0DU4Xw@mail.gmail.com>
+Received: by 10.12.130.100 with HTTP; Thu, 1 Mar 2018 06:17:11 -0800 (PST)
+In-Reply-To: <CAPb0b+MTepwNFB6KEybbdH9kYaox-N54=gFsuyWa9Xn+zK2MoQ@mail.gmail.com>
 References: <CAPb0b+MTepwNFB6KEybbdH9kYaox-N54=gFsuyWa9Xn+zK2MoQ@mail.gmail.com>
-	<CALbNGRRGxLOPojWhFis7Ew0TOx1R_kx2_Rhp7AFJEa5GYuh=AQ@mail.gmail.com>
-	<CALw8SCVP_pE=yyJcO0gULT+1J1T1E_pF0y3nQuShWi3feKBFdQ@mail.gmail.com>
-	<CALbNGRTXT084ZC3cD4URao28SWTo0E-Lkr6FLjici5Pb9MppJg@mail.gmail.com>
-	<CAK18fxFrW4LDvxneQv1VEcB6anirbtYgfGuWHQSzxQTC4Oo0CQ@mail.gmail.com>
-	<CALbNGRR4GVLtkE+AjVwv0BRvPUnXSduibbjB9qkM9awZn+LEJw@mail.gmail.com>
-	<CAK18fxF5=v4fJsRG7Kkcmu10UEeDecjJKatVw+Z5kwZ8qdn_Qg@mail.gmail.com>
-	<CALbNGRRwt8c_QkPnEsTiVFssaqnUUH9inAzjXrK=Pi80t_sGmQ@mail.gmail.com>
-	<CAPyrkgyJRsHEe9PrQ8nvE66D7wixfv760QaM0pbVoOreHdfbuw@mail.gmail.com>
-	<CALbNGRSckHk37r9QqKXuQ3TGqA_oBPoEu4eFxDoM-5ZG9N2XWQ@mail.gmail.com>
-	<e6dcc7ba-cc7e-2e98-7bcb-0fc21dc06415@gmail.com>
-	<b4c91bca-5d86-7a02-c1b0-e53a41ff3d45@prevas.dk>
-	<CAHUNapRYzSZpzzJghmWDG5o2MDJVC=dDO8Gf=M1U52EX0DU4Xw@mail.gmail.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
-Date: Thu, 1 Mar 2018 14:59:31 +0100
-Message-ID: <CALbNGRS9Ve6VYycqWscWxi+aOD_4Ucm5LbZ=4e7V8f_jP-LczQ@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: =?UTF-8?Q?Martin_Hundeb=C3=B8ll?= <martin.hundeboll@prevas.dk>,
-	Yocto discussion list <yocto@yoctoproject.org>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Thu, 1 Mar 2018 15:17:11 +0100
+Message-ID: <CAGAf8LxhYA7pS2jzVu-OFq8U2AHSmARE4sJdrPZFFRrt+K3URw@mail.gmail.com>
+To: Sherif Omran <sherifomran2000@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi] linux kernel rt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -87,43 +72,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2018 13:59:35 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 01 Mar 2018 14:17:13 -0000
+Content-Type: multipart/alternative; boundary="001a1145b6980aca0905665a8473"
 
-On Fri, Jan 26, 2018 at 3:09 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-> On Fri, Jan 26, 2018 at 3:43 AM, Martin Hundeb=C3=B8ll
-> <martin.hundeboll@prevas.dk> wrote:
->>
->>
->>
->> On 2018-01-26 04:51, Khem Raj wrote:
->>>
->>>
->>> Secondly, I wonder how good is upstream mainline kernel for rpi now a
->>> days, we could always have a mainline recipe as an option and use it as=
- base
->>> for things like rt.
->>
->>
->> Apart from runtime device tree overlay support for RPi hats/extension
->> boards, mainline linux fully supports each RPi revision.
->>
->> I guess linux-yocto-rt would be just fine...
->>
+--001a1145b6980aca0905665a8473
+Content-Type: text/plain; charset="UTF-8"
+
+*git://git.kernel.org/pub/scm/linux/kernel/git/bwh/linux-cip.git
+<http://git.kernel.org/pub/scm/linux/kernel/git/bwh/linux-cip.git>*
+
+True Real Time 4.4.112.
+
+Zoran
+_______
+
+On Thu, Dec 14, 2017 at 2:58 AM, Sherif Omran <sherifomran2000@gmail.com>
+wrote:
+
+> hey guys,
 >
-> Does anyone know if the FIQ bug has been fixed upstream? The last time I
-> looked into PREEMPT_RT on the RPi, the only way to make it work/stable wa=
-s
-> to patch the FIQ issue, or disable FIQ altogether (not ideal). This patch
-> was outside both the kernel and the PREEMPT_RT patch.
+> any body tried the real time kernel? I get an error, it is snot in the
+> compatibility list.
+> can we skip it?
+>
+> thanks
 >
 > --
-Seems RPi.org made some progress on this[1].
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-If I only had some time left to give this a try...
+--001a1145b6980aca0905665a8473
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-[1] https://github.com/raspberrypi/linux/issues/2244#issuecomment-369597357
+<div dir=3D"ltr"><div><div><code><strong>git://<a href=3D"http://git.kernel=
+.org/pub/scm/linux/kernel/git/bwh/linux-cip.git">git.kernel.org/pub/scm/lin=
+ux/kernel/git/bwh/linux-cip.git</a></strong></code><br><br></div>True Real =
+Time 4.4.112.<br></div><div><br></div>Zoran<br>_______<br></div><div class=
+=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Dec 14, 2017 at 2:5=
+8 AM, Sherif Omran <span dir=3D"ltr">&lt;<a href=3D"mailto:sherifomran2000@=
+gmail.com" target=3D"_blank">sherifomran2000@gmail.com</a>&gt;</span> wrote=
+:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
+ft:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div><div>hey guy=
+s,<br><br></div>any body tried the real time kernel? I get an error, it is =
+snot in the compatibility list.<br></div>can we skip it?<br><br></div>thank=
+s<br></div>
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
-Andreas
-
+--001a1145b6980aca0905665a8473--
