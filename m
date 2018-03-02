@@ -1,48 +1,70 @@
-Return-Path: <pn@denx.de>
+Return-Path: <vincent.prince.fr@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8637EE00EAF; Fri,  2 Mar 2018 04:58:43 -0800 (PST)
+	id C97D5E00E0A; Fri,  2 Mar 2018 05:51:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [212.18.0.9 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_FONT_FACE_BAD,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.46 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (vincent.prince.fr[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF11EE00E8F
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2018 04:58:39 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3zt8W24R2yz1qtfD;
-	Fri,  2 Mar 2018 13:58:38 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 3zt8W247JPz1qqkM;
-	Fri,  2 Mar 2018 13:58:38 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
-	port 10024)
-	with ESMTP id uZloj8BaQe6N; Fri,  2 Mar 2018 13:58:35 +0100 (CET)
-X-Auth-Info: CM2RTXEeQ/njLkJIq6RjHbVyq0+8RFsoX9l0BGyNB7E=
-Received: from antares.denx.de (unknown [62.91.23.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPSA;
-	Fri,  2 Mar 2018 13:58:35 +0100 (CET)
-To: "Maxin B. John" <maxin.john@intel.com>
-References: <1c9ddeef-cae3-20b7-964b-768f999c7803@denx.de>
-	<20180302122913.GA15235@mbabyjoh-desk.ger.corp.intel.com>
-From: Parthiban Nallathambi <pn@denx.de>
-Message-ID: <d5285955-4e4c-ea92-015f-ecd17b8a63ea@denx.de>
-Date: Fri, 2 Mar 2018 13:58:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  1.0 HTML_FONT_FACE_BAD BODY: HTML font face is not a word
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
+	[209.85.214.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BDA2E00DD7
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2018 05:51:02 -0800 (PST)
+Received: by mail-it0-f46.google.com with SMTP id u5so1883730itc.1
+	for <yocto@yoctoproject.org>; Fri, 02 Mar 2018 05:51:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=b+ke5vl7vvCVdGIsLWKzjotlAV+Pe+7vPtmLSOht1Gg=;
+	b=pRHl/Yh+reCdzK+VpetL+T/zDdjaNTMf+/IOwWr6nNMHyt3v8WHoU6+M/3kuMiPxaQ
+	AyMO/zGMQCa0bafgPtX8LfXIdwxGS4g/Eb2L1ecaUyzWlkBqRThG9Am+Qy/5+ltR/edq
+	4b5iN4MNM8GK4zall8JF/ekcx1llF2gDVOjSYuR1oiD2Jv2Baq8i1AG44ZLyj3iFzU9B
+	agPSTlVOGdl3ZNQMY50euUsq7BHuMYjzjJ8iy08Ah/heF1xWugCgAJ6xLiCo+DKlYNG6
+	2uSog7kmnVhblJIEbBKUtRSOqxKpFrT8891S5HhIurghLA9jV/VbRwbcED6mYpKQvFKf
+	1ByQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=b+ke5vl7vvCVdGIsLWKzjotlAV+Pe+7vPtmLSOht1Gg=;
+	b=csRNUm6Z2WgOiZaYCoBv8oJwLdq8THdVFVilq2lI2Sak6NB8kghp6YUi9C5zSA0+UF
+	YgTw7juPeqP/Q+MlBtrF3gyKvgR4mTp+Wv9IOQLDdh9wpgVjDRDKjqbFkUKpIKw0zOJU
+	ueGMG0/EciHgS/nGAK03qZHqsoOpm09V1OKi8aWXaZrzp8ji7gmy8ffKu2SMj9uKqZ6U
+	yzNgB1cVfIWsAroshwpSh9IKsZCtP+g8fTpTtQl4/rI8ZOk9CXJAHP7WfUsAaGvqXdei
+	edoW2lOMXs4zav6wS3D0/e/UUYCiM669ACQlR3XbP3dWJuO+oViKsm00j3gNKQsbH4A5
+	iZQw==
+X-Gm-Message-State: AElRT7F961bEpT+WEfdg20IODp5LOrQKlqea1t7vdCuhxrlRvgoTzfbz
+	4RJwfx1lvZq+Dj6e1aWYdOAXmFm/b8o5a8Qhv6c=
+X-Google-Smtp-Source: AG47ELtBdS3eFUjTmvrsO3tTsxGVAxZauyrz5JIiW87baRkIxVhs8CNWRb9g+0thJqfgQ8OyvxDC7BDkHEkxbjEpZMU=
+X-Received: by 10.36.101.194 with SMTP id u185mr2426082itb.124.1519998661597; 
+	Fri, 02 Mar 2018 05:51:01 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20180302122913.GA15235@mbabyjoh-desk.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org, bitbake-devel@lists.openembedded.org
-Subject: Re: [bitbake-devel] Yocto: Add custom user to custom group in bitbake recipe
+Received: by 10.2.96.23 with HTTP; Fri, 2 Mar 2018 05:50:41 -0800 (PST)
+In-Reply-To: <2f950370-c577-e27d-c162-3c529b041956@windriver.com>
+References: <415639a4-b01a-514e-5eb8-2242cbec1bf9@windriver.com>
+	<2f950370-c577-e27d-c162-3c529b041956@windriver.com>
+From: Vincent Prince <vincent.prince.fr@gmail.com>
+Date: Fri, 2 Mar 2018 14:50:41 +0100
+Message-ID: <CAB2nKc-vypc73tsN4zBPC2VeXAJsu42m0qpyyCunQtrYPhjtgQ@mail.gmail.com>
+To: "Hongzhi, Song" <hongzhi.song@windriver.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: =?UTF-8?B?UmU6IFtPRS1jb3JlXSBRdWVzdGlvbnMgYWJvdXQgdWRldiBydWxlIGFuZCBzeXN0ZW1kLXVkZXbvvIxyZWxldmFudCB0byBtb3VudGluZyBibG9jayBkZXZpY2U=?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,124 +76,218 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2018 12:58:43 -0000
-X-Groupsio-MsgNum: 40048
-Content-Type: multipart/mixed; boundary="------------42496DEE4699013153D16393"
-Content-Language: en-US
+X-List-Received-Date: Fri, 02 Mar 2018 13:51:03 -0000
+Content-Type: multipart/alternative; boundary="001a1143da8e48a25705666e4460"
 
---------------42496DEE4699013153D16393
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a1143da8e48a25705666e4460
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Maxim,
+Hi,
 
-space.bb --> chromium recipe in 
-https://github.com/OSSystems/meta-browser/tree/master/recipes-browser/chromium
+I'm not sure what is your use case, but you can check usbmount[1][2]
+or automount-usb[3] for example on how to use udev with systemd:
 
-app.bb --> http-server.bb attached
+Regards,
+Vincent
 
-I have created a group "www" in http-server_0.10.0.bb and trying to add 
-"chromium" user to this group in chromium-x11_%.bbappend.
+[1]https://github.com/rbrito/usbmount
+[2]
+https://github.com/nefethael/meta-random/blob/master/recipes-support/usbmou=
+nt/usbmount_git.bb
+[3]https://github.com/six-k/automount-usb
 
-But the useradd command is failed: group 'www' does not exit.
 
+2018-03-02 6:44 GMT+01:00 Hongzhi, Song <hongzhi.song@windriver.com>:
 
-On 03/02/2018 01:29 PM, Maxin B. John wrote:
-> Hi Parthiban,
-> 
-> On Fri, Mar 02, 2018 at 12:29:25PM +0100, Parthiban Nallathambi wrote:
->> Hello All,
->>
->> I have created a custom group e.g "grp1" in my application recipe say
->> "app.bb".
->>
->> GROUPADD_PARAM_${PN} = "grp1"
->>
->> I am trying add my custom user e.g: "user1" to this group "grp1" in
->> "space.bb".
->>
->> USERADD_PARAM_${PN} = "-d ${localstatedir}/lib/space/ -s /bin/false -G grp1
->> -U user1"
->>
->> The useradd command failed saying the "useradd: group 'grp1' does not
->> exist". I have also tried adding DEPENDS_${PN} = "app" in space.bb, but it
->> doesn't help.
->>
->> How can I add my custom user to my custom group in bitbake recipe?
-> 
-> Please share your sample recipes here. It will be helpful to debug the problem.
-> 
->> Question in Stackoverflow: https://stackoverflow.com/questions/49068076/yocto-add-custom-user-to-custom-group
->>
->> -- 
->> Thanks,
->> Parthiban Nallathambi
-> 
-> Best Regards,
-> Maxin
-> 
+> Hi all,
+>
+> Does anyone have suggestion for me?
+>
+> Thanks.
+>
+> Hongzhi.Song
+>
+> On 2018=E5=B9=B403=E6=9C=8801=E6=97=A5 18:35, Hongzhi, Song wrote:
+>
+> Defect:
+>
+>     The exiting method of automount of udev in *oe-core/meta/ *is using
+>
+> *automount.rules* which call *mount.sh* that using */bin/mount* to mount
+> device.
+>
+> But systemd-udevd detaches *mount()* operations done within the service
+>
+> from the rest of the system with MountFlag=3Dslave=EF=BC=8C this means ho=
+st can
+>
+> not access device. (e.g. Executing *mkfs.ext4 /dev/sda1/* prompts
+>
+> */dev/sda1 is apparently in use by the system; will not make a filesystem
+> here!*)
+>
+>
+> Solution:
+>
+>     Systemd upstream suggest that the best way is to use "systemd-mount"
+>
+> in udev rules, which will request the mount operation to be executed by
+> PID 1.
+>
+> And I have tested it was effective.
+>
+>
+> Uncertain=EF=BC=9A
+>
+>     The exiting method is designed for *SysV-init *which is not
+> compatible to
+>
+> systemd-udev, at least that's what I think. So I think that we should
+> design
+>
+> a new rule or organizational structure to be suitable for systemd-udev an=
+d
+>
+> to mount deferent device. Dose anyone help do this? Or I can make some
+>
+> improvements on the basis of the existing with "systemd-mount".
+>
+>
+>
+>
+> --
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>
+>
 
--- 
-Thanks,
-Parthiban Nallathambi
+--001a1143da8e48a25705666e4460
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+<div dir=3D"ltr">Hi,=C2=A0<div><br>I&#39;m not sure what is your use case, =
+but you can check usbmount[1][2] or=C2=A0automount-usb[3] for example on ho=
+w to use udev with systemd:</div><div><br>Regards,<br>Vincent<br><br>[1]<a =
+href=3D"https://github.com/rbrito/usbmount">https://github.com/rbrito/usbmo=
+unt</a><br>
 
---------------42496DEE4699013153D16393
-Content-Type: text/plain; charset=UTF-8;
- name="chromium-x11_%.bbapend"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="chromium-x11_%.bbapend"
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">[2]<a href=3D"https://github.com/nefethael/meta-r=
+andom/blob/master/recipes-support/usbmount/usbmount_git.bb">https://github.=
+com/nefethael/meta-random/blob/master/recipes-support/usbmount/usbmount_git=
+.bb</a></span>
 
-aW5oZXJpdCBzeXN0ZW1kCmluaGVyaXQgdXNlcmFkZAoKIyBza2lwIHJ1bnRpbWUgZGVwZW5kZW5j
-eSBvbiBiYXNoCiMgc2luY2Ugd2UgZG9uJ3QgdXNlIHRoZSB3cmFwcGVyIHNjcmlwdApSREVQRU5E
-U18ke1BOfV9yZW1vdmUgPSAiYmFzaCIKCkZJTEVTRVhUUkFQQVRIU19hcHBlbmQgOj0gIiR7VEhJ
-U0RJUn0vZmlsZXM6IgoKU1JDX1VSSSArPSAiIFwKICAgICBmaWxlOi8vY2hyb21pdW0tc3RhcnQg
-XAogICAgIGZpbGU6Ly9jaHJvbWl1bS5zZXJ2aWNlIFwKICAgICBmaWxlOi8vY2hyb21pdW0tdHR5
-LnJ1bGVzIFwKICAgICAiCgpkb19pbnN0YWxsX2FwcGVuZCgpIHsKCiAgICBpbnN0YWxsIC1kICR7
-RH0ke3N5c3RlbWRfdW5pdGRpcn0vc3lzdGVtCiAgICBpbnN0YWxsIC1tIDc1NSAke1dPUktESVJ9
-L2Nocm9taXVtLXN0YXJ0ICAke0R9JHtiaW5kaXJ9LwogICAgaW5zdGFsbCAtbSA2NDQgJHtXT1JL
-RElSfS9jaHJvbWl1bS5zZXJ2aWNlICR7RH0ke3N5c3RlbWRfdW5pdGRpcn0vc3lzdGVtCgogICAg
-aW5zdGFsbCAtZCAke0R9JHtzeXNjb25mZGlyfS91ZGV2L3J1bGVzLmQKICAgIGluc3RhbGwgLW0g
-NjQ0ICR7V09SS0RJUn0vY2hyb21pdW0tdHR5LnJ1bGVzICR7RH0ke3N5c2NvbmZkaXJ9L3VkZXYv
-cnVsZXMuZAoKICAgIHJtICR7RH0ke2xpYmRpcn0vY2hyb21pdW0vY2hyb21pdW0td3JhcHBlcgog
-ICAgcm0gJHtEfSR7YmluZGlyfS9jaHJvbWl1bQogICAgbG4gLXMgJHtsaWJkaXJ9L2Nocm9taXVt
-L2Nocm9taXVtLWJpbiAke0R9JHtiaW5kaXJ9L2Nocm9taXVtCn0KClNZU1RFTURfU0VSVklDRV8k
-e1BOfSA9ICJjaHJvbWl1bS5zZXJ2aWNlIgpGSUxFU18ke1BOfSArPSAiICR7YmluZGlyfS9jaHJv
-bWl1bS1zdGFydCAke3N5c2NvbmZkaXJ9L3VkZXYvcnVsZXMuZC9jaHJvbWl1bS10dHkucnVsZXMi
-CgpVU0VSQUREX1BBQ0tBR0VTID0gIiR7UE59IgpVU0VSQUREX1BBUkFNXyR7UE59ID0gIi1kICR7
-bG9jYWxzdGF0ZWRpcn0vbGliL2Nocm9taXVtIC1zIC9iaW4vZmFsc2UgLUcgdHR5LHZpZGVvLGlu
-cHV0LHd3dyx3d3ctZGF0YSAtVSBjaHJvbWl1bSIK
+<br>[3]<a href=3D"https://github.com/six-k/">https://github.com/six-k/</a><=
+span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sm=
+all;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norma=
+l;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;te=
+xt-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(=
+255,255,255);text-decoration-style:initial;text-decoration-color:initial;fl=
+oat:none;display:inline">automount-usb</span>
 
---------------42496DEE4699013153D16393
-Content-Type: text/plain; charset=UTF-8;
- name="http-server_0.10.0.bb"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="http-server_0.10.0.bb"
+<br><br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quot=
+e">2018-03-02 6:44 GMT+01:00 Hongzhi, Song <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:hongzhi.song@windriver.com" target=3D"_blank">hongzhi.song@windrive=
+r.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p>Hi all,</p>
+    <p>Does anyone have suggestion for me?</p>
+    <p>Thanks.</p><span class=3D"HOEnZb"><font color=3D"#888888">
+    <p>Hongzhi.Song<br>
+    </p></font></span><div><div class=3D"h5">
+    <br>
+    <div class=3D"m_3529184748491425439moz-cite-prefix">On 2018=E5=B9=B403=
+=E6=9C=8801=E6=97=A5 18:35, Hongzhi, Song
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <p>Defect:</p>
+      <p>=C2=A0=C2=A0=C2=A0 The exiting method of automount of udev in <fon=
+t face=3D"Times New Roman, Times, serif"><i>oe-core/meta/ </i></font>is
+        using <br>
+      </p>
+      <p><font face=3D"Times New Roman, Times, serif"><i>automount.rules</i=
+></font>
+        which call <font face=3D"Times New Roman, Times, serif"><i>mount.sh=
+</i></font>
+        that using <i><font face=3D"Times New Roman, Times, serif">/bin/mou=
+nt</font></i>
+        to mount device. <br>
+      </p>
+      <p>But systemd-udevd detaches <font face=3D"Times New Roman, Times,
+          serif"><i>mount()</i></font> operations done within the
+        service <br>
+      </p>
+      <p>from the rest of the system with MountFlag=3Dslave=EF=BC=8C this m=
+eans
+        host can <br>
+      </p>
+      <p>not access device. (e.g. Executing <font face=3D"Times New
+          Roman, Times, serif"><i>mkfs.ext4 /dev/sda1/</i></font>
+        prompts <br>
+      </p>
+      <p><i><font face=3D"Times New Roman, Times, serif">/dev/sda1 is
+            apparently in use by the system; will not make a filesystem
+            here!</font></i>)<br>
+      </p>
+      <p><br>
+      </p>
+      <p>Solution:</p>
+      <p>=C2=A0=C2=A0=C2=A0 Systemd upstream suggest that the best way is t=
+o use
+        &quot;systemd-mount&quot; <br>
+      </p>
+      <p>in udev rules, which will request the mount operation to be
+        executed by PID 1.<br>
+      </p>
+      <p>And I have tested it was effective.</p>
+      <p><br>
+      </p>
+      <p>Uncertain=EF=BC=9A</p>
+      <p>=C2=A0=C2=A0=C2=A0 The exiting method is designed for <font face=
+=3D"Times New
+          Roman, Times, serif"><i>SysV-init </i></font>which is not
+        compatible to <br>
+      </p>
+      <p>systemd-udev, at least that&#39;s what I think. So I think that we
+        should design</p>
+      <p>a new rule or organizational structure to be suitable for
+        systemd-udev and <br>
+      </p>
+      <p>to mount deferent device. Dose anyone help do this? Or I can
+        make some <br>
+      </p>
+      <p>improvements on the basis of the existing with &quot;systemd-mount=
+&quot;.<br>
+      </p>
+      <br>
+      <fieldset class=3D"m_3529184748491425439mimeAttachmentHeader"></field=
+set>
+      <br>
+    </blockquote>
+    <br>
+  </div></div></div>
 
-U1VNTUFSWSA9ICJodHRwLXNlcnZlcjogYSBjb21tYW5kLWxpbmUgaHR0cCBzZXJ2ZXIiCkRFU0NS
-SVBUSU9OID0gImh0dHAtc2VydmVyIGlzIGEgc2ltcGxlLCB6ZXJvLWNvbmZpZ3VyYXRpb24gY29t
-bWFuZC1saW5lIFwKaHR0cCBzZXJ2ZXIuIEl0IGlzIHBvd2VyZnVsIGVub3VnaCBmb3IgcHJvZHVj
-dGlvbiB1c2FnZSwgYnV0IGl0J3Mgc2ltcGxlIFwKYW5kIGhhY2thYmxlIGVub3VnaCB0byBiZSB1
-c2VkIGZvciB0ZXN0aW5nLCBsb2NhbCBkZXZlbG9wbWVudCwgYW5kIGxlYXJuaW5nLlwKIgpMSUNF
-TlNFID0gIk1JVCIKTElDX0ZJTEVTX0NIS1NVTSA9ICJmaWxlOi8vTElDRU5TRTttZDU9ODgwNWI2
-ZjhiOGM0ZjZjZWZmNTIwZjRjM2FhYTgwOTQiCgpTUkNfVVJJID0gIm5wbTovL3JlZ2lzdHJ5Lm5w
-bWpzLm9yZztuYW1lPWh0dHAtc2VydmVyO3ZlcnNpb249JHtQVn0gXAoJZmlsZTovL2h0dHAtc2Vy
-dmVyLnNlcnZpY2UgXAoJZmlsZTovL3NzY19nZW4uc2ggXAoJIgppbmhlcml0IG5wbQojIE11c3Qg
-YmUgc2V0IGFmdGVyIGluaGVyaXQgbnBtIHNpbmNlIHRoYXQgaXRzZWxmIHNldHMgUwpTID0gIiR7
-V09SS0RJUn0vbnBtcGtnIgpERVBFTkRTXyR7UE59ID0gIm5vZGVqcy1ucG0iClJERVBFTkRTXyR7
-UE59LWVjc3RhdGljID0gImJhc2giCgpMSUNFTlNFXyR7UE59ID0gIk1JVCIKCmluaGVyaXQgc3lz
-dGVtZAppbmhlcml0IHVzZXJhZGQKZG9faW5zdGFsbF9hcHBlbmQoKSB7CgogICAgaW5zdGFsbCAt
-ZCAke0R9JHtzeXN0ZW1kX3VuaXRkaXJ9L3N5c3RlbQogICAgaW5zdGFsbCAtbSA2NDQgJHtXT1JL
-RElSfS9odHRwLXNlcnZlci5zZXJ2aWNlICR7RH0ke3N5c3RlbWRfdW5pdGRpcn0vc3lzdGVtCiAg
-ICBpbnN0YWxsIC1tIDc1NSAke1dPUktESVJ9L3NzY19nZW4uc2ggJHtEfSR7YmluZGlyfQp9CgpT
-WVNURU1EX1NFUlZJQ0VfJHtQTn0gPSAiaHR0cC1zZXJ2ZXIuc2VydmljZSIKVVNFUkFERF9QQUNL
-QUdFUyA9ICIke1BOfSIKR1JPVVBBRERfUEFSQU1fJHtQTn0gPSAid3d3IgpVU0VSQUREX1BBUkFN
-XyR7UE59ID0gIi1kICR7bG9jYWxzdGF0ZWRpcn0vbGliL2Nocm9taXVtIC1zIC9iaW4vZmFsc2Ug
-LUcgd3d3LWRhdGEgLVUgd3d3Igo=
+<br>--<br>
+______________________________<wbr>_________________<br>
+Openembedded-core mailing list<br>
+<a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedded-co=
+re@lists.<wbr>openembedded.org</a><br>
+<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core=
+" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.org/<wbr>m=
+ailman/listinfo/openembedded-<wbr>core</a><br>
+<br></blockquote></div><br></div>
 
---------------42496DEE4699013153D16393--
+--001a1143da8e48a25705666e4460--
