@@ -1,73 +1,63 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <icastell@nayarsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57A88E00F6F; Thu,  1 Mar 2018 21:55:40 -0800 (PST)
+	id 8B75DE00E43; Thu,  1 Mar 2018 23:41:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.174 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pf0-f174.google.com (mail-pf0-f174.google.com
-	[209.85.192.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC596E00EE7
-	for <yocto@yoctoproject.org>; Thu,  1 Mar 2018 21:55:37 -0800 (PST)
-Received: by mail-pf0-f174.google.com with SMTP id j20so3547120pfi.1
-	for <yocto@yoctoproject.org>; Thu, 01 Mar 2018 21:55:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:organization:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=MF5aUIZebkPr5dSjcIR0D1vqefRafIrYfCDF/GeypOA=;
-	b=eZzFF3szyJrvqvV/rn+YsUqjLnHAp/BsKNVNxtz/K7NuMLBNviDDRrcwmpFN2fyjYZ
-	BW052W1wRsoMSSRhD9iNOC5eMWMcRtyFPJSELGRz8uuSS/uJhCb+ehwMD4cwdNTcKbcO
-	5KNXEx+UUXsbXROz4BmofkDz/R8AyKTVdMCEnnwKjn9TMb77+lDpIqKC4/vXYXwKIXzt
-	lHqi/3qtVia4QAutbgAvIuopYew4KxNQmxj7QrI/vZ9AV3rhb1ojUMDkEE1dBUUftgvx
-	EaFxGUbx/mVcPOy7gXm4tUFgFHHCAXxiltzwlrG0ns21e8ml+qcmjLF2wOm9oBdX1th2
-	ku+g==
+Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BC52E00DC6
+	for <yocto@yoctoproject.org>; Thu,  1 Mar 2018 23:41:05 -0800 (PST)
+Received: by mail-io0-f176.google.com with SMTP id f1so9866843iob.0
+	for <yocto@yoctoproject.org>; Thu, 01 Mar 2018 23:41:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nayarsystems.com; s=google;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=haqAHoPCM1sX+HWdMVNsxDvLyhQ1g2dAAEi+yPK9DLU=;
+	b=NNSZoAUVXioBzncHk3LnGKlaD6p2xngqOycMzQXgyihVop3UeiW8//io6GNO+hS3pX
+	YKrk75bDPYraOIcfgofoxOSkXB0slzQDkCiqLhC0fXxeE15Tvr86kNmGOzmt4v0IpIfW
+	R40BcbOQKU/9Bg/2ecUVYFxw9zsPJSxeOlwbI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-language:content-transfer-encoding;
-	bh=MF5aUIZebkPr5dSjcIR0D1vqefRafIrYfCDF/GeypOA=;
-	b=NpfSK5ZGkVojrrpEGaEdifv0iG6px5mST9jEWzxNPvqooqFR+QvSrSp+Etba0MJlxS
-	KtrzLBBpnLYEUQMquDB8UcB0YN0jPudUDawy0C7KqFmHUufdJkmlBSjA3N8TaPDWRObw
-	T034eRjE36TZViWbOxV/k+ijS5pIM0Hon7uTClP4y8x3z6vnN2nyVWme0KPJ1aObnGlw
-	fJeHYTg7MVu2hHhEgFzeGGDarNg5lgUyKG/1eKLf/Ibx6f6yqGKz4CxBUQHOdA9G0RR8
-	3sUxttzqiYE2hpjXSbBdiuk7CG/t+hvs81mSY+mclSp9CpTCF+O1z7fJ2oaKYSdabO1g
-	Skpg==
-X-Gm-Message-State: APf1xPACz2eRpUe3IFzrtx68uTB2L8ug3lcaPu3H9KacKJOCHOSkq4/J
-	9Lj/q8E52JP9xVPWedG9n6Ewn92s
-X-Google-Smtp-Source: AG47ELt2qA4J4P9C3Pc6mRkET3tSiRrz13h9SD5r8BPJiphrGAwJUJPchOq7nX3lyGLsv1U3So1MtA==
-X-Received: by 10.99.43.88 with SMTP id r85mr3623151pgr.276.1519970136527;
-	Thu, 01 Mar 2018 21:55:36 -0800 (PST)
-Received: from hermes.local ([2601:646:8880:466c:b139:7d65:a2c3:de0a])
-	by smtp.gmail.com with ESMTPSA id
-	c67sm12196144pfl.106.2018.03.01.21.55.34
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 01 Mar 2018 21:55:35 -0800 (PST)
-To: Abhishekh Awanti <abhishekh@relysys.co.in>, yocto@yoctoproject.org
-References: <CANPqCWLBrSwCRbKXePqdmGv2exou5smjq-R9D5yvB6MjQZPqKg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <ee3a3b96-27a3-a679-2c23-3090890113d8@gmail.com>
-Date: Thu, 1 Mar 2018 21:55:33 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:59.0)
-	Gecko/20100101 Thunderbird/59.0
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=haqAHoPCM1sX+HWdMVNsxDvLyhQ1g2dAAEi+yPK9DLU=;
+	b=UTMz4yzqibNsdl+NYQmrVFKsnozXBFn7ABqwFgt8yLRKAj7cWRQwBv8IVBI09tVCHr
+	F9LWjGY1ZPEl5mh3QT06EFHOvme9GRXb7VwMZy3z7rlKaqA1HvV4LmhtFYZKhiiFFc/h
+	cPIXYjiUTZlZTGN6EJIOMDe+OgUpBki+Ey4GskZaGbrOzrZBXVrkVDdHWX3ofZfUKF8v
+	+6g0+XiawOnBthhRJh9jkj32DjG+AowafB0vYqai44KRWio2gxoETjLezOYi5a/9UahT
+	HyLzgQzvSqXWYW08f4Q0i9l0nsZyVNrbjhIsEazFWR0JMdsFjv4E25pljRPIh1LUyfig
+	fyVA==
+X-Gm-Message-State: APf1xPD/Xkm4O6xPNdVldzg+qBZ/sqUOJeNqpt60f68Bhs99dFvwIEjv
+	6niBppM31kg3PtgangPqd7O03ukhqwiCmEgbdCUkEw==
+X-Google-Smtp-Source: AG47ELunp1Bo0LYQCVPJT2HGW/OW2TcZe3gQYpOHJPCv3fLCkPmFQg3oPaJrY8AaYXIgpo4n4OlqZab7d2jxgShc3Aw=
+X-Received: by 10.107.173.12 with SMTP id w12mr5087437ioe.282.1519976464914;
+	Thu, 01 Mar 2018 23:41:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CANPqCWLBrSwCRbKXePqdmGv2exou5smjq-R9D5yvB6MjQZPqKg@mail.gmail.com>
-Subject: Re: error: possibly undefined macro: PKG_CONFIG_SYSROOT_DIR
+Received: by 10.2.36.84 with HTTP; Thu, 1 Mar 2018 23:41:04 -0800 (PST)
+In-Reply-To: <c3c07c48-7729-7f75-21cf-d09ce0c4db33@intel.com>
+References: <CAALXFYzHCrGKX=5_WL+=mez7aiYOv7q8+9XLREwaPqTL_4WpBA@mail.gmail.com>
+	<c3c07c48-7729-7f75-21cf-d09ce0c4db33@intel.com>
+From: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
+Date: Fri, 2 Mar 2018 08:41:04 +0100
+Message-ID: <CAALXFYyVio5UzkZUVS1xAPnkgfTt-7rTO+0ApEnKD4F2Gd1OSw@mail.gmail.com>
+To: Anuj Mittal <anuj.mittal@intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Yocto procedure to write generated image to hdd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,120 +69,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2018 05:55:40 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 02 Mar 2018 07:41:08 -0000
+Content-Type: multipart/alternative; boundary="001a114468f64230130566691948"
 
+--001a114468f64230130566691948
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+2018-03-02 0:41 GMT+01:00 Anuj Mittal <anuj.mittal@intel.com>:
 
-On 3/1/18 2:21 AM, Abhishekh Awanti wrote:
 > Hi,
-> 
-> I am trying to build the package "/harfbuzz-1.3.0" , /but i am getting 
-> the following configure error
+>
+> On 03/01/2018 07:20 PM, Iv=C3=A1n Castell wrote:
+> >
+> > Is this the proper way to install the generated image in the hard disk?
+> > Maybe I am doing something wrong?
+>
+> Does the image boot up if you select 'boot'?
 
-your build seems to be a bit mixed, the baseline seems to be daisy based 
-( 1.6 ) but you are building harfbuzz which is introduced in morty ( 2.2 
-) release. Doe the original version work ?
 
-> 
-> /Build Configuration:/
-> /BB_VERSION        = "1.22.0"/
-> /BUILD_SYS         = "x86_64-linux"/
-> /NATIVELSBSTRING   = "Ubuntu-14.04"/
-> /TARGET_SYS        = "arm-poky-linux-gnueabi"/
-> /MACHINE           = "iwg21m"/
-> /DISTRO            = "poky"/
-> /DISTRO_VERSION    = "1.6.1"/
-> /TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa15"/
-> /TARGET_FPU        = "vfp-neon"/
-> /meta /
-> /meta-yocto /
-> /meta-yocto-bsp    = "hmi_tmp:9febda430a88ba23b539394e5d54b59ae87405f6"/
-> /meta-renesas /
-> /meta-rzg1         = "master:2ea602f03b9c2378c1d7dc28675a675d18edb0e3"/
-> /meta-oe /
-> /meta-multimedia /
-> /meta-networking   = "hmi_tmp:dca466c074c9a35bc0133e7e0d65cca0731e2acf"/
-> /meta-linaro-toolchain = 
-> "hmi_build:8a0601723c06fdb75e62aa0f0cf15fc9d7d90167"/
-> /common /
-> /hmi-demo          = "master:2cdb73bb902ecd4462cd0a4a66d5d116d0f7c113"/
-> /meta-ndvr         = "<unknown>:<unknown>"/
-> /
-> /
-> /NOTE: Preparing runqueue/
-> /NOTE: Executing SetScene Tasks/
-> /NOTE: Executing RunQueue Tasks/
-> /ERROR: Function failed: do_configure (log file is located at 
-> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/temp/log.do_configure.451)/
-> /ERROR: Logfile of failure stored in: 
-> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/temp/log.do_configure.451/
-> /Log data follows:/
-> /| DEBUG: Executing python function sysroot_cleansstate/
-> /| DEBUG: Python function sysroot_cleansstate finished/
-> /| DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 
-> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 'common']/
-> /| DEBUG: Executing shell function autotools_preconfigure/
-> /| DEBUG: Shell function autotools_preconfigure finished/
-> /| DEBUG: Executing python function autotools_copy_aclocals/
-> /| DEBUG: Python function autotools_copy_aclocals finished/
-> /| DEBUG: Executing shell function do_configure/
-> /| automake (GNU automake) 1.14/
-> /| Copyright (C) 2013 Free Software Foundation, Inc./
-> /| License GPLv2+: GNU GPL version 2 or later 
-> <http://gnu.org/licenses/gpl-2.0.html 
-> <http://gnu.org/licenses/gpl-2.0.html>>/
-> /| This is free software: you are free to change and redistribute it./
-> /| There is NO WARRANTY, to the extent permitted by law./
-> /| /
-> /| Written by Tom Tromey <tromey@redhat.com <mailto:tromey@redhat.com>>/
-> /|        and Alexandre Duret-Lutz <adl@gnu.org <mailto:adl@gnu.org>>./
-> /| AUTOV is 1/
-> /| NOTE: Executing ACLOCAL="aclocal 
-> --system-acdir=/home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/build/aclocal-copy/" 
-> autoreconf --verbose --install --force --exclude=autopoint -I 
-> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/harfbuzz-1.3.0/m4//
-> /| autoreconf: Entering directory `.'/
-> /| autoreconf:configure.ac <http://configure.ac/>: not using Gettext/
-> /| autoreconf: running: aclocal 
-> --system-acdir=/home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/build/aclocal-copy/ 
-> -I 
-> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/harfbuzz-1.3.0/m4/ 
-> -I 
-> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/harfbuzz-1.3.0/m4/ 
-> --force -I m4/
-> /| autoreconf:configure.ac <http://configure.ac/>: tracing/
-> /| autoreconf: running: libtoolize --copy --force/
-> /| libtoolize: putting auxiliary files in `.'./
-> /| libtoolize: copying file `./ltmain.sh'/
-> /| libtoolize: putting macros in AC_CONFIG_MACRO_DIR, `m4'./
-> /| libtoolize: copying file `m4/libtool.m4'/
-> /| libtoolize: copying file `m4/ltoptions.m4'/
-> /| libtoolize: copying file `m4/ltsugar.m4'/
-> /| libtoolize: copying file `m4/ltversion.m4'/
-> /| libtoolize: copying file `m4/lt~obsolete.m4'/
-> /| autoreconf: running: 
-> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/sysroots/x86_64-linux/usr/bin/autoconf 
-> --include=/home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/harfbuzz-1.3.0/m4/ 
-> --force/
-> /| configure:17934: error: possibly undefined macro: PKG_CONFIG_SYSROOT_DIR/
-> /|       If this token and others are legitimate, please use 
-> m4_pattern_allow./
-> /|       See the Autoconf documentation./
-> /| autoreconf: 
-> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/sysroots/x86_64-linux/usr/bin/autoconf 
-> failed with exit status: 1/
-> /| ERROR: autoreconf execution failed./
-> /| WARNING: exit code 1 from a shell command./
-> /| ERROR: Function failed: do_configure (log file is located at 
-> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/temp/log.do_configure.451)/
-> /ERROR: Task 5 
-> (/home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/../poky/meta/recipes-graphics/harfbuzz/harfbuzz_1.3.0.bb 
-> <http://harfbuzz_1.3.0.bb/>, do_configure) failed with exit code '1'/
-> 
-> Any help will be appreciated.
-> 
-> 
+I tested selecting 'boot' option and it happens exactly the same: a black
+screen appears when booting with default options, and when adding "noapic",
+the screen is flooded of "sleep: command not found" messages.
 
+
+
+> Do you eventually get options to select storage media after all these 'no=
+t
+> found' messages if you select 'install'?
+
+
+After waiting more than 5 minutes, the "sleep: command not found" message
+continues flooding the screen.
+
+
+
+> Can you share the logs?
+>
+
+If I could, I would do it, but I have no way to get those logs out of the
+box without a terminal available.
+
+
+
+>
+> Thanks,
+> Anuj
+>
+>
+
+--001a114468f64230130566691948
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+2018-03-02 0:41 GMT+01:00 Anuj Mittal <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:anuj.mittal@intel.com" target=3D"_blank">anuj.mittal@intel.com</a>&gt;</=
+span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex">Hi,<br>
+<div><div class=3D"h5"><br>
+On 03/01/2018 07:20 PM, Iv=C3=A1n Castell wrote:<br>
+&gt; =C2=A0 =C2=A0 =C2=A0<br>
+&gt; Is this the proper way to install the generated image in the hard disk=
+?<br>
+&gt; Maybe I am doing something wrong?<br>
+<br>
+</div></div>Does the image boot up if you select &#39;boot&#39;? </blockquo=
+te><div><br></div><div>I tested selecting &#39;boot&#39; option and it happ=
+ens exactly the same: a black screen appears when booting with default opti=
+ons, and when adding &quot;noapic&quot;, the screen is flooded of &quot;sle=
+ep: command not found&quot; messages.</div><div><br></div><div>=C2=A0<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex">Do you eventually get=C2=A0options to se=
+lect storage media after all these &#39;not found&#39; messages if=C2=A0you=
+ select &#39;install&#39;? </blockquote><div><br></div><div>After waiting m=
+ore than 5 minutes, the &quot;sleep: command not found&quot; message contin=
+ues flooding the screen.</div><div><br></div><div>=C2=A0</div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex">Can you share the logs?<br></blockquote><div><br></div><d=
+iv>If I could, I would do it, but I have no way to get those logs out of th=
+e box without a terminal available.</div><div><br></div><div>=C2=A0</div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px =
+#ccc solid;padding-left:1ex">
+<br>
+Thanks,<br>
+Anuj<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br></div></div></blockquote></div>
+</div></div>
+
+--001a114468f64230130566691948--
