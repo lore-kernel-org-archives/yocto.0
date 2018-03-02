@@ -1,70 +1,66 @@
-Return-Path: <vincent.prince.fr@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C97D5E00E0A; Fri,  2 Mar 2018 05:51:03 -0800 (PST)
+	id 427AAE00DF0; Fri,  2 Mar 2018 07:22:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_FONT_FACE_BAD,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.46 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (vincent.prince.fr[at]gmail.com)
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.0 HTML_FONT_FACE_BAD BODY: HTML font face is not a word
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f46.google.com (mail-it0-f46.google.com
-	[209.85.214.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BDA2E00DD7
-	for <yocto@yoctoproject.org>; Fri,  2 Mar 2018 05:51:02 -0800 (PST)
-Received: by mail-it0-f46.google.com with SMTP id u5so1883730itc.1
-	for <yocto@yoctoproject.org>; Fri, 02 Mar 2018 05:51:02 -0800 (PST)
+Received: from mail-pg0-f46.google.com (mail-pg0-f46.google.com [74.125.83.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAAE0E007E1
+	for <yocto@yoctoproject.org>; Fri,  2 Mar 2018 07:22:54 -0800 (PST)
+Received: by mail-pg0-f46.google.com with SMTP id e9so3890041pgs.10
+	for <yocto@yoctoproject.org>; Fri, 02 Mar 2018 07:22:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=b+ke5vl7vvCVdGIsLWKzjotlAV+Pe+7vPtmLSOht1Gg=;
-	b=pRHl/Yh+reCdzK+VpetL+T/zDdjaNTMf+/IOwWr6nNMHyt3v8WHoU6+M/3kuMiPxaQ
-	AyMO/zGMQCa0bafgPtX8LfXIdwxGS4g/Eb2L1ecaUyzWlkBqRThG9Am+Qy/5+ltR/edq
-	4b5iN4MNM8GK4zall8JF/ekcx1llF2gDVOjSYuR1oiD2Jv2Baq8i1AG44ZLyj3iFzU9B
-	agPSTlVOGdl3ZNQMY50euUsq7BHuMYjzjJ8iy08Ah/heF1xWugCgAJ6xLiCo+DKlYNG6
-	2uSog7kmnVhblJIEbBKUtRSOqxKpFrT8891S5HhIurghLA9jV/VbRwbcED6mYpKQvFKf
-	1ByQ==
+	:cc; bh=LMGj6G2peM9NbphPAlhHU8zoaDqz76bqsSB0eSDUAZ0=;
+	b=oFBEXg4Szj+n8uoewweQnuCzQr2onBwRO6iabHybWrBqzissRktr3gfSokuNSkwUX5
+	HvF1phvTsYZLcZRlD3R+WLuCAw4vUHutqIEu2jgZ5x2EeV4ITMDLn0SxmR+DTIJ965pX
+	87zDTuDMLF8gR38mdiA5elGSalyNbDX1tp8WpmJUH5mS5cKHZmzD+Pg2TR+2R6I1b6/r
+	DPPMQoleuHmipaByXv2NIf58OzG30iFUQIJMdoVdsevkR3g3aNMoMB6i+Vs+XtzE0Ml3
+	QKBOTznl7U5dqFQbtMDFgu+7FXbFBHJy21ckUUzM9/IQLZFUy/P2d/KeOmw/enh/4nsS
+	i4jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=b+ke5vl7vvCVdGIsLWKzjotlAV+Pe+7vPtmLSOht1Gg=;
-	b=csRNUm6Z2WgOiZaYCoBv8oJwLdq8THdVFVilq2lI2Sak6NB8kghp6YUi9C5zSA0+UF
-	YgTw7juPeqP/Q+MlBtrF3gyKvgR4mTp+Wv9IOQLDdh9wpgVjDRDKjqbFkUKpIKw0zOJU
-	ueGMG0/EciHgS/nGAK03qZHqsoOpm09V1OKi8aWXaZrzp8ji7gmy8ffKu2SMj9uKqZ6U
-	yzNgB1cVfIWsAroshwpSh9IKsZCtP+g8fTpTtQl4/rI8ZOk9CXJAHP7WfUsAaGvqXdei
-	edoW2lOMXs4zav6wS3D0/e/UUYCiM669ACQlR3XbP3dWJuO+oViKsm00j3gNKQsbH4A5
-	iZQw==
-X-Gm-Message-State: AElRT7F961bEpT+WEfdg20IODp5LOrQKlqea1t7vdCuhxrlRvgoTzfbz
-	4RJwfx1lvZq+Dj6e1aWYdOAXmFm/b8o5a8Qhv6c=
-X-Google-Smtp-Source: AG47ELtBdS3eFUjTmvrsO3tTsxGVAxZauyrz5JIiW87baRkIxVhs8CNWRb9g+0thJqfgQ8OyvxDC7BDkHEkxbjEpZMU=
-X-Received: by 10.36.101.194 with SMTP id u185mr2426082itb.124.1519998661597; 
-	Fri, 02 Mar 2018 05:51:01 -0800 (PST)
+	bh=LMGj6G2peM9NbphPAlhHU8zoaDqz76bqsSB0eSDUAZ0=;
+	b=J0pyRCnnNN+dlbGETLyZGHqJ299+IceK4xOe3kJS+pKrDLpvlWvSKyBSCIJPQwFDnz
+	W05dtAglNK5v/ZUmTpJu476XspuFy++Zw8Ojg3xck/TUU+o6i5NRHc8Sgc2zcarlDzsh
+	IrdNzZMFFrJTRI1qt2LxgHdeKQevU2EUK5yykpQEeeaBSvlM/lpvYC4l3xD+QIIX8V3h
+	IrxxlCKCEww7LG+gTBqysSbVh41z7eTu+K+ap+vgVEomp16A0+q4hz2Bx0OIrRA5s/V3
+	XCpj79G5UH47JW71kJtU9+IooTf0aKgTf1LvVK3Q5mzspQ5L1SJB13k0NYtIi4y6pRGc
+	C05w==
+X-Gm-Message-State: APf1xPAkHhOSjK5N3OX3Mz4UUxId9nCDl8olUZlbRCf2IOnbcin+snDB
+	/bBQ4gH+L3FIJqMtBpya7qh+XUh4bSb1fAa3YVU=
+X-Google-Smtp-Source: AG47ELvVWgwBEl+DZ3WwPY8bImvKR99jB0HZlTMEiU/pF7irpx+aknKKHKDhQbjGTTgOrbbWOVrVT/G+tzccCh9E5wg=
+X-Received: by 10.99.125.25 with SMTP id y25mr4846359pgc.227.1520004173908;
+	Fri, 02 Mar 2018 07:22:53 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.2.96.23 with HTTP; Fri, 2 Mar 2018 05:50:41 -0800 (PST)
-In-Reply-To: <2f950370-c577-e27d-c162-3c529b041956@windriver.com>
-References: <415639a4-b01a-514e-5eb8-2242cbec1bf9@windriver.com>
-	<2f950370-c577-e27d-c162-3c529b041956@windriver.com>
-From: Vincent Prince <vincent.prince.fr@gmail.com>
-Date: Fri, 2 Mar 2018 14:50:41 +0100
-Message-ID: <CAB2nKc-vypc73tsN4zBPC2VeXAJsu42m0qpyyCunQtrYPhjtgQ@mail.gmail.com>
-To: "Hongzhi, Song" <hongzhi.song@windriver.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: =?UTF-8?B?UmU6IFtPRS1jb3JlXSBRdWVzdGlvbnMgYWJvdXQgdWRldiBydWxlIGFuZCBzeXN0ZW1kLXVkZXbvvIxyZWxldmFudCB0byBtb3VudGluZyBibG9jayBkZXZpY2U=?=
+Received: by 10.100.170.69 with HTTP; Fri, 2 Mar 2018 07:22:23 -0800 (PST)
+In-Reply-To: <CANPqCW+NHgZiDRkyti3TToWoJqruqhtMyMtS=pRembyMimVaEw@mail.gmail.com>
+References: <CANPqCWLBrSwCRbKXePqdmGv2exou5smjq-R9D5yvB6MjQZPqKg@mail.gmail.com>
+	<ee3a3b96-27a3-a679-2c23-3090890113d8@gmail.com>
+	<CANPqCW+NHgZiDRkyti3TToWoJqruqhtMyMtS=pRembyMimVaEw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 2 Mar 2018 07:22:23 -0800
+Message-ID: <CAMKF1srWQj0_xsDsdX4eT_iGo5SBRy0A-z71o=an-1aSSVt-Hw@mail.gmail.com>
+To: Abhishekh Awanti <abhishekh@relysys.co.in>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: error: possibly undefined macro: PKG_CONFIG_SYSROOT_DIR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,218 +72,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2018 13:51:03 -0000
-Content-Type: multipart/alternative; boundary="001a1143da8e48a25705666e4460"
-
---001a1143da8e48a25705666e4460
+X-List-Received-Date: Fri, 02 Mar 2018 15:22:58 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-I'm not sure what is your use case, but you can check usbmount[1][2]
-or automount-usb[3] for example on how to use udev with systemd:
-
-Regards,
-Vincent
-
-[1]https://github.com/rbrito/usbmount
-[2]
-https://github.com/nefethael/meta-random/blob/master/recipes-support/usbmou=
-nt/usbmount_git.bb
-[3]https://github.com/six-k/automount-usb
-
-
-2018-03-02 6:44 GMT+01:00 Hongzhi, Song <hongzhi.song@windriver.com>:
-
-> Hi all,
->
-> Does anyone have suggestion for me?
->
-> Thanks.
->
-> Hongzhi.Song
->
-> On 2018=E5=B9=B403=E6=9C=8801=E6=97=A5 18:35, Hongzhi, Song wrote:
->
-> Defect:
->
->     The exiting method of automount of udev in *oe-core/meta/ *is using
->
-> *automount.rules* which call *mount.sh* that using */bin/mount* to mount
-> device.
->
-> But systemd-udevd detaches *mount()* operations done within the service
->
-> from the rest of the system with MountFlag=3Dslave=EF=BC=8C this means ho=
-st can
->
-> not access device. (e.g. Executing *mkfs.ext4 /dev/sda1/* prompts
->
-> */dev/sda1 is apparently in use by the system; will not make a filesystem
-> here!*)
->
->
-> Solution:
->
->     Systemd upstream suggest that the best way is to use "systemd-mount"
->
-> in udev rules, which will request the mount operation to be executed by
-> PID 1.
->
-> And I have tested it was effective.
->
->
-> Uncertain=EF=BC=9A
->
->     The exiting method is designed for *SysV-init *which is not
-> compatible to
->
-> systemd-udev, at least that's what I think. So I think that we should
-> design
->
-> a new rule or organizational structure to be suitable for systemd-udev an=
-d
->
-> to mount deferent device. Dose anyone help do this? Or I can make some
->
-> improvements on the basis of the existing with "systemd-mount".
->
->
->
->
-> --
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
+On Fri, Mar 2, 2018 at 4:38 AM, Abhishekh Awanti
+<abhishekh@relysys.co.in> wrote:
+> Hi,
+> Before i was trying to build the baseline version only, due to this error i
+> moved to latest version.
+> As Ross said i deleted tmp/ and now the package can able to build
+> successfully.
+> Should i move to original version only?
 >
 
---001a1143da8e48a25705666e4460
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+if you have no pressing need to upgrade
+staying with original version is better since thats the tested set.
 
-<div dir=3D"ltr">Hi,=C2=A0<div><br>I&#39;m not sure what is your use case, =
-but you can check usbmount[1][2] or=C2=A0automount-usb[3] for example on ho=
-w to use udev with systemd:</div><div><br>Regards,<br>Vincent<br><br>[1]<a =
-href=3D"https://github.com/rbrito/usbmount">https://github.com/rbrito/usbmo=
-unt</a><br>
+> On Fri, Mar 2, 2018 at 11:25 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>>
+>>
+>>
+>> On 3/1/18 2:21 AM, Abhishekh Awanti wrote:
+>>>
+>>> Hi,
+>>>
+>>> I am trying to build the package "/harfbuzz-1.3.0" , /but i am getting
+>>> the following configure error
+>>
+>>
+>> your build seems to be a bit mixed, the baseline seems to be daisy based (
+>> 1.6 ) but you are building harfbuzz which is introduced in morty ( 2.2 )
+>> release. Doe the original version work ?
+>>
+>>>
+>>> /Build Configuration:/
+>>> /BB_VERSION        = "1.22.0"/
+>>> /BUILD_SYS         = "x86_64-linux"/
+>>> /NATIVELSBSTRING   = "Ubuntu-14.04"/
+>>> /TARGET_SYS        = "arm-poky-linux-gnueabi"/
+>>> /MACHINE           = "iwg21m"/
+>>> /DISTRO            = "poky"/
+>>> /DISTRO_VERSION    = "1.6.1"/
+>>> /TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa15"/
+>>> /TARGET_FPU        = "vfp-neon"/
+>>> /meta /
+>>> /meta-yocto /
+>>> /meta-yocto-bsp    = "hmi_tmp:9febda430a88ba23b539394e5d54b59ae87405f6"/
+>>> /meta-renesas /
+>>> /meta-rzg1         = "master:2ea602f03b9c2378c1d7dc28675a675d18edb0e3"/
+>>> /meta-oe /
+>>> /meta-multimedia /
+>>> /meta-networking   = "hmi_tmp:dca466c074c9a35bc0133e7e0d65cca0731e2acf"/
+>>> /meta-linaro-toolchain =
+>>> "hmi_build:8a0601723c06fdb75e62aa0f0cf15fc9d7d90167"/
+>>> /common /
+>>> /hmi-demo          = "master:2cdb73bb902ecd4462cd0a4a66d5d116d0f7c113"/
+>>> /meta-ndvr         = "<unknown>:<unknown>"/
+>>> /
+>>> /
+>>> /NOTE: Preparing runqueue/
+>>> /NOTE: Executing SetScene Tasks/
+>>> /NOTE: Executing RunQueue Tasks/
+>>> /ERROR: Function failed: do_configure (log file is located at
+>>> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/temp/log.do_configure.451)/
+>>> /ERROR: Logfile of failure stored in:
+>>> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/temp/log.do_configure.451/
+>>> /Log data follows:/
+>>> /| DEBUG: Executing python function sysroot_cleansstate/
+>>> /| DEBUG: Python function sysroot_cleansstate finished/
+>>> /| DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+>>> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 'common']/
+>>> /| DEBUG: Executing shell function autotools_preconfigure/
+>>> /| DEBUG: Shell function autotools_preconfigure finished/
+>>> /| DEBUG: Executing python function autotools_copy_aclocals/
+>>> /| DEBUG: Python function autotools_copy_aclocals finished/
+>>> /| DEBUG: Executing shell function do_configure/
+>>> /| automake (GNU automake) 1.14/
+>>> /| Copyright (C) 2013 Free Software Foundation, Inc./
+>>> /| License GPLv2+: GNU GPL version 2 or later
+>>> <http://gnu.org/licenses/gpl-2.0.html
+>>> <http://gnu.org/licenses/gpl-2.0.html>>/
+>>> /| This is free software: you are free to change and redistribute it./
+>>> /| There is NO WARRANTY, to the extent permitted by law./
+>>> /| /
+>>> /| Written by Tom Tromey <tromey@redhat.com <mailto:tromey@redhat.com>>/
+>>> /|        and Alexandre Duret-Lutz <adl@gnu.org <mailto:adl@gnu.org>>./
+>>> /| AUTOV is 1/
+>>> /| NOTE: Executing ACLOCAL="aclocal
+>>> --system-acdir=/home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/build/aclocal-copy/"
+>>> autoreconf --verbose --install --force --exclude=autopoint -I
+>>> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/harfbuzz-1.3.0/m4//
+>>> /| autoreconf: Entering directory `.'/
+>>> /| autoreconf:configure.ac <http://configure.ac/>: not using Gettext/
+>>> /| autoreconf: running: aclocal
+>>> --system-acdir=/home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/build/aclocal-copy/
+>>> -I
+>>> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/harfbuzz-1.3.0/m4/
+>>> -I
+>>> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/harfbuzz-1.3.0/m4/
+>>> --force -I m4/
+>>> /| autoreconf:configure.ac <http://configure.ac/>: tracing/
+>>> /| autoreconf: running: libtoolize --copy --force/
+>>> /| libtoolize: putting auxiliary files in `.'./
+>>> /| libtoolize: copying file `./ltmain.sh'/
+>>> /| libtoolize: putting macros in AC_CONFIG_MACRO_DIR, `m4'./
+>>> /| libtoolize: copying file `m4/libtool.m4'/
+>>> /| libtoolize: copying file `m4/ltoptions.m4'/
+>>> /| libtoolize: copying file `m4/ltsugar.m4'/
+>>> /| libtoolize: copying file `m4/ltversion.m4'/
+>>> /| libtoolize: copying file `m4/lt~obsolete.m4'/
+>>> /| autoreconf: running:
+>>> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/sysroots/x86_64-linux/usr/bin/autoconf
+>>> --include=/home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/harfbuzz-1.3.0/m4/
+>>> --force/
+>>> /| configure:17934: error: possibly undefined macro:
+>>> PKG_CONFIG_SYSROOT_DIR/
+>>> /|       If this token and others are legitimate, please use
+>>> m4_pattern_allow./
+>>> /|       See the Autoconf documentation./
+>>> /| autoreconf:
+>>> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/sysroots/x86_64-linux/usr/bin/autoconf
+>>> failed with exit status: 1/
+>>> /| ERROR: autoreconf execution failed./
+>>> /| WARNING: exit code 1 from a shell command./
+>>> /| ERROR: Function failed: do_configure (log file is located at
+>>> /home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/harfbuzz/1.3.0-r0/temp/log.do_configure.451)/
+>>> /ERROR: Task 5
+>>> (/home/bharath/Abhishek_WorkSpace/Projects/Renesas/RZG1H/iwave/build/Build_As_On_23_feb_2018/build/../poky/meta/recipes-graphics/harfbuzz/harfbuzz_1.3.0.bb
+>>> <http://harfbuzz_1.3.0.bb/>, do_configure) failed with exit code '1'/
+>>>
+>>> Any help will be appreciated.
+>>>
+>>>
+>
 
-<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
-mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
-al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
-ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
-(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
-loat:none;display:inline">[2]<a href=3D"https://github.com/nefethael/meta-r=
-andom/blob/master/recipes-support/usbmount/usbmount_git.bb">https://github.=
-com/nefethael/meta-random/blob/master/recipes-support/usbmount/usbmount_git=
-.bb</a></span>
-
-<br>[3]<a href=3D"https://github.com/six-k/">https://github.com/six-k/</a><=
-span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sm=
-all;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norma=
-l;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;te=
-xt-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(=
-255,255,255);text-decoration-style:initial;text-decoration-color:initial;fl=
-oat:none;display:inline">automount-usb</span>
-
-<br><br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quot=
-e">2018-03-02 6:44 GMT+01:00 Hongzhi, Song <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:hongzhi.song@windriver.com" target=3D"_blank">hongzhi.song@windrive=
-r.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:=
-0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p>Hi all,</p>
-    <p>Does anyone have suggestion for me?</p>
-    <p>Thanks.</p><span class=3D"HOEnZb"><font color=3D"#888888">
-    <p>Hongzhi.Song<br>
-    </p></font></span><div><div class=3D"h5">
-    <br>
-    <div class=3D"m_3529184748491425439moz-cite-prefix">On 2018=E5=B9=B403=
-=E6=9C=8801=E6=97=A5 18:35, Hongzhi, Song
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <p>Defect:</p>
-      <p>=C2=A0=C2=A0=C2=A0 The exiting method of automount of udev in <fon=
-t face=3D"Times New Roman, Times, serif"><i>oe-core/meta/ </i></font>is
-        using <br>
-      </p>
-      <p><font face=3D"Times New Roman, Times, serif"><i>automount.rules</i=
-></font>
-        which call <font face=3D"Times New Roman, Times, serif"><i>mount.sh=
-</i></font>
-        that using <i><font face=3D"Times New Roman, Times, serif">/bin/mou=
-nt</font></i>
-        to mount device. <br>
-      </p>
-      <p>But systemd-udevd detaches <font face=3D"Times New Roman, Times,
-          serif"><i>mount()</i></font> operations done within the
-        service <br>
-      </p>
-      <p>from the rest of the system with MountFlag=3Dslave=EF=BC=8C this m=
-eans
-        host can <br>
-      </p>
-      <p>not access device. (e.g. Executing <font face=3D"Times New
-          Roman, Times, serif"><i>mkfs.ext4 /dev/sda1/</i></font>
-        prompts <br>
-      </p>
-      <p><i><font face=3D"Times New Roman, Times, serif">/dev/sda1 is
-            apparently in use by the system; will not make a filesystem
-            here!</font></i>)<br>
-      </p>
-      <p><br>
-      </p>
-      <p>Solution:</p>
-      <p>=C2=A0=C2=A0=C2=A0 Systemd upstream suggest that the best way is t=
-o use
-        &quot;systemd-mount&quot; <br>
-      </p>
-      <p>in udev rules, which will request the mount operation to be
-        executed by PID 1.<br>
-      </p>
-      <p>And I have tested it was effective.</p>
-      <p><br>
-      </p>
-      <p>Uncertain=EF=BC=9A</p>
-      <p>=C2=A0=C2=A0=C2=A0 The exiting method is designed for <font face=
-=3D"Times New
-          Roman, Times, serif"><i>SysV-init </i></font>which is not
-        compatible to <br>
-      </p>
-      <p>systemd-udev, at least that&#39;s what I think. So I think that we
-        should design</p>
-      <p>a new rule or organizational structure to be suitable for
-        systemd-udev and <br>
-      </p>
-      <p>to mount deferent device. Dose anyone help do this? Or I can
-        make some <br>
-      </p>
-      <p>improvements on the basis of the existing with &quot;systemd-mount=
-&quot;.<br>
-      </p>
-      <br>
-      <fieldset class=3D"m_3529184748491425439mimeAttachmentHeader"></field=
-set>
-      <br>
-    </blockquote>
-    <br>
-  </div></div></div>
-
-<br>--<br>
-______________________________<wbr>_________________<br>
-Openembedded-core mailing list<br>
-<a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedded-co=
-re@lists.<wbr>openembedded.org</a><br>
-<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core=
-" rel=3D"noreferrer" target=3D"_blank">http://lists.openembedded.org/<wbr>m=
-ailman/listinfo/openembedded-<wbr>core</a><br>
-<br></blockquote></div><br></div>
-
---001a1143da8e48a25705666e4460--
