@@ -1,71 +1,62 @@
-Return-Path: <philippe.coval.pro@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96D30E00DFB; Mon,  5 Mar 2018 08:07:46 -0800 (PST)
+	id 179A0E00843; Mon,  5 Mar 2018 08:15:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (philippe.coval.pro[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
-	[209.85.217.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1717E00833
-	for <yocto@yoctoproject.org>; Mon,  5 Mar 2018 08:07:45 -0800 (PST)
-Received: by mail-ua0-f194.google.com with SMTP id f6so5551457ual.0
-	for <yocto@yoctoproject.org>; Mon, 05 Mar 2018 08:07:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E492E0047F
+	for <yocto@yoctoproject.org>; Mon,  5 Mar 2018 08:15:22 -0800 (PST)
+Received: by mail-it0-f53.google.com with SMTP id v194so10747533itb.0
+	for <yocto@yoctoproject.org>; Mon, 05 Mar 2018 08:15:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=/TZjw+vjGndqmVc4SqAlKuLXCmBPZ8xYgf8uSxSM28I=;
-	b=S4Tj16Zx8SimpOqPrBlj7AdavHPur/W4AFz868KnoUtYHoDeZCRqxV60nOHYvIeO+Z
-	VWBVBE+m//MpdPRRa23/SMlaoTKg0hrFoJ3Lj6B8XXdk80YfGUJXfNbVMjGQ3BnFyJWz
-	TeH/jthac7+y7TrIGK9gQiP5v2yqazhaz2QMz3H9/M926K7rUxkj23LIyhPQcEapBzPU
-	XyVfwBGsLCLCQAsmrVlxg16zNNsEEAI7o73d68vPdnKRygLACdODaVXvBrcNhiTIIF3a
-	9DPSCAgLmPddu+SC0oHQX+MvPBMp1a43lyMsJ7rqzAk7GE/4NJ7EPSZ7IspJtyFzNDJH
-	q+fg==
+	:cc; bh=r1N8F/NkIAPcTNys3nNafHCNIqPPw2Ysi672mJ+1wz4=;
+	b=0NVzUxxUC/TlLUUYi5YlSb4CYZ5eWrQH7FFAWV7oY9U1ybgSIBqt3HqwDfWqT6HsSd
+	jv4oc7eJan3izWqfqZ403ufM9D2qCym39KC4sfhPAUIkpGH8L1bwagqJLkWolF1ZhU7s
+	EfP6XT58kNan5w2iL4U5TaX449D8HsIABNH2Rnze54PJwFL6jCD2abzVtqpszIyMZlNw
+	00aRUHs9kEZSsZMIAk1MvmWp1WEixDKMcQOXhjChov+mN8dJ8p2Nh0hs5l/4vigl6xcj
+	5u5r0SOocEy78n5z2lINlrmLyjE93Gmagk2w0SpVBvWp7SJ7iXjR0FgMSSWTWWH95mDu
+	7+oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=/TZjw+vjGndqmVc4SqAlKuLXCmBPZ8xYgf8uSxSM28I=;
-	b=Dx0Q937Jg2WXurtroxe960XoNZoYak7uXxkf/Ez85lwfJQROAz8JMfQDBF2fTjt6WQ
-	ZHV32gS26qcywIPnZalXMipwBZpO1KxKJS8hFR5/A6y/TmuMIKq+/Qz3XZ/Kl4VliLUF
-	vstOxFn/QUwnL16Ttm+xsqyhg+65nWgfoV1bDtXTJmpcRvLlogl92LttjTRPG8Bd6h/y
-	5miwhPcOcj29Lo49rap7Cuzte7QYi6w8nWIbQwJQvW/gabvM95PzCgBTegOvaXouaycO
-	GxVvCVxj+ck2XozQ6rNMBi2U/RAWz+0ryaUiz6f/Sy/psCEpPs7Cs/UxtHorNcWlA2Fi
-	L3IQ==
-X-Gm-Message-State: APf1xPBsAzkxJan3HsFOv+HGzfnlOiNyyQCu+HLbIKV3ZztlFStpf6rp
-	KHxWEkqil/wGXj7d97R50POzMhvCuu7T6gSn/wE=
-X-Google-Smtp-Source: AG47ELsB2fLQJa3u1Mk7DpJuvaOxFyEJkfW9aIXojq9WNenYeMef1/Zr+7Yks07S5NT8XR0KpYEa2E74+OdjxBh8goA=
-X-Received: by 10.159.58.215 with SMTP id q23mr10358532uag.129.1520266064953; 
-	Mon, 05 Mar 2018 08:07:44 -0800 (PST)
+	bh=r1N8F/NkIAPcTNys3nNafHCNIqPPw2Ysi672mJ+1wz4=;
+	b=ABZ9h+3g2FXMS5MXDDohML6LdrGzJJYiAdCM1OjXVmjRnn+4xdH+fTLoi9bOqNR9Zf
+	I7g7f6P/CxedZuRP66FBQbS0jriTkW/BrUWGv28q26BYtebVRfXaiWmDMAbNvrGMbxgO
+	gxxkefCkunTFPusywiPVgolLHsPLED3mNlQgYeEYiamWH3H+LfP1kJ6y85yU0IHppccd
+	pXC/VoVkjemBxOk+d/4jnLRF8Pa1c5/RtDQxPbOzPJ4Kif8FUjW+IQy5k24lLF5esM+w
+	HHSBQ9dgjivU8RlKR2O9J2IsHlw3fXEuB3T4Hy/GeMdkVvKjLiG0OaVCjAFkFK7jbxxR
+	KOfQ==
+X-Gm-Message-State: AElRT7H3nbFelebSv3Tk4ml3Hl6pXC8EmZItqeXjsrP50bwTkgKScZK3
+	ANDeLiC9OEjkFR/jz4QRc9vdWIsvx6iS5BhUFD/zpQ==
+X-Google-Smtp-Source: AG47ELv/Vl+CvsFqPEPsn9/l+NzlbcbWc4mU2CPLTbcWdWnl9f0Rc2ME46Gmd5OqmzoCcU4COHwAaVaCvW1XRKb5OEU=
+X-Received: by 10.36.34.11 with SMTP id o11mr6362ito.60.1520266522212; Mon, 05
+	Mar 2018 08:15:22 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.159.39.99 with HTTP; Mon, 5 Mar 2018 08:07:44 -0800 (PST)
-In-Reply-To: <CAPTzV17QSxoOtVU3fTdVpppJcRrcACVT4uDro_rUH6PP+B34-g@mail.gmail.com>
-References: <CAPTzV16hShVj_HsC4Ykd-HC_J+hGewG+DQYyB+=kD1mgsu56gA@mail.gmail.com>
-	<952a174d-ae9f-e82f-3294-1d9490cf8da7@osg.samsung.com>
-	<CAPTzV17QSxoOtVU3fTdVpppJcRrcACVT4uDro_rUH6PP+B34-g@mail.gmail.com>
-From: Philippe Coval <philippe.coval.pro@gmail.com>
-Date: Mon, 5 Mar 2018 17:07:44 +0100
-Message-ID: <CACn9BzmV3BchF-kSLNXUG8dfCywONT5mMTDk5aygncWR9VcNgQ@mail.gmail.com>
-To: Chanho Park <parkch98@gmail.com>
-X-Mailman-Approved-At: Mon, 05 Mar 2018 08:08:54 -0800
-Cc: "iotivity-dev@lists.iotivity.org" <iotivity-dev@lists.iotivity.org>,
-	yocto@yoctoproject.org, Philippe Coval <philippe.coval@osg.samsung.com>
-Subject: Re: [dev] [meta-oic] Question about Iotivity 1.3.0/1 and fixes status
+Received: by 10.107.30.9 with HTTP; Mon, 5 Mar 2018 08:15:01 -0800 (PST)
+In-Reply-To: <CAO80zYsA9mE-CNFOYo9qivpOJEkag1sEm+Xcoawe5_3bpDJHuw@mail.gmail.com>
+References: <CAO80zYsA9mE-CNFOYo9qivpOJEkag1sEm+Xcoawe5_3bpDJHuw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 5 Mar 2018 16:15:01 +0000
+Message-ID: <CAJTo0LbC6xHqYFoB42=FCr=RqGB9sVMj-2OnK5rp92hwxoOyvA@mail.gmail.com>
+To: ikjn <tiffang@gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: RREPLACE is not applied do_package_qa() ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,103 +68,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Mar 2018 16:07:46 -0000
-Content-Type: multipart/alternative; boundary="f40304366014c406e80566ac86c1"
+X-List-Received-Date: Mon, 05 Mar 2018 16:15:24 -0000
+Content-Type: multipart/alternative; boundary="001a113f77ba057bbd0566aca24c"
 
---f40304366014c406e80566ac86c1
+--001a113f77ba057bbd0566aca24c
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 12, 2018 at 3:26 AM, Chanho Park <parkch98@gmail.com> wrote:
+That isn't what replaces is for: RREPLACES is used to hint to the package
+manager what package should be removed when there are conflicts.  It won't
+have any impact on package dependencies at any other time.
 
-> Hi Philippe,
+Ross
+
+On 1 March 2018 at 03:29, ikjn <tiffang@gmail.com> wrote:
+
+> Hi.
 >
-> On Thu, 11 Jan 2018 at 7:11 PM Philippe Coval <philippe.coval@osg.samsung=
-.
-> com> wrote:
+> I'm building mali userspace libraries using meta-mali layer + rocko
+> but I got errors like these:
 >
->>
->> On 11/01/18 02:30, Chanho Park wrote:
->> > Hi Philippe,
->> >
+> ERROR: cogl-1.0-1.22.2-r0 do_package_qa: QA Issue:
+> /usr/lib/libcogl-pango.so.20.4.2 contained in package libcogl-pango
+> requires libwayland-egl.so, but no providers found in
+> RDEPENDS_libcogl-pango? [file-rdeps]
 >
+> Current recipes are:
 >
-
-> Okay. I=E2=80=99ll test them when you resend them. Please CCing me at tha=
-t time.
->>
+> * mesa.bb
+> PACKAGES = "... libwayland-egl"
+> FILES_libwayland_egl = "libwaland-egl.so"
 >
+> * mali.bb
+> do_install() { copy libmali.so to libdir; create a soft
+> link(libwayland-egl.so --> libmali.so) }
+> PACKAGES = "mali"
+> FILES_mali = "${libdir}/*.so"
+> RREPLACE_mali = "... libwayland-egl"
 >
-1.3.0 is now merged in:
-
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-oic/commit/README?id=3Deb7df=
-c4764ce538fc84eb40f1ca7ed7e14eb1f1d
-
-I will commit more pending patches in coming days/week,
-feedback is always welcome in iotivity tracker (add yocto label)
-
-
-
-> Okay. I look forward to your results :)
+> * cogl.bb
+> RDEPENDS_libcogl-pango = "libwayland-egl"
+>
+> In this structure, mali specify RREPLACE = libwayland-egl, so I guessed
+> package 'libwayland-egl' dependency is replaced by package 'mali' like this:
+>
+> cogl RDEPENDS--> libwayland-egl
+>   ~~> mesa RPROVIDES libwayland-egl
+>   ~~> RREPLACE_mali libwayland-egl
+>
+> But with bitbake -v -c build cogl-1.0 shows that libwayland-egl package
+> provides no FILERPROVIDES_xxx on here.
+>
+> Am I wrong about RREPLACE chain?
+> or the problem comes from something else?
+> I'm a newbie on yocto and very confused, please help me!
+>
 > Thanks.
 >
 >
-Thank you for your patience, now It should me faster since I got commit
-rights.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-Regards
-
---=20
-gpg:0x467094BC
-xmpp:philippe.coval.pro@gmail.com
-https://wiki.tizen.org/wiki/User:Pcoval
-
---f40304366014c406e80566ac86c1
+--001a113f77ba057bbd0566aca24c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Fri, Jan 12, 2018 at 3:26 AM, Chanho Park <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:parkch98@gmail.com" target=3D"_blank">parkch98@gmail.com</a>&=
-gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
-><div dir=3D"auto">Hi Philippe,</div><br><div class=3D"gmail_quote"><span c=
-lass=3D"gmail-"><div dir=3D"auto">On Thu, 11 Jan 2018 at 7:11 PM Philippe C=
-oval &lt;<a href=3D"mailto:philippe.coval@osg.samsung.com" target=3D"_blank=
-">philippe.coval@osg.samsung.<wbr>com</a>&gt; wrote:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><br>
-On 11/01/18 02:30, Chanho Park wrote:<br>
-&gt; Hi Philippe,<br>
-&gt;</blockquote></span></div></div></blockquote><div>=C2=A0</div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex"><div><div class=3D"gmail_quote"><s=
-pan class=3D"gmail-"><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Okay=
-. I=E2=80=99ll test them when you resend them. Please CCing me at that time=
-.<br></blockquote></span><span class=3D"gmail-"><div dir=3D"auto"><br></div=
-></span></div></div></blockquote><div><br></div><div>1.3.0 is now merged in=
-:</div><div><br></div><div><a href=3D"http://git.yoctoproject.org/cgit/cgit=
-.cgi/meta-oic/commit/README?id=3Deb7dfc4764ce538fc84eb40f1ca7ed7e14eb1f1d">=
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-oic/commit/README?id=3Deb7df=
-c4764ce538fc84eb40f1ca7ed7e14eb1f1d</a><br></div><div><br></div><div>I will=
- commit more pending patches in coming days/week,</div><div>feedback is alw=
-ays welcome in iotivity tracker (add yocto label)</div><div><br></div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div cla=
-ss=3D"gmail_quote"><div dir=3D"auto">Okay. I look forward to your results :=
-)</div><div dir=3D"auto">Thanks.</div><span class=3D"gmail-"><div dir=3D"au=
-to"><br></div></span></div></div></blockquote><div><br></div><div>Thank you=
- for your patience, now It should me faster since I got commit rights.</div=
-><div><br></div><div>Regards</div><div>=C2=A0</div></div><div class=3D"gmai=
-l_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>--=C2=A0</div><div=
-><span style=3D"font-size:12.8px">gpg:0x467094BC</span><br><span style=3D"f=
-ont-size:12.8px"><a href=3D"mailto:xmpp%3Aphilippe.coval.pro@gmail.com" tar=
-get=3D"_blank">xmpp:philippe.coval.pro@gmail.com</a></span><br style=3D"fon=
-t-size:12.8px"><a href=3D"https://wiki.tizen.org/wiki/User:Pcoval" style=3D=
-"font-size:12.8px" target=3D"_blank">https://wiki.tizen.org/wiki/User:Pcova=
-l</a><br></div><div><br>
-</div></div></div></div></div>
-</div></div>
+<div dir=3D"ltr">That isn&#39;t what replaces is for: RREPLACES is used to =
+hint to the package manager what package should be removed when there are c=
+onflicts.=C2=A0 It won&#39;t have any impact on package dependencies at any=
+ other time.<div><br></div><div>Ross</div></div><div class=3D"gmail_extra">=
+<br><div class=3D"gmail_quote">On 1 March 2018 at 03:29, ikjn <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:tiffang@gmail.com" target=3D"_blank">tiffang@gma=
+il.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"=
+ltr">Hi.<div><br><div>I&#39;m building mali userspace libraries using meta-=
+mali layer + rocko</div><div>but I got errors like these:</div><div><br></d=
+iv><div>ERROR: cogl-1.0-1.22.2-r0 do_package_qa: QA Issue: /usr/lib/libcogl=
+-pango.so.20.<wbr>4.2 contained in package libcogl-pango requires libwaylan=
+d-egl.so, but no providers found in RDEPENDS_libcogl-pango? [file-rdeps]</d=
+iv><div><br></div><div>Current recipes are:</div><div><br></div><div>* <a h=
+ref=3D"http://mesa.bb" target=3D"_blank">mesa.bb</a></div><div>PACKAGES =3D=
+ &quot;... libwayland-egl&quot;</div><div>FILES_libwayland_egl =3D &quot;li=
+bwaland-egl.so&quot;</div><div><br></div><div><span style=3D"color:rgb(34,3=
+4,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-v=
+ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:start;text-indent:0px;text-transform:none;white-spac=
+e:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration=
+-style:initial;text-decoration-color:initial;float:none;display:inline">*<s=
+pan>=C2=A0</span></span><a href=3D"http://mali.bb" target=3D"_blank">mali.b=
+b</a></div><div>do_install() { copy libmali.so to libdir; create a soft lin=
+k(libwayland-egl.so --&gt; libmali.so) }</div><div>PACKAGES =3D &quot;mali&=
+quot;</div><div>FILES_mali =3D &quot;${libdir}/*.so&quot;</div><div>RREPLAC=
+E_mali =3D &quot;... libwayland-egl&quot;</div><div><br></div><div><span st=
+yle=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;fon=
+t-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-=
+weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tran=
+sform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255=
+,255);text-decoration-style:initial;text-decoration-color:initial;float:non=
+e;display:inline">*<span>=C2=A0</span></span><a href=3D"http://cogl.bb" tar=
+get=3D"_blank">cogl.bb</a></div><div>RDEPENDS_libcogl-pango =3D &quot;libwa=
+yland-egl&quot;</div><div><br></div><div><div style=3D"color:rgb(34,34,34);=
+font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant=
+-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
+ormal;text-align:start;text-indent:0px;text-transform:none;white-space:norm=
+al;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style=
+:initial;text-decoration-color:initial">In this structure, mali specify RRE=
+PLACE =3D libwayland-egl, so I guessed package &#39;libwayland-egl&#39; dep=
+endency is replaced by package &#39;mali&#39; like this:</div></div><div st=
+yle=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;fon=
+t-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-=
+weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tran=
+sform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255=
+,255);text-decoration-style:initial;text-decoration-color:initial"><br></di=
+v><div>cogl RDEPENDS--&gt; libwayland-egl</div><div>=C2=A0 ~~&gt; mesa RPRO=
+VIDES libwayland-egl</div><div>=C2=A0 ~~&gt; RREPLACE_mali libwayland-egl</=
+div><div><br></div><div>But with bitbake -v -c build cogl-1.0 shows that li=
+bwayland-egl package provides no FILERPROVIDES_xxx on here.</div><div><br><=
+/div><div>Am I wrong about RREPLACE chain?</div><div>or the problem comes f=
+rom something else?</div><div>I&#39;m a newbie on yocto and very confused, =
+please help me!</div><div><br></div><div>Thanks.</div><div><br></div></div>=
+</div>
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
 
---f40304366014c406e80566ac86c1--
+--001a113f77ba057bbd0566aca24c--
