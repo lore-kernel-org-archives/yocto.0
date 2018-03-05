@@ -1,53 +1,89 @@
-Return-Path: <maxin.john@intel.com>
+Return-Path: <avishay@magosys.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4FAEE00E0A; Tue,  6 Mar 2018 02:53:08 -0800 (PST)
+	id 86B3FE00D6A; Tue,  6 Mar 2018 03:05:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [104.47.2.98 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F24FE00823
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 02:53:07 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	06 Mar 2018 02:53:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.47,431,1515484800"; d="scan'208";a="22404198"
-Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
-	by orsmga007.jf.intel.com with ESMTP; 06 Mar 2018 02:53:06 -0800
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.197]) by
-	IRSMSX154.ger.corp.intel.com ([169.254.12.108]) with mapi id
-	14.03.0319.002; Tue, 6 Mar 2018 10:53:04 +0000
-From: "John, Maxin" <maxin.john@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>, "Reyna, David L (Wind River)"
-	<david.reyna@windriver.com>
-Thread-Topic: [yocto] Are Windows SDKs (mingw layer) supposed to work?
-Thread-Index: AdO1CMCZFATDD4luQxutgHj7mOIsawALqSiAAAA2Y7A=
-Date: Tue, 6 Mar 2018 10:53:03 +0000
-Message-ID: <61C0517EAD808B429A1DE2DD9164D400326819B2@IRSMSX103.ger.corp.intel.com>
-References: <5E53D14CE4667A45B9A06760DE5D13D0F11F2DA2@ALA-MBC.corp.ad.wrs.com>
-	<CAJTo0La4LkRgwmNqs6p9tGEj+fWY=Tm6q-ATLtTOm6TLUz3tuQ@mail.gmail.com>
-In-Reply-To: <CAJTo0La4LkRgwmNqs6p9tGEj+fWY=Tm6q-ATLtTOm6TLUz3tuQ@mail.gmail.com>
-Accept-Language: fi-FI, en-US
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 50255 seconds by postgrey-1.32 at yocto-www;
+	Tue, 06 Mar 2018 03:05:34 PST
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0098.outbound.protection.outlook.com [104.47.2.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4D89E00833
+	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 03:05:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=magosys.onmicrosoft.com; s=selector1-magosys-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+	bh=pC/XM/cGz1kCJ59M6+ia2cPy0csXO5S0zuouoSILMmY=;
+	b=a517xFR2Zw27KYhh6ONC71X/0xGuE0IdXgvhY/jstkkUVutGJoFC3QFmF8LADnbVoEZD1/GSCPgEhe46a3R30JW47+CnGvwetijMDCBFX+hZ4LYQXQpX2Q1wlPKYseCofos53NSO6fN7jjGpQw2SHkJUSQqPq369fw/72rqscWs=
+Received: from AM4PR0401MB2052.eurprd04.prod.outlook.com (10.166.131.138) by
+	AM4PR0401MB1940.eurprd04.prod.outlook.com (10.166.130.154) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.548.13;
+	Mon, 5 Mar 2018 15:37:06 +0000
+Received: from AM4PR0401MB2052.eurprd04.prod.outlook.com
+	([fe80::8040:b34a:6de2:49f2]) by
+	AM4PR0401MB2052.eurprd04.prod.outlook.com
+	([fe80::8040:b34a:6de2:49f2%13]) with mapi id 15.20.0548.016;
+	Mon, 5 Mar 2018 15:37:06 +0000
+From: Avishay Orpaz <avishay@magosys.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: SDK without qemu
+Thread-Index: AQHTtJfLOktxPrhwPkq5vA70MC8WpQ==
+Date: Mon, 5 Mar 2018 15:37:06 +0000
+Message-ID: <AM4PR0401MB20524F7CABC4D3C44ECC6513B5DA0@AM4PR0401MB2052.eurprd04.prod.outlook.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.0.116
-dlp-reaction: no-action
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYWU5MzdmM2QtODc5YS00ZDliLWI1ZTYtOGVhOWFhOThlNDEzIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJOMDA1aitWam9aXC9cL0cyeTFXYnFyZVFuV2Y2TFVmK3VpaWtZK1k3ZlplVDNZR3IzVm5kOUdkSWFSWVlNNE1aV3IifQ==
-x-ctpclassification: CTP_NT
-x-originating-ip: [163.33.239.180]
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=avishay@magosys.com; 
+x-originating-ip: [94.159.139.104]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; AM4PR0401MB1940;
+	7:Q7dK90/pKY8m1iw5CORn8s3Oj/+M3fmtJONrI/Nf4BSpPU+65WXX6ImsrtoP6QxaaJveraq26osvfUzO93KdJ16z4P6q4ugt9FSsDAeK/opcSkujoqG7L/eOhchYpCjaNuW5O/1tJhCDLKFork5X+qrT+j/uHZUeTOjIprGl3ZsQfASsuF/SpdV6LlifsLxmd7DL88qGQHyT1+dLkqGYotjsPpzmCl61EAy53Wg58n/nqWhooiQiwj2yKXZIfoa+
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: bd98022e-6d12-4695-aa1f-08d582aef373
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(7021125)(5600026)(4604075)(3008032)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603307)(7153060)(7193020);
+	SRVR:AM4PR0401MB1940; 
+x-ms-traffictypediagnostic: AM4PR0401MB1940:
+x-microsoft-antispam-prvs: <AM4PR0401MB1940EB4AAEC3A35211714634B5DA0@AM4PR0401MB1940.eurprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040501)(2401047)(8121501046)(5005006)(93006095)(93001095)(3002001)(10201501046)(3231220)(944501244)(52105095)(6041288)(20161123564045)(20161123562045)(20161123558120)(20161123560045)(2016111802025)(6043046)(6072148)(201708071742011);
+	SRVR:AM4PR0401MB1940; BCL:0; PCL:0; RULEID:;
+	SRVR:AM4PR0401MB1940; 
+x-forefront-prvs: 06022AA85F
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(346002)(376002)(366004)(39380400002)(39830400003)(396003)(189003)(199004)(558084003)(106356001)(99286004)(19627405001)(105586002)(14454004)(7696005)(316002)(6436002)(97736004)(66066001)(2351001)(4270600006)(9686003)(53936002)(54896002)(55016002)(5640700003)(68736007)(6606003)(6916009)(81166006)(81156014)(2906002)(8936002)(7116003)(3660700001)(74316002)(8676002)(86362001)(5250100002)(25786009)(3480700004)(3846002)(6116002)(7736002)(5660300001)(2900100001)(6506007)(1730700003)(2501003)(478600001)(26005)(102836004)(186003)(33656002)(3280700002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:AM4PR0401MB1940;
+	H:AM4PR0401MB2052.eurprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: magosys.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: qAxpeUwknG5uOZ/OdrAl7XwHi2UAJ3GYUBg7nJHIESl8+uKZgRgSk4C6O5lZad/bQEkVnCWGW9274qGJPZmZRUY+MYA03yDEyMAEZk0+viQnvf7m6Eb0+XKxyvh6g54yJBZBi4j5dOc4RXjgFFMQczBZ5sOjuK4rMGPETL2G1pqlZTXHFwXuJi0XjFTazGWl9V2IYEw1kpJ1NNLSDyxBaP77lNUk6OvLOh8Dvz6s7nAVpmNkq7jtO8hhs78VU0SS+ZQMW/EC8EX+YtbFFUlJONJjoQ9HXDAI9Er77MNRwm1J9I/20ND6xy9jZANTKfuBTPyx0lkwDuWnfDDwC8d/nw==
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Are Windows SDKs (mingw layer) supposed to work?
+X-OriginatorOrg: magosys.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd98022e-6d12-4695-aa1f-08d582aef373
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Mar 2018 15:37:06.1750 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 30681796-2d60-4e11-a7b7-84f050998428
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM4PR0401MB1940
+Subject: SDK without qemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,39 +95,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2018 10:53:08 -0000
+X-List-Received-Date: Tue, 06 Mar 2018 11:05:36 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_AM4PR0401MB20524F7CABC4D3C44ECC6513B5DA0AM4PR0401MB2052_"
 
-SGksDQoNCj5Gcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0
-by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBCdXJ0b24sIFJvc3MNCj5T
-ZW50OiBUdWVzZGF5LCBNYXJjaCA2LCAyMDE4IDEyOjM5IFBNDQo+VG86IFJleW5hLCBEYXZpZCBM
-IChXaW5kIFJpdmVyKSA8ZGF2aWQucmV5bmFAd2luZHJpdmVyLmNvbT4NCj5DYzogWW9jdG8gPHlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmc+DQo+U3ViamVjdDogUmU6IFt5b2N0b10gQXJlIFdpbmRvd3Mg
-U0RLcyAobWluZ3cgbGF5ZXIpIHN1cHBvc2VkIHRvIHdvcms/DQo+DQo+SGF2ZSB5b3UgdHJpZWQg
-dXNpbmcgMi40IHRvIGlkZW50aWZ5IHdoZW4gaXQgYnJva2U/wqAgQ2xlYXJseSB3ZSBuZWVkIHRv
-IGV4dGVuZCB0aGUgc2VsZnRlc3Qgc28gdGhlIG1pbmd3IFNESyBpcyBhY3R1YWxseSB0ZXN0ZWQu
-Li4NCj4NCj5Sb3NzDQo+Pg0KPj5PbiA2IE1hcmNoIDIwMTggYXQgMDU6MzIsIFJleW5hLCBEYXZp
-ZCA8ZGF2aWQucmV5bmFAd2luZHJpdmVyLmNvbT4gd3JvdGU6DQo+PkhpIGFsbCwNCj4+wqANCj4+
-SSBhbSB0cnlpbmcgdG8gZW5hYmxlIGEgY3VzdG9tZXIgZm9yIHVzaW5nIFlQIFNES3Mgb24gV2lu
-ZG93cy4gSXQgYXBwYXJlbnRseSBpcyBzdXBwb3NlZCB0byB3b3JrLCBidXQgSSBhbSB1bmFibGUg
-dG8gZ2V0IHBhc3QgZmF0YWwgZXJyb3JzLg0KPj4NCj4+SSBoYXZlIGxvb2tlZCBmb3IgZG9jdW1l
-bnRhdGlvbiBhdCB0aGUgWVAgc2l0ZSBhbmQgdGhlIG1ldGEtbWluZ3cgcmVwbywgYnV0IHRvIG5v
-IGF2YWlsLg0KPj4NCj4+MSkgTXkgcHJvamVjdCBpcyBhIHNpbXBsZSBkZWZhdWx0IOKAnHFlbXV4
-ODYtNjTigJ0gd2l0aCBZUC0yLjUgSEVBRCwgd2l0aCB0aGUgbGF0ZXN0IOKAnG1ldGEtbWluZ3fi
-gJ0gbGF5ZXIgYWRkZWQgYW5kIDxTREtNQUNISU5FID89ICJpNjg2LW1pbmd3MzIiPi4NCj4+wqAN
-Cj4+VGhlIFNESyBidWlsZHMgZmluZSBhbmQgSSBnZXQgdGhlIOKAnCoueHrigJ0gZ2VuZXJhdGVk
-IGZpbGUuDQo+PsKgDQo+PjIpIEhvd2V2ZXIsIHdoZW4gSSB1c2UgN1pJUCB0byBleHRyYWN0IGl0
-IG9uIG15IFdpbmRvd3MgaG9zdCAod2hpY2ggaXMgcmVjb21tZW5kZWQgZm9yIFhZIGZpbGVzKSwg
-SSBnZXQgc2V2ZXJhbCBmYXRhbCBpc3N1ZXMuDQo+PsKgDQo+PsKgIChhKSBJIGdldCBtb3JlIHRo
-YW4gYSBodW5kcmVkIGVycm9ycyDigJxDYW4gbm90IGNyZWF0ZSBzeW1ib2xpYyBsaW5rOiBBY2Nl
-c3MgaXMgZGVuaWVk4oCdLiANCj4+wqANCj4+V2hpbGUgSSBkbyBub3QgY2FyZSBhYm91dCB0aGUg
-b25lcyBmb3IgdGhlIGJpbiB0b29scyBpbiB0aGUgc3lzcm9vdCwgSSBkbyBjYXJlIHRoYXQgbW9z
-dCBvZiB0aGUgY3Jvc3MgdG9vbGNoYWluIEVYRSBmaWxlcyBhcmUgdGh1c2x5IGJyb2tlbiwgcGx1
-cyBtYW55IG9mIHRoZSBsaWJyYXJpZXMgYW5kIGhlYWRlciBmaWxlcyBpbiB0aGUgc3lzcm9vdC4N
-Cj4+wqANCj4+QW0gSSBtaXNzaW5nIGEgc3RlcD8NCg0KU3ltYm9saWMgbGluayBlcnJvcnMgY291
-bGQgYmUgcmVsYXRlZCB0byB0aGUgZmlsZXN5c3RlbSBhcyBGQVQgaGFzIG5vIHN1cHBvcnQgZm9y
-IHN5bWJvbGljIGxpbmtzLiBIYXZlIHlvdSB0cmllZCBpdCBvbiBhbiBOVEZTIHBhcnRpdGlvbj8N
-Cg0KQmVzdCBSZWdhcmRzLA0KTWF4aW4NCg0KIA0K
+--_000_AM4PR0401MB20524F7CABC4D3C44ECC6513B5DA0AM4PR0401MB2052_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+Is there a way to build an SDK without qemu?
+
+
+Avishay
+
+
+
+--_000_AM4PR0401MB20524F7CABC4D3C44ECC6513B5DA0AM4PR0401MB2052_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p style=3D"margin-top:0;margin-bottom:0">Is there a way to build an SDK wi=
+thout qemu?</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0">Avishay</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+<p style=3D"margin-top:0;margin-bottom:0"><br>
+</p>
+</div>
+</body>
+</html>
+
+--_000_AM4PR0401MB20524F7CABC4D3C44ECC6513B5DA0AM4PR0401MB2052_--
