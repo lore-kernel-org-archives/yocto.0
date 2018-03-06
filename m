@@ -1,33 +1,62 @@
-Return-Path: <mircea.gliga@vitheia.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9196E00DE5; Tue,  6 Mar 2018 04:28:05 -0800 (PST)
+	id BC02BE00ED4; Tue,  6 Mar 2018 04:28:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.53 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEAF4E00A61
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 04:28:03 -0800 (PST)
-Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
-	(authenticated bits=0)
-	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id w26CS1va031834
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
-	verify=NO)
-	for <yocto@yoctoproject.org>; Tue, 6 Mar 2018 14:28:01 +0200
-To: yocto@yoctoproject.org
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f53.google.com (mail-it0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9EBFE00E44
+	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 04:28:26 -0800 (PST)
+Received: by mail-it0-f53.google.com with SMTP id k79so14535255ita.2
+	for <yocto@yoctoproject.org>; Tue, 06 Mar 2018 04:28:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=8SNk37ArD1KlAJM0Oz8WnumMQx4IUND+07JasAw7sE0=;
+	b=Q20Ks6XByKl22Poz2BM80t26kjcXn1Zppz7rLRKUAyUnC9tEdi/CZY8119sUIn50nH
+	GYtnuT4Wjc8z0uqbYZI140qYOi8B5neO+n8sYRXt/9yL9NwlzTaFA+aUz9xW0ebNoDzY
+	QZ5cD0cCqU8TKpe52eWCUMToudXkSRSDJrcSdX4KE0TLFCj3sdvRKIdFr+OhRXBFJ95p
+	6cTta4fReKXCjl7JlswFaAWjJHYvZvkN1EmWn9RQy0fz8uNY6svYi5vUAEe+yoP5gD5m
+	o3Q/FPu3ecezZAKfE3unpMxK2u66AwhjCl8Ebzlhnd41YIoikK9/BPW0pdFo2j6xNTO6
+	pvOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=8SNk37ArD1KlAJM0Oz8WnumMQx4IUND+07JasAw7sE0=;
+	b=FwHNO2uGXSmkK0vXiUptHEV/o0QQKV4Ug3Bp8gMz3TJPHXIoNNDMmFx+RLlkVo/Evw
+	SEuKsVc9dSpGBOJXk4pDIqopNZqantUUJ7LSiVuzEcpCYlA75GKI+qBAVXE9XMEuwyYy
+	hNpqZGQxKMKRVrutaz5OwHvAd8CuGUs1bbqA/iubijNlH3uXd6xCLOlTqAxA8EV4tvXW
+	LvGN+Nb9zeFFqdYOqv5p11EkFP0NhW0wsi1ObE9ZRNUKXkG2mDlfKREv6c02O1SJZq99
+	0IJ04lq7tBohhxy51ntXsu0FBHW4xczdlV//A5Ybymj4k0YIG5mNFP1v+1oFeL1G1Xb/
+	AuqA==
+X-Gm-Message-State: AElRT7HDH08/b4HNOe5defs3bYenC9G/JpfP68jJqGFCTIey7SBYlK7r
+	eCqLK6me1P6bqag7x7ZY1gBHrHBVBtDTIRhIYxhpBAjQ
+X-Google-Smtp-Source: AG47ELu2DHFuShesDOTjg+8RjwKq1AAgn97eMTr5iXb9Ncad0zvxQpMerbDkUIdIIQbFaYOEvC09MsGiFmgmyMfCdgQ=
+X-Received: by 10.36.36.144 with SMTP id f138mr17213918ita.131.1520339305924; 
+	Tue, 06 Mar 2018 04:28:25 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.107.30.9 with HTTP; Tue, 6 Mar 2018 04:28:05 -0800 (PST)
+In-Reply-To: <VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
 References: <VI1P192MB0143C3B885E5344B5BEB65308DDA0@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
 	<VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
-From: Mircea Gliga <mircea.gliga@vitheia.com>
-Message-ID: <1a4dfa48-c49b-8d52-93ce-03c70258fd93@vitheia.com>
-Date: Tue, 6 Mar 2018 14:28:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
-MIME-Version: 1.0
-In-Reply-To: <VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 6 Mar 2018 12:28:05 +0000
+Message-ID: <CAJTo0Lbg0UcoBeKRTC-xoSQ+StVsnzt4FaZTBOqOB1+1mc7BCg@mail.gmail.com>
+To: Vincent Daanen <vincent.daanen@orthotaxy.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: bbappend file not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,213 +69,203 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2018 12:28:06 -0000
-Content-Type: multipart/alternative;
-	boundary="------------189C8B00319492E22BD7A5FE"
-Content-Language: en-US
+X-List-Received-Date: Tue, 06 Mar 2018 12:28:33 -0000
+Content-Type: multipart/alternative; boundary="001a1147cd3044f6b10566bd94fb"
 
---------------189C8B00319492E22BD7A5FE
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+--001a1147cd3044f6b10566bd94fb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Is your layer present in build/conf/bblayers.conf ?
+Does your layer.conf tell bitbake to read bbappends?  Should be something
+like:
 
-On 06/03/18 14:07, Vincent Daanen wrote:
->
+BBFILES +=3D "${LAYERDIR}/recipes-*/*/*.bb \
+            ${LAYERDIR}/recipes-*/*/*.bbappend"
+
+Ross
+
+On 6 March 2018 at 12:07, Vincent Daanen <vincent.daanen@orthotaxy.com>
+wrote:
+
 > Dears,
 >
-> I want to build an image using systemd and system-networkd as network 
+>
+>
+> I want to build an image using systemd and system-networkd as network
 > manager and set static ip address to eth0.
+>
+>
 >
 > To do so, I use a bbappend file to systemd.
 >
-> The problem is that the systemd_%.bbappend file does not appear when 
-> calling bitbake-layers show-appends. I’m quite sure it is not 
-> processed because when a voluntary add a typo, it does not break the 
-> bitbake process.
+>
+>
+> The problem is that the systemd_%.bbappend file does not appear when
+> calling bitbake-layers show-appends. I=E2=80=99m quite sure it is not pro=
+cessed
+> because when a voluntary add a typo, it does not break the bitbake proces=
+s.
+>
+>
 >
 > What did I do wrong ??
 >
-> Below is my “files architecture”:
+>
+>
+> Below is my =E2=80=9Cfiles architecture=E2=80=9D:
 >
 > Yocto
 >
->  |-- Sources (Rocko 2.4.1)
+>  |-- Sources (Rocko 2.4.1)
 >
->   |-- myDir
+>   |-- myDir
 >
->         |-- build
+>         |-- build
 >
->               |-- conf
+>               |-- conf
 >
->                          Local.conf
+>                          Local.conf
 >
->         |-- meta-myLayer
+>         |-- meta-myLayer
 >
->               |-- conf
+>               |-- conf
 >
->               |-- recipes-core
+>               |-- recipes-core
 >
->                     |-- images
+>                     |-- images
 >
->                           my-image.bb
+>                           my-image.bb
 >
->                     |-- systemd
+>                     |-- systemd
 >
->             systemd_%.bbappend
+>                           systemd_%.bbappend
 >
->                           |-- system
+>                           |-- system
 >
->                                 eth.network
+>                                 eth.network
 >
-> The target is a generic x86_64 board (AAEON GENE BT 05 with J1900 
+>
+>
+> The target is a generic x86_64 board (AAEON GENE BT 05 with J1900
 > processor).
 >
 > Host system is ubuntu 16.04 LTS
 >
+>
+>
+>
+>
+>
+>
 > Thanks
+>
+>
 >
 > Vince
 >
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 >
 
+--001a1147cd3044f6b10566bd94fb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------189C8B00319492E22BD7A5FE
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+<div dir=3D"ltr">Does your layer.conf tell bitbake to read bbappends?=C2=A0=
+ Should be something like:<div><div><br></div><div><div>BBFILES +=3D &quot;=
+${LAYERDIR}/recipes-*/*/*.bb \</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 ${LAYERDIR}/recipes-*/*/*.bbappend&quot;</div></div><div><br></div>=
+<div>Ross</div></div></div><div class=3D"gmail_extra"><br><div class=3D"gma=
+il_quote">On 6 March 2018 at 12:07, Vincent Daanen <span dir=3D"ltr">&lt;<a=
+ href=3D"mailto:vincent.daanen@orthotaxy.com" target=3D"_blank">vincent.daa=
+nen@orthotaxy.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote=
+" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=windows-1252">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Is your layer present in build/conf/bblayers.conf ?<br>
-    <br>
-    <div class="moz-cite-prefix">On 06/03/18 14:07, Vincent Daanen
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Dears,<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">I want to build an image using systemd and
-          system-networkd as network manager and set static ip address
-          to eth0.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">To do so, I use a bbappend file to systemd.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">The problem is that the systemd_%.bbappend
-          file does not appear when calling bitbake-layers show-appends.
-          I’m quite sure it is not processed because when a voluntary
-          add a typo, it does not break the bitbake process.<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">What did I do wrong ??<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Below is my “files architecture”:<o:p></o:p></p>
-        <p class="MsoNormal">Yocto<o:p></o:p></p>
-        <p class="MsoNormal"> |-- Sources (Rocko 2.4.1)<o:p></o:p></p>
-        <p class="MsoNormal">  |-- myDir<o:p></o:p></p>
-        <p class="MsoNormal">        |-- build<o:p></o:p></p>
-        <p class="MsoNormal">              |-- conf<o:p></o:p></p>
-        <p class="MsoNormal">                         Local.conf<o:p></o:p></p>
-        <p class="MsoNormal">        |-- meta-myLayer <o:p></o:p></p>
-        <p class="MsoNormal">              |-- conf<o:p></o:p></p>
-        <p class="MsoNormal">              |-- recipes-core<o:p></o:p></p>
-        <p class="MsoNormal">                    |-- images<o:p></o:p></p>
-        <p class="MsoNormal">                          my-image.bb<o:p></o:p></p>
-        <p class="MsoNormal">                    |-- systemd<o:p></o:p></p>
-        <p class="MsoNormal">             
-                      systemd_%.bbappend<o:p></o:p></p>
-        <p class="MsoNormal">                          |-- system<o:p></o:p></p>
-        <p class="MsoNormal">                                eth.network<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">The target is a generic x86_64 board (AAEON
-          GENE BT 05 with J1900 processor).<o:p></o:p></p>
-        <p class="MsoNormal">Host system is ubuntu 16.04 LTS<o:p></o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal">Thanks<span
-style="font-family:&quot;Arial&quot;,sans-serif;color:#222222;background:white;mso-fareast-language:EN-GB"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span lang="FR"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span lang="FR">Vince<o:p></o:p></span></p>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
 
---------------189C8B00319492E22BD7A5FE--
+
+
+
+<div lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
+<div class=3D"m_5944530671759123039WordSection1">
+<p class=3D"MsoNormal">Dears,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I want to build an image using systemd and system-ne=
+tworkd as network manager and set static ip address to eth0.<u></u><u></u><=
+/p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">To do so, I use a bbappend file to systemd.<u></u><u=
+></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">The problem is that the systemd_%.bbappend file does=
+ not appear when calling bitbake-layers show-appends. I=E2=80=99m quite sur=
+e it is not processed because when a voluntary add a typo, it does not brea=
+k the bitbake process.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">What did I do wrong ??<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Below is my =E2=80=9Cfiles architecture=E2=80=9D:<u>=
+</u><u></u></p>
+<p class=3D"MsoNormal">Yocto<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0|-- Sources (Rocko 2.4.1)<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0 |-- myDir<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0|-- build=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0|-- conf<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0<wbr>Local.conf<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0|-- meta-=
+myLayer <u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0|-- conf<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0|-- recipes-core<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |-- images<=
+u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 <a href=3D"http://my-image.bb" target=3D"_blank">m=
+y-image.bb</a><u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |-- systemd=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0systemd_%.bbappend<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0|-- system<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0 eth.netwo=
+rk<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">The target is a generic x86_64 board (AAEON GENE BT =
+05 with J1900 processor).<u></u><u></u></p>
+<p class=3D"MsoNormal">Host system is ubuntu 16.04 LTS<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks<span style=3D"font-family:&quot;Arial&quot;,s=
+ans-serif;color:#222222;background:white"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"FR"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"FR">Vince<u></u><u></u></span></p>
+</div>
+</div>
+
+<br>--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+<br></blockquote></div><br></div>
+
+--001a1147cd3044f6b10566bd94fb--
