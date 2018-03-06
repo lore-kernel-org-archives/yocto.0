@@ -1,17 +1,16 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <vincent.daanen@orthotaxy.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 05375E00E02; Tue,  6 Mar 2018 11:14:15 -0800 (PST)
+	id 8C107E00AF2; Tue,  6 Mar 2018 11:16:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.214.41 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (kratsg[at]gmail.com)
+	*      [104.47.2.90 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,48 +19,73 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-it0-f41.google.com (mail-it0-f41.google.com
-	[209.85.214.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90CD5E00843
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 11:14:13 -0800 (PST)
-Received: by mail-it0-f41.google.com with SMTP id c11so182747ith.4
-	for <yocto@yoctoproject.org>; Tue, 06 Mar 2018 11:14:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=jTeaRZttUeGsFk9ZYqYSrleROv/Fw8u/m5CPZb2H1VA=;
-	b=QkX+R/QomG+8QXbtHidOM8BcROlM69b1/7itHuJojEeiINU28qmAEWfuJXjAuQ1Faa
-	HLEK+CF3hM2CIRH/UxD3cot5JSrcUH8l8eLwHOXf3rC0Cu+LacYb3AU7UHQw0XvD1N+1
-	+JEW7gR6TIXpBxAN+jR/yUnxLPPIRdkUc0OG50OctzlW97iMIIcRU8P12YvcLgW4jvDt
-	Qb6ANep53MTI/z1Jb6IucqzEiJdVWBiPpjRLBx+z+OUzq6gFzIgpf7b0HbWESXlsrvp1
-	0+b+PaRdLHFVmA/Wqy+QCeZpxvoacX7pwoXW6XmfD3jWZOeaQks926hUSbW3AuVaPv+K
-	QzBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=jTeaRZttUeGsFk9ZYqYSrleROv/Fw8u/m5CPZb2H1VA=;
-	b=XElS/QTd6XL2SNAZV3UopOdUsB/SIrtRpIFmKtZcuDnVubbAUrpDobC+n+IyCfccfM
-	Itk1r+PWzTyIgiOKLND/cdpBSU1k3xFG/v7Z3G+Cn5M1sq0vK80deum6O6WnXEE0H0Dh
-	rq6FJ6lkvXckrrzR0Kuuk8493M+BY8wqRE36OGe/lEI2qq8bC1MjJKXUQTQKcQ+yJfWl
-	aw9mrZyv4nzAUCyJ4b66SuiekGeVeuy7xBb0r+zdoItDMNamoHV/Y4nE76w5xI3qRLyR
-	0pj18KtqUPMEIWAaP+juzfEbXklvmYdGs4TjR5X9bBr9otiMp3MV7gPays+0r1PuvUSE
-	dQtA==
-X-Gm-Message-State: AElRT7FeMnw/qugCc7F8dOO7HQU2kkB0r1EBYiJ6zFupv6zH6A6F1Aq5
-	gEpm3vcq0GZfqboeshJzIw/Jwbd9e/d3eCPR/58=
-X-Google-Smtp-Source: AG47ELv7zyDgUdZhmFNEuegZiMb+G/6UhVA68z+OuNCRv8T9WGU3Eyhqqub7A0JHeshfyVGFtvDkwyegDioHu7Oc8PY=
-X-Received: by 10.36.93.206 with SMTP id w197mr20693157ita.144.1520363652613; 
-	Tue, 06 Mar 2018 11:14:12 -0800 (PST)
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-db5eur01on0090.outbound.protection.outlook.com [104.47.2.90])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32A12E00843
+	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 11:16:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orthotaxy.com;
+	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+	bh=lZX6l2yRzwqOo8YewRj3LHqjW4nikm3FDFXK0moa0fo=;
+	b=C/hK0VFtCw1sKtmthJGkA6CMg9rfP+HDO9X9DT5HoiLhPWL8nMj70vzi/oON3oqqXoIlDAniAPB4mJ2tDrXEGvn2QhY4L43t0MeWnkqvnqk7bG9Xv3j0geQQh2MB7fdAzinQ0AqOOJu4Mgz8L9FQd97AClCcP9wew20Bdukieqw=
+Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM (10.175.180.135) by
+	VI1P192MB0032.EURP192.PROD.OUTLOOK.COM (10.175.179.142) with Microsoft
+	SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
+	15.20.548.13; Tue, 6 Mar 2018 12:42:42 +0000
+Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
+	([fe80::b85b:37d9:45a2:c505]) by VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
+	([fe80::b85b:37d9:45a2:c505%18]) with mapi id 15.20.0548.016;
+	Tue, 6 Mar 2018 12:42:42 +0000
+From: Vincent Daanen <vincent.daanen@orthotaxy.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] bbappend file not used
+Thread-Index: AdO0lMKvnpDsf3W1QXCYaWCWinyrewAru2uAAAC4xYAAAGQpkA==
+Date: Tue, 6 Mar 2018 12:42:42 +0000
+Message-ID: <VI1P192MB01437081F506141ADF411F348DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+References: <VI1P192MB0143C3B885E5344B5BEB65308DDA0@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+	<VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+	<CAJTo0Lbg0UcoBeKRTC-xoSQ+StVsnzt4FaZTBOqOB1+1mc7BCg@mail.gmail.com>
+In-Reply-To: <CAJTo0Lbg0UcoBeKRTC-xoSQ+StVsnzt4FaZTBOqOB1+1mc7BCg@mail.gmail.com>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=vincent.daanen@orthotaxy.com; 
+x-originating-ip: [152.77.102.34]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; VI1P192MB0032;
+	7:vNh6bYsH8d3SsnO8meZJYCtKXBJ/NwhXrPFGtOniVNal/8Bkfmkc7dHyEWUuH4OQDBhrDcTNCLyTYuSBaOIrbf0v0HuVWkP88xdkhi6kVe2jz+njrKKf/ejnyAUnegBySUlaCywabps+2Chh8wbab0c5qqZURGYUXFA6rjocJue26O3wNz+DPKMttWfwE9jEf7LpwtheXaE2/SQQqHA5w92plbNkWNXzoeN4HUc5jg+6KkkK02fc25wBObnQk1yx
+x-ms-exchange-antispam-srfa-diagnostics: SSOS;
+x-ms-office365-filtering-correlation-id: 998e3c52-8301-42a8-9239-08d5835fc13a
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
+	RULEID:(7020095)(4652020)(7021125)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(5600026)(4604075)(3008032)(2017052603328)(7153060)(7193020);
+	SRVR:VI1P192MB0032; 
+x-ms-traffictypediagnostic: VI1P192MB0032:
+x-microsoft-antispam-prvs: <VI1P192MB0032285C0AC067CDEA12B05C8DD90@VI1P192MB0032.EURP192.PROD.OUTLOOK.COM>
+x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155)(228905959029699); 
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(6040501)(2401047)(5005006)(8121501046)(93006095)(93001095)(10201501046)(3002001)(3231220)(944501244)(52105095)(6041288)(20161123558120)(20161123564045)(20161123560045)(2016111802025)(20161123562045)(6043046)(6072148)(201708071742011);
+	SRVR:VI1P192MB0032; BCL:0; PCL:0; RULEID:; SRVR:VI1P192MB0032; 
+x-forefront-prvs: 06036BD506
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(376002)(396003)(346002)(39380400002)(366004)(39830400003)(189003)(199004)(6116002)(790700001)(3846002)(106356001)(6436002)(33656002)(606006)(97736004)(2906002)(4326008)(25786009)(55016002)(2900100001)(76176011)(9686003)(54896002)(2950100002)(53936002)(6306002)(6246003)(6916009)(5250100002)(316002)(5660300001)(81166006)(53386004)(8676002)(8936002)(99286004)(6506007)(7696005)(26005)(102836004)(236005)(81156014)(105586002)(86362001)(3660700001)(7736002)(186003)(14454004)(3280700002)(66066001)(74316002)(966005)(229853002)(68736007)(478600001)(53546011);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1P192MB0032;
+	H:VI1P192MB0143.EURP192.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: orthotaxy.com does not designate
+	permitted sender hosts)
+x-microsoft-antispam-message-info: tEf7MDsPMvvRMNsIfqLYwrlP95xfjAN/nUqPD+uCo6AFC7lkJxJCDc9zDDUlsq3ybnEEKO2f4fqcrdGTkC9fWzsSSf+iJi/F8V6Kz1w1MUqMLcNZmG3Xf/JnusmeUfkiJ2U5nVhX3nuYpll6uVU90IsBPGXpRpG6uLONeq63DbAa4O6VAbrm4SPEGmEfmgMOySgS5Z3tXPExLJcqY9wLuKFIwJllTtX7ZpfEBRVqdp3okT1o7wUo8tDaBdiPFDySC7nxfKv9md4jG4mRPCo+MEtF9Dnj9BizBcGZbQQPCetBmpi4AQwbzF4rQtSu/Cs/xUlx73qloXgtkWWl0JytFA==
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
-References: <CAFzUWGnMon5XzCaRiDMpd=UBOBOX2EBFECkg2UzZTxwLnxkEvQ@mail.gmail.com>
-	<CAJTo0LZmVZkR1dFtVqsc0M4jDO21F+TUUE2AKO2rmHj9jLEgdw@mail.gmail.com>
-	<2e1aacc2-a6a2-4667-b258-42e1599aac79@balister.org>
-In-Reply-To: <2e1aacc2-a6a2-4667-b258-42e1599aac79@balister.org>
-From: Giordon Stark <kratsg@gmail.com>
-Date: Tue, 06 Mar 2018 19:14:00 +0000
-Message-ID: <CAFzUWGmBeaEDpmk_Xdkm2qO3=z3NBsMExvp_kr6iFgzSdGAZzQ@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: "N:" <yocto@yoctoproject.org>
-Subject: Re: Bitbake recipe using CMake that requires python-six as part of compiling?
+X-OriginatorOrg: orthotaxy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 998e3c52-8301-42a8-9239-08d5835fc13a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2018 12:42:42.8828 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0c838133-9c42-4d53-8cbc-7a36ef5279a7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P192MB0032
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: bbappend file not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,313 +97,219 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2018 19:14:15 -0000
-Content-Type: multipart/alternative; boundary="001a1143ac2e718a7b0566c33f38"
+X-List-Received-Date: Tue, 06 Mar 2018 19:16:29 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_VI1P192MB01437081F506141ADF411F348DD90VI1P192MB0143EURP_"
 
---001a1143ac2e718a7b0566c33f38
-Content-Type: text/plain; charset="UTF-8"
+--_000_VI1P192MB01437081F506141ADF411F348DD90VI1P192MB0143EURP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Philip,
+WWVzIHRoZXNlIGxpbmVzIGFyZSBpbiB0aGUgbGF5ZXIuY29uZiBmaWxlDQoNCkRlIDogQnVydG9u
+LCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KRW52b3nDqSA6IG1hcmRpIDYg
+bWFycyAyMDE4IDEzOjI4DQrDgCA6IFZpbmNlbnQgRGFhbmVuIDx2aW5jZW50LmRhYW5lbkBvcnRo
+b3RheHkuY29tPg0KQ2MgOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpPYmpldCA6IFJlOiBbeW9j
+dG9dIGJiYXBwZW5kIGZpbGUgbm90IHVzZWQNCg0KRG9lcyB5b3VyIGxheWVyLmNvbmYgdGVsbCBi
+aXRiYWtlIHRvIHJlYWQgYmJhcHBlbmRzPyAgU2hvdWxkIGJlIHNvbWV0aGluZyBsaWtlOg0KDQpC
+QkZJTEVTICs9ICIke0xBWUVSRElSfS9yZWNpcGVzLSovKi8qLmJiIFwNCiAgICAgICAgICAgICR7
+TEFZRVJESVJ9L3JlY2lwZXMtKi8qLyouYmJhcHBlbmQiDQoNClJvc3MNCg0KT24gNiBNYXJjaCAy
+MDE4IGF0IDEyOjA3LCBWaW5jZW50IERhYW5lbiA8dmluY2VudC5kYWFuZW5Ab3J0aG90YXh5LmNv
+bTxtYWlsdG86dmluY2VudC5kYWFuZW5Ab3J0aG90YXh5LmNvbT4+IHdyb3RlOg0KRGVhcnMsDQoN
+Ckkgd2FudCB0byBidWlsZCBhbiBpbWFnZSB1c2luZyBzeXN0ZW1kIGFuZCBzeXN0ZW0tbmV0d29y
+a2QgYXMgbmV0d29yayBtYW5hZ2VyIGFuZCBzZXQgc3RhdGljIGlwIGFkZHJlc3MgdG8gZXRoMC4N
+Cg0KVG8gZG8gc28sIEkgdXNlIGEgYmJhcHBlbmQgZmlsZSB0byBzeXN0ZW1kLg0KDQpUaGUgcHJv
+YmxlbSBpcyB0aGF0IHRoZSBzeXN0ZW1kXyUuYmJhcHBlbmQgZmlsZSBkb2VzIG5vdCBhcHBlYXIg
+d2hlbiBjYWxsaW5nIGJpdGJha2UtbGF5ZXJzIHNob3ctYXBwZW5kcy4gSeKAmW0gcXVpdGUgc3Vy
+ZSBpdCBpcyBub3QgcHJvY2Vzc2VkIGJlY2F1c2Ugd2hlbiBhIHZvbHVudGFyeSBhZGQgYSB0eXBv
+LCBpdCBkb2VzIG5vdCBicmVhayB0aGUgYml0YmFrZSBwcm9jZXNzLg0KDQpXaGF0IGRpZCBJIGRv
+IHdyb25nID8/DQoNCkJlbG93IGlzIG15IOKAnGZpbGVzIGFyY2hpdGVjdHVyZeKAnToNCllvY3Rv
+DQogfC0tIFNvdXJjZXMgKFJvY2tvIDIuNC4xKQ0KICB8LS0gbXlEaXINCiAgICAgICAgfC0tIGJ1
+aWxkDQogICAgICAgICAgICAgIHwtLSBjb25mDQogICAgICAgICAgICAgICAgICAgICAgICAgTG9j
+YWwuY29uZg0KICAgICAgICB8LS0gbWV0YS1teUxheWVyDQogICAgICAgICAgICAgIHwtLSBjb25m
+DQogICAgICAgICAgICAgIHwtLSByZWNpcGVzLWNvcmUNCiAgICAgICAgICAgICAgICAgICAgfC0t
+IGltYWdlcw0KICAgICAgICAgICAgICAgICAgICAgICAgICBteS1pbWFnZS5iYjxodHRwOi8vbXkt
+aW1hZ2UuYmI+DQogICAgICAgICAgICAgICAgICAgIHwtLSBzeXN0ZW1kDQogICAgICAgICAgICAg
+ICAgICAgICAgICAgIHN5c3RlbWRfJS5iYmFwcGVuZA0KICAgICAgICAgICAgICAgICAgICAgICAg
+ICB8LS0gc3lzdGVtDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV0aC5uZXR3b3Jr
+DQoNClRoZSB0YXJnZXQgaXMgYSBnZW5lcmljIHg4Nl82NCBib2FyZCAoQUFFT04gR0VORSBCVCAw
+NSB3aXRoIEoxOTAwIHByb2Nlc3NvcikuDQpIb3N0IHN5c3RlbSBpcyB1YnVudHUgMTYuMDQgTFRT
+DQoNCg0KDQpUaGFua3MNCg0KVmluY2UNCg0KLS0NCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJv
+amVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRwczovL2xpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
 
-That was it indeed! I've gotten it working. I don't see "python-six-native"
-as a valid recipe in layers.openembedded.org. Is this a special case or is
-there a way to identify these sorts of packages in the future?
+--_000_VI1P192MB01437081F506141ADF411F348DD90VI1P192MB0143EURP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-open62541-0.3+git999-r0 do_compile: NOTE: open62541: compiling from
-external source tree /local/d4/gstark/poky/build/workspace/sources/open62541
-ERROR: open62541-0.3+git999-r0 do_package: QA Issue: open62541:
-Files/directories were installed but not shipped in any package:
-  /usr/lib/cmake
-  /usr/lib/cmake/open62541ConfigVersion.cmake
-  /usr/lib/cmake/open62541Targets.cmake
-  /usr/lib/cmake/open62541-config.cmake
-  /usr/lib/cmake/open62541Targets-debug.cmake
-Please set FILES such that these items are packaged. Alternatively if they
-are unneeded, avoid installing them or delete them within do_install.
-open62541: 5 installed and not shipped files. [installed-vs-shipped]
-ERROR: open62541-0.3+git999-r0 do_package: Fatal QA errors found, failing
-task.
-ERROR: open62541-0.3+git999-r0 do_package: Function failed: do_package
-ERROR: Logfile of failure stored in:
-/local/d4/gstark/poky/build/tmp/work/aarch64-poky-linux/open62541/0.3+git999-r0/temp/log.do_package.14179
-ERROR: Task
-(/local/d4/gstark/poky/build/workspace/recipes/open62541/open62541_git.bb:do_package)
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 506 tasks of which 492 didn't need to be
-rerun and 1 failed.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1z
+b0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJw
+bGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25v
+cm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90
+dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21z
+by1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5z
+LXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxl
+LXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJ
+bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
+NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0
+O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNw
+aWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHht
+bD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBk
+YXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0K
+PGJvZHkgbGFuZz0iRU4tR0IiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFz
+cz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJtc28t
+ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+WWVzIHRoZXNlIGxpbmVzIGFyZSBpbiB0aGUgbGF5ZXIu
+Y29uZiBmaWxlDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkZSIj5EZSZu
+YnNwOzo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkZSIj4gQnVydG9uLCBSb3NzIFttYWlsdG86cm9z
+cy5idXJ0b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+RW52b3nDqSZuYnNwOzo8L2I+IG1hcmRpIDYg
+bWFycyAyMDE4IDEzOjI4PGJyPg0KPGI+w4AmbmJzcDs6PC9iPiBWaW5jZW50IERhYW5lbiAmbHQ7
+dmluY2VudC5kYWFuZW5Ab3J0aG90YXh5LmNvbSZndDs8YnI+DQo8Yj5DYyZuYnNwOzo8L2I+IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5PYmpldCZuYnNwOzo8L2I+IFJlOiBbeW9jdG9d
+IGJiYXBwZW5kIGZpbGUgbm90IHVzZWQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5Eb2VzIHlvdXIgbGF5ZXIuY29uZiB0ZWxsIGJpdGJha2UgdG8gcmVhZCBiYmFwcGVuZHM/
+Jm5ic3A7IFNob3VsZCBiZSBzb21ldGhpbmcgbGlrZTo8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QkJGSUxFUyAmIzQzOz0gJnF1b3Q7
+JHtMQVlFUkRJUn0vcmVjaXBlcy0qLyovKi5iYiBcPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAke0xBWUVSRElSfS9yZWNpcGVzLSovKi8qLmJiYXBwZW5kJnF1b3Q7PG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+Um9zczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPk9uIDYgTWFyY2ggMjAxOCBhdCAxMjowNywgVmluY2VudCBEYWFuZW4gJmx0Ozxh
+IGhyZWY9Im1haWx0bzp2aW5jZW50LmRhYW5lbkBvcnRob3RheHkuY29tIiB0YXJnZXQ9Il9ibGFu
+ayI+dmluY2VudC5kYWFuZW5Ab3J0aG90YXh5LmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+
+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICND
+Q0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDtt
+YXJnaW4tcmlnaHQ6MGNtIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5E
+ZWFycyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
+Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
+OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkkgd2FudCB0byBidWlsZCBhbiBpbWFn
+ZSB1c2luZyBzeXN0ZW1kIGFuZCBzeXN0ZW0tbmV0d29ya2QgYXMgbmV0d29yayBtYW5hZ2VyIGFu
+ZCBzZXQgc3RhdGljIGlwIGFkZHJlc3MgdG8gZXRoMC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPlRvIGRvIHNvLCBJIHVzZSBhIGJiYXBwZW5kIGZpbGUgdG8gc3lzdGVtZC48bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdp
+bi1ib3R0b20tYWx0OmF1dG8iPlRoZSBwcm9ibGVtIGlzIHRoYXQgdGhlIHN5c3RlbWRfJS5iYmFw
+cGVuZCBmaWxlIGRvZXMgbm90IGFwcGVhciB3aGVuIGNhbGxpbmcgYml0YmFrZS1sYXllcnMgc2hv
+dy1hcHBlbmRzLiBJ4oCZbSBxdWl0ZSBzdXJlIGl0IGlzIG5vdCBwcm9jZXNzZWQgYmVjYXVzZSB3
+aGVuIGEgdm9sdW50YXJ5IGFkZCBhIHR5cG8sDQogaXQgZG9lcyBub3QgYnJlYWsgdGhlIGJpdGJh
+a2UgcHJvY2Vzcy48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
+c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPldoYXQgZGlkIEkgZG8gd3Jv
+bmcgPz88bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
+Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
+OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkJlbG93IGlzIG15IOKAnGZpbGVzIGFy
+Y2hpdGVjdHVyZeKAnTo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+WW9j
+dG88bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7fC0tIFNvdXJj
+ZXMgKFJvY2tvIDIuNC4xKTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4m
+bmJzcDsgfC0tIG15RGlyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
+ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAmbmJzcDsmbmJzcDt8LS0gYnVpbGQ8bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6
+YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3wt
+LSBjb25mPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1h
+cmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO0xvY2FsLmNvbmY8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICZuYnNwOyZu
+YnNwO3wtLSBtZXRhLW15TGF5ZXINCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
+dXRvIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDt8LS0gY29uZjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgJm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7fC0tIHJlY2lwZXMt
+Y29yZTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgfC0tIGltYWdlczxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
+LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsNCjxhIGhyZWY9Imh0dHA6Ly9teS1pbWFnZS5iYiIgdGFyZ2V0PSJf
+YmxhbmsiPm15LWltYWdlLmJiPC9hPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
+dXRvIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsgfC0tIHN5c3RlbWQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+
+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3N5c3RlbWRfJS5iYmFwcGVuZDxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
+LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgJm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
+Jm5ic3A7Jm5ic3A7Jm5ic3A7fC0tIHN5c3RlbTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
+LWFsdDphdXRvIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgZXRoLm5ldHdvcms8bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFy
+Z2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
+YWx0OmF1dG8iPlRoZSB0YXJnZXQgaXMgYSBnZW5lcmljIHg4Nl82NCBib2FyZCAoQUFFT04gR0VO
+RSBCVCAwNSB3aXRoIEoxOTAwIHByb2Nlc3NvcikuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
+b20tYWx0OmF1dG8iPkhvc3Qgc3lzdGVtIGlzIHVidW50dSAxNi4wNCBMVFM8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1i
+b3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
+dXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
+c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+VGhhbmtz
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkZSIj4m
+bmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFu
+IGxhbmc9IkZSIj5WaW5jZTwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxicj4NCi0t
+PGJyPg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+
+DQp5b2N0byBtYWlsaW5nIGxpc3Q8YnI+DQo8YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZyI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvYT48YnI+DQo8YSBocmVmPSJodHRwczov
+L2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8iIHRhcmdldD0iX2JsYW5rIj5o
+dHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG88L2E+PG86cD48L286
+cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-Summary: 1 task failed:
-  /local/d4/gstark/poky/build/workspace/recipes/open62541/open62541_git.bb:
-do_package
-Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
-
-
-I just need to remind myself of cleaning these files up :)
-
-Giordon
-
-On Tue, Mar 6, 2018 at 1:09 PM Philip Balister <philip@balister.org> wrote:
-
-> On 03/06/2018 01:42 PM, Burton, Ross wrote:
-> > Add DEPENDS=python-six
->
-> Maybe:
->
-> DEPENDS = "python-six-native"
->
-> Philip
->
-> >
-> > Ross
-> >
-> > On 6 March 2018 at 18:11, Giordon Stark <kratsg@gmail.com> wrote:
-> >
-> >> Hi all,
-> >>
-> >> I'm struggling with what should be a simple-ish recipe (I think). I'm
-> >> writing a recipe implementation for
-> https://github.com/open62541/open62541
-> >>  (open62541). So I start with
-> >>
-> >> devtool add open62541 https://github.com/open62541/open62541.git
-> >>
-> >> then I edit this, so it currently looks like this for me:
-> >>
-> >> SUMMARY = "OPC UA implementation"
-> >> LICENSE = "MPL-2.0"
-> >> LIC_FILES_CHKSUM = "file://LICENSE;md5=815ca599c9df247a0c7f619bab123dad"
-> >> SRC_URI = "gitsm://github.com/open62541/open62541.git;protocol=https"
-> >> PV = "0.3+git${SRCPV}"
-> >> SRCREV = "a6b99dc0579a53207b7dfe1d16423c2c1daa467e"
-> >>
-> >> S = "${WORKDIR}/git"
-> >>
-> >> # NOTE: unable to map the following CMake package dependencies: Check
-> >> Sphinx ClangTools LATEX MbedTLS Valgrind
-> >> DEPENDS = "openssl"
-> >>
-> >> inherit cmake pythonnative
-> >>
-> >> # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
-> >> EXTRA_OECMAKE = ""
-> >>
-> >> however, when I run devtool build open62541, I get  errors about "No
-> >> module named six":
-> >>
-> >> | make[2]: Leaving directory '/local/d4/gstark/poky/build/
-> >>
-> tmp/work/aarch64-poky-linux/open62541/0.3+git999-r0/open62541-0.3+git999'
-> >> | Traceback (most recent call last):
-> >> |   File "/local/d4/gstark/poky/build/workspace/sources/open62541/
-> >> tools/nodeset_compiler/nodeset_compiler.py", line 27, in <module>
-> >> |     from nodeset import *
-> >> |   File "/local/d4/gstark/poky/build/workspace/sources/open62541/
-> >> tools/nodeset_compiler/nodeset.py", line 30, in <module>
-> >> |     from nodes import *
-> >> |   File "/local/d4/gstark/poky/build/workspace/sources/open62541/
-> >> tools/nodeset_compiler/nodes.py", line 21, in <module>
-> >> |     from datatypes import *
-> >> |   File "/local/d4/gstark/poky/build/workspace/sources/open62541/
-> >> tools/nodeset_compiler/datatypes.py", line 29, in <module>
-> >> |     import six
-> >> | ImportError: No module named six
-> >> | CMakeFiles/open62541-generator-namespace.dir/build.make:71: recipe for
-> >> target 'src_generated/ua_namespace0.c' failed
-> >> | make[2]: *** [src_generated/ua_namespace0.c] Error 1
-> >> | make[2]: Leaving directory '/local/d4/gstark/poky/build/
-> >>
-> tmp/work/aarch64-poky-linux/open62541/0.3+git999-r0/open62541-0.3+git999'
-> >> | CMakeFiles/Makefile2:108: recipe for target
-> 'CMakeFiles/open62541-generator-namespace.dir/all'
-> >> failed
-> >> | make[1]: *** [CMakeFiles/open62541-generator-namespace.dir/all] Error
-> 2
-> >> | make[1]: *** Waiting for unfinished jobs....
-> >>
-> >> How do I get "python-six" added as part of pythonnative?
-> >>
-> >> Giordon
-> >>
-> >> --
-> >> Giordon Stark
-> >>
-> >> --
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >>
-> >>
-> >
-> >
-> >
->
--- 
-Giordon Stark
-
---001a1143ac2e718a7b0566c33f38
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Philip,<div><br></div><div>That was it indeed! I&#39;ve=
- gotten it working. I don&#39;t see &quot;python-six-native&quot; as a vali=
-d recipe in <a href=3D"http://layers.openembedded.org">layers.openembedded.=
-org</a>. Is this a special case or is there a way to identify these sorts o=
-f packages in the future?</div><div><br><div><font face=3D"monospace">open6=
-2541-0.3+git999-r0 do_compile: NOTE: open62541: compiling from external sou=
-rce tree /local/d4/gstark/poky/build/workspace/sources/open62541</font></di=
-v><div><font face=3D"monospace">ERROR: open62541-0.3+git999-r0 do_package: =
-QA Issue: open62541: Files/directories were installed but not shipped in an=
-y package:</font></div><div><font face=3D"monospace">=C2=A0 /usr/lib/cmake<=
-/font></div><div><font face=3D"monospace">=C2=A0 /usr/lib/cmake/open62541Co=
-nfigVersion.cmake</font></div><div><font face=3D"monospace">=C2=A0 /usr/lib=
-/cmake/open62541Targets.cmake</font></div><div><font face=3D"monospace">=C2=
-=A0 /usr/lib/cmake/open62541-config.cmake</font></div><div><font face=3D"mo=
-nospace">=C2=A0 /usr/lib/cmake/open62541Targets-debug.cmake</font></div><di=
-v><font face=3D"monospace">Please set FILES such that these items are packa=
-ged. Alternatively if they are unneeded, avoid installing them or delete th=
-em within do_install.</font></div><div><font face=3D"monospace">open62541: =
-5 installed and not shipped files. [installed-vs-shipped]</font></div><div>=
-<font face=3D"monospace">ERROR: open62541-0.3+git999-r0 do_package: Fatal Q=
-A errors found, failing task.</font></div><div><font face=3D"monospace">ERR=
-OR: open62541-0.3+git999-r0 do_package: Function failed: do_package</font><=
-/div><div><font face=3D"monospace">ERROR: Logfile of failure stored in: /lo=
-cal/d4/gstark/poky/build/tmp/work/aarch64-poky-linux/open62541/0.3+git999-r=
-0/temp/log.do_package.14179</font></div><div><font face=3D"monospace">ERROR=
-: Task (/local/d4/gstark/poky/build/workspace/recipes/open62541/open62541_g=
-it.bb:do_package) failed with exit code &#39;1&#39;</font></div><div><font =
-face=3D"monospace">NOTE: Tasks Summary: Attempted 506 tasks of which 492 di=
-dn&#39;t need to be rerun and 1 failed.</font></div><div><font face=3D"mono=
-space"><br></font></div><div><font face=3D"monospace">Summary: 1 task faile=
-d:</font></div><div><font face=3D"monospace">=C2=A0 /local/d4/gstark/poky/b=
-uild/workspace/recipes/open62541/open62541_git.bb:do_package</font></div><d=
-iv><font face=3D"monospace">Summary: There were 3 ERROR messages shown, ret=
-urning a non-zero exit code.</font></div></div><div><font face=3D"monospace=
-"><br></font></div><div><br></div><div>I just need to remind myself of clea=
-ning these files up :)</div><div><br></div><div>Giordon</div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr">On Tue, Mar 6, 2018 at 1:09 PM Phil=
-ip Balister &lt;<a href=3D"mailto:philip@balister.org">philip@balister.org<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On 03/06/2018 01:42 =
-PM, Burton, Ross wrote:<br>
-&gt; Add DEPENDS=3Dpython-six<br>
-<br>
-Maybe:<br>
-<br>
-DEPENDS =3D &quot;python-six-native&quot;<br>
-<br>
-Philip<br>
-<br>
-&gt;<br>
-&gt; Ross<br>
-&gt;<br>
-&gt; On 6 March 2018 at 18:11, Giordon Stark &lt;<a href=3D"mailto:kratsg@g=
-mail.com" target=3D"_blank">kratsg@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt;&gt; Hi all,<br>
-&gt;&gt;<br>
-&gt;&gt; I&#39;m struggling with what should be a simple-ish recipe (I thin=
-k). I&#39;m<br>
-&gt;&gt; writing a recipe implementation for <a href=3D"https://github.com/=
-open62541/open62541" rel=3D"noreferrer" target=3D"_blank">https://github.co=
-m/open62541/open62541</a><br>
-&gt;&gt;=C2=A0 (open62541). So I start with<br>
-&gt;&gt;<br>
-&gt;&gt; devtool add open62541 <a href=3D"https://github.com/open62541/open=
-62541.git" rel=3D"noreferrer" target=3D"_blank">https://github.com/open6254=
-1/open62541.git</a><br>
-&gt;&gt;<br>
-&gt;&gt; then I edit this, so it currently looks like this for me:<br>
-&gt;&gt;<br>
-&gt;&gt; SUMMARY =3D &quot;OPC UA implementation&quot;<br>
-&gt;&gt; LICENSE =3D &quot;MPL-2.0&quot;<br>
-&gt;&gt; LIC_FILES_CHKSUM =3D &quot;file://LICENSE;md5=3D815ca599c9df247a0c=
-7f619bab123dad&quot;<br>
-&gt;&gt; SRC_URI =3D &quot;gitsm://<a href=3D"http://github.com/open62541/o=
-pen62541.git;protocol=3Dhttps" rel=3D"noreferrer" target=3D"_blank">github.=
-com/open62541/open62541.git;protocol=3Dhttps</a>&quot;<br>
-&gt;&gt; PV =3D &quot;0.3+git${SRCPV}&quot;<br>
-&gt;&gt; SRCREV =3D &quot;a6b99dc0579a53207b7dfe1d16423c2c1daa467e&quot;<br=
->
-&gt;&gt;<br>
-&gt;&gt; S =3D &quot;${WORKDIR}/git&quot;<br>
-&gt;&gt;<br>
-&gt;&gt; # NOTE: unable to map the following CMake package dependencies: Ch=
-eck<br>
-&gt;&gt; Sphinx ClangTools LATEX MbedTLS Valgrind<br>
-&gt;&gt; DEPENDS =3D &quot;openssl&quot;<br>
-&gt;&gt;<br>
-&gt;&gt; inherit cmake pythonnative<br>
-&gt;&gt;<br>
-&gt;&gt; # Specify any options you want to pass to cmake using EXTRA_OECMAK=
-E:<br>
-&gt;&gt; EXTRA_OECMAKE =3D &quot;&quot;<br>
-&gt;&gt;<br>
-&gt;&gt; however, when I run devtool build open62541, I get=C2=A0 errors ab=
-out &quot;No<br>
-&gt;&gt; module named six&quot;:<br>
-&gt;&gt;<br>
-&gt;&gt; | make[2]: Leaving directory &#39;/local/d4/gstark/poky/build/<br>
-&gt;&gt; tmp/work/aarch64-poky-linux/open62541/0.3+git999-r0/open62541-0.3+=
-git999&#39;<br>
-&gt;&gt; | Traceback (most recent call last):<br>
-&gt;&gt; |=C2=A0 =C2=A0File &quot;/local/d4/gstark/poky/build/workspace/sou=
-rces/open62541/<br>
-&gt;&gt; tools/nodeset_compiler/nodeset_compiler.py&quot;, line 27, in &lt;=
-module&gt;<br>
-&gt;&gt; |=C2=A0 =C2=A0 =C2=A0from nodeset import *<br>
-&gt;&gt; |=C2=A0 =C2=A0File &quot;/local/d4/gstark/poky/build/workspace/sou=
-rces/open62541/<br>
-&gt;&gt; tools/nodeset_compiler/nodeset.py&quot;, line 30, in &lt;module&gt=
-;<br>
-&gt;&gt; |=C2=A0 =C2=A0 =C2=A0from nodes import *<br>
-&gt;&gt; |=C2=A0 =C2=A0File &quot;/local/d4/gstark/poky/build/workspace/sou=
-rces/open62541/<br>
-&gt;&gt; tools/nodeset_compiler/nodes.py&quot;, line 21, in &lt;module&gt;<=
-br>
-&gt;&gt; |=C2=A0 =C2=A0 =C2=A0from datatypes import *<br>
-&gt;&gt; |=C2=A0 =C2=A0File &quot;/local/d4/gstark/poky/build/workspace/sou=
-rces/open62541/<br>
-&gt;&gt; tools/nodeset_compiler/datatypes.py&quot;, line 29, in &lt;module&=
-gt;<br>
-&gt;&gt; |=C2=A0 =C2=A0 =C2=A0import six<br>
-&gt;&gt; | ImportError: No module named six<br>
-&gt;&gt; | CMakeFiles/open62541-generator-namespace.dir/build.make:71: reci=
-pe for<br>
-&gt;&gt; target &#39;src_generated/ua_namespace0.c&#39; failed<br>
-&gt;&gt; | make[2]: *** [src_generated/ua_namespace0.c] Error 1<br>
-&gt;&gt; | make[2]: Leaving directory &#39;/local/d4/gstark/poky/build/<br>
-&gt;&gt; tmp/work/aarch64-poky-linux/open62541/0.3+git999-r0/open62541-0.3+=
-git999&#39;<br>
-&gt;&gt; | CMakeFiles/Makefile2:108: recipe for target &#39;CMakeFiles/open=
-62541-generator-namespace.dir/all&#39;<br>
-&gt;&gt; failed<br>
-&gt;&gt; | make[1]: *** [CMakeFiles/open62541-generator-namespace.dir/all] =
-Error 2<br>
-&gt;&gt; | make[1]: *** Waiting for unfinished jobs....<br>
-&gt;&gt;<br>
-&gt;&gt; How do I get &quot;python-six&quot; added as part of pythonnative?=
-<br>
-&gt;&gt;<br>
-&gt;&gt; Giordon<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; Giordon Stark<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; yocto mailing list<br>
-&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@=
-yoctoproject.org</a><br>
-&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto<=
-/a><br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-</blockquote></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
-martmail=3D"gmail_signature"><div dir=3D"ltr">Giordon Stark</div></div>
-
---001a1143ac2e718a7b0566c33f38--
+--_000_VI1P192MB01437081F506141ADF411F348DD90VI1P192MB0143EURP_--
