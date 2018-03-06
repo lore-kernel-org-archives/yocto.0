@@ -1,39 +1,41 @@
-Return-Path: <philip@balister.org>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A5B2E00E7D; Tue,  6 Mar 2018 11:16:48 -0800 (PST)
+	id D3D0BE00E6A; Tue,  6 Mar 2018 11:38:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.168.135.167 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 401 seconds by postgrey-1.32 at yocto-www;
-	Tue, 06 Mar 2018 11:16:38 PST
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1690EE00E01
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 11:16:38 -0800 (PST)
-Received: (qmail 31541 invoked by uid 1003); 6 Mar 2018 19:09:59 -0000
-Received: from unknown (HELO ?192.168.11.100?)
-	(philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	6 Mar 2018 19:09:59 -0000
-To: "Burton, Ross" <ross.burton@intel.com>, Giordon Stark <kratsg@gmail.com>
-References: <CAFzUWGnMon5XzCaRiDMpd=UBOBOX2EBFECkg2UzZTxwLnxkEvQ@mail.gmail.com>
-	<CAJTo0LZmVZkR1dFtVqsc0M4jDO21F+TUUE2AKO2rmHj9jLEgdw@mail.gmail.com>
-From: Philip Balister <philip@balister.org>
-Message-ID: <2e1aacc2-a6a2-4667-b258-42e1599aac79@balister.org>
-Date: Tue, 6 Mar 2018 14:09:55 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 356B4E00A61
+	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 11:38:47 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	06 Mar 2018 11:38:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.47,432,1515484800"; d="scan'208";a="22274828"
+Received: from ngockhan-mobl.ccr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.255.171.84])
+	by fmsmga007.fm.intel.com with ESMTP; 06 Mar 2018 11:38:43 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Vincent Daanen <vincent.daanen@orthotaxy.com>
+Date: Wed, 07 Mar 2018 08:38:40 +1300
+Message-ID: <1583265.VxfrJxWJLM@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+In-Reply-To: <VI1P192MB0143DF6985039FADA3B4A1048DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+References: <VI1P192MB0143C3B885E5344B5BEB65308DDA0@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+	<CAJTo0Lbg0UcoBeKRTC-xoSQ+StVsnzt4FaZTBOqOB1+1mc7BCg@mail.gmail.com>
+	<VI1P192MB0143DF6985039FADA3B4A1048DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LZmVZkR1dFtVqsc0M4jDO21F+TUUE2AKO2rmHj9jLEgdw@mail.gmail.com>
-Cc: "N:" <yocto@yoctoproject.org>
-Subject: Re: Bitbake recipe using CMake that requires python-six as part of compiling?
+Cc: yocto@yoctoproject.org
+Subject: Re: bbappend file not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,97 +47,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2018 19:16:48 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 Mar 2018 19:38:48 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On 03/06/2018 01:42 PM, Burton, Ross wrote:
-> Add DEPENDS=python-six
+Hi Vincent,
 
-Maybe:
+On Wednesday, 7 March 2018 4:24:46 AM NZDT Vincent Daanen wrote:
+> After having spent some time to find what was wrong, I decided to rewrite
+> all the files and =E2=80=A6 the bbappend file is not processed=E2=80=A6
+>=20
+> May be there was a typo I did not see or some =E2=80=98code=E2=80=99 I co=
+pied/pasted from
+> internet included utf characters..
+>=20
+> Anyway, I can continue building my image..
 
-DEPENDS = "python-six-native"
+Er, so is the problem fixed or not? The above is a little ambiguous.
 
-Philip
+=46YI there is a technical FAQ question on this:
 
-> 
-> Ross
-> 
-> On 6 March 2018 at 18:11, Giordon Stark <kratsg@gmail.com> wrote:
-> 
->> Hi all,
->>
->> I'm struggling with what should be a simple-ish recipe (I think). I'm
->> writing a recipe implementation for https://github.com/open62541/open62541
->>  (open62541). So I start with
->>
->> devtool add open62541 https://github.com/open62541/open62541.git
->>
->> then I edit this, so it currently looks like this for me:
->>
->> SUMMARY = "OPC UA implementation"
->> LICENSE = "MPL-2.0"
->> LIC_FILES_CHKSUM = "file://LICENSE;md5=815ca599c9df247a0c7f619bab123dad"
->> SRC_URI = "gitsm://github.com/open62541/open62541.git;protocol=https"
->> PV = "0.3+git${SRCPV}"
->> SRCREV = "a6b99dc0579a53207b7dfe1d16423c2c1daa467e"
->>
->> S = "${WORKDIR}/git"
->>
->> # NOTE: unable to map the following CMake package dependencies: Check
->> Sphinx ClangTools LATEX MbedTLS Valgrind
->> DEPENDS = "openssl"
->>
->> inherit cmake pythonnative
->>
->> # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
->> EXTRA_OECMAKE = ""
->>
->> however, when I run devtool build open62541, I get  errors about "No
->> module named six":
->>
->> | make[2]: Leaving directory '/local/d4/gstark/poky/build/
->> tmp/work/aarch64-poky-linux/open62541/0.3+git999-r0/open62541-0.3+git999'
->> | Traceback (most recent call last):
->> |   File "/local/d4/gstark/poky/build/workspace/sources/open62541/
->> tools/nodeset_compiler/nodeset_compiler.py", line 27, in <module>
->> |     from nodeset import *
->> |   File "/local/d4/gstark/poky/build/workspace/sources/open62541/
->> tools/nodeset_compiler/nodeset.py", line 30, in <module>
->> |     from nodes import *
->> |   File "/local/d4/gstark/poky/build/workspace/sources/open62541/
->> tools/nodeset_compiler/nodes.py", line 21, in <module>
->> |     from datatypes import *
->> |   File "/local/d4/gstark/poky/build/workspace/sources/open62541/
->> tools/nodeset_compiler/datatypes.py", line 29, in <module>
->> |     import six
->> | ImportError: No module named six
->> | CMakeFiles/open62541-generator-namespace.dir/build.make:71: recipe for
->> target 'src_generated/ua_namespace0.c' failed
->> | make[2]: *** [src_generated/ua_namespace0.c] Error 1
->> | make[2]: Leaving directory '/local/d4/gstark/poky/build/
->> tmp/work/aarch64-poky-linux/open62541/0.3+git999-r0/open62541-0.3+git999'
->> | CMakeFiles/Makefile2:108: recipe for target 'CMakeFiles/open62541-generator-namespace.dir/all'
->> failed
->> | make[1]: *** [CMakeFiles/open62541-generator-namespace.dir/all] Error 2
->> | make[1]: *** Waiting for unfinished jobs....
->>
->> How do I get "python-six" added as part of pythonnative?
->>
->> Giordon
->>
->> --
->> Giordon Stark
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
-> 
-> 
-> 
+  https://wiki.yoctoproject.org/wiki/Technical_FAQ#I.27ve_created_a_bbappen=
+d_for_a_recipe_but_what_I.27m_setting_there_isn.27t_having_any_effect.2C_ho=
+w_do_I_fix_this.3F
+
+Cheers,
+Paul
+
+=2D-=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
 
