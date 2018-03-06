@@ -1,40 +1,65 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CC03E00E34; Mon,  5 Mar 2018 18:01:19 -0800 (PST)
+	id E4FB2E00E0A; Mon,  5 Mar 2018 19:26:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0602E0084D;
-	Mon,  5 Mar 2018 18:01:18 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id w2620iLR023037
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=OK);
-	Mon, 5 Mar 2018 18:00:45 -0800
-Received: from [128.224.162.197] (128.224.162.197) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Mon, 5 Mar 2018 18:00:43 -0800
-To: Cal Sullivan <california.l.sullivan@intel.com>,
-	<meta-intel@yoctoproject.org>, <yocto@yoctoproject.org>
-References: <1520215408-21854-1-git-send-email-Qi.Chen@windriver.com>
-	<5defbf56-e7d1-33d0-13a3-66dcd1fc819d@intel.com>
-From: ChenQi <Qi.Chen@windriver.com>
-Message-ID: <56dc198a-7216-35bd-5de2-05a28ca78768@windriver.com>
-Date: Tue, 6 Mar 2018 10:01:28 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
-	Thunderbird/45.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.54 listed in list.dnswl.org]
+Received: from mail-pg0-f54.google.com (mail-pg0-f54.google.com [74.125.83.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8825CE0083E
+	for <yocto@yoctoproject.org>; Mon,  5 Mar 2018 19:26:12 -0800 (PST)
+Received: by mail-pg0-f54.google.com with SMTP id m19so7775957pgn.1
+	for <yocto@yoctoproject.org>; Mon, 05 Mar 2018 19:26:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=4aaCo4NQS9+NiXzX2W7O84j3KzEQvOzX7oWf3kSY3Tk=;
+	b=rOJe8+8wg8WUEJfxCumjI4K3G0z2zGHHju8AnoQr69s88epiSSfx957LQbNdlLNf+6
+	BBEEIDJNVYJNQel4L+fEEP0FAkrIVu3f2Nau6FrLdXFzvoXnl2u4O/yGCWdx+J1phYfO
+	/1Xdvvu58ghs4fNbo7Fca7XiVhKF3St4PJm9p2gyKhcf/ubvVPdGpdyhmCYiXMvyRMhd
+	Yf9ecN8WlJJU3TWg+O2YVsL+Q6l+DMX01XFKMNYv0OUlwKUitySyBAnIgjTdcSPvwHuL
+	gwub62IaOKj4rI9QxNSwoS77LpE1JmOwhr3x0dBNz/NweB43ecJIBCvExSc1rIcacqo4
+	CFfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=4aaCo4NQS9+NiXzX2W7O84j3KzEQvOzX7oWf3kSY3Tk=;
+	b=p2fE08o+NC2LjyaGJhOLJ1eDRuT60zFv1cH3UYNudBGNJpLvag9MuBRCkO7XxkCZPG
+	/27HA63cBFlS6FpVB5Y5lrjqK9LlrTGzKxelzBOZpnJ7M4LzhBrOqrUNpoby406+ku6y
+	nooiH86xWNYnjQ2ciXw+i0I///238kuTG9Ec8fRtYcgCzusjG7SRcFr/cwbsbNaRbTP/
+	wNTpTRANGUghJeGmtLSykysBwCM8g5qZew/hZc2xjm0W9lukbUDhHXx89Yj4hRSiIsZl
+	8+5ow8RxcIvKJ9HIh8u23b6cAanXQDrCZzCawUe58DT8T3oAwaWNYByD9cF2qcVZ4E3e
+	05BQ==
+X-Gm-Message-State: APf1xPC1YqHA1V6MuRClfylfF55sJUh0eW/ojqp+3ayFTM7TWcpWTPhO
+	gz7oQh7WFIHi40c/T+WJievPVt7h80Ugn0d6ZkE=
+X-Google-Smtp-Source: AG47ELsXAwyFEYdrDTP8x8QgAgRb2nFs9kY7kkMvmVbltNGpBbPin+4YErb/WhO9Nb+0Hpu3CE7UyHdiuQGwb7Ew22g=
+X-Received: by 10.99.170.73 with SMTP id x9mr13969804pgo.393.1520306771562;
+	Mon, 05 Mar 2018 19:26:11 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <5defbf56-e7d1-33d0-13a3-66dcd1fc819d@intel.com>
-X-Originating-IP: [128.224.162.197]
-Subject: Re: [meta-intel] [PATCH] systemd-boot: fix bbappend file to suit latest version
+Received: by 10.100.170.69 with HTTP; Mon, 5 Mar 2018 19:25:41 -0800 (PST)
+In-Reply-To: <20180305093106.11858-1-git@andred.net>
+References: <20180305093106.11858-1-git@andred.net>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 5 Mar 2018 19:25:41 -0800
+Message-ID: <CAMKF1so01smFighV7WUB8RzndjUxE-17CiL=e_eyh-Bhs9gQoQ@mail.gmail.com>
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <git@andred.net>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-java][PATCH 00/14] openjdk-8 updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,51 +71,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2018 02:01:19 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 Mar 2018 03:26:13 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/06/2018 05:51 AM, Cal Sullivan wrote:
-> Thanks for the patch. I assume this is needed when OE-core merges the 
-> update to v236?
+On Mon, Mar 5, 2018 at 1:30 AM, Andr=C3=A9 Draszik <git@andred.net> wrote:
+> Hi,
 >
-> Thanks,
-> Cal
+> OpenJDK8 in yocto is a bit outdated, so these patches
+> - update openjdk-8 from the 1.5 year old version 102b14 to the
+>   current 162b12
+> - modernize the recipe using bitbake variable overrides
+> - enable building with 'security' flags enabled
+> - fix the aarch64 build (by using the aarch64 port, which is
+>   still separate in the OpenJDK8 series)
+> - fix the musl build (by adding appropriate patches)
 >
-
-Yes. It's needed when OE-core merges the update to v237.
-
-Best Regards,
-Chen Qi
-
-> On 03/04/2018 06:03 PM, Chen Qi wrote:
->> Fix the bbappend file to suit the latest systemd version.
->>
->> As systemd has now dropped autotools support, using ninja
->> instead of make in do_compile.
->>
->> Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
->> ---
->>   recipes-bsp/systemd-boot/systemd-boot_%.bbappend | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/recipes-bsp/systemd-boot/systemd-boot_%.bbappend 
->> b/recipes-bsp/systemd-boot/systemd-boot_%.bbappend
->> index 9e6cc16..46dd8a4 100644
->> --- a/recipes-bsp/systemd-boot/systemd-boot_%.bbappend
->> +++ b/recipes-bsp/systemd-boot/systemd-boot_%.bbappend
->> @@ -7,11 +7,11 @@ SRC_URI_append_intel-x86-common = " \
->>   PACKAGE_ARCH_intel-x86-common = "${INTEL_COMMON_PACKAGE_ARCH}"
->>     do_compile_append_intel-x86-common() {
->> -    oe_runmake linux${SYSTEMD_BOOT_EFI_ARCH}.efi.stub
->> +    ninja src/boot/efi/linux${SYSTEMD_BOOT_EFI_ARCH}.efi.stub
->>   }
->>     do_deploy_append_intel-x86-common() {
->> -    install ${B}/linux*.efi.stub ${DEPLOYDIR}
->> +    install ${B}/src/boot/efi/linux*.efi.stub ${DEPLOYDIR}
->>   }
->>     # includes rmc-boot.inc if rmc-boot is the EFI_PROVIDER
->
+> This was runtime-tested on x86-64 with both glibc and musl
+> against the 'poky' DISTRO, and compile-tested on aarch64
+> against glibc and musl.
 >
 
+
+this series looks good thanks for fixing musl port
+
+> Cheers,
+> Andre'
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
