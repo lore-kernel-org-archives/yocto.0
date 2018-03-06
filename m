@@ -1,90 +1,34 @@
-Return-Path: <vincent.daanen@orthotaxy.com>
+Return-Path: <mircea.gliga@vitheia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C56CE00DCE; Tue,  6 Mar 2018 04:22:54 -0800 (PST)
+	id E9196E00DE5; Tue,  6 Mar 2018 04:28:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.133 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 893 seconds by postgrey-1.32 at yocto-www;
-	Tue, 06 Mar 2018 04:22:50 PST
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0133.outbound.protection.outlook.com [104.47.2.133])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63CC2E00A61
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 04:22:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orthotaxy.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=UVKnVjHz63eyYcc/U6axun5hHsNCSCXk/Hl7uGX4ZpU=;
-	b=QGZon6NobWw3bPdKuJD/C0emeG74GT1U6UcVxxTVlm9KNzccaDm4j94YzqqsT2O0o6u573qBSzryke+4Q+RUNA+2LJrAr/XWiQpjN92hakwCwpKBfJTAFe8EDDol4UAfJBw3K94L451Nf4uO/hyDl0BLKorcc3M3hXXmrUk0x5M=
-Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM (10.175.180.135) by
-	VI1P192MB0157.EURP192.PROD.OUTLOOK.COM (10.175.180.137) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.548.13; Tue, 6 Mar 2018 12:07:54 +0000
-Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
-	([fe80::b85b:37d9:45a2:c505]) by VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
-	([fe80::b85b:37d9:45a2:c505%18]) with mapi id 15.20.0548.016;
-	Tue, 6 Mar 2018 12:07:54 +0000
-From: Vincent Daanen <vincent.daanen@orthotaxy.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: bbappend file not used
-Thread-Index: AdO0lMKvnpDsf3W1QXCYaWCWinyrewAru2uA
-Date: Tue, 6 Mar 2018 12:07:54 +0000
-Message-ID: <VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+Received: from zeus.integrasoft.ro (zeus.integrasoft.ro [193.231.162.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEAF4E00A61
+	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 04:28:03 -0800 (PST)
+Received: from [193.231.162.34] (echelon.integrasoft.ro [193.231.162.34])
+	(authenticated bits=0)
+	by zeus.integrasoft.ro (8.14.7/8.14.7) with ESMTP id w26CS1va031834
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NO)
+	for <yocto@yoctoproject.org>; Tue, 6 Mar 2018 14:28:01 +0200
+To: yocto@yoctoproject.org
 References: <VI1P192MB0143C3B885E5344B5BEB65308DDA0@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
-In-Reply-To: <VI1P192MB0143C3B885E5344B5BEB65308DDA0@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=vincent.daanen@orthotaxy.com; 
-x-originating-ip: [152.77.102.34]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; VI1P192MB0157;
-	7:Om0QeX+PgTQpUE4B3Su41DifvMVC3z3E+rFqGE30/Mte62vVJRGU6AR9E0jrRKFBBVy2egeUMHud31DAz63mhdHnomFTRO/CnnhJEbNzJWFa9Il8QJ26lZyIMKRs7RpaTGSLiO7DEi7PqUxLbPwCWETtL6hnVLloRSJwHk8dC6ORXpo0w12miqoqyePLkcpnPduUn8zEXntdojmInWdVnVR91i75keX/gm4aLB+NK7t3Ngkdx4YpG6yNxumhH26A
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 364e44a2-4a25-4010-afd0-08d5835ae452
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(7021125)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(5600026)(4604075)(3008032)(2017052603328)(7153060)(7193020);
-	SRVR:VI1P192MB0157; 
-x-ms-traffictypediagnostic: VI1P192MB0157:
-x-microsoft-antispam-prvs: <VI1P192MB0157FCBA89D6F4F8EF6837438DD90@VI1P192MB0157.EURP192.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040501)(2401047)(8121501046)(5005006)(3231220)(944501244)(52105095)(10201501046)(3002001)(93006095)(93001095)(6041288)(20161123564045)(20161123562045)(20161123560045)(20161123558120)(2016111802025)(6072148)(6043046)(201708071742011);
-	SRVR:VI1P192MB0157; BCL:0; PCL:0; RULEID:; SRVR:VI1P192MB0157; 
-x-forefront-prvs: 06036BD506
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(346002)(396003)(39830400003)(39380400002)(366004)(376002)(199004)(189003)(1730700003)(8676002)(478600001)(6436002)(81156014)(97736004)(3660700001)(6506007)(81166006)(74316002)(26005)(5640700003)(55016002)(54896002)(106356001)(316002)(99286004)(186003)(2351001)(6306002)(66066001)(53936002)(86362001)(102836004)(3280700002)(33656002)(5660300001)(2950100002)(2900100001)(6916009)(9686003)(5630700001)(7736002)(2501003)(68736007)(2906002)(3480700004)(8936002)(6116002)(105586002)(14454004)(3846002)(7696005)(25786009)(5250100002)(76176011)(790700001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1P192MB0157;
-	H:VI1P192MB0143.EURP192.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: orthotaxy.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: w05VQwUzbSZDDP4DPVvzbpz/ZifrlVXjNUtIYMvpb/V6RnDzmSzSTMhLkh5fnMPP29yKqhejDPg0oo0auT/dAwKbjkDvFxdkIP2Bj9MR6nGnaem0U/xWqx+gvzcyoCjuJdTPnQEKhF7kbtyQGGT5mxIVtKu0RsVUu6yBipM/pGKu5Pxh0y52jr0MxOElxd3TjOvUGR/p18WSmnBsWU2nXqE+m+B/7/IY4QcaS0Xi02OI4rz3Evps47Tyxf7ASCUjOsKiiJ6MMRgPOTMcXLO2+vBv7kqOEjISsg1vzfVWatVKQf7T9YNAKuVUy37RyIlTp/HZ07hhvIHa8QYGfdmO8Q==
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+	<VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+From: Mircea Gliga <mircea.gliga@vitheia.com>
+Message-ID: <1a4dfa48-c49b-8d52-93ce-03c70258fd93@vitheia.com>
+Date: Tue, 6 Mar 2018 14:28:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-X-OriginatorOrg: orthotaxy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 364e44a2-4a25-4010-afd0-08d5835ae452
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2018 12:07:54.2775 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0c838133-9c42-4d53-8cbc-7a36ef5279a7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P192MB0157
-Subject: bbappend file not used
+In-Reply-To: <VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+Subject: Re: bbappend file not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -96,68 +40,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2018 12:22:54 -0000
-Content-Language: fr-FR
+X-List-Received-Date: Tue, 06 Mar 2018 12:28:06 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_VI1P192MB014378FB73375D22C8AFE5838DD90VI1P192MB0143EURP_"
+	boundary="------------189C8B00319492E22BD7A5FE"
+Content-Language: en-US
 
---_000_VI1P192MB014378FB73375D22C8AFE5838DD90VI1P192MB0143EURP_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------189C8B00319492E22BD7A5FE
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Dears,
+Is your layer present in build/conf/bblayers.conf ?
 
-I want to build an image using systemd and system-networkd as network manag=
-er and set static ip address to eth0.
-
-To do so, I use a bbappend file to systemd.
-
-The problem is that the systemd_%.bbappend file does not appear when callin=
-g bitbake-layers show-appends. I'm quite sure it is not processed because w=
-hen a voluntary add a typo, it does not break the bitbake process.
-
-What did I do wrong ??
-
-Below is my "files architecture":
-Yocto
- |-- Sources (Rocko 2.4.1)
-  |-- myDir
-        |-- build
-              |-- conf
-                         Local.conf
-        |-- meta-myLayer
-              |-- conf
-              |-- recipes-core
-                    |-- images
-                          my-image.bb
-                    |-- systemd
-                          systemd_%.bbappend
-                          |-- system
-                                eth.network
-
-The target is a generic x86_64 board (AAEON GENE BT 05 with J1900 processor=
-).
-Host system is ubuntu 16.04 LTS
-
-
-
-Thanks
-
-Vince
-
---_000_VI1P192MB014378FB73375D22C8AFE5838DD90VI1P192MB0143EURP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 06/03/18 14:07, Vincent Daanen wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+> Dears,
+>
+> I want to build an image using systemd and system-networkd as network 
+> manager and set static ip address to eth0.
+>
+> To do so, I use a bbappend file to systemd.
+>
+> The problem is that the systemd_%.bbappend file does not appear when 
+> calling bitbake-layers show-appends. I’m quite sure it is not 
+> processed because when a voluntary add a typo, it does not break the 
+> bitbake process.
+>
+> What did I do wrong ??
+>
+> Below is my “files architecture”:
+>
+> Yocto
+>
+>  |-- Sources (Rocko 2.4.1)
+>
+>   |-- myDir
+>
+>         |-- build
+>
+>               |-- conf
+>
+>                          Local.conf
+>
+>         |-- meta-myLayer
+>
+>               |-- conf
+>
+>               |-- recipes-core
+>
+>                     |-- images
+>
+>                           my-image.bb
+>
+>                     |-- systemd
+>
+>             systemd_%.bbappend
+>
+>                           |-- system
+>
+>                                 eth.network
+>
+> The target is a generic x86_64 board (AAEON GENE BT 05 with J1900 
+> processor).
+>
+> Host system is ubuntu 16.04 LTS
+>
+> Thanks
+>
+> Vince
+>
+>
+>
+
+
+--------------189C8B00319492E22BD7A5FE
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Is your layer present in build/conf/bblayers.conf ?<br>
+    <br>
+    <div class="moz-cite-prefix">On 06/03/18 14:07, Vincent Daanen
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:VI1P192MB014378FB73375D22C8AFE5838DD90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
 	{font-family:"Cambria Math";
@@ -215,80 +191,62 @@ span.EmailStyle20
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+<o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Dears,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I want to build an image using systemd and system-ne=
-tworkd as network manager and set static ip address to eth0.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">To do so, I use a bbappend file to systemd.<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The problem is that the systemd_%.bbappend file does=
- not appear when calling bitbake-layers show-appends. I&#8217;m quite sure =
-it is not processed because when a voluntary add a typo, it does not break =
-the bitbake process.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">What did I do wrong ??<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Below is my &#8220;files architecture&#8221;:<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">Yocto<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;|-- Sources (Rocko 2.4.1)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; |-- myDir<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;|-- build=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;|-- conf<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;Local.conf<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;|-- meta-=
-myLayer <o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-- conf<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;|-- recipes-core<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |-- images<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp; my-image.bb<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |-- systemd<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;systemd_%.bbappend<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;|-- system<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; eth.network<o:p=
-></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The target is a generic x86_64 board (AAEON GENE BT =
-05 with J1900 processor).<o:p></o:p></p>
-<p class=3D"MsoNormal">Host system is ubuntu 16.04 LTS<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks<span style=3D"font-family:&quot;Arial&quot;,s=
-ans-serif;color:#222222;background:white;mso-fareast-language:EN-GB"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"FR"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"FR">Vince<o:p></o:p></span></p>
-</div>
-</body>
+      <div class="WordSection1">
+        <p class="MsoNormal">Dears,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">I want to build an image using systemd and
+          system-networkd as network manager and set static ip address
+          to eth0.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">To do so, I use a bbappend file to systemd.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">The problem is that the systemd_%.bbappend
+          file does not appear when calling bitbake-layers show-appends.
+          I’m quite sure it is not processed because when a voluntary
+          add a typo, it does not break the bitbake process.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">What did I do wrong ??<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Below is my “files architecture”:<o:p></o:p></p>
+        <p class="MsoNormal">Yocto<o:p></o:p></p>
+        <p class="MsoNormal"> |-- Sources (Rocko 2.4.1)<o:p></o:p></p>
+        <p class="MsoNormal">  |-- myDir<o:p></o:p></p>
+        <p class="MsoNormal">        |-- build<o:p></o:p></p>
+        <p class="MsoNormal">              |-- conf<o:p></o:p></p>
+        <p class="MsoNormal">                         Local.conf<o:p></o:p></p>
+        <p class="MsoNormal">        |-- meta-myLayer <o:p></o:p></p>
+        <p class="MsoNormal">              |-- conf<o:p></o:p></p>
+        <p class="MsoNormal">              |-- recipes-core<o:p></o:p></p>
+        <p class="MsoNormal">                    |-- images<o:p></o:p></p>
+        <p class="MsoNormal">                          my-image.bb<o:p></o:p></p>
+        <p class="MsoNormal">                    |-- systemd<o:p></o:p></p>
+        <p class="MsoNormal">             
+                      systemd_%.bbappend<o:p></o:p></p>
+        <p class="MsoNormal">                          |-- system<o:p></o:p></p>
+        <p class="MsoNormal">                                eth.network<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">The target is a generic x86_64 board (AAEON
+          GENE BT 05 with J1900 processor).<o:p></o:p></p>
+        <p class="MsoNormal">Host system is ubuntu 16.04 LTS<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Thanks<span
+style="font-family:&quot;Arial&quot;,sans-serif;color:#222222;background:white;mso-fareast-language:EN-GB"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="FR"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span lang="FR">Vince<o:p></o:p></span></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_VI1P192MB014378FB73375D22C8AFE5838DD90VI1P192MB0143EURP_--
+--------------189C8B00319492E22BD7A5FE--
