@@ -1,34 +1,36 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3B48E00E49; Tue,  6 Mar 2018 20:00:53 -0800 (PST)
+	id E7B62E00E18; Wed,  7 Mar 2018 00:31:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2908BE00E0A
-	for <yocto@yoctoproject.org>; Tue,  6 Mar 2018 20:00:53 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF1B4E00823
+	for <yocto@yoctoproject.org>; Wed,  7 Mar 2018 00:31:47 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	06 Mar 2018 20:00:53 -0800
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Mar 2018 00:31:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.47,434,1515484800"; d="scan'208";a="23544938"
-Received: from guptatax-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.255.165.117])
-	by orsmga006.jf.intel.com with ESMTP; 06 Mar 2018 20:00:49 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.47,435,1515484800"; d="scan'208";a="23170698"
+Received: from anmitta2-mobl1.png.intel.com ([10.221.16.69])
+	by orsmga008.jf.intel.com with ESMTP; 07 Mar 2018 00:31:46 -0800
+From: Anuj Mittal <anuj.mittal@intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  7 Mar 2018 17:00:11 +1300
-Message-Id: <20180307040011.2907-3-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.14.3
-In-Reply-To: <20180307040011.2907-1-paul.eggleton@linux.intel.com>
-References: <20180307040011.2907-1-paul.eggleton@linux.intel.com>
-Subject: [yocto-autobuilder2][PATCH 2/2] builders: set build revision to poky revision
+Date: Wed,  7 Mar 2018 16:22:39 +0800
+Message-Id: <1520410960-459-2-git-send-email-anuj.mittal@intel.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1520410960-459-1-git-send-email-anuj.mittal@intel.com>
+References: <1520410960-459-1-git-send-email-anuj.mittal@intel.com>
+Subject: [meta-yocto][PATCH 2/3] linux-yocto: update genericx86* SRCREVs for v4.14
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,49 +42,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Mar 2018 04:00:53 -0000
+X-List-Received-Date: Wed, 07 Mar 2018 08:31:49 -0000
 
-By default, since the yocto-autobuilder-helper repository is the only
-one that buildbot actually checks out in a step, the revision of that is
-the one that gets associated with the build; however, it's much more
-useful to have the revision set to the poky revision, so add a step that
-does that.
+Sync with stable kernel release 4.14.24 in oe-core.
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+Signed-off-by: Anuj Mittal <anuj.mittal@intel.com>
 ---
- TODO        | 1 -
- builders.py | 5 +++++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+ meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/TODO b/TODO
-index 429c4f9..fe88e03 100644
---- a/TODO
-+++ b/TODO
-@@ -4,7 +4,6 @@
-  * get_publish_dest (builders.py) [Joshua]
-  * figure out htpasswd & auth for scheduling builds [Michael]
-  * ensure need auth to trigger builds  [Michael]
-- * Display poky revision in web UI, not the yocto-autobuilder-helper revision [Paul]
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
+index e3a6963..0d27c92 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
+@@ -4,11 +4,11 @@ KBRANCH_genericx86-64  = "v4.14/standard/base"
+ KMACHINE_genericx86 ?= "common-pc"
+ KMACHINE_genericx86-64 ?= "common-pc-64"
  
- # Future
+-SRCREV_machine_genericx86    ?= "537602db26fe2d26c1959f1ecb43966770c10ff2"
+-SRCREV_machine_genericx86-64 ?= "537602db26fe2d26c1959f1ecb43966770c10ff2"
++SRCREV_machine_genericx86    ?= "edc90f45a716ffe8e16cebaaf3b5db070af0280a"
++SRCREV_machine_genericx86-64 ?= "edc90f45a716ffe8e16cebaaf3b5db070af0280a"
  
-diff --git a/builders.py b/builders.py
-index 2a9bc41..ae8a3d7 100644
---- a/builders.py
-+++ b/builders.py
-@@ -131,6 +131,11 @@ factory.addStep(steps.ShellCommand(
-     haltOnFailure=True,
-     name="Unpack shared repositories"))
+ COMPATIBLE_MACHINE_genericx86 = "genericx86"
+ COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
  
-+factory.addStep(steps.SetPropertyFromCommand(command=util.Interpolate("cd %(prop:sharedrepolocation)s/poky; git rev-parse HEAD"),
-+                                             property="got_revision",
-+                                             haltOnFailure=True,
-+                                             name='Set build revision'))
-+
- # run-config
- factory.addStep(steps.ShellCommand(
-     command=[
+-LINUX_VERSION_genericx86 = "4.14.19"
+-LINUX_VERSION_genericx86-64 = "4.14.19"
++LINUX_VERSION_genericx86 = "4.14.24"
++LINUX_VERSION_genericx86-64 = "4.14.24"
 -- 
-2.14.3
+2.7.4
 
 
