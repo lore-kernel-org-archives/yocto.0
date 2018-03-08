@@ -1,64 +1,57 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAD7AE00D6D; Thu,  8 Mar 2018 03:56:02 -0800 (PST)
+	id 717C2E00E4B; Thu,  8 Mar 2018 08:48:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.217.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
-	[209.85.217.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29CFAE00971
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 03:56:01 -0800 (PST)
-Received: by mail-ua0-f194.google.com with SMTP id j15so761857uan.3
-	for <yocto@yoctoproject.org>; Thu, 08 Mar 2018 03:56:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=xHWkxbvaWgT0Y0m94AcuAq0XAwgrq/as548V4nK4NG0=;
-	b=Jr6pptb3Vx4anchV0e0CZVbEQYl4QaCqTqZiHvhsxulm0qRN/JcJxq3snAAtaK8cc5
-	1HACblzsSuwriqLkuxY9oNiV1/2AVWt8Nn1kQMo775w+aJDStIKonjFjM50/IMZUhGNH
-	32akbEW6UMz34u0vf1QJ+6hsyGQrkzCemJseTFyHB/0sfrc5gS1fY4Sc1yZ3SFUgbBwb
-	+0HuMx+SPZTCXbueXa1+duK54sJubswsEsMkr7LWvScVCmolHSAmrGCxp5wMbRO5tlz8
-	crosGOzEjHfxs/IFmoQb7idPA94H4/LKN8M3A4r37XHvcgWQiX5+RgDk6aiOF9FZk9tL
-	el/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=xHWkxbvaWgT0Y0m94AcuAq0XAwgrq/as548V4nK4NG0=;
-	b=qXvwGpIrtwS35mNofE/eXjEkfWRBqVQrXlnJ2n8i9G2AuQZawSPooHAz1UJJOWRpP9
-	j8FpOu4q5pJ5MUgGRqC4X2lDaOYn5lUs3W4aVn5JCky2f/LuIkj1GiidUOpej28wUvd+
-	WmmW6FfRQm0dH8X8xBCFHdu1PsLgLAqymKWLXxwx3w2uwnsDc6HklnnPSfmWjMsXoMYe
-	NKRWlE0EUjrfFV9VApsnWFOyuX4ywyTnbDYYs/4sXWAf7tPLT8VKYy1kyeZcNjVoabzQ
-	MEw8WU2FTiTiwsGxe5uGp9yvz9wXOd6ZpYaEYcPjM/TJ53fY/d2+HTC6Xx79wvLa+eY7
-	+aGA==
-X-Gm-Message-State: APf1xPBNVSX/j52eaaG1WylVxui8i4NF3IZiuGBZy8qabLfEoCZyR4BR
-	irTwcWgzOksQoyyS0wbSjUNb+3agIVXbl4PYMzaGyg==
-X-Google-Smtp-Source: AG47ELvqvdzI7D8RNLfUdhlagYt/huAjTkkwAGcWGV1Zyj9/R951IvxRNqtKvN2/wkra6dyLKPBC7mPahOXK1lmheq0=
-X-Received: by 10.159.54.38 with SMTP id r35mr18980642uad.133.1520510160995;
-	Thu, 08 Mar 2018 03:56:00 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEF02E00B66
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 08:48:14 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	08 Mar 2018 08:48:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.47,441,1515484800"; d="scan'208";a="22952506"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+	by fmsmga008.fm.intel.com with ESMTP; 08 Mar 2018 08:48:13 -0800
+Received: from fmsmsx123.amr.corp.intel.com (10.18.125.38) by
+	fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server
+	(TLS) id 14.3.319.2; Thu, 8 Mar 2018 08:48:13 -0800
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.234]) by
+	fmsmsx123.amr.corp.intel.com ([169.254.7.215]) with mapi id
+	14.03.0319.002; Thu, 8 Mar 2018 08:48:13 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "'yocto@yoctoproject.org'"
+	<yocto@yoctoproject.org>, "Purdie, Richard" <richard.purdie@intel.com>, 
+	"Jordan, Robin L" <robin.l.jordan@intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>, "Lock, Joshua G" <joshua.g.lock@intel.com>, 
+	"Eggleton, Paul" <paul.eggleton@intel.com>
+Thread-Topic: Resend QA cycle report for 2.4.2 RC2
+Thread-Index: AdO2vUM0SLgyPBfyQwaXRC4GNMc4JQABEZQwAA7i++A=
+Date: Thu, 8 Mar 2018 16:48:11 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7295507@fmsmsx111.amr.corp.intel.com>
+References: <9DDD2658D1FE414E99172D2DB1E4D04335DDC966@PGSMSX109.gar.corp.intel.com>
+In-Reply-To: <9DDD2658D1FE414E99172D2DB1E4D04335DDC966@PGSMSX109.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjQ2MzYwMDctZTE2OS00ZWQ1LTgwNDMtOWQ3OTJkNzlmNmRiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjIuNS4xOCIsIlRydXN0ZWRMYWJlbEhhc2giOiJTeTFxc2ppdnY3c2NUWVBVZmpEQmtSY0c2aDg2YjBPM3htUXIxdWc5TkNKZmhFWmU4a0pDUThkWHYxOFBYcGRlIn0=
+dlp-product: dlpe-windows
+dlp-version: 11.0.0.116
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.106]
 MIME-Version: 1.0
-Received: by 10.176.48.69 with HTTP; Thu, 8 Mar 2018 03:55:20 -0800 (PST)
-X-Originating-IP: [90.152.4.101]
-In-Reply-To: <CAPyrkgxqsR+ejJUod_C227BMn4VLusQwx=f3f8+aK1YGvAxFQw@mail.gmail.com>
-References: <CAKHP1duYgAf5jG3Y=Jm4yCPF+H9mcC+VS8u_aeYHGCTrBz1rZQ@mail.gmail.com>
-	<CAPyrkgxqsR+ejJUod_C227BMn4VLusQwx=f3f8+aK1YGvAxFQw@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 8 Mar 2018 11:55:20 +0000
-Message-ID: <CAK18fxFXm3RagR=9EO8VPVxV7Xg=6raQnCcc+rjKDTjJN-cN3Q@mail.gmail.com>
-To: Paul Barker <pbarker@toganlabs.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] how to install rpi-config package?
+Subject: Re: Resend QA cycle report for 2.4.2 RC2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,85 +63,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2018 11:56:02 -0000
-Content-Type: multipart/alternative; boundary="001a11454a080623bd0566e55cc0"
-
---001a11454a080623bd0566e55cc0
-Content-Type: text/plain; charset="UTF-8"
-
-On Thu, Mar 8, 2018 at 11:17 AM, Paul Barker <pbarker@toganlabs.com> wrote:
-
-> On Thu, Mar 8, 2018 at 6:20 AM, kk <pinganddu90@gmail.com> wrote:
-> > This is ok:
-> >     $ bitbake rpi-config
-> > But I check the image directory under workdir, I found nothing in it,
-> and no
-> > command raspi-config.
-> >
->
-> The rpi-config recipe creates the config.txt file in the
-> "tmp/deploy/images/<MACHINE>/bcm2835-bootfiles/" directory (if I've
-> got the path right) which is then copied to the boot partition for an
-> SD card image.
->
-> I believe raspi-config is specific to the Raspbian distribution and
-> isn't used in images built with OpenEmbedded.
-
-
-Paul is correct. Actually there is almost a name clash here. rpi-config in
-meta-raspberrypi is a recipe which deploys the config.txt in deploy
-directory. The raspbian tool that you refer to is not included / integrated
-in oe but has a very similar name: raspi-config . So at this point when
-baking rpi-config all you get is a config.txt in the deploy directory.
-
---
-Andrei Gherzan
-
---001a11454a080623bd0566e55cc0
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Thu, 08 Mar 2018 16:48:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div><div class=3D"m_8349127269=
-566744140gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"lt=
-r"><div dir=3D"ltr">On Thu, Mar 8, 2018 at 11:17 AM, Paul Barker <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:pbarker@toganlabs.com" target=3D"_blank">pba=
-rker@toganlabs.com</a>&gt;</span> wrote:<br></div></div></div></div><div cl=
-ass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"m_83491272=
-69566744140HOEnZb"><div class=3D"m_8349127269566744140h5">On Thu, Mar 8, 20=
-18 at 6:20 AM, kk &lt;<a href=3D"mailto:pinganddu90@gmail.com" target=3D"_b=
-lank">pinganddu90@gmail.com</a>&gt; wrote:<br>
-&gt; This is ok:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0$ bitbake rpi-config<br>
-&gt; But I check the image directory under workdir, I found nothing in it, =
-and no<br>
-&gt; command raspi-config.<br>
-&gt;<br>
-<br>
-</div></div>The rpi-config recipe creates the config.txt file in the<br>
-&quot;tmp/deploy/images/&lt;MACHINE&gt;/b<wbr>cm2835-bootfiles/&quot; direc=
-tory (if I&#39;ve<br>
-got the path right) which is then copied to the boot partition for an<br>
-SD card image.<br>
-<br>
-I believe raspi-config is specific to the Raspbian distribution and<br>
-isn&#39;t used in images built with OpenEmbedded.</blockquote><div><br></di=
-v><div>Paul is correct. Actually there is almost a name clash here. rpi-con=
-fig in meta-raspberrypi is a recipe which deploys the config.txt in deploy =
-directory. The raspbian tool that you refer to is not included / integrated=
- in oe but has a very similar name: raspi-config . So at this point when ba=
-king rpi-config all you get is a config.txt in the deploy directory.=C2=A0<=
-/div><div><br></div><div><div style=3D"color:rgb(34,34,34);font-family:aria=
-l,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:norma=
-l;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align=
-:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:=
-0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-de=
-coration-color:initial">--</div><span style=3D"color:rgb(34,34,34);font-fam=
-ily:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatur=
-es:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;te=
-xt-align:start;text-indent:0px;text-transform:none;white-space:normal;word-=
-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial=
-;text-decoration-color:initial;float:none;display:inline">Andrei Gherzan</s=
-pan><br></div></div><br></div></div>
+Why are we showing 62 (2%) of the test cases as Idle.  (Not Run).  Were the=
+y blocked? What happened to them?
 
---001a11454a080623bd0566e55cc0--
+Thanks,
+
+Stephen
+
+-----Original Message-----
+From: Yeoh, Ee Peng=20
+Sent: Thursday, March 08, 2018 1:41 AM
+To: 'yocto@yoctoproject.org' <yocto@yoctoproject.org>; Purdie, Richard <ric=
+hard.purdie@intel.com>; Jolley, Stephen K <stephen.k.jolley@intel.com>; Jor=
+dan, Robin L <robin.l.jordan@intel.com>; Zhang, Jessica <jessica.zhang@inte=
+l.com>; Lock, Joshua G <joshua.g.lock@intel.com>; Eggleton, Paul <paul.eggl=
+eton@intel.com>
+Cc: Sangal, Apoorv <apoorv.sangal@intel.com>
+Subject: Resend QA cycle report for 2.4.2 RC2
+
+Hello All,
+Resend the full report for 2.4.2 RC2 with updated information: =20
+https://wiki.yoctoproject.org/wiki/WW10_-_2018-03-05-_Full_Test_Cycle_-_2.4=
+.2_rc2
+
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+
+The QA cycle for release 2.4.2 RC2 was completed including the performance =
+test.=A0 Team had discovered 3 new bugs (oeselftest.sstatetests.test_sstate=
+_sametune_samesigs failed, x11perf failed on minnowmax and nuc, toaster run=
+ again button does not behaved as expected).
+
+For testrun# 9206-9212, testopia testcases not 100% completed as there are =
+some outdated testcases that were no longer available in oeqa/selftest test=
+suite, pending testopia data cleanup.=20
+
+Performance tests were executed for both 2.4.2 RC2 and 2.4.1 RC1 (as regres=
+sion and benchmark) on these new machines in linux foundation.=20
+
+=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
+
+QA shows no major bug.
+
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+
+New Bugs
+[1] 12587 - [2.4.2 rc2] test_sstate_sametune_samesigs (sstatetests.SStateTe=
+sts) [2] 12590 - [2.4.2 rc2] No. of Chars/sec For Yocto Image is very Low T=
+o that of Ubuntu [3] 12591 - [2.4.2 rc2] Run again button from all builds p=
+age must run the specified task
+
+=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
+1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12587
+2. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12590
+3. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12591
+
+Regards
+Ee Peng=20
+
+
+
