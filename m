@@ -1,62 +1,53 @@
-Return-Path: <pinganddu90@gmail.com>
+Return-Path: <ee.peng.yeoh@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D88FE01077; Wed,  7 Mar 2018 22:20:32 -0800 (PST)
+	id 6C33FE00E1F; Thu,  8 Mar 2018 01:41:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pinganddu90[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.196 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ot0-f196.google.com (mail-ot0-f196.google.com
-	[74.125.82.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23875E00AD8
-	for <yocto@yoctoproject.org>; Wed,  7 Mar 2018 22:20:31 -0800 (PST)
-Received: by mail-ot0-f196.google.com with SMTP id h8so4441489oti.6
-	for <yocto@yoctoproject.org>; Wed, 07 Mar 2018 22:20:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=YuQaZ++lFbR6OLGcFX8t8LhbPNqSnx8YpiVupXfCo4U=;
-	b=GKHFcrhfuwfTMxcKYtpuQ9k8pYNQm+ZmXqX0O0mnIvAyA5FXGMXz7UgaTsyaYlT22J
-	qkJbVvZl1dfAwv1lDOkmfM7INYXdRmYqhHsXKYYC0BI8iYAur0xSdpKSHnWLKw5/RUWN
-	dleJHWzy/Ovqffm9wPOQTjRBjOSCovmbMT3UMEACgGlpVHS4nC13rCtaETkB76P50lt/
-	sWaCLax1no7H5SepnoBazEVOgVNHlvk5iQ3uBTF+89sxueW7Y3H+hvk6jg/57ZDG6fQb
-	y9k/tXY87r09571Lq4ZVxisQvR9jMNhTczr+j1aEOhnvvxMVO73WhZx8A4Ff10On+Sht
-	BP3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=YuQaZ++lFbR6OLGcFX8t8LhbPNqSnx8YpiVupXfCo4U=;
-	b=BPTef+sDpdxoK7qL+r5fNu5vuqVvRYAjKyg5zP9fpb5Eingh8//wrBs6COnCElp+vu
-	T7n9qh+UQl5VcFe2y4JopE0lqAj+u2j3dktp9XoMgeZp6jBI7rGGN46X2SU+Qk1e3e8s
-	6Z/F4h4sLJfn4DWRyeQE/ElaeS51R6rE3bndA9z0Ries7Z0oZz2AU4oYgkYO1wi4z4UB
-	abDpyXoOWDrsKYD0vYiTDt3qVQcLhtf3c4sEMtPEb8Jrb3RntpfD9hA2RlmkXlHe96GW
-	x6NTy5+u7Sa1YPyADwKy25LYIpAQTC69iLBnBsmqkvkOlzOGiT35ZBuRrGIPL5x8BpLH
-	Magw==
-X-Gm-Message-State: AElRT7ERkPW+18YKj5qp6rj3brIStoZxGpSEithDm2y8RhVn0pEbsD0d
-	gz90ZFzj6tRuzMVsqLaTPSiL40aR9qXPx7G5RMo=
-X-Google-Smtp-Source: AG47ELukKA0T3vxOIwnTP+USOrumc70kaXm1H0yuFl024gfjhRjkV5SmhwmQmSjw09AvRm3u4Exk8djEVvHtfaUmxnE=
-X-Received: by 10.157.0.220 with SMTP id 28mr12685948otk.201.1520490030821;
-	Wed, 07 Mar 2018 22:20:30 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08952E00CE2
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 01:41:31 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	08 Mar 2018 01:41:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.47,440,1515484800"; d="scan'208";a="22711944"
+Received: from kmsmsx151.gar.corp.intel.com ([172.21.73.86])
+	by fmsmga007.fm.intel.com with ESMTP; 08 Mar 2018 01:41:30 -0800
+Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.166]) by
+	KMSMSX151.gar.corp.intel.com ([169.254.10.67]) with mapi id
+	14.03.0319.002; Thu, 8 Mar 2018 17:41:29 +0800
+From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Jolley,
+	Stephen K" <stephen.k.jolley@intel.com>, 
+	"Jordan, Robin L" <robin.l.jordan@intel.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>, "Lock, Joshua G" <joshua.g.lock@intel.com>, 
+	"Eggleton, Paul" <paul.eggleton@intel.com>
+Thread-Topic: Resend QA cycle report for 2.4.2 RC2
+Thread-Index: AdO2vUM0SLgyPBfyQwaXRC4GNMc4JQABEZQw
+Date: Thu, 8 Mar 2018 09:41:28 +0000
+Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335DDC966@PGSMSX109.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjQ2MzYwMDctZTE2OS00ZWQ1LTgwNDMtOWQ3OTJkNzlmNmRiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImU5cmNhNmt3YkR5NmV4N3JRXC81bGlNbFB5c2tsZkFRc1llQ2g1ZWRpUTFrPSJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.0.116
+dlp-reaction: no-action
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-Received: by 10.74.137.141 with HTTP; Wed, 7 Mar 2018 22:20:30 -0800 (PST)
-From: kk <pinganddu90@gmail.com>
-Date: Thu, 8 Mar 2018 14:20:30 +0800
-Message-ID: <CAKHP1duYgAf5jG3Y=Jm4yCPF+H9mcC+VS8u_aeYHGCTrBz1rZQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: [meta-raspberrypi] how to install rpi-config package?
+Subject: Resend QA cycle report for 2.4.2 RC2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,23 +59,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2018 06:20:32 -0000
-Content-Type: multipart/alternative; boundary="94eb2c1c1b482bf5bf0566e0acf6"
-
---94eb2c1c1b482bf5bf0566e0acf6
-Content-Type: text/plain; charset="UTF-8"
-
-This is ok:
-    $ bitbake rpi-config
-But I check the image directory under workdir, I found nothing in it, and
-no command raspi-config.
-
---94eb2c1c1b482bf5bf0566e0acf6
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Thu, 08 Mar 2018 09:41:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">This is ok:<div>=C2=A0 =C2=A0 $ bitbake rpi-config</div><d=
-iv>But I check the image directory under workdir, I found nothing in it, an=
-d no command raspi-config.</div></div>
+Hello All,
+Resend the full report for 2.4.2 RC2 with updated information: =20
+https://wiki.yoctoproject.org/wiki/WW10_-_2018-03-05-_Full_Test_Cycle_-_2.4=
+.2_rc2
 
---94eb2c1c1b482bf5bf0566e0acf6--
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+
+The QA cycle for release 2.4.2 RC2 was completed including the performance =
+test.=A0 Team had discovered 3 new bugs (oeselftest.sstatetests.test_sstate=
+_sametune_samesigs failed, x11perf failed on minnowmax and nuc, toaster run=
+ again button does not behaved as expected).
+
+For testrun# 9206-9212, testopia testcases not 100% completed as there are =
+some outdated testcases that were no longer available in oeqa/selftest test=
+suite, pending testopia data cleanup.=20
+
+Performance tests were executed for both 2.4.2 RC2 and 2.4.1 RC1 (as regres=
+sion and benchmark) on these new machines in linux foundation.=20
+
+=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
+
+QA shows no major bug.
+
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+
+New Bugs
+[1] 12587 - [2.4.2 rc2] test_sstate_sametune_samesigs (sstatetests.SStateTe=
+sts) [2] 12590 - [2.4.2 rc2] No. of Chars/sec For Yocto Image is very Low T=
+o that of Ubuntu [3] 12591 - [2.4.2 rc2] Run again button from all builds p=
+age must run the specified task
+
+=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
+1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12587
+2. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12590
+3. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12591
+
+Regards
+Ee Peng=20
+
+
+
