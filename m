@@ -1,53 +1,62 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C33FE00E1F; Thu,  8 Mar 2018 01:41:34 -0800 (PST)
+	id 5CDD2E00DE5; Thu,  8 Mar 2018 03:17:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.128.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08952E00CE2
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 01:41:31 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Mar 2018 01:41:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.47,440,1515484800"; d="scan'208";a="22711944"
-Received: from kmsmsx151.gar.corp.intel.com ([172.21.73.86])
-	by fmsmga007.fm.intel.com with ESMTP; 08 Mar 2018 01:41:30 -0800
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.166]) by
-	KMSMSX151.gar.corp.intel.com ([169.254.10.67]) with mapi id
-	14.03.0319.002; Thu, 8 Mar 2018 17:41:29 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Jolley,
-	Stephen K" <stephen.k.jolley@intel.com>, 
-	"Jordan, Robin L" <robin.l.jordan@intel.com>, "Zhang, Jessica"
-	<jessica.zhang@intel.com>, "Lock, Joshua G" <joshua.g.lock@intel.com>, 
-	"Eggleton, Paul" <paul.eggleton@intel.com>
-Thread-Topic: Resend QA cycle report for 2.4.2 RC2
-Thread-Index: AdO2vUM0SLgyPBfyQwaXRC4GNMc4JQABEZQw
-Date: Thu, 8 Mar 2018 09:41:28 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335DDC966@PGSMSX109.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjQ2MzYwMDctZTE2OS00ZWQ1LTgwNDMtOWQ3OTJkNzlmNmRiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImU5cmNhNmt3YkR5NmV4N3JRXC81bGlNbFB5c2tsZkFRc1llQ2g1ZWRpUTFrPSJ9
-dlp-product: dlpe-windows
-dlp-version: 11.0.0.116
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.206]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wr0-f170.google.com (mail-wr0-f170.google.com
+	[209.85.128.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78A2BE00971
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 03:17:54 -0800 (PST)
+Received: by mail-wr0-f170.google.com with SMTP id v65so5271634wrc.11
+	for <yocto@yoctoproject.org>; Thu, 08 Mar 2018 03:17:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=REQ0Cs1102GEviH08W4Dntf1hR9INRkZ7tTa7LlxVpI=;
+	b=VSTW6LkftJKjA+5+fH8PmXyOhT40b6h3Y73+yR17+eLdIWj0ST7rjkDkD0aCs7RbEH
+	jr0GCp8uH3qYzDyggNA2oD6fbYUFfr1K58GfU1+JTqo95CbgQvl62CUGQYoC9ZcDypAt
+	N/dX0cajfPCiv/TN7GoXOQBs55kxUclH4cW0gyo2MnkP9t3+Vpu3ZxVMlU43/bev3Uco
+	WjXPqiZunHZqq7WWyrdIOerdnLVUE3A4USEQX5I41orSTNvjRqDrcPcoC2L6LJotMa+f
+	LGqY0/a9X/vtROvso8jYfoMvakzG61nVQJI6YAhMQfT9L1l/lq9XvhkjIQGRv/D/pe3Z
+	ZT1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=REQ0Cs1102GEviH08W4Dntf1hR9INRkZ7tTa7LlxVpI=;
+	b=CIx6i/hY5vrN1hg+vaO5dXXkC/iqPPH8Zl27/Cf6+aN9l/n/LUJHcjX2mfZcDBYZkR
+	hEfmwqbGIVbboIhzECqtTTiP1zakivi/Iz82SQ9nFBxkpCiV6JX2oCTJUEfaiCk2fYTt
+	UtltA5NpbTd4tYZWua9mUp9lx5hT3qZUGgpR8E2Fn5Y48FE/FTOMNnnGX2oUgXhdiXR5
+	dRndhrdat/gZVam+nAJRmude+Qn4w5qIdNo8zMp09IBWDskV5W17GF48M3DN9ScU4PWs
+	CKtrw6+GtvjntEzuIWBA/I2IbR0Dupjot2h+m6w9cgqoH2AzujL5Wne99LWvVGX5elqq
+	+j4Q==
+X-Gm-Message-State: APf1xPAjDY+EnvcmfTvKoSGeN0OcUCpAWhR57jfnM1HxR2GDE44fKrdR
+	Tt3y4sxe4dwKbTkf2zLtjyYuABcojnz/Ep0G+LyZRA==
+X-Google-Smtp-Source: AG47ELuxTmwV50JUgqmZxsa0APSZDo+Kj2Evhc9Ic9qyj17sJYIEKH/gNi+4tszTYdC4mvGc9UMqPgJHZWR+CTbKbJA=
+X-Received: by 10.223.192.76 with SMTP id c12mr21306733wrf.177.1520507873155; 
+	Thu, 08 Mar 2018 03:17:53 -0800 (PST)
 MIME-Version: 1.0
-Subject: Resend QA cycle report for 2.4.2 RC2
+Received: by 10.223.153.48 with HTTP; Thu, 8 Mar 2018 03:17:52 -0800 (PST)
+In-Reply-To: <CAKHP1duYgAf5jG3Y=Jm4yCPF+H9mcC+VS8u_aeYHGCTrBz1rZQ@mail.gmail.com>
+References: <CAKHP1duYgAf5jG3Y=Jm4yCPF+H9mcC+VS8u_aeYHGCTrBz1rZQ@mail.gmail.com>
+From: Paul Barker <pbarker@toganlabs.com>
+Date: Thu, 8 Mar 2018 11:17:52 +0000
+Message-ID: <CAPyrkgxqsR+ejJUod_C227BMn4VLusQwx=f3f8+aK1YGvAxFQw@mail.gmail.com>
+To: kk <pinganddu90@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] how to install rpi-config package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,49 +68,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2018 09:41:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Thu, 08 Mar 2018 11:17:55 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
-Resend the full report for 2.4.2 RC2 with updated information: =20
-https://wiki.yoctoproject.org/wiki/WW10_-_2018-03-05-_Full_Test_Cycle_-_2.4=
-.2_rc2
+On Thu, Mar 8, 2018 at 6:20 AM, kk <pinganddu90@gmail.com> wrote:
+> This is ok:
+>     $ bitbake rpi-config
+> But I check the image directory under workdir, I found nothing in it, and=
+ no
+> command raspi-config.
+>
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+The rpi-config recipe creates the config.txt file in the
+"tmp/deploy/images/<MACHINE>/bcm2835-bootfiles/" directory (if I've
+got the path right) which is then copied to the boot partition for an
+SD card image.
 
-The QA cycle for release 2.4.2 RC2 was completed including the performance =
-test.=A0 Team had discovered 3 new bugs (oeselftest.sstatetests.test_sstate=
-_sametune_samesigs failed, x11perf failed on minnowmax and nuc, toaster run=
- again button does not behaved as expected).
+I believe raspi-config is specific to the Raspbian distribution and
+isn't used in images built with OpenEmbedded.
 
-For testrun# 9206-9212, testopia testcases not 100% completed as there are =
-some outdated testcases that were no longer available in oeqa/selftest test=
-suite, pending testopia data cleanup.=20
-
-Performance tests were executed for both 2.4.2 RC2 and 2.4.1 RC1 (as regres=
-sion and benchmark) on these new machines in linux foundation.=20
-
-=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
-
-QA shows no major bug.
-
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-
-New Bugs
-[1] 12587 - [2.4.2 rc2] test_sstate_sametune_samesigs (sstatetests.SStateTe=
-sts) [2] 12590 - [2.4.2 rc2] No. of Chars/sec For Yocto Image is very Low T=
-o that of Ubuntu [3] 12591 - [2.4.2 rc2] Run again button from all builds p=
-age must run the specified task
-
-=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
-1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12587
-2. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12590
-3. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12591
-
-Regards
-Ee Peng=20
-
-
+--=20
+Paul Barker
+Tog=C3=A1n Labs Ltd
 
