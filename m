@@ -1,48 +1,68 @@
-Return-Path: <star@gmx.li>
+Return-Path: <radioconfusion@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E22FBE00E31; Thu,  8 Mar 2018 22:24:10 -0800 (PST)
+	id 71260E0108E; Thu,  8 Mar 2018 23:18:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (star[at]gmx.li)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [212.227.17.21 listed in list.dnswl.org]
+	mail provider *      (radioconfusion[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www;
-	Thu, 08 Mar 2018 22:24:09 PST
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5B16E00DA4
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 22:24:09 -0800 (PST)
-Received: from [62.225.157.196] ([62.225.157.196]) by
-	3c-app-gmx-bs48.server.lan (via HTTP); Fri, 9 Mar 2018 07:19:06 +0100
-MIME-Version: 1.0
-Message-ID: <trinity-070c6a88-6217-4f78-be8a-24fb5b744253-1520576346077@3c-app-gmx-bs48>
-From: "Arno Steffens" <star@gmx.li>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.54 listed in list.dnswl.org]
+Received: from mail-lf0-f54.google.com (mail-lf0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A843E00DA4
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 23:18:15 -0800 (PST)
+Received: by mail-lf0-f54.google.com with SMTP id t204-v6so11857600lff.9
+	for <yocto@yoctoproject.org>; Thu, 08 Mar 2018 23:18:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=message-id:from:date:to:subject:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=ukMLUvhc85ndfAUx5YRJrltksx52ycuitc2gPBRkZL8=;
+	b=mgmLb8iY6/c5cxAnTcLi6hVrCwsruVl7qrdGac5nsWg2FXDGrW7wiROjRn/vBhN91x
+	lUIn0e6xz2g/5p9w/CSox/kXCwF6obB9A/jBdiYh8b8edgitbbVjC1Z81eLgRTnWjMLN
+	MaGwV9HOZmzJdsryh5rQBEYdSYIhwOr9IKfwzuDpuxpnh7Q5qWKLYeIdIqoKaY7s38yX
+	M55aqwOyrpjB2u1e3JCOKQcdowbxkETcmH29p0ryH7/eWDxaYjYrkNlUfjBqy227HX4B
+	iC16wKqqK1Q2ywikbFOKqyOirsWGwxOMnHLcEsVESTgVn6VGxp/V/Jroa5XfIHT5WA5I
+	/91g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:from:date:to:subject:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=ukMLUvhc85ndfAUx5YRJrltksx52ycuitc2gPBRkZL8=;
+	b=mFMj7eIjW/IK34ZRcbBKCQwNufuIzeqKjmievn3zM12sr4R8afHMAwulcTHID427Uk
+	cjK5Uzi3jFYXOMXShroupqz7+h34KpdYznQtwkmc0PpvfnFotWXG7B4prdfXKWmSfiek
+	W7UjGynXaAtpxwY7yN5EgEBlMZUGX4GeYvyOntChTPfY2LNpl+QBWCSUHbm5JIRJ5EgR
+	Tc0pxeIGTFUHG1GGaSIvRrzq7KO3MlK5Q2peKUEJiLOYhN62tg1G4+/n2fAVaxIwtJpf
+	57iMagsJh20MHmkoW30ACbLYEXOJCMJaSHIut60LEt+HSHbjATz+1xHlduJKNkVCd6X5
+	rnxQ==
+X-Gm-Message-State: AElRT7Gf/o+21Zx/NnGzXnRh8wLTKNR5nqnYKig+/uUbVUH+NaR5Hnwo
+	Ba8sFpUwDRy4VrWNjraPPyRitQ==
+X-Google-Smtp-Source: AG47ELuYUK40FniFs+Behyfm3d4jjKif5cleVVCo9+BYvjJ6rdexw3pahuCgKJatTzn0zXZN/tjWjw==
+X-Received: by 10.46.93.69 with SMTP id r66mr20022781ljb.88.1520579894200;
+	Thu, 08 Mar 2018 23:18:14 -0800 (PST)
+Received: from localhost (88-114-240-69.elisa-laajakaista.fi. [88.114.240.69])
+	by smtp.gmail.com with ESMTPSA id
+	w23-v6sm98201lfd.10.2018.03.08.23.18.13 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=AES128-SHA bits=128/128);
+	Thu, 08 Mar 2018 23:18:13 -0800 (PST)
+Message-ID: <5aa23535.1c69fb81.8c6e2.0804@mx.google.com>
+From: radioconfusion@gmail.com
+Date: Fri, 09 Mar 2018 09:18:12 +0200
 To: yocto@yoctoproject.org
-Date: Fri, 9 Mar 2018 07:19:06 +0100
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:OrCU+jeS8Wwd6DSAbp9dDIP2lfTrEeoX2kS3lpew4VY
-	Gp7iEk5Qbk3s0hpJ2KsPLO4ADa/iW8goSalRo5DfIxWleRDLjt
-	elyhdpQSSRVxFsORQmPDlc/+41fZls2UzhoK9Y1YPdaDmd+HSl
-	KS/G/+fIwO8YtXTelojF6KYPid5AFAYi3jXye/kw8heQY5Zc+b
-	stZM70JEdCu1fsLJqmDwcpPBMefKwlOJPjGj3R2uVCmvITy5dx
-	ehA9zFR4n/398j8/5cu31ptRimKRDI+BUvyMYuJK4vY+g35+/M fxYXAQ=
-X-UI-Out-Filterresults: notjunk:1;V01:K0:9CeYKrZh9bo=:6vRW9+sziC6mDtud1wP/T9
-	OKsOoy7lQha8CFNlmisxLcngukpftTWATGFd7xGuEFnxusJmjNQw3lBY7TFfLijEjKpYGTgRn
-	1TgyR9nrZN2Cy8JEm2l7fC2RfNztsQ+Zq1b+uy6uAzV5zARvIILSsDWmmSyzsKv1GwvC+CAxX
-	jKGXV9tWPnP6JrLEkK5sOH4RQ//9mIBmJLwZmPh2WxVvManql8srewMhHT/jIr3UecXcGkasJ
-	8C6rWKRpPoA0m9e0g+GVdwgAttDSFDCxlTIO6iIgSybSEiQZQDWIv4A0r0fCVEXl2a3FfTiVw
-	IoxrdwxxQNCQ0AE09xef0EOWLV+b/Fmr5t2s2UM1db32KxzRybuBPsWkXyFPALuQFHLKsRHM8
-	A4r3HgaoBlje5coqrUM5OkU6KpMklyQu+kJZB4Z18UQFilAyX1PRlLK4SS5bTCvv3FcyzxQUW
-	srOSxJk0tU07czJqPDa57pHp96hfejY0V8DpI5uGpGHFXOjPixr8
-Subject: passwd fails for other users than root
+User-Agent: Heirloom mailx 12.5 6/20/10
+MIME-Version: 1.0
+Subject: Version numbering of dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,25 +74,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2018 06:24:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 09 Mar 2018 07:18:16 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-I have 2 extra users (added with useradd_example.bb). Login works for all 3 parties.
+Hello all
 
-While login works, passwd (to change it) doesn't work for the extra users. They will asked for the old one - which fails.
-Root is not to be asked for old password. That's way root can change password for all. 
+I'm confused with version numbering of shared libs dependencies on yocto
+environment. I’m using Morty but the thing looks like same with newer releases.
 
-The strange issue is, that after root changes password for users, they can do it by themselves.
-Seems that login and passwd use different algos!?!?
+Let me explain the problem.
 
-Same password, but different hashes:
-before (created by yocto)
-user:$6$bk.Az/8KVV$v3TyAlroQeBZA3faJ.DxCVsCUBZaSAvB4FkuNkLDdsIchrmz6OnUGRnQI5BOgOjQ3mvj9QL3US6Amf2VWr0.j/:17598:0:99999:7:::
-behind (changed by root):
-user:$1$d3Uo1g82$Il2kYQj8qadzQvkwUU4Ia.:17598:0:99999:7:::
+I'll take Curl package for example. We all know that the Curl recipe makes
+libcurl-package also. Ok, now I want to add some important compiling options
+to Curl and I make curl_%.bbappend file to my custom layer with the wanted
+customizations. I don't want to raise the original version number of Curl
+and I use PR_append = "-myver1" instead. Now I get packages
+curl_x.y.z-r0-myver1_blabla.ipk and
+libcurl_x.y.z-r0-myver1_blabla.ipk. That’s very good for me.
 
-Edit: After a few further test I found that this has an effect:
-I used EXTRA_IMAGE_FEATURES += "read-only-rootfs" to create a read-only-rootf (by default). 
-But of course I did make the partition writeable before attempting to change the password.
-But for some strange reasons this is not same. What might be the reason?
+The problem is that: Now the Curl ipk package dependencies are
+
+Depends: libc6 (>= a.b), libcurl4 (>= x.y.z), libz1 (>= c.d.e)
+
+And I think there should be:
+
+Depends: libc6 (>= a.b), libcurl4 (>= x.y.z-r0-myver1), libz1 (>= c.d.e)
+
+or something like that.
+
+Now I can upgrade Curl from x.y.z to x.y.z-r0-myver1 on my device without
+upgrading the libcurl and that breaks a lot of things. Ok, normally
+'opkg upgrade' installs both of them but in case of network failure or an other
+failure this problem can be happened.
+
+I found that package.bbclass uses PKGV, PKGV_+pkg and PV_+pkg environment
+variables to get version number for dependencies.
+If I change it to use EXTENDPKGV, I get expected results.
+
+Is this a bug or am I doing something wrong?
+
+The patch I tried:
+
+--- a/meta/classes/package.bbclass
++++ b/meta/classes/package.bbclass
+@@ -1620,7 +1620,9 @@ python package_do_shlibs() {
+         needs_ldconfig = False
+         bb.debug(2, "calculating shlib provides for %s" % pkg)
+
+-        pkgver = d.getVar('PKGV_' + pkg, True)
++        pkgver = d.getVar('EXTENDPKGV', True)
++        if not pkgver:
++            pkgver = d.getVar('PKGV_' + pkg, True)
+         if not pkgver:
+             pkgver = d.getVar('PV_' + pkg, True)
+         if not pkgver:
+
+Best Regards,
+Jussi
 
