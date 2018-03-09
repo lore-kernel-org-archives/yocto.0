@@ -1,65 +1,55 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <ee.peng.yeoh@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16993E01068; Thu,  8 Mar 2018 15:13:24 -0800 (PST)
+	id F0CD5E00E22; Thu,  8 Mar 2018 16:57:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f177.google.com (mail-wr0-f177.google.com
-	[209.85.128.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 704F3E00DA5
-	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 15:13:23 -0800 (PST)
-Received: by mail-wr0-f177.google.com with SMTP id h2so18686wre.12
-	for <yocto@yoctoproject.org>; Thu, 08 Mar 2018 15:13:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=VC1jVlIlWH825PAdtqCVZYXRCDZxkZ8OsxaDxQ5vPpo=;
-	b=djwYOykIZqVqv+DNcQ/lPa+wIzq1F/xWpNQ6k0CXBq4JDNHs1vChIrx2sxs5YhBIJ9
-	FQWjNhGhe4WWBHE/0Vv8wZLiJRFBhKgNZQv/nUCIH6I914kzr877ZZRrH3rCw9/xUOuz
-	qFHapni7/906qkOPo//pie3DoXWkXqnq431DrxsI8ccxvwZ49HlQmzQhOIuiIT85lr17
-	4BdlD3bO9vicg2AtMA727Fk/ocBmBp+Ml8rfQPm2HMd0YUQv7/b+T7SXdszhDzHT5y8g
-	ELSL4cMJlhX73vNOXrj5Ej3cQmZiilsJBU0O8Uo1gqEt/QVuBJnYoiLbi0cTd4JtC+XA
-	JaMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=VC1jVlIlWH825PAdtqCVZYXRCDZxkZ8OsxaDxQ5vPpo=;
-	b=eIMBYMcb2DUbx/dyTGYgab5gl7t3QWJQWKBuUiVWIkJEYth8C7v1mLE9f42oVqPQZm
-	oPNYGUk4HMz4lrXylNl2xuAixKlVdDolQUSipN6FgzbtJWsk8Y07a67cEZ13xepGGr+N
-	dwCONcxbaOe3kT1wnaltHKMB/dqS+gxNceV5oA0mIZn+vy5bzQvL1zj1cvmqAgMNQaXC
-	6ty3IrtcsJ9XB4BCztsuBfGZzYuT+AdmQFgUSYtVX5JagzNI+PpS8PKzkL/eurzxTyCh
-	zTEUEajvZq5TY9cPjgxihp7T1/ByzpSr/opQfZVj0dinjatQ15syvtXu+Mt0usdFQTQn
-	mdBQ==
-X-Gm-Message-State: APf1xPAyYZg1lzgfk1PJYfI2LrzH88teJ5IEeeMWVzxtKPi0c+ym1iUI
-	oNUysEWWkTEewzYSBglG6dMyn+fYlpMDgZRhOruFlw==
-X-Google-Smtp-Source: AG47ELt+7Y3QkvoN1/mw4JWTttDA6ujCjOXpRwP5BzpJyZDmSq8G6r4EFqhlchAKb9yRxZ/jJVxd4uakK5LDyJC3hvA=
-X-Received: by 10.223.182.156 with SMTP id j28mr23690666wre.66.1520550802286; 
-	Thu, 08 Mar 2018 15:13:22 -0800 (PST)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4942DE00D6D
+	for <yocto@yoctoproject.org>; Thu,  8 Mar 2018 16:57:26 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	08 Mar 2018 16:57:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.47,443,1515484800"; d="scan'208";a="181174283"
+Received: from pgsmsx104.gar.corp.intel.com ([10.221.44.91])
+	by orsmga004.jf.intel.com with ESMTP; 08 Mar 2018 16:57:24 -0800
+Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.166]) by
+	PGSMSX104.gar.corp.intel.com ([169.254.3.70]) with mapi id
+	14.03.0319.002; Fri, 9 Mar 2018 08:57:23 +0800
+From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
+To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>,
+	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "Jordan, Robin L" <robin.l.jordan@intel.com>,
+	"Zhang, Jessica" <jessica.zhang@intel.com>, "Lock, Joshua G"
+	<joshua.g.lock@intel.com>, "Eggleton, Paul" <paul.eggleton@intel.com>
+Thread-Topic: Resend QA cycle report for 2.4.2 RC2
+Thread-Index: AdO2vUM0SLgyPBfyQwaXRC4GNMc4JQABEZQwAA7i++AAEOwlQA==
+Date: Fri, 9 Mar 2018 00:57:22 +0000
+Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04335DDCD2C@PGSMSX109.gar.corp.intel.com>
+References: <9DDD2658D1FE414E99172D2DB1E4D04335DDC966@PGSMSX109.gar.corp.intel.com>
+	<9ADD3FDE8B189B4AA2F8A3C711F8155EC7295507@fmsmsx111.amr.corp.intel.com>
+In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155EC7295507@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjQ2MzYwMDctZTE2OS00ZWQ1LTgwNDMtOWQ3OTJkNzlmNmRiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE2LjUuOS4zIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImU5cmNhNmt3YkR5NmV4N3JRXC81bGlNbFB5c2tsZkFRc1llQ2g1ZWRpUTFrPSJ9
+dlp-product: dlpe-windows
+dlp-version: 11.0.0.116
+dlp-reaction: no-action
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-Received: by 10.223.173.193 with HTTP; Thu, 8 Mar 2018 15:13:21 -0800 (PST)
-In-Reply-To: <423f0425-653d-37ab-098d-088466ef280d@asgrp.com>
-References: <423f0425-653d-37ab-098d-088466ef280d@asgrp.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Thu, 8 Mar 2018 15:13:21 -0800
-Message-ID: <CAJ86T=U=vu8nELczNnKnPZPZcXGn842xSorxGsvDpxdt_mqzqQ@mail.gmail.com>
-To: Wayne Witzke <wwitzke@asgrp.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: How and where does yocto find lighttpd-module-fastcgi?
+Subject: Re: Resend QA cycle report for 2.4.2 RC2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,66 +61,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Mar 2018 23:13:24 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 09 Mar 2018 00:57:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 8, 2018 at 1:52 PM, Wayne Witzke <wwitzke@asgrp.com> wrote:
->
-> However, now I am attempting to determine if mod_openssl is installed on my
-> server, and using "CORE_EXTRA_IMAGES_INSTALL += 'lighttpd-module-openssl'"
-> to simply add it does NOT magically work like it did with
-> lighttpd-module-fastcgi. My original guess was that adding
-> "CORE_EXTRA_IMAGES_INSTALL += 'lighttpd-module-fastcgi'" caused a
-> configuration option to be matched in the lighttpd.bb file so that the
-> appropriate build option was used when building lighttpd.
+Hi Stephen,
 
-No, that's not how it works. A very key point to understand with OE is
-that options associated with one recipe can never affect the build of
-another recipe (in this case, the image recipe can't affect the build
-of the lighttpd recipe).
+Those idle test cases are actually belongs to the outdated testcases inside=
+ Testopia, GDC had opened a Bugzilla ticket to remove and replace outdated =
+and duplicated test cases. We are in progress of removing ducplicated test =
+cases, next step is to remove outdated test cases using automated script th=
+at utilize testopia python api.=20
 
-If adding lighttpd-module-fastcgi to your image worked, it's because
-the lighttpd recipe was already creating that package.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12435
 
-> However, fastcgi
-> doesn't actually show up in that file at all, and openssl does, so that
-> clearly isn't the option . . . furthermore, mod_fastcgi doesn't appear in
-> *any* of the layers I'm using to build, except in the lighttpd.conf portion
-> of the recipe-extended/lighttpd directory structure.
+For testrun# 9206-9212, testopia testcases not 100% completed as there are =
+some outdated testcases that were no longer available in oeqa/selftest test=
+suite, pending testopia data cleanup.
 
-If lighttpd doesn't have a configure option to control building of the
-fastcgi module, then there won't be a PACKAGECONFIG option for it in
-the recipe - it will just always be built.
+Please let me know if any more question.
 
-(Even if lighttpd does have a configure option for the fastcgi module,
-there's no guarantee that the recipe will allow it to be controlled -
-it's common for PACKAGECONFIG options in recipes to only reflect the
-configure options which people care about the most).
+Thanks,
+Ee Peng=20
 
-> So, my question is, how does bitbake know what to do when I add
-> lighttpd-module-fastcgi,
+-----Original Message-----
+From: Jolley, Stephen K=20
+Sent: Friday, March 9, 2018 12:48 AM
+To: Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; 'yocto@yoctoproject.org' <yocto=
+@yoctoproject.org>; Purdie, Richard <richard.purdie@intel.com>; Jordan, Rob=
+in L <robin.l.jordan@intel.com>; Zhang, Jessica <jessica.zhang@intel.com>; =
+Lock, Joshua G <joshua.g.lock@intel.com>; Eggleton, Paul <paul.eggleton@int=
+el.com>
+Cc: Sangal, Apoorv <apoorv.sangal@intel.com>
+Subject: RE: Resend QA cycle report for 2.4.2 RC2
 
-The build for lighttpd isn't affected by whether or not you add
-lighttpd-module-fastcgi to your image.
+Why are we showing 62 (2%) of the test cases as Idle.  (Not Run).  Were the=
+y blocked? What happened to them?
 
-ie running "bitbake lighttpd", should always result in a package for
-lighttpd-module-fastcgi being placed in tmp/deploy/ipk/i586/ (or
-whatever your packaging format / architecture combination is). It
-doesn't matter what image you may choose to build later, or what
-packages you choose to include in it.
+Thanks,
 
-> and where in the world does it find the source for
-> mod_fastcgi?
+Stephen
 
-The source which gets compiled into lighttpd-module-fastcgi must be
-coming from lighttpd.
+-----Original Message-----
+From: Yeoh, Ee Peng=20
+Sent: Thursday, March 08, 2018 1:41 AM
+To: 'yocto@yoctoproject.org' <yocto@yoctoproject.org>; Purdie, Richard <ric=
+hard.purdie@intel.com>; Jolley, Stephen K <stephen.k.jolley@intel.com>; Jor=
+dan, Robin L <robin.l.jordan@intel.com>; Zhang, Jessica <jessica.zhang@inte=
+l.com>; Lock, Joshua G <joshua.g.lock@intel.com>; Eggleton, Paul <paul.eggl=
+eton@intel.com>
+Cc: Sangal, Apoorv <apoorv.sangal@intel.com>
+Subject: Resend QA cycle report for 2.4.2 RC2
 
-> Thank you in advance for your help :)
->
-> Wayne
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Hello All,
+Resend the full report for 2.4.2 RC2 with updated information: =20
+https://wiki.yoctoproject.org/wiki/WW10_-_2018-03-05-_Full_Test_Cycle_-_2.4=
+.2_rc2
+
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+
+The QA cycle for release 2.4.2 RC2 was completed including the performance =
+test.=A0 Team had discovered 3 new bugs (oeselftest.sstatetests.test_sstate=
+_sametune_samesigs failed, x11perf failed on minnowmax and nuc, toaster run=
+ again button does not behaved as expected).
+
+For testrun# 9206-9212, testopia testcases not 100% completed as there are =
+some outdated testcases that were no longer available in oeqa/selftest test=
+suite, pending testopia data cleanup.=20
+
+Performance tests were executed for both 2.4.2 RC2 and 2.4.1 RC1 (as regres=
+sion and benchmark) on these new machines in linux foundation.=20
+
+=3D=3D=3D=3D=3D=3D=3D QA-Hints=3D=3D=3D=3D=3D=3D=3D=3D
+
+QA shows no major bug.
+
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+
+New Bugs
+[1] 12587 - [2.4.2 rc2] test_sstate_sametune_samesigs (sstatetests.SStateTe=
+sts) [2] 12590 - [2.4.2 rc2] No. of Chars/sec For Yocto Image is very Low T=
+o that of Ubuntu [3] 12591 - [2.4.2 rc2] Run again button from all builds p=
+age must run the specified task
+
+=3D=3D=3D=3D=3D=3D=3D=3D Links =3D=3D=3D=3D=3D=3D=3D=3D=3D
+1. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12587
+2. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12590
+3. https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12591
+
+Regards
+Ee Peng=20
+
+
 
