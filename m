@@ -1,67 +1,60 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9CBCAE00DAE; Fri,  9 Mar 2018 14:35:46 -0800 (PST)
+	id 18767E00E3D; Fri,  9 Mar 2018 17:50:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f51.google.com (mail-wm0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 396EFE00D6A
-	for <yocto@yoctoproject.org>; Fri,  9 Mar 2018 14:35:44 -0800 (PST)
-Received: by mail-wm0-f51.google.com with SMTP id h21so6551668wmd.1
-	for <yocto@yoctoproject.org>; Fri, 09 Mar 2018 14:35:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=zjmk6SgjRKAk2AuesGb6y2mtWVZVQX3Iu+jqrb/ZJiE=;
-	b=mkgPTJdqdM7S9bMTcSEX2026zvwstsxSsvlqj3Q3yDjISowcChKXaHfU/x1Nu/IneR
-	H/duYdjom5b7u4Ds1INaYrVne5/uD3B2f/W8PRaHKY7TSO5LFtAQUDV59ALOjYa8COJN
-	q1VakJAahfeJh19sTzB57LhMn92tYeSevdxGGXxBrXYdiZo66y3NLBH1GuFXstQcYnBq
-	NqNwu+Z7KRSVLLPQL6ZRUsJWWDn3vrX40jqEyrlin8UFHBhwQu25IwihyOMwdG186POg
-	u3dXX+iaf3Ln9WfA/JrFahR+xdiniOzOVrYavp573m/rdYtknLYxR1ni0h97mUeC9jjn
-	R7kQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=zjmk6SgjRKAk2AuesGb6y2mtWVZVQX3Iu+jqrb/ZJiE=;
-	b=AzvY0hEeexRSX4t7kzrVDZJbqUHYTrpmzTWKehW41M6SCU1HXA/HJLS0OaQBmiIfvC
-	9vKX0px9ZIZrCtcAEUkl34L243HF2Fpp/64rxecfaQkAIRcxKlniHKfvPQZL98cPj0Y/
-	A4vyILCMYdqASr4+JH0u0e6Mj220fJwigUw0iciECLtZHScEKnUiu9T7yonwDVnAP0fR
-	5J99RB+sCgg46jbmbGE2/B16CtzpPR2yLyBfE2KJOAB7h0KbfOepjLeqmEo/LQLm1C2n
-	myrZdfuGor7W5sV8f5/yTylA+9KpMoGQ+208Dix3wd3r2H7J+EVGwG39bDYzvhsT3LfE
-	kShQ==
-X-Gm-Message-State: AElRT7HpwINzVKJxe2TY1vwWXIkybs/Ryp3AawbgH2X2sxf5K9Sy4nOd
-	2pZztwAPDtpipcQJPovskevzAPt6sTpZZVQc9tYeOg==
-X-Google-Smtp-Source: AG47ELvcfYQeWNZ//Wa/TyUghPzNiS8k/xm0eHJzxSDk0XVjCgyWSigBhu8qQqmEahI4UdJlz+2Y8bbR8+rUqHF4WBM=
-X-Received: by 10.28.170.205 with SMTP id t196mr342462wme.42.1520634944053;
-	Fri, 09 Mar 2018 14:35:44 -0800 (PST)
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Fri, 09 Mar 2018 17:50:46 PST
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C0CAE00843
+	for <yocto@yoctoproject.org>; Fri,  9 Mar 2018 17:50:45 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2E/AQDFOKNa/yYyC4deGgEBAQEBAgEBA?=
+	=?us-ascii?q?QEIAQEBAYJaIlRmbzKNZY1ygxqUNIIVChOFEgKDESE0GAECAQEBAQEBAgNoHAu?=
+	=?us-ascii?q?FPRteAQwJFVYmAQQbGoQSZAGhN40UIQKIPoIahTWCLoFWijeDNoISIASaVQkCg?=
+	=?us-ascii?q?U+YLoVCkUeBLB45gVJwFYJ+hEWKOwGBFgEBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2E/AQDFOKNa/yYyC4deGgEBAQEBAgEBAQEIAQEBAYJaIlR?=
+	=?us-ascii?q?mbzKNZY1ygxqUNIIVChOFEgKDESE0GAECAQEBAQEBAgNoHAuFPRteAQwJFVYmA?=
+	=?us-ascii?q?QQbGoQSZAGhN40UIQKIPoIahTWCLoFWijeDNoISIASaVQkCgU+YLoVCkUeBLB4?=
+	=?us-ascii?q?5gVJwFYJ+hEWKOwGBFgEBAQ?=
+X-IronPort-AV: E=Sophos;i="5.47,448,1515474000"; 
+	d="scan'208,217";a="235136948"
+Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
+	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
+	09 Mar 2018 20:49:41 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
+	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+	09 Mar 2018 20:49:40 -0500
+Received: from AZ-US1EXMB02.global.avaya.com ([fe80::c01d:740:c927:8888]) by
+	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0352.000;
+	Fri, 9 Mar 2018 20:49:40 -0500
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Two packages installing same file (with different content) to
+	rootfs
+Thread-Index: AdO4EgzfT2mChmdqSeWdB4KHUyIqtg==
+Date: Sat, 10 Mar 2018 01:49:39 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377989265BC82@AZ-US1EXMB02.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.0.150.1
+dlp-reaction: no-action
+x-originating-ip: [135.11.85.49]
 MIME-Version: 1.0
-Received: by 10.223.173.65 with HTTP; Fri, 9 Mar 2018 14:35:43 -0800 (PST)
-In-Reply-To: <df083f7f-672d-b167-4fa2-4730bbec749a@asgrp.com>
-References: <423f0425-653d-37ab-098d-088466ef280d@asgrp.com>
-	<CAJ86T=U=vu8nELczNnKnPZPZcXGn842xSorxGsvDpxdt_mqzqQ@mail.gmail.com>
-	<df083f7f-672d-b167-4fa2-4730bbec749a@asgrp.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Fri, 9 Mar 2018 14:35:43 -0800
-Message-ID: <CAJ86T=Ud=aPE34VS8NBEEDuTxzjE_GHSW55L8fdww0kSvgu1XQ@mail.gmail.com>
-To: Wayne Witzke <wwitzke@asgrp.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: How and where does yocto find lighttpd-module-fastcgi?
+Subject: Two packages installing same file (with different content) to rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,93 +66,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2018 22:35:46 -0000
-Content-Type: multipart/alternative; boundary="001a1144273cac662005670269cd"
+X-List-Received-Date: Sat, 10 Mar 2018 01:50:47 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE6521910377989265BC82AZUS1EXMB02glob_"
 
---001a1144273cac662005670269cd
-Content-Type: text/plain; charset="UTF-8"
-
-On Fri, Mar 9, 2018 at 6:18 AM, Wayne Witzke <wwitzke@asgrp.com> wrote:
-
-> Thank you for the reply!
->
-> When I wasn't adding lighttpd-module-fastcgi, it definitely was not
-> including it in the build.
->
-
-The lighttpd-module-fastcgi package is created (unconditionally) when the
-lighttpd recipe is built (you can verify by checking the installable
-packages under tmp/deploy/ after building lighttpd).
-
-However, since nothing in the default images has a runtime dependency on
-lighttpd-module-fastcgi, that package will only be included in the rootfs
-if you manually add it (e.g. by adding to CORE_IMAGE_EXTRA_INSTALL, as you
-have done).
-
-ie you need to make the distinction between "is this package being built"
-and "is this package being included in the rootfs when the image is built".
-
-I have the lighttpd.conf file set up use mod_fastcgi, and without
-> lighttpd-module-fastcgi in my local.conf file, lighttpd would fail to start
-> on the embedded build, complaining that it could not find the fastcgi
-> module. In fact, the same thing happens with php-cgi. I can't find anyplace
-> in any of the layers that I'm using that actually references php-cgi as a
-> package or option, but unless I add it to local.conf using
-> EXTRA_CORE_IMAGES_INSTALL, it doesn't get included in the build.
->
-
-It's a similar story with the php-cgi package. It's created
-(unconditionally) when the php recipe is built, but will not be installed
-in the rootfs unless you add it to your image.
-
-The reason you don't find a direct reference to the string "php-cgi"
-anywhere is because the php recipe defines it's list of packages in terms
-of the "${PN}" variable. So the php recipe contains references to
-"${PN}-cgi" but rather than "php-cgi".
-
---001a1144273cac662005670269cd
-Content-Type: text/html; charset="UTF-8"
+--_000_30C2D590D16A5C46ADFE6521910377989265BC82AZUS1EXMB02glob_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On Fri, Mar 9, 2018 at 6:18 AM, Wayne Witzke <span dir=3D"=
-ltr">&lt;<a href=3D"mailto:wwitzke@asgrp.com" target=3D"_blank">wwitzke@asg=
-rp.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div class=3D"gm=
-ail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF">
-    <p>Thank you for the reply!</p>
-    <p>When I wasn&#39;t adding lighttpd-module-fastcgi, it definitely was
-      not including it in the build.</p></div></blockquote><div><br></div>T=
-he lighttpd-module-fastcgi package is created (unconditionally) when the li=
-ghttpd recipe is built (you can verify by checking the installable packages=
- under tmp/deploy/ after building lighttpd).<br><div><br></div><div>However=
-, since nothing in the default images has a runtime dependency on lighttpd-=
-module-fastcgi, that package will only be included in the rootfs if you man=
-ually add it (e.g. by adding to CORE_IMAGE_EXTRA_INSTALL, as you have done)=
-.<br></div><div><br></div><div>ie you need to make the distinction between =
-&quot;is this package being built&quot; and &quot;is this package being inc=
-luded in the rootfs when the image is built&quot;.</div><div><br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div bgcolor=3D"#FFFFFF"><p> =
-I have the lighttpd.conf file set
-      up use mod_fastcgi, and without lighttpd-module-fastcgi in my
-      local.conf file, lighttpd would fail to start on the embedded
-      build, complaining that it could not find the fastcgi module. In
-      fact, the same thing happens with php-cgi. I can&#39;t find anyplace
-      in any of the layers that I&#39;m using that actually references
-      php-cgi as a package or option, but unless I add it to local.conf
-      using EXTRA_CORE_IMAGES_INSTALL, it doesn&#39;t get included in the
-      build.</p></div></blockquote><div><br></div><div>It&#39;s a similar s=
-tory with the php-cgi package. It&#39;s created (unconditionally) when the =
-php recipe is built, but will not be installed in the rootfs unless you add=
- it to your image.</div><div><br></div><div>The reason you don&#39;t find a=
- direct reference to the string &quot;php-cgi&quot; anywhere is because the=
- php recipe defines it&#39;s list of packages in terms of the &quot;${PN}&q=
-uot; variable. So the php recipe contains references to &quot;${PN}-cgi&quo=
-t; but rather than &quot;php-cgi&quot;. <br></div></div><div class=3D"gmail=
-_quote"><br></div><div class=3D"gmail_quote"><br></div></div></div>
+Ran into an issue where we have two packages installing different
+content for the same file in rootfs. Whichever gets installed last "wins".
 
---001a1144273cac662005670269cd--
+I thought there was a check to prevent this. I'm sure I've seen a
+warning/error like that in the past.
+
+Is this condition detected? Should it be?
+
+We're using Morty.
+
+MV
+
+--_000_30C2D590D16A5C46ADFE6521910377989265BC82AZUS1EXMB02glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Ran into an issue where we have two packages install=
+ing different<o:p></o:p></p>
+<p class=3D"MsoNormal">content for the same file in rootfs. Whichever gets =
+installed last &#8220;wins&#8221;.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I thought there was a check to prevent this. I&#8217=
+;m sure I&#8217;ve seen a<o:p></o:p></p>
+<p class=3D"MsoNormal">warning/error like that in the past.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is this condition detected? Should it be?<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We&#8217;re using Morty.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">MV<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_30C2D590D16A5C46ADFE6521910377989265BC82AZUS1EXMB02glob_--
