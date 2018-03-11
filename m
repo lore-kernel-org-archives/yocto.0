@@ -1,65 +1,35 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <daryl@daryllee.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2FC10E00E27; Sat, 10 Mar 2018 21:26:22 -0800 (PST)
+	id 75CCEE00DED; Sun, 11 Mar 2018 06:10:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [69.160.52.61 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f65.google.com (mail-pg0-f65.google.com [74.125.83.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7587BE0078F
-	for <yocto@yoctoproject.org>; Sat, 10 Mar 2018 21:26:20 -0800 (PST)
-Received: by mail-pg0-f65.google.com with SMTP id e9so5172814pgs.10
-	for <yocto@yoctoproject.org>; Sat, 10 Mar 2018 21:26:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=3EfCiLJFwlonhy/E2Dwycl/quld1TcqnlZ9aLXa3GhE=;
-	b=OLC83g/1+17Q22LSuH9bTrQVjb8Xrl46orCLzkMzPj4EhCej4n4rOAaXWKxg7EhPzO
-	I2+S/ivEX6LOQzEPdAxIc+blJD3Q/uCYBB3RMdoqtrhln+C0cvD1g2YZX2DWr1zEgOdC
-	TwJZ4VtHnFqgzbpNItKrChG8xWc2AeW1W+JE36VqMSXhayFm8NrtBs49UbsIgNgb8AT8
-	xBLJy2smmBgh0XDWY/FNrqum4GfA+BaMLqFvOZEsLJASOsKwkERCddVclJz1+C6TxDvr
-	010pEdjmg85VkVmavgbEoP4EaAp7fmuoBovY3fUU0u9f3krfA4rua6pVf8G1sItZ6BN7
-	egAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=3EfCiLJFwlonhy/E2Dwycl/quld1TcqnlZ9aLXa3GhE=;
-	b=aS8NWlk9TiBevbwnnKGh0nNLWGt1F/qXTorHT2fG2vUfxOr59BNDxkmOBO0AF2/xHZ
-	V4DAbDMknG6UhEAF7N4e3Yv4xn3DsPr0l780fAVDBZrQuVvd39/9QD7qBPqjI2mVRBx8
-	5u6kODeIwKkEpg3TYkWmS4EkRDsd0MW+69x0ioRLn2Xou+aZfSu2/rhvJ1b1TT0x4Rzf
-	kfrIx8rszQN/24PYFG1MaR1mul56rrHpAA6Jkd658dK3PxIvVI619UgclTQa4kL42ZKG
-	TI7crqlW8kFmlqxK+6nqiWEbCOF+eSpIYijUxSyDmARtpZGpo4yOMT3cwCntcyJX/u5D
-	ZlOA==
-X-Gm-Message-State: AElRT7G7p789/2dch+3wp5HXAPBq4epXxJ+jvrldeKtm/UfkOMfzN2VN
-	iL6EYVusSRPAuisJnCZOLPs=
-X-Google-Smtp-Source: AG47ELtGtHx0Yt+xWozRlM/Rx2cl6xc5MiI7bOgG401le8HxBWYQ3VG6JtA4+RBDP9gx4p++uUVicg==
-X-Received: by 10.98.224.65 with SMTP id f62mr3873528pfh.191.1520745980440;
-	Sat, 10 Mar 2018 21:26:20 -0800 (PST)
-Received: from localhost.localdomain ([2601:646:8880:466c:6245:cbff:fe64:591])
-	by smtp.gmail.com with ESMTPSA id
-	q66sm10228496pfi.95.2018.03.10.21.26.19
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 10 Mar 2018 21:26:19 -0800 (PST)
-From: Khem Raj <raj.khem@gmail.com>
-To: mark.hatle@windriver.com
-Date: Sat, 10 Mar 2018 21:26:11 -0800
-Message-Id: <20180311052611.7904-1-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.16.2
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from teebird.nexcess.net (teebird.nexcess.net [69.160.52.61])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D12BE0078F
+	for <yocto@yoctoproject.org>; Sun, 11 Mar 2018 06:10:47 -0700 (PDT)
+Received: (qmail 27513 invoked by uid 108); 11 Mar 2018 09:10:46 -0400
+Received: from unknown (HELO ?192.168.0.19?) (67.42.66.4)
+	by teebird.nexcess.net with ESMTPS; 11 Mar 2018 09:10:46 -0400
+Mime-Version: 1.0 (1.0)
+From: Personal <daryl@daryllee.com>
+X-Mailer: iPhone Mail (15D100)
+In-Reply-To: <20180311043222.GA21549@linux-uys3>
+Date: Sun, 11 Mar 2018 07:10:45 -0600
+Message-Id: <809F891C-F6BA-438A-AD41-C31423E81E55@daryllee.com>
+References: <20180310191002.Horde.GwvmG_Lp-648oYCF_ByVQbw@www.daryllee.com>
+	<20180311043222.GA21549@linux-uys3>
+To: Trevor Woerner <twoerner@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: [prelink-cross][PATCH] prelink: Add RISC-V support
+Subject: Re: Documentation error report
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,128 +41,138 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 11 Mar 2018 05:26:22 -0000
+X-List-Received-Date: Sun, 11 Mar 2018 13:10:49 -0000
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-2BDB1346-740F-43DF-A0EB-5C5D84F7BE7D
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- ChangeLog         |  5 +++++
- src/elf.h         | 25 ++++++++++++++++++++++++-
- src/rtld/dl-tls.c |  5 +++++
- src/rtld/rtld.c   | 14 ++++++++++++++
- 4 files changed, 48 insertions(+), 1 deletion(-)
+--Apple-Mail-2BDB1346-740F-43DF-A0EB-5C5D84F7BE7D
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/ChangeLog b/ChangeLog
-index c72dca8..4487026 100644
---- a/ChangeLog
-+++ b/ChangeLog
-@@ -1,3 +1,8 @@
-+2018-03-10   Khem Raj <raj.khem@gmail.com>
-+	* src/elf.h: Add RISC-V defines
-+	* src/rtld/dl-tls.c: Add RISC-V support
-+	* src/rtld/rtld.c: Add RISC-V support
-+
- 2017-06-20   Mark Hatle <mark.hatle@windriver.com>
- 	* doc/Makefile.am: Disable automatic generation of prelink.pdf
- 
-diff --git a/src/elf.h b/src/elf.h
-index fbadda4..dbd6170 100644
---- a/src/elf.h
-+++ b/src/elf.h
-@@ -254,7 +254,8 @@ typedef struct
- #define EM_TILEPRO	188		/* Tilera TILEPro */
- #define EM_MICROBLAZE	189		/* Xilinx MicroBlaze */
- #define EM_TILEGX	191		/* Tilera TILE-Gx */
--#define EM_NUM		192
-+#define EM_RISCV	243		/* RISC-V */
-+#define EM_NUM		244
- 
- /* If it is necessary to assign new unofficial EM_* values, please
-    pick large random numbers (0x8523, 0xa7f2, etc.) to minimize the
-@@ -3556,6 +3557,28 @@ enum
- 
- #define R_TILEGX_NUM		130
- 
-+/* RISC-V ELF Flags */
-+#define EF_RISCV_RVC			0x0001
-+#define EF_RISCV_FLOAT_ABI		0x0006
-+#define EF_RISCV_FLOAT_ABI_SOFT		0x0000
-+#define EF_RISCV_FLOAT_ABI_SINGLE	0x0002
-+#define EF_RISCV_FLOAT_ABI_DOUBLE	0x0004
-+#define EF_RISCV_FLOAT_ABI_QUAD		0x0006
-+
-+/* RISC-V relocations.  */
-+#define R_RISCV_NONE		0
-+#define R_RISCV_32		1
-+#define R_RISCV_64		2
-+#define R_RISCV_RELATIVE	3
-+#define R_RISCV_COPY		4
-+#define R_RISCV_JUMP_SLOT	5
-+#define R_RISCV_TLS_DTPMOD32	6
-+#define R_RISCV_TLS_DTPMOD64	7
-+#define R_RISCV_TLS_DTPREL32	8
-+#define R_RISCV_TLS_DTPREL64	9
-+#define R_RISCV_TLS_TPREL32	10
-+#define R_RISCV_TLS_TPREL64	11
-+#define R_RISCV_NUM		12
- 
- __END_DECLS
- 
-diff --git a/src/rtld/dl-tls.c b/src/rtld/dl-tls.c
-index 2da6bc5..280cee4 100644
---- a/src/rtld/dl-tls.c
-+++ b/src/rtld/dl-tls.c
-@@ -138,6 +138,11 @@ rtld_determine_tlsoffsets (int e_machine, struct r_scope_elem *search_list)
-       tls_tcb_size = 8;
-       break;
- 
-+    case EM_RISCV:
-+      tls_dtv_at_tp = 1;
-+      tls_tcb_size = 0;
-+      break;
-+
-     default:
-       /* Hope there's no TLS!  */
-       for (i = 0; i < search_list->r_nlist; i++)
-diff --git a/src/rtld/rtld.c b/src/rtld/rtld.c
-index 3196981..2fc355b 100644
---- a/src/rtld/rtld.c
-+++ b/src/rtld/rtld.c
-@@ -224,6 +224,17 @@ parse_opt (int key, char *arg, struct argp_state *state)
-     * ELF_RTYPE_CLASS_PLT \
-    | ((type) == R_MICROBLAZE_COPY) * ELF_RTYPE_CLASS_COPY)
- 
-+/* From glibc-2.27: sysdeps/riscv/dl-machine.h */
-+#define riscv_elf_machine_type_class(type)                      \
-+  ((ELF_RTYPE_CLASS_PLT * ((type) == R_RISCV_JUMP_SLOT          \
-+     || ((type) == R_RISCV_TLS_DTPREL32)    \
-+     || ((type) == R_RISCV_TLS_DTPMOD32)    \
-+     || ((type) == R_RISCV_TLS_TPREL32)     \
-+     || ((type) == R_RISCV_TLS_DTPREL64)    \
-+     || ((type) == R_RISCV_TLS_DTPMOD64)    \
-+     || ((type) == R_RISCV_TLS_TPREL64)))   \
-+   | (ELF_RTYPE_CLASS_COPY * ((type) == R_RISCV_COPY)))
-+
- int
- elf_machine_type_class (int type, int machine)
- {
-@@ -254,6 +265,8 @@ elf_machine_type_class (int type, int machine)
- 	return nios2_elf_machine_type_class(type);
-     case EM_MICROBLAZE:
- 	return microblaze_elf_machine_type_class(type);
-+    case EM_RISCV:
-+	return riscv_elf_machine_type_class(type);
- 
-     default:
-       printf ("Unknown architecture!\n");
-@@ -296,6 +309,7 @@ machine_no_rela (int machine)
-     case EM_SPARCV9:
-     case EM_ALTERA_NIOS2:
-     case EM_MICROBLAZE:
-+    case EM_RISCV:
-       return 0;
-     default:
-       return 1;
--- 
-2.16.2
+Thanks=E2=80=94I=E2=80=99ll do that.
 
+--
+Daryl Lee
+> On Mar 10, 2018, at 9:32 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+>=20
+> Hi Daryl,
+>=20
+>=20
+>> On Sat 2018-03-10 @ 07:10:02 PM, daryl@daryllee.com wrote:
+>> I'm not sure who to send this to, so maybe someone can redirect me...
+>=20
+> Scott Rifenbark is responsible for all YP documentation:
+> srifenbark AT gmail DOT com
+>=20
+> Ideally, if you're comfortable with git, you could generate a patch and =
+send
+> it via email to this list (CCing Scott). You can find the YP sources her=
+e:
+>=20
+>    http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs
+>=20
+>> I'm going through the Yocto Project Quick Start at https://www.yoctopro=
+ject.org/docs/2.4.1/yocto-project-qs/yocto-project-qs.html,
+>> and I encountered a minor error that might be worth fixing.  There are =
+two
+>> consecutive commands given for cloning Poky and checking out the curren=
+t
+>> version:
+>>=20
+>> $ git clone git://git.yoctoproject.org/poky
+>> $ git checkout tags/yocto-2.4.1 -b poky_2.4.1
+>>=20
+>> For myself, I had to insert a
+>>=20
+>> $ cd poky
+>>=20
+>> between them to succeed.
+>=20
+> Specifically I think you're referring to:
+>=20
+>    http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/tree/documentati=
+on/yocto-project-qs/qs.xml#n330
+>=20
+>=20
+> I think the "-b <branch>" option (which also takes tags) could be used t=
+o
+> combine the above into one step, thus obviating the need for the "cd ...=
+" or
+> the "checkout ..."
+>=20
+>    $ git clone -b yocto-2.4.1 git://git.yoctoproject.org/poky
+>=20
+> But maybe it's simpler as multiple steps?
+>=20
+>> And, as always, my sincere thanks to everyone who has ever contributed =
+to
+>> this endeavor; it's a big help to me.  I've been using it for several m=
+onths
+>> now via Xilinx's Petalinux wrapper and now I'm trying to get "under the
+>> covers" to understand better what kind of magic is going on.
+>=20
+> Welcome, and good luck!
 
+--Apple-Mail-2BDB1346-740F-43DF-A0EB-5C5D84F7BE7D
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=
+=
+=3Dutf-8"></head><body dir=3D"auto">Thanks=E2=80=94I=E2=80=99ll do that.<b=
+r><br><div id=3D"AppleMailSignature">--<div>Daryl Lee<div><div style=3D"tex=
+t-align: left;"></div></div></div></div><div><br>On Mar 10, 2018, at 9:32 P=
+M, Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gmail.=
+com</a>&gt; wrote:<br><br></div><blockquote type=3D"cite"><div><span>Hi Dar=
+yl,</span><br><span></span><br><span></span><br><span>On Sat 2018-03-10 @ 0=
+7:10:02 PM, <a href=3D"mailto:daryl@daryllee.com">daryl@daryllee.com</a> wr=
+ote:</span><br><blockquote type=3D"cite"><span>I'm not sure who to send thi=
+s to, so maybe someone can redirect me...</span><br></blockquote><span></sp=
+an><br><span>Scott Rifenbark is responsible for all YP documentation:</span=
+><br><span>srifenbark AT gmail DOT com</span><br><span></span><br><span>Ide=
+ally, if you're comfortable with git, you could generate a patch and send</=
+span><br><span>it via email to this list (CCing Scott). You can find the YP=
+ sources here:</span><br><span></span><br><span> &nbsp; &nbsp;<a href=3D"ht=
+tp://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs">http://git.yoctoproject=
+.org/cgit/cgit.cgi/yocto-docs</a></span><br><span></span><br><blockquote ty=
+pe=3D"cite"><span>I'm going through the Yocto Project Quick Start at <a hre=
+f=3D"https://www.yoctoproject.org/docs/2.4.1/yocto-project-qs/yocto-project=
+-qs.html">https://www.yoctoproject.org/docs/2.4.1/yocto-project-qs/yocto-pr=
+oject-qs.html</a>,</span><br></blockquote><blockquote type=3D"cite"><span>a=
+nd I encountered a minor error that might be worth fixing. &nbsp;There are =
+two</span><br></blockquote><blockquote type=3D"cite"><span>consecutive comm=
+ands given for cloning Poky and checking out the current</span><br></blockq=
+uote><blockquote type=3D"cite"><span>version:</span><br></blockquote><block=
+quote type=3D"cite"><span></span><br></blockquote><blockquote type=3D"cite"=
+><span>$ git clone git://git.yoctoproject.org/poky</span><br></blockquote><=
+blockquote type=3D"cite"><span>$ git checkout tags/yocto-2.4.1 -b poky_2.4.=
+1</span><br></blockquote><blockquote type=3D"cite"><span></span><br></block=
+quote><blockquote type=3D"cite"><span>For myself, I had to insert a</span><=
+br></blockquote><blockquote type=3D"cite"><span></span><br></blockquote><bl=
+ockquote type=3D"cite"><span>$ cd poky</span><br></blockquote><blockquote t=
+ype=3D"cite"><span></span><br></blockquote><blockquote type=3D"cite"><span>=
+between them to succeed.</span><br></blockquote><span></span><br><span>Spec=
+ifically I think you're referring to:</span><br><span></span><br><span> &nb=
+sp; &nbsp;<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/t=
+ree/documentation/yocto-project-qs/qs.xml#n330">http://git.yoctoproject.org=
+/cgit/cgit.cgi/yocto-docs/tree/documentation/yocto-project-qs/qs.xml#n330</=
+a></span><br><span></span><br><span></span><br><span>I think the "-b &lt;br=
+anch&gt;" option (which also takes tags) could be used to</span><br><span>c=
+ombine the above into one step, thus obviating the need for the "cd ..." or=
+</span><br><span>the "checkout ..."</span><br><span></span><br><span> &nbsp=
+; &nbsp;$ git clone -b yocto-2.4.1 git://git.yoctoproject.org/poky</span><b=
+r><span></span><br><span>But maybe it's simpler as multiple steps?</span><b=
+r><span></span><br><blockquote type=3D"cite"><span>And, as always, my since=
+re thanks to everyone who has ever contributed to</span><br></blockquote><b=
+lockquote type=3D"cite"><span>this endeavor; it's a big help to me. &nbsp;I=
+'ve been using it for several months</span><br></blockquote><blockquote typ=
+e=3D"cite"><span>now via Xilinx's Petalinux wrapper and now I'm trying to g=
+et "under the</span><br></blockquote><blockquote type=3D"cite"><span>covers=
+" to understand better what kind of magic is going on.</span><br></blockquo=
+te><span></span><br><span>Welcome, and good luck!</span><br></div></blockqu=
+ote></body></html>
+
+--Apple-Mail-2BDB1346-740F-43DF-A0EB-5C5D84F7BE7D--
