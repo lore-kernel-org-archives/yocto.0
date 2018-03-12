@@ -1,38 +1,50 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <andre.draszik@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A213BE00F02; Mon, 12 Mar 2018 08:21:29 -0700 (PDT)
+	id 7A41AE00E51; Mon, 12 Mar 2018 09:38:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.128.177 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70EBCE009D7
-	for <yocto@yoctoproject.org>; Mon, 12 Mar 2018 08:21:28 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Mar 2018 08:21:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.47,461,1515484800"; d="scan'208";a="24516586"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga008.jf.intel.com with ESMTP; 12 Mar 2018 08:21:26 -0700
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <fe9f6f5b-1b12-91be-01e2-8b8e9b6eaae4@linux.intel.com>
-Date: Mon, 12 Mar 2018 17:14:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+Received: from mail-wr0-f177.google.com (mail-wr0-f177.google.com
+	[209.85.128.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A8E9E00A61
+	for <yocto@yoctoproject.org>; Mon, 12 Mar 2018 09:38:13 -0700 (PDT)
+Received: by mail-wr0-f177.google.com with SMTP id l8so2015552wrg.5
+	for <yocto@yoctoproject.org>; Mon, 12 Mar 2018 09:38:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=jl3mkOQSKi/VFUkeNxS9ugeQEk5DPIsJ4HoJuX3yXxI=;
+	b=GDzvdQHzXuoE8SHpJNZlekBk0qrbIhsj0VL0eCgCaiswnMSXZv/FncXWccrSV49Yz7
+	D2wii2zRhRtbyQP3XfsgrnauwqfsoHGGSomhv8SUoxBnkkezHWqHlpf06AyGy7E5UXAN
+	7S1KABoRLbEeUh3gQalZ15sEmh3du20fiA3yhzP4SXvdHYTqdO3Puwal1C7sVprE5sOe
+	8V1oxGoY0m4WvFD2HTWXk1cWgJu8Z4yKMLDkkch/1bJuWWv1rNinyTzitng6YIZLS8VC
+	0lv2QRk3ZBtKWkFOPzYUltFzx0CT5eORTdM0KT5JGkL+DEpgAG2OdRQhQ3hJYwdLHXte
+	7F6A==
+X-Gm-Message-State: AElRT7EKwQdcXsTDjKcCKEsVRyA4NRUhFz8xvy47fFiJVpAM1FHTa0kj
+	VjuCB8ZcBr9yOhUFjBW47FEP727H
+X-Google-Smtp-Source: AG47ELvVfJ/FvvHBMX4Cpu0FHRiPMO8xFKH/1sxfg2rQRzGFTGug2EwSTauhRgjwU0HoqYEqcmIwsQ==
+X-Received: by 10.223.149.70 with SMTP id 64mr6667905wrs.76.1520872691120;
+	Mon, 12 Mar 2018 09:38:11 -0700 (PDT)
+Received: from tfsielt31850.garage.tyco.com ([77.107.218.170])
+	by smtp.gmail.com with ESMTPSA id
+	m15sm8134623wrb.58.2018.03.12.09.38.07 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 12 Mar 2018 09:38:08 -0700 (PDT)
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+To: yocto@yoctoproject.org
+Date: Mon, 12 Mar 2018 16:38:05 +0000
+Message-Id: <20180312163806.16943-1-git@andred.net>
+X-Mailer: git-send-email 2.16.2
 MIME-Version: 1.0
-Subject: IMPORTANT: do_patch() fuzz warnings and how to deal with them
+Subject: [meta-java][PATCH 1/2] openjdk-8: fix MAKE detection patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,116 +56,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Mar 2018 15:21:29 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 12 Mar 2018 16:38:15 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-*Executive summary*
+From: André Draszik <andre.draszik@jci.com>
 
-do_patch() will shortly start issuing warnings when recipe patches are 
-applied with some of the patch context ignored. This email explains why 
-this is necessary, and how the warnings can be eliminated.
+The patch had a few typos, leading to errors during ./configure
+   ../jdk8u-4be07cb28b21/common/autoconf/configure: line 8408: test: too many arguments
 
-*What is patch fuzz?*
+Change-Id: I867eba7aae3390aa869e69c86f29e77b505043e7
+---
+ recipes-core/openjdk/patches-openjdk-8/dont-expect-fqpn-for-make.patch | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Patch fuzz is a situation when the patch tool ignores some of the 
-context lines in order to apply the patch. Consider this example:
+diff --git a/recipes-core/openjdk/patches-openjdk-8/dont-expect-fqpn-for-make.patch b/recipes-core/openjdk/patches-openjdk-8/dont-expect-fqpn-for-make.patch
+index 6454237..5192d1a 100644
+--- a/recipes-core/openjdk/patches-openjdk-8/dont-expect-fqpn-for-make.patch
++++ b/recipes-core/openjdk/patches-openjdk-8/dont-expect-fqpn-for-make.patch
+@@ -6,7 +6,7 @@
+      # User has supplied a make, test it.
+ -    if test ! -f "$MAKE"; then
+ -      AC_MSG_ERROR([The specified make (by MAKE=$MAKE) is not found.])
+-+    if test -a `dirname "$MAKE"` = "." -a ! -f "$MAKE"; then
+++    if test `dirname "$MAKE"` = "." && ! test -f "$MAKE"; then
+ +      AC_PATH_PROGS(CHECK_MAKE, $MAKE)
+ +    else
+ +      CHECK_MAKE="${MAKE}"
+-- 
+2.16.2
 
-Patch to be applied:
-
-========
-context line 1
-context line 2
-context line 3
-+newly added line
-context line 4
-context line 5
-context line 6
-========
-
-Original source code:
-
-========
-different context line 1
-different context line 2
-context line 3
-context line 4
-different context line 5
-different context line 6
-========
-
-Outcome:
-
-========
-different context line 1
-different context line 2
-context line 3
-newly added line
-context line 4
-different context line 5
-different context line 6
-========
-
-Chances are, the newly added line was actually added in a completely 
-wrong location, or it was already in the original source, and was added 
-for the second time. This is especially possible, if the context line 3 
-and 4 are blank or have only generic things in them like #endif or }. 
-Even worse, there is currently no warning when this happens, and 
-depending on the patched code, it can (and does) still compile without 
-errors.
-
-*What is changing*
-
-When patch fuzz is detected, there will be a warning printed, similar to 
-this:
-
-     WARNING: vulkan-1.0.61.1-r0 do_patch:
-     Some of the context lines in patches were ignored. This can lead to 
-incorrectly applied patches.
-     The context lines in the patches can be updated with devtool:
-
-         devtool modify <recipe>
-         devtool finish --force-patch-refresh <recipe> <layer_path>
-
-     Then the updated patches and the source tree (in devtool's workspace)
-     should be reviewed to make sure the patches apply in the correct place
-     and don't introduce duplicate lines (which can, and does happen
-     when some of the context is ignored).
-     Details:
-     Applying patch demos-Don-t-build-tri-or-cube.patch
-     patching file demos/CMakeLists.txt
-     Hunk #1 succeeded at 63 (offset 2 lines).
-     Hunk #2 succeeded at 76 with fuzz 1 (offset 2 lines).
-
-*How to elimimate the warnings?*
-
-Use devtool command as explained by the warning. First, unpack the 
-source into devtool workspace:
-
-	devtool modify <recipe>
-
-This will apply all the patches, and create new commits out of them in 
-the workspace - with the patch context updated.
-
-Then, replace the patches in the recipe layer:
-
-         devtool finish --force-patch-refresh <recipe> <layer_path>
-
-The patch updates need be reviewed (preferably, with a side-by-side diff 
-tool) to ensure they are indeed doing the right thing:
-
-1) they get applied in the correct location;
-2) they do not introduce duplicate lines, or otherwise do things that 
-are not anymore necessary.
-
-To confirm these things, you can also review the patched source code in 
-devtool's workspace, typically in <build_dir>/workspace/sources/<recipe>/
-
-Once the review is done, you can create and publish a layer commit with 
-the patch updates that modify the context. Devtool may also refresh 
-other things in the patches, those can be discarded.
-
-
-Alex
 
