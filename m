@@ -1,62 +1,65 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alan.martinovic@senic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E33ABE00D91; Mon, 12 Mar 2018 03:00:35 -0700 (PDT)
+	id 18A1BE00A75; Mon, 12 Mar 2018 03:26:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.215.45 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.174 listed in list.dnswl.org]
-Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE572E00843
-	for <yocto@yoctoproject.org>; Mon, 12 Mar 2018 03:00:34 -0700 (PDT)
-Received: by mail-io0-f174.google.com with SMTP id d71so10725900iog.4
-	for <yocto@yoctoproject.org>; Mon, 12 Mar 2018 03:00:34 -0700 (PDT)
+Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3D0EE0081A
+	for <yocto@yoctoproject.org>; Mon, 12 Mar 2018 03:26:06 -0700 (PDT)
+Received: by mail-lf0-f45.google.com with SMTP id q69-v6so22313464lfi.10
+	for <yocto@yoctoproject.org>; Mon, 12 Mar 2018 03:26:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	d=senic-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=mRWwlgmGHViPeVQ4is/bOtToQvl9T/vQtPJEH1tX7OI=;
-	b=UQ9X3m+ZKi06kYz0BwQsvEolapZMLF5jQqfXuZbtHwsVFtzbZDqe6cegO9P1YZl3Np
-	rUQTEcObLFYNCdAqQPKKD8Zk+g2EHmVypIUj0wVGCvBYTbwQB+leLcHP2c22iOGCl5xK
-	liyYz0LRDJkdDZ0x/VFG95WC19l60HpfuuH9y+Z8jQKxn88Ea3q0s0/LrhIAH003+icf
-	RCJvSfPCdWaoUQpFvp53vprXp8HdM+BDkPO6pKstBEwLr6d40f00UKFm688U/YQaXQF9
-	MWB9YrWVJSLn/xxKxd7BYYMeuYNuocd6OuvLaHYm3mI24M5FF1CtLgENtYOwj/45pcdX
-	Wrhw==
+	:cc; bh=GfClc5ITVLX4y+NtolifWlkWn6Jo5MYIqiEWbI+wbDg=;
+	b=Bh54/uWZSCOpg/RCLNX5ErvdIuQVCb/S6YwDt7OGaxAR6G/8utrIiUu+U6MK1sS5fc
+	M8pDpBeUNz7vn6uUwxisgqsRlVY/RmTSbnlPmwABRv0eqQ5FJC9xlPoyIkosTD3Q25XG
+	ifNpoIvVMgETSm6z8JF3XlijWzBqKOJykzz2Cfd3///rTJrsB6cMQxkDF65AfNCgzojm
+	bs13sBuyrTfSONG8mBKKq+6Xr5s2dNnOlSyluuv+QdwNOKnFfsUyDTKcvkgCdBfuHhDK
+	0lAMYf8l2DPa5RR7V6fWklcO48TTTTHHgjggSdZF9DcdVc5Bx8oJl181cOr4u1E6UYDD
+	tvsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=mRWwlgmGHViPeVQ4is/bOtToQvl9T/vQtPJEH1tX7OI=;
-	b=JG/MrIkJ8h9hLx1DhtBiExHmgXTQZrGrCYBZ08yvJCPhPHYuja6aP0/ygEMzrnRuah
-	Enl4p9o/GCanBR9Wu+iV3g/xHaVdluSsLzfriV8uSI6+s4VsrAnNzJ/GIztzmehWEpJb
-	6bM3iwzV4Nreufdwpmz0EhpF9EaoJKr+W9BRbMXc1F2fxSWbuctiSBoNrjNaRYJABNmp
-	ImdKGi4II8ZmrRuW5uDBhWcnIaTm7fvVLPGRG0L8sCJ/0PWwF4oJoKSLCRo5KarJTy5e
-	qktweAQC5sZi5qwjCZuLjr6aG8RL9FVBvCM10ISnkQe+C2in04a21mxTFDNzdH0vRexv
-	cZiw==
-X-Gm-Message-State: AElRT7Gr5sIFrcIzyw1mhRA5HYx4lyiFg4wp9z2UOM3XCmzrdPgjRIeX
-	0s+Zn+H9YAy9UVSWO/vfdrGJHbg9/iKb4XrV9QHJyw==
-X-Google-Smtp-Source: AG47ELtTrXkeeJOqA1DsG1ih8lTVq3nkchv8diqG/kQzwmi3ZdBRE82IIPMlB0dWTmD4RcPXZnDnCl3cUquYDM+2wdw=
-X-Received: by 10.107.183.76 with SMTP id h73mr8173625iof.201.1520848833805;
-	Mon, 12 Mar 2018 03:00:33 -0700 (PDT)
+	bh=GfClc5ITVLX4y+NtolifWlkWn6Jo5MYIqiEWbI+wbDg=;
+	b=RrJatbBEjZbs/M40nAzywNf4bEvpWVK+tYmv2p76cTZ6PQtjm/dTc55PSBb+JeILWG
+	0yOHoduFni4P6NZkRkWkel2onYn9J0lHrEBNuJ45bnRUN4hDM6xNwUHOhY/5kjdTeDZ2
+	w0pgTS6tD+o+9S0SIvlfRCEZWlUUNGcmngj3MdY5hNhpXKcn2E9uo8HApOZiYTMgTvLg
+	CkKuFPeOhvAylJMCBFL2c42Tt79+mQBj3g6/x28+g29HQMzQbXt8ZMYHr9uoq2lYd+el
+	f81SMGh3EGWyLCF5R5bpTLnpkXsT60MaORmCdr01eB5N7FoFkMuD1apoqK3LGK+fGfZi
+	znEQ==
+X-Gm-Message-State: AElRT7HVvILaQxZ8lUQpyZwmAcYg6PbGeg55/HZUqZ1H0chdgDNo5agR
+	OIL8LBH/1/GLIuc07FoVej7rGFj5alnHW+/WdUr1Jg==
+X-Google-Smtp-Source: AG47ELsBY7Vmm0yio0RiE8xzi5hPdVwPtIt+zxhw/m+/HQiCVnYuzL6iiJBs87uIb0LQYd5C2yylSNrfy+0xr+Gzjb4=
+X-Received: by 10.46.7.80 with SMTP id i16mr4572274ljd.78.1520850365626; Mon,
+	12 Mar 2018 03:26:05 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.30.9 with HTTP; Mon, 12 Mar 2018 03:00:13 -0700 (PDT)
-In-Reply-To: <trinity-53cb1c50-6d60-491f-b325-6f30fd900d49-1520839936007@3c-app-gmx-bs80>
-References: <trinity-53cb1c50-6d60-491f-b325-6f30fd900d49-1520839936007@3c-app-gmx-bs80>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 12 Mar 2018 10:00:13 +0000
-Message-ID: <CAJTo0LaVH0xrRhEeKfb17pNzmFNnXjRxUnnPW=x7PAqBvhPd+Q@mail.gmail.com>
-To: Arno Steffens <star@gmx.li>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: O_RDONLY ... missed bits/fcntl.h not as expected
+Received: by 2002:a19:1f0f:0:0:0:0:0 with HTTP; Mon, 12 Mar 2018 03:26:05
+	-0700 (PDT)
+In-Reply-To: <CAFq4t4iDwYGcV-Zx03+9Xu09KfZRRRUN+-FWQHTsN=YciKMeSg@mail.gmail.com>
+References: <CAFq4t4gHeuROOaP3q7k3_i2BthqH2GQtf93OCTOcb6XhA1ANvw@mail.gmail.com>
+	<CAOT_U5Z_Oph_QdPy3XsG-0Wi-e8AYU=BJv4TX+UYjX-F87WdmQ@mail.gmail.com>
+	<CAFq4t4j-4B1T4k2fq31eZA0mTYx=kZ1iZFGnUc+kJ6FazmmRGA@mail.gmail.com>
+	<CAFq4t4iDwYGcV-Zx03+9Xu09KfZRRRUN+-FWQHTsN=YciKMeSg@mail.gmail.com>
+From: Alan Martinovic <alan.martinovic@senic.com>
+Date: Mon, 12 Mar 2018 11:26:05 +0100
+Message-ID: <CAOT_U5Zsz7nw-fNojfHzSM3aRaJGfr8A0X6_CzhyR8QMO6O7LA@mail.gmail.com>
+To: Peter Balazovic <balazovic.peter@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: python-pyqt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,96 +71,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Mar 2018 10:00:36 -0000
-Content-Type: multipart/alternative; boundary="94eb2c0b9e3a7f18d605673436fb"
-
---94eb2c0b9e3a7f18d605673436fb
+X-List-Received-Date: Mon, 12 Mar 2018 10:26:08 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Can you explain what the actual problem is?
+Don't know if I can help you with that, sorry.
+Seems to be a promise of a nest of snakes :)
 
-For me the include you'd use in programs <fcntl.h> includes <bits/fcntl.h>
-which includes <bits/fcntl-linux.h> which defines O_RDONLY.
+Perhaps a suggestion before you go down that rabbit hole...
+Try getting the whole `meta-qt5` that has the required python packages in
+it already.
+Perhaps you'll have more luck with that than porting a recipe.
 
-Ross
+Be Well,
+Alan
 
 
-On 12 March 2018 at 07:32, Arno Steffens <star@gmx.li> wrote:
 
-> I looked for
-> #define O_RDONLY             00
-> #define O_WRONLY             01
-> #define O_RDWR               02
-> and found it in : bits/fcntl-linux.h. According to this file it should not
-> be included, but bits/fcntl.h.
-> And it requires something like that:
->
->   A minimal <bits/fcntl.h> contains just:
->    struct flock {...}
->    #ifdef __USE_LARGEFILE64
->    struct flock64 {...}
->    #endif
->    #include <bits/fcntl-linux.h>
+
+
+On Sat, Mar 10, 2018 at 7:28 PM, Peter Balazovic
+<balazovic.peter@gmail.com> wrote:
+> i've added "sip" package to my build and mow by using python-pyqt5_5.8.2.bb
 >
 >
+> ERROR: python-pyqt5-5.8.2-r0 do_patch: Command Error: 'quilt --quiltrc
+> /home/ubuntu/work/morty/fsl-release-bsp-imx6/build/tmp/sysroots/x86_64-linux/etc/quiltrc
+> push' exited with 0  Output:
+> Applying patch fix-sm.patch
+> patch: **** Only garbage was found in the patch input.
+> Patch fix-sm.patch does not apply (enforce with -f)
+> ERROR: python-pyqt5-5.8.2-r0 do_patch: Function failed: patch_do_patch
+> ERROR: Logfile of failure stored in:
+> /home/ubuntu/work/morty/fsl-release-bsp-imx6/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/python-pyqt5/5.8.2-r0/temp/log.do_patch.6327
+> ERROR: Task
+> (/home/ubuntu/work/morty/fsl-release-bsp-imx6/sources/meta-qt5/recipes-python/pyqt5/python-pyqt5_5.8.2.bb:do_patch)
+> failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 7479 tasks of which 7474 didn't need to be
+> rerun and 1 failed.
 >
-> But this doesn't finally include the fcntl-linux.h as expected. Am I doing
-> something wrong?
-> Regards
-> Arno
 >
 >
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> On Sat, Mar 10, 2018 at 6:14 PM, Peter Balazovic <balazovic.peter@gmail.com>
+> wrote:
+>>
+>> I have repo from
+>> http://git.freescale.com/git/cgit.cgi/imx/fsl-arm-yocto-bsp.git/ branch
+>> imx-morty
+>> there is layer "meta-qt5" but does not contain "python-pyqt" or
+>> ""python-pyqt5" recipes.
+>>
+>> I copied python-pyqt5_5.8.2.bb recipe from
+>> https://layers.openembedded.org/layerindex/recipe/60914/
+>>
+>>
+>> On Sat, Mar 10, 2018 at 3:41 PM, Alan Martinovic
+>> <alan.martinovic@senic.com> wrote:
+>>>
+>>> Seems like the name of the package is: python-pyqt5
+>>>
+>>> A recipe with that name does exist in meta-qt5:
+>>> https://layers.openembedded.org/layerindex/recipe/60914/
+>>>
+>>> As on why bitbake didn't automatically set the recipe for execution
+>>> (based on RDEPENDS) but you would need to manually add it to
+>>> IMAGE_INSTALL_append
+>>> I don't know.
+>>>
+>>> Do you have meta-qt5 in your layers?
+>>>
+>>>
+>>> On Sat, Mar 10, 2018 at 1:53 PM, Peter Balazovic
+>>> <balazovic.peter@gmail.com> wrote:
+>>> > Dears,
+>>> >
+>>> >
+>>> >
+>>> > per Yocto build from fsl-arm-yocto-bsp.git - i.MX Linux BSP Release
+>>> > Yocto
+>>> > Project manifests of imx-morty branch I have built fsl-image-qt5 image,
+>>> > I
+>>> > need to add qt5 python support, how to add to the image?
+>>> >
+>>> >
+>>> >
+>>> > Modifying local.conf not works
+>>> >
+>>> > IMAGE_INSTALL_append += "python-pyqt"
+>>> >
+>>> >
+>>> > I end up with errors...
+>>> >
+>>> >
+>>> > ERROR: Nothing RPROVIDES 'python-pyqt5' (but
+>>> >
+>>> > /home/ubuntu/work/morty/fsl-release-bsp-imx6/sources/meta-fsl-bsp-release/imx/meta-sdk/recipes-fsl/images/fsl-image-qt5.bb
+>>> > RDEPENDS on or otherwise requires it)
+>>> >
+>>> > NOTE: Runtime target 'python-pyqt5' is unbuildable, removing...
+>>> >
+>>> > Missing or unbuildable dependency chain was: ['python-pyqt5']
+>>> >
+>>> > ERROR: Required build target 'fsl-image-qt5' has no buildable
+>>> > providers.
+>>> >
+>>> > Missing or unbuildable dependency chain was: ['fsl-image-qt5',
+>>> > 'python-pyqt5']
+>>> >
+>>> >
+>>> >
+>>> > How to add python QT5 support to Yocto image build?
+>>> >
+>>> >
+>>> > Thank you.
+>>> >
+>>> > --
+>>> > _______________________________________________
+>>> > yocto mailing list
+>>> > yocto@yoctoproject.org
+>>> > https://lists.yoctoproject.org/listinfo/yocto
+>>> >
+>>
+>>
 >
 
---94eb2c0b9e3a7f18d605673436fb
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Can you explain what the actual problem is?<div><br></div>=
-<div>For me the include you&#39;d use in programs &lt;fcntl.h&gt; includes =
-&lt;bits/fcntl.h&gt; which includes &lt;bits/fcntl-linux.h&gt; which define=
-s O_RDONLY.</div><div><br></div><div>Ross</div><div><br></div></div><div cl=
-ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On 12 March 2018 at 07:3=
-2, Arno Steffens <span dir=3D"ltr">&lt;<a href=3D"mailto:star@gmx.li" targe=
-t=3D"_blank">star@gmx.li</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex">I looked for<br>
-#define O_RDONLY=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A000<br>
-#define O_WRONLY=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A001<br>
-#define O_RDWR=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A002<br>
-and found it in : bits/fcntl-linux.h. According to this file it should not =
-be included, but bits/fcntl.h.<br>
-And it requires something like that:<br>
-<br>
-=C2=A0 A minimal &lt;bits/fcntl.h&gt; contains just:<br>
-=C2=A0 =C2=A0struct flock {...}<br>
-=C2=A0 =C2=A0#ifdef __USE_LARGEFILE64<br>
-=C2=A0 =C2=A0struct flock64 {...}<br>
-=C2=A0 =C2=A0#endif<br>
-=C2=A0 =C2=A0#include &lt;bits/fcntl-linux.h&gt;<br>
-<br>
-<br>
-<br>
-But this doesn&#39;t finally include the fcntl-linux.h as expected. Am I do=
-ing something wrong?<br>
-Regards<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">Arno<br>
-<br>
-<br>
-<br>
---<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-</font></span></blockquote></div><br></div>
-
---94eb2c0b9e3a7f18d605673436fb--
