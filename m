@@ -1,98 +1,59 @@
-Return-Path: <KZertsekel@advaoptical.com>
+Return-Path: <patryk.las@slabs.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 067DAE009DF; Mon, 19 Mar 2018 04:27:31 -0700 (PDT)
+	id 58D32E007B3; Wed, 14 Mar 2018 15:31:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.128.172 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail3.advaoptical.com (mail3.advaoptical.com [74.202.24.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C669BE0086B
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 04:27:29 -0700 (PDT)
-Received: from EUR03-AM5-obe.outbound.protection.outlook.com
-	(mail-am5eur03lp0112.outbound.protection.outlook.com
-	[213.199.154.112])
-	by atl-vs-fsmail.advaoptical.com (8.16.0.22/8.16.0.22) with ESMTPS id
-	w2JBRPQw015506
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=OK);
-	Mon, 19 Mar 2018 07:27:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ADVA.onmicrosoft.com; 
-	s=selector1-advaoptical-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=C7bXQRExjH4jNZdUUK/KmT8ka1QFOFZVp4B4+eTSqgU=;
-	b=fJ7UNo60RrdjIejKttlfRWcWW1fb2uLjTNKdVHdV1Ii77pSjPpAZeDCSdJyH5kIjGIgWxhjpVPKSCxsEv20IPiWWsMMrYxnHaAvX3xf43TFuRaUp+3Qa950LqoYFXibOO2BYFqWKakWN5RZeBy0zJL7vNAm9n525qC4M7SUZ3GE=
-Received: from VI1PR0202MB2559.eurprd02.prod.outlook.com (10.173.79.138) by
-	VI1PR0202MB2862.eurprd02.prod.outlook.com (10.171.102.138) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.20.588.14;
-	Mon, 19 Mar 2018 11:27:23 +0000
-Received: from VI1PR0202MB2559.eurprd02.prod.outlook.com
-	([fe80::64ea:b4f9:efa5:19cd]) by
-	VI1PR0202MB2559.eurprd02.prod.outlook.com
-	([fe80::64ea:b4f9:efa5:19cd%18]) with mapi id 15.20.0588.016;
-	Mon, 19 Mar 2018 11:27:24 +0000
-From: Kosta Zertsekel <KZertsekel@advaoptical.com>
-To: "Huang, Jie (Jackie)" <Jackie.Huang@windriver.com>, Khem Raj
-	<raj.khem@gmail.com>
-Thread-Topic: [yocto] Fix 'PACKAGES' in net-snmp recipe
-Thread-Index: AQHTvoI+I1CZrhQdBkCu5BrxH5AdgaPW/52A///IbzCAAASyMIAARmI3gAAS0ACAAEb77g==
-Date: Mon, 19 Mar 2018 11:27:23 +0000
-Message-ID: <VI1PR0202MB2559490EEFA88D25E01AD12BCDD40@VI1PR0202MB2559.eurprd02.prod.outlook.com>
-References: <VI1PR0202MB2559EF86BAA4B34E18C68E41CDD50@VI1PR0202MB2559.eurprd02.prod.outlook.com>
-	<CAMKF1soDUVjKrfsrbmp9a-g+vZdrgtAwO-oH91wMG5BwtWzfXg@mail.gmail.com>
-	,<1B858668EC6A94408DCA5225FDFA85AA015868FE71@ALA-MBD.corp.ad.wrs.com>
-	<VI1PR0202MB2559BE6972EE480053BC63D4CDD40@VI1PR0202MB2559.eurprd02.prod.outlook.com>,
-	<1B858668EC6A94408DCA5225FDFA85AA0158690408@ALA-MBD.corp.ad.wrs.com>
-In-Reply-To: <1B858668EC6A94408DCA5225FDFA85AA0158690408@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [194.90.138.234]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; VI1PR0202MB2862;
-	7:gnbDcBBrY7u89AFzkkgMDomSvkJMW+LizYtm9gmPyla7qZ4OM736TtszN6sw8l0gAb5WpfOWvDTbZf7nnbC01F3yWmliKD0ZvgqBe39Ru0wwEesVz6gQNWXAG+UBNZlfsjCgyfXQQZrgKSpmNW0gdUWxBlc5bkUI/QRCkChI59XyhNDPnlCnFCkUJ5W8/MO4UQ3OC+E6yo4iXunxuckaLsRvqT/G4ViUjP/ovv5KZjGRlTIwB8rqgNo4uPTSN15+
-x-ms-exchange-antispam-srfa-diagnostics: SSOS;
-x-ms-office365-filtering-correlation-id: 5023ee7f-cc48-454c-2675-08d58d8c6329
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(5600026)(4604075)(3008032)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
-	SRVR:VI1PR0202MB2862; 
-x-ms-traffictypediagnostic: VI1PR0202MB2862:
-x-microsoft-antispam-prvs: <VI1PR0202MB286213463422298EA47221F7CDD40@VI1PR0202MB2862.eurprd02.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(93006095)(93001095)(3002001)(3231221)(944501244)(52105095)(10201501046)(6041310)(20161123562045)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123564045)(6072148)(201708071742011);
-	SRVR:VI1PR0202MB2862; BCL:0; PCL:0; RULEID:;
-	SRVR:VI1PR0202MB2862; 
-x-forefront-prvs: 06167FAD59
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(376002)(346002)(39850400004)(396003)(39380400002)(366004)(199004)(189003)(7696005)(80792005)(8676002)(72206003)(81156014)(478600001)(14454004)(97736004)(229853002)(6246003)(8936002)(6436002)(53546011)(9686003)(86362001)(55016002)(2900100001)(6506007)(76176011)(3846002)(25786009)(4326008)(54906003)(99286004)(6116002)(81166006)(2906002)(3280700002)(316002)(74316002)(39060400002)(53936002)(105586002)(19627405001)(66066001)(54896002)(5250100002)(186003)(2950100002)(102836004)(33656002)(93886005)(26005)(110136005)(106356001)(6606003)(3660700001)(5660300001)(68736007)(7736002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR0202MB2862;
-	H:VI1PR0202MB2559.eurprd02.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: advaoptical.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: CNbxgxpQDbvmucykJRMauOCBouFxkioHyMifb68TDcEIJC8BRpzDe2FDcb71h0tXLjLeQcPLzJ6XJBuN7gU/FMIRU1Z9EfRfKJHdem61lUTBVIS1OUNyqK2NRwMH0QCJRyGO2FhkxrrOxD1Tj+Q9xW1PpyqIbLyNShAr0/oCdAO30bxTcyBeO5Vrt7kJ5MLV+rHEJrG6Kktu70tQ1TIdAm2wUQVZVjLHqAu/8C4d93hSxzuPSN8wK5nQ+oSgXw9A3o/LOfXU0GnW6CCzHU7OX156PQNBPJ4ZbrFKkgBww1SnC572E42Mcz2Km35Xn62BhVx9b27O1l+JA9fjEjyqEw==
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-wr0-f172.google.com (mail-wr0-f172.google.com
+	[209.85.128.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00BB2E00474
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2018 15:31:04 -0700 (PDT)
+Received: by mail-wr0-f172.google.com with SMTP id h2so6290110wre.12
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2018 15:31:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=slabs-pl.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=K+jW6OPYciB8WjJhVtZeQLHhtyar1/RI0qlhKBnEIt8=;
+	b=iY1CCyFOWBy8Jrm3KAtf+DsS4UAijFdVhIhazm6qX2Vs1X3f6+BtGfkpfOBYNupLXi
+	qfMkYeP3WqnLsc8I5YimD7S5mRp5tKfvXjXCLuJfv6L/FgxdQvmbHNy/U9wY9xG1hv+K
+	lYZh+k9kaLO1VqE/Dcs6Fcz2EoKEWqhxlfZIovveDUWUGwt4Zlrg05YYtO2EncjCSqkg
+	uScg7jbSF5PdN/Pb9A25/z98LVzt45RZt6sUbHvu0cGSrLNRHaRI1AECoWs5LKh9fIab
+	M7e4zQMiaUkPQ/qhzPz3Cn3i8NmB1aEbn1N4ydBQhAchFDS5+eYyC/FF3HNaycGnKymm
+	cqrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=K+jW6OPYciB8WjJhVtZeQLHhtyar1/RI0qlhKBnEIt8=;
+	b=rHCdJkP0SgsT2YoXx2jgEJu+tZVC/Ok+4H4rqFL6uOvbNOmLmc0VaDlftC2J9Jx3T2
+	zX5Hq9oIv3CBQaEAJKEplubPm6YLfpipo9Utz6vnQxzBM/Df7chNkPivX/8f/mDOwPhF
+	JyLCeLK76Nm2gsaQcYaEy4596ySWqWNzJQCMlg1cRoPYyNUTH2qXqjeRjS/PMDhF2QXM
+	6bJHlWTaQAPrB8pZTBbDsPvl1EaSF5C5uL+GQtNJZIQ/eoLVZByvFkpPvL7xI19G9MWw
+	avvqiD1qVN9A/yxsYbRy6mBTweuoeuZd2VmQKnlC900u78hGSvldY6+rxcCf3wLVHAlR
+	d7RA==
+X-Gm-Message-State: AElRT7Gu7B8GWHh2g5j8E/QHbymJyDSkQPB9zvfoTbg6CTPbflIjM9F+
+	Dl6VmrYgRDvGs2muRfbUEsL401sS5SgdarhofIy/sNaw
+X-Google-Smtp-Source: AG47ELuER44HPHZkelVhVv52sg9uWCeDkEqiHo4VcPMv09Nho+gQQ5HVdGxJWEgoZG1fF+arsS4GalUisOUjNBJag1c=
+X-Received: by 10.223.158.196 with SMTP id b4mr5186617wrf.112.1521066663305;
+	Wed, 14 Mar 2018 15:31:03 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: advaoptical.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5023ee7f-cc48-454c-2675-08d58d8c6329
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2018 11:27:23.9809 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 522fc9ff-aca0-4d49-8e36-d13332e34662
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0202MB2862
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2018-03-19_07:, , signatures=0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Zhou,
-	Li" <li.zhou@windriver.com>, "Enache,
-	Catalin" <catalin.enache@windriver.com>
-Subject: Re: Fix 'PACKAGES' in net-snmp recipe
+Received: by 10.28.172.197 with HTTP; Wed, 14 Mar 2018 15:31:02 -0700 (PDT)
+From: =?UTF-8?B?UGF0cnlrIMWBYcWb?= <patryk.las@slabs.pl>
+Date: Wed, 14 Mar 2018 23:31:02 +0100
+Message-ID: <CAC_2qz=FNge1X6dq=K4Snc1cqPy0FYEKeE5+F0siLGyufcM3Ew@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Mon, 19 Mar 2018 08:36:15 -0700
+Subject: Installing setup.py after cmake build in one recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -104,94 +65,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2018 11:27:31 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_VI1PR0202MB2559490EEFA88D25E01AD12BCDD40VI1PR0202MB2559_"
+X-List-Received-Date: Wed, 14 Mar 2018 22:31:06 -0000
+Content-Type: multipart/alternative; boundary="089e082114e0257b3a056766eeda"
 
---_000_VI1PR0202MB2559490EEFA88D25E01AD12BCDD40VI1PR0202MB2559_
-Content-Type: text/plain; charset="iso-8859-1"
+--089e082114e0257b3a056766eeda
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Monday, March 19, 2018 9:38 AM Huang, Jie (Jackie) wrote:
-> It was changed for two reasons referred to the commit 5eec0615e:
->
-> """
->     - Change to use append for PACKAGES so that:
->       * ptest package is added from ptest bbcalss
->       * the PN is back, allow empty and add rdepends on net-snmp-client
->         in case the user try to add net-snmp to the image
-> """
->
-> 1) The 'PACKAGEs =3D ...' will override the definition from bbclass like =
-ptest.bbclass
-> 2) We had customers assume that the ${PN} package for each recipe always =
-exist so when they wanted to
->     use net-snmp clients, they tried to install net-snmp but failed.
->
-> If you don't like the solution, you can use _remove operation to remove P=
-N from PACKAGES.
->
-> Other default packages like ${PN}-doc and ${PN}-locale, them are also emp=
-ty for many other recipes,
-> I don't think it's an issue, so no need to re-define the PACKAGES or remo=
-ve them with _remove operation.
+Hi,
 
-Ok. Agree. Non-issue.
-Thank you guys a lot for the explanation!
+Since few days I am dealing with problem in compiling my recipe in which I
+am downloading git repositories patch them, compiling (via cmake) and
+finally running setup.py. I have to do it in mentioned order because cmake
+gives me *.so library which is required by setup.py instalator. Python
+setup.py is located inside repository like: "${S}/python/setup.py" where
+S=3D${WORKDIR}/git.
 
---- Kosta Z.
+Recipe compiles fine (bitbake my_recipe) but it does not included in final
+system image (added entry to add recipe into main image). What is more
+there is not site-packages for build in tmp but setup.py seemd to be
+invoked.
 
---_000_VI1PR0202MB2559490EEFA88D25E01AD12BCDD40VI1PR0202MB2559_
-Content-Type: text/html; charset="iso-8859-1"
+My recipe:
+
+LICENSE =3D "CLOSED"
+BB_STRICT_CHECKSUM =3D "0"
+SECTION =3D "devel/python"
+PV =3D "1.0"
+DEPENDS =3D "boost udev swig-native python python-setuptools python-native
+python-setuptools-native python-distutils-extra-native"
+
+SRC_URI =3D " \
+    git://github.com/myrepo1;protocol=3Dhttps;name=3DA \
+    git://github.com/myrepo2;protocol=3Dhttps;name=3DB \
+    file://0001-patch1.patch \
+"
+SRCREV_A =3D "404ff3eeff0d79c15cbfdbc126c4bff2996baea6"
+SRCREV_B =3D "5e883c2a3f5373dbd1ea34e6095f9433bea2b0b3"
+
+S =3D "${WORKDIR}/git"
+
+
+PARALLEL_MAKEINST =3D ""
+
+DISTUTILS_INSTALL_ARGS +=3D
+"--install-lib=3D${libdir}/${PYTHON_DIR}/site-packages"
+
+inherit cmake
+
+FILES_${PN} +=3D "${libdir}/${PYTHON_DIR}/*"
+
+do_compile_prepend() {
+    export STAGING_LIBDIR=3D${STAGING_LIBDIR}
+    export STAGING_INCDIR=3D${STAGING_INCDIR}
+}
+
+do_install() {
+    export STAGING_LIBDIR=3D${STAGING_LIBDIR}
+    export STAGING_INCDIR=3D${STAGING_INCDIR}
+    ${STAGING_BINDIR_NATIVE}/python-native/python ${S}/python/setup.py
+install
+}
+
+--=20
+
+*Patryk =C5=81a=C5=9B*
+
+Embedded Specialist
+
++ 48 503 165 819
+
+
+*patryk.las@slabs.pl <patryk.las@slabs.pl>*
+
+Dworska 1A/1U
+
+30-314 Krak=C3=B3w
+
+Polska
+NIP 9452185706
+
+--089e082114e0257b3a056766eeda
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<div>On Monday, March 19, 2018 9:38 AM Huang, Jie (Jackie) wrote:<br>
-&gt; It was changed for two reasons referred to the commit 5eec0615e:<br>
-&gt;<br>
-&gt; &quot;&quot;&quot;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp; - Change to use append for PACKAGES so that:<b=
-r>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * ptest package is added from ptes=
-t bbcalss<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * the PN is back, allow empty and =
-add rdepends on net-snmp-client<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in case the user try t=
-o add net-snmp to the image<br>
-&gt; &quot;&quot;&quot;<br>
-&gt;<br>
-&gt; 1) The 'PACKAGEs =3D ...' will override the definition from bbclass li=
-ke ptest.bbclass<br>
-&gt; 2) We had customers assume that the ${PN} package for each recipe alwa=
-ys exist so when they wanted to<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp; use net-snmp clients, they tried to install ne=
-t-snmp but failed.<br>
-&gt;<br>
-&gt; If you don't like the solution, you can use _remove operation to remov=
-e PN from PACKAGES.<br>
-&gt;<br>
-&gt; Other default packages like ${PN}-doc and ${PN}-locale, them are also =
-empty for many other recipes,<br>
-&gt; I don't think it's an issue, so no need to re-define the PACKAGES or r=
-emove them with _remove operation.<br>
-<br>
-Ok. Agree. Non-issue.<br>
-Thank you guys a lot for the explanation!<br>
-<br>
---- Kosta Z.<br>
-</div>
-</div>
-</body>
-</html>
+<div dir=3D"ltr">Hi,<div><br></div><div>Since few days I am dealing with pr=
+oblem in compiling my recipe in which I am downloading git repositories pat=
+ch them, compiling (via cmake) and finally running setup.py. I have to do i=
+t in mentioned order because cmake gives me *.so library which is required =
+by setup.py instalator. Python setup.py is located inside repository like: =
+&quot;${S}/python/setup.py&quot; where S=3D${WORKDIR}/git.</div><div><br></=
+div><div>Recipe compiles fine (bitbake my_recipe) but it does not included =
+in final system image (added entry to add recipe into main image). What is =
+more there is not site-packages for build in tmp but setup.py seemd to be i=
+nvoked.</div><div><br></div><div>My recipe:</div><div><br></div><div><div>L=
+ICENSE =3D &quot;CLOSED&quot;</div><div>BB_STRICT_CHECKSUM =3D &quot;0&quot=
+;</div><div>SECTION =3D &quot;devel/python&quot;</div><div>PV =3D &quot;1.0=
+&quot;</div><div>DEPENDS =3D &quot;boost udev swig-native python python-set=
+uptools python-native python-setuptools-native python-distutils-extra-nativ=
+e&quot;</div><div><br></div><div>SRC_URI =3D &quot; \</div><div>=C2=A0 =C2=
+=A0 git://<a href=3D"http://github.com/myrepo1;protocol=3Dhttps;name=3DA">g=
+ithub.com/myrepo1;protocol=3Dhttps;name=3DA</a> \=C2=A0=C2=A0</div><div>=C2=
+=A0 =C2=A0 git://<a href=3D"http://github.com/myrepo2;protocol=3Dhttps;name=
+=3DB">github.com/myrepo2;protocol=3Dhttps;name=3DB</a> \=C2=A0=C2=A0</div><=
+div>=C2=A0 =C2=A0 file://0001-patch1.patch \</div><div>&quot;</div><div>SRC=
+REV_A =3D &quot;404ff3eeff0d79c15cbfdbc126c4bff2996baea6&quot;</div><div>SR=
+CREV_B =3D &quot;5e883c2a3f5373dbd1ea34e6095f9433bea2b0b3&quot;</div><div><=
+br></div><div>S =3D &quot;${WORKDIR}/git&quot;</div><div><br></div><div><br=
+></div><div>PARALLEL_MAKEINST =3D &quot;&quot;</div><div><br></div><div>DIS=
+TUTILS_INSTALL_ARGS +=3D &quot;--install-lib=3D${libdir}/${PYTHON_DIR}/site=
+-packages&quot;</div><div><br></div><div>inherit cmake</div><div><br></div>=
+<div>FILES_${PN} +=3D &quot;${libdir}/${PYTHON_DIR}/*&quot;</div><div><br><=
+/div><div>do_compile_prepend() {</div><div>=C2=A0 =C2=A0 export STAGING_LIB=
+DIR=3D${STAGING_LIBDIR}</div><div>=C2=A0 =C2=A0 export STAGING_INCDIR=3D${S=
+TAGING_INCDIR}</div><div>}</div><div><br></div><div>do_install() {</div><di=
+v>=C2=A0 =C2=A0 export STAGING_LIBDIR=3D${STAGING_LIBDIR}</div><div>=C2=A0 =
+=C2=A0 export STAGING_INCDIR=3D${STAGING_INCDIR}</div><div>=C2=A0 =C2=A0 ${=
+STAGING_BINDIR_NATIVE}/python-native/python ${S}/python/setup.py install</d=
+iv><div>}</div></div><div><div><br></div>-- <br><div class=3D"gmail_signatu=
+re"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><table style=3D"font-size:12.=
+8px;border:none;border-collapse:collapse"><tbody><tr style=3D"height:0px"><=
+td colspan=3D"3" style=3D"border:0px solid rgb(0,0,0);vertical-align:top;pa=
+dding:7px"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-b=
+ottom:0pt"><font size=3D"1"><b style=3D"white-space:pre-wrap;color:rgb(0,56=
+,62);font-family:Arial">Patryk =C5=81a=C5=9B</b><br></font></p><p dir=3D"lt=
+r" style=3D"margin-top:0pt;margin-bottom:0pt"><font color=3D"#00383e" face=
+=3D"Arial" size=3D"1"><span style=3D"line-height:20.24px;white-space:pre-wr=
+ap">Embedded Specialist </span></font></p><p dir=3D"ltr" style=3D"margin-to=
+p:0pt;margin-bottom:0pt"><font color=3D"#00383e" face=3D"Arial" size=3D"1">=
+<span style=3D"white-space:pre-wrap">+ 48 503 165 819</span></font></p></td=
+><td colspan=3D"2" style=3D"border:0px solid rgb(0,0,0);vertical-align:top;=
+padding:7px"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin=
+-bottom:0pt"><br></p></td></tr><tr style=3D"height:0px"><td colspan=3D"5" s=
+tyle=3D"border:0px solid rgb(0,0,0);vertical-align:top;padding:7px"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><u><a =
+href=3D"mailto:patryk.las@slabs.pl" target=3D"_blank"><font size=3D"1">patr=
+yk.las@slabs.pl</font></a></u></p></td></tr><tr style=3D"height:0px"><td st=
+yle=3D"border:0px solid rgb(0,0,0);vertical-align:top;padding:7px"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-al=
+ign:justify"><span style=3D"font-family:arial;color:rgb(0,0,0);vertical-ali=
+gn:baseline;white-space:pre-wrap;background-color:transparent"> <img src=3D=
+"https://docs.google.com/a/s-labs.io/uc?id=3D0B4AXUKpwZOlILVlnSWI2ekhJRTg&a=
+mp;export=3Ddownload" width=3D"96" height=3D"30"></span></p></td><td style=
+=3D"border-style:solid;border-color:rgb(0,0,0);border-width:0px 1px 0px 0px=
+;vertical-align:middle;padding:7px"><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt;text-align:center"><span style=3D"font-f=
+amily:arial;color:rgb(0,56,62);vertical-align:baseline;white-space:pre-wrap=
+;background-color:transparent"><font size=3D"1">Dworska 1A/1U</font></span>=
+</p></td><td style=3D"border-style:solid;border-color:rgb(0,0,0);border-wid=
+th:0px 1px;vertical-align:middle;padding:7px"><p dir=3D"ltr" style=3D"line-=
+height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:center"><span style=
+=3D"font-family:arial;color:rgb(0,56,62);vertical-align:baseline;white-spac=
+e:pre-wrap;background-color:transparent"><font size=3D"1">30-314 Krak=C3=B3=
+w</font></span></p></td><td style=3D"border-style:solid;border-color:rgb(0,=
+0,0);border-width:0px 1px;vertical-align:middle;padding:7px"><p dir=3D"ltr"=
+ style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:cent=
+er"><span style=3D"font-family:arial;color:rgb(0,56,62);vertical-align:base=
+line;white-space:pre-wrap;background-color:transparent"><font size=3D"1">Po=
+lska</font></span></p></td><td style=3D"border-style:solid;border-color:rgb=
+(0,0,0);border-width:0px 0px 0px 1px;vertical-align:middle;padding:7px"><fo=
+nt color=3D"#134f5c" size=3D"1">NIP 9452185706<br></font><p dir=3D"ltr" sty=
+le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:center">=
+</p></td></tr></tbody></table><br><br></div></div></div></div></div></div><=
+/div></div></div></div>
+</div></div>
 
---_000_VI1PR0202MB2559490EEFA88D25E01AD12BCDD40VI1PR0202MB2559_--
+--089e082114e0257b3a056766eeda--
