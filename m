@@ -1,59 +1,66 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B26F8E00E23; Wed, 14 Mar 2018 12:21:12 -0700 (PDT)
+	id 46A74E00E04; Wed, 14 Mar 2018 12:33:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MANY_SPAN_IN_TEXT,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.235.154.221 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.68 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.0 MANY_SPAN_IN_TEXT Many <SPAN> tags embedded within text
-X-Greylist: delayed 923 seconds by postgrey-1.32 at yocto-www;
-	Wed, 14 Mar 2018 12:21:10 PDT
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.154.221])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F12B1E009D7
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2018 12:21:09 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx1401.ess.rzc.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Wed, 14 Mar 2018 19:21:00 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Wed, 14 Mar 2018 12:05:37 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Wed, 14 Mar 2018 12:05:37 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: trouble getting systemd oneshot to run
-Thread-Index: AQHTu8SR04VV/wWOvUyTMDytB670GQ==
-Date: Wed, 14 Mar 2018 19:05:36 +0000
-Message-ID: <e551e6fd13914d8a9b95c2e31d5af60d@sakuraus.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.239]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f68.google.com (mail-it0-f68.google.com
+	[209.85.214.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77F36E00843
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2018 12:33:36 -0700 (PDT)
+Received: by mail-it0-f68.google.com with SMTP id k79-v6so6170863ita.2
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2018 12:33:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Dnq4OBLPt/+ChL7gy/ljf4I9mOYi6n2Tb7qcOgL0KM4=;
+	b=TfF+BOSm8shwr8RjrZ9nABZJ/Duz9vKub12CW3qAp9xztVrk0d4b4r/WgCmOAZMsDj
+	8e62uYiwhLEZe3tlAXRdg/qsuabgLtZt8bES1WIEWcSkdBO5szGm9KlQxTeMJEc/91i4
+	ec5o10uye31GQLTGjnMtj46Iu7FiiULpgMmq0jWHa5DljMSXLeVBOpZ7IIUdiJ7rWU13
+	v9ekmDKihl4x0F1khHKnI/ugY2PZExCsVAsJ/8OpgPHLr2EB3GVKqsR1VMZoWElwO1wN
+	w/++NEBnhnEL1k/ndaLsG7jEnTc7/0FqjijcqVXnGiDPiHoU1tVrmLj0vJySoBuXzYcu
+	VUvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Dnq4OBLPt/+ChL7gy/ljf4I9mOYi6n2Tb7qcOgL0KM4=;
+	b=CzApK+tWDofETKq2iB8/rpn9UCvl5NnKk6FSWuYan9saDSX5TvDw6gjoUmPyfBeo0p
+	3KOkRov66eWC9Y50fIFPSL5SPVkl8IffTYTqDdcmdLaC/Hb3V2N0qL3WgL27k5fZLPsa
+	h+43meBtmCCjUGCDUInCmgdPsX9DBCAWfj1ODS0xZ+bQaQN6wSBFiL0qASDf7OLk+inc
+	NofwNs5CaTul+0Z8D2eHIgijlSJU6TScvY3EY5YWZ+Clje32ZPkjOHLQW+jL5ljPR79y
+	7guCMKj5ljzCRuifWNDmZeASopBOQ2Jq7+6785BYJeTJeoXeuY3XRI9od9+nQ9LGOYKq
+	26Kg==
+X-Gm-Message-State: AElRT7GSmHC+HfJYGfBNtIZihM0ErnsxGa6zpxTW7RPF6fJhcowYJqDM
+	WjyHntfjf6wsfsU3A+qfS55Owd/uRk79jXHrhCkQTQ==
+X-Google-Smtp-Source: AG47ELsW2DqAuomX83ys4U4sO32boGHgkQ96JxzFpWH9CG4TbDj5b0QN7sP4jgu3ivBZTx80gPCbUMexHKas+vSkLtY=
+X-Received: by 10.36.66.195 with SMTP id i186mr3569515itb.45.1521056016382;
+	Wed, 14 Mar 2018 12:33:36 -0700 (PDT)
 MIME-Version: 1.0
-X-BESS-ID: 1521055255-321457-5943-6033-2
-X-BESS-VER: 2018.2-r1803082101
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.191060
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-	0.00 HTML_MESSAGE           BODY: HTML included in message 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, HTML_MESSAGE
-X-BESS-BRTS-Status: 1
-Subject: trouble getting systemd oneshot to run
+Received: by 10.107.30.9 with HTTP; Wed, 14 Mar 2018 12:33:15 -0700 (PDT)
+In-Reply-To: <9478134a-8f67-334a-cfc8-d7a07bd1fe86@linux.intel.com>
+References: <1521038859-32429-1-git-send-email-devarsht@xilinx.com>
+	<9478134a-8f67-334a-cfc8-d7a07bd1fe86@linux.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 14 Mar 2018 19:33:15 +0000
+Message-ID: <CAJTo0Lb3o_8cOG7fCLNwsFdPPEx_5-u-qDASPHzHy8kXC2cKAw@mail.gmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Cc: Manjukumar Harthikote Matha <manjukum@xilinx.com>,
+	Yocto-mailing-list <yocto@yoctoproject.org>,
+	Devarsh Thakkar <devarsh.thakkar@xilinx.com>,
+	vcu-team@xilinx.com, Devarsh Thakkar <devarsht@xilinx.com>
+Subject: Re: [matchbox-terminal] main.c: Add support to run user command inside the terminal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,216 +72,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2018 19:21:12 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_e551e6fd13914d8a9b95c2e31d5af60dsakurauscom_"
+X-List-Received-Date: Wed, 14 Mar 2018 19:33:38 -0000
+Content-Type: multipart/alternative; boundary="001a113b88048a806f0567647380"
 
---_000_e551e6fd13914d8a9b95c2e31d5af60dsakurauscom_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a113b88048a806f0567647380
+Content-Type: text/plain; charset="UTF-8"
+
+On 14 March 2018 at 18:44, Alexander Kanavin <
+alexander.kanavin@linux.intel.com> wrote:
+
+> On 03/14/2018 04:47 PM, Devarsh Thakkar wrote:
+>
+>> Add support for commandline options (--command or -e)
+>> using which one can provide commands to run inside the terminal
+>> as shown in below command :
+>>
+>>   $matchbox-terminal -e <command>
+>>   $matchbox-terminal --command <command>
+>>
+>
+> Ross, who (if anyone) has write access to the mathcbox repo? I think
+> matchbox stuff is in a bit of limbo currently?
+>
+
+I do, this was having a build test earlier so I'll be pushing shortly.
+
+Ross
+
+--001a113b88048a806f0567647380
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I'm building yocto for a raspberry pi3 from Qt's b2qt version.
+<div dir=3D"ltr">On 14 March 2018 at 18:44, Alexander Kanavin <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:alexander.kanavin@linux.intel.com" target=3D"_bl=
+ank">alexander.kanavin@linux.intel.com</a>&gt;</span> wrote:<br><div class=
+=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<span class=3D"">On 03/14/2018 04:47 PM, Devarsh Thakkar wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Add support for commandline options (--command or -e)<br>
+using which one can provide commands to run inside the terminal<br>
+as shown in below command :<br>
+<br>
+=C2=A0 $matchbox-terminal -e &lt;command&gt;<br>
+=C2=A0 $matchbox-terminal --command &lt;command&gt;<br>
+</blockquote>
+<br></span>
+Ross, who (if anyone) has write access to the mathcbox repo? I think matchb=
+ox stuff is in a bit of limbo currently?<br></blockquote><div><br></div><di=
+v>I do, this was having a build test earlier so I&#39;ll be pushing shortly=
+.</div><div><br></div><div>Ross=C2=A0</div></div></div></div>
 
-
-I'm running into two problems, I've got all of the files copying to the cor=
-rect locations but the .service is not running at startup. I used connman-c=
-onf.bb as the template for my .bb file:
-
-
-SUMMARY=3D"recipe to create CAN bus startup service"
-
-LICENSE =3D "CLOSED"
-LIC_FILES_CHKSUM =3D ""
-
-inherit systemd
-
-SRC_URI =3D "file://can_start.sh \
-           file://canstart.service \
-"
-
-S =3D "${WORKDIR}"
-
-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-
-FILES_${PN} =3D "${datadir}/*"
-
-do_install () {
-    if test -e ${WORKDIR}/can_start.sh &&
-       test -e ${WORKDIR}/canstart.service; then
-        install -d ${D}${datadir}/canstart
-        install -m 0755 ${WORKDIR}/can_start.sh ${D}${datadir}/canstart
-        install -d ${D}${systemd_system_unitdir}
-        install -m 0644 ${WORKDIR}/canstart.service ${D}${systemd_system_un=
-itdir}
-        sed -i -e 's|@SCRIPTDIR@|${datadir}/canstart|g' ${D}${systemd_syste=
-m_unitdir}/canstart.service
-    fi
-}
-
-SYSTEMD_SERVICE_${PN} =3D "canstart.service"
-
-
-
-Service file:
-
-
-
-
-[Unit]
-Description=3DStartup CAN bus interface
-
-[Service]
-Type=3Doneshot
-ExecStart=3D@SCRIPTDIR@/can_start.sh
-
-[Install]
-WantedBy=3Dnetwork.target
-
-
-
-From looking at the connman-conf sample I'm setting everything up correctly=
- and the service should default to running on startup but it is not.
-
-The second 'problem' is really just perplexing, if I dump the variables S c=
-ontains a path to a directory in my root not "${WORKDIR}".
-
-
-Any and all help with this would be greatly appreciated.
-
-
-Regards,
-
-Greg Wilson-Lindberg
-
---_000_e551e6fd13914d8a9b95c2e31d5af60dsakurauscom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<p>I'm building yocto for a raspberry pi3 from Qt's b2qt version.</p>
-<p><br>
-</p>
-<p>I'm running into two problems, I've got all of the files copying to the =
-correct locations but the .service is not running at startup. I used connma=
-n-conf.bb as the template for my .bb file:</p>
-<p><br>
-</p>
-<p></p>
-<div style=3D"color: #000000;background-color: #ffffff; font-style: normal;=
- font-weight: normal; text-decoration: none;">
-<pre>SUMMARY<span style=3D"color:#800000;">=3D</span><span style=3D"color:#=
-008080;">&quot;recipe to create CAN bus startup service&quot;</span>=0A=
-=0A=
-LICENSE <span style=3D"color:#800000;">=3D</span> <span style=3D"color:#008=
-080;">&quot;CLOSED&quot;</span>=0A=
-LIC_FILES_CHKSUM <span style=3D"color:#800000;">=3D</span> <span style=3D"c=
-olor:#008080;">&quot;&quot;</span>=0A=
-=0A=
-inherit systemd=0A=
-=0A=
-SRC_URI <span style=3D"color:#800000;">=3D</span> <span style=3D"color:#008=
-080;">&quot;file://can_start.sh \</span>=0A=
-<span style=3D"color:#008080;">           file://canstart.service \</span>=
-=0A=
-<span style=3D"color:#008080;">&quot;</span>=0A=
-=0A=
-S <span style=3D"color:#800000;">=3D</span> <span style=3D"color:#008080;">=
-&quot;${WORKDIR}&quot;</span>=0A=
-=0A=
-PACKAGE_ARCH <span style=3D"color:#800000;">=3D</span> <span style=3D"color=
-:#008080;">&quot;${MACHINE_ARCH}&quot;</span>=0A=
-=0A=
-FILES_$<span style=3D"color:#800000;">{</span>PN<span style=3D"color:#80000=
-0;">}</span> <span style=3D"color:#800000;">=3D</span> <span style=3D"color=
-:#008080;">&quot;${datadir}/*&quot;</span>=0A=
-=0A=
-<span style=3D"font-weight: bolder;">do_install</span> <span style=3D"color=
-:#800000;">()</span> <span style=3D"color:#800000;">{</span>=0A=
-    <span style=3D"color:#800080;">if</span> test -e $<span style=3D"color:=
-#800000;">{</span>WORKDIR<span style=3D"color:#800000;">}</span>/can_start<=
-span style=3D"color:#800000;">.</span>sh &amp;&amp;=0A=
-       test -e $<span style=3D"color:#800000;">{</span>WORKDIR<span style=
-=3D"color:#800000;">}</span>/canstart<span style=3D"color:#800000;">.</span=
->service<span style=3D"color:#800000;">;</span> then=0A=
-        install -d $<span style=3D"color:#800000;">{</span>D<span style=3D"=
-color:#800000;">}</span>$<span style=3D"color:#800000;">{</span>datadir<spa=
-n style=3D"color:#800000;">}</span>/canstart=0A=
-        install -m <span style=3D"color:#000080;">0755</span> $<span style=
-=3D"color:#800000;">{</span>WORKDIR<span style=3D"color:#800000;">}</span>/=
-can_start<span style=3D"color:#800000;">.</span>sh $<span style=3D"color:#8=
-00000;">{</span>D<span style=3D"color:#800000;">}</span>$<span style=3D"col=
-or:#800000;">{</span>datadir<span style=3D"color:#800000;">}</span>/canstar=
-t=0A=
-        install -d $<span style=3D"color:#800000;">{</span>D<span style=3D"=
-color:#800000;">}</span>$<span style=3D"color:#800000;">{</span>systemd_sys=
-tem_unitdir<span style=3D"color:#800000;">}</span>=0A=
-        install -m <span style=3D"color:#000080;">0644</span> $<span style=
-=3D"color:#800000;">{</span>WORKDIR<span style=3D"color:#800000;">}</span>/=
-canstart<span style=3D"color:#800000;">.</span>service $<span style=3D"colo=
-r:#800000;">{</span>D<span style=3D"color:#800000;">}</span>$<span style=3D=
-"color:#800000;">{</span>systemd_system_unitdir<span style=3D"color:#800000=
-;">}</span>=0A=
-        sed -i -e <span style=3D"color:#006060;">'s|@SCRIPTDIR@|${datadir}/=
-canstart|g'</span> $<span style=3D"color:#800000;">{</span>D<span style=3D"=
-color:#800000;">}</span>$<span style=3D"color:#800000;">{</span>systemd_sys=
-tem_unitdir<span style=3D"color:#800000;">}</span>/canstart<span style=3D"c=
-olor:#800000;">.</span>service=0A=
-    fi=0A=
-<span style=3D"color:#800000;">}</span>=0A=
-=0A=
-SYSTEMD_SERVICE_$<span style=3D"color:#800000;">{</span>PN<span style=3D"co=
-lor:#800000;">}</span> <span style=3D"color:#800000;">=3D</span> <span styl=
-e=3D"color:#008080;">&quot;canstart.service&quot;</span>=0A=
-</pre>
-<pre><span style=3D"color:#008080;"><pre style=3D"font-size: 16px;"><span s=
-tyle=3D"color: rgb(0, 0, 0);"></span><br></pre><pre style=3D"font-size: 16p=
-x;"><span style=3D"color: rgb(0, 0, 0);">Service file:</span></pre><pre sty=
-le=3D"font-size: 16px;"><span style=3D"color: rgb(0, 0, 0);"><div style=3D"=
-color: #000000;background-color: #ffffff; font-style: normal; font-weight: =
-normal; text-decoration: none;">=0A=
-<pre>[Unit]=0A=
-Description=3DStartup CAN bus interface=0A=
-=0A=
-[Service]=0A=
-Type=3Doneshot=0A=
-ExecStart=3D@SCRIPTDIR@/can_start.sh=0A=
-=0A=
-[Install]=0A=
-WantedBy=3Dnetwork.target=0A=
-</pre></div><br></span></pre></span></pre>
-</div>
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;">
-<div><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;">Fr=
-om looking at the connman-conf sample I'm setting everything up correctly a=
-nd the service should default to running on startup but it is not.</span></=
-div>
-<div><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;"><b=
-r>
-</span></div>
-The second 'problem' is really just perplexing, if I dump the variables S c=
-ontains a path to a directory in my root not&nbsp;</span><span style=3D"col=
-or: rgb(0, 128, 128); font-family: Calibri, Arial, Helvetica, sans-serif;">=
-&quot;${WORKDIR}&quot;.</span><span style=3D"font-family: Calibri, Arial, H=
-elvetica, sans-serif;"><br>
-</span><br>
-<p></p>
-<p>Any and all help with this would be greatly appreciated.</p>
-<p><br>
-</p>
-<p>Regards,</p>
-<p>Greg Wilson-Lindberg</p>
-</div>
-</body>
-</html>
-
---_000_e551e6fd13914d8a9b95c2e31d5af60dsakurauscom_--
+--001a113b88048a806f0567647380--
