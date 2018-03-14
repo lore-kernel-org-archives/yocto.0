@@ -1,58 +1,56 @@
-Return-Path: <florian.doersch@iis.fraunhofer.de>
+Return-Path: <star@gmx.li>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31D2CE0084D; Tue, 13 Mar 2018 23:28:28 -0700 (PDT)
+	id BC2A7E010A0; Wed, 14 Mar 2018 00:25:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [94.100.133.223 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (star[at]gmx.li)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.227.15.19 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 105 seconds by postgrey-1.32 at yocto-www;
-	Tue, 13 Mar 2018 23:28:26 PDT
-Received: from mx-relay47-hz1.antispameurope.com
-	(mx-relay47-hz1.antispameurope.com [94.100.133.223])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B26CAE0084D
-	for <yocto@yoctoproject.org>; Tue, 13 Mar 2018 23:28:26 -0700 (PDT)
-Received: from mailgw1.iis.fraunhofer.de ([153.96.172.4]) by
-	mx-relay47-hz1.antispameurope.com; Wed, 14 Mar 2018 07:26:40 +0100
-Received: from mail.iis.fraunhofer.de (mail03.iis.fhg.de [153.96.171.212])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mailgw1.iis.fraunhofer.de (Postfix) with ESMTPS id 7C06D2400081
-	for <yocto@yoctoproject.org>; Wed, 14 Mar 2018 07:26:39 +0100 (CET)
-Received: from [10.12.70.78] (153.96.171.210) by mail03.iis.fhg.de
-	(2001:638:a0a:1111:314f:f22c:4a37:b25a) with Microsoft SMTP Server
-	(TLS) id 15.0.1365.1; Wed, 14 Mar 2018 07:26:38 +0100
-To: <yocto@yoctoproject.org>
-References: <CA+NJmkdAQPMwXNN+fTw9fgBxRhVx0NDaJGA__a4iqHsQWDu9Rw@mail.gmail.com>
-From: Florian Doersch <florian.doersch@iis.fraunhofer.de>
-Message-ID: <28da56cd-8366-c13d-183e-f88f9957e4ea@iis.fraunhofer.de>
-Date: Wed, 14 Mar 2018 07:26:38 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+X-Greylist: delayed 306 seconds by postgrey-1.32 at yocto-www;
+	Wed, 14 Mar 2018 00:25:05 PDT
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DD4FE00CE2
+	for <yocto@yoctoproject.org>; Wed, 14 Mar 2018 00:25:04 -0700 (PDT)
+Received: from [62.225.157.196] ([62.225.157.196]) by
+	3c-app-gmx-bs60.server.lan (via HTTP); Wed, 14 Mar 2018 08:19:54 +0100
 MIME-Version: 1.0
-In-Reply-To: <CA+NJmkdAQPMwXNN+fTw9fgBxRhVx0NDaJGA__a4iqHsQWDu9Rw@mail.gmail.com>
-X-Originating-IP: [153.96.171.210]
-X-ClientProxiedBy: mail01.iis.fhg.de (2001:638:a0a:1111:fd91:8c2a:e4a5:e74e)
-	To mail03.iis.fhg.de (2001:638:a0a:1111:314f:f22c:4a37:b25a)
-X-cloud-security-sender: florian.doersch@iis.fraunhofer.de
-X-cloud-security-recipient: yocto@yoctoproject.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Virusscan: CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on
-	mx-relay47-hz1.antispameurope.com with 9867A360075
-X-cloud-security-connect: mailgw1.iis.fraunhofer.de[153.96.172.4], TLS=1,
-	IP=153.96.172.4
-X-cloud-security: scantime:.2312
-Subject: Re: Targeting Windows platform
+Message-ID: <trinity-b075509f-f7f7-4a59-847d-6b2043b4fd25-1521011994266@3c-app-gmx-bs60>
+From: "Arno Steffens" <star@gmx.li>
+To: "Maxin B. John" <maxin.john@intel.com>
+Date: Wed, 14 Mar 2018 08:19:54 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20180312082140.GA18406@mbabyjoh-desk.ger.corp.intel.com>
+References: <trinity-070c6a88-6217-4f78-be8a-24fb5b744253-1520576346077@3c-app-gmx-bs48>
+	<20180312082140.GA18406@mbabyjoh-desk.ger.corp.intel.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:6IcEOE/1buXmxN3pP2K7+91Q7FYtNjfeGdz2gbVfl7O
+	jQbXcwQaaMZqIzVzwRuoQbgCbLapkv1W34p9K/RSCntl9hiHst
+	e81viJmTt35a2RkMqKrZWhsPfjFiOQLS4TlDIlvt+xAxOAAJIg
+	fMtIhVZ2GrgFuq/z+fGMN1o4yb7+tcD8GT9dPn2CAjAOAti4vZ
+	3dKjH0WPYbJu3pf6HDtEDN69zh52P753c9a+8ct2TbClnGGJf4
+	kbNwgERSSWYFDw2dJBRa03px944hXxDQlhzNgwtqsZCu6cqGJJ 5Ahp+o=
+X-UI-Out-Filterresults: notjunk:1;V01:K0:w5+6de9e58g=:6v+GTlTLOonHhH51fE3HkM
+	nqh87W8SQXRp+gkOLT7LSgNJNeDM7g5jioZ9K3SOYp/RLBuph6/TpK48N+zcloJjRVP8D9+ws
+	C1sVmHfDppuMrxlQBWXFDunWV/i9me73DEeUULNYr2SIeBwcbCyXFPC7TFHsFiFY+W0VmRl4E
+	LqrId1d5Vi/uH7XbJt9iatgKhP0h3dCqzq6pOxe7yUkSWC6LUPepx0SckJMvoZI1Ot0k5s5rr
+	H1VtnHw9cU6NFz+3bbOid+pTJxH0cA6OUmAVDRHNdtbZlYB/jLMWB7xQwAB7ef3pX/tXD7Vii
+	qkffUlnxP2RqUKdTFT89XRyZZ3zfoWHaTtii+B4gJXFFaCUVtRWXHDZex1eONmUdMKuoDNvla
+	4rC9oQVd5G0klPJio9niUH6ItQ6dkCpPPyrkgzQ6wNa12NqOnrgKXZFO/aBTXxxg094SOiE9W
+	fCz0pdcPfScomr9yzhXf74tl2sePtXmcu2fdxqYeaex0wv/Cn0QH
+Cc: yocto@yoctoproject.org
+Subject: Re: passwd fails for other users than root
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Florian Doersch <florian.doersch@iis.fraunhofer.de>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,75 +59,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Mar 2018 06:28:28 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Hi Isaac,
-
-here we also have a mixture of embedded and desktop applications. We use 
-yocto for our embedded devices (Xilinx Zynq, Raspberry Pi, Gumstix).
-
-The SDKs and images are very helpful for (cross platform) CI and deployment.
-
-A first milestone definitly would be having a minimal platform support 
-for windows, so windows binaries can be built via mingw.
-
-I see 2 steps there:
-- cross build on a unix host
-- native build on windows
-
-A real Windows SDK support would be awesome (exspecially for deploying 
-library dependencies)
-
-I think some "zip" images would be a good start for "image"-deployment. 
-I see the support for WiX-Installer second.
-
-There is already some kind of "first try" with the mingw meta layer at 
-http://git.yoctoproject.org/cgit.cgi/meta-mingw - but I tried to use it 
-with our windows projects and failed, since the mingw version there is 
-extremly old.
-
-Regards
-Florian
+X-List-Received-Date: Wed, 14 Mar 2018 07:25:06 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
 
-Am 14.03.2018 um 05:15 schrieb Isaac Nickaein:
-> I know the idea is wild and possibly not a top priority (or even
-> priority) of the community, but extending the area of Yocto to support
-> Windows platform can make it the ubiquitous build system for the
-> enterprise, especially in embedded companies that have a mixture of
-> embedded and desktop applications.
-> 
-> In our company, we have adopted Yocto to be our build system for
-> embedded devices and are starting to use it for constant integration
-> and version management. It also solves the headache of setting up an
-> C++ environment  by building and provding an SDK that covers a large
-> set of libraries.
-> 
-> Having a unified build system can hugely simplify the build
-> management, version control and integration for large organizations
-> where various platforms are targeted. Yocto has proven to be a great
-> tool for this and I believe it has potential to cover this area too.
-> 
-> While Yocto is mainly used to build *images* for embedded targets, for
-> Windows platform it would be enough to build the binaries for
-> applications, at the first milestone at least. One can also extend it
-> to build setup files with tools such as WiX installer scripts. So, it
-> can be break down into:
-> 
-> 1. Supporting a bbclass that creates Windows-compatible binaries. With
-> the help of compilers like mingw, there is the possibility.
-> 
-> 2. Creating an SDK that targets Windows.
-> 
-> 3. Adapting recipes to be able to build the sources for Windows (for
-> the cross-platform sources, this would be straight-forward).
-> 
-> 
-> I am not sure how much of effort these steps would take and what are
-> the obstacles. I would be glad to hear from community on what they
-> think and why this would or not happen.
-> 
 
+> Gesendet: Montag, 12=2E M=C3=A4rz 2018 um 09:21 Uhr
+> Von: "Maxin B=2E John" <maxin=2Ejohn@intel=2Ecom>
+> An: "Arno Steffens" <star@gmx=2Eli>
+> Cc: yocto@yoctoproject=2Eorg
+> Betreff: Re: [yocto] passwd fails for other users than root
+>
+> Hi Arno,
+>=20
+> On Fri, Mar 09, 2018 at 07:19:06AM +0100, Arno Steffens wrote:
+> > I have 2 extra users (added with useradd_example=2Ebb)=2E Login works =
+for all 3 parties=2E
+> >=20
+> > While login works, passwd (to change it) doesn't work for the extra us=
+ers=2E They will asked for the old one - which fails=2E
+> > Root is not to be asked for old password=2E That's way root can change=
+ password for all=2E=20
+> >=20
+> > The strange issue is, that after root changes password for users, they=
+ can do it by themselves=2E
+> > Seems that login and passwd use different algos!?!?
+> >=20
+> > Same password, but different hashes:
+> > before (created by yocto)
+> > user:$6$bk=2EAz/8KVV$v3TyAlroQeBZA3faJ=2EDxCVsCUBZaSAvB4FkuNkLDdsIchrm=
+z6OnUGRnQI5BOgOjQ3mvj9QL3US6Amf2VWr0=2Ej/:17598:0:99999:7:::
+> > behind (changed by root):
+> > user:$1$d3Uo1g82$Il2kYQj8qadzQvkwUU4Ia=2E:17598:0:99999:7:::
+> >=20
+> > Edit: After a few further test I found that this has an effect:
+> > I used EXTRA_IMAGE_FEATURES +=3D "read-only-rootfs" to create a read-o=
+nly-rootf (by default)=2E=20
+> > But of course I did make the partition writeable before attempting to =
+change the password=2E
+> > But for some strange reasons this is not same=2E What might be the rea=
+son?
+>=20
+> Can you please share the version details and the useradd_example=2Ebb th=
+at was mentioned here ?
+> or even better, file a bug in Yocto's bugzilla (https://bugzilla=2Eyocto=
+project=2Eorg) ?
+>=20
+> Best Regards,
+> Maxin
+>
+
+I have been using the Yocto 2=2E3=2E3 version=2E
+It is mainly unchanged useradd_example=2E The according line is
+
+# USERADD_PARAM specifies command line options to pass to the
+# useradd command=2E Multiple users can be created by separating
+# the commands with a semicolon=2E Here we'll create two users,
+# user1 and user2:
+USERADD_PARAM_${PN} =3D "-u 1200 -d /home/user -r -s /bin/sh -P '' user; -=
+u 1201 -d /home/guest -r -s /bin/sh -P '' guest"
+
+and in the image-recipe I added:
+
+EXTRA_IMAGE_FEATURES +=3D "read-only-rootfs"
+
+CORE_IMAGE_EXTRA_INSTALL +=3D "useradd-example"
+inherit extrausers
+EXTRA_USERS_PARAMS =3D "usermod -P root root; usermod -P user user; usermo=
+d -P guest guest"
+
+
+=2E=2E=2E
+
+But I also tried to leave the usermod command and add the password here:
+USERADD_PARAM_${PN} =3D "-u 1200 -d /home/user -r -s /bin/sh -P 'user' use=
+r; -u 1201 -d /home/guest -r -s /bin/sh -P 'guest' guest"
+
+=2E=2E=2E
+
+The "read-only-rootfs" seems to make the difference, but I don't understan=
+d why=2E=20
 
