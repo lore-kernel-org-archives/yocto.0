@@ -1,63 +1,41 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <guy@guy-morand.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96ABDE00838; Thu, 15 Mar 2018 05:57:04 -0700 (PDT)
+	id A4B73E00AAF; Thu, 15 Mar 2018 06:09:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	T_DKIM_INVALID autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [128.65.195.6 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
-Received: from cpanel4.indieserve.net (cpanel4.indieserve.net [199.212.143.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA6A9E005A9
-	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 05:57:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:References:
-	Message-ID:In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=N3ANFhlz8VU6J4ldDPUEi83+RBdmmJPSE89qiNuc7iM=;
-	b=hab7uHuUC8FLQ/m0ml5fWZVVs
-	E0vgxPEJh+Wg02lxnAo45+9AqBuNefcbo6hRdKKwD4RTvDNT6VhhuD9pRLhD8kKKPCa50uAhkya6J
-	LimU7JNImPSPN5Af9FdPXuBZxUAFpJBCTCwIJmZG3QF8NST0ucVZUZFjTaqgRRJM+0isCeSCb2RUt
-	P0WGjoLGO1kQyA2pMtFqGMzDRuZuspgQUR/YfpoO8Nl20Yv4TPdWDZnJiT+VqyCA2KcTihy/SnbVY
-	3bIUALRwkwhBIfs0gJ7k4Gr//rpgfZf3ApOf5ftN37vkTkGmOSf5Yzy1Sf09QIdSkmJPK30bxqsPl
-	ViuBPNLJQ==;
-Received: from cpec03f0ed08c7f-cm68b6fcf980b0.cpe.net.cable.rogers.com
-	([174.118.92.171]:37456 helo=localhost.localdomain)
-	by cpanel4.indieserve.net with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.89_1)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1ewSRJ-00017K-CT; Thu, 15 Mar 2018 08:57:02 -0400
-Date: Thu, 15 Mar 2018 08:56:59 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Peter Balazovic <balazovic.peter@gmail.com>
-In-Reply-To: <CAFq4t4ghBNE+1SXZ7L-KuRMfw6z7E0a4ageKi33UbKbftXL0rQ@mail.gmail.com>
-Message-ID: <alpine.LFD.2.21.1803150856190.32449@localhost.localdomain>
-References: <CAFq4t4ghBNE+1SXZ7L-KuRMfw6z7E0a4ageKi33UbKbftXL0rQ@mail.gmail.com>
-User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+X-Greylist: delayed 348 seconds by postgrey-1.32 at yocto-www;
+	Thu, 15 Mar 2018 06:09:43 PDT
+Received: from smtp-sh2.infomaniak.ch (smtp-sh2.infomaniak.ch [128.65.195.6])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51810E00744
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 06:09:43 -0700 (PDT)
+Received: from smtp8.infomaniak.ch (smtp8.infomaniak.ch [83.166.132.38])
+	by smtp-sh.infomaniak.ch (8.14.5/8.14.5) with ESMTP id w2FD3s6n015822
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=OK)
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 14:03:54 +0100
+Received: from [192.168.0.2] (46-127-176-102.dynamic.hispeed.ch
+	[46.127.176.102]) (authenticated bits=0)
+	by smtp8.infomaniak.ch (8.14.5/8.14.5) with ESMTP id w2FD3orJ099944
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NO)
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 14:03:54 +0100
+To: Yocto Project <yocto@yoctoproject.org>
+From: Guy Morand <guy@guy-morand.ch>
+Message-ID: <319fdd69-ff40-2377-549a-e5f1f10de04c@guy-morand.ch>
+Date: Thu, 15 Mar 2018 14:03:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.4.0
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-0.5
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel4.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel4.indieserve.net: authenticated_id:
-	rpjday+crashcourse.ca/only user confirmed/virtual account not
-	confirmed
-X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: OpenCV with python3
+X-Antivirus: Dr.Web (R) for Unix mail servers drweb plugin ver.6.0.2.8
+X-Antivirus-Code: 0x100000
+Subject: Kernel module depedency (header+symbols)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,23 +47,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Mar 2018 12:57:04 -0000
-Content-Type: multipart/mixed; boundary="8323328-512042596-1521118621=:32449"
+X-List-Received-Date: Thu, 15 Mar 2018 13:09:45 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---8323328-512042596-1521118621=:32449
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Hallo Yocto developpers,
 
-On Thu, 15 Mar 2018, Peter Balazovic wrote:
+I have been struggling a little to write recipe with kernel modules 
+depedency. It seems that this is not well documented and picked up some 
+solution across the mailing list and by reading the source. That is why 
+I'm wondering if my approach is correct or hopefully will help someone 
+else who tries to achieve the same thing...
 
-> Hello all,
-> I have python module of OpenCV for python 2.7 on my Yocto image adding via local.conf
->
-> IMAGE_INSTALL_append += “ python-opencv”
+First I have a modules that provides an header file with exported symbols:
+---[base-module.h]---
+extern int base_module_something(void);
+---[/base-module.h]---
 
-  i know i've harped on this before, but can people please stop
-combining the constructs "_append" and "+=" in the same expression?
+Where the function is exported in the c file:
+---[base-module.c]---
+int base_module_something(void)
+{
+   /* something */
+   return 0;
+}
+EXPORT_SYMBOL(base_module_something);
+---[/base-module.c]---
 
-rday
+Now it seems that I have to prepend my recipe name with "kernel-module-" 
+(cf.later) and add the header file installation:
+---[kernel-module-base-module.bb]---
+do_install_append() {
+   install -m 0664 ${S}/base-module.h ${D}/${includedir}/${PN}
+}
+---[/kernel-module-base-module.bb]---
 
---8323328-512042596-1521118621=:32449--
+In the second module, I added an argument to find the path to the base 
+module header file:
+---[Kbuild second module]---
+ccflags-y += -I$(BASE_MODULE_PATH)
+---[/Kbuild second module]---
+
+In the recipe of the second module, I give the dependency to my 
+base-module and pass the variable to find the header file:
+---[second-module.bb]---
+DEPENDS = "kernel-module-base-module"
+
+do_compile_prepend() {
+   export BASE_MODULE_PATH=${STAGING_INCDIR}/kernel-module-base-module/"
+}
+---[/second-module.bb]---
+
+The reason to have the first module prepended with "kernel-module" is 
+that the bbclass looks for Module.symvers file for depedency with that 
+name and adapt the KBUILD_EXTRA_SYMBOLS consequently:
+https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/module.bbclass#n12
+
+Despite this solution works for me, I was wondering if this is the right 
+approach and if there is a more "yocto way"?
+
+Best regards,
+
+Guy
+
