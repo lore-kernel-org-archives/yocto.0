@@ -1,66 +1,35 @@
-Return-Path: <balazovic.peter@gmail.com>
+Return-Path: <pab@pabigot.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7234FE00A38; Thu, 15 Mar 2018 10:56:56 -0700 (PDT)
+	id C5F05E00C25; Thu, 15 Mar 2018 13:12:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	MIME_BOUND_DIGITS_15, 
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.8 MIME_BOUND_DIGITS_15 Spam tool pattern in MIME
-	boundary
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (balazovic.peter[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [173.201.193.232 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.54 listed in list.dnswl.org]
-Received: from mail-pl0-f54.google.com (mail-pl0-f54.google.com
-	[209.85.160.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8816BE0079D
-	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 10:56:54 -0700 (PDT)
-Received: by mail-pl0-f54.google.com with SMTP id u11-v6so581622plq.1
-	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 10:56:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=rd527voPFoYqX4rCY261srd0NTB/hSvsjWqHv3svweQ=;
-	b=NAs2xbSeRj1oCnJxqfkiOZ7jPrFw3mUDLIQoKdQgYxyJ+SExQTHjC8OylvaXjtZ1YQ
-	JzVqhokc5gYs28j1kYNgA5t7u3vXsuNwhfVMbow+V+ekAzPndMQDtc9Fsh+zCM+s7V9G
-	KsxnJlXisE8lW9+QbP8/fOb0BHkVCU6q3mYMPuO1o6WDd0+5M6zLQZCqTZOGczffOWED
-	WwqtEmY6uLCoDKpWOvLyvYydzUZUXbntJ0zJId5KepbxTxojAAyVufhNiBDyES12wS+2
-	4zAaR24COj1mrBGk68GweR5QqsnxnniqVD8ihhadIkmPzxQ5DzTlXnDNEhOw+1iBAPQN
-	0G7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=rd527voPFoYqX4rCY261srd0NTB/hSvsjWqHv3svweQ=;
-	b=W8kMQxx2Q8EyaqlMZAwpJ5gu9/edHw+bYBwDkkkoHFbz4HaNNghN/qqNNkLDB5MwzF
-	M9JOCcOXcm2k1LTlf7NSLwLDcHoiViynbgsHgeWES7RX6fJI/4FAjbD74MmLc7+IMMxC
-	iHeBFp7JpwBc5uD+0Cx489jvjMomMthLgafJmGgNMqEyeCoVO2uWeAZ97K3wVQ4Ikqwq
-	74/KjerGoXww8aDfs3pXmGnzAcYhJ/74WvTC7yvvMeAMHF2tGJVEs48IHOgMQgaCSG+E
-	vKk7mruLbma5HNq1vS2FAEV53QwYQfzhCeMuRu5PYm7yHx8vTbCm1wAL7o/Y3QZWwa+7
-	SXYQ==
-X-Gm-Message-State: AElRT7FoEr1d4z0aGs6AeHmgcsOU3V5GLxf+FCSqjlT9RQoFZ8yI2unY
-	acd5XImgR/aVyd2IiDGgURxDxooTVkxGtVk9x3E=
-X-Google-Smtp-Source: AG47ELtpdvxB43hojZ3nCPJiL5Y2js1vXFX56TvI+AK82cjpbwqbMAUmHcHS/vg9IwyK29M6xoOUSzteb0B1IEcZx3U=
-X-Received: by 2002:a17:902:9a45:: with SMTP id
-	x5-v6mr8933471plv.18.1521136613675; 
-	Thu, 15 Mar 2018 10:56:53 -0700 (PDT)
+X-Greylist: delayed 135 seconds by postgrey-1.32 at yocto-www;
+	Thu, 15 Mar 2018 13:12:22 PDT
+Received: from p3plsmtpa09-03.prod.phx3.secureserver.net
+	(p3plsmtpa09-03.prod.phx3.secureserver.net [173.201.193.232])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9809DE00838
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 13:12:22 -0700 (PDT)
+Received: from [192.168.65.22] ([24.118.100.205]) by :SMTPAUTH: with SMTP
+	id wZCPeBiWOpenzwZCQekYN8; Thu, 15 Mar 2018 13:10:06 -0700
+To: Yocto Project <yocto@yoctoproject.org>
+From: "Peter A. Bigot" <pab@pabigot.com>
+Organization: Peter Bigot Consulting, LLC
+Message-ID: <2ff6c8de-6ea2-235b-ed62-f9d387951a21@pabigot.com>
+Date: Thu, 15 Mar 2018 15:10:05 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-Received: by 10.100.184.9 with HTTP; Thu, 15 Mar 2018 10:56:53 -0700 (PDT)
-From: Peter Balazovic <balazovic.peter@gmail.com>
-Date: Thu, 15 Mar 2018 18:56:53 +0100
-Message-ID: <CAFq4t4gpGaMCyvR2drwjU8+NWYS5aSodmzPhPb4FWio6vm+12Q@mail.gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: scipy recipe
+X-CMAE-Envelope: MS4wfDQFNYAd0Lu6pOv+9AjMYIyP/u9iwtpDB1dRu8gX52cL4cbQS5zO3pUZVqfLWI8XjMPWqiSO+REnPAhiUhmw4JWZfwsQ3ArYUNKdN7em+xtfKy7ftmgZ
+	PJUKE0iscC6H+M8g4OW2UJ2b+FWHcoo/UUdR+pyqbJMHJ396ko3XUHOm
+Subject: clarify instructions for package feed installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,21 +41,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Mar 2018 17:56:56 -0000
-Content-Type: multipart/alternative; boundary="0000000000008356630567773737"
+X-List-Received-Date: Thu, 15 Mar 2018 20:12:23 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---0000000000008356630567773737
-Content-Type: text/plain; charset="UTF-8"
+Following the instructions in the 2.4.2 mega-manual section 4.21.4 I set
+in local.conf:
 
-Hello all,
+     PACKAGE_FEED_URIS = "http://192.168.65.22/oe/rpi3-sumo"
+     PACKAGE_FEED_BASE_PATHS = "rpm"
+     PACKAGE_FEED_ARCHS = "noarch cortexa7hf_neon_vfpv4 raspberrypi3"
 
-I wonder if there is scipy recipe available?
+and run this command:
+
+     bitbake package-index
+
+This produces a repodata directory in the deploy/rpm directory, sibling
+to the arch directories.
+
+drwxr-xr-x 2 pab pab 516096 Mar 15 12:26 cortexa7hf_neon_vfpv4
+drwxr-xr-x 2 pab pab  24576 Mar 15 12:55 noarch
+drwxr-xr-x 2 pab pab 262144 Mar 15 12:26 raspberrypi3
+drwxr-xr-x 2 pab pab   4096 Mar 15 15:02 repodata
+
+However, the repo file generated by the PACKAGE_FEED variables causes
+dnf on the target to fetch repodata from inside each arch directory:
+
+192.168.65.117 - - [15/Mar/2018:14:03:18 -0500] "GET 
+/oe/rpi3-sumo/rpm/noarch/repodata/repomd.xml HTTP/1.1" 404 481 "-" 
+"dnf/2.7.5"
+192.168.65.117 - - [15/Mar/2018:14:05:51 -0500] "GET 
+/oe/rpi3-sumo/rpm/raspberrypi3/repodata/repomd.xml HTTP/1.1" 404 487 "-" 
+"dnf/2.7.5"
+192.168.65.117 - - [15/Mar/2018:14:05:51 -0500] "GET 
+/oe/rpi3-sumo/rpm/cortexa7hf_neon_vfpv4/repodata/repomd.xml HTTP/1.1" 
+404 496 "-" "dnf/2.7.5"
+
+This doesn't work.  I end up having to change the repo file to eliminate
+the architectures.
+
+Is this a problem specific to RPM, or am I doing something wrong?
 
 Thanks.
 
---0000000000008356630567773737
-Content-Type: text/html; charset="UTF-8"
+Peter
 
-<div dir="ltr"><div><div>Hello all,<br><br></div>I wonder if there is scipy recipe available? <br><br></div>Thanks.<br></div>
 
---0000000000008356630567773737--
