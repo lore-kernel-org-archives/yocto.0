@@ -1,63 +1,59 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D30DAE0086B; Thu, 15 Mar 2018 13:55:02 -0700 (PDT)
+	id C4D5DE0084A; Thu, 15 Mar 2018 14:16:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.235.154.220 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.178 listed in list.dnswl.org]
-Received: from mail-pf0-f178.google.com (mail-pf0-f178.google.com
-	[209.85.192.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EEC8E00529
-	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 13:55:02 -0700 (PDT)
-Received: by mail-pf0-f178.google.com with SMTP id z10so3293454pfh.13
-	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 13:55:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ScNJNLVFo5n8RVv1tQ+zrZScEHKzrFDkZai7ekf1yVU=;
-	b=p/thUyyse/1r+cQsVlMVL/IU+nz9obd7Mm8B0lTwhD4pf+QXtgsnIyFqA9RPYW7R8I
-	8xBipWkOTagx6lujfuWUblA0uTSgBSiawws5iOPnzmzsAjwDNLHU6dEkBo7U5PKUwJ9B
-	sZOp9xW+KLRw4ZKwcJ67BGHlybcXBDGJ0jLkeQjIGlfYTiZOI/9tKxqpDXlew5Z8XY9Q
-	zbhRn9vyEIWHKIdxb/k8Utgk7OweRljT4QJaa9MS1kA9bKop4AK/F2PqNs2h9Dkw94d1
-	Fy8Yds0+wOEHu30nQaKS1mC6b0FxWfRVBjpeulJEB7KCq6NICCPCq/NUfCFu2n4b+gPo
-	LZAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ScNJNLVFo5n8RVv1tQ+zrZScEHKzrFDkZai7ekf1yVU=;
-	b=HJOoru+rldHH3mR5k5Be0yN3cQePf547254IvEwVO9KKi0cJ0GHxmBcxn6UOGPndc1
-	DQXG4sfL4zZxjZznu/AnjgIm9pN0CgjoDUuuK9VeB64eeo1nA7WMmOpKa4bZa5fLCQ14
-	Z+Fk0bXja/InQoara2gARnGa0ESvSOkuSTAgsNnRuLkSiUi/WhbM/nnbZonxt5qDau4N
-	AsbyLoiAS59dPm03YGqHt5u2cTfouhLWI+XCU+Dp90t7YH0WTY9lVTKGTY7JK3q1nO9p
-	CuIXjsY7PPP40P+kjHufHhi8fuYNW8vo2mVRDE0+2lJtxqdi43gRkt4W93pXMdG1LGEP
-	pGEA==
-X-Gm-Message-State: AElRT7G4O2vD16l0nPf+bh/Wb69U3KGzc1LVB+EEiw/PwNdAeZ2rbFDi
-	BWBE1vuAaqUbd6FaCUX9/mtp7yzl2Q78/fd/hXk=
-X-Google-Smtp-Source: AG47ELulDMgrAY/sUeQqDOaptGcfKWF7ccnw4AB9Y60ZfinkgiVubuDzT+bREDv1AtNGdON8xIHFVwCCGJAy8bR0XL8=
-X-Received: by 10.99.128.67 with SMTP id j64mr7556978pgd.55.1521147301860;
-	Thu, 15 Mar 2018 13:55:01 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
+	[64.235.154.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 827DFE006E9
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 14:16:30 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx1412.ess.rzc.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Thu, 15 Mar 2018 21:16:27 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Thu, 15 Mar 2018 14:16:24 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Thu, 15 Mar 2018 14:16:24 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] How to get mysqy/mariadb to start on powerup.
+Thread-Index: AQHTvJmRjybrgAvccUyN6MZA1cayV6PSO8aA//+OKnY=
+Date: Thu, 15 Mar 2018 21:16:24 +0000
+Message-ID: <937e0a406a4443b0813052bcc5c0a006@sakuraus.com>
+References: <454710ed7f6d42279136acc70c35cf74@sakuraus.com>,
+	<CAMKF1sp6eeDj8Ny_6G9qiy-uW8spcm+cNrSH-az4+7Z2MpPXbQ@mail.gmail.com>
+In-Reply-To: <CAMKF1sp6eeDj8Ny_6G9qiy-uW8spcm+cNrSH-az4+7Z2MpPXbQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-Received: by 10.100.162.16 with HTTP; Thu, 15 Mar 2018 13:54:31 -0700 (PDT)
-In-Reply-To: <454710ed7f6d42279136acc70c35cf74@sakuraus.com>
-References: <454710ed7f6d42279136acc70c35cf74@sakuraus.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 15 Mar 2018 13:54:31 -0700
-Message-ID: <CAMKF1sp6eeDj8Ny_6G9qiy-uW8spcm+cNrSH-az4+7Z2MpPXbQ@mail.gmail.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+X-BESS-ID: 1521148585-452060-14489-6642-1
+X-BESS-VER: 2018.3.1-r1803090017
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.191096
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in 
+	message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to get mysqy/mariadb to start on powerup.
 X-BeenThere: yocto@yoctoproject.org
@@ -71,19 +67,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Mar 2018 20:55:02 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 15 Mar 2018 21:16:32 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_937e0a406a4443b0813052bcc5c0a006sakurauscom_"
 
-On Thu, Mar 15, 2018 at 1:38 PM, Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
-> I'm building an RPi3 system that is going to use mysql/mariadb. I've got
-> everything installed, but mysqld is not starting. install_db.service does
-> run on startup, but the mysqld.service file never gets triggered.
->
->
-> Is there something that I'm missing to get it to run? I've search online,
-> but can't find anything that pertains to yocto.
->
+--_000_937e0a406a4443b0813052bcc5c0a006sakurauscom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-poke on the system with systemctl/journalctl to see whats going on
+> From: Khem Raj <raj.khem@gmail.com>
 
+> Sent: Thursday, March 15, 2018 1:54 PM
+> To: Greg Wilson-Lindberg
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] How to get mysqy/mariadb to start on powerup.
+>
+> > On Thu, Mar 15, 2018 at 1:38 PM, Greg Wilson-Lindberg
+> <GWilson@sakuraus.com> wrote:
+> > I'm building an RPi3 system that is going to use mysql/mariadb. I've go=
+t
+> > everything installed, but mysqld is not starting. install_db.service do=
+es
+> > run on startup, but the mysqld.service file never gets triggered.
+> >
+> >
+> > Is there something that I'm missing to get it to run? I've search onlin=
+e,
+> > but can't find anything that pertains to yocto.
+> >
+>
+> poke on the system with systemctl/journalctl to see whats going on
+
+journalctl -u mysqld.service says no entries
+systemctl status mysqld.service shows:
+   Loaded: loaded (/lib/systemd/system/mysqld.service; disabled; vendor pre=
+set: enabled)
+   Active: inactive (dead)
+
+I've rebooted the system a couple of times to see if install_db needed to b=
+e run before mysql would run, no luck.
+
+--_000_937e0a406a4443b0813052bcc5c0a006sakurauscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p><b style=3D"font-size: 11pt; font-family: Calibri, sans-serif;">&gt;&nbs=
+p;From:</b><span style=3D"font-size: 11pt; font-family: Calibri, sans-serif=
+;"> Khem Raj &lt;raj.khem@gmail.com&gt;</span><br>
+</p>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<div style=3D"color: rgb(0, 0, 0);">
+<div>
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>&gt;&nbsp;Sent:</b> Thursday,=
+ March 15, 2018 1:54 PM<br>
+<b>&gt;&nbsp;To:</b> Greg Wilson-Lindberg<br>
+<b>&gt;&nbsp;Cc:</b> yocto@yoctoproject.org<br>
+<b>&gt;&nbsp;Subject:</b> Re: [yocto] How to get mysqy/mariadb to start on =
+powerup.</font>
+<div>&gt;&nbsp;&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">&gt;&nbsp;&gt;&nbsp;On Thu, Mar 15, 2018 at 1:38 P=
+M, Greg Wilson-Lindberg<br>
+&gt;&nbsp;&lt;GWilson@sakuraus.com&gt; wrote:<br>
+&gt;&nbsp;&gt; I'm building an RPi3 system that is going to use mysql/maria=
+db. I've got<br>
+&gt;&nbsp;&gt; everything installed, but mysqld is not starting. install_db=
+.service does<br>
+&gt;&nbsp;&gt; run on startup, but the mysqld.service file never gets trigg=
+ered.<br>
+&gt;&nbsp;&gt;<br>
+&gt;&nbsp;&gt;<br>
+&gt;&nbsp;&gt; Is there something that I'm missing to get it to run? I've s=
+earch online,<br>
+&gt;&nbsp;&gt; but can't find anything that pertains to yocto.<br>
+&gt;&nbsp;&gt;<br>
+&gt;<br>
+&gt;&nbsp;poke on the system with systemctl/journalctl to see whats going o=
+n<br>
+</div>
+<div class=3D"PlainText"><br>
+</div>
+<div class=3D"PlainText">journalctl -u mysqld.service says no entries</div>
+<div class=3D"PlainText">systemctl status&nbsp;<span style=3D"font-family: =
+Calibri, Arial, Helvetica, sans-serif; font-size: 13.3333px;">mysqld.servic=
+e shows:</span></div>
+<div class=3D"PlainText"><span style=3D"font-family: Calibri, Arial, Helvet=
+ica, sans-serif; font-size: 13.3333px;">
+<div>&nbsp; &nbsp;Loaded: loaded (/lib/systemd/system/mysqld.service; disab=
+led; vendor preset: enabled)</div>
+<div>&nbsp; &nbsp;Active: inactive (dead)</div>
+<br>
+</span></div>
+<div class=3D"PlainText"><span style=3D"font-family: Calibri, Arial, Helvet=
+ica, sans-serif; font-size: 13.3333px;">I've rebooted the system a couple o=
+f times to see if install_db needed to be run before mysql would run, no lu=
+ck.</span></div>
+</span></font></div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_937e0a406a4443b0813052bcc5c0a006sakurauscom_--
