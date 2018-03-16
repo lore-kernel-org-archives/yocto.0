@@ -1,40 +1,41 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <pab@pabigot.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 496CCE00A44; Fri, 16 Mar 2018 03:37:47 -0700 (PDT)
+	id D657AE00BA1; Fri, 16 Mar 2018 04:33:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [68.178.252.102 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0555E006E9
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 03:37:46 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	16 Mar 2018 03:37:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,315,1517904000"; d="scan'208";a="35545040"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga003.jf.intel.com with ESMTP; 16 Mar 2018 03:37:45 -0700
-To: "Peter A. Bigot" <pab@pabigot.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <a2bf42e9-7edf-afab-9abd-41f02161d832@pabigot.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <a97d3802-8332-536c-af89-71ec0af0edf9@linux.intel.com>
-Date: Fri, 16 Mar 2018 12:31:00 +0200
+X-Greylist: delayed 136 seconds by postgrey-1.32 at yocto-www;
+	Fri, 16 Mar 2018 04:33:50 PDT
+Received: from p3plsmtpa11-01.prod.phx3.secureserver.net
+	(p3plsmtpa11-01.prod.phx3.secureserver.net [68.178.252.102])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34E86E006E9
+	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 04:33:50 -0700 (PDT)
+Received: from [192.168.65.22] ([24.118.100.205]) by :SMTPAUTH: with SMTP
+	id wna9e3BZNbtzswna9eT75z; Fri, 16 Mar 2018 04:31:34 -0700
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>,
+	Yocto Project <yocto@yoctoproject.org>,
+	Scott Rifenbark <srifenbark@gmail.com>
+References: <2ff6c8de-6ea2-235b-ed62-f9d387951a21@pabigot.com>
+	<addd967a-b30b-6290-3187-35239401ce04@linux.intel.com>
+From: "Peter A. Bigot" <pab@pabigot.com>
+Organization: Peter Bigot Consulting, LLC
+Message-ID: <4662ecc8-68d5-9528-4873-0029a5f9e121@pabigot.com>
+Date: Fri, 16 Mar 2018 06:31:33 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.6.0
 MIME-Version: 1.0
-In-Reply-To: <a2bf42e9-7edf-afab-9abd-41f02161d832@pabigot.com>
-Subject: Re: package manager contamination in state?
+In-Reply-To: <addd967a-b30b-6290-3187-35239401ce04@linux.intel.com>
+X-CMAE-Envelope: MS4wfFU9yY+Wn8BIbPQ9a+O7PxMimE1rdHIl0pJCmLFTeCdXVj/dci/LonTTQPhnF1RkQzIiIdOjGt1RLtPDV9LY8AiQ+ppA4PDg1t1r+CJP0mHnhY72XYq4
+	yqNHc4jLMzlIYGQJjTNALdjlhWKvizd7nt2xpqUFWN00oXxYocwO/VzuY8HpaFMjYaEMCJ3JuXhwyBgJVS591DwMEUHASyBR4zL+X/rUcAxqNekY/ZeELpIO
+	dp7Ihhj0zl1boxXDxKeoYg==
+Subject: Re: clarify instructions for package feed installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,25 +47,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Mar 2018 10:37:47 -0000
+X-List-Received-Date: Fri, 16 Mar 2018 11:33:50 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 
-On 03/15/2018 10:12 PM, Peter A. Bigot wrote:
-> While attempting to diagnose a package index problem visible on current
-> poky head I changed local.conf from:
-> 
-> PACKAGE_CLASSES ?= "package_rpm"
-> 
-> to
-> 
-> PACKAGE_CLASSES ?= "package_deb"
+On 03/16/2018 05:27 AM, Alexander Kanavin wrote:
+> On 03/15/2018 10:10 PM, Peter A. Bigot wrote:
+>> Following the instructions in the 2.4.2 mega-manual section 4.21.4 I set
+>> in local.conf:
+>>
+>>      PACKAGE_FEED_URIS = "http://192.168.65.22/oe/rpi3-sumo"
+>>      PACKAGE_FEED_BASE_PATHS = "rpm"
+>>      PACKAGE_FEED_ARCHS = "noarch cortexa7hf_neon_vfpv4 raspberrypi3"
+>>
+>> and run this command:
+>>
+>>      bitbake package-index
+>>
+>> This produces a repodata directory in the deploy/rpm directory, sibling
+>> to the arch directories.
+>>
+>> drwxr-xr-x 2 pab pab 516096 Mar 15 12:26 cortexa7hf_neon_vfpv4
+>> drwxr-xr-x 2 pab pab  24576 Mar 15 12:55 noarch
+>> drwxr-xr-x 2 pab pab 262144 Mar 15 12:26 raspberrypi3
+>> drwxr-xr-x 2 pab pab   4096 Mar 15 15:02 repodata
+>>
+>> However, the repo file generated by the PACKAGE_FEED variables causes
+>> dnf on the target to fetch repodata from inside each arch directory:
+>>
+>> 192.168.65.117 - - [15/Mar/2018:14:03:18 -0500] "GET 
+>> /oe/rpi3-sumo/rpm/noarch/repodata/repomd.xml HTTP/1.1" 404 481 "-" 
+>> "dnf/2.7.5"
+>> 192.168.65.117 - - [15/Mar/2018:14:05:51 -0500] "GET 
+>> /oe/rpi3-sumo/rpm/raspberrypi3/repodata/repomd.xml HTTP/1.1" 404 487 
+>> "-" "dnf/2.7.5"
+>> 192.168.65.117 - - [15/Mar/2018:14:05:51 -0500] "GET 
+>> /oe/rpi3-sumo/rpm/cortexa7hf_neon_vfpv4/repodata/repomd.xml HTTP/1.1" 
+>> 404 496 "-" "dnf/2.7.5"
+>>
+>> This doesn't work.  I end up having to change the repo file to eliminate
+>> the architectures.
+>>
+>> Is this a problem specific to RPM, or am I doing something wrong?
+>
+> I think the documentation is misleading here. 'bitbake package-index' 
+> generates a single index for all of the architectures in the 
+> deploy/rpm directory, so if you need individual feeds for specific 
+> architectures, you need to generate them yourself with a custom 
+> recipe. Or if you're okay with having a single index, just drop the 
+> PACKAGE_FEED_ARCHS setting.
+>
+> CC Scott, so we can add a note for RPM feeds in the docs here.
+>
+>
+> Alex
 
-Note that we don't test deb packaging all that well. I'm not even sure 
-images are regularly built with it on the autobuilder. It does seem like 
-apt has some kind of dependency problem where dnf sees none.
+Thanks; that makes sense.  A documentation note that PACKAGE_FEED_ARCHS 
+should only be used if indexes are generated a different way would be 
+worthwhile.  AFAICT the only time identifying specific architectures is 
+useful is in filtering irrelevant candidates when multiple architectures 
+are present. It's not immediately obvious how to put multiple 
+incompatible archs into the same hierarchy anyway unless something 
+automatically reconciles the companion noarch packages that get produced 
+in builds for different MACHINEs.
 
+Peter
 
-Alex
 
