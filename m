@@ -1,69 +1,61 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16316E00CF4; Fri, 16 Mar 2018 14:16:11 -0700 (PDT)
+	id 54FF2E00944; Fri, 16 Mar 2018 14:22:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.51 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.235.154.220 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f51.google.com (mail-pl0-f51.google.com
-	[209.85.160.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DFD0E0073D
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 14:16:09 -0700 (PDT)
-Received: by mail-pl0-f51.google.com with SMTP id v9-v6so6617304plp.12
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 14:16:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=8aIuH/2nobuoBQewu7X+4dlgRw4mnAHr/w6EJE4BWwY=;
-	b=SbwHWvKznrP2sRQyr5CTLvhYaIIBYMcdk3vqCfa633wA94bnuXJBCpa9uE105c3beW
-	uGZZJ6efXsFp40sYYTfKoLC2C4c3lOep+mQQUHLfbXksZDXXIFyf2vewc7tvVamqzvmU
-	gboDYJ8kY/re1U2NVN9PlVfHhIO1ZPZ9TTsoh+nNulTOlmsvTgAiKUQIE0GThjOK4IvN
-	esHVQmDL856dwrwz2Mpy6nswONpuWQq1sf6VEK0xLvlOmQNjRtkUcKOUfO5OHw5sFBhl
-	PapB0sBEtIlHbBjrWc/R6/DTlZnyEdSaTFPUvXmnHO8+WBDpenSw4f6/3TN14BxxoL5P
-	8BXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=8aIuH/2nobuoBQewu7X+4dlgRw4mnAHr/w6EJE4BWwY=;
-	b=RDK7dc5/mxXOFAtV58YPwKRwp5W5OUd+8iuY/e1lkzmS/LA5G9rQadOhEdk8YKbpbS
-	1jaa9/pHJBPDN9Y57gavXZYpEkg6yu3qTJXrHp8YlX7IIx0rZrO7zBbKZ9xeqcsWkZyV
-	AqPGYFF3zKXsrABEqaCJFBkxXbMEI9RSjP14l1bKssJPk+O1TJ6FH1rjE7zNzIAxIiHo
-	ddk+uT5YHKKjJgmQEryS6vTlG/XGdnhn7M++TZrWK7fpme3ZBhywM6qLHQn5YVAGoZeF
-	P1C/ewQWM/cjMOBg/5s9p1Ww7GSPEJNJoaZzxd3vRQ7Po6145fUnbTq0FbS80OH1QFF1
-	oZFg==
-X-Gm-Message-State: AElRT7FSrGbB7tOJ8prL65jyOVymJQE0DDZAw5S/FHBIeiWJuD2bYazv
-	8iagB0CEv17d9QMnQQcIqHZewIJaY0rHc1GhyCFq/w==
-X-Google-Smtp-Source: AG47ELtfaj9l1vkC3JIFBg8gKSWUOuAuX19eSKW5ozlDF7GXk8YUdmnCB4R7Aplhd9y8+qwJcwC0EfOUEPYCsuT+Umk=
-X-Received: by 2002:a17:902:9883:: with SMTP id
-	s3-v6mr3532184plp.96.1521234969406; 
-	Fri, 16 Mar 2018 14:16:09 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.100.182.197 with HTTP; Fri, 16 Mar 2018 14:15:38 -0700 (PDT)
-In-Reply-To: <27471f70f26541d8add86faeec8509c1@sakuraus.com>
+Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
+	[64.235.154.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F690E0073D
+	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 14:22:23 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx1412.ess.rzc.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Fri, 16 Mar 2018 21:22:21 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Fri, 16 Mar 2018 14:22:20 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Fri, 16 Mar 2018 14:22:20 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] How to get mysqy/mariadb to start on powerup.
+Thread-Index: AQHTvJmRjybrgAvccUyN6MZA1cayV6PSO8aA//+OKnaAATjiEIAAqgeA//+fN1CAAIfyAP//i2Zg
+Date: Fri, 16 Mar 2018 21:22:20 +0000
+Message-ID: <12270a1aeed348d7bdabbbeca64fb6ef@sakuraus.com>
 References: <454710ed7f6d42279136acc70c35cf74@sakuraus.com>
 	<CAMKF1sp6eeDj8Ny_6G9qiy-uW8spcm+cNrSH-az4+7Z2MpPXbQ@mail.gmail.com>
 	<937e0a406a4443b0813052bcc5c0a006@sakuraus.com>
 	<e323d1d04c544a93a562c54ebdf23fde@sakuraus.com>
 	<CAMKF1sqA+1acjxDK235N2NARXYs=FF-DEQpO8ZnpaCqzjCs=iA@mail.gmail.com>
 	<27471f70f26541d8add86faeec8509c1@sakuraus.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 16 Mar 2018 14:15:38 -0700
-Message-ID: <CAMKF1sothqiEPDCow7K+8sqFCEgMrhdEyXuJqEBNToyrMOqeBQ@mail.gmail.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+	<CAMKF1sothqiEPDCow7K+8sqFCEgMrhdEyXuJqEBNToyrMOqeBQ@mail.gmail.com>
+In-Reply-To: <CAMKF1sothqiEPDCow7K+8sqFCEgMrhdEyXuJqEBNToyrMOqeBQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.3]
+MIME-Version: 1.0
+X-BESS-ID: 1521235341-452060-14490-107247-1
+X-BESS-VER: 2018.3.1-r1803090017
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.191128
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to get mysqy/mariadb to start on powerup.
 X-BeenThere: yocto@yoctoproject.org
@@ -77,100 +69,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Mar 2018 21:16:11 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 16 Mar 2018 21:22:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Fri, Mar 16, 2018 at 2:10 PM, Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
->> -----Original Message-----
->> From: Khem Raj [mailto:raj.khem@gmail.com]
->> Sent: Friday, March 16, 2018 11:55 AM
->> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
->> Cc: yocto@yoctoproject.org
->> Subject: Re: [yocto] How to get mysqy/mariadb to start on powerup.
->>
->> On Fri, Mar 16, 2018 at 8:58 AM, Greg Wilson-Lindberg <GWilson@sakuraus.com>
->> wrote:
->> >> From: Greg Wilson-Lindberg
->> >> Sent: Thursday, March 15, 2018 02:16 PM
->> >> To: Khem Raj <raj.khem@gmail.com>
->> >> Cc: yocto@yoctoproject.org
->> >> Subject: Re: [yocto] How to get mysqy/mariadb to start on powerup.
->> >
->> >>
->> >
->> >> > From: Khem Raj <raj.khem@gmail.com>
->> >
->> >> > Sent: Thursday, March 15, 2018 1:54 PM
->> >> > To: Greg Wilson-Lindberg
->> >> > Cc: yocto@yoctoproject.org
->> >> > Subject: Re: [yocto] How to get mysqy/mariadb to start on powerup.
->> >
->> >> >
->> >
->> >> > > On Thu, Mar 15, 2018 at 1:38 PM, Greg Wilson-Lindberg
->> >> > <GWilson@sakuraus.com> wrote:
->> >> > > I'm building an RPi3 system that is going to use mysql/mariadb.
->> >> > > I've got everything installed, but mysqld is not starting.
->> >> > > install_db.service does run on startup, but the mysqld.service
->> >> > > file never gets triggered.
->> >> > >
->> >> > >
->> >> > > Is there something that I'm missing to get it to run? I've search
->> >> > > online, but can't find anything that pertains to yocto.
->> >> > >
->> >> >
->> >> > poke on the system with systemctl/journalctl to see whats going on
->> >
->> >>
->> >
->> >> journalctl -u mysqld.service says no entries
->> >
->> >> systemctl status mysqld.service shows:
->> >
->> >>    Loaded: loaded (/lib/systemd/system/mysqld.service; disabled;
->> >> vendor
->> >> preset: enabled)
->> >
->> >>    Active: inactive (dead)
->> >
->> >>
->> >
->> >> I've rebooted the system a couple of times to see if install_db
->> >> needed to be run before mysql would run, no luck.
->> >
->> >>
->> >
->> > It's seems that maybe I need to add a bit about my understanding of
->> > the yocto system. I was assuming that if I included mysql in the
->> > build, that it would be started when the system powered up. If mysql
->> > is not normally started automatically that I can do what is necessary
->> > to start it, I just thought that I shouldn't need to do anything.
->>
->> Yes you are right. We try to do runtime testing as much as possible and you will see
->> more and more focus on runtime testing in coming days and months. So far we
->> have had lot of build related features and stability problems to work on so chances
->> of runtime bugs are still a bit higher. You can help in fixing this issue if you can root
->> cause it. eg. check in system logs using journalctl for possible causes of this service
->> not starting up. Often times you will get a decent hint and we can help as well on
->> that information
->
-> I've run journalctl on both install_db.service & mysqld.service. mysqld comes back with no entries. install_db comes back with a line each for Starting and Started Install MySQL Community Server Database.
->
-> systemctl status returns exited success for install_db, for mysqld it reports Active: inactive (dead).
->
-> systemctl list-unit-files shows install_db as enabled and mysqld as disabled.
->
-> I was able to start mysqld with systemctl start and it showed running with systemctl status & ps. But it did not restart after a reboot.
-
-can you try
-
-systemctl enable mysqld
-
-this should enable it to start on boot.
-
->
-> If there is anything else that I can do to help understand what is going on please let me know.
->
-> Greg
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJh
+ai5raGVtQGdtYWlsLmNvbV0NCj4gU2VudDogRnJpZGF5LCBNYXJjaCAxNiwgMjAxOCAwMjoxNiBQ
+TQ0KPiBUbzogR3JlZyBXaWxzb24tTGluZGJlcmcgPEdXaWxzb25Ac2FrdXJhdXMuY29tPg0KPiBD
+YzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBIb3cgdG8g
+Z2V0IG15c3F5L21hcmlhZGIgdG8gc3RhcnQgb24gcG93ZXJ1cC4NCj4gDQo+IE9uIEZyaSwgTWFy
+IDE2LCAyMDE4IGF0IDI6MTAgUE0sIEdyZWcgV2lsc29uLUxpbmRiZXJnIDxHV2lsc29uQHNha3Vy
+YXVzLmNvbT4NCj4gd3JvdGU6DQo+ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4+
+IEZyb206IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXQ0KPiA+PiBTZW50OiBG
+cmlkYXksIE1hcmNoIDE2LCAyMDE4IDExOjU1IEFNDQo+ID4+IFRvOiBHcmVnIFdpbHNvbi1MaW5k
+YmVyZyA8R1dpbHNvbkBzYWt1cmF1cy5jb20+DQo+ID4+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qu
+b3JnDQo+ID4+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIEhvdyB0byBnZXQgbXlzcXkvbWFyaWFkYiB0
+byBzdGFydCBvbiBwb3dlcnVwLg0KPiA+Pg0KLi4uLg0KLi4uLg0KLi4uLg0KPiA+DQo+ID4gSSd2
+ZSBydW4gam91cm5hbGN0bCBvbiBib3RoIGluc3RhbGxfZGIuc2VydmljZSAmIG15c3FsZC5zZXJ2
+aWNlLiBteXNxbGQgY29tZXMNCj4gYmFjayB3aXRoIG5vIGVudHJpZXMuIGluc3RhbGxfZGIgY29t
+ZXMgYmFjayB3aXRoIGEgbGluZSBlYWNoIGZvciBTdGFydGluZyBhbmQgU3RhcnRlZA0KPiBJbnN0
+YWxsIE15U1FMIENvbW11bml0eSBTZXJ2ZXIgRGF0YWJhc2UuDQo+ID4NCj4gPiBzeXN0ZW1jdGwg
+c3RhdHVzIHJldHVybnMgZXhpdGVkIHN1Y2Nlc3MgZm9yIGluc3RhbGxfZGIsIGZvciBteXNxbGQg
+aXQgcmVwb3J0cyBBY3RpdmU6DQo+IGluYWN0aXZlIChkZWFkKS4NCj4gPg0KPiA+IHN5c3RlbWN0
+bCBsaXN0LXVuaXQtZmlsZXMgc2hvd3MgaW5zdGFsbF9kYiBhcyBlbmFibGVkIGFuZCBteXNxbGQg
+YXMgZGlzYWJsZWQuDQo+ID4NCj4gPiBJIHdhcyBhYmxlIHRvIHN0YXJ0IG15c3FsZCB3aXRoIHN5
+c3RlbWN0bCBzdGFydCBhbmQgaXQgc2hvd2VkIHJ1bm5pbmcgd2l0aA0KPiBzeXN0ZW1jdGwgc3Rh
+dHVzICYgcHMuIEJ1dCBpdCBkaWQgbm90IHJlc3RhcnQgYWZ0ZXIgYSByZWJvb3QuDQo+IA0KPiBj
+YW4geW91IHRyeQ0KPiANCj4gc3lzdGVtY3RsIGVuYWJsZSBteXNxbGQNCj4gDQo+IHRoaXMgc2hv
+dWxkIGVuYWJsZSBpdCB0byBzdGFydCBvbiBib290Lg0KDQpUaGF0IGRpZCBjcmVhdGUgYSBsaW5r
+IGFuZCBpdCBzdGFydGVkIG9uIHJlYm9vdC4NCg0KSSB0YWtlIGl0IHRoYXQgc29tZXRoaW5nIGlz
+IGhhcHBlbmluZyBpbiBpbnN0YWxsX2RiIGFuZCBhbW9uZyBvdGhlciB0aGluZ3MgdGhhdCBsaW5r
+IGlzIG5vdCBnZXR0aW5nIGNyZWF0ZWQ/DQoNCkdyZWcNCj4gDQo+ID4NCj4gPiBJZiB0aGVyZSBp
+cyBhbnl0aGluZyBlbHNlIHRoYXQgSSBjYW4gZG8gdG8gaGVscCB1bmRlcnN0YW5kIHdoYXQgaXMg
+Z29pbmcgb24gcGxlYXNlIGxldA0KPiBtZSBrbm93Lg0KPiA+DQo+ID4gR3JlZw0K
 
