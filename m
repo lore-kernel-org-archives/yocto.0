@@ -1,61 +1,66 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <ticotimo@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4D5DE0084A; Thu, 15 Mar 2018 14:16:32 -0700 (PDT)
+	id 4C031E00AD8; Thu, 15 Mar 2018 22:29:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.235.154.220 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ticotimo[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[64.235.154.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 827DFE006E9
-	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 14:16:30 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx1412.ess.rzc.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Thu, 15 Mar 2018 21:16:27 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Thu, 15 Mar 2018 14:16:24 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Thu, 15 Mar 2018 14:16:24 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] How to get mysqy/mariadb to start on powerup.
-Thread-Index: AQHTvJmRjybrgAvccUyN6MZA1cayV6PSO8aA//+OKnY=
-Date: Thu, 15 Mar 2018 21:16:24 +0000
-Message-ID: <937e0a406a4443b0813052bcc5c0a006@sakuraus.com>
-References: <454710ed7f6d42279136acc70c35cf74@sakuraus.com>,
-	<CAMKF1sp6eeDj8Ny_6G9qiy-uW8spcm+cNrSH-az4+7Z2MpPXbQ@mail.gmail.com>
-In-Reply-To: <CAMKF1sp6eeDj8Ny_6G9qiy-uW8spcm+cNrSH-az4+7Z2MpPXbQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.239]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ua0-f194.google.com (mail-ua0-f194.google.com
+	[209.85.217.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49808E0073D
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 22:29:40 -0700 (PDT)
+Received: by mail-ua0-f194.google.com with SMTP id i21so2625521uak.8
+	for <yocto@yoctoproject.org>; Thu, 15 Mar 2018 22:29:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=otJO2m+mJWWx6VbDpIMet+SIp2a992Mr64RJR8O8Bkc=;
+	b=hjaXpsU7/qQBrwHC7yrlG7im2R0Y+1n6s5IeA7i/t391ctCC2dUjymfOP772QsocGI
+	9FTh3xf/MKWgUDJ9TtwyYLzZRkv/V1MIwB/6KMoBvenQjj1xHEIfm+xmCOMT1poo9Kuj
+	Kqy5tzvO0sAe+dwnVVMMN+HG9NsjCuaPWhc7ejNPgq3R7k0zKS8wqlZWcv/A491W+aOD
+	TaUp9Y3egPa2r5q6BnqHrYSoPUOjEEA/8hBdqE0QdiNpVqKCAfaDpwlw+qqogfOlwoo2
+	BKVNp+rqLCTWv2CoUPOF/rfgMpIg5PNfwZJWB6PaI1hjFQ7UahgIrJY69eMTZ441J/6I
+	lPVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=otJO2m+mJWWx6VbDpIMet+SIp2a992Mr64RJR8O8Bkc=;
+	b=J5jIvrFNm40i23vo8fLWQOQv+udq+9L5+Uh7WS8DASi9yqP6b1Lzuv78kSDvZOpkm3
+	I26RWFZGEssdtOpZVEhHVI1dYzKioiEuvGT+yK7Y00rJYHnT328gymKIrlOmlih5od+h
+	WrL2BaCYETh58WZFPrJ4tbcP+pBAF1AlXCtx31XSnZ2Nu+380T40CCrWDWYIBR/riSiJ
+	l4/+H+5UfbwQFNpqJ/pgxRTZ9E8q1P/a/fOm70i1SxRlcEX4i488OkvDqBYds+OUFvoo
+	qbaEvNnE+Okq63WtDqmTnjwtXOOH8fk15yFJrAXgtqNCnr/N+XDdBib5SHoQVWiFGeDc
+	IM4Q==
+X-Gm-Message-State: AElRT7GQRxJwGzf+Usni/GjXcu0NncOadU1GhyuZg6n3orq3n1m6oGWj
+	NnJm4tS6oQ8uShXxMa/XpaLT1GmUa9XRwVEboK8=
+X-Google-Smtp-Source: AG47ELvVJYjWZyREei/5VAEsIMIXESy+lpN55sPLmiqseJNCCEm7f/ekgOYm7xmXDzT/SZXUDdocjcNwE5QJnLdp1wI=
+X-Received: by 10.176.4.231 with SMTP id 94mr299521uaw.80.1521178180079; Thu,
+	15 Mar 2018 22:29:40 -0700 (PDT)
 MIME-Version: 1.0
-X-BESS-ID: 1521148585-452060-14489-6642-1
-X-BESS-VER: 2018.3.1-r1803090017
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.191096
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in 
-	message 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to get mysqy/mariadb to start on powerup.
+References: <CAFq4t4ghBNE+1SXZ7L-KuRMfw6z7E0a4ageKi33UbKbftXL0rQ@mail.gmail.com>
+	<alpine.LFD.2.21.1803150856190.32449@localhost.localdomain>
+In-Reply-To: <alpine.LFD.2.21.1803150856190.32449@localhost.localdomain>
+From: Tim Orling <ticotimo@gmail.com>
+Date: Fri, 16 Mar 2018 05:29:29 +0000
+Message-ID: <CANx9H-Ci26zKAYyKxpv5UehejFwpDF5Ww_JRzJnNNqhJFZy7hg@mail.gmail.com>
+To: Peter Balazovic <balazovic.peter@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: OpenCV with python3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,120 +72,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Mar 2018 21:16:32 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_937e0a406a4443b0813052bcc5c0a006sakurauscom_"
+X-List-Received-Date: Fri, 16 Mar 2018 05:29:43 -0000
+Content-Type: multipart/alternative; boundary="94eb2c124da21058c8056780e555"
 
---_000_937e0a406a4443b0813052bcc5c0a006sakurauscom_
-Content-Type: text/plain; charset="iso-8859-1"
+--94eb2c124da21058c8056780e555
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-> From: Khem Raj <raj.khem@gmail.com>
+Ditto for Robert=E2=80=99s comment. Please look at the bitbake manual and
+understand what the syntax means [1].
 
-> Sent: Thursday, March 15, 2018 1:54 PM
-> To: Greg Wilson-Lindberg
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] How to get mysqy/mariadb to start on powerup.
+Also,  =E2=80=9Cpython-foo=E2=80=9D means the python2 version. The default =
+PACKAGECONFIG
+[2] for opencv builds for python3. You need =E2=80=9Cpython3-opencv=E2=80=
+=9D.
+
+Finally, I would encourage you to use CORE_IMAGE_EXTRA_INSTALL [3] rather
+than IMAGE_INSTALL in the local.conf context.
+
+[1]
+https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-=
+manual.html#appending-and-prepending
+[2]
+http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-support=
+/opencv/opencv_3.3.bb?h=3Dmaster#n90
+[3]
+https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-CO=
+RE_IMAGE_EXTRA_INSTALL
+
+On Thu, Mar 15, 2018 at 5:57 AM Robert P. J. Day <rpjday@crashcourse.ca>
+wrote:
+
+> On Thu, 15 Mar 2018, Peter Balazovic wrote:
 >
-> > On Thu, Mar 15, 2018 at 1:38 PM, Greg Wilson-Lindberg
-> <GWilson@sakuraus.com> wrote:
-> > I'm building an RPi3 system that is going to use mysql/mariadb. I've go=
-t
-> > everything installed, but mysqld is not starting. install_db.service do=
-es
-> > run on startup, but the mysqld.service file never gets triggered.
+> > Hello all,
+> > I have python module of OpenCV for python 2.7 on my Yocto image adding
+> via local.conf
 > >
-> >
-> > Is there something that I'm missing to get it to run? I've search onlin=
-e,
-> > but can't find anything that pertains to yocto.
-> >
+> > IMAGE_INSTALL_append +=3D =E2=80=9C python-opencv=E2=80=9D
 >
-> poke on the system with systemctl/journalctl to see whats going on
+>   i know i've harped on this before, but can people please stop
+> combining the constructs "_append" and "+=3D" in the same expression?
+>
+> rday--
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-journalctl -u mysqld.service says no entries
-systemctl status mysqld.service shows:
-   Loaded: loaded (/lib/systemd/system/mysqld.service; disabled; vendor pre=
-set: enabled)
-   Active: inactive (dead)
-
-I've rebooted the system a couple of times to see if install_db needed to b=
-e run before mysql would run, no luck.
-
---_000_937e0a406a4443b0813052bcc5c0a006sakurauscom_
-Content-Type: text/html; charset="iso-8859-1"
+--94eb2c124da21058c8056780e555
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<p><b style=3D"font-size: 11pt; font-family: Calibri, sans-serif;">&gt;&nbs=
-p;From:</b><span style=3D"font-size: 11pt; font-family: Calibri, sans-serif=
-;"> Khem Raj &lt;raj.khem@gmail.com&gt;</span><br>
-</p>
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Arial,Helvetica,sans-serif;">
-<div style=3D"color: rgb(0, 0, 0);">
-<div>
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>&gt;&nbsp;Sent:</b> Thursday,=
- March 15, 2018 1:54 PM<br>
-<b>&gt;&nbsp;To:</b> Greg Wilson-Lindberg<br>
-<b>&gt;&nbsp;Cc:</b> yocto@yoctoproject.org<br>
-<b>&gt;&nbsp;Subject:</b> Re: [yocto] How to get mysqy/mariadb to start on =
-powerup.</font>
-<div>&gt;&nbsp;&nbsp;</div>
-</div>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText">&gt;&nbsp;&gt;&nbsp;On Thu, Mar 15, 2018 at 1:38 P=
-M, Greg Wilson-Lindberg<br>
-&gt;&nbsp;&lt;GWilson@sakuraus.com&gt; wrote:<br>
-&gt;&nbsp;&gt; I'm building an RPi3 system that is going to use mysql/maria=
-db. I've got<br>
-&gt;&nbsp;&gt; everything installed, but mysqld is not starting. install_db=
-.service does<br>
-&gt;&nbsp;&gt; run on startup, but the mysqld.service file never gets trigg=
-ered.<br>
-&gt;&nbsp;&gt;<br>
-&gt;&nbsp;&gt;<br>
-&gt;&nbsp;&gt; Is there something that I'm missing to get it to run? I've s=
-earch online,<br>
-&gt;&nbsp;&gt; but can't find anything that pertains to yocto.<br>
-&gt;&nbsp;&gt;<br>
-&gt;<br>
-&gt;&nbsp;poke on the system with systemctl/journalctl to see whats going o=
-n<br>
-</div>
-<div class=3D"PlainText"><br>
-</div>
-<div class=3D"PlainText">journalctl -u mysqld.service says no entries</div>
-<div class=3D"PlainText">systemctl status&nbsp;<span style=3D"font-family: =
-Calibri, Arial, Helvetica, sans-serif; font-size: 13.3333px;">mysqld.servic=
-e shows:</span></div>
-<div class=3D"PlainText"><span style=3D"font-family: Calibri, Arial, Helvet=
-ica, sans-serif; font-size: 13.3333px;">
-<div>&nbsp; &nbsp;Loaded: loaded (/lib/systemd/system/mysqld.service; disab=
-led; vendor preset: enabled)</div>
-<div>&nbsp; &nbsp;Active: inactive (dead)</div>
+<div><div dir=3D"auto">Ditto for Robert=E2=80=99s comment. Please look at t=
+he bitbake manual and understand what the syntax means [1].</div><br><div d=
+ir=3D"auto">Also, =C2=A0=E2=80=9Cpython-foo=E2=80=9D means the python2 vers=
+ion. The default PACKAGECONFIG [2] for opencv builds for python3. You need =
+=E2=80=9Cpython3-opencv=E2=80=9D.</div></div><div dir=3D"auto"><br></div><d=
+iv dir=3D"auto">Finally, I would encourage you to use CORE_IMAGE_EXTRA_INST=
+ALL [3] rather than IMAGE_INSTALL in the local.conf context.</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">[1]=C2=A0<a href=3D"https://www.yocto=
+project.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#appen=
+ding-and-prepending">https://www.yoctoproject.org/docs/current/bitbake-user=
+-manual/bitbake-user-manual.html#appending-and-prepending</a></div><div><di=
+v dir=3D"auto">[2]=C2=A0<a href=3D"http://cgit.openembedded.org/meta-openem=
+bedded/tree/meta-oe/recipes-support/opencv/opencv_3.3.bb?h=3Dmaster#n90">ht=
+tp://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-support/o=
+pencv/opencv_3.3.bb?h=3Dmaster#n90</a></div><div dir=3D"auto">[3]=C2=A0<a h=
+ref=3D"https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html=
+#var-CORE_IMAGE_EXTRA_INSTALL">https://www.yoctoproject.org/docs/current/re=
+f-manual/ref-manual.html#var-CORE_IMAGE_EXTRA_INSTALL</a></div><br><div cla=
+ss=3D"gmail_quote"><div>On Thu, Mar 15, 2018 at 5:57 AM Robert P. J. Day &l=
+t;<a href=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashco=
+urse.ca</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On Thu, 15 M=
+ar 2018, Peter Balazovic wrote:<br>
 <br>
-</span></div>
-<div class=3D"PlainText"><span style=3D"font-family: Calibri, Arial, Helvet=
-ica, sans-serif; font-size: 13.3333px;">I've rebooted the system a couple o=
-f times to see if install_db needed to be run before mysql would run, no lu=
-ck.</span></div>
-</span></font></div>
-</div>
-</div>
-</body>
-</html>
+&gt; Hello all,<br>
+&gt; I have python module of OpenCV for python 2.7=C2=A0on my Yocto image a=
+dding via local.conf<br>
+&gt;<br>
+&gt; IMAGE_INSTALL_append +=3D =E2=80=9C python-opencv=E2=80=9D<br>
+<br>
+=C2=A0 i know i&#39;ve harped on this before, but can people please stop<br=
+>
+combining the constructs &quot;_append&quot; and &quot;+=3D&quot; in the sa=
+me expression?<br>
+<br>
+rday--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>
 
---_000_937e0a406a4443b0813052bcc5c0a006sakurauscom_--
+--94eb2c124da21058c8056780e555--
