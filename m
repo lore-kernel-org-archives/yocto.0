@@ -1,68 +1,72 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B1D44E00B18; Fri, 16 Mar 2018 11:59:05 -0700 (PDT)
+	id E1CA4E00B01; Fri, 16 Mar 2018 12:04:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.160.65 listed in list.dnswl.org]
+	*      [74.125.83.51 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+	provider *      (balazovic.peter[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pl0-f65.google.com (mail-pl0-f65.google.com
-	[209.85.160.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8B8AE00B18
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 11:59:02 -0700 (PDT)
-Received: by mail-pl0-f65.google.com with SMTP id b7-v6so2369018plr.8
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 11:59:02 -0700 (PDT)
+Received: from mail-pg0-f51.google.com (mail-pg0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 136A1E007DA
+	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 12:04:43 -0700 (PDT)
+Received: by mail-pg0-f51.google.com with SMTP id g8so1316936pgq.13
+	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 12:04:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=AU1s9PNVgGCHDGXcUFbbpywsfe48eGBEyi14hon45XM=;
-	b=NspQx5xLrwm16nKAHYygJ664Sg4IwExeKPcH2x1apO5llufByUK3TZ7dxr6x28TyOg
-	18NLiBG7shpfOmAVLedh83jWGBJ7SuI7cy9xVgDlr0sORcD38hRoB+cmZEFfF0/CaEVX
-	iC+GAFco8qoxYOgv8h/V1lsYamgVZM2urtgqbsVdXe75UlDohvc6yBFhIJdAmFvnFU/S
-	PxD3t0biUIngDr8xQOXtFJj31EKK/gXiykqCThfR0YQh8RyhKFtsYls8NTu/sSzZFzSs
-	XJfo3NoammcZ/G44BHg89/xfngNiP2VO4/GPnqdKQIGoIjbLa7RA+mqRM124YVXAlRF8
-	oipw==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=/kSUy5MQ7DoPxleIaGJSVni50HF1dwgD03c6iRYlnec=;
+	b=UnKyt6kGnvLRr/fAKp4XtLVDbN4mizwTigw74qKFkZVhAtSFSo+Wdf4U/PFERMXrzM
+	ad3WEA107N3LkI0NJKm/AiIoojDVP8+nwVP8UspMDUJrpDeIpcOc+0aYcCfAawW+rLcs
+	Wt0bAC/vvors/yiygiQv9KOxH7cC77rXPOxCBoFP8dLqpGvOgE3jcnujvXbe1zWkqT+L
+	UIQ5hbG41k+fE9/bx0kKIBg0M3/E97DsXOvdGxx6CfC6lDkur0Oq2GwLOtynEevHY+CW
+	ECjH2jAjazzRzNQX3FFslZwejkDO6PEN66IDd6W9mshcJAA7twI3yjP0Lk6wGv+0XeTo
+	iUnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=AU1s9PNVgGCHDGXcUFbbpywsfe48eGBEyi14hon45XM=;
-	b=JfQ1IFnufc6Pw2mxq9AeWZUHkmHHgChnAc5/OJ5CEHYjXtVn9rtLNA4x0HEp9eAREa
-	ouboOv36ih74T3zgk0e4qo81BOTOAGudZg1yhdq/cIBSOGaKHieSf0WGeVzlGQMl3Xul
-	43rdxaCffTKyEXMRy86bD5gh3R3ZNY/dq+pyCKzOwT9Tm5LX6gjjf+OLaqZZRuao/WLh
-	F+emcb67q3a7Wr7Cit//LbQoFUJpNt+9hO474SlOE1fgl/eoTotF3nHVCU5D5G1ubAEb
-	8qqjt4Y4zbpvx5SFUl5lpUx5920Xj3R1mUtZHYeLIwUjQZUNbcaD8BXPdUqoCNr94PrS
-	byvA==
-X-Gm-Message-State: AElRT7HI/6wmxngJfLt5K/cpsbdfpi7kpE29it66sD53vHJjPzBHCZHr
-	9ditrNd0l8dGEksqL+9UvhcQ3Soc5YhVNdg7/ko=
-X-Google-Smtp-Source: AG47ELtegVv1ay8KPa76vRSUPCh+4wDM3iGliYSD82tcdKO8oVX84GNrXg/TVuPAk9zS2Gm63UN/ZvpNI2aLdqfVAZg=
-X-Received: by 2002:a17:902:158b:: with SMTP id
-	m11-v6mr3223576pla.300.1521226742052; 
-	Fri, 16 Mar 2018 11:59:02 -0700 (PDT)
+	:message-id:subject:to;
+	bh=/kSUy5MQ7DoPxleIaGJSVni50HF1dwgD03c6iRYlnec=;
+	b=X1E7J+SfM5yrBGUAMSgl/b/HhfHxiZnIEGIaLhDSeHrtryVnGmq0YTDi3xOSpbgpxt
+	KByki58RXsjpkGDU7mlUQ7tTEl2RwhliP1ybgiDteBdbNkF20mncGaSgzw5kXLCaram9
+	vqiU9JAou7zXiDhhOU4s/b29d3ptaw3kvrWKGA74//Cijqflk5UuwO8h79PZ+2uu1Goy
+	fQd5yeT8ZxzvTwXdLvsa1Jd5qr6btodks4ytPMaaGOI+ccyL8H3fh7izL36J3+NoMHMj
+	baqCC7MD/Vd0wtK6dh+L/IFpAuoFwpqk7SS4B0H4diLi3NCz96nL6fGzGev72UPZ+ghq
+	ERKA==
+X-Gm-Message-State: AElRT7EBhmY/MrDkaLN8/MYit2X3GgYcL7vPOutuE65ZNJgbkg66nmIp
+	r9yXp0Hnk/OvOeJ8jmHR0HRhXVa2WhPFXXDlJ2QaRw==
+X-Google-Smtp-Source: AG47ELvaJ2hyzyLVqNfouX+ogukhIXSVNWuBeH+6c7H9YXzL8BOmpPnwejXjkWig7lE3L74opL3j3OWDULK54/FFsIk=
+X-Received: by 10.99.125.75 with SMTP id m11mr2292326pgn.391.1521227083017;
+	Fri, 16 Mar 2018 12:04:43 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.100.182.197 with HTTP; Fri, 16 Mar 2018 11:58:31 -0700 (PDT)
-In-Reply-To: <CAO80zYszdMURcr1jTWnEcY3_hQ17m=Er1eptHndyyOpqsW_p9A@mail.gmail.com>
-References: <CAO80zYuPGBh0syB4s_G6nrMgD7Ac9OePa=uM=8pPM6YhVnrGsQ@mail.gmail.com>
-	<CAMKF1soMC8sPr_LZZN=gkvEUV_fiQ9dSQ1O+7mCJcT01-zOROQ@mail.gmail.com>
-	<CAO80zYszdMURcr1jTWnEcY3_hQ17m=Er1eptHndyyOpqsW_p9A@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 16 Mar 2018 11:58:31 -0700
-Message-ID: <CAMKF1srZCuUsDVXMiAGpDFjVhHxNSO5O8m2OpRPuQjfxgihCRg@mail.gmail.com>
-To: ikjn <tiffang@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: How can I check "shared-library-to-package mapping"
+Received: by 10.100.184.9 with HTTP; Fri, 16 Mar 2018 12:04:42 -0700 (PDT)
+In-Reply-To: <CAFzUWG=c2a0m0frcAK8dNxE44rwUHdWf=E+1JHdbPkf1ZLV3qA@mail.gmail.com>
+References: <CAFq4t4gpGaMCyvR2drwjU8+NWYS5aSodmzPhPb4FWio6vm+12Q@mail.gmail.com>
+	<3fbaa987-5050-9663-b140-0520ebbaec39@windriver.com>
+	<CAFq4t4idwKwkdsCY+DtTu7vJyQcB5eF8dYf9mqeSx-eZCd8iYA@mail.gmail.com>
+	<CAJTo0Lbwybvs404=Xs-vx4Vtj6+znf6gpTi0QvBFR1j-w=e0Qw@mail.gmail.com>
+	<CAFq4t4gZDQQat_H-HeYAJWdYCvLMt9rGyunr1BRQXn3dkeAYGQ@mail.gmail.com>
+	<CAJTo0LaDQjiTosCtAqBnL0ZZ2aMpDXxdX7kP_SDDqoVobqdi0g@mail.gmail.com>
+	<CAFq4t4hgxQkgMQ8Z5-hvVyTWQKn3bAUSgD57gRF+tuXE4UTdWg@mail.gmail.com>
+	<d9887f4a-61f9-4c51-95f3-66c52f9a3b1f@balister.org>
+	<CAFzUWG=c2a0m0frcAK8dNxE44rwUHdWf=E+1JHdbPkf1ZLV3qA@mail.gmail.com>
+From: Peter Balazovic <balazovic.peter@gmail.com>
+Date: Fri, 16 Mar 2018 20:04:42 +0100
+Message-ID: <CAFq4t4gOKVSamab8k8adsY7JFGxRDJi5B=+dXrk8S4iq17vT0g@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: scipy recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,35 +78,707 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Mar 2018 18:59:05 -0000
+X-List-Received-Date: Fri, 16 Mar 2018 19:04:46 -0000
+Content-Type: multipart/alternative; boundary="f403045e38c6e7f20405678c4718"
+
+--f403045e38c6e7f20405678c4718
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Mar 16, 2018 at 11:05 AM, ikjn <tiffang@gmail.com> wrote:
+openblas - no success yet
+
+NOTE: Executing RunQueue Tasks
+ERROR: openblas-0.2.19-r0 do_compile: oe_runmake failed
+ERROR: openblas-0.2.19-r0 do_compile: Function failed: do_compile (log file
+is located at /openblas/0.2.19-r0/temp/log.do_compile.9671)
+ERROR: Logfile of failure stored in:
+/openblas/0.2.19-r0/temp/log.do_compile.9671
+
+| ERROR: oe_runmake failed
+| aarch64-poky-linux-gcc: error: ../libopenblas_armv8p-r0.2.19.a: No such
+file or directory
+| aarch64-poky-linux-gcc: error: unrecognized command line option '-ru';
+did you mean '-r'?
+| ../Makefile.tail:40: recipe for target 'libs' failed
+| make[1]: *** [libs] Error 1
+| make[1]: Leaving directory '/openblas/0.2.19-r0/OpenBLAS-0.2.19/interface'
+| Makefile:133: recipe for target 'libs' failed
+| make: *** [libs] Error 1
+| ERROR: Function failed: do_compile (log file is located at
+/openblas/0.2.19-r0/temp/log.do_compile.9671)
+ERROR: Task
+(/sources/meta-openembedded/meta-python/recipes-devtools/python/openblas_0.2.19.bb:do_compile)
+failed with exit code '1'
+
+
+
+On Fri, Mar 16, 2018 at 7:33 PM, Giordon Stark <gstark@cern.ch> wrote:
+
+> OpenBLAS is here: http://layers.openembedded.org/layerindex/recipe/68888/
 >
-> On Thu, Mar 15, 2018 at 11:37 AM, Khem Raj <raj.khem@gmail.com> wrote:
->>
->>
->> On Wed, Mar 14, 2018 at 8:50 AM ikjn <tiffang@gmail.com> wrote:
->>>
->>> Hi.
->>>
->>> My recipe 'A' installs pre-built shared libraries, but I get file_rdeps
->>> error on
->>> 'B' recipe's package_qa task, which has runtime dependency on A's so
->>> files.
->>
->>
->> Yes however it depends on SONAME being added to the shared objects when
->> they are linked otherwise shlibs code is not able to auto detect the
->> dependency
+> G
 >
+> On Fri, Mar 16, 2018 at 1:30 PM Philip Balister <philip@balister.org>
+> wrote:
 >
-> Thank you, now I got it!
-> I thought only file name is used for run time dependency matching between
-> packages.
-> SONAME matching is also executed in build time dependency check when
-> DEPENDS_xxx is given?
+>> You'll get to Atlas soon, and that is another source of pain :)
+>>
+>> Philip
+>>
+>> On 03/16/2018 11:26 AM, Peter Balazovic wrote:
+>> > Seems OpenBLAS is missing, is there recipe for it?
+>> >
+>> > ERROR: scipy-1.0.0-r0 do_compile: python setup.py build execution
+>> failed.
+>> > ERROR: scipy-1.0.0-r0 do_compile: Function failed: do_compile (log file
+>> is
+>> > located at /log.do_compile.8708)
+>> > ERROR: Logfile of failure stored in: /1.0.0-r0/temp/log.do_compile.8708
+>> > Log data follows:
+>> > | DEBUG: Executing shell function do_compile
+>> > | ERROR: python setup.py build execution failed.
+>> > | /usr/lib/python2.7/distutils/dist.py:267: UserWarning: Unknown
+>> > distribution option: 'python_requires'
+>> > |   warnings.warn(msg)
+>> > | lapack_opt_info:
+>> > | openblas_lapack_info:
+>> > |   libraries openblas not found in ['/usr/lib']
+>> > |   NOT AVAILABLE
+>> > |
+>> > | lapack_mkl_info:
+>> > | mkl_info:
+>> > |   libraries mkl,vml,guide not found in ['/usr/lib']
+>> > |   NOT AVAILABLE
+>> > |
+>> > |   NOT AVAILABLE
+>> > |
+>> > | atlas_3_10_threads_info:
+>> > | Setting PTATLAS=ATLAS
+>> > |   libraries tatlas,tatlas not found in /usr/lib
+>> > |   libraries lapack_atlas not found in /usr/lib
+>> > | <class 'numpy.distutils.system_info.atlas_3_10_threads_info'>
+>> > |   NOT AVAILABLE
+>> > |
+>> > | atlas_3_10_info:
+>> > |   libraries satlas,satlas not found in /usr/lib
+>> > |   libraries lapack_atlas not found in /usr/lib
+>> > | <class 'numpy.distutils.system_info.atlas_3_10_info'>
+>> > |   NOT AVAILABLE
+>> > |
+>> > | atlas_threads_info:
+>> > | Setting PTATLAS=ATLAS
+>> > |   libraries ptf77blas,ptcblas,atlas not found in /usr/lib
+>> > |   libraries lapack_atlas not found in /usr/lib
+>> > | <class 'numpy.distutils.system_info.atlas_threads_info'>
+>> > |   NOT AVAILABLE
+>> > |
+>> > | atlas_info:
+>> > |   libraries f77blas,cblas,atlas not found in /usr/lib
+>> > |   libraries lapack_atlas not found in /usr/lib
+>> > | <class 'numpy.distutils.system_info.atlas_info'>
+>> > |   NOT AVAILABLE
+>> > |
+>> > |  /usr/lib/python2.7/site-packages/numpy/distutils/
+>> system_info.py:1510:
+>> > UserWarning:
+>> > |     Atlas (http://math-atlas.sourceforge.net/) libraries not found.
+>> > |     Directories to search for the libraries can be specified in the
+>> > |     numpy/distutils/site.cfg file (section [atlas]) or by setting
+>> > |     the ATLAS environment variable.
+>> > |   warnings.warn(AtlasNotFoundError.__doc__)
+>> > | lapack_info:
+>> > |   libraries lapack not found in ['/usr/lib']
+>> > |   NOT AVAILABLE
+>> > |
+>> > | /usr/lib/python2.7/site-packages/numpy/distutils/system_info.py:1521:
+>> > UserWarning:
+>> > |     Lapack (http://www.netlib.org/lapack/) libraries not found.
+>> > |     Directories to search for the libraries can be specified in the
+>> > |     numpy/distutils/site.cfg file (section [lapack]) or by setting
+>> > |     the LAPACK environment variable.
+>> > |   warnings.warn(LapackNotFoundError.__doc__)
+>> > | lapack_src_info:
+>> > |   NOT AVAILABLE
+>> > |
+>> > | /usr/lib/python2.7/site-packages/numpy/distutils/system_info.py:1524:
+>> > UserWarning:
+>> > |     Lapack (http://www.netlib.org/lapack/) sources not found.
+>> > |     Directories to search for the sources can be specified in the
+>> > |     numpy/distutils/site.cfg file (section [lapack_src]) or by setting
+>> > |     the LAPACK_SRC environment variable.
+>> > |   warnings.warn(LapackSrcNotFoundError.__doc__)
+>> > |   NOT AVAILABLE
+>> > |
+>> > | Running from scipy source directory.
+>> > | Traceback (most recent call last):
+>> > |   File "setup.py", line 418, in <module>
+>> > |     setup_package()
+>> > |   File "setup.py", line 414, in setup_package
+>> > |     setup(**metadata)
+>> > |   File "/usr/lib/python2.7/site-packages/numpy/distutils/core.py",
+>> line
+>> > 135, in setup
+>> > |     config = configuration()
+>> > |   File "setup.py", line 336, in configuration
+>> > |     config.add_subpackage('scipy')
+>> > |   File "/usr/lib/python2.7/site-packages/numpy/distutils/misc_
+>> util.py",
+>> > line 1003, in add_subpackage
+>> > |     caller_level = 2)
+>> > |   File "/usr/lib/python2.7/site-packages/numpy/distutils/misc_
+>> util.py",
+>> > line 972, in get_subpackage
+>> > |     caller_level = caller_level + 1)
+>> > |   File "/usr/lib/python2.7/site-packages/numpy/distutils/misc_
+>> util.py",
+>> > line 909, in _get_configuration_from_setup_py
+>> > |     config = setup_module.configuration(*args)
+>> > |   File "scipy/setup.py", line 15, in configuration
+>> > |     config.add_subpackage('linalg')
+>> > |   File "/usr/lib/python2.7/site-packages/numpy/distutils/misc_
+>> util.py",
+>> > line 1003, in add_subpackage
+>> > |     caller_level = 2)
+>> > |   File "/usr/lib/python2.7/site-packages/numpy/distutils/misc_
+>> util.py",
+>> > line 972, in get_subpackage
+>> > |     caller_level = caller_level + 1)
+>> > |   File "/usr/lib/python2.7/site-packages/numpy/distutils/misc_
+>> util.py",
+>> > line 909, in _get_configuration_from_setup_py
+>> > |     config = setup_module.configuration(*args)
+>> > |   File "scipy/linalg/setup.py", line 19, in configuration
+>> > |     raise NotFoundError('no lapack/blas resources found')
+>> > | numpy.distutils.system_info.NotFoundError: no lapack/blas resources
+>> found
+>> > | ERROR: Function failed: do_compile (log file is located at
+>> > /scipy/1.0.0-r0/temp/log.do_compile.8708)
+>> > ERROR: Task
+>> > (/sources/meta-openembedded/meta-python/recipes-devtools/
+>> python/scipy_1.0.0.bb:do_compile)
+>> > failed with exit code '1'
+>> > NOTE: Tasks Summary: Attempted 8394 tasks of which 8382 didn't need to
+>> be
+>> > rerun and 1 failed.
+>> >
+>> >
+>> > On Fri, Mar 16, 2018 at 6:36 PM, Burton, Ross <ross.burton@intel.com>
+>> wrote:
+>> >
+>> >> To change the version, change the filename of the recipe.
+>> >>
+>> >> Also, please remember the CC the list.
+>> >>
+>> >> Ross
+>> >>
+>> >> On 16 March 2018 at 17:30, Peter Balazovic <balazovic.peter@gmail.com>
+>> >> wrote:
+>> >>
+>> >>> I did download from https://github.com/scipy/
+>> scipy/archive/v1.0.0.tar.gz
+>> >>> and cc to /downloads and same still issue ...
+>> >>> as mentioned  should be version is 1.0.0
+>> >>> where to change it to point to correct version & file?
+>> >>>
+>> >>> On Fri, Mar 16, 2018 at 5:57 PM, Burton, Ross <ross.burton@intel.com>
+>> >>> wrote:
+>> >>>
+>> >>>> You're getting a "file not found" for the URL it is looking for.
+>> >>>> According to https://pypi.python.org/pypi/scipy, the version is
+>> 1.0.0
+>> >>>> not 1.0.
+>> >>>>
+>> >>>> Ross
+>> >>>>
+>> >>>> On 16 March 2018 at 16:50, Peter Balazovic <
+>> balazovic.peter@gmail.com>
+>> >>>> wrote:
+>> >>>>
+>> >>>>> per using recipe https://github.com/scipy/scipy/issues/8226
+>> >>>>>
+>> >>>>>
+>> >>>>> SUMMARY = "Scientific Library for Python"
+>> >>>>> SECTION = "devel/python"
+>> >>>>> HOMEPAGE = "https://pypi.python.org/pypi/scipy"
+>> >>>>>
+>> >>>>> LICENSE = "BSD-3-Clause"
+>> >>>>> LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=
+>> d0db8f4148a3d5534cfb93be78f9287c"
+>> >>>>>
+>> >>>>> PYPI_PACKAGE="scipy"
+>> >>>>>
+>> >>>>> SRC_URI[md5sum] = "53fa34bd3733a9a4216842b6000f7316"
+>> >>>>> SRC_URI[sha256sum] = "87ea1f11a0e9ec08c264dc64551d50
+>> 1fa307289460705f6fccd84cbfc7926d10"
+>> >>>>>
+>> >>>>> inherit pypi setuptools distutils
+>> >>>>>
+>> >>>>> RDEPENDS_${PN} += "python-core python-numpy-native python-distutils"
+>> >>>>> DEPENDS += "python-numpy"
+>> >>>>>
+>> >>>>>
+>> >>>>> I am getting error to fetch scipy do_fetch error
+>> >>>>>
+>> >>>>>
+>> >>>>> WARNING: scipy-1.0-r0 do_fetch: Failed to fetch URL
+>> >>>>> https://files.pythonhosted.org/packages/source/s/scipy/
+>> scipy-1.0.tar.gz,
+>> >>>>> attempting MIRRORS if available
+>> >>>>> ERROR: scipy-1.0-r0 do_fetch: Fetcher failure: Fetch command export
+>> >>>>> DBUS_SESSION_BUS_ADDRESS="unix:abstract=/tmp/dbus-idNNJsmT3C";
+>> export
+>> >>>>> SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"; export ftp_proxy=
+>> >>>>> --progress=dot -v failed with exit code 8, output:
+>> >>>>> --2018-03-16 17:43:34--  https://files.pythonhosted.org
+>> >>>>> /packages/source/s/scipy/scipy-1.0.tar.gz
+>> >>>>> Resolving files.pythonhosted.org (files.pythonhosted.org)...
+>> >>>>> 151.101.17.63, 2a04:4e42:4::319
+>> >>>>> Connecting to files.pythonhosted.org (files.pythonhosted.org)|151.
+>> 101.17.63|:443...
+>> >>>>> connected.
+>> >>>>> HTTP request sent, awaiting response... 404 Not Found
+>> >>>>> 2018-03-16 17:43:35 ERROR 404: Not Found.
+>> >>>>>
+>> >>>>> Any help?
+>> >>>>>
+>> >>>>>
+>> >>>>> On Thu, Mar 15, 2018 at 9:35 PM, Randy MacLeod <
+>> >>>>> randy.macleod@windriver.com> wrote:
+>> >>>>>
+>> >>>>>> On 2018-03-15 01:56 PM, Peter Balazovic wrote:
+>> >>>>>>
+>> >>>>>>> Hello all,
+>> >>>>>>>
+>> >>>>>>> I wonder if there is scipy recipe available?
+>> >>>>>>>
+>> >>>>>>
+>> >>>>>> Not yet:
+>> >>>>>>
+>> >>>>>> https://layers.openembedded.org/layerindex/branch/master/rec
+>> >>>>>> ipes/?q=scipy
+>> >>>>>>
+>> >>>>>> It appears to be blocked by:
+>> >>>>>>    https://github.com/scipy/scipy/issues/8226
+>> >>>>>> but apparently that's a bitbake issue, not a spip one.
+>> >>>>>> Care to take a look?
+>> >>>>>>
+>> >>>>>>
+>> >>>>>>> Thanks.
+>> >>>>>>>
+>> >>>>>>>
+>> >>>>>>>
+>> >>>>>>
+>> >>>>>> --
+>> >>>>>> # Randy MacLeod.  WR Linux
+>> >>>>>> # Wind River an Intel Company
+>> >>>>>>
+>> >>>>>
+>> >>>>>
+>> >>>>> --
+>> >>>>> _______________________________________________
+>> >>>>> yocto mailing list
+>> >>>>> yocto@yoctoproject.org
+>> >>>>> https://lists.yoctoproject.org/listinfo/yocto
+>> >>>>>
+>> >>>>>
+>> >>>>
+>> >>>
+>> >>
+>> >
+>> >
+>> >
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+> --
+> Giordon Stark
 >
 
-its primarily for runtime dependency checks.
+--f403045e38c6e7f20405678c4718
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">openblas - no success yet <br><br>NOTE: Executing RunQueue=
+ Tasks<br>ERROR: openblas-0.2.19-r0 do_compile: oe_runmake failed<br>ERROR:=
+ openblas-0.2.19-r0 do_compile: Function failed: do_compile (log file is lo=
+cated at /openblas/0.2.19-r0/temp/log.do_compile.9671)<br>ERROR: Logfile of=
+ failure stored in: /openblas/0.2.19-r0/temp/log.do_compile.9671<br><br>| E=
+RROR: oe_runmake failed<br>| aarch64-poky-linux-gcc: error: ../libopenblas_=
+armv8p-r0.2.19.a: No such file or directory<br>| aarch64-poky-linux-gcc: er=
+ror: unrecognized command line option &#39;-ru&#39;; did you mean &#39;-r&#=
+39;?<br>| ../Makefile.tail:40: recipe for target &#39;libs&#39; failed<br>|=
+ make[1]: *** [libs] Error 1<br>| make[1]: Leaving directory &#39;/openblas=
+/0.2.19-r0/OpenBLAS-0.2.19/interface&#39;<br>| Makefile:133: recipe for tar=
+get &#39;libs&#39; failed<br>| make: *** [libs] Error 1<br>| ERROR: Functio=
+n failed: do_compile (log file is located at /openblas/0.2.19-r0/temp/log.d=
+o_compile.9671)<br>ERROR: Task (/sources/meta-openembedded/meta-python/reci=
+pes-devtools/python/openblas_0.2.19.bb:do_compile) failed with exit code &#=
+39;1&#39;<br><br><br></div><div class=3D"gmail_extra"><br><div class=3D"gma=
+il_quote">On Fri, Mar 16, 2018 at 7:33 PM, Giordon Stark <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:gstark@cern.ch" target=3D"_blank">gstark@cern.ch</a>&=
+gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">OpenBL=
+AS is here:=C2=A0<a href=3D"http://layers.openembedded.org/layerindex/recip=
+e/68888/" target=3D"_blank">http://layers.<wbr>openembedded.org/layerindex/=
+<wbr>recipe/68888/</a>=C2=A0<div><br></div><div>G</div></div><div class=3D"=
+HOEnZb"><div class=3D"h5"><br><div class=3D"gmail_quote"><div dir=3D"ltr">O=
+n Fri, Mar 16, 2018 at 1:30 PM Philip Balister &lt;<a href=3D"mailto:philip=
+@balister.org" target=3D"_blank">philip@balister.org</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex">You&#39;ll get to Atlas soon, and that is =
+another source of pain :)<br>
+<br>
+Philip<br>
+<br>
+On 03/16/2018 11:26 AM, Peter Balazovic wrote:<br>
+&gt; Seems OpenBLAS is missing, is there recipe for it?<br>
+&gt;<br>
+&gt; ERROR: scipy-1.0.0-r0 do_compile: python setup.py build execution fail=
+ed.<br>
+&gt; ERROR: scipy-1.0.0-r0 do_compile: Function failed: do_compile (log fil=
+e is<br>
+&gt; located at /log.do_compile.8708)<br>
+&gt; ERROR: Logfile of failure stored in: /1.0.0-r0/temp/log.do_compile.<wb=
+r>8708<br>
+&gt; Log data follows:<br>
+&gt; | DEBUG: Executing shell function do_compile<br>
+&gt; | ERROR: python setup.py build execution failed.<br>
+&gt; | /usr/lib/python2.7/distutils/<wbr>dist.py:267: UserWarning: Unknown<=
+br>
+&gt; distribution option: &#39;python_requires&#39;<br>
+&gt; |=C2=A0 =C2=A0warnings.warn(msg)<br>
+&gt; | lapack_opt_info:<br>
+&gt; | openblas_lapack_info:<br>
+&gt; |=C2=A0 =C2=A0libraries openblas not found in [&#39;/usr/lib&#39;]<br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; | lapack_mkl_info:<br>
+&gt; | mkl_info:<br>
+&gt; |=C2=A0 =C2=A0libraries mkl,vml,guide not found in [&#39;/usr/lib&#39;=
+]<br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; | atlas_3_10_threads_info:<br>
+&gt; | Setting PTATLAS=3DATLAS<br>
+&gt; |=C2=A0 =C2=A0libraries tatlas,tatlas not found in /usr/lib<br>
+&gt; |=C2=A0 =C2=A0libraries lapack_atlas not found in /usr/lib<br>
+&gt; | &lt;class &#39;numpy.distutils.system_info.<wbr>atlas_3_10_threads_i=
+nfo&#39;&gt;<br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; | atlas_3_10_info:<br>
+&gt; |=C2=A0 =C2=A0libraries satlas,satlas not found in /usr/lib<br>
+&gt; |=C2=A0 =C2=A0libraries lapack_atlas not found in /usr/lib<br>
+&gt; | &lt;class &#39;numpy.distutils.system_info.<wbr>atlas_3_10_info&#39;=
+&gt;<br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; | atlas_threads_info:<br>
+&gt; | Setting PTATLAS=3DATLAS<br>
+&gt; |=C2=A0 =C2=A0libraries ptf77blas,ptcblas,atlas not found in /usr/lib<=
+br>
+&gt; |=C2=A0 =C2=A0libraries lapack_atlas not found in /usr/lib<br>
+&gt; | &lt;class &#39;numpy.distutils.system_info.<wbr>atlas_threads_info&#=
+39;&gt;<br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; | atlas_info:<br>
+&gt; |=C2=A0 =C2=A0libraries f77blas,cblas,atlas not found in /usr/lib<br>
+&gt; |=C2=A0 =C2=A0libraries lapack_atlas not found in /usr/lib<br>
+&gt; | &lt;class &#39;numpy.distutils.system_info.<wbr>atlas_info&#39;&gt;<=
+br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; |=C2=A0 /usr/lib/python2.7/site-<wbr>packages/numpy/distutils/<wbr>sys=
+tem_info.py:1510:<br>
+&gt; UserWarning:<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0Atlas (<a href=3D"http://math-atlas.sourceforge.n=
+et/" rel=3D"noreferrer" target=3D"_blank">http://math-atlas.<wbr>sourceforg=
+e.net/</a>) libraries not found.<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0Directories to search for the libraries can be sp=
+ecified in the<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0numpy/distutils/site.cfg file (section [atlas]) o=
+r by setting<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0the ATLAS environment variable.<br>
+&gt; |=C2=A0 =C2=A0warnings.warn(<wbr>AtlasNotFoundError.__doc__)<br>
+&gt; | lapack_info:<br>
+&gt; |=C2=A0 =C2=A0libraries lapack not found in [&#39;/usr/lib&#39;]<br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; | /usr/lib/python2.7/site-<wbr>packages/numpy/distutils/<wbr>system_in=
+fo.py:1521:<br>
+&gt; UserWarning:<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0Lapack (<a href=3D"http://www.netlib.org/lapack/"=
+ rel=3D"noreferrer" target=3D"_blank">http://www.netlib.org/lapack/</a><wbr=
+>) libraries not found.<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0Directories to search for the libraries can be sp=
+ecified in the<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0numpy/distutils/site.cfg file (section [lapack]) =
+or by setting<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0the LAPACK environment variable.<br>
+&gt; |=C2=A0 =C2=A0warnings.warn(<wbr>LapackNotFoundError.__doc__)<br>
+&gt; | lapack_src_info:<br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; | /usr/lib/python2.7/site-<wbr>packages/numpy/distutils/<wbr>system_in=
+fo.py:1524:<br>
+&gt; UserWarning:<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0Lapack (<a href=3D"http://www.netlib.org/lapack/"=
+ rel=3D"noreferrer" target=3D"_blank">http://www.netlib.org/lapack/</a><wbr=
+>) sources not found.<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0Directories to search for the sources can be spec=
+ified in the<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0numpy/distutils/site.cfg file (section [lapack_sr=
+c]) or by setting<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0the LAPACK_SRC environment variable.<br>
+&gt; |=C2=A0 =C2=A0warnings.warn(<wbr>LapackSrcNotFoundError.__doc__<wbr>)<=
+br>
+&gt; |=C2=A0 =C2=A0NOT AVAILABLE<br>
+&gt; |<br>
+&gt; | Running from scipy source directory.<br>
+&gt; | Traceback (most recent call last):<br>
+&gt; |=C2=A0 =C2=A0File &quot;setup.py&quot;, line 418, in &lt;module&gt;<b=
+r>
+&gt; |=C2=A0 =C2=A0 =C2=A0setup_package()<br>
+&gt; |=C2=A0 =C2=A0File &quot;setup.py&quot;, line 414, in setup_package<br=
+>
+&gt; |=C2=A0 =C2=A0 =C2=A0setup(**metadata)<br>
+&gt; |=C2=A0 =C2=A0File &quot;/usr/lib/python2.7/site-<wbr>packages/numpy/d=
+istutils/core.<wbr>py&quot;, line<br>
+&gt; 135, in setup<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0config =3D configuration()<br>
+&gt; |=C2=A0 =C2=A0File &quot;setup.py&quot;, line 336, in configuration<br=
+>
+&gt; |=C2=A0 =C2=A0 =C2=A0config.add_subpackage(&#39;scipy&#39;<wbr>)<br>
+&gt; |=C2=A0 =C2=A0File &quot;/usr/lib/python2.7/site-<wbr>packages/numpy/d=
+istutils/misc_<wbr>util.py&quot;,<br>
+&gt; line 1003, in add_subpackage<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0caller_level =3D 2)<br>
+&gt; |=C2=A0 =C2=A0File &quot;/usr/lib/python2.7/site-<wbr>packages/numpy/d=
+istutils/misc_<wbr>util.py&quot;,<br>
+&gt; line 972, in get_subpackage<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0caller_level =3D caller_level + 1)<br>
+&gt; |=C2=A0 =C2=A0File &quot;/usr/lib/python2.7/site-<wbr>packages/numpy/d=
+istutils/misc_<wbr>util.py&quot;,<br>
+&gt; line 909, in _get_configuration_from_setup_<wbr>py<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0config =3D setup_module.configuration(*<wbr>args)=
+<br>
+&gt; |=C2=A0 =C2=A0File &quot;scipy/setup.py&quot;, line 15, in configurati=
+on<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0config.add_subpackage(&#39;<wbr>linalg&#39;)<br>
+&gt; |=C2=A0 =C2=A0File &quot;/usr/lib/python2.7/site-<wbr>packages/numpy/d=
+istutils/misc_<wbr>util.py&quot;,<br>
+&gt; line 1003, in add_subpackage<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0caller_level =3D 2)<br>
+&gt; |=C2=A0 =C2=A0File &quot;/usr/lib/python2.7/site-<wbr>packages/numpy/d=
+istutils/misc_<wbr>util.py&quot;,<br>
+&gt; line 972, in get_subpackage<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0caller_level =3D caller_level + 1)<br>
+&gt; |=C2=A0 =C2=A0File &quot;/usr/lib/python2.7/site-<wbr>packages/numpy/d=
+istutils/misc_<wbr>util.py&quot;,<br>
+&gt; line 909, in _get_configuration_from_setup_<wbr>py<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0config =3D setup_module.configuration(*<wbr>args)=
+<br>
+&gt; |=C2=A0 =C2=A0File &quot;scipy/linalg/setup.py&quot;, line 19, in conf=
+iguration<br>
+&gt; |=C2=A0 =C2=A0 =C2=A0raise NotFoundError(&#39;no lapack/blas resources=
+ found&#39;)<br>
+&gt; | numpy.distutils.system_info.<wbr>NotFoundError: no lapack/blas resou=
+rces found<br>
+&gt; | ERROR: Function failed: do_compile (log file is located at<br>
+&gt; /scipy/1.0.0-r0/temp/log.do_<wbr>compile.8708)<br>
+&gt; ERROR: Task<br>
+&gt; (/sources/meta-openembedded/<wbr>meta-python/recipes-devtools/<wbr>pyt=
+hon/scipy_1.0.0.bb:do_<wbr>compile)<br>
+&gt; failed with exit code &#39;1&#39;<br>
+&gt; NOTE: Tasks Summary: Attempted 8394 tasks of which 8382 didn&#39;t nee=
+d to be<br>
+&gt; rerun and 1 failed.<br>
+&gt;<br>
+&gt;<br>
+&gt; On Fri, Mar 16, 2018 at 6:36 PM, Burton, Ross &lt;<a href=3D"mailto:ro=
+ss.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt; wrote:=
+<br>
+&gt;<br>
+&gt;&gt; To change the version, change the filename of the recipe.<br>
+&gt;&gt;<br>
+&gt;&gt; Also, please remember the CC the list.<br>
+&gt;&gt;<br>
+&gt;&gt; Ross<br>
+&gt;&gt;<br>
+&gt;&gt; On 16 March 2018 at 17:30, Peter Balazovic &lt;<a href=3D"mailto:b=
+alazovic.peter@gmail.com" target=3D"_blank">balazovic.peter@gmail.com</a>&g=
+t;<br>
+&gt;&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt;&gt; I did download from <a href=3D"https://github.com/scipy/scipy/=
+archive/v1.0.0.tar.gz" rel=3D"noreferrer" target=3D"_blank">https://github.=
+com/scipy/<wbr>scipy/archive/v1.0.0.tar.gz</a><br>
+&gt;&gt;&gt; and cc to /downloads and same still issue ...<br>
+&gt;&gt;&gt; as mentioned=C2=A0 should be version is 1.0.0<br>
+&gt;&gt;&gt; where to change it to point to correct version &amp; file?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; On Fri, Mar 16, 2018 at 5:57 PM, Burton, Ross &lt;<a href=3D"m=
+ailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt=
+;<br>
+&gt;&gt;&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; You&#39;re getting a &quot;file not found&quot; for the UR=
+L it is looking for.<br>
+&gt;&gt;&gt;&gt; According to <a href=3D"https://pypi.python.org/pypi/scipy=
+" rel=3D"noreferrer" target=3D"_blank">https://pypi.python.org/pypi/<wbr>sc=
+ipy</a>, the version is 1.0.0<br>
+&gt;&gt;&gt;&gt; not 1.0.<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Ross<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; On 16 March 2018 at 16:50, Peter Balazovic &lt;<a href=3D"=
+mailto:balazovic.peter@gmail.com" target=3D"_blank">balazovic.peter@gmail.c=
+om</a>&gt;<br>
+&gt;&gt;&gt;&gt; wrote:<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; per using recipe <a href=3D"https://github.com/scipy/s=
+cipy/issues/8226" rel=3D"noreferrer" target=3D"_blank">https://github.com/s=
+cipy/<wbr>scipy/issues/8226</a><br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; SUMMARY =3D &quot;Scientific Library for Python&quot;<=
+br>
+&gt;&gt;&gt;&gt;&gt; SECTION =3D &quot;devel/python&quot;<br>
+&gt;&gt;&gt;&gt;&gt; HOMEPAGE =3D &quot;<a href=3D"https://pypi.python.org/=
+pypi/scipy" rel=3D"noreferrer" target=3D"_blank">https://pypi.python.org/py=
+pi/<wbr>scipy</a>&quot;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; LICENSE =3D &quot;BSD-3-Clause&quot;<br>
+&gt;&gt;&gt;&gt;&gt; LIC_FILES_CHKSUM =3D &quot;file://LICENSE.txt;md5=3D<w=
+br>d0db8f4148a3d5534cfb93be78f928<wbr>7c&quot;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; PYPI_PACKAGE=3D&quot;scipy&quot;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; SRC_URI[md5sum] =3D &quot;<wbr>53fa34bd3733a9a4216842b=
+6000f73<wbr>16&quot;<br>
+&gt;&gt;&gt;&gt;&gt; SRC_URI[sha256sum] =3D &quot;<wbr>87ea1f11a0e9ec08c264=
+dc64551d50<wbr>1fa307289460705f6fccd84cbfc792<wbr>6d10&quot;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; inherit pypi setuptools distutils<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; RDEPENDS_${PN} +=3D &quot;python-core python-numpy-nat=
+ive python-distutils&quot;<br>
+&gt;&gt;&gt;&gt;&gt; DEPENDS +=3D &quot;python-numpy&quot;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; I am getting error to fetch scipy do_fetch error<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; WARNING: scipy-1.0-r0 do_fetch: Failed to fetch URL<br=
+>
+&gt;&gt;&gt;&gt;&gt; <a href=3D"https://files.pythonhosted.org/packages/sou=
+rce/s/scipy/scipy-1.0.tar.gz" rel=3D"noreferrer" target=3D"_blank">https://=
+files.pythonhosted.<wbr>org/packages/source/s/scipy/<wbr>scipy-1.0.tar.gz</=
+a>,<br>
+&gt;&gt;&gt;&gt;&gt; attempting MIRRORS if available<br>
+&gt;&gt;&gt;&gt;&gt; ERROR: scipy-1.0-r0 do_fetch: Fetcher failure: Fetch c=
+ommand export<br>
+&gt;&gt;&gt;&gt;&gt; DBUS_SESSION_BUS_ADDRESS=3D&quot;<wbr>unix:abstract=3D=
+/tmp/dbus-<wbr>idNNJsmT3C&quot;; export<br>
+&gt;&gt;&gt;&gt;&gt; SSH_AUTH_SOCK=3D&quot;/run/user/1000/<wbr>keyring/ssh&=
+quot;; export ftp_proxy=3D<br>
+&gt;&gt;&gt;&gt;&gt; --progress=3Ddot -v failed with exit code 8, output:<b=
+r>
+&gt;&gt;&gt;&gt;&gt; --2018-03-16 17:43:34--=C2=A0 <a href=3D"https://files=
+.pythonhosted.org" rel=3D"noreferrer" target=3D"_blank">https://files.pytho=
+nhosted.org</a><br>
+&gt;&gt;&gt;&gt;&gt; /packages/source/s/scipy/<wbr>scipy-1.0.tar.gz<br>
+&gt;&gt;&gt;&gt;&gt; Resolving <a href=3D"http://files.pythonhosted.org" re=
+l=3D"noreferrer" target=3D"_blank">files.pythonhosted.org</a> (<a href=3D"h=
+ttp://files.pythonhosted.org" rel=3D"noreferrer" target=3D"_blank">files.py=
+thonhosted.org</a>)...<br>
+&gt;&gt;&gt;&gt;&gt; 151.101.17.63, 2a04:4e42:4::319<br>
+&gt;&gt;&gt;&gt;&gt; Connecting to <a href=3D"http://files.pythonhosted.org=
+" rel=3D"noreferrer" target=3D"_blank">files.pythonhosted.org</a> (<a href=
+=3D"http://files.pythonhosted.org" rel=3D"noreferrer" target=3D"_blank">fil=
+es.pythonhosted.org</a>)|151.<wbr>101.17.63|:443...<br>
+&gt;&gt;&gt;&gt;&gt; connected.<br>
+&gt;&gt;&gt;&gt;&gt; HTTP request sent, awaiting response... 404 Not Found<=
+br>
+&gt;&gt;&gt;&gt;&gt; 2018-03-16 17:43:35 ERROR 404: Not Found.<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; Any help?<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; On Thu, Mar 15, 2018 at 9:35 PM, Randy MacLeod &lt;<br=
+>
+&gt;&gt;&gt;&gt;&gt; <a href=3D"mailto:randy.macleod@windriver.com" target=
+=3D"_blank">randy.macleod@windriver.com</a>&gt; wrote:<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; On 2018-03-15 01:56 PM, Peter Balazovic wrote:<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Hello all,<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; I wonder if there is scipy recipe available?<b=
+r>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Not yet:<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; <a href=3D"https://layers.openembedded.org/layerin=
+dex/branch/master/rec" rel=3D"noreferrer" target=3D"_blank">https://layers.=
+openembedded.<wbr>org/layerindex/branch/master/<wbr>rec</a><br>
+&gt;&gt;&gt;&gt;&gt;&gt; ipes/?q=3Dscipy<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; It appears to be blocked by:<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 <a href=3D"https://github.com/scipy/s=
+cipy/issues/8226" rel=3D"noreferrer" target=3D"_blank">https://github.com/s=
+cipy/<wbr>scipy/issues/8226</a><br>
+&gt;&gt;&gt;&gt;&gt;&gt; but apparently that&#39;s a bitbake issue, not a s=
+pip one.<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Care to take a look?<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Thanks.<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; --<br>
+&gt;&gt;&gt;&gt;&gt;&gt; # Randy MacLeod.=C2=A0 WR Linux<br>
+&gt;&gt;&gt;&gt;&gt;&gt; # Wind River an Intel Company<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; --<br>
+&gt;&gt;&gt;&gt;&gt; ______________________________<wbr>_________________<b=
+r>
+&gt;&gt;&gt;&gt;&gt; yocto mailing list<br>
+&gt;&gt;&gt;&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_b=
+lank">yocto@yoctoproject.org</a><br>
+&gt;&gt;&gt;&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yoc=
+to" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.<wbr>or=
+g/listinfo/yocto</a><br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+--<br>
+______________________________<wbr>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
+br>
+</blockquote></div></div></div><span class=3D"HOEnZb"><font color=3D"#88888=
+8">-- <br><div dir=3D"ltr" class=3D"m_-7839664679096579966gmail_signature" =
+data-smartmail=3D"gmail_signature"><div dir=3D"ltr">Giordon Stark</div></di=
+v>
+</font></span></blockquote></div><br></div>
+
+--f403045e38c6e7f20405678c4718--
