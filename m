@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <davis.roman84@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8A5FE00C4D; Fri, 16 Mar 2018 14:51:51 -0700 (PDT)
+	id 87C0CE00D3E; Fri, 16 Mar 2018 14:55:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (davis.roman84[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.83.41 listed in list.dnswl.org]
+	*      [209.85.220.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,53 +19,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f41.google.com (mail-pg0-f41.google.com [74.125.83.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55173E0073D
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 14:51:50 -0700 (PDT)
-Received: by mail-pg0-f41.google.com with SMTP id t186so4591674pgc.4
-	for <yocto@yoctoproject.org>; Fri, 16 Mar 2018 14:51:50 -0700 (PDT)
+Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
+	[209.85.220.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F139EE0073D;
+	Fri, 16 Mar 2018 14:55:50 -0700 (PDT)
+Received: by mail-qk0-f172.google.com with SMTP id s9so12609269qke.12;
+	Fri, 16 Mar 2018 14:55:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Ge/P8eeISaRA+cUrI4RDJUdpIBmvHPDPKVu/s7P0SXo=;
-	b=T4RODa1lZRmk1uC7x+IzzWJ7xAwAEgqBTN9N+H6gwLLxI47QI4YQ7s4e7Etw6Hu9+q
-	Gbw0jxlSqZIsT+ZV2BqMzfNuCRWi+JtH0n7vqqMdlYV9jv1JlSD45pfHtT8TvUOVRVJQ
-	r9bNOwi88jZ0PIBnKOMy3u3XFrSf1/u6rwOPdn0cilOchUsicQcAibVovu7UEEIDKPWJ
-	ES6aeumrC/bC0kEywsGQUmfUrLtkFBiwgE54rWmtc9wJaXdtGDWgGYVc5T94DgceRSOv
-	TJz3tkzUcxkNUFThIp5gu3HcCv9/bBfWImKuD7bZcPGCBKjA9L5GAVe+465Giz0nD51d
-	rnZg==
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=DABTOUDOifWNm5GA82bz+jFCgY/CnlvZUisE3SwQuNI=;
+	b=MEf+r95UpCzJK6XRj4ka50qJzBKqr7Ae2gUlX1Cc4aYHDRhYjeStB1sw/Gzzb1Y5uK
+	O7b6osFXaYtMALvVKwZOo75kbM0shhnS3TbgeWg/cKPTuLd2cupT663gVjgsOshJNwhS
+	FxfZbzF+a0br3XO01epRSd8LrNvM86e8MzBzpHSY/EJyAkrXktVcCHd4+EDCYWwigKSG
+	WtbxG9pZ0TuOY8VgYDjwbZGPrtdSUWNgHIG4PlrC3P44nPJV2SNWSIMAAlmOX4qhJli/
+	PXDeFHq/4PqV+9IHciT40gqpHowhZIvgb+vrhVSOs4n/OUJHugLALuALeiw88r0afzoV
+	mIVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Ge/P8eeISaRA+cUrI4RDJUdpIBmvHPDPKVu/s7P0SXo=;
-	b=l1eSiMDZbK+LYC6EsRUmnDyFWKERriz1MI6vJ1Iq6F4YVHnVfomgKLJvc5Fywao2eI
-	AvzV6dU26uxMsPlu4wb1GxOVJQIUj1VNmAeBeRUoJqp5OrupCXndwCPSn9/JOqx6Xcxk
-	PqkIywtaVgFyKW/izdn2NkTL29hDOlNwSezeeVCNVg/l71jWi5KuanE6UP5UO5ftjDMO
-	bWkF/Lhcw0zg5Gq7q59Pjip0poyHNaeeuDol0S/kRnHt3AGTjHz97U+s0nuj6UJ2V4Mh
-	tTGGF5vhbIa6lEBS2jGCTffAo1QWaDMJyUmJ5eTh5KnGmVKpGCxps+RT7IJwXMdd9GPm
-	ftEw==
-X-Gm-Message-State: AElRT7HoLZksPA9eQSmXb5KhY196tU2m/j5LoX0muOMl5zVoRAfAQiWm
-	VQxW9GDalfbwADtaavkkysd2BAkdLl3btduftgVjRg==
-X-Google-Smtp-Source: AG47ELsJEvgXYsewqkTaYgXh5gbsiUlG0Lc22iq3d4wclkpS6ohczrp4mUPAhMwbsmJw1rVXalPnuQ24V0v0+skZcPM=
-X-Received: by 10.98.46.197 with SMTP id u188mr2929259pfu.32.1521237110452;
-	Fri, 16 Mar 2018 14:51:50 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=DABTOUDOifWNm5GA82bz+jFCgY/CnlvZUisE3SwQuNI=;
+	b=s74OXxGwsQkFYIA89meFUT2CTkXGGAkC7a/XHKDuYdOLSKnq4/7v2TCkCNfQRiCoUi
+	0kuTIOJeb6TC0iE6vEqVossD8DzZ3qat4qcLdD6CkcuyZOm8PWPVOiyMHJHiMn+ivt5U
+	5wJsJwjFNwdBm2CCXRSE1xE36iUBhdePD1zFcLadFxVfd/gJNGfVes7kOij+GhBDw5xo
+	Q5J5pkr5qrBlJlXsc3XmCQNfQFRedqw0Tl9Imc24F9zOT9fXBHaiSy+y+23bTmqZ2+cN
+	sa0d9APtf4XXw5NKng05SfYMLyfXgfdEkAykcCtK2PzxmKzdJU2Ch+ycOUKmeguWdP7T
+	Z+5A==
+X-Gm-Message-State: AElRT7EdKMbVIJW5n/KVIsHgxIjwGa57RxGlkwQYZDjzQkijuGCE/sWJ
+	Qrx6UZREai/E1SbdJvSIKyrP0NOq5nM2FLRDps5eXg==
+X-Google-Smtp-Source: AG47ELuhgyCrjsfm3zcQEY+EHGzqVdtmTNaEv5HdUiPbPzZuksQBVb0cOrY1J+ydV3QHbaS6nsT5cEqzpP52xd2HKmw=
+X-Received: by 10.55.158.72 with SMTP id h69mr5053929qke.338.1521237349820;
+	Fri, 16 Mar 2018 14:55:49 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.100.182.197 with HTTP; Fri, 16 Mar 2018 14:51:19 -0700 (PDT)
-In-Reply-To: <12270a1aeed348d7bdabbbeca64fb6ef@sakuraus.com>
-References: <454710ed7f6d42279136acc70c35cf74@sakuraus.com>
-	<CAMKF1sp6eeDj8Ny_6G9qiy-uW8spcm+cNrSH-az4+7Z2MpPXbQ@mail.gmail.com>
-	<937e0a406a4443b0813052bcc5c0a006@sakuraus.com>
-	<e323d1d04c544a93a562c54ebdf23fde@sakuraus.com>
-	<CAMKF1sqA+1acjxDK235N2NARXYs=FF-DEQpO8ZnpaCqzjCs=iA@mail.gmail.com>
-	<27471f70f26541d8add86faeec8509c1@sakuraus.com>
-	<CAMKF1sothqiEPDCow7K+8sqFCEgMrhdEyXuJqEBNToyrMOqeBQ@mail.gmail.com>
-	<12270a1aeed348d7bdabbbeca64fb6ef@sakuraus.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 16 Mar 2018 14:51:19 -0700
-Message-ID: <CAMKF1spQj+MOCbe0fxLax3rBQY_cbnuNyUsESSpegbzSX5HB_w@mail.gmail.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to get mysqy/mariadb to start on powerup.
+Received: by 10.233.221.132 with HTTP; Fri, 16 Mar 2018 14:55:49 -0700 (PDT)
+From: Davis Roman <davis.roman84@gmail.com>
+Date: Fri, 16 Mar 2018 17:55:49 -0400
+Message-ID: <CACfi_Z0Cy+DsqUKk3m7gsm-mHkw=_1JtfvBF+PxEFrjn1g9vTQ@mail.gmail.com>
+To: poky@yoctoproject.org
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: best way to use sudo for a long running background process
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,68 +68,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Mar 2018 21:51:51 -0000
+X-List-Received-Date: Fri, 16 Mar 2018 21:55:51 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Mar 16, 2018 at 2:22 PM, Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
->> -----Original Message-----
->> From: Khem Raj [mailto:raj.khem@gmail.com]
->> Sent: Friday, March 16, 2018 02:16 PM
->> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
->> Cc: yocto@yoctoproject.org
->> Subject: Re: [yocto] How to get mysqy/mariadb to start on powerup.
->>
->> On Fri, Mar 16, 2018 at 2:10 PM, Greg Wilson-Lindberg <GWilson@sakuraus.com>
->> wrote:
->> >> -----Original Message-----
->> >> From: Khem Raj [mailto:raj.khem@gmail.com]
->> >> Sent: Friday, March 16, 2018 11:55 AM
->> >> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
->> >> Cc: yocto@yoctoproject.org
->> >> Subject: Re: [yocto] How to get mysqy/mariadb to start on powerup.
->> >>
-> ....
-> ....
-> ....
->> >
->> > I've run journalctl on both install_db.service & mysqld.service. mysqld comes
->> back with no entries. install_db comes back with a line each for Starting and Started
->> Install MySQL Community Server Database.
->> >
->> > systemctl status returns exited success for install_db, for mysqld it reports Active:
->> inactive (dead).
->> >
->> > systemctl list-unit-files shows install_db as enabled and mysqld as disabled.
->> >
->> > I was able to start mysqld with systemctl start and it showed running with
->> systemctl status & ps. But it did not restart after a reboot.
->>
->> can you try
->>
->> systemctl enable mysqld
->>
->> this should enable it to start on boot.
->
-> That did create a link and it started on reboot.
->
+hello,
 
-OK thats expected see ./meta-oe/recipes-dbs/mysql/mariadb.inc
+I have a daemon called powermanager running as the non-root user, power.
 
-SYSTEMD_PACKAGES = "${PN}-server ${PN}-setupdb"
-SYSTEMD_SERVICE_${PN}-server = "mysqld.service"
-SYSTEMD_AUTO_ENABLE_${PN}-server ?= "disable"
+In /etc/sudoers.d/power, I have the following:
+power ALL=(ALL) NOPASSWD: ALL
 
-its disabled on install. you can set it to be enabled via a bbappend
-in your layer
+I know that the above statement essentially gives the powermanager
+process root privileges
+however, in the future, I'd like to have the option to enforce certain
+commands/files not be used, if needed.
+My understanding is that the sudoers file would be the place to place
+these rules.
+( ie: disable ability to open file /dev/foobar )
 
-> I take it that something is happening in install_db and among other things that link is not getting created?
+Therefore on startup, I configured my systemd service file to run as
+the power user however I'm trying to figure out which is better:
 
-its calling
+1. launch this process as 'sudo powermanager'
 
-mysql-systemd-start pre
+or
 
-but it depends on mysqld.service so I wonder if it was not working
-because mysqld.service was disabled
-so may be now it works
+2.  launch my process as just 'powermanager' and let the process deal
+with invoking sudo when it needs to open files in /dev/
+
+
+Any feedback would be greatly appreciated.
+
+Thank you,
+
+Davis
 
