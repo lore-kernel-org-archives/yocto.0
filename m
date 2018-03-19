@@ -1,6 +1,6 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7CE5EE00A1E; Mon, 19 Mar 2018 14:32:42 -0700 (PDT)
+	id BEA4FE0091A; Mon, 19 Mar 2018 15:11:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
+	mail provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+	*      [209.85.192.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,47 +19,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49BEAE00529
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 14:32:40 -0700 (PDT)
-Received: by mail-wm0-f47.google.com with SMTP id e194so17759490wmd.3
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 14:32:40 -0700 (PDT)
+Received: from mail-pf0-f182.google.com (mail-pf0-f182.google.com
+	[209.85.192.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9C6BE00529
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 15:11:48 -0700 (PDT)
+Received: by mail-pf0-f182.google.com with SMTP id u5so7610429pfh.6
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 15:11:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=gyj/F4VKWOc1a1k4RymVyDA2bOUzd1J0Y+Ran8wezwk=;
-	b=KnhzYdIo+ifAnzJIQgsKnhX56qnXDwdFfT9FaLwJfSAp8oLtCeo6S8A9h0Gsvjy693
-	4bCmKbUCPXddBi/8DtjDNvnxaA6fFvUYK/8IZu5t23C3xEuXzoOCAd/ZSdNc65oSss8I
-	cR2vbAAFhbdNAr/Z9Fy1bSqXwzI6V6rJa2IqdB7ZgZlhYSJXWKyvMjVNCi6dgQevScFu
-	XecLb9oTDqTHh3w1oFtFVYPV77loar8zHyZHCn1GQPAm/qnacvQtwLDvh/EiSSZ9i5Pq
-	Rzd+nffYRpN7KZwudtD5oXUlJVUEU1hJaqQ5tsqVh4D9/5JFSRMI27HZ/HtxTWDhGN65
-	ezdQ==
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding:content-language;
+	bh=BTo+XlX08IBbQ4PJk4/EEluL367W8660YLVpMTfQzUc=;
+	b=PnORMTvzQRKWeFmrjXhQ3RCBvRlg7NLSH8Pxuf30nlR+3f0jhri+qLcZFL1teBBeBi
+	/hr2rcmQHtBSO5yehoQmd38fTLKJdR9yG9kXZj8QSEgg6YgYobfUVK9JIXruOuvgDY0S
+	FMHrMy4Ub4MQ2Ar0L9WY+g5STAieJxIuxzGLa41q4fPAUuPALyR6d0+a3Ioz5b5EAtgH
+	FenkBHZ8RXQuyWQ1qx4YVdP6D7X7ZLr3dN4Vd2wlG2KX6WRweulTD/IQajeeBKmK/kv6
+	pdkv8voUsNui5YspDuOjzhfN6yY+mxR8J5l9CTmLuoM0+fOTsCtbM8Y+O9LmNSL0r16h
+	TKCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=gyj/F4VKWOc1a1k4RymVyDA2bOUzd1J0Y+Ran8wezwk=;
-	b=Tj5dJY/qciRBRWJ3JMH4tSQf2mvumUyAoEQ96lE5heIuLcUQiQBON1z2mBqzzQgP9w
-	2XI+nmuXx40ZrUVhqliyEr8o3+kwSnOib5yR3GHk7Px4y6UwHhrHrDAAF1XGOv5MgurI
-	mZikhxImehds9kExl8uFs+unPL5SIYHD+k/jMb/tjzocvEUuAlQh+eYhyRTEBs0rUDaF
-	v3BzSjYr/jua7xT9qjg91JcYmY8DVvcv6C+5VCtPnZf+pXVIrTEzgOUorkF49EKBmAyK
-	RrxddgOjqdt4nM9gxvd5ksDVS2qw8kJRIeM/+IF11bKLc4Rzi2u0MZ4O6r+11mVdXiAS
-	jZOQ==
-X-Gm-Message-State: AElRT7FSN9orkgegKeK/0t6sREIfkP5yfDs6BwESuCdS5wJ6orBjEe3M
-	R9NdmUEcbaXSPY6kMZ+q/Q4NEQwA0dzvos0163k=
-X-Google-Smtp-Source: AG47ELsk7J/2vYJNoyYBUzhBSYfarvqVqcQPAT5mG0R98o0a/3psWuIUhdE4je4rkyG0kY2StCoaoaxTxUeQxqfBN6k=
-X-Received: by 10.28.176.134 with SMTP id z128mr204294wme.86.1521495160156;
-	Mon, 19 Mar 2018 14:32:40 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=BTo+XlX08IBbQ4PJk4/EEluL367W8660YLVpMTfQzUc=;
+	b=LoL9D3a6UoJZUvVcf1T83Knnwh0L8bdY3/Kf6glvTinXDa0P1gSHMXDTvrE9S2hKY8
+	pOj2ASxqiAM56M4N6gHX2qj/I2/vxXbRGlsXkaYkEXz+HJUHtaAyOIfbxlJ9drXVGXpr
+	PK1LuHWqF8bD45fbKbTyHWhr3xWOdaiiAXgCT0JRbZSrR02MBopl4lFQMWcZna8gcq7f
+	VjzrUcxMizkDbm1olOtoYblHWLqEScT7A2Odmw29P0DmWzaXPMrD0KJqLsLWAnMpLpCS
+	RGZxsUb24lKrOUL5UQGa/72ZiJyU//UHwKjzmOdBlxMyIzuFbWZ2k1ikm5GHpADIrBmi
+	9sCQ==
+X-Gm-Message-State: AElRT7HSCTapsOCq7/XDqKFzd0YXM+AWu9YNIpVolnArdewMt2WDyAr0
+	0biL59EOvy4Bs6EYg3nmeGEAcQ==
+X-Google-Smtp-Source: AG47ELvJVQNmcA+YZllRy5+AVFS00TVvJqTJ1BEBMHwS8Yt5yB5C3Fg1Tg8ilyVOJgTZj+/8LyFRWg==
+X-Received: by 10.101.98.137 with SMTP id f9mr10133088pgv.6.1521497507870;
+	Mon, 19 Mar 2018 15:11:47 -0700 (PDT)
+Received: from ?IPv6:2601:202:4000:1184:4088:e426:a566:fc98?
+	([2601:202:4000:1184:4088:e426:a566:fc98])
+	by smtp.gmail.com with ESMTPSA id
+	e62sm231790pfl.117.2018.03.19.15.11.47
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 19 Mar 2018 15:11:47 -0700 (PDT)
+To: jackie.huang@windriver.com, yocto@yoctoproject.org
+References: <20180305022207.9762-1-jackie.huang@windriver.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <a40de351-6836-a32d-1fb5-828893146d2a@gmail.com>
+Date: Mon, 19 Mar 2018 15:11:46 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-Received: by 10.223.163.65 with HTTP; Mon, 19 Mar 2018 14:32:39 -0700 (PDT)
-In-Reply-To: <6C79F0E5-F966-4068-B0CA-0B2FACB4ACD3@korgrd.com>
-References: <6C79F0E5-F966-4068-B0CA-0B2FACB4ACD3@korgrd.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Mon, 19 Mar 2018 14:32:39 -0700
-Message-ID: <CAJ86T=UGbOp3MtiMC=rL74qHXLrnVfp0k-CTXcdPqZbeUbCytw@mail.gmail.com>
-To: Steve Pavao <stevep@korgrd.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: ARM CPU version question
+In-Reply-To: <20180305022207.9762-1-jackie.huang@windriver.com>
+Subject: Re: [meta-security][PATCH] xmlsec1: fix a typo in examples/verify3.c
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,52 +79,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2018 21:32:42 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 19 Mar 2018 22:11:49 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-On Mon, Mar 19, 2018 at 9:49 AM, Steve Pavao <stevep@korgrd.com> wrote:
-> What=E2=80=99s the recommended way to be able to propogate target-specifi=
-c compile-time CPU tune information to affect the build of a source file in=
- my own custom layer?
+
+
+On 03/04/2018 06:22 PM, jackie.huang@windriver.com wrote:
+> From: Jackie Huang <jackie.huang@windriver.com>
 >
-> For example, if I=E2=80=99m building for an arm6-based target, I=E2=80=99=
-d like to be able to have the __ARM_ARCH_6__ symbol be available when the Y=
-octo system builds my custom layer.  The BSP for such a target obviously de=
-fines this symbol when building its files for such a target.  Is there an e=
-asy way to propagate this information to my own custom layer, to affect my =
-own sources?  Maybe my recipe needs to include certain conf files from othe=
-r layers such as meta or the BSP layer?
+> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
 
-This kind of macro is typically defined internally by gcc, depending
-on the -mcpu etc options passed on the gcc command line, ie options
-which are included in the ${CC} definition setup by OE.
+merged.
 
-Therefore all you normally need to do is ensure that the Makefiles etc
-for the components in your custom layer all correctly respect OE's
-definition of ${CC}.
+thanks
+- armin
+> ---
+>  .../xmlsec1-fix-a-typo-in-examples-verify3.c.patch | 25 ++++++++++++++++++++++
+>  recipes-security/xmlsec1/xmlsec1_1.2.25.bb         |  1 +
+>  2 files changed, 26 insertions(+)
+>  create mode 100644 recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
+>
+> diff --git a/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch b/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
+> new file mode 100644
+> index 0000000..0fe3fd7
+> --- /dev/null
+> +++ b/recipes-security/xmlsec1/xmlsec1/xmlsec1-fix-a-typo-in-examples-verify3.c.patch
+> @@ -0,0 +1,25 @@
+> +From bf1c7b17cc80a2f4dfd43f112f944f68fa5fbcd6 Mon Sep 17 00:00:00 2001
+> +From: Jackie Huang <jackie.huang@windriver.com>
+> +Date: Fri, 2 Mar 2018 01:10:58 -0800
+> +Subject: [PATCH] xmlsec1: fix a typo in examples/verify3.c
+> +
+> +Upstream-Status: Submitted [https://github.com/lsh123/xmlsec/pull/153]
+> +
+> +Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+> +---
+> + examples/verify3.c | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/examples/verify3.c b/examples/verify3.c
+> +index 2d26ae7..68f52ab 100644
+> +--- a/examples/verify3.c
+> ++++ b/examples/verify3.c
+> +@@ -1,4 +1,4 @@
+> +-4/** 
+> ++/**
+> +  * XML Security Library example: Verifying a file signed with X509 certificate
+> +  *
+> +  * Verifies a file signed with X509 certificate. 
+> +-- 
+> +2.13.0
+> +
+> diff --git a/recipes-security/xmlsec1/xmlsec1_1.2.25.bb b/recipes-security/xmlsec1/xmlsec1_1.2.25.bb
+> index d351dd2..dbb6f7d 100644
+> --- a/recipes-security/xmlsec1/xmlsec1_1.2.25.bb
+> +++ b/recipes-security/xmlsec1/xmlsec1_1.2.25.bb
+> @@ -17,6 +17,7 @@ SRC_URI = "http://www.aleksey.com/xmlsec/download/${BP}.tar.gz \
+>      file://change-finding-path-of-nss.patch \
+>      file://makefile-ptest.patch \
+>      file://xmlsec1-examples-allow-build-in-separate-dir.patch \
+> +    file://xmlsec1-fix-a-typo-in-examples-verify3.c.patch \
+>      file://run-ptest \
+>      "
+>  
 
-A typical bug in handcrafted Makefiles is to force CC to (e.g. CC =3D
-"$(CROSS_COMPILE)gcc") and lose the original value passed via the
-environment.
-
-> Currently, I notice that architecture-level symbols are available to my c=
-ustom layer at compile time, such as __aarch64_ and __arm__, but not CPU tu=
-ne information, such as __ARM_ARCH_6__.
-
-The exact set of macros defined by gcc will vary depending on exactly
-which ARMv6 CPU you are targeting (and to some extent, which version
-of gcc you are using). If you have code which needs to be enabled for
-any ARMv6 target then you may have to test multiple macros. For
-example see the way in which openssl defines __ARM_ARCH__
-
-  https://github.com/openssl/openssl/blob/master/crypto/arm_arch.h
-
-> - Steve Pavao
-> Korg R&D
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
