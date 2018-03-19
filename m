@@ -1,26 +1,65 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8DD69E00BE6; Sun, 18 Mar 2018 21:34:20 -0700 (PDT)
+	id BB380E00CED; Sun, 18 Mar 2018 23:06:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.83.67 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7876EE008D2
-	for <yocto@yoctoproject.org>; Sun, 18 Mar 2018 21:34:19 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 6B46F8758452
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 00:34:18 -0400 (EDT)
-MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 19 Mar 2018 04:34:18 -0000
-Message-ID: <20180319043418.4473.9771@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5827E008D2
+	for <yocto@yoctoproject.org>; Sun, 18 Mar 2018 23:06:00 -0700 (PDT)
+Received: by mail-pg0-f67.google.com with SMTP id g12so6542682pgs.0
+	for <yocto@yoctoproject.org>; Sun, 18 Mar 2018 23:06:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=aHhyg/hWbsKd31jKXJBG3mxJVVcO9an2dGrI0Vf9bOI=;
+	b=E1wCyJR8bEb3cKynsq6ye9YqKbrRH6WY0ehLEGITKVRHC6MKiymJcHReUAMx0Vibk0
+	uErNRcM3A80iW694r2MyhNQ2g2ca1DOTG2Z25LCtxMT7cLU7HvNAlXX0kUuot5FC4/Op
+	ZsDZkL8tS33SIUlX06E2vX/Qhsqai25K2ndtThbcAdeaoBhsB8invNOSwi2NYKNw2boy
+	a0FaAqqrGl1ilG/z38JZSn9QmfYFZ9VoBcn6wZOFwNokTc8pjN7ZEY0gsO8hmQ/ZySxQ
+	hD4haQpfNlWaoEVqW45fOuIyejfGwCSyqNLX57wZOu54uXLWDnMcU1TNZjOdlRwAo85t
+	iydA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=aHhyg/hWbsKd31jKXJBG3mxJVVcO9an2dGrI0Vf9bOI=;
+	b=pAy5hh8RhvE8qQKh57tEqGkppacEuEqXK82whEyID2lVE20UQsqM8a/MemjJDNGvvC
+	Mk0wkBMhsoMJkIygR7irlqu0/kIL4/jK0U/bFqXmMgrKFunyuwjX9tt4KACSREcNKL53
+	nUd/T11k7SKllUp175ScW+09lxxqFPUhURuQuOQqqoP9GVkwjA4aw6vpidcc7HeDRucq
+	yBQfnwiLM4nUMrICXb0zmQBxS5piKu0oPTQbFgTWj4/hzjJNRG3aLOY/4FvedYvh0dBS
+	r0NXM+fKUiXHdjDlVi1S4JiJX7zs42DcZifYZs15d19qN5GSVq9NC63snL4bEP4Yv69s
+	wh5A==
+X-Gm-Message-State: AElRT7FhR3jhU6yg41Vc4BG5nFYah9sGayEg+KgNIbMmcBn2AumL5zRI
+	VRsTE73kpYeX0TwRqEwiAO0=
+X-Google-Smtp-Source: AG47ELvKDQmHXk5nDeUhm00RAPST/pxGjDIMYIf/22x2nqYx1UMTDlzH5KZo3MiLznv0DCmBLKd5Tw==
+X-Received: by 10.99.96.79 with SMTP id u76mr7950487pgb.199.1521439560030;
+	Sun, 18 Mar 2018 23:06:00 -0700 (PDT)
+Received: from localhost.localdomain ([2601:646:8880:466c:6245:cbff:fe64:591])
+	by smtp.gmail.com with ESMTPSA id
+	29sm25507312pfj.40.2018.03.18.23.05.58
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 18 Mar 2018 23:05:59 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+To: mark.hatle@windriver.com
+Date: Sun, 18 Mar 2018 23:05:51 -0700
+Message-Id: <20180319060551.5943-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.16.2
+Cc: yocto@yoctoproject.org
+Subject: [PATCH V2] prelink: Add RISC-V support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,190 +71,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2018 04:34:20 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 19 Mar 2018 06:06:02 -0000
 
-This mail was sent out by Recipe reporting system.
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+Changes from v1 to v2:
+- Add riscv ldso knowledge
+- Rebase on top of staging-master since it needs a patch from there
+- Search for riscv64 libs in /lib and /usr/lib
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+ ChangeLog         |  5 +++++
+ src/elf.h         | 25 ++++++++++++++++++++++++-
+ src/rtld/dl-tls.c |  5 +++++
+ src/rtld/rtld.c   | 14 ++++++++++++++
+ 4 files changed, 48 insertions(+), 1 deletion(-)
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
-
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer            NoUpgradeReason
---------------------  ---------------  --------------------  --------------------  ------------------------------
-webkitgtk             2.18.6           2.20.0                Alexander Kanavin
-vala                  0.38.8           0.40.0                Alexander Kanavin
-gcr                   3.20.0           3.28.0                Alexander Kanavin
-gnome-desktop3        3.26.2           3.28.0                Alexander Kanavin
-dtc                   1.4.5            1.4.6                 Alexander Kanavin
-bash-completion       2.7              2.8                   Alexander Kanavin
-libaio                0.3.110          0.3.111               Alexander Kanavin
-lighttpd              1.4.48           1.4.49                Alexander Kanavin
-meson                 0.44.1           0.45.0                Alexander Kanavin
-gobject-introspec...  1.54.1           1.56.0                Alexander Kanavin
-btrfs-tools           4.13.3           4.15.1                Alexander Kanavin     Waiting for resolution of h...
-sysprof               3.26.1           3.28.0                Alexander Kanavin
-epiphany              3.26.6           3.28.0.1              Alexander Kanavin
-apt                   1.2.24           1.4.8                 Aníbal Limón
-apt-native            1.2.24           1.4.8                 Aníbal Limón
-dpkg                  1.18.24          1.19.0.5              Aníbal Limón
-xkeyboard-config      2.22             2.23.1                Armin Kuster
-mkfontscale           1.1.2            1.1.3                 Armin Kuster
-xeyes                 1.1.1            1.1.2                 Armin Kuster
-xinit                 1.3.4            1.4.0                 Armin Kuster
-xkbcomp               1.4.0            1.4.1                 Armin Kuster
-bind                  9.10.6           9.12.1                Armin Kuster
-xprop                 1.2.2            1.2.3                 Armin Kuster
-xset                  1.2.3            1.2.4                 Armin Kuster
-xwininfo              1.1.3            1.1.4                 Armin Kuster
-xf86-video-vesa       2.3.4            2.4.0                 Armin Kuster
-curl                  7.58.0           7.59.0                Armin Kuster
-busybox               1.27.2           1.28.1                Armin Kuster
-gnutls                3.6.1            3.6.2                 Armin Kuster
-libxshmfence          1.2              1.3                   Armin Kuster
-nspr                  4.18             4.19                  Armin Kuster
-calibrateproto        0.0+gitX         0.0-new-commits-a...  Armin Kuster
-nss                   3.34.1           3.35                  Armin Kuster
-libpcre2              10.30            10.31                 Armin Kuster
-xcb-proto             1.12             1.13                  Armin Kuster
-util-macros           1.19.1           1.19.2                Armin Kuster
-xserver-xorg          1.19.6           1.19.99.901           Armin Kuster
-libxcb                1.12             1.13                  Armin Kuster
-linux-libc-headers    4.15.7           4.15.10               Bruce Ashfield
-kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
-kmscube               git              git-new-commits-a...  Carlos Rafael Giani
-iproute2              4.14.1           4.15.0                Changhyeok Bae
-ethtool               4.13             4.15                  Changhyeok Bae
-base-passwd           3.5.29           3.5.44                Chang Rebecca Swe...  Version 3.5.38 requires cde...
-systemd-boot          234              238                   Chen Qi
-dbus                  1.12.2           1.12.6                Chen Qi
-gawk                  4.2.0            4.2.1                 Chen Qi
-systemd               234              238                   Chen Qi
-util-linux            2.31             2.31.1                Chen Qi
-dbus-test             1.12.2           1.12.6                Chen Qi
-sed                   4.2.2            4.4                   Chen Qi
-sysstat               11.7.1           11.7.2                Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-dbus-glib             0.108            0.110                 Chen Qi
-build-appliance-i...  15.0.0           18.0.2                Cristian Iorga
-weston                3.0.0            3.0.91                Denys Dmytriyenko
-wayland               1.14.0           1.14.91               Denys Dmytriyenko
-lz4                   1.7.4            1.8.1.2               Denys Dmytriyenko
-lzop                  1.03             1.04                  Denys Dmytriyenko
-hdparm                9.53             9.55                  Denys Dmytriyenko
-lzip                  1.19             1.20                  Denys Dmytriyenko
-python3               3.5.5            3.6.4                 Derek Straka
-python3-pip           9.0.1            9.0.2                 Derek Straka
-python-numpy          1.14.1           1.14.2                Derek Straka
-python3-numpy         1.14.1           1.14.2                Derek Straka
-python3-pygobject     3.26.1           3.28.1                Derek Straka
-python-setuptools     38.5.2           39.0.1                Derek Straka
-python3-setuptools    38.5.2           39.0.1                Derek Straka
-python3-pycairo       1.15.6           1.16.3                Derek Straka
-python3-native        3.5.4            3.6.4                 Derek Straka
-acpica                20170303         20180313              Fathi Boudra
-dhcp                  4.3.6            4.4.1                 Hongxu Jia
-man-pages             4.14             4.15                  Hongxu Jia
-man-db                2.8.1            2.8.2                 Hongxu Jia
-libgpg-error          1.27             1.28                  Hongxu Jia
-bash                  4.4.12           4.4.18                Hongxu Jia
-libxml2               2.9.7            2.9.8                 Hongxu Jia
-ghostscript           9.21             9.22                  Hongxu Jia
-ncurses               6.0+20171125     6.1                   Hongxu Jia
-gnupg                 2.2.4            2.2.5                 Hongxu Jia
-help2man-native       1.47.5           1.47.6                Hongxu Jia
-distcc                3.2              3.3                   Hongxu Jia
-bc                    1.06             1.07.1                Jose Lamego
-cross-localedef-n...  2.27             2.27.9000             Khem Raj
-glibc                 2.27             2.27.9000             Khem Raj
-llvm                  5.0              5.0-new-commits-a...  Khem Raj
-mpfr                  3.1.5            4.0.1                 Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-glibc-initial         2.27             2.27.9000             Khem Raj
-gdb                   8.0.1            8.1                   Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-u-boot-fw-utils       2018.01          2018.03               Marek Vasut
-u-boot-mkimage        2018.01          2018.03               Marek Vasut
-u-boot                2018.01          2018.03               Marek Vasut
-pango                 1.40.14          1.42.0                Maxin B. John
-piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
-vulkan-demos          git              git-new-commits-a...  Maxin B. John
-perl                  5.24.1           5.26.1                Maxin B. John
-libsoup-2.4           2.60.3           2.62.0                Maxin B. John
-gtk-icon-utils-na...  3.22.28          3.22.29               Maxin B. John
-at-spi2-core          2.26.2           2.28.0                Maxin B. John
-atk                   2.26.1           2.28.1                Maxin B. John
-libinput              1.9.4            1.10.3                Maxin B. John
-gsettings-desktop...  3.24.1           3.28.0                Maxin B. John
-ifupdown              0.8.16           0.8.31                Maxin B. John
-glib-networking       2.54.1           2.56.0                Maxin B. John
-fontconfig            2.12.6           2.13.0                Maxin B. John
-vte                   0.50.2           0.52.0                Maxin B. John
-libtirpc              1.0.2            1.0.3                 Maxin B. John
-clutter-gst-3.0       3.0.24           3.0.26                Maxin B. John
-adwaita-icon-theme    3.26.1           3.28.0                Maxin B. John
-ofono                 1.22             1.23                  Maxin B. John
-libevdev              1.5.8            1.5.9                 Maxin B. John
-glib-2.0              2.54.3           2.56.0                Maxin B. John
-harfbuzz              1.7.5            1.7.6                 Maxin B. John
-gtk+3                 3.22.28          3.22.29               Maxin B. John
-bluez5                5.48             5.49                  Maxin B. John
-librsvg               2.40.20          2.42.3                Maxin B. John         Versions from 2.41.0 requir...
-vulkan                1.0.65.2         1.1.70.0              Maxin B. John
-libical               2.0.0            3.0.3                 Maxin B. John
-perl-native           5.24.1           5.26.1                Maxin B. John
-at-spi2-atk           2.26.1           2.26.2                Maxin B. John
-gdb-cross-canadia...  8.0.1            8.1                   No maintainer
-gdb-cross-i586        8.0.1            8.1                   No maintainer
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.10.2           3.10.3                Otavio Salvador
-cmake-native          3.10.2           3.10.3                Otavio Salvador
-tcf-agent             1.4.0+gitX       1.7.0                 Randy Witt
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-nfs-utils             2.1.1            2.3.1                 Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-strace                4.20             4.21                  Robert Yang
-autoconf-archive      2016.09.16       2018.03.13            Robert Yang
-automake              1.15.1           1.16.1                Robert Yang
-ccache                3.3.5            3.4.1                 Robert Yang
-e2fsprogs             1.43.8           1.44.0                Robert Yang
-time                  1.8              1.9                   Robert Yang
-git                   2.16.1           2.16.2                Robert Yang
-libvorbis             1.3.5            1.3.6                 Tanu Kaskinen
-libxml-simple-perl    2.24             2.25                  Tim Orling
-libxml-sax-perl       0.99             1.00                  Tim Orling
-gnu-efi               3.0.6            3.0.8                 Yi Zhao
-dropbear              2017.75          2018.76               Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao               Version 1.5 requires selinux
-less                  529              530                   Yi Zhao
-logrotate             3.13.0           3.14.0                Yi Zhao
-slang                 2.3.1a           2.3.2                 Yi Zhao
-libcap-ng             0.7.8            0.7.9                 Yi Zhao
-
-Upgradable count: 145
-Upgradable total count: 149
-
-The based commit is:
-
-commit c94271d87d16323f920891344642f76dfb3c994f
-Author: Ross Burton <ross.burton@intel.com>
-Date:   Thu Mar 15 13:13:50 2018 +0000
-
-    buildperf: measure the size of core-image-sato rootfs
-    
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
-
+Index: git/ChangeLog
+===================================================================
+--- git.orig/ChangeLog
++++ git/ChangeLog
+@@ -1,3 +1,8 @@
++2018-03-10   Khem Raj <raj.khem@gmail.com>
++	* src/elf.h: Add RISC-V defines
++	* src/rtld/dl-tls.c: Add RISC-V support
++	* src/rtld/rtld.c: Add RISC-V support
++
+ 2017-06-20   Kyle Russell <bkylerussell@gmail.com>
+ 	* src/rtld/rtld.c: Add missing DT_NEEDED DSOs to needed_list
+ 
+Index: git/src/elf.h
+===================================================================
+--- git.orig/src/elf.h
++++ git/src/elf.h
+@@ -254,7 +254,8 @@ typedef struct
+ #define EM_TILEPRO	188		/* Tilera TILEPro */
+ #define EM_MICROBLAZE	189		/* Xilinx MicroBlaze */
+ #define EM_TILEGX	191		/* Tilera TILE-Gx */
+-#define EM_NUM		192
++#define EM_RISCV	243		/* RISC-V */
++#define EM_NUM		244
+ 
+ /* If it is necessary to assign new unofficial EM_* values, please
+    pick large random numbers (0x8523, 0xa7f2, etc.) to minimize the
+@@ -3556,6 +3557,28 @@ enum
+ 
+ #define R_TILEGX_NUM		130
+ 
++/* RISC-V ELF Flags */
++#define EF_RISCV_RVC			0x0001
++#define EF_RISCV_FLOAT_ABI		0x0006
++#define EF_RISCV_FLOAT_ABI_SOFT		0x0000
++#define EF_RISCV_FLOAT_ABI_SINGLE	0x0002
++#define EF_RISCV_FLOAT_ABI_DOUBLE	0x0004
++#define EF_RISCV_FLOAT_ABI_QUAD		0x0006
++
++/* RISC-V relocations.  */
++#define R_RISCV_NONE		0
++#define R_RISCV_32		1
++#define R_RISCV_64		2
++#define R_RISCV_RELATIVE	3
++#define R_RISCV_COPY		4
++#define R_RISCV_JUMP_SLOT	5
++#define R_RISCV_TLS_DTPMOD32	6
++#define R_RISCV_TLS_DTPMOD64	7
++#define R_RISCV_TLS_DTPREL32	8
++#define R_RISCV_TLS_DTPREL64	9
++#define R_RISCV_TLS_TPREL32	10
++#define R_RISCV_TLS_TPREL64	11
++#define R_RISCV_NUM		12
+ 
+ __END_DECLS
+ 
+Index: git/src/rtld/dl-tls.c
+===================================================================
+--- git.orig/src/rtld/dl-tls.c
++++ git/src/rtld/dl-tls.c
+@@ -138,6 +138,11 @@ rtld_determine_tlsoffsets (int e_machine
+       tls_tcb_size = 8;
+       break;
+ 
++    case EM_RISCV:
++      tls_dtv_at_tp = 1;
++      tls_tcb_size = 0;
++      break;
++
+     default:
+       /* Hope there's no TLS!  */
+       for (i = 0; i < search_list->r_nlist; i++)
+Index: git/src/rtld/rtld.c
+===================================================================
+--- git.orig/src/rtld/rtld.c
++++ git/src/rtld/rtld.c
+@@ -224,6 +224,17 @@ parse_opt (int key, char *arg, struct ar
+     * ELF_RTYPE_CLASS_PLT \
+    | ((type) == R_MICROBLAZE_COPY) * ELF_RTYPE_CLASS_COPY)
+ 
++/* From glibc-2.27: sysdeps/riscv/dl-machine.h */
++#define riscv_elf_machine_type_class(type)                      \
++  ((ELF_RTYPE_CLASS_PLT * ((type) == R_RISCV_JUMP_SLOT          \
++     || ((type) == R_RISCV_TLS_DTPREL32)    \
++     || ((type) == R_RISCV_TLS_DTPMOD32)    \
++     || ((type) == R_RISCV_TLS_TPREL32)     \
++     || ((type) == R_RISCV_TLS_DTPREL64)    \
++     || ((type) == R_RISCV_TLS_DTPMOD64)    \
++     || ((type) == R_RISCV_TLS_TPREL64)))   \
++   | (ELF_RTYPE_CLASS_COPY * ((type) == R_RISCV_COPY)))
++
+ int
+ elf_machine_type_class (int type, int machine)
+ {
+@@ -254,6 +265,8 @@ elf_machine_type_class (int type, int ma
+ 	return nios2_elf_machine_type_class(type);
+     case EM_MICROBLAZE:
+ 	return microblaze_elf_machine_type_class(type);
++    case EM_RISCV:
++	return riscv_elf_machine_type_class(type);
+ 
+     default:
+       printf ("Unknown architecture!\n");
+@@ -296,6 +309,7 @@ machine_no_rela (int machine)
+     case EM_SPARCV9:
+     case EM_ALTERA_NIOS2:
+     case EM_MICROBLAZE:
++    case EM_RISCV:
+       return 0;
+     default:
+       return 1;
+@@ -329,6 +343,8 @@ is_ldso_soname (const char *soname)
+       || ! strcmp (soname, "ld-linux-aarch64.so.1")
+       || ! strcmp (soname, "ld-linux-aarch64_be.so.1")
+       || ! strcmp (soname, "ld-linux-nios2.so.1")
++      || ! strcmp (soname, "ld-linux-riscv64-lp64.so.1")
++      || ! strcmp (soname, "ld-linux-riscv64-lp64d.so.1")
+      )
+     return 1;
+   return 0;
+@@ -1214,8 +1230,8 @@ main(int argc, char **argv)
+ 	  goto exit;
+ 	}
+ 
+-      load_ld_so_conf (gelf_getclass (dso->elf) == ELFCLASS64, 
+-		( dso->ehdr.e_machine == EM_MIPS) && ( dso->ehdr.e_flags & EF_MIPS_ABI2 ) );
++      load_ld_so_conf ((gelf_getclass (dso->elf) == ELFCLASS64) && (dso->ehdr.e_machine != EM_RISCV),
++		(dso->ehdr.e_machine == EM_MIPS) && (dso->ehdr.e_flags & EF_MIPS_ABI2));
+ 
+       if (multiple)
+ 	printf ("%s:\n", argv[remaining]);
 
