@@ -1,104 +1,62 @@
-Return-Path: <robin.l.jordan@intel.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 05D0CE00A38; Mon, 19 Mar 2018 08:45:40 -0700 (PDT)
+	id 7E3EEE00A44; Mon, 19 Mar 2018 09:38:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.176 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11237E00A38
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 08:45:32 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	19 Mar 2018 08:45:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,331,1517904000"; d="scan'208,217";a="36268382"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by orsmga003.jf.intel.com with ESMTP; 19 Mar 2018 08:45:32 -0700
-Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 19 Mar 2018 08:45:31 -0700
-Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
-	ORSMSX154.amr.corp.intel.com (10.22.226.12) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 19 Mar 2018 08:45:31 -0700
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (207.46.163.47)
-	by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
-	(TLS) id 14.3.319.2; Mon, 19 Mar 2018 08:45:31 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
-	s=selector1-intel-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
-	bh=IbygqPA58+oPPsWvYOwTs6n+QaXq7fwPXtiP9BQPXL8=;
-	b=YCmceMpYvoY7eBKG0/CSk3eHrfTxPxXUlnW7Yi8gr1gfuSQJWqXNk57VV3wncmDFVM7NAwU+CTd/NoetO5yOUFXgenOF06iK7PWLJlHVDBHZ431CHlW1SkSpLyCO8aUoBCyfpJaSYOv5sYVzK7oAUAR/lC6QnWFzFw0pQEHx7DI=
-Received: from CY4PR11MB1766.namprd11.prod.outlook.com (10.175.81.12) by
-	CY4PR11MB1287.namprd11.prod.outlook.com (10.173.16.17) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.588.14; Mon, 19 Mar 2018 15:45:27 +0000
-Received: from CY4PR11MB1766.namprd11.prod.outlook.com
-	([fe80::9cb9:2d8f:7d35:a2a6]) by
-	CY4PR11MB1766.namprd11.prod.outlook.com
-	([fe80::9cb9:2d8f:7d35:a2a6%13]) with mapi id 15.20.0588.017;
-	Mon, 19 Mar 2018 15:45:27 +0000
-From: "Jordan, Robin L" <robin.l.jordan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: =?Windows-1252?Q?Yocto_Project_Status_WW12=9218?=
-Thread-Index: AdO/mS1UJWK2njsLQLGLS8kVix+4sA==
-Importance: high
-X-Priority: 1
-Date: Mon, 19 Mar 2018 15:45:27 +0000
-Message-ID: <CY4PR11MB17663B664B1ED6ADE96BC48AC7D40@CY4PR11MB1766.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.0.0.116
-dlp-reaction: no-action
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=robin.l.jordan@intel.com; 
-x-originating-ip: [50.39.96.151]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; CY4PR11MB1287;
-	7:Z6X8yGxYv7S6FKBOeCpxaPIvaw7EGRXf21/SwtDRzezykcaYvcK+71qe8R6fnb+JeoK9g1d8cHkCbm9iBbMCcr13z4OmbN0P0KcoUG6HXj1Mjf4z3wHZBgztf5e5zBUAPSpNA2LnLHWK5tQApzTItUTzsiEXYxbmBA7QVtxbE1eZOc4NlaNmtUOzKxUAMDr+3Xm6wRK/DXOOe17PjDkgH+VR0YUW99x2s1KnTUNldwIb6yYk2TvwJm9Z2u41kJWo
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: b3954d04-11bd-4126-6581-08d58db06ff8
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(5600026)(4604075)(3008032)(4534165)(4627221)(201703031133081)(201702281549075)(2017052603328)(7153060)(7193020);
-	SRVR:CY4PR11MB1287; 
-x-ms-traffictypediagnostic: CY4PR11MB1287:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-microsoft-antispam-prvs: <CY4PR11MB12874109008A13DB724E19AFC7D40@CY4PR11MB1287.namprd11.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(20558992708506)(21748063052155); 
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(93006095)(93001095)(3002001)(3231221)(944501244)(52105095)(10201501046)(6041310)(20161123560045)(20161123564045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123562045)(20161123558120)(6072148)(201708071742011);
-	SRVR:CY4PR11MB1287; BCL:0; PCL:0; RULEID:; SRVR:CY4PR11MB1287; 
-x-forefront-prvs: 06167FAD59
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(376002)(346002)(39380400002)(366004)(396003)(39840400004)(189003)(199004)(25786009)(966005)(2900100001)(105586002)(26005)(186003)(478600001)(7736002)(33656002)(14454004)(606006)(66066001)(102836004)(2501003)(316002)(54896002)(9686003)(236005)(99286004)(6306002)(55016002)(86362001)(3660700001)(53936002)(81686011)(790700001)(5660300001)(68736007)(97736004)(81156014)(81166006)(7696005)(8936002)(106356001)(74316002)(110136005)(2906002)(6116002)(6506007)(59450400001)(6436002)(3280700002)(3846002)(5250100002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CY4PR11MB1287;
-	H:CY4PR11MB1766.namprd11.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-x-microsoft-antispam-message-info: iL0U3Ig+n15x+ydSUbY2j5MnjTdEzv6H/d57xiqk8TWCio9ozsJwZTj6zVveQ3pAh8wy53Yf4hXnaYAqJWSuXBJg/fBS2TQ9pS658e8X0FddATkh/ED1Og4kv72JE1VS6l3qgWsviWxiuvIEqRn2djl0cii3VE6NHVNC8gFRuGgDMvqO9TSVJn5AodzY+o9Lkp/vuNiiDoFVk+ip0fQh1N7VG6PzPflJKrWmRsduqv8OHJ0SzZ3zBgwUEAWo+5g2XsbjkJm4VqpVWyidXrCTsBJF4HJnldvEaK+UdbQdrDPneNK8aA5CfVohf4B2E18wg81yqMhnRJHt6Es3cory4g==
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from mail-qt0-f176.google.com (mail-qt0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12C58E00474
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 09:38:48 -0700 (PDT)
+Received: by mail-qt0-f176.google.com with SMTP id a23so18664019qtn.0
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 09:38:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=aVb7Cjz5TORJBaSX5H3M3liaWXS8C4KmJBo7eJCcdmI=;
+	b=RmfNkb1Vv18/XQFJikalaSYkPy55eF6IECkOvSEZriMOodpjtOOaxsRVPWaTPPK5St
+	AwEZ8JLcp7cSM8xuZUprutA4Q0GEjzMzJKA4dKKQqXyz7Zo53jhxneTmZFUDXAck2PpI
+	dbV/gGiayJTEGkqvmZZECwz5YR+mv9mdkIUJ87XjCQP2ONnF/RQ6p5XwwDEIdZs9XETx
+	YECMG9nKGKmNRdlxGpE3zLPMgHqCbo+JEWzDwy3GMd4Fx/G9ETtTcB25ie4goIkEEiJo
+	+jFgf51xgDxVDPx0acFFlQmCOVf/yKlqMHv+Fbisd+3zlmoRAlpCue7n08Nf03hJ5z5O
+	fiog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=aVb7Cjz5TORJBaSX5H3M3liaWXS8C4KmJBo7eJCcdmI=;
+	b=J0yYCoFj3zu55Wf0bRwY3HYjHiWWYTfhRMMpfpLeyKa1Nlnjvj5sCyF9UUYBqCHPHm
+	HlGIU9amTG+Qbvepy7/uajIkToqYFwdi9ZDUWDC0ce72Itc+tFLaDLhEy1QyNhVrPtsU
+	8ZGAWsW3FpIyHxxJC5Pyprw9KTnksTgciMSultXJkvU24HptFJJf/L6KR544l6FNlyE3
+	yx81eHioMv4pvO7ZAwrWc8uZEvk+K121oK516y2BFDAWoQamZ5tLkdi8Rd9N4EVJxtkv
+	lPldTM0oEwJ35RR6ecaKc4UZBDxD9POe4Vz9e3siU1nngnwPenXehHgVLxB1C2RpOjbW
+	Abpw==
+X-Gm-Message-State: AElRT7F18VyA3YqBph0ioGNyV+ZEUivyG/Yww4oK0Tg0tdgf2ZHsxkHB
+	FCMVquWEa1p0yTptXhYqTOuPkudT9NzJ1aon3KF/kA==
+X-Google-Smtp-Source: AG47ELtaLfyVnq/Cbs8EaRzyCGFNFbLtNi3Mxxk5c0Pb4KhGsiXXr0mug0oekrLanzT6lrXli46pXi/VDlo548muaQA=
+X-Received: by 10.200.50.194 with SMTP id a2mr18845502qtb.172.1521477527687;
+	Mon, 19 Mar 2018 09:38:47 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3954d04-11bd-4126-6581-08d58db06ff8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2018 15:45:27.4634 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1287
-X-OriginatorOrg: intel.com
-Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1cxMuKAmTE4?=
+Received: by 10.12.130.100 with HTTP; Mon, 19 Mar 2018 09:38:47 -0700 (PDT)
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Mon, 19 Mar 2018 17:38:47 +0100
+Message-ID: <CAGAf8Lzv-vjN2j1TkF33GkC9qjNSzqBSpvHkUoyS_5kd=oJAjQ@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Quick hack for compiling old and outdated YOCTO Jethro for Renesas iwg20m
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -110,521 +68,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2018 15:45:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY4PR11MB17663B664B1ED6ADE96BC48AC7D40CY4PR11MB1766namp_"
+X-List-Received-Date: Mon, 19 Mar 2018 16:38:51 -0000
+Content-Type: multipart/alternative; boundary="001a114114fe9260b70567c69765"
 
---_000_CY4PR11MB17663B664B1ED6ADE96BC48AC7D40CY4PR11MB1766namp_
-Content-Type: text/plain; charset="Windows-1252"
+--001a114114fe9260b70567c69765
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+I have to do some job on the Renesas iwg20m platform. From this site:
+https://elinux.org/RZ-G/Boards/Yocto_2.0
+
+I found some explanation how to do YOCTO build, which I a bit modified
+(conf/local.conf).
+
+It does download all the packages, but it fails here (in *RED*):
+
+[vuser@localhost conf]$ bitbake core-image-minimal
+WARNING: Host distribution "Fedora-27" has not been validated with this
+version of the build system; you may possibly experience unexpected
+failures. It is recommended that you use a tested distribution.
+Loading cache: 100%
+|############################################################################################|
+ETA:  00:00:00
+Loaded 2160 entries from dependency cache.
+WARNING: No recipes available for:
+
+/home/vuser/projects2/iwg20m/build/../meta-renesas/meta-rzg1/recipes-qt/qt5/qtmultimedia_git.bbappend
+
+/home/vuser/projects2/iwg20m/build/../meta-renesas/meta-rzg1/recipes-qt/qt5/qtbase_git.bbappend
+
+/home/vuser/projects2/iwg20m/build/../meta-renesas/meta-rzg1/recipes-qt/qt5/qtwayland_git.bbappend
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION        = "1.28.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-27"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "skrzg1m"
+DISTRO            = "poky"
+DISTRO_VERSION    = "2.0.1"
+TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa15"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "tmp:3b223f75eec1738fbc913858e8e11c8305e3edcb"
+meta-oe           = "tmp:dc5634968b270dde250690609f0015f881db81f2"
+meta-yocto-bsp    = "tmp:3b223f75eec1738fbc913858e8e11c8305e3edcb"
+meta-rzg1         = "yocto_2.0:a6c3c79635bd5ee309fc3c62d36b1707086d9136"
+meta-linaro-toolchain = "tmp:12993e6bc8658ee37d303d8d59007f8dd9ab2b30"
+
+NOTE: Preparing RunQueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: oe_runmake failed
+ERROR: Function failed: do_compile (log file is located at
+/home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.30440)
+ERROR: Logfile of failure stored in:
+/home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.30440
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 4
+
+
+
+
+
+
+*| : && /usr/bin/mkdir -p doc && {
+PATH='/home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/automake-native/1.15-r0/build/t/wrap:'$PATH
+&& export PATH; } && /usr/bin/perl
+/home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/automake-native/1.15-r0/automake-1.15/doc/help2man
+--output=doc/automake-1.15.1 automake-1.15| help2man: can't get `--help'
+info from automake-1.15| Try `--no-discard-stderr' if option outputs to
+stderr| make: *** [Makefile:3687: doc/automake-1.15.1] Error 255| ERROR:
+oe_runmake failed| ERROR: Function failed: do_compile (log file is located
+at
+/home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/automake-native/1.15-r0/temp/log.do_compile.30440)ERROR:
+Task 283
+(virtual:native:/home/vuser/projects2/iwg20m/build/../poky/meta/recipes-devtools/automake/automake_1.15.bb
+<http://automake_1.15.bb>, do_compile) failed with exit code '1'*
+NOTE: Tasks Summary: Attempted 699 tasks of which 697 didn't need to be
+rerun and 1 failed.
+No currently running tasks (527 of 2182)
+
+Summary: 1 task failed:
+
+virtual:native:/home/vuser/projects2/iwg20m/build/../poky/meta/recipes-devtools/automake/
+automake_1.15.bb, do_compile
+Summary: There were 2 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+[vuser@localhost conf]$
+_______
+
+My question is: does anybody know quick hack how to fix this error? Seems,
+that it fails while generating doc files... How I can disable doc
+generation for this, maybe some generic way for any package?
+
+Thank you,
+Zoran
+_______
+
+--001a114114fe9260b70567c69765
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Current Dev Position: YP 2.5 M3 final close out.
-
-Next Deadline: YP 2.5 M3 cut off was 2/19/18
-
-*** FEATURE FREEZE for 2.5 has passed ***
-
-
-SWAT lead is currently Ross.
-
-SWAT team rotation: Armin -> Ross on March 23, 2018
-
-SWAT team rotation: Ross -> Juro on March 30, 2018
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-  *   YP 2.4.2 was released: https://lists.yoctoproject.org/pipermail/yocto=
-/2018-March/040282.html
-  *   Meta-intel 8.1 was released: https://lists.yoctoproject.org/pipermail=
-/meta-intel/2018-March/005261.html
-  *   We=92ve realised we were going to run into problems with distros adop=
-ting glibc 2.27, if not now, during the next release cycle. We therefore de=
-cided to head off this problem and try and fix the issues now. Unfortunatel=
-y, due to locale changes in 2.27, it also breaks our eSDK in the current an=
-d all previous releases. We have fixes in master for this (thanks Ross!) an=
-d backports ready for rocko and pyro in the -next branches. Morty is provin=
-g harder to fix. We believe it is likely better to fix these issue even if =
-the changes are invasive (they are at least mostly contained to the SDKs).
-
-  *   The gcc 6.x changes were merged into rocko/pyro/morty which means poi=
-nt releases are now unblocked by that issue.
-  *   The performance issue reported last week was tracked down to a kernel=
- change which was reverted.
-  *   The new buildbot autobuilder instance is working with basic functiona=
-lity. We therefore plan to run the M3 release build on that infrastructure =
-with a view to using it for the main 2.5 release. It was great to be able t=
-o report an issue upstream and be using their latest code! The autobuilder =
-functionality is improved in at least two significant ways already which be=
-nefit the maintainers.
-  *   We really do need to roll M3 now, our current plan is to test the fin=
-al changes in mut and then run M3 with this. It is not a perfect set of fea=
-tures, many things simply haven=92t made it in as the people doing review a=
-re overloaded. We=92re too far past the freeze deadline to realistically ma=
-ke any further progress with this though.
-  *   ELC was productive and there was a lot of good discussion between the=
- people there about many different things. In particular we have some ideas=
- for improving the project=92s build infrastructure to allow more builds in=
-cluding other layers. More info will follow as we build the plans to make t=
-hat happen.
-
-
-Planned upcoming dot releases:
-
-YP 2.3.4 (Pyro) will be built after 2.5 M3
-
-YP 2.2.4 (Morty) will be built after 2.5 M3 once the glibc 2.27 issue is fi=
-xed
-
-YP 2.4.3 (Rocko) is planned for post YP 2.5.
-
-
-Key YP 2.5 Dates are:
-
-YP 2.5 M3 is in feature freeze.  See status above.
-
-YP 2.5 M3 was scheduled for release 3/2/18
-
-YP 2.5 M4 cut off of 4/2/18
-
-YP 2.5 M4 release of 4/27/18
-
-
-Tracking Metrics:
-
-            WDD 2673 (last week 2673)
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features
-
-
-The Status reports are now stored on the wiki at: https://wiki.yoctoproject=
-.org/wiki/Weekly_Status
-
-
-[If anyone has suggestions for other information you=92d like to see on thi=
-s weekly status update, let us know!]
-
-
-
-
-
-Robin Jordan
-
-Yocto Project Program Manager
-
-
---_000_CY4PR11MB17663B664B1ED6ADE96BC48AC7D40CY4PR11MB1766namp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;
-	font-weight:normal;
-	font-style:normal;
-	text-decoration:none none;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:17434137;
-	mso-list-template-ids:402580926;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:768934452;
-	mso-list-template-ids:1928618722;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Current Dev Position: YP 2.5 M3 fin=
-al close out.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Next Deadline: YP 2.5 M3 cut off wa=
-s 2/19/18</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">*** FEATURE FREEZE for 2.5 has pass=
-ed ***</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT lead is currently Ross.</span>=
-<o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Armin -&gt; Ros=
-s on March 23, 2018</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">SWAT team rotation: Ross -&gt; Juro=
- on March 30, 2018</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-family:=
-Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Build_Fail=
-ure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key Status/Updates:</span><o:p></o:=
-p></p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
-01pt;mso-list:l0 level1 lfo1;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">YP 2.4.2 was relea=
-sed: <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2018-March/0=
-40282.html">
-<span style=3D"color:#1155CC">https://lists.yoctoproject.org/pipermail/yoct=
-o/2018-March/040282.html</span></a>
-<o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;margin-botto=
-m:0in;margin-bottom:.0001pt;mso-list:l0 level1 lfo1;vertical-align:baseline=
-">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">Meta-intel 8.1 was=
- released: <a href=3D"https://lists.yoctoproject.org/pipermail/meta-intel/2=
-018-March/005261.html">
-<span style=3D"color:#1155CC">https://lists.yoctoproject.org/pipermail/meta=
--intel/2018-March/005261.html</span></a>
-<o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;margin-botto=
-m:0in;margin-bottom:.0001pt;mso-list:l0 level1 lfo1;vertical-align:baseline=
-">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">We=92ve realised w=
-e were going to run into problems with distros adopting glibc 2.27, if not =
-now, during the next release cycle. We therefore decided to head off this p=
-roblem and try and fix the issues now. Unfortunately,
- due to locale changes in 2.27, it also breaks our eSDK in the current and =
-all previous releases. We have fixes in master for this (thanks Ross!) and =
-backports ready for rocko and pyro in the -next branches. Morty is proving =
-harder to fix. We believe it is
- likely better to fix these issue even if the changes are invasive (they ar=
-e at least mostly contained to the SDKs).<o:p></o:p></span></li></ul>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li style=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.00=
-01pt;mso-list:l1 level1 lfo2;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">The gcc 6.x change=
-s were merged into rocko/pyro/morty which means point releases are now unbl=
-ocked by that issue.<o:p></o:p></span></li><li style=3D"color:black;margin-=
-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l1 level1 lfo2;ver=
-tical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">The performance is=
-sue reported last week was tracked down to a kernel change which was revert=
-ed.<o:p></o:p></span></li><li style=3D"color:black;margin-top:0in;margin-bo=
-ttom:0in;margin-bottom:.0001pt;mso-list:l1 level1 lfo2;vertical-align:basel=
-ine">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">The new buildbot a=
-utobuilder instance is working with basic functionality. We therefore plan =
-to run the M3 release build on that infrastructure with a view to using it =
-for the main 2.5 release. It was great to be
- able to report an issue upstream and be using their latest code! The autob=
-uilder functionality is improved in at least two significant ways already w=
-hich benefit the maintainers.<o:p></o:p></span></li><li style=3D"color:blac=
-k;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-list:l1 level1=
- lfo2;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">We really do need =
-to roll M3 now, our current plan is to test the final changes in mut and th=
-en run M3 with this. It is not a perfect set of features, many things simpl=
-y haven=92t made it in as the people doing review
- are overloaded. We=92re too far past the freeze deadline to realistically =
-make any further progress with this though.<o:p></o:p></span></li><li style=
-=3D"color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001pt;mso-=
-list:l1 level1 lfo2;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,sans-serif">ELC was productive=
- and there was a lot of good discussion between the people there about many=
- different things. In particular we have some ideas for improving the proje=
-ct=92s build infrastructure to allow more builds
- including other layers. More info will follow as we build the plans to mak=
-e that happen.<o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Planned upcoming dot releases:</spa=
-n><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.3.4 (Pyro) will be built after=
- 2.5 M3</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.2.4 (Morty) will be built afte=
-r 2.5 M3 once the glibc 2.27 issue is fixed</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.4.3 (Rocko) is planned for pos=
-t YP 2.5.</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key YP 2.5 Dates are:</span><o:p></=
-o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M3 is in feature freeze. &nb=
-sp;See status above.</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M3 was scheduled for release=
- 3/2/18</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 cut off of 4/2/18</span><=
-o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">YP 2.5 M4 release of 4/27/18</span>=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Tracking Metrics:</span><o:p></o:p>=
-</p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:black">&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color=
-:black">WDD 2673 (last week 2673)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-family:Consolas;color:black">(</span><a href=3D"https://wiki.yocto=
-project.org/charts/combo.html"><span style=3D"font-family:&quot;Arial&quot;=
-,sans-serif;color:#1155CC">https://wiki.yoctoproject.org/charts/combo.html<=
-/span></a><span style=3D"font-family:Consolas;color:black">)</span><o:p></o=
-:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Key Status Links for YP:</span><o:p=
-></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v2.5_Status"><span style=3D"font-family:Cons=
-olas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_S=
-tatus</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.5_Schedule"><span style=3D"font-family:Consolas;co=
-lor:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule</span></=
-a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_2.5_Features"><span style=3D"font-family:Consolas;co=
-lor:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features</span></=
-a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">The Status reports are now stored o=
-n the wiki at:
-</span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span s=
-tyle=3D"font-family:&quot;Arial&quot;,sans-serif;color:#1155CC">https://wik=
-i.yoctoproject.org/wiki/Weekly_Status</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">[If anyone has suggestions for othe=
-r information you=92d like to see on this weekly status update, let us know=
-!]<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Robin Jordan<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-family:&q=
-uot;Arial&quot;,sans-serif;color:black">Yocto Project Program Manager</span=
-><o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:14.0pt"><o:p>&nbsp;</o:p></=
-span></p>
+<div dir=3D"ltr"><div><div><div>Hello,<br><br>I have to do some job on the =
+Renesas iwg20m platform. From this site:<br><a href=3D"https://elinux.org/R=
+Z-G/Boards/Yocto_2.0">https://elinux.org/RZ-G/Boards/Yocto_2.0</a><br><br>I=
+ found some explanation how to do YOCTO build, which I a bit modified (conf=
+/local.conf).<br><br>It does download all the packages, but it fails here (=
+in <span style=3D"color:rgb(255,0,0)"><i><b>RED</b></i></span>):<br><br>[vu=
+ser@localhost conf]$ bitbake core-image-minimal<br>WARNING: Host distributi=
+on &quot;Fedora-27&quot; has not been validated with this version of the bu=
+ild system; you may possibly experience unexpected failures. It is recommen=
+ded that you use a tested distribution.<br>Loading cache: 100% |###########=
+###########################################################################=
+######| ETA: =C2=A000:00:00<br>Loaded 2160 entries from dependency cache.<b=
+r>WARNING: No recipes available for:<br>=C2=A0 /home/vuser/projects2/iwg20m=
+/build/../meta-renesas/meta-rzg1/recipes-qt/qt5/qtmultimedia_git.bbappend<b=
+r>=C2=A0 /home/vuser/projects2/iwg20m/build/../meta-renesas/meta-rzg1/recip=
+es-qt/qt5/qtbase_git.bbappend<br>=C2=A0 /home/vuser/projects2/iwg20m/build/=
+../meta-renesas/meta-rzg1/recipes-qt/qt5/qtwayland_git.bbappend<br>NOTE: Re=
+solving any missing task queue dependencies<br><br>Build Configuration:<br>=
+BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;1.28.0&quot;<br>BUILD_SYS =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;x86_64-linux&quot;<br>NATIVELSBSTRING=
+ =C2=A0 =3D &quot;Fedora-27&quot;<br>TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+=3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =3D &quot;skrzg1m&quot;<br>DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0=3D &quot;poky&quot;<br>DISTRO_VERSION =C2=A0 =C2=A0=3D &quot;=
+2.0.1&quot;<br>TUNE_FEATURES =C2=A0 =C2=A0 =3D &quot;arm armv7a vfp neon ca=
+llconvention-hard cortexa15&quot;<br>TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+=3D &quot;vfp-neon&quot;<br>meta =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<=
+br>meta-yocto =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;tmp:3b223f75eec1738fbc91=
+3858e8e11c8305e3edcb&quot;<br>meta-oe =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=3D &quot;tmp:dc5634968b270dde250690609f0015f881db81f2&quot;<br>meta-yocto-=
+bsp =C2=A0 =C2=A0=3D &quot;tmp:3b223f75eec1738fbc913858e8e11c8305e3edcb&quo=
+t;<br>meta-rzg1 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;yocto_2.0:a6c3c79635b=
+d5ee309fc3c62d36b1707086d9136&quot;<br>meta-linaro-toolchain =3D &quot;tmp:=
+12993e6bc8658ee37d303d8d59007f8dd9ab2b30&quot;<br><br>NOTE: Preparing RunQu=
+eue<br>NOTE: Executing SetScene Tasks<br>NOTE: Executing RunQueue Tasks<br>=
+ERROR: oe_runmake failed<br>ERROR: Function failed: do_compile (log file is=
+ located at /home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/automa=
+ke-native/1.15-r0/temp/log.do_compile.30440)<br>ERROR: Logfile of failure s=
+tored in: /home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/automake=
+-native/1.15-r0/temp/log.do_compile.30440<br>Log data follows:<br>| DEBUG: =
+Executing shell function do_compile<br>| NOTE: make -j 4<br><span style=3D"=
+color:rgb(255,0,0)"><i><b>| : &amp;&amp; /usr/bin/mkdir -p doc &amp;&amp; {=
+ PATH=3D&#39;/home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/autom=
+ake-native/1.15-r0/build/t/wrap:&#39;$PATH &amp;&amp; export PATH; } &amp;&=
+amp; /usr/bin/perl /home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux=
+/automake-native/1.15-r0/automake-1.15/doc/help2man --output=3Ddoc/automake=
+-1.15.1 automake-1.15<br>| help2man: can&#39;t get `--help&#39; info from a=
+utomake-1.15<br>| Try `--no-discard-stderr&#39; if option outputs to stderr=
+<br>| make: *** [Makefile:3687: doc/automake-1.15.1] Error 255<br>| ERROR: =
+oe_runmake failed<br>| ERROR: Function failed: do_compile (log file is loca=
+ted at /home/vuser/projects2/iwg20m/build/tmp/work/x86_64-linux/automake-na=
+tive/1.15-r0/temp/log.do_compile.30440)<br>ERROR: Task 283 (virtual:native:=
+/home/vuser/projects2/iwg20m/build/../poky/meta/recipes-devtools/automake/<=
+a href=3D"http://automake_1.15.bb">automake_1.15.bb</a>, do_compile) failed=
+ with exit code &#39;1&#39;</b></i></span><br>NOTE: Tasks Summary: Attempte=
+d 699 tasks of which 697 didn&#39;t need to be rerun and 1 failed.<br>No cu=
+rrently running tasks (527 of 2182)<br><br>Summary: 1 task failed:<br>=C2=
+=A0 virtual:native:/home/vuser/projects2/iwg20m/build/../poky/meta/recipes-=
+devtools/automake/<a href=3D"http://automake_1.15.bb">automake_1.15.bb</a>,=
+ do_compile<br>Summary: There were 2 WARNING messages shown.<br>Summary: Th=
+ere were 2 ERROR messages shown, returning a non-zero exit code.<br>[vuser@=
+localhost conf]$<br>_______<br><br></div>My question is: does anybody know =
+quick hack how to fix this error? Seems, that it fails while generating doc=
+ files... How I can disable doc generation for this, maybe some generic way=
+ for any package?<br><br></div>Thank you,<br></div>Zoran<br>_______<br><br>=
 </div>
-</body>
-</html>
 
---_000_CY4PR11MB17663B664B1ED6ADE96BC48AC7D40CY4PR11MB1766namp_--
+--001a114114fe9260b70567c69765--
