@@ -1,65 +1,65 @@
-Return-Path: <trini@konsulko.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 115CEE00C76; Mon, 19 Mar 2018 13:47:29 -0700 (PDT)
+	id 7CE5EE00A1E; Mon, 19 Mar 2018 14:32:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.182 listed in list.dnswl.org]
-Received: from mail-qt0-f182.google.com (mail-qt0-f182.google.com
-	[209.85.216.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 913F5E0070F
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 13:47:28 -0700 (PDT)
-Received: by mail-qt0-f182.google.com with SMTP id j4so19495975qth.8
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 13:47:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=t85aY+BWR84/b7U3kWZO0gfUVPLbF9MtMUu6XRIy8SM=;
-	b=JJZhGlhvVHLbC6ltBIHskHY9q0E3c+pvHya/MFXQlgPTZCxH5HjKA6AJdDEDn80k7h
-	QcoUVKLBVmBqLbEMdSfoIpSz3XGjD7LuNX72dJ8pE8F3qg29f7fkyk5nXW/tisM+YOJm
-	NgeDsUlkj8uTI0GHIBz6FPRRO6TU26/FgdU4U=
+Received: from mail-wm0-f47.google.com (mail-wm0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49BEAE00529
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 14:32:40 -0700 (PDT)
+Received: by mail-wm0-f47.google.com with SMTP id e194so17759490wmd.3
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 14:32:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=gyj/F4VKWOc1a1k4RymVyDA2bOUzd1J0Y+Ran8wezwk=;
+	b=KnhzYdIo+ifAnzJIQgsKnhX56qnXDwdFfT9FaLwJfSAp8oLtCeo6S8A9h0Gsvjy693
+	4bCmKbUCPXddBi/8DtjDNvnxaA6fFvUYK/8IZu5t23C3xEuXzoOCAd/ZSdNc65oSss8I
+	cR2vbAAFhbdNAr/Z9Fy1bSqXwzI6V6rJa2IqdB7ZgZlhYSJXWKyvMjVNCi6dgQevScFu
+	XecLb9oTDqTHh3w1oFtFVYPV77loar8zHyZHCn1GQPAm/qnacvQtwLDvh/EiSSZ9i5Pq
+	Rzd+nffYRpN7KZwudtD5oXUlJVUEU1hJaqQ5tsqVh4D9/5JFSRMI27HZ/HtxTWDhGN65
+	ezdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=t85aY+BWR84/b7U3kWZO0gfUVPLbF9MtMUu6XRIy8SM=;
-	b=BYUyddBEvIJoTt4J6uvWUz2O4fEjw5XyDcDe7G4g66WL83sSgDYo3V0OrLw5CL+M9L
-	3Xu0RuhBl9YhOii/DppZ5DrOAAt1PadRhmUAfzlN2gXt2x3WUy8Da4dVnkRP0AcwW9Qi
-	BaXm/GpyYL9soqJnIWheBAGyb5Kq46x4v4w10XGVjNYHml7h9NK0yTJKz5ivBIr3xhFw
-	fPD8Pfwv/Ppi/1TQWlwsTvSMdFWqQQdCeycFMm7i1HZPQcM+WDWXQkmZo2M0fWfPdDrO
-	uZkyQWvjsxSRs6ruRPiiLPr1eefx9iyf3yQzxZ+3AHaSoZ1QzEwMoXQrSWJ6EMQDx7bu
-	lYUQ==
-X-Gm-Message-State: AElRT7HI59FIWMLquDgeGdF5RXul5o2MzcQZIZYVfm36k+FuD4xmf7/Z
-	jjmBvpt0A69ckHiheQOREDzLMw==
-X-Google-Smtp-Source: AG47ELsUvQMm4zbgfatrMXLW8FpaDW4y8zr78kvuXOF4eRz/pLQDI2zRNTS29K3TsUCMRBxY5EhN7g==
-X-Received: by 10.237.36.167 with SMTP id t36mr20660922qtc.136.1521492447553; 
-	Mon, 19 Mar 2018 13:47:27 -0700 (PDT)
-Received: from bill-the-cat.ec.rr.com (cpe-65-184-142-68.ec.res.rr.com.
-	[65.184.142.68])
-	by smtp.gmail.com with ESMTPSA id t43sm59822qte.47.2018.03.19.13.47.26
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 19 Mar 2018 13:47:27 -0700 (PDT)
-Date: Mon, 19 Mar 2018 16:47:25 -0400
-From: Tom Rini <trini@konsulko.com>
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Message-ID: <20180319204725.GA4418@bill-the-cat.ec.rr.com>
-References: <CAGAf8Lzv-vjN2j1TkF33GkC9qjNSzqBSpvHkUoyS_5kd=oJAjQ@mail.gmail.com>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=gyj/F4VKWOc1a1k4RymVyDA2bOUzd1J0Y+Ran8wezwk=;
+	b=Tj5dJY/qciRBRWJ3JMH4tSQf2mvumUyAoEQ96lE5heIuLcUQiQBON1z2mBqzzQgP9w
+	2XI+nmuXx40ZrUVhqliyEr8o3+kwSnOib5yR3GHk7Px4y6UwHhrHrDAAF1XGOv5MgurI
+	mZikhxImehds9kExl8uFs+unPL5SIYHD+k/jMb/tjzocvEUuAlQh+eYhyRTEBs0rUDaF
+	v3BzSjYr/jua7xT9qjg91JcYmY8DVvcv6C+5VCtPnZf+pXVIrTEzgOUorkF49EKBmAyK
+	RrxddgOjqdt4nM9gxvd5ksDVS2qw8kJRIeM/+IF11bKLc4Rzi2u0MZ4O6r+11mVdXiAS
+	jZOQ==
+X-Gm-Message-State: AElRT7FSN9orkgegKeK/0t6sREIfkP5yfDs6BwESuCdS5wJ6orBjEe3M
+	R9NdmUEcbaXSPY6kMZ+q/Q4NEQwA0dzvos0163k=
+X-Google-Smtp-Source: AG47ELsk7J/2vYJNoyYBUzhBSYfarvqVqcQPAT5mG0R98o0a/3psWuIUhdE4je4rkyG0kY2StCoaoaxTxUeQxqfBN6k=
+X-Received: by 10.28.176.134 with SMTP id z128mr204294wme.86.1521495160156;
+	Mon, 19 Mar 2018 14:32:40 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAGAf8Lzv-vjN2j1TkF33GkC9qjNSzqBSpvHkUoyS_5kd=oJAjQ@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Quick hack for compiling old and outdated YOCTO Jethro for Renesas iwg20m
+Received: by 10.223.163.65 with HTTP; Mon, 19 Mar 2018 14:32:39 -0700 (PDT)
+In-Reply-To: <6C79F0E5-F966-4068-B0CA-0B2FACB4ACD3@korgrd.com>
+References: <6C79F0E5-F966-4068-B0CA-0B2FACB4ACD3@korgrd.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+Date: Mon, 19 Mar 2018 14:32:39 -0700
+Message-ID: <CAJ86T=UGbOp3MtiMC=rL74qHXLrnVfp0k-CTXcdPqZbeUbCytw@mail.gmail.com>
+To: Steve Pavao <stevep@korgrd.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: ARM CPU version question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,59 +71,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2018 20:47:29 -0000
-X-Groupsio-MsgNum: 40324
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="t+hlxQ2APDzOSz17"
-Content-Disposition: inline
-
---t+hlxQ2APDzOSz17
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 19 Mar 2018 21:32:42 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 19, 2018 at 05:38:47PM +0100, Zoran Stojsavljevic wrote:
-> Hello,
->=20
-> I have to do some job on the Renesas iwg20m platform. From this site:
-> https://elinux.org/RZ-G/Boards/Yocto_2.0
->=20
-> I found some explanation how to do YOCTO build, which I a bit modified
-> (conf/local.conf).
->=20
-> It does download all the packages, but it fails here (in *RED*):
->=20
-> [vuser@localhost conf]$ bitbake core-image-minimal
-> WARNING: Host distribution "Fedora-27" has not been validated with this
-> version of the build system; you may possibly experience unexpected
-> failures. It is recommended that you use a tested distribution.
+On Mon, Mar 19, 2018 at 9:49 AM, Steve Pavao <stevep@korgrd.com> wrote:
+> What=E2=80=99s the recommended way to be able to propogate target-specifi=
+c compile-time CPU tune information to affect the build of a source file in=
+ my own custom layer?
+>
+> For example, if I=E2=80=99m building for an arm6-based target, I=E2=80=99=
+d like to be able to have the __ARM_ARCH_6__ symbol be available when the Y=
+octo system builds my custom layer.  The BSP for such a target obviously de=
+fines this symbol when building its files for such a target.  Is there an e=
+asy way to propagate this information to my own custom layer, to affect my =
+own sources?  Maybe my recipe needs to include certain conf files from othe=
+r layers such as meta or the BSP layer?
 
-This is your biggest warning and source of problems.  If you have to
-work with an old version of Yocto, you need to setup a
-VM/chroot/whatever of a supported at that time host distribution.
+This kind of macro is typically defined internally by gcc, depending
+on the -mcpu etc options passed on the gcc command line, ie options
+which are included in the ${CC} definition setup by OE.
 
---=20
-Tom
+Therefore all you normally need to do is ensure that the Makefiles etc
+for the components in your custom layer all correctly respect OE's
+definition of ${CC}.
 
---t+hlxQ2APDzOSz17
-Content-Type: application/pgp-signature; name="signature.asc"
+A typical bug in handcrafted Makefiles is to force CC to (e.g. CC =3D
+"$(CROSS_COMPILE)gcc") and lose the original value passed via the
+environment.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
+> Currently, I notice that architecture-level symbols are available to my c=
+ustom layer at compile time, such as __aarch64_ and __arm__, but not CPU tu=
+ne information, such as __ARM_ARCH_6__.
 
-iQIcBAEBAgAGBQJasCHdAAoJEIf59jXTHXZSllAP/0EzYnYtRX1rXNp3D0wH++N4
-Q7ZMlLsfN7y/x0NNabjGdK4YsXqwBWMlVK20xUxG0xQmUotHg7JrYFDWbYvye9OQ
-N+RsfOwKgMIEdz1MXB0ZAMzibW/zDBCO+FhyCHUGszLNmLVqplFM4FD99Xa968QX
-DOp7siZCjORldZp7gwyR8oHFNOaTlaDdLIRPQvGWBqwdsbC+xaJsbJSuqcYm8rjF
-VXKhubBrpxanORE+iOq21oXg1r9GaGaJ3bJaRW8kOEcEJi6/qIAbu25m33C3yGTf
-5CuFMv73wVEZJBdDn5qhCkSyJLogFvEAVxVU5QpJE5BoV/4OGkg38h5EJ+DQ8hrB
-WNhD1UfGE4Wm3h4OXQPAnMZargJlnups1pF5qP0r95Qvs8bGlSW5GNWtoumazTuf
-0GtWzQ7RDCGBGr5N/X6ERlkHO7aWgcrJI9fDm8x/sSqpKt0TKz24xLUeEXwr8/pY
-AuUWcGzmhVWcbIddapwCBMAWINWcjbO8VSg5vQaXizCNiJUs9p3hVss2IZSSf2B/
-mz1A31h+A9kd6Q3RfOo90His6MNhTk3mePlsg66k3XsbdTtmjy3VXmSgsSGGDy7M
-uaGSBYy6OjQHsu6Sl5OgRqYJtF8aNOyyGGM0RUVgsugIjUqPA9L2X80jGAie+EX7
-jvF9IdRaksWUe+LC9UT/
-=FOhs
------END PGP SIGNATURE-----
+The exact set of macros defined by gcc will vary depending on exactly
+which ARMv6 CPU you are targeting (and to some extent, which version
+of gcc you are using). If you have code which needs to be enabled for
+any ARMv6 target then you may have to test multiple macros. For
+example see the way in which openssl defines __ARM_ARCH__
 
---t+hlxQ2APDzOSz17--
+  https://github.com/openssl/openssl/blob/master/crypto/arm_arch.h
+
+> - Steve Pavao
+> Korg R&D
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
