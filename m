@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93CD0E00AE4; Tue, 20 Mar 2018 03:53:05 -0700 (PDT)
+	id 76B06E00BB6; Tue, 20 Mar 2018 03:55:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,60 +8,57 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.181 listed in list.dnswl.org]
+	*      [209.85.223.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08D3EE0070F
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2018 03:53:04 -0700 (PDT)
-Received: by mail-io0-f181.google.com with SMTP id v13so1768113iob.6
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2018 03:53:04 -0700 (PDT)
+Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49225E008D2
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2018 03:55:21 -0700 (PDT)
+Received: by mail-io0-f182.google.com with SMTP id b20so1786309iof.5
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2018 03:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=TBCS8gHgkBSThWWVNQ3g+aKqgWv6hBYqtjDPgBkfSKQ=;
-	b=NlBMwt39y2Tc57368wuZFFWpYvqWqxeT8HVxQAPgCsYuS4opOxSBOM5Ee9myQ62vZa
-	R9grBwMZUKDZtr4PKOv46J8SLg4lUG16luKdA2wGu4I0NZ3dXe0Ywe1oxnDwJaaAqi6P
-	SB2y2PlMcSPU7Vbi7comR1y7SpYcpPzDV6STsk/v37xlhmXaSkYw9gOpG0og0Qie1B49
-	TCzKGGZ1aGfEV23NZrOKPKH+jz9ty9VcfvEt7ojqkphqEEg1O8dXHMqKgjkzDZz+ywfk
-	JOBXMpqU9hurihIG261G9+IUy//+tM0WY/M78q8tHZOVp/whUVjNNsXTmtqSz6UjGKCt
-	4tKw==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=bl15gda4LyoMSWg7v4tO3eLFho6ExZFuhE6d3tahQDs=;
+	b=cXjkVDx4JeVmjfKA+qVWklwxdYboy7k1QUqYN4HgCE8tK702JuQyybcIjyi+9JvLp5
+	+70WmG4TyrKOMIWKCkpn0xu9YUB3j0Iy5mWZXxplY90WjmXaOFBUEeahDU7f6L6zgfsJ
+	L+Ri3XPcdPkZvMv1iLymX43TjV4zO130R8REosNbkQg1Bnsv78B/npUTFaNWyoD6URku
+	3iFTWFtNl6TBS2o7z7MnCX8abnh69WziRTgwHSEczenzz81lxCrdaYIU1l1XaQb5mM7M
+	dUjjhLHGPdMvoDaNDjVaSDNeVnKobXamh+GT4wxqgesVigL/dIvrArmAcZkki7xowtEg
+	/BZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=TBCS8gHgkBSThWWVNQ3g+aKqgWv6hBYqtjDPgBkfSKQ=;
-	b=GjDLdobKXsdkBsrQZS6GBH3aMBU/lfFeE2md85MGh4XwO/nRa67KFRLVJnGTZ3qb2G
-	Sd0E+1uJWjk6VsaUuYTkQOK16usgWFDWIX3btnjE2GW8L14+b18YbWXMrT+pJ+66RGmm
-	qJLcw4PfSdQAHhpwwItRVCNweVcSDhTG7NzIMrc6S7CqpZ8iZ6N/T0R5rY+vaeABNRLp
-	ASPhBEJvHRgNjMXT7zGum9ciVJGlmrkiwPqksOBuz+1E3xL/sXyN/yWDB/1VSDHgjktk
-	4TJR3rWyfDnWmTqbMvfxawVwVUvBhL9QlEYRFXNWKP1q5I5F+/hgyDQzX/iJgJhAP7Gh
-	CfKw==
-X-Gm-Message-State: AElRT7FsjzEQfOseHsZzE/uxwMeFR+YHBMRMNcHwIE+1g9kPLMeSho+C
-	1QujpUbEkcWh285oc8Zb2Rsg9y/MiRlA2ZPtAhZpZw==
-X-Google-Smtp-Source: AG47ELthlwhH+nEsGDgj23CPqEFoJ2NZ7XsR7JR61Tq7JSuNqutSf2DTQwluYDSJJex3VshSRdEqLdBUW7KJrenBju4=
-X-Received: by 10.107.6.231 with SMTP id f100mr16193554ioi.23.1521543184095;
-	Tue, 20 Mar 2018 03:53:04 -0700 (PDT)
+	:message-id:subject:to;
+	bh=bl15gda4LyoMSWg7v4tO3eLFho6ExZFuhE6d3tahQDs=;
+	b=CnDIH5sJtJ5eZx2vEpy8FCUurQZyDYB73fP/wudDGtR8Uo7hG70by6hXp3FBoZ7uO1
+	MRc3d/AeChILjjHemGUfUoKuBB0qH0peUKNhKDDpwQQX1LMeCvza+ePn6dNGUJ4RbhSJ
+	nWMsThxXBLktRLuVFbp/a4pEHSGXuXYd/DdW096uLYaPLg5lJtkiCgN9v0g3lEhmSoQ6
+	ZYYZB0WRxnFqIDlwMg9t5wYEcgt3L2BPVlgTEWBBj8qb2IlSypowvZ11Vy4H4KKrY2JC
+	KMw9CjU4m9eNHekUjYgSZAHtJe37Q6IX1f/++brU3HGD7Q2MnViI9xb6P5wj5dx4ZsTp
+	wdUA==
+X-Gm-Message-State: AElRT7FZMx5cboGJLwBp48/YP64S9D0QEtvKGNiySzUT/Dj/CE7m63Dk
+	O3sMzKViWW5KuccolCl8ksC7n4/sAyFnaWvlW31fYg==
+X-Google-Smtp-Source: AG47ELs8j4ypxSWVesQAs1xxctKvn/BIhbwB9rIGyzPFQrypAVR18eNy9b/EqCT5RfFLaQWmBbKKnPUzrONNQq9Wr0w=
+X-Received: by 10.107.183.4 with SMTP id h4mr15586952iof.201.1521543321207;
+	Tue, 20 Mar 2018 03:55:21 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.30.9 with HTTP; Tue, 20 Mar 2018 03:52:43 -0700 (PDT)
-In-Reply-To: <833712e4-00aa-1e05-8df5-a0f9a18d4e29@linux.intel.com>
-References: <CY4PR11MB17663B664B1ED6ADE96BC48AC7D40@CY4PR11MB1766.namprd11.prod.outlook.com>
-	<dd055b01-fe83-d706-bce1-5a2aea3103fe@gmail.com>
-	<CAJTo0LbxDGNrJH8tDiCgMKoSHUsK8Q17BUH=UVkY8zDBAm70+g@mail.gmail.com>
-	<833712e4-00aa-1e05-8df5-a0f9a18d4e29@linux.intel.com>
+Received: by 10.107.30.9 with HTTP; Tue, 20 Mar 2018 03:55:00 -0700 (PDT)
+In-Reply-To: <CAPGMVzEny6KGpsdduj3WUxOW9odJhev86g2p3H0K4p=a3ooDfQ@mail.gmail.com>
+References: <CAPGMVzHgUcWV3TFaTeV40+P=SO2zV-4cjw2oWnB2KsBrozk9Sw@mail.gmail.com>
+	<CAJTo0LYDmdGjrixdE21h_V-8PvnbZEJ5kPqxSL3F72eofm6cFA@mail.gmail.com>
+	<CAPGMVzEny6KGpsdduj3WUxOW9odJhev86g2p3H0K4p=a3ooDfQ@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 20 Mar 2018 10:52:43 +0000
-Message-ID: <CAJTo0LadpoW1BCCbfhsEac7PBV2qNxuiWrnRk6MZeV2DVWiDEA@mail.gmail.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: =?UTF-8?B?UmU6IFtPRS1jb3JlXSBZb2N0byBQcm9qZWN0IFN0YXR1cyBXVzEy4oCZMTg=?=
+Date: Tue, 20 Mar 2018 10:55:00 +0000
+Message-ID: <CAJTo0LYRhAEPKSpXreg1JwCw=G3gbr73zXnxjbrMo00GT43OxQ@mail.gmail.com>
+To: Rajath C S <rajathcs.1996@gmail.com>,
+	Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: [OE-core] [oe-core] system lock down in middle of build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,66 +70,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Mar 2018 10:53:05 -0000
-Content-Type: multipart/alternative; boundary="001a113f9be4ffbcb90567d5e007"
+X-List-Received-Date: Tue, 20 Mar 2018 10:55:23 -0000
+Content-Type: multipart/alternative; boundary="94eb2c0b8e082bebec0567d5e9a4"
 
---001a113f9be4ffbcb90567d5e007
+--94eb2c0b8e082bebec0567d5e9a4
 Content-Type: text/plain; charset="UTF-8"
 
-On 20 March 2018 at 10:07, Alexander Kanavin <
-alexander.kanavin@linux.intel.com> wrote:
+Please remember to reply to the list, not the person to who sent the mail.
 
-> On 03/19/2018 10:07 PM, Burton, Ross wrote:
+On 20 March 2018 at 04:10, Rajath C S <rajathcs.1996@gmail.com> wrote:
+
+> You are right, it's not actually logging out but a fast reboot occurs.
 >
->>     Do we have a place identified for new changes (2.6) while 2.5
->>     stabilizes.
->>
->>
->> A formal place, no.  I tend to queue stuff in a branch if master isn't
->> taking all of my energy, otherwise the patches will sit on the list until
->> 2.5 releases.  Typically master and sumo branches won't diverge until
->> post-release.
->>
->
-> Which brings me to a question: what is a good schedule and cadence for AUH
-> runs? Currently it's run on the 15th of every odd-numbered month (so
-> January, March, and so on), but I thought of shifting it one month forward,
-> so it doesn't land right in the middle of a feature freeze. Thoughts?
+> Thanks for the info, I'll upgrade my hardware.
 >
 
-How long does a single run take, and why not run it every month?
+This isn't an "upgrade my hardware" issue but a "fix the problem" issue.
+Run memtest86 to see if you have bad RAM.  Watch the system temperature to
+see if its a thermal shutdown.
 
 Ross
 
---001a113f9be4ffbcb90567d5e007
+--94eb2c0b8e082bebec0567d5e9a4
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">On 20 March 2018 at 10:07, Alexander Kanavin <span dir=3D"=
-ltr">&lt;<a href=3D"mailto:alexander.kanavin@linux.intel.com" target=3D"_bl=
-ank">alexander.kanavin@linux.intel.com</a>&gt;</span> wrote:<br><div class=
-=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
-<span class=3D"">On 03/19/2018 10:07 PM, Burton, Ross wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-=C2=A0 =C2=A0 Do we have a place identified for new changes (2.6) while 2.5=
-<br>
-=C2=A0 =C2=A0 stabilizes.<br>
-<br>
-<br>
-A formal place, no.=C2=A0 I tend to queue stuff in a branch if master isn&#=
-39;t taking all of my energy, otherwise the patches will sit on the list un=
-til 2.5 releases.=C2=A0 Typically master and sumo branches won&#39;t diverg=
-e until post-release.<br>
-</blockquote>
-<br></span>
-Which brings me to a question: what is a good schedule and cadence for AUH =
-runs? Currently it&#39;s run on the 15th of every odd-numbered month (so Ja=
-nuary, March, and so on), but I thought of shifting it one month forward, s=
-o it doesn&#39;t land right in the middle of a feature freeze. Thoughts?<br=
-></blockquote><div><br></div><div>How long does a single run take, and why =
-not run it every month?</div><div><br></div><div>Ross=C2=A0</div></div></di=
-v></div>
+<div dir=3D"ltr">Please remember to reply to the list, not the person to wh=
+o sent the mail.<div><br></div><div class=3D"gmail_extra"><div class=3D"gma=
+il_quote">On 20 March 2018 at 04:10, Rajath C S <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:rajathcs.1996@gmail.com" target=3D"_blank">rajathcs.1996@gmail=
+.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"au=
+to">You are right, it&#39;s not actually logging out but a fast reboot occu=
+rs.<div dir=3D"auto"><br></div><div dir=3D"auto">Thanks for the info, I&#39=
+;ll upgrade my hardware.</div></div></blockquote><div><br></div><div>This i=
+sn&#39;t an &quot;upgrade my hardware&quot; issue but a &quot;fix the probl=
+em&quot; issue.=C2=A0 Run memtest86 to see if you have bad RAM.=C2=A0 Watch=
+ the system temperature to see if its a thermal shutdown.</div><div><br></d=
+iv><div>Ross</div></div></div></div>
 
---001a113f9be4ffbcb90567d5e007--
+--94eb2c0b8e082bebec0567d5e9a4--
