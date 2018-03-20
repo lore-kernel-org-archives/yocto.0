@@ -1,67 +1,41 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <Dengke.Du@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E94D5E00DEE; Mon, 19 Mar 2018 17:15:00 -0700 (PDT)
+	id BD108E00CEE; Mon, 19 Mar 2018 19:43:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.196 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (armccurdy[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f196.google.com (mail-wr0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E57AE00DE1
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 17:14:59 -0700 (PDT)
-Received: by mail-wr0-f196.google.com with SMTP id z73so16130124wrb.0
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 17:14:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=64ehH1N/LWpX972rGLSKQfnQy5foYGQYs74E2wGukLg=;
-	b=kXPbH5n8WJM6C3CAQAvoVYveFtFCR5tabNtsDFhGpxE90B0nLPnOMka/IBkD1L6JES
-	E87z0oNGgUE0RTy94XZ0zUe/zoOalMCfrKChV2s5ee6rVKM3w6fxzXrylwbptFnkWJzm
-	n93ylbZmSljrPV8iHBFDw2jXIjMhbeqjZeaAOiB7YbcgF5oQsWxhozmawpkq8IbrdJYX
-	veSuyOihHm8XMvefUTZRIrDG5ExEOQCFzrg4QOgcXhEXc2BqNAmCkz882TsmusHc6PZ7
-	lktayTEYrVPnoXoYbNyWAZ9MZGHTFIrI48in969AfmKKybc16iXd8QPVsAUBaDUE0XLB
-	TX/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=64ehH1N/LWpX972rGLSKQfnQy5foYGQYs74E2wGukLg=;
-	b=GWdNW81DgdI7xPqR5JWkMVQ5q6KkChiT86T7ZegUdaMjksCayYBRpBUjNujLFg1PCU
-	hiOfSy+y+oqW3NnG+0YlRVLpeTBweklkVc/uNzq4B5iuiGYj4zGQAJ2pslMViGVkOrY1
-	bR27EBYhJOdsGg76LdfvKDIN93EbXs4hS5MRYzpU6BmRpAjayZoWCfvaSuUIJ8af9dAe
-	jkS8PzJ2znl+JLqZ3bLEHsGzFxRM7931thXzCW37Y9MjqbszxFLNn4WFJ4vy/JgpMwAc
-	mT2lus6E7IConnvSbeNYvlo2XYv/1nQwADrQLyVkNcHqqr8pi79+U5IKMDLFRnmOKGtR
-	0tMg==
-X-Gm-Message-State: AElRT7HhZYMWUKOyW2uu2J+ftFAHM++WYCKukZRn3iWt1Y1Zc77KcwQA
-	Mk5Xn8bT9voWZ/03jzvbhBGuTIi6C8ZUC0YUM1UYjg==
-X-Google-Smtp-Source: AG47ELs+RUApXAX2me53BMALhkywH6qETBzQCN9UIhgaRLEzaXHgTPGY+q83hpyrLCgKCXhPOk8haztedjMxGhlI4ys=
-X-Received: by 10.223.134.47 with SMTP id 44mr3819257wrv.114.1521504899047;
-	Mon, 19 Mar 2018 17:14:59 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C141E007F2
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 19:43:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id w2K2hfKh004781
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 19 Mar 2018 19:43:41 -0700 (PDT)
+Received: from [128.224.162.189] (128.224.162.189) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
+	Mon, 19 Mar 2018 19:43:40 -0700
+To: r10kindsofpeople <r10kindsofpeople@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <CAE8H0+VGybDX4udg73E24ie-DxK7_bkVPB3xKWer_gtpr885jQ@mail.gmail.com>
+	<CAE8H0+VprE4U2jfnoPJERuuEfDb8rM6oQVnCJdo8QSYt6gCCDw@mail.gmail.com>
+From: Dengke Du <dengke.du@windriver.com>
+Message-ID: <80041285-9116-fbd2-0e4a-972d31878be4@windriver.com>
+Date: Tue, 20 Mar 2018 10:41:23 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-Received: by 10.223.163.65 with HTTP; Mon, 19 Mar 2018 17:14:58 -0700 (PDT)
-In-Reply-To: <156ED905-4814-427E-9F21-8F92AAE0B020@korgrd.com>
-References: <6C79F0E5-F966-4068-B0CA-0B2FACB4ACD3@korgrd.com>
-	<CAJ86T=UGbOp3MtiMC=rL74qHXLrnVfp0k-CTXcdPqZbeUbCytw@mail.gmail.com>
-	<156ED905-4814-427E-9F21-8F92AAE0B020@korgrd.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-Date: Mon, 19 Mar 2018 17:14:58 -0700
-Message-ID: <CAJ86T=Uh4OyoJXyN3tHOSUksWPNohGu_8TSiyrABOxcepr0SPw@mail.gmail.com>
-To: Steve Pavao <stevep@korgrd.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: ARM CPU version question
+In-Reply-To: <CAE8H0+VprE4U2jfnoPJERuuEfDb8rM6oQVnCJdo8QSYt6gCCDw@mail.gmail.com>
+X-Originating-IP: [128.224.162.189]
+Subject: Re: meta-raspberrypi systemd rpi0-w bluetooth startup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,53 +47,244 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Mar 2018 00:15:01 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 20 Mar 2018 02:43:44 -0000
+Content-Type: multipart/alternative;
+	boundary="------------61CF2AAC8EA65CF546E38911"
+Content-Language: en-US
 
-On Mon, Mar 19, 2018 at 4:35 PM, Steve Pavao <stevep@korgrd.com> wrote:
+--------------61CF2AAC8EA65CF546E38911
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+
+For rpi0-w bluetooth, before the commit:
+
+https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-70e4910388c3702c52118d7acf7556e7
+
+the brcm43438.service always failed, because it depends on 
+/dev/ttyAMA0,after that commit, the 'udev-rules-rpi' added to the 
+RDEPENDS for rpi0-w,we
+
+can check it here:
+
+https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-3b2568c620828b0ba653c1070041318aR52
+
+for service brcm43438, but I still use the /dev/ttyAMA0 in it, not 
+/dev/serial1(when I use /dev/serial1, the service failed), the service 
+can start everytime correctly.
+
+
+On 2018年03月19日 02:10, r10kindsofpeople wrote:
+> Update:  I suspect this is not the proper way to do this, but in case 
+> it provides useful information toward a better solution...
+> 1) systemctl disable brcm43438.service
+> 2) modified 99-com.rules to include TAG+="systemd" and 
+> ENV{SYSTEMD_WANTS}="device-brcm43438.service"
+> 3) cp /lib/systemd/system/brcm43438.service 
+> /etc/systemd/system/device-brcm43438.service
+> 4) modified device-brcm43438.service to be as follows:
+> [Unit]
+> Description=Broadcom BCM43438 bluetooth HCI
 >
-> I think I may have discovered a specific situation which is causing the
-> problem to occur for me.  It seems it occurs because I am trying to build a
-> kernel module under the recipes-kernel directory in my custom layer.   A
-> colleague pointed out to me that meta/classes/module.bbclass explicitly
-> unsets CFLAGS and a bunch of other macros in this situation.
-
-OK, but note that the kernel (and kernel modules) are quite different
-to user space in the way that CFLAGS and -mcpu etc are setup. For code
-which runs in user space, these options are set by the OE build
-environment, based on the machine config. For code which runs in
-kernel space, these options come from the kernel build system, based
-on the kernel config.
-
-ie it's quite correct for module.bbclass to unset CFLAGS etc - it
-prevents OE's flags for user space contaminating or conflicting with
-the flags set by the kernel build system.
-
-> Maybe I need to put in some custom shell syntax in my recipe, to export
-> __ARM_ARCH_6__ or to directly define the compiler macro when needed, based
-> on the value of the TARGET variable.  I wonder if there is a better
-> recommended solution than this, though.
-
-__ARM_ARCH_6__ is one of the macros normally set internally by gcc, so
-you shouldn't be trying to set it manually.
-
-Instead, you should probably either:
-
-1) Update your code to test for defined(__ARM_ARCH_6__) ||
-defined(__ARM_ARCH_6K__), since according to:
-
-  https://github.com/torvalds/linux/blob/master/arch/arm/Makefile#L65
-
-the kernel will either pass -march=armv6 or -march=armv6k for ARMv6
-targets (depending on whether or not your kernel config enables
-CONFIG_CPU_32v6K).
-
-2) Update your code to test the generic ARMv6 macro set by the kernel
-build system, ie (__LINUX_ARM_ARCH__ == 6), which should catch all
-ARMv6 targets.
-
-
-> BTW, my kernel module contains conditionally-compiled code for initializing
-> the ARM PMU correctly for each CPU case.
+> [Service]
+> Type=simple
+> ExecStart=/usr/bin/hciattach -n /dev/serial1 bcm43xx 921600 noflow -
+> Restart=on-failure
+>
+> note removal of Before, After, ConditionPath, Install sections and 
+> addition of Restart=on-failure.  This last was to cope with an 
+> intermittent timeout in hciattach.  Suppose I should have tried 
+> increasing the timeout first.
+>
+> This seems to have gotten me to the point of it starting up at least 
+> 10 times successfully.  Bottom line, in my opinion, is that 
+> brcm43438.service is somehow running  before the udev script can 
+> create the symbolic link for /dev/serial1 -> /dev/ttyAMA0 despite the  
+> "After=dev-serial1.device" clause.
+>
+> John
+>
+>
+> On Sat, Mar 17, 2018 at 12:32 PM r10kindsofpeople 
+> <r10kindsofpeople@gmail.com <mailto:r10kindsofpeople@gmail.com>> wrote:
+>
+>     Background:  I'm trying to bring up the pi zero w's bluetooth
+>     using systemd.  Started with rocko and then moved to 'master' of
+>     meta-raspberry pi, sync'd about a week ago after noticing that
+>     there were some recent updates in this area.
+>
+>     There was an initial problem with /dev/serial1 not showing up...I
+>     found udev-rules-rpi.bb <http://udev-rules-rpi.bb>, added it to my
+>     layer, and when it still didn't show up in my rootfs, I punted and
+>     installed it in /etc/udev/rules.d by hand and now /dev/serial1
+>     shows up.  Given time, I can probably fix the recipe on my own, so
+>     moving on.
+>
+>     But brcm43438.service still fails on boot.  Despite having
+>     "After=dev-serial1.device" in the service Unit section, it fails with:
+>
+>     Mar 17 16:21:13 raspberrypi0-wifi systemd[1]: Started Broadcom
+>     BCM43438 bluetooth HCI.
+>     Mar 17 16:21:14 raspberrypi0-wifi hciattach[105]: Can't open
+>     serial port: No such file or directory
+>     Mar 17 16:21:14 raspberrypi0-wifi hciattach[105]: Can't initialize
+>     device: No such file or directory
+>     Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
+>     [[0;1;39mbrcm43438.service: Main process exited, code=exited,
+>     status=1/FAILURE[[0m
+>     Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
+>     [[0;1;39mbrcm43438.service: Unit entered failed state.[[0m
+>     Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
+>     [[0;1;39mbrcm43438.service: Failed with result 'exit-code'.[[0m
+>
+>     If, after booting and ssh'ing into pi, I restart the service, it
+>     starts successfully.
+>
+>     Any hints about what I might change to get the brcm43438.service
+>     to start correctly the first time (every time)?
+>
+>     John
+>
+>
 >
 
+
+--------------61CF2AAC8EA65CF546E38911
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>For rpi0-w bluetooth, before the commit:</p>
+    <p>   
+<a class="moz-txt-link-freetext" href="https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-70e4910388c3702c52118d7acf7556e7">https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-70e4910388c3702c52118d7acf7556e7</a></p>
+    <p>the brcm43438.service always failed, because it depends on
+      /dev/ttyAMA0,after that commit, the 'udev-rules-rpi' added to the
+      RDEPENDS for rpi0-w,we</p>
+    <p>can check it here:</p>
+    <p>   
+<a class="moz-txt-link-freetext" href="https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-3b2568c620828b0ba653c1070041318aR52">https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-3b2568c620828b0ba653c1070041318aR52</a></p>
+    <p>for service brcm43438, but I still use the /dev/ttyAMA0 in it,
+      not /dev/serial1(when I use /dev/serial1, the service failed), the
+      service can start everytime correctly. <br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 2018年03月19日 02:10, r10kindsofpeople
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAE8H0+VprE4U2jfnoPJERuuEfDb8rM6oQVnCJdo8QSYt6gCCDw@mail.gmail.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <div dir="ltr">Update:  I suspect this is not the proper way to do
+        this, but in case it provides useful information toward a better
+        solution...
+        <div>1) systemctl disable brcm43438.service</div>
+        <div>2) modified 99-com.rules to include TAG+="systemd" and
+          ENV{SYSTEMD_WANTS}="device-brcm43438.service"</div>
+        <div>3) cp /lib/systemd/system/brcm43438.service
+          /etc/systemd/system/device-brcm43438.service</div>
+        <div>4) modified device-brcm43438.service to be as follows:</div>
+        <div>
+          <div><span style="font-size:13px">[Unit]</span></div>
+          <div><span style="font-size:13px">Description=Broadcom
+              BCM43438 bluetooth HCI</span></div>
+          <div><span style="font-size:13px"><br>
+            </span></div>
+          <div><span style="font-size:13px">[Service]</span></div>
+          <div><span style="font-size:13px">Type=simple</span></div>
+          <div><span style="font-size:13px">ExecStart=/usr/bin/hciattach
+              -n /dev/serial1 bcm43xx 921600 noflow -</span></div>
+          <div><span style="font-size:13px">Restart=on-failure</span></div>
+        </div>
+        <div><br>
+        </div>
+        <div>note removal of Before, After, ConditionPath, Install
+          sections and addition of Restart=on-failure.  This last was to
+          cope with an intermittent timeout in hciattach.  Suppose I
+          should have tried increasing the timeout first.  </div>
+        <div><br>
+        </div>
+        <div>This seems to have gotten me to the point of it starting up
+          at least 10 times successfully.  Bottom line, in my opinion,
+          is that brcm43438.service is somehow running  before the udev
+          script can create the symbolic link for /dev/serial1 -&gt;
+          /dev/ttyAMA0 despite the  "After=dev-serial1.device" clause.  </div>
+        <div><br>
+        </div>
+        <div>John</div>
+        <div>
+          <div><br>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr">On Sat, Mar 17, 2018 at 12:32 PM r10kindsofpeople
+          &lt;<a href="mailto:r10kindsofpeople@gmail.com"
+            moz-do-not-send="true">r10kindsofpeople@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0 0 0
+          .8ex;border-left:1px #ccc solid;padding-left:1ex">
+          <div dir="ltr">
+            <div>Background:  I'm trying to bring up the pi zero w's
+              bluetooth using systemd.  Started with rocko and then
+              moved to 'master' of meta-raspberry pi, sync'd about a
+              week ago after noticing that there were some recent
+              updates in this area.  </div>
+            <div><br>
+            </div>
+            <div>There was an initial problem with /dev/serial1 not
+              showing up...I found <a href="http://udev-rules-rpi.bb"
+                target="_blank" moz-do-not-send="true">udev-rules-rpi.bb</a>,
+              added it to my layer, and when it still didn't show up in
+              my rootfs, I punted and installed it in /etc/udev/rules.d
+              by hand and now /dev/serial1 shows up.  Given time, I can
+              probably fix the recipe on my own, so moving on.</div>
+            <div><br>
+            </div>
+            <div>But brcm43438.service still fails on boot.  Despite
+              having "After=dev-serial1.device" in the service Unit
+              section, it fails with:</div>
+            <div><br>
+            </div>
+            <div>Mar 17 16:21:13 raspberrypi0-wifi systemd[1]: Started
+              Broadcom BCM43438 bluetooth HCI.</div>
+            <div>Mar 17 16:21:14 raspberrypi0-wifi hciattach[105]: Can't
+              open serial port: No such file or directory</div>
+            <div>Mar 17 16:21:14 raspberrypi0-wifi hciattach[105]: Can't
+              initialize device: No such file or directory</div>
+            <div>Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
+              [[0;1;39mbrcm43438.service: Main process exited,
+              code=exited, status=1/FAILURE[[0m</div>
+            <div>Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
+              [[0;1;39mbrcm43438.service: Unit entered failed state.[[0m</div>
+            <div>Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
+              [[0;1;39mbrcm43438.service: Failed with result
+              'exit-code'.[[0m</div>
+            <div><br>
+            </div>
+            <div>If, after booting and ssh'ing into pi, I restart the
+              service, it starts successfully.  </div>
+            <div><br>
+            </div>
+            <div>Any hints about what I might change to get the
+              brcm43438.service to start correctly the first time (every
+              time)?</div>
+            <div><br>
+            </div>
+            <div>John</div>
+          </div>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------61CF2AAC8EA65CF546E38911--
