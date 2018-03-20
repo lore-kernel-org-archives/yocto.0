@@ -1,42 +1,64 @@
-Return-Path: <Dengke.Du@windriver.com>
+Return-Path: <jkrishnanjanappa@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ECD1AE00AE4; Mon, 19 Mar 2018 20:01:04 -0700 (PDT)
+	id A1B4EE00E43; Mon, 19 Mar 2018 23:50:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, RCVD_IN_DNSWL_NONE,
+	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.192.176 listed in list.dnswl.org]
+	*  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
+	*      [111.93.218.67 listed in dnsbl.sorbs.net]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8728E007F2
-	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 20:01:03 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w2K311bA029597
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 19 Mar 2018 20:01:01 -0700 (PDT)
-Received: from [128.224.162.189] (128.224.162.189) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.361.1;
-	Mon, 19 Mar 2018 20:01:00 -0700
-To: r10kindsofpeople <r10kindsofpeople@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <CAE8H0+VGybDX4udg73E24ie-DxK7_bkVPB3xKWer_gtpr885jQ@mail.gmail.com>
-	<CAE8H0+VprE4U2jfnoPJERuuEfDb8rM6oQVnCJdo8QSYt6gCCDw@mail.gmail.com>
-	<80041285-9116-fbd2-0e4a-972d31878be4@windriver.com>
-From: Dengke Du <dengke.du@windriver.com>
-Message-ID: <e2909955-f5ec-7034-7baf-4b459c51cac4@windriver.com>
-Date: Tue, 20 Mar 2018 10:58:59 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
-MIME-Version: 1.0
-In-Reply-To: <80041285-9116-fbd2-0e4a-972d31878be4@windriver.com>
-X-Originating-IP: [128.224.162.189]
-Subject: Re: meta-raspberrypi systemd rpi0-w bluetooth startup
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pf0-f176.google.com (mail-pf0-f176.google.com
+	[209.85.192.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91523E00E40
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 23:50:50 -0700 (PDT)
+Received: by mail-pf0-f176.google.com with SMTP id z10so284206pfh.13
+	for <yocto@yoctoproject.org>; Mon, 19 Mar 2018 23:50:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=bMXHfLyev1J4Uvx7oeVUE/c6EnhvCNvTusOytx7H/fI=;
+	b=BNGuwIE6h/KPmPzlko8WshAAYi7lskOZ8doy0qZEKvO85v08qXbPMlggdOCOXFGl+D
+	1K0oRTiY0Y7VPP+oBeRb60D8/uHQBr4bJefmAKIs2ZeIITbaFtDEpDwD41v+0MlMl6GS
+	+vAaDMXW1WY0TFIxXerg8lAq1k0m7vYRuK3qWsiLadLWeKoujccnBnZsJrMP2C5VZ0Vb
+	MF8WwQ5SUeX3iBuuITitayVl8Avo+y5oOPfZmPilBi6rV/5khnxAGXRpD+A2L0ZWWNLy
+	c8qrsPogncGEbDWxPR4NUKro7N/PCJtSrTQV8Rje5aW4krknoQ4OsQiQul1I08r6BTHT
+	10MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=bMXHfLyev1J4Uvx7oeVUE/c6EnhvCNvTusOytx7H/fI=;
+	b=bOxI2RpQHDvPUrFBqzgpnnIpDgi7nihrEM2runEgFPQFGyWfHBCsBi02ngTNahJo1s
+	bm0r/8ny+VfDJzWVY1D9cBR1O1iMxjNXFrtwf9huCxRx9YWwYG11WXf/tUTqoHOGNseU
+	J+CrMEh5HF4iSq7JNPK0yGlFgPOmDtKz2ZR6kMMEbu6J4MqXSoJQbMIXVhkxoF7y/XOK
+	FfChFz1bkcDMZgwnZZnWzVFciGL1Z274jS5xXnZ4IHjyhTnkxy9uiBtxbn+FNPygjRvO
+	+CmjvWXFORHbdvqOOaPUdUvwCstJD9DeLGRRgErbwh1Eq/oLU2rId7qc5ez3g1IXojnA
+	6AUg==
+X-Gm-Message-State: AElRT7GqOClcHRxUoS0CrS/PXgU9kJEPugN4PdpvDAXOs1DKMe8qJzH5
+	fwOCNGE3I/cSgV9iwadjyltOy9c5
+X-Google-Smtp-Source: AG47ELtl7Y7R6uTw84vH6dX2CWjuY2ixIgJe5KsAMNqFmAmxssA8IK7L428IBFJXrxckz+Vr8GOKuA==
+X-Received: by 10.99.149.68 with SMTP id t4mr11249346pgn.144.1521528649610;
+	Mon, 19 Mar 2018 23:50:49 -0700 (PDT)
+Received: from jkrishnanjanappa-desktop.mvista.com ([111.93.218.67])
+	by smtp.gmail.com with ESMTPSA id
+	u10sm1671330pfh.57.2018.03.19.23.50.47
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 19 Mar 2018 23:50:48 -0700 (PDT)
+From: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
+To: yocto@yoctoproject.org
+Date: Tue, 20 Mar 2018 12:20:44 +0530
+Message-Id: <1521528644-4341-1-git-send-email-jkrishnanjanappa@mvista.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][rocko][PATCH] clamav: Add missing clamav.service file to SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,286 +70,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Mar 2018 03:01:05 -0000
-Content-Type: multipart/alternative;
-	boundary="------------8B391ECDABA341DFC5F9AC49"
-Content-Language: en-US
+X-List-Received-Date: Tue, 20 Mar 2018 06:50:51 -0000
 
---------------8B391ECDABA341DFC5F9AC49
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+This solves the below error when systemd is used as init manager,
+-- snip --
+ERROR: clamav-0.99.2-r0 do_package: SYSTEMD_SERVICE_clamav value clamav.service does not exist
+ERROR: clamav-0.99.2-r0 do_package: Function failed: systemd_populate_packages
+-- snip --
 
-Raspberry pi have two built-in UARTs, PL011 and mini UART
+Other issues:
+1. Ship /lib/systemd/system/clamav-freshclam.service into ${PN}-freshclam
+   package, to solve below warning:
+-- snip --
+[10240] WARNING: QA Issue: clamav: Files/directories were installed but not shipped in any package:
+  /lib/systemd/system/clamav-freshclam.service
+-- snip --
 
-by default: /dev/ttyS0 refers to the mini UART, /dev/ttyAMA0 refers to 
-the PL011
+2. Solve rpm conflict error in do_populate_sdk, when clamav and mlib-clamav
+   are specified using IMAGE_INSTALL.
+-- snip --
+do_populate_sdk fails with below error:
+  file /usr/bin/clamav-config conflicts between attempted installs of lib32-clamav-dev-0.99.2-r0.i586 and clamav-dev-0.99.2-r0.corei7_64
+-- snip --
 
-https://www.raspberrypi.org/documentation/configuration/uart.md
+Signed-off-by: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
+---
+ recipes-security/clamav/clamav_0.99.2.bb | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-So I think the brcm43438 service should use the /dev/ttyAMA0.
-
-
-On 2018年03月20日 10:41, Dengke Du wrote:
->
-> For rpi0-w bluetooth, before the commit:
->
-> https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-70e4910388c3702c52118d7acf7556e7
->
-> the brcm43438.service always failed, because it depends on 
-> /dev/ttyAMA0,after that commit, the 'udev-rules-rpi' added to the 
-> RDEPENDS for rpi0-w,we
->
-> can check it here:
->
-> https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-3b2568c620828b0ba653c1070041318aR52
->
-> for service brcm43438, but I still use the /dev/ttyAMA0 in it, not 
-> /dev/serial1(when I use /dev/serial1, the service failed), the service 
-> can start everytime correctly.
->
->
-> On 2018年03月19日 02:10, r10kindsofpeople wrote:
->> Update:  I suspect this is not the proper way to do this, but in case 
->> it provides useful information toward a better solution...
->> 1) systemctl disable brcm43438.service
->> 2) modified 99-com.rules to include TAG+="systemd" and 
->> ENV{SYSTEMD_WANTS}="device-brcm43438.service"
->> 3) cp /lib/systemd/system/brcm43438.service 
->> /etc/systemd/system/device-brcm43438.service
->> 4) modified device-brcm43438.service to be as follows:
->> [Unit]
->> Description=Broadcom BCM43438 bluetooth HCI
->>
->> [Service]
->> Type=simple
->> ExecStart=/usr/bin/hciattach -n /dev/serial1 bcm43xx 921600 noflow -
->> Restart=on-failure
->>
->> note removal of Before, After, ConditionPath, Install sections and 
->> addition of Restart=on-failure.  This last was to cope with an 
->> intermittent timeout in hciattach.  Suppose I should have tried 
->> increasing the timeout first.
->>
->> This seems to have gotten me to the point of it starting up at least 
->> 10 times successfully.  Bottom line, in my opinion, is that 
->> brcm43438.service is somehow running  before the udev script can 
->> create the symbolic link for /dev/serial1 -> /dev/ttyAMA0 despite the 
->> "After=dev-serial1.device" clause.
->>
->> John
->>
->>
->> On Sat, Mar 17, 2018 at 12:32 PM r10kindsofpeople 
->> <r10kindsofpeople@gmail.com <mailto:r10kindsofpeople@gmail.com>> wrote:
->>
->>     Background:  I'm trying to bring up the pi zero w's bluetooth
->>     using systemd.  Started with rocko and then moved to 'master' of
->>     meta-raspberry pi, sync'd about a week ago after noticing that
->>     there were some recent updates in this area.
->>
->>     There was an initial problem with /dev/serial1 not showing up...I
->>     found udev-rules-rpi.bb <http://udev-rules-rpi.bb>, added it to
->>     my layer, and when it still didn't show up in my rootfs, I punted
->>     and installed it in /etc/udev/rules.d by hand and now
->>     /dev/serial1 shows up.  Given time, I can probably fix the recipe
->>     on my own, so moving on.
->>
->>     But brcm43438.service still fails on boot.  Despite having
->>     "After=dev-serial1.device" in the service Unit section, it fails
->>     with:
->>
->>     Mar 17 16:21:13 raspberrypi0-wifi systemd[1]: Started Broadcom
->>     BCM43438 bluetooth HCI.
->>     Mar 17 16:21:14 raspberrypi0-wifi hciattach[105]: Can't open
->>     serial port: No such file or directory
->>     Mar 17 16:21:14 raspberrypi0-wifi hciattach[105]: Can't
->>     initialize device: No such file or directory
->>     Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
->>     [[0;1;39mbrcm43438.service: Main process exited, code=exited,
->>     status=1/FAILURE[[0m
->>     Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
->>     [[0;1;39mbrcm43438.service: Unit entered failed state.[[0m
->>     Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
->>     [[0;1;39mbrcm43438.service: Failed with result 'exit-code'.[[0m
->>
->>     If, after booting and ssh'ing into pi, I restart the service, it
->>     starts successfully.
->>
->>     Any hints about what I might change to get the brcm43438.service
->>     to start correctly the first time (every time)?
->>
->>     John
->>
->>
->>
->
->
->
+diff --git a/recipes-security/clamav/clamav_0.99.2.bb b/recipes-security/clamav/clamav_0.99.2.bb
+index 5dfda8f..d7aa6d0 100644
+--- a/recipes-security/clamav/clamav_0.99.2.bb
++++ b/recipes-security/clamav/clamav_0.99.2.bb
+@@ -14,6 +14,7 @@ SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=${PV} \
+     file://clamd.conf \
+     file://freshclam.conf \
+     file://volatiles.03_clamav \
++    file://${BPN}.service \
+     "
+ 
+ SRC_URI[md5sum] = "61b51a04619aeafd965892a53f86d192"
+@@ -26,7 +27,7 @@ SO_VER = "7.1.1"
+ 
+ EXTRANATIVEPATH += "chrpath-native"
+ 
+-inherit autotools-brokensep pkgconfig useradd systemd 
++inherit autotools-brokensep pkgconfig useradd systemd multilib-alternatives
+ 
+ UID = "clamav"
+ GID = "clamav"
+@@ -90,8 +91,13 @@ do_install_append() {
+     install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/volatiles.03_clamav
+     sed -i -e 's#${STAGING_DIR_HOST}##g' ${D}${libdir}/pkgconfig/libclamav.pc
+     rm ${D}/${libdir}/libclamav.so
++    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};then
++	install -D -m 0644 ${WORKDIR}/clamav.service ${D}${systemd_unitdir}/system/clamav.service
++    fi
+ }
+ 
++MULTILIB_ALTERNATIVES_${PN}-dev = "${bindir}/clamav-config"
++
+ pkg_postinst_${PN} () {
+     if [ -z "$D" ] && [ -e /etc/init.d/populate-volatile.sh ] ; then
+         ${sysconfdir}/init.d/populate-volatile.sh update
+@@ -126,7 +132,8 @@ FILES_${PN}-freshclam = "${bindir}/freshclam \
+                         ${sysconfdir}/clamav ${sysconfdir}/default/volatiles \
+                         ${localstatedir}/lib/clamav \
+                         ${docdir}/${PN}-freshclam ${mandir}/man1/freshclam.* \
+-                        ${mandir}/man5/freshclam.conf.*"
++                        ${mandir}/man5/freshclam.conf.* \
++                        ${systemd_unitdir}/system/clamav-freshclam.service"
+ 
+ FILES_${PN}-dev = " ${bindir}/clamav-config ${libdir}/*.la \
+                     ${libdir}/pkgconfig/*.pc \
+-- 
+2.7.4
 
 
---------------8B391ECDABA341DFC5F9AC49
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Raspberry pi have two built-in UARTs, PL011 and mini UART</p>
-    <p>by default: /dev/ttyS0 refers to the mini UART, /dev/ttyAMA0
-      refers to the PL011<br>
-    </p>
-    <p>   
-      <a class="moz-txt-link-freetext" href="https://www.raspberrypi.org/documentation/configuration/uart.md">https://www.raspberrypi.org/documentation/configuration/uart.md</a></p>
-    <p>So I think the brcm43438 service should use the /dev/ttyAMA0.<br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 2018年03月20日 10:41, Dengke Du wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:80041285-9116-fbd2-0e4a-972d31878be4@windriver.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <p>For rpi0-w bluetooth, before the commit:</p>
-      <p>   
-        <a class="moz-txt-link-freetext"
-href="https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-70e4910388c3702c52118d7acf7556e7"
-          moz-do-not-send="true">https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-70e4910388c3702c52118d7acf7556e7</a></p>
-      <p>the brcm43438.service always failed, because it depends on
-        /dev/ttyAMA0,after that commit, the 'udev-rules-rpi' added to
-        the RDEPENDS for rpi0-w,we</p>
-      <p>can check it here:</p>
-      <p>   
-        <a class="moz-txt-link-freetext"
-href="https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-3b2568c620828b0ba653c1070041318aR52"
-          moz-do-not-send="true">https://github.com/agherzan/meta-raspberrypi/commit/6235b0a8543bcf6704d0fe0156ab2b847a4ea0bc#diff-3b2568c620828b0ba653c1070041318aR52</a></p>
-      <p>for service brcm43438, but I still use the /dev/ttyAMA0 in it,
-        not /dev/serial1(when I use /dev/serial1, the service failed),
-        the service can start everytime correctly. <br>
-      </p>
-      <br>
-      <div class="moz-cite-prefix">On 2018年03月19日 02:10,
-        r10kindsofpeople wrote:<br>
-      </div>
-      <blockquote type="cite"
-cite="mid:CAE8H0+VprE4U2jfnoPJERuuEfDb8rM6oQVnCJdo8QSYt6gCCDw@mail.gmail.com">
-        <div dir="ltr">Update:  I suspect this is not the proper way to
-          do this, but in case it provides useful information toward a
-          better solution...
-          <div>1) systemctl disable brcm43438.service</div>
-          <div>2) modified 99-com.rules to include TAG+="systemd" and
-            ENV{SYSTEMD_WANTS}="device-brcm43438.service"</div>
-          <div>3) cp /lib/systemd/system/brcm43438.service
-            /etc/systemd/system/device-brcm43438.service</div>
-          <div>4) modified device-brcm43438.service to be as follows:</div>
-          <div>
-            <div><span style="font-size:13px">[Unit]</span></div>
-            <div><span style="font-size:13px">Description=Broadcom
-                BCM43438 bluetooth HCI</span></div>
-            <div><span style="font-size:13px"><br>
-              </span></div>
-            <div><span style="font-size:13px">[Service]</span></div>
-            <div><span style="font-size:13px">Type=simple</span></div>
-            <div><span style="font-size:13px">ExecStart=/usr/bin/hciattach
-                -n /dev/serial1 bcm43xx 921600 noflow -</span></div>
-            <div><span style="font-size:13px">Restart=on-failure</span></div>
-          </div>
-          <div><br>
-          </div>
-          <div>note removal of Before, After, ConditionPath, Install
-            sections and addition of Restart=on-failure.  This last was
-            to cope with an intermittent timeout in hciattach.  Suppose
-            I should have tried increasing the timeout first.  </div>
-          <div><br>
-          </div>
-          <div>This seems to have gotten me to the point of it starting
-            up at least 10 times successfully.  Bottom line, in my
-            opinion, is that brcm43438.service is somehow
-            running  before the udev script can create the symbolic link
-            for /dev/serial1 -&gt; /dev/ttyAMA0 despite the 
-            "After=dev-serial1.device" clause.  </div>
-          <div><br>
-          </div>
-          <div>John</div>
-          <div>
-            <div><br>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="gmail_quote">
-          <div dir="ltr">On Sat, Mar 17, 2018 at 12:32 PM
-            r10kindsofpeople &lt;<a
-              href="mailto:r10kindsofpeople@gmail.com"
-              moz-do-not-send="true">r10kindsofpeople@gmail.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">
-            <div dir="ltr">
-              <div>Background:  I'm trying to bring up the pi zero w's
-                bluetooth using systemd.  Started with rocko and then
-                moved to 'master' of meta-raspberry pi, sync'd about a
-                week ago after noticing that there were some recent
-                updates in this area.  </div>
-              <div><br>
-              </div>
-              <div>There was an initial problem with /dev/serial1 not
-                showing up...I found <a href="http://udev-rules-rpi.bb"
-                  target="_blank" moz-do-not-send="true">udev-rules-rpi.bb</a>,
-                added it to my layer, and when it still didn't show up
-                in my rootfs, I punted and installed it in
-                /etc/udev/rules.d by hand and now /dev/serial1 shows
-                up.  Given time, I can probably fix the recipe on my
-                own, so moving on.</div>
-              <div><br>
-              </div>
-              <div>But brcm43438.service still fails on boot.  Despite
-                having "After=dev-serial1.device" in the service Unit
-                section, it fails with:</div>
-              <div><br>
-              </div>
-              <div>Mar 17 16:21:13 raspberrypi0-wifi systemd[1]: Started
-                Broadcom BCM43438 bluetooth HCI.</div>
-              <div>Mar 17 16:21:14 raspberrypi0-wifi hciattach[105]:
-                Can't open serial port: No such file or directory</div>
-              <div>Mar 17 16:21:14 raspberrypi0-wifi hciattach[105]:
-                Can't initialize device: No such file or directory</div>
-              <div>Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
-                [[0;1;39mbrcm43438.service: Main process exited,
-                code=exited, status=1/FAILURE[[0m</div>
-              <div>Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
-                [[0;1;39mbrcm43438.service: Unit entered failed
-                state.[[0m</div>
-              <div>Mar 17 16:21:14 raspberrypi0-wifi systemd[1]:
-                [[0;1;39mbrcm43438.service: Failed with result
-                'exit-code'.[[0m</div>
-              <div><br>
-              </div>
-              <div>If, after booting and ssh'ing into pi, I restart the
-                service, it starts successfully.  </div>
-              <div><br>
-              </div>
-              <div>Any hints about what I might change to get the
-                brcm43438.service to start correctly the first time
-                (every time)?</div>
-              <div><br>
-              </div>
-              <div>John</div>
-            </div>
-          </blockquote>
-        </div>
-        <br>
-        <fieldset class="mimeAttachmentHeader"></fieldset>
-        <br>
-      </blockquote>
-      <br>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------8B391ECDABA341DFC5F9AC49--
