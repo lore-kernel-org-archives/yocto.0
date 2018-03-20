@@ -1,40 +1,63 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E5E9E009CF; Tue, 20 Mar 2018 03:14:16 -0700 (PDT)
+	id 93CD0E00AE4; Tue, 20 Mar 2018 03:53:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82E96E00547
-	for <yocto@yoctoproject.org>; Tue, 20 Mar 2018 03:14:15 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	20 Mar 2018 03:14:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,334,1517904000"; d="scan'208";a="43628319"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga002.jf.intel.com with ESMTP; 20 Mar 2018 03:14:13 -0700
-To: "Burton, Ross" <ross.burton@intel.com>, akuster808 <akuster808@gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08D3EE0070F
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2018 03:53:04 -0700 (PDT)
+Received: by mail-io0-f181.google.com with SMTP id v13so1768113iob.6
+	for <yocto@yoctoproject.org>; Tue, 20 Mar 2018 03:53:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=TBCS8gHgkBSThWWVNQ3g+aKqgWv6hBYqtjDPgBkfSKQ=;
+	b=NlBMwt39y2Tc57368wuZFFWpYvqWqxeT8HVxQAPgCsYuS4opOxSBOM5Ee9myQ62vZa
+	R9grBwMZUKDZtr4PKOv46J8SLg4lUG16luKdA2wGu4I0NZ3dXe0Ywe1oxnDwJaaAqi6P
+	SB2y2PlMcSPU7Vbi7comR1y7SpYcpPzDV6STsk/v37xlhmXaSkYw9gOpG0og0Qie1B49
+	TCzKGGZ1aGfEV23NZrOKPKH+jz9ty9VcfvEt7ojqkphqEEg1O8dXHMqKgjkzDZz+ywfk
+	JOBXMpqU9hurihIG261G9+IUy//+tM0WY/M78q8tHZOVp/whUVjNNsXTmtqSz6UjGKCt
+	4tKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=TBCS8gHgkBSThWWVNQ3g+aKqgWv6hBYqtjDPgBkfSKQ=;
+	b=GjDLdobKXsdkBsrQZS6GBH3aMBU/lfFeE2md85MGh4XwO/nRa67KFRLVJnGTZ3qb2G
+	Sd0E+1uJWjk6VsaUuYTkQOK16usgWFDWIX3btnjE2GW8L14+b18YbWXMrT+pJ+66RGmm
+	qJLcw4PfSdQAHhpwwItRVCNweVcSDhTG7NzIMrc6S7CqpZ8iZ6N/T0R5rY+vaeABNRLp
+	ASPhBEJvHRgNjMXT7zGum9ciVJGlmrkiwPqksOBuz+1E3xL/sXyN/yWDB/1VSDHgjktk
+	4TJR3rWyfDnWmTqbMvfxawVwVUvBhL9QlEYRFXNWKP1q5I5F+/hgyDQzX/iJgJhAP7Gh
+	CfKw==
+X-Gm-Message-State: AElRT7FsjzEQfOseHsZzE/uxwMeFR+YHBMRMNcHwIE+1g9kPLMeSho+C
+	1QujpUbEkcWh285oc8Zb2Rsg9y/MiRlA2ZPtAhZpZw==
+X-Google-Smtp-Source: AG47ELthlwhH+nEsGDgj23CPqEFoJ2NZ7XsR7JR61Tq7JSuNqutSf2DTQwluYDSJJex3VshSRdEqLdBUW7KJrenBju4=
+X-Received: by 10.107.6.231 with SMTP id f100mr16193554ioi.23.1521543184095;
+	Tue, 20 Mar 2018 03:53:04 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.30.9 with HTTP; Tue, 20 Mar 2018 03:52:43 -0700 (PDT)
+In-Reply-To: <833712e4-00aa-1e05-8df5-a0f9a18d4e29@linux.intel.com>
 References: <CY4PR11MB17663B664B1ED6ADE96BC48AC7D40@CY4PR11MB1766.namprd11.prod.outlook.com>
 	<dd055b01-fe83-d706-bce1-5a2aea3103fe@gmail.com>
 	<CAJTo0LbxDGNrJH8tDiCgMKoSHUsK8Q17BUH=UVkY8zDBAm70+g@mail.gmail.com>
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Message-ID: <833712e4-00aa-1e05-8df5-a0f9a18d4e29@linux.intel.com>
-Date: Tue, 20 Mar 2018 12:07:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
-MIME-Version: 1.0
-In-Reply-To: <CAJTo0LbxDGNrJH8tDiCgMKoSHUsK8Q17BUH=UVkY8zDBAm70+g@mail.gmail.com>
+	<833712e4-00aa-1e05-8df5-a0f9a18d4e29@linux.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 20 Mar 2018 10:52:43 +0000
+Message-ID: <CAJTo0LadpoW1BCCbfhsEac7PBV2qNxuiWrnRk6MZeV2DVWiDEA@mail.gmail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"openembedded-core@lists.openembedded.org"
 	<openembedded-core@lists.openembedded.org>
@@ -50,26 +73,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Mar 2018 10:14:16 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 20 Mar 2018 10:53:05 -0000
+Content-Type: multipart/alternative; boundary="001a113f9be4ffbcb90567d5e007"
 
-On 03/19/2018 10:07 PM, Burton, Ross wrote:
->     Do we have a place identified for new changes (2.6) while 2.5
->     stabilizes.
-> 
-> 
-> A formal place, no.  I tend to queue stuff in a branch if master isn't 
-> taking all of my energy, otherwise the patches will sit on the list 
-> until 2.5 releases.  Typically master and sumo branches won't diverge 
-> until post-release.
+--001a113f9be4ffbcb90567d5e007
+Content-Type: text/plain; charset="UTF-8"
 
-Which brings me to a question: what is a good schedule and cadence for 
-AUH runs? Currently it's run on the 15th of every odd-numbered month (so 
-January, March, and so on), but I thought of shifting it one month 
-forward, so it doesn't land right in the middle of a feature freeze. 
-Thoughts?
+On 20 March 2018 at 10:07, Alexander Kanavin <
+alexander.kanavin@linux.intel.com> wrote:
 
-Alex
+> On 03/19/2018 10:07 PM, Burton, Ross wrote:
+>
+>>     Do we have a place identified for new changes (2.6) while 2.5
+>>     stabilizes.
+>>
+>>
+>> A formal place, no.  I tend to queue stuff in a branch if master isn't
+>> taking all of my energy, otherwise the patches will sit on the list until
+>> 2.5 releases.  Typically master and sumo branches won't diverge until
+>> post-release.
+>>
+>
+> Which brings me to a question: what is a good schedule and cadence for AUH
+> runs? Currently it's run on the 15th of every odd-numbered month (so
+> January, March, and so on), but I thought of shifting it one month forward,
+> so it doesn't land right in the middle of a feature freeze. Thoughts?
+>
 
+How long does a single run take, and why not run it every month?
+
+Ross
+
+--001a113f9be4ffbcb90567d5e007
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">On 20 March 2018 at 10:07, Alexander Kanavin <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:alexander.kanavin@linux.intel.com" target=3D"_bl=
+ank">alexander.kanavin@linux.intel.com</a>&gt;</span> wrote:<br><div class=
+=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<span class=3D"">On 03/19/2018 10:07 PM, Burton, Ross wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+=C2=A0 =C2=A0 Do we have a place identified for new changes (2.6) while 2.5=
+<br>
+=C2=A0 =C2=A0 stabilizes.<br>
+<br>
+<br>
+A formal place, no.=C2=A0 I tend to queue stuff in a branch if master isn&#=
+39;t taking all of my energy, otherwise the patches will sit on the list un=
+til 2.5 releases.=C2=A0 Typically master and sumo branches won&#39;t diverg=
+e until post-release.<br>
+</blockquote>
+<br></span>
+Which brings me to a question: what is a good schedule and cadence for AUH =
+runs? Currently it&#39;s run on the 15th of every odd-numbered month (so Ja=
+nuary, March, and so on), but I thought of shifting it one month forward, s=
+o it doesn&#39;t land right in the middle of a feature freeze. Thoughts?<br=
+></blockquote><div><br></div><div>How long does a single run take, and why =
+not run it every month?</div><div><br></div><div>Ross=C2=A0</div></div></di=
+v></div>
+
+--001a113f9be4ffbcb90567d5e007--
