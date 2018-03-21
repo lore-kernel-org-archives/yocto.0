@@ -1,6 +1,6 @@
 Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 595B4E00C9B; Wed, 21 Mar 2018 09:26:03 -0700 (PDT)
+	id 670CCE00C9B; Wed, 21 Mar 2018 09:26:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,25 +12,23 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DFF8E00D57
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 09:25:59 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B499E00E8C
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 09:25:58 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
 	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Mar 2018 09:25:59 -0700
+	21 Mar 2018 09:25:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,340,1517904000"; d="scan'208";a="26380086"
+X-IronPort-AV: E=Sophos;i="5.48,340,1517904000"; d="scan'208";a="26380082"
 Received: from kanavin-desktop.fi.intel.com ([10.237.68.161])
-	by fmsmga008.fm.intel.com with ESMTP; 21 Mar 2018 09:25:58 -0700
+	by fmsmga008.fm.intel.com with ESMTP; 21 Mar 2018 09:25:56 -0700
 From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 21 Mar 2018 18:19:17 +0200
-Message-Id: <20180321161917.13028-2-alexander.kanavin@linux.intel.com>
+Date: Wed, 21 Mar 2018 18:19:16 +0200
+Message-Id: <20180321161917.13028-1-alexander.kanavin@linux.intel.com>
 X-Mailer: git-send-email 2.16.1
-In-Reply-To: <20180321161917.13028-1-alexander.kanavin@linux.intel.com>
-References: <20180321161917.13028-1-alexander.kanavin@linux.intel.com>
-Subject: [PATCH 2/2] When 'devtool upgrade' fails to rebase patches, stop and report a failure
+Subject: [PATCH 1/2] Do not skip packages that were attempted recently.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,37 +42,82 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 21 Mar 2018 16:26:03 -0000
 
-Previously it would continue, which eventually resulted in an unhelpful, generic
-error message printed by 'devtool finish'.
+This was undocumented and made a number of hardcoded assumptions.
+The options were to make it configurable, or just remove the logic,
+and I chose the latter.
 
 Signed-off-by: Alexander Kanavin <alexander.kanavin@linux.intel.com>
 ---
- modules/steps.py | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ upgradehelper.py | 40 ----------------------------------------
+ 1 file changed, 40 deletions(-)
 
-diff --git a/modules/steps.py b/modules/steps.py
-index 5bbe38e..2eb4499 100644
---- a/modules/steps.py
-+++ b/modules/steps.py
-@@ -82,6 +82,10 @@ def devtool_upgrade(devtool, bb, git, opts, pkg_ctx):
+diff --git a/upgradehelper.py b/upgradehelper.py
+index b5e696e..8fb27d3 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -564,17 +564,6 @@ class UniverseUpdater(Updater):
+                 E(" -t is only supported when upgrade one recipe\n")
+                 exit(1)
  
-     try:
-         devtool_output = devtool.upgrade(pkg_ctx['PN'], pkg_ctx['NPV'], pkg_ctx['NSRCREV'])
-+        D(" 'devtool upgrade' printed:\n%s" %(devtool_output))
-+        # If devtool failed to rebase patches, it does not fail, but we should
-+        if 'conflict' in devtool_output:
-+            raise DevtoolError("Running 'devtool upgrade' for recipe %s failed." %(pkg_ctx['PN']), devtool_output)
-     except DevtoolError as e1:
-         try:
-             devtool_output = devtool.reset(pkg_ctx['PN'])
-@@ -96,7 +100,6 @@ def devtool_upgrade(devtool, bb, git, opts, pkg_ctx):
-         with open(os.path.join(pkg_ctx['workdir'], pkg_ctx['license_diff_fn']), 'wb') as f:
-             f.write(b"".join(license_diff_info))
+-        # read history file
+-        self.history_file = os.path.join(get_build_dir(), "upgrade-helper", "history.uh")
+-        self.history = dict()
+-        if os.path.exists(self.history_file):
+-            with open(self.history_file) as history_file:
+-                for line in history_file:
+-                    line = line.strip()
+-                    self.history[line.split(',')[0]] = [line.split(',')[1],
+-                                                        line.split(',')[2],
+-                                                        line.split(',')[3],
+-                                                        line.split(',')[4]]
+     def _get_recipes_by_layer(self):
+         recipes = []
  
--    D(" 'devtool upgrade' printed:\n%s" %(devtool_output))
+@@ -689,21 +678,6 @@ class UniverseUpdater(Updater):
+                         (pn, maintainer))
+                 return False
  
- def _compile(bb, pkg, machine, workdir):
-         try:
+-        if pn in self.history:
+-            # did we already try this version?
+-            if next_ver == self.history[pn][0]:
+-                retry_delta = \
+-                    date.toordinal(date.today()) - \
+-                    date.toordinal(datetime.strptime(self.history[pn][2], '%Y-%m-%d'))
+-                # retry recipes that had fetch errors or other errors after
+-                # more than 30 days
+-                if (self.history[pn][3] == str(FetchError()) or
+-                        self.history[pn][3] == str(Error())) and retry_delta > 30:
+-                    return True
+-
+-                D(" Skipping upgrade of %s: is in history and not 30 days passed" % pn)
+-                return False
+-
+         # drop native/cross/cross-canadian recipes. We deal with native
+         # when upgrading the main recipe but we keep away of cross* pkgs...
+         # for now
+@@ -727,22 +701,8 @@ class UniverseUpdater(Updater):
+ 
+         return pkgs_list
+ 
+-    def _update_history(self, pn, new_ver, maintainer, upgrade_status):
+-        with open(self.history_file + ".tmp", "w+") as tmp_file:
+-            if os.path.exists(self.history_file):
+-                with open(self.history_file) as history:
+-                    for line in history:
+-                        if not line.startswith(pn):
+-                            tmp_file.write(line)
+-            tmp_file.write(pn + "," + new_ver + "," + maintainer +
+-                           "," + date.isoformat(date.today()) + "," +
+-                           upgrade_status + "\n")
+-        os.rename(self.history_file + ".tmp", self.history_file)
+-
+     def pkg_upgrade_handler(self, pkg_ctx):
+         super(UniverseUpdater, self).pkg_upgrade_handler(pkg_ctx)
+-        self._update_history(pkg_ctx['PN'], pkg_ctx['NPV'], pkg_ctx['MAINTAINER'],
+-                self._get_status_msg(pkg_ctx['error']))
+ 
+     def run(self):
+         self._prepare()
 -- 
 2.16.1
 
