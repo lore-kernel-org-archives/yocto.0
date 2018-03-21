@@ -1,37 +1,42 @@
-Return-Path: <alexander.kanavin@linux.intel.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 271EBE00944; Wed, 21 Mar 2018 07:06:51 -0700 (PDT)
+	id 5D6EAE00A6A; Wed, 21 Mar 2018 07:24:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.168.135.166 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F657E005A9
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 07:06:50 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Mar 2018 07:06:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,340,1517904000"; d="scan'208";a="44062131"
-Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.161])
-	([10.237.68.161])
-	by orsmga002.jf.intel.com with ESMTP; 21 Mar 2018 07:06:48 -0700
-From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-To: Svein Seldal <sveinse@seldal.com>, yocto@yoctoproject.org
-References: <ad09d45b8456613da24304c00a2c2273@webmail.domeneshop.no>
-	<67ee7cc2-3ff6-464e-ea81-c3ad2ec8756f@linux.intel.com>
-Message-ID: <6a9c245c-955b-49ae-5b40-268f9b12d9e2@linux.intel.com>
-Date: Wed, 21 Mar 2018 16:00:09 +0200
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC091E00744
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 07:24:46 -0700 (PDT)
+Received: (qmail 30440 invoked by uid 1003); 21 Mar 2018 14:24:45 -0000
+Received: from unknown (HELO ?10.0.0.217?) (philip@opensdr.com@98.245.198.122)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	21 Mar 2018 14:24:45 -0000
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>,
+	"Burton, Ross" <ross.burton@intel.com>
+References: <CY4PR11MB17663B664B1ED6ADE96BC48AC7D40@CY4PR11MB1766.namprd11.prod.outlook.com>
+	<dd055b01-fe83-d706-bce1-5a2aea3103fe@gmail.com>
+	<CAJTo0LbxDGNrJH8tDiCgMKoSHUsK8Q17BUH=UVkY8zDBAm70+g@mail.gmail.com>
+	<833712e4-00aa-1e05-8df5-a0f9a18d4e29@linux.intel.com>
+	<CAJTo0LadpoW1BCCbfhsEac7PBV2qNxuiWrnRk6MZeV2DVWiDEA@mail.gmail.com>
+	<61d1ecb9-e4a6-8d26-9bcc-76c7c42abb7f@linux.intel.com>
+From: Philip Balister <philip@balister.org>
+Message-ID: <b65227e0-d37f-6ae6-9f4c-4c535460143e@balister.org>
+Date: Wed, 21 Mar 2018 08:24:44 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-In-Reply-To: <67ee7cc2-3ff6-464e-ea81-c3ad2ec8756f@linux.intel.com>
-Subject: Re: Yocto and NPM issues
+In-Reply-To: <61d1ecb9-e4a6-8d26-9bcc-76c7c42abb7f@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: =?UTF-8?B?UmU6IFtPRS1jb3JlXSBZb2N0byBQcm9qZWN0IFN0YXR1cyBXVzEy4oCZMTg=?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,34 +48,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2018 14:06:51 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 Mar 2018 14:24:47 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 8bit
 
-On 03/21/2018 03:54 PM, Alexander Kanavin wrote:
-
->> I'm attempting to package a npm-based js application into a Rocko 
->> image, and I'm having some issues. For testing I use the official poky 
->> repo and the meta-openembedded repo (for installing nodejs 8.4.0). I'm 
->> building for qemux86-64.
+On 03/20/2018 05:26 AM, Alexander Kanavin wrote:
+> On 03/20/2018 12:52 PM, Burton, Ross wrote:
+>>     Which brings me to a question: what is a good schedule and cadence
+>>     for AUH runs? Currently it's run on the 15th of every odd-numbered
+>>     month (so January, March, and so on), but I thought of shifting it
+>>     one month forward, so it doesn't land right in the middle of a
+>>     feature freeze. Thoughts?
+>>
+>>
+>> How long does a single run take, and why not run it every month?
 > 
-> I know this is not an answer to your specific issues, but npm is a bit 
-> of maintenance nightmare as its workflow (downloading random stuff off 
-> the internet as an integral part of the build) clashes badly with how 
-> bitbake, and embedded world in general handle builds. We've discussed 
-> what to do about it, with no clear outcome, but we would like to have 
-> something that doesn't require constant fixing and hacks:
-> 
-> http://lists.openembedded.org/pipermail/openembedded-architecture/2017-March/000480.html 
+> Just a bit longer than a day, maybe 30 hours, if it needs to update the
+> typical amount of 100-150 packages. I'll shift it to monthly then.
 
-Oh, and you might have more success using meta-nodejs, as it doesn't try 
-to implement a custom fetcher, and just runs npm directly during the 
-build. If you don't mind that that makes the build outcome essentially 
-random from one invocation to the next.
+Maybe bi-weekly? Could that help reduce the number of upgrades needed
+for each run?
 
-https://github.com/imyller/meta-nodejs
-
-
-Alex
+Philip
 
