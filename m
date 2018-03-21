@@ -1,6 +1,6 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B7D3DE00CBD; Wed, 21 Mar 2018 13:45:28 -0700 (PDT)
+	id 066C5E00CDF; Wed, 21 Mar 2018 15:55:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,25 +8,36 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF466E00C80
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 13:45:26 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	21 Mar 2018 13:45:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,341,1517904000"; d="scan'208";a="35745740"
-Received: from tgraydonws.ostc.intel.com ([10.54.69.46])
-	by FMSMGA003.fm.intel.com with ESMTP; 21 Mar 2018 13:45:25 -0700
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 21 Mar 2018 13:45:25 -0700
-Message-Id: <1521665125-11957-1-git-send-email-tracy.graydon@intel.com>
-X-Mailer: git-send-email 2.7.0
-Cc: richard.purdie@intel.com
-Subject: [yocto-autobuilder][PATCH] /builders.py
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B6F3E008D3
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 15:55:04 -0700 (PDT)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.15.2/8.15.2/Debian-3) with ESMTPSA id
+	w2LMsujs000888
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NOT); Wed, 21 Mar 2018 22:54:57 GMT
+Message-ID: <1521672896.25754.226.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>, "Burton, Ross"
+	<ross.burton@intel.com>
+Date: Wed, 21 Mar 2018 22:54:56 +0000
+In-Reply-To: <a73785d4-f3fb-374d-3a54-3ea97e85b41f@linux.intel.com>
+References: <CY4PR11MB17663B664B1ED6ADE96BC48AC7D40@CY4PR11MB1766.namprd11.prod.outlook.com>
+	<dd055b01-fe83-d706-bce1-5a2aea3103fe@gmail.com>
+	<CAJTo0LbxDGNrJH8tDiCgMKoSHUsK8Q17BUH=UVkY8zDBAm70+g@mail.gmail.com>
+	<833712e4-00aa-1e05-8df5-a0f9a18d4e29@linux.intel.com>
+	<CAJTo0LadpoW1BCCbfhsEac7PBV2qNxuiWrnRk6MZeV2DVWiDEA@mail.gmail.com>
+	<61d1ecb9-e4a6-8d26-9bcc-76c7c42abb7f@linux.intel.com>
+	<1521561579.25754.202.camel@linuxfoundation.org>
+	<a73785d4-f3fb-374d-3a54-3ea97e85b41f@linux.intel.com>
+X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
+Mime-Version: 1.0
+X-Virus-Scanned: clamav-milter 0.99.3 at dan
+X-Virus-Status: Clean
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: =?UTF-8?B?UmU6IFtPRS1jb3JlXSBZb2N0byBQcm9qZWN0IFN0YXR1cyBXVzEy4oCZMTg=?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,29 +49,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2018 20:45:28 -0000
+X-List-Received-Date: Wed, 21 Mar 2018 22:55:07 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Add the releases subdirectory to the release publishing destination path.
+On Tue, 2018-03-20 at 20:00 +0200, Alexander Kanavin wrote:
+> On 03/20/2018 05:59 PM, Richard Purdie wrote:
+> > 
+> > > 
+> > > > 
+> > > > How long does a single run take, and why not run it every
+> > > > month?
+> > > Just a bit longer than a day, maybe 30 hours, if it needs to
+> > > update
+> > > the
+> > > typical amount of 100-150 packages. I'll shift it to monthly
+> > > then.
+> > Personally I'm leaning to every couple of weeks...
+> My worry is that shorter AUH periods will lead to reminder fatigue.
+> Also the period between submitting the updates, and having them show
+> up in master is sometimes less than ideal, even when the freeze is
+> not in effect.
 
-Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
----
- builders.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Its a valid concern? Once every three weeks? I would like to make
+things more available for people if possible too...
 
-diff --git a/builders.py b/builders.py
-index 7bd218e..977d80a 100644
---- a/builders.py
-+++ b/builders.py
-@@ -48,7 +48,7 @@ def get_publish_dest(props):
-                 snapshot += "." + rc_number
- 
-             rel_name = "yocto-" + props.getProperty("yocto_number", "") + snapshot
--            dest = os.path.join(config.publish_dest, rel_name)
-+            dest = os.path.join(config.publish_dest, "releases", rel_name)
-         else:
-             dest_base = os.path.join(config.publish_dest,
-                                      props.getProperty("buildername"),
--- 
-2.7.0
+With builds we've had a bad run at the moment and am hoping with
+improvements in build resources that are in process we can fix that.
 
+Cheers,
+
+Richard
 
