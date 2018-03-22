@@ -1,6 +1,6 @@
 Return-Path: <vincent.daanen@orthotaxy.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8CC77E00C14; Thu, 22 Mar 2018 00:46:22 -0700 (PDT)
+	id B17B7E0090A; Thu, 22 Mar 2018 03:22:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.136 listed in list.dnswl.org]
+	*      [104.47.2.104 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
@@ -20,70 +20,72 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0136.outbound.protection.outlook.com [104.47.2.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 019D7E008D2
-	for <yocto@yoctoproject.org>; Thu, 22 Mar 2018 00:46:18 -0700 (PDT)
+	(mail-db5eur01on0104.outbound.protection.outlook.com [104.47.2.104])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62090E00823
+	for <yocto@yoctoproject.org>; Thu, 22 Mar 2018 03:22:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orthotaxy.com;
 	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=5ylFCJBEyxETLqyCYFq7MHGWydMeE+KraZ55OYCLfHE=;
-	b=cu0rpK1OmUOyBPi6RR4fL94RpWzFLBuuFfTu0Q/XnSz5HuQk/cwTFV3+q08MYlgGkmLIirr3kdJtcUp1NughT6dIRfhgZh91+zI6aDi5P327W3VaUKAYorW+3wZ635ZCiAO8hkpt5vzWl+5ekTI1ze6WmIX4BmrGWvgJ4p9y1DQ=
+	bh=xEBmgTE77p3bKrpeRlSFHJEq+q/prfede83fNae1/e8=;
+	b=knVmDbKbqmSmbtkM6s/cWUaOqvp6NU6CjC+g0Lv3aX9l8dmERl+2VV9C9PlwDUIfQdh76IrVlxXeDSkI1Nv0oTBjGKNuVByHOYyBqlkaRzXGf9u6p5LvIXoGHlT23Vi0PFA+ZtzcOX2rtCoNMFUJN30k2bfWzLfeigpdmGdUYuE=
 Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM (10.175.180.135) by
-	VI1P192MB0384.EURP192.PROD.OUTLOOK.COM (52.134.24.24) with Microsoft
+	VI1P192MB0271.EURP192.PROD.OUTLOOK.COM (52.134.23.154) with Microsoft
 	SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.588.14; Thu, 22 Mar 2018 07:31:57 +0000
+	15.20.588.14; Thu, 22 Mar 2018 10:22:15 +0000
 Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
 	([fe80::b85b:37d9:45a2:c505]) by VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
 	([fe80::b85b:37d9:45a2:c505%18]) with mapi id 15.20.0609.010;
-	Thu, 22 Mar 2018 07:31:57 +0000
+	Thu, 22 Mar 2018 10:22:15 +0000
 From: Vincent Daanen <vincent.daanen@orthotaxy.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: how to "compute" path to install module file
-Thread-Index: AdPBqG3vmHBD7DQ1T6SGrF4Y5N0r+A==
-Date: Thu, 22 Mar 2018 07:31:57 +0000
-Message-ID: <VI1P192MB0143E912A128CECB0C06CF998DA90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+Thread-Index: AdPBqG3vmHBD7DQ1T6SGrF4Y5N0r+AAHym5A
+Date: Thu, 22 Mar 2018 10:22:14 +0000
+Message-ID: <VI1P192MB01438B5A1925B475EBAD926A8DA90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+References: <VI1P192MB0143E912A128CECB0C06CF998DA90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+In-Reply-To: <VI1P192MB0143E912A128CECB0C06CF998DA90@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
 Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=vincent.daanen@orthotaxy.com; 
 x-originating-ip: [152.77.102.34]
 x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; VI1P192MB0384;
-	6:/x5bTAyQd26a5DJnhQQUkeLVH02v78I+D4uM2q/U1GZAx4DoRO/D6rCYN6V0tDEUtOs2WAZtCWkQD6AnTrTCrddoT5BSf6+8zIsPeZ9+4kFC4wba16gALTdWgiwT8hoSnMDtfPpXbsKHjNqHgP8m0RIHsuw2mFgli4N6EDiQxG0+UVmPmY4AygE0tIWRCBiBQq5yxuLkbSR9krhbh5sdN8fuCpfrE0VwVNSzZsiZW4ok4e3cefesTgdlHOAvZsq9OA2rCVmARABTG7jJ5g9wi5fgLXAk1o2w5eCa+fMNfcrAQd99642bzdtG6AZ8DXAb+IJD4mfbYIfGbIH55W+alQ8R0+BQLvI6hpB03nMCkH/gQpIgX0JfEP4RME/40cx1;
-	5:aQaqyJSuW0soPkpda8SwPvsD2jX6C7o42+7ZK8ASZEPKt4NitxGVQlqTooCnvq0ThuK4JenuU+84hFkpgrcnhY2DX1VZbYDJmRSEjZJ1mDIlVJQD+AtKjrm+JLw2fyqaCEF7JJ5zvd09c2TkTqbgINWo14eT24zuZjEvVT11Vx4=;
-	24:bL2iP3vukq0ywN43/YRhnCt4OQ50a8w/sw1bfDBoSN5jR1FWaFLNYQ3sX1zcfsKksSIsITUsRiUP/R2h225KR5r3zZEA6kkJ4JvGk7B6pDc=;
-	7:BEVeOHTSc9rx9QXALfTDQMER4CXzXwylWqlC9Yp158/5xHmAFZ3qaG7gm4y3cUSSUrrktzznAKj37UTXfWoewqJ2Zb8XjMSRJRetZ50LqRyq6WEbJDpadRFWyLdjhcF702FEys4NpMhbJWHDhZ49y4zqbAqbdfcCO5St0zKhoSg/K0NyqyJOwjRla1RGbOkcjs4Uxx5sq6t13fErf78hoo0C1d59jpercM/NYKynk5A7ZCs6E/yHUBRt20czodRz
+x-microsoft-exchange-diagnostics: 1; VI1P192MB0271;
+	6:uZggP3enPDKO+KM6cU67gPUrfxGnnTVC1znz8We3ApRiHMSgekByW98L0REsN8IEZ++YRMP6fIm/5hUqE603SPJxvh/NcbBUcQ8gemvBpxjiN13uoWVtHcmdpj6+R6D/RNk+k97Klw09RToXqzkmLUkXEr/6KWJonP59O0w1hxQN804CCXieWbEiqzQwiLYkPtzsOKSVDVW75epEAgSXs0RfXs245KgCKZ0e+ghZrsOiAB69JZ9v1KioSIY38oJ3yM1jQ+xIpXiGLDorEFkgMXQIkgdxrgOOjyucyCgKfQLmYu5AbBdGLdsdwlX1N9EPvleORUz4rIkVfXOfIuvtPqkNpZyW4SWWXOS1VAwxh7DkEDL1nz2wSSNLSeuxphUG;
+	5:AxzNhrzGJi8/xpCqIuPmaC/XZ2pzHWGKPp69wORLppt71ly1vbDGjDdTs8nOjGoROB611/WtGfjvX6PeBYcZgPiEzGTa1IGwipEHHgskgfxYvN2h+zzJIB3PdhmhKWsL1/On3oonPrX8n3hLM7YM8WCu5p4y1kQtALxMEYMg/i4=;
+	24:u2x8rz3+vvW3x/51a8xYrKBpQOytqFALbRc4y9JKQhQNOyEnNWXBEw0DYH60bq48VAjUT091fjsXOHmreymbDoL1Q0wYUW9e+A1tH53nwDM=;
+	7:RHf5q1bQ61xUPwqdCET3edS16oS6YWwLYK1IcH6Ef0xPZet2DLcJU9UbNZiHaHeHUQsIXCbn/hlviJIzRchpgR8DtjBKzOT6XudTt3zDIrZ2dAdUHWjwjrQPN0pl8aTKrW8wRvNk1UuRlknbuMDP8M2RXeIXKUxMpmmsEbGmxaeTwGT0a9DVdUolW/8DujHibTAKqk7zfYXhKV5/svBBsKRFSfdtozu0yNk6IGrORz2a+NhfSVxd4eBskHKtrpSx
 x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: faf16d79-d95f-4bf0-ae31-08d58fc6fe32
+x-ms-office365-filtering-correlation-id: 50dd3a00-7d34-4d98-bf26-08d58fdec868
 x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(7021125)(5600026)(4604075)(3008032)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(7193020);
-	SRVR:VI1P192MB0384; 
-x-ms-traffictypediagnostic: VI1P192MB0384:
-x-microsoft-antispam-prvs: <VI1P192MB038400D21D0D487C22ADB4838DA90@VI1P192MB0384.EURP192.PROD.OUTLOOK.COM>
+	RULEID:(7020095)(4652020)(7021125)(5600026)(4604075)(3008032)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(49563074)(7193020);
+	SRVR:VI1P192MB0271; 
+x-ms-traffictypediagnostic: VI1P192MB0271:
+x-microsoft-antispam-prvs: <VI1P192MB0271FD992CF7CB22C6AC31868DA90@VI1P192MB0271.EURP192.PROD.OUTLOOK.COM>
 x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(10201501046)(3002001)(3231221)(944501327)(52105095)(93006095)(93001095)(6041310)(20161123562045)(2016111802025)(20161123564045)(20161123558120)(20161123560045)(6072148)(6043046)(201708071742011);
-	SRVR:VI1P192MB0384; BCL:0; PCL:0; RULEID:; SRVR:VI1P192MB0384; 
+	RULEID:(102415395)(6040522)(2401047)(8121501046)(5005006)(3002001)(10201501046)(93006095)(93001095)(3231221)(944501327)(52105095)(6041310)(20161123562045)(2016111802025)(20161123558120)(20161123564045)(20161123560045)(6072148)(6043046)(201708071742011);
+	SRVR:VI1P192MB0271; BCL:0; PCL:0; RULEID:; SRVR:VI1P192MB0271; 
 x-forefront-prvs: 0619D53754
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39380400002)(346002)(376002)(366004)(39830400003)(396003)(199004)(189003)(6436002)(6506007)(316002)(5250100002)(81156014)(81166006)(3660700001)(5630700001)(97736004)(68736007)(8936002)(74316002)(2501003)(5660300001)(59450400001)(7696005)(3280700002)(86362001)(14454004)(5640700003)(6916009)(8676002)(53936002)(790700001)(3846002)(186003)(26005)(7736002)(2906002)(66066001)(1730700003)(6116002)(9326002)(25786009)(33656002)(102836004)(106356001)(2351001)(2900100001)(54896002)(9686003)(6306002)(105586002)(55016002)(478600001)(99286004);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1P192MB0384;
+	SFS:(10019020)(366004)(376002)(39380400002)(346002)(396003)(39830400003)(199004)(189003)(53936002)(9326002)(5250100002)(2906002)(81166006)(1730700003)(81156014)(6506007)(76176011)(74316002)(14454004)(8676002)(7736002)(5660300001)(5640700003)(86362001)(3280700002)(99286004)(2900100001)(6306002)(66066001)(2950100002)(59450400001)(54896002)(2501003)(7696005)(9686003)(6116002)(8936002)(6436002)(3846002)(26005)(2351001)(68736007)(790700001)(33656002)(102836004)(25786009)(186003)(3660700001)(97736004)(55016002)(5630700001)(478600001)(99936001)(316002)(6916009)(2940100002)(106356001)(105586002)(446003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1P192MB0271;
 	H:VI1P192MB0143.EURP192.PROD.OUTLOOK.COM; FPR:; SPF:None;
 	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
 received-spf: None (protection.outlook.com: orthotaxy.com does not designate
 	permitted sender hosts)
-x-microsoft-antispam-message-info: 2wCYjvz47503DTgkiJXU+eRnDok+pf9j+DZ7BVSWwlfXiS48fYg/iCkj3T3qwrnYqfeWpz7wJ5tPIcG7Am4LCjOArezH9JAGD4pe4ZUhRGa0iuwugs1KK+dBdrAdz/CX0BXOzhCxX8pTrgA505cNh2l6Wv7MgabSo0YFRFrnjN51M05pzaXGCn+5PoC2yJq0sZc48xnAPRKieB+ghR8kYbVdmo6HNv4c7phV+YorjQ+YZqmt4uPKKsgoMW3OYAHHVw10OtNvvhtib0h4KfjjEK7hFou7Gq0ywSJxokk/xCZtIaFxoahj5uWN1I+qguKde1yvUjTaF2deVR5M+h5kgg==
+x-microsoft-antispam-message-info: bOC99tA/IoEEq+iwxshWLv1MwnnfR6ZzDOe4fJpCOxNOuVAp0fE2PQIU4lbr8X6y9UdGHXOxCAyBu4MiQbun3bdoiIilpO73ZgX096520b4kk09bilGNwjN0/hqVryiBZzpKfEjQboScUIU2Xe52n2tCx5og9lZHDW1FDP+0kdh5ByPmRS0A0hJvSsri8caFTJgYwkPkd+dX4Ixa2r5YdB0GOvN0easLHsnCUVdOoT7J0qsPnqSSOmWp9ZPFo3mKJXsADm1wqHBTVaJB9tzXe90ImOTd62z32LLo/joEJkuPMZaXAq3njmwjxfDHFTgyoUAZfXv5ctXKEenYoyegHg==
 spamdiagnosticoutput: 1:99
 spamdiagnosticmetadata: NSPM
 MIME-Version: 1.0
 X-OriginatorOrg: orthotaxy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: faf16d79-d95f-4bf0-ae31-08d58fc6fe32
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Mar 2018 07:31:57.2574 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50dd3a00-7d34-4d98-bf26-08d58fdec868
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Mar 2018 10:22:14.9519 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 0c838133-9c42-4d53-8cbc-7a36ef5279a7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P192MB0384
-Subject: how to "compute" path to install module file
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P192MB0271
+Subject: Re: how to "compute" path to install module file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -95,12 +97,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Mar 2018 07:46:22 -0000
+X-List-Received-Date: Thu, 22 Mar 2018 10:22:21 -0000
+X-Groupsio-MsgNum: 40375
 Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_VI1P192MB0143E912A128CECB0C06CF998DA90VI1P192MB0143EURP_"
+Content-Type: multipart/mixed;
+	boundary="_004_VI1P192MB01438B5A1925B475EBAD926A8DA90VI1P192MB0143EURP_"
 
---_000_VI1P192MB0143E912A128CECB0C06CF998DA90VI1P192MB0143EURP_
+--_004_VI1P192MB01438B5A1925B475EBAD926A8DA90VI1P192MB0143EURP_
+Content-Type: multipart/alternative;
+	boundary="_000_VI1P192MB01438B5A1925B475EBAD926A8DA90VI1P192MB0143EURP_"
+
+--_000_VI1P192MB01438B5A1925B475EBAD926A8DA90VI1P192MB0143EURP_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -155,7 +162,7 @@ Thanks for helping
 Vincent
 
 
---_000_VI1P192MB0143E912A128CECB0C06CF998DA90VI1P192MB0143EURP_
+--_000_VI1P192MB01438B5A1925B475EBAD926A8DA90VI1P192MB0143EURP_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -190,14 +197,25 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
@@ -285,4 +303,19 @@ Arial&quot;,sans-serif;color:#222222;mso-fareast-language:EN-GB"><o:p></o:p=
 </body>
 </html>
 
---_000_VI1P192MB0143E912A128CECB0C06CF998DA90VI1P192MB0143EURP_--
+--_000_VI1P192MB01438B5A1925B475EBAD926A8DA90VI1P192MB0143EURP_--
+
+--_004_VI1P192MB01438B5A1925B475EBAD926A8DA90VI1P192MB0143EURP_
+Content-Type: text/plain; name="ATT00001.txt"
+Content-Description: ATT00001.txt
+Content-Disposition: attachment; filename="ATT00001.txt"; size=145;
+	creation-date="Thu, 22 Mar 2018 07:47:22 GMT";
+	modification-date="Thu, 22 Mar 2018 07:47:22 GMT"
+Content-ID: <D404BD06E911A749B6212DB516CB6F0A@EURP192.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+
+LS0gDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KeW9j
+dG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpodHRwczovL2xpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg==
+
+--_004_VI1P192MB01438B5A1925B475EBAD926A8DA90VI1P192MB0143EURP_--
