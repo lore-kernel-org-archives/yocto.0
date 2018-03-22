@@ -1,43 +1,63 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <huafu8386@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 066C5E00CDF; Wed, 21 Mar 2018 15:55:07 -0700 (PDT)
+	id 26B52E009D7; Wed, 21 Mar 2018 21:47:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (huafu8386[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.47 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B6F3E008D3
-	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 15:55:04 -0700 (PDT)
-Received: from hex ([192.168.3.34]) (authenticated bits=0)
-	by dan.rpsys.net (8.15.2/8.15.2/Debian-3) with ESMTPSA id
-	w2LMsujs000888
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
-	verify=NOT); Wed, 21 Mar 2018 22:54:57 GMT
-Message-ID: <1521672896.25754.226.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>, "Burton, Ross"
-	<ross.burton@intel.com>
-Date: Wed, 21 Mar 2018 22:54:56 +0000
-In-Reply-To: <a73785d4-f3fb-374d-3a54-3ea97e85b41f@linux.intel.com>
-References: <CY4PR11MB17663B664B1ED6ADE96BC48AC7D40@CY4PR11MB1766.namprd11.prod.outlook.com>
-	<dd055b01-fe83-d706-bce1-5a2aea3103fe@gmail.com>
-	<CAJTo0LbxDGNrJH8tDiCgMKoSHUsK8Q17BUH=UVkY8zDBAm70+g@mail.gmail.com>
-	<833712e4-00aa-1e05-8df5-a0f9a18d4e29@linux.intel.com>
-	<CAJTo0LadpoW1BCCbfhsEac7PBV2qNxuiWrnRk6MZeV2DVWiDEA@mail.gmail.com>
-	<61d1ecb9-e4a6-8d26-9bcc-76c7c42abb7f@linux.intel.com>
-	<1521561579.25754.202.camel@linuxfoundation.org>
-	<a73785d4-f3fb-374d-3a54-3ea97e85b41f@linux.intel.com>
-X-Mailer: Evolution 3.18.5.2-0ubuntu3.2 
-Mime-Version: 1.0
-X-Virus-Scanned: clamav-milter 0.99.3 at dan
-X-Virus-Status: Clean
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: =?UTF-8?B?UmU6IFtPRS1jb3JlXSBZb2N0byBQcm9qZWN0IFN0YXR1cyBXVzEy4oCZMTg=?=
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-it0-f47.google.com (mail-it0-f47.google.com
+	[209.85.214.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11D6CE007A7
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 21:47:09 -0700 (PDT)
+Received: by mail-it0-f47.google.com with SMTP id e98-v6so9451789itd.4
+	for <yocto@yoctoproject.org>; Wed, 21 Mar 2018 21:47:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Tu0DV7KRyKmKTiPRnn8hcVmx0Xt3QMybeQX2PHLgRjc=;
+	b=oFtFNn5E/SkEVKc7+ylq5LHllXukWPTwJpUDsdiE3xU2ic101Q3SKtH3jikdJrfM8O
+	DOw/hgxmtvLkyTWv3+tsCKF6HDO4qarBHfpoWf6H1y8hQNEhyQKKJPCzkH77tSrm4TNJ
+	rXDEReu/0/+TUR27gUUHv7JIjXF/f9rSh85qV9wEXmmFOkuKpn3YFth4KM+7ilPdIQc6
+	a2BzE+wzZU8FvfH5fYNRQA1273pg+9WhgVfJIQ6c/J6TE9XpE4NoXKJC6+Kb9eXVkYPe
+	5g70Zob9ZRBVx6sw+Rpm+7KisR8xbEDhqfauql2keS6Jj6a0LE3HhclMZZhapkASWWD6
+	OG4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Tu0DV7KRyKmKTiPRnn8hcVmx0Xt3QMybeQX2PHLgRjc=;
+	b=LpzDJ7hTXqpro8hxqRZcQZsNKz+yu0I0rukq2N7+mCvHe8KdwqDtcFmOJ6TAj7ENrU
+	oQIpEcqqYPWCi5cagZQV6Xy8a5yHW+kHUSR/Y01nLSd6qpXfhDbCrnKNqqmpNNHnn9D7
+	fi1dGo/MdFgIi6X2jTgu2rJDs1MuxP/Iutxh4KL25LGqYEVV6x3cpz8vwvPNZAHLjm9A
+	29r8OVO3UW/g/z7jVrbOFUEjS3w5aZe13SLDq/CqUVjEDtHVRCULyFYZ1rskHV5OPuNg
+	Ic869IBzeDEkX9HdeCGaqJEOr+aWx5ODuK3l8VqVsJLolvtIgQX3nTqQrOxmTxdSs6gd
+	jyaQ==
+X-Gm-Message-State: AElRT7EfDeYwkYJr5zX3dk1kHlqG+Wln+s+ZJRnFZntO8Ns9gxqJqaSV
+	5Vww4Qit6oLpvpr040gbzBzeIJTQxV/KQIcHvPXrgg==
+X-Google-Smtp-Source: AG47ELsYNztEDZA9pIsk9u9MxgPk1r2oerTPSoEFy4Np58hIcRhG6U0bhg6up4xtjbRG39n+LZ7sV0Ig0Kpiziz6IwA=
+X-Received: by 2002:a24:e085:: with SMTP id
+	c127-v6mr6898766ith.25.1521694028991; 
+	Wed, 21 Mar 2018 21:47:08 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.79.124.196 with HTTP; Wed, 21 Mar 2018 21:47:08 -0700 (PDT)
+From: HuaFu 8386 <huafu8386@gmail.com>
+Date: Wed, 21 Mar 2018 21:47:08 -0700
+Message-ID: <CAAXOrvb_PiV0T00=okLNpcUgEdNfQ1Qs6NnA_kDC+yqJHV8pkw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to build two different kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,35 +69,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2018 22:55:07 -0000
+X-List-Received-Date: Thu, 22 Mar 2018 04:47:11 -0000
+Content-Type: multipart/alternative; boundary="0000000000000e112e0567f900c7"
+
+--0000000000000e112e0567f900c7
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-On Tue, 2018-03-20 at 20:00 +0200, Alexander Kanavin wrote:
-> On 03/20/2018 05:59 PM, Richard Purdie wrote:
-> > 
-> > > 
-> > > > 
-> > > > How long does a single run take, and why not run it every
-> > > > month?
-> > > Just a bit longer than a day, maybe 30 hours, if it needs to
-> > > update
-> > > the
-> > > typical amount of 100-150 packages. I'll shift it to monthly
-> > > then.
-> > Personally I'm leaning to every couple of weeks...
-> My worry is that shorter AUH periods will lead to reminder fatigue.
-> Also the period between submitting the updates, and having them show
-> up in master is sometimes less than ideal, even when the freeze is
-> not in effect.
+Hi,
 
-Its a valid concern? Once every three weeks? I would like to make
-things more available for people if possible too...
+I want to build two different images with two different kernel configs, one
+for debug version and one for production version, like
+bitbake debug_image
+bitbake product_image
 
-With builds we've had a bad run at the moment and am hoping with
-improvements in build resources that are in process we can fix that.
+Any idea how can I do that?
 
-Cheers,
+Thanks,
+Danny
 
-Richard
+--0000000000000e112e0567f900c7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,<div><br></div><div>I want to build two different image=
+s with two different kernel configs, one for debug version and one for prod=
+uction version, like</div><div>bitbake debug_image</div><div>
+
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:sm=
+all;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norma=
+l;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;te=
+xt-transform:none;white-space:normal;word-spacing:0px;text-decoration-style=
+:initial;text-decoration-color:initial">bitbake product_image</div><div sty=
+le=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font=
+-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-w=
+eight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-trans=
+form:none;white-space:normal;word-spacing:0px;text-decoration-style:initial=
+;text-decoration-color:initial"><br></div><div style=3D"color:rgb(34,34,34)=
+;font-family:arial,sans-serif;font-size:small;font-style:normal;font-varian=
+t-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:=
+normal;text-align:start;text-indent:0px;text-transform:none;white-space:nor=
+mal;word-spacing:0px;text-decoration-style:initial;text-decoration-color:in=
+itial">Any idea how can I do that?</div><div style=3D"color:rgb(34,34,34);f=
+ont-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-=
+ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:no=
+rmal;text-align:start;text-indent:0px;text-transform:none;white-space:norma=
+l;word-spacing:0px;text-decoration-style:initial;text-decoration-color:init=
+ial"><br></div><div style=3D"color:rgb(34,34,34);font-family:arial,sans-ser=
+if;font-size:small;font-style:normal;font-variant-ligatures:normal;font-var=
+iant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;tex=
+t-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-d=
+ecoration-style:initial;text-decoration-color:initial">Thanks,</div><div st=
+yle=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;fon=
+t-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-=
+weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tran=
+sform:none;white-space:normal;word-spacing:0px;text-decoration-style:initia=
+l;text-decoration-color:initial">Danny</div><br class=3D"gmail-Apple-interc=
+hange-newline">
+
+<br></div></div>
+
+--0000000000000e112e0567f900c7--
