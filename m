@@ -1,73 +1,66 @@
-Return-Path: <laurent.joli@kapelse.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6A70E009DC; Fri, 23 Mar 2018 09:52:34 -0700 (PDT)
+	id 0B9EEE009DC; Fri, 23 Mar 2018 10:03:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [176.120.128.35 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.216.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from stripper.pharmagest.com (stripper.pharmagest.com
-	[176.120.128.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09E8AE007E1
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 09:52:33 -0700 (PDT)
-Received: from 127.0.0.1 (localhost [127.0.0.1])
-	by stripper.pharmagest.com (Postfix) with ESMTP id E18356B2423
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 17:52:32 +0100 (CET)
-X-MIB-FROM: laurent.joli@kapelse.com
-X-MIBTO: BKix6Fn39KkNW6xZDl6cUwBEMlwkHw1v0T/KRO0nYQo=
-Received: from localhost ([127.0.0.1])
-	by stripper.pharmagest.com (MIBD SMTP Server 4.0.0000) with SMTP ID 87
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 17:52:31 +0100 (CET)
-Received: from vm-shunter2-prd.sim.pharmagest.com
-	(vm-shunter2-prd.sim.pharmagest.com [172.19.32.62])
-	by stripper.pharmagest.com (Postfix) with ESMTP id 5E9576B2427
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 17:52:31 +0100 (CET)
-Received: from vm-zimbranemta1-prd.sim.pharmagest.com
-	(vm-zimbranemta1-prd.sim.pharmagest.com [172.19.32.35])
-	by vm-shunter2-prd.sim.pharmagest.com (courriel) with ESMTP id
-	C3F758025AC2
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 17:52:30 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
-	51470827D5
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 17:52:31 +0100 (CET)
-Received: from vm-zimbranemta1-prd.sim.pharmagest.com ([127.0.0.1])
-	by localhost (vm-zimbranemta1-prd.sim.pharmagest.com [127.0.0.1])
-	(amavisd-new, port 10032)
-	with ESMTP id 9Qs7TrY9f_NZ for <yocto@yoctoproject.org>;
-	Fri, 23 Mar 2018 17:52:30 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
-	C192482833
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 17:52:30 +0100 (CET)
-Received: from vm-zimbranemta1-prd.sim.pharmagest.com ([127.0.0.1])
-	by localhost (vm-zimbranemta1-prd.sim.pharmagest.com [127.0.0.1])
-	(amavisd-new, port 10026)
-	with ESMTP id KkT-v3RAGecj for <yocto@yoctoproject.org>;
-	Fri, 23 Mar 2018 17:52:30 +0100 (CET)
-Received: from vm-zimbranestore2-prd.sim.pharmagest.com (unknown
-	[172.19.32.41])
-	by vm-zimbranemta1-prd.sim.pharmagest.com (Postfix) with ESMTP id
-	A9D23827D5
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 17:52:30 +0100 (CET)
-Date: Fri, 23 Mar 2018 17:52:30 +0100 (CET)
-From: Laurent JOLI <laurent.joli@kapelse.com>
-To: yocto <yocto@yoctoproject.org>
-Message-ID: <1629644408.9901392.1521823950642.JavaMail.zimbra@kapelse.com>
-In-Reply-To: <1931396871.9886250.1521812366094.JavaMail.zimbra@kapelse.com>
-References: <mailman.7.1521745201.12814.yocto@yoctoproject.org>
-	<1931396871.9886250.1521812366094.JavaMail.zimbra@kapelse.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qt0-f176.google.com (mail-qt0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 551A2E007E1
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 10:03:13 -0700 (PDT)
+Received: by mail-qt0-f176.google.com with SMTP id w12so5644452qti.4
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 10:03:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hPdoVgZRp1OYl2sfDEgeVPWiFKeGvQJOFASj2CN9GaY=;
+	b=EkvoDi8aRo9S0mf1ePQNYbeUKmBE1PfDAaMPRa6AQR4JsLV6Nd6Iafi5WWHu4fENby
+	0h8Pno7raqmpl0qV8tCBJsTxs6SvFY5pFCjKKlpSqt5vbUvOXt2ihgn42PR+OY7d19L2
+	Hy+lVWHe1bKxPcs0itIGqXHeqkUZZa5NZc8E1ZbsNlxNJP42pdJAnt334gE7m0Yr0V0T
+	9jT0XHZXQ4GpWzqSFKFfnt/oPB+jROjNg4i2iwb1vlo4PDnuws2VDMBPHq16ks0QxFxX
+	RxqJDOIeDvHkUVWBTNj+U6yaTM0r6yZ+PswoVCf3ebmWe4RprxZJEiddUULLULCrs/9U
+	7CRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hPdoVgZRp1OYl2sfDEgeVPWiFKeGvQJOFASj2CN9GaY=;
+	b=bBnBYDLnlsDvUKIGzDAqJ7+x6FL5VNjh6fWDHx66UPmeZ7jYty7HNQH2kNvCF8G+jk
+	DH7w+g5xAVrIcqLEsFrNvAHB1zUywzR27TEuLAIl/IPI7HqeVPZMZw9U/zzSOoQbLYhf
+	hy1weWwHEwZWUzY//+JHfY0hRc4ytMPr5V0/VgjbtbtM7yq82jusERcT78CixwDLDxKk
+	z1a/14k+z4pvudgB8ZOijleGOrKcPS1iQnJr+8+pUWuHZRNULRrZ2tlr/5l6R49GLXll
+	4ry5yXSFDiXjMPNkAceqdU4z7zZ1RSDxmbAhF8ZV8gvCbFYUYNOSIFr1TD7v8tx1pXUQ
+	Et/A==
+X-Gm-Message-State: AElRT7G82heVIBvszIu4LeFN6kHX6jK5edP9R+HRBF9natJSQSa6VNuy
+	L5eqd20SHve3U15/lgO7MNGzKOPJQfwvRq6E5Os=
+X-Google-Smtp-Source: AG47ELvjh6LbHHYS0l0xaD3p1nFs7IeMm26hsiEn3clRv0DlNf2SWoFD4irxsikIUXlvCmGZkMap93OEs8Kch4kzgPQ=
+X-Received: by 10.237.63.113 with SMTP id q46mr41873557qtf.308.1521824592654; 
+	Fri, 23 Mar 2018 10:03:12 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Zimbra 8.7.1_GA_1670 (ZimbraWebClient - FF59 (Linux)/8.7.1_GA_1670)
-Thread-Topic: Add lib to meta-qt5
-Thread-Index: er7iejBdaQjPl+57FjNd46qK7FgLG4JHZI3z
-Subject: Re: Add lib to meta-qt5
+Received: by 10.12.130.100 with HTTP; Fri, 23 Mar 2018 10:03:12 -0700 (PDT)
+In-Reply-To: <20180319204725.GA4418@bill-the-cat.ec.rr.com>
+References: <CAGAf8Lzv-vjN2j1TkF33GkC9qjNSzqBSpvHkUoyS_5kd=oJAjQ@mail.gmail.com>
+	<20180319204725.GA4418@bill-the-cat.ec.rr.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Fri, 23 Mar 2018 18:03:12 +0100
+Message-ID: <CAGAf8Lw5GabXp3LWwD5TqB_RE=40+-35NzS8+3S256czEgfJEw@mail.gmail.com>
+To: Tom Rini <trini@konsulko.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Quick hack for compiling old and outdated YOCTO Jethro for Renesas iwg20m
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,84 +72,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2018 16:52:35 -0000
-Content-Type: multipart/alternative; 
-	boundary="=_38568f90-9fdb-4d39-8158-3e103c752099"
+X-List-Received-Date: Fri, 23 Mar 2018 17:03:15 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---=_38568f90-9fdb-4d39-8158-3e103c752099
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Hello Tom,
 
-J'ai copier la lib libQt5Declarative dans le SDK=20
+> This is your biggest warning and source of problems. If you have
+> to work with an old version of Yocto, you need to setup a
+> VM/chroot/whatever of a supported at that time host distribution.
 
-/opt/SDK_5.5.1/sysroots/core2-32-oe-linux/usr/lib/=20
+Jozef was right, and you were iron right, just straight to the middle.
+So I decided to listen to your advice, and to build aside VBox VM
+environment. I have chosen Fedora 23 server, built the VBox VM with
+Fedora 23, and the initial issue disappeared.
 
-J'ai sourc=C3=A9 mon shel puis relanc=C3=A9 qtcreator mais j'ai toujours la=
- m=C3=AAme erreur :=20
+But another issue appeared. It is somehow described very well here,
+and many people at the same time had this problem:
+https://lists.yoctoproject.org/pipermail/yocto/2015-February/023624.html
 
+I then continued to search, and found the following:
+https://stackoverflow.com/questions/37475222/ncurses-6-0-compilation-error-error-expected-before-int
 
+I did this: export CPPFLAGS="-P", but this did not help. Then I
+advanced gcc to F25 package (6.4.1), it did not help either. Advancing
+to Fedora 26 (7.3) revamped/resurfaced the original problem, so I did
+regress gcc back to Fedora 24 version (6.3.1).
 
-Project ERROR: Unknown module(s) in QT: declarative=20
+What could be the problem here?
 
+Thank you,
+Zoran
+_______
 
+On Mon, Mar 19, 2018 at 9:47 PM, Tom Rini <trini@konsulko.com> wrote:
+> On Mon, Mar 19, 2018 at 05:38:47PM +0100, Zoran Stojsavljevic wrote:
+>> Hello,
+>>
+>> I have to do some job on the Renesas iwg20m platform. From this site:
+>> https://elinux.org/RZ-G/Boards/Yocto_2.0
+>>
+>> I found some explanation how to do YOCTO build, which I a bit modified
+>> (conf/local.conf).
+>>
+>> It does download all the packages, but it fails here (in *RED*):
+>>
+>> [vuser@localhost conf]$ bitbake core-image-minimal
+>> WARNING: Host distribution "Fedora-27" has not been validated with this
+>> version of the build system; you may possibly experience unexpected
+>> failures. It is recommended that you use a tested distribution.
+>
+> This is your biggest warning and source of problems.  If you have to
+> work with an old version of Yocto, you need to setup a
+> VM/chroot/whatever of a supported at that time host distribution.
+>
+> --
+> Tom
 
-
-De: "Laurent JOLI" <laurent.joli@kapelse.com>=20
-=C3=80: "yocto" <yocto@yoctoproject.org>=20
-Envoy=C3=A9: Vendredi 23 Mars 2018 14:39:26=20
-Objet: Add lib to meta-qt5=20
-
-Hello,=20
-
-I'm working with an old version of YOCTO, jethro 2.0.=20
-And I want to produce an SDK of QT5, version 5.5.1.=20
-
-So, I add the layer meta-qt5 on YOCTO for build the following recipe :=20
-
-https://github.com/meta-qt5/meta-qt5/tree/jethro=20
-
-meta-toolchain-qt5=20
-
-My question is :=20
-
-How to add an lib ( libqt5declarative.so.5.5.1 for example ) on SDK of QT5 =
-?=20
-
-thanks by advance.=20
-
-
---=_38568f90-9fdb-4d39-8158-3e103c752099
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><body><div style=3D"font-family: Arial, Helvetica, sans-serif; font-s=
-ize: 10pt; color: #000000"><style type=3D"text/css" scoped=3D"">
-p, li { white-space: pre-wrap; }
-</style><div>J'ai copier la lib&nbsp; libQt5Declarative dans le SDK <br></d=
-iv><div><br data-mce-bogus=3D"1"></div><div>&nbsp;/opt/SDK_5.5.1/sysroots/c=
-ore2-32-oe-linux/usr/lib/<br data-mce-bogus=3D"1"></div><div><br data-mce-b=
-ogus=3D"1"></div><div>J'ai sourc=C3=A9 mon shel puis relanc=C3=A9 qtcreator=
- mais j'ai toujours la m=C3=AAme erreur :<br data-mce-bogus=3D"1"></div><di=
-v><br data-mce-bogus=3D"1"></div><div><p style=3D" margin-top:0px; margin-b=
-ottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inde=
-nt:0px;" data-mce-style=3D"-qt-block-indent: 0; text-indent: 0px; margin: 0=
-px;"><!--StartFragment-->Project ERROR: Unknown module(s) in QT: declarativ=
-e<!--EndFragment--></p><p style=3D" margin-top:0px; margin-bottom:0px; marg=
-in-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;" data-m=
-ce-style=3D"-qt-block-indent: 0; text-indent: 0px; margin: 0px;"><br data-m=
-ce-bogus=3D"1"></p></div><div><br></div><hr id=3D"zwchr" data-marker=3D"__D=
-IVIDER__"><div data-marker=3D"__HEADERS__"><b>De: </b>"Laurent JOLI" &lt;la=
-urent.joli@kapelse.com&gt;<br><b>=C3=80: </b>"yocto" &lt;yocto@yoctoproject=
-.org&gt;<br><b>Envoy=C3=A9: </b>Vendredi 23 Mars 2018 14:39:26<br><b>Objet:=
- </b>Add lib to meta-qt5<br></div><div><br></div><div data-marker=3D"__QUOT=
-ED_TEXT__"><div style=3D"font-family: Arial, Helvetica, sans-serif; font-si=
-ze: 10pt; color: #000000"><div>Hello,<br></div><br><div>I'm working with an=
- old version of YOCTO, jethro 2.0.<br></div><div>And I want to produce an S=
-DK of QT5, version 5.5.1.<br></div><br><div>So, I add the layer meta-qt5 on=
- YOCTO for build the following recipe :<br></div><br><div>https://github.co=
-m/meta-qt5/meta-qt5/tree/jethro<br></div><br><div>meta-toolchain-qt5<br></d=
-iv><br><div>My question is :</div><br><div> How to add an lib ( libqt5decla=
-rative.so.5.5.1 for example ) on SDK of QT5 ?<br></div><br><div>thanks by a=
-dvance.</div></div><br></div></div></body></html>
-
---=_38568f90-9fdb-4d39-8158-3e103c752099--
