@@ -1,66 +1,63 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <jkrishnanjanappa@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B9EEE009DC; Fri, 23 Mar 2018 10:03:15 -0700 (PDT)
+	id 83AFCE0091A; Fri, 23 Mar 2018 11:22:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.216.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.160.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qt0-f176.google.com (mail-qt0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 551A2E007E1
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 10:03:13 -0700 (PDT)
-Received: by mail-qt0-f176.google.com with SMTP id w12so5644452qti.4
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 10:03:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=hPdoVgZRp1OYl2sfDEgeVPWiFKeGvQJOFASj2CN9GaY=;
-	b=EkvoDi8aRo9S0mf1ePQNYbeUKmBE1PfDAaMPRa6AQR4JsLV6Nd6Iafi5WWHu4fENby
-	0h8Pno7raqmpl0qV8tCBJsTxs6SvFY5pFCjKKlpSqt5vbUvOXt2ihgn42PR+OY7d19L2
-	Hy+lVWHe1bKxPcs0itIGqXHeqkUZZa5NZc8E1ZbsNlxNJP42pdJAnt334gE7m0Yr0V0T
-	9jT0XHZXQ4GpWzqSFKFfnt/oPB+jROjNg4i2iwb1vlo4PDnuws2VDMBPHq16ks0QxFxX
-	RxqJDOIeDvHkUVWBTNj+U6yaTM0r6yZ+PswoVCf3ebmWe4RprxZJEiddUULLULCrs/9U
-	7CRA==
+Received: from mail-pl0-f46.google.com (mail-pl0-f46.google.com
+	[209.85.160.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEE54E0086B
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 11:22:35 -0700 (PDT)
+Received: by mail-pl0-f46.google.com with SMTP id f23-v6so7925150plr.10
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 11:22:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=aoOi1HNHTq9B87JCz4IJUTQCHhacVJczp1Ly5uwIy/k=;
+	b=MAZ8v1Nwz+HWCiiol8CbufVDH4xW6udslOflT3L08a6Ji+YfcD2fRONrtt9rVEDllF
+	obY7/7ftJ48AOZBususZ80yJi6Nsew/AvrDbWZrxm7F70z93vVAYprXczLekWWdP7aYw
+	sDVKHlYs9agrV32i+1KatCqJAvHwoT18N8n7tGZvthMg4K6hYvzI/plSjYvL64GqbqqF
+	dJ1SH+hOJGVsDzil65tepQLim0qdaXVHTvqdr7JO+uAzdWyqSN8qKeiJkW0rHx3zkmut
+	KflXPVP3Zk93gd8UzPel/38tyx93mHQfdVqj+29amkQhGKZ/Sw0tV9p3/LQ9XiItsUX6
+	Z9ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=hPdoVgZRp1OYl2sfDEgeVPWiFKeGvQJOFASj2CN9GaY=;
-	b=bBnBYDLnlsDvUKIGzDAqJ7+x6FL5VNjh6fWDHx66UPmeZ7jYty7HNQH2kNvCF8G+jk
-	DH7w+g5xAVrIcqLEsFrNvAHB1zUywzR27TEuLAIl/IPI7HqeVPZMZw9U/zzSOoQbLYhf
-	hy1weWwHEwZWUzY//+JHfY0hRc4ytMPr5V0/VgjbtbtM7yq82jusERcT78CixwDLDxKk
-	z1a/14k+z4pvudgB8ZOijleGOrKcPS1iQnJr+8+pUWuHZRNULRrZ2tlr/5l6R49GLXll
-	4ry5yXSFDiXjMPNkAceqdU4z7zZ1RSDxmbAhF8ZV8gvCbFYUYNOSIFr1TD7v8tx1pXUQ
-	Et/A==
-X-Gm-Message-State: AElRT7G82heVIBvszIu4LeFN6kHX6jK5edP9R+HRBF9natJSQSa6VNuy
-	L5eqd20SHve3U15/lgO7MNGzKOPJQfwvRq6E5Os=
-X-Google-Smtp-Source: AG47ELvjh6LbHHYS0l0xaD3p1nFs7IeMm26hsiEn3clRv0DlNf2SWoFD4irxsikIUXlvCmGZkMap93OEs8Kch4kzgPQ=
-X-Received: by 10.237.63.113 with SMTP id q46mr41873557qtf.308.1521824592654; 
-	Fri, 23 Mar 2018 10:03:12 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.12.130.100 with HTTP; Fri, 23 Mar 2018 10:03:12 -0700 (PDT)
-In-Reply-To: <20180319204725.GA4418@bill-the-cat.ec.rr.com>
-References: <CAGAf8Lzv-vjN2j1TkF33GkC9qjNSzqBSpvHkUoyS_5kd=oJAjQ@mail.gmail.com>
-	<20180319204725.GA4418@bill-the-cat.ec.rr.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Fri, 23 Mar 2018 18:03:12 +0100
-Message-ID: <CAGAf8Lw5GabXp3LWwD5TqB_RE=40+-35NzS8+3S256czEgfJEw@mail.gmail.com>
-To: Tom Rini <trini@konsulko.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Quick hack for compiling old and outdated YOCTO Jethro for Renesas iwg20m
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=aoOi1HNHTq9B87JCz4IJUTQCHhacVJczp1Ly5uwIy/k=;
+	b=pyFXhkMLEOE4vekLNvzE1GAxB4N+tkSBxU76pO00E7A1S0uctiZIp3wc4Qy3qFyiGz
+	wGAfAwZTkP7Jl96GhpT28ZEh54W3CovKdsCFAMLPWfa1Ka7zaQjvT0OGeR0ZGOmL+GPN
+	ywUMIx3dc31knsv2yTT8pswvaVFK76P46Vtrm+ggn7qb+VNJB2RkpWCeVhe83Q3/LFFl
+	PGcFkbyiw3Aga6iZJorLjdzWmwGtLuGaXdCH1PjV7q+DlfAGTmkEIokjedU3lxo703k/
+	VkE1TPhlbBHjCpm94EBvX9EPxlM971Gd0ZM9n2w+zZ6JrsmwVwAY3tsdlKh7MviidiiH
+	9CrQ==
+X-Gm-Message-State: AElRT7GPPxI8/ZcWK8dstj1UVfiQb/0VlWS//k1JrvPYczdfSjJJmYWT
+	RATH5c0hNdF0h2vOjRyWUhev1EJ3p1Y=
+X-Google-Smtp-Source: AG47ELsRDljsjpp0WGdUXdRp+CSqqdAh7A0/HGkXUcVRFr7GwRVzCbIspIg383nqffnLGlTNwvNGdw==
+X-Received: by 2002:a17:902:7c98:: with SMTP id
+	y24-v6mr30624784pll.60.1521829355050; 
+	Fri, 23 Mar 2018 11:22:35 -0700 (PDT)
+Received: from jkrishnanjanappa-VPCEB26FG.mvista.com
+	([2405:204:53a3:b5d4:c136:9096:3bbb:6090])
+	by smtp.gmail.com with ESMTPSA id
+	t128sm17345048pgb.50.2018.03.23.11.22.32
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 23 Mar 2018 11:22:34 -0700 (PDT)
+From: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
+To: yocto@yoctoproject.org
+Date: Fri, 23 Mar 2018 23:52:26 +0530
+Message-Id: <1521829346-7075-1-git-send-email-jkrishnanjanappa@mvista.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][PATCH] clamav: Add missing clamav.service file to SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,59 +69,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2018 17:03:15 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 23 Mar 2018 18:22:36 -0000
 
-Hello Tom,
+This solves the below error when systemd is used as init manager,
+-- snip --
+ERROR: clamav-0.99.2-r0 do_package: SYSTEMD_SERVICE_clamav value clamav.service does not exist
+ERROR: clamav-0.99.2-r0 do_package: Function failed: systemd_populate_packages
+-- snip --
 
-> This is your biggest warning and source of problems. If you have
-> to work with an old version of Yocto, you need to setup a
-> VM/chroot/whatever of a supported at that time host distribution.
+Other issue:
+*  Ship /lib/systemd/system/clamav-freshclam.service into ${PN}-freshclam
+   package, to solve below warning:
+-- snip --
+[10240] WARNING: QA Issue: clamav: Files/directories were installed but not shipped in any package:
+  /lib/systemd/system/clamav-freshclam.service
+-- snip --
 
-Jozef was right, and you were iron right, just straight to the middle.
-So I decided to listen to your advice, and to build aside VBox VM
-environment. I have chosen Fedora 23 server, built the VBox VM with
-Fedora 23, and the initial issue disappeared.
+Signed-off-by: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
+---
+ recipes-security/clamav/clamav_0.99.3.bb | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-But another issue appeared. It is somehow described very well here,
-and many people at the same time had this problem:
-https://lists.yoctoproject.org/pipermail/yocto/2015-February/023624.html
+diff --git a/recipes-security/clamav/clamav_0.99.3.bb b/recipes-security/clamav/clamav_0.99.3.bb
+index 2b07d69..dc26277 100644
+--- a/recipes-security/clamav/clamav_0.99.3.bb
++++ b/recipes-security/clamav/clamav_0.99.3.bb
+@@ -14,6 +14,7 @@ SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.99 \
+     file://clamd.conf \
+     file://freshclam.conf \
+     file://volatiles.03_clamav \
++    file://${BPN}.service \
+     "
+ 
+ S = "${WORKDIR}/git"
+@@ -23,7 +24,7 @@ SO_VER = "7.1.1"
+ 
+ EXTRANATIVEPATH += "chrpath-native"
+ 
+-inherit autotools-brokensep pkgconfig useradd systemd 
++inherit autotools-brokensep pkgconfig useradd systemd
+ 
+ UID = "clamav"
+ GID = "clamav"
+@@ -87,6 +88,9 @@ do_install_append() {
+     install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/volatiles.03_clamav
+     sed -i -e 's#${STAGING_DIR_HOST}##g' ${D}${libdir}/pkgconfig/libclamav.pc
+     rm ${D}/${libdir}/libclamav.so
++    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};then
++        install -D -m 0644 ${WORKDIR}/clamav.service ${D}${systemd_unitdir}/system/clamav.service
++    fi
+ }
+ 
+ pkg_postinst_${PN} () {
+@@ -123,7 +127,8 @@ FILES_${PN}-freshclam = "${bindir}/freshclam \
+                         ${sysconfdir}/clamav ${sysconfdir}/default/volatiles \
+                         ${localstatedir}/lib/clamav \
+                         ${docdir}/${PN}-freshclam ${mandir}/man1/freshclam.* \
+-                        ${mandir}/man5/freshclam.conf.*"
++                        ${mandir}/man5/freshclam.conf.* \
++                        ${systemd_unitdir}/system/clamav-freshclam.service"
+ 
+ FILES_${PN}-dev = " ${bindir}/clamav-config ${libdir}/*.la \
+                     ${libdir}/pkgconfig/*.pc \
+-- 
+2.7.4
 
-I then continued to search, and found the following:
-https://stackoverflow.com/questions/37475222/ncurses-6-0-compilation-error-error-expected-before-int
-
-I did this: export CPPFLAGS="-P", but this did not help. Then I
-advanced gcc to F25 package (6.4.1), it did not help either. Advancing
-to Fedora 26 (7.3) revamped/resurfaced the original problem, so I did
-regress gcc back to Fedora 24 version (6.3.1).
-
-What could be the problem here?
-
-Thank you,
-Zoran
-_______
-
-On Mon, Mar 19, 2018 at 9:47 PM, Tom Rini <trini@konsulko.com> wrote:
-> On Mon, Mar 19, 2018 at 05:38:47PM +0100, Zoran Stojsavljevic wrote:
->> Hello,
->>
->> I have to do some job on the Renesas iwg20m platform. From this site:
->> https://elinux.org/RZ-G/Boards/Yocto_2.0
->>
->> I found some explanation how to do YOCTO build, which I a bit modified
->> (conf/local.conf).
->>
->> It does download all the packages, but it fails here (in *RED*):
->>
->> [vuser@localhost conf]$ bitbake core-image-minimal
->> WARNING: Host distribution "Fedora-27" has not been validated with this
->> version of the build system; you may possibly experience unexpected
->> failures. It is recommended that you use a tested distribution.
->
-> This is your biggest warning and source of problems.  If you have to
-> work with an old version of Yocto, you need to setup a
-> VM/chroot/whatever of a supported at that time host distribution.
->
-> --
-> Tom
 
