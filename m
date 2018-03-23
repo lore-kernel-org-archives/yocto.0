@@ -1,61 +1,62 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <jkrishnanjanappa@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 713CCE00851; Fri, 23 Mar 2018 11:47:09 -0700 (PDT)
+	id 5CD00E009CF; Fri, 23 Mar 2018 12:10:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kratsg[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.216.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f173.google.com (mail-io0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1D3BE00474
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 11:47:08 -0700 (PDT)
-Received: by mail-io0-f173.google.com with SMTP id e79so16283283ioi.7
-	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 11:47:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=V0MVoaJriGB/VJp1YedSro/Ymj3xMdrXqoAi507E+ZM=;
-	b=f6TTPee27kpa8jQNQSDhBwyGyqOakH3ZEyFo5YiOJkAdDmsLWlHliPZ7E/qMfHWd09
-	d7yY76FVVSRjEN3rGWegnRyT6eqJ1M13BQAdvaGtmroxs/+nWGBz9b0h47unNzgwebXi
-	4zjpH/kqr5zJ784umV+2fm1fMPqaxBdZExKsZO75CannGbLj2Y661gqzVaemZj/WL1qQ
-	bIdQ3KxEp4f0dagVytWFIUeRL9vwNl+/5VSci7DdC3m8TJ6bzOwa6EMD1OLvBWggBDu6
-	PvL0AhC52V2QfVCvcCZZ7gAVlUmfHTNG9FkVpDHVmfD02k4MVTjOPWiK2c6PSPujgGZJ
-	eYaw==
+Received: from mail-qt0-f176.google.com (mail-qt0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1A4BE00474
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 12:10:52 -0700 (PDT)
+Received: by mail-qt0-f176.google.com with SMTP id l25so13662855qtj.1
+	for <yocto@yoctoproject.org>; Fri, 23 Mar 2018 12:10:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id;
+	bh=YyB+84iI+PyjCYku4IqZmW4zBn8j+1NsF1dFDBC1cSU=;
+	b=XtdWJfWWQrpB+zWFxZ9j2w3cg8omGbVKa70pFZwQJnZ/6/wSTca7QfWB7Tjf2gscxN
+	ebf5wPFmcNk/a+pqvPJCPrMB2/GZHn3D4CLZuiPu5toMHCbhbjFv3tQxfwlJZlBdBALA
+	HRhTLxjjHl3lNZrm2jqHZmwIBAfF1yXMw95yBj0FutUJNs47B5lwBLZZfGolG3SEv2pG
+	F35s+NrlE9LfexdTPh2iXYtWS+17osslLG3c54HfL/l3RHcojqJ/QZnLGGy2N5sYbWaz
+	Fn4MLwKYpwnMkhObrATG60SDOP2GjHJzCW5SnIws9k51POlUyiX1+sHwRFQAPC9+9m/S
+	Kz6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=V0MVoaJriGB/VJp1YedSro/Ymj3xMdrXqoAi507E+ZM=;
-	b=eH4IgT3e170nk4Vs8AtXma/caOvQ7HmTCWos0J8HNoph1fDIoq4v1NYhKTpHbOT5i4
-	h2bsKn25T4m7udxh5LE39bPDXUn6MscmwgHEndkjgYWSSluDM05zh9kxu8ZfW1v/IebA
-	Sb09x4u+/9Zo/ENlTv7MhWHoDnvCvQ2bVrT7g4da03z+s+tRkxxnonoZ+rLgqC0exUkw
-	2EhK2VARb+MGZI7FbjPz8t2FpKEn+VsYjvIu4JL8/Oqme+PfgfH5SxnimfZb7g6LWOr/
-	Vf1t72aeqoWRsQ1qmj9lpbVBqGswM7ZUtFn24kluV2Facr1eIT/l3JmhGqlsg+U4YfoN
-	aCXw==
-X-Gm-Message-State: AElRT7HxN3Fz91tZJESW2HvpGHJz0KX8TgfB7tJx4pt8kdeBcUgkZUuM
-	Aj80zdVCHrj898RFNU622YJBV0HwAA055dyxD6liRQ==
-X-Google-Smtp-Source: AG47ELvxnLbgzVGHAdBgF/LvpCX1WmyAKW+tjGtY+qNJ5lnSOQCeb465EgqZgFkmYHRWl0+ChYEGmwDcy7x9mETptIs=
-X-Received: by 10.107.145.214 with SMTP id t205mr29425884iod.62.1521830827672; 
-	Fri, 23 Mar 2018 11:47:07 -0700 (PDT)
-MIME-Version: 1.0
-From: Giordon Stark <kratsg@gmail.com>
-Date: Fri, 23 Mar 2018 18:46:56 +0000
-Message-ID: <CAFzUWGk1kpvN-Ujnk8YwUKb4=jFAdv6bQqEBRLVnQ-6+4JA+gQ@mail.gmail.com>
-To: "N:" <yocto@yoctoproject.org>
-Subject: No module named setuptools -- even with "inherit setuptools"?
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=YyB+84iI+PyjCYku4IqZmW4zBn8j+1NsF1dFDBC1cSU=;
+	b=nNH9Yj6WgKL4Wp2FVxBm9vJ16XhtGLls8lQbhNt2xEj5yhnssp2hb6m6BHpHv6Huru
+	XK0iT5N9STZ8OMtO1KcEYb1ld1jKFcnSlNgipId39DV+1tjFmHDt92NgzdgHxfr29pI7
+	mKhNaMsLW44fqTtkiClTsD5gnTg6zy+Kv7MGAxaxGNkRQmupCciED9Xm5S3rInq2hiuw
+	80XWv9sCUvOG19HcMeE2vbwHDYHW9Rv5sPwC57RU0UlVQrEhvlRuXMhAsjKbSOf6ehOs
+	Rqk4wHxtlsDsP/lOCzlGeXQQ0ax3ybX6R911mjmtmjE9I8DjXPVXxgL1ka4y3tksoApP
+	Ig6A==
+X-Gm-Message-State: AElRT7HNIf/5DQ4+k7gcd9bNPgwxrJUd+8zHmC9ifz9kOiwGDB4TxJvs
+	Cwhi953YWSmNO9OOC3eXO0TjCLLvv5M=
+X-Google-Smtp-Source: AG47ELshMpIteKJCHFvQyI+DyjjOaeLXT5XYgyvjL8adXJkPn0VE5JssEwnl08km2XU0vrpNN07nLA==
+X-Received: by 10.200.7.69 with SMTP id k5mr38089085qth.165.1521832251574;
+	Fri, 23 Mar 2018 12:10:51 -0700 (PDT)
+Received: from jkrishnanjanappa-VPCEB26FG.mvista.com
+	([2405:204:53a3:b5d4:c136:9096:3bbb:6090])
+	by smtp.gmail.com with ESMTPSA id
+	i11sm7134409qtc.30.2018.03.23.12.10.48
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 23 Mar 2018 12:10:50 -0700 (PDT)
+From: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
+To: yocto@yoctoproject.org
+Date: Sat, 24 Mar 2018 00:40:41 +0530
+Message-Id: <1521832241-11341-1-git-send-email-jkrishnanjanappa@mvista.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][rocko][PATCH v2] clamav: Add missing clamav.service file to SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,95 +68,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2018 18:47:09 -0000
-Content-Type: multipart/alternative; boundary="94eb2c055418e447ac056818d93f"
+X-List-Received-Date: Fri, 23 Mar 2018 19:10:54 -0000
 
---94eb2c055418e447ac056818d93f
-Content-Type: text/plain; charset="UTF-8"
+This solves the below error when systemd is used as init manager,
+-- snip --
+ERROR: clamav-0.99.2-r0 do_package: SYSTEMD_SERVICE_clamav value clamav.service does not exist
+ERROR: clamav-0.99.2-r0 do_package: Function failed: systemd_populate_packages
+-- snip --
 
-Hi,
+Other issue:
+*  Ship /lib/systemd/system/clamav-freshclam.service into ${PN}-freshclam
+   package, to solve below warning:
+-- snip --
+[10240] WARNING: QA Issue: clamav: Files/directories were installed but not shipped in any package:
+  /lib/systemd/system/clamav-freshclam.service
+-- snip --
 
-I'm a bit perplexed. I don't know what I'm doing wrong here, but this is
-the log data:
+V2 changes:
+* Removed non-existent multilib-alternatives bbclass
 
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| Traceback (most recent call last):
-|   File "setup.py", line 2, in <module>
-|     from setuptools import setup
-| ImportError: No module named setuptools
-| ERROR: python setup.py build execution failed.
-| WARNING:
-/local/d4/gstark/poky/build/tmp/work/aarch64-poky-linux/python-construct/2.9.39-r0/temp/run.do_compile.3286:1
-exit 1 from 'exit 1'
-| ERROR: Function failed: do_compile (log file is located at
-/local/d4/gstark/poky/build/tmp/work/aarch64-poky-linux/python-construct/2.9.39-r0/temp/log.do_compile.3286)
-ERROR: Task
-(/local/d4/gstark/meta-l1calo/recipes-python/python-construct_2.9.39.bb:do_compile)
-failed with exit code '1'
+Signed-off-by: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
+---
+ recipes-security/clamav/clamav_0.99.2.bb | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-with the recipe looking like this... (below). Any ideas?
-
-DESCRIPTION = "Python declarative parser for binary data"
-HOMEPAGE = "http://construct.readthedocs.org/en/latest/"
-SECTION = "devel/python"
-LICENSE = "BSD-3-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=3fd0f2c25089e629957285e6bc402a20"
-
-PYPI_PACKAGE = "construct"
-inherit pypi setuptools
-
-SRC_URI[md5sum] = "39407f91407138f687ea2ecf8d758a1f"
-SRC_URI[sha256sum] =
-"c23ef47fd5751d821e5c17d9b3b02d1f3c465e66b8a205b9c791c4abef747138"
-
-DEPENDS = "python python-six"
-RDEPENDS_${PN} += "python-lang python-shell python-six python-debugger"
+diff --git a/recipes-security/clamav/clamav_0.99.2.bb b/recipes-security/clamav/clamav_0.99.2.bb
+index 5dfda8f..a7f69df 100644
+--- a/recipes-security/clamav/clamav_0.99.2.bb
++++ b/recipes-security/clamav/clamav_0.99.2.bb
+@@ -14,6 +14,7 @@ SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=${PV} \
+     file://clamd.conf \
+     file://freshclam.conf \
+     file://volatiles.03_clamav \
++    file://${BPN}.service \
+     "
+ 
+ SRC_URI[md5sum] = "61b51a04619aeafd965892a53f86d192"
+@@ -26,7 +27,7 @@ SO_VER = "7.1.1"
+ 
+ EXTRANATIVEPATH += "chrpath-native"
+ 
+-inherit autotools-brokensep pkgconfig useradd systemd 
++inherit autotools-brokensep pkgconfig useradd systemd
+ 
+ UID = "clamav"
+ GID = "clamav"
+@@ -90,6 +91,9 @@ do_install_append() {
+     install -m 0644 ${WORKDIR}/volatiles.03_clamav  ${D}${sysconfdir}/default/volatiles/volatiles.03_clamav
+     sed -i -e 's#${STAGING_DIR_HOST}##g' ${D}${libdir}/pkgconfig/libclamav.pc
+     rm ${D}/${libdir}/libclamav.so
++    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};then
++        install -D -m 0644 ${WORKDIR}/clamav.service ${D}${systemd_unitdir}/system/clamav.service
++    fi
+ }
+ 
+ pkg_postinst_${PN} () {
+@@ -126,7 +130,8 @@ FILES_${PN}-freshclam = "${bindir}/freshclam \
+                         ${sysconfdir}/clamav ${sysconfdir}/default/volatiles \
+                         ${localstatedir}/lib/clamav \
+                         ${docdir}/${PN}-freshclam ${mandir}/man1/freshclam.* \
+-                        ${mandir}/man5/freshclam.conf.*"
++                        ${mandir}/man5/freshclam.conf.* \
++                        ${systemd_unitdir}/system/clamav-freshclam.service"
+ 
+ FILES_${PN}-dev = " ${bindir}/clamav-config ${libdir}/*.la \
+                     ${libdir}/pkgconfig/*.pc \
 -- 
-Giordon Stark
+2.7.4
 
---94eb2c055418e447ac056818d93f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m a bit perplexed. I don&#39;=
-t know what I&#39;m doing wrong here, but this is the log data:</div><div><=
-br></div><div><div><font face=3D"monospace">Log data follows:</font></div><=
-div><font face=3D"monospace">| DEBUG: Executing shell function do_compile</=
-font></div><div><font face=3D"monospace">| Traceback (most recent call last=
-):</font></div><div><font face=3D"monospace">|=C2=A0 =C2=A0File &quot;setup=
-.py&quot;, line 2, in &lt;module&gt;</font></div><div><font face=3D"monospa=
-ce">|=C2=A0 =C2=A0 =C2=A0from setuptools import setup</font></div><div><fon=
-t face=3D"monospace">| ImportError: No module named setuptools</font></div>=
-<div><font face=3D"monospace">| ERROR: python setup.py build execution fail=
-ed.</font></div><div><font face=3D"monospace">| WARNING: /local/d4/gstark/p=
-oky/build/tmp/work/aarch64-poky-linux/python-construct/2.9.39-r0/temp/run.d=
-o_compile.3286:1 exit 1 from &#39;exit 1&#39;</font></div><div><font face=
-=3D"monospace">| ERROR: Function failed: do_compile (log file is located at=
- /local/d4/gstark/poky/build/tmp/work/aarch64-poky-linux/python-construct/2=
-.9.39-r0/temp/log.do_compile.3286)</font></div><div><font face=3D"monospace=
-">ERROR: Task (/local/d4/gstark/meta-l1calo/recipes-python/python-construct=
-_2.9.39.bb:do_compile) failed with exit code &#39;1&#39;</font></div></div>=
-<div><br></div><div>with the recipe looking like this... (below). Any ideas=
-?</div><div><br></div><div><div><font face=3D"monospace">DESCRIPTION =3D &q=
-uot;Python declarative parser for binary data&quot;</font></div><div><font =
-face=3D"monospace">HOMEPAGE =3D &quot;<a href=3D"http://construct.readthedo=
-cs.org/en/latest/">http://construct.readthedocs.org/en/latest/</a>&quot;</f=
-ont></div><div><font face=3D"monospace">SECTION =3D &quot;devel/python&quot=
-;</font></div><div><font face=3D"monospace">LICENSE =3D &quot;BSD-3-Clause&=
-quot;</font></div><div><font face=3D"monospace">LIC_FILES_CHKSUM =3D &quot;=
-file://LICENSE;md5=3D3fd0f2c25089e629957285e6bc402a20&quot;</font></div><di=
-v><font face=3D"monospace"><br></font></div><div><font face=3D"monospace">P=
-YPI_PACKAGE =3D &quot;construct&quot;</font></div><div><font face=3D"monosp=
-ace">inherit pypi setuptools</font></div></div><div><div><font face=3D"mono=
-space"><br></font></div><div><font face=3D"monospace">SRC_URI[md5sum] =3D &=
-quot;39407f91407138f687ea2ecf8d758a1f&quot;</font></div><div><font face=3D"=
-monospace">SRC_URI[sha256sum] =3D &quot;c23ef47fd5751d821e5c17d9b3b02d1f3c4=
-65e66b8a205b9c791c4abef747138&quot;</font></div><div><font face=3D"monospac=
-e"><br></font></div><div><font face=3D"monospace">DEPENDS =3D &quot;python =
-python-six&quot;</font></div><div><font face=3D"monospace">RDEPENDS_${PN} +=
-=3D &quot;python-lang python-shell python-six python-debugger&quot;</font><=
-/div></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-sma=
-rtmail=3D"gmail_signature"><div dir=3D"ltr">Giordon Stark</div></div>
-
---94eb2c055418e447ac056818d93f--
