@@ -1,39 +1,53 @@
-Return-Path: <philip@balister.org>
+Return-Path: <farzanemostafa@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46150E009C9; Sat, 24 Mar 2018 09:48:21 -0700 (PDT)
+	id 8D60EE00927; Sun, 25 Mar 2018 06:03:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [216.168.135.167 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0D96E00474
-	for <yocto@yoctoproject.org>; Sat, 24 Mar 2018 09:48:19 -0700 (PDT)
-Received: (qmail 21883 invoked by uid 1003); 24 Mar 2018 16:48:22 -0000
-Received: from unknown (HELO ?192.168.11.100?)
-	(philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	24 Mar 2018 16:48:22 -0000
-To: =?UTF-8?Q?Matthias_Sch=c3=b6pfer?= <matthias.schoepfer@identpro.de>,
-	Peter Balazovic <balazovic.peter@gmail.com>,
-	Yocto-mailing-list <yocto@yoctoproject.org>
-References: <CAFq4t4gpGaMCyvR2drwjU8+NWYS5aSodmzPhPb4FWio6vm+12Q@mail.gmail.com>
-	<CAFq4t4jerHvsYRmh41=nu01OK6cE0Vszn4Vs0VYFsFMDxN97pw@mail.gmail.com>
-	<C44683C49AD51C4AB28DA746E48E35870101C9F0@SBS-IDENTPRO.intranet.identpro.net>
-From: Philip Balister <philip@balister.org>
-Message-ID: <531bef5a-d363-a751-29fa-4bd9872020ec@balister.org>
-Date: Sat, 24 Mar 2018 12:48:18 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_05,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (farzanemostafa[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.6.134.123 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0106]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from sonic315-13.consmr.mail.bf2.yahoo.com
+	(sonic315-13.consmr.mail.bf2.yahoo.com [74.6.134.123])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6640FE00791
+	for <yocto@yoctoproject.org>; Sun, 25 Mar 2018 06:03:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1521982980; bh=k/T/1bbP7p+eM/aK5kyA6scFZw5Gst8LzTY0hxxfh5g=;
+	h=Date:From:To:Subject:References:From:Subject;
+	b=N7cA3M3K41jxdu/RAM3NtpWGtsQZBFK6eK7ewh4f6SqRspUrNo5MtWKWygQ0lAp9KV4KVdduN9ixHFJE6QHrJCX5JaLUu1boIaDuRE/PHX0QdfTuZo8naFs4m5LgGHou9b1xcbVdsn4mDDEaM8kOT4q4aJvmfQPTTBBjEcEfeCijT3zSkt6Eyzjv5MVIlFq8wFnAT6GUKIBwls5+nTAHkR5anPpkFZ2LkHLnsxMxGEzW6AOx59H++9WBVdjWKHe4eSqDY5EGZVp+eh4k725aH5dXLscq1mjL5KzSqXGOWJlX7QOZtKQxidOfvXyfk10OwFyf6aPJlmTLOVSrxcgpgw==
+X-YMail-OSG: MZ7DBHgVM1lzym8QIvALEorfnI3Pf9svEcjP3JhWN3LsgLCm7r8ziR9ta3qooZu
+	6BgCb9hQpviEWV3X38x4WDmAsbiU05kWG9HpTvUnnsr2EoQ1fCqjgEPu21qqaVSjtqUCJtVy_tmn
+	WmR1nxmyVYFraRys2d99E7P4htJv4ZtBwe2A7RvGc06FbT67i875Z7fgw0WxSjquFob.H2bnU6No
+	tLr1ylXC1ZIWRdpbpk7vUOyyBDp.fdhZ0mPUuF2y2eq_8Zjcs05G76ktHfhWQPn366uE6m4R0jGF
+	QfCNVyRQn3hm1vd2FLabsPRHoctZ_q2VVqfO1ys1K_cipnGNEvs5DgcdvJzDncutmUs5C9l11lZa
+	m.1V10QoL8gt.rUf5zI4xvKviIIRhhhoTe4BV6mX8B5lOJUT.SefwFwo.kHAaDnm_T1hHR1sqxBv
+	vbH5S5YM37dnDrpvOOKsBuLH4elrESee5TAV1bMMWzmsa6knoLxJWf2OE2.3q3JDJabsHCA--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic315.consmr.mail.bf2.yahoo.com with HTTP;
+	Sun, 25 Mar 2018 13:03:00 +0000
+Date: Sun, 25 Mar 2018 13:01:33 +0000 (UTC)
+From: Mostafa Farzane <farzanemostafa@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <140452140.145707.1521982893662@mail.yahoo.com>
 MIME-Version: 1.0
-In-Reply-To: <C44683C49AD51C4AB28DA746E48E35870101C9F0@SBS-IDENTPRO.intranet.identpro.net>
-Subject: Re: scipy recipe
+References: <140452140.145707.1521982893662.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.11643 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
+	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186
+	Safari/537.36
+Subject: how to add libsrtp and libsrtp-staticdev to sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,39 +59,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Mar 2018 16:48:21 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-MW
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sun, 25 Mar 2018 13:03:02 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_145706_390187665.1521982893661"
 
-On 03/23/2018 06:07 AM, Matthias Schöpfer wrote:
-> Hi Peter,
-> 
-> I managed to get scipy to cross compile, since I was in a hurry, and
-> have no deeper understanding of python / distutils / setuptools, it
-> turned out to be an ugly hack (but obviously I was not the first one to
-> do ugly things there ;) )
-> 
-> Maybe you have had some progress as well, and we can figure out a nicer
-> solution.
-> 
-> See the attached files, involving openblas, a bbappend for python-numpy
-> and python-scipy.
+------=_Part_145706_390187665.1521982893661
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I'm confused why you need the bbappend for numpy?
+Hi,I need to add libsrtp to my sdk. I want both static and dynamic library =
+in sdk. I added "libsrtp libsrtp-staticdev" to "IMAGE_INSTALL" but getting =
+the following error:
+=C2=A0=C2=A0=C2=A0=C2=A0Collected errors:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0* ca=
+lculate_dependencies_for: Cannot satisfy the following dependencies for lib=
+srtp-staticdev:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0*=C2=A0 =C2=A0 =C2=A0 libsrtp =
+(=3D 1.5.2-r0) *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0* opkg_solver_install: Cannot=
+ install package libsrtp-staticdev.
 
-The recipe in OE-Core should be solid without patches.
+------=_Part_145706_390187665.1521982893661
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Other than that, this is very interesting stuff.
+<html><head></head><body><div style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div>Hi,</div><div>I need to add libsrtp to my sdk. I want both static and dynamic library in sdk. I added "libsrtp libsrtp-staticdev" to "IMAGE_INSTALL" but getting the following error:</div><div><br><div>&nbsp;&nbsp;&nbsp;&nbsp;Collected errors:</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* calculate_dependencies_for: Cannot satisfy the following dependencies for libsrtp-staticdev:</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; &nbsp; &nbsp; libsrtp (= 1.5.2-r0) *</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* opkg_solver_install: Cannot install package libsrtp-staticdev.</div><div><br></div></div></div></body></html>
 
-Philip
-
-
-> 
-> Regards,
-> 
-> 	Matthias
-> 
-> 
-> 
-
+------=_Part_145706_390187665.1521982893661--
