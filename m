@@ -1,26 +1,40 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98BF4E00A44; Sun, 25 Mar 2018 22:14:34 -0700 (PDT)
+	id 81D90E00C76; Sun, 25 Mar 2018 23:25:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2D53E0070F
-	for <yocto@yoctoproject.org>; Sun, 25 Mar 2018 22:14:31 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id CE04A806CC32
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 01:14:30 -0400 (EDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25494E008D2
+	for <yocto@yoctoproject.org>; Sun, 25 Mar 2018 23:25:31 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	25 Mar 2018 23:25:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.48,363,1517904000"; d="scan'208";a="41219728"
+Received: from anmitta2-mobl1.png.intel.com (HELO [10.221.20.224])
+	([10.221.20.224])
+	by fmsmga001.fm.intel.com with ESMTP; 25 Mar 2018 23:25:29 -0700
+To: "Tan, Raymond" <raymond.tan@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <F0CA9E243F4F424B836EAC30E41BF4CF781DDA28@PGSMSX104.gar.corp.intel.com>
+From: Anuj Mittal <anuj.mittal@intel.com>
+Message-ID: <0cfff1a0-ea55-9f7f-05cf-5ed491720bfd@intel.com>
+Date: Mon, 26 Mar 2018 14:25:28 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 26 Mar 2018 05:14:30 -0000
-Message-ID: <20180326051430.27819.88840@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+In-Reply-To: <F0CA9E243F4F424B836EAC30E41BF4CF781DDA28@PGSMSX104.gar.corp.intel.com>
+Subject: Re: [wic.qcow2] qemu-system-x86-64 booting qcow2 image stalls
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,216 +46,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2018 05:14:34 -0000
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Mon, 26 Mar 2018 06:25:32 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 
-This mail was sent out by Recipe reporting system.
+Hi Raymond,
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade at this time, they can fill
-RECIPE_NO_UPDATE_REASON in respective recipe file to ignore this remainder
-until newer upstream version was detected.
+On 03/25/2018 11:23 PM, Tan, Raymond wrote:
+> Dear All,
+> 
+> †
+> 
+> Iím building an image with meta-intel layer, and machine set to
+> intel-corei7-64, with additional IMAGE_FSTYPES set to ìwic.qcow2î.
+> 
+> Upon running the image with the following command, the boot stalls with
+> ìBooting from Hard DiskÖî
+> 
+> †
+> 
+> qemu-system-x86_64 core-image-sato-sdk.wic.qcow2 ñm 512
+> 
+> †
+> 
+> The hddimg has no issue booting with flashing to usb with mkefidisk.sh,
+> but this qcow2 image didnít even boot till EFI,
 
-Example:
-RECIPE_NO_UPDATE_REASON = "Version 2.0 is unstable"
+Did you try runqemu core-image-sato-sdk.wic.qcow2 ovmf?
 
-You can check the detail information at:
-
-http://recipes.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer            NoUpgradeReason
---------------------  ---------------  --------------------  --------------------  ------------------------------
-webkitgtk             2.18.6           2.20.0                Alexander Kanavin
-gnome-desktop3        3.26.2           3.28.0                Alexander Kanavin
-vala                  0.38.8           0.40.0                Alexander Kanavin
-gcr                   3.20.0           3.28.0                Alexander Kanavin
-gtk-doc               1.27             1.28                  Alexander Kanavin
-dtc                   1.4.5            1.4.6                 Alexander Kanavin
-bash-completion       2.7              2.8                   Alexander Kanavin
-libaio                0.3.110          0.3.111               Alexander Kanavin
-lighttpd              1.4.48           1.4.49                Alexander Kanavin
-meson                 0.44.1           0.45.1                Alexander Kanavin
-gobject-introspec...  1.54.1           1.56.0                Alexander Kanavin
-btrfs-tools           4.13.3           4.15.1                Alexander Kanavin     Waiting for resolution of h...
-sysprof               3.26.1           3.28.0                Alexander Kanavin
-epiphany              3.26.6           3.28.0.1              Alexander Kanavin
-apt                   1.2.24           1.4.8                 An√≠bal Lim√≥n
-apt-native            1.2.24           1.4.8                 An√≠bal Lim√≥n
-dpkg                  1.18.24          1.19.0.5              An√≠bal Lim√≥n
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gst-validate          1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-vaapi    1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-rtsp...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-libav    1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-omx      1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0          1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-python   1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-gstreamer1.0-plug...  1.12.4           1.14.0                Anuj Mittal
-xkeyboard-config      2.22             2.23.1                Armin Kuster
-mkfontscale           1.1.2            1.1.3                 Armin Kuster
-tzcode-native         2018c            2018d                 Armin Kuster
-xeyes                 1.1.1            1.1.2                 Armin Kuster
-xinit                 1.3.4            1.4.0                 Armin Kuster
-xkbcomp               1.4.0            1.4.1                 Armin Kuster
-bind                  9.10.6           9.12.1                Armin Kuster
-xprop                 1.2.2            1.2.3                 Armin Kuster
-xset                  1.2.3            1.2.4                 Armin Kuster
-xwininfo              1.1.3            1.1.4                 Armin Kuster
-xf86-video-vesa       2.3.4            2.4.0                 Armin Kuster
-curl                  7.58.0           7.59.0                Armin Kuster
-busybox               1.27.2           1.28.2                Armin Kuster
-gnutls                3.6.1            3.6.2                 Armin Kuster
-libxshmfence          1.2              1.3                   Armin Kuster
-nspr                  4.18             4.19                  Armin Kuster
-calibrateproto        0.0+gitX         0.0-new-commits-a...  Armin Kuster
-nss                   3.34.1           3.35                  Armin Kuster
-libpcre2              10.30            10.31                 Armin Kuster
-xcb-proto             1.12             1.13                  Armin Kuster
-util-macros           1.19.1           1.19.2                Armin Kuster
-xserver-xorg          1.19.6           1.19.99.901           Armin Kuster
-libxcb                1.12             1.13                  Armin Kuster
-tzdata                2018c            2018d                 Armin Kuster
-xf86-input-libinput   0.26.0           0.27.0                Armin Kuster
-linux-libc-headers    4.15.7           4.15.13               Bruce Ashfield
-kern-tools-native     0.2+gitX         0.2-new-commits-a...  Bruce Ashfield
-kmscube               git              git-new-commits-a...  Carlos Rafael Giani
-iproute2              4.14.1           4.15.0                Changhyeok Bae
-ethtool               4.13             4.15                  Changhyeok Bae
-base-passwd           3.5.29           3.5.44                Chang Rebecca Swe...  Version 3.5.38 requires cde...
-gawk                  4.2.0            4.2.1                 Chen Qi
-systemd               237              238                   Chen Qi
-util-linux            2.31             2.32                  Chen Qi
-dbus-test             1.12.2           1.12.6                Chen Qi
-sed                   4.2.2            4.4                   Chen Qi
-sysstat               11.7.1           11.7.2                Chen Qi
-systemd-boot          237              238                   Chen Qi
-flex                  2.6.0            2.6.4                 Chen Qi
-dbus-glib             0.108            0.110                 Chen Qi
-dbus                  1.12.2           1.12.6                Chen Qi
-build-appliance-i...  15.0.0           18.0.2                Cristian Iorga
-weston                3.0.0            3.0.92                Denys Dmytriyenko
-wayland               1.14.0           1.14.92               Denys Dmytriyenko
-lz4                   1.7.4            1.8.1.2               Denys Dmytriyenko
-lzop                  1.03             1.04                  Denys Dmytriyenko
-hdparm                9.53             9.56                  Denys Dmytriyenko
-lzip                  1.19             1.20                  Denys Dmytriyenko
-python3               3.5.5            3.6.4                 Derek Straka
-python3-git           2.1.8            2.1.9                 Derek Straka
-python3-pip           9.0.2            9.0.3                 Derek Straka
-python-setuptools     39.0.0           39.0.1                Derek Straka
-python3-setuptools    39.0.0           39.0.1                Derek Straka
-python3-pycairo       1.15.6           1.16.3                Derek Straka
-python3-native        3.5.5            3.6.4                 Derek Straka
-acpica                20170303         20180313              Fathi Boudra
-dhcp                  4.3.6            4.4.1                 Hongxu Jia
-man-pages             4.14             4.15                  Hongxu Jia
-man-db                2.8.1            2.8.2                 Hongxu Jia
-libgpg-error          1.27             1.28                  Hongxu Jia
-help2man-native       1.47.5           1.47.6                Hongxu Jia
-bash                  4.4.12           4.4.18                Hongxu Jia
-libxml2               2.9.7            2.9.8                 Hongxu Jia
-ghostscript           9.21             9.23                  Hongxu Jia
-ncurses               6.0+20171125     6.1                   Hongxu Jia
-gnupg                 2.2.4            2.2.5                 Hongxu Jia
-bc                    1.06             1.07.1                Jose Lamego
-qemu                  2.11.1           2.12.0-rc0            Juro Bystricky
-mpfr                  3.1.5            4.0.1                 Khem Raj
-re2c                  0.16             1.0.1                 Khem Raj
-gdb                   8.0.1            8.1                   Khem Raj
-libnsl2               1.0.5+gitX       1.2.0                 Khem Raj
-llvm                  5.0              5.0-new-commits-a...  Khem Raj
-u-boot-fw-utils       2018.01          2018.03               Marek Vasut
-u-boot-mkimage        2018.01          2018.03               Marek Vasut
-u-boot                2018.01          2018.03               Marek Vasut
-pango                 1.40.14          1.42.0                Maxin B. John
-piglit                1.0+gitrX        1.0-new-commits-a...  Maxin B. John
-vulkan-demos          git              git-new-commits-a...  Maxin B. John
-perl                  5.24.1           5.26.1                Maxin B. John
-gtk-icon-utils-na...  3.22.28          3.22.29               Maxin B. John
-at-spi2-core          2.26.2           2.28.0                Maxin B. John
-atk                   2.26.1           2.28.1                Maxin B. John
-libinput              1.9.4            1.10.3                Maxin B. John
-gsettings-desktop...  3.24.1           3.28.0                Maxin B. John
-ifupdown              0.8.16           0.8.31                Maxin B. John
-libsolv               0.6.33           0.6.34                Maxin B. John
-glib-networking       2.54.1           2.56.0                Maxin B. John
-libusb1               1.0.21           1.0.22                Maxin B. John
-fontconfig            2.12.6           2.13.0                Maxin B. John
-vte                   0.50.2           0.52.0                Maxin B. John
-libsoup-2.4           2.60.3           2.62.0                Maxin B. John
-clutter-gst-3.0       3.0.24           3.0.26                Maxin B. John
-adwaita-icon-theme    3.26.1           3.28.0                Maxin B. John
-puzzles               0.0+gitX         0.0-new-commits-a...  Maxin B. John
-ofono                 1.22             1.23                  Maxin B. John
-libevdev              1.5.8            1.5.9                 Maxin B. John
-glib-2.0              2.54.3           2.56.0                Maxin B. John
-harfbuzz              1.7.5            1.7.6                 Maxin B. John
-gtk+3                 3.22.28          3.22.29               Maxin B. John
-bluez5                5.48             5.49                  Maxin B. John
-librsvg               2.40.20          2.42.3                Maxin B. John         Versions from 2.41.0 requir...
-vulkan                1.0.65.2         1.1.70.0              Maxin B. John
-libical               2.0.0            3.0.3                 Maxin B. John
-perl-native           5.24.1           5.26.1                Maxin B. John
-at-spi2-atk           2.26.1           2.26.2                Maxin B. John
-libtirpc              1.0.2            1.0.3                 Maxin B. John
-gdb-cross-canadia...  8.0.1            8.1                   No maintainer
-gdb-cross-i586        8.0.1            8.1                   No maintainer
-linux-firmware        0.0+gitX         0.0-new-commits-a...  Otavio Salvador
-cmake                 3.10.2           3.10.3                Otavio Salvador
-mesa                  17.3.6           17.3.7                Otavio Salvador
-cmake-native          3.10.2           3.10.3                Otavio Salvador
-mesa-gl               17.3.6           17.3.7                Otavio Salvador
-tcf-agent             1.4.0+gitX       1.7.0                 Randy Witt
-build-compare         2015.02.10+gitX  2015.02.10-new-co...  Randy Witt
-lttng-tools           2.9.5            2.10.2                Richard Purdie
-gnu-config            20150728+gitX    20150728-new-comm...  Robert Yang
-nfs-utils             2.1.1            2.3.1                 Robert Yang
-squashfs-tools        4.3+gitrX        4.3-new-commits-a...  Robert Yang
-e2fsprogs             1.43.8           1.44.1                Robert Yang
-strace                4.20             4.21                  Robert Yang
-automake              1.15.1           1.16.1                Robert Yang
-ccache                3.3.5            3.4.2                 Robert Yang
-time                  1.8              1.9                   Robert Yang
-git                   2.16.1           2.16.3                Robert Yang
-autoconf-archive      2016.09.16       2018.03.13            Robert Yang
-libvorbis             1.3.5            1.3.6                 Tanu Kaskinen
-libxml-simple-perl    2.24             2.25                  Tim Orling
-libxml-sax-perl       0.99             1.00                  Tim Orling
-gnu-efi               3.0.6            3.0.8                 Yi Zhao
-libpcre               8.41             8.42                  Yi Zhao
-dropbear              2017.75          2018.76               Yi Zhao
-chkconfig             1.3.58           1.8                   Yi Zhao               Version 1.5 requires selinux
-less                  529              530                   Yi Zhao
-logrotate             3.13.0           3.14.0                Yi Zhao
-libcap-ng             0.7.8            0.7.9                 Yi Zhao
-
-Upgradable count: 161
-Upgradable total count: 165
-
-The based commit is:
-
-commit aee44c6b1c36fb1c1f760fec60087933d1e8ea79
-Author: Armin Kuster <akuster@mvista.com>
-Date:   Thu Mar 22 22:04:46 2018 -0700
-
-    distcc: Change SRC_URI
-    
-    ERROR: distcc-3.2-r0 do_fetch: Fetcher failure: Unable to find revision d8b18df3e9dcbe4f092bed565835d3975e99432c in branch 3.2 even from upstream
-    ERROR: distcc-3.2-r0 do_fetch: Fetcher failure for URL: 'git://github.com/distcc/distcc.git;branch=3.2'. Unable to fetch URL from any source.
-    ERROR: distcc-3.2-r0 do_fetch: Function failed: base_do_fetch
-    
-    [v2]
-    upstream deleted the branch and the hash no longer exists.
-    
-    Took the git snapshot from yocto and created a copy on my github.
-    There was no offical 3.2 release, only rc versions.
-    
-    Signed-off-by: Armin Kuster <akuster@mvista.com>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-
-Any problem, please contact Jose Lamego <jose.a.lamego@intel.com> 
-
+Thanks,
+Anuj
 
