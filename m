@@ -1,61 +1,62 @@
-Return-Path: <sherifomran2000@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC45AE00B49; Mon, 26 Mar 2018 13:17:04 -0700 (PDT)
+	id 293F2E00A44; Mon, 26 Mar 2018 13:47:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sherifomran2000[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.83.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.214.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f47.google.com (mail-pg0-f47.google.com [74.125.83.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C477DE007DA
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 13:17:03 -0700 (PDT)
-Received: by mail-pg0-f47.google.com with SMTP id t10so1574384pgv.8
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 13:17:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=LgC59rIZLD685YfufMCbIx0xICW4NVElmnqlC3vwJwE=;
-	b=mlbnkduIR74NnT8+MsYIW1JgFvv/QLmfCngn0CgZVOo+ZAVxudutOgO14MgcO7P6gd
-	V9Qq+je4AjdiD4kTRbJHRxKQnlUJgL8+XeEdynyhdRDCDyDSuLFZ/dTprf7fBbiFtW0B
-	4TAXiDTcyuC9x+kFOS6K4V2E+iPOgb5fbOjXSRRchf9La9K4RJqIwOAjDeoapPhCZhKh
-	6PJERpiGlqw0ifYg7EE1wp8Q0VL/eGF18YKanzy9jJD8qDI6kiB2u+awHK+yZoQk3T2X
-	3UApEs0r6M3w3BH3v4j7yZq8XlnlZu/e0xiDhVp2b7YLZ5iQI43UrzhM/vS0ALkZ10es
-	epuw==
+Received: from mail-it0-f45.google.com (mail-it0-f45.google.com
+	[209.85.214.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 266FBE00857
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 13:47:32 -0700 (PDT)
+Received: by mail-it0-f45.google.com with SMTP id j137-v6so12414385ita.1
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 13:47:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=hgHGeXTCrcCVQsbYijqw3uqx0NHiwWpBvqApQNusm1g=;
+	b=ZvIxwhD9M7V+xvWR2rq4zVCHQzUU6nBV7oofELluG/4dVxSI2s/Xx4eTJu1CYcWPiq
+	wxHJLgMX8NkqaEWLHsm/1qWpo+0WSEccnLBqoNzpKz8sUfFJ9s72hJEtUj+FzrXOBwNL
+	B4Pt6gX3jowcAS2u7PYjYKLf5fW+ZOyrGXUiPmyNPGK0N4Vc/U1D3NWZy70M5japDTKS
+	XR2W9sqGaDnpA1fospN7d1euBO6kshouzlYmZzWnkxkg3+Ajogfo5Oa6Pz8kh6o6k6cz
+	ywamioiMLIbxiq7cPuq2KWNJ8QuEKk4R2+OdykjleMu5YEpcrbjnJ8UiEChHmwFeYrP4
+	whyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=LgC59rIZLD685YfufMCbIx0xICW4NVElmnqlC3vwJwE=;
-	b=HfTl5JdW4TJCy4dcovf0Hc+aUeR1ZSCIvd4eFF8WWMUCa/+NTeJVBPs7beHOVGyF/A
-	mSVZ1JZ+MXxLEdVzQkJV/3BoNRJfouDfiHRgu0GDcb/onId3nJXPKs8+3xF0Z/Fruqrt
-	FC6wZLZDudkTn+jh3Guha2D13BK1XK2bO8+poXTS9ZtaTQc1Dk11ZUvwfazejZT7W9eY
-	tL/6PUhc9QWcf3khAYOUtIciWh5TLcAwMXvh4uQVWZpihan3omD5BpyZWDX0qjZX/5MJ
-	ZCP0cCzrFbTE90hDwrGvMSZMU/8s4lqnpbaa6nLEG7DQCcJHBOEGuqYklIloxKBqbtzs
-	u+QA==
-X-Gm-Message-State: AElRT7F/Eut4u9K5vMcKU/aQsSPH/R+xYFeSi4xlO0YrW4ikJBPztzjH
-	vVzq5QDX+9mqxSF1SNLMGQEdyqfuAU1YRpDh7yNwpw==
-X-Google-Smtp-Source: AG47ELsFYb5ghsJRYrIxNtDrceOWZnpcwu7LdoZnJBh6YXfDzrgvqyrdT453fIN2D05jptQb/3v04XPScJRwpnnyYSI=
-X-Received: by 10.99.66.135 with SMTP id p129mr29948674pga.220.1522095422891; 
-	Mon, 26 Mar 2018 13:17:02 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=hgHGeXTCrcCVQsbYijqw3uqx0NHiwWpBvqApQNusm1g=;
+	b=b0XJEVOtPAiFJ6M3APZTNFz/nMuGdZtOSaOj1GR4xctWZdxr8KHoJJzUvY5hsJIU3g
+	1OR1eZC22TfJKg2+9RXEowv3dwty5vQBBalSWnA+3jV6eaFwm1BJK6tUH646vVHgvqYD
+	jGf3q2dy0RPyHBj03t4lC21HZnOZgtRdiIq57soZycjXsT7/M3LpxRj8hF2CRb1Ce1VW
+	EtJSBDl79Lzx7w5v6JFXMkNoJoltfMs3UOCXRKjtHCRvV4I4sVcg4NaKldSINQJda6kH
+	SG8LEsMNuEFOowk2er7x6lUZyp41BdIOcMWbzMWirdWRgHov1Th8B9iDmw1QKvNGf0VU
+	smRA==
+X-Gm-Message-State: AElRT7FYVNVxYO8IktYoTUAgWmFJN9s8IQUi4qVOWvIkbt8Q9K6BgLXL
+	DTns+OwrsUm7Kl7Gi3I3NXmgoqbo03OyCCdJVd7tag==
+X-Google-Smtp-Source: AIpwx480ekj8+8/nM06a1tB3OhlQYOmthvF1h7Bt2pvURCaI6ZI2EFL6Vv6eaD+QSA9lUaxH8MxuYwyva1UgLqxwrog=
+X-Received: by 2002:a24:2f49:: with SMTP id
+	j70-v6mr8007853itj.127.1522097251616; 
+	Mon, 26 Mar 2018 13:47:31 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.100.155.66 with HTTP; Mon, 26 Mar 2018 13:17:02 -0700 (PDT)
-From: Sherif Omran <sherifomran2000@gmail.com>
-Date: Mon, 26 Mar 2018 22:17:02 +0200
-Message-ID: <CAPb0b+N-ZJBZibsfyzqy9o8jrzsXAKa2Ke495bVm_py_uw2ttg@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: how to add pulseaudio
+Received: by 10.107.30.9 with HTTP; Mon, 26 Mar 2018 13:47:11 -0700 (PDT)
+In-Reply-To: <a4c194cc-78bc-08c3-491b-3130d7d3d019@emagii.com>
+References: <a4c194cc-78bc-08c3-491b-3130d7d3d019@emagii.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 26 Mar 2018 21:47:11 +0100
+Message-ID: <CAJTo0LYdof+yo+92aB3SMv-r-1eTLdFegNFJhBS5gywuPmta_Q@mail.gmail.com>
+To: Ulf Samuelsson <yocto@emagii.com>
+Cc: "N:" <yocto@yoctoproject.org>
+Subject: Re: How to add a module to python-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,34 +68,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2018 20:17:04 -0000
-Content-Type: multipart/alternative; boundary="94eb2c08e99cfeec89056856744f"
-
---94eb2c08e99cfeec89056856744f
+X-List-Received-Date: Mon, 26 Mar 2018 20:47:34 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-hello
+You'll need to run $bindir_native/python/python, we isolate the native
+Python from the host python so you need to invoke the native one
+explicitly.  In a recipe you can just do inherit pythonnative, but
+don't do that in a class which every recipe is inheriting!
 
-i am trying to add pulse audio to an image but i don't get pulse audio
-being installed in the image
+Ross
 
-I am using the following
-DISTRO_FEATURES_append += " ext2 pam usbhost ${DISTRO_FEATURES_LIBC}
-pulseaudio pulseaudio-module-dbus-protocol pulseaudio-module-bluetooth"
-IMAGE_INSTALL_append += " python dbus gconf glib-2.0"
+On 26 March 2018 at 21:01, Ulf Samuelsson <yocto@emagii.com> wrote:
+> Need some advice on how to extend python-native with a python-2.7 module.
+>
+> I am planning to upload the result of cve-check to our JIRA server.
+> I wrote a python application which reads the CVE manifest,
+> downloads the contents of a JIRA project and if a CVE issue
+> is not present in the database, it will create new issues.
+>
+> The python application is using the python-restkit module, which has all the
+> functionality I need, so I can call <script> -f <manifest>
+> and the JIRA will be updated.
+>
+> Would like to integrate this with bitbake using a bbclass.
+>
+> The class will be inherited in local.conf, and will check
+> if the recipe is an image, and if so, it will call a task
+> which executes right after the manifest is created and calls
+> the python script.
+>
+> do_cve_update_jira () {
+>     <call python scripts>
+> }
+>
+> python-native does not build python-restkit, so I have
+> created a recipe python-restkit which bbextends native.
+>
+> do_cve_update_jira[depends] = "python-restkit-native"
+>
+> This seems to ensure that the python-restkit is built and
+> in the x86 sysroot I have /usr/lib/python-2.7/sitepackages/restkit.
+>
+> Still, when the python script is called, "import restkit" fails.
+>
+> Would like to understand how to make sure that python-restkit-native
+> is always available to a recipe.
+>
+>
+> I guess, I could make each image somehow depend on python-restkit native,
+> but it would be better if it was always available to a recipe.
+>
+> Would appreciate some advice here.
+>
+> python-restkit is unfortunately only available for python2, not for python3.
+> Any advice on a good replacement?
+>
+>
+> Best Regards.
+> Ulf Samuelsson
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-what am i doing wrong?
-
---94eb2c08e99cfeec89056856744f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div>hello<br><br></div>i am trying to add pulse=
- audio to an image but i don&#39;t get pulse audio being installed in the i=
-mage<br><br></div>I am using the following<br>DISTRO_FEATURES_append +=3D &=
-quot; ext2 pam usbhost ${DISTRO_FEATURES_LIBC} pulseaudio pulseaudio-module=
--dbus-protocol pulseaudio-module-bluetooth&quot;<br>IMAGE_INSTALL_append +=
-=3D &quot; python dbus gconf glib-2.0&quot;<br><br></div>what am i doing wr=
-ong?<br></div>
-
---94eb2c08e99cfeec89056856744f--
