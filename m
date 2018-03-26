@@ -1,61 +1,73 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <yocto.user.mailinglist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36ACFE008E4; Mon, 26 Mar 2018 12:22:47 -0700 (PDT)
+	id 965FFE00994; Mon, 26 Mar 2018 12:30:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.223.194 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yocto.user.mailinglist[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
-	[209.85.223.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3C0DE007DA
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 12:22:46 -0700 (PDT)
-Received: by mail-io0-f194.google.com with SMTP id q80so13715944ioi.13
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 12:22:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=JoSDFDZrR5y06wfHW6NFRFl6S1cuQBqwwA92e2JSe8I=;
-	b=fdJTfoMgsZ8zDU0lvZeXaO3PrTsSkgyHqE1XfZ24qjk1mxThIuTB2TFLjJ984/T38F
-	+q0Psl9BFPM3Vc4mnn8/BpY5TU/BIemBTNDoThgQ7QA9+BBuHzyT+hB+u71rJUNsydS6
-	7lBn6+Nep9lEOjnPE2TgPBxR1n7q0fxg63Nw6WWXsexOli16+n4q6EgEpTw0zCc+JpKc
-	zxGd2r2ne+fZXK+0CiJobq5GEbNEXznbO5AYWI6HXcuWPb7bEQioUnVN+xLsxOpDL8ZR
-	+kh1wHuh56Y910NVnAiolOcxWoEchEPZgBFG2VK37A6T3VtEcl3e025P1wXqcg1O/I2I
-	sPQw==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.66 listed in list.dnswl.org]
+Received: from mail-wm0-f66.google.com (mail-wm0-f66.google.com [74.125.82.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D75EE0084A
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 12:30:25 -0700 (PDT)
+Received: by mail-wm0-f66.google.com with SMTP id r82so17627331wme.0
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 12:30:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language:content-transfer-encoding;
+	bh=kr9K3yBodJmxLL54gYjuYfPihAJSKZ8rSewHQQUjMAk=;
+	b=hrCvnVJWdPP1Znnqjcevkdv1N9X/+KpZhJ/s9ztPJn6bAV/ueLKv4c5EENQXgeCSYL
+	rFwvM2c1KZcj0N3OtS1EC5qKqqEauj09Fe1ouOH39ns8+gfc+5SN0fGVLmF/NyAvlxR6
+	a6II8wCd+GID9wYjjwaOQe0VByMDrJBwwU1W5tm+wKE/v5Q4eUsjW7WoIihW76ENfBnx
+	r5xQOYyKcIf+lYbgb9foeBzOgtcWHtT9DX19bYxcSrKbWHe1cGMiHHRmXVEW67bMbQF4
+	ezDx9BquJhvVlLYHZtl6Vd0irORhTsBMBZDo1vQ2qnYHUlyeo/eIUjHdQW9/O1vPtVDk
+	OPQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=JoSDFDZrR5y06wfHW6NFRFl6S1cuQBqwwA92e2JSe8I=;
-	b=LHHpN0gUyR2ksEZnELhdR++Ri5xlhbBnlFoCu5jKqhlO5amV2icGSHOoxzmN04Y9Kk
-	kf/747tnBDRsLmNRiMlarmIIjbUnD+joTIQNDRVsIvpzoOj4d7HVdPvvPkgjQFT2bOpV
-	ii3crDW8SmOI0yvGwl+1gvRE15aiWE8w1UhYD77IYdNJUfC6Hwr1f4i86wIh5i5t/czJ
-	25dvCtacTe60YQ7Uowj7czsx3qI7T9q/tbMsj3129VJKDixi9+lKta+cTlaALtvWL7pW
-	av+mkdN5d+5kqK+TgbEpv+f23jTmwBkhbETFBF16pUmlmy79WPeZkxHLmWckB2SJs4qu
-	qRhw==
-X-Gm-Message-State: AElRT7E8zasJ27use5o4wOlx2R+DYhRRYgipNamPVe6PwlC7SRF5Y4ET
-	e/8KZsaGhbVvqe/fXsSRxGdR4FC+SOpicBJ8X4bHVA==
-X-Google-Smtp-Source: AG47ELtGfl1l1As2lD105REehTcZoYWAhX2NsAUOQP8Vz7HzkSpPZ9ONBLMyaCVcPlfTojSa52VtvMHdL5jrEXT9FxM=
-X-Received: by 10.107.161.200 with SMTP id k191mr39147318ioe.270.1522092165882;
-	Mon, 26 Mar 2018 12:22:45 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=kr9K3yBodJmxLL54gYjuYfPihAJSKZ8rSewHQQUjMAk=;
+	b=kLqNBZcAnzpK2oszv2lY817bKIi4SaO0dgUFNw9Z38RZ1hvrjbr0Uh6JhNT006PxJe
+	V8cSLPV4v6KhgLokmH463g9GNe9jn5QCtbuvtM2/duiKiIdpgxBR47nmGakH0mjtI3hf
+	icV3GG71+0fbRXBYAC/UFStFqA7gxA7xq4WgMbBdrZZXHbxl//Y9rgwm2+dtQkRjmjlj
+	JazUOomlno+7N0sx9cFNN1VhPdpROz4fQSU3y3HZh24VirPUnOZt5iBWNs/ZU6z73wvb
+	1I2/XebdiFcSWyACD79TOcRolO/zlb891YTdhYxw+EFweeTbAMiHUVrD6ZHa9UzpKiGM
+	b8pg==
+X-Gm-Message-State: AElRT7Fx5D0AX3XnBclej9hnHlVRVbzgabYeq35dK7FJd3aKQXShfA+M
+	ctNhuE9c1NjOwyok3qXk1MHI9Hg9
+X-Google-Smtp-Source: AG47ELvrzDzfDnFfvxqrw8jjRxD1PFnUp2JpTf+rUXpAbhnTxKcE39tahG/Jj/7C0hDe+NQju7H+mg==
+X-Received: by 10.28.135.9 with SMTP id j9mr10323010wmd.68.1522092624950;
+	Mon, 26 Mar 2018 12:30:24 -0700 (PDT)
+Received: from [192.168.42.50] (ppp-2-86-156-243.home.otenet.gr.
+	[2.86.156.243]) by smtp.gmail.com with ESMTPSA id
+	q13sm15641105wrg.56.2018.03.26.12.30.23
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 26 Mar 2018 12:30:24 -0700 (PDT)
+To: akuster808 <akuster808@gmail.com>,
+	Martin Townsend <mtownsend1973@gmail.com>, yocto@yoctoproject.org
+References: <CABatt_zYz0R7ruRWnLXr=Wp0z5A0m3qfZxmjGOeidqbJuxvXLQ@mail.gmail.com>
+	<ce8d7607-4876-a91a-e9e9-383da39df9be@gmail.com>
+From: Robert Berger <yocto.user.mailinglist@gmail.com>
+Message-ID: <1a58ee41-5259-6dc2-9ee7-252065d1b9ea@gmail.com>
+Date: Mon, 26 Mar 2018 22:30:22 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-Received: by 10.107.30.9 with HTTP; Mon, 26 Mar 2018 12:22:25 -0700 (PDT)
-In-Reply-To: <1522059972-12702-1-git-send-email-awais_belal@mentor.com>
-References: <1522059972-12702-1-git-send-email-awais_belal@mentor.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 26 Mar 2018 20:22:25 +0100
-Message-ID: <CAJTo0Lb1vEPcZpAUp9GoNhzD1SYmCS3pXrKEP1=vNX3wxGOZnw@mail.gmail.com>
-To: Awais Belal <awais_belal@mentor.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: [matchbox-wm][PATCH] configure.ac: add lib math for composite enabled builds
+In-Reply-To: <ce8d7607-4876-a91a-e9e9-383da39df9be@gmail.com>
+Subject: Re: U-Boot networking broken in Rocko
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,38 +79,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2018 19:22:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 26 Mar 2018 19:30:26 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-On 26 March 2018 at 11:26, Awais Belal <awais_belal@mentor.com> wrote:
-> The composite enabled builds require lib math to be
-> present on the linker command line otherwise we get
-> ld: composite-engine.o: undefined reference to symbol 'exp@@GLIBC_2.2.5'
-> during compilation.
->
-> Signed-off-by: Awais Belal <awais_belal@mentor.com>
-> ---
->  configure.ac | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/configure.ac b/configure.ac
-> index dce82cc..1bc113f 100644
-> --- a/configure.ac
-> +++ b/configure.ac
-> @@ -246,9 +246,11 @@ fi
->  dnl ------ Composite -------------------------------------------------------
->
->  if test x$enable_composite != xno; then
-> -  PKG_CHECK_MODULES(COMPO, xcomposite xfixes xdamage xrender, ,
-> +  PKG_CHECK_MODULES(COMPO, xcomposite xfixes xdamage xrender, have_compo_deps=yes,
->                            AC_MSG_ERROR([*** Required Composite Librays not installed ***]))
-> -
-> +  if test x$have_compo_deps = xyes; then
-> +    COMPO_LIBS="$COMPO_LIBS -lm"
-> +  fi
+On 2018-03-26 19:51, akuster808 wrote:
 
-There's no way that test can fail as if the packages are not found,
-configure aborts.  Just do the assignment without the test.
+>> I found 
+>> that this has already been fixed in U-Boot with the commit below.  I 
+>> think it has something to do with the way GCC 7.1 onwards is now 
+>> handling memory alignment.  
 
-Ross
+I also saw something similar and by upgrading to U-boot 2018.03 the 
+problem went away as well.
+
+Regards,
+
+Robert
 
