@@ -1,17 +1,17 @@
-Return-Path: <mtownsend1973@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BD02AE00BEC; Mon, 26 Mar 2018 08:47:31 -0700 (PDT)
+	id A6FB3E00B1A; Mon, 26 Mar 2018 09:51:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mtownsend1973[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.54 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.160.68 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,45 +20,55 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lf0-f54.google.com (mail-lf0-f54.google.com
-	[209.85.215.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E733DE00AD8
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 08:47:30 -0700 (PDT)
-Received: by mail-lf0-f54.google.com with SMTP id p142-v6so28863877lfd.6
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 08:47:30 -0700 (PDT)
+Received: from mail-pl0-f68.google.com (mail-pl0-f68.google.com
+	[209.85.160.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 001C5E008EE
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 09:51:52 -0700 (PDT)
+Received: by mail-pl0-f68.google.com with SMTP id x4-v6so12288826pln.7
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 09:51:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=GyTlbDuseLZfcKL0W3PsWfhwxNObnwkYxQPzF+A/k+I=;
-	b=pOJDkyhXUDIg7N02iuE2oYyhaOb6ZI7ie78lsfDILXmZDJzyfznDcw8g3ZtYTD/QEe
-	4ZlZr1nkWnVq+Vnbb+UCYqRTYCz9g9922hBRot7OI2AZK4h9SnpKSJXPmWM+SP5Y1Vbf
-	/6qOIkbHGD7qYqH9KfPblsEdYeZ70tooqckEWrVMaGzP5A8ba4nkPxNjIN+VHdm0/iiO
-	Qq7H8SJN2I0vj0T9l5kT1Cr4zOU7tl5l130oVp0MAz1Ct9tz0uNknio8rE3z3nylgpPo
-	WTcT/u6tJ4MqRqB/Xs2eGcZaO5DlyxYFil+/v/DQ+6a22mx7CkiW8zhQNOgaZeNA102D
-	Jjyw==
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language;
+	bh=tU9piMRHlysKyCDjBjwf9mPwGgK9Iy8oHTjPycnr8zs=;
+	b=V8l0vJvGawmrPKPmQ1sJvGWUiV0lh6RPukirBtRTHsaj4YKADIrHELVwsnHhU0SeYM
+	EdGhzjiMpHfG3AbpXsPEQ/XlfKjeybNWl6IfzRozjgYZ52ySEwR3DCtsz5HnYRNysF+q
+	vlWd2SHH4GAKV5Ys+IHN+j+xmD4Rmn17UprZmQgrrhXPhGEn6+CvJ6OJz6RgvM/yl+6o
+	xV+TaZlQ7VgDmYLQeTz8arTtUZvx2feTgkpzBhD5RRXI1eJ5ZW0Ix2kWZ5uqZ87UtDFj
+	+LTZIwxq64wSpXNUhQvkXQmhztdhIw3TEDsD1M97ytVdsXaqIVdKtqLHu7iIOtLpRVOQ
+	knLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=GyTlbDuseLZfcKL0W3PsWfhwxNObnwkYxQPzF+A/k+I=;
-	b=VHISso9qnUk5sS1alZCShzw7H8Jd26N2spUgDTXNyYMwgDdpRr7wQ8CkGyIsqPvS/0
-	JYbrgWpff9WrvqmNNoW2nigbgEavMBjxKTu72UzPlaAKHe/NQfMjH5av97eYVAyi4paG
-	RNO1RPTeaqvxGhHxkY4T4ayAM7QisHwxH/oIn1Xk9KJ9BPZdU64i6IyfsPEJHBTTfkon
-	NjlcKBTRzcdNwsLJTsCU05l2RNTI8qyIHUd6PU1MMlAPkChS+nY6AkfMdyA8gQHFmZ60
-	4EsNkXEaJ70nQcwru5F4OFcPqEXD8evU/DfejHEjbW3GQ0CPE93Et10vedTt7ry08LG7
-	tKAg==
-X-Gm-Message-State: AElRT7FzKj047zWYZOHGmv32tCtwpyfBnrWr1Gf4rqL+4k8CkSQtIjlW
-	otS1xKEh+1q7kVJsXna8xm11tF+vu4jKLdhNWGAe1KLw
-X-Google-Smtp-Source: AG47ELsSBsHQcFFcQinfsHO1rekIrYlYeUfC6CifLcZQqbjKS/Ob5MYRSxSRugBFnqenvPts2kI2kEAISnkg/CTDmgg=
-X-Received: by 2002:a19:c7c5:: with SMTP id
-	x188-v6mr28025719lff.33.1522079249564; 
-	Mon, 26 Mar 2018 08:47:29 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=tU9piMRHlysKyCDjBjwf9mPwGgK9Iy8oHTjPycnr8zs=;
+	b=cZ27shzxeZN6f67kur2Iv9eLhGRcWmOsuNZLUPmmfkTRVa/cAEdTZ/Q4wL2f/xGjUh
+	LyaldiV9icZ0PdTJioowwn/G6FIgd8sp5XqKcq82D09dD999RsX6AC1StR8P1733sJF7
+	Ea4vbVRQYvSY+7HFNZx3f91F2hyCZ6VWArnY1VDfGpaVZannSl7vc72av9orBXCp1S/S
+	+e/NrE9mpNdIxY+r+obBwzAvdOfQszcQz/5e0EWkQdqGeASqE2z/xr6JUl+NM/w7V2gh
+	SKEZVlGRgHe8PoY+cyxuLSjf974NsxVhXG1TP2Xr79+O2mEUp0VsFUY4flcasSbfZLZv
+	1UsQ==
+X-Gm-Message-State: AElRT7GsWdPSaesE2DgaZYJ1g6YV1Xaru1LjiGrC1X9P0eIH3MbkSDO4
+	FRIKp1LfarfCscmTdmroLwyWDQ==
+X-Google-Smtp-Source: AG47ELuz5k2yBnBNMzd1vIR4ar5yrpsOQKPRFJSvOIc8k48VIrrjV9SqGGqzxqOjKKNPrD4ihRfUyQ==
+X-Received: by 2002:a17:902:7e09:: with SMTP id
+	b9-v6mr41121283plm.223.1522083112406; 
+	Mon, 26 Mar 2018 09:51:52 -0700 (PDT)
+Received: from ?IPv6:2601:202:4000:1184:203c:a04e:87e9:791b?
+	([2601:202:4000:1184:203c:a04e:87e9:791b])
+	by smtp.gmail.com with ESMTPSA id
+	g2sm5298347pfg.130.2018.03.26.09.51.51
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 26 Mar 2018 09:51:51 -0700 (PDT)
+To: Martin Townsend <mtownsend1973@gmail.com>, yocto@yoctoproject.org
+References: <CABatt_zYz0R7ruRWnLXr=Wp0z5A0m3qfZxmjGOeidqbJuxvXLQ@mail.gmail.com>
+From: akuster808 <akuster808@gmail.com>
+Message-ID: <ce8d7607-4876-a91a-e9e9-383da39df9be@gmail.com>
+Date: Mon, 26 Mar 2018 09:51:49 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-Received: by 2002:a19:deda:0:0:0:0:0 with HTTP; Mon, 26 Mar 2018 08:47:29
-	-0700 (PDT)
-From: Martin Townsend <mtownsend1973@gmail.com>
-Date: Mon, 26 Mar 2018 16:47:29 +0100
-Message-ID: <CABatt_zYz0R7ruRWnLXr=Wp0z5A0m3qfZxmjGOeidqbJuxvXLQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: U-Boot networking broken in Rocko
+In-Reply-To: <CABatt_zYz0R7ruRWnLXr=Wp0z5A0m3qfZxmjGOeidqbJuxvXLQ@mail.gmail.com>
+Subject: Re: U-Boot networking broken in Rocko
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,114 +80,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2018 15:47:31 -0000
-Content-Type: multipart/alternative; boundary="000000000000fd88f2056852b00e"
+X-List-Received-Date: Mon, 26 Mar 2018 16:51:53 -0000
+Content-Type: multipart/alternative;
+	boundary="------------A3D32714DE7CD8433C8F8C5A"
+Content-Language: en-US
 
---000000000000fd88f2056852b00e
-Content-Type: text/plain; charset="UTF-8"
+--------------A3D32714DE7CD8433C8F8C5A
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
 
-I've discovered that U-Boot in Rocko for several builds that I maintain is
-broken when performing various network related operations like tftp, dhcp
-and ping. You get a data abort and it resets.  I found that this has
-already been fixed in U-Boot with the commit below.  I think it has
-something to do with the way GCC 7.1 onwards is now handling memory
-alignment.  Anyway the problems have gone away when I apply this patch and
-was wondering if it should be included in the U-Boot recipes in Rocko, or
-is no-one else seeing this problem?
 
-Many Thanks,
-Martin.
+On 03/26/2018 08:47 AM, Martin Townsend wrote:
+> Hi,
+>
+> I've discovered that U-Boot in Rocko for several builds that I
+> maintain is broken when performing various network related operations
+> like tftp, dhcp and ping. You get a data abort and it resets.  I found
+> that this has already been fixed in U-Boot with the commit below.  I
+> think it has something to do with the way GCC 7.1 onwards is now
+> handling memory alignment.  Anyway the problems have gone away when I
+> apply this patch and was wondering if it should be included in the
+> U-Boot recipes in Rocko, or is no-one else seeing this problem?
 
-commit 704f3acfcf55343043bbed01c5fb0a0094a68e8a
-Author: Denis Pynkin <denis.pynkin@collabora.com>
-Date:   Fri Jul 21 19:28:42 2017 +0300
+please send a patch to openembedded-core@lists.openembedded.org
 
-    net: Use packed structures for networking
+with rocko called on in the beginning of subject line
 
-    PXE boot is broken with GCC 7.1 due option '-fstore-merging' enabled
-    by default for '-O2':
-
-    BOOTP broadcast 1
-    data abort
-    pc : [<8ff8bb30>]          lr : [<00004f1f>]
-    reloc pc : [<17832b30>]    lr : [<878abf1f>]
-    sp : 8f558bc0  ip : 00000000     fp : 8ffef5a4
-    r10: 8ffed248  r9 : 8f558ee0     r8 : 8ffef594
-    r7 : 0000000e  r6 : 8ffed700     r5 : 00000000  r4 : 8ffed74e
-    r3 : 00060101  r2 : 8ffed230     r1 : 8ffed706  r0 : 00000ddd
-    Flags: nzcv  IRQs off  FIQs off  Mode SVC_32
-    Resetting CPU ...
-
-    Core reason is usage of structures for network headers without packed
-    attribute.
-
-    Reviewed-by: Yauheni Kaliuta <yauheni.kaliuta@redhat.com>
-    Signed-off-by: Denis Pynkin <denis.pynkin@collabora.com>
-    Acked-by: Joe Hershberger <joe.hershberger@ni.com>
-
---000000000000fd88f2056852b00e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;ve discovered that U-Boot in =
-Rocko for several builds that I maintain is broken when performing various =
-network related operations like tftp, dhcp and ping. You get a=C2=A0<span s=
-tyle=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;fo=
-nt-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font=
--weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tra=
-nsform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,25=
-5,255);text-decoration-style:initial;text-decoration-color:initial;float:no=
-ne;display:inline">data abort and it resets.=C2=A0 I found that this has al=
-ready been fixed in U-Boot with the commit below.=C2=A0 I think it has some=
-thing to do with the way GCC 7.1 onwards is now handling memory alignment.=
-=C2=A0 Anyway the problems have gone away when I apply this patch and was w=
-ondering if it should be included in the U-Boot recipes in Rocko, or is no-=
-one else seeing this problem?</span></div><div><span style=3D"color:rgb(34,=
-34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-=
-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-sp=
-acing:normal;text-align:start;text-indent:0px;text-transform:none;white-spa=
-ce:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoratio=
-n-style:initial;text-decoration-color:initial;float:none;display:inline"><b=
-r></span></div><div><span style=3D"color:rgb(34,34,34);font-family:arial,sa=
-ns-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;fo=
-nt-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:sta=
-rt;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;=
-background-color:rgb(255,255,255);text-decoration-style:initial;text-decora=
-tion-color:initial;float:none;display:inline">Many Thanks,</span></div><div=
-><span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:=
-small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:nor=
-mal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;=
-text-transform:none;white-space:normal;word-spacing:0px;background-color:rg=
-b(255,255,255);text-decoration-style:initial;text-decoration-color:initial;=
-float:none;display:inline">Martin.</span></div><div><br></div><div><div>com=
-mit 704f3acfcf55343043bbed01c5fb0a0094a68e8a</div><div>Author: Denis Pynkin=
- &lt;<a href=3D"mailto:denis.pynkin@collabora.com">denis.pynkin@collabora.c=
-om</a>&gt;</div><div>Date:=C2=A0 =C2=A0Fri Jul 21 19:28:42 2017 +0300</div>=
-<div><br></div><div>=C2=A0 =C2=A0 net: Use packed structures for networking=
-</div><div>=C2=A0 =C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 PXE boot is broken w=
-ith GCC 7.1 due option &#39;-fstore-merging&#39; enabled</div><div>=C2=A0 =
-=C2=A0 by default for &#39;-O2&#39;:</div><div>=C2=A0 =C2=A0=C2=A0</div><di=
-v>=C2=A0 =C2=A0 BOOTP broadcast 1</div><div>=C2=A0 =C2=A0 data abort</div><=
-div>=C2=A0 =C2=A0 pc : [&lt;8ff8bb30&gt;]=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- lr : [&lt;00004f1f&gt;]</div><div>=C2=A0 =C2=A0 reloc pc : [&lt;17832b30&g=
-t;]=C2=A0 =C2=A0 lr : [&lt;878abf1f&gt;]</div><div>=C2=A0 =C2=A0 sp : 8f558=
-bc0=C2=A0 ip : 00000000=C2=A0 =C2=A0 =C2=A0fp : 8ffef5a4</div><div>=C2=A0 =
-=C2=A0 r10: 8ffed248=C2=A0 r9 : 8f558ee0=C2=A0 =C2=A0 =C2=A0r8 : 8ffef594</=
-div><div>=C2=A0 =C2=A0 r7 : 0000000e=C2=A0 r6 : 8ffed700=C2=A0 =C2=A0 =C2=
-=A0r5 : 00000000=C2=A0 r4 : 8ffed74e</div><div>=C2=A0 =C2=A0 r3 : 00060101=
-=C2=A0 r2 : 8ffed230=C2=A0 =C2=A0 =C2=A0r1 : 8ffed706=C2=A0 r0 : 00000ddd</=
-div><div>=C2=A0 =C2=A0 Flags: nzcv=C2=A0 IRQs off=C2=A0 FIQs off=C2=A0 Mode=
- SVC_32</div><div>=C2=A0 =C2=A0 Resetting CPU ...</div><div>=C2=A0 =C2=A0=
-=C2=A0</div><div>=C2=A0 =C2=A0 Core reason is usage of structures for netwo=
-rk headers without packed</div><div>=C2=A0 =C2=A0 attribute.</div><div>=C2=
-=A0 =C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 Reviewed-by: Yauheni Kaliuta &lt;<=
-a href=3D"mailto:yauheni.kaliuta@redhat.com">yauheni.kaliuta@redhat.com</a>=
-&gt;</div><div>=C2=A0 =C2=A0 Signed-off-by: Denis Pynkin &lt;<a href=3D"mai=
-lto:denis.pynkin@collabora.com">denis.pynkin@collabora.com</a>&gt;</div><di=
-v>=C2=A0 =C2=A0 Acked-by: Joe Hershberger &lt;<a href=3D"mailto:joe.hershbe=
-rger@ni.com">joe.hershberger@ni.com</a>&gt;</div></div><div><br></div></div=
+thanks,
+Armin
+>
+> Many Thanks,
+> Martin.
+>
+> commit 704f3acfcf55343043bbed01c5fb0a0094a68e8a
+> Author: Denis Pynkin <denis.pynkin@collabora.com
+> <mailto:denis.pynkin@collabora.com>>
+> Date:   Fri Jul 21 19:28:42 2017 +0300
+>
+>     net: Use packed structures for networking
+>     
+>     PXE boot is broken with GCC 7.1 due option '-fstore-merging' enabled
+>     by default for '-O2':
+>     
+>     BOOTP broadcast 1
+>     data abort
+>     pc : [<8ff8bb30>]          lr : [<00004f1f>]
+>     reloc pc : [<17832b30>]    lr : [<878abf1f>]
+>     sp : 8f558bc0  ip : 00000000     fp : 8ffef5a4
+>     r10: 8ffed248  r9 : 8f558ee0     r8 : 8ffef594
+>     r7 : 0000000e  r6 : 8ffed700     r5 : 00000000  r4 : 8ffed74e
+>     r3 : 00060101  r2 : 8ffed230     r1 : 8ffed706  r0 : 00000ddd
+>     Flags: nzcv  IRQs off  FIQs off  Mode SVC_32
+>     Resetting CPU ...
+>     
+>     Core reason is usage of structures for network headers without packed
+>     attribute.
+>     
+>     Reviewed-by: Yauheni Kaliuta <yauheni.kaliuta@redhat.com
+> <mailto:yauheni.kaliuta@redhat.com>>
+>     Signed-off-by: Denis Pynkin <denis.pynkin@collabora.com
+> <mailto:denis.pynkin@collabora.com>>
+>     Acked-by: Joe Hershberger <joe.hershberger@ni.com
+> <mailto:joe.hershberger@ni.com>>
+>
+>
 >
 
---000000000000fd88f2056852b00e--
+
+--------------A3D32714DE7CD8433C8F8C5A
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <br>
+    <div class="moz-cite-prefix">On 03/26/2018 08:47 AM, Martin Townsend
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CABatt_zYz0R7ruRWnLXr=Wp0z5A0m3qfZxmjGOeidqbJuxvXLQ@mail.gmail.com">
+      <div dir="ltr">Hi,
+        <div><br>
+        </div>
+        <div>I've discovered that U-Boot in Rocko for several builds
+          that I maintain is broken when performing various network
+          related operations like tftp, dhcp and ping. You get a <span
+style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:initial;float:none;display:inline">data
+            abort and it resets.  I found that this has already been
+            fixed in U-Boot with the commit below.  I think it has
+            something to do with the way GCC 7.1 onwards is now handling
+            memory alignment.  Anyway the problems have gone away when I
+            apply this patch and was wondering if it should be included
+            in the U-Boot recipes in Rocko, or is no-one else seeing
+            this problem?</span></div>
+      </div>
+    </blockquote>
+    <br>
+    please send a patch to <a class="moz-txt-link-abbreviated" href="mailto:openembedded-core@lists.openembedded.org">openembedded-core@lists.openembedded.org</a><br>
+    <br>
+    with rocko called on in the beginning of subject line<br>
+    <br>
+    thanks,<br>
+    Armin<br>
+    <blockquote type="cite"
+cite="mid:CABatt_zYz0R7ruRWnLXr=Wp0z5A0m3qfZxmjGOeidqbJuxvXLQ@mail.gmail.com">
+      <div dir="ltr">
+        <div><span
+style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:initial;float:none;display:inline"><br>
+          </span></div>
+        <div><span
+style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:initial;float:none;display:inline">Many
+            Thanks,</span></div>
+        <div><span
+style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:initial;float:none;display:inline">Martin.</span></div>
+        <div><br>
+        </div>
+        <div>
+          <div>commit 704f3acfcf55343043bbed01c5fb0a0094a68e8a</div>
+          <div>Author: Denis Pynkin &lt;<a
+              href="mailto:denis.pynkin@collabora.com"
+              moz-do-not-send="true">denis.pynkin@collabora.com</a>&gt;</div>
+          <div>Date:   Fri Jul 21 19:28:42 2017 +0300</div>
+          <div><br>
+          </div>
+          <div>    net: Use packed structures for networking</div>
+          <div>    </div>
+          <div>    PXE boot is broken with GCC 7.1 due option
+            '-fstore-merging' enabled</div>
+          <div>    by default for '-O2':</div>
+          <div>    </div>
+          <div>    BOOTP broadcast 1</div>
+          <div>    data abort</div>
+          <div>    pc : [&lt;8ff8bb30&gt;]          lr :
+            [&lt;00004f1f&gt;]</div>
+          <div>    reloc pc : [&lt;17832b30&gt;]    lr :
+            [&lt;878abf1f&gt;]</div>
+          <div>    sp : 8f558bc0  ip : 00000000     fp : 8ffef5a4</div>
+          <div>    r10: 8ffed248  r9 : 8f558ee0     r8 : 8ffef594</div>
+          <div>    r7 : 0000000e  r6 : 8ffed700     r5 : 00000000  r4 :
+            8ffed74e</div>
+          <div>    r3 : 00060101  r2 : 8ffed230     r1 : 8ffed706  r0 :
+            00000ddd</div>
+          <div>    Flags: nzcv  IRQs off  FIQs off  Mode SVC_32</div>
+          <div>    Resetting CPU ...</div>
+          <div>    </div>
+          <div>    Core reason is usage of structures for network
+            headers without packed</div>
+          <div>    attribute.</div>
+          <div>    </div>
+          <div>    Reviewed-by: Yauheni Kaliuta &lt;<a
+              href="mailto:yauheni.kaliuta@redhat.com"
+              moz-do-not-send="true">yauheni.kaliuta@redhat.com</a>&gt;</div>
+          <div>    Signed-off-by: Denis Pynkin &lt;<a
+              href="mailto:denis.pynkin@collabora.com"
+              moz-do-not-send="true">denis.pynkin@collabora.com</a>&gt;</div>
+          <div>    Acked-by: Joe Hershberger &lt;<a
+              href="mailto:joe.hershberger@ni.com"
+              moz-do-not-send="true">joe.hershberger@ni.com</a>&gt;</div>
+        </div>
+        <div><br>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------A3D32714DE7CD8433C8F8C5A--
