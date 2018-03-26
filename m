@@ -1,66 +1,56 @@
-Return-Path: <vincent.prince.fr@gmail.com>
+Return-Path: <matthias.schoepfer@identpro.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A598E00E3D; Mon, 26 Mar 2018 01:09:01 -0700 (PDT)
+	id D9A41E007DA; Mon, 26 Mar 2018 01:22:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vincent.prince.fr[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.227.126.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.223.169 listed in list.dnswl.org]
-Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EFACE00E36
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 01:09:00 -0700 (PDT)
-Received: by mail-io0-f169.google.com with SMTP id v13so22129385iob.6
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 01:09:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=o3JNLK0SesvmiucsFWmo7/0TJu5CrbW0p9h/A8C1bbw=;
-	b=qm5Bq7nR6zY71pI7Vyd4rq+SJmqhjFrCYVigOSyohXkY3lB6Pj5z5MEvDg7xLT0lKC
-	C98G1O/BZQ2ZyRuiQWbrHxpXTvhlt3r2rYa15FCnsiHLKQw0Fm8c3DXUwiGRigRsHZ8b
-	O1Ga+tnF7Ky9ujm3NY1Kbab+upby7UrTtE7CEbZ6j8o38Ff/td0fghm1ie+OEWtMCwbb
-	urT1rvjiV4A471chnB98h2j9lAJLpCsEsgi6DfAIM3Lv9L59gvkkCm8eg8hbh/dqe9NS
-	QktxD6xXaFKChuSe+7g2Iam6qAyLoy++v6gSzuUnhUSu3U4/zhSUKmuwT2+8kEC2FlkG
-	xONg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=o3JNLK0SesvmiucsFWmo7/0TJu5CrbW0p9h/A8C1bbw=;
-	b=Ehxos4yvtP/dC56ZCCDSAFfHZ+BBezZ4/fweDcqdy/ZqfKbHwDDBMBl+ZfcOSDhC3i
-	36HQthyAaiIvGX7ryG8OHAdxJGZIRvlK2lHEjrQm+S9ca0jhqFEB32ZXR3YG/WAw2rsI
-	MJiQDpy4lrqh0I9kTycCXMGbST6peS/FFr8yyCQGLhfZH61FfzQKplFUauez5vaKe8pN
-	xs9+U7YP7Uf8Vb17ZG9iwxz/3ZMWo7190+ALwqcF1vAZ8fTJruXbAfQB0h+IzHRpPaU0
-	TsLaqdDfVNZGfzIvhqQo7RLMvYkFyYD43ABfA92DwIVoDt6tHlcC97i+3xv09Fnn9dYx
-	/eaQ==
-X-Gm-Message-State: AElRT7H2879vJd2Niis7eEnpX1u2QtS9vSlInMWLbStJ5SGVKsqxWGhi
-	qb2KeUjGfl7QDDLOCA5xvKqqOQJHl+1CAOnJC2+sYuKf
-X-Google-Smtp-Source: AG47ELtO4c6Wp/jSUy/vGOYLA44whLeOLNGQlVZXwLroV1Ul8mSM2rSFAAGY3NiRUvQY9qMap5GL5rWe4BfS8HNhw0o=
-X-Received: by 10.107.199.195 with SMTP id x186mr39573775iof.176.1522051739635;
-	Mon, 26 Mar 2018 01:08:59 -0700 (PDT)
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9BCAE00708
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 01:22:38 -0700 (PDT)
+Received: from SBS-IDENTPRO.intranet.identpro.net ([176.95.137.65]) by
+	mrelayeu.kundenserver.de (mreue001 [212.227.15.167]) with ESMTPSA
+	(Nemesis) id 0LhoIM-1eENPb1XXu-00n8Wi for <yocto@yoctoproject.org>;
+	Mon, 26 Mar 2018 10:22:37 +0200
+Received: from SBS-IDENTPRO.intranet.identpro.net ([192.168.27.6]) by
+	SBS-IDENTPRO.intranet.identpro.net ([192.168.27.6]) with mapi id
+	14.01.0438.000; Mon, 26 Mar 2018 10:22:32 +0200
+From: =?Windows-1252?Q?Matthias_Sch=F6pfer?= <matthias.schoepfer@identpro.de>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Thread-Topic: [yocto] scipy recipe
+Thread-Index: AQHTvIcgotqwIFrfW0WRlMSMHcZZhQ==
+Date: Mon, 26 Mar 2018 08:22:31 +0000
+Message-ID: <C44683C49AD51C4AB28DA746E48E35870101CEBA@SBS-IDENTPRO.intranet.identpro.net>
+References: <CAFq4t4gpGaMCyvR2drwjU8+NWYS5aSodmzPhPb4FWio6vm+12Q@mail.gmail.com>
+	<531bef5a-d363-a751-29fa-4bd9872020ec@balister.org>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [176.95.137.65]
 MIME-Version: 1.0
-Received: by 10.2.176.144 with HTTP; Mon, 26 Mar 2018 01:08:39 -0700 (PDT)
-In-Reply-To: <CAALXFYzFPJE9PAgNsGU+tOeGrPHB-ZxM4sobbTS1fsD6==e8CA@mail.gmail.com>
-References: <CAALXFYzFPJE9PAgNsGU+tOeGrPHB-ZxM4sobbTS1fsD6==e8CA@mail.gmail.com>
-From: Vincent Prince <vincent.prince.fr@gmail.com>
-Date: Mon, 26 Mar 2018 10:08:39 +0200
-Message-ID: <CAB2nKc-C89ztFiKymJo=8n4AxY6fN4b_zXwxeQJCKb1nkZy4uQ@mail.gmail.com>
-To: =?UTF-8?Q?Iv=C3=A1n_Castell?= <icastell@nayarsystems.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: How to check list of installed packages to stop the build process conditionally
+X-Provags-ID: V03:K0:hpbixIBYc2st8Un5IDBHS8BAyDeNtW9wNVBaTgZpUlK2EjGyMvb
+	csKdmJIg1pT2tZhjyuqDhScSgB45BVT5/pU4W8PF2rLNSA35LIzFYfWqIV3S7EmpubCNiar
+	u+Ko+9eSUdBGZSGehEVBO1vvcFX916yYlwWTaG1vpVbd+hJKfiLiuAD2Fz5l90Af2R6x8s1
+	0hAiEjgBKwqQkyxYw5fZA==
+X-UI-Out-Filterresults: notjunk:1;V01:K0:gEp9a/yN5vY=:IpDUVar28iFz10ownzG2ee
+	2DNEq81moVISDhwKngyvaEKs+vAoFSLQGu+bCUD+46OczOxLz2PmLj4jzEmiCCl/G0rgbEyCY
+	PaJIpvDNFhZDBYbU5WKonM4HYSYcEbYokXJbIMQlv6Iv19ahZonyNrnnWpZu6I9rQDEuRKgTr
+	Zxup2ikUpjZJRMYtzDsiviuNY/mHAYmzqgvypOBKEELeWIACs3GQZLDqWP/lzryf9P/t1GK3q
+	f1YlglsvfZhtA6U8nmR6ldctxOgWiYr6JHmO98QHHhcB+IFu3h2/gMyrBAuR/h7FZpuEwmMrQ
+	4p2d+FwOipvyEbYFdWtS9qV6qpLgw8dJ6l0kinB+1q2HRyMGwU79nMc+jCqntqSgpF7e7yMEU
+	2aFnAJQirczyhmUySjvf75ST4Gzd6VKA1tV/4UDlTqIzHe7iNneQTBVK7AjS/TG7Je/FXVL+j
+	tZYigCqmbDlKh+Y6LeVoPAV3Qt4f8hmc+emj0xqliabkzbJ5s671nRvZVw5AZgTNT5h2Nq3tV
+	3q6R6ZkhxKig9w1KDfkYXqmdHL0jpio8WdoFLGt19f1yQtoOjd3yMsku75xe0gOoGdfXedEwa
+	v1PTvXRVB3yH+AW5R2elyAParHOH4UyVIiOQNHbax6v58YVBnx5Fe4EHsyUQVeVJVmEOQ/x6e
+	yEGCuFISBWEUN+FvZHiHYr4VwhLdKyJDmyR/hvupMs2JW2G5PzMUt6o2VuGJJpuIEqCCsL0A1
+	pjVXzp0DM2cXBqCnjwJ9/Gp4x+DjMFeuHNBHe5gVTYIh1E8ilBytsZGjPLg=
+Subject: Re: scipy recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,84 +62,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2018 08:09:01 -0000
-Content-Type: multipart/alternative; boundary="94eb2c11be4e45613a05684c4945"
-
---94eb2c11be4e45613a05684c4945
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 26 Mar 2018 08:22:39 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Philip,=0A=
+=0A=
+I needed to patch numpy because scipy uses numpy.distutils a lot.=0A=
+=0A=
+Regards,=0A=
+=0A=
+	Matthias=0A=
+=0A=
+On 03/24/2018 05:48 PM, Philip Balister wrote:=0A=
+> On 03/23/2018 06:07 AM, Matthias Sch=F6pfer wrote:=0A=
+>> Hi Peter,=0A=
+>>=0A=
+>> I managed to get scipy to cross compile, since I was in a hurry, and=0A=
+>> have no deeper understanding of python / distutils / setuptools, it=0A=
+>> turned out to be an ugly hack (but obviously I was not the first one to=
+=0A=
+>> do ugly things there ;) )=0A=
+>>=0A=
+>> Maybe you have had some progress as well, and we can figure out a nicer=
+=0A=
+>> solution.=0A=
+>>=0A=
+>> See the attached files, involving openblas, a bbappend for python-numpy=
+=0A=
+>> and python-scipy.=0A=
+> =0A=
+> I'm confused why you need the bbappend for numpy?=0A=
+> =0A=
+> The recipe in OE-Core should be solid without patches.=0A=
+> =0A=
+> Other than that, this is very interesting stuff.=0A=
+> =0A=
+> Philip=0A=
+> =0A=
+> =0A=
+>>=0A=
+>> Regards,=0A=
+>>=0A=
+>> 	Matthias=0A=
+>>=0A=
+>>=0A=
+>>=0A=
+> =0A=
+> =0A=
+> =0A=
+=0A=
+=0A=
+-- =0A=
+Dr.-Ing. Matthias Sch=F6pfer=0A=
+=0A=
+Softwareentwicklung=0A=
+=0A=
+____________________________________=0A=
+=0A=
+IdentPro GmbH=0A=
+Camp-Spich-Str. 4=0A=
+53842 Troisdorf=0A=
+=0A=
+Tel:   +49 (0)2241 / 866 392 46=0A=
+Fax:   +49 (0)2241 / 866 392 99=0A=
+eMail: matthias.schoepfer@identpro.de=0A=
+=0A=
+http://www.identpro.de=0A=
+=0A=
+identplus=AE =96 Das 3D Staplerleitsystem mit enormen Sparpotenzial: z. B.=
+=0A=
+=FCber 67.000 EUR pro Jahr bei 500 Transporten t=E4glich! Berechnen Sie das=
+=0A=
+Einsparpotenzial f=FCr Ihr Lager mit dem identplus=AE Potenzialrechner.=0A=
+=0A=
+identplus=AE live erleben: Vereinbaren Sie jetzt einen Termin!=0A=
+=0A=
+---------------------------------=0A=
+IdentPro GmbH=0A=
+Member of Dr. Wack Holding GmbH & Co.KG=0A=
+Sitz und Registergericht: St. Augustin, HRB 9770 Siegburg=0A=
+Gesch=E4ftsf=FChrer: Michael Wack=0A=
+Umsatzsteuer-ID-Nr.: DE 254 824 945=0A=
+WEEE-Reg.-Nr. DE 79026890=0A=
 
-Maybe you can say A conflicts B and B conflicts A with following variable :
-https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-=
-RCONFLICTS
-
-Best regards,
-Vincent
-
-2018-03-26 9:54 GMT+02:00 Iv=C3=A1n Castell <icastell@nayarsystems.com>:
-
-> Hello forum.
->
-> My layer provides two custom recipes A and B with exactly the same
-> functionality. To get a working image, one of these two recipes must be
-> included on the generated image (A_installed XOR B_installed).
->
-> So I need the build process being able to check the list of installed
-> packages, stopping the build process in case any of these two packages is
-> included.
->
-> Does yocto provides some mechanism to manage this issue?
->
-> Thank you in advance!
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---94eb2c11be4e45613a05684c4945
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>Maybe you can say A conflicts=
- B and B conflicts A with following variable :</div><div><a href=3D"https:/=
-/www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-RCONFLI=
-CTS">https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html=
-#var-RCONFLICTS</a><br></div><div><br></div><div>Best regards,</div><div>Vi=
-ncent</div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-2018-03-26 9:54 GMT+02:00 Iv=C3=A1n Castell <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:icastell@nayarsystems.com" target=3D"_blank">icastell@nayarsyste=
-ms.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin=
-:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">H=
-ello forum.<div><br></div><div>My layer provides two custom recipes A and B=
- with exactly the same functionality. To get a working image, one of these =
-two recipes must be included on the generated image=C2=A0<span style=3D"col=
-or:rgb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:no=
-rmal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400=
-;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none=
-;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text=
--decoration-style:initial;text-decoration-color:initial;float:none;display:=
-inline">(A_installed XOR B_installed).</span></div><div><br></div><div>So I=
- need the build process being able to check the list of installed packages,=
- stopping the build process in case any of these two packages is included.<=
-/div><div><br></div><div>Does yocto provides some mechanism to manage this =
-issue?</div><div><br></div><div>Thank you in advance!=C2=A0</div><div><br><=
-/div><div><div><br></div>
-</div></div>
-<br>--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.<wbr>org/listinfo/yocto</a><=
-br>
-<br></blockquote></div><br></div>
-
---94eb2c11be4e45613a05684c4945--
