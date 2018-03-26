@@ -1,41 +1,61 @@
-Return-Path: <stephano.cetola@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0A11E00C61; Mon, 26 Mar 2018 10:06:32 -0700 (PDT)
+	id 36ACFE008E4; Mon, 26 Mar 2018 12:22:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.223.194 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA60DE00851
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 10:06:31 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	26 Mar 2018 10:06:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,365,1517904000"; d="scan'208";a="211434636"
-Received: from linux.intel.com ([10.54.29.200])
-	by orsmga005.jf.intel.com with ESMTP; 26 Mar 2018 10:06:30 -0700
-Received: from mingeeon-mobl7.amr.corp.intel.com (unknown [10.254.35.92])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTPS id 6FB5858046C
-	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 10:06:30 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: Stephano Cetola <stephano.cetola@linux.intel.com>
-Message-ID: <10facbf4-85fe-4601-f1f0-a0fa01c7b7b1@linux.intel.com>
-Date: Mon, 26 Mar 2018 10:06:29 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.6.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f194.google.com (mail-io0-f194.google.com
+	[209.85.223.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3C0DE007DA
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 12:22:46 -0700 (PDT)
+Received: by mail-io0-f194.google.com with SMTP id q80so13715944ioi.13
+	for <yocto@yoctoproject.org>; Mon, 26 Mar 2018 12:22:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=JoSDFDZrR5y06wfHW6NFRFl6S1cuQBqwwA92e2JSe8I=;
+	b=fdJTfoMgsZ8zDU0lvZeXaO3PrTsSkgyHqE1XfZ24qjk1mxThIuTB2TFLjJ984/T38F
+	+q0Psl9BFPM3Vc4mnn8/BpY5TU/BIemBTNDoThgQ7QA9+BBuHzyT+hB+u71rJUNsydS6
+	7lBn6+Nep9lEOjnPE2TgPBxR1n7q0fxg63Nw6WWXsexOli16+n4q6EgEpTw0zCc+JpKc
+	zxGd2r2ne+fZXK+0CiJobq5GEbNEXznbO5AYWI6HXcuWPb7bEQioUnVN+xLsxOpDL8ZR
+	+kh1wHuh56Y910NVnAiolOcxWoEchEPZgBFG2VK37A6T3VtEcl3e025P1wXqcg1O/I2I
+	sPQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=JoSDFDZrR5y06wfHW6NFRFl6S1cuQBqwwA92e2JSe8I=;
+	b=LHHpN0gUyR2ksEZnELhdR++Ri5xlhbBnlFoCu5jKqhlO5amV2icGSHOoxzmN04Y9Kk
+	kf/747tnBDRsLmNRiMlarmIIjbUnD+joTIQNDRVsIvpzoOj4d7HVdPvvPkgjQFT2bOpV
+	ii3crDW8SmOI0yvGwl+1gvRE15aiWE8w1UhYD77IYdNJUfC6Hwr1f4i86wIh5i5t/czJ
+	25dvCtacTe60YQ7Uowj7czsx3qI7T9q/tbMsj3129VJKDixi9+lKta+cTlaALtvWL7pW
+	av+mkdN5d+5kqK+TgbEpv+f23jTmwBkhbETFBF16pUmlmy79WPeZkxHLmWckB2SJs4qu
+	qRhw==
+X-Gm-Message-State: AElRT7E8zasJ27use5o4wOlx2R+DYhRRYgipNamPVe6PwlC7SRF5Y4ET
+	e/8KZsaGhbVvqe/fXsSRxGdR4FC+SOpicBJ8X4bHVA==
+X-Google-Smtp-Source: AG47ELtGfl1l1As2lD105REehTcZoYWAhX2NsAUOQP8Vz7HzkSpPZ9ONBLMyaCVcPlfTojSa52VtvMHdL5jrEXT9FxM=
+X-Received: by 10.107.161.200 with SMTP id k191mr39147318ioe.270.1522092165882;
+	Mon, 26 Mar 2018 12:22:45 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1cxM+KAmTE4?=
+Received: by 10.107.30.9 with HTTP; Mon, 26 Mar 2018 12:22:25 -0700 (PDT)
+In-Reply-To: <1522059972-12702-1-git-send-email-awais_belal@mentor.com>
+References: <1522059972-12702-1-git-send-email-awais_belal@mentor.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 26 Mar 2018 20:22:25 +0100
+Message-ID: <CAJTo0Lb1vEPcZpAUp9GoNhzD1SYmCS3pXrKEP1=vNX3wxGOZnw@mail.gmail.com>
+To: Awais Belal <awais_belal@mentor.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: [matchbox-wm][PATCH] configure.ac: add lib math for composite enabled builds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,64 +67,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2018 17:06:32 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 26 Mar 2018 19:22:47 -0000
+Content-Type: text/plain; charset="UTF-8"
 
+On 26 March 2018 at 11:26, Awais Belal <awais_belal@mentor.com> wrote:
+> The composite enabled builds require lib math to be
+> present on the linker command line otherwise we get
+> ld: composite-engine.o: undefined reference to symbol 'exp@@GLIBC_2.2.5'
+> during compilation.
+>
+> Signed-off-by: Awais Belal <awais_belal@mentor.com>
+> ---
+>  configure.ac | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/configure.ac b/configure.ac
+> index dce82cc..1bc113f 100644
+> --- a/configure.ac
+> +++ b/configure.ac
+> @@ -246,9 +246,11 @@ fi
+>  dnl ------ Composite -------------------------------------------------------
+>
+>  if test x$enable_composite != xno; then
+> -  PKG_CHECK_MODULES(COMPO, xcomposite xfixes xdamage xrender, ,
+> +  PKG_CHECK_MODULES(COMPO, xcomposite xfixes xdamage xrender, have_compo_deps=yes,
+>                            AC_MSG_ERROR([*** Required Composite Librays not installed ***]))
+> -
+> +  if test x$have_compo_deps = xyes; then
+> +    COMPO_LIBS="$COMPO_LIBS -lm"
+> +  fi
 
+There's no way that test can fail as if the packages are not found,
+configure aborts.  Just do the assignment without the test.
 
-Current Dev Position: YP 2.5 M3 final close out.
-Next Deadline: YP 2.5 M4 stabilization is 4/2/18
-
-SWAT lead is currently Ross.
-SWAT team rotation: Ross -> Juro on March 30, 2018
-SWAT team rotation: Juro -> Paul on April 6, 2018
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-Key Status/Updates:
-· YP 2.5 M3 rc1 was built and went into QA. This release was built on
-with the ‘new’ autobuilder codebase. Some issues were found with
-artefact publication but nothing to block the rc1 as yet.
-· We are still blocked with morty on the glibc 2.27 and the sdk locale
-issues
-· Code has been added to uninative to ensure the glibc corruption that
-occurred with the newer glibc cannot happen again.
-· We have found a new issue where fedora 27’s version of coreutils is
-using syscall() to call a syscall directly and hence corrupting
-permissions of some files from pseudo’s perspective. We’re currently
-discussing this with upstream as its looking problematic to fix and we’d
-much prefer they use the glibc wrappers.
-· We have a fix for the qemuarm64 hangs during early boot, thanks to
-everyone who’s helped fix that, its much appreciated and will help our
-automated tests.
-· A significant win in opkg compression speed was found (thanks Ross!)
-
-Planned upcoming dot releases:
-YP 2.3.4 (Pyro) will be built after 2.5 M3
-YP 2.2.4 (Morty) will be built after 2.5 M3 once the glibc 2.27 issue is
-fixed
-YP 2.4.3 (Rocko) is planned for post YP 2.5.
-
-Key YP 2.5 Dates are:
-YP 2.5 M3 is in QA.  See status above.
-YP 2.5 M3 was scheduled for release 3/2/18
-YP 2.5 M4 cut off of 4/2/18
-YP 2.5 M4 release of 4/27/18
-
-Tracking Metrics:
-      WDD 2673 (last week 2673)
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.5_Status
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_2.5_Features
-
-The Status reports are now stored on the wiki at:
-https://wiki.yoctoproject.org/wiki/Weekly_Status
-
-[If anyone has suggestions for other information you’d like to see on
-this weekly status update, let us know!]
-
+Ross
 
