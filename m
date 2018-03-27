@@ -1,59 +1,64 @@
-Return-Path: <matthias.schoepfer@identpro.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C3FBE00CDC; Tue, 27 Mar 2018 02:09:52 -0700 (PDT)
+	id 4C5A4E00CA6; Tue, 27 Mar 2018 02:11:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [217.72.192.74 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 305 seconds by postgrey-1.32 at yocto-www;
-	Tue, 27 Mar 2018 02:09:50 PDT
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A92BFE00CA1
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 02:09:49 -0700 (PDT)
-Received: from SBS-IDENTPRO.intranet.identpro.net ([176.95.137.65]) by
-	mrelayeu.kundenserver.de (mreue103 [212.227.15.183]) with ESMTPSA
-	(Nemesis)
-	id 0LoJRp-1eLNAm0tJZ-00gEml; Tue, 27 Mar 2018 11:04:41 +0200
-Received: from SBS-IDENTPRO.intranet.identpro.net ([192.168.27.6]) by
-	SBS-IDENTPRO.intranet.identpro.net ([192.168.27.6]) with mapi id
-	14.01.0438.000; Tue, 27 Mar 2018 11:04:40 +0200
-From: =?Windows-1252?Q?Matthias_Sch=F6pfer?= <matthias.schoepfer@identpro.de>
-To: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>, Peter Balazovic
-	<balazovic.peter@gmail.com>, Yocto-mailing-list <yocto@yoctoproject.org>
-Thread-Topic: [yocto] scipy recipe
-Thread-Index: AQHTvIcgotqwIFrfW0WRlMSMHcZZhQ==
-Date: Tue, 27 Mar 2018 09:04:39 +0000
-Message-ID: <C44683C49AD51C4AB28DA746E48E358701062A71@SBS-IDENTPRO.intranet.identpro.net>
-References: <CAFq4t4gpGaMCyvR2drwjU8+NWYS5aSodmzPhPb4FWio6vm+12Q@mail.gmail.com>
-	<BY2PR02MB3478CD4565AE85F89F611FEB9AD0@BY2PR02MB347.namprd02.prod.outlook.com>
-Accept-Language: en-US, de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [176.95.137.65]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.193 listed in list.dnswl.org]
+Received: from mail-ot0-f193.google.com (mail-ot0-f193.google.com
+	[74.125.82.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A5D9E008E4
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 02:11:24 -0700 (PDT)
+Received: by mail-ot0-f193.google.com with SMTP id x6-v6so22273785otg.11
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 02:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
+	bh=3WJoRHOh6a1IZNQhQzioluk0kOcvEKsflQv/G9+wk50=;
+	b=UKkZ/y7YMBpvJHqFGmK4jS+iIpv2J6sO7o6KHId8Y7oJc+g03+0mLXqms5Hvj8E0tE
+	adyWAhiOePgM3KJEI4OQyNKPn6CPCPR4URGIXY7hC+kMsXsrSHCQoMPDPMt6wKzoMpLh
+	Vd8z6LBu1yhoErxuV97kbp2CxURbbCDZnbkQGmMEQiRc5bnPZuBl6v6K64WF6qc2JCL4
+	IETlE0hVgs3upnJjB85xEhrjoYEbx0WRvkhs2FAXAeZTgjLEIyE3eIT5Cm0jOc8fcs2h
+	qOdVAmL1rlyu9ELdKeFHd9ZbAnHhXjOlUfb9FPrPefkltV2SVucNa83pf6ZI1rTyRLwb
+	8N1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to;
+	bh=3WJoRHOh6a1IZNQhQzioluk0kOcvEKsflQv/G9+wk50=;
+	b=aTP9SJvqz20kjobvgKrvEB8JNNG0OStI7ew4xIotPb+rc//I4MPFVr46cHwxW4s4++
+	PFihSIqHWyFhlF9RS7Q0KCMs3EdDTItNPmrt8GLbdw9tQKH4CAfer2+0Pva2H7e97sbp
+	lzkYXT5KPQRIFqeycXVvlw9kaxNZk1XXNjJOyMj+k2D4hTFlnLRX8Hr0P9ljUQEV3n+T
+	Zl/cYc24PJ8rYsu6RQ4XlbnUueBPC7WJpagauf7NkT8ENFsBFCB0CzLktZfGUzGOXoEI
+	UimiBKEZdlBaIf1jF3gHeKvrrz2Y9V9GLcN59VwimHVZMAzbqrmv9+f3PBEW6PqiAK7W
+	HeSQ==
+X-Gm-Message-State: AElRT7GVSCgyEYtuySlAmyBJ8rV6FckEwaKSinB1NMOWKOZA2y8OxFQy
+	0UXbZystVZPsG1fFXXI5xFDuA+7SAKzfi3WvJv+1OI7x
+X-Google-Smtp-Source: AG47ELsOEJ/1V1WDb7/u76SOB9iDwIZs6FOD03iYsDi6AiMb/90w48PEkQUlomGjGiZlrd0W1pwa1DE0PSIdrTY0/9Q=
+X-Received: by 2002:a9d:f29:: with SMTP id
+	38-v6mr20885792ott.119.1522141884457; 
+	Tue, 27 Mar 2018 02:11:24 -0700 (PDT)
 MIME-Version: 1.0
-X-Provags-ID: V03:K0:X+Td6nkl7gS/LEP9QwXfu/vEI6IfI8h2K9wp78PbmYggUOZcJuC
-	4fLHHuzjIIcCRidU6/wdW6SRWDXetGxdsaMvZKOYT5v7iDf47/T31afPw+zXgUrdixM33Gp
-	fqqzSxBO9N9GKnqaANFV51pedYpy2bva+xdwbSnFjukH1ZC0zePQDy06g243GtsqXYYaxpG
-	AvBW+oFKD5A80QKgS8gdg==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:aoRguu4s/ls=:xplPlPUErECNAIhh4c4D4D
-	ARdevyI+i5rGGMMo1H/895mDJFdATzabTGKQ+MHs81sCOh6SVCjTYkynRg6CIcAxId/rMqxHq
-	KQmFfsY2G05hEK3jCdJ4TZbKl2PXCUgPbRlW1PWW5iAiHvH1InBfa8+ZIVS/7Y5TESH7udULP
-	Zy1A3/FghhT000AciV9Ppk0MyA5ipVEDfHbByv/Bge4VirSRUnCvAg2qEW0DNZJe18lL3dcEZ
-	Nw9B1KoIjIpvw2yfZSwI2cisQR+DsyjuryuNRkTKsDDmcKAXgF3xU5WoU8zVT1l5skIwg52Q1
-	Mi4w1jUaJDjqiXYCF0sD3Ulaq1KBR5WBt8r41QrqcNT5xVNXOPe60JI4aICnWTsSvXTvC6/d1
-	o9rqrtQojQFYXXRJepQAX2Isnsk2r+CTB1+kAHngYRh0ev/OYqcYg9juclBs+38DLdmGyrb1c
-	D9KsDRKDekga+BnGLQBs/hQMYYPIKpHiRWF8VNHxvk9XTGejZ5o7Uc211zkbzblDZBxMYIxj+
-	gLxrIY/lue1CTH4+iH9XEGU/7EQYR/qcEp8QOaJ3dYrskA/Ke3nYH4mi8PSEMUWFT3oBHHBIX
-	urNZwagO5CYO2vG6LQZ4mhxvzJFRH5ze6aAtk9WFRfEtwA6xwCTnVPAUI5aLD3CeM3Vm9XyFx
-	JdTPxc6QTFwfzNpK4m7sPrucuQYnG+myCLSvDkrvvyj0fRYu3zGS37ob8mhsTZtuYQTHSAWKZ
-	OV8Gc59ror/EdqGj40mLAMwwM1yJH7gKoNrUk63KzzBaPIa0ZJ/tpO38CyE=
-Subject: Re: scipy recipe
+Received: by 10.138.17.198 with HTTP; Tue, 27 Mar 2018 02:11:03 -0700 (PDT)
+In-Reply-To: <0db82a0a-841a-dd39-4225-524c0c6a1fca@emagii.com>
+References: <a4c194cc-78bc-08c3-491b-3130d7d3d019@emagii.com>
+	<CAJTo0LYdof+yo+92aB3SMv-r-1eTLdFegNFJhBS5gywuPmta_Q@mail.gmail.com>
+	<0db82a0a-841a-dd39-4225-524c0c6a1fca@emagii.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 27 Mar 2018 10:11:03 +0100
+Message-ID: <CAJTo0LYTiA25vDznwLQYorNB7MF6FkjEhMZuVCs1BQKU3A6Kqw@mail.gmail.com>
+To: Ulf Samuelsson <yocto@emagii.com>,
+	Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: How to add a module to python-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,86 +70,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Mar 2018 09:09:52 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 27 Mar 2018 09:11:26 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi!=0A=
-=0A=
-It turns out that openblas cross compile as I posted it is broken. It=0A=
-only works because my "cross-compile" is from amd64 to amd64...=0A=
-=0A=
-Regards,=0A=
-=0A=
-	Matthias=0A=
-=0A=
-On 03/26/2018 10:57 PM, Manjukumar Harthikote Matha wrote:=0A=
-> =0A=
->> -----Original Message-----=0A=
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.=
-org]=0A=
->> On Behalf Of Matthias Sch=F6pfer=0A=
->> Sent: Friday, March 23, 2018 3:08 AM=0A=
->> To: Peter Balazovic <balazovic.peter@gmail.com>; Yocto-mailing-list=0A=
->> <yocto@yoctoproject.org>=0A=
->> Subject: Re: [yocto] scipy recipe=0A=
->>=0A=
->> Hi Peter,=0A=
->>=0A=
->> I managed to get scipy to cross compile, since I was in a hurry, and hav=
-e no deeper=0A=
->> understanding of python / distutils / setuptools, it turned out to be an=
- ugly hack (but=0A=
->> obviously I was not the first one to do ugly things there ;) )=0A=
->>=0A=
->> Maybe you have had some progress as well, and we can figure out a nicer =
-solution.=0A=
->>=0A=
->> See the attached files, involving openblas, a bbappend for python-numpy =
-and=0A=
->> python-scipy.=0A=
->>=0A=
-> =0A=
-> Thanks Matthias, will try this out=0A=
-> =0A=
-> Thanks,=0A=
-> Manju=0A=
-> =0A=
-> =0A=
-> =0A=
-=0A=
-=0A=
--- =0A=
-Dr.-Ing. Matthias Sch=F6pfer=0A=
-=0A=
-Softwareentwicklung=0A=
-=0A=
-____________________________________=0A=
-=0A=
-IdentPro GmbH=0A=
-Camp-Spich-Str. 4=0A=
-53842 Troisdorf=0A=
-=0A=
-Tel:   +49 (0)2241 / 866 392 46=0A=
-Fax:   +49 (0)2241 / 866 392 99=0A=
-eMail: matthias.schoepfer@identpro.de=0A=
-=0A=
-http://www.identpro.de=0A=
-=0A=
-identplus=AE =96 Das 3D Staplerleitsystem mit enormen Sparpotenzial: z. B.=
-=0A=
-=FCber 67.000 EUR pro Jahr bei 500 Transporten t=E4glich! Berechnen Sie das=
-=0A=
-Einsparpotenzial f=FCr Ihr Lager mit dem identplus=AE Potenzialrechner.=0A=
-=0A=
-identplus=AE live erleben: Vereinbaren Sie jetzt einen Termin!=0A=
-=0A=
----------------------------------=0A=
-IdentPro GmbH=0A=
-Member of Dr. Wack Holding GmbH & Co.KG=0A=
-Sitz und Registergericht: St. Augustin, HRB 9770 Siegburg=0A=
-Gesch=E4ftsf=FChrer: Michael Wack=0A=
-Umsatzsteuer-ID-Nr.: DE 254 824 945=0A=
-WEEE-Reg.-Nr. DE 79026890=0A=
+Please remember to send to the list.
+
+On 26 March 2018 at 22:16, Ulf Samuelsson <yocto@emagii.com> wrote:
+> I do not see however why "inherit pythonnative" would make python-restkit
+> importable. Why is that?
+>
+> My python script start with
+> #!/usr/bin/python
+>
+> Does that mean that I use host python, instead of native python?
+> $bindir_native is "/usr/bin", so what is the difference?
+
+python-restkit-native installs the modules into
+/whatever/your/tmp/dir/is/sysroot/usr/lib/python/site-packages/restkit.
+The host Python doesn't know to look in there, and if the module was
+built from C sources the chances are the ABI doesn't match anyway.
+You need to run the nativepython in the sysroot which 1) matches API
+2) knows to look in the sysroot for modules.
+
+This is why 1) you need to either inherit pythonnative (in a recipe)
+or 2) run the right Python explicitly.  *Any* python code using
+/usr/bin/python explicitly is broken, the best practise everywhere
+(not just in Yocto) is to use #! /usr/bin/env python as you can't
+assume the one in /usr/bin is the right one.
+
+Ross
 
