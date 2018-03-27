@@ -1,63 +1,57 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <nicolas_salmin@trimble.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A54BE00D3D; Tue, 27 Mar 2018 01:07:17 -0700 (PDT)
+	id D0D02E00B8F; Tue, 27 Mar 2018 01:18:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mans.zigher[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.218.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-oi0-f41.google.com (mail-oi0-f41.google.com
-	[209.85.218.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13A7AE00D33
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 01:07:16 -0700 (PDT)
-Received: by mail-oi0-f41.google.com with SMTP id t16-v6so18435857oih.3
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 01:07:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-wm0-f54.google.com (mail-wm0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8881DE00905
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 01:18:29 -0700 (PDT)
+Received: by mail-wm0-f54.google.com with SMTP id r131so13152758wmb.2
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 01:18:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=trimble-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=bFV07/D0fMd8TuabiYjVqggaZDiBmvNLvnivsEpa/PE=;
-	b=SpyWJN1Qw1H77Csi9WLzdc9IpO7mmHBvNKTrq/5pUZUk7qO//8/evx2SVkPJBcdru1
-	/h7++2FX6h0aEtmkv+pDOTVuI7HatE5nRE5oy5PnO88dqNPnW4Aa9VrMTi08KC+AFE/l
-	PWYsBjTiNMPqWICzdm6ucZYFhQ8MyHpUd7WhPwewgMI+lKc/M6voD3bzcXCuzXXxwEs9
-	1HtOVT+/k4jjExiLKhXOoiQ/x1HNxdKLXfMQcbXb1OCvgmKlnJB9KGkvgaQXcTfMHk2G
-	V1KUCyk0Nw4rIDSRvGPhYKe++aV1Z0b5YQdX8G3vHHaVjiXkYssGainehRiSsOQaN0SZ
-	RPbg==
+	bh=aPihv5VAD9gv2Hzh791ImjEKqHZXNbH8EUcjds0cFWo=;
+	b=AC0zBWSQf8aZtS+FK6/mIbWtkdVn9rgTIS/adTwKQv1nu/aFmjZZBL9BfydgaLkzTk
+	h5/zj6LJPivPyXzrF6GnZCLvI5Qc2O4cXtG7pyGwzP1+/VT/MT7Tb1yHYyoV7uXQ2oVC
+	QuAXCo2loK/oZbLKX3vYgbs34KKNjbuUksv12TmjTHbthM11PM01BVi+1idgo05AME7+
+	5AcY6tNTsmbDVL7OdNwdUkbBQyrvZDztCKXgCS+B8j69EGxuyu5FEOVyi6IlBeswhY3o
+	2X3lNc4qME6RB2By6vQHkNPEvieClUf2hHiDIDbgHq7p32X6ubUAOW76b+A5ylDcQijj
+	ZNFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=bFV07/D0fMd8TuabiYjVqggaZDiBmvNLvnivsEpa/PE=;
-	b=fRpux8xSY+1MyiRWzLkEbKIv0Gt9nK38tch0oYQcfaVOo53G/Xo849FOn9ZbGMWVV5
-	MaZtuKb3yNhL36xoAk50Jr4K6hdKgI1eSrzBBbE7vadmt2mKKOByqttpQHpXiOMKf+0M
-	zjeSB18/v6ySIj8aMYZfuinAwl7RI8KK+dUhzxm+lfqhB/yQXRbfFj2C+FAbmrsRu+p9
-	A7wRklj2TMuOoWzI2d4yiMmuNBqszrinCsgPncvVpBqo6epki+hQtu/4QYseKuGqx2be
-	Ai332aKLaIzyKIpbUQQ6Ix6iZeMiQwxmLKRkRYYAhIW7SjOkrj/ONgGUEg4oQWOB0nm/
-	PqAw==
-X-Gm-Message-State: AElRT7FfRAiXOGGcw3DAKa36G2QYEZb13SQ8cd3YoXV6O7VXWrlc2Cr1
-	b0gFNnm5+z3vxcrVP/q8nptkrC/QxWWdnmWHdGnTsA==
-X-Google-Smtp-Source: AIpwx49eFxA8pPp0kOQe9jbMKNkoUt2XO7s/n1AJJ3W83+T07/8wFqqZrg0m/dkRKPVm6tvl2dmdT1NEMJ6RFw/rRKI=
-X-Received: by 10.202.212.85 with SMTP id l82mr6562892oig.102.1522138036136;
-	Tue, 27 Mar 2018 01:07:16 -0700 (PDT)
+	bh=aPihv5VAD9gv2Hzh791ImjEKqHZXNbH8EUcjds0cFWo=;
+	b=NOH4bh3CrX+ut+4jHfqWVdQgHmGh+zm3ULZoRL5rsHwYgpLN4wloDvM8QxiqlmfP+K
+	YODUeGeusrWBq64m5+FozgpSamGminvspxmANBAAL+9/DsG93oBy7iq7ags8EtHzMA5y
+	dt+FJnKxkqAR66pft/2/jCNdR80LaotX276/BNgE2sB/SSlx/+Gm4mnycdeqlgM1kul6
+	K5S977W5HrsQ9FGGF9iLxxfrDaf6MXS9woVTQ55ePJ4ok0BOCfH1tmMZmpR5nK6hBUNx
+	h2RXMS7Qy2imCWWXBtUpQECvgEJsJ2HsGB5lrE6NDGjyJ965cBt4tXMNoQc3lZM6oIlp
+	wjLA==
+X-Gm-Message-State: AElRT7EXuBzFRWFaIPCbNxviipaCwkukb/mhPBio66r3s0F8fEp7laaN
+	UHhNxYwSGTsCIwUe58Lrkq2aJU9P+lYaeHVPxmEPWfGPsN0=
+X-Google-Smtp-Source: AG47ELs5DJW9OJYcQMQ/cCR/2VSE4bHW33QA12CSMhsYb8quq1ItjNxmiTKoF9BotWAMhXoyB0V2Nd7TgtjYHCnZitw=
+X-Received: by 10.80.166.211 with SMTP id f19mr43931654edc.266.1522138709043; 
+	Tue, 27 Mar 2018 01:18:29 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.74.77.209 with HTTP; Tue, 27 Mar 2018 01:07:15 -0700 (PDT)
-From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Date: Tue, 27 Mar 2018 10:07:15 +0200
-Message-ID: <CAEhQi8k=m6UtLiOZUqwB8+Zc4CtMyGOgR+whN5aaHWE4XZ7iNg@mail.gmail.com>
+Received: by 10.80.149.245 with HTTP; Tue, 27 Mar 2018 01:18:28 -0700 (PDT)
+From: Nicolas Salmin <nicolas_salmin@trimble.com>
+Date: Tue, 27 Mar 2018 10:18:28 +0200
+Message-ID: <CAGTsOqOdmYMFPxr+WQa2BTMHzZoeTxbfiHqW3OZ-7oS8dku_Gg@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: question on how to include package to the SDK
+Subject: How to disable module auto-loading
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,87 +63,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Mar 2018 08:07:17 -0000
-Content-Type: multipart/alternative; boundary="001a113d2472f1790f0568606038"
+X-List-Received-Date: Tue, 27 Mar 2018 08:18:31 -0000
+Content-Type: multipart/alternative; boundary="94eb2c1978ea0d5e9c05686089f9"
 
---001a113d2472f1790f0568606038
+--94eb2c1978ea0d5e9c05686089f9
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Hello all,
 
-I have package that require protobuf and the compiler protoc. I have
-included the following
+I would like to know the better way to disable module auto-loading ?
 
-DEPENDS += " protobuf protobuf-native"
+I tried to create /etc/modprobe.d/blacklist.conf but as /etc/modprobe.d
+doesn't exist on my rootfs i think is not a good solution.
 
-and
+I have tested also with  *KERNEL_MODULE_AUTOLOAD -= "module.name
+<http://module.name>"* and
+*KERNEL_MODULE_AUTOLOAD_remove = "module.name <http://module.name>"*
 
-RDEPENDS_${PN} += " protobuf"
+Last solution will be pass *modprobe.blacklist=module.name
+<http://module.name>* in cmd line.
 
-The build works as intended the problem now is that the protoc is not
-included in the SDK. In the Yocto ref manual I found the following
-description for TOOLCHAIN_HOST_TASK
+So in your opinion, which is the better way to do that ?
 
-"This variable lists packages the OpenEmbedded build system uses when
-building an SDK, which contains a cross-development environment. The
-packages specified by this variable are part of the toolchain set that runs
-on the SDKMACHINE
-<https://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-SDKMACHINE>,
-and each package should usually have the prefix nativesdk-."
+Cheers,
+Nicolas
 
-So I have also in by image bb-file included the following
-
-TOOLCHAIN_HOST_TASK += " nativesdk-protobuf"
-
-The build passed without any errors but the protoc is still not included in
-the native sdk is included in the target part. I would really appreciate if
-you could en-light me on this topic on how to include a package in the sdk.
-
-BR
-Mans Zigher
-
---001a113d2472f1790f0568606038
+--94eb2c1978ea0d5e9c05686089f9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I have package that require protobu=
-f and the compiler protoc. I have included the following</div><div><br></di=
-v><div>DEPENDS +=3D &quot; protobuf protobuf-native&quot;</div><div><br></d=
-iv><div>and</div><div><br></div><div>RDEPENDS_${PN} +=3D &quot; protobuf&qu=
-ot;</div><div><br></div><div>The build works as intended the problem now is=
- that the protoc is not included in the SDK. In the Yocto ref manual I foun=
-d the following description for TOOLCHAIN_HOST_TASK</div><div><span style=
-=3D"color:rgb(51,51,51);font-family:Verdana,Sans,sans-serif;font-size:mediu=
-m"><br></span></div><div><span style=3D"color:rgb(51,51,51);font-family:Ver=
-dana,Sans,sans-serif">&quot;This variable lists packages the OpenEmbedded b=
-uild system uses when building an SDK, which contains a cross-development e=
-nvironment. The packages specified by this variable are part of the toolcha=
-in set that runs on the</span><span style=3D"color:rgb(51,51,51);font-famil=
-y:Verdana,Sans,sans-serif">=C2=A0</span><a class=3D"gmail-link" href=3D"htt=
-ps://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-SDKMA=
-CHINE" title=3D"SDKMACHINE" style=3D"background:transparent;font-family:Ver=
-dana,Sans,sans-serif;color:rgb(68,68,68)"><code class=3D"gmail-filename" st=
-yle=3D"font-family:Courier,monospace">SDKMACHINE</code></a><span style=3D"c=
-olor:rgb(51,51,51);font-family:Verdana,Sans,sans-serif">, and each package =
-should usually have the prefix</span><span style=3D"color:rgb(51,51,51);fon=
-t-family:Verdana,Sans,sans-serif">=C2=A0</span><code class=3D"gmail-filenam=
-e" style=3D"color:rgb(51,51,51);font-family:Courier,monospace">nativesdk-</=
-code><span style=3D"color:rgb(51,51,51);font-family:Verdana,Sans,sans-serif=
-">.&quot;</span></div><div><span style=3D"color:rgb(51,51,51);font-family:V=
-erdana,Sans,sans-serif"><br></span></div><div><span style=3D"color:rgb(51,5=
-1,51);font-family:Verdana,Sans,sans-serif">So I have also in by image bb-fi=
-le included the following</span></div><div><span style=3D"color:rgb(51,51,5=
-1);font-family:Verdana,Sans,sans-serif"><br></span></div><div><span style=
-=3D"color:rgb(51,51,51);font-family:Verdana,Sans,sans-serif">TOOLCHAIN_HOST=
-_TASK +=3D &quot; nativesdk-protobuf&quot;</span></div><div><span style=3D"=
-color:rgb(51,51,51);font-family:Verdana,Sans,sans-serif"><br></span></div><=
-div><font color=3D"#333333" face=3D"Verdana, Sans, sans-serif">The build pa=
-ssed without any errors but the protoc is still not included in the native =
-sdk is included in the target part. I would really appreciate if you could =
-en-light=C2=A0me on this topic=C2=A0on how to include a package in the sdk.=
-</font></div><div><font color=3D"#333333" face=3D"Verdana, Sans, sans-serif=
-"><br></font></div><div><font color=3D"#333333" face=3D"Verdana, Sans, sans=
--serif">BR</font></div><div><font color=3D"#333333" face=3D"Verdana, Sans, =
-sans-serif">Mans Zigher</font></div><div><br></div></div>
+<div dir=3D"ltr">Hello all,<div><br></div><div>I would like to know the bet=
+ter way to disable module auto-loading ?</div><div><br></div><div>I tried t=
+o create /etc/modprobe.d/blacklist.conf but as /etc/modprobe.d doesn&#39;t =
+exist on my rootfs i think is not a good solution.</div><div><br></div>I ha=
+ve tested also with =C2=A0<b>KERNEL_MODULE_AUTOLOAD -=3D &quot;<a href=3D"h=
+ttp://module.name">module.name</a>&quot;</b> and<br><b>KERNEL_MODULE_AUTOLO=
+AD_remove =3D &quot;<a href=3D"http://module.name">module.name</a>&quot;</b=
+><div><span style=3D"color:rgb(0,68,68);font-family:Verdana,Sans,sans-serif=
+;font-size:medium;font-style:normal;font-variant-ligatures:normal;font-vari=
+ant-caps:normal;font-weight:400;letter-spacing:normal;text-align:right;text=
+-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backgro=
+und-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-co=
+lor:initial;float:none;display:inline"><span style=3D"color:rgb(0,68,68);fo=
+nt-family:Verdana,Sans,sans-serif;font-size:medium;font-style:normal;font-v=
+ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-align:right;text-indent:0px;text-transform:none;white-spac=
+e:normal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration=
+-style:initial;text-decoration-color:initial;float:none;display:inline"><br=
+></span></span></div><div><span style=3D"text-align:right;text-indent:0px;t=
+ext-decoration-style:initial;text-decoration-color:initial;float:none;displ=
+ay:inline"><span style=3D"text-align:right;text-indent:0px;text-decoration-=
+style:initial;text-decoration-color:initial;float:none;display:inline">Last=
+ solution will be pass <b>modprobe.blacklist=3D<a href=3D"http://module.nam=
+e">module.name</a></b> in cmd line<font color=3D"#004444" face=3D"Verdana, =
+Sans, sans-serif" size=3D"3"><span style=3D"background-color:rgb(255,255,25=
+5)">.</span></font></span></span></div><div><br></div><div>So in your opini=
+on, which is the better way to do that ?</div><div><br></div><div>Cheers,</=
+div><div>Nicolas</div></div>
 
---001a113d2472f1790f0568606038--
+--94eb2c1978ea0d5e9c05686089f9--
