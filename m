@@ -1,64 +1,71 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C5A4E00CA6; Tue, 27 Mar 2018 02:11:26 -0700 (PDT)
+	id 9AECDE00CA6; Tue, 27 Mar 2018 02:12:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.193 listed in list.dnswl.org]
-Received: from mail-ot0-f193.google.com (mail-ot0-f193.google.com
-	[74.125.82.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A5D9E008E4
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 02:11:24 -0700 (PDT)
-Received: by mail-ot0-f193.google.com with SMTP id x6-v6so22273785otg.11
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 02:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to; 
-	bh=3WJoRHOh6a1IZNQhQzioluk0kOcvEKsflQv/G9+wk50=;
-	b=UKkZ/y7YMBpvJHqFGmK4jS+iIpv2J6sO7o6KHId8Y7oJc+g03+0mLXqms5Hvj8E0tE
-	adyWAhiOePgM3KJEI4OQyNKPn6CPCPR4URGIXY7hC+kMsXsrSHCQoMPDPMt6wKzoMpLh
-	Vd8z6LBu1yhoErxuV97kbp2CxURbbCDZnbkQGmMEQiRc5bnPZuBl6v6K64WF6qc2JCL4
-	IETlE0hVgs3upnJjB85xEhrjoYEbx0WRvkhs2FAXAeZTgjLEIyE3eIT5Cm0jOc8fcs2h
-	qOdVAmL1rlyu9ELdKeFHd9ZbAnHhXjOlUfb9FPrPefkltV2SVucNa83pf6ZI1rTyRLwb
-	8N1g==
+Received: from mail-wr0-f171.google.com (mail-wr0-f171.google.com
+	[209.85.128.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13077E008E4
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 02:12:02 -0700 (PDT)
+Received: by mail-wr0-f171.google.com with SMTP id f14so21595790wre.8
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 02:12:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=+NSgqClpTMJ5YYtlJgO1CPMIo0kWCGu64EqXvd2Gzrg=;
+	b=jtSa2KpkHPz52dFIuocgg2iEbwJ4iXJee59t1tGoNgOgFXhVRuhC078s/wtq81LfAG
+	NSI9aO8ZrbpDNtSURdxzo/hB9LS12TBBXOiYQHFZ1wwPh9izPfl6XZUaeCUGVIYzquCs
+	uIy48piEWmdnUoGOpDP5+eF2+RBzGObs8DdA+neu2aAXDaz1HR1WXy/X1iM5deT2jdD7
+	Xewwf51BP4XNnQQpBfDAPQPA+okNJdPiFwvH4SpKoZtZ+gSI+eCd8IXjwvXHG/QyhkTz
+	W837J6bXJctSubYBLIF+8+fGEdsrQWrp26bPy3Zj9kR6L9/nkEiJB0Ei+y5dmcGZlx0A
+	H5zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to;
-	bh=3WJoRHOh6a1IZNQhQzioluk0kOcvEKsflQv/G9+wk50=;
-	b=aTP9SJvqz20kjobvgKrvEB8JNNG0OStI7ew4xIotPb+rc//I4MPFVr46cHwxW4s4++
-	PFihSIqHWyFhlF9RS7Q0KCMs3EdDTItNPmrt8GLbdw9tQKH4CAfer2+0Pva2H7e97sbp
-	lzkYXT5KPQRIFqeycXVvlw9kaxNZk1XXNjJOyMj+k2D4hTFlnLRX8Hr0P9ljUQEV3n+T
-	Zl/cYc24PJ8rYsu6RQ4XlbnUueBPC7WJpagauf7NkT8ENFsBFCB0CzLktZfGUzGOXoEI
-	UimiBKEZdlBaIf1jF3gHeKvrrz2Y9V9GLcN59VwimHVZMAzbqrmv9+f3PBEW6PqiAK7W
-	HeSQ==
-X-Gm-Message-State: AElRT7GVSCgyEYtuySlAmyBJ8rV6FckEwaKSinB1NMOWKOZA2y8OxFQy
-	0UXbZystVZPsG1fFXXI5xFDuA+7SAKzfi3WvJv+1OI7x
-X-Google-Smtp-Source: AG47ELsOEJ/1V1WDb7/u76SOB9iDwIZs6FOD03iYsDi6AiMb/90w48PEkQUlomGjGiZlrd0W1pwa1DE0PSIdrTY0/9Q=
-X-Received: by 2002:a9d:f29:: with SMTP id
-	38-v6mr20885792ott.119.1522141884457; 
-	Tue, 27 Mar 2018 02:11:24 -0700 (PDT)
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=+NSgqClpTMJ5YYtlJgO1CPMIo0kWCGu64EqXvd2Gzrg=;
+	b=OzVMQpgbMaY6s2IeyzfSVkb0MdLqmsNDzXO2EMxIJks51g66nwWEsN6m12a/Dy5XIR
+	46fCbn7jZCV2IwvY6KThVQI3Xdn7pKQsBno0BiWty3tyCWEYCu30VMwjOxDFd/838sKB
+	lctwzHnKDKS6Jn/YCZEs97hcuYj9cDB1A5R3eDQ7uPV5ekSqDWrpHazlrngIThtZZoGT
+	TSdUDlQnxgokCUDjIM22NckhkCFLviFr0CDpwm8yfzWYtN+ur3Lon4xs1rybi6piC8ei
+	9YKNnD16sWV8nQq07AGcJSecMlzDtx12Vx0K7pUSryBCNe4+mL3xvrOYS6oPa82CLGer
+	4mmg==
+X-Gm-Message-State: AElRT7FFQB80rz4TZW6pTG98UvYiNzU3ZDqV/iIESlDavesbudmF4PFQ
+	IpQUSj/NoHKPby8D0Ek+qB0=
+X-Google-Smtp-Source: AG47ELt2y8oKl1Ows33ZMpEgZy/ZBB3DtIH5ikNHZGFh/nRjBoKj78vJ0U2gGZI+47APHo5u5HrthQ==
+X-Received: by 10.223.134.125 with SMTP id 58mr32544165wrw.102.1522141921924; 
+	Tue, 27 Mar 2018 02:12:01 -0700 (PDT)
+Received: from localhost ([217.30.68.212]) by smtp.gmail.com with ESMTPSA id
+	m129sm782235wma.44.2018.03.27.02.12.00
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Tue, 27 Mar 2018 02:12:01 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Tue, 27 Mar 2018 11:12:01 +0200
+To: Nicolas Salmin <nicolas_salmin@trimble.com>
+Message-ID: <20180327091201.GB1536@jama>
+References: <CAGTsOqOdmYMFPxr+WQa2BTMHzZoeTxbfiHqW3OZ-7oS8dku_Gg@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.138.17.198 with HTTP; Tue, 27 Mar 2018 02:11:03 -0700 (PDT)
-In-Reply-To: <0db82a0a-841a-dd39-4225-524c0c6a1fca@emagii.com>
-References: <a4c194cc-78bc-08c3-491b-3130d7d3d019@emagii.com>
-	<CAJTo0LYdof+yo+92aB3SMv-r-1eTLdFegNFJhBS5gywuPmta_Q@mail.gmail.com>
-	<0db82a0a-841a-dd39-4225-524c0c6a1fca@emagii.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 27 Mar 2018 10:11:03 +0100
-Message-ID: <CAJTo0LYTiA25vDznwLQYorNB7MF6FkjEhMZuVCs1BQKU3A6Kqw@mail.gmail.com>
-To: Ulf Samuelsson <yocto@emagii.com>,
-	Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: How to add a module to python-native
+In-Reply-To: <CAGTsOqOdmYMFPxr+WQa2BTMHzZoeTxbfiHqW3OZ-7oS8dku_Gg@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Cc: yocto@yoctoproject.org
+Subject: Re: How to disable module auto-loading
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,33 +77,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Mar 2018 09:11:26 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 27 Mar 2018 09:12:03 -0000
+X-Groupsio-MsgNum: 40427
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="St7VIuEGZ6dlpu13"
+Content-Disposition: inline
 
-Please remember to send to the list.
+--St7VIuEGZ6dlpu13
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 26 March 2018 at 22:16, Ulf Samuelsson <yocto@emagii.com> wrote:
-> I do not see however why "inherit pythonnative" would make python-restkit
-> importable. Why is that?
->
-> My python script start with
-> #!/usr/bin/python
->
-> Does that mean that I use host python, instead of native python?
-> $bindir_native is "/usr/bin", so what is the difference?
+On Tue, Mar 27, 2018 at 10:18:28AM +0200, Nicolas Salmin wrote:
+> Hello all,
+>=20
+> I would like to know the better way to disable module auto-loading ?
+>=20
+> I tried to create /etc/modprobe.d/blacklist.conf but as /etc/modprobe.d
+> doesn't exist on my rootfs i think is not a good solution.
+>=20
+> I have tested also with  *KERNEL_MODULE_AUTOLOAD -=3D "module.name
+> <http://module.name>"* and
+> *KERNEL_MODULE_AUTOLOAD_remove =3D "module.name <http://module.name>"*
+>=20
+> Last solution will be pass *modprobe.blacklist=3Dmodule.name
+> <http://module.name>* in cmd line.
+>=20
+> So in your opinion, which is the better way to do that ?
 
-python-restkit-native installs the modules into
-/whatever/your/tmp/dir/is/sysroot/usr/lib/python/site-packages/restkit.
-The host Python doesn't know to look in there, and if the module was
-built from C sources the chances are the ABI doesn't match anyway.
-You need to run the nativepython in the sysroot which 1) matches API
-2) knows to look in the sysroot for modules.
+KERNEL_MODULE_AUTOLOAD_remove should work, check with bitbake -e to
+confirm that it was correctly applied.
 
-This is why 1) you need to either inherit pythonnative (in a recipe)
-or 2) run the right Python explicitly.  *Any* python code using
-/usr/bin/python explicitly is broken, the best practise everywhere
-(not just in Yocto) is to use #! /usr/bin/env python as you can't
-assume the one in /usr/bin is the right one.
+It's also possible to blacklist it with:
 
-Ross
+module_conf_<module-name> =3D "blacklist <module-name>"
 
+Cheers,
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--St7VIuEGZ6dlpu13
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCWroK4AAKCRA3VSO3ZXaA
+HFe2AJ9eVyns0y93T+6O8jwR3opFHudgtwCdECkYikqz0UXhGFoVC/0Zm9x63W0=
+=Ck62
+-----END PGP SIGNATURE-----
+
+--St7VIuEGZ6dlpu13--
