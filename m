@@ -1,68 +1,43 @@
-Return-Path: <ticotimo@gmail.com>
+Return-Path: <tom.gibson@csoftware.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3AF5AE00BE9; Tue, 27 Mar 2018 07:40:08 -0700 (PDT)
+	id F0437E00BC1; Tue, 27 Mar 2018 07:56:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ticotimo[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.213.42 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RDNS_DYNAMIC autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f42.google.com (mail-vk0-f42.google.com
-	[209.85.213.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDEDEE008A2
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 07:40:05 -0700 (PDT)
-Received: by mail-vk0-f42.google.com with SMTP id n124so3399775vkd.6
-	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 07:40:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=pxxrDjqgplnKixGBm3k+nYzt6fLVnCjffK5Tiomu3g8=;
-	b=EO9o9hPDqSct1k1AvfqlTA1bwu2W7ljy5avX5kDOqcshXeAQFrNE6/z8LV8ACOg9gV
-	HiVzZ8fPobW/rRlRIoGNkP3RgfKPeVUG1z9bsmGBhSujH3O4LQjvOiTruplMi7I3U8zI
-	QyPgwra0yAoJFmXIDyzkoMkIL7/gm95Z23aw2xpTTJRZUnuEYcEKN/dk5vCsljiNhTKU
-	/jvyucKB23RERoPE/iUs0vIBHAqzSnvgTf3bqZmbhpYUy4Gtn94TCR3VZRBIL4klSwd4
-	0bSPLUu89pILcS5wXQ1YNqRzRohzhv7DYFHjMv+LjBmt1B244lutr+cAhFOFVkkxIz3N
-	P2jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=pxxrDjqgplnKixGBm3k+nYzt6fLVnCjffK5Tiomu3g8=;
-	b=sNy0AAhDOWXZ4o7cB54qmwU6ajNMKNTiKLGgnbtyo8/8STmN93Q39Bc9xtNioVL/k4
-	rTsNGyqSN90r7zFr/hGRH7KK55NIgofWxZGBjxsYbNfBzW+liMC82O1OQglc8gMnPo1A
-	hAkG0vKgCmZ6GWdmj/w5X2K7AgncYj2Bxsq5qaLY8CrCui9k94IW9FZYVxXXq4GhW5hm
-	Y9DiYQ/vGUjgVj/CuXEXYp1Zs4lADa8HbigW5uOWqTXydhARfnUlEP5fyESFqvl/kUKV
-	oaP7Pq2H/v7wOf9HDKHuZR36a6kW6hQv0kg9AmlUsmsQtvj8uBVBb1ThnCoM7jZwZAoZ
-	sdNw==
-X-Gm-Message-State: AElRT7F4Ju8kE/Cp5x8A3ZRB8JhRM8sIoMDPF0D7kYLHzi4y9A2iMi6v
-	NQd+mJrLyqkvC6E3MZVz1ekHKW6wWMSQXOLJj5o=
-X-Google-Smtp-Source: AG47ELuBhx2eRGHH7iTm8aRkCum/YZ1A+ZqHFlsfgrDKVMAhrqj0riU5mouV3HfB0J8oi+h6csAFRiGHi/HGOvWNufo=
-X-Received: by 10.31.76.4 with SMTP id z4mr29165861vka.63.1522161604849; Tue,
-	27 Mar 2018 07:40:04 -0700 (PDT)
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
+	Tue, 27 Mar 2018 07:56:58 PDT
+Received: from APOLLO-EX16.csoftware.local (176-35-35-244.xdsl.murphx.net
+	[176.35.35.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AAEFE008D3
+	for <yocto@yoctoproject.org>; Tue, 27 Mar 2018 07:56:58 -0700 (PDT)
+Received: from APOLLO-EX16.csoftware.local (10.1.1.6) by
+	APOLLO-EX16.csoftware.local (10.1.1.6) with Microsoft SMTP Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+	15.1.1415.2; Tue, 27 Mar 2018 15:42:01 +0100
+Received: from APOLLO-EX16.csoftware.local ([fe80::f4fe:415e:7ed9:9ee0]) by
+	APOLLO-EX16.csoftware.local ([fe80::f4fe:415e:7ed9:9ee0%13]) with mapi
+	id 15.01.1415.004; Tue, 27 Mar 2018 15:42:01 +0100
+From: Tom Gibson <tom.gibson@csoftware.co.uk>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ClamAV PCRE support
+Thread-Index: AdPF1+hZQZMIgHvxQGSK/H0SJtQy6w==
+Date: Tue, 27 Mar 2018 14:42:01 +0000
+Message-ID: <7fe4b4d52892445b97680ccd2ec47808@csoftware.co.uk>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.1.70]
+x-esetresult: clean, is OK
+x-esetid: 37303A29CD5E6C6C6D716B
 MIME-Version: 1.0
-References: <CAFq4t4gpGaMCyvR2drwjU8+NWYS5aSodmzPhPb4FWio6vm+12Q@mail.gmail.com>
-	<BY2PR02MB3478CD4565AE85F89F611FEB9AD0@BY2PR02MB347.namprd02.prod.outlook.com>
-	<C44683C49AD51C4AB28DA746E48E358701062A71@SBS-IDENTPRO.intranet.identpro.net>
-In-Reply-To: <C44683C49AD51C4AB28DA746E48E358701062A71@SBS-IDENTPRO.intranet.identpro.net>
-From: Tim Orling <ticotimo@gmail.com>
-Date: Tue, 27 Mar 2018 14:39:54 +0000
-Message-ID: <CANx9H-AA6ToP=z+9z2=q2Cb0idvDnsHy5603Dc-b41ETJPhFoA@mail.gmail.com>
-To: =?UTF-8?Q?Matthias_Sch=C3=B6pfer?= <matthias.schoepfer@identpro.de>
-Cc: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>,
-	Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: scipy recipe
+Subject: ClamAV PCRE support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,220 +49,172 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Mar 2018 14:40:08 -0000
-Content-Type: multipart/alternative; boundary="001a114dc17abf7676056865ddae"
+X-List-Received-Date: Tue, 27 Mar 2018 14:57:00 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7fe4b4d52892445b97680ccd2ec47808csoftwarecouk_"
 
---001a114dc17abf7676056865ddae
-Content-Type: text/plain; charset="UTF-8"
+--_000_7fe4b4d52892445b97680ccd2ec47808csoftwarecouk_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-intel-iot-refkit has an openblas recipe:
-http://git.yoctoproject.org/cgit/cgit.cgi/intel-iot-refkit/tree/meta-refkit=
--extra/recipes-convnet/openblas/openblas_0.2.19.bb
+Hi,
 
-Where I am getting stuck is that scipy doesn=E2=80=99t know it is being
-cross-compiled and tries to import numpy.core.multiarray. It reports as
-numpy being a broken build because the library is of the wrong ELF type
-(paraphrasing from memory). That module loads just fine in qemu.
-On Tue, Mar 27, 2018 at 2:13 AM Matthias Sch=C3=B6pfer <
-matthias.schoepfer@identpro.de> wrote:
+I am adding ClamAV to our custom image and have added the following to our =
+main .bb file:
 
-> Hi!
->
-> It turns out that openblas cross compile as I posted it is broken. It
-> only works because my "cross-compile" is from amd64 to amd64...
->
-> Regards,
->
->         Matthias
->
-> On 03/26/2018 10:57 PM, Manjukumar Harthikote Matha wrote:
-> >
-> >> -----Original Message-----
-> >> From: yocto-bounces@yoctoproject.org [mailto:
-> yocto-bounces@yoctoproject.org]
-> >> On Behalf Of Matthias Sch=C3=B6pfer
-> >> Sent: Friday, March 23, 2018 3:08 AM
-> >> To: Peter Balazovic <balazovic.peter@gmail.com>; Yocto-mailing-list
-> >> <yocto@yoctoproject.org>
-> >> Subject: Re: [yocto] scipy recipe
-> >>
-> >> Hi Peter,
-> >>
-> >> I managed to get scipy to cross compile, since I was in a hurry, and
-> have no deeper
-> >> understanding of python / distutils / setuptools, it turned out to be
-> an ugly hack (but
-> >> obviously I was not the first one to do ugly things there ;) )
-> >>
-> >> Maybe you have had some progress as well, and we can figure out a nice=
-r
-> solution.
-> >>
-> >> See the attached files, involving openblas, a bbappend for python-nump=
-y
-> and
-> >> python-scipy.
-> >>
-> >
-> > Thanks Matthias, will try this out
-> >
-> > Thanks,
-> > Manju
-> >
-> >
-> >
->
->
-> --
-> Dr.-Ing. Matthias Sch=C3=B6pfer
->
-> Softwareentwicklung
->
-> ____________________________________
->
-> IdentPro GmbH
-> Camp-Spich-Str. 4
-> 53842 Troisdorf
->
-> Tel:   +49 (0)2241 / 866 392 46
-> Fax:   +49 (0)2241 / 866 392 99
-> eMail: matthias.schoepfer@identpro.de
->
-> http://www.identpro.de
->
-> identplus=C2=AE =E2=80=93 Das 3D Staplerleitsystem mit enormen Sparpotenz=
-ial: z. B.
-> =C3=BCber 67.000 EUR pro Jahr bei 500 Transporten t=C3=A4glich! Berechnen=
- Sie das
-> Einsparpotenzial f=C3=BCr Ihr Lager mit dem identplus=C2=AE Potenzialrech=
-ner.
->
-> identplus=C2=AE live erleben: Vereinbaren Sie jetzt einen Termin!
->
-> ---------------------------------
-> IdentPro GmbH
-> Member of Dr. Wack Holding GmbH & Co.KG
-> Sitz und Registergericht: St. Augustin, HRB 9770 Siegburg
-> Gesch=C3=A4ftsf=C3=BChrer: Michael Wack
-> Umsatzsteuer-ID-Nr.: DE 254 824 945
-> WEEE-Reg.-Nr. DE 79026890
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+IMAGE_INSTALL +=3D " clamav clamav-daemon clamav-clamdscan"
 
---001a114dc17abf7676056865ddae
-Content-Type: text/html; charset="UTF-8"
+When I run clamscan on our board I get a number of errors of the form "logi=
+cal signature for ... uses PCREs but support is disabled, skipping" so the =
+solution would appear to be to add PCRE support. In the ClamAV bitbake reci=
+pe I see there is a PACKAGECONFIG variable for PCRE, so to test if this is =
+the solution I have added the following to my local.conf:
+
+PACKAGECONFIG_append_pn-clamav =3D " pcre"
+
+and have also added " libpcre2" before "clamav" in the IMAGE_INSTALL as abo=
+ve.
+
+Unfortunately when I run bitbake I now get a configure error similar to the=
+ following:
+
+configure: error: cannot locate libpcre2 or libpcre at <builddir>/tmp/work/=
+armv7a-neon-poky-linux-gnueabi/clamav/0.99.3-r0/recipe-sysroot/usr/lib
+
+I have attempted to solve this by creating a .bbappend file in my layer con=
+taining the following to try and force it to build libpcre first
+
+                DEPENDS +=3D " libpcre2"
+
+however this has no effect on the error, I assume this may not be the way t=
+o solve the dependency problem.
+
+Can anyone please advise what additional configuration is required to enabl=
+e building of support for PCRE into ClamAV
+
+Thanks in advance for your assistance!
+
+Regards,
+
+Tom Gibson
+C Software Limited
+
+
+--_000_7fe4b4d52892445b97680ccd2ec47808csoftwarecouk_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-intel-iot-refkit has an openblas recipe:<br><a href=3D"http://git.yoctoproj=
-ect.org/cgit/cgit.cgi/intel-iot-refkit/tree/meta-refkit-extra/recipes-convn=
-et/openblas/openblas_0.2.19.bb">http://git.yoctoproject.org/cgit/cgit.cgi/i=
-ntel-iot-refkit/tree/meta-refkit-extra/recipes-convnet/openblas/openblas_0.=
-2.19.bb</a><br><br>Where I am getting stuck is that scipy doesn=E2=80=99t k=
-now it is being cross-compiled and tries to import numpy.core.multiarray. I=
-t reports as numpy being a broken build because the library is of the wrong=
- ELF type (paraphrasing from memory). That module loads just fine in qemu.<=
-br><div class=3D"gmail_quote"><div dir=3D"ltr">On Tue, Mar 27, 2018 at 2:13=
- AM Matthias Sch=C3=B6pfer &lt;<a href=3D"mailto:matthias.schoepfer@identpr=
-o.de">matthias.schoepfer@identpro.de</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
-adding-left:1ex">Hi!<br>
-<br>
-It turns out that openblas cross compile as I posted it is broken. It<br>
-only works because my &quot;cross-compile&quot; is from amd64 to amd64...<b=
-r>
-<br>
-Regards,<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 Matthias<br>
-<br>
-On 03/26/2018 10:57 PM, Manjukumar Harthikote Matha wrote:<br>
-&gt;<br>
-&gt;&gt; -----Original Message-----<br>
-&gt;&gt; From: <a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"=
-_blank">yocto-bounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-=
-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@yoctoproject.org<=
-/a>]<br>
-&gt;&gt; On Behalf Of Matthias Sch=C3=B6pfer<br>
-&gt;&gt; Sent: Friday, March 23, 2018 3:08 AM<br>
-&gt;&gt; To: Peter Balazovic &lt;<a href=3D"mailto:balazovic.peter@gmail.co=
-m" target=3D"_blank">balazovic.peter@gmail.com</a>&gt;; Yocto-mailing-list<=
-br>
-&gt;&gt; &lt;<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yo=
-cto@yoctoproject.org</a>&gt;<br>
-&gt;&gt; Subject: Re: [yocto] scipy recipe<br>
-&gt;&gt;<br>
-&gt;&gt; Hi Peter,<br>
-&gt;&gt;<br>
-&gt;&gt; I managed to get scipy to cross compile, since I was in a hurry, a=
-nd have no deeper<br>
-&gt;&gt; understanding of python / distutils / setuptools, it turned out to=
- be an ugly hack (but<br>
-&gt;&gt; obviously I was not the first one to do ugly things there ;) )<br>
-&gt;&gt;<br>
-&gt;&gt; Maybe you have had some progress as well, and we can figure out a =
-nicer solution.<br>
-&gt;&gt;<br>
-&gt;&gt; See the attached files, involving openblas, a bbappend for python-=
-numpy and<br>
-&gt;&gt; python-scipy.<br>
-&gt;&gt;<br>
-&gt;<br>
-&gt; Thanks Matthias, will try this out<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Manju<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-<br>
-<br>
---<br>
-Dr.-Ing. Matthias Sch=C3=B6pfer<br>
-<br>
-Softwareentwicklung<br>
-<br>
-____________________________________<br>
-<br>
-IdentPro GmbH<br>
-Camp-Spich-Str. 4<br>
-53842 Troisdorf<br>
-<br>
-Tel:=C2=A0 =C2=A0+49 (0)2241 / 866 392 46<br>
-Fax:=C2=A0 =C2=A0+49 (0)2241 / 866 392 99<br>
-eMail: <a href=3D"mailto:matthias.schoepfer@identpro.de" target=3D"_blank">=
-matthias.schoepfer@identpro.de</a><br>
-<br>
-<a href=3D"http://www.identpro.de" rel=3D"noreferrer" target=3D"_blank">htt=
-p://www.identpro.de</a><br>
-<br>
-identplus=C2=AE =E2=80=93 Das 3D Staplerleitsystem mit enormen Sparpotenzia=
-l: z. B.<br>
-=C3=BCber 67.000 EUR pro Jahr bei 500 Transporten t=C3=A4glich! Berechnen S=
-ie das<br>
-Einsparpotenzial f=C3=BCr Ihr Lager mit dem identplus=C2=AE Potenzialrechne=
-r.<br>
-<br>
-identplus=C2=AE live erleben: Vereinbaren Sie jetzt einen Termin!<br>
-<br>
----------------------------------<br>
-IdentPro GmbH<br>
-Member of Dr. Wack Holding GmbH &amp; Co.KG<br>
-Sitz und Registergericht: St. Augustin, HRB 9770 Siegburg<br>
-Gesch=C3=A4ftsf=C3=BChrer: Michael Wack<br>
-Umsatzsteuer-ID-Nr.: DE 254 824 945<br>
-WEEE-Reg.-Nr. DE 79026890<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am adding ClamAV to our custom image and have adde=
+d the following to our main .bb file:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt">IMAGE_INSTALL &#43;=3D =
+&#8220; clamav clamav-daemon clamav-clamdscan&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">When I run clamscan on our board I get a number of e=
+rrors of the form &#8220;logical signature for &#8230; uses PCREs but suppo=
+rt is disabled, skipping&#8221; so the solution would appear to be to add P=
+CRE support. In the ClamAV bitbake recipe I see there
+ is a PACKAGECONFIG variable for PCRE, so to test if this is the solution I=
+ have added the following to my local.conf:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt">PACKAGECONFIG_append_pn=
+-clamav =3D &#8220; pcre&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">and have also added &#8220; libpcre2&#8221; before &=
+#8220;clamav&#8221; in the IMAGE_INSTALL as above.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Unfortunately when I run bitbake I now get a configu=
+re error similar to the following:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:36.0pt">configure: error: canno=
+t locate libpcre2 or libpcre at &lt;builddir&gt;/tmp/work/armv7a-neon-poky-=
+linux-gnueabi/clamav/0.99.3-r0/recipe-sysroot/usr/lib<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have attempted to solve this by creating a .bbappe=
+nd file in my layer containing the following to try and force it to build l=
+ibpcre first<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPENDS &#43;=3D &#8220; libpcre2&#8=
+221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">however this has no effect on the error, I assume th=
+is may not be the way to solve the dependency problem.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can anyone please advise what additional configurati=
+on is required to enable building of support for PCRE into ClamAV<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks in advance for your assistance!<o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB">Regards,<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB">Tom Gibso=
+n<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB">C Softwar=
+e Limited</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
---001a114dc17abf7676056865ddae--
+--_000_7fe4b4d52892445b97680ccd2ec47808csoftwarecouk_--
