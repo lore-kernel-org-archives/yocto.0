@@ -1,40 +1,39 @@
-Return-Path: <anuj.mittal@intel.com>
+Return-Path: <jakob.hasse@smart-home-technology.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB5C5E00994; Wed, 28 Mar 2018 04:30:27 -0700 (PDT)
+	id 07AE0E00BEF; Wed, 28 Mar 2018 04:41:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [217.26.49.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A072E00529
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 04:30:27 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Mar 2018 04:30:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,371,1517904000"; d="scan'208";a="186701224"
-Received: from anmitta2-mobl1.gar.corp.intel.com (HELO [10.255.163.203])
-	([10.255.163.203])
-	by orsmga004.jf.intel.com with ESMTP; 28 Mar 2018 04:30:25 -0700
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>,
-	Yocto Project <yocto@yoctoproject.org>
-References: <CAGAf8Lyfz2oZ9EgWmZ1km4qQn-Kdaqh_1q+jvfv1anR-HLZXiw@mail.gmail.com>
-From: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <c35b19d8-7e06-57bb-12ad-3a78a6293794@intel.com>
-Date: Wed, 28 Mar 2018 19:30:22 +0800
+Received: from mxout013.mail.hostpoint.ch (mxout013.mail.hostpoint.ch
+	[217.26.49.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1268E00529
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 04:41:34 -0700 (PDT)
+Received: from [10.0.2.45] (helo=asmtp012.mail.hostpoint.ch)
+	by mxout013.mail.hostpoint.ch with esmtp (Exim 4.90_1 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1f19SP-000JW3-Ba
+	for yocto@yoctoproject.org; Wed, 28 Mar 2018 13:41:33 +0200
+Received: from [2a02:168:68f1:1:759e:188f:335:42b0]
+	by asmtp012.mail.hostpoint.ch with esmtpa (Exim 4.90_1 (FreeBSD))
+	(envelope-from <jakob.hasse@smart-home-technology.ch>)
+	id 1f19SP-000EAY-7Q
+	for yocto@yoctoproject.org; Wed, 28 Mar 2018 13:41:33 +0200
+X-Authenticated-Sender-Id: jakob.hasse@smart-home-technology.ch
+To: Yocto List <yocto@yoctoproject.org>
+From: Jakob Hasse <jakob.hasse@smart-home-technology.ch>
+Message-ID: <4ac78687-69d5-a330-6b26-97aa5762e5b0@smart-home-technology.ch>
+Date: Wed, 28 Mar 2018 13:41:33 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.6.0
 MIME-Version: 1.0
-In-Reply-To: <CAGAf8Lyfz2oZ9EgWmZ1km4qQn-Kdaqh_1q+jvfv1anR-HLZXiw@mail.gmail.com>
-Subject: Re: ssh-copy-id is part of which package?
+Subject: Bitbake problems recognizing the latest version of a repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,37 +45,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 11:30:28 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+X-List-Received-Date: Wed, 28 Mar 2018 11:41:36 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: de-DE
 
-Hi Zoran,
+Hello,
 
-On 03/28/2018 07:18 PM, Zoran Stojsavljevic wrote:
-> Hello to all,
-> 
-> Seems, that command:
-> IMAGE_INSTALL_append = " openssh"
-> 
-> Does install ssh, sshd, but not a ssh-copy-id?!
-> 
-> Strange... ssh-copy-id should be part of the openssh!?
-> 
-> http://lists.openembedded.org/pipermail/openembedded-commits/2015-January/170233.html
-> 
-> root@beaglebone:/root# which ssh-copy-id
-> root@beaglebone:/root# which ssh
-> /usr/bin/ssh
-> root@beaglebone:/root# which sshd
-> /usr/sbin/sshd
-> root@beaglebone:/root#
+Right now it's still a mystery for me when bitbake builds the latest 
+version of a repository and why. I make changes in my code and whether I 
+commit them or not, sometimes bitbake builds a package with the recent 
+version, sometimes with an old version.
+So my strategy is doing mock changes (adding whitespaces, "enhencing" 
+documentation) and adding signed commits as well as forcing a PR in the 
+recipe and re-running bitbake until it works somehow (I heard the 
+bitbake prefers the signed commits somehow could not verify this yet).
 
-You can try:
+Hence, I would like to know what I have to do to build only the latest 
+version of a repository...
+1. When it's local on my computer (with EXTERNALSRC_BUILD_pn-<package> = 
+"/home/some/local/location/" in local.conf),
+2. When I build from a github or any remote repository.
 
-oe-pkgdata-util find-path "/*ssh-copy-id"
+Thanks and Best Regards,
+Jakob
 
-which gives me:
+-- 
+Jakob Hasse
+Software Developement
 
-openssh-misc: /usr/bin/ssh-copy-id
+E: jakob.hasse@smart-home-technology.ch
+T: +41 44 552 02 66
+
+Smart Home Technology GmbH
+www.smart-home-technology.ch
+
 
