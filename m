@@ -1,66 +1,62 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <pbarker@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09347E00948; Wed, 28 Mar 2018 05:41:12 -0700 (PDT)
+	id 21157E00A6A; Wed, 28 Mar 2018 06:40:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mans.zigher[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.128.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-ot0-f174.google.com (mail-ot0-f174.google.com
-	[74.125.82.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF5ECE00529
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 05:41:10 -0700 (PDT)
-Received: by mail-ot0-f174.google.com with SMTP id h55-v6so942574ote.9
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 05:41:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-wr0-f174.google.com (mail-wr0-f174.google.com
+	[209.85.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 414ECE0084A
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 06:40:16 -0700 (PDT)
+Received: by mail-wr0-f174.google.com with SMTP id u46so2283875wrc.11
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 06:40:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=tY/BvtYVC0Bsk4R1bejd2GR9dH//U1fQ0oa/MYKPuSo=;
-	b=N/a8JARaucAwSOvxWIkPFTiioKi9rXGXRDbgs1t5kEzwRuVx6jvrJM5deY1nofPX1v
-	n1gUT0zPwrBUHJRTw1mEwx6tUMUfs3HC3sqsbmNAD/9L/4oVy+B4mIZ6a3a7eKt3oVsS
-	FSzK8Ex9iVnPXWogGOZ34xMxua4o9M0m8lWmGMkVFGw9SFmPzp1NNOnO5SOZeBbDm7Rs
-	BQBY+Mtjb0GnzGDH7V+lwZbtdkuAtK148ZaiGkIUOckbGb4G9IB+AsnJHWyekOP/U/0K
-	w8oskPi+nfTem6/wHE6q3LRKIhIo/DdbQEV80SVausnt5w/Dd0IvO4UA/lQ1PFHxTBAe
-	TmdA==
+	:cc:content-transfer-encoding;
+	bh=x8+n1u1DeH2s3a+d513vafRzy65YmnbdYNOG4KbeiqA=;
+	b=dbft87Mz+OjFIByh2BKskIow/oVsQ8adQJ0iNpjOOdG6wiZO86svY3REajVCNHyQn6
+	CgfUWMkG+Rsbcj4YpIp3DIUFJCOfeHEFqyzElAddJnWnYyQWBPAH0Ldm8LH2W4RtVYxK
+	ohbiao9phi1IIKMcgW20nr73SzBclHQr9SP9/HpGVeynIuCLrjfN+Mdi0hB4Yfse9sKu
+	r0gJKjv9RXExjYlXYKnUWuQw0lXxxK53beQiKM3dltxhGXu6wg9YYXJu+M4pvhEIVOGI
+	ZjhxYFTN9E+P3eVfQ1L5oLop3cDhXXQvSRNExLTcj2FMnSa92GPLZL33IdYTe/Je/07x
+	3Jzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=tY/BvtYVC0Bsk4R1bejd2GR9dH//U1fQ0oa/MYKPuSo=;
-	b=VgHvBk3Y50ptlyOxWoZH8D9unNjBPoKErPORg1vUe4wVuh+8mES4TBVICnW9OnEBBJ
-	h7voWV7UBYNfyUXuB+cuDBY8Fk6C/zuqzeBho80uQdfijprNUk0lFkryc09FsPYkMuVY
-	6X1f2a00ZFiT4xOthd67uhgYO+f4uujFpak0rMkwuq+WFf1pQiuYghaM8J3kMrDg91No
-	bS5labUnP2/SruDnn+zE/wsjmNsUZyLErA+1CWgtuSOypONwmbt7TsCFQqMCTrI+p9JM
-	4ujT/dTaRlSBH8jxvJNFA0WxmIl+J2C+syW/uGQHEXOX5bUZpf+6Q+NiEO53oH0RL8E5
-	bsUQ==
-X-Gm-Message-State: AElRT7F9sD8Y6UUWbxodo7oFz+Ptd7AH0YepCVBwcVoGxwsHBXP9FqiC
-	mlZwXuBJQrD1i6KCfNbPhWz2+oPDjVwK7wWtNfc=
-X-Google-Smtp-Source: AIpwx49X7FIzVKSnW6vtnqP5086nJDh2MtiPb/bQ/4htFkQRte7AOz9tD6rkfmw5pR4Q6rtYJ09/hdMHMPts7/4qTI8=
-X-Received: by 2002:a9d:509:: with SMTP id 9-v6mr2229874otw.342.1522240869774; 
-	Wed, 28 Mar 2018 05:41:09 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=x8+n1u1DeH2s3a+d513vafRzy65YmnbdYNOG4KbeiqA=;
+	b=cFPcz+NEtmoft9UhPflbxoh+GbOgJPX8VMzW9mzdhrjmTi5uvw03Tg6G3KknB8JmLQ
+	MU+5Cj1wFrZpqJEv2ln8nq7L4GsPokGKK08fVY6ijSaY2C7Gib/+tKoiizOXkY5syka0
+	Js5cKR85H8N6KDTbrpj4GzmcqbI+3WuFKEO366HtBIOwgXblkSV8F88FGYkj8u8gP9Sk
+	OH3BoW7dHyCTFWzB8q2DGT4ISjzb+k8Y8D1jvnnVRgt5NucEv9SMp6wLE1N+FHkXzYO0
+	uGkU/Vl/Lqt27KtqBjT8znQ2b9qja5cAyb75VsiTr2W3HOBafis6X0jZ3ss6OhYYMi7T
+	BDEQ==
+X-Gm-Message-State: AElRT7Hrnn19esQxeHr7DBI9DzxM4mGbUqWPXccJi1FAKYmx0sAJOuRV
+	kvo5H9dniRJufDtVeKi6xg0hJk9q5gH6klE5QiSxcg==
+X-Google-Smtp-Source: AIpwx4/Whc/6kVnr6tw/aMnpLnLa5oWZAmCVj7Ec0eSJDjEsMGDVKb+yUkklRQ6Ap0/d13xs+QqgDa58h84D8c5MUq8=
+X-Received: by 10.223.156.210 with SMTP id h18mr3107733wre.109.1522244416012; 
+	Wed, 28 Mar 2018 06:40:16 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.74.77.209 with HTTP; Wed, 28 Mar 2018 05:41:09 -0700 (PDT)
-In-Reply-To: <CAPb0b+O=fzUTUECMb-_isDky6=yxKYSkTVWQv=PaZ-9Z34vipw@mail.gmail.com>
+Received: by 10.223.168.103 with HTTP; Wed, 28 Mar 2018 06:40:15 -0700 (PDT)
+In-Reply-To: <CAEhQi8=7+44c4ztcE0ZnO=J_nQO=FBVcEx71RNNqf6jun8U65g@mail.gmail.com>
 References: <CAEhQi8=1zJj7UXSEUd55de5VHyRc5E__sqRac+DPwcO=txqfyw@mail.gmail.com>
 	<CAPb0b+O=fzUTUECMb-_isDky6=yxKYSkTVWQv=PaZ-9Z34vipw@mail.gmail.com>
-From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Date: Wed, 28 Mar 2018 14:41:09 +0200
-Message-ID: <CAEhQi8=7+44c4ztcE0ZnO=J_nQO=FBVcEx71RNNqf6jun8U65g@mail.gmail.com>
-To: Sherif Omran <sherifomran2000@gmail.com>
+	<CAEhQi8=7+44c4ztcE0ZnO=J_nQO=FBVcEx71RNNqf6jun8U65g@mail.gmail.com>
+From: Paul Barker <pbarker@toganlabs.com>
+Date: Wed, 28 Mar 2018 14:40:15 +0100
+Message-ID: <CAPyrkgw2+as+8wbiKdkZuHFpTJ=+GjHP3=E+Qo4EqKC7OQausA@mail.gmail.com>
+To: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi] raspberrypi3 model B+ not booting
 X-BeenThere: yocto@yoctoproject.org
@@ -74,96 +70,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 12:41:12 -0000
-Content-Type: multipart/alternative; boundary="0000000000004e383d0568785280"
-
---0000000000004e383d0568785280
+X-List-Received-Date: Wed, 28 Mar 2018 13:40:18 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-Thanks I will do that. But I have other layers that depend on the rocko of
-meta-raspberrypi so I believe I will have to use the rocko at some point
-but for testing I will try Morty. What is the reason for using Morty do you
-know? Is rocko unstable?
-
-BR
-Mans Zigher
-
-2018-03-28 14:38 GMT+02:00 Sherif Omran <sherifomran2000@gmail.com>:
-
-> Please use Morty, it works fine.
+On Wed, Mar 28, 2018 at 1:41 PM, M=C3=A5ns Zigher <mans.zigher@gmail.com> w=
+rote:
+> Hi,
 >
-> On Wed, Mar 28, 2018 at 11:41 AM, M=C3=A5ns Zigher <mans.zigher@gmail.com=
->
-> wrote:
->
->> Hi,
->>
->> I am using the meta-raspberrypi layer in my build currently on the rocko
->> branch. When powering on the rpi3 Model B+ the power led turns red then
->> when the green led is turned on the red is turned off and nothing is
->> booting the green continues to flash sporadically. My build works fine o=
-n
->> rpi 3 but not on Model B+. When running raspbian on Model 3 it works fin=
-e
->> so it is not a power supply issue nor an sdcard issue. Right now I canno=
-t
->> use the master branch of meta-raspberrypi because of some patch issues b=
-ut
->> is the rocko branch not supporting rpi 3 on model B+?
->>
->> BR
->> Mans Zigher
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
+> Thanks I will do that. But I have other layers that depend on the rocko o=
+f
+> meta-raspberrypi so I believe I will have to use the rocko at some point =
+but
+> for testing I will try Morty. What is the reason for using Morty do you
+> know? Is rocko unstable?
 >
 
---0000000000004e383d0568785280
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Yea, we need to get this fixed in rocko. My test device for
+raspberrypi3 is a Model B v1.2, not a B+ so you may have to help us
+out with testing here.
 
-<div dir=3D"ltr">Hi,<div><br></div><div>Thanks I will do that. But I have o=
-ther layers that depend on the rocko of meta-raspberrypi so I believe I wil=
-l have to use the rocko at some point but for testing I will try Morty. Wha=
-t is the reason for using Morty do you know? Is rocko unstable?</div><div><=
-br></div><div>BR</div><div>Mans Zigher</div></div><div class=3D"gmail_extra=
-"><br><div class=3D"gmail_quote">2018-03-28 14:38 GMT+02:00 Sherif Omran <s=
-pan dir=3D"ltr">&lt;<a href=3D"mailto:sherifomran2000@gmail.com" target=3D"=
-_blank">sherifomran2000@gmail.com</a>&gt;</span>:<br><blockquote class=3D"g=
-mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
-eft:1ex"><div dir=3D"ltr">Please use Morty, it works fine.<br></div><div cl=
-ass=3D"gmail_extra"><br><div class=3D"gmail_quote"><span class=3D"">On Wed,=
- Mar 28, 2018 at 11:41 AM, M=C3=A5ns Zigher <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:mans.zigher@gmail.com" target=3D"_blank">mans.zigher@gmail.com</=
-a>&gt;</span> wrote:<br></span><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div cla=
-ss=3D"h5"><div dir=3D"ltr">Hi,<div><br></div><div>I am using the meta-raspb=
-errypi layer in my build currently on the rocko branch. When powering on th=
-e rpi3 Model B+ the power led turns red then when the green led is turned o=
-n the red is turned off and nothing is booting the green continues to flash=
- sporadically. My build works fine on rpi 3 but not on Model B+. When runni=
-ng raspbian on Model 3 it works fine so it is not a power supply issue nor =
-an sdcard issue. Right now I cannot use the master branch of meta-raspberry=
-pi because of some patch issues but is the rocko branch not supporting rpi =
-3 on model B+?</div><div><br></div><div>BR</div><div>Mans Zigher</div></div=
+Could you try out core-image-base built from master with just the
+required layers? If that works then a kernel/firmware backport is
+likely what's needed.
+
+> BR
+> Mans Zigher
 >
-<br></div></div><span class=3D"">--<br>
-______________________________<wbr>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org<wbr>/listinfo/yocto</a><=
-br>
-<br></span></blockquote></div><br></div>
-</blockquote></div><br></div>
+> 2018-03-28 14:38 GMT+02:00 Sherif Omran <sherifomran2000@gmail.com>:
+>>
+>> Please use Morty, it works fine.
+>>
+>> On Wed, Mar 28, 2018 at 11:41 AM, M=C3=A5ns Zigher <mans.zigher@gmail.co=
+m>
+>> wrote:
+>>>
+>>> Hi,
+>>>
+>>> I am using the meta-raspberrypi layer in my build currently on the rock=
+o
+>>> branch. When powering on the rpi3 Model B+ the power led turns red then=
+ when
+>>> the green led is turned on the red is turned off and nothing is booting=
+ the
+>>> green continues to flash sporadically. My build works fine on rpi 3 but=
+ not
+>>> on Model B+. When running raspbian on Model 3 it works fine so it is no=
+t a
+>>> power supply issue nor an sdcard issue. Right now I cannot use the mast=
+er
+>>> branch of meta-raspberrypi because of some patch issues but is the rock=
+o
+>>> branch not supporting rpi 3 on model B+?
+>>>
+>>> BR
+>>> Mans Zigher
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---0000000000004e383d0568785280--
+
+
+--=20
+Paul Barker
+Tog=C3=A1n Labs Ltd
+
