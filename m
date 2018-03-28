@@ -1,55 +1,63 @@
-Return-Path: <farzanemostafa@yahoo.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A603E00CA4; Wed, 28 Mar 2018 03:57:01 -0700 (PDT)
+	id 7AC8FE00851; Wed, 28 Mar 2018 04:09:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (farzanemostafa[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.6.129.84 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from sonic317-29.consmr.mail.bf2.yahoo.com
-	(sonic317-29.consmr.mail.bf2.yahoo.com [74.6.129.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD82BE00529
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 03:56:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1522234618; bh=WC4izAMIwY2ahNZCCOkJekRZzSZbLj61VCN6puwVHYM=;
-	h=Date:From:To:Subject:References:From:Subject;
-	b=cktNzZZ1huJzOCWAKSpJTsMuvfOCjhBJFQeXzOIJyzSdsTdTdvvF98ti6gKYLF4USYlQAKscVz5vqTyNrSClV21aEsXqifbqEd8UtHdq9UXq3PmYn6fNHvdmgfO+AMl2Bdu32r7JQEZHiPoemNVNFxhN+jPyeUBQBA8jOC4Yt2TEr/52kUACsXP79On0ScbkiIqQYgLfw0uesO3PHEGCzkVrIT/JhrpclDQTbDxfnydfV2vVqaKV6nI2wA0SfRAajXF5FLpqFVYOPJOiMJlwI4rSNmNaxezx4abOL/1hZS+OErtuI4Sjvxwz5R8VqYp1xtVq+TYbz4NDxrq0c3bIhg==
-X-YMail-OSG: 3gl2bVQVM1k3VkWOVhFHm4QadAdOm9cZGsxrC.SCgDzivShzYpnYo4QLp2X0Ibe
-	kWqs39NpeuSVlz7tZwrTxu3LK9YN2LhA_C28U4LyqNZqMDSKRw99DXXIOYwtD2saejbXzEfNULJT
-	AzTnGuz_K92ZZKOfcU19gEvba.gzhjbvzfxi4I8aWMb3z_TQKH4SLWC5KzT_CY0glbUGwXHwmrzD
-	17QRxlNDn_Rd7DTFL.bnVLNYbkm07Y07kY94jEvyKdNSqGa681_lY19OUxD.I.oT6XwicLoIf8fm
-	eGYUytk7.LaOfv99X0If0XSrfJbb.mW3iRJZmXv8o5AB3hMlGhvsMh6rnR2bPolRKpFBnFOOgLbF
-	IA98ZISRchdffXR1V49.P4sD07HnHQdQ1tDlCjEw5U9F30uHsZpzVoQzem_j.eOlB6VJVZFlmWJv
-	akbv2WIKvbuL2U8DFVdLIGedjyxlFDiD9HF26hceKw2PYzeq.DnFEinHxF82XRPTV_orAD3ER1A-
-	-
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic317.consmr.mail.bf2.yahoo.com with HTTP;
-	Wed, 28 Mar 2018 10:56:58 +0000
-Date: Wed, 28 Mar 2018 10:56:48 +0000 (UTC)
-From: Mostafa Farzane <farzanemostafa@yahoo.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-Message-ID: <41794666.168957.1522234608843@mail.yahoo.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.170 listed in list.dnswl.org]
+Received: from mail-ot0-f170.google.com (mail-ot0-f170.google.com
+	[74.125.82.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 182DCE007F2
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 04:09:48 -0700 (PDT)
+Received: by mail-ot0-f170.google.com with SMTP id i28-v6so2178921otf.8
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 04:09:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=6EFoWANIuxtN5ePSmAv+C5SnLNtQxxHc7aUBAXS6zFc=;
+	b=HOiqdve6hRqFDx7ZOslW27t8H5hGpCnv6FkGnI58v8p0NSMqVx09XGJgEpFEKLOowI
+	Be0jtZ5DE/rykrFElVCSautvB2hMy6t5J8u2VWUVW9ipuf2nBrc6WYWdCIhSEc1r8amj
+	T9K5effybF65wxLbbPD7W48gfDvjc+dDe2FetA/sTrH7L5dyx/FM/oCTWEg+0jof9EXJ
+	fGbBrHeGeyARo8+KKzKBSUEEUDj+FIEWIvMYz2uiM62RoNZalV+cMcZANANZVfUSy/XZ
+	4i0PRRFRkMMLGF1xH4VfLQGKD/FFP60wIhbCo4uHQ5Im2QbeMjeD0DO6mDAjnake9mCV
+	Ssxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=6EFoWANIuxtN5ePSmAv+C5SnLNtQxxHc7aUBAXS6zFc=;
+	b=KiFZowGWcrfFUPisoYi/es88qP2xcdj4NjvZeJrUZrpBG3MTAzrBQt9penwwhL4u/R
+	b8TLzsoKWpAi1goJJTNX4dE8yFWaPd1+G20kOq3GmaCvFNoPvEiMy+CFf59x/9LiIpsL
+	CGRG+HzuXgytOqSJwUaoBT86cQuCpdDKb+4XpCycY8J1LNJisiZZuwVs5Oqcd6zdCHPK
+	uKtMBtSkI30pw/GyWTD3v5loSp70UCEn7UaRIP+Z2GQmz6U1iGFzyyursIYKqkFmr0oR
+	wTUQkJET9yiPdRISN4douu1Mr3GaZIHw9jmDrXlVu1rGvn02128wNpSIvi93ZQB8Sesy
+	7oAQ==
+X-Gm-Message-State: ALQs6tBl6E+owrCYCQDQEiAqOuFTcA0NKRARWYOxy8SYH8C/Qolp4/jj
+	dQtq3eJtojmhr7gWCwjtV+Op3+Rn2iMiVYh9HaNUgw==
+X-Google-Smtp-Source: AIpwx48RyEFHga8SZFn3cAObKVhaXDxmTQ62z969PIPePBiDSD9KgOnGYNwSFS7Ci0nNs0walhiizc/OE87wuCtvU6g=
+X-Received: by 2002:a9d:2ce2:: with SMTP id
+	e31-v6mr1775059otd.135.1522235388102; 
+	Wed, 28 Mar 2018 04:09:48 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.138.17.198 with HTTP; Wed, 28 Mar 2018 04:09:27 -0700 (PDT)
+In-Reply-To: <41794666.168957.1522234608843@mail.yahoo.com>
 References: <41794666.168957.1522234608843.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.11643 YMailNorrin Mozilla/5.0 (Windows NT 6.1; Win64;
-	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186
-	Safari/537.36
-X-Mailman-Approved-At: Wed, 28 Mar 2018 04:00:53 -0700
-Subject: how to add libsrtp and libsrtp-staticdev to sdk
+	<41794666.168957.1522234608843@mail.yahoo.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 28 Mar 2018 12:09:27 +0100
+Message-ID: <CAJTo0LYAuqqW9rveuzsHpwGuEYxCRhhHG05eeihD1wy1Jf=OEQ@mail.gmail.com>
+To: Mostafa Farzane <farzanemostafa@yahoo.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: how to add libsrtp and libsrtp-staticdev to sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,62 +69,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 10:57:01 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_168956_63233318.1522234608841"
+X-List-Received-Date: Wed, 28 Mar 2018 11:09:49 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-------=_Part_168956_63233318.1522234608841
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On 28 March 2018 at 11:56, Mostafa Farzane <farzanemostafa@yahoo.com> wrote:
+> -- ERROR: jrtplib-3.11.1-r0 do_populate_sysroot: QA Issue: jrtplib.pc failed
+> sanity test (tmpdir) in path
+> /opt/yocto/toradex-morty/build-intercom/tmp-glibc/work/armv7at2hf-neon-angstrom-linux----
+> gnueabi/jrtplib/3.11.1-r0/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]
+> -- ERROR: jrtplib-3.11.1-r0 do_populate_sysroot: QA staging was broken by
+> the package built above
 
-Thanks.Here is the whole story:I have a recipe named "libjrtp" that depends=
- on "libsrtp".When I build "libjrtp" recipe I faced the following error:
--- ERROR: jrtplib-3.11.1-r0 do_populate_sysroot: QA Issue: jrtplib.pc faile=
-d sanity test (tmpdir) in path /opt/yocto/toradex-morty/build-intercom/tmp-=
-glibc/work/armv7at2hf-neon-angstrom-linux---- gnueabi/jrtplib/3.11.1-r0/sys=
-root-destdir/usr/lib/pkgconfig [pkgconfig]-- ERROR: jrtplib-3.11.1-r0 do_po=
-pulate_sysroot: QA staging was broken by the package built above-- ERROR: j=
-rtplib-3.11.1-r0 do_populate_sysroot: Function failed: do_qa_staging
-If I remove the "libsrtp" from depends list or if do not install "jrtplib.p=
-c"=C2=A0to=C2=A0${D}${libdir}/pkgconfig/jrtplib.pc", it built OK. I think s=
-omething is wrong with "libsrtp".
-An other problem is that I can not add libsrtp nor "libsrtp-staticdev" to m=
-y image. when I add "libsrtp" to depends list of my image I get the followi=
-ng error:
--- Collected errors:--=C2=A0 * opkg_solver_install: Cannot install package =
-libsrtp.
+The problem is that the jrtplib.pc file contains the build path, which
+is broken.  You'll have to look at the build system and understand how
+that happens, and fix it.
 
+Ross
 
-
-Is there any one did that?Regards,
-
-------=_Part_168956_63233318.1522234608841
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body><div style=3D"font-family:Helvetica Neue, Helvetic=
-a, Arial, sans-serif;font-size:13px;"><div style=3D"font-family:Helvetica N=
-eue, Helvetica, Arial, sans-serif;font-size:13px;"><div style=3D"font-famil=
-y:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div>Thanks=
-.</div><div>Here is the whole story:</div><div>I have a recipe named "libjr=
-tp" that depends on "libsrtp".</div><div>When I build "libjrtp" recipe I fa=
-ced the following error:</div><div><br></div><div><span><div>-- ERROR: jrtp=
-lib-3.11.1-r0 do_populate_sysroot: QA Issue: jrtplib.pc failed sanity test =
-(tmpdir) in path /opt/yocto/toradex-morty/build-intercom/tmp-glibc/work/arm=
-v7at2hf-neon-angstrom-linux---- gnueabi/jrtplib/3.11.1-r0/sysroot-destdir/u=
-sr/lib/pkgconfig [pkgconfig]</div><div>-- ERROR: jrtplib-3.11.1-r0 do_popul=
-ate_sysroot: QA staging was broken by the package built above</div><div>-- =
-ERROR: jrtplib-3.11.1-r0 do_populate_sysroot: Function failed: do_qa_stagin=
-g</div><div><br></div></span>If I remove the "libsrtp" from depends list or=
- if do not install "<span>jrtplib.pc"&nbsp;</span>to&nbsp;<span>${D}${libdi=
-r}/pkgconfig/jrtplib.pc", it built OK. I think something is wrong with "lib=
-srtp".</span></div><div><span><br></span></div><div>An other problem is tha=
-t I can not add libsrtp nor "libsrtp-staticdev" to my image. when I add "li=
-bsrtp" to depends list of my image I get the following error:</div><div><br=
-></div><div><span><div>-- Collected errors:</div><div>--&nbsp; * opkg_solve=
-r_install: Cannot install package libsrtp.</div><div><br></div></span><br><=
-/div><div><br></div><div><br></div><div>Is there any one did that?</div><di=
-v>Regards,</div><div><span><br></span></div></div></div></div></body></html=
->
-
-------=_Part_168956_63233318.1522234608841--
