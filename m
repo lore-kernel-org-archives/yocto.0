@@ -1,67 +1,35 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <rtillet@free.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8CBDAE00B8D; Wed, 28 Mar 2018 07:57:06 -0700 (PDT)
+	id 323D4E00B8E; Wed, 28 Mar 2018 08:00:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.213.67 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE, MISSING_MID, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rtillet[at]free.fr)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.27.42.5 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vk0-f67.google.com (mail-vk0-f67.google.com
-	[209.85.213.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3EA2E00529
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 07:57:05 -0700 (PDT)
-Received: by mail-vk0-f67.google.com with SMTP id b16so1550837vka.5
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 07:57:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gherzan-ro.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=05z5vGqhoQHIzjgtuR6kvVqrxwPCW8mxp8qcfq/BBIE=;
-	b=z6fagsVzo7JdjAcBvZdScoNHdxLeFayD/nM2YUx0HkH0MSpViH0pdQSiqAklFiEcIt
-	bqkghxj31nog8m2O10VgJ27rjwwGJEIfGKSFqAZNHX10BsnJxYjLPuWhhQOSEasJAYYt
-	d3lbiKVf2SSQ543TS3s3nLS24C3lQKPbn9+0a6hu7kVfnFrzmn4lZe8IzlBqmmZAvXnq
-	OIH1RjLDJprLZKzJDAV5kIT6d4B82d3cXKj6FW6LG7gus3FPfPLB98Wp3wtqrZkVTOMV
-	bz5AytA8V/HIyJ7o6M08PnkUScCyjBUcjD+6YeoLVailnkuYliyGa+L/+LOEyNa9in8O
-	M4Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=05z5vGqhoQHIzjgtuR6kvVqrxwPCW8mxp8qcfq/BBIE=;
-	b=fG4xXhOL4c6YFxVVd704TJ78gYL2m385wX2Ll3UQkzXJlOW6ismUuyQrd4HA3urNXB
-	Ebozz+BfIex8rlOamH8HM/AvI5J7QONFhxDstNmHtbK9TRxUGWi2cFgjBLDHPtznm4f1
-	db2z5SZMwMWEnMt+W846Dmr2nDqjIpb1q95P5kPQ8aoXq5m72GFvFzEGGKziyHn62f1P
-	jQaQcmS9TK9Cv2qxXTetm+y6612sVnhli1NM5rwp87+dv3IYDnjwBmPXoQGhHQglsfRi
-	GLwG4uxnOVsEcFKutbJHjVhB2Lj/2EaAbgDEhDGBC6KPyQhGTyzKrF/5xvDk4Bxr5xYy
-	XBGg==
-X-Gm-Message-State: AElRT7FLfZIGQ5jziCucSeHGefrJGSkAc7r9d6HC1GznaYQUpaR9p4jL
-	G8GgashJRJS45JDoL+o/vkTbkq7uEOHrGrfmirXKAA==
-X-Google-Smtp-Source: AIpwx49RScw5Tw1Bh8Gu6a+zGBELSxg6ety7PJcrNPXlSwDTsHjztLWX3zFulg7X1e6UaMv5X1NLcG6QwMyXjGmO9aI=
-X-Received: by 10.31.55.11 with SMTP id e11mr2486062vka.192.1522249024348;
-	Wed, 28 Mar 2018 07:57:04 -0700 (PDT)
+	*  0.5 MISSING_MID Missing Message-Id: header
+Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [212.27.42.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D4A7E00529
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 08:00:38 -0700 (PDT)
+Received: from [IPv6:::ffff:192.168.0.20] (unknown [82.239.23.157])
+	(Authenticated sender: rtillet@free.fr)
+	by smtp5-g21.free.fr (Postfix) with ESMTPSA id 95EFA5FF95
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 17:00:36 +0200 (CEST)
 MIME-Version: 1.0
-Received: by 10.176.96.145 with HTTP; Wed, 28 Mar 2018 07:56:23 -0700 (PDT)
-X-Originating-IP: [90.152.4.98]
-In-Reply-To: <CAK18fxHBomdRub=UJdSsfJBOHJsEvQ0KLMy-DN7L_--gW1s=ag@mail.gmail.com>
-References: <CAEhQi8=1zJj7UXSEUd55de5VHyRc5E__sqRac+DPwcO=txqfyw@mail.gmail.com>
-	<CAPb0b+O=fzUTUECMb-_isDky6=yxKYSkTVWQv=PaZ-9Z34vipw@mail.gmail.com>
-	<CAEhQi8=7+44c4ztcE0ZnO=J_nQO=FBVcEx71RNNqf6jun8U65g@mail.gmail.com>
-	<CAPyrkgw2+as+8wbiKdkZuHFpTJ=+GjHP3=E+Qo4EqKC7OQausA@mail.gmail.com>
-	<CAK18fxHBomdRub=UJdSsfJBOHJsEvQ0KLMy-DN7L_--gW1s=ag@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 28 Mar 2018 15:56:23 +0100
-Message-ID: <CAK18fxHKqqBByLEdm99cOc7RywckF5H_qefCagAvUoyB+BeOBQ@mail.gmail.com>
-To: Paul Barker <pbarker@toganlabs.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] raspberrypi3 model B+ not booting
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: =?utf-8?Q?Rapha=C3=ABl_TILLET?= <rtillet@free.fr>
+Date: Wed, 28 Mar 2018 17:00:37 +0200
+Importance: normal
+X-Priority: 3
+Message-Id: <20180328150040.323D4E00B8E@yocto-www.yoctoproject.org>
+Subject: RDEPENDS is ignored when building rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,122 +41,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 14:57:06 -0000
-Content-Type: multipart/alternative; boundary="001a114410a05b3bc405687a3857"
+X-List-Received-Date: Wed, 28 Mar 2018 15:00:40 -0000
+Content-Type: multipart/alternative;
+	boundary="_5459493D-1DEB-4BE3-9C8B-54762A8675BC_"
 
---001a114410a05b3bc405687a3857
-Content-Type: text/plain; charset="UTF-8"
+--_5459493D-1DEB-4BE3-9C8B-54762A8675BC_
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
+
+SGksDQoNCknigJltIHVzaW5nIMKrwqBQeXJvwqDCuywgYW5kIGhhdmUgYnVpbHQgYSB2ZXJ5IHNp
+bXBsZSByZWNpcGUuIFRoZSBidWlsZCBwcm9ncmFtIEluc2lkZSB0aGUgcmVjaXBlIG5lZWRzIMKr
+wqBsaWJuY3Vyc2VzLnNvwqDCuyBhdCBydW4gdGltZSwgc28gSSBoYXZlIGFkZGVkIHRvIG15IHJl
+Y2lwZSB0aGUgZm9sbG93aW5nwqA6DQotIERFUEVORFNfe1BOfSA9IMKrwqBuY3Vyc2VzwqDCuw0K
+LSBSREVQRU5EU18ke1BOfT3CoMKrwqAgbmN1cnNlcy1saWJmb3JtwqDCuw0KDQpUaGUgYnVpbGQg
+aXMgb2ssIGJ1dCBteSBmaW5hbCBSb290RnMgZG9lcyBub3QgY29udGFpbiB0aGUgZXhwZWN0ZWQg
+wqvCoGxpYm5jdXJzZXMuc2/CoMK7IExpYnJhcnkuDQoNClRoZSBvbmx5IHdheSB0byBmb3JjZSB0
+aGUgYnVpbGQgdG8gaW5jbHVkZSDCq8KgbGlibmN1cnNlcy5zb8KgwrsgaW4gdGhlIHJvb3RmcyBp
+cyB0byBhZGQgwqvCoG5jdXJzZXMtbGliZm9ybcKgwrsgdG8gbXkgwqvCoElNQUdFX0lOU1RBTEzC
+oMK7IGluIMKrwqBteSBsb2NhbC5jb25mwqDCuyBmaWxlLCBhbmQgbm9ybWFsbHkgSSBzaG91bGQg
+bm90IGhhdmUgdG8gZG8gdGhpc+KApi4uDQoNCknigJl2ZSBzZWFyY2ggdGhlIHdlYiwgYW5kIHRo
+ZSBSREVQRU5EUyBzaG91bGQgYmUgdGhlIHJpZ2h0IG1ldGhvZCwgYW5kIEkgZGlkIG5vdCBmaW5k
+IGFuIGV4cGxhbmF0aW9uIG9mIHN1Y2ggYmVoYXZpb3IuDQoNCkFueSBpZGVhIG9yIHN1Z2dlc3Rp
+b27CoD8NCg0KVGhhbmtzIGZvciB5b3VyIGZlZWRiYWNrIG9yIGFkdmljZS4NCg0KUmFwaGHDq2wu
+DQoNCg0KDQoNCg==
+
+--_5459493D-1DEB-4BE3-9C8B-54762A8675BC_
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
 
-On Wed, Mar 28, 2018 at 2:57 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
+tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
+=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1934851147;
+	mso-list-type:hybrid;
+	mso-list-template-ids:858414590 -1 67895299 67895301 67895297 67895299 678=
+95301 67895297 67895299 67895301;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style></head><body lang=3DFR link=3Dblue vlink=3D"#954F72"><div class=
+=3DWordSection1><p class=3DMsoNormal>Hi,</p><p class=3DMsoNormal><o:p>&nbsp=
+;</o:p></p><p class=3DMsoNormal>I=E2=80=99m using =C2=AB&nbsp;Pyro&nbsp;=C2=
+=BB, and have built a very simple recipe. The build program Inside the reci=
+pe needs =C2=AB&nbsp;libncurses.so&nbsp;=C2=BB at run time, so I have added=
+ to my recipe the following&nbsp;:</p><ul style=3D'margin-top:0cm' type=3Dd=
+isc><li class=3DMsoListParagraph style=3D'margin-left:0cm;mso-list:l0 level=
+1 lfo1'>DEPENDS_{PN} =3D =C2=AB&nbsp;ncurses&nbsp;=C2=BB</li><li class=3DMs=
+oListParagraph style=3D'margin-left:0cm;mso-list:l0 level1 lfo1'>RDEPENDS_$=
+{PN}=3D&nbsp;=C2=AB&nbsp; ncurses-libform&nbsp;=C2=BB</li></ul><p class=3DM=
+soNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>The build is ok, but my =
+final RootFs does not contain the expected =C2=AB&nbsp;libncurses.so&nbsp;=
+=C2=BB Library.</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMso=
+Normal>The only way to force the build to include =C2=AB&nbsp;libncurses.so=
+&nbsp;=C2=BB in the rootfs is to add =C2=AB&nbsp;ncurses-libform&nbsp;=C2=
+=BB to my =C2=AB&nbsp;IMAGE_INSTALL&nbsp;=C2=BB in =C2=AB&nbsp;my local.con=
+f&nbsp;=C2=BB file, and normally I should not have to do this=E2=80=A6..</p=
+><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I=E2=80=99v=
+e search the web, and the RDEPENDS should be the right method, and I did no=
+t find an explanation of such behavior.</p><p class=3DMsoNormal><o:p>&nbsp;=
+</o:p></p><p class=3DMsoNormal>Any idea or suggestion&nbsp;?</p><p class=3D=
+MsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thanks for your feedbac=
+k or advice.</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNor=
+mal>Rapha=C3=ABl.</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DM=
+soNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>=
 
-> Hi guys,
->
-> On Wed, Mar 28, 2018 at 2:40 PM, Paul Barker <pbarker@toganlabs.com>
-> wrote:
->
->> On Wed, Mar 28, 2018 at 1:41 PM, M=C3=A5ns Zigher <mans.zigher@gmail.com=
->
->> wrote:
->> > Hi,
->> >
->> > Thanks I will do that. But I have other layers that depend on the rock=
-o
->> of
->> > meta-raspberrypi so I believe I will have to use the rocko at some
->> point but
->> > for testing I will try Morty. What is the reason for using Morty do yo=
-u
->> > know? Is rocko unstable?
->> >
->>
->> Yea, we need to get this fixed in rocko. My test device for
->> raspberrypi3 is a Model B v1.2, not a B+ so you may have to help us
->> out with testing here.
->>
->> Could you try out core-image-base built from master with just the
->> required layers? If that works then a kernel/firmware backport is
->> likely what's needed.
->>
->>
-> Today I will have 3b+ support PR to master. Afterwards we can start
-> backporting things as needed. I'm currently only interested in rocko but =
-if
-> other people are willing to do it, we can PR stuff in older versions too.
->
->
-https://github.com/agherzan/meta-raspberrypi/pull/215
-
-I tested this PR using rocko + meta-rpi master on rpi3b and rpi3b+. Boots
-ok, wifi connectivity tested with NM and bluetooth pair with bluetoothctl.
-
---
-Andrei Gherzan
-
---001a114410a05b3bc405687a3857
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
-ed, Mar 28, 2018 at 2:57 PM, Andrei Gherzan <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">Hi guys,</di=
-v><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quote"><span cla=
-ss=3D"gmail-">On Wed, Mar 28, 2018 at 2:40 PM, Paul Barker <span dir=3D"ltr=
-">&lt;<a href=3D"mailto:pbarker@toganlabs.com" target=3D"_blank">pbarker@to=
-ganlabs.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><span>On Wed, Mar 28, 2018 at 1:41 PM, M=C3=A5ns Zigher &lt;<a =
-href=3D"mailto:mans.zigher@gmail.com" target=3D"_blank">mans.zigher@gmail.c=
-om</a>&gt; wrote:<br>
-&gt; Hi,<br>
-&gt;<br>
-</span><span>&gt; Thanks I will do that. But I have other layers that depen=
-d on the rocko of<br>
-&gt; meta-raspberrypi so I believe I will have to use the rocko at some poi=
-nt but<br>
-&gt; for testing I will try Morty. What is the reason for using Morty do yo=
-u<br>
-&gt; know? Is rocko unstable?<br>
-&gt;<br>
-<br>
-</span>Yea, we need to get this fixed in rocko. My test device for<br>
-raspberrypi3 is a Model B v1.2, not a B+ so you may have to help us<br>
-out with testing here.<br>
-<br>
-Could you try out core-image-base built from master with just the<br>
-required layers? If that works then a kernel/firmware backport is<br>
-likely what&#39;s needed.<br>
-<div class=3D"gmail-m_-746095387801869532HOEnZb"><div class=3D"gmail-m_-746=
-095387801869532h5"><br></div></div></blockquote><div><br></div></span><div>=
-Today I will have 3b+ support PR to master. Afterwards we can start backpor=
-ting things as needed. I&#39;m currently only interested in rocko but if ot=
-her people are willing to do it, we can PR stuff in older versions too.</di=
-v><div><br></div></div></div></div></blockquote><div><br></div><div><a href=
-=3D"https://github.com/agherzan/meta-raspberrypi/pull/215">https://github.c=
-om/agherzan/meta-raspberrypi/pull/215</a><br></div><div><br></div><div>I te=
-sted this PR using rocko + meta-rpi master on rpi3b and rpi3b+. Boots ok, w=
-ifi connectivity tested with NM and bluetooth pair with bluetoothctl.</div>=
-<div><br></div><div><div dir=3D"ltr" style=3D"color:rgb(34,34,34);font-fami=
-ly:arial,sans-serif;font-size:small;font-style:normal;font-variant-ligature=
-s:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;tex=
-t-align:start;text-indent:0px;text-transform:none;white-space:normal;word-s=
-pacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;=
-text-decoration-color:initial"><div class=3D"gmail_extra"><div class=3D"gma=
-il_quote"><div><div style=3D"color:rgb(34,34,34);font-family:arial,sans-ser=
-if;font-size:small;font-style:normal;font-variant-ligatures:normal;font-var=
-iant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;tex=
-t-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backgr=
-ound-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-c=
-olor:initial">--</div><span style=3D"color:rgb(34,34,34);font-family:arial,=
-sans-serif;font-size:small;font-style:normal;font-variant-ligatures:normal;=
-font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:s=
-tart;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0p=
-x;background-color:rgb(255,255,255);text-decoration-style:initial;text-deco=
-ration-color:initial;float:none;display:inline">Andrei Gherzan</span><br></=
-div></div></div></div><br class=3D"gmail-Apple-interchange-newline"><br></d=
-iv></div></div></div>
-
---001a114410a05b3bc405687a3857--
+--_5459493D-1DEB-4BE3-9C8B-54762A8675BC_--
