@@ -1,63 +1,61 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7AC8FE00851; Wed, 28 Mar 2018 04:09:49 -0700 (PDT)
+	id BF6F9E007F2; Wed, 28 Mar 2018 04:18:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.182 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.170 listed in list.dnswl.org]
-Received: from mail-ot0-f170.google.com (mail-ot0-f170.google.com
-	[74.125.82.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 182DCE007F2
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 04:09:48 -0700 (PDT)
-Received: by mail-ot0-f170.google.com with SMTP id i28-v6so2178921otf.8
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 04:09:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=6EFoWANIuxtN5ePSmAv+C5SnLNtQxxHc7aUBAXS6zFc=;
-	b=HOiqdve6hRqFDx7ZOslW27t8H5hGpCnv6FkGnI58v8p0NSMqVx09XGJgEpFEKLOowI
-	Be0jtZ5DE/rykrFElVCSautvB2hMy6t5J8u2VWUVW9ipuf2nBrc6WYWdCIhSEc1r8amj
-	T9K5effybF65wxLbbPD7W48gfDvjc+dDe2FetA/sTrH7L5dyx/FM/oCTWEg+0jof9EXJ
-	fGbBrHeGeyARo8+KKzKBSUEEUDj+FIEWIvMYz2uiM62RoNZalV+cMcZANANZVfUSy/XZ
-	4i0PRRFRkMMLGF1xH4VfLQGKD/FFP60wIhbCo4uHQ5Im2QbeMjeD0DO6mDAjnake9mCV
-	Ssxg==
+Received: from mail-qt0-f182.google.com (mail-qt0-f182.google.com
+	[209.85.216.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6331E00529
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 04:18:34 -0700 (PDT)
+Received: by mail-qt0-f182.google.com with SMTP id w12so2091679qti.4
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 04:18:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=O0X+9NTaFwGbCqcgGMWwUMgq6PZ0JDl8hu4c3FKqTzM=;
+	b=MZc7pZQf0LS+C2Ivex5LmVYzSw4qW2ddBXbBwpFSmzCOKoaIm1maDLNyzTmoLhKMTQ
+	deT5kKawC7qFi2bkm8Z1GP/sg+pY/bJ6Revv3l9janIrsWFXLC8Ap6CsVH/irFGcVoLJ
+	m3ZJ3cBdx4s9KnZ6+G0XG6+6YXxIczIAWKDa6JdWHR7I4tAk+M425GnR1GJjrVamJcjx
+	xPHigN/NgNhkBZVjha8nEkzwvUkrnYyA0b0zq4gsDQHgVUp5dRnlDQ0RxnK4ZtM5Kp57
+	T5p6GA9Kmc8P2XCybge92Amm73suCYi/628P0Mp+wxOdvcoeYYAXH/4omdhLXcet63cj
+	JCQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=6EFoWANIuxtN5ePSmAv+C5SnLNtQxxHc7aUBAXS6zFc=;
-	b=KiFZowGWcrfFUPisoYi/es88qP2xcdj4NjvZeJrUZrpBG3MTAzrBQt9penwwhL4u/R
-	b8TLzsoKWpAi1goJJTNX4dE8yFWaPd1+G20kOq3GmaCvFNoPvEiMy+CFf59x/9LiIpsL
-	CGRG+HzuXgytOqSJwUaoBT86cQuCpdDKb+4XpCycY8J1LNJisiZZuwVs5Oqcd6zdCHPK
-	uKtMBtSkI30pw/GyWTD3v5loSp70UCEn7UaRIP+Z2GQmz6U1iGFzyyursIYKqkFmr0oR
-	wTUQkJET9yiPdRISN4douu1Mr3GaZIHw9jmDrXlVu1rGvn02128wNpSIvi93ZQB8Sesy
-	7oAQ==
-X-Gm-Message-State: ALQs6tBl6E+owrCYCQDQEiAqOuFTcA0NKRARWYOxy8SYH8C/Qolp4/jj
-	dQtq3eJtojmhr7gWCwjtV+Op3+Rn2iMiVYh9HaNUgw==
-X-Google-Smtp-Source: AIpwx48RyEFHga8SZFn3cAObKVhaXDxmTQ62z969PIPePBiDSD9KgOnGYNwSFS7Ci0nNs0walhiizc/OE87wuCtvU6g=
-X-Received: by 2002:a9d:2ce2:: with SMTP id
-	e31-v6mr1775059otd.135.1522235388102; 
-	Wed, 28 Mar 2018 04:09:48 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=O0X+9NTaFwGbCqcgGMWwUMgq6PZ0JDl8hu4c3FKqTzM=;
+	b=gmYVk8xBaBsmHC7WFT3Oi62NIqnmzQBGFWQiewE/zOKpqHzrV0X7tgYHv2TEyKPseo
+	MPGu9DUkdu6okv5osp7Ucn+j4DSB1ZxIJJKuqSl395yFcLvux9uCE8NKuHTlxnNakmtz
+	4KwoyXNqQZMWlKQV86IJMU0E57xagm04U7AA8G7G+HbXpQEZ7f55GNuiD3Y2VoMlJCcH
+	Ah5of5t8ngqlXXOyQNeHkZUNS79wigc5H3mGQMKFUU5XHusJB6QB9q/v4ZjhUP5DsNpX
+	WJHIWHNpy1o7IwQC7AKVYdwRfFh9gSp4+Xmt+jQt2r9fjkcLhCvNLQU7VjE1m6otaSSX
+	WmzQ==
+X-Gm-Message-State: AElRT7EJ0tbvXc2tiVbdmcT7dLfEnNnhF1G2st/Flp3/KBUdkaSgWO6w
+	3JnwslStBclTW8VW1hX3/ZqwHteM4rK/6pAzQ+5N6g==
+X-Google-Smtp-Source: AIpwx4+m1+FNmhahwy2bHtqhxUl7SJekghCqfgRF79LsIV5RmFBCPUJ2B2abUf/0lrp1DBSaWqA6HB/KXAhKnkL4ong=
+X-Received: by 10.200.16.20 with SMTP id z20mr754813qti.105.1522235913689;
+	Wed, 28 Mar 2018 04:18:33 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.138.17.198 with HTTP; Wed, 28 Mar 2018 04:09:27 -0700 (PDT)
-In-Reply-To: <41794666.168957.1522234608843@mail.yahoo.com>
-References: <41794666.168957.1522234608843.ref@mail.yahoo.com>
-	<41794666.168957.1522234608843@mail.yahoo.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 28 Mar 2018 12:09:27 +0100
-Message-ID: <CAJTo0LYAuqqW9rveuzsHpwGuEYxCRhhHG05eeihD1wy1Jf=OEQ@mail.gmail.com>
-To: Mostafa Farzane <farzanemostafa@yahoo.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: how to add libsrtp and libsrtp-staticdev to sdk
+Received: by 10.12.130.100 with HTTP; Wed, 28 Mar 2018 04:18:33 -0700 (PDT)
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 28 Mar 2018 13:18:33 +0200
+Message-ID: <CAGAf8Lyfz2oZ9EgWmZ1km4qQn-Kdaqh_1q+jvfv1anR-HLZXiw@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: ssh-copy-id is part of which package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,20 +67,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 11:09:49 -0000
+X-List-Received-Date: Wed, 28 Mar 2018 11:18:36 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On 28 March 2018 at 11:56, Mostafa Farzane <farzanemostafa@yahoo.com> wrote:
-> -- ERROR: jrtplib-3.11.1-r0 do_populate_sysroot: QA Issue: jrtplib.pc failed
-> sanity test (tmpdir) in path
-> /opt/yocto/toradex-morty/build-intercom/tmp-glibc/work/armv7at2hf-neon-angstrom-linux----
-> gnueabi/jrtplib/3.11.1-r0/sysroot-destdir/usr/lib/pkgconfig [pkgconfig]
-> -- ERROR: jrtplib-3.11.1-r0 do_populate_sysroot: QA staging was broken by
-> the package built above
+Hello to all,
 
-The problem is that the jrtplib.pc file contains the build path, which
-is broken.  You'll have to look at the build system and understand how
-that happens, and fix it.
+Seems, that command:
+IMAGE_INSTALL_append = " openssh"
 
-Ross
+Does install ssh, sshd, but not a ssh-copy-id?!
+
+Strange... ssh-copy-id should be part of the openssh!?
+
+http://lists.openembedded.org/pipermail/openembedded-commits/2015-January/170233.html
+
+root@beaglebone:/root# which ssh-copy-id
+root@beaglebone:/root# which ssh
+/usr/bin/ssh
+root@beaglebone:/root# which sshd
+/usr/sbin/sshd
+root@beaglebone:/root#
+
+Thank you,
+Zoran
 
