@@ -1,86 +1,35 @@
-Return-Path: <vincent.daanen@orthotaxy.com>
+Return-Path: <rtillet@free.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43C1DE007DA; Wed, 28 Mar 2018 10:00:40 -0700 (PDT)
+	id 617D9E0090A; Wed, 28 Mar 2018 15:14:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [104.47.2.94 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rtillet[at]free.fr)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [212.27.42.2 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-db5eur01on0094.outbound.protection.outlook.com [104.47.2.94])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 670F5E005A9
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 10:00:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orthotaxy.com;
-	s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
-	bh=LMnqP98+fFeNuLJly1ZaI1bK8kzJtvLQZIl5wex9TgY=;
-	b=mEpK6OeaqIs1Njsu1d9sPwDeyivJeDQN3a/tuqXkYfk1/x7yKgqclx6snmzv3jAVIez2s0NZLikQ47IXO171e4GunQ+PVptWk4kkHcv0e/UZCBP6wBQ/IjatPl6EbLvlhKCnnbUcEjyJtkY0qGAknYPGh1g51eh9B/zexxsHjY4=
-Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM (10.175.180.135) by
-	VI1P192MB0253.EURP192.PROD.OUTLOOK.COM (10.175.181.16) with Microsoft
-	SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.20.609.10; Wed, 28 Mar 2018 16:27:41 +0000
-Received: from VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
-	([fe80::b85b:37d9:45a2:c505]) by VI1P192MB0143.EURP192.PROD.OUTLOOK.COM
-	([fe80::b85b:37d9:45a2:c505%18]) with mapi id 15.20.0609.012;
-	Wed, 28 Mar 2018 16:27:41 +0000
-From: Vincent Daanen <vincent.daanen@orthotaxy.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: defconfig file (or fragment files) not used
-Thread-Index: AdPGsRgiBH7nQ9LET1GPBu0dtVUh0Q==
-Date: Wed, 28 Mar 2018 16:27:41 +0000
-Message-ID: <VI1P192MB014309F6A26B68B561F4B3588DA30@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=vincent.daanen@orthotaxy.com; 
-x-originating-ip: [152.77.102.34]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; VI1P192MB0253;
-	7:VOMynOX0n6xDtqO9+uMjmwMYuSeAua2q/V+e2XzT2J3QAmk1yZ2b2SOad+6axCp0Z9cxN7e0FMs7FhPatvWIr+ZIiFDXCrJ75U/YskkZTojDQy6aXRELY6wOz6KHsboSaVoIo5Wj0qQx9STP3Mk5DGF9TMozkidQvgrHXjDTiZY5NRIX+5Tw+mzXAeJUFFzUdIZmMQ6DXORoOeIDX4XMPnBZE8IhOllEz0Iu7adG74yF6VWt83ap4fTSKd0FGoZn
-x-ms-exchange-antispam-srfa-diagnostics: SOS;
-x-ms-office365-filtering-correlation-id: c881a7b6-aee7-40d9-80ac-08d594c8d459
-x-microsoft-antispam: UriScan:; BCL:0; PCL:0;
-	RULEID:(7020095)(4652020)(7021125)(5600026)(4604075)(3008032)(4534165)(7022125)(4603075)(4627221)(201702281549075)(7048125)(7024125)(7027125)(7028125)(7023125)(2017052603328)(7153060)(7193020);
-	SRVR:VI1P192MB0253; 
-x-ms-traffictypediagnostic: VI1P192MB0253:
-x-microsoft-antispam-prvs: <VI1P192MB02535468221C23989662B4FE8DA30@VI1P192MB0253.EURP192.PROD.OUTLOOK.COM>
-x-exchange-antispam-report-test: UriScan:(28532068793085)(21748063052155);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(6040522)(2401047)(8121501046)(5005006)(3002001)(10201501046)(3231221)(944501327)(52105095)(93006095)(93001095)(6041310)(20161123562045)(2016111802025)(20161123558120)(20161123564045)(20161123560045)(6043046)(6072148)(201708071742011);
-	SRVR:VI1P192MB0253; BCL:0; PCL:0; RULEID:; SRVR:VI1P192MB0253; 
-x-forefront-prvs: 06259BA5A2
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(39380400002)(39830400003)(376002)(346002)(366004)(396003)(189003)(199004)(26005)(7696005)(9686003)(6436002)(6916009)(86362001)(59450400001)(6506007)(186003)(105586002)(3660700001)(33656002)(236005)(3280700002)(5640700003)(99286004)(2906002)(102836004)(25786009)(2900100001)(54896002)(6306002)(55016002)(53936002)(7736002)(486005)(8676002)(97736004)(5660300001)(3846002)(790700001)(6116002)(5630700001)(476003)(81156014)(2501003)(9326002)(81166006)(486005)(1730700003)(316002)(8936002)(74316002)(66066001)(14454004)(68736007)(5250100002)(2351001)(478600001)(106356001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:VI1P192MB0253;
-	H:VI1P192MB0143.EURP192.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: orthotaxy.com does not designate
-	permitted sender hosts)
-x-microsoft-antispam-message-info: /pSjI3xogikQf5Rf9kiLFGl0d4BstF4WZ5H6UGc8sJo/EvjHLjX563v0jfxd8Z0UCUTTgO/rqjw7F685OpvDek10PG1UDEcK8lOrt14OJD5Tj5rc3cZdOOtpZjnYuOjy5U1vc+k558u/NGVMKhNeWnE4RxPJdEr37HEUtJjs8tO656LsQI6ZCop0EO9G5FMG1+Ey3gdmonM057giMdL2XrjEmU8Ylpa1bHzK93wSNqAXcCWEpIg9MHo8IFDioeWAefzQyMncd+zpsZiie3pw5D1i4x1sC9OPKakgDRg1vuHinZE31aCgYTgJarpWK4yhn9SRiuQ9SJj/Ews6JwY7jg==
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
+Received: from smtp2-g21.free.fr (smtp2-g21.free.fr [212.27.42.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BDCAE007F2
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 15:14:19 -0700 (PDT)
+Received: from zimbra50-e8.priv.proxad.net (unknown [172.20.243.200])
+	by smtp2-g21.free.fr (Postfix) with ESMTP id AC0CC2003C3;
+	Thu, 29 Mar 2018 00:14:18 +0200 (CEST)
+Date: Thu, 29 Mar 2018 00:14:18 +0200 (CEST)
+From: rtillet@free.fr
+To: Ross Burton <ross.burton@intel.com>
+Message-ID: <747167033.172124132.1522275258457.JavaMail.root@zimbra50-e8.priv.proxad.net>
+In-Reply-To: <2116055660.170943542.1522253832836.JavaMail.root@zimbra50-e8.priv.proxad.net>
 MIME-Version: 1.0
-X-OriginatorOrg: orthotaxy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c881a7b6-aee7-40d9-80ac-08d594c8d459
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2018 16:27:41.9329 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0c838133-9c42-4d53-8cbc-7a36ef5279a7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P192MB0253
-Subject: defconfig file (or fragment files) not used
+X-Originating-IP: [82.239.23.157]
+X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - FF3.0 (Win)/7.2.0-GA2598)
+X-Authenticated-User: rtillet@free.fr
+Cc: yocto@yoctoproject.org
+Subject: Re: RDEPENDS is ignored when building rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -92,165 +41,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 17:00:40 -0000
-Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_VI1P192MB014309F6A26B68B561F4B3588DA30VI1P192MB0143EURP_"
+X-List-Received-Date: Wed, 28 Mar 2018 22:14:21 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
---_000_VI1P192MB014309F6A26B68B561F4B3588DA30VI1P192MB0143EURP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+All,
 
-SGksDQoNCkkgd2FudCB0byBhZGQgQ0FOIGRyaXZlciBzdXBwb3J0IHRvIHRoZSBrZXJuZWwuIEhl
-cmUgaXMgdGhlIHByb2NlZHVyZSBJIGZvbGxvd2VkOg0KDQogIDEuICBHZW5lcmF0ZSBhIC5jb25m
-aWcgZmlsZQ0KICAyLiAgQ29weSBpdCB0byBtZXRhLW15V29yay9yZWNpcGVzLWtlcm5lbC9saW51
-eC9maWxlcy9kZWZjb25maWcNCiAgMy4gIFVwZGF0ZSBpdDogc2V0IGF0IHRoZSBlbmQgdGhlIGNv
-bmZpZyB0byBlbmFibGUgQ0FOIGFzIGZvbGxvd3MNCg0KIyBDQU4gQnVzDQoNCkNPTkZJR19ORVQ9
-eQ0KDQoNCg0KQ09ORklHX0NBTj15DQoNCkNPTkZJR19DQU5fUkFXPXkNCg0KQ09ORklHX0NBTl9C
-Q009eQ0KDQpDT05GSUdfQ0FOX0dXPXkNCg0KDQoNCiMNCg0KIyBDQU4gRGV2aWNlIERyaXZlcnMN
-Cg0KIw0KDQpDT05GSUdfQ0FOX1ZDQU49eQ0KDQojIENPTkZJR19DQU5fU0xDQU4gaXMgbm90IHNl
-dA0KDQpDT05GSUdfQ0FOX0RFVj15DQoNCiMgQ09ORklHX0NBTl9DQUxDX0JJVFRJTUlORyBpcyBu
-b3Qgc2V0DQoNCiMgQ09ORklHX0NBTl9MRURTIGlzIG5vdCBzZXQNCg0KIyBDT05GSUdfQ0FOX1NK
-QTEwMDAgaXMgbm90IHNldA0KDQoNCg0KICAxLiAgVXBkYXRlIHRoZSBsaW51eC15b2N0b18lLmJi
-YXBwZW5kIGZpbGUgYXMgZm9sbG93cw0KDQpTVU1NQVJZID0gIlJlY2lwZSB0byBjb25maWd1cmUg
-a2VybmVsIGFzIHJlcXVpcmVkIg0KDQpMSUNFTlNFID0gIkNMT1NFRCINCg0KaW5oZXJpdCBrZXJu
-ZWwteW9jdG8NCg0KRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJUn0vZmlsZXM6
-Ig0KDQpTUkNfVVJJICs9IGZpbGU6Ly9kZWZjb25maWcNCg0KDQoNCiAgMS4gIFJlcXVlc3QgcmVi
-dWlsdDoNCmJpdGJha2UgbGludXgteW9jdG8tcnQgLWMgY2xlYW5zc3RhdGUNCmJpdGJha2UgLWsg
-bGludXgteW9jdG8tcnQNCg0KT25jZSB0aGUgaW1hZ2Ugc3RhcnRlZCAod2l0aCBxZW11KSwgSSBj
-aGVjayBpZiB0aGUgQ0FOIGlzIGVuYWJsZWQgKHVzaW5nIHpjYXQgL3Byb2MvY29uZmlnLmd6IHwg
-Z3JlcCBDQU4pIGFuZCBJIGFsd2F5cyBnZXQg4oCcQ0FOIG5vdCBzZXTigJ0NCg0KSSBhbHNvIHRy
-aWVkIHVzaW5nIGZyYWdtZW50IGFuZCBJIGdvdCB0aGUgc2FtZSByZXN1bHQg4pi5DQoNCkFjY29y
-ZGluZyB0aGUgdXNlciBtYW51YWwsIGl0IHNlZW1zIHRvIG1lIEnigJltIGRvaW5nIHRoZSByaWdo
-dCB0aGluayENCkRvZXMgc29tZW9uZSBrbm93IHdoeSBteSBkZWZjb25maWcgZmlsZSBpcyBub3Qg
-dGFrZW4gaW50byBhY2NvdW50ID8NCg0KVGhhbmtzDQoNClZpbmNlbnQNCg0K
+I figured out and solved my issue.
 
---_000_VI1P192MB014309F6A26B68B561F4B3588DA30VI1P192MB0143EURP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+In fact the trouble was not due to the RDEPENDS value, but only to the fact=
+ that the recipe name (folder and bb file) contained one upper case later i=
+n their names.
+It seems that to avoid any issue, this is important to not use upper case l=
+etter in recipe folder and file names.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxlPjwhLS0NCi8q
-IEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEg
-TWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2Zv
-bnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyog
-U3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29O
-b3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXpl
-OjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFz
-dC1sYW5ndWFnZTpFTi1VUzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHls
-ZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7
-fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlv
-cml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpw
-Lk1zb0xpc3RQYXJhZ3JhcGgsIGxpLk1zb0xpc3RQYXJhZ3JhcGgsIGRpdi5Nc29MaXN0UGFyYWdy
-YXBoDQoJe21zby1zdHlsZS1wcmlvcml0eTozNDsNCgltYXJnaW4tdG9wOjBjbTsNCgltYXJnaW4t
-cmlnaHQ6MGNtOw0KCW1hcmdpbi1ib3R0b206MGNtOw0KCW1hcmdpbi1sZWZ0OjM2LjBwdDsNCglt
-YXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToi
-Q2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpzcGFu
-LkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0No
-cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2Ug
-V29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcw
-Ljg1cHQgNzAuODVwdCA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
-dGlvbjE7fQ0KLyogTGlzdCBEZWZpbml0aW9ucyAqLw0KQGxpc3QgbDANCgl7bXNvLWxpc3QtaWQ6
-MzAyMDc2Mjg0Ow0KCW1zby1saXN0LXR5cGU6aHlicmlkOw0KCW1zby1saXN0LXRlbXBsYXRlLWlk
-czoxMDgwMTg2MDA4IDEzNDgwNzU2NyAxMzQ4MDc1NzcgMTM0ODA3NTc5IDEzNDgwNzU2NyAxMzQ4
-MDc1NzcgMTM0ODA3NTc5IDEzNDgwNzU2NyAxMzQ4MDc1NzcgMTM0ODA3NTc5O30NCkBsaXN0IGww
-OmxldmVsMQ0KCXttc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBv
-c2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDt9DQpAbGlzdCBsMDpsZXZlbDINCgl7
-bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YWxwaGEtbG93ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9w
-Om5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0x
-OC4wcHQ7fQ0KQGxpc3QgbDA6bGV2ZWwzDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OnJvbWFu
-LWxvd2VyOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9z
-aXRpb246cmlnaHQ7DQoJdGV4dC1pbmRlbnQ6LTkuMHB0O30NCkBsaXN0IGwwOmxldmVsNA0KCXtt
-c28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7
-DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51
-bWJlci1mb3JtYXQ6YWxwaGEtbG93ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNv
-LWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7fQ0KQGxp
-c3QgbDA6bGV2ZWw2DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OnJvbWFuLWxvd2VyOw0KCW1z
-by1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246cmlnaHQ7
-DQoJdGV4dC1pbmRlbnQ6LTkuMHB0O30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtdGFi
-LXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRl
-bnQ6LTE4LjBwdDt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6
-YWxwaGEtbG93ZXI7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJl
-ci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7fQ0KQGxpc3QgbDA6bGV2ZWw5
-DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OnJvbWFuLWxvd2VyOw0KCW1zby1sZXZlbC10YWIt
-c3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246cmlnaHQ7DQoJdGV4dC1pbmRl
-bnQ6LTkuMHB0O30NCm9sDQoJe21hcmdpbi1ib3R0b206MGNtO30NCnVsDQoJe21hcmdpbi1ib3R0
-b206MGNtO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRl
-ZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+
-PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8
-bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48
-IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLUdCIiBsaW5rPSJibHVlIiB2bGlu
-az0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5IaSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSB3YW50IHRvIGFkZCBDQU4gZHJpdmVy
-IHN1cHBvcnQgdG8gdGhlIGtlcm5lbC4gSGVyZSBpcyB0aGUgcHJvY2VkdXJlIEkgZm9sbG93ZWQ6
-PG86cD48L286cD48L3A+DQo8b2wgc3R5bGU9Im1hcmdpbi10b3A6MGNtIiBzdGFydD0iMSIgdHlw
-ZT0iMSI+DQo8bGkgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJtYXJnaW4tbGVmdDow
-Y207bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPkdlbmVyYXRlIGEgLmNvbmZpZyBmaWxlPG86cD48
-L286cD48L2xpPjxsaSBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9Im1hcmdpbi1sZWZ0
-OjBjbTttc28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+Q29weSBpdCB0byBtZXRhLW15V29yay9yZWNp
-cGVzLWtlcm5lbC9saW51eC9maWxlcy9kZWZjb25maWc8bzpwPjwvbzpwPjwvbGk+PGxpIGNsYXNz
-PSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGNtO21zby1saXN0OmwwIGxl
-dmVsMSBsZm8xIj5VcGRhdGUgaXQ6IHNldCBhdCB0aGUgZW5kIHRoZSBjb25maWcgdG8gZW5hYmxl
-IENBTiBhcyBmb2xsb3dzPG86cD48L286cD48L2xpPjwvb2w+DQo8cCBjbGFzcz0iTXNvTGlzdFBh
-cmFncmFwaCI+IyBDQU4gQnVzPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFn
-cmFwaCI+Q09ORklHX05FVD15PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFn
-cmFwaCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCI+
-Q09ORklHX0NBTj15PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCI+
-Q09ORklHX0NBTl9SQVc9eTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb0xpc3RQYXJhZ3Jh
-cGgiPkNPTkZJR19DQU5fQkNNPXk8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFy
-YWdyYXBoIj5DT05GSUdfQ0FOX0dXPXk8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0
-UGFyYWdyYXBoIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdy
-YXBoIj4jPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCI+IyBDQU4g
-RGV2aWNlIERyaXZlcnM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBo
-Ij4jPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCI+Q09ORklHX0NB
-Tl9WQ0FOPXk8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIj4jIENP
-TkZJR19DQU5fU0xDQU4gaXMgbm90IHNldDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb0xp
-c3RQYXJhZ3JhcGgiPkNPTkZJR19DQU5fREVWPXk8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29MaXN0UGFyYWdyYXBoIj4jIENPTkZJR19DQU5fQ0FMQ19CSVRUSU1JTkcgaXMgbm90IHNldDxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiPiMgQ09ORklHX0NBTl9M
-RURTIGlzIG5vdCBzZXQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBo
-Ij4jIENPTkZJR19DQU5fU0pBMTAwMCBpcyBub3Qgc2V0PG86cD48L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTGlzdFBhcmFncmFwaCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8b2wgc3R5bGU9Im1h
-cmdpbi10b3A6MGNtIiBzdGFydD0iNCIgdHlwZT0iMSI+DQo8bGkgY2xhc3M9Ik1zb0xpc3RQYXJh
-Z3JhcGgiIHN0eWxlPSJtYXJnaW4tbGVmdDowY207bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPlVw
-ZGF0ZSB0aGUgbGludXgteW9jdG9fJS5iYmFwcGVuZCBmaWxlIGFzIGZvbGxvd3M8bzpwPjwvbzpw
-PjwvbGk+PC9vbD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIj5TVU1NQVJZID0gJnF1b3Q7
-UmVjaXBlIHRvIGNvbmZpZ3VyZSBrZXJuZWwgYXMgcmVxdWlyZWQmcXVvdDs8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIj5MSUNFTlNFID0gJnF1b3Q7Q0xPU0VEJnF1
-b3Q7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJ0ZXh0LWluZGVudDozNi4wcHQiPmlu
-aGVyaXQga2VybmVsLXlvY3RvPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBhcmFn
-cmFwaCI+RklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gJnF1b3Q7JHtUSElTRElSfS9maWxlczom
-cXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIj5TUkNfVVJJ
-ICYjNDM7PSA8YSBocmVmPSJmaWxlOi8vZGVmY29uZmlnIj5maWxlOi8vZGVmY29uZmlnPC9hPjxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9wOjBjbSIgc3RhcnQ9IjUiIHR5cGU9IjEiPg0K
-PGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MGNtO21zby1s
-aXN0OmwwIGxldmVsMSBsZm8xIj5SZXF1ZXN0IHJlYnVpbHQ6PG86cD48L286cD48L2xpPjwvb2w+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MzYuMHB0Ij5iaXRiYWtl
-IGxpbnV4LXlvY3RvLXJ0IC1jIGNsZWFuc3N0YXRlPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWxlZnQ6MzYuMHB0Ij5iaXRiYWtlIC1rIGxpbnV4LXlv
-Y3RvLXJ0PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uY2UgdGhlIGltYWdlIHN0YXJ0ZWQgKHdp
-dGggcWVtdSksIEkgY2hlY2sgaWYgdGhlIENBTiBpcyBlbmFibGVkICh1c2luZyB6Y2F0IC9wcm9j
-L2NvbmZpZy5neiB8IGdyZXAgQ0FOKSBhbmQgSSBhbHdheXMgZ2V0IOKAnENBTiBub3Qgc2V04oCd
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgYWxzbyB0cmllZCB1c2luZyBmcmFnbWVudCBhbmQg
-SSBnb3QgdGhlIHNhbWUgcmVzdWx0IDxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtTZWdv
-ZSBVSSBFbW9qaSZxdW90OyxzYW5zLXNlcmlmIj4NCuKYuTwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+QWNjb3JkaW5nIHRoZSB1c2VyIG1hbnVhbCwgaXQgc2VlbXMgdG8gbWUgSeKAmW0g
-ZG9pbmcgdGhlIHJpZ2h0IHRoaW5rIQ0KPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5Eb2VzIHNvbWVvbmUga25vdyB3aHkgbXkgZGVmY29uZmlnIGZpbGUgaXMgbm90IHRha2Vu
-IGludG8gYWNjb3VudCA/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
-PiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rczxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5WaW5jZW50PHNwYW4gbGFuZz0iRlIiIHN0eWxlPSJtc28tZmFyZWFzdC1s
-YW5ndWFnZTpFTi1HQiI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+Thanks.
 
---_000_VI1P192MB014309F6A26B68B561F4B3588DA30VI1P192MB0143EURP_--
+Rapha=C3=ABl.
+
+----- Mail original -----
+De: rtillet@free.fr
+=C3=80: "Ross Burton" <ross.burton@intel.com>
+Cc: yocto@yoctoproject.org
+Envoy=C3=A9: Mercredi 28 Mars 2018 18:17:12
+Objet: Re: [yocto] RDEPENDS is ignored when building rootfs
+
+Hello Ross,
+
+Thanks for your quick reply, but I have already tried your suggests:
+Without "RDEPENDS", libncurses.is is not in the rootFs,
+With "REDEPENDS=3Dncurses-libncurses", is not in the rootFs also.
+
+I'm sure that the library is not called from a dlopen. The only way to make=
+ to work is to add "ncurses-libform" to the "local.conf" file.
+I've spent the whole day to try to understand this issue, and I'm stuck and=
+ surprised that a so basic example does not work as it should.
+
+As a reminder:
+- I try to add a very basic recipe to a core-minimal-image
+- For the beaglebone.=20
+
+If you have any others suggestions, feel free.
+
+Rapha=C3=ABl.
+
+----- Mail original -----
+De: "Ross Burton" <ross.burton@intel.com>
+=C3=80: "Rapha=C3=ABl TILLET" <rtillet@free.fr>
+Cc: yocto@yoctoproject.org
+Envoy=C3=A9: Mercredi 28 Mars 2018 17:57:17
+Objet: Re: [yocto] RDEPENDS is ignored when building rootfs
+
+On 28 March 2018 at 16:00, Rapha=C3=ABl TILLET <rtillet@free.fr> wrote:
+> I=E2=80=99m using =C2=AB Pyro =C2=BB, and have built a very simple recipe=
+. The build program
+> Inside the recipe needs =C2=AB libncurses.so =C2=BB at run time, so I hav=
+e added to my
+> recipe the following :
+>
+> DEPENDS_{PN} =3D =C2=AB ncurses =C2=BB
+> RDEPENDS_${PN}=3D =C2=AB  ncurses-libform =C2=BB
+>
+>
+>
+> The build is ok, but my final RootFs does not contain the expected =C2=AB
+> libncurses.so =C2=BB Library.
+>
+>
+>
+> The only way to force the build to include =C2=AB libncurses.so =C2=BB in=
+ the rootfs
+> is to add =C2=AB ncurses-libform =C2=BB to my =C2=AB IMAGE_INSTALL =C2=BB=
+ in =C2=AB my local.conf =C2=BB
+> file, and normally I should not have to do this=E2=80=A6..
+
+If your application links to libncurses normally then you won't need
+to do RDEPENDS at all, because the dependency will be added
+automatically.
+
+libncurses.so.5 is actually in ncurses-libncurses, so that is what you
+should add to RDEPENDS if your application dlopen()s ncurses instead
+of linking.
+
+Ross
+--=20
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
