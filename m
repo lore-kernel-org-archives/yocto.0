@@ -1,64 +1,66 @@
-Return-Path: <pbarker@toganlabs.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21157E00A6A; Wed, 28 Mar 2018 06:40:18 -0700 (PDT)
+	id AA6D4E00857; Wed, 28 Mar 2018 06:53:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.128.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wr0-f174.google.com (mail-wr0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 414ECE0084A
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 06:40:16 -0700 (PDT)
-Received: by mail-wr0-f174.google.com with SMTP id u46so2283875wrc.11
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 06:40:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.220.169 listed in list.dnswl.org]
+Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FAF1E00529
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 06:53:38 -0700 (PDT)
+Received: by mail-qk0-f169.google.com with SMTP id o5so2432406qki.11
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 06:53:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=x8+n1u1DeH2s3a+d513vafRzy65YmnbdYNOG4KbeiqA=;
-	b=dbft87Mz+OjFIByh2BKskIow/oVsQ8adQJ0iNpjOOdG6wiZO86svY3REajVCNHyQn6
-	CgfUWMkG+Rsbcj4YpIp3DIUFJCOfeHEFqyzElAddJnWnYyQWBPAH0Ldm8LH2W4RtVYxK
-	ohbiao9phi1IIKMcgW20nr73SzBclHQr9SP9/HpGVeynIuCLrjfN+Mdi0hB4Yfse9sKu
-	r0gJKjv9RXExjYlXYKnUWuQw0lXxxK53beQiKM3dltxhGXu6wg9YYXJu+M4pvhEIVOGI
-	ZjhxYFTN9E+P3eVfQ1L5oLop3cDhXXQvSRNExLTcj2FMnSa92GPLZL33IdYTe/Je/07x
-	3Jzw==
+	:cc; bh=StpsTUcHCBt0wEp0LpGzOi2BAk/1wM1nqkA9eIFtzww=;
+	b=pF73ykZqVUwRzCUXiYNl0nzkTqFvC0qLqlM5Keh7SVBJXeSBvb73XP3cuCcubUkUfG
+	MLhVqXDbpti0WlJ54Cp6tS8Uxsv0XzorydjMonZgfk0FHs8JYy0HreIpNqAiqyizUNKu
+	kH+Vj9Z1TV3VGbxxGofIVV3gWPPK6b2m4Z41C7qHwXvh8ao1A7CbyB9X5de49whsHFnh
+	dCyom3QUJMOUjyqIPZcMLCOlaZc5xH2iK/vr0pUSXbpNYhSC+EIGGuepxCfSYK/eW0C3
+	dn95mySHdQR21cHyR3zTyta1eaR2U8PxF8PLddxihM8P22iwttRHbdYC2iHThpdmlb7A
+	appA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=x8+n1u1DeH2s3a+d513vafRzy65YmnbdYNOG4KbeiqA=;
-	b=cFPcz+NEtmoft9UhPflbxoh+GbOgJPX8VMzW9mzdhrjmTi5uvw03Tg6G3KknB8JmLQ
-	MU+5Cj1wFrZpqJEv2ln8nq7L4GsPokGKK08fVY6ijSaY2C7Gib/+tKoiizOXkY5syka0
-	Js5cKR85H8N6KDTbrpj4GzmcqbI+3WuFKEO366HtBIOwgXblkSV8F88FGYkj8u8gP9Sk
-	OH3BoW7dHyCTFWzB8q2DGT4ISjzb+k8Y8D1jvnnVRgt5NucEv9SMp6wLE1N+FHkXzYO0
-	uGkU/Vl/Lqt27KtqBjT8znQ2b9qja5cAyb75VsiTr2W3HOBafis6X0jZ3ss6OhYYMi7T
-	BDEQ==
-X-Gm-Message-State: AElRT7Hrnn19esQxeHr7DBI9DzxM4mGbUqWPXccJi1FAKYmx0sAJOuRV
-	kvo5H9dniRJufDtVeKi6xg0hJk9q5gH6klE5QiSxcg==
-X-Google-Smtp-Source: AIpwx4/Whc/6kVnr6tw/aMnpLnLa5oWZAmCVj7Ec0eSJDjEsMGDVKb+yUkklRQ6Ap0/d13xs+QqgDa58h84D8c5MUq8=
-X-Received: by 10.223.156.210 with SMTP id h18mr3107733wre.109.1522244416012; 
-	Wed, 28 Mar 2018 06:40:16 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=StpsTUcHCBt0wEp0LpGzOi2BAk/1wM1nqkA9eIFtzww=;
+	b=EQFvmvBXm+boPOis/AiAJ7yT7kGpG/HjKEobCEisSLElmW/P/7ZErGYcwd8mogIEs9
+	MNghD7ca1eMOvX7m1RBRqnWNdruFjOXxw9Gmf1rCbGMahoCsXz0wCGuBQjrbXUA5mu8w
+	tXTCSnL/6NAJzCwM76xCmV+DoiXQ2B6yBUg6wBtt+7VyoRLlFftixf/sFs3JbCOpukNQ
+	sMs5S3aYLLeCpFIiUt1P+lf+onsxadWMT1IUlYyEHztN8W5yBiqBhUYtuKc18hFtN0Ng
+	oIVLmnJ/WQWmNiXujjg2qOOEa8tTJ5rAyPu1Wpmle6m889i6ig1IKdMJqOJlU1j4Y+dj
+	llLg==
+X-Gm-Message-State: ALQs6tBiM4q8pfxeD2d0YwOvYIFJSV1/KGmVS/9rFFu98gqUOGdVA1gl
+	ghBH+KerqiutiD/JykyYuEp6Y0nZNK0qffs8izI=
+X-Google-Smtp-Source: AIpwx48qvxrbBIOVKM67rg+VSTQH1GfHtLNUkHC0r0GU87709am2uCp1M0pZnJX4nHOGMe43pX5COIGjX6yBA0nMjKI=
+X-Received: by 10.55.215.139 with SMTP id t11mr5160063qkt.90.1522245216850;
+	Wed, 28 Mar 2018 06:53:36 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.223.168.103 with HTTP; Wed, 28 Mar 2018 06:40:15 -0700 (PDT)
-In-Reply-To: <CAEhQi8=7+44c4ztcE0ZnO=J_nQO=FBVcEx71RNNqf6jun8U65g@mail.gmail.com>
-References: <CAEhQi8=1zJj7UXSEUd55de5VHyRc5E__sqRac+DPwcO=txqfyw@mail.gmail.com>
-	<CAPb0b+O=fzUTUECMb-_isDky6=yxKYSkTVWQv=PaZ-9Z34vipw@mail.gmail.com>
-	<CAEhQi8=7+44c4ztcE0ZnO=J_nQO=FBVcEx71RNNqf6jun8U65g@mail.gmail.com>
-From: Paul Barker <pbarker@toganlabs.com>
-Date: Wed, 28 Mar 2018 14:40:15 +0100
-Message-ID: <CAPyrkgw2+as+8wbiKdkZuHFpTJ=+GjHP3=E+Qo4EqKC7OQausA@mail.gmail.com>
-To: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] raspberrypi3 model B+ not booting
+Received: by 10.12.130.100 with HTTP; Wed, 28 Mar 2018 06:53:36 -0700 (PDT)
+In-Reply-To: <c35b19d8-7e06-57bb-12ad-3a78a6293794@intel.com>
+References: <CAGAf8Lyfz2oZ9EgWmZ1km4qQn-Kdaqh_1q+jvfv1anR-HLZXiw@mail.gmail.com>
+	<c35b19d8-7e06-57bb-12ad-3a78a6293794@intel.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 28 Mar 2018 15:53:36 +0200
+Message-ID: <CAGAf8LwSpCjP+vr=bRUQmz9V5+nHLP-1uGTzR3oAXf1j2pUryA@mail.gmail.com>
+To: Anuj Mittal <anuj.mittal@intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: ssh-copy-id is part of which package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,81 +72,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 13:40:18 -0000
+X-List-Received-Date: Wed, 28 Mar 2018 13:53:39 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 28, 2018 at 1:41 PM, M=C3=A5ns Zigher <mans.zigher@gmail.com> w=
-rote:
-> Hi,
+Hello Anuj,
+
+This is very correct. Thank you for the answer. Anyway, I have
+complicated configuration, so YOCTO copy-ssh-id does not work from
+client to server, but vice versa is very OK.
+
+In this case, server is VM, and client DUT hardware, in between there
+is transparent host. Host and VM are working via ports forwarding
+(unidirectionally from host to VM).
+
+I need to dive more into this problem, but all ingredients are there for now.
+
+Zoran
+_______
+
+On Wed, Mar 28, 2018 at 1:30 PM, Anuj Mittal <anuj.mittal@intel.com> wrote:
+> Hi Zoran,
 >
-> Thanks I will do that. But I have other layers that depend on the rocko o=
-f
-> meta-raspberrypi so I believe I will have to use the rocko at some point =
-but
-> for testing I will try Morty. What is the reason for using Morty do you
-> know? Is rocko unstable?
->
-
-Yea, we need to get this fixed in rocko. My test device for
-raspberrypi3 is a Model B v1.2, not a B+ so you may have to help us
-out with testing here.
-
-Could you try out core-image-base built from master with just the
-required layers? If that works then a kernel/firmware backport is
-likely what's needed.
-
-> BR
-> Mans Zigher
->
-> 2018-03-28 14:38 GMT+02:00 Sherif Omran <sherifomran2000@gmail.com>:
+> On 03/28/2018 07:18 PM, Zoran Stojsavljevic wrote:
+>> Hello to all,
 >>
->> Please use Morty, it works fine.
+>> Seems, that command:
+>> IMAGE_INSTALL_append = " openssh"
 >>
->> On Wed, Mar 28, 2018 at 11:41 AM, M=C3=A5ns Zigher <mans.zigher@gmail.co=
-m>
->> wrote:
->>>
->>> Hi,
->>>
->>> I am using the meta-raspberrypi layer in my build currently on the rock=
-o
->>> branch. When powering on the rpi3 Model B+ the power led turns red then=
- when
->>> the green led is turned on the red is turned off and nothing is booting=
- the
->>> green continues to flash sporadically. My build works fine on rpi 3 but=
- not
->>> on Model B+. When running raspbian on Model 3 it works fine so it is no=
-t a
->>> power supply issue nor an sdcard issue. Right now I cannot use the mast=
-er
->>> branch of meta-raspberrypi because of some patch issues but is the rock=
-o
->>> branch not supporting rpi 3 on model B+?
->>>
->>> BR
->>> Mans Zigher
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
+>> Does install ssh, sshd, but not a ssh-copy-id?!
 >>
+>> Strange... ssh-copy-id should be part of the openssh!?
+>>
+>> http://lists.openembedded.org/pipermail/openembedded-commits/2015-January/170233.html
+>>
+>> root@beaglebone:/root# which ssh-copy-id
+>> root@beaglebone:/root# which ssh
+>> /usr/bin/ssh
+>> root@beaglebone:/root# which sshd
+>> /usr/sbin/sshd
+>> root@beaglebone:/root#
 >
+> You can try:
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> oe-pkgdata-util find-path "/*ssh-copy-id"
 >
-
-
-
---=20
-Paul Barker
-Tog=C3=A1n Labs Ltd
+> which gives me:
+>
+> openssh-misc: /usr/bin/ssh-copy-id
 
