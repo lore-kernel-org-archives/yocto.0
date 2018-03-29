@@ -1,66 +1,73 @@
-Return-Path: <kratsg@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 02370E008EE; Wed, 28 Mar 2018 15:25:49 -0700 (PDT)
+	id DE1AFE008A2; Wed, 28 Mar 2018 17:13:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kratsg[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.223.178 listed in list.dnswl.org]
+	*      [74.125.83.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72EDDE007F2
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 15:25:47 -0700 (PDT)
-Received: by mail-io0-f178.google.com with SMTP id b20so5390556iof.5
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 15:25:47 -0700 (PDT)
+Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC348E007F2
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 17:13:26 -0700 (PDT)
+Received: by mail-pg0-f67.google.com with SMTP id t10so1886506pgv.8
+	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 17:13:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=83/0EutSQkgyxz0BtzUy4Y0FtnBbPkJRXcKCEKuhj+g=;
-	b=ff/RXFQYQ23Hzk1U0LL1qczS5wscnpSUfMyBbfwTTXV1FglMQJuXSPiOLICArm4kT5
-	qIQnfE4oBCtmBcHCrTqNmA6YL9nrvrN/X8zPVURjWgg64g2s3pn9LgnuUtHaV9ZndIYl
-	G3gnlBQ15FcZ6SIPAfELpUSINyq9MqGKokRPKC3TpdXHlBYYrZHiePBUe0q0r7Yp9Rqw
-	GuxRjlshitDCxPztQhuYbf7mzNi+DjPMRqPgcN1PrsaoAvo6SBNv5++ZS5EM8Cedv6UH
-	m7tQ6Qtf/KhvW8dgH6rIfeRuAm5P6KVNkSiXrtK7ifxrn4Tu4OaXeCOKLoMOP+hhsl3W
-	V34Q==
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=LXeTWK2u2NRKhzMZZ59COgCw7Sr2OjPpIoNYZ5e9fUI=;
+	b=L2lDGavaj7B4upwwwJDemaatOkhuU0UdbCikNWMVYawsfsJtRUejsAbNa9ohoZvzGB
+	WehUqoktHJ/i9nNMsJ/6Z1vcsoDgSrSj45ZfcXVVpW5cOzvK+BSncazKf8r4IUV9VUCO
+	raawSGIiHOOsFtHcgOMf9DnaY9DukF4TcUM2bG7G6016y4JNoFsQTjH+fMVxtjCBkfKa
+	LnLSklPb5+6IaZi1Ngj9zLGuzNY4y4OfvEd8TamuQluNgjIWM7phMRysPFm1U0TIg36w
+	iV0QQY5Z8Eap92L1UwfGtevjw3xml1WUUNk0SWdlfnWQBBsV5qDLnExmyji9VyZQ3Fte
+	zTyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=83/0EutSQkgyxz0BtzUy4Y0FtnBbPkJRXcKCEKuhj+g=;
-	b=XBK7XOuCm3Uzgf5WUR2Si5Q3zh/3BtsGAp4+pqsStA6PeYj+FVBDNgyXXKzbT7wQDy
-	Mjk0m+4OliKArsbba7YMSxF4mtA2tseM3NtFcjc1Chtdvveu8i0y7iaD5hT5RhxBQ4MU
-	H56Gd3qykacRX8CmbMpXDpnCHFfBrBlOkf0vr5W0JN57fOEvklbA914q4UkmqEW1pZWM
-	v9yDstJmeCbiYdfssq1nAb+TRoX4LmlP08816H3nTqk+6HQXymrmE/S/9N77J1UTRh0v
-	Rd84qOnb0uNNyrbPpaG1NRCVmHfFu7STvMmEJZRtxCgexstlwg/j83Jw6PiX9zLVMZQq
-	EtIA==
-X-Gm-Message-State: AElRT7E7XEFW5MlRh1il+Df8BW1beVgiIoOHdmS1XO9ewJLCqaxk1COq
-	DZSH+FVTKIPsyoeRvzkTBenjxesrvqgQ5hfUOLc=
-X-Google-Smtp-Source: AG47ELueiGOp9x59DJg349tuthVHYK0MxgtPToxXzGeivqOmm+aOYkp6sQ6jjveK5xMuLQ93d98N/Iv80kpc6HXqToo=
-X-Received: by 10.107.145.214 with SMTP id t205mr49225770iod.62.1522275947455; 
-	Wed, 28 Mar 2018 15:25:47 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language:content-transfer-encoding;
+	bh=LXeTWK2u2NRKhzMZZ59COgCw7Sr2OjPpIoNYZ5e9fUI=;
+	b=azeeajc58iXVhG6McKrZntsf7eaX/P1AgaMuxUva/NRiK2BBy21hTPaUYLTHNpzla/
+	iGo678pT11tN9Eef/+rFSM2a2IqjZvbynvpqIRSumaJo1hLtoJWoa8hMDXGRVx/zB1p7
+	HaNk4gNneCk1qt4OHXyy4kluDnh6S/IpU71sgfq02qBMygILFCX/EsNj1kthOunhHUyV
+	pbRkLJXw2b3cFoydmxqbPaaq82O25cbwMG1fGt0vRpwr6GqRmV3r6/x0Of7UAJ2Tm2sx
+	YckBPbvEwkLjlKZUlx9bM/pyhLp8aKOatbaHm+v/CDBmXZCycfbX4nGCCHc/e8L0PIXt
+	HlhA==
+X-Gm-Message-State: AElRT7EudbuwBgtZkiLkg62fLf8+pFhoGy5olOHzIXrLXypyzoZiuZ6L
+	bD8RVwx/jvUYyLohxeuocru90Fyw
+X-Google-Smtp-Source: AIpwx4/x1aKHMNdddart+mxWcEMqUnIWczjgMczu2QAwvhwYHgeJyAP/0cIzyv/3DfsHyo5IGWGD5g==
+X-Received: by 2002:a17:902:341:: with SMTP id
+	59-v6mr5636193pld.407.1522282405492; 
+	Wed, 28 Mar 2018 17:13:25 -0700 (PDT)
+Received: from hermes.local ([2601:646:8880:466c:e996:2d15:f718:d3cf])
+	by smtp.gmail.com with ESMTPSA id 75sm249092pfx.71.2018.03.28.17.13.24
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 28 Mar 2018 17:13:24 -0700 (PDT)
+To: Vincent Daanen <vincent.daanen@orthotaxy.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <VI1P192MB014309F6A26B68B561F4B3588DA30@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <8e8cf5f3-e5a7-2a2d-dbd3-3ffd261f8682@gmail.com>
+Date: Wed, 28 Mar 2018 17:13:23 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:59.0)
+	Gecko/20100101 Thunderbird/59.0
 MIME-Version: 1.0
-References: <CAFzUWGkcThCWgeEFxYtPzo=DfZB+5QOvOFxnOwZfqrVs6zUkZQ@mail.gmail.com>
-	<CAJTo0LYm6r0qnWrfVF2WfA68+sv8yadFZk3Z3YJO_Qz-_NgoRQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LYm6r0qnWrfVF2WfA68+sv8yadFZk3Z3YJO_Qz-_NgoRQ@mail.gmail.com>
-From: Giordon Stark <kratsg@gmail.com>
-Date: Wed, 28 Mar 2018 22:25:36 +0000
-Message-ID: <CAFzUWG=t5DWXa0Ok5_WnQK2-qLP9qeggQDNCoyTV5zOzoJ+TmA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "N:" <yocto@yoctoproject.org>
-Subject: Re: python-fcntl missing in rocko?
+In-Reply-To: <VI1P192MB014309F6A26B68B561F4B3588DA30@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+Subject: Re: defconfig file (or fragment files) not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,103 +79,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 22:25:49 -0000
-Content-Type: multipart/alternative; boundary="94eb2c055418192bde0568807d05"
+X-List-Received-Date: Thu, 29 Mar 2018 00:13:27 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---94eb2c055418192bde0568807d05
-Content-Type: text/plain; charset="UTF-8"
 
-Indeed,
 
-I seem to have gotten lucky by having it included without an explicit
-RDEPENDS/DEPENDS line for it. I've added it manually and now it's included
-:) Thanks.
+On 3/28/18 9:27 AM, Vincent Daanen wrote:
+> Hi,
+> 
+> I want to add CAN driver support to the kernel. Here is the procedure I 
+> followed:
+> 
+>  1. Generate a .config file
+>  2. Copy it to meta-myWork/recipes-kernel/linux/files/defconfig
+>  3. Update it: set at the end the config to enable CAN as follows
+> 
+> # CAN Bus
+> 
+> CONFIG_NET=y
+> 
+> CONFIG_CAN=y
+> 
+> CONFIG_CAN_RAW=y
+> 
+> CONFIG_CAN_BCM=y
+> 
+> CONFIG_CAN_GW=y
+> 
+> #
+> 
+> # CAN Device Drivers
+> 
+> #
+> 
+> CONFIG_CAN_VCAN=y
+> 
+> # CONFIG_CAN_SLCAN is not set
+> 
+> CONFIG_CAN_DEV=y
+> 
+> # CONFIG_CAN_CALC_BITTIMING is not set
+> 
+> # CONFIG_CAN_LEDS is not set
+> 
+> # CONFIG_CAN_SJA1000 is not set
+> 
+>  4. Update the linux-yocto_%.bbappend file as follows
+> 
+> SUMMARY = "Recipe to configure kernel as required"
+> 
+> LICENSE = "CLOSED"
+> 
+> inherit kernel-yocto
+> 
+> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> 
+> SRC_URI += file://defconfig
+> 
+>  5. Request rebuilt:
+> 
+> bitbake linux-yocto-rt -c cleansstate
+> 
+> bitbake -k linux-yocto-rt
+> 
+> Once the image started (with qemu), I check if the CAN is enabled (using 
+> zcat /proc/config.gz | grep CAN) and I always get “CAN not set”
+> 
+> I also tried using fragment and I got the same result ☹
+> 
+> According the user manual, it seems to me I’m doing the right think!
+> 
+> Does someone know why my defconfig file is not taken into account ?
+> 
 
-Giordon
+If you are using linux-yocto for your kernel provider then I wouldr 
+recommend that you look into developer manual.
 
-On Tue, Mar 27, 2018 at 1:32 PM Burton, Ross <ross.burton@intel.com> wrote:
+you should look into using config fragments to modify the needed options 
+e.g. see 
+https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#changing-the-configuration
 
-> python-core is just "an arbitrary subset of the python libraries",
-> you'd do better by including python-modules in your image which is all
-> of Python.
->
-> Or use oe-pkgdata-util to search what package contains the fcntl module.
->
-> Ross
->
-> On 27 March 2018 at 17:50, Giordon Stark <kratsg@gmail.com> wrote:
-> > Hi all,
-> >
-> > When I switched from pyro to rocko, using `python-core` -- I'm noticing
-> that
-> > the fcntl module in python2 is missing. Is there a recipe to add to get
-> it
-> > back?
-> >
-> > Thanks,
-> >
-> > Giordon
-> > --
-> > Giordon Stark
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
--- 
-Giordon Stark
+> Thanks
+> 
+> Vincent
+> 
+> 
 
---94eb2c055418192bde0568807d05
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Indeed,<div><br></div><div>I seem to have gotten lucky by =
-having it included without an explicit RDEPENDS/DEPENDS line for it. I&#39;=
-ve added it manually and now it&#39;s included :) Thanks.</div><div><br></d=
-iv><div>Giordon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr">=
-On Tue, Mar 27, 2018 at 1:32 PM Burton, Ross &lt;<a href=3D"mailto:ross.bur=
-ton@intel.com">ross.burton@intel.com</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
-adding-left:1ex">python-core is just &quot;an arbitrary subset of the pytho=
-n libraries&quot;,<br>
-you&#39;d do better by including python-modules in your image which is all<=
-br>
-of Python.<br>
-<br>
-Or use oe-pkgdata-util to search what package contains the fcntl module.<br=
->
-<br>
-Ross<br>
-<br>
-On 27 March 2018 at 17:50, Giordon Stark &lt;<a href=3D"mailto:kratsg@gmail=
-.com" target=3D"_blank">kratsg@gmail.com</a>&gt; wrote:<br>
-&gt; Hi all,<br>
-&gt;<br>
-&gt; When I switched from pyro to rocko, using `python-core` -- I&#39;m not=
-icing that<br>
-&gt; the fcntl module in python2 is missing. Is there a recipe to add to ge=
-t it<br>
-&gt; back?<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt;<br>
-&gt; Giordon<br>
-&gt; --<br>
-&gt; Giordon Stark<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-&gt;<br>
-</blockquote></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-s=
-martmail=3D"gmail_signature"><div dir=3D"ltr">Giordon Stark</div></div>
-
---94eb2c055418192bde0568807d05--
