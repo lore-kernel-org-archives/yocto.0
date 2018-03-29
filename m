@@ -1,40 +1,63 @@
-Return-Path: <jussi.laako@linux.intel.com>
+Return-Path: <mans.zigher@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46B6BE008E4; Wed, 28 Mar 2018 23:42:09 -0700 (PDT)
+	id 6ED61E008E4; Thu, 29 Mar 2018 01:08:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [192.55.52.120 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
+	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mans.zigher[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4225AE00857
-	for <yocto@yoctoproject.org>; Wed, 28 Mar 2018 23:42:07 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Mar 2018 23:42:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,375,1517904000"; d="scan'208";a="43140738"
-Received: from jlaako-mobl.ger.corp.intel.com (HELO [10.252.8.113])
-	([10.252.8.113])
-	by orsmga001.jf.intel.com with ESMTP; 28 Mar 2018 23:42:06 -0700
-To: yocto@yoctoproject.org
-References: <12dbba60-2346-0020-64c8-db2dac948684@nedap.com>
-	<CAJ86T=WE6khW6vfL2_z3HdXjB-pxSSaTAb=Fz-NSczhTGxV=HQ@mail.gmail.com>
-From: Jussi Laako <jussi.laako@linux.intel.com>
-Message-ID: <6b79bb3a-7cda-cd72-776e-2a8f46602adc@linux.intel.com>
-Date: Thu, 29 Mar 2018 09:42:04 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
-	Thunderbird/45.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+Received: from mail-ot0-f170.google.com (mail-ot0-f170.google.com
+	[74.125.82.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5946EE008A2
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 01:08:32 -0700 (PDT)
+Received: by mail-ot0-f170.google.com with SMTP id o9-v6so5567126otj.5
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 01:08:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=wfF6Fec2oeqBwHtVg/KDayrQROo65D6NCkC21cpd7Zg=;
+	b=EHMca5Spn6zyR2/bZpMz6yExP/r8PjBO3Or7HPIjR4ZcoAdQJDkv6S9Z8/kMh/2Qis
+	DJLJ/6+bliK6GRBuXzZuuckblWqNZ4m7kbXAY+fgKGYSB2V1ZjnmAx+/Z0NlKAyji6Iu
+	cFJUu9kTFaL5SYQ+RATiuEzV/UIjFPw4EeYTpRJNpODRdrgnzJ5MZ5sTzpINKjnJMnf0
+	vb2Uhl3iORBFKo4JJjqaVcb8FiZ1+0zo3DPjkzXBIk9h+TKh+aknxiajqfZD/+P3okva
+	b3aFVoeLqK9it4YYErtPH0DjDIaKDE6wdkFlzDOy6pkNM2ScQdl+wSNGXy8gsv0uIyBe
+	fn4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=wfF6Fec2oeqBwHtVg/KDayrQROo65D6NCkC21cpd7Zg=;
+	b=dnEIQFzJIRTfA0WQlEQ0TqBM3IHylFE82H5eyP2TfVpA0GSKqFc6qdW5ACVPsAbJ73
+	lYudYQm7IQTP5lmMETN46ihl9ToPyy822sKnL1gJA1VLye8XVcJKYU65964yLnk6h15O
+	W23ARhpvkqtzyMBbj0nRInxcXwf6RL3wIwutr4dLkljJ1HXHEw0BhamnpOQ85lzcRce5
+	35UbcklOypwqvaKAPlO7PREV99o08doxdAmrPfDEv/MXjaKRgF6QYodT00daQB8LVGvU
+	3eOugpC+W/A+VsPKbkyKAxc7jJiQMYbdJ1ArcP36rvFYOeFSROAAmEL1IfYwUDrw8P6v
+	pBJg==
+X-Gm-Message-State: AElRT7GYZtDnEsjzR/dyu3Li8J78zYE73upE8GVqGZ1kwdAKvdDwlR/u
+	4gHpt2F5UB3zWUKZJdmbmJe/gyQdUqwD6At7ySQ=
+X-Google-Smtp-Source: AIpwx4/NLWLWxrxDb/Ruu+DfMHNS4QmPFqQbMg2Zk+O7KhkciJpoPnCacwchyutDhUljZ2MgditlO4mG+5NygAQWy7w=
+X-Received: by 2002:a9d:509:: with SMTP id 9-v6mr4456780otw.342.1522310912196; 
+	Thu, 29 Mar 2018 01:08:32 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJ86T=WE6khW6vfL2_z3HdXjB-pxSSaTAb=Fz-NSczhTGxV=HQ@mail.gmail.com>
-Subject: Re: CPU Load
+Received: by 10.74.77.209 with HTTP; Thu, 29 Mar 2018 01:08:31 -0700 (PDT)
+From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
+Date: Thu, 29 Mar 2018 10:08:31 +0200
+Message-ID: <CAEhQi8kP7X9yc04d33Ub+ukGR-5fegP_zG=sFB0mRmfiD7tVnQ@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: What is the preferred way to add build data to os-release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,54 +69,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2018 06:42:09 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 29 Mar 2018 08:08:34 -0000
+Content-Type: multipart/alternative; boundary="00000000000028c70e056888a12b"
 
-On 29.03.2018 04:24, Andre McCurdy wrote:
-> On Tue, Mar 27, 2018 at 4:44 AM, Ryan Meulenkamp
-> <Ryan.Meulenkamp@nedap.com> wrote:
->> Hi y'all,
->>
->> I have some questions about CPU load and performance, but first some
->> background information.
->>
->> We have small embedded system running an openembedded classic (Angström)
->> distro. Now to get ourselves up-to-date we started working on a new
->> iteration of the OS based on openembedded core and Yocto. It is nearly
->> finished now, if it weren't for one problem: The CPU load (/proc/loadavg) of
->> the core/yocto based OS is more than double that of the classic/Angström OS.
->>
->> So the way I see it this could be caused by a number of factors:
->>
->>  - loadavg's calculation changed
->>  - certain newer versions of applications run heavier
->>  - The kernel itself is heavier (we upgraded from 2.6.35.14+ to 4.9.28+)
->>   - Possibly caused by some configs
->>  - ...
->>
->> My question: is there something that changed since OE-classic that you know
->> could be the cause of this? If not, how would I go about finding the cause?
->> I don't think the top command is sufficient for this, because it's precision
->> is such that many processes' CPU usage just become 0%.
->
-> You don't say what the CPU doubled from or too. 1% to 2%, or 50% to
-> 100% ? Unless the absolute increase is very small, you can probably
-> ignore the processes which top reports as 0%.
->
-> Does the new build have any significant processes running which
-> weren't there in the old build? Or is it the same basic set of apps
-> running in each?
+--00000000000028c70e056888a12b
+Content-Type: text/plain; charset="UTF-8"
 
-Changes in really small loads could change even due to differences in 
-kernel process accounting. For example if timer granularity has changed.
+Hi,
 
-IIRC, for Meltdown/Spectre mitigations, there have been changes in use 
-of TSC for timing (depending on which CPU model and microcode level is 
-being used).
+I see a lot of systems making use of the /etc/os-release where they put in
+build information like sha, build numbers and version numbers. When doing
+that you will encounter basehash errors and taskhash errors from bitbake in
+my experience (or I might be doing something wrong). To remove these errors
+adjustments needs to be taken on the os-release recipe.  These adjustments
+will likely result in re-generating rootfs everytime. Is this really what
+is the preferred way of doing things? If not, what is the preferred way of
+getting build data included in the os-release?
 
-So it is good to at least check which clock source is being used by 
-kernel in each case. Because the accounting values are at least rounded 
-to the timer granularity.
+BR
+Mans Zigher
 
+--00000000000028c70e056888a12b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,<div><br></div><div>I see a lot of systems making use o=
+f the /etc/os-release where they put in build information like sha, build n=
+umbers and version numbers. When doing that you will encounter basehash err=
+ors and taskhash errors from bitbake in my experience (or I might be doing =
+something wrong). To remove these errors adjustments needs to be taken on t=
+he os-release recipe.=C2=A0 These adjustments will likely result in re-gene=
+rating rootfs everytime. Is this really what is the preferred way of doing =
+things? If not, what is the preferred way of getting build data included in=
+ the os-release?</div><div><br></div><div>BR</div><div>Mans Zigher</div></d=
+iv>
+
+--00000000000028c70e056888a12b--
