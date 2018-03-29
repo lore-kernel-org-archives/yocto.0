@@ -1,44 +1,72 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <mirza@mkrak.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5456E00BAA; Sun,  1 Apr 2018 03:34:09 -0700 (PDT)
+	id B85AEE00994; Thu, 29 Mar 2018 02:21:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [74.125.83.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3AE5E00932
-	for <yocto@yoctoproject.org>; Sun,  1 Apr 2018 03:34:07 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 2382035CE77;
-	Sun,  1 Apr 2018 10:34:06 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id TK5IkbVUQxq7; Sun,  1 Apr 2018 10:33:57 +0000 (UTC)
-Received: from [127.0.0.1] (cpc111193-live30-2-0-cust656.17-2.cable.virginm.net
-	[92.232.58.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 7236D35CE75;
-	Sun,  1 Apr 2018 10:33:57 +0000 (UTC)
-To: =?UTF-8?Q?Andreas_M=c3=bcller?= <schnitzeltony@gmail.com>
-References: <c812b851-4cef-d5c3-e0cc-d1bca0547f3c@dynamicdevices.co.uk>
-	<CALbNGRQ+o4RDANOy41g8K-K4FqNFPtTHA2jJUcb5NVk_EYeEgg@mail.gmail.com>
-From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <8a2e1f90-3b72-8dc4-fdee-c12613708b90@dynamicdevices.co.uk>
-Date: Sun, 1 Apr 2018 11:33:58 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B40C7E008A2
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 02:21:00 -0700 (PDT)
+Received: by mail-pg0-f67.google.com with SMTP id b9so2677639pgf.6
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 02:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mkrak-org.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=Ysn8x4/glTrPSSp8MPGJqI18woZippFkpzxrMhW/Pqk=;
+	b=U69hZbCBjNqdVg/SSjxwswLndcCkLm4a8wxyTUwbNQGDNH0J0pdGlwk9pkdpsVXgtb
+	kO9MRCnrnOyR428RP2HRKhazDeqPunBDG6WoPHfZaUHDjv2n/MH0Jpc1NOjHMtd7cgb9
+	gMD4M3jLn4nZv8YFOvVdi+LaqHtpldV1zUHNtSC9uLlKIgUwYbStYoSOqGHNmL9ib9ER
+	nJOZEnPs+ij4ArEokOvKTMm8BI0Y92nbeVT1zgVxNyzHj0QYJASVvXJhrQ3ckkzdrZGM
+	JQ+6JifGC5bh3uI6T7KaaHqai4pQkNaSzV+vUyyj3/XSuLEXnpNy1NUI5ySi0WAoF9V+
+	HkDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=Ysn8x4/glTrPSSp8MPGJqI18woZippFkpzxrMhW/Pqk=;
+	b=X3i9BFjpm5Gn+EaSJ2fubUsVY8wr3vXNynBp1ioWRwsPDM4nvF6iS82YnQcjREWrrO
+	ixl0+IOM/mD425E4rJNTfc49Q2dQ7SZP4XXxZRyjkoTVV02cvMq4DsmaTcg+7agrqE6Y
+	ArUUryzwafY9NVhDr5Uc2achLes3MkWvH/6UnjSeHhx7vv7O9tJHkoGEXbXngt2XWF7x
+	uRltc/bbt+HxNDVO3OWmRNlFHek0m3n7EJleiiJxSX2rWVfwiDc9EjEbD1k2VEg9vdvV
+	Miu8if8OOVQkpNB8K4EHSCf9hADFT745Z1/7JtE6aV6HtbYKuSfzBmA8X5Oqxx4bAxG3
+	iOtw==
+X-Gm-Message-State: AElRT7HKqfjrsxlnhuetUyTLWOlV8tc/E55EUoHMZajgJx1ea5LeZprD
+	Mf2rqmdzNRAgjH+cLNP4LlbRU1VZ
+X-Google-Smtp-Source: AIpwx4/wxIrhmcMkH49XzZYuMzOnawu5lHy+zMnTlqxxLaAYHz3CXRwlbEaYPC9MkBZvy/42kuWQhw==
+X-Received: by 2002:a17:902:8697:: with SMTP id
+	g23-v6mr7689124plo.393.1522315259621; 
+	Thu, 29 Mar 2018 02:20:59 -0700 (PDT)
+Received: from mail-pf0-f169.google.com (mail-pf0-f169.google.com.
+	[209.85.192.169]) by smtp.gmail.com with ESMTPSA id
+	x137sm11807843pfd.162.2018.03.29.02.20.58
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 29 Mar 2018 02:20:58 -0700 (PDT)
+Received: by mail-pf0-f169.google.com with SMTP id u86so2828297pfd.2
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 02:20:58 -0700 (PDT)
+X-Received: by 2002:a17:902:7e09:: with SMTP id
+	b9-v6mr7486856plm.223.1522315257883; 
+	Thu, 29 Mar 2018 02:20:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CALbNGRQ+o4RDANOy41g8K-K4FqNFPtTHA2jJUcb5NVk_EYeEgg@mail.gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: meta-mono: breaking as libglade removed
+Received: by 10.236.176.2 with HTTP; Thu, 29 Mar 2018 02:20:57 -0700 (PDT)
+From: Mirza Krak <mirza@mkrak.org>
+Date: Thu, 29 Mar 2018 11:20:57 +0200
+X-Gmail-Original-Message-ID: <CALw8SCXWCB3zA2Y8Aw0HZGxQ2dhEo2Mf2Dw-w+gtAMphLskv-w@mail.gmail.com>
+Message-ID: <CALw8SCXWCB3zA2Y8Aw0HZGxQ2dhEo2Mf2Dw-w+gtAMphLskv-w@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Mailman-Approved-At: Sun, 01 Apr 2018 09:37:54 -0700
+Subject: Custom image type and CONVERSION_CMD images softlink problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,43 +78,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Apr 2018 10:34:09 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-GB
+X-List-Received-Date: Thu, 29 Mar 2018 09:21:03 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi.
 
+I am working with a project that has a custom image type, "sdimg". The
+image works fine but it is when I try to apply CONVERSION_CMDs that I
+see some interesting things.
 
-On 31/03/2018 16:37, Andreas Müller wrote:
-> On Fri, Mar 30, 2018 at 11:19 AM, Alex Lennon
-> <ajlennon@dynamicdevices.co.uk> wrote:
->> Hi,
->>
->> libglade seems to have been removed which is breaking meta-mono builds.
->>
->> What's best to fix this? Should I be adding the recipe into meta-mono?
->>
->> Thanks,
->>
->> Alex
-> As the one who removed it - so feel responsible...
->
-> 1.You could add libglade to meta-mono but I think there some
-> additional dependencies which need to be added too
-> 2. Checked configure script of gtk-sharp-2.12.45: Seems libglade is an
-> optional dependency. I think it should be good enough to remove it
-> from dependencies.
->
-> My suggestion would be 2.
->
-> Andreas
->
+The image output is:
 
-Thanks Andreas. I've build successfully with option (2) and will keep an 
-eye on it to see if anything breaks.
+     ${IMGDEPLOYDIR}/${IMAGE_NAME}.$suffix
 
-Cheers!
+There is also a soft-link:
 
-Alex
+    ln -sfn "${IMAGE_NAME}.$suffix"
+"${DEPLOY_DIR_IMAGE}/${IMAGE_BASENAME}-${MACHINE}.$suffix"
 
+Now the interesting part comes when I try this:
+
+     IMAGE_FSTYPES +=3D "sdimg.gz"
+
+This results in a empty gz file, but I already know why and that is
+because the "normal" image does not contain IMAGE_NAME_SUFFIX in the
+output name, on which the CONVERSION_CMDs rely on [1].
+
+So instead of changing the image name I was hoping that this should
+work (default is ".rootfs" in image_types.bbclass):
+
+    IMAGE_NAME_SUFFIX_sdimg =3D ""
+
+But above only partly works. It will generate a proper "gz" version of
+"sdimg" but it fails to create a soft-link, that is
+${IMAGE_BASENAME}-${MACHINE}.sdimg.gz -> ${IMAGE_NAME}.sdimg.gz. And I
+have traced down on why. It is because image.bbclass still reads
+IMAGE_NAME_SUFFIX as ".rootfs" in create_symlinks[2] even though I
+have set it to something else for my specific image type (override).
+
+I have a couple of workarounds for this already but still wanted to
+report this and see what the community thinks about this. I would
+expect what I am trying to do, to work. That is to set
+IMAGE_NAME_SUFFIX to empty for the custom image.
+
+But you might be of another opinion.
+
+[1]. https://github.com/openembedded/openembedded-core/blob/master/meta/cla=
+sses/image_types.bbclass#L284
+[2]. https://github.com/openembedded/openembedded-core/blob/master/meta/cla=
+sses/image.bbclass#L592-L614
+
+--=20
+Med V=C3=A4nliga H=C3=A4lsningar / Best Regards
+
+Mirza Krak
+email: mirza@mkrak.org
+web: http://mkrak.org
 
