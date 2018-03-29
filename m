@@ -1,62 +1,67 @@
-Return-Path: <schnitzeltony@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2DC22E00994; Thu, 29 Mar 2018 09:41:22 -0700 (PDT)
+	id 722D7E009CB; Thu, 29 Mar 2018 12:26:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]gmail.com)
+	mail provider *      (twoerner[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [209.85.161.172 listed in list.dnswl.org]
+	*      [209.85.215.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yw0-f172.google.com (mail-yw0-f172.google.com
-	[209.85.161.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9A1AE008E4
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 09:41:21 -0700 (PDT)
-Received: by mail-yw0-f172.google.com with SMTP id u15so2144942ywg.8
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 09:41:21 -0700 (PDT)
+Received: from mail-lf0-f47.google.com (mail-lf0-f47.google.com
+	[209.85.215.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE591E008E4
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 12:26:34 -0700 (PDT)
+Received: by mail-lf0-f47.google.com with SMTP id j68-v6so9830396lfg.13
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 12:26:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=qZ6JlV55XNELhiX3vBvbR94sYyZap4b69tIVHAL8r0U=;
-	b=s0zdVg81dGboLDkButic3EwFtWlOETYeztvfmvjQgk1A1y9Qc19lEk2w2EqsuHVy6G
-	epIe/zXeLd0ZE9bSdQphXqOFHM74I0B6GPQzasUqQg85jwz3IBtZAkXey10vpu1jgcdR
-	9fjCQ0jUIKGKbX4/zIUOPoKAHMVCNeT2iE5r2cR9nsa+WjpCbH91+E/MUcYmaFeqAxGd
-	BGSnkka+L+00R3RCgbwLGlxIWsZzL6AvPGdcrcenSlFVQkObn5D0XBs9RRUefbh8wFQU
-	q+IUjFPtg4hszVBcaReurPNvfu2GxGvIIT3DtmF7Vk3sH4UquF+zXPn8irHAzmoTz2+B
-	wf0A==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=mR0dzCkJmDEfRyrVgkxP6y8h7HtIR4TgiI+DrQc9H6Y=;
+	b=VMDrU+Ejqs+8p0QwlRTW7rQ+cj07NGkVMhSBIqQZpaRc3OWwoOZ+sB1HLpjDH0t9A4
+	+xo0Rx23TJsXudgVuNw8s927je0OAm0OjtN9yOheJoOPRflw7uiCGZ28t/pnRL5Ee+zk
+	sbgqyZamr9BfJu2D5Igt0ubr3drj6uBWMfwLHbHuX2wLAnyOt1OdMyLz8HnR8eWzs3y/
+	bN/HS2mPJWIIzwt0t9gYqIQA+3hDqjSYVO3QCX3x2hCnzpj2bn3ibqM49jZ1l0+m+yhy
+	68+DmlAAxdeYdrKXBZBf6gLJzn4gCluB37iHKiPpjU1pE4f7iRrkXVPZfQTCkqHKRaHq
+	CHZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=qZ6JlV55XNELhiX3vBvbR94sYyZap4b69tIVHAL8r0U=;
-	b=sdpbtaZnfnwIhL4jegGiwIjK2gIGFTQXwhEco/aeel9HQbn1yh0fhvo/e+2wKOF4vB
-	SoML5md+dCgkQui67d2MS5KgpWey6tboPDWXWwaGOxaOomy45Ly5aGHR1m8DPNwrwHAn
-	so2MnSxzEvzdmV9hBjKxiIr1CHc9vYH5jp7RnoMHvWaOlgyKEKJgKSRvsSvIU26BAbkb
-	dXzfOgiVQmHRdP/6GhkGIItiYq+Gq7nUss/2ucJIY9KDbqV3BxcX3ln/tRcIzybgboXz
-	R8nEobMo2ozRtvS/q7dO9kjq0ridxkfiJA0nVJUeHAKc7LLUHPtAKQsT7huuCDs9KdeM
-	O6pA==
-X-Gm-Message-State: AElRT7G6jbeqLNQa5zso3fQpfzX27ZTnV5Z6C7hJRvzqSrptMN4/l3pi
-	0NYGfD7tWtY+ur8daYDRIGdJ3oqz46HMqHLCbfiXfQ==
-X-Google-Smtp-Source: AIpwx49vxiQMMb7ysKV0gdiUT79eeciJLSIx4oqIVNzfeH9gZHJZ2ET0B+FqHtYsZaacOS12eXpOg503eJy0ogxPOP4=
-X-Received: by 10.13.249.197 with SMTP id j188mr5428746ywf.318.1522341680494; 
-	Thu, 29 Mar 2018 09:41:20 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=mR0dzCkJmDEfRyrVgkxP6y8h7HtIR4TgiI+DrQc9H6Y=;
+	b=ZybHblj3FY+YME7orHFsHyfUZL1Z69fUN6GSJDTf4tDW5U8sGW0SxFiO0S0G5LbO0a
+	N/nFXwcDZXeL7quSQrM3ZZlk0n2a2evJaaEtiAeih+bl+cigxrV5HEAuUE6jIO44YV8i
+	NZ9Hos01rRBe3r8BOrEZhr934xGETjb2nsXDDNOwvQWWP5NgixSQnFe9aK1c8/HlXpfW
+	vtbbhlVmTLoi0YZe8R1lormN8+L2dKLAAJDvNmR/FsJfCDk6beZ0MJNy3C3MMOU+eYxU
+	hI6Dz0UyG4iPRGPMHuGnhv30VY/QpVHIfH6WL+QP5fI9aqROWA6PZCeeP2q453BsPnV1
+	S8Tw==
+X-Gm-Message-State: AElRT7FFl6O3nsdlSJ3UwoV05JrNAorT31uG2cDY+97/4FWQNhIdaiiO
+	U6jRARr2hyY0qc+q2OsaJjwUkvi3l7maNk+cq4U=
+X-Google-Smtp-Source: AIpwx48Y39+9eNDKilrgCLWXaeP2Xy9RvGeywDa/raXrDFpuKYZv/hoygYtP2vgnfw/woFoIiNFYJnHSsgPMHLfFobs=
+X-Received: by 10.46.117.2 with SMTP id q2mr6492918ljc.12.1522351593732; Thu,
+	29 Mar 2018 12:26:33 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a25:d105:0:0:0:0:0 with HTTP; Thu, 29 Mar 2018 09:41:19
+Received: by 2002:a19:d80f:0:0:0:0:0 with HTTP; Thu, 29 Mar 2018 12:26:33
 	-0700 (PDT)
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
-Date: Thu, 29 Mar 2018 18:41:19 +0200
-Message-ID: <CALbNGRRA3Ev3mPT4ZDRO_koC_uwVWy4qXc8onJN5nSeXnE3JRg@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi] Has anybody run VC4 + X + recent meta/masters lately
+In-Reply-To: <CALbNGRRA3Ev3mPT4ZDRO_koC_uwVWy4qXc8onJN5nSeXnE3JRg@mail.gmail.com>
+References: <CALbNGRRA3Ev3mPT4ZDRO_koC_uwVWy4qXc8onJN5nSeXnE3JRg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Thu, 29 Mar 2018 15:26:33 -0400
+Message-ID: <CAHUNapQhvr8UWBuF-Z5y0ojhsfF=fUU3nfgmRdxNGi4iKdkbqA@mail.gmail.com>
+To: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Has anybody run VC4 + X + recent meta/masters lately
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,25 +73,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2018 16:41:22 -0000
+X-List-Received-Date: Thu, 29 Mar 2018 19:26:35 -0000
+Content-Type: multipart/alternative; boundary="089e082b46c8f7bf9c056892195c"
+
+--089e082b46c8f7bf9c056892195c
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+64bit RPi or 32?
 
-To prepare for sumo I updated all my oe-metas from more or less rocko
-to recent masters. Since then I am in trouble with VC4/GL/GLES on
-Raspi:
+--089e082b46c8f7bf9c056892195c
+Content-Type: text/html; charset="UTF-8"
 
-* On X start glmark2-es: complains with 'Modifier 0x0 vs. tiling
-(0x7000000000000001) mismatch and window remains black
-* On Wayland (weston) glmark2-es-wayland works without issues
+<div dir="ltr">64bit RPi or 32?<br></div>
 
-OK - I am still sitting on my  meta-raspi-light fork (and am still
-promising to come back here with patches :) but I checked: Both layers
-are close regarding X and mesa so I'd expect similar results.
-
-To check if mesa might need a later kernel I tried with 4.14 -> same
-behaviour. Anybody else with similar issues?
-
-Andreas
-
+--089e082b46c8f7bf9c056892195c--
