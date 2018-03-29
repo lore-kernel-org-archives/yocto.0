@@ -1,63 +1,76 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6ED61E008E4; Thu, 29 Mar 2018 01:08:34 -0700 (PDT)
+	id AA648E0091A; Thu, 29 Mar 2018 01:25:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mans.zigher[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.125.82.170 listed in list.dnswl.org]
+	*      [209.85.223.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-ot0-f170.google.com (mail-ot0-f170.google.com
-	[74.125.82.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5946EE008A2
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 01:08:32 -0700 (PDT)
-Received: by mail-ot0-f170.google.com with SMTP id o9-v6so5567126otj.5
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 01:08:32 -0700 (PDT)
+Received: from mail-io0-f195.google.com (mail-io0-f195.google.com
+	[209.85.223.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D134E008EE
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 01:25:28 -0700 (PDT)
+Received: by mail-io0-f195.google.com with SMTP id b20so6729623iof.5
+	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 01:25:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=wfF6Fec2oeqBwHtVg/KDayrQROo65D6NCkC21cpd7Zg=;
-	b=EHMca5Spn6zyR2/bZpMz6yExP/r8PjBO3Or7HPIjR4ZcoAdQJDkv6S9Z8/kMh/2Qis
-	DJLJ/6+bliK6GRBuXzZuuckblWqNZ4m7kbXAY+fgKGYSB2V1ZjnmAx+/Z0NlKAyji6Iu
-	cFJUu9kTFaL5SYQ+RATiuEzV/UIjFPw4EeYTpRJNpODRdrgnzJ5MZ5sTzpINKjnJMnf0
-	vb2Uhl3iORBFKo4JJjqaVcb8FiZ1+0zo3DPjkzXBIk9h+TKh+aknxiajqfZD/+P3okva
-	b3aFVoeLqK9it4YYErtPH0DjDIaKDE6wdkFlzDOy6pkNM2ScQdl+wSNGXy8gsv0uIyBe
-	fn4A==
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=VgbILIz3aC4hgKV5FmPf0Iz9S8XPIKnEpqBA0ULj/c4=;
+	b=jS4JpAGTzycidQv4bcZ4nSwug1VjUh5Vaff6n441WKlWLPgGmtdOJ9xlDCqmeIHCxU
+	0Vs/3vbUFGncrCVrR7kI8Ay8ks4UPSQ1D0XcYsuUKArg5DMpiykyfTVY9zbNYzZyHitL
+	etQ0sCtLfEcWLMEmcGspADVVAftcwgUFFV7J1itnR/EcCfr9BwXdnOz8GM+O0IBbrvUA
+	oURjGpR0Z+dGA44hk2zPmuEwSsA/W2aM9xDNG1p3pPFNPAZQBY4mfYESNWcJqazByepH
+	l60fVTe2hDj9UUfR9VNxX7pm4MheylPrUfr6mUhdxpUzgeLMV03p/FkD0XbjgNMGfn02
+	rioA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=wfF6Fec2oeqBwHtVg/KDayrQROo65D6NCkC21cpd7Zg=;
-	b=dnEIQFzJIRTfA0WQlEQ0TqBM3IHylFE82H5eyP2TfVpA0GSKqFc6qdW5ACVPsAbJ73
-	lYudYQm7IQTP5lmMETN46ihl9ToPyy822sKnL1gJA1VLye8XVcJKYU65964yLnk6h15O
-	W23ARhpvkqtzyMBbj0nRInxcXwf6RL3wIwutr4dLkljJ1HXHEw0BhamnpOQ85lzcRce5
-	35UbcklOypwqvaKAPlO7PREV99o08doxdAmrPfDEv/MXjaKRgF6QYodT00daQB8LVGvU
-	3eOugpC+W/A+VsPKbkyKAxc7jJiQMYbdJ1ArcP36rvFYOeFSROAAmEL1IfYwUDrw8P6v
-	pBJg==
-X-Gm-Message-State: AElRT7GYZtDnEsjzR/dyu3Li8J78zYE73upE8GVqGZ1kwdAKvdDwlR/u
-	4gHpt2F5UB3zWUKZJdmbmJe/gyQdUqwD6At7ySQ=
-X-Google-Smtp-Source: AIpwx4/NLWLWxrxDb/Ruu+DfMHNS4QmPFqQbMg2Zk+O7KhkciJpoPnCacwchyutDhUljZ2MgditlO4mG+5NygAQWy7w=
-X-Received: by 2002:a9d:509:: with SMTP id 9-v6mr4456780otw.342.1522310912196; 
-	Thu, 29 Mar 2018 01:08:32 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language:content-transfer-encoding;
+	bh=VgbILIz3aC4hgKV5FmPf0Iz9S8XPIKnEpqBA0ULj/c4=;
+	b=eDrVUzESDILdXEVkO1qU5w2mL9fyoyPNdqq8D2wnFVkeHtRpWTzxeoxz7VleoJXy9k
+	oFNAOshV4uikilNZsRUWJc/WjwxlvxmYm8wuFRs7UxDDYLCIMSnP3zIyTEraMRo3BIFV
+	D7p4v0mtIKmCPbCDphZlpvIM48S6VjQ25X8bwjKlmBfg8SKCBAc1buUl6XqI6n2lpZ5B
+	Y2IcrN80qc5/ZrGSLzjwMI4aNZS7qqgnA8kZiOAfZ02TvjfqS8gICQdunBRuIajRPxdD
+	askZsme3LShcjaSol3fNedu1tr/c19qKYuMqm1k80A3AUpDC2GEnzBjakmXE8DsUgta6
+	KR8A==
+X-Gm-Message-State: AElRT7Hjg9s/yZY+iweDTM4Txtu/Pbe4vVSX946vvm6HOKi6W06XnIgo
+	OFutr08a00ReK8YADF+F4L3gOGro
+X-Google-Smtp-Source: AG47ELtoVPe8N/fB+pchmDEMhsjnWunX09KGIxrgXEikeRKiYDRrDvcU75tbMXaxorIkMsYO9FpHvQ==
+X-Received: by 10.107.164.17 with SMTP id n17mr50874826ioe.173.1522311927967; 
+	Thu, 29 Mar 2018 01:25:27 -0700 (PDT)
+Received: from hermes.local ([2601:646:8880:466c:e996:2d15:f718:d3cf])
+	by smtp.gmail.com with ESMTPSA id
+	79-v6sm872020itm.11.2018.03.29.01.25.26
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 29 Mar 2018 01:25:27 -0700 (PDT)
+To: Vincent Daanen <vincent.daanen@orthotaxy.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <VI1P192MB014309F6A26B68B561F4B3588DA30@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
+	<8e8cf5f3-e5a7-2a2d-dbd3-3ffd261f8682@gmail.com>
+	<AM5P192MB0132927EBF4A922322C970F28DA20@AM5P192MB0132.EURP192.PROD.OUTLOOK.COM>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <70e7d121-a3ca-22f0-700b-5a558540baae@gmail.com>
+Date: Thu, 29 Mar 2018 01:25:25 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+	Gecko/20100101 Thunderbird/60.0
 MIME-Version: 1.0
-Received: by 10.74.77.209 with HTTP; Thu, 29 Mar 2018 01:08:31 -0700 (PDT)
-From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Date: Thu, 29 Mar 2018 10:08:31 +0200
-Message-ID: <CAEhQi8kP7X9yc04d33Ub+ukGR-5fegP_zG=sFB0mRmfiD7tVnQ@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: What is the preferred way to add build data to os-release
+In-Reply-To: <AM5P192MB0132927EBF4A922322C970F28DA20@AM5P192MB0132.EURP192.PROD.OUTLOOK.COM>
+Subject: Re: defconfig file (or fragment files) not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,39 +82,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2018 08:08:34 -0000
-Content-Type: multipart/alternative; boundary="00000000000028c70e056888a12b"
+X-List-Received-Date: Thu, 29 Mar 2018 08:25:30 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
---00000000000028c70e056888a12b
-Content-Type: text/plain; charset="UTF-8"
 
-Hi,
 
-I see a lot of systems making use of the /etc/os-release where they put in
-build information like sha, build numbers and version numbers. When doing
-that you will encounter basehash errors and taskhash errors from bitbake in
-my experience (or I might be doing something wrong). To remove these errors
-adjustments needs to be taken on the os-release recipe.  These adjustments
-will likely result in re-generating rootfs everytime. Is this really what
-is the preferred way of doing things? If not, what is the preferred way of
-getting build data included in the os-release?
+On 3/28/18 11:00 PM, Vincent Daanen wrote:
+>> On 3/28/18 9:27 AM, Vincent Daanen wrote:
+>>> Hi,
+>>>
+>>> I want to add CAN driver support to the kernel. Here is the procedure
+>>> I
+>>> followed:
+>>>
+>>>   1. Generate a .config file
+>>>   2. Copy it to meta-myWork/recipes-kernel/linux/files/defconfig
+>>>   3. Update it: set at the end the config to enable CAN as follows
+>>>
+>>> # CAN Bus
+>>>
+>>> CONFIG_NET=y
+>>>
+>>> CONFIG_CAN=y
+>>>
+>>> CONFIG_CAN_RAW=y
+>>>
+>>> CONFIG_CAN_BCM=y
+>>>
+>>> CONFIG_CAN_GW=y
+>>>
+>>> #
+>>>
+>>> # CAN Device Drivers
+>>>
+>>> #
+>>>
+>>> CONFIG_CAN_VCAN=y
+>>>
+>>> # CONFIG_CAN_SLCAN is not set
+>>>
+>>> CONFIG_CAN_DEV=y
+>>>
+>>> # CONFIG_CAN_CALC_BITTIMING is not set
+>>>
+>>> # CONFIG_CAN_LEDS is not set
+>>>
+>>> # CONFIG_CAN_SJA1000 is not set
+>>>
+>>>   4. Update the linux-yocto_%.bbappend file as follows
+>>>
+>>> SUMMARY = "Recipe to configure kernel as required"
+>>>
+>>> LICENSE = "CLOSED"
+>>>
+>>> inherit kernel-yocto
+>>>
+>>> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>>>
+>>> SRC_URI += file://defconfig
+>>>
+>>>   5. Request rebuilt:
+>>>
+>>> bitbake linux-yocto-rt -c cleansstate
+>>>
+>>> bitbake -k linux-yocto-rt
+>>>
+>>> Once the image started (with qemu), I check if the CAN is enabled
+>>> (using zcat /proc/config.gz | grep CAN) and I always get “CAN not set”
+>>>
+>>> I also tried using fragment and I got the same result ☹
+>>>
+>>> According the user manual, it seems to me I’m doing the right think!
+>>>
+>>> Does someone know why my defconfig file is not taken into account ?
+>>>
+>>
+>> If you are using linux-yocto for your kernel provider then I wouldr recommend that you look into developer manual.
+>>
+>> you should look into using config fragments to modify the needed
+>> options e.g. see
+>> https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#cha
+>> nging-the-configuration
+> 
+> I don't understand what you mean. That's what I'm doing. I followed the procedure described in the link you provide... Can u explain ?
+> 
 
-BR
-Mans Zigher
+Create a file for config fragment say can.cfg and put all options you 
+want to change in that file and then add that to SRC_URI
+you dont need to create full defconfig.
 
---00000000000028c70e056888a12b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> Thanks
+> 
+> Vincent
+> 
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I see a lot of systems making use o=
-f the /etc/os-release where they put in build information like sha, build n=
-umbers and version numbers. When doing that you will encounter basehash err=
-ors and taskhash errors from bitbake in my experience (or I might be doing =
-something wrong). To remove these errors adjustments needs to be taken on t=
-he os-release recipe.=C2=A0 These adjustments will likely result in re-gene=
-rating rootfs everytime. Is this really what is the preferred way of doing =
-things? If not, what is the preferred way of getting build data included in=
- the os-release?</div><div><br></div><div>BR</div><div>Mans Zigher</div></d=
-iv>
-
---00000000000028c70e056888a12b--
