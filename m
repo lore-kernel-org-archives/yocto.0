@@ -1,40 +1,40 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27F67E00B28; Fri, 30 Mar 2018 02:19:53 -0700 (PDT)
+	id ED30AE00C25; Fri, 30 Mar 2018 03:16:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56621E00529
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2018 02:19:51 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 853D635CE70
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2018 09:19:50 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id gxGXGD0ROdUf for <yocto@yoctoproject.org>;
-	Fri, 30 Mar 2018 09:19:42 +0000 (UTC)
-Received: from [127.0.0.1] (cpc111193-live30-2-0-cust656.17-2.cable.virginm.net
-	[92.232.58.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id A37CA35CE16
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2018 09:19:42 +0000 (UTC)
-To: Yocto discussion list <yocto@yoctoproject.org>
-From: Alex Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <c812b851-4cef-d5c3-e0cc-d1bca0547f3c@dynamicdevices.co.uk>
-Date: Fri, 30 Mar 2018 10:19:41 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B194CE00529
+	for <yocto@yoctoproject.org>; Fri, 30 Mar 2018 03:16:32 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	30 Mar 2018 03:16:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.48,381,1517904000"; d="scan'208";a="29719635"
+Received: from anmitta2-mobl1.gar.corp.intel.com (HELO [10.249.69.122])
+	([10.249.69.122])
+	by orsmga008.jf.intel.com with ESMTP; 30 Mar 2018 03:16:30 -0700
+To: Tom Gibson <tom.gibson@csoftware.co.uk>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <7fe4b4d52892445b97680ccd2ec47808@csoftware.co.uk>
+	<da46c6f0-71ec-2b4d-e430-22bebed64c24@gmail.com>
+	<1e95f92ab4e3479ca3df99189062668d@csoftware.co.uk>
+	<ce1b98dc7d2e4f58bd30bd9a3966ea49@csoftware.co.uk>
+From: Anuj Mittal <anuj.mittal@intel.com>
+Message-ID: <0f0fef5c-f115-9e05-dfe3-64e636e7d786@intel.com>
+Date: Fri, 30 Mar 2018 18:16:29 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
 	Thunderbird/52.6.0
 MIME-Version: 1.0
-Subject: meta-mono: breaking as libglade removed
+In-Reply-To: <ce1b98dc7d2e4f58bd30bd9a3966ea49@csoftware.co.uk>
+Subject: Re: ClamAV PCRE support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,20 +46,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2018 09:19:53 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
+X-List-Received-Date: Fri, 30 Mar 2018 10:16:34 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Hi Tom,
 
-libglade seems to have been removed which is breaking meta-mono builds.
+On 03/29/2018 11:29 PM, Tom Gibson wrote:
 
-What's best to fix this? Should I be adding the recipe into meta-mono?
+>     When I run clamscan on our board I get a number of errors of the
+>     form “logical signature for … uses PCREs but support is disabled,
+>     skipping” so the solution would appear to be to add PCRE support. In
+>     the ClamAV bitbake recipe I see there is a PACKAGECONFIG variable
+>     for PCRE, so to test if this is the solution I have added the
+>     following to my local.conf:
+> 
+>      
+> 
+>     PACKAGECONFIG_append_pn-clamav = “ pcre”
+> 
+>      
+> 
+>     and have also added “ libpcre2” before “clamav” in the IMAGE_INSTALL
+>     as above.
+
+This shouldn't be necessary, PACKAGECONFIG adds DEPENDS on libpcre when
+pcre is enabled and only of two should be required.
+
+> 
+>      
+> 
+>     Unfortunately when I run bitbake I now get a configure error similar
+>     to the following:
+> 
+>      
+> 
+>     configure: error: cannot locate libpcre2 or libpcre at
+>     <builddir>/tmp/work/armv7a-neon-poky-linux-gnueabi/clamav/0.99.3-r0/recipe-sysroot/usr/lib
+> 
+
+This is happening because clamav is looking for pcre-config (uses it to
+find pcre paths) and it's not able to locate it ...
+
+Even if you do get around this error by passing the path to configure,
+using binconfig files to evaluate paths has been disabled in OE-core layer.
+
+So, you will have to fix the configure/pcre.m4 file in clamav to do this
+using .pc file from libpcre instead.
 
 Thanks,
-
-Alex
-
-
+Anuj
 
