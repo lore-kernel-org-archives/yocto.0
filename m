@@ -1,39 +1,66 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <schnitzeltony@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF716E00C40; Fri, 30 Mar 2018 08:18:06 -0700 (PDT)
+	id C1022E00B28; Sat, 31 Mar 2018 08:37:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68E7DE00BAA
-	for <yocto@yoctoproject.org>; Fri, 30 Mar 2018 08:18:05 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w2UFI1iq000433
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 30 Mar 2018 08:18:01 -0700 (PDT)
-Received: from server.local (128.224.21.75) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.361.1;
-	Fri, 30 Mar 2018 08:18:00 -0700
-To: Vincent Daanen <vincent.daanen@orthotaxy.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <VI1P192MB014309F6A26B68B561F4B3588DA30@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
-	<4d479834-e8a6-0f65-e34f-2cbd271192bd@windriver.com>
-	<VI1P192MB0143A7A3AA8AB0E0433F0E738DA10@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <21f3437f-9256-d24f-d21a-6b4556c75e27@windriver.com>
-Date: Fri, 30 Mar 2018 11:18:00 -0400
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
-	Gecko/20100101 Thunderbird/52.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.175 listed in list.dnswl.org]
+Received: from mail-yw0-f175.google.com (mail-yw0-f175.google.com
+	[209.85.161.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F067E008EE
+	for <yocto@yoctoproject.org>; Sat, 31 Mar 2018 08:37:02 -0700 (PDT)
+Received: by mail-yw0-f175.google.com with SMTP id u15so3781091ywg.8
+	for <yocto@yoctoproject.org>; Sat, 31 Mar 2018 08:37:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=0nQ6LokFDt9ZEVw5cIhwFSev6qy2D1X3f8XeZX0Eliw=;
+	b=u8vn7+fB4iUkx2Gqpmew0ZiRYv4SYRT9i0g0IDjSyuRNnECLsD+4Sre1MRAJu1JNJ2
+	WAASftvw5N3bjkJ2muiA1HtsHzTwoPRdRCeFOUg6CJheZUIwDFpNQp99Nr4t/7loqg9/
+	WSjBESPgycQTUNfPlpVUN3r8hFmwTpyNVmj0DP4S2Zd40q3KO6/v4jtTqgmL3iLtDbuE
+	5j6n+L8b6JvUooraDvzawTTKelgTQuh/dVWTss5rbgeDt7K34muRa1W8x64QN87ZIAHf
+	idR4kuXWxMrUDgKsgFEUAAUssnSAWnsmsB0DPMzgbp5RHjy2FSrCURoegoh03GAuDQ0+
+	+gkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=0nQ6LokFDt9ZEVw5cIhwFSev6qy2D1X3f8XeZX0Eliw=;
+	b=Xv6PSM3jtvlO0Ub1t1NjQ/kLZL+kbE4e9ktiyc8/a3cPB/nMB1GLVH3RLvfC5HL4VB
+	UmfzLQybtV3cFM1jCeZ/EEVPXmmCwCRdN9GaU8dFSTVIbmsIKtchyJ/pcithPB94vMpl
+	8l6NC0Z84hhPPqbgzfU9fzDhf0DKMtMuBcAzUYE1b4sGERJBJFdNHIugXwSQvV0cRYW9
+	5Ea5Nv4hf0zqlhPOjQ5zWLhVJH7hQqWzislpq3FBvso1zMx6/Nawvw3vAaMdmTtdpIE3
+	usRuB0yfg4z9EF8sxsouwGXTnOibOiTcfl/920nbSBk7r1QDRDdn4tEaAgQ+WE9IZFDt
+	gqFQ==
+X-Gm-Message-State: ALQs6tBNQDsDbB1/Wdoz3Q5Q7NcRYk6ibWH/UMERGeVJOnUkQxJ9lTHg
+	Ii7XQ4sIQB2+L4WLVVajdjm53azcB7PnxrRtbv7mwg==
+X-Google-Smtp-Source: AIpwx48CP9CiCkBOHvgEPYtUezCyWH8B2ohH7L/VQ3M+TyOyDiw3cG2nT1I4Ypd7YrTZ83kMbVOymXpi/jyia2A7ovE=
+X-Received: by 10.13.249.197 with SMTP id j188mr1754623ywf.318.1522510622482; 
+	Sat, 31 Mar 2018 08:37:02 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <VI1P192MB0143A7A3AA8AB0E0433F0E738DA10@VI1P192MB0143.EURP192.PROD.OUTLOOK.COM>
-Subject: Re: defconfig file (or fragment files) not used
+Received: by 2002:a25:d105:0:0:0:0:0 with HTTP; Sat, 31 Mar 2018 08:37:01
+	-0700 (PDT)
+In-Reply-To: <c812b851-4cef-d5c3-e0cc-d1bca0547f3c@dynamicdevices.co.uk>
+References: <c812b851-4cef-d5c3-e0cc-d1bca0547f3c@dynamicdevices.co.uk>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
+Date: Sat, 31 Mar 2018 17:37:01 +0200
+Message-ID: <CALbNGRQ+o4RDANOy41g8K-K4FqNFPtTHA2jJUcb5NVk_EYeEgg@mail.gmail.com>
+To: Alex Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: meta-mono: breaking as libglade removed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,38 +72,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Mar 2018 15:18:06 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 31 Mar 2018 15:37:03 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 2018-03-30 9:08 AM, Vincent Daanen wrote:
-> Hi
-> 
->> On 03/29/18 16:12 PM, Bruce Ashfield wrote:
->> [cut]
->> Do you have all of the CAN* Kconfig dependencies in your defconfig ?
-> No only the ones I need
-> 
->> If you don't, the kernel config subsystem will turn them off.
->>
->> Also note that a 'defconfig' translates to a merge config run (yes, even with just a defconfig) of 'allnoconfig', so that can also be turning off dependencies if they were only valid via their default and were not explicitly specified.
->>
->> You can set KCONFIG_MODE="alldefconfig" in a linux-yocto bbappend to change what mode merge-config uses.
-> I tried this but got the same result ☹!
-> Do you think I have to set all the "CAN*" dependencies?
+On Fri, Mar 30, 2018 at 11:19 AM, Alex Lennon
+<ajlennon@dynamicdevices.co.uk> wrote:
+> Hi,
+>
+> libglade seems to have been removed which is breaking meta-mono builds.
+>
+> What's best to fix this? Should I be adding the recipe into meta-mono?
+>
+> Thanks,
+>
+> Alex
+As the one who removed it - so feel responsible...
 
-Is this using master of oe-core ? Is this a setup that I can
-configure and build here ?
+1.You could add libglade to meta-mono but I think there some
+additional dependencies which need to be added too
+2. Checked configure script of gtk-sharp-2.12.45: Seems libglade is an
+optional dependency. I think it should be good enough to remove it
+from dependencies.
 
-If I can easily reproduce it, I can offer better suggestions.
+My suggestion would be 2.
 
-Bruce
-
-> 
-> 
-> Vincent
-> 
-> 
-
+Andreas
 
