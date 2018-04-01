@@ -1,72 +1,60 @@
-Return-Path: <mirza@mkrak.org>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B85AEE00994; Thu, 29 Mar 2018 02:21:03 -0700 (PDT)
+	id ACC23E00ADB; Sun,  1 Apr 2018 10:09:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [74.125.83.67 listed in list.dnswl.org]
+	*      [216.168.135.166 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pg0-f67.google.com (mail-pg0-f67.google.com [74.125.83.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B40C7E008A2
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 02:21:00 -0700 (PDT)
-Received: by mail-pg0-f67.google.com with SMTP id b9so2677639pgf.6
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 02:21:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mkrak-org.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=Ysn8x4/glTrPSSp8MPGJqI18woZippFkpzxrMhW/Pqk=;
-	b=U69hZbCBjNqdVg/SSjxwswLndcCkLm4a8wxyTUwbNQGDNH0J0pdGlwk9pkdpsVXgtb
-	kO9MRCnrnOyR428RP2HRKhazDeqPunBDG6WoPHfZaUHDjv2n/MH0Jpc1NOjHMtd7cgb9
-	gMD4M3jLn4nZv8YFOvVdi+LaqHtpldV1zUHNtSC9uLlKIgUwYbStYoSOqGHNmL9ib9ER
-	nJOZEnPs+ij4ArEokOvKTMm8BI0Y92nbeVT1zgVxNyzHj0QYJASVvXJhrQ3ckkzdrZGM
-	JQ+6JifGC5bh3uI6T7KaaHqai4pQkNaSzV+vUyyj3/XSuLEXnpNy1NUI5ySi0WAoF9V+
-	HkDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=Ysn8x4/glTrPSSp8MPGJqI18woZippFkpzxrMhW/Pqk=;
-	b=X3i9BFjpm5Gn+EaSJ2fubUsVY8wr3vXNynBp1ioWRwsPDM4nvF6iS82YnQcjREWrrO
-	ixl0+IOM/mD425E4rJNTfc49Q2dQ7SZP4XXxZRyjkoTVV02cvMq4DsmaTcg+7agrqE6Y
-	ArUUryzwafY9NVhDr5Uc2achLes3MkWvH/6UnjSeHhx7vv7O9tJHkoGEXbXngt2XWF7x
-	uRltc/bbt+HxNDVO3OWmRNlFHek0m3n7EJleiiJxSX2rWVfwiDc9EjEbD1k2VEg9vdvV
-	Miu8if8OOVQkpNB8K4EHSCf9hADFT745Z1/7JtE6aV6HtbYKuSfzBmA8X5Oqxx4bAxG3
-	iOtw==
-X-Gm-Message-State: AElRT7HKqfjrsxlnhuetUyTLWOlV8tc/E55EUoHMZajgJx1ea5LeZprD
-	Mf2rqmdzNRAgjH+cLNP4LlbRU1VZ
-X-Google-Smtp-Source: AIpwx4/wxIrhmcMkH49XzZYuMzOnawu5lHy+zMnTlqxxLaAYHz3CXRwlbEaYPC9MkBZvy/42kuWQhw==
-X-Received: by 2002:a17:902:8697:: with SMTP id
-	g23-v6mr7689124plo.393.1522315259621; 
-	Thu, 29 Mar 2018 02:20:59 -0700 (PDT)
-Received: from mail-pf0-f169.google.com (mail-pf0-f169.google.com.
-	[209.85.192.169]) by smtp.gmail.com with ESMTPSA id
-	x137sm11807843pfd.162.2018.03.29.02.20.58
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 29 Mar 2018 02:20:58 -0700 (PDT)
-Received: by mail-pf0-f169.google.com with SMTP id u86so2828297pfd.2
-	for <yocto@yoctoproject.org>; Thu, 29 Mar 2018 02:20:58 -0700 (PDT)
-X-Received: by 2002:a17:902:7e09:: with SMTP id
-	b9-v6mr7486856plm.223.1522315257883; 
-	Thu, 29 Mar 2018 02:20:57 -0700 (PDT)
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D32E2E00843
+	for <yocto@yoctoproject.org>; Sun,  1 Apr 2018 10:09:01 -0700 (PDT)
+Received: (qmail 30838 invoked by uid 1003); 1 Apr 2018 17:09:00 -0000
+Received: from unknown (HELO ?192.168.11.100?)
+	(philip@opensdr.com@73.152.143.112)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	1 Apr 2018 17:09:00 -0000
+To: "Srinivasan, Raja" <rsrinivasan@abiomed.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <1522410133708.84693@abiomed.com>
+From: Philip Balister <philip@balister.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; keydata=
+	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+	6eUfr0u7CwnEyqiQ
+Message-ID: <a68fb944-cef1-177f-c5c9-f06e7e203a55@balister.org>
+Date: Sun, 1 Apr 2018 13:08:59 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-Received: by 10.236.176.2 with HTTP; Thu, 29 Mar 2018 02:20:57 -0700 (PDT)
-From: Mirza Krak <mirza@mkrak.org>
-Date: Thu, 29 Mar 2018 11:20:57 +0200
-X-Gmail-Original-Message-ID: <CALw8SCXWCB3zA2Y8Aw0HZGxQ2dhEo2Mf2Dw-w+gtAMphLskv-w@mail.gmail.com>
-Message-ID: <CALw8SCXWCB3zA2Y8Aw0HZGxQ2dhEo2Mf2Dw-w+gtAMphLskv-w@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Mailman-Approved-At: Sun, 01 Apr 2018 09:37:54 -0700
-Subject: Custom image type and CONVERSION_CMD images softlink problem
+In-Reply-To: <1522410133708.84693@abiomed.com>
+Subject: Re: adding other languages to yocto build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,61 +66,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Mar 2018 09:21:03 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 01 Apr 2018 17:09:02 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 
-Hi.
+On 03/30/2018 07:42 AM, Srinivasan, Raja wrote:
+> friends,
+> 
+> ?
+> 
+> anyone using ada, objective c, c#, swift or any other such languages. if so can you point me to a recipe. my interest is in the order listed. looking for an alternative to C/C++
 
-I am working with a project that has a custom image type, "sdimg". The
-image works fine but it is when I try to apply CONVERSION_CMDs that I
-see some interesting things.
+I searched the layer index[1] for "ada" and found
 
-The image output is:
+https://github.com/Lucretia/meta-ada
 
-     ${IMGDEPLOYDIR}/${IMAGE_NAME}.$suffix
+Be warned, the last commit is five years old, but hopefully it helps
+answer some of your questions.
 
-There is also a soft-link:
+Philip
 
-    ln -sfn "${IMAGE_NAME}.$suffix"
-"${DEPLOY_DIR_IMAGE}/${IMAGE_BASENAME}-${MACHINE}.$suffix"
+[1] http://layers.openembedded.org
 
-Now the interesting part comes when I try this:
-
-     IMAGE_FSTYPES +=3D "sdimg.gz"
-
-This results in a empty gz file, but I already know why and that is
-because the "normal" image does not contain IMAGE_NAME_SUFFIX in the
-output name, on which the CONVERSION_CMDs rely on [1].
-
-So instead of changing the image name I was hoping that this should
-work (default is ".rootfs" in image_types.bbclass):
-
-    IMAGE_NAME_SUFFIX_sdimg =3D ""
-
-But above only partly works. It will generate a proper "gz" version of
-"sdimg" but it fails to create a soft-link, that is
-${IMAGE_BASENAME}-${MACHINE}.sdimg.gz -> ${IMAGE_NAME}.sdimg.gz. And I
-have traced down on why. It is because image.bbclass still reads
-IMAGE_NAME_SUFFIX as ".rootfs" in create_symlinks[2] even though I
-have set it to something else for my specific image type (override).
-
-I have a couple of workarounds for this already but still wanted to
-report this and see what the community thinks about this. I would
-expect what I am trying to do, to work. That is to set
-IMAGE_NAME_SUFFIX to empty for the custom image.
-
-But you might be of another opinion.
-
-[1]. https://github.com/openembedded/openembedded-core/blob/master/meta/cla=
-sses/image_types.bbclass#L284
-[2]. https://github.com/openembedded/openembedded-core/blob/master/meta/cla=
-sses/image.bbclass#L592-L614
-
---=20
-Med V=C3=A4nliga H=C3=A4lsningar / Best Regards
-
-Mirza Krak
-email: mirza@mkrak.org
-web: http://mkrak.org
+> 
+> 
+> TIA
+> 
+> srini
+> 
+> ________________________________
+> 
+> CONFIDENTIALITY NOTICE: This email message and any attachments are confidential and may be privileged and are meant to be read by the intended recipient only. If you are not the intended recipient, please notify sender immediately and destroy all copies of this message and any attachments without reading or disclosing their contents. Thank you
+> 
+> Disclaimer
+> 
+> The information contained in this communication from the sender is confidential. It is intended solely for use by the recipient and others authorized to receive it. If you are not the recipient, you are hereby notified that any disclosure, copying, distribution or taking action in relation of the contents of this information is strictly prohibited and may be unlawful.
+> 
+> This email has been scanned for viruses and malware, and may have been automatically archived by Mimecast Ltd, an innovator in Software as a Service (SaaS) for business. Providing a safer and more useful place for your human generated data. Specializing in; Security, archiving and compliance. To find out more visit the Mimecast website.
+> 
+> 
+> 
 
