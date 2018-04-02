@@ -1,78 +1,38 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <Kai.Kang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D525E00C76; Sun,  1 Apr 2018 20:10:34 -0700 (PDT)
+	id DE4BEE00B9C; Sun,  1 Apr 2018 20:38:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
-Received: from mail-lf0-f45.google.com (mail-lf0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B4EFE00857
-	for <yocto@yoctoproject.org>; Sun,  1 Apr 2018 20:10:31 -0700 (PDT)
-Received: by mail-lf0-f45.google.com with SMTP id g203-v6so18850533lfg.11
-	for <yocto@yoctoproject.org>; Sun, 01 Apr 2018 20:10:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=fzZR1JQmC7EFW+U3GM9L+jLBzW40+N4W5+GdiDq+5UA=;
-	b=cI3d7eVYATKY/BqWVmoZewRWIAxxiZ8kgxSC7kzRlmya9jtSPKoBe26eseN7II2atH
-	bqxVAM9MYfnr8Oscum/nqpeim4H/cxFQHcttM+hojNn88ScMgqdo+g55kI/F16TV1w6+
-	JGEu6Ej62YZRfKT0fOOMcg8srazTiAmJa+cqQw7XwNk6i+GjJ9bTQegGUdeG7m+t1nee
-	q7SnF6azjGFAjobm6XBt3nDTwSpxFMGm+eOyUGYpYKNzfLOshCFEAO8IxYRU23V79/VW
-	8Y8V6VfmuxWmKcv/VUvo0+3gs2037nOOcjJ/By4IwSy1b/0YP7mYXGUMjDVM0uMgQOZj
-	cMAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=fzZR1JQmC7EFW+U3GM9L+jLBzW40+N4W5+GdiDq+5UA=;
-	b=llhpv0UpliUEQwH6RfAd+jrRM42ZKz/v2A54Nckyr7h6ifbqWZmn6332pmnWLZYhh+
-	AxqvV+sVddavgT7R4wRK+4jtEfw+d5KWvoBuVWLl7Mb9ETn2wz0cUqD0gz7otF0sFKdg
-	vNl1tQBSts7tNdD6Dx4+gbeVvJh4F3HWqGhlpv/pOpYAb72m4Or27NsG2GEZd6R3REYR
-	l/GKvSH/PP56hCFwkHd/Xc/mW6BIHBAxqqTAD2knSbvAzC4KFx6uqBSJFhp6wVziolry
-	BTiH3RRylAa1uN9mwWpZDcPh71VClxDM9ppO29KNUUij/+0zbDYyKiQGFw6/pAXBZznl
-	qUiQ==
-X-Gm-Message-State: ALQs6tArI71i74X9gHh4UEUqsx2HdNySGqQHNnbpd4DhquL15cVEHa/6
-	2zERPjXFNdefuRzvmq/FgDoDYkFAlGjTuRtnI7o=
-X-Google-Smtp-Source: AIpwx4/mn/w+9OwGFQrr2dKKQ7Y+/eZLvWBPuS4CXAZfQTIhhaftL8QUGjxC5gVQYa3mMrBukhPPyKlsQ8OtML7tpuU=
-X-Received: by 2002:a19:385e:: with SMTP id
-	d30-v6mr4494210lfj.16.1522638631037; 
-	Sun, 01 Apr 2018 20:10:31 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F384E00944
+	for <yocto@yoctoproject.org>; Sun,  1 Apr 2018 20:38:04 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id w323c3mT024250
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 1 Apr 2018 20:38:03 -0700 (PDT)
+Received: from [128.224.163.178] (128.224.163.178) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.361.1;
+	Sun, 1 Apr 2018 20:38:02 -0700
+To: Anuj Mittal <anuj.mittal@intel.com>, <yocto@yoctoproject.org>
+References: <20180328065517.13807-1-kai.kang@windriver.com>
+	<20180328065517.13807-3-kai.kang@windriver.com>
+	<5ca43c93-c0b3-b2e1-29a8-797b72cda370@intel.com>
+From: Kang Kai <Kai.Kang@windriver.com>
+Message-ID: <0897c8b3-9555-2900-d24e-8d0d3e36cafc@windriver.com>
+Date: Mon, 2 Apr 2018 11:36:14 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.2.1
 MIME-Version: 1.0
-Received: by 2002:a19:d80f:0:0:0:0:0 with HTTP;
-	Sun, 1 Apr 2018 20:10:30 -0700 (PDT)
-In-Reply-To: <CALbNGRR__b_jq3zRaOP8iawqgPgpxnH5ceQpo7+Tq-wPdWqaow@mail.gmail.com>
-References: <CALbNGRRA3Ev3mPT4ZDRO_koC_uwVWy4qXc8onJN5nSeXnE3JRg@mail.gmail.com>
-	<CAHUNapQhvr8UWBuF-Z5y0ojhsfF=fUU3nfgmRdxNGi4iKdkbqA@mail.gmail.com>
-	<CAMKF1sonaNhe0jznAaVFySa5z-JOBdqxDRjifq-F04kra=_rfg@mail.gmail.com>
-	<CALbNGRR0qo=yS2dop-3pfpAZVSC9NekDyg_aFCzURs7NM3UGvg@mail.gmail.com>
-	<CALbNGRTKdu+H4eW8U1D4FxM9+LjfoOeZUC0c=irJyHmK69bdMQ@mail.gmail.com>
-	<CALbNGRS06u3NTU=2XYRiga=B_rPj_rNyLwv2dC8hRUkx=mJt+A@mail.gmail.com>
-	<CAHUNapQP=2OYu6qjf5QLmMbcurXRFo_O1fWg0_oiqCXDZykccA@mail.gmail.com>
-	<CALbNGRTifa4-1SW2+zNCB_1a6+wHAjAYigMA1chrNMFiDb15Kg@mail.gmail.com>
-	<CALbNGRRR2z6bZFtU=aRBrY8FqAxU1YLtJaD+TGAw3yA-Vr+6AA@mail.gmail.com>
-	<20180329214654.GA25163@linux-uys3>
-	<CALbNGRR__b_jq3zRaOP8iawqgPgpxnH5ceQpo7+Tq-wPdWqaow@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-Date: Sun, 1 Apr 2018 23:10:30 -0400
-Message-ID: <CAHUNapTBry7BbPkLyJCjN_2ss4FcqgEXkL==YUqZS1X5NToJ6Q@mail.gmail.com>
-To: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Has anybody run VC4 + X + recent meta/masters lately
+In-Reply-To: <5ca43c93-c0b3-b2e1-29a8-797b72cda370@intel.com>
+Subject: Re: [PATCH 2/2] audit: fix pkgconfigdir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,42 +44,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Apr 2018 03:10:34 -0000
-Content-Type: multipart/alternative; boundary="000000000000b970690568d4ee1d"
+X-List-Received-Date: Mon, 02 Apr 2018 03:38:06 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---000000000000b970690568d4ee1d
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 2018年03月28日 15:10, Anuj Mittal wrote:
+> Hi,
+>
+> On 03/28/2018 02:55 PM, Kai Kang wrote:
+>> Because 'libdir' is set with ${base_libdir} in recipe file of audit,
+>> package config files(.pc) are installed to ${base_libdir}/pkgconfig that
+>> variable pkgconfigdir is set with ${libdir}/pkgconfig in makefile.
+>>
+>> Set pkgconfigdir directly to install .pc files to right directory.
+>>
+>> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+>> ---
+>>   recipes-security/audit/audit_2.7.6.bb | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/recipes-security/audit/audit_2.7.6.bb b/recipes-security/audit/audit_2.7.6.bb
+>> index 5bfda7b..33b49c9 100644
+>> --- a/recipes-security/audit/audit_2.7.6.bb
+>> +++ b/recipes-security/audit/audit_2.7.6.bb
+>> @@ -45,6 +45,7 @@ EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' \
+>>   	PYINC='${STAGING_INCDIR}/$(PYLIBVER)' \
+>>   	pyexecdir=${libdir}/python${PYTHON_BASEVERSION}/site-packages \
+>>   	STDINC='${STAGING_INCDIR}' \
+>> +	pkgconfigdir=${libdir}/pkgconfig \
+>>   	"
+>>   
+>>   SUMMARY_audispd-plugins = "Plugins for the audit event dispatcher"
+>> @@ -64,7 +65,7 @@ FILES_audispd-plugins += "${sysconfdir}/audisp/audisp-remote.conf \
+>>   	"
+>>   FILES_${PN}-dbg += "${libdir}/python${PYTHON_BASEVERSION}/*/.debug"
+>>   FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}"
+>> -FILES_${PN}-dev += "${base_libdir}/*.so ${base_libdir}/*.la ${base_libdir}/pkgconfig/*"
+>> +FILES_${PN}-dev += "${base_libdir}/*.so ${base_libdir}/*.la"
+> Aren't these already part of FILES_${PN}-dev in bitbake.conf in oe-core?
 
-On Fri, Mar 30, 2018 at 6:45 AM, Andreas M=C3=BCller <schnitzeltony@gmail.c=
-om>
-wrote:
+Thanks for point out. It is a legacy patch added in 2012 and I will 
+remove it with V2.
 
-> After party hangover: sddm and kde look horrible with this patch.
-> Should respect linear if requested explicitly - wonder if that slows
-> down horses...
+--Kai
+>
+> Thanks,
+> Anuj
 >
 
-Out of curiosity, are you going to follow up on this? Maybe with the mesa
-people?
-When I encountered this issue, my google-foo didn't yield anything.
+-- 
+Regards,
+Neil | Kai Kang
 
---000000000000b970690568d4ee1d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On F=
-ri, Mar 30, 2018 at 6:45 AM, Andreas M=C3=BCller <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:schnitzeltony@gmail.com" target=3D"_blank">schnitzeltony@gmai=
-l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D=
-"HOEnZb"><div class=3D"h5"><span style=3D"color:rgb(34,34,34)">After party =
-hangover: sddm and kde look horrible with this patch.</span><br></div></div=
->
-Should respect linear if requested explicitly - wonder if that slows<br>
-down horses...<br></blockquote><div><br></div><div>Out of curiosity, are yo=
-u going to follow up on this? Maybe with the mesa people?</div><div>When I =
-encountered this issue, my google-foo didn&#39;t yield anything.=C2=A0</div=
-></div></div></div>
-
---000000000000b970690568d4ee1d--
