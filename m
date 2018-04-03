@@ -1,75 +1,67 @@
-Return-Path: <yocto.user.mailinglist@gmail.com>
+Return-Path: <peter.kjellerstedt@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 229C0E00C6A; Tue,  3 Apr 2018 08:43:10 -0700 (PDT)
+	id 6A126E00BB6; Tue,  3 Apr 2018 10:33:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yocto.user.mailinglist[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.60.68.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E09A2E00BF8
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2018 08:43:06 -0700 (PDT)
-Received: by mail-wm0-f43.google.com with SMTP id f125so36095075wme.4
-	for <yocto@yoctoproject.org>; Tue, 03 Apr 2018 08:43:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=C+HTpPulysSGw+rCC6k03QRvRbgddPpSEChvfrAyv70=;
-	b=TSENzpbfq11OPfQ0KLxbcEdFye/MyFbQs4O5ulCdl/J9MIH1sSXQfWc7tXfHFPYJry
-	+1/wUB7kDh7GlJ2/sraEzYAldcU8/tuEU1RED/fijyQloiUe1IhT3+pU0l7iZnEW5sNV
-	i3Xewsda5LhMcy5TNsRqaHDSuOmxPizP49XaqPchAzGYm+3RmfdSVlh9b/DqnumUbylC
-	gMV4ZOZFM4AmpsOzlga4lZvcMdFqA/I7KlQWoT89ZE196+279pRJSOgzrl9haxGTQ3Kb
-	PVRW9QXz8YFpBFtUU9+37d7iGcoonK0IsKJW6haAGEn0JMnNhKsS+naHbHvU4sYp0j4H
-	gzgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=C+HTpPulysSGw+rCC6k03QRvRbgddPpSEChvfrAyv70=;
-	b=ONcMEW2vE/kO9vL9+0FyAmAmHKUqSCwK7PLrUh+7+kOQJwmEobKU1EgQAumfjggcC7
-	j0kPady5VvtOdl+YobWgvGeJJjtGRBg46defqTgCFsiY49u9ihhW5ew16zQLsHRbd7/w
-	kLDoD0CCB0XuUcbLdP8WaNuBUuxcgYw2H25Z66Uo8k1GYfWZVYXKUJHpD9rXomfyQmhM
-	vGDgpPk66hLwNwGcEPedkIhaGaXMqPxyQyM8MVmdffgsj4tXjSa2jHQDLF47xMqB5j1g
-	CjB1IEjHTW4Mb2h56tKGZVVgnhb7+AmM8yN53pDL+bpBWJhkULKskML5Zym4pOsxdkPA
-	MMXQ==
-X-Gm-Message-State: AElRT7GGxwPmRUf0YM8rAHFdsnhhqTypnV2OPJ1VxLFoKQgMXnlexZsq
-	hAZ8OmORM5heyXIsO1UuI/KREwOc
-X-Google-Smtp-Source: AIpwx48w9kGlhnin9/kVWfeV0GhMoCowlk+es650NPFLEl9OwJ3wQz4cSAG9Ikuyq+Ufx0GExWZF1Q==
-X-Received: by 10.28.54.6 with SMTP id d6mr4286042wma.32.1522770185228;
-	Tue, 03 Apr 2018 08:43:05 -0700 (PDT)
-Received: from [192.168.42.50] (ppp-2-86-156-243.home.otenet.gr.
-	[2.86.156.243]) by smtp.gmail.com with ESMTPSA id
-	u110sm4411332wrc.72.2018.04.03.08.43.03
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 03 Apr 2018 08:43:04 -0700 (PDT)
-To: Tom Gibson <tom.gibson@csoftware.co.uk>,
-	Anuj Mittal <anuj.mittal@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <7fe4b4d52892445b97680ccd2ec47808@csoftware.co.uk>
-	<0f0fef5c-f115-9e05-dfe3-64e636e7d786@intel.com>
-	<29ee9a010abe4c0d9352685ecfa13968@csoftware.co.uk>
-From: Robert Berger <yocto.user.mailinglist@gmail.com>
-Message-ID: <f58b70b9-85d6-be22-ca6f-a697a2eeea51@gmail.com>
-Date: Tue, 3 Apr 2018 18:43:02 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.7.0
+Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6569BE008BF
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2018 10:33:53 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bastet.se.axis.com (Postfix) with ESMTP id 9486E18420;
+	Tue,  3 Apr 2018 19:33:52 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024)
+	with LMTP id KsRsd-O7775L; Tue,  3 Apr 2018 19:33:51 +0200 (CEST)
+Received: from boulder03.se.axis.com (boulder03.se.axis.com [10.0.8.17])
+	by bastet.se.axis.com (Postfix) with ESMTPS id C7FE61837B;
+	Tue,  3 Apr 2018 19:33:51 +0200 (CEST)
+Received: from boulder03.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 9FC521E075;
+	Tue,  3 Apr 2018 19:33:51 +0200 (CEST)
+Received: from boulder03.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 93A711E070;
+	Tue,  3 Apr 2018 19:33:51 +0200 (CEST)
+Received: from thoth.se.axis.com (unknown [10.0.2.173])
+	by boulder03.se.axis.com (Postfix) with ESMTP;
+	Tue,  3 Apr 2018 19:33:51 +0200 (CEST)
+Received: from XBOX03.axis.com (xbox03.axis.com [10.0.5.17])
+	by thoth.se.axis.com (Postfix) with ESMTP id 876EA9E6;
+	Tue,  3 Apr 2018 19:33:51 +0200 (CEST)
+Received: from XBOX02.axis.com (10.0.5.16) by XBOX03.axis.com (10.0.5.17) with
+	Microsoft SMTP Server (TLS) id 15.0.1263.5;
+	Tue, 3 Apr 2018 19:33:51 +0200
+Received: from XBOX02.axis.com ([fe80::50c3:4d2f:4507:7776]) by
+	XBOX02.axis.com ([fe80::50c3:4d2f:4507:7776%21]) with mapi id
+	15.00.1263.000; Tue, 3 Apr 2018 19:33:51 +0200
+From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, Scott Rifenbark
+	<srifenbark@gmail.com>
+Thread-Topic: [yocto] [PATCH] ref-manual: Document the task feature of
+	BUILDHISTORY_FEATURES
+Thread-Index: AdO8ZybnsA7bD3G7SgK1vraf61ygNgPCdiYA
+Date: Tue, 3 Apr 2018 17:33:51 +0000
+Message-ID: <df6a1cff71b44f89b44bdd1f5890c416@XBOX02.axis.com>
+References: <7200737df0d045678110b093571c1362@XBOX02.axis.com>
+In-Reply-To: <7200737df0d045678110b093571c1362@XBOX02.axis.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
 MIME-Version: 1.0
-In-Reply-To: <29ee9a010abe4c0d9352685ecfa13968@csoftware.co.uk>
-Subject: Re: ClamAV PCRE support
+X-TM-AS-GCONF: 00
+Cc: Kristi Rifenbark <kristi@buzzcollectivemarketing.com>
+Subject: Re: [PATCH] ref-manual: Document the task feature of BUILDHISTORY_FEATURES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,64 +73,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2018 15:43:10 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Tue, 03 Apr 2018 17:33:55 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Tom,
+Anything preventing this from being added to the manual?
 
-I never tried to get clamav to run, but please see my comments below.
+//Peter
 
-On 2018-04-03 16:22, Tom Gibson wrote:
-> Hi Anuj
-> 
->>
->> This is happening because clamav is looking for pcre-config (uses it to find
->> pcre paths) and it's not able to locate it ...
->>
->> Even if you do get around this error by passing the path to configure, using
->> binconfig files to evaluate paths has been disabled in OE-core layer.
->>
->> So, you will have to fix the configure/pcre.m4 file in clamav to do this using
->> .pc file from libpcre instead.
->>
-> 
-> Sorry, I'm not clear on which file needs fixing? I can only find pcre.m4 at
-> 
-> 	<builddir>tmp/work/armv7a-neon-poky-linux-gnueabi/clamav/0.99.2-r0/git/m4/reorganization/libs/pcre.m4
-> 
-> Isn't this generated during build? I'm sorry I'm also not clear on what needs changing, where can I find the correct .pc file for libpcre?
-
-I guess Anuj has a much better understanding about ClamAv and friends, 
-but in general:
-
-.pc files are for the pkg-config utility[1][2].
-
-You might want to try to compile libpcre and clamav natively on your 
-target board. From there I would try to "steal" the relevant information 
-and feed it back into the recipe(s).
-
-[1] https://linux.die.net/man/1/pkg-config
-[2] https://en.wikipedia.org/wiki/Pkg-config
-
-Also I guess that the file you need to fix is:
-
-./m4/reorganization/libs/pcre.m4
-
-with the input of whatever libpcre has in the libpcre.pc... or so file.
-
-> 
-> Thanks for your help.
-> 
-> Regards,
-> 
-> Tom
-> 
-
-Happy hunting,
-
-Robert
-
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Peter Kjellerstedt
+> Sent: den 15 mars 2018 15:09
+> To: yocto@yoctoproject.org; Scott Rifenbark <srifenbark@gmail.com>
+> Subject: Re: [yocto] [PATCH] ref-manual: Document the task feature of BUI=
+LDHISTORY_FEATURES
+>=20
+> Ping?
+>=20
+> //Peter
+>=20
+> > -----Original Message-----
+> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> > bounces@yoctoproject.org] On Behalf Of Peter Kjellerstedt
+> > Sent: den 29 januari 2018 19:58
+> > To: yocto@yoctoproject.org; Scott Rifenbark <srifenbark@gmail.com>
+> > Subject: [yocto] [PATCH] ref-manual: Document the task feature of BUILD=
+HISTORY_FEATURES
+> >
+> > Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+> > ---
+> >  documentation/ref-manual/ref-variables.xml | 11 ++++++++---
+> >  1 file changed, 8 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/documentation/ref-manual/ref-variables.xml b/documentation=
+/ref-manual/ref-variables.xml
+> > index 521eaeaed2..70e5e3428b 100644
+> > --- a/documentation/ref-manual/ref-variables.xml
+> > +++ b/documentation/ref-manual/ref-variables.xml
+> > @@ -1927,8 +1927,8 @@
+> >                  </para>
+> >
+> >                  <para>
+> > -                    You can specify three features in the form of a
+> > -                    space-separated list:
+> > +                    You can specify features in the form of a space-se=
+parated
+> > +                    list:
+> >                      <itemizedlist>
+> >                          <listitem><para><emphasis>image:</emphasis>
+> >                              Analysis of the contents of images, which
+> > @@ -1942,12 +1942,17 @@
+> >                              Analysis of the contents of the software
+> >                              development kit (SDK).
+> >                              </para></listitem>
+> > +                        <listitem><para><emphasis>task:</emphasis>
+> > +                            Save output file signatures for sstate tas=
+ks.  This
+> > +                            saves a file per task listing the SHA-256 =
+checksums
+> > +                            for each file staged, i.e., the output of =
+the task.
+> > +                            </para></listitem>
+> >                      </itemizedlist>
+> >                  </para>
+> >
+> >                  <para>
+> >                      By default, the <filename>buildhistory</filename> =
+class
+> > -                    enables all three features:
+> > +                    enables the following features:
+> >                      <literallayout class=3D'monospaced'>
+> >       BUILDHISTORY_FEATURES ?=3D "image package sdk"
+> >                      </literallayout>
+> > --
+> > 2.12.0
 
 
