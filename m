@@ -1,44 +1,75 @@
-Return-Path: <stephano.cetola@linux.intel.com>
+Return-Path: <yocto.user.mailinglist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33D9FE00857; Tue,  3 Apr 2018 08:42:50 -0700 (PDT)
+	id 229C0E00C6A; Tue,  3 Apr 2018 08:43:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yocto.user.mailinglist[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [74.125.82.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 979ADE00857
-	for <yocto@yoctoproject.org>; Tue,  3 Apr 2018 08:42:49 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	03 Apr 2018 08:42:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.48,401,1517904000"; d="scan'208";a="188318076"
-Received: from linux.intel.com ([10.54.29.200])
-	by orsmga004.jf.intel.com with ESMTP; 03 Apr 2018 08:42:48 -0700
-Received: from scetola-mac01.jf.intel.com (scetola-mac01.jf.intel.com
-	[10.24.10.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTPS id 73E8B58043A;
-	Tue,  3 Apr 2018 08:42:48 -0700 (PDT)
-From: Stephano Cetola <stephano.cetola@linux.intel.com>
-To: yocto@yoctoproject.org
-References: <ccd4dcfb-d871-7985-ca62-e8ddafc58296@linux.intel.com>
-Message-ID: <1dc415ff-6945-87e8-1c41-f7c431abe0ee@linux.intel.com>
-Date: Tue, 3 Apr 2018 08:42:49 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0)
-	Gecko/20100101 Thunderbird/52.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wm0-f43.google.com (mail-wm0-f43.google.com [74.125.82.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E09A2E00BF8
+	for <yocto@yoctoproject.org>; Tue,  3 Apr 2018 08:43:06 -0700 (PDT)
+Received: by mail-wm0-f43.google.com with SMTP id f125so36095075wme.4
+	for <yocto@yoctoproject.org>; Tue, 03 Apr 2018 08:43:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language:content-transfer-encoding;
+	bh=C+HTpPulysSGw+rCC6k03QRvRbgddPpSEChvfrAyv70=;
+	b=TSENzpbfq11OPfQ0KLxbcEdFye/MyFbQs4O5ulCdl/J9MIH1sSXQfWc7tXfHFPYJry
+	+1/wUB7kDh7GlJ2/sraEzYAldcU8/tuEU1RED/fijyQloiUe1IhT3+pU0l7iZnEW5sNV
+	i3Xewsda5LhMcy5TNsRqaHDSuOmxPizP49XaqPchAzGYm+3RmfdSVlh9b/DqnumUbylC
+	gMV4ZOZFM4AmpsOzlga4lZvcMdFqA/I7KlQWoT89ZE196+279pRJSOgzrl9haxGTQ3Kb
+	PVRW9QXz8YFpBFtUU9+37d7iGcoonK0IsKJW6haAGEn0JMnNhKsS+naHbHvU4sYp0j4H
+	gzgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=C+HTpPulysSGw+rCC6k03QRvRbgddPpSEChvfrAyv70=;
+	b=ONcMEW2vE/kO9vL9+0FyAmAmHKUqSCwK7PLrUh+7+kOQJwmEobKU1EgQAumfjggcC7
+	j0kPady5VvtOdl+YobWgvGeJJjtGRBg46defqTgCFsiY49u9ihhW5ew16zQLsHRbd7/w
+	kLDoD0CCB0XuUcbLdP8WaNuBUuxcgYw2H25Z66Uo8k1GYfWZVYXKUJHpD9rXomfyQmhM
+	vGDgpPk66hLwNwGcEPedkIhaGaXMqPxyQyM8MVmdffgsj4tXjSa2jHQDLF47xMqB5j1g
+	CjB1IEjHTW4Mb2h56tKGZVVgnhb7+AmM8yN53pDL+bpBWJhkULKskML5Zym4pOsxdkPA
+	MMXQ==
+X-Gm-Message-State: AElRT7GGxwPmRUf0YM8rAHFdsnhhqTypnV2OPJ1VxLFoKQgMXnlexZsq
+	hAZ8OmORM5heyXIsO1UuI/KREwOc
+X-Google-Smtp-Source: AIpwx48w9kGlhnin9/kVWfeV0GhMoCowlk+es650NPFLEl9OwJ3wQz4cSAG9Ikuyq+Ufx0GExWZF1Q==
+X-Received: by 10.28.54.6 with SMTP id d6mr4286042wma.32.1522770185228;
+	Tue, 03 Apr 2018 08:43:05 -0700 (PDT)
+Received: from [192.168.42.50] (ppp-2-86-156-243.home.otenet.gr.
+	[2.86.156.243]) by smtp.gmail.com with ESMTPSA id
+	u110sm4411332wrc.72.2018.04.03.08.43.03
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 03 Apr 2018 08:43:04 -0700 (PDT)
+To: Tom Gibson <tom.gibson@csoftware.co.uk>,
+	Anuj Mittal <anuj.mittal@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <7fe4b4d52892445b97680ccd2ec47808@csoftware.co.uk>
+	<0f0fef5c-f115-9e05-dfe3-64e636e7d786@intel.com>
+	<29ee9a010abe4c0d9352685ecfa13968@csoftware.co.uk>
+From: Robert Berger <yocto.user.mailinglist@gmail.com>
+Message-ID: <f58b70b9-85d6-be22-ca6f-a697a2eeea51@gmail.com>
+Date: Tue, 3 Apr 2018 18:43:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.7.0
 MIME-Version: 1.0
-In-Reply-To: <ccd4dcfb-d871-7985-ca62-e8ddafc58296@linux.intel.com>
-Subject: Minutes: Yocto Project Technical Meeting
+In-Reply-To: <29ee9a010abe4c0d9352685ecfa13968@csoftware.co.uk>
+Subject: Re: ClamAV PCRE support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,41 +81,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Apr 2018 15:42:50 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Tue, 03 Apr 2018 15:43:10 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-Attendees:
-Armin, Stephano, Robin, Richard, Maxin, Alex K, Sean Gabriel, Martin,
-Denys, Joshua Watt, Michael Halstead, Pascal Bach, Randy MacLeod,
-Amanda, Trevor, Tracey
+Hi Tom,
+
+I never tried to get clamav to run, but please see my comments below.
+
+On 2018-04-03 16:22, Tom Gibson wrote:
+> Hi Anuj
+> 
+>>
+>> This is happening because clamav is looking for pcre-config (uses it to find
+>> pcre paths) and it's not able to locate it ...
+>>
+>> Even if you do get around this error by passing the path to configure, using
+>> binconfig files to evaluate paths has been disabled in OE-core layer.
+>>
+>> So, you will have to fix the configure/pcre.m4 file in clamav to do this using
+>> .pc file from libpcre instead.
+>>
+> 
+> Sorry, I'm not clear on which file needs fixing? I can only find pcre.m4 at
+> 
+> 	<builddir>tmp/work/armv7a-neon-poky-linux-gnueabi/clamav/0.99.2-r0/git/m4/reorganization/libs/pcre.m4
+> 
+> Isn't this generated during build? I'm sorry I'm also not clear on what needs changing, where can I find the correct .pc file for libpcre?
+
+I guess Anuj has a much better understanding about ClamAv and friends, 
+but in general:
+
+.pc files are for the pkg-config utility[1][2].
+
+You might want to try to compile libpcre and clamav natively on your 
+target board. From there I would try to "steal" the relevant information 
+and feed it back into the recipe(s).
+
+[1] https://linux.die.net/man/1/pkg-config
+[2] https://en.wikipedia.org/wiki/Pkg-config
+
+Also I guess that the file you need to fix is:
+
+./m4/reorganization/libs/pcre.m4
+
+with the input of whatever libpcre has in the libpcre.pc... or so file.
+
+> 
+> Thanks for your help.
+> 
+> Regards,
+> 
+> Tom
+> 
+
+Happy hunting,
+
+Robert
 
 
-If people are aware of items that should be going into 2.5 but are not
-on the list, please contact Richard. While no high level list exists
-today we will work on getting that setup. For now, please see the commit
-logs to determine if a feature you are looking for has been included.
-
-The new autobuilder setup will be used for the 2.6 release. Testing on
-that system can begin soon with the knowledge that some features are not
-yet implemented.
-
-poky-contrib cleanup should be happening regularly and Michael will
-begin tracking this in bugzilla.
-
-
-AR: Robin - Work to communicate an appropriate high level overview for
-releases. Be aware Paul usually pulls together the release notes. (the
-wiki would be higher level)
-
-AR: Tracey - Add to the website a page regarding bug triage.
-
-AR: Stephano - Add yocto/oe-core/bitbake to bug triage invite.
-
-
-NOTES:
-"AR" == Action Required
-"Opens" == Anything you would like to be discussed which is not
-explicitly on the agenda.
 
